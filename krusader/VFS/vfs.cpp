@@ -150,6 +150,8 @@ bool vfs::vfs_refresh()
         QList<QString> keys = vfs_filesP->keys();
         foreach(QString name, keys) {
             vfile* vf = (*vfs_filesP)[name];
+            if (vf == 0)
+                continue;
             vfile* newVf = (*vfs_tempFilesP)[name];
             if (!newVf) {
                 if (name != "..") {
