@@ -148,7 +148,7 @@ bool vfs::vfs_refresh()
 
         // compare the two list emiting signals when needed;;
         QList<QString> keys = vfs_filesP->keys();
-        foreach(QString name, keys) {
+        foreach(const QString &name, keys) {
             vfile* vf = (*vfs_filesP)[name];
             if (vf == 0)
                 continue;

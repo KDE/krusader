@@ -788,7 +788,7 @@ void ListerTextArea::slotActionTriggered(int action)
                     backRef = 0;
                 int size = from - backRef + encodedEnter.size();
                 QString decoded = codec()->toUnicode(cache + backRef, size);
-                if (decoded.endsWith("\n")) {
+                if (decoded.endsWith(QLatin1String("\n"))) {
                     if (from < (maxSize - encodedEnter.size())) {
                         from += encodedEnter.size();
                         break;
@@ -865,7 +865,7 @@ void ListerTextArea::slotActionTriggered(int action)
                     backRef = 0;
                 int size = from - backRef + encodedEnter.size();
                 QString decoded = codec()->toUnicode(cache + backRef, size);
-                if (decoded.endsWith("\n")) {
+                if (decoded.endsWith(QLatin1String("\n"))) {
                     if (from < (maxSize - encodedEnter.size())) {
                         int arrayStart = from + encodedEnter.size();
                         decoded = codec()->toUnicode(cache + arrayStart, lastEnter - arrayStart);
