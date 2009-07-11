@@ -439,28 +439,27 @@ bool compareTextsAlphabetical(QString& aS1, QString& aS2, const KrViewProperties
         if (aNumbers && lchar1.isDigit() && lchar2.isDigit()) {
             int j = compareNumbers(aS1, lPositionS1, aS2, lPositionS2);
             if (j != 0) return j < 0;
-        } else
-            if (lUseLocaleAware
-                    &&
-                    ((lchar1 >= 128
-                      && ((lchar2 >= 'A' && lchar2 <= 'Z') || (lchar2 >= 'a' && lchar2 <= 'z') || lchar2 >= 128))
-                     ||
-                     (lchar2 >= 128
-                      && ((lchar1 >= 'A' && lchar1 <= 'Z') || (lchar1 >= 'a' && lchar1 <= 'z') || lchar1 >= 128))
-                    )
-               ) {
-                // use localeAwareCompare when a unicode character is encountered
-                j = QString::localeAwareCompare(lchar1, lchar2);
-                if (j != 0) return j < 0;
-                lPositionS1++;
-                lPositionS2++;
-            } else {
-                // if characters are latin or localeAwareCompare is not case sensitive then use simple characters compare is enough
-                if (lchar1 < lchar2) return true;
-                if (lchar1 > lchar2) return false;
-                lPositionS1++;
-                lPositionS2++;
-            }
+        } else if (lUseLocaleAware
+                   &&
+                   ((lchar1 >= 128
+                     && ((lchar2 >= 'A' && lchar2 <= 'Z') || (lchar2 >= 'a' && lchar2 <= 'z') || lchar2 >= 128))
+                    ||
+                    (lchar2 >= 128
+                     && ((lchar1 >= 'A' && lchar1 <= 'Z') || (lchar1 >= 'a' && lchar1 <= 'z') || lchar1 >= 128))
+                   )
+                  ) {
+            // use localeAwareCompare when a unicode character is encountered
+            j = QString::localeAwareCompare(lchar1, lchar2);
+            if (j != 0) return j < 0;
+            lPositionS1++;
+            lPositionS2++;
+        } else {
+            // if characters are latin or localeAwareCompare is not case sensitive then use simple characters compare is enough
+            if (lchar1 < lchar2) return true;
+            if (lchar1 > lchar2) return false;
+            lPositionS1++;
+            lPositionS2++;
+        }
         // at this point strings are equal, check if ends of strings are reached
         if (lPositionS1 == aS1.length() && lPositionS2 == aS2.length()) return false;
         if (lPositionS1 == aS1.length() && lPositionS2 < aS2.length()) return true;
@@ -625,10 +624,13 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
     _vfileNdx.clear();
     _nameNdx.clear();
 
+    bool sortOrderChanged = false;
     QHash<int, int> changeMap;
     for (int i = 0; i < sorting.count(); ++i) {
         _vfiles.append(sorting[ i ]->vf());
         changeMap[ sorting[ i ]->originalIndex()] = i;
+        if (i != sorting[ i ]->originalIndex())
+            sortOrderChanged = true;
         _vfileNdx[ sorting[ i ]->vf()] = index(i, 0);
         _nameNdx[ sorting[ i ]->vf()->vfile_getName()] = index(i, 0);
         delete sorting[ i ];
@@ -641,7 +643,8 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
     changePersistentIndexList(oldPersistentList, newPersistentList);
 
     emit layoutChanged();
-    _view->makeItemVisible(_view->getCurrentKrViewItem());
+    if (sortOrderChanged)
+        _view->makeItemVisible(_view->getCurrentKrViewItem());
 }
 
 QModelIndex KrVfsModel::addItem(vfile * vf)
@@ -757,8 +760,102 @@ QModelIndex KrVfsModel::removeItem(vfile * vf)
 
 void KrVfsModel::updateItem(vfile * vf)
 {
-    // TODO: make it faster
-    sort();
+    bool filteredOut = false;
+    bool isDir = vf->vfile_isDir();
+    if (!isDir || (isDir && (properties()->filter & KrViewProperties::ApplyToDirs))) {
+        switch (properties()->filter) {
+        case KrViewProperties::All :
+            break;
+        case KrViewProperties::Custom :
+            if (!properties()->filterMask.match(vf))
+                filteredOut = true;
+            break;
+        case KrViewProperties::Dirs:
+            if (!isDir)
+                filteredOut = true;
+            break;
+        case KrViewProperties::Files:
+            if (isDir)
+                filteredOut = true;
+            break;
+        default:
+            break;
+        }
+    }
+
+    QModelIndex lastIndex = vfileIndex(vf);
+    if (filteredOut) {
+        if (lastIndex.isValid())
+            removeItem(vf);
+        return;
+    }
+    if (!lastIndex.isValid()) {
+        addItem(vf);
+        return;
+    }
+
+    QVector < SortProps * > sorting(_vfiles.count());
+    int oldIndex = -1;
+    for (int i = 0; i < _vfiles.count(); ++i) {
+        sorting[ i ] = new SortProps(_vfiles[ i ], _lastSortOrder, properties(), _vfiles[ i ] == _dummyVfile, _lastSortDir == Qt::AscendingOrder, i);
+        if (_vfiles[ i ] == vf)
+            oldIndex = i;
+    }
+    if (oldIndex < 0) {
+        // internal error
+        sort();
+        return;
+    }
+    SortProps *updateSort = sorting[ oldIndex ];
+    sorting.remove(oldIndex);
+    _vfiles.remove(oldIndex);
+
+    emit layoutAboutToBeChanged();
+
+    QModelIndexList oldPersistentList = persistentIndexList();
+
+    LessThan compare = (_lastSortDir == Qt::AscendingOrder ? &itemLessThan : &itemGreaterThan);
+    QVector<SortProps *>::iterator it = qLowerBound(sorting.begin(), sorting.end(), updateSort, compare);
+
+    int newIndex = _vfiles.count();
+    if (it != sorting.end()) {
+        newIndex = (*it)->originalIndex();
+        if (newIndex > oldIndex)
+            newIndex--;
+        _vfiles.insert(newIndex, vf);
+    } else
+        _vfiles.append(vf);
+
+    for (int di = 0; di != sorting.count(); di++)
+        delete sorting[ di ];
+    delete updateSort;
+
+    int i = newIndex;
+    if (oldIndex < i)
+        i = oldIndex;
+    for (; i < _vfiles.count(); ++i) {
+        _vfileNdx[ _vfiles[ i ] ] = index(i, 0);
+        _nameNdx[ _vfiles[ i ]->vfile_getName()] = index(i, 0);
+    }
+
+    QModelIndexList newPersistentList;
+    foreach(const QModelIndex &mndx, oldPersistentList) {
+        int newRow = mndx.row();
+        if (newRow == oldIndex)
+            newRow = newIndex;
+        else {
+            if (newRow >= oldIndex)
+                newRow--;
+            if (mndx.row() > newIndex)
+                newRow++;
+        }
+        newPersistentList << index(newRow, mndx.column());
+    }
+
+    changePersistentIndexList(oldPersistentList, newPersistentList);
+    emit layoutChanged();
+    if (newIndex != oldIndex)
+        _view->makeItemVisible(_view->getCurrentKrViewItem());
 }
 
 QVariant KrVfsModel::headerData(int section, Qt::Orientation orientation, int role) const

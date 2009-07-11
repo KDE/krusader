@@ -366,7 +366,13 @@ void normal_vfs::vfs_slotRefresh()
 
 bool normal_vfs::burstRefresh(const QString& path)
 {
-    if (path == vfs_getOrigin().path(KUrl::RemoveTrailingSlash)) {
+    QString parentPath = path;
+    int ndx = path.lastIndexOf(DIR_SEPARATOR);
+    if (ndx >= 0)
+        parentPath = path.left(ndx == 0 ? 1 : ndx);
+
+    if (path == vfs_getOrigin().path(KUrl::RemoveTrailingSlash) ||
+            parentPath == vfs_getOrigin().path(KUrl::RemoveTrailingSlash)) {
         if (!refreshTimer.isActive()) {
             // the directory itself is dirty - full refresh is needed
             QTimer::singleShot(0, this, SLOT(vfs_slotRefresh()));    // safety: dirty signal comes from KDirWatch!
@@ -398,12 +404,13 @@ void normal_vfs::vfs_slotDirty(const QString& path)
         return;
 
     // do we have it already ?
-    if (!vfs_search(name)) return vfs_slotCreated(path);
+    vfile * vf = vfs_search(name);
+    if (!vf) return vfs_slotCreated(path);
 
     // we have an updated file..
-    removeFromList(name);
-    vfile* vf = vfileFromName(name, 0);
-    addToList(vf);
+    vfile *newVf = vfileFromName(name, 0);
+    *vf = *newVf;
+    delete newVf;
     emit updatedVfile(vf);
 }
 
@@ -449,9 +456,11 @@ void normal_vfs::vfs_slotDeleted(const QString& path)
     QString name = url.fileName();
 
     // if it's not in the CVS - do nothing
-    if (vfs_search(name)) {
+    vfile *vf = vfs_search(name);
+    if (vf) {
         emit deletedVfile(name);
         removeFromList(name);
+        delete vf;
     }
 }
 

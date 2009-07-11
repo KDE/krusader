@@ -334,11 +334,19 @@ void KrInterBriefView::updateView()
 {
 }
 
+void KrInterBriefView::updateItem(vfile * item)
+{
+    if (item == 0)
+        return;
+    _model->updateItem(item);
+    op()->emitSelectionChanged();
+}
+
 void KrInterBriefView::updateItem(KrViewItem* item)
 {
     if (item == 0)
         return;
-    _model->updateItem((vfile *)item->getVfile());
+    updateItem((vfile *)item->getVfile());
 }
 
 void KrInterBriefView::clear()

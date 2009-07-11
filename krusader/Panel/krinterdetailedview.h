@@ -64,6 +64,7 @@ public:
     virtual void clear();
     virtual void updateView();
     virtual void updateItem(KrViewItem* item);
+    virtual void updateItem(vfile* item);
     virtual QModelIndex getCurrentIndex() {
         return currentIndex();
     }
