@@ -332,7 +332,7 @@
           ~/.kde/share/apps/krusader/krusaderui.rc</filename> and
           re-run &krusader;. If you have compiled
           &krusader; from sources this is often caused
-          if the <link linkend="kde_qt_dir"><envar>KDEDIR</envar> - <envar>QTDIR</envar></link> environment variables
+          if the <envar>KDEDIR</envar> - <envar>QTDIR</envar> environment variables
           are not correctly set. The result is that the 
           <filename>krusaderui.rc</filename> file is installed in
           the wrong directory. Please read the following question,
@@ -1517,9 +1517,8 @@
         <answer>
           <para>Yes, there is &MacOS; X port, but you
           will not have the all the power you would have on
-          &Linux;. Please read the 
-          <link linkend="mac-port">&MacOS; X port
-          section</link> for more information. A recommended native
+          &Linux;. Please visit the <ulink url="http://www.krusader.org">Krusader website</ulink>
+          for more information. A recommended native
           file manager for &MacOS; is
           <ulink url="http://www.likemac.ru/english/"><trademark class="copyright">Disk Order</trademark></ulink> (shareware).</para>
           <para></para>
