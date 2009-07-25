@@ -264,11 +264,11 @@
                  <link linkend="krusader_svn">SVN</link> version, it is possible that the latest
                  new features are not yet in the "The Krusader Handbook".
                  Please read the 
-		 <ulink url="http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/ChangeLog?view=markup">Changelog</ulink>
+		 <ulink url="http://websvn.kde.org/trunk/extragear/utils/krusader/ChangeLog?view=markup">Changelog</ulink>
 		 file online or in the &krusader;
                  sources to find out more about the new features.
                  For a brief description, please read the 
-		 <ulink url="http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/SVNNEWS?view=markup">SVNNEWS</ulink>
+		 <ulink url="http://websvn.kde.org/trunk/extragear/utils/krusader/SVNNEWS?view=markup">SVNNEWS</ulink>
 		 file online
                  or in the &krusader; sources.
                        <link linkend="faqg_wish">User feedback</link> and
@@ -384,8 +384,8 @@
     <sect2 id="krusader_svn">
       <title>Subversion</title>
       
-     <para><ulink url="http://sourceforge.net/svn/?group_id=6488">Subversion</ulink> is used for our sourcecode repository.
-      It is also possible to <ulink url="http://krusader.svn.sourceforge.net/viewvc/krusader/">Browse the Subversion Repository</ulink>.</para>
+     <para><ulink url="http://websvn.kde.org/trunk/extragear/utils/krusader/">Subversion</ulink> is used for our sourcecode repository.
+      It is also possible to <ulink url="http://websvn.kde.org/trunk/extragear/utils/krusader/">Browse the Subversion Repository</ulink>.</para>
 
       <para>Currently, there are four module options: 
       <itemizedlist>
@@ -409,17 +409,21 @@
       </itemizedlist></para>
 
 
-      <para>To check out the latest &krusader; 1.x for
+      <para>
+ <!-- Outdated information
+ 
+      To check out the latest &krusader; 1.x for
       &kde; 3 from SVN:
       <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://krusader.svn.sourceforge.net/svnroot/krusader/branches/krusader_kde3/</option></userinput></screen>
 
       To check out the latest &krusader; 2.x for
       &kde; 4 from SVN:
       <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://krusader.svn.sourceforge.net/svnroot/krusader/branches/krusader_kde4/</option></userinput></screen>
+-->
 
       To check out the latest development &krusader; 2.x
       for &kde; 4 from SVN:
-      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co http://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4</option></userinput></screen>
+      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co svn://anonsvn.kde.org/home/kde/trunk/extragear/utils/krusader/</option></userinput></screen>
       </para>
     </sect2>
     <sect2 id="krusader_old">
@@ -437,7 +441,7 @@
    <title>Krusader installation instructions on KDE4.x</title>
       <note>
        <para>Please read the 
-       <ulink url="http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/INSTALL?view=markup"><filename>INSTALL</filename></ulink> 
+       <ulink url="http://websvn.kde.org/trunk/extragear/utils/krusader/INSTALL?view=markup"><filename>INSTALL</filename></ulink> 
         file of the Krusader sources, it contains all latest installation instructions.</para>
       </note>
 
@@ -601,7 +605,7 @@ if you only run a Krusader binary you don't need these packages.</para>
 
       <note>
        <para>Please read the 
-       <ulink url="http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/INSTALL?view=markup"><filename>INSTALL</filename></ulink> 
+       <ulink url="http://websvn.kde.org/trunk/extragear/utils/krusader/INSTALL?view=markup"><filename>INSTALL</filename></ulink> 
         file of the Krusader sources, it contains all latest installation instructions.</para>
       </note>
 
@@ -639,7 +643,7 @@ if you only run a Krusader binary you don't need these packages.</para>
 
       <note>
        <para>Please read the 
-       <ulink url="http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/INSTALL?view=markup"><filename>INSTALL</filename></ulink> 
+       <ulink url="http://websvn.kde.org/trunk/extragear/utils/krusader/INSTALL?view=markup"><filename>INSTALL</filename></ulink> 
         file of the Krusader sources, it contains all latest installation instructions.</para>
       </note>
 
@@ -663,7 +667,7 @@ if you only run a Krusader binary you don't need these packages.</para>
 
       <note>
        <para>Please read the 
-       <ulink url="http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/INSTALL?view=markup"><filename>INSTALL</filename></ulink> 
+       <ulink url="http://websvn.kde.org/trunk/extragear/utils/krusader/INSTALL?view=markup"><filename>INSTALL</filename></ulink> 
         file of the Krusader sources, it contains all latest installation instructions.</para>
       </note>
 
