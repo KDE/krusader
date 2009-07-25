@@ -2,8 +2,8 @@ project(krusader)
 
 INCLUDE(CPack)
 
-set(VERSION "2.0.0" )
-set(RELEASE_NAME "Mars Pathfinder")
+set(VERSION "2.1.0-SVN" )
+set(RELEASE_NAME "Rusty Clutch")
 
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
