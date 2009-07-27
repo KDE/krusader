@@ -1,3 +1,11 @@
+Krusader-2.1.0-SVN "Rusty Clutch"
+=================================
+Development version for the upcomming Krusader-2.1.0 series.
+This version should be considered as UNSTABLE since we are adding/testing new features.
+
+NOTE: Since Krusader-2.1.0 development is done in KDE extragear.
+
+
 Krusader-2.0.0 "Mars Pathfinder"
 ================================
 The Krew is proud to present the first stable KDE4 release of your favourite
@@ -79,11 +87,7 @@ info.
 
 Need more help?
 For detailed installation instructions, please read the INSTALL and FAQ
-file. Or read it online at:
-http://krusader.org/handbook/installation.html
-The FAQ are available at:
-http://krusader.org/handbook/faq.html
-
+file.
 
 
 To checkout Krusader-2.x for KDE4 from SVN:
@@ -91,15 +95,21 @@ To checkout Krusader-2.x for KDE4 from SVN:
 Install Subversion
 http://subversion.tigris.org/
 And than run the next command:
-$ svn co http://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4
+$ svn co svn://anonsvn.kde.org/home/kde/trunk/extragear/utils/krusader/
   
-Or download the trunk tarball (trunk.tar.gz) with the next url with your webbrowser
-http://krusader.svn.sourceforge.net/viewvc/krusader/trunk.tar.gz?view=tar
+Please not that the above command doesn't download the translations and the Krusader handbook,
+since their code resides in other directories.
+TODO: We have not written a script for that yet, but it should be done once we will release
+Krusader-2.1.0
+
+A quick hack to get and install the German Krusader GUI l10n: 
+$ wget http://websvn.kde.org/*checkout*/trunk/l10n-kde4/de/messages/extragear-utils/krusader.po
+$ msgfmt krusader.po -o krusader.mo
+$ su -c "cp krusader.mo /usr/share/locale/de/LC_MESSAGES/"
 
 
 Krusader Handbook
 =================
-Documentation, detailed install procedure, FAQ, ...
 The Krusader Handbook is available in the Help menu of Krusader.
 Or read it online at:
 http://krusader.org/handbook/index.html
@@ -114,23 +124,50 @@ If you feel you can help, click the appropriate link on the website.
 All help is welcome.
 Thanks!
 
+
+Translation procedure
+---------------------
+Before we release a stable version of Krusader, we bring out at least
+one beta version. From that moment on there is a feature freeze and only
+bugs will be fixed. This means that translators can update their
+translations, for the coming stable.
+The KDE translation teams will be notified.
+
 GUI-Translators
 ---------------
-Krusader is currently available in about 28 languages:
-Some of these translations can use an update, please read the next url
-for more information.
-http://krusader.org/i18n.php
+Please join the KDE translation team of your language if you like to translate Krusader
+or other KDE applications.
+http://l10n.kde.org/teams-list.php
 
 Documentation Translators
 -------------------------
-Recently the Krusader documentation is made translatable!
-Please contact Frank if you want to translate the documentation.
+Please join the KDE translation team of your language if you like to translate Krusader
+or other KDE documentation.
+http://l10n.kde.org/teams-list.php
+
+Translation status
+------------------
+Schedules for Extragear
+http://techbase.kde.org/Schedules/Extragear
+
+GUI i10n status
+http://l10n.kde.org/stats/gui/trunk-kde4/po/krusader.po/
+
+Desktop icon i10n status
+http://l10n.kde.org/stats/gui/trunk-kde4/po/desktop_extragear-utils_krusader.po/
+
+Handbook
+On the next url, goto extragear-utils and select the appropriate po file,
+there are about twenty po files for the Krusader handbook.
+http://l10n.kde.org/stats/doc/trunk-kde4/po/
+
 
 Documentation
 -------------
-Help is needed (we are looking for documentation writers) for keeping
+Help is needed (we are looking for English documentation writers) for keeping
 the Krusader documentation up to date.
 Please contact Frank.
+
 
 FAQ
 ---
@@ -172,111 +209,51 @@ a try. Participate in forums to help others in the community.
 Help us spreading the word about Krusader!
 
 
-For GUI Translators
-===================
-Translation procedure
----------------------
-Before we release a stable version of Krusader, we bring out at least
-one beta version. From that moment on there is a feature freeze and only
-bugs will be fixed. This means that translators can update their
-translations, for the coming stable. Normally, all the Krusader
-translators will receive an e-mail from Dirk Eschler, to invite you for
-translating Krusader. We will update all foo.po files against
-krusader.pot just before the beta will be released, so that you will
-only have to edit the new foo.po file with Kbabel. This way you don't
-have to worry anymore about how foo.po must be updated. In the past some
-translators updated foo.po in a wrong way, so they translated obsolete
-messages, we want to prevent this, of course.
-
-With i18n_status and ViewSVN to see the live translation status of
-Krusader!
-http://krusader.org/i18n.php
-Note: Translation status updates are currently out of order.
-
-http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/po/
-
-New translations
-----------------
-If your native language is not listed in VIEWSVN, you will have to
-translate Krusader to your native language. Dirk Eschler is the Krusader
-i18n coordinator, please contact him if you intend to translate Krusader
-to your native language.
-
-Krusader translation howto
---------------------------
-We have a very detailed "Krusader translation howto" if you need some
-help. The latest news about the Krusader translations can be in the
-LATEST NEWS section. This allows that even beginners or non-programmers
-can translate Krusader to their native language. Please have a look at
-http://krusader.org/phpBB/viewtopic.php?t=389
-
-Quickstart procedure for translators updating existing translations (kde3)
---------------------------------------------------------------------------
-1.
-Run KDE in your native language.
-
-2.
-Checkout the latest available version of Krusader from CVS. Or if you
-are not familiar with CVS, download the latest Krusader CVS snapshot
-(nightly tarball) from http://krusader.org/cvs.php, and run:
-$ make -f Makefile.cvs
-$ ./configure
-$ make
-$ su -c "make install"
-
-3.
-Translate your foo.po with Kbabel.
-Note: We will update all foo.po files just before the beta will be
-released.
-
-4.
-Compile foo.po, for error checking (from the po directory):
-$ msgfmt foo.po --statistics -c -v --output-file=foo.gmo
-If it reports "xx fuzzy translations" or "xx untranslated messages",
-please return to step 3.
-
-5.
-Run the commands of step 2 to reinstall the new or updated translation.
-Run Krusader and test your native translations.
-If necessary fix the foo.po file (redo steps 3-5).
-
-6.
-If everything is ok, send the updated translation to Dirk Eschler.
-
-
 URL's
 =====
 - Homepage
   http://www.krusader.org
   http://krusader.org  
+
 - Installation
   http://krusader.org/handbook/installation.html
+
 - FAQ
   http://krusader.org/handbook/faq.html
+
 - Documentation
   http://krusader.org/handbook/index.html
+
 - Todolist
   http://krusader.org/phpBB/viewforum.php?f=10
+
 - Buglist
   http://sourceforge.net/tracker/?atid=106488&group_id=6488&func=browse
+
 - Forum
   http://krusader.org/phpBB/index.php
+
 - ChangeLog
-  http://krusader.org/text.php?t=cvs.changelog
-- CVSNEWS
-  http://krusader.org/text.php?t=cvs.news
+  http://websvn.kde.org/trunk/extragear/utils/krusader/ChangeLog?view=markup
+
+- SVNNEWS
+  http://websvn.kde.org/trunk/extragear/utils/krusader/SVNNEWS?view=markup
+
 - Mailing lists
   http://krusader.org/lists.php
+
 - Donations
   http://sourceforge.net/project/project_donations.php?group_id=6488
+
 - Translations
-  http://krusader.org/i18n.php
+  http://l10n.kde.org/teams-list.php
+
 - Help Krusader
   http://krusader.org/help.php
+
 - Krusader Extensions
   http://www.kde-files.org/index.php?xcontentmode=660x661x662x663
-- Krusader meets OpenUsability 
-  http://openusability.org/projects/krusader/    
+  
 - Download pages
   http://krusader.org/down.php
   http://sourceforge.net/project/showfiles.php?group_id=6488
@@ -301,11 +278,13 @@ Krusader Krew:
 - Vaclav Juza, developer
   [vaclavjuza * seznam.cz]
 - Frank Schoolmeesters, documentation and marketing coordinator
-  [frank_schoolmeesters * yahoo com]
+  [codeknight * users sourceforge net]
 - Richard Holt, documentation
   [richard holt * gmail com]
 - Matej Urbancic, Marketing & Product Research
   [matej * amis net]
+
+Since Krusader-2.1.0 have joined KDE Extragear.
 
 
 Package Description

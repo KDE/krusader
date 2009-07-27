@@ -9,10 +9,19 @@ Krusader-2.0 versions and higher are for KDE 4.x only and will not work anymore 
 SVN development download
 ------------------------
 Download the latest available Krusader-2.x sourcecode with subversion:
-$ svn co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4
+$ svn co svn://anonsvn.kde.org/home/kde/trunk/extragear/utils/krusader/
+  
+Please not that the above command doesn't download the translations and the Krusader handbook,
+since their code resides in other directories.
+TODO: We have not written a script for that yet, but it should be done once we will release
+Krusader-2.1.0
 
-Or download the trunk tarball (trunk.tar.gz) with the next url with your webbrowser
-http://krusader.svn.sourceforge.net/viewvc/krusader/trunk.tar.gz?view=tar
+A quick hack to get and install the German Krusader GUI l10n: 
+$ wget http://websvn.kde.org/*checkout*/trunk/l10n-kde4/de/messages/extragear-utils/krusader.po
+$ msgfmt krusader.po -o krusader.mo
+$ su -c "cp krusader.mo /usr/share/locale/de/LC_MESSAGES/"
+
+
 
 Supported Platforms
 -------------------
@@ -248,6 +257,12 @@ future versions.
 
 Installation on Windows®
 ========================
+TODO
+At moment of Writing Krusader is not available yet in the KDE-Win installer.
+http://windows.kde.org/
+http://www.winkde.org/pub/kde/ports/win32/installer/
+
+
 Krusader compiles on Windows®,
 but some development work needs to be done to make it more usable on the Windows® platform.
 All feedback is welcome!
@@ -284,8 +299,6 @@ All feedback is welcome!
   If png2ico.exe is not installed, Krusader will compile fine but it will miss the application icon.  
 
 - Download the Krusader sourcecode
-  To download the SVN trunk taball, use the next url in your webbrowser
-  http://krusader.svn.sourceforge.net/viewvc/krusader/trunk.tar.gz?view=tar
   
   You can also acces the Krusader SVN repository with TortoiseSVN
   http://tortoisesvn.net/
