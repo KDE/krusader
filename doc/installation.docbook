@@ -165,7 +165,7 @@
 	  <ulink url="http://www.rocklinux.net/packages/krusader.html"><trademark class="registered">ROCK Linux</trademark></ulink>.</para>
         </listitem>
         <listitem>
-          <para>Even more distributions can be found with
+          <para>More distributions can be found with
           <ulink url="http://distrowatch.com/search.php?pkg=krusader">Distrowatch.com</ulink>.</para>
         </listitem>
       </itemizedlist>
@@ -187,10 +187,11 @@
           job.</para>
         </listitem>
         <listitem>
-          <para>There is a <ulink url="http://pdb.finkproject.org/pdb/package.php/krusader">&MacOS;-X port</ulink> 
-          with the help of <ulink url="http://www.finkproject.org/">fink</ulink> , the port is
-          maintained by <ulink url="http://hritcu.wordpress.com/about/">Catalin Hritcu</ulink>.</para>
+          <para>There is a <link linkend="kde4_mac_install">&MacOS;-X port</link>.</para>
         </listitem>
+       <listitem>
+          <para>There is a <link linkend="kde4_win_install">&Windows; port</link>.</para>
+        </listitem>	
       </itemizedlist></para>
             
       <para>Search engines 
@@ -287,8 +288,7 @@
       </listitem>
       <listitem>
         <para>Give translators time to update the translations for
-        the coming stable release. Please read the
-        <ulink url="http://www.krusader.org/i18n.php">i18n page</ulink>.</para>
+        the coming stable release.</para>
       </listitem>
     </itemizedlist></para></sect2>
 
@@ -448,11 +448,7 @@
       <note>
         <para>From version &krusader;-2.0.0 and higher is &kde;-4 only.</para>
       </note>
-  
-      <note>
-        <para>At moment of writing &krusader;-2.0.0 is still under development, though it works :)</para>
-      </note>
-
+ 
 <para>"krusader_kde4.tar.gz" is the supposed name of the krusader tarball (it will be probably a different one ;)</para>
 
 <para>You can download the latest available krusader-2.x <link linkend="krusader_svn">from SVN</link>.</para>
@@ -649,10 +645,9 @@ if you only run a Krusader binary you don't need these packages.</para>
 
 <para>With &kde;-4 Krusader runs natively on &MacOS;-X, using it's Aqua user interface (No more X11 needed!).</para>
 
-<para>In the near future (on moment of writing) with 
-      <ulink url="http://www.macports.org/"><filename>MacPorts</filename></ulink> 
-      installing Krusader should become 
-      <ulink url="http://groups.google.com/group/krusader-devel/t/d81ae64f8583f6d8"><filename>very easy!</filename></ulink></para>
+<para>With the help of <ulink url="http://www.macports.org/">macports.org</ulink> , &krusader; is ported to &MacOS;-X,
+      the port is maintained by <ulink url="http://www.krusader.org/developers.php">Jonas B&auml;hr</ulink>.
+      A <ulink url="http://trac.macports.org/ticket/17731">portfile</ulink> is provided.</para>
 
 <para>
     <screen>
@@ -718,12 +713,12 @@ if you only run a Krusader binary you don't need these packages.</para>
     <para>If &krusader; is installed by an RPM or DEB
     package then usually &krusader; can be started from
     the &kmenu;. e.g. on
-    &Mandrake;-&Linux; 10.0 click on the
+    KUbuntu click on the
     &kicon; button and choose 
     <emphasis role="bold">
       <menuchoice>
         <guimenuitem>Applications</guimenuitem>
-        <guimenuitem>File tools</guimenuitem>
+        <guimenuitem>Utilities</guimenuitem>
         <guimenuitem>&krusader;</guimenuitem>
       </menuchoice>
     </emphasis>.</para>
