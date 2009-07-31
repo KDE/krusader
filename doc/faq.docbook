@@ -1302,7 +1302,7 @@
           list?</para>
         </question>
         <answer>
-          <para>Yes, currently we have 6
+          <para>Yes, currently we have 5
           <ulink url="http://www.krusader.org/lists.php">mailing lists</ulink>. No spam, no bother, just
           &krusader;. Feel free to subscribe and
           unsubscribe.</para>
@@ -1337,14 +1337,6 @@
             <listitem>
               <para><ulink url="http://groups-beta.google.com/group/krusader-doc">&krusader;-doc</ulink> is the documentation
               mailing list.</para>
-            </listitem>
-            <listitem>
-              <para><ulink url="http://sourceforge.net/mailarchive/forum.php?forum_name=krusader-commits">&krusader;-commits</ulink> (read-only): when
-              the &krusader; Krew commits code into CVS,
-              it will be reported in this mailing list. Want to
-              keep track? Waiting for a certain feature/bugfix?
-              Follow &krusader;'s development
-              here.</para>
             </listitem>
           </itemizedlist></para>
           <para></para>
@@ -1486,9 +1478,8 @@
           native language?</para>
         </question>
         <answer>
-          <para>Please read the <ulink url="http://www.krusader.org/i18n.php">i18n page</ulink>. It's
-          not difficult to translate! Most anyone can do it, it
-          just takes some time.</para>
+          <para>If you are interested in translating the &krusader; GUI or documentation, please contact the
+               <ulink url="http://l10n.kde.org/teams-list.php">KDE translation team</ulink> of your lanuage.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1515,12 +1506,12 @@
           <para>Is there a &MacOS; X port?</para>
         </question>
         <answer>
-          <para>Yes, there is &MacOS; X port, but you
-          will not have the all the power you would have on
-          &Linux;. Please visit the <ulink url="http://www.krusader.org">Krusader website</ulink>
-          for more information. A recommended native
-          file manager for &MacOS; is
-          <ulink url="http://www.likemac.ru/english/"><trademark class="copyright">Disk Order</trademark></ulink> (shareware).</para>
+         <para>Yes, there is a <link linkend="kde4_mac_install">&MacOS;-X port</link>
+               with the help of <ulink url="http://www.macports.org/">macports.org</ulink> , the port is
+               maintained by <ulink url="http://www.krusader.org/developers.php">Jonas B&auml;hr</ulink>, 
+               all feedback is welcome.
+	       A recommended native file manager for &MacOS; is
+               <ulink url="http://www.likemac.ru/english/"><trademark class="copyright">Disk Order</trademark></ulink> (shareware).</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1530,9 +1521,10 @@
           <para>Is there a &Windows; port?</para>
         </question>
         <answer>
-          <para>Yes, since 18 June 2008, Krusader-2.x compiles on &Windows;.
+          <para>Yes, there is a <link linkend="kde4_win_install">&Windows; port</link> since 18 June 2008.
           Before Krusader can be used several &Qt;4-libraries and &kde;4-libraries need to be installed.
-          A recommended native file manager for &Windows; is <ulink url="http://www.ghisler.com/"><trademark class="copyright">Total Commander</trademark></ulink> (shareware).</para>
+          A recommended native file manager for &Windows; is 
+	  <ulink url="http://www.ghisler.com/"><trademark class="copyright">Total Commander</trademark></ulink> (shareware).</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
