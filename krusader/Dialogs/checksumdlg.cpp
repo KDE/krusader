@@ -265,7 +265,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
     p->setPixmap(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
     hlayout->addWidget(p);
     QLabel *l1 = new QLabel(i18n("About to calculate checksum for the following files") +
-                            (containFolders ? i18n(" and folders:") : ":"), widget);
+                            (containFolders ? i18n(" and directories:") : ":"), widget);
     hlayout->addWidget(l1);
     layout->addLayout(hlayout, row, 0, 1, 2, Qt::AlignLeft);
     ++row;

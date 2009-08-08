@@ -740,7 +740,7 @@ void PreserveAttrCopyJob::slotResultConflictCreatingDirs(KJob * job)
     QString newPath;
     if (m_reportTimer)
         m_reportTimer->stop();
-    RenameDialog_Result r = ui()->askFileRename(this, i18n("Folder Already Exists"),
+    RenameDialog_Result r = ui()->askFileRename(this, i18n("Directory Already Exists"),
                             (*it).uSource.url(),
                             (*it).uDest.url(),
                             mode, newPath,
@@ -999,7 +999,7 @@ void PreserveAttrCopyJob::slotResultConflictCopyingFiles(KJob * job)
             mode = (RenameDialog_Mode)(mode | M_MULTI | M_SKIP);
 
         res = ui()->askFileRename(this, !isDir ?
-                                  i18n("File Already Exists") : i18n("Already Exists as Folder"),
+                                  i18n("File Already Exists") : i18n("Already Exists as Directory"),
                                   (*it).uSource.url(),
                                   (*it).uDest.url(),
                                   mode, newPath,

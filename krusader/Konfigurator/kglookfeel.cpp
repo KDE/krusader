@@ -215,8 +215,8 @@ void KgLookFeel::setupPanelTab()
     KONFIGURATOR_CHECKBOX_PARAM panelSettings[] =
         //   cfg_class  cfg_name                default text                                  restart tooltip
     {
-        {"Look&Feel", "With Icons",                     _WithIcons,              i18n("Use icons in the filenames"), true ,  i18n("Show the icons for filenames and folders.") },
-        {"Look&Feel", "Load User Defined Folder Icons", _UserDefinedFolderIcons, i18n("Load the user defined folder icons"), true ,  i18n("Load the user defined folder icons (can cause decrease in performance).") },
+        {"Look&Feel", "With Icons",                     _WithIcons,              i18n("Use icons in the filenames"), true ,  i18n("Show the icons for filenames and directories.") },
+        {"Look&Feel", "Load User Defined Folder Icons", _UserDefinedFolderIcons, i18n("Load the user defined folder icons"), true ,  i18n("Load the user defined directory icons (can cause decrease in performance).") },
         {"Look&Feel", "Human Readable Size",            _HumanReadableSize,      i18n("Use human-readable file size"), true ,  i18n("File sizes are displayed in B, KB, MB and GB, not just in bytes.") },
         {"Look&Feel", "Show Hidden",                    _ShowHidden,             i18n("Show hidden files"),      false,  i18n("Display files beginning with a dot.") },
         {"Look&Feel", "Numeric permissions",            _NumericPermissions,     i18n("Numeric Permissions"), true,  i18n("Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.") },
@@ -398,7 +398,7 @@ void KgLookFeel::setupMouseModeTab()
          i18n("If checked, pressing the spacebar will select the current item and move down. \nOtherwise, current item is selected, but remains the current item.") },
         {"Custom Selection Mode",  "Space Calc Space",  _SpaceCalcSpace,
          i18n("Spacebar calculates disk space"), true,
-         i18n("If checked, pressing the spacebar while the current item is a folder, will (except from selecting the folder) \ncalculate space occupied by the folder (recursively).") },
+         i18n("If checked, pressing the spacebar while the current item is a directory, will (except from selecting the directory) \ncalculate space occupied of the directory (recursively).") },
         {"Custom Selection Mode",  "Insert Moves Down",  _InsertMovesDown,
          i18n("Insert moves down"), true,
          i18n("If checked, pressing INSERT will select the current item, and move down to the next item. \nOtherwise, current item is not changed.") },

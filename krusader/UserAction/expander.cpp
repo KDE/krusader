@@ -721,7 +721,7 @@ TagString exp_Clipboard::expFunc(const ListPanel*, const TagStringList& paramete
 exp_Copy::exp_Copy()
 {
     _expression = "Copy";
-    _description = i18n("Copy a File/Folder...");
+    _description = i18n("Copy a File/Directory...");
     _needPanel = false;
 
     addParameter(exp_parameter(i18n("What to copy:"), "__placeholder", true));
@@ -759,7 +759,7 @@ TagString exp_Copy::expFunc(const ListPanel*, const TagStringList& parameter, co
 exp_Move::exp_Move()
 {
     _expression = "Move";
-    _description = i18n("Move/Rename a File/Folder...");
+    _description = i18n("Move/Rename a File/Directory...");
     _needPanel = false;
 
     addParameter(exp_parameter(i18n("What to move/rename:"), "__placeholder", true));
@@ -1181,7 +1181,7 @@ TagString Expander::expandCurrent(const QString& stringToExpand, bool useUrl)
         if ((begin = stringToExpand.indexOf('%', idx)) == -1) break;
         if ((end = findEnd(stringToExpand, begin)) == -1) {
             // xgettext:no-c-format
-            setError(Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("Error: unterminated % in Expander::expandCurrent")));
+            setError(Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("Error: unterminated % in Expander")));
             return QString();
         }
 
@@ -1210,7 +1210,7 @@ TagString Expander::expandCurrent(const QString& stringToExpand, bool useUrl)
                     break;
                 }
             if (i == placeholderCount()) {   // didn't find an expander
-                setError(Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("Error: unrecognized %%%1%2%% in Expander::expand", panelIndicator, exp)));
+                setError(Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("Error: unrecognized %%%1%2%% in Expander", panelIndicator, exp)));
                 return QString();
             }
         } //else
@@ -1250,7 +1250,7 @@ TagStringList Expander::separateParameter(QString* const exp, bool useUrl)
     int begin, end;
     if ((begin = exp->indexOf('(')) != -1) {
         if ((end = exp->lastIndexOf(')')) == -1) {
-            setError(Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("Error: missing ')' in Expander::separateParameter")));
+            setError(Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("Error: missing ')' in Expander")));
             return TagStringList();
         }
         result = exp->mid(begin + 1, end - begin - 1);
