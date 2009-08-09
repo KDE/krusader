@@ -29,11 +29,12 @@
   <para>
     <emphasis role="bold">&krusader;</emphasis>
   </para>
-  <para>Program copyright 2000-2003 Shie Erlich and Rafi Yanai,
-  2004-2009 &krusader; Krew 
-  <email>krusader * users.sourceforge net</email></para>
-  <para>&krusader; is developed by a dedicated team of
-  individuals, known as the &krusader; Krew.</para>
+
+<para>Program copyright 2000-2003 Shie Erlich and Rafi Yanai, 2004-2009 &krusader; Krew 
+      <email>krusader * users.sourceforge net</email></para>
+  
+  <para>&krusader; is developed by a dedicated team of individuals, known as the &krusader; Krew.</para>
+  
   <itemizedlist>
     <listitem>
       <para>Shie Erlich, author 
@@ -79,229 +80,52 @@
       <email>matej.urban * gmail.com</email></para>
     </listitem>
   </itemizedlist>
-  <para>The project is written using 
-  <application>KDevelop</application>and 
-  <application>&Qt; Designer</application>.</para>
-  <para>We would especially like to thank Dirk Eschler the
+
+<para>We would especially like to thank Dirk Eschler the
   &krusader; web master. If you visit the
   <ulink url="http://www.krusader.org">Krusader website</ulink> you'll appreciate the hard work and
   effort that Dirk has put into the site as much as we do.</para>
-  <para>Contributors: We would like to thank all the
-  &krusader; users who submitted bugs, wishes and
-  patches. Sorry we can not mention all of you.</para>
-  <para>Donations: We would like to thank the following
-  organisations and individuals for their recent financial 
-  <ulink url="http://sourceforge.net/project/project_donations.php?group_id=6488">
-  support</ulink>. In addition we would to thank those who have
-  contributed 
-  <ulink url="http://sourceforge.net/project/project_donations.php?group_id=6488">
-  anonymously</ulink>. Your support is very much appreciated. 
-  <itemizedlist>
-    <listitem>
-      <para>
-      <ulink url="http://Distrowatch.com">
-      distroWatch.com</ulink> (donation)</para>
-    </listitem>
-    <listitem>
-      <para>Sven Opitz (the first donation ever !)</para>
-    </listitem>
-  </itemizedlist></para>
+
+ <para>We would like to thank everyone who has contributed to Krusader. Sorry we can not mention all of you in this handbook.</para>
+
+<note>
+  <para>For a more complete list of Krusader contributors please take a look at the
+	<ulink url="http://websvn.kde.org/trunk/extragear/utils/krusader/CREDITS?view=markup"><filename>CREDITS</filename></ulink> and 
+	<ulink url="http://websvn.kde.org/trunk/extragear/utils/krusader/ChangeLog?view=markup"><filename>Changelog</filename></ulink> file 
+	online or in the Krusader sources.
+  </para>
+</note>
+
   <para>Special thanks to: 
   <itemizedlist>
     <listitem>
-      <para><ulink url="http://sourceforge.net/">Sourceforge.net</ulink>, webhosting
-      services</para>
+      <para><ulink url="http://www.kde.org/">kde.org</ulink>
+           </para>
+    </listitem>	   
+    <listitem>	   
+      <para><ulink url="http://l10n.kde.org/">kde translation teams</ulink>
+           </para>	   
+    </listitem>
+    <listitem>
+      <para><ulink url="http://sourceforge.net/">Sourceforge.net</ulink>
+          </para>
     </listitem>
         <listitem>
       <para>Jonas B&auml;hr (webspace)</para>
     </listitem>
     <listitem>
-      <para>Christian Bock (former webspace)</para>
-    </listitem>
-    <listitem>
-      <para>Jiri Klement, &kde;4 porting help</para>
-    </listitem>
-    <listitem>
       <para><ulink url="http://www.kde-files.org/index.php?xcontentmode=660x661x662x663">kde-files.org</ulink> &amp;
-      <ulink url="http://www.kde-apps.org/content/show.php?content=10214">KDE-APPS.org</ulink> creator Frank Karlitschek</para>
+      <ulink url="http://www.kde-apps.org/content/show.php?content=10214">KDE-APPS.org</ulink></para>
     </listitem>
     <listitem>
-      <para>Google.com</para>
-    </listitem>
-    <listitem>
-      <para>&krusader; &MacOS;-X port with the <ulink url="http://www.finkproject.org/">fink</ulink>-project: Jonas B&auml;hr, Bodo Tasche, 
-            <ulink url="http://pdb.finkproject.org/pdb/maintainer.php?maintainer=Alexander%20K.%20Hansen">Alexander K. Hansen</ulink>
-            <ulink url="http://hritcu.wordpress.com/2006/08/10/krusader-on-intel-mac/">Catalin Hritcu</ulink></para>
-    </listitem>
-    <listitem>
-	    <para>Technical Communication team of 2007, University of Oulu, Finland; 
-	    Documentation for &krusader; 1.80.0</para>
-    </listitem>
-    <listitem>
-      <para>Ji&rcaron;&iacute;
-      Pale&ccaron;ek, QA, bug-hunting, patches and
-      general help</para>
-    </listitem>
-    <listitem>
-      <para>Andrew Neupokoev (nwmod) &krusader; Logo and
-      Icons, art contest winner.</para>
-    </listitem>
-    <listitem>
-      <para>Angel Ramos, <trademark class="registered">Debian</trademark> package
-      maintainer</para>
-    </listitem>
-    <listitem>
-      <para>Terry "Fudoki" Wilkinson, handbook proofreader</para>
-    </listitem>
-    <listitem>
-      <para>G&aacute;bor Lehel (illissius), Viewer
-      module for the 3rd Hand Panel</para>
-    </listitem>
-    <listitem>
-      <para>Szombathelyi Gy&ouml;rgy, ISO KIO
-      slave</para>
-    </listitem>
-    <listitem>
-      <para>David Harel, panel toolbar buttons</para>
-    </listitem>
-    <listitem>
-      <para>Jan Willem van de Meent (Adios), &krusader;
-      icons</para>
-    </listitem>
-    <listitem>
-      <para>
-      <ulink url="http://usefularts.org/">usefularts.org</ulink>,
-      &krusader; icons</para>
-    </listitem>
-    <listitem>
-      <para>Hans Loffler, folder history list</para>
-    </listitem>
-    <listitem>
-      <para>Jan Halasa, new bookmark module</para>
-    </listitem>
-    <listitem>
-      <para>Mikolaj Machowski, Usability and QA</para>
-    </listitem>
-    <listitem>
-      <para>Cristi Dumitrescu, QA, bug-hunting, patches and general
-      help</para>
-    </listitem>
-    <listitem>
-      <para>Aurelien Gateau, patch for KViewer</para>
-    </listitem>
-    <listitem>
-      <para>Milan Brabec, the first patch ever !</para>
+      <para><ulink url="http://www.google.com">Google.com</ulink></para>
     </listitem>
   </itemizedlist></para>
-  <para>Thanks to the Documentation translators: 
-  <itemizedlist>
-    <listitem>
-      <para>Russian: Roman Batejkin</para>
-    </listitem>
-  </itemizedlist></para>
-  <para>Thanks to the &GUI; translators:</para>
-  <itemizedlist>
-    <listitem>
-      <para>Bosnian: Asim Husanovic</para>
-    </listitem>
-    <listitem>
-      <para>Brazilian Portuguese: Doutor Zero</para>
-    </listitem>
-    <listitem>
-      <para>Bulgarian: Milen Ivanov</para>
-    </listitem>
-    <listitem>
-      <para>Catalan: Rafael Munoz Rodriguez, Quim Perez
-      Noguer</para>
-    </listitem>
-    <listitem>
-      <para>Chinese: Jinghua Luo</para>
-    </listitem>
-    <listitem>
-      <para>Czech: Martin Sixta, V&aacute;clav
-      J&uring;za</para>
-    </listitem>
-    <listitem>
-      <para>Danish: Anders Bruun Olsen, Christian Sonne, Peter
-      H.S.</para>
-    </listitem>
-    <listitem>
-      <para>Dutch: Frank Schoolmeesters</para>
-    </listitem>
-    <listitem>
-      <para>French: Ren&eacute;-Pierre Lehmann, David
-      Guillerm</para>
-    </listitem>
-    <listitem>
-      <para>German: Christoph Thielecke, Dirk Eschler</para>
-    </listitem>
-    <listitem>
-      <para>Greek: Spiros Georgaras</para>
-    </listitem>
-    <listitem>
-      <para>Hungarian: Kukk Zoltan, Arpad Biro, Karai Csaba</para>
-    </listitem>
-    <listitem>
-      <para>Italian: Giuseppe Bordoni</para>
-    </listitem>
-    <listitem>
-      <para>Japanese: UTUMI Hirosi, Hideki Kimura</para>
-    </listitem>
-    <listitem>
-      <para>Korean: Jee Seongnam</para>
-    </listitem>
-    <listitem>
-      <para>Lithuanian: Dovydas Sankauskas</para>
-    </listitem>
-    <listitem>
-      <para>Polish: Marcin Szafran, Lukasz Janyst, Marcin Garski,
-      Pawel Salawa, Tomek Grzejszczyk</para>
-    </listitem>
-    <listitem>
-      <para>Portuguese: Bruno Queir&oacute;s</para>
-    </listitem>
-    <listitem>
-      <para>Russian: Dmitry V. Chernyak, Denis Koryavov, Nick
-      Shaforostoff, Dmitry A. Bugay</para>
-    </listitem>
-    <listitem>
-      <para>Serbian: Sasa Tomic</para>
-    </listitem>
-    <listitem>
-      <para>Slovak: Zdenko Podobn&yacute;</para>
-    </listitem>
-    <listitem>
-      <para>Slovenian: Matej
-      Urban&ccaron;i&ccaron;</para>
-    </listitem>
-    <listitem>
-      <para>Spanish: Rafael Munoz Rodriguez, Alejandro Araiza
-      Alvarado, Alex Araiza</para>
-    </listitem>
-    <listitem>
-      <para>Swedish: Erik Johansson, Anders
-      Lind&eacute;n, Peter Landgren</para>
-    </listitem>
-    <listitem>
-      <para>Turkish: Bekir Sonat</para>
-    </listitem>
-    <listitem>
-      <para>Ukrainian: Ivan Petrouchtchak</para>
-    </listitem>
-  </itemizedlist>
-  <para>And to all the other translators, we are sorry we
-  can not list all of your names here. Please take a look in the
-  headers of the 
-  <filename>foo.po</filename> files to see
-  <ulink url="http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/po/">more translator credits</ulink>.</para>
-  <para>If your native language is not listed above and you would
-  like to translate &krusader; into your language,
-  please read the <ulink url="http://www.krusader.org/i18n.php">i18n page</ulink>.</para>
-  <para>For more credits, read the <ulink url="http://websvn.kde.org/trunk/extragear/utils/krusader/ChangeLog?view=markup"><filename>ChangeLog</filename></ulink> file
-  online or in the Krusader sources.</para>
-  <para>Documentation Copyright 2000-2003 Shie Erlich and Rafi
-  Yanai. Copyright 2004-2009 &krusader; Krew 
-  <email>krusader@users.sourceforge.net</email>.</para>
-  <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+  <para>Documentation Copyright 2000-2003 Shie Erlich and Rafi Yanai.</para>
+  <para>Documentation Copyright 2004-2009 Frank Schoolmeesters.</para>
+  <para>Copyright 2004-2009 &krusader; Krew <email>krusader * users.sourceforge.net</email>.</para>
+  
   &underGPL;&underFDL;
+  
 </chapter>
