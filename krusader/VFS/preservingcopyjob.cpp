@@ -78,4 +78,3 @@ KIO::Job * PreservingCopyJob::createCopyJob(PreserveMode pmode, const KUrl::List
     }
 }
 
-#include "preservingcopyjob.moc"
