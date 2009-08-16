@@ -77,7 +77,7 @@ Notice: if you've got bugs to report, please do so using Krusader's
 
 Installation
 ============
-Read the INSTALL file for detailed installation instructions.
+Please read the INSTALL file.
 
 When you install a Krusader svn or beta version and if Krusader was
 previously installed on your computer, there is a possibility that you
@@ -92,20 +92,7 @@ file.
 
 To checkout Krusader-2.x for KDE4 from SVN:
 ===========================================
-Install Subversion
-http://subversion.tigris.org/
-And than run the next command:
-$ svn co svn://anonsvn.kde.org/home/kde/trunk/extragear/utils/krusader/
-  
-Please not that the above command doesn't download the translations and the Krusader handbook,
-since their code resides in other directories.
-TODO: We have not written a script for that yet, but it should be done once we will release
-Krusader-2.1.0
-
-A quick hack to get and install the German Krusader GUI l10n: 
-$ wget http://websvn.kde.org/*checkout*/trunk/l10n-kde4/de/messages/extragear-utils/krusader.po
-$ msgfmt krusader.po -o krusader.mo
-$ su -c "cp krusader.mo /usr/share/locale/de/LC_MESSAGES/"
+Please read the INSTALL file.
 
 
 Krusader Handbook

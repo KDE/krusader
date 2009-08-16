@@ -6,20 +6,14 @@ Note
 Krusader-2.0 versions and higher are for KDE 4.x only and will not work anymore on KDE 3.x
 
 
-SVN development download
-------------------------
-Download the latest available Krusader-2.x sourcecode with subversion:
-$ svn co svn://anonsvn.kde.org/home/kde/trunk/extragear/utils/krusader/
+Krusader-SVN development download
+---------------------------------
+Krusader is developed in KDE Extragear.
+Download the latest available Krusader-2.x sourcecode with subversion.
   
-Please not that the above command doesn't download the translations and the Krusader handbook,
-since their code resides in other directories.
-TODO: We have not written a script for that yet, but it should be done once we will release
-Krusader-2.1.0
-
-A quick hack to get and install the German Krusader GUI l10n: 
-$ wget http://websvn.kde.org/*checkout*/trunk/l10n-kde4/de/messages/extragear-utils/krusader.po
-$ msgfmt krusader.po -o krusader.mo
-$ su -c "cp krusader.mo /usr/share/locale/de/LC_MESSAGES/"
+$ svn co svn://anonsvn.kde.org/home/kde/trunk/KDE/kdesdk/scripts/createtarball
+$ cd createtarball
+$ ./create_tarball.rb -n -a krusader -v svn`date +%Y%m%d`
 
 
 
