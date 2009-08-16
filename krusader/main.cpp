@@ -125,7 +125,8 @@ int main(int argc, char *argv[])
     aboutData.addAuthor(ki18n("Frank Schoolmeesters"), ki18n("Documentation and marketing coordinator"), "frank_schoolmeesters@yahoo.com", 0);
     aboutData.addAuthor(ki18n("Richard Holt"), ki18n("Documentation & Proofing"), "richard.holt@gmail.com", 0);
     aboutData.addAuthor(ki18n("Matej Urbancic"), ki18n("Marketing & Product Research"), "matej.urban@gmail.com", 0);
-    aboutData.addCredit(ki18n("Václav Jůza"), ki18n("QA, bug-hunting, patches and general help"), "vaclavjuza@gmail.com", 0);
+    aboutData.addCredit(ki18n("kde.org"), ki18n("Everyone involved in KDE"), 0, 0);
+    aboutData.addCredit(ki18n("l10n.kde.org"), ki18n("KDE Translation Teams"), 0, 0);
     aboutData.addCredit(ki18n("Jiří Paleček"), ki18n("QA, bug-hunting, patches and general help"), "jpalecek@web.de", 0);
     aboutData.addCredit(ki18n("Jiří Klement"), ki18n("Important help in KDE 4 porting"), 0, 0);
     aboutData.addCredit(ki18n("Andrew Neupokoev"), ki18n("Killer Logo and Icons for Krusader (contest winner)"), "doom-blue@yandex.ru", 0);
