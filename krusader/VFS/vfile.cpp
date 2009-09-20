@@ -164,7 +164,7 @@ const QString& vfile::vfile_getMime(bool fast)
             if (vfile_userDefinedFolderIcons) {
                 KUrl url = vfile_getUrl();
                 if (url.isLocalFile()) {
-                    QString file = url.path() + "/.directory";
+                    QString file = url.toLocalFile() + "/.directory";
                     KDesktopFile cfg(file);
                     const QString &icon = cfg.readIcon();
                     if (!icon.isEmpty())
