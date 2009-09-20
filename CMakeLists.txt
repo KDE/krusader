@@ -7,6 +7,7 @@ set(RELEASE_NAME "Rusty Clutch")
 
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
+include_directories( ${KDE4_INCLUDES} ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 
