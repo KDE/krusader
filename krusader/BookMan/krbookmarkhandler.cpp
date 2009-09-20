@@ -279,7 +279,7 @@ void KrBookmarkHandler::importFromFile()
     QDomElement e;
     QDomDocument doc("xbel");
     if (!doc.setContent(&file, &errorMsg)) {
-        goto ERROR;
+        goto BM_ERROR;
     }
     // iterate through the document: first child should be "xbel" (skip all until we find it)
     n = doc.firstChild();
@@ -288,15 +288,15 @@ void KrBookmarkHandler::importFromFile()
 
     if (n.isNull() || n.toElement().tagName() != "xbel") {
         errorMsg = i18n("%1 doesn't seem to be a valid Bookmarks file", filename);
-        goto ERROR;
+        goto BM_ERROR;
     } else n = n.firstChild(); // skip the xbel part
     importFromFileFolder(n, _root, "", &errorMsg);
-    goto SUCCESS;
+    goto BM_SUCCESS;
 
-ERROR:
+BM_ERROR:
     KMessageBox::error(krApp, i18n("Error reading bookmarks file: %1", errorMsg), i18n("Error"));
 
-SUCCESS:
+BM_SUCCESS:
     file.close();
 }
 
