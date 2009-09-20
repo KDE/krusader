@@ -280,8 +280,11 @@ vfile* normal_vfs::vfileFromName(const QString& name, char * rawName)
         rwx |= R_OK;
     if (::access(fileName.data(), W_OK) == 0)
         rwx |= W_OK;
+        
+#ifndef Q_CC_MSVC
     if (::access(fileName.data(), X_OK) == 0)
         rwx |= X_OK;
+#endif
 
     // create a new virtual file object
     vfile* temp = new vfile(name, size, perm, stat_p.st_mtime, symLink, stat_p.st_uid,
