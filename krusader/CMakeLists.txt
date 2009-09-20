@@ -78,7 +78,8 @@ target_link_libraries(krusader
                       ${KDE4_KHTML_LIBS}
                       ${KDE4_KDEUI_LIBS}
                       ${KDE4_KFILE_LIBS}
-                      ${KDE4_KDECORE_LIBS})
+                      ${KDE4_KDECORE_LIBS}
+                      ${KDE4_SOLID_LIBS})
 
 if(LIBKONQ_FOUND)
     target_link_libraries( krusader ${LIBKONQ_LIBRARY} )
