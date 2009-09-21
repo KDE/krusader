@@ -593,7 +593,7 @@ bool itemLessThan(SortProps *sp, SortProps *sp2)
             return compareTexts(file1->vfile_getName(), file2->vfile_getName(), sp->properties(), sp->isAscending(), true);
         return compareTexts(sp->data(), sp2->data(), sp->properties(), sp->isAscending(), true);
     }
-    file1->vfile_getName() < file2->vfile_getName();
+    return file1->vfile_getName() < file2->vfile_getName();
 }
 
 bool itemGreaterThan(SortProps *sp, SortProps *sp2)
