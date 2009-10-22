@@ -443,7 +443,7 @@ void MediaButton::umount(QString udi)
 void MediaButton::slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi)
 {
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::sorry(this, errorData.toString());
+        KMessageBox::queuedMessageBox(this, KMessageBox::Sorry, errorData.toString());
     }
 }
 
