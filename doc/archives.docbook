@@ -80,7 +80,8 @@
     copy the files you want to extract to their new location just
     as you would copy "normal" files. Note that unpacking from a
     browsed archive takes more time (file by file unpack) compared
-    to unpacking a whole archive with the first method.</para>
+    to unpacking a whole archive with the first method.
+    The unpack operation can be put in a <link linkend="queue">queue</link>.</para>
   </sect2>
   <sect2 id="pack-archive">
     <title>Packing Files</title>
@@ -101,7 +102,8 @@
     <para>To add files to an existing archive(s), open the archive
     in one panel and the files to be copied in the other panel,
     then simply copy the files into the archive in exactly the same
-    way you copy files into a "normal" directory.</para>
+    way you copy files into a "normal" directory.
+    The pack operation can be put in a <link linkend="queue">queue</link>.</para>
   </sect2>
   <sect2 id="test-archive">
     <title>Testing Archives</title>

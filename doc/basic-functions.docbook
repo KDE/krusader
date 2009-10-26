@@ -232,7 +232,7 @@
       <keycap>Up/Down Arrow</keycap> will jump to the next or
       previous match. &Esc; will close the quick search
       line. The cursor will stay on the last file
-      found.</para>
+      found. The Quicksearch supports <ulink url="http://en.wikipedia.org/wiki/Regular_expression">regular expressions</ulink> for searching files.</para>
       <note>
         <para>If you press 
         <keycombo action="simul">&Alt;
@@ -360,9 +360,11 @@
       panel directory as the &URL; base.</para>
     </sect2>
     <sect2 id="queue">
-      <title>Queue manager</title>
+      <title>Queue manager</title> 
       <para>
-      Use <keycap>F5</keycap> (copy) or <keycap>F6</keycap> (move) and then <keycap>F2</keycap> to use it.
+      The copy, move, pack and unpack operations can be queued.
+      After selecting copy or move, hit <keycap>F2</keycap> to use it.
+      After selecting pack or unpack, hit <keycap>F2</keycap> to use it. 
       Or the direct shortcuts: copy by queue <keycombo action="simul">&Shift;<keycap>F5</keycap></keycombo> , 
       move by queue <keycombo action="simul">&Shift;<keycap>F6</keycap></keycombo> .
       Queueing is used for one-by-one copying.
@@ -370,23 +372,21 @@
       it's much better copying them one-by-one instead of starting to copy 40 files in parallel.
       That's why enqueuing is important.
       If you pack/unpack 40 files parallelly, you overload your computer,
-      but adding them to a queue (which is not yet implemented into Krusader), is much more useful.
+      but adding them to a queue, is much more useful.
       </para>
     </sect2>
     <sect2 id="deleting">
-      <title>Deleting</title>
-      <para>Deleting files/directories is done by selecting them
-      and pressing 
-      <keycap>F8</keycap> or 
-      <keycap>Delete</keycap>. By 
-      <link linkend="konfig-general">default</link> it will be moved
-      to &kde;'s Trash. You can open the KDE Trash with <filename>trash:/</filename> ("kdebase3-runtime" needs to be installed, otherwise the KDE trash protocol will not work).
+      <title>Deleting - move to KDE's Trash</title>
+      <para>Deleting files/directories is done by selecting them and pressing <keycap>F8</keycap> or <keycap>Delete</keycap>.
+      By <link linkend="konfig-general">default</link> it will be moved to &kde;'s Trash.
+      You can open the KDE Trash with the Trash icon in the <link linkend="main_toolbar">Main Toolbar</link> or with 
+      the <filename>trash:/</filename> KIO slave.
       Physically KDE Trash is located in <filename>~/.local/share/Trash/</filename> .  
       <keycombo action="simul">&Shift;
       <keycap>Delete</keycap></keycombo> will delete the file
       permanently. A dialog will ask for your confirmation and will
       warn you when deleting non-empty directories. Of course only
-      operations that you are permitted to do by the Operating
+      operations that are permitted to do by the Operating
       System will be performed - you will be notified otherwise. If
       you do not wish to see the confirmation dialogs, you can
       disable them in the 
