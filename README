@@ -1,61 +1,24 @@
-Krusader-2.1.0-SVN "Rusty Clutch"
-=================================
-Development version for the upcomming Krusader-2.1.0 series.
-This version should be considered as UNSTABLE since we are adding/testing new features.
+Krusader-2.1.0-beta1 "Rusty Clutch"
+===================================
+We are pleased to announce the second release of your favourite file
+manager for KDE4! This version is the first one after moving the
+development to kde-extragear. It is a well balanced mix of stabilization
+and new features.
 
-NOTE: Since Krusader-2.1.0 development is done in KDE extragear.
-
-
-Krusader-2.0.0 "Mars Pathfinder"
-================================
-The Krew is proud to present the first stable KDE4 release of your favourite
-file manager! The development process was all about porting, all dependencies to
-the Qt3 support libs have been removed. This is the first stable that comes with
-experimental support for the Windows platform. Who thought that day will ever
-come?
-
-Even though this release contains quite a bunch of new features our main focus
-was to create a KDE4 version that is ready for everyday use. Overall the release
-is very usable but might contain bugs that haven't been present in prior
-versions. Please provide us bug reports, feedback and patches to make it as
-solid as the KDE3 version. Many thanks to everyone who supported us in the
-porting process!
+Being a beta release we ask you to provide bug reports, feedback and
+patches to make the upcoming stable as solid as possible.
 
 The highlights of this release are:
 
-- Archive dialog now remembers Compression level
-- View properties for detailed/brief/interviews are merged into one
-- Bugfixes
-- I18n updates
+- Stabilization and code consistency
+- Old views have been replaced by the interviews
+- A new fast text and hex viewer called Lister
+- Queued archive handling, which in addition is job based now
+- Improved tab support, including locked tabs
+- Better trash integration
 
-Changes since 2.0.0-beta2 (but not limited to): 
-
-- Queue manager
-  Enqueue operation for copy / move operations
-  Use F5 (copy) or F6 (move) and than F2 to enqueue
-  Or the direct shortcuts: copy by queue (SHIFT+F5), move by queue (SHIFT+F6)
-- Five sorting methods
-- Support for tar.lzma (KDE's tar protocol doesn't support it yet)
-- Konfigurator mouse selection mode: Possibility to select a predefined
-  mode and change a detail.
-- Highlight quick search match
-- Useractions: added checkbox "enabled"
-  and run mode option "Run in embedded terminal emulator"
-- The description of a dir contains its size if it is known
-- Many, many bugfixes
-
-Changes since 2.0.0-beta1 (but not limited to): 
-
-- Ported to KDE4 not using any of the Qt3 support libs
-- Experimental support for the Windows platform
-- Send emails with Thunderbird
-- Attach multiple files to emails
-- Submenus for categories in UserAction menu and context menu
-- Select encoding in content search and krarc
-- New synchronizer shortcuts
-
-Read SVNNEWS for detailed information about the new features and the INSTALL
-file for detailed installation instructions.
+Read SVNNEWS for detailed information about the new features and the
+INSTALL file for detailed installation instructions.
 
 Notice: if you've got bugs to report, please do so using Krusader's
         website, and not using KDE's bugzilla (bugs.kde.org).
@@ -122,14 +85,14 @@ The KDE translation teams will be notified.
 
 GUI-Translators
 ---------------
-Please join the KDE translation team of your language if you like to translate Krusader
-or other KDE applications.
+Please join the KDE translation team of your language if you like to
+translate Krusader or other KDE applications.
 http://l10n.kde.org/teams-list.php
 
 Documentation Translators
 -------------------------
-Please join the KDE translation team of your language if you like to translate Krusader
-or other KDE documentation.
+Please join the KDE translation team of your language if you like to
+translate Krusader or other KDE documentation.
 http://l10n.kde.org/teams-list.php
 
 Translation status
@@ -144,15 +107,15 @@ Desktop icon i10n status
 http://l10n.kde.org/stats/gui/trunk-kde4/po/desktop_extragear-utils_krusader.po/
 
 Handbook
-On the next url, goto extragear-utils and select the appropriate po file,
-there are about twenty po files for the Krusader handbook.
+On the next url, goto extragear-utils and select the appropriate po
+file, there are about twenty po files for the Krusader handbook.
 http://l10n.kde.org/stats/doc/trunk-kde4/po/
 
 
 Documentation
 -------------
-Help is needed (we are looking for English documentation writers) for keeping
-the Krusader documentation up to date.
+Help is needed (we are looking for English documentation writers) for
+keeping the Krusader documentation up to date.
 Please contact Frank.
 
 
