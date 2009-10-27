@@ -1007,7 +1007,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Ctrl;
+              <keycombo action="simul">&Ctrl;&Shift;
               <keycap>T</keycap></keycombo>
             </shortcut>
             <guimenu>KrViewer</guimenu>
@@ -1034,6 +1034,23 @@
           <para>View the file in hex mode.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul">
+              &Ctrl;&Shift;
+              <keycap>L</keycap></keycombo>
+            </shortcut>
+            <guimenu>KrViewer</guimenu>
+            <guimenuitem>Lister</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Fast text/hex viewer for huge filesizes, done by 
+	        <link linkend="konfig-general">Krusader lister</link>.</para>
+        </listitem>
+      </varlistentry>      
       <varlistentry>
         <term>
           <menuchoice>

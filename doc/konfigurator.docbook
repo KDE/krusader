@@ -49,17 +49,6 @@
 
   <sect1 id="konfig-startup">
     <title>Startup</title>
-    <!-- OLD
-<screenshot>
-  <screeninfo>Startup configuration</screeninfo>
-  <mediaobject>
-  <imageobject><imagedata fileref="kgstartup.png" format="PNG"/></imageobject>
-  <imageobject><imagedata fileref="kgstartup.png" format="EPS"/></imageobject>
-  <textobject><phrase>Startup configuration</phrase></textobject>
-  <caption><para>Configure Startup</para></caption>
-  </mediaobject>
-</screenshot>
--->
     <figure id="screenshot-kgstartup" float="1">
       <title>Startup configuration</title>
       <mediaobject>
@@ -188,26 +177,7 @@
     <guilabel>Panel</guilabel>, 
     <guilabel>Panel Toolbar</guilabel> and 
     <guilabel>Selection Mode</guilabel>:</para>
-    <!-- OLD
-<screenshot>
-  <screeninfo>Look &amp; Feel configurtarion</screeninfo>
-  <mediaobject>
-  <imageobject><imagedata fileref="kglookfeel.png" format="PNG"/></imageobject>
-  <imageobject><imagedata fileref="kglookfeel.png" format="EPS"/></imageobject>
-  <textobject><phrase>Look &amp; Feel configurtarion</phrase></textobject>
-  <caption><para>Configure Look &amp; Feel</para></caption>
-  </mediaobject>
-</screenshot>
--->
-    <!--HTML_PARSING
-<figure id="screenshot-kglookfeel" float="1">
-<title>Look &amp; Feel configurtarion</title>
-<mediaobject>
-<imageobject><imagedata fileref="kglookfeel.png"/></imageobject>
-<textobject><phrase>Look &amp; Feel configurtarion</phrase></textobject>
-</mediaobject>
-</figure>
-HTML_PARSING-->
+
     <sect2 id="konfig-looknfeel-operation">
       <title>Operation</title>
       <itemizedlist>
@@ -635,26 +605,7 @@ HTML_PARSING-->
     <link linkend="synchronizer">Synchronizer</link>. The 
     <guilabel>KDE default colors</guilabel> is the default color
     configuration.</para>
-    <!-- OLD
-<screenshot>
-  <screeninfo>Colors configuration</screeninfo>
-  <mediaobject>
-  <imageobject><imagedata fileref="kgcolor.png" format="PNG"/></imageobject>
-  <imageobject><imagedata fileref="kgcolor.png" format="EPS"/></imageobject>
-  <textobject><phrase>Colors configuration</phrase></textobject>
-  <caption><para>Colors configuration</para></caption>
-  </mediaobject>
-</screenshot>
--->
-    <!--HTML_PARSING
-<figure id="screenshot-kgcolor" float="1">
-<title>Colors configuration</title>
-<mediaobject>
-<imageobject><imagedata fileref="kgcolor.png"/></imageobject>
-<textobject><phrase>Colors configuration</phrase></textobject>
-</mediaobject>
-</figure>
-HTML_PARSING-->
+
     <variablelist>
       <varlistentry>
         <term>
@@ -873,26 +824,7 @@ HTML_PARSING-->
   <sect1 id="konfig-general">
     <title>General</title>
     <para>Here you configure the basic operations.</para>
-    <!-- OLD
-<screenshot>
-  <screeninfo>General configuration</screeninfo>
-  <mediaobject>
-  <imageobject><imagedata fileref="kggeneral.png" format="PNG"/></imageobject>
-  <imageobject><imagedata fileref="kggeneral.png" format="EPS"/></imageobject>
-  <textobject><phrase>General configuration</phrase></textobject>
-  <caption><para>General configuration</para></caption>
-  </mediaobject>
-</screenshot>
--->
-    <!--HTML_PARSING
-<figure id="screenshot-kggeneral" float="1">
-<title>General configuration</title>
-<mediaobject>
-<imageobject><imagedata fileref="kggeneral.png"/></imageobject>
-<textobject><phrase>General configuration</phrase></textobject>
-</mediaobject>
-</figure>
-HTML_PARSING-->
+
     <para>The following options determine basic aspects of
     operation: 
     <itemizedlist>
@@ -920,12 +852,34 @@ HTML_PARSING-->
       <listitem>
         <para>
         <guilabel>Editor</guilabel>: choose what editor will be
-        used when editing a file (via F4).</para>
+        used when editing a file (via F4). Default the internal viewer is used, 
+	this is the &kde;'s default viewer.</para>
       </listitem>
       <listitem>
         <para>
-        <guilabel>Default viewer mode</guilabel>: either generic,
-        text or hex mode.</para>
+        <guilabel>Default viewer mode</guilabel>:
+	<itemizedlist>
+        <listitem>
+         <para>
+         <guilabel>Generic mode</guilabel>: use the systems default viewer.</para>
+        </listitem>
+        <listitem>
+         <para>
+         <guilabel>Text mode</guilabel>: view the file in text-only mode.</para>
+        </listitem>
+        <listitem>
+         <para>
+         <guilabel>Hex mode</guilabel>: view the file in hex-only mode.</para>
+        </listitem>
+        <listitem>
+         <para>
+         <guilabel>Lister mode</guilabel>: Fast text/hex viewer for huge filesizes.
+	 Krusader lister never loads the whole file into memory, just a little part of it, and uses caching for faster scrolling. 
+         Remote files are downloaded, but during the download, viewing the downloaded part is possible.
+         If a file constantly changes, then it can also be viewed, lister will always see its current state.</para>
+        </listitem>
+	</itemizedlist>
+      </para>
       </listitem>
       <listitem>
         <para>
@@ -933,6 +887,12 @@ HTML_PARSING-->
         window</guilabel>: you can use the browsing tabs for
         navigation.</para>
       </listitem>
+      <listitem>
+        <para>
+        <guilabel>Use lister if the text file is bigger than : 10 Mb (default value) </guilabel>: 
+	checks whether a text file is bigger than 10 MB (configurable), and if yes, 
+	then Krusader Lister is used instead of &kde;'s default viewer.</para>
+      </listitem>      
       <listitem>
         <para>
         <guilabel>Atomic extensions</guilabel>: predefined atomic extensions like <filename>tar.gz</filename> 
@@ -974,26 +934,7 @@ HTML_PARSING-->
     double-check your actions here: modifying settings here 
     <remark>makes &krusader; a more powerful AND
     dangerous tool.</remark></para>
-    <!-- OLD
-<screenshot>
-  <screeninfo>Advanced configuration</screeninfo>
-  <mediaobject>
-  <imageobject><imagedata fileref="kgadvanced.png" format="PNG"/></imageobject>
-  <imageobject><imagedata fileref="kgadvanced.png" format="EPS"/></imageobject>
-  <textobject><phrase>Advanced configuration</phrase></textobject>
-  <caption><para>Advanced configuration</para></caption>
-  </mediaobject>
-</screenshot>
--->
-    <!--HTML_PARSING
-<figure id="screenshot-kgadvanced" float="1">
-<title>Advanced configuration</title>
-<mediaobject>
-<imageobject><imagedata fileref="kgadvanced.png"/></imageobject>
-<textobject><phrase>Advanced configuration</phrase></textobject>
-</mediaobject>
-</figure>
-HTML_PARSING-->
+
     <para>The page is divided into three parts:</para>
     <variablelist>
       <varlistentry>
@@ -1122,26 +1063,7 @@ HTML_PARSING-->
     in the configured path. The next archives are supported: ace,
     arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and
     7-zip.</para>
-    <!-- OLD
-<screenshot>
-  <screeninfo>Archives configuration</screeninfo>
-  <mediaobject>
-  <imageobject><imagedata fileref="kgarchives.png" format="PNG"/></imageobject>
-  <imageobject><imagedata fileref="kgarchives.png" format="EPS"/></imageobject>
-  <textobject><phrase>Archives configuration</phrase></textobject>
-  <caption><para>Archives configuration</para></caption>
-  </mediaobject>
-</screenshot>
--->
-    <!--HTML_PARSING
-<figure id="screenshot-kgarchives" float="1">
-<title>Archives configuration</title>
-<mediaobject>
-<imageobject><imagedata fileref="kgarchives.png"/></imageobject>
-<textobject><phrase>Archives configuration</phrase></textobject>
-</mediaobject>
-</figure>
-HTML_PARSING-->
+
     <para>If you have installed a certain archive application (let's
     say 
     <command>arj</command>) and want &krusader; to know
@@ -1838,51 +1760,13 @@ HTML_PARSING-->
     <filename>konsole --noclose -e</filename>. To set up, configure
     and manage your UserActions use ActionMan
     (<link linkend="useractions">UserActions</link> url).</para>
-    <!-- OLD
-<screenshot>
-  <screeninfo>Useractions configuration</screeninfo>
-  <mediaobject>
-  <imageobject><imagedata fileref="kguseractions.png" format="PNG"/></imageobject>
-  <imageobject><imagedata fileref="kguseractions.png" format="EPS"/></imageobject>
-  <textobject><phrase>Useractions configuration</phrase></textobject>
-  <caption><para>Useractions configuration</para></caption>
-  </mediaobject>
-</screenshot>
--->
-    <!--HTML_PARSING
-<figure id="screenshot-kguseractions" float="1">
-<title>Useractions configuration</title>
-<mediaobject>
-<imageobject><imagedata fileref="kguseractions.png"/></imageobject>
-<textobject><phrase>Useractions configuration</phrase></textobject>
-</mediaobject>
-</figure>
-HTML_PARSING-->
+
   </sect1>
   <sect1 id="konfig-protocols">
     <title>Protocols</title>
     <para>This page links the mimes to protocols. &eg;
     protocol "tar" is linked to mime "application/x-tar".</para>
-    <!-- OLD
-<screenshot>
-  <screeninfo>Protocols configuration</screeninfo>
-  <mediaobject>
-  <imageobject><imagedata fileref="kgprotocols.png" format="PNG"/></imageobject>
-  <imageobject><imagedata fileref="kgprotocols.png" format="EPS"/></imageobject>
-  <textobject><phrase>Protocols configuration</phrase></textobject>
-  <caption><para>Protocols configuration</para></caption>
-  </mediaobject>
-</screenshot>
--->
-    <!--HTML_PARSING
-<figure id="screenshot-kgprotocols" float="1">
-<title>Protocols configuration</title>
-<mediaobject>
-<imageobject><imagedata fileref="kgprotocols.png"/></imageobject>
-<textobject><phrase>Protocols configuration</phrase></textobject>
-</mediaobject>
-</figure>
-HTML_PARSING-->
+
     <para>In the 
     <guilabel>Defined Links</guilabel> you will see &eg; 
     <itemizedlist>
