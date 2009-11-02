@@ -20,6 +20,7 @@
 #include "queuedialog.h"
 #include "queue.h"
 #include <QList>
+#include <QVector>
 #include <QVariant>
 #include <klocale.h>
 #include "../krusader.h"
@@ -44,11 +45,10 @@ QueueManager::QueueManager()
     if (queuesSize == 0)
         queues << defaultName;
 
-    Queue *queueArray [ queuesSize ];
+    QVector<Queue*> queueArray;
 
-    int counter = 0;
     foreach(const QString &queueName, queues)
-    queueArray[ counter++ ] = createQueue(queueName);
+        queueArray.append(createQueue(queueName));
 
     if (current < queuesSize)
         setCurrentQueue(queueArray[ current ]);
