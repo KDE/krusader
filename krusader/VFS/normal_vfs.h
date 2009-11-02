@@ -70,7 +70,14 @@ public:
 
     /// return the VFS working dir
     virtual QString vfs_workingDir() {
+#ifdef Q_OS_WIN
+        
+        QString path = vfs_origin.toLocalFile();
+        if(path.endsWith('/')) path.chop(1);
+        return path;
+#else
         return vfs_origin.path(KUrl::RemoveTrailingSlash);
+#endif
     }
 
     /// Get ACL permissions
