@@ -264,8 +264,12 @@ void KrInterBriefView::redraw()
 
 void KrInterBriefView::refreshColors()
 {
-    if (_model->rowCount() != 0)
-        _model->emitChanged();
+    QPalette p(palette());
+    KrColorGroup cg;
+    KrColorCache::getColorCache().getColors(cg, KrColorItemType(KrColorItemType::File,
+        false, _focused, false, false));
+    p.setColor(QPalette::Base, cg.background());
+    setPalette(p);
 }
 
 void KrInterBriefView::restoreSettings()
