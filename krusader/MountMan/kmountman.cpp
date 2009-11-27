@@ -455,7 +455,7 @@ void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, con
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::sorry(krApp, errorData.toString());
+        KMessageBox::queuedMessageBox(krApp, KMessageBox::Sorry, errorData.toString());
     }
 }
 
@@ -463,7 +463,7 @@ void KMountMan::slotSetupDone(Solid::ErrorType error, QVariant errorData, const 
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::sorry(krApp, errorData.toString());
+        KMessageBox::queuedMessageBox(krApp, KMessageBox::Sorry, errorData.toString());
     }
 }
 
