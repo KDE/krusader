@@ -271,6 +271,7 @@ void KrInterDetailedView::refreshColors()
         false, _focused, false, false));
     p.setColor(QPalette::Base, cg.background());
     setPalette(p);
+    viewport()->update();
 }
 
 void KrInterDetailedView::restoreSettings()

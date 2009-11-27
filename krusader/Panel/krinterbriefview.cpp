@@ -270,6 +270,7 @@ void KrInterBriefView::refreshColors()
         false, _focused, false, false));
     p.setColor(QPalette::Base, cg.background());
     setPalette(p);
+    viewport()->update();
 }
 
 void KrInterBriefView::restoreSettings()
