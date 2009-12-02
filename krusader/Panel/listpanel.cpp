@@ -571,6 +571,8 @@ void ListPanel::slotFocusOnMe()
     // give this VFS the focus (the path bar)
     // we start by calling the KVFS function
 
+    krApp->setUpdatesEnabled(false);
+
     // take care of the 'otherpanel'
     QPalette q(otherPanel->status->palette());
     q.setColor(QPalette::WindowText, KColorScheme(QPalette::Active, KColorScheme::View).foreground().color());
@@ -602,6 +604,8 @@ void ListPanel::slotFocusOnMe()
 
     view->refreshColors();
     otherPanel->view->refreshColors();
+
+    krApp->setUpdatesEnabled(true);
 }
 
 // this is used to start the panel, AFTER setOther() has been used
