@@ -3,7 +3,7 @@ project(krusader)
 INCLUDE(CPack)
 
 set(VERSION "2.1.0-beta1" )
-set(RELEASE_NAME "Rusty Clutch")
+set(RELEASE_NAME "Second Gear")
 
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
