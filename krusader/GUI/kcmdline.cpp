@@ -127,19 +127,19 @@ void KCMDLine::addPlaceholder()
 void KCMDLine::setCurrent(const QString &p)
 {
 
-    QString pathName = p;
+    QString pathNameLabel = pathName = p;
     QFontMetrics fm(path->fontMetrics());
     int textWidth = fm.width(pathName);
     int maxWidth = (cmdLine->width() + path->width()) * 2 / 5;
     int letters = p.length() / 2;
 
     while (letters && textWidth > maxWidth) {
-        pathName = p.left(letters) + "..." + p.right(letters);
+        pathNameLabel = p.left(letters) + "..." + p.right(letters);
         letters--;
         textWidth = fm.width(pathName);
     }
 
-    path->setText(pathName + '>');
+    path->setText(pathNameLabel + '>');
 
     completion.setDir(p);
     // make sure our command is executed in the right directory
@@ -161,7 +161,6 @@ void KCMDLine::slotRun()
     const QString command1(cmdLine->currentText());
     if (command1.isEmpty())
         return ;
-    QString panelPath = path->text().left(path->text().length() - 1);
 
     cmdLine->addToHistory(command1);
 
@@ -170,7 +169,7 @@ void KCMDLine::slotRun()
         if (dir == "~")
             dir = QDir::homePath();
         else if (dir.left(1) != "/" && !dir.contains(":/"))
-            dir = panelPath + (panelPath == "/" ? "" : "/") + dir;
+            dir = pathName + (pathName == "/" ? "" : "/") + dir;
         SLOTS->refresh(dir);
     } else {
         exec();
@@ -206,7 +205,8 @@ KrActionBase::ExecType KCMDLine::execType() const
 
 QString KCMDLine::startpath() const
 {
-    return path->text().left(path->text().length() - 1);
+    return pathName;
+//     return path->text().left(path->text().length() - 1);
 }
 
 QString KCMDLine::user() const

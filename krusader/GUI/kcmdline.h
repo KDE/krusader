@@ -99,6 +99,7 @@ public slots:
 
 private:
     QLabel *path;
+    QString pathName;
     KrHistoryCombo *cmdLine;
     KCMDModeButton *terminal;
     QToolButton *buttonAddPlaceholder;

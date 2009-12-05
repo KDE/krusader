@@ -8,6 +8,8 @@
     ADDED: lock tabs, close inactive tabs, close duplicated tabs
     ADDED: better trash integration
 
+  CHANGED: dont't retrieve working dir of the cmdline from the label which might get truncated
+           - store it in a string instead
   CHANGED: the packer/unpacker/archive tester are job based now
   CHANGED: the old views were replaced by the interviews
 
