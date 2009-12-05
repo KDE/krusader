@@ -223,9 +223,18 @@ void KrActionProc::start(QStringList cmdLineList)
     _proc->clearProgram(); // this clears the arglist too
     QString cmd; // This is the command the user wants to execute
     QStringList shellCmd; // this is the command which is really executed (with  maybe kdesu, maybe konsole, ...)
+    QString workingDirSave = QDir::currentPath();
 
-    if (! _action->startpath().isEmpty())
-        _proc->setWorkingDirectory(_action->startpath());
+    if (! _action->startpath().isEmpty()) {
+        /* temporarily change our working directory or return if not possible
+         (QProcess::setWorkingDirectory() doesn't assure us that the process will run in this directory,
+         since if the chdir fails the process would run anyway in the wrong directory) */
+        if(!QDir::setCurrent(_action->startpath())) {
+            KMessageBox::error(0, i18n("Command \"%1\" cannot be executed.\nCannot change working directory to %2.",
+                               cmdLineList.join(";"), _action->startpath()), i18n("Error"));
+            return;
+        }
+    }
 
     if (_action->execType() == KrAction::Terminal && cmdLineList.count() > 1)
         KMessageBox::sorry(0, i18n("Support for more than one command doesn't work in a terminal. Only the first is executed in the terminal."));
@@ -294,7 +303,7 @@ void KrActionProc::start(QStringList cmdLineList)
         _proc->setShellCommand(shellCmd.join(" "));
         _proc->start();
     }
-
+    QDir::setCurrent(workingDirSave);
 }
 
 void KrActionProc::processExited(int exitCode, QProcess::ExitStatus exitStatus)
