@@ -73,6 +73,7 @@ protected:
 protected slots:
     void doubleClicked(QTreeWidgetItem *);
     void clicked(QTreeWidgetItem *, const QPoint &);
+    void slotButtonClicked(int button);
     void changeActive();
     void changeActive(QTreeWidgetItem *);
     void checkMountChange(); // check whether the mount table was changed
@@ -85,6 +86,7 @@ protected slots:
 
 protected:
     void addItemToMountList(KrTreeWidget *lst, fsData &fs);
+    fsData* getFsData(QTreeWidgetItem *item);
 
 signals:
     void refreshPanel(const KUrl &);

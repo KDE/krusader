@@ -61,6 +61,10 @@ A
 #define MTAB "/etc/mtab"
 #endif
 
+#define EJECT_BTN KDialog::User1
+#define UMOUNT_BTN KDialog::User2
+
+
 KMountManGUI::KMountManGUI() : KDialog(krApp), info(0), mountList(0), sizeX(-1), sizeY(-1)
 {
     setWindowTitle(i18n("Mount.Man"));
@@ -70,7 +74,10 @@ KMountManGUI::KMountManGUI() : KDialog(krApp), info(0), mountList(0), sizeX(-1),
     connect(watcher, SIGNAL(timeout()), this, SLOT(checkMountChange()));
 
     connect(this, SIGNAL(finishedGettingSpaceData()), this, SLOT(updateList()));
+    setButtons(KDialog::Ok | UMOUNT_BTN | EJECT_BTN);
     setButtonGuiItem(KDialog::Ok, KGuiItem(i18n("&Close")));
+    setButtonGuiItem(UMOUNT_BTN, KGuiItem(i18n("&Unmount")));
+    setButtonGuiItem(EJECT_BTN, KGuiItem(i18n("&Eject")));
     showButton(KDialog::Apply, false);
     showButton(KDialog::Cancel, false);
     setPlainCaption(i18n("MountMan - Your Mount-Manager"));
@@ -362,20 +369,8 @@ void KMountManGUI::changeActive()
 void KMountManGUI::changeActive(QTreeWidgetItem *i)
 {
     if (!i) return ;
-    fsData *system = 0;
+    fsData *system = getFsData(i);
 
-    for (QList<fsData>::Iterator it = fileSystems.begin(); it != fileSystems.end(); ++it) {
-        // the only thing which is unique is the mount point
-        if ((*it).mntPoint() == i->text(2)) { // text(2) ? ugly ugly ugly
-            system = &(*it);
-            break;
-        }
-    }
-
-    if (system == 0) {
-        KMessageBox::error(0, i18n("Critical Error"), i18n("Internal error in MountMan\nCall the developers"));
-        exit(1);
-    }
     info->setAlias(system->mntPoint());
     info->setRealName(system->name());
     info->setMounted(system->mounted());
@@ -383,6 +378,13 @@ void KMountManGUI::changeActive(QTreeWidgetItem *i)
     info->setTotalSpace(system->totalBlks());
     info->setFreeSpace(system->freeBlks());
     info->repaint();
+
+    if(system->mounted())
+        setButtonGuiItem(UMOUNT_BTN, KGuiItem(i18n("&Unmount")));
+    else
+        setButtonGuiItem(UMOUNT_BTN, KGuiItem(i18n("&Mount")));
+    
+    enableButton(EJECT_BTN, krMtMan.ejectable(system->mntPoint()));
 }
 
 // called when right-clicked on a filesystem
@@ -396,19 +398,7 @@ void KMountManGUI::clicked(QTreeWidgetItem *item, const QPoint & pos)
     //////////////////////////////////////////////////////////
     if (!item) return ;
 
-    fsData *system = 0;
-    for (QList<fsData>::Iterator it = fileSystems.begin(); it != fileSystems.end(); ++it) {
-        // the only thing which is unique is the mount point
-        if ((*it).mntPoint() == item->text(2)) { // text(2) ? ugly ugly ugly
-            system = &(*it);
-            break;
-        }
-    }
-
-    if (!system) {
-        KMessageBox::error(0, i18n("MountMan has an internal error. Please notify the developers. Thank you."));
-        exit(0);
-    }
+    fsData *system = getFsData(item);
     // create the menu
     KMenu popup;
     popup.setTitle(i18n("MountMan"));
@@ -454,6 +444,33 @@ void KMountManGUI::clicked(QTreeWidgetItem *item, const QPoint & pos)
         break;
     }
 }
+
+void KMountManGUI::slotButtonClicked(int button)
+{
+    QTreeWidgetItem *item = mountList->currentItem();
+    if(item) {
+        QString mountPoint = getFsData(item)->mntPoint();
+        if(button == UMOUNT_BTN)
+            krMtMan.toggleMount(mountPoint);
+        else if(button == EJECT_BTN)
+            krMtMan.eject(mountPoint);
+    }
+    KDialog::slotButtonClicked(button);
+}
+
+fsData* KMountManGUI::getFsData(QTreeWidgetItem *item)
+{
+    for (QList<fsData>::Iterator it = fileSystems.begin(); it != fileSystems.end(); ++it) {
+        // the only thing which is unique is the mount point
+        if ((*it).mntPoint() == item->text(2)) { // text(2) ? ugly ugly ugly
+            return & (*it);
+        }
+    }
+    //this point shouldn't be reached
+    abort();
+    return 0;
+}
+
 
 KrMountDetector::KrMountDetector()
 {
