@@ -70,8 +70,11 @@ public:
     void autoMount(QString path);             // just call it before refreshing into a dir
     void eject(QString mntPoint);
     bool ejectable(QString path);
+    bool removable(QString path);
+    bool removable(Solid::Device d);
     QString convertSize(KIO::filesize_t size);
     bool invalidFilesystem(QString type);
+    bool networkFilesystem(QString type);
     bool nonmountFilesystem(QString type, QString mntPoint);
 
     KMountMan();
@@ -104,6 +107,7 @@ private:
     // the following is the FS type
     QStringList invalid_fs;
     QStringList nonmount_fs;
+    QStringList network_fs;
     // the following is the FS name
     QStringList nonmount_fs_mntpoint;
 };

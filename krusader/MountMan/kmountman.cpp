@@ -74,6 +74,8 @@ KMountMan::KMountMan() : QObject(), Operational(false), waiting(false), mountMan
         Operational = true;
     }
 
+    network_fs << "nfs" << "smbfs" << "fuse.fusesmb" << "fuse.sshfs";
+
     // list of FS that we don't manage at all
     invalid_fs << "swap" << "/dev/pts" << "tmpfs" << "devpts" << "sysfs" << "rpc_pipefs" << "usbfs" << "binfmt_misc";
 #ifdef BSD
@@ -107,6 +109,11 @@ bool KMountMan::invalidFilesystem(QString type)
 bool KMountMan::nonmountFilesystem(QString type, QString mntPoint)
 {
     return((nonmount_fs.contains(type) > 0) || (nonmount_fs_mntpoint.contains(mntPoint) > 0));
+}
+
+bool KMountMan::networkFilesystem(QString type)
+{
+    return (network_fs.contains(type) > 0);
 }
 
 void KMountMan::mainWindow()
@@ -296,6 +303,25 @@ bool KMountMan::ejectable(QString path)
     return dev.as<Solid::OpticalDisc>() != 0;
 }
 
+bool KMountMan::removable(QString path)
+{
+    QString udi = findUdiForPath(path, Solid::DeviceInterface::StorageAccess);
+    if (udi.isNull())
+        return false;
+
+    return removable(Solid::Device(udi));
+}
+
+bool KMountMan::removable(Solid::Device d)
+{
+    if(!d.isValid())
+        return false;
+    Solid::StorageDrive *drive = d.as<Solid::StorageDrive>();
+    if(drive)
+        return drive->isRemovable();
+    else
+        return(removable(d.parent()));
+}
 
 // a mountMan special version of KIO::convertSize, which deals
 // with large filesystems ==> > 4GB, it actually receives size in
