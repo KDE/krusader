@@ -87,6 +87,7 @@ protected slots:
 protected:
     void addItemToMountList(KrTreeWidget *lst, fsData &fs);
     fsData* getFsData(QTreeWidgetItem *item);
+    QString getMntPoint(QTreeWidgetItem *item);
 
 signals:
     void refreshPanel(const KUrl &);

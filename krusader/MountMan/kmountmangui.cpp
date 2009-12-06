@@ -301,6 +301,14 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
 
 void KMountManGUI::updateList()
 {
+    QString currentMP;
+    int currentIdx = 0;
+    QTreeWidgetItem *currentItem = mountList->currentItem();
+    if(currentItem) {
+        currentMP = getMntPoint(currentItem);
+        currentIdx = mountList->indexOfTopLevelItem(currentItem);
+    }
+
     mountList->clear();
     // this handles the mounted ones
     for (QList<fsData>::iterator it = fileSystems.begin(); it != fileSystems.end() ; ++it) {
@@ -329,6 +337,20 @@ void KMountManGUI::updateList()
     }
 
     mountList->clearSelection();
+
+    currentItem = mountList->topLevelItem(currentIdx);
+    for(int i = 0; i < mountList->topLevelItemCount(); i++) {
+        QTreeWidgetItem *item = mountList->topLevelItem(i);
+        if(getMntPoint(item) == currentMP)
+                currentItem = item;
+    }
+    if(!currentItem)
+        currentItem = mountList->topLevelItem(0);
+    mountList->setCurrentItem(currentItem);
+    changeActive(currentItem);
+
+    mountList->setFocus();
+
     if (info) {
         info->setEmpty(true);
         info->repaint();
@@ -353,7 +375,7 @@ void KMountManGUI::doubleClicked(QTreeWidgetItem *i)
     // change the active panel to this mountpoint
     connect((QObject*) this, SIGNAL(refreshPanel(const KUrl &)), (QObject*) SLOTS,
             SLOT(refresh(const KUrl &)));
-    emit refreshPanel(KUrl(i->text(2)));     // text(2) ? so ugly ...
+    emit refreshPanel(KUrl(getMntPoint(i)));
     disconnect(this, SIGNAL(refreshPanel(const KUrl &)), 0, 0);
     close();
 }
@@ -462,13 +484,18 @@ fsData* KMountManGUI::getFsData(QTreeWidgetItem *item)
 {
     for (QList<fsData>::Iterator it = fileSystems.begin(); it != fileSystems.end(); ++it) {
         // the only thing which is unique is the mount point
-        if ((*it).mntPoint() == item->text(2)) { // text(2) ? ugly ugly ugly
+        if ((*it).mntPoint() == getMntPoint(item)) {
             return & (*it);
         }
     }
     //this point shouldn't be reached
     abort();
     return 0;
+}
+
+QString KMountManGUI::getMntPoint(QTreeWidgetItem *item)
+{
+    return item->text(2); // text(2) ? ugly ugly ugly
 }
 
 
