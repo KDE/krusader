@@ -45,7 +45,7 @@
 #include "../GUI/krtreewidget.h"
 #include "kmountman.h"
 
-#define  WATCHER_DELAY    3000
+#define  WATCHER_DELAY    500
 
 class KRFSDisplay;
 
