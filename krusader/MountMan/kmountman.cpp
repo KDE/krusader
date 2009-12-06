@@ -74,7 +74,7 @@ KMountMan::KMountMan() : QObject(), Operational(false), waiting(false), mountMan
         Operational = true;
     }
 
-    network_fs << "nfs" << "smbfs" << "fuse.fusesmb" << "fuse.sshfs";
+    network_fs << "nfs" << "smbfs" << "fuse.fusesmb" << "fuse.sshfs"; //TODO: is this list complete ?
 
     // list of FS that we don't manage at all
     invalid_fs << "swap" << "/dev/pts" << "tmpfs" << "devpts" << "sysfs" << "rpc_pipefs" << "usbfs" << "binfmt_misc";

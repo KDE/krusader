@@ -316,6 +316,7 @@ void KMountManGUI::updateList()
         currentIdx = mountList->indexOfTopLevelItem(currentItem);
     }
 
+    mountList->clearSelection();
     mountList->clear();
     // this handles the mounted ones
     for (QList<fsData>::iterator it = fileSystems.begin(); it != fileSystems.end() ; ++it) {
@@ -343,8 +344,6 @@ void KMountManGUI::updateList()
         }
     }
 
-    mountList->clearSelection();
-
     currentItem = mountList->topLevelItem(currentIdx);
     for(int i = 0; i < mountList->topLevelItemCount(); i++) {
         QTreeWidgetItem *item = mountList->topLevelItem(i);
@@ -358,10 +357,6 @@ void KMountManGUI::updateList()
 
     mountList->setFocus();
 
-    if (info) {
-        info->setEmpty(true);
-        info->repaint();
-    }
     watcher->setSingleShot(true);
     watcher->start(WATCHER_DELAY);     // starting the watch timer ( single shot )
 }
@@ -397,7 +392,14 @@ void KMountManGUI::changeActive()
 // when user clicks on a filesystem, change information
 void KMountManGUI::changeActive(QTreeWidgetItem *i)
 {
-    if (!i) return ;
+    if (!i) {
+        if (info) {
+            info->setEmpty(true);
+            info->update();
+        }
+        return;
+    }
+    
     fsData *system = getFsData(i);
 
     info->setAlias(system->mntPoint());
