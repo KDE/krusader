@@ -20,6 +20,7 @@
   CHANGED: the packer/unpacker/archive tester are job based now
   CHANGED: the old views were replaced by the interviews
 
+    FIXED: mountman: unmounting is not possible if currently opened dir is below the mountpoint
     FIXED: [ 2860400 ] Drag'n'drop to kmail broken
     FIXED: [ 2904850 ] panels are not repainted
     FIXED: deadlock when trying to display error message after failed mount
