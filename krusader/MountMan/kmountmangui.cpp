@@ -53,6 +53,7 @@ A
 #include <QtCore/QFileInfo>
 #include <sys/param.h>
 #include <qheaderview.h>
+#include <solid/storagevolume.h>
 
 #ifdef BSD
 #include <kmountpoint.h>
@@ -147,6 +148,7 @@ void KMountManGUI::createLayout()
 void KMountManGUI::createMainPage()
 {
     // check if we need to clean up first!
+    //FIXME cleanup other items too
     if (mountList != 0) {
         mountList->hide();
         delete mountList;
@@ -283,20 +285,25 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     item->setText(4, (mtd ? fSize : QString("N/A")));
     item->setText(5, (mtd ? sPrct : QString("N/A")));
 
-    QString id = fs.name().left(7); // only works assuming devices start with  "/dev/XX"
-    QPixmap *icon = 0;
-    if (id == "/dev/fd") {
-        icon = new QPixmap(LOADICON(this, "media-floppy"));
-    } else if (id == "/dev/cd" || fs.type() == "iso9660") {
-        icon = new QPixmap(LOADICON(this, "media-optical"));
-    } else if (fs.type() == "nfs" || fs.type() == "smbfs") {
-        icon = new QPixmap(LOADICON(this, "folder-remote"));
-    } else {
-        icon = new QPixmap(LOADICON(this, "drive-harddisk"));
-    }
 
-    item->setIcon(0, *icon);
-    delete icon;
+    Solid::Device device(krMtMan.findUdiForPath(fs.mntPoint(), Solid::DeviceInterface::StorageAccess));
+    Solid::StorageVolume *vol = device.as<Solid::StorageVolume> ();
+    QString icon;
+    
+    if(device.isValid())
+        icon = device.icon();
+    else if(krMtMan.networkFilesystem(fs.type()))
+        icon = "folder-remote";
+    QStringList overlays;
+    if (mtd) {
+        overlays << "emblem-mounted";
+    } else {
+        overlays << QString(); // We have to guarantee the placement of the next emblem
+    }
+    if (vol && vol->usage() == Solid::StorageVolume::Encrypted) {
+        overlays << "security-high";
+    }
+    item->setIcon(0, KIcon(icon, 0, overlays));
 }
 
 void KMountManGUI::updateList()
