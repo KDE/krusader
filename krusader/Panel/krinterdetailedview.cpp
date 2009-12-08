@@ -269,6 +269,7 @@ void KrInterDetailedView::refreshColors()
     KrColorGroup cg;
     KrColorCache::getColorCache().getColors(cg, KrColorItemType(KrColorItemType::File,
         false, _focused, false, false));
+    p.setColor(QPalette::Text, cg.text());
     p.setColor(QPalette::Base, cg.background());
     setPalette(p);
     viewport()->update();
