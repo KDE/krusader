@@ -72,7 +72,6 @@ private:
 
 private slots:
     void slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
-    void slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
 
 private:
     QMenu  *popupMenu;

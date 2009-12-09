@@ -433,33 +433,12 @@ void MediaButton::umount(QString udi)
         krMtMan.unmount(udi.mid(7), false);
         return;
     }
-    Solid::Device device(udi);
-    Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
-    if (access && access->isAccessible()) {
-        connect(access, SIGNAL(teardownDone(Solid::ErrorType, QVariant, const QString &)),
-                this, SLOT(slotTeardownDone(Solid::ErrorType, QVariant, const QString &)));
-        access->teardown();
-    }
-}
-
-void MediaButton::slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi)
-{
-    if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::queuedMessageBox(this, KMessageBox::Sorry, errorData.toString());
-    }
+    krMtMan.unmount(krMtMan.pathForUdi(udi), false);
 }
 
 void MediaButton::eject(QString udi)
 {
-    Solid::Device device(udi);
-    Solid::OpticalDrive *drive = device.parent().as<Solid::OpticalDrive>();
-
-    if (drive != 0) {
-        connect(drive, SIGNAL(ejectDone(Solid::ErrorType, QVariant, const QString &)),
-                this, SLOT(slotTeardownDone(Solid::ErrorType, QVariant, const QString &)));
-
-        drive->eject();
-    }
+    krMtMan.eject(krMtMan.pathForUdi(udi));
 }
 
 void MediaButton::slotAccessibilityChanged(bool accessible, const QString & udi)

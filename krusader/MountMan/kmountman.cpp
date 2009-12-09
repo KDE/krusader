@@ -290,6 +290,11 @@ void KMountMan::eject(QString mntPoint)
     if (drive == 0)
         return;
 
+    //if working dir is below mountpoint cd to ~ first
+    if(KUrl(QDir(mntPoint).canonicalPath()).isParentOf(KUrl(QDir::current().canonicalPath())))
+        QDir::setCurrent(QDir::homePath());
+
+
     connect(drive, SIGNAL(ejectDone(Solid::ErrorType, QVariant, const QString &)),
             this, SLOT(slotTeardownDone(Solid::ErrorType, QVariant, const QString &)));
 
@@ -479,6 +484,16 @@ QString KMountMan::findUdiForPath(QString path, const Solid::DeviceInterface::Ty
     }
 
     return QString();
+}
+
+QString KMountMan::pathForUdi(QString udi)
+{
+    Solid::Device device(udi);
+    Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+    if(access)
+        return access->filePath();
+    else
+        return QString();
 }
 
 void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi)

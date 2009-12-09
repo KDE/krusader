@@ -81,6 +81,7 @@ public:
     ~KMountMan();
 
     QString findUdiForPath(QString path, const Solid::DeviceInterface::Type &expType = Solid::DeviceInterface::Unknown);
+    QString pathForUdi(QString udi);
 
 public slots:
     void delayedPerformAction(QAction *);
