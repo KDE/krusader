@@ -79,6 +79,8 @@ KMountManGUI::KMountManGUI() : KDialog(krApp), info(0), mountList(0), sizeX(-1),
     setButtonGuiItem(KDialog::Ok, KGuiItem(i18n("&Close")));
     setButtonGuiItem(UMOUNT_BTN, KGuiItem(i18n("&Unmount")));
     setButtonGuiItem(EJECT_BTN, KGuiItem(i18n("&Eject")));
+    enableButton(UMOUNT_BTN, false);
+    enableButton(EJECT_BTN, false);
     showButton(KDialog::Apply, false);
     showButton(KDialog::Cancel, false);
     setPlainCaption(i18n("MountMan - Your Mount-Manager"));
@@ -397,6 +399,8 @@ void KMountManGUI::changeActive(QTreeWidgetItem *i)
             info->setEmpty(true);
             info->update();
         }
+        enableButton(UMOUNT_BTN, false);
+        enableButton(EJECT_BTN, false);
         return;
     }
     
@@ -414,8 +418,9 @@ void KMountManGUI::changeActive(QTreeWidgetItem *i)
         setButtonGuiItem(UMOUNT_BTN, KGuiItem(i18n("&Unmount")));
     else
         setButtonGuiItem(UMOUNT_BTN, KGuiItem(i18n("&Mount")));
-    
+
     enableButton(EJECT_BTN, krMtMan.ejectable(system->mntPoint()));
+    enableButton(UMOUNT_BTN, true);
 }
 
 // called when right-clicked on a filesystem
