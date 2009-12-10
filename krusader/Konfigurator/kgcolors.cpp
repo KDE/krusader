@@ -219,9 +219,15 @@ KgColors::KgColors(bool first, QWidget* parent) :
     offset = endOfPanelColors = itemList.count();
 
     addColorSelector("Quicksearch Match Foreground", i18n("Quicksearch, match foreground:"), Qt::black, QString(), &KDEDefaultFore, 1);
-    addColorSelector("Quicksearch Match Background", i18n("Quicksearch, non-match background:"), QColor(192, 255, 192), QString(), &KDEDefaultBase, 1);
+    addColorSelector("Quicksearch Match Background", i18n("Quicksearch, match background:"), QColor(192, 255, 192), QString(), &KDEDefaultBase, 1);
     addColorSelector("Quicksearch Non-match Foreground", i18n("Quicksearch, non-match foreground:"), Qt::black, QString(), &KDEDefaultFore, 1);
     addColorSelector("Quicksearch Non-match Background", i18n("Quicksearch, non-match background:"), QColor(255, 192, 192), QString(), &KDEDefaultBase, 1);
+    ADDITIONAL_COLOR KDEDefaultWindowFore = { i18n("KDE default"), KColorScheme(QPalette::Active, KColorScheme::Window).foreground().color(), "KDE default" };
+    ADDITIONAL_COLOR KDEDefaultWindowBack = { i18n("KDE default"), KColorScheme(QPalette::Active, KColorScheme::Window).background().color(), "KDE default" };
+    addColorSelector("Statusbar Foreground Active", i18n("Statusbar, active foreground:"), KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color(), QString(), &KDEDefaultWindowFore, 1);
+    addColorSelector("Statusbar Background Active", i18n("Statusbar, active background:"), KColorScheme(QPalette::Active, KColorScheme::Selection).background().color(), QString(), &KDEDefaultWindowBack, 1);
+    addColorSelector("Statusbar Foreground Inactive", i18n("Statusbar, inactive foreground:"), KColorScheme(QPalette::Inactive, KColorScheme::View).foreground().color(), QString(), &KDEDefaultWindowFore, 1);
+    addColorSelector("Statusbar Background Inactive", i18n("Statusbar, inactive background:"), KColorScheme(QPalette::Inactive, KColorScheme::View).background().color(), QString(), &KDEDefaultWindowBack, 1);
 
     colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
 
@@ -526,6 +532,12 @@ void KgColors::generatePreview()
                           getColorSelector("Quicksearch Match Background")->getColor());
         pwNonMatch->setColor(getColorSelector("Quicksearch Non-match Foreground")->getColor(),
                              getColorSelector("Quicksearch Non-match Background")->getColor());
+        PreviewItem *pwStatusActive = new PreviewItem(preview, i18n("Statusbar active"));
+        PreviewItem *pwStatusInactive = new PreviewItem(preview, i18n("Statusbar inactive"));
+        pwStatusActive->setColor(getColorSelector("Statusbar Foreground Active")->getColor(),
+                                 getColorSelector("Statusbar Background Active")->getColor());
+        pwStatusInactive->setColor(getColorSelector("Statusbar Foreground Inactive")->getColor(),
+                                   getColorSelector("Statusbar Background Inactive")->getColor());
     }
 }
 
@@ -622,6 +634,10 @@ void KgColors::serialize(QDataStream & stream)
     serializeItem(stream, "Quicksearch Match Background");
     serializeItem(stream, "Quicksearch Non-match Foreground");
     serializeItem(stream, "Quicksearch Non-match Background");
+    serializeItem(stream, "Statusbar Foreground Active");
+    serializeItem(stream, "Statusbar Background Active");
+    serializeItem(stream, "Statusbar Foreground Inactive");
+    serializeItem(stream, "Statusbar Background Inactive");
     stream << QString("") << QString("");
 }
 

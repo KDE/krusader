@@ -101,6 +101,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../Dialogs/popularurls.h"
 #include "krpopupmenu.h"
 #include "krviewfactory.h"
+#include "krcolorcache.h"
 
 typedef QList<KServiceOffer> OfferList;
 
@@ -280,6 +281,8 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     layout->addLayout(totalsLayout, 5, 0, 1, 4);
     //filter = ALL;
     setLayout(layout);
+
+    connect(&KrColorCache::getColorCache(), SIGNAL(colorsRefreshed()), this, SLOT(refreshColors()));
 }
 
 void ListPanel::createView()
@@ -573,6 +576,38 @@ void ListPanel::compareDirs()
     view->updateView();
 }
 
+QColor ListPanel::getColor(KConfigGroup &cg, QString name, const QColor &def, const QColor &kdedef)
+{
+    if (cg.readEntry(name, QString()) == "KDE default")
+        return kdedef;
+    else if(!cg.readEntry(name, QString()).isEmpty())
+        return cg.readEntry(name, def);
+    return def;
+}
+
+void ListPanel::refreshColors()
+{
+    QColor windowForeground = KColorScheme(QPalette::Active, KColorScheme::Window).foreground().color();
+    QColor windowBackground = KColorScheme(QPalette::Active, KColorScheme::Window).background().color();
+    KConfigGroup gc(krConfig, "Colors");
+    QPalette p(status->palette());
+
+    if(this == ACTIVE_PANEL) {
+        p.setColor(QPalette::WindowText, getColor(gc, "Statusbar Foreground Active",
+                        KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color(), windowForeground));
+        p.setColor(QPalette::Window, getColor(gc, "Statusbar Background Active",
+                    KColorScheme(QPalette::Active, KColorScheme::Selection).background().color(), windowBackground));
+    } else {
+        p.setColor(QPalette::WindowText, getColor(gc, "Statusbar Foreground Inactive",
+                    KColorScheme(QPalette::Active, KColorScheme::View).foreground().color(), windowForeground));
+        p.setColor(QPalette::Window, getColor(gc, "Statusbar Background Inactive",
+                  KColorScheme(QPalette::Active, KColorScheme::View).background().color(), windowBackground));
+    }
+
+    status->setPalette(p);
+    totals->setPalette(p);
+}
+
 void ListPanel::slotFocusOnMe()
 {
     // give this VFS the focus (the path bar)
@@ -580,25 +615,14 @@ void ListPanel::slotFocusOnMe()
 
     krApp->setUpdatesEnabled(false);
 
-    // take care of the 'otherpanel'
-    QPalette q(otherPanel->status->palette());
-    q.setColor(QPalette::WindowText, KColorScheme(QPalette::Active, KColorScheme::View).foreground().color());
-    q.setColor(QPalette::Window, KColorScheme(QPalette::Active, KColorScheme::View).background().color());
-
-    otherPanel->status->setPalette(q);
-    otherPanel->totals->setPalette(q);
     otherPanel->view->prepareForPassive();
-
-    // now, take care of this panel
-    QPalette p(status->palette());
-    p.setColor(QPalette::WindowText, KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color());
-    p.setColor(QPalette::Window, KColorScheme(QPalette::Active, KColorScheme::Selection).background().color());
-    status->setPalette(p);
-    totals->setPalette(p);
-
     view->prepareForActive();
+
     emit cmdLineUpdate(realPath());
     emit activePanelChanged(this);
+
+    otherPanel->refreshColors();
+    refreshColors();
 
     func->refreshActions();
 

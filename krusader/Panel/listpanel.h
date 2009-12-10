@@ -143,6 +143,7 @@ public slots:
     void panelActive(); // called when the panel becomes active
     void panelInactive(); // called when panel becomes inactive
     void vfs_refresh(KJob *job);
+    void refreshColors();
 
 
     ///////////////////////// service functions - called internally ////////////////////////
@@ -157,6 +158,7 @@ protected:
     virtual void hideEvent(QHideEvent *);
     virtual bool eventFilter(QObject * watched, QEvent * e);
 
+    QColor getColor(KConfigGroup &cg, QString name, const QColor &def, const QColor &kdedef);
     void createView();
 
 protected slots:
