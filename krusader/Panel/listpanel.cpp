@@ -262,13 +262,20 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     popup->hide();
 
     // finish the layout
+    int spltPos, quickSearchPos;
+    QString qsPos = group.readEntry("Quicksearch position", "bottom");
+    if(qsPos == "top") {
+        spltPos = 4; quickSearchPos = 3;
+    } else {
+        spltPos = 3; quickSearchPos = 4;
+    }
     layout->addWidget(hboxWidget, 0, 0, 1, 4);
     layout->addWidget(mediaButton, 1, 0);
     layout->addWidget(status, 1, 1);
     layout->addWidget(historyButton, 1, 2);
     layout->addWidget(bookmarksButton, 1, 3);
-    layout->addWidget(splt, 3, 0, 1, 4);
-    layout->addWidget(quickSearch, 4, 0, 1, 4);
+    layout->addWidget(splt, spltPos, 0, 1, 4);
+    layout->addWidget(quickSearch, quickSearchPos, 0, 1, 4);
     quickSearch->hide();
     layout->addLayout(totalsLayout, 5, 0, 1, 4);
     //filter = ALL;

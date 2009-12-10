@@ -263,6 +263,35 @@ void KgLookFeel::setupPanelTab()
     panelGrid->addWidget(sortSett, 7, 0, 1, 2);
 
     panelLayout->addWidget(panelGrp, 0, 0);
+
+// ---------------------------------------------------------------------------------------
+// -----------------------------  Panel Layout -------------------------------------------
+// ---------------------------------------------------------------------------------------
+    QGroupBox *panelGrp2 = createFrame(i18n("Panel layout"), tab_panel);
+    QGridLayout *panelGrid2 = createGridLayout(panelGrp2);
+
+
+  // Quicksearch position
+    QWidget *qsBoxWidget = new QWidget(panelGrp2);
+    QHBoxLayout *qsBox = new QHBoxLayout(qsBoxWidget);
+
+    QLabel *lQsPos = new QLabel(i18n("Quicksearch position:"), qsBoxWidget);
+    qsBox->addWidget(lQsPos);
+
+    KONFIGURATOR_NAME_VALUE_PAIR qsPositions[] = {{ i18n("Top"),                "top" },
+        { i18n("Bottom"),                    "bottom" }
+    };
+    KonfiguratorComboBox *qsPositionCombo = createComboBox("Look&Feel", "Quicksearch position",
+                                            "top", qsPositions, 2, qsBoxWidget, true, false, PAGE_PANEL);
+    qsBox->addWidget(qsPositionCombo);
+
+    QWidget * qsSpacer = createSpacer(qsBoxWidget);
+    qsBox->addWidget(qsSpacer);
+
+    panelGrid2->addWidget(qsBoxWidget, 0, 0);
+
+
+    panelLayout->addWidget(panelGrp2, 1, 0);
 }
 
 // -----------------------------------------------------------------------------------
