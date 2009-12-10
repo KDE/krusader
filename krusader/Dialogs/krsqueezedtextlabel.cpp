@@ -112,13 +112,6 @@ void KrSqueezedTextLabel::setText(const QString &text, int index, int length)
 
 void KrSqueezedTextLabel::paintEvent(QPaintEvent * e)
 {
-    {
-        QPainter painter(this);
-
-        QRect cr = contentsRect();
-        painter.fillRect(cr, palette().brush(backgroundRole()));
-    }
-
     KSqueezedTextLabel::paintEvent(e);
 }
 

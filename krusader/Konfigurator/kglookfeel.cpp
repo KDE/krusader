@@ -290,8 +290,24 @@ void KgLookFeel::setupPanelTab()
 
     panelGrid2->addWidget(qsBoxWidget, 0, 0);
 
-
     panelLayout->addWidget(panelGrp2, 1, 0);
+
+// --------------------------------------------------------------------------------------------
+// ------------------------------- Status/Totalsbar settings ----------------------------------
+// --------------------------------------------------------------------------------------------
+    QGroupBox *panelGrp3 = createFrame(i18n("Status/Totalsbar settings"), tab_panel);
+    QGridLayout *panelGrid3 = createGridLayout(panelGrp3);
+
+    KONFIGURATOR_CHECKBOX_PARAM barSettings[] =
+    {
+        {"Look&Feel", "Statusbar Frame", false, i18n("Draw frame"), true,  i18n("Draw a Frame around the Status/Totalsbar") },
+        {"Look&Feel", "Statusbar Background", false, i18n("Fill background"), true,  i18n("Fill Background of Status/Totalsbar") },
+    };
+    KonfiguratorCheckBoxGroup *barSett = createCheckBoxGroup(2, 0, barSettings,
+                                          2 /*count*/, panelGrp3, PAGE_PANEL);
+    panelGrid3->addWidget(barSett, 1, 0, 1, 2);
+
+    panelLayout->addWidget(panelGrp3, 2, 0);
 }
 
 // -----------------------------------------------------------------------------------

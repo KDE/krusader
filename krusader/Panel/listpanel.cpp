@@ -131,7 +131,11 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     KConfigGroup group(krConfig, "Look&Feel");
     status->setFont(group.readEntry("Filelist Font", *_FilelistFont));
     status->setBackgroundRole(QPalette::Window);
-    status->setFrameStyle(QFrame::Box | QFrame::Raised);
+    bool statusFrame = group.readEntry("Status Frame", true);
+    if(statusFrame)
+        status->setFrameStyle(QFrame::Box | QFrame::Raised);
+    bool statusBackground = group.readEntry("Statusbar Background", true);
+    status->setAutoFillBackground(statusBackground);
     status->setLineWidth(1);    // a nice 3D touch :-)
     status->setText("");          // needed for initialization code!
     status->enableDrops(true);
@@ -159,7 +163,9 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     QHBoxLayout *totalsLayout = new QHBoxLayout;
     totals = new KrSqueezedTextLabel(this);
     totals->setFont(group.readEntry("Filelist Font", *_FilelistFont));
-    totals->setFrameStyle(QFrame::Box | QFrame::Raised);
+    if(statusFrame)
+        totals->setFrameStyle(QFrame::Box | QFrame::Raised);
+    totals->setAutoFillBackground(statusBackground);
     totals->setBackgroundRole(QPalette::Window);
     totals->setLineWidth(1);    // a nice 3D touch :-)
     totals->setMaximumHeight(sheight);
