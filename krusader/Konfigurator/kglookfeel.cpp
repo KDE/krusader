@@ -140,18 +140,14 @@ void KgLookFeel::setupPanelTab()
     QGroupBox *panelGrp = createFrame(i18n("Panel settings"), tab_panel);
     QGridLayout *panelGrid = createGridLayout(panelGrp);
 
-    QWidget *hboxWidget = new QWidget(panelGrp);
-    QHBoxLayout * hbox = new QHBoxLayout(hboxWidget);
-
 // ----------------------------------------------------------------------------------
-//  ---------------------------- DEFAULT PANEL TYPE -------------------------------------
+//  ---------------------------- Panel settings -------------------------------------
 // ----------------------------------------------------------------------------------
 
-    QWidget *hboxWidget3 = new QWidget(panelGrp);
-    QHBoxLayout * hbox3 = new QHBoxLayout(hboxWidget3);
+// -------------------- Default Panel Type ----------------------------------
+    QHBoxLayout *hbox = new QHBoxLayout();
 
-    QLabel *lbl3 = new QLabel(i18n("Default panel type:"), hboxWidget);
-    hbox3->addWidget(lbl3);
+    hbox->addWidget(new QLabel(i18n("Default panel type:"), panelGrp));
 
     QList<KrViewInstance *> views = KrViewFactory::registeredViews();
     const int viewsSize = views.size();
@@ -168,32 +164,30 @@ void KgLookFeel::setupPanelTab()
             defType = QString("%1").arg(inst->id());
     }
 
-    KonfiguratorComboBox * cmb3 = createComboBox("Look&Feel", "Default Panel Type", defType, panelTypes, viewsSize, hboxWidget3, false, false, PAGE_PANEL);
-    hbox3->addWidget(cmb3);
-    QWidget * spcr3 = createSpacer(hboxWidget3);
-    hbox3->addWidget(spcr3);
+    KonfiguratorComboBox * cmb = createComboBox("Look&Feel", "Default Panel Type", defType, panelTypes, viewsSize, panelGrp, false, false, PAGE_PANEL);
+    hbox->addWidget(cmb);
+    hbox->addWidget(createSpacer(panelGrp));
 
     delete [] panelTypes;
 
-    panelGrid->addWidget(hboxWidget3, 0, 0);
+    panelGrid->addLayout(hbox, 0, 0);
 
-    QLabel *lbl = new QLabel(i18n("Panel font:"), hboxWidget);
-    hbox->addWidget(lbl);
+// -------------------- Panel Font ----------------------------------
+    hbox = new QHBoxLayout();
 
-    KonfiguratorFontChooser * chsr = createFontChooser("Look&Feel", "Filelist Font", _FilelistFont, hboxWidget, true, PAGE_PANEL);
+    hbox->addWidget(new QLabel(i18n("Panel font:"), panelGrp));
+
+    KonfiguratorFontChooser * chsr = createFontChooser("Look&Feel", "Filelist Font", _FilelistFont, panelGrp, true, PAGE_PANEL);
     hbox->addWidget(chsr);
 
-    QWidget *spcr = createSpacer(hboxWidget);
-    hbox->addWidget(spcr);
+    hbox->addWidget(createSpacer(panelGrp));
 
-    panelGrid->addWidget(hboxWidget, 1, 0);
+    panelGrid->addLayout(hbox, 1, 0);
 
-    QWidget *hboxWidget2 = new QWidget(panelGrp);
-    QHBoxLayout * hbox2 = new QHBoxLayout(hboxWidget2);
+// -------------------- Filelist icon size ----------------------------------
+    hbox = new QHBoxLayout();
 
-    QLabel *lbl1 = new QLabel(i18n("Filelist icon size:"), hboxWidget2);
-    lbl1->setMinimumWidth(230);
-    hbox2->addWidget(lbl1);
+    hbox->addWidget(new QLabel(i18n("Filelist icon size:"), panelGrp));
 
     KONFIGURATOR_NAME_VALUE_PAIR iconSizes[] = {{ i18n("12"),  "12" },
         { i18n("16"),  "16" },
@@ -201,17 +195,17 @@ void KgLookFeel::setupPanelTab()
         { i18n("32"),  "32" },
         { i18n("48"),  "48" }
     };
-    KonfiguratorComboBox *iconCombo = createComboBox("Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, 5, hboxWidget2, true, true, PAGE_PANEL);
-    iconCombo->lineEdit()->setValidator(new QRegExpValidator(QRegExp("[1-9]\\d{0,1}"), iconCombo));
-    hbox2->addWidget(iconCombo);
+    cmb = createComboBox("Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, 5, panelGrp, true, true, PAGE_PANEL);
+    cmb->lineEdit()->setValidator(new QRegExpValidator(QRegExp("[1-9]\\d{0,1}"), cmb));
+    hbox->addWidget(cmb);
+    hbox->addWidget(createSpacer(panelGrp));
 
-    QWidget * spcr2 = createSpacer(hboxWidget2);
-    hbox2->addWidget(spcr2);
+    panelGrid->addLayout(hbox, 2, 0);
 
-    panelGrid->addWidget(hboxWidget2, 2, 0);
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
 
     panelGrid->addWidget(createLine(panelGrp), 3, 0);
-
     KONFIGURATOR_CHECKBOX_PARAM panelSettings[] =
         //   cfg_class  cfg_name                default text                                  restart tooltip
     {
@@ -226,16 +220,15 @@ void KgLookFeel::setupPanelTab()
 
     panelGrid->addWidget(panelSett, 4, 0, 1, 2);
 
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
 
-// ----------------------------------------------------------------------------------
-//  ---------------------------- SORT METHOD ----------------------------------------
-// ----------------------------------------------------------------------------------
+// ------------------------ Sort Method ----------------------------------
     panelGrid->addWidget(createLine(panelGrp), 5, 0);
 
-    QWidget *hboxWidget4 = new QWidget(panelGrp);
-    QHBoxLayout *hbox4 = new QHBoxLayout(hboxWidget4);
-    QLabel *lbl4 = new QLabel(i18n("Sort method:"), hboxWidget4);
-    hbox4->addWidget(lbl4);
+    hbox = new QHBoxLayout();
+
+    hbox->addWidget(new QLabel(i18n("Sort method:"), panelGrp));
 
     KONFIGURATOR_NAME_VALUE_PAIR sortMethods[] = {{ i18n("Alphabetical"),                QString::number(KrViewProperties::Alphabetical) },
         { i18n("Alphabetical and numbers"),    QString::number(KrViewProperties::AlphabeticalNumbers) },
@@ -243,13 +236,14 @@ void KgLookFeel::setupPanelTab()
         { i18n("Character code and numbers"),  QString::number(KrViewProperties::CharacterCodeNumbers) },
         { i18n("Krusader"),                    QString::number(KrViewProperties::Krusader) }
     };
-    KonfiguratorComboBox *sortMethodCombo = createComboBox("Look&Feel", "Sort method",
-                                            QString::number(_DefaultSortMethod), sortMethods, 5, hboxWidget4, true, false, PAGE_PANEL);
-    hbox4->addWidget(sortMethodCombo);
-    QWidget * spcr4 = createSpacer(hboxWidget4);
-    hbox4->addWidget(spcr4);
-    panelGrid->addWidget(hboxWidget4, 6, 0);
+    cmb = createComboBox("Look&Feel", "Sort method", QString::number(_DefaultSortMethod),
+                            sortMethods, 5, panelGrp, true, false, PAGE_PANEL);
+    hbox->addWidget(cmb);
+    hbox->addWidget(createSpacer(panelGrp));
 
+    panelGrid->addLayout(hbox, 6, 0);
+
+// ------------------------ Sort Options ----------------------------------
     KONFIGURATOR_CHECKBOX_PARAM sortSettings[] =
         //   cfg_class  cfg_name                default text                                  restart tooltip
     {
@@ -262,56 +256,51 @@ void KgLookFeel::setupPanelTab()
 
     panelGrid->addWidget(sortSett, 7, 0, 1, 2);
 
+
     panelLayout->addWidget(panelGrp, 0, 0);
 
 // ---------------------------------------------------------------------------------------
 // -----------------------------  Panel Layout -------------------------------------------
 // ---------------------------------------------------------------------------------------
-    QGroupBox *panelGrp2 = createFrame(i18n("Panel layout"), tab_panel);
-    QGridLayout *panelGrid2 = createGridLayout(panelGrp2);
+    panelGrp = createFrame(i18n("Panel layout"), tab_panel);
+    panelGrid = createGridLayout(panelGrp);
 
+// -----------------  Quicksearch position -------------------------------
+    hbox = new QHBoxLayout();
 
-  // Quicksearch position
-    QWidget *qsBoxWidget = new QWidget(panelGrp2);
-    QHBoxLayout *qsBox = new QHBoxLayout(qsBoxWidget);
-
-    QLabel *lQsPos = new QLabel(i18n("Quicksearch position:"), qsBoxWidget);
-    qsBox->addWidget(lQsPos);
+    hbox->addWidget(new QLabel(i18n("Quicksearch position:"), panelGrp));
 
     KONFIGURATOR_NAME_VALUE_PAIR qsPositions[] = {{ i18n("Top"),                "top" },
         { i18n("Bottom"),                    "bottom" }
     };
-    KonfiguratorComboBox *qsPositionCombo = createComboBox("Look&Feel", "Quicksearch Position",
-                                            "bottom", qsPositions, 2, qsBoxWidget, true, false, PAGE_PANEL);
-    qsBox->addWidget(qsPositionCombo);
+    cmb = createComboBox("Look&Feel", "Quicksearch Position",
+                            "bottom", qsPositions, 2, panelGrp, true, false, PAGE_PANEL);
+    hbox->addWidget(cmb);
+    hbox->addWidget(createSpacer(panelGrp));
 
-    QWidget * qsSpacer = createSpacer(qsBoxWidget);
-    qsBox->addWidget(qsSpacer);
+    panelGrid->addLayout(hbox, 0, 0);
 
-    panelGrid2->addWidget(qsBoxWidget, 0, 0);
-  // Tabbar position
-    QWidget *tabsBoxWidget = new QWidget(panelGrp2);
-    QHBoxLayout *tabsBox = new QHBoxLayout(tabsBoxWidget);
+// -----------------  Tab Bar position ----------------------------------
+    hbox = new QHBoxLayout();
 
-    QLabel *lTabsPos = new QLabel(i18n("Tab Bar position:"), tabsBoxWidget);
-    tabsBox->addWidget(lTabsPos);
+    hbox->addWidget(new QLabel(i18n("Tab Bar position:"), panelGrp));
 
-    KonfiguratorComboBox *tabsPositionCombo = createComboBox("Look&Feel", "Tab Bar Position",
-                                            "bottom", qsPositions, 2, tabsBoxWidget, true, false, PAGE_PANEL);
-    tabsBox->addWidget(tabsPositionCombo);
+    cmb = createComboBox("Look&Feel", "Tab Bar Position",
+                                "bottom", qsPositions, 2, panelGrp, true, false, PAGE_PANEL);
 
-    QWidget * tabsSpacer = createSpacer(tabsBoxWidget);
-    tabsBox->addWidget(tabsSpacer);
+    hbox->addWidget(cmb);
+    hbox->addWidget(createSpacer(panelGrp));
 
-    panelGrid2->addWidget(tabsBoxWidget, 1, 0);
+    panelGrid->addLayout(hbox, 1, 0);
 
-    panelLayout->addWidget(panelGrp2, 1, 0);
+
+    panelLayout->addWidget(panelGrp, 1, 0);
 
 // --------------------------------------------------------------------------------------------
 // ------------------------------- Status/Totalsbar settings ----------------------------------
 // --------------------------------------------------------------------------------------------
-    QGroupBox *panelGrp3 = createFrame(i18n("Status/Totalsbar settings"), tab_panel);
-    QGridLayout *panelGrid3 = createGridLayout(panelGrp3);
+    panelGrp = createFrame(i18n("Status/Totalsbar settings"), tab_panel);
+    panelGrid = createGridLayout(panelGrp);
 
     KONFIGURATOR_CHECKBOX_PARAM barSettings[] =
     {
@@ -319,10 +308,10 @@ void KgLookFeel::setupPanelTab()
         {"Look&Feel", "Statusbar Background", false, i18n("Fill background"), true,  i18n("Fill Background of Status/Totalsbar") },
     };
     KonfiguratorCheckBoxGroup *barSett = createCheckBoxGroup(2, 0, barSettings,
-                                          2 /*count*/, panelGrp3, PAGE_PANEL);
-    panelGrid3->addWidget(barSett, 1, 0, 1, 2);
+                                          2 /*count*/, panelGrp, PAGE_PANEL);
+    panelGrid->addWidget(barSett, 1, 0, 1, 2);
 
-    panelLayout->addWidget(panelGrp3, 2, 0);
+    panelLayout->addWidget(panelGrp, 2, 0);
 }
 
 // -----------------------------------------------------------------------------------
