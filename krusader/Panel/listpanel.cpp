@@ -270,8 +270,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
 
     // finish the layout
     int spltPos, quickSearchPos;
-    QString qsPos = group.readEntry("Quicksearch position", "bottom");
-    if(qsPos == "top") {
+    if(group.readEntry("Quicksearch Position", "bottom") == "top") {
         spltPos = 4; quickSearchPos = 3;
     } else {
         spltPos = 3; quickSearchPos = 4;

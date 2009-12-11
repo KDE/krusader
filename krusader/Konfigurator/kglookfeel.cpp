@@ -281,14 +281,29 @@ void KgLookFeel::setupPanelTab()
     KONFIGURATOR_NAME_VALUE_PAIR qsPositions[] = {{ i18n("Top"),                "top" },
         { i18n("Bottom"),                    "bottom" }
     };
-    KonfiguratorComboBox *qsPositionCombo = createComboBox("Look&Feel", "Quicksearch position",
-                                            "top", qsPositions, 2, qsBoxWidget, true, false, PAGE_PANEL);
+    KonfiguratorComboBox *qsPositionCombo = createComboBox("Look&Feel", "Quicksearch Position",
+                                            "bottom", qsPositions, 2, qsBoxWidget, true, false, PAGE_PANEL);
     qsBox->addWidget(qsPositionCombo);
 
     QWidget * qsSpacer = createSpacer(qsBoxWidget);
     qsBox->addWidget(qsSpacer);
 
     panelGrid2->addWidget(qsBoxWidget, 0, 0);
+  // Tabbar position
+    QWidget *tabsBoxWidget = new QWidget(panelGrp2);
+    QHBoxLayout *tabsBox = new QHBoxLayout(tabsBoxWidget);
+
+    QLabel *lTabsPos = new QLabel(i18n("Tab Bar position:"), tabsBoxWidget);
+    tabsBox->addWidget(lTabsPos);
+
+    KonfiguratorComboBox *tabsPositionCombo = createComboBox("Look&Feel", "Tab Bar Position",
+                                            "bottom", qsPositions, 2, tabsBoxWidget, true, false, PAGE_PANEL);
+    tabsBox->addWidget(tabsPositionCombo);
+
+    QWidget * tabsSpacer = createSpacer(tabsBoxWidget);
+    tabsBox->addWidget(tabsSpacer);
+
+    panelGrid2->addWidget(tabsBoxWidget, 1, 0);
 
     panelLayout->addWidget(panelGrp2, 1, 0);
 

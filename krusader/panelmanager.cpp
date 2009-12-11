@@ -83,6 +83,8 @@ PanelManager::PanelManager(QWidget *parent, bool left) :
     _layout->addWidget(_tabbar, 1, 1);
     _layout->addWidget(_closeTab, 1, 2);
 
+    updateTabbarPos();
+
     setLayout(_layout);
 
     if (HIDE_ON_SINGLE_TAB) HIDE
@@ -276,6 +278,18 @@ void PanelManager::slotRefreshActions()
     }
 }
 
+void PanelManager::updateTabbarPos()
+{
+    KConfigGroup group(krConfig, "Look&Feel");
+    if(group.readEntry("Tab Bar Position", "bottom") == "top") {
+        _layout->addWidget(_stack, 2, 0, 1, 3);
+        _tabbar->setShape(QTabBar::RoundedNorth);
+    } else {
+        _layout->addWidget(_stack, 0, 0, 1, 3);
+        _tabbar->setShape(QTabBar::RoundedSouth);
+    }
+}
+
 int PanelManager::activeTab()
 {
     return _tabbar->currentIndex();
@@ -331,6 +345,8 @@ void PanelManager::slotRecreatePanels()
 
         _tabbar->updateTab(newPanel);
     }
+
+    updateTabbarPos();
 
     setActiveTab(actTab);
 }

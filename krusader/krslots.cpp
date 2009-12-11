@@ -431,6 +431,7 @@ void KRslots::runKonfigurator(bool firstTime)
 
     vfile::vfile_enableMimeTypeMagic(groupgen.readEntry("Mimetype Magic", _MimetypeMagic));
     if (konfigurator->isGUIRestartNeeded()) {
+        krApp->setUpdatesEnabled(false);
         vfile::vfile_loadUserDefinedFolderIcons(group.readEntry("Load User Defined Folder Icons", _UserDefinedFolderIcons));
 
         if ((group.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt() != size)
@@ -444,6 +445,7 @@ void KRslots::runKonfigurator(bool firstTime)
         MAIN_VIEW->rightMng->slotRecreatePanels();
         MAIN_VIEW->fnKeys->updateShortcuts();
         KrSelectionMode::resetSelectionHandler();
+        krApp->setUpdatesEnabled(true);
     }
 
     krApp->configChanged();
