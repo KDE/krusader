@@ -125,16 +125,16 @@ public:
         return _highlightedTextColor;
     }
 
-    inline void setText(QColor c)               {
+    inline void setText(const QColor & c)               {
         _textColor = c;
     }
-    inline void setBackground(QColor c)          {
+    inline void setBackground(const QColor & c)          {
         _backgroundColor = c;
     }
-    inline void setHighlight(QColor c)          {
+    inline void setHighlight(const QColor & c)          {
         _highlightedBackgroundColor = c;
     }
-    inline void setHighlightedText(QColor c)    {
+    inline void setHighlightedText(const QColor & c)    {
         _highlightedTextColor = c;
     }
 
@@ -157,6 +157,7 @@ public:
     ~KrColorCache();
     static KrColorCache & getColorCache();
     void getColors(KrColorGroup & result, const KrColorItemType & type) const;
+    bool getDimSettings(QColor & dimColor, int & dimFactor);
     static QColor dimColor(const QColor & color, int dim, const QColor & targetColor);
 public slots:
     void refreshColors();

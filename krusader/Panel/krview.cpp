@@ -45,6 +45,7 @@
 #include <kmimetype.h>
 #include <klocale.h>
 #include <kinputdialog.h>
+#include <krcolorcache.h>
 
 
 #define VF getVfile()
@@ -256,30 +257,64 @@ void KrView::initProperties()
         _properties->numberOfColumns = MAX_BRIEF_COLS;
 }
 
-QPixmap KrView::getIcon(vfile *vf /*, KRListItem::cmpColor color*/)
+QPixmap KrView::loadIcon(QString name, bool dim, const QColor & dimColor, int dimFactor, bool symlink)
+{
+//     printf("KrView::loadIcon - name: %s, dim: %d, symlink: %d\n", name.toAscii().data(), dim, symlink);
+
+    QPixmap icon = FL_LOADICON(name);
+
+    // if it's a symlink - add an arrow overlay
+    if (symlink) {
+        QPixmap link(link_xpm);
+        QPainter painter(&icon);
+        painter.drawPixmap(0, icon.height() - 11, link, 0, 21, 10, 11);
+        //icon.setMask( icon.createHeuristicMask( false ) );
+    }
+
+    if(!dim)
+        return icon;
+
+    QImage tmp = icon.toImage();
+
+    QPainter p(&tmp);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(0, 0, icon.width(), icon.height(), dimColor);
+    p.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    p.setOpacity((qreal)dimFactor / (qreal)100);
+    p.drawPixmap(0, 0, icon.width(), icon.height(), icon);
+
+    return QPixmap::fromImage(tmp, Qt::ColorOnly | Qt::ThresholdDither |
+                                Qt::ThresholdAlphaDither | Qt::NoOpaqueDetection );
+}
+
+QPixmap KrView::getIcon(vfile *vf, bool active /*, KRListItem::cmpColor color*/)
 {
     // KConfigGroup ag( krConfig, "Advanced");
     //////////////////////////////
     QPixmap icon;
     QString icon_name = vf->vfile_getIcon();
-    //QPixmapCache::setCacheLimit( ag.readEntry("Icon Cache Size",_IconCacheSize) );
+    QString cacheName;
+
+    QColor dimColor;
+    int dimFactor;
+    bool dim = !active && KrColorCache::getColorCache().getDimSettings(dimColor, dimFactor);
 
     if (icon_name.isNull())
         icon_name = "";
 
+    if(vf->vfile_isSymLink())
+        cacheName .append("LINK_");
+    if(dim)
+        cacheName.append("DIM_");
+    cacheName.append(icon_name);
+
+    //QPixmapCache::setCacheLimit( ag.readEntry("Icon Cache Size",_IconCacheSize) );
+
     // first try the cache
-    if (!QPixmapCache::find(icon_name, icon)) {
-        icon = FL_LOADICON(icon_name);
+    if (!QPixmapCache::find(cacheName, icon)) {
+        icon = loadIcon(icon_name, dim, dimColor, dimFactor, vf->vfile_isSymLink());
         // insert it into the cache
-        QPixmapCache::insert(icon_name, icon);
-    }
-    // if it's a symlink - add an arrow overlay
-    if (vf->vfile_isSymLink()) {
-        QPixmap link(link_xpm);
-        // bitBlt ( &icon, 0, icon.height() - 11, &link, 0, 21, 10, 11, Qt::CopyROP, false );
-        QPainter painter(&icon);
-        painter.drawPixmap(0, icon.height() - 11, link, 0, 21, 10, 11);
-        //icon.setMask( icon.createHeuristicMask( false ) );
+        QPixmapCache::insert(cacheName, icon);
     }
 
     return icon;

@@ -383,12 +383,13 @@ public:
 
     // todo: what about selection modes ???
     virtual ~KrView();
-    static QPixmap getIcon(vfile *vf);
+    static QPixmap getIcon(vfile *vf, bool active = true);
 
 protected:
     KrView(KConfig *cfg = krConfig);
     bool handleKeyEventInt(QKeyEvent *e);
-
+    static QPixmap loadIcon(QString name, bool dim, const QColor & dimColor,
+                            int dimFactor, bool symlink);
 
 protected:
     KConfig *_config;

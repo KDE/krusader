@@ -22,6 +22,7 @@
 #include "../defaults.h"
 #include <kcolorscheme.h>
 #include <QtCore/QFile>
+#include <QPixmapCache>
 #include <QList>
 
 // Macro: set target = col, if col is valid
@@ -358,6 +359,7 @@ class KrColorCacheImpl
     friend class KrColorCache;
     QMap<QString, KrColorGroup> m_cachedColors;
     KrColorSettings m_colorSettings;
+
     KrColorGroup getColors(const KrColorItemType & type) const;
     static const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2);
     QColor getForegroundColor(bool isActive) const;
@@ -710,6 +712,18 @@ void KrColorCache::getColors(KrColorGroup  & result, const KrColorItemType & typ
     result.setHighlight(col.highlight());
 }
 
+bool KrColorCache::getDimSettings(QColor & dimColor, int & dimFactor)
+{
+    if(bool dimBackground = m_impl->m_colorSettings.getBoolValue("Dim Inactive Colors", false)) {
+        dimFactor = m_impl->m_colorSettings.getNumValue("Dim Factor", 100);
+        dimColor = m_impl->m_colorSettings.getColorValue("Dim Target Color");
+        if (!dimColor.isValid())
+            dimColor.setRgb(255, 255, 255);
+        return dimFactor >= 0 && dimFactor < 100;
+    }
+    return false;
+}
+
 QColor KrColorCache::dimColor(const QColor & color, int dim, const QColor & targetColor)
 {
     return QColor((targetColor.red() * (100 - dim) + color.red() * dim) / 100,
@@ -721,6 +735,7 @@ void KrColorCache::refreshColors()
 {
     m_impl->m_cachedColors.clear();
     m_impl->m_colorSettings = KrColorSettings();
+    QPixmapCache::clear(); // dimmed icons are cached
     colorsRefreshed();
 }
 
@@ -728,6 +743,7 @@ void KrColorCache::setColors(const KrColorSettings & colorSettings)
 {
     m_impl->m_cachedColors.clear();
     m_impl->m_colorSettings = colorSettings;
+    QPixmapCache::clear(); // dimmed icons are cached
     colorsRefreshed();
 }
 
