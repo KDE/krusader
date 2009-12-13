@@ -72,15 +72,9 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
         // show the popup menu
         _panelActionMenu->menu()->popup(e->globalPos());
     } else
-        if (e->button() == Qt::LeftButton) {   // we need to change tabs
-            // first, find the correct panel to load
-            int id = currentIndex();
-            ListPanel *listpanel = (ListPanel*)tabData(id).toLongLong();
-            emit changePanel(listpanel);
-        } else
-            if (e->button() == Qt::MidButton) { // close the current tab
-                emit closeCurrentTab();
-            }
+        if (e->button() == Qt::MidButton) { // close the current tab
+            emit closeCurrentTab();
+        }
     KTabBar::mousePressEvent(e);
 }
 

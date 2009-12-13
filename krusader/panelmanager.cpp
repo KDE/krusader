@@ -99,9 +99,11 @@ void PanelManager::slotChangePanel(ListPanel *p)
     _self->otherPanel = _other;
     _other->otherPanel = _self;
 
+    _stack->setUpdatesEnabled(false);
     _stack->setCurrentWidget(_self);
     kapp->processEvents();
     _self->slotFocusOnMe();
+    _stack->setUpdatesEnabled(true);
 }
 
 ListPanel* PanelManager::createPanel(int type, bool setCurrent)
