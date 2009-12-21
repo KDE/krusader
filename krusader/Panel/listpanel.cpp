@@ -131,7 +131,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     KConfigGroup group(krConfig, "Look&Feel");
     status->setFont(group.readEntry("Filelist Font", *_FilelistFont));
     status->setBackgroundRole(QPalette::Window);
-    bool statusFrame = group.readEntry("Status Frame", true);
+    bool statusFrame = group.readEntry("Statusbar Frame", true);
     if(statusFrame)
         status->setFrameStyle(QFrame::Box | QFrame::Raised);
     bool statusBackground = group.readEntry("Statusbar Background", true);
