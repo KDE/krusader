@@ -301,6 +301,8 @@ void ListPanel::createView()
 
     splt->insertWidget(0, view->widget());
 
+    view->widget()->installEventFilter(this);
+
     connect(view->op(), SIGNAL(middleButtonClicked(KrViewItem *)), SLOTS, SLOT(newTab(KrViewItem *)));
     connect(view->op(), SIGNAL(currentChanged(KrViewItem *)), SLOTS, SLOT(updatePopupPanel(KrViewItem*)));
     connect(view->op(), SIGNAL(renameItem(const QString &, const QString &)),
@@ -373,9 +375,15 @@ void ListPanel::setProperties(int prop)
 
 bool ListPanel::eventFilter(QObject * watched, QEvent * e)
 {
+    if(watched == view->widget()) {
+        if(e->type() == QEvent::FocusIn) {
+            if(this != ACTIVE_PANEL) {
+                slotFocusOnMe();
+            }
+        }
+    }
     if (e->type() == QEvent::KeyPress && origin->lineEdit() == watched) {
         QKeyEvent *ke = (QKeyEvent *)e;
-
         if ((ke->key() ==  Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) {
             slotFocusOnMe();
             return true;
@@ -620,11 +628,12 @@ void ListPanel::slotFocusOnMe()
 
     krApp->setUpdatesEnabled(false);
 
+    emit cmdLineUpdate(realPath());
+    emit activePanelChanged(this);
+
     otherPanel->view->prepareForPassive();
     view->prepareForActive();
 
-    emit cmdLineUpdate(realPath());
-    emit activePanelChanged(this);
 
     otherPanel->refreshColors();
     refreshColors();
