@@ -1,9 +1,5 @@
     ADDED: thumbnails - toggleable by mainmenu > view > Show Previews
     ADDED: 128x128 pixel versions of the application icon, needed by Mac OS X
-
-2.1.0-beta1 "Rusty Clutch"
-==========================
-
     ADDED: Konfigurator options: Look&Feel > Panel >
            Status/Totalsbar settings > Draw frame / Fill background
     ADDED: Konfigurator option: Colors > Colors > Other > Statusbar
@@ -11,12 +7,6 @@
            Quicksearch position / Tab Bar position
     ADDED: buttons "(un)mount" and "eject" in mountman gui
     ADDED: KMountMan::removable(), KMountMan::networkFilesystem()
-    ADDED: file regex in quick search, thanks to GregC
-    ADDED: lister: a fast text/hex viewer for Krusader
-    ADDED: service menu, thanks to Tomasz Kalkosinski
-    ADDED: queued packing / unpacking
-    ADDED: lock tabs, close inactive tabs, close duplicated tabs
-    ADDED: better trash integration
 
   CHANGED: dim icons in unfocused panel (if dim colors is activated)
   CHANGED: mountman gui: retrieve icons from Solid
@@ -26,8 +16,6 @@
   CHANGED: dont't execute a process if the correct working dir cannot be set
   CHANGED: dont't retrieve working dir of the cmdline from the label which might get truncated
            - store it in a string instead
-  CHANGED: the packer/unpacker/archive tester are job based now
-  CHANGED: the old views were replaced by the interviews
 
     FIXED: if a panel is focused by clicking on the header, the colors/actions are not updated
     FIXED: mountman: unmounting is not possible if currently opened dir is below the mountpoint
@@ -35,6 +23,20 @@
     FIXED: [ 2904850 ] panels are not repainted
     FIXED: deadlock when trying to display error message after failed mount
     FIXED: [ 2858133 ] wrong background color in listviews
+
+2.1.0-beta1 "Rusty Clutch"
+==========================
+
+    ADDED: file regex in quick search, thanks to GregC
+    ADDED: lister: a fast text/hex viewer for Krusader
+    ADDED: service menu, thanks to Tomasz Kalkosinski
+    ADDED: queued packing / unpacking
+    ADDED: lock tabs, close inactive tabs, close duplicated tabs
+    ADDED: better trash integration
+
+  CHANGED: the packer/unpacker/archive tester are job based now
+  CHANGED: the old views were replaced by the interviews
+
     FIXED: [ 2857663 ] deadlock when trying to display error message after failed unmount
     FIXED: problem with autorefresh in the new interviews
     FIXED: [ 2609505 ] problem with directory refresh
@@ -43,7 +45,6 @@
     FIXED: panels sometimes lose focus
     FIXED: directory compare modes don't work
     FIXED: [ 2609483 ] unpacking to directories with international characters
-
 
 2.0.0 "Mars Pathfinder"
 =======================
