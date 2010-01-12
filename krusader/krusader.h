@@ -153,7 +153,7 @@ public:
     *actExecCollectSeparate, *actExecCollectTogether,
     *actExecTerminalExternal, *actExecTerminalEmbedded;
     KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
-    *actShowStatusBar, *actToggleHidden, *actCompareDirs;
+    *actShowStatusBar, *actToggleHidden, *actCompareDirs, *actTogglePreviews;
 
     static KAction **compareArray[];
     /** actions for setting the execution mode of commands from commanddline */
@@ -184,6 +184,8 @@ public:
 
 signals:
     void changeMessage(QString);
+    // emitted when we are about to quit
+    void shutdown();
 
 private:
     KSystemTrayIcon *sysTray;

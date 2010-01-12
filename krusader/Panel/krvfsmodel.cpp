@@ -319,7 +319,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
             if (properties()->displayIcons) {
                 if (_justForSizeHint)
                     return QPixmap(_fileIconSize, _fileIconSize);
-                return KrView::getIcon(vf, _view == ACTIVE_PANEL->view);
+                return _view->getIcon(vf);
             }
             break;
         }

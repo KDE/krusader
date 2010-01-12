@@ -111,7 +111,7 @@ typedef QList<KServiceOffer> OfferList;
 ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
         QWidget(parent), panelType(typeIn), colorMask(255), compareMode(false), statsAgent(0),
         quickSearch(0), cdRootButton(0), cdUpButton(0), popupBtn(0), popup(0), inlineRefreshJob(0), _left(left),
-        _locked(false)
+        _locked(false), previewJob(0)
 {
 
     layout = new QGridLayout(this);
@@ -175,6 +175,10 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     connect(totals, SIGNAL(clicked()), this, SLOT(slotFocusOnMe()));
     connect(totals, SIGNAL(dropped(QDropEvent *)), this, SLOT(handleDropOnTotals(QDropEvent *)));
 
+    previewProgress = new QProgressBar(this);
+    previewProgress->hide();
+    previewProgress->setMaximumHeight(sheight);
+
     // a cancel button for the inplace refresh mechanism
     inlineRefreshCancelButton = new QToolButton(this);
     inlineRefreshCancelButton->setFixedSize(22, 20);
@@ -188,6 +192,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
     popupBtn->setToolTip(i18n("Open the popup panel"));
     totalsLayout->addWidget(totals);
+    totalsLayout->addWidget(previewProgress);
     totalsLayout->addWidget(inlineRefreshCancelButton); inlineRefreshCancelButton->hide();
     totalsLayout->addWidget(popupBtn);
 
@@ -284,10 +289,12 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     layout->addWidget(quickSearch, quickSearchPos, 0, 1, 4);
     quickSearch->hide();
     layout->addLayout(totalsLayout, 5, 0, 1, 4);
+
     //filter = ALL;
     setLayout(layout);
 
     connect(&KrColorCache::getColorCache(), SIGNAL(colorsRefreshed()), this, SLOT(refreshColors()));
+    connect(krApp, SIGNAL(shutdown()), SLOT(inlineRefreshCancel()));
 }
 
 void ListPanel::createView()
@@ -317,6 +324,7 @@ void ListPanel::createView()
             this, SLOT(popEmptyRightClickMenu(const QPoint &)));
     connect(view->op(), SIGNAL(letsDrag(QStringList, QPixmap)), this, SLOT(startDragging(QStringList, QPixmap)));
     connect(view->op(), SIGNAL(gotDrop(QDropEvent *)), this, SLOT(handleDropOnView(QDropEvent *)));
+    connect(view->op(), SIGNAL(previewJobStarted(KJob*)), this, SLOT(slotPreviewJobStarted(KJob*)));
 }
 
 void ListPanel::changeType(int type)
@@ -721,6 +729,7 @@ void ListPanel::slotUpdate()
     } else
         view->addItems(func->files(), false);
 
+    view->updatePreviews();
     func->inRefresh = false;
 }
 
@@ -1093,6 +1102,30 @@ void ListPanel::panelInactive()
     func->files()->vfs_enableRefresh(false);
 }
 
+void ListPanel::slotPreviewJobStarted(KJob *job)
+{
+    previewJob = job;
+    previewProgress->setValue(0);
+    previewProgress->setFormat(i18n("loading previews") + ": %p%");
+    previewProgress->show();
+    inlineRefreshCancelButton->show();
+    connect(job, SIGNAL(percent(KJob*, unsigned long)), SLOT(slotPreviewJobPercent(KJob*, unsigned long)));
+    connect(job, SIGNAL(result(KJob*)), SLOT(slotPreviewJobResult(KJob*)));
+}
+
+void ListPanel::slotPreviewJobPercent(KJob *job, unsigned long percent)
+{
+    previewProgress->setValue(percent);
+}
+
+void ListPanel::slotPreviewJobResult(KJob *job)
+{
+    previewJob = 0;
+    previewProgress->hide();
+    if(!inlineRefreshJob)
+        inlineRefreshCancelButton->hide();
+}
+
 void ListPanel::slotJobStarted(KIO::Job* job)
 {
     // disable the parts of the panel we don't want touched
@@ -1128,6 +1161,10 @@ void ListPanel::inlineRefreshCancel()
         inlineRefreshJob->kill(KJob::EmitResult);
         inlineRefreshJob = 0;
     }
+    if(previewJob) {
+        previewJob->kill(KJob::EmitResult);
+        previewJob = 0;
+    }
 }
 
 void ListPanel::inlineRefreshPercent(KJob*, unsigned long perc)
@@ -1157,7 +1194,8 @@ void ListPanel::inlineRefreshListResult(KJob*)
     historyButton->setEnabled(true);
     syncBrowseButton->setEnabled(true);
 
-    inlineRefreshCancelButton->hide();
+    if(!previewJob)
+        inlineRefreshCancelButton->hide();
 }
 
 void ListPanel::jumpBack()

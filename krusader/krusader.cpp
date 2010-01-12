@@ -651,6 +651,8 @@ void Krusader::setupActions() {
 
     NEW_KTOGGLEACTION(actToggleHidden, i18n("Show &Hidden Files"), 0, Qt::CTRL + Qt::Key_Period, SLOTS, SLOT(toggleHidden()), "toggle hidden files");
 
+    NEW_KTOGGLEACTION(actTogglePreviews, i18n("Show Previews"), 0, 0, SLOTS, SLOT(togglePreviews(bool)), "toggle previews");
+
     NEW_KACTION(actSwapPanels, i18n("S&wap Panels"), 0, Qt::CTRL + Qt::Key_U, SLOTS, SLOT(swapPanels()), "swap panels");
 
     NEW_KACTION(actEmptyTrash, i18n("Empty trash"), "trash-empty", 0, SLOTS, SLOT(emptyTrash()), "emptytrash");
@@ -938,6 +940,8 @@ bool Krusader::queryClose() {
     if (kapp->sessionSaving()) { // KDE is logging out, accept the close
         saveSettings();
 
+        emit shutdown();
+
         // Removes the DBUS registration of the application. Single instance mode requires unique appid.
         // As Krusader is exiting, we release that unique appid, so new Krusader instances
         // can be started.
@@ -1029,6 +1033,8 @@ bool Krusader::queryClose() {
         }
 
         saveSettings();
+
+        emit shutdown();
 
         isExiting = true;
         hide();        // hide

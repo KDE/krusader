@@ -42,6 +42,7 @@
 #include <QtCore/QString>
 #include <QtGui/QPixmap>
 #include <QtGui/QToolButton>
+#include <QProgressBar>
 #include <QtCore/QDir>
 #include <qpixmapcache.h>
 #include <QtGui/QIcon>
@@ -166,12 +167,16 @@ protected slots:
     void handleDropOnTotals(QDropEvent *);                     // handles drops on the totals line
     void handleDropOnStatus(QDropEvent *);                     // handles drops on the status line
     void startDragging(QStringList, QPixmap);
+    void slotPreviewJobStarted(KJob *job);
+    void slotPreviewJobPercent(KJob *job, unsigned long percent);
+    void slotPreviewJobResult(KJob *job);
     // those handle the in-panel refresh notifications
     void slotJobStarted(KIO::Job* job);
     void inlineRefreshInfoMessage(KJob* job, const QString &msg);
     void inlineRefreshListResult(KJob* job);
     void inlineRefreshPercent(KJob*, unsigned long);
     void inlineRefreshCancel();
+
 
 signals:
     void signalStatus(QString msg);         // emmited when we need to update the status bar
@@ -192,6 +197,7 @@ public:
     QPixmap currDragPix;
     KDiskFreeSpace* statsAgent;
     KrSqueezedTextLabel *status, *totals;
+    QProgressBar *previewProgress;
     KrQuickSearch *quickSearch;
     KUrlRequester *origin;
     QGridLayout *layout;
@@ -209,6 +215,8 @@ public:
     QToolButton *inlineRefreshCancelButton;
     KIO::Job *inlineRefreshJob;
     QSplitter *splt;
+    KJob *previewJob;
+
 
 protected:
     KUrl _realPath; // named with _ to keep realPath() compatibility

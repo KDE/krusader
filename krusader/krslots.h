@@ -99,6 +99,7 @@ public slots:
     void setView4();
     void setView5();
     void toggleHidden();
+    void togglePreviews(bool show);
     void toggleSwapSides();
     void togglePopupPanel();
     void configToolbar();

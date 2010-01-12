@@ -68,7 +68,9 @@ public:
     }
     static void itemHeightChanged() {
     } // force the items to resize when icon/font size change
-    void redraw() {}
+    void redraw() {
+        _view->viewport()->update(itemRect());
+    }
 
 private:
     vfile *_vfile;
@@ -260,6 +262,7 @@ bool KrInterBriefView::preDelItem(KrViewItem *item)
 
 void KrInterBriefView::redraw()
 {
+    viewport()->update();
 }
 
 void KrInterBriefView::refreshColors()

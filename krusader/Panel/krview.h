@@ -49,6 +49,7 @@
 class KrView;
 class KrViewItem;
 class KrQuickSearch;
+class KrPreviews;
 class QModelIndex;
 typedef QList<KrViewItem*> KrViewItemList;
 
@@ -142,6 +143,9 @@ public:
     void emitCurrentChanged(KrViewItem *item) {
         emit currentChanged(item);
     }
+    void emitPreviewJobStarted(KJob *job) {
+        emit previewJobStarted(job);
+    }
     void prepareForPassive();
     void setQuickSearch(KrQuickSearch *quickSearch);
     bool handleKeyEvent(QKeyEvent *e);
@@ -174,6 +178,7 @@ signals:
     void needFocus();
     void middleButtonClicked(KrViewItem *item);
     void currentChanged(KrViewItem *item);
+    void previewJobStarted(KJob *job);
 
 
 protected:
@@ -347,6 +352,12 @@ public:
     virtual bool isFocused() const {
         return _focused;
     }
+    virtual void showPreviews(bool show);
+    virtual bool previewsShown() {
+        return _previews != 0;
+    }
+    virtual void updatePreviews();
+
     void changeSelection(const KRQuery& filter, bool select, bool includeDirs = false);
 
     /////////////////////////////////////////////////////////////
@@ -374,6 +385,7 @@ public:
     virtual const KRQuery& filterMask() const {
         return _properties->filterMask;
     }
+
     inline QWidget *widget() {
         return _widget;
     }
@@ -381,15 +393,17 @@ public:
         _widget = w;
     }
 
+    QPixmap getIcon(vfile *vf);
+
     // todo: what about selection modes ???
     virtual ~KrView();
-    static QPixmap getIcon(vfile *vf, bool active = true);
+
+    static QPixmap getIcon(vfile *vf, bool active);
+    static QPixmap processIcon(const QPixmap &icon, bool dim, const QColor & dimColor, int dimFactor, bool symlink);
 
 protected:
     KrView(KConfig *cfg = krConfig);
     bool handleKeyEventInt(QKeyEvent *e);
-    static QPixmap loadIcon(QString name, bool dim, const QColor & dimColor,
-                            int dimFactor, bool symlink);
 
 protected:
     KConfig *_config;
@@ -404,6 +418,7 @@ protected:
     QHash<QString, KrViewItem*> _dict;
     bool _focused;
     QString _nameInKConfig;
+    KrPreviews *_previews;
 };
 
 #endif /* KRVIEW_H */

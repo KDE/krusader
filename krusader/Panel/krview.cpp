@@ -46,6 +46,7 @@
 #include <klocale.h>
 #include <kinputdialog.h>
 #include <krcolorcache.h>
+#include <krpreviews.h>
 
 
 #define VF getVfile()
@@ -187,12 +188,14 @@ void KrViewOperator::setMassSelectionUpdate(bool upd)
 
 KrView::KrView(KConfig *cfg) : _config(cfg), _widget(0), _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
         _numSelected(0), _count(0), _numDirs(0), _countSize(0), _selectedSize(0), _properties(0), _focused(false),
-        _nameInKConfig(QString())
+        _nameInKConfig(QString()), _previews(0)
 {
 }
 
 KrView::~KrView()
 {
+    delete _previews;
+    _previews = 0;
     if (_properties)
         qFatal("A class inheriting KrView didn't delete _properties!");
     if (_operator)
@@ -257,33 +260,49 @@ void KrView::initProperties()
         _properties->numberOfColumns = MAX_BRIEF_COLS;
 }
 
-QPixmap KrView::loadIcon(QString name, bool dim, const QColor & dimColor, int dimFactor, bool symlink)
+void KrView::showPreviews(bool show)
 {
-//     printf("KrView::loadIcon - name: %s, dim: %d, symlink: %d\n", name.toAscii().data(), dim, symlink);
+    if(show) { 
+        if(!_previews) {
+            _previews = new KrPreviews(this);
+            _previews->update();
+        }
+    } else {
+        delete _previews;
+        _previews = 0;
+    }
+    redraw();
+}
 
-    QPixmap icon = FL_LOADICON(name);
+void KrView::updatePreviews()
+{
+    if(_previews)
+        _previews->update();
+}
 
-    // if it's a symlink - add an arrow overlay
+QPixmap KrView::processIcon(const QPixmap &icon, bool dim, const QColor & dimColor, int dimFactor, bool symlink)
+{
+    QPixmap pixmap = icon;
+
     if (symlink) {
         QPixmap link(link_xpm);
-        QPainter painter(&icon);
+        QPainter painter(&pixmap);
         painter.drawPixmap(0, icon.height() - 11, link, 0, 21, 10, 11);
-        //icon.setMask( icon.createHeuristicMask( false ) );
     }
 
     if(!dim)
-        return icon;
+        return pixmap;
 
-    QImage tmp = icon.toImage();
+    QImage dimmed = pixmap.toImage();
 
-    QPainter p(&tmp);
+    QPainter p(&dimmed);
     p.setCompositionMode(QPainter::CompositionMode_SourceIn);
     p.fillRect(0, 0, icon.width(), icon.height(), dimColor);
     p.setCompositionMode(QPainter::CompositionMode_SourceOver);
     p.setOpacity((qreal)dimFactor / (qreal)100);
-    p.drawPixmap(0, 0, icon.width(), icon.height(), icon);
+    p.drawPixmap(0, 0, icon.width(), icon.height(), pixmap);
 
-    return QPixmap::fromImage(tmp, Qt::ColorOnly | Qt::ThresholdDither |
+    return QPixmap::fromImage(dimmed, Qt::ColorOnly | Qt::ThresholdDither |
                                 Qt::ThresholdAlphaDither | Qt::NoOpaqueDetection );
 }
 
@@ -303,7 +322,7 @@ QPixmap KrView::getIcon(vfile *vf, bool active /*, KRListItem::cmpColor color*/)
         icon_name = "";
 
     if(vf->vfile_isSymLink())
-        cacheName .append("LINK_");
+        cacheName.append("LINK_");
     if(dim)
         cacheName.append("DIM_");
     cacheName.append(icon_name);
@@ -312,12 +331,22 @@ QPixmap KrView::getIcon(vfile *vf, bool active /*, KRListItem::cmpColor color*/)
 
     // first try the cache
     if (!QPixmapCache::find(cacheName, icon)) {
-        icon = loadIcon(icon_name, dim, dimColor, dimFactor, vf->vfile_isSymLink());
+        icon = processIcon(FL_LOADICON(icon_name), dim, dimColor, dimFactor, vf->vfile_isSymLink());
         // insert it into the cache
         QPixmapCache::insert(cacheName, icon);
     }
 
     return icon;
+}
+
+QPixmap KrView::getIcon(vfile *vf)
+{
+    if(_previews) {
+        QPixmap icon;
+        if(_previews->getPreview(vf, icon, this == ACTIVE_PANEL->view))
+            return icon;
+    }
+    return getIcon(vf, this == ACTIVE_PANEL->view);
 }
 
 /**
@@ -478,6 +507,8 @@ void KrView::delItem(const QString &name)
     }
 
     KrViewItem * it = *itr;
+    if(_previews)
+        _previews->deletePreview(it);
     if (!preDelItem(it)) return; // do not delete this after all
 
     // remove from dict
@@ -496,6 +527,9 @@ KrViewItem *KrView::addItem(vfile *vf)
 {
     KrViewItem *item = preAddItem(vf);
     if (!item) return 0; // don't add it after all
+
+    if(_previews)
+        _previews->updatePreview(item);
 
     // add to dictionary
     _dict.insert(vf->vfile_getName(), item);
@@ -544,6 +578,8 @@ void KrView::updateItem(vfile *vf)
 
 void KrView::clear()
 {
+    if(_previews)
+        _previews->clear();
     _count = _numSelected = _numDirs = _selectedSize = _countSize = 0;
     _dict.clear();
 }

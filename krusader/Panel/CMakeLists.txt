@@ -1,4 +1,6 @@
 set(Panel_SRCS
+    krpreviews.cpp
+    krpreviewjob.cpp
     krcolorcache.cpp 
     krcalcspacedialog.cpp 
     krpopupmenu.cpp 

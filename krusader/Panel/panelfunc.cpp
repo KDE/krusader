@@ -57,6 +57,7 @@ A
 #include <ktempdir.h>
 #include <kurlrequester.h>
 #include <kdesktopfile.h>
+#include <ktoggleaction.h>
 
 #include "krcalcspacedialog.h"
 #include "../krusader.h"
@@ -239,6 +240,7 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
     }
 
     refreshActions();
+    panel->view->updatePreviews();
 }
 
 void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent)
@@ -1163,6 +1165,7 @@ void ListPanelFunc::refreshActions()
           krExecFiles->setEnabled(true);                         // show only executables
     */
     krBack->setEnabled(canGoBack());                  // go back
+    krApp->actTogglePreviews->setChecked(panel->view->previewsShown());
 }
 
 ListPanelFunc::~ListPanelFunc()

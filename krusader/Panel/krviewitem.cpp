@@ -129,7 +129,7 @@ QPixmap KrViewItem::icon()
 #endif
     if (dummyVfile || !_viewProperties->displayIcons)
         return QPixmap();
-    else return KrView::getIcon(_vf);
+    else return KrView::getIcon(_vf, true);
 }
 
 int KrViewItem::compareTexts(QString aS1, QString aS2, int asc, bool isName) const
