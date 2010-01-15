@@ -1138,6 +1138,8 @@ bool ListPanelFunc::canGoBack()
 
 void ListPanelFunc::refreshActions()
 {
+    if(ACTIVE_PANEL != panel)
+        return;
     vfs::VFS_TYPE vfsType = files() ->vfs_getType();
 
     //  set up actions
