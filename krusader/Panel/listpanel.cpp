@@ -365,20 +365,16 @@ int ListPanel::getProperties()
         props |= PROP_SYNC_BUTTON_ON;
     if (_locked)
         props |= PROP_LOCKED;
+    if(view->previewsShown())
+        props |= PROP_PREVIEWS;
     return props;
 }
 
 void ListPanel::setProperties(int prop)
 {
-    if (prop & PROP_SYNC_BUTTON_ON)
-        syncBrowseButton->setChecked(true);
-    else
-        syncBrowseButton->setChecked(false);
-
-    if (prop & PROP_LOCKED)
-        _locked = true;
-    else
-        _locked = false;
+    syncBrowseButton->setChecked(prop & PROP_SYNC_BUTTON_ON);
+    _locked = (prop & PROP_LOCKED);
+    view->showPreviews(prop & PROP_PREVIEWS);
 }
 
 bool ListPanel::eventFilter(QObject * watched, QEvent * e)

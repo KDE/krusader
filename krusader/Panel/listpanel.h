@@ -60,6 +60,7 @@
 
 #define PROP_SYNC_BUTTON_ON               1
 #define PROP_LOCKED                       2
+#define PROP_PREVIEWS                     4
 
 class vfs;
 class vfile;
