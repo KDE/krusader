@@ -17,6 +17,7 @@
   CHANGED: dont't retrieve working dir of the cmdline from the label which might get truncated
            - store it in a string instead
 
+    FIXED: [ 2907607 ] crash while closing
     FIXED: if a panel is focused by clicking on the header, the colors/actions are not updated
     FIXED: mountman: unmounting is not possible if currently opened dir is below the mountpoint
     FIXED: [ 2860400 ] Drag'n'drop to kmail broken

@@ -127,6 +127,7 @@ KrInterDetailedView::~KrInterDetailedView()
     _properties = 0;
     delete _operator;
     _operator = 0;
+    setModel(0);
     delete _model;
     delete _mouseHandler;
     QHashIterator< vfile *, KrInterDetailedViewItem *> it(_itemHash);

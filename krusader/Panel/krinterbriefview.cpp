@@ -126,6 +126,7 @@ KrInterBriefView::~KrInterBriefView()
     _properties = 0;
     delete _operator;
     _operator = 0;
+    setModel(0);
     delete _model;
     delete _mouseHandler;
     QHashIterator< vfile *, KrInterBriefViewItem *> it(_itemHash);
