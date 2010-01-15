@@ -322,8 +322,10 @@ void PanelManager::slotRecreatePanels()
 
         ListPanel *oldPanel = updatedPanel;
         int type = oldPanel->getType();
+        int properties = oldPanel->getProperties();
 
         ListPanel *newPanel = new ListPanel(type, _stack, _left);
+        newPanel->setProperties(properties);
         _tabbar->changePanel(i, newPanel);
 
         _stack->insertWidget(i, newPanel);
