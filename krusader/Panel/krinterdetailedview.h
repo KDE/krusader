@@ -85,6 +85,7 @@ public:
     }
     virtual int  itemsPerPage();
     virtual void setSortMode(KrViewProperties::SortSpec mode);
+    virtual void setFileIconSize(int size);
 
 public slots:
     virtual void refreshColors();

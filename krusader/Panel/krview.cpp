@@ -186,9 +186,12 @@ void KrViewOperator::setMassSelectionUpdate(bool upd)
 
 // ----------------------------- krview
 
+const KrView::IconSizes KrView::iconSizes;
+
+
 KrView::KrView(KConfig *cfg) : _config(cfg), _widget(0), _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
         _numSelected(0), _count(0), _numDirs(0), _countSize(0), _selectedSize(0), _properties(0), _focused(false),
-        _nameInKConfig(QString()), _previews(0)
+        _nameInKConfig(QString()), _previews(0), _fileIconSize(0)
 {
 }
 
@@ -213,6 +216,7 @@ void KrView::init()
     initProperties();
     initOperator();
     setup();
+    setDefaultFileIconSize();
 }
 
 void KrView::initProperties()
@@ -306,13 +310,18 @@ QPixmap KrView::processIcon(const QPixmap &icon, bool dim, const QColor & dimCol
                                 Qt::ThresholdAlphaDither | Qt::NoOpaqueDetection );
 }
 
-QPixmap KrView::getIcon(vfile *vf, bool active /*, KRListItem::cmpColor color*/)
+QPixmap KrView::getIcon(vfile *vf, bool active, int size/*, KRListItem::cmpColor color*/)
 {
     // KConfigGroup ag( krConfig, "Advanced");
     //////////////////////////////
     QPixmap icon;
     QString icon_name = vf->vfile_getIcon();
     QString cacheName;
+
+    if(!size) {
+        KConfigGroup group(krConfig, "Look&Feel");
+        size = (group.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt();
+    }
 
     QColor dimColor;
     int dimFactor;
@@ -321,6 +330,7 @@ QPixmap KrView::getIcon(vfile *vf, bool active /*, KRListItem::cmpColor color*/)
     if (icon_name.isNull())
         icon_name = "";
 
+    cacheName.append(QString::number(size));
     if(vf->vfile_isSymLink())
         cacheName.append("LINK_");
     if(dim)
@@ -331,7 +341,8 @@ QPixmap KrView::getIcon(vfile *vf, bool active /*, KRListItem::cmpColor color*/)
 
     // first try the cache
     if (!QPixmapCache::find(cacheName, icon)) {
-        icon = processIcon(FL_LOADICON(icon_name), dim, dimColor, dimFactor, vf->vfile_isSymLink());
+        icon = processIcon(krLoader->loadIcon(icon_name, KIconLoader::Desktop, size),
+                           dim, dimColor, dimFactor, vf->vfile_isSymLink());
         // insert it into the cache
         QPixmapCache::insert(cacheName, icon);
     }
@@ -346,7 +357,7 @@ QPixmap KrView::getIcon(vfile *vf)
         if(_previews->getPreview(vf, icon, this == ACTIVE_PANEL->view))
             return icon;
     }
-    return getIcon(vf, this == ACTIVE_PANEL->view);
+    return getIcon(vf, this == ACTIVE_PANEL->view, _fileIconSize);
 }
 
 /**
@@ -883,3 +894,42 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
     return false;
 }
 
+void KrView::zoomIn()
+{
+    int idx = iconSizes.indexOf(_fileIconSize);
+    if(idx >= 0 && (idx+1) < iconSizes.count())
+        setFileIconSize(iconSizes[idx+1]);
+}
+
+void KrView::zoomOut()
+{
+    int idx = iconSizes.indexOf(_fileIconSize);
+    if(idx > 0)
+        setFileIconSize(iconSizes[idx-1]);
+}
+
+void KrView::setFileIconSize(int size)
+{
+    if(iconSizes.indexOf(size) < 0)
+        return;
+    _fileIconSize = size;
+    if(_previews) {
+        _previews->clear();
+        _previews->update();
+    }
+    redraw();
+    refreshActions();
+}
+
+void KrView::setDefaultFileIconSize()
+{
+    KConfigGroup grpSvr(_config, "Look&Feel");
+    setFileIconSize((grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt());
+}
+
+void KrView::refreshActions()
+{
+    int idx = iconSizes.indexOf(_fileIconSize);
+    Krusader::actZoomOut->setEnabled(idx > 0);
+    Krusader::actZoomIn->setEnabled(idx < (iconSizes.count() - 1));
+}

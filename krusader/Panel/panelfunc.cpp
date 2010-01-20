@@ -1168,6 +1168,7 @@ void ListPanelFunc::refreshActions()
     */
     krBack->setEnabled(canGoBack());                  // go back
     krApp->actTogglePreviews->setChecked(panel->view->previewsShown());
+    panel->view->refreshActions();
 }
 
 ListPanelFunc::~ListPanelFunc()

@@ -1163,4 +1163,19 @@ void KRslots::bookmarkCurrent()
     krBookMan->bookmarkCurrent(ACTIVE_PANEL->virtualPath());
 }
 
+void KRslots::zoomIn()
+{
+    ACTIVE_PANEL->view->zoomIn();
+}
+
+void KRslots::zoomOut()
+{
+    ACTIVE_PANEL->view->zoomOut();
+}
+
+void KRslots::defaultZoom()
+{
+    ACTIVE_PANEL->view->setDefaultFileIconSize();
+}
+
 #include "krslots.moc"

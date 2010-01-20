@@ -157,7 +157,6 @@ KrVfsModel::KrVfsModel(KrView * view): QAbstractListModel(0), _extensionEnabled(
 {
     KConfigGroup grpSvr(krConfig, "Look&Feel");
     _defaultFont = grpSvr.readEntry("Filelist Font", *_FilelistFont);
-    _fileIconSize = (grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt();
 }
 
 void KrVfsModel::setVfs(vfs* v, bool upDir)
@@ -318,7 +317,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
         case KrVfsModel::Name: {
             if (properties()->displayIcons) {
                 if (_justForSizeHint)
-                    return QPixmap(_fileIconSize, _fileIconSize);
+                    return QPixmap(_view->fileIconSize(), _view->fileIconSize());
                 return _view->getIcon(vf);
             }
             break;

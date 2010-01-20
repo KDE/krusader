@@ -216,12 +216,23 @@ class KrView
     friend class KrViewItem;
     friend class KrViewOperator;
 public:
+
+    class IconSizes : public QVector<int>
+    {
+    public:
+        IconSizes() : QVector<int>() {
+            *this << 16 << 22 << 32 << 48;
+        }
+    };
+
     // instantiating a new view
     // 1. new KrView
     // 2. view->init()
     // notes: constructor does as little as possible, setup() does the rest. esp, note that
     // if you need something from operator or properties, move it into setup()
     virtual void init();
+
+    static const IconSizes iconSizes;
 
 protected:
     virtual void initProperties();
@@ -385,6 +396,10 @@ public:
     virtual const KRQuery& filterMask() const {
         return _properties->filterMask;
     }
+    virtual void setFileIconSize(int size);
+    virtual void setDefaultFileIconSize();
+    virtual void zoomIn();
+    virtual void zoomOut();
 
     inline QWidget *widget() {
         return _widget;
@@ -392,13 +407,17 @@ public:
     inline void setWidget(QWidget *w) {
         _widget = w;
     }
+    inline int fileIconSize() const {
+        return _fileIconSize;
+    }
 
     QPixmap getIcon(vfile *vf);
+    void refreshActions();
 
     // todo: what about selection modes ???
     virtual ~KrView();
 
-    static QPixmap getIcon(vfile *vf, bool active);
+    static QPixmap getIcon(vfile *vf, bool active, int size = 0);
     static QPixmap processIcon(const QPixmap &icon, bool dim, const QColor & dimColor, int dimFactor, bool symlink);
 
 protected:
@@ -419,6 +438,10 @@ protected:
     bool _focused;
     QString _nameInKConfig;
     KrPreviews *_previews;
+    int _fileIconSize;
 };
+
+
+
 
 #endif /* KRVIEW_H */

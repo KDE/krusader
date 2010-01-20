@@ -81,6 +81,7 @@ public:
     }
     virtual int  itemsPerPage();
     virtual void setSortMode(KrViewProperties::SortSpec mode);
+    virtual void setFileIconSize(int size);
 
     // abstract item view classes
     virtual QRect visualRect(const QModelIndex&) const;
@@ -134,7 +135,6 @@ private:
     QHash<vfile *, KrInterBriefViewItem*> _itemHash;
     QFont _viewFont;
     int _numOfColumns;
-    int _fileIconSize;
     QHeaderView * _header;
 };
 

@@ -108,7 +108,6 @@ protected:
     bool                        _ready;
     QFont                       _defaultFont;
     bool                        _justForSizeHint;
-    int                         _fileIconSize;
     bool                        _alternatingTable;
 };
 #endif // __krvfsmodel__

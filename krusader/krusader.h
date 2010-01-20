@@ -148,6 +148,7 @@ public:
     static KToggleAction *actToggleTerminal;
     static KAction *actSelectNewerAndSingle, *actSelectNewer, *actSelectSingle,
     *actSelectDifferentAndSingle, *actSelectDifferent;
+    static KAction *actZoomIn, *actZoomOut, *actDefaultZoom;
     /** actions for setting the execution mode of commands from commanddline */
     static KAction *actExecStartAndForget,
     *actExecCollectSeparate, *actExecCollectTogether,

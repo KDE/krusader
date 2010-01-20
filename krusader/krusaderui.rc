@@ -59,6 +59,10 @@
   </Menu>
   <Menu name="myview" >
    <text>&amp;View</text>
+   <Action name="zoom_in" />
+   <Action name="zoom_out" />
+   <Action name="default_zoom" />
+   <Separator/>
    <Action name="view0" />
    <Action name="view1" />
    <Action name="view2" />
@@ -191,6 +195,9 @@
   <Action name="ftp new connection" />
   <Action name="profile" />
   <Action name="trashbin" />
+  <Separator/>
+  <Action name="zoom_in" />
+  <Action name="zoom_out" />
  </ToolBar>
  <ToolBar iconText="icononly" noMerge="1" name="actionsToolBar" fullWidth="false" >
  </ToolBar>

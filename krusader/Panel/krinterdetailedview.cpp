@@ -711,3 +711,9 @@ void KrInterDetailedView::setSortMode(KrViewProperties::SortSpec mode)
         sortDir = (sortDir == Qt::AscendingOrder) ? Qt::DescendingOrder : Qt::AscendingOrder;
     this->sortByColumn(column, sortDir);
 }
+
+void KrInterDetailedView::setFileIconSize(int size)
+{
+    KrView::setFileIconSize(size);
+    setIconSize(QSize(fileIconSize(), fileIconSize()));
+}

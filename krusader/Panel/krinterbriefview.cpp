@@ -100,7 +100,6 @@ KrInterBriefView::KrInterBriefView(QWidget *parent, bool &left, KConfig *cfg):
 
     KConfigGroup grpSvr(_config, "Look&Feel");
     _viewFont = grpSvr.readEntry("Filelist Font", *_FilelistFont);
-    _fileIconSize = (grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt();
 
     _model = new KrVfsModel(this);
     this->setModel(_model);
@@ -988,4 +987,11 @@ void KrInterBriefView::intersectionSet(const QRect &rect, QVector<QModelIndex> &
             if (ndx < maxNdx)
                 ndxList.append(_model->index(ndx, 0));
         }
+}
+
+void KrInterBriefView::setFileIconSize(int size)
+{
+    KrView::setFileIconSize(size);
+    setIconSize(QSize(fileIconSize(), fileIconSize()));
+    updateGeometries();
 }

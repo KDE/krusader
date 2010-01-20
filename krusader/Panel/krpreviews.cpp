@@ -119,9 +119,9 @@ void KrPreviews::addPreview(const vfile *file, const QPixmap &preview)
     QPixmap active, inactive;
 
     if(preview.isNull()) {
-        active = KrView::getIcon((vfile*)file, true);
+        active = KrView::getIcon((vfile*)file, true, _view->fileIconSize());
         if(_dim)
-            inactive = KrView::getIcon((vfile*)file, false);
+            inactive = KrView::getIcon((vfile*)file, false, _view->fileIconSize());
     } else {
         active = KrView::processIcon(preview, false, _dimColor, _dimFactor, file->vfile_isSymLink());
         if(_dim)

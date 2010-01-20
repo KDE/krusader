@@ -189,15 +189,14 @@ void KgLookFeel::setupPanelTab()
 
     hbox->addWidget(new QLabel(i18n("Filelist icon size:"), panelGrp));
 
-    KONFIGURATOR_NAME_VALUE_PAIR iconSizes[] = {{ i18n("12"),  "12" },
-        { i18n("16"),  "16" },
-        { i18n("22"),  "22" },
-        { i18n("32"),  "32" },
-        { i18n("48"),  "48" }
-    };
-    cmb = createComboBox("Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, 5, panelGrp, true, true, PAGE_PANEL);
+    KONFIGURATOR_NAME_VALUE_PAIR *iconSizes = new KONFIGURATOR_NAME_VALUE_PAIR[KrView::iconSizes.count()];
+    for(int i = 0; i < KrView::iconSizes.count(); i++)
+        iconSizes[i].text =  iconSizes[i].value = QString::number(KrView::iconSizes[i]);
+    cmb = createComboBox("Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, KrView::iconSizes.count(), panelGrp, true, true, PAGE_PANEL);
+    delete [] iconSizes;
     cmb->lineEdit()->setValidator(new QRegExpValidator(QRegExp("[1-9]\\d{0,1}"), cmb));
     hbox->addWidget(cmb);
+
     hbox->addWidget(createSpacer(panelGrp));
 
     panelGrid->addLayout(hbox, 2, 0);

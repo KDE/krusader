@@ -195,6 +195,10 @@ KAction *Krusader::actView3 = 0;
 KAction *Krusader::actView4 = 0;
 KAction *Krusader::actView5 = 0;
 
+KAction *Krusader::actZoomIn = 0;
+KAction *Krusader::actZoomOut = 0;
+KAction *Krusader::actDefaultZoom = 0;
+
 KToggleAction *Krusader::actToggleTerminal = 0;
 KAction  *Krusader::actVerticalMode = 0;
 KAction  *Krusader::actSelectNewerAndSingle = 0;
@@ -808,6 +812,9 @@ void Krusader::setupActions() {
     NEW_KACTION(actJumpBack, i18n("Jump Back"), "kr_jumpback", Qt::CTRL + Qt::Key_J, SLOTS, SLOT(slotJumpBack()), "jump_back");
     NEW_KACTION(actSetJumpBack, i18n("Set Jump Back Point"), "kr_setjumpback", Qt::CTRL + Qt::SHIFT + Qt::Key_J, SLOTS, SLOT(slotSetJumpBack()), "set_jump_back");
     NEW_KACTION(actSwitchFullScreenTE, i18n("Toggle Fullwidget Terminal Emulator"), 0, Qt::CTRL + Qt::Key_F, MAIN_VIEW, SLOT(switchFullScreenTE()), "switch_fullscreen_te");
+    NEW_KACTION(actZoomIn, i18n("Zoom In"), "zoom-in", 0, SLOTS, SLOT(zoomIn()), "zoom_in");
+    NEW_KACTION(actZoomOut, i18n("Zoom Out"), "zoom-out", 0, SLOTS, SLOT(zoomOut()), "zoom_out");
+    NEW_KACTION(actDefaultZoom, i18n("Default Zoom"), 0, 0, SLOTS, SLOT(defaultZoom()), "default_zoom");
 
     // and at last we can set the tool-tips
     actSelect->setToolTip(i18n("Select files using a filter"));

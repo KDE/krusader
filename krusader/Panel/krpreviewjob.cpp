@@ -105,8 +105,7 @@ void KrPreviewJob::slotStartJob()
     _hash.clear();
     sort();
 
-    KConfigGroup group(krConfig, "Look&Feel");
-    int size = (group.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt();
+    int size = _parent->_view->fileIconSize();
 
     KFileItemList list;
     for(int i = 0; i < _scheduled.count() && i < MAX_CHUNK_SIZE; i++) {
