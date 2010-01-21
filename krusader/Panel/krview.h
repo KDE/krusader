@@ -221,7 +221,7 @@ public:
     {
     public:
         IconSizes() : QVector<int>() {
-            *this << 16 << 22 << 32 << 48;
+            *this << 12 << 16 << 22 << 32 << 48;
         }
     };
 
