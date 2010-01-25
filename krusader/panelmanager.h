@@ -76,7 +76,7 @@ public slots:
      * Called externally to start a new tab. Example of usage would be the "open in a new tab"
      * action, from the context-menu.
      */
-    void slotNewTab(const KUrl& url, bool setCurrent = true, int type = -1, int props = 0);
+    void slotNewTab(const KUrl& url, bool setCurrent = true, int type = -1, int props = 0,  int iconSize = 0);
     void slotNewTab();
     void slotLockTab();
     void slotNextTab();

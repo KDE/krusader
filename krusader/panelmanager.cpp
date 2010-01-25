@@ -138,6 +138,7 @@ void PanelManager::saveSettings(KConfigGroup *config, const QString& key, bool l
     QStringList l;
     QList<int> types;
     QList<int> props;
+    QList<int> iconSizes;
     int i = 0, cnt = 0;
     while (cnt < _tabbar->count()) {
         ListPanel *panel = _tabbar->getPanel(i);
@@ -145,6 +146,7 @@ void PanelManager::saveSettings(KConfigGroup *config, const QString& key, bool l
             l << (localOnly ? panel->realPath() : panel->virtualPath().pathOrUrl());
             types << panel->getType();
             props << panel->getProperties();
+            iconSizes << panel->view->fileIconSize();
             ++cnt;
         }
         ++i;
@@ -152,6 +154,7 @@ void PanelManager::saveSettings(KConfigGroup *config, const QString& key, bool l
     config->writePathEntry(key, l);
     config->writeEntry(key + " Types", types);
     config->writeEntry(key + " Props", props);
+    config->writeEntry(key + " Icon Sizes", iconSizes);
 }
 
 void PanelManager::loadSettings(KConfigGroup *config, const QString& key)
@@ -159,6 +162,7 @@ void PanelManager::loadSettings(KConfigGroup *config, const QString& key)
     QStringList l = config->readPathEntry(key, QStringList());
     QList<int> types = config->readEntry(key + " Types", QList<int>());
     QList<int> props = config->readEntry(key + " Props", QList<int>());
+    QList<int> iconSizes = config->readEntry(key + " Icon Sizes", QList<int>());
 
     if (l.count() < 1)
         return;
@@ -169,6 +173,8 @@ void PanelManager::loadSettings(KConfigGroup *config, const QString& key)
     }
     while (props.count() < l.count())
         props << 0;
+    while (iconSizes.count() < l.count())
+        iconSizes << 0;
 
     int i = 0, totalTabs = _tabbar->count();
 
@@ -177,6 +183,8 @@ void PanelManager::loadSettings(KConfigGroup *config, const QString& key)
         if (panel) {
             if (panel->getType() != types[ i ])
                 panel->changeType(types[ i ]);
+            if(panel->view->fileIconSize() != iconSizes[i])
+                panel->view->setFileIconSize(iconSizes[i]);
             panel->setProperties(props[ i ]);
             panel->otherPanel = _other;
             _other->otherPanel = panel;
@@ -190,7 +198,7 @@ void PanelManager::loadSettings(KConfigGroup *config, const QString& key)
         slotCloseTab(--totalTabs);
 
     for (; i < (int)l.count(); i++)
-        slotNewTab(KUrl(l[i]), false, types[ i ], props[ i ]);
+        slotNewTab(KUrl(l[i]), false, types[ i ], props[ i ], iconSizes[i]);
 
     // this is needed so that all tab labels get updated
     layoutTabs();
@@ -203,7 +211,7 @@ void PanelManager::layoutTabs()
     QTimer::singleShot(0, _tabbar, SLOT(layoutTabs()));
 }
 
-void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, int type, int props)
+void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, int type, int props, int iconSize)
 {
     if (type == -1) {
         KConfigGroup group(krConfig, "Look&Feel");
@@ -218,6 +226,7 @@ void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, int type, int pr
     }
     startPanel(p, url);
     p->setProperties(props);
+    p->view->setFileIconSize(iconSize);
 }
 
 void PanelManager::slotNewTab()
@@ -333,9 +342,11 @@ void PanelManager::slotRecreatePanels()
         ListPanel *oldPanel = updatedPanel;
         int type = oldPanel->getType();
         int properties = oldPanel->getProperties();
+        int iconSize = oldPanel->view->fileIconSize();
 
         ListPanel *newPanel = new ListPanel(type, _stack, _left);
         newPanel->setProperties(properties);
+        newPanel->view->setFileIconSize(iconSize);
         _tabbar->changePanel(i, newPanel);
 
         _stack->insertWidget(i, newPanel);
