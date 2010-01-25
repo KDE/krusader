@@ -56,12 +56,11 @@
 #include "GUI/profilemanager.h"
 #include "Dialogs/percentalsplitter.h"
 #include "krservices.h"
+#include "Panel/krviewfactory.h"
 
 KrusaderView::KrusaderView(QWidget *parent) : QWidget(parent), activePanel(0) {}
 
-void KrusaderView::start(QStringList leftTabs, QList<int> leftTypes, QList<int> leftProps, int leftActiveTab,
-                         QStringList rightTabs, QList<int> rightTypes, QList<int> rightProps, int rightActiveTab,
-                         bool leftSideActive)
+void KrusaderView::start(QStringList leftTabs, QStringList rightTabs)
 {
     ////////////////////////////////
     // make a 1x1 mainLayout, it will auto-expand:
@@ -83,11 +82,10 @@ void KrusaderView::start(QStringList leftTabs, QList<int> leftTypes, QList<int> 
     rightMng = new PanelManager(horiz_splitter, false);
 
     // now, create the panels inside the manager
-    //left = new ListPanel( leftMng, true );
-    //right = new ListPanel( rightMng, false );
-    left = leftMng->createPanel(leftTypes[ 0 ]);
-    right = rightMng->createPanel(rightTypes[ 0 ]);
-
+    KConfigGroup gl(krConfig, "Look&Feel");
+    int defaultType = gl.readEntry("Default Panel Type", KrViewFactory::defaultViewId());
+    left = leftMng->createPanel(defaultType);
+    right = rightMng->createPanel(defaultType);
     left->setOther(right);
     right->setOther(left);
 
@@ -122,29 +120,27 @@ void KrusaderView::start(QStringList leftTabs, QList<int> leftTypes, QList<int> 
 
     show();
 
-    qApp->processEvents();
+    KUrl leftUrl(QDir::homePath()), rightUrl(QDir::homePath());
+    if(leftTabs.count())
+        leftUrl = leftTabs[0];
+    if(rightTabs.count())
+        rightUrl = rightTabs[0];
+    rightMng->startPanel(right, rightUrl);
+    leftMng->startPanel(left, leftUrl);
 
     // make the left panel focused at program start
-    rightMng->startPanel(right, rightTabs[ 0 ]);
-    leftMng->startPanel(left, leftTabs[ 0 ]);
     activePanel = left;
     activePanel->slotFocusOnMe();  // left starts out active
-    left->setProperties(leftProps[ 0 ]);
-    right->setProperties(rightProps[ 0 ]);
 
     for (int i = 1; i < leftTabs.count(); i++)
-        leftMng->slotNewTab(leftTabs[ i ], false, leftTypes[ i ], leftProps[ i ]);
+        leftMng->slotNewTab(leftTabs[ i ], false);
 
     for (int j = 1; j < rightTabs.count(); j++)
-        rightMng->slotNewTab(rightTabs[ j ], false, rightTypes[ j ], rightProps[ j ]);
+        rightMng->slotNewTab(rightTabs[ j ], false);
 
-    leftMng->setActiveTab(leftActiveTab);
-    rightMng->setActiveTab(rightActiveTab);
-
-    if (leftSideActive)
-        MAIN_VIEW->left->slotFocusOnMe();
-    else
-        MAIN_VIEW->right->slotFocusOnMe();
+    // this is needed so that all tab labels get updated
+    leftMng->layoutTabs();
+    rightMng->layoutTabs();
 }
 
 // updates the command line whenever current panel changes

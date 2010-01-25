@@ -119,6 +119,8 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
     KUrl url = urlIn;
     url.cleanPath();
 
+    delayTimer.stop();
+
     // check for special cases first - don't refresh here !
     // you may call openUrl or vfs_refresh()
     if (!url.isValid() || url.isRelative()) {

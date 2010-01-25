@@ -99,11 +99,11 @@ void PanelManager::slotChangePanel(ListPanel *p)
     _self->otherPanel = _other;
     _other->otherPanel = _self;
 
-    _stack->setUpdatesEnabled(false);
+//     _stack->setUpdatesEnabled(false);
     _stack->setCurrentWidget(_self);
-    kapp->processEvents();
-    _self->slotFocusOnMe();
-    _stack->setUpdatesEnabled(true);
+    // make sure the view is focused (this also causes ListPanel::slotFocusOnMe() to be called)
+    _self->view->widget()->setFocus();
+//     _stack->setUpdatesEnabled(true);
 }
 
 ListPanel* PanelManager::createPanel(int type, bool setCurrent)
@@ -191,6 +191,16 @@ void PanelManager::loadSettings(KConfigGroup *config, const QString& key)
 
     for (; i < (int)l.count(); i++)
         slotNewTab(KUrl(l[i]), false, types[ i ], props[ i ]);
+
+    // this is needed so that all tab labels get updated
+    layoutTabs();
+}
+
+void PanelManager::layoutTabs()
+{
+    // delayed url refreshes may be pending -
+    // delay the layout too so it happens after them
+    QTimer::singleShot(0, _tabbar, SLOT(layoutTabs()));
 }
 
 void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, int type, int props)

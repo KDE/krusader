@@ -52,6 +52,7 @@ public slots:
 
     ListPanel* getPanel(int tabIdx);
     void changePanel(int tabIdx, ListPanel *panel);
+    void layoutTabs();
 
     /**
      * when the user changes the current path in a panel, this method updates the tab accordingly

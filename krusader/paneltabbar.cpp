@@ -91,9 +91,7 @@ int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent)
     setTabData(newId, v);
 
     // make sure all tabs lengths are correct
-    for (int i = 0; i < count(); i++)
-        setTabText(i, squeeze(DISPLAY(((ListPanel*)tabData(i).toLongLong())->virtualPath()), i));
-// layoutTabs();
+    layoutTabs();
 
     if (setCurrent)
         setCurrentIndex(newId);
@@ -131,9 +129,7 @@ ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete)
     disconnect(oldp);
     removeTab(id);
 
-    for (int i = 0; i < count(); i++)
-        setTabText(i, squeeze(DISPLAY(((ListPanel*)tabData(i).toLongLong())->virtualPath()), i));
-    //layoutTabs();
+    layoutTabs();
 
     // setup current one
     id = currentIndex();
@@ -259,9 +255,7 @@ void PanelTabBar::resizeEvent(QResizeEvent *e)
 {
     KTabBar::resizeEvent(e);
 
-    for (int i = 0; i < count(); i++)
-        setTabText(i, squeeze(DISPLAY(((ListPanel*)tabData(i).toLongLong())->virtualPath()), i));
-    //layoutTabs();
+    layoutTabs();
 }
 
 void PanelTabBar::dragEnterEvent(QDragEnterEvent *e)
@@ -287,6 +281,12 @@ void PanelTabBar::dragMoveEvent(QDragMoveEvent *e)
         emit changePanel((ListPanel*)tabData(t).toLongLong());
     }
     KTabBar::dragMoveEvent(e);
+}
+
+void PanelTabBar::layoutTabs()
+{
+   for (int i = 0; i < count(); i++)
+        setTabText(i, squeeze(DISPLAY(((ListPanel*)tabData(i).toLongLong())->virtualPath()), i));
 }
 
 #include "paneltabbar.moc"

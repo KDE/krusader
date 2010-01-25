@@ -295,28 +295,21 @@ Krusader::Krusader() : KParts::MainWindow(0,
 
     KConfigGroup gl(krConfig, "Look&Feel");
     KConfigGroup glgen(krConfig, "General");
-    int defaultType = gl.readEntry("Default Panel Type", KrViewFactory::defaultViewId());
     vfile::vfile_loadUserDefinedFolderIcons(gl.readEntry("Load User Defined Folder Icons", _UserDefinedFolderIcons));
     vfile::vfile_enableMimeTypeMagic(glgen.readEntry("Mimetype Magic", _MimetypeMagic));
 
     KConfigGroup gs(krConfig, "Startup");
-    QStringList leftTabs = gs.readPathEntry("Left Tab Bar", QStringList());
-    QStringList rightTabs = gs.readPathEntry("Right Tab Bar", QStringList());
-    QList<int>  leftTabTypes = gs.readEntry("Left Tab Bar Types", QList<int>());
-    QList<int>  rightTabTypes = gs.readEntry("Right Tab Bar Types", QList<int>());
-    QList<int>  leftTabProps = gs.readEntry("Left Tab Bar Props", QList<int>());
-    QList<int>  rightTabProps = gs.readEntry("Right Tab Bar Props", QList<int>());
     int         leftActiveTab = gs.readEntry("Left Active Tab", 0);
     int         rightActiveTab = gs.readEntry("Right Active Tab", 0);
     QString     startProfile = gs.readEntry("Starter Profile Name", QString());
     bool        leftActive = gs.readEntry("Left Side Is Active", false);
 
+    QStringList leftTabs;
+    QStringList rightTabs;
+
     // get command-line arguments
     if (args->isSet("left")) {
         leftTabs = args->getOption("left").split(',');
-        leftTabTypes.clear();
-        leftTabProps.clear();
-
         leftActiveTab = 0;
 
         // make sure left or right are not relative paths
@@ -329,9 +322,6 @@ Krusader::Krusader() : KParts::MainWindow(0,
     }
     if (args->isSet("right")) {
         rightTabs = args->getOption("right").split(',');
-        rightTabTypes.clear();
-        rightTabProps.clear();
-
         rightActiveTab = 0;
 
         // make sure left or right are not relative paths
@@ -342,43 +332,32 @@ Krusader::Krusader() : KParts::MainWindow(0,
         }
         startProfile.clear();
     }
-
-    while (leftTabTypes.count() < leftTabs.count())
-        leftTabTypes += defaultType;
-    while (rightTabTypes.count() < rightTabs.count())
-        rightTabTypes += defaultType;
-    while (leftTabProps.count() < leftTabs.count())
-        leftTabProps += 0;
-    while (rightTabProps.count() < rightTabs.count())
-        rightTabProps += 0;
-
     if (args->isSet("profile"))
         startProfile = args->getOption("profile");
 
     if (!startProfile.isEmpty()) {
         leftTabs.clear();
-        leftTabTypes.clear();
-        leftTabProps.clear();
         rightTabs.clear();
-        rightTabTypes.clear();
-        rightTabProps.clear();
         leftActiveTab = rightActiveTab = 0;
     }
-
-    if (leftTabs.count() == 0) {
-        leftTabs.push_back(QDir::homePath());
-        leftTabTypes.push_back(defaultType);
-        leftTabProps.push_back(0);
-    }
-    if (rightTabs.count() == 0) {
-        rightTabs.push_back(QDir::homePath());
-        rightTabTypes.push_back(defaultType);
-        rightTabProps.push_back(0);
-    }
-
     // starting the panels
-    mainView->start(leftTabs, leftTabTypes, leftTabProps, leftActiveTab, rightTabs,
-                    rightTabTypes, rightTabProps, rightActiveTab, leftActive);
+    mainView->start(leftTabs, rightTabs);
+
+    if(startProfile.isEmpty()) {
+        if(!leftTabs.count()) {
+            mainView->leftMng->loadSettings(&gs, "Left Tab Bar");
+            mainView->leftMng->setActiveTab(leftActiveTab);
+        }
+        if(!rightTabs.count()) {
+            mainView->rightMng->loadSettings(&gs, "Right Tab Bar");
+            mainView->rightMng->setActiveTab(rightActiveTab);
+        }
+        if (leftActive)
+            mainView->left->slotFocusOnMe();
+        else
+            mainView->right->slotFocusOnMe();
+    }
+
 
     // create the user menu
     userMenu = new UserMenu(this);

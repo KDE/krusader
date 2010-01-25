@@ -69,6 +69,7 @@ public:
     void setActiveTab(int);
     void setCurrentTab(int);
     void refreshAllTabs(bool invalidate = false);
+    void layoutTabs();
 
 public slots:
     /**
