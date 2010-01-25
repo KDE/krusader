@@ -60,7 +60,7 @@
 
 KrusaderView::KrusaderView(QWidget *parent) : QWidget(parent), activePanel(0) {}
 
-void KrusaderView::start(QStringList leftTabs, QStringList rightTabs)
+void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList leftTabs, QStringList rightTabs)
 {
     ////////////////////////////////
     // make a 1x1 mainLayout, it will auto-expand:
@@ -141,6 +141,25 @@ void KrusaderView::start(QStringList leftTabs, QStringList rightTabs)
     // this is needed so that all tab labels get updated
     leftMng->layoutTabs();
     rightMng->layoutTabs();
+
+    if(restoreSettings) {
+        int         leftActiveTab = cfg.readEntry("Left Active Tab", 0);
+        int         rightActiveTab = cfg.readEntry("Right Active Tab", 0);
+        bool        leftActive = cfg.readEntry("Left Side Is Active", false);
+
+        if(!leftTabs.count()) {
+            leftMng->loadSettings(&cfg, "Left Tab Bar");
+            leftMng->setActiveTab(leftActiveTab);
+        }
+        if(!rightTabs.count()) {
+            rightMng->loadSettings(&cfg, "Right Tab Bar");
+            rightMng->setActiveTab(rightActiveTab);
+        }
+        if (leftActive)
+            left->slotFocusOnMe();
+        else
+            right->slotFocusOnMe();
+    }
 }
 
 // updates the command line whenever current panel changes
@@ -322,6 +341,15 @@ void KrusaderView::toggleVerticalMode()
         Krusader::actVerticalMode->setText(i18n("Horizontal Mode"));
         Krusader::actVerticalMode->setIcon(KIcon("view-split-left-right"));
     }
+}
+
+void KrusaderView::saveSettings(KConfigGroup &cfg)
+{
+    cfg.writeEntry("Left Active Tab", leftMng->activeTab());
+    cfg.writeEntry("Right Active Tab", rightMng->activeTab());
+    cfg.writeEntry("Left Side Is Active", activePanel->isLeft());
+    leftMng->saveSettings(&cfg, "Left Tab Bar");
+    rightMng->saveSettings(&cfg, "Right Tab Bar");
 }
 
 #include "krusaderview.moc"

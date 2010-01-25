@@ -74,8 +74,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "GUI/krusaderstatus.h"
 #include "Dialogs/krpleasewait.h"
 #include "krusaderview.h"
-#include "Panel/listpanel.h"
-#include "Panel/panelfunc.h"
 #include "Konfigurator/konfigurator.h"
 #include "Konfigurator/kgprotocols.h"
 #include "MountMan/kmountman.h"
@@ -94,7 +92,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "UserAction/kraction.h"
 #include "UserAction/expander.h"
 #include "UserMenu/usermenu.h"
-#include "panelmanager.h"
 #include "BookMan/krbookmarkhandler.h"
 #include "Dialogs/popularurls.h"
 #include "GUI/krremoteencodingmenu.h"
@@ -299,10 +296,7 @@ Krusader::Krusader() : KParts::MainWindow(0,
     vfile::vfile_enableMimeTypeMagic(glgen.readEntry("Mimetype Magic", _MimetypeMagic));
 
     KConfigGroup gs(krConfig, "Startup");
-    int         leftActiveTab = gs.readEntry("Left Active Tab", 0);
-    int         rightActiveTab = gs.readEntry("Right Active Tab", 0);
     QString     startProfile = gs.readEntry("Starter Profile Name", QString());
-    bool        leftActive = gs.readEntry("Left Side Is Active", false);
 
     QStringList leftTabs;
     QStringList rightTabs;
@@ -310,7 +304,6 @@ Krusader::Krusader() : KParts::MainWindow(0,
     // get command-line arguments
     if (args->isSet("left")) {
         leftTabs = args->getOption("left").split(',');
-        leftActiveTab = 0;
 
         // make sure left or right are not relative paths
         for (int i = 0; i != leftTabs.count(); i++) {
@@ -322,7 +315,6 @@ Krusader::Krusader() : KParts::MainWindow(0,
     }
     if (args->isSet("right")) {
         rightTabs = args->getOption("right").split(',');
-        rightActiveTab = 0;
 
         // make sure left or right are not relative paths
         for (int i = 0; i != rightTabs.count(); i++) {
@@ -338,26 +330,9 @@ Krusader::Krusader() : KParts::MainWindow(0,
     if (!startProfile.isEmpty()) {
         leftTabs.clear();
         rightTabs.clear();
-        leftActiveTab = rightActiveTab = 0;
     }
     // starting the panels
-    mainView->start(leftTabs, rightTabs);
-
-    if(startProfile.isEmpty()) {
-        if(!leftTabs.count()) {
-            mainView->leftMng->loadSettings(&gs, "Left Tab Bar");
-            mainView->leftMng->setActiveTab(leftActiveTab);
-        }
-        if(!rightTabs.count()) {
-            mainView->rightMng->loadSettings(&gs, "Right Tab Bar");
-            mainView->rightMng->setActiveTab(rightActiveTab);
-        }
-        if (leftActive)
-            mainView->left->slotFocusOnMe();
-        else
-            mainView->right->slotFocusOnMe();
-    }
-
+    mainView->start(gs, startProfile.isEmpty(), leftTabs, rightTabs);
 
     // create the user menu
     userMenu = new UserMenu(this);
@@ -849,11 +824,7 @@ void Krusader::saveSettings() {
     toolBar("actionsToolBar")->saveSettings(cfg);
 
     cfg = config->group("Startup");
-    cfg.writeEntry("Left Active Tab", mainView->leftMng->activeTab());
-    cfg.writeEntry("Right Active Tab", mainView->rightMng->activeTab());
-    cfg.writeEntry("Left Side Is Active", mainView->activePanel->isLeft());
-    mainView->leftMng->saveSettings(&cfg, "Left Tab Bar");
-    mainView->rightMng->saveSettings(&cfg, "Right Tab Bar");
+    mainView->saveSettings(cfg);
 
     bool rememberpos = cfg.readEntry("Remember Position", _RememberPos);
     bool uisavesettings = cfg.readEntry("UI Save Settings", _UiSave);
