@@ -61,7 +61,7 @@ KgColors::KgColors(bool first, QWidget* parent) :
 
     KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
         //  cfg_class  cfg_name                     default                 text                                              restart tooltip
-    {{"Colors", "KDE Default",                 _KDEDefaultColors,      i18n("Use the default KDE colors"),             false,  "<p><img src='toolbar|kcontrol'></p>" + i18n("<p>Use KDE's global color configuration.</p><p><i>KDE Control Center -> Appearance & Themes -> Colors</i></p>") },
+    {{"Colors", "KDE Default",                 _KDEDefaultColors,      i18n("Use the default KDE colors"),             false,  "<p><img src='toolbar|kcontrol'></p>" + i18n("<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> Appearance & Themes -> Colors</i></p>") },
         {"Colors", "Enable Alternate Background", _AlternateBackground,   i18n("Use alternate background color"),         false, i18n("<p>The <b>background color</b> and the <b>alternate background</b> color alternates line by line.</p><p>When you don't use the <i>KDE default colors</i>, you can configure the alternate colors in the <i>colors</i> box.</p>") },
         {"Colors", "Show Current Item Always",    _ShowCurrentItemAlways, i18n("Show current item even if not focused"),  false, i18n("<p>Shows the last cursor position in the non active list panel.</p><p>This option is only available when you don't use the <i>KDE default colors</i>.</p>") },
         {"Colors", "Dim Inactive Colors",         _DimInactiveColors,     i18n("Dim the colors of the inactive panel"),   false, i18n("<p>The colors of the inactive panel are calculated by a dim color and a dim factor.</p>") }
