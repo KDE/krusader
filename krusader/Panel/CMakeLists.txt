@@ -12,6 +12,7 @@ set(Panel_SRCS
     panelpopup.cpp 
     krselectionmode.cpp 
     krvfsmodel.cpp
+    krinterview.cpp
     krinterbriefview.cpp
     krinterdetailedview.cpp
     krinterviewitemdelegate.cpp
