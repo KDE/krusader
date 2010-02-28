@@ -24,7 +24,7 @@
 #include <QVector>
 #include <QFont>
 
-#include "krview.h"
+#include "krinterview.h"
 
 class KrVfsModel;
 class KrInterDetailedViewItem;
@@ -34,7 +34,7 @@ class QDragEnterEvent;
 class QContextMenuEvent;
 class KrMouseHandler;
 
-class KrInterDetailedView : public QTreeView, public KrView
+class KrInterDetailedView : public QTreeView, public KrInterView
 {
     friend class KrInterDetailedViewItem;
     Q_OBJECT

@@ -81,8 +81,8 @@ KrViewInstance interDetailedView(INTERVIEW_ID, i18n("&Detailed View"), Qt::ALT +
 // end of register code
 
 KrInterDetailedView::KrInterDetailedView(QWidget *parent, bool &left, KConfig *cfg):
-        KrView(cfg),
-        QTreeView(parent)
+        QTreeView(parent),
+        KrInterView(cfg, this)
 {
     // fix the context menu problem
     int j = QFontMetrics(font()).height() * 2;
