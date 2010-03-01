@@ -28,6 +28,7 @@
 #include <kdirlister.h>
 #include <kmenu.h>
 
+#include "krinterviewitem.h"
 #include "krviewfactory.h"
 #include "krinterviewitemdelegate.h"
 #include "krviewitem.h"
@@ -37,7 +38,7 @@
 #include "krmousehandler.h"
 #include "krcolorcache.h"
 #include "../GUI/krstyleproxy.h"
-
+#if 0
 // dummy. remove this class when no longer needed
 class KrInterDetailedViewItem: public KrViewItem
 {
@@ -72,12 +73,12 @@ private:
     vfile *_vfile;
     KrInterDetailedView * _view;
 };
-
+#endif
 
 // code used to register the view
 #define INTERVIEW_ID 0
 KrViewInstance interDetailedView(INTERVIEW_ID, i18n("&Detailed View"), Qt::ALT + Qt::SHIFT + Qt::Key_D,
-                                 KrInterDetailedView::create, KrInterDetailedViewItem::itemHeightChanged);
+                                 KrInterDetailedView::create, KrInterViewItem::itemHeightChanged);
 // end of register code
 
 KrInterDetailedView::KrInterDetailedView(QWidget *parent, bool &left, KConfig *cfg):
@@ -85,8 +86,8 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, bool &left, KConfig *c
         KrInterView(cfg, this)
 {
     // fix the context menu problem
-    int j = QFontMetrics(font()).height() * 2;
-    _mouseHandler = new KrMouseHandler(this, j);
+//     int j = QFontMetrics(font()).height() * 2;
+//     _mouseHandler = new KrMouseHandler(this, j);
     connect(_mouseHandler, SIGNAL(renameCurrentItem()), this, SLOT(renameCurrentItem()));
     setWidget(this);
     _nameInKConfig = QString("KrInterDetailedView") + QString((left ? "Left" : "Right")) ;
@@ -95,12 +96,12 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, bool &left, KConfig *c
     KConfigGroup grpSvr(_config, "Look&Feel");
     _viewFont = grpSvr.readEntry("Filelist Font", *_FilelistFont);
 
-    _model = new KrVfsModel(this);
+//     _model = new KrVfsModel(this);
     this->setModel(_model);
     this->setRootIsDecorated(false);
     this->setSortingEnabled(true);
     this->sortByColumn(KrVfsModel::Name, Qt::AscendingOrder);
-    _model->sort(KrVfsModel::Name, Qt::AscendingOrder);
+//     _model->sort(KrVfsModel::Name, Qt::AscendingOrder);
     header()->installEventFilter(this);
 
     setSelectionMode(QAbstractItemView::NoSelection);
@@ -118,7 +119,7 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, bool &left, KConfig *c
 
     restoreSettings();
     connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(sectionResized(int, int, int)));
-    connect(&KrColorCache::getColorCache(), SIGNAL(colorsRefreshed()), this, SLOT(refreshColors()));
+//     connect(&KrColorCache::getColorCache(), SIGNAL(colorsRefreshed()), this, SLOT(refreshColors()));
 }
 
 KrInterDetailedView::~KrInterDetailedView()
@@ -128,14 +129,14 @@ KrInterDetailedView::~KrInterDetailedView()
     delete _operator;
     _operator = 0;
     setModel(0);
-    delete _model;
-    delete _mouseHandler;
-    QHashIterator< vfile *, KrInterDetailedViewItem *> it(_itemHash);
-    while (it.hasNext())
-        delete it.next().value();
-    _itemHash.clear();
+//     delete _model;
+//     delete _mouseHandler;
+//     QHashIterator< vfile *, KrInterDetailedViewItem *> it(_itemHash);
+//     while (it.hasNext())
+//         delete it.next().value();
+//     _itemHash.clear();
 }
-
+#if 0
 KrViewItem* KrInterDetailedView::findItemByName(const QString &name)
 {
     if (!_model->ready())
@@ -146,7 +147,7 @@ KrViewItem* KrInterDetailedView::findItemByName(const QString &name)
         return 0;
     return getKrInterViewItem(ndx);
 }
-
+#endif
 void KrInterDetailedView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
     if (_model->ready()) {
@@ -155,7 +156,7 @@ void KrInterDetailedView::currentChanged(const QModelIndex & current, const QMod
     }
     QTreeView::currentChanged(current, previous);
 }
-
+#if 0
 QString KrInterDetailedView::getCurrentItem() const
 {
     if (!_model->ready())
@@ -278,7 +279,7 @@ void KrInterDetailedView::refreshColors()
     setPalette(p);
     viewport()->update();
 }
-
+#endif
 void KrInterDetailedView::restoreSettings()
 {
     KConfigGroup grpSvr(krConfig, _nameInKConfig);
@@ -309,7 +310,7 @@ void KrInterDetailedView::saveSettings()
     KConfigGroup grpSvr(krConfig, _nameInKConfig);
     grpSvr.writeEntry("Saved State", state);
 }
-
+#if 0
 void KrInterDetailedView::setCurrentItem(const QString& name)
 {
     QModelIndex ndx = _model->nameIndex(name);
@@ -335,7 +336,7 @@ void KrInterDetailedView::prepareForPassive()
     //if ( renameLineEdit() ->isVisible() )
     //renameLineEdit() ->clearFocus();
 }
-
+#endif
 int KrInterDetailedView::itemsPerPage()
 {
     QRect rect = visualRect(currentIndex());
@@ -353,16 +354,16 @@ int KrInterDetailedView::itemsPerPage()
         size = 0;
     return size;
 }
-
+#if 0
 void KrInterDetailedView::sort()
 {
     _model->sort();
 }
-
+#endif
 void KrInterDetailedView::updateView()
 {
 }
-
+#if 0
 void KrInterDetailedView::updateItem(vfile* item)
 {
     if (item == 0)
@@ -400,7 +401,7 @@ void KrInterDetailedView::addItems(vfs* v, bool addUpDir)
     if (!nameToMakeCurrent().isEmpty())
         setCurrentItem(nameToMakeCurrent());
 }
-
+#endif
 void KrInterDetailedView::setup()
 {
 
@@ -481,7 +482,7 @@ bool KrInterDetailedView::event(QEvent * e)
     _mouseHandler->otherEvent(e);
     return QTreeView::event(e);
 }
-
+#if 0
 KrInterDetailedViewItem * KrInterDetailedView::getKrInterViewItem(const QModelIndex & ndx)
 {
     if (!ndx.isValid())
@@ -498,7 +499,7 @@ KrInterDetailedViewItem * KrInterDetailedView::getKrInterViewItem(const QModelIn
     }
     return *it;
 }
-
+#endif
 void KrInterDetailedView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
 {
     vfile* vf1 = (vfile *)i1->getVfile();

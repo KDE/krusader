@@ -42,7 +42,7 @@ class KrInterDetailedView : public QTreeView, public KrInterView
 public:
     KrInterDetailedView(QWidget *parent, bool &left, KConfig *cfg = krConfig);
     virtual ~KrInterDetailedView();
-
+/*
     virtual void addItems(vfs* v, bool addUpDir = true);
     virtual KrViewItem* findItemByName(const QString &name);
     virtual QString getCurrentItem() const;
@@ -56,13 +56,17 @@ public:
     virtual KrViewItem* preAddItem(vfile *vf);
     virtual bool preDelItem(KrViewItem *item);
     virtual void redraw();
+*/
     virtual void restoreSettings();
     virtual void saveSettings();
+/*
     virtual void setCurrentItem(const QString& name);
     virtual void setCurrentKrViewItem(KrViewItem *current);
     virtual void sort();
     virtual void clear();
+*/
     virtual void updateView();
+/*
     virtual void updateItem(KrViewItem* item);
     virtual void updateItem(vfile* item);
     virtual QModelIndex getCurrentIndex() {
@@ -71,15 +75,16 @@ public:
     virtual bool isSelected(const QModelIndex &ndx) {
         return selectionModel()->isSelected(ndx);
     }
+*/
     virtual void selectRegion(KrViewItem *, KrViewItem *, bool);
-    KrInterDetailedViewItem * getKrInterViewItem(const QModelIndex &);
+//     KrInterDetailedViewItem * getKrInterViewItem(const QModelIndex &);
 
     static KrView* create(QWidget *parent, bool &left, KConfig *cfg) {
         return new KrInterDetailedView(parent, left, cfg);
     }
 
-    virtual void prepareForActive();
-    virtual void prepareForPassive();
+//     virtual void prepareForActive();
+//     virtual void prepareForPassive();
     virtual bool ensureVisibilityAfterSelect() {
         return false;
     }
@@ -87,11 +92,11 @@ public:
     virtual void setSortMode(KrViewProperties::SortSpec mode);
     virtual void setFileIconSize(int size);
 
-public slots:
-    virtual void refreshColors();
+// public slots:
+//     virtual void refreshColors();
 
 protected slots:
-    void slotMakeCurrentVisible();
+//     void slotMakeCurrentVisible();
     virtual void renameCurrentItem();
     void sectionResized(int, int, int);
     virtual void currentChanged(const QModelIndex & current, const QModelIndex & previous);
@@ -118,9 +123,9 @@ protected:
     void recalculateColumnSizes();
 
 private:
-    KrVfsModel *_model;
-    KrMouseHandler *_mouseHandler;
-    QHash<vfile *, KrInterDetailedViewItem*> _itemHash;
+//     KrVfsModel *_model;
+//     KrMouseHandler *_mouseHandler;
+//     QHash<vfile *, KrInterDetailedViewItem*> _itemHash;
     QFont _viewFont;
 };
 #endif // __krinterview__

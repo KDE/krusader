@@ -623,6 +623,7 @@ void ListPanel::refreshColors()
 
     status->setPalette(p);
     totals->setPalette(p);
+    view->refreshColors();
 }
 
 void ListPanel::slotFocusOnMe()
@@ -650,9 +651,6 @@ void ListPanel::slotFocusOnMe()
     if (Krusader::actView3) Krusader::actView3->setEnabled(panelType != 3);
     if (Krusader::actView4) Krusader::actView4->setEnabled(panelType != 4);
     if (Krusader::actView5) Krusader::actView5->setEnabled(panelType != 5);
-
-    view->refreshColors();
-    otherPanel->view->refreshColors();
 
     krApp->setUpdatesEnabled(true);
 }
