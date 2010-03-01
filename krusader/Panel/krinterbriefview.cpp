@@ -117,7 +117,7 @@ KrInterBriefView::KrInterBriefView(QWidget *parent, bool &left, KConfig *cfg):
     setAcceptDrops(true);
     setDropIndicatorShown(true);
 
-    connect(&KrColorCache::getColorCache(), SIGNAL(colorsRefreshed()), this, SLOT(refreshColors()));
+//     connect(&KrColorCache::getColorCache(), SIGNAL(colorsRefreshed()), this, SLOT(refreshColors()));
 }
 
 KrInterBriefView::~KrInterBriefView()
