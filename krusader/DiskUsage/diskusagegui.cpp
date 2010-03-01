@@ -52,11 +52,11 @@ DiskUsageGUI::DiskUsageGUI(KUrl openDir, QWidget* parent)
     if (!newSearch())
         return;
 
-    QGridLayout *duGrid = new QGridLayout(this);
+    QGridLayout *duGrid = new QGridLayout(mainWidget());
     duGrid->setSpacing(6);
     duGrid->setContentsMargins(11, 11, 11, 11);
 
-    QWidget *duTools = new QWidget(this);
+    QWidget *duTools = new QWidget(mainWidget());
     QHBoxLayout *duHBox = new QHBoxLayout(duTools);
     duHBox->setContentsMargins(0, 0, 0, 0);
     duTools->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -106,10 +106,10 @@ DiskUsageGUI::DiskUsageGUI(KUrl openDir, QWidget* parent)
 
     duGrid->addWidget(duTools, 0, 0);
 
-    diskUsage = new DiskUsage("DiskUsage", this);
+    diskUsage = new DiskUsage("DiskUsage", mainWidget());
     duGrid->addWidget(diskUsage, 1, 0);
 
-    status = new KSqueezedTextLabel(this);
+    status = new KSqueezedTextLabel(mainWidget());
     status->setFrameShape(QLabel::StyledPanel);
     status->setFrameShadow(QLabel::Sunken);
     duGrid->addWidget(status, 2, 0);
