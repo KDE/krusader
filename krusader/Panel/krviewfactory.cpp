@@ -36,8 +36,9 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 extern KrViewInstance interDetailedView;    // hold reference for linking
 extern KrViewInstance interBriefView;    // hold reference for linking
 
-KrViewInstance::KrViewInstance(int id, QString desc, QKeySequence shortcut, KrViewFactoryFunction fun, KrViewItemHeightChange fun2) :
-        m_id(id), m_description(desc), m_shortcut(shortcut), m_factoryfun(fun), m_ihchangefun(fun2)
+KrViewInstance::KrViewInstance(int id, QString name, QString desc, QKeySequence shortcut, KrViewFactoryFunction fun, KrViewItemHeightChange fun2) :
+        m_id(id), m_name(name), m_description(desc), m_shortcut(shortcut), m_factoryfun(fun), m_ihchangefun(fun2)
+
 {
 }
 

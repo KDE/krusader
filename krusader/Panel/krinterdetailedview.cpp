@@ -77,7 +77,7 @@ private:
 
 // code used to register the view
 #define INTERVIEW_ID 0
-KrViewInstance interDetailedView(INTERVIEW_ID, i18n("&Detailed View"), Qt::ALT + Qt::SHIFT + Qt::Key_D,
+KrViewInstance interDetailedView(INTERVIEW_ID, "KrInterDetailedView", i18n("&Detailed View"), Qt::ALT + Qt::SHIFT + Qt::Key_D,
                                  KrInterDetailedView::create, KrInterViewItem::itemHeightChanged);
 // end of register code
 
@@ -136,6 +136,12 @@ KrInterDetailedView::~KrInterDetailedView()
 //         delete it.next().value();
 //     _itemHash.clear();
 }
+
+KrViewInstance* KrInterDetailedView::instance()
+{
+    return &interDetailedView;
+}
+
 #if 0
 KrViewItem* KrInterDetailedView::findItemByName(const QString &name)
 {

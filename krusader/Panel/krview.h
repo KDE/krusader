@@ -51,6 +51,7 @@ class KrViewItem;
 class KrQuickSearch;
 class KrPreviews;
 class QModelIndex;
+class KrViewInstance;
 typedef QList<KrViewItem*> KrViewItemList;
 
 // KrViewProperties
@@ -231,6 +232,7 @@ public:
     // notes: constructor does as little as possible, setup() does the rest. esp, note that
     // if you need something from operator or properties, move it into setup()
     virtual void init();
+    virtual KrViewInstance *instance() = 0;
 
     static const IconSizes iconSizes;
 

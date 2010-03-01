@@ -45,10 +45,13 @@ typedef void (*KrViewItemHeightChange)();
 class KrViewInstance
 {
 public:
-    KrViewInstance(int id, QString desc, QKeySequence shortcut, KrViewFactoryFunction fun, KrViewItemHeightChange fun2);
+    KrViewInstance(int id, QString name, QString desc, QKeySequence shortcut, KrViewFactoryFunction fun, KrViewItemHeightChange fun2);
 
     inline int                     id()                    {
         return m_id;
+    }
+    inline QString                 name()                  {
+        return m_name;
     }
     inline QString                 description()           {
         return m_description;
@@ -65,6 +68,7 @@ public:
 
 protected:
     int                            m_id;
+    QString                        m_name;
     QString                        m_description;
     QKeySequence                   m_shortcut;
     KrViewFactoryFunction          m_factoryfun;

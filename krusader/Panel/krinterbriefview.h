@@ -38,6 +38,8 @@ class KrInterBriefView : public QAbstractItemView, public KrInterView
 public:
     KrInterBriefView(QWidget *parent, bool &left, KConfig *cfg = krConfig);
     virtual ~KrInterBriefView();
+
+    virtual KrViewInstance *instance();
 /*
     virtual void addItems(vfs* v, bool addUpDir = true);
     virtual KrViewItem* findItemByName(const QString &name);
