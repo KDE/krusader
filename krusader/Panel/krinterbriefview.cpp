@@ -85,8 +85,8 @@ KrViewInstance interBriefView(INTERBRIEFVIEW_ID, i18n("&Brief View"), Qt::ALT + 
 // end of register code
 
 KrInterBriefView::KrInterBriefView(QWidget *parent, bool &left, KConfig *cfg):
-        KrView(cfg),
-        QAbstractItemView(parent)
+        QAbstractItemView(parent),
+        KrInterView(cfg, this)
 {
     _header = 0;
 

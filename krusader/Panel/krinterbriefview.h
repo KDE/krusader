@@ -23,14 +23,14 @@
 #include <QVector>
 #include <QFont>
 
-#include "krview.h"
+#include "krinterview.h"
 
 class KrInterBriefViewItem;
 class KrMouseHandler;
 class KrVfsModel;
 class QHeaderView;
 
-class KrInterBriefView : public QAbstractItemView, public KrView
+class KrInterBriefView : public QAbstractItemView, public KrInterView
 {
     Q_OBJECT
     friend class KrInterBriefViewItem;
