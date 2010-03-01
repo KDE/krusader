@@ -38,7 +38,7 @@ class KrInterBriefView : public QAbstractItemView, public KrInterView
 public:
     KrInterBriefView(QWidget *parent, bool &left, KConfig *cfg = krConfig);
     virtual ~KrInterBriefView();
-
+/*
     virtual void addItems(vfs* v, bool addUpDir = true);
     virtual KrViewItem* findItemByName(const QString &name);
     virtual QString getCurrentItem() const;
@@ -52,13 +52,17 @@ public:
     virtual KrViewItem* preAddItem(vfile *vf);
     virtual bool preDelItem(KrViewItem *item);
     virtual void redraw();
+*/
     virtual void restoreSettings();
     virtual void saveSettings();
+/*
     virtual void setCurrentItem(const QString& name);
     virtual void setCurrentKrViewItem(KrViewItem *current);
     virtual void sort();
     virtual void clear();
+*/
     virtual void updateView();
+/*
     virtual void updateItem(vfile* item);
     virtual void updateItem(KrViewItem* item);
     virtual QModelIndex getCurrentIndex() {
@@ -67,15 +71,16 @@ public:
     virtual bool isSelected(const QModelIndex &ndx) {
         return selectionModel()->isSelected(ndx);
     }
+*/
     virtual void selectRegion(KrViewItem *, KrViewItem *, bool);
-    KrInterBriefViewItem * getKrInterViewItem(const QModelIndex &);
+//     KrInterBriefViewItem * getKrInterViewItem(const QModelIndex &);
 
     static KrView* create(QWidget *parent, bool &left, KConfig *cfg) {
         return new KrInterBriefView(parent, left, cfg);
     }
 
-    virtual void prepareForActive();
-    virtual void prepareForPassive();
+//     virtual void prepareForActive();
+//     virtual void prepareForPassive();
     virtual bool ensureVisibilityAfterSelect() {
         return false;
     }
@@ -96,11 +101,11 @@ public:
     virtual void updateGeometries();
     virtual QRect mapToViewport(const QRect &rect) const;
 
-public slots:
-    virtual void refreshColors();
+// public slots:
+//     virtual void refreshColors();
 
 protected slots:
-    void slotMakeCurrentVisible();
+//     void slotMakeCurrentVisible();
     virtual void renameCurrentItem();
     virtual void currentChanged(const QModelIndex & current, const QModelIndex & previous);
 
@@ -130,9 +135,9 @@ protected:
     void intersectionSet(const QRect &, QVector<QModelIndex> &);
 
 private:
-    KrVfsModel *_model;
-    KrMouseHandler *_mouseHandler;
-    QHash<vfile *, KrInterBriefViewItem*> _itemHash;
+//     KrVfsModel *_model;
+//     KrMouseHandler *_mouseHandler;
+//     QHash<vfile *, KrInterBriefViewItem*> _itemHash;
     QFont _viewFont;
     int _numOfColumns;
     QHeaderView * _header;

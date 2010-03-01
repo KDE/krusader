@@ -32,6 +32,7 @@
 #include <klocale.h>
 #include <kdirlister.h>
 
+#include "krinterviewitem.h"
 #include "krviewfactory.h"
 #include "krinterviewitemdelegate.h"
 #include "krviewitem.h"
@@ -41,7 +42,7 @@
 #include "../VFS/krpermhandler.h"
 #include "../defaults.h"
 #include "../GUI/krstyleproxy.h"
-
+#if 0
 // dummy. remove this class when no longer needed
 class KrInterBriefViewItem: public KrViewItem
 {
@@ -76,12 +77,12 @@ private:
     vfile *_vfile;
     KrInterBriefView * _view;
 };
-
+#endif
 
 // code used to register the view
 #define INTERBRIEFVIEW_ID 1
 KrViewInstance interBriefView(INTERBRIEFVIEW_ID, i18n("&Brief View"), Qt::ALT + Qt::SHIFT + Qt::Key_B,
-                              KrInterBriefView::create, KrInterBriefViewItem::itemHeightChanged);
+                              KrInterBriefView::create, KrInterViewItem::itemHeightChanged);
 // end of register code
 
 KrInterBriefView::KrInterBriefView(QWidget *parent, bool &left, KConfig *cfg):
@@ -91,8 +92,8 @@ KrInterBriefView::KrInterBriefView(QWidget *parent, bool &left, KConfig *cfg):
     _header = 0;
 
     // fix the context menu problem
-    int j = QFontMetrics(font()).height() * 2;
-    _mouseHandler = new KrMouseHandler(this, j);
+//     int j = QFontMetrics(font()).height() * 2;
+//     _mouseHandler = new KrMouseHandler(this, j);
     connect(_mouseHandler, SIGNAL(renameCurrentItem()), this, SLOT(renameCurrentItem()));
     setWidget(this);
     _nameInKConfig = QString("KrInterBriefView") + QString((left ? "Left" : "Right")) ;
@@ -101,9 +102,9 @@ KrInterBriefView::KrInterBriefView(QWidget *parent, bool &left, KConfig *cfg):
     KConfigGroup grpSvr(_config, "Look&Feel");
     _viewFont = grpSvr.readEntry("Filelist Font", *_FilelistFont);
 
-    _model = new KrVfsModel(this);
+//     _model = new KrVfsModel(this);
     this->setModel(_model);
-    _model->sort(KrVfsModel::Name, Qt::AscendingOrder);
+//     _model->sort(KrVfsModel::Name, Qt::AscendingOrder);
     _model->setExtensionEnabled(false);
     _model->setAlternatingTable(true);
     //header()->installEventFilter( this );
@@ -126,14 +127,14 @@ KrInterBriefView::~KrInterBriefView()
     delete _operator;
     _operator = 0;
     setModel(0);
-    delete _model;
-    delete _mouseHandler;
-    QHashIterator< vfile *, KrInterBriefViewItem *> it(_itemHash);
-    while (it.hasNext())
-        delete it.next().value();
-    _itemHash.clear();
+//     delete _model;
+//     delete _mouseHandler;
+//     QHashIterator< vfile *, KrInterBriefViewItem *> it(_itemHash);
+//     while (it.hasNext())
+//         delete it.next().value();
+//     _itemHash.clear();
 }
-
+#if 0
 KrViewItem* KrInterBriefView::findItemByName(const QString &name)
 {
     if (!_model->ready())
@@ -144,7 +145,7 @@ KrViewItem* KrInterBriefView::findItemByName(const QString &name)
         return 0;
     return getKrInterViewItem(ndx);
 }
-
+#endif
 void KrInterBriefView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
     if (_model->ready()) {
@@ -153,7 +154,7 @@ void KrInterBriefView::currentChanged(const QModelIndex & current, const QModelI
     }
     QAbstractItemView::currentChanged(current, previous);
 }
-
+#if 0
 QString KrInterBriefView::getCurrentItem() const
 {
     if (!_model->ready())
@@ -276,7 +277,7 @@ void KrInterBriefView::refreshColors()
     setPalette(p);
     viewport()->update();
 }
-
+#endif
 void KrInterBriefView::restoreSettings()
 {
     _numOfColumns = _properties->numberOfColumns;
@@ -298,7 +299,7 @@ void KrInterBriefView::saveSettings()
     group.writeEntry("Sort Indicator Column", (int)_model->getLastSortOrder());
     group.writeEntry("Ascending Sort Order", (_model->getLastSortDir() == Qt::AscendingOrder));
 }
-
+#if 0
 void KrInterBriefView::setCurrentItem(const QString& name)
 {
     QModelIndex ndx = _model->nameIndex(name);
@@ -324,7 +325,7 @@ void KrInterBriefView::prepareForPassive()
     //if ( renameLineEdit() ->isVisible() )
     //renameLineEdit() ->clearFocus();
 }
-
+#endif
 int KrInterBriefView::itemsPerPage()
 {
     int height = getItemHeight();
@@ -333,16 +334,16 @@ int KrInterBriefView::itemsPerPage()
     int numRows = viewport()->height() / height;
     return numRows;
 }
-
+#if 0
 void KrInterBriefView::sort()
 {
     _model->sort();
 }
-
+#endif
 void KrInterBriefView::updateView()
 {
 }
-
+#if 0
 void KrInterBriefView::updateItem(vfile * item)
 {
     if (item == 0)
@@ -380,7 +381,7 @@ void KrInterBriefView::addItems(vfs* v, bool addUpDir)
     if (!nameToMakeCurrent().isEmpty())
         setCurrentItem(nameToMakeCurrent());
 }
-
+#endif
 void KrInterBriefView::setup()
 {
     _header = new QHeaderView(Qt::Horizontal, this);
@@ -443,7 +444,7 @@ void KrInterBriefView::keyPressEvent(QKeyEvent *e)
 
         if (newCurrent) {
             setCurrentKrViewItem(newCurrent);
-            slotMakeCurrentVisible();
+            makeCurrentVisible();
         }
         if (e->modifiers() & Qt::ShiftModifier)
             op()->emitSelectionChanged();
@@ -473,7 +474,7 @@ void KrInterBriefView::keyPressEvent(QKeyEvent *e)
 
         if (newCurrent) {
             setCurrentKrViewItem(newCurrent);
-            slotMakeCurrentVisible();
+            makeCurrentVisible();
         }
         if (e->modifiers() & Qt::ShiftModifier)
             op()->emitSelectionChanged();
@@ -543,7 +544,7 @@ bool KrInterBriefView::event(QEvent * e)
     _mouseHandler->otherEvent(e);
     return QAbstractItemView::event(e);
 }
-
+#if 0
 KrInterBriefViewItem * KrInterBriefView::getKrInterViewItem(const QModelIndex & ndx)
 {
     if (!ndx.isValid())
@@ -560,7 +561,7 @@ KrInterBriefViewItem * KrInterBriefView::getKrInterViewItem(const QModelIndex & 
     }
     return *it;
 }
-
+#endif
 void KrInterBriefView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
 {
     vfile* vf1 = (vfile *)i1->getVfile();
