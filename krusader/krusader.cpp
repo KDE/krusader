@@ -400,6 +400,11 @@ Krusader::Krusader() : KParts::MainWindow(0,
 
     KrTrashHandler::startWatcher();
     isStarting = false;
+
+    //HACK: make sure the active view becomes focused
+    // for some reason sometimes the active view cannot be focused immediately at this point,
+    // so queue it for the main loop
+    QTimer::singleShot(0, ACTIVE_PANEL->view->widget(), SLOT(setFocus()));
 }
 
 Krusader::~Krusader()
