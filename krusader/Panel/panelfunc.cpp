@@ -1169,7 +1169,7 @@ void ListPanelFunc::refreshActions()
           krExecFiles->setEnabled(true);                         // show only executables
     */
     krBack->setEnabled(canGoBack());                  // go back
-    krApp->actTogglePreviews->setChecked(panel->view->previewsShown());
+    KrActions::actTogglePreviews->setChecked(panel->view->previewsShown());
     panel->view->refreshActions();
 }
 

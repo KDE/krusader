@@ -103,10 +103,12 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "KrJS/krjs.h"
 #endif
 
+#include "kractions.h"
+
 // define the static members
 Krusader *Krusader::App = 0;
 QString   Krusader::AppName;
-
+#if 0
 KAction *Krusader::actProperties = 0;
 KAction *Krusader::actPack = 0;
 KAction *Krusader::actUnpack = 0;
@@ -215,7 +217,7 @@ KAction *Krusader::actExecTerminalEmbedded = 0;
 KAction **Krusader::execTypeArray[] = {&actExecStartAndForget, &actExecCollectSeparate, &actExecCollectTogether,
                                        &actExecTerminalExternal, &actExecTerminalEmbedded, 0
                                       };
-
+#endif
 KMenu *Krusader::userActionMenu = 0;
 UserAction *Krusader::userAction = 0;
 UserMenu *Krusader::userMenu = 0;
@@ -528,6 +530,7 @@ void Krusader::setupAccels() {
 
 // <patch> Moving from Pixmap actions to generic filenames - thanks to Carsten Pfeiffer
 void Krusader::setupActions() {
+#if 0
 #define NEW_KACTION(VAR, TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME) \
     if (ICON_NAME == 0) VAR = new KAction(TEXT, this); \
     else VAR = new KAction( KIcon(ICON_NAME), TEXT, this); \
@@ -785,7 +788,8 @@ void Krusader::setupActions() {
     actBack->setToolTip(i18n("Back to the place you came from"));
     actRoot->setToolTip(i18n("ROOT (/)"));
     actFind->setToolTip(i18n("Search for files"));
-
+#endif
+    KrActions::setupActions(this);
     // setup all UserActions
     userAction = new UserAction();
 
@@ -848,11 +852,11 @@ void Krusader::saveSettings() {
     // save the gui
     if (uisavesettings) {
         cfg = krConfig->group("Startup");
-        cfg.writeEntry("Show status bar", actShowStatusBar->isChecked());
-        cfg.writeEntry("Show tool bar", actShowToolBar->isChecked());
-        cfg.writeEntry("Show FN Keys", actToggleFnkeys->isChecked());
-        cfg.writeEntry("Show Cmd Line", actToggleCmdline->isChecked());
-        cfg.writeEntry("Show Terminal Emulator", actToggleTerminal->isChecked());
+        cfg.writeEntry("Show status bar", KrActions::actShowStatusBar->isChecked());
+        cfg.writeEntry("Show tool bar", KrActions::actShowToolBar->isChecked());
+        cfg.writeEntry("Show FN Keys", KrActions::actToggleFnkeys->isChecked());
+        cfg.writeEntry("Show Cmd Line", KrActions::actToggleCmdline->isChecked());
+        cfg.writeEntry("Show Terminal Emulator", KrActions::actToggleTerminal->isChecked());
         cfg.writeEntry("Vertical Mode", mainView->isVertical());
         cfg.writeEntry("Start To Tray", isHidden());
     }
@@ -1038,11 +1042,11 @@ void Krusader::stopWait() {
 }
 
 void Krusader::updateUserActions() {
-    KActionMenu *userActionMenu = (KActionMenu *) actUserMenu;
+    KActionMenu *userActionMenu = (KActionMenu *) KrActions::actUserMenu;
     if (userActionMenu) {
         userActionMenu->menu()->clear();
 
-        userActionMenu->addAction(krApp->actManageUseractions);
+        userActionMenu->addAction(KrActions::actManageUseractions);
         userActionMenu->addSeparator();
         userAction->populateMenu(userActionMenu, NULL);
     }
@@ -1069,34 +1073,34 @@ void Krusader::updateGUI(bool enforce) {
         // now, hide what need to be hidden
         if (!cfg.readEntry("Show tool bar", _ShowToolBar)) {
             toolBar() ->hide();
-            actShowToolBar->setChecked(false);
+            KrActions::actShowToolBar->setChecked(false);
         } else {
             toolBar() ->show();
-            actShowToolBar->setChecked(true);
+            KrActions::actShowToolBar->setChecked(true);
         }
         if (!cfg.readEntry("Show status bar", _ShowStatusBar)) {
             statusBar() ->hide();
-            actShowStatusBar->setChecked(false);
+            KrActions::actShowStatusBar->setChecked(false);
         } else {
             statusBar() ->show();
-            actShowStatusBar->setChecked(true);
+            KrActions::actShowStatusBar->setChecked(true);
         }
         if (!cfg.readEntry("Show Cmd Line", _ShowCmdline)) {
             mainView->cmdLine->hide();
-            actToggleCmdline->setChecked(false);
+            KrActions::actToggleCmdline->setChecked(false);
         } else {
             mainView->cmdLine->show();
-            actToggleCmdline->setChecked(true);
+            KrActions::actToggleCmdline->setChecked(true);
         }
 
         // update the Fn bar to the shortcuts selected by the user
         mainView->fnKeys->updateShortcuts();
         if (!cfg.readEntry("Show FN Keys", _ShowFNkeys)) {
             mainView->fnKeys->hide();
-            actToggleFnkeys->setChecked(false);
+            KrActions::actToggleFnkeys->setChecked(false);
         } else {
             mainView->fnKeys->show();
-            actToggleFnkeys->setChecked(true);
+            KrActions::actToggleFnkeys->setChecked(true);
         }
         // set vertical mode
         if (cfg.readEntry("Vertical Mode", false)) {
@@ -1105,7 +1109,7 @@ void Krusader::updateGUI(bool enforce) {
         if (cfg.readEntry("Show Terminal Emulator", _ShowTerminalEmulator)) {
             mainView->slotTerminalEmulator(true);   // create konsole_part
             mainView->vert_splitter->setSizes(mainView->verticalSplitterSizes);
-        } else if (actExecTerminalEmbedded->isChecked()) {
+        } else if (KrActions::actExecTerminalEmbedded->isChecked()) {
             //create (but not show) terminal emulator,
             //if command-line commands are to be run there
             mainView->terminal_dock->initialise();

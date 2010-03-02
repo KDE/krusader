@@ -130,6 +130,7 @@ public:
     KIconLoader *iconLoader; // the app's icon loader
     PopularUrls *popularUrls; // holds a sorted list of the most popular urls visited
     QueueManager *queueManager;
+#if 0
     // Actions
     static KAction *actProperties, *actPack, *actUnpack, *actTest, *actCompare, *actCmdlinePopup;
     static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll, *actLocate, *actSwitchFullScreenTE;
@@ -159,7 +160,7 @@ public:
     static KAction **compareArray[];
     /** actions for setting the execution mode of commands from commanddline */
     static KAction **execTypeArray[];
-
+#endif
     // return a path to a temp dir or file we can use.
     QString getTempDir();
     QString getTempFile();
@@ -221,7 +222,7 @@ private:
 #define RIGHT_PANEL  (MAIN_VIEW->right)
 #define RIGHT_FUNC (RIGHT_PANEL->func)
 #define RIGHT_MNG  (MAIN_VIEW->rightMng)
-
+#if 0
 // krusader's actions - things krusader can do!
 #define krProperties      Krusader::App->actProperties     // file properties
 #define krPack            Krusader::App->actPack           // pack files into an archive
@@ -270,8 +271,6 @@ private:
 #define krSplit           Krusader::App->actSplit
 #define krCombine         Krusader::App->actCombine
 #define krUserMenu        Krusader::App->actUserMenu
-#define krUserActionMenu      Krusader::App->userActionMenu
-#define krUserAction      Krusader::App->userAction
 #define krF2      Krusader::App->actF2
 #define krF3      Krusader::App->actF3
 #define krF4      Krusader::App->actF4
@@ -285,6 +284,13 @@ private:
 #define krLocationBar   Krusader::App->actLocationBar
 #define krJumpBack   Krusader::App->actJumpBack
 #define krSetJumpBack   Krusader::App->actSetJumpBack
+#endif
+
+#define krUserActionMenu      Krusader::App->userActionMenu
+#define krUserAction      Krusader::App->userAction
+
+
+#include "kractions.h"
 
 #ifdef __KJSEMBED__
 #define krJS   Krusader::App->js

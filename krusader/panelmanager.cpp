@@ -295,7 +295,7 @@ void PanelManager::slotRefreshActions()
     ListPanel *actPanel = _tabbar->getPanel(activeTab());
     if (actPanel) {
         bool locked = actPanel->isLocked();
-        Krusader::actLockTab->setText(locked ? i18n("Unlock Tab") : i18n("Lock Tab"));
+        krLockTab->setText(locked ? i18n("Unlock Tab") : i18n("Lock Tab"));
     }
 }
 

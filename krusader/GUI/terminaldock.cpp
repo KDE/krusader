@@ -124,17 +124,17 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
 {
     int pressedKey = (ke->key() | ke->modifiers());
 
-    if (Krusader::actToggleTerminal->shortcut().contains(pressedKey)) {
-        Krusader::actToggleTerminal->activate(QAction::Trigger);
+    if (krToggleTerminal->shortcut().contains(pressedKey)) {
+        krToggleTerminal->activate(QAction::Trigger);
         return true;
     }
 
-    if (Krusader::actSwitchFullScreenTE->shortcut().contains(pressedKey)) {
-        Krusader::actSwitchFullScreenTE->activate(QAction::Trigger);
+    if (krSwitchFullScreenTE->shortcut().contains(pressedKey)) {
+        krSwitchFullScreenTE->activate(QAction::Trigger);
         return true;
     }
 
-    if (Krusader::actPaste->shortcut().contains(pressedKey)) {
+    if (KrActions::actPaste->shortcut().contains(pressedKey)) {
         QString text = QApplication::clipboard()->text();
         if (! text.isEmpty()) {
             text.replace('\n', '\r');

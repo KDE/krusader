@@ -334,12 +334,12 @@ void KrusaderView::toggleVerticalMode()
 {
     if (horiz_splitter->orientation() == Qt::Vertical) {
         horiz_splitter->setOrientation(Qt::Horizontal);
-        Krusader::actVerticalMode->setText(i18n("Vertical Mode"));
-        Krusader::actVerticalMode->setIcon(KIcon("view-split-top-bottom"));
+        KrActions::actVerticalMode->setText(i18n("Vertical Mode"));
+        KrActions::actVerticalMode->setIcon(KIcon("view-split-top-bottom"));
     } else {
         horiz_splitter->setOrientation(Qt::Vertical);
-        Krusader::actVerticalMode->setText(i18n("Horizontal Mode"));
-        Krusader::actVerticalMode->setIcon(KIcon("view-split-left-right"));
+        KrActions::actVerticalMode->setText(i18n("Horizontal Mode"));
+        KrActions::actVerticalMode->setIcon(KIcon("view-split-left-right"));
     }
 }
 

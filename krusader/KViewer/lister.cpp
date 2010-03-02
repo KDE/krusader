@@ -545,7 +545,7 @@ void ListerTextArea::setUpScrollBar()
 
 void ListerTextArea::keyPressEvent(QKeyEvent * ke)
 {
-    if (Krusader::actCopy->shortcut().contains(QKeySequence(ke->key() | ke->modifiers()))) {
+    if (krCopy->shortcut().contains(QKeySequence(ke->key() | ke->modifiers()))) {
         copySelectedToClipboard();
         ke->accept();
         return;

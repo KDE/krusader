@@ -168,10 +168,10 @@ KrTrashWatcher::~KrTrashWatcher()
 
 void KrTrashWatcher::slotDirty(const QString&)
 {
-    Krusader::actTrashBin->setIcon(KIcon(KrTrashHandler::trashIcon()));
+    KrActions::actTrashBin->setIcon(KIcon(KrTrashHandler::trashIcon()));
 }
 
 void KrTrashWatcher::slotCreated(const QString&)
 {
-    Krusader::actTrashBin->setIcon(KIcon(KrTrashHandler::trashIcon()));
+    KrActions::actTrashBin->setIcon(KIcon(KrTrashHandler::trashIcon()));
 }

@@ -492,7 +492,7 @@ void KRslots::toggleHidden()
 {
     KConfigGroup group(krConfig, "Look&Feel");
     bool show = !group.readEntry("Show Hidden", _ShowHidden);
-    krApp->actToggleHidden->setChecked(show);
+    KrActions::actToggleHidden->setChecked(show);
     group.writeEntry("Show Hidden", show);
 
     MAIN_VIEW->leftMng->refreshAllTabs(true);
@@ -1047,8 +1047,8 @@ void KRslots::compareDirs()
 
 void KRslots::compareSetup()
 {
-    for (int i = 0; Krusader::compareArray[i] != 0; i++)
-        if ((*Krusader::compareArray[i])->isChecked()) {
+    for (int i = 0; KrActions::compareArray[i] != 0; i++)
+        if ((*KrActions::compareArray[i])->isChecked()) {
             KConfigGroup group(krConfig, "Private");
             group.writeEntry("Compare Mode", i);
             break;
@@ -1058,9 +1058,9 @@ void KRslots::compareSetup()
 /** called by actions actExec* to choose the built-in command line mode  */
 void KRslots::execTypeSetup()
 {
-    for (int i = 0; Krusader::execTypeArray[i] != 0; i++)
-        if ((*Krusader::execTypeArray[i])->isChecked()) {
-            if (*Krusader::execTypeArray[i] == Krusader::actExecTerminalEmbedded) {
+    for (int i = 0; KrActions::execTypeArray[i] != 0; i++)
+        if ((*KrActions::execTypeArray[i])->isChecked()) {
+            if (*KrActions::execTypeArray[i] == KrActions::actExecTerminalEmbedded) {
                 // if commands are to be executed in the TE, it must be loaded
                 MAIN_VIEW->terminal_dock->initialise();
             }

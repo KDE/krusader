@@ -932,11 +932,11 @@ void KrView::setDefaultFileIconSize()
 void KrView::refreshActions()
 {
     KConfigGroup grpSvr(_config, instance()->name());
-    Krusader::actDefaultZoom->setEnabled(
+    KrActions::actDefaultZoom->setEnabled(
         grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize).toInt() != _fileIconSize);
     int idx = iconSizes.indexOf(_fileIconSize);
-    Krusader::actZoomOut->setEnabled(idx > 0);
-    Krusader::actZoomIn->setEnabled(idx < (iconSizes.count() - 1));
+    KrActions::actZoomOut->setEnabled(idx > 0);
+    KrActions::actZoomIn->setEnabled(idx < (iconSizes.count() - 1));
 }
 
 QString KrView::nameInKConfig() const {

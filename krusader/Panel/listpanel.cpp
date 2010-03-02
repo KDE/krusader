@@ -645,12 +645,12 @@ void ListPanel::slotFocusOnMe()
 
     func->refreshActions();
 
-    if (Krusader::actView0) Krusader::actView0->setEnabled(panelType != 0);
-    if (Krusader::actView1) Krusader::actView1->setEnabled(panelType != 1);
-    if (Krusader::actView2) Krusader::actView2->setEnabled(panelType != 2);
-    if (Krusader::actView3) Krusader::actView3->setEnabled(panelType != 3);
-    if (Krusader::actView4) Krusader::actView4->setEnabled(panelType != 4);
-    if (Krusader::actView5) Krusader::actView5->setEnabled(panelType != 5);
+    if (KrActions::actView0) KrActions::actView0->setEnabled(panelType != 0);
+    if (KrActions::actView1) KrActions::actView1->setEnabled(panelType != 1);
+    if (KrActions::actView2) KrActions::actView2->setEnabled(panelType != 2);
+    if (KrActions::actView3) KrActions::actView3->setEnabled(panelType != 3);
+    if (KrActions::actView4) KrActions::actView4->setEnabled(panelType != 4);
+    if (KrActions::actView5) KrActions::actView5->setEnabled(panelType != 5);
 
     krApp->setUpdatesEnabled(true);
 }
