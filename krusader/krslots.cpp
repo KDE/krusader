@@ -1178,4 +1178,9 @@ void KRslots::defaultZoom()
     ACTIVE_PANEL->view->setDefaultFileIconSize();
 }
 
+void KRslots::cancelRefresh()
+{
+    ACTIVE_PANEL->inlineRefreshCancel();
+}
+
 #include "krslots.moc"

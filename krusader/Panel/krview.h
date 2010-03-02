@@ -232,7 +232,7 @@ public:
     // notes: constructor does as little as possible, setup() does the rest. esp, note that
     // if you need something from operator or properties, move it into setup()
     virtual void init();
-    virtual KrViewInstance *instance() = 0;
+    virtual KrViewInstance *instance() const = 0;
 
     static const IconSizes iconSizes;
 
@@ -292,9 +292,7 @@ public:
         _focused = false; _operator->prepareForPassive();
     }
     virtual void renameCurrentItem(); // Rename current item. returns immediately
-    virtual QString nameInKConfig() const {
-        return _nameInKConfig;
-    }
+    virtual QString nameInKConfig() const;
     virtual int  itemsPerPage() {
         return 0;
     }
@@ -438,7 +436,6 @@ protected:
     KrViewOperator *_operator;
     QHash<QString, KrViewItem*> _dict;
     bool _focused;
-    QString _nameInKConfig;
     KrPreviews *_previews;
     int _fileIconSize;
 };

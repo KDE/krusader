@@ -90,7 +90,6 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, bool &left, KConfig *c
 //     _mouseHandler = new KrMouseHandler(this, j);
     connect(_mouseHandler, SIGNAL(renameCurrentItem()), this, SLOT(renameCurrentItem()));
     setWidget(this);
-    _nameInKConfig = QString("KrInterDetailedView") + QString((left ? "Left" : "Right")) ;
     KConfigGroup group(krConfig, "Private");
 
     KConfigGroup grpSvr(_config, "Look&Feel");
@@ -137,7 +136,7 @@ KrInterDetailedView::~KrInterDetailedView()
 //     _itemHash.clear();
 }
 
-KrViewInstance* KrInterDetailedView::instance()
+KrViewInstance* KrInterDetailedView::instance() const
 {
     return &interDetailedView;
 }
@@ -288,7 +287,7 @@ void KrInterDetailedView::refreshColors()
 #endif
 void KrInterDetailedView::restoreSettings()
 {
-    KConfigGroup grpSvr(krConfig, _nameInKConfig);
+    KConfigGroup grpSvr(krConfig, nameInKConfig());
     QByteArray savedState = grpSvr.readEntry("Saved State", QByteArray());
 
     if (savedState.isEmpty()) {
@@ -313,7 +312,7 @@ void KrInterDetailedView::restoreSettings()
 void KrInterDetailedView::saveSettings()
 {
     QByteArray state = header()->saveState();
-    KConfigGroup grpSvr(krConfig, _nameInKConfig);
+    KConfigGroup grpSvr(krConfig, nameInKConfig());
     grpSvr.writeEntry("Saved State", state);
 }
 #if 0

@@ -146,6 +146,7 @@ public slots:
     void panelInactive(); // called when panel becomes inactive
     void vfs_refresh(KJob *job);
     void refreshColors();
+    void inlineRefreshCancel();
 
 
     ///////////////////////// service functions - called internally ////////////////////////
@@ -176,7 +177,6 @@ protected slots:
     void inlineRefreshInfoMessage(KJob* job, const QString &msg);
     void inlineRefreshListResult(KJob* job);
     void inlineRefreshPercent(KJob*, unsigned long);
-    void inlineRefreshCancel();
 
 
 signals:

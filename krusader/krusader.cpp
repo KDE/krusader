@@ -168,6 +168,7 @@ KAction *Krusader::actUserMenu = 0;
 KAction *Krusader::actManageUseractions = 0;
 KAction *Krusader::actSyncDirs = 0;
 KAction *Krusader::actSyncBrowse = 0;
+KAction *Krusader::actCancelRefresh = 0;
 KAction *Krusader::actF2 = 0;
 KAction *Krusader::actF3 = 0;
 KAction *Krusader::actF4 = 0;
@@ -701,6 +702,7 @@ void Krusader::setupActions() {
     NEW_KACTION(actLocate, i18n("&Locate..."), "edit-find", Qt::SHIFT + Qt::CTRL + Qt::Key_L, SLOTS, SLOT(locate()), "locate");
     NEW_KACTION(actSyncDirs, i18n("Synchronize &Directories..."), "kr_syncdirs", Qt::CTRL + Qt::Key_Y, SLOTS, SLOT(slotSynchronizeDirs()), "sync dirs");
     NEW_KACTION(actSyncBrowse, i18n("S&ynchron Directory Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, SLOTS, SLOT(slotSyncBrowse()), "sync browse");
+    NEW_KACTION(actCancelRefresh, i18n("Cancel Refresh of View"), "kr_cancel_refresh", Qt::Key_Escape, SLOTS, SLOT(cancelRefresh()), "cancel refresh");
     NEW_KACTION(actDiskUsage, i18n("D&isk Usage..."), "kr_diskusage", Qt::ALT + Qt::SHIFT + Qt::Key_S, SLOTS, SLOT(slotDiskUsage()), "disk usage");
     NEW_KACTION(actQueueManager, i18n("&Queue Manager..."), "document-multiple", Qt::ALT + Qt::SHIFT + Qt::Key_Q, SLOTS, SLOT(slotQueueManager()), "queue manager");
     NEW_KACTION(actKonfigurator, i18n("Configure &Krusader..."), "configure", 0, SLOTS, SLOT(startKonfigurator()), "konfigurator");

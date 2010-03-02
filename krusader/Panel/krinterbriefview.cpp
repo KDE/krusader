@@ -96,7 +96,6 @@ KrInterBriefView::KrInterBriefView(QWidget *parent, bool &left, KConfig *cfg):
 //     _mouseHandler = new KrMouseHandler(this, j);
     connect(_mouseHandler, SIGNAL(renameCurrentItem()), this, SLOT(renameCurrentItem()));
     setWidget(this);
-    _nameInKConfig = QString("KrInterBriefView") + QString((left ? "Left" : "Right")) ;
     KConfigGroup group(krConfig, "Private");
 
     KConfigGroup grpSvr(_config, "Look&Feel");
@@ -135,7 +134,7 @@ KrInterBriefView::~KrInterBriefView()
 //     _itemHash.clear();
 }
 
-KrViewInstance* KrInterBriefView::instance()
+KrViewInstance* KrInterBriefView::instance() const
 {
     return &interBriefView;
 }

@@ -192,7 +192,7 @@ const KrView::IconSizes KrView::iconSizes;
 
 KrView::KrView(KConfig *cfg) : _config(cfg), _widget(0), _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
         _numSelected(0), _count(0), _numDirs(0), _countSize(0), _selectedSize(0), _properties(0), _focused(false),
-        _nameInKConfig(QString()), _previews(0), _fileIconSize(0)
+        _previews(0), _fileIconSize(0)
 {
 }
 
@@ -209,8 +209,6 @@ KrView::~KrView()
 void KrView::init()
 {
     // sanity checks:
-    if (_nameInKConfig.isEmpty())
-        qFatal("_nameInKConfig must be set during construction of KrView inheritors");
     if (!_widget)
         qFatal("_widget must be set during construction of KrView inheritors");
     // ok, continue
@@ -939,4 +937,8 @@ void KrView::refreshActions()
     int idx = iconSizes.indexOf(_fileIconSize);
     Krusader::actZoomOut->setEnabled(idx > 0);
     Krusader::actZoomIn->setEnabled(idx < (iconSizes.count() - 1));
+}
+
+QString KrView::nameInKConfig() const {
+    return instance()->name() + QString((left ? "Left" : "Right"));
 }

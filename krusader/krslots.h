@@ -252,6 +252,7 @@ public slots:
 
     void jsConsole();
     void saveNewToolbarConfig();
+    void cancelRefresh();
     void zoomIn();
     void zoomOut();
     void defaultZoom();
