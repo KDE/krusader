@@ -35,6 +35,7 @@ add_subdirectory(VFS)
 message(STATUS "${CMAKE_CURRENT_SOURCE_DIR}: skipped subdir $(KRJSDIR)")
 
 set(krusader_SRCS
+    krglobal.cpp
     kractions.cpp
     paneltabbar.cpp 
     panelmanager.cpp 

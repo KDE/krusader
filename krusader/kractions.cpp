@@ -338,7 +338,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     actMountMan->setShortcut(Qt::ALT + Qt::Key_Slash);
     krusaderApp->connect(actMountMan, SIGNAL(triggered(bool)), SLOTS, SLOT(runMountMan()));
     krusaderApp->connect(((KToolBarPopupAction*) actMountMan) ->menu(), SIGNAL(aboutToShow()),
-            krusaderApp->mountMan, SLOT(quickList()));
+            &krMtMan, SLOT(quickList()));
     krusaderApp->actionCollection()->addAction("mountman", actMountMan);
 
     NEW_KACTION(actFind, i18n("&Search..."), "system-search", Qt::CTRL + Qt::Key_S, SLOTS, SLOT(search()), "find");

@@ -93,8 +93,8 @@
         MAIN_VIEW->left->func->refresh(); \
         MAIN_VIEW->right->func->refresh();\
         p->slotFocusOnMe(); }
-#define ACTIVE_PANEL_MANAGER  (ACTIVE_PANEL == krApp->mainView->left ? krApp->mainView->leftMng : \
-                               krApp->mainView->rightMng)
+#define ACTIVE_PANEL_MANAGER  (ACTIVE_PANEL == MAIN_VIEW->left ? MAIN_VIEW->leftMng : \
+                               MAIN_VIEW->rightMng)
 
 void KRslots::sendFileByEmail(const KUrl::List &urls)
 {
@@ -586,7 +586,7 @@ void KRslots::runMountMan()
         return;
     }
 
-    krApp->mountMan->mainWindow();
+    krMtMan.mainWindow();
 }
 
 void KRslots::runTerminal(const QString & dir, const QStringList & args)
@@ -698,7 +698,7 @@ void KRslots::saveNewToolbarConfig()
 
 void KRslots::configKeys()
 {
-    KrKeyDialog(MAIN_VIEW);
+    KrKeyDialog d(MAIN_VIEW);
 }
 
 // misc

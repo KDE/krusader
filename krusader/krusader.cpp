@@ -69,6 +69,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kdeversion.h>
 
 #include "krusaderversion.h"
+#include "krglobal.h"
 #include "kicons.h"
 #include "VFS/krpermhandler.h"
 #include "GUI/krusaderstatus.h"
@@ -221,7 +222,7 @@ KAction **Krusader::execTypeArray[] = {&actExecStartAndForget, &actExecCollectSe
 KMenu *Krusader::userActionMenu = 0;
 UserAction *Krusader::userAction = 0;
 UserMenu *Krusader::userMenu = 0;
-KrBookmarkHandler *Krusader::bookman = 0;
+// KrBookmarkHandler *Krusader::bookman = 0;
 //QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
 
 #ifdef __KJSEMBED__
@@ -241,7 +242,7 @@ Krusader::Krusader() : KParts::MainWindow(0,
 
     // create the "krusader"
     App = this;
-    slot = new KRslots(this);
+    SLOTS = new KRslots(this);
     setXMLFile("krusaderui.rc");   // kpart-related xml file
 
     plzWait = new KRPleaseWaitHandler();
@@ -249,7 +250,7 @@ Krusader::Krusader() : KParts::MainWindow(0,
     bool runKonfig = versionControl();
 
     QString message;
-    switch (config->accessMode()) {
+    switch (krConfig->accessMode()) {
     case KConfigBase::NoAccess :
         message = "Krusader's configuration file can't be found. Default values will be used.";
         break;
@@ -265,21 +266,21 @@ Krusader::Krusader() : KParts::MainWindow(0,
     }
 
     // create an icon loader
-    iconLoader = KIconLoader::global();
+    krLoader = KIconLoader::global();
 //   iconLoader->addExtraDesktopThemes();
 
     // create MountMan
-    mountMan = new KMountMan();
+    KrGlobal::mountMan = new KMountMan();
 
     // create bookman
-    bookman = new KrBookmarkHandler();
+    krBookMan = new KrBookmarkHandler();
 
     popularUrls = new PopularUrls(this);
 
     queueManager = new QueueManager();
 
     // create the main view
-    mainView = new KrusaderView(this);
+    MAIN_VIEW = new KrusaderView(this);
 
     // setup all the krusader's actions
     setupActions();
@@ -335,7 +336,7 @@ Krusader::Krusader() : KParts::MainWindow(0,
         rightTabs.clear();
     }
     // starting the panels
-    mainView->start(gs, startProfile.isEmpty(), leftTabs, rightTabs);
+    MAIN_VIEW->start(gs, startProfile.isEmpty(), leftTabs, rightTabs);
 
     // create the user menu
     userMenu = new UserMenu(this);
@@ -354,12 +355,12 @@ Krusader::Krusader() : KParts::MainWindow(0,
     // This enables Krusader to show a tray icon
     sysTray = new KSystemTrayIcon(this);
     // Krusader::privIcon() returns either "krusader_blue" or "krusader_red" if the user got root-privileges
-    sysTray->setIcon(iconLoader->loadIcon(privIcon(), KIconLoader::Panel, 22));
+    sysTray->setIcon(krLoader->loadIcon(privIcon(), KIconLoader::Panel, 22));
     sysTray->hide();
 
     connect(sysTray, SIGNAL(quitSelected()), this, SLOT(setDirectExit()));
 
-    setCentralWidget(mainView);
+    setCentralWidget(MAIN_VIEW);
     bool startToTray = gs.readEntry("Start To Tray", _StartToTray);
     bool minimizeToTray = gl.readEntry("Minimize To Tray", _MinimizeToTray);
     bool singleInstanceMode = gl.readEntry("Single Instance Mode", _SingleInstanceMode);
@@ -376,15 +377,15 @@ Krusader::Krusader() : KParts::MainWindow(0,
     setCursor(Qt::ArrowCursor);
 
     if (! startProfile.isEmpty())
-        mainView->profiles(startProfile);
+        MAIN_VIEW->profiles(startProfile);
     // let the good times rool :)
     updateGUI(true);
 
     if (runKonfig)
-        slot->runKonfigurator(true);
+        SLOTS->runKonfigurator(true);
 
     if (!runKonfig) {
-        KConfigGroup cfg(config, "Private");
+        KConfigGroup cfg(krConfig, "Private");
         if (cfg.readEntry("Maximized", false))
             restoreWindowSize(cfg);
         else {
@@ -416,8 +417,8 @@ Krusader::~Krusader()
     if (!isExiting)    // save the settings if it was not saved (SIGTERM)
         saveSettings();
 
-    delete mainView;
-    mainView = 0;
+    delete MAIN_VIEW;
+    MAIN_VIEW = 0;
     App = 0;
 }
 
@@ -427,8 +428,8 @@ bool Krusader::versionControl()
     bool retval = false;
     // create config file
     // TODO: according to docs, KGlobal::config() should return KConfig*, but in reality (in beta1), it returns KSharedPtr<KConfig> or something ?!
-    config = KGlobal::config().data();
-    KConfigGroup nogroup(config, QString());
+    krConfig = KGlobal::config().data();
+    KConfigGroup nogroup(krConfig, QString());
 
     bool firstRun = nogroup.readEntry(FIRST_RUN, true);
 
@@ -444,7 +445,7 @@ bool Krusader::versionControl()
            exit( 1 );
         }*/
         retval = true;
-        config->reparseConfiguration();
+        krConfig->reparseConfiguration();
     }
 #endif
 
@@ -455,7 +456,7 @@ bool Krusader::versionControl()
     }
     nogroup.writeEntry("Version", VERSION);
     nogroup.writeEntry(FIRST_RUN, false);
-    config->sync();
+    krConfig->sync();
     return retval;
 }
 
@@ -471,7 +472,7 @@ void Krusader::showEvent(QShowEvent *)
 {
     if (isExiting)
         return;
-    KConfigGroup group(config, "Look&Feel");
+    KConfigGroup group(krConfig, "Look&Feel");
     bool showTrayIcon = group.readEntry("Minimize To Tray", _MinimizeToTray);
     bool singleInstanceMode = group.readEntry("Single Instance Mode", _SingleInstanceMode);
 
@@ -489,7 +490,7 @@ void Krusader::hideEvent(QHideEvent *e)
             sysTray->hide();
         return;
     }
-    KConfigGroup group(config, "Look&Feel");
+    KConfigGroup group(krConfig, "Look&Feel");
     bool showTrayIcon = group.readEntry("Minimize To Tray", _MinimizeToTray);
 
     bool isModalTopWidget = false;
@@ -524,7 +525,7 @@ void Krusader::resizeEvent(QResizeEvent *e) {
 void Krusader::setupAccels() {
     KAction * tab = new KAction("Tab-Switch panel", this);
     tab->setShortcut(Qt::Key_Tab);
-    connect(tab, SIGNAL(triggered(bool)), mainView, SLOT(panelSwitch()));
+    connect(tab, SIGNAL(triggered(bool)), MAIN_VIEW, SLOT(panelSwitch()));
     actionCollection()->addAction("tab", tab);
 }
 
@@ -803,28 +804,28 @@ void Krusader::setupActions() {
 ///////////////////////////////////////////////////////////////////////////
 
 void Krusader::savePosition() {
-    KConfigGroup cfg(config, "Private");
+    KConfigGroup cfg(krConfig, "Private");
     cfg.writeEntry("Maximized", isMaximized());
     if (isMaximized())
-        saveWindowSize(config->group("Private"));
+        saveWindowSize(krConfig->group("Private"));
     else {
         cfg.writeEntry("Start Position", isMaximized() ? oldPos : pos());
         cfg.writeEntry("Start Size", isMaximized() ? oldSize : size());
     }
-    QList<int> lst = mainView->horiz_splitter->sizes();
+    QList<int> lst = MAIN_VIEW->horiz_splitter->sizes();
     cfg.writeEntry("Splitter Sizes", lst);
-    mainView->left->popup->saveSizes();
-    mainView->right->popup->saveSizes();
+    MAIN_VIEW->left->popup->saveSizes();
+    MAIN_VIEW->right->popup->saveSizes();
     if (!MAIN_VIEW->getTerminalEmulatorSplitterSizes().isEmpty())
         cfg.writeEntry("Terminal Emulator Splitter Sizes", MAIN_VIEW->getTerminalEmulatorSplitterSizes());
 
     // save view settings ---> fix when we have tabbed-browsing
-    mainView->left->view->saveSettings();
-    mainView->right->view->saveSettings();
+    MAIN_VIEW->left->view->saveSettings();
+    MAIN_VIEW->right->view->saveSettings();
 
-    cfg = config->group("Startup");
-    cfg.writeEntry("Vertical Mode", mainView->isVertical());
-    config->sync();
+    cfg = krConfig->group("Startup");
+    cfg.writeEntry("Vertical Mode", MAIN_VIEW->isVertical());
+    krConfig->sync();
 }
 
 void Krusader::saveSettings() {
@@ -834,15 +835,15 @@ void Krusader::saveSettings() {
     cfg = krConfig->group("Actions Toolbar");
     toolBar("actionsToolBar")->saveSettings(cfg);
 
-    cfg = config->group("Startup");
-    mainView->saveSettings(cfg);
+    cfg = krConfig->group("Startup");
+    MAIN_VIEW->saveSettings(cfg);
 
     bool rememberpos = cfg.readEntry("Remember Position", _RememberPos);
     bool uisavesettings = cfg.readEntry("UI Save Settings", _UiSave);
 
     // save the popup panel's page of the CURRENT tab
-    cfg.writeEntry("Left Panel Popup", mainView->left->popup->currentPage());
-    cfg.writeEntry("Right Panel Popup", mainView->right->popup->currentPage());
+    cfg.writeEntry("Left Panel Popup", MAIN_VIEW->left->popup->currentPage());
+    cfg.writeEntry("Right Panel Popup", MAIN_VIEW->right->popup->currentPage());
 
     // save size and position
     if (rememberpos || uisavesettings) {
@@ -857,29 +858,29 @@ void Krusader::saveSettings() {
         cfg.writeEntry("Show FN Keys", KrActions::actToggleFnkeys->isChecked());
         cfg.writeEntry("Show Cmd Line", KrActions::actToggleCmdline->isChecked());
         cfg.writeEntry("Show Terminal Emulator", KrActions::actToggleTerminal->isChecked());
-        cfg.writeEntry("Vertical Mode", mainView->isVertical());
+        cfg.writeEntry("Vertical Mode", MAIN_VIEW->isVertical());
         cfg.writeEntry("Start To Tray", isHidden());
     }
 
     // save popular links
     popularUrls->save();
 
-    config->sync();
+    krConfig->sync();
 }
 
 void Krusader::refreshView() {
-    delete mainView;
-    mainView = new KrusaderView(this);
-    setCentralWidget(mainView);
-    KConfigGroup cfg(config, "Private");
+    delete MAIN_VIEW;
+    MAIN_VIEW = new KrusaderView(this);
+    setCentralWidget(MAIN_VIEW);
+    KConfigGroup cfg(krConfig, "Private");
     resize(cfg.readEntry("Start Size", _StartSize));
     move(cfg.readEntry("Start Position", _StartPosition));
-    mainView->show();
+    MAIN_VIEW->show();
     show();
 }
 
 void Krusader::configChanged() {
-    KConfigGroup group(config, "Look&Feel");
+    KConfigGroup group(krConfig, "Look&Feel");
     bool minimizeToTray = group.readEntry("Minimize To Tray", _MinimizeToTray);
     bool singleInstanceMode = group.readEntry("Single Instance Mode", _SingleInstanceMode);
 
@@ -1055,7 +1056,7 @@ void Krusader::updateUserActions() {
 void Krusader::updateGUI(bool enforce) {
     // now, check if we need to create a konsole_part
     // call the XML GUI function to draw the UI
-    createGUI(mainView->terminal_dock->part());
+    createGUI(MAIN_VIEW->terminal_dock->part());
 
     // this needs to be called AFTER createGUI() !!!
     updateUserActions();
@@ -1086,33 +1087,33 @@ void Krusader::updateGUI(bool enforce) {
             KrActions::actShowStatusBar->setChecked(true);
         }
         if (!cfg.readEntry("Show Cmd Line", _ShowCmdline)) {
-            mainView->cmdLine->hide();
+            MAIN_VIEW->cmdLine->hide();
             KrActions::actToggleCmdline->setChecked(false);
         } else {
-            mainView->cmdLine->show();
+            MAIN_VIEW->cmdLine->show();
             KrActions::actToggleCmdline->setChecked(true);
         }
 
         // update the Fn bar to the shortcuts selected by the user
-        mainView->fnKeys->updateShortcuts();
+        MAIN_VIEW->fnKeys->updateShortcuts();
         if (!cfg.readEntry("Show FN Keys", _ShowFNkeys)) {
-            mainView->fnKeys->hide();
+            MAIN_VIEW->fnKeys->hide();
             KrActions::actToggleFnkeys->setChecked(false);
         } else {
-            mainView->fnKeys->show();
+            MAIN_VIEW->fnKeys->show();
             KrActions::actToggleFnkeys->setChecked(true);
         }
         // set vertical mode
         if (cfg.readEntry("Vertical Mode", false)) {
-            mainView->toggleVerticalMode();
+            MAIN_VIEW->toggleVerticalMode();
         }
         if (cfg.readEntry("Show Terminal Emulator", _ShowTerminalEmulator)) {
-            mainView->slotTerminalEmulator(true);   // create konsole_part
-            mainView->vert_splitter->setSizes(mainView->verticalSplitterSizes);
+            MAIN_VIEW->slotTerminalEmulator(true);   // create konsole_part
+            MAIN_VIEW->vert_splitter->setSizes(MAIN_VIEW->verticalSplitterSizes);
         } else if (KrActions::actExecTerminalEmbedded->isChecked()) {
             //create (but not show) terminal emulator,
             //if command-line commands are to be run there
-            mainView->terminal_dock->initialise();
+            MAIN_VIEW->terminal_dock->initialise();
         }
     }
     // popular urls

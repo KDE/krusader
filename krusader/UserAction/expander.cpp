@@ -623,9 +623,9 @@ TagString exp_Goto::expFunc(const ListPanel* panel, const QStringList& parameter
 
     if (newTab) {
         if (panel == LEFT_PANEL)
-            krApp->mainView->leftMng->slotNewTab(parameter[0]);
+            MAIN_VIEW->leftMng->slotNewTab(parameter[0]);
         else
-            krApp->mainView->rightMng->slotNewTab(parameter[0]);
+            MAIN_VIEW->rightMng->slotNewTab(parameter[0]);
     } else {
         panel->func->openUrl(parameter[0], "");
         const_cast<ListPanel*>(panel)->slotFocusOnMe();

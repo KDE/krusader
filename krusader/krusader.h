@@ -50,6 +50,7 @@
 #include <QHideEvent>
 #include <kdebug.h>
 #include "VFS/kiojobwrapper.h"
+#include "krglobal.h"
 
 #ifdef __KJSEMBED__
 class KrJS;
@@ -106,7 +107,7 @@ public slots:
 
 protected:
     bool queryExit() {
-        config->sync();
+        krConfig->sync();
         return true;
     }
     bool queryClose();
@@ -124,10 +125,12 @@ public Q_SLOTS:
 public:
     static Krusader *App;       // a kApp style pointer
     static QString   AppName;   // the name of the application
+#if 0
     KMountMan *mountMan;  // krusader's Mount Manager
     KrusaderView *mainView;  // The GUI
     KConfig *config;    // allow everyone to access the config
     KIconLoader *iconLoader; // the app's icon loader
+#endif
     PopularUrls *popularUrls; // holds a sorted list of the most popular urls visited
     QueueManager *queueManager;
 #if 0
@@ -172,12 +175,16 @@ public:
     bool wasWaitingCancelled() const;
 
     KrusaderStatus *status;
+#if 0
     KRslots *slot;
+#endif
 
     static KMenu *userActionMenu;
     static UserMenu *userMenu;
     static UserAction *userAction;
+#if 0
     static KrBookmarkHandler *bookman;
+#endif
 
 #ifdef __KJSEMBED__
     static KrJS *js;
@@ -201,8 +208,11 @@ private:
                               QStringList names, QString confName);
 };
 
+
 // main modules
 #define krApp        Krusader::App
+
+#if 0
 #define krConfig     Krusader::App->config
 #define krMtMan      (*(Krusader::App->mountMan))
 #define krBookMan    Krusader::App->bookman
@@ -222,7 +232,7 @@ private:
 #define RIGHT_PANEL  (MAIN_VIEW->right)
 #define RIGHT_FUNC (RIGHT_PANEL->func)
 #define RIGHT_MNG  (MAIN_VIEW->rightMng)
-#if 0
+
 // krusader's actions - things krusader can do!
 #define krProperties      Krusader::App->actProperties     // file properties
 #define krPack            Krusader::App->actPack           // pack files into an archive

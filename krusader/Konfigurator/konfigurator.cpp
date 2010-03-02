@@ -185,7 +185,7 @@ void Konfigurator::slotApply()
     }
 
     // really ugly, but reload the Fn keys just in case - csaba: any better idea?
-    krApp->mainView->fnKeys->updateShortcuts();
+    MAIN_VIEW->fnKeys->updateShortcuts();
 }
 
 void Konfigurator::slotCancel()

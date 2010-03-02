@@ -257,8 +257,8 @@ int main(int argc, char *argv[])
     KDE_signal(SIGHUP, sigterm_handler);
 
     // make sure we receive X's focus in/out events
-    QObject::connect(&app, SIGNAL(windowActive()), krusader.slot, SLOT(windowActive()));
-    QObject::connect(&app, SIGNAL(windowInactive()), krusader.slot, SLOT(windowInactive()));
+    QObject::connect(&app, SIGNAL(windowActive()), SLOTS, SLOT(windowActive()));
+    QObject::connect(&app, SIGNAL(windowInactive()), SLOTS, SLOT(windowInactive()));
 
     // hide splashscreen
     if (splash) {

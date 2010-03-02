@@ -180,7 +180,7 @@ void KCMDLine::slotRun()
 
 void KCMDLine::slotReturnFocus()
 {
-    Krusader::App->mainView->cmdLineUnFocus();
+    MAIN_VIEW->cmdLineUnFocus();
 }
 
 static const KrActionBase::ExecType execModesMenu[] = {
