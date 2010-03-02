@@ -33,6 +33,7 @@
 #include "../defaults.h"
 #include "../VFS/krpermhandler.h"
 #include "../Dialogs/krspecialwidgets.h"
+#include "krviewfactory.h"
 #include "krviewitem.h"
 #include "krselectionmode.h"
 #include <qnamespace.h>
@@ -217,6 +218,8 @@ void KrView::init()
     initOperator();
     setup();
     setDefaultFileIconSize();
+    KConfigGroup grp(_config, instance()->name());
+    showPreviews(grp.readEntry("Show Previews", false));
 }
 
 void KrView::initProperties()
@@ -224,7 +227,8 @@ void KrView::initProperties()
     _properties = createViewProperties();
 
     KConfigGroup grpSvr(_config, "Look&Feel");
-    _properties->displayIcons = grpSvr.readEntry("With Icons", _WithIcons);
+    KConfigGroup grpInstance(_config, instance()->name());
+    _properties->displayIcons = grpInstance.readEntry("With Icons", _WithIcons);
     bool dirsByNameAlways = grpSvr.readEntry("Always sort dirs by name", false);
     _properties->sortMode = static_cast<KrViewProperties::SortSpec>(KrViewProperties::Name |
                             KrViewProperties::DirsFirst |
@@ -923,12 +927,15 @@ void KrView::setFileIconSize(int size)
 
 void KrView::setDefaultFileIconSize()
 {
-    KConfigGroup grpSvr(_config, "Look&Feel");
+    KConfigGroup grpSvr(_config, instance()->name());
     setFileIconSize((grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt());
 }
 
 void KrView::refreshActions()
 {
+    KConfigGroup grpSvr(_config, instance()->name());
+    Krusader::actDefaultZoom->setEnabled(
+        grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize).toInt() != _fileIconSize);
     int idx = iconSizes.indexOf(_fileIconSize);
     Krusader::actZoomOut->setEnabled(idx > 0);
     Krusader::actZoomIn->setEnabled(idx < (iconSizes.count() - 1));

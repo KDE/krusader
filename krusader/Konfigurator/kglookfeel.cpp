@@ -122,6 +122,40 @@ void KgLookFeel::setupOperationTab()
     lookAndFeelLayout->addWidget(quicksearchGroup, 1, 0);
 }
 
+void KgLookFeel::setupView(KrViewInstance *instance, QWidget *parent)
+{
+    QGridLayout *grid = createGridLayout(parent);
+
+// -------------------- Filelist icon size ----------------------------------
+    QHBoxLayout *hbox = new QHBoxLayout();
+
+    hbox->addWidget(new QLabel(i18n("Filelist icon size:"), parent));
+
+    KONFIGURATOR_NAME_VALUE_PAIR *iconSizes = new KONFIGURATOR_NAME_VALUE_PAIR[KrView::iconSizes.count()];
+    for(int i = 0; i < KrView::iconSizes.count(); i++)
+        iconSizes[i].text =  iconSizes[i].value = QString::number(KrView::iconSizes[i]);
+    KonfiguratorComboBox *cmb = createComboBox(instance->name(), "Filelist Icon Size", _FilelistIconSize, iconSizes, KrView::iconSizes.count(), parent, true, true, PAGE_PANEL);
+    delete [] iconSizes;
+    cmb->lineEdit()->setValidator(new QRegExpValidator(QRegExp("[1-9]\\d{0,1}"), cmb));
+    hbox->addWidget(cmb);
+
+    hbox->addWidget(createSpacer(parent));
+
+    grid->addLayout(hbox, 1, 0);
+
+//--------------------------------------------------------------------
+    KONFIGURATOR_CHECKBOX_PARAM iconSettings[] =
+        //   cfg_class             cfg_name        default       text            restart        tooltip
+    {
+        {instance->name(), "With Icons",      _WithIcons,   i18n("Use icons in the filenames"), true,  i18n("Show the icons for filenames and directories.") },
+        {instance->name(), "Show Previews",   false,        i18n("Show previews"),              false, i18n("Show previews of files and directories.") },
+    };
+
+    KonfiguratorCheckBoxGroup *iconSett = createCheckBoxGroup(2, 0, iconSettings, 2 /*count*/, parent, PAGE_PANEL);
+
+    grid->addWidget(iconSett, 2, 0, 1, 2);
+}
+
 // ----------------------------------------------------------------------------------
 //  ---------------------------- PANEL TAB -------------------------------------
 // ----------------------------------------------------------------------------------
@@ -138,6 +172,7 @@ void KgLookFeel::setupPanelTab()
     panelLayout->setSpacing(6);
     panelLayout->setContentsMargins(11, 11, 11, 11);
     QGroupBox *panelGrp = createFrame(i18n("Panel settings"), tab_panel);
+    panelLayout->addWidget(panelGrp, 0, 0);
     QGridLayout *panelGrid = createGridLayout(panelGrp);
 
 // ----------------------------------------------------------------------------------
@@ -184,46 +219,26 @@ void KgLookFeel::setupPanelTab()
 
     panelGrid->addLayout(hbox, 1, 0);
 
-// -------------------- Filelist icon size ----------------------------------
-    hbox = new QHBoxLayout();
+// =========================================================
+    panelGrid->addWidget(createLine(panelGrp), 2, 0);
 
-    hbox->addWidget(new QLabel(i18n("Filelist icon size:"), panelGrp));
-
-    KONFIGURATOR_NAME_VALUE_PAIR *iconSizes = new KONFIGURATOR_NAME_VALUE_PAIR[KrView::iconSizes.count()];
-    for(int i = 0; i < KrView::iconSizes.count(); i++)
-        iconSizes[i].text =  iconSizes[i].value = QString::number(KrView::iconSizes[i]);
-    cmb = createComboBox("Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, KrView::iconSizes.count(), panelGrp, true, true, PAGE_PANEL);
-    delete [] iconSizes;
-    cmb->lineEdit()->setValidator(new QRegExpValidator(QRegExp("[1-9]\\d{0,1}"), cmb));
-    hbox->addWidget(cmb);
-
-    hbox->addWidget(createSpacer(panelGrp));
-
-    panelGrid->addLayout(hbox, 2, 0);
-
-// --------------------------------------------------------------------------
-// --------------------------------------------------------------------------
-
-    panelGrid->addWidget(createLine(panelGrp), 3, 0);
     KONFIGURATOR_CHECKBOX_PARAM panelSettings[] =
         //   cfg_class  cfg_name                default text                                  restart tooltip
     {
-        {"Look&Feel", "With Icons",                     _WithIcons,              i18n("Use icons in the filenames"), true ,  i18n("Show the icons for filenames and directories.") },
-        {"Look&Feel", "Load User Defined Folder Icons", _UserDefinedFolderIcons, i18n("Load the user defined folder icons"), true ,  i18n("Load the user defined directory icons (can cause decrease in performance).") },
         {"Look&Feel", "Human Readable Size",            _HumanReadableSize,      i18n("Use human-readable file size"), true ,  i18n("File sizes are displayed in B, KB, MB and GB, not just in bytes.") },
         {"Look&Feel", "Show Hidden",                    _ShowHidden,             i18n("Show hidden files"),      false,  i18n("Display files beginning with a dot.") },
         {"Look&Feel", "Numeric permissions",            _NumericPermissions,     i18n("Numeric Permissions"), true,  i18n("Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.") },
+        {"Look&Feel", "Load User Defined Folder Icons", _UserDefinedFolderIcons, i18n("Load the user defined folder icons"), true ,  i18n("Load the user defined directory icons (can cause decrease in performance).") },
     };
 
-    KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup(2, 0, panelSettings, 5 /*count*/, panelGrp, PAGE_PANEL);
+    KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup(2, 0, panelSettings, 4 /*count*/, panelGrp, PAGE_PANEL);
 
-    panelGrid->addWidget(panelSett, 4, 0, 1, 2);
+    panelGrid->addWidget(panelSett, 3, 0, 1, 2);
 
-// --------------------------------------------------------------------------
-// --------------------------------------------------------------------------
+// =========================================================
+    panelGrid->addWidget(createLine(panelGrp), 4, 0);
 
 // ------------------------ Sort Method ----------------------------------
-    panelGrid->addWidget(createLine(panelGrp), 5, 0);
 
     hbox = new QHBoxLayout();
 
@@ -240,7 +255,7 @@ void KgLookFeel::setupPanelTab()
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(panelGrp));
 
-    panelGrid->addLayout(hbox, 6, 0);
+    panelGrid->addLayout(hbox, 5, 0);
 
 // ------------------------ Sort Options ----------------------------------
     KONFIGURATOR_CHECKBOX_PARAM sortSettings[] =
@@ -253,10 +268,20 @@ void KgLookFeel::setupPanelTab()
     KonfiguratorCheckBoxGroup *sortSett = createCheckBoxGroup(2, 0, sortSettings,
                                           2 /*count*/, panelGrp, PAGE_PANEL);
 
-    panelGrid->addWidget(sortSett, 7, 0, 1, 2);
+    panelGrid->addWidget(sortSett, 6, 0, 1, 2);
 
+// =========================================================
+    panelGrid->addWidget(createLine(panelGrp), 10, 0);
 
-    panelLayout->addWidget(panelGrp, 0, 0);
+// ----- Individual Settings Per View Type ------------------------
+    QTabWidget *tabs_view = new QTabWidget(panelGrp);
+    panelGrid->addWidget(tabs_view, 11, 0);
+
+    for(int i = 0; i < views.count(); i++) {
+        QWidget *tab = new QWidget(tabs_view);
+        tabs_view->addTab(tab, views[i]->description());
+        setupView(views[i], tab);
+    }
 
 // ---------------------------------------------------------------------------------------
 // -----------------------------  Panel Layout -------------------------------------------

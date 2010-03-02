@@ -34,6 +34,7 @@
 #include "konfiguratorpage.h"
 
 class KrTreeWidget;
+class KrViewInstance;
 
 class KgLookFeel : public KonfiguratorPage
 {
@@ -64,6 +65,7 @@ private:
     void setupPanelTab();
     void setupPanelToolbarTab();
     void setupMouseModeTab();
+    void setupView(KrViewInstance *instance, QWidget *parent);
     QTabWidget *tabWidget;
 };
 
