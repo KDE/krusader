@@ -89,7 +89,7 @@ PanelManager::PanelManager(QWidget *parent, bool left) :
 
     if (HIDE_ON_SINGLE_TAB) HIDE
         else SHOW
-        }
+}
 
 void PanelManager::slotChangePanel(ListPanel *p)
 {
