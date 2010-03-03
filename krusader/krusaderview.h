@@ -47,6 +47,9 @@
 
 #include "krglobal.h"
 
+//HACK
+#include "Panel/krpanel.h"
+
 class PanelManager;
 class ListPanel;
 

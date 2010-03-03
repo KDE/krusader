@@ -61,8 +61,8 @@ public:
     static KrusaderView *mainView;  // The GUI
     static QWidget *mainWindow;
     static UserAction *userAction;
-    static ListPanel  *activePanel;
-//     static KrPanel *activePanel;
+//     static ListPanel  *activePanel;
+    static KrPanel *activePanel;
 };
 
 #define krConfig     KrGlobal::config
@@ -74,17 +74,17 @@ public:
 #define krMainWindow KrGlobal::mainWindow
 #define krUserAction KrGlobal::userAction
 
-#define ACTIVE_PANEL (KrGlobal::activePanel)
+#define ACTIVE_PANEL (KrGlobal::activePanel->gui)
 
 #define ACTIVE_MNG   (MAIN_VIEW->activeManager())
 #define ACTIVE_FUNC  (ACTIVE_PANEL->func)
 #define OTHER_MNG  (MAIN_VIEW->inactiveManager())
 #define OTHER_PANEL (ACTIVE_PANEL->otherPanel)
 #define OTHER_FUNC (OTHER_PANEL->func)
-#define LEFT_PANEL (MAIN_VIEW->left)
+#define LEFT_PANEL (MAIN_VIEW->left->gui)
 #define LEFT_FUNC  (LEFT_PANEL->func)
 #define LEFT_MNG  (MAIN_VIEW->leftMng)
-#define RIGHT_PANEL  (MAIN_VIEW->right)
+#define RIGHT_PANEL  (MAIN_VIEW->right->gui)
 #define RIGHT_FUNC (RIGHT_PANEL->func)
 #define RIGHT_MNG  (MAIN_VIEW->rightMng)
 

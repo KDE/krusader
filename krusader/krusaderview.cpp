@@ -130,7 +130,7 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     leftMng->startPanel(left, leftUrl);
 
     // make the left panel focused at program start
-    ACTIVE_PANEL = left;
+    KrGlobal::activePanel = left;
     ACTIVE_PANEL->slotFocusOnMe();  // left starts out active
 
     for (int i = 1; i < leftTabs.count(); i++)
@@ -191,7 +191,8 @@ void KrusaderView::panelSwitch()
 }
 void KrusaderView::slotSetActivePanel(ListPanel *p)
 {
-    ACTIVE_PANEL = p;
+//     ACTIVE_PANEL = p;
+    KrGlobal::activePanel = p;
 }
 
 void KrusaderView::slotTerminalEmulator(bool show)
