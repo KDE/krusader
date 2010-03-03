@@ -21,7 +21,7 @@
 #include <kurl.h>
 #include <klocale.h>
 
-#include "../krusader.h"
+#include "../kractions.h"
 #include "useraction.h"
 #include "kraction.h"
 

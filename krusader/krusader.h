@@ -176,17 +176,13 @@ public:
 #if 0
     KRslots *slot;
 #endif
-
-    static KMenu *userActionMenu;
     static UserMenu *userMenu;
-    static UserAction *userAction;
 #if 0
     static KrBookmarkHandler *bookman;
 #endif
 
 #ifdef __KJSEMBED__
     static KrJS *js;
-    static KAction *actShowJSConsole;
 #endif
 
 signals:
@@ -294,12 +290,9 @@ private:
 #define krSetJumpBack   Krusader::App->actSetJumpBack
 #endif
 
-#define krUserActionMenu      Krusader::App->userActionMenu
-#define krUserAction      Krusader::App->userAction
 
 #ifdef __KJSEMBED__
 #define krJS   Krusader::App->js
-#define krJSConsole  Krusader::App->actShowJSConsole
 #endif
 
 #endif

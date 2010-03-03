@@ -38,6 +38,7 @@
 #include "../UserAction/useraction.h"
 #include "../UserAction/kraction.h"
 #include "../krusader.h"
+#include "../kractions.h"
 
 #define ICON(N)  KIconLoader::global()->loadIcon(N, KIconLoader::Toolbar)
 //This is the filter in the KFileDialog of Import/Export:

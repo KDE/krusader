@@ -219,11 +219,10 @@ KAction **Krusader::execTypeArray[] = {&actExecStartAndForget, &actExecCollectSe
                                        &actExecTerminalExternal, &actExecTerminalEmbedded, 0
                                       };
 #endif
-KMenu *Krusader::userActionMenu = 0;
-UserAction *Krusader::userAction = 0;
 UserMenu *Krusader::userMenu = 0;
 // KrBookmarkHandler *Krusader::bookman = 0;
 //QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
+
 
 #ifdef __KJSEMBED__
 KrJS *Krusader::js = 0;
@@ -792,12 +791,6 @@ void Krusader::setupActions() {
     actFind->setToolTip(i18n("Search for files"));
 #endif
     KrActions::setupActions(this);
-    // setup all UserActions
-    userAction = new UserAction();
-
-#ifdef __KJSEMBED__
-    actShowJSConsole = new KAction(i18n("JavaScript Console..."), Qt::ALT + Qt::CTRL + Qt::Key_J, SLOTS, SLOT(jsConsole()), actionCollection(), "JS_Console");
-#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -1050,7 +1043,7 @@ void Krusader::updateUserActions() {
 
         userActionMenu->addAction(KrActions::actManageUseractions);
         userActionMenu->addSeparator();
-        userAction->populateMenu(userActionMenu, NULL);
+        krUserAction->populateMenu(userActionMenu, NULL);
     }
 }
 

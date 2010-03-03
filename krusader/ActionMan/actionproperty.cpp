@@ -22,6 +22,7 @@
 #include "../UserAction/useraction.h"
 #include "../UserAction/kraction.h"
 #include "../krusader.h"
+#include "../kractions.h"
 
 #include <kactioncollection.h>
 #include <QtGui/QToolButton>

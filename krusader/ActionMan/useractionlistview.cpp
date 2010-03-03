@@ -22,7 +22,7 @@
 #include <kiconloader.h>
 #include <qdom.h>
 
-#include "../krusader.h"
+#include "../kractions.h"
 #include "../UserAction/kraction.h"
 #include "../UserAction/useraction.h"
 
