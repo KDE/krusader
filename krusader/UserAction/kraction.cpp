@@ -51,7 +51,7 @@
 #include "useraction.h"
 #include "../GUI/terminaldock.h"
 #include "../krusader.h"
-#include "../kractions.h"
+#include "../krglobal.h"
 #include "../krusaderview.h"
 #include "../defaults.h"
 

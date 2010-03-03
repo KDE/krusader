@@ -161,7 +161,6 @@ KToggleAction *KrActions::actToggleHidden = 0;
 KToggleAction *KrActions::actCompareDirs = 0;
 KToggleAction *KrActions::actTogglePreviews = 0;
 
-UserAction *KrActions::userAction = 0;
 
 #ifdef __KJSEMBED__
     static KAction *actShowJSConsole;
@@ -431,7 +430,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     actFind->setToolTip(i18n("Search for files"));
 
     // setup all UserActions
-    userAction = new UserAction();
+    krUserAction = new UserAction();
 
 #ifdef __KJSEMBED__
     actShowJSConsole = new KAction(i18n("JavaScript Console..."), Qt::ALT + Qt::CTRL + Qt::Key_J, SLOTS, SLOT(jsConsole()), krusaderApp->actionCollection(), "JS_Console");

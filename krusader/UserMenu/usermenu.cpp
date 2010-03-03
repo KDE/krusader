@@ -22,7 +22,7 @@
 #include <kdebug.h>
 #include <klocale.h>
 
-#include "../kractions.h"
+#include "../krglobal.h"
 #include "../Konfigurator/konfigurator.h"
 #include "../UserAction/kraction.h"
 #include "../UserAction/useraction.h"

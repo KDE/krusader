@@ -37,7 +37,6 @@
 #include <ktoggleaction.h>
 
 class Krusader;
-class UserAction;
 
 class KrActions : public QObject
 {
@@ -72,12 +71,11 @@ public:
     /** actions for setting the execution mode of commands from commanddline */
     static KAction **execTypeArray[];
 
-    static UserAction *userAction;
+
 
 #ifdef __KJSEMBED__
     static KAction *actShowJSConsole;
 #endif
-
 
     static void setupActions(Krusader *krusader);
 };
@@ -131,8 +129,6 @@ public:
 #define krSplit           KrActions::actSplit
 #define krCombine         KrActions::actCombine
 #define krUserMenu        KrActions::actUserMenu
-//#define krUserActionMenu      KrActions::userActionMenu
-//#define krUserAction      KrActions::userAction
 #define krF2      KrActions::actF2
 #define krF3      KrActions::actF3
 #define krF4      KrActions::actF4
@@ -148,8 +144,6 @@ public:
 #define krLocationBar   KrActions::actLocationBar
 #define krJumpBack   KrActions::actJumpBack
 #define krSetJumpBack   KrActions::actSetJumpBack
-
-#define krUserAction      KrActions::userAction
 
 #ifdef __KJSEMBED__
 #define krJSConsole  KrActions::actShowJSConsole

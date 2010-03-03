@@ -43,6 +43,7 @@ class KrBookmarkHandler;
 class KRslots;
 class KIconLoader;
 class KrusaderView;
+class UserAction;
 class QWidget;
 
 class KrGlobal
@@ -55,6 +56,7 @@ public:
     static KIconLoader *iconLoader; // the app's icon loader
     static KrusaderView *mainView;  // The GUI
     static QWidget *mainWindow;
+    static UserAction *userAction;
 };
 
 #define krConfig     KrGlobal::config
@@ -64,6 +66,7 @@ public:
 #define krLoader     KrGlobal::iconLoader
 #define MAIN_VIEW    KrGlobal::mainView
 #define krMainWindow KrGlobal::mainWindow
+#define krUserAction KrGlobal::userAction
 
 #define ACTIVE_MNG   (MAIN_VIEW->activeManager())
 #define ACTIVE_PANEL (MAIN_VIEW->activePanel)

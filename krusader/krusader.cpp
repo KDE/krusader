@@ -104,6 +104,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "KrJS/krjs.h"
 #endif
 
+#include "krglobal.h"
 #include "kractions.h"
 
 // define the static members
