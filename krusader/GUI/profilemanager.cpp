@@ -37,7 +37,7 @@
 #include <kinputdialog.h>
 #include <kiconloader.h>
 
-#include "../krusader.h"
+#include "../krglobal.h"
 
 ProfileManager::ProfileManager(QString profileType, QWidget * parent)
         : QPushButton(parent)

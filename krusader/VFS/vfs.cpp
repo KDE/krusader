@@ -45,7 +45,7 @@
 #include <kio/jobuidelegate.h>
 #include <kde_file.h>
 
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../defaults.h"
 #include "kiojobwrapper.h"
 

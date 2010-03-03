@@ -35,7 +35,7 @@
 #include <ktoggleaction.h>
 #include <kurl.h>
 
-#include "../krusader.h"
+#include "../kractions.h"
 #include "../krusaderapp.h"
 #include "../krusaderview.h"
 #include "kcmdline.h"

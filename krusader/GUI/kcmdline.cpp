@@ -49,7 +49,7 @@
 #include <klocale.h>
 #include <kglobalsettings.h>
 
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../kicons.h"
 #include "../krslots.h"
 #include "../resources.h"

@@ -34,6 +34,7 @@
 #include "krusaderview.h"
 #include "defaults.h"
 #include "Panel/krviewfactory.h"
+#include "kractions.h"
 
 #define HIDE_ON_SINGLE_TAB  false
 

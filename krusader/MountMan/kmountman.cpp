@@ -32,6 +32,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <time.h>
 #include <unistd.h>
 
+#include <QApplication>
 #include <QtCore/QDir>
 #include <solid/block.h>
 #include <solid/opticaldisc.h>
@@ -48,7 +49,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kuiserverjobtracker.h>
 #include <ktoolbarpopupaction.h>
 
-#include "../krusader.h"
+#include "../krglobal.h"
+#include "../kractions.h"
 #include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
 #include "../krservices.h"
@@ -500,7 +502,7 @@ void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, con
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::queuedMessageBox(krApp, KMessageBox::Sorry, errorData.toString());
+        KMessageBox::queuedMessageBox(krMainWindow, KMessageBox::Sorry, errorData.toString());
     }
 }
 
@@ -508,7 +510,7 @@ void KMountMan::slotSetupDone(Solid::ErrorType error, QVariant errorData, const 
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::queuedMessageBox(krApp, KMessageBox::Sorry, errorData.toString());
+        KMessageBox::queuedMessageBox(krMainWindow, KMessageBox::Sorry, errorData.toString());
     }
 }
 

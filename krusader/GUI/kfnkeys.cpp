@@ -36,7 +36,7 @@
 #include <klocale.h>
 #include <kglobalsettings.h>
 
-#include "../krusader.h"
+#include "../kractions.h"
 #include "../defaults.h"
 #include "../krslots.h"
 

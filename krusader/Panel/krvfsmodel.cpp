@@ -25,7 +25,7 @@
 #include <QtAlgorithms>
 #include "../VFS/krpermhandler.h"
 #include "../defaults.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../krusaderview.h"
 #include "listpanel.h"
 #include "krcolorcache.h"

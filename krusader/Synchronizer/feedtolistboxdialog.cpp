@@ -33,7 +33,7 @@
 #include "synchronizergui.h"
 #include "../VFS/vfs.h"
 #include "../VFS/virt_vfs.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
 #include <klocale.h>

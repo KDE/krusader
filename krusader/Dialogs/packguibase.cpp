@@ -46,6 +46,7 @@
 #include <QGridLayout>
 #include <QFrame>
 #include <QVBoxLayout>
+#include <QKeyEvent>
 #include <kiconloader.h>
 #include <kcolorscheme.h>
 #include <kcombobox.h>
@@ -54,7 +55,7 @@
 #include <khistorycombobox.h>
 
 #include "../defaults.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 
 /*
  *  Constructs a PackGUIBase which is a child of 'parent', with the

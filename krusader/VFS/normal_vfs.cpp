@@ -60,7 +60,7 @@
 #include "../Dialogs/krdialogs.h"
 #include "../MountMan/kmountman.h"
 #include "krpermhandler.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../defaults.h"
 #include "../resources.h"
 #include "../krslots.h"
@@ -96,7 +96,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
 
     // check that the new origin exists
     if (!QDir(path).exists()) {
-        if (!quietMode) KMessageBox::error(krApp, i18n("Directory %1 does not exist!", path), i18n("Error"));
+        if (!quietMode) KMessageBox::error(krMainWindow, i18n("Directory %1 does not exist!", path), i18n("Error"));
         return false;
     }
 
@@ -105,14 +105,14 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
 
     DIR* dir = opendir(path.toLocal8Bit());
     if (!dir) {
-        if (!quietMode) KMessageBox::error(krApp, i18n("Can't open the %1 directory!", path), i18n("Error"));
+        if (!quietMode) KMessageBox::error(krMainWindow, i18n("Can't open the %1 directory!", path), i18n("Error"));
         return false;
     }
 
     // change directory to the new directory
     QString save = QDir::currentPath();
     if (! QDir::setCurrent(path)) {
-        if (!quietMode) KMessageBox::error(krApp, i18n("Access denied to") + path, i18n("Error"));
+        if (!quietMode) KMessageBox::error(krMainWindow, i18n("Access denied to") + path, i18n("Error"));
         closedir(dir);
         return false;
     }
@@ -224,7 +224,7 @@ KUrl::List* normal_vfs::vfs_getFiles(QStringList* names)
 void normal_vfs::vfs_mkdir(const QString& name)
 {
     if (!QDir(vfs_workingDir()).mkdir(name))
-        if (!quietMode) KMessageBox::sorry(krApp, i18n("Can't create a directory. Check your permissions."));
+        if (!quietMode) KMessageBox::sorry(krMainWindow, i18n("Can't create a directory. Check your permissions."));
     vfs::vfs_refresh();
 }
 

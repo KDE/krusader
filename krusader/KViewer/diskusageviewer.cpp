@@ -33,7 +33,7 @@
 #include <QGridLayout>
 #include <QLabel>
 
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"

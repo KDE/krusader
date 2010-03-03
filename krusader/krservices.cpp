@@ -27,7 +27,7 @@
 
 #include <kdebug.h>
 
-#include "krusader.h"
+#include "krglobal.h"
 #include "defaults.h"
 
 QMap<QString, QString>* KrServices::slaveMap = 0;

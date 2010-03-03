@@ -49,7 +49,7 @@
 #include <kmenu.h>
 
 #include "krsearchmod.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../krslots.h"
 #include "../defaults.h"
 #include "../panelmanager.h"

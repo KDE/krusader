@@ -31,13 +31,14 @@
 
 
 #include "konfigurator.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../Dialogs/krdialogs.h"
 #include "../kicons.h"
 
 #include <kfiledialog.h>
 #include <qwidget.h>
 #include <QPixmap>
+#include <QResizeEvent>
 #include <klocale.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>

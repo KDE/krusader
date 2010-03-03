@@ -44,7 +44,7 @@
 #include <kfileitem.h>
 #include <ktoolbar.h>
 
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../defaults.h"
 #include "../kicons.h"
 #include "panelviewer.h"
@@ -317,7 +317,7 @@ void KrViewer::edit(KUrl url, Mode mode, int new_window, QWidget * parent)
         else
             proc << edit.split(' ') << url.prettyUrl();
         if (!proc.startDetached())
-            KMessageBox::sorry(krApp, i18n("Can't open ") + "\"" + edit + "\"");
+            KMessageBox::sorry(krMainWindow, i18n("Can't open ") + "\"" + edit + "\"");
         return ;
     }
 
@@ -412,8 +412,8 @@ void KrViewer::tabCloseRequest(QWidget *w)
             returnFocusToThisWidget->raise();
             returnFocusToThisWidget->activateWindow();
         } else {
-            krApp->raise();
-            krApp->activateWindow();
+            krMainWindow->raise();
+            krMainWindow->activateWindow();
         }
         this->close();
         this->deleteLater();

@@ -33,7 +33,7 @@ A
 #include "krspecialwidgets.h"
 #include "krmaskchoice.h"
 #include "newftpgui.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../MountMan/kmountman.h"
 #include <math.h>
 #include <kfileitem.h>

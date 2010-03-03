@@ -18,7 +18,7 @@
 
 #include "kcmdmodebutton.h"
 
-#include "../krusader.h"
+#include "../kractions.h"
 #include "../krusaderview.h"
 
 #include <klocale.h>

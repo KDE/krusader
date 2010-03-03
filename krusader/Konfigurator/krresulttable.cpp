@@ -22,6 +22,9 @@
 #include <QLabel>
 #include <QtCore/QList>
 #include <kcolorscheme.h>
+
+#include "../krusader.h"
+
 using namespace std;
 
 #define PS(x) _supported.contains(x)>0

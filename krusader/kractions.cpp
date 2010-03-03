@@ -351,7 +351,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actKonfigurator, i18n("Configure &Krusader..."), "configure", 0, SLOTS, SLOT(startKonfigurator()), "konfigurator");
     NEW_KACTION(actBack, i18n("Back"), "go-previous", 0, SLOTS, SLOT(back()), "back");
     NEW_KACTION(actRoot, i18n("Root"), "go-top", Qt::CTRL + Qt::Key_Backspace, SLOTS, SLOT(root()), "root");
-    NEW_KACTION(actSavePosition, i18n("Save &Position"), 0, 0, krApp, SLOT(savePosition()), "save position");
+    NEW_KACTION(actSavePosition, i18n("Save &Position"), 0, 0, krusaderApp, SLOT(savePosition()), "save position");
     NEW_KACTION(actAllFilter, i18n("&All Files"), 0, Qt::SHIFT + Qt::Key_F10, SLOTS, SLOT(allFilter()), "all files");
     //actExecFilter = new KAction( i18n( "&Executables" ), SHIFT + Qt::Key_F11,
     //                             SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );

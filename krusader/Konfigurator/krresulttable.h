@@ -34,7 +34,7 @@
 #include <kurllabel.h>
 
 #include "searchobject.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../krservices.h"
 #include "../VFS/krarchandler.h"
 

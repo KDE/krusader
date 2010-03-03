@@ -47,7 +47,7 @@
 #include <KMessageBox>
 #include <KIconLoader>
 
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../Dialogs/krdialogs.h"
 
 #define USERSFILE  QString("/etc/passwd")

@@ -19,7 +19,7 @@
 
 #include "krbookmarkbutton.h"
 #include "krbookmarkhandler.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include <QtGui/QPixmap>
 #include <kiconloader.h>
 #include <kaction.h>

@@ -29,7 +29,6 @@
  ***************************************************************************/
 
 #include "kglookfeel.h"
-#include "../krusader.h"
 #include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
 #include <QtGui/QTabWidget>

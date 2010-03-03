@@ -30,7 +30,7 @@
 
 #include "dulines.h"
 #include "../kicons.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../VFS/krpermhandler.h"
 #include <QPixmap>
 #include <QMouseEvent>

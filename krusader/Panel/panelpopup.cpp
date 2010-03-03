@@ -19,7 +19,7 @@
 
 #include "panelpopup.h"
 
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../kicons.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 #include "../defaults.h"

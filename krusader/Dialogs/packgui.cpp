@@ -30,7 +30,7 @@
 
 #include "packgui.h"
 #include <kfiledialog.h>
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../defaults.h"
 #include <QtGui/QLineEdit>
 #include <QtGui/QCheckBox>
@@ -94,7 +94,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
     nameData->setFocus();
     if (typeData->count() == 0) // if no packers are available
         okButton->setEnabled(false);
-    setGeometry(krApp->x() + krApp->width() / 2 - width() / 2, krApp->y() + krApp->height() / 2 - height() / 2, width(), height());
+    setGeometry(krMainWindow->x() + krMainWindow->width() / 2 - width() / 2, krMainWindow->y() + krMainWindow->height() / 2 - height() / 2, width(), height());
     exec();
 }
 

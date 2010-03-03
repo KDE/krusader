@@ -18,9 +18,10 @@
  *****************************************************************************/
 
 #include "krcolorcache.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../defaults.h"
 #include <kcolorscheme.h>
+#include <kdebug.h>
 #include <QtCore/QFile>
 #include <QPixmapCache>
 #include <QList>

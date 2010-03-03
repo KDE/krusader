@@ -23,6 +23,7 @@
 #include <QDirModel>
 #include <QHashIterator>
 #include <QHeaderView>
+#include <QApplication>
 
 #include <klocale.h>
 #include <kdirlister.h>

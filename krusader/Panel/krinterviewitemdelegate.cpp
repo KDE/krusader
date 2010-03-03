@@ -19,6 +19,7 @@
 #include "krinterviewitemdelegate.h"
 #include "krvfsmodel.h"
 
+#include <QApplication>
 #include <QtGui/QDialog>
 #include <QtGui/QPainter>
 #include <QtGui/QLineEdit>

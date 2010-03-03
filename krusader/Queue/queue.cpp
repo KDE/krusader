@@ -17,7 +17,7 @@
  *****************************************************************************/
 
 #include "queue.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include <kdebug.h>
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -85,7 +85,7 @@ void Queue::slotResult(KJob * job)
                 if (job->error() == KIO::ERR_USER_CANCELED)
                     message = i18n("The last processed element in the queue was aborted.\n");
                 message += i18n("Do you wish to continue with the next element, delete the queue or suspend the queue?");
-                int res = KMessageBox::questionYesNoCancel(krApp, message,
+                int res = KMessageBox::questionYesNoCancel(krMainWindow, message,
                           i18n("Krusader::Queue"), KStandardGuiItem::cont(),
                           KStandardGuiItem::del(), KGuiItem(i18n("Suspend")));
                 switch (res) {

@@ -43,7 +43,6 @@
 #include <KMimeType>
 
 #include "../VFS/krquery.h"
-#include "../krusader.h"
 #include "../resources.h"
 #include "../VFS/vfile.h"
 #include "../VFS/krpermhandler.h"

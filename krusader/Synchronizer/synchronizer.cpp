@@ -30,7 +30,7 @@
 
 #include "synchronizer.h"
 #include "synchronizerdirlist.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../krservices.h"
 #include "../VFS/vfs.h"
 #include "../VFS/krquery.h"
@@ -1338,7 +1338,7 @@ void Synchronizer::synchronizeWithKGet()
             QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
 
             if (progDlg == 0) {
-                progDlg = new KgetProgressDialog(krApp, i18n("Krusader::Synchronizer"),
+                progDlg = new KgetProgressDialog(krMainWindow, i18n("Krusader::Synchronizer"),
                                                  i18n("Feeding the URLs to Kget"), true);
                 progDlg->progressBar()->setMaximum(totalCount);
                 progDlg->show();

@@ -27,7 +27,7 @@
 #include <kmessagebox.h>
 
 // for ParameterDialog
-#include "../krusader.h" // for konfig-access
+#include "../krglobal.h" // for konfig-access
 #include "../BookMan/krbookmarkbutton.h"
 #include "../GUI/profilemanager.h"
 

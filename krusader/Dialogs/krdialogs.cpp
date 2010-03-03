@@ -28,6 +28,7 @@
 #include <QVBoxLayout>
 #include <QtCore/QDir>
 #include <QtGui/QCheckBox>
+#include <QKeyEvent>
 
 #include <klocale.h>
 #include <kurlcompletion.h>
@@ -38,7 +39,7 @@
 #include <kdeversion.h>
 #include <krecentdocument.h>
 
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../resources.h"
 #include "../VFS/vfs.h"
 #include "../defaults.h"
@@ -47,7 +48,7 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd)
 {
     QPointer<KUrlRequesterDialog> dlg = new KUrlRequesterDialog(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
             text,
-            krApp);
+            krMainWindow);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     KUrl u;
     if (dlg->exec() == QDialog::Accepted) {
@@ -74,7 +75,7 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
     QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
             text,
             false,
-            krApp);
+            krMainWindow);
     dlg->hidePreserveAttrs();
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     KUrl u;
@@ -103,7 +104,7 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
     QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
             text,
             preserveAttrs,
-            krApp);
+            krMainWindow);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     KUrl u;
     if (dlg->exec() == QDialog::Accepted) {
@@ -132,7 +133,7 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
     QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
             text,
             preserveAttrs,
-            krApp,
+            krMainWindow,
             true,
             baseURL);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());

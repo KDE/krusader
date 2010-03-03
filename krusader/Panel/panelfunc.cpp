@@ -60,7 +60,7 @@ A
 #include <ktoggleaction.h>
 
 #include "krcalcspacedialog.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../krslots.h"
 #include "../defaults.h"
 #include "../VFS/vfile.h"
@@ -309,7 +309,7 @@ void ListPanelFunc::goBack()
 void ListPanelFunc::redirectLink()
 {
     if (files() ->vfs_getType() != vfs::VFS_NORMAL) {
-        KMessageBox::sorry(krApp, i18n("You can edit links only on local file systems"));
+        KMessageBox::sorry(krMainWindow, i18n("You can edit links only on local file systems"));
         return ;
     }
 
@@ -320,7 +320,7 @@ void ListPanelFunc::redirectLink()
     QString file = files() ->vfs_getFile(vf->vfile_getName()).path(KUrl::RemoveTrailingSlash);
     QString currentLink = vf->vfile_getSymDest();
     if (currentLink.isEmpty()) {
-        KMessageBox::sorry(krApp, i18n("The current file is not a link, so I can't redirect it."));
+        KMessageBox::sorry(krMainWindow, i18n("The current file is not a link, so I can't redirect it."));
         return ;
     }
 
@@ -328,19 +328,19 @@ void ListPanelFunc::redirectLink()
     bool ok = false;
     QString newLink =
         KInputDialog::getText(i18n("Link Redirection"),
-                              i18n("Please enter the new link destination:"), currentLink, &ok, krApp);
+                              i18n("Please enter the new link destination:"), currentLink, &ok, krMainWindow);
 
     // if the user canceled - quit
     if (!ok || newLink == currentLink)
         return ;
     // delete the current link
     if (unlink(file.toLocal8Bit()) == -1) {
-        KMessageBox::sorry(krApp, i18n("Can't remove old link: ") + file);
+        KMessageBox::sorry(krMainWindow, i18n("Can't remove old link: ") + file);
         return ;
     }
     // try to create a new symlink
     if (symlink(newLink.toLocal8Bit(), file.toLocal8Bit()) == -1) {
-        KMessageBox:: /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */sorry(krApp, i18n("Failed to create a new link: ") + file);
+        KMessageBox:: /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */sorry(krMainWindow, i18n("Failed to create a new link: ") + file);
         return ;
     }
 }
@@ -348,7 +348,7 @@ void ListPanelFunc::redirectLink()
 void ListPanelFunc::krlink(bool sym)
 {
     if (files() ->vfs_getType() != vfs::VFS_NORMAL) {
-        KMessageBox::sorry(krApp, i18n("You can create links only on local file systems"));
+        KMessageBox::sorry(krMainWindow, i18n("You can create links only on local file systems"));
         return ;
     }
 
@@ -357,7 +357,7 @@ void ListPanelFunc::krlink(bool sym)
     // ask the new link name..
     bool ok = false;
     QString linkName =
-        KInputDialog::getText(i18n("New link"), i18n("Create a new link to: ") + name, name, &ok, krApp);
+        KInputDialog::getText(i18n("New link"), i18n("Create a new link to: ") + name, name, &ok, krMainWindow);
 
     // if the user canceled - quit
     if (!ok || linkName == name)
@@ -365,7 +365,7 @@ void ListPanelFunc::krlink(bool sym)
 
     // if the name is already taken - quit
     if (files() ->vfs_search(linkName) != 0) {
-        KMessageBox::sorry(krApp, i18n("A directory or a file with this name already exists."));
+        KMessageBox::sorry(krMainWindow, i18n("A directory or a file with this name already exists."));
         return ;
     }
 
@@ -377,11 +377,11 @@ void ListPanelFunc::krlink(bool sym)
 
     if (sym) {
         if (symlink(name.toLocal8Bit(), linkName.toLocal8Bit()) == -1)
-            KMessageBox::sorry(krApp, i18n("Failed to create a new symlink: ") + linkName +
+            KMessageBox::sorry(krMainWindow, i18n("Failed to create a new symlink: ") + linkName +
                                i18n(" To: ") + name);
     } else {
         if (link(name.toLocal8Bit(), linkName.toLocal8Bit()) == -1)
-            KMessageBox::sorry(krApp, i18n("Failed to create a new link: ") + linkName +
+            KMessageBox::sorry(krMainWindow, i18n("Failed to create a new link: ") + linkName +
                                i18n(" To: ") + name);
     }
 }
@@ -417,7 +417,7 @@ void ListPanelFunc::editFile()
         return ;
 
     if (files() ->vfs_search(name) ->vfile_isDir()) {
-        KMessageBox::sorry(krApp, i18n("You can't edit a directory"));
+        KMessageBox::sorry(krMainWindow, i18n("You can't edit a directory"));
         return ;
     }
 
@@ -444,7 +444,7 @@ void ListPanelFunc::moveFiles(bool enqueue)
 
     QString destProtocol = dest.protocol();
     if (destProtocol == "krarc" || destProtocol == "tar" || destProtocol == "zip") {
-        KMessageBox::sorry(krApp, i18n("Moving into archive is disabled"));
+        KMessageBox::sorry(krMainWindow, i18n("Moving into archive is disabled"));
         return ;
     }
 
@@ -521,7 +521,7 @@ void ListPanelFunc::moveFiles(bool enqueue)
     } else { // let the other panel do the dirty job
         //check if copy is supported
         if (!otherFunc() ->files() ->vfs_isWritable()) {
-            KMessageBox::sorry(krApp, i18n("You can't move files to this file system"));
+            KMessageBox::sorry(krMainWindow, i18n("You can't move files to this file system"));
             return ;
         }
         // finally..
@@ -550,7 +550,7 @@ void ListPanelFunc::mkdir()
     // ask the new dir name..
     bool ok = false;
     QString dirName =
-        KInputDialog::getText(i18n("New directory"), i18n("Directory's name:"), "", &ok, krApp);
+        KInputDialog::getText(i18n("New directory"), i18n("Directory's name:"), "", &ok, krMainWindow);
 
     // if the user canceled - quit
     if (!ok || dirName.isEmpty())
@@ -569,7 +569,7 @@ void ListPanelFunc::mkdir()
         if (files() ->vfs_search(*it)) {
             // if it is the last dir to be created - quit
             if (*it == dirTree.last()) {
-                KMessageBox::sorry(krApp, i18n("A directory or a file with this name already exists."));
+                KMessageBox::sorry(krMainWindow, i18n("A directory or a file with this name already exists."));
                 return ;
             }
             // else go into this dir
@@ -699,7 +699,7 @@ void ListPanelFunc::copyFiles(bool enqueue)
     } else {
         //check if copy is supported
         if (!otherFunc() ->files() ->vfs_isWritable()) {
-            KMessageBox::sorry(krApp, i18n("You can't copy files to this file system"));
+            KMessageBox::sorry(krMainWindow, i18n("You can't copy files to this file system"));
             return ;
         }
         // finally..
@@ -711,7 +711,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
 {
     // check that the you have write perm
     if (!files() ->vfs_isWritable()) {
-        KMessageBox::sorry(krApp, i18n("You do not have write permission to this directory"));
+        KMessageBox::sorry(krMainWindow, i18n("You do not have write permission to this directory"));
         return ;
     }
 
@@ -744,7 +744,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
 
         // show message
         // note: i'm using continue and not yes/no because the yes/no has cancel as default button
-        if (KMessageBox::warningContinueCancelList(krApp, s, fileNames,
+        if (KMessageBox::warningContinueCancelList(krMainWindow, s, fileNames,
                 i18n("Warning"), KGuiItem(b)) != KMessageBox::Continue)
             return ;
     }
@@ -761,7 +761,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
         if (emptyDirVerify && vf->vfile_isDir() && !vf->vfile_isSymLink()) {
             dir.setPath(panel->virtualPath().path() + '/' + (*name));
             if (dir.entryList(QDir::TypeMask | QDir::System | QDir::Hidden).count() > 2) {
-                switch (KMessageBox::warningYesNoCancel(krApp,
+                switch (KMessageBox::warningYesNoCancel(krMainWindow,
                                                         i18n("<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</p></qt>", *name),
                                                         QString(), KGuiItem(i18n("&Skip")), KGuiItem(i18n("&Delete All")))) {
                 case KMessageBox::Cancel :
@@ -915,7 +915,7 @@ void ListPanelFunc::pack()
     if (destURL.isLocalFile())
         arcFile = destURL.path();
     else if (destURL.protocol() == "virt") {
-        KMessageBox::error(krApp, i18n("Cannot pack files onto a virtual destination!"));
+        KMessageBox::error(krMainWindow, i18n("Cannot pack files onto a virtual destination!"));
         return;
     } else {
         tempDestFile = new KTemporaryFile();
@@ -932,7 +932,7 @@ void ListPanelFunc::pack()
         if (PackGUI::type == "zip") {
             msg = i18n("<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>Zip will replace identically named entries in the zip archive or add entries for new names.</p></qt>", PackGUI::filename, PackGUI::type);
         }
-        if (KMessageBox::warningContinueCancel(krApp, msg, QString(), KGuiItem(i18n("&Overwrite")))
+        if (KMessageBox::warningContinueCancel(krMainWindow, msg, QString(), KGuiItem(i18n("&Overwrite")))
                 == KMessageBox::Cancel)
             return ; // stop operation
     }
@@ -1061,7 +1061,7 @@ void ListPanelFunc::calcSpace()
             return ; // nothing to do
     }
 
-    QPointer<KrCalcSpaceDialog> calc = new KrCalcSpaceDialog(krApp, panel, items, false);
+    QPointer<KrCalcSpaceDialog> calc = new KrCalcSpaceDialog(krMainWindow, panel, items, false);
     calc->exec();
     for (QStringList::const_iterator it = items.constBegin(); it != items.constEnd(); ++it) {
         KrViewItem *viewItem = panel->view->findItemByName(*it);
@@ -1076,7 +1076,7 @@ void ListPanelFunc::calcSpace()
 
 bool ListPanelFunc::calcSpace(const QStringList & items, KIO::filesize_t & totalSize, unsigned long & totalFiles, unsigned long & totalDirs)
 {
-    QPointer<KrCalcSpaceDialog> calc = new KrCalcSpaceDialog(krApp, panel, items, true);
+    QPointer<KrCalcSpaceDialog> calc = new KrCalcSpaceDialog(krMainWindow, panel, items, true);
     calc->exec();
     totalSize = calc->getTotalSize();
     totalFiles = calc->getTotalFiles();
@@ -1128,7 +1128,7 @@ void ListPanelFunc::properties()
         return ;
 
     // Show the properties dialog
-    KPropertiesDialog *dlg = new KPropertiesDialog(fi, krApp);
+    KPropertiesDialog *dlg = new KPropertiesDialog(fi, krMainWindow);
     connect(dlg, SIGNAL(applied()), SLOTS, SLOT(refresh()));
     dlg->show();
 }
@@ -1198,9 +1198,9 @@ void ListPanelFunc::copyToClipboard(bool move)
 {
     if (files()->vfs_getOrigin().equals(KUrl("virt:/"), KUrl::CompareWithoutTrailingSlash)) {
         if (move)
-            KMessageBox::error(krApp, i18n("Cannot cut a virtual URL collection to the clipboard!"));
+            KMessageBox::error(krMainWindow, i18n("Cannot cut a virtual URL collection to the clipboard!"));
         else
-            KMessageBox::error(krApp, i18n("Cannot copy a virtual URL collection onto the clipboard!"));
+            KMessageBox::error(krMainWindow, i18n("Cannot copy a virtual URL collection onto the clipboard!"));
         return;
     }
 

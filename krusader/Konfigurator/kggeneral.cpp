@@ -35,6 +35,7 @@
 #include <QGridLayout>
 #include <QFrame>
 #include <QPixmap>
+#include <QPointer>
 
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -42,7 +43,6 @@
 
 #include "krresulttabledialog.h"
 #include "../defaults.h"
-#include "../krusader.h"
 #include "../kicons.h"
 
 KgGeneral::KgGeneral(bool first, QWidget* parent) :
@@ -247,7 +247,7 @@ void KgGeneral::slotAddExtension()
 
     if (ok) {
         if (!atomExt.startsWith('.') || atomExt.indexOf('.', 1) == -1)
-            KMessageBox::error(krApp, i18n("Atomic extensions must start with '.'\n and must contain at least one more '.' character"), i18n("Error"));
+            KMessageBox::error(krMainWindow, i18n("Atomic extensions must start with '.'\n and must contain at least one more '.' character"), i18n("Error"));
         else
             listBox->addItem(atomExt);
     }

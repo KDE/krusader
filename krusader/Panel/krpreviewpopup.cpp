@@ -28,7 +28,6 @@
 #include <klocale.h>
 
 #include "../KViewer/krviewer.h"
-#include "../krusader.h"
 
 KrPreviewPopup::KrPreviewPopup(): prevNotAvailAction(0), id(1), noPreview(true)
 {

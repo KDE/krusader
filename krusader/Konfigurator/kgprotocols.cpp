@@ -29,7 +29,7 @@
  ***************************************************************************/
 
 #include "kgprotocols.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../krservices.h"
 #include <klocale.h>
 #include <kprotocolinfo.h>

@@ -34,6 +34,7 @@
 #include <QEventLoop>
 #include <QtGui/QApplication>
 #include <QtCore/QDir>
+#include <QPointer>
 
 #include <klocale.h>
 #include <ktempdir.h>
@@ -45,7 +46,7 @@
 #include "krarchandler.h"
 #include "vfs.h"
 #include "preservingcopyjob.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 
 AbstractThreadedJob::AbstractThreadedJob() : KIO::Job(), _locker(), _waiter(), _stack(), _maxProgressValue(0),
         _currentProgress(0), _exiting(false), _jobThread(0)
@@ -180,7 +181,7 @@ bool AbstractThreadedJob::event(QEvent *e)
         break;
         case CMD_MESSAGE: {
             QString message = event->args()[ 0 ].value<QString>();
-            KMessageBox::information(krApp, message);
+            KMessageBox::information(krMainWindow, message);
             QList<QVariant> *resultResp = new QList<QVariant> ();
             addEventResponse(resultResp);
         }

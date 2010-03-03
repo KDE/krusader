@@ -29,7 +29,7 @@
  ***************************************************************************/
 
 #include "locate.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../krslots.h"
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
@@ -306,14 +306,14 @@ void LocateDlg::slotUser3()   /* The locate button */
 void LocateDlg::locateError()
 {
     if (locateProc->error() == QProcess::FailedToStart)
-        KMessageBox::error(krApp, i18n("Error during the start of 'locate' process!"));
+        KMessageBox::error(krMainWindow, i18n("Error during the start of 'locate' process!"));
 }
 
 void LocateDlg::locateFinished()
 {
     if (locateProc->exitStatus() != QProcess::NormalExit || locateProc->exitStatus()) {
         if (!collectedErr.isEmpty())
-            KMessageBox::error(krApp, i18n("Locate produced the following error message:\n\n") + collectedErr);
+            KMessageBox::error(krMainWindow, i18n("Locate produced the following error message:\n\n") + collectedErr);
     }
     enableButton(KDialog::User3, true);    /* enable the locate button */
 

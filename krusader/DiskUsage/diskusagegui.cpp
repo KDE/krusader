@@ -39,7 +39,7 @@
 #include <klocale.h>
 
 #include "../kicons.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../VFS/vfs.h"
 #include "../Dialogs/krdialogs.h"
 

@@ -29,7 +29,6 @@
 #include <kglobalsettings.h>
 #include <klocale.h>
 
-#include "../krusader.h"
 #include "../Konfigurator/krresulttable.h"
 #include "../Konfigurator/searchobject.h"
 

@@ -31,7 +31,7 @@
 #include "preservingcopyjob.h"
 #include "preserveattrcopyjob.h"
 #include "../defaults.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include <kio/global.h>
 #include <kio/jobclasses.h>
 #include <kio/jobuidelegate.h>

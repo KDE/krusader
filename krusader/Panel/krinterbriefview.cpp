@@ -27,6 +27,7 @@
 #include <QRegion>
 #include <QItemSelection>
 #include <QItemSelectionRange>
+#include <QApplication>
 
 #include <kmenu.h>
 #include <klocale.h>

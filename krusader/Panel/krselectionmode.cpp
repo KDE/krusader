@@ -18,7 +18,7 @@
  *****************************************************************************/
 
 #include "krselectionmode.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../defaults.h"
 
 static KrSelectionMode *__currentSelectionMode = 0; // uninitiated, at first

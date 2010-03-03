@@ -32,12 +32,12 @@
 
 #include <QtGui/QPushButton>
 #include <QGridLayout>
+#include <QPointer>
 
 #include "krresulttable.h"
 #include "krresulttabledialog.h"
 #include "searchobject.h"
 #include "../defaults.h"
-#include "../krusader.h"
 #include "../VFS/krarchandler.h"
 
 KgArchives::KgArchives(bool first, QWidget* parent) :

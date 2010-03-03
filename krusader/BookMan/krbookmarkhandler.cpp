@@ -19,7 +19,6 @@
 
 #include "krbookmarkhandler.h"
 #include "kraddbookmarkdlg.h"
-#include "../krusader.h"
 #include "../krslots.h"
 #include "../Dialogs/popularurls.h"
 #include "../VFS/vfs.h"

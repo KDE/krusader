@@ -26,13 +26,14 @@
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QSizePolicy>
 #include <QtGui/QWidget>
+#include <QEvent>
 
 #include <KConfigGroup>
 #include <KIconLoader>
 #include <KLocale>
 #include <KProtocolInfo>
 
-#include "../krusader.h"
+#include "../krglobal.h"
 
 #define SIZE_MINIMUM QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed)
 

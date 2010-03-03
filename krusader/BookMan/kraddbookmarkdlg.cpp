@@ -18,7 +18,7 @@
  *****************************************************************************/
 
 #include "kraddbookmarkdlg.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "krbookmarkhandler.h"
 #include <klocale.h>
 #include <qheaderview.h>

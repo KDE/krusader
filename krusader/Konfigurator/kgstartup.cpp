@@ -31,7 +31,6 @@
 #include "kgstartup.h"
 #include "../defaults.h"
 #include "../GUI/profilemanager.h"
-#include "../krusader.h"
 #include <klocale.h>
 #include <klineedit.h>
 #include <QGridLayout>

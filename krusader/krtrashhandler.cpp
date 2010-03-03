@@ -44,7 +44,7 @@
 #include <kstandarddirs.h>
 #include <kdirwatch.h>
 
-#include "krusader.h"
+#include "kractions.h"
 #include "krusaderview.h"
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
@@ -70,14 +70,14 @@ void KrTrashHandler::emptyTrash()
     stream << (int)1;
     KIO::Job *job = KIO::special(KUrl("trash:/"), packedArgs);
     KNotification::event("Trash: emptied", QString() , QPixmap() , 0l, KNotification::DefaultEvent);
-    job->ui()->setWindow(krApp);
+    job->ui()->setWindow(krMainWindow);
     QObject::connect(job, SIGNAL(result(KJob *)), ACTIVE_PANEL->func, SLOT(refresh()));
 }
 
 void KrTrashHandler::restoreTrashedFiles(const KUrl::List &urls)
 {
     KonqMultiRestoreJob* job = new KonqMultiRestoreJob(urls);
-    job->ui()->setWindow(krApp);
+    job->ui()->setWindow(krMainWindow);
     KIO::getJobTracker()->registerJob(job);
     QObject::connect(job, SIGNAL(result(KJob *)), ACTIVE_PANEL->func, SLOT(refresh()));
 }

@@ -20,8 +20,10 @@
 #include "krview.h"
 #include "krviewitem.h"
 #include "krselectionmode.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../defaults.h"
+
+#include <QApplication>
 
 #define CANCEL_TWO_CLICK_RENAME {_singleClicked = false;_renameTimer.stop();}
 

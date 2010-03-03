@@ -37,6 +37,7 @@ A
 #include "../defaults.h"
 
 #include <stdio.h>
+#include <QWidget>
 
 #define ASSERT(what) if(!what) abort();
 

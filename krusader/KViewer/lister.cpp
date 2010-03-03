@@ -30,6 +30,7 @@
 
 #include "lister.h"
 
+#include <QApplication>
 #include <QtCore/QFile>
 #include <QtCore/QRect>
 #include <QtCore/QDate>
@@ -66,7 +67,8 @@
 #include <KIO/CopyJob>
 #include <KIO/JobUiDelegate>
 
-#include "../krusader.h"
+#include "../krglobal.h"
+#include "../kractions.h"
 #include "../GUI/krremoteencodingmenu.h"
 
 #define  SEARCH_CACHE_CHARS 100000

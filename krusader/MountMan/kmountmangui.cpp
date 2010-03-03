@@ -32,7 +32,7 @@ A
 
 #include "kmountmangui.h"
 #include "kmountman.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../kicons.h"
 #include "../defaults.h"
@@ -66,7 +66,7 @@ A
 #define UMOUNT_BTN KDialog::User2
 
 
-KMountManGUI::KMountManGUI() : KDialog(krApp), info(0), mountList(0), sizeX(-1), sizeY(-1)
+KMountManGUI::KMountManGUI() : KDialog(krMainWindow), info(0), mountList(0), sizeX(-1), sizeY(-1)
 {
     setWindowTitle(i18n("Mount.Man"));
     setWindowModality(Qt::WindowModal);

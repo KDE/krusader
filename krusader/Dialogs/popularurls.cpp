@@ -31,7 +31,7 @@
 #include <kiconloader.h>
 #include <ktreewidgetsearchline.h>
 
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../krslots.h"
 #include "../GUI/krtreewidget.h"
 
@@ -87,7 +87,7 @@ void PopularUrls::load()
     QStringList urlList = svr.readEntry("PopularUrls", QStringList());
     QList<int> rankList = svr.readEntry("PopularUrlsRank", QList<int>());
     if (urlList.count() != rankList.count()) {
-        KMessageBox::error(krApp, i18n("Saved 'Popular Urls' are invalid. List will be cleared"));
+        KMessageBox::error(krMainWindow, i18n("Saved 'Popular Urls' are invalid. List will be cleared"));
         return;
     }
     clearList();
@@ -264,7 +264,7 @@ void PopularUrls::showDialog()
 
 // ===================================== PopularUrlsDlg ======================================
 PopularUrlsDlg::PopularUrlsDlg():
-        KDialog(krApp)
+        KDialog(krMainWindow)
 {
     setButtons(KDialog::Close);
     setDefaultButton(KDialog::NoDefault);

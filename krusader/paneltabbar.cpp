@@ -34,6 +34,7 @@
 
 #include "Panel/listpanel.h"
 #include "defaults.h"
+#include "kractions.h"
 
 #define DISPLAY(X) (X.isLocalFile() ? X.path() : X.prettyUrl())
 

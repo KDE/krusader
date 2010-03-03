@@ -30,7 +30,7 @@
 
 #include "generalfilter.h"
 #include "filtertabs.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../VFS/vfs.h"
 
 #include <klocale.h>

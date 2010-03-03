@@ -70,8 +70,6 @@ class KrBookmarkHandler;
 class PopularUrls;
 class QueueManager;
 
-//static QTextOStream krOut(stdout);
-#define krOut kDebug(50010)
 #define MAX_VIEWS 6
 
 class Krusader : public KParts::MainWindow

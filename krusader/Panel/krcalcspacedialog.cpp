@@ -41,7 +41,7 @@ A
 
 #include "listpanel.h"
 #include "panelfunc.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../VFS/krpermhandler.h"
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
@@ -187,9 +187,9 @@ void KrCalcSpaceDialog::exec()
     m_thread->start(); // start the thread
     if (m_autoClose) { // autoclose
         // set the cursor to busy mode and wait 3 seconds or until the thread finishes
-        krApp->setCursor(Qt::WaitCursor);
+        krMainWindow->setCursor(Qt::WaitCursor);
         bool result = m_thread->wait(3000);
-        krApp->setCursor(Qt::ArrowCursor);    // return the cursor to normal mode
+        krMainWindow->setCursor(Qt::ArrowCursor);    // return the cursor to normal mode
         if (result) return;// thread finished: do not show the dialog
         showResult(); // fill the invisible dialog with useful data
     }

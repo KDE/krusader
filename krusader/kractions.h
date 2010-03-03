@@ -33,6 +33,8 @@
 #define KRACTIONS_H
 
 #include <QObject>
+#include <kaction.h>
+#include <ktoggleaction.h>
 
 class Krusader;
 

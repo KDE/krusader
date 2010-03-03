@@ -29,7 +29,7 @@
  ***************************************************************************/
 
 #include "dulistview.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../kicons.h"
 #include "../VFS/krpermhandler.h"
 #include <QtGui/QFontMetrics>
@@ -40,6 +40,7 @@
 #include <kglobal.h>
 #include <qheaderview.h>
 #include <time.h>
+
 
 DUListView::DUListView(DiskUsage *usage)
         : KrTreeWidget(usage), diskUsage(usage)

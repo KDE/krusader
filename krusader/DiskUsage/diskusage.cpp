@@ -60,7 +60,7 @@
 #include "../VFS/krvfshandler.h"
 #include "../kicons.h"
 #include "../defaults.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
@@ -596,7 +596,7 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
             name.append(file->fullPath());
             // show message
             // note: i'm using continue and not yes/no because the yes/no has cancel as default button
-            if (KMessageBox::warningContinueCancelList(krApp, s, name, i18n("Warning"), KGuiItem(b)) != KMessageBox::Continue)
+            if (KMessageBox::warningContinueCancelList(krMainWindow, s, name, i18n("Warning"), KGuiItem(b)) != KMessageBox::Continue)
                 return 0;
         }
 
@@ -631,7 +631,7 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
 
     if (trash) {
         job = KIO::trash(url);
-        connect(job, SIGNAL(result(KJob*)), krApp, SLOT(changeTrashIcon()));
+        connect(job, SIGNAL(result(KJob*)), krMainWindow, SLOT(changeTrashIcon()));
     } else {
         job = KIO::del(KUrl(file->fullPath()), KIO::HideProgressInfo);
     }

@@ -34,7 +34,8 @@
 #include <QGridLayout>
 #include <QScrollArea>
 #include <QLabel>
-#include "../krusader.h"
+#include <kconfig.h>
+#include "../krglobal.h"
 
 KonfiguratorPage::KonfiguratorPage(bool firstTime, QWidget* parent) :
         QScrollArea(parent), firstCall(firstTime)

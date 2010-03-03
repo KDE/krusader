@@ -31,7 +31,6 @@
 #include "virtualcopyjob.h"
 #include "vfs.h"
 #include "vfile.h"
-#include "../krusader.h"
 #include <kio/global.h>
 #include <kio/jobclasses.h>
 #include <kio/directorysizejob.h>

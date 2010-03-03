@@ -29,7 +29,7 @@
  ***************************************************************************/
 
 #include "synchronizergui.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../defaults.h"
 #include "../VFS/krpermhandler.h"
 #include "../KViewer/krviewer.h"

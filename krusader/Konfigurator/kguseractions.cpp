@@ -30,7 +30,6 @@
 
 #include "kguseractions.h"
 #include "../defaults.h"
-#include "../krusader.h"
 #include "../ActionMan/actionman.h"
 
 #include <klocale.h>

@@ -37,12 +37,12 @@
 #include <QCloseEvent>
 #include <QProgressBar>
 #include <unistd.h>
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "klocale.h"
 #include <kcursor.h>
 
 KRPleaseWait::KRPleaseWait(QString msg, int count, bool cancel):
-        QProgressDialog(cancel ? 0 : krApp) , inc(true)
+        QProgressDialog(cancel ? 0 : krMainWindow) , inc(true)
 {
     setModal(!cancel);
 
@@ -104,7 +104,7 @@ void KRPleaseWaitHandler::stopWait()
     dlg = 0;
     cycleMutex = incMutex = false;
     // return cursor to normal arrow
-    krApp->setCursor(Qt::ArrowCursor);
+    krMainWindow->setCursor(Qt::ArrowCursor);
 }
 
 

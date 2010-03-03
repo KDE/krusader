@@ -42,10 +42,10 @@
 
 #include <kio/jobclasses.h>
 
-#include "../krusader.h"
+#include "../krglobal.h"
 
 KrProgress::KrProgress(KIO::Job* job)
-        : ProgressBase(krApp),
+        : ProgressBase(krMainWindow),
         m_iTotalSize(0), m_iTotalFiles(0), m_iTotalDirs(0),
         m_iProcessedSize(0), m_iProcessedDirs(0), m_iProcessedFiles(0)
 {
@@ -137,11 +137,11 @@ KrProgress::KrProgress(KIO::Job* job)
             SLOT(slotSpeed(KIO::Job*, unsigned long)));
 
     // change to modal & move to Krusader's center
-    QPoint center((krApp->width() - width()) / 2, (krApp->height() - height()) / 2);
-    center = center + (krApp->pos());
-    reparent(krApp, Qt::WType_Modal, center);
+    QPoint center((krMainWindow->width() - width()) / 2, (krMainWindow->height() - height()) / 2);
+    center = center + (krMainWindow->pos());
+    reparent(krMainWindow, Qt::WType_Modal, center);
     //setWFlags(Qt::WType_Modal);
-    //move((krApp->width()-width())/2,(krApp->height()-height())/2);
+    //move((krMainWindow->width()-width())/2,(krMainWindow->height()-height())/2);
     show();
 }
 

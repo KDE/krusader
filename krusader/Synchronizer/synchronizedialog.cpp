@@ -30,7 +30,7 @@
 
 #include "synchronizedialog.h"
 #include "../VFS/krpermhandler.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../defaults.h"
 #include <QtGui/QLayout>
 #include <QVBoxLayout>

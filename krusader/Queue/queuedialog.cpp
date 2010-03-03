@@ -30,6 +30,8 @@
 #include <QtGui/QImage>
 #include <QtGui/QTimeEdit>
 #include <QtGui/QProgressBar>
+#include <QMouseEvent>
+#include <QKeyEvent>
 
 #include <KLocale>
 #include <KGlobalSettings>
@@ -39,7 +41,7 @@
 
 #include "queuewidget.h"
 #include "queue_mgr.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 
 class KrImageButton : public QToolButton
 {

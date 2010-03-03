@@ -18,7 +18,7 @@
 
 #include "krjs.h"
 
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
 
@@ -28,7 +28,7 @@ KrJS::KrJS() : KJSEmbed::KJSEmbedPart()
 {
 
     // make this object, the object Krusader, available for scripting as "Krusader":
-    addObject(krApp, "Krusader");
+    addObject(krMainWindow, "Krusader");
 
     // make this object available for scripting
     addObject(ACTIVE_MNG, "PanelManager");

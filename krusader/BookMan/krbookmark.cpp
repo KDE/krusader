@@ -18,7 +18,7 @@
  *****************************************************************************/
 
 #include "krbookmark.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../VFS/krarchandler.h"
 #include <kactioncollection.h>
 #include <kiconloader.h>

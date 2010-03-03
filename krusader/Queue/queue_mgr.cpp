@@ -23,7 +23,7 @@
 #include <QVector>
 #include <QVariant>
 #include <klocale.h>
-#include "../krusader.h"
+#include "../krglobal.h"
 
 const QString QueueManager::defaultName = i18n("default");
 QMap<QString, Queue*> QueueManager::_queues;

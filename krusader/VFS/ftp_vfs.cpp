@@ -54,7 +54,7 @@
 #include <kdebug.h>
 
 #include "krpermhandler.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../defaults.h"
 #include "../resources.h"
 
@@ -171,7 +171,7 @@ bool ftp_vfs::populateVfsList(const KUrl& origin, bool showHidden)
     }
 
     if (!errorMsg.isEmpty()) {
-        if (!quietMode) KMessageBox::sorry(krApp, errorMsg);
+        if (!quietMode) KMessageBox::sorry(krMainWindow, errorMsg);
         return false;
     }
 
@@ -195,7 +195,7 @@ bool ftp_vfs::populateVfsList(const KUrl& origin, bool showHidden)
     connect(job, SIGNAL(result(KJob*)),
             this, SLOT(slotListResult(KJob*)));
 
-    job->ui()->setWindow(krApp);
+    job->ui()->setWindow(krMainWindow);
 
     if (!quietMode) {
         emit startJob(job);

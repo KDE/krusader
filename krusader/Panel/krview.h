@@ -36,7 +36,7 @@
 #include <QDropEvent>
 #include <QList>
 #include <QModelIndex>
-#include "../krusader.h"
+#include "../krglobal.h"
 #include "../VFS/vfile.h"
 #include "../VFS/vfs.h"
 #include "../VFS/krquery.h"

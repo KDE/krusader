@@ -29,7 +29,7 @@
  ***************************************************************************/
 
 #include "konfiguratoritems.h"
-#include "../krusader.h"
+#include "../krglobal.h"
 #include <klocale.h>
 #include <klineedit.h>
 #include <QtGui/QPainter>
