@@ -32,12 +32,18 @@
 #ifndef KRGLOBAL_H
 #define KRGLOBAL_H
 
+#include <kconfiggroup.h>
+
+//static QTextOStream krOut(stdout);
+#define krOut kDebug(50010)
+
 class KConfig;
 class KMountMan;
 class KrBookmarkHandler;
 class KRslots;
 class KIconLoader;
 class KrusaderView;
+class QWidget;
 
 class KrGlobal
 {
@@ -48,6 +54,7 @@ public:
     static KRslots *slot;
     static KIconLoader *iconLoader; // the app's icon loader
     static KrusaderView *mainView;  // The GUI
+    static QWidget *mainWindow;
 };
 
 #define krConfig     KrGlobal::config
@@ -56,6 +63,7 @@ public:
 #define SLOTS        KrGlobal::slot
 #define krLoader     KrGlobal::iconLoader
 #define MAIN_VIEW    KrGlobal::mainView
+#define krMainWindow KrGlobal::mainWindow
 
 #define ACTIVE_MNG   (MAIN_VIEW->activeManager())
 #define ACTIVE_PANEL (MAIN_VIEW->activePanel)

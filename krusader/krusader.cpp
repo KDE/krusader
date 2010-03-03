@@ -242,6 +242,7 @@ Krusader::Krusader() : KParts::MainWindow(0,
 
     // create the "krusader"
     App = this;
+    krMainWindow = this;
     SLOTS = new KRslots(this);
     setXMLFile("krusaderui.rc");   // kpart-related xml file
 
