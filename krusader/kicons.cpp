@@ -19,7 +19,6 @@
 
 #include "kicons.h"
 #include "krglobal.h"
-#include "krusaderview.h"
 #include "defaults.h"
 #include <QtCore/QString>
 #include <QPixmap>

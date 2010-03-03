@@ -61,7 +61,6 @@
 #include "../kicons.h"
 #include "../defaults.h"
 #include "../krglobal.h"
-#include "../krusaderview.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
 #include "filelightParts/Config.h"

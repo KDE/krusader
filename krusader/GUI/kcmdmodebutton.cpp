@@ -19,7 +19,6 @@
 #include "kcmdmodebutton.h"
 
 #include "../kractions.h"
-#include "../krusaderview.h"
 
 #include <klocale.h>
 #include <kiconloader.h>
