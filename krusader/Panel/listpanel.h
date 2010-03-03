@@ -55,6 +55,8 @@
 #include <QEvent>
 #include <klineedit.h>
 #include <QtCore/QPointer>
+
+#include "krpanel.h"
 #include "krview.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 
@@ -79,7 +81,7 @@ class ListPanelFunc;
 class QSplitter;
 class KDiskFreeSpace;
 
-class ListPanel : public QWidget
+class ListPanel : public QWidget, public KrPanel
 {
     friend class ListPanelFunc;
     Q_OBJECT
@@ -102,7 +104,6 @@ public:
         _locked = lck;
     }
 
-    KUrl virtualPath() const;
     QString realPath() const;
     QString getCurrentName();
     void getSelectedNames(QStringList* fileNames) {
@@ -188,9 +189,7 @@ signals:
 
 public:
     int panelType;
-    ListPanelFunc *func;
-    KrView *view;
-    ListPanel *otherPanel;
+//     ListPanel *otherPanel;
     int colorMask;
     bool compareMode;
     //FilterSpec    filter;

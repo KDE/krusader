@@ -7,7 +7,8 @@ set(Panel_SRCS
     krpreviewpopup.cpp 
     krview.cpp 
     krviewitem.cpp 
-    panelfunc.cpp 
+    panelfunc.cpp
+    krpanel.cpp
     listpanel.cpp 
     panelpopup.cpp 
     krselectionmode.cpp 

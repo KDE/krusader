@@ -46,6 +46,7 @@ class KrusaderView;
 class UserAction;
 class QWidget;
 class ListPanel;
+class KrPanel;
 
 // global references to frequently used objects
 
@@ -61,6 +62,7 @@ public:
     static QWidget *mainWindow;
     static UserAction *userAction;
     static ListPanel  *activePanel;
+//     static KrPanel *activePanel;
 };
 
 #define krConfig     KrGlobal::config

@@ -258,7 +258,7 @@ void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent)
         if (! inSync) {
             inSync = true;
             //do sync-browse stuff....
-            ListPanel *other_panel = OTHER_PANEL;
+            ListPanel *other_panel = OTHER_PANEL->gui;
             KUrl otherDir = other_panel->virtualPath();
             QString otherText = other_panel->origin->lineEdit()->text();
 
@@ -267,7 +267,7 @@ void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent)
             // we can't use openUrl because the delay don't allow a check if the panel has really changed!
             KUrl dest = otherDir;
             dest.addPath(KUrl::relativeUrl(panel->virtualPath().url() + '/', url.url()));
-            OTHER_PANEL->setLocked(false);
+            OTHER_PANEL->gui->setLocked(false);
             OTHER_FUNC->immediateOpenUrl(dest);
             OTHER_FUNC->files() ->vfs_setQuiet(false);
             // now we need to test ACTIVE_PANEL because the openURL has changed the active panel!!

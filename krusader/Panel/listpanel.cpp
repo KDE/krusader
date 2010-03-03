@@ -114,6 +114,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
         quickSearch(0), cdRootButton(0), cdUpButton(0), popupBtn(0), popup(0), inlineRefreshJob(0), _left(left),
         _locked(false), previewJob(0)
 {
+    gui = this;
 
     layout = new QGridLayout(this);
     layout->setSpacing(0);
@@ -431,16 +432,10 @@ void ListPanel::togglePanelPopup()
     }
 }
 
-KUrl ListPanel::virtualPath() const
-{
-    return func->files()->vfs_getOrigin();
-}
-
 QString ListPanel::realPath() const
 {
     return _realPath.path();
 }
-
 
 void ListPanel::setPanelToolbar()
 {
@@ -641,7 +636,7 @@ void ListPanel::slotFocusOnMe()
     view->prepareForActive();
 
 
-    otherPanel->refreshColors();
+    otherPanel->gui->refreshColors();
     refreshColors();
 
     func->refreshActions();
@@ -703,7 +698,7 @@ void ListPanel::slotStartUpdate()
     slotUpdate();
     if (compareMode) {
         otherPanel->view->clear();
-        otherPanel->slotUpdate();
+        otherPanel->gui->slotUpdate();
     }
     // return cursor to normal arrow
     setCursor(Qt::ArrowCursor);
@@ -810,7 +805,7 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
         widget = this;
     }
 
-    if (e->source() == otherPanel)
+    if (e->source() == otherPanel->gui)
         dragFromOtherPanel = true;
     if (e->source() == this)
         dragFromThisPanel = true;

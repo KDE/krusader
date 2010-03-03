@@ -26,7 +26,7 @@
 #include <QtCore/QList>
 #include "tstring.h"
 // #include <QtCore/QStringList>
-class ListPanel;
+class KrPanel;
 class Expander;
 class Error;
 
@@ -59,8 +59,8 @@ private:
     bool _necessary;
 };
 
-#define EXP_FUNC virtual TagString expFunc ( const ListPanel*, const TagStringList&, const bool&, Expander& ) const
-#define SIMPLE_EXP_FUNC virtual TagString expFunc ( const ListPanel*, const QStringList&, const bool&, Expander& ) const
+#define EXP_FUNC virtual TagString expFunc ( const KrPanel*, const TagStringList&, const bool&, Expander& ) const
+#define SIMPLE_EXP_FUNC virtual TagString expFunc ( const KrPanel*, const QStringList&, const bool&, Expander& ) const
 /**
  * Abstract baseclass for all expander-functions (which replace placeholder).
  * A Placeholder is an entry containing the expression,
@@ -95,7 +95,7 @@ protected:
     static void setError(Expander& exp, const Error& e) ;
     static void panelMissingError(const QString &s, Expander& exp);
     static QStringList splitEach(const TagString& s);
-    static QStringList fileList(const ListPanel* const panel, const QString& type, const QString& mask, const bool omitPath, const bool useUrl, Expander&, const QString&);
+    static QStringList fileList(const KrPanel* const panel, const QString& type, const QString& mask, const bool omitPath, const bool useUrl, Expander&, const QString&);
     exp_placeholder();
     exp_placeholder(const exp_placeholder& p);
     virtual ~exp_placeholder() { }
@@ -257,7 +257,7 @@ protected:
      * @param panelIndicator either '_' for panel-independent placeholders, 'a', 'o', 'r', or 'l' for the active, other (inactive), right or left panel
      * @return a pointer to the right panel or NULL if no panel is needed.
      */
-    static ListPanel* getPanel(const char panelIndicator , const exp_placeholder*, Expander&);
+    static KrPanel* getPanel(const char panelIndicator , const exp_placeholder*, Expander&);
     /**
      *  This splits the parameter-string into separate parameter and expands each
      * @param exp the string holding all parameter

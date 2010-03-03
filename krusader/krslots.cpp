@@ -1032,12 +1032,12 @@ void KRslots::updatePopupPanel(KrViewItem *item)
 {
     // which panel to display on?
     ListPanel *lp = 0;
-    if (ACTIVE_PANEL->popup->isHidden() &&
-            ACTIVE_PANEL->otherPanel->popup->isHidden()) return;
-    if (!ACTIVE_PANEL->popup->isHidden())
-        lp = ACTIVE_PANEL;
-    else if (!ACTIVE_PANEL->otherPanel->popup->isHidden())
-        lp = ACTIVE_PANEL->otherPanel;
+    if (ACTIVE_PANEL->gui->popup->isHidden() &&
+            ACTIVE_PANEL->otherPanel->gui->popup->isHidden()) return;
+    if (!ACTIVE_PANEL->gui->popup->isHidden())
+        lp = ACTIVE_PANEL->gui;
+    else if (!ACTIVE_PANEL->otherPanel->gui->popup->isHidden())
+        lp = ACTIVE_PANEL->otherPanel->gui;
 
     KUrl url;
     if (item->name() != "..") // updir
@@ -1047,8 +1047,8 @@ void KRslots::updatePopupPanel(KrViewItem *item)
 
 void KRslots::compareDirs()
 {
-    ACTIVE_PANEL->compareDirs();
-    ACTIVE_PANEL->otherPanel->compareDirs();
+    ACTIVE_PANEL->gui->compareDirs();
+    ACTIVE_PANEL->otherPanel->gui->compareDirs();
 }
 
 void KRslots::compareSetup()

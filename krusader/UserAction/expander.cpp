@@ -65,7 +65,7 @@ void exp_placeholder::panelMissingError(const QString &s, Expander& exp)
     exp.setError(Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Needed panel specification missing in expander %1", s)));
 }
 
-QStringList exp_placeholder::fileList(const ListPanel* const panel, const QString& type, const QString& mask, const bool omitPath, const bool useUrl, Expander& exp, const QString& error)
+QStringList exp_placeholder::fileList(const KrPanel* const panel, const QString& type, const QString& mask, const bool omitPath, const bool useUrl, Expander& exp, const QString& error)
 {
     QStringList items;
     if (type.isEmpty() || type == "all")
@@ -101,7 +101,7 @@ class exp_simpleplaceholder : public exp_placeholder
 {
 public:
     EXP_FUNC;
-    virtual TagString expFunc(const ListPanel*, const QStringList&, const bool&, Expander&) const = 0;
+    virtual TagString expFunc(const KrPanel*, const QStringList&, const bool&, Expander&) const = 0;
 };
 
 /**
@@ -395,7 +395,7 @@ exp_Path::exp_Path()
 
     addParameter(exp_parameter(i18n("Automatically escape spaces"), "__yes", false));
 }
-TagString exp_Path::expFunc(const ListPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp) const
+TagString exp_Path::expFunc(const KrPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp) const
 {
     NEED_PANEL
 
@@ -420,7 +420,7 @@ exp_Count::exp_Count()
 
     addParameter(exp_parameter(i18n("Count:"), "__choose:All;Files;Dirs;Selected", false));
 }
-TagString exp_Count::expFunc(const ListPanel* panel, const QStringList& parameter, const bool&, Expander& exp) const
+TagString exp_Count::expFunc(const KrPanel* panel, const QStringList& parameter, const bool&, Expander& exp) const
 {
     NEED_PANEL
 
@@ -447,7 +447,7 @@ exp_Filter::exp_Filter()
     _description = i18n("Filter Mask (*.h, *.cpp, etc.)");
     _needPanel = true;
 }
-TagString exp_Filter::expFunc(const ListPanel* panel, const QStringList&, const bool&, Expander& exp) const
+TagString exp_Filter::expFunc(const KrPanel* panel, const QStringList&, const bool&, Expander& exp) const
 {
     NEED_PANEL
 
@@ -463,7 +463,7 @@ exp_Current::exp_Current()
     addParameter(exp_parameter(i18n("Omit the current path (optional)"), "__no", false));
     addParameter(exp_parameter(i18n("Automatically escape spaces"), "__yes", false));
 }
-TagString exp_Current::expFunc(const ListPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp) const
+TagString exp_Current::expFunc(const KrPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp) const
 {
     NEED_PANEL
 
@@ -499,7 +499,7 @@ exp_List::exp_List()
     addParameter(exp_parameter(i18n("Mask (optional, all but 'Selected'):"), "__select", false));
     addParameter(exp_parameter(i18n("Automatically escape spaces"), "__yes", false));
 }
-TagString exp_List::expFunc(const ListPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp) const
+TagString exp_List::expFunc(const KrPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp) const
 {
     NEED_PANEL
 
@@ -533,7 +533,7 @@ exp_ListFile::exp_ListFile()
     addParameter(exp_parameter(i18n("Mask (optional, all but 'Selected'):"), "__select", false));
     addParameter(exp_parameter(i18n("Automatically escape spaces"), "__no", false));
 }
-TagString exp_ListFile::expFunc(const ListPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp) const
+TagString exp_ListFile::expFunc(const KrPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp) const
 {
     NEED_PANEL
 
@@ -577,7 +577,7 @@ exp_Select::exp_Select()
     addParameter(exp_parameter(i18n("Selection mask:"), "__select", true));
     addParameter(exp_parameter(i18n("Manipulate in which way:"), "__choose:Set;Add;Remove", false));
 }
-TagString exp_Select::expFunc(const ListPanel* panel, const QStringList& parameter, const bool& , Expander& exp) const
+TagString exp_Select::expFunc(const KrPanel* panel, const QStringList& parameter, const bool& , Expander& exp) const
 {
     NEED_PANEL
 
@@ -608,7 +608,7 @@ exp_Goto::exp_Goto()
     addParameter(exp_parameter(i18n("Choose a path:"), "__goto", true));
     addParameter(exp_parameter(i18n("Open location in a new tab"), "__no", false));
 }
-TagString exp_Goto::expFunc(const ListPanel* panel, const QStringList& parameter, const bool&, Expander& exp) const
+TagString exp_Goto::expFunc(const KrPanel* panel, const QStringList& parameter, const bool&, Expander& exp) const
 {
     NEED_PANEL
 
@@ -628,7 +628,7 @@ TagString exp_Goto::expFunc(const ListPanel* panel, const QStringList& parameter
             MAIN_VIEW->rightMng->slotNewTab(parameter[0]);
     } else {
         panel->func->openUrl(parameter[0], "");
-        const_cast<ListPanel*>(panel)->slotFocusOnMe();
+        panel->gui->slotFocusOnMe();
     }
 
     return QString();  // this doesn't return anything, that's normal!
@@ -655,7 +655,7 @@ exp_Ask::exp_Ask()
     addParameter(exp_parameter(i18n("Preset (optional):"), "", false));
     addParameter(exp_parameter(i18n("Caption (optional):"), "", false));
 }
-TagString exp_Ask::expFunc(const ListPanel*, const QStringList& parameter, const bool&, Expander& exp) const
+TagString exp_Ask::expFunc(const KrPanel*, const QStringList& parameter, const bool&, Expander& exp) const
 {
     QString caption, preset, result;
 
@@ -697,7 +697,7 @@ exp_Clipboard::exp_Clipboard()
     addParameter(exp_parameter(i18n("What to copy:"), "__placeholder", true));
     addParameter(exp_parameter(i18n("Append to current clipboard content with this separator (optional):"), "", false));
 }
-TagString exp_Clipboard::expFunc(const ListPanel*, const TagStringList& parameter, const bool&, Expander& exp) const
+TagString exp_Clipboard::expFunc(const KrPanel*, const TagStringList& parameter, const bool&, Expander& exp) const
 {
 //    kDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << KApplication::clipboard()->text() << endl;
     if (parameter.count() == 0) {
@@ -727,7 +727,7 @@ exp_Copy::exp_Copy()
     addParameter(exp_parameter(i18n("What to copy:"), "__placeholder", true));
     addParameter(exp_parameter(i18n("Where to copy:"), "__placeholder", true));
 }
-TagString exp_Copy::expFunc(const ListPanel*, const TagStringList& parameter, const bool&, Expander& exp) const
+TagString exp_Copy::expFunc(const KrPanel*, const TagStringList& parameter, const bool&, Expander& exp) const
 {
     if (parameter.count() < 2) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 2 parameter is required for Copy!")));
@@ -765,7 +765,7 @@ exp_Move::exp_Move()
     addParameter(exp_parameter(i18n("What to move/rename:"), "__placeholder", true));
     addParameter(exp_parameter(i18n("New target/name:"), "__placeholder", true));
 }
-TagString exp_Move::expFunc(const ListPanel*, const TagStringList& parameter, const bool& , Expander& exp) const
+TagString exp_Move::expFunc(const KrPanel*, const TagStringList& parameter, const bool& , Expander& exp) const
 {
     if (parameter.count() < 2) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 2 parameter is required for Move!")));
@@ -802,7 +802,7 @@ exp_Sync::exp_Sync()
 
     addParameter(exp_parameter(i18n("Choose a profile:"), "__syncprofile", true));
 }
-TagString exp_Sync::expFunc(const ListPanel*, const QStringList& parameter, const bool&, Expander& exp) const
+TagString exp_Sync::expFunc(const KrPanel*, const QStringList& parameter, const bool&, Expander& exp) const
 {
     if (parameter.count() == 0 || parameter[0].isEmpty()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: no profile specified for %_Sync(profile)%")));
@@ -822,7 +822,7 @@ exp_NewSearch::exp_NewSearch()
 
     addParameter(exp_parameter(i18n("Choose a profile:"), "__searchprofile", true));
 }
-TagString exp_NewSearch::expFunc(const ListPanel*, const QStringList& parameter, const bool&, Expander& exp) const
+TagString exp_NewSearch::expFunc(const KrPanel*, const QStringList& parameter, const bool&, Expander& exp) const
 {
     if (parameter.count() == 0 || parameter[0].isEmpty()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: no profile specified for %_NewSearch(profile)%")));
@@ -842,7 +842,7 @@ exp_Profile::exp_Profile()
 
     addParameter(exp_parameter(i18n("Choose a profile:"), "__panelprofile", true));
 }
-TagString exp_Profile::expFunc(const ListPanel*, const QStringList& parameter, const bool&, Expander& exp) const
+TagString exp_Profile::expFunc(const KrPanel*, const QStringList& parameter, const bool&, Expander& exp) const
 {
     if (parameter.count() == 0 || parameter[0].isEmpty()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: no profile specified for %_Profile(profile)%; abort...")));
@@ -865,7 +865,7 @@ exp_Each::exp_Each()
     addParameter(exp_parameter(i18n("Mask (optional, all but 'Selected'):"), "__select", false));
     addParameter(exp_parameter(i18n("Automatically escape spaces"), "__yes", false));
 }
-TagString exp_Each::expFunc(const ListPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp) const
+TagString exp_Each::expFunc(const KrPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp) const
 {
     NEED_PANEL
 
@@ -897,7 +897,7 @@ exp_ColSort::exp_ColSort()
     addParameter(exp_parameter(i18n("Choose a column:"), "__choose:Name;Ext;Type;Size;Modified;Perms;rwx;Owner;Group", true));
     addParameter(exp_parameter(i18n("Choose a sort sequence:"), "__choose:Toggle;Asc;Desc", false));
 }
-TagString exp_ColSort::expFunc(const ListPanel* panel, const QStringList& parameter, const bool&, Expander& exp) const
+TagString exp_ColSort::expFunc(const KrPanel* panel, const QStringList& parameter, const bool&, Expander& exp) const
 {
     NEED_PANEL
 
@@ -991,7 +991,7 @@ exp_PanelSize::exp_PanelSize()
 
     addParameter(exp_parameter(i18n("Set the new size in percent:"), "__int:0;100;5;50", true));
 }
-TagString exp_PanelSize::expFunc(const ListPanel* panel, const QStringList& parameter, const bool&, Expander& exp) const
+TagString exp_PanelSize::expFunc(const KrPanel* panel, const QStringList& parameter, const bool&, Expander& exp) const
 {
     NEED_PANEL
     int newSize;
@@ -1032,7 +1032,7 @@ exp_Script::exp_Script()
     addParameter(exp_parameter(i18n("Location of the script"), "", true));
     addParameter(exp_parameter(i18n("Set some variables for the execution (optional).\ni.e. \"return=return_var;foo=bar\", consult the handbook for more information"), "", false));
 }
-TagString exp_Script::expFunc(const ListPanel*, const QStringList& parameter, const bool&, Expander& exp) const
+TagString exp_Script::expFunc(const KrPanel*, const QStringList& parameter, const bool&, Expander& exp) const
 {
     if (parameter.count() == 0 || parameter[0].isEmpty()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: no script specified for %_Script(script)%")));
@@ -1087,7 +1087,7 @@ exp_View::exp_View()
     //TODO: window-mode 'panel' should open the file in the third-hand viewer
     addParameter(exp_parameter(i18n("Choose a window mode:"), "__choose:tab;window", false));
 }
-TagString exp_View::expFunc(const ListPanel*, const QStringList& parameter, const bool&, Expander& exp) const
+TagString exp_View::expFunc(const KrPanel*, const QStringList& parameter, const bool&, Expander& exp) const
 {
     if (parameter.count() == 0 || parameter[0].isEmpty()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: no file to view in %_View(filename)%")));
@@ -1120,7 +1120,7 @@ TagString exp_View::expFunc(const ListPanel*, const QStringList& parameter, cons
 ////////////////////////////// end of expander classes ////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
-TagString exp_simpleplaceholder::expFunc(const ListPanel* p, const TagStringList& parameter, const bool& useUrl, Expander& exp) const
+TagString exp_simpleplaceholder::expFunc(const KrPanel* p, const TagStringList& parameter, const bool& useUrl, Expander& exp) const
 {
     QStringList lst;
     for (TagStringList::const_iterator it = parameter.begin(), end = parameter.end();it != end;++it)
@@ -1135,7 +1135,7 @@ TagString exp_simpleplaceholder::expFunc(const ListPanel* p, const TagStringList
 
 }
 
-ListPanel* Expander::getPanel(const char panelIndicator, const exp_placeholder* pl, Expander& exp)
+KrPanel* Expander::getPanel(const char panelIndicator, const exp_placeholder* pl, Expander& exp)
 {
     switch (panelIndicator) {
     case 'a':

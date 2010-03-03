@@ -187,7 +187,7 @@ void KrusaderView::cmdLineUnFocus()   // return focus to the active panel
 // Tab - switch focus
 void KrusaderView::panelSwitch()
 {
-    ACTIVE_PANEL->otherPanel->slotFocusOnMe();
+    ACTIVE_PANEL->otherPanel->gui->slotFocusOnMe();
 }
 void KrusaderView::slotSetActivePanel(ListPanel *p)
 {
