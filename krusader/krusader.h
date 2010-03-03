@@ -297,9 +297,6 @@ private:
 #define krUserActionMenu      Krusader::App->userActionMenu
 #define krUserAction      Krusader::App->userAction
 
-
-#include "kractions.h"
-
 #ifdef __KJSEMBED__
 #define krJS   Krusader::App->js
 #define krJSConsole  Krusader::App->actShowJSConsole

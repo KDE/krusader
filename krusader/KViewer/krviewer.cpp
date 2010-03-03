@@ -43,6 +43,7 @@
 #include <kprocess.h>
 #include <kfileitem.h>
 #include <ktoolbar.h>
+#include <kstandardaction.h>
 
 #include "../krglobal.h"
 #include "../defaults.h"

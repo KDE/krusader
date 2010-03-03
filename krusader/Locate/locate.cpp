@@ -29,6 +29,7 @@
  ***************************************************************************/
 
 #include "locate.h"
+#include "../kractions.h"
 #include "../krglobal.h"
 #include "../krslots.h"
 #include "../krusaderview.h"

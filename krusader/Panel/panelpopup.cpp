@@ -20,6 +20,7 @@
 #include "panelpopup.h"
 
 #include "../krglobal.h"
+#include "../kractions.h"
 #include "../kicons.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 #include "../defaults.h"

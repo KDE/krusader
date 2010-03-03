@@ -20,6 +20,7 @@
 #include "panelviewer.h"
 
 #include <QtCore/QFile>
+#include <QApplication>
 
 #include <kparts/browserextension.h>
 #include <kmessagebox.h>

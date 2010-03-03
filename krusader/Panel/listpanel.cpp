@@ -75,6 +75,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 //#endif
 
 #include "../krusader.h"
+#include "../kractions.h"
 #include "../krslots.h"
 #include "panelfunc.h"
 #include "../kicons.h"

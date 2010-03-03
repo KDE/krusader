@@ -62,6 +62,7 @@ A
 #include "krcalcspacedialog.h"
 #include "../krglobal.h"
 #include "../krslots.h"
+#include "../kractions.h"
 #include "../defaults.h"
 #include "../VFS/vfile.h"
 #include "../VFS/vfs.h"

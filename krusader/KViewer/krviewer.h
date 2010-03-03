@@ -32,7 +32,7 @@
 #include <ktabwidget.h>
 #include <ktemporaryfile.h>
 
-#include "../krusader.h"
+#include "../krglobal.h"
 
 class PanelViewerBase;
 
@@ -44,10 +44,10 @@ public:
 
     enum Mode {Generic, Text, Hex, Lister};
 
-    static void view(KUrl url, QWidget * parent = krApp);
-    static void view(KUrl url, Mode mode, bool new_window, QWidget * parent = krApp);
+    static void view(KUrl url, QWidget * parent = krMainWindow);
+    static void view(KUrl url, Mode mode, bool new_window, QWidget * parent = krMainWindow);
     static void edit(KUrl url, QWidget * parent);
-    static void edit(KUrl url, Mode mode = Text, int new_window = -1, QWidget * parent = krApp);
+    static void edit(KUrl url, Mode mode = Text, int new_window = -1, QWidget * parent = krMainWindow);
 
     virtual bool eventFilter(QObject * watched, QEvent * e);
 

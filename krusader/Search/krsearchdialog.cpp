@@ -50,6 +50,7 @@
 
 #include "krsearchmod.h"
 #include "../krglobal.h"
+#include "../kractions.h"
 #include "../krslots.h"
 #include "../defaults.h"
 #include "../panelmanager.h"

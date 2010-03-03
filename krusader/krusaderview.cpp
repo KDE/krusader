@@ -44,6 +44,7 @@
 #include <klibloader.h>
 
 #include "krusader.h"
+#include "kractions.h"
 #include "krslots.h"
 #include "defaults.h"
 #include "Panel/listpanel.h"
