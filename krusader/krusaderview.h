@@ -45,6 +45,8 @@
 #include <QGridLayout>
 #include <QEvent>
 
+#include "krglobal.h"
+
 class PanelManager;
 class ListPanel;
 
@@ -65,10 +67,10 @@ public:
     void cmdLineFocus();  // command line receive's keyboard focus
     void cmdLineUnFocus();// return focus from command line to active panel
     inline PanelManager *activeManager() const {
-        return (activePanel == left ? leftMng : rightMng);
+        return (ACTIVE_PANEL == left ? leftMng : rightMng);
     }
     inline PanelManager *inactiveManager() const {
-        return (activePanel == left ? rightMng : leftMng);
+        return (ACTIVE_PANEL == left ? rightMng : leftMng);
     }
     QList<int> getTerminalEmulatorSplitterSizes();
     inline bool          isVertical() const {
@@ -95,7 +97,6 @@ public slots:
     void killTerminalEmulator();
 
 public:
-    ListPanel  *activePanel;
     ListPanel  *left, *right;       // the actual panels
     PanelManager *leftMng, *rightMng;       // saving them for panel swaps
     KFnKeys   *fnKeys;          // function keys

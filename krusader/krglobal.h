@@ -45,6 +45,9 @@ class KIconLoader;
 class KrusaderView;
 class UserAction;
 class QWidget;
+class ListPanel;
+
+// global references to frequently used objects
 
 class KrGlobal
 {
@@ -57,6 +60,7 @@ public:
     static KrusaderView *mainView;  // The GUI
     static QWidget *mainWindow;
     static UserAction *userAction;
+    static ListPanel  *activePanel;
 };
 
 #define krConfig     KrGlobal::config
@@ -68,8 +72,9 @@ public:
 #define krMainWindow KrGlobal::mainWindow
 #define krUserAction KrGlobal::userAction
 
+#define ACTIVE_PANEL (KrGlobal::activePanel)
+
 #define ACTIVE_MNG   (MAIN_VIEW->activeManager())
-#define ACTIVE_PANEL (MAIN_VIEW->activePanel)
 #define ACTIVE_FUNC  (ACTIVE_PANEL->func)
 #define OTHER_MNG  (MAIN_VIEW->inactiveManager())
 #define OTHER_PANEL (ACTIVE_PANEL->otherPanel)

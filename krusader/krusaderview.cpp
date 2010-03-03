@@ -59,7 +59,7 @@
 #include "krservices.h"
 #include "Panel/krviewfactory.h"
 
-KrusaderView::KrusaderView(QWidget *parent) : QWidget(parent), activePanel(0) {}
+KrusaderView::KrusaderView(QWidget *parent) : QWidget(parent) {}
 
 void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList leftTabs, QStringList rightTabs)
 {
@@ -130,8 +130,8 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     leftMng->startPanel(left, leftUrl);
 
     // make the left panel focused at program start
-    activePanel = left;
-    activePanel->slotFocusOnMe();  // left starts out active
+    ACTIVE_PANEL = left;
+    ACTIVE_PANEL->slotFocusOnMe();  // left starts out active
 
     for (int i = 1; i < leftTabs.count(); i++)
         leftMng->slotNewTab(leftTabs[ i ], false);
@@ -181,17 +181,17 @@ void KrusaderView::cmdLineFocus()    // command line receive's keyboard focus
 
 void KrusaderView::cmdLineUnFocus()   // return focus to the active panel
 {
-    activePanel->slotFocusOnMe();
+    ACTIVE_PANEL->slotFocusOnMe();
 }
 
 // Tab - switch focus
 void KrusaderView::panelSwitch()
 {
-    activePanel->otherPanel->slotFocusOnMe();
+    ACTIVE_PANEL->otherPanel->slotFocusOnMe();
 }
 void KrusaderView::slotSetActivePanel(ListPanel *p)
 {
-    activePanel = p;
+    ACTIVE_PANEL = p;
 }
 
 void KrusaderView::slotTerminalEmulator(bool show)
@@ -205,7 +205,7 @@ void KrusaderView::slotTerminalEmulator(bool show)
     static bool menuBarShown = true;
 
     if (!show) {    // hiding the terminal
-        activePanel->slotFocusOnMe();
+        ACTIVE_PANEL->slotFocusOnMe();
         if (terminal_dock->isTerminalVisible() && !fullscreen)
             verticalSplitterSizes = vert_splitter->sizes();
 
@@ -236,7 +236,7 @@ void KrusaderView::slotTerminalEmulator(bool show)
             vert_splitter->setSizes(verticalSplitterSizes);
 
         terminal_dock->show();
-        slotCurrentChanged(activePanel->realPath());
+        slotCurrentChanged(ACTIVE_PANEL->realPath());
 
         terminal_dock->setFocus();
 
@@ -328,7 +328,7 @@ void KrusaderView::savePanelProfiles(QString group)
     svr.writeEntry("Left Active Tab", MAIN_VIEW->leftMng->activeTab());
     MAIN_VIEW->rightMng->saveSettings(&svr, "Right Tabs", false);
     svr.writeEntry("Right Active Tab", MAIN_VIEW->rightMng->activeTab());
-    svr.writeEntry("Left Side Is Active", MAIN_VIEW->activePanel->isLeft());
+    svr.writeEntry("Left Side Is Active", ACTIVE_PANEL->isLeft());
 }
 
 void KrusaderView::toggleVerticalMode()
@@ -348,7 +348,7 @@ void KrusaderView::saveSettings(KConfigGroup &cfg)
 {
     cfg.writeEntry("Left Active Tab", leftMng->activeTab());
     cfg.writeEntry("Right Active Tab", rightMng->activeTab());
-    cfg.writeEntry("Left Side Is Active", activePanel->isLeft());
+    cfg.writeEntry("Left Side Is Active", ACTIVE_PANEL->isLeft());
     leftMng->saveSettings(&cfg, "Left Tab Bar");
     rightMng->saveSettings(&cfg, "Right Tab Bar");
 }
