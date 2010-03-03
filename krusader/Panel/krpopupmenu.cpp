@@ -36,6 +36,7 @@
 #include "../krservices.h"
 #include "../defaults.h"
 #include "../MountMan/kmountman.h"
+#include "../krusader.h"
 #include "../krslots.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"

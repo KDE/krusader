@@ -37,7 +37,7 @@
 #include <kprocess.h>
 #include <kio/netaccess.h>
 // the 2 following #includes should go away with the ugly stubs on the bottom
-#include "krusader.h"
+#include "krglobal.h"
 #include "krusaderview.h"
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"

@@ -36,6 +36,7 @@
 #include <klocale.h>
 #include <kglobalsettings.h>
 
+#include "../krglobal.h"
 #include "../kractions.h"
 #include "../defaults.h"
 #include "../krslots.h"
@@ -97,7 +98,7 @@ KFnKeys::KFnKeys(QWidget *parent): QWidget(parent)
 
     F10 = new QPushButton(i18n("F10 Quit ") , this);
     F10->setToolTip(i18n("Quit Krusader."));
-    connect(F10, SIGNAL(clicked()), krApp, SLOT(slotClose()));
+    connect(F10, SIGNAL(clicked()), krMainWindow, SLOT(slotClose()));
     SETUP(F10);
     /*
         // set a tighter box around the keys

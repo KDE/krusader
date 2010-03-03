@@ -29,6 +29,7 @@
 ***************************************************************************/
 #include "krview.h"
 #include "../kicons.h"
+#include "../kractions.h"
 #include "../krslots.h"
 #include "../defaults.h"
 #include "../VFS/krpermhandler.h"
@@ -611,7 +612,7 @@ void KrView::renameCurrentItem()
 
     bool ok = false;
     newName = KInputDialog::getText(i18n("Rename"), i18n("Rename ") + fileName + i18n(" to:"),
-                                    fileName, &ok, krApp);
+                                    fileName, &ok, krMainWindow);
     // if the user canceled - quit
     if (!ok || newName == fileName)
         return ;

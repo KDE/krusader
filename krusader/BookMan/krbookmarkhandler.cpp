@@ -20,6 +20,7 @@
 #include "krbookmarkhandler.h"
 #include "kraddbookmarkdlg.h"
 #include "../krslots.h"
+#include "../krusader.h"
 #include "../Dialogs/popularurls.h"
 #include "../VFS/vfs.h"
 #include <kiconloader.h>
