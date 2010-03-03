@@ -45,7 +45,6 @@
 #include <kdirwatch.h>
 
 #include "kractions.h"
-#include "krusaderview.h"
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
 

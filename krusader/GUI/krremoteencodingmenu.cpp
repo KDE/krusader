@@ -19,6 +19,7 @@
 
 #include "krremoteencodingmenu.h"
 
+#include <klocale.h>
 #include <kactioncollection.h>
 #include <kmenu.h>
 #include <kcharsets.h>
@@ -26,7 +27,6 @@
 #include <kio/scheduler.h>
 
 #include "../krglobal.h"
-#include "../krusaderview.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../kicons.h"
