@@ -28,6 +28,8 @@
 *                                                                         *
 ***************************************************************************/
 #include "krview.h"
+#include "listpanel.h"
+#include "panelfunc.h"
 #include "../kicons.h"
 #include "../kractions.h"
 #include "../krslots.h"

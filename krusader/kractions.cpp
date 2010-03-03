@@ -28,16 +28,20 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 *                                                                         *
 ***************************************************************************/
 
+#include <klocale.h>
 #include <kactioncollection.h>
 #include <kaction.h>
 #include <ktoggleaction.h>
 #include <ktoolbarpopupaction.h>
+#include <QMenu>
 
 #include "defaults.h"
 #include "krusader.h"
+#include "krusaderview.h"
 #include "krslots.h"
 #include "kractions.h"
 #include "krtrashhandler.h"
+#include "MountMan/kmountman.h"
 #include "Panel/krviewfactory.h"
 #include "GUI/krremoteencodingmenu.h"
 #include "UserAction/useraction.h"

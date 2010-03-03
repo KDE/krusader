@@ -88,6 +88,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krslots.h"
 #include "krservices.h"
 #include "UserAction/useraction.h"
+#include "Panel/listpanel.h"
 #include "Panel/krviewfactory.h"
 // This makes gcc-4.1 happy. Warning about possible problem with KrAction's dtor not called
 #include "UserAction/kraction.h"

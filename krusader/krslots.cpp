@@ -70,6 +70,8 @@
 #include "GUI/kcmdline.h"
 #include "GUI/terminaldock.h"
 #include "GUI/syncbrowsebutton.h"
+#include "GUI/mediabutton.h"
+#include "GUI/dirhistorybutton.h"
 #include "VFS/krquery.h"
 #include "Search/krsearchmod.h"
 #include "Search/krsearchdialog.h"
@@ -89,6 +91,9 @@
 #include "Panel/krviewitem.h"
 #include "Queue/queuedialog.h"
 #include "krtrashhandler.h"
+#include "krusaderview.h"
+#include "BookMan/krbookmarkhandler.h"
+#include "BookMan/krbookmarkbutton.h"
 
 #define REFRESH_BOTH_PANELS { ListPanel *p=ACTIVE_PANEL;        \
         MAIN_VIEW->left->func->refresh(); \
@@ -1183,5 +1188,80 @@ void KRslots::cancelRefresh()
 {
     ACTIVE_PANEL->inlineRefreshCancel();
 }
+
+void KRslots::openRightBookmarks()
+{
+    RIGHT_PANEL->slotFocusOnMe(); RIGHT_PANEL->bookmarksButton->showMenu();
+}
+
+void KRslots::openLeftBookmarks()
+{
+    LEFT_PANEL->slotFocusOnMe(); LEFT_PANEL->bookmarksButton->showMenu();
+}
+
+void KRslots::openBookmarks()
+{
+    ACTIVE_PANEL->bookmarksButton->showMenu();
+}
+
+void KRslots::openHistory()
+{
+    ACTIVE_PANEL->historyButton->showMenu();
+}
+
+void KRslots::openLeftHistory()
+{
+    LEFT_PANEL->historyButton->showMenu();
+}
+
+void KRslots::openRightHistory()
+{
+    RIGHT_PANEL->historyButton->showMenu();
+}
+
+void KRslots::openMedia()
+{
+    ACTIVE_PANEL->mediaButton->showMenu();
+}
+
+void KRslots::openLeftMedia()
+{
+    LEFT_PANEL->mediaButton->showMenu();
+}
+
+void KRslots::openRightMedia()
+{
+    RIGHT_PANEL->mediaButton->showMenu();
+}
+
+void KRslots::newSymlink()
+{
+    ACTIVE_PANEL->func->krlink(true);
+}
+
+void KRslots::syncPanels()
+{
+    ListPanel *t = ACTIVE_PANEL;
+    OTHER_FUNC->openUrl(ACTIVE_PANEL->virtualPath());
+    t->slotFocusOnMe();
+}
+
+void KRslots::cmdlinePopup()
+{
+    MAIN_VIEW->cmdLine->popup();
+}
+
+
+// ugly stubs, remove later ?
+void KRslots::slotCurrentChanged(QString p)
+{
+    MAIN_VIEW->slotCurrentChanged(p);
+}
+
+void KRslots::slotSetActivePanel(ListPanel *p)
+{
+    MAIN_VIEW->slotSetActivePanel(p);
+}
+
 
 #include "krslots.moc"

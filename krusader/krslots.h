@@ -36,17 +36,10 @@
 #include <QtCore/QObject>
 #include <kprocess.h>
 #include <kio/netaccess.h>
-// the 2 following #includes should go away with the ugly stubs on the bottom
 #include "krglobal.h"
-#include "krusaderview.h"
-#include "Panel/listpanel.h"
-#include "Panel/panelfunc.h"
-#include "BookMan/krbookmarkbutton.h"
-#include "GUI/kcmdline.h"
-#include "GUI/dirhistorybutton.h"
-#include "GUI/mediabutton.h"
 
 class ListPanel;
+class KrViewItem;
 class KUrl;
 
 class KrProcess: public KProcess
@@ -154,42 +147,18 @@ public slots:
     void toggleCmdline();
     void changeTrashIcon();
     void multiRename();
-    void openRightBookmarks() {
-        RIGHT_PANEL->slotFocusOnMe(); RIGHT_PANEL->bookmarksButton->showMenu();
-    }
-    void openLeftBookmarks() {
-        LEFT_PANEL->slotFocusOnMe(); LEFT_PANEL->bookmarksButton->showMenu();
-    }
-    void openBookmarks() {
-        ACTIVE_PANEL->bookmarksButton->showMenu();
-    }
+    void openRightBookmarks();
+    void openLeftBookmarks();
+    void openBookmarks();
     void bookmarkCurrent();
-    void openHistory() {
-        ACTIVE_PANEL->historyButton->showMenu();
-    }
-    void openLeftHistory() {
-        LEFT_PANEL->historyButton->showMenu();
-    }
-    void openRightHistory() {
-        RIGHT_PANEL->historyButton->showMenu();
-    }
-    void openMedia() {
-        ACTIVE_PANEL->mediaButton->showMenu();
-    }
-    void openLeftMedia() {
-        LEFT_PANEL->mediaButton->showMenu();
-    }
-    void openRightMedia() {
-        RIGHT_PANEL->mediaButton->showMenu();
-    }
-    void syncPanels() {
-        ListPanel *t = ACTIVE_PANEL;
-        OTHER_FUNC->openUrl(ACTIVE_PANEL->virtualPath());
-        t->slotFocusOnMe();
-    }
-    void cmdlinePopup() {
-        MAIN_VIEW->cmdLine->popup();
-    }
+    void openHistory();
+    void openLeftHistory();
+    void openRightHistory();
+    void openMedia();
+    void openLeftMedia();
+    void openRightMedia();
+    void syncPanels();
+    void cmdlinePopup();
     void duplicateTab();
     void newTab(const KUrl& url = KUrl());
     void newTab(KrViewItem *item);
@@ -210,9 +179,7 @@ public slots:
     void slotLocationBar();
     void slotJumpBack();
     void slotSetJumpBack();
-    void newSymlink() {
-        ACTIVE_PANEL->func->krlink(true);
-    }
+    void newSymlink();
     void updatePopupPanel(KrViewItem *);
     void windowActive(); // called when krusader's window becomes focused
     void windowInactive(); // called when another application steals the focus
@@ -242,13 +209,8 @@ public slots:
     void rename();
 
     // ugly stubs, remove later ?
-    void slotCurrentChanged(QString p) {
-        MAIN_VIEW->slotCurrentChanged(p);
-    }
-    void slotSetActivePanel(ListPanel *p) {
-        MAIN_VIEW->slotSetActivePanel(p);
-    }
-
+    void slotCurrentChanged(QString p);
+    void slotSetActivePanel(ListPanel *p);
 
     void jsConsole();
     void saveNewToolbarConfig();

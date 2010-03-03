@@ -24,6 +24,7 @@
 #include "../kractions.h"
 #include "../Dialogs/popularurls.h"
 #include "../VFS/vfs.h"
+#include "../Panel/listpanel.h"
 #include <kiconloader.h>
 #include <kmessagebox.h>
 #include <QtCore/QTextStream>

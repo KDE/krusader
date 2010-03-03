@@ -25,11 +25,14 @@
 #include <qheaderview.h>
 #include <QtGui/QLayout>
 #include <QtGui/QLabel>
+#include <QToolButton>
 
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <kiconloader.h>
 #include <ktreewidgetsearchline.h>
+
+#include <stdio.h>
 
 #include "../krglobal.h"
 #include "../krslots.h"

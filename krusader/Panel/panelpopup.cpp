@@ -43,6 +43,7 @@
 #include <QtGui/QLabel>
 #include <QtCore/QDir>
 #include <QHeaderView>
+#include <QSplitter>
 
 #include <klocale.h>
 #include <klineedit.h>
@@ -52,6 +53,7 @@
 #include <kdirmodel.h>
 #include <kdirsortfilterproxymodel.h>
 #include <kfileitemdelegate.h>
+#include <kcombobox.h>
 
 class KrDirModel : public KDirModel
 {

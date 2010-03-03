@@ -58,12 +58,14 @@ A
 #include <kurlrequester.h>
 #include <kdesktopfile.h>
 #include <ktoggleaction.h>
+#include <kurlcompletion.h>
 
 #include "krcalcspacedialog.h"
 #include "../krglobal.h"
 #include "../krslots.h"
 #include "../kractions.h"
 #include "../defaults.h"
+#include "../krusaderview.h"
 #include "../VFS/vfile.h"
 #include "../VFS/vfs.h"
 #include "../VFS/virt_vfs.h"
