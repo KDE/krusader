@@ -31,6 +31,7 @@
 #include <kactioncollection.h>
 
 #include "../krusader.h"
+#include "../krglobal.h"
 
 //This is the filter in the KFileDialog of Import/Export:
 static const char* FILE_FILTER = I18N_NOOP("*.keymap|Krusader keymaps\n*|all files");

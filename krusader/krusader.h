@@ -50,7 +50,6 @@
 #include <QHideEvent>
 #include <kdebug.h>
 #include "VFS/kiojobwrapper.h"
-#include "krglobal.h"
 
 #ifdef __KJSEMBED__
 class KrJS;
@@ -104,10 +103,7 @@ public slots:
     }
 
 protected:
-    bool queryExit() {
-        krConfig->sync();
-        return true;
-    }
+    bool queryExit();
     bool queryClose();
     void setupActions();
     void setupAccels();

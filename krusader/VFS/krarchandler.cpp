@@ -42,6 +42,7 @@
 #include <kio/global.h>
 
 #include "../krusader.h"
+#include "../krglobal.h"
 #include "../krusaderview.h"
 #include "../defaults.h"
 #include "../krservices.h"

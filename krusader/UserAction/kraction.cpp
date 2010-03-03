@@ -50,7 +50,6 @@
 #include "expander.h"
 #include "useraction.h"
 #include "../GUI/terminaldock.h"
-#include "../krusader.h"
 #include "../krglobal.h"
 #include "../krusaderview.h"
 #include "../defaults.h"

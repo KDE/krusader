@@ -1234,4 +1234,11 @@ bool Krusader::isRunning() {
     return true;
 }
 
+bool Krusader::queryExit()
+{
+    krConfig->sync();
+    return true;
+}
+
+
 #include "krusader.moc"

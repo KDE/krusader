@@ -20,6 +20,7 @@
 
 #include "checksumdlg.h"
 #include "../krusader.h"
+#include "../krglobal.h"
 #include "../GUI/krlistwidget.h"
 #include "../GUI/krtreewidget.h"
 #include <klocale.h>
