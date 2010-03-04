@@ -61,7 +61,7 @@
 #include "../kicons.h"
 #include "../defaults.h"
 #include "../krglobal.h"
-#include "../Panel/listpanel.h"
+#include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
 #include "filelightParts/Config.h"
 #include "dulines.h"

@@ -56,7 +56,7 @@
 #include "../panelmanager.h"
 #include "../VFS/vfs.h"
 #include "../krusaderview.h"
-#include "../Panel/listpanel.h"
+#include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../Dialogs/krdialogs.h"
 #include "../VFS/virt_vfs.h"

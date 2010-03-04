@@ -30,7 +30,6 @@
 
 #include "krspwidgets.h"
 #include "../krglobal.h"
-#include "../Panel/listpanel.h"
 #include "../kicons.h"
 #include "../Filter/filtertabs.h"
 #include <QtGui/QComboBox>

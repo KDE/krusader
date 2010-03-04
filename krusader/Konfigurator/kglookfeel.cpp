@@ -44,7 +44,6 @@
 #include <kstandarddirs.h>
 #include "../GUI/krtreewidget.h"
 #include "../Panel/krselectionmode.h"
-#include "../Panel/listpanel.h"
 #include "../Panel/krview.h"
 #include "../Panel/krviewfactory.h"
 

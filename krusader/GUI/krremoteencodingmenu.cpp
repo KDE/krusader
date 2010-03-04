@@ -27,7 +27,7 @@
 #include <kio/scheduler.h>
 
 #include "../krglobal.h"
-#include "../Panel/listpanel.h"
+#include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../kicons.h"
 

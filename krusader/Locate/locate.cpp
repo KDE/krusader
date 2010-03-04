@@ -33,7 +33,7 @@
 #include "../krglobal.h"
 #include "../krslots.h"
 #include "../krusaderview.h"
-#include "../Panel/listpanel.h"
+#include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../GUI/krtreewidget.h"
 #include "../defaults.h"
@@ -45,6 +45,7 @@
 #include "../kicons.h"
 #include <klocale.h>
 #include <kprocess.h>
+#include <kfileitem.h>
 #include <QtGui/QLabel>
 #include <QtGui/QLayout>
 #include <QtGui/QFontMetrics>
@@ -65,6 +66,7 @@
 #include <QtGui/QClipboard>
 #include <QDrag>
 #include <QMimeData>
+#include <QLineEdit>
 #include <qfont.h>
 
 // these are the values that will exist in the menu

@@ -55,7 +55,6 @@
 #include "../resources.h"
 #include "../defaults.h"
 #include "../krusaderview.h"
-#include "../Panel/listpanel.h"
 #include "../krservices.h"
 #include "../ActionMan/addplaceholderpopup.h"
 #include "kcmdmodebutton.h"
