@@ -40,6 +40,7 @@ KrViewInstance::KrViewInstance(int id, QString name, QString desc, QKeySequence 
         m_id(id), m_name(name), m_description(desc), m_shortcut(shortcut), m_factoryfun(fun), m_ihchangefun(fun2)
 
 {
+    KrViewFactory::self().registerView(this);
 }
 
 KrView * KrViewFactory::createView(int id, QWidget * widget, bool & left, KConfig *cfg)
