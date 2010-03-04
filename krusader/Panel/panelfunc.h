@@ -32,7 +32,6 @@
 
 #ifndef PANELFUNC_H
 #define PANELFUNC_H
-// #include "listpanel.h"
 #include "krviewitem.h"
 #include <QtCore/QObject>
 #include <QtCore/QTimer>

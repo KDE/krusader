@@ -30,19 +30,21 @@
 #include <kbookmarkmanager.h>
 #endif
 
-#include "listpanel.h"
 #include "krpreviewpopup.h"
+#include "krviewitem.h"
 #include "../UserAction/useractionpopupmenu.h"
+
+class KrPanel;
 
 // should be renamed to KrContextMenu or similar
 class KrPopupMenu : public KMenu
 {
     Q_OBJECT
 public:
-    static void run(const QPoint &pos, ListPanel *panel);
+    static void run(const QPoint &pos, KrPanel *panel);
 
 protected:
-    KrPopupMenu(ListPanel *thePanel, QWidget *parent = 0);
+    KrPopupMenu(KrPanel *thePanel, QWidget *parent = 0);
     ~KrPopupMenu();
     void performAction(int id);
     void addEmptyMenuEntries(); // adds the choices for a menu without selected items
@@ -84,7 +86,7 @@ protected:
     };
 
 private:
-    ListPanel *panel;
+    KrPanel *panel;
     bool empty, multipleSelections;
     KMenu openWith, linkPopup, createNewPopup;
     KrPreviewPopup preview;

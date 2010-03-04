@@ -30,6 +30,7 @@
 #include <ktoolinvocation.h>
 #include <kactioncollection.h>
 
+#include "listpanel.h"
 #include "krview.h"
 #include "krviewitem.h"
 #include "panelfunc.h"
@@ -49,7 +50,7 @@
 #include <konq_popupmenuinformation.h>
 #endif
 
-void KrPopupMenu::run(const QPoint &pos, ListPanel *panel)
+void KrPopupMenu::run(const QPoint &pos, KrPanel *panel)
 {
     KrPopupMenu menu(panel);
     QAction * res = menu.exec(pos);
@@ -59,7 +60,7 @@ void KrPopupMenu::run(const QPoint &pos, ListPanel *panel)
     menu.performAction(result);
 }
 
-KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), panel(thePanel), empty(false),
+KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : KMenu(parent), panel(thePanel), empty(false),
         multipleSelections(false), actions(0)
 {
 #ifdef __LIBKONQ__
@@ -105,7 +106,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
     if (panel->func->files()->vfs_getType() == vfs::VFS_NORMAL) {
         // create the preview popup
         QStringList names;
-        panel->getSelectedNames(&names);
+        panel->gui->getSelectedNames(&names);
         preview.setUrls(panel->func->files() ->vfs_getFiles(&names));
         QAction *pAct = addMenu(&preview);
         pAct->setData(QVariant(PREVIEW_ID));
@@ -351,7 +352,7 @@ void KrPopupMenu::performAction(int id)
         break;
     case RESTORE_TRASHED_FILE_ID : {
         QStringList fileNames;
-        panel->getSelectedNames(&fileNames);
+        panel->gui->getSelectedNames(&fileNames);
         KrTrashHandler::restoreTrashedFiles(*panel->func->files() ->vfs_getFiles(&fileNames));
     }
     break;
@@ -369,7 +370,7 @@ void KrPopupMenu::performAction(int id)
         break;
     case SEND_BY_EMAIL_ID : {
         QStringList fileNames;
-        panel->getSelectedNames(&fileNames);
+        panel->gui->getSelectedNames(&fileNames);
         SLOTS->sendFileByEmail(*panel->func->files() ->vfs_getFiles(&fileNames));
         break;
     }
@@ -409,7 +410,7 @@ void KrPopupMenu::performAction(int id)
     // check if something from the open-with-offered-services was selected
     if (id >= SERVICE_LIST_ID) {
         QStringList names;
-        panel->getSelectedNames(&names);
+        panel->gui->getSelectedNames(&names);
         KRun::run(*(offers[ id - SERVICE_LIST_ID ]),
                   *(panel->func->files() ->vfs_getFiles(&names)), parentWidget());
     }
