@@ -1951,10 +1951,10 @@ void SynchronizerGUI::closeDialog()
     this->deleteLater();
 
     if (wasSync) {
-        ListPanel *p = ACTIVE_PANEL;
+        KrPanel *p = ACTIVE_PANEL;
         MAIN_VIEW->left->func->refresh();
         MAIN_VIEW->right->func->refresh();
-        p->slotFocusOnMe();
+        p->gui->slotFocusOnMe();
     }
 }
 

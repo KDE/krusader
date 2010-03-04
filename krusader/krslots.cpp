@@ -162,7 +162,7 @@ void KRslots::compareContent()
 
     MAIN_VIEW->left->getSelectedNames(&lstLeft);
     MAIN_VIEW->right->getSelectedNames(&lstRight);
-    lstActive = (ACTIVE_PANEL->isLeft() ? &lstLeft : &lstRight);
+    lstActive = (ACTIVE_PANEL->gui->isLeft() ? &lstLeft : &lstRight);
 
     if (lstLeft.count() == 1 && lstRight.count() == 1) {
         // first, see if we've got exactly 1 selected file in each panel:
@@ -233,8 +233,8 @@ void KRslots::compareContent(KUrl url1, KUrl url2)
 void KRslots::rightclickMenu()
 {
     if (ACTIVE_PANEL->view->getCurrentKrViewItem()) {
-        ACTIVE_PANEL->popRightClickMenu(
-            ACTIVE_PANEL->mapToGlobal(
+        ACTIVE_PANEL->gui->popRightClickMenu(
+            ACTIVE_PANEL->gui->mapToGlobal(
                 ACTIVE_PANEL->view->getCurrentKrViewItem()->itemRect().topLeft()
             )
         );
@@ -317,39 +317,39 @@ void KRslots::insertFileName(bool full_path)
 // directory list functions
 void KRslots::allFilter()
 {
-    ACTIVE_PANEL->setFilter(KrViewProperties::All);
+    ACTIVE_PANEL->gui->setFilter(KrViewProperties::All);
 }
 void KRslots::execFilter()
 {
-    ACTIVE_PANEL->setFilter(KrViewProperties::All);
+    ACTIVE_PANEL->gui->setFilter(KrViewProperties::All);
 }
 void KRslots::customFilter()
 {
-    ACTIVE_PANEL->setFilter(KrViewProperties::Custom);
+    ACTIVE_PANEL->gui->setFilter(KrViewProperties::Custom);
 }
 void KRslots::markAll()
 {
-    ACTIVE_PANEL->select(true, true);
+    ACTIVE_PANEL->gui->select(true, true);
 }
 void KRslots::unmarkAll()
 {
-    ACTIVE_PANEL->select(false, true);
+    ACTIVE_PANEL->gui->select(false, true);
 }
 void KRslots::markGroup()
 {
-    ACTIVE_PANEL->select(true, false);
+    ACTIVE_PANEL->gui->select(true, false);
 }
 void KRslots::markGroup(const QString& mask, bool select)
 {
-    ACTIVE_PANEL->select(KRQuery(mask), select);
+    ACTIVE_PANEL->gui->select(KRQuery(mask), select);
 }
 void KRslots::unmarkGroup()
 {
-    ACTIVE_PANEL->select(false, false);
+    ACTIVE_PANEL->gui->select(false, false);
 }
 void KRslots::invert()
 {
-    ACTIVE_PANEL->invertSelection();
+    ACTIVE_PANEL->gui->invertSelection();
 }
 
 void KRslots::root()
@@ -460,38 +460,38 @@ void KRslots::runKonfigurator(bool firstTime)
 
 void KRslots::setView0()
 {
-    if (ACTIVE_PANEL && ACTIVE_PANEL->getType() != 0)
-        ACTIVE_PANEL->changeType(0);
+    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 0)
+        ACTIVE_PANEL->gui->changeType(0);
 }
 
 void KRslots::setView1()
 {
-    if (ACTIVE_PANEL && ACTIVE_PANEL->getType() != 1)
-        ACTIVE_PANEL->changeType(1);
+    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 1)
+        ACTIVE_PANEL->gui->changeType(1);
 }
 
 void KRslots::setView2()
 {
-    if (ACTIVE_PANEL && ACTIVE_PANEL->getType() != 2)
-        ACTIVE_PANEL->changeType(2);
+    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 2)
+        ACTIVE_PANEL->gui->changeType(2);
 }
 
 void KRslots::setView3()
 {
-    if (ACTIVE_PANEL && ACTIVE_PANEL->getType() != 3)
-        ACTIVE_PANEL->changeType(3);
+    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 3)
+        ACTIVE_PANEL->gui->changeType(3);
 }
 
 void KRslots::setView4()
 {
-    if (ACTIVE_PANEL && ACTIVE_PANEL->getType() != 4)
-        ACTIVE_PANEL->changeType(4);
+    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 4)
+        ACTIVE_PANEL->gui->changeType(4);
 }
 
 void KRslots::setView5()
 {
-    if (ACTIVE_PANEL && ACTIVE_PANEL->getType() != 5)
-        ACTIVE_PANEL->changeType(5);
+    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 5)
+        ACTIVE_PANEL->gui->changeType(5);
 }
 
 void KRslots::toggleHidden()
@@ -645,7 +645,7 @@ void KRslots::multiRename()
     QString pathToRename = lst[i+1];
 
     QStringList names;
-    ((ListPanel*)ACTIVE_PANEL)->getSelectedNames(&names);
+    ACTIVE_PANEL->gui->getSelectedNames(&names);
     KUrl::List* urls = ACTIVE_FUNC->files()->vfs_getFiles(&names);
 
     if (urls->isEmpty()) {
@@ -860,7 +860,7 @@ void KRslots::slotSplit()
     QStringList list;
     QString name;
 
-    ((ListPanel*)ACTIVE_PANEL)->getSelectedNames(&list);
+    ACTIVE_PANEL->gui->getSelectedNames(&list);
 
     // first, see if we've got exactly 1 selected file, if not, try the current one
     if (list.count() == 1) name = list[0];
@@ -904,7 +904,7 @@ void KRslots::slotCombine()
     QString       commonName;
     int           commonLength = 0;
 
-    ((ListPanel*)ACTIVE_PANEL)->getSelectedNames(&list);
+    ACTIVE_PANEL->gui->getSelectedNames(&list);
     if (list.isEmpty()) {
         KMessageBox::error(0, i18n("Don't know which files to combine."));
         return;
@@ -1025,7 +1025,7 @@ void KRslots::slotSynchronizeDirs(QStringList selected)
 
 void KRslots::slotSyncBrowse()
 {
-    ACTIVE_PANEL->syncBrowseButton->toggle();
+    ACTIVE_PANEL->gui->syncBrowseButton->toggle();
 }
 
 void KRslots::updatePopupPanel(KrViewItem *item)
@@ -1078,7 +1078,7 @@ void KRslots::execTypeSetup()
 
 void KRslots::togglePopupPanel()
 {
-    ACTIVE_PANEL->togglePanelPopup();
+    ACTIVE_PANEL->gui->togglePanelPopup();
 }
 
 void KRslots::slotDiskUsage()
@@ -1112,18 +1112,18 @@ void KRslots::windowInactive()
 
 void KRslots::slotLocationBar()
 {
-    ACTIVE_PANEL->origin->lineEdit()->selectAll();
-    ACTIVE_PANEL->origin->setFocus();
+    ACTIVE_PANEL->gui->origin->lineEdit()->selectAll();
+    ACTIVE_PANEL->gui->origin->setFocus();
 }
 
 void KRslots::slotJumpBack()
 {
-    ACTIVE_PANEL->jumpBack();
+    ACTIVE_PANEL->gui->jumpBack();
 }
 
 void KRslots::slotSetJumpBack()
 {
-    ACTIVE_PANEL->setJumpBack(ACTIVE_PANEL->virtualPath());
+    ACTIVE_PANEL->gui->setJumpBack(ACTIVE_PANEL->virtualPath());
 }
 
 void KRslots::emptyTrash()
@@ -1186,52 +1186,52 @@ void KRslots::defaultZoom()
 
 void KRslots::cancelRefresh()
 {
-    ACTIVE_PANEL->inlineRefreshCancel();
+    ACTIVE_PANEL->gui->inlineRefreshCancel();
 }
 
 void KRslots::openRightBookmarks()
 {
-    RIGHT_PANEL->slotFocusOnMe(); RIGHT_PANEL->bookmarksButton->showMenu();
+    RIGHT_PANEL->gui->slotFocusOnMe(); RIGHT_PANEL->bookmarksButton->showMenu();
 }
 
 void KRslots::openLeftBookmarks()
 {
-    LEFT_PANEL->slotFocusOnMe(); LEFT_PANEL->bookmarksButton->showMenu();
+    LEFT_PANEL->gui->slotFocusOnMe(); LEFT_PANEL->bookmarksButton->showMenu();
 }
 
 void KRslots::openBookmarks()
 {
-    ACTIVE_PANEL->bookmarksButton->showMenu();
+    ACTIVE_PANEL->gui->bookmarksButton->showMenu();
 }
 
 void KRslots::openHistory()
 {
-    ACTIVE_PANEL->historyButton->showMenu();
+    ACTIVE_PANEL->gui->historyButton->showMenu();
 }
 
 void KRslots::openLeftHistory()
 {
-    LEFT_PANEL->historyButton->showMenu();
+    LEFT_PANEL->gui->historyButton->showMenu();
 }
 
 void KRslots::openRightHistory()
 {
-    RIGHT_PANEL->historyButton->showMenu();
+    RIGHT_PANEL->gui->historyButton->showMenu();
 }
 
 void KRslots::openMedia()
 {
-    ACTIVE_PANEL->mediaButton->showMenu();
+    ACTIVE_PANEL->gui->mediaButton->showMenu();
 }
 
 void KRslots::openLeftMedia()
 {
-    LEFT_PANEL->mediaButton->showMenu();
+    LEFT_PANEL->gui->mediaButton->showMenu();
 }
 
 void KRslots::openRightMedia()
 {
-    RIGHT_PANEL->mediaButton->showMenu();
+    RIGHT_PANEL->gui->mediaButton->showMenu();
 }
 
 void KRslots::newSymlink()
@@ -1241,7 +1241,7 @@ void KRslots::newSymlink()
 
 void KRslots::syncPanels()
 {
-    ListPanel *t = ACTIVE_PANEL;
+    ListPanel *t = ACTIVE_PANEL->gui;
     OTHER_FUNC->openUrl(ACTIVE_PANEL->virtualPath());
     t->slotFocusOnMe();
 }

@@ -70,10 +70,10 @@ public:
     void cmdLineFocus();  // command line receive's keyboard focus
     void cmdLineUnFocus();// return focus from command line to active panel
     inline PanelManager *activeManager() const {
-        return (ACTIVE_PANEL == left ? leftMng : rightMng);
+        return (ACTIVE_PANEL->gui == left ? leftMng : rightMng);
     }
     inline PanelManager *inactiveManager() const {
-        return (ACTIVE_PANEL == left ? rightMng : leftMng);
+        return (ACTIVE_PANEL->gui == left ? rightMng : leftMng);
     }
     QList<int> getTerminalEmulatorSplitterSizes();
     inline bool          isVertical() const {

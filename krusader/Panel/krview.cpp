@@ -880,7 +880,7 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
                     // item is "below" the quick search window, as the icon view will
                     // realize its new size after the key processing. The following line
                     // will resize the icon view immediately.
-                    ACTIVE_PANEL->layout->activate();
+                    ACTIVE_PANEL->gui->layout->activate();
                     // second, we need to disable the dirup action - hack!
                     krDirUp->setEnabled(false);
                 }

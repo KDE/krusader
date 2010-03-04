@@ -131,7 +131,7 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
 
     // make the left panel focused at program start
     KrGlobal::activePanel = left;
-    ACTIVE_PANEL->slotFocusOnMe();  // left starts out active
+    ACTIVE_PANEL->gui->slotFocusOnMe();  // left starts out active
 
     for (int i = 1; i < leftTabs.count(); i++)
         leftMng->slotNewTab(leftTabs[ i ], false);
@@ -181,7 +181,7 @@ void KrusaderView::cmdLineFocus()    // command line receive's keyboard focus
 
 void KrusaderView::cmdLineUnFocus()   // return focus to the active panel
 {
-    ACTIVE_PANEL->slotFocusOnMe();
+    ACTIVE_PANEL->gui->slotFocusOnMe();
 }
 
 // Tab - switch focus
@@ -206,7 +206,7 @@ void KrusaderView::slotTerminalEmulator(bool show)
     static bool menuBarShown = true;
 
     if (!show) {    // hiding the terminal
-        ACTIVE_PANEL->slotFocusOnMe();
+        ACTIVE_PANEL->gui->slotFocusOnMe();
         if (terminal_dock->isTerminalVisible() && !fullscreen)
             verticalSplitterSizes = vert_splitter->sizes();
 
@@ -237,7 +237,7 @@ void KrusaderView::slotTerminalEmulator(bool show)
             vert_splitter->setSizes(verticalSplitterSizes);
 
         terminal_dock->show();
-        slotCurrentChanged(ACTIVE_PANEL->realPath());
+        slotCurrentChanged(ACTIVE_PANEL->gui->realPath());
 
         terminal_dock->setFocus();
 
@@ -316,9 +316,9 @@ void KrusaderView::loadPanelProfiles(QString group)
     MAIN_VIEW->leftMng->setActiveTab(ldg.readEntry("Left Active Tab", 0));
     MAIN_VIEW->rightMng->setActiveTab(ldg.readEntry("Right Active Tab", 0));
     if (ldg.readEntry("Left Side Is Active", true))
-        MAIN_VIEW->left->slotFocusOnMe();
+        MAIN_VIEW->left->gui->slotFocusOnMe();
     else
-        MAIN_VIEW->right->slotFocusOnMe();
+        MAIN_VIEW->right->gui->slotFocusOnMe();
 }
 
 void KrusaderView::savePanelProfiles(QString group)
@@ -329,7 +329,7 @@ void KrusaderView::savePanelProfiles(QString group)
     svr.writeEntry("Left Active Tab", MAIN_VIEW->leftMng->activeTab());
     MAIN_VIEW->rightMng->saveSettings(&svr, "Right Tabs", false);
     svr.writeEntry("Right Active Tab", MAIN_VIEW->rightMng->activeTab());
-    svr.writeEntry("Left Side Is Active", ACTIVE_PANEL->isLeft());
+    svr.writeEntry("Left Side Is Active", ACTIVE_PANEL->gui->isLeft());
 }
 
 void KrusaderView::toggleVerticalMode()
@@ -349,7 +349,7 @@ void KrusaderView::saveSettings(KConfigGroup &cfg)
 {
     cfg.writeEntry("Left Active Tab", leftMng->activeTab());
     cfg.writeEntry("Right Active Tab", rightMng->activeTab());
-    cfg.writeEntry("Left Side Is Active", ACTIVE_PANEL->isLeft());
+    cfg.writeEntry("Left Side Is Active", ACTIVE_PANEL->gui->isLeft());
     leftMng->saveSettings(&cfg, "Left Tab Bar");
     rightMng->saveSettings(&cfg, "Right Tab Bar");
 }

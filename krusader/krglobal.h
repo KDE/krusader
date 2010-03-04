@@ -74,7 +74,7 @@ public:
 #define krMainWindow KrGlobal::mainWindow
 #define krUserAction KrGlobal::userAction
 
-#define ACTIVE_PANEL (KrGlobal::activePanel->gui)
+#define ACTIVE_PANEL (KrGlobal::activePanel)
 
 #define ACTIVE_MNG   (MAIN_VIEW->activeManager())
 #define ACTIVE_FUNC  (ACTIVE_PANEL->func)

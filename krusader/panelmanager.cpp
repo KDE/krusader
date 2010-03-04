@@ -471,7 +471,7 @@ void PanelManager::slotCloseDuplicatedTabs()
 void PanelManager::slotLockTab()
 {
     if (ACTIVE_PANEL)
-        ACTIVE_PANEL->setLocked(!ACTIVE_PANEL->isLocked());
+        ACTIVE_PANEL->gui->setLocked(!ACTIVE_PANEL->gui->isLocked());
 }
 
 #include "panelmanager.moc"
