@@ -26,7 +26,7 @@
 #include "../VFS/krpermhandler.h"
 #include "../defaults.h"
 #include "../krglobal.h"
-#include "listpanel.h"
+#include "krpanel.h"
 #include "krcolorcache.h"
 
 #define PERM_BITMASK (S_ISUID|S_ISGID|S_ISVTX|S_IRWXU|S_IRWXG|S_IRWXO)

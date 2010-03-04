@@ -22,6 +22,7 @@
 #include <QtCore/QTextStream>
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement>
+#include <QFile>
 
 #include <kdebug.h>
 #include <kurl.h>
@@ -34,7 +35,7 @@
 #include "kraction.h"
 #include "../krusader.h"
 #include "../krusaderview.h"
-#include "../Panel/listpanel.h"
+#include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
 
 UserAction::UserAction()

@@ -39,13 +39,13 @@ A
 #include <klocale.h>
 #include <kcursor.h>
 
-#include "listpanel.h"
+#include "krpanel.h"
 #include "panelfunc.h"
 #include "../krglobal.h"
 #include "../VFS/krpermhandler.h"
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
-KrCalcSpaceDialog::CalcThread::CalcThread(KrCalcSpaceDialog * parent, ListPanel * panel, const QStringList & items)
+KrCalcSpaceDialog::CalcThread::CalcThread(KrCalcSpaceDialog * parent, KrPanel * panel, const QStringList & items)
         : m_totalSize(0), m_currentSize(0), m_totalFiles(0), m_totalDirs(0), m_items(items), m_files(panel->func->files()),
         m_view(panel->view), m_parent(parent), m_threadInUse(true), m_stop(false) {}
 
@@ -94,7 +94,7 @@ void KrCalcSpaceDialog::CalcThread::stop()
     m_stop = true;
 }
 
-KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, ListPanel * files, const QStringList & items, bool autoclose) :
+KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, KrPanel * files, const QStringList & items, bool autoclose) :
         KDialog(parent), m_autoClose(autoclose), m_canceled(false), m_timerCounter(0)
 {
     setButtons(KDialog::Ok | KDialog::Cancel);

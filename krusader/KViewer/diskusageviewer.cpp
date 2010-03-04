@@ -34,7 +34,7 @@
 #include <QLabel>
 
 #include "../krglobal.h"
-#include "../Panel/listpanel.h"
+#include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
 
 DiskUsageViewer::DiskUsageViewer(QWidget *parent)

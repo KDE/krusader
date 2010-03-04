@@ -45,7 +45,7 @@
 #include <kdirwatch.h>
 
 #include "kractions.h"
-#include "Panel/listpanel.h"
+#include "Panel/krpanel.h"
 #include "Panel/panelfunc.h"
 
 KrTrashWatcher * KrTrashHandler::_trashWatcher = 0;

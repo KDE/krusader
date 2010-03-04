@@ -43,7 +43,7 @@
 #include <QLabel>
 // Krusader Includes
 #include "../VFS/vfs.h"
-class ListPanel;
+class KrPanel;
 class KrView;
 
 
@@ -85,7 +85,7 @@ class KrCalcSpaceDialog : public KDialog
         const QStringList & getItems() const {
             return m_items;
         } // list of directories to calculate
-        CalcThread(KrCalcSpaceDialog * parent, ListPanel * panel, const QStringList & items);
+        CalcThread(KrCalcSpaceDialog * parent, KrPanel * panel, const QStringList & items);
         void deleteInstance(); // thread is no longer needed.
         void run(); // start calculation
         void stop(); // stop it. Thread continues until vfs_calcSpace returns
@@ -103,7 +103,7 @@ protected slots:
     void slotCancel(); // cancel was pressed
 public:
     // autoclose: wait 3 sec. before showing the dialog. Close it, when done
-    KrCalcSpaceDialog(QWidget *parent, ListPanel * panel, const QStringList & items, bool autoclose);
+    KrCalcSpaceDialog(QWidget *parent, KrPanel * panel, const QStringList & items, bool autoclose);
     ~KrCalcSpaceDialog();
     KIO::filesize_t getTotalSize() const {
         return m_thread->getTotalSize();
