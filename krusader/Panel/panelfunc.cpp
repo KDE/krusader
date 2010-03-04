@@ -61,6 +61,7 @@ A
 #include <kurlcompletion.h>
 
 #include "krcalcspacedialog.h"
+#include "listpanel.h"
 #include "../krglobal.h"
 #include "../krslots.h"
 #include "../kractions.h"
@@ -1249,5 +1250,11 @@ void ListPanelFunc::pasteFromClipboard()
     files()->vfs_addFiles(&urls, move ? KIO::CopyJob::Move : KIO::CopyJob::Copy, otherFunc()->files(),
                           "", PM_DEFAULT);
 }
+
+ListPanelFunc* ListPanelFunc::otherFunc()
+{
+    return panel->otherPanel->func;
+}
+
 
 #include "panelfunc.moc"

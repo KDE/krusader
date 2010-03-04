@@ -32,7 +32,7 @@
 
 #ifndef PANELFUNC_H
 #define PANELFUNC_H
-#include "listpanel.h"
+// #include "listpanel.h"
 #include "krviewitem.h"
 #include <QtCore/QObject>
 #include <QtCore/QTimer>
@@ -59,7 +59,7 @@ public slots:
     void rename(const QString &oldname, const QString &newname);
 
 public:
-    ListPanelFunc(class ListPanel *parent);
+    ListPanelFunc(ListPanel *parent);
     ~ListPanelFunc();
 
     vfs* files();  // return a pointer to the vfs
@@ -93,9 +93,7 @@ public:
     bool calcSpace(const QStringList & items, KIO::filesize_t & totalSize, unsigned long & totalFiles, unsigned long & totalDirs);
     void FTPDisconnect();
     void newFTPconnection();
-    inline ListPanelFunc* otherFunc() {
-        return panel->otherPanel->func;
-    }
+    ListPanelFunc* otherFunc();
 
 private:
     KUrl getVirtualBaseURL();

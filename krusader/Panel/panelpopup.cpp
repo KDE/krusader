@@ -28,6 +28,7 @@
 #include "../KViewer/kimagefilepreview.h"
 #include "../KViewer/panelviewer.h"
 #include "../KViewer/diskusageviewer.h"
+#include "krpanel.h"
 #include "panelfunc.h"
 #include "krview.h"
 #include "krviewitem.h"
