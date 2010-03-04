@@ -286,9 +286,9 @@ void KrInterDetailedView::refreshColors()
     viewport()->update();
 }
 #endif
-void KrInterDetailedView::restoreSettings()
+
+void KrInterDetailedView::doRestoreSettings(KConfigGroup &grpSvr)
 {
-    KConfigGroup grpSvr(krConfig, nameInKConfig());
     QByteArray savedState = grpSvr.readEntry("Saved State", QByteArray());
 
     if (savedState.isEmpty()) {
@@ -310,12 +310,12 @@ void KrInterDetailedView::restoreSettings()
     }
 }
 
-void KrInterDetailedView::saveSettings()
+void KrInterDetailedView::doSaveSettings(KConfigGroup &grpSvr)
 {
     QByteArray state = header()->saveState();
-    KConfigGroup grpSvr(krConfig, nameInKConfig());
     grpSvr.writeEntry("Saved State", state);
 }
+
 #if 0
 void KrInterDetailedView::setCurrentItem(const QString& name)
 {

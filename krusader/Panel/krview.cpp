@@ -943,5 +943,17 @@ void KrView::refreshActions()
 }
 
 QString KrView::nameInKConfig() const {
-    return instance()->name() + QString((left ? "Left" : "Right"));
+    return instance()->name() + (_left ? "Left" : "Right");
+}
+
+void KrView::saveSettings()
+{
+    KConfigGroup group(krConfig, nameInKConfig());
+    doSaveSettings(group);
+}
+
+void KrView::restoreSettings()
+{
+    KConfigGroup group(krConfig, nameInKConfig());
+    doRestoreSettings(group);
 }

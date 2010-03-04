@@ -280,8 +280,6 @@ public:
     virtual void updateView() = 0;
     virtual void updateItem(KrViewItem* item) = 0;
     virtual void sort() = 0;
-    virtual void saveSettings() = 0;
-    virtual void restoreSettings() = 0;
     virtual void refreshColors() = 0;
     virtual void redraw() = 0;
     virtual bool handleKeyEvent(QKeyEvent *e);
@@ -300,6 +298,8 @@ public:
 protected:
     virtual KrViewItem *preAddItem(vfile *vf) = 0;
     virtual bool preDelItem(KrViewItem *item) = 0;
+    virtual void doSaveSettings(KConfigGroup &group) = 0;
+    virtual void doRestoreSettings(KConfigGroup &group) = 0;
 
 public:
     //////////////////////////////////////////////////////
@@ -413,6 +413,8 @@ public:
 
     QPixmap getIcon(vfile *vf);
     void refreshActions();
+    void saveSettings();
+    void restoreSettings();
 
     // todo: what about selection modes ???
     virtual ~KrView();

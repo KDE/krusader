@@ -55,8 +55,6 @@ public:
     virtual bool preDelItem(KrViewItem *item);
     virtual void redraw();
 */
-    virtual void restoreSettings();
-    virtual void saveSettings();
 /*
     virtual void setCurrentItem(const QString& name);
     virtual void setCurrentKrViewItem(KrViewItem *current);
@@ -114,6 +112,9 @@ protected slots:
 protected:
     virtual void setup();
     virtual void initOperator();
+
+    virtual void doRestoreSettings(KConfigGroup &group);
+    virtual void doSaveSettings(KConfigGroup &group);
 
     virtual void keyPressEvent(QKeyEvent *e);
     virtual void mousePressEvent(QMouseEvent *);

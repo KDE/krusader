@@ -284,12 +284,9 @@ void KrInterBriefView::refreshColors()
     viewport()->update();
 }
 #endif
-void KrInterBriefView::restoreSettings()
+
+void KrInterBriefView::doRestoreSettings(KConfigGroup &group)
 {
-    _numOfColumns = _properties->numberOfColumns;
-
-    KConfigGroup group(krConfig, nameInKConfig());
-
     int column = group.readEntry("Sort Indicator Column", (int)KrVfsModel::Name);
     bool isAscending = group.readEntry("Ascending Sort Order", true);
     Qt::SortOrder sortDir = isAscending ? Qt::AscendingOrder : Qt::DescendingOrder;
@@ -298,13 +295,12 @@ void KrInterBriefView::restoreSettings()
     _model->sort(column, sortDir);
 }
 
-void KrInterBriefView::saveSettings()
+void KrInterBriefView::doSaveSettings(KConfigGroup &group)
 {
-    KConfigGroup group(krConfig, nameInKConfig());
-
     group.writeEntry("Sort Indicator Column", (int)_model->getLastSortOrder());
     group.writeEntry("Ascending Sort Order", (_model->getLastSortDir() == Qt::AscendingOrder));
 }
+
 #if 0
 void KrInterBriefView::setCurrentItem(const QString& name)
 {
@@ -408,6 +404,7 @@ void KrInterBriefView::setup()
             _model, SLOT(sort(int, Qt::SortOrder)));
     _header->installEventFilter(this);
 
+    _numOfColumns = _properties->numberOfColumns;
     restoreSettings();
 }
 
