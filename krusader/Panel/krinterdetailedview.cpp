@@ -612,43 +612,36 @@ void KrInterDetailedView::showContextMenu(const QPoint & p)
         else
             showColumn(KrVfsModel::Extension);
     } else if (res == typeAct) {
-        _model->setExtensionEnabled(!hasMime);
         if (hasMime)
             hideColumn(KrVfsModel::Mime);
         else
             showColumn(KrVfsModel::Mime);
     } else if (res == sizeAct) {
-        _model->setExtensionEnabled(!hasSize);
         if (hasSize)
             hideColumn(KrVfsModel::Size);
         else
             showColumn(KrVfsModel::Size);
     } else if (res == modifAct) {
-        _model->setExtensionEnabled(!hasDate);
         if (hasDate)
             hideColumn(KrVfsModel::DateTime);
         else
             showColumn(KrVfsModel::DateTime);
     } else if (res == permAct) {
-        _model->setExtensionEnabled(!hasPerms);
         if (hasPerms)
             hideColumn(KrVfsModel::Permissions);
         else
             showColumn(KrVfsModel::Permissions);
     } else if (res == rwxAct) {
-        _model->setExtensionEnabled(!hasKrPerms);
         if (hasKrPerms)
             hideColumn(KrVfsModel::KrPermissions);
         else
             showColumn(KrVfsModel::KrPermissions);
     } else if (res == ownerAct) {
-        _model->setExtensionEnabled(!hasOwner);
         if (hasOwner)
             hideColumn(KrVfsModel::Owner);
         else
             showColumn(KrVfsModel::Owner);
     } else if (res == groupAct) {
-        _model->setExtensionEnabled(!hasGroup);
         if (hasGroup)
             hideColumn(KrVfsModel::Group);
         else
