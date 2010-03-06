@@ -47,7 +47,7 @@ class UserAction;
 class QWidget;
 class ListPanel;
 class KrPanel;
-class KAction;
+class QAction;
 
 // global references to frequently used objects
 
@@ -66,7 +66,7 @@ public:
     static KrPanel *activePanel;
 
     static void enableAction(const char *name, bool enable);
-    static KAction *getAction(const char *name);
+    static QAction *getAction(const char *name);
 };
 
 #define krConfig     KrGlobal::config
@@ -92,8 +92,7 @@ public:
 #define RIGHT_FUNC (RIGHT_PANEL->func)
 #define RIGHT_MNG  (MAIN_VIEW->rightMng)
 
-#define ENABLE_ACTION(name) (KrGlobal::enableAction(#name, true))
-#define DISABLE_ACTION(name) (KrGlobal::enableAction(#name, false))
-#define GET_ACTION(name) (KrGlobal::getAction(#name))
+#define krEnableAction(name, enable) (KrGlobal::enableAction(#name, (enable)))
+#define krGetAction(name) (KrGlobal::getAction(#name))
 
 #endif

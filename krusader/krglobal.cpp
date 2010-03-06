@@ -29,6 +29,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 ***************************************************************************/
 
 #include "krglobal.h"
+#include "krusader.h"
+
+#include <QtGlobal>
+#include <kactioncollection.h>
 
 KConfig *KrGlobal::config = 0;
 KMountMan *KrGlobal::mountMan = 0;
@@ -40,3 +44,16 @@ QWidget *KrGlobal::mainWindow = 0;
 UserAction *KrGlobal::userAction = 0;
 // ListPanel *KrGlobal::activePanel = 0;
 KrPanel *KrGlobal::activePanel = 0;
+
+void KrGlobal::enableAction(const char *name, bool enable)
+{
+    getAction(name)->setEnabled(enable);
+}
+
+QAction* KrGlobal::getAction(const char *name)
+{
+    QAction *act = krApp->actionCollection()->action(name);
+    if(!act)
+        qFatal("no such action: %s", name);
+    return act;
+}

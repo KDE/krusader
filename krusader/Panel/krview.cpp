@@ -938,8 +938,8 @@ void KrView::refreshActions()
     KrActions::actDefaultZoom->setEnabled(
         grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize).toInt() != _fileIconSize);
     int idx = iconSizes.indexOf(_fileIconSize);
-    KrActions::actZoomOut->setEnabled(idx > 0);
-    KrActions::actZoomIn->setEnabled(idx < (iconSizes.count() - 1));
+    krEnableAction(zoom_out, idx > 0);
+    krEnableAction(zoom_in, idx < (iconSizes.count() - 1));
 }
 
 QString KrView::nameInKConfig() const {
