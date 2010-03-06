@@ -1251,6 +1251,12 @@ void KRslots::cmdlinePopup()
     MAIN_VIEW->cmdLine->popup();
 }
 
+void KRslots::showViewOptionsMenu()
+{
+    QPoint pos = ACTIVE_PANEL->view->widget()->mapToGlobal(QPoint(0,0));
+    ACTIVE_PANEL->view->showContextMenu(pos);
+}
+
 
 // ugly stubs, remove later ?
 void KRslots::slotCurrentChanged(QString p)

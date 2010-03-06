@@ -55,7 +55,7 @@ public:
     static KAction *actF2, *actF3, *actF4, *actF5, *actF6, *actF7, *actF8, *actF9, *actF10, *actVerticalMode;
     static KAction *actShiftF5, *actShiftF6, *actEmptyTrash, *actTrashBin;
     static KAction *actPopularUrls, *actLocationBar, *actJumpBack, *actSetJumpBack, *actCreateChecksum, *actMatchChecksum;
-    static KAction *actView0, *actView1, *actView2, *actView3, *actView4, *actView5, *actCopy, *actPaste;
+    static KAction *actView0, *actView1, *actView2, *actView3, *actView4, *actView5, *actCopy, *actPaste, *actShowViewOptionsMenu;
     static KToggleAction *actToggleTerminal;
     static KAction *actSelectNewerAndSingle, *actSelectNewer, *actSelectSingle,
     *actSelectDifferentAndSingle, *actSelectDifferent;

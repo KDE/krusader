@@ -218,6 +218,7 @@ public slots:
     void zoomIn();
     void zoomOut();
     void defaultZoom();
+    void showViewOptionsMenu();
 };
 
 #endif
