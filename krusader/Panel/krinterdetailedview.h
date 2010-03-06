@@ -130,5 +130,6 @@ private:
 //     KrMouseHandler *_mouseHandler;
 //     QHash<vfile *, KrInterDetailedViewItem*> _itemHash;
     QFont _viewFont;
+    bool _autoResizeColumns;
 };
 #endif // __krinterview__

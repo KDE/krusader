@@ -84,7 +84,8 @@ KrViewInstance interDetailedView(INTERVIEW_ID, "KrInterDetailedView", i18n("&Det
 
 KrInterDetailedView::KrInterDetailedView(QWidget *parent, bool &left, KConfig *cfg):
         QTreeView(parent),
-        KrInterView(cfg, this)
+        KrInterView(cfg, this),
+        _autoResizeColumns(true)
 {
     // fix the context menu problem
 //     int j = QFontMetrics(font()).height() * 2;
@@ -563,94 +564,53 @@ void KrInterDetailedView::showContextMenu(const QPoint & p)
     KMenu popup(this);
     popup.setTitle(i18n("Columns"));
 
-    bool hasExtension = !isColumnHidden(KrVfsModel::Extension);
-    bool hasMime      = !isColumnHidden(KrVfsModel::Mime);
-    bool hasSize      = !isColumnHidden(KrVfsModel::Size);
-    bool hasDate      = !isColumnHidden(KrVfsModel::DateTime);
-    bool hasPerms     = !isColumnHidden(KrVfsModel::Permissions);
-    bool hasKrPerms   = !isColumnHidden(KrVfsModel::KrPermissions);
-    bool hasOwner     = !isColumnHidden(KrVfsModel::Owner);
-    bool hasGroup     = !isColumnHidden(KrVfsModel::Group);
+    QVector<QAction*> actions;
 
-    QAction *extAct = popup.addAction(i18n("Ext"));
-    extAct->setCheckable(true);
-    extAct->setChecked(hasExtension);
+    for(int i = KrVfsModel::Name; i < KrVfsModel::MAX_COLUMNS; i++) {
+        QString text = (_model->headerData(i, Qt::Horizontal)).toString();
+        QAction *act = popup.addAction(text);
+        act->setCheckable(true);
+        act->setChecked(!header()->isSectionHidden(i));
+        actions.append(act);
+    }
 
-    QAction *typeAct = popup.addAction(i18n("Type"));
-    typeAct->setCheckable(true);
-    typeAct->setChecked(hasMime);
-
-    QAction *sizeAct = popup.addAction(i18n("Size"));
-    sizeAct->setCheckable(true);
-    sizeAct->setChecked(hasSize);
-
-    QAction *modifAct = popup.addAction(i18n("Modified"));
-    modifAct->setCheckable(true);
-    modifAct->setChecked(hasDate);
-
-    QAction *permAct = popup.addAction(i18n("Perms"));
-    permAct->setCheckable(true);
-    permAct->setChecked(hasPerms);
-
-    QAction *rwxAct = popup.addAction(i18n("rwx"));
-    rwxAct->setCheckable(true);
-    rwxAct->setChecked(hasKrPerms);
-
-    QAction *ownerAct = popup.addAction(i18n("Owner"));
-    ownerAct->setCheckable(true);
-    ownerAct->setChecked(hasOwner);
-
-    QAction *groupAct = popup.addAction(i18n("Group"));
-    groupAct->setCheckable(true);
-    groupAct->setChecked(hasGroup);
+    popup.addSeparator();
+    QAction *actAutoResize = popup.addAction(i18n("Automatically Resize Columns"));
+    actAutoResize->setCheckable(true);
+    actAutoResize->setChecked(_autoResizeColumns);
 
     QAction *res = popup.exec(p);
-    if (res == extAct) {
-        _model->setExtensionEnabled(!hasExtension);
-        if (hasExtension)
-            hideColumn(KrVfsModel::Extension);
+
+    if(res == actAutoResize) {
+        _autoResizeColumns = !_autoResizeColumns;
+        recalculateColumnSizes();
+    } else {
+        int idx = actions.indexOf(res);
+        if(idx < 0)
+            return;
+
+        if(header()->isSectionHidden(idx))
+            header()->showSection(idx);
         else
-            showColumn(KrVfsModel::Extension);
-    } else if (res == typeAct) {
-        if (hasMime)
-            hideColumn(KrVfsModel::Mime);
-        else
-            showColumn(KrVfsModel::Mime);
-    } else if (res == sizeAct) {
-        if (hasSize)
-            hideColumn(KrVfsModel::Size);
-        else
-            showColumn(KrVfsModel::Size);
-    } else if (res == modifAct) {
-        if (hasDate)
-            hideColumn(KrVfsModel::DateTime);
-        else
-            showColumn(KrVfsModel::DateTime);
-    } else if (res == permAct) {
-        if (hasPerms)
-            hideColumn(KrVfsModel::Permissions);
-        else
-            showColumn(KrVfsModel::Permissions);
-    } else if (res == rwxAct) {
-        if (hasKrPerms)
-            hideColumn(KrVfsModel::KrPermissions);
-        else
-            showColumn(KrVfsModel::KrPermissions);
-    } else if (res == ownerAct) {
-        if (hasOwner)
-            hideColumn(KrVfsModel::Owner);
-        else
-            showColumn(KrVfsModel::Owner);
-    } else if (res == groupAct) {
-        if (hasGroup)
-            hideColumn(KrVfsModel::Group);
-        else
-            showColumn(KrVfsModel::Group);
+            header()->hideSection(idx);
+
+        if(KrVfsModel::Extension == idx)
+            _model->setExtensionEnabled(!header()->isSectionHidden(KrVfsModel::Extension));
     }
 }
 
 void KrInterDetailedView::sectionResized(int column, int oldSize, int newSize)
 {
+    // *** taken from dolphin ***
+    // If the user changes the size of the headers, the autoresize feature should be
+    // turned off. As there is no dedicated interface to find out whether the header
+    // section has been resized by the user or by a resize event, another approach is used.
+    // Attention: Take care when changing the if-condition to verify that there is no
+    // regression in combination with bug 178630 (see fix in comment #8).
+    if ((QApplication::mouseButtons() & Qt::LeftButton) && header()->underMouse()) {
+        _autoResizeColumns = false;
+    }
+
     if (oldSize == newSize || !_model->ready())
         return;
 
@@ -659,6 +619,8 @@ void KrInterDetailedView::sectionResized(int column, int oldSize, int newSize)
 
 void KrInterDetailedView::recalculateColumnSizes()
 {
+    if(!_autoResizeColumns)
+        return;
     int sum = 0;
     for (int i = 0; i != KrVfsModel::MAX_COLUMNS; i++) {
         if (!isColumnHidden(i))
