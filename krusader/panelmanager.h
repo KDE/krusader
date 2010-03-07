@@ -40,6 +40,7 @@ class QToolButton;
 class PanelManager: public QWidget
 {
     Q_OBJECT
+    Q_CLASSINFO("D-Bus Interface", "org.krusader.PanelManager")
 
 public:
     /**
@@ -76,6 +77,12 @@ public slots:
      * Called externally to start a new tab. Example of usage would be the "open in a new tab"
      * action, from the context-menu.
      */
+
+    Q_SCRIPTABLE void newTab(const QString& url) {
+        slotNewTab(KUrl(url));
+    }
+    Q_SCRIPTABLE void newTabs(const QStringList& urls);
+
     void slotNewTab(const KUrl& url, bool setCurrent = true, int type = -1, int props = 0,  int iconSize = 0);
     void slotNewTab();
     void slotLockTab();

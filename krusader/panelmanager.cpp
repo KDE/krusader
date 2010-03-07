@@ -474,4 +474,9 @@ void PanelManager::slotLockTab()
         ACTIVE_PANEL->gui->setLocked(!ACTIVE_PANEL->gui->isLocked());
 }
 
+void PanelManager::newTabs(const QStringList& urls) {
+    for(int i = 0; i < urls.count(); i++)
+        slotNewTab(KUrl(urls[i]));
+}
+
 #include "panelmanager.moc"

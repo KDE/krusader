@@ -47,6 +47,8 @@
 #include <KStartupInfo>
 
 #include "krusader.h"
+#include "krusaderview.h"
+#include "panelmanager.h"
 #include "krusaderversion.h"
 #include "krslots.h"
 #include "krusaderapp.h"
@@ -63,6 +65,26 @@ static void sigterm_handler(int i)
     if (instance)
         instance->wakeUp();
     KApplication::exit(- 15);
+}
+
+void openTabsRemote(QStringList tabs, bool left, QString appName)
+{
+    // make sure left or right are not relative paths
+    for (int i = 0; i != tabs.count(); i++) {
+        tabs[ i ] = tabs[ i ].trimmed();
+        if (!tabs[ i ].startsWith('/') && tabs[ i ].indexOf(":/") < 0)
+            tabs[ i ] = QDir::currentPath() + '/' + tabs[ i ];
+    }
+
+    QDBusInterface remoteApp("org.krusader", "/Instances/" + appName + (left ? "/left_manager" : "/right_manager"),
+                             "org.krusader.PanelManager", QDBusConnection::sessionBus());
+    QDBusReply<void> reply;
+    if (remoteApp.isValid())
+        reply = remoteApp.call("newTabs", tabs);
+
+    if (!reply.isValid() && reply.error().type() != QDBusError::ServiceUnknown &&
+            reply.error().type() != QDBusError::UnknownObject)
+        fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
 }
 
 int main(int argc, char *argv[])
@@ -189,6 +211,7 @@ int main(int argc, char *argv[])
     options.add("left <path>", ki18n("Start left panel at <path>"));
     options.add("right <path>", ki18n("Start right panel at <path>"));
     options.add("profile <panel-profile>", ki18n("Load this profile on startup"));
+    options.add("+url", ki18n("Url to open"));
 
     KCmdLineArgs::addCmdLineOptions(options);   // Add our own options.
 
@@ -199,6 +222,15 @@ int main(int argc, char *argv[])
 
     KConfigGroup cfg(KGlobal::config().data(), "Look&Feel");
     bool singleInstanceMode = cfg.readEntry("Single Instance Mode", _SingleInstanceMode);
+
+    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+
+    QString url;
+    for(int i = 0; i < args->count(); i++) {
+        url = args->url(i).pathOrUrl();
+        if(!url.isEmpty())
+            break;
+    }
 
     QString appName = "krusader";
     if (!singleInstanceMode)
@@ -221,9 +253,21 @@ int main(int argc, char *argv[])
         fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
 
     if (reply.isValid() && (bool)reply) {
-        fprintf(stderr, "%s", i18n("Application already running!\n").toLocal8Bit().data());
+//         fprintf(stderr, "%s", i18n("Application already running!\n").toLocal8Bit().data());
         KStartupInfo::appStarted();
-        return 1;
+        QStringList tabs;
+        if (args->isSet("left"))
+            openTabsRemote(args->getOption("left").split(','), true, appName);
+        if (args->isSet("right"))
+            openTabsRemote(args->getOption("right").split(','), false, appName);
+        if(!url.isEmpty()) {
+            reply = remoteApp.call("isLeftActive");
+            if (reply.isValid())
+                openTabsRemote(QStringList(url), (bool)reply, appName);
+            else
+                fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
+        }
+        return 0;
     }
 
     // splash screen - if the user wants one
@@ -243,6 +287,9 @@ int main(int argc, char *argv[])
     Krusader::AppName = appName;
     Krusader krusader;
 
+    if(!url.isEmpty())
+        ACTIVE_MNG->slotNewTab(url);
+
     QDBusConnection dbus = QDBusConnection::sessionBus();
     if (!dbus.interface()->isServiceRegistered("org.krusader") && !dbus.registerService("org.krusader")) {
         fprintf(stderr, "DBus Error: %s, %s\n", dbus.lastError().name().toLocal8Bit().constData(), dbus.lastError().message().toLocal8Bit().constData());
@@ -250,6 +297,14 @@ int main(int argc, char *argv[])
     if (!dbus.registerObject("/Instances/" + appName, &krusader, QDBusConnection::ExportScriptableSlots)) {
         fprintf(stderr, "DBus Error: %s, %s\n", dbus.lastError().name().toLocal8Bit().constData(), dbus.lastError().message().toLocal8Bit().constData());
     }
+    if (!dbus.registerObject("/Instances/" + appName + "/left_manager", LEFT_MNG, QDBusConnection::ExportScriptableSlots)) {
+        fprintf(stderr, "DBus Error: %s, %s\n", dbus.lastError().name().toLocal8Bit().constData(), dbus.lastError().message().toLocal8Bit().constData());
+    }
+    if (!dbus.registerObject("/Instances/" + appName + "/right_manager", RIGHT_MNG, QDBusConnection::ExportScriptableSlots)) {
+        fprintf(stderr, "DBus Error: %s, %s\n", dbus.lastError().name().toLocal8Bit().constData(), dbus.lastError().message().toLocal8Bit().constData());
+    }
+
+
 
     // catching SIGTERM, SIGHUP, SIGQUIT
     KDE_signal(SIGTERM, sigterm_handler);

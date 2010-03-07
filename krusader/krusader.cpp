@@ -1235,6 +1235,10 @@ bool Krusader::isRunning() {
     return true;
 }
 
+bool Krusader::isLeftActive()  {
+    return MAIN_VIEW->isLeftActive();
+}
+
 bool Krusader::queryExit()
 {
     krConfig->sync();

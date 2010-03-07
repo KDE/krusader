@@ -115,6 +115,7 @@ protected:
 
 public Q_SLOTS:
     Q_SCRIPTABLE bool isRunning();
+    Q_SCRIPTABLE bool isLeftActive();
 
 public:
     static Krusader *App;       // a kApp style pointer

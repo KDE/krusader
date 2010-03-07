@@ -69,6 +69,9 @@ public:
     void saveSettings(KConfigGroup &cfg);
     void cmdLineFocus();  // command line receive's keyboard focus
     void cmdLineUnFocus();// return focus from command line to active panel
+    inline bool isLeftActive() const {
+        return (ACTIVE_PANEL->gui == left);
+    }
     inline PanelManager *activeManager() const {
         return (ACTIVE_PANEL->gui == left ? leftMng : rightMng);
     }
