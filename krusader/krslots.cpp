@@ -85,6 +85,7 @@
 #include "ActionMan/actionman.h"
 #include "UserMenu/usermenu.h"
 #include "Panel/panelpopup.h"
+#include "Dialogs/krspecialwidgets.h"
 #include "Synchronizer/synchronizergui.h"
 #include "DiskUsage/diskusagegui.h"
 #include "krservices.h"
@@ -1186,7 +1187,14 @@ void KRslots::defaultZoom()
 
 void KRslots::cancelRefresh()
 {
-    ACTIVE_PANEL->gui->inlineRefreshCancel();
+    // HACK: the default shortcut for cancelRefresh is ESC,
+    // which also cancels the quicksearch.
+    // if quicksearch is active cancel it instead.
+    if(KrActions::actCancelRefresh->shortcut().contains(QKeySequence(Qt::Key_Escape))
+            && !ACTIVE_PANEL->gui->quickSearch->isHidden())
+        ACTIVE_PANEL->view->op()->stopQuickSearch(0);
+    else
+        ACTIVE_PANEL->gui->inlineRefreshCancel();
 }
 
 void KRslots::openRightBookmarks()
