@@ -294,7 +294,7 @@ public:
     virtual int  itemsPerPage() {
         return 0;
     }
-    virtual void showContextMenu(const QPoint & p) = 0;
+    virtual void showContextMenu() = 0;
 
 protected:
     virtual KrViewItem *preAddItem(vfile *vf) = 0;

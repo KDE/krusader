@@ -264,3 +264,8 @@ void KrInterView::refreshColors()
     _itemView->setPalette(p);
     _itemView->viewport()->update();
 }
+
+void KrInterView::showContextMenu()
+{
+    showContextMenu(_itemView->viewport()->mapToGlobal(QPoint(0,0)));
+}

@@ -63,10 +63,13 @@ public:
     virtual void redraw();
     virtual void prepareForActive();
     virtual void prepareForPassive();
+    virtual void showContextMenu();
 
 protected:
     virtual KrViewItem* preAddItem(vfile *vf);
     virtual bool preDelItem(KrViewItem *item);
+    virtual void showContextMenu(const QPoint & p) = 0;
+
     KrInterViewItem * getKrInterViewItem(const QModelIndex &);
     void makeCurrentVisible();
 

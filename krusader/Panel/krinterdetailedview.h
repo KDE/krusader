@@ -122,7 +122,7 @@ protected:
     virtual bool eventFilter(QObject *object, QEvent *event);
     virtual bool viewportEvent(QEvent * event);
 
-    void showContextMenu(const QPoint & p);
+    virtual void showContextMenu(const QPoint & p);
     void recalculateColumnSizes();
 
 private:

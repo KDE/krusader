@@ -1261,8 +1261,7 @@ void KRslots::cmdlinePopup()
 
 void KRslots::showViewOptionsMenu()
 {
-    QPoint pos = ACTIVE_PANEL->view->widget()->mapToGlobal(QPoint(0,0));
-    ACTIVE_PANEL->view->showContextMenu(pos);
+    ACTIVE_PANEL->view->showContextMenu();
 }
 
 
