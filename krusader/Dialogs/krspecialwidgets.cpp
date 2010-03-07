@@ -234,6 +234,9 @@ KrQuickSearch::KrQuickSearch(QWidget *parent) : KLineEdit(parent)
 
 void KrQuickSearch::myKeyPressEvent(QKeyEvent *e)
 {
+    KConfigGroup gc(krConfig, "Look&Feel");
+    bool updownCancel = gc.readEntry("Up/Down Cancels Quicksearch", false);
+
     switch (e->key()) {
     case Qt::Key_Escape:
         emit stop(0);
@@ -246,10 +249,16 @@ void KrQuickSearch::myKeyPressEvent(QKeyEvent *e)
         emit stop(e);
         break;
     case Qt::Key_Down:
-        otherMatching(text(), 1);
+        if(updownCancel)
+            emit stop(e);
+        else
+            otherMatching(text(), 1);
         break;
     case Qt::Key_Up:
-        otherMatching(text(), -1);
+        if(updownCancel)
+            emit stop(e);
+        else
+            otherMatching(text(), -1);
         break;
     case Qt::Key_Insert:
     case Qt::Key_Home:

@@ -110,9 +110,10 @@ void KgLookFeel::setupOperationTab()
     KONFIGURATOR_CHECKBOX_PARAM quicksearch[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
         {"Look&Feel", "New Style Quicksearch",  _NewStyleQuicksearch, i18n("New style quicksearch"), false,  i18n("Opens a quick search dialog box.") },
         {"Look&Feel", "Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n("Case sensitive quicksearch"), false,  i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).") },
+        {"Look&Feel", "Up/Down Cancels Quicksearch",  false, i18n("Up/Down cancels Quicksearch"), false,  i18n("Pressing the Up/Down buttons cancels Quicksearch.") },
     };
 
-    quicksearchCheckboxes = createCheckBoxGroup(2, 0, quicksearch, 2 /*count*/, quicksearchGroup, PAGE_OPERATION);
+    quicksearchCheckboxes = createCheckBoxGroup(2, 0, quicksearch, 3 /*count*/, quicksearchGroup, PAGE_OPERATION);
     quicksearchGrid->addWidget(quicksearchCheckboxes, 0, 0);
     connect(quicksearchCheckboxes->find("New Style Quicksearch"), SIGNAL(stateChanged(int)), this, SLOT(slotDisable()));
     slotDisable();
