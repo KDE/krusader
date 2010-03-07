@@ -116,10 +116,15 @@ void KRFSDisplay::paintEvent(QPaintEvent *)
         getContentsMargins(&leftMargin, &topMargin, &rightMargin, &bottomMargin);
         // create the text
         // first, name and location
-        paint.setFont(QFont("helvetica", 12, QFont::Bold));
+        QFont font = paint.font();
+        font.setWeight(QFont::Bold);
+        paint.setFont(font);
         paint.drawText(leftMargin + 10, topMargin + 20, alias);
-        paint.setFont(QFont("helvetica", 12, QFont::Normal));
+
+        font.setWeight(QFont::Normal);
+        paint.setFont(font);
         paint.drawText(leftMargin + 10, topMargin + 37, '(' + realName + ')');
+
         if (mounted) {    // incase the filesystem is already mounted
             // second, the capacity
             paint.drawText(leftMargin + 10, topMargin + 70, i18n("Capacity: ") + KIO::convertSizeFromKiB(totalSpace));
@@ -159,7 +164,8 @@ void KRFSDisplay::paintEvent(QPaintEvent *)
                     paint.drawArc(leftMargin + LEFT, topMargin + BOTTOM - j, WIDTH, HEIGHT, STARTANGLE - 16 * 180, (int)(DEG(i - 180.0)));
             }
         } else {  // if the filesystem is unmounted...
-            paint.setFont(QFont("helvetica", 12, QFont::Bold));
+            font.setWeight(QFont::Bold);
+            paint.setFont(font);
             paint.drawText(leftMargin + 10, topMargin + 60, i18n("Not mounted."));
         }
     } else {  // if the widget is in empty situation...
