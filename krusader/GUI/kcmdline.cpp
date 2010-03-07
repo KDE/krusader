@@ -162,6 +162,8 @@ void KCMDLine::slotRun()
         return ;
 
     cmdLine->addToHistory(command1);
+    // bugfix by aardvark: current editline is destroyed by addToHistory() in some cases
+    cmdLine->setEditText(command1);
 
     if (command1.simplified().left(3) == "cd ") {     // cd command effect the active panel
         QString dir = command1.right(command1.length() - command1.indexOf(" ")).trimmed();

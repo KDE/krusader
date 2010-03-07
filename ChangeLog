@@ -25,6 +25,7 @@
   CHANGED: dont't retrieve working dir of the cmdline from the label which might get truncated
            - store it in a string instead
 
+    FIXED: commands entered via command line are mixed up with history
     FIXED: [ 2790819, 2892768, 2915192 ] Can't resize columns properly
     FIXED: disk usage dialog layout problem
     FIXED: [ 2907607 ] crash while closing
