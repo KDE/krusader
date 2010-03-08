@@ -82,8 +82,7 @@ void openTabsRemote(QStringList tabs, bool left, QString appName)
     if (remoteApp.isValid())
         reply = remoteApp.call("newTabs", tabs);
 
-    if (!reply.isValid() && reply.error().type() != QDBusError::ServiceUnknown &&
-            reply.error().type() != QDBusError::UnknownObject)
+    if (!reply.isValid())
         fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
 }
 
