@@ -10,7 +10,7 @@ New feature: when single-instance mode is active, and it is attempted to start a
              or the --left/--right options, the url(s) is/are opened in the aleady running instance
 
 New feature: url command-line argument
-    - opens the specified url un a new tab in the active panel
+    - opens the specified url in a new tab in the active panel
 
 New feature: dbus interface: org.krusader.PanelManager.newTab(QString url) / newTabs(QStringList)
     - path: /Instances/<instance>/left_manager|right_manager
