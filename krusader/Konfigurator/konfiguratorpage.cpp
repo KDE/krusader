@@ -123,10 +123,10 @@ KonfiguratorListBox* KonfiguratorPage::createListBox(QString cls, QString name,
 }
 
 KonfiguratorURLRequester* KonfiguratorPage::createURLRequester(QString cls, QString name,
-        QString dflt, QWidget *parent, bool rst, int pg)
+        QString dflt, QWidget *parent, bool rst, int pg, bool expansion)
 {
     KonfiguratorURLRequester *urlRequester = new KonfiguratorURLRequester(cls, name, dflt,
-            parent, rst, pg);
+            parent, rst, pg, expansion);
 
     registerObject(urlRequester->extension());
     return urlRequester;

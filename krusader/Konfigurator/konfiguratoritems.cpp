@@ -350,8 +350,9 @@ void KonfiguratorEditBox::slotSetDefaults(QObject *)
 ///////////////////////////////
 
 KonfiguratorURLRequester::KonfiguratorURLRequester(QString cls, QString name, QString dflt,
-        QWidget *parent, bool rst, int pg) : KUrlRequester(parent),
-        defaultValue(dflt)
+        QWidget *parent, bool rst, int pg, bool expansion) : KUrlRequester(parent),
+        defaultValue(dflt),
+        expansion(expansion)
 {
     ext = new KonfiguratorExtension(this, cls, name, rst, pg);
     connect(ext, SIGNAL(applyAuto(QObject *, QString, QString)), this, SLOT(slotApply(QObject *, QString, QString)));
@@ -378,7 +379,7 @@ void KonfiguratorURLRequester::loadInitialValue()
 
 void KonfiguratorURLRequester::slotApply(QObject *, QString cls, QString name)
 {
-    KConfigGroup(krConfig, cls).writeEntry(name, url().pathOrUrl());
+    KConfigGroup(krConfig, cls).writeEntry(name, expansion ? url().pathOrUrl() : text());
 }
 
 void KonfiguratorURLRequester::slotSetDefaults(QObject *)

@@ -187,7 +187,7 @@ KgGeneral::KgGeneral(bool first, QWidget* parent) :
     QLabel *label3 = new QLabel(i18n("Terminal:"), generalGrp);
     generalGrid->addWidget(label3, 10, 0);
     KonfiguratorURLRequester *urlReq2 = createURLRequester("General", "Terminal", _Terminal,
-                                        generalGrp, false);
+                                        generalGrp, false, FIRST_PAGE, false);
     generalGrid->addWidget(urlReq2, 10, 1);
 
     KonfiguratorCheckBox *checkBox1 = createCheckBox("General", "Send CDs", _SendCDs,

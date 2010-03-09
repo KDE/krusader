@@ -220,11 +220,12 @@ public:
       * @param  parent      Reference to the parent widget
       * @param  rst         The change of this parameter requires Krusader restart
       * @param  pg          The subpage of a Konfigurator page (because of setDefaults)
+      * @param  expansion   Whether to perform url espansion
       *
       * @return             reference to the newly created URL requester
       */
     KonfiguratorURLRequester *createURLRequester(QString cls, QString name,
-            QString dflt, QWidget *parent, bool rst, int pg = FIRST_PAGE);
+            QString dflt, QWidget *parent, bool rst, int pg = FIRST_PAGE, bool expansion = true);
 
     /**
       * Adds a new font chooser item to the page.

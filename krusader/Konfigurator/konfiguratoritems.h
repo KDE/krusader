@@ -264,7 +264,7 @@ class KonfiguratorURLRequester : public KUrlRequester
 
 public:
     KonfiguratorURLRequester(QString cls, QString name, QString dflt, QWidget *parent = 0,
-                             bool rst = false, int pg = FIRST_PAGE);
+                             bool rst = false, int pg = FIRST_PAGE, bool expansion = true);
     ~KonfiguratorURLRequester();
 
     inline KonfiguratorExtension *extension()   {
@@ -279,6 +279,7 @@ public slots:
 protected:
     QString  defaultValue;
     KonfiguratorExtension *ext;
+    bool expansion;
 };
 
 // KonfiguratorFontChooser class
