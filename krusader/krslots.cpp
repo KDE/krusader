@@ -1265,11 +1265,4 @@ void KRslots::showViewOptionsMenu()
 }
 
 
-// ugly stubs, remove later ?
-void KRslots::slotSetActivePanel(ListPanel *p)
-{
-    MAIN_VIEW->slotSetActivePanel(p);
-}
-
-
 #include "krslots.moc"

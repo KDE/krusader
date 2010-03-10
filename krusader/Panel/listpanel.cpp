@@ -265,9 +265,6 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
 
     createView();
 
-    // make sure that a focus/path change reflects in the command line and activePanel
-    connect(this, SIGNAL(activePanelChanged(ListPanel *)), SLOTS, SLOT(slotSetActivePanel(ListPanel *)));
-
     // add a popup
     popup = new PanelPopup(splt, left);
     connect(popup, SIGNAL(selection(const KUrl&)), SLOTS, SLOT(refresh(const KUrl&)));

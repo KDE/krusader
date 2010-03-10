@@ -207,10 +207,6 @@ public slots:
     void deleteFiles(bool reallyDelete = false);
     // F9
     void rename();
-
-    // ugly stubs, remove later ?
-    void slotSetActivePanel(ListPanel *p);
-
     void jsConsole();
     void saveNewToolbarConfig();
     void cancelRefresh();
