@@ -84,8 +84,8 @@ public:
     }
 
 public slots:
-    void slotCurrentChanged(QString p);
     void slotSetActivePanel(ListPanel *p);
+    void slotPathChanged(ListPanel *p);
     void slotTerminalEmulator(bool);
     // manage the function keys to the CURRENT vfs
     //////////////////////////////////////////////

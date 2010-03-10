@@ -182,7 +182,6 @@ protected slots:
 
 signals:
     void signalStatus(QString msg);         // emmited when we need to update the status bar
-    void cmdLineUpdate(QString p);         // emitted when we need to update the command line
     void pathChanged(ListPanel *panel);
     void activePanelChanged(ListPanel *p);   // emitted when the user changes panels
     void finishedDragging();              // currently

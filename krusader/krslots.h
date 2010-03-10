@@ -209,7 +209,6 @@ public slots:
     void rename();
 
     // ugly stubs, remove later ?
-    void slotCurrentChanged(QString p);
     void slotSetActivePanel(ListPanel *p);
 
     void jsConsole();

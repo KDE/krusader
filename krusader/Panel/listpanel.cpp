@@ -266,7 +266,6 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     createView();
 
     // make sure that a focus/path change reflects in the command line and activePanel
-    connect(this, SIGNAL(cmdLineUpdate(QString)), SLOTS, SLOT(slotCurrentChanged(QString)));
     connect(this, SIGNAL(activePanelChanged(ListPanel *)), SLOTS, SLOT(slotSetActivePanel(ListPanel *)));
 
     // add a popup
@@ -629,7 +628,6 @@ void ListPanel::slotFocusOnMe()
 
     krApp->setUpdatesEnabled(false);
 
-    emit cmdLineUpdate(realPath());
     emit activePanelChanged(this);
 
     otherPanel->view->prepareForPassive();
@@ -692,7 +690,6 @@ void ListPanel::slotStartUpdate()
         _realPath = virtualPath();
     this->origin->setUrl(virtualPath().pathOrUrl());
     emit pathChanged(this);
-    emit cmdLineUpdate(realPath());   // update the command line
 
     slotGetStats(virtualPath());
     slotUpdate();

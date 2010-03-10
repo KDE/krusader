@@ -25,6 +25,7 @@
   CHANGED: dont't retrieve working dir of the cmdline from the label which might get truncated
            - store it in a string instead
 
+    FIXED: if the path of an inactive panel changes, the embedded cmdline is set to that path
     FIXED: useraction commands, or those entered in the embedded cmdline, are sometimes not executed
            in the correct working dir
     FIXED: when multiple commands are entered in the embedded cmdline or a useraction,

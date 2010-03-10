@@ -126,6 +126,7 @@ ListPanel* PanelManager::createPanel(int type, bool setCurrent)
 
     // connect the activePanelChanged signal to enable/disable actions
     connect(p, SIGNAL(activePanelChanged(ListPanel*)), this, SLOT(slotRefreshActions()));
+    connect(p, SIGNAL(pathChanged(ListPanel*)), MAIN_VIEW, SLOT(slotPathChanged(ListPanel*)));
     return p;
 }
 
@@ -356,6 +357,7 @@ void PanelManager::slotRecreatePanels()
         disconnect(oldPanel);
         connect(newPanel, SIGNAL(activePanelChanged(ListPanel*)), this, SLOT(slotRefreshActions()));
         connect(newPanel, SIGNAL(pathChanged(ListPanel*)), _tabbar, SLOT(updateTab(ListPanel*)));
+        connect(newPanel, SIGNAL(pathChanged(ListPanel*)), MAIN_VIEW, SLOT(slotPathChanged(ListPanel*)));
 
         newPanel->otherPanel = _other;
         if (_other->otherPanel == oldPanel)

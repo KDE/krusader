@@ -1266,11 +1266,6 @@ void KRslots::showViewOptionsMenu()
 
 
 // ugly stubs, remove later ?
-void KRslots::slotCurrentChanged(QString p)
-{
-    MAIN_VIEW->slotCurrentChanged(p);
-}
-
 void KRslots::slotSetActivePanel(ListPanel *p)
 {
     MAIN_VIEW->slotSetActivePanel(p);

@@ -163,14 +163,16 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     }
 }
 
-// updates the command line whenever current panel changes
+// updates the command line whenever current panel or its path changes
 //////////////////////////////////////////////////////////
-void KrusaderView::slotCurrentChanged(QString p)
+void KrusaderView::slotPathChanged(ListPanel *p)
 {
-    cmdLine->setCurrent(p);
-    KConfigGroup cfg = krConfig->group("General");
-    if (cfg.readEntry("Send CDs", _SendCDs)) { // hopefully, this is cached in kconfig
-        terminal_dock->sendCd(p);
+    if(p == ACTIVE_PANEL) {
+        cmdLine->setCurrent(p->realPath());
+        KConfigGroup cfg = krConfig->group("General");
+        if (cfg.readEntry("Send CDs", _SendCDs)) { // hopefully, this is cached in kconfig
+            terminal_dock->sendCd(p->realPath());
+        }
     }
 }
 
@@ -191,8 +193,8 @@ void KrusaderView::panelSwitch()
 }
 void KrusaderView::slotSetActivePanel(ListPanel *p)
 {
-//     ACTIVE_PANEL = p;
     KrGlobal::activePanel = p;
+    slotPathChanged(p);
 }
 
 void KrusaderView::slotTerminalEmulator(bool show)
@@ -237,7 +239,7 @@ void KrusaderView::slotTerminalEmulator(bool show)
             vert_splitter->setSizes(verticalSplitterSizes);
 
         terminal_dock->show();
-        slotCurrentChanged(ACTIVE_PANEL->gui->realPath());
+        slotPathChanged(ACTIVE_PANEL->gui);
 
         terminal_dock->setFocus();
 
