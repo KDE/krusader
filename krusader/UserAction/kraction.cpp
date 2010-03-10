@@ -201,10 +201,8 @@ void KrActionProcDlg::currentTextEditChanged()
 }
 
 // KrActionProc
-KrActionProc::KrActionProc(KrActionBase* action) : QObject(), _action(action), _proc(new KProcess(this)), _output(0)
+KrActionProc::KrActionProc(KrActionBase* action) : QObject(), _action(action), _proc(0), _output(0)
 {
-    connect(_proc, SIGNAL(finished(int, QProcess::ExitStatus)),
-            this, SLOT(processExited(int, QProcess::ExitStatus))) ;
 }
 
 KrActionProc::~KrActionProc()
@@ -221,14 +219,12 @@ void KrActionProc::start(QString cmdLine)
 
 void KrActionProc::start(QStringList cmdLineList)
 {
-    _proc->clearProgram(); // this clears the arglist too
     QString cmd; // this is the command which is really executed (with  maybe kdesu, maybe konsole, ...)
     // in case no specific working directory has been requested, execute in a relatively safe place
     QString workingDir = QDir::tempPath();
 
     if (! _action->startpath().isEmpty())
         workingDir = _action->startpath();
-    _proc->setWorkingDirectory(workingDir);
 
     if (_action->execType() == KrAction::RunInTE
             && (! MAIN_VIEW->terminal_dock->initialise())) {
@@ -256,6 +252,12 @@ void KrActionProc::start(QStringList cmdLineList)
             MAIN_VIEW->terminal_dock->sendInput(cmd + '\n');
     }
     else { // will start a new process
+        _proc = new KProcess(this);
+        _proc->clearProgram(); // this clears the arglist too
+        _proc->setWorkingDirectory(workingDir);
+        connect(_proc, SIGNAL(finished(int, QProcess::ExitStatus)),
+                this, SLOT(processExited(int, QProcess::ExitStatus)));
+
         if (_action->execType() == KrAction::Normal || _action->execType() == KrAction::Terminal) { // not collect output
             if (_action->execType() == KrAction::Terminal) { // run in terminal
                 KConfigGroup group(krConfig, "UserActions");
