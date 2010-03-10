@@ -34,6 +34,7 @@
 #include "krviewitem.h"
 #include "../UserAction/useractionpopupmenu.h"
 
+class KActionCollection;
 class KrPanel;
 
 // should be renamed to KrContextMenu or similar
