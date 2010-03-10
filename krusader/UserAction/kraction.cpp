@@ -245,7 +245,7 @@ void KrActionProc::start(QStringList cmdLineList)
         cmd += *it;
     }
 
-    // make sure the command gets executed in rhe right directory
+    // make sure the command gets executed in the right directory
     cmd = "(cd " + KrServices::quote(workingDir) + " && (" + cmd + "))";
 
     if (_action->execType() == KrAction::RunInTE
