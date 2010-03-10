@@ -211,7 +211,7 @@
 
 /////////////////////// [UserActions]
 // Terminal for UserActions ///////////
-#define _UserActions_Terminal      "konsole --noclose -e"
+#define _UserActions_Terminal      "konsole --noclose --workdir %d --title %t -e"
 // Normal font for output collection ///////
 #define _UserActions_NormalFont   new QFont(KGlobalSettings::generalFont())
 // Font for output collection with fixed width ///////

@@ -52,6 +52,7 @@
 #include "../GUI/terminaldock.h"
 #include "../krglobal.h"
 #include "../krusaderview.h"
+#include "../krservices.h"
 #include "../defaults.h"
 
 // KrActionProcDlg
@@ -218,92 +219,82 @@ void KrActionProc::start(QString cmdLine)
     start(list);
 }
 
+//TODO this is probably bash specific - add support for other shells
 void KrActionProc::start(QStringList cmdLineList)
 {
     _proc->clearProgram(); // this clears the arglist too
-    QString cmd; // This is the command the user wants to execute
-    QStringList shellCmd; // this is the command which is really executed (with  maybe kdesu, maybe konsole, ...)
-    QString workingDirSave = QDir::currentPath();
+    QString cmd; // this is the command which is really executed (with  maybe kdesu, maybe konsole, ...)
+    // in case no specific working directory has been requested, execute in a relatively safe place
+    QString workingDir = QDir::tempPath();
 
-    if (! _action->startpath().isEmpty()) {
-        /* temporarily change our working directory or return if not possible
-         (QProcess::setWorkingDirectory() doesn't assure us that the process will run in this directory,
-         since if the chdir fails the process would run anyway in the wrong directory) */
-        if(!QDir::setCurrent(_action->startpath())) {
-            KMessageBox::error(0, i18n("Command \"%1\" cannot be executed.\nCannot change working directory to %2.",
-                               cmdLineList.join(";"), _action->startpath()), i18n("Error"));
-            return;
-        }
-    }
-
-    if (_action->execType() == KrAction::Terminal && cmdLineList.count() > 1)
-        KMessageBox::sorry(0, i18n("Support for more than one command doesn't work in a terminal. Only the first is executed in the terminal."));
+    if (! _action->startpath().isEmpty())
+        workingDir = _action->startpath();
+    _proc->setWorkingDirectory(workingDir);
 
     if (_action->execType() == KrAction::RunInTE
             && (! MAIN_VIEW->terminal_dock->initialise())) {
         KMessageBox::sorry(0, i18n("Embedded terminal emulator does not work, using output collection instead."));
     }
 
-    if (_action->execType() == KrAction::Normal || _action->execType() == KrAction::Terminal
-            || (_action->execType() == KrAction::RunInTE && MAIN_VIEW->terminal_dock->isInitialised())
-       ) { // not collect output
-        //TODO option to run them in paralell (not available for: collect output)
-        for (QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
-            if (! cmd.isEmpty())
-                cmd += " ; "; //TODO make this separator configurable (users may want && or || for spec. actions)
-            cmd += *it;
-        }
-        //run in TE
-        if (_action->execType() == KrAction::RunInTE) {
-            //send the commandline contents to the terminal emulator
-            MAIN_VIEW->terminal_dock->sendInput(cmd + '\n');
-        } else { // will start a new process
-            // run in terminal
-            if (_action->execType() == KrAction::Terminal) {
-                KConfigGroup group(krConfig, "UserActions");
-                QString term = group.readEntry("Terminal", _UserActions_Terminal);
+    for (QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
+        if (! cmd.isEmpty())
+            cmd += " ; "; //TODO make this separator configurable (users may want && or ||)
+        //TODO: read header fom config or action-properties and place it on top of each command
+        if (cmdLineList.count() > 1)
+            cmd += "echo --------------------------------------- ; ";
+        cmd += *it;
+    }
 
-                if (_action->user().isEmpty())
-                    shellCmd << term << cmd;
-                else
-                    shellCmd  << "kdesu" << "-u" << _action->user() << "-c" << KShell::quoteArg(term + ' ' + cmd);
-            } else { // no terminal, no output collection, start&forget
-                if (_action->user().isEmpty())
-                    shellCmd << cmd;
-                else
-                    shellCmd << "kdesu" << "-u" << _action->user() << "-c" << KShell::quoteArg(cmd);
+    // make sure the command gets executed in rhe right directory
+    cmd = "(cd " + KrServices::quote(workingDir) + " && (" + cmd + "))";
+
+    if (_action->execType() == KrAction::RunInTE
+        && MAIN_VIEW->terminal_dock->isInitialised()) {  //send the commandline contents to the terminal emulator
+            if (!_action->user().isEmpty()) {
+                // "-t" is necessary that kdesu displays the terminal-output of the command
+                cmd = "kdesu -t -u " + _action->user() + " -c " + KrServices::quote(cmd);
             }
-            _proc->setShellCommand(shellCmd.join(" "));
-            _proc->start();
+            MAIN_VIEW->terminal_dock->sendInput(cmd + '\n');
+    }
+    else { // will start a new process
+        if (_action->execType() == KrAction::Normal || _action->execType() == KrAction::Terminal) { // not collect output
+            if (_action->execType() == KrAction::Terminal) { // run in terminal
+                KConfigGroup group(krConfig, "UserActions");
+                QStringList termArgs = KrServices::separateArgs(group.readEntry("Terminal", _UserActions_Terminal));
+                for (int i = 0; i != termArgs.size(); i++) {
+                    if (termArgs[i] == "%t")
+                        termArgs[i] = cmdLineList.join(" ; ");
+                    else if (termArgs[i] == "%d")
+                        termArgs[i] = workingDir;
+                }
+                termArgs << "sh" << "-c" << cmd;
+                cmd = KrServices::quote(termArgs).join(" ");
+            }
+            if (!_action->user().isEmpty()) {
+                cmd = "kdesu -u " + _action->user() + " -c " + KrServices::quote(cmd);
+            }
         }
-    } else { // collect output
-        bool separateStderr = false;
-        if (_action->execType() == KrAction::CollectOutputSeparateStderr)
-            separateStderr = true;
-        _output = new KrActionProcDlg(_action->text(), separateStderr);
-        // connect the output to the dialog
-        _proc->setOutputChannelMode(KProcess::SeparateChannels);
-        connect(_proc, SIGNAL(readyReadStandardError()), SLOT(addStderr()));
-        connect(_proc, SIGNAL(readyReadStandardOutput()), SLOT(addStdout()));
-        connect(_output, SIGNAL(cancelClicked()), this, SLOT(kill()));
-        _output->show();
-        for (QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
-            if (! cmd.isEmpty())
-                cmd += " ; "; //TODO make this separator configurable (users may want && or ||)
-            //TODO: read header fom config or action-properties and place it on top of each command
-            if (cmdLineList.count() > 1)
-                cmd += "echo --------------------------------------- ; ";
-            cmd += *it;
+        else { // collect output
+            bool separateStderr = false;
+            if (_action->execType() == KrAction::CollectOutputSeparateStderr)
+                separateStderr = true;
+            _output = new KrActionProcDlg(_action->text(), separateStderr);
+            // connect the output to the dialog
+            _proc->setOutputChannelMode(KProcess::SeparateChannels);
+            connect(_proc, SIGNAL(readyReadStandardError()), SLOT(addStderr()));
+            connect(_proc, SIGNAL(readyReadStandardOutput()), SLOT(addStdout()));
+            connect(_output, SIGNAL(cancelClicked()), this, SLOT(kill()));
+            _output->show();
+
+            if (!_action->user().isEmpty()) {
+                // "-t" is necessary that kdesu displays the terminal-output of the command
+                cmd = "kdesu -t -u " + _action->user() + " -c " + KrServices::quote(cmd);
+            }
         }
-        if (_action->user().isEmpty())
-            shellCmd << cmd;
-        else
-            // "-t" is necessary that kdesu displays the terminal-output of the command
-            shellCmd << "kdesu" << "-t" << "-u" << _action->user() << "-c" << KShell::quoteArg(cmd);
-        _proc->setShellCommand(shellCmd.join(" "));
+        //printf("cmd: %s\n", cmd.toAscii().data());
+        _proc->setShellCommand(cmd);
         _proc->start();
     }
-    QDir::setCurrent(workingDirSave);
 }
 
 void KrActionProc::processExited(int exitCode, QProcess::ExitStatus exitStatus)
