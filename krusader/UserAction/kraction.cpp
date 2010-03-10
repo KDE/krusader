@@ -219,7 +219,6 @@ void KrActionProc::start(QString cmdLine)
     start(list);
 }
 
-//TODO this is probably bash specific - add support for other shells
 void KrActionProc::start(QStringList cmdLineList)
 {
     _proc->clearProgram(); // this clears the arglist too
