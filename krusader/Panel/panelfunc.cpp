@@ -248,7 +248,8 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
     // put the attempted url in the origin bar and let the user change it
     if (refreshFailed) {
         panel->origin->setUrl(urlIn.prettyUrl());
-        panel->origin->setFocus();
+        if(panel == ACTIVE_PANEL)
+            panel->origin->setFocus();
     }
 
     refreshActions();
