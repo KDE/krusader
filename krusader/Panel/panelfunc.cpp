@@ -62,6 +62,7 @@ A
 
 #include "krcalcspacedialog.h"
 #include "listpanel.h"
+#include "krerrordisplay.h"
 #include "../krglobal.h"
 #include "../krslots.h"
 #include "../kractions.h"
@@ -168,7 +169,6 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
 
     if(panel->vfsError)
         panel->vfsError->hide();
-    panel->status->show();
 
     vfs* v = 0;
     if (urlStack.count() == 0 || !urlStack.last().equals(url))

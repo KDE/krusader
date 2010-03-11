@@ -1,4 +1,5 @@
 set(Panel_SRCS
+    krerrordisplay.cpp
     krpreviews.cpp
     krpreviewjob.cpp
     krcolorcache.cpp 

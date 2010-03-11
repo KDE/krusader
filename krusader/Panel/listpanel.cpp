@@ -103,6 +103,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krpopupmenu.h"
 #include "krviewfactory.h"
 #include "krcolorcache.h"
+#include "krerrordisplay.h"
+
 
 typedef QList<KServiceOffer> OfferList;
 
@@ -601,20 +603,28 @@ void ListPanel::refreshColors()
     KConfigGroup gc(krConfig, "Colors");
     QPalette p(status->palette());
 
+    QColor fg, bg;
+
     if(this == ACTIVE_PANEL) {
-        p.setColor(QPalette::WindowText, getColor(gc, "Statusbar Foreground Active",
-                        KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color(), windowForeground));
-        p.setColor(QPalette::Window, getColor(gc, "Statusbar Background Active",
-                    KColorScheme(QPalette::Active, KColorScheme::Selection).background().color(), windowBackground));
+        fg = getColor(gc, "Statusbar Foreground Active",
+                        KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color(), windowForeground);
+        bg = getColor(gc, "Statusbar Background Active",
+                    KColorScheme(QPalette::Active, KColorScheme::Selection).background().color(), windowBackground);
     } else {
-        p.setColor(QPalette::WindowText, getColor(gc, "Statusbar Foreground Inactive",
-                    KColorScheme(QPalette::Active, KColorScheme::View).foreground().color(), windowForeground));
-        p.setColor(QPalette::Window, getColor(gc, "Statusbar Background Inactive",
-                  KColorScheme(QPalette::Active, KColorScheme::View).background().color(), windowBackground));
+        fg = getColor(gc, "Statusbar Foreground Inactive",
+                    KColorScheme(QPalette::Active, KColorScheme::View).foreground().color(), windowForeground);
+        bg = getColor(gc, "Statusbar Background Inactive",
+                  KColorScheme(QPalette::Active, KColorScheme::View).background().color(), windowBackground);
     }
 
+    if(vfsError && KConfigGroup(krConfig, "Look&Feel").readEntry("Statusbar Background", true))
+        vfsError->setTargetColor(bg);
+
+    p.setColor(QPalette::WindowText, fg);
+    p.setColor(QPalette::Window, bg);
     status->setPalette(p);
     totals->setPalette(p);
+
     view->refreshColors();
 }
 
@@ -1194,18 +1204,12 @@ void ListPanel::setJumpBack(KUrl url)
 
 void ListPanel::slotVfsError(QString msg)
 {
-    status->hide();
-
     if(!vfsError) {
-        vfsError = new QLabel(this);
+        vfsError = new KrErrorDisplay(this);
         vfsError->setWordWrap(true);
-        QPalette p(vfsError->palette());
-        p.setColor(QPalette::Window, QColor(240,150,150));
-        p.setColor(QPalette::WindowText, Qt::black);
-        vfsError->setPalette(p);
-        vfsError->setAutoFillBackground(true);
-        layout->addWidget(vfsError, 1, 1, 1, 1);
+        layout->addWidget(vfsError, 2, 0, 1, 4);
     }
+    refreshColors();
     vfsError->setText(i18n("Error: %1", msg));
     vfsError->show();
 }

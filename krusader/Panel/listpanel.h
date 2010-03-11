@@ -80,6 +80,7 @@ class KPushButton;
 class ListPanelFunc;
 class QSplitter;
 class KDiskFreeSpace;
+class KrErrorDisplay;
 
 class ListPanel : public QWidget, public KrPanel
 {
@@ -216,7 +217,7 @@ public:
     KIO::Job *inlineRefreshJob;
     QSplitter *splt;
     KJob *previewJob;
-    QLabel *vfsError;
+    KrErrorDisplay *vfsError;
 
 
 protected:
