@@ -114,6 +114,15 @@ KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
     layout->activate();
 }
 
+KCMDLine::~KCMDLine()
+{
+    KConfigGroup grpSvr(krConfig, "Private");
+    QStringList list = cmdLine->historyItems();
+    //krOut << list[0] << endl;
+    grpSvr.writeEntry("cmdline history", list);
+    krConfig->sync();
+}
+
 void KCMDLine::addPlaceholder()
 {
     AddPlaceholderPopup popup(this);
@@ -125,20 +134,8 @@ void KCMDLine::addPlaceholder()
 
 void KCMDLine::setCurrent(const QString &p)
 {
-
-    QString pathNameLabel = pathName = p;
-    QFontMetrics fm(path->fontMetrics());
-    int textWidth = fm.width(pathName);
-    int maxWidth = (cmdLine->width() + path->width()) * 2 / 5;
-    int letters = p.length() / 2;
-
-    while (letters && textWidth > maxWidth) {
-        pathNameLabel = p.left(letters) + "..." + p.right(letters);
-        letters--;
-        textWidth = fm.width(pathName);
-    }
-
-    path->setText(pathNameLabel + '>');
+    pathName = p;
+    calcLabelSize();
 
     completion.setDir(p);
     // make sure our command is executed in the right directory
@@ -146,13 +143,21 @@ void KCMDLine::setCurrent(const QString &p)
     QDir::setCurrent(p);
 }
 
-KCMDLine::~KCMDLine()
+void KCMDLine::calcLabelSize()
 {
-    KConfigGroup grpSvr(krConfig, "Private");
-    QStringList list = cmdLine->historyItems();
-    //krOut << list[0] << endl;
-    grpSvr.writeEntry("cmdline history", list);
-    krConfig->sync();
+    QString pathNameLabel = pathName;
+    QFontMetrics fm(path->fontMetrics());
+    int textWidth = fm.width(pathName);
+    int maxWidth = (cmdLine->width() + path->width()) * 2 / 5;
+    int letters = pathName.length() / 2;
+
+    while (letters && textWidth > maxWidth) {
+        pathNameLabel = pathName.left(letters) + "..." + pathName.right(letters);
+        letters--;
+        textWidth = fm.width(pathNameLabel);
+    }
+
+    path->setText(pathNameLabel + '>');
 }
 
 void KCMDLine::slotRun()
@@ -239,6 +244,7 @@ void KCMDLine::setText(QString text)
 {
     cmdLine->lineEdit()->setText(text);
 }
+
 
 void KrHistoryCombo::keyPressEvent(QKeyEvent *e)
 {

@@ -96,6 +96,11 @@ public slots:
         cmdLine->showPopup();
     }
 
+protected:
+    virtual void resizeEvent(QResizeEvent *event) {
+        calcLabelSize();
+    }
+    void calcLabelSize();
 
 private:
     QLabel *path;
