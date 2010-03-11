@@ -166,6 +166,10 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
         }
     }
 
+    if(panel->vfsError)
+        panel->vfsError->hide();
+    panel->status->show();
+
     vfs* v = 0;
     if (urlStack.count() == 0 || !urlStack.last().equals(url))
         urlStack.push_back(url);
@@ -198,6 +202,8 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
         }
         connect(files(), SIGNAL(startJob(KIO::Job*)),
                 panel, SLOT(slotJobStarted(KIO::Job*)));
+        connect(files(), SIGNAL(error(QString)),
+                panel, SLOT(slotVfsError(QString)));
         if (vfsP->vfs_refresh(u)) {
             break; // we have a valid refreshed URL now
         }

@@ -178,6 +178,7 @@ protected slots:
     void inlineRefreshInfoMessage(KJob* job, const QString &msg);
     void inlineRefreshListResult(KJob* job);
     void inlineRefreshPercent(KJob*, unsigned long);
+    void slotVfsError(QString msg);
 
 
 signals:
@@ -215,6 +216,7 @@ public:
     KIO::Job *inlineRefreshJob;
     QSplitter *splt;
     KJob *previewJob;
+    QLabel *vfsError;
 
 
 protected:

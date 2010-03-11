@@ -96,7 +96,9 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
 
     // check that the new origin exists
     if (!QDir(path).exists()) {
-        if (!quietMode) KMessageBox::error(krMainWindow, i18n("Directory %1 does not exist!", path), i18n("Error"));
+        if (!quietMode)
+//             KMessageBox::error(krMainWindow, i18n("Directory %1 does not exist!", path), i18n("Error"));
+            emit error(i18n("Directory %1 does not exist!", path));
         return false;
     }
 
@@ -105,14 +107,18 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
 
     DIR* dir = opendir(path.toLocal8Bit());
     if (!dir) {
-        if (!quietMode) KMessageBox::error(krMainWindow, i18n("Can't open the %1 directory!", path), i18n("Error"));
+        if (!quietMode)
+//             KMessageBox::error(krMainWindow, i18n("Can't open the %1 directory!", path), i18n("Error"));
+            emit error(i18n("Can't open the %1 directory!", path));
         return false;
     }
 
     // change directory to the new directory
     QString save = QDir::currentPath();
     if (! QDir::setCurrent(path)) {
-        if (!quietMode) KMessageBox::error(krMainWindow, i18n("Access denied to") + path, i18n("Error"));
+        if (!quietMode)
+//             KMessageBox::error(krMainWindow, i18n("Access denied to") + path, i18n("Error"));
+            emit error(i18n("Access denied to %1", path));
         closedir(dir);
         return false;
     }

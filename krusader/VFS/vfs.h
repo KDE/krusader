@@ -160,6 +160,7 @@ signals:
     void updatedVfile(vfile* vf);
     void cleared();
     void deleteAllowed();
+    void error(QString msg);
 
 protected:
     /// Feel the vfs dictionary with vfiles, must be implemented for each vfs

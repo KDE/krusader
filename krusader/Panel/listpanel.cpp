@@ -112,7 +112,7 @@ typedef QList<KServiceOffer> OfferList;
 ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
         QWidget(parent), panelType(typeIn), colorMask(255), compareMode(false), statsAgent(0),
         quickSearch(0), cdRootButton(0), cdUpButton(0), popupBtn(0), popup(0), inlineRefreshJob(0), _left(left),
-        _locked(false), previewJob(0)
+        _locked(false), previewJob(0), vfsError(0)
 {
     gui = this;
 
@@ -1191,5 +1191,24 @@ void ListPanel::setJumpBack(KUrl url)
 {
     _jumpBackURL = url;
 }
+
+void ListPanel::slotVfsError(QString msg)
+{
+    status->hide();
+
+    if(!vfsError) {
+        vfsError = new QLabel(this);
+        vfsError->setWordWrap(true);
+        QPalette p(vfsError->palette());
+        p.setColor(QPalette::Window, QColor(240,150,150));
+        p.setColor(QPalette::WindowText, Qt::black);
+        vfsError->setPalette(p);
+        vfsError->setAutoFillBackground(true);
+        layout->addWidget(vfsError, 1, 1, 1, 1);
+    }
+    vfsError->setText(i18n("Error: %1", msg));
+    vfsError->show();
+}
+
 
 #include "listpanel.moc"

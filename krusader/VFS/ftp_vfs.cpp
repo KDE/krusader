@@ -153,7 +153,9 @@ void ftp_vfs::slotListResult(KJob *job)
         // we failed to refresh
         listError = true;
         // display error message
-        if (!quietMode) job->uiDelegate()->showErrorMessage();
+        if (!quietMode)
+//             job->uiDelegate()->showErrorMessage();
+            emit error(job->errorString());
     }
     busy = false;
 }
@@ -171,7 +173,10 @@ bool ftp_vfs::populateVfsList(const KUrl& origin, bool showHidden)
     }
 
     if (!errorMsg.isEmpty()) {
-        if (!quietMode) KMessageBox::sorry(krMainWindow, errorMsg);
+        printf("error\n");
+        if (!quietMode)
+//             KMessageBox::sorry(krMainWindow, errorMsg);
+            emit error(errorMsg);
         return false;
     }
 
