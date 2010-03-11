@@ -66,7 +66,7 @@ KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
     layout->setContentsMargins(0, 0, 0, 0);
     path = new QLabel(this);
     path->setWhatsThis(i18n("Name of directory where command will be processed."));
-    path->setAlignment(Qt::AlignRight);
+    path->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     path->setFrameStyle(QFrame::Box | QFrame::Sunken);
     path->setLineWidth(1);
     path->setFont(KGlobalSettings::generalFont());
