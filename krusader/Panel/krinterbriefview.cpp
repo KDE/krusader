@@ -82,7 +82,8 @@ private:
 
 // code used to register the view
 #define INTERBRIEFVIEW_ID 1
-KrViewInstance interBriefView(INTERBRIEFVIEW_ID, "KrInterBriefView", i18n("&Brief View"), Qt::ALT + Qt::SHIFT + Qt::Key_B,
+KrViewInstance interBriefView(INTERBRIEFVIEW_ID, "KrInterBriefView", i18n("&Brief View"), "view-list-icons",
+                              Qt::ALT + Qt::SHIFT + Qt::Key_B,
                               KrInterBriefView::create, KrInterViewItem::itemHeightChanged);
 // end of register code
 
