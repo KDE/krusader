@@ -307,17 +307,17 @@ void KgPanel::setupPanelTab()
 
 
     // ----------------------------------------------------------------------------------
-    //  ---------------------------- View types -----------------------------------------
+    //  ---------------------------- View modes -----------------------------------------
     // ----------------------------------------------------------------------------------
 
-    panelGrp = createFrame(i18n("View types"), tab_panel);
+    panelGrp = createFrame(i18n("View modes"), tab_panel);
     panelLayout->addWidget(panelGrp, 1, 0);
     panelGrid = createGridLayout(panelGrp);
 
     // -------------------- Default Panel Type ----------------------------------
     hbox = new QHBoxLayout();
 
-    hbox->addWidget(new QLabel(i18n("Default view type:"), panelGrp));
+    hbox->addWidget(new QLabel(i18n("Default view mode:"), panelGrp));
 
     QList<KrViewInstance *> views = KrViewFactory::registeredViews();
     const int viewsSize = views.size();
