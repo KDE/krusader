@@ -115,7 +115,7 @@ private:
 class fsData
 {
 public:
-    fsData() : Name(0), Type(0), MntPoint(0), TotalBlks(0),
+    fsData() : Name(), Type(), MntPoint(), TotalBlks(0),
             FreeBlks(0), Mounted(false) {}
 
     // get information
