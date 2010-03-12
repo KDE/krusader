@@ -64,7 +64,7 @@ class KrSearchDialog : public QDialog
 {
     Q_OBJECT
 public:
-    KrSearchDialog(QString profile = 0, QWidget* parent = 0);
+    KrSearchDialog(QString profile = QString(), QWidget* parent = 0);
 
     void prepareGUI();
 
