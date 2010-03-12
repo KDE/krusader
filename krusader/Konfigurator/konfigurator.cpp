@@ -50,7 +50,7 @@
 // the frames
 #include "kgwelcome.h"
 #include "kgstartup.h"
-#include "kglookfeel.h"
+#include "kgpanel.h"
 #include "kggeneral.h"
 #include "kgadvanced.h"
 #include "kgarchives.h"

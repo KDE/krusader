@@ -1,5 +1,5 @@
 /***************************************************************************
-                        kglookfeel.cpp  -  description
+                        kgpanel.cpp  -  description
                              -------------------
     copyright            : (C) 2003 by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
@@ -28,7 +28,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kglookfeel.h"
+#include "kgpanel.h"
 #include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
 #include <QtGui/QTabWidget>
@@ -563,6 +563,3 @@ int KgLookFeel::activeSubPage()
 {
     return tabWidget->currentIndex();
 }
-
-#include "kglookfeel.moc"
-
