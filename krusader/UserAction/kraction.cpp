@@ -250,6 +250,7 @@ void KrActionProc::start(QStringList cmdLineList)
                 cmd = "kdesu -t -u " + _action->user() + " -c " + KrServices::quote(cmd);
             }
             MAIN_VIEW->terminal_dock->sendInput(cmd + '\n');
+            deleteLater();
     }
     else { // will start a new process
         _proc = new KProcess(this);
