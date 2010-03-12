@@ -239,22 +239,22 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
         switch (id) {
         case 0:
-            NEW_KACTION(actView0, i18n(inst->description().toUtf8()), 0, inst->shortcut(), SLOTS, SLOT(setView0()), "view0");
+            NEW_KACTION(actView0, i18n(inst->description().toUtf8()), inst->icon(), inst->shortcut(), SLOTS, SLOT(setView0()), "view0");
             break;
         case 1:
-            NEW_KACTION(actView1, i18n(inst->description().toUtf8()), 0, inst->shortcut(), SLOTS, SLOT(setView1()), "view1");
+            NEW_KACTION(actView1, i18n(inst->description().toUtf8()), inst->icon(), inst->shortcut(), SLOTS, SLOT(setView1()), "view1");
             break;
         case 2:
-            NEW_KACTION(actView2, i18n(inst->description().toUtf8()), 0, inst->shortcut(), SLOTS, SLOT(setView2()), "view2");
+            NEW_KACTION(actView2, i18n(inst->description().toUtf8()), inst->icon(), inst->shortcut(), SLOTS, SLOT(setView2()), "view2");
             break;
         case 3:
-            NEW_KACTION(actView3, i18n(inst->description().toUtf8()), 0, inst->shortcut(), SLOTS, SLOT(setView3()), "view3");
+            NEW_KACTION(actView3, i18n(inst->description().toUtf8()), inst->icon(), inst->shortcut(), SLOTS, SLOT(setView3()), "view3");
             break;
         case 4:
-            NEW_KACTION(actView4, i18n(inst->description().toUtf8()), 0, inst->shortcut(), SLOTS, SLOT(setView4()), "view4");
+            NEW_KACTION(actView4, i18n(inst->description().toUtf8()), inst->icon(), inst->shortcut(), SLOTS, SLOT(setView4()), "view4");
             break;
         case 5:
-            NEW_KACTION(actView5, i18n(inst->description().toUtf8()), 0, inst->shortcut(), SLOTS, SLOT(setView5()), "view5");
+            NEW_KACTION(actView5, i18n(inst->description().toUtf8()), inst->icon(), inst->shortcut(), SLOTS, SLOT(setView5()), "view5");
             break;
         default:
             break;
