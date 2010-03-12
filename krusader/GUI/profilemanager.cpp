@@ -35,7 +35,7 @@
 #include <klocale.h>
 #include <kmenu.h>
 #include <kinputdialog.h>
-#include <kiconloader.h>
+#include <kicon.h>
 
 #include "../krglobal.h"
 
@@ -43,10 +43,8 @@ ProfileManager::ProfileManager(QString profileType, QWidget * parent)
         : QPushButton(parent)
 {
     setText("");
-    KIconLoader *iconLoader = new KIconLoader();
-    QPixmap pm = iconLoader->loadIcon("kr_profile", KIconLoader::Toolbar, 16);
-    setIcon(QIcon(pm));
-    setFixedWidth(pm.width() + 15);
+    setIcon(KIcon("kr_profile"));
+    setFixedWidth(16 + 15);
     setToolTip(i18n("Profiles"));
 
     this->profileType = profileType;

@@ -45,10 +45,6 @@
 
 KURLListRequester::KURLListRequester(QWidget *parent) : QWidget(parent)
 {
-    KIconLoader *iconLoader = new KIconLoader();
-    QPixmap imageAdd = iconLoader->loadIcon("arrow-down", KIconLoader::Panel, 16);
-    QPixmap imageFolder = iconLoader->loadIcon("folder", KIconLoader::Panel, 16);
-
     // Creating the widget
 
     QGridLayout *urlListRequesterGrid = new QGridLayout(this);
@@ -64,12 +60,12 @@ KURLListRequester::KURLListRequester(QWidget *parent) : QWidget(parent)
 
     urlAddBtn = new QToolButton(this);
     urlAddBtn->setText("");
-    urlAddBtn->setIcon(QIcon(imageAdd));
+    urlAddBtn->setIcon(KIcon("arrow-down"));
     urlListRequesterGrid->addWidget(urlAddBtn, 0, 1);
 
     urlBrowseBtn = new QToolButton(this);
     urlBrowseBtn->setText("");
-    urlBrowseBtn->setIcon(QIcon(imageFolder));
+    urlBrowseBtn->setIcon(KIcon("folder"));
     urlListRequesterGrid->addWidget(urlBrowseBtn, 0, 2);
 
     // add shell completion

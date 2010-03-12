@@ -52,9 +52,10 @@ KrProgress::KrProgress(KIO::Job* job)
 
 #ifdef Q_WS_X11 //FIXME(E): Remove once all the KWindowSystem::foo calls have been ported to QWS
     // Set a useful icon for this window!
+    const KIcon saveIcon("document-save");
     KWindowSystem::setIcons(winId(),
-                            KIconLoader::global()->loadIcon("document-save", KIconLoader::NoGroup, 32),
-                            KIconLoader::global()->loadIcon("document-save", KIconLoader::NoGroup, 16));
+                            saveIcon.pixmap(32)
+                            saveIcon.pixmap(16));
 #endif
 
     QVBoxLayout *topLayout = new QVBoxLayout(this);

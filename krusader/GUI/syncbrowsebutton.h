@@ -58,8 +58,6 @@ public:
 
 protected:
     int _state;
-    QPixmap _icon_on;
-    QPixmap _icon_off;
 
 private slots:
     void slotToggled(bool on);

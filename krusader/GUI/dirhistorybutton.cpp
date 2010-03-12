@@ -25,17 +25,14 @@
 #include <QtCore/QDir>
 #include <QPixmap>
 #include <klocale.h>
-#include <kiconloader.h>
+#include <kicon.h>
 
 #include <kdebug.h>
 
 DirHistoryButton::DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent) : QToolButton(parent)
 {
-    KIconLoader * iconLoader = new KIconLoader();
-    QPixmap icon = iconLoader->loadIcon("view-history", KIconLoader::Toolbar, 16);
-
-    setFixedSize(icon.width() + 4, icon.height() + 4);
-    setIcon(QIcon(icon));
+    setFixedSize(16 + 4, 16 + 4);
+    setIcon(KIcon("view-history"));
     setText(i18n("Open the directory history list"));
     setToolTip(i18n("Open the directory history list"));
     setPopupMode(QToolButton::InstantPopup);

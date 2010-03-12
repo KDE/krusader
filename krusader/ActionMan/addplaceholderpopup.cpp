@@ -413,8 +413,7 @@ ParameterFile::ParameterFile(const exp_parameter& parameter, QWidget* parent) : 
     hbox->addWidget(_lineEdit);
     _button = new QToolButton(hboxWidget);
     hbox->addWidget(_button);
-    KIconLoader *iconLoader = new KIconLoader();
-    _button->setIcon(iconLoader->loadIcon("document-open", KIconLoader::Toolbar, 16));
+    _button->setIcon(KIcon("document-open"));
     connect(_button, SIGNAL(clicked()), this, SLOT(addFile()));
 }
 
@@ -527,8 +526,7 @@ ParameterGoto::ParameterGoto(const exp_parameter& parameter, QWidget* parent) : 
     hbox->addWidget(_lineEdit);
     _dirButton = new QToolButton(hboxWidget);
     hbox->addWidget(_dirButton);
-    KIconLoader *iconLoader = new KIconLoader();
-    _dirButton->setIcon(iconLoader->loadIcon("document-open", KIconLoader::Toolbar, 16));
+    _dirButton->setIcon(KIcon("document-open"));
     connect(_dirButton, SIGNAL(clicked()), this, SLOT(setDir()));
     _placeholderButton = new QToolButton(hboxWidget);
     _placeholderButton->setText(i18n("list-add"));

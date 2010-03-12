@@ -39,11 +39,8 @@
 MediaButton::MediaButton(QWidget *parent) : QToolButton(parent),
         popupMenu(0), rightMenu(0), openInNewTab(false)
 {
-    KIconLoader * iconLoader = new KIconLoader();
-    QPixmap icon = iconLoader->loadIcon("system-file-manager", KIconLoader::Toolbar, 16);
-
-    setFixedSize(icon.width() + 4, icon.height() + 4);
-    setIcon(QIcon(icon));
+    setFixedSize(16 + 4, 16 + 4);
+    setIcon(KIcon("system-file-manager"));
     setText(i18n("Open the available media list"));
     setToolTip(i18n("Open the available media list"));
     setPopupMode(QToolButton::InstantPopup);
