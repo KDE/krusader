@@ -706,17 +706,21 @@ QModelIndex KrInterBriefView::indexAt(const QPoint& p) const
     int x = p.x() + horizontalOffset();
     int y = p.y() + verticalOffset();
 
-    int width = (viewport()->width()) / _numOfColumns;
+    int itemWidth = (viewport()->width()) / _numOfColumns;
     if ((viewport()->width()) % _numOfColumns)
-        width++;
-    int height = getItemHeight();
-    int numRows = viewport()->height() / height;
+        itemWidth++;
+    int itemHeight = getItemHeight();
+
+    int numRows = viewport()->height() / itemHeight;
     if (numRows == 0)
         numRows++;
-    int ys = y / height;
-    int xs = (x / width) * numRows;
 
-    return _model->index(xs + ys, 0);
+    int row = y / itemHeight;
+    int col = x / itemWidth;
+
+    if(row < numRows && col < _numOfColumns)
+        return _model->index((col * numRows) + row, 0);
+    return QModelIndex();
 }
 
 QModelIndex KrInterBriefView::moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers)
