@@ -6,6 +6,28 @@
 - extension to the ChangeLog.
 ------------------------------------------------------------------------
 
+Reorganize Konfigurator:
+    "Look & Feel" page becomes "Panel" -
+    the contents are moved as follows:
+
+    "-->" = moved to
+    "="   = becomes
+
+    Look & Feel = Panel
+        Operation = removed
+            Look & Feel = removed
+                Warn on exit --> General
+                Minimize to tray --> General
+                Autoselect directories --> Panel > Misc > Operation
+                Rename selects extension --> Panel > Misc > Operation
+                Use full tab names --> Panel > Misc > Tabs
+            Quicksearch --> Panel > Misc
+        Panel = Panel > View
+            Panel layout = removed
+                Quicksearch position --> Panel > Misc > Quickseach
+                Tab Bar position --> Panel > Misc > Tabs
+            Status/Totalsbar settings --> Panel > Misc
+
 New feature: when single-instance mode is active, and it is attempted to start a new instance with an url as argument
              or the --left/--right options, the url(s) is/are opened in the aleady running instance
 

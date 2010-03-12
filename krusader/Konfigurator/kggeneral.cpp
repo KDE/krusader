@@ -190,10 +190,12 @@ KgGeneral::KgGeneral(bool first, QWidget* parent) :
                                         generalGrp, false, FIRST_PAGE, false);
     generalGrid->addWidget(urlReq2, 10, 1);
 
-    KonfiguratorCheckBox *checkBox1 = createCheckBox("General", "Send CDs", _SendCDs,
-                                      i18n("Terminal Emulator sends Chdir on panel change"), generalGrp, false,
-                                      i18n("When checked, whenever the panel is changed (for example, by pressing TAB), krusader changes the current directory in the terminal emulator."));
-    generalGrid->addWidget(checkBox1, 11, 0, 1, 2);
+    KONFIGURATOR_CHECKBOX_PARAM terminal_settings[] = { //   cfg_class  cfg_name     default        text            restart tooltip
+        {"General", "Send CDs", _SendCDs, i18n("Terminal Emulator sends Chdir on panel change"), false, i18n("When checked, whenever the panel is changed (for example, by pressing TAB), krusader changes the current directory in the terminal emulator.") },
+        {"Look&Feel", "Fullscreen Terminal Emulator", false, i18n("Fullscreen terminal (mc-style)"), false,  i18n("Terminal is shown instead of the Krusader window (full screen).") },
+    };
+    KonfiguratorCheckBoxGroup *cbs = createCheckBoxGroup(1, 0, terminal_settings, 2 /*count*/, generalGrp, FIRST_PAGE);
+    generalGrid->addWidget(cbs, 11, 0, 1, 2);
 
     QFrame *line31 = createLine(generalGrp);
     generalGrid->addWidget(line31, 12, 0, 1, 2);
@@ -215,6 +217,16 @@ KgGeneral::KgGeneral(bool first, QWidget* parent) :
                                 generalGrp);
     generalGrid->addWidget(label4, 14, 0, 1, 2);
 
+    QFrame *line20 = createLine(generalGrp);
+    generalGrid->addWidget(line20, 20, 0, 1, 2);
+
+    KONFIGURATOR_CHECKBOX_PARAM settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
+        {"Look&Feel", "Warn On Exit",         _WarnOnExit,        i18n("Warn on exit"),           false,  i18n("Display a warning when trying to close the main window.") },    // KDE4: move warn on exit to the other confirmations
+        {"Look&Feel", "Minimize To Tray",     _MinimizeToTray,    i18n("Minimize to tray"),       false,  i18n("The icon will appear in the system tray instead of the taskbar, when Krusader is minimized.") },
+    };
+    cbs = createCheckBoxGroup(2, 0, settings, 2 /*count*/, generalGrp, FIRST_PAGE);
+    generalGrid->addWidget(cbs, 21, 0);
+// 
 
     kgGeneralLayout->addWidget(generalGrp, 0 , 0);
 }

@@ -61,7 +61,7 @@ protected slots:
     void slotMouseCheckBoxChanged();
 
 private:
-    void setupOperationTab();
+    void setupMiscTab();
     void setupPanelTab();
     void setupPanelToolbarTab();
     void setupMouseModeTab();

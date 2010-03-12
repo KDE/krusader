@@ -47,63 +47,48 @@
 #include "../Panel/krview.h"
 #include "../Panel/krviewfactory.h"
 
-#define PAGE_OPERATION     0
-#define PAGE_PANEL         1
-#define PAGE_PANELTOOLBAR  2
-#define PAGE_MOUSE  3
+#define PAGE_VIEW         0
+#define PAGE_PANELTOOLBAR  1
+#define PAGE_MOUSE  2
+#define PAGE_MISC     3
+
 
 KgLookFeel::KgLookFeel(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)
 {
     QWidget *innerWidget = this;
-    QGridLayout *kgLookAndFeelLayout = new QGridLayout(innerWidget);
-    kgLookAndFeelLayout->setSpacing(6);
+    QGridLayout *kgPanelLayout = new QGridLayout(innerWidget);
+    kgPanelLayout->setSpacing(6);
 
     tabWidget = new QTabWidget(innerWidget);
 
-    setupOperationTab();
     setupPanelTab();
     setupPanelToolbarTab();
     setupMouseModeTab();
+    setupMiscTab();
 
-    kgLookAndFeelLayout->addWidget(tabWidget, 0, 0);
+    kgPanelLayout->addWidget(tabWidget, 0, 0);
 }
 
 // ---------------------------------------------------------------------------------------
-//  ---------------------------- OPERATION TAB -------------------------------------
+//  ---------------------------- Misc TAB ------------------------------------------------
 // ---------------------------------------------------------------------------------------
-void KgLookFeel::setupOperationTab()
+void KgLookFeel::setupMiscTab()
 {
     QScrollArea *scrollArea = new QScrollArea(tabWidget);
     QWidget *tab = new QWidget(scrollArea);
     scrollArea->setFrameStyle(QFrame::NoFrame);
     scrollArea->setWidget(tab);
     scrollArea->setWidgetResizable(true);
-    tabWidget->addTab(scrollArea, i18n("Operation"));
+    tabWidget->addTab(scrollArea, i18n("Misc"));
 
-    QGridLayout *lookAndFeelLayout = new QGridLayout(tab);
-    lookAndFeelLayout->setSpacing(6);
-    lookAndFeelLayout->setContentsMargins(11, 11, 11, 11);
+    QGridLayout *miscLayout = new QGridLayout(tab);
+    miscLayout->setSpacing(6);
+    miscLayout->setContentsMargins(11, 11, 11, 11);
 
-    // -------------- General -----------------
-    QGroupBox *lookFeelGrp = createFrame(i18n("Look && Feel"), tab);
-    QGridLayout *lookFeelGrid = createGridLayout(lookFeelGrp);
-
-    KONFIGURATOR_CHECKBOX_PARAM settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
-        {"Look&Feel", "Warn On Exit",         _WarnOnExit,        i18n("Warn on exit"),           false,  i18n("Display a warning when trying to close the main window.") },    // KDE4: move warn on exit to the other confirmations
-        {"Look&Feel", "Minimize To Tray",     _MinimizeToTray,    i18n("Minimize to tray"),       false,  i18n("The icon will appear in the system tray instead of the taskbar, when Krusader is minimized.") },
-        {"Look&Feel", "Mark Dirs",            _MarkDirs,          i18n("Autoselect directories"),   false,  i18n("When matching the select criteria, not only files will be selected, but also directories.") },
-        {"Look&Feel", "Rename Selects Extension", true,          i18n("Rename selects extension"),   false,  i18n("When renaming a file, the whole text is selected. If you want Total-Commander like renaming of just the name, without extension, uncheck this option.") },
-        {"Look&Feel", "Fullpath Tab Names",   _FullPathTabNames,  i18n("Use full path tab names"), true ,  i18n("Display the full path in the folder tabs. By default only the last part of the path is displayed.") },
-        {"Look&Feel", "Fullscreen Terminal Emulator", false, i18n("Fullscreen terminal (mc-style)"), false,  i18n("Terminal is shown instead of the Krusader window (full screen).") },
-    };
-
-    cbs = createCheckBoxGroup(2, 0, settings, 6 /*count*/, lookFeelGrp, PAGE_OPERATION);
-    lookFeelGrid->addWidget(cbs, 0, 0);
-
-    lookAndFeelLayout->addWidget(lookFeelGrp, 0, 0);
-
-    // -------------- Quicksearch -----------------
+// ---------------------------------------------------------------------------------------
+// -----------------------------  Quicksearch  -------------------------------------------
+// ---------------------------------------------------------------------------------------
     QGroupBox *quicksearchGroup = createFrame(i18n("Quicksearch"), tab);
     QGridLayout *quicksearchGrid = createGridLayout(quicksearchGroup);
 
@@ -113,12 +98,90 @@ void KgLookFeel::setupOperationTab()
         {"Look&Feel", "Up/Down Cancels Quicksearch",  false, i18n("Up/Down cancels Quicksearch"), false,  i18n("Pressing the Up/Down buttons cancels Quicksearch.") },
     };
 
-    quicksearchCheckboxes = createCheckBoxGroup(2, 0, quicksearch, 3 /*count*/, quicksearchGroup, PAGE_OPERATION);
+    quicksearchCheckboxes = createCheckBoxGroup(2, 0, quicksearch, 3 /*count*/, quicksearchGroup, PAGE_MISC);
     quicksearchGrid->addWidget(quicksearchCheckboxes, 0, 0);
     connect(quicksearchCheckboxes->find("New Style Quicksearch"), SIGNAL(stateChanged(int)), this, SLOT(slotDisable()));
     slotDisable();
 
-    lookAndFeelLayout->addWidget(quicksearchGroup, 1, 0);
+    // -------------- Quicksearch position -----------------------
+
+    QHBoxLayout *hbox = new QHBoxLayout();
+
+    hbox->addWidget(new QLabel(i18n("Quicksearch position:"), quicksearchGroup));
+
+    KONFIGURATOR_NAME_VALUE_PAIR qsPositions[] = {{ i18n("Top"),                "top" },
+        { i18n("Bottom"),                    "bottom" }
+    };
+    KonfiguratorComboBox *cmb = createComboBox("Look&Feel", "Quicksearch Position",
+                            "bottom", qsPositions, 2, quicksearchGroup, true, false, PAGE_MISC);
+    hbox->addWidget(cmb);
+
+    hbox->addWidget(createSpacer(quicksearchGroup));
+
+    quicksearchGrid->addLayout(hbox, 1, 0);
+
+
+    miscLayout->addWidget(quicksearchGroup, 2, 0);
+
+
+// ---------------------------------------------------------------------------------------
+// ------------------------------ Tabs ---------------------------------------------------
+// ---------------------------------------------------------------------------------------
+    QGroupBox *miscGrp = createFrame(i18n("Tabs"), tab);
+    QGridLayout *miscGrid = createGridLayout(miscGrp);
+
+    KONFIGURATOR_CHECKBOX_PARAM tabbar_settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
+        {"Look&Feel", "Fullpath Tab Names",   _FullPathTabNames,  i18n("Use full path tab names"), true ,  i18n("Display the full path in the folder tabs. By default only the last part of the path is displayed.") },
+    };
+    KonfiguratorCheckBoxGroup *cbs = createCheckBoxGroup(2, 0, tabbar_settings, 1 /*count*/, miscGrp, PAGE_MISC);
+    miscGrid->addWidget(cbs, 0, 0);
+
+// -----------------  Tab Bar position ----------------------------------
+    hbox = new QHBoxLayout();
+
+    hbox->addWidget(new QLabel(i18n("Tab Bar position:"), miscGrp));
+
+    cmb = createComboBox("Look&Feel", "Tab Bar Position",
+                                "bottom", qsPositions, 2, miscGrp, true, false, PAGE_MISC);
+
+    hbox->addWidget(cmb);
+    hbox->addWidget(createSpacer(miscGrp));
+
+    miscGrid->addLayout(hbox, 1, 0);
+
+    miscLayout->addWidget(miscGrp, 1, 0);
+
+// ---------------------------------------------------------------------------------------
+// ------------------------------- Operation ---------------------------------------------
+// ---------------------------------------------------------------------------------------
+    miscGrp = createFrame(i18n("Operation"), tab);
+    miscGrid = createGridLayout(miscGrp);
+
+    KONFIGURATOR_CHECKBOX_PARAM operation_settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
+        {"Look&Feel", "Mark Dirs",            _MarkDirs,          i18n("Autoselect directories"),   false,  i18n("When matching the select criteria, not only files will be selected, but also directories.") },
+        {"Look&Feel", "Rename Selects Extension", true,          i18n("Rename selects extension"),   false,  i18n("When renaming a file, the whole text is selected. If you want Total-Commander like renaming of just the name, without extension, uncheck this option.") },
+    };
+    cbs = createCheckBoxGroup(2, 0, operation_settings, 2 /*count*/, miscGrp, PAGE_MISC);
+    miscGrid->addWidget(cbs, 0, 0);
+
+    miscLayout->addWidget(miscGrp, 0, 0);
+
+// --------------------------------------------------------------------------------------------
+// ------------------------------- Status/Totalsbar settings ----------------------------------
+// --------------------------------------------------------------------------------------------
+    miscGrp = createFrame(i18n("Status/Totalsbar"), tab);
+    miscGrid = createGridLayout(miscGrp);
+
+    KONFIGURATOR_CHECKBOX_PARAM barSettings[] =
+    {
+        {"Look&Feel", "Statusbar Frame", false, i18n("Draw frame"), true,  i18n("Draw a Frame around the Status/Totalsbar") },
+        {"Look&Feel", "Statusbar Background", false, i18n("Fill background"), true,  i18n("Fill Background of Status/Totalsbar") },
+    };
+    KonfiguratorCheckBoxGroup *barSett = createCheckBoxGroup(2, 0, barSettings,
+                                          2 /*count*/, miscGrp, PAGE_MISC);
+    miscGrid->addWidget(barSett, 1, 0, 1, 2);
+
+    miscLayout->addWidget(miscGrp, 3, 0);
 }
 
 void KgLookFeel::setupView(KrViewInstance *instance, QWidget *parent)
@@ -133,7 +196,7 @@ void KgLookFeel::setupView(KrViewInstance *instance, QWidget *parent)
     KONFIGURATOR_NAME_VALUE_PAIR *iconSizes = new KONFIGURATOR_NAME_VALUE_PAIR[KrView::iconSizes.count()];
     for(int i = 0; i < KrView::iconSizes.count(); i++)
         iconSizes[i].text =  iconSizes[i].value = QString::number(KrView::iconSizes[i]);
-    KonfiguratorComboBox *cmb = createComboBox(instance->name(), "Filelist Icon Size", _FilelistIconSize, iconSizes, KrView::iconSizes.count(), parent, true, true, PAGE_PANEL);
+    KonfiguratorComboBox *cmb = createComboBox(instance->name(), "Filelist Icon Size", _FilelistIconSize, iconSizes, KrView::iconSizes.count(), parent, true, true, PAGE_VIEW);
     delete [] iconSizes;
     cmb->lineEdit()->setValidator(new QRegExpValidator(QRegExp("[1-9]\\d{0,1}"), cmb));
     hbox->addWidget(cmb);
@@ -150,13 +213,13 @@ void KgLookFeel::setupView(KrViewInstance *instance, QWidget *parent)
         {instance->name(), "Show Previews",   false,        i18n("Show previews"),              false, i18n("Show previews of files and directories.") },
     };
 
-    KonfiguratorCheckBoxGroup *iconSett = createCheckBoxGroup(2, 0, iconSettings, 2 /*count*/, parent, PAGE_PANEL);
+    KonfiguratorCheckBoxGroup *iconSett = createCheckBoxGroup(2, 0, iconSettings, 2 /*count*/, parent, PAGE_VIEW);
 
     grid->addWidget(iconSett, 2, 0, 1, 2);
 }
 
 // ----------------------------------------------------------------------------------
-//  ---------------------------- PANEL TAB -------------------------------------
+//  ---------------------------- VIEW TAB -------------------------------------------
 // ----------------------------------------------------------------------------------
 void KgLookFeel::setupPanelTab()
 {
@@ -165,23 +228,95 @@ void KgLookFeel::setupPanelTab()
     scrollArea->setFrameStyle(QFrame::NoFrame);
     scrollArea->setWidget(tab_panel);
     scrollArea->setWidgetResizable(true);
-    tabWidget->addTab(scrollArea, i18n("Panel"));
+    tabWidget->addTab(scrollArea, i18n("View"));
 
     QGridLayout *panelLayout = new QGridLayout(tab_panel);
     panelLayout->setSpacing(6);
     panelLayout->setContentsMargins(11, 11, 11, 11);
-    QGroupBox *panelGrp = createFrame(i18n("Panel settings"), tab_panel);
+    QGroupBox *panelGrp = createFrame(i18n("General"), tab_panel);
     panelLayout->addWidget(panelGrp, 0, 0);
     QGridLayout *panelGrid = createGridLayout(panelGrp);
 
-// ----------------------------------------------------------------------------------
-//  ---------------------------- Panel settings -------------------------------------
-// ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    //  ---------------------------- General settings -----------------------------------
+    // ----------------------------------------------------------------------------------
 
-// -------------------- Default Panel Type ----------------------------------
+    // -------------------- Panel Font ----------------------------------
     QHBoxLayout *hbox = new QHBoxLayout();
 
-    hbox->addWidget(new QLabel(i18n("Default panel type:"), panelGrp));
+    hbox->addWidget(new QLabel(i18n("View font:"), panelGrp));
+
+    KonfiguratorFontChooser * chsr = createFontChooser("Look&Feel", "Filelist Font", _FilelistFont, panelGrp, true, PAGE_VIEW);
+    hbox->addWidget(chsr);
+
+    hbox->addWidget(createSpacer(panelGrp));
+
+    panelGrid->addLayout(hbox, 1, 0);
+
+    // =========================================================
+    panelGrid->addWidget(createLine(panelGrp), 2, 0);
+
+    KONFIGURATOR_CHECKBOX_PARAM panelSettings[] =
+        //   cfg_class  cfg_name                default text                                  restart tooltip
+    {
+        {"Look&Feel", "Human Readable Size",            _HumanReadableSize,      i18n("Use human-readable file size"), true ,  i18n("File sizes are displayed in B, KB, MB and GB, not just in bytes.") },
+        {"Look&Feel", "Show Hidden",                    _ShowHidden,             i18n("Show hidden files"),      false,  i18n("Display files beginning with a dot.") },
+        {"Look&Feel", "Numeric permissions",            _NumericPermissions,     i18n("Numeric Permissions"), true,  i18n("Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.") },
+        {"Look&Feel", "Load User Defined Folder Icons", _UserDefinedFolderIcons, i18n("Load the user defined folder icons"), true ,  i18n("Load the user defined directory icons (can cause decrease in performance).") },
+    };
+
+    KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup(2, 0, panelSettings, 4 /*count*/, panelGrp, PAGE_VIEW);
+
+    panelGrid->addWidget(panelSett, 3, 0, 1, 2);
+
+    // =========================================================
+    panelGrid->addWidget(createLine(panelGrp), 4, 0);
+
+    // ------------------------ Sort Method ----------------------------------
+
+    hbox = new QHBoxLayout();
+
+    hbox->addWidget(new QLabel(i18n("Sort method:"), panelGrp));
+
+    KONFIGURATOR_NAME_VALUE_PAIR sortMethods[] = {{ i18n("Alphabetical"),                QString::number(KrViewProperties::Alphabetical) },
+        { i18n("Alphabetical and numbers"),    QString::number(KrViewProperties::AlphabeticalNumbers) },
+        { i18n("Character code"),              QString::number(KrViewProperties::CharacterCode) },
+        { i18n("Character code and numbers"),  QString::number(KrViewProperties::CharacterCodeNumbers) },
+        { i18n("Krusader"),                    QString::number(KrViewProperties::Krusader) }
+    };
+    KonfiguratorComboBox *cmb = createComboBox("Look&Feel", "Sort method", QString::number(_DefaultSortMethod),
+                            sortMethods, 5, panelGrp, true, false, PAGE_VIEW);
+    hbox->addWidget(cmb);
+    hbox->addWidget(createSpacer(panelGrp));
+
+    panelGrid->addLayout(hbox, 5, 0);
+
+    // ------------------------ Sort Options ----------------------------------
+    KONFIGURATOR_CHECKBOX_PARAM sortSettings[] =
+        //   cfg_class  cfg_name                default text                                  restart tooltip
+    {
+        {"Look&Feel", "Case Sensative Sort",            _CaseSensativeSort,      i18n("Case sensitive sorting"), true ,  i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).") },
+        {"Look&Feel", "Always sort dirs by name",       false,                   i18n("Always sort dirs by name"), true,  i18n("Directories are sorted by name, regardless of the sort column.") },
+    };
+
+    KonfiguratorCheckBoxGroup *sortSett = createCheckBoxGroup(2, 0, sortSettings,
+                                          2 /*count*/, panelGrp, PAGE_VIEW);
+
+    panelGrid->addWidget(sortSett, 6, 0, 1, 2);
+
+
+    // ----------------------------------------------------------------------------------
+    //  ---------------------------- View types -----------------------------------------
+    // ----------------------------------------------------------------------------------
+
+    panelGrp = createFrame(i18n("View types"), tab_panel);
+    panelLayout->addWidget(panelGrp, 1, 0);
+    panelGrid = createGridLayout(panelGrp);
+
+    // -------------------- Default Panel Type ----------------------------------
+    hbox = new QHBoxLayout();
+
+    hbox->addWidget(new QLabel(i18n("Default view type:"), panelGrp));
 
     QList<KrViewInstance *> views = KrViewFactory::registeredViews();
     const int viewsSize = views.size();
@@ -198,7 +333,7 @@ void KgLookFeel::setupPanelTab()
             defType = QString("%1").arg(inst->id());
     }
 
-    KonfiguratorComboBox * cmb = createComboBox("Look&Feel", "Default Panel Type", defType, panelTypes, viewsSize, panelGrp, false, false, PAGE_PANEL);
+    cmb = createComboBox("Look&Feel", "Default Panel Type", defType, panelTypes, viewsSize, panelGrp, false, false, PAGE_VIEW);
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(panelGrp));
 
@@ -206,73 +341,7 @@ void KgLookFeel::setupPanelTab()
 
     panelGrid->addLayout(hbox, 0, 0);
 
-// -------------------- Panel Font ----------------------------------
-    hbox = new QHBoxLayout();
-
-    hbox->addWidget(new QLabel(i18n("Panel font:"), panelGrp));
-
-    KonfiguratorFontChooser * chsr = createFontChooser("Look&Feel", "Filelist Font", _FilelistFont, panelGrp, true, PAGE_PANEL);
-    hbox->addWidget(chsr);
-
-    hbox->addWidget(createSpacer(panelGrp));
-
-    panelGrid->addLayout(hbox, 1, 0);
-
-// =========================================================
-    panelGrid->addWidget(createLine(panelGrp), 2, 0);
-
-    KONFIGURATOR_CHECKBOX_PARAM panelSettings[] =
-        //   cfg_class  cfg_name                default text                                  restart tooltip
-    {
-        {"Look&Feel", "Human Readable Size",            _HumanReadableSize,      i18n("Use human-readable file size"), true ,  i18n("File sizes are displayed in B, KB, MB and GB, not just in bytes.") },
-        {"Look&Feel", "Show Hidden",                    _ShowHidden,             i18n("Show hidden files"),      false,  i18n("Display files beginning with a dot.") },
-        {"Look&Feel", "Numeric permissions",            _NumericPermissions,     i18n("Numeric Permissions"), true,  i18n("Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.") },
-        {"Look&Feel", "Load User Defined Folder Icons", _UserDefinedFolderIcons, i18n("Load the user defined folder icons"), true ,  i18n("Load the user defined directory icons (can cause decrease in performance).") },
-    };
-
-    KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup(2, 0, panelSettings, 4 /*count*/, panelGrp, PAGE_PANEL);
-
-    panelGrid->addWidget(panelSett, 3, 0, 1, 2);
-
-// =========================================================
-    panelGrid->addWidget(createLine(panelGrp), 4, 0);
-
-// ------------------------ Sort Method ----------------------------------
-
-    hbox = new QHBoxLayout();
-
-    hbox->addWidget(new QLabel(i18n("Sort method:"), panelGrp));
-
-    KONFIGURATOR_NAME_VALUE_PAIR sortMethods[] = {{ i18n("Alphabetical"),                QString::number(KrViewProperties::Alphabetical) },
-        { i18n("Alphabetical and numbers"),    QString::number(KrViewProperties::AlphabeticalNumbers) },
-        { i18n("Character code"),              QString::number(KrViewProperties::CharacterCode) },
-        { i18n("Character code and numbers"),  QString::number(KrViewProperties::CharacterCodeNumbers) },
-        { i18n("Krusader"),                    QString::number(KrViewProperties::Krusader) }
-    };
-    cmb = createComboBox("Look&Feel", "Sort method", QString::number(_DefaultSortMethod),
-                            sortMethods, 5, panelGrp, true, false, PAGE_PANEL);
-    hbox->addWidget(cmb);
-    hbox->addWidget(createSpacer(panelGrp));
-
-    panelGrid->addLayout(hbox, 5, 0);
-
-// ------------------------ Sort Options ----------------------------------
-    KONFIGURATOR_CHECKBOX_PARAM sortSettings[] =
-        //   cfg_class  cfg_name                default text                                  restart tooltip
-    {
-        {"Look&Feel", "Case Sensative Sort",            _CaseSensativeSort,      i18n("Case sensitive sorting"), true ,  i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).") },
-        {"Look&Feel", "Always sort dirs by name",       false,                   i18n("Always sort dirs by name"), true,  i18n("Directories are sorted by name, regardless of the sort column.") },
-    };
-
-    KonfiguratorCheckBoxGroup *sortSett = createCheckBoxGroup(2, 0, sortSettings,
-                                          2 /*count*/, panelGrp, PAGE_PANEL);
-
-    panelGrid->addWidget(sortSett, 6, 0, 1, 2);
-
-// =========================================================
-    panelGrid->addWidget(createLine(panelGrp), 10, 0);
-
-// ----- Individual Settings Per View Type ------------------------
+    // ----- Individual Settings Per View Type ------------------------
     QTabWidget *tabs_view = new QTabWidget(panelGrp);
     panelGrid->addWidget(tabs_view, 11, 0);
 
@@ -281,60 +350,6 @@ void KgLookFeel::setupPanelTab()
         tabs_view->addTab(tab, views[i]->description());
         setupView(views[i], tab);
     }
-
-// ---------------------------------------------------------------------------------------
-// -----------------------------  Panel Layout -------------------------------------------
-// ---------------------------------------------------------------------------------------
-    panelGrp = createFrame(i18n("Panel layout"), tab_panel);
-    panelGrid = createGridLayout(panelGrp);
-
-// -----------------  Quicksearch position -------------------------------
-    hbox = new QHBoxLayout();
-
-    hbox->addWidget(new QLabel(i18n("Quicksearch position:"), panelGrp));
-
-    KONFIGURATOR_NAME_VALUE_PAIR qsPositions[] = {{ i18n("Top"),                "top" },
-        { i18n("Bottom"),                    "bottom" }
-    };
-    cmb = createComboBox("Look&Feel", "Quicksearch Position",
-                            "bottom", qsPositions, 2, panelGrp, true, false, PAGE_PANEL);
-    hbox->addWidget(cmb);
-    hbox->addWidget(createSpacer(panelGrp));
-
-    panelGrid->addLayout(hbox, 0, 0);
-
-// -----------------  Tab Bar position ----------------------------------
-    hbox = new QHBoxLayout();
-
-    hbox->addWidget(new QLabel(i18n("Tab Bar position:"), panelGrp));
-
-    cmb = createComboBox("Look&Feel", "Tab Bar Position",
-                                "bottom", qsPositions, 2, panelGrp, true, false, PAGE_PANEL);
-
-    hbox->addWidget(cmb);
-    hbox->addWidget(createSpacer(panelGrp));
-
-    panelGrid->addLayout(hbox, 1, 0);
-
-
-    panelLayout->addWidget(panelGrp, 1, 0);
-
-// --------------------------------------------------------------------------------------------
-// ------------------------------- Status/Totalsbar settings ----------------------------------
-// --------------------------------------------------------------------------------------------
-    panelGrp = createFrame(i18n("Status/Totalsbar settings"), tab_panel);
-    panelGrid = createGridLayout(panelGrp);
-
-    KONFIGURATOR_CHECKBOX_PARAM barSettings[] =
-    {
-        {"Look&Feel", "Statusbar Frame", false, i18n("Draw frame"), true,  i18n("Draw a Frame around the Status/Totalsbar") },
-        {"Look&Feel", "Statusbar Background", false, i18n("Fill background"), true,  i18n("Fill Background of Status/Totalsbar") },
-    };
-    KonfiguratorCheckBoxGroup *barSett = createCheckBoxGroup(2, 0, barSettings,
-                                          2 /*count*/, panelGrp, PAGE_PANEL);
-    panelGrid->addWidget(barSett, 1, 0, 1, 2);
-
-    panelLayout->addWidget(panelGrp, 2, 0);
 }
 
 // -----------------------------------------------------------------------------------
