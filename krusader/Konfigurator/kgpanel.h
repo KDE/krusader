@@ -1,5 +1,5 @@
 /***************************************************************************
-                         kglookfeel.h  -  description
+                         kgpanel.h  -  description
                              -------------------
     copyright            : (C) 2003 by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
@@ -36,12 +36,12 @@
 class KrTreeWidget;
 class KrViewInstance;
 
-class KgLookFeel : public KonfiguratorPage
+class KgPanel : public KonfiguratorPage
 {
     Q_OBJECT
 
 public:
-    KgLookFeel(bool first, QWidget* parent = 0);
+    KgPanel(bool first, QWidget* parent = 0);
 
     virtual int activeSubPage();
 

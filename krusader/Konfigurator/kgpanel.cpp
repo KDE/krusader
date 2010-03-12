@@ -2,6 +2,7 @@
                         kgpanel.cpp  -  description
                              -------------------
     copyright            : (C) 2003 by Csaba Karai
+    copyright            : (C) 2010 by Jan Lepper
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -53,7 +54,7 @@
 #define PAGE_MISC     3
 
 
-KgLookFeel::KgLookFeel(bool first, QWidget* parent) :
+KgPanel::KgPanel(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)
 {
     QWidget *innerWidget = this;
@@ -73,7 +74,7 @@ KgLookFeel::KgLookFeel(bool first, QWidget* parent) :
 // ---------------------------------------------------------------------------------------
 //  ---------------------------- Misc TAB ------------------------------------------------
 // ---------------------------------------------------------------------------------------
-void KgLookFeel::setupMiscTab()
+void KgPanel::setupMiscTab()
 {
     QScrollArea *scrollArea = new QScrollArea(tabWidget);
     QWidget *tab = new QWidget(scrollArea);
@@ -184,7 +185,7 @@ void KgLookFeel::setupMiscTab()
     miscLayout->addWidget(miscGrp, 3, 0);
 }
 
-void KgLookFeel::setupView(KrViewInstance *instance, QWidget *parent)
+void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
 {
     QGridLayout *grid = createGridLayout(parent);
 
@@ -221,7 +222,7 @@ void KgLookFeel::setupView(KrViewInstance *instance, QWidget *parent)
 // ----------------------------------------------------------------------------------
 //  ---------------------------- VIEW TAB -------------------------------------------
 // ----------------------------------------------------------------------------------
-void KgLookFeel::setupPanelTab()
+void KgPanel::setupPanelTab()
 {
     QScrollArea *scrollArea = new QScrollArea(tabWidget);
     QWidget *tab_panel = new QWidget(scrollArea);
@@ -355,7 +356,7 @@ void KgLookFeel::setupPanelTab()
 // -----------------------------------------------------------------------------------
 //  -------------------------- Panel Toolbar TAB ----------------------------------
 // -----------------------------------------------------------------------------------
-void KgLookFeel::setupPanelToolbarTab()
+void KgPanel::setupPanelToolbarTab()
 {
     QScrollArea *scrollArea = new QScrollArea(tabWidget);
     QWidget *tab_4 = new QWidget(scrollArea);
@@ -405,7 +406,7 @@ void KgLookFeel::setupPanelToolbarTab()
 // ---------------------------------------------------------------------------
 //  -------------------------- Mouse TAB ----------------------------------
 // ---------------------------------------------------------------------------
-void KgLookFeel::setupMouseModeTab()
+void KgPanel::setupMouseModeTab()
 {
     QScrollArea *scrollArea = new QScrollArea(tabWidget);
     QWidget *tab_mouse = new QWidget(scrollArea);
@@ -517,13 +518,13 @@ void KgLookFeel::setupMouseModeTab()
     mouseLayout->addWidget(mousePreviewGroup, 1, 0);
 }
 
-void KgLookFeel::slotDisable()
+void KgPanel::slotDisable()
 {
     bool isNewStyleQuickSearch = quicksearchCheckboxes->find("New Style Quicksearch")->isChecked();
     quicksearchCheckboxes->find("Case Sensitive Quicksearch")->setEnabled(isNewStyleQuickSearch);
 }
 
-void KgLookFeel::slotEnablePanelToolbar()
+void KgPanel::slotEnablePanelToolbar()
 {
     bool enableTB = panelToolbarActive->find("Panel Toolbar visible")->isChecked();
     pnlcbs->find("Root Button Visible")->setEnabled(enableTB);
@@ -534,7 +535,7 @@ void KgLookFeel::slotEnablePanelToolbar()
     pnlcbs->find("SyncBrowse Button Visible")->setEnabled(enableTB);
 }
 
-void KgLookFeel::slotSelectionModeChanged()
+void KgPanel::slotSelectionModeChanged()
 {
     KrSelectionMode *selectionMode =
         KrSelectionMode::getSelectionHandlerForMode(mouseRadio->selectedValue());
@@ -554,12 +555,12 @@ void KgLookFeel::slotSelectionModeChanged()
     mouseCheckboxes->find("Immediate Context Menu")->setChecked(selectionMode->showContextMenu() == -1);
 }
 
-void KgLookFeel::slotMouseCheckBoxChanged()
+void KgPanel::slotMouseCheckBoxChanged()
 {
     mouseRadio->selectButton("3");    //custom selection mode
 }
 
-int KgLookFeel::activeSubPage()
+int KgPanel::activeSubPage()
 {
     return tabWidget->currentIndex();
 }

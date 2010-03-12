@@ -147,8 +147,8 @@ void Konfigurator::createLayout(int startPage)
 {
     // startup
     newPage(new KgStartup(firstTime, this), i18n("Startup"), i18n("Krusader's settings upon startup"), KIcon("go-home", krLoader));
-    // look n' feel
-    newPage(new KgLookFeel(firstTime, this), i18n("Panel"), i18n("Panel"), KIcon("view-choose", krLoader));
+    // panel
+    newPage(new KgPanel(firstTime, this), i18n("Panel"), i18n("Panel"), KIcon("view-choose", krLoader));
     // colors
     newPage(new KgColors(firstTime, this), i18n("Colors"), i18n("Colors"), KIcon("preferences-desktop-color", krLoader));
     // general
