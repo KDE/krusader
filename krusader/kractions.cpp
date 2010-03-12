@@ -423,7 +423,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actSwitchFullScreenTE, i18n("Toggle Fullwidget Terminal Emulator"), 0, Qt::CTRL + Qt::Key_F, MAIN_VIEW, SLOT(switchFullScreenTE()), "switch_fullscreen_te");
     NEW_KACTION(actZoomIn, i18n("Zoom In"), "zoom-in", 0, SLOTS, SLOT(zoomIn()), "zoom_in");
     NEW_KACTION(actZoomOut, i18n("Zoom Out"), "zoom-out", 0, SLOTS, SLOT(zoomOut()), "zoom_out");
-    NEW_KACTION(actDefaultZoom, i18n("Default Zoom"), 0, 0, SLOTS, SLOT(defaultZoom()), "default_zoom");
+    NEW_KACTION(actDefaultZoom, i18n("Default Zoom"), "zoom-original", 0, SLOTS, SLOT(defaultZoom()), "default_zoom");
     NEW_KACTION(actShowViewOptionsMenu, i18n("Show View Options Menu"), 0, 0, SLOTS, SLOT(showViewOptionsMenu()), "show_view_options_menu");
 
     // and at last we can set the tool-tips
