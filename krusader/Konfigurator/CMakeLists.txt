@@ -5,7 +5,7 @@ set(Konfigurator_SRCS
     konfiguratoritems.cpp
     konfigurator.cpp
     kgstartup.cpp
-    kglookfeel.cpp
+    kgpanel.cpp
     kggeneral.cpp
     kgarchives.cpp
     kgadvanced.cpp
