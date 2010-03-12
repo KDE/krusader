@@ -32,7 +32,7 @@
 DirHistoryButton::DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent) : QToolButton(parent)
 {
     KIconLoader * iconLoader = new KIconLoader();
-    QPixmap icon = iconLoader->loadIcon("history", KIconLoader::Toolbar, 16);
+    QPixmap icon = iconLoader->loadIcon("view-history", KIconLoader::Toolbar, 16);
 
     setFixedSize(icon.width() + 4, icon.height() + 4);
     setIcon(QIcon(icon));
