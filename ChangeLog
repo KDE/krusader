@@ -16,7 +16,7 @@
     ADDED: KMountMan::removable(), KMountMan::networkFilesystem()
 
   CHANGED: when open/refresh of a dir fails, don't annoy the user with a message box,
-           but display the error in the status bar
+           but display the error embedded into the panel
   CHANGED: icon size, icons/previews on/off are set seperately per view type
   CHANGED: dim icons in unfocused panel (if dim colors is activated)
   CHANGED: mountman gui: retrieve icons from Solid
@@ -27,6 +27,7 @@
   CHANGED: dont't retrieve working dir of the cmdline from the label which might get truncated
            - store it in a string instead
 
+    FIXED: if refresh has failed, the origin bar is focused even if the panel is not active
     FIXED: if the path of an inactive panel changes, the embedded cmdline is set to that path
     FIXED: useraction commands, or those entered in the embedded cmdline, are sometimes not executed
            in the correct working dir
