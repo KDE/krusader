@@ -48,6 +48,12 @@ public slots:
     void  slotRemoveExtension();
 
 private:
+    void createGeneralTab();
+    void createViewerTab();
+    void createExtensionsTab();
+    QWidget* createTab(QString name);
+
+    QTabWidget *tabWidget;
     KonfiguratorListBox *listBox;
 };
 

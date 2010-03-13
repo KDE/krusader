@@ -57,18 +57,14 @@
 KgPanel::KgPanel(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)
 {
-    QWidget *innerWidget = this;
-    QGridLayout *kgPanelLayout = new QGridLayout(innerWidget);
-    kgPanelLayout->setSpacing(6);
-
-    tabWidget = new QTabWidget(innerWidget);
+    tabWidget = new QTabWidget(this);
+    setWidget(tabWidget);
+    setWidgetResizable(true);
 
     setupPanelTab();
     setupPanelToolbarTab();
     setupMouseModeTab();
     setupMiscTab();
-
-    kgPanelLayout->addWidget(tabWidget, 0, 0);
 }
 
 // ---------------------------------------------------------------------------------------
@@ -254,9 +250,8 @@ void KgPanel::setupPanelTab()
 
     panelGrid->addLayout(hbox, 1, 0);
 
-    // =========================================================
-    panelGrid->addWidget(createLine(panelGrp), 2, 0);
 
+    // -------------------- Misc options ----------------------------------
     KONFIGURATOR_CHECKBOX_PARAM panelSettings[] =
         //   cfg_class  cfg_name                default text                                  restart tooltip
     {

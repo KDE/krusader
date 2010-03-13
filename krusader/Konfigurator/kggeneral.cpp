@@ -45,57 +45,57 @@
 #include "../defaults.h"
 #include "../kicons.h"
 
+#define PAGE_GENERAL        0
+#define PAGE_VIEWER         1
+#define PAGE_EXTENSIONS     2
+
 KgGeneral::KgGeneral(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)
 {
     if (first)
         slotFindTools();
 
-    QWidget *innerWidget = new QFrame(this);
-    setWidget(innerWidget);
+    tabWidget = new QTabWidget(this);
+    setWidget(tabWidget);
     setWidgetResizable(true);
-    QGridLayout *kgGeneralLayout = new QGridLayout(innerWidget);
-    kgGeneralLayout->setSpacing(6);
 
-    //  -------------------------- GENERAL GROUPBOX ----------------------------------
+    createGeneralTab();
+    createViewerTab();
+    createExtensionsTab();
+}
 
-    QGroupBox *generalGrp = createFrame(i18n("General"), innerWidget);
-    QGridLayout *generalGrid = createGridLayout(generalGrp);
+QWidget* KgGeneral::createTab(QString name)
+{
+    QScrollArea *scrollArea = new QScrollArea(tabWidget);
+    tabWidget->addTab(scrollArea, name);
+    scrollArea->setFrameStyle(QFrame::NoFrame);
+    scrollArea->setWidgetResizable(true);
 
-    KONFIGURATOR_NAME_VALUE_TIP deleteMode[] =
-        //            name            value    tooltip
-    {{ i18n("Delete files"),  "false", i18n("Files will be permanently deleted.") },
-        { i18n("Move to trash"), "true",  i18n("Files will be moved to trash when deleted.") }
-    };
+    QWidget *tab = new QWidget(scrollArea);
+    scrollArea->setWidget(tab);
 
-    KonfiguratorRadioButtons *trashRadio = createRadioButtonGroup("General", "Move To Trash",
-                                           _MoveToTrash ? "true" : "false", 2, 0, deleteMode, 2, generalGrp, false);
-    generalGrid->addWidget(trashRadio, 0, 0, 1, 2);
+    return tab;
+}
 
-    KonfiguratorCheckBox *checkBox = createCheckBox("General", "Mimetype Magic", _MimetypeMagic,
-                                     i18n("Use mimetype magic"), generalGrp, false,
-                                     i18n("Mimetype magic allows better distinction of file types, but is slower."));
-    generalGrid->addWidget(checkBox, 1, 0, 1, 2);
+void KgGeneral::createViewerTab()
+{
+    QWidget *tab = createTab(i18n("Viewer/Editor"));
+    QGridLayout *tabLayout = new QGridLayout(tab);
+    tabLayout->setSpacing(6);
+    tabLayout->setContentsMargins(11, 11, 11, 11);
 
-    QFrame *line1 = createLine(generalGrp);
-    generalGrid->addWidget(line1, 2, 0, 1, 2);
+    tabLayout->addWidget(createCheckBox("General", "View In Separate Window", _ViewInSeparateWindow,
+                                   i18n("Internal editor and viewer opens each file in a separate window"), tab, false,
+                                   i18n("If checked, each file will open in a separate window, otherwise, the viewer will work in a single, tabbed mode"), PAGE_VIEWER));
 
-    // editor
-    QLabel *label1 = new QLabel(i18n("Editor:"), generalGrp);
-    generalGrid->addWidget(label1, 3, 0);
-    KonfiguratorURLRequester *urlReq = createURLRequester("General", "Editor", "internal editor",
-                                       generalGrp, false);
-    generalGrid->addWidget(urlReq, 3, 1);
+    // ------------------------- viewer ----------------------------------
 
-    QLabel *label2 = new QLabel(i18n("Hint: use 'internal editor' if you want to use Krusader's fast built-in editor"), generalGrp);
-    generalGrid->addWidget(label2, 4, 0, 1, 2);
+    QGroupBox *viewerGrp = createFrame(i18n("Viewer"), tab);
+    tabLayout->addWidget(viewerGrp, 1, 0);
 
-    QFrame *line2 = createLine(generalGrp);
-    generalGrid->addWidget(line2, 5, 0, 1, 2);
+    QGridLayout *viewerGrid = createGridLayout(viewerGrp);
 
-    // viewer
-
-    QWidget * hboxWidget2 = new QWidget(generalGrp);
+    QWidget * hboxWidget2 = new QWidget(viewerGrp);
     QHBoxLayout * hbox2 = new QHBoxLayout(hboxWidget2);
 
     QWidget * vboxWidget = new QWidget(hboxWidget2);
@@ -112,11 +112,8 @@ KgGeneral::KgGeneral(bool first, QWidget* parent) :
     };
 
     vbox->addWidget(createRadioButtonGroup("General", "Default Viewer Mode",
-                                           "generic", 0, 4, viewMode, 4, vboxWidget, false));
+                                           "generic", 0, 4, viewMode, 4, vboxWidget, false, PAGE_VIEWER));
 
-    vbox->addWidget(createCheckBox("General", "View In Separate Window", _ViewInSeparateWindow,
-                                   i18n("Internal editor and viewer opens each file in a separate window"), vboxWidget, false,
-                                   i18n("If checked, each file will open in a separate window, otherwise, the viewer will work in a single, tabbed mode")));
 
     QWidget * hboxWidget4 = new QWidget(vboxWidget);
     QHBoxLayout * hbox4 = new QHBoxLayout(hboxWidget4);
@@ -124,7 +121,7 @@ KgGeneral::KgGeneral(bool first, QWidget* parent) :
     QLabel *label5 = new QLabel(i18n("Use lister if the text file is bigger than:"), hboxWidget4);
     hbox4->addWidget(label5);
     KonfiguratorSpinBox *spinBox = createSpinBox("General", "Lister Limit", _ListerLimit,
-                                   0, 0x7FFFFFFF, hboxWidget4, false);
+                                   0, 0x7FFFFFFF, hboxWidget4, false, PAGE_VIEWER);
     hbox4->addWidget(spinBox);
     QLabel *label6 = new QLabel(i18n("MB"), hboxWidget4);
     hbox4->addWidget(label6);
@@ -132,17 +129,39 @@ KgGeneral::KgGeneral(bool first, QWidget* parent) :
     vbox->addWidget(hboxWidget4);
 
     hbox2->addWidget(vboxWidget);
-    generalGrid->addWidget(hboxWidget2, 6, 0, 3, 2);
 
-    // atomic extensions
-    QFrame * frame21 = createLine(hboxWidget2, true);
-    frame21->setMinimumWidth(15);
-    hbox2->addWidget(frame21);
+    viewerGrid->addWidget(hboxWidget2, 0, 0);
 
-    QWidget * vboxWidget2 = new QWidget(hboxWidget2);
+
+    // ------------------------- editor ----------------------------------
+
+    QGroupBox *editorGrp = createFrame(i18n("Editor"), tab);
+    tabLayout->addWidget(editorGrp, 2, 0);
+    QGridLayout *editorGrid = createGridLayout(editorGrp);
+
+    QLabel *label1 = new QLabel(i18n("Editor:"), editorGrp);
+    editorGrid->addWidget(label1, 0, 0);
+    KonfiguratorURLRequester *urlReq = createURLRequester("General", "Editor", "internal editor",
+                                       editorGrp, false, PAGE_VIEWER);
+    editorGrid->addWidget(urlReq, 0, 1);
+
+    QLabel *label2 = new QLabel(i18n("Hint: use 'internal editor' if you want to use Krusader's fast built-in editor"), editorGrp);
+    editorGrid->addWidget(label2, 1, 0, 1, 2);
+}
+
+void KgGeneral::createExtensionsTab()
+{
+    // ------------------------- atomic extensions ----------------------------------
+
+    QWidget *tab = createTab(i18n("Atomic extensions"));
+    QGridLayout *tabLayout = new QGridLayout(tab);
+    tabLayout->setSpacing(6);
+    tabLayout->setContentsMargins(11, 11, 11, 11);
+
+    QWidget * vboxWidget2 = new QWidget(tab);
+    tabLayout->addWidget(vboxWidget2);
+
     QVBoxLayout * vbox2 = new QVBoxLayout(vboxWidget2);
-
-    hbox2->addWidget(vboxWidget2);
 
     QWidget * hboxWidget3 = new QWidget(vboxWidget2);
     vbox2->addWidget(hboxWidget3);
@@ -177,58 +196,98 @@ KgGeneral::KgGeneral(bool first, QWidget* parent) :
     defaultAtomicExtensions += ".moc.cpp";
 
     listBox = createListBox("Look&Feel", "Atomic Extensions",
-                            defaultAtomicExtensions, vboxWidget2, true, false);
+                            defaultAtomicExtensions, vboxWidget2, true, PAGE_EXTENSIONS);
     vbox2->addWidget(listBox);
+}
 
-    QFrame *line3 = createLine(generalGrp);
-    generalGrid->addWidget(line3, 9, 0, 1, 2);
 
-    // terminal
-    QLabel *label3 = new QLabel(i18n("Terminal:"), generalGrp);
-    generalGrid->addWidget(label3, 10, 0);
-    KonfiguratorURLRequester *urlReq2 = createURLRequester("General", "Terminal", _Terminal,
-                                        generalGrp, false, FIRST_PAGE, false);
-    generalGrid->addWidget(urlReq2, 10, 1);
+void KgGeneral::createGeneralTab()
+{
+    QWidget *tab = createTab(i18n("General"));
+    QGridLayout *kgGeneralLayout = new QGridLayout(tab);
+    kgGeneralLayout->setSpacing(6);
+    kgGeneralLayout->setContentsMargins(11, 11, 11, 11);
 
-    KONFIGURATOR_CHECKBOX_PARAM terminal_settings[] = { //   cfg_class  cfg_name     default        text            restart tooltip
-        {"General", "Send CDs", _SendCDs, i18n("Terminal Emulator sends Chdir on panel change"), false, i18n("When checked, whenever the panel is changed (for example, by pressing TAB), krusader changes the current directory in the terminal emulator.") },
-        {"Look&Feel", "Fullscreen Terminal Emulator", false, i18n("Fullscreen terminal (mc-style)"), false,  i18n("Terminal is shown instead of the Krusader window (full screen).") },
-    };
-    KonfiguratorCheckBoxGroup *cbs = createCheckBoxGroup(1, 0, terminal_settings, 2 /*count*/, generalGrp, FIRST_PAGE);
-    generalGrid->addWidget(cbs, 11, 0, 1, 2);
 
-    QFrame *line31 = createLine(generalGrp);
-    generalGrid->addWidget(line31, 12, 0, 1, 2);
+    //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-    // temp dir
-    QWidget *hboxWidget = new QWidget(generalGrp);
-    QHBoxLayout * hbox = new QHBoxLayout(hboxWidget);
+    QGroupBox *generalGrp = createFrame(i18n("General"), tab);
+    QGridLayout *generalGrid = createGridLayout(generalGrp);
 
-    hbox->addWidget(new QLabel(i18n("Temp Directory:"), hboxWidget));
-    KonfiguratorURLRequester *urlReq3 = createURLRequester("General", "Temp Directory", "/tmp/krusader.tmp",
-                                        hboxWidget, false);
-    urlReq3->setMode(KFile::Directory);
-    connect(urlReq3->extension(), SIGNAL(applyManually(QObject *, QString, QString)),
-            this, SLOT(applyTempDir(QObject *, QString, QString)));
-    hbox->addWidget(urlReq3);
-    generalGrid->addWidget(hboxWidget, 13, 0, 1, 2);
 
-    QLabel *label4 = new QLabel(i18n("Note: you must have full permissions for the temporary directory!"),
-                                generalGrp);
-    generalGrid->addWidget(label4, 14, 0, 1, 2);
-
-    QFrame *line20 = createLine(generalGrp);
-    generalGrid->addWidget(line20, 20, 0, 1, 2);
 
     KONFIGURATOR_CHECKBOX_PARAM settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
         {"Look&Feel", "Warn On Exit",         _WarnOnExit,        i18n("Warn on exit"),           false,  i18n("Display a warning when trying to close the main window.") },    // KDE4: move warn on exit to the other confirmations
         {"Look&Feel", "Minimize To Tray",     _MinimizeToTray,    i18n("Minimize to tray"),       false,  i18n("The icon will appear in the system tray instead of the taskbar, when Krusader is minimized.") },
     };
-    cbs = createCheckBoxGroup(2, 0, settings, 2 /*count*/, generalGrp, FIRST_PAGE);
-    generalGrid->addWidget(cbs, 21, 0);
-// 
+    KonfiguratorCheckBoxGroup *cbs = createCheckBoxGroup(2, 0, settings, 2 /*count*/, generalGrp, PAGE_GENERAL);
+    generalGrid->addWidget(cbs, 0, 0);
+
+
+    KonfiguratorCheckBox *checkBox = createCheckBox("General", "Mimetype Magic", _MimetypeMagic,
+                                     i18n("Use mimetype magic"), generalGrp, false,
+                                     i18n("Mimetype magic allows better distinction of file types, but is slower."), PAGE_GENERAL);
+    generalGrid->addWidget(checkBox, 1, 0, 1, 1);
+
+
+    // temp dir
+
+    QHBoxLayout *hbox = new QHBoxLayout();
+
+    hbox->addWidget(new QLabel(i18n("Temp Directory:"), generalGrp));
+    KonfiguratorURLRequester *urlReq3 = createURLRequester("General", "Temp Directory", "/tmp/krusader.tmp",
+                                        generalGrp, false, PAGE_GENERAL);
+    urlReq3->setMode(KFile::Directory);
+    connect(urlReq3->extension(), SIGNAL(applyManually(QObject *, QString, QString)),
+            this, SLOT(applyTempDir(QObject *, QString, QString)));
+    hbox->addWidget(urlReq3);
+    generalGrid->addLayout(hbox, 13, 0, 1, 1);
+
+    QLabel *label4 = new QLabel(i18n("Note: you must have full permissions for the temporary directory!"),
+                                generalGrp);
+    generalGrid->addWidget(label4, 14, 0, 1, 1);
+
 
     kgGeneralLayout->addWidget(generalGrp, 0 , 0);
+
+
+    // ----------------------- delete mode --------------------------------------
+
+    QGroupBox *delGrp = createFrame(i18n("Delete mode"), tab);
+    QGridLayout *delGrid = createGridLayout(delGrp);
+
+    KONFIGURATOR_NAME_VALUE_TIP deleteMode[] =
+        //            name            value    tooltip
+    {{ i18n("Delete files"),  "false", i18n("Files will be permanently deleted.") },
+        { i18n("Move to trash"), "true",  i18n("Files will be moved to trash when deleted.") }
+    };
+    KonfiguratorRadioButtons *trashRadio = createRadioButtonGroup("General", "Move To Trash",
+                                           _MoveToTrash ? "true" : "false", 2, 0, deleteMode, 2, delGrp, false, PAGE_GENERAL);
+    delGrid->addWidget(trashRadio);
+
+    kgGeneralLayout->addWidget(delGrp, 1 , 0);
+
+
+    // ----------------------- terminal -----------------------------------------
+
+    QGroupBox *terminalGrp = createFrame(i18n("Terminal"), tab);
+    QGridLayout *terminalGrid = createGridLayout(terminalGrp);
+
+    QLabel *label3 = new QLabel(i18n("Terminal:"), generalGrp);
+    terminalGrid->addWidget(label3, 0, 0);
+    KonfiguratorURLRequester *urlReq2 = createURLRequester("General", "Terminal", _Terminal,
+                                        generalGrp, false, PAGE_GENERAL, false);
+    terminalGrid->addWidget(urlReq2, 0, 1);
+
+    KONFIGURATOR_CHECKBOX_PARAM terminal_settings[] = { //   cfg_class  cfg_name     default        text            restart tooltip
+        {"General", "Send CDs", _SendCDs, i18n("Terminal Emulator sends Chdir on panel change"), false, i18n("When checked, whenever the panel is changed (for example, by pressing TAB), krusader changes the current directory in the terminal emulator.") },
+        {"Look&Feel", "Fullscreen Terminal Emulator", false, i18n("Fullscreen terminal (mc-style)"), false,  i18n("Terminal is shown instead of the Krusader window (full screen).") },
+    };
+    cbs = createCheckBoxGroup(1, 0, terminal_settings, 2 /*count*/, terminalGrp, PAGE_GENERAL);
+    terminalGrid->addWidget(cbs, 1, 0, 1, 2);
+
+
+    kgGeneralLayout->addWidget(terminalGrp, 2 , 0);
 }
 
 void KgGeneral::applyTempDir(QObject *obj, QString cls, QString name)
