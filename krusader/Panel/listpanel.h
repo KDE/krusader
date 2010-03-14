@@ -68,7 +68,6 @@ class vfs;
 class vfile;
 class KrView;
 class KUrlRequester;
-class BookmarksButton;
 class KrQuickSearch;
 class DirHistoryButton;
 class DirHistoryQueue;
@@ -120,6 +119,15 @@ public:
     int  getProperties();
     void setProperties(int);
 
+    void openMedia();
+    void openHistory();
+    void openBookmarks();
+    void rightclickMenu();
+    void toggleSyncBrowse();
+    void editLocation();
+
+    void saveSettings(KConfigGroup &cfg);
+
 public slots:
     void gotStats(const QString &mountPoint, quint64 kBSize, quint64 kBUsed, quint64 kBAvail);  // displays filesystem status
     void popRightClickMenu(const QPoint&);
@@ -167,6 +175,7 @@ protected:
     void createView();
 
 protected slots:
+    void updatePopupPanel(KrViewItem *item);
     void handleDropOnView(QDropEvent *, QWidget *destWidget = 0); // handles drops on the view only
     void handleDropOnTotals(QDropEvent *);                     // handles drops on the totals line
     void handleDropOnStatus(QDropEvent *);                     // handles drops on the status line
@@ -188,20 +197,24 @@ signals:
     void activePanelChanged(ListPanel *p);   // emitted when the user changes panels
     void finishedDragging();              // currently
 
-public:
+protected:
     int panelType;
-//     ListPanel *otherPanel;
+    KUrl _realPath; // named with _ to keep realPath() compatibility
+    KUrl _jumpBackURL;
     int colorMask;
+    KRQuery filterMask;
     bool compareMode;
     //FilterSpec    filter;
-    KRQuery filterMask;
-    QPixmap currDragPix;
     KDiskFreeSpace* statsAgent;
-    KrSqueezedTextLabel *status, *totals;
-    QProgressBar *previewProgress;
-    KrQuickSearch *quickSearch;
-    KUrlRequester *origin;
+    DirHistoryQueue* dirHistoryQueue;
+    KJob *previewJob;
+    KIO::Job *inlineRefreshJob;
+
+    QPixmap currDragPix;
     QGridLayout *layout;
+    QSplitter *splt;
+    KUrlRequester *origin;
+    KrQuickSearch *quickSearch;
     QToolButton *cdRootButton;
     QToolButton *cdHomeButton;
     QToolButton *cdUpButton;
@@ -209,21 +222,13 @@ public:
     QToolButton *popupBtn;
     PanelPopup *popup;
     KrBookmarkButton *bookmarksButton;
-    DirHistoryQueue* dirHistoryQueue;
+    KrSqueezedTextLabel *status, *totals;
+    QProgressBar *previewProgress;
     DirHistoryButton* historyButton;
     MediaButton *mediaButton;
     SyncBrowseButton *syncBrowseButton;
     QToolButton *inlineRefreshCancelButton;
-    KIO::Job *inlineRefreshJob;
-    QSplitter *splt;
-    KJob *previewJob;
     KrErrorDisplay *vfsError;
-
-
-protected:
-    KUrl _realPath; // named with _ to keep realPath() compatibility
-    KUrl _jumpBackURL;
-
 
 private:
     bool &_left;

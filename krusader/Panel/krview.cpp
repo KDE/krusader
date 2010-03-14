@@ -160,6 +160,7 @@ void KrViewOperator::stopQuickSearch(QKeyEvent * e)
         _quickSearch->hide();
         _quickSearch->clear();
         krDirUp->setEnabled(true);
+        KrActions::actCancelRefresh->setEnabled(true);
         if (e)
             _view->handleKeyEvent(e);
     }
@@ -876,13 +877,19 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
                 // first, show the quicksearch if its hidden
                 if (op()->quickSearch()->isHidden()) {
                     op()->quickSearch()->show();
-                    // hack: if the pressed key requires a scroll down, the selected
+                    // HACK: if the pressed key requires a scroll down, the selected
                     // item is "below" the quick search window, as the icon view will
                     // realize its new size after the key processing. The following line
                     // will resize the icon view immediately.
-                    ACTIVE_PANEL->gui->layout->activate();
-                    // second, we need to disable the dirup action - hack!
-                    krDirUp->setEnabled(false);
+                    // ACTIVE_PANEL->gui->layout->activate();
+                    // UPDATE: it seems like this isn't needed anymore, in case I'm wrong
+                    // do something like op()->emitQuickSearchStartet()
+                    // -----------------------------
+                    // second, we need to disable the dirup and cancelRefresh actions - HACK!
+                    if(krDirUp->shortcut().contains(QKeySequence(Qt::Key_Backspace)))
+                        krDirUp->setEnabled(false);
+                    if(KrActions::actCancelRefresh->shortcut().contains(QKeySequence(Qt::Key_Escape)))
+                        KrActions::actCancelRefresh->setEnabled(false);
                 }
                 // now, send the key to the quicksearch
                 op()->quickSearch()->myKeyPressEvent(e);
@@ -893,6 +900,7 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
                 op()->quickSearch()->hide();
                 op()->quickSearch()->clear();
                 krDirUp->setEnabled(true);
+                KrActions::actCancelRefresh->setEnabled(true);
             }
         }
     }

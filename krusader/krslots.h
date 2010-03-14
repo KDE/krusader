@@ -180,7 +180,6 @@ public slots:
     void slotJumpBack();
     void slotSetJumpBack();
     void newSymlink();
-    void updatePopupPanel(KrViewItem *);
     void windowActive(); // called when krusader's window becomes focused
     void windowInactive(); // called when another application steals the focus
     // F2

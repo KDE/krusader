@@ -233,13 +233,7 @@ void KRslots::compareContent(KUrl url1, KUrl url2)
 
 void KRslots::rightclickMenu()
 {
-    if (ACTIVE_PANEL->view->getCurrentKrViewItem()) {
-        ACTIVE_PANEL->gui->popRightClickMenu(
-            ACTIVE_PANEL->gui->mapToGlobal(
-                ACTIVE_PANEL->view->getCurrentKrViewItem()->itemRect().topLeft()
-            )
-        );
-    }
+    ACTIVE_PANEL->gui->rightclickMenu();
 }
 
 void KRslots::addBookmark()
@@ -1026,24 +1020,7 @@ void KRslots::slotSynchronizeDirs(QStringList selected)
 
 void KRslots::slotSyncBrowse()
 {
-    ACTIVE_PANEL->gui->syncBrowseButton->toggle();
-}
-
-void KRslots::updatePopupPanel(KrViewItem *item)
-{
-    // which panel to display on?
-    ListPanel *lp = 0;
-    if (ACTIVE_PANEL->gui->popup->isHidden() &&
-            ACTIVE_PANEL->otherPanel->gui->popup->isHidden()) return;
-    if (!ACTIVE_PANEL->gui->popup->isHidden())
-        lp = ACTIVE_PANEL->gui;
-    else if (!ACTIVE_PANEL->otherPanel->gui->popup->isHidden())
-        lp = ACTIVE_PANEL->otherPanel->gui;
-
-    KUrl url;
-    if (item->name() != "..") // updir
-        url = ACTIVE_FUNC->files()->vfs_getFile(item->name());
-    lp->popup->update(url);
+    ACTIVE_PANEL->gui->toggleSyncBrowse();
 }
 
 void KRslots::compareDirs()
@@ -1113,8 +1090,7 @@ void KRslots::windowInactive()
 
 void KRslots::slotLocationBar()
 {
-    ACTIVE_PANEL->gui->origin->lineEdit()->selectAll();
-    ACTIVE_PANEL->gui->origin->setFocus();
+    ACTIVE_PANEL->gui->editLocation();
 }
 
 void KRslots::slotJumpBack()
@@ -1187,59 +1163,52 @@ void KRslots::defaultZoom()
 
 void KRslots::cancelRefresh()
 {
-    // HACK: the default shortcut for cancelRefresh is ESC,
-    // which also cancels the quicksearch.
-    // if quicksearch is active cancel it instead.
-    if(KrActions::actCancelRefresh->shortcut().contains(QKeySequence(Qt::Key_Escape))
-            && !ACTIVE_PANEL->gui->quickSearch->isHidden())
-        ACTIVE_PANEL->view->op()->stopQuickSearch(0);
-    else
-        ACTIVE_PANEL->gui->inlineRefreshCancel();
+    ACTIVE_PANEL->gui->inlineRefreshCancel();
 }
 
 void KRslots::openRightBookmarks()
 {
-    RIGHT_PANEL->gui->slotFocusOnMe(); RIGHT_PANEL->bookmarksButton->showMenu();
+    RIGHT_PANEL->gui->openBookmarks();
 }
 
 void KRslots::openLeftBookmarks()
 {
-    LEFT_PANEL->gui->slotFocusOnMe(); LEFT_PANEL->bookmarksButton->showMenu();
+    LEFT_PANEL->gui->openBookmarks();
 }
 
 void KRslots::openBookmarks()
 {
-    ACTIVE_PANEL->gui->bookmarksButton->showMenu();
+    ACTIVE_PANEL->gui->openBookmarks();
 }
 
 void KRslots::openHistory()
 {
-    ACTIVE_PANEL->gui->historyButton->showMenu();
+    ACTIVE_PANEL->gui->openHistory();
 }
 
 void KRslots::openLeftHistory()
 {
-    LEFT_PANEL->gui->historyButton->showMenu();
+    LEFT_PANEL->gui->openHistory();
 }
 
 void KRslots::openRightHistory()
 {
-    RIGHT_PANEL->gui->historyButton->showMenu();
+    RIGHT_PANEL->gui->openHistory();
 }
 
 void KRslots::openMedia()
 {
-    ACTIVE_PANEL->gui->mediaButton->showMenu();
+    ACTIVE_PANEL->gui->openMedia();
 }
 
 void KRslots::openLeftMedia()
 {
-    LEFT_PANEL->gui->mediaButton->showMenu();
+    LEFT_PANEL->gui->openMedia();
 }
 
 void KRslots::openRightMedia()
 {
-    RIGHT_PANEL->gui->mediaButton->showMenu();
+    RIGHT_PANEL->gui->openMedia();
 }
 
 void KRslots::newSymlink()

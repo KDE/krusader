@@ -810,8 +810,6 @@ void Krusader::savePosition() {
     }
     QList<int> lst = MAIN_VIEW->horiz_splitter->sizes();
     cfg.writeEntry("Splitter Sizes", lst);
-    MAIN_VIEW->left->popup->saveSizes();
-    MAIN_VIEW->right->popup->saveSizes();
     if (!MAIN_VIEW->getTerminalEmulatorSplitterSizes().isEmpty())
         cfg.writeEntry("Terminal Emulator Splitter Sizes", MAIN_VIEW->getTerminalEmulatorSplitterSizes());
 
@@ -838,8 +836,8 @@ void Krusader::saveSettings() {
     bool uisavesettings = cfg.readEntry("UI Save Settings", _UiSave);
 
     // save the popup panel's page of the CURRENT tab
-    cfg.writeEntry("Left Panel Popup", MAIN_VIEW->left->popup->currentPage());
-    cfg.writeEntry("Right Panel Popup", MAIN_VIEW->right->popup->currentPage());
+    MAIN_VIEW->left->saveSettings(cfg);
+    MAIN_VIEW->right->saveSettings(cfg);
 
     // save size and position
     if (rememberpos || uisavesettings) {

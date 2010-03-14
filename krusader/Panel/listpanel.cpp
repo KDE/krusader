@@ -311,7 +311,7 @@ void ListPanel::createView()
     view->widget()->installEventFilter(this);
 
     connect(view->op(), SIGNAL(middleButtonClicked(KrViewItem *)), SLOTS, SLOT(newTab(KrViewItem *)));
-    connect(view->op(), SIGNAL(currentChanged(KrViewItem *)), SLOTS, SLOT(updatePopupPanel(KrViewItem*)));
+    connect(view->op(), SIGNAL(currentChanged(KrViewItem *)), SLOT(updatePopupPanel(KrViewItem*)));
     connect(view->op(), SIGNAL(renameItem(const QString &, const QString &)),
             func, SLOT(rename(const QString &, const QString &)));
     connect(view->op(), SIGNAL(executed(const QString&)), func, SLOT(execute(const QString&)));
@@ -988,7 +988,8 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
         if (e->modifiers() & Qt::ControlModifier) {
             if (e->modifiers() & Qt::AltModifier) {
                 vfile *vf = func->files()->vfs_search(view->getCurrentKrViewItem()->name());
-                if (vf && vf->vfile_isDir()) SLOTS->newTab(vf->vfile_getUrl());
+                if (vf && vf->vfile_isDir())
+                    SLOTS->newTab(vf->vfile_getUrl());
             } else {
                 SLOTS->insertFileName((e->modifiers() & Qt::ShiftModifier) != 0);
             }
@@ -1214,5 +1215,65 @@ void ListPanel::slotVfsError(QString msg)
     vfsError->show();
 }
 
+void ListPanel::openBookmarks()
+{
+    if(this != ACTIVE_PANEL)
+        slotFocusOnMe();
+    bookmarksButton->showMenu();
+}
+
+void ListPanel::openHistory()
+{
+    if(this != ACTIVE_PANEL)
+        slotFocusOnMe();
+    historyButton->showMenu();
+}
+
+void ListPanel::openMedia()
+{
+    if(this != ACTIVE_PANEL)
+        slotFocusOnMe();
+    mediaButton->showMenu();
+}
+
+void ListPanel::rightclickMenu()
+{
+    if (view->getCurrentKrViewItem())
+        popRightClickMenu(mapToGlobal(view->getCurrentKrViewItem()->itemRect().topLeft()));
+}
+
+void ListPanel::toggleSyncBrowse()
+{
+    syncBrowseButton->toggle();
+}
+
+void ListPanel::editLocation()
+{
+    origin->lineEdit()->selectAll();
+    origin->setFocus();
+}
+
+void ListPanel::saveSettings(KConfigGroup &cfg)
+{
+    popup->saveSizes();
+    cfg.writeEntry(left ? "Left Panel Popup" : "Right Panel Popup", popup->currentPage());
+}
+
+void ListPanel::updatePopupPanel(KrViewItem *item)
+{
+    // which panel to display on?
+    ListPanel *lp = 0;
+    if (popup->isHidden() && otherPanel->gui->popup->isHidden())
+        return;
+    if (!popup->isHidden())
+        lp = this;
+    else if (!otherPanel->gui->popup->isHidden())
+        lp = ACTIVE_PANEL->otherPanel->gui;
+
+    KUrl url;
+    if (item->name() != "..") // updir
+        url = func->files()->vfs_getFile(item->name());
+    lp->popup->update(url);
+}
 
 #include "listpanel.moc"

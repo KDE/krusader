@@ -55,6 +55,7 @@ kde4_add_app_icon(krusader_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-krusader_us
 kde4_add_executable(krusader ${krusader_SRCS})
 
 target_link_libraries(krusader
+                      Panel
                       BookMan
                       Dialogs
                       DiskUsage
@@ -62,7 +63,6 @@ target_link_libraries(krusader
                       Konfigurator
                       KViewer
                       MountMan
-                      Panel
                       Queue
                       VFS
                       Search
