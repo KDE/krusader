@@ -103,6 +103,14 @@
 #define ACTIVE_PANEL_MANAGER  (ACTIVE_PANEL == MAIN_VIEW->left ? MAIN_VIEW->leftMng : \
                                MAIN_VIEW->rightMng)
 
+
+#define ACTIVE_VIEW _mainWindow->activeView()
+
+
+KRslots::KRslots(QObject *parent) : QObject(parent), _mainWindow(krApp)
+{
+}
+
 void KRslots::sendFileByEmail(const KUrl::List &urls)
 {
     if (urls.count() == 0) {
@@ -173,10 +181,10 @@ void KRslots::compareContent()
         // next try: are in the current panel exacty 2 files selected?
         name1 = ACTIVE_PANEL->func->files()->vfs_getFile((*lstActive)[0]);
         name2 = ACTIVE_PANEL->func->files()->vfs_getFile((*lstActive)[1]);
-    } else if (ACTIVE_PANEL->otherPanel->func->files()->vfs_search(ACTIVE_PANEL->view->getCurrentItem())) {
+    } else if (ACTIVE_PANEL->otherPanel->func->files()->vfs_search(ACTIVE_VIEW->getCurrentItem())) {
         // next try: is in the other panel a file with the same name?
-        name1 = ACTIVE_PANEL->func->files()->vfs_getFile(ACTIVE_PANEL->view->getCurrentItem());
-        name2 = ACTIVE_PANEL->otherPanel->func->files()->vfs_getFile(ACTIVE_PANEL->view->getCurrentItem());
+        name1 = ACTIVE_PANEL->func->files()->vfs_getFile(ACTIVE_VIEW->getCurrentItem());
+        name2 = ACTIVE_PANEL->otherPanel->func->files()->vfs_getFile(ACTIVE_VIEW->getCurrentItem());
     } else  {
         // if we got here, then we can't be sure what file to diff
         KMessageBox::detailedError(0, i18n("Don't know which files to compare."), "<qt>" + i18n("To compare two files by content, you can either:<ul><li>Select one file in the left panel, and one in the right panel.</li><li>Select exactly two files in the active panel.</li><li>Make sure there is a file in the other panel, with the same name as the current file in the active panel.</li></ul>") + "</qt>");
@@ -284,7 +292,7 @@ void KRslots::toggleTerminal()
 
 void KRslots::insertFileName(bool full_path)
 {
-    QString filename = ACTIVE_PANEL->view->getCurrentItem();
+    QString filename = ACTIVE_VIEW->getCurrentItem();
     if (filename.isEmpty()) {
         return;
     }
@@ -503,7 +511,7 @@ void KRslots::toggleHidden()
 void KRslots::togglePreviews(bool show)
 {
     if (ACTIVE_PANEL)
-        ACTIVE_PANEL->view->showPreviews(show);
+        ACTIVE_VIEW->showPreviews(show);
 }
 
 void KRslots::swapPanels()
@@ -1148,17 +1156,17 @@ void KRslots::bookmarkCurrent()
 
 void KRslots::zoomIn()
 {
-    ACTIVE_PANEL->view->zoomIn();
+    ACTIVE_VIEW->zoomIn();
 }
 
 void KRslots::zoomOut()
 {
-    ACTIVE_PANEL->view->zoomOut();
+    ACTIVE_VIEW->zoomOut();
 }
 
 void KRslots::defaultZoom()
 {
-    ACTIVE_PANEL->view->setDefaultFileIconSize();
+    ACTIVE_VIEW->setDefaultFileIconSize();
 }
 
 void KRslots::cancelRefresh()
@@ -1230,7 +1238,7 @@ void KRslots::cmdlinePopup()
 
 void KRslots::showViewOptionsMenu()
 {
-    ACTIVE_PANEL->view->showContextMenu();
+    ACTIVE_VIEW->showContextMenu();
 }
 
 

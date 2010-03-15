@@ -38,6 +38,7 @@
 #include <kio/netaccess.h>
 #include "krglobal.h"
 
+class KrMainWindow;
 class ListPanel;
 class KrViewItem;
 class KUrl;
@@ -72,7 +73,7 @@ class KRslots : public QObject
 public:
     enum compareMode { full } ;
 
-    KRslots(QObject *parent): QObject(parent) {}
+    KRslots(QObject *parent);
     ~KRslots() {}
 
 public slots:
@@ -213,6 +214,9 @@ public slots:
     void zoomOut();
     void defaultZoom();
     void showViewOptionsMenu();
+
+protected:
+    KrMainWindow *_mainWindow;
 };
 
 #endif
