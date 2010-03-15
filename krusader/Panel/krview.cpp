@@ -621,7 +621,7 @@ void KrView::renameCurrentItem()
 
     bool ok = false;
     newName = KInputDialog::getText(i18n("Rename"), i18n("Rename ") + fileName + i18n(" to:"),
-                                    fileName, &ok, krMainWindow);
+                                    fileName, &ok, _mainWindow->widget());
     // if the user canceled - quit
     if (!ok || newName == fileName)
         return ;
