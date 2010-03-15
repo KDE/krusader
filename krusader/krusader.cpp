@@ -1243,5 +1243,9 @@ bool Krusader::queryExit()
     return true;
 }
 
+KrView *Krusader::activeView()
+{
+    return ACTIVE_PANEL->view;
+}
 
 #include "krusader.moc"

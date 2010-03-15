@@ -50,6 +50,7 @@
 #include <QHideEvent>
 #include <kdebug.h>
 #include "VFS/kiojobwrapper.h"
+#include "krmainwindow.h"
 
 #ifdef __KJSEMBED__
 class KrJS;
@@ -71,7 +72,7 @@ class QueueManager;
 
 #define MAX_VIEWS 6
 
-class Krusader : public KParts::MainWindow
+class Krusader : public KParts::MainWindow, public KrMainWindow
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.krusader.Instance")
@@ -79,6 +80,17 @@ class Krusader : public KParts::MainWindow
 public:
     Krusader();
     virtual ~Krusader();
+
+    // KrMainWindow implementation
+    virtual QWidget *widget() {
+        return this;
+    }
+    virtual KrView *activeView();
+    virtual KActionCollection *actions() {
+        return actionCollection();
+    }
+
+
     void refreshView();     // re-create the main view
     void configChanged();
     /**
