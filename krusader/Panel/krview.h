@@ -149,6 +149,15 @@ public:
     void emitPreviewJobStarted(KJob *job) {
         emit previewJobStarted(job);
     }
+    void emitGoHome() {
+        emit goHome();
+    }
+    void emitDirUp() {
+        emit dirUp();
+    }
+    void emitDeleteFiles(bool reallyDelete) {
+        emit deleteFiles(reallyDelete);
+    }
     void prepareForPassive();
     void setQuickSearch(KrQuickSearch *quickSearch);
     bool handleKeyEvent(QKeyEvent *e);
@@ -182,6 +191,9 @@ signals:
     void middleButtonClicked(KrViewItem *item);
     void currentChanged(KrViewItem *item);
     void previewJobStarted(KJob *job);
+    void goHome();
+    void deleteFiles(bool reallyDelete);
+    void dirUp();
 
 
 protected:

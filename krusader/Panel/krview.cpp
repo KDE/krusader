@@ -31,7 +31,6 @@
 #include "listpanel.h"
 #include "panelfunc.h"
 #include "../kicons.h"
-#include "../krslots.h"
 #include "../defaults.h"
 #include "../VFS/krpermhandler.h"
 #include "../Dialogs/krspecialwidgets.h"
@@ -667,11 +666,11 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
         if (e->modifiers() == Qt::ControlModifier) {   // let the panel handle it
             e->ignore();
         } else {          // a normal click - do a lynx-like moving thing
-            SLOTS->home(); // ask krusader to move up a directory
+            op()->emitGoHome(); // ask krusader to move to the home directory
         }
         return true;
     case Qt::Key_Delete :                   // kill file
-        SLOTS->deleteFiles(e->modifiers() == Qt::ShiftModifier || e->modifiers() == Qt::ControlModifier);
+        op()->emitDeleteFiles(e->modifiers() == Qt::ShiftModifier || e->modifiers() == Qt::ControlModifier);
         return true;
     case Qt::Key_Insert: {
         KrViewItem * i = getCurrentKrViewItem();
@@ -738,7 +737,7 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
         if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier) {   // let the panel handle it
             e->ignore();
         } else {          // a normal click - do a lynx-like moving thing
-            SLOTS->dirUp(); // ask krusader to move up a directory
+            op()->emitDirUp(); // ask krusader to move up a directory
         }
         return true;         // safety
     case Qt::Key_Right :

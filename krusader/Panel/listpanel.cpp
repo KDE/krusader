@@ -310,6 +310,9 @@ void ListPanel::createView()
 
     view->widget()->installEventFilter(this);
 
+    connect(view->op(), SIGNAL(goHome()), SLOTS, SLOT(home()));
+    connect(view->op(), SIGNAL(dirUp()), SLOTS, SLOT(dirUp()));
+    connect(view->op(), SIGNAL(deleteFiles(bool)), SLOTS, SLOT(deleteFiles(bool)));
     connect(view->op(), SIGNAL(middleButtonClicked(KrViewItem *)), SLOTS, SLOT(newTab(KrViewItem *)));
     connect(view->op(), SIGNAL(currentChanged(KrViewItem *)), SLOT(updatePopupPanel(KrViewItem*)));
     connect(view->op(), SIGNAL(renameItem(const QString &, const QString &)),
