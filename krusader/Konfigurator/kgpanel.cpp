@@ -48,10 +48,10 @@
 #include "../Panel/krview.h"
 #include "../Panel/krviewfactory.h"
 
-#define PAGE_VIEW         0
-#define PAGE_PANELTOOLBAR  1
-#define PAGE_MOUSE  2
-#define PAGE_MISC     3
+#define PAGE_MISC     1
+#define PAGE_VIEW         2
+#define PAGE_PANELTOOLBAR  3
+#define PAGE_MOUSE  4
 
 
 KgPanel::KgPanel(bool first, QWidget* parent) :
@@ -61,10 +61,10 @@ KgPanel::KgPanel(bool first, QWidget* parent) :
     setWidget(tabWidget);
     setWidgetResizable(true);
 
+    setupMiscTab();
     setupPanelTab();
     setupPanelToolbarTab();
     setupMouseModeTab();
-    setupMiscTab();
 }
 
 // ---------------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ void KgPanel::setupMiscTab()
     scrollArea->setFrameStyle(QFrame::NoFrame);
     scrollArea->setWidget(tab);
     scrollArea->setWidgetResizable(true);
-    tabWidget->addTab(scrollArea, i18n("Misc"));
+    tabWidget->addTab(scrollArea, i18n("General"));
 
     QGridLayout *miscLayout = new QGridLayout(tab);
     miscLayout->setSpacing(6);
