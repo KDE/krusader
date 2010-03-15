@@ -338,7 +338,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
     case Qt::BackgroundRole:
     case Qt::ForegroundRole: {
         KrColorItemType colorItemType;
-        colorItemType.m_activePanel = (_view == ACTIVE_PANEL->view);
+        colorItemType.m_activePanel = _view->isFocused();
         int actRow = index.row();
         if (_alternatingTable) {
             int itemNum = _view->itemsPerPage();

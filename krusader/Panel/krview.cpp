@@ -57,7 +57,7 @@
 
 
 // ----------------------------- operator
-KrViewOperator::KrViewOperator(KrView *view, QWidget *widget): _view(view), _widget(widget), _massSelectionUpdate(false)
+KrViewOperator::KrViewOperator(KrView *view, QWidget *widget): _view(view), _widget(widget), _quickSearch(0), _massSelectionUpdate(false)
 {
 }
 
@@ -360,10 +360,10 @@ QPixmap KrView::getIcon(vfile *vf)
 {
     if(_previews) {
         QPixmap icon;
-        if(_previews->getPreview(vf, icon, this == ACTIVE_PANEL->view))
+        if(_previews->getPreview(vf, icon, _focused))
             return icon;
     }
-    return getIcon(vf, this == ACTIVE_PANEL->view, _fileIconSize);
+    return getIcon(vf, _focused, _fileIconSize);
 }
 
 /**

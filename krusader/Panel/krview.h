@@ -361,9 +361,6 @@ public:
     virtual KrViewOperator* op() const {
         return _operator;
     }
-    virtual bool isFocused() const {
-        return _focused;
-    }
     virtual void showPreviews(bool show);
     virtual bool previewsShown() {
         return _previews != 0;
@@ -416,6 +413,11 @@ public:
     void refreshActions();
     void saveSettings();
     void restoreSettings();
+
+    inline bool isFocused() const {
+        return _focused;
+    }
+
 
     // todo: what about selection modes ???
     virtual ~KrView();
