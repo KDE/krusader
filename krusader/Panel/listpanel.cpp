@@ -310,6 +310,7 @@ void ListPanel::createView()
 
     view->widget()->installEventFilter(this);
 
+    connect(view->op(), SIGNAL(calcSpace(KrViewItem*)), func, SLOT(calcSpace(KrViewItem*)));
     connect(view->op(), SIGNAL(goHome()), SLOTS, SLOT(home()));
     connect(view->op(), SIGNAL(dirUp()), SLOTS, SLOT(dirUp()));
     connect(view->op(), SIGNAL(deleteFiles(bool)), SLOTS, SLOT(deleteFiles(bool)));
@@ -1259,7 +1260,7 @@ void ListPanel::editLocation()
 void ListPanel::saveSettings(KConfigGroup &cfg)
 {
     popup->saveSizes();
-    cfg.writeEntry(left ? "Left Panel Popup" : "Right Panel Popup", popup->currentPage());
+    cfg.writeEntry(_left ? "Left Panel Popup" : "Right Panel Popup", popup->currentPage());
 }
 
 void ListPanel::updatePopupPanel(KrViewItem *item)

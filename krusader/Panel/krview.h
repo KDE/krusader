@@ -158,6 +158,9 @@ public:
     void emitDeleteFiles(bool reallyDelete) {
         emit deleteFiles(reallyDelete);
     }
+    void emitCalcSpace(KrViewItem *item) {
+        emit calcSpace(item);
+    }
     void prepareForPassive();
     void setQuickSearch(KrQuickSearch *quickSearch);
     bool handleKeyEvent(QKeyEvent *e);
@@ -194,6 +197,7 @@ signals:
     void goHome();
     void deleteFiles(bool reallyDelete);
     void dirUp();
+    void calcSpace(KrViewItem *item);
 
 
 protected:

@@ -28,8 +28,6 @@
 *                                                                         *
 ***************************************************************************/
 #include "krview.h"
-#include "listpanel.h"
-#include "panelfunc.h"
 #include "../kicons.h"
 #include "../defaults.h"
 #include "../VFS/krpermhandler.h"
@@ -704,22 +702,7 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
             }
             if (viewItem->getVfile()->vfile_isDir() && viewItem->getVfile()->vfile_getSize() <= 0 &&
                     KrSelectionMode::getSelectionHandler()->spaceCalculatesDiskSpace()) {
-                //
-                // NOTE: this is buggy incase somewhere down in the folder we're calculating,
-                // there's a folder we can't enter (permissions). in that case, the returned
-                // size will not be correct.
-                //
-                KIO::filesize_t totalSize = 0;
-                unsigned long totalFiles = 0, totalDirs = 0;
-                QStringList items;
-                items.push_back(viewItem->name());
-                if (ACTIVE_PANEL->func->calcSpace(items, totalSize, totalFiles, totalDirs)) {
-                    // did we succeed to calcSpace? we'll fail if we don't have permissions
-                    if (totalSize != 0) {   // just mark it, and bail out
-                        viewItem->setSize(totalSize);
-                        viewItem->redraw();
-                    }
-                }
+                op()->emitCalcSpace(viewItem);
             }
             if (KrSelectionMode::getSelectionHandler()->spaceMovesDown()) {
                 KrViewItem * next = getNext(viewItem);

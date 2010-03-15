@@ -56,6 +56,7 @@ public slots:
     void doOpenUrl();
     void refresh();
     void rename(const QString &oldname, const QString &newname);
+    void calcSpace(KrViewItem *item);
 
 public:
     ListPanelFunc(ListPanel *parent);
