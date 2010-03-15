@@ -24,7 +24,7 @@
 #include "krcolorcache.h"
 #include "krmousehandler.h"
 
-KrInterView::KrInterView(KConfig *cfg, QAbstractItemView *itemView) : KrView(cfg), _itemView(itemView), _mouseHandler(0)
+KrInterView::KrInterView(KConfig *cfg, KrMainWindow *mainWindow, QAbstractItemView *itemView) : KrView(cfg, mainWindow), _itemView(itemView), _mouseHandler(0)
 {
      _model = new KrVfsModel(this);
     _model->sort(KrVfsModel::Name, Qt::AscendingOrder);

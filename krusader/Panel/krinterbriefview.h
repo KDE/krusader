@@ -36,7 +36,7 @@ class KrInterBriefView : public QAbstractItemView, public KrInterView
     friend class KrInterBriefViewItem;
 
 public:
-    KrInterBriefView(QWidget *parent, bool &left, KConfig *cfg = krConfig);
+    KrInterBriefView(QWidget *parent, bool &left, KConfig *cfg, KrMainWindow *mainWindow);
     virtual ~KrInterBriefView();
 
     virtual KrViewInstance *instance() const;
@@ -75,8 +75,8 @@ public:
     virtual void selectRegion(KrViewItem *, KrViewItem *, bool);
 //     KrInterBriefViewItem * getKrInterViewItem(const QModelIndex &);
 
-    static KrView* create(QWidget *parent, bool &left, KConfig *cfg) {
-        return new KrInterBriefView(parent, left, cfg);
+    static KrView* create(QWidget *parent, bool &left, KConfig *cfg, KrMainWindow *mainWindow) {
+        return new KrInterBriefView(parent, left, cfg, mainWindow);
     }
 
 //     virtual void prepareForActive();

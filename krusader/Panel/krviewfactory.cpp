@@ -43,9 +43,9 @@ KrViewInstance::KrViewInstance(int id, QString name, QString desc, QString icon,
     KrViewFactory::self().registerView(this);
 }
 
-KrView * KrViewFactory::createView(int id, QWidget * widget, bool & left, KConfig *cfg)
+KrView * KrViewFactory::createView(int id, QWidget * widget, bool & left, KConfig *cfg, KrMainWindow *mainWindow)
 {
-    return (*(viewInstance(id)->factoryFunction()))(widget, left, cfg);
+    return (*(viewInstance(id)->factoryFunction()))(widget, left, cfg, mainWindow);
 }
 
 void KrViewFactory::itemHeightChanged(int id)

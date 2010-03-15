@@ -40,7 +40,7 @@ class KrInterDetailedView : public QTreeView, public KrInterView
     Q_OBJECT
 
 public:
-    KrInterDetailedView(QWidget *parent, bool &left, KConfig *cfg = krConfig);
+    KrInterDetailedView(QWidget *parent, bool &left, KConfig *cfg, KrMainWindow *mainWindow);
     virtual ~KrInterDetailedView();
 
     virtual KrViewInstance *instance() const;
@@ -79,8 +79,8 @@ public:
     virtual void selectRegion(KrViewItem *, KrViewItem *, bool);
 //     KrInterDetailedViewItem * getKrInterViewItem(const QModelIndex &);
 
-    static KrView* create(QWidget *parent, bool &left, KConfig *cfg) {
-        return new KrInterDetailedView(parent, left, cfg);
+    static KrView* create(QWidget *parent, bool &left, KConfig *cfg, KrMainWindow *mainWindow) {
+        return new KrInterDetailedView(parent, left, cfg, mainWindow);
     }
 
 //     virtual void prepareForActive();

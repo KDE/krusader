@@ -299,7 +299,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
 
 void ListPanel::createView()
 {
-    view = KrViewFactory::createView(panelType, splt, _left, krConfig);
+    view = KrViewFactory::createView(panelType, splt, _left, krConfig, krApp);
 
     view->init();
     view->redraw();

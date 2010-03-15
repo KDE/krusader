@@ -38,8 +38,9 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 class KrView;
 class KConfig;
+class KrMainWindow;
 
-typedef KrView * (*KrViewFactoryFunction)(QWidget *, bool &, KConfig *);
+typedef KrView * (*KrViewFactoryFunction)(QWidget *, bool &, KConfig *, KrMainWindow*);
 typedef void (*KrViewItemHeightChange)();
 
 class KrViewInstance
@@ -83,7 +84,7 @@ class KrViewFactory
 {
     friend class KrViewInstance;
 public:
-    static KrView *                createView(int id, QWidget * widget, bool & left, KConfig *cfg);
+    static KrView *                createView(int id, QWidget * widget, bool & left, KConfig *cfg, KrMainWindow *mainWindow);
     static void                    itemHeightChanged(int id);
     static KrViewInstance *        viewInstance(int id);
     static QList<KrViewInstance *> registeredViews()       {

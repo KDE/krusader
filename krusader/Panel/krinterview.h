@@ -35,7 +35,7 @@ class KrInterView : public KrView
 {
     friend class KrInterViewItem;
 public:
-    KrInterView(KConfig *cfg, QAbstractItemView *itemView);
+    KrInterView(KConfig *cfg, KrMainWindow *mainWindow, QAbstractItemView *itemView);
     ~KrInterView();
     virtual QModelIndex getCurrentIndex() {
         return _itemView->currentIndex();

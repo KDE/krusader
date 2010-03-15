@@ -52,6 +52,8 @@ class KrQuickSearch;
 class KrPreviews;
 class QModelIndex;
 class KrViewInstance;
+class KrMainWindow;
+
 typedef QList<KrViewItem*> KrViewItemList;
 
 // KrViewProperties
@@ -408,15 +410,17 @@ public:
     inline int fileIconSize() const {
         return _fileIconSize;
     }
+    inline bool isFocused() const {
+        return _focused;
+    }
+    inline KrMainWindow *mainWindow() {
+        return _mainWindow;
+    }
 
     QPixmap getIcon(vfile *vf);
     void refreshActions();
     void saveSettings();
     void restoreSettings();
-
-    inline bool isFocused() const {
-        return _focused;
-    }
 
 
     // todo: what about selection modes ???
@@ -426,10 +430,11 @@ public:
     static QPixmap processIcon(const QPixmap &icon, bool dim, const QColor & dimColor, int dimFactor, bool symlink);
 
 protected:
-    KrView(KConfig *cfg = krConfig);
+    KrView(KConfig *cfg, KrMainWindow *mainWindow);
     bool handleKeyEventInt(QKeyEvent *e);
 
 protected:
+    KrMainWindow *_mainWindow;
     KConfig *_config;
     QWidget *_widget;
     QString _nameToMakeCurrent;

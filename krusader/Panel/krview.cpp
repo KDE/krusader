@@ -31,7 +31,6 @@
 #include "listpanel.h"
 #include "panelfunc.h"
 #include "../kicons.h"
-#include "../kractions.h"
 #include "../krslots.h"
 #include "../defaults.h"
 #include "../VFS/krpermhandler.h"
@@ -39,6 +38,10 @@
 #include "krviewfactory.h"
 #include "krviewitem.h"
 #include "krselectionmode.h"
+#include "krcolorcache.h"
+#include "krpreviews.h"
+#include "../krmainwindow.h"
+
 #include <qnamespace.h>
 #include <qpixmapcache.h>
 #include <QtCore/QDir>
@@ -46,14 +49,20 @@
 #include <QtGui/QBitmap>
 #include <QtGui/QPainter>
 #include <QPixmap>
+#include <QAction>
 #include <kmimetype.h>
 #include <klocale.h>
 #include <kinputdialog.h>
-#include <krcolorcache.h>
-#include <krpreviews.h>
 
 
 #define VF getVfile()
+
+// action name constants
+#define actDirUp "dirUp"
+#define actCancelRefresh "cancel refresh"
+#define actZoomIn "zoom_in"
+#define actZoomOut "zoom_out"
+#define actDefaultZoom "default_zoom"
 
 
 // ----------------------------- operator
@@ -159,8 +168,8 @@ void KrViewOperator::stopQuickSearch(QKeyEvent * e)
     if (_quickSearch) {
         _quickSearch->hide();
         _quickSearch->clear();
-        krDirUp->setEnabled(true);
-        KrActions::actCancelRefresh->setEnabled(true);
+        _view->mainWindow()->enableAction(actDirUp, true);
+        _view->mainWindow()->enableAction(actCancelRefresh, true);
         if (e)
             _view->handleKeyEvent(e);
     }
@@ -194,7 +203,7 @@ void KrViewOperator::setMassSelectionUpdate(bool upd)
 const KrView::IconSizes KrView::iconSizes;
 
 
-KrView::KrView(KConfig *cfg) : _config(cfg), _widget(0), _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
+KrView::KrView(KConfig *cfg, KrMainWindow *mainWindow) : _config(cfg), _mainWindow(mainWindow), _widget(0), _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
         _numSelected(0), _count(0), _numDirs(0), _countSize(0), _selectedSize(0), _properties(0), _focused(false),
         _previews(0), _fileIconSize(0)
 {
@@ -886,10 +895,10 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
                     // do something like op()->emitQuickSearchStartet()
                     // -----------------------------
                     // second, we need to disable the dirup and cancelRefresh actions - HACK!
-                    if(krDirUp->shortcut().contains(QKeySequence(Qt::Key_Backspace)))
-                        krDirUp->setEnabled(false);
-                    if(KrActions::actCancelRefresh->shortcut().contains(QKeySequence(Qt::Key_Escape)))
-                        KrActions::actCancelRefresh->setEnabled(false);
+                    if(_mainWindow->action(actDirUp)->shortcut() == QKeySequence(Qt::Key_Backspace))
+                        _mainWindow->enableAction(actDirUp, false);
+                    if(_mainWindow->action(actCancelRefresh)->shortcut() == QKeySequence(Qt::Key_Escape))
+                        _mainWindow->enableAction(actCancelRefresh, false);
                 }
                 // now, send the key to the quicksearch
                 op()->quickSearch()->myKeyPressEvent(e);
@@ -899,8 +908,8 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
             if (!op()->quickSearch()->isHidden()) {
                 op()->quickSearch()->hide();
                 op()->quickSearch()->clear();
-                krDirUp->setEnabled(true);
-                KrActions::actCancelRefresh->setEnabled(true);
+                _mainWindow->enableAction(actDirUp, true);
+                _mainWindow->enableAction(actCancelRefresh, true);
             }
         }
     }
@@ -943,11 +952,11 @@ void KrView::setDefaultFileIconSize()
 void KrView::refreshActions()
 {
     KConfigGroup grpSvr(_config, instance()->name());
-    KrActions::actDefaultZoom->setEnabled(
+    _mainWindow->enableAction(actDefaultZoom,
         grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize).toInt() != _fileIconSize);
     int idx = iconSizes.indexOf(_fileIconSize);
-    krEnableAction(zoom_out, idx > 0);
-    krEnableAction(zoom_in, idx < (iconSizes.count() - 1));
+    _mainWindow->enableAction(actZoomOut, idx > 0);
+    _mainWindow->enableAction(actZoomIn, idx < (iconSizes.count() - 1));
 }
 
 QString KrView::nameInKConfig() const {
