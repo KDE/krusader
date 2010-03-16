@@ -43,7 +43,6 @@
 
 #include "../krusader.h"
 #include "../krglobal.h"
-#include "../krusaderview.h"
 #include "../defaults.h"
 #include "../krservices.h"
 #include "../Dialogs/krpleasewait.h"
@@ -584,6 +583,19 @@ bool KRarcHandler::pack(QStringList fileNames, QString type, QString dest, long 
     return true; // SUCCESS
 }
 
+bool KRarcHandler::openWallet()
+{
+    if (!wallet) {
+        // find a suitable parent window
+        QWidget *actWindow = QApplication::activeWindow();
+        if (!actWindow)
+            actWindow = (QWidget*) QApplication::desktop();
+
+        wallet = KWallet::Wallet::openWallet(KWallet::Wallet::NetworkWallet(), actWindow->effectiveWinId());
+    }
+    return (wallet != 0);
+}
+
 QString KRarcHandler::getPassword(QString path)
 {
     QString password;
@@ -595,13 +607,7 @@ QString KRarcHandler::getPassword(QString path)
             delete wallet;
             wallet = 0;
         }
-        if (wallet == 0) {
-            QWidget * actWindow = QApplication::activeWindow();
-            if (actWindow == 0)
-                actWindow = MAIN_VIEW;
-            wallet = KWallet::Wallet::openWallet(KWallet::Wallet::NetworkWallet(), actWindow->winId());
-        }
-        if (wallet && wallet->hasFolder(KWallet::Wallet::PasswordFolder())) {
+        if (openWallet() && wallet->hasFolder(KWallet::Wallet::PasswordFolder())) {
             wallet->setFolder(KWallet::Wallet::PasswordFolder());
             QMap<QString, QString> map;
             if (wallet->readMap(key, map) == 0) {
@@ -625,13 +631,7 @@ QString KRarcHandler::getPassword(QString path)
                 delete wallet;
                 wallet = 0;
             }
-            if (!wallet) {
-                QWidget * actWindow = QApplication::activeWindow();
-                if (actWindow == 0)
-                    actWindow = MAIN_VIEW;
-                wallet = KWallet::Wallet::openWallet(KWallet::Wallet::NetworkWallet(), actWindow->winId());
-            }
-            if (wallet) {
+            if (openWallet()) {
                 bool ok = true;
                 if (!wallet->hasFolder(KWallet::Wallet::PasswordFolder()))
                     ok = wallet->createFolder(KWallet::Wallet::PasswordFolder());
