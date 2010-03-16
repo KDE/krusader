@@ -172,22 +172,43 @@ KToggleAction *KrActions::actTogglePreviews = 0;
 #endif
 
 
+KAction *createAction(QString text, QString icon, QKeySequence shortcut,
+                                 QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
+{
+    KAction *a;
+    if (icon == 0)
+        a = new KAction(text, krusaderApp);
+    else
+        a = new KAction(KIcon(icon), text, krusaderApp);
+    a->setShortcut(shortcut);
+    krusaderApp->connect(a, SIGNAL(triggered(bool)), recv, slot);
+    krusaderApp->actionCollection()->addAction(name, a);
+    return a;
+}
+
+KToggleAction *createToggleAction(QString text, QString icon, QKeySequence shortcut,
+                                 QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
+{
+    KToggleAction *a;
+    if (icon == 0)
+        a = new KToggleAction(text, krusaderApp);
+    else
+        a = new KToggleAction(KIcon(icon), text, krusaderApp);
+    a->setShortcut(shortcut);
+    krusaderApp->connect(a, SIGNAL(triggered(bool)), recv, slot);
+    krusaderApp->actionCollection()->addAction(name, a);
+    return a;
+}
+
+
 void KrActions::setupActions(Krusader *krusaderApp)
 {
 
 #define NEW_KACTION(VAR, TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME) \
-    if (ICON_NAME == 0) VAR = new KAction(TEXT, krusaderApp); \
-    else VAR = new KAction( KIcon(ICON_NAME), TEXT, krusaderApp); \
-    VAR->setShortcut(SHORTCUT); \
-    krusaderApp->connect(VAR, SIGNAL(triggered(bool)), RECV_OBJ, SLOT_NAME); \
-    krusaderApp->actionCollection()->addAction(NAME, VAR);
+    VAR = createAction(TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME, krusaderApp);
 
 #define NEW_KTOGGLEACTION(VAR, TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME) \
-    if (ICON_NAME == 0) VAR = new KToggleAction(TEXT, krusaderApp); \
-    else VAR = new KToggleAction( KIcon(ICON_NAME), TEXT, krusaderApp); \
-    VAR->setShortcut(SHORTCUT); \
-    krusaderApp->connect(VAR, SIGNAL(triggered(bool)), RECV_OBJ, SLOT_NAME); \
-    krusaderApp->actionCollection()->addAction(NAME, VAR);
+    VAR = createToggleAction(TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME, krusaderApp);
 
 
     // first come the TODO actions
