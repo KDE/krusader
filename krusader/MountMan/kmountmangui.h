@@ -62,7 +62,7 @@ class KMountManGUI : public KDialog
     };
 
 public:
-    KMountManGUI();
+    KMountManGUI(QWidget *parent);
     ~KMountManGUI();
     void createLayout();   // calls the various tab layout-creators
     void createMainPage(); // creator of the main page - filesystems

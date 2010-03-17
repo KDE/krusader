@@ -66,7 +66,7 @@ A
 #define UMOUNT_BTN KDialog::User2
 
 
-KMountManGUI::KMountManGUI() : KDialog(krMainWindow), info(0), mountList(0), sizeX(-1), sizeY(-1)
+KMountManGUI::KMountManGUI(QWidget *parent) : KDialog(parent), info(0), mountList(0), sizeX(-1), sizeY(-1)
 {
     setWindowTitle(i18n("Mount.Man"));
     setWindowModality(Qt::WindowModal);

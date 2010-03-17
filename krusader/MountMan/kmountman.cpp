@@ -65,7 +65,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 static int __delayedIdx; // ugly: pass the processEvents deadlock
 
-KMountMan::KMountMan() : QObject(), Operational(false), waiting(false), mountManGui(0)
+KMountMan::KMountMan(QWidget *parent) : QObject(), parentWindow(parent), Operational(false), waiting(false), mountManGui(0)
 {
     _actions = 0L;
 
@@ -120,7 +120,7 @@ bool KMountMan::networkFilesystem(QString type)
 
 void KMountMan::mainWindow()
 {
-    mountManGui = new KMountManGUI();
+    mountManGui = new KMountManGUI(parentWindow);
     delete mountManGui;   /* as KMountManGUI is modal, we can now delete it */
     mountManGui = 0; /* for sanity */
 }
@@ -502,7 +502,7 @@ void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, con
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::queuedMessageBox(krMainWindow, KMessageBox::Sorry, errorData.toString());
+        KMessageBox::queuedMessageBox(parentWindow, KMessageBox::Sorry, errorData.toString());
     }
 }
 
@@ -510,7 +510,7 @@ void KMountMan::slotSetupDone(Solid::ErrorType error, QVariant errorData, const 
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::queuedMessageBox(krMainWindow, KMessageBox::Sorry, errorData.toString());
+        KMessageBox::queuedMessageBox(parentWindow, KMessageBox::Sorry, errorData.toString());
     }
 }
 

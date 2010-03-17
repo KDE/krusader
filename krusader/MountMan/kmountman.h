@@ -33,6 +33,8 @@ A
 // QT includes
 #include <QtCore/QObject>
 #include <QtCore/QString>
+#include <QPointer>
+#include <QWidget>
 #include <qaction.h>
 
 // KDE includes
@@ -77,7 +79,7 @@ public:
     bool networkFilesystem(QString type);
     bool nonmountFilesystem(QString type, QString mntPoint);
 
-    KMountMan();
+    KMountMan(QWidget *parent);
     ~KMountMan();
 
     QString findUdiForPath(QString path, const Solid::DeviceInterface::Type &expType = Solid::DeviceInterface::Unknown);
@@ -111,6 +113,7 @@ private:
     QStringList network_fs;
     // the following is the FS name
     QStringList nonmount_fs_mntpoint;
+    QPointer<QWidget> parentWindow;
 };
 
 #endif

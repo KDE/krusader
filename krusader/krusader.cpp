@@ -272,7 +272,7 @@ Krusader::Krusader() : KParts::MainWindow(0,
 //   iconLoader->addExtraDesktopThemes();
 
     // create MountMan
-    KrGlobal::mountMan = new KMountMan();
+    KrGlobal::mountMan = new KMountMan(this);
 
     // create bookman
     krBookMan = new KrBookmarkHandler();
