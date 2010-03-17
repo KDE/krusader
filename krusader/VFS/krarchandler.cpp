@@ -47,6 +47,7 @@
 #include "../krservices.h"
 #include "../Dialogs/krpleasewait.h"
 
+#if 0
 class DefaultKRarcObserver : public KRarcObserver
 {
 public:
@@ -82,7 +83,7 @@ public:
         krApp->plzWait->incProgress(c);
     }
 };
-
+#endif
 
 static QStringList arcProtocols = QString("tar;bzip;bzip2;lzma;gzip;krarc;zip").split(';');
 
