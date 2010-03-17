@@ -69,6 +69,11 @@ KMountMan::KMountMan(QWidget *parent) : QObject(), parentWindow(parent), Operati
 {
     _actions = 0L;
 
+    _action = new KToolBarPopupAction(KIcon("kr_mountman"), i18n("&MountMan..."), this);
+    connect(_action, SIGNAL(triggered(bool)), SLOT(mainWindow()));
+    connect(_action->menu(), SIGNAL(aboutToShow()), SLOT(quickList()));
+
+
     // added as a precaution, although we use kde services now
     if (!KrServices::cmdExist("mount")) {
         Operational = false;
@@ -120,6 +125,13 @@ bool KMountMan::networkFilesystem(QString type)
 
 void KMountMan::mainWindow()
 {
+    // left as a precaution, although we use kde's services now
+    if (!KrServices::cmdExist("mount")) {
+        KMessageBox::error(0,
+                           i18n("Can't start 'mount'! Check the 'Dependencies' page in konfigurator."));
+        return;
+    }
+
     mountManGui = new KMountManGUI(parentWindow);
     delete mountManGui;   /* as KMountManGUI is modal, we can now delete it */
     mountManGui = 0; /* for sanity */
@@ -378,7 +390,7 @@ void KMountMan::quickList()
     }
 
     // clear the popup menu
-    ((KToolBarPopupAction*) krMountMan) ->menu() ->clear();
+    _action->menu() ->clear();
 
     // create lists of current and possible mount points
     KMountPoint::List current = KMountPoint::currentMountPoints();
@@ -414,10 +426,10 @@ void KMountMan::quickList()
                        " (" + m->mountedFrom() + ')';
 
 
-        QAction * act = ((KToolBarPopupAction*) krMountMan) ->menu() ->addAction(text);
+        QAction * act = _action->menu() ->addAction(text);
         act->setData(QVariant(idx));
     }
-    connect(((KToolBarPopupAction*) krMountMan) ->menu(), SIGNAL(triggered(QAction *)),
+    connect(_action->menu(), SIGNAL(triggered(QAction *)),
             this, SLOT(delayedPerformAction(QAction *)));
 
 }
@@ -455,7 +467,7 @@ void KMountMan::performAction()
     // free memory
     delete[] _actions;
     _actions = 0L;
-    disconnect(((KToolBarPopupAction*) krMountMan) ->menu(), SIGNAL(triggered(QAction *)), 0, 0);
+    disconnect(_action->menu(), SIGNAL(triggered(QAction *)), 0, 0);
 }
 
 QString KMountMan::findUdiForPath(QString path, const Solid::DeviceInterface::Type &expType)

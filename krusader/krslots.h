@@ -143,7 +143,6 @@ public slots:
     void homeTerminal();
     void sysInfo();
     void addBookmark();
-    void runMountMan();
     void toggleFnkeys();
     void toggleCmdline();
     void changeTrashIcon();

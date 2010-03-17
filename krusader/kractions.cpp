@@ -365,11 +365,8 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actHomeTerminal, i18n("Start &Terminal"), "terminal", 0, SLOTS, SLOT(homeTerminal()), "terminal@home");
     NEW_KACTION(actFTPDisconnect, i18n("Disconnect &from Net"), "network-disconnect", Qt::SHIFT + Qt::CTRL + Qt::Key_F, SLOTS, SLOT(FTPDisconnect()), "ftp disconnect");
 
-    actMountMan = new KToolBarPopupAction(KIcon("kr_mountman"), i18n("&MountMan..."), krusaderApp);
+    actMountMan = krMtMan.action();
     actMountMan->setShortcut(Qt::ALT + Qt::Key_Slash);
-    krusaderApp->connect(actMountMan, SIGNAL(triggered(bool)), SLOTS, SLOT(runMountMan()));
-    krusaderApp->connect(((KToolBarPopupAction*) actMountMan) ->menu(), SIGNAL(aboutToShow()),
-            &krMtMan, SLOT(quickList()));
     krusaderApp->actionCollection()->addAction("mountman", actMountMan);
 
     NEW_KACTION(actFind, i18n("&Search..."), "system-search", Qt::CTRL + Qt::Key_S, SLOTS, SLOT(search()), "find");

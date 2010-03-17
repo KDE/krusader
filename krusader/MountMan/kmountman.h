@@ -53,6 +53,8 @@ A
 #include <solid/solidnamespace.h>
 
 class KMountManGUI;
+class KAction;
+class KToolBarPopupAction;
 
 class KMountMan : public QObject
 {
@@ -66,7 +68,6 @@ public:
         return Operational;
     } // check this 1st
 
-    void mainWindow();                        // opens up the GUI
     void mount(QString mntPoint, bool blocking = true); // this is probably what you need for mount
     void unmount(QString mntPoint, bool blocking = true); // this is probably what you need for unmount
     mntStatus getStatus(QString mntPoint);    // return the status of a mntPoint (if any)
@@ -79,6 +80,9 @@ public:
     bool invalidFilesystem(QString type);
     bool networkFilesystem(QString type);
     bool nonmountFilesystem(QString type, QString mntPoint);
+    KAction *action() {
+        return (KAction*) _action;
+    }
 
     KMountMan(QWidget *parent);
     ~KMountMan();
@@ -87,6 +91,7 @@ public:
     QString pathForUdi(QString udi);
 
 public slots:
+    void mainWindow();                        // opens up the GUI
     void delayedPerformAction(QAction *);
     void performAction();
     void quickList();
@@ -109,8 +114,8 @@ signals:
 
 private:
     QString *_actions;
+    KToolBarPopupAction *_action;
 
-private:
     bool Operational;   // if false, something went terribly wrong on startup
     bool waiting; // used to block krusader while waiting for (un)mount operation
     KMountManGUI *mountManGui;
