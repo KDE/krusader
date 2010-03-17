@@ -12,7 +12,6 @@ else(LIBKONQ_FOUND)
     message(STATUS "libkonq library not found")
 endif(LIBKONQ_FOUND)
 
-add_subdirectory(FileDialog)
 add_subdirectory(ActionMan)
 add_subdirectory(BookMan)
 add_subdirectory(Dialogs)
