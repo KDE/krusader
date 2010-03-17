@@ -35,6 +35,8 @@
 #include <QtCore/QList>
 #include <QtCore/QObject>
 #include <QtCore/QHash>
+#include <QPointer>
+#include <QWidget>
 // KDE includes
 #include <kurl.h>
 #include <kio/jobclasses.h>
@@ -132,6 +134,11 @@ public:
     virtual bool vfs_isDeleting()    {
         return deleteRequested;
     }
+    // set the parent window to be used for dialogs
+    void setParentWindow(QWidget *widget) {
+        parentWindow = widget;
+    }
+
     // KDE FTP proxy bug correction
     static QString pathOrUrl(const KUrl &originIn, KUrl::AdjustPathOption trailingSlash = KUrl::LeaveTrailingSlash);
 
@@ -194,6 +201,7 @@ protected:
     KUrl postponedRefreshURL;   //< true if vfs_refresh() was called when refresh is disabled.
     bool invalidated;           //< the content of the cache is invalidated
     bool panelConnected;        //< indicates that there's a panel connected. Important for disabling the dir watcher
+    QPointer<QWidget> parentWindow;
 
 protected slots:
     /// The slot for the KIO::DirectorySizeJob

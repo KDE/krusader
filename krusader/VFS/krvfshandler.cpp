@@ -43,13 +43,13 @@ vfs::VFS_TYPE KrVfsHandler::getVfsType(const KUrl& url)
             QDir(KrServices::getPath(url, KUrl::RemoveTrailingSlash)).exists())
         return vfs::VFS_NORMAL;
 
-    if (url.isLocalFile()) {
+    if (url.isLocalFile())
         return vfs::VFS_NORMAL;
-    } else {
-        if (url.protocol() == "virt") return vfs::VFS_VIRT;
-        else return vfs::VFS_FTP;
-    }
-    return vfs::VFS_ERROR;
+
+    if (url.protocol() == "virt")
+        return vfs::VFS_VIRT;
+
+    return vfs::VFS_FTP;
 }
 
 vfs* KrVfsHandler::getVfs(const KUrl& url, QObject* parent, vfs* oldVfs)

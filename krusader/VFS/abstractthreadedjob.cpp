@@ -493,6 +493,7 @@ void AbstractJobThread::calcSpaceLocal(const KUrl &baseUrl, const QStringList & 
     sendReset(i18n("Calculating space"));
 
     vfs *calcSpaceVfs = KrVfsHandler::getVfs(baseUrl);
+    calcSpaceVfs->setParentWindow(krMainWindow);
     calcSpaceVfs->vfs_refresh(baseUrl);
 
     for (int i = 0; i != files.count(); i++) {
