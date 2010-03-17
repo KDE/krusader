@@ -181,7 +181,7 @@ bool AbstractThreadedJob::event(QEvent *e)
         break;
         case CMD_MESSAGE: {
             QString message = event->args()[ 0 ].value<QString>();
-            KMessageBox::information(krMainWindow, message);
+            KMessageBox::information(ui() ? ui()->window() : 0, message);
             QList<QVariant> *resultResp = new QList<QVariant> ();
             addEventResponse(resultResp);
         }
@@ -493,7 +493,8 @@ void AbstractJobThread::calcSpaceLocal(const KUrl &baseUrl, const QStringList & 
     sendReset(i18n("Calculating space"));
 
     vfs *calcSpaceVfs = KrVfsHandler::getVfs(baseUrl);
-    calcSpaceVfs->setParentWindow(krMainWindow);
+    if(_job->ui())
+        calcSpaceVfs->setParentWindow(_job->ui()->window());
     calcSpaceVfs->vfs_refresh(baseUrl);
 
     for (int i = 0; i != files.count(); i++) {

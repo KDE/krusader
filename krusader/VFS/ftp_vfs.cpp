@@ -175,7 +175,6 @@ bool ftp_vfs::populateVfsList(const KUrl& origin, bool showHidden)
     if (!errorMsg.isEmpty()) {
         printf("error\n");
         if (!quietMode)
-//             KMessageBox::sorry(krMainWindow, errorMsg);
             emit error(errorMsg);
         return false;
     }
@@ -200,7 +199,8 @@ bool ftp_vfs::populateVfsList(const KUrl& origin, bool showHidden)
     connect(job, SIGNAL(result(KJob*)),
             this, SLOT(slotListResult(KJob*)));
 
-    job->ui()->setWindow(krMainWindow);
+    if(!parentWindow.isNull())
+        job->ui()->setWindow(parentWindow);
 
     if (!quietMode) {
         emit startJob(job);

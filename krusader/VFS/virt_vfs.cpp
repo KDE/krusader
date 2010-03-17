@@ -36,6 +36,7 @@
 
 #include "krpermhandler.h"
 #include "../krglobal.h"
+#include "../krslots.h"
 #include "../defaults.h"
 
 #define VIRT_VFS_DB "virt_vfs.db"
@@ -94,7 +95,7 @@ void virt_vfs::vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode /*mode*
 {
     if (path == "/") {
         if (!quietMode)
-            KMessageBox::error(krMainWindow, i18n("You can't copy files directly to the 'virt:/' directory.\nYou can create a sub directory and copy your files into it."), i18n("Error"));
+            KMessageBox::error(parentWindow, i18n("You can't copy files directly to the 'virt:/' directory.\nYou can create a sub directory and copy your files into it."), i18n("Error"));
         return ;
     }
 
@@ -140,7 +141,8 @@ void virt_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
     KConfigGroup group(krConfig, "General");
     if (!reallyDelete && group.readEntry("Move To Trash", _MoveToTrash)) {
         job = KIO::trash(filesUrls);
-        connect(job, SIGNAL(result(KJob*)), krMainWindow, SLOT(changeTrashIcon()));
+        if(parentWindow)
+            connect(job, SIGNAL(result(KJob*)), SLOTS, SLOT(changeTrashIcon()));
     } else
         job = KIO::del(filesUrls);
 
@@ -189,7 +191,7 @@ void virt_vfs::vfs_mkdir(const QString& name)
 {
     if (path != "/") {
         if (!quietMode)
-            KMessageBox::error(krMainWindow, i18n("Creating new directories is allowed only in the 'virt:/' directory."), i18n("Error"));
+            KMessageBox::error(parentWindow, i18n("Creating new directories is allowed only in the 'virt:/' directory."), i18n("Error"));
         return ;
     }
     KUrl::List* temp = new KUrl::List();
