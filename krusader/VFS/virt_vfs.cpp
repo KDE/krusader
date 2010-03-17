@@ -36,7 +36,6 @@
 
 #include "krpermhandler.h"
 #include "../krglobal.h"
-#include "../krslots.h"
 #include "../defaults.h"
 
 #define VIRT_VFS_DB "virt_vfs.db"
@@ -142,7 +141,7 @@ void virt_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
     if (!reallyDelete && group.readEntry("Move To Trash", _MoveToTrash)) {
         job = KIO::trash(filesUrls);
         if(parentWindow)
-            connect(job, SIGNAL(result(KJob*)), SLOTS, SLOT(changeTrashIcon()));
+            emit trashJobStarted(job);
     } else
         job = KIO::del(filesUrls);
 

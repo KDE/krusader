@@ -57,6 +57,7 @@ public slots:
     void refresh();
     void rename(const QString &oldname, const QString &newname);
     void calcSpace(KrViewItem *item);
+    void trashJobStarted(KIO::Job *job);
 
 public:
     ListPanelFunc(ListPanel *parent);

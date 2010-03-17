@@ -63,7 +63,6 @@
 #include "../krglobal.h"
 #include "../defaults.h"
 #include "../resources.h"
-#include "../krslots.h"
 #include "../krservices.h"
 
 normal_vfs::normal_vfs(QObject* panel): vfs(panel), watcher(0)
@@ -198,7 +197,7 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
     KConfigGroup group(krConfig, "General");
     if (!reallyDelete && group.readEntry("Move To Trash", _MoveToTrash)) {
         job = KIO::trash(filesUrls);
-        connect(job, SIGNAL(result(KJob*)), SLOTS, SLOT(changeTrashIcon()));
+        emit trashJobStarted(job);
     } else
         job = KIO::del(filesUrls);
 

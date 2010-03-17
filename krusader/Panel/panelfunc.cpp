@@ -181,8 +181,7 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
         //u.adjustPath(KUrl::RemoveTrailingSlash); // remove trailing "/"
         u.cleanPath(); // Resolves "." and ".." components in path.
         v = KrVfsHandler::getVfs(u, panel, files());
-        if (!v)
-            continue; //this should not happen !
+        v->setParentWindow(krMainWindow);
         if (v != vfsP) {
             if (vfsP->vfs_canDelete())
                 delete vfsP;
@@ -239,6 +238,8 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
             panel, SLOT(slotItemDeleted(const QString&)));
     connect(files(), SIGNAL(cleared()),
             panel, SLOT(slotCleared()));
+    connect(files(), SIGNAL(trashJobStarted(KIO::Job*)),
+            this, SLOT(trashJobStarted(KIO::Job*)));
 
     // on local file system change the working directory
     if (files() ->vfs_getType() == vfs::VFS_NORMAL)
@@ -1283,5 +1284,10 @@ ListPanelFunc* ListPanelFunc::otherFunc()
     return panel->otherPanel->func;
 }
 
+
+void ListPanelFunc::trashJobStarted(KIO::Job *job)
+{
+    connect(job, SIGNAL(result(KJob*)), SLOTS, SLOT(changeTrashIcon()));
+}
 
 #include "panelfunc.moc"

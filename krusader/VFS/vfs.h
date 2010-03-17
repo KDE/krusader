@@ -167,6 +167,7 @@ signals:
     void updatedVfile(vfile* vf);
     void cleared();
     void deleteAllowed();
+    void trashJobStarted(KIO::Job *job);
     void error(QString msg);
 
 protected:
