@@ -134,7 +134,7 @@ void TestArchiveThread::slotStart()
         QString password = encrypted ? getPassword(path) : QString();
 
         // test the archive
-        if (!KRarcHandler::test(path, type, password, 0, observer())) {
+        if (!KRarcHandler::test(path, type, password, observer(), 0)) {
             sendError(KIO::ERR_NO_CONTENT, i18n("%1, test failed!", arcName));
             return ;
         }

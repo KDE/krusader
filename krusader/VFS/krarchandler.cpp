@@ -87,7 +87,6 @@ public:
 static QStringList arcProtocols = QString("tar;bzip;bzip2;lzma;gzip;krarc;zip").split(';');
 
 KWallet::Wallet * KRarcHandler::wallet = 0;
-KRarcObserver   * KRarcHandler::defaultObserver = new DefaultKRarcObserver();
 
 QStringList KRarcHandler::supportedPackers()
 {
@@ -271,7 +270,7 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
     KConfigGroup group(krConfig, "Archives");
     if (group.readEntry("Test Before Unpack", _TestBeforeUnpack)) {
         // test first - or be sorry later...
-        if (type != "-rpm" && type != "-deb" && !test(archive, type, password, 0, observer)) {
+        if (type != "-rpm" && type != "-deb" && !test(archive, type, password, observer, 0)) {
             observer->error(i18n("Failed to unpack") + " \"" + archive + "\" !");
             return false;
         }
@@ -395,7 +394,7 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
     return true; // SUCCESS
 }
 
-bool KRarcHandler::test(QString archive, QString type, QString password, long count, KRarcObserver *observer)
+bool KRarcHandler::test(QString archive, QString type, QString password, KRarcObserver *observer, long count)
 {
     // choose the right packer for the job
     QStringList packer;
@@ -576,7 +575,7 @@ bool KRarcHandler::pack(QStringList fileNames, QString type, QString dest, long 
 
     KConfigGroup group(krConfig, "Archives");
     if (group.readEntry("Test Archives", _TestArchives) &&
-            !test(dest, type, password, count, observer)) {
+            !test(dest, type, password, observer, count)) {
         observer->error(i18n("Failed to pack: ") + dest);
         return false;
     }
