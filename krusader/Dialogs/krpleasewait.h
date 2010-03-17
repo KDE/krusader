@@ -44,7 +44,7 @@ class KRPleaseWaitHandler : public QObject
     Q_OBJECT
 
 public:
-    KRPleaseWaitHandler();
+    KRPleaseWaitHandler(QWidget *parentWindow);
 
 public slots:
 
@@ -59,6 +59,7 @@ public slots:
     }
 
 private:
+    QWidget *_parentWindow;
     QPointer<KIO::Job> job;
     KRPleaseWait * dlg;
     bool cycle, cycleMutex, incMutex, _wasCancelled;
@@ -69,7 +70,7 @@ class KRPleaseWait : public QProgressDialog
 {
     Q_OBJECT
 public:
-    KRPleaseWait(QString msg, int count = 0 , bool cancel = false);
+    KRPleaseWait(QString msg, QWidget *parent, int count = 0 , bool cancel = false);
 
 public slots:
     void incProgress(int howMuch);

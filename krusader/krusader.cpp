@@ -247,7 +247,7 @@ Krusader::Krusader() : KParts::MainWindow(0,
     SLOTS = new KRslots(this);
     setXMLFile("krusaderui.rc");   // kpart-related xml file
 
-    plzWait = new KRPleaseWaitHandler();
+    plzWait = new KRPleaseWaitHandler(this);
 
     bool runKonfig = versionControl();
 

@@ -41,8 +41,8 @@
 #include "klocale.h"
 #include <kcursor.h>
 
-KRPleaseWait::KRPleaseWait(QString msg, int count, bool cancel):
-        QProgressDialog(cancel ? 0 : krMainWindow) , inc(true)
+KRPleaseWait::KRPleaseWait(QString msg, QWidget *parent, int count, bool cancel):
+        QProgressDialog(cancel ? 0 : parent) , inc(true)
 {
     setModal(!cancel);
 
@@ -94,7 +94,7 @@ void KRPleaseWait::cycleProgress()
     if (value() <= 0) inc = true;
 }
 
-KRPleaseWaitHandler::KRPleaseWaitHandler() : QObject(), job(), dlg(0)
+KRPleaseWaitHandler::KRPleaseWaitHandler(QWidget *parentWindow) : QObject(), _parentWindow(parentWindow), job(), dlg(0)
 {
 }
 
@@ -104,14 +104,14 @@ void KRPleaseWaitHandler::stopWait()
     dlg = 0;
     cycleMutex = incMutex = false;
     // return cursor to normal arrow
-    krMainWindow->setCursor(Qt::ArrowCursor);
+    _parentWindow->setCursor(Qt::ArrowCursor);
 }
 
 
 void KRPleaseWaitHandler::startWaiting(QString msg, int count , bool cancel)
 {
     if (dlg == 0) {
-        dlg = new KRPleaseWait(msg , count, cancel);
+        dlg = new KRPleaseWait(msg , _parentWindow, count, cancel);
         connect(dlg, SIGNAL(canceled()), this, SLOT(killJob()));
     }
     incMutex = cycleMutex = _wasCancelled = false;
