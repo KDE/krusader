@@ -377,10 +377,7 @@ void KMountManGUI::doubleClicked(QTreeWidgetItem *i)
         return; // we don't want to refresh to swap, do we ?
 
     // change the active panel to this mountpoint
-    connect((QObject*) this, SIGNAL(refreshPanel(const KUrl &)), (QObject*) SLOTS,
-            SLOT(refresh(const KUrl &)));
-    emit refreshPanel(KUrl(getMntPoint(i)));
-    disconnect(this, SIGNAL(refreshPanel(const KUrl &)), 0, 0);
+    krMtMan.emitRefreshPanel(KUrl(getMntPoint(i)));
     close();
 }
 

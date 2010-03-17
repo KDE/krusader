@@ -43,6 +43,7 @@ A
 #include <kio/job.h>
 #include <kio/global.h>
 #include <kmountpoint.h>
+#include <kurl.h>
 
 // krusader includes
 #include <stdlib.h>
@@ -99,6 +100,12 @@ protected:
     // used internally
     static KSharedPtr<KMountPoint> findInListByMntPoint(KMountPoint::List &lst, QString value);
     void toggleMount(QString mntPoint);
+    void emitRefreshPanel(const KUrl &url) {
+        emit refreshPanel(url);
+    }
+
+signals:
+    void refreshPanel(const KUrl &);
 
 private:
     QString *_actions;

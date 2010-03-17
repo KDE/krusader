@@ -273,6 +273,7 @@ Krusader::Krusader() : KParts::MainWindow(0,
 
     // create MountMan
     KrGlobal::mountMan = new KMountMan(this);
+    connect(KrGlobal::mountMan, SIGNAL(refreshPanel(const KUrl &)), SLOTS, SLOT(refresh(const KUrl &)));
 
     // create bookman
     krBookMan = new KrBookmarkHandler();

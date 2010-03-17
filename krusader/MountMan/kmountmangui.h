@@ -90,7 +90,6 @@ protected:
     QString getMntPoint(QTreeWidgetItem *item);
 
 signals:
-    void refreshPanel(const KUrl &);
     void finishedGettingSpaceData();
 
 private:
