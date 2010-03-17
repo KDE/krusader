@@ -182,6 +182,7 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
         u.cleanPath(); // Resolves "." and ".." components in path.
         v = KrVfsHandler::getVfs(u, panel, files());
         v->setParentWindow(krMainWindow);
+        v->setMountMan(&krMtMan);
         if (v != vfsP) {
             if (vfsP->vfs_canDelete())
                 delete vfsP;

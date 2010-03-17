@@ -101,7 +101,8 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
     }
 
     KConfigGroup group(krConfig, "Advanced");
-    if (group.readEntry("AutoMount", _AutoMount)) krMtMan.autoMount(path);
+    if (group.readEntry("AutoMount", _AutoMount) && !mountMan.isNull())
+        mountMan->autoMount(path);
 
     DIR* dir = opendir(path.toLocal8Bit());
     if (!dir) {

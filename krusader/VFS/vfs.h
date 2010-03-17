@@ -44,6 +44,7 @@
 #include "vfile.h"
 #include "preservingcopyjob.h"
 #include "krquery.h"
+#include "../MountMan/kmountman.h"
 
 /**
  * The vfs class is an extendable class which by itself does (almost)
@@ -138,6 +139,10 @@ public:
     void setParentWindow(QWidget *widget) {
         parentWindow = widget;
     }
+    // set the mount manager
+    void setMountMan(KMountMan *mtMan) {
+        mountMan = mtMan;
+    }
 
     // KDE FTP proxy bug correction
     static QString pathOrUrl(const KUrl &originIn, KUrl::AdjustPathOption trailingSlash = KUrl::LeaveTrailingSlash);
@@ -203,6 +208,7 @@ protected:
     bool invalidated;           //< the content of the cache is invalidated
     bool panelConnected;        //< indicates that there's a panel connected. Important for disabling the dir watcher
     QPointer<QWidget> parentWindow;
+    QPointer<KMountMan> mountMan;
 
 protected slots:
     /// The slot for the KIO::DirectorySizeJob
