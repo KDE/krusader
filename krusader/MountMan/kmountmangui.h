@@ -62,7 +62,7 @@ class KMountManGUI : public KDialog
     };
 
 public:
-    KMountManGUI(QWidget *parent);
+    KMountManGUI(KMountMan *mntMan);
     ~KMountManGUI();
     void createLayout();   // calls the various tab layout-creators
     void createMainPage(); // creator of the main page - filesystems
@@ -93,6 +93,7 @@ signals:
     void finishedGettingSpaceData();
 
 private:
+    KMountMan *mountMan;
     KRFSDisplay *info;
     QWidget *mainPage;
     KrTreeWidget *mountList;

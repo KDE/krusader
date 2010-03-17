@@ -132,7 +132,7 @@ void KMountMan::mainWindow()
         return;
     }
 
-    mountManGui = new KMountManGUI(parentWindow);
+    mountManGui = new KMountManGUI(this);
     delete mountManGui;   /* as KMountManGUI is modal, we can now delete it */
     mountManGui = 0; /* for sanity */
 }

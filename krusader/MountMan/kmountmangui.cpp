@@ -66,7 +66,7 @@ A
 #define UMOUNT_BTN KDialog::User2
 
 
-KMountManGUI::KMountManGUI(QWidget *parent) : KDialog(parent), info(0), mountList(0), sizeX(-1), sizeY(-1)
+KMountManGUI::KMountManGUI(KMountMan *mntMan) : KDialog(mntMan->parentWindow), mountMan(mntMan), info(0), mountList(0), sizeX(-1), sizeY(-1)
 {
     setWindowTitle(i18n("Mount.Man"));
     setWindowModality(Qt::WindowModal);
@@ -204,7 +204,7 @@ void KMountManGUI::createMainPage()
     mountList->sortItems(0, Qt::AscendingOrder);
 
     // now the list is created, time to fill it with data.
-    //=>krMtMan.forceUpdate();
+    //=>mountMan->forceUpdate();
     QGroupBox *box = new QGroupBox(i18n("MountMan.Info"), mainPage);
     box->setAlignment(Qt::AlignHCenter);
     QVBoxLayout *vboxl = new QVBoxLayout;
@@ -232,7 +232,7 @@ void KMountManGUI::getSpaceData()
     numOfMountPoints = mounted.size();
     for (KMountPoint::List::iterator it = mounted.begin(); it != mounted.end(); ++it) {
         // don't bother with invalid file systems
-        if (krMtMan.invalidFilesystem((*it)->mountType())) {
+        if (mountMan->invalidFilesystem((*it)->mountType())) {
             --numOfMountPoints;
             continue;
         }
@@ -288,13 +288,13 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     item->setText(5, (mtd ? sPrct : QString("N/A")));
 
 
-    Solid::Device device(krMtMan.findUdiForPath(fs.mntPoint(), Solid::DeviceInterface::StorageAccess));
+    Solid::Device device(mountMan->findUdiForPath(fs.mntPoint(), Solid::DeviceInterface::StorageAccess));
     Solid::StorageVolume *vol = device.as<Solid::StorageVolume> ();
     QString icon;
     
     if(device.isValid())
         icon = device.icon();
-    else if(krMtMan.networkFilesystem(fs.type()))
+    else if(mountMan->networkFilesystem(fs.type()))
         icon = "folder-remote";
     QStringList overlays;
     if (mtd) {
@@ -322,7 +322,7 @@ void KMountManGUI::updateList()
     mountList->clear();
     // this handles the mounted ones
     for (QList<fsData>::iterator it = fileSystems.begin(); it != fileSystems.end() ; ++it) {
-        if (krMtMan.invalidFilesystem((*it).type())) {
+        if (mountMan->invalidFilesystem((*it).type())) {
             continue;
         }
         addItemToMountList(mountList, *it);
@@ -341,7 +341,7 @@ void KMountManGUI::updateList()
             data.setName((*it)->mountedFrom());
             fileSystems.append(data);
 
-            if (krMtMan.invalidFilesystem(data.type())) continue;
+            if (mountMan->invalidFilesystem(data.type())) continue;
             addItemToMountList(mountList, data);
         }
     }
@@ -377,7 +377,7 @@ void KMountManGUI::doubleClicked(QTreeWidgetItem *i)
         return; // we don't want to refresh to swap, do we ?
 
     // change the active panel to this mountpoint
-    krMtMan.emitRefreshPanel(KUrl(getMntPoint(i)));
+    mountMan->emitRefreshPanel(KUrl(getMntPoint(i)));
     close();
 }
 
@@ -416,7 +416,7 @@ void KMountManGUI::changeActive(QTreeWidgetItem *i)
     else
         setButtonGuiItem(UMOUNT_BTN, KGuiItem(i18n("&Mount")));
 
-    enableButton(EJECT_BTN, krMtMan.ejectable(system->mntPoint()));
+    enableButton(EJECT_BTN, mountMan->ejectable(system->mntPoint()));
     enableButton(UMOUNT_BTN, true);
 }
 
@@ -438,16 +438,16 @@ void KMountManGUI::clicked(QTreeWidgetItem *item, const QPoint & pos)
     if (!system->mounted()) {
         QAction *mountAct = popup.addAction(i18n("Mount"));
         mountAct->setData(QVariant(MOUNT_ID));
-        bool enable = !(krMtMan.nonmountFilesystem(system->type(), system->mntPoint()));
+        bool enable = !(mountMan->nonmountFilesystem(system->type(), system->mntPoint()));
         mountAct->setEnabled(enable);
     } else {
         QAction * umountAct =  popup.addAction(i18n("Unmount"));
         umountAct->setData(QVariant(UNMOUNT_ID));
-        bool enable = !(krMtMan.nonmountFilesystem(system->type(), system->mntPoint()));
+        bool enable = !(mountMan->nonmountFilesystem(system->type(), system->mntPoint()));
         umountAct->setEnabled(enable);
     }
-    if (krMtMan.ejectable(system->mntPoint()))
-        //  if (system->type()=="iso9660" || krMtMan.followLink(system->name()).left(2)=="cd")
+    if (mountMan->ejectable(system->mntPoint()))
+        //  if (system->type()=="iso9660" || mountMan->followLink(system->name()).left(2)=="cd")
         popup.addAction(i18n("Eject"))->setData(QVariant(EJECT_ID));
     else {
         QAction *formatAct = popup.addAction(i18n("Format"));
@@ -468,12 +468,12 @@ void KMountManGUI::clicked(QTreeWidgetItem *item, const QPoint & pos)
     case - 1 : return ;     // the user clicked outside of the menu
     case MOUNT_ID :
     case UNMOUNT_ID :
-        krMtMan.toggleMount(mountPoint);
+        mountMan->toggleMount(mountPoint);
         break;
     case FORMAT_ID :
         break;
     case EJECT_ID :
-        krMtMan.eject(mountPoint);
+        mountMan->eject(mountPoint);
         break;
     }
 }
@@ -484,9 +484,9 @@ void KMountManGUI::slotButtonClicked(int button)
     if(item) {
         QString mountPoint = getFsData(item)->mntPoint();
         if(button == UMOUNT_BTN)
-            krMtMan.toggleMount(mountPoint);
+            mountMan->toggleMount(mountPoint);
         else if(button == EJECT_BTN)
-            krMtMan.eject(mountPoint);
+            mountMan->eject(mountPoint);
     }
     KDialog::slotButtonClicked(button);
 }
