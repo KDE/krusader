@@ -36,7 +36,11 @@ KrInterView::KrInterView(KConfig *cfg, KrMainWindow *mainWindow, QAbstractItemVi
 
 KrInterView::~KrInterView()
 {
-    delete _model;
+    // any references to the model should be cleared ar this point,
+    // but sometimes for some reason it is still referenced by
+    // QPersistentModelIndex instances held by QAbstractItemView and/or QItemSelectionModel(child object) -
+    // so schedule _model for later deletion
+    _model->deleteLater();
     _model = 0;
     delete _mouseHandler;
     _mouseHandler = 0;
