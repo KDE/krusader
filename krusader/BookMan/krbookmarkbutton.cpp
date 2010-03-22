@@ -29,9 +29,8 @@
 
 KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent)
 {
-    QPixmap icon = krLoader->loadIcon("bookmarks", KIconLoader::Toolbar, 16);
-    setFixedSize(icon.width() + 4, icon.height() + 4);
-    setIcon(QIcon(icon));
+    setAutoRaise(true);
+    setIcon(KIcon("bookmarks"));
     setText(i18n("BookMan II"));
     setToolTip(i18n("BookMan II"));
     setPopupMode(QToolButton::InstantPopup);

@@ -39,7 +39,7 @@
 MediaButton::MediaButton(QWidget *parent) : QToolButton(parent),
         popupMenu(0), rightMenu(0), openInNewTab(false)
 {
-    setFixedSize(16 + 4, 16 + 4);
+    setAutoRaise(true);
     setIcon(KIcon("system-file-manager"));
     setText(i18n("Open the available media list"));
     setToolTip(i18n("Open the available media list"));

@@ -31,7 +31,7 @@
 
 DirHistoryButton::DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent) : QToolButton(parent)
 {
-    setFixedSize(16 + 4, 16 + 4);
+    setAutoRaise(true);
     setIcon(KIcon("view-history"));
     setText(i18n("Open the directory history list"));
     setToolTip(i18n("Open the directory history list"));
