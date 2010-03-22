@@ -99,6 +99,7 @@ install(FILES krusaderui.rc
               total_commander.keymap
               total_commander.keymap.info
               useraction_examples.xml
+              layout.xml
               splash.png
         DESTINATION ${DATA_INSTALL_DIR}/krusader)
 
