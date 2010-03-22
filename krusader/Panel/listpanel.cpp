@@ -173,8 +173,8 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     // origin input field
     QuickNavLineEdit *qnle = new QuickNavLineEdit(this);
     origin = new KUrlRequester(qnle, this);
-    QSize iconSize = QSize(22, 22); // also hardcoded to 22 in the support libs
-    origin->button() ->setFixedSize(iconSize.width() + 4, iconSize.height() + 4);
+//     QSize iconSize = QSize(22, 22); // also hardcoded to 22 in the support libs
+//     origin->button() ->setFixedSize(iconSize.width() + 4, iconSize.height() + 4);
     origin->setWhatsThis(i18n("Use superb KDE file dialog to choose location. "));
     origin->lineEdit() ->setUrlDropsEnabled(true);
     origin->lineEdit() ->installEventFilter(this);
@@ -231,14 +231,15 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     // a cancel button for the inplace refresh mechanism
     inlineRefreshCancelButton = new QToolButton(this);
     inlineRefreshCancelButton->hide();
-    inlineRefreshCancelButton->setFixedSize(22, 20);
+//     inlineRefreshCancelButton->setFixedSize(22, 20);
     inlineRefreshCancelButton->setIcon(krLoader->loadIcon("dialog-cancel", KIconLoader::Toolbar, 16));
     connect(inlineRefreshCancelButton, SIGNAL(clicked()), this, SLOT(inlineRefreshCancel()));
     ADD_WIDGET(inlineRefreshCancelButton);
 
     // a quick button to open the popup panel
     popupBtn = new QToolButton(this);
-    popupBtn->setFixedSize(22, 20);
+    popupBtn->setAutoRaise(true);
+//     popupBtn->setFixedSize(22, 20);
     popupBtn->setIcon(krLoader->loadIcon("arrow-up", KIconLoader::Toolbar, 16));
     connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
     popupBtn->setToolTip(i18n("Open the popup panel"));
@@ -249,6 +250,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     // toolbar buttons
 
     cdOtherButton = new QToolButton(toolbar);
+    cdOtherButton->setAutoRaise(true);
     cdOtherButton->setFixedSize(20, origin->button() ->height());
     cdOtherButton->setText(i18n("="));
     toolbarLayout->addWidget(cdOtherButton);
@@ -256,6 +258,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     connect(cdOtherButton, SIGNAL(clicked()), this, SLOT(slotFocusAndCDOther()));
 
     cdUpButton = new QToolButton(toolbar);
+    cdUpButton->setAutoRaise(true);
     cdUpButton->setFixedSize(20, origin->button() ->height());
     cdUpButton->setText(i18n(".."));
     toolbarLayout->addWidget(cdUpButton);
@@ -263,6 +266,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     connect(cdUpButton, SIGNAL(clicked()), this, SLOT(slotFocusAndCDup()));
 
     cdHomeButton = new QToolButton(toolbar);
+    cdHomeButton->setAutoRaise(true);
     cdHomeButton->setFixedSize(20, origin->button() ->height());
     cdHomeButton->setText(i18n("~"));
     toolbarLayout->addWidget(cdHomeButton);
@@ -270,6 +274,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     connect(cdHomeButton, SIGNAL(clicked()), this, SLOT(slotFocusAndCDHome()));
 
     cdRootButton = new QToolButton(toolbar);
+    cdRootButton->setAutoRaise(true);
     cdRootButton->setFixedSize(20, origin->button() ->height());
     cdRootButton->setText(i18n("/"));
     toolbarLayout->addWidget(cdRootButton);
@@ -278,6 +283,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
 
     // ... creates the button for sync-browsing
     syncBrowseButton = new SyncBrowseButton(toolbar);
+    syncBrowseButton->setAutoRaise(true);
     toolbarLayout->addWidget(syncBrowseButton);
 
     setPanelToolbar();
