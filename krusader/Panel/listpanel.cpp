@@ -197,6 +197,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
 
     vfsError = new KrErrorDisplay(this);
     vfsError->setWordWrap(true);
+    vfsError->hide();
     ADD_WIDGET(vfsError);
 
     // client area

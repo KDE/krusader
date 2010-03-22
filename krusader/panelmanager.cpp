@@ -56,7 +56,7 @@ PanelManager::PanelManager(QWidget *parent, bool left) :
 
     // new tab button
     _newTab = new QToolButton(this);
-    _newTab->setFixedSize(22, 22);
+    _newTab->setAutoRaise(true);
     _newTab->setText(i18n("Open a new tab in home"));
     _newTab->setToolTip(i18n("Open a new tab in home"));
     _newTab->setIcon(SmallIcon("tab-new"));
@@ -65,7 +65,7 @@ PanelManager::PanelManager(QWidget *parent, bool left) :
 
     // close tab button
     _closeTab = new QToolButton(this);
-    _closeTab->setFixedSize(22, 22);
+    _closeTab->setAutoRaise(true);
     _closeTab->setText(i18n("Close current tab"));
     _closeTab->setToolTip(i18n("Close current tab"));
     _closeTab->setIcon(SmallIcon("tab-close"));
