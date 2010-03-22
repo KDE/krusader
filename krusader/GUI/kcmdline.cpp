@@ -99,8 +99,7 @@ KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
     layout->addWidget(cmdLine, 0, 1);
 
     buttonAddPlaceholder = new QToolButton(this);
-    buttonAddPlaceholder->setFixedSize(22, 20);
-    buttonAddPlaceholder->adjustSize();
+    buttonAddPlaceholder->setAutoRaise(true);
     buttonAddPlaceholder->setIcon(SmallIcon("list-add"));
     connect(buttonAddPlaceholder, SIGNAL(clicked()), this, SLOT(addPlaceholder()));
     buttonAddPlaceholder->setWhatsThis(i18n("Add <b>Placeholders</b> for the selected files in the panel."));
@@ -109,6 +108,7 @@ KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
 
     // a run in terminal button
     terminal = new KCMDModeButton(this);
+    terminal->setAutoRaise(true);
     layout->addWidget(terminal, 0, 3);
 
     layout->activate();
