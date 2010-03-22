@@ -1,4 +1,5 @@
 set(Panel_SRCS
+    krlayoutfactory.cpp
     krerrordisplay.cpp
     krpreviews.cpp
     krpreviewjob.cpp

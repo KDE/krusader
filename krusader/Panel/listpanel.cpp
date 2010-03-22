@@ -104,9 +104,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krviewfactory.h"
 #include "krcolorcache.h"
 #include "krerrordisplay.h"
-
+#include "krlayoutfactory.h"
 
 typedef QList<KServiceOffer> OfferList;
+
 
 /////////////////////////////////////////////////////
 //      The list panel constructor       //
@@ -118,19 +119,20 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
 {
     gui = this;
 
-    layout = new QGridLayout(this);
-    layout->setSpacing(0);
-    layout->setContentsMargins(0, 0, 0, 0);
-
     func = new ListPanelFunc(this);
     setAcceptDrops(true);
 
-    layout->setContentsMargins(0, 0, 0, 0);
+    QHash<QString, QWidget*> widgets;
 
+#define ADD_WIDGET(widget) widgets.insert(#widget, widget);
+
+    // media button
     mediaButton = new MediaButton(this);
     connect(mediaButton, SIGNAL(aboutToShow()), this, SLOT(slotFocusOnMe()));
     connect(mediaButton, SIGNAL(openUrl(const KUrl&)), func, SLOT(openUrl(const KUrl&)));
+    ADD_WIDGET(mediaButton);
 
+    // status bar
     status = new KrSqueezedTextLabel(this);
     KConfigGroup group(krConfig, "Look&Feel");
     status->setFont(group.readEntry("Filelist Font", *_FilelistFont));
@@ -150,68 +152,27 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
                               "type of filesystem, etc."));
     connect(status, SIGNAL(clicked()), this, SLOT(slotFocusOnMe()));
     connect(status, SIGNAL(dropped(QDropEvent *)), this, SLOT(handleDropOnStatus(QDropEvent *)));
+    ADD_WIDGET(status);
 
     // ... create the history button
     dirHistoryQueue = new DirHistoryQueue(this);
     historyButton = new DirHistoryButton(dirHistoryQueue, this);
     connect(historyButton, SIGNAL(aboutToShow()), this, SLOT(slotFocusOnMe()));
     connect(historyButton, SIGNAL(openUrl(const KUrl&)), func, SLOT(openUrl(const KUrl&)));
+    ADD_WIDGET(historyButton);
 
+    // bookmarks button
     bookmarksButton = new KrBookmarkButton(this);
     connect(bookmarksButton, SIGNAL(aboutToShow()), this, SLOT(slotFocusOnMe()));
     connect(bookmarksButton, SIGNAL(openUrl(const KUrl&)), func, SLOT(openUrl(const KUrl&)));
     bookmarksButton->setWhatsThis(i18n("Open menu with bookmarks. You can also add "
                                        "current location to the list, edit bookmarks "
                                        "or add subfolder to the list."));
+    ADD_WIDGET(bookmarksButton);
 
-    QHBoxLayout *totalsLayout = new QHBoxLayout;
-    totals = new KrSqueezedTextLabel(this);
-    totals->setFont(group.readEntry("Filelist Font", *_FilelistFont));
-    if(statusFrame)
-        totals->setFrameStyle(QFrame::Box | QFrame::Raised);
-    totals->setAutoFillBackground(statusBackground);
-    totals->setBackgroundRole(QPalette::Window);
-    totals->setLineWidth(1);    // a nice 3D touch :-)
-    totals->setMaximumHeight(sheight);
-    totals->enableDrops(true);
-    totals->setWhatsThis(i18n("The totals bar shows how many files exist, "
-                              "how many selected and the bytes math"));
-    connect(totals, SIGNAL(clicked()), this, SLOT(slotFocusOnMe()));
-    connect(totals, SIGNAL(dropped(QDropEvent *)), this, SLOT(handleDropOnTotals(QDropEvent *)));
-
-    previewProgress = new QProgressBar(this);
-    previewProgress->hide();
-    previewProgress->setMaximumHeight(sheight);
-
-    // a cancel button for the inplace refresh mechanism
-    inlineRefreshCancelButton = new QToolButton(this);
-    inlineRefreshCancelButton->setFixedSize(22, 20);
-    inlineRefreshCancelButton->setIcon(krLoader->loadIcon("dialog-cancel", KIconLoader::Toolbar, 16));
-    connect(inlineRefreshCancelButton, SIGNAL(clicked()), this, SLOT(inlineRefreshCancel()));
-
-    // a quick button to open the popup panel
-    popupBtn = new QToolButton(this);
-    popupBtn->setFixedSize(22, 20);
-    popupBtn->setIcon(krLoader->loadIcon("arrow-up", KIconLoader::Toolbar, 16));
-    connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
-    popupBtn->setToolTip(i18n("Open the popup panel"));
-    totalsLayout->addWidget(totals);
-    totalsLayout->addWidget(previewProgress);
-    totalsLayout->addWidget(inlineRefreshCancelButton); inlineRefreshCancelButton->hide();
-    totalsLayout->addWidget(popupBtn);
-
-    quickSearch = new KrQuickSearch(this);
-    quickSearch->setFont(group.readEntry("Filelist Font", *_FilelistFont));
-    quickSearch->setMaximumHeight(sheight);
-
-    QWidget * hboxWidget = new QWidget(this);
-    QHBoxLayout * hbox = new QHBoxLayout(hboxWidget);
-    hbox->setContentsMargins(0, 0, 0, 0);
-    hbox->setSpacing(0);
-
+    // origin input field
     QuickNavLineEdit *qnle = new QuickNavLineEdit(this);
-    origin = new KUrlRequester(qnle, hboxWidget);
-    hbox->addWidget(origin);
+    origin = new KUrlRequester(qnle, this);
     QSize iconSize = QSize(22, 22); // also hardcoded to 22 in the support libs
     origin->button() ->setFixedSize(iconSize.width() + 4, iconSize.height() + 4);
     origin->setWhatsThis(i18n("Use superb KDE file dialog to choose location. "));
@@ -225,77 +186,178 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     connect(origin, SIGNAL(returnPressed(const QString&)), this, SLOT(slotFocusOnMe()));
     connect(origin, SIGNAL(urlSelected(const KUrl &)), func, SLOT(openUrl(const KUrl &)));
     connect(origin, SIGNAL(urlSelected(const KUrl &)), this, SLOT(slotFocusOnMe()));
+    ADD_WIDGET(origin);
 
-    cdOtherButton = new QToolButton(hboxWidget);
+    // toolbar
+    QWidget * toolbar = new QWidget(this);
+    QHBoxLayout * toolbarLayout = new QHBoxLayout(toolbar);
+    toolbarLayout->setContentsMargins(0, 0, 0, 0);
+    toolbarLayout->setSpacing(0);
+    ADD_WIDGET(toolbar);
+
+    vfsError = new KrErrorDisplay(this);
+    vfsError->setWordWrap(true);
+    ADD_WIDGET(vfsError);
+
+    // client area
+    QWidget *clientArea = new QWidget(this);
+    QVBoxLayout *clientLayout = new QVBoxLayout(clientArea);
+    clientLayout->setSpacing(0);
+    clientLayout->setContentsMargins(0, 0, 0, 0);
+    ADD_WIDGET(clientArea);
+
+    // totals bar
+    totals = new KrSqueezedTextLabel(this);
+    totals->setFont(group.readEntry("Filelist Font", *_FilelistFont));
+    if(statusFrame)
+        totals->setFrameStyle(QFrame::Box | QFrame::Raised);
+    totals->setAutoFillBackground(statusBackground);
+    totals->setBackgroundRole(QPalette::Window);
+    totals->setLineWidth(1);    // a nice 3D touch :-)
+    totals->setMaximumHeight(sheight);
+    totals->enableDrops(true);
+    totals->setWhatsThis(i18n("The totals bar shows how many files exist, "
+                              "how many selected and the bytes math"));
+    connect(totals, SIGNAL(clicked()), this, SLOT(slotFocusOnMe()));
+    connect(totals, SIGNAL(dropped(QDropEvent *)), this, SLOT(handleDropOnTotals(QDropEvent *)));
+    ADD_WIDGET(totals);
+
+    // progress indicator for the preview job
+    previewProgress = new QProgressBar(this);
+    previewProgress->hide();
+    previewProgress->setMaximumHeight(sheight);
+    ADD_WIDGET(previewProgress);
+
+    // a cancel button for the inplace refresh mechanism
+    inlineRefreshCancelButton = new QToolButton(this);
+    inlineRefreshCancelButton->hide();
+    inlineRefreshCancelButton->setFixedSize(22, 20);
+    inlineRefreshCancelButton->setIcon(krLoader->loadIcon("dialog-cancel", KIconLoader::Toolbar, 16));
+    connect(inlineRefreshCancelButton, SIGNAL(clicked()), this, SLOT(inlineRefreshCancel()));
+    ADD_WIDGET(inlineRefreshCancelButton);
+
+    // a quick button to open the popup panel
+    popupBtn = new QToolButton(this);
+    popupBtn->setFixedSize(22, 20);
+    popupBtn->setIcon(krLoader->loadIcon("arrow-up", KIconLoader::Toolbar, 16));
+    connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
+    popupBtn->setToolTip(i18n("Open the popup panel"));
+    ADD_WIDGET(popupBtn);
+
+#undef ADD_WIDGET
+
+    // toolbar buttons
+
+    cdOtherButton = new QToolButton(toolbar);
     cdOtherButton->setFixedSize(20, origin->button() ->height());
     cdOtherButton->setText(i18n("="));
-    hbox->addWidget(cdOtherButton);
+    toolbarLayout->addWidget(cdOtherButton);
     cdOtherButton->setToolTip(i18n("Equal"));
     connect(cdOtherButton, SIGNAL(clicked()), this, SLOT(slotFocusAndCDOther()));
 
-    cdUpButton = new QToolButton(hboxWidget);
+    cdUpButton = new QToolButton(toolbar);
     cdUpButton->setFixedSize(20, origin->button() ->height());
     cdUpButton->setText(i18n(".."));
-    hbox->addWidget(cdUpButton);
+    toolbarLayout->addWidget(cdUpButton);
     cdUpButton->setToolTip(i18n("Up"));
     connect(cdUpButton, SIGNAL(clicked()), this, SLOT(slotFocusAndCDup()));
 
-    cdHomeButton = new QToolButton(hboxWidget);
+    cdHomeButton = new QToolButton(toolbar);
     cdHomeButton->setFixedSize(20, origin->button() ->height());
     cdHomeButton->setText(i18n("~"));
-    hbox->addWidget(cdHomeButton);
+    toolbarLayout->addWidget(cdHomeButton);
     cdHomeButton->setToolTip(i18n("Home"));
     connect(cdHomeButton, SIGNAL(clicked()), this, SLOT(slotFocusAndCDHome()));
 
-    cdRootButton = new QToolButton(hboxWidget);
+    cdRootButton = new QToolButton(toolbar);
     cdRootButton->setFixedSize(20, origin->button() ->height());
     cdRootButton->setText(i18n("/"));
-    hbox->addWidget(cdRootButton);
+    toolbarLayout->addWidget(cdRootButton);
     cdRootButton->setToolTip(i18n("Root"));
     connect(cdRootButton, SIGNAL(clicked()), this, SLOT(slotFocusAndCDRoot()));
 
     // ... creates the button for sync-browsing
-    syncBrowseButton = new SyncBrowseButton(hboxWidget);
-    hbox->addWidget(syncBrowseButton);
+    syncBrowseButton = new SyncBrowseButton(toolbar);
+    toolbarLayout->addWidget(syncBrowseButton);
 
     setPanelToolbar();
 
+    // quicksearch
+    quickSearch = new KrQuickSearch(clientArea);
+    quickSearch->setFont(group.readEntry("Filelist Font", *_FilelistFont));
+    quickSearch->setMaximumHeight(sheight);
+    quickSearch->hide();
+
     // create a splitter to hold the view and the popup
-    splt = new PercentalSplitter(this);
+    splt = new PercentalSplitter(clientArea);
     splt->setChildrenCollapsible(true);
     splt->setOrientation(Qt::Vertical);
 
+    if(group.readEntry("Quicksearch Position", "bottom") == "top") {
+        clientLayout->addWidget(quickSearch);
+        clientLayout->addWidget(splt);
+    } else {
+        clientLayout->addWidget(splt);
+        clientLayout->addWidget(quickSearch);
+    }
+
+    // view
     createView();
 
-    // add a popup
+    // popup panel
     popup = new PanelPopup(splt, left);
     connect(popup, SIGNAL(selection(const KUrl&)), SLOTS, SLOT(refresh(const KUrl&)));
     connect(popup, SIGNAL(hideMe()), this, SLOT(togglePanelPopup()));
     popup->hide();
 
-    // finish the layout
-    int spltPos, quickSearchPos;
-    if(group.readEntry("Quicksearch Position", "bottom") == "top") {
-        spltPos = 4; quickSearchPos = 3;
-    } else {
-        spltPos = 3; quickSearchPos = 4;
-    }
-    layout->addWidget(hboxWidget, 0, 0, 1, 4);
-    layout->addWidget(mediaButton, 1, 0);
-    layout->addWidget(status, 1, 1);
-    layout->addWidget(historyButton, 1, 2);
-    layout->addWidget(bookmarksButton, 1, 3);
-    layout->addWidget(splt, spltPos, 0, 1, 4);
-    layout->addWidget(quickSearch, quickSearchPos, 0, 1, 4);
-    quickSearch->hide();
-    layout->addLayout(totalsLayout, 5, 0, 1, 4);
 
     //filter = ALL;
+
+    // create the layout
+    QLayout *layout = KrLayoutFactory::createLayout("default", widgets);
+
+    if(!layout) { // fallback: create a layout by ourself
+        QVBoxLayout *v = new QVBoxLayout;
+        v->setContentsMargins(0, 0, 0, 0);
+        v->setSpacing(0);
+
+        QHBoxLayout *h = new QHBoxLayout;
+        h->setContentsMargins(0, 0, 0, 0);
+        h->setSpacing(0);
+        h->addWidget(origin);
+        h->addWidget(toolbar);
+        v->addLayout(h);
+
+        h = new QHBoxLayout;
+        h->setContentsMargins(0, 0, 0, 0);
+        h->setSpacing(0);
+        h->addWidget(mediaButton);
+        h->addWidget(status);
+        h->addWidget(historyButton);
+        h->addWidget(bookmarksButton);
+        v->addLayout(h);
+
+        v->addWidget(vfsError);
+        v->addWidget(clientArea);
+
+        h = new QHBoxLayout;
+        h->setContentsMargins(0, 0, 0, 0);
+        h->setSpacing(0);
+        h->addWidget(totals);
+        h->addWidget(previewProgress);
+        h->addWidget(inlineRefreshCancelButton);
+        h->addWidget(popupBtn);
+        v->addLayout(h);
+
+        layout = v;
+    }
+
     setLayout(layout);
 
     connect(&KrColorCache::getColorCache(), SIGNAL(colorsRefreshed()), this, SLOT(refreshColors()));
     connect(krApp, SIGNAL(shutdown()), SLOT(inlineRefreshCancel()));
 }
+
 
 void ListPanel::createView()
 {
@@ -359,7 +421,7 @@ ListPanel::~ListPanel()
     delete cdUpButton;
     delete cdOtherButton;
     delete syncBrowseButton;
-    delete layout;
+//     delete layout;
 }
 
 int ListPanel::getProperties()
@@ -1209,11 +1271,6 @@ void ListPanel::setJumpBack(KUrl url)
 
 void ListPanel::slotVfsError(QString msg)
 {
-    if(!vfsError) {
-        vfsError = new KrErrorDisplay(this);
-        vfsError->setWordWrap(true);
-        layout->addWidget(vfsError, 2, 0, 1, 4);
-    }
     refreshColors();
     vfsError->setText(i18n("Error: %1", msg));
     vfsError->show();

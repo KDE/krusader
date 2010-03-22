@@ -211,7 +211,6 @@ protected:
     KIO::Job *inlineRefreshJob;
 
     QPixmap currDragPix;
-    QGridLayout *layout;
     QSplitter *splt;
     KUrlRequester *origin;
     KrQuickSearch *quickSearch;
