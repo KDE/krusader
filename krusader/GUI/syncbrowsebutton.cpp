@@ -34,7 +34,6 @@ The current version only manages sync-browse and got no mode-switch options.
 
 SyncBrowseButton::SyncBrowseButton(QWidget *parent) : QToolButton(parent)
 {
-    setFixedSize(16 + 4, 16 + 4);
     setIcon(KIcon("kr_syncbrowse_off"));
     setCheckable(true);
 
