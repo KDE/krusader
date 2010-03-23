@@ -35,7 +35,8 @@ A
 
 
 KrErrorDisplay::KrErrorDisplay(QWidget *parent) :
-    QLabel(parent)
+    QLabel(parent),
+    _currentDim(100)
 {
     setAutoFillBackground(true);
     _startColor = QColor(240,150,150);
