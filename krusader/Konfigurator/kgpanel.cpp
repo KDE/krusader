@@ -171,11 +171,15 @@ void KgPanel::setupMiscTab()
 
     KONFIGURATOR_CHECKBOX_PARAM barSettings[] =
     {
-        {"Look&Feel", "Statusbar Frame", false, i18n("Draw frame"), true,  i18n("Draw a Frame around the Status/Totalsbar") },
-        {"Look&Feel", "Statusbar Background", false, i18n("Fill background"), true,  i18n("Fill Background of Status/Totalsbar") },
+        {"Look&Feel", "Show Statusbar", true, i18n("Show Statusbar"), true,  i18n("Show Statusbar") },
+        {"Look&Feel", "Show Totalsbar", true, i18n("Show Totalsbar"), true,  i18n("Show Totalsbar") },
+        {"Look&Feel", "Show Size In Bytes", true, i18n("Show size in bytes too"), true,  i18n("Show size in bytes too") },
+        {"Look&Feel", "Show Free Space", false, i18n("Show free disk space in the Totalsbar"), true,  i18n("Show free disk space in the Totalsbar") },
+        {"Look&Feel", "Statusbar Frame", true, i18n("Draw frame"), true,  i18n("Draw a Frame around the Status/Totalsbar") },
+        {"Look&Feel", "Statusbar Background", true, i18n("Fill background"), true,  i18n("Fill Background of Status/Totalsbar") },
     };
     KonfiguratorCheckBoxGroup *barSett = createCheckBoxGroup(2, 0, barSettings,
-                                          2 /*count*/, miscGrp, PAGE_MISC);
+                                          6 /*count*/, miscGrp, PAGE_MISC);
     miscGrid->addWidget(barSett, 1, 0, 1, 2);
 
     miscLayout->addWidget(miscGrp, 3, 0);

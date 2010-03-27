@@ -144,6 +144,8 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     status->setAutoFillBackground(statusBackground);
     status->setLineWidth(1);    // a nice 3D touch :-)
     status->setText("");          // needed for initialization code!
+    if(!group.readEntry("Show Statusbar", true))
+        status->hide();
     status->enableDrops(true);
     int sheight = QFontMetrics(status->font()).height() + 4;
     status->setMaximumHeight(sheight);
@@ -208,20 +210,18 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     ADD_WIDGET(clientArea);
 
     // totals bar
-    totals = new KrSqueezedTextLabel(this);
-    totals->setFont(group.readEntry("Filelist Font", *_FilelistFont));
+    totalsBar = new QFrame(this);
+    totalsBar->setAutoFillBackground(statusBackground);
+    totalsBar->setBackgroundRole(QPalette::Window);
+    totalsBar->setLineWidth(1);    // a nice 3D touch :-)
     if(statusFrame)
-        totals->setFrameStyle(QFrame::Box | QFrame::Raised);
-    totals->setAutoFillBackground(statusBackground);
-    totals->setBackgroundRole(QPalette::Window);
-    totals->setLineWidth(1);    // a nice 3D touch :-)
-    totals->setMaximumHeight(sheight);
-    totals->enableDrops(true);
-    totals->setWhatsThis(i18n("The totals bar shows how many files exist, "
-                              "how many selected and the bytes math"));
-    connect(totals, SIGNAL(clicked()), this, SLOT(slotFocusOnMe()));
-    connect(totals, SIGNAL(dropped(QDropEvent *)), this, SLOT(handleDropOnTotals(QDropEvent *)));
-    ADD_WIDGET(totals);
+        totalsBar->setFrameStyle(QFrame::Box | QFrame::Raised);
+    if(!group.readEntry("Show Totalsbar", true))
+        totalsBar->hide();
+    QHBoxLayout *totalsLayout = new QHBoxLayout(totalsBar);
+    totalsLayout->setContentsMargins(0, 0, 0, 0);
+    totalsLayout->setSpacing(0);
+    ADD_WIDGET(totalsBar);
 
     // progress indicator for the preview job
     previewProgress = new QProgressBar(this);
@@ -232,7 +232,6 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     // a cancel button for the inplace refresh mechanism
     inlineRefreshCancelButton = new QToolButton(this);
     inlineRefreshCancelButton->hide();
-//     inlineRefreshCancelButton->setFixedSize(22, 20);
     inlineRefreshCancelButton->setIcon(krLoader->loadIcon("dialog-cancel", KIconLoader::Toolbar, 16));
     connect(inlineRefreshCancelButton, SIGNAL(clicked()), this, SLOT(inlineRefreshCancel()));
     ADD_WIDGET(inlineRefreshCancelButton);
@@ -289,24 +288,46 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
 
     setPanelToolbar();
 
+    // create a splitter to hold the view and the popup
+    splt = new PercentalSplitter(clientArea);
+    splt->setChildrenCollapsible(true);
+    splt->setOrientation(Qt::Vertical);
+    clientLayout->addWidget(splt);
+
     // quicksearch
     quickSearch = new KrQuickSearch(clientArea);
     quickSearch->setFont(group.readEntry("Filelist Font", *_FilelistFont));
     quickSearch->setMaximumHeight(sheight);
     quickSearch->hide();
+    if(group.readEntry("Quicksearch Position", "bottom") == "top")
+        clientLayout->insertWidget(0, quickSearch);
+    else
+        clientLayout->insertWidget(-1, quickSearch);
 
-    // create a splitter to hold the view and the popup
-    splt = new PercentalSplitter(clientArea);
-    splt->setChildrenCollapsible(true);
-    splt->setOrientation(Qt::Vertical);
+    // totals label
+    totals = new KrSqueezedTextLabel(totalsBar);
+    totalsLayout->addWidget(totals);
+    totals->setFont(group.readEntry("Filelist Font", *_FilelistFont));
+    totals->setAutoFillBackground(false);
+    totals->setBackgroundRole(QPalette::Window);
+    totals->enableDrops(true);
+    totals->setWhatsThis(i18n("The totals bar shows how many files exist, "
+                              "how many selected and the bytes math"));
+    connect(totals, SIGNAL(clicked()), this, SLOT(slotFocusOnMe()));
+    connect(totals, SIGNAL(dropped(QDropEvent *)), this, SLOT(handleDropOnTotals(QDropEvent *)));
 
-    if(group.readEntry("Quicksearch Position", "bottom") == "top") {
-        clientLayout->addWidget(quickSearch);
-        clientLayout->addWidget(splt);
-    } else {
-        clientLayout->addWidget(splt);
-        clientLayout->addWidget(quickSearch);
-    }
+    // free space label
+    freeSpace = new KrSqueezedTextLabel(totalsBar);
+    totalsLayout->addWidget(freeSpace);
+    freeSpace->setFont(group.readEntry("Filelist Font", *_FilelistFont));
+    freeSpace->setAutoFillBackground(false);
+    freeSpace->setBackgroundRole(QPalette::Window);
+    freeSpace->setText("");
+    freeSpace->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    if(!group.readEntry("Show Free Space", false))
+        freeSpace->hide();
+    connect(freeSpace, SIGNAL(clicked()), this, SLOT(slotFocusOnMe()));
+    connect(freeSpace, SIGNAL(dropped(QDropEvent *)), this, SLOT(handleDropOnTotals(QDropEvent *)));
 
     // view
     createView();
@@ -350,7 +371,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
         h = new QHBoxLayout;
         h->setContentsMargins(0, 0, 0, 0);
         h->setSpacing(0);
-        h->addWidget(totals);
+        h->addWidget(totalsBar);
         h->addWidget(previewProgress);
         h->addWidget(inlineRefreshCancelButton);
         h->addWidget(popupBtn);
@@ -696,7 +717,9 @@ void ListPanel::refreshColors()
     p.setColor(QPalette::WindowText, fg);
     p.setColor(QPalette::Window, bg);
     status->setPalette(p);
+    totalsBar->setPalette(p);
     totals->setPalette(p);
+    freeSpace->setPalette(p);
 
     view->refreshColors();
 }
@@ -853,7 +876,10 @@ void ListPanel::gotStats(const QString &mountPoint, quint64 kBSize,
                          KIO::convertSizeFromKiB(kBAvail),
                          KIO::convertSizeFromKiB(kBSize), perc,
                          mountPoint, fstype);
+
     status->setText(stats);
+
+    freeSpace->setText("    " + i18n("%1 free", KIO::convertSizeFromKiB(kBAvail)));
 }
 
 void ListPanel::handleDropOnTotals(QDropEvent *e)

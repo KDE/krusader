@@ -221,7 +221,9 @@ protected:
     QToolButton *popupBtn;
     PanelPopup *popup;
     KrBookmarkButton *bookmarksButton;
-    KrSqueezedTextLabel *status, *totals;
+    KrSqueezedTextLabel *status, *totals, *freeSpace;
+    QFrame *totalsBar;
+
     QProgressBar *previewProgress;
     DirHistoryButton* historyButton;
     MediaButton *mediaButton;
