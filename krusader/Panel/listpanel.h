@@ -109,7 +109,7 @@ public:
     void getSelectedNames(QStringList* fileNames) {
         view->getSelectedItems(fileNames);
     }
-    void setPanelToolbar();
+    void setButtons();
     bool isLeft() {
         return _left;
     }
@@ -172,6 +172,7 @@ protected:
     virtual bool eventFilter(QObject * watched, QEvent * e);
 
     QColor getColor(KConfigGroup &cg, QString name, const QColor &def, const QColor &kdedef);
+    void showButtonMenu(QToolButton *b);
     void createView();
 
 protected slots:
@@ -211,6 +212,7 @@ protected:
     KIO::Job *inlineRefreshJob;
 
     QPixmap currDragPix;
+    QWidget *clientArea;
     QSplitter *splt;
     KUrlRequester *origin;
     KrQuickSearch *quickSearch;

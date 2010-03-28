@@ -358,25 +358,29 @@ void KgPanel::setupPanelTab()
 void KgPanel::setupPanelToolbarTab()
 {
     QScrollArea *scrollArea = new QScrollArea(tabWidget);
-    QWidget *tab_4 = new QWidget(scrollArea);
+    QWidget *toolbarTab = new QWidget(scrollArea);
     scrollArea->setFrameStyle(QFrame::NoFrame);
-    scrollArea->setWidget(tab_4);
+    scrollArea->setWidget(toolbarTab);
     scrollArea->setWidgetResizable(true);
-    tabWidget->addTab(scrollArea, i18n("Panel Toolbar"));
+    tabWidget->addTab(scrollArea, i18n("Buttons"));
 
-    QBoxLayout * panelToolbarVLayout = new QVBoxLayout(tab_4);
+    QBoxLayout * panelToolbarVLayout = new QVBoxLayout(toolbarTab);
     panelToolbarVLayout->setSpacing(6);
     panelToolbarVLayout->setContentsMargins(11, 11, 11, 11);
 
     KONFIGURATOR_CHECKBOX_PARAM panelToolbarActiveCheckbox[] =
         //   cfg_class    cfg_name                default        text                          restart tooltip
-    {{"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n("Show Panel Toolbar"), true,   i18n("The panel toolbar will be visible.") }
+    {
+        {"Look&Feel",  "Media Button Visible",  true,    i18n("Show Media Button"), true ,  i18n("The media button will be visible.") },
+        {"Look&Feel",  "History Button Visible",  true,    i18n("Show History Button"), true ,  i18n("The history button will be visible.") },
+        {"Look&Feel",  "Bookmarks Button Visible",  true,    i18n("Show Bookmarks Button"), true ,  i18n("The bookmarks button will be visible.") },
+        {"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n("Show Panel Toolbar"), true,   i18n("The panel toolbar will be visible.") },
     };
 
-    panelToolbarActive = createCheckBoxGroup(1, 0, panelToolbarActiveCheckbox, 1, tab_4, PAGE_PANELTOOLBAR);
+    panelToolbarActive = createCheckBoxGroup(1, 0, panelToolbarActiveCheckbox, 4/*count*/, toolbarTab, PAGE_PANELTOOLBAR);
     connect(panelToolbarActive->find("Panel Toolbar visible"), SIGNAL(stateChanged(int)), this, SLOT(slotEnablePanelToolbar()));
 
-    QGroupBox * panelToolbarGrp = createFrame(i18n("Visible Panel Toolbar buttons"), tab_4);
+    QGroupBox * panelToolbarGrp = createFrame(i18n("Visible Panel Toolbar buttons"), toolbarTab);
     QGridLayout * panelToolbarGrid = createGridLayout(panelToolbarGrp);
 
     KONFIGURATOR_CHECKBOX_PARAM panelToolbarCheckboxes[] = {

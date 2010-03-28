@@ -203,7 +203,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     ADD_WIDGET(vfsError);
 
     // client area
-    QWidget *clientArea = new QWidget(this);
+    clientArea = new QWidget(this);
     QVBoxLayout *clientLayout = new QVBoxLayout(clientArea);
     clientLayout->setSpacing(0);
     clientLayout->setContentsMargins(0, 0, 0, 0);
@@ -286,7 +286,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     syncBrowseButton->setAutoRaise(true);
     toolbarLayout->addWidget(syncBrowseButton);
 
-    setPanelToolbar();
+    setButtons();
 
     // create a splitter to hold the view and the popup
     splt = new PercentalSplitter(clientArea);
@@ -529,9 +529,13 @@ QString ListPanel::realPath() const
     return _realPath.path();
 }
 
-void ListPanel::setPanelToolbar()
+void ListPanel::setButtons()
 {
     KConfigGroup group(krConfig, "Look&Feel");
+
+    mediaButton->setVisible(group.readEntry("Media Button Visible", true));
+    historyButton->setVisible(group.readEntry("History Button Visible", true));
+    bookmarksButton->setVisible(group.readEntry("Bookmarks Button Visible", true));
 
     bool panelToolBarVisible = group.readEntry("Panel Toolbar visible", _PanelToolBar);
 
@@ -1309,25 +1313,30 @@ void ListPanel::slotVfsError(QString msg)
     vfsError->show();
 }
 
-void ListPanel::openBookmarks()
+void ListPanel::showButtonMenu(QToolButton *b)
 {
     if(this != ACTIVE_PANEL)
         slotFocusOnMe();
-    bookmarksButton->showMenu();
+
+    if(b->isHidden())
+        b->menu()->exec(mapToGlobal(clientArea->pos()));
+    else
+        b->click();
+}
+
+void ListPanel::openBookmarks()
+{
+    showButtonMenu(bookmarksButton);
 }
 
 void ListPanel::openHistory()
 {
-    if(this != ACTIVE_PANEL)
-        slotFocusOnMe();
-    historyButton->showMenu();
+    showButtonMenu(historyButton);
 }
 
 void ListPanel::openMedia()
 {
-    if(this != ACTIVE_PANEL)
-        slotFocusOnMe();
-    mediaButton->showMenu();
+    showButtonMenu(mediaButton);
 }
 
 void ListPanel::rightclickMenu()
