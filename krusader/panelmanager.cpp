@@ -38,9 +38,6 @@
 
 #define HIDE_ON_SINGLE_TAB  false
 
-#define SHOW    { _newTab->show(); _tabbar->show(); _closeTab->show(); }
-#define HIDE    { _newTab->hide(); _tabbar->hide(); _closeTab->hide(); }
-
 #define _self   (*_selfPtr)
 #define _other  (*_otherPtr)
 
@@ -79,17 +76,41 @@ PanelManager::PanelManager(QWidget *parent, bool left) :
     connect(_tabbar, SIGNAL(closeCurrentTab()), this, SLOT(slotCloseTab()));
     connect(_tabbar, SIGNAL(newTab(const KUrl&)), this, SLOT(slotNewTab(const KUrl&)));
 
-    _layout->addWidget(_stack, 0, 0, 1, 3);
-    _layout->addWidget(_newTab, 1, 0);
-    _layout->addWidget(_tabbar, 1, 1);
-    _layout->addWidget(_closeTab, 1, 2);
+    QHBoxLayout *tabbarLayout = new QHBoxLayout;
+    tabbarLayout->setSpacing(0);
+    tabbarLayout->setContentsMargins(0, 0, 0, 0);
+
+    tabbarLayout->addWidget(_newTab);
+    tabbarLayout->addWidget(_tabbar);
+    tabbarLayout->addWidget(_closeTab);
+
+    _layout->addWidget(_stack, 0, 0);
+    _layout->addLayout(tabbarLayout, 1, 0);
 
     updateTabbarPos();
 
     setLayout(_layout);
 
-    if (HIDE_ON_SINGLE_TAB) HIDE
-        else SHOW
+    tabsCountChanged();
+}
+
+void PanelManager::tabsCountChanged()
+{
+    bool showTabbar = true;
+    if (_tabbar->count() <= 1 && HIDE_ON_SINGLE_TAB)
+        showTabbar = false;
+
+    KConfigGroup cfg(krConfig, "Look&Feel");
+    bool showButtons = showTabbar && cfg.readEntry("Show Tab Buttons", true);
+
+    _newTab->setVisible(showButtons);
+    _tabbar->setVisible(showTabbar);
+    _closeTab->setVisible(showButtons);
+
+    // disable close button if only 1 tab is left
+    _closeTab->setEnabled(_tabbar->count() > 1);
+
+    slotRefreshActions();
 }
 
 void PanelManager::slotChangePanel(ListPanel *p)
@@ -115,12 +136,7 @@ ListPanel* PanelManager::createPanel(int type, bool setCurrent)
 
     // now, create the corrosponding tab
     _tabbar->addPanel(p, setCurrent);
-
-    // allow close button if more than 1 tab
-    if (_tabbar->count() > 1) {
-        _closeTab->setEnabled(true);
-        SHOW // needed if we were hidden
-    }
+    tabsCountChanged();
     if (setCurrent)
         _stack->setCurrentWidget(p);
 
@@ -254,11 +270,7 @@ void PanelManager::slotCloseTab()
     _other->otherPanel = _self;
     _self->slotFocusOnMe();
 
-    // disable close button if only 1 tab is left
-    if (_tabbar->count() == 1) {
-        _closeTab->setEnabled(false);
-        if (HIDE_ON_SINGLE_TAB) HIDE
-        }
+    tabsCountChanged();
 }
 
 void PanelManager::slotCloseTab(int index)
@@ -282,10 +294,7 @@ void PanelManager::slotCloseTab(int index)
         deletePanel(oldp);
     }
 
-    if (_tabbar->count() == 1) {
-        _closeTab->setEnabled(false);
-        if (HIDE_ON_SINGLE_TAB) HIDE
-        }
+    tabsCountChanged();
 }
 
 void PanelManager::slotRefreshActions()
@@ -306,10 +315,10 @@ void PanelManager::updateTabbarPos()
 {
     KConfigGroup group(krConfig, "Look&Feel");
     if(group.readEntry("Tab Bar Position", "bottom") == "top") {
-        _layout->addWidget(_stack, 2, 0, 1, 3);
+        _layout->addWidget(_stack, 2, 0);
         _tabbar->setShape(QTabBar::RoundedNorth);
     } else {
-        _layout->addWidget(_stack, 0, 0, 1, 3);
+        _layout->addWidget(_stack, 0, 0);
         _tabbar->setShape(QTabBar::RoundedSouth);
     }
 }
@@ -379,6 +388,8 @@ void PanelManager::slotRecreatePanels()
     updateTabbarPos();
 
     setActiveTab(actTab);
+
+    tabsCountChanged();
 }
 
 void PanelManager::slotNextTab()

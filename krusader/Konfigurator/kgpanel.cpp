@@ -129,8 +129,9 @@ void KgPanel::setupMiscTab()
 
     KONFIGURATOR_CHECKBOX_PARAM tabbar_settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
         {"Look&Feel", "Fullpath Tab Names",   _FullPathTabNames,  i18n("Use full path tab names"), true ,  i18n("Display the full path in the folder tabs. By default only the last part of the path is displayed.") },
+        {"Look&Feel", "Show Tab Buttons",   true,  i18n("Show new/close tab buttons"), true ,  i18n("Show the new/close tab buttons") },
     };
-    KonfiguratorCheckBoxGroup *cbs = createCheckBoxGroup(2, 0, tabbar_settings, 1 /*count*/, miscGrp, PAGE_MISC);
+    KonfiguratorCheckBoxGroup *cbs = createCheckBoxGroup(2, 0, tabbar_settings, 2 /*count*/, miscGrp, PAGE_MISC);
     miscGrid->addWidget(cbs, 0, 0);
 
 // -----------------  Tab Bar position ----------------------------------

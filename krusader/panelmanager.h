@@ -101,6 +101,7 @@ protected slots:
 private:
     void deletePanel(ListPanel *p);
     void updateTabbarPos();
+    void tabsCountChanged();
 
     QGridLayout *_layout;
     QHBoxLayout *_barLayout;
