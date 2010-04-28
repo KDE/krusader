@@ -123,11 +123,11 @@ KrInterBriefView::KrInterBriefView(QWidget *parent, bool &left, KConfig *cfg, Kr
 
 KrInterBriefView::~KrInterBriefView()
 {
+    setModel(0);
     delete _properties;
     _properties = 0;
     delete _operator;
     _operator = 0;
-    setModel(0);
 //     delete _model;
 //     delete _mouseHandler;
 //     QHashIterator< vfile *, KrInterBriefViewItem *> it(_itemHash);
