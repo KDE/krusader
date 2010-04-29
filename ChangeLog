@@ -1,5 +1,5 @@
-2.2.0-beta1 "Second Gear"
-=========================
+2.2.0-beta1 "DeKade"
+====================
 
     ADDED: option: Panel > General > Tabs > Show new/close tab buttons
     ADDED: options: Panel > Buttons > Show Media/History/Bookmarks Button
@@ -7,7 +7,8 @@
            Show Statusbar, Show Totalsbar, Show Size In Bytes,
            Show free disk space in the Totalsbar
     ADDED: option: Look&Feel > Quicksearch > "Up/Down cancels Quicksearch"
-    ADDED: dbus interface: org.krusader.PanelManager.newTab(QString url) / newTabs(QStringList)
+    ADDED: dbus interface: org.krusader.PanelManager.newTab(QString url) /
+           newTabs(QStringList)
     ADDED: url command-line argument
     ADDED: action "Show View Options Menu"
     ADDED: detailed view context-menu option "Automatically Resize Columns"
@@ -25,8 +26,8 @@
 
   CHANGED: reorganize Konfigurator: "Look & Feel" page becomes "Panel" /
            move several options to new places
-  CHANGED: when open/refresh of a dir fails, don't annoy the user with a message box,
-           but display the error embedded into the panel
+  CHANGED: when open/refresh of a dir fails, don't annoy the user with a message
+           box, but display the error embedded into the panel
   CHANGED: icon size, icons/previews on/off are set seperately per view type
   CHANGED: dim icons in unfocused panel (if dim colors is activated)
   CHANGED: mountman gui: retrieve icons from Solid
@@ -34,23 +35,29 @@
   CHANGED: mountman gui: current selection persists refresh of mountlist,
            mountlist is focused after refresh
   CHANGED: dont't execute a process if the correct working dir cannot be set
-  CHANGED: dont't retrieve working dir of the cmdline from the label which might get truncated
-           - store it in a string instead
+  CHANGED: dont't retrieve working dir of the cmdline from the label which might
+           get truncated - store it in a string instead
 
-    FIXED: brief view: clicking on the space below a column selects the first item of the next column
-    FIXED: if refresh has failed, the origin bar is focused even if the panel is not active
-    FIXED: if the path of an inactive panel changes, the embedded cmdline is set to that path
-    FIXED: useraction commands, or those entered in the embedded cmdline, are sometimes not executed
-           in the correct working dir
-    FIXED: when multiple commands are entered in the embedded cmdline or a useraction,
-           and execution mode is set to terminal, only the first command is executed in a new terminal
-           and the others in the same terminal (if any) as krusader
+    FIXED: brief view: clicking on the space below a column selects the first
+           item of the next column
+    FIXED: if refresh has failed, the origin bar is focused even if the panel is
+           not active
+    FIXED: if the path of an inactive panel changes, the embedded cmdline is set
+           to that path
+    FIXED: useraction commands, or those entered in the embedded cmdline, are
+           sometimes not executed in the correct working dir
+    FIXED: when multiple commands are entered in the embedded cmdline or a
+           useraction, and execution mode is set to terminal, only the first
+           command is executed in a new terminal and the others in the same
+           terminal (if any) as krusader
     FIXED: commands entered via command line are mixed up with history
     FIXED: [ 2790819, 2892768, 2915192 ] Can't resize columns properly
     FIXED: disk usage dialog layout problem
     FIXED: [ 2907607 ] crash while closing
-    FIXED: if a panel is focused by clicking on the header, the colors/actions are not updated
-    FIXED: mountman: unmounting is not possible if currently opened dir is below the mountpoint
+    FIXED: if a panel is focused by clicking on the header, the colors/actions
+           are not updated
+    FIXED: mountman: unmounting is not possible if currently opened dir is below
+           the mountpoint
     FIXED: [ 2860400 ] Drag'n'drop to kmail broken
     FIXED: [ 2904850 ] panels are not repainted
     FIXED: deadlock when trying to display error message after failed mount
