@@ -3,7 +3,7 @@ project(krusader)
 INCLUDE(CPack)
 
 set(VERSION "2.2.0-beta1" )
-set(RELEASE_NAME "Second Gear")
+set(RELEASE_NAME "DeKade")
 
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
