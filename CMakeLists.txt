@@ -20,7 +20,7 @@ add_subdirectory(pics)
 add_subdirectory(doc-extras)
 add_subdirectory(krArc)
 add_subdirectory(iso)
-add_subdirectory(krfiledialog)
+#add_subdirectory(krfiledialog) - not used
 #add_subdirectory(virt) - not used
 
 message(STATUS "${CMAKE_CURRENT_SOURCE_DIR}: skipped subdir $(TARDIR)")
