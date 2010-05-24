@@ -22,5 +22,6 @@ add_subdirectory(krArc)
 add_subdirectory(iso)
 #add_subdirectory(krfiledialog) - not used
 #add_subdirectory(virt) - not used
+#add_subdirectory(tar) - not used
 
 message(STATUS "${CMAKE_CURRENT_SOURCE_DIR}: skipped subdir $(TARDIR)")
