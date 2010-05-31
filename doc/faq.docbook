@@ -870,7 +870,7 @@
             <listitem>
               <para>
                <menuchoice>
-                 <guimenu>KDE Components</guimenu>
+                 <guimenu>Application Appearance and Behavior</guimenu>
                  <guimenuitem>File Associations</guimenuitem>
               </menuchoice>
               </para>
@@ -993,13 +993,12 @@
           &systemsettings; (
           <application>systemsettings</application>): 
             <menuchoice>
-              <guimenu>KDE System Settings</guimenu>
-              <guimenuitem>Sound &amp;
-              Multimedia</guimenuitem>
-              <guimenuitem>System Notifications</guimenuitem>
+              <guimenu>Application Appearance and Behavior</guimenu>
+              <guisubmenu>Application and System Notifications</guisubmenu>
+              <guimenuitem>Manage Notifications</guimenuitem>
             </menuchoice>, 
-          <guilabel>Event Source: "KDE System
-          Notifications"</guilabel> and uncheck sound items you
+          <guilabel>Event Source: "KDE Workspace"
+          </guilabel> and uncheck sound items you
           don't like.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -1287,7 +1286,7 @@
         <screen><prompt>$</prompt> <userinput><command>valgrind</command> <option>--tool=memcheck</option> <replaceable>{foo_path}/krusader</replaceable></userinput></screen>
         
         The valgrind tool will write to stdout, what really happens.
-        If you could send these informations before the crash, it's almost sure, that we may fix or tell you what to do.
+        If you could send these information before the crash, it's almost sure, that we may fix or tell you what to do.
   </para>
   <!-- Empty line to make it more readable -->
   </answer>
