@@ -202,7 +202,7 @@ const KrView::IconSizes KrView::iconSizes;
 
 KrView::KrView(KConfig *cfg, KrMainWindow *mainWindow) : _config(cfg), _mainWindow(mainWindow), _widget(0), _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
         _numSelected(0), _count(0), _numDirs(0), _countSize(0), _selectedSize(0), _properties(0), _focused(false),
-        _previews(0), _fileIconSize(0)
+        _previews(0), _fileIconSize(0), _left(false)
 {
 }
 

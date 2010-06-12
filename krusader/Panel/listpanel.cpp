@@ -440,6 +440,7 @@ ListPanel::~ListPanel()
 {
     delete func;
     delete view;
+    view = 0;
     delete status;
     delete bookmarksButton;
     delete totals;
@@ -474,7 +475,7 @@ void ListPanel::setProperties(int prop)
 
 bool ListPanel::eventFilter(QObject * watched, QEvent * e)
 {
-    if(watched == view->widget()) {
+    if(view && watched == view->widget()) {
         if(e->type() == QEvent::FocusIn) {
             if(this != ACTIVE_PANEL) {
                 slotFocusOnMe();

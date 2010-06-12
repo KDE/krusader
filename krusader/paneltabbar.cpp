@@ -53,6 +53,8 @@ PanelTabBar::PanelTabBar(QWidget *parent): KTabBar(parent), _maxTabLength(0)
     insertAction(krCloseDuplicatedTabs);
     krCloseTab->setEnabled(false); //can't close a single tab
 
+    setMovable(true); // enable drag'n'drop 
+    
     setShape(KTabBar::TriangularSouth);
 }
 

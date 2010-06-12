@@ -187,8 +187,14 @@ void KrViewer::createGUI(KParts::Part* part)
     // and "fix" the menubar
     QList<QAction *> actList = menuBar()->actions();
     foreach(QAction * a, actList) {
-        if (a->data().canConvert<int>() && a->data().toInt() == 70)
-            menuBar()->removeAction(a);
+	// make sure empty submenus do not appear
+	if (a->menu()) {
+	  if (a->menu()->isEmpty())
+	    a->setVisible(false);
+	  else a->setVisible(true);
+	}
+	if (a->data().canConvert<int>() && a->data().toInt() == 70)
+	    menuBar()->removeAction(a);
     }
     viewerMenu->setTitle(i18n("&KrViewer"));
     QAction * act = menuBar() ->addMenu(viewerMenu);

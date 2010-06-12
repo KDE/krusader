@@ -87,6 +87,8 @@ public slots:
     void slotNewTab();
     void slotLockTab();
     void slotNextTab();
+    
+    
     void slotPreviousTab();
     void slotCloseTab();
     void slotCloseTab(int index);
