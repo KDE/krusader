@@ -113,8 +113,9 @@ typedef QList<KServiceOffer> OfferList;
 //      The list panel constructor       //
 /////////////////////////////////////////////////////
 ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
+        KrPanel(left),
         QWidget(parent), panelType(typeIn), colorMask(255), compareMode(false), statsAgent(0),
-        quickSearch(0), cdRootButton(0), cdUpButton(0), popupBtn(0), popup(0), inlineRefreshJob(0), _left(left),
+        quickSearch(0), cdRootButton(0), cdUpButton(0), popupBtn(0), popup(0), inlineRefreshJob(0),
         _locked(false), previewJob(0), vfsError(0)
 {
     gui = this;
@@ -578,7 +579,7 @@ void ListPanel::slotUpdateTotals()
 void ListPanel::slotFocusAndCDOther()
 {
     slotFocusOnMe();
-    func->openUrl(otherPanel->func->files() ->vfs_getOrigin());
+    func->openUrl(otherPanel()->func->files() ->vfs_getOrigin());
 
 }
 
@@ -647,8 +648,8 @@ void ListPanel::compareDirs()
         if (item->name() == "..")
             continue;
 
-        for (otherItem = otherPanel->view->getFirst(); otherItem != 0 && otherItem->name() != item->name() ;
-                otherItem = otherPanel->view->getNext(otherItem));
+        for (otherItem = otherPanel()->view->getFirst(); otherItem != 0 && otherItem->name() != item->name() ;
+                otherItem = otherPanel()->view->getNext(otherItem));
 
         bool isSingle = (otherItem == 0), isDifferent = false, isNewer = false;
 
@@ -659,8 +660,8 @@ void ListPanel::compareDirs()
 
         if (otherItem) {
             if (!func->getVFile(item)->vfile_isDir())
-                isDifferent = ITEM2VFILE(otherPanel, otherItem)->vfile_getSize() != func->getVFile(item)->vfile_getSize();
-            isNewer = func->getVFile(item)->vfile_getTime_t() > ITEM2VFILE(otherPanel, otherItem)->vfile_getTime_t();
+                isDifferent = ITEM2VFILE(otherPanel(), otherItem)->vfile_getSize() != func->getVFile(item)->vfile_getSize();
+            isNewer = func->getVFile(item)->vfile_getTime_t() > ITEM2VFILE(otherPanel(), otherItem)->vfile_getTime_t();
         }
 
         switch (compareMode) {
@@ -737,11 +738,11 @@ void ListPanel::slotFocusOnMe()
 
     emit activePanelChanged(this);
 
-    otherPanel->view->prepareForPassive();
+    otherPanel()->view->prepareForPassive();
     view->prepareForActive();
 
 
-    otherPanel->gui->refreshColors();
+    otherPanel()->gui->refreshColors();
     refreshColors();
 
     func->refreshActions();
@@ -801,8 +802,8 @@ void ListPanel::slotStartUpdate()
     slotGetStats(virtualPath());
     slotUpdate();
     if (compareMode) {
-        otherPanel->view->clear();
-        otherPanel->gui->slotUpdate();
+        otherPanel()->view->clear();
+        otherPanel()->gui->slotUpdate();
     }
     // return cursor to normal arrow
     setCursor(Qt::ArrowCursor);
@@ -912,7 +913,7 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
         widget = this;
     }
 
-    if (e->source() == otherPanel->gui)
+    if (e->source() == otherPanel()->gui)
         dragFromOtherPanel = true;
     if (e->source() == this)
         dragFromThisPanel = true;
@@ -1117,8 +1118,8 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                         newPath = func->files() ->vfs_getOrigin();
                     }
                 }
-                otherPanel->func->openUrl(newPath);
-            } else func->openUrl(otherPanel->func->files() ->vfs_getOrigin());
+                otherPanel()->func->openUrl(newPath);
+            } else func->openUrl(otherPanel()->func->files() ->vfs_getOrigin());
             return ;
         } else
             e->ignore();
@@ -1366,12 +1367,12 @@ void ListPanel::updatePopupPanel(KrViewItem *item)
 {
     // which panel to display on?
     ListPanel *lp = 0;
-    if (popup->isHidden() && otherPanel->gui->popup->isHidden())
+    if (popup->isHidden() && otherPanel()->gui->popup->isHidden())
         return;
     if (!popup->isHidden())
         lp = this;
-    else if (!otherPanel->gui->popup->isHidden())
-        lp = ACTIVE_PANEL->otherPanel->gui;
+    else if (!otherPanel()->gui->popup->isHidden())
+        lp = ACTIVE_PANEL->otherPanel()->gui;
 
     KUrl url;
     if (item->name() != "..") // updir

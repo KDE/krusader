@@ -118,8 +118,6 @@ void PanelManager::slotChangePanel(ListPanel *p)
     if (p == 0)
         return;
     _self = p;
-    _self->otherPanel = _other;
-    _other->otherPanel = _self;
 
 //     _stack->setUpdatesEnabled(false);
     _stack->setCurrentWidget(_self);
@@ -205,8 +203,6 @@ void PanelManager::loadSettings(KConfigGroup *config, const QString& key)
             if(panel->view->fileIconSize() != iconSizes[i])
                 panel->view->setFileIconSize(iconSizes[i]);
             panel->setProperties(props[ i ]);
-            panel->otherPanel = _other;
-            _other->otherPanel = panel;
             panel->func->files()->vfs_enableRefresh(true);
             panel->func->immediateOpenUrl(KUrl(l[ i ]), true);
         }
@@ -238,11 +234,8 @@ void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, int type, int pr
     }
     ListPanel *p = createPanel(type, setCurrent);
     // update left/right pointers
-    p->otherPanel = _other;
-    if (setCurrent) {
+    if (setCurrent)
         _self = p;
-        _other->otherPanel = _self;
-    }
     startPanel(p, url);
     p->setProperties(props);
     p->view->setFileIconSize(iconSize);
@@ -266,8 +259,6 @@ void PanelManager::slotCloseTab()
     deletePanel(oldp);
 
     // setup pointers
-    _self->otherPanel = _other;
-    _other->otherPanel = _self;
     _self->slotFocusOnMe();
 
     tabsCountChanged();
@@ -284,8 +275,6 @@ void PanelManager::slotCloseTab(int index)
             if (newCurrentPanel != 0) {
                 _tabbar->setCurrentIndex(0);
                 _self = newCurrentPanel;
-                _self->otherPanel = _other;
-                _other->otherPanel = _self;
             }
         }
         _tabbar->removeTab(index);
@@ -338,8 +327,6 @@ void PanelManager::setCurrentTab(int panelIndex)
 {
     _tabbar->setCurrentIndex(panelIndex);
     _self = _tabbar->getPanel(panelIndex);
-    _self->otherPanel = _other;
-    _other->otherPanel = _self;
 
     _stack->setCurrentWidget(_self);
 }
@@ -370,15 +357,10 @@ void PanelManager::slotRecreatePanels()
         connect(newPanel, SIGNAL(pathChanged(ListPanel*)), _tabbar, SLOT(updateTab(ListPanel*)));
         connect(newPanel, SIGNAL(pathChanged(ListPanel*)), MAIN_VIEW, SLOT(slotPathChanged(ListPanel*)));
 
-        newPanel->otherPanel = _other;
-        if (_other->otherPanel == oldPanel)
-            _other->otherPanel = newPanel;
         updatedPanel = newPanel;
         newPanel->start(oldPanel->virtualPath(), true);
         if (_self == oldPanel) {
             _self = newPanel;
-            _self->otherPanel = _other;
-            _other->otherPanel = _self;
         }
         deletePanel(oldPanel);
 

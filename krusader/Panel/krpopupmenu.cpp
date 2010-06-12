@@ -384,9 +384,9 @@ void KrPopupMenu::performAction(int id)
         QStringList selectedNames;
         for (KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it)
             selectedNames.append((*it) ->name());
-        if (panel->otherPanel->view->numSelected()) {
+        if (panel->otherPanel()->view->numSelected()) {
             KrViewItemList otherItems;
-            panel->otherPanel->view->getSelectedKrViewItems(&otherItems);
+            panel->otherPanel()->view->getSelectedKrViewItems(&otherItems);
 
             for (KrViewItemList::Iterator it2 = otherItems.begin(); it2 != otherItems.end(); ++it2) {
                 QString name = (*it2) ->name();

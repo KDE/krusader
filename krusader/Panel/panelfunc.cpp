@@ -452,7 +452,7 @@ void ListPanelFunc::moveFiles(bool enqueue)
     if (fileNames.isEmpty())
         return ;  // safety
 
-    KUrl dest = panel->otherPanel->virtualPath();
+    KUrl dest = panel->otherPanel()->virtualPath();
     KUrl virtualBaseURL;
 
     QString destProtocol = dest.protocol();
@@ -495,8 +495,8 @@ void ListPanelFunc::moveFiles(bool enqueue)
         if (!virtualBaseURL.isEmpty()) {
             job = KIOJobWrapper::virtualMove(&fileNames, files(), dest, virtualBaseURL, pmode, true);
             job->connectTo(SIGNAL(result(KJob*)), this, SLOT(refresh()));
-            if (dest.equals(panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash))
-                job->connectTo(SIGNAL(result(KJob*)), panel->otherPanel->func, SLOT(refresh()));
+            if (dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+                job->connectTo(SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
         } else {
             // you can rename only *one* file not a batch,
             // so a batch dest must alwayes be a directory
@@ -515,11 +515,11 @@ void ListPanelFunc::moveFiles(bool enqueue)
         // keep the directory structure for virtual paths
         VirtualCopyJob *vjob = new VirtualCopyJob(&fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Move, true);
         connect(vjob, SIGNAL(result(KJob*)), this, SLOT(refresh()));
-        if (dest.equals(panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash))
-            connect(vjob, SIGNAL(result(KJob*)), panel->otherPanel->func, SLOT(refresh()));
+        if (dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+            connect(vjob, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
     }
     // if we are not moving to the other panel :
-    else if (!dest.equals(panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash)) {
+    else if (!dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash)) {
         // you can rename only *one* file not a batch,
         // so a batch dest must alwayes be a directory
         if (fileNames.count() > 1) dest.adjustPath(KUrl::AddTrailingSlash);
@@ -528,8 +528,8 @@ void ListPanelFunc::moveFiles(bool enqueue)
         // refresh our panel when done
         connect(job, SIGNAL(result(KJob*)), this, SLOT(refresh()));
         // and if needed the other panel as well
-        if (dest.equals(panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash))
-            connect(job, SIGNAL(result(KJob*)), panel->otherPanel->func, SLOT(refresh()));
+        if (dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+            connect(job, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
 
     } else { // let the other panel do the dirty job
         //check if copy is supported
@@ -645,7 +645,7 @@ void ListPanelFunc::copyFiles(bool enqueue)
     if (fileNames.isEmpty())
         return ;  // safety
 
-    KUrl dest = panel->otherPanel->virtualPath();
+    KUrl dest = panel->otherPanel()->virtualPath();
     KUrl virtualBaseURL;
 
     // confirm copy
@@ -676,8 +676,8 @@ void ListPanelFunc::copyFiles(bool enqueue)
         if (!virtualBaseURL.isEmpty()) {
             job = KIOJobWrapper::virtualCopy(&fileNames, files(), dest, virtualBaseURL, pmode, true);
             job->connectTo(SIGNAL(result(KJob*)), this, SLOT(refresh()));
-            if (dest.equals(panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash))
-                job->connectTo(SIGNAL(result(KJob*)), panel->otherPanel->func, SLOT(refresh()));
+            if (dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+                job->connectTo(SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
         } else {
             // you can rename only *one* file not a batch,
             // so a batch dest must alwayes be a directory
@@ -694,11 +694,11 @@ void ListPanelFunc::copyFiles(bool enqueue)
         // keep the directory structure for virtual paths
         VirtualCopyJob *vjob = new VirtualCopyJob(&fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Copy, true);
         connect(vjob, SIGNAL(result(KJob*)), this, SLOT(refresh()));
-        if (dest.equals(panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash))
-            connect(vjob, SIGNAL(result(KJob*)), panel->otherPanel->func, SLOT(refresh()));
+        if (dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+            connect(vjob, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
     }
     // if we are  not copying to the other panel :
-    else if (!dest.equals(panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash)) {
+    else if (!dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash)) {
         // you can rename only *one* file not a batch,
         // so a batch dest must alwayes be a directory
         if (fileNames.count() > 1) dest.adjustPath(KUrl::AddTrailingSlash);
@@ -905,7 +905,7 @@ void ListPanelFunc::pack()
     if (fileNames.count() == 1)
         defaultName = fileNames.first();
     // ask the user for archive name and packer
-    new PackGUI(defaultName, vfs::pathOrUrl(panel->otherPanel->virtualPath(), KUrl::RemoveTrailingSlash), fileNames.count(), fileNames.first());
+    new PackGUI(defaultName, vfs::pathOrUrl(panel->otherPanel()->virtualPath(), KUrl::RemoveTrailingSlash), fileNames.count(), fileNames.first());
     if (PackGUI::type.isEmpty()) {
         return ; // the user canceled
     }
@@ -919,7 +919,7 @@ void ListPanelFunc::pack()
     if (!destDir.endsWith('/'))
         destDir += '/';
 
-    bool packToOtherPanel = (destDir == panel->otherPanel->virtualPath().prettyUrl(KUrl::AddTrailingSlash));
+    bool packToOtherPanel = (destDir == panel->otherPanel()->virtualPath().prettyUrl(KUrl::AddTrailingSlash));
 
     // on remote URL-s first pack into a temp file then copy to its right place
     KUrl destURL = KUrl(destDir + PackGUI::filename + '.' + PackGUI::type);
@@ -959,7 +959,7 @@ void ListPanelFunc::pack()
         job->setAutoErrorHandlingEnabled(true);
 
         if (packToOtherPanel)
-            job->connectTo(SIGNAL(result(KJob*)), panel->otherPanel->func, SLOT(refresh()));
+            job->connectTo(SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
 
         QueueManager::currentQueue()->enqueue(job);
     } else {
@@ -969,7 +969,7 @@ void ListPanelFunc::pack()
         job->ui()->setAutoErrorHandlingEnabled(true);
 
         if (packToOtherPanel)
-            connect(job, SIGNAL(result(KJob*)), panel->otherPanel->func, SLOT(refresh()));
+            connect(job, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
     }
 }
 
@@ -1002,17 +1002,17 @@ void ListPanelFunc::unpack()
 
     // ask the user for the copy dest
     bool queue = false;
-    KUrl dest = KChooseDir::getDir(s, panel->otherPanel->virtualPath(), panel->virtualPath(), queue);
+    KUrl dest = KChooseDir::getDir(s, panel->otherPanel()->virtualPath(), panel->virtualPath(), queue);
     if (dest.isEmpty()) return ;   // the user canceled
 
-    bool packToOtherPanel = (dest.equals(panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash));
+    bool packToOtherPanel = (dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash));
 
     if (queue) {
         KIOJobWrapper *job = KIOJobWrapper::unpack(files()->vfs_getOrigin(), dest, fileNames, true);
         job->setAutoErrorHandlingEnabled(true);
 
         if (packToOtherPanel)
-            job->connectTo(SIGNAL(result(KJob*)), panel->otherPanel->func, SLOT(refresh()));
+            job->connectTo(SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
 
         QueueManager::currentQueue()->enqueue(job);
     } else {
@@ -1022,7 +1022,7 @@ void ListPanelFunc::unpack()
         job->ui()->setAutoErrorHandlingEnabled(true);
 
         if (packToOtherPanel)
-            connect(job, SIGNAL(result(KJob*)), panel->otherPanel->func, SLOT(refresh()));
+            connect(job, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
     }
 }
 
@@ -1282,7 +1282,7 @@ void ListPanelFunc::pasteFromClipboard()
 
 ListPanelFunc* ListPanelFunc::otherFunc()
 {
-    return panel->otherPanel->func;
+    return panel->otherPanel()->func;
 }
 
 

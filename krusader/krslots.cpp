@@ -181,10 +181,10 @@ void KRslots::compareContent()
         // next try: are in the current panel exacty 2 files selected?
         name1 = ACTIVE_PANEL->func->files()->vfs_getFile((*lstActive)[0]);
         name2 = ACTIVE_PANEL->func->files()->vfs_getFile((*lstActive)[1]);
-    } else if (ACTIVE_PANEL->otherPanel->func->files()->vfs_search(ACTIVE_VIEW->getCurrentItem())) {
+    } else if (ACTIVE_PANEL->otherPanel()->func->files()->vfs_search(ACTIVE_VIEW->getCurrentItem())) {
         // next try: is in the other panel a file with the same name?
         name1 = ACTIVE_PANEL->func->files()->vfs_getFile(ACTIVE_VIEW->getCurrentItem());
-        name2 = ACTIVE_PANEL->otherPanel->func->files()->vfs_getFile(ACTIVE_VIEW->getCurrentItem());
+        name2 = ACTIVE_PANEL->otherPanel()->func->files()->vfs_getFile(ACTIVE_VIEW->getCurrentItem());
     } else  {
         // if we got here, then we can't be sure what file to diff
         KMessageBox::detailedError(0, i18n("Don't know which files to compare."), "<qt>" + i18n("To compare two files by content, you can either:<ul><li>Select one file in the left panel, and one in the right panel.</li><li>Select exactly two files in the active panel.</li><li>Make sure there is a file in the other panel, with the same name as the current file in the active panel.</li></ul>") + "</qt>");
@@ -871,18 +871,18 @@ void KRslots::slotSplit()
         return ;
     }
 
-    KUrl destDir  = ACTIVE_PANEL->otherPanel->func->files()->vfs_getOrigin();
+    KUrl destDir  = ACTIVE_PANEL->otherPanel()->func->files()->vfs_getOrigin();
 
     SplitterGUI splitterGUI(MAIN_VIEW, fileURL, destDir);
 
     if (splitterGUI.result() == QDialog::Accepted) {
-        bool splitToOtherPanel = (splitterGUI.getDestinationDir().equals(ACTIVE_PANEL->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash));
+        bool splitToOtherPanel = (splitterGUI.getDestinationDir().equals(ACTIVE_PANEL->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash));
 
         Splitter split(MAIN_VIEW, fileURL, splitterGUI.getDestinationDir());
         split.split(splitterGUI.getSplitSize());
 
         if (splitToOtherPanel)
-            ACTIVE_PANEL->otherPanel->func->refresh();
+            ACTIVE_PANEL->otherPanel()->func->refresh();
     }
 }
 
@@ -984,16 +984,16 @@ void KRslots::slotCombine()
 
     // ask the user for the copy dest
     KUrl dest = KChooseDir::getDir(i18n("Combining %1.* to directory:", baseURL.pathOrUrl()),
-                                   ACTIVE_PANEL->otherPanel->virtualPath(), ACTIVE_PANEL->virtualPath());
+                                   ACTIVE_PANEL->otherPanel()->virtualPath(), ACTIVE_PANEL->virtualPath());
     if (dest.isEmpty()) return ;   // the user canceled
 
-    bool combineToOtherPanel = (dest.equals(ACTIVE_PANEL->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash));
+    bool combineToOtherPanel = (dest.equals(ACTIVE_PANEL->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash));
 
     Combiner combine(MAIN_VIEW, baseURL, dest, unixStyle);
     combine.combine();
 
     if (combineToOtherPanel)
-        ACTIVE_PANEL->otherPanel->func->refresh();
+        ACTIVE_PANEL->otherPanel()->func->refresh();
 }
 
 void KRslots::userMenu()
@@ -1022,7 +1022,7 @@ void KRslots::slotSyncBrowse()
 void KRslots::compareDirs()
 {
     ACTIVE_PANEL->gui->compareDirs();
-    ACTIVE_PANEL->otherPanel->gui->compareDirs();
+    ACTIVE_PANEL->otherPanel()->gui->compareDirs();
 }
 
 void KRslots::compareSetup()

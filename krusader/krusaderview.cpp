@@ -87,8 +87,6 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     int defaultType = gl.readEntry("Default Panel Type", KrViewFactory::defaultViewId());
     left = leftMng->createPanel(defaultType);
     right = rightMng->createPanel(defaultType);
-    left->setOther(right);
-    right->setOther(left);
 
     // create the function keys widget
     fnKeys = new KFnKeys(this);
@@ -189,7 +187,7 @@ void KrusaderView::cmdLineUnFocus()   // return focus to the active panel
 // Tab - switch focus
 void KrusaderView::panelSwitch()
 {
-    ACTIVE_PANEL->otherPanel->gui->slotFocusOnMe();
+    ACTIVE_PANEL->otherPanel()->gui->slotFocusOnMe();
 }
 void KrusaderView::slotSetActivePanel(ListPanel *p)
 {

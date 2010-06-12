@@ -41,14 +41,17 @@ class KrView;
 class KrPanel
 {
 public:
-    KrPanel() : gui(0), func(0), view(0), otherPanel(0) {}
+    KrPanel(bool &left) : gui(0), func(0), view(0), _left(left) {}
 
     KUrl virtualPath() const;
+    KrPanel *otherPanel();
 
     ListPanel *gui;
     ListPanelFunc *func;
     KrView *view;
-    KrPanel *otherPanel;
+
+protected:
+    bool &_left;
 };
 
 #endif

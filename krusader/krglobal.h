@@ -83,7 +83,7 @@ public:
 #define ACTIVE_MNG   (MAIN_VIEW->activeManager())
 #define ACTIVE_FUNC  (ACTIVE_PANEL->func)
 #define OTHER_MNG  (MAIN_VIEW->inactiveManager())
-#define OTHER_PANEL (ACTIVE_PANEL->otherPanel)
+#define OTHER_PANEL (ACTIVE_PANEL->otherPanel())
 #define OTHER_FUNC (OTHER_PANEL->func)
 #define LEFT_PANEL (MAIN_VIEW->left)
 #define LEFT_FUNC  (LEFT_PANEL->func)

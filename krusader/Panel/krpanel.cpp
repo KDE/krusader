@@ -31,8 +31,19 @@ A
 
 #include "krpanel.h"
 #include "panelfunc.h"
+#include "../krusaderview.h"
+//HACK
+#include "listpanel.h"
 
 KUrl KrPanel::virtualPath() const
 {
     return func->files()->vfs_getOrigin();
+}
+
+KrPanel *KrPanel::otherPanel()
+{
+    if(_left)
+        return RIGHT_PANEL;
+    else
+        return LEFT_PANEL;
 }

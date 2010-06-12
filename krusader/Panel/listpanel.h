@@ -160,9 +160,6 @@ public slots:
 
 
     ///////////////////////// service functions - called internally ////////////////////////
-    inline void setOther(ListPanel *panel) {
-        otherPanel = panel;
-    }
     void prepareToDelete();                   // internal use only
 
 protected:
@@ -234,7 +231,6 @@ protected:
     KrErrorDisplay *vfsError;
 
 private:
-    bool &_left;
     bool _locked;
     QList<int> popupSizes;
 };
