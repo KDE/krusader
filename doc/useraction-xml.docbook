@@ -106,6 +106,7 @@
       <listitem><para>Active panel changes to <filename>mnt/floppy</filename> (bookmark):
       <programlisting>
 &lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
 &lt;action name="mnt/floppy bookmark" >
   &lt;title>Jump to /mnt/floppy&lt;/title>
   &lt;category>Bookmarks&lt;/category>
@@ -117,13 +118,14 @@
       <listitem><para>Select in the non-active panel, all filenames that are highlighted in the active panel:
       <programlisting>
 &lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
  &lt;action name="asdfasdf" >
   &lt;title>Select in Other Panel&lt;/title>
   &lt;category>Selection&lt;/category>
   &lt;description>Select all filenames that are selected in the active panel, also in the non-active panel&lt;/description>
   &lt;command>%oSelect(&quot;%aList(&quot;selected&quot;, &quot; &quot;, &quot;Yes&quot;)%&quot;)%&lt;/command>
  &lt;/action>
-&lt;/KrusaderUserActions</programlisting>
+&lt;/KrusaderUserActions></programlisting>
       </para></listitem>
 
       <listitem><para>Make a backup of the current file/folder to <filename>foo.bak</filename> into the current directory:
