@@ -259,7 +259,17 @@ void MediaButton::showMenu()
 bool MediaButton::eventFilter(QObject *o, QEvent *e)
 {
     if (o == popupMenu) {
-        if (e->type() == QEvent::MouseButtonPress || e->type() == QEvent::MouseButtonRelease) {
+        if (e->type() == QEvent::ContextMenu) {
+            QContextMenuEvent *cm = (QContextMenuEvent *)e;
+
+            QAction * act = popupMenu->actionAt(cm->pos());
+            QString id;
+            if (act && act->data().canConvert<QString>())
+                id = act->data().toString();
+            if (!id.isEmpty())
+                rightClickMenu(id);
+        }
+        else if (e->type() == QEvent::MouseButtonPress || e->type() == QEvent::MouseButtonRelease) {
             QMouseEvent *m = (QMouseEvent *)e;
             if (m->button() == Qt::RightButton) {
                 if (e->type() == QEvent::MouseButtonPress) {
