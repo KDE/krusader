@@ -82,17 +82,17 @@ KrViewer::KrViewer(QWidget *parent) :
     copyAction = KStandardAction::copy(this, SLOT(copy()), 0);
 
     viewerMenu = new QMenu(this);
-    viewerMenu->addAction(i18n("&Generic viewer"), this, SLOT(viewGeneric()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_G);
-    viewerMenu->addAction(i18n("&Text viewer"), this, SLOT(viewText()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_T);
-    viewerMenu->addAction(i18n("&Hex viewer"), this, SLOT(viewHex()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_H);
+    viewerMenu->addAction(i18n("&Generic Viewer"), this, SLOT(viewGeneric()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_G);
+    viewerMenu->addAction(i18n("&Text Viewer"), this, SLOT(viewText()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_T);
+    viewerMenu->addAction(i18n("&Hex Viewer"), this, SLOT(viewHex()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_H);
     viewerMenu->addAction(i18n("&Lister"), this, SLOT(viewLister()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_L);
     viewerMenu->addSeparator();
-    viewerMenu->addAction(i18n("Text &editor"), this, SLOT(editText()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_E);
+    viewerMenu->addAction(i18n("Text &Editor"), this, SLOT(editText()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_E);
     viewerMenu->addSeparator();
-    viewerMenu->addAction(i18n("&Next tab"), this, SLOT(nextTab()))->setShortcut(Qt::ALT + Qt::Key_Right);
-    viewerMenu->addAction(i18n("&Previous tab"), this, SLOT(prevTab()))->setShortcut(Qt::ALT + Qt::Key_Left);
+    viewerMenu->addAction(i18n("&Next Tab"), this, SLOT(nextTab()))->setShortcut(Qt::ALT + Qt::Key_Right);
+    viewerMenu->addAction(i18n("&Previous Tab"), this, SLOT(prevTab()))->setShortcut(Qt::ALT + Qt::Key_Left);
 
-    detachAction = viewerMenu->addAction(i18n("&Detach tab"), this, SLOT(detachTab()));
+    detachAction = viewerMenu->addAction(i18n("&Detach Tab"), this, SLOT(detachTab()));
     detachAction->setShortcut(Qt::META + Qt::Key_D);
     //no point in detaching only one tab..
     detachAction->setEnabled(false);
@@ -112,7 +112,7 @@ KrViewer::KrViewer(QWidget *parent) :
     if (hasCopy)
         copyAct->setShortcut(copyAction->shortcut().primary());
     viewerMenu->addSeparator();
-    (tabClose = viewerMenu->addAction(i18n("&Close current tab"), this, SLOT(tabCloseRequest())))->setShortcut(Qt::Key_Escape);
+    (tabClose = viewerMenu->addAction(i18n("&Close Current Tab"), this, SLOT(tabCloseRequest())))->setShortcut(Qt::Key_Escape);
     (closeAct = viewerMenu->addAction(i18n("&Quit"), this, SLOT(close())))->setShortcut(Qt::CTRL + Qt::Key_Q);
 
     tabBar.setHoverCloseButton(true);
@@ -324,7 +324,7 @@ void KrViewer::edit(KUrl url, Mode mode, int new_window, QWidget * parent)
         else
             proc << edit.split(' ') << url.prettyUrl();
         if (!proc.startDetached())
-            KMessageBox::sorry(krMainWindow, i18n("Can't open ") + "\"" + edit + "\"");
+            KMessageBox::sorry(krMainWindow, i18n("Can not open \"%1\"", edit));
         return ;
     }
 
@@ -343,16 +343,16 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName , KPar
     if (!part) return;
 
     KUrl url = pvb->url();
-    setWindowTitle(msg + ": " + url.prettyUrl());
+    setWindowTitle(i18nc("filestate: filename", "%1: %2", msg, url.prettyUrl()));
 
     QIcon icon = QIcon(krLoader->loadIcon(iconName, KIconLoader::Small));
 
     manager.addPart(part, this);
     if (isValidPart(part))
         manager.setActivePart(part);
-    tabBar.addTab(pvb, icon, url.fileName() + '(' + msg + ')');
+    tabBar.addTab(pvb, icon, i18nc("filename (filestate)", "%1 (%2)", url.fileName(), msg));
     tabBar.setCurrentIndex(tabBar.indexOf(pvb));
-    tabBar.setTabToolTip(tabBar.indexOf(pvb), msg + ": " + url.prettyUrl());
+    tabBar.setTabToolTip(tabBar.indexOf(pvb), i18nc("filestate: filename", "%1: %2", msg, url.prettyUrl()));
 
     updateActions(pvb);
 
@@ -374,8 +374,8 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName , KPar
 void KrViewer::tabURLChanged(PanelViewerBase *pvb, const KUrl & url)
 {
     QString msg = pvb->isEditor() ? i18n("Editing") : i18n("Viewing");
-    tabBar.setTabText(tabBar.indexOf(pvb), url.fileName() + '(' + msg + ')');
-    tabBar.setTabToolTip(tabBar.indexOf(pvb), msg + ": " + url.prettyUrl());
+    tabBar.setTabText(tabBar.indexOf(pvb), i18nc("filename (filestate)", "%1 (%2)", url.fileName(), msg));
+    tabBar.setTabToolTip(tabBar.indexOf(pvb), i18nc("filestate: filename", "%1: %2", msg, url.prettyUrl()));
 }
 
 void KrViewer::tabChanged(QWidget* w)
@@ -694,7 +694,7 @@ bool KrViewer::editGeneric(QString mimetype, KUrl _url)
     }
 
     if (!kedit_part) {
-        KMessageBox::error(this, i18n("Sorry, can't find internal editor"));
+        KMessageBox::error(this, i18n("Sorry, can not find internal editor"));
         return false;
     }
 
@@ -768,7 +768,7 @@ void KrViewer::viewHex()
         // files that are not local must first be downloaded
         if (!url.isLocalFile()) {
             if (!KIO::NetAccess::download(url, file)) {
-                KMessageBox::sorry(this, i18n("KrViewer is unable to download: ") + url.url());
+                KMessageBox::sorry(this, i18n("KrViewer is unable to download: %1", url.url()));
                 return ;
             }
         } else file = url.path();
