@@ -272,7 +272,7 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
     if (group.readEntry("Test Before Unpack", _TestBeforeUnpack)) {
         // test first - or be sorry later...
         if (type != "-rpm" && type != "-deb" && !test(archive, type, password, observer, 0)) {
-            observer->error(i18n("Failed to unpack") + " \"" + archive + "\" !");
+            observer->error(i18n("Failed to unpack \"%1\"!", archive));
             return false;
         }
     }

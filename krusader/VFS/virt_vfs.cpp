@@ -94,7 +94,7 @@ void virt_vfs::vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode /*mode*
 {
     if (path == "/") {
         if (!quietMode)
-            KMessageBox::error(parentWindow, i18n("You can't copy files directly to the 'virt:/' directory.\nYou can create a sub directory and copy your files into it."), i18n("Error"));
+            KMessageBox::error(parentWindow, i18n("You cannot copy files directly to the 'virt:/' directory.\nYou can create a sub directory and copy your files into it."), i18n("Error"));
         return ;
     }
 

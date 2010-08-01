@@ -464,7 +464,7 @@ bool KRQuery::checkTimer() const
 {
     if (timer.elapsed() >= STATUS_SEND_DELAY) {
         int pcnt = (int)(100.*(double)receivedBytes / (double)totalBytes + .5);
-        QString message = i18n("Searching content of '%1' (%2%)", fileName, pcnt);
+        QString message = i18nc("%1=filename, %2=percentage", "Searching content of '%1' (%2%)", fileName, pcnt);
         timer.start();
         emit((KRQuery *)this)->status(message);
         return true;

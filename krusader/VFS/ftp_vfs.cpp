@@ -167,7 +167,7 @@ bool ftp_vfs::populateVfsList(const KUrl& origin, bool showHidden)
         errorMsg = i18n("Malformed URL:\n%1", origin.url());
     if (!KProtocolManager::supportsListing(origin)) {
         if (origin.protocol() == "ftp" && KProtocolManager::supportsReading(origin))
-            errorMsg = i18n("Krusader doesn't support FTP access via HTTP.\nIf it is not the case, please check and change the Proxy settings in kcontrol.");
+            errorMsg = i18n("Krusader does not support FTP access via HTTP.\nIf it is not the case, please check and change the proxy settings in the System Settings.");
         else
             errorMsg = i18n("Protocol not supported by Krusader:\n%1", origin.url());
     }

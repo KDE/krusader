@@ -96,7 +96,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
     // check that the new origin exists
     if (!QDir(path).exists()) {
         if (!quietMode)
-            emit error(i18n("Directory %1 does not exist!", path));
+            emit error(i18n("The directory %1 does not exist.", path));
         return false;
     }
 
@@ -107,7 +107,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
     DIR* dir = opendir(path.toLocal8Bit());
     if (!dir) {
         if (!quietMode)
-            emit error(i18n("Can't open the %1 directory!", path));
+            emit error(i18n("Cannot open the directory %1.", path));
         return false;
     }
 
@@ -115,7 +115,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
     QString save = QDir::currentPath();
     if (! QDir::setCurrent(path)) {
         if (!quietMode)
-            emit error(i18n("Access denied to %1", path));
+            emit error(i18nc("%1=directory path", "Access to %1 denied", path));
         closedir(dir);
         return false;
     }
@@ -228,7 +228,7 @@ void normal_vfs::vfs_mkdir(const QString& name)
 {
     if (!QDir(vfs_workingDir()).mkdir(name))
         if (!quietMode)
-            KMessageBox::sorry(parentWindow, i18n("Can't create a directory. Check your permissions."));
+            KMessageBox::sorry(parentWindow, i18n("Cannot create a directory. Check your permissions."));
     vfs::vfs_refresh();
 }
 

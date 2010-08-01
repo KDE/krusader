@@ -77,7 +77,7 @@ void PackThread::slotStart()
     if (isExited())
         return;
     if (!result) {
-        sendError(KIO::ERR_INTERNAL, i18n("Error at packing"));
+        sendError(KIO::ERR_INTERNAL, i18n("Error while packing"));
         return;
     }
 
@@ -127,7 +127,7 @@ void TestArchiveThread::slotStart()
 
         // check we that archive is supported
         if (!KRarcHandler::arcSupported(type)) {
-            sendError(KIO::ERR_NO_CONTENT, i18n("%1, unsupported archive type.", arcName));
+            sendError(KIO::ERR_NO_CONTENT, i18nc("%1=archive filename", "%1, unsupported archive type.", arcName));
             return ;
         }
 
@@ -135,7 +135,7 @@ void TestArchiveThread::slotStart()
 
         // test the archive
         if (!KRarcHandler::test(path, type, password, observer(), 0)) {
-            sendError(KIO::ERR_NO_CONTENT, i18n("%1, test failed!", arcName));
+            sendError(KIO::ERR_NO_CONTENT, i18nc("%1=archive filename", "%1, test failed!", arcName));
             return ;
         }
     }
@@ -187,7 +187,7 @@ void UnpackThread::slotStart()
 
         // check we that archive is supported
         if (!KRarcHandler::arcSupported(type)) {
-            sendError(KIO::ERR_NO_CONTENT, i18n("%1, unsupported archive type.", arcName));
+            sendError(KIO::ERR_NO_CONTENT, i18nc("%1=archive filename", "%1, unsupported archive type.", arcName));
             return ;
         }
 
@@ -200,7 +200,7 @@ void UnpackThread::slotStart()
         if (isExited())
             return;
         if (!result) {
-            sendError(KIO::ERR_INTERNAL, i18n("Error at unpacking"));
+            sendError(KIO::ERR_INTERNAL, i18n("Error while unpacking"));
             return;
         }
     }
