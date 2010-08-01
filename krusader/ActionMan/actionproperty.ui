@@ -65,7 +65,7 @@
           </sizepolicy>
          </property>
          <property name="title">
-          <string>Command accepts</string>
+          <string>Command Accepts</string>
          </property>
          <layout class="QGridLayout">
           <item row="0" column="0">
@@ -74,7 +74,7 @@
              <string>Substitute the &lt;b&gt;Placeholders&lt;/b&gt; with local filenames.</string>
             </property>
             <property name="text">
-             <string>Local files only (no URL's)</string>
+             <string>Local files only (no URLs)</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -84,10 +84,10 @@
           <item row="1" column="0">
            <widget class="QRadioButton" name="radioUrl">
             <property name="whatsThis">
-             <string>Substitute the &lt;b&gt;Placeholders&lt;/b&gt; with valid URL's.</string>
+             <string>Substitute the &lt;b&gt;Placeholders&lt;/b&gt; with valid URLs.</string>
             </property>
             <property name="text">
-             <string>URL's (remote and local)</string>
+             <string>URLs (remote and local)</string>
             </property>
            </widget>
           </item>
@@ -399,7 +399,7 @@ Please consult the handbook to learn more about the syntax.</string>
           </sizepolicy>
          </property>
          <property name="title">
-          <string>Execution mode</string>
+          <string>Execution Mode</string>
          </property>
          <layout class="QGridLayout">
           <item row="3" column="0">

@@ -296,7 +296,7 @@ void UserActionPage::slotExport()
     bool success = UserAction::writeToFile(doc, filename);
     if (! success)
         KMessageBox::error(this,
-                           i18n("Can't open %1 for writing!\nNothing exported.", filename),
+                           i18n("Cannot open %1 for writing!\nNothing exported.", filename),
                            i18n("Export failed!")
                           );
 }
