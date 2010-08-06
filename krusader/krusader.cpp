@@ -626,7 +626,7 @@ void Krusader::setupActions() {
 
     NEW_KACTION(actSwapPanels, i18n("S&wap Panels"), 0, Qt::CTRL + Qt::Key_U, SLOTS, SLOT(swapPanels()), "swap panels");
 
-    NEW_KACTION(actEmptyTrash, i18n("Empty trash"), "trash-empty", 0, SLOTS, SLOT(emptyTrash()), "emptytrash");
+    NEW_KACTION(actEmptyTrash, i18n("Empty Trash"), "trash-empty", 0, SLOTS, SLOT(emptyTrash()), "emptytrash");
 
     NEW_KACTION(actTrashBin, i18n("Trash bin"), KrTrashHandler::trashIcon(), 0, SLOTS, SLOT(trashBin()), "trashbin");
 

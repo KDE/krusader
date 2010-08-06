@@ -747,7 +747,7 @@ TagString exp_Copy::expFunc(const KrPanel*, const TagStringList& parameter, cons
     KUrl dest = KUrl(parameter[1].string());
 
     if (!dest.isValid() || find_if(src.constBegin(), src.constEnd(), not1(mem_fun_ref(&KUrl::isValid))) != src.constEnd()) {
-        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: invalid URL's in %_Copy(\"src\", \"dest\")%")));
+        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: invalid URLs in %_Copy(\"src\", \"dest\")%")));
         return QString();
     }
 
@@ -785,7 +785,7 @@ TagString exp_Move::expFunc(const KrPanel*, const TagStringList& parameter, cons
     KUrl dest = KUrl(parameter[1].string());
 
     if (!dest.isValid() || find_if(src.constBegin(), src.constEnd(), not1(mem_fun_ref(&KUrl::isValid))) != src.constEnd()) {
-        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: invalid URL's in %_Move(\"src\", \"dest\")%")));
+        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: invalid URLs in %_Move(\"src\", \"dest\")%")));
         return QString();
     }
 
