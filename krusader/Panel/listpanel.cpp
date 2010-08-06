@@ -178,7 +178,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     origin = new KUrlRequester(qnle, this);
 //     QSize iconSize = QSize(22, 22); // also hardcoded to 22 in the support libs
 //     origin->button() ->setFixedSize(iconSize.width() + 4, iconSize.height() + 4);
-    origin->setWhatsThis(i18n("Use superb KDE file dialog to choose location. "));
+    origin->setWhatsThis(i18n("Use superb KDE file dialog to choose location."));
     origin->lineEdit() ->setUrlDropsEnabled(true);
     origin->lineEdit() ->installEventFilter(this);
     origin->lineEdit()->setWhatsThis(i18n("Name of directory where you are. You can also "
@@ -878,10 +878,12 @@ void ListPanel::gotStats(const QString &mountPoint, quint64 kBSize,
         }
     }
 
-    QString stats = i18n("%1 free out of %2 (%3%) on %4 [ (%5) ]",
-                         KIO::convertSizeFromKiB(kBAvail),
-                         KIO::convertSizeFromKiB(kBSize), perc,
-                         mountPoint, fstype);
+    QString stats = i18nc("%1=free space,%2=total space,%3=percentage of usage, \
+                          %4=mountpoint,%5=filesystem type",
+                          "%1 free out of %2 (%3%) on %4 [(%5)]",
+                          KIO::convertSizeFromKiB(kBAvail),
+                          KIO::convertSizeFromKiB(kBSize), perc,
+                          mountPoint, fstype);
 
     status->setText(stats);
 
@@ -943,7 +945,7 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
 
     if (!isWritable && getuid() != 0) {
         e->ignore();
-        KMessageBox::sorry(0, i18n("Can't drop here, no write permissions."));
+        KMessageBox::sorry(0, i18n("Cannot drop here, no write permissions."));
         return ;
     }
     //////////////////////////////////////////////////////////////////////////////

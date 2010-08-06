@@ -157,10 +157,10 @@ void KrCalcSpaceDialog::showResult()
 {
     if (!m_thread) return;
     QString msg;
-    QString fileName = ((m_thread->getItems().count() == 1) ? (i18n("Name: ") + m_thread->getItems().first() + '\n') : QString(""));
+    QString fileName = ((m_thread->getItems().count() == 1) ? (i18n("Name: %1\n", m_thread->getItems().first())) : QString(""));
     msg = fileName + i18n("Total occupied space: %1", KIO::convertSize(m_thread->getTotalSize()));
     if (m_thread->getTotalSize() >= 1024)
-        msg += " (" + KRpermHandler::parseSize(m_thread->getTotalSize()) + "bytes)";
+        msg += i18n(" (bytes)", KRpermHandler::parseSize(m_thread->getTotalSize()));
     msg += '\n';
     msg += i18np("in %1 directory", "in %1 directories", m_thread->getTotalDirs());
     msg += ' ';
@@ -170,7 +170,7 @@ void KrCalcSpaceDialog::showResult()
 
 void KrCalcSpaceDialog::slotCancel()
 {
-    m_thread->stop(); // notify teh thread to stop
+    m_thread->stop(); // notify the thread to stop
     m_canceled = true; // set the cancel flag
     KDialog::reject(); // close the dialog
 }

@@ -333,7 +333,7 @@ void ListPanelFunc::redirectLink()
     QString file = files() ->vfs_getFile(vf->vfile_getName()).path(KUrl::RemoveTrailingSlash);
     QString currentLink = vf->vfile_getSymDest();
     if (currentLink.isEmpty()) {
-        KMessageBox::sorry(krMainWindow, i18n("The current file is not a link, so I can't redirect it."));
+        KMessageBox::sorry(krMainWindow, i18n("The current file is not a link, so it cannot be redirected."));
         return ;
     }
 
@@ -348,12 +348,12 @@ void ListPanelFunc::redirectLink()
         return ;
     // delete the current link
     if (unlink(file.toLocal8Bit()) == -1) {
-        KMessageBox::sorry(krMainWindow, i18n("Can't remove old link: ") + file);
+        KMessageBox::sorry(krMainWindow, i18n("Cannot remove old link: %1", file));
         return ;
     }
     // try to create a new symlink
     if (symlink(newLink.toLocal8Bit(), file.toLocal8Bit()) == -1) {
-        KMessageBox:: /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */sorry(krMainWindow, i18n("Failed to create a new link: ") + file);
+        KMessageBox:: /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */sorry(krMainWindow, i18n("Failed to create a new link: %1", file));
         return ;
     }
 }
@@ -370,7 +370,7 @@ void ListPanelFunc::krlink(bool sym)
     // ask the new link name..
     bool ok = false;
     QString linkName =
-        KInputDialog::getText(i18n("New link"), i18n("Create a new link to: ") + name, name, &ok, krMainWindow);
+        KInputDialog::getText(i18n("New Link"), i18n("Create a new link to: %1", name), name, &ok, krMainWindow);
 
     // if the user canceled - quit
     if (!ok || linkName == name)
@@ -390,12 +390,12 @@ void ListPanelFunc::krlink(bool sym)
 
     if (sym) {
         if (symlink(name.toLocal8Bit(), linkName.toLocal8Bit()) == -1)
-            KMessageBox::sorry(krMainWindow, i18n("Failed to create a new symlink: ") + linkName +
-                               i18n(" To: ") + name);
+            KMessageBox::sorry(krMainWindow, i18n("Failed to create a new symlink '%1' to: '%2'",
+                               linkName, name));
     } else {
         if (link(name.toLocal8Bit(), linkName.toLocal8Bit()) == -1)
-            KMessageBox::sorry(krMainWindow, i18n("Failed to create a new link: ") + linkName +
-                               i18n(" To: ") + name);
+            KMessageBox::sorry(krMainWindow, i18n("Failed to create a new link '%1' to '%2'",
+                               linkName, name));
     }
 }
 
@@ -430,7 +430,7 @@ void ListPanelFunc::editFile()
         return ;
 
     if (files() ->vfs_search(name) ->vfile_isDir()) {
-        KMessageBox::sorry(krMainWindow, i18n("You can't edit a directory"));
+        KMessageBox::sorry(krMainWindow, i18n("You cannot edit a directory"));
         return ;
     }
 
@@ -534,7 +534,7 @@ void ListPanelFunc::moveFiles(bool enqueue)
     } else { // let the other panel do the dirty job
         //check if copy is supported
         if (!otherFunc() ->files() ->vfs_isWritable()) {
-            KMessageBox::sorry(krMainWindow, i18n("You can't move files to this file system"));
+            KMessageBox::sorry(krMainWindow, i18n("You cannot move files to this file system"));
             return ;
         }
         // finally..
@@ -712,7 +712,7 @@ void ListPanelFunc::copyFiles(bool enqueue)
     } else {
         //check if copy is supported
         if (!otherFunc() ->files() ->vfs_isWritable()) {
-            KMessageBox::sorry(krMainWindow, i18n("You can't copy files to this file system"));
+            KMessageBox::sorry(krMainWindow, i18n("You cannot copy files to this file system"));
             return ;
         }
         // finally..

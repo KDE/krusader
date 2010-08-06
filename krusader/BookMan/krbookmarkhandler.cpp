@@ -206,7 +206,7 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
     QString url, name, icon;
     // verify tag
     if (e.tagName() != "bookmark") {
-        *errorMsg = e.tagName() + i18n(" instead of ") + "bookmark";
+        *errorMsg = i18n("%1 instead of ", e.tagName()) + "bookmark";
         return false;
     }
     // verify href

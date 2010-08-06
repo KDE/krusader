@@ -434,13 +434,18 @@ QString KrView::statistics()
     QString tmp;
     KConfigGroup grp(_config, "Look&Feel");
     if(grp.readEntry("Show Size In Bytes", true)) {
-        tmp = i18n("%1 out of %2, %3 (%4) out of %5 (%6)",
+        tmp = i18nc("%1=number of selected items,%2=total number of items, \
+                    %3=filesize of selected items,%4=filesize in Bytes, \
+                    %5=filesize of all items in directory,%6=filesize in Bytes",
+                    "%1 out of %2, %3 (%4) out of %5 (%6)",
                     _numSelected, _count, KIO::convertSize(_selectedSize),
                     KRpermHandler::parseSize(_selectedSize),
                     KIO::convertSize(_countSize),
                     KRpermHandler::parseSize(_countSize));
     } else {
-        tmp = i18n("%1 out of %2, %3 out of %4",
+        tmp = i18nc("%1=number of selected items,%2=total number of items, \
+                    %3=filesize of selected items,%4=filesize of all items in directory",
+                    "%1 out of %2, %3 out of %4",
                     _numSelected, _count, KIO::convertSize(_selectedSize),
                     KIO::convertSize(_countSize));
     }
@@ -630,7 +635,7 @@ void KrView::renameCurrentItem()
     if (fileName == "..") return ;
 
     bool ok = false;
-    newName = KInputDialog::getText(i18n("Rename"), i18n("Rename ") + fileName + i18n(" to:"),
+    newName = KInputDialog::getText(i18n("Rename"), i18n("Rename %1 to:", fileName),
                                     fileName, &ok, _mainWindow->widget());
     // if the user canceled - quit
     if (!ok || newName == fileName)

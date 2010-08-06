@@ -393,19 +393,19 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left) : QWidget(parent),
     QToolButton *qselectBtn = new QToolButton(quickPanel);
     qselectBtn->setIcon(krLoader->loadIcon("kr_selectall", KIconLoader::Toolbar, 16));
     qselectBtn->setFixedSize(20, 20);
-    qselectBtn->setToolTip(i18n("apply the selection"));
+    qselectBtn->setToolTip(i18n("Apply the selection"));
     connect(qselectBtn, SIGNAL(clicked()), this, SLOT(quickSelect()));
 
     QToolButton *qstoreBtn = new QToolButton(quickPanel);
     qstoreBtn->setIcon(krLoader->loadIcon("document-save", KIconLoader::Toolbar, 16));
     qstoreBtn->setFixedSize(20, 20);
-    qstoreBtn->setToolTip(i18n("store the current selection"));
+    qstoreBtn->setToolTip(i18n("Store the current selection"));
     connect(qstoreBtn, SIGNAL(clicked()), this, SLOT(quickSelectStore()));
 
     QToolButton *qsettingsBtn = new QToolButton(quickPanel);
     qsettingsBtn->setIcon(krLoader->loadIcon("configure", KIconLoader::Toolbar, 16));
     qsettingsBtn->setFixedSize(20, 20);
-    qsettingsBtn->setToolTip(i18n("select group dialog"));
+    qsettingsBtn->setToolTip(i18n("Select group dialog"));
     connect(qsettingsBtn, SIGNAL(clicked()), krSelect, SLOT(trigger()));
 
     qlayout->addWidget(selectLabel, 0, 0);
@@ -562,11 +562,11 @@ void PanelPopup::update(KUrl url)
     switch (currentPage()) {
     case Preview:
         viewer->showPreview(url);
-        dataLine->setText(i18n("Preview: ") + url.fileName());
+        dataLine->setText(i18n("Preview: %1", url.fileName()));
         break;
     case View:
         panelviewer->openUrl(url);
-        dataLine->setText(i18n("View: ") + url.fileName());
+        dataLine->setText(i18n("View: %1", url.fileName()));
         break;
     case DskUsage: {
         if (url.fileName() == "..")
@@ -574,7 +574,7 @@ void PanelPopup::update(KUrl url)
         KMimeType::Ptr mt = KMimeType::findByUrl(url.url());
         if (!mt || mt->name() != "inode/directory")
             url = url.upUrl();
-        dataLine->setText(i18n("Disk Usage: ") + url.fileName());
+        dataLine->setText(i18n("Disk Usage: %1", url.fileName()));
         diskusage->openUrl(url);
     }
     break;

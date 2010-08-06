@@ -237,7 +237,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : KMenu(parent), pa
     // --------- empty trash
     if (trashOnly) {
         addAction(i18n("Restore"))->setData(QVariant(RESTORE_TRASHED_FILE_ID));
-        addAction(i18n("Empty trash"))->setData(QVariant(EMPTY_TRASH_ID));
+        addAction(i18n("Empty Trash"))->setData(QVariant(EMPTY_TRASH_ID));
     }
 
     // --------- synchronize
