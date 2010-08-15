@@ -41,6 +41,10 @@ public:
         _ascending = asc;
         _vfile = vf;
         _index = origNdx;
+        _name = vf->vfile_getName();
+
+        if(_prop->sortMode & KrViewProperties::IgnoreCase)
+            _name = _name.toLower();
 
         switch (_col) {
         case KrVfsModel::Extension: {
@@ -58,7 +62,7 @@ public:
                             break;
                         }
                     }
-                    _ext = vfName.mid(loc);
+                    _ext = _name.mid(loc);
                 } else
                     _ext = "";
             }
@@ -123,6 +127,9 @@ public:
     inline bool isAscending() {
         return _ascending;
     }
+    inline QString name() {
+        return _name;
+    }
     inline QString extension() {
         return _ext;
     }
@@ -142,6 +149,7 @@ private:
     bool _isdummy;
     vfile * _vfile;
     bool _ascending;
+    QString _name;
     QString _ext;
     int _index;
     QString _data;
@@ -525,11 +533,6 @@ bool compareTexts(QString aS1, QString aS2, const KrViewProperties * _viewProper
         }
     }
 
-    if (_viewProperties->sortMode & KrViewProperties::IgnoreCase) {
-        aS1 = aS1.toLower();
-        aS2 = aS2.toLower();
-    }
-
     switch (_viewProperties->sortMethod) {
     case KrViewProperties::Alphabetical:
         return compareTextsAlphabetical(aS1, aS2, _viewProperties, false);
@@ -569,18 +572,18 @@ bool itemLessThan(SortProps *sp, SortProps *sp2)
 
     switch (sp->column()) {
     case KrVfsModel::Name:
-        return compareTexts(file1->vfile_getName(), file2->vfile_getName(), sp->properties(), sp->isAscending(), true);
+        return compareTexts(sp->name(), sp2->name(), sp->properties(), sp->isAscending(), true);
     case KrVfsModel::Extension:
         if (sp->extension() == sp2->extension())
-            return compareTexts(file1->vfile_getName(), file2->vfile_getName(), sp->properties(), sp->isAscending(), true);
+            return compareTexts(sp->name(), sp2->name(), sp->properties(), sp->isAscending(), true);
         return compareTexts(sp->extension(), sp2->extension(), sp->properties(), sp->isAscending(), true);
     case KrVfsModel::Size:
         if (file1->vfile_getSize() == file2->vfile_getSize())
-            return compareTexts(file1->vfile_getName(), file2->vfile_getName(), sp->properties(), sp->isAscending(), true);
+            return compareTexts(sp->name(), sp2->name(), sp->properties(), sp->isAscending(), true);
         return file1->vfile_getSize() < file2->vfile_getSize();
     case KrVfsModel::DateTime:
         if (file1->vfile_getTime_t() == file2->vfile_getTime_t())
-            return compareTexts(file1->vfile_getName(), file2->vfile_getName(), sp->properties(), sp->isAscending(), true);
+            return compareTexts(sp->name(), sp2->name(), sp->properties(), sp->isAscending(), true);
         return file1->vfile_getTime_t() < file2->vfile_getTime_t();
     case KrVfsModel::Mime:
     case KrVfsModel::Permissions:
@@ -588,10 +591,10 @@ bool itemLessThan(SortProps *sp, SortProps *sp2)
     case KrVfsModel::Owner:
     case KrVfsModel::Group:
         if (sp->data() == sp2->data())
-            return compareTexts(file1->vfile_getName(), file2->vfile_getName(), sp->properties(), sp->isAscending(), true);
+            return compareTexts(sp->name(), sp2->name(), sp->properties(), sp->isAscending(), true);
         return compareTexts(sp->data(), sp2->data(), sp->properties(), sp->isAscending(), true);
     }
-    return file1->vfile_getName() < file2->vfile_getName();
+    return sp->name() < sp2->name();
 }
 
 bool itemGreaterThan(SortProps *sp, SortProps *sp2)
