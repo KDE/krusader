@@ -433,8 +433,9 @@ bool compareTextsAlphabetical(QString& aS1, QString& aS2, const KrViewProperties
     int lPositionS1 = 0;
     int lPositionS2 = 0;
     // sometimes, localeAwareCompare is not case sensitive. in that case, we need to fallback to a simple string compare (KDE bug #40131)
-    bool lUseLocaleAware = (_viewProperties->sortMode & KrViewProperties::IgnoreCase)
-                           || _viewProperties->localeAwareCompareIsCaseSensitive;
+    bool lUseLocaleAware = ((_viewProperties->sortMode & KrViewProperties::IgnoreCase)
+                || _viewProperties->localeAwareCompareIsCaseSensitive)
+            && (_viewProperties->sortMode & KrViewProperties::LocaleAwareSort);
     int j = 0;
     QChar lchar1;
     QChar lchar2;
