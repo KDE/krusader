@@ -74,7 +74,7 @@ public:
 
     enum SortSpec { Name = 0x1, Ext = 0x2, Size = 0x4, Type = 0x8, Modified = 0x10, Permissions = 0x20,
                     KrPermissions = 0x40, Owner = 0x80, Group = 0x100, Descending = 0x200,
-                    DirsFirst = 0x400, IgnoreCase = 0x800, AlwaysSortDirsByName = 0x1000
+                    DirsFirst = 0x400, IgnoreCase = 0x800, AlwaysSortDirsByName = 0x1000, LocaleAwareSort = 0x2000
                   };
     enum SortMethod { Alphabetical = 0x1, AlphabeticalNumbers = 0x2,
                       CharacterCode = 0x4, CharacterCodeNumbers = 0x8, Krusader = 0x10

@@ -248,6 +248,9 @@ void KrView::initProperties()
     _properties->sortMethod = static_cast<KrViewProperties::SortMethod>(
                                   grpSvr.readEntry("Sort method", (int) _DefaultSortMethod));
     _properties->humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
+    if (grpSvr.readEntry("Locale Aware Sort", true))
+        _properties->sortMode = static_cast<KrViewProperties::SortSpec>(_properties->sortMode |
+                                KrViewProperties::LocaleAwareSort);
     _properties->localeAwareCompareIsCaseSensitive = QString("a").localeAwareCompare("B") > 0;     // see KDE bug #40131
     QStringList defaultAtomicExtensions;
     defaultAtomicExtensions += ".tar.gz";
