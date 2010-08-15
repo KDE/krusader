@@ -619,7 +619,7 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
         sorting[ i ] = new SortProps(_vfiles[ i ], column, properties(), _vfiles[ i ] == _dummyVfile, order == Qt::AscendingOrder, i);
 
     LessThan compare = (order == Qt::AscendingOrder ? &itemLessThan : &itemGreaterThan);
-    qSort(sorting.begin(), sorting.end(), compare);
+    qStableSort(sorting.begin(), sorting.end(), compare);
 
     _vfiles.clear();
     _vfileNdx.clear();
