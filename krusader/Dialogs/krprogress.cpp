@@ -184,10 +184,8 @@ void KrProgress::showTotals()
 
 void KrProgress::slotPercent(KIO::Job*, unsigned long percent)
 {
-    QString tmp(i18np("%1% of %2 ", percent, KIO::convertSize(m_iTotalSize)));
+    QString tmp(i18np("%1% of %2 (Reading)", percent, KIO::convertSize(m_iTotalSize)));
     m_pProgressBar->setValue(percent);
-    tmp.append(i18n(" (Reading)"));
-
     setWindowTitle(tmp);
 }
 
@@ -204,7 +202,7 @@ void KrProgress::slotProcessedSize(KIO::Job*, KIO::filesize_t bytes)
     m_iProcessedSize = bytes;
 
     QString tmp;
-    tmp = i18n("%1 of %2 complete").arg(KIO::convertSize(bytes)).arg(KIO::convertSize(m_iTotalSize));
+    tmp = i18n("%1 of %2 complete", KIO::convertSize(bytes), (KIO::convertSize(m_iTotalSize)));
     sizeLabel->setText(tmp);
 }
 
@@ -242,7 +240,7 @@ void KrProgress::slotSpeed(KIO::Job*, unsigned long bytes_per_second)
     } else {
         unsigned int seconds = KIO::calculateRemainingSeconds(m_iTotalSize, m_iProcessedSize, bytes_per_second);
         QString remaining = KIO::convertSeconds(seconds);
-        speedLabel->setText(i18n("%1/s ( %2 remaining )").arg(KIO::convertSize(bytes_per_second)).arg(remaining));
+        speedLabel->setText(i18n("%1/s (%2 remaining)", KIO::convertSize(bytes_per_second), remaining));
     }
 }
 

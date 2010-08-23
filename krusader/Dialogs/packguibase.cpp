@@ -297,7 +297,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     hbox_6->setContentsMargins(0, 0, 0, 0);
 
     advancedButton = new QPushButton(this);
-    advancedButton->setText(i18n("&Advanced") + " >>");
+    advancedButton->setText(i18n("&Advanced >>"));
     hbox_6->addWidget(advancedButton);
 
     QSpacerItem* spacer_2 = new QSpacerItem(140, 20, QSizePolicy::Expanding, QSizePolicy::Fixed);

@@ -127,7 +127,7 @@ void KRFSDisplay::paintEvent(QPaintEvent *)
 
         if (mounted) {    // incase the filesystem is already mounted
             // second, the capacity
-            paint.drawText(leftMargin + 10, topMargin + 70, i18n("Capacity: ") + KIO::convertSizeFromKiB(totalSpace));
+            paint.drawText(leftMargin + 10, topMargin + 70, i18n("Capacity: %1", KIO::convertSizeFromKiB(totalSpace)));
             // third, the 2 boxes (used, free)
             QPen systemPen = paint.pen();
             paint.setPen(Qt::black);
@@ -137,8 +137,8 @@ void KRFSDisplay::paintEvent(QPaintEvent *)
             paint.fillRect(leftMargin + 11, topMargin + 111, 8, 8, QBrush(Qt::white));
             // now, the text for the boxes
             paint.setPen(systemPen);
-            paint.drawText(leftMargin + 25, topMargin + 100, i18n("Used: ") + KIO::convertSizeFromKiB(totalSpace - freeSpace));
-            paint.drawText(leftMargin + 25, topMargin + 120, i18n("Free: ") + KIO::convertSizeFromKiB(freeSpace));
+            paint.drawText(leftMargin + 25, topMargin + 100, i18n("Used: %1", KIO::convertSizeFromKiB(totalSpace - freeSpace)));
+            paint.drawText(leftMargin + 25, topMargin + 120, i18n("Free: %1", KIO::convertSizeFromKiB(freeSpace)));
             // first, create the empty pie
             // bottom...
             paint.setPen(Qt::black);

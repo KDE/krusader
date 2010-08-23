@@ -42,17 +42,17 @@ KrKeyDialog::KrKeyDialog(QWidget * parent) : KShortcutsDialog(KShortcutsEditor::
     addCollection(krApp->actionCollection());
 
     // HACK This fetches the layout of the buttonbox from KDialog, although it is not accessable with KDialog's API
-    // None the less it's quite save to use since this implementation hasn't changed since KDE-3.3 (I haven't looked at earlier
+    // None the less it's quite safe to use since this implementation hasn't changed since KDE-3.3 (I haven't looked at earlier
     // versions since we don't support them) and now all work is done in KDE-4.
     QWidget* buttonBox = static_cast<QWidget*>(button(KDialog::Ok)->parent());
     QBoxLayout* buttonBoxLayout = static_cast<QBoxLayout*>(buttonBox->layout());
 
-    KPushButton* importButton = new KPushButton(i18n("Import shortcuts"), buttonBox);
+    KPushButton* importButton = new KPushButton(i18n("Import Shortcuts"), buttonBox);
     importButton->setWhatsThis(i18n("Load a keybinding profile, e.g., total_commander.keymap"));
     buttonBoxLayout->insertWidget(1, importButton);   // the defaults-button should stay on position 0
     connect(importButton, SIGNAL(clicked()), SLOT(slotImportShortcuts()));
 
-    KPushButton* exportButton = new KPushButton(i18n("Export shortcuts"), buttonBox);
+    KPushButton* exportButton = new KPushButton(i18n("Export Shortcuts"), buttonBox);
     exportButton->setWhatsThis(i18n("Save current keybindings in a keymap file."));
     buttonBoxLayout->insertWidget(2, exportButton);
     connect(exportButton, SIGNAL(clicked()), SLOT(slotExportShortcuts()));
@@ -80,9 +80,9 @@ void KrKeyDialog::slotImportShortcuts()
     if (! conf.hasGroup("Shortcuts")) {
         int answer = KMessageBox::warningContinueCancel(this,  //parent
                      i18n("This file does not seem to be a valid keymap.\n"
-                          "It may be a keymap using a legacy format. The import can't be undone!"), //text
+                          "It may be a keymap using a legacy format. The import cannot be undone!"), //text
                      i18n("Try to import legacy format?"),  //caption
-                     KGuiItem(i18n("Import anyway")),   //Label for the continue-button
+                     KGuiItem(i18n("Import Anyway")),   //Label for the continue-button
                      KStandardGuiItem::cancel(),
                      "Confirm Import Legacy Shortcuts" //dontAskAgainName (for the config-file)
                                                        );
@@ -97,7 +97,7 @@ void KrKeyDialog::slotImportShortcuts()
 void KrKeyDialog::importLegacyShortcuts(const QString& file)
 {
     /*
-     * This is basicaly Shie's code. It's copied from Kronfigurator's loog&feel page and adapted to the dialog
+     * This is basicaly Shie's code. It's copied from Kronfigurator's look&feel page and adapted to the dialog
      */
     // check if there's an info file with the keymap
     QFile info(file + ".info");
@@ -132,7 +132,7 @@ void KrKeyDialog::importLegacyShortcuts(const QString& file)
 
     KMessageBox::information(this,  // parent
                              i18n("Please restart this dialog in order to see the changes"), // text
-                             i18n("Legacy import completed") // caption
+                             i18n("Legacy Import Completed") // caption
                             );
 }
 
@@ -155,7 +155,7 @@ void KrKeyDialog::slotExportShortcuts()
         // shortcuts
         f.close();
     else {
-        KMessageBox::error(this, i18n("<qt>Can't open <b>%1</b> for writing!</qt>", filename));
+        KMessageBox::error(this, i18n("<qt>Cannot open <b>%1</b> for writing!</qt>", filename));
         return;
     }
 

@@ -243,10 +243,10 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
     QList<CS_Tool *> tools = getTools(containFolders);
 
     if (tools.count() == 0) { // nothing was suggested?!
-        QString error = i18n("<qt>Can't calculate checksum since no supported tool was found. "
+        QString error = i18n("<qt>Cannot calculate checksum since no supported tool was found. "
                              "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>");
         if (containFolders)
-            error += i18n("<qt><b>Note</b>: you've selected directories, and probably have no recursive checksum tool installed."
+            error += i18n("<qt><b>Note</b>: you have selected directories, and probably have no recursive checksum tool installed."
                           " Krusader currently supports <i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>");
         KMessageBox::error(0, error);
         return;
@@ -265,8 +265,13 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
     QLabel *p = new QLabel(widget);
     p->setPixmap(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
     hlayout->addWidget(p);
-    QLabel *l1 = new QLabel(i18n("About to calculate checksum for the following files") +
-                            (containFolders ? i18n(" and directories:") : ":"), widget);
+    QLabel *l1 = new QLabel(widget);
+    
+    if (containFolders)
+        l1->setText(i18n("About to calculate checksum for the following files and directories:"));
+    else 
+        l1->setText(i18n("About to calculate checksum for the following files:"));
+
     hlayout->addWidget(l1);
     layout->addLayout(hlayout, row, 0, 1, 2, Qt::AlignLeft);
     ++row;
@@ -363,10 +368,10 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
     QList<CS_Tool *> tools = getTools(containFolders);
 
     if (tools.count() == 0) { // nothing was suggested?!
-        QString error = i18n("<qt>Can't verify checksum since no supported tool was found. "
+        QString error = i18n("<qt>Cannot verify checksum since no supported tool was found. "
                              "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>");
         if (containFolders)
-            error += i18n("<qt><b>Note</b>: you've selected directories, and probably have no recursive checksum tool installed."
+            error += i18n("<qt><b>Note</b>: you have selected directories, and probably have no recursive checksum tool installed."
                           " Krusader currently supports <i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>");
         KMessageBox::error(0, error);
         return;
@@ -385,8 +390,13 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
     QLabel *p = new QLabel(widget);
     p->setPixmap(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
     hlayout->addWidget(p);
-    QLabel *l1 = new QLabel(i18n("About to verify checksum for the following files") +
-                            (containFolders ? i18n(" and folders:") : ":"), widget);
+    QLabel *l1 = new QLabel(widget);
+
+    if (containFolders)
+        l1->setText(i18n("About to verify checksum for the following files and folders:"));
+    else
+        l1->setText(i18n("About to verify checksum for the following files:"));
+
     hlayout->addWidget(l1);
     layout->addLayout(hlayout, row, 0, 1, 2, Qt::AlignLeft);
     ++row;
@@ -428,7 +438,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
             break;
         }
     if (!mytool) {
-        KMessageBox::error(0, i18n("<qt>Krusader can't find a checksum tool that handles %1 on your system. Please check the <b>Dependencies</b> page in Krusader's settings.</qt>", extension));
+        KMessageBox::error(0, i18n("<qt>Krusader cannot find a checksum tool that handles %1 on your system. Please check the <b>Dependencies</b> page in Krusader's settings.</qt>", extension));
         return;
     }
 
