@@ -83,7 +83,7 @@ bool KrLayoutFactory::parseFile()
         return true;
 
     QString fileName = KStandardDirs::locate("data", XMLFILE);
-    if(fileName == QString()) {
+    if(fileName.isEmpty()) {
         krOut << "can't locate" << XMLFILE << endl;
         return false;
     }

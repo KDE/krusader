@@ -273,7 +273,7 @@ public:
 };
 
 /**
-  * This is setting marks in the string where he is later splitted up for each {all, selected, files, dirs}
+  * This is setting marks in the string where he is later split up for each {all, selected, files, dirs}
   */
 class exp_Each : public exp_simpleplaceholder
 {

@@ -69,7 +69,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kdeversion.h>
 
 #include "krusaderversion.h"
-#include "krglobal.h"
 #include "kicons.h"
 #include "VFS/krpermhandler.h"
 #include "GUI/krusaderstatus.h"

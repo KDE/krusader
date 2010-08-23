@@ -92,7 +92,6 @@
 #include "Panel/krviewitem.h"
 #include "Queue/queuedialog.h"
 #include "krtrashhandler.h"
-#include "krusaderview.h"
 #include "BookMan/krbookmarkhandler.h"
 #include "BookMan/krbookmarkbutton.h"
 
@@ -976,7 +975,7 @@ void KRslots::slotCombine()
             } while (false);
 
             if (error) {
-                KMessageBox::error(0, i18n("Not a splitted file %1!", url.pathOrUrl()));
+                KMessageBox::error(0, i18n("%1 is no split file!", url.pathOrUrl()));
                 return;
             }
         }

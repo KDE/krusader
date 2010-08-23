@@ -141,7 +141,7 @@ void Splitter::splitReceivePercent(KJob *, unsigned long percent)
 
 void Splitter::splitCreateWriteJob()
 {
-    QString index("%1");                     /* making the splitted filename */
+    QString index("%1");                     /* making the split filename */
     index = index.arg(++fileNumber).rightJustified(3, '0');
     QString outFileName = fileName.fileName() + '.' + index;
 
