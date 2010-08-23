@@ -1384,7 +1384,7 @@ void Synchronizer::synchronizeWithKGet()
 
                 p << KrServices::fullPathName("kget") << source << destURL.path();
                 if (!p.startDetached())
-                    KMessageBox::error(parentWidget, i18n("Error executing %1!").arg(KrServices::fullPathName("kget")));
+                    KMessageBox::error(parentWidget, i18n("Error executing %1!", KrServices::fullPathName("kget")));
             }
 
             progDlg->progressBar()->setValue(++processedCount);

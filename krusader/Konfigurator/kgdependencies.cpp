@@ -166,7 +166,7 @@ void KgDependencies::slotApply(QObject *obj, QString cls, QString name)
                                           urlRequester->url().pathOrUrl()));
         else
             KMessageBox::error(this, i18n("The %1 path is incorrect, %2 used instead.",
-                                          urlRequester->url().pathOrUrl()).arg(usedPath));
+                                          urlRequester->url().pathOrUrl(), usedPath));
         urlRequester->setUrl(KUrl(usedPath));
     }
 }
