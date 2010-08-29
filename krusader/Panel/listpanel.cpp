@@ -331,13 +331,6 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     // view
     createView();
 
-    // popup panel
-    popup = new PanelPopup(splt, left);
-    connect(popup, SIGNAL(selection(const KUrl&)), SLOTS, SLOT(refresh(const KUrl&)));
-    connect(popup, SIGNAL(hideMe()), this, SLOT(togglePanelPopup()));
-    popup->hide();
-
-
     //filter = ALL;
 
     // create the layout
@@ -497,6 +490,12 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
 
 void ListPanel::togglePanelPopup()
 {
+    if(!popup) {
+        popup = new PanelPopup(splt, left);
+        connect(popup, SIGNAL(selection(const KUrl&)), SLOTS, SLOT(refresh(const KUrl&)));
+        connect(popup, SIGNAL(hideMe()), this, SLOT(togglePanelPopup()));
+    }
+
     if (popup->isHidden()) {
         if (popupSizes.count() > 0) {
             dynamic_cast<QSplitter*>(popup->parent())->setSizes(popupSizes);
@@ -1360,15 +1359,17 @@ void ListPanel::editLocation()
 
 void ListPanel::saveSettings(KConfigGroup &cfg)
 {
-    popup->saveSizes();
-    cfg.writeEntry(_left ? "Left Panel Popup" : "Right Panel Popup", popup->currentPage());
+    if(popup) {
+        popup->saveSizes();
+        cfg.writeEntry(_left ? "Left Panel Popup" : "Right Panel Popup", popup->currentPage());
+    }
 }
 
 void ListPanel::updatePopupPanel(KrViewItem *item)
 {
     // which panel to display on?
     ListPanel *lp = 0;
-    if (popup->isHidden() && otherPanel()->gui->popup->isHidden())
+    if (!popup || (popup->isHidden() && otherPanel()->gui->popup->isHidden()))
         return;
     if (!popup->isHidden())
         lp = this;
