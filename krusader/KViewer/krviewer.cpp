@@ -32,7 +32,6 @@
 #include <kparts/componentfactory.h>
 #include <kmessagebox.h>
 #include <klibloader.h>
-#include <ktrader.h>
 #include <kio/netaccess.h>
 #include <kio/jobclasses.h>
 #include <kio/job.h>

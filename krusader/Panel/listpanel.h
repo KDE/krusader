@@ -33,7 +33,6 @@
 #ifndef LISTPANEL_H
 #define LISTPANEL_H
 
-#include <kpropsdlg.h>
 #include <kfileitem.h>
 #include <kurl.h>
 #include <qwidget.h>

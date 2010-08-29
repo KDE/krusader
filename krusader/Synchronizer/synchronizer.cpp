@@ -47,7 +47,6 @@
 #include <kio/job.h>
 #include <kio/deletejob.h>
 #include <kio/jobuidelegate.h>
-#include <kio/renamedlg.h>
 #include <kio/skipdialog.h>
 #include <unistd.h>
 #include <QtCore/QEventLoop>

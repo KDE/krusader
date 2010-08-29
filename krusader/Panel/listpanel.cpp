@@ -58,7 +58,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <klocale.h>
 #include <kmimetype.h>
 #include <kurl.h>
-#include <ktrader.h>
 #include <kiconloader.h>
 #include <kcursor.h>
 #include <kstandarddirs.h>
@@ -106,7 +105,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krerrordisplay.h"
 #include "krlayoutfactory.h"
 
-typedef QList<KServiceOffer> OfferList;
 
 
 /////////////////////////////////////////////////////
