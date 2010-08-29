@@ -1235,7 +1235,8 @@ void ListPanel::slotJobStarted(KIO::Job* job)
     cdUpButton->setEnabled(false);
     cdOtherButton->setEnabled(false);
     popupBtn->setEnabled(false);
-    popup->setEnabled(false);
+    if(popup)
+        popup->setEnabled(false);
     bookmarksButton->setEnabled(false);
     historyButton->setEnabled(false);
     syncBrowseButton->setEnabled(false);
@@ -1288,7 +1289,8 @@ void ListPanel::inlineRefreshListResult(KJob*)
     cdUpButton->setEnabled(true);
     cdOtherButton->setEnabled(true);
     popupBtn->setEnabled(true);
-    popup->setEnabled(true);
+    if(popup)
+        popup->setEnabled(true);
     bookmarksButton->setEnabled(true);
     historyButton->setEnabled(true);
     syncBrowseButton->setEnabled(true);
@@ -1369,12 +1371,12 @@ void ListPanel::updatePopupPanel(KrViewItem *item)
 {
     // which panel to display on?
     ListPanel *lp = 0;
-    if (!popup || (popup->isHidden() && otherPanel()->gui->popup->isHidden()))
-        return;
-    if (!popup->isHidden())
+    if(popup && !popup->isHidden())
         lp = this;
-    else if (!otherPanel()->gui->popup->isHidden())
-        lp = ACTIVE_PANEL->otherPanel()->gui;
+    else if(otherPanel()->gui->popup && !otherPanel()->gui->popup->isHidden())
+        lp = otherPanel()->gui;
+    else
+        return;
 
     KUrl url;
     if (item->name() != "..") // updir
