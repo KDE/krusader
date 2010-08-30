@@ -91,6 +91,21 @@ void PanelViewerBase::slotStatResult(KJob* job)
     busy = false;
 }
 
+KParts::ReadOnlyPart* PanelViewerBase::getPart(QString mimetype)
+{
+    KParts::ReadOnlyPart* part = 0;
+
+    if (mimes->find(mimetype) == mimes->end()) {
+        part = createPart(mimetype);
+        if(part)
+            mimes->insert(mimetype, part);
+    } else
+        part = (*mimes)[mimetype];
+
+    return part;
+}
+
+
 /* ----==={ PanelViewer }===---- */
 
 PanelViewer::PanelViewer(QWidget *parent) :
@@ -100,6 +115,42 @@ PanelViewer::PanelViewer(QWidget *parent) :
 
 PanelViewer::~PanelViewer()
 {
+}
+
+
+KParts::ReadOnlyPart* PanelViewer::getListerPart(bool hexMode)
+{
+    KParts::ReadOnlyPart* part = 0;
+
+    if (mimes->find(QLatin1String("krusader_lister")) == mimes->end()) {
+        part = new Lister(this);
+        mimes->insert(QLatin1String("krusader_lister"), part);
+    } else
+        part = (*mimes)[ QLatin1String("krusader_lister")];
+
+    if (part) {
+        Lister *lister = dynamic_cast<Lister *>((KParts::ReadOnlyPart *)part);
+        if (lister)
+            lister->setHexMode(hexMode);
+    }
+    return part;
+}
+
+KParts::ReadOnlyPart* PanelViewer::getHexPart()
+{
+    KParts::ReadOnlyPart* part = 0;
+
+    if (mimes->find(QLatin1String("libkhexedit2part")) == mimes->end()) {
+        KPluginFactory* factory = KLibLoader::self()->factory("libkhexedit2part");
+        if (factory) {
+            // Create the part
+            part = (KParts::ReadOnlyPart *) factory->create(this, "KParts::ReadOnlyPart");
+            mimes->insert(QLatin1String("libkhexedit2part"), part);
+        }
+    } else
+        part = (*mimes)[ QLatin1String("libkhexedit2part")];
+
+    return part;
 }
 
 KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
@@ -112,66 +163,46 @@ KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
     KConfigGroup group(krConfig, "General");
     KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit);
     limit *= 0x100000;
-    if (fileSize > limit && mode == KrViewer::Text)
-        mode = KrViewer::Lister;
 
-    if (mode == KrViewer::Generic) {
-        KMimeType::Ptr mt = KMimeType::findByUrl(curl);
-        cmimetype = mt ? mt->name() : QString();
-        if (fileSize > limit && (cmimetype.startsWith(QLatin1String("text/")) ||
-                                 cmimetype.startsWith(QLatin1String("all/"))))
-            mode = KrViewer::Lister;
-        else {
-            // KDE 4 HACK : START
-            // KDE 4 crashes at viewing directories
-            if (cmimetype == "inode/directory")
-                return 0;
-            // KDE 4 HACK : END
-            if (mimes->find(cmimetype) == mimes->end()) {
+    switch(mode) {
+    case KrViewer::Generic:
+        {
+            KMimeType::Ptr mt = KMimeType::findByUrl(curl);
+            cmimetype = mt ? mt->name() : QString();
+
+            if (fileSize > limit && (cmimetype.startsWith(QLatin1String("text/")) ||
+                                    cmimetype.startsWith(QLatin1String("all/"))))
+                cpart = getListerPart();
+            else {
+                // KDE 4 HACK : START
+                // KDE 4 crashes at viewing directories
+                if (cmimetype == "inode/directory")
+                    return 0;
+                // KDE 4 HACK : END
                 cpart = getPart(cmimetype);
-                mimes->insert(cmimetype, cpart);
-            } else
-                cpart = (*mimes)[ cmimetype ];
-        }
-    }
-
-    KTemporaryFile tmpFile;
-
-    if (mode == KrViewer::Lister) {
-        if (mimes->find(QLatin1String("krusader_lister")) == mimes->end()) {
-            cpart = new Lister(this);
-            mimes->insert(QLatin1String("krusader_lister"), cpart);
-        } else {
-            cpart = (*mimes)[ QLatin1String("krusader_lister")];
-            if (cpart) {
-                Lister *lister = dynamic_cast<Lister *>((KParts::ReadOnlyPart *)cpart);
-                if (lister)
-                    lister->setHexMode(false);
             }
         }
-    }
-
-    if (mode == KrViewer::Hex) {
-        if (!cpart) cpart = getHexPart();
-        if (!cpart) {
-            if (mimes->find(QLatin1String("krusader_lister")) == mimes->end()) {
-                Lister *lister = new Lister(this);
-                lister->setHexMode(true);
-                cpart = lister;
-                mimes->insert(QLatin1String("krusader_lister"), cpart);
-            } else {
-                cpart = (*mimes)[ QLatin1String("krusader_lister")];
-                if (cpart) {
-                    Lister *lister = dynamic_cast<Lister *>((KParts::ReadOnlyPart *)cpart);
-                    if (lister)
-                        lister->setHexMode(true);
-                }
-            }
+        if(cpart)
+            break;
+    case KrViewer::Text:
+        if(fileSize > limit)
+            cpart = getListerPart();
+        else {
+            cpart = getPart("text/plain");
+            if(!cpart)
+                cpart = getPart("all/allfiles");
         }
+        break;
+    case KrViewer::Lister:
+    case KrViewer::Hex:
+        if (mode == KrViewer::Hex)
+            cpart = getHexPart();
+        if(!cpart)
+            cpart = getListerPart(mode == KrViewer::Hex);
+        break;
+    default:
+        abort();
     }
-
-    if (!cpart) cpart = getPart("text/plain");
-    if (!cpart) cpart = getPart("all/allfiles");
 
     if (cpart) {
         addWidget(cpart->widget());
@@ -197,9 +228,9 @@ bool PanelViewer::closeUrl()
     return false;
 }
 
-KParts::ReadOnlyPart* PanelViewer::getPart(QString mimetype)
+KParts::ReadOnlyPart* PanelViewer::createPart(QString mimetype)
 {
-    KParts::ReadOnlyPart * part = 0L;
+    KParts::ReadOnlyPart * part = 0;
     KPluginFactory *factory = 0;
     KService::Ptr ptr = KMimeTypeTrader::self()->preferredService(mimetype, "KParts/ReadOnlyPart");
     if (ptr) {
@@ -232,18 +263,6 @@ KParts::ReadOnlyPart* PanelViewer::getPart(QString mimetype)
     return part;
 }
 
-KParts::ReadOnlyPart* PanelViewer::getHexPart()
-{
-    KParts::ReadOnlyPart * part = 0L;
-
-    KPluginFactory * factory = KLibLoader::self() ->factory("libkhexedit2part");
-    if (factory) {
-        // Create the part
-        part = (KParts::ReadOnlyPart *) factory->create(this, "KParts::ReadOnlyPart");
-    }
-
-    return part;
-}
 
 /* ----==={ PanelEditor }===---- */
 
@@ -262,18 +281,32 @@ KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
     closeUrl();
     curl = url;
 
+    KIO::filesize_t fileSize = readFileInfo(curl).size();
+    KConfigGroup group(krConfig, "General");
+    KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit);
+
     if (mode == KrViewer::Generic) {
         KMimeType::Ptr mt = KMimeType::findByUrl(curl);
         cmimetype = mt ? mt->name() : QString();
-        if (mimes->find(cmimetype) == mimes->end()) {
-            cpart = getPart(cmimetype);
-            mimes->insert(cmimetype, cpart);
-        } else
-            cpart = (*mimes)[ cmimetype ];
+
+        cpart = getPart(cmimetype);
     }
 
-    if (!cpart) cpart = getPart("text/plain");
-    if (!cpart) cpart = getPart("all/allfiles");
+    if(fileSize > limit * 0x100000) {
+        if(!cpart || cmimetype.startsWith(QLatin1String("text/")) ||
+                cmimetype.startsWith(QLatin1String("all/"))) {
+            if(KMessageBox::Cancel == KMessageBox::warningContinueCancel(this,
+                  i18n("%1 is bigger than %2 MB" , curl.pathOrUrl(), limit))) {
+                setCurrentWidget(fallback);
+                return 0;
+            }
+        }
+    }
+
+    if (!cpart)
+        cpart = getPart("text/plain");
+    if (!cpart)
+        cpart = getPart("all/allfiles");
 
     if (cpart) {
         addWidget(cpart->widget());
@@ -307,7 +340,7 @@ bool PanelEditor::closeUrl()
     return true;
 }
 
-KParts::ReadWritePart* PanelEditor::getPart(QString mimetype)
+KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
 {
     KParts::ReadWritePart * part = 0L;
     KPluginFactory *factory = 0;

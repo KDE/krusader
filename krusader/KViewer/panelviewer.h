@@ -79,6 +79,10 @@ protected slots:
     void slotStatResult(KJob* job);
 
 protected:
+    virtual KParts::ReadOnlyPart* createPart(QString mimetype) = 0;
+    KParts::ReadOnlyPart* getPart(QString mimetype);
+
+
     QHash<QString, QPointer<KParts::ReadOnlyPart> > *mimes;
     QPointer<KParts::ReadOnlyPart> cpart;
 
@@ -106,8 +110,9 @@ public:
     }
 
 protected:
-    KParts::ReadOnlyPart *getPart(QString mimetype);
-    KParts::ReadOnlyPart*  getHexPart();
+    KParts::ReadOnlyPart* createPart(QString mimetype);
+    KParts::ReadOnlyPart* getHexPart();
+    KParts::ReadOnlyPart* getListerPart(bool hexMode = false);
 };
 
 class PanelEditor: public PanelViewerBase
@@ -129,7 +134,7 @@ public:
     ~PanelEditor();
 
 protected:
-    KParts::ReadWritePart* getPart(QString mimetype);
+    KParts::ReadOnlyPart* createPart(QString mimetype);
 };
 
 #endif
