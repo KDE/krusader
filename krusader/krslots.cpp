@@ -779,14 +779,7 @@ void KRslots::viewDlg()
 // Shift F4
 void KRslots::editDlg()
 {
-    // ask the user for the filename to edit
-    KUrl dest = KChooseDir::getDir(i18n("Enter the filename to edit:"), ACTIVE_PANEL->virtualPath(), ACTIVE_PANEL->virtualPath());
-    if (dest.isEmpty()) return ;   // the user canceled
-
-    KrViewer::edit(dest);
-
-    if (dest.upUrl().equals(ACTIVE_PANEL->virtualPath(), KUrl::CompareWithoutTrailingSlash))
-        refresh();
+    ACTIVE_FUNC->editNewFile();
 }
 
 void KRslots::duplicateTab()

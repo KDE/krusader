@@ -130,8 +130,6 @@ KrViewer::KrViewer(QWidget *parent) :
     if (group.readEntry("Window Maximized",  false)) {
         setWindowState(windowState() | Qt::WindowMaximized);
     }
-
-    show();
 }
 
 KrViewer::~KrViewer()
@@ -328,13 +326,23 @@ void KrViewer::edit(KUrl url, Mode mode, int new_window, QWidget * parent)
     }
 
     KrViewer* viewer = getViewer(new_window);
+    viewer->returnFocusTo = parent;
 
     PanelViewerBase* editWidget = new PanelEditor(&viewer->tabBar);
     KParts::Part* part = editWidget->openUrl(url, mode);
-    viewer->addTab(editWidget, i18n("Editing"), EDIT_ICON, part);
-
-    viewer->returnFocusTo = parent;
-    viewer->returnFocusTab = editWidget;
+    if(part) {
+        viewer->addTab(editWidget, i18n("Editing"), EDIT_ICON, part);
+        viewer->returnFocusTab = editWidget;
+    } else {
+        delete editWidget;
+        if(viewer->tabBar.count() <= 0) {
+            viewer->close();
+            if(!parent)
+                parent = krMainWindow;
+            parent->raise();
+            parent->activateWindow();
+        }
+    }
 }
 
 void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName , KParts::Part* part)
@@ -422,7 +430,6 @@ void KrViewer::tabCloseRequest(QWidget *w)
             krMainWindow->activateWindow();
         }
         this->close();
-        this->deleteLater();
         return;
     } else if (tabBar.count() == 1) {
         //no point in detaching only one tab..

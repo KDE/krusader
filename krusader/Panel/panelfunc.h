@@ -73,6 +73,7 @@ public:
     void properties();
     void terminal();
     void editFile();
+    void editNewFile(); // create a new textfile and edit it
     void view();
     void rename();
     void mkdir();
@@ -96,8 +97,8 @@ public:
     void newFTPconnection();
     ListPanelFunc* otherFunc();
 
-private:
-    KUrl getVirtualBaseURL();
+protected slots:
+    void slotFileCreated(KJob *job); // a file has been created by editNewFile()
 
 protected:
     ListPanel*           panel;     // our ListPanel
@@ -108,7 +109,11 @@ protected:
     KUrl                 delayURL;
     bool                 delayLock;
     QString              nameToMakeCurrent;
+    KUrl                 fileToCreate; // file that's to be created by editNewFile()
     bool                 canGoBack();
+
+private:
+    KUrl getVirtualBaseURL();
 };
 
 #endif

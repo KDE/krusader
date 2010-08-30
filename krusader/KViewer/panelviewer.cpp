@@ -283,21 +283,9 @@ KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
         return 0;
     }
 
-    bool create = true;
-    KFileItem file = readFileInfo(url);
-    if (!file.isNull() && file.isReadable())
-        create = false;
-
-    if (create) {
-        if (static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->saveAs(curl)) {
-            connect(cpart, SIGNAL(destroyed()), this, SLOT(slotCPartDestroyed()));
-            return cpart;
-        }
-    } else {
-        if (cpart->openUrl(curl)) {
-            connect(cpart, SIGNAL(destroyed()), this, SLOT(slotCPartDestroyed()));
-            return cpart;
-        }
+    if (cpart->openUrl(curl)) {
+        connect(cpart, SIGNAL(destroyed()), this, SLOT(slotCPartDestroyed()));
+        return cpart;
     }
     return 0;
 }

@@ -442,6 +442,41 @@ void ListPanelFunc::editFile()
     KrViewer::edit(files() ->vfs_getFile(name));
 }
 
+void ListPanelFunc::editNewFile()
+{
+    if(!fileToCreate.isEmpty())
+        return;
+
+    // ask the user for the filename to edit
+    fileToCreate = KChooseDir::getDir(i18n("Enter the filename to edit:"), panel->virtualPath(), panel->virtualPath());
+    if(fileToCreate.isEmpty())
+        return ;   // the user canceled
+
+    KTemporaryFile *tempFile = new KTemporaryFile;
+    tempFile->open();
+
+    KIO::CopyJob *job = KIO::move(tempFile->fileName(), fileToCreate);
+    job->setUiDelegate(0);
+    connect(job, SIGNAL(result(KJob*)), SLOT(slotFileCreated(KJob*)));
+    connect(job, SIGNAL(result(KJob*)), tempFile, SLOT(deleteLater()));
+}
+
+void ListPanelFunc::slotFileCreated(KJob *job)
+{
+    if(!job->error() || job->error() == KIO::ERR_FILE_ALREADY_EXIST) {
+        KrViewer::edit(fileToCreate);
+
+        if(fileToCreate.upUrl().equals(panel->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+            refresh();
+        else if(fileToCreate.upUrl().equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+            otherFunc()->refresh();
+    }
+    else
+        KMessageBox::sorry(krMainWindow, job->errorString());
+
+    fileToCreate = KUrl();
+}
+
 void ListPanelFunc::moveFiles(bool enqueue)
 {
     PreserveMode pmode = PM_DEFAULT;
