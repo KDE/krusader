@@ -293,10 +293,20 @@ void KrViewer::view(KUrl url, Mode mode,  bool new_window, QWidget * parent)
 
     PanelViewerBase* viewWidget = new PanelViewer(&viewer->tabBar);
     KParts::Part* part = viewWidget->openUrl(url, mode);
-    viewer->addTab(viewWidget, i18n("Viewing"), VIEW_ICON, part);
-
-    viewer->returnFocusTo = parent;
-    viewer->returnFocusTab = viewWidget;
+    if(part) {
+        viewer->addTab(viewWidget, i18n("Viewing"), VIEW_ICON, part);
+        viewer->returnFocusTo = parent;
+        viewer->returnFocusTab = viewWidget;
+    } else {
+        delete viewWidget;
+        if(viewer->tabBar.count() <= 0) {
+            viewer->close();
+            if(!parent)
+                parent = krMainWindow;
+            parent->raise();
+            parent->activateWindow();
+        }
+    }
 }
 
 void KrViewer::edit(KUrl url, QWidget * parent)
