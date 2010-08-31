@@ -204,18 +204,21 @@ KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
         abort();
     }
 
-    if (cpart) {
+    if(cpart) {
         addWidget(cpart->widget());
         setCurrentWidget(cpart->widget());
+
+        KParts::OpenUrlArguments args;
+        args.setReload(true);
+        cpart->setArguments(args);
+        if (cpart->openUrl(curl)) {
+            connect(cpart, SIGNAL(destroyed()), this, SLOT(slotCPartDestroyed()));
+            return cpart;
+        }
     }
-    if (cpart && cpart->openUrl(curl)) {
-        curl = url;
-        connect(cpart, SIGNAL(destroyed()), this, SLOT(slotCPartDestroyed()));
-        return cpart;
-    } else {
-        setCurrentWidget(fallback);
-        return 0;
-    }
+
+    setCurrentWidget(fallback);
+    return 0;
 }
 
 bool PanelViewer::closeUrl()
@@ -311,15 +314,18 @@ KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
     if (cpart) {
         addWidget(cpart->widget());
         setCurrentWidget(cpart->widget());
-    } else {
-        setCurrentWidget(fallback);
-        return 0;
+
+        KParts::OpenUrlArguments args;
+        args.setReload(true);
+        cpart->setArguments(args);
+        if (cpart->openUrl(curl)) {
+            connect(cpart, SIGNAL(destroyed()), this, SLOT(slotCPartDestroyed()));
+            return cpart;
+        }
+
     }
 
-    if (cpart->openUrl(curl)) {
-        connect(cpart, SIGNAL(destroyed()), this, SLOT(slotCPartDestroyed()));
-        return cpart;
-    }
+    setCurrentWidget(fallback);
     return 0;
 }
 
