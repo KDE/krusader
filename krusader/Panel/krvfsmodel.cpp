@@ -177,29 +177,7 @@ void KrVfsModel::setVfs(vfs* v, bool upDir)
 
     vfile *vf = v->vfs_getFirstFile();
     while (vf) {
-        bool add = true;
-        bool isDir = vf->vfile_isDir();
-        if (!isDir || (isDir && (properties()->filter & KrViewProperties::ApplyToDirs))) {
-            switch (properties()->filter) {
-            case KrViewProperties::All :
-                break;
-            case KrViewProperties::Custom :
-                if (!properties()->filterMask.match(vf))
-                    add = false;
-                break;
-            case KrViewProperties::Dirs:
-                if (!isDir)
-                    add = false;
-                break;
-            case KrViewProperties::Files:
-                if (isDir)
-                    add = false;
-                break;
-            default:
-                break;
-            }
-        }
-        if (add)
+        if (!filterItem(vf))
             _vfiles.append(vf);
         vf = v->vfs_getNextFile();
     }
@@ -650,27 +628,9 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
 
 QModelIndex KrVfsModel::addItem(vfile * vf)
 {
-    bool isDir = vf->vfile_isDir();
-    if (!isDir || (isDir && (properties()->filter & KrViewProperties::ApplyToDirs))) {
-        switch (properties()->filter) {
-        case KrViewProperties::All :
-            break;
-        case KrViewProperties::Custom :
-            if (!properties()->filterMask.match(vf))
-                return QModelIndex();
-            break;
-        case KrViewProperties::Dirs:
-            if (!isDir)
-                return QModelIndex();
-            break;
-        case KrViewProperties::Files:
-            if (isDir)
-                return QModelIndex();
-            break;
-        default:
-            break;
-        }
-    }
+    if(filterItem(vf))
+       return QModelIndex();
+
     emit layoutAboutToBeChanged();
 
     QModelIndexList oldPersistentList = persistentIndexList();
@@ -717,49 +677,52 @@ QModelIndex KrVfsModel::addItem(vfile * vf)
 QModelIndex KrVfsModel::removeItem(vfile * vf)
 {
     QModelIndex currIndex = _view->getCurrentIndex();
-    for (int i = 0; i != _vfiles.count(); i++) {
-        if (_vfiles[ i ] == vf) {
-            emit layoutAboutToBeChanged();
-            QModelIndexList oldPersistentList = persistentIndexList();
-            QModelIndexList newPersistentList;
+    int removeIdx = _vfiles.indexOf(vf);
+    if(removeIdx < 0)
+        return currIndex;
 
-            _vfiles.remove(i);
+    emit layoutAboutToBeChanged();
+    QModelIndexList oldPersistentList = persistentIndexList();
+    QModelIndexList newPersistentList;
 
-            if (currIndex.row() == i) {
-                if (_vfiles.count() == 0)
-                    currIndex = QModelIndex();
-                else if (i >= _vfiles.count())
-                    currIndex = index(_vfiles.count() - 1, 0);
-                else
-                    currIndex = index(i, 0);
-            } else if (currIndex.row() > i) {
-                currIndex = index(currIndex.row() - 1, 0);
-            }
+    _vfiles.remove(removeIdx);
 
-            for (int ri = i; ri < _vfiles.count(); ++ri) {
-                _vfileNdx[ _vfiles[ ri ] ] = index(ri, 0);
-                _nameNdx[ _vfiles[ ri ]->vfile_getName()] = index(ri, 0);
-            }
-
-            foreach(const QModelIndex &mndx, oldPersistentList) {
-                int newRow = mndx.row();
-                if (newRow > i)
-                    newRow--;
-                if (newRow != i)
-                    newPersistentList << index(newRow, mndx.column());
-                else
-                    newPersistentList << QModelIndex();
-            }
-            changePersistentIndexList(oldPersistentList, newPersistentList);
-            emit layoutChanged();
-            _view->makeItemVisible(_view->getCurrentKrViewItem());
-            return currIndex;
-        }
+    if (currIndex.row() == removeIdx) {
+        if (_vfiles.count() == 0)
+            currIndex = QModelIndex();
+        else if (removeIdx >= _vfiles.count())
+            currIndex = index(_vfiles.count() - 1, 0);
+        else
+            currIndex = index(removeIdx, 0);
+    } else if (currIndex.row() > removeIdx) {
+        currIndex = index(currIndex.row() - 1, 0);
     }
+
+    _vfileNdx.remove(vf);
+    _nameNdx.remove(vf->vfile_getName());
+    // update model/name index for vfiles following vf
+    for (int i = removeIdx; i < _vfiles.count(); i++) {
+        _vfileNdx[ _vfiles[i] ] = index(i, 0);
+        _nameNdx[ _vfiles[i]->vfile_getName() ] = index(i, 0);
+    }
+
+    foreach(const QModelIndex &mndx, oldPersistentList) {
+        int newRow = mndx.row();
+        if (newRow > removeIdx)
+            newRow--;
+        if (newRow != removeIdx)
+            newPersistentList << index(newRow, mndx.column());
+        else
+            newPersistentList << QModelIndex();
+    }
+    changePersistentIndexList(oldPersistentList, newPersistentList);
+    emit layoutChanged();
+    _view->makeItemVisible(_view->getCurrentKrViewItem());
+
     return currIndex;
 }
 
-void KrVfsModel::updateItem(vfile * vf)
+bool KrVfsModel::filterItem(vfile *vf)
 {
     bool filteredOut = false;
     bool isDir = vf->vfile_isDir();
@@ -783,15 +746,22 @@ void KrVfsModel::updateItem(vfile * vf)
             break;
         }
     }
+    return filteredOut;
+}
 
+void KrVfsModel::updateItem(vfile * vf, bool &filteredOut)
+{
+    filteredOut = filterItem(vf);
     QModelIndex lastIndex = vfileIndex(vf);
+
     if (filteredOut) {
         if (lastIndex.isValid())
             removeItem(vf);
         return;
     }
     if (!lastIndex.isValid()) {
-        addItem(vf);
+        QModelIndex newIdx = addItem(vf);
+        filteredOut = !newIdx.isValid();
         return;
     }
 
@@ -804,8 +774,7 @@ void KrVfsModel::updateItem(vfile * vf)
     }
     if (oldIndex < 0) {
         // internal error
-        sort();
-        return;
+        abort();
     }
     SortProps *updateSort = sorting[ oldIndex ];
     sorting.remove(oldIndex);

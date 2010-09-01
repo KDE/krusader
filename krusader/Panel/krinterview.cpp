@@ -50,6 +50,54 @@ KrInterView::~KrInterView()
     _itemHash.clear();
 }
 
+void KrInterView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
+{
+    vfile* vf1 = (vfile *)i1->getVfile();
+    QModelIndex mi1 = _model->vfileIndex(vf1);
+    vfile* vf2 = (vfile *)i2->getVfile();
+    QModelIndex mi2 = _model->vfileIndex(vf2);
+
+    if (mi1.isValid() && mi2.isValid()) {
+        int r1 = mi1.row();
+        int r2 = mi2.row();
+
+        if (r1 > r2) {
+            int t = r1;
+            r1 = r2;
+            r2 = t;
+        }
+
+        op()->setMassSelectionUpdate(true);
+        for (int row = r1; row <= r2; row++)
+            setSelected(_model->vfileAt(_model->index(row, 0)), select);
+        op()->setMassSelectionUpdate(false);
+
+        redraw();
+
+    } else if (mi1.isValid() && !mi2.isValid())
+        i1->setSelected(select);
+    else if (mi2.isValid() && !mi1.isValid())
+        i2->setSelected(select);
+}
+
+void KrInterView::setSelected(const vfile* vf, bool select)
+{
+    if(!select)
+        _selected.removeOne(vf);
+    else if(_model->dummyVfile() != vf && !_selected.contains(vf))
+        _selected.append(vf);
+}
+
+bool KrInterView::isSelected(const vfile *vf)
+{
+    return _selected.contains(vf);
+}
+
+bool KrInterView::isSelected(const QModelIndex &ndx)
+{
+    return isSelected(_model->vfileAt(ndx));
+}
+
 KrViewItem* KrInterView::findItemByName(const QString &name)
 {
     if (!_model->ready())
@@ -182,6 +230,7 @@ void KrInterView::sort()
 
 void KrInterView::clear()
 {
+    _selected.clear();
     _itemView->clearSelection();
     _model->clear();
     QHashIterator< vfile *, KrInterViewItem *> it(_itemHash);
@@ -211,6 +260,7 @@ bool KrInterView::preDelItem(KrViewItem *item)
 {
     if (item == 0)
         return true;
+    setSelected(item->getVfile(), false);
     QModelIndex ndx = _model->removeItem((vfile *)item->getVfile());
     if (ndx.isValid())
         _itemView->setCurrentIndex(ndx);
@@ -222,7 +272,10 @@ void KrInterView::updateItem(vfile * item)
 {
     if (item == 0)
         return;
-    _model->updateItem(item);
+    bool filteredOut = false;
+    _model->updateItem(item, filteredOut);
+    if(filteredOut)
+        setSelected(item, false);
     op()->emitSelectionChanged();
 }
 

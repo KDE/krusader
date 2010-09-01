@@ -49,7 +49,7 @@ public:
     void setVfs(vfs* v, bool upDir);
     QModelIndex addItem(vfile *);
     QModelIndex removeItem(vfile *);
-    void updateItem(vfile *);
+    void updateItem(vfile *vf, bool &filteredOut);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
@@ -95,6 +95,7 @@ public slots:
 
 protected:
     QString nameWithoutExtension(const vfile * vf, bool checkEnabled = true) const;
+    bool filterItem(vfile *vf);
 
 
     QVector<vfile*>             _vfiles;

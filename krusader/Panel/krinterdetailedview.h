@@ -76,7 +76,7 @@ public:
         return selectionModel()->isSelected(ndx);
     }
 */
-    virtual void selectRegion(KrViewItem *, KrViewItem *, bool);
+//     virtual void selectRegion(KrViewItem *, KrViewItem *, bool);
 //     KrInterDetailedViewItem * getKrInterViewItem(const QModelIndex &);
 
     static KrView* create(QWidget *parent, bool &left, KConfig *cfg, KrMainWindow *mainWindow) {
@@ -107,6 +107,10 @@ protected:
 
     virtual void doRestoreSettings(KConfigGroup &group);
     virtual void doSaveSettings(KConfigGroup &group);
+
+    // Don't do anything, selections are handled by the mouse handler
+    virtual void setSelection(const QRect &rect, QItemSelectionModel::SelectionFlags command) {}
+    virtual void selectAll() {}
 
     virtual void keyPressEvent(QKeyEvent *e);
     virtual void mousePressEvent(QMouseEvent *);

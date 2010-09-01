@@ -495,6 +495,7 @@ void KrView::changeSelection(const KRQuery& filter, bool select, bool includeDir
     updateView();
     if (ensureVisibilityAfterSelect() && temp != 0)
         makeItemVisible(temp);
+    redraw();
 }
 
 void KrView::invertSelection()

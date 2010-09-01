@@ -40,9 +40,7 @@ public:
     virtual QModelIndex getCurrentIndex() {
         return _itemView->currentIndex();
     }
-    virtual bool isSelected(const QModelIndex &ndx) {
-        return _itemView->selectionModel()->isSelected(ndx);
-    }
+    virtual bool isSelected(const QModelIndex &ndx);
     virtual KrViewItem* getFirst();
     virtual KrViewItem* getLast();
     virtual KrViewItem* getNext(KrViewItem *current);
@@ -64,19 +62,33 @@ public:
     virtual void prepareForActive();
     virtual void prepareForPassive();
     virtual void showContextMenu();
+    virtual void selectRegion(KrViewItem *i1, KrViewItem *i2, bool select);
 
 protected:
+    class DummySelectionModel : public QItemSelectionModel
+    {
+    public:
+        DummySelectionModel(QAbstractItemModel *model, QObject *parent) :
+            QItemSelectionModel(model, parent) {}
+        // do nothing - selection is managed by KrInterView
+        virtual void select(const QItemSelection & selection, QItemSelectionModel::SelectionFlags command) {}
+    };
+
     virtual KrViewItem* preAddItem(vfile *vf);
     virtual bool preDelItem(KrViewItem *item);
     virtual void showContextMenu(const QPoint & p) = 0;
 
     KrInterViewItem * getKrInterViewItem(const QModelIndex &);
+    void setSelected(const vfile* vf, bool select);
+    bool isSelected(const vfile *vf);
     void makeCurrentVisible();
+
 
     KrVfsModel *_model;
     QAbstractItemView *_itemView;
     KrMouseHandler *_mouseHandler;
     QHash<vfile *, KrInterViewItem*> _itemHash;
+    QList<const vfile*> _selected;
 };
 
 #endif

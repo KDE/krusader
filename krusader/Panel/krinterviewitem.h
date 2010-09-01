@@ -32,22 +32,22 @@ class KrInterViewItem: public KrViewItem
 public:
     KrInterViewItem(KrInterView *parent, vfile *vf): KrViewItem(vf, parent->properties()) {
         _view = parent;
-        _vfile = vf;
         if (parent->_model->dummyVfile() == vf)
             dummyVfile = true;
     }
 
     bool isSelected() const {
-        const QModelIndex & ndx = _view->_model->vfileIndex(_vfile);
-        return _view->_itemView->selectionModel()->isSelected(ndx);
+        return _view->isSelected(_vf);
     }
     void setSelected(bool s) {
-        const QModelIndex & ndx = _view->_model->vfileIndex(_vfile);
-        _view->_itemView->selectionModel()->select(ndx, (s ? QItemSelectionModel::Select : QItemSelectionModel::Deselect)
-                                        | QItemSelectionModel::Rows);
+        _view->setSelected(_vf, s);
+        if(!_view->op()->isMassSelectionUpdate()) {
+            redraw();
+            _view->op()->emitSelectionChanged();
+        }
     }
     QRect itemRect() const {
-        const QModelIndex & ndx = _view->_model->vfileIndex(_vfile);
+        const QModelIndex & ndx = _view->_model->vfileIndex(_vf);
         return _view->_itemView->visualRect(ndx);
     }
     static void itemHeightChanged() {
@@ -57,7 +57,6 @@ public:
     }
 
 private:
-    vfile *_vfile;
     KrInterView * _view;
 };
 

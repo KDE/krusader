@@ -104,6 +104,9 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, bool &left, KConfig *c
     this->setSortingEnabled(true);
     this->sortByColumn(KrVfsModel::Name, Qt::AscendingOrder);
 //     _model->sort(KrVfsModel::Name, Qt::AscendingOrder);
+
+    setSelectionModel(new DummySelectionModel(_model, this));
+
     header()->installEventFilter(this);
 
     setSelectionMode(QAbstractItemView::NoSelection);
@@ -131,6 +134,7 @@ KrInterDetailedView::~KrInterDetailedView()
     _properties = 0;
     delete _operator;
     _operator = 0;
+
 //     delete _model;
 //     delete _mouseHandler;
 //     QHashIterator< vfile *, KrInterDetailedViewItem *> it(_itemHash);
@@ -419,7 +423,7 @@ void KrInterDetailedView::initOperator()
 {
     _operator = new KrViewOperator(this, this);
     // klistview emits selection changed, so chain them to operator
-    connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), _operator, SLOT(emitSelectionChanged()));
+//     connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), _operator, SLOT(emitSelectionChanged()));
 }
 
 void KrInterDetailedView::keyPressEvent(QKeyEvent *e)
@@ -508,33 +512,6 @@ KrInterDetailedViewItem * KrInterDetailedView::getKrInterViewItem(const QModelIn
     return *it;
 }
 #endif
-void KrInterDetailedView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
-{
-    vfile* vf1 = (vfile *)i1->getVfile();
-    QModelIndex mi1 = _model->vfileIndex(vf1);
-    vfile* vf2 = (vfile *)i2->getVfile();
-    QModelIndex mi2 = _model->vfileIndex(vf2);
-
-    if (mi1.isValid() && mi2.isValid()) {
-        int r1 = mi1.row();
-        int r2 = mi2.row();
-
-        if (r1 > r2) {
-            int t = r1;
-            r1 = r2;
-            r2 = t;
-        }
-
-        for (int row = r1; row <= r2; row++) {
-            const QModelIndex & ndx = _model->index(row, 0);
-            selectionModel()->select(ndx, (select ? QItemSelectionModel::Select : QItemSelectionModel::Deselect)
-                                     | QItemSelectionModel::Rows);
-        }
-    } else if (mi1.isValid() && !mi2.isValid())
-        i1->setSelected(select);
-    else if (mi2.isValid() && !mi1.isValid())
-        i2->setSelected(select);
-}
 
 void KrInterDetailedView::renameCurrentItem()
 {

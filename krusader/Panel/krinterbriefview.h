@@ -72,7 +72,7 @@ public:
         return selectionModel()->isSelected(ndx);
     }
 */
-    virtual void selectRegion(KrViewItem *, KrViewItem *, bool);
+//     virtual void selectRegion(KrViewItem *, KrViewItem *, bool);
 //     KrInterBriefViewItem * getKrInterViewItem(const QModelIndex &);
 
     static KrView* create(QWidget *parent, bool &left, KConfig *cfg, KrMainWindow *mainWindow) {
@@ -96,7 +96,10 @@ public:
     virtual int horizontalOffset() const;
     virtual int verticalOffset() const;
     virtual bool isIndexHidden(const QModelIndex&) const;
-    virtual void setSelection(const QRect&, QFlags<QItemSelectionModel::SelectionFlag>);
+    // Don't do anything, selections are handled by the mouse handler
+    virtual void setSelection(const QRect &rect, QItemSelectionModel::SelectionFlags command) {}
+    virtual void selectAll() {}
+
     virtual QRegion visualRegionForSelection(const QItemSelection&) const;
     virtual void updateGeometries();
     virtual QRect mapToViewport(const QRect &rect) const;

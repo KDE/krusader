@@ -80,6 +80,7 @@ private:
 };
 #endif
 
+
 // code used to register the view
 #define INTERBRIEFVIEW_ID 1
 KrViewInstance interBriefView(INTERBRIEFVIEW_ID, "KrInterBriefView", i18n("&Brief View"), "view-list-icons",
@@ -109,6 +110,8 @@ KrInterBriefView::KrInterBriefView(QWidget *parent, bool &left, KConfig *cfg, Kr
     _model->setExtensionEnabled(false);
     _model->setAlternatingTable(true);
     //header()->installEventFilter( this );
+
+    setSelectionModel(new DummySelectionModel(_model, this));
 
     setSelectionMode(QAbstractItemView::NoSelection);
 
@@ -413,7 +416,7 @@ void KrInterBriefView::initOperator()
 {
     _operator = new KrViewOperator(this, this);
     // klistview emits selection changed, so chain them to operator
-    connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), _operator, SLOT(emitSelectionChanged()));
+//     connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), _operator, SLOT(emitSelectionChanged()));
 }
 
 void KrInterBriefView::keyPressEvent(QKeyEvent *e)
@@ -566,33 +569,6 @@ KrInterBriefViewItem * KrInterBriefView::getKrInterViewItem(const QModelIndex & 
     return *it;
 }
 #endif
-void KrInterBriefView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
-{
-    vfile* vf1 = (vfile *)i1->getVfile();
-    QModelIndex mi1 = _model->vfileIndex(vf1);
-    vfile* vf2 = (vfile *)i2->getVfile();
-    QModelIndex mi2 = _model->vfileIndex(vf2);
-
-    if (mi1.isValid() && mi2.isValid()) {
-        int r1 = mi1.row();
-        int r2 = mi2.row();
-
-        if (r1 > r2) {
-            int t = r1;
-            r1 = r2;
-            r2 = t;
-        }
-
-        for (int row = r1; row <= r2; row++) {
-            const QModelIndex & ndx = _model->index(row, 0);
-            selectionModel()->select(ndx, (select ? QItemSelectionModel::Select : QItemSelectionModel::Deselect)
-                                     | QItemSelectionModel::Rows);
-        }
-    } else if (mi1.isValid() && !mi2.isValid())
-        i1->setSelected(select);
-    else if (mi2.isValid() && !mi1.isValid())
-        i2->setSelected(select);
-}
 
 void KrInterBriefView::renameCurrentItem()
 {
@@ -783,11 +759,6 @@ int KrInterBriefView::verticalOffset() const
 bool KrInterBriefView::isIndexHidden(const QModelIndex&ndx) const
 {
     return ndx.column() != 0;
-}
-
-void KrInterBriefView::setSelection(const QRect&, QFlags<QItemSelectionModel::SelectionFlag>)
-{
-    /* Don't do anything, selections are handled by the mouse handler and not by QAbstractItemView */
 }
 
 QRegion KrInterBriefView::visualRegionForSelection(const QItemSelection &selection) const
