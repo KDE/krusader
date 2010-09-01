@@ -126,6 +126,8 @@ protected:
     virtual bool eventFilter(QObject *object, QEvent *event);
     virtual bool viewportEvent(QEvent * event);
 
+    virtual QRect itemRect(const vfile *vf);
+
     virtual void showContextMenu(const QPoint & p);
     void recalculateColumnSizes();
 

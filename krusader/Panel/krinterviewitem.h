@@ -47,8 +47,7 @@ public:
         }
     }
     QRect itemRect() const {
-        const QModelIndex & ndx = _view->_model->vfileIndex(_vf);
-        return _view->_itemView->visualRect(ndx);
+        return _view->itemRect(_vf);
     }
     static void itemHeightChanged() {
     } // force the items to resize when icon/font size change

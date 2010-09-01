@@ -78,6 +78,8 @@ protected:
     virtual bool preDelItem(KrViewItem *item);
     virtual void showContextMenu(const QPoint & p) = 0;
 
+    virtual QRect itemRect(const vfile *vf) = 0;
+
     KrInterViewItem * getKrInterViewItem(const QModelIndex &);
     void setSelected(const vfile* vf, bool select);
     bool isSelected(const vfile *vf);

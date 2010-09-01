@@ -70,7 +70,7 @@ public:
     vfile *dummyVfile() const {
         return _dummyVfile;
     }
-    const QModelIndex & vfileIndex(vfile *);
+    const QModelIndex & vfileIndex(const vfile *);
     const QModelIndex & nameIndex(const QString &);
     virtual Qt::ItemFlags flags(const QModelIndex & index) const;
     static QString krPermissionString(const vfile * vf);

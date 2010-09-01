@@ -983,3 +983,8 @@ void KrInterBriefView::setFileIconSize(int size)
     setIconSize(QSize(fileIconSize(), fileIconSize()));
     updateGeometries();
 }
+
+QRect KrInterBriefView::itemRect(const vfile *vf)
+{
+    return visualRect(_model->vfileIndex(vf));
+}

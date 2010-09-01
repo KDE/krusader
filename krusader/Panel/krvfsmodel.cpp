@@ -855,9 +855,9 @@ vfile * KrVfsModel::vfileAt(const QModelIndex &index)
     return _vfiles[ index.row()];
 }
 
-const QModelIndex & KrVfsModel::vfileIndex(vfile * vf)
+const QModelIndex & KrVfsModel::vfileIndex(const vfile * vf)
 {
-    return _vfileNdx[ vf ];
+    return _vfileNdx[ (vfile*) vf ];
 }
 
 const QModelIndex & KrVfsModel::nameIndex(const QString & st)

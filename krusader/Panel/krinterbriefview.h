@@ -134,6 +134,8 @@ protected:
     virtual bool viewportEvent(QEvent * event);
     virtual void paintEvent(QPaintEvent *e);
 
+    virtual QRect itemRect(const vfile *vf);
+
     void showContextMenu(const QPoint & p);
     int getItemHeight() const;
     int elementWidth(const QModelIndex & index);

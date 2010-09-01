@@ -657,3 +657,11 @@ void KrInterDetailedView::setFileIconSize(int size)
     KrView::setFileIconSize(size);
     setIconSize(QSize(fileIconSize(), fileIconSize()));
 }
+
+QRect KrInterDetailedView::itemRect(const vfile *vf)
+{
+    QRect r = visualRect(_model->vfileIndex(vf));
+    r.setLeft(0);
+    r.setWidth(viewport()->width());
+    return r;
+}
