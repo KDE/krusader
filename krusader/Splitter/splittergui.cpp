@@ -40,7 +40,8 @@
 #include <kmessagebox.h>
 #include <kdebug.h>
 
-PredefinedDevice SplitterGUI::predefinedDevices[] = {
+
+const SplitterGUI::PredefinedDevice SplitterGUI::predefinedDevices[] = {
     {i18n("1.44 MB (3.5\")"),   1457664},
     {i18n("1.2 MB (5.25\")"),   1213952},
     {i18n("720 kB (3.5\")"),    730112},
@@ -50,13 +51,16 @@ PredefinedDevice SplitterGUI::predefinedDevices[] = {
     {i18n("650 MB (CD-R)"), 650*0x100000},
     {i18n("700 MB (CD-R)"), 700*0x100000}
 };
+const int SplitterGUI::predefinedDeviceNum =
+        sizeof(SplitterGUI::predefinedDevices) / sizeof(SplitterGUI::PredefinedDevice);
+
 
 SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
         QDialog(parent),
-        userDefinedSize(0x100000), lastSelectedDevice(0), resultCode(QDialog::Rejected)
+        userDefinedSize(0x100000), lastSelectedDevice(-1), resultCode(QDialog::Rejected),
+        division(1)
 {
     setModal(true);
-    predefinedDeviceNum = sizeof(predefinedDevices) / sizeof(PredefinedDevice);
 
     QGridLayout *grid = new QGridLayout(this);
     grid->setSpacing(6);
@@ -91,7 +95,8 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
     bytesPerFile->setText(i18n("Max file size:"));
     splitSizeLineLayout->addWidget(bytesPerFile);
 
-    spinBox = new SplitterSpinBox(splitSizeLine);
+    spinBox = new QDoubleSpinBox(splitSizeLine);
+    spinBox->setMaximum(9999999999.0);
     spinBox->setMinimumWidth(85);
     spinBox->setEnabled(false);
     splitSizeLineLayout->addWidget(spinBox);
@@ -139,53 +144,75 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
     resultCode = exec();
 }
 
+KIO::filesize_t SplitterGUI::getSplitSize()
+{
+    if(deviceCombo->currentIndex() < predefinedDeviceNum) // predefined size selected
+        return predefinedDevices[deviceCombo->currentIndex()].capacity;
+    // user defined size selected
+    return spinBox->value() * division;
+}
+
 void SplitterGUI::sizeComboActivated(int item)
 {
+    KIO::filesize_t prevDivision = division;
     switch (item) {
     case 0:
-        spinBox->setDivision(1);            /* byte */
+        division = 1;            /* byte */
         break;
     case 1:
-        spinBox->setDivision(0x400);        /* kbyte */
+        division = 0x400;        /* kbyte */
         break;
     case 2:
-        spinBox->setDivision(0x100000);     /* Mbyte */
+        division = 0x100000;     /* Mbyte */
         break;
     case 3:
-        spinBox->setDivision(0x40000000);   /* Gbyte */
+        division = 0x40000000;   /* Gbyte */
         break;
     }
+    double value;
+    if(deviceCombo->currentIndex() < predefinedDeviceNum) // predefined size selected
+        value = (double)predefinedDevices[deviceCombo->currentIndex()].capacity / division;
+    else { // use defined size selected
+        value = (double)(spinBox->value() * prevDivision) / division;
+        if(value < 1)
+            value = 1;
+    }
+    spinBox->setValue(value);
 }
 
 void SplitterGUI::predefinedComboActivated(int item)
 {
-    int capacity = userDefinedSize;
+    if(item == lastSelectedDevice)
+        return;
 
-    if (item < predefinedDeviceNum) {
-        if (lastSelectedDevice == predefinedDeviceNum)
-            userDefinedSize = spinBox->longValue();
+    KIO::filesize_t capacity = userDefinedSize;
 
-        spinBox->setEnabled(false);
+    if (lastSelectedDevice == predefinedDeviceNum) // user defined was selected previously
+        userDefinedSize = spinBox->value() * division; // remember user defined size
+
+    if(item < predefinedDeviceNum) { // predefined size selected
         capacity = predefinedDevices[item].capacity;
-    } else
+        spinBox->setEnabled(false);
+    } else // user defined size selected
         spinBox->setEnabled(true);
 
-    spinBox->setLongValue(capacity);
     kDebug() << capacity;
 
     if (capacity >= 0x40000000) {          /* Gbyte */
         sizeCombo->setCurrentIndex(3);
-        spinBox->setDivision(0x40000000);
+        division = 0x40000000;
     } else if (capacity >= 0x100000) {      /* Mbyte */
         sizeCombo->setCurrentIndex(2);
-        spinBox->setDivision(0x100000);
+        division = 0x100000;
     } else if (capacity >= 0x400) {         /* kbyte */
         sizeCombo->setCurrentIndex(1);
-        spinBox->setDivision(0x400);
+        division = 0x400;
     } else {
         sizeCombo->setCurrentIndex(0);       /* byte */
-        spinBox->setDivision(1);
+        division = 1;
     }
+
+    spinBox->setValue((double)capacity / division);
 
     lastSelectedDevice = item;
 }
@@ -196,8 +223,8 @@ void SplitterGUI::splitPressed()
         KMessageBox::error(this, i18n("The directory path URL is malformed!"));
         return;
     }
-
-    emit accept();
+    if(getSplitSize() > 0)
+        emit accept();
 }
 
 void SplitterGUI::keyPressEvent(QKeyEvent *e)
