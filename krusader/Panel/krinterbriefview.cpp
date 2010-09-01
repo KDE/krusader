@@ -694,8 +694,13 @@ QModelIndex KrInterBriefView::indexAt(const QPoint& p) const
     int row = y / itemHeight;
     int col = x / itemWidth;
 
-    if(row < numRows && col < _numOfColumns)
+    int numColsTotal = _model->rowCount() / numRows;
+    if(_model->rowCount() % numRows)
+        numColsTotal++;
+
+    if(row < numRows && col < numColsTotal)
         return _model->index((col * numRows) + row, 0);
+
     return QModelIndex();
 }
 
