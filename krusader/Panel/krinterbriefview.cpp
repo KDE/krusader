@@ -518,8 +518,13 @@ void KrInterBriefView::mouseMoveEvent(QMouseEvent * ev)
 
 void KrInterBriefView::wheelEvent(QWheelEvent *ev)
 {
-    if (!_mouseHandler->wheelEvent(ev))
-        QAbstractItemView::wheelEvent(ev);
+    if (!_mouseHandler->wheelEvent(ev)) {
+        // see http://doc.qt.nokia.com/4.6/qwheelevent.html#delta
+        int numDegrees = ev->delta() / 8;
+        int numSteps = numDegrees / 15;
+        numSteps *= horizontalScrollBar()->pageStep() / _numOfColumns;
+        horizontalScrollBar()->setValue(horizontalOffset() - numSteps);
+    }
 }
 
 void KrInterBriefView::dragEnterEvent(QDragEnterEvent *ev)
@@ -869,8 +874,6 @@ void KrInterBriefView::updateGeometries()
 
         QMetaObject::invokeMethod(_header, "updateGeometries");
     }
-
-
 
     if (_model->rowCount() <= 0)
         horizontalScrollBar()->setRange(0, 0);
