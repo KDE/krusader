@@ -83,9 +83,9 @@ KrViewInstance interDetailedView(INTERVIEW_ID,"KrInterDetailedView", i18n("&Deta
                                  KrInterDetailedView::create, KrInterViewItem::itemHeightChanged);
 // end of register code
 
-KrInterDetailedView::KrInterDetailedView(QWidget *parent, bool &left, KConfig *cfg, KrMainWindow *mainWindow):
+KrInterDetailedView::KrInterDetailedView(QWidget *parent, const bool &left, KConfig *cfg, KrMainWindow *mainWindow):
         QTreeView(parent),
-        KrInterView(cfg, mainWindow, this),
+        KrInterView(left, cfg, mainWindow, this),
         _autoResizeColumns(true)
 {
     // fix the context menu problem

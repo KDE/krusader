@@ -88,9 +88,9 @@ KrViewInstance interBriefView(INTERBRIEFVIEW_ID, "KrInterBriefView", i18n("&Brie
                               KrInterBriefView::create, KrInterViewItem::itemHeightChanged);
 // end of register code
 
-KrInterBriefView::KrInterBriefView(QWidget *parent, bool &left, KConfig *cfg, KrMainWindow *mainWindow):
+KrInterBriefView::KrInterBriefView(QWidget *parent, const bool &left, KConfig *cfg, KrMainWindow *mainWindow):
         QAbstractItemView(parent),
-        KrInterView(cfg, mainWindow, this)
+        KrInterView(left, cfg, mainWindow, this)
 {
     _header = 0;
 

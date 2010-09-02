@@ -446,7 +446,7 @@ public:
     static QPixmap processIcon(const QPixmap &icon, bool dim, const QColor & dimColor, int dimFactor, bool symlink);
 
 protected:
-    KrView(KConfig *cfg, KrMainWindow *mainWindow);
+    KrView(const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
     bool handleKeyEventInt(QKeyEvent *e);
 
 protected:
@@ -457,7 +457,7 @@ protected:
     QString _nameToMakeCurrentIfAdded;
     uint _numSelected, _count, _numDirs;
     KIO::filesize_t _countSize, _selectedSize;
-    bool _left;
+    const bool &_left;
     KrViewProperties *_properties;
     KrViewOperator *_operator;
     QHash<QString, KrViewItem*> _dict;

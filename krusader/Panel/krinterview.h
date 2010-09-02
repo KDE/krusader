@@ -35,7 +35,7 @@ class KrInterView : public KrView
 {
     friend class KrInterViewItem;
 public:
-    KrInterView(KConfig *cfg, KrMainWindow *mainWindow, QAbstractItemView *itemView);
+    KrInterView(const bool &left, KConfig *cfg, KrMainWindow *mainWindow, QAbstractItemView *itemView);
     virtual ~KrInterView();
     virtual QModelIndex getCurrentIndex() {
         return _itemView->currentIndex();
@@ -71,6 +71,7 @@ protected:
         DummySelectionModel(QAbstractItemModel *model, QObject *parent) :
             QItemSelectionModel(model, parent) {}
         // do nothing - selection is managed by KrInterView
+        virtual void select (const QModelIndex & index, QItemSelectionModel::SelectionFlags command) {}
         virtual void select(const QItemSelection & selection, QItemSelectionModel::SelectionFlags command) {}
     };
 

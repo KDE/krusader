@@ -51,7 +51,7 @@ public:
     KrView *view;
 
 protected:
-    bool &_left;
+    const bool &_left;
 };
 
 #endif

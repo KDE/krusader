@@ -40,7 +40,7 @@ class KrView;
 class KConfig;
 class KrMainWindow;
 
-typedef KrView * (*KrViewFactoryFunction)(QWidget *, bool &, KConfig *, KrMainWindow*);
+typedef KrView * (*KrViewFactoryFunction)(QWidget *, const bool &, KConfig *, KrMainWindow*);
 typedef void (*KrViewItemHeightChange)();
 
 class KrViewInstance
@@ -84,7 +84,7 @@ class KrViewFactory
 {
     friend class KrViewInstance;
 public:
-    static KrView *                createView(int id, QWidget * widget, bool & left, KConfig *cfg, KrMainWindow *mainWindow);
+    static KrView *                createView(int id, QWidget * widget, const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
     static void                    itemHeightChanged(int id);
     static KrViewInstance *        viewInstance(int id);
     static QList<KrViewInstance *> registeredViews()       {

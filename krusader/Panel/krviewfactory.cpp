@@ -43,7 +43,7 @@ KrViewInstance::KrViewInstance(int id, QString name, QString desc, QString icon,
     KrViewFactory::self().registerView(this);
 }
 
-KrView * KrViewFactory::createView(int id, QWidget * widget, bool & left, KConfig *cfg, KrMainWindow *mainWindow)
+KrView * KrViewFactory::createView(int id, QWidget *widget, const bool &left, KConfig *cfg, KrMainWindow *mainWindow)
 {
     return (*(viewInstance(id)->factoryFunction()))(widget, left, cfg, mainWindow);
 }

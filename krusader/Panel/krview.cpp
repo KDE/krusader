@@ -63,7 +63,8 @@
 
 
 // ----------------------------- operator
-KrViewOperator::KrViewOperator(KrView *view, QWidget *widget): _view(view), _widget(widget), _quickSearch(0), _massSelectionUpdate(false)
+KrViewOperator::KrViewOperator(KrView *view, QWidget *widget) :
+        _view(view), _widget(widget), _quickSearch(0), _massSelectionUpdate(false)
 {
 }
 
@@ -200,9 +201,11 @@ void KrViewOperator::setMassSelectionUpdate(bool upd)
 const KrView::IconSizes KrView::iconSizes;
 
 
-KrView::KrView(KConfig *cfg, KrMainWindow *mainWindow) : _config(cfg), _mainWindow(mainWindow), _widget(0), _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
-        _numSelected(0), _count(0), _numDirs(0), _countSize(0), _selectedSize(0), _properties(0), _focused(false),
-        _previews(0), _fileIconSize(0), _left(false)
+KrView::KrView(const bool &left, KConfig *cfg, KrMainWindow *mainWindow) :
+    _left(left), _config(cfg), _mainWindow(mainWindow), _widget(0),
+    _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
+    _numSelected(0), _count(0), _numDirs(0), _countSize(0), _selectedSize(0), _properties(0), _focused(false),
+    _previews(0), _fileIconSize(0)
 {
 }
 
