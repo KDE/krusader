@@ -201,8 +201,8 @@ void KrViewOperator::setMassSelectionUpdate(bool upd)
 const KrView::IconSizes KrView::iconSizes;
 
 
-KrView::KrView(const bool &left, KConfig *cfg, KrMainWindow *mainWindow) :
-    _left(left), _config(cfg), _mainWindow(mainWindow), _widget(0),
+KrView::KrView(KrViewInstance &instance, const bool &left, KConfig *cfg, KrMainWindow *mainWindow) :
+    _instance(instance), _left(left), _config(cfg), _mainWindow(mainWindow), _widget(0),
     _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
     _numSelected(0), _count(0), _numDirs(0), _countSize(0), _selectedSize(0), _properties(0), _focused(false),
     _previews(0), _fileIconSize(0)
@@ -211,6 +211,7 @@ KrView::KrView(const bool &left, KConfig *cfg, KrMainWindow *mainWindow) :
 
 KrView::~KrView()
 {
+    _instance.m_objects.removeOne(this);
     delete _previews;
     _previews = 0;
     if (_properties)
@@ -230,8 +231,9 @@ void KrView::init()
     setup();
     setDefaultFileIconSize();
     restoreDefaultSettings();
-    KConfigGroup grp(_config, instance()->name());
+    KConfigGroup grp(_config, _instance.name());
     showPreviews(grp.readEntry("Show Previews", false));
+    _instance.m_objects.append(this);
 }
 
 void KrView::initProperties()
@@ -239,7 +241,7 @@ void KrView::initProperties()
     _properties = createViewProperties();
 
     KConfigGroup grpSvr(_config, "Look&Feel");
-    KConfigGroup grpInstance(_config, instance()->name());
+    KConfigGroup grpInstance(_config, _instance.name());
     _properties->displayIcons = grpInstance.readEntry("With Icons", _WithIcons);
     bool dirsByNameAlways = grpSvr.readEntry("Always sort dirs by name", false);
     _properties->sortMode = static_cast<KrViewProperties::SortSpec>(KrViewProperties::Name |
@@ -950,13 +952,13 @@ void KrView::setFileIconSize(int size)
 
 void KrView::setDefaultFileIconSize()
 {
-    KConfigGroup grpSvr(_config, instance()->name());
+    KConfigGroup grpSvr(_config, _instance.name());
     setFileIconSize((grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt());
 }
 
 void KrView::refreshActions()
 {
-    KConfigGroup grpSvr(_config, instance()->name());
+    KConfigGroup grpSvr(_config, _instance.name());
     _mainWindow->enableAction(actDefaultZoom,
         grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize).toInt() != _fileIconSize);
     int idx = iconSizes.indexOf(_fileIconSize);
@@ -965,7 +967,7 @@ void KrView::refreshActions()
 }
 
 QString KrView::nameInKConfig() const {
-    return instance()->name() + (_left ? "Left" : "Right");
+    return _instance.name() + (_left ? "Left" : "Right");
 }
 
 void KrView::saveSettings()
@@ -982,12 +984,20 @@ void KrView::restoreSettings()
 
 void KrView::saveDefaultSettings()
 {
-    KConfigGroup group(krConfig, instance()->name());
+    KConfigGroup group(krConfig, _instance.name());
     doSaveSettings(group);
 }
 
 void KrView::restoreDefaultSettings()
 {
-    KConfigGroup group(krConfig, instance()->name());
+    KConfigGroup group(krConfig, _instance.name());
     doRestoreSettings(group);
+}
+
+void KrView::applySettingsToOthers()
+{
+    for(int i = 0; i < _instance.m_objects.length(); i++) {
+        if(this != _instance.m_objects[i])
+            _instance.m_objects[i]->copySettingsFrom(this);
+    }
 }

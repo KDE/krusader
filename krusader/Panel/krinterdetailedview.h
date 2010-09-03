@@ -43,7 +43,7 @@ public:
     KrInterDetailedView(QWidget *parent, const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
     virtual ~KrInterDetailedView();
 
-    virtual KrViewInstance *instance() const;
+//     virtual KrViewInstance *instance() const;
 /*
     virtual void addItems(vfs* v, bool addUpDir = true);
     virtual KrViewItem* findItemByName(const QString &name);
@@ -107,6 +107,7 @@ protected:
 
     virtual void doRestoreSettings(KConfigGroup &group);
     virtual void doSaveSettings(KConfigGroup &group);
+    virtual void copySettingsFrom(KrView *other);
 
     // Don't do anything, selections are handled by the mouse handler
     virtual void setSelection(const QRect &rect, QItemSelectionModel::SelectionFlags command) {}

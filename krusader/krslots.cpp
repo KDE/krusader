@@ -1226,5 +1226,9 @@ void KRslots::viewSaveDefaultSettings()
     ACTIVE_VIEW->saveDefaultSettings();
 }
 
+void KRslots::viewApplySettingsToOthers()
+{
+    ACTIVE_VIEW->applySettingsToOthers();
+}
 
 #include "krslots.moc"

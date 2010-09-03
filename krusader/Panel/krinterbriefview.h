@@ -39,7 +39,7 @@ public:
     KrInterBriefView(QWidget *parent, const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
     virtual ~KrInterBriefView();
 
-    virtual KrViewInstance *instance() const;
+//     virtual KrViewInstance *instance() const;
 /*
     virtual void addItems(vfs* v, bool addUpDir = true);
     virtual KrViewItem* findItemByName(const QString &name);
@@ -118,6 +118,7 @@ protected:
 
     virtual void doRestoreSettings(KConfigGroup &group);
     virtual void doSaveSettings(KConfigGroup &group);
+    virtual void copySettingsFrom(KrView *other);
 
     virtual void keyPressEvent(QKeyEvent *e);
     virtual void mousePressEvent(QMouseEvent *);

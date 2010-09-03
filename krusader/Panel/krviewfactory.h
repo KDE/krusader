@@ -45,6 +45,7 @@ typedef void (*KrViewItemHeightChange)();
 
 class KrViewInstance
 {
+    friend class KrView;
 public:
     KrViewInstance(int id, QString name, QString desc, QString icon, QKeySequence shortcut, KrViewFactoryFunction fun, KrViewItemHeightChange fun2);
 
@@ -78,6 +79,7 @@ protected:
     QKeySequence                   m_shortcut;
     KrViewFactoryFunction          m_factoryfun;
     KrViewItemHeightChange         m_ihchangefun;
+    QList<KrView*>                 m_objects;
 };
 
 class KrViewFactory
@@ -87,7 +89,7 @@ public:
     static KrView *                createView(int id, QWidget * widget, const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
     static void                    itemHeightChanged(int id);
     static KrViewInstance *        viewInstance(int id);
-    static QList<KrViewInstance *> registeredViews()       {
+    static const QList<KrViewInstance*>& registeredViews() {
         return self().m_registeredViews;
     }
     static int                     defaultViewId()         {

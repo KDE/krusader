@@ -214,6 +214,7 @@ public slots:
     void defaultZoom();
     void showViewOptionsMenu();
     void viewSaveDefaultSettings();
+    void viewApplySettingsToOthers();
 
 protected:
     KrMainWindow *_mainWindow;

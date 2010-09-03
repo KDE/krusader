@@ -90,7 +90,7 @@ KrViewInstance interBriefView(INTERBRIEFVIEW_ID, "KrInterBriefView", i18n("&Brie
 
 KrInterBriefView::KrInterBriefView(QWidget *parent, const bool &left, KConfig *cfg, KrMainWindow *mainWindow):
         QAbstractItemView(parent),
-        KrInterView(left, cfg, mainWindow, this)
+        KrInterView(interBriefView, left, cfg, mainWindow, this)
 {
     _header = 0;
 
@@ -139,10 +139,10 @@ KrInterBriefView::~KrInterBriefView()
 //     _itemHash.clear();
 }
 
-KrViewInstance* KrInterBriefView::instance() const
-{
-    return &interBriefView;
-}
+// KrViewInstance* KrInterBriefView::instance() const
+// {
+//     return &interBriefView;
+// }
 
 #if 0
 KrViewItem* KrInterBriefView::findItemByName(const QString &name)
@@ -986,4 +986,15 @@ void KrInterBriefView::setFileIconSize(int size)
 QRect KrInterBriefView::itemRect(const vfile *vf)
 {
     return visualRect(_model->vfileIndex(vf));
+}
+
+void KrInterBriefView::copySettingsFrom(KrView *other)
+{
+    if(other->instance() == instance()) { // the other view is of the same type
+        KrInterBriefView *v = static_cast<KrInterBriefView*>(other);
+        int column = v->_model->getLastSortOrder();
+        Qt::SortOrder sortDir = v->_model->getLastSortDir();
+        _header->setSortIndicator(column, sortDir);
+        _model->sort(column, sortDir);
+    }
 }

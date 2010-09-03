@@ -250,7 +250,9 @@ public:
     // notes: constructor does as little as possible, setup() does the rest. esp, note that
     // if you need something from operator or properties, move it into setup()
     virtual void init();
-    virtual KrViewInstance *instance() const = 0;
+    KrViewInstance *instance() {
+        return &_instance;
+    }
 
     static const IconSizes iconSizes;
 
@@ -319,6 +321,7 @@ protected:
     virtual bool preDelItem(KrViewItem *item) = 0;
     virtual void doSaveSettings(KConfigGroup &group) = 0;
     virtual void doRestoreSettings(KConfigGroup &group) = 0;
+    virtual void copySettingsFrom(KrView *other) = 0;
 
 public:
     //////////////////////////////////////////////////////
@@ -384,6 +387,7 @@ public:
         return _previews != 0;
     }
     virtual void updatePreviews();
+    virtual void applySettingsToOthers();
 
     void changeSelection(const KRQuery& filter, bool select, bool includeDirs = false);
 
@@ -451,18 +455,18 @@ public:
     static QPixmap processIcon(const QPixmap &icon, bool dim, const QColor & dimColor, int dimFactor, bool symlink);
 
 protected:
-    KrView(const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
+    KrView(KrViewInstance &instance, const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
     bool handleKeyEventInt(QKeyEvent *e);
 
-protected:
-    KrMainWindow *_mainWindow;
+    KrViewInstance &_instance;
+    const bool &_left;
     KConfig *_config;
+    KrMainWindow *_mainWindow;
     QWidget *_widget;
     QString _nameToMakeCurrent;
     QString _nameToMakeCurrentIfAdded;
     uint _numSelected, _count, _numDirs;
     KIO::filesize_t _countSize, _selectedSize;
-    const bool &_left;
     KrViewProperties *_properties;
     KrViewOperator *_operator;
     QHash<QString, KrViewItem*> _dict;

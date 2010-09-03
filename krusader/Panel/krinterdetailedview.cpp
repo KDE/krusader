@@ -85,7 +85,7 @@ KrViewInstance interDetailedView(INTERVIEW_ID,"KrInterDetailedView", i18n("&Deta
 
 KrInterDetailedView::KrInterDetailedView(QWidget *parent, const bool &left, KConfig *cfg, KrMainWindow *mainWindow):
         QTreeView(parent),
-        KrInterView(left, cfg, mainWindow, this),
+        KrInterView(interDetailedView, left, cfg, mainWindow, this),
         _autoResizeColumns(true)
 {
     // fix the context menu problem
@@ -142,10 +142,11 @@ KrInterDetailedView::~KrInterDetailedView()
 //     _itemHash.clear();
 }
 
-KrViewInstance* KrInterDetailedView::instance() const
-{
-    return &interDetailedView;
-}
+// KrViewInstance* KrInterDetailedView::instance() const
+// {
+//     return &interDetailedView;
+// }
+
 
 #if 0
 KrViewItem* KrInterDetailedView::findItemByName(const QString &name)
@@ -663,4 +664,14 @@ QRect KrInterDetailedView::itemRect(const vfile *vf)
     r.setLeft(0);
     r.setWidth(viewport()->width());
     return r;
+}
+
+void KrInterDetailedView::copySettingsFrom(KrView *other)
+{
+    if(other->instance() == instance()) { // the other view is of the same type
+        KrInterDetailedView *v = static_cast<KrInterDetailedView*>(other);
+        header()->restoreState(v->header()->saveState());
+        _model->setExtensionEnabled(!isColumnHidden(KrVfsModel::Extension));
+        recalculateColumnSizes();
+    }
 }
