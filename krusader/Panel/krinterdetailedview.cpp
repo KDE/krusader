@@ -122,7 +122,6 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, const bool &left, KCon
         header()->setResizeMode(i, QHeaderView::Interactive);
     header()->setStretchLastSection(false);
 
-    restoreSettings();
     connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(sectionResized(int, int, int)));
 //     connect(&KrColorCache::getColorCache(), SIGNAL(colorsRefreshed()), this, SLOT(refreshColors()));
 }

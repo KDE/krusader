@@ -133,6 +133,7 @@ KAction *KrActions::actView2 = 0;
 KAction *KrActions::actView3 = 0;
 KAction *KrActions::actView4 = 0;
 KAction *KrActions::actView5 = 0;
+KAction *KrActions::actViewSaveDefaultSettings = 0;
 KAction *KrActions::actShowViewOptionsMenu = 0;
 
 KAction *KrActions::actZoomIn = 0;
@@ -442,6 +443,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actZoomOut, i18n("Zoom Out"), "zoom-out", 0, SLOTS, SLOT(zoomOut()), "zoom_out");
     NEW_KACTION(actDefaultZoom, i18n("Default Zoom"), "zoom-original", 0, SLOTS, SLOT(defaultZoom()), "default_zoom");
     NEW_KACTION(actShowViewOptionsMenu, i18n("Show View Options Menu"), 0, 0, SLOTS, SLOT(showViewOptionsMenu()), "show_view_options_menu");
+    NEW_KACTION(actViewSaveDefaultSettings, i18n("Save settings as default"), 0, 0, SLOTS, SLOT(viewSaveDefaultSettings()), "view_save_default_settings");
 
     // and at last we can set the tool-tips
     actSelect->setToolTip(i18n("Select files using a filter"));

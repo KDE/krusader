@@ -1221,5 +1221,10 @@ void KRslots::showViewOptionsMenu()
     ACTIVE_VIEW->showContextMenu();
 }
 
+void KRslots::viewSaveDefaultSettings()
+{
+    ACTIVE_VIEW->saveDefaultSettings();
+}
+
 
 #include "krslots.moc"

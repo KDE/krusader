@@ -229,6 +229,7 @@ void KrView::init()
     initOperator();
     setup();
     setDefaultFileIconSize();
+    restoreDefaultSettings();
     KConfigGroup grp(_config, instance()->name());
     showPreviews(grp.readEntry("Show Previews", false));
 }
@@ -976,5 +977,17 @@ void KrView::saveSettings()
 void KrView::restoreSettings()
 {
     KConfigGroup group(krConfig, nameInKConfig());
+    doRestoreSettings(group);
+}
+
+void KrView::saveDefaultSettings()
+{
+    KConfigGroup group(krConfig, instance()->name());
+    doSaveSettings(group);
+}
+
+void KrView::restoreDefaultSettings()
+{
+    KConfigGroup group(krConfig, instance()->name());
     doRestoreSettings(group);
 }

@@ -409,7 +409,6 @@ void KrInterBriefView::setup()
     _header->installEventFilter(this);
 
     _numOfColumns = _properties->numberOfColumns;
-    restoreSettings();
 }
 
 void KrInterBriefView::initOperator()

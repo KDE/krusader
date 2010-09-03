@@ -202,6 +202,7 @@ void PanelManager::loadSettings(KConfigGroup *config, const QString& key)
                 panel->changeType(types[ i ]);
             if(panel->view->fileIconSize() != iconSizes[i])
                 panel->view->setFileIconSize(iconSizes[i]);
+            panel->view->restoreSettings();
             panel->setProperties(props[ i ]);
             panel->func->files()->vfs_enableRefresh(true);
             panel->func->immediateOpenUrl(KUrl(l[ i ]), true);
@@ -213,7 +214,7 @@ void PanelManager::loadSettings(KConfigGroup *config, const QString& key)
         slotCloseTab(--totalTabs);
 
     for (; i < (int)l.count(); i++)
-        slotNewTab(KUrl(l[i]), false, types[ i ], props[ i ], iconSizes[i]);
+        slotNewTab(KUrl(l[i]), false, types[ i ], props[ i ], iconSizes[i], true);
 
     // this is needed so that all tab labels get updated
     layoutTabs();
@@ -226,7 +227,7 @@ void PanelManager::layoutTabs()
     QTimer::singleShot(0, _tabbar, SLOT(layoutTabs()));
 }
 
-void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, int type, int props, int iconSize)
+void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, int type, int props, int iconSize, bool restoreSettings)
 {
     if (type == -1) {
         KConfigGroup group(krConfig, "Look&Feel");
@@ -239,6 +240,8 @@ void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, int type, int pr
     startPanel(p, url);
     p->setProperties(props);
     p->view->setFileIconSize(iconSize);
+    if(restoreSettings)
+        p->view->restoreSettings();
 }
 
 void PanelManager::slotNewTab()
@@ -346,6 +349,7 @@ void PanelManager::slotRecreatePanels()
         ListPanel *newPanel = new ListPanel(type, _stack, _left);
         newPanel->setProperties(properties);
         newPanel->view->setFileIconSize(iconSize);
+        newPanel->view->restoreSettings();
         _tabbar->changePanel(i, newPanel);
 
         _stack->insertWidget(i, newPanel);

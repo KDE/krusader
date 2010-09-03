@@ -83,12 +83,13 @@ public slots:
     }
     Q_SCRIPTABLE void newTabs(const QStringList& urls);
 
-    void slotNewTab(const KUrl& url, bool setCurrent = true, int type = -1, int props = 0,  int iconSize = 0);
+    void slotNewTab(const KUrl& url, bool setCurrent = true, int type = -1,
+                    int props = 0,  int iconSize = 0,  bool restoreSettings = false);
     void slotNewTab();
     void slotLockTab();
     void slotNextTab();
-    
-    
+
+
     void slotPreviousTab();
     void slotCloseTab();
     void slotCloseTab(int index);

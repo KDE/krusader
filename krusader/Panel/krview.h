@@ -435,9 +435,14 @@ public:
 
     QPixmap getIcon(vfile *vf);
     void refreshActions();
+    // save this view's settings to be restored after restart
     void saveSettings();
+    // call this to restore this view's settings after restart
     void restoreSettings();
-
+    // save this view's settings as default for new views of this type
+    void saveDefaultSettings();
+    // restore the default settings for this view type
+    void restoreDefaultSettings();
 
     // todo: what about selection modes ???
     virtual ~KrView();
