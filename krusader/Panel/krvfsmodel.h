@@ -68,7 +68,6 @@ public:
     const QModelIndex & vfileIndex(const vfile *);
     const QModelIndex & nameIndex(const QString &);
     virtual Qt::ItemFlags flags(const QModelIndex & index) const;
-    static QString krPermissionString(const vfile * vf);
     void emitChanged() {
         emit layoutChanged();
     }

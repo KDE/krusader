@@ -1016,3 +1016,24 @@ void KrView::sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool desce
     _properties->sortColumn = sortColumn;
     _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(options);
 }
+
+QString KrView::krPermissionString(const vfile * vf)
+{
+    QString tmp;
+    switch (vf->vfile_isReadable()) {
+    case ALLOWED_PERM: tmp+='r'; break;
+    case UNKNOWN_PERM: tmp+='?'; break;
+    case NO_PERM:      tmp+='-'; break;
+    }
+    switch (vf->vfile_isWriteable()) {
+    case ALLOWED_PERM: tmp+='w'; break;
+    case UNKNOWN_PERM: tmp+='?'; break;
+    case NO_PERM:      tmp+='-'; break;
+    }
+    switch (vf->vfile_isExecutable()) {
+    case ALLOWED_PERM: tmp+='x'; break;
+    case UNKNOWN_PERM: tmp+='?'; break;
+    case NO_PERM:      tmp+='-'; break;
+    }
+    return tmp;
+}

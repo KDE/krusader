@@ -453,6 +453,7 @@ public:
 
     static QPixmap getIcon(vfile *vf, bool active, int size = 0);
     static QPixmap processIcon(const QPixmap &icon, bool dim, const QColor & dimColor, int dimFactor, bool symlink);
+    static QString krPermissionString(const vfile * vf);
 
 protected:
     KrView(KrViewInstance &instance, const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
