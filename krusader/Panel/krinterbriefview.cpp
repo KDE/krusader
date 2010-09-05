@@ -912,13 +912,10 @@ QRect KrInterBriefView::mapToViewport(const QRect &rect) const
     return result;
 }
 
-
-void KrInterBriefView::setSortMode(KrViewProperties::SortSpec mode)
+void KrInterBriefView::setSortMode(KrViewProperties::ColumnType sortColumn, bool descending)
 {
-    Qt::SortOrder sortDir;
-    int column = _model->convertSortOrderFromKrViewProperties(mode, sortDir);
-    if (column == _model->getLastSortOrder() && sortDir == _model->getLastSortDir())
-        sortDir = (sortDir == Qt::AscendingOrder) ? Qt::DescendingOrder : Qt::AscendingOrder;
+    int column = _model->convertSortColumnFromKrViewProperties(sortColumn);
+    Qt::SortOrder sortDir = descending ? Qt::DescendingOrder : Qt::AscendingOrder;
 
     _header->setSortIndicator(column, sortDir);
     _model->sort(column, sortDir);

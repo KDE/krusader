@@ -244,18 +244,18 @@ void KrView::initProperties()
     KConfigGroup grpInstance(_config, _instance.name());
     _properties->displayIcons = grpInstance.readEntry("With Icons", _WithIcons);
     bool dirsByNameAlways = grpSvr.readEntry("Always sort dirs by name", false);
-    _properties->sortMode = static_cast<KrViewProperties::SortSpec>(KrViewProperties::Name |
-                            KrViewProperties::DirsFirst |
+    _properties->sortColumn = KrViewProperties::Name;
+    _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(KrViewProperties::DirsFirst |
                             (dirsByNameAlways ? KrViewProperties::AlwaysSortDirsByName : 0));
     _properties->numericPermissions = grpSvr.readEntry("Numeric permissions", _NumericPermissions);
     if (!grpSvr.readEntry("Case Sensative Sort", _CaseSensativeSort))
-        _properties->sortMode = static_cast<KrViewProperties::SortSpec>(_properties->sortMode |
+        _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(_properties->sortOptions |
                                 KrViewProperties::IgnoreCase);
     _properties->sortMethod = static_cast<KrViewProperties::SortMethod>(
                                   grpSvr.readEntry("Sort method", (int) _DefaultSortMethod));
     _properties->humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
     if (grpSvr.readEntry("Locale Aware Sort", true))
-        _properties->sortMode = static_cast<KrViewProperties::SortSpec>(_properties->sortMode |
+        _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(_properties->sortOptions |
                                 KrViewProperties::LocaleAwareSort);
     _properties->localeAwareCompareIsCaseSensitive = QString("a").localeAwareCompare("B") > 0;     // see KDE bug #40131
     QStringList defaultAtomicExtensions;
@@ -1000,4 +1000,19 @@ void KrView::applySettingsToOthers()
         if(this != _instance.m_objects[i])
             _instance.m_objects[i]->copySettingsFrom(this);
     }
+}
+
+void KrView::sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool descending)
+{
+    if(!_properties)
+        return;
+
+    int options = _properties->sortOptions;
+    if(descending)
+        options |= KrViewProperties::Descending;
+    else
+        options &= ~KrViewProperties::Descending;
+
+    _properties->sortColumn = sortColumn;
+    _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(options);
 }

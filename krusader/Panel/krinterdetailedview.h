@@ -89,7 +89,7 @@ public:
         return false;
     }
     virtual int  itemsPerPage();
-    virtual void setSortMode(KrViewProperties::SortSpec mode);
+    virtual void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending);
     virtual void setFileIconSize(int size);
 
 // public slots:

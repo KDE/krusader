@@ -64,6 +64,8 @@ public:
     virtual void showContextMenu();
     virtual void selectRegion(KrViewItem *i1, KrViewItem *i2, bool select);
 
+    void sortModeUpdated(int column, Qt::SortOrder order);
+
 protected:
     class DummySelectionModel : public QItemSelectionModel
     {

@@ -643,13 +643,11 @@ bool KrInterDetailedView::viewportEvent(QEvent * event)
     return QTreeView::viewportEvent(event);
 }
 
-void KrInterDetailedView::setSortMode(KrViewProperties::SortSpec mode)
+void KrInterDetailedView::setSortMode(KrViewProperties::ColumnType sortColumn, bool descending)
 {
-    Qt::SortOrder sortDir;
-    int column = _model->convertSortOrderFromKrViewProperties(mode, sortDir);
-    if (column == _model->getLastSortOrder() && sortDir == _model->getLastSortDir())
-        sortDir = (sortDir == Qt::AscendingOrder) ? Qt::DescendingOrder : Qt::AscendingOrder;
-    this->sortByColumn(column, sortDir);
+    int column = _model->convertSortColumnFromKrViewProperties(sortColumn);
+    Qt::SortOrder sortDir = descending ? Qt::DescendingOrder : Qt::AscendingOrder;
+    sortByColumn(column, sortDir);
 }
 
 void KrInterDetailedView::setFileIconSize(int size)

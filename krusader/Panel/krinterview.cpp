@@ -28,7 +28,7 @@ KrInterView::KrInterView(KrViewInstance &instance, const bool &left, KConfig *cf
                          KrMainWindow *mainWindow, QAbstractItemView *itemView) :
         KrView(instance, left, cfg, mainWindow), _itemView(itemView), _mouseHandler(0)
 {
-     _model = new KrVfsModel(this);
+    _model = new KrVfsModel(this);
     _model->sort(KrVfsModel::Name, Qt::AscendingOrder);
 
     // fix the context menu problem
@@ -327,4 +327,9 @@ void KrInterView::refreshColors()
 void KrInterView::showContextMenu()
 {
     showContextMenu(_itemView->viewport()->mapToGlobal(QPoint(0,0)));
+}
+
+void KrInterView::sortModeUpdated(int column, Qt::SortOrder order)
+{
+    KrView::sortModeUpdated(_model->convertSortColumnToKrViewProperties(column), order == Qt::DescendingOrder);
 }

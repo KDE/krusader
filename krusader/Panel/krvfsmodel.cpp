@@ -43,7 +43,7 @@ public:
         _index = origNdx;
         _name = vf->vfile_getName();
 
-        if(_prop->sortMode & KrViewProperties::IgnoreCase)
+        if(_prop->sortOptions & KrViewProperties::IgnoreCase)
             _name = _name.toLower();
 
         switch (_col) {
@@ -157,7 +157,7 @@ private:
 
 typedef bool(*LessThan)(SortProps *, SortProps *);
 
-KrVfsModel::KrVfsModel(KrView * view): QAbstractListModel(0), _extensionEnabled(true), _view(view),
+KrVfsModel::KrVfsModel(KrInterView * view): QAbstractListModel(0), _extensionEnabled(true), _view(view),
         _lastSortOrder(KrVfsModel::Name), _lastSortDir(Qt::AscendingOrder),
         _dummyVfile(0), _ready(false), _justForSizeHint(false),
         _alternatingTable(false)
@@ -411,9 +411,9 @@ bool compareTextsAlphabetical(QString& aS1, QString& aS2, const KrViewProperties
     int lPositionS1 = 0;
     int lPositionS2 = 0;
     // sometimes, localeAwareCompare is not case sensitive. in that case, we need to fallback to a simple string compare (KDE bug #40131)
-    bool lUseLocaleAware = ((_viewProperties->sortMode & KrViewProperties::IgnoreCase)
+    bool lUseLocaleAware = ((_viewProperties->sortOptions & KrViewProperties::IgnoreCase)
                 || _viewProperties->localeAwareCompareIsCaseSensitive)
-            && (_viewProperties->sortMode & KrViewProperties::LocaleAwareSort);
+            && (_viewProperties->sortOptions & KrViewProperties::LocaleAwareSort);
     int j = 0;
     QChar lchar1;
     QChar lchar2;
@@ -483,9 +483,9 @@ bool compareTextsKrusader(QString& aS1, QString& aS2, const KrViewProperties * _
     }
 
     // sometimes, localeAwareCompare is not case sensitive. in that case, we need to fallback to a simple string compare (KDE bug #40131)
-    if (((_viewProperties->sortMode & KrViewProperties::IgnoreCase)
+    if (((_viewProperties->sortOptions & KrViewProperties::IgnoreCase)
                 || _viewProperties->localeAwareCompareIsCaseSensitive)
-            && (_viewProperties->sortMode & KrViewProperties::LocaleAwareSort))
+            && (_viewProperties->sortOptions & KrViewProperties::LocaleAwareSort))
         return QString::localeAwareCompare(aS1, aS2) < 0;
     else
         // if localeAwareCompare is not case sensitive then use simple compare is enough
@@ -543,7 +543,7 @@ bool itemLessThan(SortProps *sp, SortProps *sp2)
     if (sp2->isDummy())
         return !sp->isAscending();
 
-    bool alwaysSortDirsByName = (sp->properties()->sortMode & KrViewProperties::AlwaysSortDirsByName);
+    bool alwaysSortDirsByName = (sp->properties()->sortOptions & KrViewProperties::AlwaysSortDirsByName);
     int column = sp->column();
     if (alwaysSortDirsByName)
         column = KrVfsModel::Name;
@@ -585,8 +585,7 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
     _lastSortOrder = column;
     _lastSortDir = order;
 
-    if (_view->properties() != 0)
-        _view->sortModeUpdated(convertSortOrderToKrViewProperties(_lastSortOrder, _lastSortDir));
+    _view->sortModeUpdated(column, order);
 
     emit layoutAboutToBeChanged();
 
@@ -923,65 +922,54 @@ QString KrVfsModel::krPermissionString(const vfile * vf)
     return tmp;
 }
 
-int KrVfsModel::convertSortOrderFromKrViewProperties(KrViewProperties::SortSpec sortOrder, Qt::SortOrder & sortDir)
+int KrVfsModel::convertSortColumnFromKrViewProperties(KrViewProperties::ColumnType column)
 {
-    sortDir = (sortDir & KrViewProperties::Descending) ? Qt::DescendingOrder : Qt::AscendingOrder;
-    if (sortOrder & KrViewProperties::Name)
+    switch(column) {
+    case KrViewProperties::Name:
         return KrVfsModel::Name;
-    if (sortOrder & KrViewProperties::Ext)
+    case KrViewProperties::Ext:
         return KrVfsModel::Extension;
-    if (sortOrder & KrViewProperties::Size)
+    case KrViewProperties::Size:
         return KrVfsModel::Size;
-    if (sortOrder & KrViewProperties::Type)
+    case KrViewProperties::Type:
         return KrVfsModel::Mime;
-    if (sortOrder & KrViewProperties::Modified)
+    case KrViewProperties::Modified:
         return KrVfsModel::DateTime;
-    if (sortOrder & KrViewProperties::Permissions)
+    case KrViewProperties::Permissions:
         return KrVfsModel::Permissions;
-    if (sortOrder & KrViewProperties::KrPermissions)
+    case KrViewProperties::KrPermissions:
         return KrVfsModel::KrPermissions;
-    if (sortOrder & KrViewProperties::Owner)
+    case KrViewProperties::Owner:
         return KrVfsModel::Owner;
-    if (sortOrder & KrViewProperties::Group)
+    case KrViewProperties::Group:
         return KrVfsModel::Group;
-    return -1;
+    default:
+        abort();
+    }
 }
 
-KrViewProperties::SortSpec KrVfsModel::convertSortOrderToKrViewProperties(int sortOrder, Qt::SortOrder sortDir)
+KrViewProperties::ColumnType KrVfsModel::convertSortColumnToKrViewProperties(int column)
 {
-    KrViewProperties::SortSpec sp = KrViewProperties::Name;
-    switch (sortOrder) {
+    switch (column) {
     case KrVfsModel::Name:
-        sp = KrViewProperties::Name;
+        return KrViewProperties::Name;
     case KrVfsModel::Extension:
-        sp = KrViewProperties::Ext;
+        return KrViewProperties::Ext;
     case KrVfsModel::Mime:
-        sp = KrViewProperties::Type;
+        return KrViewProperties::Type;
     case KrVfsModel::Size:
-        sp = KrViewProperties::Size;
+        return KrViewProperties::Size;
     case KrVfsModel::DateTime:
-        sp = KrViewProperties::Modified;
+        return KrViewProperties::Modified;
     case KrVfsModel::Permissions:
-        sp = KrViewProperties::Permissions;
+        return KrViewProperties::Permissions;
     case KrVfsModel::KrPermissions:
-        sp = KrViewProperties::KrPermissions;
+        return KrViewProperties::KrPermissions;
     case KrVfsModel::Owner:
-        sp = KrViewProperties::Owner;
+        return KrViewProperties::Owner;
     case KrVfsModel::Group:
-        sp = KrViewProperties::Group;
+        return KrViewProperties::Group;
+    default:
+        abort();
     }
-
-    int sortMode = _view->sortMode();
-
-    if (sortMode & KrViewProperties::DirsFirst)
-        sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::DirsFirst);
-    if (sortMode & KrViewProperties::IgnoreCase)
-        sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::IgnoreCase);
-    if (sortMode & KrViewProperties::AlwaysSortDirsByName)
-        sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::AlwaysSortDirsByName);
-    if (sortMode & KrViewProperties::Descending)
-        sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::Descending);
-    if (sortMode & KrViewProperties::LocaleAwareSort)
-        sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::LocaleAwareSort);
-    return sp;
 }

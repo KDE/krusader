@@ -152,7 +152,7 @@ int KrViewItem::compareTexts(QString aS1, QString aS2, int asc, bool isName) con
         }
     }
 
-    if (_viewProperties->sortMode & KrViewProperties::IgnoreCase) {
+    if (_viewProperties->sortOptions & KrViewProperties::IgnoreCase) {
         aS1 = aS1.toLower();
         aS2 = aS2.toLower();
     }
@@ -181,7 +181,7 @@ int KrViewItem::compareTextsAlphabetical(QString& aS1, QString& aS2, bool aNumbe
     int lPositionS1 = 0;
     int lPositionS2 = 0;
     // sometimes, localeAwareCompare is not case sensitive. in that case, we need to fallback to a simple string compare (KDE bug #40131)
-    bool lUseLocaleAware = (_viewProperties->sortMode & KrViewProperties::IgnoreCase)
+    bool lUseLocaleAware = (_viewProperties->sortOptions & KrViewProperties::IgnoreCase)
                            || _viewProperties->localeAwareCompareIsCaseSensitive;
     int j = 0;
     QChar lchar1;
@@ -261,7 +261,7 @@ int KrViewItem::compareTextsKrusader(QString& aS1, QString& aS2, int asc, bool i
     }
 
     // sometimes, localeAwareCompare is not case sensitive. in that case, we need to fallback to a simple string compare (KDE bug #40131)
-    bool lUseLocaleAware = (_viewProperties->sortMode & KrViewProperties::IgnoreCase)
+    bool lUseLocaleAware = (_viewProperties->sortOptions & KrViewProperties::IgnoreCase)
                            || _viewProperties->localeAwareCompareIsCaseSensitive;
 
     if (lUseLocaleAware)

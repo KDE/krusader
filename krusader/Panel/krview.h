@@ -72,9 +72,12 @@ public:
         filterMask = KRQuery("*");
     }
 
-    enum SortSpec { Name = 0x1, Ext = 0x2, Size = 0x4, Type = 0x8, Modified = 0x10, Permissions = 0x20,
-                    KrPermissions = 0x40, Owner = 0x80, Group = 0x100, Descending = 0x200,
-                    DirsFirst = 0x400, IgnoreCase = 0x800, AlwaysSortDirsByName = 0x1000, LocaleAwareSort = 0x2000
+    // TODO: replace with ColumnType from KrVfsModel
+    enum ColumnType { Name = 0x1, Ext = 0x2, Size = 0x4, Type = 0x8, Modified = 0x10, Permissions = 0x20,
+                      KrPermissions = 0x40, Owner = 0x80, Group = 0x100
+                    };
+    enum SortOptions { Descending = 0x200, DirsFirst = 0x400, IgnoreCase = 0x800,
+                    AlwaysSortDirsByName = 0x1000, LocaleAwareSort = 0x2000
                   };
     enum SortMethod { Alphabetical = 0x1, AlphabeticalNumbers = 0x2,
                       CharacterCode = 0x4, CharacterCodeNumbers = 0x8, Krusader = 0x10
@@ -82,9 +85,9 @@ public:
     enum FilterSpec { Dirs = 0x1, Files = 0x2, All = 0x3, Custom = 0x4, ApplyToDirs = 0x8 };
 
     bool numericPermissions;        // show full permission column as octal numbers
-
     bool displayIcons; // true if icons should be displayed in this view
-    SortSpec sortMode; // sort specifications
+    ColumnType sortColumn;
+    SortOptions sortOptions;
     SortMethod sortMethod;  // sort method for names and extensions
     FilterSpec filter; // what items to show (all, custom, exec)
     KRQuery filterMask; // what items to show (*.cpp, *.h etc)
@@ -395,14 +398,8 @@ public:
     // the following functions have a default and minimalistic //
     // implementation, and may be re-implemented if needed     //
     /////////////////////////////////////////////////////////////
-    virtual void setSortMode(KrViewProperties::SortSpec mode) {
-        _properties->sortMode = mode;
-    }
-    virtual void sortModeUpdated(KrViewProperties::SortSpec mode) {
-        _properties->sortMode = mode;
-    }
-    virtual KrViewProperties::SortSpec sortMode() const {
-        return _properties->sortMode;
+    virtual void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending) {
+        sortModeUpdated(sortColumn, descending);
     }
     virtual void setFilter(KrViewProperties::FilterSpec filter) {
         _properties->filter = filter;
@@ -457,6 +454,7 @@ public:
 protected:
     KrView(KrViewInstance &instance, const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
     bool handleKeyEventInt(QKeyEvent *e);
+    void sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool descending);
 
     KrViewInstance &_instance;
     const bool &_left;

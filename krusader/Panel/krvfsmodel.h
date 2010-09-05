@@ -24,12 +24,11 @@
 #include <QVector>
 #include <QFont>
 
-#include "krview.h"
+#include "krinterview.h"
 
 class vfs;
 class vfile;
 class KrViewProperties;
-class KrView;
 
 class KrVfsModel: public QAbstractListModel
 {
@@ -40,7 +39,7 @@ public:
                       Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8, MAX_COLUMNS = 0x09
                     };
 
-    KrVfsModel(KrView *);
+    KrVfsModel(KrInterView *);
     virtual ~KrVfsModel();
 
     inline bool ready() const {
@@ -62,7 +61,7 @@ public:
     inline const KrViewProperties * properties() const {
         return _view->properties();
     }
-    void sort() {
+    virtual void sort() {
         sort(_lastSortOrder, _lastSortDir);
     }
     void clear();
@@ -77,8 +76,10 @@ public:
     void emitChanged() {
         emit layoutChanged();
     }
-    int convertSortOrderFromKrViewProperties(KrViewProperties::SortSpec, Qt::SortOrder &);
-    KrViewProperties::SortSpec convertSortOrderToKrViewProperties(int, Qt::SortOrder);
+
+    // TODO: remove this and ColumnType
+    KrViewProperties::ColumnType convertSortColumnToKrViewProperties(int);
+    int convertSortColumnFromKrViewProperties(KrViewProperties::ColumnType);
 
     Qt::SortOrder getLastSortDir() {
         return _lastSortDir;
@@ -102,7 +103,7 @@ protected:
     QHash<vfile *, QModelIndex> _vfileNdx;
     QHash<QString, QModelIndex> _nameNdx;
     bool                        _extensionEnabled;
-    KrView                    * _view;
+    KrInterView                 * _view;
     int                         _lastSortOrder;
     Qt::SortOrder               _lastSortDir;
     vfile *                     _dummyVfile;
