@@ -102,7 +102,7 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, const bool &left, KCon
     this->setModel(_model);
     this->setRootIsDecorated(false);
     this->setSortingEnabled(true);
-    this->sortByColumn(KrVfsModel::Name, Qt::AscendingOrder);
+    this->sortByColumn(KrViewProperties::Name, Qt::AscendingOrder);
 //     _model->sort(KrVfsModel::Name, Qt::AscendingOrder);
 
     setSelectionModel(new DummySelectionModel(_model, this));
@@ -118,7 +118,7 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, const bool &left, KCon
     setAcceptDrops(true);
     setDropIndicatorShown(true);
 
-    for (int i = 0; i != KrVfsModel::MAX_COLUMNS; i++)
+    for (int i = 0; i != KrViewProperties::MAX_COLUMNS; i++)
         header()->setResizeMode(i, QHeaderView::Interactive);
     header()->setStretchLastSection(false);
 
@@ -298,21 +298,21 @@ void KrInterDetailedView::doRestoreSettings(KConfigGroup &grpSvr)
     QByteArray savedState = grpSvr.readEntry("Saved State", QByteArray());
 
     if (savedState.isEmpty()) {
-        hideColumn(KrVfsModel::Mime);
-        hideColumn(KrVfsModel::Permissions);
-        hideColumn(KrVfsModel::Owner);
-        hideColumn(KrVfsModel::Group);
-        header()->resizeSection(KrVfsModel::Extension, QFontMetrics(_viewFont).width("tar.bz2  "));
-        header()->resizeSection(KrVfsModel::KrPermissions, QFontMetrics(_viewFont).width("rwx  "));
-        header()->resizeSection(KrVfsModel::Size, QFontMetrics(_viewFont).width("9") * 10);
+        hideColumn(KrViewProperties::Type);
+        hideColumn(KrViewProperties::Permissions);
+        hideColumn(KrViewProperties::Owner);
+        hideColumn(KrViewProperties::Group);
+        header()->resizeSection(KrViewProperties::Ext, QFontMetrics(_viewFont).width("tar.bz2  "));
+        header()->resizeSection(KrViewProperties::KrPermissions, QFontMetrics(_viewFont).width("rwx  "));
+        header()->resizeSection(KrViewProperties::Size, QFontMetrics(_viewFont).width("9") * 10);
 
         QDateTime tmp(QDate(2099, 12, 29), QTime(23, 59));
         QString desc = KGlobal::locale()->formatDateTime(tmp) + "  ";
 
-        header()->resizeSection(KrVfsModel::DateTime, QFontMetrics(_viewFont).width(desc));
+        header()->resizeSection(KrViewProperties::Modified, QFontMetrics(_viewFont).width(desc));
     } else {
         header()->restoreState(savedState);
-        _model->setExtensionEnabled(!isColumnHidden(KrVfsModel::Extension));
+        _model->setExtensionEnabled(!isColumnHidden(KrViewProperties::Ext));
     }
 }
 
@@ -516,7 +516,7 @@ KrInterDetailedViewItem * KrInterDetailedView::getKrInterViewItem(const QModelIn
 void KrInterDetailedView::renameCurrentItem()
 {
     QModelIndex cIndex = currentIndex();
-    QModelIndex nameIndex = _model->index(cIndex.row(), KrVfsModel::Name);
+    QModelIndex nameIndex = _model->index(cIndex.row(), KrViewProperties::Name);
     edit(nameIndex);
     updateEditorData();
     update(nameIndex);
@@ -544,7 +544,7 @@ void KrInterDetailedView::showContextMenu(const QPoint & p)
 
     QVector<QAction*> actions;
 
-    for(int i = KrVfsModel::Name; i < KrVfsModel::MAX_COLUMNS; i++) {
+    for(int i = KrViewProperties::Name; i < KrViewProperties::MAX_COLUMNS; i++) {
         QString text = (_model->headerData(i, Qt::Horizontal)).toString();
         QAction *act = popup.addAction(text);
         act->setCheckable(true);
@@ -572,8 +572,8 @@ void KrInterDetailedView::showContextMenu(const QPoint & p)
         else
             header()->hideSection(idx);
 
-        if(KrVfsModel::Extension == idx)
-            _model->setExtensionEnabled(!header()->isSectionHidden(KrVfsModel::Extension));
+        if(KrViewProperties::Ext == idx)
+            _model->setExtensionEnabled(!header()->isSectionHidden(KrViewProperties::Ext));
     }
 }
 
@@ -600,16 +600,16 @@ void KrInterDetailedView::recalculateColumnSizes()
     if(!_autoResizeColumns)
         return;
     int sum = 0;
-    for (int i = 0; i != KrVfsModel::MAX_COLUMNS; i++) {
+    for (int i = 0; i != KrViewProperties::MAX_COLUMNS; i++) {
         if (!isColumnHidden(i))
             sum += header()->sectionSize(i);
     }
 
     if (sum != header()->width()) {
         int delta = sum - header()->width();
-        int nameSize = header()->sectionSize(KrVfsModel::Name);
+        int nameSize = header()->sectionSize(KrViewProperties::Name);
         if (nameSize - delta > 20)
-            header()->resizeSection(KrVfsModel::Name, nameSize - delta);
+            header()->resizeSection(KrViewProperties::Name, nameSize - delta);
     }
 }
 
@@ -645,9 +645,8 @@ bool KrInterDetailedView::viewportEvent(QEvent * event)
 
 void KrInterDetailedView::setSortMode(KrViewProperties::ColumnType sortColumn, bool descending)
 {
-    int column = _model->convertSortColumnFromKrViewProperties(sortColumn);
     Qt::SortOrder sortDir = descending ? Qt::DescendingOrder : Qt::AscendingOrder;
-    sortByColumn(column, sortDir);
+    sortByColumn(sortColumn, sortDir);
 }
 
 void KrInterDetailedView::setFileIconSize(int size)
@@ -669,7 +668,7 @@ void KrInterDetailedView::copySettingsFrom(KrView *other)
     if(other->instance() == instance()) { // the other view is of the same type
         KrInterDetailedView *v = static_cast<KrInterDetailedView*>(other);
         header()->restoreState(v->header()->saveState());
-        _model->setExtensionEnabled(!isColumnHidden(KrVfsModel::Extension));
+        _model->setExtensionEnabled(!isColumnHidden(KrViewProperties::Ext));
         recalculateColumnSizes();
     }
 }

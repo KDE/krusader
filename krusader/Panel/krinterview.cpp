@@ -29,7 +29,7 @@ KrInterView::KrInterView(KrViewInstance &instance, const bool &left, KConfig *cf
         KrView(instance, left, cfg, mainWindow), _itemView(itemView), _mouseHandler(0)
 {
     _model = new KrVfsModel(this);
-    _model->sort(KrVfsModel::Name, Qt::AscendingOrder);
+    _model->sort(KrViewProperties::Name, Qt::AscendingOrder);
 
     // fix the context menu problem
     int j = QFontMetrics(_itemView->font()).height() * 2;
@@ -331,5 +331,6 @@ void KrInterView::showContextMenu()
 
 void KrInterView::sortModeUpdated(int column, Qt::SortOrder order)
 {
-    KrView::sortModeUpdated(_model->convertSortColumnToKrViewProperties(column), order == Qt::DescendingOrder);
+    KrView::sortModeUpdated(static_cast<KrViewProperties::ColumnType>(column),
+                            order == Qt::DescendingOrder);
 }

@@ -291,7 +291,7 @@ void KrInterBriefView::refreshColors()
 
 void KrInterBriefView::doRestoreSettings(KConfigGroup &group)
 {
-    int column = group.readEntry("Sort Indicator Column", (int)KrVfsModel::Name);
+    int column = group.readEntry("Sort Indicator Column", (int)KrViewProperties::Name);
     bool isAscending = group.readEntry("Ascending Sort Order", true);
     Qt::SortOrder sortDir = isAscending ? Qt::AscendingOrder : Qt::DescendingOrder;
 
@@ -394,16 +394,16 @@ void KrInterBriefView::setup()
     _header->setDefaultAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     _header->setParent(this);
     _header->setModel(_model);
-    _header->hideSection(KrVfsModel::Mime);
-    _header->hideSection(KrVfsModel::Permissions);
-    _header->hideSection(KrVfsModel::KrPermissions);
-    _header->hideSection(KrVfsModel::Owner);
-    _header->hideSection(KrVfsModel::Group);
+    _header->hideSection(KrViewProperties::Type);
+    _header->hideSection(KrViewProperties::Permissions);
+    _header->hideSection(KrViewProperties::KrPermissions);
+    _header->hideSection(KrViewProperties::Owner);
+    _header->hideSection(KrViewProperties::Group);
     _header->setStretchLastSection(true);
     _header->setResizeMode(QHeaderView::Fixed);
     _header->setClickable(true);
     _header->setSortIndicatorShown(true);
-    _header->setSortIndicator(KrVfsModel::Name, Qt::AscendingOrder);
+    _header->setSortIndicator(KrViewProperties::Name, Qt::AscendingOrder);
     connect(_header, SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)),
             _model, SLOT(sort(int, Qt::SortOrder)));
     _header->installEventFilter(this);
@@ -577,7 +577,7 @@ KrInterBriefViewItem * KrInterBriefView::getKrInterViewItem(const QModelIndex & 
 void KrInterBriefView::renameCurrentItem()
 {
     QModelIndex cIndex = currentIndex();
-    QModelIndex nameIndex = _model->index(cIndex.row(), KrVfsModel::Name);
+    QModelIndex nameIndex = _model->index(cIndex.row(), KrViewProperties::Name);
     edit(nameIndex);
     updateEditorData();
     update(nameIndex);
@@ -914,11 +914,10 @@ QRect KrInterBriefView::mapToViewport(const QRect &rect) const
 
 void KrInterBriefView::setSortMode(KrViewProperties::ColumnType sortColumn, bool descending)
 {
-    int column = _model->convertSortColumnFromKrViewProperties(sortColumn);
     Qt::SortOrder sortDir = descending ? Qt::DescendingOrder : Qt::AscendingOrder;
 
-    _header->setSortIndicator(column, sortDir);
-    _model->sort(column, sortDir);
+    _header->setSortIndicator(sortColumn, sortDir);
+    _model->sort(sortColumn, sortDir);
 }
 
 int KrInterBriefView::elementWidth(const QModelIndex & index)

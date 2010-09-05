@@ -35,10 +35,6 @@ class KrVfsModel: public QAbstractListModel
     Q_OBJECT
 
 public:
-    enum ColumnType { Name = 0x0, Extension = 0x1, Size = 0x2, Mime = 0x3, DateTime = 0x4,
-                      Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8, MAX_COLUMNS = 0x09
-                    };
-
     KrVfsModel(KrInterView *);
     virtual ~KrVfsModel();
 
@@ -76,11 +72,6 @@ public:
     void emitChanged() {
         emit layoutChanged();
     }
-
-    // TODO: remove this and ColumnType
-    KrViewProperties::ColumnType convertSortColumnToKrViewProperties(int);
-    int convertSortColumnFromKrViewProperties(KrViewProperties::ColumnType);
-
     Qt::SortOrder getLastSortDir() {
         return _lastSortDir;
     }

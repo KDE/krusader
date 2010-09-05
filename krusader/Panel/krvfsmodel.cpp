@@ -47,7 +47,7 @@ public:
             _name = _name.toLower();
 
         switch (_col) {
-        case KrVfsModel::Extension: {
+        case KrViewProperties::Ext: {
             if (vf->vfile_isDir()) {
                 _ext = "";
             } else {
@@ -68,7 +68,7 @@ public:
             }
             break;
         }
-        case KrVfsModel::Mime: {
+        case KrViewProperties::Type: {
             if (isDummy)
                 _data = "";
             else {
@@ -78,7 +78,7 @@ public:
             }
             break;
         }
-        case KrVfsModel::Permissions: {
+        case KrViewProperties::Permissions: {
             if (isDummy)
                 _data = "";
             else {
@@ -90,7 +90,7 @@ public:
             }
             break;
         }
-        case KrVfsModel::KrPermissions: {
+        case KrViewProperties::KrPermissions: {
             if (isDummy)
                 _data = "";
             else {
@@ -98,13 +98,13 @@ public:
             }
             break;
         }
-        case KrVfsModel::Owner: {
+        case KrViewProperties::Owner: {
             if (isDummy)
                 _data = "";
             else
                 _data = vf->vfile_getOwner();
         }
-        case KrVfsModel::Group: {
+        case KrViewProperties::Group: {
             if (isDummy)
                 _data = "";
             else
@@ -158,7 +158,7 @@ private:
 typedef bool(*LessThan)(SortProps *, SortProps *);
 
 KrVfsModel::KrVfsModel(KrInterView * view): QAbstractListModel(0), _extensionEnabled(true), _view(view),
-        _lastSortOrder(KrVfsModel::Name), _lastSortDir(Qt::AscendingOrder),
+        _lastSortOrder(KrViewProperties::Name), _lastSortDir(Qt::AscendingOrder),
         _dummyVfile(0), _ready(false), _justForSizeHint(false),
         _alternatingTable(false)
 {
@@ -207,7 +207,7 @@ int KrVfsModel::rowCount(const QModelIndex& parent) const
 
 int KrVfsModel::columnCount(const QModelIndex &parent) const
 {
-    return KrVfsModel::MAX_COLUMNS;
+    return KrViewProperties::MAX_COLUMNS;
 }
 
 QVariant KrVfsModel::data(const QModelIndex& index, int role) const
@@ -236,15 +236,15 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
     case Qt::ToolTipRole:
     case Qt::DisplayRole: {
         switch (index.column()) {
-        case KrVfsModel::Name: {
+        case KrViewProperties::Name: {
             return nameWithoutExtension(vf);
         }
-        case KrVfsModel::Extension: {
+        case KrViewProperties::Ext: {
             QString nameOnly = nameWithoutExtension(vf);
             const QString& vfName = vf->vfile_getName();
             return vfName.mid(nameOnly.length() + 1);
         }
-        case KrVfsModel::Size: {
+        case KrViewProperties::Size: {
             if (vf->vfile_isDir() && vf->vfile_getSize() <= 0)
                 return i18n("<DIR>");
             else
@@ -252,7 +252,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
                        KIO::convertSize(vf->vfile_getSize()) + "  " :
                        KRpermHandler::parseSize(vf->vfile_getSize()) + ' ';
         }
-        case KrVfsModel::Mime: {
+        case KrViewProperties::Type: {
             if (vf == _dummyVfile)
                 return QVariant();
             KMimeType::Ptr mt = KMimeType::mimeType(vf->vfile_getMime());
@@ -260,7 +260,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
                 return mt->comment();
             return QVariant();
         }
-        case KrVfsModel::DateTime: {
+        case KrViewProperties::Modified: {
             if (vf == _dummyVfile)
                 return QVariant();
             time_t time = vf->vfile_getTime_t();
@@ -269,7 +269,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
             QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
             return KGlobal::locale()->formatDateTime(tmp);
         }
-        case KrVfsModel::Permissions: {
+        case KrViewProperties::Permissions: {
             if (vf == _dummyVfile)
                 return QVariant();
             if (properties()->numericPermissions) {
@@ -278,17 +278,17 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
             }
             return vf->vfile_getPerm();
         }
-        case KrVfsModel::KrPermissions: {
+        case KrViewProperties::KrPermissions: {
             if (vf == _dummyVfile)
                 return QVariant();
             return krPermissionString(vf);
         }
-        case KrVfsModel::Owner: {
+        case KrViewProperties::Owner: {
             if (vf == _dummyVfile)
                 return QVariant();
             return vf->vfile_getOwner();
         }
-        case KrVfsModel::Group: {
+        case KrViewProperties::Group: {
             if (vf == _dummyVfile)
                 return QVariant();
             return vf->vfile_getGroup();
@@ -299,7 +299,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
     }
     case Qt::DecorationRole: {
         switch (index.column()) {
-        case KrVfsModel::Name: {
+        case KrViewProperties::Name: {
             if (properties()->displayIcons) {
                 if (_justForSizeHint)
                     return QPixmap(_view->fileIconSize(), _view->fileIconSize());
@@ -314,7 +314,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
     }
     case Qt::TextAlignmentRole: {
         switch (index.column()) {
-        case KrVfsModel::Size:
+        case KrViewProperties::Size:
             return QVariant(Qt::AlignRight | Qt::AlignVCenter);
         default:
             return QVariant(Qt::AlignLeft | Qt::AlignVCenter);
@@ -546,28 +546,28 @@ bool itemLessThan(SortProps *sp, SortProps *sp2)
     bool alwaysSortDirsByName = (sp->properties()->sortOptions & KrViewProperties::AlwaysSortDirsByName);
     int column = sp->column();
     if (alwaysSortDirsByName)
-        column = KrVfsModel::Name;
+        column = KrViewProperties::Name;
 
     switch (sp->column()) {
-    case KrVfsModel::Name:
+    case KrViewProperties::Name:
         return compareTexts(sp->name(), sp2->name(), sp->properties(), sp->isAscending(), true);
-    case KrVfsModel::Extension:
+    case KrViewProperties::Ext:
         if (sp->extension() == sp2->extension())
             return compareTexts(sp->name(), sp2->name(), sp->properties(), sp->isAscending(), true);
         return compareTexts(sp->extension(), sp2->extension(), sp->properties(), sp->isAscending(), true);
-    case KrVfsModel::Size:
+    case KrViewProperties::Size:
         if (file1->vfile_getSize() == file2->vfile_getSize())
             return compareTexts(sp->name(), sp2->name(), sp->properties(), sp->isAscending(), true);
         return file1->vfile_getSize() < file2->vfile_getSize();
-    case KrVfsModel::DateTime:
+    case KrViewProperties::Modified:
         if (file1->vfile_getTime_t() == file2->vfile_getTime_t())
             return compareTexts(sp->name(), sp2->name(), sp->properties(), sp->isAscending(), true);
         return file1->vfile_getTime_t() < file2->vfile_getTime_t();
-    case KrVfsModel::Mime:
-    case KrVfsModel::Permissions:
-    case KrVfsModel::KrPermissions:
-    case KrVfsModel::Owner:
-    case KrVfsModel::Group:
+    case KrViewProperties::Type:
+    case KrViewProperties::Permissions:
+    case KrViewProperties::KrPermissions:
+    case KrViewProperties::Owner:
+    case KrViewProperties::Group:
         if (sp->data() == sp2->data())
             return compareTexts(sp->name(), sp2->name(), sp->properties(), sp->isAscending(), true);
         return compareTexts(sp->data(), sp2->data(), sp->properties(), sp->isAscending(), true);
@@ -834,15 +834,15 @@ QVariant KrVfsModel::headerData(int section, Qt::Orientation orientation, int ro
         return QVariant();
 
     switch (section) {
-    case KrVfsModel::Name: return i18n("Name");
-    case KrVfsModel::Extension: return i18n("Ext");
-    case KrVfsModel::Size: return i18n("Size");
-    case KrVfsModel::Mime: return i18n("Type");
-    case KrVfsModel::DateTime: return i18n("Modified");
-    case KrVfsModel::Permissions: return i18n("Perms");
-    case KrVfsModel::KrPermissions: return i18n("rwx");
-    case KrVfsModel::Owner: return i18n("Owner");
-    case KrVfsModel::Group: return i18n("Group");
+    case KrViewProperties::Name: return i18n("Name");
+    case KrViewProperties::Ext: return i18n("Ext");
+    case KrViewProperties::Size: return i18n("Size");
+    case KrViewProperties::Type: return i18n("Type");
+    case KrViewProperties::Modified: return i18n("Modified");
+    case KrViewProperties::Permissions: return i18n("Perms");
+    case KrViewProperties::KrPermissions: return i18n("rwx");
+    case KrViewProperties::Owner: return i18n("Owner");
+    case KrViewProperties::Group: return i18n("Group");
     }
     return QString();
 }
@@ -920,56 +920,4 @@ QString KrVfsModel::krPermissionString(const vfile * vf)
     case NO_PERM:      tmp+='-'; break;
     }
     return tmp;
-}
-
-int KrVfsModel::convertSortColumnFromKrViewProperties(KrViewProperties::ColumnType column)
-{
-    switch(column) {
-    case KrViewProperties::Name:
-        return KrVfsModel::Name;
-    case KrViewProperties::Ext:
-        return KrVfsModel::Extension;
-    case KrViewProperties::Size:
-        return KrVfsModel::Size;
-    case KrViewProperties::Type:
-        return KrVfsModel::Mime;
-    case KrViewProperties::Modified:
-        return KrVfsModel::DateTime;
-    case KrViewProperties::Permissions:
-        return KrVfsModel::Permissions;
-    case KrViewProperties::KrPermissions:
-        return KrVfsModel::KrPermissions;
-    case KrViewProperties::Owner:
-        return KrVfsModel::Owner;
-    case KrViewProperties::Group:
-        return KrVfsModel::Group;
-    default:
-        abort();
-    }
-}
-
-KrViewProperties::ColumnType KrVfsModel::convertSortColumnToKrViewProperties(int column)
-{
-    switch (column) {
-    case KrVfsModel::Name:
-        return KrViewProperties::Name;
-    case KrVfsModel::Extension:
-        return KrViewProperties::Ext;
-    case KrVfsModel::Mime:
-        return KrViewProperties::Type;
-    case KrVfsModel::Size:
-        return KrViewProperties::Size;
-    case KrVfsModel::DateTime:
-        return KrViewProperties::Modified;
-    case KrVfsModel::Permissions:
-        return KrViewProperties::Permissions;
-    case KrVfsModel::KrPermissions:
-        return KrViewProperties::KrPermissions;
-    case KrVfsModel::Owner:
-        return KrViewProperties::Owner;
-    case KrVfsModel::Group:
-        return KrViewProperties::Group;
-    default:
-        abort();
-    }
 }

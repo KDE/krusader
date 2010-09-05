@@ -73,8 +73,11 @@ public:
     }
 
     // TODO: replace with ColumnType from KrVfsModel
-    enum ColumnType { Name = 0x1, Ext = 0x2, Size = 0x4, Type = 0x8, Modified = 0x10, Permissions = 0x20,
+/*    enum ColumnType { Name = 0x1, Ext = 0x2, Size = 0x4, Type = 0x8, Modified = 0x10, Permissions = 0x20,
                       KrPermissions = 0x40, Owner = 0x80, Group = 0x100
+                    };*/
+    enum ColumnType { Name = 0x0, Ext = 0x1, Size = 0x2, Type = 0x3, Modified = 0x4,
+                      Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8, MAX_COLUMNS = 0x09
                     };
     enum SortOptions { Descending = 0x200, DirsFirst = 0x400, IgnoreCase = 0x800,
                     AlwaysSortDirsByName = 0x1000, LocaleAwareSort = 0x2000
