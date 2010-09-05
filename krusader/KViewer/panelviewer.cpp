@@ -150,6 +150,9 @@ KParts::ReadOnlyPart* PanelViewer::getHexPart()
     } else
         part = (*mimes)[ QLatin1String("libkhexedit2part")];
 
+    if(!part)
+        part = getListerPart(true);
+
     return part;
 }
 
@@ -164,11 +167,12 @@ KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
     KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit);
     limit *= 0x100000;
 
+    KMimeType::Ptr mt = KMimeType::findByUrl(curl);
+    cmimetype = mt ? mt->name() : QString();
+
     switch(mode) {
     case KrViewer::Generic:
         {
-            KMimeType::Ptr mt = KMimeType::findByUrl(curl);
-            cmimetype = mt ? mt->name() : QString();
 
             if (fileSize > limit && (cmimetype.startsWith(QLatin1String("text/")) ||
                                     cmimetype.startsWith(QLatin1String("all/"))))
@@ -185,8 +189,8 @@ KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
         if(cpart)
             break;
     case KrViewer::Text:
-        if(fileSize > limit)
-            cpart = getListerPart();
+        if(fileSize > limit || mt->isBinaryData(curl.path())) // FIXME isBinaryData() only works on local files
+            cpart = getHexPart();
         else {
             cpart = getPart("text/plain");
             if(!cpart)
@@ -194,11 +198,10 @@ KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
         }
         break;
     case KrViewer::Lister:
+        cpart = getListerPart(mt->isBinaryData(curl.path())); // FIXME isBinaryData() only works on local files
+        break;
     case KrViewer::Hex:
-        if (mode == KrViewer::Hex)
-            cpart = getHexPart();
-        if(!cpart)
-            cpart = getListerPart(mode == KrViewer::Hex);
+        cpart = getHexPart();
         break;
     default:
         abort();
