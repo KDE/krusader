@@ -50,9 +50,12 @@ QWidget * KrInterViewItemDelegate::createEditor(QWidget *parent, const QStyleOpt
 void KrInterViewItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     QItemDelegate::setEditorData(editor, index);
-    if (editor->inherits("QLineEdit")) {
-        QLineEdit *lineEdit = qobject_cast<QLineEdit *> (editor);
-        if (lineEdit) {
+    QLineEdit *lineEdit = qobject_cast<QLineEdit *> (editor);
+    if (lineEdit) {
+        KConfigGroup gl(krConfig, "Look&Feel");
+        if (gl.readEntry("Rename Selects Extension", true))
+            lineEdit->selectAll();
+        else {
             QString nameWithoutExt = index.data(Qt::UserRole).toString();
             lineEdit->deselect();
             lineEdit->setSelection(0, nameWithoutExt.length());
