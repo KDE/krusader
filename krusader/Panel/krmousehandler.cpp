@@ -161,7 +161,7 @@ bool KrMouseHandler::mouseReleaseEvent(QMouseEvent *e)
         _rightClickedItem = 0;
         _contextMenuTimer.stop();
     }
-    if (_singleClick && e->button() == Qt::LeftButton) {
+    if (_singleClick && e->button() == Qt::LeftButton && e->modifiers() == Qt::NoModifier) {
         CANCEL_TWO_CLICK_RENAME;
         e->accept();
         if (item == 0)
