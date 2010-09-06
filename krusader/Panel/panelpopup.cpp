@@ -508,10 +508,11 @@ void PanelPopup::handleOpenUrlRequest(const KUrl &url)
 void PanelPopup::tabSelected(int id)
 {
     KUrl url;
-    if (ACTIVE_PANEL && ACTIVE_PANEL->func && ACTIVE_PANEL->func->files() && ACTIVE_PANEL->view) {
-        url = ACTIVE_PANEL->func->files()->vfs_getFile(ACTIVE_PANEL->view->getCurrentItem());
-    }
-
+    const vfile *vf = 0;
+    if (ACTIVE_PANEL && ACTIVE_PANEL->func->files() && ACTIVE_PANEL->view)
+        vf = ACTIVE_PANEL->func->files()->vfs_search(ACTIVE_PANEL->view->getCurrentItem());
+    if(vf)
+        url = vf->vfile_getUrl();
 
     // if tab is tree, set something logical in the data line
     switch (id) {
@@ -526,7 +527,7 @@ void PanelPopup::tabSelected(int id)
     case Preview:
         stack->setCurrentWidget(viewer);
         dataLine->setText(i18n("Preview:"));
-        update(url);
+        update(vf);
         break;
     case QuickPanel:
         stack->setCurrentWidget(quickPanel);
@@ -537,14 +538,14 @@ void PanelPopup::tabSelected(int id)
     case View:
         stack->setCurrentWidget(panelviewer);
         dataLine->setText(i18n("View:"));
-        update(url);
+        update(vf);
         if (!isHidden() && panelviewer->part() && panelviewer->part()->widget())
             panelviewer->part()->widget()->setFocus();
         break;
     case DskUsage:
         stack->setCurrentWidget(diskusage);
         dataLine->setText(i18n("Disk Usage:"));
-        update(url);
+        update(vf);
         if (!isHidden() && diskusage->getWidget() && diskusage->getWidget()->currentWidget())
             diskusage->getWidget()->currentWidget()->setFocus();
         break;
@@ -553,11 +554,14 @@ void PanelPopup::tabSelected(int id)
 }
 
 // decide which part to update, if at all
-void PanelPopup::update(KUrl url)
+void PanelPopup::update(const vfile *vf)
 {
-    if (isHidden() || url.url() == "") return ; // failsafe
+    if (isHidden())
+        return;
 
-    KFileItemList lst;
+    KUrl url;
+    if(vf)
+       url = vf->vfile_getUrl();
 
     switch (currentPage()) {
     case Preview:
@@ -565,14 +569,14 @@ void PanelPopup::update(KUrl url)
         dataLine->setText(i18n("Preview: %1", url.fileName()));
         break;
     case View:
-        panelviewer->openUrl(url);
+        if(vf && !vf->vfile_isDir() && vf->vfile_isReadable())
+            panelviewer->openUrl(vf->vfile_getUrl());
+        else
+            panelviewer->closeUrl();
         dataLine->setText(i18n("View: %1", url.fileName()));
         break;
     case DskUsage: {
-        if (url.fileName() == "..")
-            url.setFileName("");
-        KMimeType::Ptr mt = KMimeType::findByUrl(url.url());
-        if (!mt || mt->name() != "inode/directory")
+        if(vf && !vf->vfile_isDir())
             url = url.upUrl();
         dataLine->setText(i18n("Disk Usage: %1", url.fileName()));
         diskusage->openUrl(url);

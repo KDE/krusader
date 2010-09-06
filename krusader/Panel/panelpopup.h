@@ -47,6 +47,7 @@ class KDirModel;
 class KDirSortFilterProxyModel;
 class QMimeData;
 class QPoint;
+class vfile;
 
 class PanelPopup: public QWidget
 {
@@ -63,7 +64,7 @@ public:
     void saveSizes();
 
 public slots:
-    void update(KUrl url);
+    void update(const vfile *vf);
     void show();
     void hide();
 

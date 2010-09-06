@@ -752,6 +752,8 @@ void ListPanel::slotFocusOnMe()
     if (KrActions::actView4) KrActions::actView4->setEnabled(panelType != 4);
     if (KrActions::actView5) KrActions::actView5->setEnabled(panelType != 5);
 
+    updatePopupPanel(view->getCurrentKrViewItem());
+
     krApp->setUpdatesEnabled(true);
 }
 
@@ -1378,10 +1380,10 @@ void ListPanel::updatePopupPanel(KrViewItem *item)
     else
         return;
 
-    KUrl url;
-    if (item->name() != "..") // updir
-        url = func->files()->vfs_getFile(item->name());
-    lp->popup->update(url);
+    if(item)
+        lp->popup->update(func->files()->vfs_search(item->name()));
+    else
+        lp->popup->update(0);
 }
 
 #include "listpanel.moc"
