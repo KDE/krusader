@@ -85,13 +85,6 @@ protected:
     bool _hidden;
     QString _name;
     QString _extension;
-
-    // return -1, 0, 1 if aS1 is less, equal or greater than aS2
-    int compareTexts(QString aS1, QString aS2, int asc, bool isName) const;
-    int compareTextsAlphabetical(QString& aS1, QString& aS2, bool aNumbers) const;
-    int compareTextsCharacterCode(QString& aS1, QString& aS2, bool aNumbers) const;
-    int compareTextsKrusader(QString& aS1, QString& aS2, int asc, bool isName) const;
-
 };
 
 #endif
