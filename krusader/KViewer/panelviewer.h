@@ -84,7 +84,6 @@ protected:
     QHash<QString, QPointer<KParts::ReadOnlyPart> > *mimes;
     QPointer<KParts::ReadOnlyPart> cpart;
 
-    QString cmimetype;
     KUrl curl;
     QLabel *fallback;
 
@@ -109,7 +108,7 @@ public:
 
 protected:
     virtual KParts::ReadOnlyPart* createPart(QString mimetype);
-    KParts::ReadOnlyPart* getDefaultPart(const KUrl &url);
+    KParts::ReadOnlyPart* getDefaultPart(const KUrl &url, QString mimetype, bool isBinary);
     KParts::ReadOnlyPart* getHexPart();
     KParts::ReadOnlyPart* getListerPart(bool hexMode = false);
     KParts::ReadOnlyPart* getTextPart();
