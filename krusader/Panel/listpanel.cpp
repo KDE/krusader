@@ -781,9 +781,6 @@ void ListPanel::start(KUrl url, bool immediate)
 
 void ListPanel::slotStartUpdate()
 {
-    while (func->inRefresh)
-        ; // wait until the last refresh finish
-    func->inRefresh = true;  // make sure the next refresh wait for this one
     if (inlineRefreshJob)
         inlineRefreshListResult(0);
 
@@ -825,7 +822,6 @@ void ListPanel::slotUpdate()
         view->addItems(func->files(), false);
 
     view->updatePreviews();
-    func->inRefresh = false;
 }
 
 

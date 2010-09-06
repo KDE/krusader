@@ -90,7 +90,7 @@ A
 #include "../Queue/queue_mgr.h"
 
 ListPanelFunc::ListPanelFunc(ListPanel *parent) :
-        panel(parent), inRefresh(false), vfsP(0)
+        panel(parent), vfsP(0)
 {
     urlStack.push_back(KUrl("file:/"));
     connect(&delayTimer, SIGNAL(timeout()), this, SLOT(doOpenUrl()));
