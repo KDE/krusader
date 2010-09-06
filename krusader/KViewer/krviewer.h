@@ -42,7 +42,7 @@ class KrViewer : public KParts::MainWindow
 public:
     virtual ~KrViewer();
 
-    enum Mode {Generic, Text, Hex, Lister};
+    enum Mode {Generic, Text, Hex, Lister, Default};
 
     static void view(KUrl url, QWidget * parent = krMainWindow);
     static void view(KUrl url, Mode mode, bool new_window, QWidget * parent = krMainWindow);

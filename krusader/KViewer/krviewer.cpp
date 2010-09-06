@@ -47,6 +47,7 @@
 #include "../krglobal.h"
 #include "../defaults.h"
 #include "../kicons.h"
+#include "../krservices.h"
 #include "panelviewer.h"
 
 #define VIEW_ICON     "zoom-original"
@@ -183,16 +184,6 @@ void KrViewer::createGUI(KParts::Part* part)
 
     // and "fix" the menubar
     QList<QAction *> actList = menuBar()->actions();
-    foreach(QAction * a, actList) {
-	// make sure empty submenus do not appear
-	if (a->menu()) {
-	  if (a->menu()->isEmpty())
-	    a->setVisible(false);
-	  else a->setVisible(true);
-	}
-	if (a->data().canConvert<int>() && a->data().toInt() == 70)
-	    menuBar()->removeAction(a);
-    }
     viewerMenu->setTitle(i18n("&KrViewer"));
     QAction * act = menuBar() ->addMenu(viewerMenu);
     act->setData(QVariant(70));
@@ -271,20 +262,10 @@ KrViewer* KrViewer::getViewer(bool new_window)
 
 void KrViewer::view(KUrl url, QWidget * parent)
 {
-    Mode defaultMode = Generic;
-    bool defaultWindow = false;
-
     KConfigGroup group(krConfig, "General");
-    defaultWindow = group.readEntry("View In Separate Window", _ViewInSeparateWindow);
+    bool defaultWindow = group.readEntry("View In Separate Window", _ViewInSeparateWindow);
 
-    QString modeString = group.readEntry("Default Viewer Mode", QString("generic"));
-
-    if (modeString == "generic") defaultMode = Generic;
-    else if (modeString == "text") defaultMode = Text;
-    else if (modeString == "hex") defaultMode = Hex;
-    else if (modeString == "lister") defaultMode = Lister;
-
-    view(url, defaultMode, defaultWindow, parent);
+    view(url, Default, defaultWindow, parent);
 }
 
 void KrViewer::view(KUrl url, Mode mode,  bool new_window, QWidget * parent)
@@ -326,10 +307,7 @@ void KrViewer::edit(KUrl url, Mode mode, int new_window, QWidget * parent)
         KProcess proc;
         // if the file is local, pass a normal path and not a url. this solves
         // the problem for editors that aren't url-aware
-        if (url.isLocalFile())
-            proc << edit.split(' ') << url.path();
-        else
-            proc << edit.split(' ') << url.prettyUrl();
+        proc << edit.split(' ') << KrServices::quote(url.pathOrUrl());
         if (!proc.startDetached())
             KMessageBox::sorry(krMainWindow, i18n("Can not open \"%1\"", edit));
         return ;

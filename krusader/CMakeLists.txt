@@ -94,6 +94,7 @@ install(FILES krusader.desktop
         DESTINATION ${XDG_APPS_INSTALL_DIR} )
 install(FILES krusaderui.rc
               krusaderlisterui.rc
+              krviewer.rc
               midnight_commander.color
               total_commander.color
               total_commander.keymap

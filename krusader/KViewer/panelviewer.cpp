@@ -117,7 +117,6 @@ PanelViewer::~PanelViewer()
 {
 }
 
-
 KParts::ReadOnlyPart* PanelViewer::getListerPart(bool hexMode)
 {
     KParts::ReadOnlyPart* part = 0;
@@ -156,52 +155,85 @@ KParts::ReadOnlyPart* PanelViewer::getHexPart()
     return part;
 }
 
+KParts::ReadOnlyPart* PanelViewer::getTextPart()
+{
+    KParts::ReadOnlyPart* part = getPart("text/plain");
+    if(!part)
+        part = getPart("all/allfiles");
+    return part;
+}
+
+KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KUrl &url)
+{
+    KConfigGroup group(krConfig, "General");
+    QString modeString = group.readEntry("Default Viewer Mode", QString("generic"));
+
+    KrViewer::Mode mode = KrViewer::Generic;
+
+    if (modeString == "generic") mode = KrViewer::Generic;
+    else if (modeString == "text") mode = KrViewer::Text;
+    else if (modeString == "hex") mode = KrViewer::Hex;
+    else if (modeString == "lister") mode = KrViewer::Lister;
+
+    KIO::filesize_t fileSize = readFileInfo(url).size();
+    KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit);
+    limit *= 0x100000;
+
+    KMimeType::Ptr mt = KMimeType::findByUrl(url);
+    cmimetype = mt ? mt->name() : QString();
+    bool isBinary = mt->isBinaryData(url.path()); // FIXME isBinaryData() only works on local files
+
+    KParts::ReadOnlyPart* part = 0;
+
+    switch(mode) {
+    case KrViewer::Generic:
+        if((cmimetype.startsWith(QLatin1String("text/")) ||
+            cmimetype.startsWith(QLatin1String("all/"))) &&
+                fileSize > limit) {
+            part = isBinary ? getHexPart() : getListerPart();
+            break;
+        } else if(part = getPart(cmimetype))
+                break;
+    case KrViewer::Text:
+        if(fileSize > limit || isBinary)
+            part = isBinary ? getHexPart() : getListerPart();
+        else
+            part = getTextPart();
+        break;
+    case KrViewer::Lister:
+        part = getListerPart(isBinary);
+        break;
+    case KrViewer::Hex:
+        part = getHexPart();
+        break;
+    default:
+        abort();
+    }
+
+    return part;
+}
+
 KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
 {
     emit urlChanged(this, url);
     closeUrl();
     curl = url;
 
-    KIO::filesize_t fileSize = readFileInfo(curl).size();
-    KConfigGroup group(krConfig, "General");
-    KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit);
-    limit *= 0x100000;
-
-    KMimeType::Ptr mt = KMimeType::findByUrl(curl);
-    cmimetype = mt ? mt->name() : QString();
-
     switch(mode) {
     case KrViewer::Generic:
-        {
-
-            if (fileSize > limit && (cmimetype.startsWith(QLatin1String("text/")) ||
-                                    cmimetype.startsWith(QLatin1String("all/"))))
-                cpart = getListerPart();
-            else {
-                // KDE 4 HACK : START
-                // KDE 4 crashes at viewing directories
-                if (cmimetype == "inode/directory")
-                    return 0;
-                // KDE 4 HACK : END
-                cpart = getPart(cmimetype);
-            }
-        }
-        if(cpart)
-            break;
+        cpart = getPart(cmimetype);
+        break;
     case KrViewer::Text:
-        if(fileSize > limit || mt->isBinaryData(curl.path())) // FIXME isBinaryData() only works on local files
-            cpart = getHexPart();
-        else {
-            cpart = getPart("text/plain");
-            if(!cpart)
-                cpart = getPart("all/allfiles");
-        }
+        cpart = getTextPart();
         break;
     case KrViewer::Lister:
-        cpart = getListerPart(mt->isBinaryData(curl.path())); // FIXME isBinaryData() only works on local files
+        cpart = getListerPart();
         break;
     case KrViewer::Hex:
         cpart = getHexPart();
+        break;
+    case KrViewer::Default:
+        cpart = getDefaultPart(curl);
         break;
     default:
         abort();
