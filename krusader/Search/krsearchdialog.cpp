@@ -368,6 +368,12 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
         profileManager->loadProfile(profile);   // important: call this _after_ you've connected profileManager ot the loadFromProfile!!
 }
 
+KrSearchDialog::~KrSearchDialog()
+{
+    delete query;
+    query = 0;
+}
+
 void KrSearchDialog::closeDialog(bool isAccept)
 {
     // stop the search if it's on-going
@@ -495,8 +501,6 @@ void KrSearchDialog::stopSearch()
     if (searcher != 0) {
         searcher->stop();
         disconnect(searcher, 0, 0, 0);
-        delete query;
-        query = 0;
     }
 
     // gui stuff
@@ -641,13 +645,20 @@ void KrSearchDialog::feedToListBox()
     virt_vfs v(0, true);
     v.vfs_refresh(KUrl("/"));
 
-    KConfigGroup group(krConfig, "Search");
-    int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
+//     KConfigGroup group(krConfig, "Search");
+//     int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
     QString queryName;
-    do {
-        queryName = i18n("Search results") + QString(" %1").arg(listBoxNum++);
-    } while (v.vfs_search(queryName) != 0);
-    group.writeEntry("Feed To Listbox Counter", listBoxNum);
+    if(query) {
+        QString where = query->searchInDirs().toStringList().join(", ");
+        if(query->content().isEmpty())
+            queryName = i18n("Search results for \"%1\" in %2", query->nameFilter(), where);
+        else
+            queryName = i18n("Search results for \"%1\" containing \"%2\" in %3", query->nameFilter(), query->content(), where);
+    }
+//     do {
+//         queryName = i18n("Search results") + QString(" %1").arg(listBoxNum++);
+//     } while (v.vfs_search(queryName) != 0);
+//     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");
     if (ga.readEntry("Confirm Feed to Listbox",  _ConfirmFeedToListbox)) {

@@ -83,6 +83,9 @@ public:
 
     // sets the content part of the query
     void setContent(const QString &content, bool cs = true, bool wholeWord = false, bool remoteSearch = false, QString encoding = QString(), bool regExp = false);
+    const QString content() {
+        return contain;
+    }
 
     // sets the minimum file size limit
     void setMinimumFileSize(KIO::filesize_t);
