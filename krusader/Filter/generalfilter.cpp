@@ -351,14 +351,12 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     }
     filterLayout->addLayout(recurseLayout, 3, 0);
 
-    QHBoxLayout *extraOptionsLayout = new QHBoxLayout();
     for(int i = 0; i < extraOptions.length(); i++) {
         QCheckBox *option = new QCheckBox(this);
         option->setText(extraOptions[i]);
-        extraOptionsLayout->addWidget(option);
+        recurseLayout->addWidget(option);
         this->extraOptions.insert(extraOptions[i], option);
     }
-    filterLayout->addLayout(extraOptionsLayout, 4, 0);
 
     // Connection table
 
