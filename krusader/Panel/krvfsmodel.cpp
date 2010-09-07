@@ -303,7 +303,6 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
 
 QModelIndex KrVfsModel::addItem(vfile * vf)
 {
-    printf("QModelIndex KrVfsModel::addItem(vfile * vf)\n");
     if(_view->isFiltered(vf))
        return QModelIndex();
 
