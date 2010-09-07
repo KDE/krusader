@@ -51,7 +51,7 @@ void KrVfsModel::setVfs(vfs* v, bool upDir)
 
     vfile *vf = v->vfs_getFirstFile();
     while (vf) {
-        if (!filterItem(vf))
+        if (!_view->isFiltered(vf))
             _vfiles.append(vf);
         vf = v->vfs_getNextFile();
     }
@@ -304,7 +304,7 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
 QModelIndex KrVfsModel::addItem(vfile * vf)
 {
     printf("QModelIndex KrVfsModel::addItem(vfile * vf)\n");
-    if(filterItem(vf))
+    if(_view->isFiltered(vf))
        return QModelIndex();
 
     emit layoutAboutToBeChanged();
@@ -398,36 +398,9 @@ QModelIndex KrVfsModel::removeItem(vfile * vf)
     return currIndex;
 }
 
-bool KrVfsModel::filterItem(vfile *vf)
-{
-    bool filteredOut = false;
-    bool isDir = vf->vfile_isDir();
-    if (!isDir || (isDir && (properties()->filter & KrViewProperties::ApplyToDirs))) {
-        switch (properties()->filter) {
-        case KrViewProperties::All :
-            break;
-        case KrViewProperties::Custom :
-            if (!properties()->filterMask.match(vf))
-                filteredOut = true;
-            break;
-        case KrViewProperties::Dirs:
-            if (!isDir)
-                filteredOut = true;
-            break;
-        case KrViewProperties::Files:
-            if (isDir)
-                filteredOut = true;
-            break;
-        default:
-            break;
-        }
-    }
-    return filteredOut;
-}
-
 void KrVfsModel::updateItem(vfile * vf, bool &filteredOut)
 {
-    filteredOut = filterItem(vf);
+    filteredOut = _view->isFiltered(vf);
     QModelIndex lastIndex = vfileIndex(vf);
 
     if (filteredOut) {

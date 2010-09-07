@@ -86,7 +86,6 @@ public slots:
 
 protected:
     QString nameWithoutExtension(const vfile * vf, bool checkEnabled = true) const;
-    bool filterItem(vfile *vf);
 
 
     QVector<vfile*>             _vfiles;
@@ -102,4 +101,5 @@ protected:
     bool                        _justForSizeHint;
     bool                        _alternatingTable;
 };
+
 #endif // __krvfsmodel__

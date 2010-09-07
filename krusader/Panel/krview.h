@@ -396,6 +396,7 @@ public:
     virtual void applySettingsToOthers();
 
     void changeSelection(const KRQuery& filter, bool select, bool includeDirs = false);
+    bool isFiltered(vfile *vf);
 
     /////////////////////////////////////////////////////////////
     // the following functions have a default and minimalistic //

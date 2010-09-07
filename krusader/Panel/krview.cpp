@@ -1037,3 +1037,30 @@ QString KrView::krPermissionString(const vfile * vf)
     }
     return tmp;
 }
+
+bool KrView::isFiltered(vfile *vf)
+{
+    bool filteredOut = false;
+    bool isDir = vf->vfile_isDir();
+    if (!isDir || (isDir && (properties()->filter & KrViewProperties::ApplyToDirs))) {
+        switch (properties()->filter) {
+        case KrViewProperties::All :
+            break;
+        case KrViewProperties::Custom :
+            if (!properties()->filterMask.match(vf))
+                filteredOut = true;
+            break;
+        case KrViewProperties::Dirs:
+            if (!isDir)
+                filteredOut = true;
+            break;
+        case KrViewProperties::Files:
+            if (isDir)
+                filteredOut = true;
+            break;
+        default:
+            break;
+        }
+    }
+    return filteredOut;
+}
