@@ -67,10 +67,19 @@ typedef QList<KrViewItem*> KrViewItemList;
 class KrViewProperties
 {
 public:
-    KrViewProperties() {
-        filter = KrViewProperties::All;
-        filterMask = KRQuery("*");
-    }
+    KrViewProperties() :
+        numericPermissions(false),
+        displayIcons(false),
+        sortColumn(Name),
+        sortOptions(static_cast<SortOptions>(0)),
+        sortMethod(Alphabetical),
+        filter(KrViewProperties::All),
+        filterMask(KRQuery("*")),
+        filterApplysToDirs(false),
+        localeAwareCompareIsCaseSensitive(false),
+        humanReadableSize(),
+        numberOfColumns(1)
+    {}
 
     // TODO: replace with ColumnType from KrVfsModel
 /*    enum ColumnType { Name = 0x1, Ext = 0x2, Size = 0x4, Type = 0x8, Modified = 0x10, Permissions = 0x20,
@@ -85,7 +94,7 @@ public:
     enum SortMethod { Alphabetical = 0x1, AlphabeticalNumbers = 0x2,
                       CharacterCode = 0x4, CharacterCodeNumbers = 0x8, Krusader = 0x10
                     };
-    enum FilterSpec { Dirs = 0x1, Files = 0x2, All = 0x3, Custom = 0x4, ApplyToDirs = 0x8 };
+    enum FilterSpec { Dirs = 0x1, Files = 0x2, All = 0x3, Custom = 0x4 };
 
     bool numericPermissions;        // show full permission column as octal numbers
     bool displayIcons; // true if icons should be displayed in this view
@@ -94,6 +103,7 @@ public:
     SortMethod sortMethod;  // sort method for names and extensions
     FilterSpec filter; // what items to show (all, custom, exec)
     KRQuery filterMask; // what items to show (*.cpp, *.h etc)
+    bool filterApplysToDirs;
     bool localeAwareCompareIsCaseSensitive; // mostly, it is not! depends on LC_COLLATE
     bool humanReadableSize;  // display size as KB, MB or just as a long number
     QStringList atomicExtensions; // list of strings, which will be treated as one extension. Must start with a dot.
@@ -405,8 +415,9 @@ public:
     virtual void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending) {
         sortModeUpdated(sortColumn, descending);
     }
-    virtual void setFilter(KrViewProperties::FilterSpec filter) {
+    virtual void setFilter(KrViewProperties::FilterSpec filter, bool applyToDirs = false) {
         _properties->filter = filter;
+        _properties->filterApplysToDirs = applyToDirs;
     }
     virtual KrViewProperties::FilterSpec filter() const {
         return _properties->filter;

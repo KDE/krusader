@@ -35,12 +35,13 @@
 
 #include <klocale.h>
 
-FilterTabs::FilterTabs(int properties, KTabWidget *tabWidget, QObject *parent) :
+FilterTabs::FilterTabs(int properties, KTabWidget *tabWidget,
+                       QObject *parent, QStringList extraOptions) :
         QObject(parent)
 {
     this->tabWidget = tabWidget;
 
-    GeneralFilter *generalFilter = new GeneralFilter(this, properties, tabWidget);
+    GeneralFilter *generalFilter = new GeneralFilter(this, properties, tabWidget, extraOptions);
     tabWidget->addTab(generalFilter, i18n("&General"));
     filterList.append(generalFilter);
     pageNumbers.append(tabWidget->indexOf(generalFilter));
@@ -51,9 +52,14 @@ FilterTabs::FilterTabs(int properties, KTabWidget *tabWidget, QObject *parent) :
     pageNumbers.append(tabWidget->indexOf(advancedFilter));
 }
 
-FilterTabs * FilterTabs::addTo(KTabWidget *tabWidget, int props)
+bool FilterTabs::isExtraOptionChecked(QString name)
 {
-    return new FilterTabs(props, tabWidget, tabWidget);
+    return static_cast<GeneralFilter*>(get("GeneralFilter"))->isExtraOptionChecked(name);
+}
+
+FilterTabs * FilterTabs::addTo(KTabWidget *tabWidget, int props, QStringList extraOptions)
+{
+    return new FilterTabs(props, tabWidget, tabWidget, extraOptions);
 }
 
 void FilterTabs::saveToProfile(QString name)

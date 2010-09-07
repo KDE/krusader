@@ -104,6 +104,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krcolorcache.h"
 #include "krerrordisplay.h"
 #include "krlayoutfactory.h"
+#include "../Filter/filterdialog.h"
 
 
 
@@ -1049,21 +1050,25 @@ void ListPanel::popEmptyRightClickMenu(const QPoint &loc)
 
 void ListPanel::setFilter(KrViewProperties::FilterSpec f)
 {
+    bool applyToDirs = false;
     switch (f) {
     case KrViewProperties::All :
-        //case KrView::EXEC:
         break;
     case KrViewProperties::Custom :
-        filterMask = KRSpWidgets::getMask(i18n(" Select Files "));
-        // if the user canceled - quit
-        if (filterMask.isNull())
-            return;
-        view->setFilterMask(filterMask);
+        {
+            FilterDialog dialog(0, i18n("Filter Files"), QStringList(i18n("Apply filter to directories")));
+            filterMask = dialog.getQuery();
+            // if the user canceled - quit
+            if (filterMask.isNull())
+                return;
+            applyToDirs = dialog.isExtraOptionChecked(i18n("Apply filter to directories"));
+            view->setFilterMask(filterMask);
+        }
         break;
     default:
         return ;
     }
-    view->setFilter(f);   // do that in any case
+    view->setFilter(f, applyToDirs);   // do that in any case
     func->files()->vfs_invalidate();
     func->refresh();
 }

@@ -1042,7 +1042,7 @@ bool KrView::isFiltered(vfile *vf)
 {
     bool filteredOut = false;
     bool isDir = vf->vfile_isDir();
-    if (!isDir || (isDir && (properties()->filter & KrViewProperties::ApplyToDirs))) {
+    if (!isDir || (isDir && properties()->filterApplysToDirs)) {
         switch (properties()->filter) {
         case KrViewProperties::All :
             break;

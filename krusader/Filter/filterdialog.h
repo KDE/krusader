@@ -42,8 +42,10 @@ class FilterDialog : public KDialog
     Q_OBJECT
 
 public:
-    FilterDialog(QWidget *parent = 0);
+    FilterDialog(QWidget *parent = 0, QString caption = QString(),
+                 QStringList extraOptions = QStringList());
     KRQuery getQuery();
+    bool isExtraOptionChecked(QString name);
 
 public slots:
     void slotCloseRequest(bool doAccept);

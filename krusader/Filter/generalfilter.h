@@ -53,7 +53,8 @@ class GeneralFilter : public QWidget, public FilterBase
     Q_OBJECT
 
 public:
-    GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent = 0);
+    GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent = 0,
+                  QStringList extraOptions = QStringList());
     ~GeneralFilter();
 
     virtual bool          fillQuery(KRQuery *query);
@@ -66,6 +67,7 @@ public:
     virtual FilterTabs *  filterTabs() {
         return fltTabs;
     }
+    bool isExtraOptionChecked(QString name);
 
 public slots:
     void    slotAddBtnClicked();
@@ -86,6 +88,7 @@ public:
     QCheckBox* searchInDirs;
     QCheckBox* searchInArchives;
     QCheckBox* followLinks;
+    QHash<QString, QCheckBox*> extraOptions;
 
     KURLListRequester *searchIn;
     KURLListRequester *dontSearchIn;

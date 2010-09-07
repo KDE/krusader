@@ -89,7 +89,9 @@ private:
     int mCursor;
 };
 
-GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent) : QWidget(parent),
+GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent, 
+                             QStringList extraOptions) :
+        QWidget(parent),
         profileManager(0), fltTabs(tabs)
 {
     QGridLayout *filterLayout = new QGridLayout(this);
@@ -349,6 +351,15 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent) 
     }
     filterLayout->addLayout(recurseLayout, 3, 0);
 
+    QHBoxLayout *extraOptionsLayout = new QHBoxLayout();
+    for(int i = 0; i < extraOptions.length(); i++) {
+        QCheckBox *option = new QCheckBox(this);
+        option->setText(extraOptions[i]);
+        extraOptionsLayout->addWidget(option);
+        this->extraOptions.insert(extraOptions[i], option);
+    }
+    filterLayout->addLayout(extraOptionsLayout, 4, 0);
+
     // Connection table
 
     if (properties & FilterTabs::HasProfileHandler) {
@@ -399,6 +410,12 @@ GeneralFilter::~GeneralFilter()
     group.writeEntry("ContainsText History", list);
 
     krConfig->sync();
+}
+
+bool GeneralFilter::isExtraOptionChecked(QString name)
+{
+    QCheckBox *option = extraOptions[name];
+    return option ? option->isChecked() : false;
 }
 
 bool GeneralFilter::fillQuery(KRQuery *query)

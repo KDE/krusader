@@ -53,10 +53,12 @@ public:
         Default                 =   0xe000
     };
 
-    static FilterTabs * addTo(KTabWidget *tabWidget, int props = FilterTabs::Default);
+    static FilterTabs * addTo(KTabWidget *tabWidget, int props = FilterTabs::Default,
+                              QStringList extraOptions = QStringList());
     static KRQuery      getQuery(QWidget *parent = 0);
 
     FilterBase *get(QString name);
+    bool isExtraOptionChecked(QString name);
 
 public slots:
     void  loadFromProfile(QString);
@@ -70,7 +72,7 @@ signals:
     void  closeRequest(bool accept = true);
 
 private:
-    FilterTabs(int properties, KTabWidget *tabWidget, QObject *parent);
+    FilterTabs(int properties, KTabWidget *tabWidget, QObject *parent, QStringList extraOptions);
     void  acceptQuery();
 
     QList<FilterBase *> filterList;
