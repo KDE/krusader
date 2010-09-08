@@ -430,6 +430,7 @@ void ListPanel::changeType(int type)
 
 ListPanel::~ListPanel()
 {
+    inlineRefreshCancel();
     delete func;
     delete view;
     view = 0;
@@ -1261,12 +1262,14 @@ void ListPanel::slotJobStarted(KIO::Job* job)
 void ListPanel::inlineRefreshCancel()
 {
     if (inlineRefreshJob) {
-        inlineRefreshJob->kill(KJob::EmitResult);
-        inlineRefreshJob = 0;
+        disconnect(inlineRefreshJob, 0, this, 0);
+        inlineRefreshJob->kill();
+        inlineRefreshListResult(0);
     }
     if(previewJob) {
-        previewJob->kill(KJob::EmitResult);
-        previewJob = 0;
+        disconnect(previewJob, 0, this, 0);
+        previewJob->kill();
+        slotPreviewJobResult(0);
     }
 }
 
