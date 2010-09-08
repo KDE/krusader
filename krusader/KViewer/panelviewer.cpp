@@ -243,6 +243,8 @@ KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
         addWidget(cpart->widget());
         setCurrentWidget(cpart->widget());
 
+        if (cpart->inherits("KParts::ReadWritePart"))
+            static_cast<KParts::ReadWritePart*>(cpart.data())->setReadWrite(false);
         KParts::OpenUrlArguments args;
         args.setReload(true);
         cpart->setArguments(args);
