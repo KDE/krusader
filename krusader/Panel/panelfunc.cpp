@@ -223,13 +223,13 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
                 panel, SLOT(slotJobStarted(KIO::Job*)));
         connect(files(), SIGNAL(error(QString)),
                 panel, SLOT(slotVfsError(QString)));
+        connect(files(), SIGNAL(cleared()),
+            panel, SLOT(slotCleared()));
         if(isSyncing())
             vfsP->vfs_setQuiet(true);
         if (vfsP->vfs_refresh(u)) {
             break; // we have a valid refreshed URL now
         }
-        if (vfsP == 0)    // the object was deleted during vfs_refresh? Hoping the best...
-            return;
         // prevent repeated error messages
         if (vfsP->vfs_isDeleting())
             break;
@@ -253,8 +253,6 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
             panel, SLOT(slotItemUpdated(vfile*)));
     connect(files(), SIGNAL(deletedVfile(const QString&)),
             panel, SLOT(slotItemDeleted(const QString&)));
-    connect(files(), SIGNAL(cleared()),
-            panel, SLOT(slotCleared()));
     connect(files(), SIGNAL(trashJobStarted(KIO::Job*)),
             this, SLOT(trashJobStarted(KIO::Job*)));
 
