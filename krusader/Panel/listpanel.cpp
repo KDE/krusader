@@ -1387,4 +1387,9 @@ void ListPanel::updatePopupPanel(KrViewItem *item)
         lp->popup->update(0);
 }
 
+void ListPanel::otherPanelChanged()
+{
+    func->syncURL = KUrl();
+}
+
 #include "listpanel.moc"

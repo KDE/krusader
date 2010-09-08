@@ -125,6 +125,8 @@ public:
     void toggleSyncBrowse();
     void editLocation();
 
+    void otherPanelChanged();
+
     void saveSettings(KConfigGroup &cfg);
 
 public slots:

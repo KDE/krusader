@@ -117,12 +117,15 @@ void PanelManager::slotChangePanel(ListPanel *p)
 {
     if (p == 0)
         return;
+    ListPanel *prev = _self;
     _self = p;
 
 //     _stack->setUpdatesEnabled(false);
     _stack->setCurrentWidget(_self);
     // make sure the view is focused (this also causes ListPanel::slotFocusOnMe() to be called)
     _self->view->widget()->setFocus();
+    if(_self != prev)
+        _other->otherPanelChanged();
 //     _stack->setUpdatesEnabled(true);
 }
 

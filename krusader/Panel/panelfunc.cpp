@@ -106,6 +106,16 @@ void ListPanelFunc::openUrl(const QString& url, const QString& nameToMakeCurrent
             , nameToMakeCurrent);
 }
 
+bool ListPanelFunc::isSyncing()
+{
+    if(otherFunc()->otherFunc() == this &&
+       panel->otherPanel()->gui->syncBrowseButton->state() == SYNCBROWSE_CD &&
+       !otherFunc()->syncURL.isEmpty() &&
+       otherFunc()->syncURL == delayURL)
+        return true;
+    return false;
+}
+
 void ListPanelFunc::popErronousUrl()
 {
     KUrl current = urlStack.last();
@@ -204,6 +214,8 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
                 panel, SLOT(slotJobStarted(KIO::Job*)));
         connect(files(), SIGNAL(error(QString)),
                 panel, SLOT(slotVfsError(QString)));
+        if(isSyncing())
+            vfsP->vfs_setQuiet(true);
         if (vfsP->vfs_refresh(u)) {
             break; // we have a valid refreshed URL now
         }
@@ -249,51 +261,42 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
     // see if the open url operation failed, and if so,
     // put the attempted url in the origin bar and let the user change it
     if (refreshFailed) {
-        panel->origin->setUrl(urlIn.prettyUrl());
-        if(panel == ACTIVE_PANEL)
-            panel->origin->setFocus();
+        if(isSyncing())
+            panel->otherPanel()->gui->syncBrowseButton->setChecked(false);
+        else {
+            panel->origin->setUrl(urlIn.prettyUrl());
+            if(panel == ACTIVE_PANEL)
+                panel->origin->setFocus();
+        }
     }
+
+    if(otherFunc()->otherFunc() == this)  // not true if our tab is not active
+        otherFunc()->syncURL = KUrl();
 
     refreshActions();
     panel->view->updatePreviews();
 }
 
-void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent)
+void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent, bool inSync)
 {
     panel->inlineRefreshCancel();
-    // first the other dir, then the active! Else the focus changes and the other becomes active
-    if (panel->syncBrowseButton->state() == SYNCBROWSE_CD) {
-        // prevents that the sync-browsing circles itself to death
-        static bool inSync = false;
-        if (! inSync) {
-            inSync = true;
-            //do sync-browse stuff....
-            ListPanel *other_panel = OTHER_PANEL->gui;
-            KUrl otherDir = other_panel->virtualPath();
-            QString otherText = other_panel->origin->lineEdit()->text();
 
-            OTHER_FUNC->files() ->vfs_setQuiet(true);
-            // the trailing slash is necessary because krusader provides Dir's without it
-            // we can't use openUrl because the delay don't allow a check if the panel has really changed!
-            KUrl dest = otherDir;
-            dest.addPath(KUrl::relativeUrl(panel->virtualPath().url() + '/', url.url()));
-            OTHER_PANEL->gui->setLocked(false);
-            OTHER_FUNC->immediateOpenUrl(dest);
-            OTHER_FUNC->files() ->vfs_setQuiet(false);
-            // now we need to test ACTIVE_PANEL because the openURL has changed the active panel!!
-            if (other_panel->virtualPath().equals(otherDir)) {
-                // deactivating the sync-browse if syncbrowse not possible
-                panel->syncBrowseButton->setChecked(false);
-                other_panel->origin->lineEdit()->setText(otherText);
-            }
-            inSync = false;
-        }
-    }
     this->nameToMakeCurrent = nameToMakeCurrent;
     delayURL = url;               /* this function is useful for FTP url-s and bookmarks */
     delayLock = panel->isLocked();
     delayTimer.setSingleShot(true);
     delayTimer.start(0);    /* to avoid qApp->processEvents() deadlock situaltion */
+
+    if (panel->syncBrowseButton->state() == SYNCBROWSE_CD && !inSync) {
+        //do sync-browse stuff....
+        if(syncURL.isEmpty())
+            syncURL = panel->otherPanel()->virtualPath();
+
+        syncURL.addPath(KUrl::relativeUrl(panel->virtualPath().url() + '/', url.url()));
+        syncURL.cleanPath();
+        panel->otherPanel()->gui->setLocked(false);
+        otherFunc()->openUrl(syncURL, QString(), true);
+    }
 }
 
 void ListPanelFunc::refresh()

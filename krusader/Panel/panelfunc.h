@@ -49,7 +49,7 @@ public slots:
     }
     void execute(const QString&);
     void goInside(const QString&);
-    void openUrl(const KUrl& path, const QString& nameToMakeCurrent = QString());
+    void openUrl(const KUrl& path, const QString& nameToMakeCurrent = QString(), bool inSync = false);
     void openUrl(const QString& path, const QString& nameToMakeCurrent = QString());
     void popErronousUrl();
     void immediateOpenUrl(const KUrl& path, bool disableLock = false);
@@ -96,6 +96,7 @@ public:
     void FTPDisconnect();
     void newFTPconnection();
     ListPanelFunc* otherFunc();
+    bool isSyncing();
 
 protected slots:
     void slotFileCreated(KJob *job); // a file has been created by editNewFile()
@@ -106,6 +107,7 @@ protected:
     vfs*                 vfsP;      // pointer to vfs.
     QTimer               delayTimer;
     KUrl                 delayURL;
+    KUrl                 syncURL;
     bool                 delayLock;
     QString              nameToMakeCurrent;
     KUrl                 fileToCreate; // file that's to be created by editNewFile()
