@@ -194,6 +194,15 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
         v->setParentWindow(krMainWindow);
         v->setMountMan(&krMtMan);
         if (v != vfsP) {
+            // disconnect older signals
+            disconnect(files(), SIGNAL(addedVfile(vfile*)), 0, 0);
+            disconnect(files(), SIGNAL(updatedVfile(vfile*)), 0, 0);
+            disconnect(files(), SIGNAL(deletedVfile(const QString&)), 0, 0);
+            disconnect(files(), SIGNAL(cleared()), 0, 0);
+            disconnect(files(), SIGNAL(trashJobStarted(KIO::Job*), 0, 0);
+            // since we wont't recieve a cleared signal from this vfs we must clear now
+            panel->slotCleared();
+
             if (vfsP->vfs_canDelete())
                 delete vfsP;
             else {
@@ -237,11 +246,6 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
     if (urlStack.isEmpty() || !files() ->vfs_getOrigin().equals(urlStack.last())) {
         urlStack.push_back(files() ->vfs_getOrigin());
     }
-    // disconnect older signals
-    disconnect(files(), SIGNAL(addedVfile(vfile*)), 0, 0);
-    disconnect(files(), SIGNAL(updatedVfile(vfile*)), 0, 0);
-    disconnect(files(), SIGNAL(deletedVfile(const QString&)), 0, 0);
-    disconnect(files(), SIGNAL(cleared()), 0, 0);
     // connect to the vfs's dirwatch signals
     connect(files(), SIGNAL(addedVfile(vfile*)),
             panel, SLOT(slotItemAdded(vfile*)));
