@@ -199,7 +199,7 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
             disconnect(files(), SIGNAL(updatedVfile(vfile*)), 0, 0);
             disconnect(files(), SIGNAL(deletedVfile(const QString&)), 0, 0);
             disconnect(files(), SIGNAL(cleared()), 0, 0);
-            disconnect(files(), SIGNAL(trashJobStarted(KIO::Job*), 0, 0);
+            disconnect(files(), SIGNAL(trashJobStarted(KIO::Job*)), 0, 0);
             // since we wont't recieve a cleared signal from this vfs we must clear now
             panel->slotCleared();
 
