@@ -645,20 +645,20 @@ void KrSearchDialog::feedToListBox()
     virt_vfs v(0, true);
     v.vfs_refresh(KUrl("/"));
 
-//     KConfigGroup group(krConfig, "Search");
-//     int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
+    KConfigGroup group(krConfig, "Search");
+    int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
     QString queryName;
-    if(query) {
+/*    if(query) {
         QString where = query->searchInDirs().toStringList().join(", ");
         if(query->content().isEmpty())
             queryName = i18n("Search results for \"%1\" in %2", query->nameFilter(), where);
         else
             queryName = i18n("Search results for \"%1\" containing \"%2\" in %3", query->nameFilter(), query->content(), where);
-    }
-//     do {
-//         queryName = i18n("Search results") + QString(" %1").arg(listBoxNum++);
-//     } while (v.vfs_search(queryName) != 0);
-//     group.writeEntry("Feed To Listbox Counter", listBoxNum);
+    }*/
+    do {
+        queryName = i18n("Search results") + QString(" %1").arg(listBoxNum++);
+    } while (v.vfs_search(queryName) != 0);
+    group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");
     if (ga.readEntry("Confirm Feed to Listbox",  _ConfirmFeedToListbox)) {
