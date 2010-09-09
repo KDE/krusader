@@ -830,7 +830,10 @@ void ListPanel::slotUpdate()
 void ListPanel::slotGetStats(const KUrl& url)
 {
     if (!url.isLocalFile()) {
-        status->setText(i18n("No space information on non-local filesystems"));
+        if(func->files()->metaInformation().isEmpty())
+            status->setText(i18n("No space information on non-local filesystems"));
+        else
+            status->setText(func->files()->metaInformation());
         return ;
     }
 

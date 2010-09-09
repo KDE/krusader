@@ -648,25 +648,26 @@ void KrSearchDialog::feedToListBox()
     KConfigGroup group(krConfig, "Search");
     int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
     QString queryName;
-/*    if(query) {
+    if(query) {
         QString where = query->searchInDirs().toStringList().join(", ");
         if(query->content().isEmpty())
             queryName = i18n("Search results for \"%1\" in %2", query->nameFilter(), where);
         else
             queryName = i18n("Search results for \"%1\" containing \"%2\" in %3", query->nameFilter(), query->content(), where);
-    }*/
+    }
+    QString vfsName;
     do {
-        queryName = i18n("Search results") + QString(" %1").arg(listBoxNum++);
-    } while (v.vfs_search(queryName) != 0);
+        vfsName = i18n("Search results") + QString(" %1").arg(listBoxNum++);
+    } while (v.vfs_search(vfsName) != 0);
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");
     if (ga.readEntry("Confirm Feed to Listbox",  _ConfirmFeedToListbox)) {
         bool ok;
-        queryName = KInputDialog::getText(
+        vfsName = KInputDialog::getText(
                         i18n("Query name"),  // Caption
                         i18n("Here you can name the file collection"), // Questiontext
-                        queryName, // Default
+                        vfsName, // Default
                         &ok, this);
         if (! ok)
             return;
@@ -685,9 +686,10 @@ void KrSearchDialog::feedToListBox()
         ++it;
     }
 
-    KUrl url = KUrl(QString("virt:/") + queryName);
+    KUrl url = KUrl(QString("virt:/") + vfsName);
     v.vfs_refresh(url);
     v.vfs_addFiles(&urlList, KIO::CopyJob::Copy, 0);
+    v.setMetaInformation(queryName);
     //ACTIVE_FUNC->openUrl(url);
     ACTIVE_MNG->slotNewTab(url.prettyUrl());
     closeDialog();

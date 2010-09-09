@@ -41,6 +41,7 @@
 #define VIRT_VFS_DB "virt_vfs.db"
 
 QHash<QString, KUrl::List *> virt_vfs::virtVfsDict;
+QHash<QString, QString> virt_vfs::metaInfoDict;
 KConfig* virt_vfs::virt_vfs_db = 0;
 
 virt_vfs::virt_vfs(QObject* panel, bool quiet) : vfs(panel, quiet)
@@ -69,8 +70,10 @@ bool virt_vfs::populateVfsList(const KUrl& origin, bool /*showHidden*/)
         urlList = new KUrl::List();
         virtVfsDict.insert(path, urlList);
         virtVfsDict[ "/" ] ->append(KUrl("virt:/" + path));
-    } else
+    } else {
         urlList = virtVfsDict[ path ];
+        metaInfo = metaInfoDict[ path ];
+    }
 
     save();
     if (urlList->isEmpty()) return true;
@@ -103,7 +106,6 @@ void virt_vfs::vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode /*mode*
         virtVfsDict.insert(path, urlList);
         virtVfsDict[ "/" ] ->append(KUrl("virt:/" + path));
     }
-
     KUrl::List* urlList = virtVfsDict[ path ];
     for (int i = 0; i != fileUrls->count(); i++) {
         if (!urlList->contains((*fileUrls)[ i ]))
@@ -121,6 +123,7 @@ void virt_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
             virtVfsDict[ "/" ] ->removeAll(QString("virt:/") + filename);
             delete virtVfsDict[ filename ];
             virtVfsDict.remove(filename);
+            metaInfoDict.remove(filename);
         }
         vfs_refresh();
         return ;
@@ -328,6 +331,7 @@ bool virt_vfs::save()
         }
         // KDE 4.0 workaround, Item_ is added as KConfig fails on 1 char names (such as /)
         group.writeEntry("Item_" + lit.key(), entry);
+        group.writeEntry("MetaInfo_" + lit.key(), metaInfoDict[lit.key()]);
     }
 
     db->sync();
@@ -344,10 +348,13 @@ bool virt_vfs::restore()
     QMap<QString, QString>::Iterator it;
     KUrl::List* urlList;
     for (it = map.begin(); it != map.end(); ++it) {
+        if(!it.key().startsWith("Item_"))
+            continue;
         urlList = new KUrl::List(dbGrp.readEntry(it.key(), QStringList()));
         // KDE 4.0 workaround, Item_ is removed (KConfig fails on 1 char names (such as /))
         QString key = it.key().mid(5);   // remove Item_
         virtVfsDict.insert(key, urlList);
+        metaInfoDict.insert(key, dbGrp.readEntry("MetaInfo_" + key, QString()));
     }
 
     if (!virtVfsDict["/" ]) {
@@ -369,6 +376,12 @@ void virt_vfs::vfs_calcSpace(QString name , KIO::filesize_t* totalSize, unsigned
         return;
     }
     return vfs::vfs_calcSpace(name, totalSize, totalFiles, totalDirs, stop);
+}
+
+void virt_vfs::setMetaInformation(QString info) {
+    metaInfo = info;
+    metaInfoDict[path] = metaInfo;
+    vfs_refresh();
 }
 
 #include "virt_vfs.moc"

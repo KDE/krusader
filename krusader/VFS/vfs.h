@@ -135,6 +135,9 @@ public:
     virtual bool vfs_isDeleting()    {
         return deleteRequested;
     }
+    virtual QString metaInformation() {
+        return QString();
+    }
     // set the parent window to be used for dialogs
     void setParentWindow(QWidget *widget) {
         parentWindow = widget;

@@ -54,6 +54,11 @@ public:
         return QString();
     }
 
+    virtual QString metaInformation() {
+        return metaInfo;
+    }
+    virtual void setMetaInformation(QString info);
+
 protected slots:
     void slotStatResult(KJob *job);
 
@@ -69,9 +74,11 @@ protected:
     vfile* stat(const KUrl& url);
 
     static QHash<QString, KUrl::List *> virtVfsDict;
+    static QHash<QString, QString> metaInfoDict;
     static KConfig* virt_vfs_db;
     bool busy;
     QString path;
+    QString metaInfo;
     KIO::UDSEntry entry;
 };
 
