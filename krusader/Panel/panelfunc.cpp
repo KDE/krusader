@@ -195,7 +195,7 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
         v->setMountMan(&krMtMan);
         if (v != vfsP) {
             // disconnect older signals
-            disconnect(vfsP, 0, this, 0);
+            disconnect(vfsP, 0, panel, 0);
             // since we wont't recieve a cleared signal from this vfs we must clear now
             panel->slotCleared();
 
@@ -216,7 +216,7 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
             }
         }
         // (re)connect vfs signals
-        disconnect(files(), 0, this, 0);
+        disconnect(files(), 0, panel, 0);
         connect(files(), SIGNAL(startUpdate()), panel, SLOT(slotStartUpdate()));
         connect(files(), SIGNAL(incrementalRefreshFinished(const KUrl&)),
                 panel, SLOT(slotGetStats(const KUrl&)));
