@@ -195,11 +195,7 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
         v->setMountMan(&krMtMan);
         if (v != vfsP) {
             // disconnect older signals
-            disconnect(files(), SIGNAL(addedVfile(vfile*)), 0, 0);
-            disconnect(files(), SIGNAL(updatedVfile(vfile*)), 0, 0);
-            disconnect(files(), SIGNAL(deletedVfile(const QString&)), 0, 0);
-            disconnect(files(), SIGNAL(cleared()), 0, 0);
-            disconnect(files(), SIGNAL(trashJobStarted(KIO::Job*)), 0, 0);
+            disconnect(vfsP, 0, this, 0);
             // since we wont't recieve a cleared signal from this vfs we must clear now
             panel->slotCleared();
 
@@ -219,12 +215,27 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
                 return;
             }
         }
+        // (re)connect vfs signals
+        disconnect(files(), 0, this, 0);
+        connect(files(), SIGNAL(startUpdate()), panel, SLOT(slotStartUpdate()));
+        connect(files(), SIGNAL(incrementalRefreshFinished(const KUrl&)),
+                panel, SLOT(slotGetStats(const KUrl&)));
         connect(files(), SIGNAL(startJob(KIO::Job*)),
                 panel, SLOT(slotJobStarted(KIO::Job*)));
         connect(files(), SIGNAL(error(QString)),
                 panel, SLOT(slotVfsError(QString)));
         connect(files(), SIGNAL(cleared()),
             panel, SLOT(slotCleared()));
+        // connect to the vfs's dirwatch signals
+        connect(files(), SIGNAL(addedVfile(vfile*)),
+                panel, SLOT(slotItemAdded(vfile*)));
+        connect(files(), SIGNAL(updatedVfile(vfile*)),
+                panel, SLOT(slotItemUpdated(vfile*)));
+        connect(files(), SIGNAL(deletedVfile(const QString&)),
+                panel, SLOT(slotItemDeleted(const QString&)));
+        connect(files(), SIGNAL(trashJobStarted(KIO::Job*)),
+                this, SLOT(trashJobStarted(KIO::Job*)));
+
         if(isSyncing())
             vfsP->vfs_setQuiet(true);
         if (vfsP->vfs_refresh(u)) {
@@ -246,15 +257,6 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
     if (urlStack.isEmpty() || !files() ->vfs_getOrigin().equals(urlStack.last())) {
         urlStack.push_back(files() ->vfs_getOrigin());
     }
-    // connect to the vfs's dirwatch signals
-    connect(files(), SIGNAL(addedVfile(vfile*)),
-            panel, SLOT(slotItemAdded(vfile*)));
-    connect(files(), SIGNAL(updatedVfile(vfile*)),
-            panel, SLOT(slotItemUpdated(vfile*)));
-    connect(files(), SIGNAL(deletedVfile(const QString&)),
-            panel, SLOT(slotItemDeleted(const QString&)));
-    connect(files(), SIGNAL(trashJobStarted(KIO::Job*)),
-            this, SLOT(trashJobStarted(KIO::Job*)));
 
     // on local file system change the working directory
     if (files() ->vfs_getType() == vfs::VFS_NORMAL)

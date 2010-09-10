@@ -53,13 +53,11 @@ vfs::vfs(QObject* panel, bool quiet): vfs_busy(false), quietMode(quiet), disable
         invalidated(true), panelConnected(false), vfs_tempFilesP(0), vfileIterator(0), deletePossible(true),
         deleteRequested(false)
 {
-
-
     setVfsFilesP(new vfileDict());
     if (panel) {
         panelConnected = true;
-        connect(this, SIGNAL(startUpdate()), panel, SLOT(slotStartUpdate()));
-        connect(this, SIGNAL(incrementalRefreshFinished(const KUrl&)), panel, SLOT(slotGetStats(const KUrl&)));
+//         connect(this, SIGNAL(startUpdate()), panel, SLOT(slotStartUpdate()));
+//         connect(this, SIGNAL(incrementalRefreshFinished(const KUrl&)), panel, SLOT(slotGetStats(const KUrl&)));
     } else quietMode = true;
 }
 
