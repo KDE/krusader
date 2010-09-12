@@ -260,10 +260,8 @@ int main(int argc, char *argv[])
         if (args->isSet("right"))
             openTabsRemote(args->getOption("right").split(','), false, appName);
         if(!url.isEmpty()) {
-            reply = remoteApp.call("isLeftActive");
-            if (reply.isValid())
-                openTabsRemote(QStringList(url), (bool)reply, appName);
-            else
+            reply = remoteApp.call("openUrl", url);
+            if (!reply.isValid())
                 fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
         }
         return 0;
@@ -287,7 +285,7 @@ int main(int argc, char *argv[])
     Krusader krusader;
 
     if(!url.isEmpty())
-        ACTIVE_MNG->slotNewTab(url);
+        krusader.openUrl(url);
 
     QDBusConnection dbus = QDBusConnection::sessionBus();
     if (!dbus.interface()->isServiceRegistered("org.krusader") && !dbus.registerService("org.krusader")) {

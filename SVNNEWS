@@ -6,6 +6,12 @@
 - extension to the ChangeLog.
 ------------------------------------------------------------------------
 
+New feature: dbus interface: org.krusader.Instance.openUrl(QString url)
+    - path: /Instances/<instance>
+    - if there is already a tab open with that url, it is activated, otherwis a new tab is opened in the active panel
+
+-------------------------------- 2.2.0-SVN Dekade ----------------------
+
 Reorganize Konfigurator:
     "Look & Feel" page becomes "Panel" -
     the contents are moved as follows:

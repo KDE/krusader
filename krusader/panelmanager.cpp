@@ -472,6 +472,20 @@ void PanelManager::slotCloseDuplicatedTabs()
     }
 }
 
+int PanelManager::findTab(KUrl url)
+{
+    url.cleanPath();
+    for(int i = 0; i < _tabbar->count(); i++) {
+        if(_tabbar->getPanel(i)) {
+            KUrl panelUrl = _tabbar->getPanel(i)->virtualPath();
+            panelUrl.cleanPath();
+            if(panelUrl.equals(url, KUrl::CompareWithoutTrailingSlash))
+                return i;
+        }
+    }
+    return -1;
+}
+
 void PanelManager::slotLockTab()
 {
     if (ACTIVE_PANEL)

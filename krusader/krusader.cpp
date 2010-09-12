@@ -106,6 +106,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include "krglobal.h"
 #include "kractions.h"
+#include "panelmanager.h"
 
 // define the static members
 Krusader *Krusader::App = 0;
@@ -1235,6 +1236,17 @@ bool Krusader::isRunning() {
 
 bool Krusader::isLeftActive()  {
     return MAIN_VIEW->isLeftActive();
+}
+
+void Krusader::openUrl(QString url)
+{
+    int tab = ACTIVE_MNG->findTab(url);
+    if(tab > 0)
+        ACTIVE_MNG->setActiveTab(tab);
+    else if((tab = OTHER_MNG->findTab(url)) > 0)
+        OTHER_MNG->setActiveTab(tab);
+    else
+        ACTIVE_MNG->slotNewTab(url);
 }
 
 bool Krusader::queryExit()

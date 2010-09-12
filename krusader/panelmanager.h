@@ -66,7 +66,8 @@ public:
 
     void saveSettings(KConfigGroup *config, const QString& key, bool localOnly = true);
     void loadSettings(KConfigGroup *config, const QString& key);
-    int  activeTab();
+    int findTab(KUrl url);
+    int activeTab();
     void setActiveTab(int);
     void setCurrentTab(int);
     void refreshAllTabs(bool invalidate = false);
