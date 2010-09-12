@@ -41,7 +41,7 @@
 DUFilelight::DUFilelight(DiskUsage *usage)
         : RadialMap::Widget(usage), diskUsage(usage), currentDir(0), refreshNeeded(true)
 {
-    setFocusPolicy(Qt::StrongFocus);
+//     setFocusPolicy(Qt::StrongFocus);
 
     connect(diskUsage, SIGNAL(enteringDirectory(Directory *)), this, SLOT(slotDirChanged(Directory *)));
     connect(diskUsage, SIGNAL(clearing()), this, SLOT(clear()));

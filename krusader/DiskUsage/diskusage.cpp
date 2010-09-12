@@ -862,7 +862,7 @@ void DiskUsage::executeAction(int action, File * fileItem)
         setView((activeView + 2) % 3);
         break;
     }
-    currentWidget()->setFocus();
+//     currentWidget()->setFocus();
 }
 
 void DiskUsage::keyPressEvent(QKeyEvent *e)
@@ -1057,7 +1057,7 @@ void DiskUsage::setView(int view)
         break;
     }
 
-    currentWidget()->setFocus();
+//     currentWidget()->setFocus();
     emit viewChanged(activeView = view);
 }
 
