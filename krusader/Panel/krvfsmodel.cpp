@@ -68,9 +68,19 @@ KrVfsModel::~KrVfsModel()
 
 void KrVfsModel::clear()
 {
+    emit layoutAboutToBeChanged();
+    // clear persistent indexes
+    QModelIndexList oldPersistentList = persistentIndexList();
+    QModelIndexList newPersistentList;
+    foreach(const QModelIndex &mndx, oldPersistentList)
+        newPersistentList << QModelIndex();
+    changePersistentIndexList(oldPersistentList, newPersistentList);
+
     _vfiles.clear();
     _vfileNdx.clear();
     _nameNdx.clear();
+
+    emit layoutChanged();
 }
 
 int KrVfsModel::rowCount(const QModelIndex& parent) const
@@ -292,7 +302,7 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
 
     QModelIndexList newPersistentList;
     foreach(const QModelIndex &mndx, oldPersistentList)
-    newPersistentList << index(changeMap[ mndx.row()], mndx.column());
+        newPersistentList << index(changeMap[ mndx.row()], mndx.column());
 
     changePersistentIndexList(oldPersistentList, newPersistentList);
 

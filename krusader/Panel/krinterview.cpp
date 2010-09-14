@@ -234,6 +234,7 @@ void KrInterView::clear()
 {
     _selected.clear();
     _itemView->clearSelection();
+    _itemView->setCurrentIndex(QModelIndex());
     _model->clear();
     QHashIterator< vfile *, KrInterViewItem *> it(_itemHash);
     while (it.hasNext())
