@@ -47,7 +47,6 @@
 #include "../krglobal.h"
 #include "../defaults.h"
 #include "../kicons.h"
-#include "../krservices.h"
 #include "panelviewer.h"
 
 #define VIEW_ICON     "zoom-original"
@@ -307,7 +306,7 @@ void KrViewer::edit(KUrl url, Mode mode, int new_window, QWidget * parent)
         KProcess proc;
         // if the file is local, pass a normal path and not a url. this solves
         // the problem for editors that aren't url-aware
-        proc << edit.split(' ') << KrServices::quote(url.pathOrUrl());
+        proc << edit.split(' ') << url.pathOrUrl();
         if (!proc.startDetached())
             KMessageBox::sorry(krMainWindow, i18n("Can not open \"%1\"", edit));
         return ;
