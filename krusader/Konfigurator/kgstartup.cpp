@@ -88,18 +88,27 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
     QGroupBox *uiGrp = createFrame(i18n("User Interface"), innerWidget);
     QGridLayout *uiGrid = createGridLayout(uiGrp);
 
-    KONFIGURATOR_CHECKBOX_PARAM uiCheckBoxes[] = { //   cfg_class  cfg_name                default               text                                   restart ToolTip
-        {"Startup", "UI Save Settings",      _UiSave,               i18n("Save settings on exit"),       false,  i18n("Check the state of the user interface components and restore them to their condition when last shutdown.") },
-        {"Startup", "Show tool bar",         _ShowToolBar,          i18n("Show toolbar"),                false,  i18n("Toolbar will be visible after startup.") },
-        {"Startup", "Show status bar",       _ShowStatusBar,        i18n("Show statusbar"),              false,  i18n("Statusbar will be visible after startup.") },
-        {"Startup", "Show FN Keys",          _ShowFNkeys,           i18n("Show function keys"),          false,  i18n("Function keys will be visible after startup.") },
-        {"Startup", "Show Cmd Line",         _ShowCmdline,          i18n("Show command line"),           false,  i18n("Command line will be visible after startup.") },
-        {"Startup", "Show Terminal Emulator", _ShowTerminalEmulator, i18n("Show terminal emulator"),      false,  i18n("Terminal emulator will be visible after startup.") },
-        {"Startup", "Remember Position",     _RememberPos,          i18n("Save last position, size and panel settings"), false,  i18n("<p>At startup, the main window will resize itself to the size it was when last shutdown. It will also appear in the same location of the screen, having panels sorted and aligned as they were before.</p><p>If this option is disabled, you can use the menu <i>Window -> Save Position</i> option to manually set the main window's size and position at startup.</p>") },
-        {"Startup", "Start To Tray",         _StartToTray,          i18n("Start to tray"),               false,  i18n("Krusader starts to tray (if minimize to tray is set), without showing the main window") },
+   KONFIGURATOR_CHECKBOX_PARAM uiCheckBoxes[] = { //   cfg_class, cfg_name, default, text, restart, ToolTip
+        {"Startup", "UI Save Settings", _UiSave, i18n("Save settings on exit"), true,
+            i18n("Check the state of the user interface components and restore them to their condition when last shutdown.") },
+        {"Startup", "Show tool bar", _ShowToolBar, i18n("Show toolbar"), false, i18n("Toolbar will be visible after startup.") },
+        {"Startup", "Show status bar", _ShowStatusBar, i18n("Show statusbar"),  false, i18n("Statusbar will be visible after startup.") },
+        {"Startup", "Show FN Keys",  _ShowFNkeys, i18n("Show function keys"), false, i18n("Function keys will be visible after startup.") },
+        {"Startup", "Show Cmd Line",  _ShowCmdline,  i18n("Show command line"), false, i18n("Command line will be visible after startup.") },
+        {"Startup", "Show Terminal Emulator", _ShowTerminalEmulator, i18n("Show terminal emulator"),  false,
+            i18n("Terminal emulator will be visible after startup.") },
+        {"Startup", "Remember Position", _RememberPos,i18n("Save last position, size and panel settings"), false,
+            i18n("<p>At startup, the main window will resize itself to the size it was when last shutdown. \
+                  It will also appear in the same location of the screen, having panels sorted and aligned as they were before.</p>\
+                  <p>If this option is disabled, you can use the menu <i>Window -> Save Position</i> option \
+                  to manually set the main window's size and position at startup.</p>") },
+        {"Startup", "Update Default Panel Settings", _RememberPos, i18n("Update default panel settings"), true,
+            i18n("When settings of a panel are changed, save them as the default for new panels of the same type.") },
+        {"Startup", "Start To Tray", _StartToTray, i18n("Start to tray"), false,
+            i18n("Krusader starts to tray (if minimize to tray is set), without showing the main window") },
     };
 
-    uiCbGroup = createCheckBoxGroup(2, 0, uiCheckBoxes, 8, uiGrp);
+    uiCbGroup = createCheckBoxGroup(2, 0, uiCheckBoxes, 9, uiGrp);
     connect(uiCbGroup->find("UI Save Settings"), SIGNAL(stateChanged(int)), this, SLOT(slotDisable()));
 
     uiGrid->addWidget(uiCbGroup, 1, 0);

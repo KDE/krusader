@@ -36,6 +36,7 @@
 #include <QDropEvent>
 #include <QList>
 #include <QModelIndex>
+#include <QTimer>
 #include "../krglobal.h"
 #include "../VFS/vfile.h"
 #include "../VFS/vfs.h"
@@ -81,10 +82,6 @@ public:
         numberOfColumns(1)
     {}
 
-    // TODO: replace with ColumnType from KrVfsModel
-/*    enum ColumnType { Name = 0x1, Ext = 0x2, Size = 0x4, Type = 0x8, Modified = 0x10, Permissions = 0x20,
-                      KrPermissions = 0x40, Owner = 0x80, Group = 0x100
-                    };*/
     enum ColumnType { Name = 0x0, Ext = 0x1, Size = 0x2, Type = 0x3, Modified = 0x4,
                       Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8, MAX_COLUMNS = 0x09
                     };
@@ -187,6 +184,7 @@ public:
     bool isMassSelectionUpdate() {
         return _massSelectionUpdate;
     }
+    void settingsChanged();
 
 public slots:
     void emitSelectionChanged() {
@@ -215,6 +213,8 @@ signals:
     void dirUp();
     void calcSpace(KrViewItem *item);
 
+protected slots:
+    void saveDefaultSettings();
 
 protected:
     // never delete those
@@ -224,6 +224,7 @@ protected:
 private:
     KrQuickSearch *_quickSearch;
     bool _massSelectionUpdate;
+    QTimer _saveDefaultSettingsTimer;
 };
 
 /****************************************************************************
@@ -323,7 +324,8 @@ public:
         _focused = true;
     }
     virtual void prepareForPassive() {
-        _focused = false; _operator->prepareForPassive();
+        _focused = false;
+        _operator->prepareForPassive();
     }
     virtual void renameCurrentItem(); // Rename current item. returns immediately
     virtual QString nameInKConfig() const;
@@ -452,9 +454,13 @@ public:
     QPixmap getIcon(vfile *vf);
     void refreshActions();
     // save this view's settings to be restored after restart
-    void saveSettings();
+    void saveSettings() {
+        saveSettings(nameInKConfig());
+    }
     // call this to restore this view's settings after restart
-    void restoreSettings();
+    void restoreSettings() {
+        restoreSettings(nameInKConfig());
+    }
     // save this view's settings as default for new views of this type
     void saveDefaultSettings();
     // restore the default settings for this view type
@@ -471,6 +477,11 @@ protected:
     KrView(KrViewInstance &instance, const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
     bool handleKeyEventInt(QKeyEvent *e);
     void sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool descending);
+    void saveSettings(QString configGroup);
+    void restoreSettings(QString configGroup);
+    void saveSortMode(KConfigGroup &group);
+    void restoreSortMode(KConfigGroup &group);
+
 
     KrViewInstance &_instance;
     const bool &_left;
@@ -487,6 +498,7 @@ protected:
     bool _focused;
     KrPreviews *_previews;
     int _fileIconSize;
+    bool _updateDefaultSettings;
 };
 
 

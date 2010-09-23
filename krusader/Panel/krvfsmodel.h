@@ -58,7 +58,7 @@ public:
         return _view->properties();
     }
     virtual void sort() {
-        sort(_lastSortOrder, _lastSortDir);
+        sort(lastSortOrder(), lastSortDir());
     }
     void clear();
     vfile * vfileAt(const QModelIndex &index);
@@ -71,11 +71,11 @@ public:
     void emitChanged() {
         emit layoutChanged();
     }
-    Qt::SortOrder getLastSortDir() {
-        return _lastSortDir;
+    Qt::SortOrder lastSortDir() {
+        return (properties()->sortOptions & KrViewProperties::Descending) ? Qt::DescendingOrder : Qt::AscendingOrder;
     }
-    int getLastSortOrder() {
-        return _lastSortOrder;
+    int lastSortOrder() {
+        return properties()->sortColumn;
     }
     void setAlternatingTable(bool altTable) {
         _alternatingTable = altTable;
@@ -93,8 +93,6 @@ protected:
     QHash<QString, QModelIndex> _nameNdx;
     bool                        _extensionEnabled;
     KrInterView                 * _view;
-    int                         _lastSortOrder;
-    Qt::SortOrder               _lastSortDir;
     vfile *                     _dummyVfile;
     bool                        _ready;
     QFont                       _defaultFont;

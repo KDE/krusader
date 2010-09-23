@@ -88,9 +88,6 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, const bool &left, KCon
         KrInterView(interDetailedView, left, cfg, mainWindow, this),
         _autoResizeColumns(true)
 {
-    // fix the context menu problem
-//     int j = QFontMetrics(font()).height() * 2;
-//     _mouseHandler = new KrMouseHandler(this, j);
     connect(_mouseHandler, SIGNAL(renameCurrentItem()), this, SLOT(renameCurrentItem()));
     setWidget(this);
     KConfigGroup group(krConfig, "Private");
@@ -98,12 +95,8 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, const bool &left, KCon
     KConfigGroup grpSvr(_config, "Look&Feel");
     _viewFont = grpSvr.readEntry("Filelist Font", *_FilelistFont);
 
-//     _model = new KrVfsModel(this);
     this->setModel(_model);
     this->setRootIsDecorated(false);
-    this->setSortingEnabled(true);
-    this->sortByColumn(KrViewProperties::Name, Qt::AscendingOrder);
-//     _model->sort(KrVfsModel::Name, Qt::AscendingOrder);
 
     setSelectionModel(new DummySelectionModel(_model, this));
 
@@ -123,7 +116,6 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, const bool &left, KCon
     header()->setStretchLastSection(false);
 
     connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(sectionResized(int, int, int)));
-//     connect(&KrColorCache::getColorCache(), SIGNAL(colorsRefreshed()), this, SLOT(refreshColors()));
 }
 
 KrInterDetailedView::~KrInterDetailedView()
@@ -416,7 +408,8 @@ void KrInterDetailedView::addItems(vfs* v, bool addUpDir)
 #endif
 void KrInterDetailedView::setup()
 {
-
+    setSortMode(_properties->sortColumn, (_properties->sortOptions & KrViewProperties::Descending));
+    setSortingEnabled(true);
 }
 
 void KrInterDetailedView::initOperator()
@@ -575,6 +568,7 @@ void KrInterDetailedView::showContextMenu(const QPoint & p)
         if(KrViewProperties::Ext == idx)
             _model->setExtensionEnabled(!header()->isSectionHidden(KrViewProperties::Ext));
     }
+    op()->settingsChanged();
 }
 
 void KrInterDetailedView::sectionResized(int column, int oldSize, int newSize)
@@ -587,6 +581,7 @@ void KrInterDetailedView::sectionResized(int column, int oldSize, int newSize)
     // regression in combination with bug 178630 (see fix in comment #8).
     if ((QApplication::mouseButtons() & Qt::LeftButton) && header()->underMouse()) {
         _autoResizeColumns = false;
+        op()->settingsChanged();
     }
 
     if (oldSize == newSize || !_model->ready())

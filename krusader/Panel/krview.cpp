@@ -55,6 +55,7 @@
 #define VF getVfile()
 
 // action name constants
+//TODO: remove this, once it's not needed anymore
 #define actDirUp "dirUp"
 #define actCancelRefresh "cancel refresh"
 #define actZoomIn "zoom_in"
@@ -66,6 +67,8 @@
 KrViewOperator::KrViewOperator(KrView *view, QWidget *widget) :
         _view(view), _widget(widget), _quickSearch(0), _massSelectionUpdate(false)
 {
+    _saveDefaultSettingsTimer.setSingleShot(true);
+    connect(&_saveDefaultSettingsTimer, SIGNAL(timeout()), SLOT(saveDefaultSettings()));
 }
 
 KrViewOperator::~KrViewOperator()
@@ -196,6 +199,18 @@ void KrViewOperator::setMassSelectionUpdate(bool upd)
         emit selectionChanged();
 }
 
+void KrViewOperator::settingsChanged()
+{
+    if(_view->_updateDefaultSettings)
+        _saveDefaultSettingsTimer.start(100);
+}
+
+void KrViewOperator::saveDefaultSettings()
+{
+    KConfigGroup group(_view->_config, _view->_instance.name());
+    _view->doSaveSettings(group);
+}
+
 // ----------------------------- krview
 
 const KrView::IconSizes KrView::iconSizes;
@@ -205,7 +220,7 @@ KrView::KrView(KrViewInstance &instance, const bool &left, KConfig *cfg, KrMainW
     _instance(instance), _left(left), _config(cfg), _mainWindow(mainWindow), _widget(0),
     _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
     _numSelected(0), _count(0), _numDirs(0), _countSize(0), _selectedSize(0), _properties(0), _focused(false),
-    _previews(0), _fileIconSize(0)
+    _previews(0), _fileIconSize(0), _updateDefaultSettings(false)
 {
 }
 
@@ -233,6 +248,9 @@ void KrView::init()
     restoreDefaultSettings();
     KConfigGroup grp(_config, _instance.name());
     showPreviews(grp.readEntry("Show Previews", false));
+    KConfigGroup grpStartup(_config, "Startup");
+    _updateDefaultSettings = grpStartup.readEntry("Update Default Panel Settings", _RememberPos)
+                             || grpStartup.readEntry("UI Save Settings", _UiSave);
     _instance.m_objects.append(this);
 }
 
@@ -242,9 +260,9 @@ void KrView::initProperties()
 
     KConfigGroup grpSvr(_config, "Look&Feel");
     KConfigGroup grpInstance(_config, _instance.name());
+
     _properties->displayIcons = grpInstance.readEntry("With Icons", _WithIcons);
     bool dirsByNameAlways = grpSvr.readEntry("Always sort dirs by name", false);
-    _properties->sortColumn = KrViewProperties::Name;
     _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(KrViewProperties::DirsFirst |
                             (dirsByNameAlways ? KrViewProperties::AlwaysSortDirsByName : 0));
     _properties->numericPermissions = grpSvr.readEntry("Numeric permissions", _NumericPermissions);
@@ -276,13 +294,6 @@ void KrView::initProperties()
         ++i;
     }
     _properties->atomicExtensions = atomicExtensions;
-
-    KConfigGroup group(_config, nameInKConfig());
-    _properties->numberOfColumns = group.readEntry("Number Of Brief Columns", _NumberOfBriefColumns);
-    if (_properties->numberOfColumns < 1)
-        _properties->numberOfColumns = 1;
-    else if (_properties->numberOfColumns > MAX_BRIEF_COLS)
-        _properties->numberOfColumns = MAX_BRIEF_COLS;
 }
 
 void KrView::showPreviews(bool show)
@@ -970,41 +981,49 @@ QString KrView::nameInKConfig() const {
     return _instance.name() + (_left ? "Left" : "Right");
 }
 
-void KrView::saveSettings()
-{
-    KConfigGroup group(krConfig, nameInKConfig());
-    doSaveSettings(group);
-}
-
-void KrView::restoreSettings()
-{
-    KConfigGroup group(krConfig, nameInKConfig());
-    doRestoreSettings(group);
-}
-
 void KrView::saveDefaultSettings()
 {
-    KConfigGroup group(krConfig, _instance.name());
-    doSaveSettings(group);
+    saveSettings(_instance.name());
 }
 
 void KrView::restoreDefaultSettings()
 {
-    KConfigGroup group(krConfig, _instance.name());
+    restoreSettings(_instance.name());
+}
+
+void KrView::saveSettings(QString configGroup)
+{
+    KConfigGroup group(_config, configGroup);
+    saveSortMode(group);
+    doSaveSettings(group);
+}
+
+void KrView::restoreSettings(QString configGroup)
+{
+    KConfigGroup group(_config, configGroup);
+    bool tmp = _updateDefaultSettings;
+    _updateDefaultSettings = false;
     doRestoreSettings(group);
+    restoreSortMode(group);
+    _updateDefaultSettings = tmp;
 }
 
 void KrView::applySettingsToOthers()
 {
     for(int i = 0; i < _instance.m_objects.length(); i++) {
-        if(this != _instance.m_objects[i])
+        KrView *view = _instance.m_objects[i];
+        if(this != view) {
+            bool tmp = view->_updateDefaultSettings;
+            view->_updateDefaultSettings = false;
             _instance.m_objects[i]->copySettingsFrom(this);
+            view->_updateDefaultSettings = tmp;
+        }
     }
 }
 
 void KrView::sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool descending)
 {
-    if(!_properties)
+    if(sortColumn == _properties->sortColumn && descending == (bool) (_properties->sortOptions & KrViewProperties::Descending))
         return;
 
     int options = _properties->sortOptions;
@@ -1012,9 +1031,26 @@ void KrView::sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool desce
         options |= KrViewProperties::Descending;
     else
         options &= ~KrViewProperties::Descending;
-
     _properties->sortColumn = sortColumn;
     _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(options);
+
+    if(_updateDefaultSettings) {
+        KConfigGroup group(_config, _instance.name());
+        saveSortMode(group);
+    }
+}
+
+void KrView::saveSortMode(KConfigGroup &group)
+{
+    group.writeEntry("Sort Column", static_cast<int>(_properties->sortColumn));
+    group.writeEntry("Descending Sort Order", _properties->sortOptions & KrViewProperties::Descending);
+}
+
+void KrView::restoreSortMode(KConfigGroup &group)
+{
+    int column = group.readEntry("Sort Column", static_cast<int>(KrViewProperties::Name));
+    bool isDescending = group.readEntry("Descending Sort Order", false);
+    setSortMode(static_cast<KrViewProperties::ColumnType>(column), isDescending);
 }
 
 QString KrView::krPermissionString(const vfile * vf)
