@@ -60,8 +60,8 @@
 #include "kgprotocols.h"
 #include <QtCore/QEvent>
 
-Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)0), firstTime(f), internalCall(false),
-        restartGUI(false), sizeX(-1), sizeY(-1)
+Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)0),
+        firstTime(f), internalCall(false), sizeX(-1), sizeY(-1)
 {
     setButtons(KDialog::Help | KDialog::User1 | KDialog::Apply | KDialog::Cancel);
     setDefaultButton(KDialog::Apply);
@@ -79,7 +79,7 @@ Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)0), f
     connect(this, SIGNAL(currentPageChanged(KPageWidgetItem *, KPageWidgetItem *)), this, SLOT(slotPageSwitch(KPageWidgetItem *, KPageWidgetItem *)));
     connect(&restoreTimer, SIGNAL(timeout()), this, SLOT(slotRestorePage()));
     connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
-    connect(this, SIGNAL(cancelClicked()), this, SLOT(slotCancel()));
+    connect(this, SIGNAL(cancelClicked()), this, SLOT(slotCancel())); 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
 
     createLayout(startPage);
@@ -97,8 +97,6 @@ Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)0), f
         showMaximized();
     else
         show();
-
-    exec();
 }
 
 void Konfigurator::resizeEvent(QResizeEvent *e)
@@ -176,17 +174,10 @@ void Konfigurator::slotUser1()
 {
     ((KonfiguratorPage *)(currentPage()->widget()))->setDefaults();
 }
-#include <kdebug.h>
+
 void Konfigurator::slotApply()
 {
-    if (((KonfiguratorPage *)(currentPage()->widget()))->apply()) {
-        restartGUI = true;
-//    KMessageBox::information(this,i18n("Changes to the GUI will be updated next time you run Krusader."),
-//     QString(),"konfigGUInotify");
-    }
-
-    // really ugly, but reload the Fn keys just in case - csaba: any better idea?
-    MAIN_VIEW->fnKeys->updateShortcuts();
+    emit configChanged(((KonfiguratorPage*)(currentPage()->widget()))->apply());
 }
 
 void Konfigurator::slotCancel()
@@ -223,9 +214,7 @@ bool Konfigurator::slotPageSwitch(KPageWidgetItem *current, KPageWidgetItem *bef
             currentPg->apply();
             break;
         case KMessageBox::Yes:
-            if (currentPg->apply()) {
-                restartGUI = true;
-            }
+            emit configChanged(currentPg->apply());
             break;
         default:
             restoreTimer.setSingleShot(true);

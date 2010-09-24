@@ -48,13 +48,12 @@ class Konfigurator : public KPageDialog
 {
     Q_OBJECT
 
+signals:
+    void configChanged(bool isGUIRestartNeeded);
+
 public:
     Konfigurator(bool f = false, int startPage = 0); // true if Konfigurator is run for the first time
     ~Konfigurator() {};
-
-    bool isGUIRestartNeeded() {
-        return restartGUI;
-    }
 
     virtual void accept();
     virtual void reject();
@@ -80,7 +79,6 @@ private:
     KPageWidgetItem            *lastPage;
     bool                        internalCall;
     QTimer                      restoreTimer;
-    bool                        restartGUI;
     int                         sizeX;
     int                         sizeY;
 };

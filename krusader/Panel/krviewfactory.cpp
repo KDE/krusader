@@ -36,9 +36,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 // extern KrViewInstance interDetailedView;    // hold reference for linking
 // extern KrViewInstance interBriefView;    // hold reference for linking
 
-KrViewInstance::KrViewInstance(int id, QString name, QString desc, QString icon, QKeySequence shortcut, KrViewFactoryFunction fun, KrViewItemHeightChange fun2) :
-        m_id(id), m_name(name), m_description(desc), m_icon(icon), m_shortcut(shortcut), m_factoryfun(fun), m_ihchangefun(fun2)
-
+KrViewInstance::KrViewInstance(int id, QString name, QString desc, QString icon, QKeySequence shortcut, KrViewFactoryFunction fun) :
+        m_id(id), m_name(name), m_description(desc), m_icon(icon), m_shortcut(shortcut), m_factoryfun(fun)
 {
     KrViewFactory::self().registerView(this);
 }
@@ -46,11 +45,6 @@ KrViewInstance::KrViewInstance(int id, QString name, QString desc, QString icon,
 KrView * KrViewFactory::createView(int id, QWidget *widget, const bool &left, KConfig *cfg, KrMainWindow *mainWindow)
 {
     return (*(viewInstance(id)->factoryFunction()))(widget, left, cfg, mainWindow);
-}
-
-void KrViewFactory::itemHeightChanged(int id)
-{
-    (*(viewInstance(id)->itemHChangeFunction()))();
 }
 
 // static initialization, on first use idiom

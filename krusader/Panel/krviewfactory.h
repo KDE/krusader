@@ -41,13 +41,12 @@ class KConfig;
 class KrMainWindow;
 
 typedef KrView * (*KrViewFactoryFunction)(QWidget *, const bool &, KConfig *, KrMainWindow*);
-typedef void (*KrViewItemHeightChange)();
 
 class KrViewInstance
 {
     friend class KrView;
 public:
-    KrViewInstance(int id, QString name, QString desc, QString icon, QKeySequence shortcut, KrViewFactoryFunction fun, KrViewItemHeightChange fun2);
+    KrViewInstance(int id, QString name, QString desc, QString icon, QKeySequence shortcut, KrViewFactoryFunction fun);
 
     inline int                     id()                    {
         return m_id;
@@ -67,9 +66,6 @@ public:
     inline KrViewFactoryFunction   factoryFunction()       {
         return m_factoryfun;
     }
-    inline KrViewItemHeightChange  itemHChangeFunction()   {
-        return m_ihchangefun;
-    }
 
 protected:
     int                            m_id;
@@ -78,7 +74,6 @@ protected:
     QString                        m_icon;
     QKeySequence                   m_shortcut;
     KrViewFactoryFunction          m_factoryfun;
-    KrViewItemHeightChange         m_ihchangefun;
     QList<KrView*>                 m_objects;
 };
 
@@ -87,7 +82,6 @@ class KrViewFactory
     friend class KrViewInstance;
 public:
     static KrView *                createView(int id, QWidget * widget, const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
-    static void                    itemHeightChanged(int id);
     static KrViewInstance *        viewInstance(int id);
     static const QList<KrViewInstance*>& registeredViews() {
         return self().m_registeredViews;

@@ -80,7 +80,7 @@ private:
 #define INTERVIEW_ID 0
 KrViewInstance interDetailedView(INTERVIEW_ID,"KrInterDetailedView", i18n("&Detailed View"), "view-list-details",
                                  Qt::ALT + Qt::SHIFT + Qt::Key_D,
-                                 KrInterDetailedView::create, KrInterViewItem::itemHeightChanged);
+                                 KrInterDetailedView::create);
 // end of register code
 
 KrInterDetailedView::KrInterDetailedView(QWidget *parent, const bool &left, KConfig *cfg, KrMainWindow *mainWindow):

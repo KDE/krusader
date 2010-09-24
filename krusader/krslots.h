@@ -216,6 +216,9 @@ public slots:
     void viewSaveDefaultSettings();
     void viewApplySettingsToOthers();
 
+protected slots:
+    void configChanged(bool isGUIRestartNeeded);
+
 protected:
     KrMainWindow *_mainWindow;
 };

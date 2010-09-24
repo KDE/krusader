@@ -49,8 +49,6 @@ public:
     QRect itemRect() const {
         return _view->itemRect(_vf);
     }
-    static void itemHeightChanged() {
-    } // force the items to resize when icon/font size change
     void redraw() {
         _view->_itemView->viewport()->update(itemRect());
     }

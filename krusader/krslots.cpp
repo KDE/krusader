@@ -430,24 +430,20 @@ void KRslots::matchChecksum()
 // run external modules / programs
 void KRslots::runKonfigurator(bool firstTime)
 {
-
-    KConfigGroup group(krConfig, "Look&Feel");
-    KConfigGroup groupgen(krConfig, "General");
-    int size = (group.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt();
-
     Konfigurator *konfigurator = new Konfigurator(firstTime);
+    connect(konfigurator, SIGNAL(configChanged(bool)), SLOT(configChanged(bool)));
 
-    vfile::vfile_enableMimeTypeMagic(groupgen.readEntry("Mimetype Magic", _MimetypeMagic));
-    if (konfigurator->isGUIRestartNeeded()) {
+    konfigurator->exec();
+
+    delete konfigurator;
+}
+
+void KRslots::configChanged(bool isGUIRestartNeeded)
+{
+    if (isGUIRestartNeeded) {
         krApp->setUpdatesEnabled(false);
+        KConfigGroup group(krConfig, "Look&Feel");
         vfile::vfile_loadUserDefinedFolderIcons(group.readEntry("Load User Defined Folder Icons", _UserDefinedFolderIcons));
-
-        if ((group.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt() != size)
-            QPixmapCache::clear();
-
-        QList<KrViewInstance *> views = KrViewFactory::registeredViews();
-        foreach(KrViewInstance * inst, views)
-        KrViewFactory::itemHeightChanged(inst->id());
 
         MAIN_VIEW->leftMng->slotRecreatePanels();
         MAIN_VIEW->rightMng->slotRecreatePanels();
@@ -456,8 +452,10 @@ void KRslots::runKonfigurator(bool firstTime)
         krApp->setUpdatesEnabled(true);
     }
 
+    // really ugly, but reload the Fn keys just in case - csaba: any better idea?
+    MAIN_VIEW->fnKeys->updateShortcuts();
+
     krApp->configChanged();
-    delete konfigurator;
 }
 
 void KRslots::setView0()
