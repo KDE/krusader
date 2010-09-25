@@ -10,8 +10,10 @@
 
     CHANGED: Konfigurator: "apply" takes effect immediately.
     CHANGED: url commandline argument: if there is already a tab open with that url,
-             it is activated, otherwis a new tab is opened in the active panel
+             it is activated, otherwise a new tab is opened in the active panel
 
+    FIXED: When trying to close Konfigurator but canceling the "Apply changes ?" dialog,
+           Konfigurator it is closed anyway.
     FIXED: [ 3073211 ] Wrong quoting when opening file in external editor
     FIXED: [ 3059457 ] new panel uses default columns instead of configured ones
     FIXED: [ 2898151 ] also in view-mode (F3) possible to edit, thanks to Kevin Kofler

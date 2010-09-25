@@ -170,21 +170,33 @@ void Konfigurator::createLayout(int startPage)
     slotApplyEnable();
 }
 
-void Konfigurator::slotUser1()
-{
-    ((KonfiguratorPage *)(currentPage()->widget()))->setDefaults();
-}
-
-void Konfigurator::slotApply()
-{
-    emit configChanged(((KonfiguratorPage*)(currentPage()->widget()))->apply());
-}
-
-void Konfigurator::slotCancel()
+void Konfigurator::closeEvent(QCloseEvent *event)
 {
     lastPage = currentPage();
-    if (slotPageSwitch(lastPage, lastPage))
-        reject();
+    if(slotPageSwitch(lastPage, lastPage)) {
+        hide();
+        KPageDialog::closeEvent(event);
+    } else
+        event->ignore();
+}
+
+void Konfigurator::slotButtonClicked(int button)
+{
+    switch(button) {
+    case Apply:
+        emit configChanged(((KonfiguratorPage*)(currentPage()->widget()))->apply());
+        break;
+    case Cancel:
+        lastPage = currentPage();
+        if (slotPageSwitch(lastPage, lastPage))
+            reject();
+        break;
+    case User1:
+        ((KonfiguratorPage *)(currentPage()->widget()))->setDefaults();
+        break;
+    default:
+        KPageDialog::slotButtonClicked(button);
+    }
 }
 
 void Konfigurator::slotApplyEnable()

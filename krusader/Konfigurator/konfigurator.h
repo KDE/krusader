@@ -64,11 +64,10 @@ protected:
     void closeDialog();
 
     virtual void resizeEvent(QResizeEvent *e);
+    virtual void slotButtonClicked(int button);
+    virtual void closeEvent(QCloseEvent *event);
 
 protected slots:
-    void slotUser1();
-    void slotApply();   // actually used for defaults
-    void slotCancel();
     void slotApplyEnable();
     bool slotPageSwitch(KPageWidgetItem *, KPageWidgetItem *);
     void slotRestorePage();
