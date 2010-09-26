@@ -407,7 +407,8 @@ public:
     virtual void updatePreviews();
     virtual void applySettingsToOthers();
 
-    void changeSelection(const KRQuery& filter, bool select, bool includeDirs = false);
+    void changeSelection(const KRQuery& filter, bool select);
+    void changeSelection(const KRQuery& filter, bool select, bool includeDirs);
     bool isFiltered(vfile *vf);
 
     /////////////////////////////////////////////////////////////

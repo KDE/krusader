@@ -603,30 +603,28 @@ void ListPanel::slotFocusAndCDRoot()
 
 void ListPanel::select(KRQuery query, bool select)
 {
-    if (!query.isNull()) {
-        if (select)
-            view->select(query);
-        else
-            view->unselect(query);
-    }
+    if (!query.isNull())
+        view->changeSelection(query, select);
 }
 
 void ListPanel::select(bool select, bool all)
 {
-    if (all) {
-        if (select)
-            view->select(KRQuery("*"));
-        else
-            view->unselect(KRQuery("*"));
-    } else {
-        KRQuery query = KRSpWidgets::getMask((select ? i18n(" Select Files ") : i18n(" Unselect Files ")));
+    if (all)
+        view->changeSelection(KRQuery("*"), select);
+    else {
+        KConfigGroup grpSvr(krConfig, "Look&Feel");
+        bool includeDirs = grpSvr.readEntry("Mark Dirs", _MarkDirs);
+
+        FilterDialog dialog(0, i18n("Select Files"), QStringList(i18n("Apply selection to directories")), false);
+        dialog.checkExtraOption(i18n("Apply selection to directories"), includeDirs);
+        dialog.exec();
+        KRQuery query = dialog.getQuery();
         // if the user canceled - quit
         if (query.isNull())
             return ;
-        if (select)
-            view->select(query);
-        else
-            view->unselect(query);
+        includeDirs = dialog.isExtraOptionChecked(i18n("Apply selection to directories"));
+
+        view->changeSelection(query, select, includeDirs);
     }
 }
 

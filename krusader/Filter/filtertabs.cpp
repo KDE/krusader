@@ -57,6 +57,11 @@ bool FilterTabs::isExtraOptionChecked(QString name)
     return static_cast<GeneralFilter*>(get("GeneralFilter"))->isExtraOptionChecked(name);
 }
 
+void FilterTabs::checkExtraOption(QString name, bool check)
+{
+    static_cast<GeneralFilter*>(get("GeneralFilter"))->checkExtraOption(name, check);
+}
+
 FilterTabs * FilterTabs::addTo(KTabWidget *tabWidget, int props, QStringList extraOptions)
 {
     return new FilterTabs(props, tabWidget, tabWidget, extraOptions);

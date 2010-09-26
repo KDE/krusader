@@ -68,6 +68,7 @@ public:
         return fltTabs;
     }
     bool isExtraOptionChecked(QString name);
+    void checkExtraOption(QString name, bool check);
 
 public slots:
     void    slotAddBtnClicked();

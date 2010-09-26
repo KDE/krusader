@@ -416,6 +416,13 @@ bool GeneralFilter::isExtraOptionChecked(QString name)
     return option ? option->isChecked() : false;
 }
 
+void GeneralFilter::checkExtraOption(QString name, bool check)
+{
+    QCheckBox *option = extraOptions[name];
+    if(option)
+        option->setChecked(check);
+}
+
 bool GeneralFilter::fillQuery(KRQuery *query)
 {
     // check that we have (at least) what to search, and where to search in

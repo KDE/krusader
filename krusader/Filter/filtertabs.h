@@ -59,6 +59,7 @@ public:
 
     FilterBase *get(QString name);
     bool isExtraOptionChecked(QString name);
+    void checkExtraOption(QString name, bool check);
 
 public slots:
     void  loadFromProfile(QString);

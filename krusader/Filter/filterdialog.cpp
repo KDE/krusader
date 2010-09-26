@@ -35,11 +35,11 @@
 #include <klocale.h>
 #include <QGridLayout>
 
-FilterDialog::FilterDialog(QWidget *parent, QString caption, QStringList extraOptions)
+FilterDialog::FilterDialog(QWidget *parent, QString caption, QStringList extraOptions, bool modal)
         : KDialog(parent)
 {
     setWindowTitle(caption.isNull() ? i18n("Krusader::Choose Files") : caption);
-    setModal(true);
+    setModal(modal);
     setButtons(Ok | Cancel);
 
     KTabWidget *filterWidget = new KTabWidget;
@@ -55,7 +55,8 @@ FilterDialog::FilterDialog(QWidget *parent, QString caption, QStringList extraOp
     connect(filterTabs, SIGNAL(closeRequest(bool)), this, SLOT(slotCloseRequest(bool)));
     connect(this, SIGNAL(okClicked()), this, SLOT(slotOk()));
 
-    exec();
+    if(modal)
+        exec();
 }
 
 KRQuery FilterDialog::getQuery()
@@ -66,6 +67,11 @@ KRQuery FilterDialog::getQuery()
 bool FilterDialog::isExtraOptionChecked(QString name)
 {
     return filterTabs->isExtraOptionChecked(name);
+}
+
+void FilterDialog::checkExtraOption(QString name, bool check)
+{
+    filterTabs->checkExtraOption(name, check);
 }
 
 void FilterDialog::slotCloseRequest(bool doAccept)

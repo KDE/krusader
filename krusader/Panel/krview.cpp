@@ -476,17 +476,20 @@ QString KrView::statistics()
     return tmp;
 }
 
+void KrView::changeSelection(const KRQuery& filter, bool select)
+{
+    KConfigGroup grpSvr(_config, "Look&Feel");
+    changeSelection(filter, select, grpSvr.readEntry("Mark Dirs", _MarkDirs));
+}
+
 void KrView::changeSelection(const KRQuery& filter, bool select, bool includeDirs)
 {
     if (op()) op()->setMassSelectionUpdate(true);
 
-    KConfigGroup grpSvr(_config, "Look&Feel");
-    bool markDirs = grpSvr.readEntry("Mark Dirs", _MarkDirs) || includeDirs;
-
     KrViewItem *temp = getCurrentKrViewItem();
     for (KrViewItem * it = getFirst(); it != 0; it = getNext(it)) {
         if (it->name() == "..") continue;
-        if (it->getVfile()->vfile_isDir() && !markDirs) continue;
+        if (it->getVfile()->vfile_isDir() && !includeDirs) continue;
 
         vfile * file = it->getMutableVfile(); // filter::match calls getMimetype which isn't const
         if (file == 0) continue;
@@ -886,6 +889,7 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
         return true; // otherwise the selection gets lost??!??
     case Qt::Key_A :                 // mark all
         if (e->modifiers() == Qt::ControlModifier) {
+            //FIXME: shouldn't there also be a shortcut for unselecting everything ?
             selectAllIncludingDirs();
             return true;
         }
