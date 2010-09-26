@@ -119,7 +119,7 @@ private:
     KRQuery *query;
     KRSearchMod *searcher;
     QStringList savedSearches;
-    bool isSearching;
+    bool isBusy;
     bool closed;
 
     static QString lastSearchText;

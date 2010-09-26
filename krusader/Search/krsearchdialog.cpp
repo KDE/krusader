@@ -199,7 +199,7 @@ bool KrSearchDialog::lastContainsRegExp = false;
 
 // class starts here /////////////////////////////////////////
 KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
-        : QDialog(parent), query(0), searcher(0)
+        : QDialog(parent), query(0), searcher(0), isBusy(false), closed(false)
 {
     setWindowTitle(i18n("Krusader::Search"));
 
@@ -345,8 +345,6 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 
     generalFilter->searchFor->setFocus();
 
-    isSearching = closed = false;
-
     // finaly, load a profile of apply defaults:
 
     if (profile.isEmpty()) {
@@ -376,6 +374,11 @@ KrSearchDialog::~KrSearchDialog()
 
 void KrSearchDialog::closeDialog(bool isAccept)
 {
+    if(isBusy) {
+        closed = true;
+        return;
+    }
+
     // stop the search if it's on-going
     if (searcher != 0) {
         delete searcher;
@@ -453,6 +456,8 @@ bool KrSearchDialog::gui2query()
 
 void KrSearchDialog::startSearch()
 {
+    if(isBusy)
+        return;
 
     // prepare the query /////////////////////////////////////////////
     if (!gui2query()) return;
@@ -475,13 +480,14 @@ void KrSearchDialog::startSearch()
     foundLabel->setText(i18n("Found 0 matches."));
     searcherTabs->setCurrentIndex(2); // show the results page
     foundTextLabel->setText("");
+
+    isBusy = true;
+
     qApp->processEvents();
 
     // start the search.
-    if (searcher != 0) {
-        delete searcher;
-        searcher = 0;
-    }
+    if (searcher != 0)
+        abort();
     searcher  = new KRSearchMod(query);
     connect(searcher, SIGNAL(searching(const QString&)),
             searchingLabel, SLOT(setText(const QString&)));
@@ -489,19 +495,12 @@ void KrSearchDialog::startSearch()
             this, SLOT(found(QString, QString, KIO::filesize_t, time_t, QString, QString)));
     connect(searcher, SIGNAL(finished()), this, SLOT(stopSearch()));
 
-    isSearching = true;
     searcher->start();
-    isSearching = false;
-    if (closed)
-        emit closeDialog();
-}
 
-void KrSearchDialog::stopSearch()
-{
-    if (searcher != 0) {
-        searcher->stop();
-        disconnect(searcher, 0, 0, 0);
-    }
+    isBusy = false;
+
+    delete searcher;
+    searcher = 0;
 
     // gui stuff
     mainSearchBtn->setEnabled(true);
@@ -510,6 +509,17 @@ void KrSearchDialog::stopSearch()
     if (resultsList->topLevelItemCount())
         mainFeedToListBoxBtn->setEnabled(true);
     searchingLabel->setText(i18n("Finished searching."));
+
+    if (closed)
+        closeDialog();
+}
+
+void KrSearchDialog::stopSearch()
+{
+    if (searcher != 0) {
+        searcher->stop();
+        disconnect(searcher, 0, 0, 0);
+    }
 }
 
 void KrSearchDialog::resultDoubleClicked(QTreeWidgetItem* i)
@@ -534,7 +544,7 @@ void KrSearchDialog::resultClicked(QTreeWidgetItem* i)
 
 void KrSearchDialog::closeEvent(QCloseEvent *e)
 {                     /* if searching is in progress we must not close the window */
-    if (isSearching)    /* because qApp->processEvents() is called by the searcher and */
+    if (isBusy)    /* because qApp->processEvents() is called by the searcher and */
     {                   /* at window desruction, the searcher object will be deleted */
         stopSearch();         /* instead we stop searching */
         closed = true;        /* and after stopping: startSearch can close the window */
@@ -545,7 +555,7 @@ void KrSearchDialog::closeEvent(QCloseEvent *e)
 
 void KrSearchDialog::keyPressEvent(QKeyEvent *e)
 {
-    if (isSearching && e->key() == Qt::Key_Escape) { /* at searching we must not close the window */
+    if (isBusy && e->key() == Qt::Key_Escape) { /* at searching we must not close the window */
         stopSearch();         /* so we simply stop searching */
         return;
     }
@@ -686,12 +696,21 @@ void KrSearchDialog::feedToListBox()
         ++it;
     }
 
+    mainSearchBtn->setEnabled(false);
+    mainCloseBtn->setEnabled(false);
+    mainFeedToListBoxBtn->setEnabled(false);
+
+    isBusy = true;
+
     KUrl url = KUrl(QString("virt:/") + vfsName);
     v.vfs_refresh(url);
     v.vfs_addFiles(&urlList, KIO::CopyJob::Copy, 0);
     v.setMetaInformation(queryName);
     //ACTIVE_FUNC->openUrl(url);
     ACTIVE_MNG->slotNewTab(url.prettyUrl());
+
+    isBusy = false;
+
     closeDialog();
 }
 
