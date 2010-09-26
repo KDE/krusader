@@ -427,7 +427,6 @@ void KRslots::matchChecksum()
     ACTIVE_FUNC->matchChecksum();
 }
 
-// run external modules / programs
 void KRslots::runKonfigurator(bool firstTime)
 {
     Konfigurator *konfigurator = new Konfigurator(firstTime);
@@ -445,8 +444,13 @@ void KRslots::configChanged(bool isGUIRestartNeeded)
         KConfigGroup group(krConfig, "Look&Feel");
         vfile::vfile_loadUserDefinedFolderIcons(group.readEntry("Load User Defined Folder Icons", _UserDefinedFolderIcons));
 
+        bool leftActive = ACTIVE_PANEL->gui->isLeft();
         MAIN_VIEW->leftMng->slotRecreatePanels();
         MAIN_VIEW->rightMng->slotRecreatePanels();
+        if(leftActive)
+            LEFT_PANEL->slotFocusOnMe();
+        else
+            RIGHT_PANEL->slotFocusOnMe();
         MAIN_VIEW->fnKeys->updateShortcuts();
         KrSelectionMode::resetSelectionHandler();
         krApp->setUpdatesEnabled(true);
