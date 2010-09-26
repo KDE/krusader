@@ -116,6 +116,7 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, const bool &left, KCon
     header()->setStretchLastSection(false);
 
     connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(sectionResized(int, int, int)));
+    connect(header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(sectionMoved(int, int, int)));
 }
 
 KrInterDetailedView::~KrInterDetailedView()
@@ -588,6 +589,11 @@ void KrInterDetailedView::sectionResized(int column, int oldSize, int newSize)
         return;
 
     recalculateColumnSizes();
+}
+
+void KrInterDetailedView::sectionMoved(int logicalIndex, int oldVisualIndex, int newVisualIndex)
+{
+    op()->settingsChanged();
 }
 
 void KrInterDetailedView::recalculateColumnSizes()
