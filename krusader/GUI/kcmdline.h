@@ -83,9 +83,6 @@ public:
 signals:
     void signalRun();
 public slots:
-    inline void setFocus() {
-        cmdLine->setFocus();
-    } // overloaded for KCmdLine
     void slotReturnFocus(); // returns keyboard focus to panel
     void slotRun();
     void addPlaceholder();
@@ -97,7 +94,10 @@ public slots:
     }
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) {
+    virtual void focusInEvent(QFocusEvent*) {
+        cmdLine->setFocus();
+    }
+    virtual void resizeEvent(QResizeEvent*) {
         calcLabelSize();
     }
     void calcLabelSize();

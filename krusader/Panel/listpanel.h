@@ -125,6 +125,8 @@ public:
     void toggleSyncBrowse();
     void editLocation();
 
+    void getFocusCandidates(QVector<QWidget*> &widgets);
+
     void otherPanelChanged();
 
     void saveSettings(KConfigGroup &cfg);

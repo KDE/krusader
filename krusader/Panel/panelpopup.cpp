@@ -459,7 +459,7 @@ void PanelPopup::hide()
     if (currentPage() == DskUsage) diskusage->closeUrl();
 }
 
-void PanelPopup::setFocus()
+void PanelPopup::focusInEvent(QFocusEvent*)
 {
     switch (currentPage()) {
     case Preview:

@@ -73,7 +73,6 @@ signals:
     void hideMe();
 
 protected slots:
-    virtual void setFocus();
     void tabSelected(int id);
     void treeSelection();
     void handleOpenUrlRequest(const KUrl &url);
@@ -82,6 +81,8 @@ protected slots:
     void quickSelectStore();
 
 protected:
+    virtual void focusInEvent(QFocusEvent*);
+
     bool _left;
     bool _hidden;
     QStackedWidget *stack;

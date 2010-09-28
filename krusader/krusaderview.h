@@ -96,6 +96,9 @@ public slots:
     void focusTerminalEmulator();
     void switchFullScreenTE();
 
+    void focusUp();
+    void focusDown();
+
     void profiles(QString profileName = QString());
     void loadPanelProfiles(QString group);
     void savePanelProfiles(QString group);
@@ -112,6 +115,8 @@ public:
     QList<int>   verticalSplitterSizes;
 
 private:
+    int getFocusCandidates(QVector<QWidget*> &widgets);
+
     QGridLayout *mainLayout, *terminal_layout;
 };
 

@@ -174,6 +174,47 @@ void KrusaderView::slotPathChanged(ListPanel *p)
     }
 }
 
+int KrusaderView::getFocusCandidates(QVector<QWidget*> &widgets)
+{
+    ACTIVE_PANEL->gui->getFocusCandidates(widgets);
+    if(terminal_dock->isTerminalVisible())
+        widgets << terminal_dock;
+    if(cmdLine->isVisible());
+        widgets << cmdLine;
+
+    for(int i = 0; i < widgets.count(); i++) {
+        if(widgets[i] == focusWidget() || widgets[i]->focusWidget() == focusWidget())
+            return i;
+    }
+    return -1;
+}
+
+void KrusaderView::focusUp()
+{
+    QVector<QWidget*> widgets;
+    int currentFocus = getFocusCandidates(widgets);
+
+    if(currentFocus < 0)
+        return;
+    currentFocus--;
+
+    if(currentFocus >= 0 && currentFocus < widgets.count())
+        widgets[currentFocus]->setFocus();
+}
+
+void KrusaderView::focusDown()
+{
+    QVector<QWidget*> widgets;
+    int currentFocus = getFocusCandidates(widgets);
+
+    if(currentFocus < 0)
+        return;
+    currentFocus++;
+
+    if(currentFocus < widgets.count())
+        widgets[currentFocus]->setFocus();
+}
+
 void KrusaderView::cmdLineFocus()    // command line receive's keyboard focus
 {
     cmdLine->setFocus();

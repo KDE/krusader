@@ -445,8 +445,11 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actShowViewOptionsMenu, i18n("Show View Options Menu"), 0, 0, SLOTS, SLOT(showViewOptionsMenu()), "show_view_options_menu");
     NEW_KACTION(actViewSaveDefaultSettings, i18n("Save settings as default"), 0, 0, SLOTS, SLOT(viewSaveDefaultSettings()), "view_save_default_settings");
     actViewSaveDefaultSettings->setToolTip(i18n("Save settings as default for new instances of this view type"));
-    KAction *actViewApplySettingsToOthers;
-    NEW_KACTION(actViewApplySettingsToOthers, i18n("Apply settings to other tabs"), 0, 0, SLOTS, SLOT(viewApplySettingsToOthers()), "view_apply_settings_to_others");
+
+    KAction *tmp;
+    NEW_KACTION(tmp, i18n("Apply settings to other tabs"), 0, 0, SLOTS, SLOT(viewApplySettingsToOthers()), "view_apply_settings_to_others");
+    NEW_KACTION(tmp, i18n("Move Focus Up"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Up, MAIN_VIEW, SLOT(focusUp()), "move_focus_up");
+    NEW_KACTION(tmp, i18n("Move Focus Down"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Down, MAIN_VIEW, SLOT(focusDown()), "move_focus_down");
 
     // and at last we can set the tool-tips
     actSelect->setToolTip(i18n("Select files using a filter"));

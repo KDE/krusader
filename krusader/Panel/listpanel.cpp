@@ -580,7 +580,6 @@ void ListPanel::slotFocusAndCDOther()
 {
     slotFocusOnMe();
     func->openUrl(otherPanel()->func->files() ->vfs_getOrigin());
-
 }
 
 void ListPanel::slotFocusAndCDHome()
@@ -1129,7 +1128,6 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
         } else
             e->ignore();
         break;
-
     case Qt::Key_Down :
         if (e->modifiers() == Qt::ControlModifier) {   // give the keyboard focus to the command line
             if (MAIN_VIEW->cmdLine->isVisible())
@@ -1151,7 +1149,6 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
         } else
             e->ignore();
         break;
-
     default:
         // if we got this, it means that the view is not doing
         // the quick search thing, so send the characters to the commandline, if normal key
@@ -1394,6 +1391,15 @@ void ListPanel::updatePopupPanel(KrViewItem *item)
 void ListPanel::otherPanelChanged()
 {
     func->syncURL = KUrl();
+}
+
+void ListPanel::getFocusCandidates(QVector<QWidget*> &widgets)
+{
+    widgets << origin->lineEdit();
+    if(view->widget()->isVisible())
+        widgets << view->widget();
+    if(popup && popup->isVisible())
+        widgets << popup;
 }
 
 #include "listpanel.moc"
