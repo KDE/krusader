@@ -184,9 +184,9 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
                                           "enter name of desired location to move there. "
                                           "Use of Net protocols like ftp or fish is possible."));
     origin->setMode(KFile::Directory | KFile::ExistingOnly);
-    connect(origin, SIGNAL(returnPressed(const QString&)), func, SLOT(openUrl(const QString&)));
+    connect(origin, SIGNAL(returnPressed(const QString&)), func, SLOT(urlEntered(const QString&)));
     connect(origin, SIGNAL(returnPressed(const QString&)), this, SLOT(slotFocusOnMe()));
-    connect(origin, SIGNAL(urlSelected(const KUrl &)), func, SLOT(openUrl(const KUrl &)));
+    connect(origin, SIGNAL(urlSelected(const KUrl &)), func, SLOT(urlEntered(const KUrl &)));
     connect(origin, SIGNAL(urlSelected(const KUrl &)), this, SLOT(slotFocusOnMe()));
     ADD_WIDGET(origin);
 

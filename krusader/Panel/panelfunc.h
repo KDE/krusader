@@ -49,10 +49,11 @@ public slots:
     }
     void execute(const QString&);
     void goInside(const QString&);
+    void urlEntered(const QString &url);
+    void urlEntered(const KUrl &url);
     void openUrl(const KUrl& path, const QString& nameToMakeCurrent = QString(), bool inSync = false);
-    void openUrl(const QString& path, const QString& nameToMakeCurrent = QString());
     void popErronousUrl();
-    void immediateOpenUrl(const KUrl& path, bool disableLock = false);
+    void immediateOpenUrl(const KUrl &url, bool disableLock = false);
     void doOpenUrl();
     void refresh();
     void rename(const QString &oldname, const QString &newname);
@@ -102,6 +103,8 @@ protected slots:
     void slotFileCreated(KJob *job); // a file has been created by editNewFile()
 
 protected:
+    bool                 canGoBack();
+
     ListPanel*           panel;     // our ListPanel
     QList<KUrl>          urlStack;  // Path stack for the "go-previous" button
     vfs*                 vfsP;      // pointer to vfs.
@@ -111,7 +114,7 @@ protected:
     bool                 delayLock;
     QString              nameToMakeCurrent;
     KUrl                 fileToCreate; // file that's to be created by editNewFile()
-    bool                 canGoBack();
+    bool                 urlManuallyEntered;
 
 private:
     KUrl getVirtualBaseURL();

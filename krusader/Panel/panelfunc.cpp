@@ -90,20 +90,25 @@ A
 #include "../Queue/queue_mgr.h"
 
 ListPanelFunc::ListPanelFunc(ListPanel *parent) :
-        panel(parent), vfsP(0)
+        panel(parent), vfsP(0), urlManuallyEntered(false)
 {
     urlStack.push_back(KUrl("file:/"));
     connect(&delayTimer, SIGNAL(timeout()), this, SLOT(doOpenUrl()));
 }
 
-void ListPanelFunc::openUrl(const QString& url, const QString& nameToMakeCurrent)
+void ListPanelFunc::urlEntered(const QString &url)
 {
-    openUrl(KUrl(
+    urlEntered(KUrl(
                 // KUrlRequester is buggy: it should return a string containing "/home/shie/downloads"
                 // but it returns "~/downloads" which is parsed incorrectly by KUrl.
                 // replacedPath should replace ONLY $HOME and environment variables
-                panel->origin->completionObject()->replacedPath(url))
-            , nameToMakeCurrent);
+                panel->origin->completionObject()->replacedPath(url)));
+}
+
+void ListPanelFunc::urlEntered(const KUrl &url)
+{
+    urlManuallyEntered = true;
+    openUrl(url);
 }
 
 bool ListPanelFunc::isSyncing()
@@ -140,7 +145,7 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
     // you may call openUrl or vfs_refresh()
     if (!url.isValid() || url.isRelative()) {
         if (url.url() == "~") {
-            return openUrl(QDir::homePath());
+            openUrl(QDir::homePath());
         } else if (!url.url().startsWith('/')) {
             // possible relative URL - translate to full URL
             url = files() ->vfs_getOrigin();
@@ -148,6 +153,7 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
             //kDebug()<< urlIn.url() << "," << url.url() <<endl;
         } else {
             panel->slotStartUpdate();  // refresh the panel
+            urlManuallyEntered = false;
             return ;
         }
     }
@@ -155,6 +161,7 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
     if (!disableLock && panel->isLocked() && !files() ->vfs_getOrigin().equals(url, KUrl::CompareWithoutTrailingSlash)) {
         PanelManager * manager = panel->isLeft() ? MAIN_VIEW->leftMng : MAIN_VIEW->rightMng;
         manager->slotNewTab(url);
+        urlManuallyEntered = false;
         return;
     }
 
@@ -267,7 +274,7 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
     if (refreshFailed) {
         if(isSyncing())
             panel->otherPanel()->gui->syncBrowseButton->setChecked(false);
-        else {
+        else if(urlManuallyEntered) {
             panel->origin->setUrl(urlIn.prettyUrl());
             if(panel == ACTIVE_PANEL)
                 panel->origin->setFocus();
@@ -276,6 +283,8 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
 
     if(otherFunc()->otherFunc() == this)  // not true if our tab is not active
         otherFunc()->syncURL = KUrl();
+
+    urlManuallyEntered = false;
 
     refreshActions();
     panel->view->updatePreviews();
