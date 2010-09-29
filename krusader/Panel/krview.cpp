@@ -56,8 +56,6 @@
 
 // action name constants
 //TODO: remove this, once it's not needed anymore
-#define actDirUp "dirUp"
-#define actCancelRefresh "cancel refresh"
 #define actZoomIn "zoom_in"
 #define actZoomOut "zoom_out"
 #define actDefaultZoom "default_zoom"
@@ -69,6 +67,7 @@ KrViewOperator::KrViewOperator(KrView *view, QWidget *widget) :
 {
     _saveDefaultSettingsTimer.setSingleShot(true);
     connect(&_saveDefaultSettingsTimer, SIGNAL(timeout()), SLOT(saveDefaultSettings()));
+    _widget->installEventFilter(this);
 }
 
 KrViewOperator::~KrViewOperator()
@@ -169,8 +168,6 @@ void KrViewOperator::stopQuickSearch(QKeyEvent * e)
     if (_quickSearch) {
         _quickSearch->hide();
         _quickSearch->clear();
-        _view->mainWindow()->enableAction(actDirUp, true);
-        _view->mainWindow()->enableAction(actCancelRefresh, true);
         if (e)
             _view->handleKeyEvent(e);
     }
@@ -209,6 +206,15 @@ void KrViewOperator::saveDefaultSettings()
 {
     KConfigGroup group(_view->_config, _view->_instance.name());
     _view->doSaveSettings(group);
+}
+
+bool KrViewOperator::eventFilter(QObject *watched, QEvent *event)
+{
+    if(watched == _widget && event->type() == QEvent::ShortcutOverride) {
+        if (!_quickSearch->isHidden())
+            return _quickSearch->shortcutOverride(static_cast<QKeyEvent*>(event));
+    }
+    return false;
 }
 
 // ----------------------------- krview
@@ -916,11 +922,6 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
                     // UPDATE: it seems like this isn't needed anymore, in case I'm wrong
                     // do something like op()->emitQuickSearchStartet()
                     // -----------------------------
-                    // second, we need to disable the dirup and cancelRefresh actions - HACK!
-                    if(_mainWindow->action(actDirUp)->shortcut() == QKeySequence(Qt::Key_Backspace))
-                        _mainWindow->enableAction(actDirUp, false);
-                    if(_mainWindow->action(actCancelRefresh)->shortcut() == QKeySequence(Qt::Key_Escape))
-                        _mainWindow->enableAction(actCancelRefresh, false);
                 }
                 // now, send the key to the quicksearch
                 op()->quickSearch()->myKeyPressEvent(e);
@@ -930,8 +931,6 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
             if (!op()->quickSearch()->isHidden()) {
                 op()->quickSearch()->hide();
                 op()->quickSearch()->clear();
-                _mainWindow->enableAction(actDirUp, true);
-                _mainWindow->enableAction(actCancelRefresh, true);
             }
         }
     }

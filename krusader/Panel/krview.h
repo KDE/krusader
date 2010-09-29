@@ -118,6 +118,9 @@ class KrViewOperator: public QObject
 public:
     KrViewOperator(KrView *view, QWidget *widget);
     ~KrViewOperator();
+
+    virtual bool eventFilter(QObject *watched, QEvent *event);
+
     KrView *view() const {
         return _view;
     }

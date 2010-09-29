@@ -215,6 +215,7 @@ public slots:
     void showViewOptionsMenu();
     void viewSaveDefaultSettings();
     void viewApplySettingsToOthers();
+    void focusPanel();
 
 protected slots:
     void configChanged(bool isGUIRestartNeeded);

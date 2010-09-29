@@ -136,6 +136,7 @@ public:
     void addText(const QString &str) {
         setText(text() + str);
     }
+    bool shortcutOverride(QKeyEvent *e);
     void myKeyPressEvent(QKeyEvent *e);
     void setMatch(bool match);
     void myInputMethodEvent(QInputMethodEvent* e) {
@@ -146,7 +147,6 @@ signals:
     void stop(QKeyEvent *e);
     void process(QKeyEvent *e);
     void otherMatching(const QString &, int);
-
 };
 
 #endif

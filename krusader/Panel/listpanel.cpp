@@ -469,11 +469,8 @@ void ListPanel::setProperties(int prop)
 bool ListPanel::eventFilter(QObject * watched, QEvent * e)
 {
     if(view && watched == view->widget()) {
-        if(e->type() == QEvent::FocusIn) {
-            if(this != ACTIVE_PANEL) {
-                slotFocusOnMe();
-            }
-        }
+        if(e->type() == QEvent::FocusIn && this != ACTIVE_PANEL)
+            slotFocusOnMe();
     }
     if (e->type() == QEvent::KeyPress && origin->lineEdit() == watched) {
         QKeyEvent *ke = (QKeyEvent *)e;
@@ -1059,8 +1056,7 @@ void ListPanel::setFilter(KrViewProperties::FilterSpec f)
         {
             FilterDialog dialog(0, i18n("Filter Files"), QStringList(i18n("Apply filter to directories")));
             filterMask = dialog.getQuery();
-            // if the user canceled - quit
-            if (filterMask.isNull())
+            if (filterMask.isNull()) // if the user canceled - quit
                 return;
             applyToDirs = dialog.isExtraOptionChecked(i18n("Apply filter to directories"));
             view->setFilterMask(filterMask);
@@ -1149,6 +1145,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
         } else
             e->ignore();
         break;
+
     default:
         // if we got this, it means that the view is not doing
         // the quick search thing, so send the characters to the commandline, if normal key
@@ -1261,12 +1258,12 @@ void ListPanel::inlineRefreshCancel()
 {
     if (inlineRefreshJob) {
         disconnect(inlineRefreshJob, 0, this, 0);
-        inlineRefreshJob->kill();
+        inlineRefreshJob->kill(KJob::EmitResult);
         inlineRefreshListResult(0);
     }
     if(previewJob) {
         disconnect(previewJob, 0, this, 0);
-        previewJob->kill();
+        previewJob->kill(KJob::EmitResult);
         slotPreviewJobResult(0);
     }
 }
@@ -1284,6 +1281,8 @@ void ListPanel::inlineRefreshInfoMessage(KJob*, const QString &msg)
 
 void ListPanel::inlineRefreshListResult(KJob*)
 {
+    if(inlineRefreshJob)
+        disconnect(inlineRefreshJob, 0, this, 0);
     inlineRefreshJob = 0;
     // reenable everything
     status->setEnabled(true);

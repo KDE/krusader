@@ -140,6 +140,8 @@ KAction *KrActions::actZoomIn = 0;
 KAction *KrActions::actZoomOut = 0;
 KAction *KrActions::actDefaultZoom = 0;
 
+KAction *KrActions::actFocusPanel = 0;
+
 KToggleAction *KrActions::actToggleTerminal = 0;
 KAction  *KrActions::actVerticalMode = 0;
 KAction  *KrActions::actSelectNewerAndSingle = 0;
@@ -373,7 +375,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actLocate, i18n("&Locate..."), "edit-find", Qt::SHIFT + Qt::CTRL + Qt::Key_L, SLOTS, SLOT(locate()), "locate");
     NEW_KACTION(actSyncDirs, i18n("Synchronize &Directories..."), "kr_syncdirs", Qt::CTRL + Qt::Key_Y, SLOTS, SLOT(slotSynchronizeDirs()), "sync dirs");
     NEW_KACTION(actSyncBrowse, i18n("S&ynchron Directory Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, SLOTS, SLOT(slotSyncBrowse()), "sync browse");
-    NEW_KACTION(actCancelRefresh, i18n("Cancel Refresh of View"), "kr_cancel_refresh", Qt::Key_Escape, SLOTS, SLOT(cancelRefresh()), "cancel refresh");
+    NEW_KACTION(actCancelRefresh, i18n("Cancel Refresh of View"), "kr_cancel_refresh", 0, SLOTS, SLOT(cancelRefresh()), "cancel refresh");
     NEW_KACTION(actDiskUsage, i18n("D&isk Usage..."), "kr_diskusage", Qt::ALT + Qt::SHIFT + Qt::Key_S, SLOTS, SLOT(slotDiskUsage()), "disk usage");
     NEW_KACTION(actQueueManager, i18n("&Queue Manager..."), "document-multiple", Qt::ALT + Qt::SHIFT + Qt::Key_Q, SLOTS, SLOT(slotQueueManager()), "queue manager");
     NEW_KACTION(actKonfigurator, i18n("Configure &Krusader..."), "configure", 0, SLOTS, SLOT(startKonfigurator()), "konfigurator");
@@ -445,6 +447,8 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actShowViewOptionsMenu, i18n("Show View Options Menu"), 0, 0, SLOTS, SLOT(showViewOptionsMenu()), "show_view_options_menu");
     NEW_KACTION(actViewSaveDefaultSettings, i18n("Save settings as default"), 0, 0, SLOTS, SLOT(viewSaveDefaultSettings()), "view_save_default_settings");
     actViewSaveDefaultSettings->setToolTip(i18n("Save settings as default for new instances of this view type"));
+
+    NEW_KACTION(actFocusPanel, i18n("Set Focus to the Panel"), 0, Qt::Key_Escape, SLOTS, SLOT(focusPanel()), "focus_panel");
 
     KAction *tmp;
     NEW_KACTION(tmp, i18n("Apply settings to other tabs"), 0, 0, SLOTS, SLOT(viewApplySettingsToOthers()), "view_apply_settings_to_others");

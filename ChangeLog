@@ -1,3 +1,4 @@
+    ADDED: action: Set Focus to the Panel - shortcut: ESC
     ADDED: actions: Move Focus Up/Down - shortcut: CTRL+SHIFT+Up/Down
     ADDED: selection dialog option: Apply selection to directories
     ADDED: option: Startup > User Interface > Update default panel settings
@@ -10,6 +11,10 @@
     ADDED: action: view > Save settings as default (for new instances of this view type)
     ADDED: option: Panel > View > Locale aware sorting
 
+    CHANGED: Removed default shortcut for 'Cancel Refresh of View'
+             as it conflicts with the 'Set Focus to the Panel' action.
+             Unless a shortcut is assigned manually,
+             ESC cancels the refresh when the panel is focused.
     CHANGED: Konfigurator: "apply" takes effect immediately.
     CHANGED: url commandline argument: if there is already a tab open with that url,
              it is activated, otherwise a new tab is opened in the active panel

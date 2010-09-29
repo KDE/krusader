@@ -238,6 +238,15 @@ KrQuickSearch::KrQuickSearch(QWidget *parent) : KLineEdit(parent)
     setMatch(true);
 }
 
+bool KrQuickSearch::shortcutOverride(QKeyEvent *e)
+{
+    if(e->key() == Qt::Key_Escape || e->key() == Qt::Key_Backspace) {
+        e->accept();
+        return true;
+    }
+    return false;
+}
+
 void KrQuickSearch::myKeyPressEvent(QKeyEvent *e)
 {
     KConfigGroup gc(krConfig, "Look&Feel");
