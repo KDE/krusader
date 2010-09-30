@@ -71,17 +71,13 @@ void DirHistoryButton::slotAboutToShow()
     popupMenu->clear();
     KUrl::List::iterator it;
 
-    QAction * first = 0;
-    int id = 0;
-    for (it = historyQueue->urlQueue.begin(); it != historyQueue->urlQueue.end(); ++it) {
-        QAction * act = popupMenu->addAction((*it).prettyUrl());
-        if (id == 0)
-            first = act;
-        act->setData(QVariant(id++));
-    }
-    if (first) {
-        first->setCheckable(true);
-        first->setChecked(true);
+    for (int i = 0; i < historyQueue->count(); i++) {
+        QAction *act = popupMenu->addAction(historyQueue->get(i).prettyUrl());
+        act->setData(QVariant(i));
+        if(historyQueue->currentPos() == i) {
+            act->setCheckable(true);
+            act->setChecked(true);
+        }
     }
 }
 /** No descriptions */
@@ -89,7 +85,7 @@ void DirHistoryButton::slotPopupActivated(QAction * action)
 {
     if (action && action->data().canConvert<int>()) {
         int id = action->data().toInt();
-        emit openUrl(historyQueue->urlQueue[ id ]);
+        emit gotoPos(id);
     }
 }
 

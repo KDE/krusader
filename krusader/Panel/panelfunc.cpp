@@ -87,11 +87,13 @@ A
 #include "../panelmanager.h"
 #include "../krservices.h"
 #include "../GUI/syncbrowsebutton.h"
+#include "../GUI/dirhistoryqueue.h"
 #include "../Queue/queue_mgr.h"
 
-ListPanelFunc::ListPanelFunc(ListPanel *parent) :
+ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
         panel(parent), vfsP(0), urlManuallyEntered(false)
 {
+    history = new DirHistoryQueue(this);
     urlStack.push_back(KUrl("file:/"));
     connect(&delayTimer, SIGNAL(timeout()), this, SLOT(doOpenUrl()));
 }
@@ -120,7 +122,8 @@ bool ListPanelFunc::isSyncing()
         return true;
     return false;
 }
-
+#if 0
+//FIXME: see if this is still needed
 void ListPanelFunc::popErronousUrl()
 {
     KUrl current = urlStack.last();
@@ -133,14 +136,38 @@ void ListPanelFunc::popErronousUrl()
     }
     immediateOpenUrl(KUrl(ROOT_DIR), true);
 }
-
-void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
+#endif
+KUrl ListPanelFunc::cleanPath(const KUrl &urlIn)
 {
     KUrl url = urlIn;
     url.cleanPath();
 
+    if (!url.isValid() || url.isRelative()) {
+        if (url.url() == "~")
+            url = KUrl(QDir::homePath());
+        else if (!url.url().startsWith('/')) {
+            // possible relative URL - translate to full URL
+            url = files()->vfs_getOrigin();
+            url.addPath(urlIn.url());
+        }
+    }
+
+    url.cleanPath();
+    return url;
+}
+
+void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock, bool addToHistory)
+{
     delayTimer.stop();
 
+    KUrl url = cleanPath(urlIn);
+//     url.cleanPath();
+    if(!url.isValid()) {
+        panel->slotStartUpdate();  // refresh the panel
+        urlManuallyEntered = false;
+        return ;
+    }
+#if 0
     // check for special cases first - don't refresh here !
     // you may call openUrl or vfs_refresh()
     if (!url.isValid() || url.isRelative()) {
@@ -157,7 +184,7 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
             return ;
         }
     }
-
+#endif
     if (!disableLock && panel->isLocked() && !files() ->vfs_getOrigin().equals(url, KUrl::CompareWithoutTrailingSlash)) {
         PanelManager * manager = panel->isLeft() ? MAIN_VIEW->leftMng : MAIN_VIEW->rightMng;
         manager->slotNewTab(url);
@@ -186,6 +213,9 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
 
     if(panel->vfsError)
         panel->vfsError->hide();
+
+    if(addToHistory)
+        history->add(url);
 
     vfs* v = 0;
     if (urlStack.count() == 0 || !urlStack.last().equals(url))
@@ -290,7 +320,7 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
     panel->view->updatePreviews();
 }
 
-void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent, bool inSync)
+void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent, bool inSync, bool addToHistory)
 {
     panel->inlineRefreshCancel();
 
@@ -299,6 +329,9 @@ void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent, b
     delayLock = panel->isLocked();
     delayTimer.setSingleShot(true);
     delayTimer.start(0);    /* to avoid qApp->processEvents() deadlock situaltion */
+
+    if(addToHistory)
+        history->add(cleanPath(url));
 
     if (panel->syncBrowseButton->state() == SYNCBROWSE_CD && !inSync) {
         //do sync-browse stuff....
@@ -314,12 +347,12 @@ void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent, b
 
 void ListPanelFunc::refresh()
 {
-    openUrl(panel->virtualPath()); // re-read the files
+    openUrl(panel->virtualPath(), QString(), false, false); // re-read the files
 }
 
 void ListPanelFunc::doOpenUrl()
 {
-    immediateOpenUrl(delayURL, !delayLock);
+    immediateOpenUrl(delayURL, !delayLock, false);
 }
 
 void ListPanelFunc::goBack()
@@ -1340,6 +1373,12 @@ ListPanelFunc* ListPanelFunc::otherFunc()
 void ListPanelFunc::trashJobStarted(KIO::Job *job)
 {
     connect(job, SIGNAL(result(KJob*)), SLOTS, SLOT(changeTrashIcon()));
+}
+
+void ListPanelFunc::historyGotoPos(int pos)
+{
+    if(history->gotoPos(pos))
+        openUrl(history->current(), QString(), false, false);
 }
 
 #include "panelfunc.moc"

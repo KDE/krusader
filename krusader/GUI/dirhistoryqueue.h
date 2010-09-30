@@ -23,24 +23,34 @@
 #include <QtCore/QObject>
 #include <kurl.h>
 
-class ListPanel;
-
 class DirHistoryQueue : public QObject
 {
     Q_OBJECT
 public:
-    DirHistoryQueue(ListPanel* p);
+    DirHistoryQueue(QObject *parent);
     ~DirHistoryQueue();
-    KUrl::List urlQueue;
-//  bool checkPath(const QString& path);
-//  void RemovePath(const QString& path);
+
+    int currentPos() {
+        return _currentPos;
+    }
+    int count() {
+        return _urlQueue.count();
+    }
+    const KUrl& current();
+    const KUrl& get(int pos) {
+        return _urlQueue[pos];
+    }
+    void add(KUrl url);
+    bool gotoPos(int pos);
 
 public slots: // Public slots
     /** No descriptions */
-    void slotPathChanged(ListPanel* p);
+//     void slotPathChanged(ListPanel* p);
 private:
 // void addUrl(const KUrl& url);
-    ListPanel* panel;
+//     ListPanel* panel;
+    int _currentPos;
+    KUrl::List _urlQueue;
 };
 
 #endif

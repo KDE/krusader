@@ -69,7 +69,6 @@ class KrView;
 class KUrlRequester;
 class KrQuickSearch;
 class DirHistoryButton;
-class DirHistoryQueue;
 class MediaButton;
 class PanelPopup;
 class SyncBrowseButton;
@@ -191,7 +190,6 @@ protected slots:
     void inlineRefreshPercent(KJob*, unsigned long);
     void slotVfsError(QString msg);
 
-
 signals:
     void signalStatus(QString msg);         // emmited when we need to update the status bar
     void pathChanged(ListPanel *panel);
@@ -207,7 +205,6 @@ protected:
     bool compareMode;
     //FilterSpec    filter;
     KDiskFreeSpace* statsAgent;
-    DirHistoryQueue* dirHistoryQueue;
     KJob *previewJob;
     KIO::Job *inlineRefreshJob;
 

@@ -53,7 +53,8 @@ public slots: // Public slots
     void slotPopupActivated(QAction *);
 signals: // Signals
     /** No descriptions */
-    void openUrl(const KUrl&);
+//     void openUrl(const KUrl&);
+    void gotoPos(int pos);
 };
 
 #endif

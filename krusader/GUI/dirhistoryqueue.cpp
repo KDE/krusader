@@ -18,37 +18,77 @@
  *****************************************************************************/
 
 #include "dirhistoryqueue.h"
-#include "../Panel/listpanel.h"
 
 #include <kdebug.h>
 
-DirHistoryQueue::DirHistoryQueue(ListPanel* p)
+DirHistoryQueue::DirHistoryQueue(QObject *parent) : QObject(parent), _currentPos(0)
 {
-    panel = p;
-
-    connect(panel, SIGNAL(pathChanged(ListPanel*)), this, SLOT(slotPathChanged(ListPanel*)));
 }
+
 DirHistoryQueue::~DirHistoryQueue() {}
 
+const KUrl& DirHistoryQueue::current()
+{
+    if(_urlQueue.count())
+        return _urlQueue[_currentPos];
+    else
+        return KUrl();
+}
+
+void DirHistoryQueue::add(KUrl url)
+{
+    url.cleanPath();
+
+    if(_urlQueue.isEmpty()) {
+        _urlQueue.push_front(url);
+        return;
+    }
+
+    if(_urlQueue[_currentPos].equals(url))
+        return;
+
+    for (int i = 0; i < _currentPos; i++)
+        _urlQueue.pop_front();
+
+    _currentPos = 0;
+
+    // do we have room for another ?
+    if (_urlQueue.count() > 12) { // FIXME: use user-defined size
+        // no room - remove the oldest entry
+        _urlQueue.pop_back();
+    }
+
+    _urlQueue.push_front(url);
+}
+
+bool DirHistoryQueue::gotoPos(int pos)
+{
+    if(pos < _urlQueue.count()) {
+         _currentPos = pos;
+         return true;
+    }
+    return false;
+}
+
+#if 0
 /** No descriptions */
 void DirHistoryQueue::slotPathChanged(ListPanel* p)
 {
     KUrl url = p->virtualPath();
     // already in the queue ?
-    if (urlQueue.indexOf(url) >= 0) {
+    if (_urlQueue.indexOf(url) >= 0) {
         // remove it !
-        urlQueue.removeAll(url);
+        _urlQueue.removeAll(url);
     }
     // do we have room for another ?
-    if (urlQueue.size() > 12) {
+    if (_urlQueue.size() > 12) {
         // no room - remove the oldest entry
-        urlQueue.pop_back();
+        _urlQueue.pop_back();
     }
 
-    urlQueue.push_front(url);
+    _urlQueue.push_front(url);
 }
 
-#if 0
 void DirHistoryQueue::addUrl(const KUrl& url)
 {
     if (pathQueue.indexOf(path) == -1) {

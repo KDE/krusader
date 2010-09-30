@@ -157,10 +157,10 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     ADD_WIDGET(status);
 
     // ... create the history button
-    dirHistoryQueue = new DirHistoryQueue(this);
-    historyButton = new DirHistoryButton(dirHistoryQueue, this);
+    historyButton = new DirHistoryButton(func->history, this);
     connect(historyButton, SIGNAL(aboutToShow()), this, SLOT(slotFocusOnMe()));
-    connect(historyButton, SIGNAL(openUrl(const KUrl&)), func, SLOT(openUrl(const KUrl&)));
+//     connect(historyButton, SIGNAL(openUrl(const KUrl&)), func, SLOT(openUrl(const KUrl&)));
+    connect(historyButton, SIGNAL(gotoPos(int)), func, SLOT(historyGotoPos(int)));
     ADD_WIDGET(historyButton);
 
     // bookmarks button
@@ -1191,8 +1191,11 @@ void ListPanel::hideEvent(QHideEvent *e)
 void ListPanel::panelActive()
 {
     // don't refresh when not active (ie: hidden, application isn't focused ...)
-    if (!func->files()->vfs_enableRefresh(true))
-        func->popErronousUrl();
+//     if (!
+         func->files()->vfs_enableRefresh(true)
+//        )
+//         func->popErronousUrl()
+                ;
 }
 
 void ListPanel::panelInactive()
