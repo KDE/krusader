@@ -216,6 +216,8 @@ public slots:
     void viewSaveDefaultSettings();
     void viewApplySettingsToOthers();
     void focusPanel();
+    void historyBackward();
+    void historyForward();
 
 protected slots:
     void configChanged(bool isGUIRestartNeeded);

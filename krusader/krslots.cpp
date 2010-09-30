@@ -1244,4 +1244,14 @@ void KRslots::focusPanel()
         ACTIVE_VIEW->widget()->setFocus();
 }
 
+void KRslots::historyBackward()
+{
+    ACTIVE_FUNC->historyBackward();
+}
+
+void KRslots::historyForward()
+{
+    ACTIVE_FUNC->historyForward();
+}
+
 #include "krslots.moc"

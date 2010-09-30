@@ -73,6 +73,8 @@ public:
     void krlink(bool sym);
     void goBack();
     void dirUp();
+    void historyBackward();
+    void historyForward();
     void properties();
     void terminal();
     void editFile();

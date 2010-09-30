@@ -62,6 +62,7 @@ public:
     *actSelectDifferentAndSingle, *actSelectDifferent;
     static KAction *actZoomIn, *actZoomOut, *actDefaultZoom;
     static KAction *actFocusPanel;
+    static KAction *actHistoryBackward, *actHistoryForward;
     /** actions for setting the execution mode of commands from commanddline */
     static KAction *actExecStartAndForget,
     *actExecCollectSeparate, *actExecCollectTogether,

@@ -42,6 +42,8 @@ public:
     }
     void add(KUrl url);
     bool gotoPos(int pos);
+    bool goBack();
+    bool goForward();
 
 public slots: // Public slots
     /** No descriptions */

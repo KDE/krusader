@@ -1381,4 +1381,16 @@ void ListPanelFunc::historyGotoPos(int pos)
         openUrl(history->current(), QString(), false, false);
 }
 
+void ListPanelFunc::historyBackward()
+{
+    if(history->goBack())
+        openUrl(history->current(), QString(), false, false);
+}
+
+void ListPanelFunc::historyForward()
+{
+    if(history->goForward())
+        openUrl(history->current(), QString(), false, false);
+}
+
 #include "panelfunc.moc"

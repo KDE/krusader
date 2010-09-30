@@ -136,6 +136,9 @@ KAction *KrActions::actView5 = 0;
 KAction *KrActions::actViewSaveDefaultSettings = 0;
 KAction *KrActions::actShowViewOptionsMenu = 0;
 
+KAction *KrActions::actHistoryBackward = 0;
+KAction *KrActions::actHistoryForward = 0;
+
 KAction *KrActions::actZoomIn = 0;
 KAction *KrActions::actZoomOut = 0;
 KAction *KrActions::actDefaultZoom = 0;
@@ -391,8 +394,8 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     KAction *t3, *t4, *t5, *t6, *t7, *t8, *t9, *t10, *t11, *t12, *t13, *t14, *t15, *t16;
     NEW_KACTION(t3, i18n("Right-click Menu"), 0, Qt::Key_Menu, SLOTS, SLOT(rightclickMenu()), "rightclick menu");
-    NEW_KACTION(t4, i18n("Right Bookmarks"), 0, Qt::ALT + Qt::Key_Right, SLOTS, SLOT(openRightBookmarks()), "right bookmarks");
-    NEW_KACTION(t5, i18n("Left Bookmarks"), 0, Qt::ALT + Qt::Key_Left, SLOTS, SLOT(openLeftBookmarks()), "left bookmarks");
+    NEW_KACTION(t4, i18n("Right Bookmarks"), 0, 0, SLOTS, SLOT(openRightBookmarks()), "right bookmarks");
+    NEW_KACTION(t5, i18n("Left Bookmarks"), 0, 0, SLOTS, SLOT(openLeftBookmarks()), "left bookmarks");
     NEW_KACTION(t6, i18n("Bookmarks"), 0, Qt::CTRL + Qt::Key_D, SLOTS, SLOT(openBookmarks()), "bookmarks");
     NEW_KACTION(t7, i18n("Bookmark Current"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_D, SLOTS, SLOT(bookmarkCurrent()), "bookmark current");
     NEW_KACTION(t8, i18n("History"), 0, Qt::CTRL + Qt::Key_H, SLOTS, SLOT(openHistory()), "history");
@@ -449,6 +452,11 @@ void KrActions::setupActions(Krusader *krusaderApp)
     actViewSaveDefaultSettings->setToolTip(i18n("Save settings as default for new instances of this view type"));
 
     NEW_KACTION(actFocusPanel, i18n("Set Focus to the Panel"), 0, Qt::Key_Escape, SLOTS, SLOT(focusPanel()), "focus_panel");
+
+    actHistoryBackward = KStandardAction::back(SLOTS, SLOT(historyBackward()), krusaderApp);
+    krusaderApp->actionCollection()->addAction("history_backward", actHistoryBackward);
+    actHistoryForward = KStandardAction::forward(SLOTS, SLOT(historyForward()), krusaderApp);
+    krusaderApp->actionCollection()->addAction("history_forward", actHistoryForward);
 
     KAction *tmp;
     NEW_KACTION(tmp, i18n("Apply settings to other tabs"), 0, 0, SLOTS, SLOT(viewApplySettingsToOthers()), "view_apply_settings_to_others");

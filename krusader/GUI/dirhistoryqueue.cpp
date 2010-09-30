@@ -63,11 +63,21 @@ void DirHistoryQueue::add(KUrl url)
 
 bool DirHistoryQueue::gotoPos(int pos)
 {
-    if(pos < _urlQueue.count()) {
+    if(pos >= 0 && pos < _urlQueue.count()) {
          _currentPos = pos;
          return true;
     }
     return false;
+}
+
+bool DirHistoryQueue::goBack()
+{
+    return gotoPos(_currentPos + 1);
+}
+
+bool DirHistoryQueue::goForward()
+{
+    return gotoPos(_currentPos - 1);
 }
 
 #if 0
