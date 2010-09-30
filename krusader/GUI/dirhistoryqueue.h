@@ -31,6 +31,7 @@ public:
     DirHistoryQueue(QObject *parent);
     ~DirHistoryQueue();
 
+    void clear();
     int currentPos() {
         return _currentPos;
     }

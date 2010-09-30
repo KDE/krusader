@@ -98,6 +98,12 @@ ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
     connect(&delayTimer, SIGNAL(timeout()), this, SLOT(doOpenUrl()));
 }
 
+//HACK used by panelmanager - remove this once per-tab save/restore is implemented
+void ListPanelFunc::clearHistory()
+{
+    history->clear();
+}
+
 void ListPanelFunc::urlEntered(const QString &url)
 {
     urlEntered(KUrl(

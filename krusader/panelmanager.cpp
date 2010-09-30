@@ -205,6 +205,7 @@ void PanelManager::loadSettings(KConfigGroup *config, const QString& key)
                 panel->changeType(types[ i ]);
             if(panel->view->fileIconSize() != iconSizes[i])
                 panel->view->setFileIconSize(iconSizes[i]);
+            panel->func->clearHistory();
             panel->view->restoreSettings();
             panel->setProperties(props[ i ]);
             panel->func->files()->vfs_enableRefresh(true);

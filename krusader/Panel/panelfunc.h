@@ -68,6 +68,9 @@ public:
 
     vfs* files();  // return a pointer to the vfs
 
+    //HACK used by panelmanager - remove this once per-tab save/restore is implemented
+    void clearHistory();
+
     void refreshActions();
     void redirectLink();
     void krlink(bool sym);

@@ -27,6 +27,13 @@ DirHistoryQueue::DirHistoryQueue(QObject *parent) : QObject(parent), _currentPos
 
 DirHistoryQueue::~DirHistoryQueue() {}
 
+void DirHistoryQueue::clear()
+{
+    _currentPos = 0;
+    _urlQueue.clear();
+    _currentItems.clear();
+}
+
 const KUrl& DirHistoryQueue::currentUrl()
 {
     if(_urlQueue.count())
