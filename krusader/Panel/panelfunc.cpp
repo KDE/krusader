@@ -214,8 +214,10 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock, bool a
     if(panel->vfsError)
         panel->vfsError->hide();
 
-    if(addToHistory)
+    if(addToHistory) {
+        history->setCurrentItem(panel->view->getCurrentItem());
         history->add(url);
+    }
 
     vfs* v = 0;
     if (urlStack.count() == 0 || !urlStack.last().equals(url))
@@ -330,8 +332,10 @@ void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent, b
     delayTimer.setSingleShot(true);
     delayTimer.start(0);    /* to avoid qApp->processEvents() deadlock situaltion */
 
-    if(addToHistory)
+    if(addToHistory) {
+        history->setCurrentItem(panel->view->getCurrentItem());
         history->add(cleanPath(url));
+    }
 
     if (panel->syncBrowseButton->state() == SYNCBROWSE_CD && !inSync) {
         //do sync-browse stuff....
@@ -1384,20 +1388,23 @@ void ListPanelFunc::trashJobStarted(KIO::Job *job)
 
 void ListPanelFunc::historyGotoPos(int pos)
 {
+    history->setCurrentItem(panel->view->getCurrentItem());
     if(history->gotoPos(pos))
-        openUrl(history->current(), QString(), false, false);
+        openUrl(history->currentUrl(), history->currentItem(), false, false);
 }
 
 void ListPanelFunc::historyBackward()
 {
+    history->setCurrentItem(panel->view->getCurrentItem());
     if(history->goBack())
-        openUrl(history->current(), QString(), false, false);
+        openUrl(history->currentUrl(), history->currentItem(), false, false);
 }
 
 void ListPanelFunc::historyForward()
 {
+    history->setCurrentItem(panel->view->getCurrentItem());
     if(history->goForward())
-        openUrl(history->current(), QString(), false, false);
+        openUrl(history->currentUrl(), history->currentItem(), false, false);
 }
 
 #include "panelfunc.moc"

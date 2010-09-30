@@ -27,12 +27,26 @@ DirHistoryQueue::DirHistoryQueue(QObject *parent) : QObject(parent), _currentPos
 
 DirHistoryQueue::~DirHistoryQueue() {}
 
-const KUrl& DirHistoryQueue::current()
+const KUrl& DirHistoryQueue::currentUrl()
 {
     if(_urlQueue.count())
         return _urlQueue[_currentPos];
     else
         return KUrl();
+}
+
+QString DirHistoryQueue::currentItem()
+{
+    if(count())
+        return _currentItems[_currentPos];
+    else
+        return QString();
+}
+
+void DirHistoryQueue::setCurrentItem(QString name)
+{
+    if(count())
+        _currentItems[_currentPos] = name;
 }
 
 void DirHistoryQueue::add(KUrl url)
@@ -41,14 +55,17 @@ void DirHistoryQueue::add(KUrl url)
 
     if(_urlQueue.isEmpty()) {
         _urlQueue.push_front(url);
+        _currentItems.push_front(QString());
         return;
     }
 
     if(_urlQueue[_currentPos].equals(url))
         return;
 
-    for (int i = 0; i < _currentPos; i++)
+    for (int i = 0; i < _currentPos; i++) {
         _urlQueue.pop_front();
+        _currentItems.pop_front();
+    }
 
     _currentPos = 0;
 
@@ -56,9 +73,11 @@ void DirHistoryQueue::add(KUrl url)
     if (_urlQueue.count() > 12) { // FIXME: use user-defined size
         // no room - remove the oldest entry
         _urlQueue.pop_back();
+        _currentItems.pop_back();
     }
 
     _urlQueue.push_front(url);
+    _currentItems.push_front(QString());
 }
 
 bool DirHistoryQueue::gotoPos(int pos)

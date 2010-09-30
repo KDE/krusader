@@ -21,6 +21,7 @@
 #define DIRHISTORYQUEUE_H
 
 #include <QtCore/QObject>
+#include <QStringList>
 #include <kurl.h>
 
 class DirHistoryQueue : public QObject
@@ -36,7 +37,7 @@ public:
     int count() {
         return _urlQueue.count();
     }
-    const KUrl& current();
+    const KUrl& currentUrl();
     const KUrl& get(int pos) {
         return _urlQueue[pos];
     }
@@ -50,6 +51,8 @@ public:
     bool canGoForward() {
         return _currentPos > 0;
     }
+    QString currentItem(); // current item of the view
+    void setCurrentItem(QString name);
 
 public slots: // Public slots
     /** No descriptions */
@@ -59,6 +62,7 @@ private:
 //     ListPanel* panel;
     int _currentPos;
     KUrl::List _urlQueue;
+    QStringList _currentItems;
 };
 
 #endif
