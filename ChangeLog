@@ -1,3 +1,4 @@
+    ADDED: actions: Back/Forward in history
     ADDED: action: Set Focus to the Panel - shortcut: ESC
     ADDED: actions: Move Focus Up/Down - shortcut: CTRL+SHIFT+Up/Down
     ADDED: selection dialog option: Apply selection to directories
@@ -11,6 +12,8 @@
     ADDED: action: view > Save settings as default (for new instances of this view type)
     ADDED: option: Panel > View > Locale aware sorting
 
+    CHANGED: Removed default shortcuts for the Left/Right Bookmarks actions,
+             as they conflict with the Back/Forward actions.
     CHANGED: After failed refresh, only focus location bar if the url was entered manually.
     CHANGED: Removed default shortcut for 'Cancel Refresh of View'
              as it conflicts with the 'Set Focus to the Panel' action.
