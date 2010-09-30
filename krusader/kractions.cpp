@@ -83,7 +83,7 @@ KAction *KrActions::actKonfigurator = 0;
 KAction *KrActions::actToolsSetup = 0;
 KAction *KrActions::actSwapPanels = 0;
 KAction *KrActions::actSwapSides = 0;
-KAction *KrActions::actBack = 0;
+// KAction *KrActions::actBack = 0;
 KAction *KrActions::actRoot = 0;
 KAction *KrActions::actFind = 0;
 KAction *KrActions::actLocate = 0;
@@ -382,7 +382,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actDiskUsage, i18n("D&isk Usage..."), "kr_diskusage", Qt::ALT + Qt::SHIFT + Qt::Key_S, SLOTS, SLOT(slotDiskUsage()), "disk usage");
     NEW_KACTION(actQueueManager, i18n("&Queue Manager..."), "document-multiple", Qt::ALT + Qt::SHIFT + Qt::Key_Q, SLOTS, SLOT(slotQueueManager()), "queue manager");
     NEW_KACTION(actKonfigurator, i18n("Configure &Krusader..."), "configure", 0, SLOTS, SLOT(startKonfigurator()), "konfigurator");
-    NEW_KACTION(actBack, i18n("Back"), "go-previous", 0, SLOTS, SLOT(back()), "back");
+//     NEW_KACTION(actBack, i18n("Back"), "go-previous", 0, SLOTS, SLOT(back()), "back");
     NEW_KACTION(actRoot, i18n("Root"), "go-top", Qt::CTRL + Qt::Key_Backspace, SLOTS, SLOT(root()), "root");
     NEW_KACTION(actSavePosition, i18n("Save &Position"), 0, 0, krusaderApp, SLOT(savePosition()), "save position");
     NEW_KACTION(actAllFilter, i18n("&All Files"), 0, Qt::SHIFT + Qt::Key_F10, SLOTS, SLOT(allFilter()), "all files");
@@ -468,7 +468,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     actSelectAll->setToolTip(i18n("Select all files in the current directory"));
     actUnselectAll->setToolTip(i18n("Unselect all selected files"));
     actKonfigurator->setToolTip(i18n("Setup Krusader the way you like it"));
-    actBack->setToolTip(i18n("Back to the place you came from"));
+//     actBack->setToolTip(i18n("Back to the place you came from"));
     actRoot->setToolTip(i18n("ROOT (/)"));
     actFind->setToolTip(i18n("Search for files"));
 

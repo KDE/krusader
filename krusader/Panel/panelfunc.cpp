@@ -355,6 +355,7 @@ void ListPanelFunc::doOpenUrl()
     immediateOpenUrl(delayURL, !delayLock, false);
 }
 
+#if 0
 void ListPanelFunc::goBack()
 {
     if (!canGoBack())
@@ -367,6 +368,7 @@ void ListPanelFunc::goBack()
     if (urlStack.isEmpty())
         krBack->setEnabled(false);
 }
+#endif
 
 void ListPanelFunc::redirectLink()
 {
@@ -1250,10 +1252,12 @@ void ListPanelFunc::properties()
     dlg->show();
 }
 
+#if 0
 bool ListPanelFunc::canGoBack()
 {
     return (urlStack.count() > 1);
 }
+#endif
 
 void ListPanelFunc::refreshActions()
 {
@@ -1285,7 +1289,7 @@ void ListPanelFunc::refreshActions()
       krRoot->setEnabled(true);                              // go all the way up
           krExecFiles->setEnabled(true);                         // show only executables
     */
-    krBack->setEnabled(canGoBack());                  // go back
+//     krBack->setEnabled(canGoBack());                  // go back
     KrActions::actTogglePreviews->setChecked(panel->view->previewsShown());
     panel->view->refreshActions();
 }

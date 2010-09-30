@@ -71,7 +71,7 @@ public:
     void refreshActions();
     void redirectLink();
     void krlink(bool sym);
-    void goBack();
+//     void goBack();
     void dirUp();
     void historyBackward();
     void historyForward();
@@ -108,7 +108,7 @@ protected slots:
     void historyGotoPos(int pos);
 
 protected:
-    bool canGoBack();
+//     bool canGoBack();
     KUrl cleanPath(const KUrl &url);
 
     ListPanel*           panel;     // our ListPanel

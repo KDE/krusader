@@ -378,10 +378,12 @@ void KRslots::dirUp()
 {
     ACTIVE_FUNC->dirUp();
 }
+#if 0
 void KRslots::back()
 {
     ACTIVE_FUNC->goBack();
 }
+#endif
 void KRslots::slotPack()
 {
     ACTIVE_FUNC->pack();

@@ -47,7 +47,7 @@ public:
     static KAction *actUnselectAll, *actInvert, *actSync, *actDiskUsage, *actSavePosition, *actCompDirs;
     static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect, *actProfiles;
     static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actNewTool, *actSwapPanels, *actSwapSides;
-    static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actDirUp, *actRemoteEncoding;
+    static KAction *actKonfigurator, *actToolsSetup, *actRoot, *actFind, *actDirUp, *actRemoteEncoding;
     static KAction *actSelectColorMask, *actMultiRename, *actAllFilter, *actOpenLeftBm, *actOpenRightBm;
     static KAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actCloseInactiveTabs;
     static KAction *actCloseDuplicatedTabs, *actLockTab, *actSplit, *actQueueManager;

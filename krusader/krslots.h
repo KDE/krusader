@@ -120,7 +120,7 @@ public slots:
     void refresh();
     void refresh(const KUrl& u);
     void properties();
-    void back();
+//     void back();
     void slotPack();
     void slotUnpack();
     void cut();
