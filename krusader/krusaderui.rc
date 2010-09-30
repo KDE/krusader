@@ -86,7 +86,8 @@
   </Menu>
   <Menu name="go" >
    <text>&amp;Go</text>
-   <Action name="back" />
+   <Action name="history_backward" />
+   <Action name="history_forward" />
    <Action name="dirUp" />
    <Action name="root" />
    <Action name="go_home" />
@@ -178,7 +179,8 @@
   </Menu>
  </MenuBar>
  <ToolBar iconText="icononly" noMerge="1" name="mainToolBar" fullWidth="true" >
-  <Action name="back" />
+  <Action name="history_backward" />
+  <Action name="history_forward" />
   <Action name="dirUp" />
   <Action name="std_home" />
   <Action name="std_redisplay" />
