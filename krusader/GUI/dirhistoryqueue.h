@@ -44,6 +44,12 @@ public:
     bool gotoPos(int pos);
     bool goBack();
     bool goForward();
+    bool canGoBack() {
+        return _currentPos < count() - 1;
+    }
+    bool canGoForward() {
+        return _currentPos > 0;
+    }
 
 public slots: // Public slots
     /** No descriptions */

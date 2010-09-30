@@ -762,14 +762,16 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
     }
     case Qt::Key_Backspace :                         // Terminal Emulator bugfix
     case Qt::Key_Left :
-        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier) {   // let the panel handle it
+        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier || 
+                e->modifiers() == Qt::AltModifier) {   // let the panel handle it
             e->ignore();
         } else {          // a normal click - do a lynx-like moving thing
             op()->emitDirUp(); // ask krusader to move up a directory
         }
         return true;         // safety
     case Qt::Key_Right :
-        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier) {   // let the panel handle it
+        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier ||
+                e->modifiers() == Qt::AltModifier) {   // let the panel handle it
             e->ignore();
         } else { // just a normal click - do a lynx-like moving thing
             KrViewItem *i = getCurrentKrViewItem();
