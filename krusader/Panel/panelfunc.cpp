@@ -1290,6 +1290,7 @@ void ListPanelFunc::refreshActions()
           krExecFiles->setEnabled(true);                         // show only executables
     */
 //     krBack->setEnabled(canGoBack());                  // go back
+    KrActions::actDirUp->setEnabled(files()->vfs_getOrigin().upUrl() != files()->vfs_getOrigin());
     KrActions::actHistoryBackward->setEnabled(history->canGoBack());
     KrActions::actHistoryForward->setEnabled(history->canGoForward());
     KrActions::actTogglePreviews->setChecked(panel->view->previewsShown());
