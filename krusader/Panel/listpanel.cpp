@@ -764,7 +764,7 @@ void ListPanel::slotFocusOnMe()
     krApp->setUpdatesEnabled(true);
 }
 
-// this is used to start the panel, AFTER setOther() has been used
+// this is used to start the panel
 //////////////////////////////////////////////////////////////////
 void ListPanel::start(KUrl url, bool immediate)
 {

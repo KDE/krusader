@@ -94,8 +94,8 @@ ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
         panel(parent), vfsP(0), urlManuallyEntered(false)
 {
     history = new DirHistoryQueue(this);
-    urlStack.push_back(KUrl("file:/"));
-    connect(&delayTimer, SIGNAL(timeout()), this, SLOT(doOpenUrl()));
+    delayTimer.setSingleShot(true);
+    connect(&delayTimer, SIGNAL(timeout()), this, SLOT(doRefresh()));
 }
 
 //HACK used by panelmanager - remove this once per-tab save/restore is implemented
@@ -121,11 +121,13 @@ void ListPanelFunc::urlEntered(const KUrl &url)
 
 bool ListPanelFunc::isSyncing()
 {
+#if 0
     if(otherFunc()->otherFunc() == this &&
        panel->otherPanel()->gui->syncBrowseButton->state() == SYNCBROWSE_CD &&
        !otherFunc()->syncURL.isEmpty() &&
        otherFunc()->syncURL == delayURL)
         return true;
+#endif
     return false;
 }
 #if 0
@@ -147,7 +149,6 @@ KUrl ListPanelFunc::cleanPath(const KUrl &urlIn)
 {
     KUrl url = urlIn;
     url.cleanPath();
-
     if (!url.isValid() || url.isRelative()) {
         if (url.url() == "~")
             url = KUrl(QDir::homePath());
@@ -157,84 +158,100 @@ KUrl ListPanelFunc::cleanPath(const KUrl &urlIn)
             url.addPath(urlIn.url());
         }
     }
-
     url.cleanPath();
     return url;
 }
 
-void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock, bool addToHistory)
+void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent, bool inSync)
 {
-    delayTimer.stop();
-
-    KUrl url = cleanPath(urlIn);
-//     url.cleanPath();
-    if(!url.isValid()) {
-        panel->slotStartUpdate();  // refresh the panel
-        urlManuallyEntered = false;
-        return ;
-    }
-#if 0
-    // check for special cases first - don't refresh here !
-    // you may call openUrl or vfs_refresh()
-    if (!url.isValid() || url.isRelative()) {
-        if (url.url() == "~") {
-            openUrl(QDir::homePath());
-        } else if (!url.url().startsWith('/')) {
-            // possible relative URL - translate to full URL
-            url = files() ->vfs_getOrigin();
-            url.addPath(urlIn.url());
-            //kDebug()<< urlIn.url() << "," << url.url() <<endl;
-        } else {
-            panel->slotStartUpdate();  // refresh the panel
-            urlManuallyEntered = false;
-            return ;
-        }
-    }
-#endif
-    if (!disableLock && panel->isLocked() && !files() ->vfs_getOrigin().equals(url, KUrl::CompareWithoutTrailingSlash)) {
+    if (panel->isLocked() && 
+            !files()->vfs_getOrigin().equals(cleanPath(url), KUrl::CompareWithoutTrailingSlash)) {
         PanelManager * manager = panel->isLeft() ? MAIN_VIEW->leftMng : MAIN_VIEW->rightMng;
         manager->slotNewTab(url);
         urlManuallyEntered = false;
         return;
     }
 
+    panel->inlineRefreshCancel();
+
+    history->setCurrentItem(panel->view->getCurrentItem());
+    history->add(cleanPath(url));
+    history->setCurrentItem(nameToMakeCurrent);
+    refresh();
+
+#if 0
+    if (panel->syncBrowseButton->state() == SYNCBROWSE_CD && !inSync) {
+        //do sync-browse stuff....
+        if(syncURL.isEmpty())
+            syncURL = panel->otherPanel()->virtualPath();
+
+        syncURL.addPath(KUrl::relativeUrl(panel->virtualPath().url() + '/', url.url()));
+        syncURL.cleanPath();
+        panel->otherPanel()->gui->setLocked(false);
+        otherFunc()->openUrl(syncURL, QString(), true);
+    }
+#endif
+}
+
+void ListPanelFunc::immediateOpenUrl(const KUrl& url, bool disableLock)
+{
+    if (!disableLock && panel->isLocked() && 
+            !files()->vfs_getOrigin().equals(cleanPath(url), KUrl::CompareWithoutTrailingSlash)) {
+        PanelManager * manager = panel->isLeft() ? MAIN_VIEW->leftMng : MAIN_VIEW->rightMng;
+        manager->slotNewTab(url);
+        urlManuallyEntered = false;
+        return;
+    }
+    history->setCurrentItem(panel->view->getCurrentItem());
+    history->add(cleanPath(url));
+    doRefresh();
+}
+
+void ListPanelFunc::refresh()
+{
+    delayTimer.start(0); // to avoid qApp->processEvents() deadlock situaltion
+}
+
+void ListPanelFunc::doRefresh()
+{
+    delayTimer.stop();
+
+    KUrl url = history->currentUrl();
+
+    if(!url.isValid()) {
+        //FIXME go back in history here ?
+        panel->slotStartUpdate();  // refresh the panel
+        urlManuallyEntered = false;
+        return ;
+    }
+
     // if we are not refreshing to current URL
-    bool is_equal_url = files() ->vfs_getOrigin().equals(url, KUrl::CompareWithoutTrailingSlash);
+    bool isEqualUrl = files()->vfs_getOrigin().equals(url, KUrl::CompareWithoutTrailingSlash);
 
-    if (!is_equal_url) {
-        // change the cursor to busy
+    if (!isEqualUrl)
         panel->setCursor(Qt::WaitCursor);
-    }
-
-    if (!nameToMakeCurrent.isEmpty()) {
-        panel->view->setNameToMakeCurrent(nameToMakeCurrent);
-        // if the url we're refreshing into is the current one, then the
-        // partial url will not generate the needed signals to actually allow the
-        // view to use nameToMakeCurrent. do it here instead (patch by Thomas Jarosch)
-        if (is_equal_url) {
-            panel->view->setCurrentItem(nameToMakeCurrent);
-            panel->view->makeItemVisible(panel->view->getCurrentKrViewItem());
-        }
-    }
 
     if(panel->vfsError)
         panel->vfsError->hide();
 
-    if(addToHistory) {
-        history->setCurrentItem(panel->view->getCurrentItem());
-        history->add(url);
-    }
-
     vfs* v = 0;
-    if (urlStack.count() == 0 || !urlStack.last().equals(url))
-        urlStack.push_back(url);
-    // count home many urls is in the stack, so later on, we'll know if the refresh was a success
-    int stackSize = urlStack.count();
-    bool refreshFailed = true; // assume the worst
+    bool refreshFailed = false;
     while (true) {
-        KUrl u = urlStack.count() == 0 ? KUrl(ROOT_DIR) : urlStack.takeLast();
-        //u.adjustPath(KUrl::RemoveTrailingSlash); // remove trailing "/"
-        u.cleanPath(); // Resolves "." and ".." components in path.
+        KUrl u = history->currentUrl();
+
+        isEqualUrl = files()->vfs_getOrigin().equals(u, KUrl::CompareWithoutTrailingSlash);
+
+        if(!history->currentItem().isEmpty()) {
+            panel->view->setNameToMakeCurrent(history->currentItem());
+            // if the url we're refreshing into is the current one, then the
+            // partial url will not generate the needed signals to actually allow the
+            // view to use nameToMakeCurrent. do it here instead (patch by Thomas Jarosch)
+            if (isEqualUrl) {
+                panel->view->setCurrentItem(history->currentItem());
+                panel->view->makeItemVisible(panel->view->getCurrentKrViewItem());
+            }
+        }
+
         v = KrVfsHandler::getVfs(u, panel, files());
         v->setParentWindow(krMainWindow);
         v->setMountMan(&krMtMan);
@@ -253,9 +270,6 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock, bool a
             vfsP = v; // v != 0 so this is safe
         } else {
             if (vfsP->vfs_isBusy()) {
-                delayURL = url;               /* this function is useful for FTP url-s and bookmarks */
-                delayLock = panel->isLocked();
-                delayTimer.setSingleShot(true);
                 delayTimer.start(100);    /* if vfs is busy try refreshing later */
                 return;
             }
@@ -283,29 +297,28 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock, bool a
 
         if(isSyncing())
             vfsP->vfs_setQuiet(true);
+
+        int savedHistoryState = history->state();
+
         if (vfsP->vfs_refresh(u)) {
             break; // we have a valid refreshed URL now
         }
+
+        refreshFailed = true;
+        if(history->state() != savedHistoryState) // don't go back if the history was touched
+            break;
         // prevent repeated error messages
         if (vfsP->vfs_isDeleting())
+            break;
+        if(!history->goBack())
             break;
         vfsP->vfs_setQuiet(true);
     }
     vfsP->vfs_setQuiet(false);
 
-    // if we popped exactly 1 url from the stack, it means the url we were
-    // given was refreshed successfully.
-    if (stackSize == urlStack.count() + 1)
-        refreshFailed = false;
-
-    // update the urls stack
-    if (urlStack.isEmpty() || !files() ->vfs_getOrigin().equals(urlStack.last())) {
-        urlStack.push_back(files() ->vfs_getOrigin());
-    }
-
     // on local file system change the working directory
     if (files() ->vfs_getType() == vfs::VFS_NORMAL)
-        QDir::setCurrent(KrServices::getPath(files() ->vfs_getOrigin()));
+        QDir::setCurrent(KrServices::getPath(files()->vfs_getOrigin()));
 
     // see if the open url operation failed, and if so,
     // put the attempted url in the origin bar and let the user change it
@@ -313,7 +326,7 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock, bool a
         if(isSyncing())
             panel->otherPanel()->gui->syncBrowseButton->setChecked(false);
         else if(urlManuallyEntered) {
-            panel->origin->setUrl(urlIn.prettyUrl());
+            panel->origin->setUrl(url.prettyUrl());
             if(panel == ACTIVE_PANEL)
                 panel->origin->setFocus();
         }
@@ -327,58 +340,6 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock, bool a
     refreshActions();
     panel->view->updatePreviews();
 }
-
-void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent, bool inSync, bool addToHistory)
-{
-    panel->inlineRefreshCancel();
-
-    this->nameToMakeCurrent = nameToMakeCurrent;
-    delayURL = url;               /* this function is useful for FTP url-s and bookmarks */
-    delayLock = panel->isLocked();
-    delayTimer.setSingleShot(true);
-    delayTimer.start(0);    /* to avoid qApp->processEvents() deadlock situaltion */
-
-    if(addToHistory) {
-        history->setCurrentItem(panel->view->getCurrentItem());
-        history->add(cleanPath(url));
-    }
-
-    if (panel->syncBrowseButton->state() == SYNCBROWSE_CD && !inSync) {
-        //do sync-browse stuff....
-        if(syncURL.isEmpty())
-            syncURL = panel->otherPanel()->virtualPath();
-
-        syncURL.addPath(KUrl::relativeUrl(panel->virtualPath().url() + '/', url.url()));
-        syncURL.cleanPath();
-        panel->otherPanel()->gui->setLocked(false);
-        otherFunc()->openUrl(syncURL, QString(), true);
-    }
-}
-
-void ListPanelFunc::refresh()
-{
-    openUrl(panel->virtualPath(), QString(), false, false); // re-read the files
-}
-
-void ListPanelFunc::doOpenUrl()
-{
-    immediateOpenUrl(delayURL, !delayLock, false);
-}
-
-#if 0
-void ListPanelFunc::goBack()
-{
-    if (!canGoBack())
-        return ;
-
-    if (urlStack.last().equals(files() ->vfs_getOrigin()))
-        urlStack.pop_back();
-    openUrl(urlStack.last(), files() ->vfs_getOrigin().fileName());
-
-    if (urlStack.isEmpty())
-        krBack->setEnabled(false);
-}
-#endif
 
 void ListPanelFunc::redirectLink()
 {
@@ -1262,13 +1223,6 @@ void ListPanelFunc::properties()
     dlg->show();
 }
 
-#if 0
-bool ListPanelFunc::canGoBack()
-{
-    return (urlStack.count() > 1);
-}
-#endif
-
 void ListPanelFunc::refreshActions()
 {
     if(ACTIVE_PANEL != panel)
@@ -1299,7 +1253,7 @@ void ListPanelFunc::refreshActions()
       krRoot->setEnabled(true);                              // go all the way up
           krExecFiles->setEnabled(true);                         // show only executables
     */
-//     krBack->setEnabled(canGoBack());                  // go back
+
     KrActions::actDirUp->setEnabled(files()->vfs_getOrigin().upUrl() != files()->vfs_getOrigin());
     KrActions::actHistoryBackward->setEnabled(history->canGoBack());
     KrActions::actHistoryForward->setEnabled(history->canGoForward());
@@ -1326,7 +1280,6 @@ vfs* ListPanelFunc::files()
         vfsP = KrVfsHandler::getVfs(KUrl("/"), panel, 0);
     return vfsP;
 }
-
 
 void ListPanelFunc::copyToClipboard(bool move)
 {
@@ -1396,21 +1349,21 @@ void ListPanelFunc::historyGotoPos(int pos)
 {
     history->setCurrentItem(panel->view->getCurrentItem());
     if(history->gotoPos(pos))
-        openUrl(history->currentUrl(), history->currentItem(), false, false);
+        refresh();
 }
 
 void ListPanelFunc::historyBackward()
 {
     history->setCurrentItem(panel->view->getCurrentItem());
     if(history->goBack())
-        openUrl(history->currentUrl(), history->currentItem(), false, false);
+        refresh();
 }
 
 void ListPanelFunc::historyForward()
 {
     history->setCurrentItem(panel->view->getCurrentItem());
     if(history->goForward())
-        openUrl(history->currentUrl(), history->currentItem(), false, false);
+        refresh();
 }
 
 #include "panelfunc.moc"

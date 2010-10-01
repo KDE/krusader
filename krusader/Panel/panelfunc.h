@@ -53,10 +53,9 @@ public slots:
     void goInside(const QString&);
     void urlEntered(const QString &url);
     void urlEntered(const KUrl &url);
-    void openUrl(const KUrl& path, const QString& nameToMakeCurrent = QString(), bool inSync = false, bool addToHistory = true);
+    void openUrl(const KUrl& path, const QString& nameToMakeCurrent = QString(), bool inSync = false);
 //     void popErronousUrl();
-    void immediateOpenUrl(const KUrl &url, bool disableLock = false, bool addToHistory = true);
-    void doOpenUrl();
+    void immediateOpenUrl(const KUrl &url, bool disableLock = false);
     void refresh();
     void rename(const QString &oldname, const QString &newname);
     void calcSpace(KrViewItem *item);
@@ -74,7 +73,6 @@ public:
     void refreshActions();
     void redirectLink();
     void krlink(bool sym);
-//     void goBack();
     void dirUp();
     void historyBackward();
     void historyForward();
@@ -107,22 +105,18 @@ public:
     bool isSyncing();
 
 protected slots:
+    void doRefresh();
     void slotFileCreated(KJob *job); // a file has been created by editNewFile()
     void historyGotoPos(int pos);
 
 protected:
-//     bool canGoBack();
     KUrl cleanPath(const KUrl &url);
 
     ListPanel*           panel;     // our ListPanel
     DirHistoryQueue*     history;
-    QList<KUrl>          urlStack;  // Path stack for the "go-previous" button
     vfs*                 vfsP;      // pointer to vfs.
     QTimer               delayTimer;
-    KUrl                 delayURL;
     KUrl                 syncURL;
-    bool                 delayLock;
-    QString              nameToMakeCurrent;
     KUrl                 fileToCreate; // file that's to be created by editNewFile()
     bool                 urlManuallyEntered;
 

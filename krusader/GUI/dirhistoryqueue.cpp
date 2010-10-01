@@ -21,7 +21,8 @@
 
 #include <kdebug.h>
 
-DirHistoryQueue::DirHistoryQueue(QObject *parent) : QObject(parent), _currentPos(0)
+DirHistoryQueue::DirHistoryQueue(QObject *parent) : QObject(parent),
+    _currentPos(0), _state(0)
 {
 }
 
@@ -29,9 +30,10 @@ DirHistoryQueue::~DirHistoryQueue() {}
 
 void DirHistoryQueue::clear()
 {
-    _currentPos = 0;
     _urlQueue.clear();
     _currentItems.clear();
+    _currentPos = 0;
+    _state++;
 }
 
 const KUrl& DirHistoryQueue::currentUrl()
@@ -63,6 +65,7 @@ void DirHistoryQueue::add(KUrl url)
     if(_urlQueue.isEmpty()) {
         _urlQueue.push_front(url);
         _currentItems.push_front(QString());
+        _state++;
         return;
     }
 
@@ -85,12 +88,15 @@ void DirHistoryQueue::add(KUrl url)
 
     _urlQueue.push_front(url);
     _currentItems.push_front(QString());
+
+    _state++;
 }
 
 bool DirHistoryQueue::gotoPos(int pos)
 {
     if(pos >= 0 && pos < _urlQueue.count()) {
          _currentPos = pos;
+         _state++;
          return true;
     }
     return false;

@@ -32,6 +32,9 @@ public:
     ~DirHistoryQueue();
 
     void clear();
+    int state() {
+        return _state;
+    }
     int currentPos() {
         return _currentPos;
     }
@@ -61,6 +64,7 @@ public slots: // Public slots
 private:
 // void addUrl(const KUrl& url);
 //     ListPanel* panel;
+    int _state; // increments when we move inside the history, or a new item is added
     int _currentPos;
     KUrl::List _urlQueue;
     QStringList _currentItems;
