@@ -1237,13 +1237,7 @@ void KRslots::viewApplySettingsToOthers()
 
 void KRslots::focusPanel()
 {
-    if(ACTIVE_VIEW->widget()->hasFocus()) {
-        if(KrActions::actFocusPanel->shortcut() == KShortcut(QKeySequence(Qt::Key_Escape)) &&
-           KrActions::actCancelRefresh->shortcut().isEmpty())
-            KrActions::actCancelRefresh->trigger();
-    }
-    else
-        ACTIVE_VIEW->widget()->setFocus();
+    ACTIVE_VIEW->widget()->setFocus();
 }
 
 void KRslots::historyBackward()

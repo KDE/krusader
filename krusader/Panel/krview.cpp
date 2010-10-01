@@ -894,7 +894,9 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
         return true;
     }
     case Qt::Key_Escape:
+        e->ignore();
         return true; // otherwise the selection gets lost??!??
+                     // also it is needed by the panel
     case Qt::Key_A :                 // mark all
         if (e->modifiers() == Qt::ControlModifier) {
             //FIXME: shouldn't there also be a shortcut for unselecting everything ?

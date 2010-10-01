@@ -471,14 +471,25 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
     if(view && watched == view->widget()) {
         if(e->type() == QEvent::FocusIn && this != ACTIVE_PANEL)
             slotFocusOnMe();
+        else if(e->type() == QEvent::ShortcutOverride) {
+            QKeyEvent *ke = static_cast<QKeyEvent*>(e);
+            if(ke->key() == Qt::Key_Escape && ke->modifiers() == Qt::NoModifier) {
+                // if the cancel refresh action has no shortcut assigned,
+                // we need this event ourselves to cancel refresh
+                if(KrActions::actCancelRefresh->shortcut().isEmpty()) {
+                    e->accept();
+                    return true;
+                }
+            }
+        }
     }
-    if (e->type() == QEvent::KeyPress && origin->lineEdit() == watched) {
+    else if(origin->lineEdit() == watched && e->type() == QEvent::KeyPress) {
         QKeyEvent *ke = (QKeyEvent *)e;
         if ((ke->key() ==  Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) {
             slotFocusOnMe();
             return true;
         }
-        if ((ke->key() ==  Qt::Key_Escape) && (ke->modifiers() == 0)) {
+        else if ((ke->key() ==  Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier)) {
             slotFocusOnMe();
             return true;
         }
@@ -1144,6 +1155,10 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
             return ;
         } else
             e->ignore();
+        break;
+
+    case Qt::Key_Escape:
+        inlineRefreshCancel();
         break;
 
     default:
