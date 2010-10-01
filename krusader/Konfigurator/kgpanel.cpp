@@ -294,15 +294,19 @@ void KgPanel::setupPanelTab()
 
     // ------------------------ Sort Options ----------------------------------
     KONFIGURATOR_CHECKBOX_PARAM sortSettings[] =
-        //   cfg_class  cfg_name                default text                                  restart tooltip
+        // cfg_class, cfg_name, default, text, restart, tooltip
     {
-        {"Look&Feel", "Case Sensative Sort",            _CaseSensativeSort,      i18n("Case sensitive sorting"), true ,  i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).") },
-        {"Look&Feel", "Always sort dirs by name",       false,                   i18n("Always sort dirs by name"), true,  i18n("Directories are sorted by name, regardless of the sort column.") },
-        {"Look&Feel", "Locale Aware Sort", true, i18n("Locale aware sorting"), true, i18n("The sorting is performed in a locale- and also platform-dependent manner. Can be slow.")},
+        {"Look&Feel", "Case Sensative Sort", _CaseSensativeSort, i18n("Case sensitive sorting"), true,
+            i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).") },
+        {"Look&Feel", "Show Directories First", true, i18n("Show directories first"), true, 0 },
+        {"Look&Feel", "Always sort dirs by name", false, i18n("Always sort dirs by name"), true,
+            i18n("Directories are sorted by name, regardless of the sort column.") },
+        {"Look&Feel", "Locale Aware Sort", true, i18n("Locale aware sorting"), true,
+            i18n("The sorting is performed in a locale- and also platform-dependent manner. Can be slow.") },
     };
 
     KonfiguratorCheckBoxGroup *sortSett = createCheckBoxGroup(2, 0, sortSettings,
-                                          3 /*count*/, panelGrp, PAGE_VIEW);
+                                          4 /*count*/, panelGrp, PAGE_VIEW);
 
     panelGrid->addWidget(sortSett, 6, 0, 1, 2);
 

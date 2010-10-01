@@ -268,19 +268,23 @@ void KrView::initProperties()
     KConfigGroup grpInstance(_config, _instance.name());
 
     _properties->displayIcons = grpInstance.readEntry("With Icons", _WithIcons);
-    bool dirsByNameAlways = grpSvr.readEntry("Always sort dirs by name", false);
-    _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(KrViewProperties::DirsFirst |
-                            (dirsByNameAlways ? KrViewProperties::AlwaysSortDirsByName : 0));
     _properties->numericPermissions = grpSvr.readEntry("Numeric permissions", _NumericPermissions);
+
+    int sortOptions = _properties->sortOptions;
+    if (grpSvr.readEntry("Show Directories First", true))
+        sortOptions |= KrViewProperties::DirsFirst;
+    if(grpSvr.readEntry("Always sort dirs by name", false))
+        sortOptions |=  KrViewProperties::AlwaysSortDirsByName;
     if (!grpSvr.readEntry("Case Sensative Sort", _CaseSensativeSort))
-        _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(_properties->sortOptions |
-                                KrViewProperties::IgnoreCase);
+        sortOptions |= KrViewProperties::IgnoreCase;
+    if (grpSvr.readEntry("Locale Aware Sort", true))
+        sortOptions |= KrViewProperties::LocaleAwareSort;
+    _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(sortOptions);
+
     _properties->sortMethod = static_cast<KrViewProperties::SortMethod>(
                                   grpSvr.readEntry("Sort method", (int) _DefaultSortMethod));
     _properties->humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
-    if (grpSvr.readEntry("Locale Aware Sort", true))
-        _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(_properties->sortOptions |
-                                KrViewProperties::LocaleAwareSort);
+
     _properties->localeAwareCompareIsCaseSensitive = QString("a").localeAwareCompare("B") > 0;     // see KDE bug #40131
     QStringList defaultAtomicExtensions;
     defaultAtomicExtensions += ".tar.gz";

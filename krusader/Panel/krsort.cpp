@@ -258,10 +258,12 @@ bool itemLessThan(SortProps *sp, SortProps *sp2)
     bool isdir1 = file1->vfile_isDir();
     bool isdir2 = file2->vfile_isDir();
 
-    if (isdir1 && !isdir2)
-        return sp->isAscending();
-    if (isdir2 && !isdir1)
-        return !sp->isAscending();
+    if(sp->properties()->sortOptions  & KrViewProperties::DirsFirst) {
+        if (isdir1 && !isdir2)
+            return sp->isAscending();
+        if (isdir2 && !isdir1)
+            return !sp->isAscending();
+    }
 
     if (sp->isDummy())
         return sp->isAscending();
