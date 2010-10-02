@@ -92,7 +92,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../Dialogs/percentalsplitter.h"
 #include "krpreviewpopup.h"
 #include "../GUI/dirhistorybutton.h"
-#include "../GUI/dirhistoryqueue.h"
 #include "../GUI/mediabutton.h"
 #include "../GUI/syncbrowsebutton.h"
 #include "../krservices.h"

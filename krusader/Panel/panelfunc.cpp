@@ -60,6 +60,7 @@ A
 #include <ktoggleaction.h>
 #include <kurlcompletion.h>
 
+#include "dirhistoryqueue.h"
 #include "krcalcspacedialog.h"
 #include "listpanel.h"
 #include "krerrordisplay.h"
@@ -87,7 +88,6 @@ A
 #include "../panelmanager.h"
 #include "../krservices.h"
 #include "../GUI/syncbrowsebutton.h"
-#include "../GUI/dirhistoryqueue.h"
 #include "../Queue/queue_mgr.h"
 
 ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
