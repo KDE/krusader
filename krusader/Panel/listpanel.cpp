@@ -1391,18 +1391,18 @@ void ListPanel::saveSettings(KConfigGroup &cfg)
 void ListPanel::updatePopupPanel(KrViewItem *item)
 {
     // which panel to display on?
-    ListPanel *lp = 0;
+    PanelPopup *p = 0;
     if(popup && !popup->isHidden())
-        lp = this;
+        p = popup;
     else if(otherPanel()->gui->popup && !otherPanel()->gui->popup->isHidden())
-        lp = otherPanel()->gui;
+        p = otherPanel()->gui->popup;
     else
         return;
 
     if(item)
-        lp->popup->update(func->files()->vfs_search(item->name()));
+        p->update(func->files()->vfs_search(item->name()));
     else
-        lp->popup->update(0);
+        p->update(0);
 }
 
 void ListPanel::otherPanelChanged()
