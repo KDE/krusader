@@ -221,6 +221,8 @@ void ListPanelFunc::doRefresh()
         return ;
     }
 
+    panel->inlineRefreshCancel();
+
     // if we are not refreshing to current URL
     bool isEqualUrl = files()->vfs_getOrigin().equals(url, KUrl::CompareWithoutTrailingSlash);
 
@@ -1334,7 +1336,6 @@ ListPanelFunc* ListPanelFunc::otherFunc()
 {
     return panel->otherPanel()->func;
 }
-
 
 void ListPanelFunc::trashJobStarted(KIO::Job *job)
 {
