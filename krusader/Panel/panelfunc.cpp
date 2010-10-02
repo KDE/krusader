@@ -161,9 +161,9 @@ KUrl ListPanelFunc::cleanPath(const KUrl &urlIn)
     return url;
 }
 
-void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent, bool inSync)
+void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent)
 {
-    if (panel->syncBrowseButton->state() == SYNCBROWSE_CD && !inSync) {
+    if (panel->syncBrowseButton->state() == SYNCBROWSE_CD) {
         //do sync-browse stuff....
         if(syncURL.isEmpty())
             syncURL = panel->otherPanel()->virtualPath();
@@ -171,26 +171,18 @@ void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent, b
         syncURL.addPath(KUrl::relativeUrl(panel->virtualPath().url() + '/', url.url()));
         syncURL.cleanPath();
         panel->otherPanel()->gui->setLocked(false);
-        otherFunc()->openUrl(syncURL, nameToMakeCurrent, true);
+        otherFunc()->openUrlInternal(syncURL, nameToMakeCurrent, false, false);
     }
-
-    if (panel->isLocked() && 
-            !files()->vfs_getOrigin().equals(cleanPath(url), KUrl::CompareWithoutTrailingSlash)) {
-        PanelManager * manager = panel->isLeft() ? MAIN_VIEW->leftMng : MAIN_VIEW->rightMng;
-        manager->slotNewTab(url);
-        urlManuallyEntered = false;
-        return;
-    }
-
-    panel->inlineRefreshCancel();
-
-    history->setCurrentItem(panel->view->getCurrentItem());
-    history->add(cleanPath(url));
-    history->setCurrentItem(nameToMakeCurrent);
-    refresh();
+    openUrlInternal(url, nameToMakeCurrent, false, false);
 }
 
 void ListPanelFunc::immediateOpenUrl(const KUrl& url, bool disableLock)
+{
+    openUrlInternal(url, QString(), true, disableLock);
+}
+
+void ListPanelFunc::openUrlInternal(const KUrl& url, const QString& nameToMakeCurrent,
+                                    bool immediately, bool disableLock)
 {
     if (!disableLock && panel->isLocked() && 
             !files()->vfs_getOrigin().equals(cleanPath(url), KUrl::CompareWithoutTrailingSlash)) {
@@ -199,13 +191,20 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& url, bool disableLock)
         urlManuallyEntered = false;
         return;
     }
-    history->setCurrentItem(panel->view->getCurrentItem());
+
+    saveCurrentItem();)
     history->add(cleanPath(url));
-    doRefresh();
+    history->setCurrentItem(nameToMakeCurrent);
+
+    if(immediately)
+        doRefresh();
+    else
+        refresh();
 }
 
 void ListPanelFunc::refresh()
 {
+    panel->inlineRefreshCancel();
     delayTimer.start(0); // to avoid qApp->processEvents() deadlock situaltion
 }
 
@@ -1344,23 +1343,31 @@ void ListPanelFunc::trashJobStarted(KIO::Job *job)
 
 void ListPanelFunc::historyGotoPos(int pos)
 {
-    history->setCurrentItem(panel->view->getCurrentItem());
+    saveCurrentItem();)
     if(history->gotoPos(pos))
         refresh();
 }
 
 void ListPanelFunc::historyBackward()
 {
-    history->setCurrentItem(panel->view->getCurrentItem());
+    saveCurrentItem();)
     if(history->goBack())
         refresh();
 }
 
 void ListPanelFunc::historyForward()
 {
-    history->setCurrentItem(panel->view->getCurrentItem());
+    saveCurrentItem();)
     if(history->goForward())
         refresh();
+}
+
+void ListPanelFunc::saveCurrentItem()
+{
+    // if the vfs-url hasn't been refreshed yet,
+    // avoid saving current item for the wrong url
+    if(panel->virtualPath() == history->currentUrl())
+        history->setCurrentItem(panel->view->getCurrentItem());
 }
 
 #include "panelfunc.moc"
