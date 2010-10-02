@@ -192,7 +192,7 @@ void ListPanelFunc::openUrlInternal(const KUrl& url, const QString& nameToMakeCu
         return;
     }
 
-    saveCurrentItem();)
+    saveCurrentItem();
     history->add(cleanPath(url));
     history->setCurrentItem(nameToMakeCurrent);
 
@@ -1344,21 +1344,21 @@ void ListPanelFunc::trashJobStarted(KIO::Job *job)
 
 void ListPanelFunc::historyGotoPos(int pos)
 {
-    saveCurrentItem();)
+    saveCurrentItem();
     if(history->gotoPos(pos))
         refresh();
 }
 
 void ListPanelFunc::historyBackward()
 {
-    saveCurrentItem();)
+    saveCurrentItem();
     if(history->goBack())
         refresh();
 }
 
 void ListPanelFunc::historyForward()
 {
-    saveCurrentItem();)
+    saveCurrentItem();
     if(history->goForward())
         refresh();
 }
