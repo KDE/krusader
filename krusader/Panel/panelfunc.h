@@ -53,7 +53,8 @@ public slots:
     void goInside(const QString&);
     void urlEntered(const QString &url);
     void urlEntered(const KUrl &url);
-    void openUrl(const KUrl& path, const QString& nameToMakeCurrent = QString());
+    void openUrl(const KUrl& path, const QString& nameToMakeCurrent = QString(),
+                 bool manuallyEntered = false);
 //     void popErronousUrl();
     void immediateOpenUrl(const KUrl &url, bool disableLock = false);
     void refresh();
@@ -112,7 +113,7 @@ protected:
     KUrl cleanPath(const KUrl &url);
     bool isSyncing(const KUrl &url);
     void openUrlInternal(const KUrl& url, const QString& makeCurrent,
-                         bool immediately, bool disableLock);
+                         bool immediately, bool disableLock, bool manuallyEntered);
 
     ListPanel*           panel;     // our ListPanel
     DirHistoryQueue*     history;

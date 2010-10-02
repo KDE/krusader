@@ -128,8 +128,7 @@ void ListPanelFunc::urlEntered(const QString &url)
 
 void ListPanelFunc::urlEntered(const KUrl &url)
 {
-    urlManuallyEntered = true;
-    openUrl(url);
+    openUrl(url, QString(), true);
 }
 
 bool ListPanelFunc::isSyncing(const KUrl &url)
@@ -174,7 +173,8 @@ KUrl ListPanelFunc::cleanPath(const KUrl &urlIn)
     return url;
 }
 
-void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent)
+void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent,
+                            bool manuallyEntered)
 {
     if (panel->syncBrowseButton->state() == SYNCBROWSE_CD) {
         //do sync-browse stuff....
@@ -184,28 +184,32 @@ void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent)
         syncURL.addPath(KUrl::relativeUrl(panel->virtualPath().url() + '/', url.url()));
         syncURL.cleanPath();
         panel->otherPanel()->gui->setLocked(false);
-        otherFunc()->openUrlInternal(syncURL, nameToMakeCurrent, false, false);
+        otherFunc()->openUrlInternal(syncURL, nameToMakeCurrent, false, false, false);
     }
-    openUrlInternal(url, nameToMakeCurrent, false, false);
+    openUrlInternal(url, nameToMakeCurrent, false, false, manuallyEntered);
 }
 
 void ListPanelFunc::immediateOpenUrl(const KUrl& url, bool disableLock)
 {
-    openUrlInternal(url, QString(), true, disableLock);
+    openUrlInternal(url, QString(), true, disableLock, false);
 }
 
 void ListPanelFunc::openUrlInternal(const KUrl& url, const QString& nameToMakeCurrent,
-                                    bool immediately, bool disableLock)
+                                    bool immediately, bool disableLock, bool manuallyEntered)
 {
+    KUrl cleanUrl = cleanPath(url);
+
     if (!disableLock && panel->isLocked() && 
-            !files()->vfs_getOrigin().equals(cleanPath(url), KUrl::CompareWithoutTrailingSlash)) {
+            !files()->vfs_getOrigin().equals(cleanUrl, KUrl::CompareWithoutTrailingSlash)) {
         PanelManager * manager = panel->isLeft() ? MAIN_VIEW->leftMng : MAIN_VIEW->rightMng;
         manager->slotNewTab(url);
         urlManuallyEntered = false;
         return;
     }
 
-    history->add(cleanPath(url), nameToMakeCurrent);
+    urlManuallyEntered = manuallyEntered;
+
+    history->add(cleanUrl, nameToMakeCurrent);
 
     if(immediately)
         doRefresh();
