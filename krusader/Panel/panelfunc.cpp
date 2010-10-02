@@ -93,9 +93,22 @@ A
 ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
         panel(parent), vfsP(0), urlManuallyEntered(false)
 {
-    history = new DirHistoryQueue(this);
+    history = new DirHistoryQueue(panel);
     delayTimer.setSingleShot(true);
     connect(&delayTimer, SIGNAL(timeout()), this, SLOT(doRefresh()));
+}
+
+ListPanelFunc::~ListPanelFunc()
+{
+    if (!vfsP) {
+        if (vfsP->vfs_canDelete())
+            delete vfsP;
+        else {
+            connect(vfsP, SIGNAL(deleteAllowed()), vfsP, SLOT(deleteLater()));
+            vfsP->vfs_requestDelete();
+        }
+    }
+    delete history;
 }
 
 //HACK used by panelmanager - remove this once per-tab save/restore is implemented
@@ -192,9 +205,7 @@ void ListPanelFunc::openUrlInternal(const KUrl& url, const QString& nameToMakeCu
         return;
     }
 
-    saveCurrentItem();
-    history->add(cleanPath(url));
-    history->setCurrentItem(nameToMakeCurrent);
+    history->add(cleanPath(url), nameToMakeCurrent);
 
     if(immediately)
         doRefresh();
@@ -1259,19 +1270,6 @@ void ListPanelFunc::refreshActions()
     panel->view->refreshActions();
 }
 
-ListPanelFunc::~ListPanelFunc()
-{
-    if (!vfsP) {
-        if (vfsP->vfs_canDelete())
-            delete vfsP;
-        else {
-            connect(vfsP, SIGNAL(deleteAllowed()), vfsP, SLOT(deleteLater()));
-            vfsP->vfs_requestDelete();
-        }
-    }
-    vfsP = 0;
-}
-
 vfs* ListPanelFunc::files()
 {
     if (!vfsP)
@@ -1344,31 +1342,20 @@ void ListPanelFunc::trashJobStarted(KIO::Job *job)
 
 void ListPanelFunc::historyGotoPos(int pos)
 {
-    saveCurrentItem();
     if(history->gotoPos(pos))
         refresh();
 }
 
 void ListPanelFunc::historyBackward()
 {
-    saveCurrentItem();
     if(history->goBack())
         refresh();
 }
 
 void ListPanelFunc::historyForward()
 {
-    saveCurrentItem();
     if(history->goForward())
         refresh();
-}
-
-void ListPanelFunc::saveCurrentItem()
-{
-    // if the vfs-url hasn't been refreshed yet,
-    // avoid saving current item for the wrong url
-    if(panel->virtualPath() == history->currentUrl())
-        history->setCurrentItem(panel->view->getCurrentItem());
 }
 
 #include "panelfunc.moc"

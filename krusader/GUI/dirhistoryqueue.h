@@ -20,15 +20,15 @@
 #ifndef DIRHISTORYQUEUE_H
 #define DIRHISTORYQUEUE_H
 
-#include <QtCore/QObject>
 #include <QStringList>
 #include <kurl.h>
 
-class DirHistoryQueue : public QObject
+class KrPanel;
+
+class DirHistoryQueue
 {
-    Q_OBJECT
 public:
-    DirHistoryQueue(QObject *parent);
+    DirHistoryQueue(KrPanel *panel);
     ~DirHistoryQueue();
 
     void clear();
@@ -41,11 +41,11 @@ public:
     int count() {
         return _urlQueue.count();
     }
-    const KUrl& currentUrl();
+    KUrl currentUrl();
     const KUrl& get(int pos) {
         return _urlQueue[pos];
     }
-    void add(KUrl url);
+    void add(KUrl url, QString currentItem);
     bool gotoPos(int pos);
     bool goBack();
     bool goForward();
@@ -56,14 +56,11 @@ public:
         return _currentPos > 0;
     }
     QString currentItem(); // current item of the view
-    void setCurrentItem(QString name);
 
-public slots: // Public slots
-    /** No descriptions */
-//     void slotPathChanged(ListPanel* p);
 private:
-// void addUrl(const KUrl& url);
-//     ListPanel* panel;
+    void saveCurrentItem();
+
+    KrPanel* _panel;
     int _state; // increments when we move inside the history, or a new item is added
     int _currentPos;
     KUrl::List _urlQueue;

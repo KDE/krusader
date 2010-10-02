@@ -19,10 +19,13 @@
 
 #include "dirhistoryqueue.h"
 
+#include "../Panel/krpanel.h"
+#include "../Panel/krview.h"
+
 #include <kdebug.h>
 
-DirHistoryQueue::DirHistoryQueue(QObject *parent) : QObject(parent),
-    _currentPos(0), _state(0)
+DirHistoryQueue::DirHistoryQueue(KrPanel *panel) :
+    _panel(panel), _currentPos(0), _state(0)
 {
 }
 
@@ -36,7 +39,7 @@ void DirHistoryQueue::clear()
     _state++;
 }
 
-const KUrl& DirHistoryQueue::currentUrl()
+KUrl DirHistoryQueue::currentUrl()
 {
     if(_urlQueue.count())
         return _urlQueue[_currentPos];
@@ -52,19 +55,21 @@ QString DirHistoryQueue::currentItem()
         return QString();
 }
 
-void DirHistoryQueue::setCurrentItem(QString name)
+void DirHistoryQueue::saveCurrentItem()
 {
-    if(count())
-        _currentItems[_currentPos] = name;
+    // if the vfs-url hasn't been refreshed yet,
+    // avoid saving current item for the wrong url
+    if(_panel->virtualPath() == _urlQueue[_currentPos])
+        _currentItems[_currentPos] = _panel->view->getCurrentItem();
 }
 
-void DirHistoryQueue::add(KUrl url)
+void DirHistoryQueue::add(KUrl url, QString currentItem)
 {
     url.cleanPath();
 
     if(_urlQueue.isEmpty()) {
         _urlQueue.push_front(url);
-        _currentItems.push_front(QString());
+        _currentItems.push_front(currentItem);
         _state++;
         return;
     }
@@ -86,8 +91,9 @@ void DirHistoryQueue::add(KUrl url)
         _currentItems.pop_back();
     }
 
+    saveCurrentItem();
     _urlQueue.push_front(url);
-    _currentItems.push_front(QString());
+    _currentItems.push_front(currentItem);
 
     _state++;
 }
@@ -95,9 +101,10 @@ void DirHistoryQueue::add(KUrl url)
 bool DirHistoryQueue::gotoPos(int pos)
 {
     if(pos >= 0 && pos < _urlQueue.count()) {
-         _currentPos = pos;
-         _state++;
-         return true;
+        saveCurrentItem();
+        _currentPos = pos;
+        _state++;
+        return true;
     }
     return false;
 }

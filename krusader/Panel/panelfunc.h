@@ -109,7 +109,6 @@ protected slots:
     void historyGotoPos(int pos);
 
 protected:
-    void saveCurrentItem();
     KUrl cleanPath(const KUrl &url);
     bool isSyncing(const KUrl &url);
     void openUrlInternal(const KUrl& url, const QString& makeCurrent,
