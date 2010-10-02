@@ -1,6 +1,5 @@
 set(GUI_SRCS
-    dirhistoryqueue.cpp 
-    dirhistorybutton.cpp 
+    dirhistorybutton.cpp
     krusaderstatus.cpp 
     kfnkeys.cpp 
     kcmdline.cpp 

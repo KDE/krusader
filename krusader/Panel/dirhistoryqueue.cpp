@@ -20,8 +20,8 @@
 
 #include "dirhistoryqueue.h"
 
-#include "../Panel/krpanel.h"
-#include "../Panel/krview.h"
+#include "krpanel.h"
+#include "krview.h"
 
 #include <kdebug.h>
 

@@ -18,7 +18,7 @@
  *****************************************************************************/
 
 #include "dirhistorybutton.h"
-#include "dirhistoryqueue.h"
+#include "../Panel/dirhistoryqueue.h"
 
 #include "../VFS/vfs.h"
 #include <QtGui/QMenu>

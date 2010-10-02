@@ -1,4 +1,5 @@
 set(Panel_SRCS
+    dirhistoryqueue.cpp
     krsort.cpp
     krlayoutfactory.cpp
     krerrordisplay.cpp
