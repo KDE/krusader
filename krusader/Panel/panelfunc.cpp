@@ -119,15 +119,14 @@ void ListPanelFunc::urlEntered(const KUrl &url)
     openUrl(url);
 }
 
-bool ListPanelFunc::isSyncing()
+bool ListPanelFunc::isSyncing(const KUrl &url)
 {
-#if 0
     if(otherFunc()->otherFunc() == this &&
        panel->otherPanel()->gui->syncBrowseButton->state() == SYNCBROWSE_CD &&
        !otherFunc()->syncURL.isEmpty() &&
-       otherFunc()->syncURL == delayURL)
+       otherFunc()->syncURL == url)
         return true;
-#endif
+
     return false;
 }
 #if 0
@@ -164,6 +163,17 @@ KUrl ListPanelFunc::cleanPath(const KUrl &urlIn)
 
 void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent, bool inSync)
 {
+    if (panel->syncBrowseButton->state() == SYNCBROWSE_CD && !inSync) {
+        //do sync-browse stuff....
+        if(syncURL.isEmpty())
+            syncURL = panel->otherPanel()->virtualPath();
+
+        syncURL.addPath(KUrl::relativeUrl(panel->virtualPath().url() + '/', url.url()));
+        syncURL.cleanPath();
+        panel->otherPanel()->gui->setLocked(false);
+        otherFunc()->openUrl(syncURL, nameToMakeCurrent, true);
+    }
+
     if (panel->isLocked() && 
             !files()->vfs_getOrigin().equals(cleanPath(url), KUrl::CompareWithoutTrailingSlash)) {
         PanelManager * manager = panel->isLeft() ? MAIN_VIEW->leftMng : MAIN_VIEW->rightMng;
@@ -178,19 +188,6 @@ void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent, b
     history->add(cleanPath(url));
     history->setCurrentItem(nameToMakeCurrent);
     refresh();
-
-#if 0
-    if (panel->syncBrowseButton->state() == SYNCBROWSE_CD && !inSync) {
-        //do sync-browse stuff....
-        if(syncURL.isEmpty())
-            syncURL = panel->otherPanel()->virtualPath();
-
-        syncURL.addPath(KUrl::relativeUrl(panel->virtualPath().url() + '/', url.url()));
-        syncURL.cleanPath();
-        panel->otherPanel()->gui->setLocked(false);
-        otherFunc()->openUrl(syncURL, QString(), true);
-    }
-#endif
 }
 
 void ListPanelFunc::immediateOpenUrl(const KUrl& url, bool disableLock)
@@ -295,7 +292,7 @@ void ListPanelFunc::doRefresh()
         connect(files(), SIGNAL(trashJobStarted(KIO::Job*)),
                 this, SLOT(trashJobStarted(KIO::Job*)));
 
-        if(isSyncing())
+        if(isSyncing(url))
             vfsP->vfs_setQuiet(true);
 
         int savedHistoryState = history->state();
@@ -323,7 +320,7 @@ void ListPanelFunc::doRefresh()
     // see if the open url operation failed, and if so,
     // put the attempted url in the origin bar and let the user change it
     if (refreshFailed) {
-        if(isSyncing())
+        if(isSyncing(url))
             panel->otherPanel()->gui->syncBrowseButton->setChecked(false);
         else if(urlManuallyEntered) {
             panel->origin->setUrl(url.prettyUrl());

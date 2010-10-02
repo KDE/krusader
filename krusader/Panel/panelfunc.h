@@ -102,7 +102,6 @@ public:
     void FTPDisconnect();
     void newFTPconnection();
     ListPanelFunc* otherFunc();
-    bool isSyncing();
 
 protected slots:
     void doRefresh();
@@ -111,6 +110,7 @@ protected slots:
 
 protected:
     KUrl cleanPath(const KUrl &url);
+    bool isSyncing(const KUrl &url);
 
     ListPanel*           panel;     // our ListPanel
     DirHistoryQueue*     history;
