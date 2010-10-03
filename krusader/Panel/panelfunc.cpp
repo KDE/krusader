@@ -199,7 +199,7 @@ void ListPanelFunc::openUrlInternal(const KUrl& url, const QString& nameToMakeCu
 {
     KUrl cleanUrl = cleanPath(url);
 
-    if (!disableLock && panel->isLocked() && 
+    if (!disableLock && panel->isLocked() &&
             !files()->vfs_getOrigin().equals(cleanUrl, KUrl::CompareWithoutTrailingSlash)) {
         PanelManager * manager = panel->isLeft() ? MAIN_VIEW->leftMng : MAIN_VIEW->rightMng;
         manager->slotNewTab(url);
@@ -247,7 +247,6 @@ void ListPanelFunc::doRefresh()
     if(panel->vfsError)
         panel->vfsError->hide();
 
-    vfs* v = 0;
     bool refreshFailed = false;
     while (true) {
         KUrl u = history->currentUrl();
@@ -265,7 +264,7 @@ void ListPanelFunc::doRefresh()
             }
         }
 
-        v = KrVfsHandler::getVfs(u, panel, files());
+        vfs* v = KrVfsHandler::getVfs(u, panel, files());
         v->setParentWindow(krMainWindow);
         v->setMountMan(&krMtMan);
         if (v != vfsP) {
