@@ -56,67 +56,63 @@ class KrView;
 class KrCalcSpaceDialog : public KDialog
 {
     Q_OBJECT
-    /* Thread which does the actual calculation. Deletes itself, if no longer
-       needed. Creator must call finished(), if the thread is no longer needed.
-    */
+
+    friend class CalcThread;
+    class QTimer * m_pollTimer;
+
     class CalcThread : public QThread
     {
-        KIO::filesize_t m_totalSize, m_currentSize;
+        KIO::filesize_t m_totalSize;
+        KIO::filesize_t  m_currentSize;
         unsigned long m_totalFiles;
         unsigned long m_totalDirs;
-        const QStringList m_items;
-        vfs * m_files;
-        KrView *m_view;
+        const QStringList &m_items;
+        QHash <QString, KIO::filesize_t> m_sizes;
+        KUrl m_url;
         KrCalcSpaceDialog * m_parent;
-        QMutex m_synchronizeUsageAccess;
-        bool m_threadInUse; // true: caller needs the thread
+        mutable QMutex m_mutex;
         bool m_stop;
-        void cleanUp(); // Deletes this, if possible
+
     public:
-        KIO::filesize_t getTotalSize() const {
-            return m_totalSize + m_currentSize;
-        } // the result
-        unsigned long getTotalFiles() const {
-            return m_totalFiles;
-        } // the result
-        unsigned long getTotalDirs() const {
-            return m_totalDirs;
-        } // the result
-        const QStringList & getItems() const {
-            return m_items;
-        } // list of directories to calculate
-        CalcThread(KrCalcSpaceDialog * parent, KrPanel * panel, const QStringList & items);
-        void deleteInstance(); // thread is no longer needed.
+        CalcThread(KrCalcSpaceDialog * parent, KUrl url, const QStringList & items);
+
+        KIO::filesize_t getItemSize(QString item) const;
+        void updateItems(KrView *view) const;
+        void getStats(KIO::filesize_t  &totalSize,
+                      unsigned long &totalFiles,
+                      unsigned long &totalDirs) const;
         void run(); // start calculation
         void stop(); // stop it. Thread continues until vfs_calcSpace returns
     } * m_thread;
-    friend class CalcThread;
-    class QTimer * m_pollTimer;
+
     QLabel * m_label;
     bool m_autoClose; // true: wait 3 sec. before showing the dialog. Close it, when done
     bool m_canceled; // true: cancel was pressed
     int m_timerCounter; // internal counter. The timer runs faster as the rehresh (see comment there)
+    const QStringList m_items;
+    KrView *m_view;
+
     void calculationFinished(); // called if the calculation is done
     void showResult(); // show the current result in teh dialog
+
 protected slots:
     void timer(); // poll timer was fired
     void slotCancel(); // cancel was pressed
+
 public:
     // autoclose: wait 3 sec. before showing the dialog. Close it, when done
     KrCalcSpaceDialog(QWidget *parent, KrPanel * panel, const QStringList & items, bool autoclose);
     ~KrCalcSpaceDialog();
-    KIO::filesize_t getTotalSize() const {
-        return m_thread->getTotalSize();
-    } // the result
-    unsigned long getTotalFiles() const {
-        return m_thread->getTotalFiles();
-    } // the result
-    unsigned long getTotalDirs() const {
-        return m_thread->getTotalDirs();
-    } // the result
+
+    void getStats(KIO::filesize_t  &totalSize,
+                  unsigned long &totalFiles,
+                  unsigned long &totalDirs) const {
+        m_thread->getStats(totalSize, totalFiles, totalDirs);
+    }
     bool wasCanceled() const {
         return m_canceled;
     } // cancel was pressed; result is probably wrong
+
 public slots:
     void exec(); // start calculation
 };

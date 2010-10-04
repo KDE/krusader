@@ -1145,12 +1145,6 @@ void ListPanelFunc::calcSpace()
 
     QPointer<KrCalcSpaceDialog> calc = new KrCalcSpaceDialog(krMainWindow, panel, items, false);
     calc->exec();
-    for (QStringList::const_iterator it = items.constBegin(); it != items.constEnd(); ++it) {
-        KrViewItem *viewItem = panel->view->findItemByName(*it);
-        if (viewItem) {
-            panel->view->updateItem(viewItem);
-        }
-    }
     panel->slotUpdateTotals();
 
     delete calc;
@@ -1160,9 +1154,7 @@ bool ListPanelFunc::calcSpace(const QStringList & items, KIO::filesize_t & total
 {
     QPointer<KrCalcSpaceDialog> calc = new KrCalcSpaceDialog(krMainWindow, panel, items, true);
     calc->exec();
-    totalSize = calc->getTotalSize();
-    totalFiles = calc->getTotalFiles();
-    totalDirs = calc->getTotalDirs();
+    calc->getStats(totalSize, totalFiles, totalDirs);
     bool calcWasCanceled = calc->wasCanceled();
     delete calc;
 

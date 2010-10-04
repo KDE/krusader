@@ -35,6 +35,7 @@ A
 #include <QtGui/QLayout>
 #include <QtGui/QLabel>
 #include <QVBoxLayout>
+#include <QMutexLocker>
 
 #include <klocale.h>
 #include <kcursor.h>
@@ -43,49 +44,56 @@ A
 #include "panelfunc.h"
 #include "../krglobal.h"
 #include "../VFS/krpermhandler.h"
+#include "../VFS/krvfshandler.h"
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
-KrCalcSpaceDialog::CalcThread::CalcThread(KrCalcSpaceDialog * parent, KrPanel * panel, const QStringList & items)
-        : m_totalSize(0), m_currentSize(0), m_totalFiles(0), m_totalDirs(0), m_items(items), m_files(panel->func->files()),
-        m_view(panel->view), m_parent(parent), m_threadInUse(true), m_stop(false) {}
+KrCalcSpaceDialog::CalcThread::CalcThread(KrCalcSpaceDialog * parent, KUrl url, const QStringList & items)
+        : m_totalSize(0), m_currentSize(0), m_totalFiles(0), m_totalDirs(0), m_items(items), m_url(url),
+        m_parent(parent), m_stop(false) {}
 
-void KrCalcSpaceDialog::CalcThread::cleanUp()
+
+void KrCalcSpaceDialog::CalcThread::getStats(KIO::filesize_t  &totalSize,
+                                             unsigned long &totalFiles,
+                                             unsigned long &totalDirs) const
 {
-    if (m_threadInUse || !isFinished())
-        m_synchronizeUsageAccess.unlock();
-    else {
-        m_synchronizeUsageAccess.unlock(); // prevents a resource leak
-        // otherwise: no one needs this instance any more: delete it
-        delete this;
-    }
+    QMutexLocker locker(&m_mutex);
+    totalSize = m_totalSize + m_currentSize;
+    totalFiles = m_totalFiles;
+    totalDirs = m_totalDirs;
 }
 
-void KrCalcSpaceDialog::CalcThread::deleteInstance()
+void KrCalcSpaceDialog::CalcThread::updateItems(KrView *view) const
 {
-    // synchronize to avoid race condition.
-    m_synchronizeUsageAccess.lock();
-    m_threadInUse = false;
-    cleanUp();
+    QMutexLocker locker(&m_mutex);
+    for (QStringList::const_iterator it = m_items.constBegin(); it != m_items.constEnd(); ++it) {
+        KrViewItem *viewItem = view->findItemByName(*it);
+        if (viewItem) {
+            viewItem->setSize(m_sizes[*it]);
+            viewItem->redraw();
+        }
+    }
 }
 
 void KrCalcSpaceDialog::CalcThread::run()
 {
-    if (!m_items.isEmpty())   // if something to do: do the calculation
+    if (!m_items.isEmpty()) { // if something to do: do the calculation
+        vfs * files = KrVfsHandler::getVfs(m_url);
+        if(!files->vfs_refresh(m_url))
+            return;
         for (QStringList::ConstIterator it = m_items.begin(); it != m_items.end(); ++it) {
-            m_currentSize = 0;
-            m_files->vfs_calcSpace(*it, &m_currentSize, &m_totalFiles, &m_totalDirs , & m_stop);
+            files->vfs_calcSpace(*it, &m_currentSize, &m_totalFiles, &m_totalDirs , & m_stop);
+
             if (m_stop)
                 break;
-            KrViewItem * viewItem = m_view->findItemByName(*it);
-            if (viewItem) {
-                viewItem->setSize(m_currentSize);
-            }
+
+            m_mutex.lock();
+            m_sizes[*it] = m_currentSize;
             m_totalSize += m_currentSize;
             m_currentSize = 0;
+            m_mutex.unlock();
         }
-    // synchronize to avoid race condition.
-    m_synchronizeUsageAccess.lock();
-    cleanUp(); // this does not need the instance any more
+        delete files;
+    }
 }
 
 void KrCalcSpaceDialog::CalcThread::stop()
@@ -94,8 +102,9 @@ void KrCalcSpaceDialog::CalcThread::stop()
     m_stop = true;
 }
 
-KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, KrPanel * files, const QStringList & items, bool autoclose) :
-        KDialog(parent), m_autoClose(autoclose), m_canceled(false), m_timerCounter(0)
+KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, KrPanel * panel, const QStringList & items, bool autoclose) :
+        KDialog(parent), m_autoClose(autoclose), m_canceled(false), 
+                m_timerCounter(0), m_items(items), m_view(panel->view)
 {
     setButtons(KDialog::Ok | KDialog::Cancel);
     setDefaultButton(KDialog::Ok);
@@ -103,7 +112,7 @@ KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, KrPanel * files, const QSt
     setWindowModality(Qt::WindowModal);
     // the dialog: The Ok button is hidden until it is needed
     showButton(KDialog::Ok, false);
-    m_thread = new CalcThread(this, files, items);
+    m_thread = new CalcThread(this, panel->virtualPath(), items);
     m_pollTimer = new QTimer(this);
     QWidget * mainWidget = new QWidget(this);
     setMainWidget(mainWidget);
@@ -121,6 +130,7 @@ KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, KrPanel * files, const QSt
 
 void KrCalcSpaceDialog::calculationFinished()
 {
+    m_thread->updateItems(m_view);
     // close dialog if auto close is true
     if (m_autoClose) {
         done(0);
@@ -150,21 +160,28 @@ void KrCalcSpaceDialog::timer()
     if (++m_timerCounter > 10) {
         m_timerCounter = 0;
         showResult();
+        m_thread->updateItems(m_view);
     }
 }
 
 void KrCalcSpaceDialog::showResult()
 {
-    if (!m_thread) return;
+    if (!m_thread)
+        return;
+    KIO::filesize_t totalSize;
+    unsigned long totalFiles, totalDirs;
+
+    m_thread->getStats(totalSize, totalFiles, totalDirs);
+
     QString msg;
-    QString fileName = ((m_thread->getItems().count() == 1) ? (i18n("Name: %1\n", m_thread->getItems().first())) : QString(""));
-    msg = fileName + i18n("Total occupied space: %1", KIO::convertSize(m_thread->getTotalSize()));
-    if (m_thread->getTotalSize() >= 1024)
-        msg += i18n(" (bytes)", KRpermHandler::parseSize(m_thread->getTotalSize()));
+    QString fileName = (m_items.count() == 1) ? i18n("Name: %1\n", m_items.first()) : QString("");
+    msg = fileName + i18n("Total occupied space: %1", KIO::convertSize(totalSize));
+    if (totalSize >= 1024)
+        msg += i18n(" (bytes)", KRpermHandler::parseSize(totalSize));
     msg += '\n';
-    msg += i18np("in %1 directory", "in %1 directories", m_thread->getTotalDirs());
+    msg += i18np("in %1 directory", "in %1 directories", totalDirs);
     msg += ' ';
-    msg += i18np("and %1 file", "and %1 files", m_thread->getTotalFiles());
+    msg += i18np("and %1 file", "and %1 files", totalFiles);
     m_label->setText(msg);
 }
 
@@ -177,9 +194,12 @@ void KrCalcSpaceDialog::slotCancel()
 
 KrCalcSpaceDialog::~KrCalcSpaceDialog()
 {
-    CalcThread * tmp = m_thread;
-    m_thread = 0; // do not access the thread anymore or core dump if smoe piece of code wrongly does
-    tmp->deleteInstance(); // Notify the thread, that the dialog does not need anymore.
+    if(m_thread->isFinished())
+        delete m_thread;
+    else {
+        m_thread->stop();
+        connect(m_thread, SIGNAL(finished()), m_thread, SLOT(deleteLater()));
+    }
 }
 
 void KrCalcSpaceDialog::exec()
@@ -188,9 +208,11 @@ void KrCalcSpaceDialog::exec()
     if (m_autoClose) { // autoclose
         // set the cursor to busy mode and wait 3 seconds or until the thread finishes
         krMainWindow->setCursor(Qt::WaitCursor);
-        bool result = m_thread->wait(3000);
+        m_thread->wait(3000);
         krMainWindow->setCursor(Qt::ArrowCursor);    // return the cursor to normal mode
-        if (result) return;// thread finished: do not show the dialog
+        m_thread->updateItems(m_view);
+        if(m_thread->isFinished());
+            return; // thread finished: do not show the dialog
         showResult(); // fill the invisible dialog with useful data
     }
     // prepare and start the poll timer
