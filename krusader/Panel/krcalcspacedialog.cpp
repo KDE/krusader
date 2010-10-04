@@ -211,7 +211,7 @@ void KrCalcSpaceDialog::exec()
         m_thread->wait(1000);
         krMainWindow->setCursor(Qt::ArrowCursor);    // return the cursor to normal mode
         m_thread->updateItems(m_view);
-        if(m_thread->isFinished());
+        if(m_thread->isFinished())
             return; // thread finished: do not show the dialog
         showResult(); // fill the invisible dialog with useful data
     }
