@@ -206,9 +206,9 @@ void KrCalcSpaceDialog::exec()
 {
     m_thread->start(); // start the thread
     if (m_autoClose) { // autoclose
-        // set the cursor to busy mode and wait 3 seconds or until the thread finishes
+        // set the cursor to busy mode and wait 1 second or until the thread finishes
         krMainWindow->setCursor(Qt::WaitCursor);
-        m_thread->wait(3000);
+        m_thread->wait(1000);
         krMainWindow->setCursor(Qt::ArrowCursor);    // return the cursor to normal mode
         m_thread->updateItems(m_view);
         if(m_thread->isFinished());
