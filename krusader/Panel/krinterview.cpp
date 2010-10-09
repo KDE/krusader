@@ -26,7 +26,7 @@
 
 KrInterView::KrInterView(KrViewInstance &instance, const bool &left, KConfig *cfg,
                          KrMainWindow *mainWindow, QAbstractItemView *itemView) :
-        KrView(instance, left, cfg, mainWindow), _itemView(itemView), _mouseHandler(0)
+        KrView(instance, left, cfg, mainWindow), _itemView(itemView), _mouseHandler(0), _dummyVfile(0)
 {
     _model = new KrVfsModel(this);
 
@@ -41,6 +41,7 @@ KrInterView::~KrInterView()
     // but sometimes for some reason it is still referenced by
     // QPersistentModelIndex instances held by QAbstractItemView and/or QItemSelectionModel(child object) -
     // so schedule _model for later deletion
+    _model->clear();
     _model->deleteLater();
     _model = 0;
     delete _mouseHandler;
@@ -49,6 +50,8 @@ KrInterView::~KrInterView()
     while (it.hasNext())
         delete it.next().value();
     _itemHash.clear();
+    delete _dummyVfile;
+    _dummyVfile = 0;
 }
 
 void KrInterView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
@@ -240,11 +243,18 @@ void KrInterView::clear()
         delete it.next().value();
     _itemHash.clear();
     KrView::clear();
+    delete _dummyVfile;
+    _dummyVfile = 0;
 }
 
 void KrInterView::addItems(vfs* v, bool addUpDir)
 {
-    _model->setVfs(v, addUpDir);
+    if (addUpDir) {
+        _dummyVfile = new vfile("..", 0, "drwxrwxrwx", 0, false, 0, 0, "", "", 0, -1);
+        _dummyVfile->vfile_setIcon("go-up");
+    }
+
+    _model->setVfs(v, _dummyVfile);
     _count = _model->rowCount();
     if (addUpDir)
         _count--;

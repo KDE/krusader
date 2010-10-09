@@ -94,6 +94,7 @@ protected:
     KrMouseHandler *_mouseHandler;
     QHash<vfile *, KrInterViewItem*> _itemHash;
     QList<const vfile*> _selected;
+    vfile *_dummyVfile;
 };
 
 #endif

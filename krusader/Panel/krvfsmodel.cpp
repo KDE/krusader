@@ -39,14 +39,11 @@ KrVfsModel::KrVfsModel(KrInterView * view): QAbstractListModel(0), _extensionEna
     _defaultFont = grpSvr.readEntry("Filelist Font", *_FilelistFont);
 }
 
-void KrVfsModel::setVfs(vfs* v, bool upDir)
+void KrVfsModel::setVfs(vfs* v, vfile *dummy)
 {
-    _dummyVfile = 0;
-    if (upDir) {
-        _dummyVfile = new vfile("..", 0, "drwxrwxrwx", 0, false, 0, 0, "", "", 0, -1);
-        _dummyVfile->vfile_setIcon("go-up");
-        _vfiles.append(_dummyVfile);
-    }
+    if(dummy)
+        _vfiles.append(dummy);
+    _dummyVfile = dummy;
 
     vfile *vf = v->vfs_getFirstFile();
     while (vf) {
@@ -78,6 +75,7 @@ void KrVfsModel::clear()
     _vfiles.clear();
     _vfileNdx.clear();
     _nameNdx.clear();
+    _dummyVfile = 0;
 
     emit layoutChanged();
 }

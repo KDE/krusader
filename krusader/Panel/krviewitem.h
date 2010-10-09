@@ -51,9 +51,7 @@ public:
     virtual void redraw() = 0;
 
     KrViewItem(vfile *vf, const KrViewProperties* properties);
-    virtual ~KrViewItem() {
-        if (dummyVfile) delete _vf;
-    }
+    virtual ~KrViewItem() {}
 
     // DON'T USE THOSE OUTSIDE THE VIEWS!!!
     inline const vfile* getVfile() const {
