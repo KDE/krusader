@@ -29,6 +29,7 @@
 #include "../KViewer/panelviewer.h"
 #include "../KViewer/diskusageviewer.h"
 #include "krpanel.h"
+#include "listpanel.h"
 #include "panelfunc.h"
 #include "krview.h"
 #include "krviewitem.h"
@@ -599,12 +600,12 @@ void PanelPopup::treeSelection()
 
 void PanelPopup::quickSelect()
 {
-    SLOTS->markGroup(quickSelectCombo->currentText(), true);
+    quickSelect(quickSelectCombo->currentText());
 }
 
 void PanelPopup::quickSelect(const QString &mask)
 {
-    SLOTS->markGroup(mask, true);
+    ACTIVE_PANEL->gui->select(KRQuery(mask), true);
 }
 
 void PanelPopup::quickSelectStore()

@@ -310,7 +310,7 @@ void KrPopupMenu::performAction(int id)
         panel->func->moveFiles();
         break;
     case RENAME_ID :
-        SLOTS->rename();
+        panel->func->rename();
         break;
     case TRASH_ID :
         panel->func->deleteFiles(false);
@@ -375,10 +375,10 @@ void KrPopupMenu::performAction(int id)
         break;
     }
     case MKDIR_ID :
-        SLOTS->mkdir();
+        panel->func->mkdir();
         break;
     case NEW_TEXT_FILE_ID:
-        SLOTS->editDlg();
+        panel->func->editNewFile();
         break;
     case SYNC_SELECTED_ID : {
         QStringList selectedNames;

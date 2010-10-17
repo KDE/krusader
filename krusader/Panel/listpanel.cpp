@@ -117,8 +117,9 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
         _locked(false), previewJob(0), vfsError(0)
 {
     gui = this;
-
     func = new ListPanelFunc(this);
+    actions = ListPanelActions::self;
+
     setAcceptDrops(true);
 
     QHash<QString, QWidget*> widgets;
@@ -393,9 +394,9 @@ void ListPanel::createView()
     view->widget()->installEventFilter(this);
 
     connect(view->op(), SIGNAL(calcSpace(KrViewItem*)), func, SLOT(calcSpace(KrViewItem*)));
-    connect(view->op(), SIGNAL(goHome()), SLOTS, SLOT(home()));
-    connect(view->op(), SIGNAL(dirUp()), SLOTS, SLOT(dirUp()));
-    connect(view->op(), SIGNAL(deleteFiles(bool)), SLOTS, SLOT(deleteFiles(bool)));
+    connect(view->op(), SIGNAL(goHome()), actions, SLOT(home()));
+    connect(view->op(), SIGNAL(dirUp()), actions, SLOT(dirUp()));
+    connect(view->op(), SIGNAL(deleteFiles(bool)), actions, SLOT(deleteFiles(bool)));
     connect(view->op(), SIGNAL(middleButtonClicked(KrViewItem *)), SLOTS, SLOT(newTab(KrViewItem *)));
     connect(view->op(), SIGNAL(currentChanged(KrViewItem *)), SLOT(updatePopupPanel(KrViewItem*)));
     connect(view->op(), SIGNAL(renameItem(const QString &, const QString &)),
@@ -475,7 +476,7 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
             if(ke->key() == Qt::Key_Escape && ke->modifiers() == Qt::NoModifier) {
                 // if the cancel refresh action has no shortcut assigned,
                 // we need this event ourselves to cancel refresh
-                if(KrActions::actCancelRefresh->shortcut().isEmpty()) {
+                if(actions->actCancelRefresh->shortcut().isEmpty()) {
                     e->accept();
                     return true;
                 }
@@ -751,12 +752,12 @@ void ListPanel::slotFocusOnMe()
 
     func->refreshActions();
 
-    if (KrActions::actView0) KrActions::actView0->setEnabled(panelType != 0);
-    if (KrActions::actView1) KrActions::actView1->setEnabled(panelType != 1);
-    if (KrActions::actView2) KrActions::actView2->setEnabled(panelType != 2);
-    if (KrActions::actView3) KrActions::actView3->setEnabled(panelType != 3);
-    if (KrActions::actView4) KrActions::actView4->setEnabled(panelType != 4);
-    if (KrActions::actView5) KrActions::actView5->setEnabled(panelType != 5);
+    if (actions->actView0) actions->actView0->setEnabled(panelType != 0);
+    if (actions->actView1) actions->actView1->setEnabled(panelType != 1);
+    if (actions->actView2) actions->actView2->setEnabled(panelType != 2);
+    if (actions->actView3) actions->actView3->setEnabled(panelType != 3);
+    if (actions->actView4) actions->actView4->setEnabled(panelType != 4);
+    if (actions->actView5) actions->actView5->setEnabled(panelType != 5);
 
     updatePopupPanel(view->getCurrentKrViewItem());
 

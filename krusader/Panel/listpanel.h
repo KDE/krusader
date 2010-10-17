@@ -78,6 +78,7 @@ class ListPanelFunc;
 class QSplitter;
 class KDiskFreeSpace;
 class KrErrorDisplay;
+class ListPanelActions;
 
 class ListPanel : public QWidget, public KrPanel
 {
@@ -207,6 +208,7 @@ protected:
     KDiskFreeSpace* statsAgent;
     KJob *previewJob;
     KIO::Job *inlineRefreshJob;
+    ListPanelActions *actions;
 
     QPixmap currDragPix;
     QWidget *clientArea;

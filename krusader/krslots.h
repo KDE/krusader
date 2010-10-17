@@ -77,62 +77,27 @@ public:
     ~KRslots() {}
 
 public slots:
-    void createChecksum();
-    void matchChecksum();
     void sendFileByEmail(const KUrl::List &filename);
     void compareContent();
     void compareContent(KUrl, KUrl);
-    void rightclickMenu();
     void insertFileName(bool full_path);
     void rootKrusader();
     void swapPanels();
-    void setView0();
-    void setView1();
-    void setView2();
-    void setView3();
-    void setView4();
-    void setView5();
     void toggleHidden();
     void togglePreviews(bool show);
     void toggleSwapSides();
-    void togglePopupPanel();
     void configToolbar();
     void configKeys();
     void toggleToolbar();
     void toggleActionsToolbar();
     void toggleStatusbar();
     void toggleTerminal();
-    void home();
-    void root();
-    void dirUp();
-    void markAll();
-    void unmarkAll();
-    void markGroup();
-    void markGroup(const QString &, bool select);
-    void unmarkGroup();
-    void invert();
-    void compareDirs();
     void compareSetup();
     void emptyTrash();
     void trashBin();
     /** called by actExec* actions to choose the built-in command line mode */
     void execTypeSetup();
-    void refresh();
     void refresh(const KUrl& u);
-    void properties();
-//     void back();
-    void slotPack();
-    void slotUnpack();
-    void cut();
-    void copy();
-    void paste();
-    void testArchive();
-    void calcSpace();
-    void FTPDisconnect();
-    void allFilter();
-    void execFilter();
-    void customFilter();
-    void newFTPconnection();
     void runKonfigurator(bool firstTime = false);
     void startKonfigurator() {
         runKonfigurator(false);
@@ -147,17 +112,7 @@ public slots:
     void toggleCmdline();
     void changeTrashIcon();
     void multiRename();
-    void openRightBookmarks();
-    void openLeftBookmarks();
-    void openBookmarks();
     void bookmarkCurrent();
-    void openHistory();
-    void openLeftHistory();
-    void openRightHistory();
-    void openMedia();
-    void openLeftMedia();
-    void openRightMedia();
-    void syncPanels();
     void cmdlinePopup();
     void duplicateTab();
     void newTab(const KUrl& url = KUrl());
@@ -173,42 +128,12 @@ public slots:
     void userMenu();
     void manageUseractions();
     void slotSynchronizeDirs(QStringList selected = QStringList());
-    void slotSyncBrowse();
     void slotDiskUsage();
     void slotQueueManager();
-    void slotLocationBar();
-    void slotJumpBack();
-    void slotSetJumpBack();
-    void newSymlink();
     void windowActive(); // called when krusader's window becomes focused
     void windowInactive(); // called when another application steals the focus
-    // F2
-    void terminal();
-    // F3
-    void view();
-    // Shift F3
-    void viewDlg();
-    // F4
-    void edit();
-    // Shift F4
-    void editDlg();
-    // F5
-    void copyFiles();
-    // F6
-    void moveFiles();
-    // SHIFT + F5
-    void copyFilesByQueue();
-    // SHIFT + F6
-    void moveFilesByQueue();
-    // F7
-    void mkdir();
-    // F8
-    void deleteFiles(bool reallyDelete = false);
-    // F9
-    void rename();
     void jsConsole();
     void saveNewToolbarConfig();
-    void cancelRefresh();
     void zoomIn();
     void zoomOut();
     void defaultZoom();
@@ -216,8 +141,6 @@ public slots:
     void viewSaveDefaultSettings();
     void viewApplySettingsToOthers();
     void focusPanel();
-    void historyBackward();
-    void historyForward();
 
 protected slots:
     void configChanged(bool isGUIRestartNeeded);

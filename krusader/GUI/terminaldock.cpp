@@ -42,6 +42,7 @@
 #include "../VFS/vfs.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
+#include "../Panel/listpanelactions.h"
 #include "../krservices.h"
 
 /**
@@ -134,7 +135,7 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
         return true;
     }
 
-    if (KrActions::actPaste->shortcut().contains(pressedKey)) {
+    if (ListPanelActions::actPaste->shortcut().contains(pressedKey)) {
         QString text = QApplication::clipboard()->text();
         if (! text.isEmpty()) {
             text.replace('\n', '\r');

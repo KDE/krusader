@@ -238,11 +238,6 @@ void KRslots::compareContent(KUrl url1, KUrl url2)
         KMessageBox::error(0, i18n("Error executing %1!", diffProg));
 }
 
-void KRslots::rightclickMenu()
-{
-    ACTIVE_PANEL->gui->rightclickMenu();
-}
-
 void KRslots::addBookmark()
 {
     // TODO: this no longer works!
@@ -316,117 +311,9 @@ void KRslots::insertFileName(bool full_path)
     }
 }
 
-// directory list functions
-void KRslots::allFilter()
-{
-    ACTIVE_PANEL->gui->setFilter(KrViewProperties::All);
-}
-void KRslots::execFilter()
-{
-    ACTIVE_PANEL->gui->setFilter(KrViewProperties::All);
-}
-void KRslots::customFilter()
-{
-    ACTIVE_PANEL->gui->setFilter(KrViewProperties::Custom);
-}
-void KRslots::markAll()
-{
-    ACTIVE_PANEL->gui->select(true, true);
-}
-void KRslots::unmarkAll()
-{
-    ACTIVE_PANEL->gui->select(false, true);
-}
-void KRslots::markGroup()
-{
-    ACTIVE_PANEL->gui->select(true, false);
-}
-void KRslots::markGroup(const QString& mask, bool select)
-{
-    ACTIVE_PANEL->gui->select(KRQuery(mask), select);
-}
-void KRslots::unmarkGroup()
-{
-    ACTIVE_PANEL->gui->select(false, false);
-}
-void KRslots::invert()
-{
-    ACTIVE_PANEL->gui->invertSelection();
-}
-
-void KRslots::root()
-{
-    ACTIVE_FUNC->openUrl(KUrl("/"));
-}
 void KRslots::refresh(const KUrl& u)
 {
     ACTIVE_FUNC->openUrl(u);
-}
-void KRslots::home()
-{
-    ACTIVE_FUNC->openUrl(QDir::homePath());
-}
-void KRslots::refresh()
-{
-    ACTIVE_FUNC->refresh();
-}
-void KRslots::properties()
-{
-    ACTIVE_FUNC->properties();
-}
-void KRslots::dirUp()
-{
-    ACTIVE_FUNC->dirUp();
-}
-#if 0
-void KRslots::back()
-{
-    ACTIVE_FUNC->goBack();
-}
-#endif
-void KRslots::slotPack()
-{
-    ACTIVE_FUNC->pack();
-}
-void KRslots::slotUnpack()
-{
-    ACTIVE_FUNC->unpack();
-}
-void KRslots::testArchive()
-{
-    ACTIVE_FUNC->testArchive();
-}
-void KRslots::calcSpace()
-{
-    ACTIVE_FUNC->calcSpace();
-}
-void KRslots::FTPDisconnect()
-{
-    ACTIVE_FUNC->FTPDisconnect();
-}
-void KRslots::newFTPconnection()
-{
-    ACTIVE_FUNC->newFTPconnection();
-}
-void KRslots::cut()
-{
-    ACTIVE_FUNC->copyToClipboard(true);
-}
-void KRslots::copy()
-{
-    ACTIVE_FUNC->copyToClipboard(false);
-}
-void KRslots::paste()
-{
-    ACTIVE_FUNC->pasteFromClipboard();
-}
-void KRslots::createChecksum()
-{
-    ACTIVE_FUNC->createChecksum();
-}
-void KRslots::matchChecksum()
-{
-    ACTIVE_FUNC->matchChecksum();
 }
 
 void KRslots::runKonfigurator(bool firstTime)
@@ -462,42 +349,6 @@ void KRslots::configChanged(bool isGUIRestartNeeded)
     MAIN_VIEW->fnKeys->updateShortcuts();
 
     krApp->configChanged();
-}
-
-void KRslots::setView0()
-{
-    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 0)
-        ACTIVE_PANEL->gui->changeType(0);
-}
-
-void KRslots::setView1()
-{
-    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 1)
-        ACTIVE_PANEL->gui->changeType(1);
-}
-
-void KRslots::setView2()
-{
-    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 2)
-        ACTIVE_PANEL->gui->changeType(2);
-}
-
-void KRslots::setView3()
-{
-    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 3)
-        ACTIVE_PANEL->gui->changeType(3);
-}
-
-void KRslots::setView4()
-{
-    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 4)
-        ACTIVE_PANEL->gui->changeType(4);
-}
-
-void KRslots::setView5()
-{
-    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 5)
-        ACTIVE_PANEL->gui->changeType(5);
 }
 
 void KRslots::toggleHidden()
@@ -715,75 +566,6 @@ void KRslots::changeTrashIcon()
     allDirNotify.FilesChanged(lst);
     // end of konqi code
 #endif
-}
-
-// F2
-void KRslots::terminal()
-{
-    ACTIVE_FUNC->terminal();
-}
-// F3
-void KRslots::view()
-{
-    ACTIVE_FUNC->view();
-}
-// F4
-void KRslots::edit()
-{
-    ACTIVE_FUNC->editFile();
-}
-// F5
-void KRslots::copyFiles()
-{
-    ACTIVE_FUNC->copyFiles();
-}
-// F6
-void KRslots::moveFiles()
-{
-    ACTIVE_FUNC->moveFiles();
-}
-// SHIFT + F5
-void KRslots::copyFilesByQueue()
-{
-    ACTIVE_FUNC->copyFiles(true);
-}
-// SHIFT + F6
-void KRslots::moveFilesByQueue()
-{
-    ACTIVE_FUNC->moveFiles(true);
-}
-// F7
-void KRslots::mkdir()
-{
-    ACTIVE_FUNC->mkdir();
-}
-// F8
-void KRslots::deleteFiles(bool reallyDelete)
-{
-    ACTIVE_FUNC->deleteFiles(reallyDelete);
-}
-// F9
-void KRslots::rename()
-{
-    ACTIVE_FUNC->rename();
-}
-
-// Shift F3
-void KRslots::viewDlg()
-{
-    // ask the user for a url to view
-    KUrl dest = KChooseDir::getDir(i18n("Enter a URL to view:"), ACTIVE_PANEL->virtualPath(), ACTIVE_PANEL->virtualPath());
-    if (dest.isEmpty()) return ;   // the user canceled
-
-    KrViewer::view(dest);   // view the file
-//  }
-    // nothing more to it!
-}
-
-// Shift F4
-void KRslots::editDlg()
-{
-    ACTIVE_FUNC->editNewFile();
 }
 
 void KRslots::duplicateTab()
@@ -1010,17 +792,6 @@ void KRslots::slotSynchronizeDirs(QStringList selected)
                         MAIN_VIEW->right->func->files()->vfs_getOrigin(), selected);
 }
 
-void KRslots::slotSyncBrowse()
-{
-    ACTIVE_PANEL->gui->toggleSyncBrowse();
-}
-
-void KRslots::compareDirs()
-{
-    ACTIVE_PANEL->gui->compareDirs();
-    ACTIVE_PANEL->otherPanel()->gui->compareDirs();
-}
-
 void KRslots::compareSetup()
 {
     for (int i = 0; KrActions::compareArray[i] != 0; i++)
@@ -1044,11 +815,6 @@ void KRslots::execTypeSetup()
             grp.writeEntry("Command Execution Mode", i);
             break;
         }
-}
-
-void KRslots::togglePopupPanel()
-{
-    ACTIVE_PANEL->gui->togglePanelPopup();
 }
 
 void KRslots::slotDiskUsage()
@@ -1078,21 +844,6 @@ void KRslots::windowInactive()
         MAIN_VIEW->left->panelInactive();
         MAIN_VIEW->right->panelInactive();
     }
-}
-
-void KRslots::slotLocationBar()
-{
-    ACTIVE_PANEL->gui->editLocation();
-}
-
-void KRslots::slotJumpBack()
-{
-    ACTIVE_PANEL->gui->jumpBack();
-}
-
-void KRslots::slotSetJumpBack()
-{
-    ACTIVE_PANEL->gui->setJumpBack(ACTIVE_PANEL->virtualPath());
 }
 
 void KRslots::emptyTrash()
@@ -1153,68 +904,6 @@ void KRslots::defaultZoom()
     ACTIVE_VIEW->setDefaultFileIconSize();
 }
 
-void KRslots::cancelRefresh()
-{
-    ACTIVE_PANEL->gui->inlineRefreshCancel();
-}
-
-void KRslots::openRightBookmarks()
-{
-    RIGHT_PANEL->gui->openBookmarks();
-}
-
-void KRslots::openLeftBookmarks()
-{
-    LEFT_PANEL->gui->openBookmarks();
-}
-
-void KRslots::openBookmarks()
-{
-    ACTIVE_PANEL->gui->openBookmarks();
-}
-
-void KRslots::openHistory()
-{
-    ACTIVE_PANEL->gui->openHistory();
-}
-
-void KRslots::openLeftHistory()
-{
-    LEFT_PANEL->gui->openHistory();
-}
-
-void KRslots::openRightHistory()
-{
-    RIGHT_PANEL->gui->openHistory();
-}
-
-void KRslots::openMedia()
-{
-    ACTIVE_PANEL->gui->openMedia();
-}
-
-void KRslots::openLeftMedia()
-{
-    LEFT_PANEL->gui->openMedia();
-}
-
-void KRslots::openRightMedia()
-{
-    RIGHT_PANEL->gui->openMedia();
-}
-
-void KRslots::newSymlink()
-{
-    ACTIVE_PANEL->func->krlink(true);
-}
-
-void KRslots::syncPanels()
-{
-    ListPanel *t = ACTIVE_PANEL->gui;
-    OTHER_FUNC->openUrl(ACTIVE_PANEL->virtualPath());
-    t->slotFocusOnMe();
-}
-
 void KRslots::cmdlinePopup()
 {
     MAIN_VIEW->cmdLine->popup();
@@ -1240,14 +929,5 @@ void KRslots::focusPanel()
     ACTIVE_VIEW->widget()->setFocus();
 }
 
-void KRslots::historyBackward()
-{
-    ACTIVE_FUNC->historyBackward();
-}
-
-void KRslots::historyForward()
-{
-    ACTIVE_FUNC->historyForward();
-}
 
 #include "krslots.moc"

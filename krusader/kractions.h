@@ -36,33 +36,35 @@
 #include <kaction.h>
 #include <ktoggleaction.h>
 
+//HACK
+#include "Panel/listpanelactions.h"
+
 class Krusader;
 
 class KrActions : public QObject
 {
 public:
     // Actions
-    static KAction *actProperties, *actPack, *actUnpack, *actTest, *actCompare, *actCmdlinePopup;
-    static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll, *actLocate, *actSwitchFullScreenTE;
-    static KAction *actUnselectAll, *actInvert, *actSync, *actDiskUsage, *actSavePosition, *actCompDirs;
-    static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect, *actProfiles;
-    static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actNewTool, *actSwapPanels, *actSwapSides;
-    static KAction *actKonfigurator, *actToolsSetup, *actRoot, *actFind, *actDirUp, *actRemoteEncoding;
-    static KAction *actSelectColorMask, *actMultiRename, *actAllFilter, *actOpenLeftBm, *actOpenRightBm;
+    static KAction *actCompare;
+    static KAction *actCmdlinePopup, *actLocate, *actSwitchFullScreenTE;
+    static KAction *actDiskUsage, *actSavePosition;
+    static KAction *actHomeTerminal, *actProfiles;
+    static KAction *actMountMan, *actNewTool, *actSwapPanels, *actSwapSides;
+    static KAction *actKonfigurator, *actToolsSetup, *actFind, *actRemoteEncoding;
+    static KAction *actSelectColorMask, *actMultiRename, *actOpenLeftBm, *actOpenRightBm;
     static KAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actCloseInactiveTabs;
     static KAction *actCloseDuplicatedTabs, *actLockTab, *actSplit, *actQueueManager;
-    static KAction *actCombine, *actUserMenu, *actManageUseractions, *actSyncDirs, *actSyncBrowse, *actCancelRefresh;
-    static KAction *actF2, *actF3, *actF4, *actF5, *actF6, *actF7, *actF8, *actF9, *actF10, *actVerticalMode;
-    static KAction *actShiftF5, *actShiftF6, *actEmptyTrash, *actTrashBin;
-    static KAction *actPopularUrls, *actLocationBar, *actJumpBack, *actSetJumpBack, *actCreateChecksum, *actMatchChecksum;
-    static KAction *actView0, *actView1, *actView2, *actView3, *actView4, *actView5,
-    *actCopy, *actPaste, *actViewSaveDefaultSettings, *actShowViewOptionsMenu;
+    static KAction *actCombine, *actUserMenu, *actManageUseractions, *actSyncDirs;
+    static KAction *actVerticalMode;
+    static KAction *actEmptyTrash, *actTrashBin;
+    static KAction *actPopularUrls;
+    static KAction *actViewSaveDefaultSettings, *actShowViewOptionsMenu;
     static KToggleAction *actToggleTerminal;
     static KAction *actSelectNewerAndSingle, *actSelectNewer, *actSelectSingle,
     *actSelectDifferentAndSingle, *actSelectDifferent;
     static KAction *actZoomIn, *actZoomOut, *actDefaultZoom;
     static KAction *actFocusPanel;
-    static KAction *actHistoryBackward, *actHistoryForward;
+    static KAction *actF10;
     /** actions for setting the execution mode of commands from commanddline */
     static KAction *actExecStartAndForget,
     *actExecCollectSeparate, *actExecCollectTogether,
@@ -84,42 +86,55 @@ public:
 };
 
 // krusader's actions - things krusader can do!
-#define krProperties      KrActions::actProperties     // file properties
-#define krPack            KrActions::actPack           // pack files into an archive
-#define krUnpack          KrActions::actUnpack         // unpack archive
-#define krTest            KrActions::actTest           // test archive
-#define krCompare         KrActions::actCompare        // compare 2 files by content
-#define krCalculate       KrActions::actCalculate      // calculate occupied space
-#define krCreateCS   KrActions::actCreateChecksum
-#define krMatchCS   KrActions::actMatchChecksum
-#define krSelect          KrActions::actSelect         // select a group by filter
-#define krSelectAll       KrActions::actSelectAll      // select all files
-#define krUnselect        KrActions::actUnselect       // unselect by filter
-#define krUnselectAll     KrActions::actUnselectAll    // remove all selections
-#define krInvert          KrActions::actInvert         // invert the selection
-#define krSyncDirs        KrActions::actSync           // synchronize directories
+#define krProperties      ListPanelActions::actProperties     // file properties
+#define krPack            ListPanelActions::actPack           // pack files into an archive
+#define krUnpack          ListPanelActions::actUnpack         // unpack archive
+#define krTest            ListPanelActions::actTest           // test archive
+#define krCompare         ListPanelActions::actCompare        // compare 2 files by content
+#define krCalculate       ListPanelActions::actCalculate      // calculate occupied space
+#define krCreateCS        ListPanelActions::actCreateChecksum
+#define krMatchCS         ListPanelActions::actMatchChecksum
+#define krSelect          ListPanelActions::actSelect         // select a group by filter
+#define krSelectAll       ListPanelActions::actSelectAll      // select all files
+#define krUnselect        ListPanelActions::actUnselect       // unselect by filter
+#define krUnselectAll     ListPanelActions::actUnselectAll    // remove all selections
+#define krInvert          ListPanelActions::actInvert         // invert the selection
+#define krSyncDirs        ListPanelActions::actSync           // synchronize directories
+#define krFTPConnect      ListPanelActions::actFTPConnect     // connect to an ftp
+#define krFTPNew          ListPanelActions::actFTPNewConnect  // create a new connection
+#define krFTPDiss         ListPanelActions::actFTPDisconnect  // disconnect an FTP session
+#define krAllFiles        ListPanelActions::actAllFilter      // show all files in list
+#define krExecFiles       ListPanelActions::actExecFilter     // show only executables
+#define krCustomFiles     ListPanelActions::actCustomFilter   // show a custom set of files
+#define krOpenLeftBm      ListPanelActions::actOpenLeftBm     // open left bookmarks
+#define krOpenRightBm     ListPanelActions::actOpenRightBm    // open right bookmarks
+#define krDirUp           ListPanelActions::actDirUp
+#define krCopy            ListPanelActions::actCopy
+#define krPaste           ListPanelActions::actPaste
+#define krLocationBar     ListPanelActions::actLocationBar
+#define krJumpBack        ListPanelActions::actJumpBack
+#define krSetJumpBack     ListPanelActions::actSetJumpBack
+#define krF2              ListPanelActions::actF2
+#define krF3              ListPanelActions::actF3
+#define krF4              ListPanelActions::actF4
+#define krF5              ListPanelActions::actF5
+#define krF6              ListPanelActions::actF6
+#define krF7              ListPanelActions::actF7
+#define krF8              ListPanelActions::actF8
+#define krF9              ListPanelActions::actF9
+#define krF10             KrActions::actF10
 #define krHomeTerm        KrActions::actHomeTerminal   // open terminal@home dir
-#define krFTPConnect      KrActions::actFTPConnect     // connect to an ftp
-#define krFTPNew          KrActions::actFTPNewConnect  // create a new connection
-#define krFTPDiss         KrActions::actFTPDisconnect  // disconnect an FTP session
 #define krRemoteEncoding  KrActions::actRemoteEncoding // remote encoding menu
-#define krAllFiles        KrActions::actAllFilter      // show all files in list
-#define krExecFiles       KrActions::actExecFilter     // show only executables
-#define krCustomFiles     KrActions::actCustomFilter   // show a custom set of files
 #define krMountMan        KrActions::actMountMan       // run Mount-manager
 #define krNewTool         KrActions::actNewTool        // Add a new tool to menu
 #define krKonfigurator    KrActions::actKonfigurator
 #define krToolsSetup      KrActions::actToolsSetup     // setup the tools menu
-#define krBack            KrActions::actBack
 #define krRoot            KrActions::actRoot
 #define krFind            KrActions::actFind           // find files
 #define krMultiRename     KrActions::actMultiRename
 #define krToggleTerminal  KrActions::actToggleTerminal
-#define krToggleSortByExt KrActions::actToggleSortByExt// Sort by extension
+//#define krToggleSortByExt KrActions::actToggleSortByExt// Sort by extension
 #define krSwitchFullScreenTE KrActions::actSwitchFullScreenTE
-#define krOpenLeftBm      KrActions::actOpenLeftBm     // open left bookmarks
-#define krOpenRightBm     KrActions::actOpenRightBm    // open right bookmarks
-#define krDirUp           KrActions::actDirUp
 #define krCmdlinePopup    KrActions::actCmdlinePopup
 #define krNewTab          KrActions::actNewTab
 #define krLockTab         KrActions::actLockTab
@@ -132,21 +147,7 @@ public:
 #define krSplit           KrActions::actSplit
 #define krCombine         KrActions::actCombine
 #define krUserMenu        KrActions::actUserMenu
-#define krF2      KrActions::actF2
-#define krF3      KrActions::actF3
-#define krF4      KrActions::actF4
-#define krF5      KrActions::actF5
-#define krF6      KrActions::actF6
-#define krF7      KrActions::actF7
-#define krF8      KrActions::actF8
-#define krF9      KrActions::actF9
-#define krF10      KrActions::actF10
-#define krCopy      KrActions::actCopy
-#define krPaste      KrActions::actPaste
-#define krPopularUrls   KrActions::actPopularUrls
-#define krLocationBar   KrActions::actLocationBar
-#define krJumpBack   KrActions::actJumpBack
-#define krSetJumpBack   KrActions::actSetJumpBack
+#define krPopularUrls     KrActions::actPopularUrls
 
 #ifdef __KJSEMBED__
 #define krJSConsole  KrActions::actShowJSConsole

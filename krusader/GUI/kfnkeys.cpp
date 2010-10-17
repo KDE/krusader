@@ -56,44 +56,44 @@ KFnKeys::KFnKeys(QWidget *parent): QWidget(parent)
     F2->setToolTip("<qt>" + i18n("<p>Open terminal in current directory.</p>"
                                  "<p>The terminal can be defined in Konfigurator, "
                                  "default is <b>konsole</b>.</p>") + "</qt>");
-    connect(F2, SIGNAL(clicked()), SLOTS, SLOT(terminal()));
+    connect(F2, SIGNAL(clicked()), ListPanelActions::self, SLOT(terminal()));
     SETUP(F2);
 
     F3 = new QPushButton(i18n("F3 View  ") , this);
     F3->setToolTip(i18n("Open file in viewer."));
-    connect(F3, SIGNAL(clicked()), SLOTS, SLOT(view()));
+    connect(F3, SIGNAL(clicked()), ListPanelActions::self, SLOT(view()));
     SETUP(F3);
 
     F4 = new QPushButton(i18n("F4 Edit  ") , this);
     F4->setToolTip("<qt>" + i18n("<p>Edit file.</p>"
                                  "<p>The editor can be defined in Konfigurator, "
                                  "default is <b>internal editor</b>.</p>") + "</qt>");
-    connect(F4, SIGNAL(clicked()), SLOTS, SLOT(edit()));
+    connect(F4, SIGNAL(clicked()), ListPanelActions::self, SLOT(edit()));
     SETUP(F4);
 
     F5 = new QPushButton(i18n("F5 Copy  ") , this);
     F5->setToolTip(i18n("Copy file from one panel to the other."));
-    connect(F5, SIGNAL(clicked()), SLOTS, SLOT(copyFiles()));
+    connect(F5, SIGNAL(clicked()), ListPanelActions::self, SLOT(copyFiles()));
     SETUP(F5);
 
     F6 = new QPushButton(i18n("F6 Move") , this);
     F6->setToolTip(i18n("Move file from one panel to the other."));
-    connect(F6, SIGNAL(clicked()), SLOTS, SLOT(moveFiles()));
+    connect(F6, SIGNAL(clicked()), ListPanelActions::self, SLOT(moveFiles()));
     SETUP(F6);
 
     F7 = new QPushButton(i18n("F7 Mkdir ") , this);
     F7->setToolTip(i18n("Create directory in current panel."));
-    connect(F7, SIGNAL(clicked()), SLOTS, SLOT(mkdir()));
+    connect(F7, SIGNAL(clicked()), ListPanelActions::self, SLOT(mkdir()));
     SETUP(F7);
 
     F8 = new QPushButton(i18n("F8 Delete") , this);
     F8->setToolTip(i18n("Delete file, directory, etc."));
-    connect(F8, SIGNAL(clicked()), SLOTS, SLOT(deleteFiles()));
+    connect(F8, SIGNAL(clicked()), ListPanelActions::self, SLOT(deleteFiles()));
     SETUP(F8);
 
     F9 = new QPushButton(i18n("F9 Rename") , this);
     F9->setToolTip(i18n("Rename file, directory, etc."));
-    connect(F9, SIGNAL(clicked()), SLOTS, SLOT(rename()));
+    connect(F9, SIGNAL(clicked()), ListPanelActions::self, SLOT(rename()));
     SETUP(F9);
 
     F10 = new QPushButton(i18n("F10 Quit ") , this);
