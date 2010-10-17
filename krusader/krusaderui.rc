@@ -86,11 +86,9 @@
   </Menu>
   <Menu name="go" >
    <text>&amp;Go</text>
-   <Action name="history_backward" />
-   <Action name="history_forward" />
    <Action name="dirUp" />
-   <Action name="root" />
    <Action name="go_home" />
+   <Action name="root" />
    <Action name="Popular_Urls" />
    <Separator/>
    <Action name="set_jump_back" />
@@ -179,10 +177,10 @@
   </Menu>
  </MenuBar>
  <ToolBar iconText="icononly" noMerge="1" name="mainToolBar" fullWidth="true" >
-  <Action name="history_backward" />
-  <Action name="history_forward" />
+  <Action name="go_back"/>
+  <Action name="go_forward"/>
   <Action name="dirUp" />
-  <Action name="std_home" />
+  <Action name="go_home" />
   <Action name="std_redisplay" />
   <Separator name="separator_2" />
   <Action name="select all" />

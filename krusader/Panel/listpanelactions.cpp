@@ -141,14 +141,12 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     }
 
     // standard actions
-    actHistoryBackward = KStandardAction::back(this, SLOT(historyBackward()), parent);
-    actionCollection->addAction("history_backward", actHistoryBackward);
-    actHistoryForward = KStandardAction::forward(this, SLOT(historyForward()), parent);
-    actionCollection->addAction("history_forward", actHistoryForward);
-    KStandardAction::home(this, SLOT(home()), actionCollection/*, "std_home"*/)->setText(i18n("Home")); /*->setShortcut(Qt::Key_QuoteLeft);*/
-    KStandardAction::cut(this, SLOT(cut()), actionCollection)->setText(i18n("Cut to Clipboard"));
-    (actCopy = KStandardAction::copy(this, SLOT(copy()), actionCollection))->setText(i18n("Copy to Clipboard"));
-    (actPaste = KStandardAction::paste(this, SLOT(paste()), actionCollection))->setText(i18n("Paste from Clipboard"));
+    actHistoryBackward = stdAction(KStandardAction::Back, SLOT(historyBackward()));
+    actHistoryForward = stdAction(KStandardAction::Forward, SLOT(historyForward()));
+    stdAction(KStandardAction::Home, SLOT(home()));
+    stdAction(KStandardAction::Cut, SLOT(cut()));
+    actCopy = stdAction(KStandardAction::Copy, SLOT(copy()));
+    actPaste = stdAction(KStandardAction::Paste, SLOT(paste()));
 
     KAction *tmp;
 
@@ -223,6 +221,11 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actSelectAll->setToolTip(i18n("Select all files in the current directory"));
     actUnselectAll->setToolTip(i18n("Unselect all selected files"));
     actRoot->setToolTip(i18n("ROOT (/)"));
+}
+
+KAction *ListPanelActions::stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot)
+{
+    return KStandardAction::create(id, recv, slot, _mainWindow->actions());
 }
 
 KAction *ListPanelActions::createAction(QString text, QString icon, QKeySequence shortcut,

@@ -36,6 +36,7 @@
 #include <QObject>
 #include <QString>
 #include <QKeySequence>
+#include <kstandardaction.h>
 
 class KAction;
 class KToggleAction;
@@ -158,6 +159,10 @@ protected:
                                  QObject *recv, const char *slot, QString name);
     KToggleAction *createToggleAction(QString text, QString icon, QKeySequence shortcut,
                                  QObject *recv, const char *slot, QString name);
+    KAction *stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot);
+    KAction *stdAction(KStandardAction::StandardAction id, const char *slot) {
+        return stdAction(id, this, slot);
+    }
 
     KrPanel *activePanel();
     KrPanel *leftPanel();
