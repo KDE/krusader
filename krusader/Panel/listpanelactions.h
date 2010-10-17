@@ -155,10 +155,18 @@ public:
     static KAction *actSyncBrowse, *actCancelRefresh;
 
 protected:
-    KAction *createAction(QString text, QString icon, QKeySequence shortcut,
-                                 QObject *recv, const char *slot, QString name);
-    KToggleAction *createToggleAction(QString text, QString icon, QKeySequence shortcut,
-                                 QObject *recv, const char *slot, QString name);
+    KAction *action(QString text, QString icon, QKeySequence shortcut,
+                    QObject *recv, const char *slot, QString name, bool isToggleAction = false);
+    KAction *action(QString text, QString icon, QKeySequence shortcut,
+                    const char *slot, QString name) {
+        return action(text, icon, shortcut, this, slot, name);
+    }
+    KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,
+                                QObject *recv, const char *slot, QString name);
+    KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,
+                                const char *slot, QString name) {
+        return toggleAction(text, icon, shortcut, this, slot, name);
+    }
     KAction *stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot);
     KAction *stdAction(KStandardAction::StandardAction id, const char *slot) {
         return stdAction(id, this, slot);

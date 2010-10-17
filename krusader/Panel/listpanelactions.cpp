@@ -103,12 +103,6 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
         abort();
     self = this;
 
-#define NEW_KACTION(VAR, TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME) \
-    VAR = createAction(TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME);
-
-#define NEW_KTOGGLEACTION(VAR, TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME) \
-    VAR = createToggleAction(TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME);
-
     KActionCollection *actionCollection = _mainWindow->actions();
 
     // set view type
@@ -118,22 +112,22 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
 
         switch (id) {
         case 0:
-            NEW_KACTION(actView0, inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView0()), "view0");
+            actView0 = action(inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView0()), "view0");
             break;
         case 1:
-            NEW_KACTION(actView1, inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView1()), "view1");
+            actView1 = action(inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView1()), "view1");
             break;
         case 2:
-            NEW_KACTION(actView2, inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView2()), "view2");
+            actView2 = action(inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView2()), "view2");
             break;
         case 3:
-            NEW_KACTION(actView3, inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView3()), "view3");
+            actView3 = action(inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView3()), "view3");
             break;
         case 4:
-            NEW_KACTION(actView4, inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView4()), "view4");
+            actView4 = action(inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView4()), "view4");
             break;
         case 5:
-            NEW_KACTION(actView5, inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView5()), "view5");
+            actView5 = action(inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView5()), "view5");
             break;
         default:
             break;
@@ -152,68 +146,66 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actCopy = stdAction(KStandardAction::Copy, SLOT(copy()));
     actPaste = stdAction(KStandardAction::Paste, SLOT(paste()));
 
-    KAction *tmp;
-
     // Fn keys
-    NEW_KACTION(actF2, i18n("Start Terminal Here"), "terminal", Qt::Key_F2, this, SLOT(terminal()) , "F2_Terminal");
-    NEW_KACTION(actF3, i18n("View File"), 0, Qt::Key_F3, this, SLOT(view()), "F3_View");
-    NEW_KACTION(actF4, i18n("Edit File"), 0, Qt::Key_F4, this, SLOT(edit()) , "F4_Edit");
-    NEW_KACTION(actF5, i18n("Copy..."), 0, Qt::Key_F5, this, SLOT(copyFiles()) , "F5_Copy");
-    NEW_KACTION(actF6, i18n("Move..."), 0, Qt::Key_F6, this, SLOT(moveFiles()) , "F6_Move");
-    NEW_KACTION(actShiftF5, i18n("Copy by queue..."), 0, Qt::SHIFT + Qt::Key_F5, this, SLOT(copyFilesByQueue()) , "F5_Copy_Queue");
-    NEW_KACTION(actShiftF6, i18n("Move by queue..."), 0, Qt::SHIFT + Qt::Key_F6, this, SLOT(moveFilesByQueue()) , "F6_Move_Queue");
-    NEW_KACTION(actF7, i18n("New Directory..."), "folder-new", Qt::Key_F7, this, SLOT(mkdir()) , "F7_Mkdir");
-    NEW_KACTION(actF8, i18n("Delete"), "edit-delete", Qt::Key_F8, this, SLOT(deleteFiles()) , "F8_Delete");
-    NEW_KACTION(actF9, i18n("Rename"), 0, Qt::Key_F9, this, SLOT(rename()) , "F9_Rename");
-    NEW_KACTION(tmp, i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, this, SLOT(editDlg()), "edit_new_file");
-    NEW_KACTION(tmp, i18n("F3 View Dialog"), 0, Qt::SHIFT + Qt::Key_F3, this, SLOT(viewDlg()), "F3_ViewDlg");
+    actF2 = action(i18n("Start Terminal Here"), "terminal", Qt::Key_F2, SLOT(terminal()) , "F2_Terminal");
+    actF3 = action(i18n("View File"), 0, Qt::Key_F3, SLOT(view()), "F3_View");
+    actF4 = action(i18n("Edit File"), 0, Qt::Key_F4, SLOT(edit()) , "F4_Edit");
+    actF5 = action(i18n("Copy..."), 0, Qt::Key_F5, SLOT(copyFiles()) , "F5_Copy");
+    actF6 = action(i18n("Move..."), 0, Qt::Key_F6, SLOT(moveFiles()) , "F6_Move");
+    actShiftF5 = action(i18n("Copy by queue..."), 0, Qt::SHIFT + Qt::Key_F5, SLOT(copyFilesByQueue()) , "F5_Copy_Queue");
+    actShiftF6 = action(i18n("Move by queue..."), 0, Qt::SHIFT + Qt::Key_F6, SLOT(moveFilesByQueue()) , "F6_Move_Queue");
+    actF7 = action(i18n("New Directory..."), "folder-new", Qt::Key_F7, SLOT(mkdir()) , "F7_Mkdir");
+    actF8 = action(i18n("Delete"), "edit-delete", Qt::Key_F8, SLOT(deleteFiles()) , "F8_Delete");
+    actF9 = action(i18n("Rename"), 0, Qt::Key_F9, SLOT(rename()) , "F9_Rename");
+    action(i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, SLOT(editDlg()), "edit_new_file");
+    action(i18n("F3 View Dialog"), 0, Qt::SHIFT + Qt::Key_F3, SLOT(viewDlg()), "F3_ViewDlg");
 
     // filter
-    NEW_KACTION(actAllFilter, i18n("&All Files"), 0, Qt::SHIFT + Qt::Key_F10, this, SLOT(allFilter()), "all files");
+    actAllFilter = action(i18n("&All Files"), 0, Qt::SHIFT + Qt::Key_F10, SLOT(allFilter()), "all files");
     //actExecFilter = new KAction( i18n( "&Executables" ), SHIFT + Qt::Key_F11,
     //                             SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );
-    NEW_KACTION(actCustomFilter, i18n("&Custom"), 0, Qt::SHIFT + Qt::Key_F12, this, SLOT(customFilter()), "custom files");
+    actCustomFilter = action(i18n("&Custom"), 0, Qt::SHIFT + Qt::Key_F12, SLOT(customFilter()), "custom files");
 
     // selection
-    NEW_KACTION(actSelect, i18n("Select &Group..."), "kr_select", Qt::CTRL + Qt::Key_Plus, this, SLOT(markGroup()), "select group");
-    NEW_KACTION(actSelectAll, i18n("&Select All"), "kr_selectall", Qt::ALT + Qt::Key_Plus, this, SLOT(markAll()), "select all");
-    NEW_KACTION(actUnselect, i18n("&Unselect Group..."), "kr_unselect", Qt::CTRL + Qt::Key_Minus, this, SLOT(unmarkGroup()), "unselect group");
-    NEW_KACTION(actUnselectAll, i18n("U&nselect All"), "kr_unselectall", Qt::ALT + Qt::Key_Minus, this, SLOT(unmarkAll()), "unselect all");
-    NEW_KACTION(actInvert, i18n("&Invert Selection"), "kr_invert", Qt::ALT + Qt::Key_Asterisk, this, SLOT(invert()), "invert");
+    actSelect = action(i18n("Select &Group..."), "kr_select", Qt::CTRL + Qt::Key_Plus, this, SLOT(markGroup()), "select group");
+    actSelectAll = action(i18n("&Select All"), "kr_selectall", Qt::ALT + Qt::Key_Plus, this, SLOT(markAll()), "select all");
+    actUnselect = action(i18n("&Unselect Group..."), "kr_unselect", Qt::CTRL + Qt::Key_Minus, this, SLOT(unmarkGroup()), "unselect group");
+    actUnselectAll = action(i18n("U&nselect All"), "kr_unselectall", Qt::ALT + Qt::Key_Minus, this, SLOT(unmarkAll()), "unselect all");
+    actInvert = action(i18n("&Invert Selection"), "kr_invert", Qt::ALT + Qt::Key_Asterisk, this, SLOT(invert()), "invert");
 
     // file operations
-    NEW_KACTION(tmp, i18n("Right-click Menu"), 0, Qt::Key_Menu, this, SLOT(rightclickMenu()), "rightclick menu");
-    NEW_KACTION(actProperties, i18n("&Properties..."), 0, Qt::ALT + Qt::Key_Enter, this, SLOT(properties()), "properties");
-    NEW_KACTION(actCompDirs, i18n("&Compare Directories"), "view_left_right", Qt::ALT + Qt::SHIFT + Qt::Key_C, this, SLOT(compareDirs()), "compare dirs");
-    NEW_KACTION(actCalculate, i18n("Calculate &Occupied Space"), "kcalc", 0, this, SLOT(calcSpace()), "calculate");
-    NEW_KACTION(actPack, i18n("Pac&k..."), "archive-insert", Qt::ALT + Qt::SHIFT + Qt::Key_P, this, SLOT(slotPack()), "pack");
-    NEW_KACTION(actUnpack, i18n("&Unpack..."), "archive-extract", Qt::ALT + Qt::SHIFT + Qt::Key_U, this, SLOT(slotUnpack()), "unpack");
-    NEW_KACTION(actCreateChecksum, i18n("Create Checksum..."), "binary", 0, this, SLOT(createChecksum()), "create checksum");
-    NEW_KACTION(actMatchChecksum, i18n("Verify Checksum..."), "binary", 0, this, SLOT(matchChecksum()), "match checksum");
-    NEW_KACTION(tmp, i18n("New Symlink..."), 0, Qt::CTRL + Qt::ALT + Qt::Key_S, this, SLOT(newSymlink()), "new symlink");
-    NEW_KACTION(actTest, i18n("T&est Archive"), "utilities-file-archiver", Qt::ALT + Qt::SHIFT + Qt::Key_E, this, SLOT(testArchive()), "test archives");
+    action(i18n("Right-click Menu"), 0, Qt::Key_Menu, this, SLOT(rightclickMenu()), "rightclick menu");
+    actProperties = action(i18n("&Properties..."), 0, Qt::ALT + Qt::Key_Enter, this, SLOT(properties()), "properties");
+    actCompDirs = action(i18n("&Compare Directories"), "view_left_right", Qt::ALT + Qt::SHIFT + Qt::Key_C, this, SLOT(compareDirs()), "compare dirs");
+    actCalculate = action(i18n("Calculate &Occupied Space"), "kcalc", 0, this, SLOT(calcSpace()), "calculate");
+    actPack = action(i18n("Pac&k..."), "archive-insert", Qt::ALT + Qt::SHIFT + Qt::Key_P, this, SLOT(slotPack()), "pack");
+    actUnpack = action(i18n("&Unpack..."), "archive-extract", Qt::ALT + Qt::SHIFT + Qt::Key_U, this, SLOT(slotUnpack()), "unpack");
+    actCreateChecksum = action(i18n("Create Checksum..."), "binary", 0, this, SLOT(createChecksum()), "create checksum");
+    actMatchChecksum = action(i18n("Verify Checksum..."), "binary", 0, this, SLOT(matchChecksum()), "match checksum");
+    action(i18n("New Symlink..."), 0, Qt::CTRL + Qt::ALT + Qt::Key_S, this, SLOT(newSymlink()), "new symlink");
+    actTest = action(i18n("T&est Archive"), "utilities-file-archiver", Qt::ALT + Qt::SHIFT + Qt::Key_E, this, SLOT(testArchive()), "test archives");
 
     // navigation
-    NEW_KACTION(actRoot, i18n("Root"), "go-top", Qt::CTRL + Qt::Key_Backspace, this, SLOT(root()), "root");
-    NEW_KACTION(tmp, i18n("&Reload"), "view-refresh", Qt::CTRL + Qt::Key_R, this, SLOT(refresh()), "std_redisplay");
-    NEW_KACTION(actCancelRefresh, i18n("Cancel Refresh of View"), "kr_cancel_refresh", 0, this, SLOT(cancelRefresh()), "cancel refresh");
-    NEW_KACTION(actFTPNewConnect, i18n("New Net &Connection..."), "network-connect", Qt::CTRL + Qt::Key_N, this, SLOT(newFTPconnection()), "ftp new connection");
-    NEW_KACTION(actFTPDisconnect, i18n("Disconnect &from Net"), "network-disconnect", Qt::SHIFT + Qt::CTRL + Qt::Key_F, this, SLOT(FTPDisconnect()), "ftp disconnect");
-    NEW_KACTION(tmp, i18n("Sync Panels"), 0, Qt::ALT + Qt::SHIFT + Qt::Key_O, this, SLOT(syncPanels()), "sync panels");
-    NEW_KACTION(actJumpBack, i18n("Jump Back"), "kr_jumpback", Qt::CTRL + Qt::Key_J, this, SLOT(slotJumpBack()), "jump_back");
-    NEW_KACTION(actSetJumpBack, i18n("Set Jump Back Point"), "kr_setjumpback", Qt::CTRL + Qt::SHIFT + Qt::Key_J, this, SLOT(slotSetJumpBack()), "set_jump_back");
-    NEW_KACTION(actSyncBrowse, i18n("S&ynchron Directory Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, this, SLOT(slotSyncBrowse()), "sync browse");
-    NEW_KACTION(actLocationBar, i18n("Go to Location Bar"), 0, Qt::CTRL + Qt::Key_L, this, SLOT(slotLocationBar()), "location_bar");
-    NEW_KTOGGLEACTION(tmp, i18n("Toggle Popup Panel"), 0, Qt::ALT + Qt::Key_Down, this, SLOT(togglePopupPanel()), "toggle popup panel");
-    NEW_KACTION(tmp, i18n("Bookmarks"), 0, Qt::CTRL + Qt::Key_D, this, SLOT(openBookmarks()), "bookmarks");
-    NEW_KACTION(tmp, i18n("Left Bookmarks"), 0, 0, this, SLOT(openLeftBookmarks()), "left bookmarks");
-    NEW_KACTION(tmp, i18n("Right Bookmarks"), 0, 0, this, SLOT(openRightBookmarks()), "right bookmarks");
-    NEW_KACTION(tmp, i18n("History"), 0, Qt::CTRL + Qt::Key_H, this, SLOT(openHistory()), "history");
-    NEW_KACTION(tmp, i18n("Left History"), 0, Qt::ALT + Qt::CTRL + Qt::Key_Left, this, SLOT(openLeftHistory()), "left history");
-    NEW_KACTION(tmp, i18n("Right History"), 0, Qt::ALT + Qt::CTRL + Qt::Key_Right, this, SLOT(openRightHistory()), "right history");
-    NEW_KACTION(tmp, i18n("Media"), 0, Qt::CTRL + Qt::Key_M, this, SLOT(openMedia()), "media");
-    NEW_KACTION(tmp, i18n("Left Media"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Left, this, SLOT(openLeftMedia()), "left media");
-    NEW_KACTION(tmp, i18n("Right Media"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Right, this, SLOT(openRightMedia()), "right media");
+    actRoot = action(i18n("Root"), "go-top", Qt::CTRL + Qt::Key_Backspace, this, SLOT(root()), "root");
+    action(i18n("&Reload"), "view-refresh", Qt::CTRL + Qt::Key_R, this, SLOT(refresh()), "std_redisplay");
+    actCancelRefresh = action(i18n("Cancel Refresh of View"), "kr_cancel_refresh", 0, this, SLOT(cancelRefresh()), "cancel refresh");
+    actFTPNewConnect = action(i18n("New Net &Connection..."), "network-connect", Qt::CTRL + Qt::Key_N, this, SLOT(newFTPconnection()), "ftp new connection");
+    actFTPDisconnect = action(i18n("Disconnect &from Net"), "network-disconnect", Qt::SHIFT + Qt::CTRL + Qt::Key_F, this, SLOT(FTPDisconnect()), "ftp disconnect");
+    action(i18n("Sync Panels"), 0, Qt::ALT + Qt::SHIFT + Qt::Key_O, this, SLOT(syncPanels()), "sync panels");
+    actJumpBack = action(i18n("Jump Back"), "kr_jumpback", Qt::CTRL + Qt::Key_J, this, SLOT(slotJumpBack()), "jump_back");
+    actSetJumpBack = action(i18n("Set Jump Back Point"), "kr_setjumpback", Qt::CTRL + Qt::SHIFT + Qt::Key_J, this, SLOT(slotSetJumpBack()), "set_jump_back");
+    actSyncBrowse = action(i18n("S&ynchron Directory Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, this, SLOT(slotSyncBrowse()), "sync browse");
+    actLocationBar = action(i18n("Go to Location Bar"), 0, Qt::CTRL + Qt::Key_L, this, SLOT(slotLocationBar()), "location_bar");
+    toggleAction(i18n("Toggle Popup Panel"), 0, Qt::ALT + Qt::Key_Down, this, SLOT(togglePopupPanel()), "toggle popup panel");
+    action(i18n("Bookmarks"), 0, Qt::CTRL + Qt::Key_D, this, SLOT(openBookmarks()), "bookmarks");
+    action(i18n("Left Bookmarks"), 0, 0, this, SLOT(openLeftBookmarks()), "left bookmarks");
+    action(i18n("Right Bookmarks"), 0, 0, this, SLOT(openRightBookmarks()), "right bookmarks");
+    action(i18n("History"), 0, Qt::CTRL + Qt::Key_H, this, SLOT(openHistory()), "history");
+    action(i18n("Left History"), 0, Qt::ALT + Qt::CTRL + Qt::Key_Left, this, SLOT(openLeftHistory()), "left history");
+    action(i18n("Right History"), 0, Qt::ALT + Qt::CTRL + Qt::Key_Right, this, SLOT(openRightHistory()), "right history");
+    action(i18n("Media"), 0, Qt::CTRL + Qt::Key_M, this, SLOT(openMedia()), "media");
+    action(i18n("Left Media"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Left, this, SLOT(openLeftMedia()), "left media");
+    action(i18n("Right Media"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Right, this, SLOT(openRightMedia()), "right media");
 
     // and at last we can set the tool-tips
     actSelect->setToolTip(i18n("Select files using a filter"));
@@ -227,32 +219,32 @@ KAction *ListPanelActions::stdAction(KStandardAction::StandardAction id, QObject
     return KStandardAction::create(id, recv, slot, _mainWindow->actions());
 }
 
-KAction *ListPanelActions::createAction(QString text, QString icon, QKeySequence shortcut,
-                                 QObject *recv, const char *slot, QString name)
+KAction *ListPanelActions::action(QString text, QString icon, QKeySequence shortcut,
+                                 QObject *recv, const char *slot, QString name, bool isToggleAction)
 {
     KAction *a;
-    if (icon == 0)
-        a = new KAction(text, this);
-    else
-        a = new KAction(KIcon(icon), text, this);
+
+    if(isToggleAction) {
+        if (icon == 0)
+            a = new KToggleAction(text, this);
+        else
+            a = new KToggleAction(KIcon(icon), text, this);
+    } else {
+        if (icon == 0)
+            a = new KAction(text, this);
+        else
+            a = new KAction(KIcon(icon), text, this);
+    }
+
     a->setShortcut(shortcut);
     connect(a, SIGNAL(triggered(bool)), recv, slot);
     _mainWindow->actions()->addAction(name, a);
     return a;
 }
 
-KToggleAction *ListPanelActions::createToggleAction(QString text, QString icon, QKeySequence shortcut,
-                                 QObject *recv, const char *slot, QString name)
-{
-    KToggleAction *a;
-    if (icon == 0)
-        a = new KToggleAction(text, this);
-    else
-        a = new KToggleAction(KIcon(icon), text, this);
-    a->setShortcut(shortcut);
-    connect(a, SIGNAL(triggered(bool)), recv, slot);
-    _mainWindow->actions()->addAction(name, a);
-    return a;
+KToggleAction *ListPanelActions::toggleAction(QString text, QString icon, QKeySequence shortcut,
+                                QObject *recv, const char *slot, QString name) {
+    return static_cast<KToggleAction*>(action(text, icon, shortcut, recv, slot, name, true));
 }
 
 inline KrPanel *ListPanelActions::activePanel()
