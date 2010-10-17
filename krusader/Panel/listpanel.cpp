@@ -118,7 +118,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
 {
     gui = this;
     func = new ListPanelFunc(this);
-    actions = ListPanelActions::self;
+    actions = krApp->listPanelActions();
 
     setAcceptDrops(true);
 

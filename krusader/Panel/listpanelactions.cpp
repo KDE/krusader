@@ -34,8 +34,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "listpanel.h"
 #include "panelfunc.h"
 #include "krviewfactory.h"
-#include "../krusader.h"
-#include "../krusaderview.h"
+#include "../filemanagerwindow.h"
 #include "../Dialogs/krdialogs.h"
 #include "../KViewer/krviewer.h"
 
@@ -126,19 +125,21 @@ KToggleAction *createToggleAction(QString text, QString icon, QKeySequence short
 }
 
 
-ListPanelActions::ListPanelActions(QObject *parent) : QObject(parent)
+ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindow) :
+        QObject(parent),
+        _mainWindow(mainWindow)
 {
     if(self)
         abort();
     self = this;
 
 #define NEW_KACTION(VAR, TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME) \
-    VAR = createAction(TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME, krApp, actionCollection);
+    VAR = createAction(TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME, parent, actionCollection);
 
 #define NEW_KTOGGLEACTION(VAR, TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME) \
-    VAR = createToggleAction(TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME, krApp, actionCollection);
+    VAR = createToggleAction(TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME, parent, actionCollection);
 
-    KActionCollection *actionCollection = krApp->actionCollection();
+    KActionCollection *actionCollection = _mainWindow->actions();
 
     // set view type
     QList<KrViewInstance *> views = KrViewFactory::registeredViews();
@@ -254,42 +255,62 @@ ListPanelActions::ListPanelActions(QObject *parent) : QObject(parent)
     actRoot->setToolTip(i18n("ROOT (/)"));
 }
 
+inline KrPanel *ListPanelActions::activePanel()
+{
+    return _mainWindow->activePanel();
+}
+
+inline KrPanel *ListPanelActions::leftPanel()
+{
+    return _mainWindow->leftPanel();
+}
+
+inline KrPanel *ListPanelActions::rightPanel()
+{
+    return _mainWindow->rightPanel();
+}
+
+inline ListPanelFunc *ListPanelActions::activeFunc()
+{
+    return activePanel()->func;
+}
+
 // set view type
 
 void ListPanelActions::setView0()
 {
-    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 0)
-        ACTIVE_PANEL->gui->changeType(0);
+    if (activePanel() && activePanel()->gui->getType() != 0)
+        activePanel()->gui->changeType(0);
 }
 
 void ListPanelActions::setView1()
 {
-    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 1)
-        ACTIVE_PANEL->gui->changeType(1);
+    if (activePanel() && activePanel()->gui->getType() != 1)
+        activePanel()->gui->changeType(1);
 }
 
 void ListPanelActions::setView2()
 {
-    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 2)
-        ACTIVE_PANEL->gui->changeType(2);
+    if (activePanel() && activePanel()->gui->getType() != 2)
+        activePanel()->gui->changeType(2);
 }
 
 void ListPanelActions::setView3()
 {
-    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 3)
-        ACTIVE_PANEL->gui->changeType(3);
+    if (activePanel() && activePanel()->gui->getType() != 3)
+        activePanel()->gui->changeType(3);
 }
 
 void ListPanelActions::setView4()
 {
-    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 4)
-        ACTIVE_PANEL->gui->changeType(4);
+    if (activePanel() && activePanel()->gui->getType() != 4)
+        activePanel()->gui->changeType(4);
 }
 
 void ListPanelActions::setView5()
 {
-    if (ACTIVE_PANEL && ACTIVE_PANEL->gui->getType() != 5)
-        ACTIVE_PANEL->gui->changeType(5);
+    if (activePanel() && activePanel()->gui->getType() != 5)
+        activePanel()->gui->changeType(5);
 }
 
 // fn keys
@@ -297,58 +318,58 @@ void ListPanelActions::setView5()
 // F2
 void ListPanelActions::terminal()
 {
-    ACTIVE_FUNC->terminal();
+    activeFunc()->terminal();
 }
 // F3
 void ListPanelActions::view()
 {
-    ACTIVE_FUNC->view();
+    activeFunc()->view();
 }
 // F4
 void ListPanelActions::edit()
 {
-    ACTIVE_FUNC->editFile();
+    activeFunc()->editFile();
 }
 // F5
 void ListPanelActions::copyFiles()
 {
-    ACTIVE_FUNC->copyFiles();
+    activeFunc()->copyFiles();
 }
 // F6
 void ListPanelActions::moveFiles()
 {
-    ACTIVE_FUNC->moveFiles();
+    activeFunc()->moveFiles();
 }
 // SHIFT + F5
 void ListPanelActions::copyFilesByQueue()
 {
-    ACTIVE_FUNC->copyFiles(true);
+    activeFunc()->copyFiles(true);
 }
 // SHIFT + F6
 void ListPanelActions::moveFilesByQueue()
 {
-    ACTIVE_FUNC->moveFiles(true);
+    activeFunc()->moveFiles(true);
 }
 // F7
 void ListPanelActions::mkdir()
 {
-    ACTIVE_FUNC->mkdir();
+    activeFunc()->mkdir();
 }
 // F8
 void ListPanelActions::deleteFiles(bool reallyDelete)
 {
-    ACTIVE_FUNC->deleteFiles(reallyDelete);
+    activeFunc()->deleteFiles(reallyDelete);
 }
 // F9
 void ListPanelActions::rename()
 {
-    ACTIVE_FUNC->rename();
+    activeFunc()->rename();
 }
 // Shift F3
 void ListPanelActions::viewDlg()
 {
     // ask the user for a url to view
-    KUrl dest = KChooseDir::getDir(i18n("Enter a URL to view:"), ACTIVE_PANEL->virtualPath(), ACTIVE_PANEL->virtualPath());
+    KUrl dest = KChooseDir::getDir(i18n("Enter a URL to view:"), activePanel()->virtualPath(), activePanel()->virtualPath());
     if (dest.isEmpty()) return ;   // the user canceled
 
     KrViewer::view(dest);   // view the file
@@ -358,244 +379,244 @@ void ListPanelActions::viewDlg()
 // Shift F4
 void ListPanelActions::editDlg()
 {
-    ACTIVE_FUNC->editNewFile();
+    activeFunc()->editNewFile();
 }
 
 // filter
 
 void ListPanelActions::allFilter()
 {
-    ACTIVE_PANEL->gui->setFilter(KrViewProperties::All);
+    activePanel()->gui->setFilter(KrViewProperties::All);
 }
 #if 0
 void ListPanelActions::execFilter()
 {
-    ACTIVE_PANEL->gui->setFilter(KrViewProperties::All);
+    activePanel()->gui->setFilter(KrViewProperties::All);
 }
 #endif
 void ListPanelActions::customFilter()
 {
-    ACTIVE_PANEL->gui->setFilter(KrViewProperties::Custom);
+    activePanel()->gui->setFilter(KrViewProperties::Custom);
 }
 
 // selection
 
 void ListPanelActions::markAll()
 {
-    ACTIVE_PANEL->gui->select(true, true);
+    activePanel()->gui->select(true, true);
 }
 
 void ListPanelActions::unmarkAll()
 {
-    ACTIVE_PANEL->gui->select(false, true);
+    activePanel()->gui->select(false, true);
 }
 
 void ListPanelActions::markGroup()
 {
-    ACTIVE_PANEL->gui->select(true, false);
+    activePanel()->gui->select(true, false);
 }
 
 void ListPanelActions::markGroup(const QString& mask, bool select)
 {
-    ACTIVE_PANEL->gui->select(KRQuery(mask), select);
+    activePanel()->gui->select(KRQuery(mask), select);
 }
 
 void ListPanelActions::unmarkGroup()
 {
-    ACTIVE_PANEL->gui->select(false, false);
+    activePanel()->gui->select(false, false);
 }
 
 void ListPanelActions::invert()
 {
-    ACTIVE_PANEL->gui->invertSelection();
+    activePanel()->gui->invertSelection();
 }
 
 // file operations
 
 void ListPanelActions::cut()
 {
-    ACTIVE_FUNC->copyToClipboard(true);
+    activeFunc()->copyToClipboard(true);
 }
 
 void ListPanelActions::copy()
 {
-    ACTIVE_FUNC->copyToClipboard(false);
+    activeFunc()->copyToClipboard(false);
 }
 
 void ListPanelActions::paste()
 {
-    ACTIVE_FUNC->pasteFromClipboard();
+    activeFunc()->pasteFromClipboard();
 }
 
 void ListPanelActions::createChecksum()
 {
-    ACTIVE_FUNC->createChecksum();
+    activeFunc()->createChecksum();
 }
 
 void ListPanelActions::matchChecksum()
 {
-    ACTIVE_FUNC->matchChecksum();
+    activeFunc()->matchChecksum();
 }
 
 void ListPanelActions::compareDirs()
 {
-    ACTIVE_PANEL->gui->compareDirs();
-    ACTIVE_PANEL->otherPanel()->gui->compareDirs();
+    activePanel()->gui->compareDirs();
+    activePanel()->otherPanel()->gui->compareDirs();
 }
 
 void ListPanelActions::properties()
 {
-    ACTIVE_FUNC->properties();
+    activeFunc()->properties();
 }
 
 void ListPanelActions::rightclickMenu()
 {
-    ACTIVE_PANEL->gui->rightclickMenu();
+    activePanel()->gui->rightclickMenu();
 }
 
 void ListPanelActions::slotPack()
 {
-    ACTIVE_FUNC->pack();
+    activeFunc()->pack();
 }
 
 void ListPanelActions::slotUnpack()
 {
-    ACTIVE_FUNC->unpack();
+    activeFunc()->unpack();
 }
 
 void ListPanelActions::testArchive()
 {
-    ACTIVE_FUNC->testArchive();
+    activeFunc()->testArchive();
 }
 
 void ListPanelActions::calcSpace()
 {
-    ACTIVE_FUNC->calcSpace();
+    activeFunc()->calcSpace();
 }
 
 void ListPanelActions::newSymlink()
 {
-    ACTIVE_PANEL->func->krlink(true);
+    activePanel()->func->krlink(true);
 }
 
 // navigation
 
 void ListPanelActions::historyBackward()
 {
-    ACTIVE_FUNC->historyBackward();
+    activeFunc()->historyBackward();
 }
 
 void ListPanelActions::historyForward()
 {
-    ACTIVE_FUNC->historyForward();
+    activeFunc()->historyForward();
 }
 
 void ListPanelActions::dirUp()
 {
-    ACTIVE_FUNC->dirUp();
+    activeFunc()->dirUp();
 }
 
 void ListPanelActions::home()
 {
-    ACTIVE_FUNC->openUrl(QDir::homePath());
+    activeFunc()->openUrl(QDir::homePath());
 }
 
 void ListPanelActions::root()
 {
-    ACTIVE_FUNC->openUrl(KUrl("/"));
+    activeFunc()->openUrl(KUrl("/"));
 }
 
 void ListPanelActions::refresh()
 {
-    ACTIVE_FUNC->refresh();
+    activeFunc()->refresh();
 }
 
 void ListPanelActions::cancelRefresh()
 {
-    ACTIVE_PANEL->gui->inlineRefreshCancel();
+    activePanel()->gui->inlineRefreshCancel();
 }
 
 void ListPanelActions::FTPDisconnect()
 {
-    ACTIVE_FUNC->FTPDisconnect();
+    activeFunc()->FTPDisconnect();
 }
 
 void ListPanelActions::newFTPconnection()
 {
-    ACTIVE_FUNC->newFTPconnection();
+    activeFunc()->newFTPconnection();
 }
 
 void ListPanelActions::slotJumpBack()
 {
-    ACTIVE_PANEL->gui->jumpBack();
+    activePanel()->gui->jumpBack();
 }
 
 void ListPanelActions::slotSetJumpBack()
 {
-    ACTIVE_PANEL->gui->setJumpBack(ACTIVE_PANEL->virtualPath());
+    activePanel()->gui->setJumpBack(activePanel()->virtualPath());
 }
 
 void ListPanelActions::slotLocationBar()
 {
-    ACTIVE_PANEL->gui->editLocation();
+    activePanel()->gui->editLocation();
 }
 
 void ListPanelActions::togglePopupPanel()
 {
-    ACTIVE_PANEL->gui->togglePanelPopup();
+    activePanel()->gui->togglePanelPopup();
 }
 
 void ListPanelActions::slotSyncBrowse()
 {
-    ACTIVE_PANEL->gui->toggleSyncBrowse();
+    activePanel()->gui->toggleSyncBrowse();
 }
 
 void ListPanelActions::syncPanels()
 {
-    OTHER_FUNC->openUrl(ACTIVE_PANEL->virtualPath());
+    activeFunc()->otherFunc()->openUrl(activePanel()->virtualPath());
 }
 
 void ListPanelActions::openBookmarks()
 {
-    ACTIVE_PANEL->gui->openBookmarks();
+    activePanel()->gui->openBookmarks();
 }
 
 void ListPanelActions::openLeftBookmarks()
 {
-    LEFT_PANEL->gui->openBookmarks();
+    leftPanel()->gui->openBookmarks();
 }
 
 void ListPanelActions::openRightBookmarks()
 {
-    RIGHT_PANEL->gui->openBookmarks();
+    rightPanel()->gui->openBookmarks();
 }
 
 void ListPanelActions::openHistory()
 {
-    ACTIVE_PANEL->gui->openHistory();
+    activePanel()->gui->openHistory();
 }
 
 void ListPanelActions::openLeftHistory()
 {
-    LEFT_PANEL->gui->openHistory();
+    leftPanel()->gui->openHistory();
 }
 
 void ListPanelActions::openRightHistory()
 {
-    RIGHT_PANEL->gui->openHistory();
+    rightPanel()->gui->openHistory();
 }
 
 void ListPanelActions::openMedia()
 {
-    ACTIVE_PANEL->gui->openMedia();
+    activePanel()->gui->openMedia();
 }
 
 void ListPanelActions::openLeftMedia()
 {
-    LEFT_PANEL->gui->openMedia();
+    leftPanel()->gui->openMedia();
 }
 
 void ListPanelActions::openRightMedia()
 {
-    RIGHT_PANEL->gui->openMedia();
+    rightPanel()->gui->openMedia();
 }

@@ -37,12 +37,15 @@
 #include <QString>
 
 class KAction;
+class FileManagerWindow;
+class KrPanel;
+class ListPanelFunc;
 
 class ListPanelActions : public QObject
 {
     Q_OBJECT
 public:
-    ListPanelActions(QObject *parent);
+    ListPanelActions(QObject *parent, FileManagerWindow *mainWindow);
 
 public slots:
     // set view type
@@ -147,6 +150,14 @@ public:
     static KAction *actCopy, *actPaste;
     static KAction *actHistoryBackward, *actHistoryForward, *actDirUp, *actRoot;
     static KAction *actSyncBrowse, *actCancelRefresh;
+
+protected:
+    KrPanel *activePanel();
+    KrPanel *leftPanel();
+    KrPanel *rightPanel();
+    ListPanelFunc *activeFunc();
+
+    FileManagerWindow *_mainWindow;
 };
 
 #endif // __LISTPANELACTIONS_H__

@@ -795,7 +795,7 @@ void Krusader::setupActions() {
     actFind->setToolTip(i18n("Search for files"));
 #endif
     KrActions::setupActions(this);
-    _listPanelActions = new ListPanelActions(this);
+    _listPanelActions = new ListPanelActions(this, this);
 }
 
 ///////////////////////////////////////////////////////////////////////////

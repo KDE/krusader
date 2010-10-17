@@ -33,6 +33,9 @@ public:
     virtual AbstractPanelManager *rightManager() = 0;
     virtual ListPanelActions *listPanelActions() = 0;
 
+    KrPanel *activePanel() {
+        return activeManager()->currentPanel();
+    }
     KrPanel *leftPanel() {
         return leftManager()->currentPanel();
     }
