@@ -234,7 +234,8 @@ KAction *Krusader::actShowJSConsole = 0;
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader() : KParts::MainWindow(0,
                 Qt::Window | Qt::WindowTitleHint | Qt::WindowContextHelpButtonHint),
-        status(NULL), sysTray(0), isStarting(true), isExiting(false), directExit(false)
+        _listPanelActions(0), status(0), sysTray(0), isStarting(true),
+        isExiting(false), directExit(false)
 {
 
     setAttribute(Qt::WA_DeleteOnClose);
@@ -794,7 +795,7 @@ void Krusader::setupActions() {
     actFind->setToolTip(i18n("Search for files"));
 #endif
     KrActions::setupActions(this);
-    new ListPanelActions(this);
+    _listPanelActions = new ListPanelActions(this);
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -1263,6 +1264,26 @@ bool Krusader::queryExit()
 KrView *Krusader::activeView()
 {
     return ACTIVE_PANEL->view;
+}
+
+AbstractPanelManager *Krusader::activeManager()
+{
+    return MAIN_VIEW->activeManager();
+}
+
+AbstractPanelManager *Krusader::leftManager()
+{
+    return MAIN_VIEW->leftMng;
+}
+
+AbstractPanelManager *Krusader::rightManager()
+{
+    return MAIN_VIEW->rightMng;
+}
+
+ListPanelActions *Krusader::listPanelActions()
+{
+    return _listPanelActions;
 }
 
 #include "krusader.moc"

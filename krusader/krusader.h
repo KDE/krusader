@@ -36,6 +36,8 @@
 #include <config.h>
 #endif
 
+#include "filemanagerwindow.h"
+
 // KDE includes
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
@@ -50,7 +52,6 @@
 #include <QHideEvent>
 #include <kdebug.h>
 #include "VFS/kiojobwrapper.h"
-#include "krmainwindow.h"
 
 #ifdef __KJSEMBED__
 class KrJS;
@@ -72,7 +73,7 @@ class QueueManager;
 
 #define MAX_VIEWS 6
 
-class Krusader : public KParts::MainWindow, public KrMainWindow
+class Krusader : public KParts::MainWindow, public FileManagerWindow
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.krusader.Instance")
@@ -89,6 +90,12 @@ public:
     virtual KActionCollection *actions() {
         return actionCollection();
     }
+    // FileManagerWindow implementation
+    virtual AbstractPanelManager *activeManager();
+    virtual AbstractPanelManager *leftManager();
+    virtual AbstractPanelManager *rightManager();
+    virtual ListPanelActions *listPanelActions();
+
 
 
     void refreshView();     // re-create the main view
@@ -201,6 +208,7 @@ signals:
     void shutdown();
 
 private:
+    ListPanelActions *_listPanelActions;
     KSystemTrayIcon *sysTray;
     QPoint       oldPos;
     QSize        oldSize;
