@@ -379,6 +379,24 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     connect(krApp, SIGNAL(shutdown()), SLOT(inlineRefreshCancel()));
 }
 
+ListPanel::~ListPanel()
+{
+    inlineRefreshCancel();
+    delete func;
+    delete view;
+    view = 0;
+    delete status;
+    delete bookmarksButton;
+    delete totals;
+    delete quickSearch;
+    delete origin;
+    delete cdRootButton;
+    delete cdHomeButton;
+    delete cdUpButton;
+    delete cdOtherButton;
+    delete syncBrowseButton;
+//     delete layout;
+}
 
 void ListPanel::createView()
 {
@@ -426,25 +444,6 @@ void ListPanel::changeType(int type)
 
         view->redraw();
     }
-}
-
-ListPanel::~ListPanel()
-{
-    inlineRefreshCancel();
-    delete func;
-    delete view;
-    view = 0;
-    delete status;
-    delete bookmarksButton;
-    delete totals;
-    delete quickSearch;
-    delete origin;
-    delete cdRootButton;
-    delete cdHomeButton;
-    delete cdUpButton;
-    delete cdOtherButton;
-    delete syncBrowseButton;
-//     delete layout;
 }
 
 int ListPanel::getProperties()
