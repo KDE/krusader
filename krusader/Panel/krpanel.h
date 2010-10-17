@@ -32,6 +32,8 @@
 #ifndef KRPANEL_H
 #define KRPANEL_H
 
+#include "../abstractpanelmanager.h"
+
 #include <kurl.h>
 
 class ListPanelFunc;
@@ -41,17 +43,21 @@ class KrView;
 class KrPanel
 {
 public:
-    KrPanel(bool &left) : gui(0), func(0), view(0), _left(left) {}
+    KrPanel(bool &left, AbstractPanelManager *manager) :
+        gui(0), func(0), view(0), _left(left), _manager(manager) {}
 
     KUrl virtualPath() const;
-    KrPanel *otherPanel();
+    KrPanel *otherPanel() {
+        return _manager->otherManager()->currentPanel();
+    }
 
     ListPanel *gui;
     ListPanelFunc *func;
     KrView *view;
 
 protected:
-    const bool &_left;
+    const bool &_left; // TODO: remove this
+    AbstractPanelManager *_manager;
 };
 
 #endif

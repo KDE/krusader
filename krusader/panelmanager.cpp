@@ -132,7 +132,7 @@ void PanelManager::slotChangePanel(ListPanel *p)
 ListPanel* PanelManager::createPanel(int type, bool setCurrent)
 {
     // create the panel and add it into the widgetstack
-    ListPanel * p = new ListPanel(type, _stack, _left);
+    ListPanel * p = new ListPanel(type, _stack, _left, this);
     _stack->addWidget(p);
 
     // now, create the corrosponding tab
@@ -350,7 +350,7 @@ void PanelManager::slotRecreatePanels()
         int properties = oldPanel->getProperties();
         int iconSize = oldPanel->view->fileIconSize();
 
-        ListPanel *newPanel = new ListPanel(type, _stack, _left);
+        ListPanel *newPanel = new ListPanel(type, _stack, _left, this);
         newPanel->setProperties(properties);
         newPanel->view->setFileIconSize(iconSize);
         newPanel->view->restoreSettings();
@@ -496,6 +496,19 @@ void PanelManager::slotLockTab()
 void PanelManager::newTabs(const QStringList& urls) {
     for(int i = 0; i < urls.count(); i++)
         slotNewTab(KUrl(urls[i]));
+}
+
+AbstractPanelManager *PanelManager::otherManager()
+{
+    if(_left)
+        return RIGHT_MNG;
+    else
+        return LEFT_MNG;
+}
+
+KrPanel *PanelManager::currentPanel()
+{
+    return _self;
 }
 
 #include "panelmanager.moc"

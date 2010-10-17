@@ -20,6 +20,8 @@
 #ifndef PANELMANAGER_H
 #define PANELMANAGER_H
 
+#include "abstractpanelmanager.h"
+
 #include <qwidget.h>
 #include <QtGui/QLayout>
 #include <QGridLayout>
@@ -37,7 +39,7 @@ class QToolButton;
 /**
  * Implements tabbed-browsing by managing a list of tabs and corrosponding panels.
  */
-class PanelManager: public QWidget
+class PanelManager: public QWidget, public AbstractPanelManager
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.krusader.PanelManager")
@@ -72,6 +74,16 @@ public:
     void setCurrentTab(int);
     void refreshAllTabs(bool invalidate = false);
     void layoutTabs();
+
+    // AbstractPanelManager implementation
+    virtual bool isLeft() {
+        return _left;
+    }
+    virtual AbstractPanelManager *otherManager();
+    virtual KrPanel *currentPanel();
+    virtual void newTab(const KUrl &url) {
+        slotNewTab(url);
+    }
 
 public slots:
     /**

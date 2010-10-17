@@ -110,8 +110,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 /////////////////////////////////////////////////////
 //      The list panel constructor       //
 /////////////////////////////////////////////////////
-ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
-        KrPanel(left),
+ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManager *manager) :
+        KrPanel(left, manager),
         QWidget(parent), panelType(typeIn), colorMask(255), compareMode(false), statsAgent(0),
         quickSearch(0), cdRootButton(0), cdUpButton(0), popupBtn(0), popup(0), inlineRefreshJob(0),
         _locked(false), previewJob(0), vfsError(0)
