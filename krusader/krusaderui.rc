@@ -86,8 +86,6 @@
   </Menu>
   <Menu name="go" >
    <text>&amp;Go</text>
-   <Action name="dirUp" />
-   <Action name="go_home" />
    <Action name="root" />
    <Action name="Popular_Urls" />
    <Separator/>
@@ -179,7 +177,7 @@
  <ToolBar iconText="icononly" noMerge="1" name="mainToolBar" fullWidth="true" >
   <Action name="go_back"/>
   <Action name="go_forward"/>
-  <Action name="dirUp" />
+  <Action name="go_up" />
   <Action name="go_home" />
   <Action name="std_redisplay" />
   <Separator name="separator_2" />

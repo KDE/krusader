@@ -143,6 +143,10 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     // standard actions
     actHistoryBackward = stdAction(KStandardAction::Back, SLOT(historyBackward()));
     actHistoryForward = stdAction(KStandardAction::Forward, SLOT(historyForward()));
+    //FIXME: second shortcut for up: see actDirUp
+    //   KStandardAction::up( this, SLOT( dirUp() ), actionCollection )->setShortcut(Qt::Key_Backspace);
+    /* Shortcut disabled because of the Terminal Emulator bug. */
+    actDirUp =  stdAction(KStandardAction::Up, SLOT(dirUp()));
     stdAction(KStandardAction::Home, SLOT(home()));
     stdAction(KStandardAction::Cut, SLOT(cut()));
     actCopy = stdAction(KStandardAction::Copy, SLOT(copy()));
@@ -191,12 +195,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
 
     // navigation
     NEW_KACTION(actRoot, i18n("Root"), "go-top", Qt::CTRL + Qt::Key_Backspace, this, SLOT(root()), "root");
-//PORTME: second shortcut for up: see actDirUp
-    //   KStandardAction::up( this, SLOT( dirUp() ), actionCollection )->setShortcut(Qt::Key_Backspace);
-    /* Shortcut disabled because of the Terminal Emulator bug. */
-    NEW_KACTION(actDirUp, i18n("Up"), "go-up", Qt::CTRL + Qt::Key_PageUp /*Qt::Key_Backspace*/, this, SLOT(dirUp()), "dirUp");
-    KAction *reloadAct;
-    NEW_KACTION(reloadAct, i18n("&Reload"), "view-refresh", Qt::CTRL + Qt::Key_R, this, SLOT(refresh()), "std_redisplay");
+    NEW_KACTION(tmp, i18n("&Reload"), "view-refresh", Qt::CTRL + Qt::Key_R, this, SLOT(refresh()), "std_redisplay");
     NEW_KACTION(actCancelRefresh, i18n("Cancel Refresh of View"), "kr_cancel_refresh", 0, this, SLOT(cancelRefresh()), "cancel refresh");
     NEW_KACTION(actFTPNewConnect, i18n("New Net &Connection..."), "network-connect", Qt::CTRL + Qt::Key_N, this, SLOT(newFTPconnection()), "ftp new connection");
     NEW_KACTION(actFTPDisconnect, i18n("Disconnect &from Net"), "network-disconnect", Qt::SHIFT + Qt::CTRL + Qt::Key_F, this, SLOT(FTPDisconnect()), "ftp disconnect");
