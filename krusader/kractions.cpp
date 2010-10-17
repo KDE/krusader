@@ -172,12 +172,13 @@ void KrActions::setupActions(Krusader *krusaderApp)
     //KStandardAction::print(SLOTS, 0,actionCollection(),"std_print");
     //KStandardAction::showMenubar( SLOTS, SLOT( showMenubar() ), actionCollection(), "std_menubar" );
 
-
-
     /* Shortcut disabled because of the Terminal Emulator bug. */
     KConfigGroup group(krConfig, "Private");
     int compareMode = group.readEntry("Compare Mode", 0);
     int cmdExecMode =  group.readEntry("Command Execution Mode", 0);
+
+    KAction *tabSwitch;
+    NEW_KACTION(tabSwitch, i18n("Tab-Switch panel"), 0, Qt::Key_Tab, MAIN_VIEW, SLOT(panelSwitch()), "tab");
 
     actShowToolBar = (KToggleAction*)KStandardAction::create(KStandardAction::ShowToolbar, SLOTS, SLOT(toggleToolbar()), krusaderApp->actionCollection()/*, "std_toolbar"*/);
 

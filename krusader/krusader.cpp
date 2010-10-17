@@ -414,10 +414,6 @@ void Krusader::resizeEvent(QResizeEvent *e) {
 
 // <patch> Moving from Pixmap actions to generic filenames - thanks to Carsten Pfeiffer
 void Krusader::setupActions() {
-    KAction * tab = new KAction("Tab-Switch panel", this);
-    tab->setShortcut(Qt::Key_Tab);
-    connect(tab, SIGNAL(triggered(bool)), MAIN_VIEW, SLOT(panelSwitch()));
-    actionCollection()->addAction("tab", tab);
     KrActions::setupActions(this);
     _listPanelActions = new ListPanelActions(this, this);
 }
