@@ -121,7 +121,6 @@ protected:
     bool queryExit();
     bool queryClose();
     void setupActions();
-    void setupAccels();
     bool versionControl();  // handle version differences in krusaderrc
     void showEvent(QShowEvent *);
     void hideEvent(QHideEvent *);

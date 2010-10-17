@@ -235,9 +235,6 @@ Krusader::Krusader() : KParts::MainWindow(0,
     userMenu = new UserMenu(this);
     userMenu->hide();
 
-    // setup keyboard accelerators
-    setupAccels();
-
     // create a status bar
     status = new KrusaderStatus(this);
     setStatusBar(status);
@@ -415,15 +412,12 @@ void Krusader::resizeEvent(QResizeEvent *e) {
     KParts::MainWindow::resizeEvent(e);
 }
 
-void Krusader::setupAccels() {
+// <patch> Moving from Pixmap actions to generic filenames - thanks to Carsten Pfeiffer
+void Krusader::setupActions() {
     KAction * tab = new KAction("Tab-Switch panel", this);
     tab->setShortcut(Qt::Key_Tab);
     connect(tab, SIGNAL(triggered(bool)), MAIN_VIEW, SLOT(panelSwitch()));
     actionCollection()->addAction("tab", tab);
-}
-
-// <patch> Moving from Pixmap actions to generic filenames - thanks to Carsten Pfeiffer
-void Krusader::setupActions() {
     KrActions::setupActions(this);
     _listPanelActions = new ListPanelActions(this, this);
 }

@@ -140,7 +140,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     //FIXME: second shortcut for up: see actDirUp
     //   KStandardAction::up( this, SLOT( dirUp() ), actionCollection )->setShortcut(Qt::Key_Backspace);
     /* Shortcut disabled because of the Terminal Emulator bug. */
-    actDirUp =  stdAction(KStandardAction::Up, SLOT(dirUp()));
+    actDirUp = stdAction(KStandardAction::Up, SLOT(dirUp()));
     stdAction(KStandardAction::Home, SLOT(home()));
     stdAction(KStandardAction::Cut, SLOT(cut()));
     actCopy = stdAction(KStandardAction::Copy, SLOT(copy()));
