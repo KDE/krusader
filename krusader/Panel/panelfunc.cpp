@@ -38,6 +38,7 @@ A
 #include <QDir>
 #include <QDrag>
 #include <QMimeData>
+#include <QApplication>
 
 #include <kuiserverjobtracker.h>
 #include <klocale.h>
@@ -70,9 +71,8 @@ A
 #include "../krslots.h"
 #include "../kractions.h"
 #include "../defaults.h"
-#include "../panelmanager.h"
+#include "../abstractpanelmanager.h"
 #include "../krservices.h"
-#include "../krusaderview.h"
 #include "../VFS/vfile.h"
 #include "../VFS/vfs.h"
 #include "../VFS/virt_vfs.h"
@@ -202,8 +202,7 @@ void ListPanelFunc::openUrlInternal(const KUrl& url, const QString& nameToMakeCu
 
     if (!disableLock && panel->isLocked() &&
             !files()->vfs_getOrigin().equals(cleanUrl, KUrl::CompareWithoutTrailingSlash)) {
-        PanelManager * manager = panel->isLeft() ? MAIN_VIEW->leftMng : MAIN_VIEW->rightMng;
-        manager->slotNewTab(url);
+        panel->_manager->newTab(url);
         urlManuallyEntered = false;
         return;
     }
