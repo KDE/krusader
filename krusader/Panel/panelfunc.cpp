@@ -64,10 +64,14 @@ A
 #include "krcalcspacedialog.h"
 #include "listpanel.h"
 #include "krerrordisplay.h"
+#include "listpanelactions.h"
+#include "../resources.h"
 #include "../krglobal.h"
 #include "../krslots.h"
 #include "../kractions.h"
 #include "../defaults.h"
+#include "../panelmanager.h"
+#include "../krservices.h"
 #include "../krusaderview.h"
 #include "../VFS/vfile.h"
 #include "../VFS/vfs.h"
@@ -84,9 +88,6 @@ A
 #include "../Dialogs/krspwidgets.h"
 #include "../Dialogs/checksumdlg.h"
 #include "../KViewer/krviewer.h"
-#include "../resources.h"
-#include "../panelmanager.h"
-#include "../krservices.h"
 #include "../GUI/syncbrowsebutton.h"
 #include "../Queue/queue_mgr.h"
 
@@ -1185,7 +1186,7 @@ void ListPanelFunc::FTPDisconnect()
 {
     // you can disconnect only if connected !
     if (files() ->vfs_getType() == vfs::VFS_FTP) {
-        krFTPDiss->setEnabled(false);
+        panel->actions->actFTPDisconnect->setEnabled(false);
         panel->view->setNameToMakeCurrent(QString());
         openUrl(panel->realPath());   // open the last local URL
     }
@@ -1198,7 +1199,7 @@ void ListPanelFunc::newFTPconnection()
     if (url.isEmpty())
         return ;
 
-    krFTPDiss->setEnabled(true);
+    panel->actions->actFTPDisconnect->setEnabled(true);
     openUrl(url);
 }
 
@@ -1233,14 +1234,10 @@ void ListPanelFunc::refreshActions()
         return;
     vfs::VFS_TYPE vfsType = files() ->vfs_getType();
 
-    //  set up actions
-    //krMultiRename->setEnabled( vfsType == vfs::VFS_NORMAL );  // batch rename
-    //krProperties ->setEnabled( vfsType == vfs::VFS_NORMAL || vfsType == vfs::VFS_FTP ); // file properties
-    krFTPDiss ->setEnabled(vfsType == vfs::VFS_FTP);       // disconnect an FTP session
-    krCreateCS->setEnabled(vfsType == vfs::VFS_NORMAL);
-
     QString protocol = files()->vfs_getOrigin().protocol();
     krRemoteEncoding->setEnabled(protocol == "ftp" || protocol == "sftp" || protocol == "fish" || protocol == "krarc");
+    //krMultiRename->setEnabled( vfsType == vfs::VFS_NORMAL );  // batch rename
+    //krProperties ->setEnabled( vfsType == vfs::VFS_NORMAL || vfsType == vfs::VFS_FTP ); // file properties
 
     /*
       krUnpack->setEnabled(true);                            // unpack archive
@@ -1258,6 +1255,8 @@ void ListPanelFunc::refreshActions()
           krExecFiles->setEnabled(true);                         // show only executables
     */
 
+    panel->actions->actFTPDisconnect->setEnabled(vfsType == vfs::VFS_FTP);       // disconnect an FTP session
+    panel->actions->actCreateChecksum->setEnabled(vfsType == vfs::VFS_NORMAL);
     panel->actions->actDirUp->setEnabled(files()->vfs_getOrigin().upUrl() != files()->vfs_getOrigin());
     panel->actions->actHistoryBackward->setEnabled(history->canGoBack());
     panel->actions->actHistoryForward->setEnabled(history->canGoForward());
