@@ -73,10 +73,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 //#include <kbookmarkmanager.h>
 //#endif
 
-#include "../panelmanager.h"
 #include "../defaults.h"
 #include "../krusader.h"
-#include "../kractions.h"
 #include "../krslots.h"
 #include "../kicons.h"
 #include "../resources.h"
@@ -97,6 +95,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../Filter/filterdialog.h"
 #include "../UserAction/useractionpopupmenu.h"
 
+#include "listpanelactions.h"
 #include "krpreviewpopup.h"
 #include "panelpopup.h"
 #include "panelfunc.h"
