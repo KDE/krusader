@@ -35,8 +35,10 @@
 
 #include <QObject>
 #include <QString>
+#include <QKeySequence>
 
 class KAction;
+class KToggleAction;
 class FileManagerWindow;
 class KrPanel;
 class ListPanelFunc;
@@ -152,6 +154,11 @@ public:
     static KAction *actSyncBrowse, *actCancelRefresh;
 
 protected:
+    KAction *createAction(QString text, QString icon, QKeySequence shortcut,
+                                 QObject *recv, const char *slot, QString name);
+    KToggleAction *createToggleAction(QString text, QString icon, QKeySequence shortcut,
+                                 QObject *recv, const char *slot, QString name);
+
     KrPanel *activePanel();
     KrPanel *leftPanel();
     KrPanel *rightPanel();

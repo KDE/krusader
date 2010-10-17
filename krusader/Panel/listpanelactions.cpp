@@ -95,36 +95,6 @@ KAction *ListPanelActions::actHistoryForward = 0;
 KAction *ListPanelActions::actCancelRefresh = 0;
 
 
-
-KAction *createAction(QString text, QString icon, QKeySequence shortcut,
-                                 QObject *recv, const char *slot, QString name, QObject *parent, KActionCollection *actionCollection)
-{
-    KAction *a;
-    if (icon == 0)
-        a = new KAction(text, parent);
-    else
-        a = new KAction(KIcon(icon), text, parent);
-    a->setShortcut(shortcut);
-    parent->connect(a, SIGNAL(triggered(bool)), recv, slot);
-    actionCollection->addAction(name, a);
-    return a;
-}
-
-KToggleAction *createToggleAction(QString text, QString icon, QKeySequence shortcut,
-                                 QObject *recv, const char *slot, QString name, QObject *parent, KActionCollection *actionCollection)
-{
-    KToggleAction *a;
-    if (icon == 0)
-        a = new KToggleAction(text, parent);
-    else
-        a = new KToggleAction(KIcon(icon), text, parent);
-    a->setShortcut(shortcut);
-    parent->connect(a, SIGNAL(triggered(bool)), recv, slot);
-    actionCollection->addAction(name, a);
-    return a;
-}
-
-
 ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindow) :
         QObject(parent),
         _mainWindow(mainWindow)
@@ -134,10 +104,10 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     self = this;
 
 #define NEW_KACTION(VAR, TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME) \
-    VAR = createAction(TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME, parent, actionCollection);
+    VAR = createAction(TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME);
 
 #define NEW_KTOGGLEACTION(VAR, TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME) \
-    VAR = createToggleAction(TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME, parent, actionCollection);
+    VAR = createToggleAction(TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME);
 
     KActionCollection *actionCollection = _mainWindow->actions();
 
@@ -253,6 +223,34 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actSelectAll->setToolTip(i18n("Select all files in the current directory"));
     actUnselectAll->setToolTip(i18n("Unselect all selected files"));
     actRoot->setToolTip(i18n("ROOT (/)"));
+}
+
+KAction *ListPanelActions::createAction(QString text, QString icon, QKeySequence shortcut,
+                                 QObject *recv, const char *slot, QString name)
+{
+    KAction *a;
+    if (icon == 0)
+        a = new KAction(text, this);
+    else
+        a = new KAction(KIcon(icon), text, this);
+    a->setShortcut(shortcut);
+    connect(a, SIGNAL(triggered(bool)), recv, slot);
+    _mainWindow->actions()->addAction(name, a);
+    return a;
+}
+
+KToggleAction *ListPanelActions::createToggleAction(QString text, QString icon, QKeySequence shortcut,
+                                 QObject *recv, const char *slot, QString name)
+{
+    KToggleAction *a;
+    if (icon == 0)
+        a = new KToggleAction(text, this);
+    else
+        a = new KToggleAction(KIcon(icon), text, this);
+    a->setShortcut(shortcut);
+    connect(a, SIGNAL(triggered(bool)), recv, slot);
+    _mainWindow->actions()->addAction(name, a);
+    return a;
 }
 
 inline KrPanel *ListPanelActions::activePanel()
