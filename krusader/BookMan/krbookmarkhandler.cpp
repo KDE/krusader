@@ -20,8 +20,9 @@
 #include "krbookmarkhandler.h"
 #include "kraddbookmarkdlg.h"
 #include "../krslots.h"
-#include "../krusader.h"
+// #include "../krusader.h"
 #include "../kractions.h"
+#include "../filemanagerwindow.h"
 #include "../Dialogs/popularurls.h"
 #include "../VFS/vfs.h"
 #include "../Panel/krpanel.h"
@@ -44,11 +45,12 @@
 #define BOOKMARKS_FILE "krusader/krbookmarks.xml"
 #define CONNECT_BM(X) { disconnect(X, SIGNAL(activated(const KUrl&)), 0, 0); connect(X, SIGNAL(activated(const KUrl&)), this, SLOT(slotActivated(const KUrl&))); }
 
-KrBookmarkHandler::KrBookmarkHandler(): QObject(0), _middleClick(false), _mainBookmarkPopup(0), _specialBookmarks()
+KrBookmarkHandler::KrBookmarkHandler(FileManagerWindow *mainWindow) : QObject(mainWindow->widget()),
+        _mainWindow(mainWindow), _middleClick(false), _mainBookmarkPopup(0), _specialBookmarks()
 {
     // create our own action collection and make the shortcuts apply only to parent
-    _privateCollection = new KActionCollection((QObject *)krApp);
-    _collection = krApp->actionCollection();
+    _privateCollection = new KActionCollection(this);
+    _collection = _mainWindow->actions();
 
     // create _root: father of all bookmarks. it is a dummy bookmark and never shown
     _root = new KrBookmark(i18n("Bookmarks"));
@@ -74,7 +76,7 @@ void KrBookmarkHandler::slotBookmarkCurrent()
 
 void KrBookmarkHandler::bookmarkCurrent(KUrl url)
 {
-    QPointer<KrAddBookmarkDlg> dlg = new KrAddBookmarkDlg(krApp, url);
+    QPointer<KrAddBookmarkDlg> dlg = new KrAddBookmarkDlg(_mainWindow->widget(), url);
     if (dlg->exec() == KDialog::Accepted) {
         KrBookmark *bm = new KrBookmark(dlg->name(), dlg->url(), _collection);
         addBookmark(bm, dlg->folder());
@@ -197,7 +199,7 @@ void KrBookmarkHandler::exportToFile()
         stream << doc.toString();
         file.close();
     } else {
-        KMessageBox::error(krApp, i18n("Unable to write to %1", filename), i18n("Error"));
+        KMessageBox::error(_mainWindow->widget(), i18n("Unable to write to %1", filename), i18n("Error"));
     }
 }
 
@@ -296,7 +298,7 @@ void KrBookmarkHandler::importFromFile()
     goto BM_SUCCESS;
 
 BM_ERROR:
-    KMessageBox::error(krApp, i18n("Error reading bookmarks file: %1", errorMsg), i18n("Error"));
+    KMessageBox::error(_mainWindow->widget(), i18n("Error reading bookmarks file: %1", errorMsg), i18n("Error"));
 
 BM_SUCCESS:
     file.close();
@@ -365,7 +367,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu)
             _specialBookmarks.append(bmfAct);
             // add the top 15 urls
 #define MAX 15
-            KUrl::List list = krApp->popularUrls->getMostPopularUrls(MAX);
+            KUrl::List list = _mainWindow->popularUrls()->getMostPopularUrls(MAX);
             KUrl::List::Iterator it;
             for (it = list.begin(); it != list.end(); ++it) {
                 QString name;
@@ -416,11 +418,12 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu)
 
             if (hasJumpback) {
                 // add the jump-back button
-                menu->addAction(krJumpBack);
-                _specialBookmarks.append(krJumpBack);
+                ListPanelActions *actions = _mainWindow->listPanelActions();
+                menu->addAction(actions->actJumpBack);
+                _specialBookmarks.append(actions->actJumpBack);
                 menu->addSeparator();
-                menu->addAction(krSetJumpBack);
-                _specialBookmarks.append(krSetJumpBack);
+                menu->addAction(actions->actSetJumpBack);
+                _specialBookmarks.append(actions->actSetJumpBack);
             }
         }
 

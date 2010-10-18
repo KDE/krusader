@@ -33,6 +33,7 @@
 
 class KActionCollection;
 class KBookmarkManager;
+class FileManagerWindow;
 
 class KrBookmarkHandler: public QObject
 {
@@ -40,7 +41,7 @@ class KrBookmarkHandler: public QObject
     friend class KrAddBookmarkDlg;
     enum Actions { BookmarkCurrent = 0, ManageBookmarks };
 public:
-    KrBookmarkHandler();
+    KrBookmarkHandler(FileManagerWindow *mainWindow);
     ~KrBookmarkHandler();
     void populate(KMenu *menu);
     void addBookmark(KrBookmark *bm, KrBookmark *parent = 0);
@@ -70,6 +71,7 @@ protected slots:
     void slotActivated(const KUrl& url);
 
 private:
+    FileManagerWindow *_mainWindow;
     KActionCollection *_collection, *_privateCollection;
     KrBookmark *_root;
     // the whole KBookmarkManager is an ugly hack. use it until we have our own
