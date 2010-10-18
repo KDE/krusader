@@ -191,6 +191,19 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actSelectAll->setToolTip(i18n("Select all files in the current directory"));
     actUnselectAll->setToolTip(i18n("Unselect all selected files"));
     actRoot->setToolTip(i18n("ROOT (/)"));
+
+    actF2->setToolTip("<qt>" + i18n("<p>Open terminal in current directory.</p>"
+                                 "<p>The terminal can be defined in Konfigurator, "
+                                 "default is <b>konsole</b>.</p>") + "</qt>");
+    actF3->setToolTip(i18n("Open file in viewer."));
+    actF4->setToolTip("<qt>" + i18n("<p>Edit file.</p>"
+                                 "<p>The editor can be defined in Konfigurator, "
+                                 "default is <b>internal editor</b>.</p>") + "</qt>");
+    actF5->setToolTip(i18n("Copy file from one panel to the other."));
+    actF6->setToolTip(i18n("Move file from one panel to the other."));
+    actF7->setToolTip(i18n("Create directory in current panel."));
+    actF8->setToolTip(i18n("Delete file, directory, etc."));
+    actF9->setToolTip(i18n("Rename file, directory, etc."));
 }
 
 void ListPanelActions::activePanelChanged(ListPanel *panel)

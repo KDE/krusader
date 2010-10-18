@@ -45,65 +45,32 @@ KFnKeys::KFnKeys(QWidget *parent): QWidget(parent)
 {
     ////////////////////////////////
 #define SETUP(TARGET) {\
+        TARGET = new QPushButton(this); \
         TARGET->setMinimumWidth(45);\
+        TARGET->setToolTip(actions->act##TARGET->toolTip()); \
+        connect(TARGET, SIGNAL(clicked()), actions->act##TARGET, SLOT(trigger())); \
     }
 
     ListPanelActions *actions = ListPanelActions::self;
-
-    // FIXME: the tooltips should be set for the actions in ListPanelActions
 
     setFont(KGlobalSettings::generalFont());
     layout = new QGridLayout(this); // 9 keys
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
-    F2 = new QPushButton(this);
-    F2->setToolTip("<qt>" + i18n("<p>Open terminal in current directory.</p>"
-                                 "<p>The terminal can be defined in Konfigurator, "
-                                 "default is <b>konsole</b>.</p>") + "</qt>");
-    connect(F2, SIGNAL(clicked()), actions->actF2, SLOT(trigger()));
+
     SETUP(F2);
-
-    F3 = new QPushButton(this);
-    F3->setToolTip(i18n("Open file in viewer."));
-    connect(F3, SIGNAL(clicked()), actions->actF3, SLOT(trigger()));
     SETUP(F3);
-
-    F4 = new QPushButton(this);
-    F4->setToolTip("<qt>" + i18n("<p>Edit file.</p>"
-                                 "<p>The editor can be defined in Konfigurator, "
-                                 "default is <b>internal editor</b>.</p>") + "</qt>");
-    connect(F4, SIGNAL(clicked()), actions->actF4, SLOT(trigger()));
     SETUP(F4);
-
-    F5 = new QPushButton(this);
-    F5->setToolTip(i18n("Copy file from one panel to the other."));
-    connect(F5, SIGNAL(clicked()), actions->actF5, SLOT(trigger()));
     SETUP(F5);
-
-    F6 = new QPushButton(this);
-    F6->setToolTip(i18n("Move file from one panel to the other."));
-    connect(F6, SIGNAL(clicked()), actions->actF6, SLOT(trigger()));
     SETUP(F6);
-
-    F7 = new QPushButton(this);
-    F7->setToolTip(i18n("Create directory in current panel."));
-    connect(F7, SIGNAL(clicked()), actions->actF7, SLOT(trigger()));
     SETUP(F7);
-
-    F8 = new QPushButton(this);
-    F8->setToolTip(i18n("Delete file, directory, etc."));
-    connect(F8, SIGNAL(clicked()), actions->actF8, SLOT(trigger()));
     SETUP(F8);
-
-    F9 = new QPushButton(this);
-    F9->setToolTip(i18n("Rename file, directory, etc."));
-    connect(F9, SIGNAL(clicked()), actions->actF9, SLOT(trigger()));
     SETUP(F9);
 
     F10 = new QPushButton(this);
     F10->setToolTip(i18n("Quit Krusader."));
     connect(F10, SIGNAL(clicked()), krMainWindow, SLOT(slotClose()));
-    SETUP(F10);
+    F10->setMinimumWidth(45);
 
     updateShortcuts();
     /*
