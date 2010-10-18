@@ -37,6 +37,7 @@ message(STATUS "${CMAKE_CURRENT_SOURCE_DIR}: skipped subdir $(KRJSDIR)")
 set(krusader_SRCS
     krmainwindow.cpp
     krglobal.cpp
+    actionsbase.cpp
     kractions.cpp
     paneltabbar.cpp 
     panelmanager.cpp 

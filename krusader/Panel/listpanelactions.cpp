@@ -39,9 +39,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../KViewer/krviewer.h"
 
 #include <klocale.h>
-#include <kactioncollection.h>
-#include <kaction.h>
-#include <ktoggleaction.h>
 
 
 ListPanelActions *ListPanelActions::self = 0;
@@ -96,8 +93,7 @@ KAction *ListPanelActions::actCancelRefresh = 0;
 
 
 ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindow) :
-        QObject(parent),
-        _mainWindow(mainWindow)
+        ActionsBase(parent, mainWindow)
 {
     if(self)
         abort();
@@ -214,52 +210,19 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actRoot->setToolTip(i18n("ROOT (/)"));
 }
 
-KAction *ListPanelActions::stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot)
-{
-    return KStandardAction::create(id, recv, slot, _mainWindow->actions());
-}
-
-KAction *ListPanelActions::action(QString text, QString icon, QKeySequence shortcut,
-                                 QObject *recv, const char *slot, QString name, bool isToggleAction)
-{
-    KAction *a;
-
-    if(isToggleAction) {
-        if (icon == 0)
-            a = new KToggleAction(text, this);
-        else
-            a = new KToggleAction(KIcon(icon), text, this);
-    } else {
-        if (icon == 0)
-            a = new KAction(text, this);
-        else
-            a = new KAction(KIcon(icon), text, this);
-    }
-
-    a->setShortcut(shortcut);
-    connect(a, SIGNAL(triggered(bool)), recv, slot);
-    _mainWindow->actions()->addAction(name, a);
-    return a;
-}
-
-KToggleAction *ListPanelActions::toggleAction(QString text, QString icon, QKeySequence shortcut,
-                                QObject *recv, const char *slot, QString name) {
-    return static_cast<KToggleAction*>(action(text, icon, shortcut, recv, slot, name, true));
-}
-
 inline KrPanel *ListPanelActions::activePanel()
 {
-    return _mainWindow->activePanel();
+    return static_cast<FileManagerWindow*>(_mainWindow)->activePanel();
 }
 
 inline KrPanel *ListPanelActions::leftPanel()
 {
-    return _mainWindow->leftPanel();
+    return static_cast<FileManagerWindow*>(_mainWindow)->leftPanel();
 }
 
 inline KrPanel *ListPanelActions::rightPanel()
 {
-    return _mainWindow->rightPanel();
+    return static_cast<FileManagerWindow*>(_mainWindow)->rightPanel();
 }
 
 inline ListPanelFunc *ListPanelActions::activeFunc()

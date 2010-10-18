@@ -33,18 +33,14 @@
 #ifndef __LISTPANELACTIONS_H__
 #define __LISTPANELACTIONS_H__
 
-#include <QObject>
-#include <QString>
-#include <QKeySequence>
-#include <kstandardaction.h>
+#include "../actionsbase.h"
 
-class KAction;
-class KToggleAction;
+
 class FileManagerWindow;
 class KrPanel;
 class ListPanelFunc;
 
-class ListPanelActions : public QObject
+class ListPanelActions : public ActionsBase
 {
     Q_OBJECT
 public:
@@ -155,29 +151,10 @@ public:
     static KAction *actSyncBrowse, *actCancelRefresh;
 
 protected:
-    KAction *action(QString text, QString icon, QKeySequence shortcut,
-                    QObject *recv, const char *slot, QString name, bool isToggleAction = false);
-    KAction *action(QString text, QString icon, QKeySequence shortcut,
-                    const char *slot, QString name) {
-        return action(text, icon, shortcut, this, slot, name);
-    }
-    KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,
-                                QObject *recv, const char *slot, QString name);
-    KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,
-                                const char *slot, QString name) {
-        return toggleAction(text, icon, shortcut, this, slot, name);
-    }
-    KAction *stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot);
-    KAction *stdAction(KStandardAction::StandardAction id, const char *slot) {
-        return stdAction(id, this, slot);
-    }
-
     KrPanel *activePanel();
     KrPanel *leftPanel();
     KrPanel *rightPanel();
     ListPanelFunc *activeFunc();
-
-    FileManagerWindow *_mainWindow;
 };
 
 #endif // __LISTPANELACTIONS_H__
