@@ -92,7 +92,12 @@ public:
     virtual AbstractPanelManager *activeManager();
     virtual AbstractPanelManager *leftManager();
     virtual AbstractPanelManager *rightManager();
-    virtual ListPanelActions *listPanelActions();
+    virtual KrActions *krActions() {
+        return _krActions;
+    }
+    virtual ListPanelActions *listPanelActions() {
+        return _listPanelActions;
+    }
     virtual void plugActionList(const char *name, QList<QAction*> &list) {
         KParts::MainWindow::plugActionList(name, list);
     }
@@ -164,6 +169,7 @@ signals:
     void shutdown();
 
 private:
+    KrActions *_krActions;
     ListPanelActions *_listPanelActions;
     KSystemTrayIcon *sysTray;
     QPoint       oldPos;

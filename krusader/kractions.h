@@ -44,6 +44,8 @@ class Krusader;
 class KrActions : public QObject
 {
 public:
+    KrActions(QObject *parent) : QObject(parent) {}
+
     // Actions
     static KAction *actCompare;
     static KAction *actCmdlinePopup, *actLocate, *actSwitchFullScreenTE;

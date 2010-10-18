@@ -415,6 +415,7 @@ void Krusader::resizeEvent(QResizeEvent *e) {
 // <patch> Moving from Pixmap actions to generic filenames - thanks to Carsten Pfeiffer
 void Krusader::setupActions() {
     KrActions::setupActions(this);
+    _krActions = new KrActions(this);
     _listPanelActions = new ListPanelActions(this, this);
 }
 
@@ -899,11 +900,6 @@ AbstractPanelManager *Krusader::leftManager()
 AbstractPanelManager *Krusader::rightManager()
 {
     return MAIN_VIEW->rightMng;
-}
-
-ListPanelActions *Krusader::listPanelActions()
-{
-    return _listPanelActions;
 }
 
 #include "krusader.moc"
