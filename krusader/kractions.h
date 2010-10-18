@@ -88,8 +88,6 @@ public:
 };
 
 // krusader's actions - things krusader can do!
-#define krCopy            ListPanelActions::actCopy
-
 #define krHomeTerm        KrActions::actHomeTerminal   // open terminal@home dir
 #define krRemoteEncoding  KrActions::actRemoteEncoding // remote encoding menu
 #define krMountMan        KrActions::actMountMan       // run Mount-manager

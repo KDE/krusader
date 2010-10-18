@@ -33,6 +33,7 @@
 #define KRGLOBAL_H
 
 #include <kconfiggroup.h>
+#include <kshortcut.h>
 
 //static QTextOStream krOut(stdout);
 #define krOut kDebug(50010)
@@ -64,6 +65,9 @@ public:
     static UserAction *userAction;
 //     static ListPanel  *activePanel;
     static KrPanel *activePanel;
+
+    //HACK - used by [ListerTextArea|KrSearchDialog|LocateDlg]:keyPressEvent()
+    static KShortcut copyShortcut;
 
     static void enableAction(const char *name, bool enable);
     static QAction *getAction(const char *name);

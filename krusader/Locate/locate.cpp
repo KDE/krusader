@@ -439,7 +439,7 @@ void LocateDlg::slotDoubleClick(QTreeWidgetItem *item)
 
 void LocateDlg::keyPressEvent(QKeyEvent *e)
 {
-    if (krCopy->shortcut().contains(QKeySequence(e->key() | e->modifiers()))) {
+    if (KrGlobal::copyShortcut.contains(QKeySequence(e->key() | e->modifiers()))) {
         operate(0, COPY_SELECTED_TO_CLIPBOARD);
         e->accept();
         return;

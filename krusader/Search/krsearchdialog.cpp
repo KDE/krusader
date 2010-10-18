@@ -573,7 +573,7 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
         } else if (e->key() == Qt::Key_F10) {
             compareByContent();
             return;
-        } else if (krCopy->shortcut().contains(QKeySequence(e->key() | e->modifiers()))) {
+        } else if (KrGlobal::copyShortcut.contains(QKeySequence(e->key() | e->modifiers()))) {
             copyToClipBoard();
             return;
         }

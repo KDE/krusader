@@ -44,6 +44,7 @@ QWidget *KrGlobal::mainWindow = 0;
 UserAction *KrGlobal::userAction = 0;
 // ListPanel *KrGlobal::activePanel = 0;
 KrPanel *KrGlobal::activePanel = 0;
+KShortcut KrGlobal::copyShortcut;
 
 void KrGlobal::enableAction(const char *name, bool enable)
 {
