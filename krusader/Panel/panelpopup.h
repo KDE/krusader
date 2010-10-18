@@ -48,6 +48,7 @@ class KDirSortFilterProxyModel;
 class QMimeData;
 class QPoint;
 class vfile;
+class FileManagerWindow;
 
 class PanelPopup: public QWidget
 {
@@ -55,7 +56,7 @@ class PanelPopup: public QWidget
 
     enum Parts { Tree, Preview, QuickPanel, View, DskUsage, Last = 0xFF };
 public:
-    PanelPopup(QSplitter *splitter, bool left);
+    PanelPopup(QSplitter *splitter, bool left, FileManagerWindow *mainWindow);
     ~PanelPopup();
     inline int currentPage() const {
         return stack->currentWidget()->property("KrusaderWidgetId").toInt();
@@ -85,6 +86,7 @@ protected:
 
     bool _left;
     bool _hidden;
+    FileManagerWindow *_mainWindow;
     QStackedWidget *stack;
     KrusaderImageFilePreview *viewer;
     KrSqueezedTextLabel *dataLine;

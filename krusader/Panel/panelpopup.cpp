@@ -19,20 +19,19 @@
 
 #include "panelpopup.h"
 
-#include "../krglobal.h"
-#include "../kractions.h"
-#include "../kicons.h"
-#include "../Dialogs/krsqueezedtextlabel.h"
-#include "../defaults.h"
-#include "../krslots.h"
-#include "../KViewer/kimagefilepreview.h"
-#include "../KViewer/panelviewer.h"
-#include "../KViewer/diskusageviewer.h"
 #include "krpanel.h"
 #include "listpanel.h"
+#include "listpanelactions.h"
 #include "panelfunc.h"
 #include "krview.h"
 #include "krviewitem.h"
+#include "../kicons.h"
+#include "../filemanagerwindow.h"
+#include "../defaults.h"
+#include "../Dialogs/krsqueezedtextlabel.h"
+#include "../KViewer/kimagefilepreview.h"
+#include "../KViewer/panelviewer.h"
+#include "../KViewer/diskusageviewer.h"
 
 #include <QtGui/QButtonGroup>
 #include <QtGui/QToolButton>
@@ -252,8 +251,8 @@ void KrFileTreeView::setRootUrl(const KUrl &url)
     mSourceModel->dirLister()->openUrl(url);
 }
 
-PanelPopup::PanelPopup(QSplitter *parent, bool left) : QWidget(parent),
-        _left(left), _hidden(true), stack(0), viewer(0), pjob(0), splitterSizes()
+PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWindow) : QWidget(parent),
+        _left(left), _hidden(true), _mainWindow(mainWindow), stack(0), viewer(0), pjob(0), splitterSizes()
 {
     splitter = parent;
     QGridLayout * layout = new QGridLayout(this);
@@ -407,7 +406,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left) : QWidget(parent),
     qsettingsBtn->setIcon(krLoader->loadIcon("configure", KIconLoader::Toolbar, 16));
     qsettingsBtn->setFixedSize(20, 20);
     qsettingsBtn->setToolTip(i18n("Select group dialog"));
-    connect(qsettingsBtn, SIGNAL(clicked()), krSelect, SLOT(trigger()));
+    connect(qsettingsBtn, SIGNAL(clicked()), _mainWindow->listPanelActions()->actSelect, SLOT(trigger()));
 
     qlayout->addWidget(selectLabel, 0, 0);
     qlayout->addWidget(quickSelectCombo, 0, 1);
@@ -605,7 +604,7 @@ void PanelPopup::quickSelect()
 
 void PanelPopup::quickSelect(const QString &mask)
 {
-    ACTIVE_PANEL->gui->select(KRQuery(mask), true);
+    _mainWindow->activePanel()->gui->select(KRQuery(mask), true);
 }
 
 void PanelPopup::quickSelectStore()
