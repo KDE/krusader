@@ -24,6 +24,20 @@
 #include <kaction.h>
 #include <ktoggleaction.h>
 
+void ActionsBase::ActionGroup::reconnect(QObject *recv)
+{
+    foreach(KAction *action, _slots.keys()) {
+        action->disconnect(action, 0, 0, 0);
+        action->connect(action, SIGNAL(triggered(bool)), recv, _slots[action]);
+    }
+}
+
+void ActionsBase::ActionGroup::addAction(KAction *action, const char *slot)
+{
+    _slots.insert(action, slot);
+}
+
+
 KAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
                                  QObject *recv, const char *slot, QString name, bool isToggleAction)
 {

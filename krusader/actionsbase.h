@@ -21,6 +21,7 @@
 
 #include <QObject>
 #include <QKeySequence>
+#include <QHash>
 #include <kstandardaction.h>
 
 
@@ -33,6 +34,15 @@ public:
     ActionsBase(QObject *parent, KrMainWindow *mainWindow) : QObject(parent),
                 _mainWindow(mainWindow) {}
 protected:
+    class ActionGroup
+    {
+        QHash<KAction*, const char*> _slots;
+    public:
+        ActionGroup() {}
+        void reconnect(QObject *recv);
+        void addAction(KAction *action, const char *slot);
+    };
+
     KAction *action(QString text, QString icon, QKeySequence shortcut,
                     QObject *recv, const char *slot, QString name, bool isToggleAction = false);
     KAction *action(QString text, QString icon, QKeySequence shortcut,
