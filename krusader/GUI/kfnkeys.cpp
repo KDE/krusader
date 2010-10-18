@@ -36,23 +36,21 @@
 #include <klocale.h>
 #include <kglobalsettings.h>
 
-#include "../krglobal.h"
-#include "../kractions.h"
 #include "../defaults.h"
 #include "../filemanagerwindow.h"
+#include "../kractions.h"
 #include "../Panel/listpanelactions.h"
 
-KFnKeys::KFnKeys(QWidget *parent, FileManagerWindow *mainWindow) : QWidget(parent)
+KFnKeys::KFnKeys(QWidget *parent, FileManagerWindow *mainWindow) :
+        QWidget(parent), mainWindow(mainWindow)
 {
     ////////////////////////////////
 #define SETUP(TARGET) {\
         TARGET = new QPushButton(this); \
         TARGET->setMinimumWidth(45);\
-        TARGET->setToolTip(actions->act##TARGET->toolTip()); \
-        connect(TARGET, SIGNAL(clicked()), actions->act##TARGET, SLOT(trigger())); \
+        TARGET->setToolTip(mainWindow->listPanelActions()->act##TARGET->toolTip()); \
+        connect(TARGET, SIGNAL(clicked()), mainWindow->listPanelActions()->act##TARGET, SLOT(trigger())); \
     }
-
-    actions = mainWindow->listPanelActions();
 
     setFont(KGlobalSettings::generalFont());
     layout = new QGridLayout(this); // 9 keys
@@ -70,7 +68,7 @@ KFnKeys::KFnKeys(QWidget *parent, FileManagerWindow *mainWindow) : QWidget(paren
 
     F10 = new QPushButton(this);
     F10->setToolTip(i18n("Quit Krusader."));
-    connect(F10, SIGNAL(clicked()), mainWindow->widget(), SLOT(slotClose()));
+    connect(F10, SIGNAL(clicked()), mainWindow->krActions()->actF10, SLOT(trigger()));
     F10->setMinimumWidth(45);
 
     updateShortcuts();
@@ -98,15 +96,18 @@ KFnKeys::KFnKeys(QWidget *parent, FileManagerWindow *mainWindow) : QWidget(paren
 
 void KFnKeys::updateShortcuts()
 {
-    F2->setText(actions->actF2->shortcut().toString() + i18n(" Term"));
-    F3->setText(actions->actF3->shortcut().toString() + i18n(" View"));
-    F4->setText(actions->actF4->shortcut().toString() + i18n(" Edit"));
-    F5->setText(actions->actF5->shortcut().toString() + i18n(" Copy"));
-    F6->setText(actions->actF6->shortcut().toString() + i18n(" Move"));
-    F7->setText(actions->actF7->shortcut().toString() + i18n(" Mkdir"));
-    F8->setText(actions->actF8->shortcut().toString() + i18n(" Delete"));
-    F9->setText(actions->actF9->shortcut().toString() + i18n(" Rename"));
-    F10->setText(krF10->shortcut().toString() + i18n(" Quit"));
+#define UPDATE(TARGET, TEXT)\
+    TARGET->setText(mainWindow->listPanelActions()->act##TARGET->shortcut().toString() + " " + TEXT);
+
+    UPDATE(F2, i18n("Term"));
+    UPDATE(F3, i18n("View"));
+    UPDATE(F4, i18n("Edit"));
+    UPDATE(F5, i18n("Copy"));
+    UPDATE(F6, i18n("Move"));
+    UPDATE(F7, i18n("Mkdir"));
+    UPDATE(F8, i18n("Delete"));
+    UPDATE(F9, i18n("Rename"));
+    F10->setText(mainWindow->krActions()->actF10->shortcut().toString() + i18n(" Quit"));
 }
 
 #include "kfnkeys.moc"
