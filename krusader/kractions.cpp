@@ -299,7 +299,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     actRemoteEncoding = new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "character-set", krusaderApp->actionCollection());
 
     NEW_KACTION(actF10, i18n("Quit"), 0, Qt::Key_F10, krusaderApp, SLOT(slotClose()) , "F10_Quit");
-    NEW_KACTION(actPopularUrls, i18n("Popular URLs..."), 0, Qt::CTRL + Qt::Key_Z, krusaderApp->popularUrls, SLOT(showDialog()), "Popular_Urls");
+    NEW_KACTION(actPopularUrls, i18n("Popular URLs..."), 0, Qt::CTRL + Qt::Key_Z, krusaderApp->popularUrls(), SLOT(showDialog()), "Popular_Urls");
     NEW_KACTION(actSwitchFullScreenTE, i18n("Toggle Fullwidget Terminal Emulator"), 0, Qt::CTRL + Qt::Key_F, MAIN_VIEW, SLOT(switchFullScreenTE()), "switch_fullscreen_te");
     NEW_KACTION(actZoomIn, i18n("Zoom In"), "zoom-in", 0, SLOTS, SLOT(zoomIn()), "zoom_in");
     NEW_KACTION(actZoomOut, i18n("Zoom Out"), "zoom-out", 0, SLOTS, SLOT(zoomOut()), "zoom_out");

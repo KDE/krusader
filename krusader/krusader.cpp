@@ -166,9 +166,9 @@ Krusader::Krusader() : KParts::MainWindow(0,
     connect(KrGlobal::mountMan, SIGNAL(refreshPanel(const KUrl &)), SLOTS, SLOT(refresh(const KUrl &)));
 
     // create bookman
-    krBookMan = new KrBookmarkHandler();
+    krBookMan = new KrBookmarkHandler(this);
 
-    popularUrls = new PopularUrls(this);
+    _popularUrls = new PopularUrls(this);
 
     queueManager = new QueueManager();
 
@@ -481,7 +481,7 @@ void Krusader::saveSettings() {
     }
 
     // save popular links
-    popularUrls->save();
+    _popularUrls->save();
 
     krConfig->sync();
 }
@@ -740,7 +740,7 @@ void Krusader::updateGUI(bool enforce) {
         }
     }
     // popular urls
-    popularUrls->load();
+    _popularUrls->load();
 }
 
 // Adds one tool to the list in the supportedTools method

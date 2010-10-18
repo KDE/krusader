@@ -805,7 +805,7 @@ void ListPanel::slotStartUpdate()
     // return cursor to normal arrow
     setCursor(Qt::ArrowCursor);
     slotUpdateTotals();
-    krApp->popularUrls->addUrl(virtualPath());
+    krApp->popularUrls()->addUrl(virtualPath());
 }
 
 void ListPanel::slotUpdate()

@@ -88,43 +88,8 @@ public:
 };
 
 // krusader's actions - things krusader can do!
-#define krProperties      ListPanelActions::actProperties     // file properties
-#define krPack            ListPanelActions::actPack           // pack files into an archive
-#define krUnpack          ListPanelActions::actUnpack         // unpack archive
-#define krTest            ListPanelActions::actTest           // test archive
-#define krCompare         ListPanelActions::actCompare        // compare 2 files by content
-#define krCalculate       ListPanelActions::actCalculate      // calculate occupied space
-#define krCreateCS        ListPanelActions::actCreateChecksum
-#define krMatchCS         ListPanelActions::actMatchChecksum
-#define krSelect          ListPanelActions::actSelect         // select a group by filter
-#define krSelectAll       ListPanelActions::actSelectAll      // select all files
-#define krUnselect        ListPanelActions::actUnselect       // unselect by filter
-#define krUnselectAll     ListPanelActions::actUnselectAll    // remove all selections
-#define krInvert          ListPanelActions::actInvert         // invert the selection
-#define krSyncDirs        ListPanelActions::actSync           // synchronize directories
-#define krFTPConnect      ListPanelActions::actFTPConnect     // connect to an ftp
-#define krFTPNew          ListPanelActions::actFTPNewConnect  // create a new connection
-#define krFTPDiss         ListPanelActions::actFTPDisconnect  // disconnect an FTP session
-#define krAllFiles        ListPanelActions::actAllFilter      // show all files in list
-#define krExecFiles       ListPanelActions::actExecFilter     // show only executables
-#define krCustomFiles     ListPanelActions::actCustomFilter   // show a custom set of files
-#define krOpenLeftBm      ListPanelActions::actOpenLeftBm     // open left bookmarks
-#define krOpenRightBm     ListPanelActions::actOpenRightBm    // open right bookmarks
-#define krDirUp           ListPanelActions::actDirUp
 #define krCopy            ListPanelActions::actCopy
-#define krPaste           ListPanelActions::actPaste
-#define krLocationBar     ListPanelActions::actLocationBar
-#define krJumpBack        ListPanelActions::actJumpBack
-#define krSetJumpBack     ListPanelActions::actSetJumpBack
-#define krF2              ListPanelActions::actF2
-#define krF3              ListPanelActions::actF3
-#define krF4              ListPanelActions::actF4
-#define krF5              ListPanelActions::actF5
-#define krF6              ListPanelActions::actF6
-#define krF7              ListPanelActions::actF7
-#define krF8              ListPanelActions::actF8
-#define krF9              ListPanelActions::actF9
-#define krF10             KrActions::actF10
+
 #define krHomeTerm        KrActions::actHomeTerminal   // open terminal@home dir
 #define krRemoteEncoding  KrActions::actRemoteEncoding // remote encoding menu
 #define krMountMan        KrActions::actMountMan       // run Mount-manager
