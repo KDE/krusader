@@ -44,58 +44,9 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kactioncollection.h>
 
 
-ListPanelActions *ListPanelActions::self = 0;
-
-KAction *ListPanelActions::actCompDirs = 0;
-KAction *ListPanelActions::actSync = 0;
-KAction *ListPanelActions::actProperties = 0;
-KAction *ListPanelActions::actPack = 0;
-KAction *ListPanelActions::actUnpack = 0;
-KAction *ListPanelActions::actTest = 0;
-KAction *ListPanelActions::actCopy = 0;
-KAction *ListPanelActions::actPaste = 0;
-KAction *ListPanelActions::actCalculate = 0;
-KAction *ListPanelActions::actCreateChecksum = 0;
-KAction *ListPanelActions::actMatchChecksum = 0;
-KAction *ListPanelActions::actSelect = 0;
-KAction *ListPanelActions::actSelectAll = 0;
-KAction *ListPanelActions::actUnselect = 0;
-KAction *ListPanelActions::actUnselectAll = 0;
-KAction *ListPanelActions::actInvert = 0;
-KAction *ListPanelActions::actFTPConnect = 0;
-KAction *ListPanelActions::actFTPNewConnect = 0;
-KAction *ListPanelActions::actFTPDisconnect = 0;
-KAction *ListPanelActions::actAllFilter = 0;
-// KAction *ListPanelActions::actExecFilter = 0;
-KAction *ListPanelActions::actCustomFilter = 0;
-KAction *ListPanelActions::actRoot = 0;
-KAction *ListPanelActions::actDirUp = 0;
-KAction *ListPanelActions::actSyncBrowse = 0;
-KAction *ListPanelActions::actF2 = 0;
-KAction *ListPanelActions::actF3 = 0;
-KAction *ListPanelActions::actF4 = 0;
-KAction *ListPanelActions::actF5 = 0;
-KAction *ListPanelActions::actF6 = 0;
-KAction *ListPanelActions::actF7 = 0;
-KAction *ListPanelActions::actF8 = 0;
-KAction *ListPanelActions::actF9 = 0;
-KAction *ListPanelActions::actShiftF5 = 0;
-KAction *ListPanelActions::actShiftF6 = 0;
-KAction *ListPanelActions::actLocationBar = 0;
-KAction *ListPanelActions::actJumpBack = 0;
-KAction *ListPanelActions::actSetJumpBack = 0;
-KAction *ListPanelActions::actHistoryBackward = 0;
-KAction *ListPanelActions::actHistoryForward = 0;
-KAction *ListPanelActions::actCancelRefresh = 0;
-
-
 ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindow) :
         ActionsBase(parent, mainWindow)
 {
-    if(self)
-        abort();
-    self = this;
-
     // set view type
     QSignalMapper *mapper = new QSignalMapper(this);
     connect(mapper, SIGNAL(mapped(int)), SLOT(setView(int)));

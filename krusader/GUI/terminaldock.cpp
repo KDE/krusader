@@ -38,6 +38,7 @@
 #include "../kractions.h"
 #include "../krusaderapp.h"
 #include "../krusaderview.h"
+#include "../filemanagerwindow.h"
 #include "kcmdline.h"
 #include "../VFS/vfs.h"
 #include "../Panel/listpanel.h"
@@ -48,11 +49,9 @@
 /**
  * A widget containing the konsolepart for the Embedded terminal emulator
  */
-TerminalDock::TerminalDock(QWidget* parent) : QWidget(parent)
+TerminalDock::TerminalDock(QWidget* parent, FileManagerWindow *mainWindow) : QWidget(parent),
+    _mainWindow(mainWindow), initialised(false), t(0), konsole_part(0)
 {
-    initialised = false;
-    t = NULL;
-    konsole_part = NULL;
     terminal_hbox = new QHBoxLayout(this);
 }
 
@@ -135,7 +134,7 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
         return true;
     }
 
-    if (ListPanelActions::actPaste->shortcut().contains(pressedKey)) {
+    if (_mainWindow->listPanelActions()->actPaste->shortcut().contains(pressedKey)) {
         QString text = QApplication::clipboard()->text();
         if (! text.isEmpty()) {
             text.replace('\n', '\r');

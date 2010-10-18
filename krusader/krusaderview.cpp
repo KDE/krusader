@@ -73,7 +73,7 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     vert_splitter->setOrientation(Qt::Vertical);
     // horizontal splitter
     horiz_splitter = new PercentalSplitter(vert_splitter);
-    (terminal_dock = new TerminalDock(vert_splitter)) ->hide();     // create it hidden
+    (terminal_dock = new TerminalDock(vert_splitter, krApp))->hide();     // create it hidden
 
     // create a command line thing
     cmdLine = new KCMDLine(this);

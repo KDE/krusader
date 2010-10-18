@@ -91,19 +91,17 @@ public slots:
     void guiUpdated();
 
 public:
-    static ListPanelActions *self;
-
-    static KAction *actF2, *actF3, *actF4, *actF5, *actF6, *actF7, *actF8, *actF9;
-    static KAction *actShiftF5, *actShiftF6;
-    static KAction *actProperties, *actPack, *actUnpack, *actTest,  *actCompDirs, *actCalculate, *actSync;
-    static KAction *actSelect, *actUnselect, *actSelectAll, *actUnselectAll, *actInvert;
-    static KAction *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
-    static KAction *actExecFilter, *actAllFilter, *actCustomFilter;
-    static KAction *actLocationBar, *actJumpBack, *actSetJumpBack;
-    static KAction *actCreateChecksum, *actMatchChecksum;
-    static KAction *actCopy, *actPaste;
-    static KAction *actHistoryBackward, *actHistoryForward, *actDirUp, *actRoot;
-    static KAction *actSyncBrowse, *actCancelRefresh;
+    KAction *actF2, *actF3, *actF4, *actF5, *actF6, *actF7, *actF8, *actF9;
+    KAction *actShiftF5, *actShiftF6;
+    KAction *actProperties, *actPack, *actUnpack, *actTest,  *actCompDirs, *actCalculate, *actSync;
+    KAction *actSelect, *actUnselect, *actSelectAll, *actUnselectAll, *actInvert;
+    KAction *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
+    KAction *actExecFilter, *actAllFilter, *actCustomFilter;
+    KAction *actLocationBar, *actJumpBack, *actSetJumpBack;
+    KAction *actCreateChecksum, *actMatchChecksum;
+    KAction *actCopy, *actPaste;
+    KAction *actHistoryBackward, *actHistoryForward, *actDirUp, *actRoot;
+    KAction *actSyncBrowse, *actCancelRefresh;
 
     QHash<int/*id*/, KAction*> setViewActions;
 
