@@ -39,6 +39,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../KViewer/krviewer.h"
 
 #include <QSignalMapper>
+#include <QActionGroup>
 #include <klocale.h>
 #include <kactioncollection.h>
 
@@ -98,11 +99,14 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     // set view type
     QSignalMapper *mapper = new QSignalMapper(this);
     connect(mapper, SIGNAL(mapped(int)), SLOT(setView(int)));
+    QActionGroup *group = new QActionGroup(this);
+    group->setExclusive(true);
     QList<KrViewInstance*> views = KrViewFactory::registeredViews();
     for(int i = 0; i < views.count(); i++) {
         KrViewInstance *inst = views[i];
-        KAction *action = new KAction(KIcon(inst->icon()), inst->description(), this);
+        KAction *action = new KAction(KIcon(inst->icon()), inst->description(), group);
         action->setShortcut(inst->shortcut());
+        action->setCheckable(true);
         connect(action, SIGNAL(triggered()), mapper, SLOT(map()));
         mapper->setMapping(action, inst->id());
         _mainWindow->actions()->addAction("view" + QString::number(i), action);
