@@ -89,7 +89,7 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     right = rightMng->createPanel(defaultType);
 
     // create the function keys widget
-    fnKeys = new KFnKeys(this);
+    fnKeys = new KFnKeys(this, krApp);
     fnKeys->hide();
     fnKeys->setWhatsThis(i18n("Function keys allow performing fast "
                               "operations on files."));

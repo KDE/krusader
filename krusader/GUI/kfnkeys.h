@@ -37,6 +37,9 @@
 #include <QtGui/QPushButton>
 #include <QGridLayout>
 
+class FileManagerWindow;
+class ListPanelActions;
+
 // Function Keys widget
 ///////////////////////
 class KFnKeys : public QWidget
@@ -45,12 +48,13 @@ class KFnKeys : public QWidget
 
 public:
     // constructor
-    KFnKeys(QWidget *parent);
+    KFnKeys(QWidget *parent, FileManagerWindow *mainWindow);
     void updateShortcuts();
 
 private:
     QPushButton *F2 , *F3, *F4, *F5, *F6, *F7, *F8, *F9, *F10;
     QGridLayout *layout;
+    ListPanelActions *actions;
 };
 
 #endif

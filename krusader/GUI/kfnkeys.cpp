@@ -39,9 +39,10 @@
 #include "../krglobal.h"
 #include "../kractions.h"
 #include "../defaults.h"
-#include "../krslots.h"
+#include "../filemanagerwindow.h"
+#include "../Panel/listpanelactions.h"
 
-KFnKeys::KFnKeys(QWidget *parent): QWidget(parent)
+KFnKeys::KFnKeys(QWidget *parent, FileManagerWindow *mainWindow) : QWidget(parent)
 {
     ////////////////////////////////
 #define SETUP(TARGET) {\
@@ -51,7 +52,7 @@ KFnKeys::KFnKeys(QWidget *parent): QWidget(parent)
         connect(TARGET, SIGNAL(clicked()), actions->act##TARGET, SLOT(trigger())); \
     }
 
-    ListPanelActions *actions = ListPanelActions::self;
+    actions = mainWindow->listPanelActions();
 
     setFont(KGlobalSettings::generalFont());
     layout = new QGridLayout(this); // 9 keys
@@ -69,7 +70,7 @@ KFnKeys::KFnKeys(QWidget *parent): QWidget(parent)
 
     F10 = new QPushButton(this);
     F10->setToolTip(i18n("Quit Krusader."));
-    connect(F10, SIGNAL(clicked()), krMainWindow, SLOT(slotClose()));
+    connect(F10, SIGNAL(clicked()), mainWindow->widget(), SLOT(slotClose()));
     F10->setMinimumWidth(45);
 
     updateShortcuts();
@@ -97,15 +98,14 @@ KFnKeys::KFnKeys(QWidget *parent): QWidget(parent)
 
 void KFnKeys::updateShortcuts()
 {
-    //FIXME: use QAction::text()
-    F2->setText(krF2->shortcut().toString() + i18n(" Term"));
-    F3->setText(krF3->shortcut().toString() + i18n(" View"));
-    F4->setText(krF4->shortcut().toString() + i18n(" Edit"));
-    F5->setText(krF5->shortcut().toString() + i18n(" Copy"));
-    F6->setText(krF6->shortcut().toString() + i18n(" Move"));
-    F7->setText(krF7->shortcut().toString() + i18n(" Mkdir"));
-    F8->setText(krF8->shortcut().toString() + i18n(" Delete"));
-    F9->setText(krF9->shortcut().toString() + i18n(" Rename"));
+    F2->setText(actions->actF2->shortcut().toString() + i18n(" Term"));
+    F3->setText(actions->actF3->shortcut().toString() + i18n(" View"));
+    F4->setText(actions->actF4->shortcut().toString() + i18n(" Edit"));
+    F5->setText(actions->actF5->shortcut().toString() + i18n(" Copy"));
+    F6->setText(actions->actF6->shortcut().toString() + i18n(" Move"));
+    F7->setText(actions->actF7->shortcut().toString() + i18n(" Mkdir"));
+    F8->setText(actions->actF8->shortcut().toString() + i18n(" Delete"));
+    F9->setText(actions->actF9->shortcut().toString() + i18n(" Rename"));
     F10->setText(krF10->shortcut().toString() + i18n(" Quit"));
 }
 
