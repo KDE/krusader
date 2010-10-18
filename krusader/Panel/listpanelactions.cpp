@@ -153,7 +153,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actInvert = action(i18n("&Invert Selection"), "kr_invert", Qt::ALT + Qt::Key_Asterisk, this, SLOT(invert()), "invert");
 
     // file operations
-    action(i18n("Right-click Menu"), 0, Qt::Key_Menu, this, SLOT(rightclickMenu()), "rightclick menu");
+    action(i18n("Right-click Menu"), 0, Qt::Key_Menu, _guiActions, SLOT(rightclickMenu()), "rightclick menu");
     actProperties = action(i18n("&Properties..."), 0, Qt::ALT + Qt::Key_Enter, this, SLOT(properties()), "properties");
     actCompDirs = action(i18n("&Compare Directories"), "view_left_right", Qt::ALT + Qt::SHIFT + Qt::Key_C, this, SLOT(compareDirs()), "compare dirs");
     actCalculate = action(i18n("Calculate &Occupied Space"), "kcalc", 0, this, SLOT(calcSpace()), "calculate");
@@ -167,22 +167,22 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     // navigation
     actRoot = action(i18n("Root"), "go-top", Qt::CTRL + Qt::Key_Backspace, this, SLOT(root()), "root");
     action(i18n("&Reload"), "view-refresh", Qt::CTRL + Qt::Key_R, this, SLOT(refresh()), "std_redisplay");
-    actCancelRefresh = action(i18n("Cancel Refresh of View"), "kr_cancel_refresh", 0, this, SLOT(cancelRefresh()), "cancel refresh");
+    actCancelRefresh = action(i18n("Cancel Refresh of View"), "kr_cancel_refresh", 0, _guiActions, SLOT(inlineRefreshCancel()), "cancel refresh");
     actFTPNewConnect = action(i18n("New Net &Connection..."), "network-connect", Qt::CTRL + Qt::Key_N, this, SLOT(newFTPconnection()), "ftp new connection");
     actFTPDisconnect = action(i18n("Disconnect &from Net"), "network-disconnect", Qt::SHIFT + Qt::CTRL + Qt::Key_F, this, SLOT(FTPDisconnect()), "ftp disconnect");
     action(i18n("Sync Panels"), 0, Qt::ALT + Qt::SHIFT + Qt::Key_O, this, SLOT(syncPanels()), "sync panels");
-    actJumpBack = action(i18n("Jump Back"), "kr_jumpback", Qt::CTRL + Qt::Key_J, this, SLOT(slotJumpBack()), "jump_back");
+    actJumpBack = action(i18n("Jump Back"), "kr_jumpback", Qt::CTRL + Qt::Key_J, _guiActions, SLOT(jumpBack()), "jump_back");
     actSetJumpBack = action(i18n("Set Jump Back Point"), "kr_setjumpback", Qt::CTRL + Qt::SHIFT + Qt::Key_J, this, SLOT(slotSetJumpBack()), "set_jump_back");
-    actSyncBrowse = action(i18n("S&ynchron Directory Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, this, SLOT(slotSyncBrowse()), "sync browse");
-    actLocationBar = action(i18n("Go to Location Bar"), 0, Qt::CTRL + Qt::Key_L, this, SLOT(slotLocationBar()), "location_bar");
-    toggleAction(i18n("Toggle Popup Panel"), 0, Qt::ALT + Qt::Key_Down, this, SLOT(togglePopupPanel()), "toggle popup panel");
-    action(i18n("Bookmarks"), 0, Qt::CTRL + Qt::Key_D, this, SLOT(openBookmarks()), "bookmarks");
+    actSyncBrowse = action(i18n("S&ynchron Directory Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, _guiActions, SLOT(toggleSyncBrowse()), "sync browse");
+    actLocationBar = action(i18n("Go to Location Bar"), 0, Qt::CTRL + Qt::Key_L, _guiActions, SLOT(editLocation()), "location_bar");
+    toggleAction(i18n("Toggle Popup Panel"), 0, Qt::ALT + Qt::Key_Down, _guiActions, SLOT(togglePanelPopup()), "toggle popup panel");
+    action(i18n("Bookmarks"), 0, Qt::CTRL + Qt::Key_D, _guiActions, SLOT(openBookmarks()), "bookmarks");
     action(i18n("Left Bookmarks"), 0, 0, this, SLOT(openLeftBookmarks()), "left bookmarks");
     action(i18n("Right Bookmarks"), 0, 0, this, SLOT(openRightBookmarks()), "right bookmarks");
-    action(i18n("History"), 0, Qt::CTRL + Qt::Key_H, this, SLOT(openHistory()), "history");
+    action(i18n("History"), 0, Qt::CTRL + Qt::Key_H, _guiActions, SLOT(openHistory()), "history");
     action(i18n("Left History"), 0, Qt::ALT + Qt::CTRL + Qt::Key_Left, this, SLOT(openLeftHistory()), "left history");
     action(i18n("Right History"), 0, Qt::ALT + Qt::CTRL + Qt::Key_Right, this, SLOT(openRightHistory()), "right history");
-    action(i18n("Media"), 0, Qt::CTRL + Qt::Key_M, this, SLOT(openMedia()), "media");
+    action(i18n("Media"), 0, Qt::CTRL + Qt::Key_M, _guiActions, SLOT(openMedia()), "media");
     action(i18n("Left Media"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Left, this, SLOT(openLeftMedia()), "left media");
     action(i18n("Right Media"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Right, this, SLOT(openRightMedia()), "right media");
 
@@ -191,6 +191,12 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actSelectAll->setToolTip(i18n("Select all files in the current directory"));
     actUnselectAll->setToolTip(i18n("Unselect all selected files"));
     actRoot->setToolTip(i18n("ROOT (/)"));
+}
+
+void ListPanelActions::activePanelChanged(ListPanel *panel)
+{
+    _guiActions.reconnect(panel);
+    _funcActions.reconnect(panel->func);
 }
 
 inline KrPanel *ListPanelActions::activePanel()
@@ -438,11 +444,6 @@ void ListPanelActions::refresh()
     activeFunc()->refresh();
 }
 
-void ListPanelActions::cancelRefresh()
-{
-    activePanel()->gui->inlineRefreshCancel();
-}
-
 void ListPanelActions::FTPDisconnect()
 {
     activeFunc()->FTPDisconnect();
@@ -453,39 +454,14 @@ void ListPanelActions::newFTPconnection()
     activeFunc()->newFTPconnection();
 }
 
-void ListPanelActions::slotJumpBack()
-{
-    activePanel()->gui->jumpBack();
-}
-
 void ListPanelActions::slotSetJumpBack()
 {
     activePanel()->gui->setJumpBack(activePanel()->virtualPath());
 }
 
-void ListPanelActions::slotLocationBar()
-{
-    activePanel()->gui->editLocation();
-}
-
-void ListPanelActions::togglePopupPanel()
-{
-    activePanel()->gui->togglePanelPopup();
-}
-
-void ListPanelActions::slotSyncBrowse()
-{
-    activePanel()->gui->toggleSyncBrowse();
-}
-
 void ListPanelActions::syncPanels()
 {
     activeFunc()->otherFunc()->openUrl(activePanel()->virtualPath());
-}
-
-void ListPanelActions::openBookmarks()
-{
-    activePanel()->gui->openBookmarks();
 }
 
 void ListPanelActions::openLeftBookmarks()
@@ -498,11 +474,6 @@ void ListPanelActions::openRightBookmarks()
     rightPanel()->gui->openBookmarks();
 }
 
-void ListPanelActions::openHistory()
-{
-    activePanel()->gui->openHistory();
-}
-
 void ListPanelActions::openLeftHistory()
 {
     leftPanel()->gui->openHistory();
@@ -511,11 +482,6 @@ void ListPanelActions::openLeftHistory()
 void ListPanelActions::openRightHistory()
 {
     rightPanel()->gui->openHistory();
-}
-
-void ListPanelActions::openMedia()
-{
-    activePanel()->gui->openMedia();
 }
 
 void ListPanelActions::openLeftMedia()

@@ -119,6 +119,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
     gui = this;
     func = new ListPanelFunc(this);
     actions = krApp->listPanelActions();
+    connect(this, SIGNAL(activePanelChanged(ListPanel*)), actions, SLOT(activePanelChanged(ListPanel*)));
 
     setAcceptDrops(true);
 

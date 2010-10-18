@@ -112,18 +112,10 @@ public:
     bool isLeft() {
         return _left;
     }
-    void jumpBack();
     void setJumpBack(KUrl url);
 
     int  getProperties();
     void setProperties(int);
-
-    void openMedia();
-    void openHistory();
-    void openBookmarks();
-    void rightclickMenu();
-    void toggleSyncBrowse();
-    void editLocation();
 
     void getFocusCandidates(QVector<QWidget*> &widgets);
 
@@ -160,6 +152,14 @@ public slots:
     void vfs_refresh(KJob *job);
     void refreshColors();
     void inlineRefreshCancel();
+
+    void openMedia();
+    void openHistory();
+    void openBookmarks();
+    void rightclickMenu();
+    void toggleSyncBrowse();
+    void editLocation();
+    void jumpBack();
 
 
     ///////////////////////// service functions - called internally ////////////////////////

@@ -38,10 +38,11 @@ protected:
     {
         QHash<KAction*, const char*> _slots;
     public:
-        ActionGroup() {}
         void reconnect(QObject *recv);
         void addAction(KAction *action, const char *slot);
     };
+
+    KAction *createAction(QString text, QString icon, bool isToggleAction);
 
     KAction *action(QString text, QString icon, QKeySequence shortcut,
                     QObject *recv, const char *slot, QString name, bool isToggleAction = false);
@@ -49,16 +50,25 @@ protected:
                     const char *slot, QString name) {
         return action(text, icon, shortcut, this, slot, name);
     }
+    KAction *action(QString text, QString icon, QKeySequence shortcut,
+                    ActionGroup &group, const char *slot, QString name, bool isToggleAction = false);
+
     KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,
                                 QObject *recv, const char *slot, QString name);
     KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,
                                 const char *slot, QString name) {
         return toggleAction(text, icon, shortcut, this, slot, name);
     }
+    KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,
+                                ActionGroup &group, const char *slot, QString name);
+
+
     KAction *stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot);
     KAction *stdAction(KStandardAction::StandardAction id, const char *slot) {
         return stdAction(id, this, slot);
     }
+    KAction *stdAction(KStandardAction::StandardAction id,
+                       ActionGroup &group, const char *slot);
 
     KrMainWindow *_mainWindow;
 };

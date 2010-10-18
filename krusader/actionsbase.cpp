@@ -38,11 +38,9 @@ void ActionsBase::ActionGroup::addAction(KAction *action, const char *slot)
 }
 
 
-KAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
-                                 QObject *recv, const char *slot, QString name, bool isToggleAction)
+KAction *ActionsBase::createAction(QString text, QString icon, bool isToggleAction)
 {
     KAction *a;
-
     if(isToggleAction) {
         if (icon == 0)
             a = new KToggleAction(text, this);
@@ -55,18 +53,53 @@ KAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
             a = new KAction(KIcon(icon), text, this);
     }
 
-    a->setShortcut(shortcut);
-    connect(a, SIGNAL(triggered(bool)), recv, slot);
-    _mainWindow->actions()->addAction(name, a);
     return a;
 }
 
+KAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
+                                 QObject *recv, const char *slot, QString name, bool isToggleAction)
+{
+    KAction *a = createAction(text, icon, isToggleAction);
+
+    a->setShortcut(shortcut);
+    connect(a, SIGNAL(triggered(bool)), recv, slot);
+    _mainWindow->actions()->addAction(name, a);
+
+    return a;
+}
+
+KAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
+                             ActionGroup &group, const char *slot, QString name, bool isToggleAction)
+{
+    KAction *action = createAction(text, icon, isToggleAction);
+
+    action->setShortcut(shortcut);
+    group.addAction(action, slot);
+    _mainWindow->actions()->addAction(name, action);
+
+    return action;
+}
+
 KToggleAction *ActionsBase::toggleAction(QString text, QString icon, QKeySequence shortcut,
-                                QObject *recv, const char *slot, QString name) {
+                                QObject *recv, const char *slot, QString name)
+{
     return static_cast<KToggleAction*>(action(text, icon, shortcut, recv, slot, name, true));
+}
+
+KToggleAction *ActionsBase::toggleAction(QString text, QString icon, QKeySequence shortcut,
+                                         ActionGroup &group, const char *slot, QString name)
+{
+    return static_cast<KToggleAction*>(action(text, icon, shortcut, group, slot, name, true));
 }
 
 KAction *ActionsBase::stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot)
 {
     return KStandardAction::create(id, recv, slot, _mainWindow->actions());
+}
+
+KAction *ActionsBase::stdAction(KStandardAction::StandardAction id, ActionGroup &group, const char *slot)
+{
+    KAction *action = KStandardAction::create(id, 0, 0, _mainWindow->actions());
+    group.addAction(action, slot);
+    return action;
 }

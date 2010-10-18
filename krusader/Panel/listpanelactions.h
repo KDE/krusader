@@ -40,6 +40,7 @@
 
 class FileManagerWindow;
 class KrPanel;
+class ListPanel;
 class ListPanelFunc;
 
 class ListPanelActions : public ActionsBase
@@ -112,24 +113,18 @@ public slots:
     void home();
     void root();
     void refresh();
-    void cancelRefresh();
     void FTPDisconnect();
     void newFTPconnection();
     void syncPanels();
-    void slotJumpBack();
     void slotSetJumpBack();
-    void slotSyncBrowse();
-    void slotLocationBar();
-    void togglePopupPanel();
-    void openBookmarks();
     void openLeftBookmarks();
     void openRightBookmarks();
-    void openHistory();
     void openLeftHistory();
     void openRightHistory();
-    void openMedia();
     void openLeftMedia();
     void openRightMedia();
+
+    void activePanelChanged(ListPanel *panel);
 
 public:
     static ListPanelActions *self;
@@ -153,6 +148,8 @@ protected:
     KrPanel *leftPanel();
     KrPanel *rightPanel();
     ListPanelFunc *activeFunc();
+
+    ActionGroup _guiActions, _funcActions;
 };
 
 #endif // __LISTPANELACTIONS_H__
