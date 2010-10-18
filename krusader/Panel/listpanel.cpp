@@ -430,6 +430,8 @@ void ListPanel::createView()
     connect(view->op(), SIGNAL(letsDrag(QStringList, QPixmap)), this, SLOT(startDragging(QStringList, QPixmap)));
     connect(view->op(), SIGNAL(gotDrop(QDropEvent *)), this, SLOT(handleDropOnView(QDropEvent *)));
     connect(view->op(), SIGNAL(previewJobStarted(KJob*)), this, SLOT(slotPreviewJobStarted(KJob*)));
+
+    func->refreshActions();
 }
 
 void ListPanel::changeType(int type)
@@ -745,19 +747,10 @@ void ListPanel::slotFocusOnMe()
     otherPanel()->view->prepareForPassive();
     view->prepareForActive();
 
-
     otherPanel()->gui->refreshColors();
     refreshColors();
 
     func->refreshActions();
-
-    if (actions->actView0) actions->actView0->setEnabled(panelType != 0);
-    if (actions->actView1) actions->actView1->setEnabled(panelType != 1);
-    if (actions->actView2) actions->actView2->setEnabled(panelType != 2);
-    if (actions->actView3) actions->actView3->setEnabled(panelType != 3);
-    if (actions->actView4) actions->actView4->setEnabled(panelType != 4);
-    if (actions->actView5) actions->actView5->setEnabled(panelType != 5);
-
     updatePopupPanel(view->getCurrentKrViewItem());
 
     krApp->setUpdatesEnabled(true);

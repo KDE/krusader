@@ -38,7 +38,9 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../Dialogs/krdialogs.h"
 #include "../KViewer/krviewer.h"
 
+#include <QSignalMapper>
 #include <klocale.h>
+#include <kactioncollection.h>
 
 
 ListPanelActions *ListPanelActions::self = 0;
@@ -81,12 +83,6 @@ KAction *ListPanelActions::actShiftF6 = 0;
 KAction *ListPanelActions::actLocationBar = 0;
 KAction *ListPanelActions::actJumpBack = 0;
 KAction *ListPanelActions::actSetJumpBack = 0;
-KAction *ListPanelActions::actView0 = 0;
-KAction *ListPanelActions::actView1 = 0;
-KAction *ListPanelActions::actView2 = 0;
-KAction *ListPanelActions::actView3 = 0;
-KAction *ListPanelActions::actView4 = 0;
-KAction *ListPanelActions::actView5 = 0;
 KAction *ListPanelActions::actHistoryBackward = 0;
 KAction *ListPanelActions::actHistoryForward = 0;
 KAction *ListPanelActions::actCancelRefresh = 0;
@@ -99,35 +95,18 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
         abort();
     self = this;
 
-    KActionCollection *actionCollection = _mainWindow->actions();
-
     // set view type
-    QList<KrViewInstance *> views = KrViewFactory::registeredViews();
-    foreach(KrViewInstance * inst, views) {
-        int id = inst->id();
-
-        switch (id) {
-        case 0:
-            actView0 = action(inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView0()), "view0");
-            break;
-        case 1:
-            actView1 = action(inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView1()), "view1");
-            break;
-        case 2:
-            actView2 = action(inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView2()), "view2");
-            break;
-        case 3:
-            actView3 = action(inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView3()), "view3");
-            break;
-        case 4:
-            actView4 = action(inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView4()), "view4");
-            break;
-        case 5:
-            actView5 = action(inst->description(), inst->icon(), inst->shortcut(), this, SLOT(setView5()), "view5");
-            break;
-        default:
-            break;
-        }
+    QSignalMapper *mapper = new QSignalMapper(this);
+    connect(mapper, SIGNAL(mapped(int)), SLOT(setView(int)));
+    QList<KrViewInstance*> views = KrViewFactory::registeredViews();
+    for(int i = 0; i < views.count(); i++) {
+        KrViewInstance *inst = views[i];
+        KAction *action = new KAction(KIcon(inst->icon()), inst->description(), this);
+        action->setShortcut(inst->shortcut());
+        connect(action, SIGNAL(triggered()), mapper, SLOT(map()));
+        mapper->setMapping(action, inst->id());
+        _mainWindow->actions()->addAction("view" + QString::number(i), action);
+        setViewActions.insert(inst->id(), action);
     }
 
     // standard actions
@@ -232,40 +211,9 @@ inline ListPanelFunc *ListPanelActions::activeFunc()
 
 // set view type
 
-void ListPanelActions::setView0()
+void ListPanelActions::setView(int id)
 {
-    if (activePanel() && activePanel()->gui->getType() != 0)
-        activePanel()->gui->changeType(0);
-}
-
-void ListPanelActions::setView1()
-{
-    if (activePanel() && activePanel()->gui->getType() != 1)
-        activePanel()->gui->changeType(1);
-}
-
-void ListPanelActions::setView2()
-{
-    if (activePanel() && activePanel()->gui->getType() != 2)
-        activePanel()->gui->changeType(2);
-}
-
-void ListPanelActions::setView3()
-{
-    if (activePanel() && activePanel()->gui->getType() != 3)
-        activePanel()->gui->changeType(3);
-}
-
-void ListPanelActions::setView4()
-{
-    if (activePanel() && activePanel()->gui->getType() != 4)
-        activePanel()->gui->changeType(4);
-}
-
-void ListPanelActions::setView5()
-{
-    if (activePanel() && activePanel()->gui->getType() != 5)
-        activePanel()->gui->changeType(5);
+    activePanel()->gui->changeType(id);
 }
 
 // fn keys

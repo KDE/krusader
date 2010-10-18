@@ -1254,6 +1254,8 @@ void ListPanelFunc::refreshActions()
           krExecFiles->setEnabled(true);                         // show only executables
     */
 
+    foreach(int id, panel->actions->setViewActions.keys())
+        panel->actions->setViewActions[id]->setEnabled(id != panel->panelType);
     panel->actions->actFTPDisconnect->setEnabled(vfsType == vfs::VFS_FTP);       // disconnect an FTP session
     panel->actions->actCreateChecksum->setEnabled(vfsType == vfs::VFS_NORMAL);
     panel->actions->actDirUp->setEnabled(files()->vfs_getOrigin().upUrl() != files()->vfs_getOrigin());

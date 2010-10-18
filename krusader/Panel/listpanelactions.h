@@ -35,6 +35,8 @@
 
 #include "../actionsbase.h"
 
+#include <kaction.h>
+
 
 class FileManagerWindow;
 class KrPanel;
@@ -48,12 +50,7 @@ public:
 
 public slots:
     // set view type
-    void setView0();
-    void setView1();
-    void setView2();
-    void setView3();
-    void setView4();
-    void setView5();
+    void setView(int id);
 
     // F2
     void terminal();
@@ -145,10 +142,11 @@ public:
     static KAction *actExecFilter, *actAllFilter, *actCustomFilter;
     static KAction *actLocationBar, *actJumpBack, *actSetJumpBack;
     static KAction *actCreateChecksum, *actMatchChecksum;
-    static KAction *actView0, *actView1, *actView2, *actView3, *actView4, *actView5;
     static KAction *actCopy, *actPaste;
     static KAction *actHistoryBackward, *actHistoryForward, *actDirUp, *actRoot;
     static KAction *actSyncBrowse, *actCancelRefresh;
+
+    QHash<int/*id*/, KAction*> setViewActions;
 
 protected:
     KrPanel *activePanel();
