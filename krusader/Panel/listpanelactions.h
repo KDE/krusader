@@ -88,6 +88,7 @@ public slots:
     void openRightMedia();
 
     void activePanelChanged(ListPanel *panel);
+    void guiUpdated();
 
 public:
     static ListPanelActions *self;

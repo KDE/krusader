@@ -93,6 +93,10 @@ public:
     virtual AbstractPanelManager *leftManager();
     virtual AbstractPanelManager *rightManager();
     virtual ListPanelActions *listPanelActions();
+    virtual void plugActionList(const char *name, QList<QAction*> &list) {
+        KParts::MainWindow::plugActionList(name, list);
+    }
+
 
     void refreshView();     // re-create the main view
     void configChanged();

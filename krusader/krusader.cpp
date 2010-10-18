@@ -681,6 +681,7 @@ void Krusader::updateGUI(bool enforce) {
 
     // this needs to be called AFTER createGUI() !!!
     updateUserActions();
+    _listPanelActions->guiUpdated();
 
     KConfigGroup cfg_toolbar(krConfig, "Main Toolbar");
     toolBar()->applySettings(cfg_toolbar);
@@ -739,7 +740,6 @@ void Krusader::updateGUI(bool enforce) {
     }
     // popular urls
     popularUrls->load();
-
 }
 
 // Adds one tool to the list in the supportedTools method

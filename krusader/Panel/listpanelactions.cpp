@@ -199,6 +199,14 @@ void ListPanelActions::activePanelChanged(ListPanel *panel)
     _func.reconnect(panel->func);
 }
 
+void ListPanelActions::guiUpdated()
+{
+    QList<QAction*> actions;
+    foreach(QAction *action, setViewActions.values())
+        actions << action;
+    static_cast<FileManagerWindow*>(_mainWindow)->plugActionList("view_actionlist", actions);
+}
+
 inline KrPanel *ListPanelActions::activePanel()
 {
     return static_cast<FileManagerWindow*>(_mainWindow)->activePanel();
