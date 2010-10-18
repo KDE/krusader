@@ -114,29 +114,29 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     }
 
     // standard actions
-    actHistoryBackward = stdAction(KStandardAction::Back, SLOT(historyBackward()));
-    actHistoryForward = stdAction(KStandardAction::Forward, SLOT(historyForward()));
+    actHistoryBackward = stdAction(KStandardAction::Back, _func, SLOT(historyBackward()));
+    actHistoryForward = stdAction(KStandardAction::Forward, _func, SLOT(historyForward()));
     //FIXME: second shortcut for up: see actDirUp
     //   KStandardAction::up( this, SLOT( dirUp() ), actionCollection )->setShortcut(Qt::Key_Backspace);
     /* Shortcut disabled because of the Terminal Emulator bug. */
-    actDirUp = stdAction(KStandardAction::Up, SLOT(dirUp()));
+    actDirUp = stdAction(KStandardAction::Up, _func, SLOT(dirUp()));
     stdAction(KStandardAction::Home, SLOT(home()));
-    stdAction(KStandardAction::Cut, SLOT(cut()));
-    actCopy = stdAction(KStandardAction::Copy, SLOT(copy()));
-    actPaste = stdAction(KStandardAction::Paste, SLOT(paste()));
+    stdAction(KStandardAction::Cut, _func, SLOT(cut()));
+    actCopy = stdAction(KStandardAction::Copy, _func, SLOT(copyToClipboard()));
+    actPaste = stdAction(KStandardAction::Paste, _func, SLOT(pasteFromClipboard()));
 
     // Fn keys
-    actF2 = action(i18n("Start Terminal Here"), "terminal", Qt::Key_F2, SLOT(terminal()) , "F2_Terminal");
-    actF3 = action(i18n("View File"), 0, Qt::Key_F3, SLOT(view()), "F3_View");
-    actF4 = action(i18n("Edit File"), 0, Qt::Key_F4, SLOT(edit()) , "F4_Edit");
-    actF5 = action(i18n("Copy..."), 0, Qt::Key_F5, SLOT(copyFiles()) , "F5_Copy");
-    actF6 = action(i18n("Move..."), 0, Qt::Key_F6, SLOT(moveFiles()) , "F6_Move");
+    actF2 = action(i18n("Start Terminal Here"), "terminal", Qt::Key_F2, _func, SLOT(terminal()) , "F2_Terminal");
+    actF3 = action(i18n("View File"), 0, Qt::Key_F3, _func, SLOT(view()), "F3_View");
+    actF4 = action(i18n("Edit File"), 0, Qt::Key_F4, _func, SLOT(edit()) , "F4_Edit");
+    actF5 = action(i18n("Copy to other panel"), 0, Qt::Key_F5, _func, SLOT(copyFiles()) , "F5_Copy");
+    actF6 = action(i18n("Move..."), 0, Qt::Key_F6, _func, SLOT(moveFiles()) , "F6_Move");
     actShiftF5 = action(i18n("Copy by queue..."), 0, Qt::SHIFT + Qt::Key_F5, SLOT(copyFilesByQueue()) , "F5_Copy_Queue");
     actShiftF6 = action(i18n("Move by queue..."), 0, Qt::SHIFT + Qt::Key_F6, SLOT(moveFilesByQueue()) , "F6_Move_Queue");
-    actF7 = action(i18n("New Directory..."), "folder-new", Qt::Key_F7, SLOT(mkdir()) , "F7_Mkdir");
-    actF8 = action(i18n("Delete"), "edit-delete", Qt::Key_F8, SLOT(deleteFiles()) , "F8_Delete");
-    actF9 = action(i18n("Rename"), 0, Qt::Key_F9, SLOT(rename()) , "F9_Rename");
-    action(i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, SLOT(editDlg()), "edit_new_file");
+    actF7 = action(i18n("New Directory..."), "folder-new", Qt::Key_F7, _func, SLOT(mkdir()) , "F7_Mkdir");
+    actF8 = action(i18n("Delete"), "edit-delete", Qt::Key_F8, _func, SLOT(deleteFiles()) , "F8_Delete");
+    actF9 = action(i18n("Rename"), 0, Qt::Key_F9, _func, SLOT(rename()) , "F9_Rename");
+    action(i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, _func, SLOT(editNew()), "edit_new_file");
     action(i18n("F3 View Dialog"), 0, Qt::SHIFT + Qt::Key_F3, SLOT(viewDlg()), "F3_ViewDlg");
 
     // filter
@@ -150,39 +150,39 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actSelectAll = action(i18n("&Select All"), "kr_selectall", Qt::ALT + Qt::Key_Plus, this, SLOT(markAll()), "select all");
     actUnselect = action(i18n("&Unselect Group..."), "kr_unselect", Qt::CTRL + Qt::Key_Minus, this, SLOT(unmarkGroup()), "unselect group");
     actUnselectAll = action(i18n("U&nselect All"), "kr_unselectall", Qt::ALT + Qt::Key_Minus, this, SLOT(unmarkAll()), "unselect all");
-    actInvert = action(i18n("&Invert Selection"), "kr_invert", Qt::ALT + Qt::Key_Asterisk, this, SLOT(invert()), "invert");
+    actInvert = action(i18n("&Invert Selection"), "kr_invert", Qt::ALT + Qt::Key_Asterisk, _gui, SLOT(invertSelection()), "invert");
 
     // file operations
-    action(i18n("Right-click Menu"), 0, Qt::Key_Menu, _guiActions, SLOT(rightclickMenu()), "rightclick menu");
-    actProperties = action(i18n("&Properties..."), 0, Qt::ALT + Qt::Key_Enter, this, SLOT(properties()), "properties");
+    action(i18n("Right-click Menu"), 0, Qt::Key_Menu, _gui, SLOT(rightclickMenu()), "rightclick menu");
+    actProperties = action(i18n("&Properties..."), 0, Qt::ALT + Qt::Key_Enter, _func, SLOT(properties()), "properties");
     actCompDirs = action(i18n("&Compare Directories"), "view_left_right", Qt::ALT + Qt::SHIFT + Qt::Key_C, this, SLOT(compareDirs()), "compare dirs");
-    actCalculate = action(i18n("Calculate &Occupied Space"), "kcalc", 0, this, SLOT(calcSpace()), "calculate");
-    actPack = action(i18n("Pac&k..."), "archive-insert", Qt::ALT + Qt::SHIFT + Qt::Key_P, this, SLOT(slotPack()), "pack");
-    actUnpack = action(i18n("&Unpack..."), "archive-extract", Qt::ALT + Qt::SHIFT + Qt::Key_U, this, SLOT(slotUnpack()), "unpack");
-    actCreateChecksum = action(i18n("Create Checksum..."), "binary", 0, this, SLOT(createChecksum()), "create checksum");
-    actMatchChecksum = action(i18n("Verify Checksum..."), "binary", 0, this, SLOT(matchChecksum()), "match checksum");
-    action(i18n("New Symlink..."), 0, Qt::CTRL + Qt::ALT + Qt::Key_S, this, SLOT(newSymlink()), "new symlink");
-    actTest = action(i18n("T&est Archive"), "utilities-file-archiver", Qt::ALT + Qt::SHIFT + Qt::Key_E, this, SLOT(testArchive()), "test archives");
+    actCalculate = action(i18n("Calculate &Occupied Space"), "kcalc", 0, _func, SLOT(calcSpace()), "calculate");
+    actPack = action(i18n("Pac&k..."), "archive-insert", Qt::ALT + Qt::SHIFT + Qt::Key_P, _func, SLOT(pack()), "pack");
+    actUnpack = action(i18n("&Unpack..."), "archive-extract", Qt::ALT + Qt::SHIFT + Qt::Key_U, _func, SLOT(unpack()), "unpack");
+    actCreateChecksum = action(i18n("Create Checksum..."), "binary", 0, _func, SLOT(createChecksum()), "create checksum");
+    actMatchChecksum = action(i18n("Verify Checksum..."), "binary", 0, _func, SLOT(matchChecksum()), "match checksum");
+    action(i18n("New Symlink..."), 0, Qt::CTRL + Qt::ALT + Qt::Key_S, _func, SLOT(krlink()), "new symlink");
+    actTest = action(i18n("T&est Archive"), "utilities-file-archiver", Qt::ALT + Qt::SHIFT + Qt::Key_E, _func, SLOT(testArchive()), "test archives");
 
     // navigation
     actRoot = action(i18n("Root"), "go-top", Qt::CTRL + Qt::Key_Backspace, this, SLOT(root()), "root");
-    action(i18n("&Reload"), "view-refresh", Qt::CTRL + Qt::Key_R, this, SLOT(refresh()), "std_redisplay");
-    actCancelRefresh = action(i18n("Cancel Refresh of View"), "kr_cancel_refresh", 0, _guiActions, SLOT(inlineRefreshCancel()), "cancel refresh");
-    actFTPNewConnect = action(i18n("New Net &Connection..."), "network-connect", Qt::CTRL + Qt::Key_N, this, SLOT(newFTPconnection()), "ftp new connection");
-    actFTPDisconnect = action(i18n("Disconnect &from Net"), "network-disconnect", Qt::SHIFT + Qt::CTRL + Qt::Key_F, this, SLOT(FTPDisconnect()), "ftp disconnect");
+    action(i18n("&Reload"), "view-refresh", Qt::CTRL + Qt::Key_R, _func, SLOT(refresh()), "std_redisplay");
+    actCancelRefresh = action(i18n("Cancel Refresh of View"), "kr_cancel_refresh", 0, _gui, SLOT(inlineRefreshCancel()), "cancel refresh");
+    actFTPNewConnect = action(i18n("New Net &Connection..."), "network-connect", Qt::CTRL + Qt::Key_N, _func, SLOT(newFTPconnection()), "ftp new connection");
+    actFTPDisconnect = action(i18n("Disconnect &from Net"), "network-disconnect", Qt::SHIFT + Qt::CTRL + Qt::Key_F, _func, SLOT(FTPDisconnect()), "ftp disconnect");
     action(i18n("Sync Panels"), 0, Qt::ALT + Qt::SHIFT + Qt::Key_O, this, SLOT(syncPanels()), "sync panels");
-    actJumpBack = action(i18n("Jump Back"), "kr_jumpback", Qt::CTRL + Qt::Key_J, _guiActions, SLOT(jumpBack()), "jump_back");
+    actJumpBack = action(i18n("Jump Back"), "kr_jumpback", Qt::CTRL + Qt::Key_J, _gui, SLOT(jumpBack()), "jump_back");
     actSetJumpBack = action(i18n("Set Jump Back Point"), "kr_setjumpback", Qt::CTRL + Qt::SHIFT + Qt::Key_J, this, SLOT(slotSetJumpBack()), "set_jump_back");
-    actSyncBrowse = action(i18n("S&ynchron Directory Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, _guiActions, SLOT(toggleSyncBrowse()), "sync browse");
-    actLocationBar = action(i18n("Go to Location Bar"), 0, Qt::CTRL + Qt::Key_L, _guiActions, SLOT(editLocation()), "location_bar");
-    toggleAction(i18n("Toggle Popup Panel"), 0, Qt::ALT + Qt::Key_Down, _guiActions, SLOT(togglePanelPopup()), "toggle popup panel");
-    action(i18n("Bookmarks"), 0, Qt::CTRL + Qt::Key_D, _guiActions, SLOT(openBookmarks()), "bookmarks");
+    actSyncBrowse = action(i18n("S&ynchron Directory Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, _gui, SLOT(toggleSyncBrowse()), "sync browse");
+    actLocationBar = action(i18n("Go to Location Bar"), 0, Qt::CTRL + Qt::Key_L, _gui, SLOT(editLocation()), "location_bar");
+    toggleAction(i18n("Toggle Popup Panel"), 0, Qt::ALT + Qt::Key_Down, _gui, SLOT(togglePanelPopup()), "toggle popup panel");
+    action(i18n("Bookmarks"), 0, Qt::CTRL + Qt::Key_D, _gui, SLOT(openBookmarks()), "bookmarks");
     action(i18n("Left Bookmarks"), 0, 0, this, SLOT(openLeftBookmarks()), "left bookmarks");
     action(i18n("Right Bookmarks"), 0, 0, this, SLOT(openRightBookmarks()), "right bookmarks");
-    action(i18n("History"), 0, Qt::CTRL + Qt::Key_H, _guiActions, SLOT(openHistory()), "history");
+    action(i18n("History"), 0, Qt::CTRL + Qt::Key_H, _gui, SLOT(openHistory()), "history");
     action(i18n("Left History"), 0, Qt::ALT + Qt::CTRL + Qt::Key_Left, this, SLOT(openLeftHistory()), "left history");
     action(i18n("Right History"), 0, Qt::ALT + Qt::CTRL + Qt::Key_Right, this, SLOT(openRightHistory()), "right history");
-    action(i18n("Media"), 0, Qt::CTRL + Qt::Key_M, _guiActions, SLOT(openMedia()), "media");
+    action(i18n("Media"), 0, Qt::CTRL + Qt::Key_M, _gui, SLOT(openMedia()), "media");
     action(i18n("Left Media"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Left, this, SLOT(openLeftMedia()), "left media");
     action(i18n("Right Media"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Right, this, SLOT(openRightMedia()), "right media");
 
@@ -195,8 +195,8 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
 
 void ListPanelActions::activePanelChanged(ListPanel *panel)
 {
-    _guiActions.reconnect(panel);
-    _funcActions.reconnect(panel->func);
+    _gui.reconnect(panel);
+    _func.reconnect(panel->func);
 }
 
 inline KrPanel *ListPanelActions::activePanel()
@@ -228,31 +228,6 @@ void ListPanelActions::setView(int id)
 
 // fn keys
 
-// F2
-void ListPanelActions::terminal()
-{
-    activeFunc()->terminal();
-}
-// F3
-void ListPanelActions::view()
-{
-    activeFunc()->view();
-}
-// F4
-void ListPanelActions::edit()
-{
-    activeFunc()->editFile();
-}
-// F5
-void ListPanelActions::copyFiles()
-{
-    activeFunc()->copyFiles();
-}
-// F6
-void ListPanelActions::moveFiles()
-{
-    activeFunc()->moveFiles();
-}
 // SHIFT + F5
 void ListPanelActions::copyFilesByQueue()
 {
@@ -262,21 +237,6 @@ void ListPanelActions::copyFilesByQueue()
 void ListPanelActions::moveFilesByQueue()
 {
     activeFunc()->moveFiles(true);
-}
-// F7
-void ListPanelActions::mkdir()
-{
-    activeFunc()->mkdir();
-}
-// F8
-void ListPanelActions::deleteFiles(bool reallyDelete)
-{
-    activeFunc()->deleteFiles(reallyDelete);
-}
-// F9
-void ListPanelActions::rename()
-{
-    activeFunc()->rename();
 }
 // Shift F3
 void ListPanelActions::viewDlg()
@@ -288,11 +248,6 @@ void ListPanelActions::viewDlg()
     KrViewer::view(dest);   // view the file
 //  }
     // nothing more to it!
-}
-// Shift F4
-void ListPanelActions::editDlg()
-{
-    activeFunc()->editNewFile();
 }
 
 // filter
@@ -339,37 +294,7 @@ void ListPanelActions::unmarkGroup()
     activePanel()->gui->select(false, false);
 }
 
-void ListPanelActions::invert()
-{
-    activePanel()->gui->invertSelection();
-}
-
 // file operations
-
-void ListPanelActions::cut()
-{
-    activeFunc()->copyToClipboard(true);
-}
-
-void ListPanelActions::copy()
-{
-    activeFunc()->copyToClipboard(false);
-}
-
-void ListPanelActions::paste()
-{
-    activeFunc()->pasteFromClipboard();
-}
-
-void ListPanelActions::createChecksum()
-{
-    activeFunc()->createChecksum();
-}
-
-void ListPanelActions::matchChecksum()
-{
-    activeFunc()->matchChecksum();
-}
 
 void ListPanelActions::compareDirs()
 {
@@ -377,57 +302,7 @@ void ListPanelActions::compareDirs()
     activePanel()->otherPanel()->gui->compareDirs();
 }
 
-void ListPanelActions::properties()
-{
-    activeFunc()->properties();
-}
-
-void ListPanelActions::rightclickMenu()
-{
-    activePanel()->gui->rightclickMenu();
-}
-
-void ListPanelActions::slotPack()
-{
-    activeFunc()->pack();
-}
-
-void ListPanelActions::slotUnpack()
-{
-    activeFunc()->unpack();
-}
-
-void ListPanelActions::testArchive()
-{
-    activeFunc()->testArchive();
-}
-
-void ListPanelActions::calcSpace()
-{
-    activeFunc()->calcSpace();
-}
-
-void ListPanelActions::newSymlink()
-{
-    activePanel()->func->krlink(true);
-}
-
 // navigation
-
-void ListPanelActions::historyBackward()
-{
-    activeFunc()->historyBackward();
-}
-
-void ListPanelActions::historyForward()
-{
-    activeFunc()->historyForward();
-}
-
-void ListPanelActions::dirUp()
-{
-    activeFunc()->dirUp();
-}
 
 void ListPanelActions::home()
 {
@@ -437,21 +312,6 @@ void ListPanelActions::home()
 void ListPanelActions::root()
 {
     activeFunc()->openUrl(KUrl("/"));
-}
-
-void ListPanelActions::refresh()
-{
-    activeFunc()->refresh();
-}
-
-void ListPanelActions::FTPDisconnect()
-{
-    activeFunc()->FTPDisconnect();
-}
-
-void ListPanelActions::newFTPconnection()
-{
-    activeFunc()->newFTPconnection();
 }
 
 void ListPanelActions::slotSetJumpBack()

@@ -457,7 +457,7 @@ void ListPanelFunc::terminal()
     SLOTS->runTerminal(panel->realPath(), QStringList());
 }
 
-void ListPanelFunc::editFile()
+void ListPanelFunc::edit()
 {
     QString name = panel->getCurrentName();
     if (name.isNull())
@@ -476,7 +476,7 @@ void ListPanelFunc::editFile()
     KrViewer::edit(files() ->vfs_getFile(name));
 }
 
-void ListPanelFunc::editNewFile()
+void ListPanelFunc::editNew()
 {
     if(!fileToCreate.isEmpty())
         return;

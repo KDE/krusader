@@ -48,58 +48,64 @@ KFnKeys::KFnKeys(QWidget *parent): QWidget(parent)
         TARGET->setMinimumWidth(45);\
     }
 
+    ListPanelActions *actions = ListPanelActions::self;
+
+    // FIXME: the tooltips should be set for the actions in ListPanelActions
+
     setFont(KGlobalSettings::generalFont());
     layout = new QGridLayout(this); // 9 keys
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
-    F2 = new QPushButton(i18n("F2 Term  ") , this);
+    F2 = new QPushButton(this);
     F2->setToolTip("<qt>" + i18n("<p>Open terminal in current directory.</p>"
                                  "<p>The terminal can be defined in Konfigurator, "
                                  "default is <b>konsole</b>.</p>") + "</qt>");
-    connect(F2, SIGNAL(clicked()), ListPanelActions::self, SLOT(terminal()));
+    connect(F2, SIGNAL(clicked()), actions->actF2, SLOT(trigger()));
     SETUP(F2);
 
-    F3 = new QPushButton(i18n("F3 View  ") , this);
+    F3 = new QPushButton(this);
     F3->setToolTip(i18n("Open file in viewer."));
-    connect(F3, SIGNAL(clicked()), ListPanelActions::self, SLOT(view()));
+    connect(F3, SIGNAL(clicked()), actions->actF3, SLOT(trigger()));
     SETUP(F3);
 
-    F4 = new QPushButton(i18n("F4 Edit  ") , this);
+    F4 = new QPushButton(this);
     F4->setToolTip("<qt>" + i18n("<p>Edit file.</p>"
                                  "<p>The editor can be defined in Konfigurator, "
                                  "default is <b>internal editor</b>.</p>") + "</qt>");
-    connect(F4, SIGNAL(clicked()), ListPanelActions::self, SLOT(edit()));
+    connect(F4, SIGNAL(clicked()), actions->actF4, SLOT(trigger()));
     SETUP(F4);
 
-    F5 = new QPushButton(i18n("F5 Copy  ") , this);
+    F5 = new QPushButton(this);
     F5->setToolTip(i18n("Copy file from one panel to the other."));
-    connect(F5, SIGNAL(clicked()), ListPanelActions::self, SLOT(copyFiles()));
+    connect(F5, SIGNAL(clicked()), actions->actF5, SLOT(trigger()));
     SETUP(F5);
 
-    F6 = new QPushButton(i18n("F6 Move") , this);
+    F6 = new QPushButton(this);
     F6->setToolTip(i18n("Move file from one panel to the other."));
-    connect(F6, SIGNAL(clicked()), ListPanelActions::self, SLOT(moveFiles()));
+    connect(F6, SIGNAL(clicked()), actions->actF6, SLOT(trigger()));
     SETUP(F6);
 
-    F7 = new QPushButton(i18n("F7 Mkdir ") , this);
+    F7 = new QPushButton(this);
     F7->setToolTip(i18n("Create directory in current panel."));
-    connect(F7, SIGNAL(clicked()), ListPanelActions::self, SLOT(mkdir()));
+    connect(F7, SIGNAL(clicked()), actions->actF7, SLOT(trigger()));
     SETUP(F7);
 
-    F8 = new QPushButton(i18n("F8 Delete") , this);
+    F8 = new QPushButton(this);
     F8->setToolTip(i18n("Delete file, directory, etc."));
-    connect(F8, SIGNAL(clicked()), ListPanelActions::self, SLOT(deleteFiles()));
+    connect(F8, SIGNAL(clicked()), actions->actF8, SLOT(trigger()));
     SETUP(F8);
 
-    F9 = new QPushButton(i18n("F9 Rename") , this);
+    F9 = new QPushButton(this);
     F9->setToolTip(i18n("Rename file, directory, etc."));
-    connect(F9, SIGNAL(clicked()), ListPanelActions::self, SLOT(rename()));
+    connect(F9, SIGNAL(clicked()), actions->actF9, SLOT(trigger()));
     SETUP(F9);
 
-    F10 = new QPushButton(i18n("F10 Quit ") , this);
+    F10 = new QPushButton(this);
     F10->setToolTip(i18n("Quit Krusader."));
     connect(F10, SIGNAL(clicked()), krMainWindow, SLOT(slotClose()));
     SETUP(F10);
+
+    updateShortcuts();
     /*
         // set a tighter box around the keys
         int h = QFontMetrics(F2->font()).height()+2;
@@ -124,6 +130,7 @@ KFnKeys::KFnKeys(QWidget *parent): QWidget(parent)
 
 void KFnKeys::updateShortcuts()
 {
+    //FIXME: use QAction::text()
     F2->setText(krF2->shortcut().toString() + i18n(" Term"));
     F3->setText(krF3->shortcut().toString() + i18n(" View"));
     F4->setText(krF4->shortcut().toString() + i18n(" Edit"));

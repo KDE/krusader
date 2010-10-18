@@ -30,10 +30,9 @@ class KrMainWindow;
 class ActionsBase : public QObject
 {
     Q_OBJECT
-public:
+protected:
     ActionsBase(QObject *parent, KrMainWindow *mainWindow) : QObject(parent),
                 _mainWindow(mainWindow) {}
-protected:
     class ActionGroup
     {
         QHash<KAction*, const char*> _slots;
@@ -61,7 +60,6 @@ protected:
     }
     KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,
                                 ActionGroup &group, const char *slot, QString name);
-
 
     KAction *stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot);
     KAction *stdAction(KStandardAction::StandardAction id, const char *slot) {

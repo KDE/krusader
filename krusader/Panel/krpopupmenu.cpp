@@ -378,7 +378,7 @@ void KrPopupMenu::performAction(int id)
         panel->func->mkdir();
         break;
     case NEW_TEXT_FILE_ID:
-        panel->func->editNewFile();
+        panel->func->editNew();
         break;
     case SYNC_SELECTED_ID : {
         QStringList selectedNames;

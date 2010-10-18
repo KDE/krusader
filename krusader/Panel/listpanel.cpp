@@ -414,8 +414,8 @@ void ListPanel::createView()
 
     connect(view->op(), SIGNAL(calcSpace(KrViewItem*)), func, SLOT(calcSpace(KrViewItem*)));
     connect(view->op(), SIGNAL(goHome()), actions, SLOT(home()));
-    connect(view->op(), SIGNAL(dirUp()), actions, SLOT(dirUp()));
-    connect(view->op(), SIGNAL(deleteFiles(bool)), actions, SLOT(deleteFiles(bool)));
+    connect(view->op(), SIGNAL(dirUp()), func, SLOT(dirUp()));
+    connect(view->op(), SIGNAL(deleteFiles(bool)), func, SLOT(deleteFiles(bool)));
     connect(view->op(), SIGNAL(middleButtonClicked(KrViewItem *)), SLOTS, SLOT(newTab(KrViewItem *)));
     connect(view->op(), SIGNAL(currentChanged(KrViewItem *)), SLOT(updatePopupPanel(KrViewItem*)));
     connect(view->op(), SIGNAL(renameItem(const QString &, const QString &)),

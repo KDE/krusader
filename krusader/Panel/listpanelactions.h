@@ -53,30 +53,12 @@ public slots:
     // set view type
     void setView(int id);
 
-    // F2
-    void terminal();
-    // F3
-    void view();
-    // Shift F3
+    // Shift + F3
     void viewDlg();
-    // F4
-    void edit();
-    // Shift F4
-    void editDlg();
-    // F5
-    void copyFiles();
-    // F6
-    void moveFiles();
     // SHIFT + F5
     void copyFilesByQueue();
     // SHIFT + F6
     void moveFilesByQueue();
-    // F7
-    void mkdir();
-    // F8
-    void deleteFiles(bool reallyDelete = false);
-    // F9
-    void rename();
 
     //filter
     void allFilter();
@@ -89,32 +71,13 @@ public slots:
     void markGroup();
     void markGroup(const QString &, bool select);
     void unmarkGroup();
-    void invert();
 
     // file operations
-    void cut();
-    void copy();
-    void paste();
-    void rightclickMenu();
-    void properties();
     void compareDirs();
-    void slotPack();
-    void slotUnpack();
-    void createChecksum();
-    void matchChecksum();
-    void newSymlink();
-    void testArchive();
-    void calcSpace();
 
     // navigation
-    void historyBackward();
-    void historyForward();
-    void dirUp();
     void home();
     void root();
-    void refresh();
-    void FTPDisconnect();
-    void newFTPconnection();
     void syncPanels();
     void slotSetJumpBack();
     void openLeftBookmarks();
@@ -149,7 +112,7 @@ protected:
     KrPanel *rightPanel();
     ListPanelFunc *activeFunc();
 
-    ActionGroup _guiActions, _funcActions;
+    ActionGroup _gui, _func;
 };
 
 #endif // __LISTPANELACTIONS_H__

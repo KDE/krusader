@@ -43,12 +43,6 @@ class ListPanelFunc : public QObject
     friend class ListPanel;
     Q_OBJECT
 public slots:
-    inline vfile* getVFile(KrViewItem *item) {
-        return files()->vfs_search(item->name());
-    }
-    inline vfile* getVFile(const QString& name) {
-        return files()->vfs_search(name);
-    }
     void execute(const QString&);
     void goInside(const QString&);
     void urlEntered(const QString &url);
@@ -57,10 +51,39 @@ public slots:
                  bool manuallyEntered = false);
 //     void popErronousUrl();
     void immediateOpenUrl(const KUrl &url, bool disableLock = false);
-    void refresh();
     void rename(const QString &oldname, const QString &newname);
     void calcSpace(KrViewItem *item);
     void trashJobStarted(KIO::Job *job);
+
+    // actions
+    void historyBackward();
+    void historyForward();
+    void dirUp();
+    void refresh();
+    void FTPDisconnect();
+    void newFTPconnection();
+    void terminal();
+    void view();
+    void edit();
+    void editNew(); // create a new textfile and edit it
+    void copyFiles(bool enqueue = false);
+    void moveFiles(bool enqueue = false);
+    void mkdir();
+    void deleteFiles(bool reallyDelete = false);
+    void rename();
+    void krlink(bool sym = true);
+    void createChecksum();
+    void matchChecksum();
+    void pack();
+    void unpack();
+    void testArchive();
+    void calcSpace(); // calculate the occupied space and show it in a dialog
+    void properties();
+    void cut() {
+        copyToClipboard(true);
+    }
+    void copyToClipboard(bool move = false);
+    void pasteFromClipboard();
 
 public:
     ListPanelFunc(ListPanel *parent);
@@ -68,40 +91,24 @@ public:
 
     vfs* files();  // return a pointer to the vfs
 
+    inline vfile* getVFile(KrViewItem *item) {
+        return files()->vfs_search(item->name());
+    }
+    inline vfile* getVFile(const QString& name) {
+        return files()->vfs_search(name);
+    }
+
+
     //HACK used by panelmanager - remove this once per-tab save/restore is implemented
     void clearHistory();
 
     void refreshActions();
     void redirectLink();
-    void krlink(bool sym);
-    void dirUp();
-    void historyBackward();
-    void historyForward();
-    void properties();
-    void terminal();
-    void editFile();
-    void editNewFile(); // create a new textfile and edit it
-    void view();
-    void rename();
-    void mkdir();
-    void moveFiles(bool enqueue = false);
-    void pack();
-    void unpack();
-    void testArchive();
-    void copyFiles(bool enqueue = false);
-    void deleteFiles(bool reallyDelete = false);
-    void calcSpace(); // calculate the occupied space and show it in a dialog
-    void createChecksum();
-    void matchChecksum();
-    void copyToClipboard(bool move = false);
-    void pasteFromClipboard();
 
     // calculate the occupied space. A dialog appears, if calculation lasts more than 3 seconds
     // and disappears, if the calculation is done. Returns true, if the result is ok and false
     // otherwise (Cancel was pressed).
     bool calcSpace(const QStringList & items, KIO::filesize_t & totalSize, unsigned long & totalFiles, unsigned long & totalDirs);
-    void FTPDisconnect();
-    void newFTPconnection();
     ListPanelFunc* otherFunc();
 
 protected slots:
