@@ -103,6 +103,9 @@ public:
         _locked = lck;
     }
 
+    ListPanelActions *actions() {
+        return _actions;
+    }
     QString realPath() const;
     QString getCurrentName();
     void getSelectedNames(QStringList* fileNames) {
@@ -208,7 +211,7 @@ protected:
     KDiskFreeSpace* statsAgent;
     KJob *previewJob;
     KIO::Job *inlineRefreshJob;
-    ListPanelActions *actions;
+    ListPanelActions *_actions;
 
     QPixmap currDragPix;
     QWidget *clientArea;

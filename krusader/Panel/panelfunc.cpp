@@ -1185,7 +1185,7 @@ void ListPanelFunc::FTPDisconnect()
 {
     // you can disconnect only if connected !
     if (files() ->vfs_getType() == vfs::VFS_FTP) {
-        panel->actions->actFTPDisconnect->setEnabled(false);
+        panel->_actions->actFTPDisconnect->setEnabled(false);
         panel->view->setNameToMakeCurrent(QString());
         openUrl(panel->realPath());   // open the last local URL
     }
@@ -1198,7 +1198,7 @@ void ListPanelFunc::newFTPconnection()
     if (url.isEmpty())
         return ;
 
-    panel->actions->actFTPDisconnect->setEnabled(true);
+    panel->_actions->actFTPDisconnect->setEnabled(true);
     openUrl(url);
 }
 
@@ -1254,12 +1254,12 @@ void ListPanelFunc::refreshActions()
           krExecFiles->setEnabled(true);                         // show only executables
     */
 
-    panel->actions->setViewActions[panel->panelType]->setChecked(true);
-    panel->actions->actFTPDisconnect->setEnabled(vfsType == vfs::VFS_FTP);       // disconnect an FTP session
-    panel->actions->actCreateChecksum->setEnabled(vfsType == vfs::VFS_NORMAL);
-    panel->actions->actDirUp->setEnabled(files()->vfs_getOrigin().upUrl() != files()->vfs_getOrigin());
-    panel->actions->actHistoryBackward->setEnabled(history->canGoBack());
-    panel->actions->actHistoryForward->setEnabled(history->canGoForward());
+    panel->_actions->setViewActions[panel->panelType]->setChecked(true);
+    panel->_actions->actFTPDisconnect->setEnabled(vfsType == vfs::VFS_FTP);       // disconnect an FTP session
+    panel->_actions->actCreateChecksum->setEnabled(vfsType == vfs::VFS_NORMAL);
+    panel->_actions->actDirUp->setEnabled(files()->vfs_getOrigin().upUrl() != files()->vfs_getOrigin());
+    panel->_actions->actHistoryBackward->setEnabled(history->canGoBack());
+    panel->_actions->actHistoryForward->setEnabled(history->canGoForward());
     KrActions::actTogglePreviews->setChecked(panel->view->previewsShown());
     panel->view->refreshActions();
 }

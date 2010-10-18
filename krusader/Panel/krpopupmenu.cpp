@@ -67,7 +67,6 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : KMenu(parent), pa
     konqMenu = 0;
     konqMenuActions = 0;
 #endif
-
     panel->view->getSelectedKrViewItems(&items);
     if (items.empty()) {
         addCreateNewMenu();
@@ -217,7 +216,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : KMenu(parent), pa
 
     // ---------- calculate space
     if (panel->func->files() ->vfs_getType() == vfs::VFS_NORMAL && (vf->vfile_isDir() || multipleSelections))
-        addAction(krCalculate);
+        addAction(panel->gui->actions()->actCalculate);
 
     // ---------- mount/umount/eject
     if (panel->func->files() ->vfs_getType() == vfs::VFS_NORMAL && vf->vfile_isDir() && !multipleSelections) {
@@ -255,7 +254,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : KMenu(parent), pa
     addSeparator();
 
     // --------- properties
-    addAction(krProperties);
+    addAction(panel->gui->actions()->actProperties);
 }
 
 KrPopupMenu::~KrPopupMenu()

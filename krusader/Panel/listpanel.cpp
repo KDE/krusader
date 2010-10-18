@@ -118,8 +118,8 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
 {
     gui = this;
     func = new ListPanelFunc(this);
-    actions = krApp->listPanelActions();
-    connect(this, SIGNAL(activePanelChanged(ListPanel*)), actions, SLOT(activePanelChanged(ListPanel*)));
+    _actions = krApp->listPanelActions();
+    connect(this, SIGNAL(activePanelChanged(ListPanel*)), _actions, SLOT(activePanelChanged(ListPanel*)));
 
     setAcceptDrops(true);
 
@@ -413,7 +413,7 @@ void ListPanel::createView()
     view->widget()->installEventFilter(this);
 
     connect(view->op(), SIGNAL(calcSpace(KrViewItem*)), func, SLOT(calcSpace(KrViewItem*)));
-    connect(view->op(), SIGNAL(goHome()), actions, SLOT(home()));
+    connect(view->op(), SIGNAL(goHome()), _actions, SLOT(home()));
     connect(view->op(), SIGNAL(dirUp()), func, SLOT(dirUp()));
     connect(view->op(), SIGNAL(deleteFiles(bool)), func, SLOT(deleteFiles(bool)));
     connect(view->op(), SIGNAL(middleButtonClicked(KrViewItem *)), SLOTS, SLOT(newTab(KrViewItem *)));
@@ -478,7 +478,7 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
             if(ke->key() == Qt::Key_Escape && ke->modifiers() == Qt::NoModifier) {
                 // if the cancel refresh action has no shortcut assigned,
                 // we need this event ourselves to cancel refresh
-                if(actions->actCancelRefresh->shortcut().isEmpty()) {
+                if(_actions->actCancelRefresh->shortcut().isEmpty()) {
                     e->accept();
                     return true;
                 }
