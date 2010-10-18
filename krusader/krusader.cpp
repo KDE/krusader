@@ -99,6 +99,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "Dialogs/checksumdlg.h"
 #include "VFS/vfile.h"
 #include "krtrashhandler.h"
+#include "Panel/listpanelactions.h"
 
 #ifdef __KJSEMBED__
 #include "KrJS/krjs.h"

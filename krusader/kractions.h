@@ -36,8 +36,6 @@
 #include <kaction.h>
 #include <ktoggleaction.h>
 
-//HACK
-#include "Panel/listpanelactions.h"
 
 class Krusader;
 
