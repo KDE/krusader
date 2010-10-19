@@ -23,6 +23,7 @@ class QWidget;
 class KrView;
 class QAction;
 class KActionCollection;
+class ViewActions;
 
 // abstract interface to the main window
 class KrMainWindow
@@ -30,10 +31,11 @@ class KrMainWindow
 public:
     virtual QWidget *widget() = 0;
     virtual KrView *activeView() = 0;
+    virtual ViewActions *viewActions() = 0;
     virtual KActionCollection *actions() = 0;
 
-    void enableAction(const char *name, bool enable);
-    QAction *action(const char *name);
+//     void enableAction(const char *name, bool enable);
+//     QAction *action(const char *name);
 };
 
 #endif // __KRMAINWINDOW_H__

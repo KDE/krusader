@@ -60,7 +60,6 @@ KAction *KrActions::actKonfigurator = 0;
 KAction *KrActions::actToolsSetup = 0;
 KAction *KrActions::actSwapPanels = 0;
 KAction *KrActions::actSwapSides = 0;
-// KAction *KrActions::actBack = 0;
 KAction *KrActions::actFind = 0;
 KAction *KrActions::actLocate = 0;
 KAction *KrActions::actSwitchFullScreenTE = 0;
@@ -87,12 +86,6 @@ KAction *KrActions::actF10 = 0;
 KAction *KrActions::actEmptyTrash = 0;
 KAction *KrActions::actTrashBin = 0;
 KAction *KrActions::actPopularUrls = 0;
-KAction *KrActions::actViewSaveDefaultSettings = 0;
-KAction *KrActions::actShowViewOptionsMenu = 0;
-KAction *KrActions::actZoomIn = 0;
-KAction *KrActions::actZoomOut = 0;
-KAction *KrActions::actDefaultZoom = 0;
-KAction *KrActions::actFocusPanel = 0;
 
 KToggleAction *KrActions::actToggleTerminal = 0;
 KAction  *KrActions::actVerticalMode = 0;
@@ -301,18 +294,9 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actF10, i18n("Quit"), 0, Qt::Key_F10, krusaderApp, SLOT(slotClose()) , "F10_Quit");
     NEW_KACTION(actPopularUrls, i18n("Popular URLs..."), 0, Qt::CTRL + Qt::Key_Z, krusaderApp->popularUrls(), SLOT(showDialog()), "Popular_Urls");
     NEW_KACTION(actSwitchFullScreenTE, i18n("Toggle Fullwidget Terminal Emulator"), 0, Qt::CTRL + Qt::Key_F, MAIN_VIEW, SLOT(switchFullScreenTE()), "switch_fullscreen_te");
-    NEW_KACTION(actZoomIn, i18n("Zoom In"), "zoom-in", 0, SLOTS, SLOT(zoomIn()), "zoom_in");
-    NEW_KACTION(actZoomOut, i18n("Zoom Out"), "zoom-out", 0, SLOTS, SLOT(zoomOut()), "zoom_out");
-    NEW_KACTION(actDefaultZoom, i18n("Default Zoom"), "zoom-original", 0, SLOTS, SLOT(defaultZoom()), "default_zoom");
-    NEW_KACTION(actShowViewOptionsMenu, i18n("Show View Options Menu"), 0, 0, SLOTS, SLOT(showViewOptionsMenu()), "show_view_options_menu");
-    NEW_KACTION(actViewSaveDefaultSettings, i18n("Save settings as default"), 0, 0, SLOTS, SLOT(viewSaveDefaultSettings()), "view_save_default_settings");
-    actViewSaveDefaultSettings->setToolTip(i18n("Save settings as default for new instances of this view type"));
-
-    NEW_KACTION(actFocusPanel, i18n("Set Focus to the Panel"), 0, Qt::Key_Escape, SLOTS, SLOT(focusPanel()), "focus_panel");
 
 
     KAction *tmp;
-    NEW_KACTION(tmp, i18n("Apply settings to other tabs"), 0, 0, SLOTS, SLOT(viewApplySettingsToOthers()), "view_apply_settings_to_others");
     NEW_KACTION(tmp, i18n("Move Focus Up"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Up, MAIN_VIEW, SLOT(focusUp()), "move_focus_up");
     NEW_KACTION(tmp, i18n("Move Focus Down"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Down, MAIN_VIEW, SLOT(focusDown()), "move_focus_down");
 

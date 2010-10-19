@@ -134,13 +134,6 @@ public slots:
     void windowInactive(); // called when another application steals the focus
     void jsConsole();
     void saveNewToolbarConfig();
-    void zoomIn();
-    void zoomOut();
-    void defaultZoom();
-    void showViewOptionsMenu();
-    void viewSaveDefaultSettings();
-    void viewApplySettingsToOthers();
-    void focusPanel();
 
 protected slots:
     void configChanged(bool isGUIRestartNeeded);

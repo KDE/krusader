@@ -46,15 +46,15 @@ UserAction *KrGlobal::userAction = 0;
 KrPanel *KrGlobal::activePanel = 0;
 KShortcut KrGlobal::copyShortcut;
 
-void KrGlobal::enableAction(const char *name, bool enable)
-{
-    getAction(name)->setEnabled(enable);
-}
-
-QAction* KrGlobal::getAction(const char *name)
-{
-    QAction *act = krApp->actionCollection()->action(name);
-    if(!act)
-        qFatal("no such action: %s", name);
-    return act;
-}
+// void KrGlobal::enableAction(const char *name, bool enable)
+// {
+//     getAction(name)->setEnabled(enable);
+// }
+// 
+// QAction* KrGlobal::getAction(const char *name)
+// {
+//     QAction *act = krApp->actionCollection()->action(name);
+//     if(!act)
+//         qFatal("no such action: %s", name);
+//     return act;
+// }

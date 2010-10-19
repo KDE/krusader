@@ -889,45 +889,9 @@ void KRslots::bookmarkCurrent()
     krBookMan->bookmarkCurrent(ACTIVE_PANEL->virtualPath());
 }
 
-void KRslots::zoomIn()
-{
-    ACTIVE_VIEW->zoomIn();
-}
-
-void KRslots::zoomOut()
-{
-    ACTIVE_VIEW->zoomOut();
-}
-
-void KRslots::defaultZoom()
-{
-    ACTIVE_VIEW->setDefaultFileIconSize();
-}
-
 void KRslots::cmdlinePopup()
 {
     MAIN_VIEW->cmdLine->popup();
 }
-
-void KRslots::showViewOptionsMenu()
-{
-    ACTIVE_VIEW->showContextMenu();
-}
-
-void KRslots::viewSaveDefaultSettings()
-{
-    ACTIVE_VIEW->saveDefaultSettings();
-}
-
-void KRslots::viewApplySettingsToOthers()
-{
-    ACTIVE_VIEW->applySettingsToOthers();
-}
-
-void KRslots::focusPanel()
-{
-    ACTIVE_VIEW->widget()->setFocus();
-}
-
 
 #include "krslots.moc"

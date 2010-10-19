@@ -69,8 +69,8 @@ public:
     //HACK - used by [ListerTextArea|KrSearchDialog|LocateDlg]:keyPressEvent()
     static KShortcut copyShortcut;
 
-    static void enableAction(const char *name, bool enable);
-    static QAction *getAction(const char *name);
+//     static void enableAction(const char *name, bool enable);
+//     static QAction *getAction(const char *name);
 };
 
 #define krConfig     KrGlobal::config
@@ -96,7 +96,7 @@ public:
 #define RIGHT_FUNC (RIGHT_PANEL->func)
 #define RIGHT_MNG  (MAIN_VIEW->rightMng)
 
-#define krEnableAction(name, enable) (KrGlobal::enableAction(#name, (enable)))
-#define krGetAction(name) (KrGlobal::getAction(#name))
+// #define krEnableAction(name, enable) (KrGlobal::enableAction(#name, (enable)))
+// #define krGetAction(name) (KrGlobal::getAction(#name))
 
 #endif

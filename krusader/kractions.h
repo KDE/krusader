@@ -58,12 +58,9 @@ public:
     static KAction *actVerticalMode;
     static KAction *actEmptyTrash, *actTrashBin;
     static KAction *actPopularUrls;
-    static KAction *actViewSaveDefaultSettings, *actShowViewOptionsMenu;
     static KToggleAction *actToggleTerminal;
     static KAction *actSelectNewerAndSingle, *actSelectNewer, *actSelectSingle,
     *actSelectDifferentAndSingle, *actSelectDifferent;
-    static KAction *actZoomIn, *actZoomOut, *actDefaultZoom;
-    static KAction *actFocusPanel;
     static KAction *actF10;
     /** actions for setting the execution mode of commands from commanddline */
     static KAction *actExecStartAndForget,

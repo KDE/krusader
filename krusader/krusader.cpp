@@ -99,6 +99,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "Dialogs/checksumdlg.h"
 #include "VFS/vfile.h"
 #include "krtrashhandler.h"
+#include "Panel/viewactions.h"
 #include "Panel/listpanelactions.h"
 
 #ifdef __KJSEMBED__
@@ -420,6 +421,7 @@ void Krusader::resizeEvent(QResizeEvent *e) {
 void Krusader::setupActions() {
     KrActions::setupActions(this);
     _krActions = new KrActions(this);
+    _viewActions = new ViewActions(this, this);
     _listPanelActions = new ListPanelActions(this, this);
 }
 

@@ -1,4 +1,5 @@
 set(Panel_SRCS
+    viewactions.cpp
     listpanelactions.cpp
     dirhistoryqueue.cpp
     krsort.cpp

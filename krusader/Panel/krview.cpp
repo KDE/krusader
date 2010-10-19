@@ -28,16 +28,17 @@
 *                                                                         *
 ***************************************************************************/
 #include "krview.h"
-#include "../kicons.h"
-#include "../defaults.h"
-#include "../VFS/krpermhandler.h"
-#include "../Dialogs/krspecialwidgets.h"
+#include "viewactions.h"
 #include "krviewfactory.h"
 #include "krviewitem.h"
 #include "krselectionmode.h"
 #include "krcolorcache.h"
 #include "krpreviews.h"
 #include "../krmainwindow.h"
+#include "../kicons.h"
+#include "../defaults.h"
+#include "../VFS/krpermhandler.h"
+#include "../Dialogs/krspecialwidgets.h"
 
 #include <qnamespace.h>
 #include <qpixmapcache.h>
@@ -53,12 +54,6 @@
 
 
 #define VF getVfile()
-
-// action name constants
-//TODO: remove this, once it's not needed anymore
-#define actZoomIn "zoom_in"
-#define actZoomOut "zoom_out"
-#define actDefaultZoom "default_zoom"
 
 
 // ----------------------------- operator
@@ -981,11 +976,11 @@ void KrView::setDefaultFileIconSize()
 void KrView::refreshActions()
 {
     KConfigGroup grpSvr(_config, _instance.name());
-    _mainWindow->enableAction(actDefaultZoom,
+    _mainWindow->viewActions()->actDefaultZoom->setEnabled(
         grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize).toInt() != _fileIconSize);
     int idx = iconSizes.indexOf(_fileIconSize);
-    _mainWindow->enableAction(actZoomOut, idx > 0);
-    _mainWindow->enableAction(actZoomIn, idx < (iconSizes.count() - 1));
+    _mainWindow->viewActions()->actZoomOut->setEnabled(idx > 0);
+    _mainWindow->viewActions()->actZoomIn->setEnabled(idx < (iconSizes.count() - 1));
 }
 
 QString KrView::nameInKConfig() const {

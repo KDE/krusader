@@ -70,6 +70,8 @@ class KMountMan;
 class KrBookmarkHandler;
 class PopularUrls;
 class QueueManager;
+class ViewActions;
+class ListPanelActions;
 
 class Krusader : public KParts::MainWindow, public FileManagerWindow
 {
@@ -85,6 +87,9 @@ public:
         return this;
     }
     virtual KrView *activeView();
+    ViewActions *viewActions() {
+        return _viewActions;
+    }
     virtual KActionCollection *actions() {
         return actionCollection();
     }
@@ -173,6 +178,7 @@ signals:
 
 private:
     KrActions *_krActions;
+    ViewActions *_viewActions;
     ListPanelActions *_listPanelActions;
     KSystemTrayIcon *sysTray;
     QPoint       oldPos;
