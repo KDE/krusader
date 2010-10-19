@@ -567,25 +567,21 @@ QString KrView::firstUnmarkedBelowCurrent()
 
 void KrView::delItem(const QString &name)
 {
-    QHash<QString, KrViewItem*>::iterator itr = _dict.find(name);
-    if (itr == _dict.end()) {
-        krOut << "got signal deletedVfile(" << name << ") but can't find KrViewItem" << endl;
+    KrViewItem *it = findItemByName(name);
+    if(!it)
         return;
-    }
 
-    KrViewItem * it = *itr;
     if(_previews)
         _previews->deletePreview(it);
-    if (!preDelItem(it)) return; // do not delete this after all
 
-    // remove from dict
+    preDelItem(it);
+
     if (it->VF->vfile_isDir()) {
         --_numDirs;
     } else {
         _countSize -= it->VF->vfile_getSize();
     }
     --_count;
-    _dict.remove(name);
     delete it;
     op()->emitSelectionChanged();
 }
@@ -593,13 +589,12 @@ void KrView::delItem(const QString &name)
 KrViewItem *KrView::addItem(vfile *vf)
 {
     KrViewItem *item = preAddItem(vf);
-    if (!item) return 0; // don't add it after all
+    if (!item) 
+        return 0; // don't add it after all
 
     if(_previews)
         _previews->updatePreview(item);
 
-    // add to dictionary
-    _dict.insert(vf->vfile_getName(), item);
     if (vf->vfile_isDir())
         ++_numDirs;
     else _countSize += vf->vfile_getSize();
@@ -615,7 +610,6 @@ KrViewItem *KrView::addItem(vfile *vf)
         makeItemVisible(item);
     }
 
-
     op()->emitSelectionChanged();
     return item;
 }
@@ -624,21 +618,16 @@ void KrView::updateItem(vfile *vf)
 {
     // since we're deleting the item, make sure we keep
     // it's properties first and repair it later
-    QHash<QString, KrViewItem*>::iterator itr = _dict.find(vf->vfile_getName());
-    if (itr == _dict.end()) {
-        krOut << "got signal updatedVfile(" << vf->vfile_getName() << ") but can't find KrViewItem" << endl;
-    } else {
-        KrViewItem * it = *itr;
-        bool selected = it->isSelected();
-        bool current = (getCurrentKrViewItem() == it);
-        delItem(vf->vfile_getName());
-        KrViewItem *updatedItem = addItem(vf);
-        // restore settings
-        (_dict[ vf->vfile_getName()]) ->setSelected(selected);
-        if (current) {
-            setCurrentItem(vf->vfile_getName());
-            makeItemVisible(updatedItem);
-        }
+    KrViewItem *it = findItemByVfile(vf);
+    bool selected = it->isSelected();
+    bool current = (getCurrentKrViewItem() == it);
+    delItem(vf->vfile_getName());
+    KrViewItem *updatedItem = addItem(vf);
+    // restore settings
+    updatedItem->setSelected(selected);
+    if (current) {
+        setCurrentItem(vf->vfile_getName());
+        makeItemVisible(updatedItem);
     }
     op()->emitSelectionChanged();
 }
@@ -648,7 +637,6 @@ void KrView::clear()
     if(_previews)
         _previews->clear();
     _count = _numSelected = _numDirs = _selectedSize = _countSize = 0;
-    _dict.clear();
 }
 
 // good old dialog box

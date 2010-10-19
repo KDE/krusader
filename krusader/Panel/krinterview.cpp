@@ -174,6 +174,21 @@ KrViewItem* KrInterView::getKrViewItemAt(const QPoint &vp)
     return getKrInterViewItem(_itemView->indexAt(vp));
 }
 
+KrViewItem *KrInterView::findItemByVfile(vfile *vf) {
+    return getKrInterViewItem(vf);
+}
+
+KrInterViewItem * KrInterView::getKrInterViewItem(vfile *vf)
+{
+    QHash<vfile *, KrInterViewItem*>::iterator it = _itemHash.find(vf);
+    if (it == _itemHash.end()) {
+        KrInterViewItem * newItem =  new KrInterViewItem(this, vf);
+        _itemHash[ vf ] = newItem;
+        return newItem;
+    }
+    return *it;
+}
+
 KrInterViewItem * KrInterView::getKrInterViewItem(const QModelIndex & ndx)
 {
     if (!ndx.isValid())
@@ -181,14 +196,8 @@ KrInterViewItem * KrInterView::getKrInterViewItem(const QModelIndex & ndx)
     vfile * vf = _model->vfileAt(ndx);
     if (vf == 0)
         return 0;
-    QHash<vfile *, KrInterViewItem*>::iterator it = _itemHash.find(vf);
-    if (it == _itemHash.end()) {
-        KrInterViewItem * newItem =  new KrInterViewItem(this, vf);
-        _itemHash[ vf ] = newItem;
-        _dict.insert(vf->vfile_getName(), newItem);
-        return newItem;
-    }
-    return *it;
+    else
+        return getKrInterViewItem(vf);
 }
 
 void KrInterView::makeCurrentVisible()
@@ -268,16 +277,13 @@ KrViewItem* KrInterView::preAddItem(vfile *vf)
     return getKrInterViewItem(_model->addItem(vf));
 }
 
-bool KrInterView::preDelItem(KrViewItem *item)
+void KrInterView::preDelItem(KrViewItem *item)
 {
-    if (item == 0)
-        return true;
     setSelected(item->getVfile(), false);
     QModelIndex ndx = _model->removeItem((vfile *)item->getVfile());
     if (ndx.isValid())
         _itemView->setCurrentIndex(ndx);
     _itemHash.remove((vfile *)item->getVfile());
-    return true;
 }
 
 void KrInterView::updateItem(vfile * item)

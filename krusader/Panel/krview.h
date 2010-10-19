@@ -311,6 +311,7 @@ public:
     virtual KrViewItem *getCurrentKrViewItem() = 0;
     virtual KrViewItem *getKrViewItemAt(const QPoint &vp) = 0;
     virtual KrViewItem *findItemByName(const QString &name) = 0;
+    virtual KrViewItem *findItemByVfile(vfile *vf) = 0;
     virtual void addItems(vfs* v, bool addUpDir = true) = 0; // kill me, kill me now
     virtual QString getCurrentItem() const = 0;
     virtual void setCurrentItem(const QString& name) = 0;
@@ -339,7 +340,7 @@ public:
 
 protected:
     virtual KrViewItem *preAddItem(vfile *vf) = 0;
-    virtual bool preDelItem(KrViewItem *item) = 0;
+    virtual void preDelItem(KrViewItem *item) = 0;
     virtual void doSaveSettings(KConfigGroup &group) = 0;
     virtual void doRestoreSettings(KConfigGroup &group) = 0;
     virtual void copySettingsFrom(KrView *other) = 0;
@@ -442,9 +443,6 @@ public:
     inline QWidget *widget() {
         return _widget;
     }
-    inline void setWidget(QWidget *w) {
-        _widget = w;
-    }
     inline int fileIconSize() const {
         return _fileIconSize;
     }
@@ -485,6 +483,9 @@ protected:
     void restoreSettings(QString configGroup);
     void saveSortMode(KConfigGroup &group);
     void restoreSortMode(KConfigGroup &group);
+    inline void setWidget(QWidget *w) {
+        _widget = w;
+    }
 
 
     KrViewInstance &_instance;
@@ -498,7 +499,6 @@ protected:
     KIO::filesize_t _countSize, _selectedSize;
     KrViewProperties *_properties;
     KrViewOperator *_operator;
-    QHash<QString, KrViewItem*> _dict;
     bool _focused;
     KrPreviews *_previews;
     int _fileIconSize;

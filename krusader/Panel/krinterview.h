@@ -25,11 +25,11 @@
 #include <QAbstractItemView>
 
 #include "krview.h"
-#include "krviewitem.h"
 
 class KrInterViewItem;
 class KrVfsModel;
 class KrMouseHandler;
+class KrViewItem;
 
 class KrInterView : public KrView
 {
@@ -47,6 +47,7 @@ public:
     virtual KrViewItem* getPrev(KrViewItem *current);
     virtual KrViewItem* getCurrentKrViewItem();
     virtual KrViewItem* findItemByName(const QString &name);
+    virtual KrViewItem *findItemByVfile(vfile *vf);
     virtual void addItems(vfs* v, bool addUpDir = true);
     virtual QString getCurrentItem() const;
     virtual KrViewItem* getKrViewItemAt(const QPoint &vp);
@@ -78,11 +79,12 @@ protected:
     };
 
     virtual KrViewItem* preAddItem(vfile *vf);
-    virtual bool preDelItem(KrViewItem *item);
+    virtual void preDelItem(KrViewItem *item);
     virtual void showContextMenu(const QPoint & p) = 0;
 
     virtual QRect itemRect(const vfile *vf) = 0;
 
+    KrInterViewItem * getKrInterViewItem(vfile *vf);
     KrInterViewItem * getKrInterViewItem(const QModelIndex &);
     void setSelected(const vfile* vf, bool select);
     bool isSelected(const vfile *vf);
