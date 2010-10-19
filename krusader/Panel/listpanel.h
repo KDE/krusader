@@ -133,7 +133,7 @@ public slots:
     void select(KRQuery query, bool select);
     void select(bool, bool);        // see doc in ListPanel
     void invertSelection();       // see doc in ListPanel
-    void compareDirs();
+    void compareDirs(bool otherPanelToo = true);
     void slotFocusOnMe(); // give this VFS the focus (the path bar)
     void slotUpdate();                     // when the vfs finish to update...
     void slotUpdateTotals();
@@ -163,7 +163,9 @@ public slots:
     void toggleSyncBrowse();
     void editLocation();
     void jumpBack();
-
+    void setJumpBack() {
+        setJumpBack(virtualPath());
+    }
 
     ///////////////////////// service functions - called internally ////////////////////////
     void prepareToDelete();                   // internal use only

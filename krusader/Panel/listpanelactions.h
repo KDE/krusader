@@ -53,13 +53,6 @@ public slots:
     // set view type
     void setView(int id);
 
-    // Shift + F3
-    void viewDlg();
-    // SHIFT + F5
-    void copyFilesByQueue();
-    // SHIFT + F6
-    void moveFilesByQueue();
-
     //filter
     void allFilter();
     //void execFilter();
@@ -72,14 +65,7 @@ public slots:
     void markGroup(const QString &, bool select);
     void unmarkGroup();
 
-    // file operations
-    void compareDirs();
-
     // navigation
-    void home();
-    void root();
-    void syncPanels();
-    void slotSetJumpBack();
     void openLeftBookmarks();
     void openRightBookmarks();
     void openLeftHistory();

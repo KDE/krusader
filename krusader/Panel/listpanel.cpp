@@ -413,7 +413,7 @@ void ListPanel::createView()
     view->widget()->installEventFilter(this);
 
     connect(view->op(), SIGNAL(calcSpace(KrViewItem*)), func, SLOT(calcSpace(KrViewItem*)));
-    connect(view->op(), SIGNAL(goHome()), _actions, SLOT(home()));
+    connect(view->op(), SIGNAL(goHome()), func, SLOT(home()));
     connect(view->op(), SIGNAL(dirUp()), func, SLOT(dirUp()));
     connect(view->op(), SIGNAL(deleteFiles(bool)), func, SLOT(deleteFiles(bool)));
     connect(view->op(), SIGNAL(middleButtonClicked(KrViewItem *)), SLOTS, SLOT(newTab(KrViewItem *)));
@@ -642,7 +642,7 @@ void ListPanel::invertSelection()
     view->invertSelection();
 }
 
-void ListPanel::compareDirs()
+void ListPanel::compareDirs(bool otherPanelToo)
 {
     KConfigGroup pg(krConfig, "Private");
     int compareMode = pg.readEntry("Compare Mode", 0);
@@ -691,6 +691,9 @@ void ListPanel::compareDirs()
     }
 
     view->updateView();
+
+    if(otherPanelToo)
+        otherPanel()->gui->compareDirs(false);
 }
 
 QColor ListPanel::getColor(KConfigGroup &cg, QString name, const QColor &def, const QColor &kdedef)

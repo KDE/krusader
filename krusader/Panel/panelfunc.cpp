@@ -452,6 +452,16 @@ void ListPanelFunc::view()
     // nothing more to it!
 }
 
+void ListPanelFunc::viewDlg()
+{
+    // ask the user for a url to view
+    KUrl dest = KChooseDir::getDir(i18n("Enter a URL to view:"), panel->virtualPath(), panel->virtualPath());
+    if (dest.isEmpty())
+        return ;   // the user canceled
+
+    KrViewer::view(dest);   // view the file
+}
+
 void ListPanelFunc::terminal()
 {
     SLOTS->runTerminal(panel->realPath(), QStringList());
@@ -952,11 +962,6 @@ void ListPanelFunc::execute(const QString& name)
     }
 }
 
-void ListPanelFunc::dirUp()
-{
-    openUrl(files() ->vfs_getOrigin().upUrl(), files() ->vfs_getOrigin().fileName());
-}
-
 void ListPanelFunc::pack()
 {
     QStringList fileNames;
@@ -1350,6 +1355,26 @@ void ListPanelFunc::historyForward()
 {
     if(history->goForward())
         refresh();
+}
+
+void ListPanelFunc::dirUp()
+{
+    openUrl(files() ->vfs_getOrigin().upUrl(), files() ->vfs_getOrigin().fileName());
+}
+
+void ListPanelFunc::home()
+{
+    openUrl(QDir::homePath());
+}
+
+void ListPanelFunc::root()
+{
+    openUrl(KUrl("/"));
+}
+
+void ListPanelFunc::syncOtherPanel()
+{
+    otherFunc()->openUrl(panel->virtualPath());
 }
 
 #include "panelfunc.moc"

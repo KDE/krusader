@@ -71,7 +71,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     //   KStandardAction::up( this, SLOT( dirUp() ), actionCollection )->setShortcut(Qt::Key_Backspace);
     /* Shortcut disabled because of the Terminal Emulator bug. */
     actDirUp = stdAction(KStandardAction::Up, _func, SLOT(dirUp()));
-    stdAction(KStandardAction::Home, SLOT(home()));
+    stdAction(KStandardAction::Home, _func, SLOT(home()));
     stdAction(KStandardAction::Cut, _func, SLOT(cut()));
     actCopy = stdAction(KStandardAction::Copy, _func, SLOT(copyToClipboard()));
     actPaste = stdAction(KStandardAction::Paste, _func, SLOT(pasteFromClipboard()));
@@ -82,13 +82,13 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actF4 = action(i18n("Edit File"), 0, Qt::Key_F4, _func, SLOT(edit()) , "F4_Edit");
     actF5 = action(i18n("Copy to other panel"), 0, Qt::Key_F5, _func, SLOT(copyFiles()) , "F5_Copy");
     actF6 = action(i18n("Move..."), 0, Qt::Key_F6, _func, SLOT(moveFiles()) , "F6_Move");
-    actShiftF5 = action(i18n("Copy by queue..."), 0, Qt::SHIFT + Qt::Key_F5, SLOT(copyFilesByQueue()) , "F5_Copy_Queue");
-    actShiftF6 = action(i18n("Move by queue..."), 0, Qt::SHIFT + Qt::Key_F6, SLOT(moveFilesByQueue()) , "F6_Move_Queue");
+    actShiftF5 = action(i18n("Copy by queue..."), 0, Qt::SHIFT + Qt::Key_F5, _func, SLOT(copyFilesByQueue()) , "F5_Copy_Queue");
+    actShiftF6 = action(i18n("Move by queue..."), 0, Qt::SHIFT + Qt::Key_F6, _func, SLOT(moveFilesByQueue()) , "F6_Move_Queue");
     actF7 = action(i18n("New Directory..."), "folder-new", Qt::Key_F7, _func, SLOT(mkdir()) , "F7_Mkdir");
     actF8 = action(i18n("Delete"), "edit-delete", Qt::Key_F8, _func, SLOT(deleteFiles()) , "F8_Delete");
     actF9 = action(i18n("Rename"), 0, Qt::Key_F9, _func, SLOT(rename()) , "F9_Rename");
     action(i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, _func, SLOT(editNew()), "edit_new_file");
-    action(i18n("F3 View Dialog"), 0, Qt::SHIFT + Qt::Key_F3, SLOT(viewDlg()), "F3_ViewDlg");
+    action(i18n("F3 View Dialog"), 0, Qt::SHIFT + Qt::Key_F3, _func, SLOT(viewDlg()), "F3_ViewDlg");
 
     // filter
     actAllFilter = action(i18n("&All Files"), 0, Qt::SHIFT + Qt::Key_F10, SLOT(allFilter()), "all files");
@@ -106,7 +106,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     // file operations
     action(i18n("Right-click Menu"), 0, Qt::Key_Menu, _gui, SLOT(rightclickMenu()), "rightclick menu");
     actProperties = action(i18n("&Properties..."), 0, Qt::ALT + Qt::Key_Enter, _func, SLOT(properties()), "properties");
-    actCompDirs = action(i18n("&Compare Directories"), "view_left_right", Qt::ALT + Qt::SHIFT + Qt::Key_C, this, SLOT(compareDirs()), "compare dirs");
+    actCompDirs = action(i18n("&Compare Directories"), "view_left_right", Qt::ALT + Qt::SHIFT + Qt::Key_C, _gui, SLOT(compareDirs()), "compare dirs");
     actCalculate = action(i18n("Calculate &Occupied Space"), "kcalc", 0, _func, SLOT(calcSpace()), "calculate");
     actPack = action(i18n("Pac&k..."), "archive-insert", Qt::ALT + Qt::SHIFT + Qt::Key_P, _func, SLOT(pack()), "pack");
     actUnpack = action(i18n("&Unpack..."), "archive-extract", Qt::ALT + Qt::SHIFT + Qt::Key_U, _func, SLOT(unpack()), "unpack");
@@ -116,14 +116,14 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actTest = action(i18n("T&est Archive"), "utilities-file-archiver", Qt::ALT + Qt::SHIFT + Qt::Key_E, _func, SLOT(testArchive()), "test archives");
 
     // navigation
-    actRoot = action(i18n("Root"), "go-top", Qt::CTRL + Qt::Key_Backspace, this, SLOT(root()), "root");
+    actRoot = action(i18n("Root"), "go-top", Qt::CTRL + Qt::Key_Backspace, _func, SLOT(root()), "root");
     action(i18n("&Reload"), "view-refresh", Qt::CTRL + Qt::Key_R, _func, SLOT(refresh()), "std_redisplay");
     actCancelRefresh = action(i18n("Cancel Refresh of View"), "kr_cancel_refresh", 0, _gui, SLOT(inlineRefreshCancel()), "cancel refresh");
     actFTPNewConnect = action(i18n("New Net &Connection..."), "network-connect", Qt::CTRL + Qt::Key_N, _func, SLOT(newFTPconnection()), "ftp new connection");
     actFTPDisconnect = action(i18n("Disconnect &from Net"), "network-disconnect", Qt::SHIFT + Qt::CTRL + Qt::Key_F, _func, SLOT(FTPDisconnect()), "ftp disconnect");
-    action(i18n("Sync Panels"), 0, Qt::ALT + Qt::SHIFT + Qt::Key_O, this, SLOT(syncPanels()), "sync panels");
+    action(i18n("Sync Panels"), 0, Qt::ALT + Qt::SHIFT + Qt::Key_O, _func, SLOT(syncOtherPanel()), "sync panels");
     actJumpBack = action(i18n("Jump Back"), "kr_jumpback", Qt::CTRL + Qt::Key_J, _gui, SLOT(jumpBack()), "jump_back");
-    actSetJumpBack = action(i18n("Set Jump Back Point"), "kr_setjumpback", Qt::CTRL + Qt::SHIFT + Qt::Key_J, this, SLOT(slotSetJumpBack()), "set_jump_back");
+    actSetJumpBack = action(i18n("Set Jump Back Point"), "kr_setjumpback", Qt::CTRL + Qt::SHIFT + Qt::Key_J, _gui, SLOT(setJumpBack()), "set_jump_back");
     actSyncBrowse = action(i18n("S&ynchron Directory Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, _gui, SLOT(toggleSyncBrowse()), "sync browse");
     actLocationBar = action(i18n("Go to Location Bar"), 0, Qt::CTRL + Qt::Key_L, _gui, SLOT(editLocation()), "location_bar");
     toggleAction(i18n("Toggle Popup Panel"), 0, Qt::ALT + Qt::Key_Down, _gui, SLOT(togglePanelPopup()), "toggle popup panel");
@@ -198,30 +198,6 @@ void ListPanelActions::setView(int id)
     activePanel()->gui->changeType(id);
 }
 
-// fn keys
-
-// SHIFT + F5
-void ListPanelActions::copyFilesByQueue()
-{
-    activeFunc()->copyFiles(true);
-}
-// SHIFT + F6
-void ListPanelActions::moveFilesByQueue()
-{
-    activeFunc()->moveFiles(true);
-}
-// Shift F3
-void ListPanelActions::viewDlg()
-{
-    // ask the user for a url to view
-    KUrl dest = KChooseDir::getDir(i18n("Enter a URL to view:"), activePanel()->virtualPath(), activePanel()->virtualPath());
-    if (dest.isEmpty()) return ;   // the user canceled
-
-    KrViewer::view(dest);   // view the file
-//  }
-    // nothing more to it!
-}
-
 // filter
 
 void ListPanelActions::allFilter()
@@ -266,35 +242,7 @@ void ListPanelActions::unmarkGroup()
     activePanel()->gui->select(false, false);
 }
 
-// file operations
-
-void ListPanelActions::compareDirs()
-{
-    activePanel()->gui->compareDirs();
-    activePanel()->otherPanel()->gui->compareDirs();
-}
-
 // navigation
-
-void ListPanelActions::home()
-{
-    activeFunc()->openUrl(QDir::homePath());
-}
-
-void ListPanelActions::root()
-{
-    activeFunc()->openUrl(KUrl("/"));
-}
-
-void ListPanelActions::slotSetJumpBack()
-{
-    activePanel()->gui->setJumpBack(activePanel()->virtualPath());
-}
-
-void ListPanelActions::syncPanels()
-{
-    activeFunc()->otherFunc()->openUrl(activePanel()->virtualPath());
-}
 
 void ListPanelActions::openLeftBookmarks()
 {

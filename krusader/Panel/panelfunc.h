@@ -60,14 +60,23 @@ public slots:
     void historyForward();
     void dirUp();
     void refresh();
+    void home();
+    void root();
     void FTPDisconnect();
     void newFTPconnection();
     void terminal();
     void view();
+    void viewDlg();
     void edit();
     void editNew(); // create a new textfile and edit it
     void copyFiles(bool enqueue = false);
     void moveFiles(bool enqueue = false);
+    void copyFilesByQueue() {
+        copyFiles(true);
+    }
+    void moveFilesByQueue() {
+        moveFiles(true);
+    }
     void mkdir();
     void deleteFiles(bool reallyDelete = false);
     void rename();
@@ -84,6 +93,7 @@ public slots:
     }
     void copyToClipboard(bool move = false);
     void pasteFromClipboard();
+    void syncOtherPanel();
 
 public:
     ListPanelFunc(ListPanel *parent);
