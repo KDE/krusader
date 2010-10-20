@@ -660,6 +660,7 @@ void KrView::clear()
     if(_previews)
         _previews->clear();
     _count = _numSelected = _numDirs = _selectedSize = _countSize = 0;
+    redraw();
 }
 
 // good old dialog box

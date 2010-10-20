@@ -252,11 +252,11 @@ void KrInterView::clear()
     while (it.hasNext())
         delete it.next().value();
     _itemHash.clear();
+
     KrView::clear();
+
     delete _dummyVfile;
     _dummyVfile = 0;
-
-    redraw();
 }
 
 void KrInterView::refresh()
