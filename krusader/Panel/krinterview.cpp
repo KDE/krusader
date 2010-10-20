@@ -261,6 +261,8 @@ void KrInterView::clear()
 
 void KrInterView::refresh()
 {
+    QString current = getCurrentItem();
+
     clear();
 
     if(!_vfs)
@@ -286,6 +288,8 @@ void KrInterView::refresh()
     _itemView->setCurrentIndex(_model->index(0, 0));
     if (!nameToMakeCurrent().isEmpty())
         setCurrentItem(nameToMakeCurrent());
+    else if (!current.isEmpty())
+        setCurrentItem(current);
 
     updatePreviews();
     redraw();
