@@ -437,7 +437,7 @@ public:
         return _properties->filter;
     }
     virtual void setFilter(KrViewProperties::FilterSpec filter);
-    virtual void select(bool select, bool all);
+    virtual void customSelection(bool select);
     virtual void setFileIconSize(int size);
     virtual void setDefaultFileIconSize();
     virtual void zoomIn();

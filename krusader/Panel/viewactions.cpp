@@ -117,22 +117,22 @@ void ViewActions::showOptionsMenu()
 
 void ViewActions::markAll()
 {
-    view()->select(true, true);
+    view()->changeSelection(KRQuery("*"), true);
 }
 
 void ViewActions::unmarkAll()
 {
-    view()->select(false, true);
+    view()->changeSelection(KRQuery("*"), false);
 }
 
 void ViewActions::markGroup()
 {
-    view()->select(true, false);
+    view()->customSelection(true);
 }
 
 void ViewActions::unmarkGroup()
 {
-    view()->select(false, false);
+    view()->customSelection(false);
 }
 
 void ViewActions::invertSelection()
