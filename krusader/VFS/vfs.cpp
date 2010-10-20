@@ -56,8 +56,6 @@ vfs::vfs(QObject* panel, bool quiet): vfs_busy(false), quietMode(quiet), disable
     setVfsFilesP(new vfileDict());
     if (panel) {
         panelConnected = true;
-//         connect(this, SIGNAL(startUpdate()), panel, SLOT(slotStartUpdate()));
-//         connect(this, SIGNAL(incrementalRefreshFinished(const KUrl&)), panel, SLOT(slotGetStats(const KUrl&)));
     } else quietMode = true;
 }
 
