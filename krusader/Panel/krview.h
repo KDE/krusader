@@ -430,10 +430,7 @@ public:
     virtual void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending) {
         sortModeUpdated(sortColumn, descending);
     }
-    virtual void setFilter(KrViewProperties::FilterSpec filter, bool applyToDirs = false) {
-        _properties->filter = filter;
-        _properties->filterApplysToDirs = applyToDirs;
-    }
+    virtual void setFilter(KrViewProperties::FilterSpec filter, bool applyToDirs = false);
     virtual KrViewProperties::FilterSpec filter() const {
         return _properties->filter;
     }

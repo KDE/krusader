@@ -1058,8 +1058,6 @@ void ListPanel::setFilter(KrViewProperties::FilterSpec f)
         return ;
     }
     view->setFilter(f, applyToDirs);   // do that in any case
-    func->files()->vfs_invalidate();
-    func->refresh();
 }
 
 QString ListPanel::getCurrentName()

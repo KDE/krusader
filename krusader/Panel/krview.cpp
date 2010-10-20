@@ -1136,3 +1136,10 @@ void KrView::setVfs(vfs* v)
     op()->connect(_vfs, SIGNAL(updatedVfile(vfile*)), op(), SLOT(fileDeleted(vfile*)));
     op()->connect(_vfs, SIGNAL(deletedVfile(const QString&)), op(), SLOT(fileUpdated(const QString&)));
 }
+
+void KrView::setFilter(KrViewProperties::FilterSpec filter, bool applyToDirs)
+{
+    _properties->filter = filter;
+    _properties->filterApplysToDirs = applyToDirs;
+    refresh();
+}
