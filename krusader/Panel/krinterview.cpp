@@ -289,6 +289,8 @@ void KrInterView::refresh()
 
     updatePreviews();
     redraw();
+
+    op()->emitSelectionChanged();
 }
 
 KrViewItem* KrInterView::preAddItem(vfile *vf)

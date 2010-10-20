@@ -430,16 +430,13 @@ public:
     virtual void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending) {
         sortModeUpdated(sortColumn, descending);
     }
-    virtual void setFilter(KrViewProperties::FilterSpec filter, bool applyToDirs = false);
-    virtual KrViewProperties::FilterSpec filter() const {
-        return _properties->filter;
-    }
-    virtual void setFilterMask(KRQuery mask) {
-        _properties->filterMask = mask;
-    }
     virtual const KRQuery& filterMask() const {
         return _properties->filterMask;
     }
+    virtual KrViewProperties::FilterSpec filter() const {
+        return _properties->filter;
+    }
+    virtual void setFilter(KrViewProperties::FilterSpec filter);
     virtual void setFileIconSize(int size);
     virtual void setDefaultFileIconSize();
     virtual void zoomIn();

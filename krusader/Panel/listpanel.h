@@ -201,7 +201,6 @@ protected:
     KUrl _realPath; // named with _ to keep realPath() compatibility
     KUrl _jumpBackURL;
     int colorMask;
-    KRQuery filterMask;
     bool compareMode;
     //FilterSpec    filter;
     KDiskFreeSpace* statsAgent;

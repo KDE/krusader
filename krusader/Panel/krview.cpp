@@ -39,6 +39,7 @@
 #include "../defaults.h"
 #include "../VFS/krpermhandler.h"
 #include "../Dialogs/krspecialwidgets.h"
+#include "../Filter/filterdialog.h"
 
 #include <qnamespace.h>
 #include <qpixmapcache.h>
@@ -1137,9 +1138,27 @@ void KrView::setVfs(vfs* v)
     op()->connect(_vfs, SIGNAL(deletedVfile(const QString&)), op(), SLOT(fileUpdated(const QString&)));
 }
 
-void KrView::setFilter(KrViewProperties::FilterSpec filter, bool applyToDirs)
+void KrView::setFilter(KrViewProperties::FilterSpec filter)
 {
-    _properties->filter = filter;
+
+    bool applyToDirs = false;
+    switch (filter) {
+    case KrViewProperties::All :
+        break;
+    case KrViewProperties::Custom :
+        {
+            FilterDialog dialog(_widget, i18n("Filter Files"), QStringList(i18n("Apply filter to directories")));
+            KRQuery filterMask = dialog.getQuery();
+            if (filterMask.isNull()) // if the user canceled - quit
+                return;
+            applyToDirs = dialog.isExtraOptionChecked(i18n("Apply filter to directories"));
+             _properties->filterMask = filterMask;
+        }
+        break;
+    default:
+        return;
+    }
     _properties->filterApplysToDirs = applyToDirs;
+    _properties->filter = filter;
     refresh();
 }

@@ -1040,24 +1040,7 @@ void ListPanel::popEmptyRightClickMenu(const QPoint &loc)
 
 void ListPanel::setFilter(KrViewProperties::FilterSpec f)
 {
-    bool applyToDirs = false;
-    switch (f) {
-    case KrViewProperties::All :
-        break;
-    case KrViewProperties::Custom :
-        {
-            FilterDialog dialog(0, i18n("Filter Files"), QStringList(i18n("Apply filter to directories")));
-            filterMask = dialog.getQuery();
-            if (filterMask.isNull()) // if the user canceled - quit
-                return;
-            applyToDirs = dialog.isExtraOptionChecked(i18n("Apply filter to directories"));
-            view->setFilterMask(filterMask);
-        }
-        break;
-    default:
-        return ;
-    }
-    view->setFilter(f, applyToDirs);   // do that in any case
+    view->setFilter(f);
 }
 
 QString ListPanel::getCurrentName()
