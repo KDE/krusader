@@ -130,9 +130,6 @@ public slots:
     void gotStats(const QString &mountPoint, quint64 kBSize, quint64 kBUsed, quint64 kBAvail);  // displays filesystem status
     void popRightClickMenu(const QPoint&);
     void popEmptyRightClickMenu(const QPoint &);
-    void select(KRQuery query, bool select);
-    void select(bool, bool);        // see doc in ListPanel
-    void invertSelection();       // see doc in ListPanel
     void compareDirs(bool otherPanelToo = true);
     void slotFocusOnMe(); // give this VFS the focus (the path bar)
     void slotUpdateTotals();

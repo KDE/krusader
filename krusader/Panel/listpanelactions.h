@@ -53,13 +53,6 @@ public slots:
     // set view type
     void setView(int id);
 
-    // selection
-    void markAll();
-    void unmarkAll();
-    void markGroup();
-    void markGroup(const QString &, bool select);
-    void unmarkGroup();
-
     // navigation
     void openLeftBookmarks();
     void openRightBookmarks();
@@ -75,7 +68,6 @@ public:
     KAction *actF2, *actF3, *actF4, *actF5, *actF6, *actF7, *actF8, *actF9;
     KAction *actShiftF5, *actShiftF6;
     KAction *actProperties, *actPack, *actUnpack, *actTest,  *actCompDirs, *actCalculate, *actSync;
-    KAction *actSelect, *actUnselect, *actSelectAll, *actUnselectAll, *actInvert;
     KAction *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
     KAction *actLocationBar, *actJumpBack, *actSetJumpBack;
     KAction *actCreateChecksum, *actMatchChecksum;

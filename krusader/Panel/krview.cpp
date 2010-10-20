@@ -1162,3 +1162,30 @@ void KrView::setFilter(KrViewProperties::FilterSpec filter)
     _properties->filter = filter;
     refresh();
 }
+
+void KrView::select(KRQuery query, bool select)
+{
+    if (!query.isNull())
+        changeSelection(query, select);
+}
+
+void KrView::select(bool select, bool all)
+{
+    if (all)
+        changeSelection(KRQuery("*"), select);
+    else {
+        KConfigGroup grpSvr(_config, "Look&Feel");
+        bool includeDirs = grpSvr.readEntry("Mark Dirs", _MarkDirs);
+
+        FilterDialog dialog(0, i18n("Select Files"), QStringList(i18n("Apply selection to directories")), false);
+        dialog.checkExtraOption(i18n("Apply selection to directories"), includeDirs);
+        dialog.exec();
+        KRQuery query = dialog.getQuery();
+        // if the user canceled - quit
+        if (query.isNull())
+            return ;
+        includeDirs = dialog.isExtraOptionChecked(i18n("Apply selection to directories"));
+
+        changeSelection(query, select, includeDirs);
+    }
+}

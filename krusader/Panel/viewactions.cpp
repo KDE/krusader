@@ -38,67 +38,126 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
     ActionsBase(parent, mainWindow)
 {
+    // zoom
     actZoomIn = action(i18n("Zoom In"), "zoom-in", 0, SLOT(zoomIn()), "zoom_in");
     actZoomOut = action(i18n("Zoom Out"), "zoom-out", 0, SLOT(zoomOut()), "zoom_out");
     actDefaultZoom = action(i18n("Default Zoom"), "zoom-original", 0, SLOT(defaultZoom()), "default_zoom");
+
+    // filter
     action(i18n("&All Files"), 0, Qt::SHIFT + Qt::Key_F10, SLOT(allFilter()), "all files");
     //actExecFilter = new KAction( i18n( "&Executables" ), SHIFT + Qt::Key_F11,
     //                             SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );
     action(i18n("&Custom"), 0, Qt::SHIFT + Qt::Key_F12, SLOT(customFilter()), "custom files");
+
+    // selection
+    actSelect = action(i18n("Select &Group..."), "kr_select", Qt::CTRL + Qt::Key_Plus, SLOT(markGroup()), "select group");
+    actSelectAll = action(i18n("&Select All"), "kr_selectall", Qt::ALT + Qt::Key_Plus, SLOT(markAll()), "select all");
+    actUnselect = action(i18n("&Unselect Group..."), "kr_unselect", Qt::CTRL + Qt::Key_Minus, SLOT(unmarkGroup()), "unselect group");
+    actUnselectAll = action(i18n("U&nselect All"), "kr_unselectall", Qt::ALT + Qt::Key_Minus, SLOT(unmarkAll()), "unselect all");
+    actInvert = action(i18n("&Invert Selection"), "kr_invert", Qt::ALT + Qt::Key_Asterisk, SLOT(invertSelection()), "invert");
+
+    // other stuff
     action(i18n("Show View Options Menu"), 0, 0, SLOT(showOptionsMenu()), "show_view_options_menu");
     action(i18n("Set Focus to the Panel"), 0, Qt::Key_Escape, SLOT(focusPanel()), "focus_panel");
     action(i18n("Apply settings to other tabs"), 0, 0, SLOT(applySettingsToOthers()), "view_apply_settings_to_others");
     KAction *actSaveaveDefaultSettings = action(i18n("Save settings as default"), 0, 0, SLOT(saveDefaultSettings()), "view_save_default_settings");
 
+    // tooltips
+    actSelect->setToolTip(i18n("Select files using a filter"));
+    actSelectAll->setToolTip(i18n("Select all files in the current directory"));
+    actUnselectAll->setToolTip(i18n("Unselect all selected files"));
     actSaveaveDefaultSettings->setToolTip(i18n("Save settings as default for new instances of this view type"));
 }
 
+inline KrView *ViewActions::view()
+{
+    return _mainWindow->activeView();
+}
+
+// zoom
+
 void ViewActions::zoomIn()
 {
-    _mainWindow->activeView()->zoomIn();
+    view()->zoomIn();
 }
 
 void ViewActions::zoomOut()
 {
-    _mainWindow->activeView()->zoomOut();
+    view()->zoomOut();
 }
 
 void ViewActions::defaultZoom()
 {
-    _mainWindow->activeView()->setDefaultFileIconSize();
+    view()->setDefaultFileIconSize();
 }
+
+// filter
 
 void ViewActions::allFilter()
 {
-    _mainWindow->activeView()->setFilter(KrViewProperties::All);
+    view()->setFilter(KrViewProperties::All);
 }
 #if 0
 void ViewActions::execFilter()
 {
-    _mainWindow->activeView()->setFilter(KrViewProperties::All);
+    view()->setFilter(KrViewProperties::All);
 }
 #endif
 void ViewActions::customFilter()
 {
-    _mainWindow->activeView()->setFilter(KrViewProperties::Custom);
+    view()->setFilter(KrViewProperties::Custom);
 }
 
 void ViewActions::showOptionsMenu()
 {
-    _mainWindow->activeView()->showContextMenu();
+    view()->showContextMenu();
 }
+
+// selection
+
+void ViewActions::markAll()
+{
+    view()->select(true, true);
+}
+
+void ViewActions::unmarkAll()
+{
+    view()->select(false, true);
+}
+
+void ViewActions::markGroup()
+{
+    view()->select(true, false);
+}
+
+void ViewActions::markGroup(const QString& mask, bool select)
+{
+    view()->select(KRQuery(mask), select);
+}
+
+void ViewActions::unmarkGroup()
+{
+    view()->select(false, false);
+}
+
+void ViewActions::invertSelection()
+{
+    view()->invertSelection();
+}
+
+// other stuff
 
 void ViewActions::saveDefaultSettings()
 {
-    _mainWindow->activeView()->saveDefaultSettings();
+    view()->saveDefaultSettings();
 }
 
 void ViewActions::applySettingsToOthers()
 {
-    _mainWindow->activeView()->applySettingsToOthers();
+    view()->applySettingsToOthers();
 }
 
 void ViewActions::focusPanel()
 {
-    _mainWindow->activeView()->widget()->setFocus();
+    view()->widget()->setFocus();
 }

@@ -20,11 +20,10 @@
 #include "panelpopup.h"
 
 #include "krpanel.h"
-#include "listpanel.h"
-#include "listpanelactions.h"
 #include "panelfunc.h"
 #include "krview.h"
 #include "krviewitem.h"
+#include "viewactions.h"
 #include "../kicons.h"
 #include "../filemanagerwindow.h"
 #include "../defaults.h"
@@ -406,7 +405,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
     qsettingsBtn->setIcon(krLoader->loadIcon("configure", KIconLoader::Toolbar, 16));
     qsettingsBtn->setFixedSize(20, 20);
     qsettingsBtn->setToolTip(i18n("Select group dialog"));
-    connect(qsettingsBtn, SIGNAL(clicked()), _mainWindow->listPanelActions()->actSelect, SLOT(trigger()));
+    connect(qsettingsBtn, SIGNAL(clicked()), _mainWindow->viewActions()->actSelect, SLOT(trigger()));
 
     qlayout->addWidget(selectLabel, 0, 0);
     qlayout->addWidget(quickSelectCombo, 0, 1);
@@ -604,7 +603,7 @@ void PanelPopup::quickSelect()
 
 void PanelPopup::quickSelect(const QString &mask)
 {
-    _mainWindow->activePanel()->gui->select(KRQuery(mask), true);
+    _mainWindow->activeView()->select(KRQuery(mask), true);
 }
 
 void PanelPopup::quickSelectStore()

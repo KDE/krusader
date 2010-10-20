@@ -90,13 +90,6 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     action(i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, _func, SLOT(editNew()), "edit_new_file");
     action(i18n("F3 View Dialog"), 0, Qt::SHIFT + Qt::Key_F3, _func, SLOT(viewDlg()), "F3_ViewDlg");
 
-    // selection
-    actSelect = action(i18n("Select &Group..."), "kr_select", Qt::CTRL + Qt::Key_Plus, this, SLOT(markGroup()), "select group");
-    actSelectAll = action(i18n("&Select All"), "kr_selectall", Qt::ALT + Qt::Key_Plus, this, SLOT(markAll()), "select all");
-    actUnselect = action(i18n("&Unselect Group..."), "kr_unselect", Qt::CTRL + Qt::Key_Minus, this, SLOT(unmarkGroup()), "unselect group");
-    actUnselectAll = action(i18n("U&nselect All"), "kr_unselectall", Qt::ALT + Qt::Key_Minus, this, SLOT(unmarkAll()), "unselect all");
-    actInvert = action(i18n("&Invert Selection"), "kr_invert", Qt::ALT + Qt::Key_Asterisk, _gui, SLOT(invertSelection()), "invert");
-
     // file operations
     action(i18n("Right-click Menu"), 0, Qt::Key_Menu, _gui, SLOT(rightclickMenu()), "rightclick menu");
     actProperties = action(i18n("&Properties..."), 0, Qt::ALT + Qt::Key_Enter, _func, SLOT(properties()), "properties");
@@ -132,9 +125,6 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     action(i18n("Right Media"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Right, this, SLOT(openRightMedia()), "right media");
 
     // and at last we can set the tool-tips
-    actSelect->setToolTip(i18n("Select files using a filter"));
-    actSelectAll->setToolTip(i18n("Select all files in the current directory"));
-    actUnselectAll->setToolTip(i18n("Unselect all selected files"));
     actRoot->setToolTip(i18n("ROOT (/)"));
 
     actF2->setToolTip("<qt>" + i18n("<p>Open terminal in current directory.</p>"
@@ -190,33 +180,6 @@ inline ListPanelFunc *ListPanelActions::activeFunc()
 void ListPanelActions::setView(int id)
 {
     activePanel()->gui->changeType(id);
-}
-
-// selection
-
-void ListPanelActions::markAll()
-{
-    activePanel()->gui->select(true, true);
-}
-
-void ListPanelActions::unmarkAll()
-{
-    activePanel()->gui->select(false, true);
-}
-
-void ListPanelActions::markGroup()
-{
-    activePanel()->gui->select(true, false);
-}
-
-void ListPanelActions::markGroup(const QString& mask, bool select)
-{
-    activePanel()->gui->select(KRQuery(mask), select);
-}
-
-void ListPanelActions::unmarkGroup()
-{
-    activePanel()->gui->select(false, false);
 }
 
 // navigation

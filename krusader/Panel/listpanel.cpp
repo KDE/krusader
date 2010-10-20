@@ -615,38 +615,6 @@ void ListPanel::slotFocusAndCDRoot()
     func->openUrl(QString(ROOT_DIR), QString());
 }
 
-void ListPanel::select(KRQuery query, bool select)
-{
-    if (!query.isNull())
-        view->changeSelection(query, select);
-}
-
-void ListPanel::select(bool select, bool all)
-{
-    if (all)
-        view->changeSelection(KRQuery("*"), select);
-    else {
-        KConfigGroup grpSvr(krConfig, "Look&Feel");
-        bool includeDirs = grpSvr.readEntry("Mark Dirs", _MarkDirs);
-
-        FilterDialog dialog(0, i18n("Select Files"), QStringList(i18n("Apply selection to directories")), false);
-        dialog.checkExtraOption(i18n("Apply selection to directories"), includeDirs);
-        dialog.exec();
-        KRQuery query = dialog.getQuery();
-        // if the user canceled - quit
-        if (query.isNull())
-            return ;
-        includeDirs = dialog.isExtraOptionChecked(i18n("Apply selection to directories"));
-
-        view->changeSelection(query, select, includeDirs);
-    }
-}
-
-void ListPanel::invertSelection()
-{
-    view->invertSelection();
-}
-
 void ListPanel::compareDirs(bool otherPanelToo)
 {
     KConfigGroup pg(krConfig, "Private");

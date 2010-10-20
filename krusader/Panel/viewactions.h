@@ -36,6 +36,7 @@
 
 #include <kaction.h>
 
+class KrView;
 
 class ViewActions : public ActionsBase
 {
@@ -44,12 +45,24 @@ public:
     ViewActions(QObject *parent, KrMainWindow *mainWindow);
 
 public slots:
+    //zoom 
     void zoomIn();
     void zoomOut();
     void defaultZoom();
+
+    //filter
     void allFilter();
     //void execFilter();
     void customFilter();
+
+    // selection
+    void markAll();
+    void unmarkAll();
+    void markGroup();
+    void markGroup(const QString &, bool select);
+    void unmarkGroup();
+    void invertSelection();
+
     void showOptionsMenu();
     void saveDefaultSettings();
     void applySettingsToOthers();
@@ -57,6 +70,10 @@ public slots:
 
 public:
     KAction *actZoomIn, *actZoomOut, *actDefaultZoom;
+    KAction *actSelect, *actUnselect, *actSelectAll, *actUnselectAll, *actInvert;
+
+protected:
+    KrView *view();
 };
 
 #endif // __VIEWACTIONS_H__
