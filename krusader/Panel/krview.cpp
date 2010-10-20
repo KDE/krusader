@@ -1163,12 +1163,6 @@ void KrView::setFilter(KrViewProperties::FilterSpec filter)
     refresh();
 }
 
-void KrView::select(KRQuery query, bool select)
-{
-    if (!query.isNull())
-        changeSelection(query, select);
-}
-
 void KrView::select(bool select, bool all)
 {
     if (all)

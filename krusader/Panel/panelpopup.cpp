@@ -603,7 +603,7 @@ void PanelPopup::quickSelect()
 
 void PanelPopup::quickSelect(const QString &mask)
 {
-    _mainWindow->activeView()->select(KRQuery(mask), true);
+    _mainWindow->activeView()->changeSelection(KRQuery(mask), true);
 }
 
 void PanelPopup::quickSelectStore()
