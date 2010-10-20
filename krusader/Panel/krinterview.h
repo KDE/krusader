@@ -54,7 +54,6 @@ public:
     virtual void setCurrentKrViewItem(KrViewItem *item);
     virtual void makeItemVisible(const KrViewItem *item);
     virtual void clear();
-    virtual void updateItem(vfile* item);
     virtual void sort();
     virtual void refreshColors();
     virtual void redraw();
@@ -79,6 +78,7 @@ protected:
 
     virtual KrViewItem* preAddItem(vfile *vf);
     virtual void preDelItem(KrViewItem *item);
+    virtual void preUpdateItem(vfile *vf);
     virtual void showContextMenu(const QPoint & p) = 0;
 
     virtual QRect itemRect(const vfile *vf) = 0;

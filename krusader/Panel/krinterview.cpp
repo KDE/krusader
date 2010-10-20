@@ -305,17 +305,9 @@ void KrInterView::preDelItem(KrViewItem *item)
     _itemHash.remove((vfile *)item->getVfile());
 }
 
-void KrInterView::updateItem(vfile * item)
+void KrInterView::preUpdateItem(vfile *vf)
 {
-    if(isFiltered(item)) {
-        setSelected(item, false);
-        _model->removeItem(item);
-    } else {
-        _model->updateItem(item);
-        if(_previews)
-            _previews->updatePreview(findItemByVfile(item));
-    }
-    op()->emitSelectionChanged();
+    _model->updateItem(vf);
 }
 
 void KrInterView::prepareForActive()

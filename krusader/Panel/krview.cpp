@@ -69,27 +69,27 @@ KrViewOperator::~KrViewOperator()
 {
 }
 
-void KrViewOperator::slotStartUpdate()
+void KrViewOperator::startUpdate()
 {
     _view->refresh();
 }
 
-void KrViewOperator::slotCleared()
+void KrViewOperator::cleared()
 {
     _view->clear();
 }
 
-void KrViewOperator::slotItemAdded(vfile *vf)
+void KrViewOperator::fileAdded(vfile *vf)
 {
     _view->addItem(vf);
 }
 
-void KrViewOperator::slotItemDeleted(const QString& name)
+void KrViewOperator::fileDeleted(const QString& name)
 {
     _view->delItem(name);
 }
 
-void KrViewOperator::slotItemUpdated(vfile *vf)
+void KrViewOperator::fileUpdated(vfile *vf)
 {
     _view->updateItem(vf);
 }
@@ -608,6 +608,7 @@ void KrView::delItem(const QString &name)
     }
     --_count;
     delete it;
+
     op()->emitSelectionChanged();
 }
 
@@ -642,22 +643,14 @@ void KrView::addItem(vfile *vf)
 
 void KrView::updateItem(vfile *vf)
 {
-    // since we're deleting the item, make sure we keep
-    // it's properties first and repair it later
-    KrViewItem *it = findItemByVfile(vf);
-    bool selected = it->isSelected();
-    bool current = (getCurrentKrViewItem() == it);
-    delItem(vf->vfile_getName());
-    addItem(vf);
-    KrViewItem *updatedItem = findItemByVfile(vf);
-    if(updatedItem) {
-        // restore settings
-        updatedItem->setSelected(selected);
-        if (current) {
-            setCurrentItem(vf->vfile_getName());
-            makeItemVisible(updatedItem);
-        }
+    if (isFiltered(vf))
+        delItem(vf->vfile_getName());
+    else {
+        preUpdateItem(vf);
+        if(_previews)
+            _previews->updatePreview(findItemByVfile(vf));
     }
+
     op()->emitSelectionChanged();
 }
 
@@ -1137,9 +1130,9 @@ void KrView::setVfs(vfs* v)
         return;
 
     op()->disconnect(_vfs, 0, op(), 0);
-    op()->connect(_vfs, SIGNAL(startUpdate()), op(), SLOT(slotStartUpdate()));
-    op()->connect(_vfs, SIGNAL(cleared()), op(), SLOT(slotCleared()));
-    op()->connect(_vfs, SIGNAL(addedVfile(vfile*)), op(), SLOT(slotItemAdded(vfile*)));
-    op()->connect(_vfs, SIGNAL(updatedVfile(vfile*)), op(), SLOT(slotItemUpdated(vfile*)));
-    op()->connect(_vfs, SIGNAL(deletedVfile(const QString&)), op(), SLOT(slotItemDeleted(const QString&)));
+    op()->connect(_vfs, SIGNAL(startUpdate()), op(), SLOT(startUpdate()));
+    op()->connect(_vfs, SIGNAL(cleared()), op(), SLOT(cleared()));
+    op()->connect(_vfs, SIGNAL(addedVfile(vfile*)), op(), SLOT(fileAdded(vfile*)));
+    op()->connect(_vfs, SIGNAL(updatedVfile(vfile*)), op(), SLOT(fileDeleted(vfile*)));
+    op()->connect(_vfs, SIGNAL(deletedVfile(const QString&)), op(), SLOT(fileUpdated(const QString&)));
 }

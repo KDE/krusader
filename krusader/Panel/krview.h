@@ -218,12 +218,12 @@ signals:
 
 protected slots:
     void saveDefaultSettings();
-    void slotStartUpdate();
-    void slotCleared();
+    void startUpdate();
+    void cleared();
     // for signals from vfs' dirwatch
-    void slotItemAdded(vfile *vf);
-    void slotItemDeleted(const QString& name);
-    void slotItemUpdated(vfile *vf);
+    void fileAdded(vfile *vf);
+    void fileDeleted(const QString& name);
+    void fileUpdated(vfile *vf);
 
 protected:
     // never delete those
@@ -345,6 +345,7 @@ public:
 protected:
     virtual KrViewItem *preAddItem(vfile *vf) = 0;
     virtual void preDelItem(KrViewItem *item) = 0;
+    virtual void preUpdateItem(vfile *vf) = 0;
     virtual void doSaveSettings(KConfigGroup &group) = 0;
     virtual void doRestoreSettings(KConfigGroup &group) = 0;
     virtual void copySettingsFrom(KrView *other) = 0;
