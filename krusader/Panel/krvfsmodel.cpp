@@ -63,7 +63,7 @@ KrVfsModel::~KrVfsModel()
 
 void KrVfsModel::clear()
 {
-    if(!_vfiles.count()
+    if(!_vfiles.count())
         return;
     emit layoutAboutToBeChanged();
     // clear persistent indexes
