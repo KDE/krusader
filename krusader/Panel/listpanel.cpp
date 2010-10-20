@@ -404,9 +404,14 @@ void ListPanel::createView()
     view = KrViewFactory::createView(panelType, splt, _left, krConfig, krApp);
 
     view->init();
-    view->redraw();
     view->op()->setQuickSearch(quickSearch);
     quickSearch->setFocusProxy(view->widget());
+
+    if(this == ACTIVE_PANEL)
+        view->prepareForActive();
+    else
+        view->prepareForPassive();
+    view->refreshColors();
 
     splt->insertWidget(0, view->widget());
 
@@ -432,6 +437,8 @@ void ListPanel::createView()
     connect(view->op(), SIGNAL(gotDrop(QDropEvent *)), this, SLOT(handleDropOnView(QDropEvent *)));
     connect(view->op(), SIGNAL(previewJobStarted(KJob*)), this, SLOT(slotPreviewJobStarted(KJob*)));
 
+    view->setVfs(func->files());
+
     func->refreshActions();
 }
 
@@ -441,11 +448,9 @@ void ListPanel::changeType(int type)
         panelType = type;
         quickSearch->setFocusProxy(0);
         delete view;
+
         createView();
-
-        slotStartUpdate();
-
-        view->redraw();
+        view->refresh();
     }
 }
 
@@ -792,7 +797,6 @@ void ListPanel::slotStartUpdate()
     }
 
     setCursor(Qt::BusyCursor);
-    view->clear();
 
     if (func->files() ->vfs_getType() == vfs::VFS_NORMAL)
         _realPath = virtualPath();
@@ -800,33 +804,14 @@ void ListPanel::slotStartUpdate()
     emit pathChanged(this);
 
     slotGetStats(virtualPath());
-    slotUpdate();
-    if (compareMode) {
-        otherPanel()->view->clear();
-        otherPanel()->gui->slotUpdate();
-    }
+    if (compareMode)
+        otherPanel()->view->refresh();
+
     // return cursor to normal arrow
     setCursor(Qt::ArrowCursor);
     slotUpdateTotals();
     krApp->popularUrls()->addUrl(virtualPath());
 }
-
-void ListPanel::slotUpdate()
-{
-    // if we are not at the root add the ".." entery
-    QString protocol = func->files() ->vfs_getOrigin().protocol();
-    bool isFtp = (protocol == "ftp" || protocol == "smb" || protocol == "sftp" || protocol == "fish");
-
-    QString origin = virtualPath().prettyUrl(KUrl::RemoveTrailingSlash);
-    if (origin.right(1) != "/" && !((func->files() ->vfs_getType() == vfs::VFS_FTP) && isFtp &&
-                                    origin.indexOf('/', origin.indexOf(":/") + 3) == -1)) {
-        view->addItems(func->files());
-    } else
-        view->addItems(func->files(), false);
-
-    view->updatePreviews();
-}
-
 
 void ListPanel::slotGetStats(const KUrl& url)
 {
@@ -1165,26 +1150,6 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
 
         //e->ignore();
     }
-}
-
-void ListPanel::slotItemAdded(vfile *vf)
-{
-    view->addItem(vf);
-}
-
-void ListPanel::slotItemDeleted(const QString& name)
-{
-    view->delItem(name);
-}
-
-void ListPanel::slotItemUpdated(vfile *vf)
-{
-    view->updateItem(vf);
-}
-
-void ListPanel::slotCleared()
-{
-    view->clear();
 }
 
 void ListPanel::showEvent(QShowEvent *e)

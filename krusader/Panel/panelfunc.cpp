@@ -101,7 +101,8 @@ ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
 
 ListPanelFunc::~ListPanelFunc()
 {
-    if (!vfsP) {
+    if (vfsP) {
+        panel->view->setVfs(0);
         if (vfsP->vfs_canDelete())
             delete vfsP;
         else {
@@ -268,10 +269,10 @@ void ListPanelFunc::doRefresh()
         v->setParentWindow(krMainWindow);
         v->setMountMan(&krMtMan);
         if (v != vfsP) {
+            panel->view->setVfs(0);
+
             // disconnect older signals
             disconnect(vfsP, 0, panel, 0);
-            // since we wont't recieve a cleared signal from this vfs we must clear now
-            panel->slotCleared();
 
             if (vfsP->vfs_canDelete())
                 delete vfsP;
@@ -286,6 +287,9 @@ void ListPanelFunc::doRefresh()
                 return;
             }
         }
+
+        panel->view->setVfs(files());
+
         // (re)connect vfs signals
         disconnect(files(), 0, panel, 0);
         connect(files(), SIGNAL(startUpdate()), panel, SLOT(slotStartUpdate()));
@@ -295,15 +299,6 @@ void ListPanelFunc::doRefresh()
                 panel, SLOT(slotJobStarted(KIO::Job*)));
         connect(files(), SIGNAL(error(QString)),
                 panel, SLOT(slotVfsError(QString)));
-        connect(files(), SIGNAL(cleared()),
-            panel, SLOT(slotCleared()));
-        // connect to the vfs's dirwatch signals
-        connect(files(), SIGNAL(addedVfile(vfile*)),
-                panel, SLOT(slotItemAdded(vfile*)));
-        connect(files(), SIGNAL(updatedVfile(vfile*)),
-                panel, SLOT(slotItemUpdated(vfile*)));
-        connect(files(), SIGNAL(deletedVfile(const QString&)),
-                panel, SLOT(slotItemDeleted(const QString&)));
         connect(files(), SIGNAL(trashJobStarted(KIO::Job*)),
                 this, SLOT(trashJobStarted(KIO::Job*)));
 
@@ -350,7 +345,6 @@ void ListPanelFunc::doRefresh()
     urlManuallyEntered = false;
 
     refreshActions();
-    panel->view->updatePreviews();
 }
 
 void ListPanelFunc::redirectLink()

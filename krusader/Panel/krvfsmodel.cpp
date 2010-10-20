@@ -39,7 +39,7 @@ KrVfsModel::KrVfsModel(KrInterView * view): QAbstractListModel(0), _extensionEna
     _defaultFont = grpSvr.readEntry("Filelist Font", *_FilelistFont);
 }
 
-void KrVfsModel::setVfs(vfs* v, vfile *dummy)
+void KrVfsModel::populate(vfs* v, vfile *dummy)
 {
     if(dummy)
         _vfiles.append(dummy);
@@ -52,7 +52,6 @@ void KrVfsModel::setVfs(vfs* v, vfile *dummy)
         vf = v->vfs_getNextFile();
     }
     _ready = true;
-    // TODO: connect all addedVfile/deleteVfile and friends signals
     // TODO: make a more efficient implementation that this dummy one :-)
 
     sort();
@@ -307,9 +306,6 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
 
 QModelIndex KrVfsModel::addItem(vfile * vf)
 {
-    if(_view->isFiltered(vf))
-       return QModelIndex();
-
     emit layoutAboutToBeChanged();
 
     QModelIndexList oldPersistentList = persistentIndexList();
@@ -401,21 +397,12 @@ QModelIndex KrVfsModel::removeItem(vfile * vf)
     return currIndex;
 }
 
-void KrVfsModel::updateItem(vfile * vf, bool &filteredOut)
+void KrVfsModel::updateItem(vfile * vf)
 {
-    filteredOut = _view->isFiltered(vf);
     QModelIndex lastIndex = vfileIndex(vf);
 
-    if (filteredOut) {
-        if (lastIndex.isValid())
-            removeItem(vf);
-        return;
-    }
-    if (!lastIndex.isValid()) {
+    if (!lastIndex.isValid())
         QModelIndex newIdx = addItem(vf);
-        filteredOut = !newIdx.isValid();
-        return;
-    }
 
     QVector<KrSort::SortProps*> sorting(_vfiles.count());
     int oldIndex = -1;

@@ -41,10 +41,10 @@ public:
     inline bool ready() const {
         return _ready;
     }
-    void setVfs(vfs* v, vfile *dummy);
+    void populate(vfs* v, vfile *dummy);
     QModelIndex addItem(vfile *);
     QModelIndex removeItem(vfile *);
-    void updateItem(vfile *vf, bool &filteredOut);
+    void updateItem(vfile *vf);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;

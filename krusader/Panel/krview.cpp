@@ -69,6 +69,31 @@ KrViewOperator::~KrViewOperator()
 {
 }
 
+void KrViewOperator::slotStartUpdate()
+{
+    _view->refresh();
+}
+
+void KrViewOperator::slotCleared()
+{
+    _view->clear();
+}
+
+void KrViewOperator::slotItemAdded(vfile *vf)
+{
+    _view->addItem(vf);
+}
+
+void KrViewOperator::slotItemDeleted(const QString& name)
+{
+    _view->delItem(name);
+}
+
+void KrViewOperator::slotItemUpdated(vfile *vf)
+{
+    _view->updateItem(vf);
+}
+
 void KrViewOperator::startDrag()
 {
     QStringList items;
@@ -218,7 +243,7 @@ const KrView::IconSizes KrView::iconSizes;
 
 
 KrView::KrView(KrViewInstance &instance, const bool &left, KConfig *cfg, KrMainWindow *mainWindow) :
-    _instance(instance), _left(left), _config(cfg), _mainWindow(mainWindow), _widget(0),
+    _instance(instance), _vfs(0), _left(left), _config(cfg), _mainWindow(mainWindow), _widget(0),
     _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
     _numSelected(0), _count(0), _numDirs(0), _countSize(0), _selectedSize(0), _properties(0), _focused(false),
     _previews(0), _fileIconSize(0), _updateDefaultSettings(false)
@@ -586,11 +611,13 @@ void KrView::delItem(const QString &name)
     op()->emitSelectionChanged();
 }
 
-KrViewItem *KrView::addItem(vfile *vf)
+void KrView::addItem(vfile *vf)
 {
+    if (isFiltered(vf))
+        return;
     KrViewItem *item = preAddItem(vf);
     if (!item) 
-        return 0; // don't add it after all
+        return; // don't add it after all
 
     if(_previews)
         _previews->updatePreview(item);
@@ -611,7 +638,6 @@ KrViewItem *KrView::addItem(vfile *vf)
     }
 
     op()->emitSelectionChanged();
-    return item;
 }
 
 void KrView::updateItem(vfile *vf)
@@ -622,12 +648,15 @@ void KrView::updateItem(vfile *vf)
     bool selected = it->isSelected();
     bool current = (getCurrentKrViewItem() == it);
     delItem(vf->vfile_getName());
-    KrViewItem *updatedItem = addItem(vf);
-    // restore settings
-    updatedItem->setSelected(selected);
-    if (current) {
-        setCurrentItem(vf->vfile_getName());
-        makeItemVisible(updatedItem);
+    addItem(vf);
+    KrViewItem *updatedItem = findItemByVfile(vf);
+    if(updatedItem) {
+        // restore settings
+        updatedItem->setSelected(selected);
+        if (current) {
+            setCurrentItem(vf->vfile_getName());
+            makeItemVisible(updatedItem);
+        }
     }
     op()->emitSelectionChanged();
 }
@@ -1093,4 +1122,24 @@ bool KrView::isFiltered(vfile *vf)
         }
     }
     return filteredOut;
+}
+
+void KrView::setVfs(vfs* v)
+{
+    if(v != _vfs) {
+        clear();
+        if(_vfs)
+            op()->disconnect(_vfs, 0, op(), 0);
+        _vfs = v;
+    }
+
+    if(!_vfs)
+        return;
+
+    op()->disconnect(_vfs, 0, op(), 0);
+    op()->connect(_vfs, SIGNAL(startUpdate()), op(), SLOT(slotStartUpdate()));
+    op()->connect(_vfs, SIGNAL(cleared()), op(), SLOT(slotCleared()));
+    op()->connect(_vfs, SIGNAL(addedVfile(vfile*)), op(), SLOT(slotItemAdded(vfile*)));
+    op()->connect(_vfs, SIGNAL(updatedVfile(vfile*)), op(), SLOT(slotItemUpdated(vfile*)));
+    op()->connect(_vfs, SIGNAL(deletedVfile(const QString&)), op(), SLOT(slotItemDeleted(const QString&)));
 }

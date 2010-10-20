@@ -23,6 +23,7 @@
 #include "krinterviewitem.h"
 #include "krcolorcache.h"
 #include "krmousehandler.h"
+#include "krpreviews.h"
 
 KrInterView::KrInterView(KrViewInstance &instance, const bool &left, KConfig *cfg,
                          KrMainWindow *mainWindow, QAbstractItemView *itemView) :
@@ -254,22 +255,40 @@ void KrInterView::clear()
     KrView::clear();
     delete _dummyVfile;
     _dummyVfile = 0;
+
+    redraw();
 }
 
-void KrInterView::addItems(vfs* v, bool addUpDir)
+void KrInterView::refresh()
 {
-    if (addUpDir) {
+    clear();
+
+    if(!_vfs)
+        return;
+
+    // if we are not at the root add the ".." entery
+    QString protocol = _vfs->vfs_getOrigin().protocol();
+    bool isFtp = (protocol == "ftp" || protocol == "smb" || protocol == "sftp" || protocol == "fish");
+
+    QString origin = _vfs->vfs_getOrigin().prettyUrl(KUrl::RemoveTrailingSlash);
+    if (origin.right(1) != "/" && !((_vfs->vfs_getType() == vfs::VFS_FTP) && isFtp &&
+                                    origin.indexOf('/', origin.indexOf(":/") + 3) == -1)) {
         _dummyVfile = new vfile("..", 0, "drwxrwxrwx", 0, false, 0, 0, "", "", 0, -1);
         _dummyVfile->vfile_setIcon("go-up");
     }
 
-    _model->setVfs(v, _dummyVfile);
+    _model->populate(_vfs, _dummyVfile);
     _count = _model->rowCount();
-    if (addUpDir)
+
+    if (_dummyVfile )
         _count--;
+
     _itemView->setCurrentIndex(_model->index(0, 0));
     if (!nameToMakeCurrent().isEmpty())
         setCurrentItem(nameToMakeCurrent());
+
+    updatePreviews();
+    redraw();
 }
 
 KrViewItem* KrInterView::preAddItem(vfile *vf)
@@ -288,20 +307,15 @@ void KrInterView::preDelItem(KrViewItem *item)
 
 void KrInterView::updateItem(vfile * item)
 {
-    if (item == 0)
-        return;
-    bool filteredOut = false;
-    _model->updateItem(item, filteredOut);
-    if(filteredOut)
+    if(isFiltered(item)) {
         setSelected(item, false);
+        _model->removeItem(item);
+    } else {
+        _model->updateItem(item);
+        if(_previews)
+            _previews->updatePreview(findItemByVfile(item));
+    }
     op()->emitSelectionChanged();
-}
-
-void KrInterView::updateItem(KrViewItem* item)
-{
-    if (item == 0)
-        return;
-    updateItem((vfile *)item->getVfile());
 }
 
 void KrInterView::prepareForActive()
@@ -337,7 +351,7 @@ void KrInterView::refreshColors()
     p.setColor(QPalette::Text, cg.text());
     p.setColor(QPalette::Base, cg.background());
     _itemView->setPalette(p);
-    _itemView->viewport()->update();
+    redraw();
 }
 
 void KrInterView::showContextMenu()

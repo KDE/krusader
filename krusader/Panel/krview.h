@@ -218,6 +218,12 @@ signals:
 
 protected slots:
     void saveDefaultSettings();
+    void slotStartUpdate();
+    void slotCleared();
+    // for signals from vfs' dirwatch
+    void slotItemAdded(vfile *vf);
+    void slotItemDeleted(const QString& name);
+    void slotItemUpdated(vfile *vf);
 
 protected:
     // never delete those
@@ -312,17 +318,15 @@ public:
     virtual KrViewItem *getKrViewItemAt(const QPoint &vp) = 0;
     virtual KrViewItem *findItemByName(const QString &name) = 0;
     virtual KrViewItem *findItemByVfile(vfile *vf) = 0;
-    virtual void addItems(vfs* v, bool addUpDir = true) = 0; // kill me, kill me now
     virtual QString getCurrentItem() const = 0;
     virtual void setCurrentItem(const QString& name) = 0;
     virtual void setCurrentKrViewItem(KrViewItem *item) = 0;
     virtual void makeItemVisible(const KrViewItem *item) = 0;
-    virtual void clear();
     virtual void updateView() = 0;
-    virtual void updateItem(KrViewItem* item) = 0;
     virtual void sort() = 0;
     virtual void refreshColors() = 0;
     virtual void redraw() = 0;
+    virtual void refresh() = 0;
     virtual bool handleKeyEvent(QKeyEvent *e);
     virtual void prepareForActive() {
         _focused = true;
@@ -344,15 +348,18 @@ protected:
     virtual void doSaveSettings(KConfigGroup &group) = 0;
     virtual void doRestoreSettings(KConfigGroup &group) = 0;
     virtual void copySettingsFrom(KrView *other) = 0;
+    virtual void updatePreviews();
+    virtual void clear();
+
+    virtual void addItem(vfile *vf);
+    virtual void updateItem(vfile *vf);
+    virtual void delItem(const QString &name);
 
 public:
     //////////////////////////////////////////////////////
     // the following functions are already implemented, //
     // and normally - should NOT be re-implemented.     //
     //////////////////////////////////////////////////////
-    virtual KrViewItem *addItem(vfile *vf);
-    virtual void updateItem(vfile *vf);
-    virtual void delItem(const QString &name);
     virtual uint numSelected() const {
         return _numSelected;
     }
@@ -408,8 +415,8 @@ public:
     virtual bool previewsShown() {
         return _previews != 0;
     }
-    virtual void updatePreviews();
     virtual void applySettingsToOthers();
+    virtual void setVfs(vfs* v);
 
     void changeSelection(const KRQuery& filter, bool select);
     void changeSelection(const KRQuery& filter, bool select, bool includeDirs);
@@ -489,6 +496,7 @@ protected:
 
 
     KrViewInstance &_instance;
+    vfs *_vfs;
     const bool &_left;
     KConfig *_config;
     KrMainWindow *_mainWindow;

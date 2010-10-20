@@ -135,7 +135,6 @@ public slots:
     void invertSelection();       // see doc in ListPanel
     void compareDirs(bool otherPanelToo = true);
     void slotFocusOnMe(); // give this VFS the focus (the path bar)
-    void slotUpdate();                     // when the vfs finish to update...
     void slotUpdateTotals();
     void slotStartUpdate();                   // internal
     void slotGetStats(const KUrl& url);            // get the disk-free stats
@@ -145,11 +144,6 @@ public slots:
     void slotFocusAndCDup();
     void slotFocusAndCDOther();
     void togglePanelPopup();
-    // for signals from vfs' dirwatch
-    void slotItemAdded(vfile *vf);
-    void slotItemDeleted(const QString& name);
-    void slotItemUpdated(vfile *vf);
-    void slotCleared();
     void panelActive(); // called when the panel becomes active
     void panelInactive(); // called when panel becomes inactive
     void vfs_refresh(KJob *job);
