@@ -47,6 +47,9 @@ public slots:
     void zoomIn();
     void zoomOut();
     void defaultZoom();
+    void allFilter();
+    //void execFilter();
+    void customFilter();
     void showOptionsMenu();
     void saveDefaultSettings();
     void applySettingsToOthers();
@@ -54,8 +57,6 @@ public slots:
 
 public:
     KAction *actZoomIn, *actZoomOut, *actDefaultZoom;
-    KAction *actViewSaveDefaultSettings, *actShowViewOptionsMenu;
-    KAction *actFocusPanel;
 };
 
 #endif // __VIEWACTIONS_H__

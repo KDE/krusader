@@ -41,12 +41,16 @@ ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
     actZoomIn = action(i18n("Zoom In"), "zoom-in", 0, SLOT(zoomIn()), "zoom_in");
     actZoomOut = action(i18n("Zoom Out"), "zoom-out", 0, SLOT(zoomOut()), "zoom_out");
     actDefaultZoom = action(i18n("Default Zoom"), "zoom-original", 0, SLOT(defaultZoom()), "default_zoom");
-    actShowViewOptionsMenu = action(i18n("Show View Options Menu"), 0, 0, SLOT(showOptionsMenu()), "show_view_options_menu");
-    actViewSaveDefaultSettings = action(i18n("Save settings as default"), 0, 0, SLOT(saveDefaultSettings()), "view_save_default_settings");
-    actFocusPanel = action(i18n("Set Focus to the Panel"), 0, Qt::Key_Escape, SLOT(focusPanel()), "focus_panel");
+    action(i18n("&All Files"), 0, Qt::SHIFT + Qt::Key_F10, SLOT(allFilter()), "all files");
+    //actExecFilter = new KAction( i18n( "&Executables" ), SHIFT + Qt::Key_F11,
+    //                             SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );
+    action(i18n("&Custom"), 0, Qt::SHIFT + Qt::Key_F12, SLOT(customFilter()), "custom files");
+    action(i18n("Show View Options Menu"), 0, 0, SLOT(showOptionsMenu()), "show_view_options_menu");
+    action(i18n("Set Focus to the Panel"), 0, Qt::Key_Escape, SLOT(focusPanel()), "focus_panel");
     action(i18n("Apply settings to other tabs"), 0, 0, SLOT(applySettingsToOthers()), "view_apply_settings_to_others");
+    KAction *actSaveaveDefaultSettings = action(i18n("Save settings as default"), 0, 0, SLOT(saveDefaultSettings()), "view_save_default_settings");
 
-    actViewSaveDefaultSettings->setToolTip(i18n("Save settings as default for new instances of this view type"));
+    actSaveaveDefaultSettings->setToolTip(i18n("Save settings as default for new instances of this view type"));
 }
 
 void ViewActions::zoomIn()
@@ -62,6 +66,21 @@ void ViewActions::zoomOut()
 void ViewActions::defaultZoom()
 {
     _mainWindow->activeView()->setDefaultFileIconSize();
+}
+
+void ViewActions::allFilter()
+{
+    _mainWindow->activeView()->setFilter(KrViewProperties::All);
+}
+#if 0
+void ViewActions::execFilter()
+{
+    _mainWindow->activeView()->setFilter(KrViewProperties::All);
+}
+#endif
+void ViewActions::customFilter()
+{
+    _mainWindow->activeView()->setFilter(KrViewProperties::Custom);
 }
 
 void ViewActions::showOptionsMenu()

@@ -138,7 +138,6 @@ public slots:
     void slotUpdateTotals();
     void slotStartUpdate();                   // internal
     void slotGetStats(const KUrl& url);            // get the disk-free stats
-    void setFilter(KrViewProperties::FilterSpec f);
     void slotFocusAndCDRoot();
     void slotFocusAndCDHome();
     void slotFocusAndCDup();

@@ -1038,11 +1038,6 @@ void ListPanel::popEmptyRightClickMenu(const QPoint &loc)
     KrPopupMenu::run(loc, this);
 }
 
-void ListPanel::setFilter(KrViewProperties::FilterSpec f)
-{
-    view->setFilter(f);
-}
-
 QString ListPanel::getCurrentName()
 {
     QString name = view->getCurrentItem();

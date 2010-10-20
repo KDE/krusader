@@ -90,12 +90,6 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     action(i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, _func, SLOT(editNew()), "edit_new_file");
     action(i18n("F3 View Dialog"), 0, Qt::SHIFT + Qt::Key_F3, _func, SLOT(viewDlg()), "F3_ViewDlg");
 
-    // filter
-    actAllFilter = action(i18n("&All Files"), 0, Qt::SHIFT + Qt::Key_F10, SLOT(allFilter()), "all files");
-    //actExecFilter = new KAction( i18n( "&Executables" ), SHIFT + Qt::Key_F11,
-    //                             SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );
-    actCustomFilter = action(i18n("&Custom"), 0, Qt::SHIFT + Qt::Key_F12, SLOT(customFilter()), "custom files");
-
     // selection
     actSelect = action(i18n("Select &Group..."), "kr_select", Qt::CTRL + Qt::Key_Plus, this, SLOT(markGroup()), "select group");
     actSelectAll = action(i18n("&Select All"), "kr_selectall", Qt::ALT + Qt::Key_Plus, this, SLOT(markAll()), "select all");
@@ -196,23 +190,6 @@ inline ListPanelFunc *ListPanelActions::activeFunc()
 void ListPanelActions::setView(int id)
 {
     activePanel()->gui->changeType(id);
-}
-
-// filter
-
-void ListPanelActions::allFilter()
-{
-    activePanel()->gui->setFilter(KrViewProperties::All);
-}
-#if 0
-void ListPanelActions::execFilter()
-{
-    activePanel()->gui->setFilter(KrViewProperties::All);
-}
-#endif
-void ListPanelActions::customFilter()
-{
-    activePanel()->gui->setFilter(KrViewProperties::Custom);
 }
 
 // selection

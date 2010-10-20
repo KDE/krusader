@@ -53,11 +53,6 @@ public slots:
     // set view type
     void setView(int id);
 
-    //filter
-    void allFilter();
-    //void execFilter();
-    void customFilter();
-
     // selection
     void markAll();
     void unmarkAll();
@@ -82,7 +77,6 @@ public:
     KAction *actProperties, *actPack, *actUnpack, *actTest,  *actCompDirs, *actCalculate, *actSync;
     KAction *actSelect, *actUnselect, *actSelectAll, *actUnselectAll, *actInvert;
     KAction *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
-    KAction *actExecFilter, *actAllFilter, *actCustomFilter;
     KAction *actLocationBar, *actJumpBack, *actSetJumpBack;
     KAction *actCreateChecksum, *actMatchChecksum;
     KAction *actCopy, *actPaste;
