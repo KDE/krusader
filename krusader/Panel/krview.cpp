@@ -1134,8 +1134,8 @@ void KrView::setVfs(vfs* v)
     op()->connect(_vfs, SIGNAL(startUpdate()), op(), SLOT(startUpdate()));
     op()->connect(_vfs, SIGNAL(cleared()), op(), SLOT(cleared()));
     op()->connect(_vfs, SIGNAL(addedVfile(vfile*)), op(), SLOT(fileAdded(vfile*)));
-    op()->connect(_vfs, SIGNAL(updatedVfile(vfile*)), op(), SLOT(fileDeleted(vfile*)));
-    op()->connect(_vfs, SIGNAL(deletedVfile(const QString&)), op(), SLOT(fileUpdated(const QString&)));
+    op()->connect(_vfs, SIGNAL(updatedVfile(vfile*)), op(), SLOT(fileUpdated(vfile*)));
+    op()->connect(_vfs, SIGNAL(deletedVfile(const QString&)), op(), SLOT(fileDeleted(const QString&)));
 }
 
 void KrView::setFilter(KrViewProperties::FilterSpec filter)
