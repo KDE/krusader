@@ -59,7 +59,6 @@ public slots:
     void markAll();
     void unmarkAll();
     void markGroup();
-    void markGroup(const QString &, bool select);
     void unmarkGroup();
     void invertSelection();
 

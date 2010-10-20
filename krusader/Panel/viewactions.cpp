@@ -130,11 +130,6 @@ void ViewActions::markGroup()
     view()->select(true, false);
 }
 
-void ViewActions::markGroup(const QString& mask, bool select)
-{
-    view()->select(KRQuery(mask), select);
-}
-
 void ViewActions::unmarkGroup()
 {
     view()->select(false, false);
