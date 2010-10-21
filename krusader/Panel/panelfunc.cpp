@@ -103,7 +103,6 @@ ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
 ListPanelFunc::~ListPanelFunc()
 {
     if (vfsP) {
-        panel->view->setVfs(0);
         if (vfsP->vfs_canDelete())
             delete vfsP;
         else {

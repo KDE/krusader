@@ -391,9 +391,9 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
 ListPanel::~ListPanel()
 {
     inlineRefreshCancel();
-    delete func;
     delete view;
     view = 0;
+    delete func;
     delete status;
     delete bookmarksButton;
     delete totals;
