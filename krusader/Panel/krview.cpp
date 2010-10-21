@@ -34,6 +34,7 @@
 #include "krselectionmode.h"
 #include "krcolorcache.h"
 #include "krpreviews.h"
+#include "quickfilter.h"
 #include "../krmainwindow.h"
 #include "../kicons.h"
 #include "../defaults.h"
@@ -59,7 +60,7 @@
 
 // ----------------------------- operator
 KrViewOperator::KrViewOperator(KrView *view, QWidget *widget) :
-        _view(view), _widget(widget), _quickSearch(0), _massSelectionUpdate(false)
+        _view(view), _widget(widget), _quickSearch(0), _quickFilter(0), _massSelectionUpdate(false)
 {
     _saveDefaultSettingsTimer.setSingleShot(true);
     connect(&_saveDefaultSettingsTimer, SIGNAL(timeout()), SLOT(saveDefaultSettings()));
@@ -112,6 +113,8 @@ void KrViewOperator::startDrag()
 void KrViewOperator::setQuickSearch(KrQuickSearch *quickSearch)
 {
     _quickSearch = quickSearch;
+
+    _quickSearch->setFocusProxy(_view->widget());
 
     connect(quickSearch, SIGNAL(textChanged(const QString&)), this, SLOT(quickSearch(const QString&)));
     connect(quickSearch, SIGNAL(otherMatching(const QString&, int)), this, SLOT(quickSearch(const QString& , int)));
@@ -194,6 +197,37 @@ void KrViewOperator::stopQuickSearch(QKeyEvent * e)
     }
 }
 
+void KrViewOperator::setQuickFilter(QuickFilter *quickFilter)
+{
+    _quickFilter = quickFilter;
+    _quickFilter->lineEdit()->installEventFilter(this);
+    connect(_quickFilter, SIGNAL(stop()), SLOT(stopQuickFilter()));
+    connect(_quickFilter->lineEdit(), SIGNAL(textEdited(const QString&)), SLOT(quickFilterChanged(const QString&)));
+    connect(_quickFilter->lineEdit(), SIGNAL(returnPressed(const QString&)), _view->widget(), SLOT(setFocus()));
+}
+
+void KrViewOperator::quickFilterChanged(const QString &text)
+{
+    _view->_quickFilterMask = KRQuery(text);
+    _view->refresh();
+    _quickFilter->setMatch(_view->_count || !_view->_vfs->vfs_noOfFiles());
+}
+
+void KrViewOperator::startQuickFilter()
+{
+    _quickFilter->show();
+    _quickFilter->lineEdit()->setFocus();
+}
+
+void KrViewOperator::stopQuickFilter()
+{
+    _quickFilter->hide();
+    _quickFilter->lineEdit()->clear();
+    _quickFilter->setMatch(true);
+    _view->_quickFilterMask = KRQuery();
+    _view->refresh();
+}
+
 void KrViewOperator::prepareForPassive()
 {
     if (_quickSearch && !_quickSearch->isHidden()) {
@@ -231,9 +265,28 @@ void KrViewOperator::saveDefaultSettings()
 
 bool KrViewOperator::eventFilter(QObject *watched, QEvent *event)
 {
-    if(watched == _widget && event->type() == QEvent::ShortcutOverride) {
-        if (!_quickSearch->isHidden())
-            return _quickSearch->shortcutOverride(static_cast<QKeyEvent*>(event));
+    if(event->type() == QEvent::KeyPress) {
+        QKeyEvent *ke = static_cast<QKeyEvent*>(event);
+        if(ke->key() == Qt::Key_Escape && ke->modifiers() == Qt::NoModifier) {
+            if(!_quickSearch->isHidden())
+                stopQuickSearch(0);
+            else if(!_quickFilter->isHidden())
+                stopQuickFilter();
+            else
+                return false;
+            event->accept();
+            return true;
+        }
+    }
+    else if(event->type() == QEvent::ShortcutOverride) {
+        QKeyEvent *ke = static_cast<QKeyEvent*>(event);
+        if(ke->key() == Qt::Key_Escape && ke->modifiers() == Qt::NoModifier &&
+                (!_quickFilter->isHidden() || !_quickFilter->isHidden())) {
+            event->accept();
+            return true;
+        }
+        else if(watched == _widget && !_quickSearch->isHidden())
+            return _quickSearch->shortcutOverride(ke);
     }
     return false;
 }
@@ -1094,6 +1147,9 @@ QString KrView::krPermissionString(const vfile * vf)
 
 bool KrView::isFiltered(vfile *vf)
 {
+    if (!_quickFilterMask.isNull() && !_quickFilterMask.match(vf))
+        return true;
+
     bool filteredOut = false;
     bool isDir = vf->vfile_isDir();
     if (!isDir || (isDir && properties()->filterApplysToDirs)) {

@@ -66,6 +66,7 @@ public slots:
     void saveDefaultSettings();
     void applySettingsToOthers();
     void focusPanel();
+    void quickFilter();
 
 public:
     KAction *actZoomIn, *actZoomOut, *actDefaultZoom;

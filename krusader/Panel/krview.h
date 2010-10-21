@@ -54,6 +54,7 @@ class KrPreviews;
 class QModelIndex;
 class KrViewInstance;
 class KrMainWindow;
+class QuickFilter;
 
 typedef QList<KrViewItem*> KrViewItemList;
 
@@ -178,11 +179,15 @@ public:
         emit calcSpace(item);
     }
     void prepareForPassive();
+
     void setQuickSearch(KrQuickSearch *quickSearch);
-    bool handleKeyEvent(QKeyEvent *e);
     KrQuickSearch * quickSearch() {
         return _quickSearch;
     }
+
+    void setQuickFilter(QuickFilter*);
+
+    bool handleKeyEvent(QKeyEvent *e);
     void setMassSelectionUpdate(bool upd);
     bool isMassSelectionUpdate() {
         return _massSelectionUpdate;
@@ -196,6 +201,9 @@ public slots:
     void quickSearch(const QString &, int = 0);
     void stopQuickSearch(QKeyEvent*);
     void handleQuickSearchEvent(QKeyEvent*);
+
+    void startQuickFilter();
+    void stopQuickFilter();
 
 signals:
     void selectionChanged();
@@ -217,6 +225,7 @@ signals:
     void calcSpace(KrViewItem *item);
 
 protected slots:
+    void quickFilterChanged(const QString &text);
     void saveDefaultSettings();
     void startUpdate();
     void cleared();
@@ -232,6 +241,7 @@ protected:
 
 private:
     KrQuickSearch *_quickSearch;
+    QuickFilter *_quickFilter;
     bool _massSelectionUpdate;
     QTimer _saveDefaultSettingsTimer;
 };
@@ -507,6 +517,7 @@ protected:
     KrPreviews *_previews;
     int _fileIconSize;
     bool _updateDefaultSettings;
+    KRQuery _quickFilterMask;
 };
 
 

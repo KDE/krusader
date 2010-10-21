@@ -68,6 +68,7 @@ class vfile;
 class KrView;
 class KUrlRequester;
 class KrQuickSearch;
+class QuickFilter;
 class DirHistoryButton;
 class MediaButton;
 class PanelPopup;
@@ -209,6 +210,7 @@ protected:
     QSplitter *splt;
     KUrlRequester *origin;
     KrQuickSearch *quickSearch;
+    QuickFilter *quickFilter;
     QToolButton *cdRootButton;
     QToolButton *cdHomeButton;
     QToolButton *cdUpButton;

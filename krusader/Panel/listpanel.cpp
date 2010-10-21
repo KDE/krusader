@@ -104,6 +104,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krcolorcache.h"
 #include "krerrordisplay.h"
 #include "krlayoutfactory.h"
+#include "quickfilter.h"
 
 
 
@@ -300,10 +301,17 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
     quickSearch->setFont(group.readEntry("Filelist Font", *_FilelistFont));
     quickSearch->setMaximumHeight(sheight);
     quickSearch->hide();
-    if(group.readEntry("Quicksearch Position", "bottom") == "top")
+    // quickfilter
+    quickFilter = new QuickFilter(clientArea);
+    quickFilter->hide();
+
+    if(group.readEntry("Quicksearch Position", "bottom") == "top") {
         clientLayout->insertWidget(0, quickSearch);
-    else
+        clientLayout->insertWidget(0, quickFilter);
+    } else {
         clientLayout->insertWidget(-1, quickSearch);
+        clientLayout->insertWidget(-1, quickFilter);
+    }
 
     // totals label
     totals = new KrSqueezedTextLabel(totalsBar);
@@ -405,7 +413,7 @@ void ListPanel::createView()
 
     view->init();
     view->op()->setQuickSearch(quickSearch);
-    quickSearch->setFocusProxy(view->widget());
+    view->op()->setQuickFilter(quickFilter);
 
     if(this == ACTIVE_PANEL)
         view->prepareForActive();
@@ -503,7 +511,6 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
     }
     return false;
 }
-
 
 void ListPanel::togglePanelPopup()
 {

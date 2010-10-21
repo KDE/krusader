@@ -66,6 +66,7 @@ A
 #include "listpanel.h"
 #include "krerrordisplay.h"
 #include "listpanelactions.h"
+#include "quickfilter.h"
 #include "../resources.h"
 #include "../krglobal.h"
 #include "../krslots.h"
@@ -242,8 +243,10 @@ void ListPanelFunc::doRefresh()
     // if we are not refreshing to current URL
     bool isEqualUrl = files()->vfs_getOrigin().equals(url, KUrl::CompareWithoutTrailingSlash);
 
-    if (!isEqualUrl)
+    if (!isEqualUrl) {
         panel->setCursor(Qt::WaitCursor);
+        panel->view->op()->stopQuickFilter();
+    }
 
     if(panel->vfsError)
         panel->vfsError->hide();

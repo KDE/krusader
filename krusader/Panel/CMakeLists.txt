@@ -1,4 +1,5 @@
 set(Panel_SRCS
+    quickfilter.cpp
     viewactions.cpp
     listpanelactions.cpp
     dirhistoryqueue.cpp
