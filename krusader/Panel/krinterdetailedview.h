@@ -43,48 +43,12 @@ public:
     KrInterDetailedView(QWidget *parent, const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
     virtual ~KrInterDetailedView();
 
-//     virtual KrViewInstance *instance() const;
-/*
-    virtual void addItems(vfs* v, bool addUpDir = true);
-    virtual KrViewItem* findItemByName(const QString &name);
-    virtual QString getCurrentItem() const;
-    virtual KrViewItem* getCurrentKrViewItem();
-    virtual KrViewItem* getFirst();
-    virtual KrViewItem* getKrViewItemAt(const QPoint &vp);
-    virtual KrViewItem* getLast();
-    virtual KrViewItem* getNext(KrViewItem *current);
-    virtual KrViewItem* getPrev(KrViewItem *current);
-    virtual void makeItemVisible(const KrViewItem *item);
-    virtual KrViewItem* preAddItem(vfile *vf);
-    virtual bool preDelItem(KrViewItem *item);
-    virtual void redraw();
-*/
-/*
-    virtual void setCurrentItem(const QString& name);
-    virtual void setCurrentKrViewItem(KrViewItem *current);
-    virtual void sort();
-    virtual void clear();
-*/
     virtual void updateView();
-/*
-    virtual void updateItem(KrViewItem* item);
-    virtual void updateItem(vfile* item);
-    virtual QModelIndex getCurrentIndex() {
-        return currentIndex();
-    }
-    virtual bool isSelected(const QModelIndex &ndx) {
-        return selectionModel()->isSelected(ndx);
-    }
-*/
-//     virtual void selectRegion(KrViewItem *, KrViewItem *, bool);
-//     KrInterDetailedViewItem * getKrInterViewItem(const QModelIndex &);
 
     static KrView* create(QWidget *parent, const bool &left, KConfig *cfg, KrMainWindow *mainWindow) {
         return new KrInterDetailedView(parent, left, cfg, mainWindow);
     }
 
-//     virtual void prepareForActive();
-//     virtual void prepareForPassive();
     virtual bool ensureVisibilityAfterSelect() {
         return false;
     }
@@ -92,11 +56,7 @@ public:
     virtual void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending);
     virtual void setFileIconSize(int size);
 
-// public slots:
-//     virtual void refreshColors();
-
 protected slots:
-//     void slotMakeCurrentVisible();
     virtual void renameCurrentItem();
     void sectionResized(int, int, int);
     void sectionMoved(int, int, int);
@@ -134,9 +94,6 @@ protected:
     void recalculateColumnSizes();
 
 private:
-//     KrVfsModel *_model;
-//     KrMouseHandler *_mouseHandler;
-//     QHash<vfile *, KrInterDetailedViewItem*> _itemHash;
     QFont _viewFont;
     bool _autoResizeColumns;
 };
