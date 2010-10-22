@@ -43,42 +43,6 @@
 #include "../VFS/krpermhandler.h"
 #include "../defaults.h"
 #include "../GUI/krstyleproxy.h"
-#if 0
-// dummy. remove this class when no longer needed
-class KrInterBriefViewItem: public KrViewItem
-{
-public:
-    KrInterBriefViewItem(KrInterBriefView *parent, vfile *vf): KrViewItem(vf, parent->properties()) {
-        _view = parent;
-        _vfile = vf;
-        if (parent->_model->dummyVfile() == vf)
-            dummyVfile = true;
-    }
-
-    bool isSelected() const {
-        const QModelIndex & ndx = _view->_model->vfileIndex(_vfile);
-        return _view->selectionModel()->isSelected(ndx);
-    }
-    void setSelected(bool s) {
-        const QModelIndex & ndx = _view->_model->vfileIndex(_vfile);
-        _view->selectionModel()->select(ndx, (s ? QItemSelectionModel::Select : QItemSelectionModel::Deselect)
-                                        | QItemSelectionModel::Rows);
-    }
-    QRect itemRect() const {
-        const QModelIndex & ndx = _view->_model->vfileIndex(_vfile);
-        return _view->visualRect(ndx);
-    }
-    static void itemHeightChanged() {
-    } // force the items to resize when icon/font size change
-    void redraw() {
-        _view->viewport()->update(itemRect());
-    }
-
-private:
-    vfile *_vfile;
-    KrInterBriefView * _view;
-};
-#endif
 
 
 // code used to register the view
@@ -122,31 +86,8 @@ KrInterBriefView::~KrInterBriefView()
     _properties = 0;
     delete _operator;
     _operator = 0;
-//     delete _model;
-//     delete _mouseHandler;
-//     QHashIterator< vfile *, KrInterBriefViewItem *> it(_itemHash);
-//     while (it.hasNext())
-//         delete it.next().value();
-//     _itemHash.clear();
 }
 
-// KrViewInstance* KrInterBriefView::instance() const
-// {
-//     return &interBriefView;
-// }
-
-#if 0
-KrViewItem* KrInterBriefView::findItemByName(const QString &name)
-{
-    if (!_model->ready())
-        return 0;
-
-    QModelIndex ndx = _model->nameIndex(name);
-    if (!ndx.isValid())
-        return 0;
-    return getKrInterViewItem(ndx);
-}
-#endif
 void KrInterBriefView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
     if (_model->ready()) {
@@ -155,130 +96,6 @@ void KrInterBriefView::currentChanged(const QModelIndex & current, const QModelI
     }
     QAbstractItemView::currentChanged(current, previous);
 }
-#if 0
-QString KrInterBriefView::getCurrentItem() const
-{
-    if (!_model->ready())
-        return QString();
-
-    vfile * vf = _model->vfileAt(currentIndex());
-    if (vf == 0)
-        return QString();
-    return vf->vfile_getName();
-}
-
-KrViewItem* KrInterBriefView::getCurrentKrViewItem()
-{
-    if (!_model->ready())
-        return 0;
-
-    return getKrInterViewItem(currentIndex());
-}
-
-KrViewItem* KrInterBriefView::getFirst()
-{
-    if (!_model->ready())
-        return 0;
-
-    return getKrInterViewItem(_model->index(0, 0, QModelIndex()));
-}
-
-KrViewItem* KrInterBriefView::getKrViewItemAt(const QPoint &vp)
-{
-    if (!_model->ready())
-        return 0;
-
-    return getKrInterViewItem(indexAt(vp));
-}
-
-KrViewItem* KrInterBriefView::getLast()
-{
-    if (!_model->ready())
-        return 0;
-
-    return getKrInterViewItem(_model->index(_model->rowCount() - 1, 0, QModelIndex()));
-}
-
-KrViewItem* KrInterBriefView::getNext(KrViewItem *current)
-{
-    vfile* vf = (vfile *)current->getVfile();
-    QModelIndex ndx = _model->vfileIndex(vf);
-    if (ndx.row() >= _model->rowCount() - 1)
-        return 0;
-    return getKrInterViewItem(_model->index(ndx.row() + 1, 0, QModelIndex()));
-}
-
-KrViewItem* KrInterBriefView::getPrev(KrViewItem *current)
-{
-    vfile* vf = (vfile *)current->getVfile();
-    QModelIndex ndx = _model->vfileIndex(vf);
-    if (ndx.row() <= 0)
-        return 0;
-    return getKrInterViewItem(_model->index(ndx.row() - 1, 0, QModelIndex()));
-}
-
-void KrInterBriefView::slotMakeCurrentVisible()
-{
-    scrollTo(currentIndex());
-}
-
-void KrInterBriefView::makeItemVisible(const KrViewItem *item)
-{
-    if (item == 0)
-        return;
-    vfile* vf = (vfile *)item->getVfile();
-    QModelIndex ndx = _model->vfileIndex(vf);
-    if (ndx.isValid())
-        scrollTo(ndx);
-}
-
-void KrInterBriefView::setCurrentKrViewItem(KrViewItem *item)
-{
-    if (item == 0) {
-        setCurrentIndex(QModelIndex());
-        return;
-    }
-    vfile* vf = (vfile *)item->getVfile();
-    QModelIndex ndx = _model->vfileIndex(vf);
-    if (ndx.isValid() && ndx.row() != currentIndex().row()) {
-        _mouseHandler->cancelTwoClickRename();
-        setCurrentIndex(ndx);
-    }
-}
-
-KrViewItem* KrInterBriefView::preAddItem(vfile *vf)
-{
-    return getKrInterViewItem(_model->addItem(vf));
-}
-
-bool KrInterBriefView::preDelItem(KrViewItem *item)
-{
-    if (item == 0)
-        return true;
-    QModelIndex ndx = _model->removeItem((vfile *)item->getVfile());
-    if (ndx.isValid())
-        setCurrentIndex(ndx);
-    _itemHash.remove((vfile *)item->getVfile());
-    return true;
-}
-
-void KrInterBriefView::redraw()
-{
-    viewport()->update();
-}
-
-void KrInterBriefView::refreshColors()
-{
-    QPalette p(palette());
-    KrColorGroup cg;
-    KrColorCache::getColorCache().getColors(cg, KrColorItemType(KrColorItemType::File,
-        false, _focused, false, false));
-    p.setColor(QPalette::Text, cg.text());
-    p.setColor(QPalette::Base, cg.background());
-    setPalette(p);
-    viewport()->update();
-}
-#endif
 
 void KrInterBriefView::doRestoreSettings(KConfigGroup &group)
 {
@@ -298,33 +115,6 @@ void KrInterBriefView::doSaveSettings(KConfigGroup &group)
     group.writeEntry("Number Of Brief Columns", _numOfColumns);
 }
 
-#if 0
-void KrInterBriefView::setCurrentItem(const QString& name)
-{
-    QModelIndex ndx = _model->nameIndex(name);
-    if (ndx.isValid())
-        setCurrentIndex(ndx);
-}
-
-void KrInterBriefView::prepareForActive()
-{
-    KrView::prepareForActive();
-    setFocus();
-    KrViewItem * current = getCurrentKrViewItem();
-    if (current != 0) {
-        QString desc = current->description();
-        op()->emitItemDescription(desc);
-    }
-}
-
-void KrInterBriefView::prepareForPassive()
-{
-    KrView::prepareForPassive();
-    _mouseHandler->cancelTwoClickRename();
-    //if ( renameLineEdit() ->isVisible() )
-    //renameLineEdit() ->clearFocus();
-}
-#endif
 int KrInterBriefView::itemsPerPage()
 {
     int height = getItemHeight();
@@ -333,54 +123,10 @@ int KrInterBriefView::itemsPerPage()
     int numRows = viewport()->height() / height;
     return numRows;
 }
-#if 0
-void KrInterBriefView::sort()
-{
-    _model->sort();
-}
-#endif
 void KrInterBriefView::updateView()
 {
 }
-#if 0
-void KrInterBriefView::updateItem(vfile * item)
-{
-    if (item == 0)
-        return;
-    _model->updateItem(item);
-    op()->emitSelectionChanged();
-}
 
-void KrInterBriefView::updateItem(KrViewItem* item)
-{
-    if (item == 0)
-        return;
-    updateItem((vfile *)item->getVfile());
-}
-
-void KrInterBriefView::clear()
-{
-    clearSelection();
-    _model->clear();
-    QHashIterator< vfile *, KrInterBriefViewItem *> it(_itemHash);
-    while (it.hasNext())
-        delete it.next().value();
-    _itemHash.clear();
-    KrView::clear();
-}
-
-void KrInterBriefView::addItems(vfs* v, bool addUpDir)
-{
-    _model->setVfs(v, addUpDir);
-    _count = _model->rowCount();
-    if (addUpDir)
-        _count--;
-
-    this->setCurrentIndex(_model->index(0, 0));
-    if (!nameToMakeCurrent().isEmpty())
-        setCurrentItem(nameToMakeCurrent());
-}
-#endif
 void KrInterBriefView::setup()
 {
     _header = new QHeaderView(Qt::Horizontal, this);
@@ -408,8 +154,6 @@ void KrInterBriefView::setup()
 void KrInterBriefView::initOperator()
 {
     _operator = new KrViewOperator(this, this);
-    // klistview emits selection changed, so chain them to operator
-//     connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), _operator, SLOT(emitSelectionChanged()));
 }
 
 void KrInterBriefView::keyPressEvent(QKeyEvent *e)
@@ -549,24 +293,6 @@ bool KrInterBriefView::event(QEvent * e)
     _mouseHandler->otherEvent(e);
     return QAbstractItemView::event(e);
 }
-#if 0
-KrInterBriefViewItem * KrInterBriefView::getKrInterViewItem(const QModelIndex & ndx)
-{
-    if (!ndx.isValid())
-        return 0;
-    vfile * vf = _model->vfileAt(ndx);
-    if (vf == 0)
-        return 0;
-    QHash<vfile *, KrInterBriefViewItem*>::iterator it = _itemHash.find(vf);
-    if (it == _itemHash.end()) {
-        KrInterBriefViewItem * newItem =  new KrInterBriefViewItem(this, vf);
-        _itemHash[ vf ] = newItem;
-        _dict.insert(vf->vfile_getName(), newItem);
-        return newItem;
-    }
-    return *it;
-}
-#endif
 
 void KrInterBriefView::renameCurrentItem()
 {
