@@ -39,6 +39,7 @@
 #include "../kicons.h"
 #include "../defaults.h"
 #include "../VFS/krpermhandler.h"
+#include "../VFS/vfilecontainer.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../Filter/filterdialog.h"
 
@@ -210,7 +211,7 @@ void KrViewOperator::quickFilterChanged(const QString &text)
 {
     _view->_quickFilterMask = KRQuery(text);
     _view->refresh();
-    _quickFilter->setMatch(_view->_count || !_view->_vfs->vfs_noOfFiles());
+    _quickFilter->setMatch(_view->_count || !_view->_files->numVfiles());
 }
 
 void KrViewOperator::startQuickFilter()
@@ -298,7 +299,7 @@ const KrView::IconSizes KrView::iconSizes;
 
 
 KrView::KrView(KrViewInstance &instance, const bool &left, KConfig *cfg, KrMainWindow *mainWindow) :
-    _instance(instance), _vfs(0), _left(left), _config(cfg), _mainWindow(mainWindow), _widget(0),
+    _instance(instance), _files(0), _left(left), _config(cfg), _mainWindow(mainWindow), _widget(0),
     _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
     _numSelected(0), _count(0), _numDirs(0), _countSize(0), _selectedSize(0), _properties(0), _focused(false),
     _previews(0), _fileIconSize(0), _updateDefaultSettings(false)
@@ -1176,24 +1177,24 @@ bool KrView::isFiltered(vfile *vf)
     return filteredOut;
 }
 
-void KrView::setVfs(vfs* v)
+void KrView::setFiles(VfileContainer *files)
 {
-    if(v != _vfs) {
+    if(files != _files) {
         clear();
-        if(_vfs)
-            op()->disconnect(_vfs, 0, op(), 0);
-        _vfs = v;
+        if(_files)
+            QObject::disconnect(_files, 0, op(), 0);
+        _files = files;
     }
 
-    if(!_vfs)
+    if(!_files)
         return;
 
-    op()->disconnect(_vfs, 0, op(), 0);
-    op()->connect(_vfs, SIGNAL(startUpdate()), op(), SLOT(startUpdate()));
-    op()->connect(_vfs, SIGNAL(cleared()), op(), SLOT(cleared()));
-    op()->connect(_vfs, SIGNAL(addedVfile(vfile*)), op(), SLOT(fileAdded(vfile*)));
-    op()->connect(_vfs, SIGNAL(updatedVfile(vfile*)), op(), SLOT(fileUpdated(vfile*)));
-    op()->connect(_vfs, SIGNAL(deletedVfile(const QString&)), op(), SLOT(fileDeleted(const QString&)));
+    QObject::disconnect(_files, 0, op(), 0);
+    QObject::connect(_files, SIGNAL(startUpdate()), op(), SLOT(startUpdate()));
+    QObject::connect(_files, SIGNAL(cleared()), op(), SLOT(cleared()));
+    QObject::connect(_files, SIGNAL(addedVfile(vfile*)), op(), SLOT(fileAdded(vfile*)));
+    QObject::connect(_files, SIGNAL(updatedVfile(vfile*)), op(), SLOT(fileUpdated(vfile*)));
+    QObject::connect(_files, SIGNAL(deletedVfile(const QString&)), op(), SLOT(fileDeleted(const QString&)));
 }
 
 void KrView::setFilter(KrViewProperties::FilterSpec filter)

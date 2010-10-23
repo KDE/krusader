@@ -18,7 +18,6 @@
  *****************************************************************************/
 
 #include "krvfsmodel.h"
-#include "../VFS/vfs.h"
 #include "../VFS/vfile.h"
 #include <klocale.h>
 #include <QtDebug>
@@ -39,15 +38,13 @@ KrVfsModel::KrVfsModel(KrInterView * view): QAbstractListModel(0), _extensionEna
     _defaultFont = grpSvr.readEntry("Filelist Font", *_FilelistFont);
 }
 
-void KrVfsModel::populate(vfs* v, vfile *dummy)
+void KrVfsModel::populate(const QList<vfile*> &files, vfile *dummy)
 {
     if(dummy)
         _vfiles.append(dummy);
     _dummyVfile = dummy;
 
-    // this is fast, as QList data is implicitly shared
-    QList<vfile*> list= v->vfiles();
-    foreach(vfile *vf, list) {
+    foreach(vfile *vf, files) {
         if (!_view->isFiltered(vf))
             _vfiles.append(vf);
     }

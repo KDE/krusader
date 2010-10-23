@@ -32,9 +32,13 @@
 
 #ifndef PANELFUNC_H
 #define PANELFUNC_H
+
 #include "krviewitem.h"
+#include "../VFS/vfs.h"
+
 #include <QtCore/QObject>
 #include <QtCore/QTimer>
+
 
 class DirHistoryQueue;
 

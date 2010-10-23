@@ -68,6 +68,19 @@ vfs::~vfs()
     delete vfs_filesP;
 }
 
+bool vfs::isRoot()
+{
+    QString protocol = vfs_getOrigin().protocol();
+    bool isFtp = (protocol == "ftp" || protocol == "smb" || protocol == "sftp" || protocol == "fish");
+    QString origin = vfs_getOrigin().prettyUrl(KUrl::RemoveTrailingSlash);
+
+    if (origin.right(1) != "/" && !((vfs_getType() == vfs::VFS_FTP) && isFtp &&
+                                    origin.indexOf('/', origin.indexOf(":/") + 3) == -1))
+        return false;
+
+    return true;
+}
+
 KIO::filesize_t vfs::vfs_totalSize()
 {
     KIO::filesize_t temp = 0;

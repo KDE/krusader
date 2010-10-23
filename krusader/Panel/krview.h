@@ -39,7 +39,6 @@
 #include <QTimer>
 #include "../krglobal.h"
 #include "../VFS/vfile.h"
-#include "../VFS/vfs.h"
 #include "../VFS/krquery.h"
 
 #include <kdebug.h>
@@ -55,6 +54,7 @@ class QModelIndex;
 class KrViewInstance;
 class KrMainWindow;
 class QuickFilter;
+class VfileContainer;
 
 typedef QList<KrViewItem*> KrViewItemList;
 
@@ -427,7 +427,8 @@ public:
         return _previews != 0;
     }
     virtual void applySettingsToOthers();
-    virtual void setVfs(vfs* v);
+
+    virtual void setFiles(VfileContainer *files);
 
     void changeSelection(const KRQuery& filter, bool select);
     void changeSelection(const KRQuery& filter, bool select, bool includeDirs);
@@ -502,7 +503,7 @@ protected:
 
 
     KrViewInstance &_instance;
-    vfs *_vfs;
+    VfileContainer *_files;
     const bool &_left;
     KConfig *_config;
     KrMainWindow *_mainWindow;

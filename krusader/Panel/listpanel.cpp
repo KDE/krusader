@@ -445,7 +445,7 @@ void ListPanel::createView()
     connect(view->op(), SIGNAL(gotDrop(QDropEvent *)), this, SLOT(handleDropOnView(QDropEvent *)));
     connect(view->op(), SIGNAL(previewJobStarted(KJob*)), this, SLOT(slotPreviewJobStarted(KJob*)));
 
-    view->setVfs(func->files());
+    view->setFiles(func->files());
 
     func->refreshActions();
 }

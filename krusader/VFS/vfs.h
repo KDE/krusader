@@ -68,9 +68,14 @@ public:
     vfs(QObject* panel, bool quiet = false);
     virtual   ~vfs();
 
+    // VfileContainer implementation
     virtual QList<vfile*> vfiles() {
         return vfs_filesP->values();
     }
+    virtual unsigned long numVfiles() {
+        return vfs_filesP->count();
+    }
+    virtual bool isRoot();
 
     /// Copy a file to the vfs (physical).
     virtual void vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) = 0;
@@ -103,10 +108,6 @@ public:
     QList<vfile*> vfs_search(const KRQuery& filter);
     /// The total size of all the files in the VFS,
     KIO::filesize_t vfs_totalSize();
-    /// The number of files in the VFS
-    inline unsigned long vfs_noOfFiles() {
-        return vfs_filesP->count();
-    }
     /// Returns the VFS url.
     inline KUrl vfs_getOrigin()          {
         return vfs_origin;

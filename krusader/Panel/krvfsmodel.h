@@ -26,7 +26,6 @@
 
 #include "krinterview.h"
 
-class vfs;
 class vfile;
 class KrViewProperties;
 
@@ -41,7 +40,7 @@ public:
     inline bool ready() const {
         return _ready;
     }
-    void populate(vfs* v, vfile *dummy);
+    void populate(const QList<vfile*> &files, vfile *dummy);
     QModelIndex addItem(vfile *);
     QModelIndex removeItem(vfile *);
     void updateItem(vfile *vf);

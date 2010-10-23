@@ -24,6 +24,7 @@
 #include "krcolorcache.h"
 #include "krmousehandler.h"
 #include "krpreviews.h"
+#include "../VFS/vfilecontainer.h"
 
 KrInterView::KrInterView(KrViewInstance &instance, const bool &left, KConfig *cfg,
                          KrMainWindow *mainWindow, QAbstractItemView *itemView) :
@@ -265,21 +266,16 @@ void KrInterView::refresh()
 
     clear();
 
-    if(!_vfs)
+    if(!_files)
         return;
 
     // if we are not at the root add the ".." entery
-    QString protocol = _vfs->vfs_getOrigin().protocol();
-    bool isFtp = (protocol == "ftp" || protocol == "smb" || protocol == "sftp" || protocol == "fish");
-
-    QString origin = _vfs->vfs_getOrigin().prettyUrl(KUrl::RemoveTrailingSlash);
-    if (origin.right(1) != "/" && !((_vfs->vfs_getType() == vfs::VFS_FTP) && isFtp &&
-                                    origin.indexOf('/', origin.indexOf(":/") + 3) == -1)) {
+    if(!_files->isRoot()) {
         _dummyVfile = new vfile("..", 0, "drwxrwxrwx", 0, false, 0, 0, "", "", 0, -1);
         _dummyVfile->vfile_setIcon("go-up");
     }
 
-    _model->populate(_vfs, _dummyVfile);
+    _model->populate(_files->vfiles(), _dummyVfile);
     _count = _model->rowCount();
 
     if (_dummyVfile )

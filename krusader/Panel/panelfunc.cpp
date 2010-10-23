@@ -271,7 +271,7 @@ void ListPanelFunc::doRefresh()
         v->setParentWindow(krMainWindow);
         v->setMountMan(&krMtMan);
         if (v != vfsP) {
-            panel->view->setVfs(0);
+            panel->view->setFiles(0);
 
             // disconnect older signals
             disconnect(vfsP, 0, panel, 0);
@@ -290,7 +290,7 @@ void ListPanelFunc::doRefresh()
             }
         }
 
-        panel->view->setVfs(files());
+        panel->view->setFiles(files());
 
         // (re)connect vfs signals
         disconnect(files(), 0, panel, 0);
