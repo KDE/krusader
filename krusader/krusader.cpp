@@ -874,9 +874,9 @@ bool Krusader::isLeftActive()  {
 void Krusader::openUrl(QString url)
 {
     int tab = ACTIVE_MNG->findTab(url);
-    if(tab > 0)
+    if(tab >= 0)
         ACTIVE_MNG->setActiveTab(tab);
-    else if((tab = OTHER_MNG->findTab(url)) > 0)
+    else if((tab = OTHER_MNG->findTab(url)) >= 0)
         OTHER_MNG->setActiveTab(tab);
     else
         ACTIVE_MNG->slotNewTab(url);
