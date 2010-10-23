@@ -1,4 +1,5 @@
 set(VFS_SRCS
+    vfilecontainer.cpp
     krvfshandler.cpp
     virt_vfs.cpp 
     vfs.cpp 

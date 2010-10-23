@@ -30,6 +30,8 @@
 #ifndef VFS_H
 #define VFS_H
 
+#include "vfilecontainer.h"
+
 // QT includes
 #include <QtCore/QString>
 #include <QtCore/QList>
@@ -51,7 +53,7 @@
  * nothing. other VFSs like the normal_vfs inherits from this class and
  * make it possible to use a consistent API for all types of VFSs.
  */
-class vfs: public QObject
+class vfs : public VfileContainer
 {
     Q_OBJECT
 public:
@@ -60,11 +62,15 @@ public:
 
     /**
      * Creates a vfs.
-     * @param panel the panel father. the VFS will connect it's signals to this object.
+     * @param panel the panel father
      * @param quiet if true, the VFS will not display error messages
      */
     vfs(QObject* panel, bool quiet = false);
     virtual   ~vfs();
+
+    virtual QList<vfile*> vfiles() {
+        return vfs_filesP->values();
+    }
 
     /// Copy a file to the vfs (physical).
     virtual void vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) = 0;
@@ -167,13 +173,8 @@ public slots:
     }
 
 signals:
-    void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.
     void startJob(KIO::Job* job);
     void incrementalRefreshFinished(const KUrl&);   //< emitted when the incremental refresh was finished
-    void addedVfile(vfile* vf);
-    void deletedVfile(const QString& name);
-    void updatedVfile(vfile* vf);
-    void cleared();
     void deleteAllowed();
     void trashJobStarted(KIO::Job *job);
     void error(QString msg);

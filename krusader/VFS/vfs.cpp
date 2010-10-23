@@ -49,7 +49,8 @@
 #include "../defaults.h"
 #include "kiojobwrapper.h"
 
-vfs::vfs(QObject* panel, bool quiet): vfs_busy(false), quietMode(quiet), disableRefresh(false), postponedRefreshURL(),
+vfs::vfs(QObject* panel, bool quiet) : VfileContainer(0),
+        vfs_busy(false), quietMode(quiet), disableRefresh(false), postponedRefreshURL(),
         invalidated(true), panelConnected(false), vfs_tempFilesP(0), vfileIterator(0), deletePossible(true),
         deleteRequested(false)
 {
