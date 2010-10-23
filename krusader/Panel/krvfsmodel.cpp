@@ -32,7 +32,7 @@
 
 KrVfsModel::KrVfsModel(KrInterView * view): QAbstractListModel(0), _extensionEnabled(true), _view(view),
         _dummyVfile(0), _ready(false), _justForSizeHint(false),
-        _alternatingTable(false), _sortingEnabled(true)
+        _alternatingTable(false)
 {
     KConfigGroup grpSvr(krConfig, "Look&Feel");
     _defaultFont = grpSvr.readEntry("Filelist Font", *_FilelistFont);
@@ -52,7 +52,7 @@ void KrVfsModel::populate(const QList<vfile*> &files, vfile *dummy)
     _ready = true;
     // TODO: make a more efficient implementation that this dummy one :-)
 
-    if(_sortingEnabled)
+    if(lastSortOrder() != KrViewProperties::NoColumn)
         sort();
     else {
         emit layoutAboutToBeChanged();
@@ -276,7 +276,7 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
 {
     _view->sortModeUpdated(column, order);
 
-    if(!_sortingEnabled)
+    if(lastSortOrder() == KrViewProperties::NoColumn)
         return;
 
     emit layoutAboutToBeChanged();
@@ -320,7 +320,7 @@ QModelIndex KrVfsModel::addItem(vfile * vf)
 {
     emit layoutAboutToBeChanged();
 
-    if(!_sortingEnabled) {
+    if(lastSortOrder() == KrViewProperties::NoColumn) {
         int idx = _vfiles.count();
         _vfiles.append(vf);
         _vfileNdx[vf] = index(idx, 0);
@@ -425,7 +425,7 @@ void KrVfsModel::updateItem(vfile * vf)
     if (!lastIndex.isValid())
         QModelIndex newIdx = addItem(vf);
 
-    if(!_sortingEnabled) {
+    if(lastSortOrder() == KrViewProperties::NoColumn) {
         _view->redrawItem(vf);
         return;
     }

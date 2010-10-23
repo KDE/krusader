@@ -243,11 +243,6 @@ void KrInterView::sort()
     _model->sort();
 }
 
-void KrInterView::enableSorting(bool enable)
-{
-    _model->enableSorting(enable);
-}
-
 void KrInterView::clear()
 {
     _selected.clear();

@@ -82,7 +82,7 @@ public:
         numberOfColumns(1)
     {}
 
-    enum ColumnType { Name = 0x0, Ext = 0x1, Size = 0x2, Type = 0x3, Modified = 0x4,
+    enum ColumnType { NoColumn = -1, Name = 0x0, Ext = 0x1, Size = 0x2, Type = 0x3, Modified = 0x4,
                       Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8, MAX_COLUMNS = 0x09
                     };
     enum SortOptions { Descending = 0x200, DirsFirst = 0x400, IgnoreCase = 0x800,
@@ -338,7 +338,6 @@ public:
     virtual void makeItemVisible(const KrViewItem *item) = 0;
     virtual void updateView() = 0;
     virtual void sort() = 0;
-    virtual void enableSorting(bool) = 0;
     virtual void refreshColors() = 0;
     virtual void redraw() = 0;
     virtual void refresh() = 0;
