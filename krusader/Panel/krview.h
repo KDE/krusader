@@ -338,6 +338,7 @@ public:
     virtual void makeItemVisible(const KrViewItem *item) = 0;
     virtual void updateView() = 0;
     virtual void sort() = 0;
+    virtual void enableSorting(bool) = 0;
     virtual void refreshColors() = 0;
     virtual void redraw() = 0;
     virtual void refresh() = 0;

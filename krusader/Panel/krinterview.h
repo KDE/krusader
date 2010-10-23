@@ -55,6 +55,7 @@ public:
     virtual void makeItemVisible(const KrViewItem *item);
     virtual void clear();
     virtual void sort();
+    virtual void enableSorting(bool);
     virtual void refreshColors();
     virtual void redraw();
     virtual void refresh();
@@ -64,6 +65,10 @@ public:
     virtual void selectRegion(KrViewItem *i1, KrViewItem *i2, bool select);
 
     void sortModeUpdated(int column, Qt::SortOrder order);
+
+    void redrawItem(vfile *vf) {
+        _itemView->viewport()->update(itemRect(vf));
+    }
 
 protected:
     class DummySelectionModel : public QItemSelectionModel

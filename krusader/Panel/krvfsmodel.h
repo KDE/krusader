@@ -79,6 +79,9 @@ public:
     void setAlternatingTable(bool altTable) {
         _alternatingTable = altTable;
     }
+    void enableSorting(bool enable) {
+        _sortingEnabled = enable;
+    }
 
 public slots:
     virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
@@ -97,6 +100,7 @@ protected:
     QFont                       _defaultFont;
     bool                        _justForSizeHint;
     bool                        _alternatingTable;
+    bool                        _sortingEnabled;
 };
 
 #endif // __krvfsmodel__

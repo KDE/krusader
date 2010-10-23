@@ -32,7 +32,7 @@
 
 KrVfsModel::KrVfsModel(KrInterView * view): QAbstractListModel(0), _extensionEnabled(true), _view(view),
         _dummyVfile(0), _ready(false), _justForSizeHint(false),
-        _alternatingTable(false)
+        _alternatingTable(false), _sortingEnabled(true)
 {
     KConfigGroup grpSvr(krConfig, "Look&Feel");
     _defaultFont = grpSvr.readEntry("Filelist Font", *_FilelistFont);
@@ -52,7 +52,16 @@ void KrVfsModel::populate(const QList<vfile*> &files, vfile *dummy)
     _ready = true;
     // TODO: make a more efficient implementation that this dummy one :-)
 
-    sort();
+    if(_sortingEnabled)
+        sort();
+    else {
+        emit layoutAboutToBeChanged();
+        for(int i = 0; i < _vfiles.count(); i++) {
+            _vfileNdx[_vfiles[i]] = index(i, 0);
+            _nameNdx[_vfiles[i]->vfile_getName()] = index(i, 0);
+        }
+        emit layoutChanged();
+    }
 }
 
 KrVfsModel::~KrVfsModel()
@@ -267,6 +276,9 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
 {
     _view->sortModeUpdated(column, order);
 
+    if(!_sortingEnabled)
+        return;
+
     emit layoutAboutToBeChanged();
 
     QModelIndexList oldPersistentList = persistentIndexList();
@@ -307,6 +319,15 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
 QModelIndex KrVfsModel::addItem(vfile * vf)
 {
     emit layoutAboutToBeChanged();
+
+    if(!_sortingEnabled) {
+        int idx = _vfiles.count();
+        _vfiles.append(vf);
+        _vfileNdx[vf] = index(idx, 0);
+        _nameNdx[vf->vfile_getName()] = index(idx, 0);
+        emit layoutChanged();
+        return index(idx, 0);
+    }
 
     QModelIndexList oldPersistentList = persistentIndexList();
 
@@ -403,6 +424,11 @@ void KrVfsModel::updateItem(vfile * vf)
 
     if (!lastIndex.isValid())
         QModelIndex newIdx = addItem(vf);
+
+    if(!_sortingEnabled) {
+        _view->redrawItem(vf);
+        return;
+    }
 
     QVector<KrSort::SortProps*> sorting(_vfiles.count());
     int oldIndex = -1;
