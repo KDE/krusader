@@ -52,9 +52,9 @@ KrViewInstance interBriefView(INTERBRIEFVIEW_ID, "KrInterBriefView", i18n("&Brie
                               KrInterBriefView::create);
 // end of register code
 
-KrInterBriefView::KrInterBriefView(QWidget *parent, const bool &left, KConfig *cfg, KrMainWindow *mainWindow):
+KrInterBriefView::KrInterBriefView(QWidget *parent, const bool &left, KConfig *cfg):
         QAbstractItemView(parent),
-        KrInterView(interBriefView, left, cfg, mainWindow, this),
+        KrInterView(interBriefView, left, cfg, this),
         _header(0)
 {
     connect(_mouseHandler, SIGNAL(renameCurrentItem()), this, SLOT(renameCurrentItem()));

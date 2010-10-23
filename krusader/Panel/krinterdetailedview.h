@@ -40,13 +40,13 @@ class KrInterDetailedView : public QTreeView, public KrInterView
     Q_OBJECT
 
 public:
-    KrInterDetailedView(QWidget *parent, const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
+    KrInterDetailedView(QWidget *parent, const bool &left, KConfig *cfg);
     virtual ~KrInterDetailedView();
 
     virtual void updateView();
 
-    static KrView* create(QWidget *parent, const bool &left, KConfig *cfg, KrMainWindow *mainWindow) {
-        return new KrInterDetailedView(parent, left, cfg, mainWindow);
+    static KrView* create(QWidget *parent, const bool &left, KConfig *cfg) {
+        return new KrInterDetailedView(parent, left, cfg);
     }
 
     virtual bool ensureVisibilityAfterSelect() {

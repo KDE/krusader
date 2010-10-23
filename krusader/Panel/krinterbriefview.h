@@ -36,13 +36,13 @@ class KrInterBriefView : public QAbstractItemView, public KrInterView
     friend class KrInterBriefViewItem;
 
 public:
-    KrInterBriefView(QWidget *parent, const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
+    KrInterBriefView(QWidget *parent, const bool &left, KConfig *cfg);
     virtual ~KrInterBriefView();
 
     virtual void updateView();
 
-    static KrView* create(QWidget *parent, const bool &left, KConfig *cfg, KrMainWindow *mainWindow) {
-        return new KrInterBriefView(parent, left, cfg, mainWindow);
+    static KrView* create(QWidget *parent, const bool &left, KConfig *cfg) {
+        return new KrInterBriefView(parent, left, cfg);
     }
 
     virtual bool ensureVisibilityAfterSelect() {

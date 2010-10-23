@@ -410,9 +410,10 @@ ListPanel::~ListPanel()
 
 void ListPanel::createView()
 {
-    view = KrViewFactory::createView(panelType, splt, _left, krConfig, krApp);
+    view = KrViewFactory::createView(panelType, splt, _left, krConfig);
 
     view->init();
+    view->setMainWindow(krApp);
     view->op()->setQuickSearch(quickSearch);
     view->op()->setQuickFilter(quickFilter);
 

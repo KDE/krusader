@@ -35,7 +35,6 @@
 #include "krcolorcache.h"
 #include "krpreviews.h"
 #include "quickfilter.h"
-#include "../krmainwindow.h"
 #include "../kicons.h"
 #include "../defaults.h"
 #include "../VFS/krpermhandler.h"
@@ -298,8 +297,8 @@ bool KrViewOperator::eventFilter(QObject *watched, QEvent *event)
 const KrView::IconSizes KrView::iconSizes;
 
 
-KrView::KrView(KrViewInstance &instance, const bool &left, KConfig *cfg, KrMainWindow *mainWindow) :
-    _instance(instance), _files(0), _left(left), _config(cfg), _mainWindow(mainWindow), _widget(0),
+KrView::KrView(KrViewInstance &instance, const bool &left, KConfig *cfg) :
+    _instance(instance), _files(0), _left(left), _config(cfg), _mainWindow(0), _widget(0),
     _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
     _numSelected(0), _count(0), _numDirs(0), _countSize(0), _selectedSize(0), _properties(0), _focused(false),
     _previews(0), _fileIconSize(0), _updateDefaultSettings(false)
@@ -732,7 +731,7 @@ void KrView::renameCurrentItem()
 
     bool ok = false;
     newName = KInputDialog::getText(i18n("Rename"), i18n("Rename %1 to:", fileName),
-                                    fileName, &ok, _mainWindow->widget());
+                                    fileName, &ok, _mainWindow);
     // if the user canceled - quit
     if (!ok || newName == fileName)
         return ;

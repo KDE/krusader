@@ -52,7 +52,6 @@ class KrQuickSearch;
 class KrPreviews;
 class QModelIndex;
 class KrViewInstance;
-class KrMainWindow;
 class QuickFilter;
 class VfileContainer;
 
@@ -471,11 +470,12 @@ public:
     inline bool isFocused() const {
         return _focused;
     }
-    inline KrMainWindow *mainWindow() {
-        return _mainWindow;
-    }
 
     QPixmap getIcon(vfile *vf);
+
+    void setMainWindow(QWidget *mainWindow) {
+        _mainWindow = mainWindow;
+    }
 
     // save this view's settings to be restored after restart
     void saveSettings() {
@@ -498,7 +498,8 @@ public:
     static QString krPermissionString(const vfile * vf);
 
 protected:
-    KrView(KrViewInstance &instance, const bool &left, KConfig *cfg, KrMainWindow *mainWindow);
+    KrView(KrViewInstance &instance, const bool &left, KConfig *cfg);
+
     bool handleKeyEventInt(QKeyEvent *e);
     void sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool descending);
     void saveSettings(QString configGroup);
@@ -514,7 +515,7 @@ protected:
     VfileContainer *_files;
     const bool &_left;
     KConfig *_config;
-    KrMainWindow *_mainWindow;
+    QWidget *_mainWindow;
     QWidget *_widget;
     QString _nameToMakeCurrent;
     QString _nameToMakeCurrentIfAdded;
