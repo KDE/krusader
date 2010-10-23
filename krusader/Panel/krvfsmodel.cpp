@@ -45,12 +45,13 @@ void KrVfsModel::populate(vfs* v, vfile *dummy)
         _vfiles.append(dummy);
     _dummyVfile = dummy;
 
-    vfile *vf = v->vfs_getFirstFile();
-    while (vf) {
+    // this is fast, as QList data is implicitly shared
+    QList<vfile*> list= v->vfiles();
+    foreach(vfile *vf, list) {
         if (!_view->isFiltered(vf))
             _vfiles.append(vf);
-        vf = v->vfs_getNextFile();
     }
+
     _ready = true;
     // TODO: make a more efficient implementation that this dummy one :-)
 

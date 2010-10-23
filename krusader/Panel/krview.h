@@ -203,7 +203,7 @@ public slots:
     void handleQuickSearchEvent(QKeyEvent*);
 
     void startQuickFilter();
-    void stopQuickFilter();
+    void stopQuickFilter(bool refreshView = true);
 
 signals:
     void selectionChanged();

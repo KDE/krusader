@@ -219,13 +219,14 @@ void KrViewOperator::startQuickFilter()
     _quickFilter->lineEdit()->setFocus();
 }
 
-void KrViewOperator::stopQuickFilter()
+void KrViewOperator::stopQuickFilter(bool refreshView)
 {
     _quickFilter->hide();
     _quickFilter->lineEdit()->clear();
     _quickFilter->setMatch(true);
     _view->_quickFilterMask = KRQuery();
-    _view->refresh();
+    if(refreshView)
+        _view->refresh();
 }
 
 void KrViewOperator::prepareForPassive()
