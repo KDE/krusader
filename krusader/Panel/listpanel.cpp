@@ -96,6 +96,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../UserAction/useractionpopupmenu.h"
 
 #include "listpanelactions.h"
+#include "viewactions.h"
 #include "krpreviewpopup.h"
 #include "panelpopup.h"
 #include "panelfunc.h"
@@ -444,6 +445,7 @@ void ListPanel::createView()
     connect(view->op(), SIGNAL(letsDrag(QStringList, QPixmap)), this, SLOT(startDragging(QStringList, QPixmap)));
     connect(view->op(), SIGNAL(gotDrop(QDropEvent *)), this, SLOT(handleDropOnView(QDropEvent *)));
     connect(view->op(), SIGNAL(previewJobStarted(KJob*)), this, SLOT(slotPreviewJobStarted(KJob*)));
+    connect(view->op(), SIGNAL(refreshActions()), krApp->viewActions(), SLOT(refreshActions()));
 
     view->setFiles(func->files());
 

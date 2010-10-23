@@ -178,6 +178,10 @@ public:
     void emitCalcSpace(KrViewItem *item) {
         emit calcSpace(item);
     }
+    void emitRefreshActions() {
+        emit refreshActions();
+    }
+
     void prepareForPassive();
 
     void setQuickSearch(KrQuickSearch *quickSearch);
@@ -223,6 +227,7 @@ signals:
     void deleteFiles(bool reallyDelete);
     void dirUp();
     void calcSpace(KrViewItem *item);
+    void refreshActions();
 
 protected slots:
     void quickFilterChanged(const QString &text);
@@ -449,8 +454,11 @@ public:
     }
     virtual void setFilter(KrViewProperties::FilterSpec filter);
     virtual void customSelection(bool select);
+    virtual int defaultFileIconSize();
     virtual void setFileIconSize(int size);
-    virtual void setDefaultFileIconSize();
+    virtual void setDefaultFileIconSize() {
+        setFileIconSize(defaultFileIconSize());
+    }
     virtual void zoomIn();
     virtual void zoomOut();
 
@@ -468,7 +476,7 @@ public:
     }
 
     QPixmap getIcon(vfile *vf);
-    void refreshActions();
+
     // save this view's settings to be restored after restart
     void saveSettings() {
         saveSettings(nameInKConfig());

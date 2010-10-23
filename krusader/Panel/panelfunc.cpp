@@ -1262,7 +1262,7 @@ void ListPanelFunc::refreshActions()
     panel->_actions->actHistoryBackward->setEnabled(history->canGoBack());
     panel->_actions->actHistoryForward->setEnabled(history->canGoForward());
     KrActions::actTogglePreviews->setChecked(panel->view->previewsShown());
-    panel->view->refreshActions();
+    panel->view->op()->emitRefreshActions();
 }
 
 vfs* ListPanelFunc::files()

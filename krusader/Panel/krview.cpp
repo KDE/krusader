@@ -1031,23 +1031,13 @@ void KrView::setFileIconSize(int size)
         _previews->update();
     }
     redraw();
-    refreshActions();
+    op()->emitRefreshActions();
 }
 
-void KrView::setDefaultFileIconSize()
+int KrView::defaultFileIconSize()
 {
     KConfigGroup grpSvr(_config, _instance.name());
-    setFileIconSize((grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt());
-}
-
-void KrView::refreshActions()
-{
-    KConfigGroup grpSvr(_config, _instance.name());
-    _mainWindow->viewActions()->actDefaultZoom->setEnabled(
-        grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize).toInt() != _fileIconSize);
-    int idx = iconSizes.indexOf(_fileIconSize);
-    _mainWindow->viewActions()->actZoomOut->setEnabled(idx > 0);
-    _mainWindow->viewActions()->actZoomIn->setEnabled(idx < (iconSizes.count() - 1));
+    return grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize).toInt();
 }
 
 QString KrView::nameInKConfig() const {

@@ -68,6 +68,8 @@ public slots:
     void focusPanel();
     void quickFilter();
 
+    void refreshActions();
+
 public:
     KAction *actZoomIn, *actZoomOut, *actDefaultZoom;
     KAction *actSelect, *actUnselect, *actSelectAll, *actUnselectAll, *actInvert;
