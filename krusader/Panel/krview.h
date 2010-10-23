@@ -437,6 +437,9 @@ public:
     void changeSelection(const KRQuery& filter, bool select);
     void changeSelection(const KRQuery& filter, bool select, bool includeDirs);
     bool isFiltered(vfile *vf);
+    void enableUpdateDefaultSettings(bool enable) {
+        _updateDefaultSettings = enable;
+    }
 
     /////////////////////////////////////////////////////////////
     // the following functions have a default and minimalistic //
