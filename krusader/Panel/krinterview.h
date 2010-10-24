@@ -98,7 +98,7 @@ protected:
     QAbstractItemView *_itemView;
     KrMouseHandler *_mouseHandler;
     QHash<vfile *, KrInterViewItem*> _itemHash;
-    QSet<const vfile*> _selected;
+    QSet<const vfile*> _selection;
     vfile *_dummyVfile;
 };
 

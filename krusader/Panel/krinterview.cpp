@@ -89,14 +89,14 @@ void KrInterView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
 void KrInterView::setSelected(const vfile* vf, bool select)
 {
     if(!select)
-        _selected.remove(vf);
+        _selection.remove(vf);
     else if(_model->dummyVfile() != vf)
-        _selected.insert(vf);
+        _selection.insert(vf);
 }
 
 bool KrInterView::isSelected(const vfile *vf)
 {
-    return _selected.contains(vf);
+    return _selection.contains(vf);
 }
 
 bool KrInterView::isSelected(const QModelIndex &ndx)
@@ -245,7 +245,7 @@ void KrInterView::sort()
 
 void KrInterView::clear()
 {
-    _selected.clear();
+    _selection.clear();
     _itemView->clearSelection();
     _itemView->setCurrentIndex(QModelIndex());
     _model->clear();
