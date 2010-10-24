@@ -89,9 +89,9 @@ void KrInterView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
 void KrInterView::setSelected(const vfile* vf, bool select)
 {
     if(!select)
-        _selected.removeOne(vf);
-    else if(_model->dummyVfile() != vf && !_selected.contains(vf))
-        _selected.append(vf);
+        _selected.remove(vf);
+    else if(_model->dummyVfile() != vf)
+        _selected.insert(vf);
 }
 
 bool KrInterView::isSelected(const vfile *vf)

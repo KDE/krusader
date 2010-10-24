@@ -21,7 +21,7 @@
 #ifndef KRINTERVIEW_H
 #define KRINTERVIEW_H
 
-#include <QVector>
+#include <QSet>
 #include <QAbstractItemView>
 
 #include "krview.h"
@@ -98,7 +98,7 @@ protected:
     QAbstractItemView *_itemView;
     KrMouseHandler *_mouseHandler;
     QHash<vfile *, KrInterViewItem*> _itemHash;
-    QList<const vfile*> _selected;
+    QSet<const vfile*> _selected;
     vfile *_dummyVfile;
 };
 
