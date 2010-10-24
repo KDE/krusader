@@ -295,7 +295,10 @@ void KrInterView::refresh()
 
 KrViewItem* KrInterView::preAddItem(vfile *vf)
 {
-    return getKrInterViewItem(_model->addItem(vf));
+    QModelIndex idx = _model->addItem(vf);
+    if(_model->rowCount() == 1) // if this is the fist item to be added, make it current
+        _itemView->setCurrentIndex(idx);
+    return getKrInterViewItem(idx);
 }
 
 void KrInterView::preDelItem(KrViewItem *item)
