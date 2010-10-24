@@ -484,12 +484,14 @@ public:
     void saveSettings() {
         saveSettings(nameInKConfig());
     }
+    void saveSettings(QString configGroup);
+    // save this view's settings as default for new views of this type
+    void saveDefaultSettings();
     // call this to restore this view's settings after restart
     void restoreSettings() {
         restoreSettings(nameInKConfig());
     }
-    // save this view's settings as default for new views of this type
-    void saveDefaultSettings();
+    void restoreSettings(QString configGroup);
     // restore the default settings for this view type
     void restoreDefaultSettings();
 
@@ -505,8 +507,6 @@ protected:
 
     bool handleKeyEventInt(QKeyEvent *e);
     void sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool descending);
-    void saveSettings(QString configGroup);
-    void restoreSettings(QString configGroup);
     void saveSortMode(KConfigGroup &group);
     void restoreSortMode(KConfigGroup &group);
     inline void setWidget(QWidget *w) {
