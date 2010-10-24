@@ -256,17 +256,6 @@ void ListPanelFunc::doRefresh()
 
         isEqualUrl = files()->vfs_getOrigin().equals(u, KUrl::CompareWithoutTrailingSlash);
 
-        if(!history->currentItem().isEmpty()) {
-            panel->view->setNameToMakeCurrent(history->currentItem());
-            // if the url we're refreshing into is the current one, then the
-            // partial url will not generate the needed signals to actually allow the
-            // view to use nameToMakeCurrent. do it here instead (patch by Thomas Jarosch)
-            if (isEqualUrl) {
-                panel->view->setCurrentItem(history->currentItem());
-                panel->view->makeItemVisible(panel->view->getCurrentKrViewItem());
-            }
-        }
-
         vfs* v = KrVfsHandler::getVfs(u, panel, files());
         v->setParentWindow(krMainWindow);
         v->setMountMan(&krMtMan);
@@ -289,9 +278,6 @@ void ListPanelFunc::doRefresh()
                 return;
             }
         }
-
-        panel->view->setFiles(files());
-
         // (re)connect vfs signals
         disconnect(files(), 0, panel, 0);
         connect(files(), SIGNAL(startUpdate()), panel, SLOT(slotStartUpdate()));
@@ -304,16 +290,29 @@ void ListPanelFunc::doRefresh()
         connect(files(), SIGNAL(trashJobStarted(KIO::Job*)),
                 this, SLOT(trashJobStarted(KIO::Job*)));
 
+        panel->view->setFiles(files());
+
         if(isSyncing(url))
             vfsP->vfs_setQuiet(true);
 
+        if(!history->currentItem().isEmpty() && isEqualUrl) {
+            // if the url we're refreshing into is the current one, then the
+            // partial refresh will not generate the needed signals to actually allow the
+            // view to use nameToMakeCurrent. do it here instead (patch by Thomas Jarosch)
+            panel->view->setCurrentItem(history->currentItem());
+            panel->view->makeItemVisible(panel->view->getCurrentKrViewItem());
+        }
+        panel->view->setNameToMakeCurrent(history->currentItem());
+
         int savedHistoryState = history->state();
 
-        if (vfsP->vfs_refresh(u)) {
+        if (vfsP->vfs_refresh(u))
             break; // we have a valid refreshed URL now
-        }
 
         refreshFailed = true;
+
+        panel->view->setNameToMakeCurrent(QString());
+
         if(history->state() != savedHistoryState) // don't go back if the history was touched
             break;
         // prevent repeated error messages
@@ -324,6 +323,7 @@ void ListPanelFunc::doRefresh()
         vfsP->vfs_setQuiet(true);
     }
     vfsP->vfs_setQuiet(false);
+    panel->view->setNameToMakeCurrent(QString());
 
     // on local file system change the working directory
     if (files() ->vfs_getType() == vfs::VFS_NORMAL)
@@ -1258,7 +1258,7 @@ void ListPanelFunc::refreshActions()
     panel->_actions->setViewActions[panel->panelType]->setChecked(true);
     panel->_actions->actFTPDisconnect->setEnabled(vfsType == vfs::VFS_FTP);       // disconnect an FTP session
     panel->_actions->actCreateChecksum->setEnabled(vfsType == vfs::VFS_NORMAL);
-    panel->_actions->actDirUp->setEnabled(files()->vfs_getOrigin().upUrl() != files()->vfs_getOrigin());
+    panel->_actions->actDirUp->setEnabled(!files()->isRoot());
     panel->_actions->actHistoryBackward->setEnabled(history->canGoBack());
     panel->_actions->actHistoryForward->setEnabled(history->canGoForward());
     KrActions::actTogglePreviews->setChecked(panel->view->previewsShown());

@@ -60,7 +60,7 @@ void DirHistoryQueue::saveCurrentItem()
 {
     // if the vfs-url hasn't been refreshed yet,
     // avoid saving current item for the wrong url
-    if(_panel->virtualPath() == _urlQueue[_currentPos])
+    if(_panel->virtualPath().equals(_urlQueue[_currentPos], KUrl::CompareWithoutTrailingSlash))
         _currentItems[_currentPos] = _panel->view->getCurrentItem();
 }
 
@@ -75,8 +75,10 @@ void DirHistoryQueue::add(KUrl url, QString currentItem)
         return;
     }
 
-    if(_urlQueue[_currentPos].equals(url))
+    if(_urlQueue[_currentPos].equals(url, KUrl::CompareWithoutTrailingSlash)) {
+        _currentItems[_currentPos] = currentItem;
         return;
+    }
 
     for (int i = 0; i < _currentPos; i++) {
         _urlQueue.pop_front();
