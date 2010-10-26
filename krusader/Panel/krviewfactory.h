@@ -40,13 +40,12 @@ class KrView;
 class KConfig;
 class KrMainWindow;
 
-typedef KrView * (*KrViewFactoryFunction)(QWidget *, const bool &, KConfig *);
-
 class KrViewInstance
 {
     friend class KrView;
 public:
-    KrViewInstance(int id, QString name, QString desc, QString icon, QKeySequence shortcut, KrViewFactoryFunction fun);
+
+    KrViewInstance(int id, QString name, QString desc, QString icon, QKeySequence shortcut);
 
     inline int                     id()                    {
         return m_id;
@@ -63,9 +62,8 @@ public:
     inline QKeySequence            shortcut()              {
         return m_shortcut;
     }
-    inline KrViewFactoryFunction   factoryFunction()       {
-        return m_factoryfun;
-    }
+
+    virtual KrView *create(QWidget *w, const bool &left, KConfig *cfg) = 0;
 
 protected:
     int                            m_id;
@@ -73,8 +71,20 @@ protected:
     QString                        m_description;
     QString                        m_icon;
     QKeySequence                   m_shortcut;
-    KrViewFactoryFunction          m_factoryfun;
     QList<KrView*>                 m_objects;
+};
+
+
+template< typename T >
+class KrViewInstanceImpl: public KrViewInstance
+{
+public:
+    KrViewInstanceImpl(int id, QString name, QString desc, QString icon, QKeySequence shortcut) :
+        KrViewInstance(id, name, desc, icon, shortcut) {}
+
+    virtual KrView *create(QWidget *w, const bool &left, KConfig *cfg) {
+        return new T(w, left, cfg);
+    }
 };
 
 class KrViewFactory

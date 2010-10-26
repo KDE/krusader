@@ -30,21 +30,23 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include "krviewfactory.h"
 
-#include "krinterdetailedview.h"
-#include "krinterbriefview.h"
+// #include "krinterdetailedview.h"
+// #include "krinterbriefview.h"
+
+#include <stdio.h>
 
 // extern KrViewInstance interDetailedView;    // hold reference for linking
 // extern KrViewInstance interBriefView;    // hold reference for linking
 
-KrViewInstance::KrViewInstance(int id, QString name, QString desc, QString icon, QKeySequence shortcut, KrViewFactoryFunction fun) :
-        m_id(id), m_name(name), m_description(desc), m_icon(icon), m_shortcut(shortcut), m_factoryfun(fun)
+KrViewInstance::KrViewInstance(int id, QString name, QString desc, QString icon, QKeySequence shortcut) :
+        m_id(id), m_name(name), m_description(desc), m_icon(icon), m_shortcut(shortcut)
 {
     KrViewFactory::self().registerView(this);
 }
 
 KrView * KrViewFactory::createView(int id, QWidget *widget, const bool &left, KConfig *cfg)
 {
-    return (*(viewInstance(id)->factoryFunction()))(widget, left, cfg);
+    return viewInstance(id)->create(widget, left, cfg);
 }
 
 // static initialization, on first use idiom

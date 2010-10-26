@@ -45,10 +45,6 @@ public:
 
     virtual void updateView();
 
-    static KrView* create(QWidget *parent, const bool &left, KConfig *cfg) {
-        return new KrInterDetailedView(parent, left, cfg);
-    }
-
     virtual bool ensureVisibilityAfterSelect() {
         return false;
     }

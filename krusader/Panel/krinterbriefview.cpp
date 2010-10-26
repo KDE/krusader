@@ -47,9 +47,8 @@
 
 // code used to register the view
 #define INTERBRIEFVIEW_ID 1
-KrViewInstance interBriefView(INTERBRIEFVIEW_ID, "KrInterBriefView", i18n("&Brief View"), "view-list-icons",
-                              Qt::ALT + Qt::SHIFT + Qt::Key_B,
-                              KrInterBriefView::create);
+KrViewInstanceImpl<KrInterBriefView> interBriefView(INTERBRIEFVIEW_ID, "KrInterBriefView",
+        i18n("&Brief View"), "view-list-icons", Qt::ALT + Qt::SHIFT + Qt::Key_B);
 // end of register code
 
 KrInterBriefView::KrInterBriefView(QWidget *parent, const bool &left, KConfig *cfg):

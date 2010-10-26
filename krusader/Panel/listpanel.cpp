@@ -411,11 +411,13 @@ ListPanel::~ListPanel()
 void ListPanel::createView()
 {
     view = KrViewFactory::createView(panelType, splt, _left, krConfig);
-
     view->init();
     view->setMainWindow(krApp);
     view->op()->setQuickSearch(quickSearch);
     view->op()->setQuickFilter(quickFilter);
+
+    // KrViewFactory may create a different view type than requested
+    panelType = view->instance()->id();
 
     if(this == ACTIVE_PANEL)
         view->prepareForActive();
