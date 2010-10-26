@@ -60,7 +60,6 @@ protected slots:
 
 protected:
     virtual void setup();
-    virtual void initOperator();
 
     virtual void doRestoreSettings(KConfigGroup &group);
     virtual void doSaveSettings(KConfigGroup &group);

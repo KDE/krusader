@@ -159,11 +159,6 @@ void KrInterDetailedView::setup()
     setSortingEnabled(true);
 }
 
-void KrInterDetailedView::initOperator()
-{
-    _operator = new KrViewOperator(this, this);
-}
-
 void KrInterDetailedView::keyPressEvent(QKeyEvent *e)
 {
     if (!e || !_model->ready())

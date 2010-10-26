@@ -323,7 +323,7 @@ void KrView::init()
         qFatal("_widget must be set during construction of KrView inheritors");
     // ok, continue
     initProperties();
-    initOperator();
+    _operator = createOperator();
     setup();
     setDefaultFileIconSize();
     restoreDefaultSettings();

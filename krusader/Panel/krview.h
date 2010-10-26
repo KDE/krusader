@@ -301,12 +301,10 @@ protected:
     virtual KrViewProperties * createViewProperties() {
         return new KrViewProperties();
     }
-    virtual void initOperator() {
-        qFatal("Please implement your own initOperator() method");
+    virtual KrViewOperator *createOperator() {
+        return new KrViewOperator(this, _widget);
     }
-    virtual void setup() {
-        qFatal("Please implement your own setup() method");
-    }
+    virtual void setup() = 0;
 
     ///////////////////////////////////////////////////////
     // Every view must implement the following functions //

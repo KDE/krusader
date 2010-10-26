@@ -150,11 +150,6 @@ void KrInterBriefView::setup()
     setSortMode(_properties->sortColumn, (_properties->sortOptions & KrViewProperties::Descending));
 }
 
-void KrInterBriefView::initOperator()
-{
-    _operator = new KrViewOperator(this, this);
-}
-
 void KrInterBriefView::keyPressEvent(QKeyEvent *e)
 {
     if (!e || !_model->ready())
