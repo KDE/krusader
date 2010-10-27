@@ -194,15 +194,8 @@ void KrInterBriefView::keyPressEvent(QKeyEvent *e)
 
 void KrInterBriefView::wheelEvent(QWheelEvent *ev)
 {
-    // TODO: this should probably be done by QAbstractItemView
-    // but we need to somehow set the right scoll orientation
-    if (!_mouseHandler->wheelEvent(ev)) {
-        // see http://doc.qt.nokia.com/4.6/qwheelevent.html#delta
-        int numDegrees = ev->delta() / 8;
-        int numSteps = numDegrees / 15;
-        numSteps *= horizontalScrollBar()->pageStep() / _numOfColumns;
-        horizontalScrollBar()->setValue(horizontalOffset() - numSteps);
-    }
+    if (!_mouseHandler->wheelEvent(ev))
+        QApplication::sendEvent(horizontalScrollBar(), ev);
 }
 
 bool KrInterBriefView::eventFilter(QObject *object, QEvent *event)
