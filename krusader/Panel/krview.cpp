@@ -329,9 +329,7 @@ void KrView::init()
     restoreDefaultSettings();
     KConfigGroup grp(_config, _instance.name());
     showPreviews(grp.readEntry("Show Previews", false));
-    KConfigGroup grpStartup(_config, "Startup");
-    _updateDefaultSettings = grpStartup.readEntry("Update Default Panel Settings", _RememberPos)
-                             || grpStartup.readEntry("UI Save Settings", _UiSave);
+    enableUpdateDefaultSettings(true);
     _instance.m_objects.append(this);
 }
 
@@ -379,6 +377,16 @@ void KrView::initProperties()
         ++i;
     }
     _properties->atomicExtensions = atomicExtensions;
+}
+
+void KrView::enableUpdateDefaultSettings(bool enable)
+{
+    if(enable) {
+        KConfigGroup grpStartup(_config, "Startup");
+        _updateDefaultSettings = grpStartup.readEntry("Update Default Panel Settings", _RememberPos)
+                                        || grpStartup.readEntry("UI Save Settings", _UiSave);
+    } else
+        _updateDefaultSettings  = false;
 }
 
 void KrView::showPreviews(bool show)
