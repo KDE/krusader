@@ -381,7 +381,7 @@ QRect KrInterDetailedView::itemRect(const vfile *vf)
 {
     QRect r = visualRect(_model->vfileIndex(vf));
     r.setLeft(0);
-    r.setWidth(viewport()->width());
+    r.setWidth(header()->length());
     return r;
 }
 
