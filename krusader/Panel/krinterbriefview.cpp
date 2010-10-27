@@ -51,49 +51,18 @@ KrViewInstanceImpl<KrInterBriefView> interBriefView(INTERBRIEFVIEW_ID, "KrInterB
         i18n("&Brief View"), "view-list-icons", Qt::ALT + Qt::SHIFT + Qt::Key_B);
 // end of register code
 
-KrInterBriefView::KrInterBriefView(QWidget *parent, const bool &left, KConfig *cfg):
-        QAbstractItemView(parent),
-        KrInterView(interBriefView, left, cfg, this),
+KrInterBriefView::KrInterBriefView(QWidget *parent, const bool &left, KConfig *cfg) :
+        KrItemView(parent, interBriefView, left, cfg),
         _header(0)
 {
-    connect(_mouseHandler, SIGNAL(renameCurrentItem()), this, SLOT(renameCurrentItem()));
-    setWidget(this);
-    KConfigGroup group(krConfig, "Private");
-
-    KConfigGroup grpSvr(_config, "Look&Feel");
-    _viewFont = grpSvr.readEntry("Filelist Font", *_FilelistFont);
-
-    this->setModel(_model);
     _model->setExtensionEnabled(false);
     _model->setAlternatingTable(true);
-
-    setSelectionModel(new DummySelectionModel(_model, this));
-
-    setSelectionMode(QAbstractItemView::NoSelection);
-
-    setStyle(new KrStyleProxy());
-    setItemDelegate(new KrInterViewItemDelegate());
-    setMouseTracking(true);
-    setAcceptDrops(true);
-    setDropIndicatorShown(true);
 }
 
 KrInterBriefView::~KrInterBriefView()
 {
-    setModel(0);
     delete _properties;
     _properties = 0;
-    delete _operator;
-    _operator = 0;
-}
-
-void KrInterBriefView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
-{
-    if (_model->ready()) {
-        KrViewItem * item = getKrInterViewItem(currentIndex());
-        op()->emitCurrentChanged(item);
-    }
-    QAbstractItemView::currentChanged(current, previous);
 }
 
 void KrInterBriefView::doRestoreSettings(KConfigGroup &group)
@@ -223,32 +192,10 @@ void KrInterBriefView::keyPressEvent(QKeyEvent *e)
     }
 }
 
-void KrInterBriefView::mousePressEvent(QMouseEvent * ev)
-{
-    if (!_mouseHandler->mousePressEvent(ev))
-        QAbstractItemView::mousePressEvent(ev);
-}
-
-void KrInterBriefView::mouseReleaseEvent(QMouseEvent * ev)
-{
-    if (!_mouseHandler->mouseReleaseEvent(ev))
-        QAbstractItemView::mouseReleaseEvent(ev);
-}
-
-void KrInterBriefView::mouseDoubleClickEvent(QMouseEvent *ev)
-{
-    if (!_mouseHandler->mouseDoubleClickEvent(ev))
-        QAbstractItemView::mouseDoubleClickEvent(ev);
-}
-
-void KrInterBriefView::mouseMoveEvent(QMouseEvent * ev)
-{
-    if (!_mouseHandler->mouseMoveEvent(ev))
-        QAbstractItemView::mouseMoveEvent(ev);
-}
-
 void KrInterBriefView::wheelEvent(QWheelEvent *ev)
 {
+    // TODO: this should probably be done by QAbstractItemView
+    // but we need to somehow set the right scoll orientation
     if (!_mouseHandler->wheelEvent(ev)) {
         // see http://doc.qt.nokia.com/4.6/qwheelevent.html#delta
         int numDegrees = ev->delta() / 8;
@@ -256,45 +203,6 @@ void KrInterBriefView::wheelEvent(QWheelEvent *ev)
         numSteps *= horizontalScrollBar()->pageStep() / _numOfColumns;
         horizontalScrollBar()->setValue(horizontalOffset() - numSteps);
     }
-}
-
-void KrInterBriefView::dragEnterEvent(QDragEnterEvent *ev)
-{
-    if (!_mouseHandler->dragEnterEvent(ev))
-        QAbstractItemView::dragEnterEvent(ev);
-}
-
-void KrInterBriefView::dragMoveEvent(QDragMoveEvent *ev)
-{
-    QAbstractItemView::dragMoveEvent(ev);
-    _mouseHandler->dragMoveEvent(ev);
-}
-
-void KrInterBriefView::dragLeaveEvent(QDragLeaveEvent *ev)
-{
-    if (!_mouseHandler->dragLeaveEvent(ev))
-        QAbstractItemView::dragLeaveEvent(ev);
-}
-
-void KrInterBriefView::dropEvent(QDropEvent *ev)
-{
-    if (!_mouseHandler->dropEvent(ev))
-        QAbstractItemView::dropEvent(ev);
-}
-
-bool KrInterBriefView::event(QEvent * e)
-{
-    _mouseHandler->otherEvent(e);
-    return QAbstractItemView::event(e);
-}
-
-void KrInterBriefView::renameCurrentItem()
-{
-    QModelIndex cIndex = currentIndex();
-    QModelIndex nameIndex = _model->index(cIndex.row(), KrViewProperties::Name);
-    edit(nameIndex);
-    updateEditorData();
-    update(nameIndex);
 }
 
 bool KrInterBriefView::eventFilter(QObject *object, QEvent *event)
@@ -335,26 +243,6 @@ void KrInterBriefView::showContextMenu(const QPoint & p)
         op()->settingsChanged();
     }
 }
-
-bool KrInterBriefView::viewportEvent(QEvent * event)
-{
-    if (event->type() == QEvent::ToolTip) {
-        QHelpEvent *he = static_cast<QHelpEvent*>(event);
-        const QModelIndex index = indexAt(he->pos());
-
-        if (index.isValid()) {
-            int width = visualRect(index).width();
-            int textWidth = elementWidth(index);
-
-            if (textWidth <= width) {
-                event->accept();
-                return true;
-            }
-        }
-    }
-    return QAbstractItemView::viewportEvent(event);
-}
-
 
 QRect KrInterBriefView::visualRect(const QModelIndex&ndx) const
 {
@@ -481,7 +369,7 @@ bool KrInterBriefView::isIndexHidden(const QModelIndex&ndx) const
 {
     return ndx.column() != 0;
 }
-
+#if 0
 QRegion KrInterBriefView::visualRegionForSelection(const QItemSelection &selection) const
 {
     if (selection.isEmpty())
@@ -511,7 +399,7 @@ QRegion KrInterBriefView::visualRegionForSelection(const QItemSelection &selecti
     }
     return selectionRegion;
 }
-
+#endif
 void KrInterBriefView::paintEvent(QPaintEvent *e)
 {
     QStyleOptionViewItemV4 option = viewOptions();
@@ -611,19 +499,6 @@ void KrInterBriefView::updateGeometries()
     QAbstractItemView::updateGeometries();
 }
 
-QRect KrInterBriefView::mapToViewport(const QRect &rect) const
-{
-    if (!rect.isValid())
-        return rect;
-
-    QRect result = rect;
-
-    int dx = -horizontalOffset();
-    int dy = -verticalOffset();
-    result.adjust(dx, dy, dx, dy);
-    return result;
-}
-
 void KrInterBriefView::setSortMode(KrViewProperties::ColumnType sortColumn, bool descending)
 {
     Qt::SortOrder sortDir = descending ? Qt::DescendingOrder : Qt::AscendingOrder;
@@ -680,13 +555,6 @@ void KrInterBriefView::intersectionSet(const QRect &rect, QVector<QModelIndex> &
             if (ndx < maxNdx)
                 ndxList.append(_model->index(ndx, 0));
         }
-}
-
-void KrInterBriefView::setFileIconSize(int size)
-{
-    KrView::setFileIconSize(size);
-    setIconSize(QSize(fileIconSize(), fileIconSize()));
-    updateGeometries();
 }
 
 QRect KrInterBriefView::itemRect(const vfile *vf)

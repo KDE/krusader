@@ -1,4 +1,6 @@
 set(Panel_SRCS
+    krdview.cpp
+    kritemview.cpp
     quickfilter.cpp
     viewactions.cpp
     listpanelactions.cpp
