@@ -301,7 +301,7 @@ KrView::KrView(KrViewInstance &instance, const bool &left, KConfig *cfg) :
     _instance(instance), _files(0), _left(left), _config(cfg), _mainWindow(0), _widget(0),
     _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
     _numSelected(0), _count(0), _numDirs(0), _countSize(0), _selectedSize(0), _properties(0), _focused(false),
-    _previews(0), _fileIconSize(0), _updateDefaultSettings(false)
+    _previews(0), _fileIconSize(0), _updateDefaultSettings(false), _dummyVfile(0)
 {
 }
 
@@ -310,6 +310,8 @@ KrView::~KrView()
     _instance.m_objects.removeOne(this);
     delete _previews;
     _previews = 0;
+    delete _dummyVfile;
+    _dummyVfile = 0;
     if (_properties)
         qFatal("A class inheriting KrView didn't delete _properties!");
     if (_operator)
@@ -533,17 +535,6 @@ void KrView::getSelectedKrViewItems(KrViewItemList *items)
 
 QString KrView::statistics()
 {
-    _countSize = _numSelected = _selectedSize = 0;
-
-    for (KrViewItem * it = getFirst(); it != 0; it = getNext(it)) {
-        if (it->isSelected()) {
-            ++_numSelected;
-            _selectedSize += it->getVfile()->vfile_getSize();
-        }
-        if (it->getVfile()->vfile_getSize() > 0)
-            _countSize += it->getVfile()->vfile_getSize();
-    }
-
     QString tmp;
     KConfigGroup grp(_config, "Look&Feel");
     if(grp.readEntry("Show Size In Bytes", true)) {
@@ -581,27 +572,17 @@ void KrView::changeSelection(const KRQuery& filter, bool select, bool includeDir
 
     KrViewItem *temp = getCurrentKrViewItem();
     for (KrViewItem * it = getFirst(); it != 0; it = getNext(it)) {
-        if (it->name() == "..") continue;
-        if (it->getVfile()->vfile_isDir() && !includeDirs) continue;
+        if (it->name() == "..")
+            continue;
+        if (it->getVfile()->vfile_isDir() && !includeDirs)
+            continue;
 
         vfile * file = it->getMutableVfile(); // filter::match calls getMimetype which isn't const
-        if (file == 0) continue;
+        if (file == 0)
+            continue;
 
-        if (filter.match(file)) {
-            // we're increasing/decreasing the number of selected files
-            if (select) {
-                if (!it->isSelected()) {
-                    ++_numSelected;
-                    _selectedSize += it->getVfile()->vfile_getSize();
-                }
-            } else {
-                if (it->isSelected()) {
-                    --_numSelected;
-                    _selectedSize -= it->getVfile()->vfile_getSize();
-                }
-            }
+        if (filter.match(file))
             it->setSelected(select);
-        }
     }
 
     if (op()) op()->setMassSelectionUpdate(false);
@@ -619,15 +600,10 @@ void KrView::invertSelection()
 
     KrViewItem *temp = getCurrentKrViewItem();
     for (KrViewItem * it = getFirst(); it != 0; it = getNext(it)) {
-        if (it->name() == "..") continue;
-        if (it->getVfile()->vfile_isDir() && !markDirs && !it->isSelected()) continue;
-        if (it->isSelected()) {
-            --_numSelected;
-            _selectedSize -= it->getVfile()->vfile_getSize();
-        } else {
-            ++_numSelected;
-            _selectedSize += it->getVfile()->vfile_getSize();
-        }
+        if (it->name() == "..")
+            continue;
+        if (it->getVfile()->vfile_isDir() && !markDirs && !it->isSelected())
+            continue;
         it->setSelected(!it->isSelected());
     }
     if (op()) op()->setMassSelectionUpdate(false);
@@ -722,6 +698,8 @@ void KrView::clear()
     if(_previews)
         _previews->clear();
     _count = _numSelected = _numDirs = _selectedSize = _countSize = 0;
+    delete _dummyVfile;
+    _dummyVfile = 0;
     redraw();
 }
 
@@ -1234,4 +1212,61 @@ void KrView::customSelection(bool select)
     includeDirs = dialog.isExtraOptionChecked(i18n("Apply selection to directories"));
 
     changeSelection(query, select, includeDirs);
+}
+
+void KrView::refresh()
+{
+    QString current = getCurrentItem();
+
+    clear();
+
+    if(!_files)
+        return;
+
+    QList<vfile*> vfiles;
+
+    // if we are not at the root add the ".." entery
+    if(!_files->isRoot()) {
+        _dummyVfile = new vfile("..", 0, "drwxrwxrwx", 0, false, 0, 0, "", "", 0, -1);
+        _dummyVfile->vfile_setIcon("go-up");
+        vfiles << _dummyVfile;
+    }
+
+    foreach(vfile *vf, _files->vfiles()) {
+        if(isFiltered(vf))
+            continue;
+        if(vf->vfile_isDir())
+            _numDirs++;
+        _count++;
+        _countSize += vf->vfile_getSize();
+        vfiles << vf;
+    }
+
+    populate(vfiles, _dummyVfile);
+
+    if (!nameToMakeCurrent().isEmpty())
+        setCurrentItem(nameToMakeCurrent());
+    else if (!current.isEmpty())
+        setCurrentItem(current);
+
+    updatePreviews();
+    redraw();
+
+    op()->emitSelectionChanged();
+}
+
+void KrView::setSelected(const vfile* vf, bool select)
+{
+    if(vf == _dummyVfile)
+        return;
+
+    uint numSelectedNew = intSetSelected(vf, select);
+
+    if(select && numSelectedNew > _numSelected) {
+        _numSelected = numSelectedNew;
+        _selectedSize += vf->vfile_getSize();
+    } else if(!select && numSelectedNew < _numSelected) {
+        _numSelected = numSelectedNew;
+        _selectedSize -= vf->vfile_getSize();
+    }
 }

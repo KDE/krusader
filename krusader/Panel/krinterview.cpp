@@ -28,7 +28,7 @@
 
 KrInterView::KrInterView(KrViewInstance &instance, const bool &left, KConfig *cfg,
                          QAbstractItemView *itemView) :
-        KrView(instance, left, cfg), _itemView(itemView), _mouseHandler(0), _dummyVfile(0)
+        KrView(instance, left, cfg), _itemView(itemView), _mouseHandler(0)
 {
     _model = new KrVfsModel(this);
 
@@ -52,8 +52,6 @@ KrInterView::~KrInterView()
     while (it.hasNext())
         delete it.next().value();
     _itemHash.clear();
-    delete _dummyVfile;
-    _dummyVfile = 0;
 }
 
 void KrInterView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
@@ -86,17 +84,14 @@ void KrInterView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
         i2->setSelected(select);
 }
 
-void KrInterView::setSelected(const vfile* vf, bool select)
+uint KrInterView::intSetSelected(const vfile* vf, bool select)
 {
-    if(!select)
-        _selection.remove(vf);
-    else if(_model->dummyVfile() != vf)
+    if(select)
         _selection.insert(vf);
-}
+    else
+        _selection.remove(vf);
 
-bool KrInterView::isSelected(const vfile *vf)
-{
-    return _selection.contains(vf);
+    return _selection.count();
 }
 
 bool KrInterView::isSelected(const QModelIndex &ndx)
@@ -255,42 +250,12 @@ void KrInterView::clear()
     _itemHash.clear();
 
     KrView::clear();
-
-    delete _dummyVfile;
-    _dummyVfile = 0;
 }
 
-void KrInterView::refresh()
+void KrInterView::populate(const QList<vfile*> &vfiles, vfile *dummy)
 {
-    QString current = getCurrentItem();
-
-    clear();
-
-    if(!_files)
-        return;
-
-    // if we are not at the root add the ".." entery
-    if(!_files->isRoot()) {
-        _dummyVfile = new vfile("..", 0, "drwxrwxrwx", 0, false, 0, 0, "", "", 0, -1);
-        _dummyVfile->vfile_setIcon("go-up");
-    }
-
-    _model->populate(_files->vfiles(), _dummyVfile);
-    _count = _model->rowCount();
-
-    if (_dummyVfile )
-        _count--;
-
+    _model->populate(vfiles, dummy);
     _itemView->setCurrentIndex(_model->index(0, 0));
-    if (!nameToMakeCurrent().isEmpty())
-        setCurrentItem(nameToMakeCurrent());
-    else if (!current.isEmpty())
-        setCurrentItem(current);
-
-    updatePreviews();
-    redraw();
-
-    op()->emitSelectionChanged();
 }
 
 KrViewItem* KrInterView::preAddItem(vfile *vf)

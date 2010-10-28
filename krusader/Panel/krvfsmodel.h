@@ -21,7 +21,6 @@
 #define KRVFSMODEL_H
 
 #include <QAbstractListModel>
-#include <QVector>
 #include <QFont>
 
 #include "krinterview.h"
@@ -87,7 +86,7 @@ protected:
     QString nameWithoutExtension(const vfile * vf, bool checkEnabled = true) const;
 
 
-    QVector<vfile*>             _vfiles;
+    QList<vfile*>               _vfiles;
     QHash<vfile *, QModelIndex> _vfileNdx;
     QHash<QString, QModelIndex> _nameNdx;
     bool                        _extensionEnabled;

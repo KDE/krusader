@@ -40,17 +40,9 @@ KrVfsModel::KrVfsModel(KrInterView * view): QAbstractListModel(0), _extensionEna
 
 void KrVfsModel::populate(const QList<vfile*> &files, vfile *dummy)
 {
-    if(dummy)
-        _vfiles.append(dummy);
+    _vfiles = files;
     _dummyVfile = dummy;
-
-    foreach(vfile *vf, files) {
-        if (!_view->isFiltered(vf))
-            _vfiles.append(vf);
-    }
-
     _ready = true;
-    // TODO: make a more efficient implementation that this dummy one :-)
 
     if(lastSortOrder() != KrViewProperties::NoColumn)
         sort();
@@ -381,7 +373,7 @@ QModelIndex KrVfsModel::removeItem(vfile * vf)
     QModelIndexList oldPersistentList = persistentIndexList();
     QModelIndexList newPersistentList;
 
-    _vfiles.remove(removeIdx);
+    _vfiles.removeAt(removeIdx);
 
     if (currIndex.row() == removeIdx) {
         if (_vfiles.count() == 0)
@@ -443,7 +435,7 @@ void KrVfsModel::updateItem(vfile * vf)
     }
     KrSort::SortProps *updateSort = sorting[ oldIndex ];
     sorting.remove(oldIndex);
-    _vfiles.remove(oldIndex);
+    _vfiles.removeAt(oldIndex);
 
     emit layoutAboutToBeChanged();
 

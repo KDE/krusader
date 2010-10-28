@@ -57,7 +57,6 @@ public:
     virtual void sort();
     virtual void refreshColors();
     virtual void redraw();
-    virtual void refresh();
     virtual void prepareForActive();
     virtual void prepareForPassive();
     virtual void showContextMenu();
@@ -80,17 +79,20 @@ protected:
         virtual void select(const QItemSelection & selection, QItemSelectionModel::SelectionFlags command) {}
     };
 
+    virtual void populate(const QList<vfile*> &vfiles, vfile *dummy);
     virtual KrViewItem* preAddItem(vfile *vf);
     virtual void preDelItem(KrViewItem *item);
     virtual void preUpdateItem(vfile *vf);
+    virtual uint intSetSelected(const vfile* vf, bool select);
     virtual void showContextMenu(const QPoint & p) = 0;
 
     virtual QRect itemRect(const vfile *vf) = 0;
 
     KrInterViewItem * getKrInterViewItem(vfile *vf);
     KrInterViewItem * getKrInterViewItem(const QModelIndex &);
-    void setSelected(const vfile* vf, bool select);
-    bool isSelected(const vfile *vf);
+    bool isSelected(const vfile *vf) const {
+        return _selection.contains(vf);
+    }
     void makeCurrentVisible();
 
 
@@ -99,7 +101,6 @@ protected:
     KrMouseHandler *_mouseHandler;
     QHash<vfile *, KrInterViewItem*> _itemHash;
     QSet<const vfile*> _selection;
-    vfile *_dummyVfile;
 };
 
 #endif

@@ -338,7 +338,6 @@ public:
     virtual void sort() = 0;
     virtual void refreshColors() = 0;
     virtual void redraw() = 0;
-    virtual void refresh() = 0;
     virtual bool handleKeyEvent(QKeyEvent *e);
     virtual void prepareForActive() {
         _focused = true;
@@ -361,6 +360,8 @@ protected:
     virtual void doSaveSettings(KConfigGroup &group) = 0;
     virtual void doRestoreSettings(KConfigGroup &group) = 0;
     virtual void copySettingsFrom(KrView *other) = 0;
+    virtual void populate(const QList<vfile*> &vfiles, vfile *dummy) = 0;
+    virtual uint intSetSelected(const vfile* vf, bool select) = 0;
     virtual void updatePreviews();
     virtual void clear();
 
@@ -431,11 +432,13 @@ public:
     virtual void applySettingsToOthers();
 
     virtual void setFiles(VfileContainer *files);
+    virtual void refresh();
 
     void changeSelection(const KRQuery& filter, bool select);
     void changeSelection(const KRQuery& filter, bool select, bool includeDirs);
     bool isFiltered(vfile *vf);
     void enableUpdateDefaultSettings(bool enable);
+    void setSelected(const vfile* vf, bool select);
 
     /////////////////////////////////////////////////////////////
     // the following functions have a default and minimalistic //
@@ -518,8 +521,6 @@ protected:
     QWidget *_widget;
     QString _nameToMakeCurrent;
     QString _nameToMakeCurrentIfAdded;
-    uint _numSelected, _count, _numDirs;
-    KIO::filesize_t _countSize, _selectedSize;
     KrViewProperties *_properties;
     KrViewOperator *_operator;
     bool _focused;
@@ -527,9 +528,12 @@ protected:
     int _fileIconSize;
     bool _updateDefaultSettings;
     KRQuery _quickFilterMask;
+
+private:
+    KIO::filesize_t _countSize, _selectedSize;
+    uint _numSelected, _count, _numDirs;
+    vfile *_dummyVfile;
 };
-
-
 
 
 #endif /* KRVIEW_H */
