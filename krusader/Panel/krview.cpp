@@ -221,6 +221,8 @@ void KrViewOperator::startQuickFilter()
 
 void KrViewOperator::stopQuickFilter(bool refreshView)
 {
+    if(_quickFilter->lineEdit()->hasFocus())
+        _widget->setFocus();
     _quickFilter->hide();
     _quickFilter->lineEdit()->clear();
     _quickFilter->setMatch(true);
