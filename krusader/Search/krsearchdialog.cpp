@@ -31,7 +31,6 @@
 #include "krsearchdialog.h"
 
 #include <QtCore/QRegExp>
-#include <QtGui/QFontMetrics>
 #include <QHBoxLayout>
 #include <QKeyEvent>
 #include <QLabel>
@@ -40,13 +39,20 @@
 #include <QCloseEvent>
 #include <QtGui/QCursor>
 #include <QtGui/QClipboard>
-#include <qheaderview.h>
 #include <QDrag>
 #include <QMimeData>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QGridLayout>
+#include <QtGui/QLabel>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QCloseEvent>
+#include <QtGui/QTabWidget>
 
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <kmenu.h>
+#include <KGlobal>
+#include <KLocale>
 
 #include "krsearchmod.h"
 #include "../krglobal.h"
@@ -54,133 +60,68 @@
 #include "../krslots.h"
 #include "../defaults.h"
 #include "../panelmanager.h"
-#include "../VFS/vfs.h"
+#include "../kicons.h"
 #include "../krusaderview.h"
+#include "../Dialogs/krdialogs.h"
+#include "../Dialogs/krspecialwidgets.h"
+#include "../Dialogs/krsqueezedtextlabel.h"
+#include "../VFS/virt_vfs.h"
+#include "../VFS/krquery.h"
+#include "../KViewer/krviewer.h"
+#include "../Panel/krview.h"
+#include "../Panel/krviewfactory.h"
+#include "../Panel/quickfilter.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
-#include "../Dialogs/krdialogs.h"
-#include "../VFS/virt_vfs.h"
-#include "../KViewer/krviewer.h"
-#include "../kicons.h"
-#include "../GUI/krtreewidget.h"
+#include "../Filter/filtertabs.h"
+#include "../Filter/generalfilter.h"
 
-class SearchListView : public KrTreeWidget
+
+#define RESULTVIEW_TYPE 0
+
+class SearchResultContainer : public VfileContainer
 {
 public:
-    SearchListView(QWidget * parent) : KrTreeWidget(parent) {
-        setColumnCount(5);
-
-        QStringList labels;
-        labels << i18n("Name");
-        labels << i18n("Location");
-        labels << i18n("Size");
-        labels << i18n("Date");
-        labels << i18n("Permissions");
-
-        setHeaderLabels(labels);
-
-        sortItems(1, Qt::AscendingOrder);
-        setSelectionMode(QAbstractItemView::ExtendedSelection);
-
-        // fix the results list
-        // => make the results font smaller
-        QFont resultsFont(font());
-        resultsFont.setPointSize(resultsFont.pointSize() - 1);
-        setFont(resultsFont);
-
-        int i = QFontMetrics(font()).width("W");
-        int j = QFontMetrics(font()).width("0");
-        j = (i > j ? i : j);
-
-        KConfigGroup group(krConfig, "Search");
-        if (group.hasKey("Last State"))
-            header()->restoreState(group.readEntry("Last State", QByteArray()));
-        else {
-            setColumnWidth(0, j*14);
-            setColumnWidth(1, j*25);
-            setColumnWidth(2, j*6);
-            setColumnWidth(3, j*7);
-            setColumnWidth(4, j*7);
-        }
-
-        header()->setResizeMode(0, QHeaderView::Interactive);
-        header()->setResizeMode(1, QHeaderView::Interactive);
-        header()->setResizeMode(2, QHeaderView::Interactive);
-        header()->setResizeMode(3, QHeaderView::Interactive);
-        header()->setResizeMode(4, QHeaderView::Interactive);
-
-        setStretchingColumn(1);
-
-        setDragEnabled(true);
+    SearchResultContainer(QObject *parent) : VfileContainer(parent) {}
+    virtual ~SearchResultContainer() {
+        clear();
     }
 
-    virtual void startDrag(Qt::DropActions supportedActs) {
-        KUrl::List urls;
-        QList<QTreeWidgetItem *> list = selectedItems() ;
-
-        QListIterator<QTreeWidgetItem *> it(list);
-
-        while (it.hasNext()) {
-            QTreeWidgetItem * item = it.next();
-
-            QString name = item->text(1);
-            name += (name.endsWith('/') ? item->text(0) : '/' + item->text(0));
-            urls.push_back(KUrl(name));
-        }
-
-        if (urls.count() == 0)
-            return;
-
-        QDrag *drag = new QDrag(this);
-        QMimeData *mimeData = new QMimeData;
-        mimeData->setImageData(FL_LOADICON("file"));
-        urls.populateMimeData(mimeData);
-        drag->setMimeData(mimeData);
-        drag->start();
+    virtual QList<vfile*> vfiles() {
+        return _vfiles;
     }
-};
-
-
-class SearchListViewItem : public QTreeWidgetItem
-{
-public:
-    SearchListViewItem(QTreeWidget *resultsList, QString name, QString where, KIO::filesize_t size,
-                       QDateTime date, QString perm) : QTreeWidgetItem(resultsList) {
-        setText(0, name);
-        setText(1, where);
-        setText(2, KRpermHandler::parseSize(size));
-        setText(3, KGlobal::locale()->formatDateTime(date));
-        setText(4, perm);
-
-        setTextAlignment(2, Qt::AlignRight);
-        fileSize = size;
-        fileDate = date;
+    virtual unsigned long numVfiles() {
+        return _vfiles.count();
+    }
+    virtual bool isRoot() {
+        return true;
     }
 
-    void setFoundText(QString text) {
-        _foundText = text;
-    }
-    const QString& foundText() const {
-        return _foundText;
+    void clear() {
+        emit cleared();
+        foreach(vfile *vf, _vfiles)
+            delete vf;
+        _vfiles.clear();
+        _foundText.clear();
     }
 
-    virtual bool operator<(const QTreeWidgetItem &other) const {
-        int column = treeWidget() ? treeWidget()->sortColumn() : 0;
+    void addItem(QString path, KIO::filesize_t size, time_t mtime, QString perm, QString foundText)
+    {
+        vfile *vf = new vfile(path, size, perm, mtime, false/*FIXME*/, 0, 0, QString(), QString(), 0);
+        vf->vfile_setUrl(KUrl(path));
+        _vfiles << vf;
+        if(!foundText.isEmpty())
+            _foundText[vf] = foundText;
+        emit addedVfile(vf);
+    }
 
-        switch (column) {
-        case 2:
-            return fileSize < ((SearchListViewItem &)other).fileSize;
-        case 3:
-            return fileDate < ((SearchListViewItem &)other).fileDate;
-        default:
-            return text(column) < other.text(column);
-        }
+    QString foundText(const vfile *vf) {
+        return _foundText[vf];
     }
 
 private:
-    KIO::filesize_t fileSize;
-    QDateTime       fileDate;
-    QString         _foundText;
+    QList<vfile*> _vfiles;
+    QHash<const vfile*, QString> _foundText;
 };
 
 
@@ -196,6 +137,8 @@ bool KrSearchDialog::lastSearchInSubDirs = true;
 bool KrSearchDialog::lastSearchInArchives = false;
 bool KrSearchDialog::lastFollowSymLinks = false;
 bool KrSearchDialog::lastContainsRegExp = false;
+
+bool _left = 0; // dummy - needed by krView
 
 // class starts here /////////////////////////////////////////
 KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
@@ -247,8 +190,8 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     filterTabs = FilterTabs::addTo(searcherTabs, FilterTabs::Default | FilterTabs::HasRemoteContentSearch);
     generalFilter = (GeneralFilter *)filterTabs->get("GeneralFilter");
 
-    resultTab = new QWidget(searcherTabs);
-    resultLayout = new QGridLayout(resultTab);
+    QWidget* resultTab = new QWidget(searcherTabs);
+    QGridLayout* resultLayout = new QGridLayout(resultTab);
     resultLayout->setSpacing(6);
     resultLayout->setContentsMargins(11, 11, 11, 11);
 
@@ -273,13 +216,31 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     searchingLabel->setText("");
     resultLabelLayout->addWidget(searchingLabel);
 
-    resultLayout->addLayout(resultLabelLayout, 2, 0);
+    resultLayout->addLayout(resultLabelLayout, 3, 0);
 
     // creating the result list view
-
-    resultsList = new SearchListView(resultTab);
-
-    resultLayout->addWidget(resultsList, 0, 0);
+    result = new SearchResultContainer(this);
+    // quicksearch
+    KrQuickSearch *quickSearch = new KrQuickSearch(this);
+    quickSearch->hide();
+    resultLayout->addWidget(quickSearch, 1, 0);
+    // quickfilter
+    QuickFilter *quickFilter = new QuickFilter(this);
+    quickFilter->hide();
+    resultLayout->addWidget(quickFilter, 2, 0);
+    // the view
+    resultView = KrViewFactory::createView(RESULTVIEW_TYPE, resultTab, _left, krConfig);
+    resultView->init();
+    resultView->restoreSettings("Search Result View");
+    resultView->enableUpdateDefaultSettings(false);
+    resultView->setMainWindow(this);
+    resultView->op()->setQuickSearch(quickSearch);
+    resultView->op()->setQuickFilter(quickFilter);
+    resultView->prepareForActive();
+    resultView->refreshColors();
+    resultView->setFiles(result);
+    resultView->refresh();
+    resultLayout->addWidget(resultView->widget(), 0, 0);
 
     QHBoxLayout* foundTextLayout = new QHBoxLayout();
     foundTextLayout->setSpacing(6);
@@ -299,7 +260,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     foundTextLabel->setFrameShadow(QLabel::Sunken);
     foundTextLabel->setText("");
     foundTextLayout->addWidget(foundTextLabel);
-    resultLayout->addLayout(foundTextLayout, 1, 0);
+    resultLayout->addLayout(foundTextLayout, 4, 0);
 
     searcherTabs->addTab(resultTab, i18n("&Results"));
 
@@ -309,27 +270,22 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 
     connect(mainSearchBtn, SIGNAL(clicked()), this, SLOT(startSearch()));
     connect(mainStopBtn, SIGNAL(clicked()), this, SLOT(stopSearch()));
-    connect(resultsList, SIGNAL(itemActivated(QTreeWidgetItem*, int)), this,
-            SLOT(resultDoubleClicked(QTreeWidgetItem*)));
-    connect(resultsList, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this,
-            SLOT(resultDoubleClicked(QTreeWidgetItem*)));
-    connect(resultsList, SIGNAL(currentItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)), this,
-            SLOT(resultClicked(QTreeWidgetItem*)));
-    connect(resultsList, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this,
-            SLOT(resultClicked(QTreeWidgetItem*)));
-    connect(resultsList, SIGNAL(itemRightClicked(QTreeWidgetItem*, const QPoint &, int)), this, SLOT(rightClickMenu(QTreeWidgetItem*, const QPoint &)));
     connect(mainCloseBtn, SIGNAL(clicked()), this, SLOT(closeDialog()));
     connect(mainFeedToListBoxBtn, SIGNAL(clicked()), this, SLOT(feedToListBox()));
 
     connect(profileManager, SIGNAL(loadFromProfile(QString)), filterTabs, SLOT(loadFromProfile(QString)));
     connect(profileManager, SIGNAL(saveToProfile(QString)), filterTabs, SLOT(saveToProfile(QString)));
 
+    connect(resultView->op(), SIGNAL(currentChanged(KrViewItem*)), SLOT(currentChanged(KrViewItem*)));
+    connect(resultView->op(), SIGNAL(executed(const QString&)), SLOT(executed(const QString&)));
+    connect(resultView->op(), SIGNAL(contextMenu(const QPoint&)), SLOT(contextMenu(const QPoint &)));
+
     // tab order
 
     setTabOrder(mainSearchBtn, mainCloseBtn);
     setTabOrder(mainCloseBtn, mainStopBtn);
     setTabOrder(mainStopBtn, searcherTabs);
-    setTabOrder(searcherTabs, resultsList);
+    setTabOrder(searcherTabs, resultView->widget());
 
     KConfigGroup group(krConfig, "Search");
     sizeX = group.readEntry("Window Width",  -1);
@@ -370,6 +326,8 @@ KrSearchDialog::~KrSearchDialog()
 {
     delete query;
     query = 0;
+    delete resultView;
+    resultView = 0;
 }
 
 void KrSearchDialog::closeDialog(bool isAccept)
@@ -393,7 +351,7 @@ void KrSearchDialog::closeDialog(bool isAccept)
     group.writeEntry("Window Height", sizeY);
     group.writeEntry("Window Maximized", isMaximized());
 
-    group.writeEntry("Last State", resultsList->header()->saveState());
+    resultView->saveSettings("Search Result View");
 
     lastSearchText = generalFilter->searchFor->currentText();
     lastSearchType = generalFilter->ofType->currentIndex();
@@ -431,15 +389,12 @@ void KrSearchDialog::resizeEvent(QResizeEvent *e)
 
 void KrSearchDialog::found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString foundText)
 {
-    // convert the time_t to struct tm
-    struct tm* t = localtime((time_t *) & mtime);
-    QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-    SearchListViewItem *it = new SearchListViewItem(resultsList, what,
-            where.replace(QRegExp("\\\\"), "#"), size, tmp, perm);
-    QString totals = QString(i18n("Found %1 matches.", resultsList->topLevelItemCount()));
-    foundLabel->setText(totals);
-
-    if (!foundText.isEmpty()) it->setFoundText(foundText);
+    where = where.replace(QRegExp("\\\\"), "#"); //FIXME ? why is that done ?
+    QString path =  where.endsWith("/") ? (where + what) : (where + "/" + what);
+    if(perm[0] == 'd' && !path.endsWith("/")) // file is a directory
+        path += "/";
+    result->addItem(path, size, mtime, perm, foundText);
+    foundLabel->setText(i18n("Found %1 matches.", result->numVfiles()));
 }
 
 bool KrSearchDialog::gui2query()
@@ -475,7 +430,8 @@ void KrSearchDialog::startSearch()
     mainCloseBtn->setEnabled(false);
     mainStopBtn->setEnabled(true);
     mainFeedToListBoxBtn->setEnabled(false);
-    resultsList->clear();
+    result->clear();
+    resultView->setSortMode(KrViewProperties::NoColumn, 0);
     searchingLabel->setText("");
     foundLabel->setText(i18n("Found 0 matches."));
     searcherTabs->setCurrentIndex(2); // show the results page
@@ -506,7 +462,7 @@ void KrSearchDialog::startSearch()
     mainSearchBtn->setEnabled(true);
     mainCloseBtn->setEnabled(true);
     mainStopBtn->setEnabled(false);
-    if (resultsList->topLevelItemCount())
+    if (result->numVfiles())
         mainFeedToListBoxBtn->setEnabled(true);
     searchingLabel->setText(i18n("Finished searching."));
 
@@ -522,23 +478,30 @@ void KrSearchDialog::stopSearch()
     }
 }
 
-void KrSearchDialog::resultDoubleClicked(QTreeWidgetItem* i)
+void KrSearchDialog::executed(const QString &name)
 {
-    ACTIVE_FUNC->openUrl(KUrl(i->text(1)), i->text(0));
+    QString path = name;
+    QString fileName;
+    if(!name.endsWith("/")) {
+        int idx = name.lastIndexOf("/");
+        fileName = name.mid(idx+1);
+        path = name.left(idx);
+    }
+    ACTIVE_FUNC->openUrl(KUrl(path), fileName);
     showMinimized();
 }
 
-void KrSearchDialog::resultClicked(QTreeWidgetItem* i)
+void KrSearchDialog::currentChanged(KrViewItem *item)
 {
-    SearchListViewItem *it = dynamic_cast<SearchListViewItem*>(i);
-    if (it == 0)
+    if(!item)
         return;
-    if (!it->foundText().isEmpty()) {
+    QString text = result->foundText(item->getVfile());
+    if(!text.isEmpty()) {
         // ugly hack: find the <b> and </b> in the text, then
         // use it to set the are which we don't want squeezed
-        int idx = it->foundText().indexOf("<b>") - 4; // take "<qt>" into account
-        int length = it->foundText().indexOf("</b>") - idx + 4;
-        foundTextLabel->setText(it->foundText(), idx, length);
+        int idx = text.indexOf("<b>") - 4; // take "<qt>" into account
+        int length = text.indexOf("</b>") - idx + 4;
+        foundTextLabel->setText(text, idx, length);
     }
 }
 
@@ -555,11 +518,15 @@ void KrSearchDialog::closeEvent(QCloseEvent *e)
 
 void KrSearchDialog::keyPressEvent(QKeyEvent *e)
 {
+    // TODO: don't use hardcoded shortcuts
+
     if (isBusy && e->key() == Qt::Key_Escape) { /* at searching we must not close the window */
         stopSearch();         /* so we simply stop searching */
         return;
     }
-    if (resultsList->hasFocus()) {
+    if (resultView->widget()->hasFocus()) {
+        if ((e->key() | e->modifiers()) == (Qt::CTRL | Qt::Key_I))
+            resultView->op()->startQuickFilter();
         if (e->key() == Qt::Key_F4) {
             if (!generalFilter->containsText->currentText().isEmpty() && QApplication::clipboard()->text() != generalFilter->containsText->currentText())
                 QApplication::clipboard()->setText(generalFilter->containsText->currentText());
@@ -578,54 +545,35 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
             return;
         }
     }
-
     QDialog::keyPressEvent(e);
 }
 
 void KrSearchDialog::editCurrent()
 {
-    QTreeWidgetItem *current = resultsList->currentItem();
-    if (current) {
-        QString name = current->text(1);
-        name += (name.endsWith('/') ? current->text(0) : '/' + current->text(0));
-        KUrl url = KUrl(name);
-        KrViewer::edit(url, this);
-    }
+    KrViewItem *current = resultView->getCurrentKrViewItem();
+    if (current) 
+        KrViewer::edit(current->getVfile()->vfile_getUrl(), this);
 }
 
 void KrSearchDialog::viewCurrent()
 {
-    QTreeWidgetItem *current = resultsList->currentItem();
-    if (current) {
-        QString name = current->text(1);
-        name += (name.endsWith('/') ? current->text(0) : '/' + current->text(0));
-        KUrl url = KUrl(name);
-        KrViewer::view(url, this);
-    }
+    KrViewItem *current = resultView->getCurrentKrViewItem();
+    if (current) 
+        KrViewer::view(current->getVfile()->vfile_getUrl(), this);
 }
 
 void KrSearchDialog::compareByContent()
 {
-    QList<QTreeWidgetItem *> list = resultsList->selectedItems();
+    KrViewItemList list;
+    resultView->getSelectedKrViewItems(&list);
     if (list.count() != 2)
         return;
 
-    QString name1 = list[ 0 ]->text(1);
-    name1 += (name1.endsWith('/') ? list[ 0 ]->text(0) : '/' + list[ 0 ]->text(0));
-    KUrl url1 = KUrl(name1);
-
-    QString name2 = list[ 1 ]->text(1);
-    name2 += (name2.endsWith('/') ? list[ 1 ]->text(0) : '/' + list[ 1 ]->text(0));
-    KUrl url2 = KUrl(name2);
-
-    SLOTS->compareContent(url1, url2);
+    SLOTS->compareContent(list[0]->getVfile()->vfile_getUrl(), list[1]->getVfile()->vfile_getUrl());
 }
 
-void KrSearchDialog::rightClickMenu(QTreeWidgetItem * item, const QPoint &pos)
+void KrSearchDialog::contextMenu(const QPoint &pos)
 {
-    if (!item)
-        return;
-
     // create the menu
     KMenu popup;
     popup.setTitle(i18n("Krusader Search"));
@@ -633,7 +581,7 @@ void KrSearchDialog::rightClickMenu(QTreeWidgetItem * item, const QPoint &pos)
     QAction *actView = popup.addAction(i18n("View File (F3)"));
     QAction *actEdit = popup.addAction(i18n("Edit File (F4)"));
     QAction *actComp = popup.addAction(i18n("Compare by content (F10)"));
-    if (resultsList->selectedItems().count() != 2)
+    if(resultView->numSelected() != 2)
         actComp->setEnabled(false);
     QAction *actClip = popup.addAction(i18n("Copy selected to clipboard"));
 
@@ -684,17 +632,8 @@ void KrSearchDialog::feedToListBox()
     }
 
     KUrl::List urlList;
-
-    QTreeWidgetItemIterator it(resultsList);
-    while (*it) {
-        QTreeWidgetItem * item = *it;
-
-        QString name = item->text(1);
-        name += (name.endsWith('/') ? item->text(0) : '/' + item->text(0));
-        urlList.push_back(KUrl(name));
-
-        ++it;
-    }
+    foreach(vfile *vf, result->vfiles())
+        urlList.push_back(vf->vfile_getUrl());
 
     mainSearchBtn->setEnabled(false);
     mainCloseBtn->setEnabled(false);
@@ -717,20 +656,8 @@ void KrSearchDialog::feedToListBox()
 void KrSearchDialog::copyToClipBoard()
 {
     KUrl::List urls;
-
-
-    QTreeWidgetItemIterator it(resultsList);
-    while (*it) {
-        QTreeWidgetItem * item = *it;
-
-        if (item->isSelected()) {
-            QString name = item->text(1);
-            name += (name.endsWith('/') ? item->text(0) : '/' + item->text(0));
-            urls.push_back(KUrl(name));
-        }
-
-        ++it;
-    }
+    foreach(vfile *vf, result->vfiles())
+        urls.push_back(vf->vfile_getUrl());
 
     if (urls.count() == 0)
         return;

@@ -36,29 +36,22 @@
 
 #include <QtCore/QString>
 #include <QtCore/QStringList>
-#include <QtGui/QWidget>
-#include <QtGui/QResizeEvent>
-#include <QtGui/QGridLayout>
-#include <QtGui/QLabel>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QCloseEvent>
-#include <QtGui/QTabWidget>
 #include <QtGui/QDialog>
 
-#include <KSqueezedTextLabel>
-#include <KGlobal>
-#include <KLocale>
-
-#include "../Filter/filtertabs.h"
-#include "../Filter/generalfilter.h"
-#include "../VFS/krquery.h"
-#include "../VFS/krpermhandler.h"
 #include "krsearchmod.h"
-#include "../GUI/profilemanager.h"
-#include "../Dialogs/krsqueezedtextlabel.h"
 
-class QTreeWidget;
-class QTreeWidgetItem;
+
+class QGridLayout;
+class QLabel;
+class SearchResultContainer;
+class KrView;
+class KrViewItem;
+class ProfileManager;
+class FilterTabs;
+class GeneralFilter;
+class KTabWidget;
+class KSqueezedTextLabel;
+class KrSqueezedTextLabel;
 
 class KrSearchDialog : public QDialog
 {
@@ -78,12 +71,12 @@ public slots:
     void copyToClipBoard();
     void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString foundText);
     void closeDialog(bool isAccept = true);
-    void resultDoubleClicked(QTreeWidgetItem*);
-    void resultClicked(QTreeWidgetItem*);
+    void executed(const QString &name);
+    void currentChanged(KrViewItem *item);
 
     virtual void keyPressEvent(QKeyEvent *e);
     virtual void closeEvent(QCloseEvent *e);
-    virtual void rightClickMenu(QTreeWidgetItem*, const QPoint &);
+    virtual void contextMenu(const QPoint &);
     virtual void resizeEvent(QResizeEvent *e);
 
 protected slots:
@@ -101,20 +94,18 @@ private:
     FilterTabs * filterTabs;
     GeneralFilter * generalFilter;
 
-    QPushButton* mainHelpBtn;
     QPushButton* mainSearchBtn;
     QPushButton* mainStopBtn;
     QPushButton* mainCloseBtn;
     QPushButton* mainFeedToListBoxBtn;
 
     KTabWidget* searcherTabs;
-    QWidget* resultTab;
-    QGridLayout* resultLayout;
     QLabel* foundLabel;
     KrSqueezedTextLabel *foundTextLabel;
     KSqueezedTextLabel *searchingLabel;
 
-    QTreeWidget* resultsList;
+    SearchResultContainer *result;
+    KrView *resultView;
 
     KRQuery *query;
     KRSearchMod *searcher;
