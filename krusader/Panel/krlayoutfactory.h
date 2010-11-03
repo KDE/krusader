@@ -46,6 +46,8 @@ public:
     // creates the layout and adds the widgets to it
     QLayout *createLayout();
 
+    static QStringList layoutNames();
+
 private:
     QBoxLayout *createLayout(QDomElement e, QWidget *parent);
     QWidget *createFrame(QDomElement e, QWidget *parent);

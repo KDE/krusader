@@ -47,6 +47,7 @@
 #include "../Panel/krselectionmode.h"
 #include "../Panel/krview.h"
 #include "../Panel/krviewfactory.h"
+#include "../Panel/krlayoutfactory.h"
 
 #define PAGE_MISC     1
 #define PAGE_VIEW         2
@@ -180,6 +181,39 @@ void KgPanel::setupMiscTab()
     miscGrid->addWidget(barSett, 1, 0, 1, 2);
 
     miscLayout->addWidget(miscGrp, 3, 0);
+
+// --------------------------------------------------------------------------------------------
+// ------------------------------------ Layout ------------------------------------------------
+// --------------------------------------------------------------------------------------------
+    miscGrp = createFrame(i18n("Layout"), tab);
+    miscGrid = createGridLayout(miscGrp);
+
+    hbox = new QHBoxLayout();
+
+    hbox->addWidget(new QLabel(i18n("Layout:"), miscGrp));
+
+    QStringList layoutNames = KrLayoutFactory::layoutNames();
+    int numLayouts = layoutNames.count();
+
+    KONFIGURATOR_NAME_VALUE_PAIR *layouts = new KONFIGURATOR_NAME_VALUE_PAIR[numLayouts];
+    for (int i = 0; i != numLayouts; i++) {
+        QString text = layoutNames[i];
+        if(text == "default")
+            text = i18n("default");
+        layouts[ i ].text = text;
+        layouts[ i ].value = layoutNames[i];
+    }
+
+    cmb = createComboBox("Look&Feel", "Layout", "default",
+                         layouts, numLayouts, miscGrp, true, false, PAGE_MISC);
+
+    delete [] layouts;
+
+    hbox->addWidget(cmb);
+    hbox->addWidget(createSpacer(miscGrp));
+
+    miscGrid->addLayout(hbox, 1, 0);
+    miscLayout->addWidget(miscGrp, 4, 0);
 }
 
 void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
@@ -328,7 +362,7 @@ void KgPanel::setupPanelTab()
 
     for (int i = 0; i != viewsSize; i++) {
         KrViewInstance * inst = views[ i ];
-        panelTypes[ i ].text = i18n(inst->description().toUtf8());
+        panelTypes[ i ].text = inst->description();
         panelTypes[ i ].text.remove('&');
         panelTypes[ i ].value = QString("%1").arg(inst->id());
         if (inst->id() == KrViewFactory::defaultViewId())

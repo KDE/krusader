@@ -53,10 +53,28 @@ QDomDocument _doc("KrusaderLayout");
 QDomElement _root;
 bool _parsed = false;
 
+QStringList KrLayoutFactory::layoutNames()
+{
+    QStringList names;
+    names << "default";
+
+    if(parseFile()) {
+        for(QDomElement e = _root.firstChildElement(); ! e.isNull(); e = e.nextSiblingElement()) {
+            if (e.tagName() == "layout") {
+                QString name(e.attribute("name"));
+                if(!name.isEmpty() && name != "default")
+                    names << name;
+            }
+        }
+    }
+
+    return names;
+}
 
 QLayout *KrLayoutFactory::createLayout()
 {
-    QString layoutName("default");
+    KConfigGroup cg(krConfig, "Look&Feel");
+    QString layoutName(cg.readEntry("Layout", "default"));
     QLayout *layout = 0;
 
     if(parseFile()) {
