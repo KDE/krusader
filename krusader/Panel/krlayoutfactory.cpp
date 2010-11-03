@@ -71,10 +71,12 @@ QStringList KrLayoutFactory::layoutNames()
     return names;
 }
 
-QLayout *KrLayoutFactory::createLayout()
+QLayout *KrLayoutFactory::createLayout(QString layoutName)
 {
-    KConfigGroup cg(krConfig, "Look&Feel");
-    QString layoutName(cg.readEntry("Layout", "default"));
+    if(layoutName.isEmpty()) {
+        KConfigGroup cg(krConfig, "Look&Feel");
+        layoutName = cg.readEntry("Layout", "default");
+    }
     QLayout *layout = 0;
 
     if(parseFile()) {
@@ -86,8 +88,11 @@ QLayout *KrLayoutFactory::createLayout()
                 break;
             }
         }
-        if(!found)
+        if(!found) {
             krOut << "no layout with name" << layoutName << "found\n";
+            if(layoutName != "default")
+                return createLayout("default");
+        }
     }
 
     if(layout) {

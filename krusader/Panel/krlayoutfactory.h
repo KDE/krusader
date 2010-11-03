@@ -44,7 +44,7 @@ class KrLayoutFactory
 public:
     KrLayoutFactory(QWidget *panel, QHash<QString, QWidget*> &widgets) : panel(panel), widgets(widgets) {}
     // creates the layout and adds the widgets to it
-    QLayout *createLayout();
+    QLayout *createLayout(QString layoutName = QString());
 
     static QStringList layoutNames();
 
