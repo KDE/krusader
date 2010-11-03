@@ -14,6 +14,10 @@
     ADDED: action: view > Save settings as default (for new instances of this view type)
     ADDED: option: Panel > View > Locale aware sorting
 
+
+    CHANGED: Removed options Panel > General > Status/Totalsbar >
+             Statusbar Frame / Statusbar Background / Show Statusbar/ Show Totalsbar.
+             They are customizable in layout.xml.
     CHANGED: Use KrView for displaying search results,
              which is much faster than the previously used QTreeWidget.
     CHANGED: Removed default shortcuts for the Left/Right Bookmarks actions,

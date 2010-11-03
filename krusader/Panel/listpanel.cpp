@@ -139,8 +139,6 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
     status->setFont(group.readEntry("Filelist Font", *_FilelistFont));
     status->setAutoFillBackground(false);
     status->setText("");          // needed for initialization code!
-    if(!group.readEntry("Show Statusbar", true))
-        status->hide();
     int sheight = QFontMetrics(status->font()).height() + 4;
     status->setMaximumHeight(sheight);
     status->setWhatsThis(i18n("The statusbar displays information about the FILESYSTEM "
