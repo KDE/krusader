@@ -17,8 +17,9 @@ set(Panel_SRCS
     krviewitem.cpp 
     panelfunc.cpp
     krpanel.cpp
-    listpanel.cpp 
-    panelpopup.cpp 
+    listpanel.cpp
+    listpanelframe.cpp
+    panelpopup.cpp
     krselectionmode.cpp 
     krvfsmodel.cpp
     krinterview.cpp

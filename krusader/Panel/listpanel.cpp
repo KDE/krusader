@@ -92,7 +92,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../GUI/dirhistorybutton.h"
 #include "../GUI/mediabutton.h"
 #include "../GUI/syncbrowsebutton.h"
-#include "../Filter/filterdialog.h"
 #include "../UserAction/useractionpopupmenu.h"
 
 #include "listpanelactions.h"
@@ -106,7 +105,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krerrordisplay.h"
 #include "krlayoutfactory.h"
 #include "quickfilter.h"
-
 
 
 /////////////////////////////////////////////////////
@@ -139,30 +137,20 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
     status = new KrSqueezedTextLabel(this);
     KConfigGroup group(krConfig, "Look&Feel");
     status->setFont(group.readEntry("Filelist Font", *_FilelistFont));
-    status->setBackgroundRole(QPalette::Window);
-    bool statusFrame = group.readEntry("Statusbar Frame", true);
-    if(statusFrame)
-        status->setFrameStyle(QFrame::Box | QFrame::Raised);
-    bool statusBackground = group.readEntry("Statusbar Background", true);
-    status->setAutoFillBackground(statusBackground);
-    status->setLineWidth(1);    // a nice 3D touch :-)
+    status->setAutoFillBackground(false);
     status->setText("");          // needed for initialization code!
     if(!group.readEntry("Show Statusbar", true))
         status->hide();
-    status->enableDrops(true);
     int sheight = QFontMetrics(status->font()).height() + 4;
     status->setMaximumHeight(sheight);
     status->setWhatsThis(i18n("The statusbar displays information about the FILESYSTEM "
                               "which holds your current directory: Total size, free space, "
                               "type of filesystem, etc."));
-    connect(status, SIGNAL(clicked()), this, SLOT(slotFocusOnMe()));
-    connect(status, SIGNAL(dropped(QDropEvent *)), this, SLOT(handleDropOnStatus(QDropEvent *)));
     ADD_WIDGET(status);
 
     // ... create the history button
     historyButton = new DirHistoryButton(func->history, this);
     connect(historyButton, SIGNAL(aboutToShow()), this, SLOT(slotFocusOnMe()));
-//     connect(historyButton, SIGNAL(openUrl(const KUrl&)), func, SLOT(openUrl(const KUrl&)));
     connect(historyButton, SIGNAL(gotoPos(int)), func, SLOT(historyGotoPos(int)));
     ADD_WIDGET(historyButton);
 
@@ -178,8 +166,6 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
     // origin input field
     QuickNavLineEdit *qnle = new QuickNavLineEdit(this);
     origin = new KUrlRequester(qnle, this);
-//     QSize iconSize = QSize(22, 22); // also hardcoded to 22 in the support libs
-//     origin->button() ->setFixedSize(iconSize.width() + 4, iconSize.height() + 4);
     origin->setWhatsThis(i18n("Use superb KDE file dialog to choose location."));
     origin->lineEdit() ->setUrlDropsEnabled(true);
     origin->lineEdit() ->installEventFilter(this);
@@ -212,19 +198,23 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
     clientLayout->setContentsMargins(0, 0, 0, 0);
     ADD_WIDGET(clientArea);
 
-    // totals bar
-    totalsBar = new QFrame(this);
-    totalsBar->setAutoFillBackground(statusBackground);
-    totalsBar->setBackgroundRole(QPalette::Window);
-    totalsBar->setLineWidth(1);    // a nice 3D touch :-)
-    if(statusFrame)
-        totalsBar->setFrameStyle(QFrame::Box | QFrame::Raised);
-    if(!group.readEntry("Show Totalsbar", true))
-        totalsBar->hide();
-    QHBoxLayout *totalsLayout = new QHBoxLayout(totalsBar);
-    totalsLayout->setContentsMargins(0, 0, 0, 0);
-    totalsLayout->setSpacing(0);
-    ADD_WIDGET(totalsBar);
+    // totals label
+    totals = new KrSqueezedTextLabel(this);
+    totals->setFont(group.readEntry("Filelist Font", *_FilelistFont));
+    totals->setAutoFillBackground(false);
+    totals->setWhatsThis(i18n("The totals bar shows how many files exist, "
+                              "how many selected and the bytes math"));
+    ADD_WIDGET(totals);
+
+    // free space label
+    freeSpace = new KrSqueezedTextLabel(this);
+    freeSpace->setFont(group.readEntry("Filelist Font", *_FilelistFont));
+    freeSpace->setAutoFillBackground(false);
+    freeSpace->setText("");
+    freeSpace->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    if(!group.readEntry("Show Free Space", false))
+        freeSpace->hide();
+    ADD_WIDGET(freeSpace);
 
     // progress indicator for the preview job
     previewProgress = new QProgressBar(this);
@@ -242,7 +232,6 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
     // a quick button to open the popup panel
     popupBtn = new QToolButton(this);
     popupBtn->setAutoRaise(true);
-//     popupBtn->setFixedSize(22, 20);
     popupBtn->setIcon(krLoader->loadIcon("arrow-up", KIconLoader::Toolbar, 16));
     connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
     popupBtn->setToolTip(i18n("Open the popup panel"));
@@ -314,38 +303,12 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
         clientLayout->insertWidget(-1, quickFilter);
     }
 
-    // totals label
-    totals = new KrSqueezedTextLabel(totalsBar);
-    totalsLayout->addWidget(totals);
-    totals->setFont(group.readEntry("Filelist Font", *_FilelistFont));
-    totals->setAutoFillBackground(false);
-    totals->setBackgroundRole(QPalette::Window);
-    totals->enableDrops(true);
-    totals->setWhatsThis(i18n("The totals bar shows how many files exist, "
-                              "how many selected and the bytes math"));
-    connect(totals, SIGNAL(clicked()), this, SLOT(slotFocusOnMe()));
-    connect(totals, SIGNAL(dropped(QDropEvent *)), this, SLOT(handleDropOnTotals(QDropEvent *)));
-
-    // free space label
-    freeSpace = new KrSqueezedTextLabel(totalsBar);
-    totalsLayout->addWidget(freeSpace);
-    freeSpace->setFont(group.readEntry("Filelist Font", *_FilelistFont));
-    freeSpace->setAutoFillBackground(false);
-    freeSpace->setBackgroundRole(QPalette::Window);
-    freeSpace->setText("");
-    freeSpace->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    if(!group.readEntry("Show Free Space", false))
-        freeSpace->hide();
-    connect(freeSpace, SIGNAL(clicked()), this, SLOT(slotFocusOnMe()));
-    connect(freeSpace, SIGNAL(dropped(QDropEvent *)), this, SLOT(handleDropOnTotals(QDropEvent *)));
-
     // view
     createView();
 
-    //filter = ALL;
-
     // create the layout
-    QLayout *layout = KrLayoutFactory::createLayout("default", widgets);
+    KrLayoutFactory fact(this, widgets);
+    QLayout *layout = fact.createLayout();
 
     if(!layout) { // fallback: create a layout by ourself
         QVBoxLayout *v = new QVBoxLayout;
@@ -374,7 +337,8 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
         h = new QHBoxLayout;
         h->setContentsMargins(0, 0, 0, 0);
         h->setSpacing(0);
-        h->addWidget(totalsBar);
+        h->addWidget(totals);
+        h->addWidget(freeSpace);
         h->addWidget(previewProgress);
         h->addWidget(inlineRefreshCancelButton);
         h->addWidget(popupBtn);
@@ -681,47 +645,10 @@ void ListPanel::compareDirs(bool otherPanelToo)
         otherPanel()->gui->compareDirs(false);
 }
 
-QColor ListPanel::getColor(KConfigGroup &cg, QString name, const QColor &def, const QColor &kdedef)
-{
-    if (cg.readEntry(name, QString()) == "KDE default")
-        return kdedef;
-    else if(!cg.readEntry(name, QString()).isEmpty())
-        return cg.readEntry(name, def);
-    return def;
-}
-
 void ListPanel::refreshColors()
 {
-    QColor windowForeground = KColorScheme(QPalette::Active, KColorScheme::Window).foreground().color();
-    QColor windowBackground = KColorScheme(QPalette::Active, KColorScheme::Window).background().color();
-    KConfigGroup gc(krConfig, "Colors");
-    QPalette p(status->palette());
-
-    QColor fg, bg;
-
-    if(this == ACTIVE_PANEL) {
-        fg = getColor(gc, "Statusbar Foreground Active",
-                        KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color(), windowForeground);
-        bg = getColor(gc, "Statusbar Background Active",
-                    KColorScheme(QPalette::Active, KColorScheme::Selection).background().color(), windowBackground);
-    } else {
-        fg = getColor(gc, "Statusbar Foreground Inactive",
-                    KColorScheme(QPalette::Active, KColorScheme::View).foreground().color(), windowForeground);
-        bg = getColor(gc, "Statusbar Background Inactive",
-                  KColorScheme(QPalette::Active, KColorScheme::View).background().color(), windowBackground);
-    }
-
-    if(vfsError && KConfigGroup(krConfig, "Look&Feel").readEntry("Statusbar Background", true))
-        vfsError->setTargetColor(bg);
-
-    p.setColor(QPalette::WindowText, fg);
-    p.setColor(QPalette::Window, bg);
-    status->setPalette(p);
-    totalsBar->setPalette(p);
-    totals->setPalette(p);
-    freeSpace->setPalette(p);
-
     view->refreshColors();
+    emit refreshColors(this == ACTIVE_PANEL);
 }
 
 void ListPanel::slotFocusOnMe()
@@ -854,16 +781,6 @@ void ListPanel::gotStats(const QString &mountPoint, quint64 kBSize,
     status->setText(stats);
 
     freeSpace->setText("    " + i18n("%1 free", KIO::convertSizeFromKiB(kBAvail)));
-}
-
-void ListPanel::handleDropOnTotals(QDropEvent *e)
-{
-    handleDropOnView(e, totals);
-}
-
-void ListPanel::handleDropOnStatus(QDropEvent *e)
-{
-    handleDropOnView(e, status);
 }
 
 void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
@@ -1335,5 +1252,3 @@ void ListPanel::getFocusCandidates(QVector<QWidget*> &widgets)
     if(popup && popup->isVisible())
         widgets << popup;
 }
-
-#include "listpanel.moc"

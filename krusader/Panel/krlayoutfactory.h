@@ -42,11 +42,18 @@ class QBoxLayout;
 class KrLayoutFactory
 {
 public:
-    // creates the layout defined by name and adds the widgets to it
-    static QLayout *createLayout(QString layoutName, QHash<QString, QWidget*> &widgets);
+    KrLayoutFactory(QWidget *panel, QHash<QString, QWidget*> &widgets) : panel(panel), widgets(widgets) {}
+    // creates the layout and adds the widgets to it
+    QLayout *createLayout();
+
 private:
+    QBoxLayout *createLayout(QDomElement e, QWidget *parent);
+    QWidget *createFrame(QDomElement e, QWidget *parent);
+
     static bool parseFile();
-    static QBoxLayout *processElement(QDomElement e, QHash<QString, QWidget*> &widgets);
+
+    QWidget *panel;
+    QHash<QString, QWidget*> &widgets;
 };
 
 #endif

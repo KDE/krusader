@@ -51,7 +51,7 @@ public slots:
     void setText(const QString &text, int index = -1, int length = -1);
 
 signals:
-    void clicked(); /**< emitted when someone clicks on the label */
+    void clicked(QMouseEvent *); /**< emitted when someone clicks on the label */
     void dropped(QDropEvent *); /**< emitted when someone drops URL onto the label */
 
 protected:

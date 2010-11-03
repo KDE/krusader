@@ -38,10 +38,10 @@ KrSqueezedTextLabel::~KrSqueezedTextLabel()
 {
 }
 
-void KrSqueezedTextLabel::mousePressEvent(QMouseEvent *)
+void KrSqueezedTextLabel::mousePressEvent(QMouseEvent *e)
 {
-    emit clicked();
-
+    e->ignore();
+    emit clicked(e);
 }
 
 void KrSqueezedTextLabel::enableDrops(bool flag)

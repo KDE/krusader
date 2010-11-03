@@ -8,14 +8,19 @@
         </layout>
         <layout type="horizontal">
             <widget>mediaButton</widget>
-            <widget>status</widget>
+            <frame type="horizontal" color="Statusbar" shape="Box" shadow="Raised">
+                <widget>status</widget>
+            </frame>
             <widget>historyButton</widget>
             <widget>bookmarksButton</widget>
         </layout>
         <widget>vfsError</widget>
         <widget>clientArea</widget>
         <layout type="horizontal">
-            <widget>totalsBar</widget>
+            <frame type="horizontal" color="Statusbar" shape="Box" shadow="Raised">
+                <widget>totals</widget>
+                <widget>freeSpace</widget>
+            </frame>
             <widget>previewProgress</widget>
             <widget>inlineRefreshCancelButton</widget>
             <widget>popupBtn</widget>

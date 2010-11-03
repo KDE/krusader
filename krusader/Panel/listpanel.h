@@ -163,19 +163,19 @@ public slots:
 
 protected:
     virtual void keyPressEvent(QKeyEvent *e);
+    virtual void mousePressEvent(QMouseEvent*) {
+        slotFocusOnMe();
+    }
     virtual void showEvent(QShowEvent *);
     virtual void hideEvent(QHideEvent *);
     virtual bool eventFilter(QObject * watched, QEvent * e);
 
-    QColor getColor(KConfigGroup &cg, QString name, const QColor &def, const QColor &kdedef);
     void showButtonMenu(QToolButton *b);
     void createView();
 
 protected slots:
     void updatePopupPanel(KrViewItem *item);
     void handleDropOnView(QDropEvent *, QWidget *destWidget = 0); // handles drops on the view only
-    void handleDropOnTotals(QDropEvent *);                     // handles drops on the totals line
-    void handleDropOnStatus(QDropEvent *);                     // handles drops on the status line
     void startDragging(QStringList, QPixmap);
     void slotPreviewJobStarted(KJob *job);
     void slotPreviewJobPercent(KJob *job, unsigned long percent);
@@ -192,6 +192,7 @@ signals:
     void pathChanged(ListPanel *panel);
     void activePanelChanged(ListPanel *p);   // emitted when the user changes panels
     void finishedDragging();              // currently
+    void refreshColors(bool active);
 
 protected:
     int panelType;
@@ -219,7 +220,6 @@ protected:
     PanelPopup *popup;
     KrBookmarkButton *bookmarksButton;
     KrSqueezedTextLabel *status, *totals, *freeSpace;
-    QFrame *totalsBar;
 
     QProgressBar *previewProgress;
     DirHistoryButton* historyButton;

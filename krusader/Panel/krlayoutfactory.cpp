@@ -29,14 +29,18 @@ A
 ***************************************************************************/
 
 #include "krlayoutfactory.h"
+
+#include "listpanelframe.h"
 #include "../krglobal.h"
 
+#include <QMetaEnum>
 #include <QtXml/QDomDocument>
 #include <QFile>
 #include <QWidget>
 #include <QLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <kdebug.h>
@@ -50,8 +54,9 @@ QDomElement _root;
 bool _parsed = false;
 
 
-QLayout *KrLayoutFactory::createLayout(QString layoutName, QHash<QString, QWidget*> &widgets)
+QLayout *KrLayoutFactory::createLayout()
 {
+    QString layoutName("default");
     QLayout *layout = 0;
 
     if(parseFile()) {
@@ -59,7 +64,7 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName, QHash<QString, QWidge
         for(QDomElement e = _root.firstChildElement(); ! e.isNull(); e = e.nextSiblingElement()) {
             if (e.tagName() == "layout" && e.attribute("name") == layoutName) {
                 found = true;
-                layout = processElement(e, widgets);
+                layout = createLayout(e, panel);
                 break;
             }
         }
@@ -68,8 +73,10 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName, QHash<QString, QWidge
     }
 
     if(layout) {
-        foreach(QString name, widgets.keys())
+        foreach(QString name, widgets.keys()) {
             krOut << "widget" << name << "was not added to the layout\n";
+            widgets[name]->hide();
+        }
     } else
          krOut << "couldn't load layout" << layoutName << endl;
 
@@ -106,7 +113,7 @@ bool KrLayoutFactory::parseFile()
     return _parsed;
 }
 
-QBoxLayout *KrLayoutFactory::processElement(QDomElement e, QHash<QString, QWidget*> &widgets)
+QBoxLayout *KrLayoutFactory::createLayout(QDomElement e, QWidget *parent)
 {
     QBoxLayout *l = 0;
     bool horizontal = false;
@@ -127,8 +134,11 @@ QBoxLayout *KrLayoutFactory::processElement(QDomElement e, QHash<QString, QWidge
 
     for(QDomElement child = e.firstChildElement(); ! child.isNull(); child = child.nextSiblingElement()) {
         if (child.tagName() == "layout") {
-            if(QLayout *childLayout = processElement(child, widgets))
+            if(QLayout *childLayout = createLayout(child, parent))
                 l->addLayout(childLayout);
+        } else if(child.tagName() == "frame") {
+            QWidget *frame = createFrame(child, parent);
+            l->addWidget(frame);
         } else if(child.tagName() == "widget") {
             if(QWidget *w = widgets.take(child.text()))
                 l->addWidget(w);
@@ -143,4 +153,30 @@ QBoxLayout *KrLayoutFactory::processElement(QDomElement e, QHash<QString, QWidge
     }
 
     return l;
+}
+
+QWidget *KrLayoutFactory::createFrame(QDomElement e, QWidget *parent)
+{
+    QString color(e.attribute("color"));
+
+    QFrame *frame = new ListPanelFrame(parent, color);
+
+    QMetaEnum shadowEnum = QFrame::staticMetaObject.enumerator(QFrame::staticMetaObject.indexOfEnumerator("Shadow"));
+    int shadow = shadowEnum.keyToValue(e.attribute("shadow").toAscii().data());
+    QMetaEnum shapeEnum = QFrame::staticMetaObject.enumerator(QFrame::staticMetaObject.indexOfEnumerator("Shape"));
+    int shape = shapeEnum.keyToValue(e.attribute("shape").toAscii().data());
+    frame->setFrameStyle(shape | shadow);
+
+    frame->setAcceptDrops(true);
+
+    if(QLayout *l = createLayout(e, frame)) {
+        l->setContentsMargins(frame->frameWidth(), frame->frameWidth(), frame->frameWidth(), frame->frameWidth());
+        frame->setLayout(l);
+    }
+
+    QObject::connect(frame, SIGNAL(dropped(QDropEvent*, QWidget*)), panel, SLOT(handleDropOnView(QDropEvent*, QWidget*)));
+    if(!color.isEmpty())
+        QObject::connect(panel, SIGNAL(refreshColors(bool)), frame, SLOT(refreshColors(bool)));
+
+    return frame;
 }
