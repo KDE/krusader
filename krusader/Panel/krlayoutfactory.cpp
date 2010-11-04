@@ -74,7 +74,7 @@ QStringList KrLayoutFactory::layoutNames()
 QLayout *KrLayoutFactory::createLayout(QString layoutName)
 {
     if(layoutName.isEmpty()) {
-        KConfigGroup cg(krConfig, "Look&Feel");
+        KConfigGroup cg(krConfig, "PanelLayout");
         layoutName = cg.readEntry("Layout", "default");
     }
     QLayout *layout = 0;
@@ -166,12 +166,12 @@ QBoxLayout *KrLayoutFactory::createLayout(QDomElement e, QWidget *parent)
             if(QWidget *w = widgets.take(child.attribute("name")))
                 l->addWidget(w);
             else
-                krOut << "layout: so such widget:" << child.text() << endl;
+                krOut << "layout: so such widget:" << child.attribute("name") << endl;
         } else if(child.tagName() == "hide_widget") {
             if(QWidget *w = widgets.take(child.attribute("name")))
                 w->hide();
             else
-                krOut << "layout: so such widget:" << child.text() << endl;
+                krOut << "layout: so such widget:" << child.attribute("name") << endl;
         } else if(child.tagName() == "spacer") {
             if(horizontal)
                 l->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed));
@@ -185,16 +185,32 @@ QBoxLayout *KrLayoutFactory::createLayout(QDomElement e, QWidget *parent)
 
 QWidget *KrLayoutFactory::createFrame(QDomElement e, QWidget *parent)
 {
-    QString color(e.attribute("color"));
+    KConfigGroup cg(krConfig, "PanelLayout");
 
-    QFrame *frame = new ListPanelFrame(parent, color);
+    QString color = cg.readEntry("FrameColor", "default");
+    if(color == "default")
+        color = e.attribute("color");
+    else if(color == "none")
+        color = QString();
+
+    int shadow = -1, shape = -1;
 
     QMetaEnum shadowEnum = QFrame::staticMetaObject.enumerator(QFrame::staticMetaObject.indexOfEnumerator("Shadow"));
-    int shadow = shadowEnum.keyToValue(e.attribute("shadow").toAscii().data());
-    QMetaEnum shapeEnum = QFrame::staticMetaObject.enumerator(QFrame::staticMetaObject.indexOfEnumerator("Shape"));
-    int shape = shapeEnum.keyToValue(e.attribute("shape").toAscii().data());
-    frame->setFrameStyle(shape | shadow);
+    QString cfgShadow = cg.readEntry("FrameShadow", "default");
+    if(cfgShadow != "default")
+        shadow = shadowEnum.keyToValue(cfgShadow.toAscii().data());
+    if(shadow < 0)
+        shadow = shadowEnum.keyToValue(e.attribute("shadow").toAscii().data());
 
+    QMetaEnum shapeEnum = QFrame::staticMetaObject.enumerator(QFrame::staticMetaObject.indexOfEnumerator("Shape"));
+    QString cfgShape = cg.readEntry("FrameShape", "default");
+    if(cfgShape!= "default")
+        shape = shapeEnum.keyToValue(cfgShape.toAscii().data());
+    if(shape < 0)
+        shape = shapeEnum.keyToValue(e.attribute("shape").toAscii().data());
+
+    QFrame *frame = new ListPanelFrame(parent, color);
+    frame->setFrameStyle(shape | shadow);
     frame->setAcceptDrops(true);
 
     if(QLayout *l = createLayout(e, frame)) {
