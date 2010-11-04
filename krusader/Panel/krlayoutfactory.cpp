@@ -163,8 +163,13 @@ QBoxLayout *KrLayoutFactory::createLayout(QDomElement e, QWidget *parent)
             QWidget *frame = createFrame(child, parent);
             l->addWidget(frame);
         } else if(child.tagName() == "widget") {
-            if(QWidget *w = widgets.take(child.text()))
+            if(QWidget *w = widgets.take(child.attribute("name")))
                 l->addWidget(w);
+            else
+                krOut << "layout: so such widget:" << child.text() << endl;
+        } else if(child.tagName() == "hide_widget") {
+            if(QWidget *w = widgets.take(child.attribute("name")))
+                w->hide();
             else
                 krOut << "layout: so such widget:" << child.text() << endl;
         } else if(child.tagName() == "spacer") {

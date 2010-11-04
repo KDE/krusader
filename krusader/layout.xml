@@ -3,27 +3,27 @@
 <KrusaderLayout>
     <layout name="default" type="vertical">
         <layout type="horizontal">
-            <widget>origin</widget>
-            <widget>toolbar</widget>
+            <widget name="origin"/>
+            <widget name="toolbar"/>
         </layout>
         <layout type="horizontal">
-            <widget>mediaButton</widget>
+            <widget name="mediaButton"/>
             <frame type="horizontal" color="Statusbar" shape="Box" shadow="Raised">
-                <widget>status</widget>
+                <widget name="status"/>
             </frame>
-            <widget>historyButton</widget>
-            <widget>bookmarksButton</widget>
+            <widget name="historyButton"/>
+            <widget name="bookmarksButton"/>
         </layout>
-        <widget>vfsError</widget>
-        <widget>clientArea</widget>
+        <widget name="vfsError"/>
+        <widget name="clientArea"/>
         <layout type="horizontal">
             <frame type="horizontal" color="Statusbar" shape="Box" shadow="Raised">
-                <widget>totals</widget>
-                <widget>freeSpace</widget>
+                <widget name="totals"/>
+                <widget name="freeSpace"/>
             </frame>
-            <widget>previewProgress</widget>
-            <widget>inlineRefreshCancelButton</widget>
-            <widget>popupBtn</widget>
+            <widget name="previewProgress"/>
+            <widget name="inlineRefreshCancelButton"/>
+            <widget name="popupBtn"/>
         </layout>
     </layout>
 </KrusaderLayout>
