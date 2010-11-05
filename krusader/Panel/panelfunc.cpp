@@ -1262,6 +1262,8 @@ void ListPanelFunc::refreshActions()
     panel->_actions->actFTPDisconnect->setEnabled(vfsType == vfs::VFS_FTP);       // disconnect an FTP session
     panel->_actions->actCreateChecksum->setEnabled(vfsType == vfs::VFS_NORMAL);
     panel->_actions->actDirUp->setEnabled(!files()->isRoot());
+    panel->_actions->actRoot->setEnabled(!files()->isRoot());
+    panel->_actions->actHome->setEnabled(!atHome());
     panel->_actions->actHistoryBackward->setEnabled(history->canGoBack());
     panel->_actions->actHistoryForward->setEnabled(history->canGoForward());
     KrActions::actTogglePreviews->setChecked(panel->view->previewsShown());
@@ -1374,6 +1376,11 @@ void ListPanelFunc::root()
 void ListPanelFunc::syncOtherPanel()
 {
     otherFunc()->openUrl(panel->virtualPath());
+}
+
+bool ListPanelFunc::atHome()
+{
+    return KUrl(QDir::homePath()).equals(panel->virtualPath(), KUrl::CompareWithoutTrailingSlash);
 }
 
 #include "panelfunc.moc"

@@ -124,6 +124,7 @@ public:
     // otherwise (Cancel was pressed).
     bool calcSpace(const QStringList & items, KIO::filesize_t & totalSize, unsigned long & totalFiles, unsigned long & totalDirs);
     ListPanelFunc* otherFunc();
+    bool atHome();
 
 protected slots:
     void doRefresh();

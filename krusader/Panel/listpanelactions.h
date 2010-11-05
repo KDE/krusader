@@ -72,7 +72,7 @@ public:
     KAction *actLocationBar, *actJumpBack, *actSetJumpBack;
     KAction *actCreateChecksum, *actMatchChecksum;
     KAction *actCopy, *actPaste;
-    KAction *actHistoryBackward, *actHistoryForward, *actDirUp, *actRoot;
+    KAction *actHistoryBackward, *actHistoryForward, *actDirUp, *actRoot, *actHome;
     KAction *actSyncBrowse, *actCancelRefresh;
 
     QHash<int/*id*/, KAction*> setViewActions;

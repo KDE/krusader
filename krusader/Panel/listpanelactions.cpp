@@ -71,7 +71,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     //   KStandardAction::up( this, SLOT( dirUp() ), actionCollection )->setShortcut(Qt::Key_Backspace);
     /* Shortcut disabled because of the Terminal Emulator bug. */
     actDirUp = stdAction(KStandardAction::Up, _func, SLOT(dirUp()));
-    stdAction(KStandardAction::Home, _func, SLOT(home()));
+    actHome = stdAction(KStandardAction::Home, _func, SLOT(home()));
     stdAction(KStandardAction::Cut, _func, SLOT(cut()));
     actCopy = stdAction(KStandardAction::Copy, _func, SLOT(copyToClipboard()));
     actPaste = stdAction(KStandardAction::Paste, _func, SLOT(pasteFromClipboard()));
