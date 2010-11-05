@@ -1230,8 +1230,11 @@ void ListPanelFunc::properties()
 
 void ListPanelFunc::refreshActions()
 {
+    panel->updateButtons();
+
     if(ACTIVE_PANEL != panel)
         return;
+
     vfs::VFS_TYPE vfsType = files() ->vfs_getType();
 
     QString protocol = files()->vfs_getOrigin().protocol();

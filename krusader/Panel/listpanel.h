@@ -172,6 +172,7 @@ protected:
 
     void showButtonMenu(QToolButton *b);
     void createView();
+    void updateButtons();
 
 protected slots:
     void updatePopupPanel(KrViewItem *item);
@@ -212,6 +213,7 @@ protected:
     KUrlRequester *origin;
     KrQuickSearch *quickSearch;
     QuickFilter *quickFilter;
+    QToolButton *backButton, *forwardButton;
     QToolButton *cdRootButton;
     QToolButton *cdHomeButton;
     QToolButton *cdUpButton;

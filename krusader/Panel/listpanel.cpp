@@ -105,6 +105,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krerrordisplay.h"
 #include "krlayoutfactory.h"
 #include "quickfilter.h"
+#include "dirhistoryqueue.h"
 
 
 /////////////////////////////////////////////////////
@@ -145,6 +146,25 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
                               "which holds your current directory: Total size, free space, "
                               "type of filesystem, etc."));
     ADD_WIDGET(status);
+
+    // back button
+    backButton = new QToolButton(this);
+    backButton->setAutoRaise(true);
+    backButton->setText("<");
+    backButton->setIcon(_actions->actHistoryBackward->icon());
+    backButton->setToolTip(_actions->actHistoryBackward->toolTip());
+    connect(backButton, SIGNAL(clicked()), func, SLOT(historyBackward()));
+    ADD_WIDGET(backButton);
+
+    // forward button
+    forwardButton = new QToolButton(this);
+    forwardButton->setAutoRaise(true);
+    forwardButton->setIcon(_actions->actHistoryForward->icon());
+    forwardButton->setText(">");
+    forwardButton->setToolTip(_actions->actHistoryForward->toolTip());
+    connect(forwardButton, SIGNAL(clicked()), func, SLOT(historyForward()));
+    ADD_WIDGET(forwardButton);
+
 
     // ... create the history button
     historyButton = new DirHistoryButton(func->history, this);
@@ -325,6 +345,8 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
         h->setSpacing(0);
         h->addWidget(mediaButton);
         h->addWidget(status);
+        h->addWidget(backButton);
+        h->addWidget(forwardButton);
         h->addWidget(historyButton);
         h->addWidget(bookmarksButton);
         v->addLayout(h);
@@ -524,40 +546,26 @@ void ListPanel::setButtons()
     KConfigGroup group(krConfig, "Look&Feel");
 
     mediaButton->setVisible(group.readEntry("Media Button Visible", true));
+    backButton->setVisible(group.readEntry("Back Button Visible", false));
+    forwardButton->setVisible(group.readEntry("Forward Button Visible", false));
     historyButton->setVisible(group.readEntry("History Button Visible", true));
     bookmarksButton->setVisible(group.readEntry("Bookmarks Button Visible", true));
 
-    bool panelToolBarVisible = group.readEntry("Panel Toolbar visible", _PanelToolBar);
-
-    if (panelToolBarVisible && (group.readEntry("Root Button Visible", _cdRoot)))
-        cdRootButton->show();
-    else
+    if (group.readEntry("Panel Toolbar visible", _PanelToolBar)) {
+        cdRootButton->setVisible(group.readEntry("Root Button Visible", _cdRoot));
+        cdHomeButton->setVisible(group.readEntry("Home Button Visible", _cdHome));
+        cdUpButton->setVisible(group.readEntry("Up Button Visible", _cdUp));
+        cdOtherButton->setVisible(group.readEntry("Equal Button Visible", _cdOther));
+        origin->button()->setVisible(group.readEntry("Open Button Visible", _Open));
+        syncBrowseButton->setVisible(group.readEntry("SyncBrowse Button Visible", _syncBrowseButton));
+    } else {
         cdRootButton->hide();
-
-    if (panelToolBarVisible && (group.readEntry("Home Button Visible", _cdHome)))
-        cdHomeButton->show();
-    else
         cdHomeButton->hide();
-
-    if (panelToolBarVisible && (group.readEntry("Up Button Visible", _cdUp)))
-        cdUpButton->show();
-    else
         cdUpButton->hide();
-
-    if (panelToolBarVisible && (group.readEntry("Equal Button Visible", _cdOther)))
-        cdOtherButton->show();
-    else
         cdOtherButton->hide();
-
-    if (!panelToolBarVisible || (group.readEntry("Open Button Visible", _Open)))
-        origin->button() ->show();
-    else
-        origin->button() ->hide();
-
-    if (panelToolBarVisible && (group.readEntry("SyncBrowse Button Visible", _syncBrowseButton)))
-        syncBrowseButton->show();
-    else
+        origin->button()->hide();
         syncBrowseButton->hide();
+    }
 }
 
 void ListPanel::slotUpdateTotals()
@@ -1249,4 +1257,11 @@ void ListPanel::getFocusCandidates(QVector<QWidget*> &widgets)
         widgets << view->widget();
     if(popup && popup->isVisible())
         widgets << popup;
+}
+
+void ListPanel::updateButtons()
+{
+    backButton->setEnabled(func->history->canGoBack());
+    forwardButton->setEnabled(func->history->canGoForward());
+    historyButton->setEnabled(func->history->count() > 1);
 }
