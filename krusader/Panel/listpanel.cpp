@@ -115,7 +115,8 @@ public:
             QToolButton(parent),  panel(panel), action(action) {
         setText(text);
         setAutoRaise(true);
-        setIcon(action->icon());
+        if(KConfigGroup(krConfig, "ListPanelButtons").readEntry("Icons", false) || text.isEmpty())
+            setIcon(action->icon());
         setToolTip(action->toolTip());
     }
 
@@ -170,11 +171,11 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
     ADD_WIDGET(status);
 
     // back button
-    backButton = new ActionButton(this, this, _actions->actHistoryBackward, "<");
+    backButton = new ActionButton(this, this, _actions->actHistoryBackward);
     ADD_WIDGET(backButton);
 
     // forward button
-    forwardButton = new ActionButton(this, this, _actions->actHistoryForward, ">");
+    forwardButton = new ActionButton(this, this, _actions->actHistoryForward);
     ADD_WIDGET(forwardButton);
 
 

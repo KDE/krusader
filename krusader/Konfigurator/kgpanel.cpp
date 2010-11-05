@@ -443,15 +443,16 @@ void KgPanel::setupPanelToolbarTab()
     KONFIGURATOR_CHECKBOX_PARAM panelToolbarActiveCheckbox[] =
         //   cfg_class    cfg_name                default        text                          restart tooltip
     {
+        {"ListPanelButtons", "Icons", false, i18n("Toobar buttons have icons"), true,   "" },
         {"Look&Feel",  "Media Button Visible",  true,    i18n("Show Media Button"), true ,  i18n("The media button will be visible.") },
-        {"Look&Feel",  "Back Button Visible",  false,      i18n("Show Back button"),     true ,  "Goes back in history." },
-        {"Look&Feel",  "Forward Button Visible",  false,   i18n("Show Forward button"),     true ,  "Goes forward in history." },
+        {"Look&Feel",  "Back Button Visible",  false,      i18n("Show Back Button"),     true ,  "Goes back in history." },
+        {"Look&Feel",  "Forward Button Visible",  false,   i18n("Show Forward Button"),     true ,  "Goes forward in history." },
         {"Look&Feel",  "History Button Visible",  true,    i18n("Show History Button"), true ,  i18n("The history button will be visible.") },
         {"Look&Feel",  "Bookmarks Button Visible",  true,    i18n("Show Bookmarks Button"), true ,  i18n("The bookmarks button will be visible.") },
         {"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n("Show Panel Toolbar"), true,   i18n("The panel toolbar will be visible.") },
     };
 
-    panelToolbarActive = createCheckBoxGroup(1, 0, panelToolbarActiveCheckbox, 6/*count*/, toolbarTab, PAGE_PANELTOOLBAR);
+    panelToolbarActive = createCheckBoxGroup(1, 0, panelToolbarActiveCheckbox, 7/*count*/, toolbarTab, PAGE_PANELTOOLBAR);
     connect(panelToolbarActive->find("Panel Toolbar visible"), SIGNAL(stateChanged(int)), this, SLOT(slotEnablePanelToolbar()));
 
     QGroupBox * panelToolbarGrp = createFrame(i18n("Visible Panel Toolbar buttons"), toolbarTab);
