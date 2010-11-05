@@ -108,6 +108,28 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "dirhistoryqueue.h"
 
 
+class ActionButton : public QToolButton
+{
+public:
+    ActionButton(QWidget *parent, ListPanel *panel, KAction *action, QString text = QString()) :
+            QToolButton(parent),  panel(panel), action(action) {
+        setText(text);
+        setAutoRaise(true);
+        setIcon(action->icon());
+        setToolTip(action->toolTip());
+    }
+
+protected:
+    virtual void mousePressEvent(QMouseEvent *) {
+        panel->slotFocusOnMe();
+        action->trigger();
+    }
+
+    ListPanel *panel;
+    KAction *action;
+};
+
+
 /////////////////////////////////////////////////////
 //      The list panel constructor       //
 /////////////////////////////////////////////////////
@@ -148,21 +170,11 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
     ADD_WIDGET(status);
 
     // back button
-    backButton = new QToolButton(this);
-    backButton->setAutoRaise(true);
-    backButton->setText("<");
-    backButton->setIcon(_actions->actHistoryBackward->icon());
-    backButton->setToolTip(_actions->actHistoryBackward->toolTip());
-    connect(backButton, SIGNAL(clicked()), func, SLOT(historyBackward()));
+    backButton = new ActionButton(this, this, _actions->actHistoryBackward, "<");
     ADD_WIDGET(backButton);
 
     // forward button
-    forwardButton = new QToolButton(this);
-    forwardButton->setAutoRaise(true);
-    forwardButton->setIcon(_actions->actHistoryForward->icon());
-    forwardButton->setText(">");
-    forwardButton->setToolTip(_actions->actHistoryForward->toolTip());
-    connect(forwardButton, SIGNAL(clicked()), func, SLOT(historyForward()));
+    forwardButton = new ActionButton(this, this, _actions->actHistoryForward, ">");
     ADD_WIDGET(forwardButton);
 
 
@@ -267,29 +279,14 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
     cdOtherButton->setToolTip(i18n("Equal"));
     connect(cdOtherButton, SIGNAL(clicked()), this, SLOT(slotFocusAndCDOther()));
 
-    cdUpButton = new QToolButton(toolbar);
-    cdUpButton->setAutoRaise(true);
-    cdUpButton->setFixedSize(20, origin->button() ->height());
-    cdUpButton->setText(i18n(".."));
+    cdUpButton = new ActionButton(toolbar, this, _actions->actDirUp, "..");
     toolbarLayout->addWidget(cdUpButton);
-    cdUpButton->setToolTip(i18n("Up"));
-    connect(cdUpButton, SIGNAL(clicked()), this, SLOT(slotFocusAndCDup()));
 
-    cdHomeButton = new QToolButton(toolbar);
-    cdHomeButton->setAutoRaise(true);
-    cdHomeButton->setFixedSize(20, origin->button() ->height());
-    cdHomeButton->setText(i18n("~"));
+    cdHomeButton = new ActionButton(toolbar, this, _actions->actHome, "~");
     toolbarLayout->addWidget(cdHomeButton);
-    cdHomeButton->setToolTip(i18n("Home"));
-    connect(cdHomeButton, SIGNAL(clicked()), this, SLOT(slotFocusAndCDHome()));
 
-    cdRootButton = new QToolButton(toolbar);
-    cdRootButton->setAutoRaise(true);
-    cdRootButton->setFixedSize(20, origin->button() ->height());
-    cdRootButton->setText(i18n("/"));
+    cdRootButton = new ActionButton(toolbar, this, _actions->actRoot, "/");
     toolbarLayout->addWidget(cdRootButton);
-    cdRootButton->setToolTip(i18n("Root"));
-    connect(cdRootButton, SIGNAL(clicked()), this, SLOT(slotFocusAndCDRoot()));
 
     // ... creates the button for sync-browsing
     syncBrowseButton = new SyncBrowseButton(toolbar);
@@ -577,24 +574,6 @@ void ListPanel::slotFocusAndCDOther()
 {
     slotFocusOnMe();
     func->openUrl(otherPanel()->func->files() ->vfs_getOrigin());
-}
-
-void ListPanel::slotFocusAndCDHome()
-{
-    slotFocusOnMe();
-    func->openUrl(QString("~"), QString());
-}
-
-void ListPanel::slotFocusAndCDup()
-{
-    slotFocusOnMe();
-    func->dirUp();
-}
-
-void ListPanel::slotFocusAndCDRoot()
-{
-    slotFocusOnMe();
-    func->openUrl(QString(ROOT_DIR), QString());
 }
 
 void ListPanel::compareDirs(bool otherPanelToo)

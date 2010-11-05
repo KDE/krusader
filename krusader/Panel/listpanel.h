@@ -136,9 +136,6 @@ public slots:
     void slotUpdateTotals();
     void slotStartUpdate();                   // internal
     void slotGetStats(const KUrl& url);            // get the disk-free stats
-    void slotFocusAndCDRoot();
-    void slotFocusAndCDHome();
-    void slotFocusAndCDup();
     void slotFocusAndCDOther();
     void togglePanelPopup();
     void panelActive(); // called when the panel becomes active
