@@ -443,7 +443,7 @@ void KgPanel::setupPanelToolbarTab()
     KONFIGURATOR_CHECKBOX_PARAM panelToolbarActiveCheckbox[] =
         //   cfg_class    cfg_name                default        text                          restart tooltip
     {
-        {"ListPanelButtons", "Icons", false, i18n("Toobar buttons have icons"), true,   "" },
+        {"ListPanelButtons", "Icons", false, i18n("Toolbar buttons have icons"), true,   "" },
         {"Look&Feel",  "Media Button Visible",  true,    i18n("Show Media Button"), true ,  i18n("The media button will be visible.") },
         {"Look&Feel",  "Back Button Visible",  false,      i18n("Show Back Button"),     true ,  "Goes back in history." },
         {"Look&Feel",  "Forward Button Visible",  false,   i18n("Show Forward Button"),     true ,  "Goes forward in history." },
