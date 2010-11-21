@@ -162,7 +162,7 @@ int main(int argc, char *argv[])
     aboutData.addCredit(ki18n("Mikolaj Machowski"), ki18n("Usability and QA"), "<mikmach@wp.pl>", 0);
     aboutData.addCredit(ki18n("Cristi Dumitrescu"), ki18n("QA, bug-hunting, patches and general help"), "cristid@chip.ro", 0);
     aboutData.addCredit(ki18n("Aurelien Gateau"), ki18n("patch for KViewer"), "aurelien.gateau@free.fr", 0);
-    aboutData.addCredit(ki18n("Milan Brabec"), ki18n("the first patch ever !"), "mbrabec@volny.cz", 0);
+    aboutData.addCredit(ki18n("Milan Brabec"), ki18n("the first patch ever!"), "mbrabec@volny.cz", 0);
     aboutData.addCredit(ki18n("Asim Husanovic"), ki18n("Bosnian translation"), "asim@megatel.ba", 0);
     aboutData.addCredit(ki18n("Doutor Zero"), ki18n("Brazilian Portuguese translation"), "doutor.zero@gmail.com", 0);
     aboutData.addCredit(ki18n("Milen Ivanov"), ki18n("Bulgarian translation"), "milen.ivanov@abv.bg", 0);
