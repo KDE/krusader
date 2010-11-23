@@ -80,53 +80,30 @@ void KgPanel::setupMiscTab()
     scrollArea->setWidgetResizable(true);
     tabWidget->addTab(scrollArea, i18n("General"));
 
-    QGridLayout *miscLayout = new QGridLayout(tab);
+    QVBoxLayout *miscLayout = new QVBoxLayout(tab);
     miscLayout->setSpacing(6);
     miscLayout->setContentsMargins(11, 11, 11, 11);
 
 // ---------------------------------------------------------------------------------------
-// -----------------------------  Quicksearch  -------------------------------------------
+// ------------------------------- Operation ---------------------------------------------
 // ---------------------------------------------------------------------------------------
-    QGroupBox *quicksearchGroup = createFrame(i18n("Quicksearch"), tab);
-    QGridLayout *quicksearchGrid = createGridLayout(quicksearchGroup);
+    QGroupBox *miscGrp = createFrame(i18n("Operation"), tab);
+    QGridLayout *miscGrid = createGridLayout(miscGrp);
 
-    KONFIGURATOR_CHECKBOX_PARAM quicksearch[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
-        {"Look&Feel", "New Style Quicksearch",  _NewStyleQuicksearch, i18n("New style quicksearch"), false,  i18n("Opens a quick search dialog box.") },
-        {"Look&Feel", "Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n("Case sensitive quicksearch"), false,  i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).") },
-        {"Look&Feel", "Up/Down Cancels Quicksearch",  false, i18n("Up/Down cancels Quicksearch"), false,  i18n("Pressing the Up/Down buttons cancels Quicksearch.") },
+    KONFIGURATOR_CHECKBOX_PARAM operation_settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
+        {"Look&Feel", "Mark Dirs",            _MarkDirs,          i18n("Autoselect directories"),   false,  i18n("When matching the select criteria, not only files will be selected, but also directories.") },
+        {"Look&Feel", "Rename Selects Extension", true,          i18n("Rename selects extension"),   false,  i18n("When renaming a file, the whole text is selected. If you want Total-Commander like renaming of just the name, without extension, uncheck this option.") },
     };
+    cbs = createCheckBoxGroup(2, 0, operation_settings, 2 /*count*/, miscGrp, PAGE_MISC);
+    miscGrid->addWidget(cbs, 0, 0);
 
-    quicksearchCheckboxes = createCheckBoxGroup(2, 0, quicksearch, 3 /*count*/, quicksearchGroup, PAGE_MISC);
-    quicksearchGrid->addWidget(quicksearchCheckboxes, 0, 0);
-    connect(quicksearchCheckboxes->find("New Style Quicksearch"), SIGNAL(stateChanged(int)), this, SLOT(slotDisable()));
-    slotDisable();
-
-    // -------------- Quicksearch position -----------------------
-
-    QHBoxLayout *hbox = new QHBoxLayout();
-
-    hbox->addWidget(new QLabel(i18n("Quicksearch position:"), quicksearchGroup));
-
-    KONFIGURATOR_NAME_VALUE_PAIR qsPositions[] = {{ i18n("Top"),                "top" },
-        { i18n("Bottom"),                    "bottom" }
-    };
-    KonfiguratorComboBox *cmb = createComboBox("Look&Feel", "Quicksearch Position",
-                            "bottom", qsPositions, 2, quicksearchGroup, true, false, PAGE_MISC);
-    hbox->addWidget(cmb);
-
-    hbox->addWidget(createSpacer(quicksearchGroup));
-
-    quicksearchGrid->addLayout(hbox, 1, 0);
-
-
-    miscLayout->addWidget(quicksearchGroup, 2, 0);
-
+    miscLayout->addWidget(miscGrp);
 
 // ---------------------------------------------------------------------------------------
 // ------------------------------ Tabs ---------------------------------------------------
 // ---------------------------------------------------------------------------------------
-    QGroupBox *miscGrp = createFrame(i18n("Tabs"), tab);
-    QGridLayout *miscGrid = createGridLayout(miscGrp);
+    miscGrp = createFrame(i18n("Tabs"), tab);
+    miscGrid = createGridLayout(miscGrp);
 
     KONFIGURATOR_CHECKBOX_PARAM tabbar_settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
         {"Look&Feel", "Fullpath Tab Names",   _FullPathTabNames,  i18n("Use full path tab names"), true ,  i18n("Display the full path in the folder tabs. By default only the last part of the path is displayed.") },
@@ -136,34 +113,57 @@ void KgPanel::setupMiscTab()
     miscGrid->addWidget(cbs, 0, 0);
 
 // -----------------  Tab Bar position ----------------------------------
-    hbox = new QHBoxLayout();
+    QHBoxLayout *hbox = new QHBoxLayout();
 
     hbox->addWidget(new QLabel(i18n("Tab Bar position:"), miscGrp));
 
-    cmb = createComboBox("Look&Feel", "Tab Bar Position",
-                                "bottom", qsPositions, 2, miscGrp, true, false, PAGE_MISC);
+    KONFIGURATOR_NAME_VALUE_PAIR positions[] = {{ i18n("Top"),                "top" },
+        { i18n("Bottom"),                    "bottom" }
+    };
+
+    KonfiguratorComboBox *cmb = createComboBox("Look&Feel", "Tab Bar Position",
+                                "bottom", positions, 2, miscGrp, true, false, PAGE_MISC);
 
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(miscGrp));
 
     miscGrid->addLayout(hbox, 1, 0);
 
-    miscLayout->addWidget(miscGrp, 1, 0);
+    miscLayout->addWidget(miscGrp);
 
 // ---------------------------------------------------------------------------------------
-// ------------------------------- Operation ---------------------------------------------
+// -----------------------------  Quicksearch  -------------------------------------------
 // ---------------------------------------------------------------------------------------
-    miscGrp = createFrame(i18n("Operation"), tab);
+    miscGrp = createFrame(i18n("Quicksearch"), tab);
     miscGrid = createGridLayout(miscGrp);
 
-    KONFIGURATOR_CHECKBOX_PARAM operation_settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
-        {"Look&Feel", "Mark Dirs",            _MarkDirs,          i18n("Autoselect directories"),   false,  i18n("When matching the select criteria, not only files will be selected, but also directories.") },
-        {"Look&Feel", "Rename Selects Extension", true,          i18n("Rename selects extension"),   false,  i18n("When renaming a file, the whole text is selected. If you want Total-Commander like renaming of just the name, without extension, uncheck this option.") },
+    KONFIGURATOR_CHECKBOX_PARAM quicksearch[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
+        {"Look&Feel", "New Style Quicksearch",  _NewStyleQuicksearch, i18n("New style quicksearch"), false,  i18n("Opens a quick search dialog box.") },
+        {"Look&Feel", "Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n("Case sensitive quicksearch"), false,  i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).") },
+        {"Look&Feel", "Up/Down Cancels Quicksearch",  false, i18n("Up/Down cancels Quicksearch"), false,  i18n("Pressing the Up/Down buttons cancels Quicksearch.") },
     };
-    cbs = createCheckBoxGroup(2, 0, operation_settings, 2 /*count*/, miscGrp, PAGE_MISC);
-    miscGrid->addWidget(cbs, 0, 0);
 
-    miscLayout->addWidget(miscGrp, 0, 0);
+    quicksearchCheckboxes = createCheckBoxGroup(2, 0, quicksearch, 3 /*count*/, miscGrp, PAGE_MISC);
+    miscGrid->addWidget(quicksearchCheckboxes, 0, 0);
+    connect(quicksearchCheckboxes->find("New Style Quicksearch"), SIGNAL(stateChanged(int)), this, SLOT(slotDisable()));
+    slotDisable();
+
+    // -------------- Quicksearch position -----------------------
+
+    hbox = new QHBoxLayout();
+
+    hbox->addWidget(new QLabel(i18n("Quicksearch position:"), miscGrp));
+
+    cmb = createComboBox("Look&Feel", "Quicksearch Position",
+                            "bottom", positions, 2, miscGrp, true, false, PAGE_MISC);
+    hbox->addWidget(cmb);
+
+    hbox->addWidget(createSpacer(miscGrp));
+
+    miscGrid->addLayout(hbox, 1, 0);
+
+
+    miscLayout->addWidget(miscGrp);
 
 // --------------------------------------------------------------------------------------------
 // ------------------------------- Status/Totalsbar settings ----------------------------------
@@ -180,7 +180,7 @@ void KgPanel::setupMiscTab()
                                           2 /*count*/, miscGrp, PAGE_MISC);
     miscGrid->addWidget(barSett, 1, 0, 1, 2);
 
-    miscLayout->addWidget(miscGrp, 3, 0);
+    miscLayout->addWidget(miscGrp);
 
 // --------------------------------------------------------------------------------------------
 // ------------------------------------ Layout ------------------------------------------------
@@ -249,7 +249,7 @@ void KgPanel::setupMiscTab()
                             "default", frameShadow, 4, miscGrp, true, false, PAGE_MISC);
     miscGrid->addWidget(cmb, 3, 1);
 
-    miscLayout->addWidget(miscGrp, 4, 0);
+    miscLayout->addWidget(miscGrp);
 }
 
 void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
