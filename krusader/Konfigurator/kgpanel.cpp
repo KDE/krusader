@@ -66,6 +66,7 @@ KgPanel::KgPanel(bool first, QWidget* parent) :
     setupPanelTab();
     setupPanelToolbarTab();
     setupMouseModeTab();
+    setupLayoutTab();
 }
 
 // ---------------------------------------------------------------------------------------
@@ -181,21 +182,30 @@ void KgPanel::setupMiscTab()
     miscGrid->addWidget(barSett, 1, 0, 1, 2);
 
     miscLayout->addWidget(miscGrp);
+}
 
 // --------------------------------------------------------------------------------------------
-// ------------------------------------ Layout ------------------------------------------------
+// ------------------------------------ Layout Tab --------------------------------------------
 // --------------------------------------------------------------------------------------------
-    miscGrp = createFrame(i18n("Layout"), tab);
-    miscGrid = createGridLayout(miscGrp);
+void KgPanel::setupLayoutTab()
+{
+    QScrollArea *scrollArea = new QScrollArea(tabWidget);
+    QWidget *tab = new QWidget(scrollArea);
+    scrollArea->setFrameStyle(QFrame::NoFrame);
+    scrollArea->setWidget(tab);
+    scrollArea->setWidgetResizable(true);
+    tabWidget->addTab(scrollArea, i18n("Layout"));
+
+    QGridLayout *grid = createGridLayout(tab);
 
     QStringList layoutNames = KrLayoutFactory::layoutNames();
     int numLayouts = layoutNames.count();
 
-    miscGrid->addWidget(createSpacer(miscGrp), 0, 2);
+    grid->addWidget(createSpacer(tab), 0, 2);
 
-    QLabel *l = new QLabel(i18n("Layout:"), miscGrp);
+    QLabel *l = new QLabel(i18n("Layout:"), tab);
     l->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    miscGrid->addWidget(l, 0, 0);
+    grid->addWidget(l, 0, 0);
     KONFIGURATOR_NAME_VALUE_PAIR *layouts = new KONFIGURATOR_NAME_VALUE_PAIR[numLayouts];
     for (int i = 0; i != numLayouts; i++) {
         QString text = layoutNames[i];
@@ -204,27 +214,27 @@ void KgPanel::setupMiscTab()
         layouts[ i ].text = text;
         layouts[ i ].value = layoutNames[i];
     }
-    cmb = createComboBox("PanelLayout", "Layout", "default",
-                         layouts, numLayouts, miscGrp, true, false, PAGE_MISC);
-    miscGrid->addWidget(cmb, 0, 1);
+    KonfiguratorComboBox *cmb = createComboBox("PanelLayout", "Layout", "default",
+                         layouts, numLayouts, tab, true, false, PAGE_MISC);
+    grid->addWidget(cmb, 0, 1);
     delete [] layouts;
 
-    l = new QLabel(i18n("Frame Color:"), miscGrp);
+    l = new QLabel(i18n("Frame Color:"), tab);
     l->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    miscGrid->addWidget(l, 1, 0);
+    grid->addWidget(l, 1, 0);
     KONFIGURATOR_NAME_VALUE_PAIR frameColor[] = {
         { i18n("Defined by Layout"), "default" },
         { i18n("None"), "none" },
         { i18n("Statusbar"), "Statusbar" }
     };
     cmb = createComboBox("PanelLayout", "FrameColor",
-                            "default", frameColor, 3, miscGrp, true, false, PAGE_MISC);
-    miscGrid->addWidget(cmb, 1, 1);
+                            "default", frameColor, 3, tab, true, false, PAGE_MISC);
+    grid->addWidget(cmb, 1, 1);
 
 
-    l = new QLabel(i18n("Frame Shape:"), miscGrp);
+    l = new QLabel(i18n("Frame Shape:"), tab);
     l->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    miscGrid->addWidget(l, 2, 0);
+    grid->addWidget(l, 2, 0);
     KONFIGURATOR_NAME_VALUE_PAIR frameShape[] = {
         { i18n("Defined by Layout"), "default" },
         { i18n("None"), "NoFrame" },
@@ -232,13 +242,13 @@ void KgPanel::setupMiscTab()
         { i18n("Panel"), "Panel" },
     };
     cmb = createComboBox("PanelLayout", "FrameShape",
-                            "default", frameShape, 4, miscGrp, true, false, PAGE_MISC);
-    miscGrid->addWidget(cmb, 2, 1);
+                            "default", frameShape, 4, tab, true, false, PAGE_MISC);
+    grid->addWidget(cmb, 2, 1);
 
 
-    l = new QLabel(i18n("Frame Shadow:"), miscGrp);
+    l = new QLabel(i18n("Frame Shadow:"), tab);
     l->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    miscGrid->addWidget(l, 3, 0);
+    grid->addWidget(l, 3, 0);
     KONFIGURATOR_NAME_VALUE_PAIR frameShadow[] = {
         { i18n("Defined by Layout"), "default" },
         { i18n("None"), "Plain" },
@@ -246,10 +256,8 @@ void KgPanel::setupMiscTab()
         { i18n("Sunken"), "Sunken" },
     };
     cmb = createComboBox("PanelLayout", "FrameShadow",
-                            "default", frameShadow, 4, miscGrp, true, false, PAGE_MISC);
-    miscGrid->addWidget(cmb, 3, 1);
-
-    miscLayout->addWidget(miscGrp);
+                            "default", frameShadow, 4, tab, true, false, PAGE_MISC);
+    grid->addWidget(cmb, 3, 1);
 }
 
 void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
