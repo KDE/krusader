@@ -66,7 +66,7 @@
 class vfs;
 class vfile;
 class KrView;
-class KUrlRequester;
+class UrlRequester;
 class KrQuickSearch;
 class QuickFilter;
 class DirHistoryButton;
@@ -207,7 +207,7 @@ protected:
     QPixmap currDragPix;
     QWidget *clientArea;
     QSplitter *splt;
-    KUrlRequester *origin;
+    UrlRequester *origin;
     KrQuickSearch *quickSearch;
     QuickFilter *quickFilter;
     QToolButton *backButton, *forwardButton;

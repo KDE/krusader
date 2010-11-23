@@ -56,7 +56,6 @@ A
 #include <kio/netaccess.h>
 #include <kio/jobuidelegate.h>
 #include <ktempdir.h>
-#include <kurlrequester.h>
 #include <kdesktopfile.h>
 #include <ktoggleaction.h>
 #include <kurlcompletion.h>
@@ -67,6 +66,7 @@ A
 #include "krerrordisplay.h"
 #include "listpanelactions.h"
 #include "quickfilter.h"
+#include "urlrequester.h"
 #include "../resources.h"
 #include "../krglobal.h"
 #include "../krslots.h"
@@ -337,7 +337,7 @@ void ListPanelFunc::doRefresh()
         else if(urlManuallyEntered) {
             panel->origin->setUrl(url.prettyUrl());
             if(panel == ACTIVE_PANEL)
-                panel->origin->setFocus();
+                panel->origin->edit();
         }
     }
 

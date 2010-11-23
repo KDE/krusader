@@ -64,7 +64,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kglobalsettings.h>
 #include <kdeversion.h>
 #include <kdebug.h>
-#include <kurlrequester.h>
 #include <kmountpoint.h>
 #include <kcolorscheme.h>
 
@@ -106,6 +105,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krlayoutfactory.h"
 #include "quickfilter.h"
 #include "dirhistoryqueue.h"
+#include "urlrequester.h"
 
 
 class ActionButton : public QToolButton
@@ -196,7 +196,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManag
 
     // origin input field
     QuickNavLineEdit *qnle = new QuickNavLineEdit(this);
-    origin = new KUrlRequester(qnle, this);
+    origin = new UrlRequester(qnle, this);
     origin->setWhatsThis(i18n("Use superb KDE file dialog to choose location."));
     origin->lineEdit() ->setUrlDropsEnabled(true);
     origin->lineEdit() ->installEventFilter(this);
@@ -648,6 +648,9 @@ void ListPanel::slotFocusOnMe()
 
     otherPanel()->view->prepareForPassive();
     view->prepareForActive();
+
+    origin->setActive(true);
+    otherPanel()->gui->origin->setActive(false);
 
     otherPanel()->gui->refreshColors();
     refreshColors();
@@ -1197,7 +1200,7 @@ void ListPanel::toggleSyncBrowse()
 void ListPanel::editLocation()
 {
     origin->lineEdit()->selectAll();
-    origin->setFocus();
+    origin->edit();
 }
 
 void ListPanel::saveSettings(KConfigGroup &cfg)

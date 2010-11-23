@@ -1,4 +1,5 @@
 set(Panel_SRCS
+    urlrequester.cpp
     kritemview.cpp
     quickfilter.cpp
     viewactions.cpp
