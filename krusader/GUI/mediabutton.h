@@ -50,6 +50,7 @@ public slots:
     void slotDeviceRemoved(const QString&);
     void showMenu();
     void slotTimeout();
+    void mountPointChanged(QString mp);
 
 signals:
     void openUrl(const KUrl&);

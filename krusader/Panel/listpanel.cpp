@@ -711,6 +711,8 @@ void ListPanel::slotStartUpdate()
 
 void ListPanel::slotGetStats(const KUrl& url)
 {
+    mediaButton->mountPointChanged(QString());
+
     if (!url.isLocalFile()) {
         if(func->files()->metaInformation().isEmpty())
             status->setText(i18n("No space information on non-local filesystems"));
@@ -770,6 +772,7 @@ void ListPanel::gotStats(const QString &mountPoint, quint64 kBSize,
     status->setText(stats);
 
     freeSpace->setText("    " + i18n("%1 free", KIO::convertSizeFromKiB(kBAvail)));
+    mediaButton->mountPointChanged(mountPoint);
 }
 
 void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
