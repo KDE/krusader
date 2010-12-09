@@ -66,7 +66,7 @@ public:
 };
 
 
-UrlRequester::UrlRequester(KLineEdit *le, QWidget *parent) : KUrlRequester(le, parent)
+UrlRequester::UrlRequester(KLineEdit *le, QWidget *parent) : KUrlRequester(le, parent), _path(0)
 {
     setMinimumHeight(sizeHint().height());
 
@@ -75,8 +75,7 @@ UrlRequester::UrlRequester(KLineEdit *le, QWidget *parent) : KUrlRequester(le, p
         _path->setCursor(Qt::IBeamCursor);
         le->hide();
         connect(le, SIGNAL(textChanged ( const QString & )), SLOT(slotTextChanged(const QString&)));
-    } else
-        _path = 0;
+    }
 }
 
 void UrlRequester::setActive(bool active) {
@@ -98,8 +97,8 @@ void UrlRequester::edit()
 bool UrlRequester::eventFilter(QObject * watched, QEvent * e)
 {
     if(_path && watched == lineEdit() && e->type() == QEvent::FocusOut) {
-        _path->show();
         lineEdit()->hide();
+        _path->show();
     }
 
     return KUrlRequester::eventFilter(watched, e);
