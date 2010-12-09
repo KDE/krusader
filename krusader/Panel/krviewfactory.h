@@ -83,7 +83,7 @@ public:
         KrViewInstance(id, name, desc, icon, shortcut) {}
 
     virtual KrView *create(QWidget *w, const bool &left, KConfig *cfg) {
-        return new T(w, left, cfg);
+        return new T(w, *this, left, cfg);
     }
 };
 

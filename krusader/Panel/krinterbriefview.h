@@ -31,7 +31,7 @@ class KrInterBriefView : public KrItemView
 {
     Q_OBJECT
 public:
-    KrInterBriefView(QWidget *parent, const bool &left, KConfig *cfg);
+    KrInterBriefView(QWidget *parent, KrViewInstance &instance, const bool &left, KConfig *cfg);
     virtual ~KrInterBriefView();
 
     // ---- reimplemented from QAbstractItemView ----

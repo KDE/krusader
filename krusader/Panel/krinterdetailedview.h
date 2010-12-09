@@ -36,11 +36,10 @@ class KrMouseHandler;
 
 class KrInterDetailedView : public QTreeView, public KrInterView
 {
-    friend class KrInterDetailedViewItem;
     Q_OBJECT
 
 public:
-    KrInterDetailedView(QWidget *parent, const bool &left, KConfig *cfg);
+    KrInterDetailedView(QWidget *parent, KrViewInstance &instance, const bool &left, KConfig *cfg);
     virtual ~KrInterDetailedView();
 
     virtual void updateView();
@@ -86,7 +85,7 @@ protected:
     virtual QRect itemRect(const vfile *vf);
 
     virtual void showContextMenu(const QPoint & p);
-    void recalculateColumnSizes();
+    virtual void recalculateColumnSizes();
 
 private:
     QFont _viewFont;

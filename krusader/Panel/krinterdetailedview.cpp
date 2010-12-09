@@ -47,9 +47,9 @@ KrViewInstanceImpl<KrInterDetailedView> interDetailedView(INTERVIEW_ID,"KrInterD
         i18n("&Detailed View"), "view-list-details", Qt::ALT + Qt::SHIFT + Qt::Key_D);
 // end of register code
 
-KrInterDetailedView::KrInterDetailedView(QWidget *parent, const bool &left, KConfig *cfg):
+KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instance, const bool &left, KConfig *cfg):
         QTreeView(parent),
-        KrInterView(interDetailedView, left, cfg, this),
+        KrInterView(instance, left, cfg, this),
         _autoResizeColumns(true)
 {
     connect(_mouseHandler, SIGNAL(renameCurrentItem()), this, SLOT(renameCurrentItem()));
@@ -322,7 +322,7 @@ void KrInterDetailedView::recalculateColumnSizes()
     if(!_autoResizeColumns)
         return;
     int sum = 0;
-    for (int i = 0; i != KrViewProperties::MAX_COLUMNS; i++) {
+    for (int i = 0; i != _model->columnCount(); i++) {
         if (!isColumnHidden(i))
             sum += header()->sectionSize(i);
     }
