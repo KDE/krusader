@@ -67,8 +67,7 @@
         <para>The 
         <emphasis role="bold">Status Bar</emphasis> shows the
         properties of the current file (that is being) in focus.
-        You can use "drag and drop" to drop a &URL;
-        "into" the Status Bar.</para>
+        </para>
       </listitem>
     </itemizedlist>
   </sect1>
@@ -155,10 +154,8 @@
       <para>Below the 
       <guibutton>Main Toolbar</guibutton> there is a 
       <guibutton>Location Toolbar</guibutton> for each panel. It
-      shows the path the panel is currently pointing to. If the
-      selected path is too long, it will be automatically shortened
-      and an ellipsis "..." will replace the omitted part of the
-      path name. When entering archives the path will be displayed
+      shows the path the panel is currently pointing to. 
+      When entering archives the path will be displayed
       in the following format: "archive
       name:/directory/archive_filename/the directory inside the
       archive". This format makes the paths uniform and easy to
@@ -335,7 +332,7 @@
       use most of the time. This panel shows the contents of one
       directory which can be local (part of your mounted file
       systems, either a native file or the files inside an archive)
-      or remote files (accessed via &FTP; or Samba).
+      or remote files (accessed via &FTP;, NFS or Samba).
       There are two modes: <link linkend="view-menu">Detailed View</link> that shows the file names, 
       file size, creation date and time and their attributes. 
       And <link linkend="view-menu">Brief View</link> that shows only the file names,
@@ -454,7 +451,7 @@
       <link linkend="konfig-looknfeel">Konfigurator Look &amp; Feel page</link> to change the default
       configuration to meet your individual needs.</para>
       <para>Some useful 
-      <guilabel>List panel</guilabel><link linkend="key_bindings">Key-Bindings</link>:</para> 
+      <guilabel>List panel</guilabel> <link linkend="key_bindings">Key-Bindings</link>:</para> 
       <itemizedlist>
         <listitem>
           <para>
@@ -465,7 +462,7 @@
         <listitem>
           <para>Focus a file or directory on the left panel, press 
           <keycombo action="simul">&Ctrl;
-          <keycap>Left arrow</keycap></keycombo> and the right panel
+          <keycap>Right arrow</keycap></keycombo> and the right panel
           changes: 
           <itemizedlist>
             <listitem>
@@ -481,7 +478,7 @@
         <listitem>
           <para>For the right panel: press 
           <keycombo action="simul">&Ctrl;
-          <keycap>Right arrow</keycap></keycombo> and the left panel
+          <keycap>Left arrow</keycap></keycombo> and the left panel
           will change.</para>
         </listitem>
       </itemizedlist>
