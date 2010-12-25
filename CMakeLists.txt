@@ -2,8 +2,8 @@ project(krusader)
 
 INCLUDE(CPack)
 
-set(VERSION "2.2.0-beta1" )
-set(RELEASE_NAME "DeKade")
+set(VERSION "2.3.0-beta1" )
+set(RELEASE_NAME "New Horizons")
 
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
