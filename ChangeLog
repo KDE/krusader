@@ -1,3 +1,6 @@
+2.3.0-beta1 "New Horizons"
+==========================
+
     ADDED: option: Panel > General > Flat Origin Bar
     ADDED: option: Panel > Buttons > Toolbar buttons have icons
     ADDED: listpanel buttons: Back, Forward
@@ -12,49 +15,59 @@
     ADDED: option: Startup > User Interface > Update default panel settings
     ADDED: dbus interface: org.krusader.Instance.openUrl(QString url)
     ADDED: search dialog > feed to listbox:
-           search parameters are saved as metadata in the virtual fs
-           and displayed in panel's statusbar
+           search parameters are saved as metadata in the virtual fs and
+           displayed in panel's statusbar
     ADDED: filter option: Apply filter to directories
     ADDED: action: view > Apply settings to other tabs
-    ADDED: action: view > Save settings as default (for new instances of this view type)
+    ADDED: action: view > Save settings as default (for new instances of this
+           view type)
     ADDED: option: Panel > View > Locale aware sorting
 
-    CHANGED: Media Button shows Solid Icon for currently opened device
-    CHANGED: Removed options Panel > General > Status/Totalsbar >
-             Statusbar Frame / Statusbar Background / Show Statusbar/ Show Totalsbar.
-             They are customizable in layout.xml.
-    CHANGED: Use KrView for displaying search results,
-             which is much faster than the previously used QTreeWidget.
-    CHANGED: Removed default shortcuts for the Left/Right Bookmarks actions,
-             as they conflict with the Back/Forward actions.
-    CHANGED: After failed refresh, only focus location bar if the url was entered manually.
-    CHANGED: Removed default shortcut for 'Cancel Refresh of View'
-             as it conflicts with the 'Set Focus to the Panel' action.
-             Unless a shortcut is assigned manually,
-             ESC cancels the refresh when the panel is focused.
-    CHANGED: Konfigurator: "apply" takes effect immediately.
-    CHANGED: url commandline argument: if there is already a tab open with that url,
-             it is activated, otherwise a new tab is opened in the active panel
+  CHANGED: Media Button shows Solid Icon for currently opened device
+  CHANGED: Removed options Panel > General > Status/Totalsbar >
+           Statusbar Frame / Statusbar Background / Show Statusbar /
+           Show Totalsbar. They are customizable in layout.xml.
+  CHANGED: Use KrView for displaying search results,
+           which is much faster than the previously used QTreeWidget.
+  CHANGED: Removed default shortcuts for the Left/Right Bookmarks actions,
+           as they conflict with the Back/Forward actions.
+  CHANGED: After failed refresh, only focus location bar if the url was entered
+           manually.
+  CHANGED: Removed default shortcut for 'Cancel Refresh of View' as it conflicts
+           with the 'Set Focus to the Panel' action. Unless a shortcut is
+           assigned manually, ESC cancels the refresh when the panel is focused.
+  CHANGED: Konfigurator: "apply" takes effect immediately.
+  CHANGED: Url commandline argument: if there is already a tab open with that
+           url, it is activated, otherwise a new tab is opened in the active
+           panel.
 
-    FIXED: When trying to close Konfigurator but canceling the "Apply changes ?" dialog,
-           Konfigurator it is closed anyway.
+    FIXED: When trying to close Konfigurator but canceling the
+           "Apply changes ?" dialog, Konfigurator it is closed anyway.
     FIXED: [ 3073211 ] Wrong quoting when opening file in external editor
-    FIXED: [ 3059457 ] new panel uses default columns instead of configured ones
-    FIXED: [ 2898151 ] also in view-mode (F3) possible to edit, thanks to Kevin Kofler
+    FIXED: [ 3059457 ] new panel uses default columns instead of configured
+           ones
+    FIXED: [ 2898151 ] also in view-mode (F3) possible to edit, thanks to Kevin
+           Kofler
     FIXED: panelpopup viewer: error messageboxes when file cannot be displayed
-    FIXED: [ 2981303 ] Viewer/editor unused submenu Game, thanks to Kevin Kofler
+    FIXED: [ 2981303 ] Viewer/editor unused submenu Game, thanks to Kevin
+           Kofler
     FIXED: regression making single-click mode unusable, thanks to Kevin Kofler
-    FIXED: [ 3003338 ] Rename selects extension regression, thanks to Kevin Kofler
-    FIXED: [ 2980201 ] KrViewer doesn't handle binary files well (this fix works only for local files !)
+    FIXED: [ 3003338 ] Rename selects extension regression, thanks to Kevin
+           Kofler
+    FIXED: [ 2980201 ] KrViewer doesn't handle binary files well (this fix
+           works only for local files !)
     FIXED: "sort by" useractions change sorting direction randomly
     FIXED: [ 3028599 ] Sorting criteria is not saved at exit
     FIXED: [ 2949337 ] splitter ui bug
     FIXED: [ 2843749 ] view item is deselected when updated
     FIXED: brief view: mouse wheel doesn't work
-    FIXED: brief view: mouse selection doesn't work in columns > columns per page
+    FIXED: brief view: mouse selection doesn't work in columns > columns per
+           page
     FIXED: selecting a bigger number of files is very slow
-    FIXED: [ 2969403 ] KrViewer shows old file content if file is overwritten, thanks to Kevin Kofler
-    FIXED: [ 246424 (bugs.kde.org) ] krusader tries to load WHOLE big file into memory on F3
+    FIXED: [ 2969403 ] KrViewer shows old file content if file is overwritten,
+           thanks to Kevin Kofler
+    FIXED: [ 246424 (bugs.kde.org) ] krusader tries to load WHOLE big file into
+           memory on F3
     FIXED: [ 2154760 ] Krusader erases files when opening for editing
     FIXED: changing sort direction is slow
     FIXED: [ 3015094 ] krusader doesn't exit at closing the application
@@ -63,6 +76,7 @@
     FIXED: 3 valgrind fixes by Alexander Stein
     FIXED: viewer would show empty menus, thanks to CtHx
     FIXED: crash when changing view type
+
 
 2.2.0-beta1 "DeKade"
 ====================
@@ -129,6 +143,7 @@
     FIXED: deadlock when trying to display error message after failed mount
     FIXED: [ 2858133 ] wrong background color in listviews
 
+
 2.1.0-beta1 "Rusty Clutch"
 ==========================
 
@@ -142,7 +157,8 @@
   CHANGED: the packer/unpacker/archive tester are job based now
   CHANGED: the old views were replaced by the interviews
 
-    FIXED: [ 2857663 ] deadlock when trying to display error message after failed unmount
+    FIXED: [ 2857663 ] deadlock when trying to display error message after
+           failed unmount
     FIXED: problem with autorefresh in the new interviews
     FIXED: [ 2609505 ] problem with directory refresh
     FIXED: [ 2793916 ] KHistoryComboBox content can change the window width
@@ -150,6 +166,7 @@
     FIXED: panels sometimes lose focus
     FIXED: directory compare modes don't work
     FIXED: [ 2609483 ] unpacking to directories with international characters
+
 
 2.0.0 "Mars Pathfinder"
 =======================
@@ -173,13 +190,16 @@
     FIXED: MountMan saves its last size
     FIXED: [ 1535954 ] krviewer hex view endian dependent
     FIXED: [ 1550740 ] Wrong placeholder replacement
-    FIXED: [ 1988452 ] "Open the popup panel" button hides files from the file pane
-    FIXED: [ 1965317 ] Return to panel when pressing Escape in kcmdline/panel path
+    FIXED: [ 1988452 ] "Open the popup panel" button hides files from the file
+           pane
+    FIXED: [ 1965317 ] Return to panel when pressing Escape in kcmdline/panel
+           path
     FIXED: [ 2265338 ] Copy from rar files broken
     FIXED: [ 2484665 ] Crash when deleting modified user action
     FIXED: MountMan: mount/umount/eject uses Solid if possible
     FIXED: [ 2381505 ] Ctrl+Shift+D in editor (KWrite) not work
-    FIXED: Krusader fails to edit files containing international chars with Shift+F4
+    FIXED: Krusader fails to edit files containing international chars with
+           Shift+F4
 
   CHANGED: Changed default Alt+letter shortcuts because of [ 2564684 ].
            See the details in SVNNEWS
@@ -187,24 +207,30 @@
      ARCH: view properties for detailed/brief/interviews are merged into one
      
      I18N: Updated Italian translation (thanks Giuseppe Bordoni)
-     I18N: Updated French translation (thanks to Henry-Nicolas Tourneur and Stanislas Zeller)
+     I18N: Updated French translation (thanks to Henry-Nicolas Tourneur and
+           Stanislas Zeller)
      I18N: Updated Catalan translation (thanks to Joaquim Perez)
-     I18N: Updated Slovak translation (thanks to Zdenko Podobný and Ondrej Pačay "Yogi" )
+     I18N: Updated Slovak translation (thanks to Zdenko Podobný and Ondrej
+           Pačay "Yogi" )
      I18N: Updated Hungarian translation
      I18N: Updated Slovenian translation
      I18N: Updated Swedish translation (thanks Peter Landgren)
 
   REMOVED: CVSNEWS, SVNNEWS is the successor (extension to this ChangeLog)
 
+
 2.0.0-beta2 "Space Odyssey"
 ===========================
 
     ADDED: shortcuts: copy by queue (SHIFT+F5), move by queue (SHIFT+F6)
-    ADDED: Krusader support for tar.lzma (KDE's tar protocol doesn't support it yet)
-    ADDED: Possibility to choose one of five sorting methods (thanks to Jacek Jaworski)
+    ADDED: Krusader support for tar.lzma (KDE's tar protocol doesn't support it
+           yet)
+    ADDED: Possibility to choose one of five sorting methods (thanks to Jacek
+           Jaworski)
     ADDED: compare by content for search / locate
     ADDED: New mouse selection mode
-    ADDED: Evolution can be used as the default e-mail sender (thanks to Agustin Henze)
+    ADDED: Evolution can be used as the default e-mail sender (thanks to
+           Agustin Henze)
     ADDED: enqueue operation for copy / move
     ADDED: Konfigurator mouse selection mode: Possibility to select a predefined
            mode and change a detail. 
@@ -223,9 +249,11 @@
     FIXED: [ 2219012 ] user action icons are not saved
     FIXED: [ 2116505 ] Total Commander selection behavior broken
     FIXED: [ 2227421 ] Mount cdrom no longer needs root permission
-    FIXED: Krusader steps into wrong directory, when a file changes in an inactive tab
-    FIXED: When neither "kompare", "kdiff3" nor "xxdiff" in PATH, the program set in
-           "diff utility" was ignored. Under Windows, look for them with ".exe" suffix
+    FIXED: Krusader steps into wrong directory, when a file changes in an
+           inactive tab
+    FIXED: When neither "kompare", "kdiff3" nor "xxdiff" in PATH, the program
+           set in "diff utility" was ignored. Under Windows, look for them with
+           ".exe" suffix
     FIXED: [ 2243628 ] Synchronizer overlooks files
     FIXED: [ 2202522 ] newly created hidden files are shown for a short time
     FIXED: calc space doesn't work on remote file systems
@@ -256,8 +284,8 @@
     FIXED: Viewing directories are disabled to prevent KDE 4 crash
     FIXED: [Debian: 492955] useraction's availability section was dumped to
            "command" element. (thanks Iván Forcada Atienza)
-    FIXED: Do not duplicate menu entries in UserAction menu while still not crashing when
-           configuring toolbars.
+    FIXED: Do not duplicate menu entries in UserAction menu while still not
+           crashing when configuring toolbars.
 
      I18N: Added Korean translation (thanks Seongnam Jee)
      I18N: Updated Bulgarian translation (thanks Milen Ivanov)
