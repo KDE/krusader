@@ -522,7 +522,7 @@ bool ActionProperty::validProperties()
         if (krApp->actionCollection()->action(leDistinctName->text())) {
             KMessageBox::error(this,
                                i18n("There already is an action with this name\n"
-                                    "If you do not have such an useraction the name is used by Krusader for an internal action")
+                                    "If you do not have such a useraction the name is used by Krusader for an internal action")
                               );
             leDistinctName->setFocus();
             return false;
