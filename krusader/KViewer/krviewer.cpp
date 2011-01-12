@@ -72,6 +72,7 @@ KrViewer::KrViewer(QWidget *parent) :
             this, SLOT(tabCloseRequest(QWidget*)));
 
     tabBar.setDocumentMode(true);
+    tabBar.setMovable(true);
     tabBar.setTabReorderingEnabled(false);
     tabBar.setAutomaticResizeTabs(true);
 // "edit"
