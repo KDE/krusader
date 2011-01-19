@@ -162,7 +162,7 @@ void Splitter::splitDataSend(KIO::Job *, QByteArray &byteArray)
 {
     int bufferLen = transferArray.size();
 
-    if (noValidWriteJob) {     /* splitted file should be closed ? */
+    if (noValidWriteJob) {     /* splited file should be closed ? */
         byteArray = QByteArray();  /* giving empty buffer which indicates closing */
     } else if (outputFileSize + bufferLen > splitSize) { /* maximum length reached? */
         int shortLen = splitSize - outputFileSize;

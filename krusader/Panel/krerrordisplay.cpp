@@ -28,9 +28,9 @@ A
 *                                                                         *
 ***************************************************************************/
 
+#include "krerrordisplay.h"
 #include <stdio.h>
 
-#include "krerrordisplay.h"
 #include "krcolorcache.h"
 
 

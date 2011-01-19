@@ -106,5 +106,5 @@ bool UrlRequester::eventFilter(QObject * watched, QEvent * e)
 
 void UrlRequester::slotTextChanged(const QString &text) {
     if(_path)
-        _path->setText(" " + text + " ");
+        _path->setText(' ' + text + ' ');
 }

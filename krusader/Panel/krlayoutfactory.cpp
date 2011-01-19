@@ -191,7 +191,7 @@ QWidget *KrLayoutFactory::createFrame(QDomElement e, QWidget *parent)
     if(color == "default")
         color = e.attribute("color");
     else if(color == "none")
-        color = QString();
+        color.clear();
 
     int shadow = -1, shape = -1;
 

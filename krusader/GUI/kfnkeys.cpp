@@ -97,7 +97,7 @@ KFnKeys::KFnKeys(QWidget *parent, FileManagerWindow *mainWindow) :
 void KFnKeys::updateShortcuts()
 {
 #define UPDATE(TARGET, TEXT)\
-    TARGET->setText(mainWindow->listPanelActions()->act##TARGET->shortcut().toString() + " " + TEXT);
+    TARGET->setText(mainWindow->listPanelActions()->act##TARGET->shortcut().toString() + ' ' + TEXT);
 
     UPDATE(F2, i18n("Term"));
     UPDATE(F3, i18n("View"));

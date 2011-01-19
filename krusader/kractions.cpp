@@ -28,6 +28,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 *                                                                         *
 ***************************************************************************/
 
+#include "kractions.h"
 #include <klocale.h>
 #include <kactioncollection.h>
 #include <kaction.h>
@@ -35,7 +36,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <ktoolbarpopupaction.h>
 #include <QMenu>
 
-#include "kractions.h"
 #include "defaults.h"
 #include "krusader.h"
 #include "krusaderview.h"

@@ -408,7 +408,7 @@ void KgPanel::setupPanelTab()
     const int viewsSize = views.size();
     KONFIGURATOR_NAME_VALUE_PAIR *panelTypes = new KONFIGURATOR_NAME_VALUE_PAIR[ viewsSize ];
 
-    QString defType = "0";
+    QString defType = '0';
 
     for (int i = 0; i != viewsSize; i++) {
         KrViewInstance * inst = views[ i ];

@@ -127,7 +127,7 @@ private:
 
 KrSearchDialog *KrSearchDialog::SearchDialog = 0;
 
-QString KrSearchDialog::lastSearchText = "*";
+QString KrSearchDialog::lastSearchText = '*';
 int KrSearchDialog::lastSearchType = 0;
 bool KrSearchDialog::lastSearchForCase = false;
 bool KrSearchDialog::lastRemoteContentSearch = false;
@@ -390,9 +390,9 @@ void KrSearchDialog::resizeEvent(QResizeEvent *e)
 void KrSearchDialog::found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString foundText)
 {
     where = where.replace(QRegExp("\\\\"), "#"); //FIXME ? why is that done ?
-    QString path =  where.endsWith("/") ? (where + what) : (where + "/" + what);
-    if(perm[0] == 'd' && !path.endsWith("/")) // file is a directory
-        path += "/";
+    QString path =  where.endsWith('/') ? (where + what) : (where + "/" + what);
+    if(perm[0] == 'd' && !path.endsWith('/')) // file is a directory
+        path += '/';
     result->addItem(path, size, mtime, perm, foundText);
     foundLabel->setText(i18n("Found %1 matches.", result->numVfiles()));
 }
@@ -482,7 +482,7 @@ void KrSearchDialog::executed(const QString &name)
 {
     QString path = name;
     QString fileName;
-    if(!name.endsWith("/")) {
+    if(!name.endsWith('/')) {
         int idx = name.lastIndexOf("/");
         fileName = name.mid(idx+1);
         path = name.left(idx);

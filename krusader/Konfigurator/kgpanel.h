@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef KGLOOKFEEL_H
-#define KGLOOKFEEL_H
+#ifndef KGPANEL_H
+#define KGPANEL_H
 
 #include "konfiguratorpage.h"
 
@@ -70,4 +70,4 @@ private:
     QTabWidget *tabWidget;
 };
 
-#endif /* __KGLOOKFEEL_H__ */
+#endif /* __KGPANEL_H__ */

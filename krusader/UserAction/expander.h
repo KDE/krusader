@@ -249,8 +249,8 @@ protected:
     /**
      * This function searches for "@EACH"-marks to splitt the string in a list for each %_Each%-item
      *
-     * @param stringToSplit the string which should be splitted
-     * @return the splitted list
+     * @param stringToSplit the string which should be splited
+     * @return the splited list
      */
     static QStringList splitEach(TagString stringToSplit);
     /**
