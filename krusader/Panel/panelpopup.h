@@ -45,7 +45,6 @@ class DiskUsageViewer;
 class KrFileTreeView;
 class KDirModel;
 class KDirSortFilterProxyModel;
-class QMimeData;
 class QPoint;
 class vfile;
 class FileManagerWindow;

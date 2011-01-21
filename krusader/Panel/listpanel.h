@@ -64,7 +64,6 @@
 #define PROP_PREVIEWS                     4
 
 class vfs;
-class vfile;
 class KrView;
 class UrlRequester;
 class KrQuickSearch;
@@ -74,7 +73,6 @@ class MediaButton;
 class PanelPopup;
 class SyncBrowseButton;
 class KrBookmarkButton;
-class KPushButton;
 class ListPanelFunc;
 class QSplitter;
 class KDiskFreeSpace;

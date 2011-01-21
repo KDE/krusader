@@ -31,8 +31,6 @@ class KLineEdit;
 class QToolButton;
 class QCheckBox;
 class KComboBox;
-class KrBookmarkButton;
-class KUrl;
 class KIntSpinBox;
 
 

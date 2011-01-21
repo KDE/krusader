@@ -22,7 +22,6 @@
 #include "ui_actionproperty.h"
 
 class KrAction;
-class KShortcut;
 
 /**
  * Use this widget where ever you need to manipulate a UserAction

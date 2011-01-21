@@ -205,7 +205,6 @@ private:
 
 class Directory;
 class QString;
-class KUrl;
 
 class File
 {

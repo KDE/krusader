@@ -26,13 +26,9 @@
 
 #include "krinterview.h"
 
-class KrVfsModel;
-class KrInterDetailedViewItem;
 class QMouseEvent;
 class QKeyEvent;
 class QDragEnterEvent;
-class QContextMenuEvent;
-class KrMouseHandler;
 
 class KrInterDetailedView : public QTreeView, public KrInterView
 {

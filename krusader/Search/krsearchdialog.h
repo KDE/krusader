@@ -41,7 +41,6 @@
 #include "krsearchmod.h"
 
 
-class QGridLayout;
 class QLabel;
 class SearchResultContainer;
 class KrView;

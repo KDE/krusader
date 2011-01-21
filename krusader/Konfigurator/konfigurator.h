@@ -39,7 +39,6 @@
 #include <kpagedialog.h>
 #include <QtCore/QTimer>
 
-class QLineEdit;
 class QString;
 class QResizeEvent;
 class QCloseEvent;

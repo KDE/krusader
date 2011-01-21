@@ -38,7 +38,6 @@
 #include <QGridLayout>
 
 class FileManagerWindow;
-class ListPanelActions;
 
 // Function Keys widget
 ///////////////////////

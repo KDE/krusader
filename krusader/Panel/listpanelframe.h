@@ -23,7 +23,6 @@
 #include <kconfiggroup.h>
 
 class QDragEnterEvent;
-class QMouseEvent;
 class QDropEvent;
 
 class ListPanelFrame : public QFrame

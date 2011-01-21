@@ -33,9 +33,6 @@
 
 #include "konfiguratorpage.h"
 
-class KPushButton;
-class ActionProperty;
-class UserActionListView;
 
 class KgUserActions : public KonfiguratorPage
 {

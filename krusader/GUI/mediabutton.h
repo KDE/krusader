@@ -31,7 +31,6 @@
 #include <QtCore/QTimer>
 
 class QMenu;
-class KMountPoint;
 class KIcon;
 
 class MediaButton : public QToolButton

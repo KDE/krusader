@@ -81,7 +81,6 @@ private:
 class KrTreeWidget;
 class KTreeWidgetSearchLine;
 class QModelIndex;
-class QTreeWidgetItem;
 
 class PopularUrlsDlg: public KDialog
 {

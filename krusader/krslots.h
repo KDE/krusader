@@ -39,7 +39,6 @@
 #include "krglobal.h"
 
 class KrMainWindow;
-class ListPanel;
 class KrViewItem;
 class KUrl;
 

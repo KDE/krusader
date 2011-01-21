@@ -31,7 +31,6 @@
 
 #include "krviewer.h"
 
-class KTemporaryFile;
 
 class PanelViewerBase: public QStackedWidget
 {

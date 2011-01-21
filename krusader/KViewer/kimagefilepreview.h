@@ -21,12 +21,9 @@
 #include <kpreviewwidgetbase.h>
 #include <kio/previewjob.h>
 
-class QCheckBox;
-class QPushButton;
 class QLabel;
 class QTimer;
 
-class KFileDialog;
 class KFileItem;
 
 class KrusaderImageFilePreview : public KPreviewWidgetBase

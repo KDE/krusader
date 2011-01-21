@@ -59,15 +59,9 @@ class KrJS;
 
 class KrusaderStatus;
 class KRPleaseWaitHandler;
-class KrusaderView;
-class KRslots;
-class KIconLoader;
 class KSystemTrayIcon;
 class UserMenu;
 class UserAction;
-class Expander;
-class KMountMan;
-class KrBookmarkHandler;
 class PopularUrls;
 class QueueManager;
 class ViewActions;
