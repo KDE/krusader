@@ -112,8 +112,8 @@
       configured from the 
       <guimenuitem>Configure Toolbars</guimenuitem> in the
       <link linkend="settings-menu">Settings menu</link> or the 
-      <guilabel>Toolbar</guilabel> tab in the
-      <link linkend="konfig-looknfeel">Konfigurator Look &amp; Feel page</link>. Since various commands
+      <guilabel>Buttons</guilabel> tab in the
+      <link linkend="konfig-panel">Konfigurator Panel page</link>. Since various commands
       and options in &krusader; are context-dependent,
       some commands are not always available. The icon of an
       inappropriate or inactive action will be deactivated
@@ -157,7 +157,7 @@
       shows the path the panel is currently pointing to. 
       When entering archives the path will be displayed
       in the following format: "archive
-      name:/directory/archive_filename/the directory inside the
+      type:/directory/archive_filename/the directory inside the
       archive". This format makes the paths uniform and easy to
       read. The 
       <guibutton>Location Toolbar</guibutton> supports also
@@ -178,7 +178,7 @@
           <userinput>
             <command>settings:/</command>
           </userinput>will browse and open entries of the 
-          <application>KDE control center.</application></para>
+          <application>System Settings</application>.</para>
         </listitem>
         <listitem>
           <para>
@@ -193,7 +193,7 @@
           <para>
           <userinput>
             <command>trash:/</command>
-          </userinput>opens &kde; is trash.</para>
+          </userinput>opens &kde;'s trash.</para>
         </listitem>
         <listitem>
           <para>
@@ -230,7 +230,7 @@
         <secondary>Panel Toolbar</secondary>
       </indexterm>
       <para>Each panel has a 
-      <link linkend="konfig-looknfeel-ptoolbar">configurable Panel
+      <link linkend="konfig-panel-buttons">configurable Panel
       Toolbar</link>. The complete Panel Toolbar or specific
       buttons can be made visible or be hidden.</para> 
       <itemizedlist>
@@ -357,7 +357,7 @@
             <guilabel>Information Label</guilabel>
           </emphasis>: shows how much free space is physically
           available on the file system, the file system capacity
-          and where the path is mounted. If the information is not
+          and where the filesystem is mounted. If the information is not
           available (most often in the case of remote file system)
           a message will be displayed with the reason for
           unavailability instead of the information.</para>
@@ -395,8 +395,7 @@
           Predefined <link linkend="konfig-general">Atomic extensions</link> like 
           <filename>tar.gz</filename> are shown as one part in the 
           <guilabel>Ext</guilabel> Column. More 
-          <link linkend="konfig-looknfeel-panel">optional Column
-          Headers</link> are available with the Right Mouse Button.
+          optional Column Headers are available with the Right Mouse Button.
           The width 
           <guilabel>Column Headers</guilabel> can be changed with
           the mouse by single clicking and moving the divider line
@@ -429,18 +428,17 @@
           the 
           <emphasis>
             <guilabel>Totals Label</guilabel>
-          </emphasis>at the bottom of the panel, which displays how
-          many files you have selected (and how much total disk space
-          they use) as well as the total file and disk usage of the
-          current directory (as opposed to the information label
-          that displays information for the whole file system). If
-          a directory contains a lot of subdirectories, it may not
-          be possible to drop the &URL; onto the panel (on
-          which only directories are visible), but the
-          &URL; can be dropped onto the "Status Bar" or
-          "Totals Label" instead. When a 
-          <link linkend="view-menu">custom filter</link> is set, it
-          will show the setting, example: [*.cpp].</para>
+          </emphasis>: selecting or
+          deselecting files will change the <emphasis> <guilabel>Totals Label</guilabel>
+          </emphasis>at the bottom of the panel, which displays how many files you have
+          selected (and how much total disk space they use) as well as the total file and
+          disk usage of the current directory (as opposed to the information label that
+          displays information for the whole file system). If a directory contains a lot
+          of subdirectories, it may not be possible to drop the &URL; onto the panel (on
+          which only directories are visible), but the &URL; can be dropped onto the
+          "Information Label" or "Totals Label" instead. When a <link 
+          linkend="view-menu">custom filter</link> is set, it will show the setting, 
+          example: [*.cpp].</para>
         </listitem>
       </itemizedlist>
       <para>When using the "&kde; default 
@@ -448,7 +446,7 @@
       selected files are shown in blue and the current file is
       surrounded by a fine-lined rectangle. By default an icon is
       shown according to the file type. Use
-      <link linkend="konfig-looknfeel">Konfigurator Look &amp; Feel page</link> to change the default
+      <link linkend="konfig-panel">Konfigurator Panel page</link> to change the default
       configuration to meet your individual needs.</para>
       <para>Some useful 
       <guilabel>List panel</guilabel> <link linkend="key_bindings">Key-Bindings</link>:</para> 
@@ -470,8 +468,7 @@
               as the left panel.</para>
             </listitem>
             <listitem>
-              <para>On a directory: refreshes the right panel with
-              the contents of the directory.</para>
+              <para>On a directory: right panel opens focused directory on the left panel.</para>
             </listitem>
           </itemizedlist></para>
         </listitem>
@@ -490,7 +487,7 @@
         <secondary>PopUp Panel (3rd Panel)</secondary>
       </indexterm>
       <para>This is "&krusader; is 3rd Hand" or the 3rd
-      Panel, click on the arrow-up button on the left of the 
+      Panel, click on the arrow-up button on the right of the 
       <guilabel>Totals Label</guilabel> or 
       <keycombo action="simul">&Alt;
       <keycap>Down-Arrow</keycap></keycombo> to open the 
@@ -520,7 +517,7 @@
         <listitem>
           <para>
           <emphasis>
-            <guilabel>Quickselect Panel</guilabel>
+            <guilabel>Quick Panel</guilabel>
           </emphasis>: is used to quickly select files,
           &eg; enter 
           <literal role="extension">*.png</literal> and click on the
@@ -535,8 +532,7 @@
           </emphasis>: views a text file, views an image,
           &etc; A thumbnail view is generated whenever
           you open the 
-          <guilabel>Viewer Panel</guilabel> and click on a name of a
-          folder that contains pictures.</para>
+          <guilabel>Viewer Panel</guilabel>.</para>
         </listitem>
         <listitem>
           <para>
@@ -555,7 +551,7 @@
       <title>Folder History</title>
       <para>Both panels remember recently visited folders. Click on
       the 
-      <guibutton>"Folder history"</guibutton> button ("watch"
+      <guibutton>Folder history</guibutton> button ("watch"
       symbol) to open the folder history list. Here you can quickly
       change to previously visited folders. The currently focused
       folder is checked. On every new start of &krusader;, the
@@ -682,33 +678,24 @@
       </mediaobject>
     </figure>
     <para>The terminal emulator mode is in fact a small console and
-    acts like one. You can change the active directory in the
+    acts like one. You can change the active directory in the 
     terminal by using the 
     <userinput>
       <command>cd</command>
     </userinput> command. The terminal emulator will follow the
-    active panel directory. When you drag a file from the 
-    <interface>"List Panel"</interface>, you will get to choose
-    between: "Paste", 
-    <command>cd</command>, 
-    <command>mv</command> and 
-    <command>ln</command>. If you drag multiple files, then 
-    <command>cd</command> will not be available. A full-screen
-    terminal emulator can be used when 
-    <link linkend="konfig-looknfeel-operation">configured</link> or 
-    <keycombo action="simul">&Ctrl;
-    <keycap>F</keycap></keycombo> toggles between normal and full
-    screen mode. If the command line is hidden, press 
-    <keycombo action="simul">&Ctrl;
-    <keycap>up</keycap></keycombo> to focus the terminal emulator. 
-    <keycombo action="simul">&Ctrl;
-    <keycap>down</keycap></keycombo> brings you back down. 
-    <keycombo action="simul">&Ctrl;
-    &Enter;</keycombo> and 
-    <keycombo action="simul">&Ctrl;
-    &Shift;
-    &Enter;</keycombo> paste the filename. You can
-    close the emulator by typing 
+    active panel directory. You can drag a file from the 
+    <interface>"List Panel"</interface> and name of file will pasted
+    into Terminal Emulator. If you drag multiple files, the names will 
+    pasted into Terminal Emulator. A full-screen terminal emulator can
+    be used when <link linkend="konfig-panel">configured</link> or 
+    <keycombo action="simul">&Ctrl; <keycap>F</keycap></keycombo> toggles
+    between normal and full screen mode. If the command line is hidden, 
+    press <keycombo action="simul">&Ctrl; <keycap>Arrow down</keycap></keycombo>
+    to focus the terminal emulator. <keycombo action="simul">&Ctrl; 
+    <keycap>Arrow up</keycap></keycombo> brings you back down. 
+    <keycombo action="simul">&Ctrl;&Enter;</keycombo> and 
+    <keycombo action="simul">&Ctrl; &Shift; &Enter;</keycombo> paste the filename.
+    You can close the emulator by typing 
     <userinput>
       <command>exit</command>
     </userinput>.</para>
@@ -799,13 +786,11 @@
     <itemizedlist>
       <listitem>
         <para>To 
-        <keycap>open a new tab</keycap> and keep the current
+        <keycap>open a new tab</keycap> and keep the selected
         directory: <keycap>Right-click</keycap> on a directory and
         select 
         <keycap>open in a new tab</keycap>, or use the
-        Middle Mouse Button, or use 
-        <keycombo action="simul">&Alt;&Ctrl;
-        <keycap>N</keycap></keycombo>.</para>
+        Middle Mouse Button.</para>
       </listitem>
       <listitem>
         <para>To <keycap>lock a tab</keycap>, <keycap>Right-click</keycap> and
@@ -833,7 +818,7 @@
       <listitem>
         <para>To create a 
         <keycap>"home" tab</keycap>: click on the 
-        <guibutton>Folder Tab Bookmark</guibutton> button.</para>
+        <guibutton>Open a new tab in home</guibutton> button.</para>
       </listitem>
       <listitem>
         <para>To 

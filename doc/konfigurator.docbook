@@ -135,6 +135,12 @@
             </listitem>
             <listitem>
               <para>
+              <guilabel>Update default panel settings</guilabel>: If checked,
+              the default panel settings will be updated after
+              start-up.</para>
+            </listitem>
+            <listitem>
+              <para>
               <guilabel>Show terminal emulator</guilabel>: If
               checked, the <link linkend="termemu">Terminal emulator</link> is visible
               after start-up.</para>
@@ -168,35 +174,25 @@
       </varlistentry>
     </variablelist>
   </sect1>
-  <sect1 id="konfig-looknfeel">
-    <title>Look and Feel</title>
-    <para>Here you can determine the look and feel of things -
+  <sect1 id="konfig-panel">
+    <title>Panel</title>
+    <para>Here you can determine the look and feel of panel -
     which means finetuning the application to your needs. The page
-    is divided into four tabs: 
-    <guilabel>Operation</guilabel>, 
-    <guilabel>Panel</guilabel>, 
-    <guilabel>Panel Toolbar</guilabel> and 
-    <guilabel>Selection Mode</guilabel>:</para>
+    is divided into five tabs: 
+    <guilabel>General</guilabel>, 
+    <guilabel>View</guilabel>, 
+    <guilabel>Buttons</guilabel>, 
+    <guilabel>Selection Mode</guilabel>,
+    and <guilabel>Layout</guilabel>:</para>
 
-    <sect2 id="konfig-looknfeel-operation">
-      <title>Operation</title>
+    <sect2 id="konfig-panel-general">
+      <title>General</title>
+      <para><guilabel>Flat Origin Bar</guilabel>: If checked,
+      &krusader; displays current folder address on a flat bar (without edit line frame).</para>
       <itemizedlist>
         <title>
-          <guilabel>Look &amp; Feel</guilabel>
+          <guilabel>Operation</guilabel>
         </title>
-        <listitem>
-          <para>
-          <guilabel>Warn on exit</guilabel>: If checked,
-          &krusader; displays an "Are you sure?" warning
-          when you try to shut it down; otherwise, it exits without
-          protest.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Minimize to tray</guilabel>: If checked, when
-          you minimize &krusader;, its icon will appear
-          in the system tray instead of the taskbar.</para>
-        </listitem>
         <listitem>
           <para>
           <guilabel>Autoselect Directories</guilabel>: When 
@@ -214,6 +210,11 @@
           renaming of just the name, without extension, deselect
           this item.</para>
         </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel>Tabs</guilabel>
+        </title>
         <listitem>
           <para>
           <guilabel>Use fullpath tab names</guilabel>: If checked,
@@ -223,15 +224,13 @@
         </listitem>
         <listitem>
           <para>
-          <guilabel>Fullscreen terminal (mc-style)</guilabel>:
-          Terminal appears instead of the &krusader;
-          window (full screen).</para>
+          <guilabel>Show new/close tab buttons</guilabel>: If checked,
+          &krusader; displays new and close buttons on <link linkend="folder-tabs">tabs</link>.</para>
         </listitem>
-        <!--
-  <listitem><para><guilabel>HTML viewers minimal font size</guilabel>: when viewing an HTML file
-       (usually using <keycap>F3</keycap>), &krusader; invokes &kde;'s built-in HTML parser. This option
-       sets the minimal font size for the viewer, and aligns other font sizes accordingly.
-       </para></listitem> -->
+        <listitem>
+          <para>
+          <guilabel>Tab Bar position</guilabel>: Lets you choose <link linkend="folder-tabs">Tab bar</link> position (<guimenuitem>Bottom</guimenuitem> or <guimenuitem>Top</guimenuitem>).</para>
+        </listitem>
       </itemizedlist>
       <itemizedlist>
         <title>
@@ -245,7 +244,7 @@
         </listitem>
         <listitem>
           <para>
-          <guilabel>Case Sensitive Quicksearch</guilabel>: When you
+          <guilabel>Case sensitive quicksearch</guilabel>: When you
           use the 
           <link linkend="quicksearch">Quicksearch</link> feature: If
           checked (the &UNIX; default), all files
@@ -254,15 +253,139 @@
           beginning with a specified letter (capital or otherwise)
           will be displayed together.</para>
         </listitem>
-      </itemizedlist>
-    </sect2>
-    <sect2 id="konfig-looknfeel-panel">
-      <title>Panel</title>
-      <itemizedlist>
         <listitem>
           <para>
-          <guilabel>Panel font</guilabel>: Allows you to change the
+          <guilabel>Up/Down cancels Quicksearch</guilabel>: Pressing <keycap>Arrow Up</keycap> or <keycap>Arrow Down</keycap> cancels <link linkend="quicksearch">Quicksearch</link> dialog.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Quicksearch position</guilabel>: Lets you choose <link linkend="quicksearch">Quicksearch</link> bar position (<guimenuitem>Bottom</guimenuitem> or <guimenuitem>Top</guimenuitem>).</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel>Status/Totalsbar</guilabel>
+        </title>
+        <listitem>
+          <para>
+          <guilabel>Show size in bytes too</guilabel>:  If checked,
+          &krusader; displays size in bytes on statusbar or totalsbar.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Show free disk space in the Totalsbar</guilabel>:  If checked,
+          &krusader; displays free disk space in the Totalsbar.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-panel-view">
+      <title>View</title>
+      <itemizedlist>
+        <title>
+          <guilabel>General</guilabel>
+        </title>
+        <listitem>
+          <para>
+          <guilabel>View font</guilabel>: Allows you to change the
           font used inside the file lists.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Use human readable file size</guilabel>: If
+          checked, the file size appears in kB, Mb
+          &etc;, and not in bytes (default).</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Numeric permissions</guilabel>: Permission
+          column (<guilabel>Panel</guilabel> <guilabel>View</guilabel> tab) shows octal numbers '0755'
+          instead of 'rwxr-xr-x'.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Show hidden files</guilabel>: If checked,
+          &krusader; displays the "dot-files" which are
+          otherwise hidden.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Load the user defined folder icons</guilabel>:  If checked,
+        &krusader; loads the user defined folder icons.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Sort method</guilabel>
+	    <itemizedlist>
+             <listitem>
+              <para>
+                <guilabel>Krusader (default)</guilabel>: 
+		the comparison used so far. Uses comparison using locale rules (even context rules).
+              </para>
+             </listitem>
+             <listitem>
+              <para>
+                <guilabel>Alphabetical</guilabel>: 
+		strings are compared character by character (no context rules from locale applied). 
+		Alphabet characters are compared using locale rules, 
+		special characters are compared by the character code.
+              </para>
+             </listitem>
+             <listitem>
+              <para>
+                <guilabel>Alphabetical and numbers</guilabel>: 
+		the same as above, but if the names contains numbers, the numbers are compared 
+		numerically instead of alphabetically.
+              </para>
+             </listitem>
+             <listitem>
+              <para>
+                <guilabel>Character code</guilabel>: 
+		comparison by character code (quick).
+              </para>
+             </listitem>
+             <listitem>
+              <para>
+                <guilabel>Character code and numbers</guilabel>: 
+		the same as above, but with numerical comparison of numbers.
+              </para>
+             </listitem>
+           </itemizedlist>
+	    </para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Case sensitive sorting</guilabel>: If checked
+          (the &UNIX; default), all files beginning with
+          capital letters appear before files beginning with
+          non-capital letters; otherwise, all files beginning with
+          a specified letter (capital or otherwise) appear
+          together.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Always sort dirs by name</guilabel>: Sorts
+          directories by name, regardless of the sort
+          column.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Show directories first</guilabel>: If checked
+          directories have precedence in folder lists.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Locale aware sorting</guilabel>: Sorts
+          files and directories according to the current locale settings.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel>View modes</guilabel>
+        </title>
+       <listitem>
+          <para>
+          <guilabel>Default view mode</guilabel>: Allows you to
+          change the default view mode. You can choose <guimenuitem>Detailed View</guimenuitem> or <guimenuitem>Brief View</guimenuitem>. On tabs of both view modes you can define the following options.</para>
         </listitem>
         <listitem>
           <para>
@@ -273,14 +396,13 @@
         </listitem>
         <listitem>
           <para>
-          <guilabel>Use icons in filenames</guilabel>: If checked,
+          <guilabel>Use icons in the filenames</guilabel>: If checked,
           show the icons in file names and folders.</para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Human readable file size</guilabel>: If
-          checked, the file size appears in kB, Mb
-          &etc;, and not in bytes (default).</para>
+          <guilabel>Show previews</guilabel>: If checked,
+          show the previews of file contents.</para>
         </listitem>
         <listitem>
           <para>To configure the columns use the right click menu in the panel when viewing files.
@@ -343,94 +465,41 @@
             </listitem>
           </itemizedlist></para>
         </listitem>
-        <listitem>
-          <para>
-          <guilabel>Show Hidden files</guilabel>: If checked,
-          &krusader; displays the "dot-files" which are
-          otherwise hidden.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Numeric permissions</guilabel>: Permission
-          column (Look &amp; Feel 
-          <guilabel>Panel</guilabel> tab) shows octal numbers '0755'
-          instead of 'rwxr-xr-x'.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Sort method</guilabel>
-	    <itemizedlist>
-             <listitem>
-              <para>
-                <guilabel>Krusader (default)</guilabel>: 
-		the comparison used so far. Uses comparison using locale rules (even context rules).
-              </para>
-             </listitem>
-             <listitem>
-              <para>
-                <guilabel>Krusader (default)</guilabel>: 
-		the comparison used so far. Uses comparison using locale rules (even context rules).
-              </para>
-             </listitem>
-             <listitem>
-              <para>
-                <guilabel>Alphabetical</guilabel>: 
-		strings are compared character by character (no context rules from locale applied). 
-		Alphabet characters are compared using locale rules, 
-		special characters are compared by the character code.
-              </para>
-             </listitem>
-             <listitem>
-              <para>
-                <guilabel>Alphabetical with numbers</guilabel>: 
-		the same as above, but if the names contains numbers, the numbers are compared 
-		numerically instead of alphabetically.
-              </para>
-             </listitem>
-             <listitem>
-              <para>
-                <guilabel>Character code</guilabel>: 
-		comparison by character code (quick).
-              </para>
-             </listitem>
-             <listitem>
-              <para>
-                <guilabel>Character code and numbers</guilabel>: 
-		the same as above, but with numerical comparison of numbers.
-              </para>
-             </listitem>
-           </itemizedlist>
-	    </para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Case Sensitive Sorting</guilabel>: If checked
-          (the &UNIX; default), all files beginning with
-          capital letters appear before files beginning with
-          non-capital letters; otherwise, all files beginning with
-          a specified letter (capital or otherwise) appear
-          together.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Always sort dirs by name</guilabel>: Sorts
-          directories by name, regardless of the sort
-          column.</para>
-        </listitem>
-      </itemizedlist>
+      </itemizedlist>  
       <tip>
         <para>Uncheck the columns not in use. This allows more
         space for columns in use.</para>
       </tip>
     </sect2>
-    <sect2 id="konfig-looknfeel-ptoolbar">
-      <title>Panel Toolbar</title>
+    <sect2 id="konfig-panel-buttons">
+      <title>Buttons</title>
       <para>
-      <guilabel>Panel Toolbar visible</guilabel>: If checked,
+      <guilabel>Toolbar buttons have icons</guilabel>: If checked,
+      &krusader; displays icons on toolbar buttons.</para>
+      <para>
+      <guilabel>Show Media Button</guilabel>: If checked,
+      &krusader; displays media button.</para>
+      <para>
+      <guilabel>Show Back Button</guilabel>: If checked,
+      &krusader; displays back button.</para>
+      <para>
+      <guilabel>Show Forward Button</guilabel>: If checked,
+      &krusader; displays forward button.</para>
+      <para>
+      <guilabel>Show History Button</guilabel>: If checked,
+      &krusader; displays history button.</para>
+      <para>
+      <guilabel>Show Bookmarks Button</guilabel>: If checked,
+      &krusader; displays bookmarks button.</para>
+      <para>
+      <guilabel>Show Panel Toolbar</guilabel>: If checked,
       &krusader; displays the Panel Toolbar.</para>
       <para>You can make the buttons on the 
       <guilabel>Panel Toolbar</guilabel> visible or hidden: 
       <itemizedlist>
+        <title>
+          <guilabel>Visible Panel Toolbar buttons</guilabel>
+        </title>
         <listitem>
           <para>
           <guilabel>Clear Location Toolbar</guilabel> button: Clears
@@ -438,23 +507,23 @@
         </listitem>
         <listitem>
           <para>
-          <guilabel>Open</guilabel> button</para>
+          <guilabel>Open button</guilabel></para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Equal (=)</guilabel> button</para>
+          <guilabel>Equal button (=)</guilabel></para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Up (..)</guilabel> button</para>
+          <guilabel>Up button (..)</guilabel></para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Home (~)</guilabel> button</para>
+          <guilabel>Home button (~)</guilabel></para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Root (/)</guilabel> button</para>
+          <guilabel>Root button (/)</guilabel></para>
         </listitem>
         <listitem>
           <para>
@@ -594,6 +663,28 @@
               </para>
             </listitem>
           </itemizedlist></para>
+        </listitem>
+      </itemizedlist></para>
+    </sect2>
+    <sect2 id="konfig-panel-layout">
+      <title>Layout</title>
+      <para>You can choose the layout and frame settings: 
+      <itemizedlist>
+        <listitem>
+          <para>
+          <guilabel>Layout:</guilabel> allows to define layout.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Frame Color:</guilabel> defines frame color. Can be <guimenuitem>Defined by Layout</guimenuitem>, <guimenuitem>None</guimenuitem>, or <guimenuitem>Statusbar</guimenuitem>.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Frame Shape:</guilabel> defines frame color. Can be <guimenuitem>Defined by Layout</guimenuitem>, <guimenuitem>None</guimenuitem>, or <guimenuitem>Statusbar</guimenuitem>.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Frame Shape:</guilabel> defines frame color. Can be <guimenuitem>Defined by Layout</guimenuitem>, <guimenuitem>None</guimenuitem>, or <guimenuitem>Statusbar</guimenuitem>.</para>
         </listitem>
       </itemizedlist></para>
     </sect2>

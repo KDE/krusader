@@ -200,8 +200,7 @@
         <listitem>
           <para>Compares two current files by content - one from
           each panel via an external graphical diff utility. By
-          default &kompare; (part of the kdebase
-          package) is used, but you can also use &eg;
+          default &kompare; is used, but you can also use &eg;
           <ulink url="http://furius.ca/xxdiff/"><application>xxdiff</application></ulink> or <ulink url="http://kdiff3.sourceforge.net"><application>Kdiff3</application></ulink> ,
           change it in the
           <link linkend="konfig-dependencies">Konfigurator Dependencies page</link>.</para>
@@ -509,7 +508,7 @@
           <para>Selects all files in the active panel. You can also
           select all directories by activating the 
           <guilabel>Automark directories</guilabel> option in the
-          <link linkend="konfig-looknfeel">Konfigurator Look &amp; Feel page</link>.</para>
+          <link linkend="konfig-panel">Konfigurator Panel page</link>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -640,6 +639,39 @@
       <varlistentry>
         <term>
           <menuchoice>
+            <guimenu>View</guimenu>
+            <guimenuitem>Zoom In</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Increase the view scale.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>View</guimenu>
+            <guimenuitem>Zoom Out</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Decrease the view scale.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>View</guimenu>
+            <guimenuitem>Default Zoom</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Reset the view scale.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
             <shortcut>
               <keycombo action="simul">
               &Alt;&Shift;
@@ -723,6 +755,17 @@
         <term>
           <menuchoice>
             <guimenu>View</guimenu>
+            <guimenuitem>Show Previews</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>If checked, show the preview of the file at the focus.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>View</guimenu>
             <guimenuitem>Select Remote Charset</guimenuitem>
           </menuchoice>
         </term>
@@ -744,6 +787,28 @@
         </term>
         <listitem>
           <para>Refreshes the contents of the active panel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>View</guimenu>
+            <guimenuitem>Save settings as default</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Allows you to save the view settings of the current tab for new instances of this view type.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>View</guimenu>
+            <guimenuitem>Apply settings to other tabs</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Allows you to apply the view settings of the current tab to the other tabs.</para>
         </listitem>
       </varlistentry>
     </variablelist>
