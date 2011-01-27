@@ -85,7 +85,7 @@ public:
 };
 #endif
 
-static QStringList arcProtocols = QString("tar;bzip;bzip2;lzma;gzip;krarc;zip").split(';');
+static QStringList arcProtocols = QString("tar;bzip;bzip2;lzma;xz;gzip;krarc;zip").split(';');
 
 KWallet::Wallet * KRarcHandler::wallet = 0;
 
@@ -98,6 +98,7 @@ QStringList KRarcHandler::supportedPackers()
     if (KrServices::cmdExist("gzip")) packers.append("gzip");
     if (KrServices::cmdExist("bzip2")) packers.append("bzip2");
     if (KrServices::cmdExist("lzma")) packers.append("lzma");
+    if (KrServices::cmdExist("xz")) packers.append("xz");
     if (KrServices::cmdExist("unzip")) packers.append("unzip");
     if (KrServices::cmdExist("zip")) packers.append("zip");
     if (KrServices::cmdExist("lha")) packers.append("lha");
@@ -134,6 +135,8 @@ bool KRarcHandler::arcSupported(QString type)
         return true;
     else if (type == "-tlz" && lst.contains("tar"))
         return true;
+    else if (type == "-txz" && lst.contains("tar"))
+        return true;
     else if (type == "tarz" && lst.contains("tar"))
         return true;
     else if (type == "gzip" && lst.contains("gzip"))
@@ -141,6 +144,8 @@ bool KRarcHandler::arcSupported(QString type)
     else if (type == "zip2" && lst.contains("bzip2"))
         return true;
     else if (type == "lzma" && lst.contains("lzma"))
+        return true;
+    else if (type == "-xz" && lst.contains("xz"))
         return true;
     else if (type == "-lha" && lst.contains("lha"))
         return true;
@@ -173,6 +178,7 @@ bool KRarcHandler::arcHandled(QString type)
             (type == "-tar" && group.readEntry("Do Tar" , _DoTar)) ||
             (type == "-tbz" && group.readEntry("Do BZip2", _DoBZip2)) ||
             (type == "-tlz" && group.readEntry("Do LZMA", _DoLZMA)) ||
+            (type == "-txz" && group.readEntry("Do XZ", _DoXZ)) ||
             (type == "gzip" && group.readEntry("Do GZip" , _DoGZip)) ||
             (type == "zip2" && group.readEntry("Do BZip2", _DoBZip2)) ||
             (type == "-zip" && group.readEntry("Do UnZip", _DoUnZip)) ||
@@ -198,7 +204,7 @@ long KRarcHandler::arcFileCount(QString archive, QString type, QString password,
     if (!arcSupported(type)) return 0;
 
     // bzip an gzip archive contains only one file
-    if (type == "zip2" || type == "gzip" || type == "lzma") return 1L;
+    if (type == "zip2" || type == "gzip" || type == "lzma" || type == "-xz") return 1L;
 
     // set the right lister to do the job
     QStringList lister;
@@ -209,6 +215,7 @@ long KRarcHandler::arcFileCount(QString archive, QString type, QString password,
     else if (type == "tarz") lister << KrServices::fullPathName("tar") << "-tvzf";
     else if (type == "-tbz") lister << KrServices::fullPathName("tar") << "-tjvf";
     else if (type == "-tlz") lister << KrServices::fullPathName("tar") << "--lzma" << "-tvf";
+    else if (type == "-txz") lister << KrServices::fullPathName("tar") << "--xz" << "-tvf";
     else if (type == "-lha") lister << KrServices::fullPathName("lha") << "l";
     else if (type == "-rar") lister << KrServices::fullPathName(KrServices::cmdExist("rar") ? "rar" : "unrar") << "l" << "-v";
     else if (type == "-ace") lister << KrServices::fullPathName("unace") << "l";
@@ -293,9 +300,11 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
     else if (type == "tarz") packer << KrServices::fullPathName("tar") << "-xvzf";
     else if (type == "-tbz") packer << KrServices::fullPathName("tar") << "-xjvf";
     else if (type == "-tlz") packer << KrServices::fullPathName("tar") << "--lzma" << "-xvf";
+    else if (type == "-txz") packer << KrServices::fullPathName("tar") << "--xz" << "-xvf";
     else if (type == "gzip") packer << KrServices::fullPathName("gzip") << "-cd";
     else if (type == "zip2") packer << KrServices::fullPathName("bzip2") << "-cdk";
     else if (type == "lzma") packer << KrServices::fullPathName("lzma") << "-cdk";
+    else if (type == "-xz")  packer << KrServices::fullPathName("xz") << "-cdk";
     else if (type == "-lha") packer << KrServices::fullPathName("lha") << "xf";
     else if (type == "-rar") packer << KrServices::fullPathName(KrServices::cmdExist("rar") ? "rar" : "unrar") << "-y" << "x";
     else if (type == "-ace") packer << KrServices::fullPathName("unace") << "x";
@@ -351,7 +360,7 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
     // unpack the files
     KrLinecountingProcess proc;
     proc << packer << archive;
-    if (type == "zip2" || type == "gzip" || type == "lzma") {
+    if (type == "zip2" || type == "gzip" || type == "lzma" || type == "-xz") {
         QString arcname = archive.mid(archive.lastIndexOf("/") + 1);
         if (arcname.contains(".")) arcname = arcname.left(arcname.lastIndexOf("."));
         proc.setStandardOutputFile(dest + '/' + arcname);
@@ -407,9 +416,11 @@ bool KRarcHandler::test(QString archive, QString type, QString password, KRarcOb
     else if (type == "tarz") packer << KrServices::fullPathName("tar") << "-tvzf";
     else if (type == "-tbz") packer << KrServices::fullPathName("tar") << "-tjvf";
     else if (type == "-tlz") packer << KrServices::fullPathName("tar") << "--lzma" << "-tvf";
+    else if (type == "-txz") packer << KrServices::fullPathName("tar") << "--xz" << "-tvf";
     else if (type == "gzip") packer << KrServices::fullPathName("gzip") << "-tv";
     else if (type == "zip2") packer << KrServices::fullPathName("bzip2") << "-tv";
     else if (type == "lzma") packer << KrServices::fullPathName("lzma") << "-tv";
+    else if (type == "-xz")  packer << KrServices::fullPathName("xz") << "-tv";
     else if (type == "-rar") packer << KrServices::fullPathName(KrServices::cmdExist("rar") ? "rar" : "unrar") << "t";
     else if (type == "-ace") packer << KrServices::fullPathName("unace") << "t";
     else if (type == "-lha") packer << KrServices::fullPathName("lha") << "t";
@@ -474,6 +485,8 @@ bool KRarcHandler::pack(QStringList fileNames, QString type, QString dest, long 
         packer << KrServices::fullPathName("tar") << "-cvjf"; type = "-tbz";
     } else if (type == "tar.lzma") {
         packer << KrServices::fullPathName("tar") << "--lzma" << "-cvf"; type = "-tlz";
+    } else if (type == "tar.xz") {
+        packer << KrServices::fullPathName("tar") << "--xz" << "-cvf"; type = "-txz";
     } else if (type == "rar") {
         packer << KrServices::fullPathName("rar") << "-r" << "a"; type = "-rar";
     } else if (type == "lha") {
@@ -673,6 +686,10 @@ QString KRarcHandler::getType(bool &encrypted, QString fileName, QString mime, b
         result = "-7z";
     }
 
+    if (result.endsWith(QLatin1String("-xz"))) {
+        result = "-xz";
+    }
+
     return result.right(4);
 }
 
@@ -683,9 +700,9 @@ bool KRarcHandler::checkStatus(QString type, int exitCode)
         return exitCode == 0 || exitCode == 1;
     else if (type == "-ace" || type == "zip2" || type == "-lha" || type == "-rpm" || type == "cpio" ||
              type == "-tar" || type == "tarz" || type == "-tbz" || type == "-tgz" || type == "-arj" ||
-             type == "-deb" || type == "-tlz")
+             type == "-deb" || type == "-tlz" || type == "-txz")
         return exitCode == 0;
-    else if (type == "gzip" || type == "lzma")
+    else if (type == "gzip" || type == "lzma" || type == "-xz")
         return exitCode == 0 || exitCode == 2;
     else
         return exitCode == 0;
@@ -707,7 +724,8 @@ QString KRarcHandler::detectArchive(bool &encrypted, QString fileName, bool chec
         {"bzip2", 0, "\x42\x5a\x68\x39\x31" },
         {"gzip", 0, "\x1f\x8b"},
         {"deb",  0, "!<arch>\ndebian-binary   " },
-        {"7z",   0, "7z\xbc\xaf\x27\x1c" }
+        {"7z",   0, "7z\xbc\xaf\x27\x1c" }/*,
+        {"xz",   0, "\xfd\x37\x7a\x58\x5a\x00"}*/
     };
     static int autoDetectElems = sizeof(autoDetectParams) / sizeof(AutoDetectParams);
 
@@ -837,6 +855,14 @@ QString KRarcHandler::detectArchive(bool &encrypted, QString fileName, bool chec
     }
     if (fileName.endsWith(QLatin1String(".lzma"))) {
         return "lzma";
+    }
+
+    if (fileName.endsWith(QLatin1String(".tar.xz")) ||
+            fileName.endsWith(QLatin1String(".txz"))) {
+        return "txz";
+    }
+    if (fileName.endsWith(QLatin1String(".xz"))) {
+        return "xz";
     }
 
     return QString();

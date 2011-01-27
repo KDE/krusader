@@ -193,6 +193,7 @@ void KgGeneral::createExtensionsTab()
     defaultAtomicExtensions += ".tar.gz";
     defaultAtomicExtensions += ".tar.bz2";
     defaultAtomicExtensions += ".tar.lzma";
+    defaultAtomicExtensions += ".tar.xz";
     defaultAtomicExtensions += ".moc.cpp";
 
     listBox = createListBox("Look&Feel", "Atomic Extensions",

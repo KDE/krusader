@@ -100,6 +100,7 @@ KgDependencies::KgDependencies(bool first, QWidget* parent) :
     addApplication("unrar", archGrid1, 12, packers_tab, PAGE_PACKERS);
     addApplication("unzip", archGrid1, 13, packers_tab, PAGE_PACKERS);
     addApplication("zip",   archGrid1, 14, packers_tab, PAGE_PACKERS);
+    addApplication("xz",    archGrid1, 15, packers_tab, PAGE_PACKERS);
 
     //  ---------------------------- CHECKSUM TAB -------------------------------------
     QWidget *checksum_tab = new QWidget(tabWidget);

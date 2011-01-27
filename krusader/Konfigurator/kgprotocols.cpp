@@ -51,12 +51,14 @@ QString KgProtocols::defaultKrarcMimes = "application/x-7z,application/x-7z-comp
         "application/x-gzip,application/x-jar,"
         "application/x-lha,application/x-lha-compressed,"
         "application/x-rar,application/x-rar-compressed,"
+        "application/x-xz,"
         "application/x-rpm,application/zip,"
         "application/x-zip,application/x-zip-compressed";
 QString KgProtocols::defaultTarMimes   = "application/x-tar,application/x-tarz,"
         "application/x-bzip-compressed-tar,"
         "application/x-compressed-tar,"
-        "application/x-tbz,application/x-tgz";
+        "application/x-tbz,application/x-tgz,"
+        "application/x-xz-compressed-tar";
 
 KgProtocols::KgProtocols(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)

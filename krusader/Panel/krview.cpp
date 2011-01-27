@@ -367,6 +367,7 @@ void KrView::initProperties()
     defaultAtomicExtensions += ".tar.gz";
     defaultAtomicExtensions += ".tar.bz2";
     defaultAtomicExtensions += ".tar.lzma";
+    defaultAtomicExtensions += ".tar.xz";
     defaultAtomicExtensions += ".moc.cpp";
     QStringList atomicExtensions = grpSvr.readEntry("Atomic Extensions", defaultAtomicExtensions);
     for (QStringList::iterator i = atomicExtensions.begin(); i != atomicExtensions.end();) {

@@ -181,6 +181,8 @@
 #define _DoBZip2       true
 // Do LZMA ///////////
 #define _DoLZMA       true
+// Do XZ ///////////
+#define _DoXZ         true
 // Do Rar /////////////
 #define _DoRar         true
 // Do UnRar ///////////

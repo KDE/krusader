@@ -423,7 +423,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries)
         if (mt)
             emit mimeType(mt->name());
         proc << getCmd << getPath(arcFile->url());
-        if (arcType != "gzip" && arcType != "bzip2" && arcType != "lzma") proc << localeEncodedString(file);
+        if (arcType != "gzip" && arcType != "bzip2" && arcType != "lzma" && arcType != "xz") proc << localeEncodedString(file);
         connect(&proc, SIGNAL(newOutputData(KProcess *, QByteArray &)),
                 this, SLOT(receivedData(KProcess *, QByteArray &)));
         proc.setMerge(false);
@@ -440,7 +440,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries)
     proc.waitForFinished();
 
     if (!extArcReady && !decompressToFile) {
-        if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()) || (arcType != "bzip2" && arcType != "lzma" && expectedSize != decompressedLen)) {
+        if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()) || (arcType != "bzip2" && arcType != "lzma" && arcType != "xz" && expectedSize != decompressedLen)) {
             if (encrypted && tries) {
                 invalidatePassword();
                 get(url, tries - 1);
@@ -827,6 +827,8 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url)
         arcType = "gzip";
     else if (arcType == "tlz")
         arcType = "lzma";
+    else if (arcType == "txz")
+        arcType = "xz";
 
     if (arcType.isEmpty()) {
         arcType = arcFile->mimetype();
@@ -861,7 +863,7 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced)
         return false;
     }
 
-    if (arcType != "bzip2" && arcType != "lzma") {
+    if (arcType != "bzip2" && arcType != "lzma" && arcType != "xz") {
         if (arcType == "rpm") {
             proc << listCmd << arcPath;
             proc.setStandardOutputFile(temp.fileName());
@@ -896,7 +898,7 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced)
 
     root->append(entry);
 
-    if (arcType == "bzip2" || arcType == "lzma") {
+    if (arcType == "bzip2" || arcType == "lzma" || arcType == "xz") {
         KRDEBUG("Got me here...");
         parseLine(0, "");
         return true;
@@ -1207,6 +1209,14 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         mode = arcFile->mode();
         size = arcFile->size();
     }
+    if (arcType == "xz") {
+        fullName = arcFile->name();
+        if (fullName.endsWith(QLatin1String("xz"))) {
+            fullName.truncate(fullName.length() - 3);
+        }
+        mode = arcFile->mode();
+        size = arcFile->size();
+    }
     if (arcType == "bzip2") {
         // There is no way to list bzip2 files, so we take our information from
         // the archive itself...
@@ -1460,6 +1470,13 @@ bool kio_krarcProtocol::initArcParameters()
         copyCmd = QStringList();
         delCmd  = QStringList();
         putCmd  = QStringList();
+    } else if (arcType == "xz") {
+        cmd     = fullPathName("xz");
+        listCmd << fullPathName("xz");
+        getCmd  << fullPathName("xz") << "-dc";
+        copyCmd = QStringList();
+        delCmd  = QStringList();
+        putCmd  = QStringList();
     } else if (arcType == "arj") {
         cmd     = fullPathName("arj");
         listCmd << fullPathName("arj") << "v" << "-y" << "-v";
@@ -1544,7 +1561,7 @@ bool kio_krarcProtocol::checkStatus(int exitCode)
         return exitCode == 0 || exitCode == 1;
     else if (arcType == "ace" || arcType == "bzip2" || arcType == "lha" || arcType == "rpm" || arcType == "arj")
         return exitCode == 0;
-    else if (arcType == "gzip" || arcType == "lzma")
+    else if (arcType == "gzip" || arcType == "lzma" || arcType == "xz")
         return exitCode == 0 || exitCode == 2;
     else
         return exitCode == 0;
@@ -1566,7 +1583,8 @@ QString kio_krarcProtocol::detectArchive(bool &encrypted, QString fileName)
         {"bzip2", 0, "\x42\x5a\x68\x39\x31" },
         {"gzip", 0, "\x1f\x8b"},
         {"deb",  0, "!<arch>\ndebian-binary   " },
-        {"7z",   0, "7z\xbc\xaf\x27\x1c" }
+        {"7z",   0, "7z\xbc\xaf\x27\x1c" }/*,
+        {"xz",   0, "\xfd\x37\x7a\x58\x5a\x00"}*/
     };
     static int autoDetectElems = sizeof(autoDetectParams) / sizeof(AutoDetectParams);
 
@@ -1714,6 +1732,14 @@ QString kio_krarcProtocol::detectArchive(bool &encrypted, QString fileName)
         return "lzma";
     }
 
+    if (fileName.endsWith(QLatin1String(".tar.xz")) ||
+            fileName.endsWith(QLatin1String(".txz"))) {
+        return "txz";
+    }
+    if (fileName.endsWith(QLatin1String(".xz"))) {
+        return "xz";
+    }
+    
     return QString();
 }
 
