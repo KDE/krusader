@@ -84,14 +84,12 @@ void KrInterView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
         i2->setSelected(select);
 }
 
-uint KrInterView::intSetSelected(const vfile* vf, bool select)
+void KrInterView::intSetSelected(const vfile* vf, bool select)
 {
     if(select)
         _selection.insert(vf);
     else
         _selection.remove(vf);
-
-    return _selection.count();
 }
 
 bool KrInterView::isSelected(const QModelIndex &ndx)
@@ -325,4 +323,22 @@ void KrInterView::sortModeUpdated(int column, Qt::SortOrder order)
 {
     KrView::sortModeUpdated(static_cast<KrViewProperties::ColumnType>(column),
                             order == Qt::DescendingOrder);
+}
+
+KIO::filesize_t KrInterView::calcSize()
+{
+    KIO::filesize_t size = 0;
+    foreach(vfile *vf, _model->vfiles()) {
+        size += vf->vfile_getSize();
+    }
+    return size;
+}
+
+KIO::filesize_t KrInterView::calcSelectedSize()
+{
+    KIO::filesize_t size = 0;
+    foreach(const vfile *vf, _selection) {
+        size += vf->vfile_getSize();
+    }
+    return size;
 }

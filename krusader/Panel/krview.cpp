@@ -302,7 +302,7 @@ const KrView::IconSizes KrView::iconSizes;
 KrView::KrView(KrViewInstance &instance, const bool &left, KConfig *cfg) :
     _instance(instance), _files(0), _left(left), _config(cfg), _mainWindow(0), _widget(0),
     _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
-    _numSelected(0), _count(0), _numDirs(0), _countSize(0), _selectedSize(0), _properties(0), _focused(false),
+    _count(0), _numDirs(0), _properties(0), _focused(false),
     _previews(0), _fileIconSize(0), _updateDefaultSettings(false), _dummyVfile(0)
 {
 }
@@ -538,6 +538,8 @@ void KrView::getSelectedKrViewItems(KrViewItemList *items)
 
 QString KrView::statistics()
 {
+    KIO::filesize_t size = calcSize();
+    KIO::filesize_t selectedSize = calcSelectedSize();
     QString tmp;
     KConfigGroup grp(_config, "Look&Feel");
     if(grp.readEntry("Show Size In Bytes", true)) {
@@ -545,16 +547,16 @@ QString KrView::statistics()
                     %3=filesize of selected items,%4=filesize in Bytes, \
                     %5=filesize of all items in directory,%6=filesize in Bytes",
                     "%1 out of %2, %3 (%4) out of %5 (%6)",
-                    _numSelected, _count, KIO::convertSize(_selectedSize),
-                    KRpermHandler::parseSize(_selectedSize),
-                    KIO::convertSize(_countSize),
-                    KRpermHandler::parseSize(_countSize));
+                    numSelected(), _count, KIO::convertSize(selectedSize),
+                    KRpermHandler::parseSize(selectedSize),
+                    KIO::convertSize(size),
+                    KRpermHandler::parseSize(size));
     } else {
         tmp = i18nc("%1=number of selected items,%2=total number of items, \
                     %3=filesize of selected items,%4=filesize of all items in directory",
                     "%1 out of %2, %3 out of %4",
-                    _numSelected, _count, KIO::convertSize(_selectedSize),
-                    KIO::convertSize(_countSize));
+                    numSelected(), _count, KIO::convertSize(selectedSize),
+                    KIO::convertSize(size));
     }
 
     // notify if we're running a filtered view
@@ -645,9 +647,8 @@ void KrView::delItem(const QString &name)
 
     if (it->VF->vfile_isDir()) {
         --_numDirs;
-    } else {
-        _countSize -= it->VF->vfile_getSize();
     }
+
     --_count;
     delete it;
 
@@ -667,7 +668,7 @@ void KrView::addItem(vfile *vf)
 
     if (vf->vfile_isDir())
         ++_numDirs;
-    else _countSize += vf->vfile_getSize();
+
     ++_count;
 
     if (item->name() == nameToMakeCurrent()) {
@@ -700,7 +701,7 @@ void KrView::clear()
 {
     if(_previews)
         _previews->clear();
-    _count = _numSelected = _numDirs = _selectedSize = _countSize = 0;
+    _count = _numDirs = 0;
     delete _dummyVfile;
     _dummyVfile = 0;
     redraw();
@@ -788,18 +789,8 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
         KrViewItem * viewItem = getCurrentKrViewItem();
         if (viewItem != 0) {
             viewItem->setSelected(!viewItem->isSelected());
-            if (viewItem->name() == "..") {
-                if (KrSelectionMode::getSelectionHandler()->spaceMovesDown()) {
-                    KrViewItem * next = getNext(viewItem);
-                    if (next) {
-                        setCurrentKrViewItem(next);
-                        makeItemVisible(next);
-                    }
-                }
-                op()->emitSelectionChanged();
-                return true;
-            }
-            if (viewItem->getVfile()->vfile_isDir() && viewItem->getVfile()->vfile_getSize() <= 0 &&
+
+            if (viewItem->name() != ".." && viewItem->getVfile()->vfile_isDir() && viewItem->getVfile()->vfile_getSize() <= 0 &&
                     KrSelectionMode::getSelectionHandler()->spaceCalculatesDiskSpace()) {
                 op()->emitCalcSpace(viewItem);
             }
@@ -1241,7 +1232,6 @@ void KrView::refresh()
         if(vf->vfile_isDir())
             _numDirs++;
         _count++;
-        _countSize += vf->vfile_getSize();
         vfiles << vf;
     }
 
@@ -1263,13 +1253,5 @@ void KrView::setSelected(const vfile* vf, bool select)
     if(vf == _dummyVfile)
         return;
 
-    uint numSelectedNew = intSetSelected(vf, select);
-
-    if(select && numSelectedNew > _numSelected) {
-        _numSelected = numSelectedNew;
-        _selectedSize += vf->vfile_getSize();
-    } else if(!select && numSelectedNew < _numSelected) {
-        _numSelected = numSelectedNew;
-        _selectedSize -= vf->vfile_getSize();
-    }
+    intSetSelected(vf, select);
 }

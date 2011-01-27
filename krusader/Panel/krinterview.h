@@ -41,6 +41,9 @@ public:
         return _itemView->currentIndex();
     }
     virtual bool isSelected(const QModelIndex &ndx);
+    virtual uint numSelected() const {
+        return _selection.count();
+    }
     virtual KrViewItem* getFirst();
     virtual KrViewItem* getLast();
     virtual KrViewItem* getNext(KrViewItem *current);
@@ -79,11 +82,13 @@ protected:
         virtual void select(const QItemSelection & selection, QItemSelectionModel::SelectionFlags command) {}
     };
 
+    virtual KIO::filesize_t calcSize();
+    virtual KIO::filesize_t calcSelectedSize();
     virtual void populate(const QList<vfile*> &vfiles, vfile *dummy);
     virtual KrViewItem* preAddItem(vfile *vf);
     virtual void preDelItem(KrViewItem *item);
     virtual void preUpdateItem(vfile *vf);
-    virtual uint intSetSelected(const vfile* vf, bool select);
+    virtual void intSetSelected(const vfile* vf, bool select);
     virtual void showContextMenu(const QPoint & p) = 0;
 
     virtual QRect itemRect(const vfile *vf) = 0;

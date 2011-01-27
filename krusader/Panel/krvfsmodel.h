@@ -59,6 +59,9 @@ public:
         sort(lastSortOrder(), lastSortDir());
     }
     void clear();
+    QList<vfile*> vfiles() {
+        return _vfiles;
+    }
     vfile * vfileAt(const QModelIndex &index);
     vfile *dummyVfile() const {
         return _dummyVfile;

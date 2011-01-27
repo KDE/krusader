@@ -322,6 +322,7 @@ public:
     }
     virtual void        selectRegion(KrViewItem *, KrViewItem *, bool) = 0;
 
+    virtual uint numSelected() const = 0;
     virtual KrViewItem *getFirst() = 0;
     virtual KrViewItem *getLast() = 0;
     virtual KrViewItem *getNext(KrViewItem *current) = 0;
@@ -361,7 +362,7 @@ protected:
     virtual void doRestoreSettings(KConfigGroup &group) = 0;
     virtual void copySettingsFrom(KrView *other) = 0;
     virtual void populate(const QList<vfile*> &vfiles, vfile *dummy) = 0;
-    virtual uint intSetSelected(const vfile* vf, bool select) = 0;
+    virtual void intSetSelected(const vfile* vf, bool select) = 0;
     virtual void updatePreviews();
     virtual void clear();
 
@@ -374,12 +375,6 @@ public:
     // the following functions are already implemented, //
     // and normally - should NOT be re-implemented.     //
     //////////////////////////////////////////////////////
-    virtual uint numSelected() const {
-        return _numSelected;
-    }
-    virtual KIO::filesize_t selectedSize() const {
-        return _selectedSize;
-    }
     virtual uint numFiles() const {
         return _count -_numDirs;
     }
@@ -388,9 +383,6 @@ public:
     }
     virtual uint count() const {
         return _count;
-    }
-    virtual KIO::filesize_t countSize() const {
-        return _countSize;
     }
     virtual void getSelectedItems(QStringList* names);
     virtual void getItemsByMask(QString mask, QStringList* names, bool dirs = true, bool files = true);
@@ -504,6 +496,8 @@ public:
 protected:
     KrView(KrViewInstance &instance, const bool &left, KConfig *cfg);
 
+    virtual KIO::filesize_t calcSize() = 0;
+    virtual KIO::filesize_t calcSelectedSize() = 0;
     bool handleKeyEventInt(QKeyEvent *e);
     void sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool descending);
     void saveSortMode(KConfigGroup &group);
@@ -530,8 +524,7 @@ protected:
     KRQuery _quickFilterMask;
 
 private:
-    KIO::filesize_t _countSize, _selectedSize;
-    uint _numSelected, _count, _numDirs;
+    uint _count, _numDirs;
     vfile *_dummyVfile;
 };
 
