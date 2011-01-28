@@ -68,6 +68,7 @@ public:
     }
     const QModelIndex & vfileIndex(const vfile *);
     const QModelIndex & nameIndex(const QString &);
+    const QModelIndex & indexFromUrl(const KUrl &url);
     virtual Qt::ItemFlags flags(const QModelIndex & index) const;
     void emitChanged() {
         emit layoutChanged();
@@ -91,6 +92,7 @@ protected:
 
     QList<vfile*>               _vfiles;
     QHash<vfile *, QModelIndex> _vfileNdx;
+    //TODO: use url index instead of name index
     QHash<QString, QModelIndex> _nameNdx;
     bool                        _extensionEnabled;
     KrInterView                 * _view;

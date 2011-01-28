@@ -323,6 +323,8 @@ public:
     virtual void        selectRegion(KrViewItem *, KrViewItem *, bool) = 0;
 
     virtual uint numSelected() const = 0;
+    virtual KUrl::List selectedUrls() = 0;
+    virtual void setSelection(const KUrl::List urls) = 0;
     virtual KrViewItem *getFirst() = 0;
     virtual KrViewItem *getLast() = 0;
     virtual KrViewItem *getNext(KrViewItem *current) = 0;
@@ -486,6 +488,15 @@ public:
     // restore the default settings for this view type
     void restoreDefaultSettings();
 
+    void saveSelection();
+    void restoreSelection();
+    bool canRestoreSelection() {
+        return !_savedSelection.isEmpty();
+    }
+    void clearSavedSelection() {
+        _savedSelection.clear();
+    }
+
     // todo: what about selection modes ???
     virtual ~KrView();
 
@@ -513,6 +524,7 @@ protected:
     KConfig *_config;
     QWidget *_mainWindow;
     QWidget *_widget;
+    KUrl::List _savedSelection;
     QString _nameToMakeCurrent;
     QString _nameToMakeCurrentIfAdded;
     KrViewProperties *_properties;

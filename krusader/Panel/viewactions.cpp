@@ -55,6 +55,7 @@ ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
     actUnselect = action(i18n("&Unselect Group..."), "kr_unselect", Qt::CTRL + Qt::Key_Minus, SLOT(unmarkGroup()), "unselect group");
     actUnselectAll = action(i18n("U&nselect All"), "kr_unselectall", Qt::ALT + Qt::Key_Minus, SLOT(unmarkAll()), "unselect all");
     actInvert = action(i18n("&Invert Selection"), "kr_invert", Qt::ALT + Qt::Key_Asterisk, SLOT(invertSelection()), "invert");
+    actRestoreSelection = action(i18n("Restore Selection"), 0, 0, SLOT(restoreSelection()), "restore_selection");
 
     // other stuff
     action(i18n("Show View Options Menu"), 0, 0, SLOT(showOptionsMenu()), "show_view_options_menu");
@@ -141,6 +142,11 @@ void ViewActions::invertSelection()
     view()->invertSelection();
 }
 
+void ViewActions::restoreSelection()
+{
+    view()->restoreSelection();
+}
+
 // other stuff
 
 void ViewActions::saveDefaultSettings()
@@ -169,4 +175,5 @@ void ViewActions::refreshActions()
     int idx = KrView::iconSizes.indexOf(view()->fileIconSize());
     actZoomOut->setEnabled(idx > 0);
     actZoomIn->setEnabled(idx < (KrView::iconSizes.count() - 1));
+    actRestoreSelection->setEnabled(view()->canRestoreSelection());
 }
