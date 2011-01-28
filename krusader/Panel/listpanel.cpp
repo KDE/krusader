@@ -440,12 +440,18 @@ void ListPanel::createView()
 void ListPanel::changeType(int type)
 {
     if (panelType != type) {
+        QString current = view->getCurrentItem();
+        KUrl::List selection = view->selectedUrls();
+
         panelType = type;
         quickSearch->setFocusProxy(0);
         delete view;
 
         createView();
         view->refresh();
+        view->setSelection(selection);
+        view->setCurrentItem(current);
+        view->makeItemVisible(view->getCurrentKrViewItem());
     }
 }
 
