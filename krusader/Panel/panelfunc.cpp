@@ -245,6 +245,7 @@ void ListPanelFunc::doRefresh()
     if (!isEqualUrl) {
         panel->setCursor(Qt::WaitCursor);
         panel->view->op()->stopQuickFilter(false);
+        panel->view->clearSavedSelection();
     }
 
     if(panel->vfsError)

@@ -558,3 +558,10 @@ QString KrVfsModel::nameWithoutExtension(const vfile * vf, bool checkEnabled) co
         return vfName;
     return vfName.left(loc);
 }
+
+const QModelIndex & KrVfsModel::indexFromUrl(const KUrl &url)
+{
+    //TODO: use url index instead of name index
+    //HACK
+    return nameIndex(url.fileName());
+}

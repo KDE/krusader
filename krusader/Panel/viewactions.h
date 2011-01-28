@@ -61,6 +61,7 @@ public slots:
     void markGroup();
     void unmarkGroup();
     void invertSelection();
+    void restoreSelection();
 
     void showOptionsMenu();
     void saveDefaultSettings();
@@ -72,7 +73,7 @@ public slots:
 
 public:
     KAction *actZoomIn, *actZoomOut, *actDefaultZoom;
-    KAction *actSelect, *actUnselect, *actSelectAll, *actUnselectAll, *actInvert;
+    KAction *actSelect, *actUnselect, *actSelectAll, *actUnselectAll, *actInvert, *actRestoreSelection;
 
 protected:
     KrView *view();

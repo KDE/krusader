@@ -250,8 +250,10 @@ bool KrViewOperator::handleKeyEvent(QKeyEvent * e)
 void KrViewOperator::setMassSelectionUpdate(bool upd)
 {
     _massSelectionUpdate = upd;
-    if (!upd)
+    if (!upd) {
         emit selectionChanged();
+        _view->redraw();
+    }
 }
 
 void KrViewOperator::settingsChanged()
@@ -1211,6 +1213,7 @@ void KrView::customSelection(bool select)
 void KrView::refresh()
 {
     QString current = getCurrentItem();
+    KUrl::List selection = selectedUrls();
 
     clear();
 
@@ -1237,6 +1240,9 @@ void KrView::refresh()
 
     populate(vfiles, _dummyVfile);
 
+    if(!selection.isEmpty())
+        setSelection(selection);
+
     if (!nameToMakeCurrent().isEmpty())
         setCurrentItem(nameToMakeCurrent());
     else if (!current.isEmpty())
@@ -1253,5 +1259,18 @@ void KrView::setSelected(const vfile* vf, bool select)
     if(vf == _dummyVfile)
         return;
 
+    if(select)
+        clearSavedSelection();
     intSetSelected(vf, select);
+}
+
+void KrView::saveSelection()
+{
+    _savedSelection = selectedUrls();
+}
+
+void KrView::restoreSelection()
+{
+    if(canRestoreSelection())
+        setSelection(_savedSelection);
 }
