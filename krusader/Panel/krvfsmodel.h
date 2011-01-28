@@ -24,6 +24,8 @@
 #include <QFont>
 
 #include "krinterview.h"
+#include "krsort.h"
+
 
 class vfile;
 class KrViewProperties;
@@ -87,6 +89,16 @@ public slots:
     virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
 
 protected:
+    virtual KrSort::LessThanFunc lessThanFunc() const {
+        return KrSort::itemLessThan;
+    }
+    virtual KrSort::LessThanFunc greaterThanFunc() const {
+        return KrSort::itemGreaterThan;
+    }
+    virtual QVariant customSortData(vfile *vf) const {
+        return QVariant();
+    }
+    KrSort::Sorter createSorter();
     QString nameWithoutExtension(const vfile * vf, bool checkEnabled = true) const;
 
 

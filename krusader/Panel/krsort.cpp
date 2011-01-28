@@ -25,7 +25,7 @@
 
 namespace KrSort {
 
-SortProps::SortProps(vfile *vf, int col, const KrViewProperties * props, bool isDummy, bool asc, int origNdx) {
+void SortProps::init(vfile *vf, int col, const KrViewProperties * props, bool isDummy, bool asc, int origNdx, QVariant customData) {
     _col = col;
     _prop = props;
     _isdummy = isDummy;
@@ -33,6 +33,7 @@ SortProps::SortProps(vfile *vf, int col, const KrViewProperties * props, bool is
     _vfile = vf;
     _index = origNdx;
     _name = vf->vfile_getName();
+    _customData = customData;
 
     if(_prop->sortOptions & KrViewProperties::IgnoreCase)
         _name = _name.toLower();
@@ -107,7 +108,6 @@ SortProps::SortProps(vfile *vf, int col, const KrViewProperties * props, bool is
 }
 
 
-
 // compares numbers within two strings
 int compareNumbers(QString& aS1, int& aPos1, QString& aS2, int& aPos2)
 {
@@ -129,7 +129,6 @@ int compareNumbers(QString& aS1, int& aPos1, QString& aS2, int& aPos2)
     }
     return res;
 }
-
 
 bool compareTextsAlphabetical(QString& aS1, QString& aS2, const KrViewProperties * _viewProperties, bool aNumbers)
 {
@@ -314,10 +313,39 @@ void sort(QVector<SortProps*> &sorting, bool descending)
                 descending ? &itemGreaterThan : &itemLessThan);
 }
 
-QVector<KrSort::SortProps*>::iterator lowerBound(QVector<SortProps*> &sorting, SortProps *item, bool descending)
+Sorter::Sorter(int reserveItems, const KrViewProperties *viewProperties,
+        LessThanFunc lessThanFunc, LessThanFunc greaterThanFunc) :
+    _viewProperties(viewProperties),
+    _lessThanFunc(lessThanFunc),
+    _greaterThanFunc(greaterThanFunc)
+ {
+    _items.reserve(reserveItems);
+    _itemStore.reserve(reserveItems);
+ }
+ 
+void Sorter::addItem(vfile *vf, bool isDummy, int idx, QVariant customData)
 {
-    return qLowerBound(sorting.begin(), sorting.end(), item,
-                        descending ? &itemGreaterThan : &itemLessThan);
+    _itemStore << SortProps(vf, _viewProperties->sortColumn, _viewProperties, isDummy, !descending(), idx, customData);
+    _items << &_itemStore.last();
+}
+
+void Sorter::sort()
+{
+    qStableSort(_items.begin(), _items.end(),
+                descending() ? _greaterThanFunc : _lessThanFunc);
+}
+
+int Sorter::insertIndex(vfile *vf, bool isDummy, QVariant customData)
+{
+    SortProps props(vf,  _viewProperties->sortColumn, _viewProperties, isDummy, !descending(), -1, customData);
+    const QVector<SortProps*>::iterator it =
+        qLowerBound(_items.begin(), _items.end(), &props,
+                        descending() ? _greaterThanFunc : _lessThanFunc);
+
+    if(it != _items.end())
+         return _items.indexOf((*it));
+    else
+        return _items.count();
 }
 
 }; // namespace KrSort
