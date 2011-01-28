@@ -493,9 +493,7 @@ public:
     bool canRestoreSelection() {
         return !_savedSelection.isEmpty();
     }
-    void clearSavedSelection() {
-        _savedSelection.clear();
-    }
+    void clearSavedSelection();
 
     // todo: what about selection modes ???
     virtual ~KrView();

@@ -1267,10 +1267,16 @@ void KrView::setSelected(const vfile* vf, bool select)
 void KrView::saveSelection()
 {
     _savedSelection = selectedUrls();
+    op()->emitRefreshActions();
 }
 
 void KrView::restoreSelection()
 {
     if(canRestoreSelection())
         setSelection(_savedSelection);
+}
+
+void KrView::clearSavedSelection() {
+    _savedSelection.clear();
+    op()->emitRefreshActions();
 }

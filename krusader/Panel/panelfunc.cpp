@@ -617,8 +617,10 @@ void ListPanelFunc::moveFiles(bool enqueue)
         // finally..
         otherFunc() ->files() ->vfs_addFiles(fileUrls, KIO::CopyJob::Move, files(), "", pmode);
     }
-    if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation))
+    if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
+        panel->view->saveSelection();
         panel->view->unselect(KRQuery("*"));
+    }
 }
 
 // called from SLOTS to begin the renaming process
@@ -798,8 +800,10 @@ void ListPanelFunc::copyFiles(bool enqueue)
         // finally..
         otherFunc() ->files() ->vfs_addFiles(fileUrls, KIO::CopyJob::Copy, 0, "", pmode);
     }
-    if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation))
+    if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
+        panel->view->saveSelection();
         panel->view->unselect(KRQuery("*"));
+    }
 }
 
 void ListPanelFunc::deleteFiles(bool reallyDelete)
