@@ -307,8 +307,11 @@ void ListPanelFunc::doRefresh()
 
         int savedHistoryState = history->state();
 
-        if (vfsP->vfs_refresh(u))
+        if (vfsP->vfs_refresh(u)) {
+            // update the history, as the actual url might differ from the one requested
+            history->setCurrentUrl(vfsP->vfs_getOrigin());
             break; // we have a valid refreshed URL now
+        }
 
         refreshFailed = true;
 

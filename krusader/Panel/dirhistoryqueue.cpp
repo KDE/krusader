@@ -48,6 +48,12 @@ KUrl DirHistoryQueue::currentUrl()
         return KUrl();
 }
 
+void DirHistoryQueue::setCurrentUrl(const KUrl &url)
+{
+    if(_urlQueue.count())
+        _urlQueue[_currentPos] = url;
+}
+
 QString DirHistoryQueue::currentItem()
 {
     if(count())

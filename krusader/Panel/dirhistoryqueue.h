@@ -43,6 +43,7 @@ public:
         return _urlQueue.count();
     }
     KUrl currentUrl();
+    void setCurrentUrl(const KUrl &url);
     const KUrl& get(int pos) {
         return _urlQueue[pos];
     }
