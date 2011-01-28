@@ -97,11 +97,12 @@ void KgPanel::setupMiscTab()
     QGroupBox *miscGrp = createFrame(i18n("Operation"), tab);
     QGridLayout *miscGrid = createGridLayout(miscGrp);
 
-    KONFIGURATOR_CHECKBOX_PARAM operation_settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
+    KONFIGURATOR_CHECKBOX_PARAM operation_settings[] = { // cfg_class, cfg_name, default, text, restart, tooltip
         {"Look&Feel", "Mark Dirs",            _MarkDirs,          i18n("Autoselect directories"),   false,  i18n("When matching the select criteria, not only files will be selected, but also directories.") },
         {"Look&Feel", "Rename Selects Extension", true,          i18n("Rename selects extension"),   false,  i18n("When renaming a file, the whole text is selected. If you want Total-Commander like renaming of just the name, without extension, uncheck this option.") },
+        {"Look&Feel", "UnselectBeforeOperation", _UnselectBeforeOperation, i18n("Unslect files before copy/move"), false, "Unselect files, which are to be copyed/moved, before the operation starts." },
     };
-    cbs = createCheckBoxGroup(2, 0, operation_settings, 2 /*count*/, miscGrp, PAGE_MISC);
+    cbs = createCheckBoxGroup(2, 0, operation_settings, 3 /*count*/, miscGrp, PAGE_MISC);
     miscGrid->addWidget(cbs, 0, 0);
 
     miscLayout->addWidget(miscGrp);

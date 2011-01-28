@@ -87,6 +87,8 @@
 #define _FullPathTabNames false
 // User defined folder icons
 #define _UserDefinedFolderIcons true
+// Unslect files before copy/move
+#define _UnselectBeforeOperation true
 
 // Panel Toolbar Checkboxes
 // Panel Toolbar Visible checkbox turned off

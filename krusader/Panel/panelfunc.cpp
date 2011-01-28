@@ -549,7 +549,8 @@ void ListPanelFunc::moveFiles(bool enqueue)
         // ask the user for the copy dest
         virtualBaseURL = getVirtualBaseURL();
         dest = KChooseDir::getDir(s, dest, panel->virtualPath(), queue, preserveAttrs, virtualBaseURL);
-        if (dest.isEmpty()) return ;   // the user canceled
+        if (dest.isEmpty())
+            return ;   // the user canceled
         if (preserveAttrs)
             pmode = PM_PRESERVE_ATTR;
         else
@@ -615,6 +616,8 @@ void ListPanelFunc::moveFiles(bool enqueue)
         // finally..
         otherFunc() ->files() ->vfs_addFiles(fileUrls, KIO::CopyJob::Move, files(), "", pmode);
     }
+    if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation))
+        panel->view->unselect(KRQuery("*"));
 }
 
 // called from SLOTS to begin the renaming process
@@ -737,7 +740,8 @@ void ListPanelFunc::copyFiles(bool enqueue)
         // ask the user for the copy dest
         virtualBaseURL = getVirtualBaseURL();
         dest = KChooseDir::getDir(s, dest, panel->virtualPath(), queue, preserveAttrs, virtualBaseURL);
-        if (dest.isEmpty()) return ;   // the user canceled
+        if (dest.isEmpty())
+            return ;   // the user canceled
         if (preserveAttrs)
             pmode = PM_PRESERVE_ATTR;
         else
@@ -793,6 +797,8 @@ void ListPanelFunc::copyFiles(bool enqueue)
         // finally..
         otherFunc() ->files() ->vfs_addFiles(fileUrls, KIO::CopyJob::Copy, 0, "", pmode);
     }
+    if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation))
+        panel->view->unselect(KRQuery("*"));
 }
 
 void ListPanelFunc::deleteFiles(bool reallyDelete)

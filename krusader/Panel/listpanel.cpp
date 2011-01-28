@@ -886,6 +886,8 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
     }
     QWidget *notify = (!e->source() ? 0 : e->source());
     tempFiles->vfs_addFiles(&URLs, mode, notify, dir);
+    if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation))
+        otherPanel()->view->unselect(KRQuery("*"));
 }
 
 void ListPanel::vfs_refresh(KJob *job)
