@@ -95,7 +95,7 @@ Installation FAQ
     but Krusader's natural environment is KDE, because it relies on services
     provided by the KDE base libraries. Only some shared libraries are needed
     e.g. KDE libraries, Qt™ libraries, etc. This means that Krusader runs on
-    GNOME, AfterStep, XFce and other window managers provided the approriate
+    GNOME, AfterStep, XFce and other window managers provided the appropriate
     libraries are installed on your computer. All this is not a problem since
     the apt-get world can resolve these dependencies instantly.
 
@@ -121,7 +121,7 @@ Installation FAQ
 
     For running Krusader (e.g. when you have installed Krusader with a binary
     RPM) you need less libraries than if you compile Krusader from source. e.g.
-    you only need the C-compliler gcc when you compile Krusader from source
+    you only need the C-compiler gcc when you compile Krusader from source
     (see the next question).
 
     Take a look at the Krusader dependencies paragraph of our install chapter.
@@ -206,7 +206,7 @@ Installation FAQ
     appropriate package for your Linux® distribution, we recommend searching
     for it with rpmfind or rpmpbone.
 
-    In general, a package for an older version of your distrubution or even for
+    In general, a package for an older version of your distribution or even for
     another distribution might work on your computer (e.g. FC RPM's often work
     on Mdk and RH, and vice versa), but it is always the best that you install
     only RPM's that exactly match your distribution. If you can't find a
@@ -397,7 +397,7 @@ Usage FAQ
     archive file, what to do?
 7. I get the error message "Protocol not supported by Krusader: "krarc:/path/to
     /foo-archive", when I try to open foo-Archive, what to do?
-8. What todo if an extenal tool doesn't seem to work?
+8. What todo if an external tool doesn't seem to work?
 9. Howto executing jar files (and not enter the jar archive)?
 10. Why do I have trouble with my FTP connection?
 11. I get "FTP protocol not supported by Krusader" error when trying to open a
@@ -408,7 +408,7 @@ Usage FAQ
 15. How can I disable the default sounds, e.g. when I do a delete action ?
 16. Where the remote connection manager ?
 17. Why doesn't mimetype magic sometimes work inside archives?
-18. Where is Konfigurator, do i need to install the KDE Desktop Enviroment to
+18. Where is Konfigurator, do i need to install the KDE Desktop Environment to
     use it?
 19. How can I set the look & feel of 2 different users to be the same?
 
@@ -503,7 +503,7 @@ Usage FAQ
     ldconfig on this directory when you're done. For more information click
     here.
 
-8.  What todo if an extenal tool doesn't seem to work?
+8.  What todo if an external tool doesn't seem to work?
 
     Krusader uses several programs as external tools, and sometimes they appear
     not to work. Open a terminal and check if tool foo is installed.
@@ -522,7 +522,7 @@ Usage FAQ
 
     Go to the Konfigurator Protocol page and remove application/x-jar from the
     krarc node, Krusader should no longer enter the archive. Global file
-    associations are handled by KDE and not by Krusader. To assosiate the jar
+    associations are handled by KDE and not by Krusader. To associate the jar
     extension:
 
       ● Open KDEs control center: kcontrol
@@ -588,13 +588,13 @@ Usage FAQ
     KDE components->File Associations->Application->octet-stream, binary viewer
     needs to be removed.
 
-18. Where is Konfigurator, do i need to install the KDE Desktop Enviroment to
+18. Where is Konfigurator, do i need to install the KDE Desktop Environment to
     use it?
 
     Konfigurator is Krusaders configuration module, when you have installed
     Krusader than you have also Konfigurator. For some reason some people think
     it's an other KDE application, but it is not, so you don't need to install
-    the KDE Desktop Enviroment to use Konfigurator. When runnig Krusader, use
+    the KDE Desktop Environment to use Konfigurator. When runnig Krusader, use
     Settings->Configure Krusader, and it will start Konfigurator. Please read
     the manual, Krusader has many many configuration options, a lot of things
     can be customized to your needs with Konfigurator.
@@ -655,8 +655,8 @@ General FAQ
      2. Focus only on one problem at a time, so the developers can easily
         understand you, and commit your patch it works.
 
-     3. Preferrably, you can start a discussion with the developers on the
-        krusader-devel mailing lists or on the Krusader Forum. Unfortunatly, we
+     3. Preferably, you can start a discussion with the developers on the
+        krusader-devel mailing lists or on the Krusader Forum. Unfortunately, we
         can't apply a patch if the patch is in conflict with the "general
         design" of the Krusader code (read for more instructions in this FAQ).
         Please send only one change request per mail, so that the discussion is
@@ -749,7 +749,7 @@ General FAQ
     $ valgrind --tool=memcheck {foo_path}/krusader
 
     The valgrind tool will write to stdout, what really happens. If you could
-    send these informations before the crash, it's almost sure, that we may fix
+    send this information before the crash, it's almost sure, that we may fix
     or tell you what to do.
 
 5.  What todo if the KDEcrashhandler sends no usefull backtrace information?

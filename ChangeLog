@@ -114,7 +114,7 @@
            move several options to new places
   CHANGED: when open/refresh of a dir fails, don't annoy the user with a message
            box, but display the error embedded into the panel
-  CHANGED: icon size, icons/previews on/off are set seperately per view type
+  CHANGED: icon size, icons/previews on/off are set separately per view type
   CHANGED: dim icons in unfocused panel (if dim colors is activated)
   CHANGED: mountman gui: retrieve icons from Solid
   CHANGED: mountman gui: change mount check interval from 3000 to 500 ms
@@ -801,7 +801,7 @@
     ADDED: when custom filter is set, the Totals line will show the filter.
            example: [*.cpp]
     ADDED: useraction: Drop a warning on JavaScript-errors
-    ADDED: set krusaders icon acording to the users privileges
+    ADDED: set krusaders icon according to the users privileges
     ADDED: preserve date for local targets at copy / move
     ADDED: useraction: For JS-extensions the global variable scriptDir is
            available, indicating the location of the current script
@@ -890,7 +890,7 @@
     FIXED: synchronizer, consistency bug of the filter combos
     FIXED: advanced filter hides the searcher window at errors
     FIXED: combiner, smoother interoperability with Total Commander
-    FIXED: UserActionMenu gets updated after Konfigurator applys
+    FIXED: UserActionMenu gets updated after Konfigurator applies
     FIXED: can't sort by extension when "Case Sensitive sort" is on
     FIXED: move to trash didn't work on kde 3.4.0
     FIXED: [ 1123995 ] custom selection mode misfunction
@@ -993,7 +993,7 @@
     FIXED: rename extension bug in kde 3.3
     FIXED: crash on startup due to restoring of last size and position
     FIXED: couldn't sort case sensative on some systems (see KDE bug #40131)
-    FIXED: resizing of the main window produces strange effencts
+    FIXED: resizing of the main window produces strange effects
     FIXED: double dragging in Krusader and Konqueror selection modes
     FIXED: right click menu and user action ID turmoil
     FIXED: [ 1074393 ] Crashes sometimes on startup (thanks Heiner)
@@ -1400,7 +1400,7 @@
            results would be lost.
     FIXED: free disk capacity miscalculation for Ext2 and Ext3 file systems.
     FIXED: crash when editing a file with # in the filename
-    FIXED: inplace renaming bug with extention when pressing ctrl+click
+    FIXED: inplace renaming bug with extension when pressing ctrl+click
     FIXED: whenever the folder gets refreshed, the current file would be lost
     FIXED: problematic behavior when trying to SPACE a folder without
            permissions
@@ -1518,7 +1518,7 @@
 
 1.12 beta2
 ======================
-    ADDED: Introducing extention column
+    ADDED: Introducing extension column
     ADDED: Italian translation (thanks to Giuseppe Bordoni)
     ADDED: Preview to the right-click menu.
 
@@ -1614,7 +1614,7 @@
 1.0.1
 ======================
     ADDED: When compare-mode is active, pressing the 'Select Files' icon (or the
-           equivelent keyboard short-cut), will open the usual dialog with 4 new
+           equivalent keyboard shortcut), will open the usual dialog with 4 new
            options in the predefined selections. This allows automatic selection
            of files according to their compare-mode status - newer, older, etc.
     ADDED: Terminal emulator now "follows mouse" - konqueror style.
