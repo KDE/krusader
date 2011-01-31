@@ -75,10 +75,10 @@ public:
     void emitChanged() {
         emit layoutChanged();
     }
-    Qt::SortOrder lastSortDir() {
+    Qt::SortOrder lastSortDir() const {
         return (properties()->sortOptions & KrViewProperties::Descending) ? Qt::DescendingOrder : Qt::AscendingOrder;
     }
-    int lastSortOrder() {
+    int lastSortOrder() const {
         return properties()->sortColumn;
     }
     void setAlternatingTable(bool altTable) {
