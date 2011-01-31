@@ -49,7 +49,7 @@ public:
 
 protected slots:
     virtual void renameCurrentItem();
-    void sectionResized(int, int, int);
+    virtual void sectionResized(int, int, int);
     void sectionMoved(int, int, int);
     virtual void currentChanged(const QModelIndex & current, const QModelIndex & previous);
 
