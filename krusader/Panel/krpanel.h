@@ -43,12 +43,15 @@ class KrView;
 class KrPanel
 {
 public:
-    KrPanel(bool &left, AbstractPanelManager *manager) :
-        gui(0), func(0), view(0), _left(left), _manager(manager) {}
+    KrPanel(AbstractPanelManager *manager) :
+        gui(0), func(0), view(0), _manager(manager) {}
 
     KUrl virtualPath() const;
     KrPanel *otherPanel() {
         return _manager->otherManager()->currentPanel();
+    }
+    bool isLeft() {
+        return _manager->isLeft();
     }
 
     ListPanel *gui;
@@ -56,7 +59,6 @@ public:
     KrView *view;
 
 protected:
-    const bool &_left; // TODO: remove this
     AbstractPanelManager *_manager;
 };
 

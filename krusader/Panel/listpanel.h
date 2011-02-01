@@ -86,7 +86,7 @@ public:
 #define ITEM2VFILE(PANEL_PTR, KRVIEWITEM)  PANEL_PTR->func->files()->vfs_search(KRVIEWITEM->name())
 #define NAME2VFILE(PANEL_PTR, STRING_NAME) PANEL_PTR->func->files()->vfs_search(STRING_NAME)
     // constructor create the panel, but DOESN'T fill it with data, use start()
-    ListPanel(QWidget *parent, bool &left, AbstractPanelManager *manager, KConfigGroup cfg = KConfigGroup());
+    ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg = KConfigGroup());
     ~ListPanel();
     void start(KUrl url = KUrl(), bool immediate = false);
 
@@ -110,9 +110,6 @@ public:
         view->getSelectedItems(fileNames);
     }
     void setButtons();
-    bool isLeft() {
-        return _left;
-    }
     void setJumpBack(KUrl url);
 
     int  getProperties();

@@ -134,8 +134,8 @@ protected:
 /////////////////////////////////////////////////////
 //      The list panel constructor       //
 /////////////////////////////////////////////////////
-ListPanel::ListPanel(QWidget *parent, bool &left, AbstractPanelManager *manager, KConfigGroup cfg) :
-        KrPanel(left, manager),
+ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg) :
+        KrPanel(manager),
         QWidget(parent), panelType(-1), colorMask(255), compareMode(false), statsAgent(0),
         quickSearch(0), cdRootButton(0), cdUpButton(0), popupBtn(0), popup(0), inlineRefreshJob(0),
         _locked(false), previewJob(0), vfsError(0)
@@ -978,7 +978,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
         if (e->modifiers() == Qt::ControlModifier) {
             // user pressed CTRL+Right/Left - refresh other panel to the selected path if it's a
             // directory otherwise as this one
-            if ((_left && e->key() == Qt::Key_Right) || (!_left && e->key() == Qt::Key_Left)) {
+            if ((isLeft() && e->key() == Qt::Key_Right) || (!isLeft() && e->key() == Qt::Key_Left)) {
                 KUrl newPath;
                 KrViewItem *it = view->getCurrentKrViewItem();
 

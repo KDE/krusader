@@ -132,7 +132,7 @@ void PanelManager::slotChangePanel(ListPanel *p)
 ListPanel* PanelManager::createPanel(bool setCurrent, KConfigGroup cfg)
 {
     // create the panel and add it into the widgetstack
-    ListPanel * p = new ListPanel(_stack, _left, this, cfg);
+    ListPanel * p = new ListPanel(_stack, this, cfg);
     _stack->addWidget(p);
 
     // now, create the corrosponding tab
@@ -305,7 +305,7 @@ void PanelManager::slotRecreatePanels()
         oldPanel->saveSettings(cfg, false);
         disconnect(oldPanel);
 
-        ListPanel *newPanel = new ListPanel(_stack, _left, this);
+        ListPanel *newPanel = new ListPanel(_stack, this);
         newPanel->restoreSettings(cfg);
         connect(newPanel, SIGNAL(activePanelChanged(ListPanel*)), this, SLOT(slotRefreshActions()));
         connect(newPanel, SIGNAL(activePanelChanged(ListPanel*)), MAIN_VIEW, SLOT(slotSetActivePanel(ListPanel*)));
