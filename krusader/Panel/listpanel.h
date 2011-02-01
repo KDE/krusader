@@ -122,7 +122,7 @@ public:
 
     void otherPanelChanged();
 
-    void saveSettings(KConfigGroup cfg, bool localOnly);
+    void saveSettings(KConfigGroup cfg, bool localOnly, bool saveHistory = false);
     void restoreSettings(KConfigGroup cfg);
 
 public slots:

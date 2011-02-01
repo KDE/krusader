@@ -1223,7 +1223,7 @@ void ListPanel::editLocation()
     origin->edit();
 }
 
-void ListPanel::saveSettings(KConfigGroup cfg, bool localOnly)
+void ListPanel::saveSettings(KConfigGroup cfg, bool localOnly, bool saveHistory)
 {
     QString url = (localOnly ? realPath() : virtualPath().pathOrUrl());
     cfg.writeEntry("Url", url);
@@ -1233,6 +1233,8 @@ void ListPanel::saveSettings(KConfigGroup cfg, bool localOnly)
         popup->saveSizes(); //FIXME use this cfg group
         cfg.writeEntry("PopupPage", popup->currentPage());
     }
+    if(saveHistory)
+        func->history->save(KConfigGroup(&cfg, "History"));
     view->saveSettings(KConfigGroup(&cfg, "View"));
 }
 
@@ -1240,24 +1242,23 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
 {
     changeType(cfg.readEntry("Type", defaultPanelType()));
 
-    func->history->clear();
-
     setProperties(cfg.readEntry("Properties", 0));
     view->restoreSettings(KConfigGroup(&cfg, "View"));
 
     func->files()->vfs_enableRefresh(true);
 
-    KUrl url(cfg.readEntry("Url", ROOT_DIR));
-    if (!url.isValid())
-        url = KUrl(ROOT_DIR);
-    if (url.isLocalFile())
-        _realPath = url;
-    else
-        _realPath = KUrl(ROOT_DIR);
+    _realPath = KUrl(ROOT_DIR);
 
-    func->openUrl(url);
+    if(func->history->restore(KConfigGroup(&cfg, "History")))
+        func->refresh();
+    else {
+        KUrl url(cfg.readEntry("Url", ROOT_DIR));
+        if (!url.isValid())
+            url = KUrl(ROOT_DIR);
+        func->openUrl(url);
+    }
 
-    setJumpBack(url);
+    setJumpBack(func->history->currentUrl());
 }
 
 void ListPanel::updatePopupPanel(KrViewItem *item)

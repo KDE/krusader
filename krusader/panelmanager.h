@@ -61,7 +61,7 @@ public:
      */
     void swapPanels();
 
-    void saveSettings(KConfigGroup config, bool localOnly = true);
+    void saveSettings(KConfigGroup config, bool localOnly = true, bool saveHistory = false);
     void loadSettings(KConfigGroup config);
     int findTab(KUrl url);
     int activeTab();

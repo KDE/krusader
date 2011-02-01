@@ -379,8 +379,8 @@ void KrusaderView::saveSettings(KConfigGroup &cfg)
     bool localOnly = true; //FIXME make configurable
     cfg.writeEntry("Vertical Mode", isVertical());
     cfg.writeEntry("Left Side Is Active", ACTIVE_PANEL->gui->isLeft());
-    leftMng->saveSettings(KConfigGroup(&cfg, "Left Tab Bar"), localOnly);
-    rightMng->saveSettings(KConfigGroup(&cfg, "Right Tab Bar"), localOnly);
+    leftMng->saveSettings(KConfigGroup(&cfg, "Left Tab Bar"), localOnly, true);
+    rightMng->saveSettings(KConfigGroup(&cfg, "Right Tab Bar"), localOnly, true);
 }
 
 #include "krusaderview.moc"

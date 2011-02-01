@@ -148,7 +148,7 @@ ListPanel* PanelManager::createPanel(bool setCurrent, KConfigGroup cfg)
     return p;
 }
 
-void PanelManager::saveSettings(KConfigGroup config, bool localOnly)
+void PanelManager::saveSettings(KConfigGroup config, bool localOnly, bool saveHistory)
 {
     config.writeEntry("ActiveTab", activeTab());
 
@@ -159,7 +159,7 @@ void PanelManager::saveSettings(KConfigGroup config, bool localOnly)
     for(int i = 0; i < _tabbar->count(); i++) {
         ListPanel *panel = _tabbar->getPanel(i);
         KConfigGroup grpTab(&grpTabs, "Tab" + QString::number(i));
-        panel->saveSettings(grpTab, localOnly);
+        panel->saveSettings(grpTab, localOnly, saveHistory);
     }
 }
 

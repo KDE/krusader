@@ -22,6 +22,7 @@
 
 #include "krpanel.h"
 #include "krview.h"
+#include "../defaults.h"
 
 #include <kdebug.h>
 
@@ -126,4 +127,28 @@ bool DirHistoryQueue::goBack()
 bool DirHistoryQueue::goForward()
 {
     return gotoPos(_currentPos - 1);
+}
+
+void DirHistoryQueue::save(KConfigGroup cfg)
+{
+    cfg.writeEntry("Entrys", _urlQueue.toStringList());
+    cfg.writeEntry("CurrentItems", _currentItems);
+    cfg.writeEntry("CurrentIndex", _currentPos);
+}
+
+bool DirHistoryQueue::restore(KConfigGroup cfg)
+{
+    clear();
+    _urlQueue = KUrl::List(cfg.readEntry("Entrys", QStringList()));
+    _currentItems = cfg.readEntry("CurrentItems", QStringList());
+    if(!_urlQueue.count() || _urlQueue.count() != _currentItems.count()) {
+        clear();
+        return false;
+    }
+    _currentPos = cfg.readEntry("CurrentIndex", 0);
+    if(_currentPos >= _urlQueue.count() || _currentPos < 0)
+        _currentPos  = 0;
+
+    _state++;
+    return true;
 }

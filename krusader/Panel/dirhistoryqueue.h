@@ -23,6 +23,7 @@
 
 #include <QStringList>
 #include <kurl.h>
+#include <kconfiggroup.h>
 
 class KrPanel;
 
@@ -58,6 +59,9 @@ public:
         return _currentPos > 0;
     }
     QString currentItem(); // current item of the view
+
+    void save(KConfigGroup cfg);
+    bool restore(KConfigGroup cfg);
 
 private:
     void saveCurrentItem();
