@@ -407,6 +407,7 @@ void KrView::showPreviews(bool show)
         _previews = 0;
     }
     redraw();
+    op()->emitRefreshActions();
 }
 
 void KrView::updatePreviews()
@@ -1021,6 +1022,7 @@ int KrView::defaultFileIconSize()
 void KrView::saveDefaultSettings()
 {
     saveSettings(KConfigGroup(_config, _instance.name()));
+    op()->emitRefreshActions();
 }
 
 void KrView::restoreDefaultSettings()
