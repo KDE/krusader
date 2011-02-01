@@ -264,8 +264,7 @@ void KrViewOperator::settingsChanged()
 
 void KrViewOperator::saveDefaultSettings()
 {
-    KConfigGroup group(_view->_config, _view->_instance.name());
-    _view->doSaveSettings(group);
+    _view->saveDefaultSettings();
 }
 
 bool KrViewOperator::eventFilter(QObject *watched, QEvent *event)
@@ -333,7 +332,6 @@ void KrView::init()
     setup();
     restoreDefaultSettings();
     KConfigGroup grp(_config, _instance.name());
-    showPreviews(grp.readEntry("Show Previews", false));
     enableUpdateDefaultSettings(true);
     _instance.m_objects.append(this);
 }
@@ -407,6 +405,7 @@ void KrView::showPreviews(bool show)
         _previews = 0;
     }
     redraw();
+    op()->settingsChanged();
     op()->emitRefreshActions();
 }
 
@@ -1010,6 +1009,7 @@ void KrView::setFileIconSize(int size)
         _previews->update();
     }
     redraw();
+    op()->settingsChanged();
     op()->emitRefreshActions();
 }
 

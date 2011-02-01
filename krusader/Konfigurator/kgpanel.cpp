@@ -293,7 +293,7 @@ void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
         //   cfg_class             cfg_name        default       text            restart        tooltip
     {
         {instance->name(), "With Icons",      _WithIcons,   i18n("Use icons in the filenames"), true,  i18n("Show the icons for filenames and directories.") },
-        {instance->name(), "Show Previews",   false,        i18n("Show previews"),              false, i18n("Show previews of files and directories.") },
+        {instance->name(), "ShowPreviews",   false,        i18n("Show previews"),              false, i18n("Show previews of files and directories.") },
     };
 
     KonfiguratorCheckBoxGroup *iconSett = createCheckBoxGroup(2, 0, iconSettings, 2 /*count*/, parent, PAGE_VIEW);
