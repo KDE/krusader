@@ -362,12 +362,6 @@ void KRslots::toggleHidden()
     MAIN_VIEW->rightMng->refreshAllTabs(true);
 }
 
-void KRslots::togglePreviews(bool show)
-{
-    if (ACTIVE_PANEL)
-        ACTIVE_VIEW->showPreviews(show);
-}
-
 void KRslots::swapPanels()
 {
     KUrl leftURL = MAIN_VIEW->left->func->files()->vfs_getOrigin();

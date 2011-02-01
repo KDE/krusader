@@ -68,7 +68,7 @@ public:
     *actExecCollectSeparate, *actExecCollectTogether,
     *actExecTerminalExternal, *actExecTerminalEmbedded;
     static KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
-    *actShowStatusBar, *actToggleHidden, *actCompareDirs, *actTogglePreviews;
+    *actShowStatusBar, *actToggleHidden, *actCompareDirs;
 
     static KAction **compareArray[];
     /** actions for setting the execution mode of commands from commanddline */

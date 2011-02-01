@@ -83,7 +83,6 @@ public slots:
     void rootKrusader();
     void swapPanels();
     void toggleHidden();
-    void togglePreviews(bool show);
     void toggleSwapSides();
     void configToolbar();
     void configKeys();

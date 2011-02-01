@@ -111,7 +111,6 @@ KToggleAction *KrActions::actShowToolBar = 0;
 KToggleAction *KrActions::actShowStatusBar = 0;
 KToggleAction *KrActions::actToggleHidden = 0;
 KToggleAction *KrActions::actCompareDirs = 0;
-KToggleAction *KrActions::actTogglePreviews = 0;
 
 
 #ifdef __KJSEMBED__
@@ -192,8 +191,6 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
 
     NEW_KTOGGLEACTION(actToggleHidden, i18n("Show &Hidden Files"), 0, Qt::CTRL + Qt::Key_Period, SLOTS, SLOT(toggleHidden()), "toggle hidden files");
-
-    NEW_KTOGGLEACTION(actTogglePreviews, i18n("Show Previews"), 0, 0, SLOTS, SLOT(togglePreviews(bool)), "toggle previews");
 
     NEW_KACTION(actSwapPanels, i18n("S&wap Panels"), 0, Qt::CTRL + Qt::Key_U, SLOTS, SLOT(swapPanels()), "swap panels");
 

@@ -68,12 +68,14 @@ public slots:
     void applySettingsToOthers();
     void focusPanel();
     void quickFilter();
+    void togglePreviews(bool show);
 
     void refreshActions();
 
 public:
     KAction *actZoomIn, *actZoomOut, *actDefaultZoom;
     KAction *actSelect, *actUnselect, *actSelectAll, *actUnselectAll, *actInvert, *actRestoreSelection;
+    KToggleAction *actTogglePreviews;
 
 protected:
     KrView *view();

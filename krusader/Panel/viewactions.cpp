@@ -34,6 +34,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../krmainwindow.h"
 
 #include <klocale.h>
+#include <ktoggleaction.h>
 
 ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
     ActionsBase(parent, mainWindow)
@@ -62,6 +63,7 @@ ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
     action(i18n("Set Focus to the Panel"), 0, Qt::Key_Escape, SLOT(focusPanel()), "focus_panel");
     action(i18n("Apply settings to other tabs"), 0, 0, SLOT(applySettingsToOthers()), "view_apply_settings_to_others");
     action(i18n("QuickFilter"), 0, Qt::CTRL + Qt::Key_I, SLOT(quickFilter()), "quick_filter");
+    actTogglePreviews = toggleAction(i18n("Show Previews"), 0, 0, SLOT(togglePreviews(bool)), "toggle previews");
     KAction *actSaveaveDefaultSettings = action(i18n("Save settings as default"), 0, 0, SLOT(saveDefaultSettings()), "view_save_default_settings");
 
     // tooltips
@@ -169,6 +171,11 @@ void ViewActions::quickFilter()
     view()->op()->startQuickFilter();
 }
 
+void ViewActions::togglePreviews(bool show)
+{
+    view()->showPreviews(show);
+}
+
 void ViewActions::refreshActions()
 {
     actDefaultZoom->setEnabled(view()->defaultFileIconSize() != view()->fileIconSize());
@@ -176,4 +183,5 @@ void ViewActions::refreshActions()
     actZoomOut->setEnabled(idx > 0);
     actZoomIn->setEnabled(idx < (KrView::iconSizes.count() - 1));
     actRestoreSelection->setEnabled(view()->canRestoreSelection());
+    actTogglePreviews->setChecked(view()->previewsShown());
 }
