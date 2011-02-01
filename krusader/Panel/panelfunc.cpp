@@ -1377,7 +1377,7 @@ void ListPanelFunc::home()
 
 void ListPanelFunc::root()
 {
-    openUrl(KUrl("/"));
+    openUrl(KUrl(ROOT_DIR));
 }
 
 void ListPanelFunc::syncOtherPanel()
