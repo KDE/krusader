@@ -29,9 +29,9 @@
 #include <kconfig.h>
 
 
-KrItemView::KrItemView(QWidget *parent, KrViewInstance &instance, const bool &left, KConfig *cfg) :
+KrItemView::KrItemView(QWidget *parent, KrViewInstance &instance, KConfig *cfg) :
     QAbstractItemView(parent),
-    KrInterView(instance, left, cfg, this)
+    KrInterView(instance, cfg, this)
 {
     setWidget(this);
     setModel(_model);

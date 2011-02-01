@@ -496,7 +496,7 @@ public:
     static QString krPermissionString(const vfile * vf);
 
 protected:
-    KrView(KrViewInstance &instance, const bool &left, KConfig *cfg);
+    KrView(KrViewInstance &instance, KConfig *cfg);
 
     virtual KIO::filesize_t calcSize() = 0;
     virtual KIO::filesize_t calcSelectedSize() = 0;
@@ -511,7 +511,6 @@ protected:
 
     KrViewInstance &_instance;
     VfileContainer *_files;
-    const bool &_left;
     KConfig *_config;
     QWidget *_mainWindow;
     QWidget *_widget;

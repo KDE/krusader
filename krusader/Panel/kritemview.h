@@ -27,7 +27,7 @@ class KrItemView : public QAbstractItemView, public KrInterView
 {
     Q_OBJECT
 public:
-    KrItemView(QWidget *parent, KrViewInstance &instance, const bool &left, KConfig *cfg);
+    KrItemView(QWidget *parent, KrViewInstance &instance, KConfig *cfg);
     virtual ~KrItemView();
 
     // ---- reimplemented from QAbstractItemView ----

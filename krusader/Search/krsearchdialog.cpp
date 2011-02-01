@@ -138,7 +138,6 @@ bool KrSearchDialog::lastSearchInArchives = false;
 bool KrSearchDialog::lastFollowSymLinks = false;
 bool KrSearchDialog::lastContainsRegExp = false;
 
-bool _left = 0; // dummy - needed by krView
 
 // class starts here /////////////////////////////////////////
 KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
@@ -231,7 +230,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     quickFilter->hide();
     resultLayout->addWidget(quickFilter, 2, 0);
     // the view
-    resultView = KrViewFactory::createView(RESULTVIEW_TYPE, resultTab, _left, krConfig);
+    resultView = KrViewFactory::createView(RESULTVIEW_TYPE, resultTab, krConfig);
     resultView->init();
     resultView->restoreSettings(KConfigGroup(&group, "ResultView"));
     resultView->enableUpdateDefaultSettings(false);

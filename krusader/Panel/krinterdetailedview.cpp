@@ -47,9 +47,9 @@ KrViewInstanceImpl<KrInterDetailedView> interDetailedView(INTERVIEW_ID,"KrInterD
         i18n("&Detailed View"), "view-list-details", Qt::ALT + Qt::SHIFT + Qt::Key_D);
 // end of register code
 
-KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instance, const bool &left, KConfig *cfg):
+KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instance, KConfig *cfg):
         QTreeView(parent),
-        KrInterView(instance, left, cfg, this),
+        KrInterView(instance, cfg, this),
         _autoResizeColumns(true)
 {
     connect(_mouseHandler, SIGNAL(renameCurrentItem()), this, SLOT(renameCurrentItem()));

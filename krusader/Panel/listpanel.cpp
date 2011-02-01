@@ -402,7 +402,7 @@ int ListPanel::defaultPanelType()
 
 void ListPanel::createView()
 {
-    view = KrViewFactory::createView(panelType, splt, _left, krConfig);
+    view = KrViewFactory::createView(panelType, splt, krConfig);
     view->init();
     view->setMainWindow(krApp);
     view->op()->setQuickSearch(quickSearch);

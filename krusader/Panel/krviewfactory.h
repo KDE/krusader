@@ -62,7 +62,7 @@ public:
         return m_shortcut;
     }
 
-    virtual KrView *create(QWidget *w, const bool &left, KConfig *cfg) = 0;
+    virtual KrView *create(QWidget *w, KConfig *cfg) = 0;
 
 protected:
     int                            m_id;
@@ -81,8 +81,8 @@ public:
     KrViewInstanceImpl(int id, QString name, QString desc, QString icon, QKeySequence shortcut) :
         KrViewInstance(id, name, desc, icon, shortcut) {}
 
-    virtual KrView *create(QWidget *w, const bool &left, KConfig *cfg) {
-        return new T(w, *this, left, cfg);
+    virtual KrView *create(QWidget *w, KConfig *cfg) {
+        return new T(w, *this, cfg);
     }
 };
 
@@ -90,7 +90,7 @@ class KrViewFactory
 {
     friend class KrViewInstance;
 public:
-    static KrView *                createView(int id, QWidget * widget, const bool &left, KConfig *cfg);
+    static KrView *                createView(int id, QWidget * widget, KConfig *cfg);
     static KrViewInstance *        viewInstance(int id);
     static const QList<KrViewInstance*>& registeredViews() {
         return self().m_registeredViews;

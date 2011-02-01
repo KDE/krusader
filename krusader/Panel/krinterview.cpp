@@ -26,9 +26,9 @@
 #include "krpreviews.h"
 #include "../VFS/vfilecontainer.h"
 
-KrInterView::KrInterView(KrViewInstance &instance, const bool &left, KConfig *cfg,
+KrInterView::KrInterView(KrViewInstance &instance, KConfig *cfg,
                          QAbstractItemView *itemView) :
-        KrView(instance, left, cfg), _itemView(itemView), _mouseHandler(0)
+        KrView(instance, cfg), _itemView(itemView), _mouseHandler(0)
 {
     _model = new KrVfsModel(this);
 

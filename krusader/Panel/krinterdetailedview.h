@@ -35,7 +35,7 @@ class KrInterDetailedView : public QTreeView, public KrInterView
     Q_OBJECT
 
 public:
-    KrInterDetailedView(QWidget *parent, KrViewInstance &instance, const bool &left, KConfig *cfg);
+    KrInterDetailedView(QWidget *parent, KrViewInstance &instance, KConfig *cfg);
     virtual ~KrInterDetailedView();
 
     virtual void updateView();

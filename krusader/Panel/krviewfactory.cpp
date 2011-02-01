@@ -44,9 +44,9 @@ KrViewInstance::KrViewInstance(int id, QString name, QString desc, QString icon,
     KrViewFactory::self().registerView(this);
 }
 
-KrView * KrViewFactory::createView(int id, QWidget *widget, const bool &left, KConfig *cfg)
+KrView * KrViewFactory::createView(int id, QWidget *widget, KConfig *cfg)
 {
-    return viewInstance(id)->create(widget, left, cfg);
+    return viewInstance(id)->create(widget, cfg);
 }
 
 // static initialization, on first use idiom

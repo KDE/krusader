@@ -51,8 +51,8 @@ KrViewInstanceImpl<KrInterBriefView> interBriefView(INTERBRIEFVIEW_ID, "KrInterB
         i18n("&Brief View"), "view-list-icons", Qt::ALT + Qt::SHIFT + Qt::Key_B);
 // end of register code
 
-KrInterBriefView::KrInterBriefView(QWidget *parent, KrViewInstance &instance, const bool &left, KConfig *cfg) :
-        KrItemView(parent, instance, left, cfg),
+KrInterBriefView::KrInterBriefView(QWidget *parent, KrViewInstance &instance, KConfig *cfg) :
+        KrItemView(parent, instance, cfg),
         _header(0)
 {
     _model->setExtensionEnabled(false);
