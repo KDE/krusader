@@ -117,18 +117,17 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     if (verticalSplitterSizes.count() == 2 && verticalSplitterSizes[ 0 ] == 0 && verticalSplitterSizes[ 1 ] == 0)
         verticalSplitterSizes.clear();
 
-    show();
-
     KUrl leftUrl(QDir::homePath()), rightUrl(QDir::homePath());
     if(leftTabs.count())
         leftUrl = leftTabs[0];
     if(rightTabs.count())
         rightUrl = rightTabs[0];
-    rightMng->startPanel(right, rightUrl);
-    leftMng->startPanel(left, leftUrl);
+    right->start(rightUrl);
+    left->start(leftUrl);
 
     // make the left panel focused at program start
     KrGlobal::activePanel = left;
+
     ACTIVE_PANEL->gui->slotFocusOnMe();  // left starts out active
 
     for (int i = 1; i < leftTabs.count(); i++)
@@ -142,19 +141,11 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     rightMng->layoutTabs();
 
     if(restoreSettings) {
-        int         leftActiveTab = cfg.readEntry("Left Active Tab", 0);
-        int         rightActiveTab = cfg.readEntry("Right Active Tab", 0);
-        bool        leftActive = cfg.readEntry("Left Side Is Active", false);
-
-        if(!leftTabs.count()) {
-            leftMng->loadSettings(&cfg, "Left Tab Bar");
-            leftMng->setActiveTab(leftActiveTab);
-        }
-        if(!rightTabs.count()) {
-            rightMng->loadSettings(&cfg, "Right Tab Bar");
-            rightMng->setActiveTab(rightActiveTab);
-        }
-        if (leftActive)
+        if(!leftTabs.count())
+            leftMng->loadSettings(KConfigGroup(&cfg, "Left Tab Bar"));
+        if(!rightTabs.count())
+            rightMng->loadSettings(KConfigGroup(&cfg, "Right Tab Bar"));
+        if (cfg.readEntry("Left Side Is Active", false))
             left->slotFocusOnMe();
         else
             right->slotFocusOnMe();
@@ -179,7 +170,7 @@ int KrusaderView::getFocusCandidates(QVector<QWidget*> &widgets)
     ACTIVE_PANEL->gui->getFocusCandidates(widgets);
     if(terminal_dock->isTerminalVisible())
         widgets << terminal_dock;
-    if(cmdLine->isVisible());
+    if(cmdLine->isVisible())
         widgets << cmdLine;
 
     for(int i = 0; i < widgets.count(); i++) {
@@ -352,10 +343,8 @@ void KrusaderView::profiles(QString profileName)
 void KrusaderView::loadPanelProfiles(QString group)
 {
     KConfigGroup ldg(krConfig, group);
-    MAIN_VIEW->leftMng->loadSettings(&ldg, "Left Tabs");
-    MAIN_VIEW->rightMng->loadSettings(&ldg, "Right Tabs");
-    MAIN_VIEW->leftMng->setActiveTab(ldg.readEntry("Left Active Tab", 0));
-    MAIN_VIEW->rightMng->setActiveTab(ldg.readEntry("Right Active Tab", 0));
+    MAIN_VIEW->leftMng->loadSettings(KConfigGroup(&ldg, "Left Tabs"));
+    MAIN_VIEW->rightMng->loadSettings(KConfigGroup(&ldg, "Right Tabs"));
     if (ldg.readEntry("Left Side Is Active", true))
         MAIN_VIEW->left->gui->slotFocusOnMe();
     else
@@ -366,10 +355,8 @@ void KrusaderView::savePanelProfiles(QString group)
 {
     KConfigGroup svr(krConfig, group);
 
-    MAIN_VIEW->leftMng->saveSettings(&svr, "Left Tabs", false);
-    svr.writeEntry("Left Active Tab", MAIN_VIEW->leftMng->activeTab());
-    MAIN_VIEW->rightMng->saveSettings(&svr, "Right Tabs", false);
-    svr.writeEntry("Right Active Tab", MAIN_VIEW->rightMng->activeTab());
+    MAIN_VIEW->leftMng->saveSettings(KConfigGroup(&svr, "Left Tabs"), false);
+    MAIN_VIEW->rightMng->saveSettings(KConfigGroup(&svr, "Right Tabs"), false);
     svr.writeEntry("Left Side Is Active", ACTIVE_PANEL->gui->isLeft());
 }
 
@@ -388,11 +375,11 @@ void KrusaderView::toggleVerticalMode()
 
 void KrusaderView::saveSettings(KConfigGroup &cfg)
 {
-    cfg.writeEntry("Left Active Tab", leftMng->activeTab());
-    cfg.writeEntry("Right Active Tab", rightMng->activeTab());
+    bool localOnly = true; //FIXME make configurable
+    cfg.writeEntry("Vertical Mode", isVertical());
     cfg.writeEntry("Left Side Is Active", ACTIVE_PANEL->gui->isLeft());
-    leftMng->saveSettings(&cfg, "Left Tab Bar");
-    rightMng->saveSettings(&cfg, "Right Tab Bar");
+    leftMng->saveSettings(KConfigGroup(&cfg, "Left Tab Bar"), localOnly);
+    rightMng->saveSettings(KConfigGroup(&cfg, "Right Tab Bar"), localOnly);
 }
 
 #include "krusaderview.moc"

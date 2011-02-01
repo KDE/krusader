@@ -144,6 +144,8 @@ bool _left = 0; // dummy - needed by krView
 KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
         : QDialog(parent), query(0), searcher(0), isBusy(false), closed(false)
 {
+    KConfigGroup group(krConfig, "Search");
+
     setWindowTitle(i18n("Krusader::Search"));
 
     QGridLayout* searchBaseLayout = new QGridLayout(this);
@@ -231,7 +233,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     // the view
     resultView = KrViewFactory::createView(RESULTVIEW_TYPE, resultTab, _left, krConfig);
     resultView->init();
-    resultView->restoreSettings("Search Result View");
+    resultView->restoreSettings(KConfigGroup(&group, "ResultView"));
     resultView->enableUpdateDefaultSettings(false);
     resultView->setMainWindow(this);
     resultView->op()->setQuickSearch(quickSearch);
@@ -287,7 +289,6 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     setTabOrder(mainStopBtn, searcherTabs);
     setTabOrder(searcherTabs, resultView->widget());
 
-    KConfigGroup group(krConfig, "Search");
     sizeX = group.readEntry("Window Width",  -1);
     sizeY = group.readEntry("Window Height",  -1);
 
@@ -351,7 +352,7 @@ void KrSearchDialog::closeDialog(bool isAccept)
     group.writeEntry("Window Height", sizeY);
     group.writeEntry("Window Maximized", isMaximized());
 
-    resultView->saveSettings("Search Result View");
+    resultView->saveSettings(KConfigGroup(&group, "ResultView"));
 
     lastSearchText = generalFilter->searchFor->currentText();
     lastSearchType = generalFilter->ofType->currentIndex();

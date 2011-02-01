@@ -112,10 +112,6 @@ public:
         return files()->vfs_search(name);
     }
 
-
-    //HACK used by panelmanager - remove this once per-tab save/restore is implemented
-    void clearHistory();
-
     void refreshActions();
     void redirectLink();
 

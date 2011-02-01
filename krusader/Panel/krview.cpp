@@ -331,7 +331,6 @@ void KrView::init()
     initProperties();
     _operator = createOperator();
     setup();
-    setDefaultFileIconSize();
     restoreDefaultSettings();
     KConfigGroup grp(_config, _instance.name());
     showPreviews(grp.readEntry("Show Previews", false));
@@ -450,10 +449,8 @@ QPixmap KrView::getIcon(vfile *vf, bool active, int size/*, KRListItem::cmpColor
     QString icon_name = vf->vfile_getIcon();
     QString cacheName;
 
-    if(!size) {
-        KConfigGroup group(krConfig, "Look&Feel");
-        size = (group.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt();
-    }
+    if(!size)
+        size = _FilelistIconSize.toInt();
 
     QColor dimColor;
     int dimFactor;
@@ -1018,37 +1015,35 @@ void KrView::setFileIconSize(int size)
 int KrView::defaultFileIconSize()
 {
     KConfigGroup grpSvr(_config, _instance.name());
-    return grpSvr.readEntry("Filelist Icon Size", _FilelistIconSize).toInt();
-}
-
-QString KrView::nameInKConfig() const {
-    return _instance.name() + (_left ? "Left" : "Right");
+    return grpSvr.readEntry("IconSize", _FilelistIconSize).toInt();
 }
 
 void KrView::saveDefaultSettings()
 {
-    saveSettings(_instance.name());
+    saveSettings(KConfigGroup(_config, _instance.name()));
 }
 
 void KrView::restoreDefaultSettings()
 {
-    restoreSettings(_instance.name());
+    restoreSettings(KConfigGroup(_config, _instance.name()));
 }
 
-void KrView::saveSettings(QString configGroup)
+void KrView::saveSettings(KConfigGroup group)
 {
-    KConfigGroup group(_config, configGroup);
+    group.writeEntry("IconSize", fileIconSize());
+    group.writeEntry("ShowPreviews", previewsShown());
     saveSortMode(group);
     doSaveSettings(group);
 }
 
-void KrView::restoreSettings(QString configGroup)
+void KrView::restoreSettings(KConfigGroup group)
 {
-    KConfigGroup group(_config, configGroup);
     bool tmp = _updateDefaultSettings;
     _updateDefaultSettings = false;
     doRestoreSettings(group);
     restoreSortMode(group);
+    setFileIconSize(group.readEntry("IconSize", defaultFileIconSize()));
+    showPreviews(group.readEntry("ShowPreviews", false));
     _updateDefaultSettings = tmp;
 }
 

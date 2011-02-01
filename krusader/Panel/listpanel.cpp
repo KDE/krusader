@@ -134,12 +134,16 @@ protected:
 /////////////////////////////////////////////////////
 //      The list panel constructor       //
 /////////////////////////////////////////////////////
-ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left, AbstractPanelManager *manager) :
+ListPanel::ListPanel(QWidget *parent, bool &left, AbstractPanelManager *manager, KConfigGroup cfg) :
         KrPanel(left, manager),
-        QWidget(parent), panelType(typeIn), colorMask(255), compareMode(false), statsAgent(0),
+        QWidget(parent), panelType(-1), colorMask(255), compareMode(false), statsAgent(0),
         quickSearch(0), cdRootButton(0), cdUpButton(0), popupBtn(0), popup(0), inlineRefreshJob(0),
         _locked(false), previewJob(0), vfsError(0)
 {
+    if(cfg.isValid())
+        panelType = cfg.readEntry("Type", -1);
+    if (panelType == -1)
+        panelType = defaultPanelType();
     gui = this;
     func = new ListPanelFunc(this);
     _actions = krApp->listPanelActions();
@@ -390,6 +394,12 @@ ListPanel::~ListPanel()
 //     delete layout;
 }
 
+int ListPanel::defaultPanelType()
+{
+    KConfigGroup group(krConfig, "Look&Feel");
+    return group.readEntry("Default Panel Type", KrViewFactory::defaultViewId());
+}
+
 void ListPanel::createView()
 {
     view = KrViewFactory::createView(panelType, splt, _left, krConfig);
@@ -462,8 +472,6 @@ int ListPanel::getProperties()
         props |= PROP_SYNC_BUTTON_ON;
     if (_locked)
         props |= PROP_LOCKED;
-    if(view->previewsShown())
-        props |= PROP_PREVIEWS;
     return props;
 }
 
@@ -471,7 +479,6 @@ void ListPanel::setProperties(int prop)
 {
     syncBrowseButton->setChecked(prop & PROP_SYNC_BUTTON_ON);
     _locked = (prop & PROP_LOCKED);
-    view->showPreviews(prop & PROP_PREVIEWS);
 }
 
 bool ListPanel::eventFilter(QObject * watched, QEvent * e)
@@ -671,14 +678,14 @@ void ListPanel::slotFocusOnMe()
 //////////////////////////////////////////////////////////////////
 void ListPanel::start(KUrl url, bool immediate)
 {
-    KUrl virt;
-
-    virt = url;
+    KUrl virt(url);
 
     if (!virt.isValid())
         virt = KUrl(ROOT_DIR);
-    if (virt.isLocalFile()) _realPath = virt;
-    else _realPath = KUrl(ROOT_DIR);
+    if (virt.isLocalFile())
+        _realPath = virt;
+    else
+        _realPath = KUrl(ROOT_DIR);
 
     if (immediate)
         func->immediateOpenUrl(virt, true);
@@ -1216,12 +1223,41 @@ void ListPanel::editLocation()
     origin->edit();
 }
 
-void ListPanel::saveSettings(KConfigGroup &cfg)
+void ListPanel::saveSettings(KConfigGroup cfg, bool localOnly)
 {
+    QString url = (localOnly ? realPath() : virtualPath().pathOrUrl());
+    cfg.writeEntry("Url", url);
+    cfg.writeEntry("Type", getType());
+    cfg.writeEntry("Properties", getProperties());
     if(popup) {
-        popup->saveSizes();
-        cfg.writeEntry(_left ? "Left Panel Popup" : "Right Panel Popup", popup->currentPage());
+        popup->saveSizes(); //FIXME use this cfg group
+        cfg.writeEntry("PopupPage", popup->currentPage());
     }
+    view->saveSettings(KConfigGroup(&cfg, "View"));
+}
+
+void ListPanel::restoreSettings(KConfigGroup cfg)
+{
+    changeType(cfg.readEntry("Type", defaultPanelType()));
+
+    func->history->clear();
+
+    setProperties(cfg.readEntry("Properties", 0));
+    view->restoreSettings(KConfigGroup(&cfg, "View"));
+
+    func->files()->vfs_enableRefresh(true);
+
+    KUrl url(cfg.readEntry("Url", ROOT_DIR));
+    if (!url.isValid())
+        url = KUrl(ROOT_DIR);
+    if (url.isLocalFile())
+        _realPath = url;
+    else
+        _realPath = KUrl(ROOT_DIR);
+
+    func->openUrl(url);
+
+    setJumpBack(url);
 }
 
 void ListPanel::updatePopupPanel(KrViewItem *item)

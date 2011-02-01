@@ -279,7 +279,7 @@ void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
     KONFIGURATOR_NAME_VALUE_PAIR *iconSizes = new KONFIGURATOR_NAME_VALUE_PAIR[KrView::iconSizes.count()];
     for(int i = 0; i < KrView::iconSizes.count(); i++)
         iconSizes[i].text =  iconSizes[i].value = QString::number(KrView::iconSizes[i]);
-    KonfiguratorComboBox *cmb = createComboBox(instance->name(), "Filelist Icon Size", _FilelistIconSize, iconSizes, KrView::iconSizes.count(), parent, true, true, PAGE_VIEW);
+    KonfiguratorComboBox *cmb = createComboBox(instance->name(), "IconSize", _FilelistIconSize, iconSizes, KrView::iconSizes.count(), parent, true, true, PAGE_VIEW);
     delete [] iconSizes;
     cmb->lineEdit()->setValidator(new QRegExpValidator(QRegExp("[1-9]\\d{0,1}"), cmb));
     hbox->addWidget(cmb);

@@ -443,36 +443,26 @@ void Krusader::savePosition() {
     if (!MAIN_VIEW->getTerminalEmulatorSplitterSizes().isEmpty())
         cfg.writeEntry("Terminal Emulator Splitter Sizes", MAIN_VIEW->getTerminalEmulatorSplitterSizes());
 
-    // save view settings ---> fix when we have tabbed-browsing
-    MAIN_VIEW->left->view->saveSettings();
-    MAIN_VIEW->right->view->saveSettings();
-
     cfg = krConfig->group("Startup");
-    cfg.writeEntry("Vertical Mode", MAIN_VIEW->isVertical());
+    MAIN_VIEW->saveSettings(cfg);
     krConfig->sync();
 }
 
 void Krusader::saveSettings() {
     KConfigGroup cfg(krConfig, "Main Toolbar");
-    toolBar() ->saveSettings(cfg);
+    toolBar()->saveSettings(cfg);
 
     cfg = krConfig->group("Actions Toolbar");
     toolBar("actionsToolBar")->saveSettings(cfg);
 
     cfg = krConfig->group("Startup");
-    MAIN_VIEW->saveSettings(cfg);
 
     bool rememberpos = cfg.readEntry("Remember Position", _RememberPos);
     bool uisavesettings = cfg.readEntry("UI Save Settings", _UiSave);
 
-    // save the popup panel's page of the CURRENT tab
-    MAIN_VIEW->left->saveSettings(cfg);
-    MAIN_VIEW->right->saveSettings(cfg);
-
     // save size and position
-    if (rememberpos || uisavesettings) {
+    if (rememberpos || uisavesettings)
         savePosition();
-    }
 
     // save the gui
     if (uisavesettings) {

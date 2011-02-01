@@ -129,10 +129,10 @@ void PanelManager::slotChangePanel(ListPanel *p)
 //     _stack->setUpdatesEnabled(true);
 }
 
-ListPanel* PanelManager::createPanel(int type, bool setCurrent)
+ListPanel* PanelManager::createPanel(bool setCurrent, KConfigGroup cfg)
 {
     // create the panel and add it into the widgetstack
-    ListPanel * p = new ListPanel(type, _stack, _left, this);
+    ListPanel * p = new ListPanel(_stack, _left, this, cfg);
     _stack->addWidget(p);
 
     // now, create the corrosponding tab
@@ -148,77 +148,41 @@ ListPanel* PanelManager::createPanel(int type, bool setCurrent)
     return p;
 }
 
-void PanelManager::startPanel(ListPanel *panel, const KUrl& path)
+void PanelManager::saveSettings(KConfigGroup config, bool localOnly)
 {
-    panel->start(path);
+    config.writeEntry("ActiveTab", activeTab());
+
+    KConfigGroup grpTabs(&config, "Tabs");
+    foreach(QString grpTab, grpTabs.groupList())
+        grpTabs.deleteGroup(grpTab);
+
+    for(int i = 0; i < _tabbar->count(); i++) {
+        ListPanel *panel = _tabbar->getPanel(i);
+        KConfigGroup grpTab(&grpTabs, "Tab" + QString::number(i));
+        panel->saveSettings(grpTab, localOnly);
+    }
 }
 
-void PanelManager::saveSettings(KConfigGroup *config, const QString& key, bool localOnly)
+void PanelManager::loadSettings(KConfigGroup config)
 {
-    QStringList l;
-    QList<int> types;
-    QList<int> props;
-    QList<int> iconSizes;
-    int i = 0, cnt = 0;
-    while (cnt < _tabbar->count()) {
-        ListPanel *panel = _tabbar->getPanel(i);
-        if (panel) {
-            l << (localOnly ? panel->realPath() : panel->virtualPath().pathOrUrl());
-            types << panel->getType();
-            props << panel->getProperties();
-            iconSizes << panel->view->fileIconSize();
-            ++cnt;
-        }
-        ++i;
-    }
-    config->writePathEntry(key, l);
-    config->writeEntry(key + " Types", types);
-    config->writeEntry(key + " Props", props);
-    config->writeEntry(key + " Icon Sizes", iconSizes);
-}
+    KConfigGroup grpTabs(&config, "Tabs");
+    int numTabsOld = _tabbar->count();
+    int numTabsNew = grpTabs.groupList().count();
 
-void PanelManager::loadSettings(KConfigGroup *config, const QString& key)
-{
-    QStringList l = config->readPathEntry(key, QStringList());
-    QList<int> types = config->readEntry(key + " Types", QList<int>());
-    QList<int> props = config->readEntry(key + " Props", QList<int>());
-    QList<int> iconSizes = config->readEntry(key + " Icon Sizes", QList<int>());
-
-    if (l.count() < 1)
-        return;
-
-    while (types.count() < l.count()) {
-        KConfigGroup cg(krConfig, "Look&Feel");
-        types << cg.readEntry("Default Panel Type", KrViewFactory::defaultViewId());
-    }
-    while (props.count() < l.count())
-        props << 0;
-    while (iconSizes.count() < l.count())
-        iconSizes << 0;
-
-    int i = 0, totalTabs = _tabbar->count();
-
-    while (i < totalTabs && i < (int)l.count()) {
-        ListPanel *panel = _tabbar->getPanel(i);
-        if (panel) {
-            if (panel->getType() != types[ i ])
-                panel->changeType(types[ i ]);
-            if(panel->view->fileIconSize() != iconSizes[i])
-                panel->view->setFileIconSize(iconSizes[i]);
-            panel->func->clearHistory();
-            panel->view->restoreSettings();
-            panel->setProperties(props[ i ]);
-            panel->func->files()->vfs_enableRefresh(true);
-            panel->func->immediateOpenUrl(KUrl(l[ i ]), true);
-        }
-        ++i;
+    for(int i = 0;  i < numTabsNew; i++) {
+        KConfigGroup grpTab(&grpTabs, "Tab" + QString::number(i));
+        ListPanel *panel;
+        if(i < numTabsOld)
+            panel = _tabbar->getPanel(i);
+        else
+            panel = createPanel(false, grpTab);
+        panel->restoreSettings(grpTab);
     }
 
-    while (i <  totalTabs)
-        slotCloseTab(--totalTabs);
+    for(int i = numTabsOld - 1; i >= numTabsNew && i > 0; i--)
+        slotCloseTab(i);
 
-    for (; i < (int)l.count(); i++)
-        slotNewTab(KUrl(l[i]), false, types[ i ], props[ i ], iconSizes[i], true);
+    setActiveTab(config.readEntry("ActiveTab", 0));
 
     // this is needed so that all tab labels get updated
     layoutTabs();
@@ -231,21 +195,13 @@ void PanelManager::layoutTabs()
     QTimer::singleShot(0, _tabbar, SLOT(layoutTabs()));
 }
 
-void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, int type, int props, int iconSize, bool restoreSettings)
+void PanelManager::slotNewTab(const KUrl& url, bool setCurrent)
 {
-    if (type == -1) {
-        KConfigGroup group(krConfig, "Look&Feel");
-        type = group.readEntry("Default Panel Type", KrViewFactory::defaultViewId());
-    }
-    ListPanel *p = createPanel(type, setCurrent);
+    ListPanel *p = createPanel(setCurrent);
     // update left/right pointers
     if (setCurrent)
         _self = p;
-    startPanel(p, url);
-    p->setProperties(props);
-    p->view->setFileIconSize(iconSize);
-    if(restoreSettings)
-        p->view->restoreSettings();
+    p->start(url);
 }
 
 void PanelManager::slotNewTab()
@@ -341,44 +297,37 @@ void PanelManager::setCurrentTab(int panelIndex)
 void PanelManager::slotRecreatePanels()
 {
     int actTab = activeTab();
+    QString grpName = "PanelManager_" + QString::number(qApp->applicationPid());
+    KConfigGroup cfg(krConfig, grpName);
 
     for (int i = 0; i != _tabbar->count(); i++) {
-        ListPanel *updatedPanel = _tabbar->getPanel(i);
-
-        ListPanel *oldPanel = updatedPanel;
-        int type = oldPanel->getType();
-        int properties = oldPanel->getProperties();
-        int iconSize = oldPanel->view->fileIconSize();
-
-        ListPanel *newPanel = new ListPanel(type, _stack, _left, this);
-        newPanel->setProperties(properties);
-        newPanel->view->setFileIconSize(iconSize);
-        newPanel->view->restoreSettings();
-        _tabbar->changePanel(i, newPanel);
-
-        _stack->insertWidget(i, newPanel);
-        _stack->removeWidget(oldPanel);
-
+        ListPanel *oldPanel = _tabbar->getPanel(i);
+        oldPanel->saveSettings(cfg, false);
         disconnect(oldPanel);
+
+        ListPanel *newPanel = new ListPanel(_stack, _left, this);
+        newPanel->restoreSettings(cfg);
         connect(newPanel, SIGNAL(activePanelChanged(ListPanel*)), this, SLOT(slotRefreshActions()));
         connect(newPanel, SIGNAL(activePanelChanged(ListPanel*)), MAIN_VIEW, SLOT(slotSetActivePanel(ListPanel*)));
         connect(newPanel, SIGNAL(pathChanged(ListPanel*)), _tabbar, SLOT(updateTab(ListPanel*)));
         connect(newPanel, SIGNAL(pathChanged(ListPanel*)), MAIN_VIEW, SLOT(slotPathChanged(ListPanel*)));
 
-        updatedPanel = newPanel;
-        newPanel->start(oldPanel->virtualPath(), true);
-        if (_self == oldPanel) {
+        _tabbar->changePanel(i, newPanel);
+        _stack->insertWidget(i, newPanel);
+        _stack->removeWidget(oldPanel);
+
+        if (_self == oldPanel)
             _self = newPanel;
-        }
+
         deletePanel(oldPanel);
 
         _tabbar->updateTab(newPanel);
     }
 
+    krConfig->deleteGroup(grpName);
+
     updateTabbarPos();
-
     setActiveTab(actTab);
-
     tabsCountChanged();
 }
 

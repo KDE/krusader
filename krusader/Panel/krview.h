@@ -350,7 +350,6 @@ public:
         _operator->prepareForPassive();
     }
     virtual void renameCurrentItem(); // Rename current item. returns immediately
-    virtual QString nameInKConfig() const;
     virtual int  itemsPerPage() {
         return 0;
     }
@@ -474,17 +473,11 @@ public:
     }
 
     // save this view's settings to be restored after restart
-    void saveSettings() {
-        saveSettings(nameInKConfig());
-    }
-    void saveSettings(QString configGroup);
+    void saveSettings(KConfigGroup grp);
+    // call this to restore this view's settings after restart
+    void restoreSettings(KConfigGroup grp);
     // save this view's settings as default for new views of this type
     void saveDefaultSettings();
-    // call this to restore this view's settings after restart
-    void restoreSettings() {
-        restoreSettings(nameInKConfig());
-    }
-    void restoreSettings(QString configGroup);
     // restore the default settings for this view type
     void restoreDefaultSettings();
 

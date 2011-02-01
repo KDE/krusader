@@ -55,19 +55,14 @@ public:
      * Called once by KrusaderView to create the first panel. Subsequent called are done internally
      * Note: only creates the panel, but doesn't start the VFS inside it. Use startPanel() for that.
      */
-    ListPanel* createPanel(int type, bool setCurrent = true);
-    /**
-     * Called once by KrusaderView to start the first panel. Subsequent called are done internally
-     * Only starts the VFS inside the panel, you must first use createPanel() !
-     */
-    void startPanel(ListPanel *panel, const KUrl& path);
+    ListPanel* createPanel(bool setCurrent = true, KConfigGroup cfg = KConfigGroup());
     /**
      * Swaps the left / right directions of the panel
      */
     void swapPanels();
 
-    void saveSettings(KConfigGroup *config, const QString& key, bool localOnly = true);
-    void loadSettings(KConfigGroup *config, const QString& key);
+    void saveSettings(KConfigGroup config, bool localOnly = true);
+    void loadSettings(KConfigGroup config);
     int findTab(KUrl url);
     int activeTab();
     void setActiveTab(int);
@@ -96,8 +91,7 @@ public slots:
     }
     Q_SCRIPTABLE void newTabs(const QStringList& urls);
 
-    void slotNewTab(const KUrl& url, bool setCurrent = true, int type = -1,
-                    int props = 0,  int iconSize = 0,  bool restoreSettings = false);
+    void slotNewTab(const KUrl& url, bool setCurrent = true);
     void slotNewTab();
     void slotLockTab();
     void slotNextTab();

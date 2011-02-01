@@ -61,7 +61,6 @@
 
 #define PROP_SYNC_BUTTON_ON               1
 #define PROP_LOCKED                       2
-#define PROP_PREVIEWS                     4
 
 class vfs;
 class KrView;
@@ -87,7 +86,7 @@ public:
 #define ITEM2VFILE(PANEL_PTR, KRVIEWITEM)  PANEL_PTR->func->files()->vfs_search(KRVIEWITEM->name())
 #define NAME2VFILE(PANEL_PTR, STRING_NAME) PANEL_PTR->func->files()->vfs_search(STRING_NAME)
     // constructor create the panel, but DOESN'T fill it with data, use start()
-    ListPanel(int panelType, QWidget *parent, bool &left, AbstractPanelManager *manager);
+    ListPanel(QWidget *parent, bool &left, AbstractPanelManager *manager, KConfigGroup cfg = KConfigGroup());
     ~ListPanel();
     void start(KUrl url = KUrl(), bool immediate = false);
 
@@ -123,7 +122,8 @@ public:
 
     void otherPanelChanged();
 
-    void saveSettings(KConfigGroup &cfg);
+    void saveSettings(KConfigGroup cfg, bool localOnly);
+    void restoreSettings(KConfigGroup cfg);
 
 public slots:
     void gotStats(const QString &mountPoint, quint64 kBSize, quint64 kBUsed, quint64 kBAvail);  // displays filesystem status
@@ -168,6 +168,8 @@ protected:
     void showButtonMenu(QToolButton *b);
     void createView();
     void updateButtons();
+
+    static int defaultPanelType();
 
 protected slots:
     void updatePopupPanel(KrViewItem *item);

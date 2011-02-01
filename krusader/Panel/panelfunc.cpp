@@ -113,12 +113,6 @@ ListPanelFunc::~ListPanelFunc()
     delete history;
 }
 
-//HACK used by panelmanager - remove this once per-tab save/restore is implemented
-void ListPanelFunc::clearHistory()
-{
-    history->clear();
-}
-
 void ListPanelFunc::urlEntered(const QString &url)
 {
     urlEntered(KUrl(
