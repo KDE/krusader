@@ -108,7 +108,6 @@ private:
 
     KRQuery *query;
     KRSearchMod *searcher;
-    QStringList savedSearches;
     bool isBusy;
     bool closed;
 
