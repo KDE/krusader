@@ -472,7 +472,6 @@ void Krusader::saveSettings() {
         cfg.writeEntry("Show FN Keys", KrActions::actToggleFnkeys->isChecked());
         cfg.writeEntry("Show Cmd Line", KrActions::actToggleCmdline->isChecked());
         cfg.writeEntry("Show Terminal Emulator", KrActions::actToggleTerminal->isChecked());
-        cfg.writeEntry("Vertical Mode", MAIN_VIEW->isVertical());
         cfg.writeEntry("Start To Tray", isHidden());
     }
 
