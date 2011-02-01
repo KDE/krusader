@@ -355,9 +355,10 @@ void KrusaderView::savePanelProfiles(QString group)
 {
     KConfigGroup svr(krConfig, group);
 
-    MAIN_VIEW->leftMng->saveSettings(KConfigGroup(&svr, "Left Tabs"), false);
-    MAIN_VIEW->rightMng->saveSettings(KConfigGroup(&svr, "Right Tabs"), false);
+    svr.writeEntry("Vertical Mode", isVertical());
     svr.writeEntry("Left Side Is Active", ACTIVE_PANEL->gui->isLeft());
+    leftMng->saveSettings(KConfigGroup(&svr, "Left Tabs"), false);
+    rightMng->saveSettings(KConfigGroup(&svr, "Right Tabs"), false);
 }
 
 void KrusaderView::toggleVerticalMode()
