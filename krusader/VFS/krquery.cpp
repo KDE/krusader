@@ -135,6 +135,91 @@ KRQuery& KRQuery::operator=(const KRQuery & old)
     return *this;
 }
 
+void KRQuery::load(KConfigGroup cfg)
+{
+    *this = KRQuery(); // reset parameters first
+
+    if(cfg.readEntry("IsNull", true))
+        return;
+
+#define LOAD(key, var) (var = cfg.readEntry(key, var))
+    LOAD("Matches", matches);
+    LOAD("Excludes", excludes);
+    LOAD("IncludedDirs", includedDirs);
+    LOAD("ExcludedDirs", excludedDirs);
+    LOAD("MatchesCaseSensitive", matchesCaseSensitive);
+    LOAD("Contain", contain);
+    LOAD("ContainCaseSensetive", containCaseSensetive);
+    LOAD("ContainWholeWord", containWholeWord);
+    LOAD("ContainRegExp", containRegExp);
+    LOAD("ContainOnRemote", containOnRemote);
+    LOAD("MinSize", minSize);
+    LOAD("MaxSize", maxSize);
+    newerThen = QDateTime::fromString(cfg.readEntry("NewerThan", QDateTime::fromTime_t(newerThen).toString())).toTime_t();
+    olderThen = QDateTime::fromString(cfg.readEntry("OlderThan", QDateTime::fromTime_t(olderThen).toString())).toTime_t();
+    LOAD("Owner", owner);
+    LOAD("Group", group);
+    LOAD("Perm", perm);
+    LOAD("Type", type);
+    LOAD("CustomType", customType);
+    LOAD("InArchive", inArchive);
+    LOAD("Recurse", recurse);
+    LOAD("FollowLinks", followLinksP);
+    LOAD("WhereToSearch", whereToSearch);
+    LOAD("WhereNotToSearch", whereNotToSearch);
+    LOAD("OrigFilter", origFilter);
+
+    codec = QTextCodec::codecForName(cfg.readEntry("Codec", codec->name()));
+    if(!codec)
+        codec = QTextCodec::codecForLocale();
+
+    LOAD("EncodedEnterArray", encodedEnterArray);
+    encodedEnter = encodedEnterArray.data();
+    encodedEnterLen = encodedEnterArray.size();
+#undef LOAD
+
+    bNull = false;
+}
+
+void KRQuery::save(KConfigGroup cfg)
+{
+    cfg.writeEntry("IsNull", bNull);
+
+    if(bNull)
+        return;
+
+    cfg.writeEntry("Matches", matches);
+    cfg.writeEntry("Excludes", excludes);
+    cfg.writeEntry("IncludedDirs", includedDirs);
+    cfg.writeEntry("ExcludedDirs", excludedDirs);
+    cfg.writeEntry("MatchesCaseSensitive", matchesCaseSensitive);
+    cfg.writeEntry("Contain", contain);
+    cfg.writeEntry("ContainCaseSensetive", containCaseSensetive);
+    cfg.writeEntry("ContainWholeWord", containWholeWord);
+    cfg.writeEntry("ContainRegExp", containRegExp);
+    cfg.writeEntry("ContainOnRemote", containOnRemote);
+    cfg.writeEntry("MinSize", minSize);
+    cfg.writeEntry("MaxSize", maxSize);
+    cfg.writeEntry("NewerThan", QDateTime::fromTime_t(newerThen).toString());
+    cfg.writeEntry("OlderThan", QDateTime::fromTime_t(olderThen).toString());
+    cfg.writeEntry("Owner", owner);
+    cfg.writeEntry("Group", group);
+    cfg.writeEntry("Perm", perm);
+    cfg.writeEntry("Type", type);
+    cfg.writeEntry("CustomType", customType);
+    cfg.writeEntry("InArchive", inArchive);
+    cfg.writeEntry("Recurse", recurse);
+    cfg.writeEntry("FollowLinks", followLinksP);
+    cfg.writeEntry("WhereToSearch", whereToSearch);
+    cfg.writeEntry("WhereNotToSearch", whereNotToSearch);
+    cfg.writeEntry("OrigFilter", origFilter);
+
+    cfg.writeEntry("Codec", codec->name());
+    cfg.writeEntry("EncodedEnterArray", encodedEnterArray);
+    cfg.writeEntry("EncodedEnter", encodedEnter);
+    cfg.writeEntry("EncodedEnterLen", encodedEnterLen);
+}
+
 void KRQuery::connectNotify(const char * signal)
 {
     QString signalString  = QString(signal).remove(' ');

@@ -1054,6 +1054,11 @@ void KrView::saveSettings(KConfigGroup group, KrViewProperties::PropertyType pro
         group.writeEntry("ShowPreviews", previewsShown());
     if(properties & KrViewProperties::PropSortMode)
         saveSortMode(group);
+    if((properties & KrViewProperties::PropFilter) && _properties->filter == KrViewProperties::Custom) {
+        group.writeEntry("CustomFilter", true);
+        group.writeEntry("FilterApplysToDirs", _properties->filterApplysToDirs);
+        _properties->filterMask.save(KConfigGroup(&group, "FilterMask"));
+    }
 }
 
 void KrView::restoreSettings(KConfigGroup group)
@@ -1069,6 +1074,12 @@ void KrView::doRestoreSettings(KConfigGroup group)
     restoreSortMode(group);
     setFileIconSize(group.readEntry("IconSize", defaultFileIconSize()));
     showPreviews(group.readEntry("ShowPreviews", false));
+    if(group.readEntry("CustomFilter", false)) {
+        KRQuery query;
+        query.load(KConfigGroup(&group, "FilterMask"));
+        setCustomFilter(query, group.readEntry("FilterApplysToDirs", false));
+    } else
+        setFilter(KrViewProperties::All);
 }
 
 void KrView::applySettingsToOthers()

@@ -35,6 +35,7 @@
 #include <time.h>
 #include <kurl.h>
 #include <kio/jobclasses.h>
+#include <kconfiggroup.h>
 #include "vfile.h"
 
 class KFileItem;
@@ -55,6 +56,11 @@ public:
     KRQuery& operator=(const KRQuery &);
     // destructor
     virtual ~KRQuery();
+
+    //load parameters from config
+    void load(KConfigGroup cfg);
+    //save parameters to config
+    void save(KConfigGroup cfg);
 
     // matching a file with the query
     bool match(vfile *file) const;  // checks if the given vfile object matches the conditions
