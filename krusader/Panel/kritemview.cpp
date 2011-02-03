@@ -58,21 +58,6 @@ KrItemView::~KrItemView()
     _operator = 0;
 }
 
-void KrItemView::doRestoreSettings(KConfigGroup &group)
-{
-    int column = group.readEntry("Sort Indicator Column", (int)KrViewProperties::Name);
-    bool isAscending = group.readEntry("Ascending Sort Order", true);
-    Qt::SortOrder sortDir = isAscending ? Qt::AscendingOrder : Qt::DescendingOrder;
-
-    _model->sort(column, sortDir);
-}
-
-void KrItemView::doSaveSettings(KConfigGroup &group)
-{
-    group.writeEntry("Sort Indicator Column", (int)_model->lastSortOrder());
-    group.writeEntry("Ascending Sort Order", (_model->lastSortDir() == Qt::AscendingOrder));
-}
-
 void KrItemView::setFileIconSize(int size)
 {
     KrView::setFileIconSize(size);

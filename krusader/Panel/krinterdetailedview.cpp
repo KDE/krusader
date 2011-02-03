@@ -102,9 +102,9 @@ void KrInterDetailedView::currentChanged(const QModelIndex & current, const QMod
     QTreeView::currentChanged(current, previous);
 }
 
-void KrInterDetailedView::doRestoreSettings(KConfigGroup &grpSvr)
+void KrInterDetailedView::doRestoreSettings(KConfigGroup grp)
 {
-    QByteArray savedState = grpSvr.readEntry("Saved State", QByteArray());
+    QByteArray savedState = grp.readEntry("Saved State", QByteArray());
 
     if (savedState.isEmpty()) {
         hideColumn(KrViewProperties::Type);
@@ -123,12 +123,18 @@ void KrInterDetailedView::doRestoreSettings(KConfigGroup &grpSvr)
         header()->restoreState(savedState);
         _model->setExtensionEnabled(!isColumnHidden(KrViewProperties::Ext));
     }
+
+    KrInterView::doRestoreSettings(grp);
 }
 
-void KrInterDetailedView::doSaveSettings(KConfigGroup &grpSvr)
+void KrInterDetailedView::saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties)
 {
-    QByteArray state = header()->saveState();
-    grpSvr.writeEntry("Saved State", state);
+    KrInterView::saveSettings(grp, properties);
+
+    if(properties & KrViewProperties::PropColumns) {
+        QByteArray state = header()->saveState();
+        grp.writeEntry("Saved State", state);
+    }
 }
 
 int KrInterDetailedView::itemsPerPage()
@@ -290,7 +296,7 @@ void KrInterDetailedView::showContextMenu(const QPoint & p)
         if(KrViewProperties::Ext == idx)
             _model->setExtensionEnabled(!header()->isSectionHidden(KrViewProperties::Ext));
     }
-    op()->settingsChanged();
+    op()->settingsChanged(KrViewProperties::PropColumns);
 }
 
 void KrInterDetailedView::sectionResized(int column, int oldSize, int newSize)
@@ -303,7 +309,7 @@ void KrInterDetailedView::sectionResized(int column, int oldSize, int newSize)
     // regression in combination with bug 178630 (see fix in comment #8).
     if ((QApplication::mouseButtons() & Qt::LeftButton) && header()->underMouse()) {
         _autoResizeColumns = false;
-        op()->settingsChanged();
+        op()->settingsChanged(KrViewProperties::PropColumns);
     }
 
     if (oldSize == newSize || !_model->ready())
@@ -314,7 +320,7 @@ void KrInterDetailedView::sectionResized(int column, int oldSize, int newSize)
 
 void KrInterDetailedView::sectionMoved(int logicalIndex, int oldVisualIndex, int newVisualIndex)
 {
-    op()->settingsChanged();
+    op()->settingsChanged(KrViewProperties::PropColumns);
 }
 
 void KrInterDetailedView::recalculateColumnSizes()

@@ -65,7 +65,7 @@ KrInterBriefView::~KrInterBriefView()
     _properties = 0;
 }
 
-void KrInterBriefView::doRestoreSettings(KConfigGroup &group)
+void KrInterBriefView::doRestoreSettings(KConfigGroup group)
 {
     _properties->numberOfColumns = group.readEntry("Number Of Brief Columns", _NumberOfBriefColumns);
     if (_properties->numberOfColumns < 1)
@@ -75,12 +75,16 @@ void KrInterBriefView::doRestoreSettings(KConfigGroup &group)
 
     _numOfColumns = _properties->numberOfColumns;
 
+    KrItemView::doRestoreSettings(group);
+
     updateGeometries();
 }
 
-void KrInterBriefView::doSaveSettings(KConfigGroup &group)
+void KrInterBriefView::saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties)
 {
-    group.writeEntry("Number Of Brief Columns", _numOfColumns);
+    KrItemView::saveSettings(grp, properties);
+    if(properties & KrViewProperties::PropColumns)
+        grp.writeEntry("Number Of Brief Columns", _numOfColumns);
 }
 
 int KrInterBriefView::itemsPerPage()
@@ -233,7 +237,7 @@ void KrInterBriefView::showContextMenu(const QPoint & p)
         _properties->numberOfColumns = result - COL_ID;
         _numOfColumns = _properties->numberOfColumns;
         updateGeometries();
-        op()->settingsChanged();
+        op()->settingsChanged(KrViewProperties::PropColumns);
     }
 }
 

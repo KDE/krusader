@@ -63,9 +63,6 @@ protected:
     virtual bool viewportEvent(QEvent * event);
 
     // ---- reimplemented from KrView ----
-    virtual void doSaveSettings(KConfigGroup &group);
-    virtual void doRestoreSettings(KConfigGroup &group);
-
     virtual int elementWidth(const QModelIndex & index) = 0;
     virtual QRect mapToViewport(const QRect &rect) const;
 

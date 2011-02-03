@@ -45,7 +45,6 @@
 
 #define MAX_BRIEF_COLS 5
 
-
 class KrView;
 class KrViewItem;
 class KrQuickSearch;
@@ -82,12 +81,16 @@ public:
         numberOfColumns(1)
     {}
 
+    enum PropertyType { NoProperty = 0x0, PropIconSize = 0x1, PropShowPreviews = 0x2,
+                        PropSortMode = 0x4, PropColumns = 0x8,
+                        AllProperties = PropIconSize | PropShowPreviews | PropSortMode | PropColumns
+                      };
     enum ColumnType { NoColumn = -1, Name = 0x0, Ext = 0x1, Size = 0x2, Type = 0x3, Modified = 0x4,
                       Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8, MAX_COLUMNS = 0x09
                     };
     enum SortOptions { Descending = 0x200, DirsFirst = 0x400, IgnoreCase = 0x800,
-                    AlwaysSortDirsByName = 0x1000, LocaleAwareSort = 0x2000
-                  };
+                       AlwaysSortDirsByName = 0x1000, LocaleAwareSort = 0x2000
+                     };
     enum SortMethod { Alphabetical = 0x1, AlphabeticalNumbers = 0x2,
                       CharacterCode = 0x4, CharacterCodeNumbers = 0x8, Krusader = 0x10
                     };
@@ -195,11 +198,12 @@ public:
     bool isMassSelectionUpdate() {
         return _massSelectionUpdate;
     }
-    void settingsChanged();
+    void settingsChanged(KrViewProperties::PropertyType properties);
 
 public slots:
     void emitSelectionChanged() {
-        if (!_massSelectionUpdate) emit selectionChanged();
+        if (!_massSelectionUpdate)
+            emit selectionChanged();
     }
     void quickSearch(const QString &, int = 0);
     void stopQuickSearch(QKeyEvent*);
@@ -248,6 +252,8 @@ private:
     QuickFilter *_quickFilter;
     bool _massSelectionUpdate;
     QTimer _saveDefaultSettingsTimer;
+    static KrViewProperties::PropertyType _changedProperties;
+    static KrView *_changedView;
 };
 
 /****************************************************************************
@@ -359,8 +365,6 @@ protected:
     virtual KrViewItem *preAddItem(vfile *vf) = 0;
     virtual void preDelItem(KrViewItem *item) = 0;
     virtual void preUpdateItem(vfile *vf) = 0;
-    virtual void doSaveSettings(KConfigGroup &group) = 0;
-    virtual void doRestoreSettings(KConfigGroup &group) = 0;
     virtual void copySettingsFrom(KrView *other) = 0;
     virtual void populate(const QList<vfile*> &vfiles, vfile *dummy) = 0;
     virtual void intSetSelected(const vfile* vf, bool select) = 0;
@@ -456,6 +460,10 @@ public:
     virtual void zoomIn();
     virtual void zoomOut();
 
+    // save this view's settings to be restored after restart
+    virtual void saveSettings(KConfigGroup grp,
+        KrViewProperties::PropertyType properties = KrViewProperties::AllProperties);
+
     inline QWidget *widget() {
         return _widget;
     }
@@ -472,14 +480,12 @@ public:
         _mainWindow = mainWindow;
     }
 
-    // save this view's settings to be restored after restart
-    void saveSettings(KConfigGroup grp);
-    // call this to restore this view's settings after restart
-    void restoreSettings(KConfigGroup grp);
     // save this view's settings as default for new views of this type
-    void saveDefaultSettings();
+    void saveDefaultSettings(KrViewProperties::PropertyType properties = KrViewProperties::AllProperties);
     // restore the default settings for this view type
     void restoreDefaultSettings();
+    // call this to restore this view's settings after restart
+    void restoreSettings(KConfigGroup grp);
 
     void saveSelection();
     void restoreSelection();
@@ -498,6 +504,7 @@ public:
 protected:
     KrView(KrViewInstance &instance, KConfig *cfg);
 
+    virtual void doRestoreSettings(KConfigGroup grp);
     virtual KIO::filesize_t calcSize() = 0;
     virtual KIO::filesize_t calcSelectedSize() = 0;
     bool handleKeyEventInt(QKeyEvent *e);
@@ -507,7 +514,6 @@ protected:
     inline void setWidget(QWidget *w) {
         _widget = w;
     }
-
 
     KrViewInstance &_instance;
     VfileContainer *_files;

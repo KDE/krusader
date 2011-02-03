@@ -27,7 +27,9 @@
 *   (at your option) any later version.                                   *
 *                                                                         *
 ***************************************************************************/
+
 #include "krview.h"
+
 #include "viewactions.h"
 #include "krviewfactory.h"
 #include "krviewitem.h"
@@ -57,6 +59,9 @@
 
 #define VF getVfile()
 
+KrView *KrViewOperator::_changedView = 0;
+KrViewProperties::PropertyType KrViewOperator::_changedProperties = KrViewProperties::NoProperty;
+
 
 // ----------------------------- operator
 KrViewOperator::KrViewOperator(KrView *view, QWidget *widget) :
@@ -69,6 +74,8 @@ KrViewOperator::KrViewOperator(KrView *view, QWidget *widget) :
 
 KrViewOperator::~KrViewOperator()
 {
+    if(_changedView == _view)
+        saveDefaultSettings();
 }
 
 void KrViewOperator::startUpdate()
@@ -256,15 +263,24 @@ void KrViewOperator::setMassSelectionUpdate(bool upd)
     }
 }
 
-void KrViewOperator::settingsChanged()
+void KrViewOperator::settingsChanged(KrViewProperties::PropertyType properties)
 {
-    if(_view->_updateDefaultSettings)
+    if(_view->_updateDefaultSettings) {
+        if(_changedView != _view)
+            saveDefaultSettings();
+        _changedView = _view;
+        _changedProperties = static_cast<KrViewProperties::PropertyType>(_changedProperties | properties);
         _saveDefaultSettingsTimer.start(100);
+    }
 }
 
 void KrViewOperator::saveDefaultSettings()
 {
-    _view->saveDefaultSettings();
+    _saveDefaultSettingsTimer.stop();
+    if(_changedView)
+        _changedView->saveDefaultSettings(_changedProperties);
+    _changedProperties = KrViewProperties::NoProperty;
+    _changedView = 0;
 }
 
 bool KrViewOperator::eventFilter(QObject *watched, QEvent *event)
@@ -405,7 +421,7 @@ void KrView::showPreviews(bool show)
         _previews = 0;
     }
     redraw();
-    op()->settingsChanged();
+    op()->settingsChanged(KrViewProperties::PropShowPreviews);
     op()->emitRefreshActions();
 }
 
@@ -1009,7 +1025,7 @@ void KrView::setFileIconSize(int size)
         _previews->update();
     }
     redraw();
-    op()->settingsChanged();
+    op()->settingsChanged(KrViewProperties::PropIconSize);
     op()->emitRefreshActions();
 }
 
@@ -1019,9 +1035,9 @@ int KrView::defaultFileIconSize()
     return grpSvr.readEntry("IconSize", _FilelistIconSize).toInt();
 }
 
-void KrView::saveDefaultSettings()
+void KrView::saveDefaultSettings(KrViewProperties::PropertyType properties)
 {
-    saveSettings(KConfigGroup(_config, _instance.name()));
+    saveSettings(KConfigGroup(_config, _instance.name()), properties);
     op()->emitRefreshActions();
 }
 
@@ -1030,12 +1046,14 @@ void KrView::restoreDefaultSettings()
     restoreSettings(KConfigGroup(_config, _instance.name()));
 }
 
-void KrView::saveSettings(KConfigGroup group)
+void KrView::saveSettings(KConfigGroup group, KrViewProperties::PropertyType properties)
 {
-    group.writeEntry("IconSize", fileIconSize());
-    group.writeEntry("ShowPreviews", previewsShown());
-    saveSortMode(group);
-    doSaveSettings(group);
+    if(properties & KrViewProperties::PropIconSize)
+        group.writeEntry("IconSize", fileIconSize());
+    if(properties & KrViewProperties::PropShowPreviews)
+        group.writeEntry("ShowPreviews", previewsShown());
+    if(properties & KrViewProperties::PropSortMode)
+        saveSortMode(group);
 }
 
 void KrView::restoreSettings(KConfigGroup group)
@@ -1043,10 +1061,14 @@ void KrView::restoreSettings(KConfigGroup group)
     bool tmp = _updateDefaultSettings;
     _updateDefaultSettings = false;
     doRestoreSettings(group);
+    _updateDefaultSettings = tmp;
+}
+
+void KrView::doRestoreSettings(KConfigGroup group)
+{
     restoreSortMode(group);
     setFileIconSize(group.readEntry("IconSize", defaultFileIconSize()));
     showPreviews(group.readEntry("ShowPreviews", false));
-    _updateDefaultSettings = tmp;
 }
 
 void KrView::applySettingsToOthers()
@@ -1075,10 +1097,7 @@ void KrView::sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool desce
     _properties->sortColumn = sortColumn;
     _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(options);
 
-    if(_updateDefaultSettings) {
-        KConfigGroup group(_config, _instance.name());
-        saveSortMode(group);
-    }
+    op()->settingsChanged(KrViewProperties::PropSortMode);
 }
 
 void KrView::saveSortMode(KConfigGroup &group)

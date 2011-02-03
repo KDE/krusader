@@ -65,8 +65,8 @@ protected:
 
     // ---- reimplemented from KrView ----
     virtual void setup();
-    virtual void doRestoreSettings(KConfigGroup &group);
-    virtual void doSaveSettings(KConfigGroup &group);
+    virtual void doRestoreSettings(KConfigGroup group);
+    virtual void saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties);
     virtual void copySettingsFrom(KrView *other);
     virtual QRect itemRect(const vfile *vf);
     virtual void showContextMenu(const QPoint & p);

@@ -46,6 +46,7 @@ public:
     virtual int  itemsPerPage();
     virtual void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending);
     virtual void setFileIconSize(int size);
+    virtual void doRestoreSettings(KConfigGroup grp);
 
 protected slots:
     virtual void renameCurrentItem();
@@ -55,10 +56,8 @@ protected slots:
 
 protected:
     virtual void setup();
-
-    virtual void doRestoreSettings(KConfigGroup &group);
-    virtual void doSaveSettings(KConfigGroup &group);
     virtual void copySettingsFrom(KrView *other);
+    virtual void saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties);
 
     // Don't do anything, selections are handled by the mouse handler
     virtual void setSelection(const QRect &rect, QItemSelectionModel::SelectionFlags command) {}
