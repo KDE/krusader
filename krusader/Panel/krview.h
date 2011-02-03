@@ -451,6 +451,7 @@ public:
         return _properties->filter;
     }
     virtual void setFilter(KrViewProperties::FilterSpec filter);
+    virtual void setCustomFilter(KRQuery mask, bool applyToDirs);
     virtual void customSelection(bool select);
     virtual int defaultFileIconSize();
     virtual void setFileIconSize(int size);

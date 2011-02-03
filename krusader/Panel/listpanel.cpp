@@ -452,12 +452,17 @@ void ListPanel::changeType(int type)
     if (panelType != type) {
         QString current = view->getCurrentItem();
         KUrl::List selection = view->selectedUrls();
+        bool filterApplysToDirs = view->properties()->filterApplysToDirs;
+        KrViewProperties::FilterSpec filter = view->filter();
+        KRQuery filterMask = view->filterMask();
 
         panelType = type;
         quickSearch->setFocusProxy(0);
         delete view;
 
         createView();
+        if(filter == KrViewProperties::Custom)
+            view->setCustomFilter(filterMask, filterApplysToDirs);
         view->refresh();
         view->setSelection(selection);
         view->setCurrentItem(current);

@@ -1184,6 +1184,14 @@ void KrView::setFiles(VfileContainer *files)
     QObject::connect(_files, SIGNAL(deletedVfile(const QString&)), op(), SLOT(fileDeleted(const QString&)));
 }
 
+void KrView::setCustomFilter(KRQuery mask, bool applyToDirs)
+{
+    _properties->filter = KrViewProperties::Custom;
+    _properties->filterMask = mask;
+    _properties->filterApplysToDirs = applyToDirs;
+    refresh();
+}
+
 void KrView::setFilter(KrViewProperties::FilterSpec filter)
 {
 
