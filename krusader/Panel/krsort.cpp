@@ -348,4 +348,4 @@ int Sorter::insertIndex(vfile *vf, bool isDummy, QVariant customData)
         return _items.count();
 }
 
-}; // namespace KrSort
+} // namespace KrSort
