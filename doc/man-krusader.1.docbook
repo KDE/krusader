@@ -1,0 +1,275 @@
+<?xml version="1.0" ?>
+<!DOCTYPE refentry PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+<!ENTITY % English "INCLUDE">
+]>
+
+<refentry lang="&language;">
+<refentryinfo>
+<title>KDE User's Manual</title>
+<author><personname><firstname>Krusader</firstname><surname>Krew</surname></personname> <email>krusader-devel@googlegroups.com</email></author>
+<date>2011-02-22</date>
+<productname>K Desktop Environment</productname>
+</refentryinfo>
+
+<refmeta>
+<refentrytitle><command>krusader</command></refentrytitle>
+<manvolnum>1</manvolnum>
+</refmeta>
+
+<refnamediv>
+<refname>krusader</refname>
+<refpurpose>advanced twin-panel file manager and ftp client for KDE</refpurpose>
+</refnamediv>
+<!-- body begins here -->
+
+<refsynopsisdiv>
+<cmdsynopsis>
+<command>krusader</command>
+<arg choice="opt">KDE Generic Options</arg>
+<arg choice="opt">Qt Generic Options</arg>
+<arg choice="opt">Options</arg>
+<arg choice="plain">url</arg>
+</cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+<title>Description</title>
+<para>Krusader is an advanced twin panel (commander style)
+file manager for KDE and other desktops in the *nix world,
+similar to Midnight or Total Commander.
+It provides all the file management features you could possibly want.
+Plus: extensive archive handling,
+mounted filesystem support, FTP, advanced search module,
+viewer/editor, directory synchronisation, file content comparisons,
+powerful batch renaming and much much more.
+It supports the following archive formats: ace, arj, bzip2, deb, 
+gzip, iso, lha, rar, rpm, tar, xz, zip, and 7-zip
+and can handle other KIOSlaves such as smb:// or fish://
+It is (almost) completely customizable, very user friendly,
+fast and looks great on your desktop! :-)
+You should give it a try.</para>
+</refsect1>
+
+<refsect1><title>Options</title>
+<variablelist>
+  <varlistentry>
+  <term><option>--left</option> <parameter><replaceable>&lt;path&gt;</replaceable></parameter></term>
+  <listitem>
+<para>start left panel at <replaceable>&lt;path&gt;</replaceable></para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term><option>--rigth</option> <parameter><replaceable>&lt;path&gt;</replaceable></parameter></term>
+  <listitem>
+<para>start right panel at <replaceable>&lt;path&gt;</replaceable></para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term><option>--profile </option><parameter><replaceable>&lt;panel-profile&gt;</replaceable></parameter></term>
+  <listitem>
+<para>Load <replaceable>&lt;panel-profile&gt;</replaceable> on startup</para> 
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term><option>--help</option></term>
+  <listitem>
+<para>show the general options</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term><option>--help-all</option></term>
+  <listitem>
+<para>show the all the options</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term><option>--author</option></term>
+  <listitem>
+<para>show the authors</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term><option>-v, --version</option></term>
+  <listitem>
+<para>show the version</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term><option>--license</option></term>
+  <listitem>
+<para>show the license</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term><option>url</option></term>
+  <listitem>
+<para>if there is already a tab open with that url, it is activated, otherwise a new tab is opened in the active
+panel</para>
+  </listitem>
+  </varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1><title>Qt-options</title>
+<para>"$ krusader --help-qt"  shows the all the Qt-options</para>
+</refsect1>
+
+<refsect1><title>KDE-options</title>
+<para>"$ krusader --help-kde" shows the all the KDE-options</para>
+</refsect1>
+
+<refsect1><title>Examples</title>
+
+<itemizedlist>
+  <listitem><para>$ krusader --left=/mnt/cdrom --right=ftp://downloads@myserver.net</para></listitem>
+  <listitem><para>$ krusader --left=/home,/usr,smb://workgroup.net --right=fish://myserver.net</para></listitem>
+  <listitem><para>$ krusader --profile=ftp_managment</para></listitem>
+
+</itemizedlist>
+</refsect1>
+
+<refsect1><title>Files</title>
+<para>Configuration files:</para>
+
+<para><filename>~/.kde/share/config/krusaderrc</filename></para>
+
+<para><filename>~/.kde/share/apps/krusader/krbookmarks.xml</filename></para>
+
+<para><filename>$KDEDIR/share/apps/krusader/krusaderui.rc</filename> or</para>
+
+<para><filename>~/.kde/share/apps/krusader/krusaderui.rc</filename></para>
+
+</refsect1>
+
+<refsect1><title>Platforms</title>
+<para>All POSIX: Linux, Solaris, All BSD Platforms: FreeBSD, MacOS-X</para>
+
+<para><emphasis>KDE 2.x</emphasis></para>
+
+<para>krusader v1.01 stable but there are no planned changes.</para>
+
+<para><emphasis>KDE 3.x</emphasis></para>
+
+<para>Krusader v1.01 needs KDElibs 2</para>
+
+<para>Krusader v1.02 - 1.40 needs KDElibs 3</para>
+
+<para>Krusader 1.40 prefers &gt;= KDE 3.2</para>
+
+<para>Krusader v1.50 - v1.51: KDE 3.2 - KDE 3.3</para>
+
+<para>Krusader v1.60.0- v1.70.0: KDE 3.3 - KDE 3.4</para>
+
+<para>Krusader 1.70.x-1.80.x: KDE 3.4 - KDE 3.5</para>
+
+<para><emphasis>KDE 4.x</emphasis></para>
+
+<para>Krusader 2.xx.x: KDE 4</para>
+
+<para>The latest version of Krusader can be found at the Krusader website.</para>
+
+</refsect1>
+
+<refsect1><title>Features</title>
+<para>OFM filemanager features.</para>
+
+<para>Strong keyboard orientation.</para>
+
+<para>Powerful internal viewer and editor.</para>
+
+<para>Advanced search module that can search in archives.
+     
+Supports: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip, and 7-zip.</para>
+
+<para>Directory comparison and filtering.</para>
+
+<para>FTP/Samba client with a connection manager with SFTP/SCP support.</para>
+
+<para>Synchronizer, UserActions, Embedded console. Javascript console.</para>
+
+<para>Compare files by content. Easy editing of file permissions.</para> 
+
+<para>Diskusage, Calculate occupied space. Checksum creation-verification.</para>
+
+<para>Fully mimetype-aware (with or without magic!).</para>
+
+<para>Mountmanager, Locate, Krename support.</para>
+
+<para>Root mode, Tabbed panels, PopUp Panel. Mouse selection modes.</para>
+
+<para>Profiles for: Panels, Key-bindings, Colors.</para> 
+
+<para>For more features read <ulink url='http://docs.kde.org/development/en/extragear-utils/krusader/features.html'>http://docs.kde.org/development/en/extragear-utils/krusader/features.html</ulink></para>
+
+</refsect1>
+
+<refsect1><title>License</title>
+<para>Krusader is distributed under the terms of the GNU General Public</para>
+
+<para>License version 2 as published by the Free Software Foundation.</para>
+
+<para>See the built-in help for details on the License and the lack of warranty.</para>
+
+<para>The copyright for the project and its name are still held by Shie Erlich and Rafi Yanai.</para>
+</refsect1>
+
+<refsect1><title>i18n</title>
+<para>Krusader is translated into many languages.</para>
+
+<para><ulink url='http://l10n.kde.org/stats/gui/trunk-kde4/po/krusader.po/'>http://l10n.kde.org/stats/gui/trunk-kde4/po/krusader.po/</ulink></para>
+
+<para>Read the <ulink url="http://l10n.kde.org/docs/translation-howto/">KDE translation howto</ulink> if you want translate Krusader in your native language.</para>
+</refsect1>
+
+<refsect1><title>FAQ</title>
+<para>The latest version of the KRUSADER FAQ can be found <ulink url="http://docs.kde.org/development/en/extragear-utils/krusader/faq.html">here</ulink>.</para>
+</refsect1>
+
+<refsect1><title>See Also</title>
+<para>The Krusader Handbook, at the krusader help menu.</para>
+
+<para>The Krusader homepage on the World Wide Web:</para>
+
+<para><ulink url='http://krusader.org'>http://krusader.org</ulink></para>
+</refsect1>
+
+<refsect1 id='authors'><title>Authors</title>
+<para>Krusader is developed by a dedicated team of individuals, known as the Krusader Krew.</para>
+
+<para>Shie Erlich, author [erlich {*} users {.} sourceforge {.} net]</para>
+
+<para>Rafi Yanai, author [yanai {*} users {.} sourceforge {.} net]</para>
+
+<para>Dirk Eschler, Webmaster and i18n coordinator [deschler {*} users {.} sourceforge {.} net]</para>
+
+<para>Csaba Karai, Developer [ckarai {*} users {.} sourceforge {.} net]</para>
+
+<para>Heiner Eichmann, Developer [h {.} eichmann {*} gmx.de]</para>
+
+<para>Jonas Baehr, Developer [jonas.baehr {*} web.de]</para>
+
+<para>Vaclav Juza, Developer [vaclavjuza {*} seznam {.} cz]</para>
+
+<para>Jan Lepper, Developer [jan_lepper {*} gmx{.} de]</para>
+
+<para>Frank Schoolmeesters, Documentation &amp; Marketing Coordinator [frank_schoolmeesters {*} yahoo {.} com]</para>
+
+<para>Richard Holt, Documentation &amp; Proofing [richard {.} holt {*} gmail {.} com]</para>
+
+<para>Matej Urbancic, Marketing &amp; Product Research [matej {*} amis {.} net]</para>
+
+<para>The project is written using KDevelop and Qt Designer.</para>
+
+</refsect1>
+
+<refsect1><title>Bugs</title>
+<para>See the TODO file in the distribution for information on what remains to be done.</para>
+
+<para>For fixes, patches and comments use the krusader forum or mail to</para>
+
+<para>[krusader-devel {*} googlegroups {.} com].</para>
+
+<para>Krusader Krew</para>
+</refsect1>
+</refentry>
+
