@@ -1,4 +1,5 @@
 set(Filter_SRCS
+    filtersettings.cpp
     advancedfilter.cpp
     generalfilter.cpp
     filtertabs.cpp
