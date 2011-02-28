@@ -146,6 +146,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     KConfigGroup group(krConfig, "Search");
 
     setWindowTitle(i18n("Krusader::Search"));
+    setWindowIcon(KIcon("system-search"));
 
     QGridLayout* searchBaseLayout = new QGridLayout(this);
     searchBaseLayout->setSpacing(6);
@@ -165,21 +166,25 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 
     mainFeedToListBoxBtn = new QPushButton(this);
     mainFeedToListBoxBtn->setText(i18n("Feed to listbox"));
+    mainFeedToListBoxBtn->setIcon(KIcon("list-add"));
     mainFeedToListBoxBtn->setEnabled(false);
     buttonsLayout->addWidget(mainFeedToListBoxBtn);
 
     mainSearchBtn = new QPushButton(this);
     mainSearchBtn->setText(i18n("Search"));
+    mainSearchBtn->setIcon(KIcon("system-search"));
     mainSearchBtn->setDefault(true);
     buttonsLayout->addWidget(mainSearchBtn);
 
     mainStopBtn = new QPushButton(this);
     mainStopBtn->setEnabled(false);
     mainStopBtn->setText(i18n("Stop"));
+    mainStopBtn->setIcon(KIcon("process-stop"));
     buttonsLayout->addWidget(mainStopBtn);
 
     mainCloseBtn = new QPushButton(this);
     mainCloseBtn->setText(i18n("Close"));
+    mainCloseBtn->setIcon(KIcon("dialog-close"));
     buttonsLayout->addWidget(mainCloseBtn);
 
     searchBaseLayout->addLayout(buttonsLayout, 1, 0);
