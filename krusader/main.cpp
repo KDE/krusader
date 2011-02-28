@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
     aboutData.addAuthor(ki18n("Heiner Eichmann"), ki18n("Developer"), "h.eichmann@gmx.de", 0);
     aboutData.addAuthor(ki18n("Jonas Bähr"), ki18n("Developer"), "jonas.baehr@web.de", 0);
     aboutData.addAuthor(ki18n("Václav Jůza"), ki18n("Developer"), "vaclavjuza@gmail.com", 0);
-    aboutData.addAuthor(ki18n("Jan Lepper"), ki18n("Developer"), "dehtris@yahoo.de", 0);
+    aboutData.addAuthor(ki18n("Jan Lepper"), ki18n("Developer"), "jan_lepper@gmx.de", 0);
     aboutData.addAuthor(ki18n("Dirk Eschler"), ki18n("Webmaster and i18n coordinator"), "deschler@users.sourceforge.net", 0);
     aboutData.addAuthor(ki18n("Frank Schoolmeesters"), ki18n("Documentation and marketing coordinator"), "frank_schoolmeesters@yahoo.com", 0);
     aboutData.addAuthor(ki18n("Richard Holt"), ki18n("Documentation & Proofing"), "richard.holt@gmail.com", 0);
