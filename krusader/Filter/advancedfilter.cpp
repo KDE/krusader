@@ -109,12 +109,6 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     maxSizeType->setEnabled(false);
     sizeLayout->addWidget(maxSizeType, 0, 5);
 
-    // set a tighter box around the type box
-
-    int height = QFontMetrics(minSizeType->font()).height() + 2;
-    minSizeType->setMaximumHeight(height);
-    maxSizeType->setMaximumHeight(height);
-
     filterLayout->addWidget(sizeGroup, 0, 0);
 
     // Options for date
@@ -257,14 +251,12 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     QGroupBox *ownerGroup = new QGroupBox(ownershipGroup);
     QHBoxLayout *ownerHBox = new QHBoxLayout(ownerGroup);
     ownerGroup->setTitle(i18n("O&wner"));
-    int width = 2 * height + height / 2;
 
     ownerR = new KComboBox(ownerGroup);
     ownerR->addItem(i18n("?"));
     ownerR->addItem(i18n("r"));
     ownerR->addItem(i18n("-"));
     ownerR->setEnabled(false);
-    ownerR->setGeometry(QRect(10, 20, width, height + 6));
     ownerHBox->addWidget(ownerR);
 
     ownerW = new KComboBox(ownerGroup);
@@ -272,7 +264,6 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     ownerW->addItem(i18n("w"));
     ownerW->addItem(i18n("-"));
     ownerW->setEnabled(false);
-    ownerW->setGeometry(QRect(10 + width, 20, width, height + 6));
     ownerHBox->addWidget(ownerW);
 
     ownerX = new KComboBox(ownerGroup);
@@ -280,7 +271,6 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     ownerX->addItem(i18n("x"));
     ownerX->addItem(i18n("-"));
     ownerX->setEnabled(false);
-    ownerX->setGeometry(QRect(10 + 2*width, 20, width, height + 6));
     ownerHBox->addWidget(ownerX);
 
     ownershipLayout->addWidget(ownerGroup, 1, 1);
@@ -294,7 +284,6 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     groupR->addItem(i18n("r"));
     groupR->addItem(i18n("-"));
     groupR->setEnabled(false);
-    groupR->setGeometry(QRect(10, 20, width, height + 6));
     groupHBox->addWidget(groupR);
 
     groupW = new KComboBox(groupGroup);
@@ -302,7 +291,6 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     groupW->addItem(i18n("w"));
     groupW->addItem(i18n("-"));
     groupW->setEnabled(false);
-    groupW->setGeometry(QRect(10 + width, 20, width, height + 6));
     groupHBox->addWidget(groupW);
 
     groupX = new KComboBox(groupGroup);
@@ -310,7 +298,6 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     groupX->addItem(i18n("x"));
     groupX->addItem(i18n("-"));
     groupX->setEnabled(false);
-    groupX->setGeometry(QRect(10 + 2*width, 20, width, height + 6));
     groupHBox->addWidget(groupX);
 
     ownershipLayout->addWidget(groupGroup, 1, 2);
@@ -324,7 +311,6 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     allR->addItem(i18n("r"));
     allR->addItem(i18n("-"));
     allR->setEnabled(false);
-    allR->setGeometry(QRect(10, 20, width, height + 6));
     allHBox->addWidget(allR);
 
     allW = new KComboBox(allGroup);
@@ -332,7 +318,6 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     allW->addItem(i18n("w"));
     allW->addItem(i18n("-"));
     allW->setEnabled(false);
-    allW->setGeometry(QRect(10 + width, 20, width, height + 6));
     allHBox->addWidget(allW);
 
     allX = new KComboBox(allGroup);
@@ -340,7 +325,6 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     allX->addItem(i18n("x"));
     allX->addItem(i18n("-"));
     allX->setEnabled(false);
-    allX->setGeometry(QRect(10 + 2*width, 20, width, height + 6));
     allHBox->addWidget(allX);
 
     ownershipLayout->addWidget(allGroup, 1, 3);
