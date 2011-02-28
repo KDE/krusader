@@ -1206,13 +1206,15 @@ void KrView::setCustomFilter(KRQuery mask, bool applyToDirs)
 void KrView::setFilter(KrViewProperties::FilterSpec filter)
 {
 
-    bool applyToDirs = false;
+    bool applyToDirs = _properties->filterApplysToDirs;
     switch (filter) {
     case KrViewProperties::All :
         break;
     case KrViewProperties::Custom :
         {
-            FilterDialog dialog(_widget, i18n("Filter Files"), QStringList(i18n("Apply filter to directories")));
+            FilterDialog dialog(_widget, i18n("Filter Files"), QStringList(i18n("Apply filter to directories")), false);
+            dialog.checkExtraOption(i18n("Apply filter to directories"), applyToDirs);
+            dialog.exec();
             KRQuery filterMask = dialog.getQuery();
             if (filterMask.isNull()) // if the user canceled - quit
                 return;
