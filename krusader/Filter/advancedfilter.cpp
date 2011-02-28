@@ -72,7 +72,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     sizeLayout->setContentsMargins(11, 11, 11, 11);
 
     biggerThanEnabled = new QCheckBox(sizeGroup);
-    biggerThanEnabled->setText(i18n("&Bigger than"));
+    biggerThanEnabled->setText(i18n("At Least"));
     sizeLayout->addWidget(biggerThanEnabled, 0, 0);
 
     biggerThanAmount = new KLineEdit(sizeGroup);
@@ -91,7 +91,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     sizeLayout->addWidget(biggerThanType, 0, 2);
 
     smallerThanEnabled = new QCheckBox(sizeGroup);
-    smallerThanEnabled->setText(i18n("&Smaller than"));
+    smallerThanEnabled->setText(i18n("At Most"));
     sizeLayout->addWidget(smallerThanEnabled, 0, 3);
 
     smallerThanAmount = new KLineEdit(sizeGroup);
