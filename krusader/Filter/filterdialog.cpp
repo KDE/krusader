@@ -35,6 +35,7 @@
 #include <klocale.h>
 #include <QGridLayout>
 
+
 FilterDialog::FilterDialog(QWidget *parent, QString caption, QStringList extraOptions, bool modal)
         : KDialog(parent)
 {
@@ -53,7 +54,6 @@ FilterDialog::FilterDialog(QWidget *parent, QString caption, QStringList extraOp
     generalFilter->searchFor->setFocus();
 
     connect(filterTabs, SIGNAL(closeRequest(bool)), this, SLOT(slotCloseRequest(bool)));
-    connect(this, SIGNAL(okClicked()), this, SLOT(slotOk()));
 
     if(modal)
         exec();
@@ -83,14 +83,20 @@ void FilterDialog::slotCloseRequest(bool doAccept)
         reject();
 }
 
+void FilterDialog::slotButtonClicked(int button)
+{
+    if (button == KDialog::Ok)
+        slotOk();
+    else
+        KDialog::slotButtonClicked(button);
+}
+
 void FilterDialog::slotOk()
 {
-    if (filterTabs->fillQuery(&query)) {
-        KDialog::accept();
-        return;
-    }
-
-    query = KRQuery();
+    if (filterTabs->fillQuery(&query))
+        accept();
+    else
+        query = KRQuery();
 }
 
 #include "filterdialog.moc"

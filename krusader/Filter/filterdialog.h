@@ -52,6 +52,7 @@ public slots:
     void slotCloseRequest(bool doAccept);
 
 protected slots:
+    virtual void slotButtonClicked(int button);
     void slotOk();
 
 private:
