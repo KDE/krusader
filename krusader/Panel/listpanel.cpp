@@ -1290,7 +1290,8 @@ void ListPanel::otherPanelChanged()
 
 void ListPanel::getFocusCandidates(QVector<QWidget*> &widgets)
 {
-    widgets << origin->lineEdit();
+    if(origin->lineEdit()->isVisible())
+        widgets << origin->lineEdit();
     if(view->widget()->isVisible())
         widgets << view->widget();
     if(popup && popup->isVisible())
