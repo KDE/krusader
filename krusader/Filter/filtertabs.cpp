@@ -32,8 +32,11 @@
 #include "filterdialog.h"
 #include "generalfilter.h"
 #include "advancedfilter.h"
+#include "../krglobal.h"
 
 #include <klocale.h>
+#include <kmessagebox.h>
+
 
 FilterTabs::FilterTabs(int properties, KTabWidget *tabWidget,
                        QObject *parent, QStringList extraOptions) :
@@ -67,24 +70,48 @@ FilterTabs * FilterTabs::addTo(KTabWidget *tabWidget, int props, QStringList ext
     return new FilterTabs(props, tabWidget, tabWidget, extraOptions);
 }
 
+FilterSettings FilterTabs::getSettings()
+{
+    FilterSettings s;
+
+    for (int i = 0; i != filterList.count(); i++) {
+        if(!filterList[i]->getSettings(s)) {
+            tabWidget->setCurrentIndex(pageNumbers[i]);
+            return FilterSettings();
+        }
+    }
+
+    s.valid = true;
+    acceptQuery();
+
+    return s;
+}
+
+void FilterTabs::applySettings(const FilterSettings &s)
+{
+    if(s.isValid()) {
+        QListIterator<FilterBase*> it(filterList);
+        while (it.hasNext())
+            it.next()->applySettings(s);
+    }
+}
+
 void FilterTabs::saveToProfile(QString name)
 {
-    QListIterator<FilterBase *> it(filterList);
-    while (it.hasNext()) {
-        FilterBase *filter = it.next();
-
-        filter->saveToProfile(name);
-    }
+    FilterSettings s(getSettings());
+    if(s.isValid())
+        s.save(KConfigGroup(krConfig, name));
+    krConfig->sync();
 }
 
 void FilterTabs::loadFromProfile(QString name)
 {
-    QListIterator<FilterBase *> it(filterList);
-    while (it.hasNext()) {
-        FilterBase *filter = it.next();
-
-        filter->loadFromProfile(name);
-    }
+    FilterSettings s;
+    s.load(KConfigGroup(krConfig, name));
+    if(!s.isValid())
+        KMessageBox::error(tabWidget, i18n("Couldn't load profile."));
+    else
+        applySettings(s);
 }
 
 void FilterTabs::acceptQuery()
@@ -99,19 +126,9 @@ void FilterTabs::acceptQuery()
 
 bool FilterTabs::fillQuery(KRQuery *query)
 {
-    for (unsigned int i = 0; i != filterList.count(); i++) {
+    *query = getSettings().toQuery();
 
-        FilterBase *filter = filterList.at(i);
-
-        bool result = filter->fillQuery(query);
-        if (result == false) {
-            tabWidget->setCurrentIndex(pageNumbers[ i ]);
-            return false;
-        }
-    }
-
-    acceptQuery();
-    return true;
+    return !query->isNull();
 }
 
 FilterBase * FilterTabs::get(QString name)
@@ -133,5 +150,5 @@ KRQuery FilterTabs::getQuery(QWidget *parent)
     return dialog.getQuery();
 }
 
-#include "filtertabs.moc"
 
+#include "filtertabs.moc"

@@ -451,25 +451,6 @@ void AdvancedFilter::changeDate(KLineEdit *p)
     delete gd;
 }
 
-// bool start: set it to true if this date is the beginning of the search,
-// if it's the end, set it to false
-void AdvancedFilter::qdate2time_t (time_t *dest, QDate d, bool start)
-{
-    struct tm t;
-    t.tm_sec   = (start ? 0 : 59);
-    t.tm_min   = (start ? 0 : 59);
-    t.tm_hour  = (start ? 0 : 23);
-    t.tm_mday  = d.day();
-    t.tm_mon   = d.month() - 1;
-    t.tm_year  = d.year() - 1900;
-    t.tm_wday  = d.dayOfWeek() - 1; // actually ignored by mktime
-    t.tm_yday  = d.dayOfYear() - 1; // actually ignored by mktime
-    t.tm_isdst = -1; // daylight saving time information isn't available
-
-    (*dest) = mktime(&t);
-}
-
-
 void AdvancedFilter::fillList(KComboBox *list, QString filename)
 {
     QFile data(filename);
@@ -495,240 +476,132 @@ void AdvancedFilter::invalidDateMessage(KLineEdit *p)
     p->setFocus();
 }
 
-bool AdvancedFilter::fillQuery(KRQuery *query)
+bool AdvancedFilter::getSettings(FilterSettings &s)
 {
-    KIO::filesize_t minSize = 0, maxSize = 0;
+    s.minSizeEnabled =  biggerThanEnabled->isChecked();
+    s.minSize.amount = biggerThanAmount->text().toULong();
+    s.minSize.unit = static_cast<FilterSettings::SizeUnit>(biggerThanType->currentIndex());
 
-    // size calculations ////////////////////////////////////////////////
-    if (biggerThanEnabled->isChecked() &&
-            !(biggerThanAmount->text().simplified()).isEmpty()) {
-        minSize = biggerThanAmount->text().toULong();
-        switch (biggerThanType->currentIndex()) {
-        case 1 : minSize *= 1024;
-            break;
-        case 2 : minSize *= (1024*1024);
-            break;
-        }
-        query->setMinimumFileSize(minSize);
-    }
-    if (smallerThanEnabled->isChecked() &&
-            !(smallerThanAmount->text().simplified()).isEmpty()) {
-        maxSize = smallerThanAmount->text().toULong();
-        switch (smallerThanType->currentIndex()) {
-        case 1 : maxSize *= 1024;
-            break;
-        case 2 : maxSize *= (1024*1024);
-            break;
-        }
-        query->setMaximumFileSize(maxSize);
-    }
-    // check that minSize is smaller than maxSize
-    if ((minSize > 0) && (maxSize > 0) && (maxSize < minSize)) {
+    s.maxSizeEnabled = smallerThanEnabled->isChecked();
+    s.maxSize.amount = smallerThanAmount->text().toULong();
+    s.maxSize.unit = static_cast<FilterSettings::SizeUnit>(smallerThanType->currentIndex());
+
+    if (s.minSize.size() && s.maxSize.size() && (s.maxSize.size() < s.minSize.size())) {
         KMessageBox::detailedError(this, i18n("Specified sizes are inconsistent!"),
-                                   i18n("Please re-enter the values, so that the left side size will be smaller than (or equal to) the right side size."));
+                            i18n("Please re-enter the values, so that the left side size "
+                                 "will be smaller than (or equal to) the right side size."));
         biggerThanAmount->setFocus();
         return false;
     }
 
-    // date calculations ////////////////////////////////////////////////////
-    if (modifiedBetweenEnabled->isChecked()) {
-        // first, if both dates are empty, than don't use them
-        if (!(modifiedBetweenData1->text().simplified().isEmpty() &&
-                modifiedBetweenData2->text().simplified().isEmpty())) {
-            // check if date is valid
-            QDate d1 = KGlobal::locale()->readDate(modifiedBetweenData1->text());
-            if (!d1.isValid()) {
-                invalidDateMessage(modifiedBetweenData1); return false;
-            }
-            QDate d2 = KGlobal::locale()->readDate(modifiedBetweenData2->text());
-            if (!d2.isValid()) {
-                invalidDateMessage(modifiedBetweenData2); return false;
-            }
+    s.modifiedBetweenEnabled = modifiedBetweenEnabled->isChecked();
+    s.modifiedBetween1 = KGlobal::locale()->readDate(modifiedBetweenData1->text());
+    s.modifiedBetween2 = KGlobal::locale()->readDate(modifiedBetweenData2->text());
 
-            if (d1 > d2) {
-                KMessageBox::detailedError(this, i18n("Dates are inconsistent!"),
-                                           i18n("The date on the left is later than the date on the right. Please re-enter the dates, so that the left side date will be earlier than the right side date."));
-                modifiedBetweenData1->setFocus();
-                return false;
-            }
-            // all seems to be ok, create time_t
-
-            time_t newerTime, olderTime;
-            qdate2time_t (&newerTime, d1, true);
-            qdate2time_t (&olderTime, d2, false);
-            query->setNewerThan(newerTime);
-            query->setOlderThan(olderTime);
-        }
-    } else if (notModifiedAfterEnabled->isChecked()) {
-        if (!notModifiedAfterData->text().simplified().isEmpty()) {
-            QDate d = KGlobal::locale()->readDate(notModifiedAfterData->text());
-            if (!d.isValid()) {
-                invalidDateMessage(notModifiedAfterData); return false;
-            }
-            time_t olderTime;
-            qdate2time_t (&olderTime, d, false);
-            query->setOlderThan(olderTime);
-        }
-    } else if (modifiedInTheLastEnabled->isChecked()) {
-        if (!(modifiedInTheLastData->text().simplified().isEmpty() &&
-                notModifiedInTheLastData->text().simplified().isEmpty())) {
-            QDate d1 = QDate::currentDate(); QDate d2 = QDate::currentDate();
-            if (!modifiedInTheLastData->text().simplified().isEmpty()) {
-                int tmp1 = modifiedInTheLastData->text().simplified().toInt();
-                switch (modifiedInTheLastType->currentIndex()) {
-                case 1 : tmp1 *= 7;
-                    break;
-                case 2 : tmp1 *= 30;
-                    break;
-                case 3 : tmp1 *= 365;
-                    break;
-                }
-                d1 = d1.addDays((-1) * tmp1);
-                time_t newerTime;
-                qdate2time_t (&newerTime, d1, true);
-                query->setNewerThan(newerTime);
-            }
-            if (!notModifiedInTheLastData->text().simplified().isEmpty()) {
-                int tmp2 = notModifiedInTheLastData->text().simplified().toInt();
-                switch (notModifiedInTheLastType->currentIndex()) {
-                case 1 : tmp2 *= 7;
-                    break;
-                case 2 : tmp2 *= 30;
-                    break;
-                case 3 : tmp2 *= 365;
-                    break;
-                }
-                d2 = d2.addDays((-1) * tmp2);
-                time_t olderTime;
-                qdate2time_t (&olderTime, d2, true);
-                query->setOlderThan(olderTime);
-            }
-            if (!modifiedInTheLastData->text().simplified().isEmpty() &&
-                    !notModifiedInTheLastData->text().simplified().isEmpty()) {
-                if (d1 > d2) {
-                    KMessageBox::detailedError(this, i18n("Dates are inconsistent!"),
-                                               i18n("The date on top is later than the date on the bottom. Please re-enter the dates, so that the top date will be earlier than the bottom date."));
-                    modifiedInTheLastData->setFocus();
-                    return false;
-                }
-            }
+    if (s.modifiedBetweenEnabled) {
+        // check if date is valid
+        if (!s.modifiedBetween1.isValid()) {
+            invalidDateMessage(modifiedBetweenData1);
+            return false;
+        } else if (!s.modifiedBetween2.isValid()) {
+            invalidDateMessage(modifiedBetweenData2);
+            return false;
+        } else if (s.modifiedBetween1 > s.modifiedBetween2) {
+            KMessageBox::detailedError(this, i18n("Dates are inconsistent!"),
+                                i18n("The date on the left is later than the date on the right. "
+                                     "Please re-enter the dates, so that the left side date "
+                                     "will be earlier than the right side date."));
+            modifiedBetweenData1->setFocus();
+            return false;
         }
     }
-    // permissions and ownership /////////////////////////////////////
-    if (permissionsEnabled->isChecked()) {
-        QString perm = ownerR->currentText() + ownerW->currentText() + ownerX->currentText() +
-                       groupR->currentText() + groupW->currentText() + groupX->currentText() +
-                       allR->currentText()   + allW->currentText()   + allX->currentText();
-        query->setPermissions(perm);
+
+    s.notModifiedAfterEnabled = notModifiedAfterEnabled->isChecked();
+    s.notModifiedAfter = KGlobal::locale()->readDate(notModifiedAfterData->text());
+
+    if(s.notModifiedAfterEnabled && !s.notModifiedAfter.isValid()) {
+        invalidDateMessage(notModifiedAfterData);
+        return false;
     }
-    if (belongsToUserEnabled->isChecked())
-        query->setOwner(belongsToUserData->currentText());
-    if (belongsToGroupEnabled->isChecked())
-        query->setGroup(belongsToGroupData->currentText());
+
+    s.modifiedInTheLastEnabled = modifiedInTheLastEnabled->isChecked();
+    s.modifiedInTheLast.amount = modifiedInTheLastData->text().toInt();
+    s.modifiedInTheLast.unit =
+        static_cast<FilterSettings::TimeUnit>(modifiedInTheLastType->currentIndex());
+    s.notModifiedInTheLast.amount = notModifiedInTheLastData->text().toInt();
+    s.notModifiedInTheLast.unit =
+        static_cast<FilterSettings::TimeUnit>(notModifiedInTheLastType->currentIndex());
+
+    if (s.modifiedInTheLast.amount && s.notModifiedInTheLast.amount) {
+        if (s.modifiedInTheLast.days() < s.notModifiedInTheLast.days()) {
+            KMessageBox::detailedError(this, i18n("Dates are inconsistent!"),
+                                i18n("The date on top is later than the date on the bottom. "
+                                     "Please re-enter the dates, so that the top date "
+                                     "will be earlier than the bottom date."));
+            modifiedInTheLastData->setFocus();
+            return false;
+        }
+    }
+
+    s.ownerEnabled = belongsToUserEnabled->isChecked();
+    s.owner = belongsToUserData->currentText();
+
+    s.groupEnabled = belongsToGroupEnabled->isChecked();
+    s.group = belongsToGroupData->currentText();
+
+    s.permissionsEnabled = permissionsEnabled->isChecked();
+    s.permissions = ownerR->currentText() + ownerW->currentText() + ownerX->currentText() +
+                    groupR->currentText() + groupW->currentText() + groupX->currentText() +
+                    allR->currentText()   + allW->currentText()   + allX->currentText();
 
     return true;
 }
 
-void AdvancedFilter::loadFromProfile(QString name)
+void AdvancedFilter::applySettings(const FilterSettings &s)
 {
-    KConfigGroup cfg(krConfig, name);
+    biggerThanEnabled->setChecked(s.minSizeEnabled);
+    biggerThanAmount->setText(QString::number(s.minSize.amount));
+    biggerThanType->setCurrentIndex(s.minSize.unit);
 
-    smallerThanEnabled->setChecked(cfg.readEntry("Smaller Than Enabled", false));
-    smallerThanAmount->setText(cfg.readEntry("Smaller Than Amount", ""));
-    smallerThanType->setCurrentIndex(cfg.readEntry("Smaller Than Type", 0));
+    smallerThanEnabled->setChecked(s.maxSizeEnabled);
+    smallerThanAmount->setText(QString::number(s.maxSize.amount));
+    smallerThanType->setCurrentIndex(s.maxSize.unit);
 
-    biggerThanEnabled->setChecked(cfg.readEntry("Bigger Than Enabled", false));
-    biggerThanAmount->setText(cfg.readEntry("Bigger Than Amount", ""));
-    biggerThanType->setCurrentIndex(cfg.readEntry("Bigger Than Type", 0));
+    modifiedBetweenEnabled->setChecked(s.modifiedBetweenEnabled);
+    modifiedBetweenData1->setText(
+        KGlobal::locale()->formatDate(s.modifiedBetween1, KLocale::ShortDate));
+    modifiedBetweenData2->setText(
+        KGlobal::locale()->formatDate(s.modifiedBetween2, KLocale::ShortDate));
 
-    modifiedBetweenEnabled->setChecked(cfg.readEntry("Modified Between Enabled", false));
-    notModifiedAfterEnabled->setChecked(cfg.readEntry("Not Modified After Enabled", false));
-    modifiedInTheLastEnabled->setChecked(cfg.readEntry("Modified In The Last Enabled", false));
+    notModifiedAfterEnabled->setChecked(s.notModifiedAfterEnabled);
+    notModifiedAfterData->setText(
+        KGlobal::locale()->formatDate(s.notModifiedAfter, KLocale::ShortDate));
 
-    modifiedBetweenData1->setText(cfg.readEntry("Modified Between 1", ""));
-    modifiedBetweenData2->setText(cfg.readEntry("Modified Between 2", ""));
+    modifiedInTheLastEnabled->setChecked(s.modifiedInTheLastEnabled);
+    modifiedInTheLastData->setText(QString::number(s.modifiedInTheLast.amount));
+    modifiedInTheLastType->setCurrentIndex(s.modifiedInTheLast.unit);
+    notModifiedInTheLastData->setText(QString::number(s.notModifiedInTheLast.amount));
+    notModifiedInTheLastType->setCurrentIndex(s.notModifiedInTheLast.unit);
 
-    notModifiedAfterData->setText(cfg.readEntry("Not Modified After", ""));
-    modifiedInTheLastData->setText(cfg.readEntry("Modified In The Last", ""));
-    notModifiedInTheLastData->setText(cfg.readEntry("Not Modified In The Last", ""));
+    belongsToUserEnabled->setChecked(s.ownerEnabled);
+    setComboBoxValue(belongsToUserData, s.owner);
 
-    modifiedInTheLastType->setCurrentIndex(cfg.readEntry("Modified In The Last Type", 0));
-    notModifiedInTheLastType->setCurrentIndex(cfg.readEntry("Not Modified In The Last Type", 0));
+    belongsToGroupEnabled->setChecked(s.groupEnabled);
+    setComboBoxValue(belongsToGroupData, s.group);
 
-    belongsToUserEnabled->setChecked(cfg.readEntry("Belongs To User Enabled", false));
-    belongsToGroupEnabled->setChecked(cfg.readEntry("Belongs To Group Enabled", false));
-
-    QString user = cfg.readEntry("Belongs To User", "");
-    for (int i = belongsToUserData->count(); i >= 0; i--) {
-        belongsToUserData->setCurrentIndex(i);
-        if (belongsToUserData->currentText() == user)
-            break;
-    }
-
-    QString group = cfg.readEntry("Belongs To Group", "");
-    for (int i = belongsToGroupData->count(); i >= 0; i--) {
-        belongsToGroupData->setCurrentIndex(i);
-        if (belongsToGroupData->currentText() == group)
-            break;
-    }
-
-    permissionsEnabled->setChecked(cfg.readEntry("Permissions Enabled", false));
-
-    ownerW->setCurrentIndex(cfg.readEntry("Owner Write", 0));
-    ownerR->setCurrentIndex(cfg.readEntry("Owner Read", 0));
-    ownerX->setCurrentIndex(cfg.readEntry("Owner Execute", 0));
-    groupW->setCurrentIndex(cfg.readEntry("Group Write", 0));
-    groupR->setCurrentIndex(cfg.readEntry("Group Read", 0));
-    groupX->setCurrentIndex(cfg.readEntry("Group Execute", 0));
-    allW->setCurrentIndex(cfg.readEntry("All Write", 0));
-    allR->setCurrentIndex(cfg.readEntry("All Read", 0));
-    allX->setCurrentIndex(cfg.readEntry("All Execute", 0));
+    permissionsEnabled->setChecked(s.permissionsEnabled);
+    QString perm = s.permissions;
+    if (perm.length() != 9)
+        perm = "?????????";
+    setComboBoxValue(ownerR, QString(perm[0]));
+    setComboBoxValue(ownerW, QString(perm[1]));
+    setComboBoxValue(ownerX, QString(perm[2]));
+    setComboBoxValue(groupR, QString(perm[3]));
+    setComboBoxValue(groupW, QString(perm[4]));
+    setComboBoxValue(groupX, QString(perm[5]));
+    setComboBoxValue(allR, QString(perm[6]));
+    setComboBoxValue(allW, QString(perm[7]));
+    setComboBoxValue(allX, QString(perm[8]));
 }
-
-void AdvancedFilter::saveToProfile(QString name)
-{
-    KConfigGroup group(krConfig, name);
-
-    group.writeEntry("Smaller Than Enabled", smallerThanEnabled->isChecked());
-    group.writeEntry("Smaller Than Amount", smallerThanAmount->text());
-    group.writeEntry("Smaller Than Type", smallerThanType->currentIndex());
-
-    group.writeEntry("Bigger Than Enabled", biggerThanEnabled->isChecked());
-    group.writeEntry("Bigger Than Amount", biggerThanAmount->text());
-    group.writeEntry("Bigger Than Type", biggerThanType->currentIndex());
-
-    group.writeEntry("Modified Between Enabled", modifiedBetweenEnabled->isChecked());
-    group.writeEntry("Not Modified After Enabled", notModifiedAfterEnabled->isChecked());
-    group.writeEntry("Modified In The Last Enabled", modifiedInTheLastEnabled->isChecked());
-
-    group.writeEntry("Modified Between 1", modifiedBetweenData1->text());
-    group.writeEntry("Modified Between 2", modifiedBetweenData2->text());
-
-    group.writeEntry("Not Modified After", notModifiedAfterData->text());
-    group.writeEntry("Modified In The Last", modifiedInTheLastData->text());
-    group.writeEntry("Not Modified In The Last", notModifiedInTheLastData->text());
-
-    group.writeEntry("Modified In The Last Type", modifiedInTheLastType->currentIndex());
-    group.writeEntry("Not Modified In The Last Type", notModifiedInTheLastType->currentIndex());
-
-    group.writeEntry("Belongs To User Enabled", belongsToUserEnabled->isChecked());
-    group.writeEntry("Belongs To Group Enabled", belongsToGroupEnabled->isChecked());
-
-    group.writeEntry("Belongs To User", belongsToUserData->currentText());
-    group.writeEntry("Belongs To Group", belongsToGroupData->currentText());
-
-    group.writeEntry("Permissions Enabled", permissionsEnabled->isChecked());
-
-    group.writeEntry("Owner Write", ownerW->currentIndex());
-    group.writeEntry("Owner Read", ownerR->currentIndex());
-    group.writeEntry("Owner Execute", ownerX->currentIndex());
-    group.writeEntry("Group Write", groupW->currentIndex());
-    group.writeEntry("Group Read", groupR->currentIndex());
-    group.writeEntry("Group Execute", groupX->currentIndex());
-    group.writeEntry("All Write", allW->currentIndex());
-    group.writeEntry("All Read", allR->currentIndex());
-    group.writeEntry("All Execute", allX->currentIndex());
-}
-
 
 #include "advancedfilter.moc"

@@ -31,8 +31,10 @@
 #ifndef FILTERDIALOG_H
 #define FILTERDIALOG_H
 
-#include <kdialog.h>
+#include "filtersettings.h"
 #include "../VFS/krquery.h"
+
+#include <kdialog.h>
 
 class FilterTabs;
 class GeneralFilter;
@@ -45,6 +47,9 @@ public:
     FilterDialog(QWidget *parent = 0, QString caption = QString(),
                  QStringList extraOptions = QStringList(), bool modal = true);
     KRQuery getQuery();
+    FilterSettings getSettings() {
+        return settings;
+    }
     bool isExtraOptionChecked(QString name);
     void checkExtraOption(QString name, bool check);
 
@@ -58,7 +63,7 @@ protected slots:
 private:
     FilterTabs * filterTabs;
     GeneralFilter * generalFilter;
-    KRQuery query;
+    FilterSettings settings;
 };
 
 #endif /* FILTERDIALOG_H */

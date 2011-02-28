@@ -61,7 +61,7 @@ FilterDialog::FilterDialog(QWidget *parent, QString caption, QStringList extraOp
 
 KRQuery FilterDialog::getQuery()
 {
-    return query;
+    return settings.toQuery();
 }
 
 bool FilterDialog::isExtraOptionChecked(QString name)
@@ -93,10 +93,9 @@ void FilterDialog::slotButtonClicked(int button)
 
 void FilterDialog::slotOk()
 {
-    if (filterTabs->fillQuery(&query))
+    settings = filterTabs->getSettings();
+    if(settings.isValid())
         accept();
-    else
-        query = KRQuery();
 }
 
 #include "filterdialog.moc"

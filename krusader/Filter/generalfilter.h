@@ -57,16 +57,16 @@ public:
                   QStringList extraOptions = QStringList());
     ~GeneralFilter();
 
-    virtual bool          fillQuery(KRQuery *query);
     virtual void          queryAccepted();
-    virtual void          loadFromProfile(QString name);
-    virtual void          saveToProfile(QString name);
     virtual QString       name() {
         return "GeneralFilter";
     }
     virtual FilterTabs *  filterTabs() {
         return fltTabs;
     }
+    virtual bool getSettings(FilterSettings&);
+    virtual void applySettings(const FilterSettings&);
+
     bool isExtraOptionChecked(QString name);
     void checkExtraOption(QString name, bool check);
 

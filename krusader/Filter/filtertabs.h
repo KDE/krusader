@@ -60,6 +60,8 @@ public:
     FilterBase *get(QString name);
     bool isExtraOptionChecked(QString name);
     void checkExtraOption(QString name, bool check);
+    FilterSettings getSettings();
+    void applySettings(const FilterSettings &s);
 
 public slots:
     void  loadFromProfile(QString);

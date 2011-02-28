@@ -423,162 +423,10 @@ void GeneralFilter::checkExtraOption(QString name, bool check)
         option->setChecked(check);
 }
 
-bool GeneralFilter::fillQuery(KRQuery *query)
-{
-    // check that we have (at least) what to search, and where to search in
-    if (searchFor->currentText().simplified().isEmpty()) {
-        KMessageBox::error(this , i18n("No search criteria entered!"));
-        searchFor->setFocus();
-        return false;
-    }
-
-    // now fill the query
-
-    query->setNameFilter(searchFor->currentText().trimmed(), searchForCase->isChecked());
-
-    bool remoteContent = (properties & FilterTabs::HasRemoteContentSearch) ?
-                         remoteContentSearch->isChecked() : false;
-
-    QString charset;
-    if (contentEncoding->currentIndex() != 0)
-        charset = KGlobal::charsets()->encodingForName(contentEncoding->currentText());
-
-    query->setContent(containsText->currentText(),
-                      containsTextCase->isChecked(),
-                      containsWholeWord->isChecked(),
-                      remoteContent, charset, containsRegExp->isChecked());
-
-    if (ofType->currentText() != i18n("All Files"))
-        query->setMimeType(ofType->currentText());
-    else query->setMimeType(QString());
-
-    if (properties & FilterTabs::HasRecurseOptions) {
-        query->setSearchInArchives(searchInArchives->isChecked());
-        query->setRecursive(searchInDirs->isChecked());
-        query->setFollowLinks(followLinks->isChecked());
-
-        // create the lists
-    }
-    if (properties & FilterTabs::HasSearchIn) {
-        query->setSearchInDirs(searchIn->urlList());
-
-        // checking the lists
-
-        if (query->searchInDirs().isEmpty()) { // we need a place to search in
-            KMessageBox::error(this , i18n("Please specify a location to search in."));
-            searchIn->lineEdit()->setFocus();
-            return false;
-        }
-    }
-
-    if (properties & FilterTabs::HasDontSearchIn)
-        query->setDontSearchInDirs(dontSearchIn->urlList());
-
-    return true;
-}
-
 void GeneralFilter::queryAccepted()
 {
     searchFor->addToHistory(searchFor->currentText());
     containsText->addToHistory(containsText->currentText());
-}
-
-void GeneralFilter::loadFromProfile(QString name)
-{
-    KConfigGroup cfg(krConfig, name);
-
-    searchForCase->setChecked(cfg.readEntry("Case Sensitive Search", false));
-    containsTextCase->setChecked(cfg.readEntry("Case Sensitive Content", false));
-    remoteContentSearch->setChecked(cfg.readEntry("Remote Content Search", false));
-    containsWholeWord->setChecked(cfg.readEntry("Match Whole Word Only", false));
-    containsRegExp->setChecked(cfg.readEntry("Regular Expression", false));
-    containsText->setEditText(cfg.readEntry("Contains Text", ""));
-    searchFor->setEditText(cfg.readEntry("Search For", ""));
-
-    QString charset = cfg.readEntry("Content Encoding", "");
-    QString desc = KGlobal::charsets()->descriptionForEncoding(charset);
-    contentEncoding->setCurrentIndex(0);
-    for (int i = 1; i < contentEncoding->count(); i++)
-        if (contentEncoding->itemText(i) == desc) {
-            contentEncoding->setCurrentIndex(i);
-            break;
-        }
-
-    QString mime = cfg.readEntry("Mime Type", "");
-    for (int i = ofType->count(); i >= 0; i--) {
-        ofType->setCurrentIndex(i);
-        if (ofType->currentText() == mime)
-            break;
-    }
-
-    if (properties & FilterTabs::HasRecurseOptions) {
-        searchInDirs->setChecked(cfg.readEntry("Search In Subdirectories", true));
-        searchInArchives->setChecked(cfg.readEntry("Search In Archives", false));
-        followLinks->setChecked(cfg.readEntry("Follow Symlinks", false));
-    }
-
-    if (properties & FilterTabs::HasSearchIn) {
-        searchIn->lineEdit()->setText(cfg.readEntry("Search In Edit", ""));
-
-        searchIn->listBox()->clear();
-        QStringList searchInList = cfg.readEntry("Search In List", QStringList());
-        if (!searchInList.isEmpty())
-            searchIn->listBox()->addItems(searchInList);
-    }
-
-    if (properties & FilterTabs::HasDontSearchIn) {
-        dontSearchIn->lineEdit()->setText(cfg.readEntry("Don't Search In Edit", ""));
-
-        dontSearchIn->listBox()->clear();
-        QStringList dontSearchInList = cfg.readEntry("Don't Search In List", QStringList());
-        if (!dontSearchInList.isEmpty())
-            dontSearchIn->listBox()->addItems(dontSearchInList);
-    }
-}
-
-void GeneralFilter::saveToProfile(QString name)
-{
-    KConfigGroup group(krConfig, name);
-
-    group.writeEntry("Case Sensitive Search", searchForCase->isChecked());
-    group.writeEntry("Case Sensitive Content", containsTextCase->isChecked());
-    group.writeEntry("Remote Content Search", remoteContentSearch->isChecked());
-    group.writeEntry("Match Whole Word Only", containsWholeWord->isChecked());
-    group.writeEntry("Regular Expression", containsRegExp->isChecked());
-
-    QString enc;
-    if (contentEncoding->currentIndex() != 0)
-        enc = KGlobal::charsets()->encodingForName(contentEncoding->currentText());
-    group.writeEntry("Content Encoding", enc);
-
-    group.writeEntry("Contains Text", containsText->currentText());
-    group.writeEntry("Search For", searchFor->currentText());
-
-    group.writeEntry("Mime Type", ofType->currentText());
-
-    if (properties & FilterTabs::HasRecurseOptions) {
-        group.writeEntry("Search In Subdirectories", searchInDirs->isChecked());
-        group.writeEntry("Search In Archives", searchInArchives->isChecked());
-        group.writeEntry("Follow Symlinks", followLinks->isChecked());
-    }
-
-    if (properties & FilterTabs::HasSearchIn) {
-        group.writeEntry("Search In Edit", searchIn->lineEdit()->text());
-
-        QStringList searchInList;
-        for (int i = 0; i != searchIn->listBox()->count(); i++)
-            searchInList.append(searchIn->listBox()->item(i)->text().simplified());
-        group.writeEntry("Search In List", searchInList);
-    }
-
-    if (properties & FilterTabs::HasDontSearchIn) {
-        group.writeEntry("Don't Search In Edit", dontSearchIn->lineEdit()->text());
-
-        QStringList dontSearchInList;
-        for (int i = 0; i != dontSearchIn->listBox()->count(); i++)
-            dontSearchInList.append(dontSearchIn->listBox()->item(i)->text().simplified());
-        group.writeEntry("Don't Search In List", dontSearchInList);
-    }
 }
 
 void GeneralFilter::refreshProfileListBox()
@@ -672,6 +520,88 @@ void GeneralFilter::slotRegExpTriggered(QAction * act)
     containsText->lineEdit()->insert(regAct->regExp());
     containsText->lineEdit()->setCursorPosition(containsText->lineEdit()->cursorPosition() + regAct->cursor());
     containsText->lineEdit()->setFocus();
+}
+
+bool GeneralFilter::getSettings(FilterSettings &s)
+{
+    // check that we have (at least) what to search, and where to search in
+    if (searchFor->currentText().simplified().isEmpty()) {
+        KMessageBox::error(this , i18n("No search criteria entered!"));
+        searchFor->setFocus();
+        return false;
+    }
+
+    s.searchFor = searchFor->currentText().trimmed();
+    s.searchForCase = searchForCase->isChecked();
+
+    if (ofType->currentText() != i18n("All Files"))
+        s.mimeType = ofType->currentText();
+
+    s.containsText = containsText->currentText();
+    s.containsTextCase = containsTextCase->isChecked();
+    s.containsWholeWord = containsWholeWord->isChecked();
+    s.containsRegExp = containsRegExp->isChecked();
+    s.remoteContentSearch = (properties & FilterTabs::HasRemoteContentSearch) ?
+                                remoteContentSearch->isChecked() : false;
+
+    if (contentEncoding->currentIndex() != 0)
+        s.contentEncoding =
+            KGlobal::charsets()->encodingForName(contentEncoding->currentText());
+
+    if (properties & FilterTabs::HasRecurseOptions) {
+        s.recursive = searchInDirs->isChecked();
+        s.searchInArchives = searchInArchives->isChecked();
+        s.followLinks = followLinks->isChecked();
+    }
+
+    if (properties & FilterTabs::HasSearchIn) {
+        s.searchIn = searchIn->urlList();
+        if (s.searchIn.isEmpty()) { // we need a place to search in
+            KMessageBox::error(this , i18n("Please specify a location to search in."));
+            searchIn->lineEdit()->setFocus();
+            return false;
+        }
+    }
+
+    if (properties & FilterTabs::HasDontSearchIn)
+        s.dontSearchIn = dontSearchIn->urlList();
+
+    return true;
+}
+
+void GeneralFilter::applySettings(const FilterSettings &s)
+{
+    searchFor->setEditText(s.searchFor);
+    searchForCase->setChecked(s.searchForCase);
+
+    setComboBoxValue(ofType, s.mimeType);
+
+    containsText->setEditText(s.containsText);
+    containsTextCase->setChecked(s.containsTextCase);
+    containsWholeWord->setChecked(s.containsWholeWord);
+    containsRegExp->setChecked(s.containsRegExp);
+    remoteContentSearch->setChecked(s.remoteContentSearch);
+
+    setComboBoxValue(contentEncoding,
+            KGlobal::charsets()->descriptionForEncoding(s.contentEncoding));
+
+    if (properties & FilterTabs::HasRecurseOptions) {
+        searchInDirs->setChecked(s.recursive);
+        searchInArchives->setChecked(s.searchInArchives);
+        followLinks->setChecked(s.followLinks);
+    }
+
+    if (properties & FilterTabs::HasSearchIn) {
+        searchIn->lineEdit()->clear();
+        searchIn->listBox()->clear();
+        searchIn->listBox()->addItems(s.searchIn.toStringList());
+    }
+
+    if (properties & FilterTabs::HasDontSearchIn) {
+        dontSearchIn->lineEdit()->clear();
+        dontSearchIn->listBox()->clear();
+        dontSearchIn->listBox()->addItems(s.dontSearchIn.toStringList());
+    }
 }
 
 #include "generalfilter.moc"

@@ -50,15 +50,14 @@ public:
     AdvancedFilter(FilterTabs *tabs, QWidget *parent = 0);
 
     virtual void          queryAccepted() {}
-    virtual bool          fillQuery(KRQuery *query);
-    virtual void          loadFromProfile(QString name);
-    virtual void          saveToProfile(QString name);
     virtual QString       name() {
         return "AdvancedFilter";
     }
     virtual FilterTabs *  filterTabs() {
         return fltTabs;
     }
+    virtual bool getSettings(FilterSettings&);
+    virtual void applySettings(const FilterSettings&);
 
 public slots:
     void modifiedBetweenSetDate1();
@@ -113,7 +112,6 @@ public:
 private:
     void changeDate(KLineEdit *p);
     void fillList(KComboBox *list, QString filename);
-    void qdate2time_t(time_t *dest, QDate d, bool start);
     void invalidDateMessage(KLineEdit *p);
 };
 

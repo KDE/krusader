@@ -31,21 +31,30 @@
 #ifndef FILTERBASE_H
 #define FILTERBASE_H
 
+#include "filtersettings.h"
 #include "../VFS/krquery.h"
+
 #include <QtCore/QString>
+#include <QComboBox>
 
 class FilterTabs;
 
 class FilterBase
 {
 public:
-    virtual bool            fillQuery(KRQuery *query) = 0;
+    virtual ~FilterBase()   {}
+
     virtual void            queryAccepted() = 0;
-    virtual void            loadFromProfile(QString name) = 0;
-    virtual void            saveToProfile(QString name) = 0;
     virtual QString         name() = 0;
     virtual FilterTabs *    filterTabs() = 0;
-    virtual ~FilterBase()   {}
+    virtual bool            getSettings(FilterSettings&) = 0;
+    virtual void            applySettings(const FilterSettings&) = 0;
+
+protected:
+    static void setComboBoxValue(QComboBox *cb, QString value) {
+        int idx = cb->findText(value);
+        cb->setCurrentIndex(idx < 0 ? 0 : idx);
+    }
 };
 
 #endif /* FILTERBASE_H */
