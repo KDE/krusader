@@ -42,6 +42,8 @@
 #include <KComboBox>
 #include <KLineEdit>
 
+class QSpinBox;
+
 class AdvancedFilter : public QWidget, public FilterBase
 {
     Q_OBJECT
@@ -66,11 +68,11 @@ public slots:
 
 public:
     QCheckBox* minSizeEnabled;
+    QSpinBox* minSizeAmount;
     KComboBox* minSizeType;
-    KLineEdit* minSizeAmount;
 
     QCheckBox* maxSizeEnabled;
-    KLineEdit* maxSizeAmount;
+    QSpinBox* maxSizeAmount;
     KComboBox* maxSizeType;
 
     QRadioButton* modifiedBetweenEnabled;
@@ -85,8 +87,8 @@ public:
     QToolButton* notModifiedAfterBtn;
 
     KLineEdit* notModifiedAfterData;
-    KLineEdit* modifiedInTheLastData;
-    KLineEdit* notModifiedInTheLastData;
+    QSpinBox* modifiedInTheLastData;
+    QSpinBox* notModifiedInTheLastData;
     KComboBox* modifiedInTheLastType;
     KComboBox* notModifiedInTheLastType;
 

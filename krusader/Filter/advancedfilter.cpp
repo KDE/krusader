@@ -41,6 +41,7 @@
 #include <QtGui/QLayout>
 #include <QtGui/QLabel>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QSpinBox>
 
 #include <KLocale>
 #include <KDebug>
@@ -73,13 +74,12 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
 
     minSizeEnabled = new QCheckBox(sizeGroup);
     minSizeEnabled->setText(i18n("At Least"));
+    minSizeEnabled->setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed));
     sizeLayout->addWidget(minSizeEnabled, 0, 0);
 
-    minSizeAmount = new KLineEdit(sizeGroup);
+    minSizeAmount = new QSpinBox(sizeGroup);
+    minSizeAmount->setRange(0, 999999999);
     minSizeAmount->setEnabled(false);
-    QSizePolicy minSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    minSizePolicy.setHeightForWidth(minSizeAmount->sizePolicy().hasHeightForWidth());
-    minSizeAmount->setSizePolicy(minSizePolicy);
     sizeLayout->addWidget(minSizeAmount, 0, 1);
 
     minSizeType = new KComboBox(false, sizeGroup);
@@ -92,13 +92,12 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
 
     maxSizeEnabled = new QCheckBox(sizeGroup);
     maxSizeEnabled->setText(i18n("At Most"));
+    maxSizeEnabled->setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed));
     sizeLayout->addWidget(maxSizeEnabled, 0, 3);
 
-    maxSizeAmount = new KLineEdit(sizeGroup);
+    maxSizeAmount = new QSpinBox(sizeGroup);
+    maxSizeAmount->setRange(0, 999999999);
     maxSizeAmount->setEnabled(false);
-    QSizePolicy maxSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    maxSizePolicy.setHeightForWidth(maxSizeAmount->sizePolicy().hasHeightForWidth());
-    maxSizeAmount->setSizePolicy(maxSizePolicy);
     sizeLayout->addWidget(maxSizeAmount, 0, 4);
 
     maxSizeType = new KComboBox(false, sizeGroup);
@@ -128,60 +127,48 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     modifiedBetweenEnabled->setText(i18n("&Modified between"));
     btnGroup->addButton(modifiedBetweenEnabled);
 
-    dateLayout->addWidget(modifiedBetweenEnabled, 0, 0, 1, 2);
-
     modifiedBetweenData1 = new KLineEdit(dateGroup);
     modifiedBetweenData1->setEnabled(false);
     modifiedBetweenData1->setText("");
-    dateLayout->addWidget(modifiedBetweenData1, 0, 2, 1, 2);
 
     modifiedBetweenBtn1 = new QToolButton(dateGroup);
     modifiedBetweenBtn1->setEnabled(false);
     modifiedBetweenBtn1->setText("");
     modifiedBetweenBtn1->setIcon(QIcon(iconDate));
-    dateLayout->addWidget(modifiedBetweenBtn1, 0, 4);
 
     QLabel *andLabel = new QLabel(dateGroup);
     andLabel->setText(i18n("an&d"));
-    dateLayout->addWidget(andLabel, 0, 5);
 
     modifiedBetweenData2 = new KLineEdit(dateGroup);
     modifiedBetweenData2->setEnabled(false);
     modifiedBetweenData2->setText("");
     andLabel->setBuddy(modifiedBetweenData2);
-    dateLayout->addWidget(modifiedBetweenData2, 0, 6);
 
     modifiedBetweenBtn2 = new QToolButton(dateGroup);
     modifiedBetweenBtn2->setEnabled(false);
     modifiedBetweenBtn2->setText("");
     modifiedBetweenBtn2->setIcon(QIcon(iconDate));
-    dateLayout->addWidget(modifiedBetweenBtn2, 0, 7);
 
     notModifiedAfterEnabled = new QRadioButton(dateGroup);
     notModifiedAfterEnabled->setText(i18n("&Not modified after"));
     btnGroup->addButton(notModifiedAfterEnabled);
-    dateLayout->addWidget(notModifiedAfterEnabled, 1, 0, 1, 2);
 
     notModifiedAfterData = new KLineEdit(dateGroup);
     notModifiedAfterData->setEnabled(false);
     notModifiedAfterData->setText("");
-    dateLayout->addWidget(notModifiedAfterData, 1, 2, 1, 2);
 
     notModifiedAfterBtn = new QToolButton(dateGroup);
     notModifiedAfterBtn->setEnabled(false);
     notModifiedAfterBtn->setText("");
     notModifiedAfterBtn->setIcon(QIcon(iconDate));
-    dateLayout->addWidget(notModifiedAfterBtn, 1, 4);
 
     modifiedInTheLastEnabled = new QRadioButton(dateGroup);
     modifiedInTheLastEnabled->setText(i18n("Mod&ified in the last"));
     btnGroup->addButton(modifiedInTheLastEnabled);
-    dateLayout->addWidget(modifiedInTheLastEnabled, 2, 0);
 
-    modifiedInTheLastData = new KLineEdit(dateGroup);
+    modifiedInTheLastData = new QSpinBox(dateGroup);
+    modifiedInTheLastData->setRange(0, 99999);
     modifiedInTheLastData->setEnabled(false);
-    modifiedInTheLastData->setText("");
-    dateLayout->addWidget(modifiedInTheLastData, 2, 2);
 
     modifiedInTheLastType = new KComboBox(dateGroup);
     modifiedInTheLastType->addItem(i18n("days"));
@@ -189,17 +176,14 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     modifiedInTheLastType->addItem(i18n("months"));
     modifiedInTheLastType->addItem(i18n("years"));
     modifiedInTheLastType->setEnabled(false);
-    dateLayout->addWidget(modifiedInTheLastType, 2, 3, 1, 2);
 
-    notModifiedInTheLastData = new KLineEdit(dateGroup);
+    notModifiedInTheLastData = new QSpinBox(dateGroup);
+    notModifiedInTheLastData->setRange(0, 99999);
     notModifiedInTheLastData->setEnabled(false);
-    notModifiedInTheLastData->setText("");
-    dateLayout->addWidget(notModifiedInTheLastData, 3, 2);
 
     QLabel *notModifiedInTheLastLbl = new QLabel(dateGroup);
     notModifiedInTheLastLbl->setText(i18n("No&t modified in the last"));
     notModifiedInTheLastLbl->setBuddy(notModifiedInTheLastData);
-    dateLayout->addWidget(notModifiedInTheLastLbl, 3, 0);
 
     notModifiedInTheLastType = new KComboBox(dateGroup);
     notModifiedInTheLastType->addItem(i18n("days"));
@@ -207,7 +191,31 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     notModifiedInTheLastType->addItem(i18n("months"));
     notModifiedInTheLastType->addItem(i18n("years"));
     notModifiedInTheLastType->setEnabled(false);
-    dateLayout->addWidget(notModifiedInTheLastType, 3, 3, 1, 2);
+
+    // Date options layout
+
+    dateLayout->addWidget(modifiedBetweenEnabled, 0, 0);
+    dateLayout->addWidget(modifiedBetweenData1, 0, 1);
+    dateLayout->addWidget(modifiedBetweenBtn1, 0, 2);
+    dateLayout->addWidget(andLabel, 0, 3);
+    dateLayout->addWidget(modifiedBetweenData2, 0, 4);
+    dateLayout->addWidget(modifiedBetweenBtn2, 0, 5);
+
+    dateLayout->addWidget(notModifiedAfterEnabled, 1, 0);
+    dateLayout->addWidget(notModifiedAfterData, 1, 1);
+    dateLayout->addWidget(notModifiedAfterBtn, 1, 2);
+
+    dateLayout->addWidget(modifiedInTheLastEnabled, 2, 0);
+    QHBoxLayout *modifiedInTheLastLayout = new QHBoxLayout();
+    modifiedInTheLastLayout->addWidget(modifiedInTheLastData);
+    modifiedInTheLastLayout->addWidget(modifiedInTheLastType);
+    dateLayout->addLayout(modifiedInTheLastLayout, 2, 1);
+
+    dateLayout->addWidget(notModifiedInTheLastLbl, 3, 0);
+    modifiedInTheLastLayout = new QHBoxLayout();
+    modifiedInTheLastLayout->addWidget(notModifiedInTheLastData);
+    modifiedInTheLastLayout->addWidget(notModifiedInTheLastType);
+    dateLayout->addLayout(modifiedInTheLastLayout, 3, 1);
 
     filterLayout->addWidget(dateGroup, 1, 0);
 
@@ -465,14 +473,14 @@ void AdvancedFilter::invalidDateMessage(KLineEdit *p)
 bool AdvancedFilter::getSettings(FilterSettings &s)
 {
     s.minSizeEnabled =  minSizeEnabled->isChecked();
-    s.minSize.amount = minSizeAmount->text().toULong();
+    s.minSize.amount = minSizeAmount->value();
     s.minSize.unit = static_cast<FilterSettings::SizeUnit>(minSizeType->currentIndex());
 
     s.maxSizeEnabled = maxSizeEnabled->isChecked();
-    s.maxSize.amount = maxSizeAmount->text().toULong();
+    s.maxSize.amount = maxSizeAmount->value();
     s.maxSize.unit = static_cast<FilterSettings::SizeUnit>(maxSizeType->currentIndex());
 
-    if (s.minSize.size() && s.maxSize.size() && (s.maxSize.size() < s.minSize.size())) {
+    if (s.minSizeEnabled && s.maxSizeEnabled && (s.maxSize.size() < s.minSize.size())) {
         KMessageBox::detailedError(this, i18n("Specified sizes are inconsistent!"),
                             i18n("Please re-enter the values, so that the left side size "
                                  "will be smaller than (or equal to) the right side size."));
@@ -511,14 +519,15 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
     }
 
     s.modifiedInTheLastEnabled = modifiedInTheLastEnabled->isChecked();
-    s.modifiedInTheLast.amount = modifiedInTheLastData->text().toInt();
+    s.modifiedInTheLast.amount = modifiedInTheLastData->value();
     s.modifiedInTheLast.unit =
         static_cast<FilterSettings::TimeUnit>(modifiedInTheLastType->currentIndex());
-    s.notModifiedInTheLast.amount = notModifiedInTheLastData->text().toInt();
+    s.notModifiedInTheLast.amount = notModifiedInTheLastData->value();
     s.notModifiedInTheLast.unit =
         static_cast<FilterSettings::TimeUnit>(notModifiedInTheLastType->currentIndex());
 
-    if (s.modifiedInTheLast.amount && s.notModifiedInTheLast.amount) {
+    if (s.modifiedInTheLastEnabled  &&
+            s.modifiedInTheLast.amount && s.notModifiedInTheLast.amount) {
         if (s.modifiedInTheLast.days() < s.notModifiedInTheLast.days()) {
             KMessageBox::detailedError(this, i18n("Dates are inconsistent!"),
                                 i18n("The date on top is later than the date on the bottom. "
@@ -546,11 +555,11 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
 void AdvancedFilter::applySettings(const FilterSettings &s)
 {
     minSizeEnabled->setChecked(s.minSizeEnabled);
-    minSizeAmount->setText(QString::number(s.minSize.amount));
+    minSizeAmount->setValue(s.minSize.amount);
     minSizeType->setCurrentIndex(s.minSize.unit);
 
     maxSizeEnabled->setChecked(s.maxSizeEnabled);
-    maxSizeAmount->setText(QString::number(s.maxSize.amount));
+    maxSizeAmount->setValue(s.maxSize.amount);
     maxSizeType->setCurrentIndex(s.maxSize.unit);
 
     modifiedBetweenEnabled->setChecked(s.modifiedBetweenEnabled);
@@ -564,9 +573,9 @@ void AdvancedFilter::applySettings(const FilterSettings &s)
         KGlobal::locale()->formatDate(s.notModifiedAfter, KLocale::ShortDate));
 
     modifiedInTheLastEnabled->setChecked(s.modifiedInTheLastEnabled);
-    modifiedInTheLastData->setText(QString::number(s.modifiedInTheLast.amount));
+    modifiedInTheLastData->setValue(s.modifiedInTheLast.amount);
     modifiedInTheLastType->setCurrentIndex(s.modifiedInTheLast.unit);
-    notModifiedInTheLastData->setText(QString::number(s.notModifiedInTheLast.amount));
+    notModifiedInTheLastData->setValue(s.notModifiedInTheLast.amount);
     notModifiedInTheLastType->setCurrentIndex(s.notModifiedInTheLast.unit);
 
     belongsToUserEnabled->setChecked(s.ownerEnabled);
