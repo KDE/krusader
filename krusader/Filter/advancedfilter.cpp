@@ -83,9 +83,10 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     sizeLayout->addWidget(biggerThanAmount, 0, 1);
 
     biggerThanType = new KComboBox(false, sizeGroup);
-    biggerThanType->addItem(i18n("Bytes"));
-    biggerThanType->addItem(i18n("KB"));
-    biggerThanType->addItem(i18n("MB"));
+    biggerThanType->addItem(i18n("Byte"));
+    biggerThanType->addItem(i18n("KiB"));
+    biggerThanType->addItem(i18n("MiB"));
+    biggerThanType->addItem(i18n("GiB"));
     biggerThanType->setEnabled(false);
     sizeLayout->addWidget(biggerThanType, 0, 2);
 
@@ -101,9 +102,10 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     sizeLayout->addWidget(smallerThanAmount, 0, 4);
 
     smallerThanType = new KComboBox(false, sizeGroup);
-    smallerThanType->addItem(i18n("Bytes"));
-    smallerThanType->addItem(i18n("KB"));
-    smallerThanType->addItem(i18n("MB"));
+    smallerThanType->addItem(i18n("Byte"));
+    smallerThanType->addItem(i18n("KiB"));
+    smallerThanType->addItem(i18n("MiB"));
+    smallerThanType->addItem(i18n("GiB"));
     smallerThanType->setEnabled(false);
     sizeLayout->addWidget(smallerThanType, 0, 5);
 
