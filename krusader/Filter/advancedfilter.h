@@ -65,13 +65,13 @@ public slots:
     void notModifiedAfterSetDate();
 
 public:
-    QCheckBox* smallerThanEnabled;
-    KLineEdit* smallerThanAmount;
-    KComboBox* smallerThanType;
+    QCheckBox* minSizeEnabled;
+    KComboBox* minSizeType;
+    KLineEdit* minSizeAmount;
 
-    QCheckBox* biggerThanEnabled;
-    KComboBox* biggerThanType;
-    KLineEdit* biggerThanAmount;
+    QCheckBox* maxSizeEnabled;
+    KLineEdit* maxSizeAmount;
+    KComboBox* maxSizeType;
 
     QRadioButton* modifiedBetweenEnabled;
     QRadioButton* notModifiedAfterEnabled;

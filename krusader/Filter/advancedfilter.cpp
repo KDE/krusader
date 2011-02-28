@@ -71,49 +71,49 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     sizeLayout->setSpacing(6);
     sizeLayout->setContentsMargins(11, 11, 11, 11);
 
-    biggerThanEnabled = new QCheckBox(sizeGroup);
-    biggerThanEnabled->setText(i18n("At Least"));
-    sizeLayout->addWidget(biggerThanEnabled, 0, 0);
+    minSizeEnabled = new QCheckBox(sizeGroup);
+    minSizeEnabled->setText(i18n("At Least"));
+    sizeLayout->addWidget(minSizeEnabled, 0, 0);
 
-    biggerThanAmount = new KLineEdit(sizeGroup);
-    biggerThanAmount->setEnabled(false);
-    QSizePolicy biggerThanPolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    biggerThanPolicy.setHeightForWidth(biggerThanAmount->sizePolicy().hasHeightForWidth());
-    biggerThanAmount->setSizePolicy(biggerThanPolicy);
-    sizeLayout->addWidget(biggerThanAmount, 0, 1);
+    minSizeAmount = new KLineEdit(sizeGroup);
+    minSizeAmount->setEnabled(false);
+    QSizePolicy minSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    minSizePolicy.setHeightForWidth(minSizeAmount->sizePolicy().hasHeightForWidth());
+    minSizeAmount->setSizePolicy(minSizePolicy);
+    sizeLayout->addWidget(minSizeAmount, 0, 1);
 
-    biggerThanType = new KComboBox(false, sizeGroup);
-    biggerThanType->addItem(i18n("Byte"));
-    biggerThanType->addItem(i18n("KiB"));
-    biggerThanType->addItem(i18n("MiB"));
-    biggerThanType->addItem(i18n("GiB"));
-    biggerThanType->setEnabled(false);
-    sizeLayout->addWidget(biggerThanType, 0, 2);
+    minSizeType = new KComboBox(false, sizeGroup);
+    minSizeType->addItem(i18n("Byte"));
+    minSizeType->addItem(i18n("KiB"));
+    minSizeType->addItem(i18n("MiB"));
+    minSizeType->addItem(i18n("GiB"));
+    minSizeType->setEnabled(false);
+    sizeLayout->addWidget(minSizeType, 0, 2);
 
-    smallerThanEnabled = new QCheckBox(sizeGroup);
-    smallerThanEnabled->setText(i18n("At Most"));
-    sizeLayout->addWidget(smallerThanEnabled, 0, 3);
+    maxSizeEnabled = new QCheckBox(sizeGroup);
+    maxSizeEnabled->setText(i18n("At Most"));
+    sizeLayout->addWidget(maxSizeEnabled, 0, 3);
 
-    smallerThanAmount = new KLineEdit(sizeGroup);
-    smallerThanAmount->setEnabled(false);
-    QSizePolicy smallerThanPolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    smallerThanPolicy.setHeightForWidth(smallerThanAmount->sizePolicy().hasHeightForWidth());
-    smallerThanAmount->setSizePolicy(smallerThanPolicy);
-    sizeLayout->addWidget(smallerThanAmount, 0, 4);
+    maxSizeAmount = new KLineEdit(sizeGroup);
+    maxSizeAmount->setEnabled(false);
+    QSizePolicy maxSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    maxSizePolicy.setHeightForWidth(maxSizeAmount->sizePolicy().hasHeightForWidth());
+    maxSizeAmount->setSizePolicy(maxSizePolicy);
+    sizeLayout->addWidget(maxSizeAmount, 0, 4);
 
-    smallerThanType = new KComboBox(false, sizeGroup);
-    smallerThanType->addItem(i18n("Byte"));
-    smallerThanType->addItem(i18n("KiB"));
-    smallerThanType->addItem(i18n("MiB"));
-    smallerThanType->addItem(i18n("GiB"));
-    smallerThanType->setEnabled(false);
-    sizeLayout->addWidget(smallerThanType, 0, 5);
+    maxSizeType = new KComboBox(false, sizeGroup);
+    maxSizeType->addItem(i18n("Byte"));
+    maxSizeType->addItem(i18n("KiB"));
+    maxSizeType->addItem(i18n("MiB"));
+    maxSizeType->addItem(i18n("GiB"));
+    maxSizeType->setEnabled(false);
+    sizeLayout->addWidget(maxSizeType, 0, 5);
 
     // set a tighter box around the type box
 
-    int height = QFontMetrics(biggerThanType->font()).height() + 2;
-    biggerThanType->setMaximumHeight(height);
-    smallerThanType->setMaximumHeight(height);
+    int height = QFontMetrics(minSizeType->font()).height() + 2;
+    minSizeType->setMaximumHeight(height);
+    maxSizeType->setMaximumHeight(height);
 
     filterLayout->addWidget(sizeGroup, 0, 0);
 
@@ -358,10 +358,10 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
 
     // Connection table
 
-    connect(biggerThanEnabled, SIGNAL(toggled(bool)), biggerThanAmount, SLOT(setEnabled(bool)));
-    connect(biggerThanEnabled, SIGNAL(toggled(bool)), biggerThanType, SLOT(setEnabled(bool)));
-    connect(smallerThanEnabled, SIGNAL(toggled(bool)), smallerThanAmount, SLOT(setEnabled(bool)));
-    connect(smallerThanEnabled, SIGNAL(toggled(bool)), smallerThanType, SLOT(setEnabled(bool)));
+    connect(minSizeEnabled, SIGNAL(toggled(bool)), minSizeAmount, SLOT(setEnabled(bool)));
+    connect(minSizeEnabled, SIGNAL(toggled(bool)), minSizeType, SLOT(setEnabled(bool)));
+    connect(maxSizeEnabled, SIGNAL(toggled(bool)), maxSizeAmount, SLOT(setEnabled(bool)));
+    connect(maxSizeEnabled, SIGNAL(toggled(bool)), maxSizeType, SLOT(setEnabled(bool)));
     connect(modifiedBetweenEnabled, SIGNAL(toggled(bool)), modifiedBetweenData1, SLOT(setEnabled(bool)));
     connect(modifiedBetweenEnabled, SIGNAL(toggled(bool)), modifiedBetweenBtn1, SLOT(setEnabled(bool)));
     connect(modifiedBetweenEnabled, SIGNAL(toggled(bool)), modifiedBetweenData2, SLOT(setEnabled(bool)));
@@ -393,10 +393,10 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     fillList(belongsToGroupData, GROUPSFILE);
 
     // tab order
-    setTabOrder(biggerThanEnabled, biggerThanAmount);
-    setTabOrder(biggerThanAmount, smallerThanEnabled);
-    setTabOrder(smallerThanEnabled, smallerThanAmount);
-    setTabOrder(smallerThanAmount, modifiedBetweenEnabled);
+    setTabOrder(minSizeEnabled, minSizeAmount);
+    setTabOrder(minSizeAmount, maxSizeEnabled);
+    setTabOrder(maxSizeEnabled, maxSizeAmount);
+    setTabOrder(maxSizeAmount, modifiedBetweenEnabled);
     setTabOrder(modifiedBetweenEnabled, modifiedBetweenData1);
     setTabOrder(modifiedBetweenData1, modifiedBetweenData2);
     setTabOrder(modifiedBetweenData2, notModifiedAfterEnabled);
@@ -418,9 +418,9 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     setTabOrder(groupX, allR);
     setTabOrder(allR, allW);
     setTabOrder(allW, allX);
-    setTabOrder(allX, biggerThanType);
-    setTabOrder(biggerThanType, smallerThanType);
-    setTabOrder(smallerThanType, modifiedInTheLastType);
+    setTabOrder(allX, minSizeType);
+    setTabOrder(minSizeType, maxSizeType);
+    setTabOrder(maxSizeType, modifiedInTheLastType);
     setTabOrder(modifiedInTheLastType, notModifiedInTheLastType);
 }
 
@@ -480,19 +480,19 @@ void AdvancedFilter::invalidDateMessage(KLineEdit *p)
 
 bool AdvancedFilter::getSettings(FilterSettings &s)
 {
-    s.minSizeEnabled =  biggerThanEnabled->isChecked();
-    s.minSize.amount = biggerThanAmount->text().toULong();
-    s.minSize.unit = static_cast<FilterSettings::SizeUnit>(biggerThanType->currentIndex());
+    s.minSizeEnabled =  minSizeEnabled->isChecked();
+    s.minSize.amount = minSizeAmount->text().toULong();
+    s.minSize.unit = static_cast<FilterSettings::SizeUnit>(minSizeType->currentIndex());
 
-    s.maxSizeEnabled = smallerThanEnabled->isChecked();
-    s.maxSize.amount = smallerThanAmount->text().toULong();
-    s.maxSize.unit = static_cast<FilterSettings::SizeUnit>(smallerThanType->currentIndex());
+    s.maxSizeEnabled = maxSizeEnabled->isChecked();
+    s.maxSize.amount = maxSizeAmount->text().toULong();
+    s.maxSize.unit = static_cast<FilterSettings::SizeUnit>(maxSizeType->currentIndex());
 
     if (s.minSize.size() && s.maxSize.size() && (s.maxSize.size() < s.minSize.size())) {
         KMessageBox::detailedError(this, i18n("Specified sizes are inconsistent!"),
                             i18n("Please re-enter the values, so that the left side size "
                                  "will be smaller than (or equal to) the right side size."));
-        biggerThanAmount->setFocus();
+        minSizeAmount->setFocus();
         return false;
     }
 
@@ -561,13 +561,13 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
 
 void AdvancedFilter::applySettings(const FilterSettings &s)
 {
-    biggerThanEnabled->setChecked(s.minSizeEnabled);
-    biggerThanAmount->setText(QString::number(s.minSize.amount));
-    biggerThanType->setCurrentIndex(s.minSize.unit);
+    minSizeEnabled->setChecked(s.minSizeEnabled);
+    minSizeAmount->setText(QString::number(s.minSize.amount));
+    minSizeType->setCurrentIndex(s.minSize.unit);
 
-    smallerThanEnabled->setChecked(s.maxSizeEnabled);
-    smallerThanAmount->setText(QString::number(s.maxSize.amount));
-    smallerThanType->setCurrentIndex(s.maxSize.unit);
+    maxSizeEnabled->setChecked(s.maxSizeEnabled);
+    maxSizeAmount->setText(QString::number(s.maxSize.amount));
+    maxSizeType->setCurrentIndex(s.maxSize.unit);
 
     modifiedBetweenEnabled->setChecked(s.modifiedBetweenEnabled);
     modifiedBetweenData1->setText(
