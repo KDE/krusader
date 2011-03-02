@@ -120,6 +120,6 @@ private:
 };
 
 
-}; // namespace KrSort
+} // namespace KrSort
 
 #endif // __KRSORT_H__
