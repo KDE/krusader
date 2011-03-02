@@ -95,11 +95,6 @@
 #include "BookMan/krbookmarkhandler.h"
 #include "BookMan/krbookmarkbutton.h"
 
-#define REFRESH_BOTH_PANELS { ListPanel *p=ACTIVE_PANEL;        \
-        MAIN_VIEW->left->func->refresh(); \
-        MAIN_VIEW->right->func->refresh();\
-        p->slotFocusOnMe(); }
-
 
 #define ACTIVE_VIEW _mainWindow->activeView()
 
