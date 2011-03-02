@@ -99,8 +99,6 @@
         MAIN_VIEW->left->func->refresh(); \
         MAIN_VIEW->right->func->refresh();\
         p->slotFocusOnMe(); }
-#define ACTIVE_PANEL_MANAGER  (ACTIVE_PANEL == MAIN_VIEW->left ? MAIN_VIEW->leftMng : \
-                               MAIN_VIEW->rightMng)
 
 
 #define ACTIVE_VIEW _mainWindow->activeView()
@@ -564,25 +562,25 @@ void KRslots::changeTrashIcon()
 
 void KRslots::duplicateTab()
 {
-    ACTIVE_PANEL_MANAGER->slotNewTab(ACTIVE_PANEL->virtualPath());
+    ACTIVE_MNG->slotNewTab(ACTIVE_PANEL->virtualPath());
 }
 
 // ugly: do this right before release!
 void KRslots::newTab(const KUrl& url)
 {
     if (url.isValid())
-        ACTIVE_PANEL_MANAGER->slotNewTab(url);
-    else ACTIVE_PANEL_MANAGER->slotNewTab();
+        ACTIVE_MNG->slotNewTab(url);
+    else ACTIVE_MNG->slotNewTab();
 }
 
 void KRslots::nextTab()
 {
-    ACTIVE_PANEL_MANAGER->slotNextTab();
+    ACTIVE_MNG->slotNextTab();
 }
 
 void KRslots::previousTab()
 {
-    ACTIVE_PANEL_MANAGER->slotPreviousTab();
+    ACTIVE_MNG->slotPreviousTab();
 }
 
 void KRslots::newTab(KrViewItem *it)
@@ -590,32 +588,32 @@ void KRslots::newTab(KrViewItem *it)
     if (!it) return;
     if (it->name() == "..") {
         KUrl url = ACTIVE_PANEL->virtualPath();
-        ACTIVE_PANEL_MANAGER->slotNewTab(url.upUrl());
+        ACTIVE_MNG->slotNewTab(url.upUrl());
     } else if (ITEM2VFILE(ACTIVE_PANEL, it)->vfile_isDir()) {
         KUrl url = ACTIVE_PANEL->virtualPath();
         url.addPath(it->name());
-        ACTIVE_PANEL_MANAGER->slotNewTab(url);
+        ACTIVE_MNG->slotNewTab(url);
     }
 }
 
 void KRslots::closeTab()
 {
-    ACTIVE_PANEL_MANAGER->slotCloseTab();
+    ACTIVE_MNG->slotCloseTab();
 }
 
 void KRslots::closeInactiveTabs()
 {
-    ACTIVE_PANEL_MANAGER->slotCloseInactiveTabs();
+    ACTIVE_MNG->slotCloseInactiveTabs();
 }
 
 void KRslots::closeDuplicatedTabs()
 {
-    ACTIVE_PANEL_MANAGER->slotCloseDuplicatedTabs();
+    ACTIVE_MNG->slotCloseDuplicatedTabs();
 }
 
 void KRslots::lockTab()
 {
-    ACTIVE_PANEL_MANAGER->slotLockTab();
+    ACTIVE_MNG->slotLockTab();
 }
 
 void KRslots::slotSplit()
