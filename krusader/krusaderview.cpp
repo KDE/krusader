@@ -59,7 +59,10 @@
 #include "krservices.h"
 #include "Panel/krviewfactory.h"
 
-KrusaderView::KrusaderView(QWidget *parent) : QWidget(parent) {}
+KrusaderView::KrusaderView(QWidget *parent) : QWidget(parent),
+    activeMng(0)
+{
+}
 
 void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList leftTabs, QStringList rightTabs)
 {
@@ -223,6 +226,10 @@ void KrusaderView::panelSwitch()
 }
 void KrusaderView::slotSetActivePanel(ListPanel *p)
 {
+    if (p->manager() == leftMng)
+        activeMng == leftMng;
+    else
+        activeMng = rightMng;
     KrGlobal::activePanel = p;
     slotPathChanged(p);
 }

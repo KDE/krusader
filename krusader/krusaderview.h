@@ -73,10 +73,10 @@ public:
         return (ACTIVE_PANEL->gui == left);
     }
     inline PanelManager *activeManager() const {
-        return (ACTIVE_PANEL->gui == left ? leftMng : rightMng);
+        return activeMng;
     }
     inline PanelManager *inactiveManager() const {
-        return (ACTIVE_PANEL->gui == left ? rightMng : leftMng);
+        return activeMng == leftMng ? rightMng : leftMng;
     }
     QList<int> getTerminalEmulatorSplitterSizes();
     inline bool          isVertical() const {
@@ -107,7 +107,7 @@ public slots:
 
 public:
     ListPanel  *left, *right;       // the actual panels
-    PanelManager *leftMng, *rightMng;       // saving them for panel swaps
+    PanelManager *activeMng, *leftMng, *rightMng;       // saving them for panel swaps
     KFnKeys   *fnKeys;          // function keys
     KCMDLine    *cmdLine;                   // command line widget
     TerminalDock  *terminal_dock;             // docking widget for terminal emulator

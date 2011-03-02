@@ -47,6 +47,9 @@ public:
         gui(0), func(0), view(0), _manager(manager) {}
 
     KUrl virtualPath() const;
+    AbstractPanelManager *manager() {
+        return _manager;
+    }
     KrPanel *otherPanel() {
         return _manager->otherManager()->currentPanel();
     }
