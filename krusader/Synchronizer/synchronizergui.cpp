@@ -1951,10 +1951,9 @@ void SynchronizerGUI::closeDialog()
     this->deleteLater();
 
     if (wasSync) {
-        KrPanel *p = ACTIVE_PANEL;
-        MAIN_VIEW->left->func->refresh();
-        MAIN_VIEW->right->func->refresh();
-        p->gui->slotFocusOnMe();
+        LEFT_PANEL->func->refresh();
+        RIGHT_PANEL->func->refresh();
+        ACTIVE_PANEL->gui->slotFocusOnMe();
     }
 }
 

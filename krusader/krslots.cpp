@@ -166,14 +166,14 @@ void KRslots::compareContent()
     QStringList* lstActive;
     KUrl name1, name2;
 
-    MAIN_VIEW->left->getSelectedNames(&lstLeft);
-    MAIN_VIEW->right->getSelectedNames(&lstRight);
+    LEFT_PANEL->getSelectedNames(&lstLeft);
+    RIGHT_PANEL->getSelectedNames(&lstRight);
     lstActive = (ACTIVE_PANEL->gui->isLeft() ? &lstLeft : &lstRight);
 
     if (lstLeft.count() == 1 && lstRight.count() == 1) {
         // first, see if we've got exactly 1 selected file in each panel:
-        name1 = MAIN_VIEW->left->func->files()->vfs_getFile(lstLeft[0]);
-        name2 = MAIN_VIEW->right->func->files()->vfs_getFile(lstRight[0]);
+        name1 = LEFT_PANEL->func->files()->vfs_getFile(lstLeft[0]);
+        name2 = RIGHT_PANEL->func->files()->vfs_getFile(lstRight[0]);
     } else if (lstActive->count() == 2) {
         // next try: are in the current panel exacty 2 files selected?
         name1 = ACTIVE_PANEL->func->files()->vfs_getFile((*lstActive)[0]);
@@ -362,41 +362,16 @@ void KRslots::toggleHidden()
 
 void KRslots::swapPanels()
 {
-    KUrl leftURL = MAIN_VIEW->left->func->files()->vfs_getOrigin();
-    KUrl rightURL = MAIN_VIEW->right->func->files()->vfs_getOrigin();
+    KUrl leftURL = LEFT_PANEL->func->files()->vfs_getOrigin();
+    KUrl rightURL = RIGHT_PANEL->func->files()->vfs_getOrigin();
 
-    MAIN_VIEW->left->func->openUrl(rightURL);
-    MAIN_VIEW->right->func->openUrl(leftURL);
+    LEFT_PANEL->func->openUrl(rightURL);
+    LEFT_PANEL->func->openUrl(leftURL);
 }
 
 void KRslots::toggleSwapSides()
 {
-    QList<int> lst = MAIN_VIEW->horiz_splitter->sizes();
-
-    MAIN_VIEW->horiz_splitter->addWidget(MAIN_VIEW->leftMng);
-
-    int old = lst[ 0 ];
-    lst[ 0 ] = lst [ 1 ];
-    lst[ 1 ] = old;
-
-    MAIN_VIEW->horiz_splitter->setSizes(lst);
-
-    ListPanel     *tmpPanel;     // temporary variables for swapping
-    PanelManager  *tmpMng;
-
-    tmpMng = MAIN_VIEW->leftMng;
-    MAIN_VIEW->leftMng = MAIN_VIEW->rightMng;
-    MAIN_VIEW->rightMng = tmpMng;
-
-    tmpPanel = MAIN_VIEW->left;
-    MAIN_VIEW->left = MAIN_VIEW->right;
-    MAIN_VIEW->right = tmpPanel;
-
-    MAIN_VIEW->leftMng->swapPanels();
-    MAIN_VIEW->rightMng->swapPanels();
-
-    MAIN_VIEW->left->updateGeometry();
-    MAIN_VIEW->right->updateGeometry();
+    MAIN_VIEW->swapSides();
 }
 
 void KRslots::search()
@@ -512,8 +487,8 @@ void KRslots::rootKrusader()
 
     KProcess proc;
     proc << KrServices::fullPathName("kdesu") << KrServices::fullPathName("krusader")
-    + " --left=" + MAIN_VIEW->left->func->files()->vfs_getOrigin().url()
-    + " --right=" + MAIN_VIEW->right->func->files()->vfs_getOrigin().url();
+    + " --left=" + LEFT_PANEL->func->files()->vfs_getOrigin().url()
+    + " --right=" + RIGHT_PANEL->func->files()->vfs_getOrigin().url();
 
     if (!proc.startDetached())
         KMessageBox::error(0, i18n("Error executing %1!", proc.program()[0]));
@@ -780,8 +755,8 @@ void KRslots::manageUseractions()
 
 void KRslots::slotSynchronizeDirs(QStringList selected)
 {
-    new SynchronizerGUI(0, MAIN_VIEW->left->func->files()->vfs_getOrigin(),
-                        MAIN_VIEW->right->func->files()->vfs_getOrigin(), selected);
+    new SynchronizerGUI(0, LEFT_PANEL->func->files()->vfs_getOrigin(),
+                        RIGHT_PANEL->func->files()->vfs_getOrigin(), selected);
 }
 
 void KRslots::compareSetup()
@@ -823,8 +798,8 @@ void KRslots::slotQueueManager()
 void KRslots::windowActive()
 {
     if (MAIN_VIEW != 0) {  /* CRASH FIX: it's possible that the method is called after destroying the main view */
-        MAIN_VIEW->left->panelActive();
-        MAIN_VIEW->right->panelActive();
+        LEFT_PANEL->panelActive();
+        RIGHT_PANEL->panelActive();
     }
 }
 
@@ -833,8 +808,8 @@ void KRslots::windowActive()
 void KRslots::windowInactive()
 {
     if (MAIN_VIEW != 0) {  /* CRASH FIX: it's possible that the method is called after destroying the main view */
-        MAIN_VIEW->left->panelInactive();
-        MAIN_VIEW->right->panelInactive();
+        LEFT_PANEL->panelInactive();
+        RIGHT_PANEL->panelInactive();
     }
 }
 

@@ -52,11 +52,6 @@ public:
      */
     PanelManager(QWidget *parent, bool left);
     /**
-     * Called once by KrusaderView to create the first panel. Subsequent called are done internally
-     * Note: only creates the panel, but doesn't start the VFS inside it. Use startPanel() for that.
-     */
-    ListPanel* createPanel(bool setCurrent = true, KConfigGroup cfg = KConfigGroup());
-    /**
      * Swaps the left / right directions of the panel
      */
     void swapPanels();
@@ -69,6 +64,9 @@ public:
     void setCurrentTab(int);
     void refreshAllTabs(bool invalidate = false);
     void layoutTabs();
+    void setLeft(bool left) {
+        _left = left;
+    }
 
     // AbstractPanelManager implementation
     virtual bool isLeft() {
@@ -112,6 +110,7 @@ private:
     void deletePanel(ListPanel *p);
     void updateTabbarPos();
     void tabsCountChanged();
+    ListPanel* createPanel(bool setCurrent = true, KConfigGroup cfg = KConfigGroup());
 
     QGridLayout *_layout;
     QHBoxLayout *_barLayout;
@@ -119,7 +118,7 @@ private:
     PanelTabBar *_tabbar;
     QStackedWidget *_stack;
     QToolButton *_newTab, *_closeTab;
-    ListPanel **_selfPtr, **_otherPtr;
+    ListPanel *_self;
 };
 
 

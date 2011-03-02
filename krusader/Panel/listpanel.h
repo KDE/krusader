@@ -88,6 +88,9 @@ public:
     // constructor create the panel, but DOESN'T fill it with data, use start()
     ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg = KConfigGroup());
     ~ListPanel();
+
+    virtual void otherPanelChanged();
+
     void start(KUrl url = KUrl(), bool immediate = false);
 
     int getType() {
@@ -116,8 +119,6 @@ public:
     void setProperties(int);
 
     void getFocusCandidates(QVector<QWidget*> &widgets);
-
-    void otherPanelChanged();
 
     void saveSettings(KConfigGroup cfg, bool localOnly, bool saveHistory = false);
     void restoreSettings(KConfigGroup cfg);

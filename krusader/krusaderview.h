@@ -70,7 +70,7 @@ public:
     void cmdLineFocus();  // command line receive's keyboard focus
     void cmdLineUnFocus();// return focus from command line to active panel
     inline bool isLeftActive() const {
-        return (ACTIVE_PANEL->gui == left);
+        return leftMng == activeMng;
     }
     inline PanelManager *activeManager() const {
         return activeMng;
@@ -78,10 +78,13 @@ public:
     inline PanelManager *inactiveManager() const {
         return activeMng == leftMng ? rightMng : leftMng;
     }
+    ListPanel* leftPanel();
+    ListPanel* rightPanel();
     QList<int> getTerminalEmulatorSplitterSizes();
     inline bool          isVertical() const {
         return horiz_splitter != 0 ? horiz_splitter->orientation() == Qt::Vertical : false;
     }
+    void swapSides();
 
 public slots:
     void slotSetActivePanel(ListPanel *p);
@@ -106,7 +109,6 @@ public slots:
     void killTerminalEmulator();
 
 public:
-    ListPanel  *left, *right;       // the actual panels
     PanelManager *activeMng, *leftMng, *rightMng;       // saving them for panel swaps
     KFnKeys   *fnKeys;          // function keys
     KCMDLine    *cmdLine;                   // command line widget

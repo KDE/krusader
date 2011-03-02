@@ -51,7 +51,11 @@ KShortcut KrGlobal::copyShortcut;
 
 KrPanel *KrGlobal::activePanel()
 {
-    return mainView->activeManager()->currentPanel();
+    // active manager might not be set yet
+    if(mainView->activeManager())
+        return mainView->activeManager()->currentPanel();
+    else
+        return 0;
 }
 
 // void KrGlobal::enableAction(const char *name, bool enable)

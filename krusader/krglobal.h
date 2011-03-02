@@ -89,10 +89,10 @@ public:
 #define OTHER_MNG  (MAIN_VIEW->inactiveManager())
 #define OTHER_PANEL (ACTIVE_PANEL->otherPanel())
 #define OTHER_FUNC (OTHER_PANEL->func)
-#define LEFT_PANEL (MAIN_VIEW->left)
+#define LEFT_PANEL (MAIN_VIEW->leftPanel())
 #define LEFT_FUNC  (LEFT_PANEL->func)
 #define LEFT_MNG  (MAIN_VIEW->leftMng)
-#define RIGHT_PANEL  (MAIN_VIEW->right)
+#define RIGHT_PANEL  (MAIN_VIEW->rightPanel())
 #define RIGHT_FUNC (RIGHT_PANEL->func)
 #define RIGHT_MNG  (MAIN_VIEW->rightMng)
 

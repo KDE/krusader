@@ -38,13 +38,9 @@
 
 #define HIDE_ON_SINGLE_TAB  false
 
-#define _self   (*_selfPtr)
-#define _other  (*_otherPtr)
-
 PanelManager::PanelManager(QWidget *parent, bool left) :
         QWidget(parent), _layout(0), _left(left),
-        _selfPtr(_left ? &MAIN_VIEW->left : &MAIN_VIEW->right),
-        _otherPtr(_left ? &MAIN_VIEW->right : &MAIN_VIEW->left)
+        _self(0)
 {
     _layout = new QGridLayout(this);
     _layout->setContentsMargins(0, 0, 0, 0);
@@ -91,6 +87,8 @@ PanelManager::PanelManager(QWidget *parent, bool left) :
 
     setLayout(_layout);
 
+    _self = createPanel(true);
+
     tabsCountChanged();
 }
 
@@ -125,7 +123,7 @@ void PanelManager::slotChangePanel(ListPanel *p)
     // make sure the view is focused (this also causes ListPanel::slotFocusOnMe() to be called)
     _self->view->widget()->setFocus();
     if(_self != prev)
-        _other->otherPanelChanged();
+        otherManager()->currentPanel()->otherPanelChanged();
 //     _stack->setUpdatesEnabled(true);
 }
 
@@ -375,13 +373,6 @@ void PanelManager::deletePanel(ListPanel * p)
         return;
     }
     delete p;
-}
-
-void PanelManager::swapPanels()
-{
-    _left = !_left;
-    _selfPtr = _left ? &MAIN_VIEW->left : &MAIN_VIEW->right;
-    _otherPtr = _left ? &MAIN_VIEW->right : &MAIN_VIEW->left;
 }
 
 void PanelManager::slotCloseInactiveTabs()
