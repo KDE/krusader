@@ -369,9 +369,6 @@ void PanelManager::refreshAllTabs(bool invalidate)
 
 void PanelManager::deletePanel(ListPanel * p)
 {
-    if (ACTIVE_PANEL == p)
-        ACTIVE_PANEL = _self;
-
     if (p && p->func && p->func->files() && !p->func->files()->vfs_canDelete()) {
         connect(p->func->files(), SIGNAL(deleteAllowed()), p, SLOT(deleteLater()));
         p->func->files()->vfs_requestDelete();

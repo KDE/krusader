@@ -64,7 +64,7 @@ public:
     static QWidget *mainWindow;
     static UserAction *userAction;
 //     static ListPanel  *activePanel;
-    static KrPanel *activePanel;
+    static KrPanel *activePanel();
 
     //HACK - used by [ListerTextArea|KrSearchDialog|LocateDlg]:keyPressEvent()
     static KShortcut copyShortcut;
@@ -82,7 +82,7 @@ public:
 #define krMainWindow KrGlobal::mainWindow
 #define krUserAction KrGlobal::userAction
 
-#define ACTIVE_PANEL (KrGlobal::activePanel)
+#define ACTIVE_PANEL (KrGlobal::activePanel())
 
 #define ACTIVE_MNG   (MAIN_VIEW->activeManager())
 #define ACTIVE_FUNC  (ACTIVE_PANEL->func)
