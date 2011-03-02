@@ -75,6 +75,7 @@ public:
     QSpinBox* maxSizeAmount;
     KComboBox* maxSizeType;
 
+    QRadioButton* anyDateEnabled;
     QRadioButton* modifiedBetweenEnabled;
     QRadioButton* notModifiedAfterEnabled;
     QRadioButton* modifiedInTheLastEnabled;

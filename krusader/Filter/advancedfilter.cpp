@@ -123,6 +123,11 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     dateLayout->setSpacing(6);
     dateLayout->setContentsMargins(11, 11, 11, 11);
 
+    anyDateEnabled = new QRadioButton(dateGroup);
+    anyDateEnabled->setText(i18n("Any date"));
+    btnGroup->addButton(anyDateEnabled);
+    anyDateEnabled->setChecked(true);
+
     modifiedBetweenEnabled = new QRadioButton(dateGroup);
     modifiedBetweenEnabled->setText(i18n("&Modified between"));
     btnGroup->addButton(modifiedBetweenEnabled);
@@ -194,28 +199,30 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
 
     // Date options layout
 
-    dateLayout->addWidget(modifiedBetweenEnabled, 0, 0);
-    dateLayout->addWidget(modifiedBetweenData1, 0, 1);
-    dateLayout->addWidget(modifiedBetweenBtn1, 0, 2);
-    dateLayout->addWidget(andLabel, 0, 3);
-    dateLayout->addWidget(modifiedBetweenData2, 0, 4);
-    dateLayout->addWidget(modifiedBetweenBtn2, 0, 5);
+    dateLayout->addWidget(anyDateEnabled, 0, 0);
 
-    dateLayout->addWidget(notModifiedAfterEnabled, 1, 0);
-    dateLayout->addWidget(notModifiedAfterData, 1, 1);
-    dateLayout->addWidget(notModifiedAfterBtn, 1, 2);
+    dateLayout->addWidget(modifiedBetweenEnabled, 1, 0);
+    dateLayout->addWidget(modifiedBetweenData1, 1, 1);
+    dateLayout->addWidget(modifiedBetweenBtn1, 1, 2);
+    dateLayout->addWidget(andLabel, 1, 3);
+    dateLayout->addWidget(modifiedBetweenData2, 1, 4);
+    dateLayout->addWidget(modifiedBetweenBtn2, 1, 5);
 
-    dateLayout->addWidget(modifiedInTheLastEnabled, 2, 0);
+    dateLayout->addWidget(notModifiedAfterEnabled, 2, 0);
+    dateLayout->addWidget(notModifiedAfterData, 2, 1);
+    dateLayout->addWidget(notModifiedAfterBtn, 2, 2);
+
+    dateLayout->addWidget(modifiedInTheLastEnabled, 3, 0);
     QHBoxLayout *modifiedInTheLastLayout = new QHBoxLayout();
     modifiedInTheLastLayout->addWidget(modifiedInTheLastData);
     modifiedInTheLastLayout->addWidget(modifiedInTheLastType);
-    dateLayout->addLayout(modifiedInTheLastLayout, 2, 1);
+    dateLayout->addLayout(modifiedInTheLastLayout, 3, 1);
 
-    dateLayout->addWidget(notModifiedInTheLastLbl, 3, 0);
+    dateLayout->addWidget(notModifiedInTheLastLbl, 4, 0);
     modifiedInTheLastLayout = new QHBoxLayout();
     modifiedInTheLastLayout->addWidget(notModifiedInTheLastData);
     modifiedInTheLastLayout->addWidget(notModifiedInTheLastType);
-    dateLayout->addLayout(modifiedInTheLastLayout, 3, 1);
+    dateLayout->addLayout(modifiedInTheLastLayout, 4, 1);
 
     filterLayout->addWidget(dateGroup, 1, 0);
 
@@ -562,17 +569,23 @@ void AdvancedFilter::applySettings(const FilterSettings &s)
     maxSizeAmount->setValue(s.maxSize.amount);
     maxSizeType->setCurrentIndex(s.maxSize.unit);
 
-    modifiedBetweenEnabled->setChecked(s.modifiedBetweenEnabled);
+    if (s.modifiedBetweenEnabled)
+        modifiedBetweenEnabled->setChecked(true);
+    else if (s.notModifiedAfterEnabled)
+        notModifiedAfterEnabled->setChecked(true);
+    else if (s.modifiedInTheLastEnabled)
+        modifiedInTheLastEnabled->setChecked(true);
+    else
+        anyDateEnabled->setChecked(true);
+
     modifiedBetweenData1->setText(
         KGlobal::locale()->formatDate(s.modifiedBetween1, KLocale::ShortDate));
     modifiedBetweenData2->setText(
         KGlobal::locale()->formatDate(s.modifiedBetween2, KLocale::ShortDate));
 
-    notModifiedAfterEnabled->setChecked(s.notModifiedAfterEnabled);
     notModifiedAfterData->setText(
         KGlobal::locale()->formatDate(s.notModifiedAfter, KLocale::ShortDate));
 
-    modifiedInTheLastEnabled->setChecked(s.modifiedInTheLastEnabled);
     modifiedInTheLastData->setValue(s.modifiedInTheLast.amount);
     modifiedInTheLastType->setCurrentIndex(s.modifiedInTheLast.unit);
     notModifiedInTheLastData->setValue(s.notModifiedInTheLast.amount);
