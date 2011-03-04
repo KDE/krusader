@@ -535,14 +535,6 @@ void KRslots::duplicateTab()
     ACTIVE_MNG->slotNewTab(ACTIVE_PANEL->virtualPath());
 }
 
-// ugly: do this right before release!
-void KRslots::newTab(const KUrl& url)
-{
-    if (url.isValid())
-        ACTIVE_MNG->slotNewTab(url);
-    else ACTIVE_MNG->slotNewTab();
-}
-
 void KRslots::nextTab()
 {
     ACTIVE_MNG->slotNextTab();
@@ -551,19 +543,6 @@ void KRslots::nextTab()
 void KRslots::previousTab()
 {
     ACTIVE_MNG->slotPreviousTab();
-}
-
-void KRslots::newTab(KrViewItem *it)
-{
-    if (!it) return;
-    if (it->name() == "..") {
-        KUrl url = ACTIVE_PANEL->virtualPath();
-        ACTIVE_MNG->slotNewTab(url.upUrl());
-    } else if (ITEM2VFILE(ACTIVE_PANEL, it)->vfile_isDir()) {
-        KUrl url = ACTIVE_PANEL->virtualPath();
-        url.addPath(it->name());
-        ACTIVE_MNG->slotNewTab(url);
-    }
 }
 
 void KRslots::closeTab()

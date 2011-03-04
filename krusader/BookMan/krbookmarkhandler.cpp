@@ -619,7 +619,7 @@ void KrBookmarkHandler::rightClicked(QMenu *menu, KrBookmark * bm)
         SLOTS->refresh(bm->url());
         break;
     case OPEN_NEW_TAB_ID:
-        SLOTS->newTab(bm->url());
+        _mainWindow->activeManager()->newTab(bm->url());
         break;
     case DELETE_ID:
         deleteBookmark(bm);
@@ -635,8 +635,9 @@ void KrBookmarkHandler::slotActivated(const KUrl& url)
     if (_mainBookmarkPopup && !_mainBookmarkPopup->isHidden())
         _mainBookmarkPopup->close();
     if (_middleClick)
-        SLOTS->newTab(url);
-    else SLOTS->refresh(url);
+        _mainWindow->activeManager()->newTab(url);
+    else
+        SLOTS->refresh(url);
 }
 
 

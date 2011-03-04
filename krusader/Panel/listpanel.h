@@ -182,6 +182,10 @@ protected slots:
     void inlineRefreshListResult(KJob* job);
     void inlineRefreshPercent(KJob*, unsigned long);
     void slotVfsError(QString msg);
+    void newTab(KrViewItem *item);
+    void newTab(const KUrl &url) {
+        _manager->newTab(url);
+    }
 
 signals:
     void signalStatus(QString msg);         // emmited when we need to update the status bar

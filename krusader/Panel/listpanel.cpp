@@ -159,6 +159,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     mediaButton = new MediaButton(this);
     connect(mediaButton, SIGNAL(aboutToShow()), this, SLOT(slotFocusOnMe()));
     connect(mediaButton, SIGNAL(openUrl(const KUrl&)), func, SLOT(openUrl(const KUrl&)));
+    connect(mediaButton, SIGNAL(newTab(const KUrl&)), SLOT(newTab(const KUrl&)));
     ADD_WIDGET(mediaButton);
 
     // status bar
@@ -425,7 +426,7 @@ void ListPanel::createView()
     connect(view->op(), SIGNAL(goHome()), func, SLOT(home()));
     connect(view->op(), SIGNAL(dirUp()), func, SLOT(dirUp()));
     connect(view->op(), SIGNAL(deleteFiles(bool)), func, SLOT(deleteFiles(bool)));
-    connect(view->op(), SIGNAL(middleButtonClicked(KrViewItem *)), SLOTS, SLOT(newTab(KrViewItem *)));
+    connect(view->op(), SIGNAL(middleButtonClicked(KrViewItem *)), SLOT(newTab(KrViewItem *)));
     connect(view->op(), SIGNAL(currentChanged(KrViewItem *)), SLOT(updatePopupPanel(KrViewItem*)));
     connect(view->op(), SIGNAL(renameItem(const QString &, const QString &)),
             func, SLOT(rename(const QString &, const QString &)));
@@ -972,7 +973,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
             if (e->modifiers() & Qt::AltModifier) {
                 vfile *vf = func->files()->vfs_search(view->getCurrentKrViewItem()->name());
                 if (vf && vf->vfile_isDir())
-                    SLOTS->newTab(vf->vfile_getUrl());
+                    newTab(vf->vfile_getUrl());
             } else {
                 SLOTS->insertFileName((e->modifiers() & Qt::ShiftModifier) != 0);
             }
@@ -1306,4 +1307,17 @@ void ListPanel::updateButtons()
     cdRootButton->setEnabled(!func->files()->isRoot());
     cdUpButton->setEnabled(!func->files()->isRoot());
     cdHomeButton->setEnabled(!func->atHome());
+}
+
+void ListPanel::newTab(KrViewItem *it)
+{
+    if (!it)
+        return;
+    else if (it->name() == "..") {
+        newTab(virtualPath().upUrl());
+    } else if (ITEM2VFILE(this, it)->vfile_isDir()) {
+        KUrl url = virtualPath();
+        url.addPath(it->name());
+        newTab(url);
+    }
 }

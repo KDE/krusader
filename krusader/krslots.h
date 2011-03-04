@@ -113,8 +113,6 @@ public slots:
     void bookmarkCurrent();
     void cmdlinePopup();
     void duplicateTab();
-    void newTab(const KUrl& url = KUrl());
-    void newTab(KrViewItem *item);
     void lockTab();
     void closeTab();
     void nextTab();

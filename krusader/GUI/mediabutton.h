@@ -53,6 +53,7 @@ public slots:
 
 signals:
     void openUrl(const KUrl&);
+    void newTab(const KUrl&);
     void aboutToShow();
 
 protected:

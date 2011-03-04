@@ -17,7 +17,8 @@
  *****************************************************************************/
 
 #include "mediabutton.h"
-#include "../krslots.h"
+
+#include "../krglobal.h"
 #include "../MountMan/kmountman.h"
 
 #include <QMouseEvent>
@@ -376,7 +377,7 @@ void MediaButton::rightClickMenu(QString udi)
             if (result == 1)
                 emit openUrl(openURL);
             else
-                SLOTS->newTab(openURL);
+                emit newTab(openURL);
         } else {
             mount(udi, true, result == 2);   // mount first, when mounted open the tab
         }
@@ -401,7 +402,7 @@ void MediaButton::mount(QString udi, bool open, bool newtab)
         QString mp = udi.mid(7);
         krMtMan.mount(mp, true);
         if (newtab)
-            SLOTS->newTab(KUrl(mp));
+            emit newTab(KUrl(mp));
         else
             emit openUrl(KUrl(mp));
         return;
@@ -424,7 +425,7 @@ void MediaButton::slotSetupDone(Solid::ErrorType error, QVariant errorData, cons
             Solid::StorageAccess *access = Solid::Device(udi).as<Solid::StorageAccess>();
             if (access && access->isAccessible()) {
                 if (openInNewTab)
-                    SLOTS->newTab(KUrl(access->filePath()));
+                    emit newTab(KUrl(access->filePath()));
                 else
                     emit openUrl(KUrl(access->filePath()));
             }
