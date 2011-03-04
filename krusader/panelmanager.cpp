@@ -120,8 +120,7 @@ void PanelManager::slotChangePanel(ListPanel *p)
 
 //     _stack->setUpdatesEnabled(false);
     _stack->setCurrentWidget(_self);
-    // make sure the view is focused (this also causes ListPanel::slotFocusOnMe() to be called)
-    _self->view->widget()->setFocus();
+    _self->slotFocusOnMe();
     if(_self != prev)
         otherManager()->currentPanel()->otherPanelChanged();
 //     _stack->setUpdatesEnabled(true);
