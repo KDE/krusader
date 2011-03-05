@@ -1,5 +1,7 @@
 /*****************************************************************************
- * Copyright (C) 2010 Jan Lepper <dehtris@yahoo.de>                          *
+ * Copyright (C) 2000 Shie Erlich <erlich@users.sourceforge.net>             *
+ * Copyright (C) 2000 Rafi Yanai <yanai@users.sourceforge.net>               *
+ * Copyright (C) 2011 Jan Lepper <jan_lepper@gmx.de>                         *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -16,39 +18,42 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef __FILEMANAGERWINDOW_H__
-#define __FILEMANAGERWINDOW_H__
+#ifndef __TABACTIONS_H__
+#define __TABACTIONS_H__
 
-#include "krmainwindow.h"
-#include "abstractpanelmanager.h"
+#include "actionsbase.h"
 
-class ListPanelActions;
-class TabActions;
-class KrPanel;
-class KrActions;
-class PopularUrls;
+class FileManagerWindow;
+class PanelManager;
 
-class FileManagerWindow : public KrMainWindow
+class TabActions : public ActionsBase
 {
-public:
-    virtual AbstractPanelManager *activeManager() = 0;
-    virtual AbstractPanelManager *leftManager() = 0;
-    virtual AbstractPanelManager *rightManager() = 0;
-    virtual PopularUrls *popularUrls() = 0;
-    virtual KrActions *krActions() = 0;
-    virtual ListPanelActions *listPanelActions() = 0;
-    virtual TabActions *tabActions() = 0;
-    virtual void plugActionList(const char *name, QList<QAction*> &list) = 0;
+    friend class PanelTabBar;
 
-    KrPanel *activePanel() {
-        return activeManager()->currentPanel();
-    }
-    KrPanel *leftPanel() {
-        return leftManager()->currentPanel();
-    }
-    KrPanel *rightPanel() {
-        return rightManager()->currentPanel();
-    }
+    Q_OBJECT
+
+public:
+    TabActions(QObject *parent, FileManagerWindow *mainWindow);
+
+public slots:
+    void refreshActions();
+
+protected slots:
+    void newTab();
+    void duplicateTab();
+    void lockTab();
+    void closeTab();
+    void nextTab();
+    void previousTab();
+    void closeInactiveTabs();
+    void closeDuplicatedTabs();
+
+protected:
+    inline PanelManager *activeManager();
+
+    KAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab;
+    KAction *actCloseInactiveTabs, *actCloseDuplicatedTabs, *actLockTab;
 };
 
-#endif // __FILEMANAGERWINDOW_H__
+
+#endif

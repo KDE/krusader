@@ -38,6 +38,7 @@ set(krusader_SRCS
     krmainwindow.cpp
     krglobal.cpp
     actionsbase.cpp
+    tabactions.cpp
     kractions.cpp
     paneltabbar.cpp 
     panelmanager.cpp 

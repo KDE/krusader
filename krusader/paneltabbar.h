@@ -32,6 +32,7 @@ class QMouseEvent;
 class KAction;
 class KActionMenu;
 class ListPanel;
+class TabActions;
 
 /**
  * This class extends KTabBar such that right-clicking on a tab pops-up a menu
@@ -42,7 +43,7 @@ class PanelTabBar : public KTabBar
 {
     Q_OBJECT
 public:
-    PanelTabBar(QWidget *parent);
+    PanelTabBar(QWidget *parent, TabActions *actions);
 
 public slots:
     /**

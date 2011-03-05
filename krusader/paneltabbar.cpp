@@ -20,6 +20,10 @@
 
 #include "paneltabbar.h"
 
+#include "defaults.h"
+#include "tabactions.h"
+#include "Panel/listpanel.h"
+
 #include <QtCore/QEvent>
 #include <QtGui/QFontMetrics>
 #include <QtGui/QResizeEvent>
@@ -32,29 +36,23 @@
 #include <KDebug>
 #include <KActionMenu>
 
-#include "Panel/listpanel.h"
-#include "defaults.h"
-#include "kractions.h"
-
 #define DISPLAY(X) (X.isLocalFile() ? X.path() : X.prettyUrl())
 
-PanelTabBar::PanelTabBar(QWidget *parent): KTabBar(parent), _maxTabLength(0)
+PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): KTabBar(parent), _maxTabLength(0)
 {
     _panelActionMenu = new KActionMenu(i18n("Panel"), this);
 
     setAcceptDrops(true);
-    insertAction(krNewTab);
-    insertAction(krLockTab);
-    insertAction(krDupTab);
-    insertAction(krPreviousTab);
-    insertAction(krNextTab);
-    insertAction(krCloseTab);
-    insertAction(krCloseInactiveTabs);
-    insertAction(krCloseDuplicatedTabs);
-    krCloseTab->setEnabled(false); //can't close a single tab
+
+    insertAction(actions->actNewTab);
+    insertAction(actions->actLockTab);
+    insertAction(actions->actDupTab);
+    insertAction(actions->actCloseTab);
+    insertAction(actions->actCloseInactiveTabs);
+    insertAction(actions->actCloseDuplicatedTabs);
 
     setMovable(true); // enable drag'n'drop 
-    
+
     setShape(KTabBar::TriangularSouth);
 }
 
@@ -99,12 +97,6 @@ int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent)
     if (setCurrent)
         setCurrentIndex(newId);
 
-    // enable close-tab action
-    if (count() > 1) {
-        krCloseTab->setEnabled(true);
-    }
-
-
     connect(panel, SIGNAL(pathChanged(ListPanel*)), this, SLOT(updateTab(ListPanel*)));
 
     return newId;
@@ -137,10 +129,6 @@ ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete)
     // setup current one
     id = currentIndex();
     ListPanel *p = (ListPanel*)tabData(id).toLongLong();
-    // disable close action?
-    if (count() == 1) {
-        krCloseTab->setEnabled(false);
-    }
 
     panelToDelete = oldp;
     return p;

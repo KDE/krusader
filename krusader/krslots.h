@@ -112,13 +112,6 @@ public slots:
     void multiRename();
     void bookmarkCurrent();
     void cmdlinePopup();
-    void duplicateTab();
-    void lockTab();
-    void closeTab();
-    void nextTab();
-    void previousTab();
-    void closeInactiveTabs();
-    void closeDuplicatedTabs();
     void slotSplit();
     void slotCombine();
     void userMenu();

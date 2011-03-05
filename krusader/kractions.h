@@ -53,8 +53,7 @@ public:
     static KAction *actMountMan, *actNewTool, *actSwapPanels, *actSwapSides;
     static KAction *actKonfigurator, *actToolsSetup, *actFind, *actRemoteEncoding;
     static KAction *actSelectColorMask, *actMultiRename, *actOpenLeftBm, *actOpenRightBm;
-    static KAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actCloseInactiveTabs;
-    static KAction *actCloseDuplicatedTabs, *actLockTab, *actSplit, *actQueueManager;
+    static KAction *actSplit, *actQueueManager;
     static KAction *actCombine, *actUserMenu, *actManageUseractions, *actSyncDirs;
     static KAction *actVerticalMode;
     static KAction *actEmptyTrash, *actTrashBin;
@@ -97,14 +96,6 @@ public:
 //#define krToggleSortByExt KrActions::actToggleSortByExt// Sort by extension
 #define krSwitchFullScreenTE KrActions::actSwitchFullScreenTE
 #define krCmdlinePopup    KrActions::actCmdlinePopup
-#define krNewTab          KrActions::actNewTab
-#define krLockTab         KrActions::actLockTab
-#define krDupTab          KrActions::actDupTab
-#define krCloseTab        KrActions::actCloseTab
-#define krNextTab         KrActions::actNextTab
-#define krPreviousTab     KrActions::actPreviousTab
-#define krCloseInactiveTabs KrActions::actCloseInactiveTabs
-#define krCloseDuplicatedTabs KrActions::actCloseDuplicatedTabs
 #define krSplit           KrActions::actSplit
 #define krCombine         KrActions::actCombine
 #define krUserMenu        KrActions::actUserMenu

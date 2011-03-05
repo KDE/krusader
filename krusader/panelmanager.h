@@ -32,9 +32,11 @@
 #include "paneltabbar.h"
 
 class KConfig;
-class ListPanel;
 class QStackedWidget;
 class QToolButton;
+class ListPanel;
+class FileManagerWindow;
+class TabActions;
 
 /**
  * Implements tabbed-browsing by managing a list of tabs and corrosponding panels.
@@ -50,7 +52,7 @@ public:
      * (self, other, active), which enables it to manage pointers held by the panels transparently.
      * It also receives a bool (left) which is true if the manager is the left one, or false otherwise.
      */
-    PanelManager(QWidget *parent, bool left);
+    PanelManager(QWidget *parent, FileManagerWindow* mainWindow, bool left);
     /**
      * Swaps the left / right directions of the panel
      */
@@ -59,6 +61,9 @@ public:
     void saveSettings(KConfigGroup config, bool localOnly = true, bool saveHistory = false);
     void loadSettings(KConfigGroup config);
     int findTab(KUrl url);
+    int tabCount() {
+        return _tabbar->count();
+    }
     int activeTab();
     void setActiveTab(int);
     void setCurrentTab(int);
@@ -104,7 +109,6 @@ public slots:
 
 protected slots:
     void slotChangePanel(ListPanel *p);
-    void slotRefreshActions();
 
 private:
     void deletePanel(ListPanel *p);
@@ -112,6 +116,7 @@ private:
     void tabsCountChanged();
     ListPanel* createPanel(bool setCurrent = true, KConfigGroup cfg = KConfigGroup());
 
+    TabActions *_actions;
     QGridLayout *_layout;
     QHBoxLayout *_barLayout;
     bool _left;

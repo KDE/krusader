@@ -530,41 +530,6 @@ void KRslots::changeTrashIcon()
 #endif
 }
 
-void KRslots::duplicateTab()
-{
-    ACTIVE_MNG->slotNewTab(ACTIVE_PANEL->virtualPath());
-}
-
-void KRslots::nextTab()
-{
-    ACTIVE_MNG->slotNextTab();
-}
-
-void KRslots::previousTab()
-{
-    ACTIVE_MNG->slotPreviousTab();
-}
-
-void KRslots::closeTab()
-{
-    ACTIVE_MNG->slotCloseTab();
-}
-
-void KRslots::closeInactiveTabs()
-{
-    ACTIVE_MNG->slotCloseInactiveTabs();
-}
-
-void KRslots::closeDuplicatedTabs()
-{
-    ACTIVE_MNG->slotCloseDuplicatedTabs();
-}
-
-void KRslots::lockTab()
-{
-    ACTIVE_MNG->slotLockTab();
-}
-
 void KRslots::slotSplit()
 {
     QStringList list;

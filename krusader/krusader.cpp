@@ -77,6 +77,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krservices.h"
 // This makes gcc-4.1 happy. Warning about possible problem with KrAction's dtor not called
 #include "krtrashhandler.h"
+#include "tabactions.h"
 #include "krglobal.h"
 #include "kractions.h"
 #include "panelmanager.h"
@@ -423,6 +424,7 @@ void Krusader::setupActions() {
     _krActions = new KrActions(this);
     _viewActions = new ViewActions(this, this);
     _listPanelActions = new ListPanelActions(this, this);
+    _tabActions = new TabActions(this, this);
 }
 
 ///////////////////////////////////////////////////////////////////////////

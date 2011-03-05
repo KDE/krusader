@@ -19,6 +19,14 @@
 
 #include "panelmanager.h"
 
+#include "defaults.h"
+#include "tabactions.h"
+#include "krusaderview.h"
+#include "filemanagerwindow.h"
+#include "Panel/listpanel.h"
+#include "Panel/panelfunc.h"
+#include "Panel/krviewfactory.h"
+
 #include <qstackedwidget.h>
 #include <QtGui/QToolButton>
 #include <QGridLayout>
@@ -29,17 +37,14 @@
 #include <kconfig.h>
 #include <kiconloader.h>
 
-#include "Panel/listpanel.h"
-#include "Panel/panelfunc.h"
-#include "krusaderview.h"
-#include "defaults.h"
-#include "Panel/krviewfactory.h"
-#include "kractions.h"
 
 #define HIDE_ON_SINGLE_TAB  false
 
-PanelManager::PanelManager(QWidget *parent, bool left) :
-        QWidget(parent), _layout(0), _left(left),
+PanelManager::PanelManager(QWidget *parent, FileManagerWindow* mainWindow, bool left) :
+        QWidget(parent),
+        _actions(mainWindow->tabActions()),
+        _layout(0),
+        _left(left),
         _self(0)
 {
     _layout = new QGridLayout(this);
@@ -67,7 +72,7 @@ PanelManager::PanelManager(QWidget *parent, bool left) :
     _closeTab->setEnabled(false);   // disabled when there's only 1 tab
 
     // tab-bar
-    _tabbar = new PanelTabBar(this);
+    _tabbar = new PanelTabBar(this, _actions);
     connect(_tabbar, SIGNAL(changePanel(ListPanel*)), this, SLOT(slotChangePanel(ListPanel *)));
     connect(_tabbar, SIGNAL(closeCurrentTab()), this, SLOT(slotCloseTab()));
     connect(_tabbar, SIGNAL(newTab(const KUrl&)), this, SLOT(slotNewTab(const KUrl&)));
@@ -108,7 +113,7 @@ void PanelManager::tabsCountChanged()
     // disable close button if only 1 tab is left
     _closeTab->setEnabled(_tabbar->count() > 1);
 
-    slotRefreshActions();
+    _actions->refreshActions();
 }
 
 void PanelManager::slotChangePanel(ListPanel *p)
@@ -139,8 +144,8 @@ ListPanel* PanelManager::createPanel(bool setCurrent, KConfigGroup cfg)
         _stack->setCurrentWidget(p);
 
     // connect the activePanelChanged signal to enable/disable actions
-    connect(p, SIGNAL(activePanelChanged(ListPanel*)), this, SLOT(slotRefreshActions()));
     connect(p, SIGNAL(activePanelChanged(ListPanel*)), MAIN_VIEW, SLOT(slotSetActivePanel(ListPanel*)));
+    connect(p, SIGNAL(activePanelChanged(ListPanel*)), _actions, SLOT(refreshActions()));
     connect(p, SIGNAL(pathChanged(ListPanel*)), MAIN_VIEW, SLOT(slotPathChanged(ListPanel*)));
     return p;
 }
@@ -246,20 +251,6 @@ void PanelManager::slotCloseTab(int index)
     tabsCountChanged();
 }
 
-void PanelManager::slotRefreshActions()
-{
-    krCloseTab->setEnabled(_tabbar->count() > 1);
-    krCloseInactiveTabs->setEnabled(_tabbar->count() > 1);
-    krCloseDuplicatedTabs->setEnabled(_tabbar->count() > 1);
-    krNextTab->setEnabled(_tabbar->count() > 1);
-    krPreviousTab->setEnabled(_tabbar->count() > 1);
-    ListPanel *actPanel = _tabbar->getPanel(activeTab());
-    if (actPanel) {
-        bool locked = actPanel->isLocked();
-        krLockTab->setText(locked ? i18n("Unlock Tab") : i18n("Lock Tab"));
-    }
-}
-
 void PanelManager::updateTabbarPos()
 {
     KConfigGroup group(krConfig, "Look&Feel");
@@ -304,8 +295,8 @@ void PanelManager::slotRecreatePanels()
 
         ListPanel *newPanel = new ListPanel(_stack, this);
         newPanel->restoreSettings(cfg);
-        connect(newPanel, SIGNAL(activePanelChanged(ListPanel*)), this, SLOT(slotRefreshActions()));
         connect(newPanel, SIGNAL(activePanelChanged(ListPanel*)), MAIN_VIEW, SLOT(slotSetActivePanel(ListPanel*)));
+        connect(newPanel, SIGNAL(activePanelChanged(ListPanel*)), _actions, SLOT(refreshActions()));
         connect(newPanel, SIGNAL(pathChanged(ListPanel*)), _tabbar, SLOT(updateTab(ListPanel*)));
         connect(newPanel, SIGNAL(pathChanged(ListPanel*)), MAIN_VIEW, SLOT(slotPathChanged(ListPanel*)));
 
@@ -425,8 +416,8 @@ int PanelManager::findTab(KUrl url)
 
 void PanelManager::slotLockTab()
 {
-    if (ACTIVE_PANEL)
-        ACTIVE_PANEL->gui->setLocked(!ACTIVE_PANEL->gui->isLocked());
+    currentPanel()->gui->setLocked(!currentPanel()->gui->isLocked());
+    _actions->refreshActions();
 }
 
 void PanelManager::newTabs(const QStringList& urls) {

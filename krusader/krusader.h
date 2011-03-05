@@ -66,6 +66,7 @@ class PopularUrls;
 class QueueManager;
 class ViewActions;
 class ListPanelActions;
+class TabActions;
 
 class Krusader : public KParts::MainWindow, public FileManagerWindow
 {
@@ -100,10 +101,12 @@ public:
     virtual ListPanelActions *listPanelActions() {
         return _listPanelActions;
     }
+    virtual TabActions *tabActions() {
+        return _tabActions;
+    }
     virtual void plugActionList(const char *name, QList<QAction*> &list) {
         KParts::MainWindow::plugActionList(name, list);
     }
-
 
     void refreshView();     // re-create the main view
     void configChanged();
@@ -174,6 +177,7 @@ private:
     KrActions *_krActions;
     ViewActions *_viewActions;
     ListPanelActions *_listPanelActions;
+    TabActions *_tabActions;
     KSystemTrayIcon *sysTray;
     QPoint       oldPos;
     QSize        oldSize;

@@ -82,8 +82,8 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     cmdLine = new KCMDLine(this);
 
     // add a panel manager for each side of the splitter
-    leftMng  = new PanelManager(horiz_splitter, true);
-    rightMng = new PanelManager(horiz_splitter, false);
+    leftMng  = new PanelManager(horiz_splitter, krApp, true);
+    rightMng = new PanelManager(horiz_splitter, krApp, false);
 
     // make the left panel focused at program start
     activeMng = leftMng;

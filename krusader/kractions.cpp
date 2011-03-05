@@ -69,14 +69,6 @@ KAction *KrActions::actSelectColorMask = 0;
 KAction *KrActions::actOpenLeftBm = 0;
 KAction *KrActions::actOpenRightBm = 0;
 KAction *KrActions::actCmdlinePopup = 0;
-KAction *KrActions::actNewTab = 0;
-KAction *KrActions::actDupTab = 0;
-KAction *KrActions::actLockTab = 0;
-KAction *KrActions::actCloseTab = 0;
-KAction *KrActions::actNextTab = 0;
-KAction *KrActions::actPreviousTab = 0;
-KAction *KrActions::actCloseInactiveTabs = 0;
-KAction *KrActions::actCloseDuplicatedTabs = 0;
 KAction *KrActions::actSplit = 0;
 KAction *KrActions::actCombine = 0;
 KAction *KrActions::actUserMenu = 0;
@@ -269,14 +261,6 @@ void KrActions::setupActions(Krusader *krusaderApp)
     KAction *t3, *t4, *t5, *t6, *t7, *t8, *t9, *t10, *t11, *t12, *t13, *t14, *t15, *t16;
     NEW_KACTION(t7, i18n("Bookmark Current"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_D, SLOTS, SLOT(bookmarkCurrent()), "bookmark current");
     NEW_KACTION(actVerticalMode, i18n("Vertical Mode"), "view-split-top-bottom", Qt::ALT + Qt::CTRL + Qt::Key_R, MAIN_VIEW, SLOT(toggleVerticalMode()), "toggle vertical mode");
-    NEW_KACTION(actNewTab, i18n("New Tab"), "tab-new", Qt::ALT + Qt::CTRL + Qt::Key_N, SLOTS, SLOT(newTab()), "new tab");
-    NEW_KACTION(actDupTab, i18n("Duplicate Current Tab"), "tab_duplicate", Qt::ALT + Qt::CTRL + Qt::SHIFT + Qt::Key_N, SLOTS, SLOT(duplicateTab()), "duplicate tab");
-    NEW_KACTION(actCloseTab, i18n("Close Current Tab"), "tab-close", Qt::CTRL + Qt::Key_W, SLOTS, SLOT(closeTab()), "close tab");
-    NEW_KACTION(actNextTab, i18n("Next Tab"), 0, Qt::SHIFT + Qt::Key_Right, SLOTS, SLOT(nextTab()), "next tab");
-    NEW_KACTION(actPreviousTab, i18n("Previous Tab"), 0, Qt::SHIFT + Qt::Key_Left, SLOTS, SLOT(previousTab()), "previous tab");
-    NEW_KACTION(actCloseInactiveTabs, i18n("Close Inactive Tabs"), 0, 0, SLOTS, SLOT(closeInactiveTabs()), "close inactive tabs");
-    NEW_KACTION(actCloseDuplicatedTabs, i18n("Close Duplicated Tabs"), 0, 0, SLOTS, SLOT(closeDuplicatedTabs()), "close duplicated tabs");
-    NEW_KACTION(actLockTab, i18n("Lock Tab"), 0, 0, SLOTS, SLOT(lockTab()), "lock tab");
 #if 0
     actUserMenu = new KAction(i18n("User Menu"), ALT + Qt::Key_QuoteLeft, SLOTS,
                               SLOT(userMenu()), actionCollection(), "user menu");
