@@ -57,29 +57,6 @@ PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): KTabBar(parent),
     setShape(KTabBar::TriangularSouth);
 }
 
-void PanelTabBar::mousePressEvent(QMouseEvent* e)
-{
-    int clickedTab = tabAt(e->pos());
-    if (-1 == clickedTab) { // clicked on nothing ...
-        KTabBar::mousePressEvent(e);
-        return;
-    }
-
-    setCurrentIndex(clickedTab);
-
-    ListPanel *panel = (ListPanel*)tabData(clickedTab).toLongLong();
-    emit changePanel(panel);
-
-    if (e->button() == Qt::RightButton) {
-        // show the popup menu
-        _panelActionMenu->menu()->popup(e->globalPos());
-    } else
-        if (e->button() == Qt::MidButton) { // close the current tab
-            emit closeCurrentTab();
-        }
-    KTabBar::mousePressEvent(e);
-}
-
 void PanelTabBar::insertAction(KAction* action)
 {
     _panelActionMenu->addAction(action);
@@ -248,6 +225,29 @@ void PanelTabBar::resizeEvent(QResizeEvent *e)
     KTabBar::resizeEvent(e);
 
     layoutTabs();
+}
+
+void PanelTabBar::mousePressEvent(QMouseEvent* e)
+{
+    int clickedTab = tabAt(e->pos());
+    if (-1 == clickedTab) { // clicked on nothing ...
+        KTabBar::mousePressEvent(e);
+        return;
+    }
+
+    setCurrentIndex(clickedTab);
+
+    ListPanel *panel = (ListPanel*)tabData(clickedTab).toLongLong();
+    emit changePanel(panel);
+
+    if (e->button() == Qt::RightButton) {
+        // show the popup menu
+        _panelActionMenu->menu()->popup(e->globalPos());
+    } else
+        if (e->button() == Qt::MidButton) { // close the current tab
+            emit closeCurrentTab();
+        }
+    KTabBar::mousePressEvent(e);
 }
 
 void PanelTabBar::dragEnterEvent(QDragEnterEvent *e)
