@@ -47,6 +47,7 @@ PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): KTabBar(parent),
     insertAction(actions->actNewTab);
     insertAction(actions->actLockTab);
     insertAction(actions->actDupTab);
+    insertAction(actions->actMoveTabToOtherSide);
     insertAction(actions->actCloseTab);
     insertAction(actions->actCloseInactiveTabs);
     insertAction(actions->actCloseDuplicatedTabs);
@@ -121,7 +122,7 @@ ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete)
 {
     int id = currentIndex();
     ListPanel *oldp = (ListPanel*)tabData(id).toLongLong(); // old panel to kill later
-    disconnect(oldp);
+    disconnect(oldp, 0, this, 0);
     removeTab(id);
 
     layoutTabs();

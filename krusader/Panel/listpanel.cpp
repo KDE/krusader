@@ -395,6 +395,12 @@ ListPanel::~ListPanel()
 //     delete layout;
 }
 
+void ListPanel::reparent(QWidget *parent, AbstractPanelManager *manager)
+{
+    setParent(parent);
+    _manager = manager;
+}
+
 int ListPanel::defaultPanelType()
 {
     KConfigGroup group(krConfig, "Look&Feel");

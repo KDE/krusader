@@ -47,11 +47,12 @@ protected slots:
     void previousTab();
     void closeInactiveTabs();
     void closeDuplicatedTabs();
+    void moveTabToOtherSide();
 
 protected:
     inline PanelManager *activeManager();
 
-    KAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab;
+    KAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actMoveTabToOtherSide;
     KAction *actCloseInactiveTabs, *actCloseDuplicatedTabs, *actLockTab;
 };
 

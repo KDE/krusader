@@ -197,6 +197,29 @@ void PanelManager::layoutTabs()
     QTimer::singleShot(0, _tabbar, SLOT(layoutTabs()));
 }
 
+void PanelManager::moveTabToOtherSide()
+{
+    if(tabCount() < 2)
+        return;
+
+    ListPanel *p;
+    _self = _tabbar->removeCurrentPanel(p);
+    _stack->setCurrentWidget(_self);
+    _stack->removeWidget(p);
+
+    PanelManager *otherMng = static_cast<PanelManager*>(otherManager());
+    p->reparent(otherMng->_stack, otherMng);
+    int idx = otherMng->_tabbar->addPanel(p, true);
+    otherMng->_stack->addWidget(p);
+    otherMng->_stack->setCurrentWidget(p);
+    otherMng->_self = p;
+
+    otherMng->tabsCountChanged();
+    tabsCountChanged();
+
+    p->slotFocusOnMe();
+}
+
 void PanelManager::slotNewTab(const KUrl& url, bool setCurrent)
 {
     ListPanel *p = createPanel(setCurrent);

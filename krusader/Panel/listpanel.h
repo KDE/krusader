@@ -93,6 +93,8 @@ public:
 
     void start(KUrl url = KUrl(), bool immediate = false);
 
+    void reparent(QWidget *parent, AbstractPanelManager *manager);
+
     int getType() {
         return panelType;
     }

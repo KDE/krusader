@@ -53,10 +53,6 @@ public:
      * It also receives a bool (left) which is true if the manager is the left one, or false otherwise.
      */
     PanelManager(QWidget *parent, FileManagerWindow* mainWindow, bool left);
-    /**
-     * Swaps the left / right directions of the panel
-     */
-    void swapPanels();
 
     void saveSettings(KConfigGroup config, bool localOnly = true, bool saveHistory = false);
     void loadSettings(KConfigGroup config);
@@ -67,6 +63,7 @@ public:
     int activeTab();
     void setActiveTab(int);
     void setCurrentTab(int);
+    void moveTabToOtherSide();
     void refreshAllTabs(bool invalidate = false);
     void layoutTabs();
     void setLeft(bool left) {

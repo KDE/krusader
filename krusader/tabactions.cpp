@@ -31,6 +31,7 @@ TabActions::TabActions(QObject *parent, FileManagerWindow *mainWindow) : Actions
 {
     actNewTab = action(i18n("New Tab"), "tab-new", Qt::ALT + Qt::CTRL + Qt::Key_N, SLOT(newTab()), "new tab");
     actDupTab = action(i18n("Duplicate Current Tab"), "tab_duplicate", Qt::ALT + Qt::CTRL + Qt::SHIFT + Qt::Key_N, SLOT(duplicateTab()), "duplicate tab");
+    actMoveTabToOtherSide = action(i18n("Move Current Tab to Other Side"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_O, SLOT(moveTabToOtherSide()), "move_tab_to_other_side");
     actCloseTab = action(i18n("Close Current Tab"), "tab-close", Qt::CTRL + Qt::Key_W, SLOT(closeTab()), "close tab");
     actNextTab = action(i18n("Next Tab"), 0, Qt::SHIFT + Qt::Key_Right, SLOT(nextTab()), "next tab");
     actPreviousTab = action(i18n("Previous Tab"), 0, Qt::SHIFT + Qt::Key_Left, SLOT(previousTab()), "previous tab");
@@ -53,6 +54,7 @@ void TabActions::refreshActions()
     actCloseTab->setEnabled(tabCount > 1);
     actCloseInactiveTabs->setEnabled(tabCount > 1);
     actCloseDuplicatedTabs->setEnabled(tabCount > 1);
+    actMoveTabToOtherSide->setEnabled(tabCount > 1);
     actNextTab->setEnabled(tabCount > 1);
     actPreviousTab->setEnabled(tabCount > 1);
     bool locked = activeManager()->currentPanel()->gui->isLocked();
@@ -68,6 +70,11 @@ void TabActions::duplicateTab()
 {
     activeManager()->slotNewTab(static_cast<FileManagerWindow*>(
         _mainWindow)->activePanel()->virtualPath());
+}
+
+void TabActions::moveTabToOtherSide()
+{
+    activeManager()->moveTabToOtherSide();
 }
 
 void TabActions::nextTab()
