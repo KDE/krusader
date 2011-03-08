@@ -81,8 +81,13 @@ signals:
      */
     void newTab(const KUrl& path);
 
+    void draggingTab(QMouseEvent*);
+    void draggingTabFinished(QMouseEvent*);
+
 protected:
+    void mouseMoveEvent(QMouseEvent*e);
     void mousePressEvent(QMouseEvent*);
+    void mouseReleaseEvent(QMouseEvent*);
     void insertAction(KAction*);
     QString squeeze(QString text, int index = -1);
     virtual void dragEnterEvent(QDragEnterEvent *);
@@ -97,6 +102,7 @@ private:
     KActionMenu *_panelActionMenu;
     bool _left;
     int _maxTabLength;
+    bool _tabClicked, _draggingTab;
 };
 
 #endif

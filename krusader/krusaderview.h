@@ -108,6 +108,9 @@ public slots:
 
     void killTerminalEmulator();
 
+    void draggingTab(PanelManager *from, QMouseEvent *e);
+    void draggingTabFinished(PanelManager *from, QMouseEvent *e);
+
 public:
     PanelManager *activeMng, *leftMng, *rightMng;       // saving them for panel swaps
     KFnKeys   *fnKeys;          // function keys
@@ -118,6 +121,7 @@ public:
 
 private:
     int getFocusCandidates(QVector<QWidget*> &widgets);
+    bool cursorIsOnOtherSide(PanelManager *of, const QPoint &globalPos);
 
     QGridLayout *mainLayout, *terminal_layout;
 };

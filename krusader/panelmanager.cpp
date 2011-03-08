@@ -76,6 +76,8 @@ PanelManager::PanelManager(QWidget *parent, FileManagerWindow* mainWindow, bool 
     connect(_tabbar, SIGNAL(changePanel(ListPanel*)), this, SLOT(slotChangePanel(ListPanel *)));
     connect(_tabbar, SIGNAL(closeCurrentTab()), this, SLOT(slotCloseTab()));
     connect(_tabbar, SIGNAL(newTab(const KUrl&)), this, SLOT(slotNewTab(const KUrl&)));
+    connect(_tabbar, SIGNAL(draggingTab(QMouseEvent*)), this, SLOT(slotDraggingTab(QMouseEvent*)));
+    connect(_tabbar, SIGNAL(draggingTabFinished(QMouseEvent*)), this, SLOT(slotDraggingTabFinished(QMouseEvent*)));
 
     QHBoxLayout *tabbarLayout = new QHBoxLayout;
     tabbarLayout->setSpacing(0);

@@ -38,7 +38,8 @@
 
 #define DISPLAY(X) (X.isLocalFile() ? X.path() : X.prettyUrl())
 
-PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): KTabBar(parent), _maxTabLength(0)
+PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): KTabBar(parent),
+    _maxTabLength(0), _tabClicked(false), _draggingTab(false)
 {
     _panelActionMenu = new KActionMenu(i18n("Panel"), this);
 
@@ -227,13 +228,25 @@ void PanelTabBar::resizeEvent(QResizeEvent *e)
     layoutTabs();
 }
 
+void PanelTabBar::mouseMoveEvent(QMouseEvent* e)
+{
+    KTabBar::mouseMoveEvent(e);
+    if(_tabClicked) {
+        _draggingTab = true;
+        emit draggingTab(e);
+    }
+}
+
 void PanelTabBar::mousePressEvent(QMouseEvent* e)
 {
     int clickedTab = tabAt(e->pos());
+
     if (-1 == clickedTab) { // clicked on nothing ...
         KTabBar::mousePressEvent(e);
         return;
     }
+
+    _tabClicked = true;
 
     setCurrentIndex(clickedTab);
 
@@ -243,11 +256,21 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
     if (e->button() == Qt::RightButton) {
         // show the popup menu
         _panelActionMenu->menu()->popup(e->globalPos());
-    } else
-        if (e->button() == Qt::MidButton) { // close the current tab
+    } else {
+        if (e->button() == Qt::MidButton)// close the current tab
             emit closeCurrentTab();
-        }
+    }
+
     KTabBar::mousePressEvent(e);
+}
+
+void PanelTabBar::mouseReleaseEvent(QMouseEvent* e)
+{
+    KTabBar::mouseReleaseEvent(e);
+    if(_draggingTab)
+        emit draggingTabFinished(e);
+    _draggingTab = false;
+    _tabClicked = false;
 }
 
 void PanelTabBar::dragEnterEvent(QDragEnterEvent *e)

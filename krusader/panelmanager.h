@@ -80,6 +80,10 @@ public:
         slotNewTab(url);
     }
 
+signals:
+    void draggingTab(PanelManager *from, QMouseEvent*);
+    void draggingTabFinished(PanelManager *from, QMouseEvent*);
+
 public slots:
     /**
      * Called externally to start a new tab. Example of usage would be the "open in a new tab"
@@ -106,6 +110,12 @@ public slots:
 
 protected slots:
     void slotChangePanel(ListPanel *p);
+    void slotDraggingTab(QMouseEvent *e) {
+        emit draggingTab(this, e);
+    }
+    void slotDraggingTabFinished(QMouseEvent* e) {
+        emit draggingTabFinished(this, e);
+    }
 
 private:
     void deletePanel(ListPanel *p);

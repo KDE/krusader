@@ -85,6 +85,16 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     leftMng  = new PanelManager(horiz_splitter, krApp, true);
     rightMng = new PanelManager(horiz_splitter, krApp, false);
 
+    connect(leftMng, SIGNAL(draggingTab(PanelManager*, QMouseEvent*)),
+                     SLOT(draggingTab(PanelManager*, QMouseEvent*)));
+    connect(leftMng, SIGNAL(draggingTabFinished(PanelManager*, QMouseEvent*)),
+                     SLOT(draggingTabFinished(PanelManager*, QMouseEvent*)));
+    connect(rightMng, SIGNAL(draggingTab(PanelManager*, QMouseEvent*)),
+                      SLOT(draggingTab(PanelManager*, QMouseEvent*)));
+    connect(rightMng, SIGNAL(draggingTabFinished(PanelManager*, QMouseEvent*)),
+                      SLOT(draggingTabFinished(PanelManager*, QMouseEvent*)));
+
+
     // make the left panel focused at program start
     activeMng = leftMng;
 
@@ -415,5 +425,53 @@ void KrusaderView::saveSettings(KConfigGroup &cfg)
     leftMng->saveSettings(KConfigGroup(&cfg, "Left Tab Bar"), localOnly, true);
     rightMng->saveSettings(KConfigGroup(&cfg, "Right Tab Bar"), localOnly, true);
 }
+
+bool KrusaderView::cursorIsOnOtherSide(PanelManager *of, const QPoint &globalPos)
+{
+    int border = -1;
+    int pos = -1;
+
+    if (horiz_splitter->orientation() == Qt::Horizontal) {
+        pos = globalPos.x();
+        if(of == leftMng)
+            border = leftMng->mapToGlobal(QPoint(leftMng->width(), 0)).x();
+        else
+            border = rightMng->mapToGlobal(QPoint(0, 0)).x();
+    } else {
+        pos = globalPos.y();
+        if(of == leftMng)
+            border = leftMng->mapToGlobal(QPoint(0, leftMng->height())).y();
+        else
+            border = rightMng->mapToGlobal(QPoint(0, 0)).y();
+    }
+
+    return (of == leftMng) ? pos > border : pos < border;
+}
+
+void KrusaderView::draggingTab(PanelManager *from, QMouseEvent *e)
+{
+    QString icon;
+    if (horiz_splitter->orientation() == Qt::Horizontal)
+        icon = (from == leftMng) ? "arrow-right" : "arrow-left";
+    else
+        icon = (from == leftMng) ? "arrow-down" : "arrow-up";
+
+    QCursor cursor(KIcon(icon).pixmap(22));
+
+    if (cursorIsOnOtherSide(from, e->globalPos())) {
+        if(!qApp->overrideCursor())
+            qApp->setOverrideCursor(cursor);
+    } else
+        qApp->restoreOverrideCursor();
+}
+
+void KrusaderView::draggingTabFinished(PanelManager *from, QMouseEvent *e)
+{
+    qApp->restoreOverrideCursor();
+
+    if (cursorIsOnOtherSide(from, e->globalPos())) 
+        from->moveTabToOtherSide();
+}
+
 
 #include "krusaderview.moc"
