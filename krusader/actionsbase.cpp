@@ -27,8 +27,8 @@
 void ActionsBase::ActionGroup::reconnect(QObject *recv)
 {
     foreach(KAction *action, _slots.keys()) {
-        action->disconnect(action, 0, 0, 0);
-        action->connect(action, SIGNAL(triggered(bool)), recv, _slots[action]);
+        disconnect(action, 0, 0, 0);
+        connect(action, SIGNAL(triggered(bool)), recv, _slots[action]);
     }
 }
 
