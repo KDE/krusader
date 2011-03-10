@@ -1054,10 +1054,11 @@ void KrView::saveSettings(KConfigGroup group, KrViewProperties::PropertyType pro
         group.writeEntry("ShowPreviews", previewsShown());
     if(properties & KrViewProperties::PropSortMode)
         saveSortMode(group);
-    if((properties & KrViewProperties::PropFilter) && _properties->filter == KrViewProperties::Custom) {
-        group.writeEntry("CustomFilter", true);
+    if(properties & KrViewProperties::PropFilter) {
+        group.writeEntry("Filter", static_cast<int>(_properties->filter));
         group.writeEntry("FilterApplysToDirs", _properties->filterApplysToDirs);
-        _properties->filterMask.save(KConfigGroup(&group, "FilterMask"));
+        if(_properties->filterSettings.isValid())
+            _properties->filterSettings.save(KConfigGroup(&group, "FilterSettings"));
     }
 }
 
@@ -1067,6 +1068,7 @@ void KrView::restoreSettings(KConfigGroup group)
     _updateDefaultSettings = false;
     doRestoreSettings(group);
     _updateDefaultSettings = tmp;
+    refresh();
 }
 
 void KrView::doRestoreSettings(KConfigGroup group)
@@ -1074,12 +1076,11 @@ void KrView::doRestoreSettings(KConfigGroup group)
     restoreSortMode(group);
     setFileIconSize(group.readEntry("IconSize", defaultFileIconSize()));
     showPreviews(group.readEntry("ShowPreviews", false));
-    if(group.readEntry("CustomFilter", false)) {
-        KRQuery query;
-        query.load(KConfigGroup(&group, "FilterMask"));
-        setCustomFilter(query, group.readEntry("FilterApplysToDirs", false));
-    } else
-        setFilter(KrViewProperties::All);
+    _properties->filter = static_cast<KrViewProperties::FilterSpec>(group.readEntry("Filter",
+                                                    static_cast<int>(KrViewProperties::All)));
+    _properties->filterApplysToDirs = group.readEntry("FilterApplysToDirs", false);
+    _properties->filterSettings.load(KConfigGroup(&group, "FilterSettings"));
+    _properties->filterMask = _properties->filterSettings.toQuery();
 }
 
 void KrView::applySettingsToOthers()
@@ -1195,10 +1196,11 @@ void KrView::setFiles(VfileContainer *files)
     QObject::connect(_files, SIGNAL(deletedVfile(const QString&)), op(), SLOT(fileDeleted(const QString&)));
 }
 
-void KrView::setCustomFilter(KRQuery mask, bool applyToDirs)
+void KrView::setFilter(KrViewProperties::FilterSpec filter, FilterSettings customFilter, bool applyToDirs)
 {
-    _properties->filter = KrViewProperties::Custom;
-    _properties->filterMask = mask;
+    _properties->filter = filter;
+    _properties->filterSettings = customFilter;
+    _properties->filterMask = customFilter.toQuery();
     _properties->filterApplysToDirs = applyToDirs;
     refresh();
 }
@@ -1206,7 +1208,9 @@ void KrView::setCustomFilter(KRQuery mask, bool applyToDirs)
 void KrView::setFilter(KrViewProperties::FilterSpec filter)
 {
 
-    bool applyToDirs = _properties->filterApplysToDirs;
+    KConfigGroup cfg(_config, "Look&Feel");
+    bool rememberSettings = cfg.readEntry("FilterDialogRemembersSettings", _FilterDialogRemembersSettings);
+    bool applyToDirs = rememberSettings ? _properties->filterApplysToDirs : false;
     switch (filter) {
     case KrViewProperties::All :
         break;
@@ -1214,12 +1218,15 @@ void KrView::setFilter(KrViewProperties::FilterSpec filter)
         {
             FilterDialog dialog(_widget, i18n("Filter Files"), QStringList(i18n("Apply filter to directories")), false);
             dialog.checkExtraOption(i18n("Apply filter to directories"), applyToDirs);
+            if(rememberSettings)
+                dialog.applySettings(_properties->filterSettings);
             dialog.exec();
-            KRQuery filterMask = dialog.getQuery();
-            if (filterMask.isNull()) // if the user canceled - quit
+            FilterSettings s(dialog.getSettings());
+            if(!s.isValid()) // if the user canceled - quit
                 return;
+            _properties->filterSettings = s;
+            _properties->filterMask = s.toQuery();
             applyToDirs = dialog.isExtraOptionChecked(i18n("Apply filter to directories"));
-             _properties->filterMask = filterMask;
         }
         break;
     default:

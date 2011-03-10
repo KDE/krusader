@@ -40,6 +40,7 @@
 #include "../krglobal.h"
 #include "../VFS/vfile.h"
 #include "../VFS/krquery.h"
+#include "../Filter/filtersettings.h"
 
 #include <kdebug.h>
 
@@ -103,6 +104,7 @@ public:
     SortMethod sortMethod;  // sort method for names and extensions
     FilterSpec filter; // what items to show (all, custom, exec)
     KRQuery filterMask; // what items to show (*.cpp, *.h etc)
+    FilterSettings filterSettings;
     bool filterApplysToDirs;
     bool localeAwareCompareIsCaseSensitive; // mostly, it is not! depends on LC_COLLATE
     bool humanReadableSize;  // display size as KB, MB or just as a long number
@@ -451,7 +453,7 @@ public:
         return _properties->filter;
     }
     virtual void setFilter(KrViewProperties::FilterSpec filter);
-    virtual void setCustomFilter(KRQuery mask, bool applyToDirs);
+    virtual void setFilter(KrViewProperties::FilterSpec filter, FilterSettings customFilter, bool applyToDirs);
     virtual void customSelection(bool select);
     virtual int defaultFileIconSize();
     virtual void setFileIconSize(int size);

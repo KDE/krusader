@@ -59,6 +59,11 @@ FilterDialog::FilterDialog(QWidget *parent, QString caption, QStringList extraOp
         exec();
 }
 
+void FilterDialog::applySettings(const FilterSettings &s)
+{
+    filterTabs->applySettings(s);
+}
+
 KRQuery FilterDialog::getQuery()
 {
     return settings.toQuery();

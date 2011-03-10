@@ -89,6 +89,9 @@
 #define _UserDefinedFolderIcons true
 // Unslect files before copy/move
 #define _UnselectBeforeOperation true
+// Filter dialog remembers settings
+#define _FilterDialogRemembersSettings false
+
 
 // Panel Toolbar Checkboxes
 // Panel Toolbar Visible checkbox turned off

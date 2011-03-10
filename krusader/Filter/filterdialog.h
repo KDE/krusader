@@ -47,9 +47,10 @@ public:
     FilterDialog(QWidget *parent = 0, QString caption = QString(),
                  QStringList extraOptions = QStringList(), bool modal = true);
     KRQuery getQuery();
-    FilterSettings getSettings() {
+    const FilterSettings& getSettings() {
         return settings;
     }
+    void applySettings(const FilterSettings &s);
     bool isExtraOptionChecked(QString name);
     void checkExtraOption(QString name, bool check);
 

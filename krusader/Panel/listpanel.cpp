@@ -461,16 +461,14 @@ void ListPanel::changeType(int type)
         KUrl::List selection = view->selectedUrls();
         bool filterApplysToDirs = view->properties()->filterApplysToDirs;
         KrViewProperties::FilterSpec filter = view->filter();
-        KRQuery filterMask = view->filterMask();
+        FilterSettings filterSettings = view->properties()->filterSettings;
 
         panelType = type;
         quickSearch->setFocusProxy(0);
         delete view;
 
         createView();
-        if(filter == KrViewProperties::Custom)
-            view->setCustomFilter(filterMask, filterApplysToDirs);
-        view->refresh();
+        view->setFilter(filter, filterSettings, filterApplysToDirs);
         view->setSelection(selection);
         view->setCurrentItem(current);
         view->makeItemVisible(view->getCurrentKrViewItem());
