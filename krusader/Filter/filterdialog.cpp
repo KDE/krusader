@@ -41,13 +41,12 @@ FilterDialog::FilterDialog(QWidget *parent, QString caption, QStringList extraOp
 {
     setWindowTitle(caption.isNull() ? i18n("Krusader::Choose Files") : caption);
     setModal(modal);
-    setButtons(Ok | Cancel);
+    setButtons(Ok | Cancel | Reset);
 
     KTabWidget *filterWidget = new KTabWidget;
 
     filterTabs = FilterTabs::addTo(filterWidget, FilterTabs::HasProfileHandler, extraOptions);
     generalFilter = static_cast<GeneralFilter*> (filterTabs->get("GeneralFilter"));
-    generalFilter->searchFor->setEditText("*");
 
     setMainWidget(filterWidget);
 
@@ -90,10 +89,17 @@ void FilterDialog::slotCloseRequest(bool doAccept)
 
 void FilterDialog::slotButtonClicked(int button)
 {
-    if (button == KDialog::Ok)
+    switch(button) {
+    case KDialog::Ok:
         slotOk();
-    else
+        break;
+    case KDialog::Reset:
+        filterTabs->reset();
+        generalFilter->searchFor->setFocus();
+        break;
+    default:
         KDialog::slotButtonClicked(button);
+    }
 }
 
 void FilterDialog::slotOk()

@@ -53,6 +53,8 @@ FilterTabs::FilterTabs(int properties, KTabWidget *tabWidget,
     tabWidget->addTab(advancedFilter, i18n("&Advanced"));
     filterList.append(advancedFilter);
     pageNumbers.append(tabWidget->indexOf(advancedFilter));
+
+    reset(); // apply defaults
 }
 
 bool FilterTabs::isExtraOptionChecked(QString name)
@@ -94,6 +96,13 @@ void FilterTabs::applySettings(const FilterSettings &s)
         while (it.hasNext())
             it.next()->applySettings(s);
     }
+}
+
+void FilterTabs::reset()
+{
+    FilterSettings s; // default settings
+    s.valid = true;
+    applySettings(s);
 }
 
 void FilterTabs::saveToProfile(QString name)

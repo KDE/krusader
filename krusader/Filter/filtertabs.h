@@ -62,6 +62,7 @@ public:
     void checkExtraOption(QString name, bool check);
     FilterSettings getSettings();
     void applySettings(const FilterSettings &s);
+    void reset();
 
 public slots:
     void  loadFromProfile(QString);

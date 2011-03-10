@@ -90,6 +90,7 @@ int FilterSettings::TimeSpan::days() const
 
 FilterSettings::FilterSettings() :
     valid(false),
+    searchFor("*"),
     searchForCase(false),
     searchInArchives(false),
     recursive(false),
