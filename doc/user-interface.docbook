@@ -468,7 +468,7 @@
               as the left panel.</para>
             </listitem>
             <listitem>
-              <para>On a directory: right panel opens focused directory on the left panel.</para>
+              <para>On a directory: right panel opens the directory focused on the left panel.</para>
             </listitem>
           </itemizedlist></para>
         </listitem>
@@ -786,11 +786,12 @@
     <itemizedlist>
       <listitem>
         <para>To 
-        <keycap>open a new tab</keycap> and keep the selected
-        directory: <keycap>Right-click</keycap> on a directory and
+        <keycap>open a new tab</keycap> and keep the current
+        tab opened: <keycap>Right-click</keycap> on a directory and
         select 
         <keycap>open in a new tab</keycap>, or use the
-        Middle Mouse Button.</para>
+        &MMB;, or use <keycombo 
+        action="simul">&Alt;&Ctrl;<keycap>N</keycap></keycombo>.</para>
       </listitem>
       <listitem>
         <para>To <keycap>lock a tab</keycap>, <keycap>Right-click</keycap> and
@@ -809,7 +810,7 @@
         <para>To 
         <keycap>close a tab</keycap> (except the left tab):
         <keycap>Right-click</keycap> on the tab and select 
-        <keycap>close tab</keycap>, or use the Middle Mouse Button, or
+        <keycap>close tab</keycap>, or use the &MMB;, or
         use the Folder tab 
         <guibutton>"red cross"</guibutton> button, or use 
         <keycombo action="simul">&Alt;&Ctrl;

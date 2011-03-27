@@ -218,9 +218,9 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>This menu option starts <ulink url="http://www.krename.net"><application>Krename</application></ulink> a
+          <para>This menu option starts <ulink url="http://www.krename.net"><application>Krename</application></ulink>, a
           very powerful external batch renamer for &kde;
-          3.x.</para>
+          3.x or newer.</para>
           <itemizedlist>
             <title>Krename Features</title>
             <listitem>
@@ -1215,6 +1215,21 @@
         <term>
           <menuchoice>
             <shortcut>
+              <keycombo action="simul">&Alt;&Shift;
+              <keycap>Q</keycap></keycombo>
+            </shortcut>
+            <guimenu>Tools</guimenu>
+            <guimenuitem>Queue Manager</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Opens <link linkend="queue">Queue Manager</link>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
               <keycombo action="simul">&Ctrl;
               <keycap>N</keycap></keycombo>
             </shortcut>
@@ -1558,6 +1573,22 @@
         <listitem>
           <para>Opens a new tab that is a duplicate of the active
           tab in the active panel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul">
+              &Ctrl;&Shift;
+              <keycap>O</keycap></keycombo>
+            </shortcut>
+            <guimenu>Window</guimenu>
+            <guimenuitem>Move Current Tab to Other Side</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Moves current tab to the other side of &krusader; window.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
