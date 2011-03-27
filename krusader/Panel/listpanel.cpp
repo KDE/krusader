@@ -521,7 +521,7 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
 void ListPanel::togglePanelPopup()
 {
     if(!popup) {
-        popup = new PanelPopup(splt, left, krApp);
+        popup = new PanelPopup(splt, isLeft(), krApp);
         connect(popup, SIGNAL(selection(const KUrl&)), SLOTS, SLOT(refresh(const KUrl&)));
         connect(popup, SIGNAL(hideMe()), this, SLOT(togglePanelPopup()));
     }
