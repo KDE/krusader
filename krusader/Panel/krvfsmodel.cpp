@@ -35,7 +35,7 @@ KrVfsModel::KrVfsModel(KrInterView * view): QAbstractListModel(0), _extensionEna
         _alternatingTable(false)
 {
     KConfigGroup grpSvr(krConfig, "Look&Feel");
-    _defaultFont = grpSvr.readEntry("Filelist Font", *_FilelistFont);
+    _defaultFont = grpSvr.readEntry("Filelist Font", _FilelistFont);
 }
 
 void KrVfsModel::populate(const QList<vfile*> &files, vfile *dummy)

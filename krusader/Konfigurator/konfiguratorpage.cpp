@@ -235,7 +235,7 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup(QString cls,
 }
 
 KonfiguratorFontChooser *KonfiguratorPage::createFontChooser(QString cls, QString name,
-        QFont *dflt, QWidget *parent, bool rst, int pg)
+        QFont dflt, QWidget *parent, bool rst, int pg)
 {
     KonfiguratorFontChooser *fontChooser = new KonfiguratorFontChooser(cls, name, dflt, parent,
             rst, pg);

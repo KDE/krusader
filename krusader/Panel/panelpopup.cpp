@@ -278,7 +278,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
     dataLine->setText("blah blah");
     connect(dataLine, SIGNAL(clicked()), this, SLOT(setFocus()));
     KConfigGroup lg(krConfig, "Look&Feel");
-    dataLine->setFont(lg.readEntry("Filelist Font", *_FilelistFont));
+    dataLine->setFont(lg.readEntry("Filelist Font", _FilelistFont));
     // --- hack: setup colors to be the same as an inactive panel
     dataLine->setBackgroundRole(QPalette::Window);
     QPalette q(dataLine->palette());

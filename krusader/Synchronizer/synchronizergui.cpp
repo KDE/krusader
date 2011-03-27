@@ -1333,7 +1333,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     syncList->installEventFilter(this);
 
     KConfigGroup gl(krConfig, "Look&Feel");
-    syncList->setFont(gl.readEntry("Filelist Font", *_FilelistFont));
+    syncList->setFont(gl.readEntry("Filelist Font", _FilelistFont));
 
     syncList->setBackgroundRole(QPalette::Window);
     syncList->setAutoFillBackground(true);

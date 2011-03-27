@@ -64,7 +64,7 @@
 
 ////////////////////////[Look&Feel]
 // Filelist Font ///////
-#define _FilelistFont   new QFont(KGlobalSettings::generalFont())
+#define _FilelistFont   KGlobalSettings::generalFont()
 // Warn On Exit ////////
 #define _WarnOnExit     false
 // Minimize To Tray ////
@@ -220,9 +220,9 @@
 // Terminal for UserActions ///////////
 #define _UserActions_Terminal      "konsole --noclose --workdir %d --title %t -e"
 // Normal font for output collection ///////
-#define _UserActions_NormalFont   new QFont(KGlobalSettings::generalFont())
+#define _UserActions_NormalFont   KGlobalSettings::generalFont()
 // Font for output collection with fixed width ///////
-#define _UserActions_FixedFont   new QFont(KGlobalSettings::fixedFont())
+#define _UserActions_FixedFont   KGlobalSettings::fixedFont()
 // Use for output collection  fixed width font as default ///////
 #define _UserActions_UseFixedFont   false
 

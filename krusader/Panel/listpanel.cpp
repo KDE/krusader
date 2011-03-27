@@ -165,7 +165,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     // status bar
     status = new KrSqueezedTextLabel(this);
     KConfigGroup group(krConfig, "Look&Feel");
-    status->setFont(group.readEntry("Filelist Font", *_FilelistFont));
+    status->setFont(group.readEntry("Filelist Font", _FilelistFont));
     status->setAutoFillBackground(false);
     status->setText("");          // needed for initialization code!
     status->setWhatsThis(i18n("The statusbar displays information about the FILESYSTEM "
@@ -234,7 +234,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 
     // totals label
     totals = new KrSqueezedTextLabel(this);
-    totals->setFont(group.readEntry("Filelist Font", *_FilelistFont));
+    totals->setFont(group.readEntry("Filelist Font", _FilelistFont));
     totals->setAutoFillBackground(false);
     totals->setWhatsThis(i18n("The totals bar shows how many files exist, "
                               "how many selected and the bytes math"));
@@ -242,7 +242,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 
     // free space label
     freeSpace = new KrSqueezedTextLabel(this);
-    freeSpace->setFont(group.readEntry("Filelist Font", *_FilelistFont));
+    freeSpace->setFont(group.readEntry("Filelist Font", _FilelistFont));
     freeSpace->setAutoFillBackground(false);
     freeSpace->setText("");
     freeSpace->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
@@ -306,7 +306,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 
     // quicksearch
     quickSearch = new KrQuickSearch(clientArea);
-    quickSearch->setFont(group.readEntry("Filelist Font", *_FilelistFont));
+    quickSearch->setFont(group.readEntry("Filelist Font", _FilelistFont));
     quickSearch->hide();
     // quickfilter
     quickFilter = new QuickFilter(clientArea);

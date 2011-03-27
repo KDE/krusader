@@ -40,7 +40,7 @@ KrItemView::KrItemView(QWidget *parent, KrViewInstance &instance, KConfig *cfg) 
     setSelectionModel(new DummySelectionModel(_model, this));
 
     KConfigGroup grpSvr(_config, "Look&Feel");
-    _viewFont = grpSvr.readEntry("Filelist Font", *_FilelistFont);
+    _viewFont = grpSvr.readEntry("Filelist Font", _FilelistFont);
 
     setStyle(new KrStyleProxy());
     setItemDelegate(new KrInterViewItemDelegate());

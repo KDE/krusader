@@ -391,7 +391,7 @@ void KonfiguratorURLRequester::slotSetDefaults(QObject *)
 // KonfiguratorFontChooser class
 ///////////////////////////////
 
-KonfiguratorFontChooser::KonfiguratorFontChooser(QString cls, QString name, QFont *dflt,
+KonfiguratorFontChooser::KonfiguratorFontChooser(QString cls, QString name, QFont dflt,
         QWidget *parent, bool rst, int pg) : QWidget(parent),
         defaultValue(dflt)
 {
@@ -424,7 +424,7 @@ KonfiguratorFontChooser::~KonfiguratorFontChooser()
 void KonfiguratorFontChooser::loadInitialValue()
 {
     KConfigGroup group(krConfig, ext->getCfgClass());
-    font = group.readEntry(ext->getCfgName(), *defaultValue);
+    font = group.readEntry(ext->getCfgName(), defaultValue);
     ext->setChanged(false);
     setFont();
 }
@@ -442,7 +442,7 @@ void KonfiguratorFontChooser::slotApply(QObject *, QString cls, QString name)
 
 void KonfiguratorFontChooser::slotSetDefaults(QObject *)
 {
-    font = *defaultValue;
+    font = defaultValue;
     ext->setChanged();
     setFont();
 }

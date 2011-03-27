@@ -110,8 +110,8 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
         connect(_stderr, SIGNAL(textChanged()), SLOT(currentTextEditChanged()));
 
     KConfigGroup group(krConfig, "UserActions");
-    normalFont = group.readEntry("Normal Font", *_UserActions_NormalFont);
-    fixedFont = group.readEntry("Fixed Font", *_UserActions_FixedFont);
+    normalFont = group.readEntry("Normal Font", _UserActions_NormalFont);
+    fixedFont = group.readEntry("Fixed Font", _UserActions_FixedFont);
     bool startupState = group.readEntry("Use Fixed Font", _UserActions_UseFixedFont);
     toggleFixedFont(startupState);
 

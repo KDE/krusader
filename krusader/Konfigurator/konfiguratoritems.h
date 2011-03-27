@@ -290,7 +290,7 @@ class KonfiguratorFontChooser : public QWidget
     Q_OBJECT
 
 public:
-    KonfiguratorFontChooser(QString cls, QString name, QFont *dflt, QWidget *parent = 0,
+    KonfiguratorFontChooser(QString cls, QString name, QFont dflt, QWidget *parent = 0,
                             bool rst = false, int pg = FIRST_PAGE);
     ~KonfiguratorFontChooser();
 
@@ -305,7 +305,7 @@ public slots:
     void            slotBrowseFont();
 
 protected:
-    QFont         * defaultValue;
+    QFont           defaultValue;
     QFont           font;
     KonfiguratorExtension *ext;
 

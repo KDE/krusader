@@ -186,7 +186,7 @@ LocateDlg::LocateDlg() : KDialog(0), isFeedToListBox(false)
     resultList->setColumnWidth(0, QFontMetrics(resultList->font()).width("W") * 60);
 
     KConfigGroup gl(krConfig, "Look&Feel");
-    resultList->setFont(gl.readEntry("Filelist Font", *_FilelistFont));
+    resultList->setFont(gl.readEntry("Filelist Font", _FilelistFont));
 
     resultList->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     resultList->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);

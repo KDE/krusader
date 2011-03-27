@@ -232,7 +232,7 @@ public:
       * <br>The font chooser widget's name is QString(cls + "/" + name).ascii()<br>
       *
       * Sample:<br><br>
-      * KonfiguratorFontChooser *myFontChooser = createFontChooser( "class", "name", new QFont(), parentWidget );<br>
+      * KonfiguratorFontChooser *myFontChooser = createFontChooser( "class", "name", QFont(), parentWidget );<br>
       * myLayout->addWidget( myFontChooser, 0, 0 );
       *
       * @param  cls         The class name used in KConfig (ex. "Archives")
@@ -244,7 +244,7 @@ public:
       *
       * @return             reference to the newly created font chooser
       */
-    KonfiguratorFontChooser *createFontChooser(QString cls, QString name, QFont *dflt,
+    KonfiguratorFontChooser *createFontChooser(QString cls, QString name, QFont dflt,
             QWidget *parent = 0, bool rst = false, int pg = FIRST_PAGE);
 
     /**
