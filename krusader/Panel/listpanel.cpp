@@ -168,8 +168,6 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     status->setFont(group.readEntry("Filelist Font", *_FilelistFont));
     status->setAutoFillBackground(false);
     status->setText("");          // needed for initialization code!
-    int sheight = QFontMetrics(status->font()).height() + 4;
-    status->setMaximumHeight(sheight);
     status->setWhatsThis(i18n("The statusbar displays information about the FILESYSTEM "
                               "which holds your current directory: Total size, free space, "
                               "type of filesystem, etc."));
@@ -255,7 +253,6 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     // progress indicator for the preview job
     previewProgress = new QProgressBar(this);
     previewProgress->hide();
-    previewProgress->setMaximumHeight(sheight);
     ADD_WIDGET(previewProgress);
 
     // a cancel button for the inplace refresh mechanism
@@ -310,7 +307,6 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     // quicksearch
     quickSearch = new KrQuickSearch(clientArea);
     quickSearch->setFont(group.readEntry("Filelist Font", *_FilelistFont));
-    quickSearch->setMaximumHeight(sheight);
     quickSearch->hide();
     // quickfilter
     quickFilter = new QuickFilter(clientArea);
@@ -1078,6 +1074,7 @@ void ListPanel::slotPreviewJobStarted(KJob *job)
     previewProgress->setFormat(i18n("loading previews") + ": %p%");
     previewProgress->show();
     inlineRefreshCancelButton->show();
+    previewProgress->setMaximumHeight(inlineRefreshCancelButton->height());
     connect(job, SIGNAL(percent(KJob*, unsigned long)), SLOT(slotPreviewJobPercent(KJob*, unsigned long)));
     connect(job, SIGNAL(result(KJob*)), SLOT(slotPreviewJobResult(KJob*)));
 }
