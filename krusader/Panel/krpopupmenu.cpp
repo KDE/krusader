@@ -293,8 +293,7 @@ void KrPopupMenu::performAction(int id)
         return ;
     case OPEN_TAB_ID :
         // assuming only 1 file is selected (otherwise we won't get here)
-        (ACTIVE_PANEL == LEFT_PANEL ? LEFT_MNG : RIGHT_MNG)->
-        slotNewTab(panel->func->files()->vfs_getFile(item->name()).url());
+        panel->manager()->newTab(panel->func->files()->vfs_getFile(item->name()).url(), panel);
         break;
     case OPEN_ID :
         for (KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it) {

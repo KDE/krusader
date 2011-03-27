@@ -68,8 +68,8 @@ void TabActions::newTab()
 
 void TabActions::duplicateTab()
 {
-    activeManager()->slotNewTab(static_cast<FileManagerWindow*>(
-        _mainWindow)->activePanel()->virtualPath());
+    KrPanel *activePanel = static_cast<FileManagerWindow*>(_mainWindow)->activePanel();
+    activeManager()->newTab(activePanel->virtualPath(), activePanel);
 }
 
 void TabActions::moveTabToOtherSide()

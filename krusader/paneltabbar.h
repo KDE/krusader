@@ -31,6 +31,7 @@
 class QMouseEvent;
 class KAction;
 class KActionMenu;
+class KrPanel;
 class ListPanel;
 class TabActions;
 
@@ -49,7 +50,7 @@ public slots:
     /**
      * called by PanelManager with an already created panel, and creates the corrosponding tab
      */
-    int addPanel(ListPanel *panel, bool setCurrent = true);
+    int addPanel(ListPanel *panel, bool setCurrent = true, KrPanel *nextTo = 0);
 
     ListPanel* getPanel(int tabIdx);
     void changePanel(int tabIdx, ListPanel *panel);

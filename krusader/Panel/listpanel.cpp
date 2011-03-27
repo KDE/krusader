@@ -977,7 +977,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
             if (e->modifiers() & Qt::AltModifier) {
                 vfile *vf = func->files()->vfs_search(view->getCurrentKrViewItem()->name());
                 if (vf && vf->vfile_isDir())
-                    newTab(vf->vfile_getUrl());
+                    newTab(vf->vfile_getUrl(), true);
             } else {
                 SLOTS->insertFileName((e->modifiers() & Qt::ShiftModifier) != 0);
             }
@@ -1318,10 +1318,10 @@ void ListPanel::newTab(KrViewItem *it)
     if (!it)
         return;
     else if (it->name() == "..") {
-        newTab(virtualPath().upUrl());
+        newTab(virtualPath().upUrl(), true);
     } else if (ITEM2VFILE(this, it)->vfile_isDir()) {
         KUrl url = virtualPath();
         url.addPath(it->name());
-        newTab(url);
+        newTab(url, true);
     }
 }

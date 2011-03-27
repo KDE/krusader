@@ -133,14 +133,15 @@ void PanelManager::slotChangePanel(ListPanel *p)
 //     _stack->setUpdatesEnabled(true);
 }
 
-ListPanel* PanelManager::createPanel(bool setCurrent, KConfigGroup cfg)
+ListPanel* PanelManager::createPanel(bool setCurrent, KConfigGroup cfg, KrPanel *nextTo)
 {
     // create the panel and add it into the widgetstack
     ListPanel * p = new ListPanel(_stack, this, cfg);
+
     _stack->addWidget(p);
 
     // now, create the corrosponding tab
-    _tabbar->addPanel(p, setCurrent);
+    _tabbar->addPanel(p, setCurrent, nextTo);
     tabsCountChanged();
     if (setCurrent)
         _stack->setCurrentWidget(p);
@@ -222,9 +223,9 @@ void PanelManager::moveTabToOtherSide()
     p->slotFocusOnMe();
 }
 
-void PanelManager::slotNewTab(const KUrl& url, bool setCurrent)
+void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, KrPanel *nextTo)
 {
-    ListPanel *p = createPanel(setCurrent);
+    ListPanel *p = createPanel(setCurrent, KConfigGroup(), nextTo);
     // update left/right pointers
     if (setCurrent)
         _self = p;

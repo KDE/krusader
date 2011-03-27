@@ -29,7 +29,7 @@ public:
     virtual bool isLeft() = 0;
     virtual AbstractPanelManager *otherManager() = 0;
     virtual KrPanel *currentPanel() = 0;
-    virtual void newTab(const KUrl&) = 0;
+    virtual void newTab(const KUrl&, KrPanel *nextTo = 0) = 0;
 };
 
 

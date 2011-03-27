@@ -76,8 +76,8 @@ public:
     }
     virtual AbstractPanelManager *otherManager();
     virtual KrPanel *currentPanel();
-    virtual void newTab(const KUrl &url) {
-        slotNewTab(url);
+    virtual void newTab(const KUrl &url, KrPanel *nextTo) {
+        slotNewTab(url, true, nextTo);
     }
 
 signals:
@@ -95,7 +95,7 @@ public slots:
     }
     Q_SCRIPTABLE void newTabs(const QStringList& urls);
 
-    void slotNewTab(const KUrl& url, bool setCurrent = true);
+    void slotNewTab(const KUrl& url, bool setCurrent = true, KrPanel *nextTo = 0);
     void slotNewTab();
     void slotLockTab();
     void slotNextTab();
@@ -121,7 +121,7 @@ private:
     void deletePanel(ListPanel *p);
     void updateTabbarPos();
     void tabsCountChanged();
-    ListPanel* createPanel(bool setCurrent = true, KConfigGroup cfg = KConfigGroup());
+    ListPanel* createPanel(bool setCurrent = true, KConfigGroup cfg = KConfigGroup(), KrPanel *nextTo = 0);
 
     TabActions *_actions;
     QGridLayout *_layout;

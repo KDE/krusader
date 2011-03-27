@@ -63,9 +63,25 @@ void PanelTabBar::insertAction(KAction* action)
     _panelActionMenu->addAction(action);
 }
 
-int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent)
+int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent, KrPanel *nextTo)
 {
-    int newId = addTab(squeeze(DISPLAY(panel->virtualPath())));
+    int insertIndex = -1;
+
+    if(nextTo) {
+        for(int i = 0; i < count(); i++) {
+            if(getPanel(i) == nextTo) {
+                insertIndex = i + 1;
+                break;
+            }
+        }
+    }
+
+    int newId;
+    if(insertIndex != -1) {
+        newId = insertTab(insertIndex, squeeze(DISPLAY(panel->virtualPath())));
+    } else
+        newId = addTab(squeeze(DISPLAY(panel->virtualPath())));
+
     QVariant v;
     v.setValue((long long)panel);
     setTabData(newId, v);

@@ -185,8 +185,8 @@ protected slots:
     void inlineRefreshPercent(KJob*, unsigned long);
     void slotVfsError(QString msg);
     void newTab(KrViewItem *item);
-    void newTab(const KUrl &url) {
-        _manager->newTab(url);
+    void newTab(const KUrl &url, bool nextToThis = false) {
+        _manager->newTab(url, nextToThis ? this : 0);
     }
 
 signals:
