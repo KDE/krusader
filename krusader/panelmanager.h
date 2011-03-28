@@ -127,7 +127,8 @@ private:
     void deletePanel(ListPanel *p);
     void updateTabbarPos();
     void tabsCountChanged();
-    ListPanel* createPanel(bool setCurrent = true, KConfigGroup cfg = KConfigGroup(), KrPanel *nextTo = 0);
+    ListPanel* addPanel(bool setCurrent = true, KConfigGroup cfg = KConfigGroup(), KrPanel *nextTo = 0);
+    ListPanel* createPanel(KConfigGroup cfg);
 
     PanelManager *_otherManager;
     TabActions *_actions;

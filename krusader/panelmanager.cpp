@@ -96,7 +96,7 @@ PanelManager::PanelManager(QWidget *parent, FileManagerWindow* mainWindow, bool 
 
     setLayout(_layout);
 
-    createPanel(true);
+    addPanel(true);
 
     tabsCountChanged();
 }
@@ -149,11 +149,19 @@ void PanelManager::slotChangePanel(ListPanel *p, bool makeActive)
 //     _stack->setUpdatesEnabled(true);
 }
 
-ListPanel* PanelManager::createPanel(bool setCurrent, KConfigGroup cfg, KrPanel *nextTo)
+ListPanel* PanelManager::createPanel(KConfigGroup cfg)
+{
+    ListPanel * p = new ListPanel(_stack, this, cfg);
+    connect(p, SIGNAL(activate()), this, SLOT(activate()));
+    connect(p, SIGNAL(pathChanged(ListPanel*)), this, SIGNAL(pathChanged(ListPanel*)));
+    connect(p, SIGNAL(pathChanged(ListPanel*)), _tabbar, SLOT(updateTab(ListPanel*)));
+    return p;
+}
+
+ListPanel* PanelManager::addPanel(bool setCurrent, KConfigGroup cfg, KrPanel *nextTo)
 {
     // create the panel and add it into the widgetstack
-    ListPanel * p = new ListPanel(_stack, this, cfg);
-
+    ListPanel * p = createPanel(cfg);
     _stack->addWidget(p);
 
     // now, create the corrosponding tab
@@ -162,10 +170,6 @@ ListPanel* PanelManager::createPanel(bool setCurrent, KConfigGroup cfg, KrPanel 
 
     if (setCurrent)
         slotChangePanel(p, false);
-
-    connect(p, SIGNAL(activate()), this, SLOT(activate()));
-    connect(p, SIGNAL(pathChanged(ListPanel*)), this, SIGNAL(pathChanged(ListPanel*)));
-    connect(p, SIGNAL(pathChanged(ListPanel*)), _tabbar, SLOT(updateTab(ListPanel*)));
 
     return p;
 }
@@ -197,7 +201,7 @@ void PanelManager::loadSettings(KConfigGroup config)
         if(i < numTabsOld)
             panel = _tabbar->getPanel(i);
         else
-            panel = createPanel(false, grpTab);
+            panel = addPanel(false, grpTab);
         panel->restoreSettings(grpTab);
     }
 
@@ -242,7 +246,7 @@ void PanelManager::moveTabToOtherSide()
 
 void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, KrPanel *nextTo)
 {
-    ListPanel *p = createPanel(setCurrent, KConfigGroup(), nextTo);
+    ListPanel *p = addPanel(setCurrent, KConfigGroup(), nextTo);
     p->start(url);
 }
 
@@ -307,11 +311,8 @@ void PanelManager::slotRecreatePanels()
         oldPanel->saveSettings(cfg, false);
         disconnect(oldPanel);
 
-        ListPanel *newPanel = new ListPanel(_stack, this);
+        ListPanel *newPanel = createPanel(cfg);
         newPanel->restoreSettings(cfg);
-        connect(newPanel, SIGNAL(activate()), this, SLOT(activate()));
-        connect(newPanel, SIGNAL(pathChanged(ListPanel*)), this, SIGNAL(pathChanged(ListPanel*)));
-        connect(newPanel, SIGNAL(pathChanged(ListPanel*)), _tabbar, SLOT(updateTab(ListPanel*)));
 
         _tabbar->changePanel(i, newPanel);
         _stack->insertWidget(i, newPanel);
