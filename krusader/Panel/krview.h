@@ -33,6 +33,7 @@
 #include <QtGui/QPixmap>
 #include <QtCore/QVariant>
 #include <QtCore/QHash>
+#include <QtCore/QRegExp>
 #include <QDropEvent>
 #include <QList>
 #include <QModelIndex>
@@ -532,7 +533,7 @@ protected:
     KrPreviews *_previews;
     int _fileIconSize;
     bool _updateDefaultSettings;
-    KRQuery _quickFilterMask;
+    QRegExp _quickFilterMask;
 
 private:
     uint _count, _numDirs;

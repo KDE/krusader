@@ -47,7 +47,6 @@
 #include <qnamespace.h>
 #include <qpixmapcache.h>
 #include <QtCore/QDir>
-#include <QtCore/QRegExp>
 #include <QtGui/QBitmap>
 #include <QtGui/QPainter>
 #include <QPixmap>
@@ -215,7 +214,10 @@ void KrViewOperator::setQuickFilter(QuickFilter *quickFilter)
 
 void KrViewOperator::quickFilterChanged(const QString &text)
 {
-    _view->_quickFilterMask = KRQuery(text);
+    KConfigGroup grpSvr(_view->_config, "Look&Feel");
+    bool caseSensitive = grpSvr.readEntry("Case Sensitive Quicksearch", _CaseSensitiveQuicksearch);
+
+    _view->_quickFilterMask = QRegExp(text, caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard);
     _view->refresh();
     _quickFilter->setMatch(_view->_count || !_view->_files->numVfiles());
 }
@@ -233,7 +235,7 @@ void KrViewOperator::stopQuickFilter(bool refreshView)
     _quickFilter->hide();
     _quickFilter->lineEdit()->clear();
     _quickFilter->setMatch(true);
-    _view->_quickFilterMask = KRQuery();
+    _view->_quickFilterMask = QRegExp();
     if(refreshView)
         _view->refresh();
 }
@@ -1148,7 +1150,7 @@ QString KrView::krPermissionString(const vfile * vf)
 
 bool KrView::isFiltered(vfile *vf)
 {
-    if (!_quickFilterMask.isNull() && !_quickFilterMask.match(vf))
+    if (_quickFilterMask.isValid() && _quickFilterMask.indexIn(vf->vfile_getName()) == -1)
         return true;
 
     bool filteredOut = false;
