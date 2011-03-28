@@ -131,6 +131,7 @@ bool DirHistoryQueue::goForward()
 
 void DirHistoryQueue::save(KConfigGroup cfg)
 {
+    saveCurrentItem();
     cfg.writeEntry("Entrys", _urlQueue.toStringList());
     cfg.writeEntry("CurrentItems", _currentItems);
     cfg.writeEntry("CurrentIndex", _currentPos);
