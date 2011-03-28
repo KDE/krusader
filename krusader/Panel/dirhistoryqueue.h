@@ -21,14 +21,16 @@
 #ifndef DIRHISTORYQUEUE_H
 #define DIRHISTORYQUEUE_H
 
+#include <QObject>
 #include <QStringList>
 #include <kurl.h>
 #include <kconfiggroup.h>
 
 class KrPanel;
 
-class DirHistoryQueue
+class DirHistoryQueue : public QObject
 {
+    Q_OBJECT
 public:
     DirHistoryQueue(KrPanel *panel);
     ~DirHistoryQueue();
@@ -63,9 +65,10 @@ public:
     void save(KConfigGroup cfg);
     bool restore(KConfigGroup cfg);
 
-private:
+public slots:
     void saveCurrentItem();
 
+private:
     KrPanel* _panel;
     int _state; // increments when we move inside the history, or a new item is added
     int _currentPos;

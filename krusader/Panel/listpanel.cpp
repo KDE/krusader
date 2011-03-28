@@ -443,6 +443,7 @@ void ListPanel::createView()
     connect(view->op(), SIGNAL(gotDrop(QDropEvent *)), this, SLOT(handleDropOnView(QDropEvent *)));
     connect(view->op(), SIGNAL(previewJobStarted(KJob*)), this, SLOT(slotPreviewJobStarted(KJob*)));
     connect(view->op(), SIGNAL(refreshActions()), krApp->viewActions(), SLOT(refreshActions()));
+    connect(view->op(), SIGNAL(currentChanged(KrViewItem*)), func->history, SLOT(saveCurrentItem()));
 
     view->setFiles(func->files());
 
