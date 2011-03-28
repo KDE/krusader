@@ -130,7 +130,7 @@ public slots:
     void popRightClickMenu(const QPoint&);
     void popEmptyRightClickMenu(const QPoint &);
     void compareDirs(bool otherPanelToo = true);
-    void slotFocusOnMe(); // give this VFS the focus (the path bar)
+    void slotFocusOnMe(bool focus = true);
     void slotUpdateTotals();
     void slotStartUpdate();                   // internal
     void slotGetStats(const KUrl& url);            // get the disk-free stats
@@ -192,7 +192,7 @@ protected slots:
 signals:
     void signalStatus(QString msg);         // emmited when we need to update the status bar
     void pathChanged(ListPanel *panel);
-    void activePanelChanged(ListPanel *p);   // emitted when the user changes panels
+    void activate();   // emitted when the user changes panels
     void finishedDragging();              // currently
     void refreshColors(bool active);
 

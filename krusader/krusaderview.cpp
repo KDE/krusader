@@ -82,18 +82,10 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     cmdLine = new KCMDLine(this);
 
     // add a panel manager for each side of the splitter
-    leftMng  = new PanelManager(horiz_splitter, krApp, true);
-    rightMng = new PanelManager(horiz_splitter, krApp, false);
-
-    connect(leftMng, SIGNAL(draggingTab(PanelManager*, QMouseEvent*)),
-                     SLOT(draggingTab(PanelManager*, QMouseEvent*)));
-    connect(leftMng, SIGNAL(draggingTabFinished(PanelManager*, QMouseEvent*)),
-                     SLOT(draggingTabFinished(PanelManager*, QMouseEvent*)));
-    connect(rightMng, SIGNAL(draggingTab(PanelManager*, QMouseEvent*)),
-                      SLOT(draggingTab(PanelManager*, QMouseEvent*)));
-    connect(rightMng, SIGNAL(draggingTabFinished(PanelManager*, QMouseEvent*)),
-                      SLOT(draggingTabFinished(PanelManager*, QMouseEvent*)));
-
+    leftMng  = createManager(true);
+    rightMng = createManager(false);
+    leftMng->setOtherManager(rightMng);
+    rightMng->setOtherManager(leftMng);
 
     // make the left panel focused at program start
     activeMng = leftMng;
@@ -157,6 +149,20 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
         else
             rightPanel()->slotFocusOnMe();
     }
+}
+
+PanelManager *KrusaderView::createManager(bool left)
+{
+    PanelManager *p = new PanelManager(horiz_splitter, krApp, left);
+    connect(p, SIGNAL(draggingTab(PanelManager*, QMouseEvent*)),
+                     SLOT(draggingTab(PanelManager*, QMouseEvent*)));
+    connect(p, SIGNAL(draggingTabFinished(PanelManager*, QMouseEvent*)),
+                     SLOT(draggingTabFinished(PanelManager*, QMouseEvent*)));
+    connect(p, SIGNAL(pathChanged(ListPanel*)), SLOT(slotPathChanged(ListPanel*)));
+    connect(p, SIGNAL(setActiveManager(PanelManager*)),
+                     SLOT(slotSetActiveManager(PanelManager*)));
+
+    return p;
 }
 
 ListPanel* KrusaderView::leftPanel()
@@ -238,13 +244,11 @@ void KrusaderView::panelSwitch()
 {
     ACTIVE_PANEL->otherPanel()->gui->slotFocusOnMe();
 }
-void KrusaderView::slotSetActivePanel(ListPanel *p)
+
+void KrusaderView::slotSetActiveManager(PanelManager *manager)
 {
-    if (p->manager() == leftMng)
-        activeMng = leftMng;
-    else
-        activeMng = rightMng;
-    slotPathChanged(p);
+    activeMng = manager;
+    slotPathChanged(manager->currentPanel()->gui);
 }
 
 void KrusaderView::swapSides()

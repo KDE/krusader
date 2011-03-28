@@ -37,11 +37,13 @@
 #include <kconfig.h>
 #include <kiconloader.h>
 
+#include <assert.h>
 
 #define HIDE_ON_SINGLE_TAB  false
 
 PanelManager::PanelManager(QWidget *parent, FileManagerWindow* mainWindow, bool left) :
         QWidget(parent),
+        _otherManager(0),
         _actions(mainWindow->tabActions()),
         _layout(0),
         _left(left),
@@ -94,7 +96,7 @@ PanelManager::PanelManager(QWidget *parent, FileManagerWindow* mainWindow, bool 
 
     setLayout(_layout);
 
-    _self = createPanel(true);
+    createPanel(true);
 
     tabsCountChanged();
 }
@@ -118,18 +120,32 @@ void PanelManager::tabsCountChanged()
     _actions->refreshActions();
 }
 
-void PanelManager::slotChangePanel(ListPanel *p)
+void PanelManager::activate()
+{
+    assert(sender() == currentPanel());
+    emit setActiveManager(this);
+    _actions->refreshActions();
+}
+
+void PanelManager::slotChangePanel(ListPanel *p, bool makeActive)
 {
     if (p == 0)
         return;
+
     ListPanel *prev = _self;
     _self = p;
 
 //     _stack->setUpdatesEnabled(false);
+
     _stack->setCurrentWidget(_self);
-    _self->slotFocusOnMe();
-    if(_self != prev)
+
+    _self->slotFocusOnMe((this == ACTIVE_MNG) || makeActive);
+
+    emit pathChanged(p);
+
+    if(otherManager() && _self != prev)
         otherManager()->currentPanel()->otherPanelChanged();
+
 //     _stack->setUpdatesEnabled(true);
 }
 
@@ -143,13 +159,14 @@ ListPanel* PanelManager::createPanel(bool setCurrent, KConfigGroup cfg, KrPanel 
     // now, create the corrosponding tab
     _tabbar->addPanel(p, setCurrent, nextTo);
     tabsCountChanged();
-    if (setCurrent)
-        _stack->setCurrentWidget(p);
 
-    // connect the activePanelChanged signal to enable/disable actions
-    connect(p, SIGNAL(activePanelChanged(ListPanel*)), MAIN_VIEW, SLOT(slotSetActivePanel(ListPanel*)));
-    connect(p, SIGNAL(activePanelChanged(ListPanel*)), _actions, SLOT(refreshActions()));
-    connect(p, SIGNAL(pathChanged(ListPanel*)), MAIN_VIEW, SLOT(slotPathChanged(ListPanel*)));
+    if (setCurrent)
+        slotChangePanel(p, false);
+
+    connect(p, SIGNAL(activate()), this, SLOT(activate()));
+    connect(p, SIGNAL(pathChanged(ListPanel*)), this, SIGNAL(pathChanged(ListPanel*)));
+    connect(p, SIGNAL(pathChanged(ListPanel*)), _tabbar, SLOT(updateTab(ListPanel*)));
+
     return p;
 }
 
@@ -226,9 +243,6 @@ void PanelManager::moveTabToOtherSide()
 void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, KrPanel *nextTo)
 {
     ListPanel *p = createPanel(setCurrent, KConfigGroup(), nextTo);
-    // update left/right pointers
-    if (setCurrent)
-        _self = p;
     p->start(url);
 }
 
@@ -239,41 +253,23 @@ void PanelManager::slotNewTab()
 
 void PanelManager::slotCloseTab()
 {
-    if (_tabbar->count() <= 1)    /* if this is the last tab don't close it */
-        return ;
-
-    // setup current one
-    ListPanel * oldp;
-    _self = _tabbar->removeCurrentPanel(oldp);
-    _stack->setCurrentWidget(_self);
-    _stack->removeWidget(oldp);
-    deletePanel(oldp);
-
-    // setup pointers
-    _self->slotFocusOnMe();
-
-    tabsCountChanged();
+    slotCloseTab(_tabbar->currentIndex());
 }
 
 void PanelManager::slotCloseTab(int index)
 {
-    ListPanel *panel = _tabbar->getPanel(index);
-    if (panel) {
-        ListPanel *oldp = panel;
-        disconnect(oldp);
-        if (index == _tabbar->currentIndex()) {
-            ListPanel *newCurrentPanel = _tabbar->getPanel(0);
-            if (newCurrentPanel != 0) {
-                _tabbar->setCurrentIndex(0);
-                _self = newCurrentPanel;
-            }
-        }
-        _tabbar->removeTab(index);
+    if (_tabbar->count() <= 1)    /* if this is the last tab don't close it */
+        return ;
 
-        _stack->removeWidget(oldp);
-        deletePanel(oldp);
-    }
+    ListPanel *oldp;
 
+    if (index == _tabbar->currentIndex())
+        slotChangePanel(_tabbar->removeCurrentPanel(oldp), false);
+    else
+        _tabbar->removePanel(index, oldp);
+
+    _stack->removeWidget(oldp);
+    deletePanel(oldp);
     tabsCountChanged();
 }
 
@@ -294,18 +290,10 @@ int PanelManager::activeTab()
     return _tabbar->currentIndex();
 }
 
-void PanelManager::setActiveTab(int panelIndex)
+void PanelManager::setActiveTab(int index)
 {
-    _tabbar->setCurrentIndex(panelIndex);
-    slotChangePanel(_tabbar->getPanel(panelIndex));
-}
-
-void PanelManager::setCurrentTab(int panelIndex)
-{
-    _tabbar->setCurrentIndex(panelIndex);
-    _self = _tabbar->getPanel(panelIndex);
-
-    _stack->setCurrentWidget(_self);
+    _tabbar->setCurrentIndex(index);
+    slotChangePanel(_tabbar->getPanel(index));
 }
 
 void PanelManager::slotRecreatePanels()
@@ -321,10 +309,9 @@ void PanelManager::slotRecreatePanels()
 
         ListPanel *newPanel = new ListPanel(_stack, this);
         newPanel->restoreSettings(cfg);
-        connect(newPanel, SIGNAL(activePanelChanged(ListPanel*)), MAIN_VIEW, SLOT(slotSetActivePanel(ListPanel*)));
-        connect(newPanel, SIGNAL(activePanelChanged(ListPanel*)), _actions, SLOT(refreshActions()));
+        connect(newPanel, SIGNAL(activate()), this, SLOT(activate()));
+        connect(newPanel, SIGNAL(pathChanged(ListPanel*)), this, SIGNAL(pathChanged(ListPanel*)));
         connect(newPanel, SIGNAL(pathChanged(ListPanel*)), _tabbar, SLOT(updateTab(ListPanel*)));
-        connect(newPanel, SIGNAL(pathChanged(ListPanel*)), MAIN_VIEW, SLOT(slotPathChanged(ListPanel*)));
 
         _tabbar->changePanel(i, newPanel);
         _stack->insertWidget(i, newPanel);
@@ -383,6 +370,7 @@ void PanelManager::refreshAllTabs(bool invalidate)
 
 void PanelManager::deletePanel(ListPanel * p)
 {
+    disconnect(p);
     if (p && p->func && p->func->files() && !p->func->files()->vfs_canDelete()) {
         connect(p->func->files(), SIGNAL(deleteAllowed()), p, SLOT(deleteLater()));
         p->func->files()->vfs_requestDelete();
@@ -449,14 +437,6 @@ void PanelManager::slotLockTab()
 void PanelManager::newTabs(const QStringList& urls) {
     for(int i = 0; i < urls.count(); i++)
         slotNewTab(KUrl(urls[i]));
-}
-
-AbstractPanelManager *PanelManager::otherManager()
-{
-    if(_left)
-        return RIGHT_MNG;
-    else
-        return LEFT_MNG;
 }
 
 KrPanel *PanelManager::currentPanel()

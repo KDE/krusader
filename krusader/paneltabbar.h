@@ -67,6 +67,7 @@ public slots:
      * be used by PanelManager.
      */
     ListPanel* removeCurrentPanel(ListPanel* &panelToDelete); // returns the panel focused after removing the current
+    ListPanel* removePanel(int index, ListPanel* &panelToDelete);
 
 signals:
     /**

@@ -141,10 +141,10 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actF9->setToolTip(i18n("Rename file, directory, etc."));
 }
 
-void ListPanelActions::activePanelChanged(ListPanel *panel)
+void ListPanelActions::activePanelChanged()
 {
-    _gui.reconnect(panel);
-    _func.reconnect(panel->func);
+    _gui.reconnect(activePanel()->gui);
+    _func.reconnect(activePanel()->func);
 }
 
 void ListPanelActions::guiUpdated()

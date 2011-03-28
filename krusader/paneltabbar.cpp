@@ -112,21 +112,20 @@ void PanelTabBar::changePanel(int tabIdx, ListPanel *panel)
 }
 
 
-ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete)
+ListPanel* PanelTabBar::removePanel(int index, ListPanel* &panelToDelete)
 {
-    int id = currentIndex();
-    ListPanel *oldp = (ListPanel*)tabData(id).toLongLong(); // old panel to kill later
-    disconnect(oldp, 0, this, 0);
-    removeTab(id);
+    panelToDelete = getPanel(index); // old panel to kill later
+    disconnect(panelToDelete, 0, this, 0);
 
+    removeTab(index);
     layoutTabs();
 
-    // setup current one
-    id = currentIndex();
-    ListPanel *p = (ListPanel*)tabData(id).toLongLong();
+    return getPanel(currentIndex());
+}
 
-    panelToDelete = oldp;
-    return p;
+ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete)
+{
+    return removePanel(currentIndex(), panelToDelete);
 }
 
 void PanelTabBar::updateTab(ListPanel *panel)

@@ -147,7 +147,6 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     gui = this;
     func = new ListPanelFunc(this);
     _actions = krApp->listPanelActions();
-    connect(this, SIGNAL(activePanelChanged(ListPanel*)), _actions, SLOT(activePanelChanged(ListPanel*)));
 
     setAcceptDrops(true);
 
@@ -656,26 +655,23 @@ void ListPanel::refreshColors()
     emit refreshColors(this == ACTIVE_PANEL);
 }
 
-void ListPanel::slotFocusOnMe()
+void ListPanel::slotFocusOnMe(bool focus)
 {
-    // give this VFS the focus (the path bar)
-    // we start by calling the KVFS function
-
     krApp->setUpdatesEnabled(false);
 
-    emit activePanelChanged(this);
+    if(focus) {
+        assert(_manager->currentPanel() == this);
+        emit activate();
+        _actions->activePanelChanged();
+        func->refreshActions();
+        updatePopupPanel(view->getCurrentKrViewItem());
+        view->prepareForActive();
+        otherPanel()->gui->slotFocusOnMe(false);
+    } else
+        view->prepareForPassive();
 
-    otherPanel()->view->prepareForPassive();
-    view->prepareForActive();
-
-    origin->setActive(true);
-    otherPanel()->gui->origin->setActive(false);
-
-    otherPanel()->gui->refreshColors();
+    origin->setActive(focus);
     refreshColors();
-
-    func->refreshActions();
-    updatePopupPanel(view->getCurrentKrViewItem());
 
     krApp->setUpdatesEnabled(true);
 }
@@ -698,7 +694,6 @@ void ListPanel::start(KUrl url, bool immediate)
     else
         func->openUrl(virt);
 
-    slotFocusOnMe();
     setJumpBack(virt);
 }
 

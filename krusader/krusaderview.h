@@ -87,7 +87,7 @@ public:
     void swapSides();
 
 public slots:
-    void slotSetActivePanel(ListPanel *p);
+    void slotSetActiveManager(PanelManager *manager);
     void slotPathChanged(ListPanel *p);
     void slotTerminalEmulator(bool);
     // manage the function keys to the CURRENT vfs
@@ -122,6 +122,7 @@ public:
 private:
     int getFocusCandidates(QVector<QWidget*> &widgets);
     bool cursorIsOnOtherSide(PanelManager *of, const QPoint &globalPos);
+    PanelManager *createManager(bool left);
 
     QGridLayout *mainLayout, *terminal_layout;
 };

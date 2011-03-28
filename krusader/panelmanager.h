@@ -61,20 +61,24 @@ public:
         return _tabbar->count();
     }
     int activeTab();
-    void setActiveTab(int);
-    void setCurrentTab(int);
+    void setActiveTab(int index);
     void moveTabToOtherSide();
     void refreshAllTabs(bool invalidate = false);
     void layoutTabs();
     void setLeft(bool left) {
         _left = left;
     }
+    void setOtherManager(PanelManager *other) {
+        _otherManager = other;
+    }
 
     // AbstractPanelManager implementation
     virtual bool isLeft() {
         return _left;
     }
-    virtual AbstractPanelManager *otherManager();
+    virtual AbstractPanelManager *otherManager() {
+        return _otherManager;
+    }
     virtual KrPanel *currentPanel();
     virtual void newTab(const KUrl &url, KrPanel *nextTo) {
         slotNewTab(url, true, nextTo);
@@ -83,6 +87,8 @@ public:
 signals:
     void draggingTab(PanelManager *from, QMouseEvent*);
     void draggingTabFinished(PanelManager *from, QMouseEvent*);
+    void setActiveManager(PanelManager *manager);
+    void pathChanged(ListPanel *panel);
 
 public slots:
     /**
@@ -100,7 +106,6 @@ public slots:
     void slotLockTab();
     void slotNextTab();
 
-
     void slotPreviousTab();
     void slotCloseTab();
     void slotCloseTab(int index);
@@ -109,7 +114,8 @@ public slots:
     void slotCloseDuplicatedTabs();
 
 protected slots:
-    void slotChangePanel(ListPanel *p);
+    void slotChangePanel(ListPanel *p, bool makeActive = true);
+    void activate();
     void slotDraggingTab(QMouseEvent *e) {
         emit draggingTab(this, e);
     }
@@ -123,6 +129,7 @@ private:
     void tabsCountChanged();
     ListPanel* createPanel(bool setCurrent = true, KConfigGroup cfg = KConfigGroup(), KrPanel *nextTo = 0);
 
+    PanelManager *_otherManager;
     TabActions *_actions;
     QGridLayout *_layout;
     QHBoxLayout *_barLayout;

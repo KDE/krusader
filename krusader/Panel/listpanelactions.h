@@ -61,7 +61,7 @@ public slots:
     void openLeftMedia();
     void openRightMedia();
 
-    void activePanelChanged(ListPanel *panel);
+    void activePanelChanged();
     void guiUpdated();
 
 public:
