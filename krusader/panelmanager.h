@@ -137,7 +137,7 @@ private:
     bool _left;
     PanelTabBar *_tabbar;
     QStackedWidget *_stack;
-    QToolButton *_newTab, *_closeTab;
+    QToolButton *_newTab;
     ListPanel *_self;
 };
 

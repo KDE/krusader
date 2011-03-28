@@ -63,19 +63,10 @@ PanelManager::PanelManager(QWidget *parent, FileManagerWindow* mainWindow, bool 
     _newTab->adjustSize();
     connect(_newTab, SIGNAL(clicked()), this, SLOT(slotNewTab()));
 
-    // close tab button
-    _closeTab = new QToolButton(this);
-    _closeTab->setAutoRaise(true);
-    _closeTab->setText(i18n("Close current tab"));
-    _closeTab->setToolTip(i18n("Close current tab"));
-    _closeTab->setIcon(SmallIcon("tab-close"));
-    _closeTab->adjustSize();
-    connect(_closeTab, SIGNAL(clicked()), this, SLOT(slotCloseTab()));
-    _closeTab->setEnabled(false);   // disabled when there's only 1 tab
-
     // tab-bar
     _tabbar = new PanelTabBar(this, _actions);
     connect(_tabbar, SIGNAL(changePanel(ListPanel*)), this, SLOT(slotChangePanel(ListPanel *)));
+    connect(_tabbar, SIGNAL(tabCloseRequested(int)), this, SLOT(slotCloseTab(int)));
     connect(_tabbar, SIGNAL(closeCurrentTab()), this, SLOT(slotCloseTab()));
     connect(_tabbar, SIGNAL(newTab(const KUrl&)), this, SLOT(slotNewTab(const KUrl&)));
     connect(_tabbar, SIGNAL(draggingTab(QMouseEvent*)), this, SLOT(slotDraggingTab(QMouseEvent*)));
@@ -85,9 +76,8 @@ PanelManager::PanelManager(QWidget *parent, FileManagerWindow* mainWindow, bool 
     tabbarLayout->setSpacing(0);
     tabbarLayout->setContentsMargins(0, 0, 0, 0);
 
-    tabbarLayout->addWidget(_newTab);
     tabbarLayout->addWidget(_tabbar);
-    tabbarLayout->addWidget(_closeTab);
+    tabbarLayout->addWidget(_newTab);
 
     _layout->addWidget(_stack, 0, 0);
     _layout->addLayout(tabbarLayout, 1, 0);
@@ -112,10 +102,9 @@ void PanelManager::tabsCountChanged()
 
     _newTab->setVisible(showButtons);
     _tabbar->setVisible(showTabbar);
-    _closeTab->setVisible(showButtons);
 
     // disable close button if only 1 tab is left
-    _closeTab->setEnabled(_tabbar->count() > 1);
+    _tabbar->setTabsClosable(showButtons && _tabbar->count() > 1);
 
     _actions->refreshActions();
 }
@@ -233,7 +222,7 @@ void PanelManager::moveTabToOtherSide()
 
     PanelManager *otherMng = static_cast<PanelManager*>(otherManager());
     p->reparent(otherMng->_stack, otherMng);
-    int idx = otherMng->_tabbar->addPanel(p, true);
+    otherMng->_tabbar->addPanel(p, true);
     otherMng->_stack->addWidget(p);
     otherMng->_stack->setCurrentWidget(p);
     otherMng->_self = p;
