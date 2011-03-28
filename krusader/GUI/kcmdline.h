@@ -49,19 +49,36 @@
 
 class KCMDModeButton;
 
-class KrHistoryCombo: public KHistoryComboBox
+class CmdLineCombo : public KHistoryComboBox
 {
     Q_OBJECT
-
 public:
-    KrHistoryCombo(QWidget *parent): KHistoryComboBox(parent) {}
+    CmdLineCombo(QWidget *parent);
 
-protected:
-    void keyPressEvent(QKeyEvent *e);
+    virtual bool eventFilter(QObject *watched, QEvent *e);
+
+    QString path() {
+        return _path;
+    }
+    void setPath(QString path);
 
 signals:
     void returnToPanel();
+
+protected slots:
+    void doLayout();
+
+protected:
+    virtual void resizeEvent(QResizeEvent *e);
+    virtual void keyPressEvent(QKeyEvent *e);
+
+    void updateLineEditGeometry();
+
+    QLabel *_pathLabel;
+    QString _path;
+    bool _handlingLineEditResize;
 };
+
 
 class KCMDLine : public QWidget, KrActionBase
 {
@@ -69,7 +86,7 @@ class KCMDLine : public QWidget, KrActionBase
 public:
     KCMDLine(QWidget *parent = 0);
     ~KCMDLine();
-    void setCurrent(const QString &);
+    void setCurrent(const QString &path);
     //virtual methods from KrActionBase
     void setText(QString text);
     QString command() const;
@@ -80,8 +97,10 @@ public:
     bool acceptURLs() const;
     bool confirmExecution() const;
     bool doSubstitution() const;
+
 signals:
     void signalRun();
+
 public slots:
     void slotReturnFocus(); // returns keyboard focus to panel
     void slotRun();
@@ -97,15 +116,11 @@ protected:
     virtual void focusInEvent(QFocusEvent*) {
         cmdLine->setFocus();
     }
-    virtual void resizeEvent(QResizeEvent*) {
-        calcLabelSize();
-    }
+
     void calcLabelSize();
 
 private:
-    QLabel *path;
-    QString pathName;
-    KrHistoryCombo *cmdLine;
+    CmdLineCombo *cmdLine;
     KCMDModeButton *terminal;
     QToolButton *buttonAddPlaceholder;
     KShellCompletion completion;

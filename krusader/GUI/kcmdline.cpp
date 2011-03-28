@@ -59,26 +59,124 @@
 #include "../ActionMan/addplaceholderpopup.h"
 #include "kcmdmodebutton.h"
 
+
+CmdLineCombo::CmdLineCombo(QWidget *parent) : KHistoryComboBox(parent), _handlingLineEditResize(false)
+{
+    lineEdit()->installEventFilter(this);
+    _pathLabel = new QLabel(this);
+    _pathLabel->setWhatsThis(i18n("Name of directory where command will be processed."));
+    _pathLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+}
+
+bool CmdLineCombo::eventFilter(QObject *watched, QEvent *e)
+{
+    if(watched == lineEdit() && (e->type() == QEvent::Move || e->type() == QEvent::Resize)) {
+        if(!_handlingLineEditResize) { // avoid infinite recursion
+            _handlingLineEditResize = true;
+            updateLineEditGeometry();
+            _handlingLineEditResize = false;
+        }
+    }
+    return false;
+}
+
+void CmdLineCombo::setPath(QString path)
+{
+    _path = path;
+    doLayout();
+}
+
+void CmdLineCombo::updateLineEditGeometry()
+{
+    QRect r = lineEdit()->geometry();
+    r.setLeft(_pathLabel->geometry().right());
+    lineEdit()->setGeometry(r);
+}
+
+void CmdLineCombo::doLayout()
+{
+    QString pathNameLabel = _path;
+    QFontMetrics fm(_pathLabel->fontMetrics());
+    int textWidth = fm.width(_path);
+    int maxWidth = (width() + _pathLabel->width()) * 2 / 5;
+    int letters = _path.length() / 2;
+
+    while (letters && textWidth > maxWidth) {
+        pathNameLabel = _path.left(letters) + "..." + _path.right(letters);
+        letters--;
+        textWidth = fm.width(pathNameLabel);
+    }
+
+    _pathLabel->setText(pathNameLabel + "> ");
+    _pathLabel->adjustSize();
+
+    QStyleOptionComboBox opt;
+    initStyleOption(&opt);
+    QRect labelRect = style()->subControlRect(QStyle::CC_ComboBox, &opt,
+                                            QStyle::SC_ComboBoxEditField, this);
+    labelRect.adjust(2, 0, 0, 0);
+    labelRect.setWidth(_pathLabel->width());
+    _pathLabel->setGeometry(labelRect);
+
+    updateLineEditGeometry();
+}
+
+void CmdLineCombo::resizeEvent(QResizeEvent *e)
+{
+    KHistoryComboBox::resizeEvent(e);
+    doLayout();
+}
+
+void CmdLineCombo::keyPressEvent(QKeyEvent *e)
+{
+    switch (e->key()) {
+    case Qt::Key_Enter:
+    case Qt::Key_Return:
+        if (e->modifiers() & Qt::ControlModifier) {
+            SLOTS->insertFileName((e->modifiers() & Qt::ShiftModifier) != 0);
+            break;
+        }
+        KHistoryComboBox::keyPressEvent(e);
+        break;
+    case Qt::Key_Down:
+        if (e->modifiers()  == (Qt::ControlModifier | Qt::ShiftModifier)) {
+            MAIN_VIEW->focusTerminalEmulator();
+            return;
+        } else
+            KHistoryComboBox::keyPressEvent(e);
+        break;
+    case Qt::Key_Up:
+        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier)) {
+            emit returnToPanel();
+            return;
+        } else
+            KHistoryComboBox::keyPressEvent(e);
+        break;
+    case Qt::Key_Escape:
+        if (e->modifiers() == 0) {
+            emit returnToPanel();
+            return;
+        } else
+            KHistoryComboBox::keyPressEvent(e);
+        break;
+    default:
+        KHistoryComboBox::keyPressEvent(e);
+    }
+}
+
+
 KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
 {
     QGridLayout * layout = new QGridLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-    path = new QLabel(this);
-    path->setWhatsThis(i18n("Name of directory where command will be processed."));
-    path->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    path->setFrameStyle(QFrame::Box | QFrame::Sunken);
-    path->setLineWidth(1);
-    path->setFont(KGlobalSettings::generalFont());
+
     int height = QFontMetrics(KGlobalSettings::generalFont()).height();
     height =  height + 5 * (height > 14) + 6;
-    path->setMaximumHeight(height);
-    path->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred));
-    layout->addWidget(path, 0, 0);
 
     // and editable command line
     completion.setMode(KUrlCompletion::FileCompletion);
-    cmdLine = new KrHistoryCombo(this);
+    cmdLine = new CmdLineCombo(this);
     cmdLine->setMaxCount(100);  // remember 100 commands
     cmdLine->setMinimumContentsLength(10);
     cmdLine->setDuplicatesEnabled(false);
@@ -132,32 +230,14 @@ void KCMDLine::addPlaceholder()
     this->addText(exp);
 }
 
-void KCMDLine::setCurrent(const QString &p)
+void KCMDLine::setCurrent(const QString &path)
 {
-    pathName = p;
-    calcLabelSize();
+    cmdLine->setPath(path);
 
-    completion.setDir(p);
+    completion.setDir(path);
     // make sure our command is executed in the right directory
     // This line is important for Krusader overall functions -> do not remove !
-    QDir::setCurrent(p);
-}
-
-void KCMDLine::calcLabelSize()
-{
-    QString pathNameLabel = pathName;
-    QFontMetrics fm(path->fontMetrics());
-    int textWidth = fm.width(pathName);
-    int maxWidth = (cmdLine->width() + path->width()) * 2 / 5;
-    int letters = pathName.length() / 2;
-
-    while (letters && textWidth > maxWidth) {
-        pathNameLabel = pathName.left(letters) + "..." + pathName.right(letters);
-        letters--;
-        textWidth = fm.width(pathNameLabel);
-    }
-
-    path->setText(pathNameLabel + '>');
+    QDir::setCurrent(path);
 }
 
 void KCMDLine::slotRun()
@@ -175,7 +255,7 @@ void KCMDLine::slotRun()
         if (dir == "~")
             dir = QDir::homePath();
         else if (dir.left(1) != "/" && !dir.contains(":/"))
-            dir = pathName + (pathName == "/" ? "" : "/") + dir;
+            dir = cmdLine->path() + (cmdLine->path() == "/" ? "" : "/") + dir;
         SLOTS->refresh(dir);
     } else {
         exec();
@@ -211,7 +291,7 @@ KrActionBase::ExecType KCMDLine::execType() const
 
 QString KCMDLine::startpath() const
 {
-    return pathName;
+    return cmdLine->path();
 //     return path->text().left(path->text().length() - 1);
 }
 
@@ -244,44 +324,3 @@ void KCMDLine::setText(QString text)
 {
     cmdLine->lineEdit()->setText(text);
 }
-
-
-void KrHistoryCombo::keyPressEvent(QKeyEvent *e)
-{
-    switch (e->key()) {
-    case Qt::Key_Enter:
-    case Qt::Key_Return:
-        if (e->modifiers() & Qt::ControlModifier) {
-            SLOTS->insertFileName((e->modifiers() & Qt::ShiftModifier) != 0);
-            break;
-        }
-        KHistoryComboBox::keyPressEvent(e);
-        break;
-    case Qt::Key_Down:
-        if (e->modifiers()  == (Qt::ControlModifier | Qt::ShiftModifier)) {
-            MAIN_VIEW->focusTerminalEmulator();
-            return;
-        } else
-            KHistoryComboBox::keyPressEvent(e);
-        break;
-    case Qt::Key_Up:
-        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier)) {
-            emit returnToPanel();
-            return;
-        } else
-            KHistoryComboBox::keyPressEvent(e);
-        break;
-    case Qt::Key_Escape:
-        if (e->modifiers() == 0) {
-            emit returnToPanel();
-            return;
-        } else
-            KHistoryComboBox::keyPressEvent(e);
-        break;
-    default:
-        KHistoryComboBox::keyPressEvent(e);
-    }
-}
-
-#include "kcmdline.moc"
-
