@@ -111,7 +111,7 @@ void PanelManager::tabsCountChanged()
 
 void PanelManager::activate()
 {
-    assert(sender() == currentPanel());
+    assert(sender() == (QObject *)(currentPanel()));
     emit setActiveManager(this);
     _actions->refreshActions();
 }
