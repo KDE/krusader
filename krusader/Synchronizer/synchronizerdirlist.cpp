@@ -153,6 +153,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
 
             bool symLink = S_ISLNK(stat_p.st_mode);
             QString symlinkDest;
+            bool brokenLink = false;
 
             if (symLink) {  // who the link is pointing to ?
                 char symDest[256];
@@ -167,6 +168,8 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
 
                     if (QDir(absSymDest).exists())
                         perm[0] = 'd';
+                    if (!QDir(path).exists(absSymDest))
+                        brokenLink = true;
                 }
             }
 
@@ -174,7 +177,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
 
             KUrl fileURL = KUrl(fullName);
 
-            vfile* item = new vfile(name, stat_p.st_size, perm, stat_p.st_mtime, symLink, stat_p.st_uid,
+            vfile* item = new vfile(name, stat_p.st_size, perm, stat_p.st_mtime, symLink, brokenLink, stat_p.st_uid,
                                     stat_p.st_gid, mime, symlinkDest, stat_p.st_mode);
             item->vfile_setUrl(fileURL);
 
@@ -222,7 +225,7 @@ void SynchronizerDirList::slotEntries(KIO::Job * job, const KIO::UDSEntryList& e
                 perm[ 0 ] = 'd';
 
             vfile *item = new vfile(kfi.text(), kfi.size(), perm, kfi.time(KFileItem::ModificationTime).toTime_t(),
-                                    kfi.isLink(), kfi.user(), kfi.group(), kfi.user(),
+                                    kfi.isLink(), false, kfi.user(), kfi.group(), kfi.user(),
                                     kfi.mimetype(), kfi.linkDest(), mode, rwx
 #ifdef HAVE_POSIX_ACL
                                     , kfi.ACL().asString()

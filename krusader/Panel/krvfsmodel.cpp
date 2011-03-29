@@ -218,7 +218,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
         colorItemType.m_currentItem = _view->getCurrentIndex().row() == index.row();
         colorItemType.m_selectedItem = _view->isSelected(index);
         if (vf->vfile_isSymLink()) {
-            if (vf->vfile_getMime() == "Broken Link !")
+            if (vf->vfile_isBrokenLink())
                 colorItemType.m_fileType = KrColorItemType::InvalidSymlink;
             else
                 colorItemType.m_fileType = KrColorItemType::Symlink;

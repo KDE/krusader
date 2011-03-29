@@ -54,6 +54,7 @@ vfile::vfile(const QString& name,                   // useful construtor
              const QString& perm,
              const time_t mtime,
              const bool symLink,
+             const bool brokenLink,
              const uid_t owner,
              const gid_t group,
              const QString& mime,
@@ -71,6 +72,7 @@ vfile::vfile(const QString& name,                   // useful construtor
     vfile_perm = perm;
     vfile_time_t = mtime;
     vfile_symLink = symLink;
+    vfile_brokenLink = brokenLink,
     vfile_mimeType = mime;
     vfile_symDest = symDest;
     vfile_mode = mode;
@@ -86,6 +88,7 @@ vfile::vfile(const QString& name,                   // useful construtor
              const QString& perm,
              const time_t mtime,
              const bool symLink,
+             const bool brokenLink,
              const QString& owner,
              const QString& group,
              const QString& userName,
@@ -106,6 +109,7 @@ vfile::vfile(const QString& name,                   // useful construtor
     vfile_perm = perm;
     vfile_time_t = mtime;
     vfile_symLink = symLink;
+    vfile_brokenLink = brokenLink,
     vfile_mimeType = mime;
     vfile_symDest = symDest;
     vfile_mode = mode;
@@ -154,13 +158,23 @@ char vfile::vfile_isExecutable() const
 
 const QString& vfile::vfile_getMime(bool fast)
 {
-    if (vfile_mimeType.isEmpty()) { // mimetype == "" is OK so don't check mimetype.empty() !
+    if (vfile_mimeType.isEmpty()) {
+        if(vfile_isdir) {
+            vfile_mimeType = "inode/directory";
+            return vfile_mimeType;
+        } else if(vfile_isBrokenLink()) {
+            vfile_mimeType = "unknown";
+            return vfile_mimeType;
+        }
+
         KMimeType::Ptr mt = KMimeType::findByUrl(vfile_getUrl(), vfile_getMode(), vfile_getUrl().isLocalFile(), fast);
-        vfile_mimeType = mt ? mt->name() : "Broken Link !";
+        vfile_mimeType = mt ? mt->name() : "unknown";
         if (mt)
             vfile_icon = mt->iconName();
         if (vfile_mimeType.contains("directory")) {
-            vfile_perm[0] = 'd', vfile_isdir = true;
+            vfile_perm[0] = 'd';
+            vfile_isdir = true;
+
             if (vfile_userDefinedFolderIcons) {
                 KUrl url = vfile_getUrl();
                 if (url.isLocalFile()) {
@@ -174,6 +188,20 @@ const QString& vfile::vfile_getMime(bool fast)
         }
     }
     return vfile_mimeType;
+}
+
+QString vfile::vfile_getIcon()
+{
+    if (vfile_icon.isEmpty()) {
+        QString mime = vfile_getMime(!vfile_useMimeTypeMagic);
+        if (vfile_isBrokenLink())
+            vfile_icon = "file-broken";
+        else if (vfile_icon.isEmpty()) {
+            KMimeType::Ptr mt = KMimeType::mimeType(mime);
+            vfile_icon = mt ? mt->iconName() : "file-broken";
+        }
+    }
+    return vfile_icon;
 }
 
 const QString& vfile::vfile_getOwner()
@@ -281,6 +309,7 @@ vfile& vfile::operator= (const vfile & vf)
     vfile_perm       = vf.vfile_perm      ;
     vfile_time_t     = vf.vfile_time_t    ;
     vfile_symLink    = vf.vfile_symLink   ;
+    vfile_brokenLink = vf.vfile_brokenLink;
     vfile_mimeType   = vf.vfile_mimeType  ;
     vfile_symDest    = vf.vfile_symDest   ;
     vfile_url        = vf.vfile_url       ;

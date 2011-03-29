@@ -263,6 +263,7 @@ vfile* normal_vfs::vfileFromName(const QString& name, char * rawName)
     KIO::filesize_t size = stat_p.st_size;
     QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
     bool symLink = S_ISLNK(stat_p.st_mode);
+    bool brokenLink = false;
     if (S_ISDIR(stat_p.st_mode)) perm[0] = 'd';
 
     KUrl mimeUrl = KUrl(path);
@@ -274,9 +275,12 @@ vfile* normal_vfs::vfileFromName(const QString& name, char * rawName)
         int endOfName = 0;
         endOfName = readlink(fileName.data(), symDest, 256);
         if (endOfName != -1) {
-            if (QDir(QString::fromLocal8Bit(symDest)).exists()) perm[0] = 'd';
-            if (!QDir(vfs_workingDir()).exists(QString::fromLocal8Bit(symDest))) mime = "Broken Link !";
-        } else krOut << "Failed to read link: " << path << endl;
+            if (QDir(QString::fromLocal8Bit(symDest)).exists())
+                perm[0] = 'd';
+            if (!QDir(vfs_workingDir()).exists(QString::fromLocal8Bit(symDest)))
+                brokenLink = true;
+        } else
+            krOut << "Failed to read link: " << path << endl;
     }
 
     int rwx = 0;
@@ -291,7 +295,7 @@ vfile* normal_vfs::vfileFromName(const QString& name, char * rawName)
 #endif
 
     // create a new virtual file object
-    vfile* temp = new vfile(name, size, perm, stat_p.st_mtime, symLink, stat_p.st_uid,
+    vfile* temp = new vfile(name, size, perm, stat_p.st_mtime, symLink, brokenLink, stat_p.st_uid,
                             stat_p.st_gid, mime, QString::fromLocal8Bit(symDest), stat_p.st_mode, rwx);
     temp->vfile_setUrl(mimeUrl);
     return temp;

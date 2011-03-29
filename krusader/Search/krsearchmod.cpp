@@ -149,7 +149,7 @@ void KRSearchMod::scanLocalDir(KUrl urlToScan)
 
         // creating a vfile object for matching with krquery
         vfile * vf = new vfile(name, (KIO::filesize_t)stat_p.st_size, KRpermHandler::mode2QString(stat_p.st_mode),
-                               stat_p.st_mtime, S_ISLNK(stat_p.st_mode), stat_p.st_uid, stat_p.st_gid,
+                               stat_p.st_mtime, S_ISLNK(stat_p.st_mode), false/*FIXME*/, stat_p.st_uid, stat_p.st_gid,
                                mime, "", stat_p.st_mode);
         vf->vfile_setUrl(url);
 

@@ -106,7 +106,7 @@ void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries)
 
         // create a new virtual file object
         if (kfi.user().isEmpty())
-            temp = new vfile(name, size, perm, mtime, symLink, getuid(), getgid(), mime, symDest, mode, rwx);
+            temp = new vfile(name, size, perm, mtime, symLink, false, getuid(), getgid(), mime, symDest, mode, rwx);
         else {
             QString currentUser = vfs_origin.user();
             if (currentUser.contains("@"))      /* remove the FTP proxy tags from the username */
@@ -118,7 +118,7 @@ void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries)
                     currentUser = ""; // empty, but not QString()
                 }
             }
-            temp = new vfile(name, size, perm, mtime, symLink,
+            temp = new vfile(name, size, perm, mtime, symLink, false,
                              kfi.user(), kfi.group(), currentUser,
                              mime, symDest, mode, rwx, kfi.ACL().asString(),
                              kfi.defaultACL().asString());

@@ -244,7 +244,7 @@ vfile* virt_vfs::stat(const KUrl& url)
     if (url.protocol() == "virt") {
         QString path = url.path().mid(1);
         if (path.isEmpty()) path = '/';
-        vfile * temp = new vfile(path, 0, "drwxr-xr-x", time(0), false, getuid(), getgid(), "inode/directory", "", 0);
+        vfile * temp = new vfile(path, 0, "drwxr-xr-x", time(0), false, false, getuid(), getgid(), "inode/directory", "", 0);
         temp->vfile_setUrl(url);
         return temp;
     }
@@ -290,14 +290,14 @@ vfile* virt_vfs::stat(const KUrl& url)
 
     // create a new virtual file object
     if (kfi->user().isEmpty())
-        temp = new vfile(name, size, perm, mtime, symLink, getuid(), getgid(), mime, symDest, mode);
+        temp = new vfile(name, size, perm, mtime, symLink, false, getuid(), getgid(), mime, symDest, mode);
     else {
         QString currentUser = url.user();
         if (currentUser.contains("@"))      /* remove the FTP proxy tags from the username */
             currentUser.truncate(currentUser.indexOf('@'));
         if (currentUser.isEmpty())
             currentUser = KRpermHandler::uid2user(getuid());
-        temp = new vfile(name, size, perm, mtime, symLink, kfi->user(), kfi->group(), currentUser, mime, symDest, mode);
+        temp = new vfile(name, size, perm, mtime, symLink, false, kfi->user(), kfi->group(), currentUser, mime, symDest, mode);
     }
 
     temp->vfile_setUrl(kfi->url());

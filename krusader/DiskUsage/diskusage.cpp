@@ -959,7 +959,7 @@ QPixmap DiskUsage::getIcon(QString mime)
 
     if (!QPixmapCache::find(mime, icon)) {
         // get the icon.
-        if (mime == "Broken Link !")
+        if (mime == "Broken Link !") // FIXME: this doesn't work anymore - the reported mimetype for a broken link is now "unknown"
             icon = FL_LOADICON("file-broken");
         else {
             KMimeType::Ptr mt = KMimeType::mimeType(mime);

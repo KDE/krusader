@@ -345,7 +345,7 @@ bool KRQuery::match(KFileItem *kfi) const
         perm[ 0 ] = 'd';
 
     vfile temp(kfi->text(), kfi->size(), perm, kfi->time(KFileItem::ModificationTime).toTime_t(),
-               kfi->isLink(), kfi->user(), kfi->group(), kfi->user(),
+               kfi->isLink(), false, kfi->user(), kfi->group(), kfi->user(),
                kfi->mimetype(), kfi->linkDest(), mode);
 
     return match(&temp);

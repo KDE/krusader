@@ -107,7 +107,7 @@ public:
 
     void addItem(QString path, KIO::filesize_t size, time_t mtime, QString perm, QString foundText)
     {
-        vfile *vf = new vfile(path, size, perm, mtime, false/*FIXME*/, 0, 0, QString(), QString(), 0);
+        vfile *vf = new vfile(path, size, perm, mtime, false/*FIXME*/, false/*FIXME*/, 0, 0, QString(), QString(), 0);
         vf->vfile_setUrl(KUrl(path));
         _vfiles << vf;
         if(!foundText.isEmpty())

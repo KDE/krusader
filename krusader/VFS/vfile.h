@@ -63,6 +63,7 @@ public:
           const QString& perm,
           const time_t mtime,
           const bool symLink,
+          const bool brokenLink,
           const uid_t owner,
           const gid_t group,
           const QString& mime,
@@ -75,6 +76,7 @@ public:
           const QString& perm,
           const time_t mtime,
           const bool symLink,
+          const bool brokenLink,
           const QString& owner,
           const QString& group,
           const QString& userName,
@@ -106,6 +108,9 @@ public:
     }
     inline bool             vfile_isSymLink()  const {
         return vfile_symLink;
+    }
+    inline bool             vfile_isBrokenLink() const {
+        return vfile_brokenLink;
     }
     inline const QString&   vfile_getSymDest() const {
         return vfile_symDest;
@@ -150,7 +155,7 @@ public:
     inline void             vfile_setIcon(const QString& icn)   {
         vfile_icon = icn;
     }
-    inline QString          vfile_getIcon();
+    QString          vfile_getIcon();
 
     virtual ~vfile() {}
 
@@ -177,6 +182,7 @@ protected:
     QString          vfile_perm;     //< file permissions string
     time_t           vfile_time_t;   //< file modification in time_t format
     bool             vfile_symLink;  //< true if the file is a symlink
+    bool             vfile_brokenLink;
     QString          vfile_mimeType; //< file mimetype
     QString          vfile_symDest;  //< if it's a sym link - its detination
     KUrl             vfile_url;      //< file URL - empty by default
@@ -192,19 +198,5 @@ protected:
     static bool      vfile_useMimeTypeMagic;
 };
 
-
-QString vfile::vfile_getIcon()
-{
-    if (vfile_icon.isEmpty()) {
-        QString mime = this->vfile_getMime(!vfile_useMimeTypeMagic);
-        if (mime == "Broken Link !")
-            vfile_icon = "file-broken";
-        else if (vfile_icon.isEmpty()) {
-            KMimeType::Ptr mt = KMimeType::mimeType(mime);
-            vfile_icon = mt ? mt->iconName() : "file-broken";
-        }
-    }
-    return vfile_icon;
-}
 
 #endif
