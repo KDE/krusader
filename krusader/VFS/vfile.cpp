@@ -253,7 +253,6 @@ const KIO::UDSEntry vfile::vfile_getEntry()
     entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, vfile_getMime());
     entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, vfile_getMode() & S_IFMT);
     entry.insert(KIO::UDSEntry::UDS_ACCESS, vfile_getMode() & 07777);
-    entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, vfile_getMime());
 
     if (vfile_isSymLink())
         entry.insert(KIO::UDSEntry::UDS_LINK_DEST, vfile_getSymDest());
