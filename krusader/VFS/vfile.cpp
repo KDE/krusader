@@ -179,7 +179,9 @@ const QString& vfile::vfile_getMime(bool fast)
             if (url.isLocalFile()) {
                 QString file = url.toLocalFile() + "/.directory";
                 KDesktopFile cfg(file);
-                const QString &icon = cfg.readIcon();
+                QString icon = cfg.readIcon();
+                if(icon.startsWith("./")) // relative path
+                    icon = url.toLocalFile() + '/' + icon;
                 if (!icon.isEmpty())
                     vfile_icon = icon;
             }
