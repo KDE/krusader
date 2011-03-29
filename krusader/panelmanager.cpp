@@ -141,10 +141,22 @@ void PanelManager::slotChangePanel(ListPanel *p, bool makeActive)
 ListPanel* PanelManager::createPanel(KConfigGroup cfg)
 {
     ListPanel * p = new ListPanel(_stack, this, cfg);
+    connectPanel(p);
+    return p;
+}
+
+void PanelManager::connectPanel(ListPanel *p)
+{
     connect(p, SIGNAL(activate()), this, SLOT(activate()));
     connect(p, SIGNAL(pathChanged(ListPanel*)), this, SIGNAL(pathChanged(ListPanel*)));
     connect(p, SIGNAL(pathChanged(ListPanel*)), _tabbar, SLOT(updateTab(ListPanel*)));
-    return p;
+}
+
+void PanelManager::disconnectPanel(ListPanel *p)
+{
+    disconnect(p, SIGNAL(activate()), this, 0);
+    disconnect(p, SIGNAL(pathChanged(ListPanel*)), this, 0);
+    disconnect(p, SIGNAL(pathChanged(ListPanel*)), _tabbar, 0);
 }
 
 ListPanel* PanelManager::addPanel(bool setCurrent, KConfigGroup cfg, KrPanel *nextTo)
@@ -219,6 +231,7 @@ void PanelManager::moveTabToOtherSide()
     _self = _tabbar->removeCurrentPanel(p);
     _stack->setCurrentWidget(_self);
     _stack->removeWidget(p);
+    disconnectPanel(p);
 
     PanelManager *otherMng = static_cast<PanelManager*>(otherManager());
     p->reparent(otherMng->_stack, otherMng);
@@ -226,6 +239,7 @@ void PanelManager::moveTabToOtherSide()
     otherMng->_stack->addWidget(p);
     otherMng->_stack->setCurrentWidget(p);
     otherMng->_self = p;
+    otherMng->connectPanel(p);
 
     otherMng->tabsCountChanged();
     tabsCountChanged();

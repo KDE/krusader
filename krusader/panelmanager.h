@@ -129,6 +129,8 @@ private:
     void tabsCountChanged();
     ListPanel* addPanel(bool setCurrent = true, KConfigGroup cfg = KConfigGroup(), KrPanel *nextTo = 0);
     ListPanel* createPanel(KConfigGroup cfg);
+    void connectPanel(ListPanel *p);
+    void disconnectPanel(ListPanel *p);
 
     PanelManager *_otherManager;
     TabActions *_actions;
