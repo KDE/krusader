@@ -159,31 +159,29 @@ char vfile::vfile_isExecutable() const
 const QString& vfile::vfile_getMime(bool fast)
 {
     if (vfile_mimeType.isEmpty()) {
-        if(vfile_isdir) {
+        if(vfile_isdir)
             vfile_mimeType = "inode/directory";
-            return vfile_mimeType;
-        } else if(vfile_isBrokenLink()) {
+        else if(vfile_isBrokenLink())
             vfile_mimeType = "unknown";
-            return vfile_mimeType;
+        else {
+            KMimeType::Ptr mt = KMimeType::findByUrl(vfile_getUrl(), vfile_getMode(), vfile_getUrl().isLocalFile(), fast);
+            vfile_mimeType = mt ? mt->name() : "unknown";
+            if (mt)
+                vfile_icon = mt->iconName();
+            if (vfile_mimeType.contains("directory")) {
+                vfile_perm[0] = 'd';
+                vfile_isdir = true;
+            }
         }
 
-        KMimeType::Ptr mt = KMimeType::findByUrl(vfile_getUrl(), vfile_getMode(), vfile_getUrl().isLocalFile(), fast);
-        vfile_mimeType = mt ? mt->name() : "unknown";
-        if (mt)
-            vfile_icon = mt->iconName();
-        if (vfile_mimeType.contains("directory")) {
-            vfile_perm[0] = 'd';
-            vfile_isdir = true;
-
-            if (vfile_userDefinedFolderIcons) {
-                KUrl url = vfile_getUrl();
-                if (url.isLocalFile()) {
-                    QString file = url.toLocalFile() + "/.directory";
-                    KDesktopFile cfg(file);
-                    const QString &icon = cfg.readIcon();
-                    if (!icon.isEmpty())
-                        vfile_icon = icon;
-                }
+        if (vfile_isdir && vfile_userDefinedFolderIcons) {
+            KUrl url = vfile_getUrl();
+            if (url.isLocalFile()) {
+                QString file = url.toLocalFile() + "/.directory";
+                KDesktopFile cfg(file);
+                const QString &icon = cfg.readIcon();
+                if (!icon.isEmpty())
+                    vfile_icon = icon;
             }
         }
     }
