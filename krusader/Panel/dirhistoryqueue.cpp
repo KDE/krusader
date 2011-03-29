@@ -67,7 +67,7 @@ void DirHistoryQueue::saveCurrentItem()
 {
     // if the vfs-url hasn't been refreshed yet,
     // avoid saving current item for the wrong url
-    if(_panel->virtualPath().equals(_urlQueue[_currentPos], KUrl::CompareWithoutTrailingSlash))
+    if(count() &&  _panel->virtualPath().equals(_urlQueue[_currentPos], KUrl::CompareWithoutTrailingSlash))
         _currentItems[_currentPos] = _panel->view->getCurrentItem();
 }
 
