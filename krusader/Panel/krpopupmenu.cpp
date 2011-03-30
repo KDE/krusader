@@ -298,7 +298,7 @@ void KrPopupMenu::performAction(int id)
     case OPEN_ID :
         for (KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it) {
             u = panel->func->files()->vfs_getFile((*it) ->name());
-            KRun::runUrl(u, panel->func->getVFile(item)->vfile_getMime(), parentWidget());
+            panel->func->execute((*it)->name());
         }
         break;
     case COPY_ID :
@@ -331,7 +331,7 @@ void KrPopupMenu::performAction(int id)
     case CHOOSE_ID : // open-with dialog
         u = panel->func->files() ->vfs_getFile(item->name());
         lst.append(u);
-        KRun::displayOpenWithDialog(lst, parentWidget());
+        panel->func->displayOpenWithDialog(lst);
         break;
     case MOUNT_ID :
         krMtMan.mount(panel->func->files() ->vfs_getFile(item->name()).path(KUrl::RemoveTrailingSlash));
@@ -409,8 +409,8 @@ void KrPopupMenu::performAction(int id)
     if (id >= SERVICE_LIST_ID) {
         QStringList names;
         panel->gui->getSelectedNames(&names);
-        KRun::run(*(offers[ id - SERVICE_LIST_ID ]),
-                  *(panel->func->files() ->vfs_getFiles(&names)), parentWidget());
+        panel->func->runService(*(offers[ id - SERVICE_LIST_ID ]),
+                                *(panel->func->files()->vfs_getFiles(&names)));
     }
 }
 

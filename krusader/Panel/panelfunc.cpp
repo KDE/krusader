@@ -59,6 +59,9 @@ A
 #include <kdesktopfile.h>
 #include <ktoggleaction.h>
 #include <kurlcompletion.h>
+#include <kmimetypetrader.h>
+#include <kopenwithdialog.h>
+#include <kshell.h>
 
 #include "dirhistoryqueue.h"
 #include "krcalcspacedialog.h"
@@ -928,6 +931,35 @@ void ListPanelFunc::goInside(const QString& name)
     }
 }
 
+void ListPanelFunc::runCommand(QString cmd)
+{
+    QString workdir = panel->virtualPath().isLocalFile() ?
+            panel->virtualPath().path() : QDir::homePath();
+    if(!KRun::runCommand(cmd, krMainWindow, workdir))
+        KMessageBox::error(0, i18n("Couldn't start %1", cmd));
+}
+
+void ListPanelFunc::runService(const KService &service, KUrl::List urls)
+{
+    QStringList args = KRun::processDesktopExec(service, urls);
+    if (args.count())
+        runCommand(KShell::joinArgs(args));
+    else
+        KMessageBox::error(0, i18n("%1 can't open %2", service.name(), urls.toStringList().join(", ")));
+}
+
+void ListPanelFunc::displayOpenWithDialog(KUrl::List urls)
+{
+    KOpenWithDialog dialog(urls, panel);
+    dialog.hideRunInTerminal();
+    if (dialog.exec()) {
+        KService::Ptr service = dialog.service();
+        if(!service)
+            service = KService::Ptr(new KService(dialog.text(), dialog.text(), QString()));
+        runService(*service, urls);
+    }
+}
+
 // this is done when you double click on a file
 void ListPanelFunc::execute(const QString& name)
 {
@@ -961,8 +993,15 @@ void ListPanelFunc::execute(const QString& name)
         openUrl(path);
     } else {
         KUrl url = files() ->vfs_getFile(name);
-        KFileItem kfi(vf->vfile_getEntry(), url, true);
-        kfi.run();
+        if (vf->vfile_isExecutable() && url.isLocalFile())
+            runCommand(url.path());
+        else {
+            KService::Ptr service = KMimeTypeTrader::self()->preferredService(vf->vfile_getMime());
+            if(service)
+                runService(*service, KUrl::List(url));
+            else
+                displayOpenWithDialog(KUrl::List(url));
+        }
     }
 }
 

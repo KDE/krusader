@@ -38,6 +38,7 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QTimer>
+#include <kservice.h>
 
 
 class DirHistoryQueue;
@@ -114,6 +115,8 @@ public:
 
     void refreshActions();
     void redirectLink();
+    void runService(const KService &service, KUrl::List urls);
+    void displayOpenWithDialog(KUrl::List urls);
 
     // calculate the occupied space. A dialog appears, if calculation lasts more than 3 seconds
     // and disappears, if the calculation is done. Returns true, if the result is ok and false
@@ -132,6 +135,7 @@ protected:
     bool isSyncing(const KUrl &url);
     void openUrlInternal(const KUrl& url, const QString& makeCurrent,
                          bool immediately, bool disableLock, bool manuallyEntered);
+    void runCommand(QString cmd);
 
     ListPanel*           panel;     // our ListPanel
     DirHistoryQueue*     history;
