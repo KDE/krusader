@@ -46,6 +46,7 @@ A
 #include <kmessagebox.h>
 #include <QtGui/QLayout>
 #include <QtGui/QGroupBox>
+#include <QtGui/QCheckBox>
 #include <kdiskfreespace.h>
 #include <QtGui/QCursor>
 #include <kdebug.h>
@@ -66,7 +67,16 @@ A
 #define UMOUNT_BTN KDialog::User2
 
 
-KMountManGUI::KMountManGUI(KMountMan *mntMan) : KDialog(mntMan->parentWindow), mountMan(mntMan), info(0), mountList(0), sizeX(-1), sizeY(-1)
+KMountManGUI::KMountManGUI(KMountMan *mntMan) : KDialog(mntMan->parentWindow),
+    mountMan(mntMan),
+    info(0),
+    mainPage(0),
+    mountList(0),
+    cbShowOnlyRemovable(0),
+    watcher(0),
+    numOfMountPoints(0),
+    sizeX(-1),
+    sizeY(-1)
 {
     setWindowTitle(i18n("Mount.Man"));
     setWindowModality(Qt::WindowModal);
@@ -96,7 +106,6 @@ KMountManGUI::KMountManGUI(KMountMan *mntMan) : KDialog(mntMan->parentWindow), m
             SLOT(changeActive(QTreeWidgetItem *)));
     connect(mountList, SIGNAL(itemSelectionChanged()), this,
             SLOT(changeActive()));
-
 
     KConfigGroup group(krConfig, "MountMan");
     int sx = group.readEntry("Window Width", -1);
@@ -128,6 +137,7 @@ KMountManGUI::~KMountManGUI()
     group.writeEntry("Window Height", sizeY);
     group.writeEntry("Window Maximized", isMaximized());
     group.writeEntry("Last State", mountList->header()->saveState());
+    group.writeEntry("ShowOnlyRemovable", cbShowOnlyRemovable->isChecked());
 }
 
 
@@ -149,19 +159,11 @@ void KMountManGUI::createLayout()
 
 void KMountManGUI::createMainPage()
 {
-    // check if we need to clean up first!
-    //FIXME cleanup other items too
-    if (mountList != 0) {
-        mountList->hide();
-        delete mountList;
-        mountList = 0;
-    }
-    // clean up is finished...
     QGridLayout *layout = new QGridLayout(mainPage);
     layout->setSpacing(10);
     mountList = new KrTreeWidget(mainPage);    // create the main container
-    KConfigGroup group(krConfig, "Look&Feel");
-    mountList->setFont(group.readEntry("Filelist Font", _FilelistFont));
+    KConfigGroup grp(krConfig, "Look&Feel");
+    mountList->setFont(grp.readEntry("Filelist Font", _FilelistFont));
     mountList->setSelectionMode(QAbstractItemView::SingleSelection);
     mountList->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     mountList->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
@@ -182,7 +184,7 @@ void KMountManGUI::createMainPage()
     mountList->header()->setResizeMode(4, QHeaderView::Interactive);
     mountList->header()->setResizeMode(5, QHeaderView::Interactive);
 
-    KConfigGroup grp(krConfig, "MountMan");
+    grp = KConfigGroup(krConfig, "MountMan");
     if (grp.hasKey("Last State"))
         mountList->header()->restoreState(grp.readEntry("Last State", QByteArray()));
     else {
@@ -205,14 +207,21 @@ void KMountManGUI::createMainPage()
 
     // now the list is created, time to fill it with data.
     //=>mountMan->forceUpdate();
+
     QGroupBox *box = new QGroupBox(i18n("MountMan.Info"), mainPage);
     box->setAlignment(Qt::AlignHCenter);
-    QVBoxLayout *vboxl = new QVBoxLayout;
-    vboxl->addWidget(info = new KRFSDisplay(box));
+    QVBoxLayout *vboxl = new QVBoxLayout(box);
+    info = new KRFSDisplay(box);
+    vboxl->addWidget(info);
     info->resize(info->width(), height());
-    box->setLayout(vboxl);
+
+    cbShowOnlyRemovable = new QCheckBox(i18n("Show only removable devices"), mainPage);
+    cbShowOnlyRemovable->setChecked(grp.readEntry("ShowOnlyRemovable", false));
+    connect(cbShowOnlyRemovable , SIGNAL(stateChanged(int)), SLOT(updateList()));
+
     layout->addWidget(box, 0, 0);
-    layout->addWidget(mountList, 0, 1);
+    layout->addWidget(cbShowOnlyRemovable, 1, 0);
+    layout->addWidget(mountList, 0, 1, 2, 1);
 
     mainPage->setLayout(layout);
 }
@@ -274,6 +283,11 @@ void KMountManGUI::gettingSpaceData(const QString &mountPoint, quint64 kBSize,
 
 void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
 {
+    Solid::Device device(mountMan->findUdiForPath(fs.mntPoint(), Solid::DeviceInterface::StorageAccess));
+
+    if (cbShowOnlyRemovable->isChecked() && !mountMan->removable(device))
+        return;
+
     bool mtd = fs.mounted();
 
     QString tSize = QString("%1").arg(KIO::convertSizeFromKiB(fs.totalBlks()));
@@ -287,11 +301,9 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     item->setText(4, (mtd ? fSize : QString("N/A")));
     item->setText(5, (mtd ? sPrct : QString("N/A")));
 
-
-    Solid::Device device(mountMan->findUdiForPath(fs.mntPoint(), Solid::DeviceInterface::StorageAccess));
     Solid::StorageVolume *vol = device.as<Solid::StorageVolume> ();
     QString icon;
-    
+
     if(device.isValid())
         icon = device.icon();
     else if(mountMan->networkFilesystem(fs.type()))

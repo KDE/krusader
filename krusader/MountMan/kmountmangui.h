@@ -47,8 +47,8 @@
 
 #define  WATCHER_DELAY    500
 
+class QCheckBox;
 class KRFSDisplay;
-
 
 // forward definitions
 class fsData;
@@ -64,8 +64,6 @@ class KMountManGUI : public KDialog
 public:
     KMountManGUI(KMountMan *mntMan);
     ~KMountManGUI();
-    void createLayout();   // calls the various tab layout-creators
-    void createMainPage(); // creator of the main page - filesystems
 
 protected:
     virtual void resizeEvent(QResizeEvent *e);
@@ -85,6 +83,8 @@ protected slots:
                           quint64 kBUsed, quint64 kBAvail);
 
 protected:
+    void createLayout();   // calls the various tab layout-creators
+    void createMainPage(); // creator of the main page - filesystems
     void addItemToMountList(KrTreeWidget *lst, fsData &fs);
     fsData* getFsData(QTreeWidgetItem *item);
     QString getMntPoint(QTreeWidgetItem *item);
@@ -97,6 +97,7 @@ private:
     KRFSDisplay *info;
     QWidget *mainPage;
     KrTreeWidget *mountList;
+    QCheckBox *cbShowOnlyRemovable;
     QTimer *watcher;
     QDateTime lastMtab;
     // used for the getSpace - gotSpace functions
