@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
 
     KAboutData aboutData("krusader", 0, (geteuid() ? ki18n("Krusader") : ki18n("Krusader - ROOT PRIVILEGES")),
                          versionName.toLocal8Bit(), ki18n(description), KAboutData::License_GPL_V2,
-                         ki18n("(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2010, Krusader Krew"),
+                         ki18n("(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2011, Krusader Krew"),
                          ki18n("Feedback:\nhttp://www.krusader.org/phpBB/\n\nIRC\nserver: irc.freenode.net, channel: #krusader"),
                          "http://www.krusader.org");
 
