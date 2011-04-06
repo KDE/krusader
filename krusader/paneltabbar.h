@@ -71,10 +71,6 @@ public slots:
 
 signals:
     /**
-     * This signal is emitted when the user clicked on a tab. PanelManager should change panels accordingly
-     */
-    void changePanel(ListPanel *p);
-    /**
      * emitted when the user right-clicks and selected "close"
      */
     void closeCurrentTab();

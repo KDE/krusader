@@ -65,7 +65,7 @@ PanelManager::PanelManager(QWidget *parent, FileManagerWindow* mainWindow, bool 
 
     // tab-bar
     _tabbar = new PanelTabBar(this, _actions);
-    connect(_tabbar, SIGNAL(changePanel(ListPanel*)), this, SLOT(slotChangePanel(ListPanel *)));
+    connect(_tabbar, SIGNAL(currentChanged(int)), this, SLOT(slotCurrentTabChanged(int)));
     connect(_tabbar, SIGNAL(tabCloseRequested(int)), this, SLOT(slotCloseTab(int)));
     connect(_tabbar, SIGNAL(closeCurrentTab()), this, SLOT(slotCloseTab()));
     connect(_tabbar, SIGNAL(newTab(const KUrl&)), this, SLOT(slotNewTab(const KUrl&)));
@@ -116,26 +116,27 @@ void PanelManager::activate()
     _actions->refreshActions();
 }
 
-void PanelManager::slotChangePanel(ListPanel *p, bool makeActive)
+void PanelManager::slotCurrentTabChanged(int index)
+// void PanelManager::slotChangePanel(ListPanel *p, bool makeActive)
 {
-    if (p == 0)
+    ListPanel *p = _tabbar->getPanel(index);
+
+    if (!p || p == _self)
         return;
 
     ListPanel *prev = _self;
     _self = p;
 
-//     _stack->setUpdatesEnabled(false);
-
     _stack->setCurrentWidget(_self);
 
-    _self->slotFocusOnMe((this == ACTIVE_MNG) || makeActive);
+    if(prev)
+        prev->slotFocusOnMe(false); //FIXME - necessary ?
+    _self->slotFocusOnMe(this == ACTIVE_MNG);
 
     emit pathChanged(p);
 
-    if(otherManager() && _self != prev)
+    if(otherManager())
         otherManager()->currentPanel()->otherPanelChanged();
-
-//     _stack->setUpdatesEnabled(true);
 }
 
 ListPanel* PanelManager::createPanel(KConfigGroup cfg)
@@ -166,11 +167,11 @@ ListPanel* PanelManager::addPanel(bool setCurrent, KConfigGroup cfg, KrPanel *ne
     _stack->addWidget(p);
 
     // now, create the corrosponding tab
-    _tabbar->addPanel(p, setCurrent, nextTo);
+    int index = _tabbar->addPanel(p, setCurrent, nextTo);
     tabsCountChanged();
 
     if (setCurrent)
-        slotChangePanel(p, false);
+        slotCurrentTabChanged(index);
 
     return p;
 }
@@ -228,20 +229,16 @@ void PanelManager::moveTabToOtherSide()
         return;
 
     ListPanel *p;
-    _self = _tabbar->removeCurrentPanel(p);
-    _stack->setCurrentWidget(_self);
+    _tabbar->removeCurrentPanel(p);
     _stack->removeWidget(p);
     disconnectPanel(p);
 
-    PanelManager *otherMng = static_cast<PanelManager*>(otherManager());
-    p->reparent(otherMng->_stack, otherMng);
-    otherMng->_tabbar->addPanel(p, true);
-    otherMng->_stack->addWidget(p);
-    otherMng->_stack->setCurrentWidget(p);
-    otherMng->_self = p;
-    otherMng->connectPanel(p);
+    p->reparent(_otherManager->_stack, _otherManager);
+    _otherManager->connectPanel(p);
+    _otherManager->_stack->addWidget(p);
+    _otherManager->_tabbar->addPanel(p, true);
 
-    otherMng->tabsCountChanged();
+    _otherManager->tabsCountChanged();
     tabsCountChanged();
 
     p->slotFocusOnMe();
@@ -270,10 +267,10 @@ void PanelManager::slotCloseTab(int index)
 
     ListPanel *oldp;
 
-    if (index == _tabbar->currentIndex())
-        slotChangePanel(_tabbar->removeCurrentPanel(oldp), false);
-    else
-        _tabbar->removePanel(index, oldp);
+//     if (index == _tabbar->currentIndex())
+//         slotChangePanel(_tabbar->removeCurrentPanel(oldp), false);
+//     else
+    _tabbar->removePanel(index, oldp); //this automatically changes the current panel
 
     _stack->removeWidget(oldp);
     deletePanel(oldp);
@@ -300,7 +297,6 @@ int PanelManager::activeTab()
 void PanelManager::setActiveTab(int index)
 {
     _tabbar->setCurrentIndex(index);
-    slotChangePanel(_tabbar->getPanel(index));
 }
 
 void PanelManager::slotRecreatePanels()
@@ -340,9 +336,7 @@ void PanelManager::slotNextTab()
 {
     int currTab = _tabbar->currentIndex();
     int nextInd = (currTab == _tabbar->count() - 1 ? 0 : currTab + 1);
-    ListPanel *nextp = _tabbar->getPanel(nextInd);
     _tabbar->setCurrentIndex(nextInd);
-    slotChangePanel(nextp);
 }
 
 
@@ -350,9 +344,7 @@ void PanelManager::slotPreviousTab()
 {
     int currTab = _tabbar->currentIndex();
     int nextInd = (currTab == 0 ? _tabbar->count() - 1 : currTab - 1);
-    ListPanel *nextp = _tabbar->getPanel(nextInd);
     _tabbar->setCurrentIndex(nextInd);
-    slotChangePanel(nextp);
 }
 
 void PanelManager::refreshAllTabs(bool invalidate)

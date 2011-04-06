@@ -111,7 +111,6 @@ void PanelTabBar::changePanel(int tabIdx, ListPanel *panel)
     setTabData(tabIdx, v);
 }
 
-
 ListPanel* PanelTabBar::removePanel(int index, ListPanel* &panelToDelete)
 {
     panelToDelete = getPanel(index); // old panel to kill later
@@ -265,8 +264,9 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
 
     setCurrentIndex(clickedTab);
 
-    ListPanel *panel = (ListPanel*)tabData(clickedTab).toLongLong();
-    emit changePanel(panel);
+    ListPanel *p =  getPanel(clickedTab);
+    if(p)
+        p->slotFocusOnMe();
 
     if (e->button() == Qt::RightButton) {
         // show the popup menu
@@ -294,10 +294,8 @@ void PanelTabBar::dragEnterEvent(QDragEnterEvent *e)
     int t = tabAt(e->pos());
     if (t == -1)
         return;
-    if (currentIndex() != t) {
+    if (currentIndex() != t)
         setCurrentIndex(t);
-        emit changePanel((ListPanel*)tabData(t).toLongLong());
-    }
     KTabBar::dragEnterEvent(e);
 }
 
@@ -306,10 +304,8 @@ void PanelTabBar::dragMoveEvent(QDragMoveEvent *e)
     e->ignore();
     int t = tabAt(e->pos());
     if (t == -1) return;
-    if (currentIndex() != t) {
+    if (currentIndex() != t)
         setCurrentIndex(t);
-        emit changePanel((ListPanel*)tabData(t).toLongLong());
-    }
     KTabBar::dragMoveEvent(e);
 }
 

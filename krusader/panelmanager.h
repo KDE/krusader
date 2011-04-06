@@ -114,7 +114,7 @@ public slots:
     void slotCloseDuplicatedTabs();
 
 protected slots:
-    void slotChangePanel(ListPanel *p, bool makeActive = true);
+    void slotCurrentTabChanged(int index);
     void activate();
     void slotDraggingTab(QMouseEvent *e) {
         emit draggingTab(this, e);
