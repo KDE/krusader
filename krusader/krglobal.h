@@ -34,9 +34,9 @@
 
 #include <kconfiggroup.h>
 #include <kshortcut.h>
+#include <kdebug.h>
 
-//static QTextOStream krOut(stdout);
-#define krOut kDebug(50010)
+#define krOut kDebug()
 
 class KConfig;
 class KMountMan;
