@@ -490,7 +490,7 @@ void ListPanel::setProperties(int prop)
 bool ListPanel::eventFilter(QObject * watched, QEvent * e)
 {
     if(view && watched == view->widget()) {
-        if(e->type() == QEvent::FocusIn && this != ACTIVE_PANEL)
+        if(e->type() == QEvent::FocusIn && this != ACTIVE_PANEL && !isHidden())
             slotFocusOnMe();
         else if(e->type() == QEvent::ShortcutOverride) {
             QKeyEvent *ke = static_cast<QKeyEvent*>(e);
