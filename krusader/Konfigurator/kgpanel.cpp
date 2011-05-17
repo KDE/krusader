@@ -275,7 +275,7 @@ void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
 // -------------------- Filelist icon size ----------------------------------
     QHBoxLayout *hbox = new QHBoxLayout();
 
-    hbox->addWidget(new QLabel(i18n("Filelist icon size:"), parent));
+    hbox->addWidget(new QLabel(i18n("Default icon size:"), parent));
 
     KONFIGURATOR_NAME_VALUE_PAIR *iconSizes = new KONFIGURATOR_NAME_VALUE_PAIR[KrView::iconSizes.count()];
     for(int i = 0; i < KrView::iconSizes.count(); i++)
