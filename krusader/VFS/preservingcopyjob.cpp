@@ -29,7 +29,6 @@
  ***************************************************************************/
 
 #include "preservingcopyjob.h"
-#include "preserveattrcopyjob.h"
 #include "../defaults.h"
 #include "../krglobal.h"
 #include <kio/global.h>
@@ -41,28 +40,14 @@
 KIO::Job * PreservingCopyJob::createCopyJob(PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool asMethod, bool showProgressInfo)
 {
     switch (pmode) {
-    case PM_PRESERVE_ATTR: {
-        KIO::Job *res = new KIO::PreserveAttrCopyJob(src, dest, mode, asMethod);
-        if (showProgressInfo) {
-            res->setUiDelegate(new KIO::JobUiDelegate());
-            KIO::getJobTracker()->registerJob(res);
-        }
-        return res;
-    }
-    case PM_DEFAULT: {
-        KConfigGroup grp(krConfig, "Advanced");
-        bool preserve = grp.readEntry("PreserveAttributes", _PreserveAttributes);
+    // KIO always preserves attributes
 
-        if (preserve) {
-            KIO::Job *res = new KIO::PreserveAttrCopyJob(src, dest, mode, asMethod);
-            if (showProgressInfo) {
-                res->setUiDelegate(new KIO::JobUiDelegate());
-                KIO::getJobTracker()->registerJob(res);
-            }
-            return res;
-        }
-    }
-    case PM_NONE:
+//     case PM_DEFAULT: {
+//         KConfigGroup grp(krConfig, "Advanced");
+//         bool preserve = grp.readEntry("PreserveAttributes", _PreserveAttributes);
+//     }
+// //     case PM_NONE:
+//     case PM_PRESERVE_ATTR:
     default: {
         switch (mode) {
         case KIO::CopyJob::Copy:

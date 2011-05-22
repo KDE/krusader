@@ -169,7 +169,6 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QString& urlName, const Q
         bool modal, KUrl baseURL)
         :   KDialog(parent), baseUrlCombo(0), copyDirStructureCB(0), queue(false)
 {
-
     setButtons(KDialog::Ok | KDialog::User1 | KDialog::User2 | KDialog::Cancel);
     setDefaultButton(KDialog::Ok);
     setButtonGuiItem(KDialog::User1, KGuiItem(i18n("F2 Queue")));
@@ -188,9 +187,9 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QString& urlName, const Q
     urlRequester_ = new KUrlRequester(urlName, widget);
     urlRequester_->setMinimumWidth(urlRequester_->sizeHint().width() * 3);
     topLayout->addWidget(urlRequester_);
-    preserveAttrsCB = new QCheckBox(i18n("Preserve attributes (only for local targets)"), widget);
-    preserveAttrsCB->setChecked(presAttrs);
-    topLayout->addWidget(preserveAttrsCB);
+//     preserveAttrsCB = new QCheckBox(i18n("Preserve attributes (only for local targets)"), widget);
+//     preserveAttrsCB->setChecked(presAttrs);
+//     topLayout->addWidget(preserveAttrsCB);
     if (!baseURL.isEmpty()) {
         QFrame *line = new QFrame(widget);
         line->setFrameStyle(QFrame::HLine | QFrame::Sunken);
@@ -250,7 +249,8 @@ void KUrlRequesterDlgForCopy::keyPressEvent(QKeyEvent *e)
 
 bool KUrlRequesterDlgForCopy::preserveAttrs()
 {
-    return preserveAttrsCB->isChecked();
+//     return preserveAttrsCB->isChecked();
+    return true;
 }
 
 bool KUrlRequesterDlgForCopy::copyDirStructure()

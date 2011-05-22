@@ -77,7 +77,7 @@ public:
     }
     bool copyDirStructure();
     void hidePreserveAttrs() {
-        preserveAttrsCB->hide();
+//         preserveAttrsCB->hide();
     }
 
     KUrlRequester *urlRequester();
@@ -93,7 +93,7 @@ private slots:
 private:
     KUrlRequester *urlRequester_;
     QComboBox *baseUrlCombo;
-    QCheckBox *preserveAttrsCB;
+//     QCheckBox *preserveAttrsCB;
     QCheckBox *copyDirStructureCB;
     bool queue;
 };

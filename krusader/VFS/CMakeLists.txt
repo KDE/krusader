@@ -12,7 +12,6 @@ set(VFS_SRCS
     ftp_vfs.cpp 
     krquery.cpp
     kiojobwrapper.cpp
-    preserveattrcopyjob.cpp
     packjob.cpp
     abstractthreadedjob.cpp)
 
