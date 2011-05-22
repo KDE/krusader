@@ -78,9 +78,6 @@ Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)0),
 
     connect(this, SIGNAL(currentPageChanged(KPageWidgetItem *, KPageWidgetItem *)), this, SLOT(slotPageSwitch(KPageWidgetItem *, KPageWidgetItem *)));
     connect(&restoreTimer, SIGNAL(timeout()), this, SLOT(slotRestorePage()));
-    connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
-    connect(this, SIGNAL(cancelClicked()), this, SLOT(slotCancel())); 
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
 
     createLayout(startPage);
 
