@@ -66,6 +66,9 @@ protected:
     virtual ~AbstractThreadedJob();
     virtual bool event(QEvent *);
     virtual void start(AbstractJobThread*);
+    virtual bool doSuspend() {
+        return false;
+    }
 
 protected slots:
     void slotDownloadResult(KJob*);
