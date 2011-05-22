@@ -481,7 +481,7 @@ void KRslots::rootKrusader()
     }
 
     KProcess proc;
-    proc << KrServices::fullPathName("kdesu") << KrServices::fullPathName("krusader")
+    proc << KrServices::fullPathName("kdesu") << "-c" << KrServices::fullPathName("krusader")
     + " --left=" + LEFT_PANEL->func->files()->vfs_getOrigin().url()
     + " --right=" + RIGHT_PANEL->func->files()->vfs_getOrigin().url();
 
