@@ -51,6 +51,9 @@
 #include <QResizeEvent>
 #include <QHideEvent>
 #include <kdebug.h>
+
+#include <QTimer>
+
 #include "VFS/kiojobwrapper.h"
 
 #ifdef __KJSEMBED__
@@ -131,6 +134,9 @@ public slots:
         directExit = true;
     }
 
+protected slots:
+    void doOpenUrl();
+
 protected:
     bool queryExit();
     bool queryClose();
@@ -174,6 +180,9 @@ signals:
     void shutdown();
 
 private:
+    static void supportedTool(QStringList &tools, QString toolType,
+                              QStringList names, QString confName);
+
     KrActions *_krActions;
     ViewActions *_viewActions;
     ListPanelActions *_listPanelActions;
@@ -185,8 +194,8 @@ private:
     bool         isExiting;
     bool         directExit;
     KrJobStarter jobStarter;
-    static void supportedTool(QStringList &tools, QString toolType,
-                              QStringList names, QString confName);
+    QTimer      _openUrlTimer;
+    QString     _urlToOpen;
 };
 
 

@@ -304,6 +304,9 @@ Krusader::Krusader() : KParts::MainWindow(0,
     // for some reason sometimes the active view cannot be focused immediately at this point,
     // so queue it for the main loop
     QTimer::singleShot(0, ACTIVE_PANEL->view->widget(), SLOT(setFocus()));
+
+    _openUrlTimer.setSingleShot(true);
+    connect(&_openUrlTimer, SIGNAL(timeout()), SLOT(doOpenUrl()));
 }
 
 Krusader::~Krusader()
@@ -864,6 +867,14 @@ bool Krusader::isLeftActive()  {
 
 void Krusader::openUrl(QString url)
 {
+    _urlToOpen = url;
+    _openUrlTimer.start(0);
+}
+
+void Krusader::doOpenUrl()
+{
+    QString url = _urlToOpen;
+    _urlToOpen.clear();
     int tab = ACTIVE_MNG->findTab(url);
     if(tab >= 0)
         ACTIVE_MNG->setActiveTab(tab);
