@@ -245,8 +245,6 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     freeSpace->setAutoFillBackground(false);
     freeSpace->setText("");
     freeSpace->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    if(!group.readEntry("Show Free Space", false))
-        freeSpace->hide();
     ADD_WIDGET(freeSpace);
 
     // progress indicator for the preview job

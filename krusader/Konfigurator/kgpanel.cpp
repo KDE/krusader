@@ -183,10 +183,9 @@ void KgPanel::setupMiscTab()
     KONFIGURATOR_CHECKBOX_PARAM barSettings[] =
     {
         {"Look&Feel", "Show Size In Bytes", true, i18n("Show size in bytes too"), true,  i18n("Show size in bytes too") },
-        {"Look&Feel", "Show Free Space", false, i18n("Show free disk space in the Totalsbar"), true,  i18n("Show free disk space in the Totalsbar") },
     };
     KonfiguratorCheckBoxGroup *barSett = createCheckBoxGroup(2, 0, barSettings,
-                                          2 /*count*/, miscGrp, PAGE_MISC);
+                                          1 /*count*/, miscGrp, PAGE_MISC);
     miscGrid->addWidget(barSett, 1, 0, 1, 2);
 
     miscLayout->addWidget(miscGrp);
