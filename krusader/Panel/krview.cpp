@@ -423,7 +423,7 @@ void KrView::showPreviews(bool show)
         _previews = 0;
     }
     redraw();
-    op()->settingsChanged(KrViewProperties::PropShowPreviews);
+//     op()->settingsChanged(KrViewProperties::PropShowPreviews);
     op()->emitRefreshActions();
 }
 
@@ -1110,7 +1110,7 @@ void KrView::sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool desce
     _properties->sortColumn = sortColumn;
     _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(options);
 
-    op()->settingsChanged(KrViewProperties::PropSortMode);
+//     op()->settingsChanged(KrViewProperties::PropSortMode);
 }
 
 void KrView::saveSortMode(KConfigGroup &group)
