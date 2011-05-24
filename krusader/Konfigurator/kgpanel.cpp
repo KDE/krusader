@@ -53,6 +53,7 @@
 #define PAGE_VIEW         2
 #define PAGE_PANELTOOLBAR  3
 #define PAGE_MOUSE  4
+#define PAGE_LAYOUT 5
 
 
 KgPanel::KgPanel(bool first, QWidget* parent) :
@@ -222,7 +223,7 @@ void KgPanel::setupLayoutTab()
         layouts[ i ].value = layoutNames[i];
     }
     KonfiguratorComboBox *cmb = createComboBox("PanelLayout", "Layout", "default",
-                         layouts, numLayouts, tab, true, false, PAGE_MISC);
+                         layouts, numLayouts, tab, true, false, PAGE_LAYOUT);
     grid->addWidget(cmb, 0, 1);
     delete [] layouts;
 
@@ -235,7 +236,7 @@ void KgPanel::setupLayoutTab()
         { i18n("Statusbar"), "Statusbar" }
     };
     cmb = createComboBox("PanelLayout", "FrameColor",
-                            "default", frameColor, 3, tab, true, false, PAGE_MISC);
+                            "default", frameColor, 3, tab, true, false, PAGE_LAYOUT);
     grid->addWidget(cmb, 1, 1);
 
 
@@ -249,7 +250,7 @@ void KgPanel::setupLayoutTab()
         { i18n("Panel"), "Panel" },
     };
     cmb = createComboBox("PanelLayout", "FrameShape",
-                            "default", frameShape, 4, tab, true, false, PAGE_MISC);
+                            "default", frameShape, 4, tab, true, false, PAGE_LAYOUT);
     grid->addWidget(cmb, 2, 1);
 
 
@@ -263,7 +264,7 @@ void KgPanel::setupLayoutTab()
         { i18n("Sunken"), "Sunken" },
     };
     cmb = createComboBox("PanelLayout", "FrameShadow",
-                            "default", frameShadow, 4, tab, true, false, PAGE_MISC);
+                            "default", frameShadow, 4, tab, true, false, PAGE_LAYOUT);
     grid->addWidget(cmb, 3, 1);
 }
 
