@@ -46,6 +46,7 @@ A
 #include <kdebug.h>
 
 
+#define XMLFILE_VERSION "1.0"
 #define MAIN_FILE "krusader/layout.xml"
 #define EXTRA_FILE_MASK "krusader/layouts/*.xml"
 #define DEFAULT_LAYOUT "krusader:default"
@@ -106,9 +107,13 @@ bool KrLayoutFactory::parseFile(QString path, QDomDocument &doc)
         QString errorMsg;
         if (doc.setContent(&file, &errorMsg)) {
             QDomElement root = doc.documentElement();
-            if (root.tagName() == "KrusaderLayout")
-                success = true;
-            else
+            if (root.tagName() == "KrusaderLayout") {
+                QString version = root.attribute("version");
+                if(version == XMLFILE_VERSION)
+                    success = true;
+                else
+                    krOut << path << "has wrong version" << version << "- required is" << XMLFILE_VERSION << endl;
+            } else
                 krOut << "root.tagName() != \"KrusaderLayout\"\n";
         } else
             krOut << "error parsing" << path << ":" << errorMsg << endl;
