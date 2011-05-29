@@ -30,6 +30,32 @@
         </layout>
     </layout>
 
+    <layout name="krusader:compact" type="vertical">
+        <hide_widget name="status"/>
+        <layout type="horizontal">
+            <frame type="horizontal" color="Statusbar" shape="Box" shadow="Raised">
+                <widget name="mediaButton"/>
+                <widget name="origin"/>
+                <widget name="toolbar"/>
+                <widget name="backButton"/>
+                <widget name="forwardButton"/>
+                <widget name="historyButton"/>
+                <widget name="bookmarksButton"/>
+            </frame>
+        </layout>
+        <widget name="vfsError"/>
+        <widget name="clientArea"/>
+        <layout type="horizontal">
+            <frame type="horizontal" color="Statusbar" shape="Box" shadow="Raised">
+                <widget name="totals"/>
+                <widget name="freeSpace"/>
+                <widget name="previewProgress"/>
+                <widget name="inlineRefreshCancelButton"/>
+                <widget name="popupBtn"/>
+            </frame>
+        </layout>
+    </layout>
+
     <layout name="krusader:classic" type="vertical">
         <hide_widget name="freeSpace"/>
         <layout type="horizontal">
