@@ -46,52 +46,141 @@ A
 #include <kdebug.h>
 
 
-#define XMLFILE "krusader/layout.xml"
+#define MAIN_FILE "krusader/layout.xml"
+#define EXTRA_FILE_MASK "krusader/layouts/*.xml"
+#define DEFAULT_LAYOUT "krusader:default"
 
 
-QDomDocument _doc("KrusaderLayout");
-QDomElement _root;
-bool _parsed = false;
+bool KrLayoutFactory::_parsed = false;
+QDomDocument KrLayoutFactory::_mainDoc;
+QList<QDomDocument> KrLayoutFactory::_extraDocs;
+
+
+QString KrLayoutFactory::layoutDescription(QString layoutName)
+{
+    if(layoutName == DEFAULT_LAYOUT)
+        return i18n("Default");
+    else if(layoutName == "krusader:classic")
+        return i18n("Classic Krusader layout");
+    else
+        return i18n("Custom layout: \"%1\"", layoutName);
+}
+
+bool KrLayoutFactory::parseFiles()
+{
+    if (_parsed)
+        return true;
+
+    QString mainFilePath = KStandardDirs::locate("data", MAIN_FILE);
+    if (mainFilePath.isEmpty()) {
+        krOut << "can't locate" << MAIN_FILE << endl;
+        return false;
+    }
+
+    if (!parseFile(mainFilePath, _mainDoc))
+        return false;
+
+    _parsed = true;
+
+    QStringList extraFilePaths = KGlobal::dirs()->findAllResources("data", EXTRA_FILE_MASK);
+
+    foreach(QString path, extraFilePaths) {
+        krOut << "extra file: " << path << endl;
+        QDomDocument doc;
+        if (parseFile(path, doc))
+            _extraDocs << doc;
+    }
+
+    return true;
+}
+
+bool KrLayoutFactory::parseFile(QString path, QDomDocument &doc)
+{
+    bool success = false;
+
+    QFile file(path);
+
+    if (file.open(QIODevice::ReadOnly)) {
+        QString errorMsg;
+        if (doc.setContent(&file, &errorMsg)) {
+            QDomElement root = doc.documentElement();
+            if (root.tagName() == "KrusaderLayout")
+                success = true;
+            else
+                krOut << "root.tagName() != \"KrusaderLayout\"\n";
+        } else
+            krOut << "error parsing" << path << ":" << errorMsg << endl;
+    } else
+        krOut << "can't open" << path << endl;
+
+    return success;
+}
+
+void KrLayoutFactory::getLayoutNames(QDomDocument doc, QStringList &names)
+{
+    QDomElement root = doc.documentElement();
+
+    for(QDomElement e = root.firstChildElement(); ! e.isNull(); e = e.nextSiblingElement()) {
+        if (e.tagName() == "layout") {
+            QString name(e.attribute("name"));
+            if (!name.isEmpty() && (name != DEFAULT_LAYOUT))
+                names << name;
+        }
+    }
+}
 
 QStringList KrLayoutFactory::layoutNames()
 {
     QStringList names;
-    names << "default";
+    names << DEFAULT_LAYOUT;
 
-    if(parseFile()) {
-        for(QDomElement e = _root.firstChildElement(); ! e.isNull(); e = e.nextSiblingElement()) {
-            if (e.tagName() == "layout") {
-                QString name(e.attribute("name"));
-                if(!name.isEmpty() && name != "default")
-                    names << name;
-            }
-        }
+    if (parseFiles()) {
+        getLayoutNames(_mainDoc, names);
+
+        foreach(QDomDocument doc, _extraDocs)
+            getLayoutNames(doc, names);
     }
 
     return names;
+}
+
+QDomElement KrLayoutFactory::findLayout(QDomDocument doc, QString layoutName)
+{
+    QDomElement root = doc.documentElement();
+
+    for(QDomElement e = root.firstChildElement(); ! e.isNull(); e = e.nextSiblingElement()) {
+        if (e.tagName() == "layout" && e.attribute("name") == layoutName)
+            return e;
+    }
+
+    return QDomElement();
 }
 
 QLayout *KrLayoutFactory::createLayout(QString layoutName)
 {
     if(layoutName.isEmpty()) {
         KConfigGroup cg(krConfig, "PanelLayout");
-        layoutName = cg.readEntry("Layout", "default");
+        layoutName = cg.readEntry("Layout", DEFAULT_LAYOUT);
     }
     QLayout *layout = 0;
 
-    if(parseFile()) {
-        bool found = false;
-        for(QDomElement e = _root.firstChildElement(); ! e.isNull(); e = e.nextSiblingElement()) {
-            if (e.tagName() == "layout" && e.attribute("name") == layoutName) {
-                found = true;
-                layout = createLayout(e, panel);
-                break;
+    if (parseFiles()) {
+        QDomElement layoutRoot;
+
+        layoutRoot = findLayout(_mainDoc, layoutName);
+        if (layoutRoot.isNull()) {
+            foreach(QDomDocument doc, _extraDocs) {
+                layoutRoot = findLayout(doc, layoutName);
+                if(!layoutRoot.isNull())
+                    break;
             }
         }
-        if(!found) {
+        if (layoutRoot.isNull()) {
             krOut << "no layout with name" << layoutName << "found\n";
-            if(layoutName != "default")
-                return createLayout("default");
+            if(layoutName != DEFAULT_LAYOUT)
+                return createLayout(DEFAULT_LAYOUT);
+        } else {
+            layout = createLayout(layoutRoot, panel);
         }
     }
 
@@ -105,35 +194,6 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName)
 
 
     return layout;
-}
-
-bool KrLayoutFactory::parseFile()
-{
-    if(_parsed)
-        return true;
-
-    QString fileName = KStandardDirs::locate("data", XMLFILE);
-    if(fileName.isEmpty()) {
-        krOut << "can't locate" << XMLFILE << endl;
-        return false;
-    }
-
-    QFile file(fileName);
-
-    if (file.open(QIODevice::ReadOnly)) {
-        QString errorMsg;
-        if (_doc.setContent(&file, &errorMsg)) {
-            _root = _doc.documentElement();
-            if (_root.tagName() == "KrusaderLayout")
-                _parsed = true;
-            else
-                krOut << "_root.tagName() != \"KrusaderLayout\"\n";
-        } else
-            krOut << "error parsing" << fileName << ":" << errorMsg << endl;
-    } else
-        krOut << "can't open" << fileName << endl;
-
-    return _parsed;
 }
 
 QBoxLayout *KrLayoutFactory::createLayout(QDomElement e, QWidget *parent)

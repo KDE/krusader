@@ -216,10 +216,7 @@ void KgPanel::setupLayoutTab()
     grid->addWidget(l, 0, 0);
     KONFIGURATOR_NAME_VALUE_PAIR *layouts = new KONFIGURATOR_NAME_VALUE_PAIR[numLayouts];
     for (int i = 0; i != numLayouts; i++) {
-        QString text = layoutNames[i];
-        if(text == "default")
-            text = i18n("default");
-        layouts[ i ].text = text;
+        layouts[ i ].text = KrLayoutFactory::layoutDescription(layoutNames[i]);
         layouts[ i ].value = layoutNames[i];
     }
     KonfiguratorComboBox *cmb = createComboBox("PanelLayout", "Layout", "default",

@@ -47,15 +47,23 @@ public:
     QLayout *createLayout(QString layoutName = QString());
 
     static QStringList layoutNames();
+    static QString layoutDescription(QString layoutName);
 
 private:
     QBoxLayout *createLayout(QDomElement e, QWidget *parent);
     QWidget *createFrame(QDomElement e, QWidget *parent);
 
-    static bool parseFile();
+    static bool parseFiles();
+    static bool parseFile(QString path, QDomDocument &doc);
+    static void getLayoutNames(QDomDocument doc, QStringList &names);
+    static QDomElement findLayout(QDomDocument doc, QString layoutName);
 
     QWidget *panel;
     QHash<QString, QWidget*> &widgets;
+
+    static bool _parsed;
+    static QDomDocument _mainDoc;
+    static QList<QDomDocument> _extraDocs;
 };
 
 #endif
