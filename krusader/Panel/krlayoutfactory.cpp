@@ -64,7 +64,7 @@ QString KrLayoutFactory::layoutDescription(QString layoutName)
     else if(layoutName == "krusader:compact")
         return i18n("Compact");
     else if(layoutName == "krusader:classic")
-        return i18n("Classic Krusader layout");
+        return i18n("Classic");
     else
         return i18n("Custom layout: \"%1\"", layoutName);
 }
