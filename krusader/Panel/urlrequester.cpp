@@ -18,6 +18,7 @@
 
 #include "urlrequester.h"
 
+#include "../defaults.h"
 #include "../krglobal.h"
 
 #include <KLineEdit>
@@ -70,7 +71,7 @@ UrlRequester::UrlRequester(KLineEdit *le, QWidget *parent) : KUrlRequester(le, p
 {
     setMinimumHeight(sizeHint().height());
 
-    if(KConfigGroup(krConfig, "Look&Feel").readEntry("FlatOriginBar", false)) {
+    if(KConfigGroup(krConfig, "Look&Feel").readEntry("FlatOriginBar", _FlatOriginBar)) {
         _path = new PathLabel(this, le);
         _path->setCursor(Qt::IBeamCursor);
         le->hide();

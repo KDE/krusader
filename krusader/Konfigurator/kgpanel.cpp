@@ -88,7 +88,7 @@ void KgPanel::setupMiscTab()
 
 // ---------------------------------------------------------------------------------------
     KONFIGURATOR_CHECKBOX_PARAM general_settings[] = { // cfg_class, cfg_name, default, text, restart, tooltip
-        {"Look&Feel", "FlatOriginBar", false, i18n("Flat Origin Bar"),   true,  0 },
+        {"Look&Feel", "FlatOriginBar", _FlatOriginBar, i18n("Flat Origin Bar"),   true,  0 },
     };
     miscLayout->addWidget(createCheckBoxGroup(2, 0, general_settings, 1 /*count*/, tab, PAGE_MISC), 0, Qt::AlignTop);
 
