@@ -473,7 +473,8 @@ void Krusader::saveSettings() {
     if (uisavesettings) {
         cfg = krConfig->group("Startup");
         cfg.writeEntry("Show status bar", KrActions::actShowStatusBar->isChecked());
-        cfg.writeEntry("Show tool bar", KrActions::actShowToolBar->isChecked());
+        cfg.writeEntry("Show tool bar", !toolBar()->isHidden());
+        cfg.writeEntry("Show actions tool bar", !toolBar("actionsToolBar")->isHidden());
         cfg.writeEntry("Show FN Keys", KrActions::actToggleFnkeys->isChecked());
         cfg.writeEntry("Show Cmd Line", KrActions::actToggleCmdline->isChecked());
         cfg.writeEntry("Show Terminal Emulator", KrActions::actToggleTerminal->isChecked());
@@ -689,19 +690,12 @@ void Krusader::updateGUI(bool enforce) {
 
     KConfigGroup cfg_act(krConfig->group("Actions Toolbar"));
     toolBar("actionsToolBar") ->applySettings(cfg_act);
-    static_cast<KToggleAction*>(actionCollection()->action("toggle actions toolbar"))->
-    setChecked(toolBar("actionsToolBar")->isVisible());
 
     KConfigGroup cfg(krConfig, "Startup");
     if (enforce) {
         // now, hide what need to be hidden
-        if (!cfg.readEntry("Show tool bar", _ShowToolBar)) {
-            toolBar() ->hide();
-            KrActions::actShowToolBar->setChecked(false);
-        } else {
-            toolBar() ->show();
-            KrActions::actShowToolBar->setChecked(true);
-        }
+        toolBar()->setVisible(cfg.readEntry("Show tool bar", _ShowToolBar));
+        toolBar("actionsToolBar")->setVisible(cfg.readEntry("Show actions tool bar", _ShowActionsToolBar));
         if (!cfg.readEntry("Show status bar", _ShowStatusBar)) {
             statusBar() ->hide();
             KrActions::actShowStatusBar->setChecked(false);

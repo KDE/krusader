@@ -33,6 +33,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kactioncollection.h>
 #include <kaction.h>
 #include <ktoggleaction.h>
+#include <ktoggletoolbaraction.h>
 #include <ktoolbarpopupaction.h>
 #include <QMenu>
 
@@ -99,7 +100,6 @@ KAction **KrActions::execTypeArray[] = {&actExecStartAndForget, &actExecCollectS
                                       };
 KToggleAction *KrActions::actToggleFnkeys = 0;
 KToggleAction *KrActions::actToggleCmdline = 0;
-KToggleAction *KrActions::actShowToolBar = 0;
 KToggleAction *KrActions::actShowStatusBar = 0;
 KToggleAction *KrActions::actToggleHidden = 0;
 KToggleAction *KrActions::actCompareDirs = 0;
@@ -164,10 +164,11 @@ void KrActions::setupActions(Krusader *krusaderApp)
     KAction *tabSwitch;
     NEW_KACTION(tabSwitch, i18n("Tab-Switch panel"), 0, Qt::Key_Tab, MAIN_VIEW, SLOT(panelSwitch()), "tab");
 
-    actShowToolBar = (KToggleAction*)KStandardAction::create(KStandardAction::ShowToolbar, SLOTS, SLOT(toggleToolbar()), krusaderApp->actionCollection()/*, "std_toolbar"*/);
+    KToggleToolBarAction *actShowToolBar = new KToggleToolBarAction(krusaderApp->toolBar(), i18n("Show Main Toolbar"), krusaderApp);
+    krusaderApp->actionCollection()->addAction(KStandardAction::name(KStandardAction::ShowToolbar), actShowToolBar);
 
-    KToggleAction *toggleActToolbar;
-    NEW_KTOGGLEACTION(toggleActToolbar, i18n("Show Actions Toolbar"), 0, 0, SLOTS, SLOT(toggleActionsToolbar()), "toggle actions toolbar");
+    KToggleToolBarAction *actShowActionsToolBar = new KToggleToolBarAction(krusaderApp->toolBar("actionsToolBar"), i18n("Show Actions Toolbar"), krusaderApp);
+    krusaderApp->actionCollection()->addAction("toggle actions toolbar", actShowActionsToolBar);
 
     actShowStatusBar = KStandardAction::showStatusbar(SLOTS, SLOT(toggleStatusbar()), krusaderApp->actionCollection());
     KStandardAction::quit(krusaderApp, SLOT(slotClose()), krusaderApp->actionCollection());

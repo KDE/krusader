@@ -41,6 +41,8 @@
 #define _ShowCmdline      true
 // Show status bar
 #define _ShowStatusBar    true
+// Show actions tool bar
+#define _ShowActionsToolBar true
 // Show tool bar
 #define _ShowToolBar      true
 // Show FN Keys

@@ -86,8 +86,6 @@ public slots:
     void toggleSwapSides();
     void configToolbar();
     void configKeys();
-    void toggleToolbar();
-    void toggleActionsToolbar();
     void toggleStatusbar();
     void toggleTerminal();
     void compareSetup();

@@ -66,7 +66,7 @@ public:
     static KAction *actExecStartAndForget,
     *actExecCollectSeparate, *actExecCollectTogether,
     *actExecTerminalExternal, *actExecTerminalEmbedded;
-    static KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
+    static KToggleAction *actToggleFnkeys, *actToggleCmdline,
     *actShowStatusBar, *actToggleHidden, *actCompareDirs;
 
     static KAction **compareArray[];
