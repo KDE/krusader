@@ -1275,7 +1275,7 @@ void KrView::refresh()
     }
 
     foreach(vfile *vf, _files->vfiles()) {
-        if(isFiltered(vf))
+        if(!vf || isFiltered(vf))
             continue;
         if(vf->vfile_isDir())
             _numDirs++;
