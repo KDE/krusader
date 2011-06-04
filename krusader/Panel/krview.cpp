@@ -303,7 +303,7 @@ bool KrViewOperator::eventFilter(QObject *watched, QEvent *event)
     else if(event->type() == QEvent::ShortcutOverride) {
         QKeyEvent *ke = static_cast<QKeyEvent*>(event);
         if(ke->key() == Qt::Key_Escape && ke->modifiers() == Qt::NoModifier &&
-                (!_quickFilter->isHidden() || !_quickFilter->isHidden())) {
+                (!_quickSearch->isHidden() || !_quickFilter->isHidden())) {
             event->accept();
             return true;
         }
