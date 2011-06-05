@@ -422,8 +422,12 @@ void kio_krarcProtocol::get(const KUrl& url, int tries)
         KMimeType::Ptr mt = KMimeType::findByUrl(arcTempDir + file, 0, false /* NOT local URL */);
         if (mt)
             emit mimeType(mt->name());
+
+        QString escapedFilename = file;
+        if(arcType == "zip") // left bracket needs to be escaped
+            escapedFilename.replace("[", "[[]");
         proc << getCmd << getPath(arcFile->url());
-        if (arcType != "gzip" && arcType != "bzip2" && arcType != "lzma" && arcType != "xz") proc << localeEncodedString(file);
+        if (arcType != "gzip" && arcType != "bzip2" && arcType != "lzma" && arcType != "xz") proc << localeEncodedString(escapedFilename);
         connect(&proc, SIGNAL(newOutputData(KProcess *, QByteArray &)),
                 this, SLOT(receivedData(KProcess *, QByteArray &)));
         proc.setMerge(false);
@@ -678,8 +682,12 @@ void kio_krarcProtocol::copy(const KUrl &url, const KUrl &dest, int, KIO::JobFla
 
             QDir::setCurrent(destDir);
 
+            QString escapedFilename = file;
+            if(arcType == "zip") // left bracket needs to be escaped
+                escapedFilename.replace("[", "[[]");
+
             KrLinecountingProcess proc;
-            proc << copyCmd << getPath(arcFile->url(), KUrl::RemoveTrailingSlash) << file;
+            proc << copyCmd << getPath(arcFile->url(), KUrl::RemoveTrailingSlash) << escapedFilename;
             if (arcType == "ace" && QFile("/dev/ptmx").exists())    // Don't remove, unace crashes if missing!!!
                 proc.setStandardInputFile("/dev/ptmx");
             proc.setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect
