@@ -496,8 +496,9 @@ void ListPanelFunc::editNew()
     KTemporaryFile *tempFile = new KTemporaryFile;
     tempFile->open();
 
-    KIO::CopyJob *job = KIO::move(tempFile->fileName(), fileToCreate);
+    KIO::CopyJob *job = KIO::copy(tempFile->fileName(), fileToCreate);
     job->setUiDelegate(0);
+    job->setDefaultPermissions(true);
     connect(job, SIGNAL(result(KJob*)), SLOT(slotFileCreated(KJob*)));
     connect(job, SIGNAL(result(KJob*)), tempFile, SLOT(deleteLater()));
 }
