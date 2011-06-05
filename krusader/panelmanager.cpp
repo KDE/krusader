@@ -301,7 +301,8 @@ void PanelManager::setActiveTab(int index)
 
 void PanelManager::slotRecreatePanels()
 {
-    int actTab = activeTab();
+    updateTabbarPos();
+
     QString grpName = "PanelManager_" + QString::number(qApp->applicationPid());
     KConfigGroup cfg(krConfig, grpName);
 
@@ -315,10 +316,13 @@ void PanelManager::slotRecreatePanels()
 
         _tabbar->changePanel(i, newPanel);
         _stack->insertWidget(i, newPanel);
-        _stack->removeWidget(oldPanel);
 
-        if (_self == oldPanel)
+        if (_self == oldPanel) {
             _self = newPanel;
+            _stack->setCurrentWidget(_self);
+        }
+
+        _stack->removeWidget(oldPanel);
 
         deletePanel(oldPanel);
 
@@ -327,9 +331,8 @@ void PanelManager::slotRecreatePanels()
 
     krConfig->deleteGroup(grpName);
 
-    updateTabbarPos();
-    setActiveTab(actTab);
-    tabsCountChanged();
+    _self->slotFocusOnMe(this == ACTIVE_MNG);
+    emit pathChanged(_self);
 }
 
 void PanelManager::slotNextTab()
