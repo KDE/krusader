@@ -303,19 +303,17 @@ void PanelManager::slotRecreatePanels()
 {
     updateTabbarPos();
 
-    QString grpName = "PanelManager_" + QString::number(qApp->applicationPid());
-    KConfigGroup cfg(krConfig, grpName);
-
     for (int i = 0; i != _tabbar->count(); i++) {
+        QString grpName = "PanelManager_" + QString::number(qApp->applicationPid());
+        KConfigGroup cfg(krConfig, grpName);
+
         ListPanel *oldPanel = _tabbar->getPanel(i);
         oldPanel->saveSettings(cfg, false);
         disconnect(oldPanel);
 
         ListPanel *newPanel = createPanel(cfg);
-        newPanel->restoreSettings(cfg);
-
-        _tabbar->changePanel(i, newPanel);
         _stack->insertWidget(i, newPanel);
+        _tabbar->changePanel(i, newPanel);
 
         if (_self == oldPanel) {
             _self = newPanel;
@@ -323,13 +321,14 @@ void PanelManager::slotRecreatePanels()
         }
 
         _stack->removeWidget(oldPanel);
-
         deletePanel(oldPanel);
 
-        _tabbar->updateTab(newPanel);
-    }
+        newPanel->restoreSettings(cfg);
 
-    krConfig->deleteGroup(grpName);
+        _tabbar->updateTab(newPanel);
+
+        krConfig->deleteGroup(grpName);
+    }
 
     _self->slotFocusOnMe(this == ACTIVE_MNG);
     emit pathChanged(_self);
