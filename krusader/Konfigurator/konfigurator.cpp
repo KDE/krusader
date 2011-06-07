@@ -63,16 +63,13 @@
 Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)0),
         firstTime(f), internalCall(false), sizeX(-1), sizeY(-1)
 {
-    setButtons(KDialog::Help | KDialog::User1 | KDialog::Apply | KDialog::Cancel);
+    setButtons(KDialog::Help | KDialog::Default | KDialog::Reset | KDialog::Apply | KDialog::Close);
     setDefaultButton(KDialog::Apply);
     setWindowTitle(i18n("Konfigurator"));
-    setButtonGuiItem(KDialog::User1, KGuiItem(i18n("Defaults")));
     setWindowModality(Qt::WindowModal);
 
     setPlainCaption(i18n("Konfigurator - Creating Your Own Krusader"));
     setFaceType(KPageDialog::List);
-
-    setButtonGuiItem(KDialog::Cancel, KGuiItem(i18n("Close")));
 
     setHelp("konfigurator");
 
@@ -183,14 +180,17 @@ void Konfigurator::slotButtonClicked(int button)
     case Apply:
         emit configChanged(((KonfiguratorPage*)(currentPage()->widget()))->apply());
         break;
-    case Cancel:
+    case Close:
         lastPage = currentPage();
         if (slotPageSwitch(lastPage, lastPage))
             reject();
         break;
-    case User1:
+    case Default:
         ((KonfiguratorPage *)(currentPage()->widget()))->setDefaults();
         break;
+    case Reset:
+	((KonfiguratorPage *)(currentPage()->widget()))->loadInitialValues();
+	break;
     default:
         KPageDialog::slotButtonClicked(button);
     }
@@ -200,6 +200,7 @@ void Konfigurator::slotApplyEnable()
 {
     lastPage = currentPage();
     enableButtonApply(((KonfiguratorPage *)(lastPage->widget()))->isChanged());
+    enableButton(Reset, ((KonfiguratorPage *)(lastPage->widget()))->isChanged());
 }
 
 bool Konfigurator::slotPageSwitch(KPageWidgetItem *current, KPageWidgetItem *before)
