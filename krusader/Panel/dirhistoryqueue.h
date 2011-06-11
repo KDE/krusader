@@ -51,6 +51,7 @@ public:
         return _urlQueue[pos];
     }
     void add(KUrl url, QString currentItem);
+    void pushBack(KUrl url, QString currentItem);
     bool gotoPos(int pos);
     bool goBack();
     bool goForward();

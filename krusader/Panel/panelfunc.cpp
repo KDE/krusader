@@ -319,12 +319,19 @@ void ListPanelFunc::doRefresh()
         // prevent repeated error messages
         if (vfsP->vfs_isDeleting())
             break;
-        if(!history->goBack())
-            break;
+        if(!history->goBack()) {
+            // put the root dir to the beginning of history, if it's not there yet
+            if (!u.equals(KUrl(ROOT_DIR), KUrl::CompareWithoutTrailingSlash))
+                history->pushBack(KUrl(ROOT_DIR), QString());
+            else
+                break;
+        }
         vfsP->vfs_setQuiet(true);
     }
     vfsP->vfs_setQuiet(false);
     panel->view->setNameToMakeCurrent(QString());
+
+    panel->setCursor(Qt::ArrowCursor);
 
     // on local file system change the working directory
     if (files() ->vfs_getType() == vfs::VFS_NORMAL)
