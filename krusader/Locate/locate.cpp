@@ -120,9 +120,8 @@ LocateDlg::LocateDlg() : KDialog(0), isFeedToListBox(false)
     setDefaultButton(KDialog::User3);
     setWindowTitle(i18n("Locate"));
     setWindowModality(Qt::NonModal);
-    setButtonGuiItem(KDialog::User1, KGuiItem(i18n("Stop")));
     setButtonGuiItem(KDialog::User2, KGuiItem(i18n("Update DB")));
-    setButtonGuiItem(KDialog::User3, KGuiItem(i18n("Locate")));
+    setButtonGuiItem(KDialog::User3, KGuiItem(i18n("Locate"), "system-search"));
 
     QWidget *widget = new QWidget(this);
     QGridLayout *grid = new QGridLayout(widget);
@@ -211,7 +210,7 @@ LocateDlg::LocateDlg() : KDialog(0), isFeedToListBox(false)
     line2->setFrameStyle(QFrame::HLine | QFrame::Sunken);
     grid->addWidget(line2, 4, 0);
 
-    enableButton(KDialog::User1, false);    /* disable the stop button */
+    updateButtons(false);
 
     if (updateProcess) {
         if (updateProcess->state() == QProcess::Running) {
@@ -277,13 +276,12 @@ void LocateDlg::slotUser3()   /* The locate button */
     lastItem = 0;
     remaining = "";
 
-    enableButton(KDialog::User3, false);    /* disable the locate button */
-    enableButton(KDialog::User1, true);     /* enable the stop button */
-    setButtonText(KDialog::User1, i18n("Stop"));     /* the button behaves as stop */
+    updateButtons(true);
+
     isFeedToListBox = false;
     resultList->setFocus();
 
-    qApp->processEvents();
+    qApp->processEvents(); //FIXME - whats's this for ?
 
     locateProc = new KProcess(this);
     locateProc->setOutputChannelMode(KProcess::SeparateChannels); // default is forwarding to the parent channels
@@ -318,16 +316,15 @@ void LocateDlg::locateFinished()
         if (!collectedErr.isEmpty())
             KMessageBox::error(krMainWindow, i18n("Locate produced the following error message:\n\n") + collectedErr);
     }
-    enableButton(KDialog::User3, true);    /* enable the locate button */
 
     if (resultList->topLevelItemCount() == 0) {
         locateSearchFor->setFocus();
-        enableButton(KDialog::User1, false);   /* disable the stop button */
         isFeedToListBox = false;
     } else {
-        setButtonText(KDialog::User1, i18n("Feed to listbox"));   /* feed to listbox */
         isFeedToListBox = true;
     }
+
+    updateButtons(false);
 }
 
 void LocateDlg::processStdout()
@@ -660,6 +657,24 @@ void LocateDlg::reset()
     setDefaultButton(KDialog::User3);   // KDE HACK, it's a bug, that the default button is lost somehow
     locateSearchFor->lineEdit()->setFocus();
     locateSearchFor->lineEdit()->selectAll();
+}
+
+void LocateDlg::updateButtons(bool locateIsRunning)
+{
+    enableButton(KDialog::User3, !locateIsRunning);    /* locate button */
+
+    if (locateIsRunning) {
+        setButtonGuiItem(KDialog::User1, KGuiItem(i18n("Stop"), "process-stop"));
+        enableButton(KDialog::User1, true);     /* enable the stop button */
+    } else {
+        if (resultList->topLevelItemCount() == 0) {
+            setButtonGuiItem(KDialog::User1, KGuiItem(i18n("Stop"), "process-stop"));
+            enableButton(KDialog::User1, false);   /* disable the stop button */
+        } else {
+            setButtonGuiItem(KDialog::User1, KGuiItem(i18n("Feed to listbox"), "list-add"));   /* feed to listbox */
+            enableButton(KDialog::User1, true);    /* enable the Feed to listbox button */
+        }
+    }
 }
 
 #include "locate.moc"

@@ -125,10 +125,12 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
 
     QPushButton *splitBtn = new QPushButton(this);
     splitBtn->setText(i18n("&Split"));
+    splitBtn->setIcon(KIcon("dialog-ok"));
     splitButtons->addWidget(splitBtn);
 
     QPushButton *cancelBtn = new QPushButton(this);
     cancelBtn->setText(i18n("&Cancel"));
+    cancelBtn->setIcon(KIcon("dialog-cancel"));
     splitButtons->addWidget(cancelBtn);
 
     grid->addLayout(splitButtons, 4 , 0);

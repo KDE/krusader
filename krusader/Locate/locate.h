@@ -77,6 +77,9 @@ private:
     bool              find();
     void              nextLine();
 
+    void              updateButtons(bool locateIsRunning);
+
+
     bool              dontSearchPath;
     bool              onlyExist;
     bool              isCs;

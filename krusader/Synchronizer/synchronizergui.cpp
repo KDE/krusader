@@ -1497,22 +1497,26 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
     btnStopComparing = new QPushButton(this);
     btnStopComparing->setText(i18n("Stop"));
+    btnStopComparing->setIcon(KIcon("process-stop"));
     btnStopComparing->setEnabled(false);
     buttons->addWidget(btnStopComparing);
 
     btnFeedToListBox = new QPushButton(this);
     btnFeedToListBox->setText(i18n("Feed to listbox"));
+    btnFeedToListBox->setIcon(KIcon("list-add"));
     btnFeedToListBox->setEnabled(false);
     btnFeedToListBox->hide();
     buttons->addWidget(btnFeedToListBox);
 
     btnSynchronize = new QPushButton(this);
     btnSynchronize->setText(i18n("Synchronize"));
+    btnSynchronize->setIcon(KIcon("folder-sync"));
     btnSynchronize->setEnabled(false);
     buttons->addWidget(btnSynchronize);
 
     QPushButton *btnCloseSync = new QPushButton(this);
     btnCloseSync->setText(i18n("Close"));
+    btnCloseSync->setIcon(KIcon("dialog-close"));
     buttons->addWidget(btnCloseSync);
 
     synchGrid->addLayout(buttons, 1, 0);

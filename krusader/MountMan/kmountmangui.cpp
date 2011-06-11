@@ -85,10 +85,9 @@ KMountManGUI::KMountManGUI(KMountMan *mntMan) : KDialog(mntMan->parentWindow),
     connect(watcher, SIGNAL(timeout()), this, SLOT(checkMountChange()));
 
     connect(this, SIGNAL(finishedGettingSpaceData()), this, SLOT(updateList()));
-    setButtons(KDialog::Ok | UMOUNT_BTN | EJECT_BTN);
-    setButtonGuiItem(KDialog::Ok, KGuiItem(i18n("&Close")));
+    setButtons(KDialog::Close | UMOUNT_BTN | EJECT_BTN);
     setButtonGuiItem(UMOUNT_BTN, KGuiItem(i18n("&Unmount")));
-    setButtonGuiItem(EJECT_BTN, KGuiItem(i18n("&Eject")));
+    setButtonGuiItem(EJECT_BTN, KGuiItem(i18n("&Eject"), "media-eject"));
     enableButton(UMOUNT_BTN, false);
     enableButton(EJECT_BTN, false);
     showButton(KDialog::Apply, false);
@@ -412,7 +411,7 @@ void KMountManGUI::changeActive(QTreeWidgetItem *i)
         enableButton(EJECT_BTN, false);
         return;
     }
-    
+
     fsData *system = getFsData(i);
 
     info->setAlias(system->mntPoint());

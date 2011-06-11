@@ -115,15 +115,18 @@ SynchronizeDialog::SynchronizeDialog(QWidget* parent,
 
     btnStart = new QPushButton(hboxWidget);
     btnStart->setText(i18n("&Start"));
+    btnStart->setIcon(KIcon("media-playback-start"));
     hbox->addWidget(btnStart);
 
     btnPause = new QPushButton(hboxWidget);
     btnPause->setEnabled(false);
     btnPause->setText(i18n("&Pause"));
+    btnPause->setIcon(KIcon("media-playback-pause"));
     hbox->addWidget(btnPause);
 
     QPushButton *btnClose = new QPushButton(hboxWidget);
     btnClose->setText(i18n("&Close"));
+    btnClose->setIcon(KIcon("dialog-close"));
     hbox->addWidget(btnClose);
 
     layout->addWidget(hboxWidget);
