@@ -725,6 +725,7 @@ void ListPanel::slotStartUpdate()
 void ListPanel::slotGetStats(const KUrl& url)
 {
     mediaButton->mountPointChanged(QString());
+    freeSpace->setText(QString());
 
     if (!url.isLocalFile()) {
         if(func->files()->metaInformation().isEmpty())
