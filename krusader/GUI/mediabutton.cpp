@@ -72,15 +72,17 @@ MediaButton::~MediaButton()
 
 void MediaButton::mountPointChanged(QString mp)
 {
-    Solid::Device device(krMtMan.findUdiForPath(mp, Solid::DeviceInterface::StorageAccess));
-    Solid::StorageVolume *vol = device.as<Solid::StorageVolume> ();
     QString icon("system-file-manager");
-
-    if(device.isValid())
-        icon = device.icon();
     QStringList overlays;
-    if (vol && vol->usage() == Solid::StorageVolume::Encrypted) {
-        overlays << "security-high";
+
+    if(!mp.isEmpty()) {
+        Solid::Device device(krMtMan.findUdiForPath(mp, Solid::DeviceInterface::StorageAccess));
+        Solid::StorageVolume *vol = device.as<Solid::StorageVolume> ();
+
+        if(device.isValid())
+            icon = device.icon();
+        if (vol && vol->usage() == Solid::StorageVolume::Encrypted)
+            overlays << "security-high";
     }
     setIcon(KIcon(icon, 0, overlays));
 }

@@ -727,6 +727,14 @@ void ListPanel::slotGetStats(const KUrl& url)
     mediaButton->mountPointChanged(QString());
     freeSpace->setText(QString());
 
+    if (!KConfigGroup(krConfig, "Look&Feel").readEntry("ShowSpaceInformation", true)) {
+        if(func->files()->metaInformation().isEmpty())
+            status->setText(i18n("Space information disabled"));
+        else
+            status->setText(func->files()->metaInformation());
+        return ;
+    }
+
     if (!url.isLocalFile()) {
         if(func->files()->metaInformation().isEmpty())
             status->setText(i18n("No space information on non-local filesystems"));
