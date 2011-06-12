@@ -70,11 +70,14 @@ void KrPreviewJob::scheduleItem(KrViewItem *item)
 
 void KrPreviewJob::removeItem(KrViewItem *item)
 {
+    setTotalAmount(KJob::Files, totalAmount(KJob::Files) - _scheduled.removeAll(item));
     if(_job) {
         doKill();
-        _timer.start();
+        if(!_scheduled.isEmpty())
+            _timer.start();
     }
-    setTotalAmount(KJob::Files, totalAmount(KJob::Files) - _scheduled.removeAll(item));
+    if(_scheduled.isEmpty())
+        emitResult();
 }
 
 void KrPreviewJob::slotFailed(const KFileItem & item)
