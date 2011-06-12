@@ -53,6 +53,7 @@ KgDependencies::KgDependencies(bool first, QWidget* parent) :
 
     QWidget *general_tab = new QWidget(tabWidget);
     QScrollArea* general_scroll = new QScrollArea(tabWidget);
+    general_scroll->setFrameStyle(QFrame::NoFrame);
     general_scroll->setWidget(general_tab);   // this also sets scrollacrea as the new parent for widget
     general_scroll->setWidgetResizable(true);   // let the widget use every space available
     tabWidget->addTab(general_scroll, i18n("General"));
@@ -76,6 +77,7 @@ KgDependencies::KgDependencies(bool first, QWidget* parent) :
     //  ---------------------------- PACKERS TAB -------------------------------------
     QWidget *packers_tab = new QWidget(tabWidget);
     QScrollArea* packers_scroll = new QScrollArea(tabWidget);
+    packers_scroll->setFrameStyle(QFrame::NoFrame);
     packers_scroll->setWidget(packers_tab);   // this also sets scrollacrea as the new parent for widget
     packers_scroll->setWidgetResizable(true);   // let the widget use every space available
     tabWidget->addTab(packers_scroll, i18n("Packers"));
@@ -105,6 +107,7 @@ KgDependencies::KgDependencies(bool first, QWidget* parent) :
     //  ---------------------------- CHECKSUM TAB -------------------------------------
     QWidget *checksum_tab = new QWidget(tabWidget);
     QScrollArea* checksum_scroll = new QScrollArea(tabWidget);
+    checksum_scroll->setFrameStyle(QFrame::NoFrame);
     checksum_scroll->setWidget(checksum_tab);   // this also sets scrollacrea as the new parent for widget
     checksum_scroll->setWidgetResizable(true);   // let the widget use every space available
     tabWidget->addTab(checksum_scroll, i18n("Checksum Utilities"));
