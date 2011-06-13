@@ -78,7 +78,7 @@ protected slots:
 
     void updateList();     // fill-up the filesystems list
     void getSpaceData();
-    void gettingSpaceData();
+    void finishedGettingSpaceData();
     void gettingSpaceData(const QString &mountPoint, quint64 kBSize,
                           quint64 kBUsed, quint64 kBAvail);
 
@@ -88,9 +88,7 @@ protected:
     void addItemToMountList(KrTreeWidget *lst, fsData &fs);
     fsData* getFsData(QTreeWidgetItem *item);
     QString getMntPoint(QTreeWidgetItem *item);
-
-signals:
-    void finishedGettingSpaceData();
+    void addNonMounted();
 
 private:
     KMountMan *mountMan;
