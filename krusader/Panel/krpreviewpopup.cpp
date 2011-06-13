@@ -19,9 +19,13 @@
 
 #include "krpreviewpopup.h"
 
+#include <algorithm>
+
 #include <QPixmap>
 #include <QPainter>
-#include <QStyle>
+#include <QApplication>
+#include <QStyleOptionMenuItem>
+#include <QProxyStyle>
 
 #include <kio/previewjob.h>
 #include <kdebug.h>
@@ -29,118 +33,108 @@
 
 #include "../KViewer/krviewer.h"
 
-KrPreviewPopup::KrPreviewPopup(): prevNotAvailAction(0), id(1), noPreview(true)
+#define MAX_SIZE 400
+#define MARGIN 5
+
+class KrPreviewPopup::ProxyStyle : public QProxyStyle
 {
+public:
+    ProxyStyle() : QProxyStyle(QApplication::style()) {}
+
+    virtual QSize sizeFromContents(ContentsType type, const QStyleOption *option,
+                                   const QSize &contentsSize, const QWidget *widget = 0) const
+    {
+        if(type == QStyle::CT_MenuItem) {
+            const QStyleOptionMenuItem *menuItem =
+                    qstyleoption_cast<const QStyleOptionMenuItem*>(option);
+
+            QFontMetrics fontMetrics(menuItem->font);
+            QSize iconSize = menuItem->icon.actualSize(QSize(MAX_SIZE, MAX_SIZE));
+            QSize textSize = QSize(fontMetrics.boundingRect(menuItem->text).width(),
+                                   fontMetrics.height());
+
+            return QSize(std::max(iconSize.width(), textSize.width()) + MARGIN*2,
+                         iconSize.height() + textSize.height() + MARGIN*2);
+        } else
+            return QProxyStyle::sizeFromContents(type, option, contentsSize, widget);
+    }
+
+    virtual void drawControl(ControlElement element, const QStyleOption *option, 
+                                    QPainter *painter, const QWidget *widget = 0 ) const
+    {
+        if(element == QStyle::CE_MenuItem) {
+            painter->save();
+
+            const QStyleOptionMenuItem *menuItem =
+                    qstyleoption_cast<const QStyleOptionMenuItem*>(option);
+
+            bool active = menuItem->state & State_Selected;
+
+            QRect rect = menuItem->rect;
+
+            if(active)
+                painter->fillRect(rect, menuItem->palette.brush(QPalette::Highlight));
+
+            rect.adjust(MARGIN, MARGIN, -MARGIN, -MARGIN);
+
+            int textHeight = QFontMetrics(menuItem->font).height();
+
+            QRect previewRect = rect;
+            previewRect.setHeight(rect.height() - textHeight);
+            QPixmap pixmap = menuItem->icon.pixmap(menuItem->icon.actualSize(QSize(MAX_SIZE, MAX_SIZE)));
+            QProxyStyle::drawItemPixmap(painter, previewRect, Qt::AlignCenter, pixmap);
+
+            QRect textRect = rect;
+            textRect.setTop(previewRect.bottom() + 1);
+            painter->setPen(active ? menuItem->palette.highlightedText().color() :
+                                     menuItem->palette.buttonText().color());
+            int textFlags = Qt::TextShowMnemonic | Qt::TextDontClip | Qt::TextSingleLine |
+                                Qt::AlignCenter;
+            painter->drawText(textRect, textFlags, menuItem->text);
+
+            painter->restore();
+        } else
+            QProxyStyle::drawControl(element, option, painter, widget);
+    }
+};
+
+
+KrPreviewPopup::KrPreviewPopup()
+{
+    prevNotAvailAction = addAction(i18n("Preview not available"));
+
+    setStyle(new ProxyStyle());
+
     connect(this, SIGNAL(triggered(QAction *)), this, SLOT(view(QAction *)));
-
-    maxYSize = QFontMetrics(font()).height() * 12;
-    if (maxYSize < 50)
-        maxYSize = 50;
-
-    maxXSize = (int)((1.5 * maxYSize) + 0.5);
 }
 
 void KrPreviewPopup::setUrls(const KUrl::List* urls)
 {
-    if (prevNotAvailAction) {
-        removeAction(prevNotAvailAction);
-        delete prevNotAvailAction;
-    }
-    prevNotAvailAction = addAction(i18n("Preview not available"));
-
-    KIO::PreviewJob* pjob;
-    QStringList plugins = KIO::PreviewJob::availablePlugins();
-
-    for (int i = 0; i < urls->count(); ++i) {
+    for (int i = 0; i < urls->count(); ++i)
         files.push_back(KFileItem(KFileItem::Unknown, KFileItem::Unknown, (*urls)[ i ]));
-    }
 
-    pjob = new KIO::PreviewJob(files, 200, 200, 200, 1, true, true, 0);
+    KIO::PreviewJob *pjob = new KIO::PreviewJob(files, MAX_SIZE, MAX_SIZE, 0, 1, true, true, 0);
     connect(pjob, SIGNAL(gotPreview(const KFileItem&, const QPixmap&)),
             this, SLOT(addPreview(const KFileItem&, const QPixmap&)));
 }
 
-KrPreviewPopup::~KrPreviewPopup()
-{
-    if (prevNotAvailAction)
-        delete prevNotAvailAction;
-    prevNotAvailAction = 0;
-}
-
 void KrPreviewPopup::addPreview(const KFileItem& file, const QPixmap& preview)
 {
-    if (noPreview) {
-        if (prevNotAvailAction) {
-            removeAction(prevNotAvailAction);
-            delete prevNotAvailAction;
-            prevNotAvailAction = 0;
-        }
-        noPreview = false;
+    if (prevNotAvailAction) {
+        removeAction(prevNotAvailAction);
+        delete prevNotAvailAction;
+        prevNotAvailAction = 0;
     }
 
-    double sizeX = preview.width();
-    double sizeY = preview.height();
-    QFont f = font();
-    QString data;
-
-    if (sizeX != 0. && sizeY != 0.) {
-        if (sizeY > maxYSize) {
-            sizeX /= sizeY / maxYSize;
-            sizeY = maxYSize;
-        }
-        if (sizeX > maxXSize) {
-            sizeY /= sizeY / maxYSize;
-            sizeX = maxXSize;
-        }
-
-        f.setPixelSize((int)sizeY);
-
-        do {
-            data += ' ';
-        } while (QFontMetrics(f).width(data) < sizeX);
-    }
-
-    QAction *act = addAction(data);
-    act->setProperty("preview", QVariant(preview.scaled((int)sizeX, (int)sizeY)));
-    act->setData(QVariant(id));
-    act->setFont(f);
-    addAction(file.text())->setData(QVariant(id++));
-    addSeparator();
-    availablePreviews.push_back(file.url());
+    QAction *act = addAction(file.text());
+    act->setIcon(QIcon(preview));
+    act->setData(QVariant::fromValue(file.url()));
 }
 
 void KrPreviewPopup::view(QAction *clicked)
 {
-    if (clicked && clicked->data().canConvert<int>()) {
-        int id = clicked->data().toInt();
-        KUrl url = availablePreviews[ id-1 ];
-        KrViewer::view(url);
-    }
-}
-
-void KrPreviewPopup::paintEvent(QPaintEvent *e)
-{
-    QMenu::paintEvent(e);
-    QPainter p(this);
-    QRegion emptyArea = QRegion(rect());
-
-    //draw the items that need updating..
-    //draw the items that need updating..
-    foreach(QAction* action, actions()) {
-        QRect adjustedActionRect = actionGeometry(action);
-        if (!e->rect().intersects(adjustedActionRect))
-            continue;
-        //set the clip region to be extra safe (and adjust for the scrollers)
-        QRegion adjustedActionReg(adjustedActionRect);
-        emptyArea -= adjustedActionReg;
-        p.setClipRegion(adjustedActionReg);
-
-        QVariant prop = action->property("preview");
-        if (!prop.isNull() && prop.canConvert<QPixmap> ()) {
-            QPixmap pm = prop.value<QPixmap>();
-            style()->drawItemPixmap(&p, adjustedActionRect, Qt::AlignCenter, pm);
-        }
-    }
+    if (clicked && clicked->data().canConvert<KUrl>())
+        KrViewer::view(clicked->data().value<KUrl>());
 }
 
 #include "krpreviewpopup.moc"
