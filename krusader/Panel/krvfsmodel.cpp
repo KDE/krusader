@@ -517,7 +517,9 @@ QString KrVfsModel::nameWithoutExtension(const vfile * vf, bool checkEnabled) co
     // check if the file has an extension
     const QString& vfName = vf->vfile_getName();
     int loc = vfName.lastIndexOf('.');
-    if (loc > 0) { // avoid mishandling of .bashrc and friend
+    // avoid mishandling of .bashrc and friend 
+    // and virtfs / search result names like "/dir/.file" which whould become "/dir/"
+    if (loc > 0 && vfName.lastIndexOf('/') < loc) {
         // check if it has one of the predefined 'atomic extensions'
         for (QStringList::const_iterator i = properties()->atomicExtensions.begin(); i != properties()->atomicExtensions.end(); ++i) {
             if (vfName.endsWith(*i) && vfName != *i) {
