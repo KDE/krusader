@@ -28,6 +28,8 @@
     CHANGED: filter settings are remembered when changing view type
     CHANGED: All view settings are saved/restored individually for each tab.
 
+    FIXED: [ 229489 ] Seg fault moving ISO image files from USB Flash drive to USB SATA HD
+           - thanks to Anssi Hannula
     FIXED: mountman gui might add the same mountpoint to the list multiple times
     FIXED: [ 3044425 (sf.net) ] Desktop freeze when opening a context menu
     FIXED: [ 217203 ] Krusader crashed when accessing sftp after resume from sleep

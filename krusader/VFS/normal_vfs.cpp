@@ -259,6 +259,9 @@ vfile* normal_vfs::vfileFromName(const QString& name, char * rawName)
     KDE_struct_stat stat_p;
     stat_p.st_size = 0;
     stat_p.st_mode = 0;
+    stat_p.st_mtime = 0;
+    stat_p.st_uid = 0;
+    stat_p.st_gid = 0;
     KDE_lstat(fileName.data(), &stat_p);
     KIO::filesize_t size = stat_p.st_size;
     QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
