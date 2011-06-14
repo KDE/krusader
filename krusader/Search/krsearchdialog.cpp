@@ -199,7 +199,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     QWidget* resultTab = new QWidget(searcherTabs);
     QGridLayout* resultLayout = new QGridLayout(resultTab);
     resultLayout->setSpacing(6);
-    resultLayout->setContentsMargins(11, 11, 11, 11);
+    resultLayout->setContentsMargins(6, 6, 6, 6);
 
     // creating the result tab
 
