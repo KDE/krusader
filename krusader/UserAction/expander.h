@@ -282,17 +282,4 @@ private:
     QStringList resultList;
 };
 
-inline void exp_placeholder::setError(Expander& exp, const Error& e)
-{
-    exp.setError(e);
-}
-inline QStringList exp_placeholder::splitEach(const TagString& s)
-{
-    return Expander::splitEach(s);
-}
-inline exp_placeholder::exp_placeholder()
-{
-    Expander::_placeholder().push_back(this);
-}
-
 #endif // ifndef EXPANDER_H

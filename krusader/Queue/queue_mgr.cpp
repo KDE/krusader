@@ -25,7 +25,6 @@
 #include <klocale.h>
 #include "../krglobal.h"
 
-const QString QueueManager::defaultName = i18n("default");
 QMap<QString, Queue*> QueueManager::_queues;
 Queue * QueueManager::_current = 0;
 QueueManager * QueueManager::_self = 0;
@@ -35,7 +34,7 @@ QueueManager::QueueManager()
 {
     _self = this;
     QStringList queues;
-    queues << defaultName;
+    queues << defaultName();
     int current = 0;
     KConfigGroup group(krConfig, "QueueManager");
     queues = group.readEntry("Queues", queues);
@@ -43,7 +42,7 @@ QueueManager::QueueManager()
 
     const int queuesSize = queues.size();
     if (queuesSize == 0)
-        queues << defaultName;
+        queues << defaultName();
 
     QVector<Queue*> queueArray;
 
@@ -88,6 +87,11 @@ QueueManager::~QueueManager()
             break;
         }
     group.writeEntry("Active", active);
+}
+
+QString QueueManager::defaultName()
+{
+    return QString(i18n("default"));
 }
 
 Queue* QueueManager::queue(const QString& queueName)

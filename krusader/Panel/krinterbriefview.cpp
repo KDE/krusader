@@ -45,12 +45,6 @@
 #include "../GUI/krstyleproxy.h"
 
 
-// code used to register the view
-#define INTERBRIEFVIEW_ID 1
-KrViewInstanceImpl<KrInterBriefView> interBriefView(INTERBRIEFVIEW_ID, "KrInterBriefView",
-        i18n("&Brief View"), "view-list-icons", Qt::ALT + Qt::SHIFT + Qt::Key_B);
-// end of register code
-
 KrInterBriefView::KrInterBriefView(QWidget *parent, KrViewInstance &instance, KConfig *cfg) :
         KrItemView(parent, instance, cfg),
         _header(0)

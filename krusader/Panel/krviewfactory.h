@@ -98,12 +98,12 @@ public:
     static int                     defaultViewId()         {
         return self().m_defaultViewId;
     }
-    static void                    init();
 
 private:
-    KrViewFactory() : m_defaultViewId(-1) {}
+    KrViewFactory();
 
     static KrViewFactory &         self();
+    static void                    init();
     static void                    registerView(KrViewInstance *);
 
     QList<KrViewInstance *>        m_registeredViews;

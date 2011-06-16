@@ -41,19 +41,34 @@
 #include <kdebug.h>
 
 
-const SplitterGUI::PredefinedDevice SplitterGUI::predefinedDevices[] = {
-    {i18n("1.44 MB (3.5\")"),   1457664},
-    {i18n("1.2 MB (5.25\")"),   1213952},
-    {i18n("720 kB (3.5\")"),    730112},
-    {i18n("360 kB (5.25\")"),    362496},
-    {i18n("100 MB (ZIP)"), 100431872},
-    {i18n("250 MB (ZIP)"), 250331136},
-    {i18n("650 MB (CD-R)"), 650*0x100000},
-    {i18n("700 MB (CD-R)"), 700*0x100000}
-};
-const int SplitterGUI::predefinedDeviceNum =
-        sizeof(SplitterGUI::predefinedDevices) / sizeof(SplitterGUI::PredefinedDevice);
+struct SplitterGUI::PredefinedDevice
+{
+    PredefinedDevice(QString name, KIO::filesize_t capacity) :
+        name(name), capacity(capacity) {}
+    PredefinedDevice(const PredefinedDevice &other) :
+        name(other.name), capacity(other.capacity) {}
+    PredefinedDevice &operator=(const PredefinedDevice &other);
 
+    QString name;
+    KIO::filesize_t capacity;
+};
+
+
+const QList<SplitterGUI::PredefinedDevice> &SplitterGUI::predefinedDevices()
+{
+    static QList<PredefinedDevice> list;
+    if(!list.count()) {
+        list << PredefinedDevice(i18n("1.44 MB (3.5\")"), 1457664);
+        list << PredefinedDevice(i18n("1.2 MB (5.25\")"), 1213952);
+        list << PredefinedDevice(i18n("720 kB (3.5\")"), 730112);
+        list << PredefinedDevice(i18n("360 kB (5.25\")"), 362496);
+        list << PredefinedDevice(i18n("100 MB (ZIP)"), 100431872);
+        list << PredefinedDevice(i18n("250 MB (ZIP)"), 250331136);
+        list << PredefinedDevice(i18n("650 MB (CD-R)"), 650*0x100000);
+        list << PredefinedDevice(i18n("700 MB (CD-R)"), 700*0x100000);
+    }
+    return list;
+};
 
 SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
         QDialog(parent),
@@ -81,8 +96,8 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
     splitSizeLine->setLayout(splitSizeLineLayout);
 
     deviceCombo = new QComboBox(splitSizeLine);
-    for (int i = 0; i != predefinedDeviceNum; i++)
-        deviceCombo->addItem(predefinedDevices[i].name);
+    for (int i = 0; i != predefinedDevices().count(); i++)
+        deviceCombo->addItem(predefinedDevices()[i].name);
     deviceCombo->addItem(i18n("User Defined"));
     splitSizeLineLayout->addWidget(deviceCombo);
 
@@ -148,8 +163,8 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
 
 KIO::filesize_t SplitterGUI::getSplitSize()
 {
-    if(deviceCombo->currentIndex() < predefinedDeviceNum) // predefined size selected
-        return predefinedDevices[deviceCombo->currentIndex()].capacity;
+    if(deviceCombo->currentIndex() < predefinedDevices().count()) // predefined size selected
+        return predefinedDevices()[deviceCombo->currentIndex()].capacity;
     // user defined size selected
     return spinBox->value() * division;
 }
@@ -172,8 +187,8 @@ void SplitterGUI::sizeComboActivated(int item)
         break;
     }
     double value;
-    if(deviceCombo->currentIndex() < predefinedDeviceNum) // predefined size selected
-        value = (double)predefinedDevices[deviceCombo->currentIndex()].capacity / division;
+    if(deviceCombo->currentIndex() < predefinedDevices().count()) // predefined size selected
+        value = (double)predefinedDevices()[deviceCombo->currentIndex()].capacity / division;
     else { // use defined size selected
         value = (double)(spinBox->value() * prevDivision) / division;
         if(value < 1)
@@ -189,11 +204,11 @@ void SplitterGUI::predefinedComboActivated(int item)
 
     KIO::filesize_t capacity = userDefinedSize;
 
-    if (lastSelectedDevice == predefinedDeviceNum) // user defined was selected previously
+    if (lastSelectedDevice == predefinedDevices().count()) // user defined was selected previously
         userDefinedSize = spinBox->value() * division; // remember user defined size
 
-    if(item < predefinedDeviceNum) { // predefined size selected
-        capacity = predefinedDevices[item].capacity;
+    if(item < predefinedDevices().count()) { // predefined size selected
+        capacity = predefinedDevices()[item].capacity;
         spinBox->setEnabled(false);
     } else // user defined size selected
         spinBox->setEnabled(true);

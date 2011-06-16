@@ -49,13 +49,9 @@ class SplitterGUI : QDialog
 {
     Q_OBJECT
 private:
-    struct PredefinedDevice {
-        QString name;
-        KIO::filesize_t capacity;
-    };
+    struct PredefinedDevice;
 
-    static const PredefinedDevice predefinedDevices[];
-    static const int predefinedDeviceNum;
+    static const QList<PredefinedDevice> &predefinedDevices();
 
     KIO::filesize_t                 userDefinedSize;
     int                             lastSelectedDevice;

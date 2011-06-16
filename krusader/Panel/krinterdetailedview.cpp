@@ -41,12 +41,6 @@
 #include "../GUI/krstyleproxy.h"
 
 
-// code used to register the view
-#define INTERVIEW_ID 0
-KrViewInstanceImpl<KrInterDetailedView> interDetailedView(INTERVIEW_ID,"KrInterDetailedView",
-        i18n("&Detailed View"), "view-list-details", Qt::ALT + Qt::SHIFT + Qt::Key_D);
-// end of register code
-
 KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instance, KConfig *cfg):
         QTreeView(parent),
         KrInterView(instance, cfg, this),

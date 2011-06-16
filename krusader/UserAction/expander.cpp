@@ -54,10 +54,17 @@ using namespace std;
 
 #include "tstring.h"
 
-QList<const exp_placeholder*>& Expander::_placeholder()
+
+inline void exp_placeholder::setError(Expander& exp, const Error& e)
 {
-    static QList<const exp_placeholder*> ret;
-    return ret;
+    exp.setError(e);
+}
+inline QStringList exp_placeholder::splitEach(const TagString& s)
+{
+    return Expander::splitEach(s);
+}
+inline exp_placeholder::exp_placeholder()
+{
 }
 
 void exp_placeholder::panelMissingError(const QString &s, Expander& exp)
@@ -104,253 +111,127 @@ public:
     virtual TagString expFunc(const KrPanel*, const QStringList&, const bool&, Expander&) const = 0;
 };
 
+
+#define PLACEHOLDER_CLASS(name) \
+    class name : public exp_placeholder { \
+    public: \
+        name(); \
+        virtual TagString expFunc ( const KrPanel*, const TagStringList&, const bool&, Expander& ) const; \
+    };
+
+#define SIMPLE_PLACEHOLDER_CLASS(name) \
+    class name : public exp_simpleplaceholder { \
+    public: \
+        name(); \
+        virtual TagString expFunc ( const KrPanel*, const QStringList&, const bool&, Expander& ) const; \
+    };
+
+
 /**
   * expands %_Path% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the path of the specified panel
   */
-class exp_Path : public exp_simpleplaceholder
-{
-    static const exp_Path instance;
-    exp_Path();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_Path)
 
 /**
   * expands %_Count% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the number of items, which type is specified by the first Parameter
   */
-class exp_Count : public exp_simpleplaceholder
-{
-    static const exp_Count instance;
-    exp_Count();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_Count)
 
 /**
   * expands %_Filter% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the correspondend filter (ie: "*.cpp")
   */
-class exp_Filter : public exp_simpleplaceholder
-{
-    static const exp_Filter instance;
-    exp_Filter();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_Filter)
 
 /**
   * expands %_Current% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the current item ( != the selected onec)
   */
-class exp_Current : public exp_simpleplaceholder
-{
-    static const exp_Current instance;
-    exp_Current();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_Current);
 
 /**
   * expands %_List% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with a list of items, which type is specified by the first Parameter
   */
-class exp_List : public exp_simpleplaceholder
-{
-    static const exp_List instance;
-    exp_List();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_List);
 
 /**
  * expands %_ListFile% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate
  * the active, other, right or left panel) with the name of a temporary file,
  * containing a list of items, which type is specified by the first Parameter
  */
-class exp_ListFile : public exp_simpleplaceholder
-{
-    static const exp_ListFile instance;
-    exp_ListFile();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_ListFile);
 
 /**
  * expands %_Ask% ('_' is necessary because there is no panel needed)
  * with the return of an input-dialog
  */
-class exp_Ask : public exp_simpleplaceholder
-{
-    static const exp_Ask instance;
-    exp_Ask();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_Ask);
 
 /**
  * This copies it's first Parameter to the clipboard
  */
-class exp_Clipboard : public exp_placeholder
-{
-    static const exp_Clipboard instance;
-    exp_Clipboard();
-public:
-    EXP_FUNC;
-};
+PLACEHOLDER_CLASS(exp_Clipboard);
 
 /**
   * This selects all items by the mask given with the first Parameter
   */
-class exp_Select : public exp_simpleplaceholder
-{
-    static const exp_Select instance;
-    exp_Select();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_Select);
 
 /**
   * This changes the panel'spath to the value given with the first Parameter.
   */
-class exp_Goto : public exp_simpleplaceholder
-{
-    static const exp_Goto instance;
-    exp_Goto();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_Goto);
 
 /**
   * This is equal to 'cp <first Parameter> <second Parameter>'.
   */
-class exp_Copy : public exp_placeholder
-{
-    static const exp_Copy instance;
-    exp_Copy();
-public:
-    EXP_FUNC;
-};
+PLACEHOLDER_CLASS(exp_Copy);
 
 /**
   * This is equal to 'mv <first Parameter> <second Parameter>'.
   */
-class exp_Move : public exp_placeholder
-{
-    static const exp_Move instance;
-    exp_Move();
-public:
-    EXP_FUNC;
-};
+PLACEHOLDER_CLASS(exp_Move);
 
 /**
   * This opens the synchronizer with a given profile
   */
-class exp_Sync : public exp_simpleplaceholder
-{
-    static const exp_Sync instance;
-    exp_Sync();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_Sync);
 
 /**
   * This opens the searchmodule with a given profile
   */
-class exp_NewSearch : public exp_simpleplaceholder
-{
-    static const exp_NewSearch instance;
-    exp_NewSearch();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_NewSearch);
 
 /**
   * This loads the panel-profile with a given name
   */
-class exp_Profile : public exp_simpleplaceholder
-{
-    static const exp_Profile instance;
-    exp_Profile();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_Profile);
 
 /**
   * This is setting marks in the string where he is later split up for each {all, selected, files, dirs}
   */
-class exp_Each : public exp_simpleplaceholder
-{
-    static const exp_Each instance;
-    exp_Each();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_Each);
 
 /**
   * This sets the sorting on a specific colunm
   */
-class exp_ColSort : public exp_simpleplaceholder
-{
-    static const exp_ColSort instance;
-    exp_ColSort();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_ColSort);
 
 /**
   * This sets relation between the left and right panel
   */
-class exp_PanelSize : public exp_simpleplaceholder
-{
-    static const exp_PanelSize instance;
-    exp_PanelSize();
-public:
-    SIMPLE_EXP_FUNC;
-};
+SIMPLE_PLACEHOLDER_CLASS(exp_PanelSize);
 
 #ifdef __KJSEMBED__
 /**
   * This sets relation between the left and right panel
   */
-class exp_Script : public exp_simpleplaceholder
-{
-    static const exp_Script instance;
-    exp_Script();
-public:
-    SIMPLE_EXP_FUNC;
-};
-
-const exp_Script exp_Script::instance;
+SIMPLE_PLACEHOLDER_CLASS(exp_Script);
 
 #endif
 
 /**
   * This loads a file in the internal viewer
   */
-class exp_View : public exp_simpleplaceholder
-{
-    static const exp_View instance;
-    exp_View();
-public:
-    SIMPLE_EXP_FUNC;
-};
-
-const exp_View exp_View::instance;
-const exp_PanelSize exp_PanelSize::instance;
-const exp_ColSort exp_ColSort::instance;
-const exp_Each exp_Each::instance;
-const exp_Profile exp_Profile::instance;
-const exp_NewSearch exp_NewSearch::instance;
-const exp_Sync exp_Sync::instance;
-const exp_Move exp_Move::instance;
-const exp_Copy exp_Copy::instance;
-const exp_Goto exp_Goto::instance;
-const exp_Select exp_Select::instance;
-const exp_Clipboard exp_Clipboard::instance;
-const exp_Ask exp_Ask::instance;
-const exp_ListFile exp_ListFile::instance;
-const exp_List exp_List::instance;
-const exp_Current exp_Current::instance;
-const exp_Filter exp_Filter::instance;
-const exp_Count exp_Count::instance;
-const exp_Path exp_Path::instance;
+SIMPLE_PLACEHOLDER_CLASS(exp_View);
 
 ////////////////////////////////////////////////////////////
 //////////////////////// utils ////////////////////////
@@ -1301,4 +1182,34 @@ int Expander::findEnd(const QString& str, int start)
     } //while
     // failsafe
     return -1;
+}
+
+QList<const exp_placeholder*>& Expander::_placeholder()
+{
+    static QList<const exp_placeholder*> ret;
+    if(!ret.count()) {
+        ret << new exp_View;
+        ret << new exp_PanelSize;
+        ret << new exp_ColSort;
+        ret << new exp_Each;
+        ret << new exp_Profile;
+        ret << new exp_NewSearch;
+        ret << new exp_Sync;
+        ret << new exp_Move;
+        ret << new exp_Copy;
+        ret << new exp_Goto;
+        ret << new exp_Select;
+        ret << new exp_Clipboard;
+        ret << new exp_Ask;
+        ret << new exp_ListFile;
+        ret << new exp_List;
+        ret << new exp_Current;
+        ret << new exp_Filter;
+        ret << new exp_Count;
+        ret << new exp_Path;
+#ifdef __KJSEMBED__
+        ret << new exp_Script;
+#endif
+    }
+    return ret;
 }

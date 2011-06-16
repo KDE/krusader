@@ -30,13 +30,12 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include "krviewfactory.h"
 
-// #include "krinterdetailedview.h"
-// #include "krinterbriefview.h"
+#include "krinterdetailedview.h"
+#include "krinterbriefview.h"
 
 #include <stdio.h>
 
-// extern KrViewInstance interDetailedView;    // hold reference for linking
-// extern KrViewInstance interBriefView;    // hold reference for linking
+#include <klocale.h>
 
 KrViewInstance::KrViewInstance(int id, QString name, QString desc, QString icon, QKeySequence shortcut) :
         m_id(id), m_name(name), m_description(desc), m_icon(icon), m_shortcut(shortcut)
@@ -44,16 +43,34 @@ KrViewInstance::KrViewInstance(int id, QString name, QString desc, QString icon,
     KrViewFactory::self().registerView(this);
 }
 
-KrView * KrViewFactory::createView(int id, QWidget *widget, KConfig *cfg)
+
+KrViewFactory::KrViewFactory() : m_defaultViewId(-1)
 {
-    return viewInstance(id)->create(widget, cfg);
 }
 
 // static initialization, on first use idiom
 KrViewFactory & KrViewFactory::self()
 {
-    static KrViewFactory * factory = new KrViewFactory();
+    static KrViewFactory * factory = 0;
+    if(!factory) {
+        factory = new KrViewFactory();
+        init();
+    }
     return *factory;
+}
+
+void KrViewFactory::init()
+{
+    new KrViewInstanceImpl<KrInterDetailedView> (0, "KrInterDetailedView",
+        i18n("&Detailed View"), "view-list-details", Qt::ALT + Qt::SHIFT + Qt::Key_D);
+
+    new KrViewInstanceImpl<KrInterBriefView> (1, "KrInterBriefView",
+        i18n("&Brief View"), "view-list-icons", Qt::ALT + Qt::SHIFT + Qt::Key_B);
+}
+
+KrView * KrViewFactory::createView(int id, QWidget *widget, KConfig *cfg)
+{
+    return viewInstance(id)->create(widget, cfg);
 }
 
 void KrViewFactory::registerView(KrViewInstance * inst)
@@ -83,10 +100,4 @@ KrViewInstance * KrViewFactory::viewInstance(int id)
 
     fprintf(stderr, "Internal Error: no views registered!\n");
     exit(-1);
-}
-
-void KrViewFactory::init()
-{
-//     KrViewFactory::registerView(&interDetailedView);
-//     KrViewFactory::registerView(&interBriefView);
 }

@@ -32,12 +32,12 @@ class QueueManager : public QObject
 {
     Q_OBJECT
 
-    static const QString defaultName;
+    static QString defaultName();
 public:
     QueueManager();
     ~QueueManager();
 
-    static Queue* queue(const QString& queueName = defaultName);
+    static Queue* queue(const QString& queueName = defaultName());
     static QList<QString> queues();
 
     static Queue* currentQueue();
