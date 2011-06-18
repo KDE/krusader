@@ -246,15 +246,16 @@
       <guimenuitem>Configure Shortcuts...</guimenuitem></menuchoice>).</para>
     </sect2>
     <sect2 id="quickfilter">
-      <title>Quicksearch</title>
-      <!-- Thanks to Heiner Eichmann -->
+      <title>Quickfilter</title>
       <para>This feature will do a quick filter for the file list
       in the Active Panel.</para>
       <para>Press <keycombo>&Ctrl;<keycap>I</keycap></keycombo> to open Quickfilter bar.
       Type <keycap>foo</keycap> (one character) to filter out from the Active Panel all the files
       that do not have "foo" in names. You can use wildcards for the filtering. &eg; use "a*b" to
       filter files which have "a" and "b" in their names. The Quickfilter follows the
-	<link linkend="konfig-panel-general">case-sensitivity setting</link> of Quicksearch.</para>
+      <link linkend="konfig-panel-general">case-sensitivity setting</link> of Quicksearch.</para>
+      <para>Pressing &Enter; in Quickfilter mode sets focus to panel, when panel or Quickfilter is focused &Esc; closes Quickfilter.
+      </para>
       <para>To change the default shortcut of Quickfilter use <link linkend="key_bindings">Configure Shortcuts</link> window (<menuchoice><guimenu>Settings</guimenu> 
       <guimenuitem>Configure Shortcuts...</guimenuitem></menuchoice>).</para>
     </sect2>
