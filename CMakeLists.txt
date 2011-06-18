@@ -20,6 +20,7 @@ add_subdirectory(pics)
 add_subdirectory(doc-extras)
 add_subdirectory(krArc)
 add_subdirectory(iso)
+add_subdirectory(doc)
 #add_subdirectory(krfiledialog) - not used
 #add_subdirectory(virt) - not used
 #add_subdirectory(tar) - not used
