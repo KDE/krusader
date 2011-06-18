@@ -931,39 +931,92 @@
       </varlistentry>
     </variablelist>
   </sect1>
-  <sect1 id="konfig-general">
+<sect1 id="konfig-general">
     <title>General</title>
-    <para>Here you configure the basic operations.</para>
-
-    <para>The following options determine basic aspects of
-    operation: 
-    <itemizedlist>
-      <listitem>
-        <para>
-        <guilabel>Delete files/Move to trash</guilabel>: when
+    <para>Here you configure the basic operations. The page is divided into three tabs:
+    <guilabel>General</guilabel>, 
+    <guilabel>Viewer/Editor</guilabel>, 
+    and <guilabel>Atomic extensions</guilabel>.</para>
+    <sect2 id="konfig-general-general">
+      <title>General</title>
+      <para>The following options determine basic aspects of operation:</para> 
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    <guilabel>Warn on exit</guilabel>: if checked, &krusader;
+	    warns you every time when exit action is triggered.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <guilabel>Minimize to tray</guilabel>: if checked, &krusader;
+	    minimizes to tray instead of exiting when you close application window.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <guilabel>Use mimetype magic</guilabel>: mime type magic is
+	    a mechanism which allows &krusader; to inspect
+	    the files in the panels and determine their type even if
+	    the file has no identifying extension. For example, if you
+	    take an image file - 'image1.jpg' - and rename it to
+	    'image1', &krusader; will still know it's an
+	    image file and work with it accordingly. However, this mode
+	    of operation is slower (while refreshing the panel, or
+	    changing directories), so try &krusader; with
+	    and without mime type magic and decide what is best for
+	    you.</para>
+	 </listitem>
+	 <listitem>
+	   <para>
+	     <guilabel>Temp Directory</guilabel>: this option selects
+	     the base directory for &krusader;'s temporary
+	     files. The actual files will be created in separate
+	     directories under the 'Temp directory', so that each user
+	     running &krusader; will have their own temporary
+	     subdirectories under the chosen directory. 
+	     <note>
+	       <para>You must choose a temporary directory to which all
+		 users running &krusader; have full
+		 permissions!</para>
+	     </note>
+	   </para>
+	 </listitem>
+      </itemizedlist>
+      <para>
+	<guilabel>Delete mode</guilabel> (<guilabel>Delete files/Move to trash</guilabel>): when
         &krusader; deletes files it can either 'really'
         delete them or move them to the trash folder, thereby
-        making them available via &kde;'s trash.</para>
-      </listitem>
+        making them available via &kde;'s trash.
+      </para>
+      <para>
+        <guilabel>Terminal</guilabel>: choose which terminal
+        emulator will be used when &krusader; opens a
+        console window (via F2, or Tools-&gt;Start Terminal
+        menu option).
+      </para>
+      <para>
+        <guilabel>Terminal Emulator sends Chdir on a panel
+        change</guilabel>: if unchecked, there will be no 
+        <command>cd</command> command sent to the Terminal Emulator
+        if the panel folder changes.</para>
+      <para>
+	<guilabel>Fullscreen terminal (mc-style)</guilabel>: if checked,
+	  &krusader; shows fullscreen terminal in 
+	  <application>Midnight Commander</application> style (Terminal is shown
+	  instead of &krusader; window.
+      </para>
+    </sect2>
+    <sect2 id="konfig-general-viewer">
+       <title>Viewer/Editor</title>
+      <para>Here you can change the viewer and editor settings:
+      </para>
+      <itemizedlist>
       <listitem>
-        <para>
-        <guilabel>Use mimetype magic</guilabel>: mime type magic is
-        a mechanism which allows &krusader; to inspect
-        the files in the panels and determine their type even if
-        the file has no identifying extension. For example, if you
-        take an image file - 'image1.jpg' - and rename it to
-        'image1', &krusader; will still know it's an
-        image file and work with it accordingly. However, this mode
-        of operation is slower (while refreshing the panel, or
-        changing directories), so try &krusader; with
-        and without mime type magic and decide what is best for
-        you.</para>
-      </listitem>
-      <listitem>
-        <para>
-        <guilabel>Editor</guilabel>: choose what editor will be
-        used when editing a file (via F4). Default the internal viewer is used, 
-	this is the &kde;'s default viewer.</para>
+	<para>
+	  <guilabel>Internal editor and viewer opens each file in separate window</guilabel>: check this
+	  item if you want each file to be opened in separate window.
+	</para>
       </listitem>
       <listitem>
         <para>
@@ -984,59 +1037,33 @@
         <listitem>
          <para>
          <guilabel>Lister mode</guilabel>: Fast text/hex viewer for huge filesizes.
-	 Krusader lister never loads the whole file into memory, just a little part of it, and uses caching for faster scrolling. 
+	 &krusader; lister never loads the whole file into memory, just a little part of it, and uses caching for faster scrolling. 
          Remote files are downloaded, but during the download, viewing the downloaded part is possible.
          If a file constantly changes, then it can also be viewed, lister will always see its current state.</para>
         </listitem>
+	<listitem>
+         <para>
+         <guilabel>Use lister if the text file is bigger than : 10 MB (default value) </guilabel>: 
+	 checks whether a text file is bigger than 10 MB (configurable), and if yes, 
+	 then &krusader; Lister is used instead of &kde;'s default viewer.</para>
+	</listitem>      
 	</itemizedlist>
       </para>
       </listitem>
       <listitem>
         <para>
-        <guilabel>Viewer opens each file in a separate
-        window</guilabel>: you can use the browsing tabs for
-        navigation.</para>
+        <guilabel>Editor</guilabel>: choose what editor will be
+	  used when editing a file (via <keycap>F4</keycap>). Default the internal viewer is used, 
+	this is the &kde;'s default viewer.</para>
       </listitem>
-      <listitem>
-        <para>
-        <guilabel>Use lister if the text file is bigger than : 10 Mb (default value) </guilabel>: 
-	checks whether a text file is bigger than 10 MB (configurable), and if yes, 
-	then Krusader Lister is used instead of &kde;'s default viewer.</para>
-      </listitem>      
-      <listitem>
+    </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-general-atomic">
+      <title>Atomic extensions</title>
         <para>
         <guilabel>Atomic extensions</guilabel>: predefined atomic extensions like <filename>tar.gz</filename> 
         are shown as one part in the <guilabel>Ext Column</guilabel> of the <link linkend="list_panel">List Panel</link>.</para>
-      </listitem>
-      <listitem>
-        <para>
-        <guilabel>Terminal</guilabel>: choose which terminal
-        emulator will be used when &krusader; opens a
-        console window (via F2, or Tools-&gt;Start Terminal
-        menu option).</para>
-      </listitem>
-      <listitem>
-        <para>
-        <guilabel>Terminal Emulator sends Chdir on a panel
-        change</guilabel>: if unchecked, there will be no 
-        <command>cd</command> command sent to the Terminal Emulator
-        if the panel folder changes.</para>
-      </listitem>
-      <listitem>
-        <para>
-        <guilabel>Temp Directory</guilabel>: this option selects
-        the base directory for &krusader;'s temporary
-        files. The actual files will be created in separate
-        directories under the 'Temp directory', so that each user
-        running &krusader; will have their own temporary
-        subdirectories under the chosen directory. 
-        <note>
-          <para>You must choose a temporary directory to which all
-          users running &krusader; have full
-          permissions!</para>
-        </note></para>
-      </listitem>
-    </itemizedlist></para>
+      </sect2>
   </sect1>
   <sect1 id="konfig-advanced">
     <title>Advanced</title>
