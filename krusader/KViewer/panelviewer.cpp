@@ -176,7 +176,7 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KUrl &url, QString mimet
     else if (modeString == "lister") mode = KrViewer::Lister;
 
     KFileItem item = readFileInfo(url);
-    KIO::filesize_t fileSize = item.isNull() ? 0 : readFileInfo(url).size();
+    KIO::filesize_t fileSize = item.isNull() ? 0 : item.size();
     KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit);
     limit *= 0x100000;
 
@@ -323,7 +323,7 @@ KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
     curl = url;
 
     KFileItem item = readFileInfo(url);
-    KIO::filesize_t fileSize = item.isNull() ? 0 : readFileInfo(url).size();
+    KIO::filesize_t fileSize = item.isNull() ? 0 : item.size();
     KConfigGroup group(krConfig, "General");
     KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit);
 
