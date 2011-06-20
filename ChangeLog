@@ -1,3 +1,6 @@
+2.3.0-beta2 ""
+==========================
+
     ADDED: option: Panel > Status/Totalsbar > Show space information
     ADDED: Konfigurator: reset button
     ADDED: option: Startup > User Interface > Show actions toolbar
@@ -17,8 +20,10 @@
     CHANGED: new default panel layout
     CHANGED: option: Panel > View > Show previews -> Show previews by default
     CHANGED: removed option "Show free disk space in the Totalsbar"
-             since that setting is controlled by the layout chosen in Panel > Layout
-    CHANGED: removed option "Preserve Attributes" - KIO always preserves Attributes
+             since that setting is controlled by the layout chosen in Panel >
+             Layout
+    CHANGED: removed option "Preserve Attributes" - KIO always preserves
+             Attributes
     CHANGED: option: Panel > Filelist icon size -> Default icon size
     CHANGED: quickfilter follows case sensivity setting of quicksearch
     CHANGED: quickfilter expands wildcards
@@ -28,29 +33,40 @@
     CHANGED: filter settings are remembered when changing view type
     CHANGED: All view settings are saved/restored individually for each tab.
 
-    FIXED: [ 3222819 (sf.net) ] Alt-Enter is not showing selected files' properties
-    FIXED: [ 274083 ] Search results list shows wrong extension when dir path has a dot in it
+    FIXED: [ 3222819 (sf.net) ] Alt-Enter is not showing selected files'
+           properties
+    FIXED: [ 274083 ] Search results list shows wrong extension when dir path
+           has a dot in it
     FIXED: [ 262761 ] krusader crashed on viewing text file with internal viewer
            this was probably already fixed in 2.3.0-beta1
-    FIXED: [ 229489 ] Seg fault moving ISO image files from USB Flash drive to USB SATA HD
+    FIXED: [ 229489 ] Seg fault moving ISO image files from USB Flash drive to
+           USB SATA HD
            - thanks to Anssi Hannula
     FIXED: mountman gui might add the same mountpoint to the list multiple times
     FIXED: [ 3044425 (sf.net) ] Desktop freeze when opening a context menu
-    FIXED: [ 217203 ] Krusader crashed when accessing sftp after resume from sleep
+    FIXED: [ 217203 ] Krusader crashed when accessing sftp after resume from
+           sleep
     FIXED: [ 243716, 270605, 270588 ] crash when moving files
-    FIXED: [ 256794 ] crash when file is deleted while a preview is being loaded for it
-           (and it is the only file for which a preview is being loaded)
+    FIXED: [ 256794 ] crash when file is deleted while a preview is being loaded
+           for it (and it is the only file for which a preview is being loaded)
     FIXED: [ 274732 ] Weird functionality after "directory doesn't exist"
-    FIXED: [ 3216624 (sf.net) ] Krusader saves newly created files with incorrect permissions
-    FIXED: [ 2773302 (sf.net) ] krarc can't handle brackets in file paths inside ZIP archive
+    FIXED: [ 3216624 (sf.net) ] Krusader saves newly created files with
+           incorrect permissions
+    FIXED: [ 2773302 (sf.net) ] krarc can't handle brackets in file paths inside
+           ZIP archive
     FIXED: [ 272876, 274269 ] crash when refreshing view
-    FIXED: [ 3191155 (sf.net) ] Moving a symbolic link changes attributes of target file
+    FIXED: [ 3191155 (sf.net) ] Moving a symbolic link changes attributes of
+           target file
     FIXED: [ 2998795 (sf.net) ] "Show actions toolbar" setting is not saved
-    FIXED: Url commandline argument opens a new tab instead of switching to an existing one
-    FIXED: root mode action does not work with newer versions of kdesu, thanks to CyberCastle
+    FIXED: Url commandline argument opens a new tab instead of switching to an
+           existing one
+    FIXED: root mode action does not work with newer versions of kdesu,
+           thanks to CyberCastle
     FIXED: switching tabs sometimes doesn't switch the panel
-    FIXED: [ 3004510 (sf.net) ] Double-clicking executables start in ~/Documents folder
-    FIXED: [ 2996188 (sf.net) ] relative path for custom folder icon doesn't work
+    FIXED: [ 3004510 (sf.net) ] Double-clicking executables start in
+           ~/Documents folder
+    FIXED: [ 2996188 (sf.net) ] relative path for custom folder icon doesn't
+           work
     FIXED: [ 2915020 (sf.net) ] wrong icon for directory symlink
     FIXED: when switching tabs, sometimes the new tab isn't set active
     FIXED: [ 263253 ] View displays wrong total size in some circumstances.
