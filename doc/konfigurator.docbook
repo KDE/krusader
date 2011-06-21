@@ -949,8 +949,12 @@
 	</listitem>
 	<listitem>
 	  <para>
-	    <guilabel>Minimize to tray</guilabel>: If checked, when you minimize &krusader;,
-	    its icon will appear in the system tray instead of the taskbar.
+	    <guilabel>Minimize to tray</guilabel>: If checked, the &krusader;
+        icon will appear in the system tray.
+        When you minimize &krusader;, it won't appear in the taskbar.
+        It also will not exit if you close the main window.
+        Instead you can quit &krusader; by selecting 'Quit' from the file menu
+        or the context menu of the tray icon.
 	  </para>
 	</listitem>
 	<listitem>
