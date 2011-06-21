@@ -144,12 +144,12 @@ void KgPanel::setupMiscTab()
 // ---------------------------------------------------------------------------------------
 // -----------------------------  Quicksearch  -------------------------------------------
 // ---------------------------------------------------------------------------------------
-    miscGrp = createFrame(i18n("Quicksearch"), tab);
+    miscGrp = createFrame(i18n("Quicksearch/Quickfilter"), tab);
     miscGrid = createGridLayout(miscGrp);
 
     KONFIGURATOR_CHECKBOX_PARAM quicksearch[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
-        {"Look&Feel", "New Style Quicksearch",  _NewStyleQuicksearch, i18n("New style quicksearch"), false,  i18n("Opens a quick search dialog box.") },
-        {"Look&Feel", "Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n("Case sensitive quicksearch"), false,  i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).") },
+        {"Look&Feel", "New Style Quicksearch",  _NewStyleQuicksearch, i18n("New style Quicksearch"), false,  i18n("Opens a quick search dialog box.") },
+        {"Look&Feel", "Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n("Case sensitive Quicksearch/QuickFilter"), false,  i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).") },
         {"Look&Feel", "Up/Down Cancels Quicksearch",  false, i18n("Up/Down cancels Quicksearch"), false,  i18n("Pressing the Up/Down buttons cancels Quicksearch.") },
     };
 
@@ -162,7 +162,7 @@ void KgPanel::setupMiscTab()
 
     hbox = new QHBoxLayout();
 
-    hbox->addWidget(new QLabel(i18n("Quicksearch position:"), miscGrp));
+    hbox->addWidget(new QLabel(i18n("Position:"), miscGrp));
 
     cmb = createComboBox("Look&Feel", "Quicksearch Position",
                             "bottom", positions, 2, miscGrp, true, false, PAGE_MISC);
