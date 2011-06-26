@@ -2,8 +2,8 @@ project(krusader)
 
 INCLUDE(CPack)
 
-set(VERSION "2.3.0-beta1" )
-set(RELEASE_NAME "New Horizons")
+set(VERSION "2.4.0-beta1" )
+set(RELEASE_NAME "Migration")
 
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
