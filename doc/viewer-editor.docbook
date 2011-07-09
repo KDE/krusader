@@ -1139,8 +1139,11 @@
       <varlistentry>
         <term>
           <menuchoice>
-            <shortcut>&Ctrl;
-            <keycap>Q</keycap></shortcut>
+            <shortcut>
+	    <keycombo action="simul">
+            &Ctrl;
+            <keycap>Q</keycap></keycombo>
+	    </shortcut>
             <guimenu>KrViewer</guimenu>
             <guimenuitem>Close</guimenuitem>
           </menuchoice>
