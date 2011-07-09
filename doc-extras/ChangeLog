@@ -1,5 +1,8 @@
 The Krusader Handbook ChangeLog
 -------------------------------
+
+ FIXED: Bugs #277151,
+
 2.4.0-beta1 "Migration"
 ==========================
  ADDED: Quickfilter section in basic-functions
@@ -67,7 +70,7 @@ Date: 2008-12-27
 2.0.0-beta1 "Phoenix Egg"
 ==================================
 Date: 2008-07-06
- 
+
  ADDED: Windows installation instructions for KDE4
  ADDED: KDE4.x installation instructions
  ADDED: synchronizer_keybindings
@@ -82,9 +85,9 @@ Date: 2008-07-06
 
  UPDATED: Howto diplay the complete filename in the Name column (by hiding ext column)
 
-FIXED: workaround for DBLATEX 0.2.5-1, it doesn't accept "&amp" to display "&" 
+FIXED: workaround for DBLATEX 0.2.5-1, it doesn't accept "&amp" to display "&"
        in the <contrib> tag, so i changed it to "and"
-FIXED: removed all <guimenu> tags inside <title>, no additional tags 
+FIXED: removed all <guimenu> tags inside <title>, no additional tags
        needed inside <title>, it looks bad in HTML version (stylesheet)
 
 
@@ -111,12 +114,12 @@ Date: 2007-07-21
  ADDED: Searcher-results: dragging items, copy to clipboard (CTRL+C)
 
  ADDED: Terminal Emulator keybindings in a separate section
- 
+
  UPDATED: MacOS install instructions and fink repository, thanks to Catalin Hritcu
  UPDATED: screenshots
- UPDATED: make the Synchronizer chapter more readable and more undertandable 
+ UPDATED: make the Synchronizer chapter more readable and more undertandable
  UPDATED: Command Line / Terminal Emulator chapter
- UPDATED: FAQ, Sourceforge patch tracker tool 
+ UPDATED: FAQ, Sourceforge patch tracker tool
  UPDATED: keybindings
  UPDATED: old urls of old releases
 
@@ -128,19 +131,19 @@ Date: 2007-03-31
 
   ADDED: Support for useraction placeholders in Krusader's commandline
   ADDED: New default user action "Backup current"
-  ADDED: ALT+C as default shortcut for compare directories 
+  ADDED: ALT+C as default shortcut for compare directories
   ADDED: GUI for configuring the atomic extensions in Konfigurator
   ADDED: quotation mark handling at search (ex. "Program Files")
 
-  ---------------------------------------------------- 
-  Other todo items not related to Krusader's changelog: 
+  ----------------------------------------------------
+  Other todo items not related to Krusader's changelog:
   TODO: complete Keyboard Usage
   TODO: complete glossary
   TODO: complete Mouse Usage
-  TODO: selection modes 
+  TODO: selection modes
         http://krusader.sourceforge.net/phpBB/viewtopic.php?p=8255#8255
-  ---------------------------------------------------- 
- 
+  ----------------------------------------------------
+
   ADDED: Remote LAN Connections (zeroconf)
   ADDED: NewsLetter Forum
   ADDED: Quickstart Installation Tutorial
@@ -148,11 +151,11 @@ Date: 2007-03-31
   ADDED: FAQ: What todo if the KDEcrashhandler sends no usefull backtrace information?
   ADDED: FAQ: How can i send good debug or crash reports?
   ADDED: Brief view
-  
-  Documentation updates by the Technical Communication team of 2007, 
-  University of Oulu, Finland http://www.oulu.fi/english/ 
+
+  Documentation updates by the Technical Communication team of 2007,
+  University of Oulu, Finland http://www.oulu.fi/english/
   under the lead of Minna Hekanaho
-  
+
   ADDED: FAQ: Does krusader supports the FXP protocol?
   ADDED: webdav and nfs url
   ADDED: FAQ: How can I set the look & Feel of 2 different users equal?
@@ -167,7 +170,7 @@ Date: 2007-01-07
   ADDED: actionman.png screenshot
   ADDED: i18n scripts update_docbook, update_pot, update_po
          They only should be used by the doc 18n coordinator
-         Wrong usage of this script might result in outdated documentation files 
+         Wrong usage of this script might result in outdated documentation files
   ADDED: Russian Handbook (translation is work in progress) thanks to Roman Batejkin
 
   ADDED: TerminalEmulator: Ctrl+F switches between full-widget TE, normal TE
@@ -207,7 +210,7 @@ UPDATED: split up using-krusader.docbook in smaller files
   ADDED: splitter.docbook (formerly part of using-krusader.docbook)
   ADDED: vfs.docbook (formerly part of using-krusader.docbook)
   ADDED: profiles.docbook (formerly part of using-krusader.docbook)
-  ADDED: useractions.docbook (formerly part of krusader-tools.docbook)       
+  ADDED: useractions.docbook (formerly part of krusader-tools.docbook)
   ADDED: Mouse Commands, mouse.docbook (formerly part of using-krusader.docbook)
   ADDED: Keyboard Commands, keyboard.docbook (formerly part of using-krusader.docbook)
   ADDED: abc-index by using <indexterm>
@@ -227,12 +230,12 @@ UPDATED: split up using-krusader.docbook in smaller files
   ADDED: single instance mode (Konfigurator Startup)
   ADDED: start to system tray (Konfigurator Startup)
   ADDED: right click menu for bookmarks (context menu)
-  ADDED: enable/disable special bookmarks by right clicking on them  
+  ADDED: enable/disable special bookmarks by right clicking on them
   ADDED: an option for directories to be always sorted by name (Konfigurator L&F)
   ADDED: FAQ: Why "save last location" doesn't work?
   ADDED: Inactive panel color dimming
   ADDED: FAQ: How can I send a patch?
-  ADDED: FAQ: Why does krusader-cvs shows an old version number in the about box?  
+  ADDED: FAQ: Why does krusader-cvs shows an old version number in the about box?
   ADDED: kioslaves:  trash:/ and ipod:/
   ADDED: Subversion checkout
   ADDED: Profiles chapter
@@ -243,13 +246,13 @@ UPDATED: checksum creation/verification mechanism
 UPDATED: Command Reference -> Menu Commands
 UPDATED: moved the "Foreword" from index.docbbook to introduction.docbook
 UPDATED: Shortcut- and Toolbardialogs are removed from Konfigurator
-UPDATED: Heavily extended and reordered menubar, 
+UPDATED: Heavily extended and reordered menubar,
          Updated commands.docbook (thanks to Dan Price)
 UPDATED: UserActions examples in the documentation appendix
 UPDATED: UserActions are now managed with ActionMan. In Konfigurator
          you can change settings _about_ useractions.
 UPDATED: Shortcuts are now exported in as plaintext, legacy import still works.
-UPDATED: Konfigurator 
+UPDATED: Konfigurator
 UPDATED: Konfigurator: MouseMode got now it's own Tab in Look&Feel
 UPDATED: Bookman and passwords
 UPDATED: Copy/Move: preserve all attributes (time, owner, group)
@@ -299,9 +302,9 @@ Date: 2005-11-05
   ADDED: Alt+Enter keybinding, File -> Properties
   ADDED: you can turn off sending CDs to the terminal emulator (general tab)
   ADDED: our own content category on kde-files.org
-  ADDED: useraction: View placeholder 
+  ADDED: useraction: View placeholder
   ADDED: klik protocol
-  ADDED: useraction: ColSort placeholder 
+  ADDED: useraction: ColSort placeholder
   ADDED: FAQ Why krusader-1.60.0 does not compile with gcc4?
 
 screenshots:
@@ -325,10 +328,10 @@ Date: 2005-09-27
   ADDED: Commands -> Select Remote Charset
   ADDED: credit for Matej Urbancic, Marketing & Product Research
   ADDED: Accept URL's from clipboard through middle click
-  ADDED: permissions column as octal numbers 
+  ADDED: permissions column as octal numbers
   ADDED: clear-location-bar button, konfigurator->look'n'feel
   ADDED: calculate space on remote filesystems
-  ADDED: when custom filter is set, the Totals label will show the filter. example: [*.cpp] 
+  ADDED: when custom filter is set, the Totals label will show the filter. example: [*.cpp]
   ADDED: Open the current folder in a new tab + ctrl-alt-enter keybinding
   ADDED: Bookmarks as action buttons on the Toolbar, thanks Googie and Shie
   ADDED: FAQ, Is there a Windows version?
@@ -350,7 +353,7 @@ UPDATED: new i18n page url
 UPDATED: mailing lists
 UPDATED: installation $ find /usr /opt -name qtconfig -type f 2>/dev/null
                       $ find /usr /opt -name kdeinit -type f 2>/dev/null
-         thanks Dirk             
+         thanks Dirk
 UPDATED: Commands, Settings -> Save Position
 UPDATED: kgstartup.png used $ import ... -resize 60% and $ pngcrush
 UPDATED: Konfigurator startup page
@@ -385,13 +388,13 @@ Final handbook revision for "Krusader 1.60.0 stable"
   ADDED: ACE archive note (konfigurator.docbook)
   ADDED: Custom Selection Mode
   ADDED: useraction: new placeholder: %_ListFile()%
-  ADDED: Ctrl+z (popular url's) 
-  ADDED: useraction placeholder %_Script(path/to/script.js)% 
+  ADDED: Ctrl+z (popular url's)
+  ADDED: useraction placeholder %_Script(path/to/script.js)%
   ADDED: kguseractions.png and kgprotocols.png for the HTML/RTF/PDF version
   ADDED: Useractions menu entry
   ADDED: credit for Terry "Fudoki" Wilkinson, documentation
   ADDED: JavaScript console (incomplete description)
-  ADDED: Remote-man FAQ, url Bookmark transfer procedure 
+  ADDED: Remote-man FAQ, url Bookmark transfer procedure
   ADDED: Remote Connections
   ADDED: Bookmarks Password handling
   ADDED: Bookmarks can be placed into the Main Toolbar and the Actions Toolbars
@@ -426,11 +429,11 @@ UPDATED: DTD DocBook XML V4.2-Based Variant V1.1  (V4.1.2 was the previous versi
 UPDATED: Synchronizer, Thanks Csaba
 UPDATED: UserMenu usage
 UPDATED: UserActions description
-UPDATED: krusader1.png, kgstartup.png, mountman.png, search_general.png, 
+UPDATED: krusader1.png, kgstartup.png, mountman.png, search_general.png,
          search_advanced.png, syncdir.png, bookmanadd.png, bookmanedit.png
          all screenshots in "plastic' theme (the default kde 3.4 theme), made with Imagemagic
-         $ import -depth 8 -dither -delay 2000 -colors 128 -resize 70% -frame search_advanced.png 
-         except bookmanadd.png with KSnapshot         
+         $ import -depth 8 -dither -delay 2000 -colors 128 -resize 70% -frame search_advanced.png
+         except bookmanadd.png with KSnapshot
 UPDATED: first Krusader-Tools and then Konfigurator (reversed the order)
 UPDATED: mark (obsolete) -> select
 UPDATED: date format mm/dd/yyyy -> yyyy/mm/dd
