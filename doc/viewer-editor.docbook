@@ -571,24 +571,12 @@
         <term>
           <menuchoice>
             <guimenu>View</guimenu>
-            <guimenuitem>Code Folding.</guimenuitem>
+            <guimenuitem>Code Folding</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
           <para></para>
           <!-- TODO -->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>View</guimenu>
-            <guimenuitem>Set Encoding</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>&eg; ISO8859-1, utf8, utf16, tscii, ...
-          .</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -649,6 +637,12 @@
 -->
     </variablelist>
     <!-- TOOLS menu -->
+    <para id="kredit_tools_menu">For the full description of the
+    <guimenu>Tools</guimenu> please refer to <ulink
+    url="help:/kwrite/tools.html">&kde; text editor component
+    documentation</ulink>. To read this documentation you should install
+    &kwrite; package.</para>
+    <!-- Oldish TOOLS menu items
     <variablelist id="kredit_tools_menu">
       <title>
       <guimenu>Tools</guimenu> menu</title>
@@ -715,7 +709,6 @@
         </term>
         <listitem>
           <para></para>
-          <!-- TODO-->
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -732,7 +725,6 @@
         </term>
         <listitem>
           <para></para>
-          <!-- TODO-->
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -744,7 +736,6 @@
         </term>
         <listitem>
           <para></para>
-          <!-- TODO-->
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -849,11 +840,12 @@
         </term>
         <listitem>
           <para></para>
-          <!-- TODO-->
         </listitem>
       </varlistentry>
     </variablelist>
-    <!-- SETTINGS -> CONFIGURE EDITOR menu -->
+    -->
+
+<!-- SETTINGS -> CONFIGURE EDITOR menu -->
     <para id="kredit_settings_menu">For the full description of the
     preferences dialog (can be invoked by the menu item
     <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure
