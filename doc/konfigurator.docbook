@@ -520,11 +520,11 @@
         <title>
           <guilabel>Visible Panel Toolbar buttons</guilabel>
         </title>
-        <listitem>
+        <!-- not in master <listitem>
           <para>
           <guilabel>Clear Location Toolbar</guilabel> button: Clears
           the <link linkend="list_panel">Location Toolbar</link></para>
-        </listitem>
+	</listitem> -->
         <listitem>
           <para>
           <guilabel>Open button</guilabel></para>
@@ -616,7 +616,7 @@
           <guilabel>Obey KDE global selection policy</guilabel>:
           Pressing the &LMB; selects files -- Use
           &kde;'s global setting: &kde;
-          System Settings -&gt; Peripherals
+          System Settings -&gt; Input Devices
           -&gt; Mouse.</para>
         </listitem>
         <listitem>
@@ -678,7 +678,7 @@
             </listitem>
             <listitem>
               <para>
-                <guilabel>Right-clicking shows the context menu
+                <guilabel>Right-clicking pops context menu
                 immediately</guilabel>
               </para>
             </listitem>
@@ -704,7 +704,7 @@
         </listitem>
         <listitem>
           <para>
-          <guilabel>Frame Shape:</guilabel> defines frame color. Can be <guimenuitem>Defined by Layout</guimenuitem>, <guimenuitem>None</guimenuitem>, or <guimenuitem>Statusbar</guimenuitem>.</para>
+          <guilabel>Frame Shadow:</guilabel> defines frame color. Can be <guimenuitem>Defined by Layout</guimenuitem>, <guimenuitem>None</guimenuitem>, or <guimenuitem>Statusbar</guimenuitem>.</para>
         </listitem>
       </itemizedlist></para>
     </sect2>
@@ -728,8 +728,7 @@
               <para>
               <guilabel>Use the default KDE colors</guilabel>: this
               is the default, it uses &kde; color
-              settings of 
-              <command>kcontrol</command>.</para>
+              defined in the &systemsettings;.</para>
             </listitem>
             <listitem>
               <para>
@@ -1086,7 +1085,7 @@
         </term>
         <listitem>
           <itemizedlist>
-            <listitem>
+	    <!-- not in master <listitem>
               <para>
               <guilabel>Preserve attributes for local copy/move
               (slower)</guilabel>: If checked,
@@ -1094,7 +1093,7 @@
               attributes (time, owner, group) of the local files
               according to the source file depending on your 
               <link linkend="copying">permissions</link>.</para>
-            </listitem>
+	    </listitem> -->
             <listitem>
               <para>
               <guilabel>Automount filesystems</guilabel>: this
@@ -1112,7 +1111,7 @@
               <filename class="directory">
               /mnt/cdrom</filename>.</para>
             </listitem>
-            <listitem>
+            <!-- not in master <listitem>
               <para>
               <guilabel>Do not use KDE media protocol for the
               Media button (if it is buggy or missing)</guilabel>:
@@ -1122,7 +1121,7 @@
               Choose this when the media protocol is buggy (in some
               older &kde; versions) or if you have no
               kdebase package installed on your system.</para>
-            </listitem>
+	    </listitem> -->
             <listitem>
               <para>
               <guilabel>MountMan won't (un)mount the following
@@ -1232,7 +1231,7 @@
     <para>
       <guilabel>Fine-Tuning</guilabel>
       <itemizedlist>
-        <listitem>
+        <!-- not in master <listitem>
           <para>
           <guilabel>Allow moving into archives</guilabel>: this
           option allows you to move files into an archive (as
@@ -1248,10 +1247,10 @@
             You can search the directory and recover your
             files.</para>
           </note></para>
-        </listitem>
+	</listitem> -->
         <listitem>
           <para>
-          <guilabel>Test archives when finished packing</guilabel>:
+          <guilabel>Test archives after packing</guilabel>:
           this option automatically runs a test on a newly packed
           archive. It is safer, but takes longer.</para>
         </listitem>
@@ -1911,7 +1910,7 @@
     protocol "tar" is linked to mime "application/x-tar".</para>
 
     <para>In the 
-    <guilabel>Defined Links</guilabel> you will see &eg; 
+    <guilabel>Links</guilabel> you will see &eg; 
     <itemizedlist>
       <listitem>
         <para>Iso</para>

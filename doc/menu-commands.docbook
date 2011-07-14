@@ -628,7 +628,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">&Alt;
-              <keycap>KP_Enter</keycap></keycombo>
+              &Enter;</keycombo>
             </shortcut>
             <guimenu>Edit</guimenu>
             <guimenuitem>Properties</guimenuitem>
@@ -830,6 +830,26 @@
       <varlistentry>
         <term>
           <menuchoice>
+            <shortcut>
+              <keycombo action="simul">&Alt;
+              <keysym>Up</keysym></keycombo>
+            </shortcut>
+            <guimenu>Go</guimenu>
+            <guimenuitem>Up</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Navigates to the parent directory of the active
+          panel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul">&Alt;
+              <keysym>Left</keysym></keycombo>
+            </shortcut>
             <guimenu>Go</guimenu>
             <guimenuitem>Back</guimenuitem>
           </menuchoice>
@@ -839,20 +859,35 @@
           active panel.</para>
         </listitem>
       </varlistentry>
+<!-- missing      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul">&Alt;
+              <keysym>Right</keysym></keycombo>
+            </shortcut>
+            <guimenu>Go</guimenu>
+            <guimenuitem>Forward</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para></para>
+        </listitem>
+      </varlistentry> -->
       <varlistentry>
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keysym>PgUp</keysym></keycombo>
+              <keycombo action="simul">&Alt;
+              <keysym>Home</keysym></keycombo>
             </shortcut>
             <guimenu>Go</guimenu>
-            <guimenuitem>Up</guimenuitem>
+            <guimenuitem>Home</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
-          <para>Navigates to the parent directory of the active
-          panel.</para>
+          <para>Navigates to the home directory of the current
+          user.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -869,22 +904,6 @@
         <listitem>
           <para>Navigates to the root directory of the
           system.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Alt;
-              <keysym>Home</keysym></keycombo>
-            </shortcut>
-            <guimenu>Go</guimenu>
-            <guimenuitem>Home</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Navigates to the home directory of the current
-          user.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -957,19 +976,29 @@
       <varlistentry>
         <term>
           <menuchoice>
-            <guimenu>Useractions</guimenu>
-            <guimenuitem>Your own Useractions</guimenuitem>
+            <shortcut>
+              <keycombo action="simul">
+                <keycap>Meta</keycap>
+                <keycap>A</keycap>
+              </keycombo>
+            </shortcut>
+            <guimenu>Useractions</guimenu><guisubmenu>Multimedia</guisubmenu>
+            <guimenuitem>Enqueue in Amarok</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
-          <para>Opens the default user actions and those
-          created by the user.</para>
+          <para>Appends selected item(s) to Amarok playlist.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
           <menuchoice>
-            <guimenu>Useractions</guimenu>
+            <shortcut>
+              <keycombo action="simul">
+                &Ctrl;&Alt;
+              </keycombo>
+            </shortcut>
+            <guimenu>Useractions</guimenu><guisubmenu>Samples</guisubmenu>
             <guimenuitem>Equal panel-size</guimenuitem>
           </menuchoice>
         </term>
@@ -981,7 +1010,12 @@
       <varlistentry>
         <term>
           <menuchoice>
-            <guimenu>Useractions</guimenu>
+            <shortcut>
+              <keycombo action="simul">
+                &Ctrl;<keycap>E</keycap>
+              </keycombo>
+            </shortcut>
+            <guimenu>Useractions</guimenu><guisubmenu>Samples</guisubmenu>
             <guimenuitem>Edit as root</guimenuitem>
           </menuchoice>
         </term>
@@ -993,7 +1027,12 @@
       <varlistentry>
         <term>
           <menuchoice>
-            <guimenu>Useractions</guimenu>
+            <shortcut>
+              <keycombo action="simul">
+                &Ctrl;&Alt;<keycap>M</keycap>
+              </keycombo>
+            </shortcut>
+            <guimenu>Useractions</guimenu><guisubmenu>Samples</guisubmenu>
             <guimenuitem>Mount</guimenuitem>
           </menuchoice>
         </term>
@@ -1004,18 +1043,12 @@
       <varlistentry>
         <term>
           <menuchoice>
-            <guimenu>Useractions</guimenu>
-            <guimenuitem>Enqueue in Amarok</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Appends selected item(s) to Amarok playlist.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Useractions</guimenu>
+            <shortcut>
+              <keycombo action="simul">
+                &Ctrl;&Alt;<keycap>C</keycap>
+              </keycombo>
+            </shortcut>
+            <guimenu>Useractions</guimenu><guisubmenu>Samples</guisubmenu>
             <guimenuitem>Copy current item to
             clipboard</guimenuitem>
           </menuchoice>
@@ -1029,11 +1062,28 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-                <keycap>Win</keycap>
+                <keycap>Meta</keycap><keycap>F5</keycap>
+              </keycombo>
+            </shortcut>
+            <guimenu>Useractions</guimenu><guisubmenu>System</guisubmenu>
+            <guimenuitem>Backup current</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Backups current file in current directory and asks the user for a new filename. 
+                By default <filename>.old</filename> is appended to the original filename.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul">
+                <keycap>Meta</keycap>
                 <keycap>1</keycap>
               </keycombo>
             </shortcut>
-            <guimenu>Useractions</guimenu>
+            <guimenu>Useractions</guimenu><guisubmenu>User Interface</guisubmenu>
             <guimenuitem>Sort By Name</guimenuitem>
           </menuchoice>
         </term>
@@ -1048,11 +1098,11 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-                <keycap>Win</keycap>
+                <keycap>Meta</keycap>
                 <keycap>2</keycap>
               </keycombo>
             </shortcut>
-            <guimenu>Useractions</guimenu>
+            <guimenu>Useractions</guimenu><guisubmenu>User Interface</guisubmenu>
             <guimenuitem>Sort By Extension</guimenuitem>
           </menuchoice>
         </term>
@@ -1069,11 +1119,11 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-                <keycap>Win</keycap>
+                <keycap>Meta</keycap>
                 <keycap>3</keycap>
               </keycombo>
             </shortcut>
-            <guimenu>Useractions</guimenu>
+            <guimenu>Useractions</guimenu><guisubmenu>User Interface</guisubmenu>
             <guimenuitem>Sort By Size</guimenuitem>
           </menuchoice>
         </term>
@@ -1089,11 +1139,11 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-                <keycap>Win</keycap>
+                <keycap>Meta</keycap>
                 <keycap>4</keycap>
               </keycombo>
             </shortcut>
-            <guimenu>Useractions</guimenu>
+            <guimenu>Useractions</guimenu><guisubmenu>User Interface</guisubmenu>
             <guimenuitem>Sort By Modified</guimenuitem>
           </menuchoice>
         </term>
@@ -1107,18 +1157,12 @@
       <varlistentry>
         <term>
           <menuchoice>
-            <shortcut>
-              <keycombo action="simul">
-                &Shift;<keycap>F5</keycap>
-              </keycombo>
-            </shortcut>
             <guimenu>Useractions</guimenu>
-            <guimenuitem>Backup current</guimenuitem>
+            <guimenuitem>Your own Useractions</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
-          <para>Backups current file in current directory and asks the user for a new filename. 
-                By default <filename>.old</filename> is appended to the original filename.</para>
+          <para>Opens the user actions created by the user.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -1201,7 +1245,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">&Alt;&Shift;
-              <keycap>D</keycap></keycombo>
+              <keycap>S</keycap></keycombo>
             </shortcut>
             <guimenu>Tools</guimenu>
             <guimenuitem>Disk Usage</guimenuitem>
@@ -1385,7 +1429,7 @@
         <term>
           <menuchoice>
             <guimenu>Settings</guimenu>
-            <guimenuitem>Show Toolbar</guimenuitem>
+            <guimenuitem>Show Main Toolbar</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
@@ -1448,7 +1492,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-              &Alt;&Ctrl;
+              &Ctrl;&Alt;
               <keycap>T</keycap></keycombo>
             </shortcut>
             <guimenu>Settings</guimenu>
