@@ -27,7 +27,7 @@
   documentation. If you believe some acronyms or terms are missing,
   please do not hesitate to contact the &krusader;
   documentation team.</para>
-  <para>Thanks to 
+  <para>Thanks to
   <ulink url="http://en.wikipedia.org/">wikipedia.org</ulink> the
   free encyclopedia that anyone can edit.</para>
   <glossentry id="gloss-acl">
@@ -52,7 +52,7 @@
       <para>
       <ulink url="http://en.wikipedia.org/wiki/Bsd">Berkeley
       Software Distribution</ulink>; refers to any of several free
-      &UNIX;-compatible operating systems, derived from 
+      &UNIX;-compatible operating systems, derived from
       <acronym>BSD</acronym>&UNIX;.</para>
     </glossdef>
   </glossentry>
@@ -74,15 +74,29 @@
       <acronym>DEB</acronym>
     </glossterm>
     <glossdef>
-      <para>This is a binary file format that is used by 
+      <para>This is a binary file format that is used by
       <ulink url="http://en.wikipedia.org/wiki/Debian">
       <trademark class="registered">Debian</trademark></ulink> and <trademark class="registered">Debian</trademark>-based
       distributions. It is a suffix of a installation file
-      specifically built for these distributions; &eg; 
+      specifically built for these distributions; &eg;
       <filename>krusader_1.70.1-1_amd64.deb</filename>. Simply
       described it is a special archive containing all the
       program files and their proposed location on the
       system.</para>
+    </glossdef>
+  </glossentry>
+    <glossentry id="glos-dbus">
+    <glossterm>
+      <acronym>D-Bus</acronym>
+    </glossterm>
+    <glossdef>
+      <para>
+      <ulink url="http://freedesktop.org/wiki/Software/dbus">&DBus;</ulink> is an inter-service messaging system.
+      Developed by RedHat, it was heavily influenced by &kde; 3
+      <link linkend="glos-dcop">DCOP</link>, which it supercedes.
+      &krusader; can use &DBus; to communicate with other applications.
+      On the other hand, you can use &DBus; to control &krusader; from
+	other applications. Just use <application>qdbusviewer</application> to examine the possibilities.</para>
     </glossdef>
   </glossentry>
   <glossentry id="glos-dcop">
@@ -93,9 +107,10 @@
       <para>
       <ulink url="http://en.wikipedia.org/wiki/Dcop">Desktop
       Communication Protocol</ulink>; the interprocess
-      communication protocol used by &kde; desktop
-      environment. It enables various &kde; applications
-      to communicate with each other.</para>
+      communication protocol used by &kde; 3 desktop
+      environment. It enables various &kde; 3 applications
+      to communicate with each other. Replaced with
+      <link linkend="glos-dbus">D-Bus</link> in &kde; 4.</para>
     </glossdef>
   </glossentry>
   <glossentry id="glos-faq">
@@ -127,7 +142,7 @@
     <glossdef>
       <para>
       <ulink url="http://en.wikipedia.org/wiki/Git_(software)">
-      Git</ulink>; a distributed version control system that replaces 
+      Git</ulink>; a distributed version control system that replaces
       <link linkend="gloss-svn">Subversion</link>. It is used by many
       software projects including &kde; and
       &krusader;.</para>
@@ -140,7 +155,7 @@
     <glossdef>
       <para>
       <ulink url="http://en.wikipedia.org/wiki/Gpl">GNU General
-      Public License</ulink>; a software license created by the 
+      Public License</ulink>; a software license created by the
       <ulink url="http://www.fsf.org/">Free Software
       Foundation</ulink> defining the terms for releasing free
       software.</para>
@@ -159,7 +174,7 @@
       <acronym>ISO</acronym>
     </glossterm>
     <glossdef>
-      <para>An 
+      <para>An
       <ulink url="http://en.wikipedia.org/wiki/ISO_image">ISO
       image</ulink> (.iso) is an informal term for a disk image of
       an ISO 9660 file system. More loosely, it refers to any
@@ -182,12 +197,12 @@
       <para>All features of &krusader; are available
       through the menubar, but you can also bind (link) a certain
       key combination to that function. You will find, however,
-      that using the 
+      that using the
       <link linkend="keyboard-commands">keyboard</link> is remarkably
-      faster than using the menubar or 
-      <link linkend="gloss-gui">GUI</link>. 
+      faster than using the menubar or
+      <link linkend="gloss-gui">GUI</link>.
       <link linkend="keyboard-commands">Keyboard usage</link> is an
-      important tool for 
+      important tool for
       <link linkend="gloss-ofm">Orthodox File Managers</link>.
       &krusader; comes with several predefined
       <link linkend="key_bindings">Key-Bindings</link>.</para>
@@ -243,7 +258,7 @@
       <ulink url="http://www.softpanorama.org/OFM/index.shtml">
       Orthodox File Manager</ulink>; also known as "Commanders".
       Members of this family of file managers use simple yet very
-      powerful interface that is a direct derivative of the 
+      powerful interface that is a direct derivative of the
       <ulink url="http://en.wikipedia.org/wiki/Norton_Commander">
       Norton Commander</ulink> (NC) interface.</para>
     </glossdef>
@@ -252,7 +267,7 @@
     <glossterm>RPM</glossterm>
     <glossdef>
       <para>This is the binary file format for distributions based
-      on the 
+      on the
       <ulink url="http://www.rpm.org/">RPM Package Manager</ulink>,
       a widely used packaging tool for the &Linux;
       operating system. If you still have to get
@@ -266,11 +281,11 @@
     <acronym>SSH</acronym>, Secure Shell</glossterm>
     <glossdef>
       <para>
-      <ulink url="http://en.wikipedia.org/wiki/SSH">SSH</ulink>; 
-        is a set of standards and an associated network protocol that allows 
+      <ulink url="http://en.wikipedia.org/wiki/SSH">SSH</ulink>;
+        is a set of standards and an associated network protocol that allows
         establishing a secure channel between a local and a remote computer.</para>
     </glossdef>
-  </glossentry>  
+  </glossentry>
   <glossentry id="gloss-svn">
     <glossterm>
     <acronym>SVN</acronym>, Subversion</glossterm>
@@ -278,7 +293,7 @@
       <para>
       <ulink url="http://en.wikipedia.org/wiki/Subversion">
       Subversion</ulink>; a version control system that is a
-      compelling replacement for 
+      compelling replacement for
       <link linkend="gloss-cvs">CVS</link>. It is used by many
       software projects including &kde;.</para>
     </glossdef>
@@ -318,7 +333,7 @@
       <ulink url="http://en.wikipedia.org/wiki/URL">Universal
       Resource Locator</ulink>; a universal resource locator is the
       technical term for what is commonly referred to as a websites
-      address. Examples of URLs include 
+      address. Examples of URLs include
       <ulink url="http://krusader.sourceforge.net">
       http://krusader.sourceforge.net</ulink> and
       <link linkend="remote-connections">Remote Connections</link>.</para>
@@ -329,7 +344,7 @@
       <acronym>VFS</acronym>
     </glossterm>
     <glossdef>
-      <para><link linkend="vfs">Virtual file systems (VFS)</link> is a basic 
+      <para><link linkend="vfs">Virtual file systems (VFS)</link> is a basic
       <link linkend="features">OFM feature</link>, this an
       abstracted layer over all kinds of archived information (ZIP
       files, FTP servers, TAR archives, NFS filesystems, SAMBA
@@ -356,10 +371,10 @@
     <glossterm>Zeroconf</glossterm>
     <glossdef>
       <para>
-      <ulink url="http://en.wikipedia.org/wiki/Zeroconf">Zeroconf</ulink>; 
-      or Zero Configuration Networking is a set of techniques that automatically 
-      create a usable IP network without configuration or special servers. 
-      This allows inexpert users to connect computers, networked printers, 
+      <ulink url="http://en.wikipedia.org/wiki/Zeroconf">Zeroconf</ulink>;
+      or Zero Configuration Networking is a set of techniques that automatically
+      create a usable IP network without configuration or special servers.
+      This allows inexpert users to connect computers, networked printers,
       and other items together and expect them to work automatically.</para>
     </glossdef>
   </glossentry>
