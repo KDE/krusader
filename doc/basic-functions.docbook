@@ -346,28 +346,16 @@
       <keycap>F5</keycap> to 
       <keycap>copy</keycap> or 
       <keycap>F6</keycap> to 
-      <keycap>move</keycap> them. If the 
-      <guimenuitem> Preserve attributes (only on local
-      targets)</guimenuitem> option is checked,
-      &krusader; will try to preserve all attributes
-      (time, owner, group) of the local files according to the
-      source depending on your permissions: 
-      <itemizedlist>
-        <listitem>
-          <para>User preserving if you are root</para>
-        </listitem>
-        <listitem>
-          <para>Group preserving if you are root or member of the
-          group</para>
-        </listitem>
-        <listitem>
-          <para>Preserving the timestamp</para>
-        </listitem>
-      </itemizedlist>Using this option may slow down the copy/move
-      process. A dialog will appear and allow you to choose the
-      operation destination. The default destination is the
-      other-panel browsed directory. If you enter a partial
-      &URL;, &krusader; will use the current
+      <keycap>move</keycap> them. &krusader; tries to preserve the time of
+      modification. When copying a directory owner is changed to the user which
+      copies the file, group is changed to the default group of the user.
+      When copying a file owner is changed to the user which copies the file,
+      group is changed to default group of the user, and permissions are
+      preserved. The owner, the group and the permissions are preserved when
+      moving file or directory. When copying or moving files/directories a dialog
+      appears and allows you to choose the operation destination.
+      The default destination is the other-panel browsed directory. If you enter
+      a partial &URL;, &krusader; will use the current
       panel directory as the &URL; base.</para>
     </sect2>
     <sect2 id="queue">
@@ -379,10 +367,10 @@
       Or the direct shortcuts: copy by queue <keycombo action="simul">&Shift;<keycap>F5</keycap></keycombo> , 
       move by queue <keycombo action="simul">&Shift;<keycap>F6</keycap></keycombo> .
       Queueing is used for one-by-one copying.
-      E.g. if you have a pen drive (which is slow), and you want to copy 40 files onto it, 
+      For example, if you have a pen drive (which is slow), and you want to copy 40 files onto it, 
       it's much better copying them one-by-one instead of starting to copy 40 files in parallel.
       That's why enqueuing is important.
-      If you pack/unpack 40 files parallelly, you overload your computer,
+      If you pack/unpack 40 files in parallel, you overload your computer,
       but adding them to a queue, is much more useful.
       </para>
     </sect2>
