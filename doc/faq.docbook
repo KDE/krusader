@@ -83,7 +83,7 @@
           another window manager. However, the configuration of the
           &krusader; fonts and some behavior is done by
           running 
-          <command>kcontrol</command>.</para>
+          <command>systemsettings</command>.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
           <para>A lot depends on what you want to do with
@@ -771,10 +771,8 @@
           client code page = MyCodePage (ex. 852)
           character set = MyCharSet (ex. ISO8859-2)
           </programlisting>
-          Unfortunately 
-          <application>kcontrol</application> (&kde;
-          3.1.1) fails to configure smb.conf properly, so this must
-          be done manually with a text editor.</para>
+          You can try to configure smb.conf with appropriate 
+          &systemsettings; module.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -928,7 +926,7 @@
           via &HTTP; proxy' feature is not yet supported
           by &krusader;. This error may be caused by a
           misconfiguration of the proxy settings in
-          &kcontrolcenter;. Modify the proxy settings to
+          &systemsettings;. Modify the proxy settings to
           not use &HTTP; proxy and &FTP; will
           work.</para>
           <para></para>
