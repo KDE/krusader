@@ -69,7 +69,7 @@ KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
         break;
     case Tool:
         _resultTable = new KrToolResultTable(_page);
-        setHelp(""); // TODO find a good anchor
+        setHelp("konfig-dependencies"); // TODO find a good anchor
         break;
     default:
         break;
