@@ -364,7 +364,7 @@
               <keycap>X</keycap></keycombo>
             </shortcut>
             <guimenu>Edit</guimenu>
-            <guimenuitem>Cut to Clipboard</guimenuitem>
+            <guimenuitem>Cut</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
@@ -381,7 +381,7 @@
               <keycap>C</keycap></keycombo>
             </shortcut>
             <guimenu>Edit</guimenu>
-            <guimenuitem>Copy to Clipboard</guimenuitem>
+            <guimenuitem>Copy</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
@@ -398,7 +398,7 @@
               <keycap>V</keycap></keycombo>
             </shortcut>
             <guimenu>Edit</guimenu>
-            <guimenuitem>Paste from Clipboard</guimenuitem>
+            <guimenuitem>Paste</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
@@ -1370,6 +1370,7 @@
         </listitem>
       </varlistentry>
       <!-- vertical bar -->
+      <!-- not in master? -->
       <varlistentry>
         <term>
           <menuchoice>
@@ -1388,7 +1389,7 @@
           Console</link>.</para>
         </listitem>
       </varlistentry>
- 
+      <!-- not in master?-->
       <varlistentry>
         <term>
           <menuchoice>
@@ -1477,19 +1478,6 @@
       <varlistentry>
         <term>
           <menuchoice>
-            <guimenu>Settings</guimenu>
-            <guimenuitem>Show Command Line</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Shows the 
-          <link linkend="cmdline">Command Line</link> if
-          checked.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
             <shortcut>
               <keycombo action="simul">
               &Ctrl;&Alt;
@@ -1505,6 +1493,20 @@
           checked.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Settings</guimenu>
+            <guimenuitem>Show Command Line</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Shows the 
+          <link linkend="cmdline">Command Line</link> if
+          checked.</para>
+        </listitem>
+      </varlistentry>
+      <!-- Command Execution Mode Setup missing in master -->
       <varlistentry id="configure-shortcuts">
         <term>
           <menuchoice>
