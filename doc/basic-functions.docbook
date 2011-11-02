@@ -409,16 +409,15 @@
       <keycap>F9</keycap> key or with two single mouse clicks. If
       only the file name needs to be renamed and not the extension,
       you can configure this in the
-      <link linkend="konfig-general">Konfigurator General page</link>. 
-      <keycap>Create a new directory</keycap> with the 
+      <link linkend="konfig-general-atomic">Konfigurator General page</link>. 
+      <guilabel>Create a new directory</guilabel> with the 
       <keycap>F7</keycap> key. 
-      <keycap>Right-clicking on a regular file</keycap> will give
-      you the 
-      <keycap>option "New Symlink"</keycap>. A dialog will prompt
-      you to enter a symlink name. That name will point to the
-      file/directory you Right-Clicked on. If the file you
-      Right-Clicked on is a symlink, you will also be presented
-      with the "redirect link" option that will allow you to change
+      Right-clicking on a regular file will give
+	you the option <menuchoice><guisubmenu>Link Handling</guisubmenu> <guimenuitem>New Symlink</guimenuitem></menuchoice>. A dialog will prompt
+      you to enter a symlink name. That symlink will point to the
+      file/directory you right-clicked on. If the file you
+      right-clicked on is a symlink, you will also be presented
+      with the <menuchoice><guisubmenu>Link Handling</guisubmenu> <guimenuitem>Redirect Link</guimenuitem></menuchoice> option that will allow you to change
       the link target.</para>
     </sect2>
     <sect2 id="viewing">
