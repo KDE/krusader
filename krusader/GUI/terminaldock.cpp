@@ -164,8 +164,8 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
 
     //navigation
     if ((ke->key() ==  Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) {
-        if (MAIN_VIEW->cmdLine->isVisible()) {
-            MAIN_VIEW->cmdLine->setFocus();
+        if (MAIN_VIEW->cmdLine()->isVisible()) {
+            MAIN_VIEW->cmdLine()->setFocus();
         }
         return true;
     } else if ((ke->key() ==  Qt::Key_Up)

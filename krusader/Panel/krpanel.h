@@ -53,7 +53,7 @@ public:
     KrPanel *otherPanel() {
         return _manager->otherManager()->currentPanel();
     }
-    bool isLeft() {
+    bool isLeft() const {
         return _manager->isLeft();
     }
     virtual void otherPanelChanged() {}

@@ -76,10 +76,10 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     vert_splitter->setOrientation(Qt::Vertical);
     // horizontal splitter
     horiz_splitter = new PercentalSplitter(vert_splitter);
-    (terminal_dock = new TerminalDock(vert_splitter, krApp))->hide();     // create it hidden
+    (_terminalDock = new TerminalDock(vert_splitter, krApp))->hide();     // create it hidden
 
     // create a command line thing
-    cmdLine = new KCMDLine(this);
+    _cmdLine = new KCMDLine(this);
 
     // add a panel manager for each side of the splitter
     leftMng  = createManager(true);
@@ -91,15 +91,15 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     activeMng = leftMng;
 
     // create the function keys widget
-    fnKeys = new KFnKeys(this, krApp);
-    fnKeys->hide();
-    fnKeys->setWhatsThis(i18n("Function keys allow performing fast "
+    _fnKeys = new KFnKeys(this, krApp);
+    _fnKeys->hide();
+    _fnKeys->setWhatsThis(i18n("Function keys allow performing fast "
                               "operations on files."));
 
     // and insert the whole thing into the main layout... at last
     mainLayout->addWidget(vert_splitter, 0, 0);    //<>
-    mainLayout->addWidget(cmdLine, 1, 0);
-    mainLayout->addWidget(fnKeys, 2, 0);
+    mainLayout->addWidget(_cmdLine, 1, 0);
+    mainLayout->addWidget(_fnKeys, 2, 0);
     mainLayout->activate();
 
     // get the last saved sizes of the splitter
@@ -151,6 +151,54 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     }
 }
 
+void KrusaderView::updateGUI(KConfigGroup &cfg)
+{
+    if (!cfg.readEntry("Show Cmd Line", _ShowCmdline)) {
+        cmdLine()->hide();
+        KrActions::actToggleCmdline->setChecked(false);
+    } else {
+        cmdLine()->show();
+        KrActions::actToggleCmdline->setChecked(true);
+    }
+    // update the Fn bar to the shortcuts selected by the user
+    fnKeys()->updateShortcuts();
+    if (!cfg.readEntry("Show FN Keys", _ShowFNkeys)) {
+        fnKeys()->hide();
+        KrActions::actToggleFnkeys->setChecked(false);
+    } else {
+        fnKeys()->show();
+        KrActions::actToggleFnkeys->setChecked(true);
+    }
+    // set vertical mode
+    if (cfg.readEntry("Vertical Mode", false)) {
+        toggleVerticalMode();
+    }
+    if (cfg.readEntry("Show Terminal Emulator", _ShowTerminalEmulator)) {
+        slotTerminalEmulator(true);   // create konsole_part
+        vert_splitter->setSizes(verticalSplitterSizes);
+    } else if (KrActions::actExecTerminalEmbedded->isChecked()) {
+        //create (but not show) terminal emulator,
+        //if command-line commands are to be run there
+        _terminalDock->initialise();
+    }
+}
+
+void KrusaderView::setPanelSize(bool leftPanel, int percent)
+{
+    QList<int> panelSizes = horiz_splitter->sizes();
+    int totalSize = panelSizes[0] + panelSizes[1];
+
+    if (leftPanel) {
+        panelSizes[0] = totalSize * percent / 100;
+        panelSizes[1] = totalSize * (100 - percent) / 100;
+    } else { // == RIGHT_PANEL
+        panelSizes[0] = totalSize * (100 - percent) / 100;
+        panelSizes[1] = totalSize * percent / 100;
+    }
+
+    horiz_splitter->setSizes(panelSizes);
+}
+
 PanelManager *KrusaderView::createManager(bool left)
 {
     PanelManager *p = new PanelManager(horiz_splitter, krApp, left);
@@ -180,10 +228,10 @@ ListPanel* KrusaderView::rightPanel()
 void KrusaderView::slotPathChanged(ListPanel *p)
 {
     if(p == ACTIVE_PANEL) {
-        cmdLine->setCurrent(p->realPath());
+        _cmdLine->setCurrent(p->realPath());
         KConfigGroup cfg = krConfig->group("General");
         if (cfg.readEntry("Send CDs", _SendCDs)) { // hopefully, this is cached in kconfig
-            terminal_dock->sendCd(p->realPath());
+            _terminalDock->sendCd(p->realPath());
         }
     }
 }
@@ -191,10 +239,10 @@ void KrusaderView::slotPathChanged(ListPanel *p)
 int KrusaderView::getFocusCandidates(QVector<QWidget*> &widgets)
 {
     ACTIVE_PANEL->gui->getFocusCandidates(widgets);
-    if(terminal_dock->isTerminalVisible())
-        widgets << terminal_dock;
-    if(cmdLine->isVisible())
-        widgets << cmdLine;
+    if(_terminalDock->isTerminalVisible())
+        widgets << _terminalDock;
+    if(_cmdLine->isVisible())
+        widgets << _cmdLine;
 
     for(int i = 0; i < widgets.count(); i++) {
         if(widgets[i] == focusWidget() || widgets[i]->focusWidget() == focusWidget())
@@ -231,7 +279,7 @@ void KrusaderView::focusDown()
 
 void KrusaderView::cmdLineFocus()    // command line receive's keyboard focus
 {
-    cmdLine->setFocus();
+    _cmdLine->setFocus();
 }
 
 void KrusaderView::cmdLineUnFocus()   // return focus to the active panel
@@ -286,10 +334,10 @@ void KrusaderView::slotTerminalEmulator(bool show)
 
     if (!show) {    // hiding the terminal
         ACTIVE_PANEL->gui->slotFocusOnMe();
-        if (terminal_dock->isTerminalVisible() && !fullscreen)
+        if (_terminalDock->isTerminalVisible() && !fullscreen)
             verticalSplitterSizes = vert_splitter->sizes();
 
-        terminal_dock->hide();
+        _terminalDock->hide();
         QList<int> newSizes;
         newSizes.push_back(vert_splitter->height());
         newSizes.push_back(0);
@@ -298,8 +346,8 @@ void KrusaderView::slotTerminalEmulator(bool show)
         if (fullscreen) {
             leftMng->show();
             rightMng->show();
-            if (fnKeysShown) fnKeys->show();
-            if (cmdLineShown) cmdLine->show();
+            if (fnKeysShown) _fnKeys->show();
+            if (cmdLineShown) _cmdLine->show();
             if (statusBarShown) krApp->statusBar()->show();
             if (toolBarShown) {
                 krApp->toolBar()->show();
@@ -310,48 +358,48 @@ void KrusaderView::slotTerminalEmulator(bool show)
         return ;
     }
     // else implied
-    terminal_dock->initialise();
-    if (terminal_dock->isInitialised()) {        // if we succeeded in creating the konsole
+    _terminalDock->initialise();
+    if (_terminalDock->isInitialised()) {        // if we succeeded in creating the konsole
         if (!verticalSplitterSizes.empty())
             vert_splitter->setSizes(verticalSplitterSizes);
 
-        terminal_dock->show();
+        _terminalDock->show();
         slotPathChanged(ACTIVE_PANEL->gui);
 
-        terminal_dock->setFocus();
+        _terminalDock->setFocus();
 
         krToggleTerminal->setChecked(true);
         // in full screen mode, we hide everything else, but first, see what was actually shown
         if (fullscreen) {
-            fnKeysShown = !fnKeys->isHidden();
-            cmdLineShown = !cmdLine->isHidden();
+            fnKeysShown = !_fnKeys->isHidden();
+            cmdLineShown = !_cmdLine->isHidden();
             statusBarShown = !krApp->statusBar()->isHidden();
             toolBarShown = !krApp->toolBar()->isHidden();
             menuBarShown = !krApp->menuBar()->isHidden();
             leftMng->hide();
             rightMng->hide();
-            fnKeys->hide();
-            cmdLine->hide();
+            _fnKeys->hide();
+            _cmdLine->hide();
             krApp->statusBar()->hide();
             krApp->toolBar()->hide();
             krApp->toolBar("actionsToolBar")->hide();
             krApp->menuBar()->hide();
         }
     } else {
-        terminal_dock->hide();
+        _terminalDock->hide();
         krToggleTerminal->setChecked(false);
     }
 }
 
 void KrusaderView::focusTerminalEmulator()
 {
-    if (terminal_dock->isTerminalVisible())
-        terminal_dock->setFocus();
+    if (_terminalDock->isTerminalVisible())
+        _terminalDock->setFocus();
 }
 
 void KrusaderView::switchFullScreenTE()
 {
-    if (terminal_dock->isTerminalVisible()) {
+    if (_terminalDock->isTerminalVisible()) {
         KConfigGroup grp = krConfig->group("Look&Feel");
         bool fullscreen = grp.readEntry("Fullscreen Terminal Emulator", false);
         slotTerminalEmulator(false);
@@ -362,7 +410,7 @@ void KrusaderView::switchFullScreenTE()
 
 QList<int> KrusaderView::getTerminalEmulatorSplitterSizes()
 {
-    if (terminal_dock->isVisible())
+    if (_terminalDock->isVisible())
         return vert_splitter->sizes();
     else
         return verticalSplitterSizes;
@@ -423,9 +471,13 @@ void KrusaderView::toggleVerticalMode()
 
 void KrusaderView::saveSettings(KConfigGroup &cfg)
 {
-    bool localOnly = true; //FIXME make configurable
+    QList<int> lst = horiz_splitter->sizes();
+    cfg.writeEntry("Splitter Sizes", lst);
+    if (!getTerminalEmulatorSplitterSizes().isEmpty())
+        cfg.writeEntry("Terminal Emulator Splitter Sizes", getTerminalEmulatorSplitterSizes());
     cfg.writeEntry("Vertical Mode", isVertical());
     cfg.writeEntry("Left Side Is Active", ACTIVE_PANEL->gui->isLeft());
+    bool localOnly = true; //FIXME make configurable
     leftMng->saveSettings(KConfigGroup(&cfg, "Left Tab Bar"), localOnly, true);
     rightMng->saveSettings(KConfigGroup(&cfg, "Right Tab Bar"), localOnly, true);
 }

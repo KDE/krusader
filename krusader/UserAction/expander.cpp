@@ -863,18 +863,7 @@ TagString exp_PanelSize::expFunc(const KrPanel* panel, const QStringList& parame
         return QString();
     }
 
-    QList<int> panelSizes = MAIN_VIEW->horiz_splitter->sizes();
-    int totalSize = panelSizes[0] + panelSizes[1];
-
-    if (panel == LEFT_PANEL) {
-        panelSizes[0] = totalSize * newSize / 100;
-        panelSizes[1] = totalSize * (100 - newSize) / 100;
-    } else { // == RIGHT_PANEL
-        panelSizes[0] = totalSize * (100 - newSize) / 100;
-        panelSizes[1] = totalSize * newSize / 100;
-    }
-
-    MAIN_VIEW->horiz_splitter->setSizes(panelSizes);
+    MAIN_VIEW->setPanelSize(panel->isLeft(), newSize);
 
     return QString();  // this doesn't return everything, that's normal!
 }

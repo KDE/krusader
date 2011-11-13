@@ -227,7 +227,7 @@ void KrActionProc::start(QStringList cmdLineList)
         workingDir = _action->startpath();
 
     if (_action->execType() == KrAction::RunInTE
-            && (! MAIN_VIEW->terminal_dock->initialise())) {
+            && (! MAIN_VIEW->terminalDock()->initialise())) {
         KMessageBox::sorry(0, i18n("Embedded terminal emulator does not work, using output collection instead."));
     }
 
@@ -244,12 +244,12 @@ void KrActionProc::start(QStringList cmdLineList)
     cmd = "(cd " + KrServices::quote(workingDir) + " && (" + cmd + "))";
 
     if (_action->execType() == KrAction::RunInTE
-        && MAIN_VIEW->terminal_dock->isInitialised()) {  //send the commandline contents to the terminal emulator
+        && MAIN_VIEW->terminalDock()->isInitialised()) {  //send the commandline contents to the terminal emulator
             if (!_action->user().isEmpty()) {
                 // "-t" is necessary that kdesu displays the terminal-output of the command
                 cmd = "kdesu -t -u " + _action->user() + " -c " + KrServices::quote(cmd);
             }
-            MAIN_VIEW->terminal_dock->sendInput(cmd + '\n');
+            MAIN_VIEW->terminalDock()->sendInput(cmd + '\n');
             deleteLater();
     }
     else { // will start a new process

@@ -66,6 +66,7 @@ public:
     KrusaderView(QWidget *parent = 0);
     virtual ~KrusaderView() {}
     void start(KConfigGroup &cfg, bool restoreSettings, QStringList leftTabs, QStringList rightTabs);
+    void updateGUI(KConfigGroup &cfg);
     void saveSettings(KConfigGroup &cfg);
     void cmdLineFocus();  // command line receive's keyboard focus
     void cmdLineUnFocus();// return focus from command line to active panel
@@ -84,20 +85,27 @@ public:
     PanelManager *rightManager() const {
         return rightMng;
     }
+    KFnKeys *fnKeys() const {
+        return _fnKeys;
+    }
+    KCMDLine *cmdLine() const {
+        return _cmdLine;
+    }
+    TerminalDock *terminalDock() const {
+        return _terminalDock;
+    }
     ListPanel* leftPanel();
     ListPanel* rightPanel();
-    QList<int> getTerminalEmulatorSplitterSizes();
     bool isVertical() const {
         return horiz_splitter != 0 ? horiz_splitter->orientation() == Qt::Vertical : false;
     }
     void swapSides();
+    void setPanelSize(bool leftPanel, int percent);
 
 public slots:
     void slotSetActiveManager(PanelManager *manager);
     void slotPathChanged(ListPanel *p);
     void slotTerminalEmulator(bool);
-    // manage the function keys to the CURRENT vfs
-    //////////////////////////////////////////////
     // Tab - switch focus
     void panelSwitch();
     void toggleVerticalMode();
@@ -117,18 +125,17 @@ public slots:
     void draggingTab(PanelManager *from, QMouseEvent *e);
     void draggingTabFinished(PanelManager *from, QMouseEvent *e);
 
-public:
-    KFnKeys   *fnKeys;          // function keys
-    KCMDLine    *cmdLine;                   // command line widget
-    TerminalDock  *terminal_dock;             // docking widget for terminal emulator
-    QSplitter  *horiz_splitter, *vert_splitter;
-    QList<int>   verticalSplitterSizes;
-
 private:
     int getFocusCandidates(QVector<QWidget*> &widgets);
     bool cursorIsOnOtherSide(PanelManager *of, const QPoint &globalPos);
     PanelManager *createManager(bool left);
+    QList<int> getTerminalEmulatorSplitterSizes();
 
+    KFnKeys   *_fnKeys;          // function keys
+    KCMDLine    *_cmdLine;                   // command line widget
+    TerminalDock  *_terminalDock;             // docking widget for terminal emulator
+    QSplitter  *horiz_splitter, *vert_splitter;
+    QList<int>   verticalSplitterSizes;
     PanelManager *activeMng, *leftMng, *rightMng;       // saving them for panel swaps
     QGridLayout *mainLayout, *terminal_layout;
 };
