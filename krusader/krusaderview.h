@@ -69,19 +69,25 @@ public:
     void saveSettings(KConfigGroup &cfg);
     void cmdLineFocus();  // command line receive's keyboard focus
     void cmdLineUnFocus();// return focus from command line to active panel
-    inline bool isLeftActive() const {
+    bool isLeftActive() const {
         return leftMng == activeMng;
     }
-    inline PanelManager *activeManager() const {
+    PanelManager *activeManager() const {
         return activeMng;
     }
-    inline PanelManager *inactiveManager() const {
+    PanelManager *inactiveManager() const {
         return activeMng == leftMng ? rightMng : leftMng;
+    }
+    PanelManager *leftManager() const {
+        return leftMng;
+    }
+    PanelManager *rightManager() const {
+        return rightMng;
     }
     ListPanel* leftPanel();
     ListPanel* rightPanel();
     QList<int> getTerminalEmulatorSplitterSizes();
-    inline bool          isVertical() const {
+    bool isVertical() const {
         return horiz_splitter != 0 ? horiz_splitter->orientation() == Qt::Vertical : false;
     }
     void swapSides();
@@ -112,7 +118,6 @@ public slots:
     void draggingTabFinished(PanelManager *from, QMouseEvent *e);
 
 public:
-    PanelManager *activeMng, *leftMng, *rightMng;       // saving them for panel swaps
     KFnKeys   *fnKeys;          // function keys
     KCMDLine    *cmdLine;                   // command line widget
     TerminalDock  *terminal_dock;             // docking widget for terminal emulator
@@ -124,6 +129,7 @@ private:
     bool cursorIsOnOtherSide(PanelManager *of, const QPoint &globalPos);
     PanelManager *createManager(bool left);
 
+    PanelManager *activeMng, *leftMng, *rightMng;       // saving them for panel swaps
     QGridLayout *mainLayout, *terminal_layout;
 };
 

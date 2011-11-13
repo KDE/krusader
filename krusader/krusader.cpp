@@ -897,12 +897,12 @@ AbstractPanelManager *Krusader::activeManager()
 
 AbstractPanelManager *Krusader::leftManager()
 {
-    return MAIN_VIEW->leftMng;
+    return MAIN_VIEW->leftManager();
 }
 
 AbstractPanelManager *Krusader::rightManager()
 {
-    return MAIN_VIEW->rightMng;
+    return MAIN_VIEW->rightManager();
 }
 
 #include "krusader.moc"

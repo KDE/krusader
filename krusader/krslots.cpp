@@ -312,8 +312,8 @@ void KRslots::configChanged(bool isGUIRestartNeeded)
         vfile::vfile_loadUserDefinedFolderIcons(group.readEntry("Load User Defined Folder Icons", _UserDefinedFolderIcons));
 
         bool leftActive = ACTIVE_PANEL->gui->isLeft();
-        MAIN_VIEW->leftMng->slotRecreatePanels();
-        MAIN_VIEW->rightMng->slotRecreatePanels();
+        MAIN_VIEW->leftManager()->slotRecreatePanels();
+        MAIN_VIEW->rightManager()->slotRecreatePanels();
         if(leftActive)
             LEFT_PANEL->slotFocusOnMe();
         else
@@ -336,8 +336,8 @@ void KRslots::toggleHidden()
     KrActions::actToggleHidden->setChecked(show);
     group.writeEntry("Show Hidden", show);
 
-    MAIN_VIEW->leftMng->refreshAllTabs(true);
-    MAIN_VIEW->rightMng->refreshAllTabs(true);
+    MAIN_VIEW->leftManager()->refreshAllTabs(true);
+    MAIN_VIEW->rightManager()->refreshAllTabs(true);
 }
 
 void KRslots::swapPanels()

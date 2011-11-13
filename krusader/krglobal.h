@@ -91,10 +91,10 @@ public:
 #define OTHER_FUNC (OTHER_PANEL->func)
 #define LEFT_PANEL (MAIN_VIEW->leftPanel())
 #define LEFT_FUNC  (LEFT_PANEL->func)
-#define LEFT_MNG  (MAIN_VIEW->leftMng)
+#define LEFT_MNG  (MAIN_VIEW->leftManager())
 #define RIGHT_PANEL  (MAIN_VIEW->rightPanel())
 #define RIGHT_FUNC (RIGHT_PANEL->func)
-#define RIGHT_MNG  (MAIN_VIEW->rightMng)
+#define RIGHT_MNG  (MAIN_VIEW->rightManager())
 
 // #define krEnableAction(name, enable) (KrGlobal::enableAction(#name, (enable)))
 // #define krGetAction(name) (KrGlobal::getAction(#name))
