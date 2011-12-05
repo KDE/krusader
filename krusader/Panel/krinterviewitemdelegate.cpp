@@ -25,7 +25,7 @@
 #include <QtGui/QLineEdit>
 
 KrInterViewItemDelegate::KrInterViewItemDelegate(QObject *parent) :
-        QItemDelegate(parent), _currentlyEdited(-1) {}
+        QItemDelegate(parent), _currentlyEdited(-1), _dontDraw(false) {}
 
 void KrInterViewItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
