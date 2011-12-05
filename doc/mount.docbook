@@ -3,14 +3,13 @@
   <indexterm>
     <primary>Mount</primary>
   </indexterm>
-  <para>MountMan is a tool which helps you manage your mounted
-  file systems. Once invoked, it displays a list of every mounted
-  file system. For each file system, MountMan displays its name
-  (which is the actual device name - i.e. 
-  <filename class="directory">/dev/fd0</filename> for a 
-  <hardware>floppy</hardware>), its type (vfat, ext3, ReiserFS ...)
-  and its mount point on your system (the directory on which the
-  file system is mounted).</para>
+  <para>MountMan is a tool which helps you manage your mounted file systems. Once
+  invoked, it displays a list of every mounted file system. For each file system,
+  MountMan displays its name (which is the actual device name - &ie; <filename
+  class="directory">/dev/sda1</filename> for a first partition on first
+  <hardware>HDD</hardware>), its type (ext4, ext3, ntfs, vfat, ReiserFS...)
+  and its mount point on your system (the directory on which the file system
+  is mounted).</para>
   <para>If you want filter out non-removable devices from the list,
   just check the item <guilabel>Show only removable devices</guilabel>
   at the left of the device list.
@@ -63,17 +62,16 @@
     </listitem>
   </itemizedlist>
   <note>
-    <para>We plan to expand MountMan in the next evolution of
-    &krusader;. It will be able to format floppies, edit
-    <filename class="directory">/etc/fstab</filename>, create new
-    file systems and more.... By the way, we have started working on
-    it, see "Quickmode for MountMan"</para>
+    <para>We plan to expand MountMan in the next evolution of &krusader;. It will be able
+    to format partitions, edit <filename class="directory">/etc/fstab</filename>,
+    create new file systems and more.... By the way, we have started working on it,
+    see "Quickmode for MountMan".</para>
   </note>
   <para>
     <emphasis role="bold">Quickmode for MountMan</emphasis>
   </para>
-  <para>To activate Quickmode for MountMan, click and hold the
-  MountMan button on the <link linkend="mainwindow">Main Toolbar</link></para>
+  <para>To activate Quickmode for MountMan, click lateral button with arrow on the
+  MountMan button on the <link linkend="mainwindow">Main Toolbar</link>.</para>
   <para>General idea: display a list of all possible mount points.
   Each time the menu is displayed, it determines if a mount point is
   mounted or not and associates the correct action (mount or
