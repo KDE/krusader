@@ -99,8 +99,11 @@
   <command>%aPanelSize("80")%</command> will set the width of the
   active panel to 80% of the &krusader; mainwindow.
   Since the parameter of placeholders can contain other
-  placeholders, few scripts are possible. However, scripting can be
-  done with the <link linkend="javascript_console">JavaScript console</link>.</para>
+  placeholders, few scripts are possible. 
+  <!--However, scripting can be
+  done with the <link linkend="javascript_console">JavaScript console</link>.
+    disabled due to KrJS does not compile (cannot find kjsembed from kdelibs -->
+  </para>
   <para>
     <emphasis role="bold">Managing UserActions</emphasis>
   </para>
@@ -543,7 +546,7 @@
         </listitem>
       </orderedlist>
     </listitem>
-    <listitem>
+<!--    <listitem>
       <para>
       <userinput>Script</userinput> - executes an external 
       <link linkend="javascript_console">
@@ -558,8 +561,8 @@
           &lt;kde-app-data&gt;/krusader/js/</filename>.
           &lt;kde-app-data&gt; is 
           <filename>$(kde-config
-          --localprefix)/share/apps/</filename> or 
-          <filename>$(kde-config --prefix)/share/apps/</filename>,
+          - -localprefix)/share/apps/</filename> or 
+          <filename>$(kde-config - -prefix)/share/apps/</filename>,
           for those who don't know where to copy the
           scripts/extensions. If all the needed files (normally 
           <filename>.js</filename> and maybe 
@@ -577,6 +580,7 @@
         </listitem>
       </orderedlist>
     </listitem>
+    disabled due to KrJS does not compile (cannot find kjsembed from kdelibs -->
     <listitem>
       <para>
       <userinput>ListFile</userinput> - is replaced by path/file name
