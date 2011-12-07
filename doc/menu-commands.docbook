@@ -113,13 +113,12 @@
               <keycap>F5</keycap>
             </shortcut>
             <guimenu>File</guimenu>
-            <guimenuitem>Copy</guimenuitem>
+            <guimenuitem>Copy to other panel</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
-          <para>Opens a dialog to 
-          <link linkend="copying">copy</link> the currently selected
-          files or directories to a specified location.</para>
+          <para>Copy the currently selected
+          files or directories to the other panel.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -628,7 +627,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">&Alt;
-              &Enter;</keycombo>
+              <keysym>Return</keysym></keycombo>
             </shortcut>
             <guimenu>Edit</guimenu>
             <guimenuitem>Properties</guimenuitem>
