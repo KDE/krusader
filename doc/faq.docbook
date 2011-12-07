@@ -374,7 +374,7 @@
           &krusader; for the first time
           (&kde; will detect the newer version number in
           the first line).</para>
-          <para>If you install a CVS or beta version and
+          <para>If you install a development or beta version and
           &krusader; was already installed on your
           computer then you should delete the 
           <filename>krusaderui.rc</filename> file from your home
@@ -545,8 +545,9 @@
                 <filename>kusader.spec</filename> to 
                 <filename class="directory">
                 /usr/scr/RPM/SPECS</filename> Tip: the latest 
-                <filename>kusader.spec</filename> can be found in
-                CVS.</para>
+                <filename>kusader.spec</filename> can be found in the
+                <ulink url="https://projects.kde.org/projects/extragear/utils/krusader/repository/revisions/master/changes/krusader.spec">
+                Git  Repository</ulink>.</para>
               </listitem>
               <listitem>
                 <para>Edit 
@@ -1255,14 +1256,6 @@
           </note>
           <para></para>
           <!-- Empty line to make it more readable -->
-          <note>
-            <para>
-              <emphasis>If you've got bugs to report please do not
-              use &kde;'s bugzilla http://bugs.kde.org/,
-              &kde;'s Bug Tracking System. Report
-              &krusader; bugs directly to us.</emphasis>
-            </para>
-          </note>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1274,7 +1267,7 @@
   </question>
   <answer>
   <para>Usually binary packages that are been used by your distribution do not contain debug information.
-        Since we usually only develop and fix &krusader;-cvs, compile &krusader;-cvs in debugmode and install it, than check if the bug still exist.
+        Since we usually only develop and fix &krusader;-git, compile &krusader;-git in debugmode and install it, than check if the bug still exist.
         <screen><prompt>$</prompt> <userinput><command>cmake</command> <option>-DCMAKE_BUILD_TYPE=debugfull</option></userinput></screen>  
 
         Install <ulink url="http://valgrind.org">valgrind</ulink>, a suite of tools for debugging and profiling &Linux; programs.
@@ -1295,7 +1288,7 @@
   </question>
   <answer>
   <para>Usually binary packages that are been used by your distribution do not contain debug information.
-        Since we usually only develop and fix &krusader;-cvs, compile &krusader;-cvs in debugmode and install it, than check if the bug still exist.
+        Since we usually only develop and fix &krusader;-git, compile &krusader;-git in debugmode and install it, than check if the bug still exist.
         <screen><prompt>$</prompt> <userinput><command>cmake</command> <option>-DCMAKE_BUILD_TYPE=debugfull</option></userinput></screen> 
  
        If the KDEKrashhandler still doesn't provide useful backtrace information, than sometimes a coredump will give better information. 
