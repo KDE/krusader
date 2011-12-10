@@ -97,10 +97,10 @@
       </listitem>
     </itemizedlist></para>
     <para>KrViewer can have the following menus:
-    <link linkend="kredit_file_menu">File</link>,
-    <link linkend="kredit_edit_menu">Edit</link>,
-    <link linkend="kredit_view_menu">View</link>,
-    <link linkend="kredit_settings_menu">Settings</link> and
+    <link linkend="katepart-menu-file">File</link>,
+    <link linkend="katepart-menu-edit">Edit</link>,
+    <link linkend="katepart-menu-view">View</link>,
+    <link linkend="katepart-menu-settings">Settings</link> and
     <link linkend="kredit_krviewer_menu">Krviewer</link>, depending
     on which file type is viewed. They will be discussed in the
     <link linkend="kredit">Editor section</link>. The internal
@@ -134,851 +134,1113 @@
       <para>When you use &krusader;'s internal editor
       for the first time, it is recommended to look at each section
       of the
-      <link linkend="kredit_settings_menu">Settings</link> menu, and
+      <link linkend="katepart-menu-settings">Settings</link> menu, and
       configure it the way you want it.</para>
     </tip>
   </sect2>
   <sect2 id="kredit_menus">
     <title>Menu overview</title>
-    <para>Most of the menus are quite self-explanatory. ;-)</para>
-    <!-- FILE menu -->
-    <variablelist id="kredit_file_menu">
-      <title>
-      <guimenu>File</guimenu> menu</title>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>S</keycap></keycombo>
-            </shortcut>
-            <guimenu>File</guimenu>
-            <guimenuitem>Save</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Save file.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>File</guimenu>
-            <guimenuitem>Save As</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Save file with another name.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycap>F5</keycap>
-            </shortcut>
-            <guimenu>File</guimenu>
-            <guimenuitem>Reload</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Reload file.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>File</guimenu>
-            <guimenuitem>Export</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Export the file to
-          <literal role="extension">&HTML;</literal> format.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>P</keycap></keycombo>
-            </shortcut>
-            <guimenu>File</guimenu>
-            <guimenuitem>Print</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Print the file.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <!-- EDIT menu -->
-    <variablelist id="kredit_edit_menu">
-      <title>
-      <guimenu>Edit</guimenu> menu</title>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>Z</keycap></keycombo>
-            </shortcut>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Undo</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Undo last action.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">
-              &Ctrl;&Shift;
-              <keycap>Z</keycap></keycombo>
-            </shortcut>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Redo</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Redo last action.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>X</keycap></keycombo>
-            </shortcut>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Cut</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Cut selected text to clipboard.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>C</keycap></keycombo>
-            </shortcut>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Copy</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Copy selected text to clipboard.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>V</keycap></keycombo>
-            </shortcut>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Paste</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Paste clipboard content to the document.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>A</keycap></keycombo>
-            </shortcut>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Select All</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Select whole document.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">
-              &Ctrl;&Shift;
-              <keycap>A</keycap></keycombo>
-            </shortcut>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Deselect</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Deselect current selection.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">
-              &Ctrl;&Shift;
-              <keycap>B</keycap></keycombo>
-            </shortcut>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Block Selection Mode</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Toggle Block Selection, which will
-          activate/deactivate the block selection
-          possibility.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycap>Insert</keycap>
-            </shortcut>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Overwrite Mode</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Toggle Insert/Overwrite Mode.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>F</keycap></keycombo>
-            </shortcut>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Find</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Find text.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">
-                <keycap>F3</keycap>
-              </keycombo>
-            </shortcut>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Find Next</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Find next text.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Shift;
-              <keycap>F3</keycap></keycombo>
-            </shortcut>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Find Previous</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Find previous text.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>R</keycap></keycombo>
-            </shortcut>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Replace</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Replace text.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>G</keycap></keycombo>
-            </shortcut>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Go to line</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Go to given line number.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <!-- VIEW menu -->
-    <variablelist id="kredit_view_menu">
-      <title>
-      <guimenu>View</guimenu> menu</title>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycap>F7</keycap>
-            </shortcut>
-            <guimenu>View</guimenu>
-            <guimenuitem>Switch to Command Line.</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Display Command Line.</para>
-          <!-- TODO -->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>View</guimenu>
-            <guimenuitem>Schema.</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Set Schema &eg; &krusader;
-          Normal, &krusader; Printing, &kate;
-          Normal, &kwrite; Normal.</para>
-          <!-- TODO -->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycap>F10</keycap>
-            </shortcut>
-            <guimenu>View</guimenu>
-            <guimenuitem>Dynamic Word Wrap</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Continue to display text at the next line when the maximum number of
-          characters for one line exceeds the window width, instead of scrolling to the right side.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>View</guimenu>
-            <guimenuitem>Dynamic Word Wrap Indicators</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Off, Follow Line Numbers, Always On.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>View</guimenu>
-            <guimenuitem>Show Static Word Wrap Markers</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-          <!-- TODO -->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycap>F6</keycap>
-            </shortcut>
-            <guimenu>View</guimenu>
-            <guimenuitem>Show Icon Border</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Shows Icon Border.</para>
-          <!-- TODO -->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycap>F11</keycap>
-            </shortcut>
-            <guimenu>View</guimenu>
-            <guimenuitem>Show Line Numbers</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Shows the line numbers.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>View</guimenu>
-            <guimenuitem>Show Scrollbar Marks</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>If this option is checked the current view will
-	  show marks on the vertical scrollbar. These marks will for
-	  instance show bookmarks.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycap>F9</keycap>
-            </shortcut>
-            <guimenu>View</guimenu>
-            <guimenuitem>Show Folding Markers</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-          <!-- TODO -->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>View</guimenu>
-            <guimenuitem>Code Folding</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-          <!-- TODO -->
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <!-- BOOKMARKS menu -->
-    <variablelist id="kredit_bookmarks_menu">
-      <title>
-      <guimenu>Bookmarks</guimenu> menu</title>
-      <varlistentry>
-        <term>
-          <!-- TODO -->
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>B</keycap></keycombo>
-            </shortcut>
-            <guimenu>Bookmark</guimenu>
-            <guimenuitem>Set Bookmark</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Bookmark</guimenu>
-            <guimenuitem>Clear All Bookmarks</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-        </listitem>
-      </varlistentry>
-      <!-- These entries are gone on my system with kde3.3.2
+
+<!--mostly brought in from kwrite-->
+<para>There are different menus and menu items in simple and advanced mode.
+The advanced mode is enabled by checking the option <link linkend="katepart-appearance">
+Enable power user mode (&kde; 3 mode)</link>
+on the <guilabel>Appearance</guilabel> page in &kappname;s settings.</para>
+
+<sect3 id="katepart-menu-file">
+<title>The File Menu</title>
+
+<variablelist>
 
 <varlistentry>
-   <term>
-   <menuchoice>
-   <shortcut><keycombo action="simul">&Alt;<keycap>PageDown</keycap></keycombo></shortcut>
-   <guimenu>Bookmark</guimenu>
-   <guimenuitem>Next Bookmark</guimenuitem></menuchoice></term>
-   <listitem>
-   <para>Go to the next Bookmark.</para>
-   </listitem>
-  </varlistentry>
+<term id="katepart-menu-save">
+<menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>S</keycap></keycombo>
+</shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Save</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+This saves the current document.  If there has already been a save of
+the document then this will overwrite the previously saved file without
+asking for the user's consent.  If it is the first save of a new
+document the save as dialog (described below) will be invoked.
+</para>
+</listitem>
+</varlistentry>
 
-  <varlistentry>
-   <term>
-   <menuchoice>
-   <shortcut><keycombo action="simul">&Alt;<keycap>PageUp</keycap></keycombo></shortcut>
-   <guimenu>Bookmark</guimenu>
-   <guimenuitem>Previous Bookmark</guimenuitem></menuchoice></term>
-   <listitem>
-   <para>Go to the previous Bookmark.</para>
-   </listitem>
-  </varlistentry>
+<varlistentry>
+<term id="katepart-menu-save-as">
+<menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Save As...</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+This allows a document to be saved with a new file name.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-reload">
+<menuchoice>
+<shortcut>
+<keycombo action="simul"><keycap>F5</keycap></keycombo>
+</shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Reload</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+Reloads the active file from disk. This command is useful if another program or
+process has changed the file while you have it open in &kappname;.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-print">
+<menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>P</keycap></keycombo>
+</shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Print...</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+Opens a simple print dialog allowing the user to specify what, where,
+and how to print.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry> <!-- from plugin Exporter -->
+<term id="katepart-menu-export-as-html">
+<menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Export as HTML</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+Export your file in &HTML; format so your document can be viewed as a web page.
+This item is only displayed when the plugin <guilabel>Exporter</guilabel> is loaded.
+</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect3>
+
+<sect3 id="katepart-menu-edit"> <!-- This is also valid for kates menu edit-->
+<title>The Edit Menu</title>
+
+<variablelist>
+<varlistentry>
+<term id="katepart-menu-undo"><menuchoice>
+<shortcut><keycombo
+action="simul">&Ctrl;<keycap>Z</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Undo</guimenuitem></menuchoice></term>
+<listitem>
+<para>This is used to eliminate or reverse the most recent user action
+or operation.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-redo"/><menuchoice>
+<shortcut><keycombo
+action="simul">&Ctrl;&Shift;<keycap>Z</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu><guimenuitem>Redo</guimenuitem></menuchoice></term>
+<listitem>
+<para>This will reverse the most recent change (if any) made using Undo</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-cut"/><menuchoice>
+<shortcut><keycombo
+action="simul">&Ctrl;<keycap>X</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu><guimenuitem>Cut</guimenuitem></menuchoice></term>
+<listitem>
+<para>This command deletes the current selection and places it on the
+clipboard.
+The  clipboard is a feature of &kde; that works invisibly to provide a way to
+transfer data between applications.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-copy"/><menuchoice>
+<shortcut><keycombo
+action="simul">&Ctrl;<keycap>C</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></menuchoice></term>
+<listitem>
+<para>This copies the currently selected text to the clipboard so that it may
+be pasted elsewhere.  The clipboard is a feature of &kde; that works invisibly
+to provide a way to transfer data between applications.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><anchor id="katepart-menu-paste"/><menuchoice>
+<shortcut><keycombo
+action="simul">&Ctrl;<keycap>V</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu><guimenuitem>Paste</guimenuitem></menuchoice></term>
+<listitem>
+<para>This will insert the contents of the clipboard at the cursor position.
+The clipboard is feature of &kde; that works invisibly to provide a way to
+transfer data between applications.</para>
+</listitem>
+</varlistentry>
+<varlistentry><!-- from plugin Exporter -->
+<term><anchor id="katepart-menu-copy-as-html"/><menuchoice>
+<guimenu>Edit</guimenu><guimenuitem>Copy as
+HTML</guimenuitem></menuchoice></term>
+<listitem>
+<para>This copies the currently selected text to the clipboard as &HTML;.
+This item is only displayed when the plugin <guilabel>Exporter</guilabel> is loaded.
+</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-select-all"/><menuchoice>
+<shortcut><keycombo
+action="simul">&Ctrl;<keycap>A</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu><guimenuitem>Select All</guimenuitem></menuchoice></term>
+<listitem>
+<para>This will select the entire document. This could be very useful for
+copying the entire file to another application.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-deselect"/><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;&Shift;<keycap>A</keycap></keycombo>
+</shortcut>
+<guimenu>Edit</guimenu><guimenuitem>Deselect</guimenuitem></menuchoice></term>
+<listitem>
+<para>Deselects the selected text in the editor if any.</para>
+</listitem>
+</varlistentry>
+<varlistentry><!-- only in power mode -->
+<term><anchor id="katepart-menu-block-selection-mode"/><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;&Shift;<keycap>B</keycap></keycombo>
+</shortcut>
+<guimenu>Edit</guimenu><guimenuitem>Block
+Selection Mode</guimenuitem></menuchoice> (Power user mode)</term>
+<listitem>
+<para>Toggles Selection Mode. When the Selection Mode is <guilabel>BLOCK</guilabel>,
+you can make vertical selections, &eg; select column 5 to 10 in lines 9 to 15.
+The status bar shows the current state of the Selection Mode, either <guilabel>BLOCK</guilabel> or
+<guilabel>LINE</guilabel>.</para>
+</listitem>
+</varlistentry>
+<varlistentry><!-- only in power mode -->
+<term><anchor id="katepart-menu-vi-input-mode"/><menuchoice>
+<shortcut>
+<keycombo action="simul"><keysym>Meta</keysym>&Ctrl;<keycap>V</keycap></keycombo>
+</shortcut>
+<guimenu>Edit</guimenu><guimenuitem>VI input
+Mode</guimenuitem></menuchoice> (Power user mode)</term>
+<listitem>
+<para>Switch to a vi-like, modal editing mode. This mode supports the most used commands
+and motions from vim's normal and visual mode and has an optional vi mode statusbar.
+This status bar shows commands while they are being entered, output from commands and
+the current mode.The behavior of this mode can be configured in the
+<link linkend="katepart-pref-edit-vi-input-mode">Vi Input Mode</link> section of the
+<guilabel>Editing</guilabel> page in &kappname;'s settings dialog.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><anchor id="katepart-menu-overwrite-mode"/><menuchoice>
+<shortcut>
+<keycombo action="simul"><keycap>Ins</keycap></keycombo>
+</shortcut>
+<guimenu>Edit</guimenu><guimenuitem>Overwrite
+Mode</guimenuitem></menuchoice></term>
+<listitem>
+<para>Toggles the Insert/Overwrite modes. When the mode is <guilabel>INS</guilabel>, you
+insert characters where the cursor is. When the mode is <guilabel>OVR</guilabel>, writing
+characters will replace the current characters if your cursor is positioned
+before any character. The status bar shows the current state of the Overwrite
+Mode, either <guilabel>INS</guilabel> or <guilabel>OVR</guilabel>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-find"/><menuchoice>
+<shortcut><keycombo
+action="simul">&Ctrl;<keycap>F</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice></term>
+<listitem>
+<para>This opens the incremental search bar at the bottom of the editor window.
+On the left side of the bar is an icon to close the bar, followed by a small text
+box for entering the search pattern.</para>
+<para>When you start entering characters of your search pattern, the search starts
+immediately. If there is a match in the text this is highlighted and the background color
+of the entry field changes to light green. If the search pattern does not match any
+string in the text, this is indicated by a light red background color of the entry field
+and <guilabel>Not found</guilabel> is displayed at the right side of the bar.</para>
+<para>Use the <guilabel>Next</guilabel> or <guilabel>Previous</guilabel> button
+to jump to the next or previous match in the document.</para>
+<para>You can choose whether the search should be case sensitive.
+Selecting <guilabel>Match Case</guilabel> will limit finds to entries that match the
+case (upper or lower) of each of the characters in the search  pattern.
+</para>
+<para>Click on the green arrow icon at the right side of the incremental search bar to
+switch to the power search and replace bar.
+<!--changed in 4.5 ???
+options "Highlight all" + "From cursor" removed only "Match case" left-->
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-find-again"/><menuchoice>
+<shortcut><keycombo action="simul"><keycap>F3</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu><guimenuitem>Find Next</guimenuitem></menuchoice></term>
+ <listitem>
+<para>This repeats the last find operation, if any, without calling the incremental
+search bar.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-previous">
+<menuchoice>
+<shortcut>
+<keycombo action="simul">&Shift;<keycap>F3</keycap></keycombo>
+</shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Find Previous</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+This repeats the last find operation, if any, without calling the incremental
+search bar, and searching backwards instead of forwards through the
+document.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-replace"/><menuchoice>
+<shortcut><keycombo
+action="simul">&Ctrl;<keycap>R</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu><guimenuitem>Replace...</guimenuitem></menuchoice></term>
+<listitem>
+<para>This command opens the power search and replace bar.
+On the upper left side of the bar is an icon to close the bar, followed by a small text
+box for entering the search pattern.</para>
+<para>You can control the search mode by selecting <guilabel>Plain text</guilabel>,
+<guilabel>Whole words</guilabel>, <guilabel>Escape sequences</guilabel> or
+<guilabel>Regular expression</guilabel> from the drop down box.
+</para>
+<para>If <guilabel>Escape sequences</guilabel> or <guilabel>Regular expression</guilabel> are
+selected, the <guibutton>Add...</guibutton> menuitem at the bottom of the context menu of the text boxes will be enabled
+and allows you to add escape sequences or regular expression items to the
+search or replace pattern from predefined lists.</para>
+<para>Use the <guilabel>Next</guilabel> or <guilabel>Previous</guilabel> button to jump
+to the next or previous match in the document.</para>
+<para>Enter the text to replace with in the text box labeled <guilabel>Replace</guilabel>
+and click the <guibutton>Replace</guibutton> button to replace only the highlighted text or
+the <guibutton>Replace All</guibutton> button to replace the search text in the whole document.
+</para>
+<para>You can modify the search and replace behavior by selecting different
+options at the bottom of the bar.
+Selecting <guilabel>Match Case</guilabel> will limit finds to entries that match the
+case (upper or lower) of each of the characters in the search  pattern.
+<guilabel>Selection Only</guilabel> will search and replace within the current selection only.
+The <guilabel>Find All</guilabel> button highlights all matches in the document and shows the
+number of found matches in a small popup.
+</para>
+<para>Click on the green arrow icon at the right side of the power search and replace bar to
+switch to the incremental search bar.
+<!--changed in 4.5 ???
+options "Highlight all" + "From cursor" removed only "Match case" left
 -->
-    </variablelist>
-    <!-- TOOLS menu -->
-    <para id="kredit_tools_menu">For the full description of the
-    <guimenu>Tools</guimenu> please refer to <ulink
-    url="help:/kwrite/tools.html">&kde; text editor component
-    documentation</ulink>. To read this documentation you should install
-    &kwrite; package.</para>
-    <!-- Oldish TOOLS menu items
-    <variablelist id="kredit_tools_menu">
-      <title>
-      <guimenu>Tools</guimenu> menu</title>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>Read Only Mode</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>Filetype Mode</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>Highlight mode</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Highlight mode for scripts, programming languages,
-          markup file, &etc;: &eg;
-          <literal role="extension">&HTML;, Bash, C++, XML, Makefile,
-          Diff, ...</literal>.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>End of Line</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Change the end of Line termination:
-          &UNIX;, &Windows;/DOS,
-          <trademark class="registered">
-          Macintosh</trademark>.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>I</keycap></keycombo>
-            </shortcut>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>Indent</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">
-              &Ctrl;&Shift;
-              <keycap>I</keycap></keycombo>
-            </shortcut>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>Unindent</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>Clean Indentation</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>D</keycap></keycombo>
-            </shortcut>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>Comment</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Add appropriate comment tags, if available.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">
-              &Ctrl;&Shift;
-              <keycap>D</keycap></keycombo>
-            </shortcut>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>Uncomment</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Removes the comment tags on the left.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>U</keycap></keycombo>
-            </shortcut>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>Uppercase</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">
-              &Ctrl;&Shift;
-              <keycap>U</keycap></keycombo>
-            </shortcut>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>Lowercase</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">
-              &Alt;&Ctrl;
-              <keycap>U</keycap></keycombo>
-            </shortcut>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>Capitalize</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>J</keycap></keycombo>
-            </shortcut>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>Join Lines</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>Word Wrap Document</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para></para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    -->
+</para>
+</listitem>
+</varlistentry>
 
-<!-- SETTINGS -> CONFIGURE EDITOR menu -->
-    <para id="kredit_settings_menu">For the full description of the
-    preferences dialog (can be invoked by the menu item
-    <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure
-    Editor</guimenuitem></menuchoice>) please refer to <ulink
-    url="help:/kwrite/pref-dialog.html">&kde; text editor component
-    documentation</ulink>. To read this documentation you should install
-    &kwrite; package.</para>
-    <!-- Oldish docs from KTextEditor 3 times
-    <variablelist id="kredit_settings_menu">
-      <title>
-      <guimenu>Settings -&gt; Configure
-      Editor</guimenu> menu</title>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Settings</guimenu>
-            <guimenuitem>Configure Editor</guimenuitem>
-            <guimenuitem>Colors</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Color configuration for the: Background, Selected
-          text, Current line and Bracket highlighting.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Settings</guimenu>
-            <guimenuitem>Configure Editor</guimenuitem>
-            <guimenuitem>Fonts</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Fonts configuration for display and printer: Font,
-          font Style and Size, with a preview window.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Settings</guimenu>
-            <guimenuitem>Configure Editor</guimenuitem>
-            <guimenuitem>Indentation</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Indentation configuration: Automatically indent,
-          use Spaces to indent, &Tab; Keys indent,
-          &Backspace; key unindents, keep indent
-          profile, keep extra spaces.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Settings</guimenu>
-            <guimenuitem>Configure Editor</guimenuitem>
-            <guimenuitem>Selection</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Selection configuration: Persistent selections,
-          Overwrite selected text.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Settings</guimenu>
-            <guimenuitem>Configure Editor</guimenuitem>
-            <guimenuitem>Editing</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Editing configuration: Word Wrap config,
-          Whitespace config, Auto brackets, Smart home, Wrap
-          cursor, Maximum undo steps.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Settings</guimenu>
-            <guimenuitem>Configure Editor</guimenuitem>
-            <guimenuitem>Shortcuts</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Shortcuts configuration.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Settings</guimenu>
-            <guimenuitem>Configure Editor</guimenuitem>
-            <guimenuitem>Highlighting</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Highlighting configuration: Default styles and
-          Highlight mode.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Settings</guimenu>
-            <guimenuitem>Configure Editor</guimenuitem>
-            <guimenuitem>View defaults</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>View defaults: Dynamic word wrap, show line
-          numbers, show icon border, show fold markers if
-          available, sort bookmarks menu method.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Settings</guimenu>
-            <guimenuitem>Configure Editor</guimenuitem>
-            <guimenuitem>Plugins</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Plugins configuration: &eg; kTexteditor
-          incremental search plugin, kTexteditor insert file
-          plugin, kTexteditor kdatatoolplugin...</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    -->
-    <!-- KRVIEWER menu -->
-    <variablelist id="kredit_krviewer_menu">
-      <title>
-      <guimenu>KrViewer</guimenu> menu</title>
+<varlistentry>
+<term id="katepart-menu-find-selected">
+<menuchoice>
+<shortcut><keycombo
+action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu><guimenuitem>Find Selected</guimenuitem></menuchoice></term>
+<listitem>
+<para>Finds next occurrence of selected text.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-selected-backwards">
+<menuchoice>
+<shortcut><keycombo
+action="simul">&Ctrl;&Shift;<keycap>H</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu><guimenuitem>Find Selected Backwards</guimenuitem></menuchoice></term>
+<listitem>
+<para>Finds previous occurrence of selected text.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-go-to-line">
+<menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>G</keycap></keycombo>
+</shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Go to Line...</guimenuitem></menuchoice></term>
+<listitem>
+<para>
+This opens the goto line bar at the bottom of the window which is used to have the cursor
+jump to a particular line (specified by number) in the document.  The
+line number may be entered directly into the text box or graphically by
+clicking on the up or down arrow spin controls at the side of the text
+box. The little up arrow will increase the line number and the down
+arrow decrease it. Close the bar with a click on the icon on the left side of the bar.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+<sect3 id="katepart-menu-view">
+<!-- This is also valid for kates menu view, but kate does not have the New Window item -->
+<title>The View Menu</title>
+
+<para>The <guimenu>View</guimenu> menu allows you to manage settings
+specific to the active editor, and to manage frames.</para>
+
+<variablelist>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-new-window"/>
+<menuchoice>
+<guimenu>View</guimenu>
+<guimenuitem>New Window</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>Create another window containing the current document. All changes to the
+document in one window are reflected in the other window and vice versa.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-command-line"/><!-- only in power mode -->
+<menuchoice>
+<shortcut><keycombo
+action="simul"><keycap>F7</keycap></keycombo></shortcut>
+<guimenu>View</guimenu>
+<guimenuitem>Switch to Command Line</guimenuitem>
+</menuchoice> (Power user mode)
+</term>
+<listitem>
+<para>Displays the Katepart command line at the bottom of the window.
+In the command line, type <userinput>help</userinput> to get help and <userinput>help list</userinput>
+to get a list of commands.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry><!-- only in power mode -->
+<term><menuchoice>
+<guimenu>View</guimenu><guimenuitem>Show the Javascript Console</guimenuitem>
+</menuchoice> (Power user mode)</term>
+<listitem><para>This opens a tool view that allows you to run Javascript code
+interactively. For more information, see
+<ulink url="help:/kate/index.html#advanced-editing-tools-scripting">Extending &kate; with Scripts</ulink>
+</para></listitem>
+</varlistentry>
+
+<varlistentry><!-- only in power mode -->
+<term>
+<anchor id="katepart-menu-view-schema"/>
+<menuchoice>
+<guimenu>View</guimenu>
+<guisubmenu>Schema</guisubmenu>
+</menuchoice> (Power user mode)
+</term>
+<listitem>
+<para>Select a font schema.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap"/>
+<menuchoice>
+<shortcut><keycombo action="simul"><keycap>F10</keycap></keycombo></shortcut>
+<guimenu>View</guimenu>
+<guimenuitem>Dynamic Word Wrap</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>The text lines will be wrapped at the view
+border on the screen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry><!-- only in power mode -->
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap-indicators"/>
+<menuchoice>
+<guimenu>View</guimenu>
+<guisubmenu>Dynamic Word Wrap Indicators</guisubmenu>
+</menuchoice> (Power user mode)
+</term>
+<listitem>
+ <para>Choose when and how the dynamic word wrap indicators should be
+displayed. This is only available if the <guilabel>Dynamic Word
+Wrap</guilabel> option is checked.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry><!-- only in power mode -->
+<term>
+<anchor id="katepart-menu-view-show-static-word-wrap"/>
+<menuchoice>
+<guimenu>View</guimenu>
+<guimenuitem>Show Static Word Wrap Marker</guimenuitem>
+</menuchoice> (Power user mode)
+</term>
+<listitem>
+<para>If this option is checked, a vertical line will be drawn at the
+word wrap column as defined in the <menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure Editor...</guimenuitem></menuchoice> in the
+Editing tab. Please note that the word wrap marker is only drawn if you
+use a fixed pitch font.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry><!-- only in power mode -->
+<term>
+<anchor id="katepart-menu-view-show-icon-border"/>
+<menuchoice>
+<shortcut><keycombo action="simul"><keycap>F6</keycap></keycombo></shortcut>
+<guimenu>View</guimenu>
+<guimenuitem>Show Icon Border</guimenuitem>
+</menuchoice> (Power user mode)
+</term>
+<listitem>
+<para>This is a toggle item. Setting it on checked will make the Icon Border
+visible in the left side of the active editor, and vice versa.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-line-numbers"/>
+<menuchoice>
+<shortcut><keycombo action="simul"><keycap>F11</keycap></keycombo></shortcut>
+<guimenu>View</guimenu>
+<guimenuitem>Show Line Numbers</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>This is a toggle Item. Setting it on checked will make a pane displaying
+the line numbers of the document visible in the left border of the active
+editor, and vice versa.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry><!-- only in power mode -->
+<term>
+<anchor id="katepart-menu-view-scrollbar-marks"/>
+<menuchoice>
+<guimenu>View</guimenu>
+<guisubmenu>Show Scrollbar Marks</guisubmenu>
+</menuchoice> (Power user mode)
+</term>
+<listitem>
+<para>If this option is checked, the view will show marks on the vertical
+scrollbar.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry><!-- only in power mode -->
+<term>
+<anchor id="katepart-menu-view-hide-folding-markers"/>
+<menuchoice>
+<shortcut><keycombo action="simul"><keycap>F9</keycap></keycombo></shortcut>
+<guimenuitem>Show Folding Markers</guimenuitem>
+</menuchoice> (Power user mode)
+</term>
+<listitem>
+<para>If this option is checked, the marks for code folding will be
+hidden.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry><!-- only in power mode -->
+<term>
+<anchor id="katepart-menu-view-code-folding"/>
+<menuchoice>
+<guisubmenu>Code Folding</guisubmenu>
+</menuchoice> (Power user mode)
+</term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;
+&Shift;<keycap>-</keycap></keycombo></shortcut>
+<guimenuitem>Collapse Toplevel</guimenuitem></menuchoice>
+</term>
+<listitem><para>Collapse all toplevel regions in the document.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;
+&Shift;<keycap>+</keycap></keycombo></shortcut>
+<guimenuitem>Expand Toplevel</guimenuitem></menuchoice>
+</term>
+<listitem><para>Expand all toplevel regions in the document.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;
+<keycap>-</keycap></keycombo></shortcut>
+<guimenuitem>Collapse One Local Level</guimenuitem></menuchoice>
+</term>
+<listitem><para>Collapse the region closest to the cursor.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;
+<keycap>+</keycap></keycombo></shortcut>
+<guimenuitem>Expand One Local Level</guimenuitem></menuchoice>
+</term>
+<listitem><para>Expand the region closest to the cursor.</para></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><guimenuitem>Enlarge Font</guimenuitem></menuchoice>
+</term>
+<listitem><para>This increases the display font size.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><guimenuitem>Shrink Font</guimenuitem></menuchoice>
+</term>
+<listitem><para>This decreases the display font size.</para></listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+<sect3 id="katepart-menu-go"><!-- This is also valid for kates menu bookmarks-->
+<title>The Bookmarks Menu</title>
+<variablelist>
+
+<varlistentry>
+<term id="katepart-menu-set-bookmark">
+<menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>B</keycap></keycombo>
+</shortcut>
+<guimenu>Bookmarks</guimenu>
+<guimenuitem>Set Bookmark</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+Sets or removes a bookmark in the current line of the active document. (If it's
+there, it is removed, otherwise one is set).
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-clear-bookmarks">
+<menuchoice>
+<guimenu>Bookmarks</guimenu>
+<guimenuitem>Clear All Bookmarks</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+This command will remove all the markers from the document as well as
+the list of markers which is appended at the bottom of this menu item.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="katepart-menu-bookmarks-previous">
+<term><menuchoice><shortcut><keycombo action="simul">&Alt;
+<keycap>PgUp</keycap></keycombo></shortcut>
+<guimenu>Bookmarks</guimenu><guimenuitem>Previous</guimenuitem></menuchoice>
+</term>
+<listitem><para>This will move the cursor to beginning of the first above line
+with a bookmark. The menuitem text will include the line number and the first
+piece of text on the line. This item is only available when there is a bookmark
+in a line above the cursor.</para></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-menu-bookmarks-next">
+<term><menuchoice><shortcut><keycombo action="simul">&Alt;
+<keycap>PgDown</keycap></keycombo></shortcut>
+<guimenu>Bookmarks</guimenu><guimenuitem>Next</guimenuitem></menuchoice></term>
+<listitem><para>This will move the cursor to beginning of the next line with a
+bookmark. The menuitem text will include the line number and the first piece of
+text on the line. This item is only available when there is a bookmark in a line
+below the cursor.</para></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para>
+At the bottom of this menu, a list of markers appears if any markers are
+available for this window.
+</para>
+
+</sect3>
+
+<!-- This is also valid for kates menu tools, kate has additional items:
+Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at top-->
+<sect3 id="katepart-menu-tools">
+<title>The Tools Menu</title>
+
+<variablelist>
+<varlistentry>
+<term><anchor id="katepart-menu-tools-read-only"/><menuchoice>
+<guimenu>Tools</guimenu>
+<guimenuitem>Read Only Mode</guimenuitem></menuchoice></term>
+ <listitem>
+<para>Set the current document to Read Only mode. This prevents any text
+addition and any changes in the document formatting.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry><!-- only in power mode-->
+<term><anchor id="katepart-menu-tools-filetype"/><menuchoice>
+<guimenu>Tools</guimenu>
+<guisubmenu>Mode</guisubmenu></menuchoice> </term>
+ <listitem>
+<para>Choose the filetype scheme you prefer for the active document. This
+overwrites the global filetype mode set in <menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure
+Editor...</guimenuitem></menuchoice> in the Filetypes tab for your current
+document only.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry><!-- only in power mode-->
+<term><anchor id="katepart-menu-tools-highlighting"/><menuchoice>
+<guimenu>Tools</guimenu>
+<guisubmenu>Highlighting</guisubmenu></menuchoice> </term>
+ <listitem>
+<para>Choose the Highlighting scheme you prefer for the active document. This
+overwrites the global highlighting mode set in <menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure
+Editor...</guimenuitem></menuchoice> for your current document only.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry><!-- only in power mode-->
+<term><anchor id="katepart-menu-tools-indentation"/><menuchoice>
+<guimenu>Tools</guimenu>
+<guisubmenu>Indentation</guisubmenu></menuchoice> </term>
+ <listitem>
+<para>Choose the style of indentation you want for your active document.
+This overwrites the global indentation mode set in <menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure
+Editor...</guimenuitem></menuchoice> for your current document only.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-tools-encoding"/><menuchoice>
+<guimenu>Tools</guimenu>
+<guisubmenu>Encoding</guisubmenu></menuchoice></term>
+ <listitem>
+<para>You can overwrite the default encoding set in <menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure
+Editor...</guimenuitem></menuchoice> in the <guilabel>Open/Save</guilabel> page
+to set a different encoding for your current document. The encoding you
+set here will be only valid for your current document.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry><!-- only in power mode-->
+<term><anchor id="katepart-menu-tools-end-of-line"/><menuchoice>
+<guimenu>Tools</guimenu>
+<guisubmenu>End of Line</guisubmenu></menuchoice> </term>
+ <listitem>
+<para>Choose your preferred end of line mode for your active
+document. This overwrites the global end of line mode set in <menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure
+Editor...</guimenuitem></menuchoice> for your current document only.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-tools-add-byte-mark-order"/><menuchoice>
+<guimenu>Tools</guimenu>
+<guisubmenu>Add Byte Mark Order (BOM)</guisubmenu></menuchoice></term>
+ <listitem>
+<para>Checking this action you can explicitly add a byte order mark for unicode
+encoded documents. The byte order mark (BOM) is a Unicode character used to signal
+the endianness (byte order) of a text file or stream, for more information see
+<ulink url="http://en.wikipedia.org/wiki/Byte_Order_Mark">Byte Order Mark</ulink>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>Space</keycap></keycombo>
+</shortcut>
+<guimenu>Tools</guimenu>
+<guimenuitem>Invoke Code Completion</guimenuitem>
+</menuchoice> </term>
+<listitem>
+<para>Manually invoke command completion, usually by using a shortcut bound to this action.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Tools</guimenu>
+<guimenuitem>Word Completion</guimenuitem>
+</menuchoice> </term>
+<listitem>
+<para><guimenuitem>Reuse Word Below</guimenuitem> (<keycombo action="simul">&Ctrl;
+<keycap>9</keycap></keycombo>) and <guimenuitem>Reuse Word Above</guimenuitem>
+(<keycombo action="simul">&Ctrl; <keycap>8</keycap></keycombo>) complete the
+currently typed text by searching for similar
+words backward or forward from the current cursor position. <guimenuitem>Shell
+Completion</guimenuitem> pops up a completion box with matching entries.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;&Shift;<keycap>O</keycap></keycombo>
+</shortcut>
+<guimenu>Tools</guimenu>
+<guimenuitem>Automatic Spell Checking</guimenuitem>
+</menuchoice></term>
+<listitem>
+<para>When <guimenuitem>Automatic Spell Checking</guimenuitem> is enabled, wrong text
+is underlined in the document on-the-fly.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-Spelling..."/><menuchoice>
+<guimenu>Tools</guimenu><guimenuitem>Spelling...</guimenuitem></menuchoice>
+</term>
+
+<!--para>These options are described in the documentation for the
+<ulink url="help:/sonnet/index.html">Check Spelling Dialog</ulink>.</para
+Move / merge the following into kdelibs/doc/sonnet/index.docbook and replace it with the para above
+-->
+
+<listitem><para><action>This initiates the spellchecking program - a program
+designed to help the user catch and correct any spelling errors.</action>
+Clicking on this entry will start the checker and bring up the speller dialog
+box through which the user can control the process.  There are four settings
+lined up vertically in the center of the dialog with their corresponding labels
+just to the left.  Starting at the top they are:</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Unknown word:</guilabel></term>
+<listitem><para>Here, the spellchecker indicates the word currently under
+consideration.  This happens when the checker encounters a word not in its
+dictionary - a file containing a list of correctly spelled words against which
+it compares each word in the editor.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Replace with:</guilabel></term>
+<listitem><para> If the checker has any similar words in its dictionary the
+first one will be listed here.  The user can accept the suggestion, type in his
+or her own correction, or choose a different suggestion from the next
+box.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Language:</guilabel></term>
+<listitem><para> If you have installed multiple dictionaries, here you can
+select which dictionary/language should be used.</para></listitem>
+</varlistentry>
+</variablelist>
+
+<para>On the right side of the dialog box are 6 buttons that allow the user to
+control the spellcheck process.  They are:</para>
+
+<variablelist>
+<varlistentry>
+<term><guibutton>Add to Dictionary</guibutton></term>
+<listitem><para>Pressing this button adds the <guilabel>Unknown word
+</guilabel> to the checker's dictionary. This means that in the future
+the checker will always consider this word to be correctly
+spelled.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Suggest</guilabel></term>
+<listitem><para> The checker may list here a number of possible replacements for
+the word under consideration.  Clicking on any one of the suggestions will cause
+that word to be entered in the <guilabel>Replace with</guilabel> box,
+above.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guibutton>Replace</guibutton></term>
+<listitem><para> This button has the checker replace the word under
+consideration in the document with the word in the
+<guilabel>Replace with</guilabel> box.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guibutton>Replace All</guibutton></term>
+<listitem><para> This button causes the checker to replace not only the current
+<guilabel>Unknown word:</guilabel> but to automatically make the same
+substitution for any other occurrences of this <guilabel>Unknown word</guilabel>
+in the document.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guibutton>Ignore</guibutton></term>
+<listitem><para>Activating this button will have the checker move on without
+making any changes.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guibutton>Ignore All</guibutton></term>
+<listitem><para> This button tells the checker to do nothing with the current
+<guilabel>Unknown word:</guilabel> and to pass over any other instances of
+the same word.</para> <note><para>This only applies to the current spellcheck
+run.  If the checker is run again later it will stop on this same
+word.</para></note></listitem>
+</varlistentry>
+</variablelist>
+
+<para>Three more buttons are located horizontally along the bottom of the
+spellcheck dialog.  They are:</para>
+
+<variablelist>
+<varlistentry>
+<term><guibutton>Help</guibutton></term>
+<listitem><para> This invokes the &kde; help system with the help page
+for this dialog.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guibutton>Finished</guibutton></term>
+<listitem><para> This button ends the spellcheck process, and returns to the
+document.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guibutton>Cancel</guibutton></term>
+<listitem><para> This button cancels the spellcheck process, all modifications
+are reverted, and you will return to your document.</para></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term><anchor id="katepart-menu-tools-spelling-from-cursor"/><menuchoice>
+<guimenu>Tools</guimenu>
+<guimenuitem>Spelling (from cursor)...</guimenuitem></menuchoice></term>
+ <listitem>
+<para>This initiates the spellchecking program but it starts where your cursor
+is instead of at the beginning of the document.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-tools-spellcheck-selection"/><menuchoice>
+<guimenu>Tools</guimenu>
+<guimenuitem>Spellcheck Selection...</guimenuitem></menuchoice></term>
+ <listitem>
+<para>Spellchecks the current selection.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-tools-change-dictionary"/><menuchoice>
+<guimenu>Tools</guimenu>
+<guimenuitem>Change Dictionary</guimenuitem></menuchoice></term>
+ <listitem>
+<para>Displays a drop down box with all available dictionaries for spellchecking
+at the bottom of the editor window. This allows easy switching of the spellcheck
+dictionary &eg; for automatic spellcheck of text in different languages.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-cleanindent"/><menuchoice>
+<guimenu>Tools</guimenu><guimenuitem>Clean
+Indentation</guimenuitem></menuchoice></term>  <listitem>
+<para>This cleans the indentation for the current selection or for the
+line the cursor is currently in. Cleaning the indentation ensures that
+all your selected text follows the indentation mode you choose.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><anchor id="katepart-menu-tools-align"/><menuchoice>
+<guimenu>Tools</guimenu>
+<guimenuitem>Align</guimenuitem>
+</menuchoice></term>
+<listitem>
+<para>Causes a realign of the current line or selected lines using the
+indentation mode and indentation settings in the document.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry><!-- only in power mode-->
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>D</keycap></keycombo>
+</shortcut>
+<guimenu>Tools</guimenu>
+<guimenuitem>Comment</guimenuitem>
+</menuchoice> </term>
+<listitem><para>This adds one space to the beginning of the line
+where the text cursor is located or to the beginning of any
+selected lines.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry><!-- only in power mode-->
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;&Shift;<keycap>D</keycap></keycombo>
+</shortcut>
+<guimenu>Tools</guimenu>
+<guimenuitem>Uncomment</guimenuitem>
+</menuchoice> </term>
+<listitem><para>This removes one space (if any exist) from the beginning of the
+line where the text cursor is located or from the beginning of any
+selected lines.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>U</keycap></keycombo>
+</shortcut>
+<guimenu>Tools</guimenu>
+<guimenuitem>Uppercase</guimenuitem>
+</menuchoice></term>
+<listitem><para>Put the selected text or the letter after the cursor in
+uppercase.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;&Shift;<keycap>U</keycap></keycombo>
+</shortcut>
+<guimenu>Tools</guimenu>
+<guimenuitem>Lowercase</guimenuitem>
+</menuchoice></term>
+<listitem><para>Put the selected text or the letter after the cursor in
+lowercase.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;&Alt;<keycap>U</keycap></keycombo>
+</shortcut>
+<guimenu>Tools</guimenu>
+<guimenuitem>Capitalize</guimenuitem>
+</menuchoice></term>
+<listitem><para>Capitalize the selected text or the current
+word.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>J</keycap></keycombo>
+</shortcut>
+<guimenu>Tools</guimenu>
+<guimenuitem>Join Lines</guimenuitem>
+</menuchoice></term>
+<listitem><para>Joins the selected lines, or the current line and the line below
+with one white space character as a separator. Leading/trailing white space on
+joined lines is removed in the affected ends.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Tools</guimenu>
+<guimenuitem>Apply Word Wrap</guimenuitem>
+</menuchoice></term>
+<listitem><para>Apply static word wrapping on all the document. That means that
+a new line of text will automatically start when the current
+line exceeds the length specified by the <guilabel>Wrap words at</guilabel> option
+in the Editing tab in <menuchoice>
+<guimenu>Settings</guimenu><guimenuitem>Configure
+Editor...</guimenuitem></menuchoice></para></listitem>
+</varlistentry>
+
+</variablelist>
+<para>If the <link linkend="katepart-pref-plugins">plugin</link> Insert File is enabled, you will
+find here an additional menu item <guimenuitem>Insert File...</guimenuitem>.
+</para>
+<!-- Data Tools and Insane HTML (LE) Expansion Ctrl+. when plugins are enabled-->
+</sect3>
+
+<sect3 id="katepart-menu-settings">
+<!-- This is also valid for kates menu settings,
+only the items Show Toolbar and Show Statusbar are swapped and Configure kate is the last item-->
+<title>The Settings Menu</title>
+
+<variablelist>
+
+<varlistentry>
+<term><anchor id="katepart-menu-preferences"/><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure Editor...</guimenuitem> <!-- in kate Configure &kate; ... -->
+</menuchoice>
+</term>
+<listitem>
+<para>
+This menu item opens a dialog whereby several different <link
+linkend="kredit_config">settings</link> may be adjusted.
+</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect3>
+
+<!--/end kwrite-->
+
+  <!-- KRVIEWER menu -->
+<sect3 id="kredit_krviewer_menu">
+<title>The KrViewer Menu</title>
+    <variablelist>
       <varlistentry>
         <term>
           <menuchoice>
@@ -1140,5 +1402,1064 @@
         </listitem>
       </varlistentry>
     </variablelist>
+    </sect3>
   </sect2>
+
+<!--taken from kwrite's configuring-part.docbook-->
+<sect2 id="kredit_config">
+<title>The Editor Component Configuration</title>
+<para>This group contains all pages related to the editor component of
+&kappname;. Most of the settings here are defaults, they can be overridden by
+<link linkend="katepart-pref-open-save-modes-filetypes">defining a filetype</link>,
+by <ulink url="help:/kate/config-variables.html">Document Variables</ulink> or
+by changing them per document during an editing session.</para>
+<sect3 id="katepart-appearance"> <!-- updated to 4.7 + synced with kwrite -->
+<title>Appearance</title>
+
+<sect4 id="katepart-appearance-general">
+<title>General</title>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Dynamic Word Wrap</guilabel></term>
+<listitem>
+<para>If this option is checked, the text lines
+will be wrapped at the view border on the screen.</para>
+<variablelist>
+<varlistentry>
+<term><guilabel>Dynamic word wrap indicators (if applicable)</guilabel></term>
+<listitem><para>Choose when the Dynamic word wrap indicators
+should be displayed, either <guilabel>Off</guilabel>, <guilabel>Follow Line
+Numbers</guilabel> or <guilabel>Always on</guilabel>.
+</para></listitem></varlistentry>
+<varlistentry>
+<term><guilabel>Align dynamically wrapped lines
+to indentation depth:
+</guilabel></term>
+<listitem><para>Enables the start of dynamically wrapped
+lines to be aligned  vertically to the indentation level of the first
+line.  This can help to make code and markup more
+readable.</para><para>Additionally, this allows you to
+set a maximum width of the screen, as a percentage,
+after which dynamically wrapped lines will no longer be vertically aligned.
+For example, at 50%, lines whose indentation levels are deeper than 50% of the
+width of the screen will not have vertical alignment applied to subsequent
+wrapped lines.</para></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Whitespace Highlighting</guilabel></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><guilabel>Highlight tabulators</guilabel></term>
+<listitem><para>The editor will display a &raquo; symbol to indicate the presence
+  of a tab in the text.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Highlight trailing spaces</guilabel></term>
+<listitem><para>The editor will display dots to indicate the presence of extra
+whitespace at the end of lines.</para></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Advanced
+</guilabel></term>
+<listitem><para>
+<variablelist>
+<varlistentry>
+<term><guilabel>Show indentation lines
+</guilabel></term>
+<listitem><para>If this is checked, the editor will display
+vertical lines to help identifying indent lines.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Highlight range between selected brackets
+</guilabel></term>
+<listitem><para>If this is enabled, the range between the selected matching brackets will be highlighted.</para></listitem>
+</varlistentry>
+</variablelist>
+</para></listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-appearance-borders">
+<title>Borders</title>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Borders</guilabel></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><guilabel>Show folding markers (if available)
+</guilabel></term>
+<listitem><para>If this option is checked, the current view will display marks
+for code folding, if code folding is available.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Show icon border
+</guilabel></term>
+<listitem><para>If this is checked, you will see an icon border on the left
+hand side. The icon border shows bookmark signs for instance.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Show line numbers
+</guilabel></term>
+<listitem><para>If this is checked, you will see line numbers on the left
+hand side.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Show scrollbar marks
+</guilabel></term>
+<listitem><para>If this option is checked the current view
+will show marks on the vertical scrollbar. These marks will
+for instance show bookmarks.</para></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Sort Bookmarks Menu
+</guilabel></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><guilabel>By creation
+</guilabel></term>
+<listitem><para>Each new bookmark will be added to the bottom,
+independently from where it is placed in the document.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>By position
+</guilabel></term>
+<listitem><para>The bookmarks will be ordered by the line
+numbers they are placed at.</para></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect4>
+</sect3>
+
+<sect3 id="katepart-prefcolors"><!-- checked for 4.7 + synced with kwrite -->
+<title>Fonts &amp; Colors</title>
+
+<para>This section of the dialog lets you configure all fonts and colors in
+any color scheme you have, as well creating new schemes or deleting existing
+ones. Each scheme has settings for colors, fonts and normal and highlight text
+styles.
+</para>
+
+<para>&kappname; will preselect the currently active scheme for you, if you want to
+work on a different scheme start by selecting that from the
+<guilabel>Schema</guilabel> combobox. With the <guibutton>New</guibutton> and <guibutton>Delete</guibutton>
+ button you can create a new scheme or delete existing ones.</para>
+<para>At the bottom of the page you can select the <guilabel>Default schema for &kappname;</guilabel>.</para>
+
+<sect4 id="katepart-prefcolors-colors">
+<title>Colors</title>
+
+<variablelist>
+<varlistentry id="katepart-variable-prefcolors-colors-text-background">
+<term><guilabel>Text Area Background</guilabel></term>
+<listitem>
+
+<variablelist>
+
+<varlistentry id="katepart-variable-pref-colors-normal-text">
+<term><guilabel>Normal text</guilabel></term>
+<listitem><para>This is the default background for the editor area, it will be
+the dominant color on the editor area.</para></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-selected-text">
+<term><guilabel>Selected text</guilabel></term>
+<listitem><para>This is the background for selected text. The default is
+the global selection color, as set in your &kde; color preferences.
+</para></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-current-line">
+<term><guilabel>Current line</guilabel></term>
+<listitem><para>Set the color for the current line. Setting this a bit different
+from the Normal text background helps to keep focus on the current line.
+</para></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-marks">
+<term><guilabel>Bookmark</guilabel></term>
+<listitem><para>This combobox lets you set overlay colors for various mark types.
+The color is mixed into the background color of a marked line, so that a line
+with more marks or a marked line that is current has a background that is a mix
+of more colors. The mark colors are also used if you enable display of scrollbar
+marks.</para></listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-prefcolors-colors-other-elements">
+<term><guilabel>Additional Elements</guilabel></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><guilabel>Left border background</guilabel></term>
+<listitem><para>This color is used for the marks, line numbers and folding
+marker borders in the left side of the editor view when they are displayed.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Line numbers</guilabel></term>
+<listitem><para>This color is used to draw the line numbers on the left side of
+the view when displayed.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Bracket highlight</guilabel></term>
+<listitem><para>This color is used to draw the background of matching brackets.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Word wrap markers</guilabel></term>
+<listitem><para>This color is used to draw a pattern to the left of dynamically
+wrapped lines when those are aligned vertically, as well as for the static word
+wrap marker.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Tab and space markers</guilabel></term>
+<listitem><para>This color is used to draw white space indicators when enabled.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Spelling mistake line</guilabel></term>
+<listitem><para>sets the color of the line that is used to indicate spelling mistakes.
+</para></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-prefcolors-fonts">
+<title>Fonts</title>
+<para>
+Here you can choose the font for the schema.  You can choose from
+any font available on your system, and set a default size. A sample text
+displays at the bottom of the dialog, so you can see the effect of your choices.
+</para>
+</sect4>
+
+<sect4 id="katepart-prefcolors-normal-text-styles">
+<title>Normal Text Styles</title>
+<para>The normal text styles are inherited by the highlight text styles,
+allowing the editor to present text in a very consistent way, for example comment
+text is using the same style in almost all of the text formats that &kappname; can
+highlight.</para>
+<para>The name in the list of styles is using the style configured for
+the item, providing you with an immediate preview when configuring a style.
+</para>
+<para>Each style lets you select common attributes as well as foreground
+and background colors. To unset a background color, rightclick to use the
+context menu.</para>
+</sect4>
+
+<sect4 id="katepart-prefcolors-highlighting-text-styles">
+<title>Highlighting Text Styles</title>
+<para>Here you can edit the text styles used by a specific highlight definition.
+The editor preselects the highlight used by your current document. To work on a
+different highlight, select one in the <guilabel>Highlight</guilabel> combobox
+above the style list.
+</para>
+<para>The name in the list of styles is using the style configured for
+the item, providing you with an immediate preview when configuring a style.
+</para>
+<para>Each style lets you select common attributes as well as foreground
+and background colors. To unset a background color, rightclick to use the
+context menu. In addition you can see if a style is equal to the default style
+used for the item, and set it to that if not.</para>
+<para>You will notice that many highlights contain other highlights represented
+by groups in the style list. For example most highlights import the Alert
+highlight, and many source code formats imports the Doxygen highlight. Editing
+colors in those groups only affects the styles when used in the edited highlight
+format.
+</para>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-edit">
+<title>Editing</title>
+
+<sect4 id="katepart-pref-edit-general">
+<title>General</title>
+<variablelist>
+
+<varlistentry>
+<term id="katepart-pref-word-wrap"><guilabel>Static Word Wrap</guilabel></term>
+<listitem><para>
+Word wrap is a feature that causes the editor to automatically start a new line
+of text and move (wrap) the cursor to the beginning of that new line.  &kappname;
+will automatically start a new line of text when  the current line reaches the
+length specified by the <link linkend="katepart-pref-wrap-words-at">Wrap Words
+At:</link> option.</para>
+<variablelist>
+<varlistentry>
+<term><guilabel>Enable static word wrap</guilabel></term>
+<listitem>
+<para>Turns static word wrap on or off.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Show static word wrap markers
+(if applicable)</guilabel></term>
+<listitem>
+<para>If this option is checked, a vertical line will be drawn at the word wrap
+column as defined in the <menuchoice> <guimenu>Settings</guimenu>
+<guimenuitem>Configure Editor...</guimenuitem></menuchoice> in the Editing tab.
+Please note that the word wrap marker is only drawn if you use a fixed pitch
+font.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term id="katepart-pref-wrap-words-at"><guilabel>Wrap words at:</guilabel></term>
+<listitem>
+<para>If the <link linkend="katepart-pref-word-wrap">Enable static word wrap</link> option is selected
+this entry  determines the length (in characters) at which the editor will
+automatically start a new line.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term ><guilabel>Misc</guilabel></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><guilabel>Remove trailing spaces while editing</guilabel></term>
+<listitem><para>&kappname; will automatically eliminate extra spaces
+at the ends of lines of text.</para></listitem> </varlistentry>
+
+<varlistentry>
+<term><guilabel>Auto brackets</guilabel></term> <listitem><para>When
+the user types a left bracket ([, (, or {) &kappname; automatically enters the
+right bracket (}, ), or ]) to the right of the cursor.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Copy/Cut the current line if no selection</guilabel></term> <listitem>
+<para>If this option is enabled and the text selection is empty, copy and cut
+action are performed for the line of text at the actual cursor position.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Allow scrolling past the end of the document</guilabel></term> <listitem>
+<para>This option lets you scroll past the end of the document. This can be used to vertically centre the bottom of the document, or put it on top of the current view.</para></listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-cursor-selection">
+<title>Cursor &amp; Selection</title>
+
+<variablelist>
+
+<varlistentry>
+<term><guilabel>Text Cursor Movement</guilabel></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><guilabel>Smart home and smart end</guilabel></term>
+<listitem>
+<para>When selected, pressing the home key will cause the cursor to
+skip white space and go to the start of a line's text.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Wrap cursor</guilabel></term>
+<listitem>
+<para>When on, moving the insertion cursor using the <emphasis
+role="bold">Left</emphasis> and <emphasis role="bold">Right</emphasis> keys will
+go on to previous/next line at beginning/end of the line, similar to most
+editors.</para><para>When off, the insertion cursor cannot be moved left of the
+line start, but it can be moved off the line end, which can be very handy for
+programmers. When this option is chosen, moving the cursor with the arrow keys
+off the end of a line (to the right) causes it to jump down to the beginning of
+the next line. Likewise when the cursor is moved past the beginning of a line
+(to the left) it jumps up to the end of the preceding line. When this option is
+not selected, moving the cursor right past the end of a line merely causes it to
+continue horizontally in the same line and trying to move it left past the
+beginning does nothing.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>PageUp/PageDown moves cursor</guilabel></term>
+<listitem>
+<para>This option changes the behavior of the cursor when the user presses
+the <keycap>Page Up</keycap> or <keycap>Page Down</keycap> key. If unselected
+the text cursor will maintain its relative position within the visible text in
+&kappname; as new text becomes visible as a result of the operation.  So if the
+cursor is in the middle of the visible text when the operation occurs it will
+remain there (except when one reaches the beginning or end.)  With this option
+selected, the first key press will cause the cursor to move to either the top or
+bottom of the visible text as a new page of text is displayed.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Autocenter cursor (lines):</guilabel></term>
+<listitem>
+<para>Sets the number of lines to maintain visible above and below the cursor
+when possible.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Text Selection Mode</guilabel></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><guilabel>Normal</guilabel></term>
+<listitem>
+<para>Selections will be overwritten by typed text and will be lost on
+cursor movement.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Persistent</guilabel></term>
+<listitem>
+<para>Selections will stay even after cursor movement and typing.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-indent">
+<title>Indentation</title>
+
+<variablelist>
+
+<varlistentry>
+<term><guilabel>Default Indentation mode:</guilabel></term>
+<listitem>
+<para>Select the automatic indentation mode you want to use as default. It is
+strongly recommended to use <userinput>None</userinput> or
+<userinput>Normal</userinput> here, and use filetype configurations to set other
+indentation modes for text formats like C/C++ code or &XML;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Indent using</guilabel></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><guilabel>Tabulators</guilabel></term>
+<listitem>
+<para>When this is enabled the editor will insert tabulator characters when you
+press the &Tab; key or use <ulink url="help:/kwrite/kate-part-autoindent.html">automatic
+indentation</ulink>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Spaces</guilabel></term>
+<listitem>
+<para>When this is enabled the editor will insert a calculated number of spaces
+according to the position in the text and the <option>tab-width</option> setting
+when you press the &Tab; key or use <ulink url="help:/kwrite/kate-part-autoindent.html">automatic
+indentation</ulink>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Tabulators and Spaces</guilabel></term>
+<listitem>
+<para>When this is enabled, the editor will insert spaces as describe above when
+indenting or pressing &Tab; at the beginning of a line, but insert tabulators when
+the &Tab; key is pressed in the middle or end of a line.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Tab width:</guilabel></term>
+<listitem>
+<para>This configures the number of spaces that are displayed in place of a tabulator
+character.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Indentation width:</guilabel></term>
+<listitem>
+<para>The indentation width is the number of spaces which is used to indent a line.
+If configured to indent using tabulators, a tabulator character is inserted
+if the indentation is divisible by the tab width.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Indentation Properties</guilabel></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><guilabel>Keep Extra Spaces</guilabel></term>
+<listitem><para>If this option is disabled, changing the indentation
+level aligns a line to a multiple of the width specified in
+<guilabel>Indentation width</guilabel>.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Adjust indentation of code pasted from the clipboard</guilabel></term>
+<listitem>
+<para>If this option is selected, pasted code from the clipboard is indented.
+Triggering the <guimenuitem>Undo</guimenuitem> action removes the indentation.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Indentation Actions</guilabel></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><guilabel>Backspace key in leading blank space unindents</guilabel></term>
+<listitem>
+<para>If this option is selected, the &Backspace; key decreases the indentation level
+if the cursor is located in the leading blank space of a line.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Tab key action (if no selection exists)</guilabel></term>
+<listitem>
+<para>
+If you want &Tab; to align the current line in the current code block
+like in emacs, make &Tab; a shortcut to the action <guimenuitem>Align</guimenuitem>.
+</para>
+<variablelist>
+<varlistentry>
+<term><guilabel>Always advance to the next tab position</guilabel></term>
+<listitem>
+<para>If this option is selected, the &Tab; key always inserts white space
+so that the next tab position is reached. If the option <guilabel>Insert spaces instead of tabulators</guilabel>
+on the <guilabel>General</guilabel> tab in the <guilabel>Editing</guilabel>
+page is enabled, spaces are inserted; otherwise, a single tabulator is inserted.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Always increase indentation level</guilabel></term>
+<listitem>
+<para>If this option is selected, the &Tab; key always indents the current
+line by the number of character positions specified in <guilabel>Indentation width</guilabel>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Increase indentation level if in leading blank space</guilabel></term>
+<listitem>
+<para>If this option is selected, the &Tab; key either indents the current line
+or advances to the next tab position. If the insertion point is at or before the
+first non-space character in the line, or if there is a selection, the current line
+is indented by the number of character positions specified in <guilabel>Indentation width</guilabel>.
+If the insertion point is located after the first non-space character in the line
+and there is no selection, white space is inserted so that the next tab position is
+reached: if the option <guilabel>Insert spaces instead of tabulators</guilabel>
+on the <guilabel>General</guilabel> tab in the <guilabel>Editing</guilabel>
+page is enabled, spaces are inserted; otherwise, a single tabulator is inserted.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-autocompletion">
+<title>Auto Completion</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>General</guilabel></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><guilabel>Enable auto completion</guilabel></term>
+<listitem>
+<para>If enabled, a word completion box automatically pops up during typing
+showing a list of text entries to complete the current text under the
+cursor.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Minimal word length to complete</guilabel></term>
+<listitem><para>While typing text, the word completion searches for words in the
+document starting with the already typed text. This option configures the minimal
+amount of characters that are needed to make the word completion active and pop
+up a completion box.</para></listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect4>
+
+<sect4 id="katepart-pref-edit-vi-input-mode">
+<title>Vi Input Mode</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>General</guilabel></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><guilabel>Use VI input mode</guilabel></term>
+<listitem>
+<para>When selected, the vi input mode will be enabled when opening a new view.
+You can still toggle the vi input mode on/off for a particular view in the
+<guimenu>Edit</guimenu> menu.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Let Vi commands override Kate shortcuts</guilabel></term>
+<listitem>
+<para>When selected, Vi commands will override &kappname;'s built-in commands. For
+example: <keycombo action="simul">&Ctrl;<keycap>R</keycap></keycombo> will redo,
+and override the standard action (showing the search and replace dialog).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Hide the Vi mode status bar</guilabel></term>
+<listitem>
+<para>By default, an extra status bar will be used when the Vi input mode is
+enabled. This status bar shows commands while they are being typed and
+messages/errors produced by Vi commands.</para>
+<para>Checking this option will hide this extra status line.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Key Mapping</guilabel></term>
+<listitem><para>
+Key mapping is used to change the meaning of typed keys. This allows you to
+move commands to other keys or make special keypresses for doing a series of
+commands.</para>
+<para>Example:</para>
+<para><keycap>F2</keycap> -> <keycap>I--</keycap> &Esc;</para>
+<para>This will prepend <keycap>I--</keycap> to a line when pressing <keycap>F2</keycap>.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect4>
+
+<sect4 id="katepart-pref-edit-spellcheck">
+<title>Spellcheck</title>
+<para>These configuration options are described in the documentation for the
+&systemsettings; module <ulink url="help:kcontrol/spellchecking">Spell Checker</ulink>.</para>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-open-save">
+<title>Open/Save</title>
+
+<sect4 id="katepart-pref-open-save-general">
+<title>General</title>
+
+<variablelist>
+
+<varlistentry>
+<term><guilabel>File Format</guilabel></term>
+<listitem>
+<variablelist>
+
+<varlistentry>
+<term><guilabel>Encoding:</guilabel></term>
+<listitem>
+<para>This defines the standard encoding to use to open/save files, if not changed
+in the open/save dialog or by using a command line option.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Encoding Detection</guilabel></term>
+<listitem>
+<para>Select an item from the drop down box, either to disable autodetection or
+use <guilabel>Universal</guilabel> to enable autodetection for all encodings. But as
+this may probably only detect utf-8/utf-16, selecting a region will use custom heuristics
+for better results.
+If neither the encoding chosen as standard above, nor the encoding specified
+in the open/save dialog, nor the encoding specified on command line match
+the content of the file, this detection will be run.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Fallback Encoding</guilabel></term>
+<listitem>
+<para>This defines the fallback encoding to try for opening files if neither the
+encoding chosen as standard above, nor the encoding specified in the open/
+save dialog, nor the encoding specified on command line match the content of
+the file.  Before this is used, an attempt will be made to determine the
+encoding to use by looking for a byte order marker at start of file: if one
+is found, the right unicode encoding will be chosen; otherwise encoding
+detection will run, if both fail fallback encoding will be tried.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>End of line:</guilabel></term>
+<listitem>
+<para>Choose your preferred end of line mode for your active
+document. You have the choice between &UNIX;, DOS/&Windows; or Macintosh.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Automatic end of line detection</guilabel></term>
+<listitem>
+<para>Check this if you want the editor to autodetect the end of line
+type. The first found end of line type will be used for the whole file.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Enable byte order marker</guilabel></term>
+<listitem>
+<para>The byte order mark is a special sequence at the beginning of unicode
+encoded documents. It helps editors to open text documents with the correct
+unicode encoding. For more information see <ulink
+url="http://en.wikipedia.org/wiki/Byte_Order_Mark">Byte Order Mark</ulink>.</para>
+</listitem>
+</varlistentry>
+<!--
+Line Length Limit missing
+ -->
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Automatic Cleanups on Load/Save</guilabel></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><guilabel>Remove trailing spaces</guilabel></term>
+<listitem>
+<para>The editor will automatically eliminate extra spaces at the ends of lines
+of text while loading/saving the file.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-open-save-advanced">
+<title>Advanced</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>Folder Config File</guilabel></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><guilabel>Search depth for config file:</guilabel></term>
+<listitem>
+<para>The editor will search the given number of folder levels upwards
+for &kappname; config file and load the settings line from it.
+Further information about these hidden folder config files you find in the
+<ulink url="help:/kate/config-variables.html">document variables section</ulink>.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Backup on Save</guilabel></term>
+<listitem><para>Backing up on save will cause &kappname; to copy the disk file to
+&lt;prefix&gt;&lt;filename&gt;&lt;suffix&gt; before saving changes.
+The suffix defaults to <emphasis role="bold">~</emphasis> and prefix is empty by
+default. </para>
+<variablelist>
+<varlistentry>
+<term><guilabel>Local files</guilabel></term>
+<listitem>
+<para>Check this if you want backups of local files when
+saving.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Remote files</guilabel></term>
+<listitem>
+<para>Check this if you want backups of remote files when saving.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Prefix</guilabel></term>
+<listitem>
+<para>Enter the prefix to prepend to the backup file names.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Suffix</guilabel></term>
+<listitem>
+<para>Enter the suffix to add to the backup file names.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Disable swap file syncing</guilabel></term>
+<listitem>
+<para>&kappname; is able to recover (most of) what was written after last save in case
+of a crash or power failure. A swap file (.swp.&lt;filename&gt;) is created
+after the first editing action on a document. If the user doesn’t save the
+changes and &kappname; crashes, the swap file remains on the disk. When opening a
+file, &kappname; checks if there is a swap file for the document and if it is, it asks
+the user whether he wants to recover the lost data or not. The user has the
+possibility to view the differences between the original file and the recovered
+one, too. The swap file is deleted after every save and on normal exit.</para>
+<para>&kappname; syncs the swap files on the disk every 15 seconds, but only if they
+have changed since the last sync. The user can disable the swap files syncing if
+he wants, by checking the <guilabel>Disable swap file syncing</guilabel> box,
+but this can lead to more data loss.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-open-save-modes-filetypes">
+<title>Modes &amp; Filetypes</title>
+<para>This page allows you to override the default configuration for documents
+of specified mimetypes. When the editor loads a document, it will try if it
+matches the file masks or mimetypes for one of the defined filetypes, and if so
+apply the variables defined. If more filetypes match, the one with the highest
+priority will be used.
+</para>
+<variablelist>
+<varlistentry>
+<term><guilabel>Filetype:</guilabel></term>
+<listitem><para>The filetype with the highest priority is the one displayed in
+the first drop down box. If more filetypes were found, they are
+also listed.</para>
+<variablelist>
+<varlistentry>
+<term><guilabel>New</guilabel></term>
+<listitem><para>This is used to create a new filetype. After
+you click on this button, the fields below get empty and you
+can fill the properties you want for the new filetype.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Delete</guilabel></term>
+<listitem><para>To remove an existing filetype, select it from the drop down
+box and press the Delete button.</para></listitem>
+</varlistentry>
+</variablelist>
+</listitem> </varlistentry>
+
+<varlistentry>
+<term><guilabel>Properties of <replaceable>current filetype</replaceable></guilabel></term>
+<listitem><para>The filetype with the highest priority is the one displayed in
+the first drop down box. If more filetypes were found, they are also
+listed.</para>
+<variablelist>
+<varlistentry>
+<term><guilabel>Name:</guilabel></term>
+<listitem><para>The name of the filetype will be the text of the corresponding
+menu item. This name is displayed in the
+<menuchoice><guimenu>Tools</guimenu><guimenuitem>Filetypes</guimenuitem>
+</menuchoice ></para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Section:</guilabel></term>
+<listitem><para>The section name is used to organize the file types in
+menus. This is also used in the
+<menuchoice><guimenu>Tools</guimenu><guimenuitem>Filetypes</guimenuitem>
+</menuchoice> menu.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Variables:</guilabel></term>
+<listitem><para>This string allows you to configure &kappname;'s settings for the
+files selected by this mimetype using &kappname; variables. You can set almost any
+configuration option, such as highlight, indent-mode,
+etc.</para>
+<para>Press <guibutton>Edit</guibutton> to see a list of all available variables
+and their descriptions.  Select the checkbox on the left to enable a particular
+variable and then set the value of the variable on the right.  Some variables
+provide a drop-down box to select possible values from while others require you
+to enter a valid value manually.</para>
+<para>For complete information on these variables, see
+<ulink url="help:/kate/config-variables.html">Configuring with Document
+Variables</ulink>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Highlighting:</guilabel></term>
+<listitem><para>If you create a new file type, this drop down box allows you to
+select a filetype for highlighting.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Indentation Mode:</guilabel></term>
+<listitem><para>The drop down box specifies the indentation mode for new
+documents.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>File extensions:</guilabel></term>
+<listitem><para>The wildcards mask allows you to select files by filename. A
+typical mask uses an asterisk and the file extension, for example
+<filename>*.txt; *.text</filename>. The string is a semicolon-separated list of
+masks.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>MIME types:</guilabel></term>
+<listitem><para>Displays a wizard that helps you easily select
+mimetypes.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Priority:</guilabel></term>
+<listitem><para>Sets a priority for this file type. If more than one file type
+selects the same file, the one with the highest priority will be
+used.</para></listitem>
+</varlistentry>
+</variablelist>
+</listitem> </varlistentry>
+<varlistentry>
+<term><guibutton>Download Highlighting Files...</guibutton></term>
+<listitem>
+<para>
+Click this button to download new or updated syntax highlight descriptions
+from the &kappname; website.
+</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-plugins">
+<title>Extensions</title> <!-- updated to 4.7 + synced with kwrite -->
+<para>The <guilabel>Plugins</guilabel> tab lists all available plugins and you can check those you
+want to use. Click on the <guibutton>Information</guibutton> button to open the
+<guilabel>About</guilabel> dialog of this plugin.</para>
+<para>Once a configurable plugin is checked, the
+<guibutton>Configure</guibutton> button is enabled and you can click it
+in order to configure the highlighted plugin.</para>
+<variablelist>
+<title>Editor Component Plugins</title>
+<!-- not released with 4.7
+<varlistentry>
+<term><guilabel>Artistic Comment</guilabel></term>
+<listitem><para>Format long source-code comments like license-headers
+or descriptions using different style.</para></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term><guilabel>AutoBrace</guilabel></term>
+<listitem><para>The autobrace plugin supersedes the &kappname; internal
+<quote>Auto Brackets</quote> feature.
+It automatically inserts a closing brace <keycap>}</keycap> at the beginning
+of the next line after ending a line with an opening one <keycap>{</keycap>
+and pressing the &Enter; key.</para></listitem>
+</varlistentry>
+<!--http://jakob.petsovits.at/topic/kate-->
+<!--Right, it's the automatic insertion of a closing brace ("}") after you ended a line with an opening one ("{"). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
+You, the developer, are writing a line of code, and want to open a new block delimited by braces. Looks like this:
+If you press Enter and AutoBrace is enabled, it will insert your favorite new brace where it belongs. Looks like this:
+-->
+<varlistentry>
+<term><guilabel>Data Tools</guilabel></term>
+<listitem><para>Enables data tools like thesaurus and spell check (if installed).
+Data tools are only available when text is selected, or when the right mouse
+button is clicked over a word. If no data tools are offered even when text
+is selected, you need to install them. Some data tools are part of the
+&koffice; package.
+If this plugin is enabled and data tools are installed, additional items
+appear at the end of the context menu.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Exporter</guilabel></term>
+<listitem><para>This command allows you to export the current document with all highlighting
+information into a HTML document using <menuchoice><guimenu>File</guimenu><guimenuitem>Export
+as HTML</guimenuitem></menuchoice>. Additionally you can use <menuchoice><guimenu>Edit</guimenu>
+<guimenuitem>Copy as HTML</guimenuitem></menuchoice> to copy the currently selected text
+as HTML to the system clipboard.</para></listitem>
+</varlistentry>
+<!-- not in 4.7
+<varlistentry>
+<term><guilabel>Highlight Selection</guilabel></term>
+<listitem><para>Highlights all words that match the currently selected text.</para></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term><guilabel>IconInserter</guilabel></term>
+<listitem><para>The icon inserter plugin is only of use for &kde; developers: It adds an item
+<guimenuitem>Insert KIcon-Code</guimenuitem> into the context menu of the editor.
+If activated, the &kde;'s icon chooser opens (showing application icons, action icons &etc;..).
+If you click on it, the file name without file extension will be inserted as
+text. Useful only for setting icons via &kde;'s framework through the KIcon() class.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Insane (not ZEN) HTML coding (light edition)</guilabel></term>
+<listitem><para>A plugin, which does zen-coding like selector completion.
+For more information see <ulink url="http://en.wikipedia.org/wiki/Zen_Coding">
+Zen Coding</ulink>.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Insert File</guilabel></term>
+<listitem><para>This plugin allows you to insert any readable file at the cursor position.
+If enabled, the <guimenu>Tools</guimenu> menu has an additional menu item
+<guimenuitem>Insert File</guimenuitem>.</para></listitem>
+</varlistentry>
+</variablelist>
+</sect3>
+</sect2>
+<!--/end kwrite-->
+
 </sect1>
