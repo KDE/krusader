@@ -483,17 +483,6 @@ void Krusader::saveSettings() {
     krConfig->sync();
 }
 
-void Krusader::refreshView() {
-    delete MAIN_VIEW;
-    MAIN_VIEW = new KrusaderView(this);
-    setCentralWidget(MAIN_VIEW);
-    KConfigGroup cfg(krConfig, "Private");
-    resize(cfg.readEntry("Start Size", _StartSize));
-    move(cfg.readEntry("Start Position", _StartPosition));
-    MAIN_VIEW->show();
-    show();
-}
-
 void Krusader::configChanged() {
     KConfigGroup group(krConfig, "Look&Feel");
     bool minimizeToTray = group.readEntry("Minimize To Tray", _MinimizeToTray);
@@ -820,7 +809,7 @@ void Krusader::moveToTop() {
 }
 
 bool Krusader::isRunning() {
-    moveToTop();
+    moveToTop(); //FIXME - doesn't belong here
     return true;
 }
 

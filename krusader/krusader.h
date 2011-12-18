@@ -111,7 +111,6 @@ public:
         KParts::MainWindow::plugActionList(name, list);
     }
 
-    void refreshView();     // re-create the main view
     void configChanged();
     /**
      * This returns a defferent icon if krusader runs with root-privileges
