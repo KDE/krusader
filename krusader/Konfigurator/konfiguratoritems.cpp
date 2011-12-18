@@ -119,6 +119,30 @@ void KonfiguratorCheckBox::loadInitialValue()
     ext->setChanged(false);
 }
 
+void KonfiguratorCheckBox::checkStateSet()
+{
+    QCheckBox::checkStateSet();
+    updateDeps();
+}
+
+void KonfiguratorCheckBox::nextCheckState()
+{
+    QCheckBox::nextCheckState();
+    updateDeps();
+}
+
+void KonfiguratorCheckBox::addDep(KonfiguratorCheckBox *dep)
+{
+    deps << dep;
+    dep->setEnabled(isChecked());
+}
+
+void KonfiguratorCheckBox::updateDeps()
+{
+    foreach(KonfiguratorCheckBox *dep, deps)
+        dep->setEnabled(isChecked());
+}
+
 void KonfiguratorCheckBox::slotApply(QObject *, QString cls, QString name)
 {
     KConfigGroup(krConfig, cls).writeEntry(name, isChecked());
@@ -129,6 +153,7 @@ void KonfiguratorCheckBox::slotSetDefaults(QObject *)
     if (isChecked() != defaultValue)
         setChecked(defaultValue);
 }
+
 
 // KonfiguratorSpinBox class
 ///////////////////////////////

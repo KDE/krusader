@@ -130,14 +130,23 @@ public:
         return ext;
     }
 
+    // indicate that a checkobox is dependent of this,
+    // meaning that dep is only available if this box is checked
+    void addDep(KonfiguratorCheckBox *dep);
+
 public slots:
     virtual void loadInitialValue();
     void slotApply(QObject *, QString, QString);
     void slotSetDefaults(QObject *);
 
 protected:
+    virtual void checkStateSet();
+    virtual void nextCheckState();
+    void updateDeps();
+
     bool  defaultValue;
     KonfiguratorExtension *ext;
+    QList<KonfiguratorCheckBox*> deps;
 };
 
 // KonfiguratorSpinBox class
