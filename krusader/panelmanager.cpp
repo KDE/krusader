@@ -305,10 +305,11 @@ void PanelManager::slotRecreatePanels()
 
     for (int i = 0; i != _tabbar->count(); i++) {
         QString grpName = "PanelManager_" + QString::number(qApp->applicationPid());
+        krConfig->deleteGroup(grpName); // make sure the group is empty
         KConfigGroup cfg(krConfig, grpName);
 
         ListPanel *oldPanel = _tabbar->getPanel(i);
-        oldPanel->saveSettings(cfg, false);
+        oldPanel->saveSettings(cfg, false, true);
         disconnect(oldPanel);
 
         ListPanel *newPanel = createPanel(cfg);
