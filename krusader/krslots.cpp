@@ -347,7 +347,7 @@ void KRslots::swapPanels()
     KUrl rightURL = RIGHT_PANEL->func->files()->vfs_getOrigin();
 
     LEFT_PANEL->func->openUrl(rightURL);
-    LEFT_PANEL->func->openUrl(leftURL);
+    RIGHT_PANEL->func->openUrl(leftURL);
 }
 
 void KRslots::toggleSwapSides()
