@@ -330,7 +330,7 @@ void PanelManager::slotRecreatePanels()
 
         krConfig->deleteGroup(grpName);
     }
-
+    tabsCountChanged();
     _self->slotFocusOnMe(this == ACTIVE_MNG);
     emit pathChanged(_self);
 }
