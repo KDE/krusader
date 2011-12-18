@@ -49,11 +49,13 @@
 #include "../Panel/krviewfactory.h"
 #include "../Panel/krlayoutfactory.h"
 
-#define PAGE_MISC     1
-#define PAGE_VIEW         2
-#define PAGE_PANELTOOLBAR  3
-#define PAGE_MOUSE  4
-#define PAGE_LAYOUT 5
+enum {
+    PAGE_MISC = 0,
+    PAGE_VIEW,
+    PAGE_PANELTOOLBAR,
+    PAGE_MOUSE,
+    PAGE_LAYOUT
+};
 
 
 KgPanel::KgPanel(bool first, QWidget* parent) :
