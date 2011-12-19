@@ -47,9 +47,9 @@ A
 #include "../VFS/krvfshandler.h"
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
-KrCalcSpaceDialog::CalcThread::CalcThread(KrCalcSpaceDialog * parent, KUrl url, const QStringList & items)
+KrCalcSpaceDialog::CalcThread::CalcThread(KUrl url, const QStringList & items)
         : m_totalSize(0), m_currentSize(0), m_totalFiles(0), m_totalDirs(0), m_items(items), m_url(url),
-        m_parent(parent), m_stop(false) {}
+        m_stop(false) {}
 
 
 void KrCalcSpaceDialog::CalcThread::getStats(KIO::filesize_t  &totalSize,
@@ -102,6 +102,7 @@ void KrCalcSpaceDialog::CalcThread::stop()
     m_stop = true;
 }
 
+
 KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, KrPanel * panel, const QStringList & items, bool autoclose) :
         KDialog(parent), m_autoClose(autoclose), m_canceled(false), 
                 m_timerCounter(0), m_items(items), m_view(panel->view)
@@ -112,7 +113,7 @@ KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, KrPanel * panel, const QSt
     setWindowModality(Qt::WindowModal);
     // the dialog: The Ok button is hidden until it is needed
     showButton(KDialog::Ok, false);
-    m_thread = new CalcThread(this, panel->virtualPath(), items);
+    m_thread = new CalcThread(panel->virtualPath(), items);
     m_pollTimer = new QTimer(this);
     QWidget * mainWidget = new QWidget(this);
     setMainWidget(mainWidget);
