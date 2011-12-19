@@ -801,7 +801,6 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
 {
     // if copyToPanel is true, then we call a simple vfs_addfiles
     bool copyToDirInPanel = false;
-    bool dragFromOtherPanel = false;
     bool dragFromThisPanel = false;
     bool isWritable = func->files() ->vfs_isWritable();
 
@@ -813,8 +812,6 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
         widget = this;
     }
 
-    if (e->source() == otherPanel()->gui)
-        dragFromOtherPanel = true;
     if (e->source() == this)
         dragFromThisPanel = true;
 
@@ -909,8 +906,9 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
     QWidget *notify = (!e->source() ? 0 : e->source());
     tempFiles->vfs_addFiles(&URLs, mode, notify, dir);
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
-        otherPanel()->view->saveSelection();
-        otherPanel()->view->unselect(KRQuery("*"));
+        KrPanel *p = (dragFromThisPanel ? this : otherPanel());
+        p->view->saveSelection();
+        p->view->unselect(KRQuery("*"));
     }
 }
 
