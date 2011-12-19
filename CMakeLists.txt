@@ -13,6 +13,9 @@ set(CMAKE_VERBOSE_MAKEFILE OFF)
 
 add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 
+# FIX krarc (bug 280939 and general maintainability) before enabling this !!!
+# add_definitions( "-DKRARC_ENABLED" )
+
 #include(ConfigureChecks.cmake)
 
 add_subdirectory(krusader)

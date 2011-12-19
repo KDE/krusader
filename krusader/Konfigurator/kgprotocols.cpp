@@ -346,12 +346,12 @@ void KgProtocols::setDefaults()
     QStringList isoMimes = defaultIsoMimes.split(',');
     for (QStringList::Iterator it = isoMimes.begin(); it != isoMimes.end(); it++)
         addMime(*it, "iso");
-
+#ifdef KRARC_ENABLED
     addProtocol("krarc");
     QStringList krarcMimes = defaultKrarcMimes.split(',');
     for (QStringList::Iterator it = krarcMimes.begin(); it != krarcMimes.end(); it++)
         addMime(*it, "krarc");
-
+#endif
     addProtocol("tar");
     QStringList tarMimes = defaultTarMimes.split(',');
     for (QStringList::Iterator it = tarMimes.begin(); it != tarMimes.end(); it++)

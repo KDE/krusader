@@ -69,6 +69,7 @@ using namespace KIO;
 extern "C"
 {
 
+#ifdef KRARC_ENABLED
     /* This codec is for being able to handle files which encoding differs from the current locale.
      *
      * Unfortunately QProcess requires QString parameters for arguments which are encoded to Local8Bit
@@ -123,6 +124,17 @@ extern "C"
     QTextCodec::setCodecForLocale( krArcCodec );
 #define RESET_KRCODEC  QTextCodec::setCodecForLocale( origCodec );
 
+#endif // KRARC_ENABLED
+
+    class DummySlave : public KIO::SlaveBase
+    {
+    public:
+        DummySlave(const QByteArray &pool_socket, const QByteArray &app_socket) :
+                SlaveBase("kio_krarc", pool_socket, app_socket) {
+            error(ERR_SLAVE_DEFINED, i18n("krarc is disabled."));
+        }
+    };
+
     int KDE_EXPORT kdemain(int argc, char **argv) {
         KComponentData instance("kio_krarc", "krusader");
 
@@ -131,7 +143,12 @@ extern "C"
             exit(-1);
         }
 
+#ifdef KRARC_ENABLED
         kio_krarcProtocol slave(argv[2], argv[3]);
+#else
+        DummySlave slave(argv[2], argv[3]);
+#endif
+
         slave.dispatchLoop();
 
         return 0;
@@ -139,6 +156,7 @@ extern "C"
 
 } // extern "C"
 
+#ifdef KRARC_ENABLED
 kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
         : SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(0L), extArcReady(false),
         password(QString()), codec(0)
@@ -1913,3 +1931,5 @@ QString kio_krarcProtocol::getPath(const KUrl & url, KUrl::AdjustPathOption trai
 }
 
 #include "krarc.moc"
+
+#endif // KRARC_ENABLED
