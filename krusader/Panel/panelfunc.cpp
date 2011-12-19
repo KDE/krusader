@@ -915,7 +915,7 @@ void ListPanelFunc::goInside(const QString& name)
     } else if (url.isLocalFile()) {
         bool encrypted;
         QString mime = vf->vfile_getMime();
-        QString type = KRarcHandler::getType(encrypted, url.path(), mime, false);
+        QString type = KRarcHandler::getType(encrypted, url.path(), mime, false, true);
 
         if (KRarcHandler::arcSupported(type)) {    // archive autodetection
             // here we check whether KDE supports tar
