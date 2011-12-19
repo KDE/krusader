@@ -866,7 +866,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
         vfile * vf = files() ->vfs_search(*name);
 
         // verify non-empty dirs delete... (only for normal vfs)
-        if (emptyDirVerify && vf->vfile_isDir() && !vf->vfile_isSymLink()) {
+        if (vf && emptyDirVerify && vf->vfile_isDir() && !vf->vfile_isSymLink()) {
             dir.setPath(panel->virtualPath().path() + '/' + (*name));
             if (dir.entryList(QDir::TypeMask | QDir::System | QDir::Hidden).count() > 2) {
                 switch (KMessageBox::warningYesNoCancel(krMainWindow,
