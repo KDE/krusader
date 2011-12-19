@@ -991,7 +991,7 @@ void ListPanelFunc::execute(const QString& name)
 
     if (protocol == "tar" || protocol == "krarc") {
         bool encrypted;
-        QString type = KRarcHandler::getType(encrypted, vf->vfile_getUrl().path(), vf->vfile_getMime(), false);
+        QString type = KRarcHandler::getType(encrypted, vf->vfile_getUrl().path(), vf->vfile_getMime(), false, true);
         if (!KRarcHandler::arcHandled(type))       // if the specified archive is disabled delete the protocol
             protocol = "";
     }

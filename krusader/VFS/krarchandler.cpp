@@ -673,9 +673,9 @@ bool KRarcHandler::isArchive(const KUrl& url)
     else return false;
 }
 
-QString KRarcHandler::getType(bool &encrypted, QString fileName, QString mime, bool checkEncrypted)
+QString KRarcHandler::getType(bool &encrypted, QString fileName, QString mime, bool checkEncrypted, bool fast)
 {
-    QString result = detectArchive(encrypted, fileName, checkEncrypted);
+    QString result = detectArchive(encrypted, fileName, checkEncrypted, fast);
     if (result.isNull()) {
         result = mime;
     } else {
@@ -714,7 +714,7 @@ struct AutoDetectParams {
     QString detectionString;
 };
 
-QString KRarcHandler::detectArchive(bool &encrypted, QString fileName, bool checkEncrypted)
+QString KRarcHandler::detectArchive(bool &encrypted, QString fileName, bool checkEncrypted, bool fast)
 {
     static AutoDetectParams autoDetectParams[] = {{"zip",  0, "PK\x03\x04"},
         {"rar",  0, "Rar!\x1a" },
@@ -745,6 +745,7 @@ QString KRarcHandler::detectArchive(bool &encrypted, QString fileName, bool chec
             if (endPtr > sizeMax)
                 continue;
 
+            // j ???? why not foo or bar ?????
             int j = 0;
             for (; j != detectionString.length(); j++) {
                 if (detectionString[ j ] == '?')
@@ -756,13 +757,20 @@ QString KRarcHandler::detectArchive(bool &encrypted, QString fileName, bool chec
             if (j == detectionString.length()) {
                 QString type = autoDetectParams[ i ].type;
                 if (type == "bzip2" || type == "gzip") {
-                    KTar tapeArchive(fileName);
-                    if (tapeArchive.open(QIODevice::ReadOnly)) {
-                        tapeArchive.close();
-                        if (type == "bzip2")
-                            type = "tbz";
-                        else
+                    if (fast) {
+                        if (fileName.endsWith(QLatin1String(".tar.gz")))
                             type = "tgz";
+                        else if (fileName.endsWith(QLatin1String(".tar.bz2")))
+                            type = "tbz";
+                    } else {
+                        KTar tapeArchive(fileName);
+                        if (tapeArchive.open(QIODevice::ReadOnly)) {
+                            tapeArchive.close();
+                            if (type == "gzip")
+                                type = "tgz";
+                            else if (type == "bzip2")
+                                type = "tbz";
+                        }
                     }
                 } else if (type == "zip")
                     encrypted = (buffer[6] & 1);

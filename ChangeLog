@@ -1,5 +1,6 @@
     CHANGED: disabled krarc ioslave because of bug 280939 resulting in data loss.
 
+    FIXED: krusader hangs for some time when opening a bz2(and possibly gzip)-compressed archive
     FIXED: [ 280939 ] krusader deletes zip archive when cut&pasting it into itself
            NOTE: the fix is to disable krarc, see CHANGED section
     FIXED: loading defaults on the Panel page in Konfigurator has no effect
