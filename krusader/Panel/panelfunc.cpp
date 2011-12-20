@@ -1377,9 +1377,6 @@ void ListPanelFunc::copyToClipboard(bool move)
 
         connect(QApplication::clipboard(), SIGNAL(changed(QClipboard::Mode)), this, SLOT(clipboardChanged(QClipboard::Mode)));
 
-        if (move && files()->vfs_getType() == vfs::VFS_VIRT)
-            (static_cast<virt_vfs*>(files()))->vfs_removeFiles(&fileNames);
-
         delete fileUrls;
     }
 }
