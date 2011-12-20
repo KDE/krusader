@@ -131,7 +131,7 @@ extern "C"
     public:
         DummySlave(const QByteArray &pool_socket, const QByteArray &app_socket) :
                 SlaveBase("kio_krarc", pool_socket, app_socket) {
-            error(ERR_SLAVE_DEFINED, i18n("krarc is disabled."));
+            error(ERR_SLAVE_DEFINED, "krarc is disabled.");
         }
     };
 
