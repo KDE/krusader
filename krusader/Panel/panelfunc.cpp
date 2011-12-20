@@ -95,6 +95,9 @@ A
 #include "../GUI/syncbrowsebutton.h"
 #include "../Queue/queue_mgr.h"
 
+
+QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
+
 ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
         panel(parent), vfsP(0), urlManuallyEntered(false)
 {
@@ -1336,6 +1339,14 @@ vfs* ListPanelFunc::files()
     return vfsP;
 }
 
+void ListPanelFunc::clipboardChanged(QClipboard::Mode mode)
+{
+    if (mode == QClipboard::Clipboard && this == copyToClipboardOrigin) {
+        disconnect(QApplication::clipboard(), 0, this, 0);
+        copyToClipboardOrigin = 0;
+    }
+}
+
 void ListPanelFunc::copyToClipboard(bool move)
 {
     if (files()->vfs_getOrigin().equals(KUrl("virt:/"), KUrl::CompareWithoutTrailingSlash)) {
@@ -1358,7 +1369,13 @@ void ListPanelFunc::copyToClipboard(bool move)
         mimeData->setData("application/x-kde-cutselection", move ? "1" : "0");
         fileUrls->populateMimeData(mimeData);
 
+        if (copyToClipboardOrigin)
+            disconnect(QApplication::clipboard(), 0, copyToClipboardOrigin, 0);
+        copyToClipboardOrigin = this;
+
         QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);
+
+        connect(QApplication::clipboard(), SIGNAL(changed(QClipboard::Mode)), this, SLOT(clipboardChanged(QClipboard::Mode)));
 
         if (move && files()->vfs_getType() == vfs::VFS_VIRT)
             (static_cast<virt_vfs*>(files()))->vfs_removeFiles(&fileNames);
@@ -1370,6 +1387,14 @@ void ListPanelFunc::copyToClipboard(bool move)
 void ListPanelFunc::pasteFromClipboard()
 {
     QClipboard * cb = QApplication::clipboard();
+
+    ListPanelFunc *origin = 0;
+
+    if (copyToClipboardOrigin) {
+        disconnect(QApplication::clipboard(), 0, copyToClipboardOrigin, 0);
+        origin = copyToClipboardOrigin;
+        copyToClipboardOrigin = 0;
+    }
 
     bool move = false;
     const QMimeData *data = cb->mimeData();
@@ -1384,6 +1409,14 @@ void ListPanelFunc::pasteFromClipboard()
         return ;
 
     KUrl destUrl = panel->virtualPath();
+
+    if(origin && KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
+        origin->panel->view->saveSelection();
+        for(KrViewItem *item = origin->panel->view->getFirst(); item != 0; item = origin->panel->view->getNext(item)) {
+            if (urls.contains(item->getVfile()->vfile_getUrl()))
+                item->setSelected(false);
+        }
+    }
 
     files()->vfs_addFiles(&urls, move ? KIO::CopyJob::Move : KIO::CopyJob::Copy, otherFunc()->files(),
                           "", PM_DEFAULT);
