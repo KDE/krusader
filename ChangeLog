@@ -1,5 +1,7 @@
     CHANGED: disabled krarc ioslave because of bug 280939 resulting in data loss.
 
+    FIXED: Root action (which opens the root dir of the local filesystem)
+           is disabled in the root dir of nonlocal filesystems
     FIXED: when cutting to clipboard from virt:/ the virtual entries are immediately removed
     FIXED: Unselecting files before copy/move operation doesn't work for copy&paste
     FIXED: [ 277259 ] Unselecting files before copy/move operation doesn't work in the same panel
