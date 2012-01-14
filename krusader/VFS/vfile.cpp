@@ -168,7 +168,7 @@ const QString& vfile::vfile_getMime(bool fast)
             vfile_mimeType = mt ? mt->name() : "unknown";
             if (mt)
                 vfile_icon = mt->iconName();
-            if (vfile_mimeType.contains("directory")) {
+            if (vfile_mimeType == "inode/directory") {
                 vfile_perm[0] = 'd';
                 vfile_isdir = true;
             }
