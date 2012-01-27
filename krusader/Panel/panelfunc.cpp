@@ -334,6 +334,7 @@ void ListPanelFunc::doRefresh()
     }
     vfsP->vfs_setQuiet(false);
     panel->view->setNameToMakeCurrent(QString());
+    panel->origin->setStartDir(vfsP->vfs_getOrigin().prettyUrl());
 
     panel->setCursor(Qt::ArrowCursor);
 
