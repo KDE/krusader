@@ -174,7 +174,7 @@ void UserAction::readFromFile(const QString& filename, ReadMode mode, KrActionLi
             // useraction-file
             if (root.tagName() != ACTION_ROOT) {
                 KMessageBox::error(MAIN_VIEW,
-                                   i18n("The actionfile's root-element isn't called "ACTION_ROOT", using %1", filename),
+                                   i18n("The actionfile's root-element isn't called %1, using %2", QString::fromLatin1(ACTION_ROOT),  filename),
                                    i18n("UserActions - can't read from file!")
                                   );
                 delete doc; doc = 0;
