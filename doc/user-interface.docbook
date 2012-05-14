@@ -181,15 +181,6 @@
         <listitem>
           <para>
           <userinput>
-            <command>devices:/</command>
-          </userinput>gives an overview of the devices
-          &eg;
-          <hardware>floppy</hardware> or
-          <hardware>CD-ROM</hardware> drives.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <userinput>
             <command>trash:/</command>
           </userinput>opens &kde;'s trash.</para>
         </listitem>
@@ -200,6 +191,7 @@
           </userinput>uses the <ulink url="http://sourceforge.net/projects/kpod">KIOipod-slave</ulink> to
           access, upload and organize the music stored on
           <trademark>Apple ipod</trademark>.</para>
+	  <!--FIXME last release is from 2007-12-11 so the kio ipodslave will not be usable in kde4-->
         </listitem>
         <listitem>
           <para>And last but not least
