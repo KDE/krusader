@@ -99,7 +99,7 @@ public:
 };
 
 
-KrPreviewPopup::KrPreviewPopup()
+KrPreviewPopup::KrPreviewPopup() : jobStarted(false)
 {
     prevNotAvailAction = addAction(i18n("Preview not available"));
 
@@ -108,14 +108,22 @@ KrPreviewPopup::KrPreviewPopup()
     connect(this, SIGNAL(triggered(QAction *)), this, SLOT(view(QAction *)));
 }
 
+void KrPreviewPopup::showEvent(QShowEvent *event)
+{
+    QMenu::showEvent(event);
+
+    if (!jobStarted) {
+        KIO::PreviewJob *pjob = new KIO::PreviewJob(files, MAX_SIZE, MAX_SIZE, 0, 1, true, true, 0);
+        connect(pjob, SIGNAL(gotPreview(const KFileItem&, const QPixmap&)),
+                this, SLOT(addPreview(const KFileItem&, const QPixmap&)));
+        jobStarted = true;
+    }
+}
+
 void KrPreviewPopup::setUrls(const KUrl::List* urls)
 {
     for (int i = 0; i < urls->count(); ++i)
         files.push_back(KFileItem(KFileItem::Unknown, KFileItem::Unknown, (*urls)[ i ]));
-
-    KIO::PreviewJob *pjob = new KIO::PreviewJob(files, MAX_SIZE, MAX_SIZE, 0, 1, true, true, 0);
-    connect(pjob, SIGNAL(gotPreview(const KFileItem&, const QPixmap&)),
-            this, SLOT(addPreview(const KFileItem&, const QPixmap&)));
 }
 
 void KrPreviewPopup::addPreview(const KFileItem& file, const QPixmap& preview)

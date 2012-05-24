@@ -38,8 +38,11 @@ public slots:
     void view(QAction *);
 
 protected:
+    virtual void showEvent(QShowEvent *event);
+
     QAction * prevNotAvailAction;
     QList<KFileItem> files;
+    bool jobStarted;
 
 private:
     class ProxyStyle;
