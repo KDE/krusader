@@ -1,5 +1,3 @@
-    CHANGED: disabled krarc ioslave because of bug 280939 resulting in data loss.
-
     FIXED: root mode action doesn't work if a panel url contains spaces
     FIXED: relative url completion in address-bar only works in home dir
     FIXED: [ 242566 ] Cannot F3-View .vcf vCard files
@@ -12,8 +10,6 @@
     FIXED: [ 276310 ] crash when trying to delete already deleted file
     FIXED: [ 277578 ] Crash on cancelling calculation of occupied space on smb share
     FIXED: krusader hangs for some time when opening a bz2(and possibly gzip)-compressed archive
-    FIXED: [ 280939 ] krusader deletes zip archive when cut&pasting it into itself
-           NOTE: the fix is to disable krarc, see CHANGED section
     FIXED: loading defaults on the Panel page in Konfigurator has no effect
     FIXED: changes to "Show new/close tab buttons" don't take effect immediately
     FIXED: when options requiring a gui restart are changed, the panel history is lost
