@@ -32,6 +32,7 @@
 #include <kparts/part.h>
 #include <kpluginloader.h>
 #include <kpluginfactory.h>
+#include <kservice.h>
 #include <ktoggleaction.h>
 #include <kurl.h>
 
@@ -62,7 +63,12 @@ TerminalDock::~TerminalDock()
 bool TerminalDock::initialise()
 {
     if (! initialised) { // konsole part is not yet loaded or it has already failed
-        KPluginFactory * factory = KPluginLoader("libkonsolepart").factory();
+        KPluginFactory* factory = NULL;
+        KService::Ptr service = KService::serviceByDesktopName("konsolepart");
+        if( service ) {
+            factory = KPluginLoader(service->library()).factory();
+        }
+
         if (factory) {
             QWidget *focusW = qApp->focusWidget();
             // Create the part
