@@ -1011,7 +1011,7 @@ void ListPanelFunc::execute(const QString& name)
     } else {
         KUrl url = files() ->vfs_getFile(name);
         if (KRun::isExecutableFile(url, vf->vfile_getMime()))
-            runCommand(url.path());
+            runCommand(KShell::quoteArg(url.path()));
         else {
             KService::Ptr service = KMimeTypeTrader::self()->preferredService(vf->vfile_getMime());
             if(service)
