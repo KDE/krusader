@@ -62,7 +62,8 @@
         f.close();                \
     } while(0);
 #else
-#define KRDEBUG(X...)
+// #define KRDEBUG(X...)
+#define KRDEBUG(X...) kDebug()<<X
 #endif
 
 using namespace KIO;
