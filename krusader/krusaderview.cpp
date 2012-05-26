@@ -176,11 +176,7 @@ void KrusaderView::updateGUI(KConfigGroup &cfg)
     if (cfg.readEntry("Show Terminal Emulator", _ShowTerminalEmulator)) {
         slotTerminalEmulator(true);   // create konsole_part
         vert_splitter->setSizes(verticalSplitterSizes);
-    } else if (KrActions::actExecTerminalEmbedded->isChecked()) {
-        //create (but not show) terminal emulator,
-        //if command-line commands are to be run there
-        _terminalDock->initialise();
-    }
+    };
 }
 
 void KrusaderView::setPanelSize(bool leftPanel, int percent)
