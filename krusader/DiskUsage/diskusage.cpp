@@ -222,15 +222,15 @@ DiskUsage::DiskUsage(QString confGroup, QWidget *parent) : QStackedWidget(parent
 
 DiskUsage::~DiskUsage()
 {
-    if (root)
-        delete root;
-
     if (listView)          // don't remove these lines. The module will crash at exit if removed
         delete listView;
     if (lineView)
         delete lineView;
     if (filelightView)
         delete filelightView;
+
+    if (root)
+        delete root;
 
     QHashIterator< File *, Properties * > lit(propertyMap);
     while (lit.hasNext())
