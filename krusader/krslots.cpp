@@ -327,14 +327,20 @@ void KRslots::configChanged(bool isGUIRestartNeeded)
     // really ugly, but reload the Fn keys just in case - csaba: any better idea?
     MAIN_VIEW->fnKeys()->updateShortcuts();
 
+    bool showHidden = KConfigGroup(krConfig, "Look&Feel").readEntry("Show Hidden", KrActions::actToggleHidden->isChecked());
+
+    if (showHidden != KrActions::actToggleHidden->isChecked()) {
+        KrActions::actToggleHidden->setChecked(showHidden);
+        MAIN_VIEW->leftManager()->refreshAllTabs(true);
+        MAIN_VIEW->rightManager()->refreshAllTabs(true);
+    }
+
     krApp->configChanged();
 }
 
-void KRslots::toggleHidden()
+void KRslots::showHiddenFiles(bool show)
 {
     KConfigGroup group(krConfig, "Look&Feel");
-    bool show = !group.readEntry("Show Hidden", _ShowHidden);
-    KrActions::actToggleHidden->setChecked(show);
     group.writeEntry("Show Hidden", show);
 
     MAIN_VIEW->leftManager()->refreshAllTabs(true);

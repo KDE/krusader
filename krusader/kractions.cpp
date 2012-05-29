@@ -183,7 +183,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KTOGGLEACTION(actToggleTerminal, i18n("Show Terminal &Emulator"), 0, Qt::ALT + Qt::CTRL + Qt::Key_T, SLOTS, SLOT(toggleTerminal()), "toggle terminal emulator");
 
 
-    NEW_KTOGGLEACTION(actToggleHidden, i18n("Show &Hidden Files"), 0, Qt::CTRL + Qt::Key_Period, SLOTS, SLOT(toggleHidden()), "toggle hidden files");
+    NEW_KTOGGLEACTION(actToggleHidden, i18n("Show &Hidden Files"), 0, Qt::CTRL + Qt::Key_Period, SLOTS, SLOT(showHiddenFiles(bool)), "toggle hidden files");
 
     NEW_KACTION(actSwapPanels, i18n("S&wap Panels"), 0, Qt::CTRL + Qt::Key_U, SLOTS, SLOT(swapPanels()), "swap panels");
 

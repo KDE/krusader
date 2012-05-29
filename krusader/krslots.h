@@ -82,7 +82,7 @@ public slots:
     void insertFileName(bool full_path);
     void rootKrusader();
     void swapPanels();
-    void toggleHidden();
+    void showHiddenFiles(bool show);
     void toggleSwapSides();
     void configToolbar();
     void configKeys();
