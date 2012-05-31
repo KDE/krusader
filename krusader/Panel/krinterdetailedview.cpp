@@ -98,6 +98,8 @@ void KrInterDetailedView::currentChanged(const QModelIndex & current, const QMod
 
 void KrInterDetailedView::doRestoreSettings(KConfigGroup grp)
 {
+    _autoResizeColumns = grp.readEntry("AutoResizeColumns", true);
+
     QByteArray savedState = grp.readEntry("Saved State", QByteArray());
 
     if (savedState.isEmpty()) {
@@ -124,6 +126,8 @@ void KrInterDetailedView::doRestoreSettings(KConfigGroup grp)
 void KrInterDetailedView::saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties)
 {
     KrInterView::saveSettings(grp, properties);
+
+    grp.writeEntry("AutoResizeColumns", _autoResizeColumns);
 
     if(properties & KrViewProperties::PropColumns) {
         QByteArray state = header()->saveState();
@@ -275,7 +279,7 @@ void KrInterDetailedView::showContextMenu(const QPoint & p)
     QAction *res = popup.exec(p);
 
     if(res == actAutoResize) {
-        _autoResizeColumns = !_autoResizeColumns;
+        _autoResizeColumns = actAutoResize->isChecked();
         recalculateColumnSizes();
     } else {
         int idx = actions.indexOf(res);
@@ -389,6 +393,7 @@ void KrInterDetailedView::copySettingsFrom(KrView *other)
 {
     if(other->instance() == instance()) { // the other view is of the same type
         KrInterDetailedView *v = static_cast<KrInterDetailedView*>(other);
+        _autoResizeColumns = v->_autoResizeColumns;
         header()->restoreState(v->header()->saveState());
         _model->setExtensionEnabled(!isColumnHidden(KrViewProperties::Ext));
         recalculateColumnSizes();
