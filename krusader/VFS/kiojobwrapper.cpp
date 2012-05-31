@@ -53,15 +53,13 @@ class JobStartEvent : public QEvent
 public:
     JobStartEvent(KIOJobWrapper * wrapperIn) : QEvent(QEvent::User),
             m_wrapper(wrapperIn) {}
-    virtual ~JobStartEvent() {
-        if (m_wrapper->m_delete) delete m_wrapper;
-    }
+    virtual ~JobStartEvent() {}
 
     KIOJobWrapper * wrapper() {
         return m_wrapper;
     }
 private:
-    KIOJobWrapper * m_wrapper;
+    QPointer<KIOJobWrapper> m_wrapper;
 };
 
 KrJobStarter * KrJobStarter::m_self = 0;
@@ -77,7 +75,7 @@ bool KrJobStarter::event(QEvent * e)
 }
 
 KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url) : QObject(0),
-        m_autoErrorHandling(false), m_delete(true), m_started(false),
+        m_autoErrorHandling(false), m_started(false),
         m_suspended(false)
 {
     moveToThread(QApplication::instance()->thread());
@@ -86,7 +84,7 @@ KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url) : QObject(
 }
 
 KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url, void * userData) : QObject(0),
-        m_autoErrorHandling(false), m_delete(true), m_started(false),
+        m_autoErrorHandling(false), m_started(false),
         m_suspended(false)
 {
     moveToThread(QApplication::instance()->thread());
@@ -97,7 +95,7 @@ KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url, void * use
 
 KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url, const KUrl::List &list,
                              int pmode, bool showp) : QObject(0),
-        m_autoErrorHandling(false), m_delete(true), m_started(false),
+        m_autoErrorHandling(false), m_started(false),
         m_suspended(false)
 {
     moveToThread(QApplication::instance()->thread());
@@ -110,7 +108,7 @@ KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url, const KUrl
 
 KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url, const KUrl &dest, const QStringList &names,
                              bool showp, const QString &atype, const QMap<QString, QString> &packProps) : QObject(0),
-        m_urlList(), m_autoErrorHandling(false), m_delete(true), m_started(false),
+        m_urlList(), m_autoErrorHandling(false), m_started(false),
         m_suspended(false)
 {
     m_type = type;
@@ -166,7 +164,6 @@ void KIOJobWrapper::createJob()
     }
     if (job) {
         m_job = job;
-        m_delete = false;
         connect(job, SIGNAL(destroyed()), this, SLOT(deleteLater()));
         for (int i = 0; i != m_signals.count(); i++)
             if (!m_receivers[ i ].isNull())
@@ -176,7 +173,8 @@ void KIOJobWrapper::createJob()
             job->ui()->setAutoErrorHandlingEnabled(true);
         if (m_suspended)
             job->suspend();
-    }
+    } else
+        deleteLater();
 }
 
 KIOJobWrapper * KIOJobWrapper::stat(KUrl &url)

@@ -77,7 +77,6 @@ private:
 
     QPointer<KIO::Job>        m_job;
 
-    bool                      m_delete;
     bool                      m_started;
     bool                      m_suspended;
 
