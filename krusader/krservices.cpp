@@ -26,6 +26,7 @@
 #include <QtCore/QTextStream>
 
 #include <kdebug.h>
+#include <kstandarddirs.h>
 
 #include "krglobal.h"
 #include "defaults.h"
@@ -38,7 +39,7 @@ bool KrServices::cmdExist(QString cmdName)
     if (QFile(group.readEntry(cmdName, QString())).exists())
         return true;
 
-    return !detectFullPathName(cmdName).isEmpty();
+    return !KStandardDirs::findExe(cmdName).isEmpty();
 }
 
 static const QStringList bin_suffixes = QStringList()
@@ -48,24 +49,6 @@ static const QStringList bin_suffixes = QStringList()
                                         << ""
 #endif
                                         ;
-
-QString KrServices::detectFullPathName(QString name)
-{
-    QStringList path = QString::fromLocal8Bit(qgetenv("PATH")).split(':');
-
-    for (QStringList::Iterator it = path.begin(); it != path.end(); ++it)
-        foreach(const QString &suffix, bin_suffixes) {
-        if (QDir(*it).exists(name + suffix)) {
-            QString dir = *it;
-            if (!dir.endsWith('/'))
-                dir += '/';
-
-            return dir + name;
-        }
-    }
-
-    return "";
-}
 
 QString KrServices::fullPathName(QString name, QString confName)
 {
@@ -78,7 +61,7 @@ QString KrServices::fullPathName(QString name, QString confName)
     if (QFile(supposedName = config.readEntry(confName, QString())).exists())
         return supposedName;
 
-    if ((supposedName = detectFullPathName(name)).isEmpty())
+    if ((supposedName = KStandardDirs::findExe(name)).isEmpty())
         return "";
 
     config.writeEntry(confName, supposedName);

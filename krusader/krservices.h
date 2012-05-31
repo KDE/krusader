@@ -36,7 +36,6 @@ public:
 
     static bool         cmdExist(QString cmdName);
     static QString      chooseFullPathName(QStringList names, QString confName);
-    static QString      detectFullPathName(QString name);
     static QString      fullPathName(QString name, QString confName = QString());
     static QStringList  separateArgs(QString args);
     static QString      registerdProtocol(QString mimetype);
