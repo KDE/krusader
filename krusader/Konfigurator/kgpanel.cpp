@@ -389,6 +389,7 @@ void KgPanel::setupPanelTab()
 
     KonfiguratorCheckBoxGroup *sortSett = createCheckBoxGroup(2, 0, sortSettings,
                                           4 /*count*/, panelGrp, PAGE_VIEW);
+    sortSett->find("Show Directories First")->addDep(sortSett->find("Always sort dirs by name"));
 
     panelGrid->addWidget(sortSett, 6, 0, 1, 2);
 
