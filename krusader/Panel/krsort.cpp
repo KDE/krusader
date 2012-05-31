@@ -178,6 +178,8 @@ bool compareTextsAlphabetical(QString& aS1, QString& aS2, const KrViewProperties
 
 bool compareTextsCharacterCode(QString& aS1, QString& aS2, const KrViewProperties * _viewProperties, bool aNumbers)
 {
+    Q_UNUSED(_viewProperties);
+
     int lPositionS1 = 0;
     int lPositionS2 = 0;
     while (true) {
