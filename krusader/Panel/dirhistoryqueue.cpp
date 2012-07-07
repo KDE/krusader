@@ -27,7 +27,7 @@
 #include <kdebug.h>
 
 DirHistoryQueue::DirHistoryQueue(KrPanel *panel) :
-    _panel(panel), _currentPos(0), _state(0)
+    _panel(panel), _state(0), _currentPos(0)
 {
 }
 

@@ -42,7 +42,7 @@ A
 #define ASSERT(what) if(!what) abort();
 
 
-KrPreviews::KrPreviews(KrView *view) :  _view(view), _job(0)
+KrPreviews::KrPreviews(KrView *view) :  _job(0), _view(view)
 {
     _dim = KrColorCache::getColorCache().getDimSettings(_dimColor, _dimFactor);
     connect(&KrColorCache::getColorCache(), SIGNAL(colorsRefreshed()), SLOT(slotRefreshColors()));

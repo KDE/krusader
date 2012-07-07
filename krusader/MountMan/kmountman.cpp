@@ -65,7 +65,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 static int __delayedIdx; // ugly: pass the processEvents deadlock
 
-KMountMan::KMountMan(QWidget *parent) : QObject(), parentWindow(parent), Operational(false), waiting(false), mountManGui(0)
+KMountMan::KMountMan(QWidget *parent) : QObject(), Operational(false), waiting(false), mountManGui(0), parentWindow(parent)
 {
     _actions = 0L;
 

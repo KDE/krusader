@@ -135,10 +135,10 @@ protected:
 //      The list panel constructor       //
 /////////////////////////////////////////////////////
 ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg) :
-        KrPanel(manager),
-        QWidget(parent), panelType(-1), colorMask(255), compareMode(false), statsAgent(0),
-        quickSearch(0), cdRootButton(0), cdUpButton(0), popupBtn(0), popup(0), inlineRefreshJob(0),
-        _locked(false), previewJob(0), vfsError(0)
+        QWidget(parent), KrPanel(manager),
+        panelType(-1), colorMask(255), compareMode(false), statsAgent(0),
+        previewJob(0), inlineRefreshJob(0), quickSearch(0), cdRootButton(0), cdUpButton(0),
+        popupBtn(0), popup(0), vfsError(0), _locked(false)
 {
     if(cfg.isValid())
         panelType = cfg.readEntry("Type", -1);

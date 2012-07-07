@@ -321,8 +321,8 @@ const KrView::IconSizes KrView::iconSizes;
 KrView::KrView(KrViewInstance &instance, KConfig *cfg) :
     _instance(instance), _files(0), _config(cfg), _mainWindow(0), _widget(0),
     _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
-    _count(0), _numDirs(0), _properties(0), _focused(false),
-    _previews(0), _fileIconSize(0), _updateDefaultSettings(false), _dummyVfile(0)
+    _properties(0), _focused(false), _previews(0), _fileIconSize(0),
+    _updateDefaultSettings(false), _count(0), _numDirs(0), _dummyVfile(0)
 {
 }
 

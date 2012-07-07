@@ -126,7 +126,7 @@ KAction *Krusader::actShowJSConsole = 0;
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader() : KParts::MainWindow(0,
                 Qt::Window | Qt::WindowTitleHint | Qt::WindowContextHelpButtonHint),
-        _listPanelActions(0), status(0), sysTray(0), isStarting(true),
+        status(0), _listPanelActions(0), sysTray(0), isStarting(true),
         isExiting(false), directExit(false)
 {
 
