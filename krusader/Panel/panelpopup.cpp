@@ -147,16 +147,15 @@ void KrFileTreeView::dropMimeData(const KUrl::List & lst, const KUrl & url, cons
     if (res && res->data().canConvert<int> ())
         result = res->data().toInt();
 
-    KIO::CopyJob *job;
     switch (result) {
     case 1 :
-        job = KIO::copy(lst, url);
+        KIO::copy(lst, url);
         break;
     case 2 :
-        job = KIO::move(lst, url);
+        KIO::move(lst, url);
         break;
     case 3 :
-        job = KIO::link(lst, url);
+        KIO::link(lst, url);
         break;
     default :         // user pressed outside the menu
         return ;          // or cancel was pressed;
