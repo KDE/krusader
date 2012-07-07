@@ -177,7 +177,6 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
     KUrl::List filesUrls;
     KUrl url;
     QDir local(vfs_workingDir());
-    vfile* vf;
 
 //  if( watcher ) watcher->stopScan(); // we will refresh manually this time...
     if (watcher) {
@@ -188,7 +187,6 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
     // names -> urls
     for (int i = 0 ; i < fileNames->count(); ++i) {
         QString filename = (*fileNames)[i];
-        vf = vfs_search(filename);
         url.setPath(vfs_workingDir() + '/' + filename);
         filesUrls.append(url);
     }
