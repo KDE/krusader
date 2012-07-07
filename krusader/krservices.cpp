@@ -84,7 +84,7 @@ QString KrServices::chooseFullPathName(QStringList names, QString confName)
 QStringList KrServices::separateArgs(QString args)
 {
     QStringList argList;
-    int   pointer = 0, tokenStart, len = args.length();
+    int   pointer = 0, len = args.length();
     bool  quoted = false;
     QChar quoteCh;
 
@@ -94,8 +94,6 @@ QStringList KrServices::separateArgs(QString args)
 
         if (pointer >= len)
             break;
-
-        tokenStart = pointer;
 
         QString result = "";
 
