@@ -36,7 +36,7 @@ public:
     const QString& getNote() const {
         return _note;
     }
-    const bool getFound() const {
+    bool getFound() const {
         return _found;
     }
     void setSearchName(const QString& s) {
@@ -101,10 +101,10 @@ public:
     Archiver(const QString& searchName, const QString& website, bool found, bool isPacker, bool isUnpacker, const QString& note = QString());
     ~Archiver();
 
-    const bool getIsPacker() const {
+    bool getIsPacker() const {
         return _isPacker;
     }
-    const bool getIsUnpacker() const {
+    bool getIsUnpacker() const {
         return _isUnpacker;
     }
     void setIsPacker(const bool& b) {
@@ -131,7 +131,7 @@ public:
     const QList<Application*>& getAppVec() const {
         return _apps;
     }
-    const bool getFoundGroup() const {
+    bool getFoundGroup() const {
         return _foundGroup;
     }
 

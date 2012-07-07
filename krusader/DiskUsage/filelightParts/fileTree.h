@@ -98,7 +98,7 @@ public:
         chain.append(remove());
     }
 
-    T* const remove() { //remove from list, delete Link, data is returned NOT deleted
+    T* remove() { //remove from list, delete Link, data is returned NOT deleted
         T* const d = link->data;
         Link<T>* const p = link->prev;
 
@@ -246,13 +246,13 @@ public:
     inline const QString &  directory()           const  {
         return m_directory;
     }
-    inline const FileSize   size()                const  {
+    inline FileSize         size()                const  {
         return m_excluded ? 0 : m_size;
     }
-    inline const FileSize   ownSize()             const  {
+    inline FileSize         ownSize()             const  {
         return m_excluded ? 0 : m_ownSize;
     }
-    inline const mode_t     mode()                const  {
+    inline mode_t           mode()                const  {
         return m_mode;
     }
     inline const QString &  owner()               const  {
@@ -264,25 +264,25 @@ public:
     inline const QString &  perm()                const  {
         return m_perm;
     }
-    inline const time_t     time()                const  {
+    inline time_t           time()                const  {
         return m_time;
     }
     inline const QString &  mime()                const  {
         return m_mimeType;
     }
-    inline const bool       isSymLink()           const  {
+    inline bool             isSymLink()           const  {
         return m_symLink;
     }
-    virtual const bool      isDir()               const  {
+    virtual bool            isDir()               const  {
         return false;
     }
-    inline const bool       isExcluded()          const  {
+    inline bool             isExcluded()          const  {
         return m_excluded;
     }
     inline void             exclude(bool flag)         {
         m_excluded = flag;
     }
-    inline const int        intPercent()          const  {
+    inline int              intPercent()          const  {
         return m_percent;
     }
     inline const QString    percent()             const  {
@@ -333,7 +333,7 @@ public:
     }
 
     virtual ~Directory() {}
-    virtual const bool      isDir()               const  {
+    virtual bool            isDir()               const  {
         return true;
     }
 
