@@ -289,8 +289,8 @@ bool vfile::operator==(const vfile& vf) const
             (vfile_groupId  == vf.vfile_getGid()) &&
             (vfile_has_acl  == vf.vfile_has_acl) &&
             (!vfile_has_acl ||
-             (vfile_acl      == vf.vfile_acl) &&
-             (vfile_def_acl  == vf.vfile_def_acl));;
+             ((vfile_acl      == vf.vfile_acl) &&
+              (vfile_def_acl  == vf.vfile_def_acl)));
 
     return equal;
 }

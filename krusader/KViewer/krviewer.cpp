@@ -247,7 +247,7 @@ KrViewer* KrViewer::getViewer(bool new_window)
             viewers.prepend(new KrViewer());   // add to first (active)
         } else {
             if (viewers.first()->isMinimized()) { // minimized? -> show it again
-                viewers.first()->setWindowState(viewers.first()->windowState() & ~Qt::WindowMinimized | Qt::WindowActive);
+                viewers.first()->setWindowState((viewers.first()->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
                 viewers.first()->show();
             }
             viewers.first()->raise();
