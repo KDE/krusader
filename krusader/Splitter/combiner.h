@@ -43,7 +43,28 @@ class Combiner : public QProgressDialog
 {
     Q_OBJECT
 
+public:
+    Combiner(QWidget* parent,  KUrl baseURLIn, KUrl destinationURLIn, bool unixNamingIn = false);
+    ~Combiner();
+
+    void combine();
+
+private slots:
+    void statDest();
+    void statDestResult(KJob* job);
+    void combineSplitFileDataReceived(KIO::Job *, const QByteArray &byteArray);
+    void combineSplitFileFinished(KJob *job);
+    void combineDataReceived(KIO::Job *, const QByteArray &);
+    void combineReceiveFinished(KJob *);
+    void combineDataSend(KIO::Job *, QByteArray &);
+    void combineSendFinished(KJob *);
+    void combineWritePercent(KJob *, unsigned long);
+
 private:
+    void openNextFile();
+    void combineAbortJobs();
+
+
     KUrl            splURL;
     KUrl            readURL;
     KUrl            writeURL;
@@ -70,27 +91,6 @@ private:
     KIO::TransferJob *combineWriteJob;
 
     bool            unixNaming;
-
-public:
-    Combiner(QWidget* parent,  KUrl baseURLIn, KUrl destinationURLIn, bool unixNamingIn = false);
-    ~Combiner();
-
-    void combine();
-
-private slots:
-    void statDest();
-    void statDestResult(KJob* job);
-    void combineSplitFileDataReceived(KIO::Job *, const QByteArray &byteArray);
-    void combineSplitFileFinished(KJob *job);
-    void combineDataReceived(KIO::Job *, const QByteArray &);
-    void combineReceiveFinished(KJob *);
-    void combineDataSend(KIO::Job *, QByteArray &);
-    void combineSendFinished(KJob *);
-    void combineWritePercent(KJob *, unsigned long);
-
-private:
-    void openNextFile();
-    void combineAbortJobs();
 };
 
 #endif /* __COMBINER_H__ */
