@@ -43,7 +43,26 @@ class Splitter : public QProgressDialog
 {
     Q_OBJECT
 
+public:
+    Splitter(QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn);
+    ~Splitter();
+
+    void split(KIO::filesize_t splitSizeIn);
+
+private slots:
+    void splitDataReceived(KIO::Job *, const QByteArray &);
+    void splitDataSend(KIO::Job *, QByteArray &);
+    void splitSendFinished(KJob *);
+    void splitReceiveFinished(KJob *);
+    void splitReceivePercent(KJob *, unsigned long);
+    void splitFileSend(KIO::Job *, QByteArray &);
+    void splitFileFinished(KJob *);
+
 private:
+    void splitCreateWriteJob();
+    void splitAbortJobs();
+
+
     KUrl            fileName;
     KUrl            destinationDir;
     KIO::filesize_t splitSize;
@@ -61,25 +80,6 @@ private:
 
     KIO::TransferJob *splitReadJob;
     KIO::TransferJob *splitWriteJob;
-
-public:
-    Splitter(QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn);
-    ~Splitter();
-
-    void split(KIO::filesize_t splitSizeIn);
-
-private:
-    void splitCreateWriteJob();
-    void splitAbortJobs();
-
-public slots:
-    void splitDataReceived(KIO::Job *, const QByteArray &);
-    void splitDataSend(KIO::Job *, QByteArray &);
-    void splitSendFinished(KJob *);
-    void splitReceiveFinished(KJob *);
-    void splitReceivePercent(KJob *, unsigned long);
-    void splitFileSend(KIO::Job *, QByteArray &);
-    void splitFileFinished(KJob *);
 };
 
 #endif /* __SPLITTER_H__ */
