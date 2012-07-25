@@ -56,7 +56,6 @@ private:
     QString         splitFile;
     QString         error;
 
-
     bool            hasValidSplitFile;
     QString         expectedFileName;
     KIO::filesize_t expectedSize;
@@ -66,6 +65,7 @@ private:
     int             permissions;
     KIO::filesize_t receivedSize;
 
+    KIO::Job         *statJob;
     KIO::TransferJob *combineReadJob;
     KIO::TransferJob *combineWriteJob;
 
@@ -77,7 +77,9 @@ public:
 
     void combine();
 
-public slots:
+private slots:
+    void statDest();
+    void statDestResult(KJob* job);
     void combineSplitFileDataReceived(KIO::Job *, const QByteArray &byteArray);
     void combineSplitFileFinished(KJob *job);
     void combineDataReceived(KIO::Job *, const QByteArray &);

@@ -30,16 +30,22 @@
 
 #include "combiner.h"
 #include "../VFS/vfs.h"
+
 #include <klocale.h>
+#include <kdebug.h>
 #include <kmessagebox.h>
 #include <kfileitem.h>
 #include <kio/job.h>
+#include <kio/jobuidelegate.h>
 #include <QtCore/QFileInfo>
+
+//TODO: delete destination file on error
+//TODO: cache more than one byte array of data
 
 Combiner::Combiner(QWidget* parent,  KUrl baseURLIn, KUrl destinationURLIn, bool unixNamingIn) :
         QProgressDialog(parent, 0), baseURL(baseURLIn), destinationURL(destinationURLIn),
         hasValidSplitFile(false), fileCounter(0), permissions(-1), receivedSize(0),
-        combineReadJob(0), combineWriteJob(0), unixNaming(unixNamingIn)
+        statJob(0), combineReadJob(0), combineWriteJob(0), unixNaming(unixNamingIn)
 {
     crcContext = new CRC32();
 
@@ -67,6 +73,7 @@ void Combiner::combine()
     splURL = baseURL;
     splURL.setFileName(baseURL.fileName() + ".crc");
     KFileItem file(KFileItem::Unknown, KFileItem::Unknown, splURL);
+    //FIXME: works only for local files - use KIO::stat() instead
     file.refresh();
 
     if (!file.isReadable()) {
@@ -79,7 +86,7 @@ void Combiner::combine()
             return;
         }
 
-        openNextFile();
+        statDest();
     } else {
         permissions = file.permissions() | QFile::WriteUser;
 
@@ -123,6 +130,7 @@ void Combiner::combineSplitFileFinished(KJob *job)
                 expectedFileName = value;
                 hasFileName = true;
             } else if (token == "size") {
+                //FIXME - dont use c functions !!!
                 sscanf(value.trimmed().toLocal8Bit(), "%llu", &expectedSize);
                 hasSize = true;
             }
@@ -147,7 +155,53 @@ void Combiner::combineSplitFileFinished(KJob *job)
         }
     }
 
-    openNextFile();
+    statDest();
+}
+
+void Combiner::statDest()
+{
+    if (writeURL.isEmpty()) {
+        writeURL = destinationURL;
+        writeURL.addPath(baseURL.fileName());
+
+        if (hasValidSplitFile)
+            writeURL.setFileName(expectedFileName);
+        else if (unixNaming)
+            writeURL.setFileName(baseURL.fileName() + ".out");
+    }
+
+    statJob = KIO::stat(writeURL, KIO::StatJob::DestinationSide, 0, KIO::HideProgressInfo);
+    connect(statJob, SIGNAL(result(KJob*)), SLOT(statDestResult(KJob*)));
+}
+
+void Combiner::statDestResult(KJob* job)
+{
+    statJob = 0;
+
+    if (job->error()) {
+        if (job->error() == KIO::ERR_DOES_NOT_EXIST) {
+            openNextFile();
+        } else {
+            static_cast<KIO::Job*>(job)->ui()->showErrorMessage();
+            emit reject();
+        }
+    } else { // destination already exists
+        KIO::RenameDialog_Mode mode = static_cast<KIO::StatJob*>(job)->statResult().isDir() ?
+            KIO::M_ISDIR : KIO::M_OVERWRITE;
+        KIO::RenameDialog dlg(this, i18n("File Already Exists"), QUrl(), writeURL, mode);
+        switch (dlg.exec()) {
+        case KIO::R_OVERWRITE:
+            openNextFile();
+            break;
+        case KIO::R_RENAME: {
+            writeURL = dlg.newDestUrl();
+            statDest();
+            break;
+        }
+        default:
+            emit reject();
+        }
+    }
 }
 
 void Combiner::openNextFile()
@@ -179,7 +233,7 @@ void Combiner::openNextFile()
         readURL.setFileName(baseURL.fileName() + '.' + index);
     }
 
-    /* creating a write job */
+    /* creating a read job */
     combineReadJob = KIO::get(readURL, KIO::NoReload, KIO::HideProgressInfo);
 
     connect(combineReadJob, SIGNAL(data(KIO::Job *, const QByteArray &)),
@@ -203,13 +257,6 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
     receivedSize += byteArray.size();
 
     if (combineWriteJob == 0) {
-        writeURL = destinationURL;
-        writeURL.addPath(baseURL.fileName());
-        if (hasValidSplitFile)
-            writeURL.setFileName(expectedFileName);
-        else if (unixNaming)
-            writeURL.setFileName(baseURL.fileName() + ".out");
-
         combineWriteJob = KIO::put(writeURL, permissions, KIO::HideProgressInfo | KIO::Overwrite);
 
         connect(combineWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
@@ -218,10 +265,9 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
                 this, SLOT(combineSendFinished(KJob *)));
     }
 
-    if (combineWriteJob) {
-        if (combineReadJob) combineReadJob->suspend();     /* start writing */
-        combineWriteJob->resume();
-    }
+     // continue writing and suspend read job until recieved data is handed over to the write job
+    combineReadJob->suspend();
+    combineWriteJob->resume();
 }
 
 void Combiner::combineReceiveFinished(KJob *job)
@@ -229,29 +275,33 @@ void Combiner::combineReceiveFinished(KJob *job)
     combineReadJob = 0;   /* KIO automatically deletes the object after Finished signal */
 
     if (job->error()) {
-        if (combineWriteJob)          /* write out the remaining part of the file */
-            combineWriteJob->resume();
+        if (job->error() == KIO::ERR_DOES_NOT_EXIST) {
+            if (fileCounter == 1) { // first file doesn't exist
+                combineAbortJobs();
+                KMessageBox::error(0, i18n("Can't open the first split file of %1!",
+                                                baseURL.pathOrUrl()));
+                emit reject();
+            } else { // we've recieved the last file
+                // write out the remaining part of the file
+                combineWriteJob->resume();
 
-        if (fileCounter == 1) {
+                if (hasValidSplitFile) {
+                    QString crcResult = QString("%1").arg(crcContext->result(), 0, 16).toUpper().trimmed()
+                                        .rightJustified(8, '0');
+
+                    if (receivedSize != expectedSize)
+                        error = i18n("Incorrect filesize! The file might have been corrupted!");
+                    else if (crcResult != expectedCrcSum.toUpper().trimmed())
+                        error = i18n("Incorrect CRC checksum! The file might have been corrupted!");
+                }
+            }
+        } else {
             combineAbortJobs();
-            KMessageBox::questionYesNo(0, i18n("Can't open the first split file of %1!",
-                                               baseURL.pathOrUrl()));
+            static_cast<KIO::Job*>(job)->ui()->showErrorMessage();
             emit reject();
-            return;
         }
-
-        if (hasValidSplitFile) {
-            QString crcResult = QString("%1").arg(crcContext->result(), 0, 16).toUpper().trimmed()
-                                .rightJustified(8, '0');
-
-            if (receivedSize != expectedSize)
-                error = i18n("Incorrect filesize! The file might have been corrupted!");
-            else if (crcResult != expectedCrcSum.toUpper().trimmed())
-                error = i18n("Incorrect CRC checksum! The file might have been corrupted!");
-        }
-        return;
-    }
-    openNextFile();
+    } else
+        openNextFile();
 }
 
 void Combiner::combineDataSend(KIO::Job *, QByteArray &byteArray)
@@ -260,7 +310,8 @@ void Combiner::combineDataSend(KIO::Job *, QByteArray &byteArray)
     transferArray = QByteArray();
 
     if (combineReadJob) {
-        combineReadJob->resume();    /* start reading */
+        // continue reading and suspend write job until data is available
+        combineReadJob->resume();
         combineWriteJob->suspend();
     }
 }
@@ -271,29 +322,26 @@ void Combiner::combineSendFinished(KJob *job)
 
     if (job->error()) {   /* any error occurred? */
         combineAbortJobs();
-        KMessageBox::error(0, i18n("Error writing file %1!", writeURL.pathOrUrl()));
+        static_cast<KIO::Job*>(job)->ui()->showErrorMessage();
         emit reject();
-        return;
-    }
-
-    if (!error.isEmpty()) {  /* was any error message at reading ? */
+    } else if (!error.isEmpty()) {  /* was any error message at reading ? */
         combineAbortJobs();             /* we cannot write out it in combineReceiveFinished */
         KMessageBox::error(0, error);   /* because emit accept closes it in this function */
         emit reject();
-        return;
-    }
-
-    emit accept();
+    } else
+        emit accept();
 }
 
 void Combiner::combineAbortJobs()
 {
+    if (statJob)
+        statJob->kill(KJob::Quietly);
     if (combineReadJob)
-        combineReadJob->kill(KJob::EmitResult);
+        combineReadJob->kill(KJob::Quietly);
     if (combineWriteJob)
-        combineWriteJob->kill(KJob::EmitResult);
+        combineWriteJob->kill(KJob::Quietly);
 
-    combineReadJob = combineWriteJob = 0;
+    statJob = combineReadJob = combineWriteJob = 0;
 }
 
 void Combiner::combineWritePercent(KJob *, unsigned long)
