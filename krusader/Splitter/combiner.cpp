@@ -234,8 +234,7 @@ void Combiner::combineReceiveFinished(KJob *job)
 
         if (fileCounter == 1) {
             combineAbortJobs();
-            KMessageBox::questionYesNo(0, i18n("Can't open the first split file of %1!",
-                                               baseURL.pathOrUrl()));
+            KMessageBox::error(0, i18n("Can't open the first split file of %1!", baseURL.pathOrUrl()));
             emit reject();
             return;
         }
