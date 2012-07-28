@@ -137,7 +137,8 @@ void QueueManager::slotQueueEmptied()
             break;
         }
     }
-    QueueDialog::everyQueueIsEmpty();
+    if (empty)
+        QueueDialog::everyQueueIsEmpty();
 }
 
 Queue * QueueManager::createQueue(const QString& queueName)
