@@ -178,7 +178,7 @@ void KrCalcSpaceDialog::showResult()
     QString fileName = (m_items.count() == 1) ? i18n("Name: %1\n", m_items.first()) : QString("");
     msg = fileName + i18n("Total occupied space: %1", KIO::convertSize(totalSize));
     if (totalSize >= 1024)
-        msg += i18n(" (bytes)", KRpermHandler::parseSize(totalSize));
+        msg += i18np(" (%1 byte)", " (%1 bytes)", KRpermHandler::parseSize(totalSize));
     msg += '\n';
     msg += i18np("in %1 directory", "in %1 directories", totalDirs);
     msg += ' ';
