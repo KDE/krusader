@@ -80,13 +80,13 @@ void KrVfsModel::clear()
     emit layoutChanged();
 }
 
-int KrVfsModel::rowCount(const QModelIndex& parent) const
+int KrVfsModel::rowCount(const QModelIndex& /*parent*/) const
 {
     return _vfiles.count();
 }
 
 
-int KrVfsModel::columnCount(const QModelIndex &parent) const
+int KrVfsModel::columnCount(const QModelIndex& /*parent*/) const
 {
     return KrViewProperties::MAX_COLUMNS;
 }

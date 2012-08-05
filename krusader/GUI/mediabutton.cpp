@@ -466,7 +466,7 @@ void MediaButton::eject(QString udi)
     krMtMan.eject(krMtMan.pathForUdi(udi));
 }
 
-void MediaButton::slotAccessibilityChanged(bool accessible, const QString & udi)
+void MediaButton::slotAccessibilityChanged(bool /*accessible*/, const QString & udi)
 {
     QList<QAction *> actionList = popupMenu->actions();
     foreach(QAction * act, actionList) {

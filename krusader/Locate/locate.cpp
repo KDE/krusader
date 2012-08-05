@@ -87,6 +87,8 @@ public:
     }
 
     void startDrag(Qt::DropActions supportedActs) {
+        Q_UNUSED(supportedActs);
+
         KUrl::List urls;
         QList<QTreeWidgetItem *> list = selectedItems() ;
 

@@ -37,7 +37,7 @@
 #include <kuiserverjobtracker.h>
 
 
-KIO::Job * PreservingCopyJob::createCopyJob(PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool asMethod, bool showProgressInfo)
+KIO::Job * PreservingCopyJob::createCopyJob(PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool /*asMethod*/, bool showProgressInfo)
 {
     switch (pmode) {
     // KIO always preserves attributes

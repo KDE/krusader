@@ -297,7 +297,7 @@ void KrInterDetailedView::showContextMenu(const QPoint & p)
     op()->settingsChanged(KrViewProperties::PropColumns);
 }
 
-void KrInterDetailedView::sectionResized(int column, int oldSize, int newSize)
+void KrInterDetailedView::sectionResized(int /*column*/, int oldSize, int newSize)
 {
     // *** taken from dolphin ***
     // If the user changes the size of the headers, the autoresize feature should be
@@ -316,7 +316,7 @@ void KrInterDetailedView::sectionResized(int column, int oldSize, int newSize)
     recalculateColumnSizes();
 }
 
-void KrInterDetailedView::sectionMoved(int logicalIndex, int oldVisualIndex, int newVisualIndex)
+void KrInterDetailedView::sectionMoved(int /*logicalIndex*/, int /*oldVisualIndex*/, int /*newVisualIndex*/)
 {
     op()->settingsChanged(KrViewProperties::PropColumns);
 }

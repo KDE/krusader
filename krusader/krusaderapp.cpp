@@ -21,12 +21,12 @@
 
 KrusaderApp::KrusaderApp(): KApplication() {}
 
-void KrusaderApp::focusInEvent(QFocusEvent *event)
+void KrusaderApp::focusInEvent(QFocusEvent* /*event*/)
 {
     emit windowActive();
 }
 
-void KrusaderApp::focusOutEvent(QFocusEvent *event)
+void KrusaderApp::focusOutEvent(QFocusEvent* /*event*/)
 {
     emit windowInactive();
 }

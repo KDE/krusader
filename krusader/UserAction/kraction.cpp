@@ -299,7 +299,7 @@ void KrActionProc::start(QStringList cmdLineList)
     }
 }
 
-void KrActionProc::processExited(int exitCode, QProcess::ExitStatus exitStatus)
+void KrActionProc::processExited(int /*exitCode*/, QProcess::ExitStatus /*exitStatus*/)
 {
     // enable the 'close' button on the dialog (if active), disable 'kill' button
     if (_output) {

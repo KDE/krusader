@@ -96,6 +96,7 @@ protected:
         return KrSort::itemGreaterThan;
     }
     virtual QVariant customSortData(vfile *vf) const {
+        Q_UNUSED(vf);
         return QVariant();
     }
     KrSort::Sorter createSorter();

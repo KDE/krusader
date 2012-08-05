@@ -33,20 +33,24 @@ public:
     PathLabel (QWidget *parent, QLineEdit *le) : KSqueezedTextLabel(parent), _lineEdit(le) {}
 
     virtual void mousePressEvent(QMouseEvent *event) {
+        Q_UNUSED(event);
         hide();
         _lineEdit->show();
         _lineEdit->setFocus();
     }
 
     virtual void enterEvent(QEvent *event) {
+        Q_UNUSED(event);
         update();
     }
 
     virtual void leaveEvent(QEvent *event) {
+        Q_UNUSED(event);
         update();
     }
 
     virtual void paintEvent(QPaintEvent *event) {
+        Q_UNUSED(event);
         QPainter p(this);
         QStyleOption opt;
         opt.rect = rect();

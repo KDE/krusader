@@ -623,7 +623,7 @@ PanelViewerBase * KrViewer::getPanelViewerBase(KParts::Part * part)
     return 0;
 }
 
-void KrViewer::updateActions(PanelViewerBase * pvb)
+void KrViewer::updateActions(PanelViewerBase * /*pvb*/)
 {
     QList<QAction *> actList = toolBar()->actions();
     bool hasPrint = false, hasCopy = false;
@@ -644,7 +644,7 @@ bool KrViewer::isValidPart(KParts::Part* part)
     return manager.parts().contains(part);
 }
 
-void KrViewer::partDestroyed(PanelViewerBase * pvb)
+void KrViewer::partDestroyed(PanelViewerBase * /*pvb*/)
 {
     /* not yet used */
 }

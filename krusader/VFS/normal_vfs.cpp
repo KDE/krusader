@@ -304,6 +304,7 @@ vfile* normal_vfs::vfileFromName(const QString& name, char * rawName)
 
 void normal_vfs::getACL(vfile *file, QString &acl, QString &defAcl)
 {
+    Q_UNUSED(file);
     acl.clear();
     defAcl.clear();
 #ifdef HAVE_POSIX_ACL
@@ -322,6 +323,8 @@ void normal_vfs::getACL(vfile *file, QString &acl, QString &defAcl)
 
 QString normal_vfs::getACL(const QString & path, int type)
 {
+    Q_UNUSED(path);
+    Q_UNUSED(type);
 #ifdef HAVE_POSIX_ACL
     acl_t acl = 0;
     // do we have an acl for the file, and/or a default acl for the dir, if it is one?

@@ -902,7 +902,7 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
     }
 }
 
-void ListPanel::vfs_refresh(KJob *job)
+void ListPanel::vfs_refresh(KJob* /*job*/)
 {
     if (func)
         func->refresh();
@@ -1070,12 +1070,12 @@ void ListPanel::slotPreviewJobStarted(KJob *job)
     connect(job, SIGNAL(result(KJob*)), SLOT(slotPreviewJobResult(KJob*)));
 }
 
-void ListPanel::slotPreviewJobPercent(KJob *job, unsigned long percent)
+void ListPanel::slotPreviewJobPercent(KJob* /*job*/, unsigned long percent)
 {
     previewProgress->setValue(percent);
 }
 
-void ListPanel::slotPreviewJobResult(KJob *job)
+void ListPanel::slotPreviewJobResult(KJob* /*job*/)
 {
     previewJob = 0;
     previewProgress->hide();

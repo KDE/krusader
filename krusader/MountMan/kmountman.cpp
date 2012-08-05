@@ -510,7 +510,7 @@ QString KMountMan::pathForUdi(QString udi)
         return QString();
 }
 
-void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi)
+void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString& /*udi*/)
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
@@ -518,7 +518,7 @@ void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, con
     }
 }
 
-void KMountMan::slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi)
+void KMountMan::slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString& /*udi*/)
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {

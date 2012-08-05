@@ -165,7 +165,7 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
     return u;
 }
 
-KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QString& urlName, const QString& _text, bool presAttrs, QWidget *parent,
+KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QString& urlName, const QString& _text, bool /*presAttrs*/, QWidget *parent,
         bool modal, KUrl baseURL)
         :   KDialog(parent), baseUrlCombo(0), copyDirStructureCB(0), queue(false)
 {

@@ -325,7 +325,7 @@ bool KrMouseHandler::dragMoveEvent(QDragMoveEvent *e)
     return true;
 }
 
-bool KrMouseHandler::dragLeaveEvent(QDragLeaveEvent *e)
+bool KrMouseHandler::dragLeaveEvent(QDragLeaveEvent * /*e*/)
 {
     return false;
 }

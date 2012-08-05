@@ -80,8 +80,8 @@ protected:
         DummySelectionModel(QAbstractItemModel *model, QObject *parent) :
             QItemSelectionModel(model, parent) {}
         // do nothing - selection is managed by KrInterView
-        virtual void select (const QModelIndex & index, QItemSelectionModel::SelectionFlags command) {}
-        virtual void select(const QItemSelection & selection, QItemSelectionModel::SelectionFlags command) {}
+        virtual void select (const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { Q_UNUSED(index); Q_UNUSED(command); }
+        virtual void select(const QItemSelection & selection, QItemSelectionModel::SelectionFlags command) { Q_UNUSED(selection); Q_UNUSED(command); }
     };
 
     virtual KIO::filesize_t calcSize();
