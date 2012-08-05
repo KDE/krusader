@@ -45,6 +45,7 @@ class KrViewInstance
 public:
 
     KrViewInstance(int id, QString name, QString desc, QString icon, QKeySequence shortcut);
+    virtual ~KrViewInstance() {}
 
     inline int                     id()                    {
         return m_id;
