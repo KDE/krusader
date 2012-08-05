@@ -160,9 +160,10 @@ void KrActions::setupActions(Krusader *krusaderApp)
     KConfigGroup group(krConfig, "Private");
     int compareMode = group.readEntry("Compare Mode", 0);
     int cmdExecMode =  group.readEntry("Command Execution Mode", 0);
+    KAction *tmp;
+    Q_UNUSED(tmp);
 
-    KAction *tabSwitch;
-    NEW_KACTION(tabSwitch, i18n("Tab-Switch panel"), 0, Qt::Key_Tab, MAIN_VIEW, SLOT(panelSwitch()), "tab");
+    NEW_KACTION(tmp, i18n("Tab-Switch panel"), 0, Qt::Key_Tab, MAIN_VIEW, SLOT(panelSwitch()), "tab");
 
     KToggleToolBarAction *actShowToolBar = new KToggleToolBarAction(krusaderApp->toolBar(), i18n("Show Main Toolbar"), krusaderApp);
     krusaderApp->actionCollection()->addAction(KStandardAction::name(KStandardAction::ShowToolbar), actShowToolBar);
@@ -198,8 +199,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actCmdlinePopup, i18n("popup cmdline"), 0, Qt::CTRL + Qt::Key_Slash, SLOTS, SLOT(cmdlinePopup()), "cmdline popup");
 
 
-    KAction *tmp2;
-    NEW_KACTION(tmp2, i18n("Start &Root Mode Krusader"), "krusader_root", Qt::ALT + Qt::SHIFT + Qt::Key_K, SLOTS, SLOT(rootKrusader()), "root krusader");
+    NEW_KACTION(tmp, i18n("Start &Root Mode Krusader"), "krusader_root", Qt::ALT + Qt::SHIFT + Qt::Key_K, SLOTS, SLOT(rootKrusader()), "root krusader");
     NEW_KACTION(actProfiles, i18n("Pro&files"), "user-identity", Qt::ALT + Qt::SHIFT + Qt::Key_L, MAIN_VIEW, SLOT(profiles()), "profile");
     NEW_KACTION(actSplit, i18n("Sp&lit File..."), "kr_split", Qt::CTRL + Qt::Key_P, SLOTS, SLOT(slotSplit()), "split");
     NEW_KACTION(actCombine, i18n("Com&bine Files..."), "kr_combine", Qt::CTRL + Qt::Key_B, SLOTS, SLOT(slotCombine()), "combine");
@@ -259,8 +259,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actCompare, i18n("Compare b&y Content..."), "kmultiple", 0, SLOTS, SLOT(compareContent()), "compare");
     NEW_KACTION(actMultiRename, i18n("Multi &Rename..."), "krename", Qt::SHIFT + Qt::Key_F9, SLOTS, SLOT(multiRename()), "multirename");
 
-    KAction *t3, *t4, *t5, *t6, *t7, *t8, *t9, *t10, *t11, *t12, *t13, *t14, *t15, *t16;
-    NEW_KACTION(t7, i18n("Bookmark Current"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_D, SLOTS, SLOT(bookmarkCurrent()), "bookmark current");
+    NEW_KACTION(tmp, i18n("Bookmark Current"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_D, SLOTS, SLOT(bookmarkCurrent()), "bookmark current");
     NEW_KACTION(actVerticalMode, i18n("Vertical Mode"), "view-split-top-bottom", Qt::ALT + Qt::CTRL + Qt::Key_R, MAIN_VIEW, SLOT(toggleVerticalMode()), "toggle vertical mode");
 #if 0
     actUserMenu = new KAction(i18n("User Menu"), ALT + Qt::Key_QuoteLeft, SLOTS,
@@ -278,7 +277,6 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actSwitchFullScreenTE, i18n("Toggle Fullwidget Terminal Emulator"), 0, Qt::CTRL + Qt::Key_F, MAIN_VIEW, SLOT(switchFullScreenTE()), "switch_fullscreen_te");
 
 
-    KAction *tmp;
     NEW_KACTION(tmp, i18n("Move Focus Up"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Up, MAIN_VIEW, SLOT(focusUp()), "move_focus_up");
     NEW_KACTION(tmp, i18n("Move Focus Down"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Down, MAIN_VIEW, SLOT(focusDown()), "move_focus_down");
 
