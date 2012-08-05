@@ -988,7 +988,7 @@ void Synchronizer::executeTask(SynchronizerFileItem * task)
         }
         break;
     case TT_DELETE: {
-        KIO::DeleteJob *job = KIO::del(leftURL, false);
+        KIO::DeleteJob *job = KIO::del(leftURL, KIO::DefaultFlags);
         connect(job, SIGNAL(result(KJob*)), this, SLOT(slotTaskFinished(KJob*)));
         jobMap[ job ] = task;
     }

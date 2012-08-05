@@ -195,7 +195,7 @@ void KMountMan::mount(QString mntPoint, bool blocking)
                 return;
         }
 
-        KIO::SimpleJob *job = KIO::mount(false, m->mountType().toLocal8Bit(), m->mountedFrom(), m->mountPoint(), false);
+        KIO::SimpleJob *job = KIO::mount(false, m->mountType().toLocal8Bit(), m->mountedFrom(), m->mountPoint(), KIO::DefaultFlags);
         job->setUiDelegate(new KIO::JobUiDelegate());
         KIO::getJobTracker()->registerJob(job);
         connect(job, SIGNAL(result(KJob*)), this, SLOT(jobResult(KJob*)));
@@ -238,7 +238,7 @@ void KMountMan::unmount(QString mntPoint, bool blocking)
                 return;
         }
 
-        KIO::SimpleJob *job = KIO::unmount(mntPoint, false);
+        KIO::SimpleJob *job = KIO::unmount(mntPoint, KIO::DefaultFlags);
         job->setUiDelegate(new KIO::JobUiDelegate());
         KIO::getJobTracker()->registerJob(job);
         connect(job, SIGNAL(result(KJob*)), this, SLOT(jobResult(KJob*)));
