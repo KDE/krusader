@@ -321,7 +321,7 @@ RadialMap::Map::paint(unsigned int scaleFactor)
                 //draw arrow head to indicate undisplayed files/directories
                 QPolygon pts(3);
                 QPoint pos, cpos = rect.center();
-                int a[3] = {(*it)->start(), (*it)->length(), 0 };
+                int a[3] = {static_cast<int>((*it)->start()), static_cast<int>((*it)->length()), 0 };
 
                 a[2] = a[0] + (a[1] / 2); //assign to halfway between
                 if (a[1] > a_max) {
