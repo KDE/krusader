@@ -104,6 +104,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
 
     // navigation
     actRoot = action(i18n("Root"), "go-top", Qt::CTRL + Qt::Key_Backspace, _func, SLOT(root()), "root");
+    actCdToOther = action(i18n("Go to Other Panel's Directory"), 0, Qt::CTRL + Qt::Key_Equal, _func, SLOT(cdToOtherPanel()), "cd to other panel");
     action(i18n("&Reload"), "view-refresh", Qt::CTRL + Qt::Key_R, _func, SLOT(refresh()), "std_redisplay");
     actCancelRefresh = action(i18n("Cancel Refresh of View"), "kr_cancel_refresh", 0, _gui, SLOT(inlineRefreshCancel()), "cancel refresh");
     actFTPNewConnect = action(i18n("New Net &Connection..."), "network-connect", Qt::CTRL + Qt::Key_N, _func, SLOT(newFTPconnection()), "ftp new connection");

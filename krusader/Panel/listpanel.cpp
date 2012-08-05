@@ -271,13 +271,9 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 
     // toolbar buttons
 
-    cdOtherButton = new QToolButton(toolbar);
-    cdOtherButton->setAutoRaise(true);
-    cdOtherButton->setFixedSize(20, origin->button() ->height());
-    cdOtherButton->setText(i18n("="));
+    cdOtherButton = new ActionButton(toolbar, this, _actions->actCdToOther, "=");
+    cdOtherButton->setFixedSize(20, origin->button()->height());
     toolbarLayout->addWidget(cdOtherButton);
-    cdOtherButton->setToolTip(i18n("Equal"));
-    connect(cdOtherButton, SIGNAL(clicked()), this, SLOT(slotFocusAndCDOther()));
 
     cdUpButton = new ActionButton(toolbar, this, _actions->actDirUp, "..");
     toolbarLayout->addWidget(cdUpButton);
@@ -586,12 +582,6 @@ void ListPanel::setButtons()
 void ListPanel::slotUpdateTotals()
 {
     totals->setText(view->statistics());
-}
-
-void ListPanel::slotFocusAndCDOther()
-{
-    slotFocusOnMe();
-    func->openUrl(otherPanel()->func->files() ->vfs_getOrigin());
 }
 
 void ListPanel::compareDirs(bool otherPanelToo)
