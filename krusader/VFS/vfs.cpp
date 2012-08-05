@@ -324,7 +324,7 @@ void vfs::calculateURLSize(KUrl url,  KIO::filesize_t* totalSize, unsigned long*
         if (entry.count() == 0) return;  // statJob failed
         KFileItem kfi(entry, url, true);
         if (kfi.isFile() || kfi.isLink()) {
-            *totalFiles++;
+            (*totalFiles)++;
             *totalSize += kfi.size();
             return;
         }
