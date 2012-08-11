@@ -141,6 +141,12 @@ KrViewer::~KrViewer()
                this, SLOT(createGUI(KParts::Part*)));
 
     viewers.removeAll(this);
+
+    // close tabs before deleting tab bar - this avoids Qt bug 26115
+    // https://bugreports.qt-project.org/browse/QTBUG-26115
+    while(tabBar.count())
+        tabCloseRequest();
+
     delete printAction;
     delete copyAction;
 }
