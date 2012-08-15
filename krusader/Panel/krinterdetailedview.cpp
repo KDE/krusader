@@ -397,5 +397,6 @@ void KrInterDetailedView::copySettingsFrom(KrView *other)
         header()->restoreState(v->header()->saveState());
         _model->setExtensionEnabled(!isColumnHidden(KrViewProperties::Ext));
         recalculateColumnSizes();
+        setFileIconSize(v->fileIconSize());
     }
 }

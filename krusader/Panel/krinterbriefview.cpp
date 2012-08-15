@@ -561,5 +561,6 @@ void KrInterBriefView::copySettingsFrom(KrView *other)
         Qt::SortOrder sortDir = v->_model->lastSortDir();
         _header->setSortIndicator(column, sortDir);
         _model->sort(column, sortDir);
+        setFileIconSize(v->fileIconSize());
     }
 }
