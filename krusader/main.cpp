@@ -134,6 +134,8 @@ int main(int argc, char *argv[])
                          ki18n("Feedback:\nhttp://www.krusader.org/phpBB/\n\nIRC\nserver: irc.freenode.net, channel: #krusader"),
                          "http://www.krusader.org");
 
+    aboutData.setProgramIconName(Krusader::privIcon());
+
     aboutData.addAuthor(ki18n("Rafi Yanai"), ki18n("Author"), "yanai@users.sourceforge.net");
     aboutData.addAuthor(ki18n("Shie Erlich"), ki18n("Author"), "erlich@users.sourceforge.net");
     aboutData.addAuthor(ki18n("Karai Csaba"), ki18n("Developer"), "ckarai@users.sourceforge.net", 0);
