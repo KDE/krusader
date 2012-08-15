@@ -1091,7 +1091,7 @@ void KrView::applySettingsToOthers()
         if(this != view) {
             bool tmp = view->_updateDefaultSettings;
             view->_updateDefaultSettings = false;
-            _instance.m_objects[i]->copySettingsFrom(this);
+            view->copySettingsFrom(this);
             view->_updateDefaultSettings = tmp;
         }
     }
