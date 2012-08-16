@@ -182,13 +182,15 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KUrl &url, QString mimet
         if((mimetype.startsWith(QLatin1String("text/")) ||
             mimetype.startsWith(QLatin1String("all/"))) &&
                 fileSize > limit) {
-            part = isBinary ? getHexPart() : getListerPart();
+            part = getListerPart(isBinary);
             break;
         } else if((part = getPart(mimetype)))
             break;
     case KrViewer::Text:
-        if(fileSize > limit || isBinary)
-            part = isBinary ? getHexPart() : getListerPart();
+        if (fileSize > limit)
+            part =  getListerPart(isBinary);
+        else if (isBinary)
+            part = getHexPart();
         else
             part = getTextPart();
         break;
@@ -196,7 +198,10 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KUrl &url, QString mimet
         part = getListerPart(isBinary);
         break;
     case KrViewer::Hex:
-        part = getHexPart();
+        if (fileSize > limit)
+            part = getListerPart(true);
+        else
+            part = getHexPart();
         break;
     default:
         abort();
