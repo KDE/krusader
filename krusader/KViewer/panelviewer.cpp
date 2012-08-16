@@ -143,7 +143,7 @@ KParts::ReadOnlyPart* PanelViewer::getHexPart()
         KPluginFactory* factory = KLibLoader::self()->factory("libkhexedit2part");
         if (factory) {
             // Create the part
-            part = (KParts::ReadOnlyPart *) factory->create(this, "KParts::ReadOnlyPart");
+            part = factory->create<KParts::ReadOnlyPart>(this, this);
             mimes->insert(QLatin1String("libkhexedit2part"), part);
         }
     } else
@@ -272,27 +272,15 @@ bool PanelViewer::closeUrl()
 KParts::ReadOnlyPart* PanelViewer::createPart(QString mimetype)
 {
     KParts::ReadOnlyPart * part = 0;
-    KPluginFactory *factory = 0;
     KService::Ptr ptr = KMimeTypeTrader::self()->preferredService(mimetype, "KParts/ReadOnlyPart");
     if (ptr) {
-        QStringList args;
+        QVariantList args;
         QVariant argsProp = ptr->property("X-KDE-BrowserView-Args");
-        if (argsProp.isValid()) {
-            QString argStr = argsProp.toString();
-            args = argStr.split(' ');
-        }
+        if (argsProp.isValid())
+            args << argsProp;
         QVariant prop = ptr->property("X-KDE-BrowserView-AllowAsDefault");
-        if (!prop.isValid() || prop.toBool()) {   // defaults to true
-            factory = KLibLoader::self() ->factory(ptr->library().toLatin1());
-            if (factory) {
-                if (ptr->serviceTypes().contains("Browser/View"))
-                    part = static_cast<KParts::ReadOnlyPart *>(factory->create(this,
-                            QString("Browser/View").toLatin1(), args));
-                if (!part)
-                    part = static_cast<KParts::ReadOnlyPart *>(factory->create(this,
-                            QString("KParts::ReadOnlyPart").toLatin1(), args));
-            }
-        }
+        if (!prop.isValid() || prop.toBool()) // defaults to true
+            part = ptr->createInstance<KParts::ReadOnlyPart>(this, this, args);
     }
     if (part) {
         KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(part);
@@ -387,23 +375,15 @@ bool PanelEditor::closeUrl()
 KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
 {
     KParts::ReadWritePart * part = 0L;
-    KPluginFactory *factory = 0;
     KService::Ptr ptr = KMimeTypeTrader::self()->preferredService(mimetype, "KParts/ReadWritePart");
     if (ptr) {
-        QStringList args;
+        QVariantList args;
         QVariant argsProp = ptr->property("X-KDE-BrowserView-Args");
-        if (argsProp.isValid()) {
-            QString argStr = argsProp.toString();
-            args = argStr.split(' ');
-        }
+        if (argsProp.isValid())
+            args << argsProp;
         QVariant prop = ptr->property("X-KDE-BrowserView-AllowAsDefault");
-        if (!prop.isValid() || prop.toBool()) {  // defaults to true
-            factory = KLibLoader::self() ->factory(ptr->library().toLatin1());
-            if (factory) {
-                part = static_cast<KParts::ReadWritePart *>(factory->create(this,
-                        QString("KParts::ReadWritePart").toLatin1(), args));
-            }
-        }
+        if (!prop.isValid() || prop.toBool()) // defaults to true
+            part = ptr->createInstance<KParts::ReadWritePart>(this, this, args);
     }
     if (part) {
         KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(part);

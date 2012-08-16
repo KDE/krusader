@@ -3,6 +3,8 @@
     CHANGED: user action manager starts with the "Basic Properties" tab active
     CHANGED: detailed view: "Automatically Resize Columns" setting is remembered
 
+    FIXED: crash when trying to view files with embedded KOrganizer part
+           (avoids KOrganizer bug 205713)
     FIXED: "apply settings to other tab" action doesn't apply icon size
     FIXED: [ 198996 ] crash when closing viewer
     FIXED: [ 294501 ] toolbar "equal" has no shortcut
