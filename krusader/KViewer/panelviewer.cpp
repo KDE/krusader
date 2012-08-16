@@ -177,8 +177,7 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KUrl &url, QString mimet
 
     KFileItem item = readFileInfo(url);
     KIO::filesize_t fileSize = item.isNull() ? 0 : item.size();
-    KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit);
-    limit *= 0x100000;
+    KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit) * 0x100000;
 
     KParts::ReadOnlyPart* part = 0;
 
@@ -189,7 +188,7 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KUrl &url, QString mimet
                 fileSize > limit) {
             part = isBinary ? getHexPart() : getListerPart();
             break;
-        } else if(part = getPart(mimetype))
+        } else if((part = getPart(mimetype)))
             break;
     case KrViewer::Text:
         if(fileSize > limit || isBinary)
@@ -313,7 +312,7 @@ KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
     KFileItem item = readFileInfo(url);
     KIO::filesize_t fileSize = item.isNull() ? 0 : item.size();
     KConfigGroup group(krConfig, "General");
-    KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit);
+    KIO::filesize_t limitMB = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit);
 
     KMimeType::Ptr mt = KMimeType::findByUrl(curl);
     QString mimetype = mt->name();
@@ -321,11 +320,11 @@ KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
     if (mode == KrViewer::Generic)
         cpart = getPart(mimetype);
 
-    if(fileSize > limit * 0x100000) {
+    if(fileSize > limitMB * 0x100000) {
         if(!cpart || mimetype.startsWith(QLatin1String("text/")) ||
                 mimetype.startsWith(QLatin1String("all/"))) {
             if(KMessageBox::Cancel == KMessageBox::warningContinueCancel(this,
-                  i18n("%1 is bigger than %2 MB" , curl.pathOrUrl(), limit))) {
+                  i18n("%1 is bigger than %2 MB" , curl.pathOrUrl(), limitMB))) {
                 setCurrentWidget(fallback);
                 return 0;
             }
