@@ -3,6 +3,8 @@
     CHANGED: user action manager starts with the "Basic Properties" tab active
     CHANGED: detailed view: "Automatically Resize Columns" setting is remembered
 
+    FIXED: viewer tries to load obsolete libkhexedit2 part as hex viewer -
+           use okteta part instead
     FIXED: crash when trying to view files with embedded KOrganizer part
            (avoids KOrganizer bug 205713)
     FIXED: "apply settings to other tab" action doesn't apply icon size

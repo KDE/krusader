@@ -139,20 +139,16 @@ KParts::ReadOnlyPart* PanelViewer::getHexPart()
 {
     KParts::ReadOnlyPart* part = 0;
 
-    if (mimes->find(QLatin1String("libkhexedit2part")) == mimes->end()) {
-        KPluginFactory* factory = KLibLoader::self()->factory("libkhexedit2part");
-        if (factory) {
-            // Create the part
-            part = factory->create<KParts::ReadOnlyPart>(this, this);
-            mimes->insert(QLatin1String("libkhexedit2part"), part);
+    if (mimes->find("oktetapart") == mimes->end()) {
+        KPluginLoader loader("oktetapart");
+        if (KPluginFactory *factory = loader.factory()) {
+            if ((part = factory->create<KParts::ReadOnlyPart>(this, this)))
+                mimes->insert("oktetapart", part);
         }
     } else
-        part = (*mimes)[ QLatin1String("libkhexedit2part")];
+        part = (*mimes)["oktetapart"];
 
-    if(!part)
-        part = getListerPart(true);
-
-    return part;
+    return part ? part : getListerPart(true);
 }
 
 KParts::ReadOnlyPart* PanelViewer::getTextPart()
