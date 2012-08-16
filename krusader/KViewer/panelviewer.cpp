@@ -156,7 +156,7 @@ KParts::ReadOnlyPart* PanelViewer::getTextPart()
     KParts::ReadOnlyPart* part = getPart("text/plain");
     if(!part)
         part = getPart("all/allfiles");
-    return part;
+    return part ? part : getListerPart();
 }
 
 KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KUrl &url, QString mimetype, bool isBinary)
