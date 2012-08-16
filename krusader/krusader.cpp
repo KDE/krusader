@@ -103,6 +103,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "Queue/queue_mgr.h"
 #include "Konfigurator/kgprotocols.h"
 #include "BookMan/krbookmarkhandler.h"
+#include "KViewer/krviewer.h"
 
 
 
@@ -276,6 +277,12 @@ Krusader::Krusader() : KParts::MainWindow(0,
 
     if (runKonfig)
         SLOTS->runKonfigurator(true);
+
+    KConfigGroup viewerModuleGrp(krConfig, "ViewerModule");
+    if (viewerModuleGrp.readEntry("FirstRun", true)) {
+        KrViewer::configureDeps();
+        viewerModuleGrp.writeEntry("FirstRun", false);
+    }
 
     if (!runKonfig) {
         KConfigGroup cfg(krConfig, "Private");

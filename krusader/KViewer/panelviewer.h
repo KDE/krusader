@@ -122,6 +122,8 @@ public:
         return true;
     }
 
+    static void configureDeps();
+
 public slots:
     virtual KParts::ReadOnlyPart* openUrl(const KUrl &url, KrViewer::Mode mode);
     virtual bool closeUrl();
@@ -133,6 +135,7 @@ public:
 
 protected:
     virtual KParts::ReadOnlyPart* createPart(QString mimetype);
+    static QString missingKPartMsg();
 };
 
 #endif

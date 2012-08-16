@@ -151,6 +151,11 @@ KrViewer::~KrViewer()
     delete copyAction;
 }
 
+void KrViewer::configureDeps()
+{
+    PanelEditor::configureDeps();
+}
+
 void KrViewer::createGUI(KParts::Part* part)
 {
     /* TODO: fix the toolbar bugs */

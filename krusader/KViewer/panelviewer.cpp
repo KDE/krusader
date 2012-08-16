@@ -304,6 +304,23 @@ PanelEditor::~PanelEditor()
 {
 }
 
+void PanelEditor::configureDeps()
+{
+    KService::Ptr ptr = KMimeTypeTrader::self()->preferredService("text/plain", "KParts/ReadWritePart");
+    if (!ptr)
+        ptr = KMimeTypeTrader::self()->preferredService("all/allfiles", "KParts/ReadWritePart");
+    if (!ptr)
+        KMessageBox::sorry(0, missingKPartMsg(), i18n("Missing Plugin"), KMessageBox::AllowLink);
+
+}
+
+QString PanelEditor::missingKPartMsg()
+{
+    return i18n("No text editor plugin available.<br/>Internal editor won't work without this.<br/>"
+                "You can fix this by installing Kate:<br/>") +
+                QString("<a href='%1'>%1</a>").arg("www.http://kde.org/applications/utilities/kate");
+}
+
 KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
 {
     emit urlChanged(this, url);
@@ -348,11 +365,13 @@ KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
             connect(cpart, SIGNAL(destroyed()), this, SLOT(slotCPartDestroyed()));
             return cpart;
         }
-
     }
 
+    KMessageBox::sorry(this, missingKPartMsg(), i18n("Can't edit %1", curl.pathOrUrl()),
+                       KMessageBox::AllowLink);
     setCurrentWidget(fallback);
     return 0;
+
 }
 
 bool PanelEditor::queryClose()

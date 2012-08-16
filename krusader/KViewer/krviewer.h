@@ -48,6 +48,7 @@ public:
     static void view(KUrl url, Mode mode, bool new_window, QWidget * parent = krMainWindow);
     static void edit(KUrl url, QWidget * parent);
     static void edit(KUrl url, Mode mode = Text, int new_window = -1, QWidget * parent = krMainWindow);
+    static void configureDeps();
 
     virtual bool eventFilter(QObject * watched, QEvent * e);
 
