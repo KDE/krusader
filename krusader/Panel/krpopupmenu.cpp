@@ -61,13 +61,22 @@ void KrPopupMenu::run(const QPoint &pos, KrPanel *panel)
 }
 
 KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : KMenu(parent), panel(thePanel), empty(false),
-        multipleSelections(false), actions(0)
+        multipleSelections(false), actions(0), _item(0)
 {
 #ifdef __LIBKONQ__
     konqMenu = 0;
     konqMenuActions = 0;
 #endif
+
+    KrViewItemList items;
     panel->view->getSelectedKrViewItems(&items);
+
+    for (KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it) {
+        vfile *file = panel->func->files()->vfs_search(((*it)->name()));
+        KUrl url = file->vfile_getUrl();
+        _items.append(KFileItem(url, file->vfile_getMime(), file->vfile_getMode()));
+    }
+
     if (items.empty()) {
         addCreateNewMenu();
         addSeparator();
@@ -82,8 +91,9 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : KMenu(parent), pa
     bool inTrash = protocols.contains("trash");
     bool trashOnly = (protocols.count() == 1) && (protocols[ 0 ] == "trash");
 
-    item = items.first();
+    KrViewItem *item = items.first();
     vfile *vf = panel->func->getVFile(item);
+    _item = &_items.first();
 
     // ------------ the OPEN option - open preferred service
     QAction * openAct = addAction(i18n("Open/Run"));
@@ -145,11 +155,6 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : KMenu(parent), pa
     QAction *uAct = new UserActionPopupMenu(panel->func->files()->vfs_getFile(item->name()).url());
     addAction(uAct);
     uAct->setText(i18n("User Actions"));
-    for (KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it) {
-        vfile *file = panel->func->files()->vfs_search(((*it)->name()));
-        KUrl url = file->vfile_getUrl();
-        _items.append(KFileItem(url,  file->vfile_getMime(), file->vfile_getMode()));
-    }
 
 #ifdef __LIBKONQ__
     // -------------- konqueror menu
@@ -285,7 +290,6 @@ void KrPopupMenu::addCreateNewMenu()
 
 void KrPopupMenu::performAction(int id)
 {
-    KUrl u;
     KUrl::List lst;
 
     switch (id) {
@@ -293,13 +297,11 @@ void KrPopupMenu::performAction(int id)
         return ;
     case OPEN_TAB_ID :
         // assuming only 1 file is selected (otherwise we won't get here)
-        panel->manager()->newTab(panel->func->files()->vfs_getFile(item->name()).url(), panel);
+        panel->manager()->newTab(_item->url(), panel);
         break;
     case OPEN_ID :
-        for (KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it) {
-            u = panel->func->files()->vfs_getFile((*it) ->name());
-            panel->func->execute((*it)->name());
-        }
+        foreach(KFileItem fi, _items)
+            panel->func->execute(fi.name());
         break;
     case COPY_ID :
         panel->func->copyFiles();
@@ -317,7 +319,7 @@ void KrPopupMenu::performAction(int id)
         panel->func->deleteFiles(true);
         break;
     case EJECT_ID :
-        krMtMan.eject(panel->func->files() ->vfs_getFile(item->name()).path(KUrl::RemoveTrailingSlash));
+        krMtMan.eject(_item->url().path(KUrl::RemoveTrailingSlash));
         break;
         /*         case SHRED_ID :
                     if ( KMessageBox::warningContinueCancel( krApp,
@@ -326,15 +328,14 @@ void KrPopupMenu::performAction(int id)
                        KShred::shred( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) );
                   break;*/
     case OPEN_KONQ_ID :
-        KToolInvocation::startServiceByDesktopName("konqueror", panel->func->files() ->vfs_getFile(item->name()).url());
+        KToolInvocation::startServiceByDesktopName("konqueror", _item->url().pathOrUrl());
         break;
     case CHOOSE_ID : // open-with dialog
-        u = panel->func->files() ->vfs_getFile(item->name());
-        lst.append(u);
+        lst << _item->url();
         panel->func->displayOpenWithDialog(lst);
         break;
     case MOUNT_ID :
-        krMtMan.mount(panel->func->files() ->vfs_getFile(item->name()).path(KUrl::RemoveTrailingSlash));
+        krMtMan.mount(_item->url().path(KUrl::RemoveTrailingSlash));
         break;
     case NEW_LINK_ID :
         panel->func->krlink(false);
@@ -348,14 +349,11 @@ void KrPopupMenu::performAction(int id)
     case EMPTY_TRASH_ID :
         KrTrashHandler::emptyTrash();
         break;
-    case RESTORE_TRASHED_FILE_ID : {
-        QStringList fileNames;
-        panel->gui->getSelectedNames(&fileNames);
-        KrTrashHandler::restoreTrashedFiles(*panel->func->files() ->vfs_getFiles(&fileNames));
-    }
+    case RESTORE_TRASHED_FILE_ID :
+        KrTrashHandler::restoreTrashedFiles(_items.urlList());
     break;
     case UNMOUNT_ID :
-        krMtMan.unmount(panel->func->files() ->vfs_getFile(item->name()).path(KUrl::RemoveTrailingSlash));
+        krMtMan.unmount(_item->url().path(KUrl::RemoveTrailingSlash));
         break;
     case COPY_CLIP_ID :
         panel->func->copyToClipboard();
@@ -367,9 +365,7 @@ void KrPopupMenu::performAction(int id)
         panel->func->pasteFromClipboard();
         break;
     case SEND_BY_EMAIL_ID : {
-        QStringList fileNames;
-        panel->gui->getSelectedNames(&fileNames);
-        SLOTS->sendFileByEmail(*panel->func->files() ->vfs_getFiles(&fileNames));
+        SLOTS->sendFileByEmail(_items.urlList());
         break;
     }
     case MKDIR_ID :
@@ -380,8 +376,8 @@ void KrPopupMenu::performAction(int id)
         break;
     case SYNC_SELECTED_ID : {
         QStringList selectedNames;
-        for (KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it)
-            selectedNames.append((*it) ->name());
+        foreach(KFileItem item, _items)
+            selectedNames << item.name();
         if (panel->otherPanel()->view->numSelected()) {
             KrViewItemList otherItems;
             panel->otherPanel()->view->getSelectedKrViewItems(&otherItems);
@@ -397,10 +393,9 @@ void KrPopupMenu::performAction(int id)
     break;
     case OPEN_TERM_ID : {
         QStringList args;
-        if (!panel->func->getVFile(item)->vfile_isDir())
-            args << item->name();
-        SLOTS->runTerminal(panel->func->files() ->vfs_getFile(item->name()).path(),
-                           args);
+        if (!_item->isDir())
+            args << _item->name();
+        SLOTS->runTerminal(_item->url().path(), args);
     }
     break;
     }
