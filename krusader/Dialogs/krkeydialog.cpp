@@ -44,8 +44,8 @@ KrKeyDialog::KrKeyDialog(QWidget * parent) : KShortcutsDialog(KShortcutsEditor::
     // HACK This fetches the layout of the buttonbox from KDialog, although it is not accessable with KDialog's API
     // None the less it's quite safe to use since this implementation hasn't changed since KDE-3.3 (I haven't looked at earlier
     // versions since we don't support them) and now all work is done in KDE-4.
-    QWidget* buttonBox = static_cast<QWidget*>(button(KDialog::Ok)->parent());
-    QBoxLayout* buttonBoxLayout = static_cast<QBoxLayout*>(buttonBox->layout());
+    QWidget* buttonBox = qobject_cast<QWidget*>(button(KDialog::Ok)->parent());
+    QBoxLayout* buttonBoxLayout = qobject_cast<QBoxLayout*>(buttonBox->layout());
 
     KPushButton* importButton = new KPushButton(i18n("Import Shortcuts"), buttonBox);
     importButton->setWhatsThis(i18n("Load a keybinding profile, e.g., total_commander.keymap"));
@@ -58,7 +58,7 @@ KrKeyDialog::KrKeyDialog(QWidget * parent) : KShortcutsDialog(KShortcutsEditor::
     connect(exportButton, SIGNAL(clicked()), SLOT(slotExportShortcuts()));
 
     // Also quite HACK 'isch but unfortunately KKeyDialog don't giveus access to this widget
-    _chooser = static_cast<KShortcutsEditor*>(mainWidget());
+    _chooser = qobject_cast<KShortcutsEditor*>(mainWidget());
 
     configure(true /* SaveSettings */);   // this runs the dialog
 }
