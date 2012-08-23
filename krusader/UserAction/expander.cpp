@@ -122,6 +122,7 @@ public:
 #define SIMPLE_PLACEHOLDER_CLASS(name) \
     class name : public exp_simpleplaceholder { \
     public: \
+        using exp_simpleplaceholder::expFunc; \
         name(); \
         virtual TagString expFunc ( const KrPanel*, const QStringList&, const bool&, Expander& ) const; \
     };
