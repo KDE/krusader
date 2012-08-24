@@ -19,7 +19,17 @@
 
 #include "krusaderapp.h"
 
-KrusaderApp::KrusaderApp(): KApplication() {}
+#include <kstartupinfo.h>
+
+
+KrusaderApp::KrusaderApp(): KApplication()
+{
+    KStartupInfo *startupInfo = new KStartupInfo(0, this);
+    connect(startupInfo, SIGNAL(gotNewStartup (const KStartupInfoId&, const KStartupInfoData&)),
+            SLOT(slotGotNewStartup(const KStartupInfoId&, const KStartupInfoData&)));
+    connect(startupInfo, SIGNAL(gotRemoveStartup(const KStartupInfoId&, const KStartupInfoData&)),
+            SLOT(slotGotRemoveStartup(const KStartupInfoId&, const KStartupInfoData&)));
+}
 
 void KrusaderApp::focusInEvent(QFocusEvent* /*event*/)
 {
@@ -29,4 +39,18 @@ void KrusaderApp::focusInEvent(QFocusEvent* /*event*/)
 void KrusaderApp::focusOutEvent(QFocusEvent* /*event*/)
 {
     emit windowInactive();
+}
+
+void KrusaderApp::slotGotNewStartup(const KStartupInfoId &id, const KStartupInfoData &data)
+{
+    Q_UNUSED(id)
+    Q_UNUSED(data)
+    setOverrideCursor(Qt::BusyCursor);
+}
+
+void KrusaderApp::slotGotRemoveStartup(const KStartupInfoId &id, const KStartupInfoData &data)
+{
+    Q_UNUSED(id)
+    Q_UNUSED(data)
+    restoreOverrideCursor();
 }

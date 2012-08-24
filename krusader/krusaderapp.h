@@ -21,6 +21,8 @@
 #define KRUSADERAPP_H
 
 #include <kapplication.h>
+#include <kstartupinfo.h>
+
 class QFocusEvent;
 
 // declare a dummy kapplication, just to get Qt's focusin focusout events
@@ -35,6 +37,10 @@ public:
 signals:
     void windowActive();
     void windowInactive();
+
+protected slots:
+    void slotGotNewStartup(const KStartupInfoId &id, const KStartupInfoData &data);
+    void slotGotRemoveStartup(const KStartupInfoId &id, const KStartupInfoData &data);
 };
 
 #endif // KRUSADERAPP_H
