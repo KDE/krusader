@@ -241,30 +241,31 @@ int main(int argc, char *argv[])
                 "\teval `dbus-launch --auto-syntax`\n");
     }
 
-    QDBusInterface remoteApp("org.krusader", "/Instances/" + appName,
-                             "org.krusader.Instance", QDBusConnection::sessionBus());
-    QDBusReply<bool> reply;
-    if (remoteApp.isValid())
-        reply = remoteApp.call("isRunning");
+    if (singleInstanceMode) {
+        QDBusInterface remoteApp("org.krusader", "/Instances/" + appName,
+                                "org.krusader.Instance", QDBusConnection::sessionBus());
+        QDBusReply<bool> reply;
+        if (remoteApp.isValid())
+            reply = remoteApp.call("isRunning");
 
-    if (!reply.isValid() && reply.error().type() != QDBusError::ServiceUnknown &&
-            reply.error().type() != QDBusError::UnknownObject)
-        fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
+        if (!reply.isValid() && reply.error().type() != QDBusError::ServiceUnknown &&
+                reply.error().type() != QDBusError::UnknownObject)
+            fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
 
-    if (reply.isValid() && (bool)reply) {
-//         fprintf(stderr, "%s", i18n("Application already running!\n").toLocal8Bit().data());
-        KStartupInfo::appStarted();
-        QStringList tabs;
-        if (args->isSet("left"))
-            openTabsRemote(args->getOption("left").split(','), true, appName);
-        if (args->isSet("right"))
-            openTabsRemote(args->getOption("right").split(','), false, appName);
-        if(!url.isEmpty()) {
-            reply = remoteApp.call("openUrl", url);
-            if (!reply.isValid())
-                fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
+        if (reply.isValid() && (bool)reply) {
+            KStartupInfo::appStarted();
+            QStringList tabs;
+            if (args->isSet("left"))
+                openTabsRemote(args->getOption("left").split(','), true, appName);
+            if (args->isSet("right"))
+                openTabsRemote(args->getOption("right").split(','), false, appName);
+            if(!url.isEmpty()) {
+                reply = remoteApp.call("openUrl", url);
+                if (!reply.isValid())
+                    fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
+            }
+            return 0;
         }
-        return 0;
     }
 
     // splash screen - if the user wants one
