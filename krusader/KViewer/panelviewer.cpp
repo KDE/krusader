@@ -364,11 +364,11 @@ KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
         if (cpart->openUrl(curl)) {
             connect(cpart, SIGNAL(destroyed()), this, SLOT(slotCPartDestroyed()));
             return cpart;
-        }
-    }
+        } // else: don't show error message - assume this has been done by the editor part
+    } else
+        KMessageBox::sorry(this, missingKPartMsg(), i18n("Can't edit %1", curl.pathOrUrl()),
+                           KMessageBox::AllowLink);
 
-    KMessageBox::sorry(this, missingKPartMsg(), i18n("Can't edit %1", curl.pathOrUrl()),
-                       KMessageBox::AllowLink);
     setCurrentWidget(fallback);
     return 0;
 
