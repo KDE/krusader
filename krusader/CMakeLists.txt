@@ -51,8 +51,6 @@ set(krusader_SRCS
     krusaderapp.cpp
     krtrashhandler.cpp)
 
-qt4_add_dbus_adaptor(krusader_SRCS org.krusader.Instance.xml krusader.h Krusader)
-
 kde4_add_app_icon(krusader_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-krusader_user.png")
 
 kde4_add_executable(krusader ${krusader_SRCS})
