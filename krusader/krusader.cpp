@@ -824,10 +824,11 @@ bool Krusader::isLeftActive()  {
     return MAIN_VIEW->isLeftActive();
 }
 
-void Krusader::openUrl(QString url)
+bool Krusader::openUrl(QString url)
 {
     _urlToOpen = url;
     _openUrlTimer.start(0);
+    return true;
 }
 
 void Krusader::doOpenUrl()

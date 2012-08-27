@@ -149,7 +149,7 @@ protected:
 public Q_SLOTS:
     Q_SCRIPTABLE bool isRunning();
     Q_SCRIPTABLE bool isLeftActive();
-    Q_SCRIPTABLE void openUrl(QString url);
+    Q_SCRIPTABLE bool openUrl(QString url);
 
 public:
     static Krusader *App;       // a kApp style pointer
