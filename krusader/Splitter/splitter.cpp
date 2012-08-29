@@ -139,7 +139,7 @@ void Splitter::splitReceiveFinished(KJob *job)
 
     if (job->error()) {   /* any error occurred? */
         splitAbortJobs();
-        KMessageBox::error(0, i18n("Error reading file %1: $2", fileName.pathOrUrl(),
+        KMessageBox::error(0, i18n("Error reading file %1: %2", fileName.pathOrUrl(),
                                    job->errorString()));
         emit reject();
         return;
