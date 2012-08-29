@@ -80,7 +80,7 @@ void Splitter::split(KIO::filesize_t splitSizeIn)
     splitSize = splitSizeIn;
 
     KFileItem file(KFileItem::Unknown, KFileItem::Unknown, fileName);
-    file.refresh();
+    file.refresh(); //FIXME: works only for local files - use KIO::stat() instead
 
     permissions = file.permissions() | QFile::WriteUser;
 
