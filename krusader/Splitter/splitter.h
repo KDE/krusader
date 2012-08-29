@@ -44,7 +44,7 @@ class Splitter : public QProgressDialog
     Q_OBJECT
 
 public:
-    Splitter(QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn);
+    Splitter(QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn, bool overWriteIn);
     ~Splitter();
 
     void split(KIO::filesize_t splitSizeIn);

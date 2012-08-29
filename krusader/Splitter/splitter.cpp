@@ -41,13 +41,13 @@
 #include <kio/jobuidelegate.h>
 
 
-Splitter::Splitter(QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn) :
+Splitter::Splitter(QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn, bool overWriteIn) :
         QProgressDialog(parent, 0),
         fileName(fileNameIn),
         destinationDir(destinationDirIn),
         splitSize(0),
         permissions(0),
-        overwrite(false),
+        overwrite(overWriteIn),
         fileNumber(0),
         outputFileRemaining(0),
         recievedSize(0),

@@ -32,17 +32,13 @@
 #define SPLITTERGUI_H
 
 #include <QtGui/QDialog>
-#include <QtCore/QString>
-#include <QDoubleSpinBox>
-#include <QtGui/QValidator>
-#include <QtGui/QComboBox>
-#include <QKeyEvent>
-#include <QtGui/QLineEdit>
 
 #include <kurlrequester.h>
 #include <kio/global.h>
 
-#include "../VFS/vfs.h"
+class QComboBox;
+class QCheckBox;
+class QDoubleSpinBox;
 
 
 class SplitterGUI : QDialog
@@ -61,10 +57,12 @@ private:
     QDoubleSpinBox  *spinBox;
     QComboBox       *deviceCombo;
     QComboBox       *sizeCombo;
+    QCheckBox       *overwriteCb;
     KUrlRequester   *urlReq;
 
 public:
     SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir);
+    ~SplitterGUI();
 
     KUrl    getDestinationDir()     {
         return KUrl(urlReq->url().prettyUrl()); /* TODO: is prettyUrl what we need? */
@@ -73,6 +71,7 @@ public:
     int     result()                {
         return resultCode;
     }
+    bool overWriteFiles();
 
 public slots:
     virtual void sizeComboActivated(int item);

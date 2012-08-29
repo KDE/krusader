@@ -29,16 +29,26 @@
  ***************************************************************************/
 
 #include "splittergui.h"
+
 #include "../VFS/vfs.h"
+
 #include <klocale.h>
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
+#include <kmessagebox.h>
+#include <kconfiggroup.h>
+#include <kglobal.h>
+#include <kdebug.h>
+
+#include <QDoubleSpinBox>
+#include <QValidator>
+#include <QLineEdit>
+#include <QComboBox>
+#include <QCheckBox>
+#include <QLayout>
+#include <QLabel>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QFrame>
 #include <QKeyEvent>
-#include <kmessagebox.h>
-#include <kdebug.h>
 
 
 struct SplitterGUI::PredefinedDevice
@@ -125,11 +135,14 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
 
     grid->addWidget(splitSizeLine, 2 , 0);
 
+    overwriteCb = new QCheckBox(i18n("Overwrite files without confirmation"), this);
+    grid->addWidget(overwriteCb, 3, 0);
+
     QFrame *separator = new QFrame(this);
     separator->setFrameStyle(QFrame::HLine | QFrame::Sunken);
     separator->setFixedHeight(separator->sizeHint().height());
 
-    grid->addWidget(separator, 3 , 0);
+    grid->addWidget(separator, 4 , 0);
 
     QHBoxLayout *splitButtons = new QHBoxLayout;
     splitButtons->setSpacing(6);
@@ -148,9 +161,13 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
     cancelBtn->setIcon(KIcon("dialog-cancel"));
     splitButtons->addWidget(cancelBtn);
 
-    grid->addLayout(splitButtons, 4 , 0);
+    grid->addLayout(splitButtons, 5 , 0);
 
     setWindowTitle(i18n("Krusader::Splitter"));
+
+
+    KConfigGroup cfg(KGlobal::config(), "Splitter");
+    overwriteCb->setChecked(cfg.readEntry("OverWriteFiles", false));
 
     connect(sizeCombo, SIGNAL(activated(int)), this, SLOT(sizeComboActivated(int)));
     connect(deviceCombo, SIGNAL(activated(int)), this, SLOT(predefinedComboActivated(int)));
@@ -161,12 +178,23 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
     resultCode = exec();
 }
 
+SplitterGUI::~SplitterGUI()
+{
+    KConfigGroup cfg(KGlobal::config(), "Splitter");
+    cfg.writeEntry("OverWriteFiles", overwriteCb->isChecked());
+}
+
 KIO::filesize_t SplitterGUI::getSplitSize()
 {
     if(deviceCombo->currentIndex() < predefinedDevices().count()) // predefined size selected
         return predefinedDevices()[deviceCombo->currentIndex()].capacity;
     // user defined size selected
     return spinBox->value() * division;
+}
+
+bool SplitterGUI::overWriteFiles()
+{
+    return overwriteCb->isChecked();
 }
 
 void SplitterGUI::sizeComboActivated(int item)
