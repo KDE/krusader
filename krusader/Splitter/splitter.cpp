@@ -131,8 +131,8 @@ void Splitter::splitReceiveFinished(KJob *job)
 {
     splitReadJob = 0;   /* KIO automatically deletes the object after Finished signal */
 
-    if (splitWriteJob)         /* write out the end of the file */
-        splitWriteJob->resume();
+    if (splitWriteJob)
+        splitWriteJob->resume(); // finish writing the output
 
     if (job->error()) {   /* any error occurred? */
         splitAbortJobs();
@@ -195,9 +195,10 @@ void Splitter::splitDataSend(KIO::Job *, QByteArray &byteArray)
         transferArray = QByteArray();
 
         if (splitReadJob) {
+            // suspend write job until transfer buffer is filled or the read job is finished
             splitWriteJob->suspend();
             splitReadJob->resume();
-        }
+        } // else: write job continues until transfer buffer is empty
     }
 }
 
