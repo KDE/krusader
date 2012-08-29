@@ -59,25 +59,26 @@ private slots:
     void splitFileFinished(KJob *);
 
 private:
-    void splitCreateWriteJob();
     void splitAbortJobs();
+    void nextOutputFile();
 
 
+    // parameters
     KUrl            fileName;
     KUrl            destinationDir;
     KIO::filesize_t splitSize;
-
-    KIO::filesize_t fileSize;
     int             permissions;
-    QString         splitFile;
 
-    KUrl            writeURL;
+    // current split file stuff
     int             fileNumber;
-    KIO::filesize_t outputFileSize;
-    bool            noValidWriteJob;
-    CRC32          *crcContext;
-    QByteArray      transferArray;
+    KUrl            writeURL;
+    // how much can still be written to the current output file
+    KIO::filesize_t outputFileRemaining;
 
+    QByteArray      transferArray;
+    KIO::filesize_t recievedSize;
+    QString         splitInfoFileContent;
+    CRC32          *crcContext;
     KIO::TransferJob *splitReadJob;
     KIO::TransferJob *splitWriteJob;
 };
