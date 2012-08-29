@@ -103,6 +103,7 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
 
     QWidget *splitSizeLine = new QWidget(this);
     QHBoxLayout * splitSizeLineLayout = new QHBoxLayout;
+    splitSizeLineLayout->setContentsMargins(0, 0, 0, 0);
     splitSizeLine->setLayout(splitSizeLineLayout);
 
     deviceCombo = new QComboBox(splitSizeLine);
