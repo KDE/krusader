@@ -136,7 +136,8 @@ void Splitter::splitReceiveFinished(KJob *job)
 
     if (job->error()) {   /* any error occurred? */
         splitAbortJobs();
-        KMessageBox::error(0, i18n("Error reading file %1!", fileName.pathOrUrl()));
+        KMessageBox::error(0, i18n("Error reading file %1: $2", fileName.pathOrUrl(),
+                                   job->errorString()));
         emit reject();
         return;
     }
@@ -208,7 +209,8 @@ void Splitter::splitSendFinished(KJob *job)
 
     if (job->error()) {   /* any error occurred? */
         splitAbortJobs();
-        KMessageBox::error(0, i18n("Error writing file %1!", writeURL.pathOrUrl()));
+        KMessageBox::error(0, i18n("Error writing file %1: %2", writeURL.pathOrUrl(),
+                                   job->errorString()));
         emit reject();
         return;
     }
@@ -250,7 +252,8 @@ void Splitter::splitFileFinished(KJob *job)
     splitWriteJob = 0;  /* KIO automatically deletes the object after Finished signal */
 
     if (job->error()) {   /* any error occurred? */
-        KMessageBox::error(0, i18n("Error at writing file %1!", writeURL.pathOrUrl()));
+        KMessageBox::error(0, i18n("Error at writing file %1: %2", writeURL.pathOrUrl(),
+                                   job->errorString()));
         emit reject();
         return;
     }
