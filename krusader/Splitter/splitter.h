@@ -57,10 +57,12 @@ private slots:
     void splitReceivePercent(KJob *, unsigned long);
     void splitFileSend(KIO::Job *, QByteArray &);
     void splitFileFinished(KJob *);
+    void statOutputFileResult(KJob* job);
 
 private:
     void splitAbortJobs();
     void nextOutputFile();
+    void openOutputFile();
 
 
     // parameters
@@ -68,6 +70,7 @@ private:
     KUrl            destinationDir;
     KIO::filesize_t splitSize;
     int             permissions;
+    bool            overwrite;
 
     // current split file stuff
     int             fileNumber;
@@ -79,6 +82,7 @@ private:
     KIO::filesize_t recievedSize;
     QString         splitInfoFileContent;
     CRC32          *crcContext;
+    KIO::Job         *statJob;
     KIO::TransferJob *splitReadJob;
     KIO::TransferJob *splitWriteJob;
 };

@@ -32,12 +32,14 @@
 #include "../VFS/vfs.h"
 
 #include <QtGui/QLayout>
+#include <QtCore/QFileInfo>
 #include <kdebug.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kio/job.h>
 #include <kfileitem.h>
-#include <QtCore/QFileInfo>
+#include <kio/jobuidelegate.h>
+
 
 Splitter::Splitter(QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn) :
         QProgressDialog(parent, 0),
@@ -45,10 +47,12 @@ Splitter::Splitter(QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn) :
         destinationDir(destinationDirIn),
         splitSize(0),
         permissions(0),
+        overwrite(false),
         fileNumber(0),
         outputFileRemaining(0),
         recievedSize(0),
         crcContext(new CRC32()),
+        statJob(0),
         splitReadJob(0),
         splitWriteJob(0)
 
@@ -122,7 +126,6 @@ void Splitter::splitDataReceived(KIO::Job *, const QByteArray &byteArray)
     // suspend read job until transfer buffer is handed to the write job
     splitReadJob->suspend();
 
-    Q_ASSERT(splitWriteJob);
     if (splitWriteJob)
         splitWriteJob->resume();
 }
@@ -161,6 +164,8 @@ void Splitter::nextOutputFile()
 
     fileNumber++;
 
+    outputFileRemaining = splitSize;
+
     QString index("%1"); /* making the split filename */
     index = index.arg(fileNumber).rightJustified(3, '0');
     QString outFileName = fileName.fileName() + '.' + index;
@@ -168,14 +173,51 @@ void Splitter::nextOutputFile()
     writeURL = destinationDir;
     writeURL.addPath(outFileName);
 
-    outputFileRemaining = splitSize;
+    if (overwrite)
+        openOutputFile();
+    else {
+        statJob = KIO::stat(writeURL, KIO::StatJob::DestinationSide, 0, KIO::HideProgressInfo);
+        connect(statJob, SIGNAL(result(KJob*)), SLOT(statOutputFileResult(KJob*)));
+    }
+}
 
-    /* creating a write job */
+void Splitter::statOutputFileResult(KJob* job)
+{
+    statJob = 0;
+
+    if (job->error()) {
+        if (job->error() == KIO::ERR_DOES_NOT_EXIST)
+            openOutputFile();
+        else {
+            static_cast<KIO::Job*>(job)->ui()->showErrorMessage();
+            emit reject();
+        }
+    } else { // destination already exists
+        KIO::RenameDialog dlg(this, i18n("File Already Exists"), QUrl(), writeURL,
+                static_cast<KIO::RenameDialog_Mode>(KIO::M_MULTI | KIO::M_OVERWRITE | KIO::M_NORENAME));
+        switch (dlg.exec()) {
+        case KIO::R_OVERWRITE:
+            openOutputFile();
+            break;
+        case KIO::R_OVERWRITE_ALL:
+            overwrite = true;
+            openOutputFile();
+            break;
+        default:
+            emit reject();
+        }
+    }
+}
+
+void Splitter::openOutputFile()
+{
+    // create write job
     splitWriteJob = KIO::put(writeURL, permissions, KIO::HideProgressInfo | KIO::Overwrite);
     connect(splitWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
             this, SLOT(splitDataSend(KIO::Job *, QByteArray &)));
     connect(splitWriteJob, SIGNAL(result(KJob*)),
             this, SLOT(splitSendFinished(KJob *)));
+
 }
 
 void Splitter::splitDataSend(KIO::Job *, QByteArray &byteArray)
@@ -233,6 +275,8 @@ void Splitter::splitSendFinished(KJob *job)
 
 void Splitter::splitAbortJobs()
 {
+    if (statJob)
+        statJob->kill(KJob::Quietly);
     if (splitReadJob)
         splitReadJob->kill(KJob::Quietly);
     if (splitWriteJob)
