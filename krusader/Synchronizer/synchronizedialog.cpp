@@ -61,7 +61,7 @@ SynchronizeDialog::SynchronizeDialog(QWidget* parent,
     cbRightToLeft->setEnabled(leftCopyNr != 0);
     layout->addWidget(cbRightToLeft);
 
-    lbRightToLeft = new QLabel(i18np("\tReady: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", leftCopyNr, 0,
+    lbRightToLeft = new QLabel(i18np("\tReady: %2/1 file, %3/%4", "\tReady: %2/%1 files, %3/%4", leftCopyNr, 0,
                                      0, KRpermHandler::parseSize(leftCopySize).trimmed()),
                                this);
     lbRightToLeft->setEnabled(leftCopyNr != 0);
@@ -74,7 +74,7 @@ SynchronizeDialog::SynchronizeDialog(QWidget* parent,
     cbLeftToRight->setEnabled(rightCopyNr != 0);
     layout->addWidget(cbLeftToRight);
 
-    lbLeftToRight = new QLabel(i18np("\tReady: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", rightCopyNr, 0,
+    lbLeftToRight = new QLabel(i18np("\tReady: %2/1 file, %3/%4", "\tReady: %2/%1 files, %3/%4", rightCopyNr, 0,
                                      0, KRpermHandler::parseSize(rightCopySize).trimmed()),
                                this);
     lbLeftToRight->setEnabled(rightCopyNr != 0);
@@ -87,7 +87,7 @@ SynchronizeDialog::SynchronizeDialog(QWidget* parent,
     cbDeletable->setEnabled(deleteNr != 0);
     layout->addWidget(cbDeletable);
 
-    lbDeletable   = new QLabel(i18np("\tReady: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", deleteNr, 0,
+    lbDeletable   = new QLabel(i18np("\tReady: %2/1 file, %3/%4", "\tReady: %2/%1 files, %3/%4", deleteNr, 0,
                                      0, KRpermHandler::parseSize(deleteSize).trimmed()),
                                this);
     lbDeletable->setEnabled(deleteNr != 0);
@@ -169,13 +169,13 @@ void SynchronizeDialog::synchronizationFinished()
 void SynchronizeDialog::processedSizes(int leftNr, KIO::filesize_t leftSize, int rightNr,
                                        KIO::filesize_t rightSize, int delNr, KIO::filesize_t delSize)
 {
-    lbRightToLeft->setText(i18n("\tReady: %1/%2 files, %3/%4", leftNr, leftCopyNr,
+    lbRightToLeft->setText(i18np("\tReady: %2/1 file, %3/%4", "\tReady: %2/%1 files, %3/%4", leftCopyNr, leftNr,
                                 KRpermHandler::parseSize(leftSize).trimmed(),
                                 KRpermHandler::parseSize(leftCopySize).trimmed()));
-    lbLeftToRight->setText(i18n("\tReady: %1/%2 files, %3/%4", rightNr, rightCopyNr,
+    lbLeftToRight->setText(i18np("\tReady: %2/1 file, %3/%4", "\tReady: %2/%1 files, %3/%4", rightCopyNr, rightNr,
                                 KRpermHandler::parseSize(rightSize).trimmed(),
                                 KRpermHandler::parseSize(rightCopySize).trimmed()));
-    lbDeletable->setText(i18n("\tReady: %1/%2 files, %3/%4", delNr, deleteNr,
+    lbDeletable->setText(i18np("\tReady: %2/1 file, %3/%4", "\tReady: %2/%1 files, %3/%4", deleteNr, delNr,
                               KRpermHandler::parseSize(delSize).trimmed(),
                               KRpermHandler::parseSize(deleteSize).trimmed()));
 
