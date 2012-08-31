@@ -231,9 +231,9 @@ void KgPanel::setupLayoutTab()
     l->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     grid->addWidget(l, 1, 0);
     KONFIGURATOR_NAME_VALUE_PAIR frameColor[] = {
-        { i18n("Defined by Layout"), "default" },
-        { i18n("None"), "none" },
-        { i18n("Statusbar"), "Statusbar" }
+        { i18nc("Frame color", "Defined by Layout"), "default" },
+        { i18nc("Frame color", "None"), "none" },
+        { i18nc("Frame color", "Statusbar"), "Statusbar" }
     };
     cmb = createComboBox("PanelLayout", "FrameColor",
                             "default", frameColor, 3, tab, true, false, PAGE_LAYOUT);
@@ -244,10 +244,10 @@ void KgPanel::setupLayoutTab()
     l->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     grid->addWidget(l, 2, 0);
     KONFIGURATOR_NAME_VALUE_PAIR frameShape[] = {
-        { i18n("Defined by Layout"), "default" },
-        { i18n("None"), "NoFrame" },
-        { i18n("Box"), "Box" },
-        { i18n("Panel"), "Panel" },
+        { i18nc("Frame shape", "Defined by Layout"), "default" },
+        { i18nc("Frame shape", "None"), "NoFrame" },
+        { i18nc("Frame shape", "Box"), "Box" },
+        { i18nc("Frame shape", "Panel"), "Panel" },
     };
     cmb = createComboBox("PanelLayout", "FrameShape",
                             "default", frameShape, 4, tab, true, false, PAGE_LAYOUT);
@@ -258,10 +258,10 @@ void KgPanel::setupLayoutTab()
     l->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     grid->addWidget(l, 3, 0);
     KONFIGURATOR_NAME_VALUE_PAIR frameShadow[] = {
-        { i18n("Defined by Layout"), "default" },
-        { i18n("None"), "Plain" },
-        { i18n("Raised"), "Raised" },
-        { i18n("Sunken"), "Sunken" },
+        { i18nc("Frame shadow", "Defined by Layout"), "default" },
+        { i18nc("Frame shadow", "None"), "Plain" },
+        { i18nc("Frame shadow", "Raised"), "Raised" },
+        { i18nc("Frame shadow", "Sunken"), "Sunken" },
     };
     cmb = createComboBox("PanelLayout", "FrameShadow",
                             "default", frameShadow, 4, tab, true, false, PAGE_LAYOUT);
