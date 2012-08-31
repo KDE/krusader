@@ -308,7 +308,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     hbox_6->addWidget(queueButton);
 
     okButton = new QPushButton(this);
-    okButton->setText(i18n("Ok"));
+    okButton->setText(i18n("OK"));
     okButton->setDefault(true);
     hbox_6->addWidget(okButton);
 
@@ -343,7 +343,7 @@ void PackGUIBase::expand()
 {
     expanded = !expanded;
 
-    advancedButton->setText(i18n("&Advanced") + (expanded ?  " <<" : " >>"));
+    advancedButton->setText(expanded ? i18n("&Advanced <<") : i18n("&Advanced >>"));
 
     if (expanded)
         advancedWidget->show();

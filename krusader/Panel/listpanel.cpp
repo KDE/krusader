@@ -766,7 +766,7 @@ void ListPanel::gotStats(const QString &mountPoint, quint64 kBSize,
     }
     // mount point information - find it in the list first
     KMountPoint::List lst = KMountPoint::currentMountPoints();
-    QString fstype = i18n("unknown");
+    QString fstype = i18nc("Unknown file system type", "unknown");
     for (KMountPoint::List::iterator it = lst.begin(); it != lst.end(); ++it) {
         if ((*it)->mountPoint() == mountPoint) {
             fstype = (*it)->mountType();
@@ -1062,7 +1062,7 @@ void ListPanel::slotPreviewJobStarted(KJob *job)
 {
     previewJob = job;
     previewProgress->setValue(0);
-    previewProgress->setFormat(i18n("loading previews") + ": %p%");
+    previewProgress->setFormat(i18n("loading previews: %p%"));
     previewProgress->show();
     inlineRefreshCancelButton->show();
     previewProgress->setMaximumHeight(inlineRefreshCancelButton->height());
@@ -1129,13 +1129,13 @@ void ListPanel::inlineRefreshCancel()
 
 void ListPanel::inlineRefreshPercent(KJob*, unsigned long perc)
 {
-    QString msg = QString(">> %1: %2 % complete...").arg(i18n("Reading")).arg(perc);
+    QString msg = i18n(">> Reading: %1 % complete...", perc);
     totals->setText(msg);
 }
 
 void ListPanel::inlineRefreshInfoMessage(KJob*, const QString &msg)
 {
-    totals->setText(">> " + i18n("Reading: ") + msg);
+    totals->setText(i18n(">> Reading: %1", msg));
 }
 
 void ListPanel::inlineRefreshListResult(KJob*)

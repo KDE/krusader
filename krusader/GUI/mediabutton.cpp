@@ -142,7 +142,7 @@ void MediaButton::createMediaList()
                 }
             }
 
-            QString name = i18n("Remote Share") + " [" + (*it)->mountPoint() + ']';
+            QString name = i18nc("%1 is the mount point of the remote share", "Remote Share [%1]", (*it)->mountPoint());
             QStringList overlays;
             if (mounted)
                 overlays << "emblem-mounted";
@@ -164,10 +164,10 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, KIcon &k
         return false;
 
     QString udi     = device.udi();
-    QString label   = i18n("Unknown");
+    QString label   = i18nc("Unknown label", "Unknown");
     bool    mounted = access->isAccessible();
     QString path    = access->filePath();
-    QString type    = i18n("Unknown");
+    QString type    = i18nc("Unknown media type", "Unknown");
     QString icon    = device.icon();
     QString fstype;
     QString size;
@@ -574,7 +574,7 @@ void MediaButton::slotTimeout()
                 }
             }
 
-            QString name = i18n("Remote Share") + " [" + (*it)->mountPoint() + ']';
+            QString name = i18nc("%1 is the mount point of the remote share", "Remote Share [%1]", (*it)->mountPoint());
             QStringList overlays;
             if (mounted)
                 overlays << "emblem-mounted";

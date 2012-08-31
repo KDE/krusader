@@ -366,7 +366,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
     // create the disk usage view
 
     diskusage = new DiskUsageViewer(stack);
-    diskusage->setStatusLabel(dataLine, i18n("Disk Usage: "));
+    diskusage->setStatusLabel(dataLine, i18n("Disk Usage:"));
     diskusage->setProperty("KrusaderWidgetId", QVariant(DskUsage));
     stack->addWidget(diskusage);
     connect(diskusage, SIGNAL(openUrlRequest(const KUrl &)), this, SLOT(handleOpenUrlRequest(const KUrl &)));

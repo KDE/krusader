@@ -590,7 +590,7 @@ bool KRarcHandler::pack(QStringList fileNames, QString type, QString dest, long 
     KConfigGroup group(krConfig, "Archives");
     if (group.readEntry("Test Archives", _TestArchives) &&
             !test(dest, type, password, observer, count)) {
-        observer->error(i18n("Failed to pack: ") + dest);
+        observer->error(i18n("Failed to pack: %1!", dest));
         return false;
     }
     return true; // SUCCESS

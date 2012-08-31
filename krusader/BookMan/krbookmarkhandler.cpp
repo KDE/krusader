@@ -208,18 +208,18 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
     QString url, name, icon;
     // verify tag
     if (e.tagName() != "bookmark") {
-        *errorMsg = i18n("%1 instead of ", e.tagName()) + "bookmark";
+        *errorMsg = i18n("%1 instead of %2", e.tagName(), QLatin1String("bookmark"));
         return false;
     }
     // verify href
     if (!e.hasAttribute("href")) {
-        *errorMsg = i18n("missing tag ") + "href";
+        *errorMsg = i18n("missing tag %1", QLatin1String("href"));
         return false;
     } else url = e.attribute("href");
     // verify title
     QDomElement te = e.firstChild().toElement();
     if (te.tagName() != "title") {
-        *errorMsg = i18n("missing tag ") + "title";
+        *errorMsg = i18n("missing tag %1", QLatin1String("title"));
         return false;
     } else name = te.text();
     // do we have an icon?
@@ -251,7 +251,7 @@ bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent
             // the title is the first child of the folder
             QDomElement tmp = e.firstChild().toElement();
             if (tmp.tagName() != "title") {
-                *errorMsg = i18n("missing tag ") + "title";
+                *errorMsg = i18n("missing tag %1", QLatin1String("title"));
                 return false;
             } else name = tmp.text();
             KrBookmark *folder = new KrBookmark(name, iconName);

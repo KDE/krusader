@@ -90,7 +90,7 @@ void PopularUrls::load()
     QStringList urlList = svr.readEntry("PopularUrls", QStringList());
     QList<int> rankList = svr.readEntry("PopularUrlsRank", QList<int>());
     if (urlList.count() != rankList.count()) {
-        KMessageBox::error(krMainWindow, i18n("Saved 'Popular Urls' are invalid. List will be cleared"));
+        KMessageBox::error(krMainWindow, i18n("The saved 'Popular URLs' are invalid. The list will be cleared."));
         return;
     }
     clearList();
@@ -271,7 +271,7 @@ PopularUrlsDlg::PopularUrlsDlg():
 {
     setButtons(KDialog::Close);
     setDefaultButton(KDialog::NoDefault);
-    setWindowTitle(i18n("Popular Urls"));
+    setWindowTitle(i18n("Popular URLs"));
     setWindowModality(Qt::WindowModal);
 
     QWidget * widget = new QWidget(this);
@@ -290,7 +290,7 @@ PopularUrlsDlg::PopularUrlsDlg():
     btn->setIcon(SmallIcon("edit-clear-locationbar-ltr"));
     search = new KTreeWidgetSearchLine(widget, urls);
     search->setTrapReturnKey(true);
-    QLabel *lbl = new QLabel(i18n(" &Search: "), widget);
+    QLabel *lbl = new QLabel(i18n("&Search:"), widget);
     lbl->setBuddy(search);
 
     layout->addWidget(btn, 0, 0);

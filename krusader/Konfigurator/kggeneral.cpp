@@ -315,7 +315,7 @@ void KgGeneral::slotAddExtension()
 {
     bool ok;
     QString atomExt =
-        KInputDialog::getText(i18n("Add new atomic extension"), i18n("Extension: "), QString(), &ok);
+        KInputDialog::getText(i18n("Add new atomic extension"), i18n("Extension:"), QString(), &ok);
 
     if (ok) {
         if (!atomExt.startsWith('.') || atomExt.indexOf('.', 1) == -1)

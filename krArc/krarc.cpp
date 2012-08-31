@@ -1573,7 +1573,7 @@ bool kio_krarcProtocol::initArcParameters()
     if (KStandardDirs::findExe(cmd).isEmpty()) {
         error(KIO::ERR_CANNOT_LAUNCH_PROCESS,
               cmd +
-              i18n("\nMake sure that the %1 binary are installed properly on your system.", cmd));
+              i18n("\nMake sure that the %1 binary is installed properly on your system.", cmd));
         KRDEBUG("Failed to find cmd: " << cmd);
         return false;
     }
