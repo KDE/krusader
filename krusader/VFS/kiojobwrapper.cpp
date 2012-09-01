@@ -241,21 +241,21 @@ QString KIOJobWrapper::typeStr()
 {
     switch (m_type) {
     case Stat:
-        return i18n("Status");
+        return i18nc("Job type", "Status");
     case DirectorySize:
-        return i18n("Directory Size");
+        return i18nc("Job type", "Directory Size");
     case Copy:
     case VirtualCopy:
-        return i18n("Copy");
+        return i18nc("Job type", "Copy");
     case Move:
     case VirtualMove:
-        return i18n("Move");
+        return i18nc("Job type", "Move");
     case Pack:
-        return i18n("Pack");
+        return i18nc("Job type", "Pack");
     case Unpack:
-        return i18n("Unpack");
+        return i18nc("Job type", "Unpack");
     default:
-        return i18n("Unknown");
+        return i18nc("Job type", "Unknown");
     }
 }
 
