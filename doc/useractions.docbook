@@ -159,13 +159,13 @@
     <emphasis role="bold">Basic Properties</emphasis>
   </para>
   <para>
-  <guimenuitem>"Distinct Name", "Title" and "Command
-  line"</guimenuitem>are always required, all the other properties
+  <guimenuitem>"Identifier", "Title" and "Command
+  line"</guimenuitem> are always required, all the other properties
   are optional.</para> 
   <itemizedlist>
     <listitem>
       <para>
-      <guimenuitem>Distinct Name</guimenuitem>: A unique name of
+      <guimenuitem>Identifier</guimenuitem>: A unique name of
       the UserAction, used to identify it for &kde;'s
       action system.</para>
     </listitem>
@@ -202,14 +202,14 @@
     </listitem>
     <listitem>
       <para>
-      <guimenuitem>Command line</guimenuitem>: The command which
+      <guimenuitem>Command</guimenuitem>: The command which
       will be executed. You can add placeholder using a GUI with
       the 
       <guibutton>add</guibutton> button.</para>
     </listitem>
     <listitem>
       <para>
-      <guimenuitem>Startpath</guimenuitem>: The working directory
+      <guimenuitem>Workdir</guimenuitem>: The working directory
       for the command which will be executed.</para>
     </listitem>
     <listitem>
@@ -256,7 +256,7 @@
         </listitem>
         <listitem>
           <para>
-          <guimenuitem>URLs (local and remote)</guimenuitem>:
+          <guimenuitem>URLs (remote and local)</guimenuitem>:
           Tells the placeholder it should return
           &URL;s.</para>
         </listitem>
