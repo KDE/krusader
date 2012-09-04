@@ -89,7 +89,7 @@ private:
     int mCursor;
 };
 
-GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent, 
+GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
                              QStringList extraOptions) :
         QWidget(parent),
         profileManager(0), fltTabs(tabs)
@@ -208,7 +208,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         searchInLayout->setSpacing(6);
         searchInLayout->setContentsMargins(11, 11, 11, 11);
 
-        searchIn = new KURLListRequester(searchInGroup);
+        searchIn = new KURLListRequester(KURLListRequester::RequestDirs, searchInGroup);
         searchInLayout->addWidget(searchIn, 0, 0);
         connect(searchIn, SIGNAL(changed()), this, SLOT(slotDisable()));
 
@@ -225,7 +225,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         dontSearchInLayout->setSpacing(6);
         dontSearchInLayout->setContentsMargins(11, 11, 11, 11);
 
-        dontSearchIn = new KURLListRequester(dontSearchInGroup);
+        dontSearchIn = new KURLListRequester(KURLListRequester::RequestDirs, dontSearchInGroup);
         dontSearchInLayout->addWidget(dontSearchIn, 0, 0);
 
         middleLayout->addWidget(dontSearchInGroup);

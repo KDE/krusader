@@ -46,7 +46,9 @@ class KURLListRequester : public QWidget
     Q_OBJECT
 
 public:
-    KURLListRequester(QWidget *parent = 0);
+    enum Mode { RequestFiles, RequestDirs };
+
+    KURLListRequester(Mode requestMode, QWidget *parent = 0);
 
     KUrl::List   urlList();
     void         setUrlList(KUrl::List);
@@ -74,6 +76,8 @@ protected slots:
 protected:
     virtual void keyPressEvent(QKeyEvent *e);
     void         deleteSelectedItems();
+
+    Mode          mode;
 
     KLineEdit    *urlLineEdit;
     KrListWidget *urlListBox;

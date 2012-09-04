@@ -43,7 +43,8 @@
 
 #define DELETE_ITEM_ID    100
 
-KURLListRequester::KURLListRequester(QWidget *parent) : QWidget(parent)
+KURLListRequester::KURLListRequester(Mode requestMode, QWidget *parent)
+    : QWidget(parent), mode(requestMode)
 {
     // Creating the widget
 
@@ -102,7 +103,15 @@ void KURLListRequester::slotAdd()
 
 void KURLListRequester::slotBrowse()
 {
-    KUrl url = KFileDialog::getOpenUrl(KUrl(), QString(), this);
+    KUrl url;
+    switch (mode) {
+        case RequestFiles:
+            url = KFileDialog::getOpenUrl(KUrl(), QString(), this);
+            break;
+        case RequestDirs:
+            url = KFileDialog::getExistingDirectoryUrl(KUrl(), this);
+            break;
+    }
     if (!url.isEmpty())
         urlLineEdit->setText(url.pathOrUrl());
     urlLineEdit->setFocus();
