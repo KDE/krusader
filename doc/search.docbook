@@ -34,7 +34,7 @@
   </figure>
   <para>The page is divided into four parts: top (search for) part,
   bottom part - titled 'containing text', left part - titled
-  'search in' and right part which is called 'don't search in'.
+  'search in' and right part which is called 'do not search in'.
   Obviously, each part handles different aspects of the search.
   Let's look at them closely.</para>
   <itemizedlist>
@@ -66,7 +66,7 @@
     <listitem>
       <para>
       <guilabel>Of type</guilabel>: this box lets you search for a
-      file not only by its name, but also by its mime type. For
+      file not only by its name, but also by its MIME type. For
       example, you can search for all the audio files whose name
       begins with B. Usually this option defaults to 'all files',
       but you can choose to search for archives, directories,
@@ -78,16 +78,16 @@
     <listitem>
       <para>
       <guilabel>Search in</guilabel> and 
-      <guilabel>Don't search in</guilabel>: Using those two parts,
+      <guilabel>Do not search in</guilabel>: Using those two parts,
       you can specify a search exactly the way you want it. For
       example, you might want to search for a file in the whole
       file system (beginning with 
       <filename>/</filename>), but do not want to search inside 
       <filename>/mnt</filename>. All you need to do is write 
       <filename>/</filename> in the 
-      <guilabel>search in</guilabel> box, and write 
+      <guilabel>Search in</guilabel> box, and write 
       <filename>/mnt</filename> in the 
-      <guilabel>dont search in</guilabel> box. If you want to enter
+      <guilabel>Do not search in</guilabel> box. If you want to enter
       more than one directory in one of the list boxes, just type the
       first name and press &Enter;. The directory name
       will be copied to the bigger list box and you will be able to enter

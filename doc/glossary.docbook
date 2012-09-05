@@ -53,7 +53,7 @@
       <ulink url="http://en.wikipedia.org/wiki/Bsd">Berkeley
       Software Distribution</ulink>; refers to any of several free
       &UNIX;-compatible operating systems, derived from
-      <acronym>BSD</acronym>&UNIX;.</para>
+      &BSD; &UNIX;.</para>
     </glossdef>
   </glossentry>
   <glossentry id="gloss-cvs">
@@ -87,13 +87,13 @@
   </glossentry>
     <glossentry id="glos-dbus">
     <glossterm>
-      <acronym>D-Bus</acronym>
+      &DBus;
     </glossterm>
     <glossdef>
       <para>
       <ulink url="http://freedesktop.org/wiki/Software/dbus">&DBus;</ulink> is an inter-service messaging system.
       Developed by &RedHat;, it was heavily influenced by &kde; 3
-      <link linkend="glos-dcop">DCOP</link>, which it supersedes.
+      <link linkend="glos-dcop">&DCOP;</link>, which it supersedes.
       &krusader; can use &DBus; to communicate with other applications.
       On the other hand, you can use &DBus; to control &krusader; from
 	other applications. Just use <application>qdbusviewer</application> to examine the possibilities.</para>
@@ -101,7 +101,7 @@
   </glossentry>
   <glossentry id="glos-dcop">
     <glossterm>
-      <acronym>DCOP</acronym>
+      &DCOP;
     </glossterm>
     <glossdef>
       <para>
@@ -110,7 +110,7 @@
       communication protocol used by &kde; 3 desktop
       environment. It enables various &kde; 3 applications
       to communicate with each other. Replaced with
-      <link linkend="glos-dbus">D-Bus</link> in &kde; 4.</para>
+      <link linkend="glos-dbus">&DBus;</link> in &kde; 4.</para>
     </glossdef>
   </glossentry>
   <glossentry id="glos-faq">
@@ -176,7 +176,7 @@
     <glossdef>
       <para>An
       <ulink url="http://en.wikipedia.org/wiki/ISO_image">ISO
-      image</ulink> (.iso) is an informal term for a disk image of
+      image</ulink> (<literal role="extension">.iso</literal>) is an informal term for a disk image of
       an ISO 9660 file system. More loosely, it refers to any
       optical disk image, even a UDF image.</para>
     </glossdef>
@@ -205,21 +205,21 @@
       important tool for
       <link linkend="gloss-ofm">Orthodox File Managers</link>.
       &krusader; comes with several predefined
-      <link linkend="key_bindings">Key-Bindings</link>.</para>
+      <link linkend="key_bindings">Key Bindings</link>.</para>
     </glossdef>
   </glossentry>
   <glossentry id="gloss-kpart">
-    <glossterm>Kpart</glossterm>
+    <glossterm>KPart</glossterm>
     <glossdef>
       <para>
       <ulink url="http://en.wikipedia.org/wiki/KPart">
-      Kpart</ulink>; KParts is the name of the component framework
+      KPart</ulink>; KParts is the name of the component framework
       for the &kde; desktop environment. KParts are
       analogous to Bonobo components in <ulink url="http://www.gnome.org"><application>GNOME</application></ulink>,
       both of which are based on the same concepts as
       &Microsoft;'s Object Linking and Embedding. &eg;
       if you use &krusader;'s viewer to view a PDF file,
-      KPDF wil be launched inside &krusader;'s
+      &okular; will be launched inside &krusader;'s
       viewer.</para>
     </glossdef>
   </glossentry>
@@ -273,7 +273,7 @@
       operating system. If you still have to get
       &krusader; and your system supports RPM packages,
       you should get &krusader; packages ending in
-      .rpm.</para>
+      <literal role="extension">.rpm</literal>.</para>
     </glossdef>
   </glossentry>
   <glossentry id="gloss-ssh">
@@ -326,14 +326,14 @@
   </glossentry>
   <glossentry id="gloss-url">
     <glossterm>
-      <acronym>&URL;</acronym>
+      &URL;
     </glossterm>
     <glossdef>
       <para>
       <ulink url="http://en.wikipedia.org/wiki/URL">Universal
       Resource Locator</ulink>; a universal resource locator is the
       technical term for what is commonly referred to as a websites
-      address. Examples of URLs include
+      address. Examples of &URL;s include
       <ulink url="http://krusader.sourceforge.net">
       http://krusader.sourceforge.net</ulink> and
       <link linkend="remote-connections">Remote Connections</link>.</para>
@@ -347,8 +347,8 @@
       <para><link linkend="vfs">Virtual file systems (VFS)</link> is a basic
       <link linkend="features">OFM feature</link>, this an
       abstracted layer over all kinds of archived information (ZIP
-      files, FTP servers, TAR archives, NFS filesystems, SAMBA
-      shares, ISO cd/dvd images, RPM catalogs, etc.), which allows
+      files, &FTP; servers, TAR archives, NFS filesystems, SAMBA
+      shares, ISO cd/dvd images, RPM catalogs, &etc;), which allows
       the user to access all the information in these divergent
       types of file systems transparently - just like entering an
       ordinary sub-directory! &krusader; supports
@@ -356,13 +356,13 @@
     </glossdef>
   </glossentry>
   <glossentry id="gloss-xml">
-    <glossterm>XML</glossterm>
+    <glossterm>&XML;</glossterm>
     <glossdef>
       <para>
       <ulink url="http://en.wikipedia.org/wiki/Xml">Extensible
       Markup Language</ulink>; a very flexible text format derived
       from SGML (ISO 8879). Originally designed to meet the
-      challenges of large-scale electronic publishing, XML is also
+      challenges of large-scale electronic publishing, &XML; is also
       playing an increasingly important role in the exchange of a
       wide variety of data on the Web and elsewhere.</para>
     </glossdef>

@@ -19,7 +19,7 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
-  <title>Configuration files</title>
+  <title>Configuration Files</title>
   <indexterm>
     <primary>Configuration files</primary>
   </indexterm>
@@ -43,7 +43,7 @@
   configuration.</para>
   <para>Location: 
   <filename>~/.kde/share/config/krusaderrc</filename></para>
-  <para>The following settings are e.g. stored:</para>
+  <para>The following settings are &eg; stored:</para>
   <itemizedlist>
     <listitem>
       <para>Actions Toolbar</para>
@@ -122,7 +122,7 @@
     <emphasis role="bold">krbookmarks.xml</emphasis>
   </para>
   <para>This file stores the &krusader; bookmarks and
-  uses the <ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink> standard.</para>
+  uses the <ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink>.</para>
   <para>Location: 
   <filename>
   ~/.kde/share/apps/krusader/krbookmarks.xml</filename></para>
@@ -131,15 +131,15 @@
   </para>
   <para>This file stores the <link linkend="useractions">UserActions</link>
   configuration. The file structure is documented in
-  doxygen-headers of UserActionXML.</para>
+  Doxygen headers of UserActionXML.</para>
   <para>Location: 
   <filename>
   ~/.kde/share/apps/krusader/useractions.xml</filename></para>
   <para>
     <emphasis role="bold">useraction-examples.xml</emphasis>
   </para>
-  <para>This is the default User-Actions provided by us. The
-  file-structure is documented in doxygen-headers of
+  <para>This is the default UserActions provided by us. The
+  file structure is documented in Doxygen headers of
   UserActionXML.</para>
   <para>Location: 
   <filename>
@@ -147,8 +147,8 @@
   <para>
     <emphasis role="bold">foo.keymap</emphasis>
   </para>
-  <para>Is an ini file that holds a 
-  <link linkend="configure-shortcuts">Key-binding profile</link>.
+  <para>This is a <literal role="extension">.ini</literal> file that holds a 
+  <link linkend="configure-shortcuts">Key binding profile</link>.
   Until &krusader;-1.70.0 this was a binary file.
   &krusader; is backwards compatible for importing this
   legacy binary format.</para>

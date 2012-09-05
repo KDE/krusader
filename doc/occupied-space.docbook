@@ -9,25 +9,24 @@
   <itemizedlist>
     <listitem>
       <para>Pressing the 
-      <keycap>SPACE</keycap> on a directory under the cursor
+      <keycap>Space</keycap> on a directory under the cursor
       instantly calculates the occupied size. Pressing 
-      <keycap>SPACE</keycap> a second time will toggle the selection
+      <keycap>Space</keycap> a second time will toggle the selection
       of the directory without affecting the selection status of
       other files/directories.</para>
     </listitem>
     <listitem>
       <para>To calculate how much disk space is occupied by the
       selected files and directories in the active panel select 
-      <emphasis role="bold">
         <menuchoice>
           <guimenu>Edit</guimenu>
           <guimenuitem>Calculate Occupied Space</guimenuitem>
-        </menuchoice>
-      </emphasis>. After a small delay, a dialog box will be
+        </menuchoice>.
+      After a small delay, a dialog box will be
       displayed with total occupied space and the number of files
       and directories you selected. The space occupied by every
       selected directory will be shown as if the user just pressed 
-      <keycap>SPACE</keycap> on those directories. If the active
+      <keycap>Space</keycap> on those directories. If the active
       panel is browsing an archive, the numbers will apply to the
       unpacked size of the selected files and directories, not
       their compressed size. After the calculation the selection

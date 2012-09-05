@@ -9,16 +9,15 @@
   fast file searching not from a directory but a database. The
   package contains among other files, 
   <command>locate</command> and 
-  <command>updatedb</command>. Updatedb goes through the local
+  <command>updatedb</command>. <command>updatedb</command> goes through the local
   file system and stores the file entries in the database. 
   <command>cron</command> often calls 
-  <command>updatedb</command> every night (set with Kcron). Choose 
-  <emphasis role="bold">
+  <command>updatedb</command> every night (set with <application>KCron</application>). Choose 
     <menuchoice>
       <guimenu>Tools</guimenu>
       <guimenuitem>Locate</guimenuitem>
     </menuchoice>
-  </emphasis> or 
+  or 
   <keycombo action="simul">&Ctrl;&Shift;
   <keycap>L</keycap></keycombo> to start this feature. 
   <link linkend="konfig-advanced">Konfigurator</link> can set

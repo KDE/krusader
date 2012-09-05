@@ -4,8 +4,8 @@
     <primary>Bookmarks</primary>
   </indexterm>
   <para>BookMan is &krusader;'s Bookmark tool for
-  bookmarking folders, local- and 
-  <link linkend="remote-connections">remote URL's</link>, and later
+  bookmarking folders, local and 
+  <link linkend="remote-connections">remote URLs</link>, and later
   returning to them in a click of a button. The Bookman menu is
   divided into four sections: 
   <itemizedlist>
@@ -13,7 +13,7 @@
       <para>Your personal bookmarks</para>
     </listitem>
     <listitem>
-      <para>Popular &URL;'s</para>
+      <para>Popular &URL;s</para>
     </listitem>
     <listitem>
       <para>Permanent bookmarks</para>
@@ -63,10 +63,10 @@
     &URL; line will say 
     <filename class="directory">/usr/tmp</filename>. 
     <guilabel>Name</guilabel> is for the name you would like to give
-    to the bookmark (e.g.: temporary folder). Hotkeys are supported
+    to the bookmark (&eg;: temporary folder). Hotkeys are supported
     by adding 
     <literal>&amp;</literal> to the bookmark name
-    e.g. 
+    &eg;
     <literal>&amp;sourceforge, &amp;home,
     down&amp;loads</literal> &etc;, so you can
     quickly call the bookmark name with 
@@ -81,12 +81,12 @@
     organizing your bookmarks.</para>
     <para>To use your bookmarks, click the 
     <guibutton>BookMan II</guibutton> button and choose a bookmark.
-    You may also use the <link linkend="key_bindings">Key-Bindings</link> : 
+    You may also use the <link linkend="key_bindings">Key-Bindings</link>: 
     <keycombo action="simul">&Ctrl;&Shift;
     <keycap>D</keycap></keycombo> to bookmark the current item, 
     <keycombo action="simul">&Alt;
     <keycap>right/left arrow</keycap></keycombo> to 
-    <keycap>open right/left panel bookmarks list</keycap> and 
+    open right/left panel bookmarks list and
     <keycombo action="simul">&Ctrl;
     <keycap>D</keycap></keycombo> to open the bookmarks of the
     active panel. From the context menu of the bookmark (&RMB; click)
@@ -98,7 +98,7 @@
         <para>Start typing letters</para>
       </listitem>
       <listitem>
-        <para>e.g. when you type 
+        <para>&eg; when you type 
         <literal>'h'</literal> and only one bookmark starts with 
         <literal>'h'</literal>, it is executed immediately - no
         enter needed</para>
@@ -116,11 +116,11 @@
     <para>One of the benefits of the 
     <link linkend="bookman">bookmark manager</link> is that the
     passwords are saved using &kde;'s services - where
-    e.g. your &konqueror;/&kmail;
+    &eg; your &konqueror;/&kmail;
     password are saved. If you have a wallet, &kde; will
     save the passwords there. By clicking the bookmarks, a dialog
     will open and ask for your username and password. Supply them
-    and click 'save password'. The passwords and usernames will be
+    and click <guibutton>Save password</guibutton>. The passwords and usernames will be
     saved securely by &kde;'s wallet (make sure it is
     enabled by your distro). The downside here is that if the system
     was reinstalled and you do not backup your passwords from the wallet as
@@ -135,7 +135,7 @@
     <para>The submenu 
     <guilabel>Popular URLs</guilabel>
     <!-- Openjade does not like an acronym element for "URL" here -->
-    holds persistent the most popular visited &URL;'s
+    holds persistent the most popular visited &URL;s
     (local or remote). This submenu displays the top 15 popular
     URLs, sorted by ranking, so that the top &URL; is
     the most popular. This is easy for when you need to visit
@@ -185,11 +185,11 @@
         <guilabel>Virtual Filesystem</guilabel> <link linkend="vfs">Virtual file systems (VFS)</link>
         
         <filename>virt:/</filename> is not a virtual folder, but a
-        container for &URL;'s from different file
-        systems. It is used for e.g. the 
+        container for &URL;s from different file
+        systems. It is used for &eg; the 
         <guilabel>Feed to Listbox</guilabel> feature of the search
         module and the synchronizer. The location toolbar will
-        display e.g. 
+        display &eg;
         <filename>virt:/Search results 1</filename> or 
         <filename>virt:/Synchronise results 1</filename>.</para>
       </listitem>
@@ -217,7 +217,7 @@
     <guimenuitem>Manage Bookmarks</guimenuitem>,
     <application>KeditBookmarks</application> will be displayed. This is where
     you can edit/remove and rearrange the bookmarks.
-    <application>KeditBookmarks</application> (part of the kdebase package) is a
+    <application>KeditBookmarks</application> (part of the kde-baseapps package) is a
     bookmark editor for &konqueror;,
     &krusader; and other applications, which use the
     <ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink> for the bookmark format. The

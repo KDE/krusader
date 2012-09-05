@@ -44,12 +44,12 @@
     <link linkend="termemu">Terminal emulator</link> and you can type any command you
     desire. Use <keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo> 
     to jump back to the active panel. If
-    you want to jump to a file or directory that starts with "f",
-    then simply press "f" on the keyboard to use the
-    <link linkend="quicksearch">Quick search</link>. Use the Enter key to execute
+    you want to jump to a file or directory that starts with <literal>f</literal>,
+    then simply press <keycap>f</keycap> on the keyboard to use the
+    <link linkend="quicksearch">Quick search</link>. Use the &Enter; key to execute
     the file or to open a directory that has the focus. Be sure to
     remember the Function Keys - <keycap>F3</keycap> to View, <keycap>F4</keycap> to Edit, 
-    <keycap>F5</keycap> to Copy, <keycombo action="simul">&Alt;&Shift;<keycap>U</keycap></keycombo> to Unpack, etc.</para>
+    <keycap>F5</keycap> to Copy, <keycombo action="simul">&Alt;&Shift;<keycap>U</keycap></keycombo> to Unpack, &etc;.</para>
     <para>You can also perform several operations with the
     <link linkend="folder-tabs">Folder tabs</link>, including several 
     <link linkend="edit-menu">selection</link> operations. And at
@@ -65,15 +65,15 @@
       <secondary>Keyboard</secondary>
     </indexterm>
     <para>Most of the key-bindings (shortcuts) are configurable in
-    the <emphasis role="bold">
+    the
         <menuchoice>
           <guimenu>Settings</guimenu>
           <guimenuitem>Configure Shortcuts</guimenuitem>
         </menuchoice>
-      </emphasis> menu, if you like to use other key-bindings then the
+      menu, if you like to use other key-bindings then the
       default ones. You can even configure 
-      more actions to a Key-Binding (for the actions that don't have a key-binding set by default).
-    Please note that some key-bindings are not &krusader; key-bindings (e.g.
+      more actions to a Key-Binding (for the actions that do not have a key-binding set by default).
+    Please note that some key-bindings are not &krusader; key-bindings (&eg;
     &kde; key-bindings). The key-bindings that
     &krusader; uses by default are listed below.</para>
 
@@ -828,7 +828,7 @@
             </entry>
             <entry>
               <para>
-                <link linkend="view-menu">Swap panels (don't swap all folder tabs)</link>.
+                <link linkend="view-menu">Swap panels (do not swap all folder tabs)</link>.
               </para>
             </entry>
           </row>
@@ -905,7 +905,7 @@
             </entry>
             <entry>
               <para>
-                <link linkend="bookman">Popular URL's.</link>
+                <link linkend="bookman">Popular URLs.</link>
               </para>
             </entry>
           </row>
@@ -1525,7 +1525,7 @@
           <row>
             <entry>
               <para>
-                <keycap>SPACE</keycap>
+                <keycap>Space</keycap>
               </para>
             </entry>
             <entry>
@@ -1552,11 +1552,11 @@
           <row>
             <entry>
               <para>
-                <keycap>INSERT</keycap>
+                <keycap>Insert</keycap>
               </para>
             </entry>
             <entry>
-              <para>Does the same as the SPACE key 
+              <para>Does the same as the <keycap>Space</keycap> key 
               <link linkend="selecting-files">and goes down one
               position to toggle the next file.</link></para>
             </entry>
@@ -1564,7 +1564,7 @@
           <row>
             <entry>
               <para>
-                <keycap>MENU</keycap>
+                <keycap>Menu</keycap>
               </para>
             </entry>
             <entry>
@@ -1611,7 +1611,7 @@
               <keycap>Down arrow</keycap></para>
             </entry>
             <entry>
-              <para>scroll through previously typed
+              <para>Scroll through previously typed
               commands.</para>
             </entry>
           </row>
@@ -1623,7 +1623,7 @@
               </para>
             </entry>
             <entry>
-              <para>open the command line history list.</para>
+              <para>Open the command line history list.</para>
             </entry>
           </row>
           <row>
@@ -1634,7 +1634,7 @@
               </para>
             </entry>
             <entry>
-              <para>jump from the command line to the active
+              <para>Jump from the command line to the active
               panel.</para>
             </entry>
           </row>
@@ -1646,7 +1646,7 @@
               </para>
             </entry>
             <entry>
-              <para>jump from the active panel to the command
+              <para>Jump from the active panel to the command
               line.</para>
             </entry>
           </row>
@@ -1658,7 +1658,7 @@
               </para>
             </entry>
             <entry>
-              <para>insert current file / directory name without
+              <para>Insert current file / directory name without
               path to current command line position.</para>
             </entry>
           </row>
@@ -1670,7 +1670,7 @@
               </para>
             </entry>
             <entry>
-              <para>insert current file / directory with full path
+              <para>Insert current file / directory with full path
               name to current command line position.</para>
             </entry>
           </row>
@@ -1779,7 +1779,7 @@
               </para>
             </entry>
             <entry>
-              <para>reverse direction</para>
+              <para>Reverse direction</para>
             </entry>
           </row>
             <row>
@@ -1790,7 +1790,7 @@
               </para>
             </entry>
             <entry>
-              <para>exclude</para>
+              <para>Exclude</para>
             </entry>
           </row>
           <row>
@@ -1801,7 +1801,7 @@
               </para>
             </entry>
             <entry>
-              <para>restore original task</para>
+              <para>Restore original task</para>
             </entry>
           </row>
           <row>
@@ -1812,7 +1812,7 @@
               </para>
             </entry>
             <entry>
-              <para>copy to left</para>
+              <para>Copy to left</para>
             </entry>
           </row>
           <row>
@@ -1823,7 +1823,7 @@
               </para>
             </entry>
             <entry>
-              <para>copy to right</para>
+              <para>Copy to right</para>
             </entry>
           </row>
           <row>
@@ -1834,7 +1834,7 @@
               </para>
             </entry>
             <entry>
-              <para>mark for delete</para>
+              <para>Mark for delete</para>
             </entry>
           </row>
         </tbody>
@@ -1907,7 +1907,7 @@
               </para>
             </entry>
             <entry>
-              <para>Enqueue in Amarok.</para>
+              <para>Enqueue in &amarok;.</para>
             </entry>
           </row>
           <row>
@@ -1979,7 +1979,7 @@
         </tbody>
       </tgroup>
     </informaltable>
-    <!-- OTHER KEYS URL'S -->
+    <!-- OTHER KEYS URLs -->
     <itemizedlist>
       <title>Other Key-bindings</title>
       <listitem>
@@ -2000,7 +2000,7 @@
       </listitem>
       <listitem>
         <para>&systemsettings; -&gt;
-        Common Appearance and Behavior -&gt; Shortcuts and Gestures</para>
+        <guilabel>Common Appearance and Behavior</guilabel> -&gt; <guilabel>Shortcuts and Gestures</guilabel></para>
       </listitem>
       <listitem>
         <para><link linkend="useractions">UserActions</link> configurable

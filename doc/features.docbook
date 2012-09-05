@@ -32,8 +32,8 @@
           </listitem>
           <listitem>
             <para>Context-dependent invocation of scripts and
-            programs &eg; mouseclick/&Enter; (execute or
-            open with the associated application), F3 (view) and F4
+            programs &eg; mouse click/&Enter; (execute or
+            open with the associated application), <keycap>F3</keycap> (view) and <keycap>F4</keycap>
             (edit).</para>
           </listitem>
           <listitem>
@@ -44,7 +44,7 @@
             <para>History &eg; 
             <link linkend="folderhistory">Folder History</link>, 
             <link linkend="popular-urls">Popular
-            &URL;s</link>, ...</para>
+            &URL;s</link>, &etc;</para>
           </listitem>
           <listitem>
             <para><link linkend="vfs">Virtual file systems (VFS)</link> &eg; for
@@ -58,7 +58,7 @@
             kparts supporting almost every file format.</para>
           </listitem>
           <listitem>
-            <para><link linkend="krusearcher">Advanced Search module</link> :
+            <para><link linkend="krusearcher">Advanced Search module</link>:
             searching in archives and search content on remote
             file systems.</para>
           </listitem>
@@ -74,7 +74,7 @@
         <itemizedlist>
           <title>&krusader; tools</title>
           <listitem>
-            <para><link linkend="remote-connections">Remote Connections</link> :
+            <para><link linkend="remote-connections">Remote Connections</link>:
             &FTP;/SAMBA with SFTP/SCP support via
             KIO Slaves</para>
           </listitem>
@@ -104,16 +104,16 @@
           <title>&krusader; features</title>
           <listitem>
             <para>Archive Handling: browsing, unpack, pack,
-            testing. Supported <link linkend="archives">archives</link> : ace,
+            testing. Supported <link linkend="archives">archives</link>: ace,
             arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and
             7-zip.</para>
           </listitem>
           <listitem>
             <para>
             <link linkend="checksum">Checksum
-            creation-verification</link> mechanism that supports
+            Creation and Verification</link> mechanism that supports
             md5, sha1, sha256, sha224, sha256, sha384, sha512,
-            tiger, whirlpool, cfv and crc.</para>
+            tiger, whirlpool, cfv, and crc.</para>
           </listitem>
           <listitem>
             <para>
@@ -131,18 +131,18 @@
             <para>
             <link linkend="compare-content">Compare files by
             content</link> via external diff programs like
-            &kompare;, <ulink url="http://kdiff3.sourceforge.net"><application>Kdiff3</application></ulink> or
+            &kompare;, <ulink url="http://kdiff3.sourceforge.net"><application>KDiff3</application></ulink> or
             <ulink url="http://furius.ca/xxdiff/"><application>xxdiff</application></ulink>.</para>
           </listitem>
           <listitem>
             <para>
             <link linkend="multi_rename">Rename</link> files and
-            folders via <ulink url="http://www.krename.net"><application>Krename</application></ulink></para>
+            folders via <ulink url="http://www.krename.net"><application>KRename</application></ulink></para>
           </listitem>
           <listitem>
             <para>Completely supports drag'n'drop: drag from
-            &konqueror; straight into a .tar.gz file,
-            from &krusader;'s panel into the trash-bin,
+            &konqueror; straight into a <literal role="extension">.tar.gz</literal> file,
+            from &krusader;'s panel into the trash bin,
             the desktop or into &konqueror;</para>
           </listitem>
           <listitem>
@@ -151,7 +151,7 @@
             local targets at copy/move operations.</para>
           </listitem>
           <listitem>
-            <para>F2 opens a 
+            <para><keycap>F2</keycap> opens a 
             <link linkend="tools-menu">Terminal Window</link> in the
             current directory.</para>
           </listitem>
@@ -176,7 +176,7 @@
           <listitem>
             <para>
             <link linkend="konfig-general">
-            mimetype-aware</link>.</para>
+            MIME type-aware</link>.</para>
           </listitem>
           <listitem>
             <para>
@@ -293,7 +293,8 @@
         <listitem>
           <para>
           <link linkend="archives">7-zip support</link>, by
-          external applications 7z and 7za.</para>
+          external applications <application>7z</application> and
+          <application>7za</application>.</para>
         </listitem>
         <listitem>
           <para>
@@ -338,7 +339,7 @@
     <listitem>
       <para>Configurable
         <link linkend="list_panel">Atomic extensions</link>, 
-        so that extensions like <filename>tar.gz</filename> are shown as one part in the <guilabel>Ext Column</guilabel>.
+        so that extensions like <literal role="extension">.tar.gz</literal> are shown as one part in the <guilabel>Ext Column</guilabel>.
       </para>
     </listitem>
     <listitem>
@@ -354,7 +355,7 @@
     </listitem>
     <listitem>
       <para><link linkend="synchronizer">Synchronizer</link> enhancements and parallel threads for slow
-      FTP servers.</para>
+      &FTP; servers.</para>
     </listitem>
     <listitem>
       <para>
@@ -373,7 +374,7 @@
       <link linkend="acl">ACL permissions</link>, like properties, preserve attributes, synchronizer and other.</para>
     </listitem>
     <listitem>
-      <para>Searcher-results, Locate-results, Synchronizer-results: support for dragging items and copy to clipboard (&Ctrl;+C).</para>
+      <para>Searcher-results, Locate-results, Synchronizer-results: support for dragging items and copy to clipboard (<keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>).</para>
     </listitem>
     <listitem>
       <para>Many bug fixes.</para>
@@ -386,8 +387,8 @@
     <title>New features in the &krusader;-1.90.0 "Power Stone"
     release</title>
     <listitem>
-      <para>Last release for KDE3.x with a 
-           <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=2061"> big collection of Useractions</ulink>.
+      <para>Last release for &kde; 3.x with a 
+           <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=2061">big collection of Useractions</ulink>.
       </para>
     </listitem>
   </itemizedlist>
@@ -399,11 +400,11 @@
     <title>New features in the &krusader;-2.0.0 "Mars Pathfinder"
     release</title>
     <listitem>
-      <para>The first release for the KDE4.x series
+      <para>The first release for the &kde; 4.x series
       </para>
     </listitem>
     <listitem>
-      <para>Krusader works on &Windows;!  (But not so useful and powerful yet as under &Linux;)
+      <para>&krusader; works on &Windows;! (But not so useful and powerful yet as under &Linux;)
       </para>
     </listitem>
     <listitem>
@@ -454,7 +455,7 @@
 <para><note><para>
                  If you are using a <link linkend="krusader_devel">development</link> or
                  <link linkend="krusader_git">Git</link> version, it is possible that the latest
-                 new features are not yet in the "The Krusader Handbook".
+                 new features are not yet in the "The &krusader; Handbook".
                  Please read the 
 		 <ulink url="https://projects.kde.org/projects/extragear/utils/krusader/repository/revisions/master/entry/ChangeLog">Changelog</ulink>
 		 file online or in the &krusader;

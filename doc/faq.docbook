@@ -124,11 +124,11 @@
           only need the C-compiler &gcc; when you
           compile &krusader; from source (see the next
           question).</para>
-          <para>Take a look at the <link linkend="compilation">Krusader dependencies</link> paragraph  of our install chapter.</para>
+          <para>Take a look at the <link linkend="compilation">&krusader; dependencies</link> paragraph of our install chapter.</para>
           <para>
           If you need more details please take a look
-          at the <ulink url="http://packages.ubuntu.com/precise/krusader">Krusader requirements</ulink> on Ubuntu.
-	  The "depends" are required, the "suggests" make Krusader more powerful.</para>
+          at the <ulink url="http://packages.ubuntu.com/precise/krusader">&krusader; requirements</ulink> on Ubuntu.
+	  The "depends" are required, the "suggests" make &krusader; more powerful.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -141,7 +141,7 @@
         </question>
         <answer>
           <para>Install the missing packages.</para>
-          <para>Take a look at the <link linkend="compilation">Compilation requirements</link> paragraph  of our install chapter.</para>
+          <para>Take a look at the <link linkend="compilation">Compilation requirements</link> paragraph of our install chapter.</para>
           <para>Most RPM-based distributions separate the headers
           from the libs. The headers are needed to compile
           &krusader;. Look for packages in the form
@@ -165,7 +165,7 @@
       </qandaentry>
       <qandaentry>
         <question id="faqi_64bit">
-          <para>How do I compile &krusader; when I'm
+          <para>How do I compile &krusader; when I am
           using a 64 bit processor ?</para>
         </question>
         <answer>
@@ -243,8 +243,8 @@
       </qandaentry>
       <qandaentry>
         <question id="faqi_rpm-fails">
-          <para>I'm trying to install binary foo (RPM or DEB
-          package), but it fails. What's wrong?</para>
+          <para>I am trying to install binary foo (RPM or DEB
+          package), but it fails. What is wrong?</para>
         </question>
         <answer>
           <para>Since we only prepare (and use) the source, we have
@@ -289,14 +289,14 @@
         </question>
         <answer>
           <para>Check if your distribution provides
-          &krusader;, if it doesn't then contact your
+          &krusader;, if it does not then contact your
           distribution creator and ask them to include
           &krusader;!</para>
           <para>Did you take a look at the &URL;'s on
           the <link linkend="installation">Installation procedure</link> page? If you have and
           found nothing, you can always compile
           &krusader; from source. Even if you feel you
-          haven't got the necessary skills, you will probably
+          have not got the necessary skills, you will probably
           succeed in compiling &krusader;: we provide a
           very detailed installation procedure. This HowTo enables
           newcomers to compile &krusader; from source,
@@ -310,9 +310,9 @@
       </qandaentry>
       <qandaentry>
         <question id="faqi_krusaderui_rc">
-          <para>I've installed &krusader;, but when I
+          <para>I have installed &krusader;, but when I
           start, only the 
-          <guimenu>"Help"</guimenu> menu appears. Why?</para>
+          <guimenu>Help</guimenu> menu appears. Why?</para>
         </question>
         <answer>
           <para>In this case only the 
@@ -344,7 +344,7 @@
       <qandaentry>
         <question id="faqi_missing_menus">
           <para>Some new menu items are missing after updating
-          &krusader;, what's wrong?</para>
+          &krusader;, what is wrong?</para>
         </question>
         <answer>
           <para>The 
@@ -352,11 +352,11 @@
           <filename>
           $KDEDIR/share/apps/krusader/krusaderui.rc</filename>.
           When you change the 
-          <guilabel>"Toolbar"</guilabel>, &kde; makes a
+          <guilabel>Toolbar</guilabel>, &kde; makes a
           copy of that file in the home folder at 
           <filename>
           ~/.kde/share/apps/krusader/krusaderui.rc</filename>. If
-          Krusader was previously installed on your computer, and
+          &krusader; was previously installed on your computer, and
           you install a newer &krusader; version the 
           <filename>
           ~/.kde/share/apps/krusader/krusaderui.rc</filename> file
@@ -416,9 +416,9 @@
           can be linked against the X OpenGL libraries. As a result
           &krusader; may look for OpenGL as well. The
           problem is that the <trademark class="registered">NVIDIA</trademark> installer (prior
-          to version 7xxx) doesn't perform it's task properly: it
+          to version 7xxx) does not perform its task properly: it
           replaces the OpenGL header files (which get included into
-          &krusader;) but doesn't set the libGL links
+          &krusader;) but does not set the libGL links
           correctly. The best solution is to use the
           <trademark class="registered">NVIDIA</trademark> packages provided by your distributor
           or a new <trademark class="registered">NVIDIA</trademark> installer, the current
@@ -597,7 +597,7 @@
           <para>Because we only change the version number just
           before we do a new release. &krusader;-git
           will show an older version number, so ignore the version
-          number and check the download date. We simply haven't yet
+          number and check the download date. We simply have not yet
           decided what the next version number will be.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -609,9 +609,9 @@
         </question>
         <answer>
           <para>Please read carefully the <ulink url="http://www.macports.org/">macports.org</ulink> 
-	  installation instructions. Don't forget to start <application>dbus</application>.
+	  installation instructions. Do not forget to start <application>dbus</application>.
 	  <screen>##########################################################
-# Don't forget that dbus needs to be started as the local
+# Do not forget that dbus needs to be started as the local
 # user (not with sudo) before any KDE programs will launch
 # To start it run the following command:                 
 # launchctl load /Library/LaunchAgents/org.freedesktop.dbus-session.plist
@@ -637,7 +637,7 @@
           <para>&krusader; keeps crashing, why?</para>
         </question>
         <answer>
-          <para>We've been receiving a lot of emails and bug
+          <para>We have been receiving a lot of emails and bug
           reports (December 2005) regarding random crashes,
           especially during file operations such as copy, move,
           &etc; 
@@ -665,7 +665,7 @@
         <question id="faqu_supermount">
           <para>When I try to mount/unmount my cdrom/floppy,
           &krusader; reports something about a
-          supermount, what's this about?</para>
+          supermount, what is this about?</para>
         </question>
         <answer>
           <para>Supermount is a daemon which handles the
@@ -687,7 +687,7 @@
           updated by supermount - is there really a 
           <hardware>floppy</hardware> in the 
           <hardware>drive</hardware>? Of course, this can be
-          solved, but as for now, we don't consider it a
+          solved, but as for now, we do not consider it a
           priority.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -714,11 +714,11 @@
           something - anything - is enough to get you stuck. The
           one and only way around this architectural problem is
           using a multi-threaded design - this way if we get stuck,
-          we don't hang the entire application event loop, but we
-          don't think that the time is right for adding threads, we
+          we do not hang the entire application event loop, but we
+          do not think that the time is right for adding threads, we
           are not sure that *all* the &kde; systems out
           there are using &Qt;-mt (the multi threaded
-          version of the &Qt; library), and the Krusader
+          version of the &Qt; library), and the &krusader;
           Krew may not be the right people to address this major
           issue in any case; so currently this is just a bug we
           have to learn to live with.</para>
@@ -741,7 +741,7 @@
               <guimenu>Settings</guimenu>
               <guimenuitem>Show FN Keys Bar</guimenuitem>
             </menuchoice>
-          and you'll be able to resize
+          and you will be able to resize
           &krusader; to your liking. Since version 1.51
           we have improved this greatly: when downsizing the
           buttons will look like 'F5 ..py'. When the button faces
@@ -816,9 +816,9 @@
           directory with the other KIO slaves. Try this: locate 
           <filename>kio_tar.*</filename> and copy/link the 
           <filename>kio_krarc.*</filename> files to the same
-          location. Don't forget to run 
+          location. Do not forget to run 
           <command># ldconfig</command> on this directory when
-          you're done. For more information click 
+          you are done. For more information click 
           <ulink url="www.krusader.org/phpBB/viewtopic.php?t=991">
           here</ulink>.</para>
           <para></para>
@@ -828,10 +828,10 @@
       
 <qandaentry>
   <question id="faqu_external_tool">
-  <para>What to do if an external tool doesn't seem to work?</para>
+  <para>What to do if an external tool does not seem to work?</para>
   </question>
   <answer>
-  <para>Krusader uses several programs as <link linkend="konfig-dependencies">external tools</link>, 
+  <para>&krusader; uses several programs as <link linkend="konfig-dependencies">external tools</link>, 
         and sometimes they appear not to work.
         
        Open a terminal and check if tool foo is installed.
@@ -844,8 +844,8 @@
        
        Check the <link linkend="konfig-protocols">Konfigurator Protocol page</link>
    
-     If it doesn't work, backup your <filename>~/.kde/share/config/krusaderrc</filename> configuration file and remove it from this location.
-     Restart Krusader, Krusader will now start the first start configuration wizard, follow these guidelines.
+     If it does not work, backup your <filename>~/.kde/share/config/krusaderrc</filename> configuration file and remove it from this location.
+     Restart &krusader;, &krusader; will now start the first start configuration wizard, follow these guidelines.
    
     </para>
   <!-- Empty line to make it more readable -->
@@ -903,7 +903,7 @@
               <guimenuitem>Connection Preferences</guimenuitem>
             </menuchoice>, 
           <guilabel>"Enable Passive Mode (PASV)"</guilabel> has to
-          be turned on or off, depending on it's current setting.
+          be turned on or off, depending on its current setting.
           Now try your &FTP; session again to see if it
           works. Also, make sure you have no other &FTP;
           sessions open (using web browsers, &etc;), they can cause
@@ -937,13 +937,13 @@
 
       <qandaentry>
         <question id="faqu_no_part">
-          <para>How don't add ".part" suffix when copying files via ftp?</para>
+          <para>How do not add ".part" suffix when copying files via &FTP;?</para>
         </question>
         <answer>
           <para>When uploading files a <filename>.part</filename> suffix is added to the filename,
                 once the upload is complete the filename is renamed automagically 
                 to remove the <filename>.part</filename> suffix.
-                This works great but sometimes some ftp-servers don't allow a rename operation.
+                This works great but sometimes some &FTP; servers do not allow a rename operation.
                 You can solve this by unchecking the checkbox 
                 <guilabel>Mark partially uploaded files</guilabel> in &kde;'s System Settings. 
                 The check box is located at 
@@ -961,7 +961,7 @@
           (&eg; a &FTP; connection)?</para>
         </question>
         <answer>
-          <para>It's explained in the 
+          <para>It is explained in the 
           <link linkend="remote-connections">remote connections
           chapter</link>.</para>
           <para></para>
@@ -998,7 +998,7 @@
             </menuchoice>, 
           <guilabel>Event Source: "KDE Workspace"
           </guilabel> and uncheck sound items you
-          don't like.</para>
+          do not like.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1018,7 +1018,7 @@
       </qandaentry>
       <qandaentry>
         <question id="faqu_mimetypemagic_archives">
-          <para>Why doesn't mimetype magic sometimes work inside
+          <para>Why does not MIME type magic sometimes work inside
           archives?</para>
         </question>
         <answer>
@@ -1048,8 +1048,8 @@
         <answer>
           <para><link linkend="konfigurator">Konfigurator</link> is &krusader;s configuration module,
                 if you have installed &krusader; then you have also Konfigurator.
-                For some reason some people think it's an other &kde; application, but it is not, so
-                you don't need to install the &kde; Desktop Environment to use Konfigurator.
+                For some reason some people think it is an other &kde; application, but it is not, so
+                you do not need to install the &kde; Desktop Environment to use Konfigurator.
                 When running &krusader;, use 
                 <menuchoice>
                  <guimenu>Settings</guimenu>
@@ -1097,7 +1097,7 @@
           derived from getting user feedback. That is why we love
           to hear what you have to say. Your "gripes" are our
           instructions. After about 6 months, programmers can no
-          longer see their own mistakes. It's natural. We want the
+          longer see their own mistakes. It is natural. We want the
           ideas, qritiques, and feedback because we all want to
           make &krusader; the best and most useful file
           manager available anywhere.</para>
@@ -1108,7 +1108,7 @@
           <ulink url="http://www.krusader.org/phpBB/viewforum.php?f=10">ToDo Forum</ulink>. Adding ToDo items into the
           <ulink url="http://www.krusader.org/phpBB/viewforum.php?f=10">ToDo Forum</ulink> is for developers only, but
           feel free to post to the <ulink url="http://www.krusader.org/phpBB/viewforum.php?f=6">New Features Discussion/Requests Forum</ulink>
-          for things that aren't on the <ulink url="http://www.krusader.org/phpBB/viewforum.php?f=10">ToDo Forum</ulink>,
+          for things that are not on the <ulink url="http://www.krusader.org/phpBB/viewforum.php?f=10">ToDo Forum</ulink>,
           but should be. If you have a nice feature request, the
           &krusader; Krew will add your request to the
           <ulink url="http://www.krusader.org/phpBB/viewforum.php?f=10">ToDo Forum</ulink>. We review and discuss every
@@ -1124,7 +1124,7 @@
           <para>How can I send a patch?</para>
         </question>
         <answer>
-          <para>It's not easy to write patch guidelines, but here
+          <para>It is not easy to write patch guidelines, but here
           are some. 
           <orderedlist numeration="arabic">
             <listitem>
@@ -1152,7 +1152,7 @@
             </listitem>
             <listitem>
              <para>Submit your patch files into our <ulink url="http://sourceforge.net/tracker/?group_id=6488&amp;atid=306488">Patch Tracker</ulink>,
-              so that all patch proposals stay organised and don't get lost,
+              so that all patch proposals stay organised and do not get lost,
               tar.gz archives or diffs are usually ok.
               Do not copy changes into a mail. Most mailers will change the
               white spaces, so that the diff will not apply or the
@@ -1176,7 +1176,7 @@
                 <listitem>
                   <para>&kde; 3.3- &kde;
                   3.5 and even on GNOME with
-                  &kde;libs (for krusader-2.x &kde; 4) .</para>
+                  &kde;libs (for &krusader;-2.x &kde; 4) .</para>
                 </listitem>
                 <listitem>
                   <para>GCC 2.95 - GCC 4.1</para>
@@ -1276,7 +1276,7 @@
         <screen><prompt>$</prompt> <userinput><command>valgrind</command> <option>--tool=memcheck</option> <replaceable>{foo_path}/krusader</replaceable></userinput></screen>
         
         The valgrind tool will write to stdout, what really happens.
-        If you could send these information before the crash, it's almost sure, that we may fix or tell you what to do.
+        If you could send these information before the crash, it is almost sure, that we may fix or tell you what to do.
   </para>
   <!-- Empty line to make it more readable -->
   </answer>
@@ -1291,7 +1291,7 @@
         Since we usually only develop and fix &krusader;-git, compile &krusader;-git in debugmode and install it, than check if the bug still exist.
         <screen><prompt>$</prompt> <userinput><command>cmake</command> <option>-DCMAKE_BUILD_TYPE=debugfull</option></userinput></screen> 
  
-       If the KDEKrashhandler still doesn't provide useful backtrace information, than sometimes a coredump will give better information. 
+       If the KDEKrashhandler still does not provide useful backtrace information, than sometimes a coredump will give better information. 
        Run Krusader, with disabled crashhandler.
        <screen><prompt>$</prompt> <userinput><command>krusader</command> <option>--nocrashhandler</option></userinput></screen>
 
@@ -1320,7 +1320,7 @@
           &krusader;. Feel free to subscribe and
           unsubscribe.</para>
           <para>Tip. our mailing lists can be browsed online or
-          read with a newsreader, so that you don't even need to
+          read with a newsreader, so that you do not even need to
           subscribe to follow the action on the mailing lists. 
           <itemizedlist>
             <listitem>
@@ -1415,7 +1415,7 @@
           chance that you will have an instant solution to your
           problem. If the issue is currently being discussed, you
           can join in the discussion. Some questions are asked over
-          and over again, that's why we have created this
+          and over again, that is why we have created this
           <link linkend="faq">FAQ</link>. This allows us to spend more time
           developing &krusader;.</para>
           <para>The <ulink url="http://www.krusader.org/phpBB/index.php">&krusader; Forum</ulink> is split into seven
@@ -1445,8 +1445,8 @@
               will be able to VOTE and COMMENT on the TODO items.
               Here you get the chance to push your favourite
               features (+3) and still prefer certain features over
-              others (+1), if you don't care about a feature just
-              simply don't vote on that feature. Unregistered users
+              others (+1), if you do not care about a feature just
+              simply do not vote on that feature. Unregistered users
               may only browse the <ulink url="http://www.krusader.org/phpBB/viewforum.php?f=10">ToDo Forum</ulink>. The
               <ulink url="http://www.krusader.org/todo.php">ToDo ranking system</ulink> contains the results
               based on the votes. 
@@ -1463,13 +1463,13 @@
             </listitem>
             <listitem>
               <para><ulink url="http://www.krusader.org/phpBB/viewforum.php?f=1">General Discussion Forum</ulink>: everything that
-              is &krusader; related and doesn't belong
+              is &krusader; related and does not belong
               in the other forums.</para>
             </listitem>
           </itemizedlist></para>
           <para>Thank you for your co-operation!</para>
           <para>We provide a <ulink url="http://krusader.sf.net/phpBB/rss.php">RSS feed</ulink> for our forums.
-	  You don't have to check for new posts all the time, instead the news
+	  You do not have to check for new posts all the time, instead the news
           will come to you!</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -1525,7 +1525,7 @@
         </question>
         <answer>
           <para>Yes, there is a <link linkend="kde4_win_install">&Windows; port</link> since 18 June 2008.
-          Before Krusader can be used several &Qt;4-libraries and &kde;4-libraries need to be installed.
+          Before &krusader; can be used several &Qt;4-libraries and &kde;4-libraries need to be installed.
           A recommended native file manager for &Windows; is 
 	  <ulink url="http://www.ghisler.com/"><trademark class="copyright">Total Commander</trademark></ulink> (shareware).</para>
           <para></para>

@@ -70,11 +70,11 @@
       </para>
     </listitem>
   </itemizedlist>
-  <para>You can bookmark these &URL;'s, however, please
+  <para>You can bookmark these &URL;s, however, please
   read the 
   <link linkend="bookman">Bookman</link> section regarding 
   <emphasis>securely save passwords</emphasis>. For connecting to
-  multiple locations, bookmark these &URL;'s and open
+  multiple locations, bookmark these &URL;s and open
   them one by one, or open them all together by using
   <link linkend="panel_profiles">Panel profiles</link>. To switch from one to another
   location, just open a <link linkend="folder-tabs">Folder tabs</link> for
@@ -87,16 +87,15 @@
     </listitem>
     <listitem>
       <para>Select 
-      <emphasis role="bold">
         <menuchoice>
           <guimenu>Tools</guimenu>
           <guimenuitem>New Net Connection</guimenuitem>
         </menuchoice>
-      </emphasis>which will pop-up a dialog that will ask for the
+      which will pop-up a dialog that will ask for the
       remote site details. This dialog is handy if you are not used
-      to type remote &URL;'s in the Location Toolbar.
+      to type remote &URL;s in the Location Toolbar.
       Leaving the password and user name fields empty will log you
-      in as anonymous. NOTE: we are planning to rewrite this dialog
+      in as anonymous. Note: we are planning to rewrite this dialog
       window.</para>
     </listitem>
     <listitem>
@@ -114,7 +113,7 @@
     <listitem>
       <para>Permissions cannot always be calculated on remote
       servers (depends on server and access method) so you might
-      get a "?" on the permissions columns for some files.</para>
+      get a <guilabel>?</guilabel> on the permissions columns for some files.</para>
     </listitem>
     <listitem>
       <para>Disk usage information is not available for most remote
@@ -122,15 +121,13 @@
     </listitem>
   </itemizedlist>
   <para>To change the charset of the remote host use 
-  <emphasis role="bold">
     <menuchoice>
       <guimenu>View</guimenu>
       <guimenuitem>Select Remote Charset</guimenuitem>
     </menuchoice>
-  </emphasis>.</para>
-  <para>You can 
-  <emphasis role="bold">close the current Active Remote
-  Connection</emphasis> by two separate methods:</para> 
+  .</para>
+  <para>You can close the current Active Remote
+  Connection by two separate methods:</para> 
   <itemizedlist>
     <!--
         <listitem>
@@ -151,7 +148,7 @@
     <para>&krusader; is a file manager that supports
     remote connections via KIO Slaves, but if you
     are looking for even more advanced remote connections features,
-    &eg; an advanced &FTP;-client we
+    &eg; an advanced &FTP; client we
     recommend you to use &eg;
     <ulink url="http://kasablanca.berlios.de/">Kasablanca</ulink> or
     <ulink url="http://kftpgrabber.sourceforge.net/"><application>Kftpgrabber</application></ulink>.</para>
@@ -186,10 +183,10 @@ Let's start with installing all the packages we need:
 </screen>
 
 Everything is installed, now let's do some configuration. First, we need our services to be announced on LAN.
-That's why we installed avahi-daemon: it represents your machine on local network and allows other applications 
+That is why we installed avahi-daemon: it represents your machine on local network and allows other applications 
 to publish services they provide. Avahi-daemon comes with example <filename>ssh.service</filename> configuration 
-file found in <filename>/usr/share/doc/avahi-daemon/examples</filename> . In order to get the service to be 
-announced on LAN we need to copy this file to <filename>/etc/avahi/services</filename> directory: 
+file found in <filename class="directory">/usr/share/doc/avahi-daemon/examples</filename>. In order to get the service to be 
+announced on LAN we need to copy this file to <filename class="directory">/etc/avahi/services</filename> directory: 
 <screen>
 <prompt>#</prompt> <userinput><command>cp</command> <option>/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option></userinput>
 </screen>
@@ -202,7 +199,7 @@ Now we need fish:/ protocol to be announced too, so we use an ssh.service file a
 This file is just a copy of ssh.service. Edit the <filename>fish.service</filename> file and replace 
 "Remote Terminal on %h" with "Fish to %h" and "_ssh._tcp" with "_fish._tcp". 
 
-Here's how it looks after edit: 
+Here is how it looks after edit:
 <programlisting> 
 &lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*--> 
 &lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;
@@ -253,7 +250,7 @@ Do the same on each machine on your LAN, then restart avahi-daemon:
 
 Then open &krusader; and type in location-toolbar-lnk: <filename>zeroconf:/</filename> to open the  
 <link linkend="gloss-zeroconf">zeroconf</link> connection.
-Enter the <guilabel>Fish Protocol</guilabel> directory. Inside you'll find the links to each machine that 
+Enter the <guilabel>Fish Protocol</guilabel> directory. Inside you will find the links to each machine that 
 announced <filename>fish:/</filename> on your LAN, the location-toolbar-lnk: will point to 
 <filename>zeroconf:/_fish._tcp</filename> Double clicking on any of these machines,
 them will bring up the password prompt, asking you for your ssh key passphrase (if password was set). 

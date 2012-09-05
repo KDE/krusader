@@ -44,7 +44,7 @@
 <note>
  <para>Since &krusader;-1.80.0 the <link linkend="key_bindings">Key-Bindings</link> and <link linkend="mainwindow">Main Toolbar</link>-<link linkend="actions_toolbar">Actions Toolbar</link> 
        have received their own configuration windows and so they are not a part anymore of Konfigurator,
-       you can configure them now via the <link linkend="settings-menu">Settings menu</link>.</para>
+       you can configure them now via the <link linkend="settings-menu"><guimenu>Settings</guimenu> menu</link>.</para>
 </note>
 
   <sect1 id="konfig-startup">
@@ -160,12 +160,11 @@
               appears in the same location on the screen, having
               panels sorted and aligned as they were. If this
               option is unchecked, you can use the menu 
-              <emphasis role="bold">
                 <menuchoice>
                   <guimenu>Window</guimenu>
                   <guimenuitem>Save Position</guimenuitem>
                 </menuchoice>
-              </emphasis> option to manually set
+              option to manually set
               &krusader; size and position at
               start-up.</para>
             </listitem>
@@ -203,8 +202,8 @@
           <para>
           <guilabel>Autoselect Directories</guilabel>: When 
           <link linkend="edit-menu">you select a group of
-          files</link> (either by using Select Group or by using
-          Select All), &krusader; checks this option. If
+          files</link> (either by using <guilabel>Select Group</guilabel> or by using
+          <guilabel>Select All</guilabel>), &krusader; checks this option. If
           checked, the directories matching the select criteria are
           also selected. Otherwise, only files are selected.</para>
         </listitem>
@@ -432,21 +431,21 @@
             <listitem>
               <para>
                 <guilabel>Name</guilabel>: Shows the filename without the part after the last dot, 
-                this latter part is displayed in the Ext column. When the Ext column is made hidden, 
-                the complete filename is shown in the Name column like &eg; &konqueror; does.
+                this latter part is displayed in the <guilabel>Ext</guilabel> column. When the <guilabel>Ext</guilabel> column is made hidden, 
+                the complete filename is shown in the <guilabel>Name</guilabel> column like &eg; &konqueror; does.
               </para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Ext</guilabel>: Shows the last part of the
-              filename (the part after the last dot) in the ext
-              column, and not as a complete filename in the name column
+              filename (the part after the last dot) in the <guilabel>Ext</guilabel>
+              column, and not as a complete filename in the <guilabel>Name</guilabel> column
               like &eg; &konqueror; does.
               </para>
             </listitem>
             <listitem>
               <para>
-              <guilabel>Type</guilabel>: Shows the mime type
+              <guilabel>Type</guilabel>: Shows the MIME type
               field.</para>
             </listitem>
             <listitem>
@@ -572,28 +571,28 @@
         <listitem>
           <para>
           <guilabel>Konqueror Mode</guilabel>: pressing the
-          Left Mouse Button selects files -- 
+          &LMB; selects files -- 
           <!-- Openjade does not like an application element for "Konqueror" here -->
           you can click and select multiple files. Right-click menu
           appears with a short click on the
-          Right Mouse Button.</para>
+          &RMB;.</para>
         </listitem>
         <listitem>
           <para>
           <guilabel>Total commander Mode</guilabel>: Pressing the
-          Right Mouse Button selects multiple files 
+          &RMB; selects multiple files 
           <!-- Openjade does not like an trademark element for "Total commander" here -->
           and the right-click menu appears with 
           <guilabel>pressing and holding</guilabel> the
-          Right Mouse Button. The Left Mouse Button does not select,
+          &RMB;. The Left Mouse Button does not select,
           but sets the current file without affecting the current
           selection.</para>
         </listitem>
 	<listitem>
           <para>
           <guilabel>Ergonomic Mode</guilabel>:
-	  The Left Mouse Button does not select, but sets the current file without affecting the current selection. 
-	  The Right Mouse Button invokes the context-menu. You can select with &Ctrl; key and the left button.</para>
+	  The &LMB; does not select, but sets the current file without affecting the current selection. 
+	  The &RMB; invokes the context-menu. You can select with &Ctrl; key and the left button.</para>
         </listitem>
         <listitem>
           <para>
@@ -951,7 +950,7 @@
 	  <para>
 	    <guilabel>Minimize to tray</guilabel>: If checked, the &krusader;
         icon will appear in the system tray.
-        When you minimize &krusader;, it won't appear in the taskbar.
+        When you minimize &krusader;, it will not appear in the taskbar.
         It also will not exit if you close the main window.
         Instead you can quit &krusader; by selecting <guimenuitem>Quit</guimenuitem> from the <guimenu>File</guimenu> menu
         or the context menu of the tray icon.
@@ -959,16 +958,16 @@
 	</listitem>
 	<listitem>
 	  <para>
-	    <guilabel>Use mimetype magic</guilabel>: mime type magic is
+	    <guilabel>Use MIME type magic</guilabel>: MIME type magic is
 	    a mechanism which allows &krusader; to inspect
 	    the files in the panels and determine their type even if
 	    the file has no identifying extension. For example, if you
-	    take an image file - 'image1.jpg' - and rename it to
-	    'image1', &krusader; will still know it's an
+	    take an image file - <filename>image1.jpg</filename> - and rename it to
+	    <filename>image1</filename>, &krusader; will still know it is an
 	    image file and work with it accordingly. However, this mode
 	    of operation is slower (while refreshing the panel, or
 	    changing directories), so try &krusader; with
-	    and without mime type magic and decide what is best for
+	    and without MIME type magic and decide what is best for
 	    you.</para>
 	 </listitem>
 	 <listitem>
@@ -989,7 +988,7 @@
       </itemizedlist>
       <para>
 	<guilabel>Delete mode</guilabel> (<guilabel>Delete files/Move to trash</guilabel>): when
-        &krusader; deletes files it can either 'really'
+        &krusader; deletes files it can either <emphasis>really</emphasis>
         delete them or move them to the trash folder, thereby
         making them available via &kde;'s trash.
       </para>
@@ -1041,14 +1040,14 @@
         </listitem>
         <listitem>
          <para>
-         <guilabel>Lister mode</guilabel>: Fast text/hex viewer for huge filesizes.
+         <guilabel>Lister mode</guilabel>: Fast text/hexadecimal viewer for huge filesizes.
 	 &krusader; lister never loads the whole file into memory, just a little part of it, and uses caching for faster scrolling. 
          Remote files are downloaded, but during the download, viewing the downloaded part is possible.
          If a file constantly changes, then it can also be viewed, lister will always see its current state.</para>
         </listitem>
 	<listitem>
          <para>
-         <guilabel>Use lister if the text file is bigger than : 10 MB (default value) </guilabel>: 
+         <guilabel>Use lister if the text file is bigger than: 10 MB (default value)</guilabel>: 
 	 checks whether a text file is bigger than 10 MB (configurable), and if yes, 
 	 then &krusader; Lister is used instead of &kde;'s default viewer.</para>
 	</listitem>      
@@ -1066,15 +1065,15 @@
     <sect2 id="konfig-general-atomic">
       <title>Atomic extensions</title>
         <para>
-        <guilabel>Atomic extensions</guilabel>: predefined atomic extensions like <filename>tar.gz</filename> 
-        are shown as one part in the <guilabel>Ext Column</guilabel> of the <link linkend="list_panel">List Panel</link>.</para>
+        <guilabel>Atomic extensions</guilabel>: predefined atomic extensions like <literal role="extension">.tar.gz</literal>
+        are shown as one part in the <guilabel>Ext</guilabel> Column of the <link linkend="list_panel">List Panel</link>.</para>
       </sect2>
   </sect1>
   <sect1 id="konfig-advanced">
     <title>Advanced</title>
     <para>This page handles more advanced issues, so you should
     double-check your actions here: modifying settings here 
-    <remark>makes &krusader; a more powerful AND
+    <remark>makes &krusader; a more powerful and
     dangerous tool.</remark></para>
 
     <para>The page is divided into three parts:</para>
@@ -1124,7 +1123,7 @@
 	    </listitem> -->
             <listitem>
               <para>
-              <guilabel>MountMan won't (un)mount the following
+              <guilabel>MountMan will not (un)mount the following
               mount points</guilabel>: If you have file systems that
               you do not want to accidentally unmount (or mount)
               then enter a list of mount points separated by commas
@@ -1226,7 +1225,7 @@
     ZIP archives, &krusader; needs the 
     <command>unzip</command> and 
     <command>zip</command> executables). It is possible that you need
-    to manually configure the mimes to the protocols in the
+    to manually configure the MIMEs to the protocols in the
     <link linkend="konfig-protocols">Konfigurator Protocol page</link>.</para>
     <para>
       <guilabel>Fine-Tuning</guilabel>
@@ -1445,7 +1444,7 @@
       <para>By default &kompare; (part of the kdesdk
       package) is used as external diff utility but you can also
       use your favorite diff utility &eg;
-      <ulink url="http://furius.ca/xxdiff/"><application>xxdiff</application></ulink> or <ulink url="http://kdiff3.sourceforge.net"><application>Kdiff3</application></ulink>, just fill
+      <ulink url="http://furius.ca/xxdiff/"><application>xxdiff</application></ulink> or <ulink url="http://kdiff3.sourceforge.net"><application>KDiff3</application></ulink>, just fill
       in the full path and enjoy.</para>
     </tip>
     <para>
@@ -1899,15 +1898,15 @@
     <title>UserActions</title>
     <para>Here you can configure the terminal for UserActions and
     the font for the output-collection. The default terminal is 
-    <filename>konsole --noclose -e</filename>. To set up, configure
+    <command>konsole --noclose -e</command>. To set up, configure
     and manage your UserActions use ActionMan
-    (<link linkend="useractions">UserActions</link> url).</para>
+    (<link linkend="useractions">UserActions</link> &URL;).</para>
 
   </sect1>
   <sect1 id="konfig-protocols">
     <title>Protocols</title>
-    <para>This page links the mimes to protocols. &eg;
-    protocol "tar" is linked to mime "application/x-tar".</para>
+    <para>This page links the MIMEs to protocols. &eg;
+    protocol "tar" is linked to MIME "application/x-tar".</para>
 
     <para>In the 
     <guilabel>Links</guilabel> you will see &eg; 

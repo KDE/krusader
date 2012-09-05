@@ -290,7 +290,7 @@
   panel. This is done using placeholders. A placeholder begins with
   a percent-sign ('%') and is followed by a panel indicator ('a'
   for the active, 'o' for the other, 'l' for the left and 'r' for
-  the right panel. If the placeholder doesn't need a panel to
+  the right panel. If the placeholder does not need a panel to
   operate on, you have to indicate this by an underscore ('_')).
   Then comes the name of the placeholder (see the list below),
   which may get some parameters enclosed in quotes. Finally, again
@@ -558,10 +558,10 @@
           <filename>$(kde-config
           - -localprefix)/share/apps/</filename> or 
           <filename>$(kde-config - -prefix)/share/apps/</filename>,
-          for those who don't know where to copy the
+          for those who do not know where to copy the
           scripts/extensions. If all the needed files (normally 
           <filename>.js</filename> and maybe 
-          <filename>.ui</filename>) are in one of these dirs it's
+          <filename>.ui</filename>) are in one of these dirs it is
           sufficient to give the file name only as &lt;first parameter&gt;.
           </para>
         </listitem>
@@ -636,7 +636,7 @@
   <itemizedlist>
     <listitem>
       <para>Configures if the action is valid for a Protocol, Path,
-      Mime type or File name.</para>
+      MIME type or File name.</para>
     </listitem>
     <listitem>
       <para>Tweaking the command line before being executed.</para>

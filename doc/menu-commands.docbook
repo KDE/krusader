@@ -200,7 +200,7 @@
           <para>Compares two current files by content - one from
           each panel via an external graphical diff utility. By
           default &kompare; is used, but you can also use &eg;
-          <ulink url="http://furius.ca/xxdiff/"><application>xxdiff</application></ulink> or <ulink url="http://kdiff3.sourceforge.net"><application>Kdiff3</application></ulink> ,
+          <ulink url="http://furius.ca/xxdiff/"><application>xxdiff</application></ulink> or <ulink url="http://kdiff3.sourceforge.net"><application>KDiff3</application></ulink> ,
           change it in the
           <link linkend="konfig-dependencies">Konfigurator Dependencies page</link>.</para>
         </listitem>
@@ -251,8 +251,8 @@
               <para>Changing permissions and file ownership</para>
             </listitem>
             <listitem>
-              <para>A plug-in API which allows you to extend
-              Krename's features</para>
+              <para>A plugin API which allows you to extend
+              KRename's features</para>
             </listitem>
             <listitem>
               <para>Renaming directories recursively</para>
@@ -755,8 +755,8 @@
         </term>
         <listitem>
           <para>Sets the current directory as a "jump back" point.
-          To navigate to this directory quickly, select the "Jump
-          Back" command from the Go Menu.</para>
+          To navigate to this directory quickly, select the <guimenuitem>Jump
+          Back</guimenuitem> command from the <guimenu>Go</guimenu> menu.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -966,7 +966,7 @@
         <term>
           <menuchoice>
             <guimenu>Useractions</guimenu>
-            <guimenuitem>Manage User Actions ...</guimenuitem>
+            <guimenuitem>Manage User Actions...</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
@@ -988,7 +988,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Appends selected item(s) to Amarok playlist.</para>
+          <para>Appends selected item(s) to &amarok; playlist.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1021,7 +1021,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Allows you to edit a file with kwrite using root
+          <para>Allows you to edit a file with <application>kwrite</application> using root
           permissions.</para>
         </listitem>
       </varlistentry>
@@ -1072,7 +1072,7 @@
         </term>
         <listitem>
           <para>Backups current file in current directory and asks the user for a new filename. 
-                By default <filename>.old</filename> is appended to the original filename.</para>
+                By default <literal role="extension">.old</literal> is appended to the original filename.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1185,7 +1185,7 @@
         <listitem>
           <para>Opens 
           <link linkend="krusearcher">KruSearcher</link> - the
-          Krusader search module.</para>
+          &krusader; search module.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1399,7 +1399,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Empty the <link linkend="deleting">trash bin</link>.</para>
+          <para>Empties the <link linkend="deleting">trash bin</link>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -1621,8 +1621,8 @@
         </term>
         <listitem>
           <para>Toggles full screen mode of the terminal emulator.
-          This option is only available when "Show Terminal
-          Emulator" is activated.</para>
+          This option is only available when <guilabel>Show Terminal
+          Emulator</guilabel> is activated.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1636,7 +1636,7 @@
           <para>Saves the current size and position of the
           &krusader; main window. This action can be
           automated with 
-          <guilabel>"Save settings on exit"</guilabel> in
+          <guilabel>Save settings on exit</guilabel> in
           <link linkend="konfigurator">Konfigurator Startup page</link></para>
         </listitem>
       </varlistentry>

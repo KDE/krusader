@@ -13,17 +13,16 @@
   server. Do not forget the 
   <guilabel>Compare by content</guilabel> option if the file size
   stays equal. Choose 
-  <emphasis role="bold">
     <menuchoice>
       <guimenu>Tools</guimenu>
       <guimenuitem>Synchronize Directories</guimenuitem>
     </menuchoice>
-  </emphasis> or 
+  or 
   <keycombo action="simul">&Ctrl;
   <keycap>Y</keycap></keycombo> to start this feature. The 
   <link linkend="konfig-color">colors</link> are
   configurable.
-  The synchronizer has it's own <link linkend="synchronizer_keybindings">keybindings</link>.
+  The synchronizer has its own <link linkend="synchronizer_keybindings">keybindings</link>.
   </para>
   <note>
     <para>For local files: The synchronizer changes the date
@@ -65,7 +64,7 @@
       <guilabel>General Filters</guilabel> and 
       <guilabel>Advanced filters</guilabel>. The 
       <guilabel>General Filters</guilabel> includes a 
-      <guilabel>don't search in</guilabel> option which lets you
+      <guilabel>Do not search in</guilabel> option which lets you
       exclude directories from comparision.</para>
     </listitem>
     <listitem>
@@ -412,7 +411,7 @@
           <listitem>
             <para>
             <guibutton>!=</guibutton>: Enable/Disable listing the
-            excluded / "don't know what to do" files.</para>
+            excluded / "do not know what to do" files.</para>
           </listitem>
           <listitem>
             <para>
@@ -603,12 +602,12 @@
       <term>Synchronize with <application>kget</application></term>
       <listitem>
         <para>If you want to synchronize a local directory with an
-        unstable ftp server, <application>kget</application> is a much better
+        unstable &FTP; server, <application>kget</application> is a much better
         solution than simple file copying. After comparing you may
         right click on the result list and select 
-        <guimenuitem>Synchronize with kget</guimenuitem> to execute
+        <guimenuitem>Synchronize with KGet</guimenuitem> to execute
         the synchronization, after that the listed files will be
-        downloaded with kget instead of krusader. Of course 
+        downloaded with <application>kget</application> instead of &krusader;. Of course 
         <application>kget</application> needs to be installed on
         your computer; otherwise, it will not be available.</para>
       </listitem>
@@ -709,7 +708,7 @@
           </listitem>
           <listitem>
             <para>Can drastically increase the speed when
-            synchronized with slow FTP servers.</para>
+            synchronized with slow &FTP; servers.</para>
           </listitem>
           <listitem>
             <para>Does not affect the speed of local

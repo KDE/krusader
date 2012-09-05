@@ -1,27 +1,26 @@
 <sect1 id="checksum">
-  <title>Checksum creation-verification</title>
+  <title>Checksum Creation and Verification</title>
   <indexterm>
     <primary>Checksum</primary>
   </indexterm>
   <para>
-  <emphasis role="bold">
     <menuchoice>
       <guimenu>File</guimenu>
       <guimenuitem>Create Checksum</guimenuitem>
-    </menuchoice>
-  </emphasis>: &krusader; checks which tools you have
+    </menuchoice>:
+  &krusader; checks which tools you have
   and if those tools allow recursive operation (in case you
   selected folders), you can generate a checksum by choosing a
-  checksum type from the list (md5, sha...). You can then save the
-  checksum to a file, usually called checksum.md5 or
-  checksum.sha1.</para>
+  checksum type from the list (<guilabel>md5</guilabel>,
+  <guilabel>sha</guilabel>, &etc;). You can then save the
+  checksum to a file, usually called <filename>checksum.md5</filename>
+  or <filename>checksum.sha1</filename>.</para>
   <para>
-  <emphasis role="bold">
     <menuchoice>
       <guimenu>File</guimenu>
       <guimenuitem>Verify Checksum</guimenuitem>
-    </menuchoice>
-  </emphasis>: &krusader; checks if you have a tool that
+    </menuchoice>:
+  &krusader; checks if you have a tool that
   supports the type of checksum you need (from your specified
   checksum file) and displays the files that failed the checksum
   (if any).</para>

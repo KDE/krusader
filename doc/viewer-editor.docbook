@@ -18,7 +18,7 @@
     view every file type viewable by &konqueror;
     (&eg; display pictures, play music, show the content
     of an archive). This is called the 'Generic viewer', for which
-    you need to configure the mime types.</para>
+    you need to configure the MIME types.</para>
     <para>The viewer works as follows:
     <itemizedlist>
       <listitem>
@@ -26,8 +26,8 @@
         <emphasis>'Generic viewer'.</emphasis></para>
       </listitem>
       <listitem>
-        <para>When the file type (mime type) cannot be determined or
-        when a file (&eg; a binary) doesn't have an
+        <para>When the file type (MIME type) cannot be determined or
+        when a file (&eg; a binary) does not have an
         associated action, it disables the 'generic viewer'. The
         file is treated as a text file, which is the
         <emphasis>'Text viewer'</emphasis>.</para>
@@ -74,19 +74,19 @@
         <para>
         <userinput>
           <command>ftp://</command><replaceable>ftp.kde.org/pub/kde/</replaceable>
-        </userinput>views a ftp-server.</para>
+        </userinput>views a &FTP; server.</para>
       </listitem>
       <listitem>
         <para>
         <userinput>
           <command>sftp://</command><replaceable>sftp.foo/</replaceable>
-        </userinput>views a secure ftp-server.</para>
+        </userinput>views a secure &FTP; server.</para>
       </listitem>
       <listitem>
         <para>
         <userinput>
           <command>file:/</command><replaceable>home/frank</replaceable>
-        </userinput>views the homedirectory of Frank.</para>
+        </userinput>views the home directory of Frank.</para>
       </listitem>
       <listitem>
         <para>
@@ -766,7 +766,7 @@ shown.</para>
 </term>
 <listitem>
 <para>
-Sets or removes a bookmark in the current line of the active document. (If it's
+Sets or removes a bookmark in the current line of the active document. (If it is
 there, it is removed, otherwise one is set).
 </para>
 </listitem>
@@ -2275,8 +2275,8 @@ but this can lead to more data loss.</para>
 <sect4 id="katepart-pref-open-save-modes-filetypes">
 <title>Modes &amp; Filetypes</title>
 <para>This page allows you to override the default configuration for documents
-of specified mimetypes. When the editor loads a document, it will try if it
-matches the file masks or mimetypes for one of the defined filetypes, and if so
+of specified MIME types. When the editor loads a document, it will try if it
+matches the file masks or MIME types for one of the defined filetypes, and if so
 apply the variables defined. If more filetypes match, the one with the highest
 priority will be used.
 </para>
@@ -2324,7 +2324,7 @@ menus. This is also used in the
 <varlistentry>
 <term><guilabel>Variables:</guilabel></term>
 <listitem><para>This string allows you to configure &kappname;'s settings for the
-files selected by this mimetype using &kappname; variables. You can set almost any
+files selected by this MIME type using &kappname; variables. You can set almost any
 configuration option, such as highlight, indent-mode,
 etc.</para>
 <para>Press <guibutton>Edit</guibutton> to see a list of all available variables
@@ -2359,7 +2359,7 @@ masks.</para></listitem>
 <varlistentry>
 <term><guilabel>MIME types:</guilabel></term>
 <listitem><para>Displays a wizard that helps you easily select
-mimetypes.</para></listitem>
+MIME types.</para></listitem>
 </varlistentry>
 <varlistentry>
 <term><guilabel>Priority:</guilabel></term>

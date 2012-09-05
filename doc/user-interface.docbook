@@ -128,18 +128,16 @@
       <para><link linkend="useractions">UserActions</link> and
       <link linkend="bookman">Bookmarks</link> can be "plugged" into the
       <guilabel>Actions Toolbar</guilabel>. To show it, use
-      <emphasis role="bold">
         <menuchoice>
           <guimenu>Settings</guimenu>
           <guimenuitem>Show Actions Toolbar</guimenuitem>
         </menuchoice>
-      </emphasis>. To add user actions, use
-      <emphasis role="bold">
+      . To add user actions, use
         <menuchoice>
           <guimenu>Settings</guimenu>
           <guimenuitem>Configure Toolbars</guimenuitem>
         </menuchoice>
-      </emphasis> and select Actions Toolbar. You can, for example,
+      and select Actions Toolbar. You can, for example,
       drag the Actions Toolbar to the right side using the
       mouse.</para>
     </sect2>
@@ -381,11 +379,12 @@
           <link linkend="useractions">UserActions</link> set a keybinding for the
           Column Headers. The default
           <guilabel>Column Headers</guilabel> are:
-          <guilabel>Name, Ext, Size, Modified, rwx</guilabel>.
+          <guilabel>Name</guilabel>, <guilabel>Ext</guilabel>,
+          <guilabel>Size</guilabel>, <guilabel>Modified</guilabel>, <guilabel>rwx</guilabel>.
           Predefined <link linkend="konfig-general">Atomic extensions</link> like
-          <filename>tar.gz</filename> are shown as one part in the
+          <literal role="extension">.tar.gz</literal> are shown as one part in the
           <guilabel>Ext</guilabel> Column. More
-          optional Column Headers are available with the Right Mouse Button.
+          optional Column Headers are available with the &RMB;.
           The width
           <guilabel>Column Headers</guilabel> can be changed with
           the mouse by single clicking and moving the divider line

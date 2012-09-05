@@ -18,20 +18,22 @@
     <keycap>Right Arrow</keycap>. &krusader; supports
     also 
     <emphasis role="bold">hidden archives</emphasis>, these are
-    renamed archives with a *wrong* extension, e.g.
+    renamed archives with a *wrong* extension, &eg;
     <trademark class="registered">OpenOffice</trademark> uses zip archives with the following
-    extensions: odt, sxw and odw. &Enter; will open the
+    extensions: <literal role="extension">.odt</literal>,
+    <literal role="extension">.sxw</literal> and <literal role="extension">.odw</literal>.
+    &Enter; will open the
     <trademark class="registered">OpenOffice</trademark> document and the 
     <keycap>Right Arrow</keycap> will open the archive. Another
-    example is J2EE, where the jar extension means a zip archive.
+    example is J2EE, where the <literal role="extension">.jar</literal> extension means a zip archive.
     Since &krusader; auto-detects the supported archive
     types, it will open with 
-    <keycap>Right Arrow</keycap> even if it has another mime type.
+    <keycap>Right Arrow</keycap> even if it has another MIME type.
     Please note that browsing archives has a few limitations: 
     <itemizedlist>
       <listitem>
         <para>Not all functions are supported by all archive types.
-        (i.e.: you can not delete files in ace or rar
+        (&ie;: you can not delete files in ace or rar
         archives)</para>
       </listitem>
       <listitem>
@@ -63,16 +65,15 @@
     <para>There are 2 ways to extract files from archives:</para>
     <para>If you want to unpack a whole archive(s), browse to the
     archive location, select the archive(s) and select 
-    <emphasis role="bold">
       <menuchoice>
         <guimenu>File</guimenu>
         <guimenuitem>Unpack</guimenuitem>
       </menuchoice>
-    </emphasis> or 
+    or 
     <keycombo action="simul">&Alt;&Shift;
     <keycap>U</keycap></keycombo>. &krusader; will ask
     you where to put the extracted files. The default location is
-    the inactive panel directory. If you don't cancel the
+    the inactive panel directory. If you do not cancel the
     operation, &krusader; will try to unpack all the
     selected files in the inactive panel.</para>
     <para>If you only want to extract a part of the archive, then 
@@ -87,12 +88,11 @@
     <title>Packing Files</title>
     <para>If you want to create a new archive, begin by selecting
     the elements you want to pack in the active panel and select 
-    <emphasis role="bold">
       <menuchoice>
         <guimenu>File</guimenu>
         <guimenuitem>Pack</guimenuitem>
       </menuchoice>
-    </emphasis> or 
+    or 
     <keycombo action="simul">&Alt;&Shift;
     <keycap>P</keycap></keycombo>. A dialog will pop-up prompting
     you to select the archive name and location. Select the packer
@@ -107,18 +107,17 @@
   </sect2>
   <sect2 id="test-archive">
     <title>Testing Archives</title>
-    <para>Krusader will not handle corrupted archives since it may
+    <para>&krusader; will not handle corrupted archives since it may
     result in data loss. If you receive an error message when
     opening an archive, or if you suspect that there is something
     wrong with the archive, you should test it before use. To test
     an archive, browse (navigate) to the archive location and
     select the archive. Next select 
-    <emphasis role="bold">
       <menuchoice>
         <guimenu>File</guimenu>
         <guimenuitem>Test Archive</guimenuitem>
       </menuchoice>
-    </emphasis> or 
+    or 
     <keycombo action="simul">&Alt;
     <keycap>E</keycap></keycombo>. &krusader; will test
     the archive file and inform you whether the archive passed or

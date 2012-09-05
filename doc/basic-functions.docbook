@@ -66,7 +66,7 @@
       <itemizedlist>
         <listitem>
           <para>Clicking on the Toolbar, the FN keys bar or the
-          Status Bar does *not* change the focus.</para>
+          Status Bar does <emphasis>not</emphasis> change the focus.</para>
         </listitem>
         <!--
    Quick View Panel: old Krusader feature , removed since krusader-1.12-beta1      
@@ -77,7 +77,7 @@
 -->
         <listitem>
           <para>Pushing the 
-          <guibutton>"Run in Terminal Mode"</guibutton> button in the
+          <guibutton>Run in Terminal Mode</guibutton> button in the
           Command Line will not transfer the focus, so you have to
           click inside the Input Line.</para>
         </listitem>
@@ -118,7 +118,7 @@
         <listitem>
           <para>Pressing 
           <keycombo action="simul">&Alt;
-          <keycap>"Underlined Letter"</keycap></keycombo> from the
+          <keycap>Underlined Letter</keycap></keycombo> from the
           Menu Bar will open that menu (unless this key combination
           is a "Reserved Key", used by one of
           &krusader;'s actions).</para>
@@ -138,22 +138,22 @@
       only one directory at a time, this paragraph mainly explains how
       to select files in the List Panel.</para>
       <para>Moving the cursor is easy. Left-clicking on a file or
-      directory (referred to herein as "elements" meaning files AND
+      directory (referred to herein as "elements" meaning files and
       directories) will select it. Here are some useful pointers
       that will make &krusader; even easier to use (assuming you are
       using &krusader;'s Mouse Selection Mode): 
       <itemizedlist>
         <listitem>
           <para>The 
-          <keycap>SPACE</keycap> and 
-          <keycap>Insert</keycap> key will toggle the selection of
+          <keycap>Space</keycap> and 
+          <keycap>Insert</keycap> keys will toggle the selection of
           the file under the cursor without affecting the selection
           of other files/directories, the cursor will go one
           position down.</para>
         </listitem>
         <listitem>
           <para>Pressing the 
-          <keycap>SPACE</keycap> on a Directory under the cursor
+          <keycap>Space</keycap> on a directory under the cursor
           will 
           <link linkend="calculate">calculate occupied
           space</link> without affecting the selection of other
@@ -224,7 +224,7 @@
       small quick search dialog box will open below the Active List
       Panel. Type the first few characters of the desired file name
       (more than one character allowed), the cursor will jump to
-      that filename (if it exists), e.g. type "ab" to
+      that filename (if it exists), &eg; type "ab" to
       search for a file which begins with "ab". The 
       <keycap>Up/Down Arrow</keycap> will jump to the next or
       previous match. &Esc; will close the quick search
@@ -288,7 +288,7 @@
         <listitem>
           <para>
           <link linkend="krusearcher">KruSearcher</link> Search
-          results file list (F3 View, F4 Edit)</para>
+          results file list (<keycap>F3</keycap> View, <keycap>F4</keycap> Edit)</para>
         </listitem>
         <listitem>
           <para><link linkend="mount-man">MountMan</link> (unmount,
@@ -323,16 +323,16 @@
     <sect2 id="executing_files">
       <title>Executing Files</title>
       <para>You can only execute files in the Active List Panel. To
-      <keycap>execute</keycap> a file just 
-      <keycap>(double-)click on it or press Enter</keycap> when it
+      execute a file just 
+      (double-)click on it or press &Enter; when it
       is under the list cursor. &krusader; will open it
       in the default application for this file type (picture,
       text file...) or the file will be executed (script,
       binary...). If you want to use 
-      <keycap>another application</keycap> to open the file, 
-      <keycap>Right-Click</keycap> on the file and go to the "open
-      with" sub-menu which will offer more options.
-      &krusader; is compatible with &kde;
+      another application to open the file, 
+      click with the &RMB; on the file and go to the <guisubmenu>Open
+      with</guisubmenu> sub-menu which will offer more options.
+      &krusader; is compatible with the &kde;
       default file manager for all file types except archives that
       are opened inside the &krusader; panel and not in
       an external application. See 
@@ -344,9 +344,9 @@
       <para>To copy or move files/directories just select them and
       press 
       <keycap>F5</keycap> to 
-      <keycap>copy</keycap> or 
+      copy or
       <keycap>F6</keycap> to 
-      <keycap>move</keycap> them. &krusader; tries to preserve the time of
+      move them. &krusader; tries to preserve the time of
       modification. When copying a directory owner is changed to the user which
       copies the directory, group is changed to the default group of the user.
       When copying a file owner is changed to the user which copies the file,
@@ -368,19 +368,19 @@
       move by queue <keycombo action="simul">&Shift;<keycap>F6</keycap></keycombo> .
       Queue manager performs actions one-by-one.
       For example, if you have a pen drive (which is slow), and you want to copy 40 files onto it, 
-      it's much better copying them one-by-one instead of starting to copy 40 files in parallel.
-      That's why enqueuing is important.
+      it is much better copying them one-by-one instead of starting to copy 40 files in parallel.
+      That is why enqueuing is important.
       If you pack/unpack 40 files in parallel, you overload your computer,
       but adding them to a queue, is much more useful.
       </para>
     </sect2>
     <sect2 id="deleting">
-      <title>Deleting - move to KDE's Trash</title>
+      <title>Deleting - move to &kde;'s Trash</title>
       <para>Deleting files/directories is done by selecting them and pressing <keycap>F8</keycap> or <keycap>Delete</keycap>.
       By <link linkend="konfig-general">default</link> it will be moved to &kde;'s Trash.
-      You can open the KDE Trash with the Trash icon in the <link linkend="main_toolbar">Main Toolbar</link> or with 
+      You can open the &kde; Trash with the Trash icon in the <link linkend="main_toolbar">Main Toolbar</link> or with 
       the <filename>trash:/</filename> KIO slave.
-      Physically KDE Trash is located in <filename>~/.local/share/Trash/</filename> .  
+      Physically &kde; Trash is located in <filename>~/.local/share/Trash/</filename>.
       <keycombo action="simul">&Shift;
       <keycap>Delete</keycap></keycombo> will delete the file
       permanently. A dialog will ask for your confirmation and will
@@ -394,18 +394,18 @@
     </sect2>
     <sect2 id="shred">
       <title>Shred Files</title>
-      <para>Shred was removed from KDE4 (and as consequence Krusader-2 for KDE4).
-           The main reason is probably that shredding is filesystem dependent and even if you overwrite the file 100 times, it's not sure, that it'll be deleted from the disk finally.
-           Quote from the kgpg posts: "The shred feature has been removed from the KDE library. Kgpg will not support this feature anymore. Moderns file systems use journalisation. So the shred feature should be implemented in the file system. Not in kgpg."
+      <para>Shred was removed from &kde; 4 (and as consequence &krusader;-2 for &kde; 4).
+           The main reason is probably that shredding is filesystem dependent and even if you overwrite the file 100 times, it is not sure, that it will be deleted from the disk finally.
+           Quote from the <application>kgpg</application> posts: <quote>The shred feature has been removed from the KDE library. Kgpg will not support this feature anymore. Moderns file systems use journalisation. So the shred feature should be implemented in the file system. Not in kgpg.</quote>
            But you might use a proper shred <link linkend="useractions">UserAction</link> for your filesystem.
-	   But keep in mind that if you want to be 100% sure that it's impossible that someone can read a deleted file, you need to destroy your harddrive hardware ...
+	   But keep in mind that if you want to be 100% sure that it is impossible that someone can read a deleted file, you need to destroy your harddrive hardware...
 	   </para>
     </sect2>
     <sect2 id="renaming">
       <title>Renaming Files, Creating Directories and Link
       Handling</title>
       <para>
-      <keycap>Rename</keycap> the file under the cursor with the 
+      Rename the file under the cursor with the 
       <keycap>F9</keycap> key or with two single mouse clicks. If
       only the file name needs to be renamed and not the extension,
       you can configure this in the
