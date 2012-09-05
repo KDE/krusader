@@ -77,7 +77,7 @@ void Combiner::combine()
     file.refresh();
 
     if (!file.isReadable()) {
-        int ret = KMessageBox::questionYesNo(0, i18n("The CRC information file (%1) is missing!\n"
+        int ret = KMessageBox::questionYesNo(0, i18n("The CRC information file (%1) is missing.\n"
                                              "Validity checking is impossible without it. Continue combining?",
                                              splURL.pathOrUrl()));
 
@@ -112,7 +112,7 @@ void Combiner::combineSplitFileFinished(KJob *job)
     QString error;
 
     if (job->error())
-        error = i18n("Error at reading the CRC file (%1)!", splURL.pathOrUrl());
+        error = i18n("Error at reading the CRC file (%1).", splURL.pathOrUrl());
     else {
         splitFile.remove('\r');   // Windows compatibility
         QStringList splitFileContent = splitFile.split('\n');
@@ -141,7 +141,7 @@ void Combiner::combineSplitFileFinished(KJob *job)
         }
 
         if (!hasFileName || !hasSize || !hasCrc)
-            error = i18n("Not a valid CRC file!");
+            error = i18n("Not a valid CRC file.");
         else
             hasValidSplitFile = true;
     }
@@ -278,7 +278,7 @@ void Combiner::combineReceiveFinished(KJob *job)
         if (job->error() == KIO::ERR_DOES_NOT_EXIST) {
             if (fileCounter == 1) { // first file doesn't exist
                 combineAbortJobs();
-                KMessageBox::error(0, i18n("Can't open the first split file of %1!",
+                KMessageBox::error(0, i18n("Cannot open the first split file of %1.",
                                                 baseURL.pathOrUrl()));
                 emit reject();
             } else { // we've recieved the last file
@@ -290,9 +290,9 @@ void Combiner::combineReceiveFinished(KJob *job)
                                         .rightJustified(8, '0');
 
                     if (receivedSize != expectedSize)
-                        error = i18n("Incorrect filesize! The file might have been corrupted!");
+                        error = i18n("Incorrect filesize, the file might have been corrupted.");
                     else if (crcResult != expectedCrcSum.toUpper().trimmed())
-                        error = i18n("Incorrect CRC checksum! The file might have been corrupted!");
+                        error = i18n("Incorrect CRC checksum, the file might have been corrupted.");
                 }
             }
         } else {

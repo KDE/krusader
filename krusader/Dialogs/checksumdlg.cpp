@@ -314,7 +314,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
     proc.setStandardErrorFile(tmpErr->fileName());
     proc.setWorkingDirectory(path);
 
-    krApp->startWaiting(i18n("Calculating checksums ..."), 0, true);
+    krApp->startWaiting(i18n("Calculating checksums..."), 0, true);
     QApplication::setOverrideCursor(Qt::WaitCursor);
     proc.start();
     // TODO make use of asynchronous process starting. waitForStarted(int msec = 30000) is blocking
@@ -456,7 +456,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
     proc.setStandardErrorFile(tmpErr->fileName());
     proc.setWorkingDirectory(path);
 
-    krApp->startWaiting(i18n("Verifying checksums ..."), 0, true);
+    krApp->startWaiting(i18n("Verifying checksums..."), 0, true);
     QApplication::setOverrideCursor(Qt::WaitCursor);
     proc.start();
     // TODO make use of asynchronous process starting. waitForStarted(int msec = 30000) is blocking

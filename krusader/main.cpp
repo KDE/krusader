@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
     aboutData.addCredit(ki18n("Jiří Paleček"), ki18n("QA, bug-hunting, patches and general help"), "jpalecek@web.de", 0);
     aboutData.addCredit(ki18n("Jiří Klement"), ki18n("Important help in KDE 4 porting"), 0, 0);
     aboutData.addCredit(ki18n("Andrew Neupokoev"), ki18n("Killer Logo and Icons for Krusader (contest winner)"), "doom-blue@yandex.ru", 0);
-    aboutData.addCredit(ki18n("The UsefulArts Organization"), ki18n("Icon for krusader"), "mail@usefularts.rg", 0);
+    aboutData.addCredit(ki18n("The UsefulArts Organization"), ki18n("Icon for Krusader"), "mail@usefularts.rg", 0);
     aboutData.addCredit(ki18n("Gábor Lehel"), ki18n("Viewer module for 3rd Hand"), "illissius@gmail.com", 0);
     aboutData.addCredit(ki18n("Mark Eatough"), ki18n("Handbook Proof-Reader"), "markeatough@yahoo.com", 0);
     aboutData.addCredit(ki18n("Jan Halasa"), ki18n("The old Bookmark Module"), "xhalasa@fi.muni.cz", 0);

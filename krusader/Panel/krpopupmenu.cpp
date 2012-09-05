@@ -323,7 +323,7 @@ void KrPopupMenu::performAction(int id)
         break;
         /*         case SHRED_ID :
                     if ( KMessageBox::warningContinueCancel( krApp,
-                         i18n("<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone forever!</qt>", item->name()),
+                         i18n("<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone forever.</qt>", item->name()),
                          QString(), KStandardGuiItem::cont(), KStandardGuiItem::cancel(), "Shred" ) == KMessageBox::Continue )
                        KShred::shred( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) );
                   break;*/

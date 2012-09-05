@@ -874,7 +874,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
             dir.setPath(panel->virtualPath().path() + '/' + (*name));
             if (dir.entryList(QDir::TypeMask | QDir::System | QDir::Hidden).count() > 2) {
                 switch (KMessageBox::warningYesNoCancel(krMainWindow,
-                                                        i18n("<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</p></qt>", *name),
+                                                        i18n("<qt><p>Directory <b>%1</b> is not empty.</p><p>Skip this one or delete all?</p></qt>", *name),
                                                         QString(), KGuiItem(i18n("&Skip")), KGuiItem(i18n("&Delete All")))) {
                 case KMessageBox::Cancel :
                     return ;
@@ -950,7 +950,7 @@ void ListPanelFunc::runCommand(QString cmd)
     QString workdir = panel->virtualPath().isLocalFile() ?
             panel->virtualPath().path() : QDir::homePath();
     if(!KRun::runCommand(cmd, krMainWindow, workdir))
-        KMessageBox::error(0, i18n("Couldn't start %1", cmd));
+        KMessageBox::error(0, i18n("Could not start %1", cmd));
 }
 
 void ListPanelFunc::runService(const KService &service, KUrl::List urls)
@@ -960,7 +960,7 @@ void ListPanelFunc::runService(const KService &service, KUrl::List urls)
     if (args.count())
         runCommand(KShell::joinArgs(args));
     else
-        KMessageBox::error(0, i18n("%1 can't open %2", service.name(), urls.toStringList().join(", ")));
+        KMessageBox::error(0, i18n("%1 cannot open %2", service.name(), urls.toStringList().join(", ")));
 }
 
 void ListPanelFunc::displayOpenWithDialog(KUrl::List urls)
@@ -1062,7 +1062,7 @@ void ListPanelFunc::pack()
     if (destURL.isLocalFile())
         arcFile = destURL.path();
     else if (destURL.protocol() == "virt") {
-        KMessageBox::error(krMainWindow, i18n("Cannot pack files onto a virtual destination!"));
+        KMessageBox::error(krMainWindow, i18n("Cannot pack files onto a virtual destination."));
         return;
     } else {
         tempDestFile = new KTemporaryFile();
@@ -1075,7 +1075,7 @@ void ListPanelFunc::pack()
     }
 
     if (QFileInfo(arcFile).exists()) {
-        QString msg = i18n("<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>All data in the previous archive will be lost!</p></qt>", PackGUI::filename, PackGUI::type);
+        QString msg = i18n("<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>All data in the previous archive will be lost.</p></qt>", PackGUI::filename, PackGUI::type);
         if (PackGUI::type == "zip") {
             msg = i18n("<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>Zip will replace identically named entries in the zip archive or add entries for new names.</p></qt>", PackGUI::filename, PackGUI::type);
         }
@@ -1353,9 +1353,9 @@ void ListPanelFunc::copyToClipboard(bool move)
 {
     if (files()->vfs_getOrigin().equals(KUrl("virt:/"), KUrl::CompareWithoutTrailingSlash)) {
         if (move)
-            KMessageBox::error(krMainWindow, i18n("Cannot cut a virtual URL collection to the clipboard!"));
+            KMessageBox::error(krMainWindow, i18n("Cannot cut a virtual URL collection to the clipboard."));
         else
-            KMessageBox::error(krMainWindow, i18n("Cannot copy a virtual URL collection onto the clipboard!"));
+            KMessageBox::error(krMainWindow, i18n("Cannot copy a virtual URL collection onto the clipboard."));
         return;
     }
 

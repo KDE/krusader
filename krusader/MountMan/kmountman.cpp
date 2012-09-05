@@ -128,7 +128,7 @@ void KMountMan::mainWindow()
     // left as a precaution, although we use kde's services now
     if (!KrServices::cmdExist("mount")) {
         KMessageBox::error(0,
-                           i18n("Can't start 'mount'! Check the 'Dependencies' page in konfigurator."));
+                           i18n("Cannot start 'mount'. Check the 'Dependencies' page in konfigurator."));
         return;
     }
 

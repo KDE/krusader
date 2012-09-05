@@ -47,7 +47,7 @@ PanelViewerBase::PanelViewerBase(QWidget *parent) :
 
     mimes = new QHash<QString, QPointer<KParts::ReadOnlyPart> >();
     cpart = 0;
-    fallback = new QLabel(i18n("No file selected or selected file can't be displayed."), this);
+    fallback = new QLabel(i18n("No file selected or selected file cannot be displayed."), this);
     fallback->setAlignment(Qt::Alignment(QFlag(Qt::AlignCenter | Qt::TextExpandTabs)));
     fallback->setWordWrap(true);
     addWidget(fallback);
@@ -316,7 +316,7 @@ void PanelEditor::configureDeps()
 
 QString PanelEditor::missingKPartMsg()
 {
-    return i18n("No text editor plugin available.<br/>Internal editor won't work without this.<br/>"
+    return i18n("No text editor plugin available.<br/>Internal editor will not work without this.<br/>"
                 "You can fix this by installing Kate:<br/>") +
                 QString("<a href='%1'>%1</a>").arg("http://www.kde.org/applications/utilities/kate");
 }
@@ -366,7 +366,7 @@ KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
             return cpart;
         } // else: don't show error message - assume this has been done by the editor part
     } else
-        KMessageBox::sorry(this, missingKPartMsg(), i18n("Can't edit %1", curl.pathOrUrl()),
+        KMessageBox::sorry(this, missingKPartMsg(), i18n("Cannot edit %1", curl.pathOrUrl()),
                            KMessageBox::AllowLink);
 
     setCurrentWidget(fallback);

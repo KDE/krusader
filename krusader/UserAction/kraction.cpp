@@ -159,7 +159,7 @@ void KrActionProcDlg::toggleFixedFont(bool state)
 
 void KrActionProcDlg::slotUser1()
 {
-    QString filename = KFileDialog::getSaveFileName(QString(), i18n("*.txt|Text files\n*|all files"), this);
+    QString filename = KFileDialog::getSaveFileName(QString(), i18n("*.txt|Text files\n*|All files"), this);
     if (filename.isEmpty())
         return;
     QFile file(filename);
@@ -181,8 +181,8 @@ void KrActionProcDlg::slotUser1()
 
     if (! open) {
         KMessageBox::error(this,
-                           i18n("Can't open %1 for writing!\nNothing exported.", filename),
-                           i18n("Export failed!")
+                           i18n("Cannot open %1 for writing.\nNothing exported.", filename),
+                           i18n("Export failed")
                           );
         return;
     }

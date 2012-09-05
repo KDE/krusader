@@ -146,7 +146,7 @@ void Konfigurator::createLayout(int startPage)
     // general
     newPage(new KgGeneral(firstTime, this), i18n("General"), i18n("Basic Operations"), KIcon("preferences-other", krLoader));
     // advanced
-    newPage(new KgAdvanced(firstTime, this), i18n("Advanced"), i18n("Be sure you know what you're doing!"), KIcon("dialog-warning", krLoader));
+    newPage(new KgAdvanced(firstTime, this), i18n("Advanced"), i18n("Be sure you know what you are doing."), KIcon("dialog-warning", krLoader));
     // archives
     newPage(new KgArchives(firstTime, this), i18n("Archives"), i18n("Customize the way Krusader deals with archives"),
             KIcon("utilities-file-archiver", krLoader));
@@ -157,7 +157,7 @@ void Konfigurator::createLayout(int startPage)
     newPage(new KgUserActions(firstTime, this), i18n("User Actions"), i18n("Configure your personal actions"),
             KIcon("user-properties", krLoader));
     // protocols
-    newPage(new KgProtocols(firstTime, this), i18n("Protocols"), i18n("Link mimes to protocols"),
+    newPage(new KgProtocols(firstTime, this), i18n("Protocols"), i18n("Link MIMEs to protocols"),
             KIcon("kde", krLoader));
 
     setCurrentPage(kgPages.at(startPage));

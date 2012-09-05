@@ -226,8 +226,8 @@ void KgGeneral::createGeneralTab()
 
 
     KonfiguratorCheckBox *checkBox = createCheckBox("General", "Mimetype Magic", _MimetypeMagic,
-                                     i18n("Use mimetype magic"), generalGrp, false,
-                                     i18n("Mimetype magic allows better distinction of file types, but is slower."), PAGE_GENERAL);
+                                     i18n("Use MIME type magic"), generalGrp, false,
+                                     i18n("MIME type magic allows better distinction of file types, but is slower."), PAGE_GENERAL);
     generalGrid->addWidget(checkBox, 1, 0, 1, 1);
 
 
@@ -281,7 +281,7 @@ void KgGeneral::createGeneralTab()
     terminalGrid->addWidget(urlReq2, 0, 1);
 
     KONFIGURATOR_CHECKBOX_PARAM terminal_settings[] = { //   cfg_class  cfg_name     default        text            restart tooltip
-        {"General", "Send CDs", _SendCDs, i18n("Terminal Emulator sends Chdir on panel change"), false, i18n("When checked, whenever the panel is changed (for example, by pressing TAB), krusader changes the current directory in the terminal emulator.") },
+        {"General", "Send CDs", _SendCDs, i18n("Terminal Emulator sends Chdir on panel change"), false, i18n("When checked, whenever the panel is changed (for example, by pressing Tab), Krusader changes the current directory in the terminal emulator.") },
         {"Look&Feel", "Fullscreen Terminal Emulator", false, i18n("Fullscreen terminal (mc-style)"), false,  i18n("Terminal is shown instead of the Krusader window (full screen).") },
     };
     cbs = createCheckBoxGroup(1, 0, terminal_settings, 2 /*count*/, terminalGrp, PAGE_GENERAL);

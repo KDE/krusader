@@ -260,7 +260,7 @@ long KRarcHandler::arcFileCount(QString archive, QString type, QString password,
     observer->subJobStopped();
 
     if (list.exitStatus() != QProcess::NormalExit || !checkStatus(type, list.exitCode())) {
-        observer->detailedError(i18n("Failed to list the content of the archive (%1)!", archive),
+        observer->detailedError(i18n("Failed to list the content of the archive (%1).", archive),
                                 QString::fromLocal8Bit(list.readAllStandardError()));
         return 0;
     }
@@ -279,7 +279,7 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
     if (group.readEntry("Test Before Unpack", _TestBeforeUnpack)) {
         // test first - or be sorry later...
         if (type != "-rpm" && type != "-deb" && !test(archive, type, password, observer, 0)) {
-            observer->error(i18n("Failed to unpack \"%1\"!", archive));
+            observer->error(i18n("Failed to unpack \"%1\".", archive));
             return false;
         }
     }
@@ -324,7 +324,7 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
         cpio.setStandardOutputFile(cpioName); // TODO maybe no tmpfile but a pipe (setStandardOutputProcess(packer))
         cpio.start();
         if (!cpio.waitForFinished() || cpio.exitStatus() != QProcess::NormalExit || !checkStatus("cpio", cpio.exitCode())) {
-            observer->detailedError(i18n("Failed to convert rpm (%1) to cpio!", archive), cpio.getErrorMsg());
+            observer->detailedError(i18n("Failed to convert rpm (%1) to cpio.", archive), cpio.getErrorMsg());
             return 0;
         }
 
@@ -340,7 +340,7 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
         dpkg.setStandardOutputFile(cpioName); // TODO maybe no tmpfile but a pipe (setStandardOutputProcess(packer))
         dpkg.start();
         if (!dpkg.waitForFinished() || dpkg.exitStatus() != QProcess::NormalExit || !checkStatus("-deb", dpkg.exitCode())) {
-            observer->detailedError(i18n("Failed to convert deb (%1) to tar!", archive), dpkg.getErrorMsg());
+            observer->detailedError(i18n("Failed to convert deb (%1) to tar.", archive), dpkg.getErrorMsg());
             return 0;
         }
 
@@ -397,7 +397,7 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
 
     // check the return value
     if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(type, proc.exitCode())) {
-        observer->detailedError(i18n("Failed to unpack %1!", archive),
+        observer->detailedError(i18n("Failed to unpack %1.", archive),
                                 observer->wasCancelled() ? i18n("User cancelled.") : proc.getErrorMsg());
         return false;
     }
@@ -582,7 +582,7 @@ bool KRarcHandler::pack(QStringList fileNames, QString type, QString dest, long 
 
     // check the return value
     if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(type, proc.exitCode())) {
-        observer->detailedError(i18n("Failed to pack %1!", dest),
+        observer->detailedError(i18n("Failed to pack %1.", dest),
                                 observer->wasCancelled() ? i18n("User cancelled.") : proc.getErrorMsg());
         return false;
     }
@@ -590,7 +590,7 @@ bool KRarcHandler::pack(QStringList fileNames, QString type, QString dest, long 
     KConfigGroup group(krConfig, "Archives");
     if (group.readEntry("Test Archives", _TestArchives) &&
             !test(dest, type, password, observer, count)) {
-        observer->error(i18n("Failed to pack %1!", dest));
+        observer->error(i18n("Failed to pack %1.", dest));
         return false;
     }
     return true; // SUCCESS

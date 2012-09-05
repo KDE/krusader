@@ -226,7 +226,7 @@ void AbstractThreadedJob::slotDownloadResult(KJob* job)
         (*resultResp) << QVariant(job->errorText());
     } else {
         (*resultResp) << QVariant(KJob::UserDefinedError);
-        (*resultResp) << QVariant(QString(i18n("Internal error, undefined <job> in result signal!")));
+        (*resultResp) << QVariant(QString(i18n("Internal error, undefined <job> in result signal")));
     }
 
     addEventResponse(resultResp);

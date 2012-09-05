@@ -74,7 +74,7 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
     panelsGrid->addWidget(createLine(panelsGrp), 1, 0, 1, 2);
 
     KONFIGURATOR_CHECKBOX_PARAM settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
-        {"Look&Feel", "Show splashscreen",  _ShowSplashScreen, i18n("Show splashscreen"), false,  i18n("Display a splashscreen when starting krusader.") },
+        {"Look&Feel", "Show splashscreen",  _ShowSplashScreen, i18n("Show splashscreen"), false,  i18n("Display a splashscreen when starting Krusader.") },
         {"Look&Feel", "Single Instance Mode", _SingleInstanceMode, i18n("Single instance mode"), false,  i18n("Only one Krusader instance is allowed to run.") }
     };
 
@@ -99,10 +99,10 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
         {"Startup", "Show Terminal Emulator", _ShowTerminalEmulator, i18n("Show terminal emulator"),  false,
             i18n("Terminal emulator will be visible after startup.") },
         {"Startup", "Remember Position", _RememberPos,i18n("Save last position, size and panel settings"), false,
-            i18n("<p>At startup, the main window will resize itself to the size it was when last shutdown. \
-                  It will also appear in the same location of the screen, having panels sorted and aligned as they were before.</p>\
-                  <p>If this option is disabled, you can use the menu <i>Window -> Save Position</i> option \
-                  to manually set the main window's size and position at startup.</p>") },
+            i18n("<p>At startup, the main window will resize itself to the size it was when last shutdown. "
+                 "It will also appear in the same location of the screen, having panels sorted and aligned as they were before.</p> "
+                 "<p>If this option is disabled, you can use the menu <i>Window -> Save Position</i> option "
+                 "to manually set the main window's size and position at startup.</p>") },
         {"Startup", "Update Default Panel Settings", _RememberPos, i18n("Update default panel settings"), true,
             i18n("When settings of a panel are changed, save them as the default for new panels of the same type.") },
         {"Startup", "Start To Tray", _StartToTray, i18n("Start to tray"), false,

@@ -57,7 +57,7 @@ void KrActionBase::exec()
         for (QStringList::iterator it = commandList.begin(); it != commandList.end(); ++it) {
             bool exec = true;
             *it = KInputDialog::getText(
-                      i18n("Confirm execution"),
+                      i18n("Confirm Execution"),
                       i18n("Command being executed:"),
                       *it,
                       &exec, 0

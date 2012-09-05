@@ -106,12 +106,12 @@ KgProtocols::KgProtocols(bool first, QWidget* parent) :
     addSpacer(vbox2);
     btnAddMime = new QPushButton(vbox2Widget);
     btnAddMime->setIcon(krLoader->loadIcon("arrow-left", KIconLoader::Small));
-    btnAddMime->setWhatsThis(i18n("Add mime to the selected protocol on the link list."));
+    btnAddMime->setWhatsThis(i18n("Add MIME to the selected protocol on the link list."));
     vbox2->addWidget(btnAddMime);
 
     btnRemoveMime = new QPushButton(vbox2Widget);
     btnRemoveMime->setIcon(krLoader->loadIcon("arrow-right", KIconLoader::Small));
-    btnRemoveMime->setWhatsThis(i18n("Remove mime from the link list."));
+    btnRemoveMime->setWhatsThis(i18n("Remove MIME from the link list."));
     vbox2->addWidget(btnRemoveMime);
     addSpacer(vbox2);
 
@@ -130,7 +130,7 @@ KgProtocols::KgProtocols(bool first, QWidget* parent) :
 
     //  -------------------------- MIMES LISTBOX ----------------------------------
 
-    QGroupBox *mimeGrp = createFrame(i18n("Mimes"), this);
+    QGroupBox *mimeGrp = createFrame(i18n("MIMEs"), this);
     QGridLayout *mimeGrid = createGridLayout(mimeGrp);
 
     mimeList = new KrListWidget(mimeGrp);

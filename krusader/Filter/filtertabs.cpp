@@ -118,7 +118,7 @@ void FilterTabs::loadFromProfile(QString name)
     FilterSettings s;
     s.load(KConfigGroup(krConfig, name));
     if(!s.isValid())
-        KMessageBox::error(tabWidget, i18n("Couldn't load profile."));
+        KMessageBox::error(tabWidget, i18n("Could not load profile."));
     else
         applySettings(s);
 }

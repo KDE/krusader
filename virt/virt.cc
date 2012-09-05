@@ -83,8 +83,8 @@ void VirtProtocol::del(KUrl const & /*url */, bool /* isFile */)
     messageBox(KIO::SlaveBase::QuestionYesNo,
                i18n(""),
                i18n("Virtual delete"),
-               i18n("remove from virtual space"),
-               i18n("really delete")
+               i18n("Remove from virtual space"),
+               i18n("Really delete")
               );
 
     finished();

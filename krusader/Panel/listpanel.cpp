@@ -167,8 +167,8 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     status->setFont(group.readEntry("Filelist Font", _FilelistFont));
     status->setAutoFillBackground(false);
     status->setText("");          // needed for initialization code!
-    status->setWhatsThis(i18n("The statusbar displays information about the FILESYSTEM "
-                              "which holds your current directory: Total size, free space, "
+    status->setWhatsThis(i18n("The statusbar displays information about the filesystem "
+                              "which holds your current directory: total size, free space, "
                               "type of filesystem, etc."));
     ADD_WIDGET(status);
 
@@ -751,7 +751,7 @@ void ListPanel::slotGetStats(const KUrl& url)
     }
 #endif
 
-    status->setText(i18n("Mt.Man: working ..."));
+    status->setText(i18n("Mt.Man: working..."));
     statsAgent = KDiskFreeSpace::findUsageInfo(path);
     connect(statsAgent, SIGNAL(foundMountPoint(const QString &, quint64, quint64, quint64)),
             this, SLOT(gotStats(const QString &, quint64, quint64, quint64)));
@@ -774,8 +774,8 @@ void ListPanel::gotStats(const QString &mountPoint, quint64 kBSize,
         }
     }
 
-    QString stats = i18nc("%1=free space,%2=total space,%3=percentage of usage, \
-                          %4=mountpoint,%5=filesystem type",
+    QString stats = i18nc("%1=free space,%2=total space,%3=percentage of usage, "
+                          "%4=mountpoint,%5=filesystem type",
                           "%1 free out of %2 (%3%) on %4 [(%5)]",
                           KIO::convertSizeFromKiB(kBAvail),
                           KIO::convertSizeFromKiB(kBSize), perc,

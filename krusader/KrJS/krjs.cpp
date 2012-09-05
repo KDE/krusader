@@ -77,7 +77,7 @@ bool KrJS::runFile(const QString & filename)
                                 QString(i18n("In %1:\nUncaught JavaScript exception '%2'\n%3", filename, type, message)) :
                                 QString(i18n("In %1:\nUncaught JavaScript exception '%2' at line %3\n%4", filename, type, line, message))
                                ), //text
-                               i18n("JavaScript error"),  //caption
+                               i18n("JavaScript Error"),  //caption
                                KMessageBox::Dangerous) ;
             break;
         }

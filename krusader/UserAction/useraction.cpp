@@ -162,7 +162,7 @@ void UserAction::readFromFile(const QString& filename, ReadMode mode, KrActionLi
             delete doc; doc = 0;
             KMessageBox::error(MAIN_VIEW,
                                i18n("The file %1 does not contain valid UserActions.\n", filename),   // text
-                               i18n("UserActions - can't read from file!") // caption
+                               i18n("UserActions - cannot read from file") // caption
                               );
         }
         file.close();
@@ -174,8 +174,8 @@ void UserAction::readFromFile(const QString& filename, ReadMode mode, KrActionLi
             // useraction-file
             if (root.tagName() != ACTION_ROOT) {
                 KMessageBox::error(MAIN_VIEW,
-                                   i18n("The actionfile's root-element isn't called %1, using %2", QString::fromLatin1(ACTION_ROOT),  filename),
-                                   i18n("UserActions - can't read from file!")
+                                   i18n("The actionfile's root element is not called %1, using %2", QString::fromLatin1(ACTION_ROOT),  filename),
+                                   i18n("UserActions - cannot read from file")
                                   );
                 delete doc; doc = 0;
             }
@@ -186,8 +186,8 @@ void UserAction::readFromFile(const QString& filename, ReadMode mode, KrActionLi
     } // if ( file.open( QIODevice::ReadOnly ) )
     else {
         KMessageBox::error(MAIN_VIEW,
-                           i18n("Unable to open actionfile %1", filename),
-                           i18n("UserActions - can't read from file!")
+                           i18n("Unable to open actions file %1", filename),
+                           i18n("UserActions - cannot read from file")
                           );
     }
 
@@ -204,7 +204,7 @@ void UserAction::readFromElement(const QDomElement& element, ReadMode mode, KrAc
             QString name = e.attribute("name");
             if (name.isEmpty()) {
                 KMessageBox::error(MAIN_VIEW,
-                                   i18n("Action without name detected. This action will not be imported!\nThis is an error in the file, you may want to correct it."),
+                                   i18n("Action without name detected. This action will not be imported.\nThis is an error in the file, you may want to correct it."),
                                    i18n("UserActions - invalid action")
                                   );
                 continue;

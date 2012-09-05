@@ -244,7 +244,7 @@ void kio_krarcProtocol::mkdir(const KUrl& url, int permissions)
     // pack the directory
     KrLinecountingProcess proc;
     proc << putCmd << getPath(arcFile->url()) << localeEncodedString(tempDir);
-    infoMessage(i18n("Creating %1 ...", url.fileName()));
+    infoMessage(i18n("Creating %1...", url.fileName()));
     QDir::setCurrent(arcTempDir);
 
     SET_KRCODEC
@@ -337,7 +337,7 @@ void kio_krarcProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flag
     // pack the file
     KrLinecountingProcess proc;
     proc << putCmd << getPath(arcFile->url()) << localeEncodedString(tempFile);
-    infoMessage(i18n("Packing %1 ...", url.fileName()));
+    infoMessage(i18n("Packing %1...", url.fileName()));
     QDir::setCurrent(arcTempDir);
 
     SET_KRCODEC
@@ -451,7 +451,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries)
                 this, SLOT(receivedData(KProcess *, QByteArray &)));
         proc.setMerge(false);
     }
-    infoMessage(i18n("Unpacking %1 ...", url.fileName()));
+    infoMessage(i18n("Unpacking %1...", url.fileName()));
     // change the working directory to our arcTempDir
     QDir::setCurrent(arcTempDir);
 
@@ -596,7 +596,7 @@ void kio_krarcProtocol::del(KUrl const & url, bool isFile)
     }
     KrLinecountingProcess proc;
     proc << delCmd << getPath(arcFile->url()) << localeEncodedString(file);
-    infoMessage(i18n("Deleting %1 ...", url.fileName()));
+    infoMessage(i18n("Deleting %1...", url.fileName()));
 
     SET_KRCODEC
     proc.start();
@@ -626,7 +626,7 @@ void kio_krarcProtocol::stat(const KUrl & url)
 
     if (listCmd.isEmpty()) {
         error(ERR_UNSUPPORTED_ACTION,
-              i18n("Accessing files is not supported with the %1 archives", arcType));
+              i18n("Accessing files is not supported with %1 archives", arcType));
         return;
     }
     QString path = getPath(url, KUrl::RemoveTrailingSlash);
@@ -711,7 +711,7 @@ void kio_krarcProtocol::copy(const KUrl &url, const KUrl &dest, int, KIO::JobFla
                 proc.setStandardInputFile("/dev/ptmx");
             proc.setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect
 
-            infoMessage(i18n("Unpacking %1 ...", url.fileName()));
+            infoMessage(i18n("Unpacking %1...", url.fileName()));
             proc.start();
             proc.waitForFinished();
             if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
@@ -1844,7 +1844,7 @@ QString kio_krarcProtocol::getPassword()
 
     authInfo.password.clear();
 
-    if (openPasswordDialog(authInfo, i18n("Accessing the file requires password.")) && !authInfo.password.isNull()) {
+    if (openPasswordDialog(authInfo, i18n("Accessing the file requires a password.")) && !authInfo.password.isNull()) {
         KRDEBUG(authInfo.password);
         return (password = authInfo.password);
     }

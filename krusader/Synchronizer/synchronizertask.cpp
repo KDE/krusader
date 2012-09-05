@@ -143,14 +143,14 @@ void CompareContentTask::start()
     if (leftURL.isLocalFile() && rightURL.isLocalFile()) {
         leftFile = new QFile(leftURL.path());
         if (!leftFile->open(QIODevice::ReadOnly)) {
-            KMessageBox::error(parentWidget, i18n("Error at opening %1!", leftURL.path()));
+            KMessageBox::error(parentWidget, i18n("Error at opening %1.", leftURL.path()));
             m_state = ST_STATE_ERROR;
             return;
         }
 
         rightFile = new QFile(rightURL.path());
         if (!rightFile->open(QIODevice::ReadOnly)) {
-            KMessageBox::error(parentWidget, i18n("Error at opening %1!", rightURL.path()));
+            KMessageBox::error(parentWidget, i18n("Error at opening %1.", rightURL.path()));
             m_state = ST_STATE_ERROR;
             return;
         }
@@ -311,7 +311,7 @@ void CompareContentTask::slotFinished(KJob *job)
 
     if (job->error() && job->error() != KIO::ERR_USER_CANCELED && !errorPrinted) {
         errorPrinted = true;
-        KMessageBox::error(parentWidget, i18n("IO error at comparing file %1 with %2!",
+        KMessageBox::error(parentWidget, i18n("I/O error while comparing file %1 with %2.",
                                               leftURL.pathOrUrl(), rightURL.pathOrUrl()));
     }
 

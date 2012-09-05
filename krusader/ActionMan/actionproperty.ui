@@ -46,7 +46,7 @@
           </sizepolicy>
          </property>
          <property name="whatsThis">
-          <string>A detailed description of the &lt;b&gt;Useraction&lt;/b&gt;. It is only displayed in the &lt;i&gt;Konfigurator&lt;/i&gt; and via &lt;code&gt;Shift-F1&lt;/code&gt;.</string>
+          <string>A detailed description of the &lt;b&gt;Useraction&lt;/b&gt;. It is only displayed in the &lt;i&gt;Konfigurator&lt;/i&gt; and via &lt;code&gt;Shift+F1&lt;/code&gt;.</string>
          </property>
          <property name="text">
           <string>Description:</string>
@@ -127,7 +127,7 @@
            <item>
             <widget class="KLineEdit" name="leDistinctName">
              <property name="whatsThis">
-              <string>Unique name of the &lt;b&gt;Useraction&lt;/b&gt;. It is only used in the &lt;i&gt;Konfigurator&lt;/i&gt; and doesn't appear in any other menu.&lt;p&gt;&lt;b&gt;Note&lt;/b&gt;: The &lt;i&gt;Title&lt;/i&gt; shown in the &lt;b&gt;Usermenu&lt;/b&gt; can be set below.</string>
+              <string>Unique name of the &lt;b&gt;Useraction&lt;/b&gt;. It is only used in the &lt;i&gt;Konfigurator&lt;/i&gt; and does not appear in any other menu.&lt;p&gt;&lt;b&gt;Note&lt;/b&gt;: the &lt;i&gt;Title&lt;/i&gt; shown in the &lt;b&gt;Usermenu&lt;/b&gt; can be set below.</string>
              </property>
             </widget>
            </item>
@@ -179,7 +179,7 @@
           </sizepolicy>
          </property>
          <property name="whatsThis">
-          <string>&lt;p&gt;Unique name of the &lt;b&gt;Useraction&lt;/b&gt;. It is only used in the &lt;i&gt;Konfigurator&lt;/i&gt; and doesn't appear in any other menu.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Note&lt;/b&gt;: The &lt;i&gt;Title&lt;/i&gt; shown in the &lt;b&gt;Usermenu&lt;/b&gt; can be set below.&lt;/p&gt;</string>
+          <string>&lt;p&gt;Unique name of the &lt;b&gt;Useraction&lt;/b&gt;. It is only used in the &lt;i&gt;Konfigurator&lt;/i&gt; and does not appear in any other menu.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Note&lt;/b&gt;: The &lt;i&gt;Title&lt;/i&gt; shown in the &lt;b&gt;Usermenu&lt;/b&gt; can be set below.&lt;/p&gt;</string>
          </property>
          <property name="text">
           <string>Identifier:</string>
@@ -298,7 +298,7 @@ Please consult the handbook to learn more about the syntax.</string>
        <item row="4" column="1" rowspan="3" colspan="3">
         <widget class="KTextEdit" name="textDescription">
          <property name="whatsThis">
-          <string>A detailed description of the &lt;b&gt;Useraction&lt;/b&gt;. It is only displayed in the &lt;i&gt;Konfigurator&lt;/i&gt; and via &lt;code&gt;Shift-F1&lt;/code&gt;.</string>
+          <string>A detailed description of the &lt;b&gt;Useraction&lt;/b&gt;. It is only displayed in the &lt;i&gt;Konfigurator&lt;/i&gt; and via &lt;code&gt;Shift+F1&lt;/code&gt;.</string>
          </property>
         </widget>
        </item>
@@ -694,7 +694,7 @@ Please consult the handbook to learn more about the syntax.</string>
             </widget>
             <widget class="QWidget" name="tab">
              <attribute name="title">
-              <string>Mime-type</string>
+              <string>MIME Type</string>
              </attribute>
              <layout class="QGridLayout">
               <item row="0" column="0" rowspan="4">
@@ -799,13 +799,13 @@ Please consult the handbook to learn more about the syntax.</string>
             </widget>
             <widget class="QWidget" name="TabPage">
              <attribute name="title">
-              <string>Filename</string>
+              <string>File Name</string>
              </attribute>
              <layout class="QGridLayout">
               <item row="0" column="0" rowspan="4">
                <widget class="KrListWidget" name="lbShowonlyFile" native="true">
                 <property name="whatsThis">
-                 <string>Show the &lt;b&gt;Useraction&lt;/b&gt; only for the filenames defined here. The wildcards '&lt;code&gt;?&lt;/code&gt;' and '&lt;code&gt;*&lt;/code&gt;' can be used.</string>
+                 <string>Show the &lt;b&gt;Useraction&lt;/b&gt; only for the file names defined here. The wildcards '&lt;code&gt;?&lt;/code&gt;' and '&lt;code&gt;*&lt;/code&gt;' can be used.</string>
                 </property>
                </widget>
               </item>
@@ -920,7 +920,7 @@ Please consult the handbook to learn more about the syntax.</string>
        <item row="2" column="0">
         <widget class="QCheckBox" name="chkDifferentUser">
          <property name="whatsThis">
-          <string>Execute the &lt;i&gt;Command&lt;/i&gt; under a different user-id.</string>
+          <string>Execute the &lt;i&gt;Command&lt;/i&gt; under a different user ID.</string>
          </property>
          <property name="text">
           <string>Run as different user:</string>
@@ -933,7 +933,7 @@ Please consult the handbook to learn more about the syntax.</string>
           <bool>false</bool>
          </property>
          <property name="whatsThis">
-          <string>Execute the &lt;i&gt;Command&lt;/i&gt; under a different user-id.</string>
+          <string>Execute the &lt;i&gt;Command&lt;/i&gt; under a different user ID.</string>
          </property>
         </widget>
        </item>

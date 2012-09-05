@@ -106,7 +106,7 @@ KRslots::KRslots(QObject *parent) : QObject(parent), _mainWindow(krApp)
 void KRslots::sendFileByEmail(const KUrl::List &urls)
 {
     if (urls.count() == 0) {
-        KMessageBox::error(0, i18n("No selected files to send!"));
+        KMessageBox::error(0, i18n("No selected files to send."));
         return;
     }
 
@@ -114,7 +114,7 @@ void KRslots::sendFileByEmail(const KUrl::List &urls)
     QStringList lst = Krusader::supportedTools();
     if (lst.contains("MAIL")) mailProg = lst[lst.indexOf("MAIL") + 1];
     else {
-        KMessageBox::error(0, i18n("Krusader can't find a supported mail client. Please install one to your path. Hint: Krusader supports Kmail."));
+        KMessageBox::error(0, i18n("Krusader cannot find a supported mail client. Please install one to your path. Hint: Krusader supports KMail."));
         return;
     }
 
@@ -152,7 +152,7 @@ void KRslots::sendFileByEmail(const KUrl::List &urls)
     }
 
     if (!proc.startDetached())
-        KMessageBox::error(0, i18n("Error executing %1!", mailProg));
+        KMessageBox::error(0, i18n("Error executing %1.", mailProg));
 }
 
 void KRslots::compareContent()
@@ -179,7 +179,7 @@ void KRslots::compareContent()
         name2 = ACTIVE_PANEL->otherPanel()->func->files()->vfs_getFile(ACTIVE_VIEW->getCurrentItem());
     } else  {
         // if we got here, then we can't be sure what file to diff
-        KMessageBox::detailedError(0, i18n("Don't know which files to compare."), "<qt>" + i18n("To compare two files by content, you can either:<ul><li>Select one file in the left panel, and one in the right panel.</li><li>Select exactly two files in the active panel.</li><li>Make sure there is a file in the other panel, with the same name as the current file in the active panel.</li></ul>") + "</qt>");
+        KMessageBox::detailedError(0, i18n("Do not know which files to compare."), "<qt>" + i18n("To compare two files by content, you can either:<ul><li>Select one file in the left panel, and one in the right panel.</li><li>Select exactly two files in the active panel.</li><li>Make sure there is a file in the other panel, with the same name as the current file in the active panel.</li></ul>") + "</qt>");
 
         return;
     }
@@ -195,7 +195,7 @@ void KRslots::compareContent(KUrl url1, KUrl url2)
     QStringList lst = Krusader::supportedTools();
     if (lst.contains("DIFF")) diffProg = lst[lst.indexOf("DIFF") + 1];
     else {
-        KMessageBox::error(0, i18n("Krusader can't find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports Kompare, Kdiff3 and Xxdiff."));
+        KMessageBox::error(0, i18n("Krusader cannot find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports Kompare, KDiff3 and Xxdiff."));
         return;
     }
 
@@ -228,7 +228,7 @@ void KRslots::compareContent(KUrl url1, KUrl url2)
     *p << diffProg << tmp1 << tmp2;
     p->start();
     if (!p->waitForStarted())
-        KMessageBox::error(0, i18n("Error executing %1!", diffProg));
+        KMessageBox::error(0, i18n("Error executing %1.", diffProg));
 }
 
 void KRslots::addBookmark()
@@ -379,7 +379,7 @@ void KRslots::search()
 void KRslots::locate()
 {
     if (!KrServices::cmdExist("locate")) {
-        KMessageBox::error(krApp, i18n("Can't find the 'locate' command. Please install the "
+        KMessageBox::error(krApp, i18n("Cannot find the 'locate' command. Please install the "
                                        "findutils-locate package of GNU, or set its dependencies in "
                                        "Konfigurator"));
         return;
@@ -416,7 +416,7 @@ void KRslots::runTerminal(const QString & dir, const QStringList & args)
     }
 #endif
     if (!proc.startDetached())
-        KMessageBox::sorry(krApp, i18n("Error executing %1!", term));
+        KMessageBox::sorry(krApp, i18n("Error executing %1.", term));
 }
 
 void KRslots::homeTerminal()
@@ -429,7 +429,7 @@ void KRslots::sysInfo()
     KProcess proc;
     proc << KrServices::fullPathName("kcmshell") << "System/ksysctrl";
     if (!proc.startDetached()) {
-        KMessageBox::sorry(krApp, i18n("Can't find \"KsysCtrl\". Please install KDE admin package"));
+        KMessageBox::sorry(krApp, i18n("Cannot find \"KsysCtrl\". Please install KDE admin package"));
     }
 }
 
@@ -438,7 +438,7 @@ void KRslots::multiRename()
     QStringList lst = Krusader::supportedTools();
     int i = lst.indexOf("RENAME");
     if (i == -1) {
-        KMessageBox::sorry(krApp, i18n("Can't find a batch rename tool.\nYou can get Krename at http://www.krename.net"));
+        KMessageBox::sorry(krApp, i18n("Cannot find a batch rename tool.\nYou can get KRename at http://www.krename.net"));
         return;
     }
     QString pathToRename = lst[i+1];
@@ -461,14 +461,14 @@ void KRslots::multiRename()
     }
 
     if (!proc.startDetached())
-        KMessageBox::error(0, i18n("Error executing %1!", pathToRename));
+        KMessageBox::error(0, i18n("Error executing %1.", pathToRename));
     delete urls;
 }
 
 void KRslots::rootKrusader()
 {
     if (!KrServices::cmdExist("krusader") || !KrServices::cmdExist("kdesu")) {
-        KMessageBox::sorry(krApp, i18n("Can't start root mode krusader, because krusader or kdesu is missing from the path. Please configure the dependencies in Konfigurator!"));
+        KMessageBox::sorry(krApp, i18n("Cannot start root mode Krusader, because Krusader or kdesu is missing from the path. Please configure the dependencies in Konfigurator."));
         return;
     }
 
@@ -478,7 +478,7 @@ void KRslots::rootKrusader()
     + " --right=" + KrServices::quote(RIGHT_PANEL->func->files()->vfs_getOrigin().pathOrUrl());
 
     if (!proc.startDetached())
-        KMessageBox::error(0, i18n("Error executing %1!", proc.program()[0]));
+        KMessageBox::error(0, i18n("Error executing %1.", proc.program()[0]));
 }
 
 // settings slots
@@ -534,7 +534,7 @@ void KRslots::slotSplit()
 
     if (name.isEmpty()) {
         // if we got here, then one of the panel can't be sure what file to diff
-        KMessageBox::error(0, i18n("Don't know which file to split."));
+        KMessageBox::error(0, i18n("Do not know which file to split."));
         return;
     }
 
@@ -543,7 +543,7 @@ void KRslots::slotSplit()
         return;
 
     if (ACTIVE_FUNC->files()->vfs_search(name)->vfile_isDir()) {
-        KMessageBox::sorry(krApp, i18n("You can't split a directory!"));
+        KMessageBox::sorry(krApp, i18n("You cannot split a directory."));
         return ;
     }
 
@@ -573,7 +573,7 @@ void KRslots::slotCombine()
 
     ACTIVE_PANEL->gui->getSelectedNames(&list);
     if (list.isEmpty()) {
-        KMessageBox::error(0, i18n("Don't know which files to combine."));
+        KMessageBox::error(0, i18n("Do not know which files to combine."));
         return;
     }
 
@@ -584,7 +584,7 @@ void KRslots::slotCombine()
             return;
 
         if (ACTIVE_FUNC->files()->vfs_search(*it)->vfile_isDir()) {
-            KMessageBox::sorry(krApp, i18n("You can't combine a directory!"));
+            KMessageBox::sorry(krApp, i18n("You cannot combine a directory."));
             return ;
         }
 
@@ -600,7 +600,7 @@ void KRslots::slotCombine()
 
             if (extPos < 1 || ext.isEmpty() || (ext != "crc" && !isExtInt)) {
                 if (windowsStyle) {
-                    KMessageBox::error(0, i18n("Not a split file %1!", url.pathOrUrl()));
+                    KMessageBox::error(0, i18n("Not a split file: %1.", url.pathOrUrl()));
                     return;
                 }
                 unixStyle = true;
@@ -612,7 +612,7 @@ void KRslots::slotCombine()
                 if (baseURL.isEmpty())
                     baseURL = url;
                 else if (baseURL != url) {
-                    KMessageBox::error(0, i18n("Select only one split file!"));
+                    KMessageBox::error(0, i18n("Select only one split file."));
                     return;
                 }
             }
@@ -652,7 +652,7 @@ void KRslots::slotCombine()
             } while (false);
 
             if (error) {
-                KMessageBox::error(0, i18n("%1 is no split file!", url.pathOrUrl()));
+                KMessageBox::error(0, i18n("%1 is not a split file.", url.pathOrUrl()));
                 return;
             }
         }
@@ -755,9 +755,9 @@ void KRslots::emptyTrash()
 void KRslots::trashBin()
 {
     QMenu trashMenu(krApp);
-    QAction * act = trashMenu.addAction(krLoader->loadIcon("document-open", KIconLoader::Panel), i18n("Open trashbin"));
+    QAction * act = trashMenu.addAction(krLoader->loadIcon("document-open", KIconLoader::Panel), i18n("Open trash bin"));
     act->setData(QVariant(OPEN_ID));
-    act = trashMenu.addAction(krLoader->loadIcon("trash-empty", KIconLoader::Panel), i18n("Empty trashbin"));
+    act = trashMenu.addAction(krLoader->loadIcon("trash-empty", KIconLoader::Panel), i18n("Empty trash bin"));
     act->setData(QVariant(EMPTY_TRASH_ID));
 
     int result = -1;

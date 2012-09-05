@@ -42,7 +42,7 @@
 
 #define ICON(N)  KIconLoader::global()->loadIcon(N, KIconLoader::Toolbar)
 //This is the filter in the KFileDialog of Import/Export:
-static const char* FILE_FILTER = I18N_NOOP("*.xml|xml-files\n*|all files");
+static const char* FILE_FILTER = I18N_NOOP("*.xml|XML files\n*|All files");
 
 
 UserActionPage::UserActionPage(QWidget* parent)
@@ -221,7 +221,7 @@ void UserActionPage::slotRemoveAction()
 
     int messageDelete = KMessageBox::warningContinueCancel(this,   //parent
                         i18n("Are you sure that you want to remove all selected actions?"), //text
-                        i18n("Remove selected actions?"),  //caption
+                        i18n("Remove Selected Actions?"),  //caption
                         KStandardGuiItem::remove(), //Label for the continue-button
                         KStandardGuiItem::cancel(),
                         "Confirm Remove UserAction", //dontAskAgainName (for the config-file)
@@ -272,7 +272,7 @@ void UserActionPage::slotExport()
         if (doc.setContent(&file))    // getting here means the file exists and already contains an UserAction-XML-tree
             answer = KMessageBox::warningYesNoCancel(this,  //parent
                      i18n("This file already contains some useractions.\nDo you want to overwrite it or should it be merged with the selected actions?"), //text
-                     i18n("Overwrite or merge?"), //caption
+                     i18n("Overwrite or Merge?"), //caption
                      KStandardGuiItem::overwrite(), //label for Yes-Button
                      KGuiItem(i18n("Merge")) //label for No-Button
                                                     );
@@ -281,7 +281,7 @@ void UserActionPage::slotExport()
     if (answer == 0 && file.exists())
         answer = KMessageBox::warningContinueCancel(this,  //parent
                  i18n("This file already exists. Do you want to overwrite it?"), //text
-                 i18n("Overwrite existing file?"), //caption
+                 i18n("Overwrite Existing File?"), //caption
                  KStandardGuiItem::overwrite() //label for Continue-Button
                                                    );
 
@@ -296,8 +296,8 @@ void UserActionPage::slotExport()
     bool success = UserAction::writeToFile(doc, filename);
     if (! success)
         KMessageBox::error(this,
-                           i18n("Cannot open %1 for writing!\nNothing exported.", filename),
-                           i18n("Export failed!")
+                           i18n("Cannot open %1 for writing.\nNothing exported.", filename),
+                           i18n("Export Failed")
                           );
 }
 

@@ -345,9 +345,9 @@ bool Krusader::versionControl()
     float oldVer = oldVerText.toFloat();
     // older icompatible version
     if (oldVer <= 0.9) {
-        KMessageBox::information(krApp, i18n("A configuration of 1.51 or older was detected. Krusader has to reset your configuration to default values.\nNote: Your bookmarks and keybindings will remain intact.\n Krusader will now run Konfigurator."));
+        KMessageBox::information(krApp, i18n("A configuration of 1.51 or older was detected. Krusader has to reset your configuration to default values.\nNote: your bookmarks and keybindings will remain intact.\nKrusader will now run Konfigurator."));
         /*if ( !QDir::home().remove( ".kde/share/config/krusaderrc" ) ) {
-           KMessageBox::error( krApp, i18n( "Unable to remove your krusaderrc file! Please remove it manually and rerun Krusader." ) );
+           KMessageBox::error( krApp, i18n( "Unable to remove your krusaderrc file. Please remove it manually and rerun Krusader." ) );
            exit( 1 );
         }*/
         retval = true;
@@ -357,7 +357,7 @@ bool Krusader::versionControl()
 
     // first installation of krusader
     if (firstRun) {
-        KMessageBox::information(krApp, i18n("<qt><b>Welcome to Krusader!</b><p>As this is your first run, your machine will now be checked for external applications. Then the Konfigurator will be launched where you can customize Krusader to your needs.</p></qt>"));
+        KMessageBox::information(krApp, i18n("<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine will now be checked for external applications. Then the Konfigurator will be launched where you can customize Krusader to your needs.</p></qt>"));
         retval = true;
     }
     nogroup.writeEntry("Version", VERSION);

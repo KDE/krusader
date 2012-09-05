@@ -488,7 +488,7 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
     s.maxSize.unit = static_cast<FilterSettings::SizeUnit>(maxSizeType->currentIndex());
 
     if (s.minSizeEnabled && s.maxSizeEnabled && (s.maxSize.size() < s.minSize.size())) {
-        KMessageBox::detailedError(this, i18n("Specified sizes are inconsistent!"),
+        KMessageBox::detailedError(this, i18n("Specified sizes are inconsistent."),
                             i18n("Please re-enter the values, so that the left side size "
                                  "will be smaller than (or equal to) the right side size."));
         minSizeAmount->setFocus();
@@ -508,7 +508,7 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
             invalidDateMessage(modifiedBetweenData2);
             return false;
         } else if (s.modifiedBetween1 > s.modifiedBetween2) {
-            KMessageBox::detailedError(this, i18n("Dates are inconsistent!"),
+            KMessageBox::detailedError(this, i18n("Dates are inconsistent."),
                                 i18n("The date on the left is later than the date on the right. "
                                      "Please re-enter the dates, so that the left side date "
                                      "will be earlier than the right side date."));
@@ -536,7 +536,7 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
     if (s.modifiedInTheLastEnabled  &&
             s.modifiedInTheLast.amount && s.notModifiedInTheLast.amount) {
         if (s.modifiedInTheLast.days() < s.notModifiedInTheLast.days()) {
-            KMessageBox::detailedError(this, i18n("Dates are inconsistent!"),
+            KMessageBox::detailedError(this, i18n("Dates are inconsistent."),
                                 i18n("The date on top is later than the date on the bottom. "
                                      "Please re-enter the dates, so that the top date "
                                      "will be earlier than the bottom date."));

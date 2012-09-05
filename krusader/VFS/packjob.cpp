@@ -135,7 +135,7 @@ void TestArchiveThread::slotStart()
 
         // test the archive
         if (!KRarcHandler::test(path, type, password, observer(), 0)) {
-            sendError(KIO::ERR_NO_CONTENT, i18nc("%1=archive filename", "%1, test failed!", arcName));
+            sendError(KIO::ERR_NO_CONTENT, i18nc("%1=archive filename", "%1, test failed.", arcName));
             return ;
         }
     }

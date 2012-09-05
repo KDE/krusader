@@ -266,7 +266,7 @@ void SplitterGUI::predefinedComboActivated(int item)
 void SplitterGUI::splitPressed()
 {
     if (!urlReq->url().isValid()) {
-        KMessageBox::error(this, i18n("The directory path URL is malformed!"));
+        KMessageBox::error(this, i18n("The directory path URL is malformed."));
         return;
     }
     if(getSplitSize() > 0)

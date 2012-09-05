@@ -1260,7 +1260,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     btnLeftToRight->setCheckable(true);
     btnLeftToRight->setChecked(group.readEntry("LeftToRight Button", _BtnLeftToRight));
     btnLeftToRight->setShortcut(Qt::CTRL + Qt::Key_L);
-    btnLeftToRight->setWhatsThis(i18n("Show files marked to <i>Copy from left to right</i> (CTRL+L)."));
+    btnLeftToRight->setWhatsThis(i18n("Show files marked to <i>Copy from left to right</i> (Ctrl+L)."));
     btnLeftToRight->setFixedSize(showLeftToRight.width() + 15, showLeftToRight.height() + 15);
     showOptionsLayout->addWidget(btnLeftToRight, 0, 0);
 
@@ -1270,7 +1270,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     btnEquals->setCheckable(true);
     btnEquals->setChecked(group.readEntry("Equals Button", _BtnEquals));
     btnEquals->setShortcut(Qt::CTRL + Qt::Key_E);
-    btnEquals->setWhatsThis(i18n("Show files considered to be identical (CTRL+E)."));
+    btnEquals->setWhatsThis(i18n("Show files considered to be identical (Ctrl+E)."));
     btnEquals->setFixedSize(showEquals.width() + 15, showEquals.height() + 15);
     showOptionsLayout->addWidget(btnEquals, 0, 1);
 
@@ -1280,7 +1280,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     btnDifferents->setCheckable(true);
     btnDifferents->setChecked(group.readEntry("Differents Button", _BtnDifferents));
     btnDifferents->setShortcut(Qt::CTRL + Qt::Key_D);
-    btnDifferents->setWhatsThis(i18n("Show excluded files (CTRL+D)."));
+    btnDifferents->setWhatsThis(i18n("Show excluded files (Ctrl+D)."));
     btnDifferents->setFixedSize(showDifferents.width() + 15, showDifferents.height() + 15);
     showOptionsLayout->addWidget(btnDifferents, 0, 2);
 
@@ -1290,7 +1290,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     btnRightToLeft->setCheckable(true);
     btnRightToLeft->setChecked(group.readEntry("RightToLeft Button", _BtnRightToLeft));
     btnRightToLeft->setShortcut(Qt::CTRL + Qt::Key_R);
-    btnRightToLeft->setWhatsThis(i18n("Show files marked to <i>Copy from right to left</i> (CTRL+R)."));
+    btnRightToLeft->setWhatsThis(i18n("Show files marked to <i>Copy from right to left</i> (Ctrl+R)."));
     btnRightToLeft->setFixedSize(showRightToLeft.width() + 15, showRightToLeft.height() + 15);
     showOptionsLayout->addWidget(btnRightToLeft, 0, 3);
 
@@ -1300,7 +1300,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     btnDeletable->setCheckable(true);
     btnDeletable->setChecked(group.readEntry("Deletable Button", _BtnDeletable));
     btnDeletable->setShortcut(Qt::CTRL + Qt::Key_T);
-    btnDeletable->setWhatsThis(i18n("Show files marked to delete (CTRL+T)."));
+    btnDeletable->setWhatsThis(i18n("Show files marked to delete (Ctrl+T)."));
     btnDeletable->setFixedSize(showDeletable.width() + 15, showDeletable.height() + 15);
     showOptionsLayout->addWidget(btnDeletable, 0, 4);
 
@@ -1328,7 +1328,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
     /* ========================= Synchronization list view ========================== */
     syncList = new SynchronizerListView(&synchronizer, synchronizerTab);  // create the main container
-    syncList->setWhatsThis(i18n("The compare results of the synchronizer (CTRL+M)."));
+    syncList->setWhatsThis(i18n("The compare results of the synchronizer (Ctrl+M)."));
     syncList->setAutoFillBackground(true);
     syncList->installEventFilter(this);
 
@@ -1679,7 +1679,7 @@ void SynchronizerGUI::checkExcludeURLValidity(QString &text, QString &error)
         return;
     }
 
-    error = i18n("URL must be the descendant of either the left or the right base URL!");
+    error = i18n("URL must be the descendant of either the left or the right base URL.");
 }
 
 void SynchronizerGUI::doubleClicked(QTreeWidgetItem *itemIn)
@@ -2196,7 +2196,7 @@ void SynchronizerGUI::synchronize()
 
     if (!synchronizer.totalSizes(&copyToLeftNr, &copyToLeftSize, &copyToRightNr, &copyToRightSize,
                                  &deleteNr, &deleteSize)) {
-        KMessageBox::sorry(parentWidget(), i18n("Synchronizer has nothing to do!"));
+        KMessageBox::sorry(parentWidget(), i18n("Synchronizer has nothing to do."));
         return;
     }
 

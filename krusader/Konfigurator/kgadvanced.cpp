@@ -62,7 +62,7 @@ KgAdvanced::KgAdvanced(bool first, QWidget* parent) :
 
     generalGrid->addWidget(generals, 1, 0);
 
-    addLabel(generalGrid, 2, 0, i18n("MountMan won't (un)mount the following mount-points:"),
+    addLabel(generalGrid, 2, 0, i18n("MountMan will not (un)mount the following mount-points:"),
              generalGrp);
     KonfiguratorEditBox *nonMountPoints = createEditBox("Advanced", "Nonmount Points", _NonMountPoints, generalGrp, false);
     generalGrid->addWidget(nonMountPoints, 2, 1);

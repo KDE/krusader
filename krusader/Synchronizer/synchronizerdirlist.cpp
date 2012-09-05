@@ -130,7 +130,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
         QString path = url.path(KUrl::RemoveTrailingSlash);
         DIR* dir = opendir(path.toLocal8Bit());
         if (!dir)  {
-            KMessageBox::error(parentWidget, i18n("Can't open the %1 directory!", path), i18n("Error"));
+            KMessageBox::error(parentWidget, i18n("Cannot open the %1 directory.", path), i18n("Error"));
             emit finished(result = false);
             return false;
         }

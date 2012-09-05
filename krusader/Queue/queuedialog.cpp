@@ -384,7 +384,7 @@ void QueueDialog::slotNewTab()
 
     Queue * queue = QueueManager::createQueue(queueName);
     if (queue == 0) {
-        KMessageBox::error(this, i18n("A queue already exists with this name!"));
+        KMessageBox::error(this, i18n("A queue already exists with this name."));
     }
 }
 

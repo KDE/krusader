@@ -103,7 +103,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     // Options for name filtering
 
     QGroupBox *nameGroup = new QGroupBox(this);
-    nameGroup->setTitle(i18n("File name"));
+    nameGroup->setTitle(i18n("File Name"));
     QGridLayout *nameGroupLayout = new QGridLayout(nameGroup);
     nameGroupLayout->setAlignment(Qt::AlignTop);
     nameGroupLayout->setSpacing(6);
@@ -219,7 +219,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         // Options for don't search in
 
         QGroupBox *dontSearchInGroup = new QGroupBox(this);
-        dontSearchInGroup->setTitle(i18n("&Don't search in"));
+        dontSearchInGroup->setTitle(i18n("&Do not search in"));
         QGridLayout *dontSearchInLayout = new QGridLayout(dontSearchInGroup);
         dontSearchInLayout->setAlignment(Qt::AlignTop);
         dontSearchInLayout->setSpacing(6);
@@ -526,7 +526,7 @@ bool GeneralFilter::getSettings(FilterSettings &s)
 {
     // check that we have (at least) what to search, and where to search in
     if (searchFor->currentText().simplified().isEmpty()) {
-        KMessageBox::error(this , i18n("No search criteria entered!"));
+        KMessageBox::error(this , i18n("No search criteria entered."));
         searchFor->setFocus();
         return false;
     }

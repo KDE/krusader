@@ -162,7 +162,7 @@ LocateDlg::LocateDlg() : KDialog(0), isFeedToListBox(false)
     QSpacerItem* spacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     hbox2->addItem(spacer);
 
-    dontSearchInPath = new QCheckBox(i18n("Don't search in path"), hboxWidget2);
+    dontSearchInPath = new QCheckBox(i18n("Do not search in path"), hboxWidget2);
     hbox2->addWidget(dontSearchInPath);
     dontSearchInPath->setChecked(group.readEntry("Don't Search In Path", false));
 
@@ -270,7 +270,7 @@ void LocateDlg::slotUser3()   /* The locate button */
 
     if (!KrServices::cmdExist("locate")) {
         KMessageBox::error(0,
-                           i18n("Can't start 'locate'! Check the 'Dependencies' page in konfigurator."));
+                           i18n("Cannot start 'locate'. Check the 'Dependencies' page in konfigurator."));
         return;
     }
 
@@ -309,14 +309,14 @@ void LocateDlg::slotUser3()   /* The locate button */
 void LocateDlg::locateError()
 {
     if (locateProc->error() == QProcess::FailedToStart)
-        KMessageBox::error(krMainWindow, i18n("Error during the start of 'locate' process!"));
+        KMessageBox::error(krMainWindow, i18n("Error during the start of 'locate' process."));
 }
 
 void LocateDlg::locateFinished()
 {
     if (locateProc->exitStatus() != QProcess::NormalExit || locateProc->exitStatus()) {
         if (!collectedErr.isEmpty())
-            KMessageBox::error(krMainWindow, i18n("Locate produced the following error message:\n\n") + collectedErr);
+            KMessageBox::error(krMainWindow, i18n("Locate produced the following error message:\n\n%1", collectedErr));
     }
 
     if (resultList->topLevelItemCount() == 0) {
@@ -535,7 +535,7 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
             resultList->selectionModel()->clearSelection(); // HACK: QT 4 is not able to paint the focus frame because of a bug
             resultList->setCurrentItem(findCurrentItem);
         } else {
-            KMessageBox::information(this, i18n("Search string not found!"));
+            KMessageBox::information(this, i18n("Search string not found."));
         }
 
         resultList->scrollTo(resultList->currentIndex());
@@ -555,7 +555,7 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
             resultList->selectionModel()->clearSelection(); // HACK: QT 4 is not able to paint the focus frame because of a bug
             resultList->setCurrentItem(findCurrentItem);
         } else
-            KMessageBox::information(this, i18n("Search string not found!"));
+            KMessageBox::information(this, i18n("Search string not found."));
 
         resultList->scrollTo(resultList->currentIndex());
 
@@ -631,8 +631,8 @@ void LocateDlg::feedToListBox()
     if (ga.readEntry("Confirm Feed to Listbox",  _ConfirmFeedToListbox)) {
         bool ok;
         queryName = KInputDialog::getText(
-                        i18n("Query name"),  // Caption
-                        i18n("Here you can name the file collection"), // Questiontext
+                        i18n("Query Name"),  // Caption
+                        i18n("Here you can name the file collection:"), // Questiontext
                         queryName, // Default
                         &ok, this);
         if (! ok)

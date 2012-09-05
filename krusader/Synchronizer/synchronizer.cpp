@@ -1159,15 +1159,15 @@ void Synchronizer::slotTaskFinished(KJob *job)
 
                 switch (item->task()) {
                 case TT_COPY_TO_LEFT:
-                    error = i18n("Error at copying file %1 to %2!",
+                    error = i18n("Error at copying file %1 to %2.",
                                  rightURL.pathOrUrl(), leftURL.pathOrUrl());
                     break;
                 case TT_COPY_TO_RIGHT:
-                    error = i18n("Error at copying file %1 to %2!",
+                    error = i18n("Error at copying file %1 to %2.",
                                  leftURL.pathOrUrl(), rightURL.pathOrUrl());
                     break;
                 case TT_DELETE:
-                    error = i18n("Error at deleting file %1!", leftURL.pathOrUrl());
+                    error = i18n("Error at deleting file %1.", leftURL.pathOrUrl());
                     break;
                 default:
                     break;
@@ -1338,7 +1338,7 @@ void Synchronizer::synchronizeWithKGet()
 
             if (progDlg == 0) {
                 progDlg = new KgetProgressDialog(krMainWindow, i18n("Krusader::Synchronizer"),
-                                                 i18n("Feeding the URLs to Kget"), true);
+                                                 i18n("Feeding the URLs to KGet"), true);
                 progDlg->progressBar()->setMaximum(totalCount);
                 progDlg->show();
                 qApp->processEvents();
@@ -1383,7 +1383,7 @@ void Synchronizer::synchronizeWithKGet()
 
                 p << KrServices::fullPathName("kget") << source << destURL.path();
                 if (!p.startDetached())
-                    KMessageBox::error(parentWidget, i18n("Error executing %1!", KrServices::fullPathName("kget")));
+                    KMessageBox::error(parentWidget, i18n("Error executing %1.", KrServices::fullPathName("kget")));
             }
 
             progDlg->progressBar()->setValue(++processedCount);

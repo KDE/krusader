@@ -432,7 +432,7 @@ TagString exp_ListFile::expFunc(const KrPanel* panel, const QStringList& paramet
     tmpFile.setSuffix(".itemlist");
 
     if (!tmpFile.open()) {
-        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_WORLD, i18n("Expander: tempfile couldn't be opened (%1)", tmpFile.errorString())));
+        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_WORLD, i18n("Expander: temporary file could not be opened (%1)", tmpFile.errorString())));
         return QString();
     }
 
@@ -499,7 +499,7 @@ TagString exp_Goto::expFunc(const KrPanel* panel, const QStringList& parameter, 
         newTab = true;
 
     if (parameter.count() == 0) {
-        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Goto!")));
+        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Goto.")));
         return QString();
     }
 
@@ -542,7 +542,7 @@ TagString exp_Ask::expFunc(const KrPanel*, const QStringList& parameter, const b
     QString caption, preset, result;
 
     if (parameter.count() == 0) {
-        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Ask!")));
+        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Ask.")));
         return QString();
     }
 
@@ -583,7 +583,7 @@ TagString exp_Clipboard::expFunc(const KrPanel*, const TagStringList& parameter,
 {
 //    kDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << KApplication::clipboard()->text() << endl;
     if (parameter.count() == 0) {
-        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Clipboard!")));
+        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Clipboard.")));
         return QString();
     }
 
@@ -612,7 +612,7 @@ exp_Copy::exp_Copy()
 TagString exp_Copy::expFunc(const KrPanel*, const TagStringList& parameter, const bool&, Expander& exp) const
 {
     if (parameter.count() < 2) {
-        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 2 parameter is required for Copy!")));
+        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 2 parameter is required for Copy.")));
         return QString();
     }
 
@@ -650,7 +650,7 @@ exp_Move::exp_Move()
 TagString exp_Move::expFunc(const KrPanel*, const TagStringList& parameter, const bool& , Expander& exp) const
 {
     if (parameter.count() < 2) {
-        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 2 parameter is required for Move!")));
+        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 2 parameter is required for Move.")));
         return QString();
     }
 

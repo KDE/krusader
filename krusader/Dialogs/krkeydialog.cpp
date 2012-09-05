@@ -34,7 +34,7 @@
 #include "../krglobal.h"
 
 //This is the filter in the KFileDialog of Import/Export:
-static const char* FILE_FILTER = I18N_NOOP("*.keymap|Krusader keymaps\n*|all files");
+static const char* FILE_FILTER = I18N_NOOP("*.keymap|Krusader keymaps\n*|All files");
 
 
 KrKeyDialog::KrKeyDialog(QWidget * parent) : KShortcutsDialog(KShortcutsEditor::AllActions, KShortcutsEditor::LetterShortcutsDisallowed /* allow letter shortcuts */, parent)
@@ -80,8 +80,8 @@ void KrKeyDialog::slotImportShortcuts()
     if (! conf.hasGroup("Shortcuts")) {
         int answer = KMessageBox::warningContinueCancel(this,  //parent
                      i18n("This file does not seem to be a valid keymap.\n"
-                          "It may be a keymap using a legacy format. The import cannot be undone!"), //text
-                     i18n("Try to import legacy format?"),  //caption
+                          "It may be a keymap using a legacy format. The import cannot be undone."), //text
+                     i18n("Try to Import Legacy Format?"),  //caption
                      KGuiItem(i18n("Import Anyway")),   //Label for the continue-button
                      KStandardGuiItem::cancel(),
                      "Confirm Import Legacy Shortcuts" //dontAskAgainName (for the config-file)
@@ -155,7 +155,7 @@ void KrKeyDialog::slotExportShortcuts()
         // shortcuts
         f.close();
     else {
-        KMessageBox::error(this, i18n("<qt>Cannot open <b>%1</b> for writing!</qt>", filename));
+        KMessageBox::error(this, i18n("<qt>Cannot open <b>%1</b> for writing.</qt>", filename));
         return;
     }
 

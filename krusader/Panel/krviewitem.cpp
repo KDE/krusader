@@ -80,7 +80,7 @@ QString KrViewItem::description() const
     if (_vf->vfile_isSymLink()) {
         QString tmp;
         if (_vf->vfile_isBrokenLink())
-            tmp = i18n("(Broken Link!)");
+            tmp = i18n("(Broken Link)");
         else if (comment.isEmpty())
             tmp = i18n("Symbolic Link") ;
         else

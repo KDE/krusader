@@ -351,7 +351,7 @@ void ActionProperty::editProtocol()
     QString currentText = lbShowonlyProtocol->currentItem()->text();
 
     QString text = KInputDialog::getText(
-                       i18n("Edit protocol"),
+                       i18n("Edit Protocol"),
                        i18n("Set another protocol:"),
                        currentText,
                        &ok, this);
@@ -388,7 +388,7 @@ void ActionProperty::editPath()
     QString currentText = lbShowonlyPath->currentItem()->text();
 
     QString text = KInputDialog::getText(
-                       i18n("Edit path"),
+                       i18n("Edit Path"),
                        i18n("Set another path:"),
                        currentText,
                        &ok, this);
@@ -415,8 +415,8 @@ void ActionProperty::addMime()
         currentText = lbShowonlyMime->currentItem()->text();
 
     QString text = KInputDialog::getText(
-                       i18n("New mime-type"),
-                       i18n("Set a mime-type:"),
+                       i18n("New MIME Type"),
+                       i18n("Set a MIME type:"),
                        currentText,
                        &ok, this);
     if (ok && !text.isEmpty()) {
@@ -435,8 +435,8 @@ void ActionProperty::editMime()
     QString currentText = lbShowonlyMime->currentItem()->text();
 
     QString text = KInputDialog::getText(
-                       i18n("Edit mime-type"),
-                       i18n("Set another mime-type:"),
+                       i18n("Edit MIME Type"),
+                       i18n("Set another MIME type:"),
                        currentText,
                        &ok, this);
     if (ok && !text.isEmpty()) {
@@ -462,8 +462,8 @@ void ActionProperty::newFile()
         currentText = lbShowonlyFile->currentItem()->text();
 
     QString text = KInputDialog::getText(
-                       i18n("New filename"),
-                       i18n("Set a filename:"),
+                       i18n("New File Name"),
+                       i18n("Set a file name:"),
                        currentText,
                        &ok, this);
     if (ok && !text.isEmpty()) {
@@ -482,8 +482,8 @@ void ActionProperty::editFile()
     QString currentText = lbShowonlyFile->currentItem()->text();
 
     QString text = KInputDialog::getText(
-                       i18n("Edit filename"),
-                       i18n("Set another filename:"),
+                       i18n("Edit File Name"),
+                       i18n("Set another file name:"),
                        currentText,
                        &ok, this);
     if (ok && !text.isEmpty()) {
@@ -521,8 +521,8 @@ bool ActionProperty::validProperties()
     if (leDistinctName->isEnabled())
         if (krApp->actionCollection()->action(leDistinctName->text())) {
             KMessageBox::error(this,
-                               i18n("There already is an action with this name\n"
-                                    "If you do not have such a useraction the name is used by Krusader for an internal action")
+                               i18n("There already is an action with this name.\n"
+                                    "If you do not have such a useraction the name is used by Krusader for an internal action.")
                               );
             leDistinctName->setFocus();
             return false;

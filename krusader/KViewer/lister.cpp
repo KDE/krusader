@@ -1284,7 +1284,7 @@ void Lister::slotFileFinished(KJob *job)
     _tempFile->flush();
     if (job->error()) {   /* any error occurred? */
         KIO::TransferJob *kioJob = (KIO::TransferJob *)job;
-        KMessageBox::error(_textArea, i18n("Error reading file %1!", kioJob->url().pathOrUrl()));
+        KMessageBox::error(_textArea, i18n("Error reading file %1.", kioJob->url().pathOrUrl()));
     }
     _downloading = false;
 }
@@ -1757,7 +1757,7 @@ void Lister::jumpToPosition()
         bool ok;
         qulonglong upos = res.toULongLong(&ok, 16);
         if (!ok) {
-            KMessageBox::error(_textArea, i18n("Invalid number!"), i18n("Jump to position"));
+            KMessageBox::error(_textArea, i18n("Invalid number."), i18n("Jump to position"));
             return;
         }
         pos = (qint64)upos;
@@ -1765,14 +1765,14 @@ void Lister::jumpToPosition()
         bool ok;
         qulonglong upos = res.toULongLong(&ok);
         if (!ok) {
-            KMessageBox::error(_textArea, i18n("Invalid number!"), i18n("Jump to position"));
+            KMessageBox::error(_textArea, i18n("Invalid number."), i18n("Jump to position"));
             return;
         }
         pos = (qint64)upos;
     }
 
     if (pos < 0 || pos > _fileSize) {
-        KMessageBox::error(_textArea, i18n("Number out of range!"), i18n("Jump to position"));
+        KMessageBox::error(_textArea, i18n("Number out of range."), i18n("Jump to position"));
         return;
     }
 
@@ -1807,7 +1807,7 @@ void Lister::saveSelected()
     qint64 start = _textArea->getCursorAnchor();
     qint64 end = _textArea->getCursorPosition(isfirst);
     if (start == -1 || start == end) {
-        KMessageBox::error(_textArea, i18n("Nothing is selected!"), i18n("Save selection..."));
+        KMessageBox::error(_textArea, i18n("Nothing is selected."), i18n("Save selection..."));
         return;
     }
     if (start > end) {
