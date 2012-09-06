@@ -296,7 +296,7 @@ void Splitter::splitFileFinished(KJob *job)
     splitWriteJob = 0;  /* KIO automatically deletes the object after Finished signal */
 
     if (job->error()) {   /* any error occurred? */
-        KMessageBox::error(0, i18n("Error at writing file %1: %2", writeURL.pathOrUrl(),
+        KMessageBox::error(0, i18n("Error writing file %1: %2", writeURL.pathOrUrl(),
                                    job->errorString()));
         emit reject();
         return;

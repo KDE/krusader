@@ -244,7 +244,7 @@ void KgGeneral::createGeneralTab()
     hbox->addWidget(urlReq3);
     generalGrid->addLayout(hbox, 13, 0, 1, 1);
 
-    QLabel *label4 = new QLabel(i18n("Note: you must have full permissions for the temporary directory!"),
+    QLabel *label4 = new QLabel(i18n("Note: you must have full permissions for the temporary directory."),
                                 generalGrp);
     generalGrid->addWidget(label4, 14, 0, 1, 1);
 
@@ -319,7 +319,7 @@ void KgGeneral::slotAddExtension()
 
     if (ok) {
         if (!atomExt.startsWith('.') || atomExt.indexOf('.', 1) == -1)
-            KMessageBox::error(krMainWindow, i18n("Atomic extensions must start with '.'\n and must contain at least one more '.' character"), i18n("Error"));
+            KMessageBox::error(krMainWindow, i18n("Atomic extensions must start with '.' and must contain at least one more '.' character."), i18n("Error"));
         else
             listBox->addItem(atomExt);
     }

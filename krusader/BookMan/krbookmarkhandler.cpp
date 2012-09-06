@@ -291,7 +291,7 @@ void KrBookmarkHandler::importFromFile()
         n = n.nextSibling();
 
     if (n.isNull() || n.toElement().tagName() != "xbel") {
-        errorMsg = i18n("%1 doesn't seem to be a valid Bookmarks file", filename);
+        errorMsg = i18n("%1 does not seem to be a valid bookmarks file", filename);
         goto BM_ERROR;
     } else n = n.firstChild(); // skip the xbel part
     importFromFileFolder(n, _root, "", &errorMsg);

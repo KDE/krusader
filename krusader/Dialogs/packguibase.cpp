@@ -408,7 +408,7 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
 
     if (password->isEnabled() && passwordAgain->isEnabled()) {
         if (password->text() != passwordAgain->text()) {
-            KMessageBox::error(this, i18n("Cannot pack! The passwords are different!"));
+            KMessageBox::error(this, i18n("Cannot pack, the passwords are different."));
             return false;
         }
 
@@ -433,7 +433,7 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
         }
 
         if (size < 10000) {
-            KMessageBox::error(this, i18n("Invalid volume size!"));
+            KMessageBox::error(this, i18n("Invalid volume size."));
             return false;
         }
 
@@ -465,7 +465,7 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
             }
 
             if (firstChar && ch != '-') {
-                KMessageBox::error(this, i18n("Invalid command line switch!\nSwitch must start with '-'!"));
+                KMessageBox::error(this, i18n("Invalid command line switch.\nA switch must start with '-'."));
                 return false;
             }
 
@@ -477,7 +477,7 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
                 quote = ch;
             if (ch == '\\') {
                 if (i == cmdArgs.length() - 1) {
-                    KMessageBox::error(this, i18n("Invalid command line switch!\nBackslash cannot be the last character"));
+                    KMessageBox::error(this, i18n("Invalid command line switch.\nBackslashes cannot be the last character."));
                     return false;
                 }
                 i++;
@@ -485,7 +485,7 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
         }
 
         if (quote != '\0') {
-            KMessageBox::error(this, i18n("Invalid command line switch!\nUnclosed quotation mark!"));
+            KMessageBox::error(this, i18n("Invalid command line switch.\nUnclosed quotation mark."));
             return false;
         }
 

@@ -652,7 +652,7 @@ void KRslots::slotCombine()
             } while (false);
 
             if (error) {
-                KMessageBox::error(0, i18n("%1 is not a split file.", url.pathOrUrl()));
+                KMessageBox::error(0, i18n("Not a split file: %1.", url.pathOrUrl()));
                 return;
             }
         }

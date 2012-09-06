@@ -210,7 +210,7 @@ int main(int argc, char *argv[])
     options.add("left <path>", ki18n("Start left panel at <path>"));
     options.add("right <path>", ki18n("Start right panel at <path>"));
     options.add("profile <panel-profile>", ki18n("Load this profile on startup"));
-    options.add("+url", ki18n("Url to open"));
+    options.add("+url", ki18n("URL to open"));
 
     KCmdLineArgs::addCmdLineOptions(options);   // Add our own options.
 

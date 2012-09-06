@@ -525,7 +525,7 @@ void KgPanel::setupMouseModeTab()
         { i18n("Konqueror Mode"), "1", i18n("Pressing the left mouse button selects files - you can click and select multiple files. Right-click menu is invoked using a short click on the right mouse button.") },
         { i18n("Total-Commander Mode"), "2", i18n("The left mouse button does not select, but sets the current file without affecting the current selection. The right mouse button selects multiple files and the right-click menu is invoked by pressing and holding the right mouse button.") },
         { i18n("Ergonomic Mode"), "4", i18n("The left mouse button does not select, but sets the current file without affecting the current selection. The right mouse button invokes the context-menu. You can select with Ctrl key and the left button.") },
-        { i18n("Custom Selection Mode"), "3", i18n("Design your own selection mode!") }
+        { i18n("Custom Selection Mode"), "3", i18n("Design your own selection mode.") }
     };
     mouseRadio = createRadioButtonGroup("Look&Feel", "Mouse Selection", "0", 1, 5, mouseSelection, 5, mouseGeneralGroup, true, PAGE_MOUSE);
     mouseRadio->layout()->setContentsMargins(0, 0, 0, 0);
