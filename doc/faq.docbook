@@ -166,7 +166,7 @@
       <qandaentry>
         <question id="faqi_64bit">
           <para>How do I compile &krusader; when I am
-          using a 64 bit processor ?</para>
+          using a 64 bit processor?</para>
         </question>
         <answer>
           <para>As far as we know, there are no issues.
@@ -292,7 +292,7 @@
           &krusader;, if it does not then contact your
           distribution creator and ask them to include
           &krusader;!</para>
-          <para>Did you take a look at the &URL;'s on
+          <para>Did you take a look at the &URL;s on
           the <link linkend="installation">Installation procedure</link> page? If you have and
           found nothing, you can always compile
           &krusader; from source. Even if you feel you
@@ -663,7 +663,7 @@
       </qandaentry>
       <qandaentry>
         <question id="faqu_supermount">
-          <para>When I try to mount/unmount my cdrom/floppy,
+          <para>When I try to mount/unmount my &CD-ROM;/floppy,
           &krusader; reports something about a
           supermount, what is this about?</para>
         </question>
@@ -937,12 +937,12 @@
 
       <qandaentry>
         <question id="faqu_no_part">
-          <para>How do not add ".part" suffix when copying files via &FTP;?</para>
+          <para>How do not add <literal role="extension">.part</literal> suffix when copying files via &FTP;?</para>
         </question>
         <answer>
-          <para>When uploading files a <filename>.part</filename> suffix is added to the filename,
+          <para>When uploading files a <literal role="extension">.part</literal> suffix is added to the filename,
                 once the upload is complete the filename is renamed automagically 
-                to remove the <filename>.part</filename> suffix.
+                to remove the <literal role="extension">.part</literal> suffix.
                 This works great but sometimes some &FTP; servers do not allow a rename operation.
                 You can solve this by unchecking the checkbox 
                 <guilabel>Mark partially uploaded files</guilabel> in &kde;'s System Settings. 
@@ -983,7 +983,7 @@
       <qandaentry>
         <question id="faqu_sound">
           <para>How can I disable the default sounds,
-          &eg; when I do a delete action ?</para>
+          &eg; when I do a delete action?</para>
         </question>
         <answer>
           <para>Those are the default &kde; System
@@ -1005,8 +1005,7 @@
       </qandaentry>
       <qandaentry>
         <question id="faqu_remoteMan">
-          <para>Where the remote connection manager
-          ?</para>
+          <para>Where the remote connection manager?</para>
         </question>
         <answer>
           <para>Use our Bookmark Manager. Use a  
@@ -1351,10 +1350,10 @@
       <qandaentry>
         <question id="faqg_newsfeeds">
           <para>Does &krusader; provide
-          newsfeeds?</para>
+          news feeds?</para>
         </question>
         <answer>
-          <para>Yes, we do. Several newsfeeds in various formats
+          <para>Yes, we do. Several news feeds in various formats
           are available. <ulink url="http://sourceforge.net/export/rss2_projfiles.php?group_id=6488">rss-filerelease feed</ulink>,
           <ulink url="http://www.krusader.org/phpBB/rss.php">rss-forumfeed</ulink>, 
 	  <ulink url="http://groups.google.com/group/krusader-news/feeds">krusader-news feed</ulink>,

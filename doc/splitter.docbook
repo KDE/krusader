@@ -9,19 +9,18 @@
   files can be combined again to recreate the original file.
   &krusader; and <trademark class="copyright">Total Commander</trademark> split/combine
   functions are compatible. To split a file choose 
-  <emphasis role="bold">
     <menuchoice>
       <guimenu>File</guimenu>
       <guimenuitem>Split</guimenuitem>
     </menuchoice>
-  </emphasis> or 
+  or 
   <keycombo action="simul">&Ctrl;
-  <keycap>P</keycap></keycombo> A Split dialog will open to confirm
-  the operation.</para>
+  <keycap>P</keycap></keycombo>: a <guilabel>Split</guilabel> dialog
+  will open to confirm the operation.</para>
   <para>If the name of the original file is 
   <filename>foo</filename>, then the name of the smaller files will
   be 
-  <filename>foo.000 foo.001 foo.002</filename> &etc;
+  <filename>foo.000 foo.001 foo.002</filename> &etc;.
   There is no theoretical limit in the number of smaller files, but
   it is recommended to limit the number to a maximum of 1023 files.
   &krusader; creates a 
@@ -37,12 +36,11 @@
   <para>To combine the multiple files choose, select a partial file
   
   <filename>foo.xxx</filename> and choose 
-  <emphasis role="bold">
     <menuchoice>
       <guimenu>File</guimenu>
       <guimenuitem>Combine files</guimenuitem>
     </menuchoice>
-  </emphasis> or 
+  or 
   <keycombo action="simul">&Ctrl;
   <keycap>B</keycap></keycombo>. The target directory is the
   inactive panel and can be changed. The file names must be
@@ -53,7 +51,7 @@
     <command>split</command>
     <option>-b</option>
   </userinput>letter method") 
-  <filename>fileaa, fileab, fileac</filename> &etc; If
+  <filename>fileaa, fileab, fileac</filename> &etc;. If
   the file 
   <filename>foo.crc</filename> is found in the same directory as the
   partial files, &krusader; will use this file to check
