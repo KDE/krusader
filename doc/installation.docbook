@@ -359,12 +359,12 @@
       (note: updates from within the modules directory do
       not need the -d parameter)</para>
       <para>If you want to check out a specific version of
-      &krusader; from CVS (e.g.
+      &krusader; from CVS (&eg;
       &krusader;-1.60.0) : 
       <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co -rversion_1_60_0 krusader_kde3</option></userinput></screen>
       </para>
       <para>If you want to check out a specific date of
-      &krusader; from CVS (e.g.
+      &krusader; from CVS (&eg;
       &krusader;-2006-10-29) : 
       <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co -D2006-10-29 krusader_kde3</option></userinput></screen>
       </para>
@@ -448,9 +448,9 @@
         <para>From version &krusader;-2.0.0 and higher is &kde;-4 only.</para>
       </note>
  
-<para>"krusader_kde4.tar.gz" is the supposed name of the krusader tarball (it will be probably a different one ;)</para>
+<para><filename>krusader_kde4.tar.gz</filename> is the supposed name of the krusader tarball (it will be probably a different one ;)</para>
 
-<para>You can download the latest available krusader-2.x <link linkend="krusader_git">from Git</link>.</para>
+<para>You can download the latest available &krusader;-2.x <link linkend="krusader_git">from Git</link>.</para>
 
 
 <sect2>
@@ -593,7 +593,7 @@ if you only run a Krusader binary you do not need these packages.</para>
 </sect1>
 
 <sect1 id="kde4_lin_install">
-   <title>Installing on Linux and BSD platforms</title>
+   <title>Installing on &Linux; and &BSD; platforms</title>
 
       <note>
        <para>Please read the 
@@ -708,7 +708,7 @@ if you only run a Krusader binary you do not need these packages.</para>
     <guibutton>Run</guibutton> button.</para>
     <para>If &krusader; is installed by an RPM or DEB
     package then usually &krusader; can be started from
-    the &kmenu;. e.g. on
+    the &kmenu;. &eg; on
     KUbuntu click on the
     &kicon; button and choose 
     <emphasis role="bold">
