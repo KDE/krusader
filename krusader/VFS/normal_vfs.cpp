@@ -308,13 +308,13 @@ void normal_vfs::getACL(vfile *file, QString &acl, QString &defAcl)
     acl.clear();
     defAcl.clear();
 #ifdef HAVE_POSIX_ACL
-    QByteArray fileName = file->vfile_getUrl().path(KUrl::RemoveTrailingSlash).toLocal8Bit();
+    QString fileName = file->vfile_getUrl().path(KUrl::RemoveTrailingSlash);
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
-    if (acl_extended_file(fileName.data())) {
+    if (acl_extended_file(fileName)) {
 #endif
-        acl = getACL(fileName.data(), ACL_TYPE_ACCESS);
+        acl = getACL(fileName, ACL_TYPE_ACCESS);
         if (file->vfile_isDir())
-            defAcl = getACL(fileName.data(), ACL_TYPE_DEFAULT);
+            defAcl = getACL(fileName, ACL_TYPE_DEFAULT);
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
     }
 #endif
@@ -328,7 +328,7 @@ QString normal_vfs::getACL(const QString & path, int type)
 #ifdef HAVE_POSIX_ACL
     acl_t acl = 0;
     // do we have an acl for the file, and/or a default acl for the dir, if it is one?
-    if ((acl = acl_get_file(path.data(), type)) != 0) {
+    if ((acl = acl_get_file(path.toLocal8Bit(), type)) != 0) {
         bool aclExtended = false;
 
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS

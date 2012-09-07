@@ -15,6 +15,11 @@ add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 
 add_definitions( "-DKRARC_ENABLED" )
 
+find_package(ACL)
+if(ACL_FOUND)
+    add_definitions(-DHAVE_POSIX_ACL)
+endif(ACL_FOUND)
+
 #include(ConfigureChecks.cmake)
 
 add_subdirectory(krusader)
