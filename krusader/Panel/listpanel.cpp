@@ -656,8 +656,12 @@ void ListPanel::slotFocusOnMe(bool focus)
         updatePopupPanel(view->getCurrentKrViewItem());
         view->prepareForActive();
         otherPanel()->gui->slotFocusOnMe(false);
-    } else
+    } else {
+        // in case a new url was entered but not refreshed to,
+        // reset origin bar to the current url
+        origin->setUrl(virtualPath().prettyUrl());
         view->prepareForPassive();
+    }
 
     origin->setActive(focus);
     refreshColors();
