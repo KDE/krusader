@@ -96,6 +96,15 @@ A
 #include "../Queue/queue_mgr.h"
 
 
+class FilePathValidator : public QValidator
+{
+public:
+    virtual State validate(QString &input, int &pos) const {
+        return input.isEmpty() ? Invalid : Acceptable;
+    }
+};
+
+
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
 ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
@@ -648,10 +657,12 @@ void ListPanelFunc::rename(const QString &oldname, const QString &newname)
 
 void ListPanelFunc::mkdir()
 {
+    FilePathValidator validator;
     // ask the new dir name..
     bool ok = false;
     QString dirName =
-        KInputDialog::getText(i18n("New directory"), i18n("Directory's name:"), "", &ok, krMainWindow);
+        KInputDialog::getText(i18n("New directory"), i18n("Directory's name:"), "",
+                              &ok, krMainWindow, &validator);
 
     // if the user canceled - quit
     if (!ok || dirName.isEmpty())
