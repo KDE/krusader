@@ -1282,7 +1282,7 @@ void ListPanelFunc::properties()
 
     // Show the properties dialog
     KPropertiesDialog *dlg = new KPropertiesDialog(fi, krMainWindow);
-    connect(dlg, SIGNAL(applied()), SLOTS, SLOT(refresh()));
+    connect(dlg, SIGNAL(applied()), SLOT(refresh()));
     dlg->show();
 }
 
