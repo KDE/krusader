@@ -187,6 +187,20 @@ kio_krarcProtocol::~kio_krarcProtocol()
 }
 
 /* ---------------------------------------------------------------------------------- */
+
+bool kio_krarcProtocol::checkWriteSupport()
+{
+    krConfig->reparseConfiguration();
+    if (KConfigGroup(krConfig, "kio_krarc").readEntry("EnableWrite", false))
+        return true;
+    else {
+        error(ERR_UNSUPPORTED_ACTION,
+              i18n("krarc: write support is disabled.\n"
+                   "You can enable it on the 'Archives' page in Konfigurator."));
+        return false;
+    }
+}
+
 void kio_krarcProtocol::receivedData(KProcess *, QByteArray &d)
 {
     QByteArray buf(d);
@@ -198,6 +212,9 @@ void kio_krarcProtocol::receivedData(KProcess *, QByteArray &d)
 void kio_krarcProtocol::mkdir(const KUrl& url, int permissions)
 {
     KRDEBUG(getPath(url));
+
+    if (!checkWriteSupport())
+        return;
 
     if (!setArcFile(url)) {
         error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
@@ -269,6 +286,9 @@ void kio_krarcProtocol::mkdir(const KUrl& url, int permissions)
 void kio_krarcProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags)
 {
     KRDEBUG(getPath(url));
+
+    if (!checkWriteSupport())
+        return;
 
     bool overwrite = !!(flags & KIO::Overwrite);
     bool resume = !!(flags & KIO::Resume);
@@ -569,6 +589,9 @@ void kio_krarcProtocol::del(KUrl const & url, bool isFile)
 {
     KRDEBUG(getPath(url));
 
+    if (!checkWriteSupport())
+        return;
+
     if (!setArcFile(url)) {
         error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
         return;
@@ -659,6 +682,10 @@ void kio_krarcProtocol::stat(const KUrl & url)
 void kio_krarcProtocol::copy(const KUrl &url, const KUrl &dest, int, KIO::JobFlags flags)
 {
     KRDEBUG(getPath(url));
+
+    if (!checkWriteSupport())
+        return;
+
     bool overwrite = !!(flags & KIO::Overwrite);
 
     // KDE HACK: opening the password dlg in copy causes error for the COPY, and further problems

@@ -88,6 +88,7 @@ private:
     KIO::UDSEntryList* addNewDir(QString path);
     QString fullPathName(QString name);
     static QString detectFullPathName(QString name);
+    bool checkWriteSupport();
 
     QHash<QString, KIO::UDSEntryList *> dirDict; //< the directoris data structure.
     bool encrypted;                   //< tells whether the archive is encrypted

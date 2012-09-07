@@ -544,12 +544,6 @@ void ListPanelFunc::moveFiles(bool enqueue)
     KUrl dest = panel->otherPanel()->virtualPath();
     KUrl virtualBaseURL;
 
-    QString destProtocol = dest.protocol();
-    if (destProtocol == "krarc" || destProtocol == "tar" || destProtocol == "zip") {
-        KMessageBox::sorry(krMainWindow, i18n("Moving into archive is disabled"));
-        return ;
-    }
-
     KConfigGroup group(krConfig, "Advanced");
     if (group.readEntry("Confirm Move", _ConfirmMove)) {
         bool preserveAttrs = group.readEntry("PreserveAttributes", _PreserveAttributes);

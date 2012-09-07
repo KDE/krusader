@@ -307,6 +307,8 @@ void KRslots::runKonfigurator(bool firstTime)
 
 void KRslots::configChanged(bool isGUIRestartNeeded)
 {
+    krConfig->sync();
+
     if (isGUIRestartNeeded) {
         krApp->setUpdatesEnabled(false);
         KConfigGroup group(krConfig, "Look&Feel");

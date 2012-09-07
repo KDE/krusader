@@ -99,6 +99,29 @@ KgArchives::KgArchives(bool first, QWidget* parent) :
 
     kgArchivesLayout->addWidget(generalGrp, 0 , 0);
 
+    //  ------------------------ KRARC GROUPBOX --------------------------------
+
+    QGroupBox *krarcGrp = createFrame(i18n("krarc"), innerWidget);
+    QGridLayout *krarcGrid = createGridLayout(krarcGrp);
+
+    KONFIGURATOR_CHECKBOX_PARAM krarcOptions[] =
+        //   cfg_class  cfg_name                  default           text                                          restart ToolTip
+    {
+        {"kio_krarc", "EnableWrite", false, i18n("Enable Write Support"), false, i18n("Enable writing to archives using the krarc ioslave.")}
+    };
+
+    KonfiguratorCheckBoxGroup *krarcCheckBoxes = createCheckBoxGroup(1, 0, krarcOptions, 1, krarcGrp);
+
+    krarcGrid->addWidget(krarcCheckBoxes, 1, 0);
+    krarcGrid->addWidget(new QLabel(
+        i18n("<b>Caution when moving into archives:</b><br/>"
+             "<b>Failure during the process might result in data loss.</b><br/>"
+             ),
+        krarcGrp), 2, 0);
+    krarcGrid->addWidget(new QLabel(i18n("<b>Moving archives into themself will delete them !</b>"), krarcGrp), 3, 0);
+
+    kgArchivesLayout->addWidget(krarcGrp, 1 , 0);
+
     //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
 
     QGroupBox *fineTuneGrp = createFrame(i18n("Fine-Tuning"), innerWidget);
@@ -106,7 +129,7 @@ KgArchives::KgArchives(bool first, QWidget* parent) :
 
     KONFIGURATOR_CHECKBOX_PARAM finetuners[] =
         //   cfg_class  cfg_name                  default           text                                          restart ToolTip
-    {//{"Archives","Allow Move Into Archive", _MoveIntoArchive, i18n( "Allow moving into archives" ),         false,  i18n( "This action can be tricky, since system failure during the process\nmight result in misplaced files. If this happens,\nthe files are stored in a temp directory inside /tmp." )},
+    {
         {"Archives", "Test Archives",           _TestArchives,    i18n("Test archive after packing"), false,  i18n("Check the archive's integrity after packing it.")},
         {"Archives", "Test Before Unpack",      _TestBeforeUnpack, i18n("Test archive before unpacking"), false,  i18n("Some corrupted archives might cause a crash; therefore, testing is suggested.")}
     };
@@ -116,7 +139,7 @@ KgArchives::KgArchives(bool first, QWidget* parent) :
     disableNonExistingPackers();
     fineTuneGrid->addWidget(finetunes, 1, 0);
 
-    kgArchivesLayout->addWidget(fineTuneGrp, 1 , 0);
+    kgArchivesLayout->addWidget(fineTuneGrp, 2 , 0);
 
     if (first)
         slotAutoConfigure();
