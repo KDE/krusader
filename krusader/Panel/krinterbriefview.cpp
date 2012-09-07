@@ -51,6 +51,7 @@ KrInterBriefView::KrInterBriefView(QWidget *parent, KrViewInstance &instance, KC
 {
     _model->setExtensionEnabled(false);
     _model->setAlternatingTable(true);
+    connect(_model, SIGNAL(layoutChanged()), SLOT(updateGeometries()));
 }
 
 KrInterBriefView::~KrInterBriefView()
