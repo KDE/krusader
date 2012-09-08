@@ -53,7 +53,9 @@ set(krusader_SRCS
 
 kde4_add_app_icon(krusader_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-krusader_user.png")
 
-kde4_add_executable(krusader ${krusader_SRCS})
+qt4_add_resources(krusader_RC_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc" )
+
+kde4_add_executable(krusader ${krusader_SRCS} ${krusader_RC_SRCS})
 
 target_link_libraries(krusader
                       Panel

@@ -40,6 +40,7 @@ A
 #include <QLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QResource>
 
 #include <klocale.h>
 #include <kstandarddirs.h>
@@ -47,7 +48,9 @@ A
 
 
 #define XMLFILE_VERSION "1.0"
-#define MAIN_FILE "krusader/layout.xml"
+#define MAIN_FILE "layout.xml"
+#define MAIN_FILE_PATH "krusader/" MAIN_FILE
+#define MAIN_FILE_RC_PATH ":/" MAIN_FILE
 #define EXTRA_FILE_MASK "krusader/layouts/*.xml"
 #define DEFAULT_LAYOUT "krusader:default"
 
@@ -74,16 +77,18 @@ bool KrLayoutFactory::parseFiles()
     if (_parsed)
         return true;
 
-    QString mainFilePath = KStandardDirs::locate("data", MAIN_FILE);
-    if (mainFilePath.isEmpty()) {
-        krOut << "can't locate" << MAIN_FILE << endl;
-        return false;
-    }
+    QString mainFilePath = KStandardDirs::locate("data", MAIN_FILE_PATH);
 
-    if (!parseFile(mainFilePath, _mainDoc))
-        return false;
+    if (!mainFilePath.isEmpty())
+        _parsed = parseFile(mainFilePath, _mainDoc);
+    else
+        krOut << "can't locate" << MAIN_FILE_PATH << endl;
 
-    _parsed = true;
+    if (!_parsed)
+        _parsed = parseRessource(MAIN_FILE_RC_PATH, _mainDoc);
+
+    if (!_parsed)
+        return false;
 
     QStringList extraFilePaths = KGlobal::dirs()->findAllResources("data", EXTRA_FILE_MASK);
 
@@ -103,22 +108,47 @@ bool KrLayoutFactory::parseFile(QString path, QDomDocument &doc)
 
     QFile file(path);
 
-    if (file.open(QIODevice::ReadOnly)) {
-        QString errorMsg;
-        if (doc.setContent(&file, &errorMsg)) {
-            QDomElement root = doc.documentElement();
-            if (root.tagName() == "KrusaderLayout") {
-                QString version = root.attribute("version");
-                if(version == XMLFILE_VERSION)
-                    success = true;
-                else
-                    krOut << path << "has wrong version" << version << "- required is" << XMLFILE_VERSION << endl;
-            } else
-                krOut << "root.tagName() != \"KrusaderLayout\"\n";
-        } else
-            krOut << "error parsing" << path << ":" << errorMsg << endl;
-    } else
+    if (file.open(QIODevice::ReadOnly))
+        return parseContent(file.readAll(), path, doc);
+    else
         krOut << "can't open" << path << endl;
+
+    return success;
+}
+
+bool KrLayoutFactory::parseRessource(QString path, QDomDocument &doc)
+{
+    QResource res(path);
+    if (res.isValid()) {
+        QByteArray data;
+        if (res.isCompressed())
+            data = qUncompress(res.data(), res.size());
+        else
+            data = QByteArray(reinterpret_cast<const char*>(res.data()), res.size());
+        return parseContent(data, path, doc);
+    } else {
+        krOut << "resource does not exist:" << path;
+        return false;
+    }
+}
+
+bool KrLayoutFactory::parseContent(QByteArray content, QString fileName, QDomDocument &doc)
+{
+    bool success = false;
+
+    QString errorMsg;
+    if (doc.setContent(content, &errorMsg)) {
+        QDomElement root = doc.documentElement();
+        if (root.tagName() == "KrusaderLayout") {
+            QString version = root.attribute("version");
+            if(version == XMLFILE_VERSION)
+                success = true;
+            else
+                krOut << fileName << "has wrong version" << version << "- required is" << XMLFILE_VERSION << endl;
+        } else
+            krOut << "root.tagName() != \"KrusaderLayout\"\n";
+    } else
+        krOut << "error parsing" << fileName << ":" << errorMsg << endl;
 
     return success;
 }
