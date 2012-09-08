@@ -44,14 +44,14 @@ A
 
 #include <klocale.h>
 #include <kstandarddirs.h>
+#include <kcomponentdata.h>
 #include <kdebug.h>
 
 
 #define XMLFILE_VERSION "1.0"
 #define MAIN_FILE "layout.xml"
-#define MAIN_FILE_PATH "krusader/" MAIN_FILE
 #define MAIN_FILE_RC_PATH ":/" MAIN_FILE
-#define EXTRA_FILE_MASK "krusader/layouts/*.xml"
+#define EXTRA_FILE_MASK "layouts/*.xml"
 #define DEFAULT_LAYOUT "krusader:default"
 
 
@@ -77,12 +77,14 @@ bool KrLayoutFactory::parseFiles()
     if (_parsed)
         return true;
 
-    QString mainFilePath = KStandardDirs::locate("data", MAIN_FILE_PATH);
+    QString dataDir = KGlobal::mainComponent().componentName() + "/";
+
+    QString mainFilePath = KStandardDirs::locate("data", dataDir + MAIN_FILE);
 
     if (!mainFilePath.isEmpty())
         _parsed = parseFile(mainFilePath, _mainDoc);
     else
-        krOut << "can't locate" << MAIN_FILE_PATH << endl;
+        krOut << "can't locate" << dataDir + MAIN_FILE << endl;
 
     if (!_parsed)
         _parsed = parseRessource(MAIN_FILE_RC_PATH, _mainDoc);
@@ -90,7 +92,7 @@ bool KrLayoutFactory::parseFiles()
     if (!_parsed)
         return false;
 
-    QStringList extraFilePaths = KGlobal::dirs()->findAllResources("data", EXTRA_FILE_MASK);
+    QStringList extraFilePaths = KGlobal::dirs()->findAllResources("data", dataDir + EXTRA_FILE_MASK);
 
     foreach(QString path, extraFilePaths) {
         krOut << "extra file: " << path << endl;
