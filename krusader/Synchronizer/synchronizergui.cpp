@@ -1339,13 +1339,13 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     syncList->setAutoFillBackground(true);
 
     QStringList labels;
-    labels << i18n("Name");
-    labels << i18n("Size");
-    labels << i18n("Date");
+    labels << i18nc("@title:column file name", "Name");
+    labels << i18nc("@title:column", "Size");
+    labels << i18nc("@title:column", "Date");
     labels << i18n("<=>");
-    labels << i18n("Date");
-    labels << i18n("Size");
-    labels << i18n("Name");
+    labels << i18nc("@title:column", "Date");
+    labels << i18nc("@title:column", "Size");
+    labels << i18nc("@title:column file name", "Name");
     syncList->setHeaderLabels(labels);
 
     syncList->header()->setResizeMode(0, QHeaderView::Interactive);

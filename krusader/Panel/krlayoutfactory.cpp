@@ -63,7 +63,7 @@ QList<QDomDocument> KrLayoutFactory::_extraDocs;
 QString KrLayoutFactory::layoutDescription(QString layoutName)
 {
     if(layoutName == DEFAULT_LAYOUT)
-        return i18n("Default");
+        return i18nc("Default layout", "Default");
     else if(layoutName == "krusader:compact")
         return i18n("Compact");
     else if(layoutName == "krusader:classic")

@@ -119,7 +119,7 @@ void KrRemoteEncodingMenu::loadSettings()
     act->setCheckable(true);
     act->setData(QVariant(-1));
 
-    act = kmenu->addAction(i18n("Default"));
+    act = kmenu->addAction(i18nc("Default encoding", "Default"));
     act->setCheckable(true);
     act->setData(QVariant(-2));
 }

@@ -463,15 +463,15 @@ QVariant KrVfsModel::headerData(int section, Qt::Orientation orientation, int ro
         return QVariant();
 
     switch (section) {
-    case KrViewProperties::Name: return i18n("Name");
-    case KrViewProperties::Ext: return i18n("Ext");
-    case KrViewProperties::Size: return i18n("Size");
-    case KrViewProperties::Type: return i18n("Type");
-    case KrViewProperties::Modified: return i18n("Modified");
-    case KrViewProperties::Permissions: return i18n("Perms");
-    case KrViewProperties::KrPermissions: return i18n("rwx");
-    case KrViewProperties::Owner: return i18n("Owner");
-    case KrViewProperties::Group: return i18n("Group");
+    case KrViewProperties::Name: return i18nc("File property", "Name");
+    case KrViewProperties::Ext: return i18nc("File property", "Ext");
+    case KrViewProperties::Size: return i18nc("File property", "Size");
+    case KrViewProperties::Type: return i18nc("File property", "Type");
+    case KrViewProperties::Modified: return i18nc("File property", "Modified");
+    case KrViewProperties::Permissions: return i18nc("File property", "Perms");
+    case KrViewProperties::KrPermissions: return i18nc("File property", "rwx");
+    case KrViewProperties::Owner: return i18nc("File property", "Owner");
+    case KrViewProperties::Group: return i18nc("File property", "Group");
     }
     return QString();
 }

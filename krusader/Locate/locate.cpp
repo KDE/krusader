@@ -120,7 +120,7 @@ LocateDlg::LocateDlg() : KDialog(0), isFeedToListBox(false)
 {
     setButtons(KDialog::User1 | KDialog::User2 | KDialog::User3 | KDialog::Close);
     setDefaultButton(KDialog::User3);
-    setWindowTitle(i18n("Locate"));
+    setWindowTitle(i18nc("@title:window", "Locate"));
     setWindowModality(Qt::NonModal);
     setButtonGuiItem(KDialog::User2, KGuiItem(i18n("Update DB")));
     setButtonGuiItem(KDialog::User3, KGuiItem(i18n("Locate"), "system-search"));
@@ -379,7 +379,7 @@ void LocateDlg::slotRightClick(QTreeWidgetItem *item, const QPoint &pos)
 
     // create the menu
     KMenu popup;
-    popup.setTitle(i18n("Locate"));
+    popup.setTitle(i18nc("@title:menu", "Locate"));
 
     QAction * actView = popup.addAction(i18n("View (F3)"));
     QAction * actEdit = popup.addAction(i18n("Edit (F4)"));

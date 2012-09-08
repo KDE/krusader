@@ -290,7 +290,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     containsCbsLayout->addWidget(encLabel);
     contentEncoding = new KComboBox(containsGroup);
     contentEncoding->setEditable(false);
-    contentEncoding->addItem(i18n("Default"));
+    contentEncoding->addItem(i18nc("Default encoding", "Default"));
     contentEncoding->addItems(KGlobal::charsets()->descriptiveEncodingNames());
     containsCbsLayout->addWidget(contentEncoding);
 

@@ -571,7 +571,7 @@ KonfiguratorColorChooser::KonfiguratorColorChooser(QString cls, QString name, QC
     connect(ext, SIGNAL(setInitialValue(QObject *)), this, SLOT(loadInitialValue()));
 
     addColor(i18n("Custom color"),  QColor(255, 255, 255));
-    addColor(i18n("Default"),       defaultValue);
+    addColor(i18nc("Default color", "Default"), defaultValue);
 
     for (int i = 0; i != addColNum; i++) {
         additionalColors.push_back(addColPtr[i]);
