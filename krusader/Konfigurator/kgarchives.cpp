@@ -115,9 +115,9 @@ KgArchives::KgArchives(bool first, QWidget* parent) :
     krarcGrid->addWidget(krarcCheckBoxes, 1, 0);
     krarcGrid->addWidget(
             new QLabel(i18n("<b>Caution when moving into archives:</b><br/>"
-                            "<b>Failure during the process might result in data loss.</b><br/>"), krarcGrp),
+                            "<b>Failure during the process might result in data loss.</b><br/>"
+                            "<b>Moving archives into themselves will delete them.</b>"), krarcGrp),
             2, 0);
-    krarcGrid->addWidget(new QLabel(i18n("<b>Moving archives into themselves will delete them.</b>"), krarcGrp), 3, 0);
 
     kgArchivesLayout->addWidget(krarcGrp, 1 , 0);
 
