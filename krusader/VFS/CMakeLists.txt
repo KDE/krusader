@@ -17,5 +17,5 @@ set(VFS_SRCS
 
 kde4_add_library(VFS STATIC ${VFS_SRCS})
 if(ACL_FOUND)
-    target_link_libraries(VFS acl)
+    target_link_libraries(VFS ${ACL_LIBS})
 endif(ACL_FOUND)
