@@ -53,6 +53,8 @@
 #define EDIT_ICON     "edit"
 #define MODIFIED_ICON "document-save-as"
 
+#define CHECK_MODFIED_INTERVAL 1000
+
 QList<KrViewer *> KrViewer::viewers;
 
 KrViewer::KrViewer(QWidget *parent) :
@@ -285,9 +287,8 @@ void KrViewer::view(KUrl url, Mode mode,  bool new_window, QWidget * parent)
     KrViewer* viewer = getViewer(new_window);
 
     PanelViewerBase* viewWidget = new PanelViewer(&viewer->tabBar);
-    KParts::Part* part = viewWidget->openUrl(url, mode);
-    if(part) {
-        viewer->addTab(viewWidget, i18n("Viewing"), VIEW_ICON, part);
+    if (viewWidget->openUrl(url, mode)) {
+        viewer->addTab(viewWidget);
         viewer->returnFocusTo = parent;
         viewer->returnFocusTab = viewWidget;
     } else {
@@ -329,9 +330,8 @@ void KrViewer::edit(KUrl url, Mode mode, int new_window, QWidget * parent)
     viewer->returnFocusTo = parent;
 
     PanelViewerBase* editWidget = new PanelEditor(&viewer->tabBar);
-    KParts::Part* part = editWidget->openUrl(url, mode);
-    if(part) {
-        viewer->addTab(editWidget, i18n("Editing"), EDIT_ICON, part);
+    if (editWidget->openUrl(url, mode)) {
+        viewer->addTab(editWidget);
         viewer->returnFocusTab = editWidget;
     } else {
         delete editWidget;
@@ -345,21 +345,19 @@ void KrViewer::edit(KUrl url, Mode mode, int new_window, QWidget * parent)
     }
 }
 
-void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName , KParts::Part* part)
+void KrViewer::addTab(PanelViewerBase *pvb)
 {
-    if (!part) return;
-
-    KUrl url = pvb->url();
-    setWindowTitle(i18nc("filestate: filename", "%1: %2", msg, url.prettyUrl()));
-
-    QIcon icon = QIcon(krLoader->loadIcon(iconName, KIconLoader::Small));
+    KParts::ReadOnlyPart *part = pvb->part();
+    if (!part)
+        return;
 
     manager.addPart(part, this);
     if (isValidPart(part))
         manager.setActivePart(part);
-    tabBar.addTab(pvb, icon, i18nc("filename (filestate)", "%1 (%2)", url.fileName(), msg));
+
+    tabBar.addTab(pvb, makeTabIcon(pvb), makeTabText(pvb));
     tabBar.setCurrentIndex(tabBar.indexOf(pvb));
-    tabBar.setTabToolTip(tabBar.indexOf(pvb), i18nc("filestate: filename", "%1: %2", msg, url.prettyUrl()));
+    tabBar.setTabToolTip(tabBar.indexOf(pvb), makeTabToolTip(pvb));
 
     updateActions(pvb);
 
@@ -380,9 +378,8 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName , KPar
 
 void KrViewer::tabURLChanged(PanelViewerBase *pvb, const KUrl & url)
 {
-    QString msg = pvb->isEditor() ? i18n("Editing") : i18n("Viewing");
-    tabBar.setTabText(tabBar.indexOf(pvb), i18nc("filename (filestate)", "%1 (%2)", url.fileName(), msg));
-    tabBar.setTabToolTip(tabBar.indexOf(pvb), i18nc("filestate: filename", "%1: %2", msg, url.prettyUrl()));
+    Q_UNUSED(url)
+    refreshTab(pvb);
 }
 
 void KrViewer::tabChanged(QWidget* w)
@@ -476,88 +473,76 @@ bool KrViewer::queryExit()
 void KrViewer::viewGeneric()
 {
     PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
-    if (!pvb) return;
-
-    PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
-    KParts::Part* part = viewerWidget->openUrl(pvb->url(), Generic);
-    addTab(viewerWidget, i18n("Viewing"), VIEW_ICON, part);
+    if (pvb) {
+        PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
+        if (viewerWidget->openUrl(pvb->url(), Generic))
+            addTab(viewerWidget);
+    }
 }
 
 void KrViewer::viewText()
 {
     PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
-    if (!pvb) return;
-
-    PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
-    KParts::Part* part = viewerWidget->openUrl(pvb->url(), Text);
-    addTab(viewerWidget, i18n("Viewing"), VIEW_ICON, part);
+    if (pvb) {
+        PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
+        if (viewerWidget->openUrl(pvb->url(), Text))
+            addTab(viewerWidget);
+    }
 }
 
 void KrViewer::viewLister()
 {
     PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
-    if (!pvb) return;
-
-    PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
-    KParts::Part* part = viewerWidget->openUrl(pvb->url(), Lister);
-    addTab(viewerWidget, i18n("Viewing"), VIEW_ICON, part);
+    if (pvb) {
+        PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
+        if (viewerWidget->openUrl(pvb->url(), Lister))
+            addTab(viewerWidget);
+    }
 }
 
 void KrViewer::viewHex()
 {
     PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
-    if (!pvb) return;
-
-    PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
-    KParts::Part* part = viewerWidget->openUrl(pvb->url(), Hex);
-    addTab(viewerWidget, i18n("Viewing"), VIEW_ICON, part);
+    if (pvb) {
+        PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
+        if (viewerWidget->openUrl(pvb->url(), Hex))
+            addTab(viewerWidget);
+    }
 }
 
 void KrViewer::editText()
 {
     PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
-    if (!pvb) return;
-
-    PanelViewerBase* editWidget = new PanelEditor(&tabBar);
-    KParts::Part* part = editWidget->openUrl(pvb->url(), Text);
-    addTab(editWidget, i18n("Editing"), EDIT_ICON, part);
+    if (pvb) {
+        PanelViewerBase* editWidget = new PanelEditor(&tabBar);
+        if (editWidget->openUrl(pvb->url(), Text))
+            addTab(editWidget);
+    }
 }
 
 void KrViewer::checkModified()
 {
-    QTimer::singleShot(1000, this, SLOT(checkModified()));
+    QTimer::singleShot(CHECK_MODFIED_INTERVAL, this, SLOT(checkModified()));
 
     PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
-    if (!pvb || !pvb->part()) return;
+    if (pvb)
+        refreshTab(pvb);
+}
 
+void KrViewer::refreshTab(PanelViewerBase* pvb)
+{
+    if (!pvb->part())
+        return;
+
+    //FIXME this belongs to PanelViewer
     if (!pvb->part()->url().equals(pvb->url(), KUrl::CompareWithoutTrailingSlash)) {
         pvb->setUrl(pvb->part()->url());
     }
 
-    bool lastModified = false;
-    QVariant lastModProp = pvb->property("LastModified");
-    if (lastModProp.type() == QVariant::Bool)
-        lastModified = lastModProp.toBool();
-    pvb->setProperty("LastModified", QVariant(pvb->isModified()));
-
-    // add a * to modified files.
-    if (pvb->isModified() && !lastModified) {
-        int ndx = tabBar.indexOf(pvb);
-        QString label = tabBar.tabText(ndx);
-        label.prepend("*");
-        QIcon icon = QIcon(krLoader->loadIcon(MODIFIED_ICON, KIconLoader::Small));
-        tabBar.setTabText(ndx, label);
-        tabBar.setTabIcon(ndx, icon);
-    }
-    // remove the * from previously modified files.
-    else if (!pvb->isModified() && lastModified) {
-        int ndx = tabBar.indexOf(pvb);
-        QString label = tabBar.tabText(tabBar.indexOf(pvb));
-        label = label.mid(1);
-        QIcon icon = QIcon(krLoader->loadIcon(EDIT_ICON, KIconLoader::Small));
-        tabBar.setTabText(ndx, label);
-        tabBar.setTabIcon(ndx, icon);
-    }
+    int ndx = tabBar.indexOf(pvb);
+    tabBar.setTabText(ndx, makeTabText(pvb));
+    tabBar.setTabIcon(ndx, makeTabIcon(pvb));
+    tabBar.setTabToolTip(ndx, makeTabToolTip(pvb));
 }
 
 void KrViewer::nextTab()
@@ -592,10 +577,7 @@ void KrViewer::detachTab()
     pvb->setParent(&viewer->tabBar);
     pvb->move(QPoint(0, 0));
 
-    if (pvb->isEditor())
-        viewer->addTab(pvb, i18n("Editing"), EDIT_ICON, pvb->part());
-    else
-        viewer->addTab(pvb, i18n("Viewing"), VIEW_ICON, pvb->part());
+    viewer->addTab(pvb);
 }
 
 void KrViewer::windowActivationChange(bool /* oldActive */)
@@ -670,6 +652,37 @@ void KrViewer::resizeEvent(QResizeEvent *e)
     KParts::MainWindow::resizeEvent(e);
 }
 
+QString KrViewer::makeTabText(PanelViewerBase *pvb)
+{
+    QString fileName = pvb->url().fileName();
+    if (pvb->isModified())
+        fileName.prepend("*");
+
+    return pvb->isEditor() ?
+            i18nc("filename (filestate)", "%1 (Editing)", fileName) :
+            i18nc("filename (filestate)", "%1 (Viewing)", fileName);
+}
+
+QString KrViewer::makeTabToolTip(PanelViewerBase *pvb)
+{
+    QString url = pvb->url().pathOrUrl();
+    return pvb->isEditor() ?
+            i18nc("filestate: filename", "Editing: %1", url) :
+            i18nc("filestate: filename", "Viewing: %1", url);
+}
+
+QIcon KrViewer::makeTabIcon(PanelViewerBase *pvb)
+{
+    QString iconName;
+    if (pvb->isModified())
+        iconName = MODIFIED_ICON;
+    else if (pvb->isEditor())
+        iconName = EDIT_ICON;
+    else
+        iconName = VIEW_ICON;
+
+    return QIcon(krLoader->loadIcon(iconName, KIconLoader::Small));
+}
 
 #if 0
 bool KrViewer::editGeneric(QString mimetype, KUrl _url)

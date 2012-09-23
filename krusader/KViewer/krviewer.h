@@ -89,12 +89,16 @@ protected:
 
 private:
     KrViewer(QWidget *parent = 0);
-    void addTab(PanelViewerBase* pvb, QString msg, QString iconName, KParts::Part* part);
+    void addTab(PanelViewerBase* pvb);
     PanelViewerBase * getPanelViewerBase(KParts::Part* part);
     void updateActions(PanelViewerBase * base);
     bool isValidPart(KParts::Part* part);
+    void refreshTab(PanelViewerBase* pvb);
 
     static KrViewer* getViewer(bool new_window);
+    static QString makeTabText(PanelViewerBase *pvb);
+    static QString makeTabToolTip(PanelViewerBase *pvb);
+    static QIcon makeTabIcon(PanelViewerBase *pvb);
 
     KParts::PartManager manager;
     QMenu* viewerMenu;
