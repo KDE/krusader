@@ -139,14 +139,16 @@ KParts::ReadOnlyPart* PanelViewer::getHexPart()
 {
     KParts::ReadOnlyPart* part = 0;
 
-    if (mimes->find("oktetapart") == mimes->end()) {
-        KPluginLoader loader("oktetapart");
-        if (KPluginFactory *factory = loader.factory()) {
-            if ((part = factory->create<KParts::ReadOnlyPart>(this, this)))
-                mimes->insert("oktetapart", part);
-        }
-    } else
-        part = (*mimes)["oktetapart"];
+    if (KConfigGroup(krConfig, "General").readEntry("UseOktetaViewer", _UseOktetaViewer)) {
+        if (mimes->find("oktetapart") == mimes->end()) {
+            KPluginLoader loader("oktetapart");
+            if (KPluginFactory *factory = loader.factory()) {
+                if ((part = factory->create<KParts::ReadOnlyPart>(this, this)))
+                    mimes->insert("oktetapart", part);
+            }
+        } else
+            part = (*mimes)["oktetapart"];
+    }
 
     return part ? part : getListerPart(true);
 }

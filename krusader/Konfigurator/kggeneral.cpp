@@ -115,6 +115,11 @@ void KgGeneral::createViewerTab()
                                            "generic", 0, 4, viewMode, 4, vboxWidget, false, PAGE_VIEWER));
 
 
+    vbox->addWidget(
+        createCheckBox("General", "UseOktetaViewer", _UseOktetaViewer, i18n("Use Okteta as Hex viewer"), vboxWidget, false,
+                       i18n("If available, use Okteta as Hex viewer instead of the internal viewer"), PAGE_VIEWER)
+                   );
+
     QWidget * hboxWidget4 = new QWidget(vboxWidget);
     QHBoxLayout * hbox4 = new QHBoxLayout(hboxWidget4);
 
