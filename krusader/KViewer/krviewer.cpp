@@ -53,7 +53,7 @@
 #define EDIT_ICON     "edit"
 #define MODIFIED_ICON "document-save-as"
 
-#define CHECK_MODFIED_INTERVAL 1000
+#define CHECK_MODFIED_INTERVAL 500
 
 QList<KrViewer *> KrViewer::viewers;
 
