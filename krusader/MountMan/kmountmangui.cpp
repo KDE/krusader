@@ -55,11 +55,11 @@ A
 #include <sys/param.h>
 #include <qheaderview.h>
 #include <solid/storagevolume.h>
-
-#ifdef BSD
 #include <kmountpoint.h>
 #include <kcodecs.h>
-#else
+
+
+#ifndef BSD
 #define MTAB "/etc/mtab"
 #endif
 
@@ -84,7 +84,6 @@ KMountManGUI::KMountManGUI(KMountMan *mntMan) : KDialog(mntMan->parentWindow),
     watcher = new QTimer(this);
     connect(watcher, SIGNAL(timeout()), this, SLOT(checkMountChange()));
 
-    connect(this, SIGNAL(finishedGettingSpaceData()), this, SLOT(updateList()));
     setButtons(KDialog::Close | UMOUNT_BTN | EJECT_BTN);
     setButtonGuiItem(UMOUNT_BTN, KGuiItem(i18n("&Unmount")));
     setButtonGuiItem(EJECT_BTN, KGuiItem(i18n("&Eject"), "media-eject"));
@@ -530,21 +529,27 @@ KrMountDetector::KrMountDetector()
 
 bool KrMountDetector::hasMountsChanged()
 {
-#ifdef BSD
-    KMountPoint::List mountPoints = KMountPoint::currentMountPoints(KMountPoint::NeedRealDeviceName);
-    KMD5 md5;
-    for (KMountPoint::List::iterator i = mountPoints.begin(); i != mountPoints.end(); ++i) {
-        md5.update((*i)->mountedFrom().toUtf8());
-        md5.update((*i)->realDeviceName().toUtf8());
-        md5.update((*i)->mountPoint().toUtf8());
-        md5.update((*i)->mountType().toUtf8());
+    bool result = false;
+#ifndef BSD
+    QFileInfo mtabInfo(MTAB);
+    if (!mtabInfo.exists() || mtabInfo.isSymLink()) { // if mtab is a symlimk to /proc/mounts the mtime is unusable
+#endif
+        KMountPoint::List mountPoints = KMountPoint::currentMountPoints(KMountPoint::NeedRealDeviceName);
+        KMD5 md5;
+        for (KMountPoint::List::iterator i = mountPoints.begin(); i != mountPoints.end(); ++i) {
+            md5.update((*i)->mountedFrom().toUtf8());
+            md5.update((*i)->realDeviceName().toUtf8());
+            md5.update((*i)->mountPoint().toUtf8());
+            md5.update((*i)->mountType().toUtf8());
+        }
+        QString s = md5.hexDigest();
+        result = s != checksum;
+        checksum = s;
+#ifndef BSD
+    } else {
+        result = QFileInfo(MTAB).lastModified() != lastMtab;
+        lastMtab = QFileInfo(MTAB).lastModified();
     }
-    QString s = md5.hexDigest();
-    bool result = s != checksum;
-    checksum = s;
-#else
-    bool result = QFileInfo(MTAB).lastModified() != lastMtab;
-    lastMtab = QFileInfo(MTAB).lastModified();
 #endif
     return result;
 }
