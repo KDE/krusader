@@ -537,6 +537,8 @@ void KrAction::readCommand(const QDomElement& element)
             setExecType(CollectOutput);
         else if (attr == "collect_output_separate_stderr")
             setExecType(CollectOutputSeparateStderr);
+        else if (attr == "embedded_terminal")
+            setExecType(RunInTE);
         else
             krOut << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << _name << "\"><command executionmode=\"" << attr << "\"" << endl;
 
@@ -573,6 +575,9 @@ QDomElement KrAction::dumpCommand(QDomDocument& doc) const
         break;
     case CollectOutputSeparateStderr:
         commandElement.setAttribute("executionmode", "collect_output_separate_stderr");
+        break;
+    case RunInTE:
+        commandElement.setAttribute("executionmode", "embedded_terminal");
         break;
     default:
         // don't write the default to file
