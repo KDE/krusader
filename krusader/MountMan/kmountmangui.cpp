@@ -547,8 +547,8 @@ bool KrMountDetector::hasMountsChanged()
         checksum = s;
 #ifndef BSD
     } else {
-        result = QFileInfo(MTAB).lastModified() != lastMtab;
-        lastMtab = QFileInfo(MTAB).lastModified();
+        result = mtabInfo.lastModified() != lastMtab;
+        lastMtab = mtabInfo.lastModified();
     }
 #endif
     return result;
