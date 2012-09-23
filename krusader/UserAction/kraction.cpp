@@ -498,28 +498,29 @@ QDomElement KrAction::xmlDump(QDomDocument& doc) const
     if (! toolTip().isEmpty())
         TEXT_ELEMENT("tooltip", toolTip())
 
-        if (! _iconName.isEmpty())
-            TEXT_ELEMENT("icon", _iconName)
+    if (! _iconName.isEmpty())
+        TEXT_ELEMENT("icon", _iconName)
 
-            if (! category().isEmpty())
-                TEXT_ELEMENT("category", category())
+    if (! category().isEmpty())
+        TEXT_ELEMENT("category", category())
 
-                if (! whatsThis().isEmpty())
-                    TEXT_ELEMENT("description", whatsThis())
+    if (! whatsThis().isEmpty())
+        TEXT_ELEMENT("description", whatsThis())
 
-                    actionElement.appendChild(dumpCommand(doc));
+    actionElement.appendChild(dumpCommand(doc));
 
     if (! startpath().isEmpty())
         TEXT_ELEMENT("startpath", startpath())
 
-        QDomElement availabilityElement = dumpAvailability(doc);
+    QDomElement availabilityElement = dumpAvailability(doc);
+
     if (availabilityElement.hasChildNodes())
         actionElement.appendChild(availabilityElement);
 
     if (! shortcut().isEmpty())
         TEXT_ELEMENT("defaultshortcut", shortcut().toString())    //.toString() would return a localised string which can't be read again
 
-        return actionElement;
+    return actionElement;
 } //KrAction::xmlDump
 
 void KrAction::readCommand(const QDomElement& element)
