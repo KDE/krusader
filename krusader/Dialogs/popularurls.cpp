@@ -130,6 +130,7 @@ KUrl::List PopularUrls::getMostPopularUrls(int max)
 void PopularUrls::addUrl(const KUrl& url)
 {
     KUrl tmpurl = url;
+    tmpurl.setPass(QString()); // make sure no passwords are permanently stored
     tmpurl.adjustPath(KUrl::AddTrailingSlash); // make a uniform trailing slash policy
     UrlNodeP pnode;
 

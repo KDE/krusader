@@ -1918,11 +1918,26 @@ void SynchronizerGUI::closeDialog()
         return;
     }
 
-    QStringList list = leftLocation->historyItems();
     KConfigGroup group(krConfig, "Synchronize");
+
+    QStringList list;
+
+    foreach(QString item, leftLocation->historyItems()) {
+        KUrl url(item);
+        // make sure no passwords are saved in config
+        url.setPass(QString());
+        list<<url.pathOrUrl();
+    }
     group.writeEntry("Left Directory History", list);
-    list = rightLocation->historyItems();
+    list.clear();
+    foreach(QString item, rightLocation->historyItems()) {
+        KUrl url(item);
+        // make sure no passwords are saved in config
+        url.setPass(QString());
+        list<<url.pathOrUrl();
+    }
     group.writeEntry("Right Directory History", list);
+
     list = fileFilter->historyItems();
     group.writeEntry("File Filter", list);
 

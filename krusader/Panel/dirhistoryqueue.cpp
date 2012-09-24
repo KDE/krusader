@@ -138,7 +138,15 @@ bool DirHistoryQueue::goForward()
 void DirHistoryQueue::save(KConfigGroup cfg)
 {
     saveCurrentItem();
-    cfg.writeEntry("Entrys", _urlQueue.toStringList());
+
+    KUrl::List urls;
+    foreach(KUrl url, _urlQueue) {
+        // make sure no passwords are permanently stored
+        url.setPass(QString());
+        urls << url;
+    }
+
+    cfg.writeEntry("Entrys", urls.toStringList());
     cfg.writeEntry("CurrentItems", _currentItems);
     cfg.writeEntry("CurrentIndex", _currentPos);
 }
