@@ -80,7 +80,6 @@ target_link_libraries(krusader
                       Dialogs
                       GUI
                       ${KDE4_KPARTS_LIBS}
-                      ${KDE4_KHTML_LIBS}
                       ${KDE4_KDEUI_LIBS}
                       ${KDE4_KFILE_LIBS}
                       ${KDE4_KDECORE_LIBS}
