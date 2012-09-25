@@ -54,6 +54,7 @@ enum {
     PAGE_VIEW,
     PAGE_PANELTOOLBAR,
     PAGE_MOUSE,
+    PAGE_MEDIA_MENU,
     PAGE_LAYOUT
 };
 
@@ -69,6 +70,7 @@ KgPanel::KgPanel(bool first, QWidget* parent) :
     setupPanelTab();
     setupButtonsTab();
     setupMouseModeTab();
+    setupMediaMenuTab();
     setupLayoutTab();
 }
 
@@ -606,6 +608,53 @@ void KgPanel::setupMouseModeTab()
     mousePreviewGroup->setEnabled(false); // TODO re-enable once the preview is implemented
     // ------------------------------------------
     mouseLayout->addWidget(mousePreviewGroup, 1, 0);
+}
+
+// ---------------------------------------------------------------------------
+//  -------------------------- Media Menu TAB ----------------------------------
+// ---------------------------------------------------------------------------
+void KgPanel::setupMediaMenuTab()
+{
+    QScrollArea *scrollArea = new QScrollArea(tabWidget);
+    QWidget *tab = new QWidget(scrollArea);
+    scrollArea->setFrameStyle(QFrame::NoFrame);
+    scrollArea->setWidget(tab);
+    scrollArea->setWidgetResizable(true);
+    tabWidget->addTab(scrollArea, i18n("Media Menu"));
+
+    QBoxLayout * tabLayout = new QVBoxLayout(tab);
+    tabLayout->setSpacing(6);
+    tabLayout->setContentsMargins(11, 11, 11, 11);
+
+
+    KONFIGURATOR_CHECKBOX_PARAM mediaMenuParams[] = {
+        //   cfg_class    cfg_name    default    text   restart tooltip
+        {"MediaMenu", "ShowPath",   true, i18n("Show Mount Path"),       false, 0 },
+        {"MediaMenu", "ShowFSType", true, i18n("Show File System Type"), false, 0 },
+    };
+    KonfiguratorCheckBoxGroup *mediaMenuCheckBoxes = 
+        createCheckBoxGroup(1, 0, mediaMenuParams,
+                            sizeof(mediaMenuParams) / sizeof(*mediaMenuParams),
+                            tab, PAGE_MEDIA_MENU);
+    tabLayout->addWidget(mediaMenuCheckBoxes, 0, 0);
+
+    QHBoxLayout *showSizeHBox = new QHBoxLayout();
+    showSizeHBox->addWidget(new QLabel(i18n("Show Size:"), tab));
+    KONFIGURATOR_NAME_VALUE_PAIR showSizeValues[] = {
+        { i18nc("setting 'show size'", "Always"), "Always" },
+        { i18nc("setting 'show size'", "When Device has no Label"), "WhenNoLabel" },
+        { i18nc("setting 'show size'", "Never"), "Never" },
+    };
+    KonfiguratorComboBox *showSizeCmb =
+        createComboBox("MediaMenu", "ShowSize",
+                       "Always", showSizeValues,
+                       sizeof(showSizeValues) / sizeof(*showSizeValues),
+                       tab, false, false, PAGE_MEDIA_MENU);
+    showSizeHBox->addWidget(showSizeCmb);
+    showSizeHBox->addStretch();
+    tabLayout->addLayout(showSizeHBox);
+
+    tabLayout->addStretch();
 }
 
 void KgPanel::slotDisable()

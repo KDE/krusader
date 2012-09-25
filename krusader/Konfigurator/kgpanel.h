@@ -65,6 +65,7 @@ private:
     void setupPanelTab();
     void setupButtonsTab();
     void setupMouseModeTab();
+    void setupMediaMenuTab();
     void setupLayoutTab();
     void setupView(KrViewInstance *instance, QWidget *parent);
     QTabWidget *tabWidget;

@@ -30,6 +30,7 @@
 #include <kio/global.h>
 #include <QtGui/QCursor>
 #include <kmountpoint.h>
+#include <kconfiggroup.h>
 #include <solid/deviceinterface.h>
 #include <solid/storageaccess.h>
 #include <solid/storagevolume.h>
@@ -205,17 +206,25 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, KIcon &k
     else if (icon == "media-optical")
         type = i18n("Recordable CD/DVD-ROM");
 
+    KConfigGroup cfg(KGlobal::config(), "MediaMenu");
+
+    if (printSize) {
+        QString showSizeSetting = cfg.readEntry("ShowSize", "Always");
+        if (showSizeSetting == "WhenNoLabel")
+            printSize = label.isEmpty();
+        else if (showSizeSetting == "Never")
+            printSize = false;
+    }
+
     if (printSize && !size.isEmpty())
         name += size + ' ';
-
     if (!label.isEmpty())
         name += label + ' ';
     else
         name += type + ' ';
-
-    if (!fstype.isEmpty())
+    if (!fstype.isEmpty() && cfg.readEntry("ShowFSType", true))
         name += '(' + fstype + ") ";
-    if (!path.isEmpty())
+    if (!path.isEmpty() && cfg.readEntry("ShowPath", true))
         name += '[' + path + "] ";
 
     name = name.trimmed();
