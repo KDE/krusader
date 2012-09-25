@@ -101,7 +101,7 @@ KgArchives::KgArchives(bool first, QWidget* parent) :
 
     //  ------------------------ KRARC GROUPBOX --------------------------------
 
-    QGroupBox *krarcGrp = createFrame(i18n("krarc"), innerWidget);
+    QGroupBox *krarcGrp = createFrame(i18n("krarc ioslave"), innerWidget);
     QGridLayout *krarcGrid = createGridLayout(krarcGrp);
 
     KONFIGURATOR_CHECKBOX_PARAM krarcOptions[] =
