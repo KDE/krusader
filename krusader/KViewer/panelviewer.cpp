@@ -318,9 +318,12 @@ void PanelEditor::configureDeps()
 
 QString PanelEditor::missingKPartMsg()
 {
-    return i18n("No text editor plugin available.<br/>Internal editor will not work without this.<br/>"
-                "You can fix this by installing Kate:<br/>") +
-                QString("<a href='%1'>%1</a>").arg("http://www.kde.org/applications/utilities/kate");
+    return i18nc("missing kpart - arg1 is a URL",
+                 "<b>No text editor plugin available.</b><br/>"
+                    "Internal editor will not work without this.<br/>"
+                    "You can fix this by installing Kate:<br/>%1",
+                 QString("<a href='%1'>%1</a>").arg(
+                    "http://www.kde.org/applications/utilities/kate"));
 }
 
 KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
