@@ -48,7 +48,7 @@ public slots:
     void slotDeviceAdded(const QString&);
     void slotDeviceRemoved(const QString&);
     void showMenu();
-    void slotTimeout();
+    void slotCheckMounts();
     void mountPointChanged(QString mp);
 
 signals:
@@ -63,7 +63,7 @@ protected:
 private:
     void createMediaList();
     void toggleMount(QString udi);
-    bool isMounted(QString udi, bool *ejectable = 0);
+    void getStatus(QString udi, bool &mounted, QString *mountPointOut = 0, bool *ejectableOut = 0);
     void mount(QString, bool open = false, bool newtab = false);
     void umount(QString);
     void eject(QString);
