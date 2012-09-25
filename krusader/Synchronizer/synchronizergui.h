@@ -236,6 +236,8 @@ protected:
     QCheckBox     *ignoreHiddenFilesCB;
 
 private:
+    static QString dirLabel(); // returns translated '<DIR>'
+
     QPixmap        fileIcon;
     QPixmap        folderIcon;
     bool           isComparing;
