@@ -119,9 +119,9 @@ public:
     static const char* privIcon();
     static QStringList supportedTools(); // find supported tools
 
-    void moveToTop();
 
 public slots:
+    void moveToTop();
     void statusBarUpdate(QString& mess);
     // in use by Krusader only
     void saveSettings();
