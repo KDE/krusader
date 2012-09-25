@@ -69,7 +69,7 @@ private:
     void umount(QString);
     void eject(QString);
 
-    void rightClickMenu(QString);
+    void rightClickMenu(QString udi, QPoint pos);
 
 private slots:
     void slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi);

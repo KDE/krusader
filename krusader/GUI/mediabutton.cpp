@@ -281,11 +281,13 @@ bool MediaButton::eventFilter(QObject *o, QEvent *e)
             QContextMenuEvent *cm = (QContextMenuEvent *)e;
 
             QAction *act = popupMenu->activeAction();
-            QString id;
-            if (act && act->data().canConvert<QString>())
-                id = act->data().toString();
-            if (!id.isEmpty())
-                rightClickMenu(id);
+            if (act && act->data().canConvert<QString>()) {
+                QString id = act->data().toString();
+                if (!id.isEmpty()) {
+                    QPoint globalPos = popupMenu->mapToGlobal(popupMenu->actionGeometry(act).topRight());
+                    rightClickMenu(id, globalPos);
+                }
+            }
         }
         else if (e->type() == QEvent::MouseButtonPress || e->type() == QEvent::MouseButtonRelease) {
             QMouseEvent *m = (QMouseEvent *)e;
@@ -296,7 +298,7 @@ bool MediaButton::eventFilter(QObject *o, QEvent *e)
                     if (act && act->data().canConvert<QString>())
                         id = act->data().toString();
                     if (!id.isEmpty())
-                        rightClickMenu(id);
+                        rightClickMenu(id, m->globalPos());
                 }
                 m->accept();
                 return true;
@@ -306,7 +308,7 @@ bool MediaButton::eventFilter(QObject *o, QEvent *e)
     return false;
 }
 
-void MediaButton::rightClickMenu(QString udi)
+void MediaButton::rightClickMenu(QString udi, QPoint pos)
 {
     if (rightMenu)
         rightMenu->close();
@@ -359,8 +361,7 @@ void MediaButton::rightClickMenu(QString udi)
         actEject->setData(QVariant(5));
     }
 
-    QAction *act = myMenu->exec(QCursor::pos());
-
+    QAction *act = myMenu->exec(pos);
     int result = -1;
     if (act != 0 && act->data().canConvert<int>())
         result = act->data().toInt();
