@@ -48,8 +48,8 @@ public:
 protected:
     KonfiguratorCheckBoxGroup *cbs;
     KonfiguratorCheckBoxGroup* quicksearchCheckboxes;
-    KonfiguratorCheckBoxGroup *pnlcbs;
-    KonfiguratorCheckBoxGroup *panelToolbarActive;
+    KonfiguratorCheckBoxGroup *panelToolbarButtonsCheckboxes;
+    KonfiguratorCheckBoxGroup *buttonsCheckboxes;
     KonfiguratorRadioButtons  *mouseRadio;
     KonfiguratorCheckBoxGroup *mouseCheckboxes;
     KrTreeWidget* mousePreview;
@@ -63,7 +63,7 @@ protected slots:
 private:
     void setupMiscTab();
     void setupPanelTab();
-    void setupPanelToolbarTab();
+    void setupButtonsTab();
     void setupMouseModeTab();
     void setupLayoutTab();
     void setupView(KrViewInstance *instance, QWidget *parent);

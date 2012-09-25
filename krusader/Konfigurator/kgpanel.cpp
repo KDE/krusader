@@ -67,7 +67,7 @@ KgPanel::KgPanel(bool first, QWidget* parent) :
 
     setupMiscTab();
     setupPanelTab();
-    setupPanelToolbarTab();
+    setupButtonsTab();
     setupMouseModeTab();
     setupLayoutTab();
 }
@@ -444,20 +444,20 @@ void KgPanel::setupPanelTab()
 // -----------------------------------------------------------------------------------
 //  -------------------------- Panel Toolbar TAB ----------------------------------
 // -----------------------------------------------------------------------------------
-void KgPanel::setupPanelToolbarTab()
+void KgPanel::setupButtonsTab()
 {
     QScrollArea *scrollArea = new QScrollArea(tabWidget);
-    QWidget *toolbarTab = new QWidget(scrollArea);
+    QWidget *tab = new QWidget(scrollArea);
     scrollArea->setFrameStyle(QFrame::NoFrame);
-    scrollArea->setWidget(toolbarTab);
+    scrollArea->setWidget(tab);
     scrollArea->setWidgetResizable(true);
     tabWidget->addTab(scrollArea, i18n("Buttons"));
 
-    QBoxLayout * panelToolbarVLayout = new QVBoxLayout(toolbarTab);
-    panelToolbarVLayout->setSpacing(6);
-    panelToolbarVLayout->setContentsMargins(11, 11, 11, 11);
+    QBoxLayout * tabLayout = new QVBoxLayout(tab);
+    tabLayout->setSpacing(6);
+    tabLayout->setContentsMargins(11, 11, 11, 11);
 
-    KONFIGURATOR_CHECKBOX_PARAM panelToolbarActiveCheckbox[] =
+    KONFIGURATOR_CHECKBOX_PARAM buttonsParams[] =
         //   cfg_class    cfg_name                default        text                          restart tooltip
     {
         {"ListPanelButtons", "Icons", false, i18n("Toolbar buttons have icons"), true,   "" },
@@ -468,14 +468,13 @@ void KgPanel::setupPanelToolbarTab()
         {"Look&Feel",  "Bookmarks Button Visible",  true,    i18n("Show Bookmarks Button"), true ,  i18n("The bookmarks button will be visible.") },
         {"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n("Show Panel Toolbar"), true,   i18n("The panel toolbar will be visible.") },
     };
+    buttonsCheckboxes = createCheckBoxGroup(1, 0, buttonsParams, 7/*count*/, tab, PAGE_PANELTOOLBAR);
+    connect(buttonsCheckboxes->find("Panel Toolbar visible"), SIGNAL(stateChanged(int)), this, SLOT(slotEnablePanelToolbar()));
+    tabLayout->addWidget(buttonsCheckboxes, 0, 0);
 
-    panelToolbarActive = createCheckBoxGroup(1, 0, panelToolbarActiveCheckbox, 7/*count*/, toolbarTab, PAGE_PANELTOOLBAR);
-    connect(panelToolbarActive->find("Panel Toolbar visible"), SIGNAL(stateChanged(int)), this, SLOT(slotEnablePanelToolbar()));
-
-    QGroupBox * panelToolbarGrp = createFrame(i18n("Visible Panel Toolbar buttons"), toolbarTab);
+    QGroupBox * panelToolbarGrp = createFrame(i18n("Visible Panel Toolbar buttons"), tab);
     QGridLayout * panelToolbarGrid = createGridLayout(panelToolbarGrp);
-
-    KONFIGURATOR_CHECKBOX_PARAM panelToolbarCheckboxes[] = {
+    KONFIGURATOR_CHECKBOX_PARAM panelToolbarButtonsParams[] = {
         //   cfg_class    cfg_name                default             text                       restart tooltip
         {"Look&Feel",  "Open Button Visible",  _Open,      i18n("Open button"),     true ,  i18n("Opens the directory browser.") },
         {"Look&Feel",  "Equal Button Visible", _cdOther,   i18n("Equal button (=)"), true ,  i18n("Changes the panel directory to the other panel directory.") },
@@ -484,15 +483,11 @@ void KgPanel::setupPanelToolbarTab()
         {"Look&Feel",  "Root Button Visible",  _cdRoot,    i18n("Root button (/)"), true ,  i18n("Changes the panel directory to the root directory.") },
         {"Look&Feel",  "SyncBrowse Button Visible",  _syncBrowseButton,    i18n("Toggle-button for sync-browsing"), true ,  i18n("Each directory change in the panel is also performed in the other panel.") },
     };
-
-
-    pnlcbs = createCheckBoxGroup(1, 0, panelToolbarCheckboxes,
-                                 sizeof(panelToolbarCheckboxes) / sizeof(*panelToolbarCheckboxes),
+    panelToolbarButtonsCheckboxes = createCheckBoxGroup(1, 0, panelToolbarButtonsParams,
+                                 sizeof(panelToolbarButtonsParams) / sizeof(*panelToolbarButtonsParams),
                                  panelToolbarGrp, PAGE_PANELTOOLBAR);
-
-    panelToolbarVLayout->addWidget(panelToolbarActive, 0, 0);
-    panelToolbarGrid->addWidget(pnlcbs, 0, 0);
-    panelToolbarVLayout->addWidget(panelToolbarGrp,    1, 0);
+    panelToolbarGrid->addWidget(panelToolbarButtonsCheckboxes, 0, 0);
+    tabLayout->addWidget(panelToolbarGrp, 1, 0);
 
     // Enable panel toolbar checkboxes
     slotEnablePanelToolbar();
@@ -621,13 +616,13 @@ void KgPanel::slotDisable()
 
 void KgPanel::slotEnablePanelToolbar()
 {
-    bool enableTB = panelToolbarActive->find("Panel Toolbar visible")->isChecked();
-    pnlcbs->find("Root Button Visible")->setEnabled(enableTB);
-    pnlcbs->find("Home Button Visible")->setEnabled(enableTB);
-    pnlcbs->find("Up Button Visible")->setEnabled(enableTB);
-    pnlcbs->find("Equal Button Visible")->setEnabled(enableTB);
-    pnlcbs->find("Open Button Visible")->setEnabled(enableTB);
-    pnlcbs->find("SyncBrowse Button Visible")->setEnabled(enableTB);
+    bool enableTB = buttonsCheckboxes->find("Panel Toolbar visible")->isChecked();
+    panelToolbarButtonsCheckboxes->find("Root Button Visible")->setEnabled(enableTB);
+    panelToolbarButtonsCheckboxes->find("Home Button Visible")->setEnabled(enableTB);
+    panelToolbarButtonsCheckboxes->find("Up Button Visible")->setEnabled(enableTB);
+    panelToolbarButtonsCheckboxes->find("Equal Button Visible")->setEnabled(enableTB);
+    panelToolbarButtonsCheckboxes->find("Open Button Visible")->setEnabled(enableTB);
+    panelToolbarButtonsCheckboxes->find("SyncBrowse Button Visible")->setEnabled(enableTB);
 }
 
 void KgPanel::slotSelectionModeChanged()
