@@ -62,6 +62,8 @@ protected:
 
 private:
     void createMediaList();
+    void toggleMount(QString udi);
+    bool isMounted(QString udi, bool *ejectable = 0);
     void mount(QString, bool open = false, bool newtab = false);
     void umount(QString);
     void eject(QString);

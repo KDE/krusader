@@ -287,6 +287,18 @@ bool MediaButton::eventFilter(QObject *o, QEvent *e)
                 if (!id.isEmpty()) {
                     QPoint globalPos = popupMenu->mapToGlobal(popupMenu->actionGeometry(act).topRight());
                     rightClickMenu(id, globalPos);
+                    return true;
+                }
+            }
+        } else if (e->type() == QEvent::KeyPress) {
+            QKeyEvent *ke = static_cast<QKeyEvent*>(e);
+            if (ke->key() == Qt::Key_Return && ke->modifiers() == Qt::ControlModifier) {
+                if (QAction *act = popupMenu->activeAction()) {
+                    QString id = act->data().toString();
+                    if (!id.isEmpty()) {
+                        toggleMount(id);
+                        return true;
+                    }
                 }
             }
         } else if (e->type() == QEvent::MouseButtonPress || e->type() == QEvent::MouseButtonRelease) {
@@ -397,6 +409,44 @@ void MediaButton::rightClickMenu(QString udi, QPoint pos)
     default:
         break;
     }
+}
+
+void MediaButton::toggleMount(QString udi)
+{
+    if (isMounted(udi))
+        umount(udi);
+    else
+        mount(udi);
+}
+
+bool MediaButton::isMounted(QString udi, bool *ejectable)
+{
+
+    bool network = udi.startsWith(remotePrefix);
+    bool mounted = false;
+
+    if (network) {
+        QString mountPoint = udi.mid(remotePrefix.length());
+        KMountPoint::List currentMountList = KMountPoint::currentMountPoints();
+        for (KMountPoint::List::iterator it = currentMountList.begin(); it != currentMountList.end(); ++it) {
+            if (((*it)->mountType() == "nfs" || (*it)->mountType() == "smb") &&
+                    (*it)->mountPoint() == mountPoint) {
+                mounted = true;
+                break;
+            }
+        }
+    } else {
+        Solid::Device device(udi);
+
+        Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+        Solid::OpticalDisc  *optdisc = device.as<Solid::OpticalDisc>();
+        if (access && access->isAccessible())
+            mounted = true;
+        if (optdisc && ejectable)
+            *ejectable = true;
+    }
+
+    return mounted;
 }
 
 void MediaButton::mount(QString udi, bool open, bool newtab)
