@@ -280,7 +280,7 @@ bool MediaButton::eventFilter(QObject *o, QEvent *e)
         if (e->type() == QEvent::ContextMenu) {
             QContextMenuEvent *cm = (QContextMenuEvent *)e;
 
-            QAction * act = popupMenu->actionAt(cm->pos());
+            QAction *act = popupMenu->activeAction();
             QString id;
             if (act && act->data().canConvert<QString>())
                 id = act->data().toString();
