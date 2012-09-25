@@ -62,19 +62,19 @@ protected:
 
 private:
     void createMediaList();
-
-    QList<Solid::Device> storageDevices;
-
     void mount(QString, bool open = false, bool newtab = false);
     void umount(QString);
     void eject(QString);
-
     void rightClickMenu(QString udi, QPoint pos);
+
+    QList<Solid::Device> storageDevices;
 
 private slots:
     void slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
 
 private:
+    static QString remotePrefix;
+
     QMenu  *popupMenu;
     QMenu  *rightMenu;
     QString udiToOpen;

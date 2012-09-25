@@ -37,6 +37,9 @@
 #include <solid/opticaldrive.h>
 #include <solid/devicenotifier.h>
 
+QString MediaButton::remotePrefix = QLatin1String("remote:");
+
+
 MediaButton::MediaButton(QWidget *parent) : QToolButton(parent),
         popupMenu(0), rightMenu(0), openInNewTab(false)
 {
@@ -148,7 +151,7 @@ void MediaButton::createMediaList()
                 overlays << "emblem-mounted";
             KIcon kdeIcon("network-wired", 0, overlays);
             QAction * act = popupMenu->addAction(kdeIcon, name);
-            QString udi = "remote:" + (*it)->mountPoint();
+            QString udi = remotePrefix + (*it)->mountPoint();
             act->setData(QVariant(udi));
         }
     }
@@ -234,8 +237,8 @@ void MediaButton::slotPopupActivated(QAction * action)
 {
     if (action && action->data().canConvert<QString>()) {
         QString id = action->data().toString();
-        if (id.startsWith(QLatin1String("remote:"))) {
-            QString mountPoint = id.mid(7);
+        if (id.startsWith(remotePrefix)) {
+            QString mountPoint = id.mid(remotePrefix.length());
 
             bool mounted = false;
             KMountPoint::List currentMountList = KMountPoint::currentMountPoints();
@@ -310,13 +313,13 @@ void MediaButton::rightClickMenu(QString udi, QPoint pos)
     if (rightMenu)
         rightMenu->close();
 
-    bool network = udi.startsWith(QLatin1String("remote:"));
+    bool network = udi.startsWith(remotePrefix);
     bool ejectable = false;
     bool mounted = false;
     KUrl openURL;
 
     if (network) {
-        QString mountPoint = udi.mid(7);
+        QString mountPoint = udi.mid(remotePrefix.length());
         openURL = KUrl(mountPoint);
         KMountPoint::List currentMountList = KMountPoint::currentMountPoints();
         for (KMountPoint::List::iterator it = currentMountList.begin(); it != currentMountList.end(); ++it) {
@@ -398,8 +401,8 @@ void MediaButton::rightClickMenu(QString udi, QPoint pos)
 
 void MediaButton::mount(QString udi, bool open, bool newtab)
 {
-    if (udi.startsWith(QLatin1String("remote:"))) {
-        QString mp = udi.mid(7);
+    if (udi.startsWith(remotePrefix)) {
+        QString mp = udi.mid(remotePrefix.length());
         krMtMan.mount(mp, true);
         if (newtab)
             emit newTab(KUrl(mp));
@@ -452,8 +455,8 @@ void MediaButton::slotSetupDone(Solid::ErrorType error, QVariant errorData, cons
 
 void MediaButton::umount(QString udi)
 {
-    if (udi.startsWith(QLatin1String("remote:"))) {
-        krMtMan.unmount(udi.mid(7), false);
+    if (udi.startsWith(remotePrefix)) {
+        krMtMan.unmount(udi.mid(remotePrefix.length()), false);
         return;
     }
     krMtMan.unmount(krMtMan.pathForUdi(udi), false);
@@ -532,8 +535,8 @@ void MediaButton::slotTimeout()
     foreach(QAction * act, actionList) {
         if (act &&
                 act->data().canConvert<QString>() &&
-                act->data().toString().startsWith(QLatin1String("remote:"))) {
-            QString mountPoint = act->data().toString().mid(7);
+                act->data().toString().startsWith(remotePrefix)) {
+            QString mountPoint = act->data().toString().mid(remotePrefix.length());
             bool available = false;
 
             for (KMountPoint::List::iterator it = possibleMountList.begin(); it != possibleMountList.end(); ++it) {
