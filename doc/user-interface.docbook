@@ -354,15 +354,17 @@
           <guilabel>Information Label</guilabel> displays a list of
           all available media, where you can select the desired
           media (HDD partition, DVD, USB stick, &etc;).
-	    Pressing <keycombo>&Ctrl;<keycap>Return</keycap></keycombo> when media context
-	  menu is opened mounts the highlighted media when it is unmounted
-	  and unmounts it when it is mounted.
-          The
-          <guibutton>Media menu</guibutton> is
-          <link linkend="konfig-panel-mediamenu">
+          Pressing <keycombo>&Ctrl;<keycap>Return</keycap></keycombo> when the
+          <guibutton>Media menu</guibutton>
+          is opened mounts the highlighted media when it is unmounted,
+          and unmounts it when it is mounted.
+          The context menu of a medium gives several options like
+          <guilabel>Mount</guilabel>,
+          <guilabel>Open in a new tab</guilabel>, &etc;
+          The <guibutton>Media menu</guibutton> is <link linkend="konfig-panel-mediamenu">
           configurable</link>.</para>
         </listitem>
-        <listitem>
+          <listitem>
           <para>
           <emphasis>
             <guilabel>Column Headers</guilabel>
