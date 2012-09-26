@@ -183,11 +183,12 @@
     <title>Panel</title>
     <para>Here you can determine the look and feel of panel -
     which means finetuning the application to your needs. The page
-    is divided into five tabs:
+    is divided into six tabs:
     <guilabel>General</guilabel>,
     <guilabel>View</guilabel>,
     <guilabel>Buttons</guilabel>,
     <guilabel>Selection Mode</guilabel>,
+    <guilabel>Media Menu</guilabel>,
     and <guilabel>Layout</guilabel>:</para>
 
     <sect2 id="konfig-panel-general">
@@ -682,6 +683,24 @@
               </para>
             </listitem>
           </itemizedlist></para>
+        </listitem>
+      </itemizedlist></para>
+    </sect2>
+    <sect2 id="konfig-panel-mediamenu">
+      <title>Media Menu</title>
+      <para>Using this tab you can select the <link linkend="media_button">Media button</link> menu contents:
+      <itemizedlist>
+        <listitem>
+          <para>
+          <guilabel>Show Mount Path</guilabel>: show the mount path of partition if checked.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Show File System Type</guilabel>: show the mount path of partition if checked..</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Show Size:</guilabel> allows selection of the size representation in media menu. Can be <guimenuitem>Always</guimenuitem> (default, always show the size of partition), <guimenuitem>When Device has no Label</guimenuitem> (show the size for partitions with no label only) or <guimenuitem>Never</guimenuitem> (never show the size in media menu).</para>
         </listitem>
       </itemizedlist></para>
     </sect2>
