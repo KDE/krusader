@@ -50,7 +50,7 @@
 
 class CS_Tool; // forward
 typedef void PREPARE_PROC_FUNC(KProcess& proc, CS_Tool *self, const QStringList& files,
-                               const QString checksumFile, bool recursive, const QString& type = QString());
+                               const QString checksumFile, bool recursive, const QString& type);
 typedef QStringList GET_FAILED_FUNC(const QStringList& stdOut, const QStringList& stdErr);
 
 class CS_Tool
