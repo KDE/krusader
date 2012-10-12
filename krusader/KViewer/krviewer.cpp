@@ -327,11 +327,11 @@ void KrViewer::edit(KUrl url, Mode mode, int new_window, QWidget * parent)
     }
 
     KrViewer* viewer = getViewer(new_window);
-    viewer->returnFocusTo = parent;
 
     PanelViewerBase* editWidget = new PanelEditor(&viewer->tabBar);
     if (editWidget->openUrl(url, mode)) {
         viewer->addTab(editWidget);
+        viewer->returnFocusTo = parent;
         viewer->returnFocusTab = editWidget;
     } else {
         delete editWidget;
