@@ -424,7 +424,7 @@ void MediaButton::getStatus(QString udi, bool &mounted, QString *mountPointOut, 
 
     if (mountPointOut)
         *mountPointOut = mountPoint;
-    if (ejectable)
+    if (ejectableOut)
         *ejectableOut = ejectable;
 }
 
