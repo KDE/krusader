@@ -2,8 +2,8 @@ project(krusader)
 
 INCLUDE(CPack)
 
-set(VERSION "2.4.0-beta2" )
-set(RELEASE_NAME "Giant Steps")
+set(VERSION "2.4.0-beta3" )
+set(RELEASE_NAME "Single Step")
 
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
