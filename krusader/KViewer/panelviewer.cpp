@@ -214,9 +214,9 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KUrl &url, QString mimet
 
 KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
 {
-    emit urlChanged(this, url);
     closeUrl();
     curl = url;
+    emit urlChanged(this, url);
 
     KMimeType::Ptr mt = KMimeType::findByUrl(url);
     QString mimetype = mt->name();
@@ -328,9 +328,9 @@ QString PanelEditor::missingKPartMsg()
 
 KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
 {
-    emit urlChanged(this, url);
     closeUrl();
     curl = url;
+    emit urlChanged(this, url);
 
     KFileItem item = readFileInfo(url);
     KIO::filesize_t fileSize = item.isNull() ? 0 : item.size();

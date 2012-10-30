@@ -534,11 +534,6 @@ void KrViewer::refreshTab(PanelViewerBase* pvb)
     if (!pvb->part())
         return;
 
-    //FIXME this belongs to PanelViewer
-    if (!pvb->part()->url().equals(pvb->url(), KUrl::CompareWithoutTrailingSlash)) {
-        pvb->setUrl(pvb->part()->url());
-    }
-
     int ndx = tabBar.indexOf(pvb);
     tabBar.setTabText(ndx, makeTabText(pvb));
     tabBar.setTabIcon(ndx, makeTabIcon(pvb));

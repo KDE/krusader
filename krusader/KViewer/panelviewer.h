@@ -42,9 +42,6 @@ public:
     inline KUrl url() const {
         return curl;
     }
-    inline void setUrl(KUrl url) {
-        emit urlChanged(this, url); curl = url;
-    }
     inline KParts::ReadOnlyPart* part() const {
         return cpart;
     }
