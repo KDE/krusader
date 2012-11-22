@@ -23,8 +23,11 @@
 #include <kactioncollection.h>
 #include <kmenu.h>
 #include <kcharsets.h>
-#include <kio/slaveconfig.h>
+#include <kdeversion.h>
 #include <kio/scheduler.h>
+#if KDE_VERSION < KDE_MAKE_VERSION(4,10,0)
+#include <kio/slaveconfig.h>
+#endif
 
 #include "../krglobal.h"
 #include "../Panel/krpanel.h"
@@ -91,7 +94,11 @@ void KrRemoteEncodingMenu::slotAboutToShow()
 QString KrRemoteEncodingMenu::currentCharacterSet()
 {
     KUrl currentURL = ACTIVE_PANEL->virtualPath();
+#if KDE_IS_VERSION(4,10,0)
+    return KProtocolManager::charsetFor(currentURL);
+#else
     return KIO::SlaveConfig::self()->configData(currentURL.protocol(), currentURL.host(), DATA_KEY);
+#endif
 }
 
 void KrRemoteEncodingMenu::loadSettings()
