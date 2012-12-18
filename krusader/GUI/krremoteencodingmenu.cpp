@@ -27,6 +27,8 @@
 #include <kio/scheduler.h>
 #if KDE_VERSION < KDE_MAKE_VERSION(4,10,0)
 #include <kio/slaveconfig.h>
+#else
+#include <kprotocolmanager.h>
 #endif
 
 #include "../krglobal.h"
