@@ -83,9 +83,13 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     sizeLayout->addWidget(minSizeAmount, 0, 1);
 
     minSizeType = new KComboBox(false, sizeGroup);
+    // i18n: @item:inlistbox next to a text field containing the amount
     minSizeType->addItem(i18n("Byte"));
+    // i18n: @item:inlistbox next to a text field containing the amount
     minSizeType->addItem(i18n("KiB"));
+    // i18n: @item:inlistbox next to a text field containing the amount
     minSizeType->addItem(i18n("MiB"));
+    // i18n: @item:inlistbox next to a text field containing the amount
     minSizeType->addItem(i18n("GiB"));
     minSizeType->setEnabled(false);
     sizeLayout->addWidget(minSizeType, 0, 2);
@@ -101,9 +105,13 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     sizeLayout->addWidget(maxSizeAmount, 0, 4);
 
     maxSizeType = new KComboBox(false, sizeGroup);
+    // i18n: @item:inlistbox next to a text field containing the amount
     maxSizeType->addItem(i18n("Byte"));
+    // i18n: @item:inlistbox next to a text field containing the amount
     maxSizeType->addItem(i18n("KiB"));
+    // i18n: @item:inlistbox next to a text field containing the amount
     maxSizeType->addItem(i18n("MiB"));
+    // i18n: @item:inlistbox next to a text field containing the amount
     maxSizeType->addItem(i18n("GiB"));
     maxSizeType->setEnabled(false);
     sizeLayout->addWidget(maxSizeType, 0, 5);
