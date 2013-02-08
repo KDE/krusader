@@ -473,7 +473,7 @@ void ListPanelFunc::view()
 void ListPanelFunc::viewDlg()
 {
     // ask the user for a url to view
-    KUrl dest = KChooseDir::getDir(i18n("Enter a URL to view:"), panel->virtualPath(), panel->virtualPath());
+    KUrl dest = KChooseDir::getFile(i18n("Enter a URL to view:"), panel->virtualPath(), panel->virtualPath());
     if (dest.isEmpty())
         return ;   // the user canceled
 
@@ -510,7 +510,7 @@ void ListPanelFunc::editNew()
         return;
 
     // ask the user for the filename to edit
-    fileToCreate = KChooseDir::getDir(i18n("Enter the filename to edit:"), panel->virtualPath(), panel->virtualPath());
+    fileToCreate = KChooseDir::getFile(i18n("Enter the filename to edit:"), panel->virtualPath(), panel->virtualPath());
     if(fileToCreate.isEmpty())
         return ;   // the user canceled
 

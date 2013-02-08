@@ -44,12 +44,42 @@
 #include "../VFS/vfs.h"
 #include "../defaults.h"
 
+
+KUrl KChooseDir::getFile(QString text, const KUrl& url, const KUrl& cwd)
+{
+    QPointer<KUrlRequesterDialog> dlg = new KUrlRequesterDialog(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
+            text,
+            krMainWindow);
+    dlg->urlRequester()->completionObject()->setDir(cwd.url());
+    dlg->urlRequester()->setMode(KFile::File);
+    KUrl u;
+    if (dlg->exec() == QDialog::Accepted) {
+        u = KUrl(dlg->urlRequester()->completionObject()->replacedPath(
+                     dlg->urlRequester()->lineEdit()->text()));
+        if (u.isRelativeUrl(u.url())) {
+            KUrl temp = u;
+            u = cwd;
+            u.addPath(temp.path());
+            u.cleanPath();
+            if (u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso") {
+                if (QDir(u.path()).exists()) {
+                    u.setProtocol("file");
+                }
+            }
+        }
+    }
+    delete dlg;
+    return u;
+}
+
+
 KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd)
 {
     QPointer<KUrlRequesterDialog> dlg = new KUrlRequesterDialog(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
             text,
             krMainWindow);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
+    dlg->urlRequester()->setMode(KFile::Directory);
     KUrl u;
     if (dlg->exec() == QDialog::Accepted) {
         u = KUrl(dlg->urlRequester()->completionObject()->replacedPath(
@@ -78,6 +108,7 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
             krMainWindow);
     dlg->hidePreserveAttrs();
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
+    dlg->urlRequester()->setMode(KFile::Directory);
     KUrl u;
     if (dlg->exec() == QDialog::Accepted) {
         u = KUrl(dlg->urlRequester()->completionObject()->replacedPath(
@@ -106,6 +137,7 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
             preserveAttrs,
             krMainWindow);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
+    dlg->urlRequester()->setMode(KFile::Directory);
     KUrl u;
     if (dlg->exec() == QDialog::Accepted) {
         u = KUrl(dlg->urlRequester()->completionObject()->replacedPath(
@@ -137,6 +169,7 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
             true,
             baseURL);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
+    dlg->urlRequester()->setMode(KFile::Directory);
     KUrl u;
     if (dlg->exec() == QDialog::Accepted) {
         u = KUrl(dlg->urlRequester()->completionObject()->replacedPath(

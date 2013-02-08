@@ -55,6 +55,7 @@ public:
      * \param cwd - a path which is the current working directory (usually ACTIVE_PANEL->virtualPath()).
      *              this is used for completion of partial urls
      */
+    static KUrl getFile(QString text, const KUrl& url, const KUrl& cwd);
     static KUrl getDir(QString text, const KUrl& url, const KUrl& cwd);
     static KUrl getDir(QString text, const KUrl& url, const KUrl& cwd, bool & queue);
     static KUrl getDir(QString text, const KUrl& url, const KUrl& cwd, bool & queue, bool & preserveAttrs);
