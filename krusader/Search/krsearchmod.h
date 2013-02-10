@@ -65,7 +65,8 @@ private:
 signals:
     void finished();
     void searching(const QString&);
-    void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString textFound);
+    void found(QString what, QString where,KIO::filesize_t size, time_t mtime,
+               QString perm, uid_t owner, gid_t groups, QString textFound);
 
 private slots:
     void slotProcessEvents(bool & stopped);

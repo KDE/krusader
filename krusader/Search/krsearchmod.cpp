@@ -182,7 +182,8 @@ void KRSearchMod::scanLocalDir(KUrl urlToScan)
         if (query->match(vf)) {
             // if we got here - we got a winner
             results.append(dir + name);
-            emit found(name, dir, (KIO::filesize_t) stat_p.st_size, stat_p.st_mtime, KRpermHandler::mode2QString(stat_p.st_mode), query->foundText());
+            emit found(name, dir, (KIO::filesize_t) stat_p.st_size, stat_p.st_mtime,
+                       KRpermHandler::mode2QString(stat_p.st_mode), stat_p.st_uid, stat_p.st_gid, query->foundText());
         }
         delete vf;
 
@@ -224,7 +225,8 @@ void KRSearchMod::scanRemoteDir(KUrl url)
             // if we got here - we got a winner
             results.append(vfs::pathOrUrl(fileURL, KUrl::RemoveTrailingSlash));
 
-            emit found(fileURL.fileName(), vfs::pathOrUrl(fileURL.upUrl(), KUrl::RemoveTrailingSlash), vf->vfile_getSize(), vf->vfile_getTime_t(), vf->vfile_getPerm(), query->foundText());
+            emit found(fileURL.fileName(), vfs::pathOrUrl(fileURL.upUrl(), KUrl::RemoveTrailingSlash), vf->vfile_getSize(), vf->vfile_getTime_t(),
+                       vf->vfile_getPerm(), vf->vfile_getUid(), vf->vfile_getGid(), query->foundText());
         }
 
         if (timer.elapsed() >= EVENT_PROCESS_DELAY) {

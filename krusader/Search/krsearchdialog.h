@@ -68,7 +68,8 @@ public slots:
     void stopSearch();
     void feedToListBox();
     void copyToClipBoard();
-    void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString foundText);
+    void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm,
+               uid_t uid, gid_t gid, QString foundText);
     void closeDialog(bool isAccept = true);
     void executed(const QString &name);
     void currentChanged(KrViewItem *item);
