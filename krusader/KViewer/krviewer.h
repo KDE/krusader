@@ -67,7 +67,7 @@ public slots:
 
     void tabChanged(QWidget* w);
     void tabURLChanged(PanelViewerBase * pvb, const KUrl &url);
-    void tabCloseRequest(QWidget *w);
+    void tabCloseRequest(QWidget *w, bool force = false);
     void tabCloseRequest();
 
     void nextTab();

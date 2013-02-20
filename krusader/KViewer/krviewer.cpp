@@ -145,7 +145,6 @@ KrViewer::KrViewer(QWidget *parent) :
 
 KrViewer::~KrViewer()
 {
-
     disconnect(&manager, SIGNAL(activePartChanged(KParts::Part*)),
                this, SLOT(createGUI(KParts::Part*)));
 
@@ -154,7 +153,7 @@ KrViewer::~KrViewer()
     // close tabs before deleting tab bar - this avoids Qt bug 26115
     // https://bugreports.qt-project.org/browse/QTBUG-26115
     while(tabBar.count())
-        tabCloseRequest();
+        tabCloseRequest(tabBar.currentWidget(), true);
 
     delete printAction;
     delete copyAction;
@@ -371,7 +370,7 @@ void KrViewer::tabChanged(QWidget* w)
     if (viewers.removeAll(this)) viewers.prepend(this);      // move to first
 }
 
-void KrViewer::tabCloseRequest(QWidget *w)
+void KrViewer::tabCloseRequest(QWidget *w, bool force)
 {
     if (!w) return;
 
@@ -380,7 +379,7 @@ void KrViewer::tabCloseRequest(QWidget *w)
 
     PanelViewerBase* pvb = static_cast<PanelViewerBase*>(w);
 
-    if (!pvb->queryClose())
+    if (!force && !pvb->queryClose())
         return;
 
     if (pvb->part() && isPartAdded(pvb->part()))
