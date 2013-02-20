@@ -392,6 +392,9 @@ void KrViewer::tabCloseRequest(QWidget *w)
 
     tabBar.removePage(w);
 
+    delete pvb;
+    w = pvb = 0;
+
     if (tabBar.count() <= 0) {
         if (returnFocusToThisWidget) {
             returnFocusToThisWidget->raise();
