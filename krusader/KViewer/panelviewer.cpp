@@ -40,8 +40,8 @@
 
 #define DICTSIZE 211
 
-PanelViewerBase::PanelViewerBase(QWidget *parent) :
-        QStackedWidget(parent), mimes(0), cpart(0)
+PanelViewerBase::PanelViewerBase(QWidget *parent, KrViewer::Mode mode) :
+        QStackedWidget(parent), mimes(0), cpart(0), mode(mode)
 {
     setSizePolicy(QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Ignored));
 
@@ -69,26 +69,15 @@ PanelViewerBase::~PanelViewerBase()
     delete fallback;
 }
 
-KFileItem PanelViewerBase::readFileInfo(const KUrl & url)
-{
-    if (url.isLocalFile())
-        return KFileItem(KFileItem::Unknown, KFileItem::Unknown, url);
-
-    KIO::StatJob* statJob = KIO::stat(url, KIO::HideProgressInfo);
-    connect(statJob, SIGNAL(result(KJob*)), this, SLOT(slotStatResult(KJob*)));
-    busy = true;
-    while (busy) qApp->processEvents();
-    if (entry.count() != 0) {
-        return KFileItem(entry, url);
-    }
-    return KFileItem();
-}
-
 void PanelViewerBase::slotStatResult(KJob* job)
 {
-    if (!job || job->error()) entry = KIO::UDSEntry();
-    else entry = static_cast<KIO::StatJob*>(job)->statResult();
-    busy = false;
+    if (job->error()) {
+        KMessageBox::error(this, job->errorString());
+        emit openUrlFinished(this, false);
+    } else {
+        KIO::UDSEntry entry = static_cast<KIO::StatJob*>(job)->statResult();
+        openFile(KFileItem(entry, curl));
+    }
 }
 
 KParts::ReadOnlyPart* PanelViewerBase::getPart(QString mimetype)
@@ -105,11 +94,25 @@ KParts::ReadOnlyPart* PanelViewerBase::getPart(QString mimetype)
     return part;
 }
 
+void PanelViewerBase::openUrl(KUrl url)
+{
+    closeUrl();
+    curl = url;
+    emit urlChanged(this, url);
+
+    if (url.isLocalFile())
+        openFile(KFileItem(KFileItem::Unknown, KFileItem::Unknown, url));
+    else {
+        KIO::StatJob* statJob = KIO::stat(url, KIO::HideProgressInfo);
+        connect(statJob, SIGNAL(result(KJob*)), this, SLOT(slotStatResult(KJob*)));
+    }
+}
+
 
 /* ----==={ PanelViewer }===---- */
 
-PanelViewer::PanelViewer(QWidget *parent) :
-        PanelViewerBase(parent)
+PanelViewer::PanelViewer(QWidget *parent, KrViewer::Mode mode) :
+        PanelViewerBase(parent, mode)
 {
 }
 
@@ -161,7 +164,7 @@ KParts::ReadOnlyPart* PanelViewer::getTextPart()
     return part ? part : getListerPart();
 }
 
-KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KUrl &url, QString mimetype, bool isBinary)
+KParts::ReadOnlyPart* PanelViewer::getDefaultPart(KFileItem fi)
 {
     KConfigGroup group(krConfig, "General");
     QString modeString = group.readEntry("Default Viewer Mode", QString("generic"));
@@ -173,9 +176,15 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KUrl &url, QString mimet
     else if (modeString == "hex") mode = KrViewer::Hex;
     else if (modeString == "lister") mode = KrViewer::Lister;
 
-    KFileItem item = readFileInfo(url);
-    KIO::filesize_t fileSize = item.isNull() ? 0 : item.size();
+    bool isBinary = false;
+    // FIXME isBinaryData() only works on local files
+    if (fi.isLocalFile())
+        isBinary  = KMimeType::isBinaryData(fi.localPath());
+
+    KIO::filesize_t fileSize = fi.size();
     KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit) * 0x100000;
+
+    QString mimetype = fi.mimetype();
 
     KParts::ReadOnlyPart* part = 0;
 
@@ -212,18 +221,11 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KUrl &url, QString mimet
     return part;
 }
 
-KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
+void PanelViewer::openFile(KFileItem fi)
 {
-    closeUrl();
-    curl = url;
-    emit urlChanged(this, url);
-
-    KMimeType::Ptr mt = KMimeType::findByUrl(url);
-    QString mimetype = mt->name();
-
     switch(mode) {
     case KrViewer::Generic:
-        cpart = getPart(mimetype);
+        cpart = getPart(fi.mimetype());
         break;
     case KrViewer::Text:
         cpart = getTextPart();
@@ -235,8 +237,7 @@ KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
         cpart = getHexPart();
         break;
     case KrViewer::Default:
-        // FIXME isBinaryData() only works on local files
-        cpart = getDefaultPart(curl, mimetype, mt->isBinaryData(url.path()));
+        cpart = getDefaultPart(fi);
         break;
     default:
         abort();
@@ -253,12 +254,13 @@ KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
         cpart->setArguments(args);
         if (cpart->openUrl(curl)) {
             connect(cpart, SIGNAL(destroyed()), this, SLOT(slotCPartDestroyed()));
-            return cpart;
+            emit openUrlFinished(this, true);
+            return;
         }
     }
 
     setCurrentWidget(fallback);
-    return 0;
+    emit openUrlFinished(this, false);
 }
 
 bool PanelViewer::closeUrl()
@@ -297,8 +299,8 @@ KParts::ReadOnlyPart* PanelViewer::createPart(QString mimetype)
 
 /* ----==={ PanelEditor }===---- */
 
-PanelEditor::PanelEditor(QWidget *parent) :
-        PanelViewerBase(parent)
+PanelEditor::PanelEditor(QWidget *parent, KrViewer::Mode mode) :
+        PanelViewerBase(parent, mode)
 {
 }
 
@@ -326,19 +328,12 @@ QString PanelEditor::missingKPartMsg()
                     "http://www.kde.org/applications/utilities/kate"));
 }
 
-KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
+void PanelEditor::openFile(KFileItem fi)
 {
-    closeUrl();
-    curl = url;
-    emit urlChanged(this, url);
-
-    KFileItem item = readFileInfo(url);
-    KIO::filesize_t fileSize = item.isNull() ? 0 : item.size();
+    KIO::filesize_t fileSize = fi.size();
     KConfigGroup group(krConfig, "General");
     KIO::filesize_t limitMB = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit);
-
-    KMimeType::Ptr mt = KMimeType::findByUrl(curl);
-    QString mimetype = mt->name();
+    QString mimetype = fi.mimetype();
 
     if (mode == KrViewer::Generic)
         cpart = getPart(mimetype);
@@ -349,7 +344,8 @@ KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
             if(KMessageBox::Cancel == KMessageBox::warningContinueCancel(this,
                   i18n("%1 is bigger than %2 MB" , curl.pathOrUrl(), limitMB))) {
                 setCurrentWidget(fallback);
-                return 0;
+                emit openUrlFinished(this, false);
+                return;
             }
         }
     }
@@ -368,15 +364,15 @@ KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
         cpart->setArguments(args);
         if (cpart->openUrl(curl)) {
             connect(cpart, SIGNAL(destroyed()), this, SLOT(slotCPartDestroyed()));
-            return cpart;
+            emit openUrlFinished(this, true);
+            return;
         } // else: don't show error message - assume this has been done by the editor part
     } else
         KMessageBox::sorry(this, missingKPartMsg(), i18n("Cannot edit %1", curl.pathOrUrl()),
                            KMessageBox::AllowLink);
 
     setCurrentWidget(fallback);
-    return 0;
-
+    emit openUrlFinished(this, false);
 }
 
 bool PanelEditor::queryClose()
@@ -421,7 +417,10 @@ KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
 
 bool PanelEditor::isModified()
 {
-    return static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->isModified();
+    if (cpart)
+        return static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->isModified();
+    else
+        return false;
 }
 
 #include "panelviewer.moc"

@@ -69,7 +69,6 @@ public slots:
     void tabURLChanged(PanelViewerBase * pvb, const KUrl &url);
     void tabCloseRequest(QWidget *w);
     void tabCloseRequest();
-    void partDestroyed(PanelViewerBase *);
 
     void nextTab();
     void prevTab();
@@ -87,13 +86,20 @@ protected:
         if (viewers.removeAll(this)) viewers.prepend(this);
     } // move to first
 
+
+private slots:
+    void openUrlFinished(PanelViewerBase *pvb, bool success);
+
 private:
     KrViewer(QWidget *parent = 0);
     void addTab(PanelViewerBase* pvb);
-    PanelViewerBase * getPanelViewerBase(KParts::Part* part);
-    void updateActions(PanelViewerBase * base);
-    bool isValidPart(KParts::Part* part);
+    void updateActions();
     void refreshTab(PanelViewerBase* pvb);
+    void viewInternal(KUrl url, Mode mode, QWidget * parent = krMainWindow);
+    void editInternal(KUrl url, Mode mode, QWidget * parent = krMainWindow);
+    void addPart(KParts::ReadOnlyPart *part);
+    void removePart(KParts::ReadOnlyPart *part);
+    bool isPartAdded(KParts::Part* part);
 
     static KrViewer* getViewer(bool new_window);
     static QString makeTabText(PanelViewerBase *pvb);
@@ -105,7 +111,6 @@ private:
     KTemporaryFile tmpFile;
     KTabWidget tabBar;
     QPointer<QWidget> returnFocusTo;
-    PanelViewerBase * returnFocusTab;
 
     QAction *detachAction;
 

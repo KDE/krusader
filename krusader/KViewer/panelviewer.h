@@ -37,7 +37,7 @@ class PanelViewerBase: public QStackedWidget
     Q_OBJECT
 
 public:
-    PanelViewerBase(QWidget *parent = 0);
+    PanelViewerBase(QWidget *parent, KrViewer::Mode mode = KrViewer::Default);
     virtual ~PanelViewerBase();
     inline KUrl url() const {
         return curl;
@@ -50,10 +50,7 @@ public:
     }
     virtual bool isEditor() = 0;
 
-    KFileItem readFileInfo(const KUrl &);
-
 public slots:
-    virtual KParts::ReadOnlyPart* openUrl(const KUrl&, KrViewer::Mode mode = KrViewer::Default) = 0;
     virtual bool closeUrl() {
         return false;
     }
@@ -61,10 +58,13 @@ public slots:
         return true;
     }
 
+    void openUrl(KUrl url);
+
 signals:
     void openUrlRequest(const KUrl &url);
     void urlChanged(PanelViewerBase *, const KUrl &);
     void partDestroyed(PanelViewerBase *);
+    void openUrlFinished(PanelViewerBase *viewWidget, bool success);
 
 protected slots:
     void slotCPartDestroyed() {
@@ -73,6 +73,7 @@ protected slots:
     void slotStatResult(KJob* job);
 
 protected:
+    virtual void openFile(KFileItem fi) = 0;
     virtual KParts::ReadOnlyPart* createPart(QString mimetype) = 0;
     KParts::ReadOnlyPart* getPart(QString mimetype);
 
@@ -82,20 +83,17 @@ protected:
 
     KUrl curl;
     QLabel *fallback;
-
-    bool busy;
-    KIO::UDSEntry entry;
+    KrViewer::Mode mode;
 };
 
 class PanelViewer: public PanelViewerBase
 {
     Q_OBJECT
 public slots:
-    virtual KParts::ReadOnlyPart* openUrl(const KUrl &url, KrViewer::Mode mode = KrViewer::Default);
     virtual bool closeUrl();
 
 public:
-    PanelViewer(QWidget *parent = 0);
+    PanelViewer(QWidget *parent, KrViewer::Mode mode = KrViewer::Default);
     ~PanelViewer();
 
     virtual bool isEditor() {
@@ -103,8 +101,9 @@ public:
     }
 
 protected:
+    virtual void openFile(KFileItem fi);
     virtual KParts::ReadOnlyPart* createPart(QString mimetype);
-    KParts::ReadOnlyPart* getDefaultPart(const KUrl &url, QString mimetype, bool isBinary);
+    KParts::ReadOnlyPart* getDefaultPart(KFileItem fi);
     KParts::ReadOnlyPart* getHexPart();
     KParts::ReadOnlyPart* getListerPart(bool hexMode = false);
     KParts::ReadOnlyPart* getTextPart();
@@ -122,15 +121,15 @@ public:
     static void configureDeps();
 
 public slots:
-    virtual KParts::ReadOnlyPart* openUrl(const KUrl &url, KrViewer::Mode mode);
     virtual bool closeUrl();
     virtual bool queryClose();
 
 public:
-    PanelEditor(QWidget *parent = 0);
+    PanelEditor(QWidget *parent, KrViewer::Mode mode = KrViewer::Default);
     ~PanelEditor();
 
 protected:
+    virtual void openFile(KFileItem fi);
     virtual KParts::ReadOnlyPart* createPart(QString mimetype);
     static QString missingKPartMsg();
 };
