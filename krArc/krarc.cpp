@@ -952,11 +952,8 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced)
 
     root->append(entry);
 
-    if (arcType == "bzip2" || arcType == "lzma" || arcType == "xz") {
-        KRDEBUG("Got me here...");
-        parseLine(0, "");
-        return true;
-    }
+    if (arcType == "bzip2" || arcType == "lzma" || arcType == "xz")
+        abort();
 
     char buf[1000];
     QString line;
@@ -1113,6 +1110,14 @@ UDSEntryList* kio_krarcProtocol::addNewDir(QString path)
     // add a new entry in the parent dir
     QString name = path.mid(path.lastIndexOf(DIR_SEPARATOR, -2) + 1);
     name = name.left(name.length() - 1);
+
+    if (name == "." || name == "..") { // entries with these names wouldn't be displayed
+        // don't translate since this is an internal error
+        QString err = QString("Cannot handle path: ") + path;
+        kDebug()<<"ERROR:"<<err;
+        error(KIO::ERR_INTERNAL, err);
+        exit();
+    }
 
     UDSEntry entry;
     entry.insert(KIO::UDSEntry::UDS_NAME, name);
