@@ -402,7 +402,9 @@ void KrViewer::tabCloseRequest(QWidget *w, bool force)
             krMainWindow->raise();
             krMainWindow->activateWindow();
         }
-        this->close();
+
+        QTimer::singleShot(0, this, SLOT(close()));
+
         return;
     } else if (tabBar.count() == 1) {
         //no point in detaching only one tab..
