@@ -10,6 +10,9 @@
       <para>
 	This feature is disabled at the compilation time by default. Use <userinput>-DENABLE_SYNCHRONIZER=true</userinput> compilation switch to <application>cmake</application> to enable it, then <link linkend="kde4_lin_install">recompile and install &krusader;</link>.
       </para>
+      <para>
+	Synchronizer is considered unmaintained, so be aware of the risk of its usage!
+      </para>
     </important>
   <para>This function compares two directories with all subdirectories and shows the differences between them.
   After selecting some options and the 
