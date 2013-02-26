@@ -123,11 +123,13 @@ QueueDialog::QueueDialog() : KDialog(0, Qt::FramelessWindowHint), _autoHide(true
     setWindowTitle(i18n("Krusader::Queue Manager"));
     setSizeGripEnabled(true);
 
+    setButtons(Close);
+
     QGridLayout *grid_main = new QGridLayout;
     grid_main->setContentsMargins(0, 0, 0, 12);
     grid_main->setSpacing(0);
 
-    QFrame *titleWg = new QFrame(this);
+    QFrame *titleWg = new QFrame(mainWidget());
     titleWg->setFrameShape(QFrame::Box);
     titleWg->setFrameShadow(QFrame::Raised);
     titleWg->setLineWidth(1);    // a nice 3D touch :-)
@@ -159,28 +161,28 @@ QueueDialog::QueueDialog() : KDialog(0, Qt::FramelessWindowHint), _autoHide(true
 
     grid_main->addWidget(titleWg, 0, 0);
 
-    QWidget *toolWg = new QWidget(this);
+    QWidget *toolWg = new QWidget(mainWidget());
     QHBoxLayout * hbox2 = new QHBoxLayout(toolWg);
     hbox2->setSpacing(0);
 
-    _newTabButton = new QToolButton(this);
+    _newTabButton = new QToolButton(mainWidget());
     _newTabButton->setIcon(KIcon("tab-new"));
     _newTabButton->setToolTip(i18n("Create a new queue (Ctrl+T)"));
     connect(_newTabButton, SIGNAL(clicked()), this, SLOT(slotNewTab()));
     hbox2->addWidget(_newTabButton);
 
-    _closeTabButton = new QToolButton(this);
+    _closeTabButton = new QToolButton(mainWidget());
     _closeTabButton->setIcon(KIcon("tab-close"));
     _closeTabButton->setToolTip(i18n("Remove the current queue (Ctrl+W)"));
     connect(_closeTabButton, SIGNAL(clicked()), this, SLOT(slotDeleteCurrentTab()));
     hbox2->addWidget(_closeTabButton);
 
-    _pauseButton = new QToolButton(this);
+    _pauseButton = new QToolButton(mainWidget());
     _pauseButton->setIcon(KIcon("media-playback-pause"));
     connect(_pauseButton, SIGNAL(clicked()), this, SLOT(slotPauseClicked()));
     hbox2->addWidget(_pauseButton);
 
-    _progressBar = new QProgressBar(this);
+    _progressBar = new QProgressBar(mainWidget());
     _progressBar->setMinimum(0);
     _progressBar->setMaximum(100);
     _progressBar->setValue(0);
@@ -188,7 +190,7 @@ QueueDialog::QueueDialog() : KDialog(0, Qt::FramelessWindowHint), _autoHide(true
     _progressBar->setTextVisible(true);
     hbox2->addWidget(_progressBar);
 
-    _scheduleButton = new QToolButton(this);
+    _scheduleButton = new QToolButton(mainWidget());
     _scheduleButton->setIcon(KIcon("chronometer"));
     _scheduleButton->setToolTip(i18n("Schedule queue starting (Ctrl+S)"));
     connect(_scheduleButton, SIGNAL(clicked()), this, SLOT(slotScheduleClicked()));
@@ -196,11 +198,11 @@ QueueDialog::QueueDialog() : KDialog(0, Qt::FramelessWindowHint), _autoHide(true
 
     grid_main->addWidget(toolWg, 1, 0);
 
-    _queueWidget = new QueueWidget(this);
+    _queueWidget = new QueueWidget(mainWidget());
     connect(_queueWidget, SIGNAL(currentChanged()), this, SLOT(slotUpdateToolbar()));
     grid_main->addWidget(_queueWidget, 2, 0);
 
-    _statusLabel = new QLabel(this);
+    _statusLabel = new QLabel(mainWidget());
     QSizePolicy statuspolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
     statuspolicy.setHeightForWidth(_statusLabel->sizePolicy().hasHeightForWidth());
     _statusLabel->setSizePolicy(statuspolicy);
@@ -208,7 +210,7 @@ QueueDialog::QueueDialog() : KDialog(0, Qt::FramelessWindowHint), _autoHide(true
     _statusLabel->setFrameShadow(QLabel::Sunken);
     grid_main->addWidget(_statusLabel, 3, 0);
 
-    setLayout(grid_main);
+    mainWidget()->setLayout(grid_main);
 
     KConfigGroup group(krConfig, "QueueManager");
     int sizeX = group.readEntry("Window Width",  -1);
@@ -295,9 +297,8 @@ void QueueDialog::mouseMoveEvent(QMouseEvent *me)
 
 void QueueDialog::accept()
 {
-    _autoHide = true;
-    saveSettings();
-    KDialog::accept();
+    // should never be called
+    Q_ASSERT(false);
 }
 
 void QueueDialog::reject()
@@ -345,6 +346,17 @@ void QueueDialog::slotUpdateToolbar()
         _closeTabButton->setEnabled(_queueWidget->count() > 1);
 
         slotPercentChanged(currentQueue, currentQueue->getPercent());
+    }
+}
+
+void QueueDialog::slotButtonClicked(int button)
+{
+    switch (button) {
+    case Close:
+        reject();
+        break;
+    default:
+        KDialog::slotButtonClicked(button);
     }
 }
 
@@ -482,6 +494,10 @@ void QueueDialog::keyPressEvent(QKeyEvent *ke)
         }
     }
     break;
+    // eat these events - otherwise QDialog::keyPressEvent() triggers the close button
+    case Qt::Key_Enter:
+    case Qt::Key_Return:
+        return;
     }
     KDialog::keyPressEvent(ke);
 }

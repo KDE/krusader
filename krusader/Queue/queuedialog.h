@@ -58,6 +58,7 @@ protected:
     virtual void mousePressEvent(QMouseEvent *me);
     virtual void mouseMoveEvent(QMouseEvent *me);
     virtual void keyPressEvent(QKeyEvent *ke);
+    virtual void slotButtonClicked(int button);
 
     void         saveSettings();
 
