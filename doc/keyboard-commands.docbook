@@ -644,17 +644,6 @@
               </para>
             </entry>
           </row>
-		            <row>
-            <entry>
-              <para>
-                <keycombo action="simul">&Alt;&Shift;
-                <keycap>Y</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para><link linkend="synchronizer">Synchronize Directory changes</link>.</para>
-            </entry>
-          </row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -893,7 +882,7 @@
               </para>
             </entry>
             <entry>
-              <para><link linkend="synchronizer">Synchronize Directories</link>.</para>
+              <para><link linkend="synchronizer">Synchronize Directories</link>  (this feature is disabled at the compilation time by default).</para>
             </entry>
           </row>
           <row>
@@ -1778,6 +1767,11 @@
     <para id="synchronizer_keybindings">
       <emphasis role="bold">Synchronizer</emphasis>
     </para>
+    <note>
+      <para>
+	 This feature is disabled at the compilation time by default. See <link linkend="synchronizer">the corresponding chapter of this manual</link> for the instructions on how to enable it.
+      </para>
+    </note>
     <para><link linkend="synchronizer">Synchronizer</link> keybindings.</para>
     <informaltable>
       <tgroup cols="2">

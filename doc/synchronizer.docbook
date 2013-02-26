@@ -5,7 +5,12 @@
   </indexterm>
   
 <sect2 id="synchronizer_introduction">
-  <title>Introduction</title>    
+  <title>Introduction</title>
+    <important>
+      <para>
+	This feature is disabled at the compilation time by default. Use <userinput>-DENABLE_SYNCHRONIZER=true</userinput> compilation switch to <application>cmake</application> to enable it, then <link linkend="kde4_lin_install">recompile and install &krusader;</link>.
+      </para>
+    </important>
   <para>This function compares two directories with all subdirectories and shows the differences between them.
   After selecting some options and the 
   <guilabel>Compare</guilabel> function you can synchronize the
