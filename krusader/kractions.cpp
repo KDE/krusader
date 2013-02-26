@@ -74,7 +74,9 @@ KAction *KrActions::actSplit = 0;
 KAction *KrActions::actCombine = 0;
 KAction *KrActions::actUserMenu = 0;
 KAction *KrActions::actManageUseractions = 0;
+#ifdef ENABLE_SYNCHRONIZER
 KAction *KrActions::actSyncDirs = 0;
+#endif
 KAction *KrActions::actF10 = 0;
 KAction *KrActions::actEmptyTrash = 0;
 KAction *KrActions::actTrashBin = 0;
@@ -251,7 +253,9 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     NEW_KACTION(actFind, i18n("&Search..."), "system-search", Qt::CTRL + Qt::Key_S, SLOTS, SLOT(search()), "find");
     NEW_KACTION(actLocate, i18n("&Locate..."), "edit-find", Qt::SHIFT + Qt::CTRL + Qt::Key_L, SLOTS, SLOT(locate()), "locate");
+#ifdef ENABLE_SYNCHRONIZER
     NEW_KACTION(actSyncDirs, i18n("Synchronize &Directories..."), "folder-sync", Qt::CTRL + Qt::Key_Y, SLOTS, SLOT(slotSynchronizeDirs()), "sync dirs");
+#endif
     NEW_KACTION(actDiskUsage, i18n("D&isk Usage..."), "kr_diskusage", Qt::ALT + Qt::SHIFT + Qt::Key_S, SLOTS, SLOT(slotDiskUsage()), "disk usage");
     NEW_KACTION(actQueueManager, i18n("&Queue Manager..."), "document-multiple", Qt::ALT + Qt::SHIFT + Qt::Key_Q, SLOTS, SLOT(slotQueueManager()), "queue manager");
     NEW_KACTION(actKonfigurator, i18n("Configure &Krusader..."), "configure", 0, SLOTS, SLOT(startKonfigurator()), "konfigurator");

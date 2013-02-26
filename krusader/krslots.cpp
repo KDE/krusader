@@ -86,7 +86,6 @@
 #include "UserMenu/usermenu.h"
 #include "Panel/panelpopup.h"
 #include "Dialogs/krspecialwidgets.h"
-#include "Synchronizer/synchronizergui.h"
 #include "DiskUsage/diskusagegui.h"
 #include "krservices.h"
 #include "Panel/krviewitem.h"
@@ -94,6 +93,10 @@
 #include "krtrashhandler.h"
 #include "BookMan/krbookmarkhandler.h"
 #include "BookMan/krbookmarkbutton.h"
+
+#ifdef ENABLE_SYNCHRONIZER
+    #include "Synchronizer/synchronizergui.h"
+#endif
 
 
 #define ACTIVE_VIEW _mainWindow->activeView()
@@ -686,11 +689,13 @@ void KRslots::manageUseractions()
     ActionMan actionMan(MAIN_VIEW);
 }
 
+#ifdef ENABLE_SYNCHRONIZER
 void KRslots::slotSynchronizeDirs(QStringList selected)
 {
     new SynchronizerGUI(0, LEFT_PANEL->func->files()->vfs_getOrigin(),
                         RIGHT_PANEL->func->files()->vfs_getOrigin(), selected);
 }
+#endif
 
 void KRslots::compareSetup()
 {

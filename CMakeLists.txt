@@ -15,6 +15,10 @@ add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 
 add_definitions( "-DKRARC_ENABLED" )
 
+if(ENABLE_SYNCHRONIZER)
+    add_definitions( "-DENABLE_SYNCHRONIZER" )
+endif(ENABLE_SYNCHRONIZER)
+
 find_package(ACL)
 if(ACL_FOUND)
     add_definitions(-DHAVE_POSIX_ACL)

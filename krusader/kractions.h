@@ -54,7 +54,10 @@ public:
     static KAction *actKonfigurator, *actToolsSetup, *actFind, *actRemoteEncoding;
     static KAction *actSelectColorMask, *actMultiRename, *actOpenLeftBm, *actOpenRightBm;
     static KAction *actSplit, *actQueueManager;
-    static KAction *actCombine, *actUserMenu, *actManageUseractions, *actSyncDirs;
+    static KAction *actCombine, *actUserMenu, *actManageUseractions;
+#ifdef ENABLE_SYNCHRONIZER
+    static KAction *actSyncDirs;
+#endif
     static KAction *actVerticalMode;
     static KAction *actEmptyTrash, *actTrashBin;
     static KAction *actPopularUrls;
