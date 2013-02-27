@@ -1,6 +1,8 @@
     CHANGED: disabled build of synchronizer by default, since it is unmaintained -
              build togglable with cmake variable -DENABLE_SYNCHRONIZER=true|false
 
+    FIXED: [ 304233 ] empty main view on startup
+    FIXED: main view splitter sizes are not restored
     FIXED: [ 248691 ] incorrect layout / wrong buttons in queue manager
     FIXED: [ 315357 ] krarc silently fails to display contents of some zip files
            zip files containing paths with "." as a path component are still not handled,

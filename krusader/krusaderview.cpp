@@ -103,21 +103,29 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
     mainLayout->activate();
 
     // get the last saved sizes of the splitter
-    KConfigGroup group(krConfig, "Private");
-    QList<int> lst = group.readEntry("Splitter Sizes", QList<int>());
-    if (lst.count() == 0) {
+
+    QList<int> lst = cfg.readEntry("Splitter Sizes", QList<int>());
+    if (lst.count() != 2) {
+        lst.clear();
         lst.push_back(100);
         lst.push_back(100);
-    } else if (lst.count() == 2 && lst[ 0 ] == 0 && lst[ 1 ] == 0) {
+    } else if (lst[0] < 1 && lst[1] < 1) {
         lst[ 0 ] = 100;
         lst[ 1 ] = 100;
     }
 
     horiz_splitter->setSizes(lst);
 
-    verticalSplitterSizes = group.readEntry("Terminal Emulator Splitter Sizes", QList<int> ());
-    if (verticalSplitterSizes.count() == 2 && verticalSplitterSizes[ 0 ] == 0 && verticalSplitterSizes[ 1 ] == 0)
+    verticalSplitterSizes = cfg.readEntry("Terminal Emulator Splitter Sizes", QList<int> ());
+
+    if (verticalSplitterSizes.count() != 2) {
         verticalSplitterSizes.clear();
+        verticalSplitterSizes << 100 << 100;
+    }  else if (verticalSplitterSizes[0] < 1 && verticalSplitterSizes[1] < 1) {
+        verticalSplitterSizes[0] = 100;
+        verticalSplitterSizes[1] = 100;
+    }
+
 
     KUrl leftUrl(QDir::homePath()), rightUrl(QDir::homePath());
     if(leftTabs.count())
@@ -175,7 +183,6 @@ void KrusaderView::updateGUI(KConfigGroup &cfg)
     }
     if (cfg.readEntry("Show Terminal Emulator", _ShowTerminalEmulator)) {
         slotTerminalEmulator(true);   // create konsole_part
-        vert_splitter->setSizes(verticalSplitterSizes);
     };
 }
 
@@ -357,7 +364,7 @@ void KrusaderView::slotTerminalEmulator(bool show)
     _terminalDock->initialise();
     if (_terminalDock->isInitialised()) {        // if we succeeded in creating the konsole
         if (!verticalSplitterSizes.empty())
-            vert_splitter->setSizes(verticalSplitterSizes);
+            vert_splitter->setSizes(getTerminalEmulatorSplitterSizes());
 
         _terminalDock->show();
         slotPathChanged(ACTIVE_PANEL->gui);
