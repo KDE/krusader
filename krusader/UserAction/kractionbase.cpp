@@ -33,7 +33,7 @@ KrActionBase::~KrActionBase()
 
 void KrActionBase::exec()
 {
-    KrActionProc *proc;
+    KrActionProc *proc = 0;
 
     // replace %% and prepare string
     QStringList commandList;
