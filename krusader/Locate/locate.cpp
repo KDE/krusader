@@ -43,7 +43,9 @@
 #include "../KViewer/krviewer.h"
 #include "../panelmanager.h"
 #include "../kicons.h"
+
 #include <klocale.h>
+#include <kshell.h>
 #include <kprocess.h>
 #include <kfileitem.h>
 #include <QtGui/QLabel>
@@ -243,7 +245,7 @@ void LocateDlg::slotUser2()   /* The Update DB button */
 
         updateProcess = new KProcess(); // don't set the parent to 'this'! That would cause this process to be deleted once the dialog is closed
         *updateProcess << KrServices::fullPathName("updatedb");
-        *updateProcess << KrServices::separateArgs(group.readEntry("UpdateDB Arguments"));
+        *updateProcess << KShell::splitArgs(group.readEntry("UpdateDB Arguments"));
 
         connect(updateProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(updateFinished()));
         updateProcess->start();
