@@ -262,7 +262,14 @@ void KrActionProc::start(QStringList cmdLineList)
         if (_action->execType() == KrAction::Normal || _action->execType() == KrAction::Terminal) { // not collect output
             if (_action->execType() == KrAction::Terminal) { // run in terminal
                 KConfigGroup group(krConfig, "UserActions");
-                QStringList termArgs = KrServices::separateArgs(group.readEntry("Terminal", _UserActions_Terminal));
+                QString term = group.readEntry("Terminal", _UserActions_Terminal);
+                QStringList termArgs = KShell::splitArgs(term, KShell::TildeExpand);
+                if (termArgs.isEmpty()) {
+                    KMessageBox::error(0, i18nc("Arg is a string containing the bad quoting.",
+                                                "Bad quoting in terminal command:\n%1", term));
+                    deleteLater();
+                    return;
+                }
                 for (int i = 0; i != termArgs.size(); i++) {
                     if (termArgs[i] == "%t")
                         termArgs[i] = cmdLineList.join(" ; ");

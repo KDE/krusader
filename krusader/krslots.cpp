@@ -44,6 +44,7 @@
 #include <KMessageBox>
 #include <KEditToolBar>
 #include <KCmdLineArgs>
+#include <kshell.h>
 
 #ifdef __KJSEMBED__
 #include <kjsembed/jsconsolewidget.h>
@@ -405,7 +406,13 @@ void KRslots::runTerminal(const QString & dir, const QStringList & args)
     proc.setWorkingDirectory(dir);
     KConfigGroup group(krConfig, "General");
     QString term = group.readEntry("Terminal", _Terminal);
-    QStringList sepdArgs = KrServices::separateArgs(term);
+    QStringList sepdArgs = KShell::splitArgs(term, KShell::TildeExpand);
+    if (sepdArgs.isEmpty()) {
+        KMessageBox::error(krMainWindow,
+                           i18nc("Arg is a string containing the bad quoting.",
+                                 "Bad quoting in terminal command:\n%1", term));
+        return;
+    }
     for (int i = 0; i != sepdArgs.size(); i++)
         if (sepdArgs[ i ] == "%d")
             sepdArgs[ i ] = dir;
