@@ -80,45 +80,6 @@ QString KrServices::chooseFullPathName(QStringList names, QString confName)
     return "";
 }
 
-// TODO: Document me!
-QStringList KrServices::separateArgs(QString args)
-{
-    QStringList argList;
-    int   pointer = 0, len = args.length();
-    bool  quoted = false;
-    QChar quoteCh;
-
-    do {
-        while (pointer < len && args[ pointer ].isSpace())
-            pointer++;
-
-        if (pointer >= len)
-            break;
-
-        QString result = "";
-
-        for (; pointer < len && (quoted || !args[ pointer ].isSpace()) ; pointer++) {
-            if (!quoted && (args[pointer] == '"' || args[pointer] == '\'')) {
-                quoted = true, quoteCh = args[pointer];
-                continue;
-            } else if (quoted && args[pointer] == quoteCh) {
-                quoted = false;
-                continue;
-            } else if (!quoted && args[pointer] == '\\') {
-                pointer++;
-                if (pointer >= len) break;
-            }
-
-            result += args[pointer];
-        }
-
-        argList.append(result);
-
-    } while (pointer < len);
-
-    return argList;
-}
-
 QString KrServices::registerdProtocol(QString mimetype)
 {
     if (slaveMap == 0) {
