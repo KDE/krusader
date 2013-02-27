@@ -43,6 +43,7 @@
 #include <kfileitem.h>
 #include <ktoolbar.h>
 #include <kstandardaction.h>
+#include <kshell.h>
 
 #include "../krglobal.h"
 #include "../defaults.h"
@@ -288,18 +289,25 @@ void KrViewer::edit(KUrl url, QWidget * parent)
 void KrViewer::edit(KUrl url, Mode mode, int new_window, QWidget * parent)
 {
     KConfigGroup group(krConfig, "General");
-    QString edit = group.readEntry("Editor", _Editor);
+    QString editor = group.readEntry("Editor", _Editor);
 
     if (new_window == -1)
         new_window = group.readEntry("View In Separate Window", _ViewInSeparateWindow);
 
-    if (edit != "internal editor") {
+    if (editor != "internal editor" && !editor.isEmpty()) {
         KProcess proc;
+        QStringList cmdArgs = KShell::splitArgs(editor, KShell::TildeExpand);
+        if (cmdArgs.isEmpty()) {
+            KMessageBox::error(krMainWindow,
+                               i18nc("Arg is a string containing the bad quoting.",
+                                     "Bad quoting in editor command:\n%1", editor));
+            return;
+        }
         // if the file is local, pass a normal path and not a url. this solves
         // the problem for editors that aren't url-aware
-        proc << edit.split(' ') << url.pathOrUrl();
+        proc << cmdArgs << url.pathOrUrl();
         if (!proc.startDetached())
-            KMessageBox::sorry(krMainWindow, i18n("Can not open \"%1\"", edit));
+            KMessageBox::sorry(krMainWindow, i18n("Can not open \"%1\"", editor));
         return ;
     }
 
