@@ -108,10 +108,10 @@ void DirHistoryQueue::add(KUrl url, QString currentItem)
     _state++;
 }
 
-void DirHistoryQueue::pushBack(KUrl url, QString currentItem)
+void DirHistoryQueue::pushBackRoot()
 {
-    _urlQueue.push_back(KUrl("/"));
-    _currentItems.push_back(currentItem);
+    _urlQueue.push_back(QUrl::fromLocalFile(ROOT_DIR));
+    _currentItems.push_back(QString());
 }
 
 bool DirHistoryQueue::gotoPos(int pos)

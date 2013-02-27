@@ -335,7 +335,7 @@ void ListPanelFunc::doRefresh()
         if(!history->goBack()) {
             // put the root dir to the beginning of history, if it's not there yet
             if (!u.equals(KUrl(ROOT_DIR), KUrl::CompareWithoutTrailingSlash))
-                history->pushBack(KUrl(ROOT_DIR), QString());
+                history->pushBackRoot();
             else
                 break;
         }
