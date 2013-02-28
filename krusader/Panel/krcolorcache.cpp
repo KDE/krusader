@@ -653,6 +653,8 @@ KrColorCache * KrColorCache::m_instance = 0;
 KrColorCache::KrColorCache()
 {
     m_impl = new KrColorCacheImpl;
+
+    connect(KGlobalSettings::self(), SIGNAL(kdisplayPaletteChanged()), SLOT(refreshColors()));
 }
 
 KrColorCache::~KrColorCache()

@@ -1,6 +1,7 @@
     CHANGED: disabled build of synchronizer by default, since it is unmaintained -
              build togglable with cmake variable -DENABLE_SYNCHRONIZER=true|false
 
+    FIXED: [ 294816 ] Krusader needs to restart to apply new color scheme to panel
     FIXED: [ 308727 ] external editor command isn't properly parsed 
     FIXED: [ 304233 ] empty main view on startup
     FIXED: [ 315856 ] main view splitter sizes are not restored
