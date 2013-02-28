@@ -1523,11 +1523,16 @@
         <question id="faqg_win">
           <para>Is there a &Windows; port?</para>
         </question>
-        <answer>
-          <para>Yes, there is a <link linkend="kde4_win_install">&Windows; port</link> since 18 June 2008.
-          Before &krusader; can be used several &Qt;4-libraries and &kde;4-libraries need to be installed.
-          A recommended native file manager for &Windows; is 
+	<answer>
+	  <!-- the port is unavailable now
+           <para>Yes, there is a <link linkend="kde4_win_install">&Windows; port</link> since 18 June 2008.
+	    Before &krusader; can be used several &Qt;4-libraries and &kde;4-libraries need to be installed.-->
+	  <para>No, there was a port but it is unmaintained and unavailable now. A recommended native file manager for &Windows; is 
 	  <ulink url="http://www.ghisler.com/"><trademark class="copyright">Total Commander</trademark></ulink> (shareware).</para>
+	  <para>If you want to help with porting please join <ulink url="http://windows.kde.org/">The KDE on Windows Initiative</ulink>.
+	  Some useful tips on porting can be found in the
+	  <ulink url="https://projects.kde.org/projects/extragear/utils/krusader/repository/revisions/master/entry/INSTALL"><filename>INSTALL</filename></ulink> 
+	  file of the &krusader; sources, it contains all latest compilation instructions.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
