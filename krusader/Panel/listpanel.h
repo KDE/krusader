@@ -122,7 +122,7 @@ public:
 
     void getFocusCandidates(QVector<QWidget*> &widgets);
 
-    void saveSettings(KConfigGroup cfg, bool localOnly, bool saveHistory = false);
+    void saveSettings(KConfigGroup cfg, bool saveHistory);
     void restoreSettings(KConfigGroup cfg);
 
 public slots:

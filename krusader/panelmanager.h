@@ -54,7 +54,7 @@ public:
      */
     PanelManager(QWidget *parent, FileManagerWindow* mainWindow, bool left);
 
-    void saveSettings(KConfigGroup config, bool localOnly = true, bool saveHistory = false);
+    void saveSettings(KConfigGroup config, bool saveHistory);
     void loadSettings(KConfigGroup config);
     int findTab(KUrl url);
     int tabCount() {

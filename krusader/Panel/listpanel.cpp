@@ -1225,7 +1225,7 @@ void ListPanel::editLocation()
     origin->edit();
 }
 
-void ListPanel::saveSettings(KConfigGroup cfg, bool localOnly, bool saveHistory)
+void ListPanel::saveSettings(KConfigGroup cfg, bool saveHistory)
 {
     KUrl url = virtualPath();
     url.setPass(QString()); // make sure no password is saved

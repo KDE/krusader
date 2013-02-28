@@ -480,9 +480,8 @@ void KrusaderView::saveSettings(KConfigGroup &cfg)
         cfg.writeEntry("Terminal Emulator Splitter Sizes", getTerminalEmulatorSplitterSizes());
     cfg.writeEntry("Vertical Mode", isVertical());
     cfg.writeEntry("Left Side Is Active", ACTIVE_PANEL->gui->isLeft());
-    bool localOnly = true; //FIXME make configurable
-    leftMng->saveSettings(KConfigGroup(&cfg, "Left Tab Bar"), localOnly, true);
-    rightMng->saveSettings(KConfigGroup(&cfg, "Right Tab Bar"), localOnly, true);
+    leftMng->saveSettings(KConfigGroup(&cfg, "Left Tab Bar"), true);
+    rightMng->saveSettings(KConfigGroup(&cfg, "Right Tab Bar"), true);
 }
 
 bool KrusaderView::cursorIsOnOtherSide(PanelManager *of, const QPoint &globalPos)
