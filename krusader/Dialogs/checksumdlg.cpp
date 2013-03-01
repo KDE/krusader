@@ -347,7 +347,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
         return;
     }
 
-    ChecksumResultsDlg dlg(stdOut, stdErr, suggestedFilename, mytool->binary, cs_typeToText[mytool->type], mytool->standardFormat);
+    ChecksumResultsDlg dlg(stdOut, stdErr, suggestedFilename, mytool->standardFormat);
     delete tmpOut; // this also unlinks the files
     delete tmpErr;
 }
@@ -548,7 +548,7 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
 // ------------- ChecksumResultsDlg
 
 ChecksumResultsDlg::ChecksumResultsDlg(const QStringList &stdOut, const QStringList &stdErr,
-                                       const QString& suggestedFilename, const QString& binary, const QString& /* type */, bool standardFormat):
+                                       const QString& suggestedFilename, bool standardFormat):
         KDialog(krApp), _onePerFile(0), _checksumFileSelector(0), _data(stdOut), _suggestedFilename(suggestedFilename)
 {
     // md5 tools display errors into stderr, so we'll use that to determine the result of the job

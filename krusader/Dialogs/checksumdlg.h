@@ -57,11 +57,9 @@ private:
 
 class ChecksumResultsDlg: public KDialog
 {
-    //FIXME remove binary param
 public:
     ChecksumResultsDlg(const QStringList &stdOut, const QStringList &stdErr,
-                       const QString& suggestedFilename, const QString& binary, const QString& type,
-                       bool standardFormat);
+                       const QString& suggestedFilename, bool standardFormat);
 
 public slots:
     virtual void accept();
