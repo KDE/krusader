@@ -577,11 +577,12 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList &stdOut, const QStringL
     QHBoxLayout *hlayout = new QHBoxLayout;
     hlayout->setSpacing(KDialog::spacingHint());
     QLabel p(widget);
-    p.setPixmap(krLoader->loadIcon(errors ? "dialog-error" : "dialog-information", KIconLoader::Desktop, 32));
+    p.setPixmap(krLoader->loadIcon(errors || !successes  ?
+                "dialog-error" : "dialog-information", KIconLoader::Desktop, 32));
     hlayout->addWidget(&p);
 
-    QLabel *l1 = new QLabel((errors ? i18n("Errors were detected while creating the checksums") :
-                             i18n("Checksums were created successfully")), widget);
+    QLabel *l1 = new QLabel((errors || !successes ? i18n("Errors were detected while creating the checksums") :
+                                                    i18n("Checksums were created successfully")), widget);
     hlayout->addWidget(l1);
     layout->addLayout(hlayout, row, 0, 1, 2, Qt::AlignLeft);
     ++row;
