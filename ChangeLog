@@ -1,6 +1,7 @@
     CHANGED: disabled build of synchronizer by default, since it is unmaintained -
              build togglable with cmake variable -DENABLE_SYNCHRONIZER=true|false
 
+    FIXED: [ 238672 ] When saving checksums fails, they are lost. No 2nd chance to save elsewhere. 
     FIXED: [ 315764 ] "application/x-source-rpm" isn't linked to krarc protocol by default
     FIXED: [ 294816 ] Krusader needs to restart to apply new color scheme to panel
     FIXED: [ 308727 ] external editor command isn't properly parsed 

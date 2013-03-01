@@ -24,6 +24,9 @@
 #include <kdialog.h>
 
 class KTemporaryFile;
+class KUrlRequester;
+class QCheckBox;
+
 extern void initChecksumModule();
 
 class CreateChecksumDlg: public KDialog
@@ -54,17 +57,24 @@ private:
 
 class ChecksumResultsDlg: public KDialog
 {
+    //FIXME remove binary param
 public:
-    ChecksumResultsDlg(const QStringList& stdOut, const QStringList& stdErr,
+    ChecksumResultsDlg(const QStringList &stdOut, const QStringList &stdErr,
                        const QString& suggestedFilename, const QString& binary, const QString& type,
                        bool standardFormat);
 
+public slots:
+    virtual void accept();
+
 protected:
     bool saveChecksum(const QStringList& data, QString filename);
-    void savePerFile(const QStringList& data, const QString& type);
+    bool savePerFile();
 
 private:
-    QString _binary;
+    QCheckBox *_onePerFile;
+    KUrlRequester *_checksumFileSelector;
+    QStringList _data;
+    QString _suggestedFilename;
 };
 
 
