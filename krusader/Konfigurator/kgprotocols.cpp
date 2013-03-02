@@ -45,7 +45,6 @@ QString KgProtocols::defaultIsoMimes   = "application/x-iso,application/x-cd-ima
 QString KgProtocols::defaultKrarcMimes = "application/x-7z,application/x-7z-compressed,"
         "application/x-ace,application/x-ace-compressed,"
         "application/x-arj,application/x-arj-compressed,"
-        "application/x-bzip2,"
         "application/x-cpio,application/x-deb,"
         "application/x-debian-package,"
         "application/x-gzip,application/x-jar,"
