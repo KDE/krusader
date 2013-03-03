@@ -91,7 +91,6 @@ void KrPreviewJob::slotGotPreview(const KFileItem & item, const QPixmap & previe
     ASSERT(vi);
 
     _scheduled.removeOne(vi);
-    _hash.remove(item);
 
     const vfile *file = vi->getVfile();
     _parent->addPreview(file, preview);
