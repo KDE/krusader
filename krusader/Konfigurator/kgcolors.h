@@ -83,6 +83,11 @@ private:
     int                                 offset;
     int                                 endOfActiveColors;
     int                                 endOfPanelColors;
+    int                                 activeTabIdx, inactiveTabIdx;
+#ifdef ENABLE_SYNCHRONIZER
+    int                                 synchronizerTabIdx;
+#endif
+    int                                 otherTabIdx;
 
     QGroupBox                          *previewGrp;
     QGridLayout                        *previewGrid;

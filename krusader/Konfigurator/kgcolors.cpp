@@ -42,8 +42,14 @@
 #include <QLabel>
 #include <QGridLayout>
 
+
 KgColors::KgColors(bool first, QWidget* parent) :
-        KonfiguratorPage(first, parent), offset(0)
+        KonfiguratorPage(first, parent), offset(0),
+        activeTabIdx(-1), inactiveTabIdx(-1),
+#ifdef ENABLE_SYNCHRONIZER
+        synchronizerTabIdx(-1),
+#endif
+        otherTabIdx(-1)
 {
     QWidget *innerWidget = new QFrame(this);
     setWidget(innerWidget);
@@ -90,7 +96,7 @@ KgColors::KgColors(bool first, QWidget* parent) :
     colorTabWidget = new QTabWidget(colorsFrameGrp);
 
     colorsGrp = new QWidget(colorTabWidget);
-    colorTabWidget->addTab(colorsGrp, i18n("Active"));
+    activeTabIdx = colorTabWidget->addTab(colorsGrp, i18n("Active"));
 
     colorsGrid = new QGridLayout(colorsGrp);
     colorsGrid->setSpacing(0);
@@ -123,7 +129,7 @@ KgColors::KgColors(bool first, QWidget* parent) :
     connect(getColorSelector("Marked Background"), SIGNAL(colorChanged()), this, SLOT(slotMarkedBackgroundChanged()));
 
     inactiveColorStack = new QStackedWidget(colorTabWidget);
-    colorTabWidget->addTab(inactiveColorStack, i18n("Inactive"));
+    inactiveTabIdx = colorTabWidget->addTab(inactiveColorStack, i18n("Inactive"));
 
     colorsGrp = normalInactiveWidget = new QWidget(inactiveColorStack);
 
@@ -184,15 +190,16 @@ KgColors::KgColors(bool first, QWidget* parent) :
 
     inactiveColorStack->setCurrentWidget(normalInactiveWidget);
 
+    ADDITIONAL_COLOR KDEDefaultBase = { i18n("KDE default"), KColorScheme(QPalette::Active, KColorScheme::View).background().color(), "KDE default" };
+    ADDITIONAL_COLOR KDEDefaultFore = { i18n("KDE default"), KColorScheme(QPalette::Active, KColorScheme::View).foreground().color(), "KDE default" };
+
+#ifdef ENABLE_SYNCHRONIZER
     colorsGrp = new QWidget(colorTabWidget);
-    colorTabWidget->addTab(colorsGrp, i18n("Synchronizer"));
+    synchronizerTabIdx = colorTabWidget->addTab(colorsGrp, i18n("Synchronizer"));
 
     colorsGrid = new QGridLayout(colorsGrp);
     colorsGrid->setSpacing(0);
     colorsGrid->setContentsMargins(2, 2, 2, 2);
-
-    ADDITIONAL_COLOR KDEDefaultBase = { i18n("KDE default"), KColorScheme(QPalette::Active, KColorScheme::View).background().color(), "KDE default" };
-    ADDITIONAL_COLOR KDEDefaultFore = { i18n("KDE default"), KColorScheme(QPalette::Active, KColorScheme::View).foreground().color(), "KDE default" };
 
     offset = endOfPanelColors = itemList.count();
 
@@ -208,9 +215,10 @@ KgColors::KgColors(bool first, QWidget* parent) :
     addColorSelector("Synchronizer Delete Background", i18n("Delete background:"), Qt::red, QString(), &KDEDefaultBase, 1);
 
     colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
+#endif
 
     colorsGrp = new QWidget(colorTabWidget);
-    colorTabWidget->addTab(colorsGrp, i18n("Other"));
+    otherTabIdx = colorTabWidget->addTab(colorsGrp, i18n("Other"));
 
     colorsGrid = new QGridLayout(colorsGrp);
     colorsGrid->setSpacing(0);
@@ -436,11 +444,11 @@ void KgColors::setColorWithDimming(PreviewItem * item, QColor foreground, QColor
 
 void KgColors::generatePreview()
 {
-    int currentPage = colorTabWidget->currentIndex();
+    const int currentPage = colorTabWidget->currentIndex();
 
     preview->clear();
 
-    if (currentPage == 0 || currentPage == 1) {
+    if (currentPage == activeTabIdx || currentPage == inactiveTabIdx) {
         PreviewItem *pwMarkCur = new PreviewItem(preview, i18n("Selected + Current"));
         PreviewItem *pwMark2   = new PreviewItem(preview, i18n("Selected 2"));
         PreviewItem *pwMark1   = new PreviewItem(preview, i18n("Selected 1"));
@@ -508,7 +516,9 @@ void KgColors::generatePreview()
         pwMark2->setColor(cg.highlightedText(), cg.highlight());
         colCache.getColors(cg, KrColorItemType(KrColorItemType::File, false, isActive, true, true));
         pwMarkCur->setColor(cg.highlightedText(), cg.highlight());
-    } else if (currentPage == 2) {
+    }
+#ifdef ENABLE_SYNCHRONIZER
+    else if (currentPage == synchronizerTabIdx) {
         PreviewItem *pwDelete    = new PreviewItem(preview, i18n("Delete"));
         PreviewItem *pwRightCopy = new PreviewItem(preview, i18n("Copy to right"));
         PreviewItem *pwLeftCopy  = new PreviewItem(preview, i18n("Copy to left"));
@@ -525,7 +535,9 @@ void KgColors::generatePreview()
                               getColorSelector("Synchronizer RightCopy Background")->getColor());
         pwDelete->setColor(getColorSelector("Synchronizer Delete Foreground")->getColor(),
                            getColorSelector("Synchronizer Delete Background")->getColor());
-    } else if (currentPage == 3) {
+    }
+#endif
+    else if (currentPage == otherTabIdx) {
         PreviewItem *pwNonMatch = new PreviewItem(preview, i18n("Quicksearch non-match"));
         PreviewItem *pwMatch    = new PreviewItem(preview, i18n("Quicksearch match"));
         pwMatch->setColor(getColorSelector("Quicksearch Match Foreground")->getColor(),
@@ -620,6 +632,7 @@ void KgColors::serialize(QDataStream & stream)
     serializeItem(stream, "Marked Current Foreground");
     serializeItem(stream, "Marked Foreground");
     serializeItem(stream, "Show Current Item Always");
+#ifdef ENABLE_SYNCHRONIZER
     serializeItem(stream, "Synchronizer Equals Foreground");
     serializeItem(stream, "Synchronizer Equals Background");
     serializeItem(stream, "Synchronizer Differs Foreground");
@@ -630,6 +643,7 @@ void KgColors::serialize(QDataStream & stream)
     serializeItem(stream, "Synchronizer RightCopy Background");
     serializeItem(stream, "Synchronizer Delete Foreground");
     serializeItem(stream, "Synchronizer Delete Background");
+#endif
     serializeItem(stream, "Quicksearch Match Foreground");
     serializeItem(stream, "Quicksearch Match Background");
     serializeItem(stream, "Quicksearch Non-match Foreground");
