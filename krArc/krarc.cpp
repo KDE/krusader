@@ -313,6 +313,10 @@ void kio_krarcProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flag
     }
 
     QString arcDir  = findArcDirectory(url);
+    if (arcDir.isEmpty()) {
+        kDebug() << "ERROR: arcDir is enpty.";
+        abort();
+    }
 
     QString tempFile = arcDir.mid(1) + getPath(url).mid(getPath(url).lastIndexOf(DIR_SEPARATOR) + 1);
     QString tempDir  = arcDir.mid(1);
@@ -681,7 +685,7 @@ void kio_krarcProtocol::stat(const KUrl & url)
 
 void kio_krarcProtocol::copy(const KUrl &url, const KUrl &dest, int, KIO::JobFlags flags)
 {
-    KRDEBUG(getPath(url));
+    kDebug() << "url:" << url << "dest:" << dest;
 
     if (!checkWriteSupport())
         return;
@@ -756,6 +760,11 @@ void kio_krarcProtocol::copy(const KUrl &url, const KUrl &dest, int, KIO::JobFla
             return;
         } while (0);
 
+    if (encrypted)
+        kDebug() << "ERROR:" << url << "is encrypted.";
+    if (!dest.isLocalFile())
+        kDebug() << "ERROR:" << url << "is not a local file.";
+
     error(ERR_UNSUPPORTED_ACTION, unsupportedActionErrorString(mProtocol, CMD_COPY));
 }
 
@@ -806,6 +815,8 @@ void kio_krarcProtocol::listDir(const KUrl& url)
 
 bool kio_krarcProtocol::setArcFile(const KUrl& url)
 {
+    kDebug() << url;
+
     QString path = getPath(url);
     time_t currTime = time(0);
     archiveChanged = true;
@@ -851,6 +862,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url)
             }
         }
         if (!arcFile) {
+            kDebug() << "ERROR:" << path << "does not exist.";
             error(ERR_DOES_NOT_EXIST, path);
             return false; // file not found
         }
@@ -901,7 +913,12 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced)
     // set the archive location
     //if( !setArcFile(getPath(url)) ) return false;
     // no need to rescan the archive if it's not changed
-    if (!archiveChanged && !forced) return true;
+        kDebug() << "achiveChanged:" << archiveChanged << "forced:" << forced;
+    if (!archiveChanged && !forced) {
+        kDebug() << "doing nothing.";
+        return true;
+    }
+
     extArcReady = false;
 
     if (!setArcFile(url))
@@ -1015,11 +1032,14 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced)
     temp.close();
 
     archiveChanged = false;
+    kDebug() << "done.";
     return true;
 }
 
 QString kio_krarcProtocol::findArcDirectory(const KUrl& url)
 {
+    kDebug() << url;
+
     QString path = getPath(url);
     if (path.right(1) == DIR_SEPARATOR) path.truncate(path.length() - 1);
 
