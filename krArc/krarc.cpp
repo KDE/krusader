@@ -313,10 +313,8 @@ void kio_krarcProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flag
     }
 
     QString arcDir  = findArcDirectory(url);
-    if (arcDir.isEmpty()) {
-        kDebug() << "ERROR: arcDir is enpty.";
-        abort();
-    }
+    if (arcDir.isEmpty())
+        kDebug() << "arcDir is enpty.";
 
     QString tempFile = arcDir.mid(1) + getPath(url).mid(getPath(url).lastIndexOf(DIR_SEPARATOR) + 1);
     QString tempDir  = arcDir.mid(1);
