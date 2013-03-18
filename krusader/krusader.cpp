@@ -458,6 +458,9 @@ void Krusader::savePosition() {
 
     cfg = krConfig->group("Startup");
     MAIN_VIEW->saveSettings(cfg);
+
+    saveMainWindowSettings(KConfigGroup(&cfg, "MainWindowSettings"));
+
     krConfig->sync();
 }
 
@@ -690,6 +693,7 @@ void Krusader::updateGUI(bool enforce) {
 
     KConfigGroup cfg(krConfig, "Startup");
     if (enforce) {
+        applyMainWindowSettings(KConfigGroup(&cfg, "MainWindowSettings"));
         // now, hide what need to be hidden
         toolBar()->setVisible(cfg.readEntry("Show tool bar", _ShowToolBar));
         toolBar("actionsToolBar")->setVisible(cfg.readEntry("Show actions tool bar", _ShowActionsToolBar));
