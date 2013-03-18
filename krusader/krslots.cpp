@@ -304,6 +304,7 @@ void KRslots::runKonfigurator(bool firstTime)
     Konfigurator *konfigurator = new Konfigurator(firstTime);
     connect(konfigurator, SIGNAL(configChanged(bool)), SLOT(configChanged(bool)));
 
+    //FIXME - no need to exec
     konfigurator->exec();
 
     delete konfigurator;
