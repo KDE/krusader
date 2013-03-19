@@ -92,151 +92,137 @@
   <bookinfo id="index">
     <title>The &krusader; Handbook</title>
     <authorgroup>
-      <!--
-Changed the <author> tag in favor for <othercredit role="developer"> for Frank since
-the <author><contrib> tag is not shown for the documentation author on the index page
-This is a workaround, I have no idea why the <author> tag does not show the <contrib> tag (= the title)
-on the index page.
-Frank.
--->
-
-<!-- NOTE: DBLATEX does not accept "&amp" to display "&" in the <contrib> tag, so I changed it to "and" -->
-
       <othercredit role="developer">
-        <firstname>Frank</firstname>
-        <surname>Schoolmeesters</surname>
-        <contrib>Documentation and Marketing
-        coordinator</contrib>
-        <affiliation>
-          <address>
-            <email>frank_schoolmeesters@yahoo.com</email>
-          </address>
-        </affiliation>
+	<firstname>Jan</firstname>
+	<surname>Lepper</surname>
+	<contrib>Developer</contrib>
+	<affiliation>
+	  <address>
+	    <email>jan_lepper@gmx.de</email>
+	  </address>
+	</affiliation>
+      </othercredit>
+      <othercredit role="developer">
+	<firstname>Andrey</firstname>
+	<surname>Matveyakin</surname>
+	<contrib>Developer</contrib>
+	<affiliation>
+	  <address>
+	    <email>a.matveyakin@gmail.com</email>
+	  </address>
+	</affiliation>
+      </othercredit>
+      <othercredit role="developer">
+	<firstname>Dirk</firstname>
+	<surname>Eschler</surname>
+	<contrib>Webmaster</contrib>
+	<affiliation>
+	  <address>
+	    <email>deschler@users.sourceforge.net</email>
+	  </address>
+	</affiliation>
       </othercredit>
       <othercredit role="reviewer">
-        <firstname>Richard</firstname>
-        <surname>Holt</surname>
-        <contrib>Documentation and Proofing</contrib>
-        <affiliation>
-          <address>
-            <email>richard.holt@gmail.com</email>
-          </address>
-        </affiliation>
+	<firstname>Yuri</firstname>
+	<surname>Chornoivan</surname>
+	<contrib>Documentation</contrib>
+	<affiliation>
+	  <address>
+	    <email>yurchor@ukr.net</email>
+	  </address>
+	</affiliation>
+      </othercredit>
+      <othercredit role="developer">
+	<firstname>Frank</firstname>
+	<surname>Schoolmeesters</surname>
+	<contrib>Documentation and Marketing coordinator (retired)</contrib>
+	<affiliation>
+	  <address>
+	    <email>frank_schoolmeesters@yahoo.com</email>
+	  </address>
+	</affiliation>
       </othercredit>
       <othercredit role="reviewer">
-        <firstname>Matej</firstname>
-        <surname>
-        Urban&ccaron;i&ccaron;</surname>
-        <contrib>Marketing and Product
-        Research</contrib>
-        <affiliation>
-          <address>
-            <email>matej.urban@gmail.com</email>
-          </address>
-        </affiliation>
-      </othercredit>
-      <othercredit role="developer">
-        <firstname>Shie</firstname>
-        <surname>Erlich</surname>
-        <contrib>Author and initial Handbook author</contrib>
-        <affiliation>
-          <address>
-            <email>erlich@users.sourceforge.net</email>
-          </address>
-        </affiliation>
-      </othercredit>
-      <othercredit role="developer">
-        <firstname>Rafi</firstname>
-        <surname>Yanai</surname>
-        <contrib>Author and initial Handbook author</contrib>
-        <affiliation>
-          <address>
-            <email>yanai@users.sourceforge.net</email>
-          </address>
-        </affiliation>
-      </othercredit>
-      <othercredit role="developer">
-        <firstname>Dirk</firstname>
-        <surname>Eschler</surname>
-        <contrib>Webmaster and i18n
-        coordinator</contrib>
-        <affiliation>
-          <address>
-            <email>deschler@users.sourceforge.net</email>
-          </address>
-        </affiliation>
-      </othercredit>
-      <othercredit role="developer">
-        <firstname>Csaba</firstname>
-        <surname>Karai</surname>
-        <contrib>Developer</contrib>
-        <affiliation>
-          <address>
-            <email>ckarai@users.sourceforge.net</email>
-          </address>
-        </affiliation>
-      </othercredit>
-      <othercredit role="developer">
-        <firstname>Heiner</firstname>
-        <surname>Eichmann</surname>
-        <contrib>Developer</contrib>
-        <affiliation>
-          <address>
-            <email>h.eichmann@gmx.de</email>
-          </address>
-        </affiliation>
-      </othercredit>
-      <othercredit role="developer">
-        <firstname>Jonas</firstname>
-        <surname>B&auml;hr</surname>
-        <contrib>Developer</contrib>
-        <affiliation>
-          <address>
-            <email>jonas.baehr@web.de</email>
-          </address>
-        </affiliation>
-      </othercredit>
-      <othercredit role="developer">
-        <firstname>V&aacute;clav</firstname>
-        <surname>J&uring;za</surname>
-        <contrib>Developer</contrib>
-        <affiliation>
-          <address>
-            <email>vaclavjuza@seznam.cz</email>
-          </address>
-        </affiliation>
-      </othercredit>
-      <othercredit role="developer">
-        <firstname>Jan</firstname>
-        <surname>Lepper</surname>
-        <contrib>Developer</contrib>
-        <affiliation>
-          <address>
-            <email>jan_lepper@gmx.de</email>
-          </address>
-        </affiliation>
-      </othercredit>
-            <othercredit role="developer">
-        <firstname>Andrey</firstname>
-        <surname>Matveyakin</surname>
-        <contrib>Developer</contrib>
-        <affiliation>
-          <address>
-            <email>a.matveyakin@gmail.com</email>
-          </address>
-        </affiliation>
+	<firstname>Richard</firstname>
+	<surname>Holt</surname>
+	<contrib>Documentation and Proofing (retired)</contrib>
+	<affiliation>
+	  <address>
+	    <email>richard.holt@gmail.com</email>
+	  </address>
+	</affiliation>
       </othercredit>
       <othercredit role="reviewer">
-        <firstname>Yuri</firstname>
-        <surname>Chornoivan</surname>
-        <contrib>Documentation</contrib>
-        <affiliation>
-          <address>
-            <email>yurchor@ukr.net</email>
-          </address>
-        </affiliation>
+	<firstname>Matej</firstname>
+	<surname>Urban&ccaron;i&ccaron;</surname>
+	<contrib>Marketing and Product Research (retired)</contrib>
+	<affiliation>
+	  <address>
+	    <email>matej.urban@gmail.com</email>
+	  </address>
+	</affiliation>
       </othercredit>
-    <!-- TRANS:ROLES_OF_TRANSLATORS -->
+      <othercredit role="developer">
+	<firstname>Shie</firstname>
+	<surname>Erlich</surname>
+	<contrib>Author and initial Handbook author (retired)</contrib>
+	<affiliation>
+	  <address>
+	    <email>erlich@users.sourceforge.net</email>
+	  </address>
+	</affiliation>
+      </othercredit>
+      <othercredit role="developer">
+	<firstname>Rafi</firstname>
+	<surname>Yanai</surname>
+	<contrib>Author and initial Handbook author (retired)</contrib>
+	<affiliation>
+	  <address>
+	    <email>yanai@users.sourceforge.net</email>
+	  </address>
+	</affiliation>
+      </othercredit>
+      <othercredit role="developer">
+	<firstname>Csaba</firstname>
+	<surname>Karai</surname>
+	<contrib>Developer (retired)</contrib>
+	<affiliation>
+	  <address>
+	    <email>ckarai@users.sourceforge.net</email>
+	  </address>
+	</affiliation>
+      </othercredit>
+      <othercredit role="developer">
+	<firstname>Heiner</firstname>
+	<surname>Eichmann</surname>
+	<contrib>Developer (retired)</contrib>
+	<affiliation>
+	  <address>
+	    <email>h.eichmann@gmx.de</email>
+	  </address>
+	</affiliation>
+      </othercredit>
+      <othercredit role="developer">
+	<firstname>Jonas</firstname>
+	<surname>B&auml;hr</surname>
+	<contrib>Developer (retired)</contrib>
+	<affiliation>
+	  <address>
+	    <email>jonas.baehr@web.de</email>
+	  </address>
+	</affiliation>
+      </othercredit>
+      <othercredit role="developer">
+	<firstname>V&aacute;clav</firstname>
+	<surname>J&uring;za</surname>
+	<contrib>Developer (retired)</contrib>
+	<affiliation>
+	  <address>
+	    <email>vaclavjuza@seznam.cz</email>
+	  </address>
+	</affiliation>
+      </othercredit>
+      <!-- TRANS:ROLES_OF_TRANSLATORS -->
     </authorgroup>
     <copyright>
       <year>2000</year>
@@ -256,6 +242,7 @@ Frank.
       <year>2010</year>
       <year>2011</year>
       <year>2012</year>
+      <year>2013</year>
       <holder>Krusader Krew</holder>
     </copyright>
     <legalnotice>
@@ -268,8 +255,8 @@ Frank.
       Back-Cover Texts. A copy of the license is included in the
       &krusader; sources.</para>
     </legalnotice>
-    <date>2012-10-20</date>
-    <releaseinfo>2.4.0-beta3 "Single Step"</releaseinfo>
+    <date>2013-03-19</date>
+    <releaseinfo>2.4.0</releaseinfo>
     <abstract>
       <para>&krusader; is an advanced, twin-panel
       (commander-style) file-manager for KDE, and other desktops in
