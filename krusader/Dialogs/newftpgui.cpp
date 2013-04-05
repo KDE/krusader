@@ -45,7 +45,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : KDialog(parent)
 {
     QWidget *widget = new QWidget(this);
 
-    resize(320, 240);
+    resize(400, 240);
     setButtonText(KDialog::Ok, i18n("&Connect"));
     setMainWidget(widget);
     setModal(true);
@@ -73,7 +73,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : KDialog(parent)
     prefix->setSizePolicy(SIZE_MINIMUM);
 
     url = new KHistoryComboBox(widget);
-    url->setMaxCount(25);
+    url->setMaxCount(50);
     url->setMinimumContentsLength(10);
 
     QStringList protocols = KProtocolInfo::protocols();
@@ -92,6 +92,13 @@ newFTPGUI::newFTPGUI(QWidget* parent) : KDialog(parent)
     url->completionObject()->setItems(list);
     list = group.readEntry("newFTP History list", QStringList());
     url->setHistoryItems(list);
+
+    // Select last used protocol
+    QString lastUsedProtocol = group.readEntry("newFTP Protocol", QString());
+    if(!lastUsedProtocol.isEmpty()) {
+        prefix->setCurrentItem(lastUsedProtocol);
+    }
+
 
     port = new QSpinBox(widget);
     port->setMaximum(65535);
@@ -129,10 +136,14 @@ newFTPGUI::newFTPGUI(QWidget* parent) : KDialog(parent)
     connect(url, SIGNAL(activated(const QString &)),
             url, SLOT(addToHistory(const QString &)));
 
+    if(!lastUsedProtocol.isEmpty()) {
+        // update the port field 
+        slotTextChanged(lastUsedProtocol);
+    }
+
     setTabOrder(url, username);
     setTabOrder(username, password);
     setTabOrder(password, prefix);
-    setTabOrder(prefix, url);
 }
 
 /**

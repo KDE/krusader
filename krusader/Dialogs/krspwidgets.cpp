@@ -157,6 +157,8 @@ void newFTPSub::accept()
     group.writeEntry("newFTP Completion list", list);
     list = url->historyItems();
     group.writeEntry("newFTP History list", list);
+    QString protocol = prefix->currentText();
+    group.writeEntry("newFTP Protocol", protocol);
 
     newFTPGUI::accept();
 }
