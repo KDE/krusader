@@ -53,7 +53,7 @@ AbstractThreadedJob::AbstractThreadedJob() : KIO::Job(), _locker(), _waiter(), _
 {
 }
 
-void AbstractThreadedJob::start(AbstractJobThread * jobThread)
+void AbstractThreadedJob::startAbstractJobThread(AbstractJobThread * jobThread)
 {
     _jobThread = jobThread;
     _jobThread->setJob(this);

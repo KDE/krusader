@@ -65,7 +65,7 @@ protected:
 
     virtual ~AbstractThreadedJob();
     virtual bool event(QEvent *);
-    virtual void start(AbstractJobThread*);
+    virtual void startAbstractJobThread(AbstractJobThread*);
     virtual bool doSuspend() {
         return false;
     }
