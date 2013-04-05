@@ -36,7 +36,7 @@
 
 #include <klocale.h>
 #include <kmessagebox.h>
-#include <kio/passworddialog.h>
+#include <KPasswordDialog>
 #include <kstandarddirs.h>
 #include <ktar.h>
 #include <kio/global.h>
@@ -633,11 +633,11 @@ QString KRarcHandler::getPassword(QString path)
 
     bool keep = true;
     QString user = "archive";
-    QPointer<KIO::PasswordDialog> passDlg = new KIO::PasswordDialog(i18n("This archive is encrypted, please supply the password:"),
-            user,
-            true);
+    QPointer<KPasswordDialog> passDlg = new KPasswordDialog(0L, KPasswordDialog::ShowKeepPassword);
+            passDlg->setPrompt(i18n("This archive is encrypted, please supply the password:") ),
+            passDlg->setUsername(user);
     passDlg->setPassword(password);
-    if (passDlg->exec() == KIO::PasswordDialog::Accepted) {
+    if (passDlg->exec() == KPasswordDialog::Accepted) {
         password = passDlg->password();
         if (keep) {
             if (!KWallet::Wallet::isOpen(KWallet::Wallet::NetworkWallet()) && wallet != 0) {
