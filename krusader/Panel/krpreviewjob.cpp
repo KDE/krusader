@@ -117,7 +117,11 @@ void KrPreviewJob::slotStartJob()
         _hash.insert(fi, _scheduled[i]);
     }
 
-    _job = new KIO::PreviewJob(list, size, size, 0, 0, true, true, NULL);
+    QStringList allPlugins = KIO::PreviewJob::availablePlugins();
+    _job = new KIO::PreviewJob(list, QSize(size, size), &allPlugins);
+        _job->setOverlayIconAlpha(0);
+        _job->setOverlayIconSize(0);
+        _job->setScaleType(KIO::PreviewJob::ScaledAndCached);
     connect(_job, SIGNAL(gotPreview(const KFileItem&, const QPixmap&)), SLOT(slotGotPreview(const KFileItem&, const QPixmap&)));
     connect(_job, SIGNAL(failed(const KFileItem&)), SLOT(slotFailed(const KFileItem&)));
     connect(_job, SIGNAL(result(KJob*)), SLOT(slotJobResult(KJob*)));

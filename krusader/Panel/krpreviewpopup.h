@@ -46,6 +46,8 @@ protected:
 
 private:
     class ProxyStyle;
+    static const int MAX_SIZE =400;
+    static const short MARGIN =5;
 };
 
 #endif

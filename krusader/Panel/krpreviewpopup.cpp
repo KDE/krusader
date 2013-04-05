@@ -33,9 +33,6 @@
 
 #include "../KViewer/krviewer.h"
 
-#define MAX_SIZE 400
-#define MARGIN 5
-
 class KrPreviewPopup::ProxyStyle : public QProxyStyle
 {
 public:
@@ -113,7 +110,11 @@ void KrPreviewPopup::showEvent(QShowEvent *event)
     QMenu::showEvent(event);
 
     if (!jobStarted) {
-        KIO::PreviewJob *pjob = new KIO::PreviewJob(files, MAX_SIZE, MAX_SIZE, 0, 1, true, true, 0);
+        QStringList allPlugins = KIO::PreviewJob::availablePlugins();
+        KIO::PreviewJob *pjob = new KIO::PreviewJob(files, QSize(MAX_SIZE, MAX_SIZE), &allPlugins);
+            pjob->setOverlayIconSize(0);
+            pjob->setOverlayIconAlpha(1);
+            pjob->setScaleType(KIO::PreviewJob::ScaledAndCached);
         connect(pjob, SIGNAL(gotPreview(const KFileItem&, const QPixmap&)),
                 this, SLOT(addPreview(const KFileItem&, const QPixmap&)));
         jobStarted = true;
