@@ -28,8 +28,6 @@
 
 #define PROPS static_cast<const KrViewProperties*>(_viewProperties)
 
-static int compareNumbers(QString& aS1, int& aPos1, QString& aS2, int& aPos2);
-
 KrViewItem::KrViewItem(vfile *vf, const KrViewProperties* properties):
         _vf(vf), dummyVfile(false), _viewProperties(properties), _hasExtension(false), _hidden(false), _extension("")
 {
