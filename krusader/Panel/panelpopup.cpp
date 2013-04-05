@@ -166,7 +166,7 @@ void KrFileTreeView::slotCurrentChanged(const QModelIndex &currentIndex, const Q
 {
     const KUrl url = urlForProxyIndex(currentIndex);
     if (url.isValid())
-        emit currentChanged(url);
+        emit changedUrls(url);
 }
 
 void KrFileTreeView::slotExpanded(const QModelIndex &baseIndex)

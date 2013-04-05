@@ -125,7 +125,7 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void activated(const KUrl &url);
-    void currentChanged(const KUrl &url);
+    void changedUrls(const KUrl &url);
 
 private Q_SLOTS:
     void slotActivated(const QModelIndex&);
