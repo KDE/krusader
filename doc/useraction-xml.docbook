@@ -135,7 +135,7 @@
  &lt;action name="backup current" >
   &lt;title>Backup in Current Directory&lt;/title>
   &lt;tooltip>Backup in current directory&lt;/tooltip>
-  &lt;icon>filesaveas&lt;/icon>
+  &lt;icon>document-save-as&lt;/icon>
   &lt;category>System&lt;/category>
   &lt;description same_as="tooltip" />
   &lt;command>%_Copy(&quot;%aCurrent%&quot;, &quot;%_Ask(&quot;new name&quot;, &quot;%aCurrent%.bak&quot;)%&quot;)%&lt;/command>

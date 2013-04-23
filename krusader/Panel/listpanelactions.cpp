@@ -77,7 +77,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actPaste = stdAction(KStandardAction::Paste, _func, SLOT(pasteFromClipboard()));
 
     // Fn keys
-    actF2 = action(i18n("Start Terminal Here"), "terminal", Qt::Key_F2, _func, SLOT(terminal()) , "F2_Terminal");
+    actF2 = action(i18n("Start Terminal Here"), "utilities-terminal", Qt::Key_F2, _func, SLOT(terminal()) , "F2_Terminal");
     actF3 = action(i18n("View File"), 0, Qt::Key_F3, _func, SLOT(view()), "F3_View");
     actF4 = action(i18n("Edit File"), 0, Qt::Key_F4, _func, SLOT(edit()) , "F4_Edit");
     actF5 = action(i18n("Copy to other panel"), 0, Qt::Key_F5, _func, SLOT(copyFiles()) , "F5_Copy");
@@ -94,7 +94,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     action(i18n("Right-click Menu"), 0, Qt::Key_Menu, _gui, SLOT(rightclickMenu()), "rightclick menu");
     actProperties = action(i18n("&Properties..."), 0, Qt::ALT + Qt::Key_Return, _func, SLOT(properties()), "properties");
     actCompDirs = action(i18n("&Compare Directories"), "view_left_right", Qt::ALT + Qt::SHIFT + Qt::Key_C, _gui, SLOT(compareDirs()), "compare dirs");
-    actCalculate = action(i18n("Calculate &Occupied Space"), "kcalc", 0, _func, SLOT(calcSpace()), "calculate");
+    actCalculate = action(i18n("Calculate &Occupied Space"), "accessories-calculator", 0, _func, SLOT(calcSpace()), "calculate");
     actPack = action(i18n("Pac&k..."), "archive-insert", Qt::ALT + Qt::SHIFT + Qt::Key_P, _func, SLOT(pack()), "pack");
     actUnpack = action(i18n("&Unpack..."), "archive-extract", Qt::ALT + Qt::SHIFT + Qt::Key_U, _func, SLOT(unpack()), "unpack");
     actCreateChecksum = action(i18n("Create Checksum..."), "binary", 0, _func, SLOT(createChecksum()), "create checksum");

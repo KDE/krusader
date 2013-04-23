@@ -37,7 +37,7 @@
  </action>
  <action name="filename_to_clipboard" >
   <title>Copy current item to clipboard</title>
-  <icon>editpaste</icon>
+  <icon>edit-paste</icon>
   <category>Samples</category>
   <command>%_Clipboard(&quot;%aCurrent%&quot;)%</command>
   <defaultshortcut>Alt+Ctrl+C</defaultshortcut>
@@ -81,7 +81,7 @@
  <action name="backup_current" >
   <title>Backup current</title>
   <tooltip>Backup current file in current directory</tooltip>
-  <icon>filesaveas</icon>
+  <icon>document-save-as</icon>
   <category>System</category>
   <description>Backups current file in current directory and asks the user for a new filename. By default &quot;.old&quot; is appended to the original filename.</description>
   <command>%_Copy(&quot;%aCurrent%&quot;, &quot;%_Ask(&quot;New filename&quot;, &quot;%aCurrent%.old&quot;)%&quot;)%</command>

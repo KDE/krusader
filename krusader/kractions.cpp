@@ -245,7 +245,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
         (*execTypeArray[ cmdExecMode ])->setChecked(true);
 
 
-    NEW_KACTION(actHomeTerminal, i18n("Start &Terminal"), "terminal", 0, SLOTS, SLOT(homeTerminal()), "terminal@home");
+    NEW_KACTION(actHomeTerminal, i18n("Start &Terminal"), "utilities-terminal", 0, SLOTS, SLOT(homeTerminal()), "terminal@home");
 
     actMountMan = krMtMan.action();
     actMountMan->setShortcut(Qt::ALT + Qt::Key_Slash);
