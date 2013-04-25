@@ -20,7 +20,7 @@
   <para>If the name of the original file is 
   <filename>foo</filename>, then the name of the smaller files will
   be 
-  <filename>foo.000 foo.001 foo.002</filename> &etc;.
+  <filename>foo.000 foo.001 foo.002</filename> &etc;
   There is no theoretical limit in the number of smaller files, but
   it is recommended to limit the number to a maximum of 1023 files.
   &krusader; creates a 
@@ -51,7 +51,7 @@
     <command>split</command>
     <option>-b</option>
   </userinput>letter method") 
-  <filename>fileaa, fileab, fileac</filename> &etc;. If
+  <filename>fileaa, fileab, fileac</filename> &etc; If
   the file 
   <filename>foo.crc</filename> is found in the same directory as the
   partial files, &krusader; will use this file to check
