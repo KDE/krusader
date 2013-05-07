@@ -91,7 +91,7 @@ KrBookmark* KrBookmark::virt(KActionCollection *collection)
     KrBookmark *bm = getExistingBookmark(i18n(NAME_VIRTUAL), collection);
     if (!bm) {
         bm = new KrBookmark(i18n(NAME_VIRTUAL), KUrl("virt:/"), collection);
-        bm->setIcon(krLoader->loadIcon("pipe", KIconLoader::Small));
+        bm->setIcon(krLoader->loadIcon("inode-fifo", KIconLoader::Small));
     }
     return bm;
 }
