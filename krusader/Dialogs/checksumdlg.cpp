@@ -714,7 +714,7 @@ bool ChecksumResultsDlg::savePerFile()
     QString type = _suggestedFilename.mid(_suggestedFilename.lastIndexOf('.'));
 
     krApp->startWaiting(i18n("Saving checksum files..."), 0);
-    for (QStringList::ConstIterator it = _data.begin(); it != _data.end(); ++it) {
+    for (QStringList::ConstIterator it = _data.constBegin(); it != _data.constEnd(); ++it) {
         QString line = (*it);
         QString filename = line.mid(line.indexOf(' ') + 2) + type;
         QStringList l;
