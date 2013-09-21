@@ -352,7 +352,7 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
     uLong bytes;
 
     size = isoFileEntry->realsize();
-    if (size >= sizeof(sizeof(compressed_file_header))) zlib = true;
+    if (size >= sizeof(compressed_file_header)) zlib = true;
     if (!size) size = isoFileEntry->size();
     totalSize(size);
     if (!size) mimeType("application/x-zerosize");
