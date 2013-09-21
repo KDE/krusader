@@ -36,8 +36,9 @@ A
 #include "../VFS/vfile.h"
 #include "../defaults.h"
 
-#include <stdio.h>
+#include <kdeversion.h>
 #include <QWidget>
+#include <stdio.h>
 
 #define ASSERT(what) if(!what) abort();
 
@@ -117,11 +118,15 @@ void KrPreviewJob::slotStartJob()
         _hash.insert(fi, _scheduled[i]);
     }
 
+#if KDE_IS_VERSION(4,7,0)
     QStringList allPlugins = KIO::PreviewJob::availablePlugins();
     _job = new KIO::PreviewJob(list, QSize(size, size), &allPlugins);
-        _job->setOverlayIconAlpha(0);
-        _job->setOverlayIconSize(0);
-        _job->setScaleType(KIO::PreviewJob::ScaledAndCached);
+    _job->setOverlayIconAlpha(0);
+    _job->setOverlayIconSize(0);
+    _job->setScaleType(KIO::PreviewJob::ScaledAndCached);
+#else
+    _job = new KIO::PreviewJob(list, size, size, 0, 0, true, true, NULL);
+#endif
     connect(_job, SIGNAL(gotPreview(const KFileItem&, const QPixmap&)), SLOT(slotGotPreview(const KFileItem&, const QPixmap&)));
     connect(_job, SIGNAL(failed(const KFileItem&)), SLOT(slotFailed(const KFileItem&)));
     connect(_job, SIGNAL(result(KJob*)), SLOT(slotJobResult(KJob*)));

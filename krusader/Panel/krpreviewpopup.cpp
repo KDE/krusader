@@ -30,6 +30,7 @@
 #include <kio/previewjob.h>
 #include <kdebug.h>
 #include <klocale.h>
+#include <kdeversion.h>
 
 #include "../KViewer/krviewer.h"
 
@@ -110,11 +111,15 @@ void KrPreviewPopup::showEvent(QShowEvent *event)
     QMenu::showEvent(event);
 
     if (!jobStarted) {
+#if KDE_IS_VERSION(4,7,0)
         QStringList allPlugins = KIO::PreviewJob::availablePlugins();
         KIO::PreviewJob *pjob = new KIO::PreviewJob(files, QSize(MAX_SIZE, MAX_SIZE), &allPlugins);
             pjob->setOverlayIconSize(0);
             pjob->setOverlayIconAlpha(1);
             pjob->setScaleType(KIO::PreviewJob::ScaledAndCached);
+#else
+        KIO::PreviewJob *pjob = new KIO::PreviewJob(files, MAX_SIZE, MAX_SIZE, 0, 1, true, true, 0);
+#endif
         connect(pjob, SIGNAL(gotPreview(const KFileItem&, const QPixmap&)),
                 this, SLOT(addPreview(const KFileItem&, const QPixmap&)));
         jobStarted = true;

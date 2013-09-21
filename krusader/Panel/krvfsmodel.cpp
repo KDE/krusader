@@ -68,7 +68,9 @@ void KrVfsModel::clear()
     // clear persistent indexes
     QModelIndexList oldPersistentList = persistentIndexList();
     QModelIndexList newPersistentList;
+#if QT_VERSION >= 0x040700
     newPersistentList.reserve(oldPersistentList.size());
+#endif
     for (int i=0; i< oldPersistentList.size(); ++i)
         newPersistentList.append(QModelIndex());
     changePersistentIndexList(oldPersistentList, newPersistentList);
