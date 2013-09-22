@@ -328,9 +328,14 @@ bool KRQuery::match(vfile *vf) const
             if (!containsContent(vf->vfile_getUrl().path())) return false;
         } else {
             if (containOnRemote) {
-                if (processEventsConnected == 0) return false;
-                if (!containsContent(vf->vfile_getUrl())) return false;
-            }
+                if (processEventsConnected == 0)
+                    return false;
+                else if (containsContent(vf->vfile_getUrl()))
+                    return true;
+                else
+                    return false;
+            } else
+                return false;
         }
     }
 
