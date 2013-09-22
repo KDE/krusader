@@ -270,15 +270,17 @@ vfile* normal_vfs::vfileFromName(const QString& name, char * rawName)
     KUrl mimeUrl = KUrl(path);
     QString mime;
 
-    char symDest[256];
-    memset(symDest, 0, 256);
+    QString symDest;
     if (S_ISLNK(stat_p.st_mode)) {  // who the link is pointing to ?
-        int endOfName = 0;
-        endOfName = readlink(fileName.data(), symDest, 256);
-        if (endOfName != -1) {
-            if (QDir(QString::fromLocal8Bit(symDest)).exists())
+        // the path of the symlink target cannot be longer than the file size of the symlink
+        char buffer[stat_p.st_size];
+        memset(buffer, 0, sizeof(buffer));
+        int bytesRead = readlink(fileName.data(), buffer, sizeof(buffer));
+        if (bytesRead != -1) {
+            symDest = QString::fromLocal8Bit(buffer, bytesRead);
+            if (QDir(symDest).exists())
                 perm[0] = 'd';
-            if (!QDir(vfs_workingDir()).exists(QString::fromLocal8Bit(symDest)))
+            if (!QDir(vfs_workingDir()).exists(symDest))
                 brokenLink = true;
         } else
             krOut << "Failed to read link: " << path << endl;
@@ -297,7 +299,7 @@ vfile* normal_vfs::vfileFromName(const QString& name, char * rawName)
 
     // create a new virtual file object
     vfile* temp = new vfile(name, size, perm, stat_p.st_mtime, symLink, brokenLink, stat_p.st_uid,
-                            stat_p.st_gid, mime, QString::fromLocal8Bit(symDest), stat_p.st_mode, rwx);
+                            stat_p.st_gid, mime, symDest, stat_p.st_mode, rwx);
     temp->vfile_setUrl(mimeUrl);
     return temp;
 }

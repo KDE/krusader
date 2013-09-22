@@ -1,6 +1,7 @@
     CHANGED: disabled build of synchronizer by default, since it is unmaintained -
              build togglable with cmake variable -DENABLE_SYNCHRONIZER=true|false
 
+    FIXED: [ 324737 ] symlinks with a target path length of over 255 do not work
     FIXED: [ 189943 ] toolbar position settings are not remembered
     FIXED: [ 316031 ] crash when loading previews
     FIXED: [ 238672 ] When saving checksums fails, they are lost. No 2nd chance to save elsewhere. 
