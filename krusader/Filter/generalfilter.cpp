@@ -327,7 +327,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     QSizePolicy remoteContentSearchPolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     remoteContentSearchPolicy.setHeightForWidth(remoteContentSearch->sizePolicy().hasHeightForWidth());
     remoteContentSearch->setSizePolicy(remoteContentSearchPolicy);
-    remoteContentSearch->setText(i18n("&Remote content search"));
+    remoteContentSearch->setText(i18n("Remote co&ntent search"));
     remoteContentSearch->setChecked(false);
     recurseLayout->addWidget(remoteContentSearch);
     if (!(properties & FilterTabs::HasRemoteContentSearch))
