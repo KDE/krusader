@@ -1,6 +1,7 @@
     CHANGED: disabled build of synchronizer by default, since it is unmaintained -
              build togglable with cmake variable -DENABLE_SYNCHRONIZER=true|false
 
+    FIXED: [ 269542 ] Krusader search - Containing text still used when disabled
     FIXED: [ 324737 ] symlinks with a target path length of over 255 do not work
     FIXED: [ 189943 ] toolbar position settings are not remembered
     FIXED: [ 316031 ] crash when loading previews

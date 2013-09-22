@@ -537,12 +537,14 @@ bool GeneralFilter::getSettings(FilterSettings &s)
     if (ofType->currentText() != i18n("All Files"))
         s.mimeType = ofType->currentText();
 
-    s.containsText = containsText->currentText();
-    s.containsTextCase = containsTextCase->isChecked();
-    s.containsWholeWord = containsWholeWord->isChecked();
-    s.containsRegExp = containsRegExp->isChecked();
-    s.remoteContentSearch = (properties & FilterTabs::HasRemoteContentSearch) ?
-                                remoteContentSearch->isChecked() : false;
+    if (containsText->isEnabled()) {
+        s.containsText = containsText->currentText();
+        s.containsTextCase = containsTextCase->isChecked();
+        s.containsWholeWord = containsWholeWord->isChecked();
+        s.containsRegExp = containsRegExp->isChecked();
+        s.remoteContentSearch = (properties & FilterTabs::HasRemoteContentSearch) ?
+                                    remoteContentSearch->isChecked() : false;
+    }
 
     if (contentEncoding->currentIndex() != 0)
         s.contentEncoding =

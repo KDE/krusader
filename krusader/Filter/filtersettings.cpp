@@ -283,12 +283,14 @@ KRQuery FilterSettings::toQuery() const
     if (!contentEncoding.isEmpty())
         charset = KGlobal::charsets()->encodingForName(contentEncoding);
 
-    query.setContent(containsText,
-                     containsTextCase,
-                     containsWholeWord,
-                     remoteContentSearch,
-                     charset,
-                     containsRegExp);
+    if (!containsText.isEmpty()) {
+        query.setContent(containsText,
+                        containsTextCase,
+                        containsWholeWord,
+                        remoteContentSearch,
+                        charset,
+                        containsRegExp);
+    }
 
     query.setRecursive(recursive);
     query.setSearchInArchives(searchInArchives);
