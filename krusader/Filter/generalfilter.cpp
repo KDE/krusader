@@ -202,7 +202,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         // Options for search in
 
         QGroupBox *searchInGroup = new QGroupBox(this);
-        searchInGroup->setTitle(i18n("&Search in"));
+        searchInGroup->setTitle(i18n("Searc&h in"));
         QGridLayout *searchInLayout = new QGridLayout(searchInGroup);
         searchInLayout->setAlignment(Qt::AlignTop);
         searchInLayout->setSpacing(6);

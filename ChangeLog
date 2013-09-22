@@ -1,8 +1,10 @@
     CHANGED: disabled build of synchronizer by default, since it is unmaintained -
              build togglable with cmake variable -DENABLE_SYNCHRONIZER=true|false
 
+    FIXED: [ 143927 ] file search: "s" accelerator is doubled -
+                      new shortcut for "Search in" is ALT+h
     FIXED: [ 308386 ] Duplicate shortcut on Search window -
-                      shortcut for remote content search is now ALT+n
+                      new shortcut for "Remote content search" is ALT+n
     FIXED: [ 206926 ] Search doesn't work in sftp session (it returns too many results)
     FIXED: [ 269542 ] Krusader search - Containing text still used when disabled
     FIXED: [ 324737 ] symlinks with a target path length of over 255 do not work
