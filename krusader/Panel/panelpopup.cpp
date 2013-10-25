@@ -95,6 +95,7 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
 
     setModel(mProxyModel);
     setItemDelegate(new KFileItemDelegate(this));
+    setUniformRowHeights(true);
 
     mSourceModel->dirLister()->openUrl(KUrl(QDir::root().absolutePath()), KDirLister::Keep);
 

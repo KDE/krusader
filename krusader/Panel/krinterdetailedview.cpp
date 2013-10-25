@@ -62,6 +62,7 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
 
     setSelectionMode(QAbstractItemView::NoSelection);
     setAllColumnsShowFocus(true);
+    setUniformRowHeights(true);
 
     setStyle(new KrStyleProxy());
     setItemDelegate(new KrInterViewItemDelegate());
