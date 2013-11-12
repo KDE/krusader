@@ -65,9 +65,11 @@ void KrInterViewItemDelegate::setEditorData(QWidget *editor, const QModelIndex &
 
 QSize KrInterViewItemDelegate::sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
-    ((QAbstractItemModel*)index.model())->setData(index, QVariant(true), Qt::UserRole);
     QSize size = QItemDelegate::sizeHint(option, index);
-    ((QAbstractItemModel*)index.model())->setData(index, QVariant(false), Qt::UserRole);
+    if (size.isEmpty()) {
+        // prevent items without text from bloating the view vertically
+        return QSize(0, 0);
+    }
     return size;
 }
 
