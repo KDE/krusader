@@ -57,6 +57,8 @@ ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
     actUnselectAll = action(i18n("U&nselect All"), "kr_unselectall", Qt::ALT + Qt::Key_Minus, SLOT(unmarkAll()), "unselect all");
     actInvert = action(i18n("&Invert Selection"), "kr_invert", Qt::ALT + Qt::Key_Asterisk, SLOT(invertSelection()), "invert");
     actRestoreSelection = action(i18n("Restore Selection"), 0, 0, SLOT(restoreSelection()), "restore_selection");
+    actMarkSameBaseName = action(i18n("Select Files with the Same Name"), 0, 0, SLOT(markSameBaseName()), "select_same_base_name");
+    actMarkSameExtension = action(i18n("Select Files with the Same Extension"), 0, 0, SLOT(markSameExtension()), "select_same_extension");
 
     // other stuff
     action(i18n("Show View Options Menu"), 0, 0, SLOT(showOptionsMenu()), "show_view_options_menu");
@@ -147,6 +149,16 @@ void ViewActions::invertSelection()
 void ViewActions::restoreSelection()
 {
     view()->restoreSelection();
+}
+
+void ViewActions::markSameBaseName()
+{
+    view()->markSameBaseName();
+}
+
+void ViewActions::markSameExtension()
+{
+    view()->markSameExtension();
 }
 
 // other stuff

@@ -498,6 +498,9 @@ public:
     }
     void clearSavedSelection();
 
+    void markSameBaseName();
+    void markSameExtension();
+
     // todo: what about selection modes ???
     virtual ~KrView();
 

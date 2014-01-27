@@ -62,6 +62,8 @@ public slots:
     void unmarkGroup();
     void invertSelection();
     void restoreSelection();
+    void markSameBaseName();
+    void markSameExtension();
 
     void showOptionsMenu();
     void saveDefaultSettings();
@@ -75,6 +77,7 @@ public slots:
 public:
     KAction *actZoomIn, *actZoomOut, *actDefaultZoom;
     KAction *actSelect, *actUnselect, *actSelectAll, *actUnselectAll, *actInvert, *actRestoreSelection;
+    KAction *actMarkSameBaseName, *actMarkSameExtension;
     KToggleAction *actTogglePreviews;
 
 protected:

@@ -1325,3 +1325,21 @@ void KrView::clearSavedSelection() {
     _savedSelection.clear();
     op()->emitRefreshActions();
 }
+
+void KrView::markSameBaseName()
+{
+    KrViewItem* item = getCurrentKrViewItem();
+    if (!item)
+        return;
+    KRQuery query(QString("%1.*").arg(item->name(false)));
+    changeSelection(query, true, false);
+}
+
+void KrView::markSameExtension()
+{
+    KrViewItem* item = getCurrentKrViewItem();
+    if (!item)
+        return;
+    KRQuery query(QString("*.%1").arg(item->extension()));
+    changeSelection(query, true, false);
+}
