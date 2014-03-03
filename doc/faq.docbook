@@ -309,39 +309,6 @@
         </answer>
       </qandaentry>
       <qandaentry>
-        <question id="faqi_krusaderui_rc">
-          <para>I have installed &krusader;, but when I
-          start, only the 
-          <guimenu>Help</guimenu> menu appears. Why?</para>
-        </question>
-        <answer>
-          <para>In this case only the 
-          <guimenu>Help</guimenu> menu is visible and all other menu
-          items like &eg; 
-          <guimenu>File</guimenu> and 
-          <guimenu>Select</guimenu> are missing. This is because
-          some distributions put the 
-          <filename>krusaderui.rc</filename> file in the wrong
-          directory. To solve the problem, just copy the 
-          <filename>krusaderui.rc</filename> file from the package 
-          <filename>
-          krusader_kde3/krusader/krusaderui.rc</filename> to 
-          <filename>
-          $KDEDIR/share/apps/krusader/krusaderui.rc</filename> and 
-          <filename>
-          ~/.kde/share/apps/krusader/krusaderui.rc</filename> and
-          re-run &krusader;. If you have compiled
-          &krusader; from sources this is often caused
-          if the <envar>KDEDIR</envar> - <envar>QTDIR</envar> environment variables
-          are not correctly set. The result is that the 
-          <filename>krusaderui.rc</filename> file is installed in
-          the wrong directory. Please read the following question,
-          as well.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
         <question id="faqi_missing_menus">
           <para>Some new menu items are missing after updating
           &krusader;, what is wrong?</para>
@@ -401,49 +368,6 @@
         </answer>
       </qandaentry>
  
-      <qandaentry>
-        <question id="faqi_nvidia">
-          <para>I have a 
-          <filename>libGLcore.so.1</filename> compile error after
-          using the <trademark class="registered">NVIDIA</trademark> installer, what to
-          do?</para>
-        </question>
-        <answer>
-          <para>This problem occurs when you use the
-          <trademark class="registered">NVIDIA</trademark> installer and not the official
-          <trademark class="registered">NVIDIA</trademark> packages of your distribution.
-          &krusader; is based on &Qt; which
-          can be linked against the X OpenGL libraries. As a result
-          &krusader; may look for OpenGL as well. The
-          problem is that the <trademark class="registered">NVIDIA</trademark> installer (prior
-          to version 7xxx) does not perform its task properly: it
-          replaces the OpenGL header files (which get included into
-          &krusader;) but does not set the libGL links
-          correctly. The best solution is to use the
-          <trademark class="registered">NVIDIA</trademark> packages provided by your distributor
-          or a new <trademark class="registered">NVIDIA</trademark> installer, the current
-          version at the moment of writing is 7114. If, for some
-          reason, you must use an old <trademark class="registered">NVIDIA</trademark> driver,
-          one solution is the following hack, the exact commands
-          depend on the distribution used and the version of the
-          <trademark class="registered">NVIDIA</trademark> driver (6111 in this example), but it
-          should read something like this: 
-          <screen><prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.0</replaceable></userinput>
-          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so</replaceable></userinput>
-          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.1.0.0</replaceable></userinput>
-          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.0.0.0</replaceable></userinput>
-          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so</replaceable></userinput>
-          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.0</replaceable></userinput>
-          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.0.0.0</replaceable></userinput>
-          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.1</replaceable></userinput>
-          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.1.0.0</replaceable></userinput>
-          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>/usr/lib/libGLU.la /usr/X11R6/lib/libGLU.la</replaceable></userinput>
-          </screen></para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-
       <qandaentry>
         <question id="faqi_help_request">
           <para>I am having trouble compiling and installing
@@ -634,67 +558,6 @@
     <title>Usage &FAQ;</title>
     <qandaset>
       <qandaentry>
-        <question id="faqu_qt355">
-          <para>&krusader; keeps crashing, why?</para>
-        </question>
-        <answer>
-          <para>We have been receiving a lot of emails and bug
-          reports (December 2005) regarding random crashes,
-          especially during file operations such as copy, move,
-          &etc; 
-          <emphasis role="bold">These crashes are related to
-          &Qt; 3.3.5 and NOT
-          &krusader;.</emphasis> It seems that
-          &Qt; 3.3.5 introduced a serious bug which is
-          currently (December 2005) causing random crashes in many
-          &kde; applications including
-          &konqueror;. You can use Google to find out
-          more. As far as we know, <trademark class="registered">Debian</trademark>-Sid and
-          &SuSE; already posted new &Qt;
-          binaries that fix the problem, and <trademark class="registered">Gentoo</trademark>
-          has masked &Qt; 3.3.5 completely. As for now,
-          you either need &Qt; 3.3.4 or a fixed
-          &Qt; 3.3.5 or a higher version, depending on
-          your distribution. More information is available on our 
-          <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407">
-          website</ulink>.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question id="faqu_supermount">
-          <para>When I try to mount/unmount my &CD-ROM;/floppy,
-          &krusader; reports something about a
-          supermount, what is this about?</para>
-        </question>
-        <answer>
-          <para>Supermount is a daemon which handles the
-          mounting/unmounting of removable file systems for you.
-          Just insert a floppy, and do 
-          <userinput>
-            <command>cd</command>
-            <option>
-              <replaceable>/mnt/floppy</replaceable>
-            </option>
-          </userinput>supermount will do the mount for you
-          automatically and transparently. Usually this works fine.
-          However, supermount misleads the system into thinking
-          that the 
-          <hardware>floppy/cdrom</hardware> is mounted at all times!
-          This creates some problems for &krusader;, as
-          it cannot really know when the floppy or CD has been
-          removed because the system information is not correctly
-          updated by supermount - is there really a 
-          <hardware>floppy</hardware> in the 
-          <hardware>drive</hardware>? Of course, this can be
-          solved, but as for now, we do not consider it a
-          priority.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
         <question id="faqu_dead_mountpoint">
           <para>Why does &krusader; freeze or hang on a
           dead mountpoint?</para>
@@ -792,7 +655,7 @@
           <filename>kio_krarc.so</filename>, 
           <filename>kio_krarc.la</filename> files into 
           <filename class="directory">
-          $KDEDIR/lib/kde3</filename></para>
+          $KDEDIR/lib/kde4</filename></para>
           <para>Copy the 
           <filename>krarc.protocol</filename> file into 
           <filename class="directory">
