@@ -438,9 +438,8 @@ QPixmap KrView::processIcon(const QPixmap &icon, bool dim, const QColor & dimCol
     QPixmap pixmap = icon;
 
     if (symlink) {
-        QPixmap link(link_xpm);
-        QPainter painter(&pixmap);
-        painter.drawPixmap(0, icon.height() - 11, link, 0, 21, 10, 11);
+        const QStringList overlays = QStringList() << QString() << "emblem-symbolic-link";
+        KIconLoader::global()->drawOverlays(overlays, pixmap, KIconLoader::Desktop);
     }
 
     if(!dim)
