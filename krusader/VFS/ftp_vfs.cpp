@@ -56,7 +56,6 @@
 #include "krpermhandler.h"
 #include "../krglobal.h"
 #include "../defaults.h"
-#include "../resources.h"
 
 ftp_vfs::ftp_vfs(QObject* panel) : vfs(panel), busy(false)
 {

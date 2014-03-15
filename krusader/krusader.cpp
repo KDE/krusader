@@ -72,7 +72,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "kicons.h"
 #include "krusaderview.h"
 #include "defaults.h"
-#include "resources.h"
 #include "krslots.h"
 #include "krservices.h"
 // This makes gcc-4.1 happy. Warning about possible problem with KrAction's dtor not called

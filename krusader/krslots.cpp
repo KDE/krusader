@@ -66,7 +66,6 @@
 #include "Konfigurator/konfigurator.h"
 #include "MountMan/kmountman.h"
 #include "defaults.h"
-#include "resources.h"
 #include "GUI/kfnkeys.h"
 #include "GUI/kcmdline.h"
 #include "GUI/terminaldock.h"

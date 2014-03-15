@@ -52,7 +52,6 @@
 #include "../krglobal.h"
 #include "../kicons.h"
 #include "../krslots.h"
-#include "../resources.h"
 #include "../defaults.h"
 #include "../krusaderview.h"
 #include "../krservices.h"

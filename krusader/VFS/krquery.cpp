@@ -41,7 +41,6 @@
 #include <kio/job.h>
 #include <kfileitem.h>
 
-#include "../resources.h"
 #include "vfs.h"
 #include "krarchandler.h"
 #include "krpermhandler.h"

@@ -40,7 +40,6 @@
 #include <krecentdocument.h>
 
 #include "../krglobal.h"
-#include "../resources.h"
 #include "../VFS/vfs.h"
 #include "../defaults.h"
 

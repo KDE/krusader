@@ -32,8 +32,6 @@
 
 #include <QtGui/QFontMetrics>
 
-#include "../resources.h"
-
 KrusaderStatus::KrusaderStatus(QWidget *parent):
         KStatusBar(parent)
 {

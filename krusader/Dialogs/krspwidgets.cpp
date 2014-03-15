@@ -47,7 +47,6 @@
 #include <kiconloader.h>
 #include <kcursor.h>
 #include <QtGui/QBitmap>
-#include "../resources.h"
 
 ///////////////////// initiation of the static members ////////////////////////
 QStringList KRSpWidgets::maskList;

@@ -62,7 +62,6 @@
 #include "krpermhandler.h"
 #include "../krglobal.h"
 #include "../defaults.h"
-#include "../resources.h"
 #include "../krservices.h"
 
 normal_vfs::normal_vfs(QObject* panel): vfs(panel), watcher(0)

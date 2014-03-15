@@ -52,7 +52,6 @@
 #include "GUI/kcmdline.h"
 #include "GUI/kfnkeys.h"
 #include "GUI/terminaldock.h"
-#include "resources.h"
 #include "panelmanager.h"
 #include "GUI/profilemanager.h"
 #include "Dialogs/percentalsplitter.h"

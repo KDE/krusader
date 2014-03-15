@@ -46,8 +46,6 @@
 #include <KLocale>
 #include <KGlobal>
 
-#include "../resources.h"
-
 QHash<QString, uid_t> *KRpermHandler::passwdCache = 0L;
 QHash<QString, gid_t> *KRpermHandler::groupCache = 0L;
 QHash<int, char>    *KRpermHandler::currentGroups = 0L;
