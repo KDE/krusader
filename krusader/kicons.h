@@ -35,14 +35,4 @@
 // used only for calls within the kfilelist framework, handles icon sizes
 QPixmap FL_LOADICON(QString name);
 
-extern  const char * no_xpm[];
-extern  const char * yes_xpm[];
-extern  const char * link_xpm[];
-extern  const char * black_xpm[];
-extern  const char * yellow_xpm[];
-extern  const char * green_xpm[];
-extern  const char * red_xpm[];
-extern  const char * white_xpm[];
-extern  const char * blue_xpm[];
-
 #endif
