@@ -23,6 +23,7 @@
 #include <QtCore/QString>
 #include <QPixmap>
 #include <QStyle>
+#include <kiconloader.h>
 
 QPixmap FL_LOADICON(QString name)
 {
