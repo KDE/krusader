@@ -78,7 +78,6 @@ public slots:
 
 protected:
     virtual bool queryClose();
-    virtual bool queryExit();
     virtual void windowActivationChange(bool oldActive);
     virtual void resizeEvent(QResizeEvent *e);
 

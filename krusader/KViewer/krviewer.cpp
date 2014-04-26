@@ -451,11 +451,6 @@ bool KrViewer::queryClose()
     return true;
 }
 
-bool KrViewer::queryExit()
-{
-    return true; // don't let the reference counter reach zero
-}
-
 void KrViewer::viewGeneric()
 {
     PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
