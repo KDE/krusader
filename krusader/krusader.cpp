@@ -624,6 +624,7 @@ bool Krusader::queryClose() {
         }
 
         saveSettings();
+        krConfig->sync();
 
         emit shutdown();
 
@@ -851,12 +852,6 @@ void Krusader::doOpenUrl()
         OTHER_MNG->currentPanel()->view->widget()->setFocus();
     } else
         ACTIVE_MNG->slotNewTab(url);
-}
-
-bool Krusader::queryExit()
-{
-    krConfig->sync();
-    return true;
 }
 
 KrView *Krusader::activeView()

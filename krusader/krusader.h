@@ -137,7 +137,6 @@ protected slots:
     void doOpenUrl();
 
 protected:
-    bool queryExit();
     bool queryClose();
     void setupActions();
     bool versionControl();  // handle version differences in krusaderrc
