@@ -221,7 +221,10 @@ void KgProtocols::addProtocol(QString name, bool changeCurrent)
         delete list[ 0 ];
         QTreeWidgetItem *listViewItem = new QTreeWidgetItem(linkList);
         listViewItem->setText(0, name);
-        listViewItem->setIcon(0, krLoader->loadIcon("go-next-view", KIconLoader::Small));
+        QString icon = KProtocolInfo::icon(name);
+        if (icon.isEmpty())
+            icon = "go-next-view";
+        listViewItem->setIcon(0, krLoader->loadIcon(icon, KIconLoader::Small));
 
         if (changeCurrent)
             linkList->setCurrentItem(listViewItem);
@@ -282,7 +285,7 @@ void KgProtocols::addMime(QString name, QString protocol)
         delete list[ 0 ];
         QTreeWidgetItem *listViewItem = new QTreeWidgetItem(currentListItem);
         listViewItem->setText(0, name);
-        listViewItem->setIcon(0, krLoader->loadIcon("mime", KIconLoader::Small));
+        listViewItem->setIcon(0, krLoader->loadMimeTypeIcon(name, KIconLoader::Small));
         // FIXME The following causes crash due to bug in QT 4.3.4 - 4.4.
         // reenable in the future, when the problem will be fixed.
         // linkList->expandItem( currentListItem );
