@@ -224,7 +224,7 @@ void virt_vfs::vfs_rename(const QString& fileName, const QString& newName)
 
     dest = KUrl(newName);
     // add the new url to the list
-    // the the list is refreshed only existing files remain -
+    // the list is refreshed only existing files remain -
     // so we don't have to worry if the job was successful
     virtVfsDict[ path ] ->append(dest);
 

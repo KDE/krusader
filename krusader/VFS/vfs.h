@@ -126,7 +126,7 @@ public:
     inline vfile* vfs_getFirstFile() {
         vfileIterator = vfs_filesP->begin(); return (vfileIterator == vfs_filesP->end() ? 0 : *vfileIterator);
     }
-    /// Return the the next file in the list and advance the iterator.
+    /// Return the next file in the list and advance the iterator.
     inline vfile* vfs_getNextFile() {
         if (vfileIterator == vfs_filesP->end() || ++vfileIterator == vfs_filesP->end()) return 0; else return *vfileIterator;
     }

@@ -329,7 +329,7 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent, SynchronizerDi
             }
         }
 
-        /* walking through the the right side subdirectories */
+        /* walking through the right side subdirectories */
         for (right_file = right_directory->first(); right_file != 0 && !stopped ;
                 right_file = right_directory->next()) {
             if (right_file->vfile_isDir() && (followSymLinks || !right_file->vfile_isSymLink())) {
