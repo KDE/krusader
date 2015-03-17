@@ -5,6 +5,12 @@ INCLUDE(CPack)
 set(VERSION "2.4.0-beta3" )
 set(RELEASE_NAME "Single Step")
 
+find_package(ECM 1.1.0 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+
+include(ECMOptionalAddSubdirectory)
+include(ECMInstallIcons)
+
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
 include_directories( ${KDE4_INCLUDES} ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
