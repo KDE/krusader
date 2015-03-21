@@ -14,4 +14,4 @@ set(Dialogs_SRCS
     percentalsplitter.cpp
     krkeydialog.cpp)
 
-kde4_add_library(Dialogs STATIC ${Dialogs_SRCS})
+add_library(Dialogs STATIC ${Dialogs_SRCS})

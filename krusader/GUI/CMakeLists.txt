@@ -13,4 +13,4 @@ set(GUI_SRCS
     kcmdmodebutton.cpp
     terminaldock.cpp)
 
-kde4_add_library(GUI STATIC ${GUI_SRCS})
+add_library(GUI STATIC ${GUI_SRCS})

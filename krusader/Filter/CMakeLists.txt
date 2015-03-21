@@ -5,6 +5,6 @@ set(Filter_SRCS
     filtertabs.cpp
     filterdialog.cpp)
 
-kde4_add_library(Filter STATIC ${Filter_SRCS})
+add_library(Filter STATIC ${Filter_SRCS})
 
 target_link_libraries(Filter Dialogs)

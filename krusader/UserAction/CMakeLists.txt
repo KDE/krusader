@@ -5,4 +5,4 @@ set(UserAction_SRCS
     kractionbase.cpp 
     useraction.cpp)
 
-kde4_add_library(UserAction STATIC ${UserAction_SRCS})
+add_library(UserAction STATIC ${UserAction_SRCS})

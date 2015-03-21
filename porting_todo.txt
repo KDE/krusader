@@ -3,32 +3,13 @@
 	=============================
 
 
-1 - rewrite CMakeLists
+1 - rewrite CMakeLists rules / variables
 
-	CMakeLists.txt
-	doc/CMakeLists.txt
-	iso/CMakeLists.txt
-	krArc/CMakeLists.txt
-	krusader/ActionMan/CMakeLists.txt
-	krusader/BookMan/CMakeLists.txt
-	krusader/CMakeLists.txt
-	krusader/Dialogs/CMakeLists.txt
-	krusader/DiskUsage/CMakeLists.txt
-	krusader/Filter/CMakeLists.txt
-	krusader/GUI/CMakeLists.txt
-	krusader/KViewer/CMakeLists.txt
-	krusader/Konfigurator/CMakeLists.txt
-	krusader/KrJS/CMakeLists.txt
-	krusader/Locate/CMakeLists.txt
-	krusader/MountMan/CMakeLists.txt
-	krusader/Panel/CMakeLists.txt
-	krusader/Queue/CMakeLists.txt
-	krusader/Search/CMakeLists.txt
-	krusader/Splitter/CMakeLists.txt
-	krusader/Synchronizer/CMakeLists.txt
-	krusader/UserAction/CMakeLists.txt
-	krusader/UserMenu/CMakeLists.txt
-	krusader/VFS/CMakeLists.txt
-	pics/CMakeLists.txt			DONE
-	pics/kde3/CMakeLists.txt		DONE
-	virt/CMakeLists.txt
+all rules were rewritten in a Qt5/KF5 way, still'kde4_add_app_icon' is missing,
+I think we should find another way; I didn't changed yet the variables in
+'target_link_libraries', just commented out; btw, with a fast 'cmake', all flags
+should be generated (flags.make files)
+
+next...
+
+2 - change properly all include

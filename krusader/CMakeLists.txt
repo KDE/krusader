@@ -1,4 +1,10 @@
-include_directories(${KDE4_INCLUDES})
+include_directories(${KF5_INCLUDE_DIRS})
+
+# TODO porting : don't remember anymore
+#include_directories(
+#  ${CMAKE_CURRENT_SOURCE_DIR}
+#  ${CMAKE_CURRENT_SOURCE_DIR}/session
+#)
 
 configure_file(krusaderversion.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/krusaderversion.h)
 
@@ -54,11 +60,12 @@ set(krusader_SRCS
     krusaderapp.cpp
     krtrashhandler.cpp)
 
-kde4_add_app_icon(krusader_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-krusader_user.png")
+# TODO porting: missing kf5 equivalent
+#kde4_add_app_icon(krusader_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-krusader_user.png")
 
-qt4_add_resources(krusader_RC_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc" )
+qt5_add_resources(krusader_RC_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc" )
 
-kde4_add_executable(krusader ${krusader_SRCS} ${krusader_RC_SRCS})
+add_executable(krusader ${krusader_SRCS} ${krusader_RC_SRCS})
 
 target_link_libraries(krusader
                       Panel
@@ -81,11 +88,12 @@ target_link_libraries(krusader
                       Filter
                       Dialogs
                       GUI
-                      ${KDE4_KPARTS_LIBS}
-                      ${KDE4_KDEUI_LIBS}
-                      ${KDE4_KFILE_LIBS}
-                      ${KDE4_KDECORE_LIBS}
-                      ${KDE4_SOLID_LIBS})
+#                       ${KDE4_KPARTS_LIBS}
+#                       ${KDE4_KDEUI_LIBS}
+#                       ${KDE4_KFILE_LIBS}
+#                       ${KDE4_KDECORE_LIBS}
+#                       ${KDE4_SOLID_LIBS}
+                      )
 
 if(ENABLE_SYNCHRONIZER)
     target_link_libraries( krusader Synchronizer )
@@ -111,4 +119,4 @@ install(FILES krusaderui.rc
               splash.png
         DESTINATION ${DATA_INSTALL_DIR}/krusader)
 
-kde4_install_icons( ${ICON_INSTALL_DIR} )
+ecm_install_icons(ICONS DESTINATION ${ICON_INSTALL_DIR})

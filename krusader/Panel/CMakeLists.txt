@@ -30,11 +30,13 @@ set(Panel_SRCS
     krviewfactory.cpp
     krmousehandler.cpp)
 
-kde4_add_library(Panel STATIC ${Panel_SRCS})
+add_library(Panel STATIC ${Panel_SRCS})
 
-target_link_libraries(Panel Dialogs GUI KViewer ${KDE4_KFILE_LIBS} )
-
+# TODO porting : new variables needed?
+target_link_libraries(Panel Dialogs GUI KViewer
+# 		      ${KDE4_KFILE_LIBS}
+		      )
 
 if(LIBKONQ_FOUND)
-    target_link_libraries( Panel ${LIBKONQ_LIBRARY} )
+    target_link_libraries(Panel ${LIBKONQ_LIBRARY})
 endif(LIBKONQ_FOUND)

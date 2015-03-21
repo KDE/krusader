@@ -15,7 +15,8 @@ set(VFS_SRCS
     packjob.cpp
     abstractthreadedjob.cpp)
 
-kde4_add_library(VFS STATIC ${VFS_SRCS})
+add_library(VFS STATIC ${VFS_SRCS})
+
 if(ACL_FOUND)
     target_link_libraries(VFS ${ACL_LIBS})
 endif(ACL_FOUND)

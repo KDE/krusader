@@ -4,4 +4,4 @@ set(Queue_SRCS
     queuewidget.cpp
     queuedialog.cpp)
 
-kde4_add_library(Queue STATIC ${Queue_SRCS})
+add_library(Queue STATIC ${Queue_SRCS})

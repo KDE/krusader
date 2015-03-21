@@ -5,6 +5,6 @@ set(ActionMan_SRCS
     useractionlistview.cpp
     useractionpage.cpp)
 
-kde4_add_ui_files(ActionMan_SRCS actionproperty.ui)
+qt5_wrap_ui(ActionMan_SRCS actionproperty.ui)
 
-kde4_add_library(ActionMan STATIC ${ActionMan_SRCS})
+add_library(ActionMan STATIC ${ActionMan_SRCS})
