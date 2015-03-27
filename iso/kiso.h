@@ -96,9 +96,9 @@ protected:
     void readParams();
     virtual bool openArchive(QIODevice::OpenMode mode);
     virtual bool closeArchive();
-    virtual bool doWriteDir(const QString&, const QString&, const QString&, mode_t, time_t, time_t, time_t);
-    virtual bool doWriteSymLink(const QString &, const QString &, const QString &, const QString &, mode_t, time_t, time_t, time_t);
-    virtual bool doPrepareWriting(const QString& , const QString& , const QString& , qint64, mode_t, time_t, time_t, time_t);
+    virtual bool doWriteDir(const QString&, const QString&, const QString&, mode_t, const QDateTime &, const QDateTime &, const QDateTime &);
+    virtual bool doWriteSymLink(const QString &, const QString &, const QString &, const QString &, mode_t, const QDateTime &, const QDateTime &, const QDateTime &);
+    virtual bool doPrepareWriting(const QString& , const QString& , const QString& , qint64, mode_t, const QDateTime &, const QDateTime &, const QDateTime &);
     virtual bool doFinishWriting(qint64);
 
 private:

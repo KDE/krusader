@@ -14,7 +14,7 @@ set(kio_iso_PART_SRCS
 add_library(kio_iso ${kio_iso_PART_SRCS} ${libisofs_SRCS})
 
 # TODO porting : new variables needed?
-target_link_libraries(kio_iso
+target_link_libraries(kio_iso KF5::Archive KF5::ConfigCore KF5::KDELibs4Support
 # 		      ${KDE4_KDECORE_LIBS}
 # 		      ${KDE4_KIO_LIBS}
 		      ${ZLIB_LIBRARY})

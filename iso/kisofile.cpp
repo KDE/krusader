@@ -22,9 +22,9 @@
 #include <KDE/KDebug>
 
 KIsoFile::KIsoFile(KArchive* archive, const QString& name, int access,
-                   int date, int adate, int cdate, const QString& user, const QString& group,
-                   const QString& symlink, long long pos, long long size) :
-        KArchiveFile(archive, name, access, date, user, group, symlink, pos, size)
+		   int date, int adate, int cdate, const QString& user, const QString& group,
+		   const QString& symlink, long long pos, long long size) :
+	KArchiveFile(archive, name, access, QDateTime::fromTime_t(date), user, group, symlink, pos, size)
 {
 
 

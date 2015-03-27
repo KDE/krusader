@@ -48,7 +48,7 @@ using namespace KIO;
 extern "C"
 {
 
-    int KDE_EXPORT kdemain(int argc, char **argv) {
+    int Q_DECL_EXPORT kdemain(int argc, char **argv) {
         KComponentData instance("kio_iso", "krusader");
 
         kDebug()   << "Starting " << getpid() << endl;
@@ -199,7 +199,7 @@ void kio_isoProtocol::createUDSEntry(const KArchiveEntry * isoEntry, UDSEntry & 
 
     entry.insert(UDSEntry::UDS_USER, isoEntry->user());
     entry.insert(UDSEntry::UDS_GROUP, isoEntry->group());
-    entry.insert(UDSEntry::UDS_MODIFICATION_TIME, isoEntry->date());
+    entry.insert((uint)UDSEntry::UDS_MODIFICATION_TIME, isoEntry->date().toTime_t());
     entry.insert(UDSEntry::UDS_ACCESS_TIME,
                  isoEntry->isFile() ? ((KIsoFile *)isoEntry)->adate() :
                  ((KIsoDirectory *)isoEntry)->adate());
@@ -440,10 +440,10 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
             if (fileData.size() == 0) break;
         }
         if (!mime) {
-            KSharedPtr<KMimeType> result = KMimeType::findByNameAndContent(path, fileData);
-            if (result) {
-                kDebug() << "Emitting mimetype " << result->name() << endl;
-                mimeType(result->name());
+            //KSharedPtr<KMimeType> result = KMimeType::findByNameAndContent(path, fileData);
+            if (KMimeType::findByNameAndContent(path, fileData)) {
+                kDebug() << "Emitting mimetype " << KMimeType::findByNameAndContent(path, fileData)->name() << endl;
+                mimeType(KMimeType::findByNameAndContent(path, fileData)->name());
                 mime = true;
             }
         }

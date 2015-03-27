@@ -26,6 +26,9 @@
 
 #include <QtCore/QByteArray>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
 #include <KIO/SlaveBase>
 
 #include "kisofile.h"
