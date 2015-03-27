@@ -31,7 +31,8 @@
 #ifndef FEEDTOLISTBOXDIALOG_H
 #define FEEDTOLISTBOXDIALOG_H
 
-#include <kdialog.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
 
 class Synchronizer;
 class QCheckBox;

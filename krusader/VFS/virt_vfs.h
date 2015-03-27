@@ -20,8 +20,9 @@
 #ifndef VIRT_VFS_H
 #define VIRT_VFS_H
 
-#include <kconfig.h>
 #include <QtCore/QHash>
+
+#include <KConfigCore/KConfig>
 
 #include "vfs.h"
 

@@ -31,13 +31,16 @@
 #include "combiner.h"
 #include "../VFS/vfs.h"
 
-#include <klocale.h>
-#include <kdebug.h>
-#include <kmessagebox.h>
-#include <kfileitem.h>
-#include <kio/job.h>
-#include <kio/jobuidelegate.h>
 #include <QtCore/QFileInfo>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KDebug>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KIO/KFileItem>
+#include <KIO/Job>
+#include <KIO/JobUiDelegate>
 
 //TODO: delete destination file on error
 //TODO: cache more than one byte array of data

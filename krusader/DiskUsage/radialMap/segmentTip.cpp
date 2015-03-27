@@ -18,14 +18,15 @@
 
 #include "segmentTip.h"
 
-#include <QPainter>
-#include <QToolTip>        //for its palette
-#include <QEvent>
+#include <QtCore/QEvent>
+#include <QtGui/QPainter>
+#include <QtWidgets/QToolTip>                               //for its palette
 
-#include <kapplication.h>    //installing eventFilters
-#include <kglobal.h>
-#include <kglobalsettings.h>
-#include <klocale.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KApplication>    //installing eventFilters
+#include <KDE/KGlobal>
+#include <KDE/KGlobalSettings>
+#include <KDE/KLocale>
 
 #include "fileTree.h"
 

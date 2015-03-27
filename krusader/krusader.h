@@ -38,21 +38,22 @@
 
 #include "filemanagerwindow.h"
 
-// KDE includes
-#include <kapplication.h>
-#include <kparts/mainwindow.h>
-#include <kstandardaction.h>
-#include <kaction.h>
-#include <kconfig.h>
-#include <kconfiggroup.h>
 #include <QtCore/QStringList>
-#include <QMoveEvent>
-#include <QShowEvent>
-#include <QResizeEvent>
-#include <QHideEvent>
-#include <kdebug.h>
+#include <QtCore/QTimer>
+#include <QtGui/QShowEvent>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QHideEvent>
+#include <QtGui/QMoveEvent>
 
-#include <QTimer>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KApplication>
+#include <KDE/KAction>
+#include <KDE/KDebug>
+
+#include <KParts/MainWindow>
+#include <KCOnfigWidgets/KStandardAction>
+#include <KConfigCore/KConfig>
+#include <KConfigCore/KConfigGroup>
 
 #include "VFS/kiojobwrapper.h"
 

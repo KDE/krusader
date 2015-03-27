@@ -23,10 +23,10 @@
 #include <sys/types.h>
 
 #include <QtCore/QHash>
-#include <QByteArray>
+#include <QtCore/QByteArray>
 
-#include <kconfig.h>
-#include <kio/slavebase.h>
+#include <KConfigCore/KConfig>
+#include <KIO/SlaveBase>
 
 class VirtProtocol : public KIO::SlaveBase
 {

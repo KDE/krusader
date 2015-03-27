@@ -20,9 +20,11 @@
 #ifndef KRBOOKMARK_H
 #define KRBOOKMARK_H
 
-#include <kaction.h>
 #include <QtCore/QList>
-#include <kurl.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+#include <KDE/KAction>
 
 class KActionCollection;
 

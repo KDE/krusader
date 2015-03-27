@@ -17,16 +17,19 @@
 #ifndef KRARC_H
 #define KRARC_H
 
+#include <sys/types.h>
+
 #include <QtCore/QString>
 #include <QtCore/QHash>
 #include <QtCore/QFile>
-#include <sys/types.h>
 
-#include <kurl.h>
-#include <kio/global.h>
-#include <kio/slavebase.h>
-#include <kprocess.h>
-#include <kconfiggroup.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KIO/Global>
+#include <KIO/SlaveBase>
+#include <KCoreAddons/KProcess>
+#include <KConfigCore/KConfigGroup>
 
 class KFileItem;
 class QByteArray;

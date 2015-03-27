@@ -22,7 +22,7 @@
 #include "../krusaderview.h"
 #include "../panelmanager.h"
 
-#include <kmessagebox.h>
+#include <KWidgetsAddons/KMessageBox>
 
 KrJS::KrJS() : KJSEmbed::KJSEmbedPart()
 {

@@ -20,17 +20,19 @@
 #ifndef PANELPOPUP_H
 #define PANELPOPUP_H
 
-#include <qwidget.h>
-#include <qstackedwidget.h>
-#include <QtGui/QPixmap>
-#include <QDropEvent>
-#include <QLabel>
 #include <QtCore/QPointer>
-#include <qtreeview.h>
+#include <QtGui/QPixmap>
+#include <QtGui/QDropEvent>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QTreeView>
 
-#include <kfileitem.h>
-#include <kio/previewjob.h>
-#include <kurl.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KIO/KFileItem>
+#include <KIO/PreviewJob>
 
 class QButtonGroup;
 class QLabel;

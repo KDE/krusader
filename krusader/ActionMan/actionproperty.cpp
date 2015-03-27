@@ -24,21 +24,24 @@
 #include "../krusader.h"
 #include "../krglobal.h"
 
-#include <kactioncollection.h>
-#include <QtGui/QToolButton>
-#include <QtGui/QCheckBox>
-#include <QtGui/QRadioButton>
-#include <klocale.h>
-#include <kfiledialog.h>
-#include <klineedit.h>
-#include <kdebug.h>
-#include <kmessagebox.h>
-#include <kinputdialog.h>
-#include <kkeysequencewidget.h>
-#include <kcombobox.h>
-#include <kicondialog.h>
-#include <ktextedit.h>
-#include <kiconloader.h>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QRadioButton>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KFileDialog>
+#include <KDE/KDebug>
+#include <KDE/KInputDialog>
+
+#include <KXmlGui/KActionCollection>
+#include <KXmlGui/KKeySequenceWidget>
+#include <KCompletion/KComboBox>
+#include <KCompletion/KLineEdit>
+#include <KWidgetsAddons/KMessageBox>
+#include <KIconThemes/KIconDialog>
+#include <KIconThemes/KIconLoader>
+#include <KTextWidgets/KTextEdit>
 
 #define ICON(N)  KIconLoader::global()->loadIcon(N, KIconLoader::Small)
 

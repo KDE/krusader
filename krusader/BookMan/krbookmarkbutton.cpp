@@ -20,12 +20,16 @@
 #include "krbookmarkbutton.h"
 #include "krbookmarkhandler.h"
 #include "../krglobal.h"
+
 #include <QtGui/QPixmap>
-#include <kiconloader.h>
-#include <kaction.h>
-#include <klocale.h>
-#include <kmenu.h>
-#include <kdebug.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KAction>
+#include <KDE/KLocale>
+#include <KDE/KMenu>
+#include <KDE/KDebug>
+
+#include <KIconThemes/KIconLoader>
 
 KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent)
 {

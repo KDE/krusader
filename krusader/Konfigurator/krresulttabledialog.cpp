@@ -17,9 +17,10 @@
  *****************************************************************************/
 
 #include "krresulttabledialog.h"
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QFrame>
+
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QFrame>
 
 KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
         const QString& caption, const QString& heading, const QString& headerIcon,

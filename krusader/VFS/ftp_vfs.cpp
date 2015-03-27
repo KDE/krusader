@@ -43,15 +43,17 @@
 #include <QtCore/QTimer>
 #include <QtCore/QEventLoop>
 
-#include <kio/jobclasses.h>
-#include <klocale.h>
-#include <kio/job.h>
-#include <kio/jobuidelegate.h>
-#include <kio/deletejob.h>
-#include <kuiserverjobtracker.h>
-#include <kmessagebox.h>
-#include <kprotocolmanager.h>
-#include <kdebug.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KDebug>
+
+#include <KIO/JobClasses>
+#include <KIO/Job>
+#include <KIO/JobUiDelegate>
+#include <KIO/DeleteJob>
+#include <KJobWidgets/KUiServerJobTracker>
+#include <KWidgetsAddons/KMessageBox>
+#include <KIOCore/KProtocolManager>
 
 #include "krpermhandler.h"
 #include "../krglobal.h"

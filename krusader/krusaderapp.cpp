@@ -19,7 +19,7 @@
 
 #include "krusaderapp.h"
 
-#include <kstartupinfo.h>
+#include <KWindowSystem/KStartupInfo>
 
 
 KrusaderApp::KrusaderApp(): KApplication()

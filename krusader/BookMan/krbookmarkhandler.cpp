@@ -26,18 +26,22 @@
 #include "../VFS/vfs.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/listpanelactions.h"
-#include <kiconloader.h>
-#include <kmessagebox.h>
+
 #include <QtCore/QTextStream>
-#include <QMouseEvent>
-#include <QEvent>
-#include <kactioncollection.h>
-#include <klocale.h>
-#include <kdebug.h>
-#include <kbookmarkmanager.h>
-#include <kstandarddirs.h>
 #include <QtCore/QFile>
+#include <QtCore/QMouseEvent>
+#include <QtCore/QEvent>
 #include <QtGui/QCursor>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KDebug>
+#include <KDE/KStandardDirs>
+
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KMessageBox>
+#include <KXmlGui/KActionCollection>
+#include <KBookmarks/KBookmarkManager>
 
 #define SPECIAL_BOOKMARKS true
 

@@ -32,10 +32,12 @@
 #ifndef KRACTIONS_H
 #define KRACTIONS_H
 
-#include <QObject>
-#include <kaction.h>
-#include <ktoggleaction.h>
+#include <QtCore/QObject>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KAction>
+
+#include <KWidgetsAddons/KToggleAction>
 
 class Krusader;
 

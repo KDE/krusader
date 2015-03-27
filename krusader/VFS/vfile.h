@@ -29,15 +29,16 @@
 #ifndef VFILE_H
 #define VFILE_H
 
-// QT includes
+#include <sys/types.h>
+
 #include <QtCore/QString>
 #include <QtCore/QObject>
-// System includes
-#include <sys/types.h>
-// KDE includes
-#include <kio/global.h>
-#include <kio/udsentry.h>
-#include <kmimetype.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KMimeType>
+
+#include <KIO/Global>
+#include <KIO/UDSEntry>
 
 #define PERM_ALL          -2
 

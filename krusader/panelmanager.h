@@ -22,12 +22,12 @@
 
 #include "abstractpanelmanager.h"
 
-#include <qwidget.h>
-#include <QtGui/QLayout>
-#include <QGridLayout>
-#include <QHBoxLayout>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 
-#include <kconfiggroup.h>
+#include <KConfigCore/KConfigGroup>
 
 #include "paneltabbar.h"
 

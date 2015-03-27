@@ -31,28 +31,30 @@
 #include "krsearchdialog.h"
 
 #include <QtCore/QRegExp>
-#include <QHBoxLayout>
-#include <QKeyEvent>
-#include <QLabel>
-#include <QGridLayout>
-#include <QResizeEvent>
-#include <QCloseEvent>
+#include <QtCore/QMimeData>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QResizeEvent>
 #include <QtGui/QCursor>
 #include <QtGui/QClipboard>
-#include <QDrag>
-#include <QMimeData>
+#include <QtGui/QDrag>
 #include <QtGui/QResizeEvent>
 #include <QtGui/QGridLayout>
-#include <QtGui/QLabel>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QCloseEvent>
 #include <QtGui/QTabWidget>
+#include <QtGui/QCloseEvent>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
 
-#include <kinputdialog.h>
-#include <kmessagebox.h>
-#include <kmenu.h>
-#include <KGlobal>
-#include <KLocale>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KInputDialog>
+#include <KDE/KMenu>
+#include <KDE/KGlobal>
+#include <KDE/KLocale>
+
+#include <KWidgetsAddons/KMessageBox>
 
 #include "krsearchmod.h"
 #include "../krglobal.h"

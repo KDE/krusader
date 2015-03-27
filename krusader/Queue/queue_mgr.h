@@ -20,8 +20,9 @@
 #define QUEUE_MGR_H
 
 #include "queue.h"
-#include <qmap.h>
-#include <QList>
+
+#include <QtCore/QMap>
+#include <QtCore/QList>
 
 /**
  * QueueManager holds multiple queues and has a static

@@ -20,11 +20,12 @@
 #ifndef KRSQUEEZEDTEXTLABEL_H
 #define KRSQUEEZEDTEXTLABEL_H
 
-#include <ksqueezedtextlabel.h>
-#include <QResizeEvent>
-#include <QMouseEvent>
-#include <QDropEvent>
-#include <QDragEnterEvent>
+#include <QtCore/QMouseEvent>
+#include <QtGui/QDropEvent>
+#include <QtGui/QDragEnterEvent>
+#include <QtGui/QResizeEvent>
+
+#include <KWidgetAddons/KSqueezedTextLabel>
 
 class QMouseEvent;
 class QDropEvent;

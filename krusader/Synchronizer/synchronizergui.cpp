@@ -43,32 +43,37 @@
 #include "../kicons.h"
 #include "synchronizedialog.h"
 #include "feedtolistboxdialog.h"
-#include <QtGui/QLayout>
-#include <QtGui/QGroupBox>
-#include <QResizeEvent>
-#include <QLabel>
-#include <QPixmap>
-#include <QMouseEvent>
-#include <QGridLayout>
-#include <QKeyEvent>
-#include <QHBoxLayout>
-#include <QFrame>
-#include <kurlrequester.h>
-#include <klocale.h>
-#include <kmenu.h>
-#include <QtGui/QCursor>
+
 #include <time.h>
-#include <kmessagebox.h>
-#include <kio/netaccess.h>
+
+#include <QtCore/QMouseEvent>
 #include <QtCore/QEventLoop>
 #include <QtCore/QRegExp>
-#include <qheaderview.h>
-#include <qspinbox.h>
-#include <kinputdialog.h>
-#include <QDrag>
-#include <QMimeData>
-#include <QtGui/QClipboard>
+#include <QtCore/QMimeData>
 #include <QtCore/QHash>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QPixmap>
+#include <QtGui/QCursor>
+#include <QtGui/QDrag>
+#include <QtGui/QClipboard>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QSpinBox>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KMenu>
+#include <KDE/KInputDialog>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KIOWidgets/KUrlRequester>
+#include <KIO/NetAccess>
 
 static const char * const right_arrow_button_data[] = {
     "18 18 97 2",

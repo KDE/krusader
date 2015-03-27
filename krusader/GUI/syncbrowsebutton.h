@@ -28,8 +28,8 @@ The current version only manages sync-browse and got no mode-switch options.
 #ifndef SYNCBROWSEBUTTON_H
 #define SYNCBROWSEBUTTON_H
 
-#include <QtGui/QToolButton>
-#include <QPixmap>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QToolButton>
 
 // No synchrone browsing
 #define SYNCBROWSE_OFF  0

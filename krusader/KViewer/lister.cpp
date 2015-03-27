@@ -30,42 +30,44 @@
 
 #include "lister.h"
 
-#include <QApplication>
 #include <QtCore/QFile>
 #include <QtCore/QRect>
 #include <QtCore/QDate>
 #include <QtCore/QTextCodec>
 #include <QtCore/QTextStream>
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
 #include <QtGui/QPainter>
 #include <QtGui/QFontMetrics>
-#include <QtGui/QLineEdit>
-#include <QtGui/QPushButton>
-#include <QtGui/QToolButton>
 #include <QtGui/QClipboard>
 #include <QtGui/QSpacerItem>
 #include <QtGui/QProgressBar>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QScrollBar>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QMenu>
 #include <QtGui/QPrintDialog>
 #include <QtGui/QPrinter>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QMenu>
 
-#include <kuiserverjobtracker.h>
-#include <KColorScheme>
-#include <KTemporaryFile>
-#include <KMessageBox>
-#include <KActionCollection>
-#include <KInputDialog>
-#include <KFileDialog>
-#include <KLocale>
-#include <KGlobalSettings>
-#include <KCharsets>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KTemporaryFile>
+#include <KDE/KInputDialog>
+#include <KDE/KFileDialog>
+#include <KDE/KGlobalSettings>
 #include <KIO/Job>
 #include <KIO/CopyJob>
 #include <KIO/JobUiDelegate>
+
+#include <KJobWidgets/KUiServerJobTracker>
+#include <KConfigWidgets/KColorScheme>
+#include <KWidgetsAddons/KMessageBox>
+#include <KXmlGui/KActionCollection>
+#include <KCodecs/KCharsets>
 
 #include "../krglobal.h"
 #include "../kractions.h"

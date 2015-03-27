@@ -31,8 +31,8 @@
 #ifndef DULISTVIEW_H
 #define DULISTVIEW_H
 
-#include <QMouseEvent>
-#include <QKeyEvent>
+#include <QtCore/QMouseEvent>
+#include <QtGui/QKeyEvent>
 
 #include "../GUI/krtreewidget.h"
 #include "diskusage.h"

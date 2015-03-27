@@ -19,18 +19,21 @@
 
 #include "useractionpage.h"
 
-#include <kstandardguiitem.h>
-#include <QtGui/QSplitter>
-#include <QtGui/QLayout>
-#include <QtGui/QToolButton>
+#include <QtWidgets/QSplitter>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QVBoxLayout>
 #include <QtGui/QClipboard>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <klineedit.h>
-#include <kmessagebox.h>
-#include <kfiledialog.h>
-#include <kiconloader.h>
-#include <klocale.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KFileDialog>
+
+#include <KWidgetsAddons/KStandardGuiItem>
+#include <KCompletion/KLineEdit>
+#include <KWidgetsAddons/KMessageBox>
+#include <KIconThemes/KIconLoader>
 
 #include "actionproperty.h"
 #include "useractionlistview.h"

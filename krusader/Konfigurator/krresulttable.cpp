@@ -17,11 +17,14 @@
  *****************************************************************************/
 
 #include "krresulttable.h"
+
 #include <iostream>
-#include <QGridLayout>
-#include <QLabel>
+
 #include <QtCore/QList>
-#include <kcolorscheme.h>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
+
+#include <KConfigWidgets/KColorScheme>
 
 #include "../krusader.h"
 

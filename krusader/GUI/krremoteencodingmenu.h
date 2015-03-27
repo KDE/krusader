@@ -22,10 +22,12 @@
 
 #include <QtCore/QStringList>
 
-#include <kurl.h>
-#include <klibloader.h>
-#include <kaction.h>
-#include <kactionmenu.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+#include <KDE/KAction>
+#include <KDE/KLibLoader>
+
+# include <KWidgetsAddons/KActionMenu>
 
 class KActionCollection;
 

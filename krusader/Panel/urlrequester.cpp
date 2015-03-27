@@ -21,11 +21,12 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 
-#include <KLineEdit>
-#include <ksqueezedtextlabel.h>
-#include <QPainter>
-#include <QFont>
-#include <QEvent>
+#include <QtCore/QEvent>
+#include <QtGui/QPainter>
+#include <QtGui/QFont>
+
+#include <KCompletion/KLineEdit>
+#include <KWidgetAddons/KSqueezedTextLabel>
 
 class UrlRequester::PathLabel : public KSqueezedTextLabel
 {

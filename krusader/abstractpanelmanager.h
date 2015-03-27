@@ -19,7 +19,8 @@
 #ifndef __ABSTRACTPANELMANAGER_H__
 #define __ABSTRACTPANELMANAGER_H__
 
-#include <kurl.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
 
 class KrPanel;
 

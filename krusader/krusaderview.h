@@ -32,18 +32,18 @@
 #ifndef KRUSADERVIEW_H
 #define KRUSADERVIEW_H
 
-// KDE includes
-#include <klocale.h>
-#include <kapplication.h>
-#include <kparts/part.h>
+#include <QtCore/QEvent>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QSplitter>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QGridLayout>
 
-// QT includes
-#include <QtGui/QLayout>
-#include <QtGui/QSplitter>
-#include <qwidget.h>
-#include <QtGui/QPushButton>
-#include <QGridLayout>
-#include <QEvent>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KApplication>
+
+#include <KParts/Part>
 
 #include "krglobal.h"
 

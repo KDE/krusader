@@ -20,11 +20,15 @@
 #include "krcolorcache.h"
 #include "../krglobal.h"
 #include "../defaults.h"
-#include <kcolorscheme.h>
-#include <kdebug.h>
+
 #include <QtCore/QFile>
-#include <QPixmapCache>
-#include <QList>
+#include <QtCore/QList>
+#include <QtGui/QPixmapCache>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
+
+#include <KConfigWidgets/KColorScheme>
 
 // Macro: set target = col, if col is valid
 #define SETCOLOR(target, col) { if (col.isValid()) target = col; }

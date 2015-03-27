@@ -33,10 +33,11 @@
 
 #include "../krglobal.h"
 
-#include <kdebug.h>
-#include <klocale.h>
-#include <kcharsets.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
+#include <KDE/KLocale>
 
+#include <KCodecs/KCharSets>
 
 FilterSettings::FileSize& FilterSettings::FileSize::operator=(const FileSize &other)
 {

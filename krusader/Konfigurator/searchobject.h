@@ -21,7 +21,8 @@
 
 #include <QtCore/QString>
 #include <QtCore/QList>
-#include "../krservices.h"
+
+# include "../krservices.h"
 
 class SearchObject
 {

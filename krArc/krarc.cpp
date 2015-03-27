@@ -29,22 +29,24 @@
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
 #include <QtCore/QRegExp>
-#include <QByteArray>
-#include <QTextCodec>
+#include <QtCore/QByteArray>
+#include <QtCore/QTextCodec>
 
-#include <kfileitem.h>
-#include <kdebug.h>
-#include <kmessagebox.h>
-#include <kcomponentdata.h>
-#include <klocale.h>
-#include <kurl.h>
-#include <ktemporaryfile.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
+#include <KDE/KUrl>
+#include <KDE/KComponentData>
+#include <KDE/KLocale>
+#include <KDE/KTemporaryFile>
 #include <kde_file.h>
-#include <kstandarddirs.h>
-#include <kio/job.h>
-#include <kio/jobclasses.h>
-#include <ktar.h>
-#include <kprocess.h>
+#include <KDE/KStandardDirs>
+
+#include <KIO/KFileItem>
+#include <KWidgetsAddons/KMessageBox>
+#include <KIO/Job>
+#include <KIO/JobClasses>
+#include <KArchive/KTar>
+#include <KCoreAddons/KProcess>
 
 #define MAX_IPC_SIZE           (1024*32)
 #define TRIES_WITH_PASSWORDS   3

@@ -9,26 +9,28 @@
 
 #include "kimagefilepreview.h"
 
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
-#include <QtGui/QComboBox>
-#include <QtGui/QCheckBox>
 #include <QtCore/QTimer>
-#include <QPixmap>
-#include <QResizeEvent>
-#include <QVBoxLayout>
-#include <QFrame>
+#include <QtGui/QPixmap>
+#include <QtGui/QResizeEvent>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QFrame>
 
-#include <kapplication.h>
-#include <kglobal.h>
-#include <kiconloader.h>
-#include <kpushbutton.h>
-#include <kstandarddirs.h>
-#include <kdebug.h>
-#include <klocale.h>
-#include <kfiledialog.h>
-#include <kfileitem.h>
-#include <kio/previewjob.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KApplication>
+#include <KDE/KGlobal>
+#include <KDE/KPushButton>
+#include <KDE/KStandardDirs>
+#include <KDE/KDebug>
+#include <KDE/KLocale>
+#include <KDE/KFileDialog>
+
+#include <KIconThemes/KIconLoader>
+#include <KIO/KFileItem>
+#include <KIO/PreviewJob>
 
 KrusaderImageFilePreview::KrusaderImageFilePreview(QWidget *parent)
         : KPreviewWidgetBase(parent),

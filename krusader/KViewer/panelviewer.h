@@ -22,12 +22,14 @@
 
 #include <QtCore/QHash>
 #include <QtCore/QString>
-#include <QtGui/QLabel>
 #include <QtGui/QStackedWidget>
+#include <QtWidgets/QLabel>
 
-#include <kurl.h>
-#include <kparts/part.h>
-#include <kio/job.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+#include <KIO/Job>
+
+# include <KParts/Part>
 
 #include "krviewer.h"
 

@@ -24,9 +24,10 @@
 #include "../GUI/krstyleproxy.h"
 #include "../defaults.h"
 
-#include <QWidget>
-#include <QAbstractItemView>
-#include <kconfig.h>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QAbstractItemView>
+
+#include <KConfigCore/KConfig>
 
 
 KrItemView::KrItemView(QWidget *parent, KrViewInstance &instance, KConfig *cfg) :

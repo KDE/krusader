@@ -22,7 +22,8 @@
 
 #include <QtCore/QObject>
 
-#include <kurl.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
 
 #include "vfs.h"
 

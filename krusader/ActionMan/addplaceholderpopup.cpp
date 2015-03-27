@@ -21,30 +21,30 @@
 #include "addplaceholderpopup.h"
 
 #include "../UserAction/expander.h"
-
-#include <klocale.h>
-#include <kfiledialog.h>
-#include <kmessagebox.h>
-
 // for ParameterDialog
 #include "../krglobal.h" // for konfig-access
 #include "../BookMan/krbookmarkbutton.h"
 #include "../GUI/profilemanager.h"
 
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
-#include <QtGui/QToolButton>
-#include <QHBoxLayout>
-#include <QFrame>
-#include <QVBoxLayout>
-#include <klineedit.h>
-#include <QtGui/QCheckBox>
-#include <kiconloader.h>
-#include <kcombobox.h>
-#include <kurlcompletion.h>
-#include <knuminput.h>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QFrame>
 
-#include <kdebug.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KFileDialog>
+#include <KDE/KDebug>
+#include <KDE/KNumInput>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KCompletion/KLineEdit>
+#include <KCompletion/KComboBox>
+#include <KIconThemes/KIconLoader>
+#include <KIOWidgets/KUrlCompletion>
 
 #define ACTIVE_MASK  0x0100
 #define OTHER_MASK  0x0200

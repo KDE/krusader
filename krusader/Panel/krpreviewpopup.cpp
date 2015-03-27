@@ -21,16 +21,18 @@
 
 #include <algorithm>
 
-#include <QPixmap>
-#include <QPainter>
-#include <QApplication>
-#include <QStyleOptionMenuItem>
-#include <QProxyStyle>
+#include <QtGui/QPixmap>
+#include <QtGui/QPainter>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QStyleOptionMenuItem>
+#include <QtWidgets/QProxyStyle>
 
-#include <kio/previewjob.h>
-#include <kdebug.h>
-#include <klocale.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
+#include <KDE/KLocale>
 #include <kdeversion.h>
+
+#include <KIO/PreviewJob>
 
 #include "../KViewer/krviewer.h"
 

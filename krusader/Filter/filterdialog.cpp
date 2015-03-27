@@ -32,9 +32,10 @@
 #include "filtertabs.h"
 #include "generalfilter.h"
 
-#include <klocale.h>
-#include <QGridLayout>
+#include <QtWidgets/QGridLayout>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
 
 FilterDialog::FilterDialog(QWidget *parent, QString caption, QStringList extraOptions, bool modal)
         : KDialog(parent)

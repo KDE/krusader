@@ -30,14 +30,18 @@
 
 #include "konfiguratoritems.h"
 #include "../krglobal.h"
-#include <klocale.h>
-#include <klineedit.h>
+
 #include <QtGui/QPainter>
 #include <QtGui/QPen>
 #include <QtGui/QColorDialog>
-#include <QPixmap>
-#include <QLabel>
-#include <kiconloader.h>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QLabel>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+
+#include <KCompletion/KLineEdit>
+#include <KIconThemes/KIconLoader>
 
 KonfiguratorExtension::KonfiguratorExtension(QObject *obj, QString cfgClass, QString cfgName, bool rst, int pg) :
         QObject(), objectPtr(obj), applyConnected(false), setDefaultsConnected(false),

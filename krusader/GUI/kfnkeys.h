@@ -32,10 +32,10 @@
 #ifndef KFNKEYS_H
 #define KFNKEYS_H
 
-#include <qwidget.h>
-#include <QtGui/QLayout>
-#include <QtGui/QPushButton>
-#include <QGridLayout>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QGridLayout>
 
 class FileManagerWindow;
 

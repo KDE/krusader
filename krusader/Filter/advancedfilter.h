@@ -35,12 +35,12 @@
 #include "../VFS/krquery.h"
 
 #include <QtGui/QWidget>
-#include <QtGui/QCheckBox>
-#include <QtGui/QRadioButton>
-#include <QtGui/QToolButton>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QRadioButton>
+#include <QtWidgets/QToolButton>
 
-#include <KComboBox>
-#include <KLineEdit>
+#include <KCompletion/KComboBox>
+#include <KCompletion/KLineEdit>
 
 class QSpinBox;
 

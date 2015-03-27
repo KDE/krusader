@@ -32,17 +32,18 @@
 
 #include "vfilecontainer.h"
 
-// QT includes
 #include <QtCore/QString>
 #include <QtCore/QList>
 #include <QtCore/QObject>
 #include <QtCore/QHash>
-#include <QPointer>
-#include <QWidget>
-// KDE includes
-#include <kurl.h>
-#include <kio/jobclasses.h>
-// Krusader includes
+#include <QtCore/QPointer>
+#include <QtWidgets/QWidget>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KIO/JobClasses>
+
 #include "vfile.h"
 #include "preservingcopyjob.h"
 #include "krquery.h"

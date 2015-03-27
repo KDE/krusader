@@ -30,10 +30,13 @@
 
 #include "packjob.h"
 #include "krarchandler.h"
+
 #include <QtCore/QTimer>
 #include <QtCore/QDir>
-#include <klocale.h>
-#include <kmimetype.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KMimeType>
 
 PackJob::PackJob(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps) : AbstractThreadedJob()
 {

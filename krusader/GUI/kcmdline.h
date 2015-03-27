@@ -33,17 +33,15 @@
 #ifndef KCMDLINE_H
 #define KCMDLINE_H
 
-// QT includes
-#include <qwidget.h>
-#include <QtGui/QLabel>
-#include <QtGui/QLayout>
-#include <QtGui/QToolButton>
-#include <QKeyEvent>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QToolButton>
 
-// KDE includes
-#include <klineedit.h>
-#include <kshellcompletion.h>
-#include <khistorycombobox.h>
+#include <KCompletion/KLineEdit>
+#include <KIOWidgets/KShellCompletion>
+#include <KCompletion/KHistoryComboBox>
 
 #include "../UserAction/kractionbase.h"
 

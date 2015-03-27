@@ -33,10 +33,12 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QPointer>
-#include <QMap>
+#include <QtCore/QMap>
 
-#include <kurl.h>
-#include <kio/jobclasses.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KIO/JobClasses>
 
 class QEvent;
 class vfs;

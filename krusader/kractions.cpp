@@ -29,13 +29,17 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 ***************************************************************************/
 
 #include "kractions.h"
-#include <klocale.h>
-#include <kactioncollection.h>
-#include <kaction.h>
-#include <ktoggleaction.h>
-#include <ktoggletoolbaraction.h>
-#include <ktoolbarpopupaction.h>
-#include <QMenu>
+
+#include <QtWidgets/QMenu>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KAction>
+
+#include <KXmlGui/KActionCollection>
+#include <KWidgetsAddons/KToggleAction>
+#include <KWidgetsAddons/KToolBarPopupAction>
+#include <KXmlGui/KToggleToolBarAction>
 
 #include "defaults.h"
 #include "krusader.h"

@@ -20,9 +20,11 @@
 #ifndef DIRHISTORYBUTTON_H
 #define DIRHISTORYBUTTON_H
 
-#include <qwidget.h>
-#include <QtGui/QToolButton>
-#include <kurl.h>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QToolButton>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+# include <KDE/KUrl>
 
 class QMenu;
 class QAction;

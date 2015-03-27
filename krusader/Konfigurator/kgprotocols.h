@@ -31,7 +31,7 @@
 #ifndef KGPROTOCOLS_H
 #define KGPROTOCOLS_H
 
-#include <QtGui/QPushButton>
+#include <QtWidgets/QPushButton>
 
 #include "konfiguratorpage.h"
 #include "../GUI/krtreewidget.h"

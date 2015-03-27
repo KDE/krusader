@@ -38,9 +38,9 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QTimer>
-#include <QClipboard>
-#include <kservice.h>
+#include <QtGui/QClipboard>
 
+#include <KService/KService>
 
 class DirHistoryQueue;
 

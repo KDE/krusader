@@ -32,17 +32,22 @@
 #include "kgpanel.h"
 #include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
+
 #include <QtGui/QTabWidget>
-#include <QFrame>
-#include <QGridLayout>
-#include <QLabel>
-#include <QVBoxLayout>
-#include <klocale.h>
 #include <QtGui/QValidator>
-#include <kmessagebox.h>
-#include <kfiledialog.h>
-#include <kglobal.h>
-#include <kstandarddirs.h>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QVBoxLayout>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KFileDialog>
+#include <KDE/KGlobal>
+#include <KDE/KStandardDirs>
+
+#include <KWidgetsAddons/KMessageBox>
+
 #include "../GUI/krtreewidget.h"
 #include "../Panel/krselectionmode.h"
 #include "../Panel/krview.h"

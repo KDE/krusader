@@ -21,7 +21,8 @@
 #ifndef CHECKSUMDLG_H
 #define CHECKSUMDLG_H
 
-#include <kdialog.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
 
 class KTemporaryFile;
 class KUrlRequester;

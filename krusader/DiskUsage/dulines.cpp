@@ -32,19 +32,22 @@
 #include "../kicons.h"
 #include "../krglobal.h"
 #include "../VFS/krpermhandler.h"
-#include <QPixmap>
-#include <QMouseEvent>
-#include <QKeyEvent>
-#include <klocale.h>
+
+#include <QtCore/QMouseEvent>
+#include <QtCore/QTimer>
+#include <QtGui/QPixmap>
+#include <QtGui/QKeyEvent>
 #include <QtGui/QPen>
 #include <QtGui/QPainter>
 #include <QtGui/QFontMetrics>
-#include <QtCore/QTimer>
-#include <QtGui/QApplication>
-#include <qheaderview.h>
-#include <kmenu.h>
-#include <QItemDelegate>
 #include <QtGui/QToolTip>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QItemDelegate>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KMenu>
+#include <KDE/KLocale>
 
 class DULinesItemDelegate : public QItemDelegate
 {

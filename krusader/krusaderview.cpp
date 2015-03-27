@@ -30,18 +30,20 @@
 
 #include "krusaderview.h"
 
-#include <QGridLayout>
-#include <QList>
-#include <QKeyEvent>
-#include <QEvent>
+#include <QtCore/QList>
+#include <QtCore/QEvent>
+#include <QtGui/QKeyEvent>
 #include <QtGui/QClipboard>
+#include <QtWidgets/QGridLayout>
 
-#include <kstatusbar.h>
-#include <kmenubar.h>
-#include <kshortcut.h>
-#include <ktoolbar.h>
-#include <ktoggleaction.h>
-#include <klibloader.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KStatusBar>
+#include <KDE/KMenuBar>
+#include <KDE/KLibLoader>
+#include <KDE/KShortcut>
+
+#include <KXmlGui/KToolbar>
+#include <KWidgetsAddons/KToggleAction>
 
 #include "krusader.h"
 #include "kractions.h"

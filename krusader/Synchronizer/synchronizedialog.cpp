@@ -32,10 +32,13 @@
 #include "../VFS/krpermhandler.h"
 #include "../krglobal.h"
 #include "../defaults.h"
-#include <QtGui/QLayout>
-#include <QVBoxLayout>
-#include <QLabel>
-#include <klocale.h>
+
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QLabel>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
 
 SynchronizeDialog::SynchronizeDialog(QWidget* parent,
                                      Synchronizer *sync, int pleftCopyNr, KIO::filesize_t pleftCopySize,

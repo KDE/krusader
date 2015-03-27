@@ -33,21 +33,22 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <QtGui/QMessageBox>
-#include <QGridLayout>
-#include <QFrame>
-#include <QLabel>
-#include <QKeyEvent>
-#include <QtGui/QIcon>
 #include <QtCore/QDir>
+#include <QtCore/QStringList>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QIcon>
 #include <QtGui/QFontMetrics>
 #include <QtGui/QImage>
-#include <QtCore/QStringList>
 #include <QtGui/QSizePolicy>
+#include <QtWidgets/QMessageBox>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QLabel>
 
-#include <kstandarddirs.h>
-#include <klocale.h>
-#include <kglobalsettings.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KStandardDirs>
+#include <KDE/KLocale>
+#include <KDE/KGlobalSettings>
 
 #include "../krglobal.h"
 #include "../kicons.h"

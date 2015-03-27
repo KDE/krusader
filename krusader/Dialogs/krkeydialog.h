@@ -19,7 +19,7 @@
 #ifndef KRKEYDIALOG_H
 #define KRKEYDIALOG_H
 
-#include <kshortcutsdialog.h>
+#include <KXmlGui/KShortcutsDialog>
 
 /**
  * @short KDE's KKeyDialog extended by the ability to export/import shortcuts

@@ -30,14 +30,18 @@
 #ifndef KRSPWIDGETS_H
 #define KRSPWIDGETS_H
 
-#include <QMouseEvent>
-#include <QEvent>
-#include <kurl.h>
+#include <QtCore/QMouseEvent>
+#include <QtCore/QEvent>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KCompletion/KLineEdit>
+#include <KNotifications/KPassivePopup>
+
 #include "krmaskchoice.h"
 #include "newftpgui.h"
 #include "../VFS/krquery.h"
-#include <klineedit.h>
-#include <kpassivepopup.h>
 
 class newFTPGUI;
 

@@ -33,27 +33,30 @@
 #ifndef LISTPANEL_H
 #define LISTPANEL_H
 
-#include <kfileitem.h>
-#include <kurl.h>
-#include <qwidget.h>
-#include <QtGui/QLabel>
-#include <QtGui/QLayout>
 #include <QtCore/QString>
-#include <QtGui/QPixmap>
-#include <QtGui/QToolButton>
-#include <QProgressBar>
 #include <QtCore/QDir>
-#include <qpixmapcache.h>
-#include <QtGui/QIcon>
-#include <QDropEvent>
-#include <QShowEvent>
-#include <QGridLayout>
-#include <QList>
-#include <QHideEvent>
-#include <QKeyEvent>
-#include <QEvent>
-#include <klineedit.h>
+#include <QtCore/QList>
+#include <QtCore/QEvent>
 #include <QtCore/QPointer>
+#include <QtGui/QPixmap>
+#include <QtGui/QPixmapCache>
+#include <QtGui/QIcon>
+#include <QtGui/QDropEvent>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QShowEvent>
+#include <QtGui/QHideEvent>
+#include <QtWidgets/QProgressBar>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QGridLayout>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KIO/KFileItem>
+#include <KCompletion/KLineEdit>
 
 #include "krpanel.h"
 #include "krview.h"

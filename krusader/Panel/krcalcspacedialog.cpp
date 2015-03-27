@@ -32,13 +32,15 @@ A
 #include "krcalcspacedialog.h"
 
 #include <QtCore/QTimer>
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
-#include <QVBoxLayout>
-#include <QMutexLocker>
+#include <QtCore/QMutexLocker>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QVBoxLayout>
 
-#include <klocale.h>
-#include <kcursor.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+
+#include <KWidgetsAddons/KCursor>
 
 #include "krpanel.h"
 #include "panelfunc.h"

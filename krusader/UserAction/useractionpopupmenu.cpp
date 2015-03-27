@@ -18,8 +18,9 @@
 
 #include "useractionpopupmenu.h"
 
-#include <kurl.h>
-#include <klocale.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+#include <KDE/KLocale>
 
 #include "../krglobal.h"
 #include "useraction.h"

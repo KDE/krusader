@@ -31,15 +31,17 @@
 #include "splitter.h"
 #include "../VFS/vfs.h"
 
-#include <QtGui/QLayout>
 #include <QtCore/QFileInfo>
-#include <kdebug.h>
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kio/job.h>
-#include <kfileitem.h>
-#include <kio/jobuidelegate.h>
+#include <QtWidgets/QLayout>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
+#include <KDE/KLocale>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KIO/Job>
+#include <KIO/KFileItem>
+#include <KIO/JobUiDelegate>
 
 Splitter::Splitter(QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn, bool overWriteIn) :
         QProgressDialog(parent, 0),

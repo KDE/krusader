@@ -34,14 +34,16 @@
 #include <QtCore/QDir>
 #include <QtCore/QFile>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KDebug>
-#include <KUrl>
-#include <KMimeType>
-#include <KConfig>
-#include <KConfigGroup>
-#include <KFilterBase>
-#include <KFilterDev>
+#include <KDE/KDebug>
+#include <KDE/KUrl>
+#include <KDE/KMimeType>
+
+#include <KConfigCore/KConfig>
+#include <KConfigCore/KConfigGroup>
+#include <KArchive/KFilterBase>
+#include <KArchive/KFilterDev>
 
 #include "libisofs/isofs.h"
 #include "qfilehack.h"

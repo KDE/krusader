@@ -19,7 +19,8 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
-#include <kdebug.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
 
 #define debug   kDebug
 #define error   kError

@@ -31,10 +31,12 @@
 #ifndef KRTRASHHANDLER_H
 #define KRTRASHHANDLER_H
 
-#include <QString>
+#include <QtCore/QString>
 
-#include <kurl.h>
-#include <kio/job.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KIO/Job>
 
 class KrTrashWatcher;
 class KDirWatch;

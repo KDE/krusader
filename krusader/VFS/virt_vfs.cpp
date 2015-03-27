@@ -22,17 +22,19 @@
 #include <unistd.h>
 #include <time.h>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KFileItem>
-#include <KGlobalSettings>
-#include <KUrl>
-#include <KMessageBox>
-#include <KLocale>
-#include <KStandardDirs>
+#include <KDE/KGlobalSettings>
+#include <KDE/KUrl>
+#include <KDE/KLocale>
+#include <KDE/KStandardDirs>
+
+#include <KIOCore/KFileItem>
+#include <KWidgetsAddons/KMessageBox>
 #include <KIO/CopyJob>
 #include <KIO/DeleteJob>
 #include <KIO/StatJob>
-#include <kio/directorysizejob.h>
+#include <KIO/DirectorySizeJob>
 
 #include "krpermhandler.h"
 #include "../krglobal.h"

@@ -33,16 +33,19 @@
 #include "../krglobal.h"
 #include "../VFS/vfs.h"
 
-#include <klocale.h>
-#include <kfiledialog.h>
-#include <kmessagebox.h>
-#include <kiconloader.h>
-#include <QtGui/QPushButton>
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <QMenu>
-#include <QLabel>
-#include <kcharsets.h>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QMenu>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KFileDialog>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KIconThemes/KIconLoader>
+#include <KCodecs/KCharSets>
 
 typedef struct {
     const char *description;

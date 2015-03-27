@@ -21,7 +21,9 @@
 #define KRACTIONBASE_H
 
 #include <QtCore/QString>
+
 #include "expander.h"
+
 class KrActionProc;
 
 class KrActionBase

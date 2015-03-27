@@ -32,15 +32,18 @@
 #include "../krglobal.h"
 #include "../kicons.h"
 #include "../VFS/krpermhandler.h"
-#include <QtGui/QFontMetrics>
-#include <QMouseEvent>
-#include <QKeyEvent>
-#include <klocale.h>
-#include <kmimetype.h>
-#include <kglobal.h>
-#include <qheaderview.h>
+
 #include <time.h>
 
+#include <QtCore/QMouseEvent>
+#include <QtGui/QFontMetrics>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QHeaderView>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KGlobal>
+#include <KDE/KMimeType>
 
 DUListView::DUListView(DiskUsage *usage)
         : KrTreeWidget(usage), diskUsage(usage)

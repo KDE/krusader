@@ -28,12 +28,17 @@
  *                                                                         *
  ***************************************************************************/
 #include "krdirwatch.h"
+
 #include <unistd.h>
 #include <sys/types.h>
-#include <kdebug.h>
+
+#include <QtCore/QDir>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
+
 #include "krpermhandler.h"
 #include "qstringlist.h"
-#include <QtCore/QDir>
 
 KRdirWatch::KRdirWatch(int msec, bool dirOnly):
         delay(msec), t(this), changed(false)

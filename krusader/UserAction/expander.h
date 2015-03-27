@@ -24,8 +24,9 @@
 #include <QtCore/QString>
 #include <QtCore/QStringList>
 #include <QtCore/QList>
-#include "tstring.h"
-// #include <QtCore/QStringList>
+
+# include "tstring.h"
+
 class KrPanel;
 class Expander;
 class Error;

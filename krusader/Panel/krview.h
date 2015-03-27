@@ -30,20 +30,22 @@
 #ifndef KRVIEW_H
 #define KRVIEW_H
 
-#include <QtGui/QPixmap>
 #include <QtCore/QVariant>
 #include <QtCore/QHash>
 #include <QtCore/QRegExp>
-#include <QDropEvent>
-#include <QList>
-#include <QModelIndex>
-#include <QTimer>
+#include <QtCore/QList>
+#include <QtCore/QModelIndex>
+#include <QtCore/QTimer>
+#include <QtGui/QPixmap>
+#include <QtGui/QDropEvent>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
+
 #include "../krglobal.h"
 #include "../VFS/vfile.h"
 #include "../VFS/krquery.h"
 #include "../Filter/filtersettings.h"
-
-#include <kdebug.h>
 
 #define MAX_BRIEF_COLS 5
 

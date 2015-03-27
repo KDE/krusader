@@ -39,15 +39,18 @@
 #include "../KrJS/krjs.h"
 #endif
 
-#include <kdebug.h>
-#include <kinputdialog.h>
-#include <kstandarddirs.h>
-#include <kmessagebox.h>
-#include <ktemporaryfile.h>
 #include <QtCore/QStringList>
-#include <QtGui/QClipboard>
 #include <QtCore/QTextStream>
-#include <QList>
+#include <QtCore/QList>
+#include <QtGui/QClipboard>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
+#include <KDE/KInputDialog>
+#include <KDE/KStandardDirs>
+#include <KDE/KTemporaryFile>
+
+#include <KWidgetsAddons/KMessageBox>
 
 #include <functional>
 #include <algorithm>

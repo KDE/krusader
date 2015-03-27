@@ -16,15 +16,18 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include <kcursor.h>         //make()
-#include <kglobalsettings.h> //kdeColours
-#include <kiconeffect.h>     //desaturate()
-#include <QApplication>    //make()
-#include <QImage>          //make() & paint()
-#include <qfont.h>           //ctor
-#include <QFontMetrics>    //ctor
-#include <QPainter>
-#include <QPolygon>
+#include <QtGui/QImage>          //make() & paint()
+#include <QtGui/QFont>                                    //ctor
+#include <QtGui/QFontMetrics>                               //ctor
+#include <QtGui/QPainter>
+#include <QtGui/QPolygon>
+#include <QtWidgets/QApplication>    //make()
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KGlobalSettings> //kdeColours
+
+#include <KIconThemes/KIconEffect>                        //desaturate()
+#include <KWidgetsAddons/KCursor>         //make()
 
 #include "builder.h"
 #include "Config.h"

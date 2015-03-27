@@ -20,7 +20,8 @@
 #define KISODIRECTORY_H
 
 #include <QtCore/QString>
-#include <karchive.h>
+
+#include <KArchive/KArchive>
 
 class KIsoDirectory : public KArchiveDirectory
 {

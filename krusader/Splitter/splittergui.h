@@ -33,8 +33,8 @@
 
 #include <QtGui/QDialog>
 
-#include <kurlrequester.h>
-#include <kio/global.h>
+#include <KIOWidgets/KUrlRequester>
+#include <KIO/Global>
 
 class QComboBox;
 class QCheckBox;

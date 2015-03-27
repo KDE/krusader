@@ -32,14 +32,15 @@ A
 #ifndef KRSPECIALWIDGETS_H
 #define KRSPECIALWIDGETS_H
 
-#include <qwidget.h>
-#include <QtGui/QPainter>
-#include <qcolor.h>
-#include <QKeyEvent>
-#include <QPaintEvent>
-#include <klineedit.h>
 #include <QtCore/QEvent>
-#include <kio/global.h>
+#include <QtGui/QPainter>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QPaintEvent>
+#include <QtGui/QColor>
+#include <QtWidgets/QWidget>
+
+#include <KCompletion/KLineEdit>
+#include <KIO/Global>
 
 class KRPieSlice;
 

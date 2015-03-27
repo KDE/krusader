@@ -20,7 +20,8 @@
 #ifndef USERMENU_H
 #define USERMENU_H
 
-#include <kmenu.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KMenu>
 
 class QWidget;
 class UserMenu;

@@ -20,10 +20,12 @@
 #include "kicons.h"
 #include "krglobal.h"
 #include "defaults.h"
+
 #include <QtCore/QString>
-#include <QPixmap>
-#include <QStyle>
-#include <kiconloader.h>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QStyle>
+
+#include <KIconThemes/KIconLoader>
 
 QPixmap FL_LOADICON(QString name)
 {

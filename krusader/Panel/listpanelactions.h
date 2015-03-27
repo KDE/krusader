@@ -35,8 +35,8 @@
 
 #include "../actionsbase.h"
 
-#include <kaction.h>
-
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KAction>
 
 class FileManagerWindow;
 class KrPanel;

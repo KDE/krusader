@@ -33,11 +33,11 @@
 
 #include <time.h>
 
-#include <qmap.h>
+#include <QtCore/QMap>
 #include <QtCore/QList>
 
-#include <kio/jobclasses.h>
-#include <kio/copyjob.h>
+#include <KIO/JobClasses>
+#include <KIO/CopyJob>
 
 typedef enum {
     PM_NONE          = 0,

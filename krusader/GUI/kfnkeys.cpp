@@ -30,11 +30,12 @@
 
 #include "kfnkeys.h"
 
-#include <QGridLayout>
 #include <QtGui/QFontMetrics>
+#include <QtWidgets/QGridLayout>
 
-#include <klocale.h>
-#include <kglobalsettings.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KGlobalSettings>
 
 #include "../defaults.h"
 #include "../filemanagerwindow.h"

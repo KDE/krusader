@@ -34,38 +34,41 @@
 #include "../krservices.h"
 #include "../VFS/vfs.h"
 #include "../VFS/krquery.h"
-#include <kurl.h>
-#include <kmessagebox.h>
-#include <klocale.h>
-#include <QtGui/QApplication>
-#include <QtCore/QRegExp>
-#include <QtCore/QDir>
-#include <QtCore/QTimer>
-#include <QTime>
-#include <QFrame>
-#include <QVBoxLayout>
-#include <kio/job.h>
-#include <kio/deletejob.h>
-#include <kio/jobuidelegate.h>
-#include <kio/skipdialog.h>
-#include <unistd.h>
-#include <QtCore/QEventLoop>
-#include <QtGui/QPushButton>
-#include <QtCore/QDateTime>
-#include <kprocess.h>
-#include <kdialog.h>
-#include <QtGui/QLayout>
-#include <qprogressbar.h>
-#include <kurlcompletion.h>
 
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/time.h>
 #include <utime.h>
 #include <pwd.h>
 #include <grp.h>
-#include <QtGui/QLabel>
 
+#include <QtCore/QRegExp>
+#include <QtCore/QDir>
+#include <QtCore/QEventLoop>
+#include <QtCore/QTimer>
+#include <QtCore/QTime>
+#include <QtCore/QDateTime>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QProgressBar>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QLabel>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+#include <KDE/KLocale>
+#include <KDE/KDialog>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KIO/Job>
+#include <KCoreAddons/KProcess>
+#include <KIOWidgets/KUrlCompletion>
+
+#include <KIO/DeleteJob>
+#include <KIO/JobUiDelegate>
+#include <KIO/SkipDialog>
 
 #ifdef HAVE_POSIX_ACL
 #include <sys/acl.h>

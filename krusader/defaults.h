@@ -32,7 +32,8 @@
 #ifndef DEFAULTS_H
 #define DEFAULTS_H
 
-#include <kglobalsettings.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KGlobalSettings>
 
 ///////////////////////   [Startup]
 // UI Save Settings

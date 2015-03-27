@@ -32,29 +32,31 @@
 
 #include <time.h>
 
-#include <QtGui/QLayout>
-#include <QKeyEvent>
-#include <QLabel>
-#include <QGridLayout>
-#include <QPixmap>
-#include <QFrame>
-#include <QResizeEvent>
-#include <QEvent>
-#include <QHash>
-#include <QtGui/QPushButton>
-#include <QtGui/QApplication>
-#include <QtGui/QCursor>
-#include <qpixmapcache.h>
-#include <QtGui/QGroupBox>
+#include <QtCore/QEvent>
+#include <QtCore/QHash>
 #include <QtCore/QPointer>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QPixmap>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QCursor>
+#include <QtGui/QPixmapCache>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QGroupBox>
 
-#include <klocale.h>
-#include <kmenu.h>
-#include <kmimetype.h>
-#include <kmessagebox.h>
-#include <kglobalsettings.h>
-#include <kio/job.h>
-#include <kio/deletejob.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KMenu>
+#include <KDE/KMimeType>
+#include <KDE/KGlobalSettings>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KIO/Job>
+#include <KIO/DeleteJob>
 
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krvfshandler.h"

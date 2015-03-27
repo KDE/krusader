@@ -33,21 +33,23 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QString>
-#include <QtGui/QCheckBox>
-#include <qspinbox.h>
-#include <QtGui/QPushButton>
-#include <QtGui/QRadioButton>
 #include <QtCore/QList>
-#include <QtGui/QLineEdit>
-#include <QPixmap>
+#include <QtGui/QPixmap>
 #include <QtGui/QBoxLayout>
-#include <QtGui/QLabel>
-#include <qfont.h>
-#include <QtGui/QToolButton>
-#include <QtGui/QComboBox>
+#include <QtGui/QFont>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QComboBox>
 
-#include <kurlrequester.h>
-#include <kfontdialog.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KFontDialog>
+
+#include <KIOWidgets/KUrlRequester>
 
 #include "../GUI/krlistwidget.h"
 

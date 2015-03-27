@@ -19,16 +19,18 @@
 
 #include "krpopupmenu.h"
 
-#include <QPixmap>
+#include <QtGui/QPixmap>
 
-#include <klocale.h>
-#include <kprocess.h>
-#include <krun.h>
-#include <kiconloader.h>
-#include <kmessagebox.h>
-#include <kmimetypetrader.h>
-#include <ktoolinvocation.h>
-#include <kactioncollection.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+
+#include <KCoreAddons/KProcess>
+#include <KIOWidgets/KRun>
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KMessageBox>
+#include <KService/KMimeTypeTrader>
+#include <KService/KToolInvocation>
+#include <KXmlGui/KActionCollection>
 
 #include "listpanel.h"
 #include "krview.h"

@@ -19,7 +19,7 @@
 #ifndef USERACTIONPOPUPMENU_H
 #define USERACTIONPOPUPMENU_H
 
-#include <kactionmenu.h>
+#include <KWidgetsAddons/KActionMenu>
 
 class KUrl;
 

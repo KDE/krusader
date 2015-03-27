@@ -31,12 +31,16 @@
 #include "kgdependencies.h"
 #include "../krservices.h"
 #include "../krglobal.h"
+
 #include <QtGui/QTabWidget>
-#include <QGridLayout>
-#include <QScrollArea>
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kurl.h>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QScrollArea>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KUrl>
+
+#include <KWidgetsAddons/KMessageBox>
 
 #define PAGE_GENERAL   0
 #define PAGE_PACKERS   1

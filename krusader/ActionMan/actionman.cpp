@@ -18,8 +18,10 @@
 
 #include "actionman.h"
 
-#include <klocale.h>
-#include <kmessagebox.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+
+#include <KWidgetsAddons/KMessageBox>
 
 #include "useractionpage.h"
 #include "../krusader.h"

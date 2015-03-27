@@ -34,10 +34,14 @@
 #define KONFIGURATOR_H
 
 #include "konfiguratorpage.h"
-#include <qwidget.h>
-#include <kdialog.h>
-#include <kpagedialog.h>
+
 #include <QtCore/QTimer>
+#include <QtWidgets/QWidget>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
+
+# include <KWidgetsAddons/KPageDialog>
 
 class QString;
 class QResizeEvent;

@@ -21,7 +21,9 @@
 
 #include <stdlib.h>
 #include <sys/types.h>
-#include <kio/global.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KIO/Global>
 
 // TODO these are pointlessly general purpose now, make them incredibly specific
 

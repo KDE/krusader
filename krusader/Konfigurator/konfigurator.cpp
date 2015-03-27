@@ -35,14 +35,18 @@
 #include "../Dialogs/krdialogs.h"
 #include "../kicons.h"
 
-#include <kfiledialog.h>
-#include <qwidget.h>
-#include <QPixmap>
-#include <QResizeEvent>
-#include <klocale.h>
-#include <kglobal.h>
-#include <kstandarddirs.h>
-#include <kmessagebox.h>
+#include <QtGui/QPixmap>
+#include <QtGui/QResizeEvent>
+#include <QtWidgets/QWidget>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KFileDialog>
+#include <KDE/KLocale>
+#include <KDE/KGlobal>
+#include <KDE/KStandardDirs>
+
+#include <KWidgetsAddons/KMessageBox>
+
 #include "../defaults.h"
 #include "../krusaderview.h"
 #include "../GUI/kfnkeys.h"

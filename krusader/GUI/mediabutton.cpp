@@ -21,22 +21,25 @@
 #include "../krglobal.h"
 #include "../MountMan/kmountman.h"
 
-#include <QMouseEvent>
-#include <QEvent>
-
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kdiskfreespace.h>
-#include <kio/global.h>
+#include <QtCore/QMouseEvent>
+#include <QtCore/QEvent>
 #include <QtGui/QCursor>
-#include <kmountpoint.h>
-#include <kconfiggroup.h>
-#include <solid/deviceinterface.h>
-#include <solid/storageaccess.h>
-#include <solid/storagevolume.h>
-#include <solid/opticaldisc.h>
-#include <solid/opticaldrive.h>
-#include <solid/devicenotifier.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KDiskFreeSpace>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KConfigCore/KConfigGroup>
+#include <KIO/Global>
+#include <KIOCore/KMountPoint>
+
+#include <Solid/DeviceInterface>
+#include <Solid/StorageAccess>
+#include <Solid/StorageVolume>
+#include <Solid/OpticalDisc>
+#include <Solid/OpticalDrive>
+#include <Solid/DeviceNotifier>
 
 QString MediaButton::remotePrefix = QLatin1String("remote:");
 

@@ -20,7 +20,7 @@
 #ifndef KRINTERVIEWITEM_H
 #define KRINTERVIEWITEM_H
 
-#include <QAbstractItemView>
+#include <QtWidgets/QAbstractItemView>
 
 #include "krviewitem.h"
 #include "krvfsmodel.h"

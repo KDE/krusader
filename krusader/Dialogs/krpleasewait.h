@@ -31,11 +31,12 @@
 #ifndef KRPLEASEWAIT_H
 #define KRPLEASEWAIT_H
 
-#include <qprogressdialog.h>
 #include <QtCore/QTimer>
 #include <QtCore/QPointer>
-#include <QCloseEvent>
-#include <kio/jobclasses.h>
+#include <QtGui/QCloseEvent>
+#include <QtWidgets/QProgressDialog>
+
+#include <KIO/JobClasses>
 
 class KRPleaseWait;
 

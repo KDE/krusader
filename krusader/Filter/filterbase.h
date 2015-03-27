@@ -35,7 +35,7 @@
 #include "../VFS/krquery.h"
 
 #include <QtCore/QString>
-#include <QComboBox>
+#include <QtWidgets/QComboBox>
 
 class FilterTabs;
 

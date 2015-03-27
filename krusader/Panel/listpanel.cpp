@@ -33,43 +33,45 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <unistd.h>
 #include <sys/param.h>
 
-#include <QtGui/QBitmap>
 #include <QtCore/QStringList>
-#include <QHBoxLayout>
-#include <QKeyEvent>
-#include <QList>
-#include <QPixmap>
-#include <QFrame>
-#include <QDropEvent>
-#include <QHideEvent>
-#include <QEvent>
-#include <QShowEvent>
-#include <QDrag>
-#include <QMimeData>
+#include <QtCore/QList>
+#include <QtCore/QEvent>
+#include <QtCore/QMimeData>
 #include <QtCore/QTimer>
 #include <QtCore/QRegExp>
-#include <QtGui/QSplitter>
+#include <QtGui/QBitmap>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QPixmap>
+#include <QtGui/QDropEvent>
+#include <QtGui/QHideEvent>
+#include <QtGui/QShowEvent>
+#include <QtGui/QDrag>
 #include <QtGui/QImage>
-#include <qtabbar.h>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QSplitter>
+#include <QtWidgets/QTabBar>
 
-#include <kmenu.h>
-#include <kdiskfreespace.h>
-#include <kmessagebox.h>
-#include <klocale.h>
-#include <kmimetype.h>
-#include <kurl.h>
-#include <kiconloader.h>
-#include <kcursor.h>
-#include <kstandarddirs.h>
-#include <kglobalsettings.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KMenu>
+#include <KDE/KLocale>
+#include <KDE/KMimeType>
+#include <KDE/KUrl>
+#include <KDE/KStandardDirs>
+#include <KDE/KGlobalSettings>
+#include <KDE/KDebug>
+#include <KDE/KDiskFreeSpace>
 #include <kdeversion.h>
-#include <kdebug.h>
-#include <kmountpoint.h>
-#include <kcolorscheme.h>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KCursor>
+#include <KIOCore/KMountPoint>
+#include <KConfigWidgets/KColorScheme>
 
 //#ifdef __LIBKONQ__
 //#include <konq_popupmenu.h>
-//#include <kbookmarkmanager.h>
+//#include <KBookmarks/KBookmarkManager>
 //#endif
 
 #include "../defaults.h"

@@ -29,12 +29,14 @@
 #include <QtGui/QResizeEvent>
 #include <QtGui/QMouseEvent>
 
-#include <KAction>
-#include <KLocale>
-#include <KMenu>
-#include <KShortcut>
-#include <KDebug>
-#include <KActionMenu>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KAction>
+#include <KDE/KLocale>
+#include <KDE/KMenu>
+#include <KDE/KShortcut>
+#include <KDE/KDebug>
+
+#include <KWidgetsAddons/KActionMenu>
 
 #define DISPLAY(X) (X.isLocalFile() ? X.path() : X.prettyUrl())
 

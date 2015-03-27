@@ -19,15 +19,17 @@
 
 #include "krinterdetailedview.h"
 
-#include <QDir>
-#include <QDirModel>
-#include <QHashIterator>
-#include <QHeaderView>
-#include <QApplication>
+#include <QtCore/QDir>
+#include <QtCore/QHashIterator>
+#include <QtWidgets/QDirModel>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QApplication>
 
-#include <klocale.h>
-#include <kdirlister.h>
-#include <kmenu.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KMenu>
+
+#include <KIOWidgets/KDirLister>
 
 #include "krinterviewitem.h"
 #include "krviewfactory.h"

@@ -18,10 +18,14 @@
 
 #include "queue.h"
 #include "../krglobal.h"
-#include <kdebug.h>
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <QTime>
+
+#include <QtCore/QTime>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
+#include <KDE/KLocale>
+
+#include <KWidgetsAddons/KMessageBox>
 
 Queue::Queue(const QString& name): _name(name), _suspended(false), _percent(PERCENT_UNUSED)
 {

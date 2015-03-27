@@ -30,8 +30,8 @@
 
 #include "diskusageviewer.h"
 
-#include <QGridLayout>
-#include <QLabel>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
 
 #include "../krglobal.h"
 #include "../Panel/krpanel.h"

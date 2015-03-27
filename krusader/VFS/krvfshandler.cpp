@@ -25,7 +25,8 @@
 
 #include <QtCore/QDir>
 
-#include <kdebug.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
 
 
 KrVfsHandler::KrVfsHandler()

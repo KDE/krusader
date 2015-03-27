@@ -32,11 +32,12 @@
 #include <QtCore/QDir>
 #include <QtCore/QByteArray>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KUrl>
-#include <KDebug>
-#include <KComponentData>
-#include <KMimeType>
+#include <KDE/KUrl>
+#include <KDE/KDebug>
+#include <KDE/KComponentData>
+#include <KDE/KMimeType>
 
 #include "libisofs/iso_fs.h"
 #include "kiso.h"

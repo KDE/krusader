@@ -30,12 +30,13 @@
 #ifndef KRMASKCHOICE_H
 #define KRMASKCHOICE_H
 
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QLabel>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
 
-#include <KDialog>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
 
 class QVBoxLayout;
 class QHBoxLayout;

@@ -19,25 +19,27 @@
 
 #include "krdialogs.h"
 
-#include <QtGui/QMessageBox>
-#include <qwidget.h>
-#include <QtGui/QApplication>
-#include <QtGui/QFontMetrics>
-#include <QFrame>
-#include <QLabel>
-#include <QVBoxLayout>
 #include <QtCore/QDir>
-#include <QtGui/QCheckBox>
-#include <QKeyEvent>
+#include <QtGui/QFontMetrics>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QMessageBox>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QCheckBox>
 
-#include <klocale.h>
-#include <kurlcompletion.h>
-#include <kapplication.h>
-#include <kstandarddirs.h>
-#include <klineedit.h>
-#include <kurlrequester.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KApplication>
+#include <KDE/KStandardDirs>
 #include <kdeversion.h>
-#include <krecentdocument.h>
+
+#include <KIOWidgets/KUrlCompletion>
+#include <KCompletion/KLineEdit>
+#include <KIOWidgets/KUrlRequester>
+#include <KIOCore/KRecentDocument>
 
 #include "../krglobal.h"
 #include "../VFS/vfs.h"

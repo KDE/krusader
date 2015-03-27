@@ -31,13 +31,15 @@
 #ifndef KURLLISTREQUESTER_H
 #define KURLLISTREQUESTER_H
 
-#include <qwidget.h>
-#include <QtGui/QToolButton>
-#include <QKeyEvent>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QToolButton>
 
-#include <klineedit.h>
-#include <kurl.h>
-#include <kurlcompletion.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KCompletion/KLineEdit>
+#include <KIOWidgets/KUrlCompletion>
 
 #include "../GUI/krlistwidget.h"
 

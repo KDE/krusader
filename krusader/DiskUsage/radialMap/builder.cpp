@@ -19,9 +19,11 @@
 #include "builder.h"
 #include "Config.h"
 #include "fileTree.h"
-#include <kglobal.h> //locale object
-#include <klocale.h>
 #include "widget.h"
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KGlobal> //locale object
+#include <KDE/KLocale>
 
 //**** REMOVE NEED FOR the +1 with MAX_RING_DEPTH uses
 //**** add some angle bounds checking (possibly in Segment ctor? can I delete in a ctor?)

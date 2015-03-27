@@ -19,11 +19,14 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
-#include <kurl.h>
-#include <QTimer>
-#include <QResizeEvent>
-#include <QMouseEvent>
-#include <QPaintEvent>
+#include <QtCore/QTimer>
+#include <QtCore/QMouseEvent>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QPaintEvent>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
 #include "segmentTip.h"
 
 template <class T> class Chain;

@@ -20,11 +20,15 @@
 #ifndef KRVIEWITEM_H
 #define KRVIEWITEM_H
 
-#include <sys/types.h>
-#include <kio/global.h>
 #include "../VFS/vfile.h"
 #include "krview.h"
-#include <QPixmap>
+
+#include <sys/types.h>
+
+#include <QtGui/QPixmap>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KIO/Global>
 
 class QString;
 class QPixmap;

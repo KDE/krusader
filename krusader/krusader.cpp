@@ -35,38 +35,41 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <sys/param.h>
 #include <unistd.h>
 
-#include <QtGui/QPixmap>
 #include <QtCore/QStringList>
 #include <QtCore/QDir>
-#include <QtGui/QPrinter>
-#include <qwidget.h>
 #include <QtCore/QDateTime>
-#include <QActionGroup>
-#include <QMoveEvent>
-#include <QResizeEvent>
-#include <QShowEvent>
-#include <QHideEvent>
-#include <QDesktopWidget>
+#include <QtGui/QPixmap>
+#include <QtGui/QPrinter>
+#include <QtGui/QMoveEvent>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QShowEvent>
+#include <QtGui/QHideEvent>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QActionGroup>
+#include <QtWidgets/QDesktopWidget>
 #include <QtDBus/QtDBus>
 
-#include <krandom.h>
-#include <kxmlguifactory.h>
-#include <kactioncollection.h>
-#include <kmessagebox.h>
-#include <kaction.h>
-#include <ktoolbar.h>
-#include <ktoggleaction.h>
-#include <ktoolbarpopupaction.h>
-#include <kcursor.h>
-#include <ksystemtrayicon.h>
-#include <kmenubar.h>
-#include <kapplication.h>
-#include <kcmdlineargs.h>
-#include <kglobal.h>
-#include <klocale.h>
-#include <kacceleratormanager.h>
-#include <kwindowsystem.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KAction>
+#include <KDE/KMenuBar>
+#include <KDE/KApplication>
+#include <KDE/KGlobal>
+#include <KDE/KLocale>
+#include <KDE/KSystemTrayIcon>
+#include <KDE/KCmdLineArgs>
 #include <kdeversion.h>
+
+#include <KXmlGui/KActionCollection>
+#include <KWidgetsAddons/KMessageBox>
+#include <KWidgetsAddons/KToggleAction>
+#include <KWidgetsAddons/KToolBarPopupAction>
+#include <KWidgetsAddons/KCursor>
+
+#include <KCoreAddons/KRandom>
+#include <KXmlGuiFactory/KXmlGuiFactory>
+#include <KXmlGui/KToolbar>
+#include <KWidgetsAddons/KAcceleratorManager>
+#include <KWindowSystem/KWindowSystem>
 
 #include "krusaderversion.h"
 #include "kicons.h"

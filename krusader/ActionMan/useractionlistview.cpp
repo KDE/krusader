@@ -18,9 +18,12 @@
 
 #include "useractionlistview.h"
 
-#include <klocale.h>
-#include <kiconloader.h>
-#include <qdom.h>
+#include <QDom/QDomEntity>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+
+#include <KIconThemes/KIconLoader>
 
 #include "../krglobal.h"
 #include "../UserAction/kraction.h"

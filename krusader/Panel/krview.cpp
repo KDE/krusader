@@ -44,16 +44,18 @@
 #include "../Dialogs/krspecialwidgets.h"
 #include "../Filter/filterdialog.h"
 
-#include <qnamespace.h>
-#include <qpixmapcache.h>
 #include <QtCore/QDir>
+#include <QtGui/QPixmapCache>
 #include <QtGui/QBitmap>
 #include <QtGui/QPainter>
-#include <QPixmap>
-#include <QAction>
-#include <kmimetype.h>
-#include <klocale.h>
-#include <kinputdialog.h>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QAction>
+#include <qnamespace.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KMimeType>
+#include <KDE/KLocale>
+#include <KDE/KInputDialog>
 
 
 #define VF getVfile()

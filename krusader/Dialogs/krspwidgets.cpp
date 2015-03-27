@@ -32,21 +32,25 @@
 #include "../krglobal.h"
 #include "../kicons.h"
 #include "../Filter/filtertabs.h"
-#include <QtGui/QComboBox>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QCheckBox>
 #include "../GUI/krlistwidget.h"
-#include <qspinbox.h>
-#include <qnamespace.h>
-#include <QMouseEvent>
-#include <QEvent>
-#include <klocale.h>
-#include <kcombobox.h>
-#include <khistorycombobox.h>
-#include <kiconloader.h>
-#include <kcursor.h>
+
+#include <QtCore/QMouseEvent>
+#include <QtCore/QEvent>
 #include <QtGui/QBitmap>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QSpinBox>
+#include <qnamespace.h>		// missing ?
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+
+#include <KCompletion/KComboBox>
+#include <KCompletion/KHistoryComboBox>
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KCursor>
 
 ///////////////////// initiation of the static members ////////////////////////
 QStringList KRSpWidgets::maskList;

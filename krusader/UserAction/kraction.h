@@ -23,10 +23,12 @@
 
 #include <QtCore/QByteArray>
 
-#include <KAction>
-#include <KProcess>
-#include <KDialog>
-#include <KTextEdit>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
+#include <KDE/KAction>
+
+#include <KCoreAddons/KProcess>
+#include <KTextWidgets/KTextEdit>
 
 #include "kractionbase.h"
 

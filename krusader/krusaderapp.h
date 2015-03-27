@@ -20,8 +20,10 @@
 #ifndef KRUSADERAPP_H
 #define KRUSADERAPP_H
 
-#include <kapplication.h>
-#include <kstartupinfo.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KApplication>
+
+#include <KWindowSystem/KStartupInfo>
 
 class QFocusEvent;
 

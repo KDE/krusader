@@ -21,9 +21,11 @@
 #define POPULARURLS_H
 
 #include <QtCore/QObject>
-#include <kurl.h>
 #include <QtCore/QHash>
-#include <kdialog.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+#include <KDE/KDialog>
 
 // the class holds a list of most popular links in a dual data structure
 // * linked list, with head and tail: for fast append/prepend support

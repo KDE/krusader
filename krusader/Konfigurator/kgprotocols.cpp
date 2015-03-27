@@ -31,13 +31,17 @@
 #include "kgprotocols.h"
 #include "../krglobal.h"
 #include "../krservices.h"
-#include <klocale.h>
-#include <kprotocolinfo.h>
-#include <kmimetype.h>
-#include <qheaderview.h>
-#include <QGridLayout>
-#include <QVBoxLayout>
-#include <kiconloader.h>
+
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QVBoxLayout>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KMimeType>
+
+#include <KIOCore/KProtocolInfo>
+#include <KIconThemes/KIconLoader>
 
 QString KgProtocols::defaultProtocols  = "krarc,iso,tar";
 QString KgProtocols::defaultIsoMimes   = "application/x-iso,application/x-cd-image,"

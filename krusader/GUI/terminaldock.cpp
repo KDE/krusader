@@ -18,24 +18,26 @@
 
 #include "terminaldock.h"
 
-#include <QEvent>
-#include <QHBoxLayout>
-#include <QKeyEvent>
-#include <QApplication>
-#include <QClipboard>
-#include <QWidget>
-#include <QDir>
-#include <QString>
-#include <QObject>
+#include <QtCore/QEvent>
+#include <QtCore/QDir>
+#include <QtCore/QString>
+#include <QtCore/QObject>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QClipboard>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QWidget>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
 
 #include <kde_terminal_interface.h>
-#include <kparts/part.h>
-#include <kpluginloader.h>
-#include <kpluginfactory.h>
-#include <kservice.h>
-#include <ktoggleaction.h>
-#include <kurl.h>
-#include <kmessagebox.h>
+#include <KParts/Part>
+#include <KCoreAddons/KPluginLoader>
+#include <KCoreAddons/KPluginFactory>
+#include <KService/KService>
+#include <KWidgetsAddons/KToggleAction>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "../kractions.h"
 #include "../krusaderapp.h"

@@ -20,10 +20,13 @@
 #ifndef KRPREVIEWPOPUP_H
 #define KRPREVIEWPOPUP_H
 
-#include <QtGui/QMenu>
 #include <QtGui/QPixmap>
-#include <kfileitem.h>
-#include <kurl.h>
+#include <QtWidgets/QMenu>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+# include <KIO/KFileItem>
 
 class KrPreviewPopup : public QMenu
 {

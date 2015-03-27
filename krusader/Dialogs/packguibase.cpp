@@ -30,29 +30,30 @@
 
 #include "packguibase.h"
 
-#include <QtGui/QCheckBox>
-#include <QtGui/QComboBox>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QPushButton>
-#include <QtGui/QToolButton>
-#include <QtGui/QLayout>
 #include <QtCore/QVariant>
 #include <QtGui/QImage>
 #include <QtGui/QPixmap>
-#include <qspinbox.h>
 #include <QtGui/QSlider>
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <QFrame>
-#include <QVBoxLayout>
-#include <QKeyEvent>
-#include <kiconloader.h>
-#include <kcolorscheme.h>
-#include <kcombobox.h>
-#include <kmessagebox.h>
-#include <kio/global.h>
-#include <khistorycombobox.h>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QVBoxLayout>
+
+#include <KIconThemes/KIconLoader>
+#include <KConfigWidgets/KColorScheme>
+#include <KCompletion/KComboBox>
+#include <KWidgetsAddons/KMessageBox>
+#include <KIO/Global>
+#include <KCompletion/KHistoryComboBox>
 
 #include "../defaults.h"
 #include "../krglobal.h"

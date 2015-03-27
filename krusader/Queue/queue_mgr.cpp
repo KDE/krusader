@@ -19,10 +19,14 @@
 #include "queue_mgr.h"
 #include "queuedialog.h"
 #include "queue.h"
-#include <QList>
-#include <QVector>
-#include <QVariant>
-#include <klocale.h>
+
+#include <QtCore/QList>
+#include <QtCore/QVector>
+#include <QtCore/QVariant>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+
 #include "../krglobal.h"
 
 QMap<QString, Queue*> QueueManager::_queues;

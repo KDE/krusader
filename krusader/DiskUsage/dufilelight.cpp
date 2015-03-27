@@ -30,11 +30,14 @@
 
 #include "dufilelight.h"
 #include "radialMap/radialMap.h"
-#include <kmenu.h>
-#include <klocale.h>
-#include <kinputdialog.h>
-#include <QPixmap>
-#include <QMouseEvent>
+
+#include <QtCore/QMouseEvent>
+#include <QtGui/QPixmap>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KMenu>
+#include <KDE/KLocale>
+#include <KDE/KInputDialog>
 
 #define SCHEME_POPUP_ID    6730
 

@@ -31,20 +31,22 @@
 #ifndef DISKUSAGE_H
 #define DISKUSAGE_H
 
-#include <QtGui/QDialog>
-#include <QtGui/QLabel>
 #include <QtCore/QHash>
-#include <qstack.h>
-#include <QResizeEvent>
-#include <QPixmap>
-#include <QKeyEvent>
-#include <QEvent>
-#include <qstackedwidget.h>
-#include <qscrollarea.h>
+#include <QtCore/QEvent>
 #include <QtCore/QTimer>
+#include <QtCore/QStack>
+#include <QtGui/QDialog>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QScrollArea>
 
-#include <kurl.h>
-#include <ksqueezedtextlabel.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KWidgetAddons/KSqueezedTextLabel>
 
 #include "../VFS/vfs.h"
 #include "filelightParts/fileTree.h"

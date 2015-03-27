@@ -19,7 +19,8 @@
 #ifndef QUEUEDIALOG_H
 #define QUEUEDIALOG_H
 
-#include <KDialog>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
 
 class QPaintEvent;
 class QToolButton;

@@ -22,12 +22,13 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QPointer>
-#include <QEvent>
-#include <qdom.h>
-#include <qmap.h>
+#include <QtCore/QEvent>
+#include <QtCore/QMap>
+#include <QtXml/QDomEntity>
 
-#include <kmenu.h>
-#include <kurl.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KMenu>
+#include <KDE/KUrl>
 
 #include "krbookmark.h"
 

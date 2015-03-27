@@ -30,12 +30,17 @@
 #ifndef KRQUERY_H
 #define KRQUERY_H
 
+#include <time.h>
+
 #include <QtCore/QStringList>
 #include <QtCore/QDateTime>
-#include <time.h>
-#include <kurl.h>
-#include <kio/jobclasses.h>
-#include <kconfiggroup.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KIO/JobClasses>
+#include <KConfigCore/KConfigGroup>
+
 #include "vfile.h"
 
 class KFileItem;

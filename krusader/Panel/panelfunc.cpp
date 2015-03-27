@@ -33,35 +33,37 @@ A
 #include <unistd.h>
 
 #include <QtCore/QEventLoop>
+#include <QtCore/QList>
+#include <QtCore/QMimeData>
+#include <QtCore/QDir>
 #include <QtGui/QClipboard>
-#include <QList>
-#include <QDir>
-#include <QDrag>
-#include <QMimeData>
-#include <QApplication>
+#include <QtGui/QDrag>
+#include <QtWidgets/QApplication>
 
-#include <kuiserverjobtracker.h>
-#include <klocale.h>
-#include <kprocess.h>
-#include <kpropertiesdialog.h>
-#include <kmessagebox.h>
-#include <kcursor.h>
-#include <kstandarddirs.h>
-#include <ktemporaryfile.h>
-#include <kurl.h>
-#include <ktar.h>
-#include <krun.h>
-#include <kinputdialog.h>
-#include <kdebug.h>
-#include <kio/netaccess.h>
-#include <kio/jobuidelegate.h>
-#include <ktempdir.h>
-#include <kdesktopfile.h>
-#include <ktoggleaction.h>
-#include <kurlcompletion.h>
-#include <kmimetypetrader.h>
-#include <kopenwithdialog.h>
-#include <kshell.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KStandardDirs>
+#include <KDE/KTemporaryFile>
+#include <KDE/KUrl>
+#include <KDE/KInputDialog>
+#include <KDE/KDebug>
+#include <KDE/KTempDir>
+#include <KIO/NetAccess>
+#include <KIO/JobUiDelegate>
+
+#include <KCoreAddons/KProcess>
+#include <KWidgetsAddons/KMessageBox>
+#include <KWidgetsAddons/KCursor>
+#include <KArchive/KTar>
+#include <KIOWidgets/KRun>
+#include <KIOWidgets/KUrlCompletion>
+#include <KWidgetsAddons/KToggleAction>
+#include <KService/KMimeTypeTrader>
+#include <KCoreAddons/KShell>
+#include <KJobWidgets/KUiServerJobTracker>
+#include <KIOWidgets/KPropertiesDialog>
+#include <KConfigCore/KDesktopFile>
+#include <KIOWidgets/KOpenWithDialog>
 
 #include "dirhistoryqueue.h"
 #include "krcalcspacedialog.h"

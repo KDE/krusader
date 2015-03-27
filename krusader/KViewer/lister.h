@@ -36,10 +36,10 @@
 #include <QtGui/QColor>
 #include <QtGui/QWidget>
 
-#include <KLineEdit>
+#include <KCompletion/KLineEdit>
 #include <KParts/BrowserExtension>
 #include <KParts/Part>
-#include <KTextEdit>
+#include <KTextWidgets/KTextEdit>
 
 #include "../VFS/krquery.h"
 

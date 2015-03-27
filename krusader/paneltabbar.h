@@ -25,8 +25,9 @@
 #include <QtGui/QDragMoveEvent>
 #include <QtGui/QDragEnterEvent>
 
-#include <KUrl>
-#include <KTabBar>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+#include <KDE/KTabBar>
 
 class QMouseEvent;
 class KAction;

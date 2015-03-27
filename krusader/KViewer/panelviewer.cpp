@@ -20,20 +20,22 @@
 #include "panelviewer.h"
 
 #include <QtCore/QFile>
-#include <QApplication>
+#include <QtWidgets/QApplication>
 
-#include <kparts/browserextension.h>
-#include <kmessagebox.h>
-#include <kmimetype.h>
-#include <ktemporaryfile.h>
-#include <klocale.h>
-#include <klibloader.h>
-#include <kservicetypeprofile.h>
-#include <kmimetypetrader.h>
-#include <kdebug.h>
-#include <kfileitem.h>
-#include <kio/netaccess.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KMimeType>
+#include <KDE/KTemporaryFile>
+#include <KDE/KLocale>
+#include <KDE/KLibLoader>
+#include <KDE/KDebug>
+#include <KIO/NetAccess>
 #include <kde_file.h>
+
+#include <KParts/BrowserExtension>
+#include <KWidgetsAddons/KMessageBox>
+#include <KService/KServiceTypeProfile>
+#include <KService/KMimeTypeTrader>
+#include <KIOCore/KFileItem>
 
 #include "lister.h"
 #include "../defaults.h"

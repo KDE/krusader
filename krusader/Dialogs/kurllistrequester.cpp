@@ -30,16 +30,20 @@
 
 #include "kurllistrequester.h"
 #include "../VFS/vfs.h"
+
 #include <QtGui/QPixmap>
 #include <QtGui/QCursor>
-#include <QtGui/QLayout>
-#include <QGridLayout>
-#include <QKeyEvent>
-#include <kfiledialog.h>
-#include <kmenu.h>
-#include <kiconloader.h>
-#include <klocale.h>
-#include <kmessagebox.h>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QGridLayout>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KFileDialog>
+#include <KDE/KMenu>
+#include <KDE/KLocale>
+
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KMessageBox>
 
 #define DELETE_ITEM_ID    100
 

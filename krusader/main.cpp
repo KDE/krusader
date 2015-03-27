@@ -37,14 +37,16 @@
 #include <QtGui/QPixmap>
 #include <QtDBus/QtDBus>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KCmdLineArgs>
-#include <KAboutData>
-#include <KActionMenu>
-#include <KLocale>
-#include <KStandardDirs>
-#include <KSplashScreen>
-#include <KStartupInfo>
+#include <KDE/KCmdLineArgs>
+#include <KDE/KLocale>
+#include <KDE/KStandardDirs>
+#include <KDE/KSplashScreen>
+
+#include <KCoreAddons/KAboutData>
+#include <KWidgetsAddons/KActionMenu>
+#include <KWindowSystem/KStartupInfo>
 
 #include "krusader.h"
 #include "krusaderview.h"

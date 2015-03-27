@@ -32,9 +32,9 @@
 #define KGCOLORS_H
 
 #include <QtCore/QList>
-#include <qstackedwidget.h>
-#include <QGridLayout>
-#include <QLabel>
+#include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
 
 #include "konfiguratorpage.h"
 #include "../GUI/krtreewidget.h"

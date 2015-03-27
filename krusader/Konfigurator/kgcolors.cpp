@@ -31,17 +31,20 @@
 #include "kgcolors.h"
 #include "../defaults.h"
 #include "../Panel/krcolorcache.h"
-#include <kmessagebox.h>
-#include <klocale.h>
-#include <kfiledialog.h>
-#include <kcolorscheme.h>
-#include <kstandarddirs.h>
-#include <qheaderview.h>
-#include <QtGui/QTabWidget>
-#include <QList>
-#include <QLabel>
-#include <QGridLayout>
 
+#include <QtCore/QList>
+#include <QtGui/QTabWidget>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QGridLayout>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KFileDialog>
+#include <KDE/KStandardDirs>
+
+#include <KConfigWidgets/KColorScheme>
+#include <KWidgetsAddons/KMessageBox>
 
 KgColors::KgColors(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent), offset(0),

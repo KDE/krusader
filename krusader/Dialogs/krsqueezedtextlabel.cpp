@@ -18,14 +18,18 @@
  *****************************************************************************/
 
 #include "krsqueezedtextlabel.h"
-#include <kstringhandler.h>
+
+#include <QtCore/QMouseEvent>
 #include <QtGui/QToolTip>
-#include <QMouseEvent>
-#include <QDropEvent>
-#include <QDragEnterEvent>
-#include <QLabel>
-#include <QPainter>
-#include <kurl.h>
+#include <QtGui/QDropEvent>
+#include <QtGui/QDragEnterEvent>
+#include <QtGui/QPainter>
+#include <QtWidgets/QLabel>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KCoreAddons/KStringHandler>
 
 KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent):
         KSqueezedTextLabel(parent), acceptDrops(false), _index(-1), _length(-1)

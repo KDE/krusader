@@ -42,9 +42,10 @@
 #include <QtCore/QDateTime>
 #include <QtCore/QDir>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KLocale>
-#include <KGlobal>
+#include <KDE/KLocale>
+#include <KDE/KGlobal>
 
 QHash<QString, uid_t> *KRpermHandler::passwdCache = 0L;
 QHash<QString, gid_t> *KRpermHandler::groupCache = 0L;

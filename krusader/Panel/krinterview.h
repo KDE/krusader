@@ -21,8 +21,8 @@
 #ifndef KRINTERVIEW_H
 #define KRINTERVIEW_H
 
-#include <QSet>
-#include <QAbstractItemView>
+#include <QtCore/QSet>
+#include <QtWidgets/QAbstractItemView>
 
 #include "krview.h"
 

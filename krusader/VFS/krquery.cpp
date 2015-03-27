@@ -34,12 +34,14 @@
 #include <QtCore/QRegExp>
 #include <QtCore/QFile>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <klocale.h>
-#include <kmimetype.h>
-#include <kurlcompletion.h>
-#include <kio/job.h>
-#include <kfileitem.h>
+#include <KDE/KLocale>
+#include <KDE/KMimeType>
+
+#include <KIOWidgets/KUrlCompletion>
+#include <KIO/Job>
+#include <KIO/KFileItem>
 
 #include "vfs.h"
 #include "krarchandler.h"

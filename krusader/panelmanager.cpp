@@ -27,17 +27,20 @@
 #include "Panel/panelfunc.h"
 #include "Panel/krviewfactory.h"
 
-#include <qstackedwidget.h>
-#include <QtGui/QToolButton>
-#include <QGridLayout>
-#include <QtGui/QImage>
-
-#include <klocale.h>
-#include <kdebug.h>
-#include <kconfig.h>
-#include <kiconloader.h>
-
 #include <assert.h>
+
+#include <QtGui/QImage>
+#include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QGridLayout>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KDebug>
+
+#include <KConfigCore/KConfig>
+#include <KIconThemes/KIconLoader>
+
 
 #define HIDE_ON_SINGLE_TAB  false
 

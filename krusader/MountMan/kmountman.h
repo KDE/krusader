@@ -30,27 +30,26 @@ A
 #ifndef KMOUNTMAN_H
 #define KMOUNTMAN_H
 
-// QT includes
-#include <QtCore/QObject>
-#include <QtCore/QString>
-#include <QPointer>
-#include <QWidget>
-#include <qaction.h>
-
-// KDE includes
-#include <kdeversion.h>
-#include <kio/jobclasses.h>
-#include <kio/job.h>
-#include <kio/global.h>
-#include <kmountpoint.h>
-#include <kurl.h>
-
-// krusader includes
 #include <stdlib.h>
 #include <math.h>
 
-#include <solid/device.h>
-#include <solid/solidnamespace.h>
+#include <QtCore/QObject>
+#include <QtCore/QString>
+#include <QtCore/QPointer>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QAction>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+#include <kdeversion.h>
+
+#include <KIO/JobClasses>
+#include <KIO/Job>
+#include <KIO/Global>
+#include <KIOCore/KMountPoint>
+
+#include <Solid/Device>
+#include <Solid/SolidNamespace>
 
 class KMountManGUI;
 class KAction;

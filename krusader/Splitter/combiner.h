@@ -32,10 +32,12 @@
 #define COMBINER_H
 
 #include <QtCore/QString>
-#include <qprogressdialog.h>
+#include <QtWidgets/QProgressDialog>
 
-#include <kurl.h>
-#include <kio/jobclasses.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KIO/JobClasses>
 
 #include "crc32.h"
 

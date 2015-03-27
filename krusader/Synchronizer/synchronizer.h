@@ -32,14 +32,16 @@
 #define SYNCHRONIZER_H
 
 #include <QtCore/QObject>
-#include <qmap.h>
-#include <qcolor.h>
-#include <QList>
+#include <QtCore/QMap>
+#include <QtCore/QList>
+#include <QtGui/QColor>
 
-#include <kio/job.h>
-#include <kdialog.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
 
-#include "synchronizertask.h"
+#include <KIO/Job>
+
+# include "synchronizertask.h"
 #include "synchronizerfileitem.h"
 
 class KRQuery;

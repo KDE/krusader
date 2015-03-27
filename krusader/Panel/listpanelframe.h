@@ -19,8 +19,9 @@
 #ifndef __LISTPANELFRAME_H__
 #define __LISTPANELFRAME_H__
 
-#include <QFrame>
-#include <kconfiggroup.h>
+#include <QtWidgets/QFrame>
+
+# include <KConfigCore/KConfigGroup>
 
 class QDragEnterEvent;
 class QDropEvent;

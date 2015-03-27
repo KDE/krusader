@@ -21,13 +21,15 @@
 #include "../Panel/dirhistoryqueue.h"
 
 #include "../VFS/vfs.h"
-#include <QtGui/QMenu>
-#include <QtCore/QDir>
-#include <QPixmap>
-#include <klocale.h>
-#include <kicon.h>
 
-#include <kdebug.h>
+#include <QtCore/QDir>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QMenu>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KDebug>
+#include <KDE/KIcon>
 
 DirHistoryButton::DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent) : QToolButton(parent)
 {

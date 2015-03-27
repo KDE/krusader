@@ -30,9 +30,9 @@
 
 #include "kgarchives.h"
 
-#include <QtGui/QPushButton>
-#include <QGridLayout>
-#include <QPointer>
+#include <QtCore/QPointer>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QGridLayout>
 
 #include "krresulttable.h"
 #include "krresulttabledialog.h"

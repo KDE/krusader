@@ -31,7 +31,7 @@
 #ifndef KRTREEWIDGET_H
 #define KRTREEWIDGET_H
 
-#include <QtGui/QTreeWidget>
+#include <QtWidgets/QTreeWidget>
 
 class KrTreeWidget : public QTreeWidget
 {

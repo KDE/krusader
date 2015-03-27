@@ -30,19 +30,21 @@
 
 #include "krtrashhandler.h"
 
-#include <QByteArray>
-#include <QDataStream>
+#include <QtCore/QByteArray>
+#include <QtCore/QDataStream>
 
-#include <kconfig.h>
-#include <kconfiggroup.h>
-#include <kuiserverjobtracker.h>
-#include <kio/jobclasses.h>
-#include <kio/job.h>
-#include <knotification.h>
-#include <kio/jobuidelegate.h>
-#include <kglobal.h>
-#include <kstandarddirs.h>
-#include <kdirwatch.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KGlobal>
+#include <KDE/KStandardDirs>
+
+#include <KConfigCore/KConfig>
+#include <KConfigCore/KConfigGroup>
+#include <KJobWidgets/KUiServerJobTracker>
+#include <KIO/JobClasses>
+#include <KIO/Job>
+#include <KNotifications/KNotification>
+#include <KIO/JobUiDelegate>
+#include <KCoreAddons/KDirWatch>
 
 #include "kractions.h"
 #include "Panel/krpanel.h"

@@ -19,16 +19,19 @@
 #ifndef MEDIABUTTON_H
 #define MEDIABUTTON_H
 
-#include <qwidget.h>
-#include <QtGui/QToolButton>
-#include <QEvent>
-#include <QMenu>
-#include <kurl.h>
+#include <QtCore/QEvent>
 #include <QtCore/QList>
-#include <qmap.h>
-#include <solid/device.h>
-#include <solid/solidnamespace.h>
+#include <QtCore/QMap>
 #include <QtCore/QTimer>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QMenu>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <Solid/Device>
+#include <Solid/SolidNamespace>
 
 class QMenu;
 class KIcon;

@@ -19,31 +19,33 @@
 
 #include "krviewer.h"
 
-#include <QDataStream>
+#include <QtCore/QDataStream>
 #include <QtCore/QFile>
 #include <QtCore/QTimer>
-#include <QKeyEvent>
-#include <QEvent>
+#include <QtCore/QEvent>
+#include <QtGui/QKeyEvent>
 
-#include <kmenubar.h>
-#include <kmimetype.h>
-#include <klocale.h>
-#include <kparts/part.h>
-#include <kparts/componentfactory.h>
-#include <kmessagebox.h>
-#include <klibloader.h>
-#include <kio/netaccess.h>
-#include <kio/jobclasses.h>
-#include <kio/job.h>
-#include <kstatusbar.h>
-#include <kdebug.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KMenuBar>
+#include <KDE/KMimeType>
+#include <KDE/KLocale>
+#include <KDE/KLibLoader>
+#include <KDE/KStatusBar>
+#include <KDE/KDebug>
+#include <KIO/NetAccess>
+#include <KIO/JobClasses>
+#include <KIO/Job>
 #include <kde_file.h>
-#include <khtml_part.h>
-#include <kprocess.h>
-#include <kfileitem.h>
-#include <ktoolbar.h>
-#include <kstandardaction.h>
-#include <kshell.h>
+
+#include <KParts/Part>
+#include <KParts/ComponentFactory>
+#include <KWidgetsAddons/KMessageBox>
+#include <KHtml/KHtmlPart>
+#include <KCoreAddons/KProcess>
+#include <KIO/KFileItem>
+#include <KXmlGui/KToolBar>
+#include <KConfigWidgets/KStandardAction>
+#include <KCoreAddons/KShell>
 
 #include "../krglobal.h"
 #include "../defaults.h"

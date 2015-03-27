@@ -31,10 +31,11 @@
 #include "preservingcopyjob.h"
 #include "../defaults.h"
 #include "../krglobal.h"
-#include <kio/global.h>
-#include <kio/jobclasses.h>
-#include <kio/jobuidelegate.h>
-#include <kuiserverjobtracker.h>
+
+#include <KIO/Global>
+#include <KIO/JobClasses>
+#include <KIO/JobUiDelegate>
+#include <KJobWidgets/KUiServerJobTracker>
 
 
 KIO::Job * PreservingCopyJob::createCopyJob(PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool /*asMethod*/, bool showProgressInfo)

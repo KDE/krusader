@@ -32,7 +32,7 @@
 #ifndef FTP_VFS_H
 #define FTP_VFS_H
 
-#include <kdirlister.h>
+#include <KIOWidgets/KDirLister>
 
 #include "vfs.h"
 

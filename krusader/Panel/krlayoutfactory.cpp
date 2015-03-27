@@ -33,20 +33,20 @@ A
 #include "listpanelframe.h"
 #include "../krglobal.h"
 
-#include <QMetaEnum>
+#include <QtCore/QMetaEnum>
+#include <QtCore/QFile>
+#include <QtCore/QResource>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QVBoxLayout>
 #include <QtXml/QDomDocument>
-#include <QFile>
-#include <QWidget>
-#include <QLayout>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QResource>
 
-#include <klocale.h>
-#include <kstandarddirs.h>
-#include <kcomponentdata.h>
-#include <kdebug.h>
-
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KStandardDirs>
+#include <KDE/KComponentData>
+#include <KDE/KDebug>
 
 #define XMLFILE_VERSION "1.0"
 #define MAIN_FILE "layout.xml"

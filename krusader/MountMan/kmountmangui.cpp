@@ -37,27 +37,32 @@ A
 #include "../kicons.h"
 #include "../defaults.h"
 #include "../VFS/vfs.h"
-#include <klocale.h>
-#include <QtGui/QPixmap>
-#include <QGridLayout>
-#include <QList>
-#include <kmenu.h>
-#include <QtGui/QBitmap>
-#include <kmessagebox.h>
-#include <QtGui/QLayout>
-#include <QtGui/QGroupBox>
-#include <QtGui/QCheckBox>
-#include <kdiskfreespace.h>
-#include <QtGui/QCursor>
-#include <kdebug.h>
-#include <kguiitem.h>
-#include <QtCore/QFileInfo>
-#include <sys/param.h>
-#include <qheaderview.h>
-#include <solid/storagevolume.h>
-#include <kmountpoint.h>
-#include <kcodecs.h>
 
+#include <sys/param.h>
+
+#include <QtCore/QList>
+#include <QtCore/QFileInfo>
+#include <QtGui/QPixmap>
+#include <QtGui/QBitmap>
+#include <QtGui/QCursor>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QCheckBox>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KMenu>
+#include <KDE/KDebug>
+#include <KDE/KDiskFreeSpace>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KWidgetsAddons/KGuiItem>
+#include <KIOCore/KMountPoint>
+#include <KCodecs/KCodecs>
+
+#include <Solid/StorageVolume>
 
 #ifndef BSD
 #define MTAB "/etc/mtab"

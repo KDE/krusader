@@ -47,15 +47,17 @@
 #include <QtCore/QByteArray>
 #include <QtCore/QDir>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KMessageBox>
-#include <KMimeType>
+#include <KDE/KMimeType>
+#include <KDE/KLocale>
+#include <KDE/KGlobalSettings>
+#include <KDE/KDebug>
+
+#include <KWidgetsAddons/KMessageBox>
 #include <KIO/DeleteJob>
 #include <KIO/JobUiDelegate>
-#include <KLocale>
-#include <KGlobalSettings>
-#include <KDebug>
-#include <KFileItem>
+#include <KIOCore/KFileItem>
 
 #include "../Dialogs/krdialogs.h"
 #include "../MountMan/kmountman.h"

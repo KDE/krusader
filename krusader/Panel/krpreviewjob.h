@@ -31,13 +31,13 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #ifndef KRPREVIEWJOB_H
 #define KRPREVIEWJOB_H
 
-#include <QPixmap>
-#include <QVector>
-#include <QHash>
-#include <QTimer>
+#include <QtCore/QVector>
+#include <QtCore/QHash>
+#include <QtCore/QTimer>
+#include <QtGui/QPixmap>
 
-#include <kio/previewjob.h>
-#include <kfileitem.h>
+#include <KIO/PreviewJob>
+#include <KIO/KFileItem>
 
 #include "krpreviews.h"
 

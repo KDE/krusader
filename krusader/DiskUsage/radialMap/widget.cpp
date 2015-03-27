@@ -18,17 +18,19 @@
 
 #include "widget.h"
 
-#include <QApplication>   //sendEvent
-#include <QBitmap>        //ctor - finding cursor size
-#include <QCursor>        //slotPostMouseEvent()
-#include <QTimer>         //member
-#include <QEvent>
-#include <QMouseEvent>
-#include <QPalette>
+#include <QtCore/QEvent>
+#include <QtCore/QMouseEvent>
+#include <QtCore/QTimer>                                    //member
+#include <QtGui/QBitmap>                                    //ctor - finding cursor size
+#include <QtGui/QCursor>                                    //slotPostMouseEvent()
+#include <QtGui/QPalette>
+#include <QtWidgets/QApplication>                           //sendEvent
 
-#include <kcursor.h>        //ctor
-#include <klocale.h>
-#include <kurl.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KUrl>
+
+#include <KWidgetsAddons/KCursor>        //ctor
 
 #include "fileTree.h"
 #include "Config.h"

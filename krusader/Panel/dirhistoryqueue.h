@@ -21,10 +21,13 @@
 #ifndef DIRHISTORYQUEUE_H
 #define DIRHISTORYQUEUE_H
 
-#include <QObject>
-#include <QStringList>
-#include <kurl.h>
-#include <kconfiggroup.h>
+#include <QtCore/QObject>
+#include <QtCore/QStringList>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+# include <KConfigCore/KConfigGroup>
 
 class KrPanel;
 

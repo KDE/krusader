@@ -32,28 +32,30 @@
 #include "../KViewer/panelviewer.h"
 #include "../KViewer/diskusageviewer.h"
 
-#include <QtGui/QButtonGroup>
-#include <QtGui/QToolButton>
-#include <QDropEvent>
-#include <QGridLayout>
-#include <QFrame>
-#include <QMenu>
-#include <QtGui/QCursor>
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
 #include <QtCore/QDir>
-#include <QHeaderView>
-#include <QSplitter>
+#include <QtGui/QButtonGroup>
+#include <QtGui/QDropEvent>
+#include <QtGui/QCursor>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QSplitter>
 
-#include <klocale.h>
-#include <klineedit.h>
-#include <kio/jobclasses.h>
-#include <kcolorscheme.h>
-#include <kdirlister.h>
-#include <kdirmodel.h>
-#include <kdirsortfilterproxymodel.h>
-#include <kfileitemdelegate.h>
-#include <kcombobox.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+
+#include <KCompletion/KLineEdit>
+#include <KIO/JobClasses>
+#include <KConfigWidgets/KColorScheme>
+#include <KCompletion/KComboBox>
+#include <KIOWidgets/KDirLister>
+#include <KIOWidgets/KDirModel>
+#include <KIOWidgets/KFileItemDelegate>
+#include <KIOFileWidgets/KDirSortFilterProxyModel>
 
 class KrDirModel : public KDirModel
 {

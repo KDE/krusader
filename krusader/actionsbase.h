@@ -19,11 +19,11 @@
 #ifndef __ACTIONSBASE_H__
 #define __ACTIONSBASE_H__
 
-#include <QObject>
-#include <QKeySequence>
-#include <QHash>
-#include <kstandardaction.h>
+#include <QtCore/QObject>
+#include <QtCore/QHash>
+#include <QtGui/QKeySequence>
 
+#include <KConfigWidget/KStandardAction>
 
 class KrMainWindow;
 

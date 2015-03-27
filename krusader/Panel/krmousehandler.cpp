@@ -23,7 +23,7 @@
 #include "../krglobal.h"
 #include "../defaults.h"
 
-#include <QApplication>
+#include <QtWidgets/QApplication>
 
 #define CANCEL_TWO_CLICK_RENAME {_singleClicked = false;_renameTimer.stop();}
 

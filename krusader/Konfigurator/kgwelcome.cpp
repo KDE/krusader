@@ -29,10 +29,13 @@
  ***************************************************************************/
 
 #include "kgwelcome.h"
-#include <kstandarddirs.h>
-#include <QPixmap>
-#include <QGridLayout>
-#include <QLabel>
+
+#include <QtGui/QPixmap>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KStandardDirs>
 
 KgWelcome::KgWelcome(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)

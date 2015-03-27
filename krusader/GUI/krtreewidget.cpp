@@ -30,11 +30,12 @@
 
 #include "krtreewidget.h"
 #include "krstyleproxy.h"
-#include <QtGui/QApplication>
+
 #include <QtGui/QStyleOptionViewItem>
 #include <QtGui/QContextMenuEvent>
-#include <QtGui/QHeaderView>
 #include <QtGui/QToolTip>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QApplication>
 
 KrTreeWidget::KrTreeWidget(QWidget * parent) : QTreeWidget(parent), _inResize(false)
 {

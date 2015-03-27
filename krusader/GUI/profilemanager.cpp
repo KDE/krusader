@@ -32,10 +32,11 @@
 
 #include <QtGui/QCursor>
 
-#include <klocale.h>
-#include <kmenu.h>
-#include <kinputdialog.h>
-#include <kicon.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KMenu>
+#include <KDE/KInputDialog>
+#include <KDE/KIcon>
 
 #include "../krglobal.h"
 

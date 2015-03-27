@@ -32,10 +32,13 @@
 #define DISKUSAGEVIEWER_H
 
 #include "../DiskUsage/diskusage.h"
-#include <kurl.h>
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
-#include <QGridLayout>
+
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QGridLayout>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
 
 class DiskUsageViewer : public QWidget
 {

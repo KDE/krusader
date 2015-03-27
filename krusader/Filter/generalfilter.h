@@ -32,15 +32,15 @@
 #define GENERALFILTER_H
 
 #include <QtGui/QWidget>
-#include <QtGui/QLayout>
-#include <QtGui/QGroupBox>
-#include <QtGui/QCheckBox>
-#include <QtGui/QLabel>
-#include <QtGui/QHBoxLayout>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QHBoxLayout>
 
-#include <KComboBox>
+#include <KCompletion/KComboBox>
 #include <KShellCompletion>
-#include <KHistoryComboBox>
+#include <KCompletion/KHistoryComboBox>
 
 #include "filterbase.h"
 #include "../VFS/krquery.h"

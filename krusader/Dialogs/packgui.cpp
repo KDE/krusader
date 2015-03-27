@@ -29,16 +29,20 @@
  ***************************************************************************/
 
 #include "packgui.h"
-#include <kfiledialog.h>
 #include "../krglobal.h"
 #include "../defaults.h"
-#include <QtGui/QLineEdit>
-#include <QtGui/QCheckBox>
+
 #include <QtCore/QStringList>
-#include <QtGui/QLabel>
-#include <QtGui/QPushButton>
-#include <QtGui/QComboBox>
-#include <khistorycombobox.h>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QComboBox>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KFileDialog>
+
+#include <KCompletion/KHistoryComboBox>
 
 #define PS(x) lst.contains(x)>0
 

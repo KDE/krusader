@@ -32,11 +32,12 @@
 
 #include <QtCore/QTimer>
 #include <QtGui/QResizeEvent>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QLabel>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
 
-#include <klocale.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
 
 #include "../kicons.h"
 #include "../krglobal.h"

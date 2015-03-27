@@ -36,17 +36,20 @@
 #include <acl/libacl.h>
 #endif
 #endif
+
 #include <string.h>
 #include <dirent.h>
 
 #include <QtCore/QDir>
-#include <QtGui/QApplication>
+#include <QtWidgets/QApplication>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
 #include <kdeversion.h>
-#include <KLocale>
-#include <KMessageBox>
-#include <KFileItem>
+#include <KDE/KLocale>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KIOCore/KFileItem>
 #include <KIO/JobUiDelegate>
 
 #include "../VFS/vfs.h"

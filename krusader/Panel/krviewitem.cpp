@@ -19,12 +19,16 @@
 
 #include "krviewitem.h"
 #include "../VFS/krpermhandler.h"
-#include <klocale.h>
-#include <kmimetype.h>
+
 #include <sys/types.h>
 #include <time.h>
 #include <stdlib.h>
-#include <QPixmap>
+
+#include <QtGui/QPixmap>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KMimeType>
 
 #define PROPS static_cast<const KrViewProperties*>(_viewProperties)
 

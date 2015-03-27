@@ -20,11 +20,14 @@
 #include "krbookmark.h"
 #include "../krglobal.h"
 #include "../VFS/krarchandler.h"
-#include <kactioncollection.h>
-#include <kiconloader.h>
-#include <klocale.h>
-#include <kdebug.h>
 #include "../krtrashhandler.h"
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KDebug>
+
+#include <KIconThemes/KIconLoader>
+#include <KXmlGui/KActionCollection>
 
 #define BM_NAME(X)  (QString("Bookmark:")+X)
 

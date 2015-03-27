@@ -33,7 +33,7 @@
 
 #include "../VFS/krquery.h"
 
-#include <kconfiggroup.h>
+#include <KConfigCore/KConfigGroup>
 
 class QWidget;
 

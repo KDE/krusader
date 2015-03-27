@@ -30,16 +30,18 @@
 
 #include "kggeneral.h"
 
-#include <QtGui/QLabel>
+#include <QtCore/QPointer>
+#include <QtGui/QPixmap>
 #include <QtGui/QFontMetrics>
-#include <QGridLayout>
-#include <QFrame>
-#include <QPixmap>
-#include <QPointer>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFrame>
 
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kinputdialog.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KInputDialog>
+
+#include <KWidgetsAddons/KMessageBox>
 
 #include "krresulttabledialog.h"
 #include "../defaults.h"

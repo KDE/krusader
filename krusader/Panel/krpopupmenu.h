@@ -20,14 +20,16 @@
 #ifndef KRPOPUPMENU_H
 #define KRPOPUPMENU_H
 
-#include <kmenu.h>
-#include <kurl.h>
-#include <kservice.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KMenu>
+#include <KDE/KUrl>
+
+#include <KService/KService>
 
 #ifdef __LIBKONQ__
 #include <konq_popupmenu.h>
 #include <konq_menuactions.h>
-#include <kbookmarkmanager.h>
+#include <KBookmarks/KBookmarkManager>
 #endif
 
 #include "krpreviewpopup.h"

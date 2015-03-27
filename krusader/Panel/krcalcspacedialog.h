@@ -34,14 +34,14 @@
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
 
-// KDE Includes
-#include <kdialog.h>
 #include <QtCore/QMutex>
-#include <kio/jobclasses.h>
-// Qt Includes
 #include <QtCore/QThread>
-#include <QLabel>
-// Krusader Includes
+#include <QtWidgets/QLabel>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
+#include <KIO/JobClasses>
+
 #include "../VFS/vfs.h"
 class KrPanel;
 class KrView;

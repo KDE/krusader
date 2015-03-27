@@ -22,13 +22,15 @@
 #define KRPROGRESS_H
 
 #include <QtCore/QObject>
-#include <QtGui/QLabel>
-#include <QCloseEvent>
+#include <QtGui/QCloseEvent>
+#include <QtWidgets/QLabel>
 
-#include <kio/global.h>
-#include <kprogressdialog.h>
-#include <ksqueezedtextlabel.h>
-#include <kio/progressbase.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KProgressDialog>
+
+#include <KIO/Global>
+#include <KWidgetAddons/KSqueezedTextLabel>
+#include <kio/progressbase.h>	                              // missing?
 
 class KrProgress : public KIO::ProgressBase
 {

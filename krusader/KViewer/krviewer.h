@@ -20,17 +20,20 @@
 #ifndef KRVIEWER_H
 #define KRVIEWER_H
 
-#include <QWidget>
-#include <QEvent>
-#include <QList>
-#include <QKeyEvent>
-#include <QFocusEvent>
-#include <kparts/mainwindow.h>
-#include <kparts/partmanager.h>
-#include <kparts/browserextension.h>
+#include <QtCore/QEvent>
+#include <QtCore/QList>
 #include <QtCore/QPointer>
-#include <ktabwidget.h>
-#include <ktemporaryfile.h>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QFocusEvent>
+#include <QtWidgets/QWidget>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KTemporaryFile>
+#include <KDE/KTabWidget>
+
+#include <KParts/MainWindow>
+#include <KParts/PartManager>
+#include <KParts/BrowserExtension>
 
 #include "../krglobal.h"
 

@@ -19,7 +19,7 @@
 #ifndef __URLREQUESTER_H__
 #define __URLREQUESTER_H__
 
-#include <kurlrequester.h>
+#include <KIOWidgets/KUrlRequester>
 
 class UrlRequester : public KUrlRequester
 {

@@ -22,10 +22,11 @@
 #ifndef ISO_H
 #define ISO_H
 
-#include <QByteArray>
-
-#include <kio/slavebase.h>
 #include <sys/types.h>
+
+#include <QtCore/QByteArray>
+
+#include <KIO/SlaveBase>
 
 #include "kisofile.h"
 

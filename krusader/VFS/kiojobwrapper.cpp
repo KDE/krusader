@@ -34,16 +34,18 @@
 #include <iostream>
 
 #include <QtCore/QEvent>
-#include <QtGui/QApplication>
 #include <QtGui/QTextDocument>
+#include <QtWidgets/QApplication>
 
-#include <kurl.h>
-#include <kio/global.h>
-#include <kio/jobclasses.h>
-#include <kio/directorysizejob.h>
-#include <kio/jobuidelegate.h>
-#include <kio/job.h>
-#include <klocale.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+#include <KDE/KLocale>
+
+#include <KIO/Global>
+#include <KIO/JobClasses>
+#include <KIO/DirectorySizeJob>
+#include <KIO/JobUiDelegate>
+#include <KIO/Job>
 
 #include "virtualcopyjob.h"
 #include "packjob.h"

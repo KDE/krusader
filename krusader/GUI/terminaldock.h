@@ -19,14 +19,14 @@
 #ifndef TERMINALDOCK_H
 #define TERMINALDOCK_H
 
-#include <kde_terminal_interface.h>
-#include <kparts/part.h>
+#include <QtCore/QEvent>
+#include <QtCore/QString>
+#include <QtCore/QObject>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QWidget>
 
-#include <QHBoxLayout>
-#include <QWidget>
-#include <QEvent>
-#include <QString>
-#include <QObject>
+#include <kde_terminal_interface.h>
+#include <KParts/Part>
 
 class FileManagerWindow;
 

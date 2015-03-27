@@ -24,28 +24,29 @@
 #include <QtCore/QFile>
 #include <QtCore/QRegExp>
 #include <QtCore/QTextStream>
-
 #include <QtGui/QBoxLayout>
-#include <QtGui/QLayout>
-#include <QtGui/QSplitter>
-#include <QtGui/QPushButton>
-#include <QtGui/QCheckBox>
-#include <QtGui/QLabel>
 #include <QtGui/QKeyEvent>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QSplitter>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QLabel>
 
-#include <KDialog>
-#include <KDebug>
-#include <KLocale>
-#include <KInputDialog>
-#include <KActionCollection>
-#include <KShell>
-#include <KAction>
-#include <KUrl>
-#include <KMessageBox>
-#include <KFileDialog>
-#include <KVBox>
-#include <KPushButton>
-#include <KMimeType>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
+#include <KDE/KDebug>
+#include <KDE/KLocale>
+#include <KDE/KInputDialog>
+#include <KDE/KFileDialog>
+#include <KDE/KUrl>
+#include <KDE/KMimeType>
+#include <KDE/KAction>
+#include <KDE/KVBox>
+#include <KDE/KPushButton>
+
+#include <KXmlGui/KActionCollection>
+#include <KWidgetsAddons/KMessageBox>
+#include <KCoreAddons/KShell>
 
 #include "expander.h"
 #include "useraction.h"

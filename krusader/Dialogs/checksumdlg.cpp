@@ -23,30 +23,36 @@
 #include "../krglobal.h"
 #include "../GUI/krlistwidget.h"
 #include "../GUI/krtreewidget.h"
-#include <klocale.h>
-#include <kprocess.h>
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
-#include <QtGui/QCheckBox>
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <klineedit.h>
-#include <QtGui/QPixmap>
-#include <kcursor.h>
-#include <kmessagebox.h>
+
+#include <unistd.h> // for usleep
+
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
-#include <kfiledialog.h>
-#include <kiconloader.h>
-#include <kcombobox.h>
 #include <QtCore/QFileInfo>
-#include <kurlrequester.h>
-#include "../krservices.h"
 #include <QtCore/QList>
-#include <qmap.h>
-#include <ktemporaryfile.h>
-#include <kstandarddirs.h>
-#include <unistd.h> // for usleep
+#include <QtCore/QMap>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KFileDialog>
+#include <KDE/KTemporaryFile>
+#include <KDE/KStandardDirs>
+
+#include <KCoreAddons/KProcess>
+#include <KCompletion/KLineEdit>
+#include <KWidgetsAddons/KCursor>
+#include <KWidgetsAddons/KMessageBox>
+#include <KIconThemes/KIconLoader>
+#include <KCompletion/KComboBox>
+#include <KIOWidgets/KUrlRequester>
+
+#include "../krservices.h"
 
 class CS_Tool; // forward
 typedef void PREPARE_PROC_FUNC(KProcess& proc, CS_Tool *self, const QStringList& files,

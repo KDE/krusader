@@ -21,17 +21,19 @@
 #include "newftpgui.h"
 
 #include <QtCore/QStringList>
+#include <QtCore/QEvent>
 #include <QtGui/QFont>
 #include <QtGui/QGridLayout>
-#include <QtGui/QHBoxLayout>
 #include <QtGui/QSizePolicy>
 #include <QtGui/QWidget>
-#include <QEvent>
+#include <QtWidgets/QHBoxLayout>
 
-#include <KConfigGroup>
-#include <KIconLoader>
-#include <KLocale>
-#include <KProtocolInfo>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+
+#include <KConfigCore/KConfigGroup>
+#include <KIconThemes/KIconLoader>
+#include <KIOCore/KProtocolInfo>
 
 #include "../krglobal.h"
 

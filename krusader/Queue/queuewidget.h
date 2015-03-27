@@ -21,7 +21,8 @@
 
 #include <QtCore/QPointer>
 
-#include <ktabwidget.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KTabWidget>
 
 #include "queue.h"
 #include "../GUI/krlistwidget.h"

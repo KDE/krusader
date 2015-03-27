@@ -35,14 +35,19 @@ A
 #include "newftpgui.h"
 #include "../krglobal.h"
 #include "../MountMan/kmountman.h"
+
 #include <math.h>
-#include <kfileitem.h>
-#include <klocale.h>
-#include <klineedit.h>
-#include <kdebug.h>
-#include <QKeyEvent>
-#include <QPaintEvent>
-#include <kcolorscheme.h>
+
+#include <QtGui/QKeyEvent>
+#include <QtGui/QPaintEvent>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KDebug>
+
+#include <KIO/KFileItem>
+#include <KCompletion/KLineEdit>
+#include <KConfigWidgets/KColorScheme>
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////// Pie related widgets /////////////////////////////////

@@ -31,18 +31,20 @@
 #ifndef ABSTRACTTHREADEDJOB_H
 #define ABSTRACTTHREADEDJOB_H
 
-#include <QThread>
-#include <QEvent>
-#include <QMutex>
-#include <QWaitCondition>
-#include <QStack>
-#include <QVariant>
-#include <QList>
-#include <QEventLoop>
-#include <QTime>
+#include <QtCore/QThread>
+#include <QtCore/QEvent>
+#include <QtCore/QMutex>
+#include <QtCore/QWaitCondition>
+#include <QtCore/QStack>
+#include <QtCore/QVariant>
+#include <QtCore/QList>
+#include <QtCore/QEventLoop>
+#include <QtCore/QTime>
 
-#include <kurl.h>
-#include <kio/jobclasses.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KIO/JobClasses>
 
 class AbstractJobThread;
 class KTempDir;

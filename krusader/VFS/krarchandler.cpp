@@ -34,12 +34,14 @@
 
 #include <QtCore/QFile>
 
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <KPasswordDialog>
-#include <kstandarddirs.h>
-#include <ktar.h>
-#include <kio/global.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KStandardDirs>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KWidgetAddons/KPasswordDialog>
+#include <KArchive/KTar>
+#include <KIO/Global>
 
 #include "../krusader.h"
 #include "../krglobal.h"

@@ -38,13 +38,15 @@
 #include <QtGui/QPixmapCache>
 #include <QtGui/QKeyEvent>
 
-#include <KToggleAction>
-#include <KToolBar>
-#include <KLocale>
-#include <KMessageBox>
-#include <KEditToolBar>
-#include <KCmdLineArgs>
-#include <kshell.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KCmdLineArgs>
+
+#include <KXmlGui/KToolBar>
+#include <KWidgetAddons/KToggleAction>
+#include <KWidgetsAddons/KMessageBox>
+#include <KCoreAddons/KShell>
+#include <KXmlGui/KEditToolBar>
 
 #ifdef __KJSEMBED__
 #include <kjsembed/jsconsolewidget.h>

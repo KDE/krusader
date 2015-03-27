@@ -33,13 +33,18 @@
 #ifndef KRSEARCHMOD_H
 #define KRSEARCHMOD_H
 
+#include <time.h>
+
 #include <QtCore/QObject>
-#include <qstack.h>
 #include <QtCore/QStringList>
 #include <QtCore/QDateTime>
-#include <time.h>
-#include <kio/global.h>
-#include <kurl.h>
+#include <QtCore/QStack>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KIO/Global>
+
 #include "../VFS/ftp_vfs.h"
 #include "../VFS/virt_vfs.h"
 

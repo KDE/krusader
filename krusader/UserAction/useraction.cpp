@@ -20,17 +20,19 @@
 
 #include <QtCore/QHash>
 #include <QtCore/QTextStream>
+#include <QtCore/QFile>
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement>
-#include <QFile>
 
-#include <kdebug.h>
-#include <kurl.h>
-#include <kactioncollection.h>
-#include <kactionmenu.h>
-#include <kmenu.h>
-#include <kstandarddirs.h>
-#include <kmessagebox.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
+#include <KDE/KUrl>
+#include <KDE/KMenu>
+#include <KDE/KStandardDirs>
+
+#include <KXmlGui/KActionCollection>
+#include <KWidgetsAddons/KActionMenu>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "kraction.h"
 #include "../krusader.h"

@@ -29,17 +29,21 @@
  ***************************************************************************/
 
 #include "krpleasewait.h"
+
+#include <unistd.h>
+
 #include <QtCore/QTimer>
 #include <QtCore/QDateTime>
-#include <QtGui/QApplication>
-#include <QtGui/QPushButton>
-#include <QLabel>
-#include <QCloseEvent>
-#include <QProgressBar>
-#include <unistd.h>
+#include <QtGui/QCloseEvent>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QProgressBar>
+
+#include <KWidgetsAddons/KCursor>
+
 #include "../krglobal.h"
 #include "klocale.h"
-#include <kcursor.h>
 
 KRPleaseWait::KRPleaseWait(QString msg, QWidget *parent, int count, bool cancel):
         QProgressDialog(cancel ? 0 : parent) , inc(true)

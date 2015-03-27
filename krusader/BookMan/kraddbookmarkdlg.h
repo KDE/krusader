@@ -23,11 +23,15 @@
 #include "krbookmark.h"
 #include "../VFS/vfs.h"
 #include "../GUI/krtreewidget.h"
-#include <kdialog.h>
-#include <kurl.h>
-#include <klineedit.h>
-#include <qmap.h>
-#include <QtGui/QToolButton>
+
+#include <QtWidgets/QToolButton>
+#include <QtCore/QMap>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
+#include <KDE/KUrl>
+
+#include <KCompletion/KLineEdit>
 
 class KrAddBookmarkDlg: public KDialog
 {

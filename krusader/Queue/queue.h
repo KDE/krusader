@@ -19,11 +19,12 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include <QtCore/QObject>
 #include "../VFS/kiojobwrapper.h"
-#include <QList>
-#include <QTimer>
-#include <QTime>
+
+#include <QtCore/QObject>
+#include <QtCore/QList>
+#include <QtCore/QTimer>
+#include <QtCore/QTime>
 
 class KJob;
 

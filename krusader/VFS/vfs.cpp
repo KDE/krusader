@@ -37,13 +37,15 @@
 #include <time.h>
 
 #include <QtCore/QEventLoop>
-#include <QList>
+#include <QtCore/QList>
 #include <QtCore/QDir>
 
-#include <kapplication.h>
-#include <kio/directorysizejob.h>
-#include <kio/jobuidelegate.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KApplication>
 #include <kde_file.h>
+
+#include <KIO/DirectorySizeJob>
+#include <KIO/JobUiDelegate>
 
 #include "../krglobal.h"
 #include "../defaults.h"

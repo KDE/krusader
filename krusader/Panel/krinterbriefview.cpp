@@ -18,20 +18,22 @@
 
 #include "krinterbriefview.h"
 
-#include <QDir>
-#include <QDirModel>
-#include <QHashIterator>
-#include <QHeaderView>
-#include <QPainter>
-#include <QScrollBar>
-#include <QRegion>
-#include <QItemSelection>
-#include <QItemSelectionRange>
-#include <QApplication>
+#include <QtCore/QDir>
+#include <QtCore/QHashIterator>
+#include <QtCore/QItemSelection>
+#include <QtCore/QItemSelectionRange>
+#include <QtGui/QPainter>
+#include <QtGui/QRegion>
+#include <QtWidgets/QDirModel>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QScrollBar>
 
-#include <kmenu.h>
-#include <klocale.h>
-#include <kdirlister.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KMenu>
+#include <KDE/KLocale>
+
+#include <KIOWidgets/KDirLister>
 
 #include "krinterviewitem.h"
 #include "krviewfactory.h"

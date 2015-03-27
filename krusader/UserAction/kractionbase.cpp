@@ -19,10 +19,11 @@
 
 #include "kractionbase.h"
 
-#include <qerrormessage.h>
+#include <QtWidgets/QErrorMessage>
 
-#include <kinputdialog.h>
-#include <klocale.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KInputDialog>
+#include <KDE/KLocale>
 
 #include "kraction.h"
 #include "expander.h"

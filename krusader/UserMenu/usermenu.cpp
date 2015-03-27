@@ -19,8 +19,9 @@
 
 #include "usermenu.h"
 
-#include <kdebug.h>
-#include <klocale.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
+#include <KDE/KLocale>
 
 #include "../krglobal.h"
 #include "../Konfigurator/konfigurator.h"

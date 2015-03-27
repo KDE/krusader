@@ -17,7 +17,9 @@
  *****************************************************************************/
 
 #include "kisofile.h"
-#include <kdebug.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
 
 KIsoFile::KIsoFile(KArchive* archive, const QString& name, int access,
                    int date, int adate, int cdate, const QString& user, const QString& group,

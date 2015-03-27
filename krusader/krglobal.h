@@ -32,9 +32,12 @@
 #ifndef KRGLOBAL_H
 #define KRGLOBAL_H
 
-#include <kconfiggroup.h>
-#include <kshortcut.h>
-#include <kdebug.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
+#include <KDE/KShortcut>
+
+#include <KConfigCore/KConfigGroup>
 
 #define krOut kDebug()
 

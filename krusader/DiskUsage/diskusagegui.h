@@ -31,13 +31,15 @@
 #ifndef DISKUSAGEGUI_H
 #define DISKUSAGEGUI_H
 
-#include <QtGui/QLayout>
-#include <QtGui/QToolButton>
 #include <QtGui/QResizeEvent>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QToolButton>
 
-#include <KUrl>
-#include <KSqueezedTextLabel>
-#include <KDialog>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+#include <KDE/KDialog>
+
+#include <KWidgetsAddons/KSqueezedTextLabel>
 
 #include "diskusage.h"
 

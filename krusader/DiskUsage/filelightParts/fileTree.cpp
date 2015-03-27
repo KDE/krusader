@@ -17,9 +17,12 @@
  *****************************************************************************/
 
 #include "fileTree.h"
-#include <kglobal.h>
-#include <klocale.h>
-#include <QString>
+
+#include <QtCore/QString>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KGlobal>
+#include <KDE/KLocale>
 
 //static definitions
 const FileSize File::DENOMINATOR[4] = { 1ull, 1ull << 10, 1ull << 20, 1ull << 30 };

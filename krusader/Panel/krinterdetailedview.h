@@ -20,9 +20,9 @@
 #ifndef KRINTERDETAILEDVIEW_H
 #define KRINTERDETAILEDVIEW_H
 
-#include <QTreeView>
-#include <QVector>
-#include <QFont>
+#include <QtCore/QVector>
+#include <QtGui/QFont>
+#include <QtWidgets/QTreeView>
 
 #include "krinterview.h"
 

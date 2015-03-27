@@ -36,9 +36,12 @@ A
 #include "../VFS/vfile.h"
 #include "../defaults.h"
 
-#include <kdeversion.h>
-#include <QWidget>
 #include <stdio.h>
+
+#include <QtWidgets/QWidget>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <kdeversion.h>
 
 #define ASSERT(what) if(!what) abort();
 

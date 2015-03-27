@@ -32,11 +32,13 @@
 #define NORMAL_VFS_H
 
 #include <QtCore/QString>
-#include <QTimer>
+#include <QtCore/QTimer>
 
-#include <kfileitem.h>
-#include <kdirwatch.h>
-#include <kurl.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KIO/KFileItem>
+#include <KCoreAddons/KDirWatch>
 
 #include "vfs.h"
 

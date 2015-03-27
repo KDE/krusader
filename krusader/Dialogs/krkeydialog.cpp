@@ -18,17 +18,20 @@
 
 #include "krkeydialog.h"
 
-#include <QtGui/QLayout>
 #include <QtCore/QTextStream>
-#include <klocale.h>
-#include <kpushbutton.h>
-#include <kmessagebox.h>
-#include <kfiledialog.h>
-#include <kglobal.h>
-#include <kstandarddirs.h>
-#include <kconfig.h>
-#include <kdebug.h>
-#include <kactioncollection.h>
+#include <QtWidgets/QLayout>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KFileDialog>
+#include <KDE/KStandardDirs>
+#include <KDE/KDebug>
+#include <KDE/KPushButton>
+#include <KDE/KGlobal>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KConfigCore/KConfig>
+#include <KXmlGui/KActionCollection>
 
 #include "../krusader.h"
 #include "../krglobal.h"

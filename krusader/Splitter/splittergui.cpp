@@ -32,24 +32,25 @@
 
 #include "../VFS/vfs.h"
 
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kconfiggroup.h>
-#include <kglobal.h>
-#include <kdebug.h>
+#include <QtGui/QValidator>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QDoubleSpinBox>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QFrame>
 
-#include <QDoubleSpinBox>
-#include <QValidator>
-#include <QLineEdit>
-#include <QComboBox>
-#include <QCheckBox>
-#include <QLayout>
-#include <QLabel>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QFrame>
-#include <QKeyEvent>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KGlobal>
+#include <KDE/KDebug>
 
+#include <KWidgetsAddons/KMessageBox>
+#include <KConfigCore/KConfigGroup>
 
 struct SplitterGUI::PredefinedDevice
 {

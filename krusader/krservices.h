@@ -22,8 +22,10 @@
 
 #include <QtCore/QString>
 #include <QtCore/QStringList>
-#include <qmap.h>
-#include <kurl.h>
+#include <QtCore/QMap>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
 
 class QTextStream;
 class QFile;

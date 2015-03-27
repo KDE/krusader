@@ -31,16 +31,18 @@
 #include "abstractthreadedjob.h"
 
 #include <QtCore/QTimer>
-#include <QEventLoop>
-#include <QtGui/QApplication>
 #include <QtCore/QDir>
-#include <QPointer>
+#include <QtCore/QPointer>
+#include <QtCore/QEventLoop>
+#include <QtWidgets/QApplication>
 
-#include <klocale.h>
-#include <ktempdir.h>
-#include <ktemporaryfile.h>
-#include <kio/jobuidelegate.h>
-#include <kmessagebox.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KTempDir>
+#include <KDE/KTemporaryFile>
+
+#include <KIO/JobUiDelegate>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "krvfshandler.h"
 #include "krarchandler.h"

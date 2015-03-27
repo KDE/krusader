@@ -25,12 +25,15 @@
 #include <unistd.h>
 
 #include <QtCore/QFile>
-#include <kurl.h>
-#include <kdebug.h>
-#include <klocale.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+#include <KDE/KDebug>
+#include <KDE/KLocale>
 #include <kdeversion.h>
-#include <kcomponentdata.h>
-#include <kmessagebox.h>
+#include <KDE/KComponentData>
+
+#include <KWidgetsAddons/KMessageBox>
 
 using namespace KIO;
 

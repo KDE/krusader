@@ -24,8 +24,9 @@
 #include "panelmanager.h"
 #include "Panel/listpanel.h"
 
-#include <klocale.h>
-#include <kaction.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KAction>
 
 TabActions::TabActions(QObject *parent, FileManagerWindow *mainWindow) : ActionsBase(parent, mainWindow)
 {

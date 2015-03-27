@@ -32,12 +32,13 @@
 #include "../defaults.h"
 #include "../ActionMan/actionman.h"
 
-#include <klocale.h>
-#include <kpushbutton.h>
-#include <kdebug.h>
-#include <QGridLayout>
-#include <QLabel>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KPushButton>
+#include <KDE/KDebug>
 
 KgUserActions::KgUserActions(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)

@@ -18,11 +18,13 @@
 
 #include  "quickfilter.h"
 
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QToolButton>
-#include <klocale.h>
-#include <kicon.h>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QToolButton>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KIcon>
 
 QuickFilter::QuickFilter(QWidget *parent) : QWidget(parent)
 {

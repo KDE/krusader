@@ -38,10 +38,12 @@
 
 #include <QtCore/QDateTime>
 
-#include <kmimetype.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KMimeType>
 #include <kdeversion.h>
-#include <kdesktopfile.h>
-#include <kdebug.h>
+#include <KDE/KDebug>
+
+#include <KConfigCore/KDesktopFile>
 
 #include "krpermhandler.h"
 #include "normal_vfs.h"

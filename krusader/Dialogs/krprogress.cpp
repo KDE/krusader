@@ -21,26 +21,28 @@
 #include "krprogress.h"
 
 #include <QtCore/QTimer>
-#include <QtGui/QLayout>
 #include <QtCore/QDateTime>
-#include <QHBoxLayout>
-#include <QCloseEvent>
-#include <QGridLayout>
-#include <QFrame>
-#include <QLabel>
-#include <QVBoxLayout>
+#include <QtGui/CloseEvent>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QVBoxLayout>
 
-#include <kapplication.h>
-#include <kdialog.h>
-#include <kstringhandler.h>
-#include <kglobal.h>
-#include <klocale.h>
-#include <kiconloader.h>
-#include <kpushbutton.h>
-#include <kstdguiitem.h>
-#include <kwindowsystem.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KApplication>
+#include <KDE/KDialog>
+#include <KDE/KGlobal>
+#include <KDE/KLocale>
+#include <KDE/KPushButton>
 
-#include <kio/jobclasses.h>
+#include <KCoreAddons/KStringHandler>
+#include <KIconThemes/KIconLoader>
+#include <KWindowSystem/KWindowSystem>
+#include <kstdguiitem.h>	//  missing?
+
+#include <KIO/JobClasses>
 
 #include "../krglobal.h"
 

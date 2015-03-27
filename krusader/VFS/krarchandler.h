@@ -30,13 +30,17 @@
 #ifndef KRARCHANDLER_H
 #define KRARCHANDLER_H
 
-#include <QtCore/QStringList>
-#include <QtCore/QObject>
-#include <kprocess.h>
-#include <kurl.h>
-#include <kwallet.h>
 #include <unistd.h> // for setsid, see Kr7zEncryptionChecker::setupChildProcess
 #include <signal.h> // for kill
+
+#include <QtCore/QStringList>
+#include <QtCore/QObject>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KCoreAddons/KProcess>
+#include <KWallet/KWallet>
 
 class KRarcObserver : public QObject
 {

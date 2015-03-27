@@ -17,10 +17,13 @@
  *****************************************************************************/
 
 #include "Config.h"
-#include <kconfig.h>
-#include <kglobal.h>
-#include <ksharedconfig.h>
-#include <kconfiggroup.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KGlobal>
+
+#include <KConfigCore/KConfig>
+#include <KConfigCore/KSharedConfig>
+#include <KConfigCore/KConfigGroup>
 
 bool Config::varyLabelFontSizes = true;
 bool Config::showSmallFiles = false;

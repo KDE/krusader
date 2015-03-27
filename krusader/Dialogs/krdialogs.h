@@ -20,19 +20,21 @@
 #ifndef KRDIALOGS_H
 #define KRDIALOGS_H
 
-#include <QtGui/QLineEdit>
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
-#include <QtGui/QPushButton>
 #include <QtCore/QDateTime>
+#include <QtWidgets/QLineEdit>
 #include <QtGui/QPixmap>
-#include <QtGui/QCheckBox>
-#include <QtGui/QComboBox>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 
-#include <kdialog.h>
-#include <kanimatedbutton.h>
-#include <kurlrequesterdialog.h>
-#include <kdatepicker.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
+
+# include <KWidgetsAddons/KAnimatedButton>
+#include <KIOWidgets/KUrlRequesterDialog>
+#include <KWidgetsAddons/KDatePicker>
 
 /** \class KChooseDir
  * Used for asking the user for a folder.

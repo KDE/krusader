@@ -18,10 +18,14 @@
 
 #include "queuewidget.h"
 #include "queue_mgr.h"
-#include <kmessagebox.h>
-#include <klocale.h>
-#include <kmenu.h>
+
 #include <QtGui/QCursor>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KMenu>
+
+#include <KWidgetsAddons/KMessageBox>
 
 QueueWidget::QueueWidget(QWidget * parent): KTabWidget(parent)
 {

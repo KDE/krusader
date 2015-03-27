@@ -33,7 +33,7 @@
 
 #include <QtCore/QObject>
 
-#include <kio/job.h>
+#include <KIO/Job>
 
 class Synchronizer;
 class SynchronizerDirList;

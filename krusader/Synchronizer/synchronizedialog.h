@@ -32,10 +32,10 @@
 #define SYNCHRONIZEDIALOG_H
 
 #include <QtGui/QDialog>
-#include <QtGui/QPushButton>
-#include <QtGui/QCheckBox>
-#include <QtGui/QLabel>
-#include <qprogressbar.h>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QProgressBar>
 
 #include "../VFS/vfs.h"
 #include "synchronizer.h"

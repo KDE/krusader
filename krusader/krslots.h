@@ -34,8 +34,10 @@
 #define KRSLOTS_H
 
 #include <QtCore/QObject>
-#include <kprocess.h>
-#include <kio/netaccess.h>
+
+#include <KCoreAddons/KProcess>
+#include <KIO/NetAccess>
+
 #include "krglobal.h"
 
 class KrMainWindow;

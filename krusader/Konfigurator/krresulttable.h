@@ -20,18 +20,20 @@
 #define KRRESULTTABLE_H
 
 #include <QtCore/QString>
-#include <QtGui/QLabel>
-#include <QtGui/QLayout>
 #include <QtCore/QStringList>
 #include <QtCore/QList>
-#include <QGridLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QGridLayout>
 
-#include <kiconloader.h>
-#include <kglobalsettings.h>
-#include <klocale.h>
-#include <krun.h>
-#include <kseparator.h>
-#include <kurllabel.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KGlobalSettings>
+#include <KDE/KLocale>
+
+#include <KIconThemes/KIconLoader>
+#include <KIOWidgets/KRun>
+#include <KWidgetsAddons/KSeparator>
+#include <KWidgetsAddons/KUrlLabel>
 
 #include "searchobject.h"
 #include "../krglobal.h"

@@ -19,20 +19,22 @@
 
 #include "popularurls.h"
 
-#include <QtGui/QPushButton>
-#include <QGridLayout>
-#include <QtCore/QList>
-#include <qheaderview.h>
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
-#include <QToolButton>
-
-#include <kmessagebox.h>
-#include <klocale.h>
-#include <kiconloader.h>
-#include <ktreewidgetsearchline.h>
-
 #include <stdio.h>
+
+#include <QtCore/QList>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QToolButton>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KIconThemes/KIconLoader>
+#include <KItemViews/KTreeWidgetSearchLine>
 
 #include "../krglobal.h"
 #include "../krslots.h"

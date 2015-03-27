@@ -44,32 +44,36 @@
 #include "../panelmanager.h"
 #include "../kicons.h"
 
-#include <klocale.h>
-#include <kshell.h>
-#include <kprocess.h>
-#include <kfileitem.h>
-#include <QtGui/QLabel>
-#include <QtGui/QLayout>
-#include <QtGui/QFontMetrics>
-#include <qtreewidget.h>
-#include <qheaderview.h>
-#include <QKeyEvent>
-#include <QGridLayout>
-#include <QFrame>
-#include <kmessagebox.h>
-#include <kmenu.h>
-#include <QtGui/QCursor>
-#include <QtCore/QEventLoop>
-#include <kfinddialog.h>
-#include <kfind.h>
-#include <kinputdialog.h>
 #include <QtCore/QRegExp>
+#include <QtCore/QEventLoop>
 #include <QtCore/QDir>
+#include <QtCore/QMimeData>
+#include <QtGui/QFontMetrics>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QCursor>
 #include <QtGui/QClipboard>
-#include <QDrag>
-#include <QMimeData>
-#include <QLineEdit>
-#include <qfont.h>
+#include <QtGui/QFont>
+#include <QtGui/QDrag>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QTreeWidget>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KMenu>
+#include <KDE/KInputDialog>
+
+#include <KCoreAddons/KProcess>
+#include <KIOCore/KFileItem>
+#include <KWidgetsAddons/KMessageBox>
+#include <KCoreAddons/KShell>
+#include <KTextWidgets/KFindDialog>
+#include <KTextWidgets/KFind>
+
 
 // these are the values that will exist in the menu
 #define VIEW_ID                     90

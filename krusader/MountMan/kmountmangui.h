@@ -34,13 +34,17 @@
 #define KMOUNTMANGUI_H
 
 #include <sys/param.h>
-#include <kdialog.h>
-#include <QFrame>
+
 #include <QtCore/QTimer>
-#include <kurl.h>
 #include <QtCore/QList>
-#include <kmountpoint.h>
 #include <QtCore/QDateTime>
+#include <QtWidgets/QFrame>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
+#include <KDE/KUrl>
+
+#include <KIOCore/KMountPoint>
 
 #include "../GUI/krtreewidget.h"
 #include "kmountman.h"

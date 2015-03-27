@@ -20,25 +20,27 @@
 #include "radialMap.h"   //class Segment
 #include "widget.h"
 
-#include <kcursor.h>     //::mouseMoveEvent()
-#include <kiconeffect.h> //::mousePressEvent()
-#include <kiconloader.h> //::mousePressEvent()
-#include <kio/job.h>     //::mousePressEvent()
-#include <kio/deletejob.h>
-#include <kio/jobuidelegate.h>
-#include <klocale.h>
-#include <kmessagebox.h> //::mousePressEvent()
-#include <kmenu.h>  //::mousePressEvent()
-#include <krun.h>        //::mousePressEvent()
 #include <math.h>        //::segmentAt()
-#include <QApplication>//QApplication::setOverrideCursor()
-#include <QPainter>
-#include <QTimer>      //::resizeEvent()
-#include <QPaintEvent>
-#include <QResizeEvent>
-#include <QMouseEvent>
 
+#include <QtCore/QMouseEvent>
+#include <QtCore/QTimer>                                    //::resizeEvent()
+#include <QtGui/QPainter>
+#include <QtGui/QPaintEvent>
+#include <QtGui/QResizeEvent>
+#include <QtWidgets/QApplication>          //QApplication::setOverrideCursor()
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KMenu>  //::mousePressEvent()
+#include <KIO/JobUiDelegate>
+
+#include <KWidgetsAddons/KCursor>     //::mouseMoveEvent()
+#include <KWidgetsAddons/KMessageBox> //::mousePressEvent()
+#include <KIO/Job>     //::mousePressEvent()
+#include <KIconThemes/KIconLoader> //::mousePressEvent()
+#include <KIconThemes/KIconEffect>                        //::mousePressEvent()
+#include <KIOWidgets/KRun>                                //::mousePressEvent()
+#include <KIO/DeleteJob>
 
 void
 RadialMap::Widget::resizeEvent(QResizeEvent*)

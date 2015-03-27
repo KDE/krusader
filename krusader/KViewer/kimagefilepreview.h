@@ -14,12 +14,14 @@
 #define KIMAGEFILEPREVIEW_H
 
 #include <QtGui/QPixmap>
-#include <QResizeEvent>
-#include <QLabel>
+#include <QtGui/QResizeEvent>
+#include <QtWidgets/QLabel>
 
-#include <kurl.h>
-#include <kpreviewwidgetbase.h>
-#include <kio/previewjob.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+# include <KIOFileWidgets/KPreviewWidgetBase>
+#include <KIO/PreviewJob>
 
 class QLabel;
 class QTimer;

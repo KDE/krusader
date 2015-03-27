@@ -20,9 +20,11 @@
 
 #include "krmainwindow.h"
 
-#include <kactioncollection.h>
-#include <kaction.h>
-#include <ktoggleaction.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KAction>
+
+#include <KXmlGui/KActionCollection>
+#include <KWidgetsAddons/KToggleAction>
 
 void ActionsBase::ActionGroup::reconnect(QObject *recv)
 {

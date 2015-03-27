@@ -24,7 +24,8 @@
 #include "krview.h"
 #include "../defaults.h"
 
-#include <kdebug.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDebug>
 
 DirHistoryQueue::DirHistoryQueue(KrPanel *panel) :
     _panel(panel), _state(0), _currentPos(0)

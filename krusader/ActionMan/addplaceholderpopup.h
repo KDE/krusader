@@ -21,10 +21,13 @@
 #ifndef ADDPLACEHOLDERPOPUP_H
 #define ADDPLACEHOLDERPOPUP_H
 
-#include <kmenu.h>
-#include <kdialog.h>
+#include <QtCore/QList>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
+#include <KDE/KMenu>
+
 #include "../UserAction/expander.h"
-#include <QList>
 
 class QString;
 class KLineEdit;

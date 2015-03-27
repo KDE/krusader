@@ -34,7 +34,8 @@
 #include "filtersettings.h"
 #include "../VFS/krquery.h"
 
-#include <kdialog.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
 
 class FilterTabs;
 class GeneralFilter;

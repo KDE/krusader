@@ -20,24 +20,26 @@
 
 #include <QtCore/QEvent>
 #include <QtCore/QRect>
-#include <QtGui/QLayout>
+#include <QtCore/QMouseEvent>
+#include <QtGui/QKeyEvent>
 #include <QtGui/QFrame>
 #include <QtGui/QPainter>
 #include <QtGui/QStyleOption>
-#include <QtGui/QLabel>
 #include <QtGui/QFont>
-#include <QtGui/QToolButton>
 #include <QtGui/QImage>
 #include <QtGui/QTimeEdit>
 #include <QtGui/QProgressBar>
-#include <QMouseEvent>
-#include <QKeyEvent>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QToolButton>
 
-#include <KLocale>
-#include <KGlobalSettings>
-#include <KIconEffect>
-#include <KInputDialog>
-#include <KMessageBox>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KGlobalSettings>
+#include <KDE/KInputDialog>
+
+#include <KIconThemes/KIconEffect>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "queuewidget.h"
 #include "queue_mgr.h"

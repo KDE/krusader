@@ -19,16 +19,18 @@
 
 #include "krremoteencodingmenu.h"
 
-#include <klocale.h>
-#include <kactioncollection.h>
-#include <kmenu.h>
-#include <kcharsets.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KMenu>
 #include <kdeversion.h>
-#include <kio/scheduler.h>
+
+#include <KXmlGui/KActionCollection>
+#include <KCodecs/KCharSets>
+#include <KIO/Scheduler>
 #if KDE_VERSION < KDE_MAKE_VERSION(4,10,0)
-#include <kio/slaveconfig.h>
+#include <KIO/SlaveConfig>
 #else
-#include <kprotocolmanager.h>
+#include <KIOCore/KProtocolManager>
 #endif
 
 #include "../krglobal.h"

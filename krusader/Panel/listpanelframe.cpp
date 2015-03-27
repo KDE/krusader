@@ -21,9 +21,12 @@
 #include "krcolorcache.h"
 #include "../krglobal.h"
 
-#include <kcolorscheme.h>
-#include <kurl.h>
-#include <QDragEnterEvent>
+#include <QtGui/QDragEnterEvent>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
+#include <KConfigWidgets/KColorScheme>
 
 ListPanelFrame::ListPanelFrame(QWidget *parent, QString color) : QFrame(parent), color(color)
 {

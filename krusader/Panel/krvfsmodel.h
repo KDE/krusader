@@ -20,8 +20,8 @@
 #ifndef KRVFSMODEL_H
 #define KRVFSMODEL_H
 
-#include <QAbstractListModel>
-#include <QFont>
+#include <QtCore/QAbstractListModel>
+#include <QtGui/QFont>
 
 #include "krinterview.h"
 #include "krsort.h"

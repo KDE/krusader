@@ -31,12 +31,15 @@
 #include "virtualcopyjob.h"
 #include "vfs.h"
 #include "vfile.h"
-#include <kio/global.h>
-#include <kio/jobclasses.h>
-#include <kio/directorysizejob.h>
-#include <kio/jobuidelegate.h>
-#include <kuiserverjobtracker.h>
-#include <klocale.h>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+
+#include <KIO/Global>
+#include <KIO/JobClasses>
+#include <KIO/DirectorySizeJob>
+#include <KIO/JobUiDelegate>
+#include <KJobWidgets/KUiServerJobTracker>
 
 #define REPORT_TIMEOUT 200
 

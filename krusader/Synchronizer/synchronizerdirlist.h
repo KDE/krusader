@@ -34,7 +34,7 @@
 #include <QtCore/QObject>
 #include <QtCore/QHash>
 
-#include <kio/job.h>
+#include <KIO/Job>
 
 #include "../VFS/vfile.h"
 

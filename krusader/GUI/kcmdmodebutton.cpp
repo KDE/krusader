@@ -20,12 +20,13 @@
 
 #include "../kractions.h"
 
-#include <klocale.h>
-#include <kiconloader.h>
-#include <kmenu.h>
-#include <kactionmenu.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KMenu>
+#include <KDE/KDebug>
 
-#include <kdebug.h>
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KActionMenu>
 
 /**
  * KCMDModeButton class, which represents a button with popup menu to switch

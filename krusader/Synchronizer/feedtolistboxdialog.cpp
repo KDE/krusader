@@ -36,14 +36,18 @@
 #include "../krglobal.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <QtGui/QCheckBox>
-#include <QtGui/QLayout>
-#include <QtGui/QLineEdit>
-#include <QtGui/QLabel>
-#include <QtGui/QComboBox>
-#include <QVBoxLayout>
+
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QVBoxLayout>
+
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+
+#include <KWidgetsAddons/KMessageBox>
 
 #define  S_LEFT        0
 #define  S_RIGHT       1

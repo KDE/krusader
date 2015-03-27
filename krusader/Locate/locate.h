@@ -31,12 +31,14 @@
 #ifndef LOCATE_H
 #define LOCATE_H
 
-#include <QtGui/QCheckBox>
 #include <QtGui/QKeyEvent>
+#include <QtWidgets/QCheckBox>
 
-#include <KDialog>
-#include <KComboBox>
-#include <KHistoryComboBox>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
+
+#include <KCompletion/KComboBox>
+#include <KCompletion/KHistoryComboBox>
 
 class KProcess;
 class KrTreeWidget;

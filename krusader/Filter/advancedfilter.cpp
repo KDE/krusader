@@ -34,19 +34,21 @@
 
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
-#include <QtGui/QGroupBox>
-#include <QtGui/QHBoxLayout>
 #include <QtGui/QGridLayout>
 #include <QtGui/QPixmap>
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QSpinBox>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
 
-#include <KLocale>
-#include <KDebug>
-#include <KMessageBox>
-#include <KIconLoader>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KDebug>
+
+#include <KWidgetsAddons/KMessageBox>
+#include <KIconThemes/KIconLoader>
 
 #include "../krglobal.h"
 #include "../Dialogs/krdialogs.h"

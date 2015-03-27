@@ -19,15 +19,17 @@
 #ifndef KRRESULTTABLEDIALOG_H
 #define KRRESULTTABLEDIALOG_H
 
-#include <QtGui/QLabel>
-#include <QtGui/QLayout>
 #include <QtCore/QStringList>
-#include <QVBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QVBoxLayout>
 
-#include <kdialog.h>
-#include <kiconloader.h>
-#include <kglobalsettings.h>
-#include <klocale.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KDialog>
+#include <KDE/KGlobalSettings>
+#include <KDE/KLocale>
+
+# include <KIconThemes/KIconLoader>
 
 #include "../Konfigurator/krresulttable.h"
 #include "../Konfigurator/searchobject.h"

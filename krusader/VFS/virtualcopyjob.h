@@ -34,9 +34,9 @@
 #include <QtCore/QList>
 #include <QtCore/QTimer>
 #include <QtCore/QHash>
-#include <qmap.h>
+#include <QtCore/QMap>
 
-#include <kio/job.h>
+#include <KIO/Job>
 
 #include "preservingcopyjob.h"
 

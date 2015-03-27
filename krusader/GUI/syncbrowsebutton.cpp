@@ -27,10 +27,11 @@ The current version only manages sync-browse and got no mode-switch options.
 
 #include "syncbrowsebutton.h"
 
-#include <klocale.h>
-#include <kicon.h>
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KLocale>
+#include <KDE/KIcon>
 
-//#include <kdebug.h>
+//#include <KDE/KDebug>
 
 SyncBrowseButton::SyncBrowseButton(QWidget *parent) : QToolButton(parent)
 {
