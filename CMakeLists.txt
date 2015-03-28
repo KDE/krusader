@@ -47,6 +47,7 @@ find_package(KF5 REQUIRED COMPONENTS
   DocTools
   KDELibs4Support
   Parts
+  Wallet
 )
 
 set(CMAKE_VERBOSE_MAKEFILE OFF)

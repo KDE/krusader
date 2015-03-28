@@ -71,7 +71,7 @@ public:
         if (copyJobRef->isMulti())
             mmode = (KIO::RenameDialog_Mode)(mmode | KIO::M_MULTI | KIO::M_SKIP);
         else
-            mmode = (KIO::RenameDialog_Mode)(mmode | KIO::M_SINGLE);
+            mmode = (KIO::RenameDialog_Mode)(mmode /*| KIO::M_SINGLE*/);
 
         if (mode & KIO::M_OVERWRITE)
             mmode = (KIO::RenameDialog_Mode)(mmode | KIO::M_OVERWRITE);
@@ -79,7 +79,8 @@ public:
             mmode = (KIO::RenameDialog_Mode)(mmode | KIO::M_OVERWRITE_ITSELF);
 
         KIO::RenameDialog_Result res = KIO::JobUiDelegate::askFileRename(job, caption, src, dest,  mode, newDest,
-                                       sizeSrc, sizeDest, ctimeSrc, ctimeDest, mtimeSrc, mtimeDest);
+                                       sizeSrc, sizeDest, QDateTime::fromTime_t(ctimeSrc), QDateTime::fromTime_t(ctimeDest),
+                                       QDateTime::fromTime_t(mtimeSrc), QDateTime::fromTime_t(mtimeDest));
 
         if (res == KIO::R_AUTO_SKIP) {
             copyJobRef->setSkipAll();
@@ -102,7 +103,8 @@ public:
                 return KIO::S_SKIP;
         }
 
-        KIO::SkipDialog_Result res = KIO::JobUiDelegate::askSkip(job, copyJobRef->isMulti(), error_text);
+        //KIO::SkipDialog_Result res = KIO::JobUiDelegate::askSkip(job, copyJobRef->isMulti(), error_text);
+        KIO::SkipDialog_Result res = KIO::JobUiDelegate::askSkip(job, KIO::SkipDialog_MultipleItems, error_text);
         if (res == KIO::S_AUTO_SKIP) {
             copyJobRef->setSkipAll();
             if (!multi)
@@ -297,8 +299,9 @@ void VirtualCopyJob::slotMkdirResult(KJob *job)
 
     if (job && job->error()) {
         if (ui() && !m_skipAll) {
-            KIO::SkipDialog_Result skipResult = ui()->askSkip(this, m_multi,
-                                                job->errorString());
+            KIO::JobUiDelegate *jobui = new KIO::JobUiDelegate();
+            jobui->setJob(job);
+            KIO::SkipDialog_Result skipResult = jobui->askSkip(job, KIO::SkipDialog_MultipleItems, job->errorString());
             switch (skipResult) {
             case KIO::S_CANCEL:
                 setError(KIO::ERR_USER_CANCELED);

@@ -39,7 +39,7 @@
 #include <KDE/KStandardDirs>
 
 #include <KWidgetsAddons/KMessageBox>
-#include <KWidgetAddons/KPasswordDialog>
+#include <KWidgetsAddons/KPasswordDialog>
 #include <KArchive/KTar>
 #include <KIO/Global>
 

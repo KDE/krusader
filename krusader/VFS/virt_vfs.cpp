@@ -311,7 +311,7 @@ KConfig*  virt_vfs::getVirtDB()
 {
     if (!virt_vfs_db) {
 //  virt_vfs_db = new KConfig("data",VIRT_VFS_DB,KConfig::NoGlobals);
-        virt_vfs_db = new KConfig(VIRT_VFS_DB, KConfig:: CascadeConfig, "data");
+        virt_vfs_db = new KConfig(VIRT_VFS_DB, KConfig:: CascadeConfig, QStandardPaths::DataLocation);
     }
     return virt_vfs_db;
 }

@@ -200,8 +200,11 @@ bool ftp_vfs::populateVfsList(const KUrl& origin, bool showHidden)
     connect(job, SIGNAL(result(KJob*)),
             this, SLOT(slotListResult(KJob*)));
 
-    if(!parentWindow.isNull())
-        job->ui()->setWindow(parentWindow);
+    if(!parentWindow.isNull()) {
+        KIO::JobUiDelegate *jobui = new KIO::JobUiDelegate();
+        jobui->setJob(job);
+        jobui->setWindow(parentWindow);
+    }
 
     if (!quietMode) {
         emit startJob(job);

@@ -36,6 +36,7 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KMimeType>
+#include <KDE/KUrl>
 
 #include <KIO/Global>
 #include <KIO/UDSEntry>
