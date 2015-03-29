@@ -39,6 +39,7 @@
 #include <KDE/KFileDialog>
 #include <KDE/KDebug>
 #include <KDE/KNumInput>
+#include <KDE/KIcon>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KCompletion/KLineEdit>

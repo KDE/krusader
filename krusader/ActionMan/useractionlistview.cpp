@@ -18,7 +18,7 @@
 
 #include "useractionlistview.h"
 
-#include <QDom/QDomEntity>
+#include <QtXml/QDomEntity>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>

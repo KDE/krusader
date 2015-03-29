@@ -33,6 +33,7 @@
 #include <KDE/KFileDialog>
 #include <KDE/KDebug>
 #include <KDE/KInputDialog>
+#include <KDE/KIcon>
 
 #include <KXmlGui/KActionCollection>
 #include <KXmlGui/KKeySequenceWidget>
@@ -40,6 +41,7 @@
 #include <KCompletion/KLineEdit>
 #include <KWidgetsAddons/KMessageBox>
 #include <KIconThemes/KIconDialog>
+#include <KIconThemes/KIconButton>
 #include <KIconThemes/KIconLoader>
 #include <KTextWidgets/KTextEdit>
 
