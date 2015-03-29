@@ -41,6 +41,7 @@
 #include <KDE/KFileDialog>
 #include <KDE/KMenu>
 #include <KDE/KLocale>
+#include <KDE/KIcon>
 
 #include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>

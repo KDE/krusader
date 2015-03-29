@@ -45,7 +45,7 @@ A
 #include <KDE/KLocale>
 #include <KDE/KDebug>
 
-#include <KIO/KFileItem>
+#include <KIOCore/KFileItem>
 #include <KCompletion/KLineEdit>
 #include <KConfigWidgets/KColorScheme>
 

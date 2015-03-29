@@ -292,7 +292,8 @@ PopularUrlsDlg::PopularUrlsDlg():
     QToolButton *btn = new QToolButton(widget);
     btn->setIcon(SmallIcon("edit-clear-locationbar-ltr"));
     search = new KTreeWidgetSearchLine(widget, urls);
-    search->setTrapReturnKey(true);
+    // TODO KF5: not found?
+    //search->setTrapReturnKey(true);
     QLabel *lbl = new QLabel(i18n("&Search:"), widget);
     lbl->setBuddy(search);
 

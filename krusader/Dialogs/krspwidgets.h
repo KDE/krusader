@@ -30,8 +30,8 @@
 #ifndef KRSPWIDGETS_H
 #define KRSPWIDGETS_H
 
-#include <QtCore/QMouseEvent>
 #include <QtCore/QEvent>
+#include <QtGui/QMouseEvent>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KUrl>

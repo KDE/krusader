@@ -34,7 +34,6 @@
 #include "../Filter/filtertabs.h"
 #include "../GUI/krlistwidget.h"
 
-#include <QtCore/QMouseEvent>
 #include <QtCore/QEvent>
 #include <QtGui/QBitmap>
 #include <QtWidgets/QComboBox>

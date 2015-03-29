@@ -19,7 +19,6 @@
 
 #include "krsqueezedtextlabel.h"
 
-#include <QtCore/QMouseEvent>
 #include <QtGui/QToolTip>
 #include <QtGui/QDropEvent>
 #include <QtGui/QDragEnterEvent>

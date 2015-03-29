@@ -34,6 +34,7 @@
 #include <KDE/KLocale>
 #include <KDE/KApplication>
 #include <KDE/KStandardDirs>
+#include <KDE/KStandardGuiItem>
 #include <kdeversion.h>
 
 #include <KIOWidgets/KUrlCompletion>

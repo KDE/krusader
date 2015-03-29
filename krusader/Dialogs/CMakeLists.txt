@@ -15,3 +15,5 @@ set(Dialogs_SRCS
     krkeydialog.cpp)
 
 add_library(Dialogs STATIC ${Dialogs_SRCS})
+
+target_link_libraries(Dialogs KF5::Completion KF5::ConfigCore KF5::CoreAddons KF5::WidgetsAddons KF5::KDELibs4Support)

@@ -421,14 +421,14 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
     KUrlRequester *checksumFileReq = new KUrlRequester(widget);
     if (!checksumFile.isEmpty())
         checksumFileReq->setUrl(checksumFile);
-    checksumFileReq->fileDialog()->setUrl(path);
+    checksumFileReq->setUrl(path);
     checksumFileReq->setFocus();
     hlayout2->addWidget(checksumFileReq);
     layout->addLayout(hlayout2, row, 0, 1, 2, Qt::AlignLeft);
     setMainWidget(widget);
 
     if (exec() != Accepted) return;
-    QString file = checksumFileReq->url().pathOrUrl();
+    QString file = checksumFileReq->url().toDisplayString();
     QString extension;
     if (!verifyChecksumFile(file, extension)) {
         KMessageBox::error(0, i18n("<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid checksum file.</qt>", file));
@@ -681,7 +681,7 @@ void ChecksumResultsDlg::accept()
         if (savePerFile())
             KDialog::accept();
     } else if (!_checksumFileSelector->url().isEmpty()) {
-        if (saveChecksum(_data, _checksumFileSelector->url().pathOrUrl()))
+        if (saveChecksum(_data, _checksumFileSelector->url().toDisplayString()))
             KDialog::accept();
     }
 }

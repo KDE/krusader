@@ -20,6 +20,7 @@
 
 #include <QtCore/QTextStream>
 #include <QtWidgets/QLayout>
+#include <QtWidgets/QDialogButtonBox>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
@@ -28,6 +29,7 @@
 #include <KDE/KDebug>
 #include <KDE/KPushButton>
 #include <KDE/KGlobal>
+#include <KDE/KDialog>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KConfigCore/KConfig>
@@ -47,7 +49,8 @@ KrKeyDialog::KrKeyDialog(QWidget * parent) : KShortcutsDialog(KShortcutsEditor::
     // HACK This fetches the layout of the buttonbox from KDialog, although it is not accessable with KDialog's API
     // None the less it's quite safe to use since this implementation hasn't changed since KDE-3.3 (I haven't looked at earlier
     // versions since we don't support them) and now all work is done in KDE-4.
-    QWidget* buttonBox = qobject_cast<QWidget*>(button(KDialog::Ok)->parent());
+    KDialog* Dialog = new KDialog();
+    QWidget* buttonBox = qobject_cast<QWidget*>(Dialog->button(KDialog::Ok)->parent());
     QBoxLayout* buttonBoxLayout = qobject_cast<QBoxLayout*>(buttonBox->layout());
 
     KPushButton* importButton = new KPushButton(i18n("Import Shortcuts"), buttonBox);
@@ -61,7 +64,7 @@ KrKeyDialog::KrKeyDialog(QWidget * parent) : KShortcutsDialog(KShortcutsEditor::
     connect(exportButton, SIGNAL(clicked()), SLOT(slotExportShortcuts()));
 
     // Also quite HACK 'isch but unfortunately KKeyDialog don't giveus access to this widget
-    _chooser = qobject_cast<KShortcutsEditor*>(mainWidget());
+    //_chooser = qobject_cast<KShortcutsEditor*>(QApplication::mainWidget());
 
     configure(true /* SaveSettings */);   // this runs the dialog
 }
