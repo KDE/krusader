@@ -28,6 +28,7 @@
 #include <KDE/KLocale>
 #include <KDE/KMenu>
 #include <KDE/KDebug>
+#include <KDE/KIcon>
 
 #include <KIconThemes/KIconLoader>
 
@@ -42,8 +43,9 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent)
 
     acmBookmarks = new KActionMenu(KIcon("bookmarks"), i18n("Bookmarks"), this);
     acmBookmarks->setDelayed(false);
-    acmBookmarks->menu()->setKeyboardShortcutsEnabled(true);
-    acmBookmarks->menu()->setKeyboardShortcutsExecute(true);
+    // TODO KF5 : explicit cast as QMenu doesn't have those methods
+    ((KMenu*)(acmBookmarks->menu()))->setKeyboardShortcutsEnabled(true);
+    ((KMenu*)(acmBookmarks->menu()))->setKeyboardShortcutsExecute(true);
 
     setMenu(acmBookmarks->menu());
     connect(acmBookmarks->menu(), SIGNAL(aboutToShow()), this, SLOT(populate()));

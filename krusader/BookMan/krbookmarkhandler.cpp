@@ -29,8 +29,8 @@
 
 #include <QtCore/QTextStream>
 #include <QtCore/QFile>
-#include <QtCore/QMouseEvent>
 #include <QtCore/QEvent>
+#include <QtGui/QMouseEvent>
 #include <QtGui/QCursor>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them

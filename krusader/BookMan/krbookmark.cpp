@@ -25,6 +25,7 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KDebug>
+#include <KDE/KIcon>
 
 #include <KIconThemes/KIconLoader>
 #include <KXmlGui/KActionCollection>
