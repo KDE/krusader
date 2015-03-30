@@ -46,7 +46,7 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KUrl>
 
-#include <KWidgetAddons/KSqueezedTextLabel>
+#include <KWidgetsAddons/KSqueezedTextLabel>
 
 #include "../VFS/vfs.h"
 #include "filelightParts/fileTree.h"

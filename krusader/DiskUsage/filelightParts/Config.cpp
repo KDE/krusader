@@ -18,6 +18,8 @@
 
 #include "Config.h"
 
+#include <QtGui/QFont>
+
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KGlobal>
 

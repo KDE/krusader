@@ -53,6 +53,7 @@
 #include <KDE/KMenu>
 #include <KDE/KMimeType>
 #include <KDE/KGlobalSettings>
+#include <KDE/KGlobal>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KIO/Job>

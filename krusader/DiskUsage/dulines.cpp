@@ -33,8 +33,8 @@
 #include "../krglobal.h"
 #include "../VFS/krpermhandler.h"
 
-#include <QtCore/QMouseEvent>
 #include <QtCore/QTimer>
+#include <QtGui/QMouseEvent>
 #include <QtGui/QPixmap>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QPen>

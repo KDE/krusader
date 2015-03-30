@@ -19,8 +19,8 @@
 #include "widget.h"
 
 #include <QtCore/QEvent>
-#include <QtCore/QMouseEvent>
 #include <QtCore/QTimer>                                    //member
+#include <QtGui/QMouseEvent>
 #include <QtGui/QBitmap>                                    //ctor - finding cursor size
 #include <QtGui/QCursor>                                    //slotPostMouseEvent()
 #include <QtGui/QPalette>

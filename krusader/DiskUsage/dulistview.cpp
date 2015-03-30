@@ -35,7 +35,7 @@
 
 #include <time.h>
 
-#include <QtCore/QMouseEvent>
+#include <QtGui/QMouseEvent>
 #include <QtGui/QFontMetrics>
 #include <QtGui/QKeyEvent>
 #include <QtWidgets/QHeaderView>

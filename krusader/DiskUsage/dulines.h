@@ -31,7 +31,7 @@
 #ifndef DULINES_H
 #define DULINES_H
 
-#include <QtCore/QMouseEvent>
+#include <QtGui/QMouseEvent>
 #include <QtGui/QPixmap>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QResizeEvent>

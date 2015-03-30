@@ -20,7 +20,7 @@
 #define WIDGET_H
 
 #include <QtCore/QTimer>
-#include <QtCore/QMouseEvent>
+#include <QtGui/QMouseEvent>
 #include <QtGui/QResizeEvent>
 #include <QtGui/QPaintEvent>
 

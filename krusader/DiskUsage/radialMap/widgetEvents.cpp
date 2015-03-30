@@ -22,8 +22,8 @@
 
 #include <math.h>        //::segmentAt()
 
-#include <QtCore/QMouseEvent>
 #include <QtCore/QTimer>                                    //::resizeEvent()
+#include <QtGui/QMouseEvent>
 #include <QtGui/QPainter>
 #include <QtGui/QPaintEvent>
 #include <QtGui/QResizeEvent>
@@ -32,6 +32,7 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KMenu>  //::mousePressEvent()
+#include <KDE/KIcon>
 #include <KIO/JobUiDelegate>
 
 #include <KWidgetsAddons/KCursor>     //::mouseMoveEvent()
@@ -204,7 +205,9 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
 
                 if (userIntention == KMessageBox::Continue) {
                     KIO::Job *job = KIO::del(url);
-                    job->ui()->setWindow(this);
+                    KIO::JobUiDelegate *jobui = new KIO::JobUiDelegate();
+                    jobui->setJob(job);
+                    jobui->setWindow(this);
                     connect(job, SIGNAL(result(KJob*)), SLOT(deleteJobFinished(KJob*)));
                     QApplication::setOverrideCursor(Qt::BusyCursor);
                 }

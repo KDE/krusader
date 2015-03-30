@@ -31,7 +31,7 @@
 #include "dufilelight.h"
 #include "radialMap/radialMap.h"
 
-#include <QtCore/QMouseEvent>
+#include <QtGui/QMouseEvent>
 #include <QtGui/QPixmap>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
