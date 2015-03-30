@@ -7,4 +7,4 @@ set(Filter_SRCS
 
 add_library(Filter STATIC ${Filter_SRCS})
 
-target_link_libraries(Filter Dialogs)
+target_link_libraries(Filter Dialogs KF5::Codecs)

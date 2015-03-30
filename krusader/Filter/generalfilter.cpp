@@ -45,7 +45,7 @@
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KIconThemes/KIconLoader>
-#include <KCodecs/KCharSets>
+#include <KCodecs/KCharsets>
 
 typedef struct {
     const char *description;
