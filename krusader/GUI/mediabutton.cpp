@@ -21,13 +21,16 @@
 #include "../krglobal.h"
 #include "../MountMan/kmountman.h"
 
-#include <QtCore/QMouseEvent>
 #include <QtCore/QEvent>
+#include <QtGui/QMouseEvent>
 #include <QtGui/QCursor>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KDiskFreeSpace>
+#include <KDE/KGlobal>
+#include <KDE/KIcon>
+#include <KDELibs4Support/kmessagebox_queued.h>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KConfigCore/KConfigGroup>
@@ -241,7 +244,8 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, KIcon &k
     if (vol && vol->usage() == Solid::StorageVolume::Encrypted) {
         overlays << "security-high";
     }
-    kicon = KIcon(icon, 0, overlays);
+    // TODO KF5
+    //kicon = KIcon(icon, 0, overlays);
     return true;
 }
 

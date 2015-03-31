@@ -50,13 +50,15 @@ public:
     virtual QStyle::SubControl hitTestComplexControl(ComplexControl control, const QStyleOptionComplex * option, const QPoint & position, const QWidget * widget = 0) const;
     virtual QRect itemPixmapRect(const QRect & rectangle, int alignment, const QPixmap & pixmap) const;
     virtual QRect itemTextRect(const QFontMetrics & metrics, const QRect & rectangle, int alignment, bool enabled, const QString & text) const;
+    virtual int layoutSpacing(QSizePolicy::ControlType ctrl1, QSizePolicy::ControlType ctrl2, Qt::Orientation orientation, const QStyleOption *option = 0, const QWidget *widget = 0) const;
     virtual int pixelMetric(PixelMetric metric, const QStyleOption * option = 0, const QWidget * widget = 0) const;
     virtual void polish(QWidget * widget);
     virtual void polish(QApplication * application);
     virtual void polish(QPalette & palette);
     virtual QSize sizeFromContents(ContentsType type, const QStyleOption * option, const QSize & contentsSize, const QWidget * widget = 0) const;
+    virtual QIcon standardIcon(StandardPixmap stdIcon, const QStyleOption *option = 0, const QWidget *widget = 0) const;
     virtual QPalette standardPalette() const;
-    virtual int styleHint(StyleHint hint, const QStyleOption * option = 0, const QWidget * widget = 0, QStyleHintReturn * returnData = 0) const;
+    virtual int styleHint(StyleHint stylehint, const QStyleOption *option = 0, const QWidget *widget = 0, QStyleHintReturn *returnData = 0) const;
     virtual QRect subControlRect(ComplexControl control, const QStyleOptionComplex * option, SubControl subControl, const QWidget * widget = 0) const;
     virtual QRect subElementRect(SubElement element, const QStyleOption * option, const QWidget * widget = 0) const;
     virtual QPixmap standardPixmap(QStyle::StandardPixmap pixmap, const QStyleOption* option, const QWidget*widget = 0) const;

@@ -49,6 +49,7 @@
 #include <KDE/KStandardDirs>
 #include <KDE/KLocale>
 #include <KDE/KGlobalSettings>
+#include <KDE/KUrl>
 
 #include "../krglobal.h"
 #include "../kicons.h"

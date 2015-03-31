@@ -22,10 +22,11 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KMenu>
+#include <KDE/KIcon>
 #include <kdeversion.h>
 
 #include <KXmlGui/KActionCollection>
-#include <KCodecs/KCharSets>
+#include <KCodecs/KCharsets>
 #include <KIO/Scheduler>
 #if KDE_VERSION < KDE_MAKE_VERSION(4,10,0)
 #include <KIO/SlaveConfig>
@@ -110,27 +111,27 @@ void KrRemoteEncodingMenu::loadSettings()
     settingsLoaded = true;
     encodingNames = KGlobal::charsets()->descriptiveEncodingNames();
 
-    KMenu *kmenu = menu();
-    disconnect(kmenu, SIGNAL(triggered(QAction *)), this, SLOT(slotTriggered(QAction *)));
-    connect(kmenu, SIGNAL(triggered(QAction *)), this, SLOT(slotTriggered(QAction *)));
-    kmenu->clear();
+    QMenu *qmenu = menu();
+    disconnect(qmenu, SIGNAL(triggered(QAction *)), this, SLOT(slotTriggered(QAction *)));
+    connect(qmenu, SIGNAL(triggered(QAction *)), this, SLOT(slotTriggered(QAction *)));
+    qmenu->clear();
 
     QStringList::ConstIterator it;
     int count = 0;
     QAction *act;
 
     for (it = encodingNames.constBegin(); it != encodingNames.constEnd(); ++it) {
-        act = kmenu->addAction(*it);
+        act = qmenu->addAction(*it);
         act->setData(QVariant(++count));
         act->setCheckable(true);
     }
-    kmenu->addSeparator();
+    qmenu->addSeparator();
 
-    act = kmenu->addAction(i18n("Reload"));
+    act = qmenu->addAction(i18n("Reload"));
     act->setCheckable(true);
     act->setData(QVariant(-1));
 
-    act = kmenu->addAction(i18nc("Default encoding", "Default"));
+    act = qmenu->addAction(i18nc("Default encoding", "Default"));
     act->setCheckable(true);
     act->setData(QVariant(-2));
 }

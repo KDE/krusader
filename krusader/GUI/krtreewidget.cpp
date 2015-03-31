@@ -45,6 +45,7 @@ KrTreeWidget::KrTreeWidget(QWidget * parent) : QTreeWidget(parent), _inResize(fa
 
     _stretchingColumn = -1;
 
+    //KrStyleProxy *krstyle = new KrStyleProxy();
     setStyle(new KrStyleProxy());
 }
 

@@ -1,3 +1,5 @@
+include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
+
 set(GUI_SRCS
     dirhistorybutton.cpp
     krusaderstatus.cpp 
@@ -14,3 +16,5 @@ set(GUI_SRCS
     terminaldock.cpp)
 
 add_library(GUI STATIC ${GUI_SRCS})
+
+target_link_libraries(GUI KF5::ConfigCore KF5::KDELibs4Support)
