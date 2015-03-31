@@ -39,6 +39,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KDE/KLocale>
 #include <KDE/KMenu>
 #include <KDE/KDebug>
+#include <KDE/KGlobal>
+#include <KDE/KIcon>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KCoreAddons/KProcess>
@@ -147,7 +149,7 @@ KSharedPtr<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, 
 
     KSharedPtr<KMountPoint> m;
     for (KMountPoint::List::iterator it = lst.begin(); it != lst.end(); ++it) {
-        m = *it;
+        m = it->data();
         QString mntPnt = m->mountPoint();
         if (mntPnt.length() > 1 && mntPnt.endsWith('/'))
             mntPnt = mntPnt.left(mntPnt.length() - 1);
@@ -409,7 +411,7 @@ void KMountMan::quickList()
     KSharedPtr<KMountPoint> m;
     int idx;
     for (it = possible.begin(), idx = 0; it != possible.end(); ++it, ++idx) {
-        m = *it;
+        m = it->data();
         // skip nonmountable file systems
         if (nonmountFilesystem(m->mountType(), m->mountPoint()) || invalidFilesystem(m->mountType()))
             continue;
@@ -517,7 +519,8 @@ void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, con
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::queuedMessageBox(parentWindow, KMessageBox::Sorry, errorData.toString());
+        // TODO KF5 removed
+        //KMessageBox::queuedMessageBox(parentWindow, KMessageBox::Sorry, errorData.toString());
     }
 }
 
@@ -525,7 +528,8 @@ void KMountMan::slotSetupDone(Solid::ErrorType error, QVariant errorData, const 
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::queuedMessageBox(parentWindow, KMessageBox::Sorry, errorData.toString());
+        // TODO KF5 removed
+        //KMessageBox::queuedMessageBox(parentWindow, KMessageBox::Sorry, errorData.toString());
     }
 }
 

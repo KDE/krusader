@@ -56,6 +56,8 @@ A
 #include <KDE/KMenu>
 #include <KDE/KDebug>
 #include <KDE/KDiskFreeSpace>
+#include <KDE/KIcon>
+#include <KDE/KMD5>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KGuiItem>

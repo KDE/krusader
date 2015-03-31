@@ -42,6 +42,7 @@ A
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KUrl>
 #include <kdeversion.h>
+#include <KDE/KSharedPtr>
 
 #include <KIO/JobClasses>
 #include <KIO/Job>
