@@ -31,7 +31,7 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KUrl>
 
-#include <KIO/KFileItem>
+#include <KIOCore/KFileItem>
 #include <KIO/PreviewJob>
 
 class QButtonGroup;

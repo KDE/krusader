@@ -205,7 +205,7 @@ KrCalcSpaceDialog::~KrCalcSpaceDialog()
     }
 }
 
-void KrCalcSpaceDialog::exec()
+int KrCalcSpaceDialog::exec()
 {
     m_thread->start(); // start the thread
     if (m_autoClose) { // autoclose
@@ -215,13 +215,13 @@ void KrCalcSpaceDialog::exec()
         krMainWindow->setCursor(Qt::ArrowCursor);    // return the cursor to normal mode
         m_thread->updateItems(m_view);
         if(m_thread->isFinished())
-            return; // thread finished: do not show the dialog
+            return -1;                                        // thread finished: do not show the dialog
         showResult(); // fill the invisible dialog with useful data
     }
     // prepare and start the poll timer
     connect(m_pollTimer, SIGNAL(timeout()), this, SLOT(timer()));
     m_pollTimer->start(100);
-    KDialog::exec(); // show the dialog
+    return KDialog::exec();                                 // show the dialog
 }
 /* --=={ End of patch by Heiner <h.eichmann@gmx.de> }==-- */
 

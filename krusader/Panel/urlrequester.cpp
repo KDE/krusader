@@ -24,9 +24,10 @@
 #include <QtCore/QEvent>
 #include <QtGui/QPainter>
 #include <QtGui/QFont>
+#include <QtWidgets/QStyleOption>
 
 #include <KCompletion/KLineEdit>
-#include <KWidgetAddons/KSqueezedTextLabel>
+#include <KWidgetsAddons/KSqueezedTextLabel>
 
 class UrlRequester::PathLabel : public KSqueezedTextLabel
 {

@@ -39,11 +39,12 @@ public:
     virtual QSize sizeHint() const;
 
 public slots:
-    virtual void showPreview(const KUrl &url);
+    void showPreview(const KUrl&);
     virtual void clearPreview();
 
 protected slots:
     void showPreview();
+    void showPreview(const QUrl&);
     void showPreview(const KUrl& url, bool force);
 
     virtual void gotPreview(const KFileItem&, const QPixmap&);

@@ -66,6 +66,11 @@ void KrusaderImageFilePreview::showPreview()
 }
 
 // called via KPreviewWidgetBase interface
+void KrusaderImageFilePreview::showPreview(const QUrl& url)
+{
+    showPreview(url, false);
+}
+
 void KrusaderImageFilePreview::showPreview(const KUrl& url)
 {
     showPreview(url, false);

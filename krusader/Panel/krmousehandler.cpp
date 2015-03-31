@@ -25,6 +25,9 @@
 
 #include <QtWidgets/QApplication>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KGlobal>
+
 #define CANCEL_TWO_CLICK_RENAME {_singleClicked = false;_renameTimer.stop();}
 
 KrMouseHandler::KrMouseHandler(KrView * view, int contextMenuShift) : _view(view), _rightClickedItem(0),

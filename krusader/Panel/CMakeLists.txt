@@ -1,3 +1,5 @@
+include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
+
 set(Panel_SRCS
     urlrequester.cpp
     kritemview.cpp
@@ -32,11 +34,9 @@ set(Panel_SRCS
 
 add_library(Panel STATIC ${Panel_SRCS})
 
-# TODO porting : new variables needed?
-target_link_libraries(Panel Dialogs GUI KViewer
-# 		      ${KDE4_KFILE_LIBS}
-		      )
+target_link_libraries(Panel Dialogs GUI KViewer KF5::Archive KF5::Wallet KF5::KDELibs4Support)
 
 if(LIBKONQ_FOUND)
     target_link_libraries(Panel ${LIBKONQ_LIBRARY})
 endif(LIBKONQ_FOUND)
+

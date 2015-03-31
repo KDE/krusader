@@ -898,7 +898,7 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
     if (copyToDirInPanel) {
         dir = i->name();
     }
-    QWidget *notify = (!e->source() ? 0 : e->source());
+    QObject *notify = (!e->source() ? 0 : e->source());
     tempFiles->vfs_addFiles(&URLs, mode, notify, dir);
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         KrPanel *p = (dragFromThisPanel ? this : otherPanel());

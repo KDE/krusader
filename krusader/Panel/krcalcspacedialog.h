@@ -113,7 +113,7 @@ public:
     } // cancel was pressed; result is probably wrong
 
 public slots:
-    void exec(); // start calculation
+    int exec(); // start calculation
 };
 /* End of patch by Heiner <h.eichmann@gmx.de> */
 

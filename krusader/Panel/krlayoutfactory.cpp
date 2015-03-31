@@ -47,6 +47,8 @@ A
 #include <KDE/KStandardDirs>
 #include <KDE/KComponentData>
 #include <KDE/KDebug>
+#include <KDE/KDialog>
+#include <KDE/KGlobal>
 
 #define XMLFILE_VERSION "1.0"
 #define MAIN_FILE "layout.xml"
