@@ -32,6 +32,7 @@
 #include <kde_file.h>
 
 #include <KParts/BrowserExtension>
+#include <KParts/ReadWritePart>
 #include <KWidgetsAddons/KMessageBox>
 #include <KService/KServiceTypeProfile>
 #include <KService/KMimeTypeTrader>

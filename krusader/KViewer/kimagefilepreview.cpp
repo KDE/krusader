@@ -27,9 +27,10 @@
 #include <KDE/KDebug>
 #include <KDE/KLocale>
 #include <KDE/KFileDialog>
+#include <KDE/KDialog>
 
 #include <KIconThemes/KIconLoader>
-#include <KIO/KFileItem>
+#include <KIOCore/KFileItem>
 #include <KIO/PreviewJob>
 
 KrusaderImageFilePreview::KrusaderImageFilePreview(QWidget *parent)
@@ -109,7 +110,7 @@ QSize KrusaderImageFilePreview::sizeHint() const
 
 KIO::PreviewJob * KrusaderImageFilePreview::createJob(const KUrl& url, int w, int h)
 {
-#if KDE_IS_VERSION(4,7,0)
+/*#if KDE_IS_VERSION(4,7,0)
     KFileItemList fileItemList;
     fileItemList.append(KFileItem(KFileItem::Unknown,KFileItem::Unknown, url, true));
     QStringList allPlugins = KIO::PreviewJob::availablePlugins();
@@ -118,11 +119,11 @@ KIO::PreviewJob * KrusaderImageFilePreview::createJob(const KUrl& url, int w, in
         job->setOverlayIconSize(0);
         job->setScaleType(KIO::PreviewJob::Scaled);
     return job;
-#else
+#else*/
     KUrl::List urls;
     urls.append(url);
     return KIO::filePreview(urls, w, h, 0, 0, true, false);	
-#endif
+//#endif
 }
 
 void KrusaderImageFilePreview::gotPreview(const KFileItem& item, const QPixmap& pm)

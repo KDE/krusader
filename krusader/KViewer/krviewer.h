@@ -30,6 +30,8 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KTemporaryFile>
 #include <KDE/KTabWidget>
+#include <KDE/KUrl>
+#include <KDE/KAction>
 
 #include <KParts/MainWindow>
 #include <KParts/PartManager>
@@ -116,8 +118,8 @@ private:
 
     QAction *detachAction;
 
-    KAction *printAction;
-    KAction *copyAction;
+    QAction *printAction;
+    QAction *copyAction;
 
     QAction *tabClose;
     QAction *closeAct;

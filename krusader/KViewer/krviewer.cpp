@@ -36,13 +36,14 @@
 #include <KIO/JobClasses>
 #include <KIO/Job>
 #include <kde_file.h>
+#include <KDE/KStandardAction>
 
 #include <KParts/Part>
-#include <KParts/ComponentFactory>
+//#include <KParts/ComponentFactory> // missing?
 #include <KWidgetsAddons/KMessageBox>
-#include <KHtml/KHtmlPart>
+#include <KHtml/KHTMLPart>
 #include <KCoreAddons/KProcess>
-#include <KIO/KFileItem>
+#include <KIOCore/KFileItem>
 #include <KXmlGui/KToolBar>
 #include <KConfigWidgets/KStandardAction>
 #include <KCoreAddons/KShell>
@@ -110,17 +111,17 @@ KrViewer::KrViewer(QWidget *parent) :
     QList<QAction *> actList = menuBar()->actions();
     bool hasPrint = false, hasCopy = false;
     foreach(QAction *a, actList) {
-        if (a->shortcut().matches(printAction->shortcut().primary()) != QKeySequence::NoMatch)
+        if (a->shortcut().matches(printAction->shortcut()) != QKeySequence::NoMatch)
             hasPrint = true;
-        if (a->shortcut().matches(copyAction->shortcut().primary()) != QKeySequence::NoMatch)
+        if (a->shortcut().matches(copyAction->shortcut()) != QKeySequence::NoMatch)
             hasCopy = true;
     }
     QAction *printAct = viewerMenu->addAction(printAction->icon(), printAction->text(), this, SLOT(print()));
     if (hasPrint)
-        printAct->setShortcut(printAction->shortcut().primary());
+        printAct->setShortcut(printAction->shortcut());
     QAction *copyAct = viewerMenu->addAction(copyAction->icon(), copyAction->text(), this, SLOT(copy()));
     if (hasCopy)
-        copyAct->setShortcut(copyAction->shortcut().primary());
+        copyAct->setShortcut(copyAction->shortcut());
     viewerMenu->addSeparator();
     (tabClose = viewerMenu->addAction(i18n("&Close Current Tab"), this, SLOT(tabCloseRequest())))->setShortcut(Qt::Key_Escape);
     (closeAct = viewerMenu->addAction(i18n("&Quit"), this, SLOT(close())))->setShortcut(Qt::CTRL + Qt::Key_Q);
