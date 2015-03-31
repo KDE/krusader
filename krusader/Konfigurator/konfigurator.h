@@ -40,8 +40,9 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDialog>
+#include <KDE/KIcon>
 
-# include <KWidgetsAddons/KPageDialog>
+#include <KWidgetsAddons/KPageDialog>
 
 class QString;
 class QResizeEvent;
@@ -76,6 +77,7 @@ protected slots:
     void slotRestorePage();
 
 private:
+    KDialog                    *dialog;
     QList<KPageWidgetItem*>     kgPages;
     bool                        firstTime;
     KPageWidgetItem            *lastPage;

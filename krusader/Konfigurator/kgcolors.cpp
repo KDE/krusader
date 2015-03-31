@@ -42,6 +42,7 @@
 #include <KDE/KLocale>
 #include <KDE/KFileDialog>
 #include <KDE/KStandardDirs>
+#include <KDE/KGlobal>
 
 #include <KConfigWidgets/KColorScheme>
 #include <KWidgetsAddons/KMessageBox>

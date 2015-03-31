@@ -36,6 +36,9 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KPushButton>
+
 #include "konfiguratorpage.h"
 #include "../GUI/krtreewidget.h"
 

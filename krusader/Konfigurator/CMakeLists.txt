@@ -1,3 +1,5 @@
+include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
+
 set(Konfigurator_SRCS
     kgcolors.cpp
     kgdependencies.cpp
@@ -16,3 +18,5 @@ set(Konfigurator_SRCS
     searchobject.cpp)
 
 add_library(Konfigurator STATIC ${Konfigurator_SRCS})
+
+target_link_libraries(Konfigurator KF5::KIOWidgets KF5::ConfigWidgets KF5::KDELibs4Support KF5::Wallet)

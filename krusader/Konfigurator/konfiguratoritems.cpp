@@ -39,6 +39,7 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
+#include <KDE/KIcon>
 
 #include <KCompletion/KLineEdit>
 #include <KIconThemes/KIconLoader>
@@ -60,7 +61,8 @@ void KonfiguratorExtension::connectNotify(const char *signal)
     else if (signalString == defaultsString)
         setDefaultsConnected = true;
 
-    QObject::connectNotify(signal);
+    // TODO KF5 removed
+    //QObject::connectNotify(signal);
 }
 
 bool KonfiguratorExtension::apply()
@@ -408,7 +410,7 @@ void KonfiguratorURLRequester::loadInitialValue()
 
 void KonfiguratorURLRequester::slotApply(QObject *, QString cls, QString name)
 {
-    KConfigGroup(krConfig, cls).writeEntry(name, expansion ? url().pathOrUrl() : text());
+    KConfigGroup(krConfig, cls).writeEntry(name, expansion ? url().toDisplayString() : text());
 }
 
 void KonfiguratorURLRequester::slotSetDefaults(QObject *)
