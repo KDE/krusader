@@ -23,7 +23,9 @@
 #include <QtCore/QHash>
 #include <QtGui/QKeySequence>
 
-#include <KConfigWidget/KStandardAction>
+#include <KDE/KAction>
+
+#include <KConfigWidgets/KStandardAction>
 
 class KrMainWindow;
 
@@ -35,10 +37,10 @@ protected:
                 _mainWindow(mainWindow) {}
     class ActionGroup
     {
-        QHash<KAction*, const char*> _slots;
+        QHash<QAction*, const char*> _slots;
     public:
         void reconnect(QObject *recv);
-        void addAction(KAction *action, const char *slot);
+        void addAction(QAction *action, const char *slot);
     };
 
     KAction *createAction(QString text, QString icon, bool isToggleAction);
@@ -61,11 +63,11 @@ protected:
     KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,
                                 ActionGroup &group, const char *slot, QString name);
 
-    KAction *stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot);
-    KAction *stdAction(KStandardAction::StandardAction id, const char *slot) {
+    QAction *stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot);
+    QAction *stdAction(KStandardAction::StandardAction id, const char *slot) {
         return stdAction(id, this, slot);
     }
-    KAction *stdAction(KStandardAction::StandardAction id,
+    QAction *stdAction(KStandardAction::StandardAction id,
                        ActionGroup &group, const char *slot);
 
     KrMainWindow *_mainWindow;

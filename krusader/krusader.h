@@ -51,7 +51,7 @@
 #include <KDE/KDebug>
 
 #include <KParts/MainWindow>
-#include <KCOnfigWidgets/KStandardAction>
+#include <KConfigWidgets/KStandardAction>
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
 

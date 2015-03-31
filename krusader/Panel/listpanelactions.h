@@ -66,15 +66,15 @@ public slots:
     void guiUpdated();
 
 public:
-    KAction *actF2, *actF3, *actF4, *actF5, *actF6, *actF7, *actF8, *actF9;
-    KAction *actShiftF5, *actShiftF6;
-    KAction *actProperties, *actPack, *actUnpack, *actTest,  *actCompDirs, *actCalculate, *actSync;
-    KAction *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
-    KAction *actLocationBar, *actJumpBack, *actSetJumpBack;
-    KAction *actCreateChecksum, *actMatchChecksum;
-    KAction *actCopy, *actPaste;
-    KAction *actHistoryBackward, *actHistoryForward, *actDirUp, *actRoot, *actHome, *actCdToOther;
-    KAction *actSyncBrowse, *actCancelRefresh;
+    QAction *actF2, *actF3, *actF4, *actF5, *actF6, *actF7, *actF8, *actF9;
+    QAction *actShiftF5, *actShiftF6;
+    QAction *actProperties, *actPack, *actUnpack, *actTest,  *actCompDirs, *actCalculate, *actSync;
+    QAction *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
+    QAction *actLocationBar, *actJumpBack, *actSetJumpBack;
+    QAction *actCreateChecksum, *actMatchChecksum;
+    QAction *actCopy, *actPaste;
+    QAction *actHistoryBackward, *actHistoryForward, *actDirUp, *actRoot, *actHome, *actCdToOther;
+    QAction *actSyncBrowse, *actCancelRefresh;
 
     QHash<int/*id*/, KAction*> setViewActions;
 

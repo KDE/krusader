@@ -38,6 +38,7 @@
 #include <KDE/KShortcut>
 
 #include <KConfigCore/KConfigGroup>
+#include <KIconThemes/KIconLoader>
 
 #define krOut kDebug()
 

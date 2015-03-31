@@ -36,6 +36,7 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KGlobal>
 #include <KDE/KStandardDirs>
+#include <KDE/KIcon>
 
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
@@ -71,14 +72,18 @@ void KrTrashHandler::emptyTrash()
     stream << (int)1;
     KIO::Job *job = KIO::special(KUrl("trash:/"), packedArgs);
     KNotification::event("Trash: emptied", QString() , QPixmap() , 0l, KNotification::DefaultEvent);
-    job->ui()->setWindow(krMainWindow);
+    KIO::JobUiDelegate *jobui = new KIO::JobUiDelegate();
+    jobui->setJob(job);
+    jobui->setWindow(krMainWindow);
     QObject::connect(job, SIGNAL(result(KJob *)), ACTIVE_PANEL->func, SLOT(refresh()));
 }
 
 void KrTrashHandler::restoreTrashedFiles(const KUrl::List &urls)
 {
     KonqMultiRestoreJob* job = new KonqMultiRestoreJob(urls);
-    job->ui()->setWindow(krMainWindow);
+    KIO::JobUiDelegate *jobui = new KIO::JobUiDelegate();
+    jobui->setJob(job);
+    jobui->setWindow(krMainWindow);
     KIO::getJobTracker()->registerJob(job);
     QObject::connect(job, SIGNAL(result(KJob *)), ACTIVE_PANEL->func, SLOT(refresh()));
 }
@@ -151,7 +156,7 @@ void KonqMultiRestoreJob::slotResult(KJob *job)
 
 KrTrashWatcher::KrTrashWatcher()
 {
-    QString trashrcFile = KGlobal::mainComponent().dirs()->saveLocation("config") +
+    QString trashrcFile = KGlobal::dirs()->saveLocation("config") +
                           QString::fromLatin1("trashrc");
     _watcher = new KDirWatch();
     // connect the watcher

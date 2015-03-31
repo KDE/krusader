@@ -41,8 +41,9 @@
 #include <KDE/KMenuBar>
 #include <KDE/KLibLoader>
 #include <KDE/KShortcut>
+#include <KDE/KIcon>
 
-#include <KXmlGui/KToolbar>
+#include <KXmlGui/KToolBar>
 #include <KWidgetsAddons/KToggleAction>
 
 #include "krusader.h"

@@ -22,19 +22,20 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KAction>
+#include <KDE/KIcon>
 
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KToggleAction>
 
 void ActionsBase::ActionGroup::reconnect(QObject *recv)
 {
-    foreach(KAction *action, _slots.keys()) {
+    foreach(QAction *action, _slots.keys()) {
         disconnect(action, 0, 0, 0);
         connect(action, SIGNAL(triggered(bool)), recv, _slots[action]);
     }
 }
 
-void ActionsBase::ActionGroup::addAction(KAction *action, const char *slot)
+void ActionsBase::ActionGroup::addAction(QAction *action, const char *slot)
 {
     _slots.insert(action, slot);
 }
@@ -45,9 +46,9 @@ KAction *ActionsBase::createAction(QString text, QString icon, bool isToggleActi
     KAction *a;
     if(isToggleAction) {
         if (icon == 0)
-            a = new KToggleAction(text, this);
+            a = (KAction *)(new KToggleAction(text, this));
         else
-            a = new KToggleAction(KIcon(icon), text, this);
+            a = (KAction *)new KToggleAction(KIcon(icon), text, this);
     } else {
         if (icon == 0)
             a = new KAction(text, this);
@@ -85,23 +86,23 @@ KAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
 KToggleAction *ActionsBase::toggleAction(QString text, QString icon, QKeySequence shortcut,
                                 QObject *recv, const char *slot, QString name)
 {
-    return static_cast<KToggleAction*>(action(text, icon, shortcut, recv, slot, name, true));
+    return (KToggleAction *)(action(text, icon, shortcut, recv, slot, name, true));
 }
 
 KToggleAction *ActionsBase::toggleAction(QString text, QString icon, QKeySequence shortcut,
                                          ActionGroup &group, const char *slot, QString name)
 {
-    return static_cast<KToggleAction*>(action(text, icon, shortcut, group, slot, name, true));
+    return (KToggleAction *)(action(text, icon, shortcut, group, slot, name, true));
 }
 
-KAction *ActionsBase::stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot)
+QAction *ActionsBase::stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot)
 {
     return KStandardAction::create(id, recv, slot, _mainWindow->actions());
 }
 
-KAction *ActionsBase::stdAction(KStandardAction::StandardAction id, ActionGroup &group, const char *slot)
+QAction *ActionsBase::stdAction(KStandardAction::StandardAction id, ActionGroup &group, const char *slot)
 {
-    KAction *action = KStandardAction::create(id, 0, 0, _mainWindow->actions());
+    QAction *action = KStandardAction::create(id, 0, 0, _mainWindow->actions());
     group.addAction(action, slot);
     return action;
 }

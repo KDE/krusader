@@ -149,7 +149,7 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
         return true;
     }
 
-    if (_mainWindow->listPanelActions()->actPaste->shortcut().contains(pressedKey)) {
+    if (_mainWindow->listPanelActions()->actPaste->shortcut().matches(pressedKey)) {
         QString text = QApplication::clipboard()->text();
         if (! text.isEmpty()) {
             text.replace('\n', '\r');

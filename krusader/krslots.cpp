@@ -43,7 +43,7 @@
 #include <KDE/KCmdLineArgs>
 
 #include <KXmlGui/KToolBar>
-#include <KWidgetAddons/KToggleAction>
+#include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KMessageBox>
 #include <KCoreAddons/KShell>
 #include <KXmlGui/KEditToolBar>

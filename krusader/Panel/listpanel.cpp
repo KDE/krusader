@@ -112,7 +112,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 class ActionButton : public QToolButton
 {
 public:
-    ActionButton(QWidget *parent, ListPanel *panel, KAction *action, QString text = QString()) :
+    ActionButton(QWidget *parent, ListPanel *panel, QAction *action, QString text = QString()) :
             QToolButton(parent),  panel(panel), action(action) {
         setText(text);
         setAutoRaise(true);
@@ -128,7 +128,7 @@ protected:
     }
 
     ListPanel *panel;
-    KAction *action;
+    QAction *action;
 };
 
 

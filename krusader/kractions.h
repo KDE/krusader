@@ -53,10 +53,13 @@ public:
     static KAction *actDiskUsage, *actSavePosition;
     static KAction *actHomeTerminal, *actProfiles;
     static KAction *actMountMan, *actNewTool, *actSwapPanels, *actSwapSides;
-    static KAction *actKonfigurator, *actToolsSetup, *actFind, *actRemoteEncoding;
+    static KAction *actKonfigurator, *actToolsSetup, *actFind;
+    static QAction *actRemoteEncoding;
     static KAction *actSelectColorMask, *actMultiRename, *actOpenLeftBm, *actOpenRightBm;
     static KAction *actSplit, *actQueueManager;
-    static KAction *actCombine, *actUserMenu, *actManageUseractions;
+    static KAction *actCombine;
+    static QAction *actUserMenu;
+    static KAction *actManageUseractions;
 #ifdef ENABLE_SYNCHRONIZER
     static KAction *actSyncDirs;
 #endif
