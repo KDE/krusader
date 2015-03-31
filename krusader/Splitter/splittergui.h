@@ -33,6 +33,9 @@
 
 #include <QtGui/QDialog>
 
+// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KUrl>
+
 #include <KIOWidgets/KUrlRequester>
 #include <KIO/Global>
 
@@ -65,7 +68,7 @@ public:
     ~SplitterGUI();
 
     KUrl    getDestinationDir()     {
-        return KUrl(urlReq->url().prettyUrl()); /* TODO: is prettyUrl what we need? */
+        return KUrl(urlReq->url().toDisplayString()); /* TODO: is prettyUrl what we need? */
     }
     KIO::filesize_t getSplitSize();
     int     result()                {

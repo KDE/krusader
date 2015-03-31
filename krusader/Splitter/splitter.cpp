@@ -40,7 +40,7 @@
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KIO/Job>
-#include <KIO/KFileItem>
+#include <KIOCore/KFileItem>
 #include <KIO/JobUiDelegate>
 
 Splitter::Splitter(QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn, bool overWriteIn) :

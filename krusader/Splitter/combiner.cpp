@@ -38,7 +38,7 @@
 #include <KDE/KDebug>
 
 #include <KWidgetsAddons/KMessageBox>
-#include <KIO/KFileItem>
+#include <KIOCore/KFileItem>
 #include <KIO/Job>
 #include <KIO/JobUiDelegate>
 
@@ -189,8 +189,8 @@ void Combiner::statDestResult(KJob* job)
             emit reject();
         }
     } else { // destination already exists
-        KIO::RenameDialog_Mode mode = static_cast<KIO::StatJob*>(job)->statResult().isDir() ?
-            KIO::M_ISDIR : KIO::M_OVERWRITE;
+        KIO::RenameDialog_Options mode = static_cast<KIO::StatJob*>(job)->statResult().isDir() ?
+            KIO::RenameDialog_IsDirectory : KIO::RenameDialog_Overwrite;
         KIO::RenameDialog dlg(this, i18n("File Already Exists"), QUrl(), writeURL, mode);
         switch (dlg.exec()) {
         case KIO::R_OVERWRITE:

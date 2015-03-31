@@ -48,6 +48,7 @@
 #include <KDE/KLocale>
 #include <KDE/KGlobal>
 #include <KDE/KDebug>
+#include <KDE/KIcon>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KConfigCore/KConfigGroup>
