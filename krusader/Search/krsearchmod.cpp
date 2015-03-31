@@ -37,6 +37,7 @@
 
 #include <QtCore/QDir>
 #include <QtCore/QRegExp>
+#include <QtWidgets/QApplication>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>

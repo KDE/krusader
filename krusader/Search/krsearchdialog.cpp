@@ -53,6 +53,7 @@
 #include <KDE/KMenu>
 #include <KDE/KGlobal>
 #include <KDE/KLocale>
+#include <KDE/KIcon>
 
 #include <KWidgetsAddons/KMessageBox>
 
