@@ -33,9 +33,9 @@
 #include "../KViewer/diskusageviewer.h"
 
 #include <QtCore/QDir>
-#include <QtGui/QButtonGroup>
 #include <QtGui/QDropEvent>
 #include <QtGui/QCursor>
+#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QFrame>

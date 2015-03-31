@@ -35,10 +35,10 @@
 #include <QtCore/QEvent>
 #include <QtCore/QTimer>
 #include <QtCore/QStack>
-#include <QtGui/QDialog>
 #include <QtGui/QResizeEvent>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QPixmap>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QScrollArea>

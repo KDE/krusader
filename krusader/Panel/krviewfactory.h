@@ -34,7 +34,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QtCore/QList>
 #include <QtCore/QString>
 #include <QtGui/QKeySequence>
-#include <QtGui/QWidget>
+#include <QtWidgets/QWidget>
 
 class KrView;
 class KConfig;

@@ -33,8 +33,8 @@
 #include <QtCore/QVariant>
 #include <QtGui/QImage>
 #include <QtGui/QPixmap>
-#include <QtGui/QSlider>
 #include <QtGui/QKeyEvent>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QLabel>

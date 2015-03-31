@@ -40,7 +40,7 @@
 #include <QtGui/QPen>
 #include <QtGui/QPainter>
 #include <QtGui/QFontMetrics>
-#include <QtGui/QToolTip>
+#include <QtWidgets/QToolTip>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QItemDelegate>

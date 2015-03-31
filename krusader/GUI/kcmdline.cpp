@@ -39,7 +39,7 @@
 #include <QtGui/QIcon>
 #include <QtGui/QFontMetrics>
 #include <QtGui/QImage>
-#include <QtGui/QSizePolicy>
+#include <QtWidgets/QSizePolicy>
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QFrame>

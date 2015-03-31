@@ -35,8 +35,8 @@
 #include <QtCore/QString>
 #include <QtCore/QList>
 #include <QtGui/QPixmap>
-#include <QtGui/QBoxLayout>
 #include <QtGui/QFont>
+#include <QtWidgets/QBoxLayout>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QPushButton>

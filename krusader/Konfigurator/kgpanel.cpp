@@ -33,8 +33,8 @@
 #include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
 
-#include <QtGui/QTabWidget>
 #include <QtGui/QValidator>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>

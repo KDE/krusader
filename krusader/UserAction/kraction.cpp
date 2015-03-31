@@ -24,8 +24,8 @@
 #include <QtCore/QFile>
 #include <QtCore/QRegExp>
 #include <QtCore/QTextStream>
-#include <QtGui/QBoxLayout>
 #include <QtGui/QKeyEvent>
+#include <QtWidgets/QBoxLayout>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QPushButton>

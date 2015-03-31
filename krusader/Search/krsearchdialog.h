@@ -36,7 +36,7 @@
 
 #include <QtCore/QString>
 #include <QtCore/QStringList>
-#include <QtGui/QDialog>
+#include <QtWidgets/QDialog>
 
 #include "krsearchmod.h"
 

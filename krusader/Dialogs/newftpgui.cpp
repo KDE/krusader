@@ -23,9 +23,9 @@
 #include <QtCore/QStringList>
 #include <QtCore/QEvent>
 #include <QtGui/QFont>
-#include <QtGui/QGridLayout>
-#include <QtGui/QSizePolicy>
-#include <QtGui/QWidget>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QSizePolicy>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them

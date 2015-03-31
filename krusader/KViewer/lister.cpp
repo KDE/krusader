@@ -38,12 +38,10 @@
 #include <QtGui/QPainter>
 #include <QtGui/QFontMetrics>
 #include <QtGui/QClipboard>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QProgressBar>
 #include <QtGui/QKeyEvent>
-#include <QtGui/QScrollBar>
-#include <QtGui/QPrintDialog>
-#include <QtGui/QPrinter>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QProgressBar>
+#include <QtWidgets/QScrollBar>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QLabel>
@@ -52,6 +50,8 @@
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMenu>
+#include <QtPrintSupport/QPrintDialog>
+#include <QtPrintSupport/QPrinter>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>

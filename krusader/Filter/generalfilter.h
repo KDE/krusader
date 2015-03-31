@@ -31,7 +31,7 @@
 #ifndef GENERALFILTER_H
 #define GENERALFILTER_H
 
-#include <QtGui/QWidget>
+#include <QtWidgets/QWidget>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QCheckBox>

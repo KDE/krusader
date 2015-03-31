@@ -95,12 +95,12 @@ int main(int argc, char *argv[])
 // If the user has no icon specified over the commandline we set up uor own.
 // this is according to the users privileges. The icons are in Krusader::privIcon()
 
-    bool hasIcon = false;
+/*    bool hasIcon = false;
     int i = 0;
-    char * myArgv[argc+2];
+    char * myArgv[argc+2];*/
 
 // if no --miniicon is given, --icon is used. So we don't need to check for --miniicon separately
-    for (i = 0; i < argc; ++i) {
+/*    for (i = 0; i < argc; ++i) {
         if (strstr(argv[ i ], "-icon") != 0)   // important: just one dash because both can appear!
             hasIcon = true;
     }
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
         myArgv[ ++argc ] = 0;
 
         argv = myArgv;
-    }
+    }*/
 // ============ end icon-stuff ===========
 
     // ABOUT data information
@@ -211,20 +211,20 @@ int main(int argc, char *argv[])
     // Command line arguments ...
     // KF5 TODO port to QCommandLineParser
     //KCmdLineArgs::init(argc, argv, &aboutData, KCmdLineArgs::CmdLineArgQt);
-    KCmdLineArgs::init(argc, argv, QByteArray("krusader"), QByteArray("0"), ki18n("krusader"), versionName.toLocal8Bit(), ki18n("file manager"), KCmdLineArgs::CmdLineArgQt);
+    //KCmdLineArgs::init(argc, argv, QByteArray("krusader"), QByteArray("0"), ki18n("krusader"), versionName.toLocal8Bit(), ki18n("file manager"), KCmdLineArgs::CmdLineArgQt);
 
-    KCmdLineOptions options;
+    //KCmdLineOptions options;
     options.add("left <path>", ki18n("Start left panel at <path>"));
     options.add("right <path>", ki18n("Start right panel at <path>"));
     options.add("profile <panel-profile>", ki18n("Load this profile on startup"));
     options.add("+url", ki18n("URL to open"));
 
-    KCmdLineArgs::addCmdLineOptions(options);   // Add our own options.
+    KCmdLineArgs::addCmdLineOptions(options);              // Add our own options.
 
     // check for command line arguments
 
     // create the application
-    KrusaderApp app;
+    KrusaderApp app(argc, argv);
 
     KConfigGroup cfg(KGlobal::config().data(), "Look&Feel");
     bool singleInstanceMode = cfg.readEntry("Single Instance Mode", _SingleInstanceMode);

@@ -31,9 +31,9 @@
 #include "krtreewidget.h"
 #include "krstyleproxy.h"
 
-#include <QtGui/QStyleOptionViewItem>
 #include <QtGui/QContextMenuEvent>
-#include <QtGui/QToolTip>
+#include <QtWidgets/QStyleOptionViewItem>
+#include <QtWidgets/QToolTip>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QApplication>
 

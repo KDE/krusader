@@ -22,13 +22,13 @@
 #include <QtCore/QRect>
 #include <QtGui/QMouseEvent>
 #include <QtGui/QKeyEvent>
-#include <QtGui/QFrame>
 #include <QtGui/QPainter>
-#include <QtGui/QStyleOption>
 #include <QtGui/QFont>
 #include <QtGui/QImage>
-#include <QtGui/QTimeEdit>
-#include <QtGui/QProgressBar>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QStyleOption>
+#include <QtWidgets/QTimeEdit>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QToolButton>

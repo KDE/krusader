@@ -33,7 +33,7 @@
 #include "../Panel/krcolorcache.h"
 
 #include <QtCore/QList>
-#include <QtGui/QTabWidget>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QGridLayout>

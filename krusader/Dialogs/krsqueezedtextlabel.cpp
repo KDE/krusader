@@ -19,10 +19,10 @@
 
 #include "krsqueezedtextlabel.h"
 
-#include <QtGui/QToolTip>
 #include <QtGui/QDropEvent>
 #include <QtGui/QDragEnterEvent>
 #include <QtGui/QPainter>
+#include <QtWidgets/QToolTip>
 #include <QtWidgets/QLabel>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them

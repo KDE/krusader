@@ -33,7 +33,7 @@
 #include "../krglobal.h"
 
 #include <QtCore/QUrl>
-#include <QtGui/QTabWidget>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QScrollArea>
 

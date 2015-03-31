@@ -31,7 +31,7 @@
 #ifndef SPLITTERGUI_H
 #define SPLITTERGUI_H
 
-#include <QtGui/QDialog>
+#include <QtWidgets/QDialog>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KUrl>

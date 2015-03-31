@@ -31,7 +31,7 @@
 #define PACKGUIBASE_H
 
 #include <QtCore/QMap>
-#include <QtGui/QDialog>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QVBoxLayout>

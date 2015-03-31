@@ -38,11 +38,11 @@
 #include <QtGui/QClipboard>
 #include <QtGui/QDrag>
 #include <QtGui/QResizeEvent>
-#include <QtGui/QGridLayout>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QCloseEvent>
-#include <QtGui/QTabWidget>
 #include <QtGui/QCloseEvent>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QGridLayout>

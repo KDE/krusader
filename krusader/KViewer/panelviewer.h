@@ -22,7 +22,7 @@
 
 #include <QtCore/QHash>
 #include <QtCore/QString>
-#include <QtGui/QStackedWidget>
+#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QLabel>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them

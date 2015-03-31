@@ -33,8 +33,8 @@
 
 #include <QtGui/QPainter>
 #include <QtGui/QPen>
-#include <QtGui/QColorDialog>
 #include <QtGui/QPixmap>
+#include <QtWidgets/QColorDialog>
 #include <QtWidgets/QLabel>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them

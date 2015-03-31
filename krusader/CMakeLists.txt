@@ -8,15 +8,15 @@ include_directories(${KF5_INCLUDE_DIRS})
 
 configure_file(krusaderversion.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/krusaderversion.h)
 
-find_package(LibKonq)
+#find_package(LibKonq)
 
-if(LIBKONQ_FOUND)
-    message(STATUS "libkonq library found")
-    add_definitions(-D__LIBKONQ__)
-    include_directories( ${LIBKONQ_INCLUDE_DIR} )
-else(LIBKONQ_FOUND)
-    message(STATUS "libkonq library not found")
-endif(LIBKONQ_FOUND)
+#if(LIBKONQ_FOUND)
+#    message(STATUS "libkonq library found")
+#    add_definitions(-D__LIBKONQ__)
+#    include_directories( ${LIBKONQ_INCLUDE_DIR} )
+#else(LIBKONQ_FOUND)
+#    message(STATUS "libkonq library not found")
+#endif(LIBKONQ_FOUND)
 
 add_subdirectory(ActionMan)
 add_subdirectory(BookMan)

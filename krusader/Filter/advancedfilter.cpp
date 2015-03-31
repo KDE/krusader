@@ -34,10 +34,10 @@
 
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
-#include <QtGui/QGridLayout>
 #include <QtGui/QPixmap>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QSpinBox>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QLayout>

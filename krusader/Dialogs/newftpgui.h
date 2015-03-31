@@ -21,7 +21,7 @@
 #ifndef NEWFTPGUI_H
 #define NEWFTPGUI_H
 
-#include <QtGui/QSpinBox>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QLabel>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
