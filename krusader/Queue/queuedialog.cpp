@@ -20,7 +20,7 @@
 
 #include <QtCore/QEvent>
 #include <QtCore/QRect>
-#include <QtCore/QMouseEvent>
+#include <QtGui/QMouseEvent>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QFrame>
 #include <QtGui/QPainter>
@@ -32,11 +32,13 @@
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QToolButton>
+#include <QtWidgets/qdrawutil.h>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KGlobalSettings>
 #include <KDE/KInputDialog>
+#include <KDE/KIcon>
 
 #include <KIconThemes/KIconEffect>
 #include <KWidgetsAddons/KMessageBox>

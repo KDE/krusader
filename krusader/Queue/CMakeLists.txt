@@ -1,3 +1,5 @@
+include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
+
 set(Queue_SRCS
     queue.cpp
     queue_mgr.cpp
@@ -5,3 +7,5 @@ set(Queue_SRCS
     queuedialog.cpp)
 
 add_library(Queue STATIC ${Queue_SRCS})
+
+target_link_libraries(Queue KF5::ConfigCore KF5::KDELibs4Support)
