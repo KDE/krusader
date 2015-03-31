@@ -48,6 +48,7 @@ find_package(KF5 REQUIRED COMPONENTS
   KDELibs4Support
   Parts
   Wallet
+  KHtml
 )
 
 set(CMAKE_VERBOSE_MAKEFILE OFF)

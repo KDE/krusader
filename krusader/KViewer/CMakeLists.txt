@@ -9,4 +9,4 @@ set(KViewer_SRCS
 
 add_library(KViewer STATIC ${KViewer_SRCS})
 
-target_link_libraries(KViewer KF5::Parts KF5::IconThemes KF5::KDELibs4Support)
+target_link_libraries(KViewer KF5::Parts KF5::IconThemes KF5::KHtml KF5::KDELibs4Support)
