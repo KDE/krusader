@@ -21,4 +21,6 @@ add_library(VFS STATIC ${VFS_SRCS})
 
 if(ACL_FOUND)
     target_link_libraries(VFS KF5::Archive KF5::KIOCore KF5::KDELibs4Support KF5::Wallet ${ACL_LIBS})
+else(ACL_NOT_FOUND)
+    target_link_libraries(VFS KF5::Archive KF5::KIOCore KF5::KDELibs4Support KF5::Wallet)
 endif(ACL_FOUND)
