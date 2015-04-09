@@ -22,10 +22,10 @@
 #define KRACTION_H
 
 #include <QtCore/QByteArray>
+#include <QtWidgets/QAction>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDialog>
-#include <QAction>
 #include <KDE/KIcon>
 #include <KDE/KUrl>
 

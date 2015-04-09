@@ -28,9 +28,9 @@
 #include <QtGui/QFontMetrics>
 #include <QtGui/QResizeEvent>
 #include <QtGui/QMouseEvent>
+#include <QtWidgets/QAction>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <QAction>
 #include <KDE/KLocale>
 #include <KDE/KMenu>
 #include <KDE/KShortcut>

@@ -21,10 +21,10 @@
 #define KRBOOKMARK_H
 
 #include <QtCore/QList>
+#include <QtWidgets/QAction>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KUrl>
-#include <QAction>
 
 class KActionCollection;
 

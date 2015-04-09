@@ -44,10 +44,10 @@
 #include <QtGui/QResizeEvent>
 #include <QtGui/QHideEvent>
 #include <QtGui/QMoveEvent>
+#include <QtWidgets/QAction>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KApplication>
-#include <QAction>
 #include <KDE/KDebug>
 
 #include <KParts/MainWindow>

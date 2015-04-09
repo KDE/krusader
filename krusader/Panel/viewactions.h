@@ -34,8 +34,7 @@
 
 #include "../actionsbase.h"
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <QAction>
+#include <QtWidgets/QAction>
 
 class KrView;
 

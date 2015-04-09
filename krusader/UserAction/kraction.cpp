@@ -31,6 +31,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QAction>
 #include <QtXml/QDomElement>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
@@ -41,7 +42,6 @@
 #include <KDE/KFileDialog>
 #include <KDE/KUrl>
 #include <KDE/KMimeType>
-#include <QAction>
 #include <KDE/KVBox>
 #include <KDE/KPushButton>
 
