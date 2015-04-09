@@ -24,11 +24,11 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KUrl>
-#include <KDE/KAction>
+#include <QAction>
 
 class KActionCollection;
 
-class KrBookmark: public KAction
+class KrBookmark: public QAction
 {
     Q_OBJECT
 public:

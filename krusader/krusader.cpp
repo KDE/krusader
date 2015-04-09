@@ -50,7 +50,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QtPrintSupport/QPrinter>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KAction>
+#include <QAction>
 #include <KDE/KMenuBar>
 #include <KDE/KApplication>
 #include <KDE/KGlobal>
@@ -123,7 +123,7 @@ UserMenu *Krusader::userMenu = 0;
 
 #ifdef __KJSEMBED__
 KrJS *Krusader::js = 0;
-KAction *Krusader::actShowJSConsole = 0;
+QAction *Krusader::actShowJSConsole = 0;
 #endif
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
@@ -433,9 +433,9 @@ void Krusader::resizeEvent(QResizeEvent *e) {
 
 // <patch> Moving from Pixmap actions to generic filenames - thanks to Carsten Pfeiffer
 void Krusader::setupActions() {
-    KAction *bringToTopAct = new KAction(i18n("Bring Main Window to Top"), this);
+    QAction *bringToTopAct = new QAction(i18n("Bring Main Window to Top"), this);
     actionCollection()->addAction("bring_main_window_to_top", bringToTopAct);
-    bringToTopAct->setGlobalShortcut(KShortcut());
+    //bringToTopAct->setGlobalShortcut(KShortcut());
     connect(bringToTopAct, SIGNAL(triggered()), SLOT(moveToTop()));
 
     KrActions::setupActions(this);

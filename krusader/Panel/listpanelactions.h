@@ -36,7 +36,7 @@
 #include "../actionsbase.h"
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KAction>
+#include <QAction>
 #include <KDE/KIcon>
 
 class FileManagerWindow;
@@ -76,7 +76,7 @@ public:
     QAction *actHistoryBackward, *actHistoryForward, *actDirUp, *actRoot, *actHome, *actCdToOther;
     QAction *actSyncBrowse, *actCancelRefresh;
 
-    QHash<int/*id*/, KAction*> setViewActions;
+    QHash<int/*id*/, QAction *> setViewActions;
 
 protected:
     KrPanel *activePanel();

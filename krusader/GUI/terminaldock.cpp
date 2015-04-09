@@ -139,12 +139,12 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
     int pressedKey = (ke->key() | ke->modifiers());
 
     // TODO KF5 removed
-    //if (krToggleTerminal->shortcut().contains(pressedKey)) {
-    //    krToggleTerminal->activate(QAction::Trigger);
-    //    return true;
-    //}
+    if (krToggleTerminal->shortcut().matches(pressedKey)) {
+        krToggleTerminal->activate(QAction::Trigger);
+        return true;
+    }
 
-    if (krSwitchFullScreenTE->shortcut().contains(pressedKey)) {
+    if (krSwitchFullScreenTE->shortcut().matches(pressedKey)) {
         krSwitchFullScreenTE->activate(QAction::Trigger);
         return true;
     }

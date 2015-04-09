@@ -53,7 +53,7 @@ A
 #include <Solid/SolidNamespace>
 
 class KMountManGUI;
-class KAction;
+class QAction;
 class KToolBarPopupAction;
 
 class KMountMan : public QObject
@@ -80,8 +80,8 @@ public:
     bool invalidFilesystem(QString type);
     bool networkFilesystem(QString type);
     bool nonmountFilesystem(QString type, QString mntPoint);
-    KAction *action() {
-        return (KAction*) _action;
+    QAction *action() {
+        return (QAction *) _action;
     }
 
     KMountMan(QWidget *parent);

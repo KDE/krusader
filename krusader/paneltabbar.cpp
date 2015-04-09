@@ -30,7 +30,7 @@
 #include <QtGui/QMouseEvent>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KAction>
+#include <QAction>
 #include <KDE/KLocale>
 #include <KDE/KMenu>
 #include <KDE/KShortcut>
@@ -60,7 +60,7 @@ PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): KTabBar(parent),
     setShape(KTabBar::TriangularSouth);
 }
 
-void PanelTabBar::insertAction(KAction* action)
+void PanelTabBar::insertAction(QAction* action)
 {
     _panelActionMenu->addAction(action);
 }

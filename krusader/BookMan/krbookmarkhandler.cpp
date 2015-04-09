@@ -633,7 +633,7 @@ void KrBookmarkHandler::rightClicked(QMenu *menu, KrBookmark * bm)
 
 // used to monitor middle clicks. if mid is found, then the
 // bookmark is opened in a new tab. ugly, but easier than overloading
-// KAction and KActionCollection.
+// QAction and KActionCollection.
 void KrBookmarkHandler::slotActivated(const KUrl& url)
 {
     if (_mainBookmarkPopup && !_mainBookmarkPopup->isHidden())

@@ -22,8 +22,7 @@
 #include <QtCore/QObject>
 #include <QtCore/QHash>
 #include <QtGui/QKeySequence>
-
-#include <KDE/KAction>
+#include <QtWidgets/QAction>
 
 #include <KConfigWidgets/KStandardAction>
 
@@ -43,15 +42,15 @@ protected:
         void addAction(QAction *action, const char *slot);
     };
 
-    KAction *createAction(QString text, QString icon, bool isToggleAction);
+    QAction *createAction(QString text, QString icon, bool isToggleAction);
 
-    KAction *action(QString text, QString icon, QKeySequence shortcut,
+    QAction *action(QString text, QString icon, QKeySequence shortcut,
                     QObject *recv, const char *slot, QString name, bool isToggleAction = false);
-    KAction *action(QString text, QString icon, QKeySequence shortcut,
+    QAction *action(QString text, QString icon, QKeySequence shortcut,
                     const char *slot, QString name) {
         return action(text, icon, shortcut, this, slot, name);
     }
-    KAction *action(QString text, QString icon, QKeySequence shortcut,
+    QAction *action(QString text, QString icon, QKeySequence shortcut,
                     ActionGroup &group, const char *slot, QString name, bool isToggleAction = false);
 
     KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,

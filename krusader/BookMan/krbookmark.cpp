@@ -37,7 +37,7 @@ static const char* NAME_VIRTUAL = I18N_NOOP("Virtual Filesystem");
 static const char* NAME_LAN = I18N_NOOP("Local Network");
 
 KrBookmark::KrBookmark(QString name, KUrl url, KActionCollection *parent, QString icon, QString actionName) :
-        KAction(parent), _url(url), _icon(icon), _folder(false), _separator(false), _autoDelete(true)
+        QAction(parent), _url(url), _icon(icon), _folder(false), _separator(false), _autoDelete(true)
 {
     QString actName = actionName.isNull() ? BM_NAME(name) : BM_NAME(actionName);
     setText(name);
@@ -60,7 +60,7 @@ KrBookmark::KrBookmark(QString name, KUrl url, KActionCollection *parent, QStrin
 }
 
 KrBookmark::KrBookmark(QString name, QString icon) :
-        KAction(KIcon(icon), name, 0), _icon(icon), _folder(true), _separator(false), _autoDelete(false)
+        QAction(KIcon(icon), name, 0), _icon(icon), _folder(true), _separator(false), _autoDelete(false)
 {
     setIcon(KIcon(icon == "" ? "folder" : icon));
 }

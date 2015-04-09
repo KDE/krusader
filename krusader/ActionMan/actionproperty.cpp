@@ -166,7 +166,7 @@ void ActionProperty::updateGUI(KrAction *action)
     leCommandline->setText(_action->command());
     leCommandline->home(false);
     leStartpath->setText(_action->startpath());
-    KeyButtonShortcut->setKeySequence(_action->shortcut().primary());
+    KeyButtonShortcut->setKeySequence(_action->shortcut());
 
     lbShowonlyProtocol->clear();
     lbShowonlyProtocol->addItems(_action->showonlyProtocol());

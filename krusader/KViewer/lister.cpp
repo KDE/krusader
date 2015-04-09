@@ -1095,40 +1095,40 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
 {
     setXMLFile("krusaderlisterui.rc");
 
-    _actionSaveSelected = new KAction(KIcon("document-save"), i18n("Save selection..."), this);
+    _actionSaveSelected = new QAction(KIcon("document-save"), i18n("Save selection..."), this);
     connect(_actionSaveSelected, SIGNAL(triggered(bool)), SLOT(saveSelected()));
     actionCollection()->addAction("save_selected", _actionSaveSelected);
 
-    _actionSaveAs = new KAction(KIcon("document-save-as"), i18n("Save as..."), this);
+    _actionSaveAs = new QAction(KIcon("document-save-as"), i18n("Save as..."), this);
     connect(_actionSaveAs, SIGNAL(triggered(bool)), SLOT(saveAs()));
     actionCollection()->addAction("save_as", _actionSaveAs);
 
-    _actionPrint = new KAction(KIcon("document-print"), i18n("Print..."), this);
+    _actionPrint = new QAction(KIcon("document-print"), i18n("Print..."), this);
     _actionPrint->setShortcut(Qt::CTRL + Qt::Key_P);
     connect(_actionPrint, SIGNAL(triggered(bool)), SLOT(print()));
     actionCollection()->addAction("print", _actionPrint);
 
-    _actionSearch = new KAction(KIcon("system-search"), i18n("Search"), this);
+    _actionSearch = new QAction(KIcon("system-search"), i18n("Search"), this);
     _actionSearch->setShortcut(Qt::CTRL + Qt::Key_F);
     connect(_actionSearch, SIGNAL(triggered(bool)), SLOT(searchAction()));
     actionCollection()->addAction("search", _actionSearch);
 
-    _actionSearchNext = new KAction(KIcon("go-down"), i18n("Search next"), this);
+    _actionSearchNext = new QAction(KIcon("go-down"), i18n("Search next"), this);
     _actionSearchNext->setShortcut(Qt::Key_F3);
     connect(_actionSearchNext, SIGNAL(triggered(bool)), SLOT(searchNext()));
     actionCollection()->addAction("search_next", _actionSearchNext);
 
-    _actionSearchPrev = new KAction(KIcon("go-up"), i18n("Search previous"), this);
+    _actionSearchPrev = new QAction(KIcon("go-up"), i18n("Search previous"), this);
     _actionSearchPrev->setShortcut(Qt::SHIFT + Qt::Key_F3);
     connect(_actionSearchPrev, SIGNAL(triggered(bool)), SLOT(searchPrev()));
     actionCollection()->addAction("search_prev", _actionSearchPrev);
 
-    _actionJumpToPosition = new KAction(KIcon("go-jump"), i18n("Jump to position"), this);
+    _actionJumpToPosition = new QAction(KIcon("go-jump"), i18n("Jump to position"), this);
     _actionJumpToPosition->setShortcut(Qt::CTRL + Qt::Key_G);
     connect(_actionJumpToPosition, SIGNAL(triggered(bool)), SLOT(jumpToPosition()));
     actionCollection()->addAction("jump_to_position", _actionJumpToPosition);
 
-    _actionHexMode = new KAction(KIcon("document-preview"), i18n("Hex mode"), this);
+    _actionHexMode = new QAction(KIcon("document-preview"), i18n("Hex mode"), this);
     _actionHexMode->setShortcut(Qt::CTRL + Qt::Key_H);
     connect(_actionHexMode, SIGNAL(triggered(bool)), SLOT(toggleHexMode()));
     actionCollection()->addAction("hex_mode", _actionHexMode);

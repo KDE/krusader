@@ -25,7 +25,7 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDialog>
-#include <KDE/KAction>
+#include <QAction>
 #include <KDE/KIcon>
 #include <KDE/KUrl>
 
@@ -40,11 +40,11 @@ class QDomElement;
 class KActionCollection;
 
 /**
- * This subclass of KAction extends it with an individual executor and
+ * This subclass of QAction extends it with an individual executor and
  * a struct UserActionProperties.
- * It is used to integrate useractions into KDE's KAction-System
+ * It is used to integrate useractions into KDE's QAction-System
  */
-class KrAction: public KAction, public KrActionBase
+class KrAction: public QAction, public KrActionBase
 {
     Q_OBJECT
 public:
@@ -155,7 +155,7 @@ public:
     }
 
     QString text() const {
-        return KAction::text();
+        return QAction::text();
     }
 
 public slots:

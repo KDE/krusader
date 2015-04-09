@@ -47,7 +47,7 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KApplication>
-#include <KDE/KAction>
+#include <QAction>
 #include <KDE/KDebug>
 
 #include <KParts/MainWindow>

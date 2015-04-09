@@ -30,7 +30,7 @@
 #include <KDE/KTabBar>
 
 class QMouseEvent;
-class KAction;
+class QAction;
 class KActionMenu;
 class KrPanel;
 class ListPanel;
@@ -87,7 +87,7 @@ protected:
     void mouseMoveEvent(QMouseEvent*e);
     void mousePressEvent(QMouseEvent*);
     void mouseReleaseEvent(QMouseEvent*);
-    void insertAction(KAction*);
+    void insertAction(QAction*);
     QString squeeze(QString text, int index = -1);
     virtual void dragEnterEvent(QDragEnterEvent *);
     virtual void dragMoveEvent(QDragMoveEvent *);

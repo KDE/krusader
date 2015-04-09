@@ -28,11 +28,11 @@
 class QFocusEvent;
 
 // declare a dummy kapplication, just to get Qt's focusin focusout events
-class KrusaderApp: public QApplication
+class KrusaderApp: public KApplication
 {
     Q_OBJECT
 public:
-    KrusaderApp(int,  char**);
+    KrusaderApp();
     void focusInEvent(QFocusEvent *event);
     void focusOutEvent(QFocusEvent *event);
 

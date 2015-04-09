@@ -31,7 +31,7 @@
 #include <KDE/KTemporaryFile>
 #include <KDE/KTabWidget>
 #include <KDE/KUrl>
-#include <KDE/KAction>
+#include <QAction>
 
 #include <KParts/MainWindow>
 #include <KParts/PartManager>

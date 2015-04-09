@@ -20,8 +20,9 @@
 
 #include "krmainwindow.h"
 
+#include <QAction>
+
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KAction>
 #include <KDE/KIcon>
 
 #include <KXmlGui/KActionCollection>
@@ -41,28 +42,28 @@ void ActionsBase::ActionGroup::addAction(QAction *action, const char *slot)
 }
 
 
-KAction *ActionsBase::createAction(QString text, QString icon, bool isToggleAction)
+QAction *ActionsBase::createAction(QString text, QString icon, bool isToggleAction)
 {
-    KAction *a;
+    QAction *a;
     if(isToggleAction) {
         if (icon == 0)
-            a = (KAction *)(new KToggleAction(text, this));
+            a = (QAction *)(new KToggleAction(text, this));
         else
-            a = (KAction *)new KToggleAction(KIcon(icon), text, this);
+            a = (QAction *)new KToggleAction(KIcon(icon), text, this);
     } else {
         if (icon == 0)
-            a = new KAction(text, this);
+            a = new QAction(text, this);
         else
-            a = new KAction(KIcon(icon), text, this);
+            a = new QAction(KIcon(icon), text, this);
     }
 
     return a;
 }
 
-KAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
+QAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
                                  QObject *recv, const char *slot, QString name, bool isToggleAction)
 {
-    KAction *a = createAction(text, icon, isToggleAction);
+    QAction *a = createAction(text, icon, isToggleAction);
 
     a->setShortcut(shortcut);
     connect(a, SIGNAL(triggered(bool)), recv, slot);
@@ -71,10 +72,10 @@ KAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
     return a;
 }
 
-KAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
+QAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
                              ActionGroup &group, const char *slot, QString name, bool isToggleAction)
 {
-    KAction *action = createAction(text, icon, isToggleAction);
+    QAction *action = createAction(text, icon, isToggleAction);
 
     action->setShortcut(shortcut);
     group.addAction(action, slot);

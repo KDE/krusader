@@ -41,7 +41,7 @@
 #include <KDE/KFileDialog>
 #include <KDE/KUrl>
 #include <KDE/KMimeType>
-#include <KDE/KAction>
+#include <QAction>
 #include <KDE/KVBox>
 #include <KDE/KPushButton>
 
@@ -336,7 +336,7 @@ void KrActionProc::addStdout()
 
 
 // KrAction
-KrAction::KrAction(KActionCollection *parent, QString name) : KAction((QObject *)parent)
+KrAction::KrAction(KActionCollection *parent, QString name) : QAction((QObject *)parent)
 {
     if (!name.isNull())
         _name = name;
@@ -475,7 +475,7 @@ bool KrAction::xmlRead(const QDomElement& element)
                                         readAvailability(e);
                                     else
                                         if (e.tagName() == "defaultshortcut")
-                                            setShortcut(KShortcut(e.text()));
+                                            setShortcut(QKeySequence(e.text()));
                                         else
 
                                             // unknown but not empty

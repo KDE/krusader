@@ -211,9 +211,9 @@ int main(int argc, char *argv[])
     // Command line arguments ...
     // KF5 TODO port to QCommandLineParser
     //KCmdLineArgs::init(argc, argv, &aboutData, KCmdLineArgs::CmdLineArgQt);
-    //KCmdLineArgs::init(argc, argv, QByteArray("krusader"), QByteArray("0"), ki18n("krusader"), versionName.toLocal8Bit(), ki18n("file manager"), KCmdLineArgs::CmdLineArgQt);
+    KCmdLineArgs::init(argc, argv, QByteArray("krusader"), QByteArray("0"), ki18n("krusader"), versionName.toLocal8Bit(), ki18n("file manager"), KCmdLineArgs::CmdLineArgQt);
 
-    //KCmdLineOptions options;
+    KCmdLineOptions options;
     options.add("left <path>", ki18n("Start left panel at <path>"));
     options.add("right <path>", ki18n("Start right panel at <path>"));
     options.add("profile <panel-profile>", ki18n("Load this profile on startup"));
@@ -224,7 +224,7 @@ int main(int argc, char *argv[])
     // check for command line arguments
 
     // create the application
-    KrusaderApp app(argc, argv);
+    KrusaderApp app;
 
     KConfigGroup cfg(KGlobal::config().data(), "Look&Feel");
     bool singleInstanceMode = cfg.readEntry("Single Instance Mode", _SingleInstanceMode);

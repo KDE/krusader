@@ -24,7 +24,7 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KUrl>
-#include <KDE/KAction>
+#include <QAction>
 #include <KDE/KLibLoader>
 
 # include <KWidgetsAddons/KActionMenu>

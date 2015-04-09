@@ -51,7 +51,7 @@ class QLabel;
 class QProgressBar;
 class QPushButton;
 class QToolButton;
-class KAction;
+class QAction;
 class KTemporaryFile;
 class ListerEncodingMenu;
 
@@ -261,14 +261,14 @@ protected:
     QAction        *_regExpAction;
     QAction        *_hexAction;
 
-    KAction        *_actionSaveSelected;
-    KAction        *_actionSaveAs;
-    KAction        *_actionPrint;
-    KAction        *_actionSearch;
-    KAction        *_actionSearchNext;
-    KAction        *_actionSearchPrev;
-    KAction        *_actionJumpToPosition;
-    KAction        *_actionHexMode;
+    QAction *_actionSaveSelected;
+    QAction *_actionSaveAs;
+    QAction *_actionPrint;
+    QAction *_actionSearch;
+    QAction *_actionSearchNext;
+    QAction *_actionSearchPrev;
+    QAction *_actionJumpToPosition;
+    QAction *_actionHexMode;
     ListerEncodingMenu *_actionEncoding;
 
     QString         _filePath;
