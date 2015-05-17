@@ -54,10 +54,10 @@ public:
     virtual void paintEvent(QPaintEvent *event) {
         Q_UNUSED(event);
         QPainter p(this);
-        QStyleOption opt;
-        opt.rect = rect();
+        //QStyleOption opt;
+        //opt.rect = rect();
         QRectF textRect;
-        QRect r  = rect();
+        QRect r = rect();
         r.adjust(0, 0, -5, 0); // reserve some space
         p.drawText(r, Qt::AlignLeft | Qt::AlignVCenter | Qt::TextSingleLine, text(), &textRect);
         int lineX = (textRect.right()) < r.right() ? textRect.right() : r.right() + 3;
@@ -80,6 +80,8 @@ UrlRequester::UrlRequester(KLineEdit *le, QWidget *parent) : KUrlRequester(le, p
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("FlatOriginBar", _FlatOriginBar)) {
         _path = new PathLabel(this, le);
         _path->setCursor(Qt::IBeamCursor);
+        // temporary workaround
+        _path->resize(1000,parent->height());
         le->hide();
         connect(le, SIGNAL(textChanged ( const QString & )), SLOT(slotTextChanged(const QString&)));
     }

@@ -201,12 +201,13 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     QuickNavLineEdit *qnle = new QuickNavLineEdit(this);
     origin = new UrlRequester(qnle, this);
     origin->setWhatsThis(i18n("Use superb KDE file dialog to choose location."));
-    origin->lineEdit() ->setUrlDropsEnabled(true);
-    origin->lineEdit() ->installEventFilter(this);
+    origin->lineEdit()->setUrlDropsEnabled(true);
+    origin->lineEdit()->installEventFilter(this);
     origin->lineEdit()->setWhatsThis(i18n("Name of directory where you are. You can also "
                                           "enter name of desired location to move there. "
                                           "Use of Net protocols like ftp or fish is possible."));
     origin->setMode(KFile::Directory | KFile::ExistingOnly);
+    origin->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Minimum);
     connect(origin, SIGNAL(returnPressed(const QString&)), func, SLOT(urlEntered(const QString&)));
     connect(origin, SIGNAL(returnPressed(const QString&)), this, SLOT(slotFocusOnMe()));
     connect(origin, SIGNAL(urlSelected(const KUrl &)), func, SLOT(urlEntered(const KUrl &)));
@@ -331,6 +332,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
         h->setSpacing(0);
         h->addWidget(origin);
         h->addWidget(toolbar);
+        h->addStretch();
         v->addLayout(h);
 
         h = new QHBoxLayout;
