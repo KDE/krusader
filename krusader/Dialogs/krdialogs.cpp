@@ -47,25 +47,25 @@
 #include "../defaults.h"
 
 
-KUrl KChooseDir::getFile(QString text, const KUrl& url, const KUrl& cwd)
+QUrl KChooseDir::getFile(QString text, const QUrl& url, const QUrl& cwd)
 {
     QPointer<KUrlRequesterDialog> dlg = new KUrlRequesterDialog(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
             text,
             krMainWindow);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     dlg->urlRequester()->setMode(KFile::File);
-    KUrl u;
+    QUrl u;
     if (dlg->exec() == QDialog::Accepted) {
-        u = KUrl(dlg->urlRequester()->completionObject()->replacedPath(
+        u = QUrl(dlg->urlRequester()->completionObject()->replacedPath(
                      dlg->urlRequester()->lineEdit()->text()));
-        if (u.isRelativeUrl(u.url())) {
-            KUrl temp = u;
+        if (u.isRelative()) {
+            QUrl temp = u;
             u = cwd;
-            u.addPath(temp.path());
-            u.cleanPath();
-            if (u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso") {
+            u.setPath(temp.path());
+            u.setPath(QDir::cleanPath(u.path()));
+            if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
                 if (QDir(u.path()).exists()) {
-                    u.setProtocol("file");
+                    u.setScheme("file");
                 }
             }
         }
@@ -75,25 +75,25 @@ KUrl KChooseDir::getFile(QString text, const KUrl& url, const KUrl& cwd)
 }
 
 
-KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd)
+QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd)
 {
     QPointer<KUrlRequesterDialog> dlg = new KUrlRequesterDialog(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
             text,
             krMainWindow);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     dlg->urlRequester()->setMode(KFile::Directory);
-    KUrl u;
+    QUrl u;
     if (dlg->exec() == QDialog::Accepted) {
-        u = KUrl(dlg->urlRequester()->completionObject()->replacedPath(
+        u = QUrl(dlg->urlRequester()->completionObject()->replacedPath(
                      dlg->urlRequester()->lineEdit()->text()));
-        if (u.isRelativeUrl(u.url())) {
-            KUrl temp = u;
+        if (u.isRelative()) {
+            QUrl temp = u;
             u = cwd;
-            u.addPath(temp.path());
-            u.cleanPath();
-            if (u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso") {
+            u.setPath(temp.path());
+            u.setPath(QDir::cleanPath(u.path()));
+            if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
                 if (QDir(u.path()).exists()) {
-                    u.setProtocol("file");
+                    u.setScheme("file");
                 }
             }
         }
@@ -102,7 +102,7 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd)
     return u;
 }
 
-KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &queue)
+QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &queue)
 {
     QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
             text,
@@ -111,18 +111,18 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
     dlg->hidePreserveAttrs();
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     dlg->urlRequester()->setMode(KFile::Directory);
-    KUrl u;
+    QUrl u;
     if (dlg->exec() == QDialog::Accepted) {
-        u = KUrl(dlg->urlRequester()->completionObject()->replacedPath(
+        u = QUrl(dlg->urlRequester()->completionObject()->replacedPath(
                      dlg->urlRequester()->lineEdit()->text()));
-        if (u.isRelativeUrl(u.url())) {
-            KUrl temp = u;
+        if (u.isRelative()) {
+            QUrl temp = u;
             u = cwd;
-            u.addPath(temp.path());
-            u.cleanPath();
-            if (u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso") {
+            u.setPath(temp.path());
+            u.setPath(QDir::cleanPath(u.path()));
+            if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
                 if (QDir(u.path()).exists()) {
-                    u.setProtocol("file");
+                    u.setScheme("file");
                 }
             }
         }
@@ -132,7 +132,7 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
     return u;
 }
 
-KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &queue, bool &preserveAttrs)
+QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &queue, bool &preserveAttrs)
 {
     QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
             text,
@@ -140,18 +140,18 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
             krMainWindow);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     dlg->urlRequester()->setMode(KFile::Directory);
-    KUrl u;
+    QUrl u;
     if (dlg->exec() == QDialog::Accepted) {
-        u = KUrl(dlg->urlRequester()->completionObject()->replacedPath(
+        u = QUrl(dlg->urlRequester()->completionObject()->replacedPath(
                      dlg->urlRequester()->lineEdit()->text()));
-        if (u.isRelativeUrl(u.url())) {
-            KUrl temp = u;
+        if (u.isRelative()) {
+            QUrl temp = u;
             u = cwd;
-            u.addPath(temp.path());
-            u.cleanPath();
-            if (u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso") {
+            u.setPath(temp.path());
+            u.setPath(QDir::cleanPath(u.path()));
+            if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
                 if (QDir(u.path()).exists()) {
-                    u.setProtocol("file");
+                    u.setScheme("file");
                 }
             }
         }
@@ -162,7 +162,7 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
     return u;
 }
 
-KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &queue, bool &preserveAttrs, KUrl &baseURL)
+QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &queue, bool &preserveAttrs, QUrl &baseURL)
 {
     QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
             text,
@@ -172,18 +172,18 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
             baseURL);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     dlg->urlRequester()->setMode(KFile::Directory);
-    KUrl u;
+    QUrl u;
     if (dlg->exec() == QDialog::Accepted) {
-        u = KUrl(dlg->urlRequester()->completionObject()->replacedPath(
+        u = QUrl(dlg->urlRequester()->completionObject()->replacedPath(
                      dlg->urlRequester()->lineEdit()->text()));
-        if (u.isRelativeUrl(u.url())) {
-            KUrl temp = u;
+        if (u.isRelative()) {
+            QUrl temp = u;
             u = cwd;
-            u.addPath(temp.path());
-            u.cleanPath();
-            if (u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso") {
+            u.setPath(temp.path());
+            u.setPath(QDir::cleanPath(u.path()));
+            if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
                 if (QDir(u.path()).exists()) {
-                    u.setProtocol("file");
+                    u.setScheme("file");
                 }
             }
         }
@@ -191,7 +191,7 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
         if (dlg->copyDirStructure()) {
             baseURL = dlg->baseURL();
         } else {
-            baseURL = KUrl();
+            baseURL = QUrl();
         }
     }
     preserveAttrs = dlg->preserveAttrs();
@@ -201,7 +201,7 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
 }
 
 KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QString& urlName, const QString& _text, bool /*presAttrs*/, QWidget *parent,
-        bool modal, KUrl baseURL)
+        bool modal, QUrl baseURL)
         :   KDialog(parent), baseUrlCombo(0), copyDirStructureCB(0), queue(false)
 {
     setButtons(KDialog::Ok | KDialog::User1 | KDialog::User2 | KDialog::Cancel);
@@ -243,13 +243,13 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QString& urlName, const Q
         baseUrlCombo->setEnabled(copyDirStructureCB->isChecked());
         hbox->addWidget(baseUrlCombo);
 
-        KUrl temp = baseURL, tempOld;
+        QUrl temp = baseURL, tempOld;
         do {
-            QString baseURLText = temp.pathOrUrl();
+            QString baseURLText = temp.toDisplayString();
             baseUrlCombo->addItem(baseURLText);
             tempOld = temp;
-            temp = temp.upUrl();
-        } while (!tempOld.equals(temp, KUrl::CompareWithoutTrailingSlash));
+            temp = KIO::upUrl(temp);
+        } while (!tempOld.matches(temp, QUrl::StripTrailingSlash));
         baseUrlCombo->setCurrentIndex(0);
 
         topLayout->addWidget(hboxWidget);
@@ -318,15 +318,15 @@ void KUrlRequesterDlgForCopy::slotDirStructCBChanged()
     baseUrlCombo->setEnabled(copyDirStructureCB->isChecked());
 }
 
-KUrl KUrlRequesterDlgForCopy::selectedURL() const
+QUrl KUrlRequesterDlgForCopy::selectedURL() const
 {
     if (result() == QDialog::Accepted) {
-        KUrl url = urlRequester_->url();
+        QUrl url = urlRequester_->url();
         if (url.isValid())
             KRecentDocument::add(url);
         return url;
     } else
-        return KUrl();
+        return QUrl();
 }
 
 KUrlRequester * KUrlRequesterDlgForCopy::urlRequester()
@@ -334,11 +334,11 @@ KUrlRequester * KUrlRequesterDlgForCopy::urlRequester()
     return urlRequester_;
 }
 
-KUrl KUrlRequesterDlgForCopy::baseURL() const
+QUrl KUrlRequesterDlgForCopy::baseURL() const
 {
     if (baseUrlCombo == 0)
-        return KUrl();
-    return KUrl(baseUrlCombo->currentText());
+        return QUrl();
+    return QUrl(baseUrlCombo->currentText());
 }
 
 KRGetDate::KRGetDate(QDate date, QWidget *parent) : KDialog(parent, Qt::MSWindowsFixedSizeDialogHint)

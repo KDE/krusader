@@ -25,9 +25,7 @@
 #include <QtWidgets/QToolTip>
 #include <QtWidgets/QLabel>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
-
+#include <KCoreAddons/KUrlMimeData>
 #include <KCoreAddons/KStringHandler>
 
 KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent):
@@ -60,7 +58,7 @@ void KrSqueezedTextLabel::dropEvent(QDropEvent *e)
 void KrSqueezedTextLabel::dragEnterEvent(QDragEnterEvent *e)
 {
     if (acceptDrops) {
-        KUrl::List URLs = KUrl::List::fromMimeData(e->mimeData());
+        QList<QUrl> URLs = KUrlMimeData::urlsFromMimeData(e->mimeData());
         e->setAccepted(!URLs.isEmpty());
     } else
         KSqueezedTextLabel::dragEnterEvent(e);

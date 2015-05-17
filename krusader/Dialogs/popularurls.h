@@ -22,9 +22,9 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QHash>
+#include <QtCore/QUrl>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 #include <KDE/KDialog>
 
 // the class holds a list of most popular links in a dual data structure
@@ -40,7 +40,7 @@
 typedef struct _UrlNode* UrlNodeP;
 typedef struct _UrlNode {
     UrlNodeP prev;
-    KUrl url;
+    QUrl url;
     int rank;
     UrlNodeP next;
 } UrlNode;
@@ -55,8 +55,8 @@ public:
     ~PopularUrls();
     void save();
     void load();
-    void addUrl(const KUrl& url);
-    KUrl::List getMostPopularUrls(int max);
+    void addUrl(const QUrl& url);
+    QList<QUrl> getMostPopularUrls(int max);
 
 public slots:
     void showDialog();
@@ -90,7 +90,7 @@ class PopularUrlsDlg: public KDialog
 public:
     PopularUrlsDlg();
     ~PopularUrlsDlg();
-    void run(KUrl::List list); // use this to open the dialog
+    void run(QList<QUrl> list); // use this to open the dialog
     inline int result() const {
         return selection;
     } // returns index 0 - topmost, or -1

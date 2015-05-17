@@ -35,9 +35,6 @@
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QToolButton>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
-
 #include <KCompletion/KLineEdit>
 #include <KIOWidgets/KUrlCompletion>
 
@@ -52,8 +49,8 @@ public:
 
     KURLListRequester(Mode requestMode, QWidget *parent = 0);
 
-    KUrl::List   urlList();
-    void         setUrlList(KUrl::List);
+    QList<QUrl>  urlList();
+    void         setUrlList(QList<QUrl>);
 
     KLineEdit    *lineEdit()    {
         return urlLineEdit;

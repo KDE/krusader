@@ -33,9 +33,6 @@
 #include <QtCore/QEvent>
 #include <QtGui/QMouseEvent>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
-
 #include <KCompletion/KLineEdit>
 #include <KNotifications/KPassivePopup>
 
@@ -55,7 +52,7 @@ public:
     KRSpWidgets();
 
     static KRQuery getMask(QString caption, bool nameOnly = false, QWidget * parent = 0); // get file-mask for (un)selecting files
-    static KUrl newFTP();
+    static QUrl newFTP();
 
 private:
     static QStringList maskList;  // used by KRMaskChoiceSub

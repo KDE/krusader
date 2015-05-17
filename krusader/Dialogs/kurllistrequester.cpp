@@ -108,17 +108,17 @@ void KURLListRequester::slotAdd()
 
 void KURLListRequester::slotBrowse()
 {
-    KUrl url;
+    QUrl url;
     switch (mode) {
         case RequestFiles:
-            url = KFileDialog::getOpenUrl(KUrl(), QString(), this);
+            url = KFileDialog::getOpenUrl(QUrl(), QString(), this);
             break;
         case RequestDirs:
-            url = KFileDialog::getExistingDirectoryUrl(KUrl(), this);
+            url = KFileDialog::getExistingDirectoryUrl(QUrl(), this);
             break;
     }
     if (!url.isEmpty())
-        urlLineEdit->setText(url.pathOrUrl());
+        urlLineEdit->setText(url.toDisplayString());
     urlLineEdit->setFocus();
 }
 
@@ -160,16 +160,16 @@ void KURLListRequester::slotRightClicked(QListWidgetItem *item, const QPoint &po
     }
 }
 
-KUrl::List KURLListRequester::urlList()
+QList<QUrl> KURLListRequester::urlList()
 {
-    KUrl::List urls;
+    QList<QUrl> urls;
 
     QString text = urlLineEdit->text().simplified();
     if (!text.isEmpty()) {
         QString error;
         emit checkValidity(text, error);
         if (error.isNull())
-            urls.append(KUrl(text));
+            urls.append(QUrl(text));
     }
 
     for (int i = 0; i != urlListBox->count(); i++) {
@@ -180,21 +180,21 @@ KUrl::List KURLListRequester::urlList()
         QString error;
         emit checkValidity(text, error);
         if (error.isNull())
-            urls.append(KUrl(text));
+            urls.append(QUrl(text));
     }
 
     return urls;
 }
 
-void KURLListRequester::setUrlList(KUrl::List urlList)
+void KURLListRequester::setUrlList(QList<QUrl> urlList)
 {
     urlLineEdit->clear();
     urlListBox->clear();
 
-    KUrl::List::iterator it;
+    QList<QUrl>::iterator it;
 
     for (it = urlList.begin(); it != urlList.end(); ++it)
-        urlListBox->addItem(it->pathOrUrl());
+        urlListBox->addItem(it->toDisplayString());
 
     emit changed();
 }

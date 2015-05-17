@@ -79,14 +79,14 @@ KRQuery KRSpWidgets::getMask(QString caption, bool nameOnly, QWidget * parent)
 }
 
 /////////////////////////// newFTP ////////////////////////////////////////
-KUrl KRSpWidgets::newFTP()
+QUrl KRSpWidgets::newFTP()
 {
     QPointer<newFTPSub> p = new newFTPSub();
     p->exec();
     QString uri = p->url->currentText();
     if (uri.isEmpty()) {
         delete p;
-        return KUrl(); // empty url
+        return QUrl(); // empty url
     }
 
     QString protocol = p->prefix->currentText();
@@ -125,18 +125,18 @@ KUrl KRSpWidgets::newFTP()
     }
 
     /* setting the parameters of the URL */
-    KUrl url;
-    url.setProtocol(protocol);
+    QUrl url;
+    url.setScheme(protocol);
     url.setHost(host);
     url.setPath(path);
     if (protocol == "ftp" || protocol == "fish" || protocol == "sftp") {
         url.setPort(p->port->cleanText().toInt());
     }
     if (!username.isEmpty()) {
-        url.setUser(username);
+        url.setUserName(username);
     }
     if (!password.isEmpty()) {
-        url.setPass(password);
+        url.setPassword(password);
     }
 
     delete p;
