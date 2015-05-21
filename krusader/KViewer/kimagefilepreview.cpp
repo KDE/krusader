@@ -20,7 +20,6 @@
 #include <QtWidgets/QFrame>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KApplication>
 #include <KDE/KGlobal>
 #include <KDE/KPushButton>
 #include <KDE/KStandardDirs>
@@ -127,7 +126,7 @@ KIO::PreviewJob * KrusaderImageFilePreview::createJob(const KUrl& url, int w, in
 #else*/
     KUrl::List urls;
     urls.append(url);
-    return KIO::filePreview(urls, w, h, 0, 0, true, false);	
+    return KIO::filePreview(urls, w, h, 0, 0, true, false);
 //#endif
 }
 

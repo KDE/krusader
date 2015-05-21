@@ -38,6 +38,7 @@
 
 #include "filemanagerwindow.h"
 
+#include <QtCore/QCommandLineParser>
 #include <QtCore/QStringList>
 #include <QtCore/QTimer>
 #include <QtGui/QShowEvent>
@@ -47,7 +48,6 @@
 #include <QtWidgets/QAction>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KApplication>
 #include <KDE/KDebug>
 
 #include <KParts/MainWindow>
@@ -78,7 +78,7 @@ class Krusader : public KParts::MainWindow, public FileManagerWindow
     Q_CLASSINFO("D-Bus Interface", "org.krusader.Instance")
 
 public:
-    Krusader();
+    Krusader(const QCommandLineParser &parser);
     virtual ~Krusader();
 
     // KrMainWindow implementation

@@ -54,6 +54,7 @@
 #include <QtGui/QClipboard>
 #include <QtGui/QFont>
 #include <QtGui/QDrag>
+#include <QtWidgets/QApplication>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLayout>

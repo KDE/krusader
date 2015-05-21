@@ -32,7 +32,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KApplication>
 #include <KDE/KStandardDirs>
 #include <KDE/KStandardGuiItem>
 #include <kdeversion.h>

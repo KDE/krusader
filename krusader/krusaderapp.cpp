@@ -19,10 +19,7 @@
 
 #include "krusaderapp.h"
 
-#include <KWindowSystem/KStartupInfo>
-
-
-KrusaderApp::KrusaderApp(): KApplication()
+KrusaderApp::KrusaderApp(int &argc, char **argv): QApplication(argc, argv)
 {
     KStartupInfo *startupInfo = new KStartupInfo(0, this);
     connect(startupInfo, SIGNAL(gotNewStartup (const KStartupInfoId&, const KStartupInfoData&)),

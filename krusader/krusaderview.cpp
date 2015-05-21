@@ -34,6 +34,7 @@
 #include <QtCore/QEvent>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QClipboard>
+#include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
@@ -529,7 +530,7 @@ void KrusaderView::draggingTabFinished(PanelManager *from, QMouseEvent *e)
 {
     qApp->restoreOverrideCursor();
 
-    if (cursorIsOnOtherSide(from, e->globalPos())) 
+    if (cursorIsOnOtherSide(from, e->globalPos()))
         from->moveTabToOtherSide();
 }
 

@@ -32,6 +32,7 @@
 #include <QtCore/QList>
 #include <QtCore/QMap>
 #include <QtGui/QPixmap>
+#include <QtWidgets/QApplication>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QCheckBox>
@@ -272,10 +273,10 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
     p->setPixmap(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
     hlayout->addWidget(p);
     QLabel *l1 = new QLabel(widget);
-    
+
     if (containFolders)
         l1->setText(i18n("About to calculate checksum for the following files and directories:"));
-    else 
+    else
         l1->setText(i18n("About to calculate checksum for the following files:"));
 
     hlayout->addWidget(l1);

@@ -20,19 +20,18 @@
 #ifndef KRUSADERAPP_H
 #define KRUSADERAPP_H
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KApplication>
+#include <QtWidgets/QApplication>
 
 #include <KWindowSystem/KStartupInfo>
 
 class QFocusEvent;
 
-// declare a dummy kapplication, just to get Qt's focusin focusout events
-class KrusaderApp: public KApplication
+// declare a dummy qapplication, just to get Qt's focusin focusout events
+class KrusaderApp: public QApplication
 {
     Q_OBJECT
 public:
-    KrusaderApp();
+    KrusaderApp(int &argc, char **argv);
     void focusInEvent(QFocusEvent *event);
     void focusOutEvent(QFocusEvent *event);
 

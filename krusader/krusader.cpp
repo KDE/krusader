@@ -43,6 +43,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QtGui/QResizeEvent>
 #include <QtGui/QShowEvent>
 #include <QtGui/QHideEvent>
+#include <QtWidgets/QApplication>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QActionGroup>
 #include <QtWidgets/QDesktopWidget>
@@ -50,13 +51,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QtPrintSupport/QPrinter>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <QAction>
 #include <KDE/KMenuBar>
-#include <KDE/KApplication>
 #include <KDE/KGlobal>
 #include <KDE/KLocale>
 #include <KDE/KSystemTrayIcon>
-#include <KDE/KCmdLineArgs>
 #include <kdeversion.h>
 
 #include <KXmlGui/KActionCollection>
@@ -127,15 +125,13 @@ QAction *Krusader::actShowJSConsole = 0;
 #endif
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
-Krusader::Krusader() : KParts::MainWindow(0,
+Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
                 Qt::Window | Qt::WindowTitleHint | Qt::WindowContextHelpButtonHint),
         status(0), _listPanelActions(0), sysTray(0), isStarting(true),
         isExiting(false), directExit(false)
 {
 
     setAttribute(Qt::WA_DeleteOnClose);
-    // parse command line arguments
-    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
 
     // create the "krusader"
     App = this;
@@ -205,8 +201,8 @@ Krusader::Krusader() : KParts::MainWindow(0,
     QStringList rightTabs;
 
     // get command-line arguments
-    if (args->isSet("left")) {
-        leftTabs = args->getOption("left").split(',');
+    if (parser.isSet("left")) {
+        leftTabs = parser.value("left").split(',');
 
         // make sure left or right are not relative paths
         for (int i = 0; i != leftTabs.count(); i++) {
@@ -216,8 +212,8 @@ Krusader::Krusader() : KParts::MainWindow(0,
         }
         startProfile.clear();
     }
-    if (args->isSet("right")) {
-        rightTabs = args->getOption("right").split(',');
+    if (parser.isSet("right")) {
+        rightTabs = parser.value("right").split(',');
 
         // make sure left or right are not relative paths
         for (int i = 0; i != rightTabs.count(); i++) {
@@ -227,8 +223,8 @@ Krusader::Krusader() : KParts::MainWindow(0,
         }
         startProfile.clear();
     }
-    if (args->isSet("profile"))
-        startProfile = args->getOption("profile");
+    if (parser.isSet("profile"))
+        startProfile = parser.value("profile");
 
     if (!startProfile.isEmpty()) {
         leftTabs.clear();
@@ -453,7 +449,7 @@ void Krusader::savePosition() {
     KConfigGroup *cfg = new KConfigGroup(krConfig, "Private");
     cfg->writeEntry("Maximized", isMaximized());
     if (isMaximized()) {}
-        // KF5 TODO commented  
+        // KF5 TODO commented
         //KWindowConfig::saveWindowSize(this, krConfig->group("Private"), KConfigGroup::Normal);
     else {
         cfg->writeEntry("Start Position", isMaximized() ? oldPos : pos());
@@ -529,7 +525,7 @@ bool Krusader::queryClose() {
     if (isStarting || isExiting)
         return false;
 
-    if (kapp->sessionSaving()) { // KDE is logging out, accept the close
+    if (qApp->isSavingSession()) { // KDE is logging out, accept the close
         saveSettings();
 
         emit shutdown();

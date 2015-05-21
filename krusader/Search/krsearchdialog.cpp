@@ -41,6 +41,7 @@
 #include <QtGui/QKeyEvent>
 #include <QtGui/QCloseEvent>
 #include <QtGui/QCloseEvent>
+#include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QHBoxLayout>
@@ -562,14 +563,14 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
 void KrSearchDialog::editCurrent()
 {
     KrViewItem *current = resultView->getCurrentKrViewItem();
-    if (current) 
+    if (current)
         KrViewer::edit(current->getVfile()->vfile_getUrl(), this);
 }
 
 void KrSearchDialog::viewCurrent()
 {
     KrViewItem *current = resultView->getCurrentKrViewItem();
-    if (current) 
+    if (current)
         KrViewer::view(current->getVfile()->vfile_getUrl(), this);
 }
 

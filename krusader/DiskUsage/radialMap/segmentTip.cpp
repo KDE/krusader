@@ -20,10 +20,10 @@
 
 #include <QtCore/QEvent>
 #include <QtGui/QPainter>
+#include <QtWidgets/QApplication>                           //installing eventFilters
 #include <QtWidgets/QToolTip>                               //for its palette
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KApplication>    //installing eventFilters
 #include <KDE/KGlobal>
 #include <KDE/KGlobalSettings>
 #include <KDE/KLocale>
@@ -146,10 +146,10 @@ SegmentTip::event(QEvent *e)
 {
     switch (e->type()) {
     case QEvent::Show:
-        kapp->installEventFilter(this);
+        qApp->installEventFilter(this);
         break;
     case QEvent::Hide:
-        kapp->removeEventFilter(this);
+        qApp->removeEventFilter(this);
         break;
     case QEvent::Paint: {
         // bitBlt( this, 0, 0, &m_pixmap );

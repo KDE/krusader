@@ -39,9 +39,9 @@
 #include <QtCore/QEventLoop>
 #include <QtCore/QList>
 #include <QtCore/QDir>
+#include <QtWidgets/QApplication>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KApplication>
 #include <kde_file.h>
 
 #include <KIO/DirectorySizeJob>

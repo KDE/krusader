@@ -43,6 +43,7 @@
 #include <QtCore/QTextStream>
 #include <QtCore/QList>
 #include <QtGui/QClipboard>
+#include <QtWidgets/QApplication>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDebug>
@@ -589,7 +590,7 @@ exp_Clipboard::exp_Clipboard()
 }
 TagString exp_Clipboard::expFunc(const KrPanel*, const TagStringList& parameter, const bool&, Expander& exp) const
 {
-//    kDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << KApplication::clipboard()->text() << endl;
+//    kDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << QApplication::clipboard()->text() << endl;
     if (parameter.count() == 0) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Clipboard.")));
         return QString();
@@ -600,10 +601,10 @@ TagString exp_Clipboard::expFunc(const KrPanel*, const TagStringList& parameter,
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("Expander: %Each% may not be in the second argument of %Clipboard%")));
         return QString();
     }
-    if (parameter.count() <= 1 || parameter[1].string().isEmpty() || KApplication::clipboard()->text().isEmpty())
-        KApplication::clipboard()->setText(lst.join("\n"));
+    if (parameter.count() <= 1 || parameter[1].string().isEmpty() || QApplication::clipboard()->text().isEmpty())
+        QApplication::clipboard()->setText(lst.join("\n"));
     else
-        KApplication::clipboard()->setText(KApplication::clipboard()->text() + parameter[1].string() + lst.join("\n"));
+        QApplication::clipboard()->setText(QApplication::clipboard()->text() + parameter[1].string() + lst.join("\n"));
 
     return QString();  // this doesn't return anything, that's normal!
 }
