@@ -67,8 +67,10 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
     setAllColumnsShowFocus(true);
     setUniformRowHeights(true);
 
-    setStyle(new KrStyleProxy());
-    setItemDelegate(new KrInterViewItemDelegate());
+    KrStyleProxy *krstyle = new KrStyleProxy();
+    krstyle->setParent(this);
+    setStyle(krstyle);
+    setItemDelegate(new KrInterViewItemDelegate(this));
     setMouseTracking(true);
     setAcceptDrops(true);
     setDropIndicatorShown(true);

@@ -169,7 +169,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
 
     _popularUrls = new PopularUrls(this);
 
-    queueManager = new QueueManager();
+    queueManager = new QueueManager(this);
 
     // create the main view
     MAIN_VIEW = new KrusaderView(this);
@@ -315,7 +315,6 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
 Krusader::~Krusader()
 {
     KrTrashHandler::stopWatcher();
-    delete queueManager;
     if (!isExiting)    // save the settings if it was not saved (SIGTERM)
         saveSettings();
 
@@ -443,20 +442,20 @@ void Krusader::setupActions() {
 ///////////////////////////////////////////////////////////////////////////
 
 void Krusader::savePosition() {
-    KConfigGroup *cfg = new KConfigGroup(krConfig, "Private");
-    cfg->writeEntry("Maximized", isMaximized());
+    KConfigGroup cfg(krConfig, "Private");
+    cfg.writeEntry("Maximized", isMaximized());
     if (isMaximized()) {}
         // KF5 TODO commented
         //KWindowConfig::saveWindowSize(this, krConfig->group("Private"), KConfigGroup::Normal);
     else {
-        cfg->writeEntry("Start Position", isMaximized() ? oldPos : pos());
-        cfg->writeEntry("Start Size", isMaximized() ? oldSize : size());
+        cfg.writeEntry("Start Position", isMaximized() ? oldPos : pos());
+        cfg.writeEntry("Start Size", isMaximized() ? oldSize : size());
     }
 
-    *cfg = krConfig->group("Startup");
-    MAIN_VIEW->saveSettings(*cfg);
+    cfg = krConfig->group("Startup");
+    MAIN_VIEW->saveSettings(cfg);
 
-    saveMainWindowSettings(*cfg);
+    saveMainWindowSettings(cfg);
 
     krConfig->sync();
 }

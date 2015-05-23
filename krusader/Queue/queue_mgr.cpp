@@ -34,7 +34,7 @@ Queue * QueueManager::_current = 0;
 QueueManager * QueueManager::_self = 0;
 int QueueManager::_nextId = 1;
 
-QueueManager::QueueManager()
+QueueManager::QueueManager(QObject *parent): QObject(parent)
 {
     _self = this;
     QStringList queues;

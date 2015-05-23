@@ -35,7 +35,7 @@ class QueueManager : public QObject
 
     static QString defaultName();
 public:
-    QueueManager();
+    QueueManager(QObject *parent = 0);
     ~QueueManager();
 
     static Queue* queue(const QString& queueName = defaultName());

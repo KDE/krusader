@@ -58,6 +58,7 @@ KrBookmarkHandler::KrBookmarkHandler(FileManagerWindow *mainWindow) : QObject(ma
 
     // create _root: father of all bookmarks. it is a dummy bookmark and never shown
     _root = new KrBookmark(i18n("Bookmarks"));
+    _root->setParent(this);
 
     // load bookmarks
     importFromFile();

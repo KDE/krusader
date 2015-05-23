@@ -501,7 +501,7 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
             }
         }
     }
-    else if(origin->lineEdit() == watched && e->type() == QEvent::KeyPress) {
+    else if(e->type() == QEvent::KeyPress && origin->lineEdit() == watched) {
         QKeyEvent *ke = (QKeyEvent *)e;
         if ((ke->key() ==  Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) {
             slotFocusOnMe();

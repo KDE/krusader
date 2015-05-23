@@ -30,7 +30,7 @@ class QAction;
 class UserMenuGui: public KMenu
 {
 public:
-    UserMenuGui(UserMenu* menu, QWidget *parent = 0);
+    UserMenuGui(QWidget *parent = 0);
     void run();
     void createMenu();
 

@@ -98,7 +98,8 @@ void KRPleaseWait::cycleProgress()
     if (value() <= 0) inc = true;
 }
 
-KRPleaseWaitHandler::KRPleaseWaitHandler(QWidget *parentWindow) : QObject(), _parentWindow(parentWindow), job(), dlg(0)
+KRPleaseWaitHandler::KRPleaseWaitHandler(QWidget *parentWindow)
+    : QObject(parentWindow), _parentWindow(parentWindow), job(), dlg(0)
 {
 }
 

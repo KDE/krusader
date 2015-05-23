@@ -68,6 +68,7 @@ vfs::~vfs()
         fprintf(stderr, "INTERNAL ERROR: trying to delete vfs while it is used! This may cause crash. Hoping the best...\n");
     clear(); // please don't remove this line. This informs the view about deleting the references
     delete vfs_filesP;
+    delete vfs_tempFilesP;
 }
 
 bool vfs::isRoot()
