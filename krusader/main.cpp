@@ -287,16 +287,16 @@ int main(int argc, char *argv[])
     } // don't remove bracket
 
     Krusader::AppName = appName;
-    Krusader krusader(parser);
+    Krusader *krusader = new Krusader(parser);
 
     if(!url.isEmpty())
-        krusader.openUrl(url);
+        krusader->openUrl(url);
 
     QDBusConnection dbus = QDBusConnection::sessionBus();
     if (!dbus.interface()->isServiceRegistered("org.krusader") && !dbus.registerService("org.krusader")) {
         fprintf(stderr, "DBus Error: %s, %s\n", dbus.lastError().name().toLocal8Bit().constData(), dbus.lastError().message().toLocal8Bit().constData());
     }
-    if (!dbus.registerObject("/Instances/" + appName, &krusader, QDBusConnection::ExportScriptableSlots)) {
+    if (!dbus.registerObject("/Instances/" + appName, krusader, QDBusConnection::ExportScriptableSlots)) {
         fprintf(stderr, "DBus Error: %s, %s\n", dbus.lastError().name().toLocal8Bit().constData(), dbus.lastError().message().toLocal8Bit().constData());
     }
     if (!dbus.registerObject("/Instances/" + appName + "/left_manager", LEFT_MNG, QDBusConnection::ExportScriptableSlots)) {
@@ -319,10 +319,10 @@ int main(int argc, char *argv[])
 
     // hide splashscreen
     if (splash) {
-        splash->finish(&krusader);
+        splash->finish(krusader);
         delete splash;
     }
-
     // let's go.
     return app.exec();
+
 }

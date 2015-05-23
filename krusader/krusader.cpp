@@ -130,9 +130,6 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
         status(0), _listPanelActions(0), sysTray(0), isStarting(true),
         isExiting(false), directExit(false)
 {
-
-    setAttribute(Qt::WA_DeleteOnClose);
-
     // create the "krusader"
     App = this;
     krMainWindow = this;
