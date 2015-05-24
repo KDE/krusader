@@ -48,12 +48,12 @@ class MyUiDelegate : public KIO::JobUiDelegate
 public:
     MyUiDelegate(VirtualCopyJob * ref) : KIO::JobUiDelegate(), copyJobRef(ref) {}
 
-    virtual KIO::RenameDialog_Result askFileRename(KJob * job, const QString & caption, const QString& src,
-            const QString & dest, KIO::RenameDialog_Mode mode,
+    virtual KIO::RenameDialog_Result askFileRename(KJob * job, const QString & caption, const QUrl& src,
+            const QUrl & dest, KIO::RenameDialog_Options mode,
             QString& newDest, KIO::filesize_t sizeSrc = (KIO::filesize_t) - 1,
             KIO::filesize_t sizeDest = (KIO::filesize_t) - 1,
-            time_t ctimeSrc = (time_t) - 1, time_t ctimeDest = (time_t) - 1,
-            time_t mtimeSrc = (time_t) - 1, time_t mtimeDest = (time_t) - 1) {
+            const QDateTime &ctimeSrc = QDateTime(), const QDateTime &ctimeDest = QDateTime(),
+            const QDateTime &mtimeSrc = QDateTime(), const QDateTime &mtimeDest = QDateTime()) Q_DECL_OVERRIDE {
         if (copyJobRef->isSkipAll()) {
             if (mode & KIO::M_MULTI)
                 return KIO::R_AUTO_SKIP;
@@ -79,8 +79,7 @@ public:
             mmode = (KIO::RenameDialog_Mode)(mmode | KIO::M_OVERWRITE_ITSELF);
 
         KIO::RenameDialog_Result res = KIO::JobUiDelegate::askFileRename(job, caption, src, dest,  mode, newDest,
-                                       sizeSrc, sizeDest, QDateTime::fromTime_t(ctimeSrc), QDateTime::fromTime_t(ctimeDest),
-                                       QDateTime::fromTime_t(mtimeSrc), QDateTime::fromTime_t(mtimeDest));
+                                       sizeSrc, sizeDest, ctimeSrc, ctimeDest, mtimeSrc, mtimeDest);
 
         if (res == KIO::R_AUTO_SKIP) {
             copyJobRef->setSkipAll();

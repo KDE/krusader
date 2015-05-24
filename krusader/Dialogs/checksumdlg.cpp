@@ -36,12 +36,12 @@
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QFileDialog>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QGridLayout>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KFileDialog>
 #include <KDE/KTemporaryFile>
 #include <KDE/KStandardDirs>
 
@@ -421,8 +421,8 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
     hlayout2->addWidget(l2);
     KUrlRequester *checksumFileReq = new KUrlRequester(widget);
     if (!checksumFile.isEmpty())
-        checksumFileReq->setUrl(checksumFile);
-    checksumFileReq->setUrl(path);
+        checksumFileReq->setUrl(QUrl::fromLocalFile(checksumFile));
+    checksumFileReq->setUrl(QUrl::fromLocalFile(path));
     checksumFileReq->setFocus();
     hlayout2->addWidget(checksumFileReq);
     layout->addLayout(hlayout2, row, 0, 1, 2, Qt::AlignLeft);
@@ -655,7 +655,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList &stdOut, const QStringL
         QLabel *label = new QLabel(i18n("Save checksum to file:"), widget);
         hlayout2->addWidget(label);
 
-        _checksumFileSelector = new KUrlRequester(suggestedFilename, widget);
+        _checksumFileSelector = new KUrlRequester(QUrl::fromLocalFile(suggestedFilename), widget);
         hlayout2->addWidget(_checksumFileSelector, Qt::AlignLeft);
         layout->addLayout(hlayout2, row, 0, 1, 2, Qt::AlignLeft);
         ++row;
@@ -694,7 +694,7 @@ bool ChecksumResultsDlg::saveChecksum(const QStringList& data, QString filename)
                                                i18n("File %1 already exists.\nAre you sure you want to overwrite it?", filename),
                                                i18n("Warning"), KGuiItem(i18n("Overwrite"))) != KMessageBox::Continue) {
         // find a better name to save to
-        filename = KFileDialog::getSaveFileName(QString(), "*", 0, i18n("Select a file to save to"));
+        filename = QFileDialog::getSaveFileName(0, i18n("Select a file to save to"), QString(), QStringLiteral("*"));
         if (filename.simplified().isEmpty())
             return false;
     }

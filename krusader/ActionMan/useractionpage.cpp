@@ -19,6 +19,7 @@
 
 #include "useractionpage.h"
 
+#include <QtWidgets/QFileDialog>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QToolButton>
@@ -29,7 +30,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KFileDialog>
 
 #include <KWidgetsAddons/KStandardGuiItem>
 #include <KCompletion/KLineEdit>
@@ -45,7 +45,7 @@
 #include "../krglobal.h"
 
 #define ICON(N)  KIconLoader::global()->loadIcon(N, KIconLoader::Toolbar)
-//This is the filter in the KFileDialog of Import/Export:
+//This is the filter in the QFileDialog of Import/Export:
 static const char* FILE_FILTER = I18N_NOOP("*.xml|XML files\n*|All files");
 
 
@@ -244,7 +244,7 @@ void UserActionPage::slotRemoveAction()
 
 void UserActionPage::slotImport()
 {
-    QString filename = KFileDialog::getOpenFileName(QString(), i18n(FILE_FILTER), this);
+    QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), i18n(FILE_FILTER));
     if (filename.isEmpty())
         return;
 
@@ -265,7 +265,7 @@ void UserActionPage::slotExport()
     if (! dynamic_cast<UserActionListViewItem*>(actionTree->currentItem()))
         return;
 
-    QString filename = KFileDialog::getSaveFileName(QString(), i18n(FILE_FILTER), this);
+    QString filename = QFileDialog::getSaveFileName(this, QString(), QString(), i18n(FILE_FILTER));
     if (filename.isEmpty())
         return;
 

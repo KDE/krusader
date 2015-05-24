@@ -35,12 +35,10 @@
 #include <QtCore/QStringList>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QFileDialog>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QComboBox>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KFileDialog>
 
 #include <KCompletion/KHistoryComboBox>
 
@@ -105,7 +103,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
 
 void PackGUI::browse()
 {
-    QString temp = KFileDialog::getExistingDirectory(dirData->text(), 0, i18n("Please select a directory"));
+    QString temp = QFileDialog::getExistingDirectory(0, i18n("Please select a directory"), dirData->text());
     if (!temp.isEmpty()) {
         dirData->setText(temp);
     }

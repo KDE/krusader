@@ -2,7 +2,7 @@ project(krusader)
 
 cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 set (QT_MIN_VERSION "5.2.0")
- 
+
 set(VERSION "2.4.0-beta3" )
 set(RELEASE_NAME "Single Step")
 
@@ -55,6 +55,7 @@ set(CMAKE_VERBOSE_MAKEFILE OFF)
 
 add_definitions(${QT_DEFINITIONS} ${KF5_DEFINITIONS})
 add_definitions( "-DKRARC_ENABLED" )
+add_definitions( "-DQT_NO_URL_CAST_FROM_STRING" )
 
 if(ENABLE_SYNCHRONIZER)
     add_definitions( "-DENABLE_SYNCHRONIZER" )

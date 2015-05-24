@@ -34,11 +34,11 @@
 #include <QtGui/QPixmap>
 #include <QtGui/QCursor>
 #include <QtGui/QKeyEvent>
+#include <QtWidgets/QFileDialog>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QGridLayout>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KFileDialog>
 #include <KDE/KMenu>
 #include <KDE/KLocale>
 #include <KDE/KIcon>
@@ -111,10 +111,10 @@ void KURLListRequester::slotBrowse()
     QUrl url;
     switch (mode) {
         case RequestFiles:
-            url = KFileDialog::getOpenUrl(QUrl(), QString(), this);
+            url = QFileDialog::getOpenFileUrl(this);
             break;
         case RequestDirs:
-            url = KFileDialog::getExistingDirectoryUrl(QUrl(), this);
+            url = QFileDialog::getExistingDirectoryUrl(this);
             break;
     }
     if (!url.isEmpty())

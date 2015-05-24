@@ -158,6 +158,7 @@ public:
     // KDE FTP proxy bug correction
     static QString pathOrUrl(const KUrl &originIn, KUrl::AdjustPathOption trailingSlash = KUrl::LeaveTrailingSlash);
 
+    static QUrl ensureTrailingSlash(const QUrl &url);
 
 public slots:
     /// Re-reads files and stats and fills the vfile list

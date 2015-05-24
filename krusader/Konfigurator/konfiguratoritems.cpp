@@ -415,7 +415,7 @@ void KonfiguratorURLRequester::slotApply(QObject *, QString cls, QString name)
 
 void KonfiguratorURLRequester::slotSetDefaults(QObject *)
 {
-    if (url() != defaultValue)
+    if (url().toDisplayString(QUrl::PreferLocalFile) != defaultValue)
         lineEdit()->setText(defaultValue);
 }
 

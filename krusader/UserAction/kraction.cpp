@@ -26,6 +26,7 @@
 #include <QtCore/QTextStream>
 #include <QtGui/QKeyEvent>
 #include <QtWidgets/QBoxLayout>
+#include <QtWidgets/QFileDialog>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QPushButton>
@@ -39,7 +40,6 @@
 #include <KDE/KDebug>
 #include <KDE/KLocale>
 #include <KDE/KInputDialog>
-#include <KDE/KFileDialog>
 #include <KDE/KUrl>
 #include <KDE/KMimeType>
 #include <KDE/KVBox>
@@ -162,7 +162,7 @@ void KrActionProcDlg::toggleFixedFont(bool state)
 
 void KrActionProcDlg::slotUser1()
 {
-    QString filename = KFileDialog::getSaveFileName(QString(), i18n("*.txt|Text files\n*|All files"), this);
+    QString filename = QFileDialog::getSaveFileName(this, QString(), QString(), i18n("*.txt|Text files\n*|All files"));
     if (filename.isEmpty())
         return;
     QFile file(filename);

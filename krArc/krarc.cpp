@@ -463,7 +463,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries)
         decompressedLen = 0;
         // Determine the mimetype of the file to be retrieved, and emit it.
         // This is mandatory in all slaves (for KRun/BrowserRun to work).
-        KMimeType::Ptr mt = KMimeType::findByUrl(arcTempDir + file, 0, false /* NOT local URL */);
+        KMimeType::Ptr mt = KMimeType::findByUrl(QUrl::fromLocalFile(arcTempDir + file), 0, false /* NOT local URL */);
         if (mt)
             emit mimeType(mt->name());
 
@@ -535,7 +535,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries)
         }
         // Determine the mimetype of the file to be retrieved, and emit it.
         // This is mandatory in all slaves (for KRun/BrowserRun to work).
-        KMimeType::Ptr mt = KMimeType::findByUrl(arcTempDir + file, buff.st_mode, true /* local URL */);
+        KMimeType::Ptr mt = KMimeType::findByUrl(QUrl::fromLocalFile(arcTempDir + file), buff.st_mode, true /* local URL */);
         if (mt)
             emit mimeType(mt->name());
 
@@ -673,7 +673,7 @@ void kio_krarcProtocol::stat(const KUrl & url)
         KMimeType::Ptr result = KMimeType::findByPath(path, buff.st_mode);
         if (result)
             mime = result->name();
-        statEntry(KFileItem(path, mime, buff.st_mode).entry());
+        statEntry(KFileItem(QUrl::fromLocalFile(path), mime, buff.st_mode).entry());
         finished();
         return;
     }
@@ -1821,7 +1821,7 @@ QString kio_krarcProtocol::detectArchive(bool &encrypted, QString fileName)
     if (fileName.endsWith(QLatin1String(".xz"))) {
         return "xz";
     }
-    
+
     return QString();
 }
 

@@ -235,7 +235,7 @@ void KCMDLine::setCurrent(const QString &path)
 {
     cmdLine->setPath(path);
 
-    completion.setDir(path);
+    completion.setDir(QUrl::fromLocalFile(path));
     // make sure our command is executed in the right directory
     // This line is important for Krusader overall functions -> do not remove !
     QDir::setCurrent(path);

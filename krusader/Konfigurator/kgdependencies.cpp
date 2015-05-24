@@ -168,7 +168,7 @@ void KgDependencies::slotApply(QObject *obj, QString cls, QString name)
 
     QString usedPath = KrServices::fullPathName(name);
 
-    if (urlRequester->url() != usedPath) {
+    if (urlRequester->url().toDisplayString(QUrl::PreferLocalFile) != usedPath) {
         group.writeEntry(name, usedPath);
         if (usedPath.isEmpty())
             KMessageBox::error(this, i18n("The %1 path is incorrect, no valid path found.",
@@ -176,7 +176,7 @@ void KgDependencies::slotApply(QObject *obj, QString cls, QString name)
         else
             KMessageBox::error(this, i18n("The %1 path is incorrect, %2 used instead.",
                                           urlRequester->url().toDisplayString(), usedPath));
-        urlRequester->setUrl(KUrl(usedPath));
+        urlRequester->setUrl(QUrl::fromLocalFile(usedPath));
     }
 }
 

@@ -42,7 +42,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KFileDialog>
 #include <KDE/KGlobal>
 #include <KDE/KStandardDirs>
 
@@ -637,7 +636,7 @@ void KgPanel::setupMediaMenuTab()
         {"MediaMenu", "ShowPath",   true, i18n("Show Mount Path"),       false, 0 },
         {"MediaMenu", "ShowFSType", true, i18n("Show File System Type"), false, 0 },
     };
-    KonfiguratorCheckBoxGroup *mediaMenuCheckBoxes = 
+    KonfiguratorCheckBoxGroup *mediaMenuCheckBoxes =
         createCheckBoxGroup(1, 0, mediaMenuParams,
                             sizeof(mediaMenuParams) / sizeof(*mediaMenuParams),
                             tab, PAGE_MEDIA_MENU);

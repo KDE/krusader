@@ -99,7 +99,7 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
     grid->addWidget(splitterLabel, 0 , 0);
 
     urlReq = new KUrlRequester(this);
-    urlReq->setUrl(defaultDir.pathOrUrl());
+    urlReq->setUrl(defaultDir);
     urlReq->setMode(KFile::Directory);
     grid->addWidget(urlReq, 1 , 0);
 

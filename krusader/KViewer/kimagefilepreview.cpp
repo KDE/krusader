@@ -25,7 +25,6 @@
 #include <KDE/KStandardDirs>
 #include <KDE/KDebug>
 #include <KDE/KLocale>
-#include <KDE/KFileDialog>
 #include <KDE/KDialog>
 
 #include <KIconThemes/KIconLoader>

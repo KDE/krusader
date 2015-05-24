@@ -48,10 +48,8 @@
 
 QUrl KChooseDir::getFile(QString text, const QUrl& url, const QUrl& cwd)
 {
-    QPointer<KUrlRequesterDialog> dlg = new KUrlRequesterDialog(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
-            text,
-            krMainWindow);
-    dlg->urlRequester()->completionObject()->setDir(cwd.url());
+    QPointer<KUrlRequesterDialog> dlg = new KUrlRequesterDialog(vfs::ensureTrailingSlash(url), text, krMainWindow);
+    dlg->urlRequester()->completionObject()->setDir(cwd);
     dlg->urlRequester()->setMode(KFile::File);
     QUrl u;
     if (dlg->exec() == QDialog::Accepted) {
@@ -76,10 +74,8 @@ QUrl KChooseDir::getFile(QString text, const QUrl& url, const QUrl& cwd)
 
 QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd)
 {
-    QPointer<KUrlRequesterDialog> dlg = new KUrlRequesterDialog(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
-            text,
-            krMainWindow);
-    dlg->urlRequester()->completionObject()->setDir(cwd.url());
+    QPointer<KUrlRequesterDialog> dlg = new KUrlRequesterDialog(vfs::ensureTrailingSlash(url), text, krMainWindow);
+    dlg->urlRequester()->completionObject()->setDir(cwd);
     dlg->urlRequester()->setMode(KFile::Directory);
     QUrl u;
     if (dlg->exec() == QDialog::Accepted) {
@@ -103,12 +99,12 @@ QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd)
 
 QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &queue)
 {
-    QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
+    QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::ensureTrailingSlash(url),
             text,
             false,
             krMainWindow);
     dlg->hidePreserveAttrs();
-    dlg->urlRequester()->completionObject()->setDir(cwd.url());
+    dlg->urlRequester()->completionObject()->setDir(cwd);
     dlg->urlRequester()->setMode(KFile::Directory);
     QUrl u;
     if (dlg->exec() == QDialog::Accepted) {
@@ -133,11 +129,11 @@ QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &qu
 
 QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &queue, bool &preserveAttrs)
 {
-    QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
+    QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::ensureTrailingSlash(url),
             text,
             preserveAttrs,
             krMainWindow);
-    dlg->urlRequester()->completionObject()->setDir(cwd.url());
+    dlg->urlRequester()->completionObject()->setDir(cwd);
     dlg->urlRequester()->setMode(KFile::Directory);
     QUrl u;
     if (dlg->exec() == QDialog::Accepted) {
@@ -163,13 +159,13 @@ QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &qu
 
 QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &queue, bool &preserveAttrs, QUrl &baseURL)
 {
-    QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
+    QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::ensureTrailingSlash(url),
             text,
             preserveAttrs,
             krMainWindow,
             true,
             baseURL);
-    dlg->urlRequester()->completionObject()->setDir(cwd.url());
+    dlg->urlRequester()->completionObject()->setDir(cwd);
     dlg->urlRequester()->setMode(KFile::Directory);
     QUrl u;
     if (dlg->exec() == QDialog::Accepted) {
@@ -199,7 +195,7 @@ QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &qu
     return u;
 }
 
-KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QString& urlName, const QString& _text, bool /*presAttrs*/, QWidget *parent,
+KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QString& _text, bool /*presAttrs*/, QWidget *parent,
         bool modal, QUrl baseURL)
         :   KDialog(parent), baseUrlCombo(0), copyDirStructureCB(0), queue(false)
 {

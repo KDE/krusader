@@ -59,7 +59,7 @@ public:
         return urlListBox;
     }
 
-    void         setCompletionDir(QString dir) {
+    void         setCompletionDir(const QUrl &dir) {
         completion.setDir(dir);
     }
 

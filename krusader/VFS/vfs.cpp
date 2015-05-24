@@ -114,6 +114,15 @@ QString vfs::pathOrUrl(const KUrl &originIn, KUrl::AdjustPathOption trailingSlas
     return originIn.prettyUrl(trailingSlash);
 }
 
+QUrl vfs::ensureTrailingSlash(const QUrl &url)
+{
+    QUrl adjustedUrl = url;
+    if (!adjustedUrl.path().endsWith('/')) {
+        adjustedUrl.setPath(adjustedUrl.path() + '/');
+    }
+    return adjustedUrl;
+}
+
 void vfs::setVfsFilesP(vfileDict* dict)
 {
     vfs_filesP = dict;

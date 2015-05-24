@@ -491,7 +491,7 @@ void kio_isoProtocol::get(const KUrl & url)
         kDebug() << "Redirection to " << isoEntry->symLinkTarget() << endl;
         KUrl realURL(url, isoEntry->symLinkTarget());
         kDebug() << "realURL= " << realURL.url() << endl;
-        redirection(realURL.url());
+        redirection(realURL);
         finished();
         return;
     }

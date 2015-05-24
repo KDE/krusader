@@ -24,13 +24,13 @@
 #include "../krusader.h"
 #include "../krglobal.h"
 
+#include <QtWidgets/QFileDialog>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QRadioButton>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KFileDialog>
 #include <KDE/KDebug>
 #include <KDE/KInputDialog>
 #include <KDE/KIcon>
@@ -44,6 +44,7 @@
 #include <KIconThemes/KIconButton>
 #include <KIconThemes/KIconLoader>
 #include <KTextWidgets/KTextEdit>
+
 
 #define ICON(N)  KIconLoader::global()->loadIcon(N, KIconLoader::Small)
 
@@ -320,7 +321,7 @@ void ActionProperty::addPlaceholder()
 
 void ActionProperty::addStartpath()
 {
-    QString folder = KFileDialog::getExistingDirectory(QString(), this);
+    QString folder = QFileDialog::getExistingDirectory(this);
     if (!folder.isEmpty()) {
         leStartpath->setText(folder);
     }
@@ -376,7 +377,7 @@ void ActionProperty::removeProtocol()
 
 void ActionProperty::addPath()
 {
-    QString folder = KFileDialog::getExistingDirectory(QString(), this);
+    QString folder = QFileDialog::getExistingDirectory(this);
     if (!folder.isEmpty()) {
         lbShowonlyPath->addItem(folder);
         setModified();

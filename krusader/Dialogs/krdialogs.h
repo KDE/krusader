@@ -69,7 +69,7 @@ class KUrlRequesterDlgForCopy : public KDialog
 {
     Q_OBJECT
 public:
-    KUrlRequesterDlgForCopy(const QString& url, const QString& text, bool presAttrs,
+    KUrlRequesterDlgForCopy(const QUrl& url, const QString& text, bool presAttrs,
                             QWidget *parent, bool modal = true, QUrl baseURL = QUrl());
     KUrlRequesterDlgForCopy();
 

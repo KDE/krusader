@@ -662,7 +662,7 @@ void ListPanel::slotFocusOnMe(bool focus)
     } else {
         // in case a new url was entered but not refreshed to,
         // reset origin bar to the current url
-        origin->setUrl(virtualPath().prettyUrl());
+        origin->setUrl(virtualPath());
         view->prepareForPassive();
     }
 
@@ -706,7 +706,7 @@ void ListPanel::slotStartUpdate()
 
     if (func->files() ->vfs_getType() == vfs::VFS_NORMAL)
         _realPath = virtualPath();
-    this->origin->setUrl(virtualPath().pathOrUrl());
+    this->origin->setUrl(virtualPath());
     emit pathChanged(this);
 
     slotGetStats(virtualPath());

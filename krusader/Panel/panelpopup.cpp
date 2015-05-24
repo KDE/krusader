@@ -501,7 +501,7 @@ void PanelPopup::saveSizes()
 
 void PanelPopup::handleOpenUrlRequest(const KUrl &url)
 {
-    KMimeType::Ptr mime = KMimeType::findByUrl(url.url());
+    KMimeType::Ptr mime = KMimeType::findByUrl(url);
     if (mime && mime->name() == "inode/directory") ACTIVE_PANEL->func->openUrl(url);
 }
 

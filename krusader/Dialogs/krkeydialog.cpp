@@ -21,10 +21,10 @@
 #include <QtCore/QTextStream>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QFileDialog>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KFileDialog>
 #include <KDE/KStandardDirs>
 #include <KDE/KDebug>
 #include <KDE/KPushButton>
@@ -38,7 +38,7 @@
 #include "../krusader.h"
 #include "../krglobal.h"
 
-//This is the filter in the KFileDialog of Import/Export:
+//This is the filter in the QFileDialog of Import/Export:
 static const char* FILE_FILTER = I18N_NOOP("*.keymap|Krusader keymaps\n*|All files");
 
 
@@ -78,7 +78,7 @@ void KrKeyDialog::slotImportShortcuts()
     // find $KDEDIR/share/apps/krusader
     QString basedir = KGlobal::dirs()->findResourceDir("appdata", "total_commander.keymap");
     // let the user select a file to load
-    QString filename = KFileDialog::getOpenFileName(basedir, i18n(FILE_FILTER), 0, i18n("Select a keymap file"));
+    QString filename = QFileDialog::getOpenFileName(0, i18n("Select a keymap file"), basedir, i18n(FILE_FILTER));
     if (filename.isEmpty())
         return;
 
@@ -144,7 +144,7 @@ void KrKeyDialog::importLegacyShortcuts(const QString& file)
 
 void KrKeyDialog::slotExportShortcuts()
 {
-    QString filename = KFileDialog::getSaveFileName(QString(), i18n(FILE_FILTER), 0, i18n("Select a keymap file"));
+    QString filename = QFileDialog::getSaveFileName(0, i18n("Select a keymap file"), QString(), i18n(FILE_FILTER));
     if (filename.isEmpty())
         return;
     QFile f(filename);

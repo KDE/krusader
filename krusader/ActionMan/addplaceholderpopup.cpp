@@ -26,6 +26,7 @@
 #include "../BookMan/krbookmarkbutton.h"
 #include "../GUI/profilemanager.h"
 
+#include <QtWidgets/QFileDialog>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QHBoxLayout>
@@ -36,7 +37,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KFileDialog>
 #include <KDE/KDebug>
 #include <KDE/KNumInput>
 #include <KDE/KIcon>
@@ -116,7 +116,7 @@ QString AddPlaceholderPopup::getPlaceholder(const QPoint& pos)
     // add the selected flag to the command line
     if (res->data().toInt() == EXECUTABLE_ID) {   // did the user need an executable ?
         // select an executable
-        QString filename = KFileDialog::getOpenFileName(QString(), QString(), this);
+        QString filename = QFileDialog::getOpenFileName(this);
         if (!filename.isEmpty()) {
             return filename + ' '; // with extra space
             // return filename; // without extra space
@@ -439,7 +439,7 @@ bool ParameterFile::valid()
 }
 void ParameterFile::addFile()
 {
-    QString filename = KFileDialog::getOpenFileName(QString(), QString(), this);
+    QString filename = QFileDialog::getOpenFileName(this);
     _lineEdit->insert(filename);
 }
 
@@ -558,7 +558,7 @@ bool ParameterGoto::valid()
 }
 void ParameterGoto::setDir()
 {
-    QString folder = KFileDialog::getExistingDirectory(QString(), this);
+    QString folder = QFileDialog::getExistingDirectory(this);
     _lineEdit->setText(folder);
 }
 void ParameterGoto::addPlaceholder()

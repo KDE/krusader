@@ -39,6 +39,7 @@
 #include <QtGui/QFontMetrics>
 #include <QtGui/QClipboard>
 #include <QtGui/QKeyEvent>
+#include <QtWidgets/QFileDialog>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QScrollBar>
@@ -57,7 +58,6 @@
 #include <KDE/KLocale>
 #include <KDE/KTemporaryFile>
 #include <KDE/KInputDialog>
-#include <KDE/KFileDialog>
 #include <KDE/KGlobalSettings>
 #include <KIO/Job>
 #include <KIO/CopyJob>
@@ -1787,7 +1787,7 @@ void Lister::jumpToPosition()
 
 void Lister::saveAs()
 {
-    KUrl url = KFileDialog::getSaveUrl(KUrl(), QString(), _textArea, i18n("Lister"));
+    KUrl url = QFileDialog::getSaveFileUrl(_textArea, i18n("Lister"));
     if (url.isEmpty())
         return;
     KUrl sourceUrl;
@@ -1822,7 +1822,7 @@ void Lister::saveSelected()
         _saveEnd = end;
     }
 
-    KUrl url = KFileDialog::getSaveUrl(KUrl(), QString(), _textArea, i18n("Lister"));
+    KUrl url = QFileDialog::getSaveFileUrl(_textArea, i18n("Lister"));
     if (url.isEmpty())
         return;
 
