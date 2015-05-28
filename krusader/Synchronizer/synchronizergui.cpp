@@ -46,17 +46,18 @@
 
 #include <time.h>
 
-#include <QtCore/QMouseEvent>
 #include <QtCore/QEventLoop>
 #include <QtCore/QRegExp>
 #include <QtCore/QMimeData>
 #include <QtCore/QHash>
 #include <QtGui/QResizeEvent>
 #include <QtGui/QKeyEvent>
+#include <QtGui/QMouseEvent>
 #include <QtGui/QPixmap>
 #include <QtGui/QCursor>
 #include <QtGui/QDrag>
 #include <QtGui/QClipboard>
+#include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLayout>
@@ -67,6 +68,7 @@
 #include <QtWidgets/QSpinBox>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KIcon>
 #include <KDE/KLocale>
 #include <KDE/KMenu>
 #include <KDE/KInputDialog>

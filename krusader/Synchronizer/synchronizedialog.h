@@ -31,11 +31,11 @@
 #ifndef SYNCHRONIZEDIALOG_H
 #define SYNCHRONIZEDIALOG_H
 
-#include <QtGui/QDialog>
-#include <QtWidgets/QPushButton>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QProgressBar>
+#include <QtWidgets/QPushButton>
 
 #include "../VFS/vfs.h"
 #include "synchronizer.h"

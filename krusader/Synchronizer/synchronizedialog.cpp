@@ -38,6 +38,7 @@
 #include <QtWidgets/QLabel>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
+#include <KDE/KIcon>
 #include <KDE/KLocale>
 
 SynchronizeDialog::SynchronizeDialog(QWidget* parent,

@@ -32,11 +32,11 @@
 #define SYNCHRONIZERGUI_H
 
 #include <QtCore/QMap>
-#include <QtGui/QDialog>
 #include <QtGui/QResizeEvent>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QPixmap>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them

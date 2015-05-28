@@ -1111,22 +1111,23 @@ void Synchronizer::slotTaskFinished(KJob *job)
                 if (autoSkip)
                     break;
 
+                KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
+                ui->setWindow(syncDlgWidget);
+
                 if (item->task() == TT_COPY_TO_LEFT) {
-                    ((KIO::Job *)job)->ui()->setWindow(syncDlgWidget);
-
-                    result = ((KIO::Job *)job)->ui()->askFileRename(job, i18n("File Already Exists"),
-                             rightURL.pathOrUrl(), leftURL.pathOrUrl(),
+                    result = ui->askFileRename(job, i18n("File Already Exists"),
+                             rightURL, leftURL,
                              (KIO::RenameDialog_Mode)(KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI), newDest,
-                             item->rightSize(), item->leftSize(), (time_t) - 1, (time_t) - 1,
-                             item->rightDate(), item->leftDate());
+                             item->rightSize(), item->leftSize(), QDateTime(), QDateTime(),
+                             QDateTime::fromTime_t(item->rightDate()),
+                             QDateTime::fromTime_t(item->leftDate()));
                 } else {
-                    ((KIO::Job *)job)->ui()->setWindow(syncDlgWidget);
-
-                    result = ((KIO::Job *)job)->ui()->askFileRename(job, i18n("File Already Exists"),
-                             leftURL.pathOrUrl(), rightURL.pathOrUrl(),
+                    result = ui->askFileRename(job, i18n("File Already Exists"),
+                             leftURL, rightURL,
                              (KIO::RenameDialog_Mode)(KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI), newDest,
-                             item->leftSize(), item->rightSize(), (time_t) - 1, (time_t) - 1,
-                             item->leftDate(), item->rightDate());
+                             item->leftSize(), item->rightSize(), QDateTime(), QDateTime(),
+                             QDateTime::fromTime_t(item->leftDate()),
+                             QDateTime::fromTime_t(item->rightDate()));
                 }
 
                 switch (result) {
@@ -1176,9 +1177,10 @@ void Synchronizer::slotTaskFinished(KJob *job)
                     break;
                 }
 
-                ((KIO::Job *)job)->ui()->setWindow(syncDlgWidget);
+                KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
+                ui->setWindow(syncDlgWidget);
 
-                KIO::SkipDialog_Result result = ((KIO::Job *)job)->ui()->askSkip(job, true, error);
+                KIO::SkipDialog_Result result = ui->askSkip(job, KIO::SkipDialog_MultipleItems, error);
 
                 switch (result) {
                 case KIO::S_CANCEL:
