@@ -38,6 +38,7 @@
 #include <QtCore/QList>
 #include <QtCore/QEvent>
 #include <QtCore/QPointer>
+#include <QtCore/QUrl>
 #include <QtGui/QPixmap>
 #include <QtGui/QPixmapCache>
 #include <QtGui/QIcon>
@@ -51,9 +52,6 @@
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QGridLayout>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 
 #include <KIOCore/KFileItem>
 #include <KCompletion/KLineEdit>
@@ -94,7 +92,7 @@ public:
 
     virtual void otherPanelChanged();
 
-    void start(KUrl url = KUrl(), bool immediate = false);
+    void start(QUrl url = QUrl(), bool immediate = false);
 
     void reparent(QWidget *parent, AbstractPanelManager *manager);
 
@@ -118,7 +116,7 @@ public:
         view->getSelectedItems(fileNames);
     }
     void setButtons();
-    void setJumpBack(KUrl url);
+    void setJumpBack(QUrl url);
 
     int  getProperties();
     void setProperties(int);
@@ -136,7 +134,7 @@ public slots:
     void slotFocusOnMe(bool focus = true);
     void slotUpdateTotals();
     void slotStartUpdate();                   // internal
-    void slotGetStats(const KUrl& url);            // get the disk-free stats
+    void slotGetStats(const QUrl &url);            // get the disk-free stats
     void togglePanelPopup();
     void panelActive(); // called when the panel becomes active
     void panelInactive(); // called when panel becomes inactive
@@ -187,7 +185,7 @@ protected slots:
     void inlineRefreshPercent(KJob*, unsigned long);
     void slotVfsError(QString msg);
     void newTab(KrViewItem *item);
-    void newTab(const KUrl &url, bool nextToThis = false) {
+    void newTab(const QUrl &url, bool nextToThis = false) {
         _manager->newTab(url, nextToThis ? this : 0);
     }
 
@@ -200,8 +198,8 @@ signals:
 
 protected:
     int panelType;
-    KUrl _realPath; // named with _ to keep realPath() compatibility
-    KUrl _jumpBackURL;
+    QUrl _realPath; // named with _ to keep realPath() compatibility
+    QUrl _jumpBackURL;
     int colorMask;
     bool compareMode;
     //FilterSpec    filter;

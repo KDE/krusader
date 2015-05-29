@@ -35,9 +35,7 @@
 
 #include <QtCore/QMap>
 #include <QtCore/QList>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
+#include <QtCore/QUrl>
 
 #include <KIO/JobClasses>
 #include <KIO/CopyJob>
@@ -52,7 +50,7 @@ class PreservingCopyJob
 {
 
 public:
-    static KIO::Job *createCopyJob(PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool /* asMethod */, bool showProgressInfo);
+    static KIO::Job *createCopyJob(PreserveMode pmode, const QList<QUrl>& src, const QUrl &dest, KIO::CopyJob::CopyMode mode, bool /* asMethod */, bool showProgressInfo);
 };
 
 #endif /* __PRESERVING_COPY_JOB_H__ */

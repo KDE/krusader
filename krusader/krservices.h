@@ -23,9 +23,7 @@
 #include <QtCore/QString>
 #include <QtCore/QStringList>
 #include <QtCore/QMap>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
+#include <QtCore/QUrl>
 
 class QTextStream;
 class QFile;
@@ -40,12 +38,14 @@ public:
     static QString      chooseFullPathName(QStringList names, QString confName);
     static QString      fullPathName(QString name, QString confName = QString());
     static QString      registerdProtocol(QString mimetype);
-    static QString      getPath(const KUrl &url, KUrl::AdjustPathOption trailing = KUrl::LeaveTrailingSlash);
+    static QString      getPath(const QUrl &url, QUrl::FormattingOptions options = QUrl::PrettyDecoded);
     static void         clearProtocolCache();
     static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines = false);
     static bool         fileToStringList(QFile *file, QStringList& target, bool keepEmptyLines = false);
     static QString      quote(QString name);
     static QStringList  quote(const QStringList& names);
+    static QList<QUrl>  toUrlList(const QStringList &list);
+    static QStringList  toStringList(const QList<QUrl> &list);
 
 protected:
     static QString    escape(QString name);

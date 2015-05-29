@@ -169,7 +169,7 @@ QList<QUrl> KURLListRequester::urlList()
         QString error;
         emit checkValidity(text, error);
         if (error.isNull())
-            urls.append(QUrl(text));
+            urls.append(QUrl::fromUserInput(text, QString(), QUrl::AssumeLocalFile));
     }
 
     for (int i = 0; i != urlListBox->count(); i++) {
@@ -180,7 +180,7 @@ QList<QUrl> KURLListRequester::urlList()
         QString error;
         emit checkValidity(text, error);
         if (error.isNull())
-            urls.append(QUrl(text));
+            urls.append(QUrl::fromUserInput(text, QString(), QUrl::AssumeLocalFile));
     }
 
     return urls;

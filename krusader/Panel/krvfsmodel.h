@@ -70,7 +70,7 @@ public:
     }
     const QModelIndex & vfileIndex(const vfile *);
     const QModelIndex & nameIndex(const QString &);
-    const QModelIndex & indexFromUrl(const KUrl &url);
+    const QModelIndex & indexFromUrl(const QUrl &url);
     virtual Qt::ItemFlags flags(const QModelIndex & index) const;
     void emitChanged() {
         emit layoutChanged();

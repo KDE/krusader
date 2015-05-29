@@ -49,6 +49,7 @@
 #include "vfs.h"
 #include "preservingcopyjob.h"
 #include "../krglobal.h"
+#include "../krservices.h"
 
 AbstractThreadedJob::AbstractThreadedJob() : KIO::Job(), _locker(), _waiter(), _stack(), _maxProgressValue(0),
         _currentProgress(0), _exiting(false), _jobThread(0)
@@ -130,8 +131,8 @@ bool AbstractThreadedJob::event(QEvent *e)
         break;
         case CMD_UPLOAD_FILES:
         case CMD_DOWNLOAD_FILES: {
-            KUrl::List sources = event->args()[ 0 ].value<KUrl::List>();
-            KUrl dest = event->args()[ 1 ].value<KUrl>();
+            QList<QUrl> sources = KrServices::toUrlList(event->args()[ 0 ].value<QStringList>());
+            QUrl dest = event->args()[ 1 ].value<QUrl>();
             KIO::Job *job = PreservingCopyJob::createCopyJob(PM_PRESERVE_ATTR, sources, dest, KIO::CopyJob::Copy, false, false);
             addSubjob(job);
             job->setUiDelegate(new KIO::JobUiDelegate());
@@ -344,18 +345,19 @@ void AbstractJobThread::abort()
     terminate();
 }
 
-KUrl::List AbstractJobThread::remoteUrls(const KUrl &baseUrl, const QStringList & files)
+QList<QUrl> AbstractJobThread::remoteUrls(const QUrl &baseUrl, const QStringList & files)
 {
-    KUrl::List urlList;
+    QList<QUrl> urlList;
     foreach(const QString &name, files) {
-        KUrl url = baseUrl;
-        url.addPath(name);
+        QUrl url = baseUrl;
+        url = url.adjusted(QUrl::StripTrailingSlash);
+        url.setPath(url.path() + '/' + (name));
         urlList << url;
     }
     return urlList;
 }
 
-KUrl AbstractJobThread::downloadIfRemote(const KUrl &baseUrl, const QStringList & files)
+QUrl AbstractJobThread::downloadIfRemote(const QUrl &baseUrl, const QStringList & files)
 {
     // download remote URL-s if necessary
 
@@ -363,18 +365,18 @@ KUrl AbstractJobThread::downloadIfRemote(const KUrl &baseUrl, const QStringList 
         sendInfo(i18n("Downloading remote files"));
 
         _downloadTempDir = new KTempDir();
-        KUrl::List urlList = remoteUrls(baseUrl, files);
+        QList<QUrl> urlList = remoteUrls(baseUrl, files);
 
-        KUrl dest(_downloadTempDir->name());
+        QUrl dest(_downloadTempDir->name());
 
         QList<QVariant> args;
-        args << urlList;
+        args << KrServices::toStringList(urlList);
         args << dest;
 
         UserEvent * downloadEvent = new UserEvent(CMD_DOWNLOAD_FILES, args);
         QList<QVariant> * result = _job->getEventResponse(downloadEvent);
         if (result == 0)
-            return KUrl();
+            return QUrl();
 
         int errorCode = (*result)[ 0 ].value<int>();
         QString errorText = (*result)[ 1 ].value<QString>();
@@ -383,7 +385,7 @@ KUrl AbstractJobThread::downloadIfRemote(const KUrl &baseUrl, const QStringList 
 
         if (errorCode) {
             sendError(errorCode, errorText);
-            return KUrl();
+            return QUrl();
         } else {
             return dest;
         }
@@ -393,7 +395,7 @@ KUrl AbstractJobThread::downloadIfRemote(const KUrl &baseUrl, const QStringList 
 }
 
 
-QString AbstractJobThread::tempFileIfRemote(const KUrl &kurl, const QString &type)
+QString AbstractJobThread::tempFileIfRemote(const QUrl &kurl, const QString &type)
 {
     if (kurl.isLocalFile()) {
         return kurl.path();
@@ -410,10 +412,10 @@ QString AbstractJobThread::tempFileIfRemote(const KUrl &kurl, const QString &typ
     return _tempFileName;
 }
 
-QString AbstractJobThread::tempDirIfRemote(const KUrl &kurl)
+QString AbstractJobThread::tempDirIfRemote(const QUrl &kurl)
 {
     if (kurl.isLocalFile()) {
-        return kurl.path(KUrl::RemoveTrailingSlash);
+        return kurl.adjusted(QUrl::StripTrailingSlash).path();
     }
 
     _tempDir = new KTempDir();
@@ -490,7 +492,7 @@ void AbstractJobThread::sendAddProgress(qulonglong value, const QString &progres
     _job->sendEvent(infoEvent);
 }
 
-void AbstractJobThread::calcSpaceLocal(const KUrl &baseUrl, const QStringList & files, KIO::filesize_t &totalSize,
+void AbstractJobThread::calcSpaceLocal(const QUrl &baseUrl, const QStringList & files, KIO::filesize_t &totalSize,
                                        unsigned long &totalDirs, unsigned long &totalFiles)
 {
     sendReset(i18n("Calculating space"));
@@ -521,11 +523,11 @@ bool AbstractJobThread::uploadTempFiles()
         sendInfo(i18n("Uploading to remote destination"));
 
         if (_tempFile) {
-            KUrl::List urlList;
-            urlList << KUrl(_tempFileName);
+            QList<QUrl> urlList;
+            urlList << QUrl::fromLocalFile(_tempFileName);
 
             QList<QVariant> args;
-            args << urlList;
+            args << KrServices::toStringList(urlList);
             args << _tempFileTarget;
 
             UserEvent * uploadEvent = new UserEvent(CMD_UPLOAD_FILES, args);
@@ -545,19 +547,19 @@ bool AbstractJobThread::uploadTempFiles()
         }
 
         if (_tempDir) {
-            KUrl::List urlList;
+            QList<QUrl> urlList;
             QDir tempDir(_tempDirName);
             QStringList list = tempDir.entryList();
             foreach(const QString &name, list) {
                 if (name == "." || name == "..")
                     continue;
-                KUrl url = _tempDirName;
-                url.addPath(name);
+                QUrl url = QUrl::fromLocalFile(_tempDirName).adjusted(QUrl::StripTrailingSlash);
+                url.setPath(url.path() + '/' + (name));
                 urlList << url;
             }
 
             QList<QVariant> args;
-            args << urlList;
+            args << KrServices::toStringList(urlList);
             args << _tempDirTarget;
 
             UserEvent * uploadEvent = new UserEvent(CMD_UPLOAD_FILES, args);

@@ -24,12 +24,12 @@
 #include "../VFS/vfs.h"
 #include "../GUI/krtreewidget.h"
 
-#include <QtWidgets/QToolButton>
 #include <QtCore/QMap>
+#include <QtCore/QUrl>
+#include <QtWidgets/QToolButton>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDialog>
-#include <KDE/KUrl>
 
 #include <KCompletion/KLineEdit>
 
@@ -37,9 +37,9 @@ class KrAddBookmarkDlg: public KDialog
 {
     Q_OBJECT
 public:
-    KrAddBookmarkDlg(QWidget *parent, KUrl url = KUrl());
-    KUrl url() const {
-        return KUrl(_url->text());
+    KrAddBookmarkDlg(QWidget *parent, QUrl url = QUrl());
+    QUrl url() const {
+        return QUrl::fromUserInput(_url->text(), QString(), QUrl::AssumeLocalFile);
     }
     QString name() const {
         return _name->text();

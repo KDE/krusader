@@ -97,7 +97,7 @@ KParts::ReadOnlyPart* PanelViewerBase::getPart(QString mimetype)
     return part;
 }
 
-void PanelViewerBase::openUrl(KUrl url)
+void PanelViewerBase::openUrl(QUrl url)
 {
     closeUrl();
     curl = url;
@@ -292,8 +292,8 @@ KParts::ReadOnlyPart* PanelViewer::createPart(QString mimetype)
     if (part) {
         KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(part);
         if (ext) {
-            connect(ext, SIGNAL(openUrlRequestDelayed(const KUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SLOT(openUrl(const KUrl &)));
-            connect(ext, SIGNAL(openUrlRequestDelayed(const KUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SIGNAL(openUrlRequest(const KUrl &)));
+            connect(ext, SIGNAL(openUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SLOT(openUrl(const QUrl &)));
+            connect(ext, SIGNAL(openUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SIGNAL(openUrlRequest(const QUrl &)));
         }
     }
     return part;
@@ -345,7 +345,7 @@ void PanelEditor::openFile(KFileItem fi)
         if(!cpart || mimetype.startsWith(QLatin1String("text/")) ||
                 mimetype.startsWith(QLatin1String("all/"))) {
             if(KMessageBox::Cancel == KMessageBox::warningContinueCancel(this,
-                  i18n("%1 is bigger than %2 MB" , curl.pathOrUrl(), limitMB))) {
+                  i18n("%1 is bigger than %2 MB" , curl.toDisplayString(QUrl::PreferLocalFile), limitMB))) {
                 setCurrentWidget(fallback);
                 emit openUrlFinished(this, false);
                 return;
@@ -371,7 +371,7 @@ void PanelEditor::openFile(KFileItem fi)
             return;
         } // else: don't show error message - assume this has been done by the editor part
     } else
-        KMessageBox::sorry(this, missingKPartMsg(), i18n("Cannot edit %1", curl.pathOrUrl()),
+        KMessageBox::sorry(this, missingKPartMsg(), i18n("Cannot edit %1", curl.toDisplayString(QUrl::PreferLocalFile)),
                            KMessageBox::AllowLink);
 
     setCurrentWidget(fallback);
@@ -411,8 +411,8 @@ KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
     if (part) {
         KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(part);
         if (ext) {
-            connect(ext, SIGNAL(openUrlRequestDelayed(const KUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SLOT(openUrl(const KUrl &)));
-            connect(ext, SIGNAL(openUrlRequestDelayed(const KUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SIGNAL(openUrlRequest(const KUrl &)));
+            connect(ext, SIGNAL(openUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SLOT(openUrl(const QUrl &)));
+            connect(ext, SIGNAL(openUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SIGNAL(openUrlRequest(const QUrl &)));
         }
     }
     return part;

@@ -34,7 +34,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDebug>
-#include <KDE/KUrl>
 #include <KDE/KComponentData>
 #include <KDE/KLocale>
 #include <KDE/KTemporaryFile>
@@ -212,7 +211,7 @@ void kio_krarcProtocol::receivedData(KProcess *, QByteArray &d)
     decompressedLen += d.length();
 }
 
-void kio_krarcProtocol::mkdir(const KUrl& url, int permissions)
+void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
 {
     KRDEBUG(getPath(url));
 
@@ -286,7 +285,7 @@ void kio_krarcProtocol::mkdir(const KUrl& url, int permissions)
     finished();
 }
 
-void kio_krarcProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags)
+void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flags)
 {
     KRDEBUG(getPath(url));
 
@@ -383,12 +382,12 @@ void kio_krarcProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flag
     finished();
 }
 
-void kio_krarcProtocol::get(const KUrl& url)
+void kio_krarcProtocol::get(const QUrl &url)
 {
     get(url, TRIES_WITH_PASSWORDS);
 }
 
-void kio_krarcProtocol::get(const KUrl& url, int tries)
+void kio_krarcProtocol::get(const QUrl &url, int tries)
 {
     bool decompressToFile = false;
     KRDEBUG(getPath(url));
@@ -420,7 +419,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries)
     // for RPM files extract the cpio file first
     if (!extArcReady && arcType == "rpm") {
         KrLinecountingProcess cpio;
-        cpio << "rpm2cpio" << getPath(arcFile->url(), KUrl::RemoveTrailingSlash);
+        cpio << "rpm2cpio" << getPath(arcFile->url(), QUrl::StripTrailingSlash);
         cpio.setStandardOutputFile(arcTempDir + "contents.cpio");
 
         cpio.start();
@@ -435,7 +434,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries)
     // for DEB files extract the tar file first
     if (!extArcReady && arcType == "deb") {
         KrLinecountingProcess dpkg;
-        dpkg << cmd << "--fsys-tarfile" << getPath(arcFile->url(), KUrl::RemoveTrailingSlash);
+        dpkg << cmd << "--fsys-tarfile" << getPath(arcFile->url(), QUrl::StripTrailingSlash);
         dpkg.setStandardOutputFile(arcTempDir + "contents.cpio");
 
         dpkg.start();
@@ -454,7 +453,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries)
     if (extArcReady) {
         proc << getCmd << arcTempDir + "contents.cpio" << '*' + localeEncodedString(file);
     } else if (arcType == "arj" || arcType == "ace" || arcType == "7z") {
-        proc << getCmd << getPath(arcFile->url(), KUrl::RemoveTrailingSlash) << localeEncodedString(file);
+        proc << getCmd << getPath(arcFile->url(), QUrl::StripTrailingSlash) << localeEncodedString(file);
         if (arcType == "ace" && QFile("/dev/ptmx").exists())    // Don't remove, unace crashes if missing!!!
             proc.setStandardInputFile("/dev/ptmx");
         file = url.fileName();
@@ -590,7 +589,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries)
     finished();
 }
 
-void kio_krarcProtocol::del(KUrl const & url, bool isFile)
+void kio_krarcProtocol::del(QUrl const & url, bool isFile)
 {
     KRDEBUG(getPath(url));
 
@@ -640,7 +639,7 @@ void kio_krarcProtocol::del(KUrl const & url, bool isFile)
     finished();
 }
 
-void kio_krarcProtocol::stat(const KUrl & url)
+void kio_krarcProtocol::stat(const QUrl &url)
 {
     KRDEBUG(getPath(url));
     if (!setArcFile(url)) {
@@ -657,11 +656,11 @@ void kio_krarcProtocol::stat(const KUrl & url)
               i18n("Accessing files is not supported with %1 archives", arcType));
         return;
     }
-    QString path = getPath(url, KUrl::RemoveTrailingSlash);
-    KUrl newUrl = url;
+    QString path = getPath(url, QUrl::StripTrailingSlash);
+    QUrl newUrl = url;
 
     // but treat the archive itself as the archive root
-    if (path == getPath(arcFile->url(), KUrl::RemoveTrailingSlash)) {
+    if (path == getPath(arcFile->url(), QUrl::StripTrailingSlash)) {
         newUrl.setPath(path + DIR_SEPARATOR);
         path = getPath(newUrl);
     }
@@ -684,7 +683,7 @@ void kio_krarcProtocol::stat(const KUrl & url)
     } else error(KIO::ERR_DOES_NOT_EXIST, path);
 }
 
-void kio_krarcProtocol::copy(const KUrl &url, const KUrl &dest, int, KIO::JobFlags flags)
+void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFlags flags)
 {
     kDebug() << "url:" << url << "dest:" << dest;
 
@@ -724,7 +723,7 @@ void kio_krarcProtocol::copy(const KUrl &url, const KUrl &dest, int, KIO::JobFla
 
             QString file = getPath(url).mid(getPath(arcFile->url()).length() + 1);
 
-            QString destDir = getPath(dest, KUrl::RemoveTrailingSlash);
+            QString destDir = getPath(dest, QUrl::StripTrailingSlash);
             if (!QDir(destDir).exists()) {
                 int ndx = destDir.lastIndexOf(DIR_SEPARATOR_CHAR);
                 if (ndx != -1)
@@ -738,7 +737,7 @@ void kio_krarcProtocol::copy(const KUrl &url, const KUrl &dest, int, KIO::JobFla
                 escapedFilename.replace("[", "[[]");
 
             KrLinecountingProcess proc;
-            proc << copyCmd << getPath(arcFile->url(), KUrl::RemoveTrailingSlash) << escapedFilename;
+            proc << copyCmd << getPath(arcFile->url(), QUrl::StripTrailingSlash) << escapedFilename;
             if (arcType == "ace" && QFile("/dev/ptmx").exists())    // Don't remove, unace crashes if missing!!!
                 proc.setStandardInputFile("/dev/ptmx");
             proc.setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect
@@ -747,11 +746,11 @@ void kio_krarcProtocol::copy(const KUrl &url, const KUrl &dest, int, KIO::JobFla
             proc.start();
             proc.waitForFinished();
             if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
-                error(KIO::ERR_COULD_NOT_WRITE, getPath(dest, KUrl::RemoveTrailingSlash) + "\n\n" + proc.getErrorMsg());
+                error(KIO::ERR_COULD_NOT_WRITE, getPath(dest, QUrl::StripTrailingSlash) + "\n\n" + proc.getErrorMsg());
                 return;
             }
-            if (!QFileInfo(getPath(dest, KUrl::RemoveTrailingSlash)).exists()) {
-                error(KIO::ERR_COULD_NOT_WRITE, getPath(dest, KUrl::RemoveTrailingSlash));
+            if (!QFileInfo(getPath(dest, QUrl::StripTrailingSlash)).exists()) {
+                error(KIO::ERR_COULD_NOT_WRITE, getPath(dest, QUrl::StripTrailingSlash));
                 return;
             }
 
@@ -770,7 +769,7 @@ void kio_krarcProtocol::copy(const KUrl &url, const KUrl &dest, int, KIO::JobFla
     //error(ERR_UNSUPPORTED_ACTION, unsupportedActionErrorString(mProtocol, CMD_COPY));
 }
 
-void kio_krarcProtocol::listDir(const KUrl& url)
+void kio_krarcProtocol::listDir(const QUrl &url)
 {
     KRDEBUG(getPath(url));
     if (!setArcFile(url)) {
@@ -788,7 +787,7 @@ void kio_krarcProtocol::listDir(const KUrl& url)
     // it might be a real dir !
     if (QFileInfo(path).exists()) {
         if (QFileInfo(path).isDir()) {
-            KUrl redir;
+            QUrl redir;
             redir.setPath(getPath(url));
             redirection(redir);
             finished();
@@ -815,7 +814,7 @@ void kio_krarcProtocol::listDir(const KUrl& url)
     finished();
 }
 
-bool kio_krarcProtocol::setArcFile(const KUrl& url)
+bool kio_krarcProtocol::setArcFile(const QUrl &url)
 {
     kDebug() << url;
 
@@ -824,7 +823,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url)
     archiveChanged = true;
     newArchiveURL = true;
     // is the file already set ?
-    if (arcFile && getPath(arcFile->url(), KUrl::RemoveTrailingSlash) == path.left(getPath(arcFile->url(), KUrl::RemoveTrailingSlash).length())) {
+    if (arcFile && getPath(arcFile->url(), QUrl::StripTrailingSlash) == path.left(getPath(arcFile->url(), QUrl::StripTrailingSlash).length())) {
         newArchiveURL = false;
         // Has it changed ?
         KFileItem* newArcFile = new KFileItem(arcFile->url(), QString(), arcFile->mode());
@@ -859,7 +858,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url)
             if (qfi.exists() && !qfi.isDir()) {
                 KDE_struct_stat stat_p;
                 KDE_lstat(newPath.left(pos).toLocal8Bit(), &stat_p);
-                arcFile = new KFileItem(KUrl(newPath.left(pos)), QString(), stat_p.st_mode);
+                arcFile = new KFileItem(QUrl::fromLocalFile(newPath.left(pos)), QString(), stat_p.st_mode);
                 break;
             }
         }
@@ -886,7 +885,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url)
         archiveChanged = true;
     archiveChanging = (currTime == (time_t)arcFile->time(KFileItem::ModificationTime).toTime_t());
 
-    arcPath = getPath(arcFile->url(), KUrl::RemoveTrailingSlash);
+    arcPath = getPath(arcFile->url(), QUrl::StripTrailingSlash);
     arcType = detectArchive(encrypted, arcPath);
 
     if (arcType == "tbz")
@@ -909,7 +908,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url)
     return initArcParameters();
 }
 
-bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced)
+bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
 {
     KRDEBUG(getPath(url));
     // set the archive location
@@ -941,7 +940,7 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced)
             proc << listCmd << arcPath;
             proc.setStandardOutputFile(temp.fileName());
         } else {
-            proc << listCmd << getPath(arcFile->url(), KUrl::RemoveTrailingSlash);
+            proc << listCmd << getPath(arcFile->url(), QUrl::StripTrailingSlash);
             proc.setStandardOutputFile(temp.fileName());
         }
         if (arcType == "ace" && QFile("/dev/ptmx").exists())    // Don't remove, unace crashes if missing!!!
@@ -1038,7 +1037,7 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced)
     return true;
 }
 
-QString kio_krarcProtocol::findArcDirectory(const KUrl& url)
+QString kio_krarcProtocol::findArcDirectory(const QUrl &url)
 {
     kDebug() << url;
 
@@ -1055,7 +1054,7 @@ QString kio_krarcProtocol::findArcDirectory(const KUrl& url)
     return arcDir;
 }
 
-UDSEntry* kio_krarcProtocol::findFileEntry(const KUrl& url)
+UDSEntry* kio_krarcProtocol::findFileEntry(const QUrl &url)
 {
     QString arcDir = findArcDirectory(url);
     if (arcDir.isEmpty()) return 0;
@@ -1066,7 +1065,7 @@ UDSEntry* kio_krarcProtocol::findFileEntry(const KUrl& url)
     UDSEntryList* dirList = itef.value();
 
     QString name = getPath(url);
-    if (getPath(arcFile->url(), KUrl::RemoveTrailingSlash) == getPath(url, KUrl::RemoveTrailingSlash)) name = '.'; // the '/' case
+    if (getPath(arcFile->url(), QUrl::StripTrailingSlash) == getPath(url, QUrl::StripTrailingSlash)) name = '.'; // the '/' case
     else {
         if (name.right(1) == DIR_SEPARATOR) name.truncate(name.length() - 1);
         name = name.mid(name.lastIndexOf(DIR_SEPARATOR) + 1);
@@ -1851,7 +1850,7 @@ void kio_krarcProtocol::checkOutputForPassword(KProcess * proc, QByteArray & buf
 
 void kio_krarcProtocol::invalidatePassword()
 {
-    KRDEBUG(getPath(arcFile->url(), KUrl::RemoveTrailingSlash) + DIR_SEPARATOR);
+    KRDEBUG(getPath(arcFile->url(), QUrl::StripTrailingSlash) + DIR_SEPARATOR);
 
     if (!encrypted)
         return;
@@ -1862,8 +1861,8 @@ void kio_krarcProtocol::invalidatePassword()
     authInfo.readOnly = true;
     authInfo.keepPassword = true;
     authInfo.verifyPath = true;
-    QString fileName = getPath(arcFile->url(), KUrl::RemoveTrailingSlash);
-    authInfo.url = KUrl(ROOT_DIR);
+    QString fileName = getPath(arcFile->url(), QUrl::StripTrailingSlash);
+    authInfo.url = QUrl::fromLocalFile(ROOT_DIR);
     authInfo.url.setHost(fileName /*.replace('/','_')*/);
     authInfo.url.setScheme("krarc");
 
@@ -1887,8 +1886,8 @@ QString kio_krarcProtocol::getPassword()
     authInfo.readOnly = true;
     authInfo.keepPassword = true;
     authInfo.verifyPath = true;
-    QString fileName = getPath(arcFile->url(), KUrl::RemoveTrailingSlash);
-    authInfo.url = KUrl(ROOT_DIR);
+    QString fileName = getPath(arcFile->url(), QUrl::StripTrailingSlash);
+    authInfo.url = QUrl::fromLocalFile(ROOT_DIR);
     authInfo.url.setHost(fileName /*.replace('/','_')*/);
     authInfo.url.setScheme("krarc");
 
@@ -1967,9 +1966,9 @@ QString kio_krarcProtocol::decodeString(char * buf)
     return codec->toUnicode(buf);
 }
 
-QString kio_krarcProtocol::getPath(const KUrl & url, KUrl::AdjustPathOption trailing)
+QString kio_krarcProtocol::getPath(const QUrl &url, QUrl::FormattingOptions options)
 {
-    QString path = url.path(trailing);
+    QString path = url.adjusted(options).path();
     REPLACE_DIR_SEP2(path);
 
 #ifdef Q_WS_WIN

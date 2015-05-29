@@ -21,12 +21,12 @@
 #include <QtCore/QHash>
 #include <QtCore/QTextStream>
 #include <QtCore/QFile>
+#include <QtCore/QUrl>
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDebug>
-#include <KDE/KUrl>
 #include <KDE/KMenu>
 #include <KDE/KStandardDirs>
 
@@ -64,7 +64,7 @@ void UserAction::setAvailability()
     setAvailability(ACTIVE_FUNC->files()->vfs_getFile(ACTIVE_PANEL->view->getCurrentItem()));
 }
 
-void UserAction::setAvailability(const KUrl& currentURL)
+void UserAction::setAvailability(const QUrl &currentURL)
 {
     //kDebug() << "UserAction::setAvailability currendFile: " << currentURL.url() << endl;
     // disable the entries that should not appear in this folder
@@ -75,7 +75,7 @@ void UserAction::setAvailability(const KUrl& currentURL)
     }
 }
 
-void UserAction::populateMenu(KActionMenu* menu, const KUrl *currentURL)
+void UserAction::populateMenu(KActionMenu* menu, const QUrl *currentURL)
 {
     // I have not found any method in Qt/KDE
     // for non-recursive searching of children by name ...

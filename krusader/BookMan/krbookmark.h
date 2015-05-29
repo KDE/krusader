@@ -21,10 +21,9 @@
 #define KRBOOKMARK_H
 
 #include <QtCore/QList>
+#include <QtCore/QUrl>
 #include <QtWidgets/QAction>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 
 class KActionCollection;
 
@@ -32,7 +31,7 @@ class KrBookmark: public QAction
 {
     Q_OBJECT
 public:
-    KrBookmark(QString name, KUrl url, KActionCollection *parent, QString icon = "", QString actionName = QString());
+    KrBookmark(QString name, QUrl url, KActionCollection *parent, QString icon = "", QString actionName = QString());
     KrBookmark(QString name, QString icon = ""); // creates a folder
     ~KrBookmark();
     // text() and setText() to change the name of the bookmark
@@ -40,10 +39,10 @@ public:
     inline const QString& iconName() const {
         return _icon;
     }
-    inline const KUrl& url() const {
+    inline const QUrl &url() const {
         return _url;
     }
-    inline void setURL(const KUrl& url) {
+    inline void setURL(const QUrl &url) {
         _url = url;
     }
     inline bool isFolder() const {
@@ -64,14 +63,14 @@ public:
     static KrBookmark* separator();
 
 signals:
-    void activated(const KUrl& url);
+    void activated(const QUrl &url);
 
 protected slots:
     void activatedProxy();
 
 
 private:
-    KUrl _url;
+    QUrl _url;
     QString _icon;
     bool _folder;
     bool _separator;

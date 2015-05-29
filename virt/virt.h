@@ -34,12 +34,12 @@ public:
     VirtProtocol(const QByteArray &pool, const QByteArray &app);
     virtual ~VirtProtocol();
 
-    virtual void listDir(const KUrl & url);
-    virtual void stat(const KUrl & url);
-    virtual void get(const KUrl & url);
-    virtual void mkdir(const KUrl& url, int permissions);
-    virtual void copy(const KUrl &src, const KUrl &dest, int permissions, bool overwrite);
-    virtual void del(KUrl const & url, bool isFile);
+    virtual void listDir(const QUrl &url);
+    virtual void stat(const QUrl &url);
+    virtual void get(const QUrl &url);
+    virtual void mkdir(const QUrl &url, int permissions);
+    virtual void copy(const QUrl &src, const QUrl &dest, int permissions, bool overwrite);
+    virtual void del(QUrl const & url, bool isFile);
 
 protected:
     bool lock();
@@ -47,14 +47,14 @@ protected:
     bool save();
     bool load();
 
-    void local_entry(const KUrl& url, KIO::UDSEntry& entry);
+    void local_entry(const QUrl &url, KIO::UDSEntry& entry);
     bool addDir(QString& path);
 
 
-    static QHash<QString, KUrl::List*> kioVirtDict;
+    static QHash<QString, QList<QUrl>*> kioVirtDict;
     static KConfig* kio_virt_db;
 
-    bool rewriteURL(const KUrl&, KUrl&);
+    bool rewriteURL(const QUrl&, QUrl&);
 
 };
 

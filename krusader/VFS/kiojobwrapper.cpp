@@ -38,7 +38,6 @@
 #include <QtWidgets/QApplication>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 #include <KDE/KLocale>
 
 #include <KIO/Global>
@@ -76,7 +75,7 @@ bool KrJobStarter::event(QEvent * e)
     return QObject::event(e);
 }
 
-KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url) : QObject(0),
+KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const QUrl &url) : QObject(0),
         m_autoErrorHandling(false), m_started(false),
         m_suspended(false)
 {
@@ -85,7 +84,7 @@ KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url) : QObject(
     m_url = url;
 }
 
-KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url, void * userData) : QObject(0),
+KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const QUrl &url, void * userData) : QObject(0),
         m_autoErrorHandling(false), m_started(false),
         m_suspended(false)
 {
@@ -95,7 +94,7 @@ KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url, void * use
     m_userData = userData;
 }
 
-KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url, const KUrl::List &list,
+KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const QUrl &url, const QList<QUrl> &list,
                              int pmode, bool showp) : QObject(0),
         m_autoErrorHandling(false), m_started(false),
         m_suspended(false)
@@ -108,7 +107,7 @@ KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url, const KUrl
     m_showProgress = showp;
 }
 
-KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url, const KUrl &dest, const QStringList &names,
+KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const QUrl &url, const QUrl &dest, const QStringList &names,
                              bool showp, const QString &atype, const QMap<QString, QString> &packProps) : QObject(0),
         m_urlList(), m_autoErrorHandling(false), m_started(false),
         m_suspended(false)
@@ -117,8 +116,9 @@ KIOJobWrapper::KIOJobWrapper(KIOJobWrapperType type, const KUrl &url, const KUrl
     m_url = dest;
     m_archiveSourceBase = url;
     foreach(const QString &name , names) {
-        KUrl srcUrl = url;
-        srcUrl.addPath(name);
+        QUrl srcUrl = url;
+        srcUrl = srcUrl.adjusted(QUrl::StripTrailingSlash);
+        srcUrl.setPath(srcUrl.path() + '/' + (name));
         m_urlList << srcUrl;
     }
     m_archiveFileNames = names;
@@ -179,47 +179,47 @@ void KIOJobWrapper::createJob()
         deleteLater();
 }
 
-KIOJobWrapper * KIOJobWrapper::stat(KUrl &url)
+KIOJobWrapper * KIOJobWrapper::stat(QUrl &url)
 {
     return new KIOJobWrapper(Stat, url);
 }
 
-KIOJobWrapper * KIOJobWrapper::directorySize(KUrl &url)
+KIOJobWrapper * KIOJobWrapper::directorySize(QUrl &url)
 {
     return new KIOJobWrapper(DirectorySize, url);
 }
 
-KIOJobWrapper * KIOJobWrapper::copy(int pmode, KUrl::List &list, KUrl &url, bool showProgress)
+KIOJobWrapper * KIOJobWrapper::copy(int pmode, QList<QUrl> &list, QUrl &url, bool showProgress)
 {
     return new KIOJobWrapper(Copy, url, list, pmode, showProgress);
 }
 
-KIOJobWrapper * KIOJobWrapper::move(int pmode, KUrl::List &list, KUrl &url, bool showProgress)
+KIOJobWrapper * KIOJobWrapper::move(int pmode, QList<QUrl> &list, QUrl &url, bool showProgress)
 {
     return new KIOJobWrapper(Move, url, list, pmode, showProgress);
 }
 
-KIOJobWrapper * KIOJobWrapper::virtualCopy(const QStringList *names, vfs * vfs, KUrl& dest,
-        const KUrl& baseURL, int pmode, bool showProgressInfo)
+KIOJobWrapper * KIOJobWrapper::virtualCopy(const QStringList *names, vfs * vfs, QUrl& dest,
+        const QUrl &baseURL, int pmode, bool showProgressInfo)
 {
     return new KIOJobWrapper(VirtualCopy, dest,
                              new VirtualCopyJob(names, vfs, dest, baseURL, (PreserveMode)pmode, KIO::CopyJob::Copy, showProgressInfo, false));
 }
 
-KIOJobWrapper * KIOJobWrapper::virtualMove(const QStringList *names, vfs * vfs, KUrl& dest,
-        const KUrl& baseURL, int pmode, bool showProgressInfo)
+KIOJobWrapper * KIOJobWrapper::virtualMove(const QStringList *names, vfs * vfs, QUrl& dest,
+        const QUrl &baseURL, int pmode, bool showProgressInfo)
 {
     return new KIOJobWrapper(VirtualMove, dest,
                              new VirtualCopyJob(names, vfs, dest, baseURL, (PreserveMode)pmode, KIO::CopyJob::Move, showProgressInfo, false));
 }
 
-KIOJobWrapper * KIOJobWrapper::pack(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames,
+KIOJobWrapper * KIOJobWrapper::pack(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames,
                                     const QString &type, const QMap<QString, QString> &packProps, bool showProgressInfo)
 {
     return new KIOJobWrapper(Pack, srcUrl, destUrl, fileNames, showProgressInfo, type, packProps);
 }
 
-KIOJobWrapper * KIOJobWrapper::unpack(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames,
+KIOJobWrapper * KIOJobWrapper::unpack(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames,
                                       bool showProgressInfo)
 {
     return new KIOJobWrapper(Unpack, srcUrl, destUrl, fileNames, showProgressInfo, QString(), QMap<QString, QString> ());
@@ -286,10 +286,10 @@ QString KIOJobWrapper::toolTip()
     QString tip = "<qt><div align=\"center\">";
     tip += "<h3>" + Qt::escape(typeStr()) + "</h3>";
     tip += "<table frame=\"box\" border=\"1\"><tbody>";
-    tip += "<tr><td>" + Qt::escape(i18n("Target")) + "</td><td>" + Qt::escape(url().prettyUrl()) + "</td></tr>";
+    tip += "<tr><td>" + Qt::escape(i18n("Target")) + "</td><td>" + Qt::escape(url().toDisplayString()) + "</td></tr>";
     tip += "<tr><td>" + Qt::escape(i18n("Source")) + "</td><td>";
-    foreach(const KUrl &urlIn, urlList()) {
-        tip += "<li>" + Qt::escape(urlIn.prettyUrl()) + "</li>";
+    foreach(const QUrl &urlIn, urlList()) {
+        tip += "<li>" + Qt::escape(urlIn.toDisplayString()) + "</li>";
     }
     tip += "</td></tr>";
     tip += "</tbody></table>";

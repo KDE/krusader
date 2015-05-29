@@ -40,7 +40,6 @@
 #include <KDE/KDebug>
 #include <KDE/KLocale>
 #include <KDE/KInputDialog>
-#include <KDE/KUrl>
 #include <KDE/KMimeType>
 #include <KDE/KVBox>
 #include <KDE/KPushButton>
@@ -355,7 +354,7 @@ KrAction::~KrAction()
     krUserAction->removeKrAction(this);   // Importent! Else Krusader will crash when writing the actions to file
 }
 
-bool KrAction::isAvailable(const KUrl& currentURL)
+bool KrAction::isAvailable(const QUrl &currentURL)
 {
     bool available = true; //show per default (FIXME: make the default an attribute of <availability>)
 
@@ -363,8 +362,8 @@ bool KrAction::isAvailable(const KUrl& currentURL)
     if (! _showonlyProtocol.empty()) {
         available = false;
         for (QStringList::Iterator it = _showonlyProtocol.begin(); it != _showonlyProtocol.end(); ++it) {
-            //kDebug() << "KrAction::isAvailable currendProtocol: " << currentURL.protocol() << " =?= " << *it << endl;
-            if (currentURL.protocol() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
+            //kDebug() << "KrAction::isAvailable currendProtocol: " << currentURL.scheme() << " =?= " << *it << endl;
+            if (currentURL.scheme() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
                 available = true;
                 break;
             }
@@ -381,7 +380,7 @@ bool KrAction::isAvailable(const KUrl& currentURL)
                     break;
                 }
             } else
-                if (currentURL.directory() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
+                if (currentURL.adjusted(QUrl::RemoveFilename|QUrl::StripTrailingSlash).path() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
                     available = true;
                     break;
                 }

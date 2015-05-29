@@ -34,7 +34,7 @@ public:
     void showMenu();
 
 signals:
-    void openUrl(const KUrl &url);
+    void openUrl(const QUrl &url);
     void aboutToShow();
 
 protected slots:

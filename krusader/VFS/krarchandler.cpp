@@ -668,9 +668,9 @@ QString KRarcHandler::getPassword(QString path)
     return "";
 }
 
-bool KRarcHandler::isArchive(const KUrl& url)
+bool KRarcHandler::isArchive(const QUrl &url)
 {
-    QString protocol = url.protocol();
+    QString protocol = url.scheme();
     if (arcProtocols.indexOf(protocol) != -1)
         return true;
     else return false;

@@ -33,10 +33,10 @@
 
 #include <QtCore/QString>
 #include <QtCore/QObject>
+#include <QtCore/QUrl>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KMimeType>
-#include <KDE/KUrl>
 
 #include <KIO/Global>
 #include <KIO/UDSEntry>
@@ -129,7 +129,7 @@ public:
     inline time_t           vfile_getTime_t()  const {
         return vfile_time_t;
     }
-    inline const KUrl&      vfile_getUrl()     const {
+    inline const QUrl&      vfile_getUrl()     const {
         return vfile_url;
     }
 
@@ -150,7 +150,7 @@ public:
     inline void             vfile_setSize(KIO::filesize_t size) {
         vfile_size = size;
     }
-    inline void             vfile_setUrl(const KUrl& url)       {
+    inline void             vfile_setUrl(const QUrl &url)       {
         vfile_url = url;
     }
 
@@ -187,7 +187,7 @@ protected:
     bool             vfile_brokenLink;
     QString          vfile_mimeType; //< file mimetype
     QString          vfile_symDest;  //< if it's a sym link - its detination
-    KUrl             vfile_url;      //< file URL - empty by default
+    QUrl             vfile_url;      //< file URL - empty by default
     QString          vfile_icon;     //< the name of the icon file
     bool             vfile_isdir;    //< flag, if it's a directory
     int              vfile_rwx;      //< flag, showing read, write, execute properties

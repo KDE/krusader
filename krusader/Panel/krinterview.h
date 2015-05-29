@@ -44,8 +44,8 @@ public:
     virtual uint numSelected() const {
         return _selection.count();
     }
-    virtual KUrl::List selectedUrls();
-    virtual void setSelection(const KUrl::List urls);
+    virtual QList<QUrl> selectedUrls();
+    virtual void setSelection(const QList<QUrl> urls);
     virtual KrViewItem* getFirst();
     virtual KrViewItem* getLast();
     virtual KrViewItem* getNext(KrViewItem *current);

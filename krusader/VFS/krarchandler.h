@@ -35,9 +35,7 @@
 
 #include <QtCore/QStringList>
 #include <QtCore/QObject>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
+#include <QtCore/QUrl>
 
 #include <KCoreAddons/KProcess>
 #include <KWallet/KWallet>
@@ -78,7 +76,7 @@ public:
     // return the a list of supported packers
     static QStringList supportedPackers();
     // true - if the url is an archive (ie: tar:/home/test/file.tar.bz2)
-    static bool isArchive(const KUrl& url);
+    static bool isArchive(const QUrl &url);
     // used to determine the type of the archive
     static QString getType(bool &encrypted, QString fileName, QString mime, bool checkEncrypted = true, bool fast = false);
     // queries the password from the user

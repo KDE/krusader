@@ -24,11 +24,11 @@
 #include <QtCore/QPointer>
 #include <QtCore/QEvent>
 #include <QtCore/QMap>
+#include <QtCore/QUrl>
 #include <QtXml/QDomEntity>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KMenu>
-#include <KDE/KUrl>
 
 #include "krbookmark.h"
 
@@ -46,7 +46,7 @@ public:
     ~KrBookmarkHandler();
     void populate(KMenu *menu);
     void addBookmark(KrBookmark *bm, KrBookmark *parent = 0);
-    void bookmarkCurrent(KUrl url);
+    void bookmarkCurrent(QUrl url);
 
 protected:
     void deleteBookmark(KrBookmark *bm);
@@ -69,7 +69,7 @@ protected:
 protected slots:
     void slotBookmarkCurrent();
     void bookmarksChanged(const QString&, const QString&);
-    void slotActivated(const KUrl& url);
+    void slotActivated(const QUrl &url);
 
 private:
     FileManagerWindow *_mainWindow;

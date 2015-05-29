@@ -75,7 +75,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : KMenu(parent), pa
 
     for (KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it) {
         vfile *file = panel->func->files()->vfs_search(((*it)->name()));
-        KUrl url = file->vfile_getUrl();
+        QUrl url = file->vfile_getUrl();
         _items.append(KFileItem(url, file->vfile_getMime(), file->vfile_getMode()));
     }
 
@@ -88,7 +88,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : KMenu(parent), pa
 
     QList<QString> protocols;
     for (int i = 0; i < items.size(); ++i) {
-        protocols.append(panel->func->getVFile(items[ i ]) ->vfile_getUrl().protocol());
+        protocols.append(panel->func->getVFile(items[ i ]) ->vfile_getUrl().scheme());
     }
     bool inTrash = protocols.contains("trash");
     bool trashOnly = (protocols.count() == 1) && (protocols[ 0 ] == "trash");
@@ -154,7 +154,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : KMenu(parent), pa
     }
 
     // --------------- user actions
-    QAction *uAct = new UserActionPopupMenu(panel->func->files()->vfs_getFile(item->name()).url());
+    QAction *uAct = new UserActionPopupMenu(panel->func->files()->vfs_getFile(item->name()));
     addAction(uAct);
     uAct->setText(i18n("User Actions"));
 
@@ -227,11 +227,11 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : KMenu(parent), pa
 
     // ---------- mount/umount/eject
     if (panel->func->files() ->vfs_getType() == vfs::VFS_NORMAL && vf->vfile_isDir() && !multipleSelections) {
-        if (krMtMan.getStatus(panel->func->files() ->vfs_getFile(item->name()).path(KUrl::RemoveTrailingSlash)) == KMountMan::MOUNTED)
+        if (krMtMan.getStatus(panel->func->files() ->vfs_getFile(item->name()).adjusted(QUrl::StripTrailingSlash).path()) == KMountMan::MOUNTED)
             addAction(i18n("Unmount"))->setData(QVariant(UNMOUNT_ID));
-        else if (krMtMan.getStatus(panel->func->files() ->vfs_getFile(item->name()).path(KUrl::RemoveTrailingSlash)) == KMountMan::NOT_MOUNTED)
+        else if (krMtMan.getStatus(panel->func->files() ->vfs_getFile(item->name()).adjusted(QUrl::StripTrailingSlash).path()) == KMountMan::NOT_MOUNTED)
             addAction(i18n("Mount"))->setData(QVariant(MOUNT_ID));
-        if (krMtMan.ejectable(panel->func->files() ->vfs_getFile(item->name()).path(KUrl::RemoveTrailingSlash)))
+        if (krMtMan.ejectable(panel->func->files() ->vfs_getFile(item->name()).adjusted(QUrl::StripTrailingSlash).path()))
             addAction(i18n("Eject"))->setData(QVariant(EJECT_ID));
     }
 
@@ -294,7 +294,7 @@ void KrPopupMenu::addCreateNewMenu()
 
 void KrPopupMenu::performAction(int id)
 {
-    KUrl::List lst;
+    QList<QUrl> lst;
 
     switch (id) {
     case - 1 : // the user clicked outside of the menu
@@ -329,7 +329,7 @@ void KrPopupMenu::performAction(int id)
                     if ( KMessageBox::warningContinueCancel( krApp,
                          i18n("<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone forever.</qt>", item->name()),
                          QString(), KStandardGuiItem::cont(), KStandardGuiItem::cancel(), "Shred" ) == KMessageBox::Continue )
-                       KShred::shred( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) );
+                       KShred::shred( panel->func->files() ->vfs_getFile( item->name() ).adjusted(QUrl::RemoveTrailingSlash).path() );
                   break;*/
     case OPEN_KONQ_ID :
         KToolInvocation::startServiceByDesktopName("konqueror", _item->url().toDisplayString(QUrl::PreferLocalFile));

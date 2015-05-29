@@ -214,7 +214,7 @@ void KMountMan::mount(QString mntPoint, bool blocking)
 void KMountMan::unmount(QString mntPoint, bool blocking)
 {
     //if working dir is below mountpoint cd to ~ first
-    if(KUrl(QDir(mntPoint).canonicalPath()).isParentOf(KUrl(QDir::current().canonicalPath())))
+    if(QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()).isParentOf(QUrl::fromLocalFile(QDir::current().canonicalPath())))
         QDir::setCurrent(QDir::homePath());
 
     QString udi = findUdiForPath(mntPoint, Solid::DeviceInterface::StorageAccess);
@@ -310,7 +310,7 @@ void KMountMan::eject(QString mntPoint)
         return;
 
     //if working dir is below mountpoint cd to ~ first
-    if(KUrl(QDir(mntPoint).canonicalPath()).isParentOf(KUrl(QDir::current().canonicalPath())))
+    if(QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()).isParentOf(QUrl::fromLocalFile(QDir::current().canonicalPath())))
         QDir::setCurrent(QDir::homePath());
 
 

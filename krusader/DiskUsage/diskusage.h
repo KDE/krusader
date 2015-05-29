@@ -35,6 +35,7 @@
 #include <QtCore/QEvent>
 #include <QtCore/QTimer>
 #include <QtCore/QStack>
+#include <QtCore/QUrl>
 #include <QtGui/QResizeEvent>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QPixmap>
@@ -42,9 +43,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QScrollArea>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 
 #include <KWidgetsAddons/KSqueezedTextLabel>
 
@@ -72,7 +70,7 @@ public:
     DiskUsage(QString confGroup, QWidget *parent = 0);
     ~DiskUsage();
 
-    void       load(KUrl dirName);
+    void       load(const QUrl &dirName);
     void       close();
     void       stopLoad();
     bool       isLoading()     {
@@ -111,7 +109,7 @@ public:
 
     QPixmap    getIcon(QString mime);
 
-    KUrl       getBaseURL() {
+    QUrl       getBaseURL() {
         return baseURL;
     }
 
@@ -150,7 +148,7 @@ protected:
     void       createStatus();
     void       executeAction(int, File * = 0);
 
-    KUrl       baseURL;             //< the base URL of loading
+    QUrl       baseURL;             //< the base URL of loading
 
     DUListView                *listView;
     DULines                   *lineView;
@@ -193,7 +191,7 @@ public:
     LoaderWidget(QWidget *parent = 0);
 
     void init();
-    void setCurrentURL(KUrl url);
+    void setCurrentURL(const QUrl &url);
     void setValues(int fileNum, int dirNum, KIO::filesize_t total);
     bool wasCancelled()  {
         return cancelled;

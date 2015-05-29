@@ -1259,7 +1259,7 @@ void KrView::customSelection(bool select)
 void KrView::refresh()
 {
     QString current = getCurrentItem();
-    KUrl::List selection = selectedUrls();
+    QList<QUrl> selection = selectedUrls();
 
     clear();
 

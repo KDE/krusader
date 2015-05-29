@@ -22,9 +22,7 @@
 #include <QtCore/QString>
 #include <QtCore/QHash>
 #include <QtCore/QFile>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
+#include <QtCore/QUrl>
 
 #include <KIO/Global>
 #include <KIO/SlaveBase>
@@ -41,27 +39,27 @@ class kio_krarcProtocol : public QObject, public KIO::SlaveBase
 public:
     kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
     virtual ~kio_krarcProtocol();
-    virtual void stat(const KUrl & url);
-    virtual void get(const KUrl& url);
-    virtual void put(const KUrl& url, int permissions, KIO::JobFlags flags);
-    virtual void mkdir(const KUrl& url, int permissions);
-    virtual void listDir(const KUrl& url);
-    virtual void del(KUrl const & url, bool isFile);
-    virtual void copy(const KUrl &src, const KUrl &dest, int permissions, KIO::JobFlags flags);
+    virtual void stat(const QUrl &url);
+    virtual void get(const QUrl &url);
+    virtual void put(const QUrl &url, int permissions, KIO::JobFlags flags);
+    virtual void mkdir(const QUrl &url, int permissions);
+    virtual void listDir(const QUrl &url);
+    virtual void del(QUrl const & url, bool isFile);
+    virtual void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags);
 
 public slots:
     void receivedData(KProcess *, QByteArray &);
     void checkOutputForPassword(KProcess *, QByteArray &);
 
 protected:
-    virtual bool   initDirDict(const KUrl& url, bool forced = false);
+    virtual bool   initDirDict(const QUrl &url, bool forced = false);
     virtual bool   initArcParameters();
     QString detectArchive(bool &encrypted, QString fileName);
     virtual void parseLine(int lineNo, QString line);
-    virtual bool setArcFile(const KUrl& url);
+    virtual bool setArcFile(const QUrl &url);
     virtual QString getPassword();
     virtual void invalidatePassword();
-    QString getPath(const KUrl & url, KUrl::AdjustPathOption trailing = KUrl::LeaveTrailingSlash);
+    QString getPath(const QUrl &url, QUrl::FormattingOptions options = 0);
 
     QString localeEncodedString(QString str);
     QByteArray encodeString(QString);
@@ -76,7 +74,7 @@ protected:
     QStringList copyCmd; ///< copy to file command.
 
 private:
-    void get(const KUrl& url, int tries);
+    void get(const QUrl &url, int tries);
     /** checks if the exit code is OK. */
     bool checkStatus(int exitCode);
     /** service function for parseLine. */
@@ -84,9 +82,9 @@ private:
     /** translate permittion string to mode_t. */
     mode_t parsePermString(QString perm);
     /** return the name of the directory inside the archive. */
-    QString findArcDirectory(const KUrl& url);
+    QString findArcDirectory(const QUrl &url);
     /** find the UDSEntry of a file in a directory. */
-    KIO::UDSEntry* findFileEntry(const KUrl& url);
+    KIO::UDSEntry* findFileEntry(const QUrl &url);
     /** add a new directory (file list container). */
     KIO::UDSEntryList* addNewDir(QString path);
     QString fullPathName(QString name);

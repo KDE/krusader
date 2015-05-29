@@ -140,6 +140,24 @@ QStringList KrServices::quote(const QStringList& names)
     return result;
 }
 
+QList<QUrl> KrServices::toUrlList(const QStringList &list)
+{
+    QList<QUrl> result;
+    for (QStringList::ConstIterator it = list.constBegin(); it != list.constEnd(); ++it) {
+        result.append(QUrl::fromUserInput(*it, QDir::currentPath(), QUrl::AssumeLocalFile));
+    }
+    return result;
+}
+
+QStringList KrServices::toStringList(const QList<QUrl> &list)
+{
+    QStringList result;
+    for(QList<QUrl>::ConstIterator it = list.constBegin(); it != list.constEnd(); ++it) {
+        result.append(it->toString());
+    }
+    return result;
+}
+
 QString KrServices::escape(QString name)
 {
     const QString evilstuff = "\\\"'`()[]{}!?;$&<>| \t\r\n";  // stuff that should get escaped
@@ -150,9 +168,9 @@ QString KrServices::escape(QString name)
     return name;
 }
 
-QString KrServices::getPath(const KUrl & url, KUrl::AdjustPathOption trailing)
+QString KrServices::getPath(const QUrl &url, QUrl::FormattingOptions options)
 {
-    QString path = url.path(trailing);
+    QString path = url.toDisplayString(options | QUrl::PreferLocalFile);
     REPLACE_DIR_SEP2(path);
 
 #ifdef Q_WS_WIN

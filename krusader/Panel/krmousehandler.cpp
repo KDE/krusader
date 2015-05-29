@@ -28,6 +28,8 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KGlobal>
 
+#include <KCoreAddons/KUrlMimeData>
+
 #define CANCEL_TWO_CLICK_RENAME {_singleClicked = false;_renameTimer.stop();}
 
 KrMouseHandler::KrMouseHandler(KrView * view, int contextMenuShift) : _view(view), _rightClickedItem(0),
@@ -316,14 +318,14 @@ void KrMouseHandler::cancelTwoClickRename()
 
 bool KrMouseHandler::dragEnterEvent(QDragEnterEvent *e)
 {
-    KUrl::List URLs = KUrl::List::fromMimeData(e->mimeData());
+    QList<QUrl> URLs = KUrlMimeData::urlsFromMimeData(e->mimeData());
     e->setAccepted(!URLs.isEmpty());
     return true;
 }
 
 bool KrMouseHandler::dragMoveEvent(QDragMoveEvent *e)
 {
-    KUrl::List URLs = KUrl::List::fromMimeData(e->mimeData());
+    QList<QUrl> URLs = KUrlMimeData::urlsFromMimeData(e->mimeData());
     e->setAccepted(!URLs.isEmpty());
     return true;
 }

@@ -40,9 +40,7 @@
 #include <QtCore/QList>
 #include <QtCore/QEventLoop>
 #include <QtCore/QTime>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
+#include <QtCore/QUrl>
 
 #include <KIO/JobClasses>
 
@@ -118,9 +116,9 @@ protected:
         _job = job;
     }
 
-    KUrl::List remoteUrls(const KUrl &baseUrl, const QStringList & files);
-    KUrl downloadIfRemote(const KUrl &baseUrl, const QStringList & files);
-    void calcSpaceLocal(const KUrl &baseUrl, const QStringList & files, KIO::filesize_t &totalSize,
+    QList<QUrl> remoteUrls(const QUrl &baseUrl, const QStringList & files);
+    QUrl downloadIfRemote(const QUrl &baseUrl, const QStringList & files);
+    void calcSpaceLocal(const QUrl &baseUrl, const QStringList & files, KIO::filesize_t &totalSize,
                         unsigned long &totalDirs, unsigned long &totalFiles);
 
     void sendError(int errorCode, QString message);
@@ -135,8 +133,8 @@ protected:
         _progressTitle = title;
     }
 
-    QString tempFileIfRemote(const KUrl &kurl, const QString &type);
-    QString tempDirIfRemote(const KUrl &kurl);
+    QString tempFileIfRemote(const QUrl &kurl, const QString &type);
+    QString tempDirIfRemote(const QUrl &kurl);
     bool uploadTempFiles();
 
     bool isExited() {
@@ -154,10 +152,10 @@ protected:
 
     KTemporaryFile      *_tempFile;
     QString              _tempFileName;
-    KUrl                 _tempFileTarget;
+    QUrl                 _tempFileTarget;
     KTempDir            *_tempDir;
     QString              _tempDirName;
-    KUrl                 _tempDirTarget;
+    QUrl                 _tempDirTarget;
 
     bool                 _exited;
 

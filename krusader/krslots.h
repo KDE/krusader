@@ -34,9 +34,7 @@
 #define KRSLOTS_H
 
 #include <QtCore/QObject>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
+#include <QtCore/QUrl>
 
 #include <KCoreAddons/KProcess>
 #include <KIO/NetAccess>
@@ -45,7 +43,7 @@
 
 class KrMainWindow;
 class KrViewItem;
-class KUrl;
+class QUrl;
 
 class KrProcess: public KProcess
 {
@@ -81,9 +79,9 @@ public:
     ~KRslots() {}
 
 public slots:
-    void sendFileByEmail(const KUrl::List &filename);
+    void sendFileByEmail(const QList<QUrl> &filename);
     void compareContent();
-    void compareContent(KUrl, KUrl);
+    void compareContent(QUrl, QUrl);
     void insertFileName(bool full_path);
     void rootKrusader();
     void swapPanels();
@@ -98,7 +96,7 @@ public slots:
     void trashBin();
     /** called by actExec* actions to choose the built-in command line mode */
     void execTypeSetup();
-    void refresh(const KUrl& u);
+    void refresh(const QUrl &u);
     void runKonfigurator(bool firstTime = false);
     void startKonfigurator() {
         runKonfigurator(false);

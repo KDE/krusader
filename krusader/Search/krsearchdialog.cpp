@@ -61,6 +61,7 @@
 #include "krsearchmod.h"
 #include "../krglobal.h"
 #include "../kractions.h"
+#include "../krservices.h"
 #include "../krslots.h"
 #include "../defaults.h"
 #include "../panelmanager.h"
@@ -114,7 +115,7 @@ public:
     {
         vfile *vf = new vfile(path, size, perm, mtime, false/*FIXME*/, false/*FIXME*/,
                               uid, gid, QString(), QString(), 0);
-        vf->vfile_setUrl(KUrl(path));
+        vf->vfile_setUrl(QUrl::fromLocalFile(path));
         _vfiles << vf;
         if(!foundText.isEmpty())
             _foundText[vf] = foundText;
@@ -328,7 +329,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
         generalFilter->searchInArchives->setChecked(lastSearchInArchives);
         generalFilter->followLinks->setChecked(lastFollowSymLinks);
         // the path in the active panel should be the default search location
-        generalFilter->searchIn->lineEdit()->setText(ACTIVE_PANEL->virtualPath().pathOrUrl());
+        generalFilter->searchIn->lineEdit()->setText(ACTIVE_PANEL->virtualPath().toDisplayString(QUrl::PreferLocalFile));
     } else
         profileManager->loadProfile(profile);   // important: call this _after_ you've connected profileManager ot the loadFromProfile!!
 }
@@ -499,7 +500,7 @@ void KrSearchDialog::executed(const QString &name)
         fileName = name.mid(idx+1);
         path = name.left(idx);
     }
-    ACTIVE_FUNC->openUrl(KUrl(path), fileName);
+    ACTIVE_FUNC->openUrl(QUrl::fromLocalFile(path), fileName);
     showMinimized();
 }
 
@@ -613,13 +614,13 @@ void KrSearchDialog::contextMenu(const QPoint &pos)
 void KrSearchDialog::feedToListBox()
 {
     virt_vfs v(0, true);
-    v.vfs_refresh(KUrl("/"));
+    v.vfs_refresh(QUrl::fromLocalFile("/"));
 
     KConfigGroup group(krConfig, "Search");
     int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
     QString queryName;
     if(query) {
-        QString where = query->searchInDirs().toStringList().join(", ");
+        QString where = KrServices::toStringList(query->searchInDirs()).join(", ");
         if(query->content().isEmpty())
             queryName = i18n("Search results for \"%1\" in %2", query->nameFilter(), where);
         else
@@ -643,7 +644,7 @@ void KrSearchDialog::feedToListBox()
             return;
     }
 
-    KUrl::List urlList;
+    QList<QUrl> urlList;
     foreach(vfile *vf, result->vfiles())
         urlList.push_back(vf->vfile_getUrl());
 
@@ -653,12 +654,12 @@ void KrSearchDialog::feedToListBox()
 
     isBusy = true;
 
-    KUrl url = KUrl(QString("virt:/") + vfsName);
+    QUrl url = QUrl(QString("virt:/") + vfsName);
     v.vfs_refresh(url);
     v.vfs_addFiles(&urlList, KIO::CopyJob::Copy, 0);
     v.setMetaInformation(queryName);
     //ACTIVE_FUNC->openUrl(url);
-    ACTIVE_MNG->slotNewTab(url.prettyUrl());
+    ACTIVE_MNG->slotNewTab(url);
 
     isBusy = false;
 
@@ -667,7 +668,7 @@ void KrSearchDialog::feedToListBox()
 
 void KrSearchDialog::copyToClipBoard()
 {
-    KUrl::List urls;
+    QList<QUrl> urls;
     foreach(vfile *vf, result->vfiles())
         urls.push_back(vf->vfile_getUrl());
 
@@ -676,7 +677,7 @@ void KrSearchDialog::copyToClipBoard()
 
     QMimeData *mimeData = new QMimeData;
     mimeData->setImageData(FL_LOADICON("file"));
-    urls.populateMimeData(mimeData);
+    mimeData->setUrls(urls);
 
     QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);
 }

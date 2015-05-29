@@ -162,7 +162,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
 
     // create MountMan
     KrGlobal::mountMan = new KMountMan(this);
-    connect(KrGlobal::mountMan, SIGNAL(refreshPanel(const KUrl &)), SLOTS, SLOT(refresh(const KUrl &)));
+    connect(KrGlobal::mountMan, SIGNAL(refreshPanel(const QUrl &)), SLOTS, SLOT(refresh(const QUrl &)));
 
     // create bookman
     krBookMan = new KrBookmarkHandler(this);
@@ -194,30 +194,16 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     KConfigGroup gs(krConfig, "Startup");
     QString     startProfile = gs.readEntry("Starter Profile Name", QString());
 
-    QStringList leftTabs;
-    QStringList rightTabs;
+    QList<QUrl> leftTabs;
+    QList<QUrl> rightTabs;
 
     // get command-line arguments
     if (parser.isSet("left")) {
-        leftTabs = parser.value("left").split(',');
-
-        // make sure left or right are not relative paths
-        for (int i = 0; i != leftTabs.count(); i++) {
-            leftTabs[ i ] = leftTabs[ i ].trimmed();
-            if (!leftTabs[ i ].startsWith('/') && leftTabs[ i ].indexOf(":/") < 0)
-                leftTabs[ i ] = QDir::currentPath() + '/' + leftTabs[ i ];
-        }
+        leftTabs = KrServices::toUrlList(parser.value("left").split(','));
         startProfile.clear();
     }
     if (parser.isSet("right")) {
-        rightTabs = parser.value("right").split(',');
-
-        // make sure left or right are not relative paths
-        for (int i = 0; i != rightTabs.count(); i++) {
-            rightTabs[ i ] = rightTabs[ i ].trimmed();
-            if (!rightTabs[ i ].startsWith('/') && rightTabs[ i ].indexOf(":/") < 0)
-                rightTabs[ i ] = QDir::currentPath() + '/' + rightTabs[ i ];
-        }
+        rightTabs = KrServices::toUrlList(parser.value("right").split(','));
         startProfile.clear();
     }
     if (parser.isSet("profile"))
@@ -839,7 +825,7 @@ bool Krusader::openUrl(QString url)
 
 void Krusader::doOpenUrl()
 {
-    QString url = _urlToOpen;
+    QUrl url = QUrl::fromUserInput(_urlToOpen, QDir::currentPath(), QUrl::AssumeLocalFile);
     _urlToOpen.clear();
     int tab = ACTIVE_MNG->findTab(url);
     if(tab >= 0)

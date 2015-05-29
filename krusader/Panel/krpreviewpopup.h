@@ -20,11 +20,9 @@
 #ifndef KRPREVIEWPOPUP_H
 #define KRPREVIEWPOPUP_H
 
+#include <QtCore/QUrl>
 #include <QtGui/QPixmap>
 #include <QtWidgets/QMenu>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 
 #include <KIOCore/KFileItem>
 
@@ -35,7 +33,7 @@ class KrPreviewPopup : public QMenu
 public:
     KrPreviewPopup();
 
-    void setUrls(const KUrl::List* urls);
+    void setUrls(const QList<QUrl>* urls);
 public slots:
     void addPreview(const KFileItem& file, const QPixmap& preview);
     void view(QAction *);

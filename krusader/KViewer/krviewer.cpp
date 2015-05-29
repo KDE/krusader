@@ -269,7 +269,7 @@ KrViewer* KrViewer::getViewer(bool new_window)
     }
 }
 
-void KrViewer::view(KUrl url, QWidget * parent)
+void KrViewer::view(QUrl url, QWidget * parent)
 {
     KConfigGroup group(krConfig, "General");
     bool defaultWindow = group.readEntry("View In Separate Window", _ViewInSeparateWindow);
@@ -277,19 +277,19 @@ void KrViewer::view(KUrl url, QWidget * parent)
     view(url, Default, defaultWindow, parent);
 }
 
-void KrViewer::view(KUrl url, Mode mode,  bool new_window, QWidget * parent)
+void KrViewer::view(QUrl url, Mode mode,  bool new_window, QWidget * parent)
 {
     KrViewer* viewer = getViewer(new_window);
     viewer->viewInternal(url, mode, parent);
     viewer->show();
 }
 
-void KrViewer::edit(KUrl url, QWidget * parent)
+void KrViewer::edit(QUrl url, QWidget * parent)
 {
     edit(url, Text, -1, parent);
 }
 
-void KrViewer::edit(KUrl url, Mode mode, int new_window, QWidget * parent)
+void KrViewer::edit(QUrl url, Mode mode, int new_window, QWidget * parent)
 {
     KConfigGroup group(krConfig, "General");
     QString editor = group.readEntry("Editor", _Editor);
@@ -308,7 +308,7 @@ void KrViewer::edit(KUrl url, Mode mode, int new_window, QWidget * parent)
         }
         // if the file is local, pass a normal path and not a url. this solves
         // the problem for editors that aren't url-aware
-        proc << cmdArgs << url.pathOrUrl();
+        proc << cmdArgs << url.toDisplayString(QUrl::PreferLocalFile);
         if (!proc.startDetached())
             KMessageBox::sorry(krMainWindow, i18n("Can not open \"%1\"", editor));
         return ;
@@ -337,11 +337,11 @@ void KrViewer::addTab(PanelViewerBase *pvb)
     connect(pvb, SIGNAL(openUrlFinished(PanelViewerBase*, bool)),
                  SLOT(openUrlFinished(PanelViewerBase*, bool)));
 
-    connect(pvb, SIGNAL(urlChanged(PanelViewerBase *, const KUrl &)),
-            this,  SLOT(tabURLChanged(PanelViewerBase *, const KUrl &)));
+    connect(pvb, SIGNAL(urlChanged(PanelViewerBase *, const QUrl &)),
+            this,  SLOT(tabURLChanged(PanelViewerBase *, const QUrl &)));
 }
 
-void KrViewer::tabURLChanged(PanelViewerBase *pvb, const KUrl & url)
+void KrViewer::tabURLChanged(PanelViewerBase *pvb, const QUrl &url)
 {
     Q_UNUSED(url)
     refreshTab(pvb);
@@ -629,7 +629,7 @@ QString KrViewer::makeTabText(PanelViewerBase *pvb)
 
 QString KrViewer::makeTabToolTip(PanelViewerBase *pvb)
 {
-    QString url = pvb->url().pathOrUrl();
+    QString url = pvb->url().toDisplayString(QUrl::PreferLocalFile);
     return pvb->isEditor() ?
             i18nc("filestate: filename", "Editing: %1", url) :
             i18nc("filestate: filename", "Viewing: %1", url);
@@ -679,7 +679,7 @@ void KrViewer::removePart(KParts::ReadOnlyPart *part)
         kDebug()<<"part hasn't been added:"<<part;
 }
 
-void KrViewer::viewInternal(KUrl url, Mode mode, QWidget *parent)
+void KrViewer::viewInternal(QUrl url, Mode mode, QWidget *parent)
 {
     returnFocusTo = parent;
 
@@ -689,7 +689,7 @@ void KrViewer::viewInternal(KUrl url, Mode mode, QWidget *parent)
     viewWidget->openUrl(url);
 }
 
-void KrViewer::editInternal(KUrl url, Mode mode, QWidget * parent)
+void KrViewer::editInternal(QUrl url, Mode mode, QWidget * parent)
 {
     returnFocusTo = parent;
 

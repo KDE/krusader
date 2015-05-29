@@ -19,8 +19,7 @@
 #ifndef __ABSTRACTPANELMANAGER_H__
 #define __ABSTRACTPANELMANAGER_H__
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
+#include <QtCore/QUrl>
 
 class KrPanel;
 
@@ -31,7 +30,7 @@ public:
     virtual bool isLeft() = 0;
     virtual AbstractPanelManager *otherManager() = 0;
     virtual KrPanel *currentPanel() = 0;
-    virtual void newTab(const KUrl&, KrPanel *nextTo = 0) = 0;
+    virtual void newTab(const QUrl&, KrPanel *nextTo = 0) = 0;
 };
 
 

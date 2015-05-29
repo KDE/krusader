@@ -98,11 +98,11 @@ void KrRemoteEncodingMenu::slotAboutToShow()
 
 QString KrRemoteEncodingMenu::currentCharacterSet()
 {
-    KUrl currentURL = ACTIVE_PANEL->virtualPath();
+    QUrl currentURL = ACTIVE_PANEL->virtualPath();
 #if KDE_IS_VERSION(4,10,0)
     return KProtocolManager::charsetFor(currentURL);
 #else
-    return KIO::SlaveConfig::self()->configData(currentURL.protocol(), currentURL.host(), DATA_KEY);
+    return KIO::SlaveConfig::self()->configData(currentURL.scheme(), currentURL.host(), DATA_KEY);
 #endif
 }
 
@@ -157,9 +157,9 @@ void KrRemoteEncodingMenu::slotTriggered(QAction * act)
 
 void KrRemoteEncodingMenu::chooseEncoding(QString encoding)
 {
-    KUrl currentURL = ACTIVE_PANEL->virtualPath();
+    QUrl currentURL = ACTIVE_PANEL->virtualPath();
 
-    KConfig config(("kio_" + currentURL.protocol() + "rc").toLatin1());
+    KConfig config(("kio_" + currentURL.scheme() + "rc").toLatin1());
     QString host = currentURL.host();
 
     QString charset = KGlobal::charsets()->encodingForName(encoding);
@@ -179,11 +179,11 @@ void KrRemoteEncodingMenu::slotReload()
 
 void KrRemoteEncodingMenu::chooseDefault()
 {
-    KUrl currentURL = ACTIVE_PANEL->virtualPath();
+    QUrl currentURL = ACTIVE_PANEL->virtualPath();
 
     // We have no choice but delete all higher domain level
     // settings here since it affects what will be matched.
-    KConfig config(("kio_" + currentURL.protocol() + "rc").toLatin1());
+    KConfig config(("kio_" + currentURL.scheme() + "rc").toLatin1());
 
     QStringList partList = currentURL.host().split('.', QString::SkipEmptyParts);
     if (!partList.isEmpty()) {

@@ -161,7 +161,7 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
     //m_focus is set correctly (I've been strict, I assure you it is correct!)
 
     if (m_focus && !m_focus->isFake()) {
-        const KUrl url   = Widget::url(m_focus->file());
+        const QUrl url   = Widget::url(m_focus->file());
         const bool isDir = m_focus->file()->isDir();
 
         if (e->button() == Qt::RightButton) {
@@ -172,7 +172,7 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
 
             if (isDir) {
                 actKonq = popup.addAction(KIcon("konqueror"), i18n("Open &Konqueror Here"));
-                if (url.protocol() == "file")
+                if (url.scheme() == "file")
                     actKonsole = popup.addAction(KIcon("konsole"), i18n("Open &Konsole Here"));
 
                 if (m_focus->file() != m_tree) {
@@ -197,10 +197,10 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
             else if (result == actViewMag || result == actFileOpen)
                 goto sectionTwo;
             else if (result == actEditDel) {
-                const KUrl url = Widget::url(m_focus->file());
+                const QUrl url = Widget::url(m_focus->file());
                 const QString message = (m_focus->file()->isDir()
-                                         ? i18n("<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</b> deleted.</qt>", url.prettyUrl())
-                                         : i18n("<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>", url.prettyUrl()));
+                                         ? i18n("<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</b> deleted.</qt>", url.toDisplayString())
+                                         : i18n("<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>", url.toDisplayString()));
                 const int userIntention = KMessageBox::warningContinueCancel(this, message, QString(), KGuiItem(i18n("&Delete"), "edit-delete"));
 
                 if (userIntention == KMessageBox::Continue) {

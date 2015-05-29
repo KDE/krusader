@@ -59,7 +59,7 @@ KrusaderImageFilePreview::~KrusaderImageFilePreview()
 void KrusaderImageFilePreview::showPreview()
 {
     // Pass a copy since clearPreview() will clear currentURL
-    KUrl url = currentURL;
+    QUrl url = currentURL;
     showPreview(url, true);
 }
 
@@ -69,12 +69,7 @@ void KrusaderImageFilePreview::showPreview(const QUrl& url)
     showPreview(url, false);
 }
 
-void KrusaderImageFilePreview::showPreview(const KUrl& url)
-{
-    showPreview(url, false);
-}
-
-void KrusaderImageFilePreview::showPreview(const KUrl &url, bool force)
+void KrusaderImageFilePreview::showPreview(const QUrl &url, bool force)
 {
     if (!url.isValid()) {
         clearPreview();
@@ -111,7 +106,7 @@ QSize KrusaderImageFilePreview::sizeHint() const
     return QSize(20, 200);   // otherwise it ends up huge???
 }
 
-KIO::PreviewJob * KrusaderImageFilePreview::createJob(const KUrl& url, int w, int h)
+KIO::PreviewJob * KrusaderImageFilePreview::createJob(const QUrl &url, int w, int h)
 {
 /*#if KDE_IS_VERSION(4,7,0)
     KFileItemList fileItemList;
@@ -123,7 +118,7 @@ KIO::PreviewJob * KrusaderImageFilePreview::createJob(const KUrl& url, int w, in
         job->setScaleType(KIO::PreviewJob::Scaled);
     return job;
 #else*/
-    KUrl::List urls;
+    QList<QUrl> urls;
     urls.append(url);
     return KIO::filePreview(urls, w, h, 0, 0, true, false);
 //#endif
@@ -158,7 +153,7 @@ void KrusaderImageFilePreview::clearPreview()
     }
 
     imageLabel->clear();
-    currentURL = KUrl();
+    currentURL = QUrl();
 }
 
 #include "kimagefilepreview.moc"

@@ -82,7 +82,7 @@ const QList<SplitterGUI::PredefinedDevice> &SplitterGUI::predefinedDevices()
     return list;
 };
 
-SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
+SplitterGUI::SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir) :
         QDialog(parent),
         userDefinedSize(0x100000), lastSelectedDevice(-1), resultCode(QDialog::Rejected),
         division(1)
@@ -94,7 +94,7 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
     grid->setContentsMargins(11, 11, 11, 11);
 
     QLabel *splitterLabel = new QLabel(this);
-    splitterLabel->setText(i18n("Split the file %1 to directory:", fileURL.pathOrUrl()));
+    splitterLabel->setText(i18n("Split the file %1 to directory:", fileURL.toDisplayString(QUrl::PreferLocalFile)));
     splitterLabel->setMinimumWidth(400);
     grid->addWidget(splitterLabel, 0 , 0);
 

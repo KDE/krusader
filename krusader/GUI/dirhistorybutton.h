@@ -23,9 +23,6 @@
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QToolButton>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-# include <KDE/KUrl>
-
 class QMenu;
 class QAction;
 class DirHistoryQueue;
@@ -55,7 +52,6 @@ public slots: // Public slots
     void slotPopupActivated(QAction *);
 signals: // Signals
     /** No descriptions */
-//     void openUrl(const KUrl&);
     void gotoPos(int pos);
 };
 

@@ -32,10 +32,8 @@
 #define SPLITTER_H
 
 #include <QtCore/QString>
+#include <QtCore/QUrl>
 #include <QtWidgets/QProgressDialog>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 
 #include <KIO/JobClasses>
 
@@ -46,7 +44,7 @@ class Splitter : public QProgressDialog
     Q_OBJECT
 
 public:
-    Splitter(QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn, bool overWriteIn);
+    Splitter(QWidget* parent,  QUrl fileNameIn, QUrl destinationDirIn, bool overWriteIn);
     ~Splitter();
 
     void split(KIO::filesize_t splitSizeIn);
@@ -68,15 +66,15 @@ private:
 
 
     // parameters
-    KUrl            fileName;
-    KUrl            destinationDir;
+    QUrl            fileName;
+    QUrl            destinationDir;
     KIO::filesize_t splitSize;
     int             permissions;
     bool            overwrite;
 
     // current split file stuff
     int             fileNumber;
-    KUrl            writeURL;
+    QUrl            writeURL;
     // how much can still be written to the current output file
     KIO::filesize_t outputFileRemaining;
 

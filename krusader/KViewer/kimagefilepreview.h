@@ -13,12 +13,10 @@
 #ifndef KIMAGEFILEPREVIEW_H
 #define KIMAGEFILEPREVIEW_H
 
+#include <QtCore/QUrl>
 #include <QtGui/QPixmap>
 #include <QtGui/QResizeEvent>
 #include <QtWidgets/QLabel>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 
 # include <KIOFileWidgets/KPreviewWidgetBase>
 #include <KIO/PreviewJob>
@@ -39,19 +37,18 @@ public:
     virtual QSize sizeHint() const;
 
 public slots:
-    void showPreview(const KUrl&);
+    void showPreview(const QUrl&);
     virtual void clearPreview();
 
 protected slots:
     void showPreview();
-    void showPreview(const QUrl&);
-    void showPreview(const KUrl& url, bool force);
+    void showPreview(const QUrl &url, bool force);
 
     virtual void gotPreview(const KFileItem&, const QPixmap&);
 
 protected:
     virtual void resizeEvent(QResizeEvent *e);
-    virtual KIO::PreviewJob * createJob(const KUrl& url,
+    virtual KIO::PreviewJob * createJob(const QUrl &url,
                                         int w, int h);
 
 private slots:
@@ -59,7 +56,7 @@ private slots:
     virtual void slotFailed(const KFileItem&);
 
 private:
-    KUrl currentURL;
+    QUrl currentURL;
     QTimer *timer;
     QLabel *imageLabel;
     QLabel *infoLabel;

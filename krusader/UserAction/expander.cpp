@@ -96,10 +96,10 @@ QStringList exp_placeholder::fileList(const KrPanel* const panel, const QString&
     }
     if (!omitPath) {    // add the current path
         // translate to urls using vfs
-        KUrl::List* list = panel->func->files()->vfs_getFiles(&items);
+        QList<QUrl>* list = panel->func->files()->vfs_getFiles(&items);
         items.clear();
         // parse everything to a single qstring
-        for (KUrl::List::Iterator it = list->begin(); it != list->end(); ++it) {
+        for (QList<QUrl>::Iterator it = list->begin(); it != list->end(); ++it) {
             items.push_back(useUrl ? (*it).url() : (*it).path());
         }
         delete list;
@@ -365,7 +365,7 @@ TagString exp_Current::expFunc(const KrPanel* panel, const QStringList& paramete
     if (parameter.count() > 0 && parameter[0].toLower() == "yes")    // omit the current path
         result = item;
     else {
-        KUrl url = panel->func->files()->vfs_getFile(item);
+        QUrl url = panel->func->files()->vfs_getFile(item);
         if (useUrl)
             result = url.url();
         else
@@ -512,13 +512,14 @@ TagString exp_Goto::expFunc(const KrPanel* panel, const QStringList& parameter, 
         return QString();
     }
 
+    QUrl url = QUrl::fromUserInput(parameter[0], QString(), QUrl::AssumeLocalFile);
     if (newTab) {
         if (panel == LEFT_PANEL)
-            MAIN_VIEW->leftManager()->slotNewTab(parameter[0]);
+            MAIN_VIEW->leftManager()->slotNewTab(url);
         else
-            MAIN_VIEW->rightManager()->slotNewTab(parameter[0]);
+            MAIN_VIEW->rightManager()->slotNewTab(url);
     } else {
-        panel->func->openUrl(parameter[0], "");
+        panel->func->openUrl(url, "");
         panel->gui->slotFocusOnMe();
     }
 
@@ -625,19 +626,19 @@ TagString exp_Copy::expFunc(const KrPanel*, const TagStringList& parameter, cons
         return QString();
     }
 
-    // basically the parameter can already be used as URL, but since KUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
+    // basically the parameter can already be used as URL, but since QUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
     QStringList lst = splitEach(parameter[0]);
     if (!parameter[1].isSimple()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("Expander: %Each% may not be in the second argument of %Copy%")));
         return QString();
     }
-    KUrl::List src;
+    QList<QUrl> src;
     for (QStringList::const_iterator it = lst.constBegin(), end = lst.constEnd();it != end;++it)
-        src.push_back(KUrl(*it));
+        src.push_back(QUrl::fromUserInput(*it, QString(), QUrl::AssumeLocalFile));
     // or transform(...) ?
-    KUrl dest = KUrl(parameter[1].string());
+    QUrl dest = QUrl::fromUserInput(parameter[1].string(), QString(), QUrl::AssumeLocalFile);
 
-    if (!dest.isValid() || find_if(src.constBegin(), src.constEnd(), not1(mem_fun_ref(&KUrl::isValid))) != src.constEnd()) {
+    if (!dest.isValid() || find_if(src.constBegin(), src.constEnd(), not1(mem_fun_ref(&QUrl::isValid))) != src.constEnd()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: invalid URLs in %_Copy(\"src\", \"dest\")%")));
         return QString();
     }
@@ -663,19 +664,19 @@ TagString exp_Move::expFunc(const KrPanel*, const TagStringList& parameter, cons
         return QString();
     }
 
-    // basically the parameter can already be used as URL, but since KUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
+    // basically the parameter can already be used as URL, but since QUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
     QStringList lst = splitEach(parameter[0]);
     if (!parameter[1].isSimple()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("%Each% may not be in the second argument of %Move%")));
         return QString();
     }
-    KUrl::List src;
+    QList<QUrl> src;
     for (QStringList::const_iterator it = lst.constBegin(), end = lst.constEnd();it != end;++it)
-        src.push_back(KUrl(*it));
+        src.push_back(QUrl::fromUserInput(*it, QString(), QUrl::AssumeLocalFile));
     // or transform(...) ?
-    KUrl dest = KUrl(parameter[1].string());
+    QUrl dest = QUrl::fromUserInput(parameter[1].string(), QString(), QUrl::AssumeLocalFile);
 
-    if (!dest.isValid() || find_if(src.constBegin(), src.constEnd(), not1(mem_fun_ref(&KUrl::isValid))) != src.constEnd()) {
+    if (!dest.isValid() || find_if(src.constBegin(), src.constEnd(), not1(mem_fun_ref(&QUrl::isValid))) != src.constEnd()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: invalid URLs in %_Move(\"src\", \"dest\")%")));
         return QString();
     }
@@ -898,7 +899,7 @@ TagString exp_Script::expFunc(const KrPanel*, const QStringList& parameter, cons
     }
 
     QString filename = parameter[0];
-    if (filename.find('/') && KUrl::isRelativeUrl(filename)) {
+    if (filename.find('/') && QUrl::isRelativeUrl(filename)) {
         // this return the local version of the file if this exists. else the global one is returnd
         filename = locate("data", "krusader/js/" + filename);
     }
@@ -967,7 +968,8 @@ TagString exp_View::expFunc(const KrPanel*, const QStringList& parameter, const 
     if (viewMode == "text") mode = KrViewer::Text;
     else if (viewMode == "hex") mode = KrViewer::Hex;
 
-    KrViewer::view(parameter[0], mode, (windowMode == "window"));
+    QUrl url = QUrl::fromUserInput(parameter[0], QString(), QUrl::AssumeLocalFile);
+    KrViewer::view(url, mode, (windowMode == "window"));
     //TODO: Call the viewer with viewMode and windowMode. Filename is in parameter[0].
     // It would be nice if parameter[0] could also be a space-separated filename-list (provided if the first parameter is %aList(selected)%)
 

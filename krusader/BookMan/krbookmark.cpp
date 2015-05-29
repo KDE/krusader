@@ -36,7 +36,7 @@ static const char* NAME_TRASH = I18N_NOOP("Trash bin");
 static const char* NAME_VIRTUAL = I18N_NOOP("Virtual Filesystem");
 static const char* NAME_LAN = I18N_NOOP("Local Network");
 
-KrBookmark::KrBookmark(QString name, KUrl url, KActionCollection *parent, QString icon, QString actionName) :
+KrBookmark::KrBookmark(QString name, QUrl url, KActionCollection *parent, QString icon, QString actionName) :
         QAction(parent), _url(url), _icon(icon), _folder(false), _separator(false), _autoDelete(true)
 {
     QString actName = actionName.isNull() ? BM_NAME(name) : BM_NAME(actionName);
@@ -84,7 +84,7 @@ KrBookmark* KrBookmark::trash(KActionCollection *collection)
 {
     KrBookmark *bm = getExistingBookmark(i18n(NAME_TRASH), collection);
     if (!bm)
-        bm = new KrBookmark(i18n(NAME_TRASH), KUrl("trash:/"), collection);
+        bm = new KrBookmark(i18n(NAME_TRASH), QUrl("trash:/"), collection);
 
     bm->setIcon(krLoader->loadIcon(KrTrashHandler::trashIcon(), KIconLoader::Small));
     return bm;
@@ -94,7 +94,7 @@ KrBookmark* KrBookmark::virt(KActionCollection *collection)
 {
     KrBookmark *bm = getExistingBookmark(i18n(NAME_VIRTUAL), collection);
     if (!bm) {
-        bm = new KrBookmark(i18n(NAME_VIRTUAL), KUrl("virt:/"), collection);
+        bm = new KrBookmark(i18n(NAME_VIRTUAL), QUrl("virt:/"), collection);
         bm->setIcon(krLoader->loadIcon("inode-fifo", KIconLoader::Small));
     }
     return bm;
@@ -104,7 +104,7 @@ KrBookmark* KrBookmark::lan(KActionCollection *collection)
 {
     KrBookmark *bm = getExistingBookmark(i18n(NAME_LAN), collection);
     if (!bm) {
-        bm = new KrBookmark(i18n(NAME_LAN), KUrl("remote:/"), collection);
+        bm = new KrBookmark(i18n(NAME_LAN), QUrl("remote:/"), collection);
         bm->setIcon(krLoader->loadIcon("network-wired", KIconLoader::Small));
     }
     return bm;

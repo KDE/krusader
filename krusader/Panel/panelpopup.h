@@ -21,15 +21,13 @@
 #define PANELPOPUP_H
 
 #include <QtCore/QPointer>
+#include <QtCore/QUrl>
 #include <QtGui/QPixmap>
 #include <QtGui/QDropEvent>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QTreeView>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 
 #include <KIOCore/KFileItem>
 #include <KIO/PreviewJob>
@@ -71,13 +69,13 @@ public slots:
     void hide();
 
 signals:
-    void selection(const KUrl &url);
+    void selection(const QUrl &url);
     void hideMe();
 
 protected slots:
     void tabSelected(int id);
     void treeSelection();
-    void handleOpenUrlRequest(const KUrl &url);
+    void handleOpenUrlRequest(const QUrl &url);
     void quickSelect();
     void quickSelect(const QString &);
     void quickSelectStore();
@@ -114,20 +112,20 @@ public:
     KrFileTreeView(QWidget *parent = 0);
     virtual ~KrFileTreeView() {}
 
-    KUrl currentUrl() const;
-    KUrl selectedUrl() const;
-    KUrl::List selectedUrls() const;
-    KUrl rootUrl() const;
+    QUrl currentUrl() const;
+    QUrl selectedUrl() const;
+    QList<QUrl> selectedUrls() const;
+    QUrl rootUrl() const;
 
 public Q_SLOTS:
     void setDirOnlyMode(bool enabled);
     void setShowHiddenFiles(bool enabled);
-    void setCurrentUrl(const KUrl &url);
-    void setRootUrl(const KUrl &url);
+    void setCurrentUrl(const QUrl &url);
+    void setRootUrl(const QUrl &url);
 
 Q_SIGNALS:
-    void activated(const KUrl &url);
-    void changedUrls(const KUrl &url);
+    void activated(const QUrl &url);
+    void changedUrls(const QUrl &url);
 
 private Q_SLOTS:
     void slotActivated(const QModelIndex&);
@@ -135,8 +133,8 @@ private Q_SLOTS:
     void slotExpanded(const QModelIndex&);
 
 private:
-    KUrl urlForProxyIndex(const QModelIndex &index) const;
-    void dropMimeData(const KUrl::List & lst, const KUrl & url, const QModelIndex & ind);
+    QUrl urlForProxyIndex(const QModelIndex &index) const;
+    void dropMimeData(const QList<QUrl> & lst, const QUrl &url, const QModelIndex & ind);
 
     KDirModel *mSourceModel;
     KDirSortFilterProxyModel *mProxyModel;

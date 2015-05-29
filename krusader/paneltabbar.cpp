@@ -38,7 +38,7 @@
 
 #include <KWidgetsAddons/KActionMenu>
 
-#define DISPLAY(X) (X.isLocalFile() ? X.path() : X.prettyUrl())
+#define DISPLAY(X) (X.isLocalFile() ? X.path() : X.toDisplayString())
 
 PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): KTabBar(parent),
     _maxTabLength(0), _tabClicked(false), _draggingTab(false)

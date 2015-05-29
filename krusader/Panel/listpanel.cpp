@@ -39,6 +39,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QtCore/QMimeData>
 #include <QtCore/QTimer>
 #include <QtCore/QRegExp>
+#include <QtCore/QUrl>
 #include <QtGui/QBitmap>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QPixmap>
@@ -56,13 +57,13 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KDE/KMenu>
 #include <KDE/KLocale>
 #include <KDE/KMimeType>
-#include <KDE/KUrl>
 #include <KDE/KStandardDirs>
 #include <KDE/KGlobalSettings>
 #include <KDE/KDebug>
 #include <KDE/KDiskFreeSpace>
 #include <kdeversion.h>
 
+#include <KCoreAddons/KUrlMimeData>
 #include <KWidgetsAddons/KMessageBox>
 #include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KCursor>
@@ -158,8 +159,8 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     // media button
     mediaButton = new MediaButton(this);
     connect(mediaButton, SIGNAL(aboutToShow()), this, SLOT(slotFocusOnMe()));
-    connect(mediaButton, SIGNAL(openUrl(const KUrl&)), func, SLOT(openUrl(const KUrl&)));
-    connect(mediaButton, SIGNAL(newTab(const KUrl&)), SLOT(newTab(const KUrl&)));
+    connect(mediaButton, SIGNAL(openUrl(const QUrl&)), func, SLOT(openUrl(const QUrl&)));
+    connect(mediaButton, SIGNAL(newTab(const QUrl&)), SLOT(newTab(const QUrl&)));
     ADD_WIDGET(mediaButton);
 
     // status bar
@@ -191,7 +192,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     // bookmarks button
     bookmarksButton = new KrBookmarkButton(this);
     connect(bookmarksButton, SIGNAL(aboutToShow()), this, SLOT(slotFocusOnMe()));
-    connect(bookmarksButton, SIGNAL(openUrl(const KUrl&)), func, SLOT(openUrl(const KUrl&)));
+    connect(bookmarksButton, SIGNAL(openUrl(const QUrl&)), func, SLOT(openUrl(const QUrl&)));
     bookmarksButton->setWhatsThis(i18n("Open menu with bookmarks. You can also add "
                                        "current location to the list, edit bookmarks "
                                        "or add subfolder to the list."));
@@ -210,8 +211,8 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     origin->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Minimum);
     connect(origin, SIGNAL(returnPressed(const QString&)), func, SLOT(urlEntered(const QString&)));
     connect(origin, SIGNAL(returnPressed(const QString&)), this, SLOT(slotFocusOnMe()));
-    connect(origin, SIGNAL(urlSelected(const KUrl &)), func, SLOT(urlEntered(const KUrl &)));
-    connect(origin, SIGNAL(urlSelected(const KUrl &)), this, SLOT(slotFocusOnMe()));
+    connect(origin, SIGNAL(urlSelected(const QUrl &)), func, SLOT(urlEntered(const QUrl &)));
+    connect(origin, SIGNAL(urlSelected(const QUrl &)), this, SLOT(slotFocusOnMe()));
     ADD_WIDGET(origin);
 
     // toolbar
@@ -451,7 +452,7 @@ void ListPanel::changeType(int type)
 {
     if (panelType != type) {
         QString current = view->getCurrentItem();
-        KUrl::List selection = view->selectedUrls();
+        QList<QUrl> selection = view->selectedUrls();
         bool filterApplysToDirs = view->properties()->filterApplysToDirs;
         KrViewProperties::FilterSpec filter = view->filter();
         FilterSettings filterSettings = view->properties()->filterSettings;
@@ -519,7 +520,7 @@ void ListPanel::togglePanelPopup()
 {
     if(!popup) {
         popup = new PanelPopup(splt, isLeft(), krApp);
-        connect(popup, SIGNAL(selection(const KUrl&)), SLOTS, SLOT(refresh(const KUrl&)));
+        connect(popup, SIGNAL(selection(const QUrl&)), SLOTS, SLOT(refresh(const QUrl&)));
         connect(popup, SIGNAL(hideMe()), this, SLOT(togglePanelPopup()));
     }
 
@@ -674,16 +675,16 @@ void ListPanel::slotFocusOnMe(bool focus)
 
 // this is used to start the panel
 //////////////////////////////////////////////////////////////////
-void ListPanel::start(KUrl url, bool immediate)
+void ListPanel::start(QUrl url, bool immediate)
 {
-    KUrl virt(url);
+    QUrl virt(url);
 
     if (!virt.isValid())
-        virt = KUrl(ROOT_DIR);
+        virt = QUrl::fromLocalFile(ROOT_DIR);
     if (virt.isLocalFile())
         _realPath = virt;
     else
-        _realPath = KUrl(ROOT_DIR);
+        _realPath = QUrl::fromLocalFile(ROOT_DIR);
 
     if (immediate)
         func->immediateOpenUrl(virt, true);
@@ -719,7 +720,7 @@ void ListPanel::slotStartUpdate()
     krApp->popularUrls()->addUrl(virtualPath());
 }
 
-void ListPanel::slotGetStats(const KUrl& url)
+void ListPanel::slotGetStats(const QUrl &url)
 {
     mediaButton->mountPointChanged(QString());
     freeSpace->setText(QString());
@@ -841,7 +842,7 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
     }
     //////////////////////////////////////////////////////////////////////////////
     // decode the data
-    KUrl::List URLs = KUrl::List::fromMimeData(e->mimeData());
+    QList<QUrl> URLs = KUrlMimeData::urlsFromMimeData(e->mimeData());
     if (URLs.isEmpty()) {
         e->ignore(); // not for us to handle!
         return ;
@@ -856,7 +857,7 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
 
     KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy;
 
-    // the KUrl::List is finished, let's go
+    // the QList<QUrl> is finished, let's go
     // --> display the COPY/MOVE/LINK menu
 
     QMenu popup(this);
@@ -917,7 +918,7 @@ void ListPanel::vfs_refresh(KJob* /*job*/)
 
 void ListPanel::startDragging(QStringList names, QPixmap px)
 {
-    KUrl::List * urls = func->files() ->vfs_getFiles(&names);
+    QList<QUrl> * urls = func->files() ->vfs_getFiles(&names);
 
     if (urls->isEmpty()) {   // avoid dragging empty urls
         delete urls;
@@ -927,7 +928,7 @@ void ListPanel::startDragging(QStringList names, QPixmap px)
     QDrag *drag = new QDrag(this);
     QMimeData *mimeData = new QMimeData;
     drag->setPixmap(px);
-    urls->populateMimeData(mimeData);
+    KUrlMimeData::setUrls(*urls, QList<QUrl>(), mimeData);
     drag->setMimeData(mimeData);
 
     drag->start();
@@ -983,11 +984,11 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
             // user pressed CTRL+Right/Left - refresh other panel to the selected path if it's a
             // directory otherwise as this one
             if ((isLeft() && e->key() == Qt::Key_Right) || (!isLeft() && e->key() == Qt::Key_Left)) {
-                KUrl newPath;
+                QUrl newPath;
                 KrViewItem *it = view->getCurrentKrViewItem();
 
                 if (it->name() == "..") {
-                    newPath = func->files()->vfs_getOrigin().upUrl();
+                    newPath = KIO::upUrl(func->files()->vfs_getOrigin());
                 } else {
                     vfile *v = func->getVFile(it);
                     if (v && v->vfile_isDir() && v->vfile_getName() != "..") {
@@ -1173,7 +1174,7 @@ void ListPanel::jumpBack()
     func->openUrl(_jumpBackURL);
 }
 
-void ListPanel::setJumpBack(KUrl url)
+void ListPanel::setJumpBack(QUrl url)
 {
     _jumpBackURL = url;
 }
@@ -1230,9 +1231,9 @@ void ListPanel::editLocation()
 
 void ListPanel::saveSettings(KConfigGroup cfg, bool saveHistory)
 {
-    KUrl url = virtualPath();
-    url.setPass(QString()); // make sure no password is saved
-    cfg.writeEntry("Url", url.pathOrUrl());
+    QUrl url = virtualPath();
+    url.setPassword(QString()); // make sure no password is saved
+    cfg.writeEntry("Url", url.toDisplayString(QUrl::PreferLocalFile));
     cfg.writeEntry("Type", getType());
     cfg.writeEntry("Properties", getProperties());
     if(popup) {
@@ -1253,14 +1254,14 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
 
     func->files()->vfs_enableRefresh(true);
 
-    _realPath = KUrl(ROOT_DIR);
+    _realPath = QUrl::fromLocalFile(ROOT_DIR);
 
     if(func->history->restore(KConfigGroup(&cfg, "History")))
         func->refresh();
     else {
-        KUrl url(cfg.readEntry("Url", ROOT_DIR));
+        QUrl url(cfg.readEntry("Url", ROOT_DIR));
         if (!url.isValid())
-            url = KUrl(ROOT_DIR);
+            url = QUrl::fromLocalFile(ROOT_DIR);
         func->openUrl(url);
     }
 
@@ -1286,7 +1287,7 @@ void ListPanel::updatePopupPanel(KrViewItem *item)
 
 void ListPanel::otherPanelChanged()
 {
-    func->syncURL = KUrl();
+    func->syncURL = QUrl();
 }
 
 void ListPanel::getFocusCandidates(QVector<QWidget*> &widgets)
@@ -1304,8 +1305,8 @@ void ListPanel::updateButtons()
     backButton->setEnabled(func->history->canGoBack());
     forwardButton->setEnabled(func->history->canGoForward());
     historyButton->setEnabled(func->history->count() > 1);
-    cdRootButton->setEnabled(!virtualPath().equals(KUrl(ROOT_DIR),
-                                    KUrl::CompareWithoutTrailingSlash));
+    cdRootButton->setEnabled(!virtualPath().matches(QUrl::fromLocalFile(ROOT_DIR),
+                                                    QUrl::StripTrailingSlash));
     cdUpButton->setEnabled(!func->files()->isRoot());
     cdHomeButton->setEnabled(!func->atHome());
 }
@@ -1315,10 +1316,11 @@ void ListPanel::newTab(KrViewItem *it)
     if (!it)
         return;
     else if (it->name() == "..") {
-        newTab(virtualPath().upUrl(), true);
+        newTab(KIO::upUrl(virtualPath()), true);
     } else if (ITEM2VFILE(this, it)->vfile_isDir()) {
-        KUrl url = virtualPath();
-        url.addPath(it->name());
+        QUrl url = virtualPath();
+        url = url.adjusted(QUrl::StripTrailingSlash);
+        url.setPath(url.path() + '/' + (it->name()));
         newTab(url, true);
     }
 }

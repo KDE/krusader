@@ -48,6 +48,7 @@
 #include <QtCore/QTimer>
 #include <QtCore/QTime>
 #include <QtCore/QDateTime>
+#include <QtCore/QUrl>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QVBoxLayout>
@@ -57,7 +58,6 @@
 #include <QtWidgets/QLabel>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 #include <KDE/KLocale>
 #include <KDE/KDialog>
 
@@ -151,7 +151,7 @@ int Synchronizer::compare(QString leftURL, QString rightURL, KRQuery *query, boo
     if (!leftURL.endsWith('/'))  leftURL += '/';
     if (!rightURL.endsWith('/')) rightURL += '/';
 
-    excludedPaths = query->dontSearchInDirs().toStringList();
+    excludedPaths = KrServices::toStringList(query->dontSearchInDirs());
     for (int i = 0; i != excludedPaths.count(); i++)
         if (excludedPaths[ i ].endsWith('/'))
             excludedPaths[ i ].truncate(excludedPaths[ i ].length() - 1);
@@ -517,8 +517,10 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem(SynchronizerFileItem *pare
                                           (TaskType)(task + uncertain), isDir, isTemp);
 
     if (uncertain == TT_UNKNOWN) {
-        KUrl leftURL  = KUrl(leftDir.isEmpty() ? leftBaseDir + leftName : leftBaseDir + leftDir + '/' + leftName);
-        KUrl rightURL = KUrl(rightDir.isEmpty() ? rightBaseDir + rightName : rightBaseDir + rightDir + '/' + rightName);
+        QUrl leftURL = QUrl::fromUserInput(leftDir.isEmpty() ? leftBaseDir + leftName : leftBaseDir + leftDir + '/' + leftName,
+                                           QString(), QUrl::AssumeLocalFile);
+        QUrl rightURL = QUrl::fromUserInput(rightDir.isEmpty() ? rightBaseDir + rightName : rightBaseDir + rightDir + '/' + rightName,
+                                            QString(), QUrl::AssumeLocalFile);
         stack.append(new CompareContentTask(this, item, leftURL, rightURL, leftSize));
     }
 
@@ -934,8 +936,10 @@ void Synchronizer::executeTask(SynchronizerFileItem * task)
     if (!rightDirName.isEmpty())
         rightDirName += '/';
 
-    KUrl leftURL  = KUrl(leftBaseDir + leftDirName + task->leftName());
-    KUrl rightURL = KUrl(rightBaseDir + rightDirName + task->rightName());
+    QUrl leftURL = QUrl::fromUserInput(leftBaseDir + leftDirName + task->leftName(),
+                                       QString(), QUrl::AssumeLocalFile);
+    QUrl rightURL = QUrl::fromUserInput(rightBaseDir + rightDirName + task->rightName(),
+                                        QString(), QUrl::AssumeLocalFile);
 
     switch (task->task()) {
     case TT_COPY_TO_LEFT:
@@ -945,9 +949,9 @@ void Synchronizer::executeTask(SynchronizerFileItem * task)
             jobMap[ job ] = task;
             disableNewTasks = true;
         } else {
-            KUrl destURL(leftURL);
+            QUrl destURL(leftURL);
             if (!task->destination().isNull())
-                destURL = KUrl(task->destination());
+                destURL = QUrl::fromUserInput(task->destination(), QString(), QUrl::AssumeLocalFile);
 
             if (task->rightLink().isNull()) {
                 KIO::FileCopyJob *job = KIO::file_copy(rightURL, destURL, -1,
@@ -971,9 +975,9 @@ void Synchronizer::executeTask(SynchronizerFileItem * task)
             jobMap[ job ] = task;
             disableNewTasks = true;
         } else {
-            KUrl destURL(rightURL);
+            QUrl destURL(rightURL);
             if (!task->destination().isNull())
-                destURL = KUrl(task->destination());
+                destURL = QUrl::fromUserInput(task->destination(), QString(), QUrl::AssumeLocalFile);
 
             if (task->leftLink().isNull()) {
                 KIO::FileCopyJob *job = KIO::file_copy(leftURL, destURL, -1,
@@ -1020,8 +1024,10 @@ void Synchronizer::slotTaskFinished(KJob *job)
 
     QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
     QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
-    KUrl leftURL  = KUrl(leftBaseDir + leftDirName + item->leftName());
-    KUrl rightURL = KUrl(rightBaseDir + rightDirName + item->rightName());
+    QUrl leftURL = QUrl::fromUserInput(leftBaseDir + leftDirName + item->leftName(),
+                                       QString(), QUrl::AssumeLocalFile);
+    QUrl rightURL = QUrl::fromUserInput(rightBaseDir + rightDirName + item->rightName(),
+                                        QString(), QUrl::AssumeLocalFile);
 
     do {
         if (!job->error()) {
@@ -1033,7 +1039,7 @@ void Synchronizer::slotTaskFinished(KJob *job)
                     timestamp.actime = time(0);
                     timestamp.modtime = item->rightDate() - timeOffset;
 
-                    utime((const char *)(leftURL.path(KUrl::RemoveTrailingSlash).toLocal8Bit()), &timestamp);
+                    utime((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), &timestamp);
 
                     uid_t newOwnerID = (uid_t) - 1; // chown(2) : -1 means no change
                     if (!item->rightOwner().isEmpty()) {
@@ -1047,16 +1053,16 @@ void Synchronizer::slotTaskFinished(KJob *job)
                         if (g != 0L)
                             newGroupID = g->gr_gid;
                     }
-                    chown((const char *)(leftURL.path(KUrl::RemoveTrailingSlash).toLocal8Bit()), newOwnerID, (gid_t) - 1);
-                    chown((const char *)(leftURL.path(KUrl::RemoveTrailingSlash).toLocal8Bit()), (uid_t) - 1, newGroupID);
+                    chown((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), newOwnerID, (gid_t) - 1);
+                    chown((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), (uid_t) - 1, newGroupID);
 
-                    chmod((const char *)(leftURL.path(KUrl::RemoveTrailingSlash).toLocal8Bit()), item->rightMode() & 07777);
+                    chmod((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), item->rightMode() & 07777);
 
 #ifdef HAVE_POSIX_ACL
                     if (!item->rightACL().isNull()) {
                         acl_t acl = acl_from_text(item->rightACL().toLatin1());
                         if (acl && !acl_valid(acl))
-                            acl_set_file(leftURL.path(KUrl::RemoveTrailingSlash).toLocal8Bit(), ACL_TYPE_ACCESS, acl);
+                            acl_set_file(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit(), ACL_TYPE_ACCESS, acl);
                         if (acl)
                             acl_free(acl);
                     }
@@ -1070,7 +1076,7 @@ void Synchronizer::slotTaskFinished(KJob *job)
                     timestamp.actime = time(0);
                     timestamp.modtime = item->leftDate() + timeOffset;
 
-                    utime((const char *)(rightURL.path(KUrl::RemoveTrailingSlash).toLocal8Bit()), &timestamp);
+                    utime((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), &timestamp);
 
                     uid_t newOwnerID = (uid_t) - 1; // chown(2) : -1 means no change
                     if (!item->leftOwner().isEmpty()) {
@@ -1084,16 +1090,16 @@ void Synchronizer::slotTaskFinished(KJob *job)
                         if (g != 0L)
                             newGroupID = g->gr_gid;
                     }
-                    chown((const char *)(rightURL.path(KUrl::RemoveTrailingSlash).toLocal8Bit()), newOwnerID, (uid_t) - 1);
-                    chown((const char *)(rightURL.path(KUrl::RemoveTrailingSlash).toLocal8Bit()), (uid_t) - 1, newGroupID);
+                    chown((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), newOwnerID, (uid_t) - 1);
+                    chown((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), (uid_t) - 1, newGroupID);
 
-                    chmod((const char *)(rightURL.path(KUrl::RemoveTrailingSlash).toLocal8Bit()), item->leftMode() & 07777);
+                    chmod((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), item->leftMode() & 07777);
 
 #ifdef HAVE_POSIX_ACL
                     if (!item->leftACL().isNull()) {
                         acl_t acl = acl_from_text(item->leftACL().toLatin1());
                         if (acl && !acl_valid(acl))
-                            acl_set_file(rightURL.path(KUrl::RemoveTrailingSlash).toLocal8Bit(), ACL_TYPE_ACCESS, acl);
+                            acl_set_file(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit(), ACL_TYPE_ACCESS, acl);
                         if (acl)
                             acl_free(acl);
                     }
@@ -1164,14 +1170,16 @@ void Synchronizer::slotTaskFinished(KJob *job)
                 switch (item->task()) {
                 case TT_COPY_TO_LEFT:
                     error = i18n("Error at copying file %1 to %2.",
-                                 rightURL.pathOrUrl(), leftURL.pathOrUrl());
+                                 rightURL.toDisplayString(QUrl::PreferLocalFile),
+                                 leftURL.toDisplayString(QUrl::PreferLocalFile));
                     break;
                 case TT_COPY_TO_RIGHT:
                     error = i18n("Error at copying file %1 to %2.",
-                                 leftURL.pathOrUrl(), rightURL.pathOrUrl());
+                                 leftURL.toDisplayString(QUrl::PreferLocalFile),
+                                 rightURL.toDisplayString(QUrl::PreferLocalFile));
                     break;
                 case TT_DELETE:
-                    error = i18n("Error at deleting file %1.", leftURL.pathOrUrl());
+                    error = i18n("Error at deleting file %1.", leftURL.toDisplayString(QUrl::PreferLocalFile));
                     break;
                 default:
                     break;
@@ -1321,7 +1329,7 @@ void KgetProgressDialog::slotCancel()
 
 void Synchronizer::synchronizeWithKGet()
 {
-    bool isLeftLocal = KUrl(leftBaseDirectory()).isLocalFile();
+    bool isLeftLocal = QUrl::fromUserInput(leftBaseDirectory(), QString(), QUrl::AssumeLocalFile).isLocalFile();
     KgetProgressDialog *progDlg = 0;
     int  processedCount = 0, totalCount = 0;
 
@@ -1335,8 +1343,8 @@ void Synchronizer::synchronizeWithKGet()
         SynchronizerFileItem * item = it.next();
 
         if (item->isMarked()) {
-            KUrl downloadURL;
-            KUrl destURL;
+            QUrl downloadURL;
+            QUrl destURL;
             QString destDir;
             QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
             QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
@@ -1350,17 +1358,19 @@ void Synchronizer::synchronizeWithKGet()
             }
 
             if (item->task() == TT_COPY_TO_RIGHT && !isLeftLocal) {
-                downloadURL = KUrl(leftBaseDirectory() + leftDirName + item->leftName());
+                downloadURL = QUrl::fromUserInput(leftBaseDirectory() + leftDirName + item->leftName(),
+                                                  QString(), QUrl::AssumeLocalFile);
                 destDir     = rightBaseDirectory() + rightDirName;
-                destURL     = KUrl(destDir + item->rightName());
+                destURL     = QUrl::fromUserInput(destDir + item->rightName(), QString(), QUrl::AssumeLocalFile);
 
                 if (item->isDir())
                     destDir += item->leftName();
             }
             if (item->task() == TT_COPY_TO_LEFT && isLeftLocal) {
-                downloadURL = KUrl(rightBaseDirectory() + rightDirName + item->rightName());
+                downloadURL = QUrl::fromUserInput(rightBaseDirectory() + rightDirName + item->rightName(),
+                                                  QString(), QUrl::AssumeLocalFile);
                 destDir     = leftBaseDirectory() + leftDirName;
-                destURL     = KUrl(destDir + item->leftName());
+                destURL     = QUrl::fromUserInput(destDir + item->leftName(), QString(), QUrl::AssumeLocalFile);
 
                 if (item->isDir())
                     destDir += item->rightName();
@@ -1375,7 +1385,7 @@ void Synchronizer::synchronizeWithKGet()
                 if (QFile(destURL.path()).exists())
                     QFile(destURL.path()).remove();
 
-                QString source = downloadURL.prettyUrl();
+                QString source = downloadURL.toDisplayString();
                 if (source.indexOf('@') >= 2) {  /* is this an ftp proxy URL? */
                     int lastAt = source.lastIndexOf('@');
                     QString startString = source.left(lastAt);

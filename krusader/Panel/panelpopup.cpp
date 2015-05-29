@@ -68,7 +68,7 @@ protected:
         if (item.isNull())
             return false;
 
-        KUrl::List list = KUrl::List::fromMimeData(data);
+        QList<QUrl> list = data->urls();
         if (list.isEmpty())
             return false;
 
@@ -99,7 +99,7 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
     setItemDelegate(new KFileItemDelegate(this));
     setUniformRowHeights(true);
 
-    mSourceModel->dirLister()->openUrl(KUrl(QDir::root().absolutePath()), KDirLister::Keep);
+    mSourceModel->dirLister()->openUrl(QUrl::fromLocalFile(QDir::root().absolutePath()), KDirLister::Keep);
 
     connect(this, SIGNAL(activated(const QModelIndex&)),
             this, SLOT(slotActivated(const QModelIndex&)));
@@ -113,21 +113,21 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
     header()->resizeSection(KDirModel::Name, fontMetrics.width("WWWWWWWWWWWWWWW"));
 }
 
-KUrl KrFileTreeView::urlForProxyIndex(const QModelIndex &index) const
+QUrl KrFileTreeView::urlForProxyIndex(const QModelIndex &index) const
 {
     const KFileItem item = mSourceModel->itemForIndex(mProxyModel->mapToSource(index));
 
-    return !item.isNull() ? item.url() : KUrl();
+    return !item.isNull() ? item.url() : QUrl();
 }
 
 void KrFileTreeView::slotActivated(const QModelIndex &index)
 {
-    const KUrl url = urlForProxyIndex(index);
+    const QUrl url = urlForProxyIndex(index);
     if (url.isValid())
         emit activated(url);
 }
 
-void KrFileTreeView::dropMimeData(const KUrl::List & lst, const KUrl & url, const QModelIndex & ind)
+void KrFileTreeView::dropMimeData(const QList<QUrl> & lst, const QUrl &url, const QModelIndex & ind)
 {
     QModelIndex ndx = mProxyModel->mapFromSource(ind);
     QRect rect = visualRect(ndx);
@@ -167,7 +167,7 @@ void KrFileTreeView::dropMimeData(const KUrl::List & lst, const KUrl & url, cons
 
 void KrFileTreeView::slotCurrentChanged(const QModelIndex &currentIndex, const QModelIndex&)
 {
-    const KUrl url = urlForProxyIndex(currentIndex);
+    const QUrl url = urlForProxyIndex(currentIndex);
     if (url.isValid())
         emit changedUrls(url);
 }
@@ -182,15 +182,15 @@ void KrFileTreeView::slotExpanded(const QModelIndex &baseIndex)
 }
 
 
-KUrl KrFileTreeView::currentUrl() const
+QUrl KrFileTreeView::currentUrl() const
 {
     return urlForProxyIndex(currentIndex());
 }
 
-KUrl KrFileTreeView::selectedUrl() const
+QUrl KrFileTreeView::selectedUrl() const
 {
     if (!selectionModel()->hasSelection())
-        return KUrl();
+        return QUrl();
 
     const QItemSelection selection = selectionModel()->selection();
     const QModelIndex firstIndex = selection.indexes().first();
@@ -198,16 +198,16 @@ KUrl KrFileTreeView::selectedUrl() const
     return urlForProxyIndex(firstIndex);
 }
 
-KUrl::List KrFileTreeView::selectedUrls() const
+QList<QUrl> KrFileTreeView::selectedUrls() const
 {
-    KUrl::List urls;
+    QList<QUrl> urls;
 
     if (!selectionModel()->hasSelection())
         return urls;
 
     const QModelIndexList indexes = selectionModel()->selection().indexes();
     foreach(const QModelIndex &index, indexes) {
-        const KUrl url = urlForProxyIndex(index);
+        const QUrl url = urlForProxyIndex(index);
         if (url.isValid())
             urls.append(url);
     }
@@ -215,7 +215,7 @@ KUrl::List KrFileTreeView::selectedUrls() const
     return urls;
 }
 
-KUrl KrFileTreeView::rootUrl() const
+QUrl KrFileTreeView::rootUrl() const
 {
     return mSourceModel->dirLister()->url();
 }
@@ -232,7 +232,7 @@ void KrFileTreeView::setShowHiddenFiles(bool enabled)
     mSourceModel->dirLister()->openUrl(mSourceModel->dirLister()->url());
 }
 
-void KrFileTreeView::setCurrentUrl(const KUrl &url)
+void KrFileTreeView::setCurrentUrl(const QUrl &url)
 {
     QModelIndex baseIndex = mSourceModel->indexForUrl(url);
 
@@ -247,7 +247,7 @@ void KrFileTreeView::setCurrentUrl(const KUrl &url)
     scrollTo(proxyIndex);
 }
 
-void KrFileTreeView::setRootUrl(const KUrl &url)
+void KrFileTreeView::setRootUrl(const QUrl &url)
 {
     mSourceModel->dirLister()->openUrl(url);
 }
@@ -352,7 +352,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
     stack->addWidget(tree);
     tree->setDirOnlyMode(true);
     connect(tree, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(treeSelection()));
-    connect(tree, SIGNAL(activated(const KUrl &)), this, SLOT(treeSelection()));
+    connect(tree, SIGNAL(activated(const QUrl &)), this, SLOT(treeSelection()));
 
     // create the quickview part ------
     viewer = new KrusaderImageFilePreview(stack);
@@ -364,7 +364,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
     panelviewer = new PanelViewer(stack);
     panelviewer->setProperty("KrusaderWidgetId", QVariant(View));
     stack->addWidget(panelviewer);
-    connect(panelviewer, SIGNAL(openUrlRequest(const KUrl &)), this, SLOT(handleOpenUrlRequest(const KUrl &)));
+    connect(panelviewer, SIGNAL(openUrlRequest(const QUrl &)), this, SLOT(handleOpenUrlRequest(const QUrl &)));
 
     // create the disk usage view
 
@@ -372,7 +372,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
     diskusage->setStatusLabel(dataLine, i18n("Disk Usage:"));
     diskusage->setProperty("KrusaderWidgetId", QVariant(DskUsage));
     stack->addWidget(diskusage);
-    connect(diskusage, SIGNAL(openUrlRequest(const KUrl &)), this, SLOT(handleOpenUrlRequest(const KUrl &)));
+    connect(diskusage, SIGNAL(openUrlRequest(const QUrl &)), this, SLOT(handleOpenUrlRequest(const QUrl &)));
 
     // create the quick-panel part ----
 
@@ -499,7 +499,7 @@ void PanelPopup::saveSizes()
         group.writeEntry("Right PanelPopup Splitter Sizes", splitterSizes);
 }
 
-void PanelPopup::handleOpenUrlRequest(const KUrl &url)
+void PanelPopup::handleOpenUrlRequest(const QUrl &url)
 {
     KMimeType::Ptr mime = KMimeType::findByUrl(url);
     if (mime && mime->name() == "inode/directory") ACTIVE_PANEL->func->openUrl(url);
@@ -508,7 +508,7 @@ void PanelPopup::handleOpenUrlRequest(const KUrl &url)
 
 void PanelPopup::tabSelected(int id)
 {
-    KUrl url;
+    QUrl url;
     const vfile *vf = 0;
     if (ACTIVE_PANEL && ACTIVE_PANEL->func->files() && ACTIVE_PANEL->view)
         vf = ACTIVE_PANEL->func->files()->vfs_search(ACTIVE_PANEL->view->getCurrentItem());
@@ -560,7 +560,7 @@ void PanelPopup::update(const vfile *vf)
     if (isHidden())
         return;
 
-    KUrl url;
+    QUrl url;
     if(vf)
        url = vf->vfile_getUrl();
 
@@ -578,7 +578,7 @@ void PanelPopup::update(const vfile *vf)
         break;
     case DskUsage: {
         if(vf && !vf->vfile_isDir())
-            url = url.upUrl();
+            url = KIO::upUrl(url);
         dataLine->setText(i18n("Disk Usage: %1", url.fileName()));
         diskusage->openUrl(url);
     }

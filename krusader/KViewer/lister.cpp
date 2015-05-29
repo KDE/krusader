@@ -1235,7 +1235,7 @@ Lister::~Lister()
     }
 }
 
-bool Lister::openUrl(const KUrl &listerUrl)
+bool Lister::openUrl(const QUrl &listerUrl)
 {
     _downloading = false;
     setUrl(listerUrl);
@@ -1272,7 +1272,7 @@ bool Lister::openUrl(const KUrl &listerUrl)
     }
     _textArea->reset();
     emit started(0);
-    emit setWindowCaption(listerUrl.prettyUrl());
+    emit setWindowCaption(listerUrl.toDisplayString());
     emit completed();
     return true;
 }
@@ -1787,16 +1787,16 @@ void Lister::jumpToPosition()
 
 void Lister::saveAs()
 {
-    KUrl url = QFileDialog::getSaveFileUrl(_textArea, i18n("Lister"));
+    QUrl url = QFileDialog::getSaveFileUrl(_textArea, i18n("Lister"));
     if (url.isEmpty())
         return;
-    KUrl sourceUrl;
+    QUrl sourceUrl;
     if (!_downloading)
-        sourceUrl = KUrl(_filePath);
+        sourceUrl = QUrl::fromLocalFile(_filePath);
     else
         sourceUrl = this->url();
 
-    KUrl::List urlList;
+    QList<QUrl> urlList;
     urlList << sourceUrl;
 
     KIO::Job *job = KIO::copy(urlList, url);
@@ -1822,7 +1822,7 @@ void Lister::saveSelected()
         _saveEnd = end;
     }
 
-    KUrl url = QFileDialog::getSaveFileUrl(_textArea, i18n("Lister"));
+    QUrl url = QFileDialog::getSaveFileUrl(_textArea, i18n("Lister"));
     if (url.isEmpty())
         return;
 

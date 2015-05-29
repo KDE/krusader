@@ -33,12 +33,10 @@
 
 #include "../DiskUsage/diskusage.h"
 
+#include <QtCore/QUrl>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QGridLayout>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 
 class DiskUsageViewer : public QWidget
 {
@@ -48,7 +46,7 @@ public:
     DiskUsageViewer(QWidget *parent = 0);
     ~DiskUsageViewer();
 
-    void openUrl(KUrl url);
+    void openUrl(QUrl url);
     void closeUrl();
     void setStatusLabel(QLabel *statLabel, QString pref);
 
@@ -57,7 +55,7 @@ public:
     }
 
 signals:
-    void openUrlRequest(const KUrl &);
+    void openUrlRequest(const QUrl &);
 
 protected slots:
     void slotUpdateStatus(QString status = QString());

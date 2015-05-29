@@ -224,7 +224,7 @@ protected slots:
     void            slotSendFinished(KJob *);
 
 protected:
-    virtual bool    openUrl(const KUrl &url);
+    virtual bool    openUrl(const QUrl &url);
     virtual bool    closeUrl() {
         return true;
     }

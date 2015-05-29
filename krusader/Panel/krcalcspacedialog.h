@@ -68,12 +68,12 @@ class KrCalcSpaceDialog : public KDialog
         unsigned long m_totalDirs;
         const QStringList m_items;
         QHash <QString, KIO::filesize_t> m_sizes;
-        KUrl m_url;
+        QUrl m_url;
         mutable QMutex m_mutex;
         bool m_stop;
 
     public:
-        CalcThread(KUrl url, const QStringList & items);
+        CalcThread(QUrl url, const QStringList & items);
 
         KIO::filesize_t getItemSize(QString item) const;
         void updateItems(KrView *view) const;

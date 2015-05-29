@@ -71,10 +71,9 @@ void DirHistoryButton::slotAboutToShow()
     emit aboutToShow();
     //  kDebug() << "about to show" << endl;
     popupMenu->clear();
-    KUrl::List::iterator it;
 
     for (int i = 0; i < historyQueue->count(); i++) {
-        QAction *act = popupMenu->addAction(historyQueue->get(i).prettyUrl());
+        QAction *act = popupMenu->addAction(historyQueue->get(i).toDisplayString());
         act->setData(QVariant(i));
         if(historyQueue->currentPos() == i) {
             act->setCheckable(true);

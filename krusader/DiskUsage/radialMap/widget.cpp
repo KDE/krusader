@@ -20,6 +20,7 @@
 
 #include <QtCore/QEvent>
 #include <QtCore/QTimer>                                    //member
+#include <QtCore/QUrl>
 #include <QtGui/QMouseEvent>
 #include <QtGui/QBitmap>                                    //ctor - finding cursor size
 #include <QtGui/QCursor>                                    //slotPostMouseEvent()
@@ -28,7 +29,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KUrl>
 
 #include <KWidgetsAddons/KCursor>        //ctor
 
@@ -61,13 +61,13 @@ RadialMap::Widget::path() const
     return m_tree->fullPath();
 }
 
-KUrl
+QUrl
 RadialMap::Widget::url(File const * const file) const
 {
     if (file == 0 && m_tree == 0)
-        return KUrl();
+        return QUrl();
 
-    return KUrl(file ? file->fullPath() : m_tree->fullPath());
+    return QUrl::fromLocalFile(file ? file->fullPath() : m_tree->fullPath());
 }
 
 void
@@ -80,7 +80,7 @@ RadialMap::Widget::invalidate(const bool b)
         //disable mouse tracking
         setMouseTracking(false);
 
-        KUrl urlInv = url();
+        QUrl urlInv = url();
 
         //ensure this class won't think we have a map still
         m_tree  = 0;

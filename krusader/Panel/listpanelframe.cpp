@@ -21,11 +21,10 @@
 #include "krcolorcache.h"
 #include "../krglobal.h"
 
+#include <QtCore/QUrl>
 #include <QtGui/QDragEnterEvent>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
-
+#include <KCoreAddons/KUrlMimeData>
 #include <KConfigWidgets/KColorScheme>
 
 ListPanelFrame::ListPanelFrame(QWidget *parent, QString color) : QFrame(parent), color(color)
@@ -41,7 +40,7 @@ ListPanelFrame::ListPanelFrame(QWidget *parent, QString color) : QFrame(parent),
 void ListPanelFrame::dragEnterEvent(QDragEnterEvent *e)
 {
     if (acceptDrops()) {
-        KUrl::List URLs = KUrl::List::fromMimeData(e->mimeData());
+        QList<QUrl> URLs = KUrlMimeData::urlsFromMimeData(e->mimeData());
         e->setAccepted(!URLs.isEmpty());
     } else
         QFrame::dragEnterEvent(e);

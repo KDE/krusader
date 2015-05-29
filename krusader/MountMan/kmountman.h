@@ -36,11 +36,11 @@ A
 #include <QtCore/QObject>
 #include <QtCore/QString>
 #include <QtCore/QPointer>
+#include <QtCore/QUrl>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QAction>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 #include <kdeversion.h>
 #include <KDE/KSharedPtr>
 
@@ -105,12 +105,12 @@ protected:
     // used internally
     static KSharedPtr<KMountPoint> findInListByMntPoint(KMountPoint::List &lst, QString value);
     void toggleMount(QString mntPoint);
-    void emitRefreshPanel(const KUrl &url) {
+    void emitRefreshPanel(const QUrl &url) {
         emit refreshPanel(url);
     }
 
 signals:
-    void refreshPanel(const KUrl &);
+    void refreshPanel(const QUrl &);
 
 private:
     QString *_actions;

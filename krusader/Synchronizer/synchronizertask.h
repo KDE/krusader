@@ -160,7 +160,7 @@ class CompareContentTask : public SynchronizerTask
     Q_OBJECT
 
 public:
-    CompareContentTask(Synchronizer *, SynchronizerFileItem *, const KUrl &, const KUrl &, KIO::filesize_t);
+    CompareContentTask(Synchronizer *, SynchronizerFileItem *, const QUrl &, const QUrl &, KIO::filesize_t);
     virtual ~CompareContentTask();
 
 public slots:
@@ -177,8 +177,8 @@ protected slots:
 private:
     void    abortContentComparing();
 
-    KUrl                   leftURL;        // the currently processed URL (left)
-    KUrl                   rightURL;       // the currently processed URL (right)
+    QUrl                   leftURL;        // the currently processed URL (left)
+    QUrl                   rightURL;       // the currently processed URL (right)
     KIO::filesize_t        size;           // the size of the compared files
 
     bool                   errorPrinted;   // flag indicates error

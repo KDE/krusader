@@ -334,8 +334,8 @@ public:
     virtual void        selectRegion(KrViewItem *, KrViewItem *, bool) = 0;
 
     virtual uint numSelected() const = 0;
-    virtual KUrl::List selectedUrls() = 0;
-    virtual void setSelection(const KUrl::List urls) = 0;
+    virtual QList<QUrl> selectedUrls() = 0;
+    virtual void setSelection(const QList<QUrl> urls) = 0;
     virtual KrViewItem *getFirst() = 0;
     virtual KrViewItem *getLast() = 0;
     virtual KrViewItem *getNext(KrViewItem *current) = 0;
@@ -529,7 +529,7 @@ protected:
     KConfig *_config;
     QWidget *_mainWindow;
     QWidget *_widget;
-    KUrl::List _savedSelection;
+    QList<QUrl> _savedSelection;
     QString _nameToMakeCurrent;
     QString _nameToMakeCurrentIfAdded;
     KrViewProperties *_properties;

@@ -20,12 +20,10 @@
 #define WIDGET_H
 
 #include <QtCore/QTimer>
+#include <QtCore/QUrl>
 #include <QtGui/QMouseEvent>
 #include <QtGui/QResizeEvent>
 #include <QtGui/QPaintEvent>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 
 #include "segmentTip.h"
 
@@ -33,7 +31,6 @@ template <class T> class Chain;
 class Directory;
 class File;
 class KJob;
-class KUrl;
 
 namespace RadialMap
 {
@@ -81,7 +78,7 @@ public:
     Widget(QWidget* = 0);
 
     QString path() const;
-    KUrl url(File const * const = 0) const;
+    QUrl url(File const * const = 0) const;
 
     bool isValid() const {
         return m_tree != 0;
@@ -103,8 +100,8 @@ private slots:
     void createFromCache(const Directory*);
 
 signals:
-    void activated(const KUrl&);
-    void invalidated(const KUrl&);
+    void activated(const QUrl&);
+    void invalidated(const QUrl&);
     void created(const Directory*);
     void mouseHover(const QString&);
 

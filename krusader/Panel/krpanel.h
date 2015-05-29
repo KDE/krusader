@@ -34,8 +34,7 @@
 
 #include "../abstractpanelmanager.h"
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
+#include <QtCore/QUrl>
 
 class ListPanelFunc;
 class ListPanel;
@@ -48,7 +47,7 @@ public:
         gui(0), func(0), view(0), _manager(manager) {}
     virtual ~KrPanel() {}
 
-    KUrl virtualPath() const;
+    QUrl virtualPath() const;
     AbstractPanelManager *manager() {
         return _manager;
     }

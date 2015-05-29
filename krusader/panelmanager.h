@@ -56,7 +56,7 @@ public:
 
     void saveSettings(KConfigGroup config, bool saveHistory);
     void loadSettings(KConfigGroup config);
-    int findTab(KUrl url);
+    int findTab(QUrl url);
     int tabCount() {
         return _tabbar->count();
     }
@@ -80,7 +80,7 @@ public:
         return _otherManager;
     }
     virtual KrPanel *currentPanel();
-    virtual void newTab(const KUrl &url, KrPanel *nextTo) {
+    virtual void newTab(const QUrl &url, KrPanel *nextTo) {
         slotNewTab(url, true, nextTo);
     }
 
@@ -97,11 +97,11 @@ public slots:
      */
 
     Q_SCRIPTABLE void newTab(const QString& url) {
-        slotNewTab(KUrl(url));
+        slotNewTab(QUrl::fromUserInput(url, QString(), QUrl::AssumeLocalFile));
     }
     Q_SCRIPTABLE void newTabs(const QStringList& urls);
 
-    void slotNewTab(const KUrl& url, bool setCurrent = true, KrPanel *nextTo = 0);
+    void slotNewTab(const QUrl &url, bool setCurrent = true, KrPanel *nextTo = 0);
     void slotNewTab();
     void slotLockTab();
     void slotNextTab();

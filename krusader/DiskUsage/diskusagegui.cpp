@@ -44,7 +44,7 @@
 #include "../VFS/vfs.h"
 #include "../Dialogs/krdialogs.h"
 
-DiskUsageGUI::DiskUsageGUI(KUrl openDir, QWidget* parent)
+DiskUsageGUI::DiskUsageGUI(QUrl openDir, QWidget* parent)
         : KDialog(parent), exitAtFailure(true)
 {
     setWindowTitle(i18n("Krusader::Disk Usage"));
@@ -228,7 +228,7 @@ bool DiskUsageGUI::newSearch()
 {
     // ask the user for the copy dest
 
-    KUrl tmp = KChooseDir::getDir(i18n("Viewing the usage of directory:"), baseDirectory, baseDirectory);
+    QUrl tmp = KChooseDir::getDir(i18n("Viewing the usage of directory:"), baseDirectory, baseDirectory);
     if (tmp.isEmpty()) return false;
     baseDirectory = tmp;
 

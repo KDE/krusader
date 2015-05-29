@@ -23,12 +23,10 @@
 #include <QtCore/QList>
 #include <QtCore/QMap>
 #include <QtCore/QTimer>
+#include <QtCore/QUrl>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QMenu>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 
 #include <Solid/Device>
 #include <Solid/SolidNamespace>
@@ -55,8 +53,8 @@ public slots:
     void mountPointChanged(QString mp);
 
 signals:
-    void openUrl(const KUrl&);
-    void newTab(const KUrl&);
+    void openUrl(const QUrl&);
+    void newTab(const QUrl&);
     void aboutToShow();
 
 protected:

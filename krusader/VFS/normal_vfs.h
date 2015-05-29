@@ -33,9 +33,7 @@
 
 #include <QtCore/QString>
 #include <QtCore/QTimer>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
+#include <QtCore/QUrl>
 
 #include <KIOCore/KFileItem>
 #include <KCoreAddons/KDirWatch>
@@ -58,13 +56,13 @@ public:
     }
 
     /// Copy a file to the vfs (physical).
-    virtual void vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT);
+    virtual void vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT);
     /// Remove a file from the vfs (physical)
     virtual void vfs_delFiles(QStringList *fileNames, bool reallyDelete = false);
     /// Return a list of URLs for multiple files
-    virtual KUrl::List* vfs_getFiles(QStringList* names);
+    virtual QList<QUrl>* vfs_getFiles(QStringList* names);
     /// Return a URL to a single file
-    virtual KUrl vfs_getFile(const QString& name);
+    virtual QUrl vfs_getFile(const QString& name);
     /// Create a new directory
     virtual void vfs_mkdir(const QString& name);
     /// Rename file
@@ -73,12 +71,12 @@ public:
     /// return the VFS working dir
     virtual QString vfs_workingDir() {
 #ifdef Q_OS_WIN
-        
+
         QString path = vfs_origin.toLocalFile();
         if(path.endsWith('/')) path.chop(1);
         return path;
 #else
-        return vfs_origin.path(KUrl::RemoveTrailingSlash);
+        return vfs_origin.adjusted(QUrl::StripTrailingSlash).path();
 #endif
     }
 
@@ -93,7 +91,7 @@ public slots:
 
 protected:
     /// Re-reads files and stats and fills the vfile list
-    virtual bool populateVfsList(const KUrl& origin, bool showHidden);
+    virtual bool populateVfsList(const QUrl &origin, bool showHidden);
 
     QTimer refreshTimer;         //< Timer to exclude sudden refreshes
     KDirWatch *watcher;          //< The internal dir watcher - use to detect changes in directories

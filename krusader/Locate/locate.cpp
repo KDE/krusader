@@ -96,7 +96,7 @@ public:
     void startDrag(Qt::DropActions supportedActs) {
         Q_UNUSED(supportedActs);
 
-        KUrl::List urls;
+        QList<QUrl> urls;
         QList<QTreeWidgetItem *> list = selectedItems() ;
 
         QListIterator<QTreeWidgetItem *> it(list);
@@ -104,7 +104,7 @@ public:
         while (it.hasNext()) {
             QTreeWidgetItem * item = it.next();
 
-            urls.push_back(KUrl(item->text(0)));
+            urls.push_back(QUrl::fromLocalFile(item->text(0)));
         }
 
         if (urls.count() == 0)
@@ -114,7 +114,7 @@ public:
         QDrag *drag = new QDrag(this);
         QMimeData *mimeData = new QMimeData;
         mimeData->setImageData(FL_LOADICON("file"));
-        urls.populateMimeData(mimeData);
+        mimeData->setUrls(urls);
         drag->setMimeData(mimeData);
         drag->start();
     }
@@ -439,7 +439,7 @@ void LocateDlg::slotDoubleClick(QTreeWidgetItem *item)
         dirName.truncate(dirName.lastIndexOf('/'));
     }
 
-    ACTIVE_FUNC->openUrl(KUrl(dirName), fileName);
+    ACTIVE_FUNC->openUrl(QUrl::fromLocalFile(dirName), fileName);
     KDialog::accept();
 }
 
@@ -488,9 +488,9 @@ void LocateDlg::keyPressEvent(QKeyEvent *e)
 
 void LocateDlg::operate(QTreeWidgetItem *item, int task)
 {
-    KUrl name;
+    QUrl name;
     if (item != 0)
-        name = KUrl(item->text(0));
+        name = QUrl::fromLocalFile(item->text(0));
 
     switch (task) {
     case VIEW_ID:
@@ -504,8 +504,8 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
         if (list.count() != 2)
             break;
 
-        KUrl url1 = KUrl(list[ 0 ]->text(0));
-        KUrl url2 = KUrl(list[ 1 ]->text(0));
+        QUrl url1 = QUrl::fromLocalFile(list[ 0 ]->text(0));
+        QUrl url2 = QUrl::fromLocalFile(list[ 1 ]->text(0));
 
         SLOTS->compareContent(url1, url2);
     }
@@ -571,12 +571,12 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
     }
     break;
     case COPY_SELECTED_TO_CLIPBOARD: {
-        KUrl::List urls;
+        QList<QUrl> urls;
 
         QTreeWidgetItemIterator it(resultList);
         while (*it) {
             if ((*it)->isSelected())
-                urls.push_back(KUrl((*it)->text(0)));
+                urls.push_back(QUrl::fromLocalFile((*it)->text(0)));
 
             it++;
         }
@@ -586,7 +586,7 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
 
         QMimeData *mimeData = new QMimeData;
         mimeData->setImageData(FL_LOADICON("file"));
-        urls.populateMimeData(mimeData);
+        mimeData->setUrls(urls);
 
         QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);
     }
@@ -624,7 +624,7 @@ bool LocateDlg::find()
 void LocateDlg::feedToListBox()
 {
     virt_vfs v(0, true);
-    v.vfs_refresh(KUrl("/"));
+    v.vfs_refresh(QUrl::fromLocalFile(QStringLiteral("/")));
 
     KConfigGroup group(krConfig, "Locate");
     int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
@@ -646,18 +646,18 @@ void LocateDlg::feedToListBox()
             return;
     }
 
-    KUrl::List urlList;
+    QList<QUrl> urlList;
     QTreeWidgetItemIterator it(resultList);
     while (*it) {
         QTreeWidgetItem * item = *it;
-        urlList.push_back(KUrl(item->text(0)));
+        urlList.push_back(QUrl::fromLocalFile(item->text(0)));
         it++;
     }
-    KUrl url = KUrl(QString("virt:/") + queryName);
+    QUrl url = QUrl(QStringLiteral("virt:/") + queryName);
     v.vfs_refresh(url);
     v.vfs_addFiles(&urlList, KIO::CopyJob::Copy, 0);
     //ACTIVE_FUNC->openUrl(url);
-    ACTIVE_MNG->slotNewTab(url.prettyUrl());
+    ACTIVE_MNG->slotNewTab(url);
     accept();
 }
 

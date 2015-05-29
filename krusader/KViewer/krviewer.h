@@ -23,6 +23,7 @@
 #include <QtCore/QEvent>
 #include <QtCore/QList>
 #include <QtCore/QPointer>
+#include <QtCore/QUrl>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QFocusEvent>
 #include <QtWidgets/QWidget>
@@ -31,7 +32,6 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KTemporaryFile>
 #include <KDE/KTabWidget>
-#include <KDE/KUrl>
 
 #include <KParts/MainWindow>
 #include <KParts/PartManager>
@@ -49,10 +49,10 @@ public:
 
     enum Mode {Generic, Text, Hex, Lister, Default};
 
-    static void view(KUrl url, QWidget * parent = krMainWindow);
-    static void view(KUrl url, Mode mode, bool new_window, QWidget * parent = krMainWindow);
-    static void edit(KUrl url, QWidget * parent);
-    static void edit(KUrl url, Mode mode = Text, int new_window = -1, QWidget * parent = krMainWindow);
+    static void view(QUrl url, QWidget * parent = krMainWindow);
+    static void view(QUrl url, Mode mode, bool new_window, QWidget * parent = krMainWindow);
+    static void edit(QUrl url, QWidget * parent);
+    static void edit(QUrl url, Mode mode = Text, int new_window = -1, QWidget * parent = krMainWindow);
     static void configureDeps();
 
     virtual bool eventFilter(QObject * watched, QEvent * e);
@@ -71,7 +71,7 @@ public slots:
     void copy();
 
     void tabChanged(QWidget* w);
-    void tabURLChanged(PanelViewerBase * pvb, const KUrl &url);
+    void tabURLChanged(PanelViewerBase * pvb, const QUrl &url);
     void tabCloseRequest(QWidget *w, bool force = false);
     void tabCloseRequest();
 
@@ -99,8 +99,8 @@ private:
     void addTab(PanelViewerBase* pvb);
     void updateActions();
     void refreshTab(PanelViewerBase* pvb);
-    void viewInternal(KUrl url, Mode mode, QWidget * parent = krMainWindow);
-    void editInternal(KUrl url, Mode mode, QWidget * parent = krMainWindow);
+    void viewInternal(QUrl url, Mode mode, QWidget * parent = krMainWindow);
+    void editInternal(QUrl url, Mode mode, QWidget * parent = krMainWindow);
     void addPart(KParts::ReadOnlyPart *part);
     void removePart(KParts::ReadOnlyPart *part);
     bool isPartAdded(KParts::Part* part);

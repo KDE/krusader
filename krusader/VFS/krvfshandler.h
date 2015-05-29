@@ -21,9 +21,7 @@
 #define KRVFSHANDLER_H
 
 #include <QtCore/QObject>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
+#include <QtCore/QUrl>
 
 #include "vfs.h"
 
@@ -34,8 +32,8 @@ public:
     KrVfsHandler();
     ~KrVfsHandler();
 
-    static vfs::VFS_TYPE getVfsType(const KUrl& url);
-    static vfs* getVfs(const KUrl& url, QObject* parent = 0, vfs* oldVfs = 0);
+    static vfs::VFS_TYPE getVfsType(const QUrl &url);
+    static vfs* getVfs(const QUrl &url, QObject* parent = 0, vfs* oldVfs = 0);
 };
 
 #endif

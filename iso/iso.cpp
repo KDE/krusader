@@ -34,7 +34,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KDE/KUrl>
 #include <KDE/KDebug>
 #include <KDE/KComponentData>
 #include <KDE/KMimeType>
@@ -211,12 +210,12 @@ void kio_isoProtocol::createUDSEntry(const KArchiveEntry * isoEntry, UDSEntry & 
     entry.insert(UDSEntry::UDS_LINK_DEST, isoEntry->symLinkTarget());
 }
 
-void kio_isoProtocol::listDir(const KUrl & url)
+void kio_isoProtocol::listDir(const QUrl &url)
 {
     kDebug() << "kio_isoProtocol::listDir " << url.url() << endl;
 
     QString path;
-    if (!checkNewFile(getPath(url), path, url.hasRef() ? url.htmlRef().toInt() : -1)) {
+    if (!checkNewFile(getPath(url), path, url.hasFragment() ? url.fragment(QUrl::FullyDecoded).toInt() : -1)) {
         QByteArray _path(QFile::encodeName(getPath(url)));
         kDebug()  << "Checking (stat) on " << _path << endl;
         KDE_struct_stat buff;
@@ -225,9 +224,9 @@ void kio_isoProtocol::listDir(const KUrl & url)
             return;
         }
         // It's a real dir -> redirect
-        KUrl redir;
+        QUrl redir;
         redir.setPath(getPath(url));
-        if (url.hasRef()) redir.setRef(url.htmlRef());
+        if (url.hasFragment()) redir.setFragment(url.fragment(QUrl::FullyDecoded));
         kDebug()  << "Ok, redirection to " << redir.url() << endl;
         redirection(redir);
         finished();
@@ -238,9 +237,9 @@ void kio_isoProtocol::listDir(const KUrl & url)
     }
 
     if (path.isEmpty()) {
-        KUrl redir(QString::fromLatin1("iso:/"));
+        QUrl redir(QStringLiteral("iso:/"));
         kDebug() << "url.path()==" << getPath(url) << endl;
-        if (url.hasRef()) redir.setRef(url.htmlRef());
+        if (url.hasFragment()) redir.setFragment(url.fragment(QUrl::FullyDecoded));
         redir.setPath(getPath(url) + QString::fromLatin1(DIR_SEPARATOR));
         kDebug() << "kio_isoProtocol::listDir: redirection " << redir.url() << endl;
         redirection(redir);
@@ -288,13 +287,13 @@ void kio_isoProtocol::listDir(const KUrl & url)
     kDebug()  << "kio_isoProtocol::listDir done" << endl;
 }
 
-void kio_isoProtocol::stat(const KUrl & url)
+void kio_isoProtocol::stat(const QUrl &url)
 {
     QString path;
     UDSEntry entry;
 
     kDebug() << "kio_isoProtocol::stat " << url.url() << endl;
-    if (!checkNewFile(getPath(url), path, url.hasRef() ? url.htmlRef().toInt() : -1)) {
+    if (!checkNewFile(getPath(url), path, url.hasFragment() ? url.fragment(QUrl::FullyDecoded).toInt() : -1)) {
         // We may be looking at a real directory - this happens
         // when pressing up after being in the root of an archive
         QByteArray _path(QFile::encodeName(getPath(url)));
@@ -464,12 +463,12 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
 
 }
 
-void kio_isoProtocol::get(const KUrl & url)
+void kio_isoProtocol::get(const QUrl &url)
 {
     kDebug()  << "kio_isoProtocol::get" << url.url() << endl;
 
     QString path;
-    if (!checkNewFile(getPath(url), path, url.hasRef() ? url.htmlRef().toInt() : -1)) {
+    if (!checkNewFile(getPath(url), path, url.hasFragment() ? url.fragment(QUrl::FullyDecoded).toInt() : -1)) {
         error(KIO::ERR_DOES_NOT_EXIST, getPath(url));
         return;
     }
@@ -489,7 +488,7 @@ void kio_isoProtocol::get(const KUrl & url)
     const KIsoFile* isoFileEntry = static_cast<const KIsoFile *>(isoEntry);
     if (!isoEntry->symLinkTarget().isEmpty()) {
         kDebug() << "Redirection to " << isoEntry->symLinkTarget() << endl;
-        KUrl realURL(url, isoEntry->symLinkTarget());
+        QUrl realURL = QUrl(url).resolved(QUrl(isoEntry->symLinkTarget()));
         kDebug() << "realURL= " << realURL.url() << endl;
         redirection(realURL);
         finished();
@@ -499,7 +498,7 @@ void kio_isoProtocol::get(const KUrl & url)
     if (m_isoFile->device()->isOpen()) m_isoFile->device()->close();
 }
 
-QString kio_isoProtocol::getPath(const KUrl & url)
+QString kio_isoProtocol::getPath(const QUrl &url)
 {
     QString path = url.path();
     REPLACE_DIR_SEP2(path);

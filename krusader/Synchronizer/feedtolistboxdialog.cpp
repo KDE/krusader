@@ -105,7 +105,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
     // guessing the collection name
 
     virt_vfs v(0, true);
-    if (!v.vfs_refresh(KUrl("virt:/")))
+    if (!v.vfs_refresh(QUrl("virt:/")))
         return;
 
     KConfigGroup group(krConfig, "Synchronize");
@@ -182,7 +182,7 @@ void FeedToListBoxDialog::slotOk()
     int side = sideCombo->currentIndex();
     bool selected = cbSelected->isChecked();
     QString name = lineEdit->text();
-    KUrl::List urlList;
+    QList<QUrl> urlList;
 
     QTreeWidgetItemIterator it(syncList);
     for (;*it; it++) {
@@ -198,25 +198,27 @@ void FeedToListBoxDialog::slotOk()
 
         if ((side == S_BOTH || side == S_LEFT) && syncItem->existsInLeft()) {
             QString leftDirName = syncItem->leftDirectory().isEmpty() ? "" : syncItem->leftDirectory() + '/';
-            KUrl leftURL = KUrl(synchronizer->leftBaseDirectory() + leftDirName + syncItem->leftName());
+            QUrl leftURL = QUrl::fromUserInput(synchronizer->leftBaseDirectory() + leftDirName + syncItem->leftName(),
+                                               QString(), QUrl::AssumeLocalFile);
             urlList.push_back(leftURL);
         }
 
         if ((side == S_BOTH || side == S_RIGHT) && syncItem->existsInRight()) {
             QString rightDirName = syncItem->rightDirectory().isEmpty() ? "" : syncItem->rightDirectory() + '/';
-            KUrl leftURL = KUrl(synchronizer->rightBaseDirectory() + rightDirName + syncItem->rightName());
+            QUrl leftURL = QUrl::fromUserInput(synchronizer->rightBaseDirectory() + rightDirName + syncItem->rightName(),
+                                               QString(), QUrl::AssumeLocalFile);
             urlList.push_back(leftURL);
         }
     }
 
-    KUrl url = KUrl(QString("virt:/") + name);
+    QUrl url = QUrl(QString("virt:/") + name);
     virt_vfs v(0, true);
     if (!v.vfs_refresh(url)) {
-        KMessageBox::error(parentWidget(), i18n("Cannot open %1.", url.prettyUrl()));
+        KMessageBox::error(parentWidget(), i18n("Cannot open %1.", url.toDisplayString()));
         return;
     }
     v.vfs_addFiles(&urlList, KIO::CopyJob::Copy, 0);
-    ACTIVE_MNG->slotNewTab(url.prettyUrl());
+    ACTIVE_MNG->slotNewTab(url);
     accepted = true;
     accept();
 }

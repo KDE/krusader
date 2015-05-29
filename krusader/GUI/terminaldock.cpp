@@ -22,14 +22,12 @@
 #include <QtCore/QDir>
 #include <QtCore/QString>
 #include <QtCore/QObject>
+#include <QtCore/QUrl>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QClipboard>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QWidget>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 
 #include <kde_terminal_interface.h>
 #include <KParts/Part>
@@ -167,7 +165,7 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
             return true;
         }
         if (ke->modifiers() & Qt::ShiftModifier) {
-            QString path = vfs::pathOrUrl(ACTIVE_FUNC->files()->vfs_getOrigin(), KUrl::AddTrailingSlash);
+            QString path = vfs::ensureTrailingSlash(ACTIVE_FUNC->files()->vfs_getOrigin()).toDisplayString(QUrl::PreferLocalFile);
             filename = path + filename;
         }
 

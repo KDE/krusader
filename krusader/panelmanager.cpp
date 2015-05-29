@@ -71,7 +71,7 @@ PanelManager::PanelManager(QWidget *parent, FileManagerWindow* mainWindow, bool 
     connect(_tabbar, SIGNAL(currentChanged(int)), this, SLOT(slotCurrentTabChanged(int)));
     connect(_tabbar, SIGNAL(tabCloseRequested(int)), this, SLOT(slotCloseTab(int)));
     connect(_tabbar, SIGNAL(closeCurrentTab()), this, SLOT(slotCloseTab()));
-    connect(_tabbar, SIGNAL(newTab(const KUrl&)), this, SLOT(slotNewTab(const KUrl&)));
+    connect(_tabbar, SIGNAL(newTab(const QUrl&)), this, SLOT(slotNewTab(const QUrl&)));
     connect(_tabbar, SIGNAL(draggingTab(QMouseEvent*)), this, SLOT(slotDraggingTab(QMouseEvent*)));
     connect(_tabbar, SIGNAL(draggingTabFinished(QMouseEvent*)), this, SLOT(slotDraggingTabFinished(QMouseEvent*)));
 
@@ -247,7 +247,7 @@ void PanelManager::moveTabToOtherSide()
     p->slotFocusOnMe();
 }
 
-void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, KrPanel *nextTo)
+void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, KrPanel *nextTo)
 {
     ListPanel *p = addPanel(setCurrent, KConfigGroup(), nextTo);
     p->start(url);
@@ -255,7 +255,7 @@ void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, KrPanel *nextTo)
 
 void PanelManager::slotNewTab()
 {
-    slotNewTab(QDir::home().absolutePath());
+    slotNewTab(QUrl::fromLocalFile(QDir::home().absolutePath()));
 }
 
 void PanelManager::slotCloseTab()
@@ -400,7 +400,7 @@ void PanelManager::slotCloseDuplicatedTabs()
         if (panel1 != 0) {
             for (int j = i + 1; j < _tabbar->count(); j++) {
                 ListPanel * panel2 = _tabbar->getPanel(j);
-                if (panel2 != 0 && panel1->virtualPath().equals(panel2->virtualPath(), KUrl::CompareWithoutTrailingSlash)) {
+                if (panel2 != 0 && panel1->virtualPath().matches(panel2->virtualPath(), QUrl::StripTrailingSlash)) {
                     if (j == activeTab()) {
                         slotCloseTab(i);
                         i--;
@@ -416,14 +416,14 @@ void PanelManager::slotCloseDuplicatedTabs()
     }
 }
 
-int PanelManager::findTab(KUrl url)
+int PanelManager::findTab(QUrl url)
 {
-    url.cleanPath();
+    url.setPath(QDir::cleanPath(url.path()));
     for(int i = 0; i < _tabbar->count(); i++) {
         if(_tabbar->getPanel(i)) {
-            KUrl panelUrl = _tabbar->getPanel(i)->virtualPath();
-            panelUrl.cleanPath();
-            if(panelUrl.equals(url, KUrl::CompareWithoutTrailingSlash))
+            QUrl panelUrl = _tabbar->getPanel(i)->virtualPath();
+            panelUrl.setPath(QDir::cleanPath(panelUrl.path()));
+            if(panelUrl.matches(url, QUrl::StripTrailingSlash))
                 return i;
         }
     }
@@ -438,7 +438,7 @@ void PanelManager::slotLockTab()
 
 void PanelManager::newTabs(const QStringList& urls) {
     for(int i = 0; i < urls.count(); i++)
-        slotNewTab(KUrl(urls[i]));
+        slotNewTab(QUrl::fromUserInput(urls[i], QString(), QUrl::AssumeLocalFile));
 }
 
 KrPanel *PanelManager::currentPanel()

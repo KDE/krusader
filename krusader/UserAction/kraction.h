@@ -22,12 +22,12 @@
 #define KRACTION_H
 
 #include <QtCore/QByteArray>
+#include <QtCore/QUrl>
 #include <QtWidgets/QAction>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDialog>
 #include <KDE/KIcon>
-#include <KDE/KUrl>
 
 #include <KCoreAddons/KProcess>
 #include <KTextWidgets/KTextEdit>
@@ -56,7 +56,7 @@ public:
      * @param currentURL Check for this file
      * @return true if the KrAction if available
      */
-    bool isAvailable(const KUrl& currentURL);
+    bool isAvailable(const QUrl &currentURL);
 
     const QString& iconName() const {
         return _iconName;

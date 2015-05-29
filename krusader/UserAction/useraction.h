@@ -28,7 +28,7 @@ class QDomElement;
 class QString;
 class QStringList;
 class KrAction;
-class KUrl;
+class QUrl;
 class KActionMenu;
 
 /**
@@ -103,13 +103,13 @@ public:
      * same as above but check for a specitic file
      * @param currentURL Check for this file
      */
-    void setAvailability(const KUrl& currentURL);
+    void setAvailability(const QUrl &currentURL);
 
     /**
      * Fills a KActionMenu with all available UserActions in the list
      * @param  popupmenu to populate
      */
-    void populateMenu(KActionMenu* menu, const KUrl *currentURL);
+    void populateMenu(KActionMenu* menu, const QUrl *currentURL);
 
     QStringList allCategories();
     QStringList allNames();

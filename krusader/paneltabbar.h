@@ -22,11 +22,11 @@
 #define PANELTABBAR_H
 
 #include <QtCore/QVariant>
+#include <QtCore/QUrl>
 #include <QtGui/QDragMoveEvent>
 #include <QtGui/QDragEnterEvent>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 #include <KDE/KTabBar>
 
 class QMouseEvent;
@@ -78,7 +78,7 @@ signals:
     /**
      * emitted when the user right-clicks and selects an action that creates a new tab
      */
-    void newTab(const KUrl& path);
+    void newTab(const QUrl &path);
 
     void draggingTab(QMouseEvent*);
     void draggingTabFinished(QMouseEvent*);

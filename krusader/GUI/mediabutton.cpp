@@ -259,7 +259,7 @@ void MediaButton::slotPopupActivated(QAction *action)
             getStatus(udi, mounted, &mountPoint);
 
             if (mounted)
-                emit openUrl(KUrl(mountPoint));
+                emit openUrl(QUrl::fromLocalFile(mountPoint));
             else
                 mount(udi, true);
         }
@@ -328,7 +328,7 @@ void MediaButton::rightClickMenu(QString udi, QPoint pos)
 
     getStatus(udi, mounted, &mountPoint, &ejectable);
 
-    KUrl openURL = KUrl(mountPoint);
+    QUrl openURL = QUrl::fromLocalFile(mountPoint);
 
     QMenu * myMenu = rightMenu = new QMenu(popupMenu);
     QAction * actOpen = myMenu->addAction(i18n("Open"));
@@ -441,9 +441,9 @@ void MediaButton::mount(QString udi, bool open, bool newtab)
         QString mp = udi.mid(remotePrefix.length());
         krMtMan.mount(mp, true);
         if (newtab)
-            emit newTab(KUrl(mp));
+            emit newTab(QUrl::fromLocalFile(mp));
         else
-            emit openUrl(KUrl(mp));
+            emit openUrl(QUrl::fromLocalFile(mp));
         return;
     }
     Solid::Device device(udi);
@@ -464,9 +464,9 @@ void MediaButton::slotSetupDone(Solid::ErrorType error, QVariant errorData, cons
             Solid::StorageAccess *access = Solid::Device(udi).as<Solid::StorageAccess>();
             if (access && access->isAccessible()) {
                 if (openInNewTab)
-                    emit newTab(KUrl(access->filePath()));
+                    emit newTab(QUrl::fromLocalFile(access->filePath()));
                 else
-                    emit openUrl(KUrl(access->filePath()));
+                    emit openUrl(QUrl::fromLocalFile(access->filePath()));
             }
             udiToOpen = QString(), openInNewTab = false;
         }

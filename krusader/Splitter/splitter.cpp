@@ -43,7 +43,7 @@
 #include <KIOCore/KFileItem>
 #include <KIO/JobUiDelegate>
 
-Splitter::Splitter(QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn, bool overWriteIn) :
+Splitter::Splitter(QWidget* parent,  QUrl fileNameIn, QUrl destinationDirIn, bool overWriteIn) :
         QProgressDialog(parent, 0),
         fileName(fileNameIn),
         destinationDir(destinationDirIn),
@@ -91,7 +91,7 @@ void Splitter::split(KIO::filesize_t splitSizeIn)
     permissions = file.permissions() | QFile::WriteUser;
 
     setWindowTitle(i18n("Krusader::Splitting..."));
-    setLabelText(i18n("Splitting the file %1...", fileName.pathOrUrl()));
+    setLabelText(i18n("Splitting the file %1...", fileName.toDisplayString(QUrl::PreferLocalFile)));
 
     if (file.isDir()) {
         KMessageBox::error(0, i18n("Cannot split a directory."));
@@ -141,7 +141,7 @@ void Splitter::splitReceiveFinished(KJob *job)
 
     if (job->error()) {   /* any error occurred? */
         splitAbortJobs();
-        KMessageBox::error(0, i18n("Error reading file %1: %2", fileName.pathOrUrl(),
+        KMessageBox::error(0, i18n("Error reading file %1: %2", fileName.toDisplayString(QUrl::PreferLocalFile),
                                    job->errorString()));
         emit reject();
         return;
@@ -173,7 +173,8 @@ void Splitter::nextOutputFile()
     QString outFileName = fileName.fileName() + '.' + index;
 
     writeURL = destinationDir;
-    writeURL.addPath(outFileName);
+    writeURL = writeURL.adjusted(QUrl::StripTrailingSlash);
+    writeURL.setPath(writeURL.path() + '/' + (outFileName));
 
     if (overwrite)
         openOutputFile();
@@ -253,7 +254,7 @@ void Splitter::splitSendFinished(KJob *job)
 
     if (job->error()) {   /* any error occurred? */
         splitAbortJobs();
-        KMessageBox::error(0, i18n("Error writing file %1: %2", writeURL.pathOrUrl(),
+        KMessageBox::error(0, i18n("Error writing file %1: %2", writeURL.toDisplayString(QUrl::PreferLocalFile),
                                    job->errorString()));
         emit reject();
         return;
@@ -266,7 +267,8 @@ void Splitter::splitSendFinished(KJob *job)
     else { // read job is finished and transfer buffer is empty -> splitting is finished
         /* writing the split information file out */
         writeURL      = destinationDir;
-        writeURL.addPath(fileName.fileName() + ".crc");
+        writeURL = writeURL.adjusted(QUrl::StripTrailingSlash);
+        writeURL.setPath(writeURL.path() + '/' + (fileName.fileName() + ".crc"));
         splitWriteJob = KIO::put(writeURL, permissions, KIO::HideProgressInfo | KIO::Overwrite);
         connect(splitWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
                 this, SLOT(splitFileSend(KIO::Job *, QByteArray &)));
@@ -298,7 +300,7 @@ void Splitter::splitFileFinished(KJob *job)
     splitWriteJob = 0;  /* KIO automatically deletes the object after Finished signal */
 
     if (job->error()) {   /* any error occurred? */
-        KMessageBox::error(0, i18n("Error writing file %1: %2", writeURL.pathOrUrl(),
+        KMessageBox::error(0, i18n("Error writing file %1: %2", writeURL.toDisplayString(QUrl::PreferLocalFile),
                                    job->errorString()));
         emit reject();
         return;

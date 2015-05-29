@@ -396,7 +396,7 @@ void KMountManGUI::doubleClicked(QTreeWidgetItem *i)
         return; // we don't want to refresh to swap, do we ?
 
     // change the active panel to this mountpoint
-    mountMan->emitRefreshPanel(KUrl(getMntPoint(i)));
+    mountMan->emitRefreshPanel(QUrl::fromLocalFile(getMntPoint(i)));
     close();
 }
 

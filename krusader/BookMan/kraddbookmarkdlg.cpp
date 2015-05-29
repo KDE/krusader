@@ -33,7 +33,7 @@
 
 #include <KIconThemes/KIconLoader>
 
-KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KUrl url):
+KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, QUrl url):
         KDialog(parent)
 {
     setButtons(KDialog::User1 | KDialog::Ok | KDialog::Cancel);
@@ -57,7 +57,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KUrl url):
     // name and url
     QLabel *lb1 = new QLabel(i18n("Name:"), page);
     _name = new KLineEdit(page);
-    _name->setText(url.prettyUrl()); // default name is the url
+    _name->setText(url.toDisplayString()); // default name is the url
     _name->selectAll(); // make the text selected
     layout->addWidget(lb1, 0, 0);
     layout->addWidget(_name, 0, 1);
@@ -66,7 +66,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KUrl url):
     _url = new KLineEdit(page);
     layout->addWidget(lb2, 1, 0);
     layout->addWidget(_url, 1, 1);
-    _url->setText(url.prettyUrl()); // set the url in the field
+    _url->setText(url.toDisplayString()); // set the url in the field
 
     // create in linedit and button
     QLabel *lb3 = new QLabel(i18n("Create in:"), page);

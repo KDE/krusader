@@ -22,7 +22,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KMenu>
-#include <KDE/KUrl>
 
 #include <KService/KService>
 

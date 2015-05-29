@@ -18,15 +18,16 @@
 
 #include "useractionpopupmenu.h"
 
+#include <QtCore/QUrl>
+
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 #include <KDE/KLocale>
 
 #include "../krglobal.h"
 #include "useraction.h"
 #include "kraction.h"
 
-UserActionPopupMenu::UserActionPopupMenu(const KUrl &currentURL, QWidget *parent)
+UserActionPopupMenu::UserActionPopupMenu(const QUrl &currentURL, QWidget *parent)
         : KActionMenu(i18n("User Actions"), parent)
 {
     krUserAction->populateMenu(this, &currentURL);

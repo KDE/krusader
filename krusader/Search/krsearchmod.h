@@ -39,9 +39,7 @@
 #include <QtCore/QStringList>
 #include <QtCore/QDateTime>
 #include <QtCore/QStack>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
+#include <QtCore/QUrl>
 
 #include <KIO/Global>
 
@@ -59,13 +57,13 @@ public:
     KRSearchMod(const KRQuery *q);
     ~KRSearchMod();
 
-    void scanURL(KUrl url);
+    void scanURL(QUrl url);
     void start();
     void stop();
 
 private:
-    void scanLocalDir(KUrl url);
-    void scanRemoteDir(KUrl url);
+    void scanLocalDir(QUrl url);
+    void scanRemoteDir(QUrl url);
 
 signals:
     void finished();
@@ -78,8 +76,8 @@ private slots:
 
 private:
     bool stopSearch;
-    QStack<KUrl> scannedUrls;
-    QStack<KUrl> unScannedUrls;
+    QStack<QUrl> scannedUrls;
+    QStack<QUrl> unScannedUrls;
     KRQuery *query;
     QStringList results;
 

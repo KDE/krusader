@@ -73,9 +73,9 @@ vfs::~vfs()
 
 bool vfs::isRoot()
 {
-    QString protocol = vfs_getOrigin().protocol();
+    QString protocol = vfs_getOrigin().scheme();
     bool isFtp = (protocol == "ftp" || protocol == "smb" || protocol == "sftp" || protocol == "fish");
-    QString origin = vfs_getOrigin().prettyUrl(KUrl::RemoveTrailingSlash);
+    QString origin = vfs_getOrigin().toDisplayString(QUrl::StripTrailingSlash);
 
     if (origin.right(1) != "/" && !((vfs_getType() == vfs::VFS_FTP) && isFtp &&
                                     origin.indexOf('/', origin.indexOf(":/") + 3) == -1))
@@ -105,13 +105,6 @@ bool vfs::vfs_refresh(KJob* job)
             job->uiDelegate()->showErrorMessage();
     }
     return vfs_refresh(vfs_origin);
-}
-
-QString vfs::pathOrUrl(const KUrl &originIn, KUrl::AdjustPathOption trailingSlash)
-{
-    if (originIn.isLocalFile())
-        return originIn.path(trailingSlash);
-    return originIn.prettyUrl(trailingSlash);
 }
 
 QUrl vfs::ensureTrailingSlash(const QUrl &url)
@@ -217,20 +210,20 @@ bool vfs::vfs_refresh()
     return res;
 }
 
-bool vfs::vfs_refresh(const KUrl& origin)
+bool vfs::vfs_refresh(const QUrl &origin)
 {
     if (vfs_busy)
         return false;
 
     if (disableRefresh) {
         postponedRefreshURL = origin;
-        if (!origin.equals(vfs_getOrigin(), KUrl::CompareWithoutTrailingSlash))
+        if (!origin.matches(vfs_getOrigin(), QUrl::StripTrailingSlash))
             invalidated = true;
         vfs_origin = origin;
         return true;
     }
 
-    if (!invalidated && origin.equals(vfs_getOrigin(), KUrl::CompareWithoutTrailingSlash)) return vfs_refresh();
+    if (!invalidated && origin.matches(vfs_getOrigin(), QUrl::StripTrailingSlash)) return vfs_refresh();
 
     vfs_busy = true;
 
@@ -262,7 +255,7 @@ bool vfs::vfs_enableRefresh(bool enable)
     disableRefresh = quietMode = !enable;
     bool res = true;
     if (enable && !postponedRefreshURL.isEmpty()) res = vfs_refresh(postponedRefreshURL);
-    postponedRefreshURL = KUrl();
+    postponedRefreshURL = QUrl();
     return res;
 }
 
@@ -313,7 +306,7 @@ void vfs::vfs_calcSpace(QString name , KIO::filesize_t* totalSize, unsigned long
     calculateURLSize(vfs_getFile(name), totalSize, totalFiles, totalDirs, stop);
 }
 
-void vfs::calculateURLSize(KUrl url,  KIO::filesize_t* totalSize, unsigned long* totalFiles, unsigned long* totalDirs, bool* stop)
+void vfs::calculateURLSize(QUrl url,  KIO::filesize_t* totalSize, unsigned long* totalFiles, unsigned long* totalDirs, bool* stop)
 {
     if (stop && *stop) return ;
     kds_busy = stop;
@@ -322,7 +315,7 @@ void vfs::calculateURLSize(KUrl url,  KIO::filesize_t* totalSize, unsigned long*
     kds_totalDirs  = totalDirs;
 
     if (url.isLocalFile()) {
-        vfs_calcSpaceLocal(url.path(KUrl::RemoveTrailingSlash), totalSize, totalFiles, totalDirs, stop);
+        vfs_calcSpaceLocal(url.adjusted(QUrl::StripTrailingSlash).path(), totalSize, totalFiles, totalDirs, stop);
         return;
     } else {
         stat_busy = true;

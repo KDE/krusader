@@ -25,9 +25,7 @@
 #include <sys/types.h>
 
 #include <QtCore/QByteArray>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
+#include <QtCore/QUrl>
 
 #include <KIO/SlaveBase>
 
@@ -41,15 +39,15 @@ public:
     kio_isoProtocol(const QByteArray &pool, const QByteArray &app);
     virtual ~kio_isoProtocol();
 
-    virtual void listDir(const KUrl & url);
-    virtual void stat(const KUrl & url);
-    virtual void get(const KUrl & url);
+    virtual void listDir(const QUrl &url);
+    virtual void stat(const QUrl &url);
+    virtual void get(const QUrl &url);
 
 protected:
     void getFile(const KIsoFile *isoFileEntry, const QString &path);
     void createUDSEntry(const KArchiveEntry * isoEntry, KIO::UDSEntry & entry);
     bool checkNewFile(QString fullPath, QString & path, int startsec);
-    QString getPath(const KUrl & url);
+    QString getPath(const QUrl &url);
 
     KIso * m_isoFile;
     time_t m_mtime;

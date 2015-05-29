@@ -49,7 +49,7 @@ A
 #include "../VFS/krvfshandler.h"
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
-KrCalcSpaceDialog::CalcThread::CalcThread(KUrl url, const QStringList & items)
+KrCalcSpaceDialog::CalcThread::CalcThread(QUrl url, const QStringList & items)
         : m_totalSize(0), m_currentSize(0), m_totalFiles(0), m_totalDirs(0), m_items(items), m_url(url),
         m_stop(false) {}
 

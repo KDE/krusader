@@ -185,9 +185,9 @@ void LoaderWidget::init()
     cancelled = false;
 }
 
-void LoaderWidget::setCurrentURL(KUrl url)
+void LoaderWidget::setCurrentURL(const QUrl &url)
 {
-    searchedDirectory->setText(vfs::pathOrUrl(url, KUrl::AddTrailingSlash));
+    searchedDirectory->setText(vfs::ensureTrailingSlash(url).toDisplayString(QUrl::PreferLocalFile));
 }
 
 void LoaderWidget::setValues(int fileNum, int dirNum, KIO::filesize_t total)
@@ -240,7 +240,7 @@ DiskUsage::~DiskUsage()
         delete lit.next().value();
 }
 
-void DiskUsage::load(KUrl baseDir)
+void DiskUsage::load(const QUrl &baseDir)
 {
     if (searchVfs && !searchVfs->vfs_canDelete()) {
         return;
@@ -253,10 +253,9 @@ void DiskUsage::load(KUrl baseDir)
 
     clear();
 
-    baseURL = baseDir;
-    baseURL.setPath(baseDir.path(KUrl::RemoveTrailingSlash));
+    baseURL = baseDir.adjusted(QUrl::StripTrailingSlash);
 
-    root = new Directory(baseURL.fileName(), baseDir.pathOrUrl());
+    root = new Directory(baseURL.fileName(), baseDir.toDisplayString(QUrl::PreferLocalFile));
 
     directoryStack.clear();
     parentStack.clear();
@@ -330,10 +329,11 @@ void DiskUsage::slotLoadDirectory()
 
                 contentMap.insert(dirToCheck, currentParent);
 
-                KUrl url = baseURL;
+                QUrl url = baseURL;
 
                 if (!dirToCheck.isEmpty())
-                    url.addPath(dirToCheck);
+                    url = url.adjusted(QUrl::StripTrailingSlash);
+                    url.setPath(url.path() + '/' + (dirToCheck));
 
 #ifdef BSD
                 if (url.isLocalFile() && url.path().left(7) == "/procfs")
@@ -402,11 +402,11 @@ void DiskUsage::dirUp()
         if (currentDirectory->parent() != 0)
             changeDirectory((Directory *)(currentDirectory->parent()));
         else {
-            KUrl up = baseURL.upUrl();
+            QUrl up = KIO::upUrl(baseURL);
 
             if (KMessageBox::questionYesNo(this, i18n("Stepping into the parent directory requires "
                                            "loading the content of the \"%1\" URL. Do you wish "
-                                           "to continue?", up.pathOrUrl()),
+                                           "to continue?", up.toDisplayString(QUrl::PreferLocalFile)),
                                            i18n("Krusader::DiskUsage"), KStandardGuiItem::yes(),
                                            KStandardGuiItem::no(), "DiskUsageLoadParentDir"
                                           ) == KMessageBox::Yes)
@@ -456,7 +456,7 @@ File * DiskUsage::getFile(QString path)
 
 void DiskUsage::clear()
 {
-    baseURL = KUrl();
+    baseURL = QUrl();
     emit clearing();
 
     QHashIterator< File *, Properties * > lit(propertyMap);
@@ -579,7 +579,7 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
 
     KConfigGroup gg(krConfig, "General");
     bool trash = gg.readEntry("Move To Trash", _MoveToTrash);
-    KUrl url = KUrl(file->fullPath());
+    QUrl url = QUrl::fromLocalFile(file->fullPath());
 
     if (calcPercents) {
         // now ask the user if he want to delete:
@@ -635,7 +635,7 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
         job = KIO::trash(url);
         connect(job, SIGNAL(result(KJob*)), krMainWindow, SLOT(changeTrashIcon()));
     } else {
-        job = KIO::del(KUrl(file->fullPath()), KIO::HideProgressInfo);
+        job = KIO::del(QUrl::fromLocalFile(file->fullPath()), KIO::HideProgressInfo);
     }
 
     deleting = true;    // during qApp->processEvent strange things can occur
@@ -711,12 +711,13 @@ void DiskUsage::createStatus()
     if (dirEntry == 0)
         return;
 
-    KUrl url = baseURL;
+    QUrl url = baseURL;
     if (dirEntry != root)
-        url.addPath(dirEntry->directory());
+        url = url.adjusted(QUrl::StripTrailingSlash);
+        url.setPath(url.path() + '/' + (dirEntry->directory()));
 
     emit status(i18n("Current directory:%1,  Total size:%2,  Own size:%3",
-                     vfs::pathOrUrl(url, KUrl::RemoveTrailingSlash),
+                     url.toDisplayString(QUrl::PreferLocalFile | QUrl::StripTrailingSlash),
                      ' ' + KRpermHandler::parseSize(dirEntry->size()),
                      ' ' + KRpermHandler::parseSize(dirEntry->ownSize())));
 }
@@ -846,7 +847,7 @@ void DiskUsage::executeAction(int action, File * fileItem)
             uri = fileItem->fullPath();
         else
             uri = currentDirectory->fullPath();
-        ACTIVE_FUNC->openUrl(KUrl(uri));
+        ACTIVE_FUNC->openUrl(QUrl::fromLocalFile(uri));
     }
     break;
     case LINES_VIEW_ID:

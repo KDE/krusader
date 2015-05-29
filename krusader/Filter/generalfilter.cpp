@@ -31,6 +31,7 @@
 #include "generalfilter.h"
 #include "filtertabs.h"
 #include "../krglobal.h"
+#include "../krservices.h"
 #include "../VFS/vfs.h"
 
 #include <QtWidgets/QPushButton>
@@ -491,10 +492,10 @@ void GeneralFilter::slotDisable()
     bool global = ofType->currentText() != i18n("Directories");
     bool remoteOnly = false;
     if (properties & FilterTabs::HasSearchIn) {
-        KUrl::List urlList = searchIn->urlList();
+        QList<QUrl> urlList = searchIn->urlList();
         remoteOnly = urlList.count() != 0;
-        foreach(const KUrl &url, urlList)
-        if (url.protocol() == "file")
+        foreach(const QUrl &url, urlList)
+        if (url.scheme() == "file")
             remoteOnly = false;
     }
 
@@ -598,13 +599,13 @@ void GeneralFilter::applySettings(const FilterSettings &s)
     if (properties & FilterTabs::HasSearchIn) {
         searchIn->lineEdit()->clear();
         searchIn->listBox()->clear();
-        searchIn->listBox()->addItems(s.searchIn.toStringList());
+        searchIn->listBox()->addItems(KrServices::toStringList(s.searchIn));
     }
 
     if (properties & FilterTabs::HasDontSearchIn) {
         dontSearchIn->lineEdit()->clear();
         dontSearchIn->listBox()->clear();
-        dontSearchIn->listBox()->addItems(s.dontSearchIn.toStringList());
+        dontSearchIn->listBox()->addItems(KrServices::toStringList(s.dontSearchIn));
     }
 }
 

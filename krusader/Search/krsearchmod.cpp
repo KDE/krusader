@@ -39,6 +39,8 @@
 #include <QtCore/QRegExp>
 #include <QtWidgets/QApplication>
 
+#include <KIO/Global>
+
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KMimeType>
@@ -79,7 +81,7 @@ void KRSearchMod::start()
     scannedUrls.clear();
     timer.start();
 
-    KUrl::List whereToSearch = query->searchInDirs();
+    QList<QUrl> whereToSearch = query->searchInDirs();
 
     // search every dir that needs to be searched
     for (int i = 0; i < whereToSearch.count(); ++i)
@@ -93,13 +95,13 @@ void KRSearchMod::stop()
     stopSearch = true;
 }
 
-void KRSearchMod::scanURL(KUrl url)
+void KRSearchMod::scanURL(QUrl url)
 {
     if (stopSearch) return;
 
     unScannedUrls.push(url);
     while (!unScannedUrls.isEmpty()) {
-        KUrl urlToCheck = unScannedUrls.pop();
+        QUrl urlToCheck = unScannedUrls.pop();
 
         if (stopSearch) return;
 
@@ -112,7 +114,7 @@ void KRSearchMod::scanURL(KUrl url)
             continue;
         scannedUrls.push(urlToCheck);
 
-        emit searching(urlToCheck.pathOrUrl());
+        emit searching(urlToCheck.toDisplayString(QUrl::PreferLocalFile));
 
         if (urlToCheck.isLocalFile())
             scanLocalDir(urlToCheck);
@@ -121,9 +123,9 @@ void KRSearchMod::scanURL(KUrl url)
     }
 }
 
-void KRSearchMod::scanLocalDir(KUrl urlToScan)
+void KRSearchMod::scanLocalDir(QUrl urlToScan)
 {
-    QString dir = urlToScan.path(KUrl::AddTrailingSlash);
+    QString dir = vfs::ensureTrailingSlash(urlToScan).path();
 
     DIR* d = opendir(dir.toLocal8Bit());
     if (!d) return ;
@@ -139,7 +141,7 @@ void KRSearchMod::scanLocalDir(KUrl urlToScan)
         KDE_struct_stat stat_p;
         KDE_lstat((dir + name).toLocal8Bit(), &stat_p);
 
-        KUrl url = KUrl(dir + name);
+        QUrl url = QUrl::fromLocalFile(dir + name);
 
         QString mime;
         if (query->searchInArchives() || !query->hasMimeType()) {
@@ -156,7 +158,7 @@ void KRSearchMod::scanLocalDir(KUrl urlToScan)
 
         if (query->isRecursive()) {
             if (S_ISLNK(stat_p.st_mode) && query->followLinks())
-                unScannedUrls.push(KUrl(QDir(dir + name).canonicalPath()));
+                unScannedUrls.push(QUrl::fromLocalFile(QDir(dir + name).canonicalPath()));
             else if (S_ISDIR(stat_p.st_mode))
                 unScannedUrls.push(url);
         }
@@ -165,15 +167,15 @@ void KRSearchMod::scanLocalDir(KUrl urlToScan)
             if (mime.contains("-rar")) type = "-rar";
 
             if (KRarcHandler::arcSupported(type)) {
-                KUrl archiveURL = url;
+                QUrl archiveURL = url;
                 bool encrypted;
                 QString realType = KRarcHandler::getType(encrypted, url.path(), mime);
 
                 if (!encrypted) {
                     if (realType == "-tbz" || realType == "-tgz" || realType == "tarz" || realType == "-tar" || realType == "-tlz")
-                        archiveURL.setProtocol("tar");
+                        archiveURL.setScheme("tar");
                     else
-                        archiveURL.setProtocol("krarc");
+                        archiveURL.setScheme("krarc");
 
                     unScannedUrls.push(archiveURL);
                 }
@@ -198,12 +200,12 @@ void KRSearchMod::scanLocalDir(KUrl urlToScan)
     closedir(d);
 }
 
-void KRSearchMod::scanRemoteDir(KUrl url)
+void KRSearchMod::scanRemoteDir(QUrl url)
 {
     vfs * vfs_;
 
 
-    if (url.protocol() == "virt") {
+    if (url.scheme() == QStringLiteral("virt")) {
         if (virtual_vfs == 0)
             virtual_vfs = new virt_vfs(0);
         vfs_ = virtual_vfs;
@@ -217,17 +219,18 @@ void KRSearchMod::scanRemoteDir(KUrl url)
 
     for (vfile * vf = vfs_->vfs_getFirstFile(); vf != 0 ; vf = vfs_->vfs_getNextFile()) {
         QString name = vf->vfile_getName();
-        KUrl fileURL = vfs_->vfs_getFile(name);
+        QUrl fileURL = vfs_->vfs_getFile(name);
 
         if (query->isRecursive() && ((vf->vfile_isSymLink() && query->followLinks()) || vf->vfile_isDir()))
             unScannedUrls.push(fileURL);
 
         if (query->match(vf)) {
             // if we got here - we got a winner
-            results.append(vfs::pathOrUrl(fileURL, KUrl::RemoveTrailingSlash));
+            results.append(fileURL.toDisplayString(QUrl::PreferLocalFile | QUrl::StripTrailingSlash));
 
-            emit found(fileURL.fileName(), vfs::pathOrUrl(fileURL.upUrl(), KUrl::RemoveTrailingSlash), vf->vfile_getSize(), vf->vfile_getTime_t(),
-                       vf->vfile_getPerm(), vf->vfile_getUid(), vf->vfile_getGid(), query->foundText());
+            emit found(fileURL.fileName(), KIO::upUrl(fileURL).toDisplayString(QUrl::PreferLocalFile | QUrl::StripTrailingSlash),
+                       vf->vfile_getSize(), vf->vfile_getTime_t(), vf->vfile_getPerm(), vf->vfile_getUid(),
+                       vf->vfile_getGid(), query->foundText());
         }
 
         if (timer.elapsed() >= EVENT_PROCESS_DELAY) {

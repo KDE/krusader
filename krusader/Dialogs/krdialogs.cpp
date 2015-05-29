@@ -48,150 +48,92 @@
 
 QUrl KChooseDir::getFile(QString text, const QUrl& url, const QUrl& cwd)
 {
-    QPointer<KUrlRequesterDialog> dlg = new KUrlRequesterDialog(vfs::ensureTrailingSlash(url), text, krMainWindow);
-    dlg->urlRequester()->completionObject()->setDir(cwd);
+    QScopedPointer<KUrlRequesterDialog> dlg(new KUrlRequesterDialog(vfs::ensureTrailingSlash(url), text, krMainWindow));
+    dlg->urlRequester()->setStartDir(cwd);
     dlg->urlRequester()->setMode(KFile::File);
-    QUrl u;
-    if (dlg->exec() == QDialog::Accepted) {
-        u = QUrl(dlg->urlRequester()->completionObject()->replacedPath(
-                     dlg->urlRequester()->lineEdit()->text()));
-        if (u.isRelative()) {
-            QUrl temp = u;
-            u = cwd;
-            u.setPath(temp.path());
-            u.setPath(QDir::cleanPath(u.path()));
-            if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
-                if (QDir(u.path()).exists()) {
-                    u.setScheme("file");
-                }
-            }
+    dlg->exec();
+    QUrl u = dlg->selectedUrl(); // empty if cancelled
+    if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
+        if (QDir(u.path()).exists()) {
+            u.setScheme("file");
         }
     }
-    delete dlg;
     return u;
 }
 
 
 QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd)
 {
-    QPointer<KUrlRequesterDialog> dlg = new KUrlRequesterDialog(vfs::ensureTrailingSlash(url), text, krMainWindow);
-    dlg->urlRequester()->completionObject()->setDir(cwd);
+    QScopedPointer<KUrlRequesterDialog> dlg(new KUrlRequesterDialog(vfs::ensureTrailingSlash(url), text, krMainWindow));
+    dlg->urlRequester()->setStartDir(cwd);
     dlg->urlRequester()->setMode(KFile::Directory);
-    QUrl u;
-    if (dlg->exec() == QDialog::Accepted) {
-        u = QUrl(dlg->urlRequester()->completionObject()->replacedPath(
-                     dlg->urlRequester()->lineEdit()->text()));
-        if (u.isRelative()) {
-            QUrl temp = u;
-            u = cwd;
-            u.setPath(temp.path());
-            u.setPath(QDir::cleanPath(u.path()));
-            if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
-                if (QDir(u.path()).exists()) {
-                    u.setScheme("file");
-                }
-            }
+    dlg->exec();
+    QUrl u = dlg->selectedUrl();
+    if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
+        if (QDir(u.path()).exists()) {
+            u.setScheme("file");
         }
     }
-    delete dlg;
     return u;
 }
 
 QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &queue)
 {
-    QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::ensureTrailingSlash(url),
-            text,
-            false,
-            krMainWindow);
+    QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(vfs::ensureTrailingSlash(url),
+                                                                            text, false, krMainWindow));
     dlg->hidePreserveAttrs();
-    dlg->urlRequester()->completionObject()->setDir(cwd);
+    dlg->urlRequester()->setStartDir(cwd);
     dlg->urlRequester()->setMode(KFile::Directory);
-    QUrl u;
-    if (dlg->exec() == QDialog::Accepted) {
-        u = QUrl(dlg->urlRequester()->completionObject()->replacedPath(
-                     dlg->urlRequester()->lineEdit()->text()));
-        if (u.isRelative()) {
-            QUrl temp = u;
-            u = cwd;
-            u.setPath(temp.path());
-            u.setPath(QDir::cleanPath(u.path()));
-            if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
-                if (QDir(u.path()).exists()) {
-                    u.setScheme("file");
-                }
-            }
+    dlg->exec();
+    QUrl u = dlg->selectedURL();
+    if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
+        if (QDir(u.path()).exists()) {
+            u.setScheme("file");
         }
     }
     queue = dlg->enqueue();
-    delete dlg;
     return u;
 }
 
 QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &queue, bool &preserveAttrs)
 {
-    QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::ensureTrailingSlash(url),
-            text,
-            preserveAttrs,
-            krMainWindow);
-    dlg->urlRequester()->completionObject()->setDir(cwd);
+    QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(vfs::ensureTrailingSlash(url),
+                                                                            text, preserveAttrs, krMainWindow));
+    dlg->urlRequester()->setStartDir(cwd);
     dlg->urlRequester()->setMode(KFile::Directory);
-    QUrl u;
-    if (dlg->exec() == QDialog::Accepted) {
-        u = QUrl(dlg->urlRequester()->completionObject()->replacedPath(
-                     dlg->urlRequester()->lineEdit()->text()));
-        if (u.isRelative()) {
-            QUrl temp = u;
-            u = cwd;
-            u.setPath(temp.path());
-            u.setPath(QDir::cleanPath(u.path()));
-            if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
-                if (QDir(u.path()).exists()) {
-                    u.setScheme("file");
-                }
-            }
+    dlg->exec();
+    QUrl u = dlg->selectedURL();
+    if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
+        if (QDir(u.path()).exists()) {
+            u.setScheme("file");
         }
     }
     preserveAttrs = dlg->preserveAttrs();
     queue = dlg->enqueue();
-    delete dlg;
     return u;
 }
 
 QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &queue, bool &preserveAttrs, QUrl &baseURL)
 {
-    QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::ensureTrailingSlash(url),
-            text,
-            preserveAttrs,
-            krMainWindow,
-            true,
-            baseURL);
-    dlg->urlRequester()->completionObject()->setDir(cwd);
+    QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(vfs::ensureTrailingSlash(url),
+                                                                            text, preserveAttrs, krMainWindow,
+                                                                            true, baseURL));
+    dlg->urlRequester()->setStartDir(cwd);
     dlg->urlRequester()->setMode(KFile::Directory);
-    QUrl u;
-    if (dlg->exec() == QDialog::Accepted) {
-        u = QUrl(dlg->urlRequester()->completionObject()->replacedPath(
-                     dlg->urlRequester()->lineEdit()->text()));
-        if (u.isRelative()) {
-            QUrl temp = u;
-            u = cwd;
-            u.setPath(temp.path());
-            u.setPath(QDir::cleanPath(u.path()));
-            if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
-                if (QDir(u.path()).exists()) {
-                    u.setScheme("file");
-                }
-            }
+    dlg->exec();
+    QUrl u = dlg->selectedURL();
+    if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
+        if (QDir(u.path()).exists()) {
+            u.setScheme("file");
         }
-
-        if (dlg->copyDirStructure()) {
-            baseURL = dlg->baseURL();
-        } else {
-            baseURL = QUrl();
-        }
+    }
+    if (dlg->copyDirStructure()) {
+        baseURL = dlg->baseURL();
+    } else {
+        baseURL = QUrl();
     }
     preserveAttrs = dlg->preserveAttrs();
     queue = dlg->enqueue();
-    delete dlg;
     return u;
 }
 

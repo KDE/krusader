@@ -132,7 +132,7 @@ QList<QString> Queue::itemDescriptions()
 {
     QList<QString> ret;
     foreach(KIOJobWrapper *job, _jobs) {
-        ret.append(job->typeStr() + " : " + job->url().prettyUrl());
+        ret.append(job->typeStr() + " : " + job->url().toDisplayString());
     }
     return ret;
 }

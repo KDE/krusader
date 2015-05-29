@@ -35,6 +35,7 @@
 
 #include <QtCore/QDir>
 #include <QtCore/QStringList>
+#include <QtCore/QUrl>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QIcon>
 #include <QtGui/QFontMetrics>
@@ -49,7 +50,6 @@
 #include <KDE/KStandardDirs>
 #include <KDE/KLocale>
 #include <KDE/KGlobalSettings>
-#include <KDE/KUrl>
 
 #include "../krglobal.h"
 #include "../kicons.h"
@@ -257,7 +257,7 @@ void KCMDLine::slotRun()
             dir = QDir::homePath();
         else if (dir.left(1) != "/" && !dir.contains(":/"))
             dir = cmdLine->path() + (cmdLine->path() == "/" ? "" : "/") + dir;
-        SLOTS->refresh(dir);
+        SLOTS->refresh(QUrl::fromUserInput(dir, QDir::currentPath(), QUrl::AssumeLocalFile));
     } else {
         exec();
         cmdLine->clearEditText();

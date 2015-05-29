@@ -31,12 +31,12 @@
 #ifndef DISKUSAGEGUI_H
 #define DISKUSAGEGUI_H
 
+#include <QtCore/QUrl>
 #include <QtGui/QResizeEvent>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QToolButton>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 #include <KDE/KDialog>
 
 #include <KWidgetsAddons/KSqueezedTextLabel>
@@ -48,7 +48,7 @@ class DiskUsageGUI : public KDialog
     Q_OBJECT
 
 public:
-    DiskUsageGUI(KUrl openDir, QWidget* parent = 0);
+    DiskUsageGUI(QUrl openDir, QWidget* parent = 0);
     ~DiskUsageGUI();
 
 
@@ -77,7 +77,7 @@ protected:
     virtual void               resizeEvent(QResizeEvent *e);
 
     DiskUsage                 *diskUsage;
-    KUrl                       baseDirectory;
+    QUrl                       baseDirectory;
 
     KSqueezedTextLabel        *status;
 

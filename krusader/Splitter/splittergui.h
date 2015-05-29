@@ -31,10 +31,8 @@
 #ifndef SPLITTERGUI_H
 #define SPLITTERGUI_H
 
+#include <QtCore/QUrl>
 #include <QtWidgets/QDialog>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KUrl>
 
 #include <KIOWidgets/KUrlRequester>
 #include <KIO/Global>
@@ -64,11 +62,11 @@ private:
     KUrlRequester   *urlReq;
 
 public:
-    SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir);
+    SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir);
     ~SplitterGUI();
 
-    KUrl    getDestinationDir()     {
-        return KUrl(urlReq->url().toDisplayString()); /* TODO: is prettyUrl what we need? */
+    QUrl    getDestinationDir()     {
+        return urlReq->url();
     }
     KIO::filesize_t getSplitSize();
     int     result()                {
