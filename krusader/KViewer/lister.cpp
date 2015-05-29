@@ -1288,7 +1288,7 @@ void Lister::slotFileFinished(KJob *job)
     _tempFile->flush();
     if (job->error()) {   /* any error occurred? */
         KIO::TransferJob *kioJob = (KIO::TransferJob *)job;
-        KMessageBox::error(_textArea, i18n("Error reading file %1.", kioJob->url().toDisplayString()));
+        KMessageBox::error(_textArea, i18n("Error reading file %1.", kioJob->url().toDisplayString(QUrl::PreferLocalFile)));
     }
     _downloading = false;
 }

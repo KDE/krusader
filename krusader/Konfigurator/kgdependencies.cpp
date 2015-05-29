@@ -164,7 +164,7 @@ void KgDependencies::slotApply(QObject *obj, QString cls, QString name)
     KonfiguratorURLRequester *urlRequester = (KonfiguratorURLRequester *) obj;
 
     KConfigGroup group(krConfig, cls);
-    group.writeEntry(name, urlRequester->url().toDisplayString());
+    group.writeEntry(name, urlRequester->url().toDisplayString(QUrl::PreferLocalFile));
 
     QString usedPath = KrServices::fullPathName(name);
 
@@ -172,10 +172,10 @@ void KgDependencies::slotApply(QObject *obj, QString cls, QString name)
         group.writeEntry(name, usedPath);
         if (usedPath.isEmpty())
             KMessageBox::error(this, i18n("The %1 path is incorrect, no valid path found.",
-                                          urlRequester->url().toDisplayString()));
+                                          urlRequester->url().toDisplayString(QUrl::PreferLocalFile)));
         else
             KMessageBox::error(this, i18n("The %1 path is incorrect, %2 used instead.",
-                                          urlRequester->url().toDisplayString(), usedPath));
+                                          urlRequester->url().toDisplayString(QUrl::PreferLocalFile), usedPath));
         urlRequester->setUrl(QUrl::fromLocalFile(usedPath));
     }
 }

@@ -410,7 +410,7 @@ void KonfiguratorURLRequester::loadInitialValue()
 
 void KonfiguratorURLRequester::slotApply(QObject *, QString cls, QString name)
 {
-    KConfigGroup(krConfig, cls).writeEntry(name, expansion ? url().toDisplayString() : text());
+    KConfigGroup(krConfig, cls).writeEntry(name, expansion ? url().toDisplayString(QUrl::PreferLocalFile) : text());
 }
 
 void KonfiguratorURLRequester::slotSetDefaults(QObject *)

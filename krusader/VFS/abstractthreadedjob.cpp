@@ -183,9 +183,8 @@ bool AbstractThreadedJob::event(QEvent *e)
         break;
         case CMD_MESSAGE: {
             QString message = event->args()[ 0 ].value<QString>();
-            KIO::JobUiDelegate *jobui = new KIO::JobUiDelegate();
-            //jobui->setJob(job);
-            KMessageBox::information(ui() ? jobui->window() : 0, message);
+            KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(uiDelegate());
+            KMessageBox::information(ui ? ui->window() : 0, message);
             QList<QVariant> *resultResp = new QList<QVariant> ();
             addEventResponse(resultResp);
         }
@@ -497,11 +496,9 @@ void AbstractJobThread::calcSpaceLocal(const KUrl &baseUrl, const QStringList & 
     sendReset(i18n("Calculating space"));
 
     vfs *calcSpaceVfs = KrVfsHandler::getVfs(baseUrl);
-    if(_job->ui()) {
-        KIO::JobUiDelegate *jobui = new KIO::JobUiDelegate();
-        jobui->setJob(_job);
-        calcSpaceVfs->setParentWindow(jobui->window());
-    }
+    KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(_job->uiDelegate());
+    if(ui)
+        calcSpaceVfs->setParentWindow(ui->window());
     calcSpaceVfs->vfs_refresh(baseUrl);
 
     for (int i = 0; i != files.count(); i++) {

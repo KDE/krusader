@@ -323,7 +323,7 @@ void KrPopupMenu::performAction(int id)
         panel->func->deleteFiles(true);
         break;
     case EJECT_ID :
-        krMtMan.eject(_item->url().toString(QUrl::StripTrailingSlash));
+        krMtMan.eject(_item->url().adjusted(QUrl::StripTrailingSlash).path());
         break;
         /*         case SHRED_ID :
                     if ( KMessageBox::warningContinueCancel( krApp,
@@ -332,14 +332,14 @@ void KrPopupMenu::performAction(int id)
                        KShred::shred( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) );
                   break;*/
     case OPEN_KONQ_ID :
-        KToolInvocation::startServiceByDesktopName("konqueror", _item->url().toDisplayString());
+        KToolInvocation::startServiceByDesktopName("konqueror", _item->url().toDisplayString(QUrl::PreferLocalFile));
         break;
     case CHOOSE_ID : // open-with dialog
         lst << _item->url();
         panel->func->displayOpenWithDialog(lst);
         break;
     case MOUNT_ID :
-        krMtMan.mount(_item->url().toString(QUrl::StripTrailingSlash));
+        krMtMan.mount(_item->url().adjusted(QUrl::StripTrailingSlash).path());
         break;
     case NEW_LINK_ID :
         panel->func->krlink(false);
@@ -357,7 +357,7 @@ void KrPopupMenu::performAction(int id)
         KrTrashHandler::restoreTrashedFiles(_items.urlList());
     break;
     case UNMOUNT_ID :
-        krMtMan.unmount(_item->url().toString(QUrl::StripTrailingSlash));
+        krMtMan.unmount(_item->url().adjusted(QUrl::StripTrailingSlash).path());
         break;
     case COPY_CLIP_ID :
         panel->func->copyToClipboard();

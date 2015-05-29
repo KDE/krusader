@@ -420,16 +420,16 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
     QLabel *l2 = new QLabel(i18n("Checksum file:"), widget);
     hlayout2->addWidget(l2);
     KUrlRequester *checksumFileReq = new KUrlRequester(widget);
+    checksumFileReq->setUrl(QUrl::fromLocalFile(path));
     if (!checksumFile.isEmpty())
         checksumFileReq->setUrl(QUrl::fromLocalFile(checksumFile));
-    checksumFileReq->setUrl(QUrl::fromLocalFile(path));
     checksumFileReq->setFocus();
     hlayout2->addWidget(checksumFileReq);
     layout->addLayout(hlayout2, row, 0, 1, 2, Qt::AlignLeft);
     setMainWidget(widget);
 
     if (exec() != Accepted) return;
-    QString file = checksumFileReq->url().toDisplayString();
+    QString file = checksumFileReq->url().toDisplayString(QUrl::PreferLocalFile);
     QString extension;
     if (!verifyChecksumFile(file, extension)) {
         KMessageBox::error(0, i18n("<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid checksum file.</qt>", file));
@@ -682,7 +682,7 @@ void ChecksumResultsDlg::accept()
         if (savePerFile())
             KDialog::accept();
     } else if (!_checksumFileSelector->url().isEmpty()) {
-        if (saveChecksum(_data, _checksumFileSelector->url().toDisplayString()))
+        if (saveChecksum(_data, _checksumFileSelector->url().toDisplayString(QUrl::PreferLocalFile)))
             KDialog::accept();
     }
 }

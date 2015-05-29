@@ -94,19 +94,21 @@ public:
         return res;
     }
 
-    virtual KIO::SkipDialog_Result askSkip(KJob * job, bool multi, const QString & error_text) {
+    virtual KIO::SkipDialog_Result askSkip(KJob * job, KIO::SkipDialog_Options options,
+                                           const QString & error_text) Q_DECL_OVERRIDE {
         if (copyJobRef->isSkipAll()) {
-            if (multi)
+            if (options & KIO::SkipDialog_MultipleItems)
                 return KIO::S_AUTO_SKIP;
             else
                 return KIO::S_SKIP;
         }
 
-        //KIO::SkipDialog_Result res = KIO::JobUiDelegate::askSkip(job, copyJobRef->isMulti(), error_text);
-        KIO::SkipDialog_Result res = KIO::JobUiDelegate::askSkip(job, KIO::SkipDialog_MultipleItems, error_text);
+        KIO::SkipDialog_Result res = KIO::JobUiDelegate::askSkip(job,
+                                                                 copyJobRef->isMulti() ? KIO::SkipDialog_MultipleItems: (KIO::SkipDialog_Option)0,
+                                                                 error_text);
         if (res == KIO::S_AUTO_SKIP) {
             copyJobRef->setSkipAll();
-            if (!multi)
+            if (!(options & KIO::SkipDialog_MultipleItems))
                 res = KIO::S_SKIP;
         }
 
@@ -297,10 +299,9 @@ void VirtualCopyJob::slotMkdirResult(KJob *job)
     KUrl url = (static_cast<KIO::SimpleJob*>(job))->url();
 
     if (job && job->error()) {
-        if (ui() && !m_skipAll) {
-            KIO::JobUiDelegate *jobui = new KIO::JobUiDelegate();
-            jobui->setJob(job);
-            KIO::SkipDialog_Result skipResult = jobui->askSkip(job, KIO::SkipDialog_MultipleItems, job->errorString());
+        if (uiDelegate() && !m_skipAll) {
+            KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(uiDelegate());
+            KIO::SkipDialog_Result skipResult = ui->askSkip(this, m_multi ? KIO::SkipDialog_MultipleItems: (KIO::SkipDialog_Option)0, job->errorString());
             switch (skipResult) {
             case KIO::S_CANCEL:
                 setError(KIO::ERR_USER_CANCELED);
