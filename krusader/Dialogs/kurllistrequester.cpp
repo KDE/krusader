@@ -118,7 +118,7 @@ void KURLListRequester::slotBrowse()
             break;
     }
     if (!url.isEmpty())
-        urlLineEdit->setText(url.toDisplayString());
+        urlLineEdit->setText(url.toDisplayString(QUrl::PreferLocalFile));
     urlLineEdit->setFocus();
 }
 
@@ -194,7 +194,7 @@ void KURLListRequester::setUrlList(QList<QUrl> urlList)
     QList<QUrl>::iterator it;
 
     for (it = urlList.begin(); it != urlList.end(); ++it)
-        urlListBox->addItem(it->toDisplayString());
+        urlListBox->addItem(it->toDisplayString(QUrl::PreferLocalFile));
 
     emit changed();
 }

@@ -182,7 +182,7 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QStr
 
         QUrl temp = baseURL, tempOld;
         do {
-            QString baseURLText = temp.toDisplayString();
+            QString baseURLText = temp.toDisplayString(QUrl::PreferLocalFile);
             baseUrlCombo->addItem(baseURLText);
             tempOld = temp;
             temp = KIO::upUrl(temp);
@@ -275,7 +275,7 @@ QUrl KUrlRequesterDlgForCopy::baseURL() const
 {
     if (baseUrlCombo == 0)
         return QUrl();
-    return QUrl(baseUrlCombo->currentText());
+    return QUrl::fromUserInput(baseUrlCombo->currentText(), QString(), QUrl::AssumeLocalFile);
 }
 
 KRGetDate::KRGetDate(QDate date, QWidget *parent) : KDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
