@@ -34,7 +34,7 @@ class KLineEdit;
 class QToolButton;
 class QCheckBox;
 class KComboBox;
-class KIntSpinBox;
+class QSpinBox;
 
 
 /**
@@ -309,7 +309,7 @@ public:
     void reset();
     bool valid();
 private:
-    KIntSpinBox * _spinbox;
+    QSpinBox * _spinbox;
     int _default;
 };
 

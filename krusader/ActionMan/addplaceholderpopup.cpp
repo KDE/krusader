@@ -667,7 +667,7 @@ ParameterInt::ParameterInt(const exp_parameter& parameter, QWidget* parent) : Pa
     layout->setContentsMargins(0, 0, 0, 0);
 
     layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
-    layout->addWidget(_spinbox = new KIntSpinBox(this));
+    layout->addWidget(_spinbox = new QSpinBox(this));
     QStringList para = parameter.preset().section(':', 1).split(';');
 
     _spinbox->setMinimum(para[0].toInt());
