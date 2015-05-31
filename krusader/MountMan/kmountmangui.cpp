@@ -40,6 +40,7 @@ A
 
 #include <sys/param.h>
 
+#include <QtCore/QCryptographicHash>
 #include <QtCore/QList>
 #include <QtCore/QFileInfo>
 #include <QtGui/QPixmap>
@@ -57,7 +58,6 @@ A
 #include <KDE/KDebug>
 #include <KDE/KDiskFreeSpace>
 #include <KDE/KIcon>
-#include <KDE/KMD5>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KGuiItem>
@@ -542,14 +542,14 @@ bool KrMountDetector::hasMountsChanged()
     if (!mtabInfo.exists() || mtabInfo.isSymLink()) { // if mtab is a symlimk to /proc/mounts the mtime is unusable
 #endif
         KMountPoint::List mountPoints = KMountPoint::currentMountPoints(KMountPoint::NeedRealDeviceName);
-        KMD5 md5;
+        QCryptographicHash md5(QCryptographicHash::Md5);
         for (KMountPoint::List::iterator i = mountPoints.begin(); i != mountPoints.end(); ++i) {
-            md5.update((*i)->mountedFrom().toUtf8());
-            md5.update((*i)->realDeviceName().toUtf8());
-            md5.update((*i)->mountPoint().toUtf8());
-            md5.update((*i)->mountType().toUtf8());
+            md5.addData((*i)->mountedFrom().toUtf8());
+            md5.addData((*i)->realDeviceName().toUtf8());
+            md5.addData((*i)->mountPoint().toUtf8());
+            md5.addData((*i)->mountType().toUtf8());
         }
-        QString s = md5.hexDigest();
+        QString s = md5.result();
         result = s != checksum;
         checksum = s;
 #ifndef BSD
