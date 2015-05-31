@@ -62,7 +62,7 @@ void KrPopupMenu::run(const QPoint &pos, KrPanel *panel)
     menu.performAction(result);
 }
 
-KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : KMenu(parent), panel(thePanel), empty(false),
+KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), panel(thePanel), empty(false),
         multipleSelections(false), actions(0), _item(0)
 {
 #ifdef __LIBKONQ__

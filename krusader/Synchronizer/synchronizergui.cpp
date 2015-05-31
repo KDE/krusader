@@ -65,12 +65,12 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QSpinBox>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KIcon>
 #include <KDE/KLocale>
-#include <KDE/KMenu>
 #include <KDE/KInputDialog>
 
 #include <KWidgetsAddons/KMessageBox>
@@ -1748,7 +1748,7 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
     bool    isDir       = item->isDir();
 
     // create the menu
-    KMenu popup;
+    QMenu popup;
     QAction *myact;
     QHash< QAction *, int > actHash;
 

@@ -48,10 +48,10 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KInputDialog>
-#include <KDE/KMenu>
 #include <KDE/KGlobal>
 #include <KDE/KLocale>
 #include <KDE/KIcon>
@@ -588,7 +588,7 @@ void KrSearchDialog::compareByContent()
 void KrSearchDialog::contextMenu(const QPoint &pos)
 {
     // create the menu
-    KMenu popup;
+    QMenu popup;
     popup.setTitle(i18n("Krusader Search"));
 
     QAction *actView = popup.addAction(i18n("View File (F3)"));

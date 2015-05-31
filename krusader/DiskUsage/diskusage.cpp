@@ -47,10 +47,10 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KMenu>
 #include <KDE/KMimeType>
 #include <KDE/KGlobalSettings>
 #include <KDE/KGlobal>
@@ -738,9 +738,9 @@ Directory* DiskUsage::getCurrentDir()
     return currentDirectory;
 }
 
-void DiskUsage::rightClickMenu(const QPoint & pos, File *fileItem, KMenu *addPopup, QString addPopupName)
+void DiskUsage::rightClickMenu(const QPoint & pos, File *fileItem, QMenu *addPopup, QString addPopupName)
 {
-    KMenu popup(this);
+    QMenu popup(this);
 
     popup.setTitle(i18n("Disk Usage"));
 
@@ -784,7 +784,7 @@ void DiskUsage::rightClickMenu(const QPoint & pos, File *fileItem, KMenu *addPop
         menu->setText(addPopupName);
     }
 
-    KMenu viewPopup;
+    QMenu viewPopup;
 
     myAct = viewPopup.addAction(i18n("Lines"));
     actionHash[ myAct ] = LINES_VIEW_ID;

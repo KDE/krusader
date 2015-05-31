@@ -20,10 +20,10 @@
 #include "queue_mgr.h"
 
 #include <QtGui/QCursor>
+#include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KMenu>
 
 #include <KWidgetsAddons/KMessageBox>
 
@@ -142,7 +142,7 @@ void KrQueueListWidget::slotItemRightClicked(QListWidgetItem * item)
     if (item) {
         KrQueueListWidgetItem * kitem = (KrQueueListWidgetItem *)item;
         if (kitem->job()) {
-            KMenu popup(this);
+            QMenu popup(this);
             popup.setTitle(i18n("Queue Manager"));
             QAction * actDelete = popup.addAction(i18n("Delete"));
             QAction * res = popup.exec(QCursor::pos());

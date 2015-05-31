@@ -23,11 +23,11 @@
 #include <QtCore/QHashIterator>
 #include <QtWidgets/QDirModel>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QApplication>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KMenu>
 #include <KDE/KGlobal>
 
 #include <KIOWidgets/KDirLister>
@@ -264,7 +264,7 @@ bool KrInterDetailedView::eventFilter(QObject *object, QEvent *event)
 
 void KrInterDetailedView::showContextMenu(const QPoint & p)
 {
-    KMenu popup(this);
+    QMenu popup(this);
     popup.setTitle(i18n("Columns"));
 
     QVector<QAction*> actions;

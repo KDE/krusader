@@ -54,14 +54,14 @@
 #define INDEPENDENT_MASK 0x1000
 #define EXECUTABLE_ID  0xFFFF
 
-AddPlaceholderPopup::AddPlaceholderPopup(QWidget *parent) : KMenu(parent)
+AddPlaceholderPopup::AddPlaceholderPopup(QWidget *parent) : QMenu(parent)
 {
 
-    _activeSub = new KMenu(i18n("Active panel"), this);
-    _otherSub = new KMenu(i18n("Other panel"), this);
-    _leftSub = new KMenu(i18n("Left panel"), this);
-    _rightSub = new KMenu(i18n("Right panel"), this);
-    _independentSub = new KMenu(i18n("Panel independent"), this);
+    _activeSub = new QMenu(i18n("Active panel"), this);
+    _otherSub = new QMenu(i18n("Other panel"), this);
+    _leftSub = new QMenu(i18n("Left panel"), this);
+    _rightSub = new QMenu(i18n("Right panel"), this);
+    _independentSub = new QMenu(i18n("Panel independent"), this);
 
     addMenu(_activeSub);
     addMenu(_otherSub);

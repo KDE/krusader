@@ -20,8 +20,7 @@
 #ifndef KRPOPUPMENU_H
 #define KRPOPUPMENU_H
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KMenu>
+#include <QtWidgets/QMenu>
 
 #include <KService/KService>
 
@@ -39,7 +38,7 @@ class KActionCollection;
 class KrPanel;
 
 // should be renamed to KrContextMenu or similar
-class KrPopupMenu : public KMenu
+class KrPopupMenu : public QMenu
 {
     Q_OBJECT
 public:
@@ -90,7 +89,7 @@ protected:
 private:
     KrPanel *panel;
     bool empty, multipleSelections;
-    KMenu openWith, linkPopup, createNewPopup;
+    QMenu openWith, linkPopup, createNewPopup;
     KrPreviewPopup preview;
     KActionCollection *actions;
     KFileItem *_item;

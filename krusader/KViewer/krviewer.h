@@ -28,6 +28,7 @@
 #include <QtGui/QFocusEvent>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QAction>
+#include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KTemporaryFile>

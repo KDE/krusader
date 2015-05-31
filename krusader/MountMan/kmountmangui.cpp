@@ -50,10 +50,10 @@ A
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KMenu>
 #include <KDE/KDebug>
 #include <KDE/KDiskFreeSpace>
 #include <KDE/KIcon>
@@ -452,7 +452,7 @@ void KMountManGUI::clicked(QTreeWidgetItem *item, const QPoint & pos)
 
     fsData *system = getFsData(item);
     // create the menu
-    KMenu popup;
+    QMenu popup;
     popup.setTitle(i18n("MountMan"));
     if (!system->mounted()) {
         QAction *mountAct = popup.addAction(i18n("Mount"));

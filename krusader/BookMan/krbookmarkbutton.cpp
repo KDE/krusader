@@ -23,10 +23,10 @@
 
 #include <QtGui/QPixmap>
 #include <QtWidgets/QAction>
+#include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KMenu>
 #include <KDE/KDebug>
 #include <KDE/KIcon>
 
@@ -55,7 +55,7 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent)
 
 void KrBookmarkButton::populate()
 {
-    krBookMan->populate(static_cast<KMenu*>(menu()));
+    krBookMan->populate(static_cast<QMenu*>(menu()));
 }
 
 void KrBookmarkButton::showMenu()

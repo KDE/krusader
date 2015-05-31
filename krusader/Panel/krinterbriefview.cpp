@@ -27,10 +27,10 @@
 #include <QtWidgets/QDirModel>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QScrollBar>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KMenu>
 #include <KDE/KLocale>
 
 #include <KIOWidgets/KDirLister>
@@ -213,7 +213,7 @@ bool KrInterBriefView::eventFilter(QObject *object, QEvent *event)
 
 void KrInterBriefView::showContextMenu(const QPoint & p)
 {
-    KMenu popup(this);
+    QMenu popup(this);
     popup.setTitle(i18n("Columns"));
 
     int COL_ID = 14700;

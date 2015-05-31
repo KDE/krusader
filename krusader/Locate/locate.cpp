@@ -61,11 +61,11 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QTreeWidget>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KMenu>
 #include <KDE/KInputDialog>
 
 #include <KCoreAddons/KProcess>
@@ -385,7 +385,7 @@ void LocateDlg::slotRightClick(QTreeWidgetItem *item, const QPoint &pos)
         return;
 
     // create the menu
-    KMenu popup;
+    QMenu popup;
     popup.setTitle(i18nc("@title:menu", "Locate"));
 
     QAction * actView = popup.addAction(i18n("View (F3)"));

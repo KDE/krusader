@@ -59,7 +59,7 @@ typedef QHash<QString, void *> Properties;
 class DUListView;
 class DULines;
 class DUFilelight;
-class KMenu;
+class QMenu;
 class LoaderWidget;
 
 class DiskUsage : public QStackedWidget
@@ -100,7 +100,7 @@ public:
 
     QString    getToolTip(File *);
 
-    void       rightClickMenu(const QPoint &, File *, KMenu * = 0, QString = QString());
+    void       rightClickMenu(const QPoint &, File *, QMenu * = 0, QString = QString());
 
     void       changeDirectory(Directory *dir);
 

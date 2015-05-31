@@ -24,10 +24,10 @@
 #include <QtCore/QUrl>
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement>
+#include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDebug>
-#include <KDE/KMenu>
 #include <KDE/KStandardDirs>
 
 #include <KXmlGui/KActionCollection>

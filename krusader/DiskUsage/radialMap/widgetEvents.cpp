@@ -28,10 +28,10 @@
 #include <QtGui/QPaintEvent>
 #include <QtGui/QResizeEvent>
 #include <QtWidgets/QApplication>          //QApplication::setOverrideCursor()
+#include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KMenu>  //::mousePressEvent()
 #include <KDE/KIcon>
 #include <KIO/JobUiDelegate>
 
@@ -165,7 +165,7 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
         const bool isDir = m_focus->file()->isDir();
 
         if (e->button() == Qt::RightButton) {
-            KMenu popup;
+            QMenu popup;
             popup.setTitle(m_focus->file()->fullPath(m_tree));
 
             QAction * actKonq = 0, * actKonsole = 0, *actViewMag = 0, * actFileOpen = 0, * actEditDel = 0;

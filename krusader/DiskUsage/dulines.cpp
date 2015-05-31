@@ -44,9 +44,9 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QItemDelegate>
+#include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KMenu>
 #include <KDE/KLocale>
 
 class DULinesItemDelegate : public QItemDelegate
@@ -469,7 +469,7 @@ void DULines::slotRightClicked(QTreeWidgetItem *item, const QPoint &pos)
     if (item && item->text(0) != "..")
         file = ((DULinesItem *)item)->getFile();
 
-    KMenu linesPopup;
+    QMenu linesPopup;
     QAction *act = linesPopup.addAction(i18n("Show file sizes"), this, SLOT(slotShowFileSizes()));
     act->setChecked(showFileSize);
 

@@ -33,9 +33,9 @@
 
 #include <QtGui/QMouseEvent>
 #include <QtGui/QPixmap>
+#include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KMenu>
 #include <KDE/KLocale>
 #include <KDE/KInputDialog>
 
@@ -95,11 +95,11 @@ void DUFilelight::mousePressEvent(QMouseEvent *event)
         if (focus && !focus->isFake() && focus->file() != currentDir)
             file = (File *)focus->file();
 
-        KMenu filelightPopup;
+        QMenu filelightPopup;
         filelightPopup.addAction(i18n("Zoom In"),  this, SLOT(zoomIn()), Qt::Key_Plus);
         filelightPopup.addAction(i18n("Zoom Out"), this, SLOT(zoomOut()), Qt::Key_Minus);
 
-        KMenu schemePopup;
+        QMenu schemePopup;
         schemePopup.addAction(i18n("Rainbow"),       this, SLOT(schemeRainbow()));
         schemePopup.addAction(i18n("High Contrast"), this, SLOT(schemeHighContrast()));
         schemePopup.addAction(i18n("KDE"),           this, SLOT(schemeKDE()));

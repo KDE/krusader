@@ -29,10 +29,10 @@
 #include <QtGui/QResizeEvent>
 #include <QtGui/QMouseEvent>
 #include <QtWidgets/QAction>
+#include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KMenu>
 #include <KDE/KShortcut>
 #include <KDE/KDebug>
 
@@ -55,7 +55,7 @@ PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): KTabBar(parent),
     insertAction(actions->actCloseInactiveTabs);
     insertAction(actions->actCloseDuplicatedTabs);
 
-    setMovable(true); // enable drag'n'drop 
+    setMovable(true); // enable drag'n'drop
 
     setShape(KTabBar::TriangularSouth);
 }

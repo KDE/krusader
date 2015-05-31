@@ -26,9 +26,7 @@
 #include <QtCore/QMap>
 #include <QtCore/QUrl>
 #include <QtXml/QDomEntity>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KMenu>
+#include <QtWidgets/QMenu>
 
 #include "krbookmark.h"
 
@@ -44,7 +42,7 @@ class KrBookmarkHandler: public QObject
 public:
     KrBookmarkHandler(FileManagerWindow *mainWindow);
     ~KrBookmarkHandler();
-    void populate(KMenu *menu);
+    void populate(QMenu *menu);
     void addBookmark(KrBookmark *bm, KrBookmark *parent = 0);
     void bookmarkCurrent(QUrl url);
 
@@ -57,7 +55,7 @@ protected:
     void exportToFileFolder(QDomDocument &doc, QDomElement &parent, KrBookmark *folder);
     void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);
     void clearBookmarks(KrBookmark *root);
-    void buildMenu(KrBookmark *parent, KMenu *menu);
+    void buildMenu(KrBookmark *parent, QMenu *menu);
 
     bool eventFilter(QObject *obj, QEvent *ev);
 
@@ -79,7 +77,7 @@ private:
     KBookmarkManager *manager;
     bool _middleClick; // if true, the user clicked the middle button to open the bookmark
 
-    QPointer<KMenu>            _mainBookmarkPopup; // main bookmark popup menu
+    QPointer<QMenu>            _mainBookmarkPopup; // main bookmark popup menu
     QList<QAction *>           _specialBookmarks; // the action list of the special bookmarks
 };
 

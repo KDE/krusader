@@ -24,9 +24,9 @@
 #include <QtCore/QTimer>
 #include <QtCore/QEvent>
 #include <QtGui/QKeyEvent>
+#include <QtWidgets/QMenuBar>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KMenuBar>
 #include <KDE/KMimeType>
 #include <KDE/KLocale>
 #include <KDE/KLibLoader>

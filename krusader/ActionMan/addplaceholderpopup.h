@@ -22,10 +22,10 @@
 #define ADDPLACEHOLDERPOPUP_H
 
 #include <QtCore/QList>
+#include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDialog>
-#include <KDE/KMenu>
 
 #include "../UserAction/expander.h"
 
@@ -41,7 +41,7 @@ class QSpinBox;
  * This reads Expander::placeholder[] and
  * fills a popup for easy access to the UserAction Placeholder
  */
-class AddPlaceholderPopup : public KMenu
+class AddPlaceholderPopup : public QMenu
 {
 
 public:
@@ -63,7 +63,7 @@ protected:
     QString getParameter(exp_placeholder* currentPlaceholder);
 
 private:
-    KMenu *_activeSub, *_otherSub, *_leftSub, *_rightSub, *_independentSub;
+    QMenu *_activeSub, *_otherSub, *_leftSub, *_rightSub, *_independentSub;
 };
 
 

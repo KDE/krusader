@@ -36,10 +36,10 @@
 #include <QtGui/QClipboard>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QMenuBar>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KStatusBar>
-#include <KDE/KMenuBar>
 #include <KDE/KLibLoader>
 #include <KDE/KShortcut>
 #include <KDE/KIcon>

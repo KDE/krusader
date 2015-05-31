@@ -37,9 +37,9 @@
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KMenu>
 #include <KDE/KLocale>
 #include <KDE/KIcon>
 
@@ -147,7 +147,7 @@ void KURLListRequester::slotRightClicked(QListWidgetItem *item, const QPoint &po
     if (item == 0)
         return;
 
-    KMenu popupMenu(this);
+    QMenu popupMenu(this);
     QAction * menuAction = popupMenu.addAction(i18n("Delete"));
 
     if (menuAction == popupMenu.exec(pos)) {

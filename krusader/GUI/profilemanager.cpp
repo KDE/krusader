@@ -31,10 +31,10 @@
 #include "profilemanager.h"
 
 #include <QtGui/QCursor>
+#include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KMenu>
 #include <KDE/KInputDialog>
 #include <KDE/KIcon>
 
@@ -65,7 +65,7 @@ void ProfileManager::profilePopup()
 #define OVERWRITE_ENTRY_ID  4000
 
     // create the menu
-    KMenu popup, removePopup, overwritePopup;
+    QMenu popup, removePopup, overwritePopup;
     popup.setTitle(i18n("Profiles"));
 
     for (int i = 0; i != profileList.count() ; i++) {

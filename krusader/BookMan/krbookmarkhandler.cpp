@@ -309,7 +309,7 @@ BM_SUCCESS:
     file.close();
 }
 
-void KrBookmarkHandler::populate(KMenu *menu)
+void KrBookmarkHandler::populate(QMenu *menu)
 {
     _mainBookmarkPopup = menu;
     menu->clear();
@@ -317,7 +317,7 @@ void KrBookmarkHandler::populate(KMenu *menu)
     buildMenu(_root, menu);
 }
 
-void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu)
+void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu)
 {
     static int inSecondaryMenu = 0; // used to know if we're on the top menu
 
@@ -328,7 +328,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu)
         KrBookmark *bm = it.next();
 
         if (!bm->isFolder()) continue;
-        KMenu *newMenu = new KMenu(menu);
+        QMenu *newMenu = new QMenu(menu);
         newMenu->setIcon(QIcon(krLoader->loadIcon(bm->iconName(), KIconLoader::Small)));
         newMenu->setTitle(bm->text());
         QAction *menuAction = menu->addMenu(newMenu);
@@ -365,7 +365,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu)
             menu->addSeparator();
 
             // add the popular links submenu
-            KMenu *newMenu = new KMenu(menu);
+            QMenu *newMenu = new QMenu(menu);
             newMenu->setTitle(i18n("Popular URLs"));
             newMenu->setIcon(QIcon(krLoader->loadIcon("folder-bookmarks", KIconLoader::Small)));
             QAction *bmfAct  = menu->addMenu(newMenu);
