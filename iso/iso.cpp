@@ -439,7 +439,6 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
             if (fileData.size() == 0) break;
         }
         if (!mime) {
-            //KSharedPtr<KMimeType> result = KMimeType::findByNameAndContent(path, fileData);
             if (KMimeType::findByNameAndContent(path, fileData)) {
                 kDebug() << "Emitting mimetype " << KMimeType::findByNameAndContent(path, fileData)->name() << endl;
                 mimeType(KMimeType::findByNameAndContent(path, fileData)->name());

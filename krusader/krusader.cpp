@@ -314,7 +314,6 @@ bool Krusader::versionControl()
 #define FIRST_RUN "First Time"
     bool retval = false;
     // create config file
-    // TODO: according to docs, KGlobal::config() should return KConfig*, but in reality (in beta1), it returns KSharedPtr<KConfig> or something ?!
     krConfig = KGlobal::config().data();
     KConfigGroup nogroup(krConfig, QString());
 

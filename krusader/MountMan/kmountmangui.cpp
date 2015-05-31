@@ -272,7 +272,7 @@ void KMountManGUI::finishedGettingSpaceData()
 void KMountManGUI::gettingSpaceData(const QString &mountPoint, quint64 kBSize,
                                     quint64 /*kBUsed*/, quint64 kBAvail)
 {
-    KSharedPtr<KMountPoint> m = KMountMan::findInListByMntPoint(mounted, mountPoint);
+    QExplicitlySharedDataPointer<KMountPoint> m = KMountMan::findInListByMntPoint(mounted, mountPoint);
     if (!((bool)m)) {     // this should never never never happen!
         KMessageBox::error(0, i18n("Critical Error"),
                            i18n("Internal error in MountMan.\nPlease email the developers."));

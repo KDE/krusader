@@ -33,6 +33,7 @@ A
 #include <stdlib.h>
 #include <math.h>
 
+#include <QtCore/QExplicitlySharedDataPointer>
 #include <QtCore/QObject>
 #include <QtCore/QString>
 #include <QtCore/QPointer>
@@ -42,7 +43,6 @@ A
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kdeversion.h>
-#include <KDE/KSharedPtr>
 
 #include <KIO/JobClasses>
 #include <KIO/Job>
@@ -103,7 +103,7 @@ protected slots:
 
 protected:
     // used internally
-    static KSharedPtr<KMountPoint> findInListByMntPoint(KMountPoint::List &lst, QString value);
+    static QExplicitlySharedDataPointer<KMountPoint> findInListByMntPoint(KMountPoint::List &lst, QString value);
     void toggleMount(QString mntPoint);
     void emitRefreshPanel(const QUrl &url) {
         emit refreshPanel(url);

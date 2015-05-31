@@ -120,7 +120,6 @@ KIso::KIso(const QString& filename, const QString & _mimetype)
     QString mimetype(_mimetype);
     bool forced = true;
     if (mimetype.isEmpty()) {
-        //KSharedPtr<KMimeType> result = KMimeType::findByFileContent(filename);
         if (KMimeType::findByFileContent(filename))
             mimetype = KMimeType::findByFileContent(filename)->name();
 

@@ -142,12 +142,12 @@ void KMountMan::mainWindow()
     mountManGui = 0; /* for sanity */
 }
 
-KSharedPtr<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, QString value)
+QExplicitlySharedDataPointer<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, QString value)
 {
     if (value.length() > 1 && value.endsWith('/'))
         value = value.left(value.length() - 1);
 
-    KSharedPtr<KMountPoint> m;
+    QExplicitlySharedDataPointer<KMountPoint> m;
     for (KMountPoint::List::iterator it = lst.begin(); it != lst.end(); ++it) {
         m = it->data();
         QString mntPnt = m->mountPoint();
@@ -157,7 +157,7 @@ KSharedPtr<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, 
             return m;
     }
 
-    return KSharedPtr<KMountPoint>();
+    return QExplicitlySharedDataPointer<KMountPoint>();
 }
 
 void KMountMan::jobResult(KJob *job)
@@ -182,7 +182,7 @@ void KMountMan::mount(QString mntPoint, bool blocking)
         }
     } else {
         KMountPoint::List possible = KMountPoint::possibleMountPoints(KMountPoint::NeedMountOptions);
-        KSharedPtr<KMountPoint> m = findInListByMntPoint(possible, mntPoint);
+        QExplicitlySharedDataPointer<KMountPoint> m = findInListByMntPoint(possible, mntPoint);
         if (!((bool)m)) return;
         if (blocking)
             waiting = true; // prepare to block
@@ -257,7 +257,7 @@ void KMountMan::unmount(QString mntPoint, bool blocking)
 KMountMan::mntStatus KMountMan::getStatus(QString mntPoint)
 {
     KMountPoint::List::iterator it;
-    KSharedPtr<KMountPoint> m;
+    QExplicitlySharedDataPointer<KMountPoint> m;
 
     // 1: is it already mounted
     KMountPoint::List current = KMountPoint::currentMountPoints();
@@ -408,7 +408,7 @@ void KMountMan::quickList()
     _actions = new QString[ possible.size()];
 
     KMountPoint::List::iterator it;
-    KSharedPtr<KMountPoint> m;
+    QExplicitlySharedDataPointer<KMountPoint> m;
     int idx;
     for (it = possible.begin(), idx = 0; it != possible.end(); ++it, ++idx) {
         m = it->data();
@@ -479,7 +479,7 @@ QString KMountMan::findUdiForPath(QString path, const Solid::DeviceInterface::Ty
 {
     KMountPoint::List current = KMountPoint::currentMountPoints();
     KMountPoint::List possible = KMountPoint::possibleMountPoints();
-    KSharedPtr<KMountPoint> mp = findInListByMntPoint(current, path);
+    QExplicitlySharedDataPointer<KMountPoint> mp = findInListByMntPoint(current, path);
     if (!(bool)mp) {
         mp = findInListByMntPoint(possible, path);
         if (!(bool)mp)
