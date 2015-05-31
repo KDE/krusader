@@ -42,7 +42,6 @@
 #include <KDE/KInputDialog>
 #include <KDE/KMimeType>
 #include <KDE/KVBox>
-#include <KDE/KPushButton>
 
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KMessageBox>

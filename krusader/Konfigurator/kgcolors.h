@@ -35,9 +35,7 @@
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KPushButton>
+#include <QtWidgets/QPushButton>
 
 #include "konfiguratorpage.h"
 #include "../GUI/krtreewidget.h"
@@ -108,7 +106,7 @@ private:
     QList<QString>                      itemNames;
 
     KrTreeWidget                       *preview;
-    KPushButton *importBtn, *exportBtn;
+    QPushButton *importBtn, *exportBtn;
 
     class PreviewItem : public QTreeWidgetItem
     {

@@ -272,9 +272,9 @@ KgColors::KgColors(bool first, QWidget* parent) :
 
     kgColorsLayout->addWidget(hboxWidget, 1 , 0, 1,  3);
 
-    importBtn = new KPushButton(i18n("Import color-scheme"), innerWidget);
+    importBtn = new QPushButton(i18n("Import color-scheme"), innerWidget);
     kgColorsLayout->addWidget(importBtn, 2, 0);
-    exportBtn = new KPushButton(i18n("Export color-scheme"), innerWidget);
+    exportBtn = new QPushButton(i18n("Export color-scheme"), innerWidget);
     kgColorsLayout->addWidget(exportBtn, 2, 1);
     kgColorsLayout->addWidget(createSpacer(innerWidget), 2, 2);
     connect(importBtn, SIGNAL(clicked()), this, SLOT(slotImportColors()));

@@ -22,12 +22,12 @@
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QFileDialog>
+#include <QtWidgets/QPushButton>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KStandardDirs>
 #include <KDE/KDebug>
-#include <KDE/KPushButton>
 #include <KDE/KGlobal>
 #include <KDE/KDialog>
 
@@ -53,12 +53,12 @@ KrKeyDialog::KrKeyDialog(QWidget * parent) : KShortcutsDialog(KShortcutsEditor::
     QWidget* buttonBox = qobject_cast<QWidget*>(Dialog->button(KDialog::Ok)->parent());
     QBoxLayout* buttonBoxLayout = qobject_cast<QBoxLayout*>(buttonBox->layout());
 
-    KPushButton* importButton = new KPushButton(i18n("Import Shortcuts"), buttonBox);
+    QPushButton* importButton = new QPushButton(i18n("Import Shortcuts"), buttonBox);
     importButton->setWhatsThis(i18n("Load a keybinding profile, e.g., total_commander.keymap"));
     buttonBoxLayout->insertWidget(1, importButton);   // the defaults-button should stay on position 0
     connect(importButton, SIGNAL(clicked()), SLOT(slotImportShortcuts()));
 
-    KPushButton* exportButton = new KPushButton(i18n("Export Shortcuts"), buttonBox);
+    QPushButton* exportButton = new QPushButton(i18n("Export Shortcuts"), buttonBox);
     exportButton->setWhatsThis(i18n("Save current keybindings in a keymap file."));
     buttonBoxLayout->insertWidget(2, exportButton);
     connect(exportButton, SIGNAL(clicked()), SLOT(slotExportShortcuts()));

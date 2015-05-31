@@ -34,10 +34,10 @@
 
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KPushButton>
 #include <KDE/KDebug>
 
 KgUserActions::KgUserActions(bool first, QWidget* parent) :
@@ -58,7 +58,7 @@ KgUserActions::KgUserActions(bool first, QWidget* parent) :
                                        "To set up, configure and manage your useractions please use ActionMan."
                                    ), InfoGroup);
     InfoGrid->addWidget(labelInfo, 0, 0);
-    KPushButton *actionmanButton = new KPushButton(i18n("Start ActionMan"), InfoGroup);
+    QPushButton *actionmanButton = new QPushButton(i18n("Start ActionMan"), InfoGroup);
     connect(actionmanButton, SIGNAL(clicked()), SLOT(startActionMan()));
     InfoGrid->addWidget(actionmanButton, 1, 0);
 
