@@ -34,11 +34,11 @@
 #include <QtCore/QDir>
 #include <QtCore/QPointer>
 #include <QtCore/QEventLoop>
+#include <QtCore/QTemporaryDir>
 #include <QtWidgets/QApplication>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KTempDir>
 #include <KDE/KTemporaryFile>
 
 #include <KIO/JobUiDelegate>
@@ -364,10 +364,10 @@ QUrl AbstractJobThread::downloadIfRemote(const QUrl &baseUrl, const QStringList 
     if (!baseUrl.isLocalFile()) {
         sendInfo(i18n("Downloading remote files"));
 
-        _downloadTempDir = new KTempDir();
+        _downloadTempDir = new QTemporaryDir();
         QList<QUrl> urlList = remoteUrls(baseUrl, files);
 
-        QUrl dest(_downloadTempDir->name());
+        QUrl dest(_downloadTempDir->path());
 
         QList<QVariant> args;
         args << KrServices::toStringList(urlList);
@@ -418,9 +418,9 @@ QString AbstractJobThread::tempDirIfRemote(const QUrl &kurl)
         return kurl.adjusted(QUrl::StripTrailingSlash).path();
     }
 
-    _tempDir = new KTempDir();
+    _tempDir = new QTemporaryDir();
     _tempDirTarget = kurl;
-    return _tempDirName = _tempDir->name();
+    return _tempDirName = _tempDir->path();
 }
 
 void AbstractJobThread::sendSuccess()

@@ -47,7 +47,6 @@ A
 #include <KDE/KTemporaryFile>
 #include <KDE/KInputDialog>
 #include <KDE/KDebug>
-#include <KDE/KTempDir>
 #include <KIO/NetAccess>
 #include <KIO/JobUiDelegate>
 
