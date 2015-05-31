@@ -41,7 +41,6 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KStatusBar>
 #include <KDE/KLibLoader>
-#include <KDE/KShortcut>
 #include <KDE/KIcon>
 
 #include <KXmlGui/KToolBar>

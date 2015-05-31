@@ -47,7 +47,7 @@ KrusaderView *KrGlobal::mainView = 0;
 QWidget *KrGlobal::mainWindow = 0;
 UserAction *KrGlobal::userAction = 0;
 // ListPanel *KrGlobal::activePanel = 0;
-KShortcut KrGlobal::copyShortcut;
+QKeySequence KrGlobal::copyShortcut;
 
 
 KrPanel *KrGlobal::activePanel()

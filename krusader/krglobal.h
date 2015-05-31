@@ -35,7 +35,7 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDebug>
-#include <KDE/KShortcut>
+#include <QtGui/QKeySequence>
 
 #include <KConfigCore/KConfigGroup>
 #include <KIconThemes/KIconLoader>
@@ -71,7 +71,7 @@ public:
     static KrPanel *activePanel();
 
     //HACK - used by [ListerTextArea|KrSearchDialog|LocateDlg]:keyPressEvent()
-    static KShortcut copyShortcut;
+    static QKeySequence copyShortcut;
 
 //     static void enableAction(const char *name, bool enable);
 //     static QAction *getAction(const char *name);

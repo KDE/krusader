@@ -286,8 +286,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     isStarting = false;
 
     //HACK - used by [ListerTextArea|KrSearchDialog|LocateDlg]:keyPressEvent()
-    // KF5 TODO temporary commented
-    //KrGlobal::copyShortcut = _listPanelActions->actCopy->shortcut();
+    KrGlobal::copyShortcut = _listPanelActions->actCopy->shortcut();
 
     //HACK: make sure the active view becomes focused
     // for some reason sometimes the active view cannot be focused immediately at this point,
@@ -412,7 +411,6 @@ void Krusader::resizeEvent(QResizeEvent *e) {
 void Krusader::setupActions() {
     QAction *bringToTopAct = new QAction(i18n("Bring Main Window to Top"), this);
     actionCollection()->addAction("bring_main_window_to_top", bringToTopAct);
-    //bringToTopAct->setGlobalShortcut(KShortcut());
     connect(bringToTopAct, SIGNAL(triggered()), SLOT(moveToTop()));
 
     KrActions::setupActions(this);
