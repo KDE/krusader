@@ -56,11 +56,11 @@ A
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KDebug>
-#include <KDE/KDiskFreeSpace>
 #include <KDE/KIcon>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KGuiItem>
+#include <KIOCore/KDiskFreeSpaceInfo>
 #include <KIOCore/KMountPoint>
 #include <KCodecs/KCodecs>
 
@@ -81,7 +81,6 @@ KMountManGUI::KMountManGUI(KMountMan *mntMan) : KDialog(mntMan->parentWindow),
     mountList(0),
     cbShowOnlyRemovable(0),
     watcher(0),
-    numOfMountPoints(0),
     sizeX(-1),
     sizeY(-1)
 {
@@ -233,7 +232,7 @@ void KMountManGUI::createMainPage()
 
 void KMountManGUI::getSpaceData()
 {
-    fileSystemsTemp.clear();
+    fileSystems.clear();
     KrMountDetector::getInstance()->hasMountsChanged();
 
     mounted = KMountPoint::currentMountPoints();
@@ -244,48 +243,26 @@ void KMountManGUI::getSpaceData()
         return ;
     }
 
-    numOfMountPoints = mounted.size();
     for (KMountPoint::List::iterator it = mounted.begin(); it != mounted.end(); ++it) {
         // don't bother with invalid file systems
         if (mountMan->invalidFilesystem((*it)->mountType())) {
-            --numOfMountPoints;
             continue;
         }
-        KDiskFreeSpace *sp = KDiskFreeSpace::findUsageInfo((*it) ->mountPoint());
-        connect(sp, SIGNAL(foundMountPoint(const QString &, quint64, quint64, quint64)),
-                this, SLOT(gettingSpaceData(const QString&, quint64, quint64, quint64)));
-        connect(sp, SIGNAL(done()), this, SLOT(finishedGettingSpaceData()));
+        KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo((*it) ->mountPoint());
+        if(!info.isValid()) {
+            continue;
+        }
+        fsData data;
+        data.setMntPoint((*it) ->mountPoint());
+        data.setMounted(true);
+        data.setTotalBlks(info.size() / 1024);
+        data.setFreeBlks(info.available() / 1024);
+        data.setName((*it)->mountedFrom());
+        data.setType((*it)->mountType());
+        fileSystems.append(data);
     }
-}
-
-// this decrements the counter, while the following uses the data
-// used when certain filesystem (/dev, /sys) can't have the needed stats
-void KMountManGUI::finishedGettingSpaceData()
-{
-    if (--numOfMountPoints == 0) {
-        fileSystems = fileSystemsTemp;
-        addNonMounted();
-        updateList();
-    }
-}
-
-void KMountManGUI::gettingSpaceData(const QString &mountPoint, quint64 kBSize,
-                                    quint64 /*kBUsed*/, quint64 kBAvail)
-{
-    QExplicitlySharedDataPointer<KMountPoint> m = KMountMan::findInListByMntPoint(mounted, mountPoint);
-    if (!((bool)m)) {     // this should never never never happen!
-        KMessageBox::error(0, i18n("Critical Error"),
-                           i18n("Internal error in MountMan.\nPlease email the developers."));
-        exit(1);
-    }
-    fsData data;
-    data.setMntPoint(mountPoint);
-    data.setMounted(true);
-    data.setTotalBlks(kBSize);
-    data.setFreeBlks(kBAvail);
-    data.setName(m->mountedFrom());
-    data.setType(m->mountType());
-    fileSystemsTemp.append(data);
+    addNonMounted();
+    updateList();
 }
 
 void KMountManGUI::addNonMounted()

@@ -75,7 +75,6 @@ class SyncBrowseButton;
 class KrBookmarkButton;
 class ListPanelFunc;
 class QSplitter;
-class KDiskFreeSpace;
 class KrErrorDisplay;
 class ListPanelActions;
 
@@ -127,7 +126,6 @@ public:
     void restoreSettings(KConfigGroup cfg);
 
 public slots:
-    void gotStats(const QString &mountPoint, quint64 kBSize, quint64 kBUsed, quint64 kBAvail);  // displays filesystem status
     void popRightClickMenu(const QPoint&);
     void popEmptyRightClickMenu(const QPoint &);
     void compareDirs(bool otherPanelToo = true);
@@ -203,7 +201,6 @@ protected:
     int colorMask;
     bool compareMode;
     //FilterSpec    filter;
-    KDiskFreeSpace* statsAgent;
     KJob *previewJob;
     KIO::Job *inlineRefreshJob;
     ListPanelActions *_actions;

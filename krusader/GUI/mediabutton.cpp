@@ -27,7 +27,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KDiskFreeSpace>
 #include <KDE/KGlobal>
 #include <KDE/KIcon>
 #include <KDELibs4Support/kmessagebox_queued.h>

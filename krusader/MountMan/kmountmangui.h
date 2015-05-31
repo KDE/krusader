@@ -81,9 +81,6 @@ protected slots:
 
     void updateList();     // fill-up the filesystems list
     void getSpaceData();
-    void finishedGettingSpaceData();
-    void gettingSpaceData(const QString &mountPoint, quint64 kBSize,
-                          quint64 kBUsed, quint64 kBAvail);
 
 protected:
     void createLayout();   // calls the various tab layout-creators
@@ -104,8 +101,6 @@ private:
     // used for the getSpace - gotSpace functions
     KMountPoint::List possible, mounted;
     QList<fsData> fileSystems;
-    QList<fsData> fileSystemsTemp;  // first collect to a temporary place
-    int numOfMountPoints;
 
     int sizeX;
     int sizeY;

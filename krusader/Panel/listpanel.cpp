@@ -60,7 +60,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KDE/KStandardDirs>
 #include <KDE/KGlobalSettings>
 #include <KDE/KDebug>
-#include <KDE/KDiskFreeSpace>
 #include <kdeversion.h>
 
 #include <KCoreAddons/KUrlMimeData>
@@ -68,6 +67,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KCursor>
 #include <KIOCore/KMountPoint>
+#include <KIOCore/KDiskFreeSpaceInfo>
 #include <KConfigWidgets/KColorScheme>
 
 //#ifdef __LIBKONQ__
@@ -138,7 +138,7 @@ protected:
 /////////////////////////////////////////////////////
 ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg) :
         QWidget(parent), KrPanel(manager),
-        panelType(-1), colorMask(255), compareMode(false), statsAgent(0),
+        panelType(-1), colorMask(255), compareMode(false),
         previewJob(0), inlineRefreshJob(0), quickSearch(0), cdRootButton(0), cdUpButton(0),
         popupBtn(0), popup(0), vfsError(0), _locked(false)
 {
@@ -759,24 +759,20 @@ void ListPanel::slotGetStats(const QUrl &url)
     }
 #endif
 
-    status->setText(i18n("Mt.Man: working..."));
-    statsAgent = KDiskFreeSpace::findUsageInfo(path);
-    connect(statsAgent, SIGNAL(foundMountPoint(const QString &, quint64, quint64, quint64)),
-            this, SLOT(gotStats(const QString &, quint64, quint64, quint64)));
-}
-
-void ListPanel::gotStats(const QString &mountPoint, quint64 kBSize,
-                         quint64,  quint64 kBAvail)
-{
+    KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo(path);
+    if(!info.isValid()) {
+        status->setText(i18n("Space information unavailable"));
+        return;
+    }
     int perc = 0;
-    if (kBSize != 0) { // make sure that if totalsize==0, then perc=0
-        perc = (int)(((float)kBAvail / (float)kBSize) * 100.0);
+    if (info.size() != 0) { // make sure that if totalsize==0, then perc=0
+        perc = (int)(((float)info.available() / (float)info.size()) * 100.0);
     }
     // mount point information - find it in the list first
     KMountPoint::List lst = KMountPoint::currentMountPoints();
     QString fstype = i18nc("Unknown file system type", "unknown");
     for (KMountPoint::List::iterator it = lst.begin(); it != lst.end(); ++it) {
-        if ((*it)->mountPoint() == mountPoint) {
+        if ((*it)->mountPoint() == info.mountPoint()) {
             fstype = (*it)->mountType();
             break;
         }
@@ -785,14 +781,14 @@ void ListPanel::gotStats(const QString &mountPoint, quint64 kBSize,
     QString stats = i18nc("%1=free space,%2=total space,%3=percentage of usage, "
                           "%4=mountpoint,%5=filesystem type",
                           "%1 free out of %2 (%3%) on %4 [(%5)]",
-                          KIO::convertSizeFromKiB(kBAvail),
-                          KIO::convertSizeFromKiB(kBSize), perc,
-                          mountPoint, fstype);
+                          KIO::convertSize(info.available()),
+                          KIO::convertSize(info.size()), perc,
+                          info.mountPoint(), fstype);
 
     status->setText(stats);
 
-    freeSpace->setText("    " + i18n("%1 free", KIO::convertSizeFromKiB(kBAvail)));
-    mediaButton->mountPointChanged(mountPoint);
+    freeSpace->setText("    " + i18n("%1 free", KIO::convertSize(info.available())));
+    mediaButton->mountPointChanged(info.mountPoint());
 }
 
 void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
