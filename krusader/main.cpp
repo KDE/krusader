@@ -38,12 +38,12 @@
 #include <QtCore/QAbstractEventDispatcher>
 #include <QtGui/QPixmap>
 #include <QtDBus/QtDBus>
+#include <QtWidgets/QSplashScreen>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
 #include <KDE/KLocale>
 #include <KDE/KStandardDirs>
-#include <KDE/KSplashScreen>
 #include <KDE/KGlobal>
 
 #include <KCoreAddons/KAboutData>
@@ -273,14 +273,14 @@ int main(int argc, char *argv[])
     }
 
     // splash screen - if the user wants one
-    KSplashScreen *splash = 0;
+    QSplashScreen *splash = 0;
     { // don't remove bracket
         KConfigGroup cfg(KGlobal::config().data(), "Look&Feel");
         if (cfg.readEntry("Show splashscreen", _ShowSplashScreen)) {
             QString splashFilename = KStandardDirs::locate("data", "krusader/splash.png");
             QPixmap pixmap(splashFilename);
             if (!pixmap.isNull()) {
-                splash = new KSplashScreen(pixmap);
+                splash = new QSplashScreen(pixmap);
                 splash->show();
             }
         }
