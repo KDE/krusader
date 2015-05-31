@@ -82,10 +82,10 @@ public:
     virtual ~Krusader();
 
     // KrMainWindow implementation
-    virtual QWidget *widget() {
+    virtual QWidget *widget() Q_DECL_OVERRIDE {
         return this;
     }
-    virtual KrView *activeView();
+    virtual KrView *activeView() Q_DECL_OVERRIDE;
     ViewActions *viewActions() {
         return _viewActions;
     }
@@ -93,22 +93,22 @@ public:
         return actionCollection();
     }
     // FileManagerWindow implementation
-    virtual AbstractPanelManager *activeManager();
-    virtual AbstractPanelManager *leftManager();
-    virtual AbstractPanelManager *rightManager();
-    virtual PopularUrls *popularUrls() {
+    virtual AbstractPanelManager *activeManager() Q_DECL_OVERRIDE;
+    virtual AbstractPanelManager *leftManager() Q_DECL_OVERRIDE;
+    virtual AbstractPanelManager *rightManager() Q_DECL_OVERRIDE;
+    virtual PopularUrls *popularUrls() Q_DECL_OVERRIDE {
         return _popularUrls;
     }
-    virtual KrActions *krActions() {
+    virtual KrActions *krActions() Q_DECL_OVERRIDE {
         return _krActions;
     }
-    virtual ListPanelActions *listPanelActions() {
+    virtual ListPanelActions *listPanelActions() Q_DECL_OVERRIDE {
         return _listPanelActions;
     }
-    virtual TabActions *tabActions() {
+    virtual TabActions *tabActions() Q_DECL_OVERRIDE {
         return _tabActions;
     }
-    virtual void plugActionList(const char *name, QList<QAction*> &list) {
+    virtual void plugActionList(const char *name, QList<QAction*> &list) Q_DECL_OVERRIDE {
         KParts::MainWindow::plugActionList(name, list);
     }
 

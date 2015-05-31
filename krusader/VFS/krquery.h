@@ -183,9 +183,9 @@ public:
 
 protected:
     // important to know whether the event processor is connected
-    virtual void connectNotify(const char * signal);
+    virtual void connectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE;
     // important to know whether the event processor is connected
-    virtual void disconnectNotify(const char * signal);
+    virtual void disconnectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE;
 
 protected:
     QStringList matches;           // what to search

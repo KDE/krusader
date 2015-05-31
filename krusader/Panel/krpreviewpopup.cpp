@@ -42,7 +42,7 @@ public:
     ProxyStyle() : QProxyStyle(QApplication::style()) {}
 
     virtual QSize sizeFromContents(ContentsType type, const QStyleOption *option,
-                                   const QSize &contentsSize, const QWidget *widget = 0) const
+                                   const QSize &contentsSize, const QWidget *widget = 0) const Q_DECL_OVERRIDE
     {
         if(type == QStyle::CT_MenuItem) {
             const QStyleOptionMenuItem *menuItem =
@@ -59,8 +59,8 @@ public:
             return QProxyStyle::sizeFromContents(type, option, contentsSize, widget);
     }
 
-    virtual void drawControl(ControlElement element, const QStyleOption *option, 
-                                    QPainter *painter, const QWidget *widget = 0 ) const
+    virtual void drawControl(ControlElement element, const QStyleOption *option,
+                                    QPainter *painter, const QWidget *widget = 0 ) const Q_DECL_OVERRIDE
     {
         if(element == QStyle::CE_MenuItem) {
             painter->save();

@@ -123,7 +123,7 @@ public:
     }
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *) {
+    virtual void mousePressEvent(QMouseEvent *) Q_DECL_OVERRIDE {
         panel->slotFocusOnMe();
         action->trigger();
     }

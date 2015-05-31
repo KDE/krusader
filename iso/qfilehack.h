@@ -32,7 +32,7 @@ public:
     QFileHack();
     QFileHack(const QString & name);
     ~QFileHack();
-    virtual bool open(QFile::OpenMode m);
+    virtual bool open(QFile::OpenMode m) Q_DECL_OVERRIDE;
 };
 
 #endif

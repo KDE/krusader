@@ -94,12 +94,12 @@ protected:
      *
      */
     void readParams();
-    virtual bool openArchive(QIODevice::OpenMode mode);
-    virtual bool closeArchive();
-    virtual bool doWriteDir(const QString&, const QString&, const QString&, mode_t, const QDateTime &, const QDateTime &, const QDateTime &);
-    virtual bool doWriteSymLink(const QString &, const QString &, const QString &, const QString &, mode_t, const QDateTime &, const QDateTime &, const QDateTime &);
-    virtual bool doPrepareWriting(const QString& , const QString& , const QString& , qint64, mode_t, const QDateTime &, const QDateTime &, const QDateTime &);
-    virtual bool doFinishWriting(qint64);
+    virtual bool openArchive(QIODevice::OpenMode mode) Q_DECL_OVERRIDE;
+    virtual bool closeArchive() Q_DECL_OVERRIDE;
+    virtual bool doWriteDir(const QString&, const QString&, const QString&, mode_t, const QDateTime &, const QDateTime &, const QDateTime &) Q_DECL_OVERRIDE;
+    virtual bool doWriteSymLink(const QString &, const QString &, const QString &, const QString &, mode_t, const QDateTime &, const QDateTime &, const QDateTime &) Q_DECL_OVERRIDE;
+    virtual bool doPrepareWriting(const QString& , const QString& , const QString& , qint64, mode_t, const QDateTime &, const QDateTime &, const QDateTime &) Q_DECL_OVERRIDE;
+    virtual bool doFinishWriting(qint64) Q_DECL_OVERRIDE;
 
 private:
     /**
@@ -112,7 +112,7 @@ private:
     QString m_filename;
 protected:
 
-    virtual void virtual_hook(int id, void* data);
+    virtual void virtual_hook(int id, void* data) Q_DECL_OVERRIDE;
 
 private:
     class KIsoPrivate;

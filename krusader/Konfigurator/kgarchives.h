@@ -39,8 +39,8 @@ class KgArchives : public KonfiguratorPage
 
 public:
     KgArchives(bool first, QWidget* parent = 0);
-    virtual bool apply();
-    virtual void setDefaults();
+    virtual bool apply() Q_DECL_OVERRIDE;
+    virtual void setDefaults() Q_DECL_OVERRIDE;
 
 public slots:
     void slotAutoConfigure();

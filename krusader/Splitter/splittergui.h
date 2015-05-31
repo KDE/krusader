@@ -80,7 +80,7 @@ public slots:
     virtual void splitPressed();
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *e);
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 };
 
 #endif /* __SPLITTERGUI_H__ */

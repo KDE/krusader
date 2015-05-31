@@ -53,7 +53,7 @@ class SynchronizerTask : public QObject
 
 public:
     SynchronizerTask() : QObject(), m_state(ST_STATE_NEW), m_statusMessage(QString()) {}
-    virtual ~SynchronizerTask() {};
+    virtual ~SynchronizerTask() {}
 
     inline int start(QWidget *parentWidget) {
         this->parentWidget = parentWidget; start(); return state();
@@ -78,7 +78,7 @@ public:
     }
 
 protected:
-    virtual void start() {};
+    virtual void start() {}
     int m_state;
     QString m_statusMessage;
     QWidget *parentWidget;

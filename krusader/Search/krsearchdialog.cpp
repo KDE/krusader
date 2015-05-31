@@ -92,13 +92,13 @@ public:
         clear();
     }
 
-    virtual QList<vfile*> vfiles() {
+    virtual QList<vfile*> vfiles() Q_DECL_OVERRIDE {
         return _vfiles;
     }
-    virtual unsigned long numVfiles() {
+    virtual unsigned long numVfiles() Q_DECL_OVERRIDE {
         return _vfiles.count();
     }
-    virtual bool isRoot() {
+    virtual bool isRoot() Q_DECL_OVERRIDE {
         return true;
     }
 

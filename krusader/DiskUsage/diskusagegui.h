@@ -68,13 +68,13 @@ public slots:
     }
 
 protected slots:
-    virtual void               reject();
+    virtual void               reject() Q_DECL_OVERRIDE;
     void                       slotViewChanged(int view);
     void                       enableButtons(bool);
     void                       slotLoadFinished(bool);
 
 protected:
-    virtual void               resizeEvent(QResizeEvent *e);
+    virtual void               resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
 
     DiskUsage                 *diskUsage;
     QUrl                       baseDirectory;

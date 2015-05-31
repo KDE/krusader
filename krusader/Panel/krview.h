@@ -127,7 +127,7 @@ public:
     KrViewOperator(KrView *view, QWidget *widget);
     ~KrViewOperator();
 
-    virtual bool eventFilter(QObject *watched, QEvent *event);
+    virtual bool eventFilter(QObject *watched, QEvent *event) Q_DECL_OVERRIDE;
 
     KrView *view() const {
         return _view;

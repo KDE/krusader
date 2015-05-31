@@ -360,7 +360,7 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
     if (size && !m_isoFile->device()->isOpen()) m_isoFile->device()->open(QIODevice::ReadOnly);
 
     if (zlib) {
-        fileData = isoFileEntry->data(0, sizeof(compressed_file_header));
+        fileData = isoFileEntry->dataAt(0, sizeof(compressed_file_header));
         if (fileData.size() == sizeof(compressed_file_header) &&
                 !memcmp(fileData.data(), zisofs_magic, sizeof(zisofs_magic))) {
 
@@ -371,7 +371,7 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
             fullsize    = isonum_731(hdr->uncompressed_len);
             nblocks = (fullsize + block_size - 1) >> block_shift;
             ptrblock_bytes = (nblocks + 1) * 4;
-            pointer_block = isoFileEntry->data(hdr->header_size << 2, ptrblock_bytes);
+            pointer_block = isoFileEntry->dataAt(hdr->header_size << 2, ptrblock_bytes);
             if ((unsigned long)pointer_block.size() == ptrblock_bytes) {
                 inbuf.resize(block_size2);
                 if (inbuf.size()) {
@@ -412,7 +412,7 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
                     break;
                 }
 
-                inbuf = isoFileEntry->data(cstart, csize);
+                inbuf = isoFileEntry->dataAt(cstart, csize);
                 if ((unsigned long)inbuf.size() != csize) {
                     break;
                 }
@@ -435,7 +435,7 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
             fileData.resize(bytes);
             fullsize -= bytes;
         } else {
-            fileData = isoFileEntry->data(pos, 65536);
+            fileData = isoFileEntry->dataAt(pos, 65536);
             if (fileData.size() == 0) break;
         }
         if (!mime) {

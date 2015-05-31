@@ -51,15 +51,15 @@ class AdvancedFilter : public QWidget, public FilterBase
 public:
     AdvancedFilter(FilterTabs *tabs, QWidget *parent = 0);
 
-    virtual void          queryAccepted() {}
-    virtual QString       name() {
+    virtual void          queryAccepted() Q_DECL_OVERRIDE {}
+    virtual QString       name() Q_DECL_OVERRIDE {
         return "AdvancedFilter";
     }
-    virtual FilterTabs *  filterTabs() {
+    virtual FilterTabs *  filterTabs() Q_DECL_OVERRIDE {
         return fltTabs;
     }
-    virtual bool getSettings(FilterSettings&);
-    virtual void applySettings(const FilterSettings&);
+    virtual bool getSettings(FilterSettings&) Q_DECL_OVERRIDE;
+    virtual void applySettings(const FilterSettings&) Q_DECL_OVERRIDE;
 
 public slots:
     void modifiedBetweenSetDate1();

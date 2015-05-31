@@ -44,7 +44,7 @@ signals:
     void itemRightClicked(QListWidgetItem * it, const QPoint & pos);
 
 protected:
-    virtual bool event(QEvent * event);
+    virtual bool event(QEvent * event) Q_DECL_OVERRIDE;
 };
 
 #endif /* KRLISTVIEW_H */

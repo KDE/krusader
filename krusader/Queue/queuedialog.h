@@ -44,8 +44,8 @@ public:
     static void everyQueueIsEmpty();
 
 public slots:
-    virtual void accept();
-    virtual void reject();
+    virtual void accept() Q_DECL_OVERRIDE;
+    virtual void reject() Q_DECL_OVERRIDE;
 
     void slotUpdateToolbar();
     void slotPauseClicked();
@@ -55,11 +55,11 @@ public slots:
     void slotPercentChanged(Queue *, int);
 
 protected:
-    virtual void paintEvent(QPaintEvent * event);
-    virtual void mousePressEvent(QMouseEvent *me);
-    virtual void mouseMoveEvent(QMouseEvent *me);
-    virtual void keyPressEvent(QKeyEvent *ke);
-    virtual void slotButtonClicked(int button);
+    virtual void paintEvent(QPaintEvent * event) Q_DECL_OVERRIDE;
+    virtual void mousePressEvent(QMouseEvent *me) Q_DECL_OVERRIDE;
+    virtual void mouseMoveEvent(QMouseEvent *me) Q_DECL_OVERRIDE;
+    virtual void keyPressEvent(QKeyEvent *ke) Q_DECL_OVERRIDE;
+    virtual void slotButtonClicked(int button) Q_DECL_OVERRIDE;
 
     void         saveSettings();
 

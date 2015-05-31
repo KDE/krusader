@@ -48,14 +48,14 @@ public:
     /// Rename file
     void vfs_rename(const QString& fileName, const QString& newName);
     /// Calculate the amount of space occupied by a file or directory (recursive).
-    virtual void vfs_calcSpace(QString name , KIO::filesize_t *totalSize, unsigned long *totalFiles, unsigned long *totalDirs, bool * stop);
+    virtual void vfs_calcSpace(QString name , KIO::filesize_t *totalSize, unsigned long *totalFiles, unsigned long *totalDirs, bool * stop) Q_DECL_OVERRIDE;
 
     /// Return the VFS working dir
     QString vfs_workingDir() {
         return QString();
     }
 
-    virtual QString metaInformation() {
+    virtual QString metaInformation() Q_DECL_OVERRIDE {
         return metaInfo;
     }
     virtual void setMetaInformation(QString info);

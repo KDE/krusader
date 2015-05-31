@@ -55,7 +55,7 @@ public:
 
     DULinesItemDelegate(QObject *parent = 0) : QItemDelegate(parent) {}
 
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const Q_DECL_OVERRIDE {
         QItemDelegate::paint(painter, option, index);
 
         QVariant value = index.data(Qt::UserRole);
@@ -148,7 +148,7 @@ public:
         setTextAlignment(1, Qt::AlignRight);
     }
 
-    virtual bool operator<(const QTreeWidgetItem &other) const {
+    virtual bool operator<(const QTreeWidgetItem &other) const Q_DECL_OVERRIDE {
         int column = treeWidget() ? treeWidget()->sortColumn() : 0;
 
         if (text(0) == "..")

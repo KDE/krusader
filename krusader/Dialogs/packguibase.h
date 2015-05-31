@@ -102,7 +102,7 @@ protected slots:
     virtual void slotQueue();
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *e);
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 
     QHBoxLayout* hbox;
     QHBoxLayout* hbox_2;

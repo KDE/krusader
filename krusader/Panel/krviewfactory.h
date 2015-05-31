@@ -82,7 +82,7 @@ public:
     KrViewInstanceImpl(int id, QString name, QString desc, QString icon, QKeySequence shortcut) :
         KrViewInstance(id, name, desc, icon, shortcut) {}
 
-    virtual KrView *create(QWidget *w, KConfig *cfg) {
+    virtual KrView *create(QWidget *w, KConfig *cfg) Q_DECL_OVERRIDE {
         return new T(w, *this, cfg);
     }
 };

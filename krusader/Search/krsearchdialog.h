@@ -73,11 +73,11 @@ public slots:
     void closeDialog(bool isAccept = true);
     void executed(const QString &name);
     void currentChanged(KrViewItem *item);
+    void contextMenu(const QPoint &);
 
-    virtual void keyPressEvent(QKeyEvent *e);
-    virtual void closeEvent(QCloseEvent *e);
-    virtual void contextMenu(const QPoint &);
-    virtual void resizeEvent(QResizeEvent *e);
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    virtual void closeEvent(QCloseEvent *e) Q_DECL_OVERRIDE;
+    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
 
 protected slots:
     void reject();

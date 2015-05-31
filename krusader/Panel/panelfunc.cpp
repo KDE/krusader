@@ -101,7 +101,7 @@ A
 class FilePathValidator : public QValidator
 {
 public:
-    virtual State validate(QString &input, int &/*pos*/) const {
+    virtual State validate(QString &input, int &/*pos*/) const Q_DECL_OVERRIDE {
             return input.isEmpty() ? Intermediate : Acceptable;
     }
 };

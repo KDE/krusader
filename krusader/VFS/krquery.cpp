@@ -30,6 +30,7 @@
 
 #include "krquery.h"
 
+#include <QtCore/QMetaMethod>
 #include <QtCore/QTextCodec>
 #include <QtCore/QRegExp>
 #include <QtCore/QFile>
@@ -223,19 +224,15 @@ void KRQuery::save(KConfigGroup cfg)
     cfg.writeEntry("EncodedEnterLen", encodedEnterLen);
 }
 
-void KRQuery::connectNotify(const char * signal)
+void KRQuery::connectNotify(const QMetaMethod &signal)
 {
-    QString signalString  = QString(signal).remove(' ');
-    QString processString = QString(SIGNAL(processEvents(bool &))).remove(' ');
-    if (signalString == processString)
+    if (signal == QMetaMethod::fromSignal(&KRQuery::processEvents))
         processEventsConnected++;
 }
 
-void KRQuery::disconnectNotify(const char * signal)
+void KRQuery::disconnectNotify(const QMetaMethod &signal)
 {
-    QString signalString  = QString(signal).remove(' ');
-    QString processString = QString(SIGNAL(processEvents(bool &))).remove(' ');
-    if (signalString == processString)
+    if (signal == QMetaMethod::fromSignal(&KRQuery::processEvents))
         processEventsConnected--;
 }
 

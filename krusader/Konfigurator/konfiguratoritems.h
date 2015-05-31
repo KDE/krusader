@@ -112,7 +112,7 @@ protected:
     QString configClass;
     QString configName;
 
-    virtual void connectNotify(const char *signal);
+    virtual void connectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE;
 };
 
 

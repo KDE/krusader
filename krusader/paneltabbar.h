@@ -84,14 +84,14 @@ signals:
     void draggingTabFinished(QMouseEvent*);
 
 protected:
-    void mouseMoveEvent(QMouseEvent*e);
-    void mousePressEvent(QMouseEvent*);
-    void mouseReleaseEvent(QMouseEvent*);
+    virtual void mouseMoveEvent(QMouseEvent*e) Q_DECL_OVERRIDE;
+    virtual void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    virtual void mouseReleaseEvent(QMouseEvent*) Q_DECL_OVERRIDE;
     void insertAction(QAction*);
     QString squeeze(QString text, int index = -1);
-    virtual void dragEnterEvent(QDragEnterEvent *);
-    virtual void dragMoveEvent(QDragMoveEvent *);
-    virtual void resizeEvent(QResizeEvent *e);
+    virtual void dragEnterEvent(QDragEnterEvent *) Q_DECL_OVERRIDE;
+    virtual void dragMoveEvent(QDragMoveEvent *) Q_DECL_OVERRIDE;
+    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
 
 protected slots:
     void closeTab();

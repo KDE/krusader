@@ -60,7 +60,7 @@ public:
     virtual ~PackThread() {}
 
 protected slots:
-    virtual void slotStart();
+    virtual void slotStart() Q_DECL_OVERRIDE;
 
 private:
     QUrl                   _sourceUrl;
@@ -92,7 +92,7 @@ public:
     virtual ~TestArchiveThread() {}
 
 protected slots:
-    virtual void slotStart();
+    virtual void slotStart() Q_DECL_OVERRIDE;
 
 private:
     QUrl                   _sourceUrl;
@@ -122,7 +122,7 @@ public:
     virtual ~UnpackThread() {}
 
 protected slots:
-    virtual void slotStart();
+    virtual void slotStart() Q_DECL_OVERRIDE;
 
 private:
     QUrl                   _sourceUrl;

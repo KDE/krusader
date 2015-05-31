@@ -94,12 +94,12 @@ public:
     void           sizeChanged();
 
 protected:
-    virtual void   resizeEvent(QResizeEvent * event);
-    virtual void   keyPressEvent(QKeyEvent * e);
-    virtual void   mousePressEvent(QMouseEvent * e);
-    virtual void   mouseDoubleClickEvent(QMouseEvent * e);
-    virtual void   mouseMoveEvent(QMouseEvent * e);
-    virtual void   wheelEvent(QWheelEvent * event);
+    virtual void   resizeEvent(QResizeEvent * event) Q_DECL_OVERRIDE;
+    virtual void   keyPressEvent(QKeyEvent * e) Q_DECL_OVERRIDE;
+    virtual void   mousePressEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
+    virtual void   mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
+    virtual void   mouseMoveEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
+    virtual void   wheelEvent(QWheelEvent * event) Q_DECL_OVERRIDE;
 
     QStringList    readLines(qint64 filePos, qint64 &endPos, int lines, QList<qint64> * locs = 0);
     QString        readSection(qint64 p1, qint64 p2);
@@ -224,14 +224,14 @@ protected slots:
     void            slotSendFinished(KJob *);
 
 protected:
-    virtual bool    openUrl(const QUrl &url);
-    virtual bool    closeUrl() {
+    virtual bool    openUrl(const QUrl &url) Q_DECL_OVERRIDE;
+    virtual bool    closeUrl() Q_DECL_OVERRIDE {
         return true;
     }
-    virtual bool    openFile() {
+    virtual bool    openFile() Q_DECL_OVERRIDE {
         return true;
     }
-    virtual void    guiActivateEvent(KParts::GUIActivateEvent * event);
+    virtual void    guiActivateEvent(KParts::GUIActivateEvent * event) Q_DECL_OVERRIDE;
     void            setColor(bool match, bool restore);
     void            hideProgressBar();
     void            updateProgressBar();

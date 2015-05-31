@@ -45,7 +45,7 @@ public:
     QString toolTipString(int p);
 
 protected:
-    virtual void showEvent(QShowEvent * event);
+    virtual void showEvent(QShowEvent * event) Q_DECL_OVERRIDE;
 
 protected slots:
     void slotSplitterMoved(int pos, int index);

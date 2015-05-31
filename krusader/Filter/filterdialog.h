@@ -59,7 +59,7 @@ public slots:
     void slotCloseRequest(bool doAccept);
 
 protected slots:
-    virtual void slotButtonClicked(int button);
+    virtual void slotButtonClicked(int button) Q_DECL_OVERRIDE;
     void slotOk();
 
 private:

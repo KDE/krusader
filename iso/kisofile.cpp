@@ -44,7 +44,7 @@ void KIsoFile::setZF(char algo[2], char parms[2], long long realsize)
     m_realsize = realsize;
 }
 
-QByteArray KIsoFile::data(long long pos, int count) const
+QByteArray KIsoFile::dataAt(long long pos, int count) const
 {
     QByteArray r;
     int rlen;

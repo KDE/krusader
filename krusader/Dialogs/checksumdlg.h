@@ -63,7 +63,7 @@ public:
                        const QString& suggestedFilename, bool standardFormat);
 
 public slots:
-    virtual void accept();
+    virtual void accept() Q_DECL_OVERRIDE;
 
 protected:
     bool saveChecksum(const QStringList& data, QString filename);

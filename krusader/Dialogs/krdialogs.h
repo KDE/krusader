@@ -87,7 +87,7 @@ public:
     KUrlRequester *urlRequester();
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *e);
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 
 private slots:
     void slotClear();

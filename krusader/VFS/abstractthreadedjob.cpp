@@ -268,32 +268,32 @@ public:
     AbstractJobObserver(AbstractJobThread * thread): _jobThread(thread) {}
     virtual ~AbstractJobObserver() {}
 
-    virtual void processEvents() {
+    virtual void processEvents() Q_DECL_OVERRIDE {
         usleep(1000);
         qApp->processEvents();
     }
 
-    virtual void subJobStarted(const QString & jobTitle, int count) {
+    virtual void subJobStarted(const QString & jobTitle, int count) Q_DECL_OVERRIDE {
         _jobThread->sendReset(jobTitle);
         _jobThread->sendMaxProgressValue(count);
     }
 
-    virtual void subJobStopped() {
+    virtual void subJobStopped() Q_DECL_OVERRIDE {
     }
 
-    virtual bool wasCancelled() {
+    virtual bool wasCancelled() Q_DECL_OVERRIDE {
         return _jobThread->_exited;
     }
 
-    virtual void error(const QString & error) {
+    virtual void error(const QString & error) Q_DECL_OVERRIDE {
         _jobThread->sendError(KIO::ERR_NO_CONTENT, error);
     }
 
-    virtual void detailedError(const QString & error, const QString & details) {
+    virtual void detailedError(const QString & error, const QString & details) Q_DECL_OVERRIDE {
         _jobThread->sendError(KIO::ERR_NO_CONTENT, error + '\n' + details);
     }
 
-    virtual void incrementProgress(int c) {
+    virtual void incrementProgress(int c) Q_DECL_OVERRIDE {
         _jobThread->sendAddProgress(c, _jobThread->_progressTitle);
     }
 };

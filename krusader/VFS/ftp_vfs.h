@@ -45,19 +45,19 @@ public:
     ~ftp_vfs();
 
     /// Copy a file to the vfs (physical).
-    virtual void vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT);
+    virtual void vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) Q_DECL_OVERRIDE;
     /// Remove a file from the vfs (physical)
-    virtual void vfs_delFiles(QStringList *fileNames, bool reallyDelete = false);
+    virtual void vfs_delFiles(QStringList *fileNames, bool reallyDelete = false) Q_DECL_OVERRIDE;
     /// Return a list of URLs for multiple files
-    virtual QList<QUrl>* vfs_getFiles(QStringList* names);
+    virtual QList<QUrl>* vfs_getFiles(QStringList* names) Q_DECL_OVERRIDE;
     /// Return a URL to a single file
-    virtual QUrl vfs_getFile(const QString& name);
+    virtual QUrl vfs_getFile(const QString& name) Q_DECL_OVERRIDE;
     /// Create a new directory
-    virtual void vfs_mkdir(const QString& name);
+    virtual void vfs_mkdir(const QString& name) Q_DECL_OVERRIDE;
     /// Rename file
-    virtual void vfs_rename(const QString& fileName, const QString& newName);
+    virtual void vfs_rename(const QString& fileName, const QString& newName) Q_DECL_OVERRIDE;
     /// Return the VFS working dir
-    QString vfs_workingDir();
+    QString vfs_workingDir() Q_DECL_OVERRIDE;
 
 public slots:
     /// Handles new files from the dir lister
@@ -68,7 +68,7 @@ public slots:
     /// Called when the dir listing job is finished (for better or worst)
     void slotListResult(KJob *job);
     /// Active the dir listing job
-    bool populateVfsList(const QUrl &origin, bool showHidden);
+    virtual bool populateVfsList(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;
 
 protected:
     QUrl origin_backup;         //< used to backup the old URL when refreshing to a new one,

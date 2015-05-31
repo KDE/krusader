@@ -35,41 +35,41 @@ public:
     virtual ~KrInterBriefView();
 
     // ---- reimplemented from QAbstractItemView ----
-    virtual QRect visualRect(const QModelIndex&) const;
-    virtual QModelIndex indexAt(const QPoint&) const;
-    virtual void scrollTo(const QModelIndex&, QAbstractItemView::ScrollHint = QAbstractItemView::EnsureVisible);
+    virtual QRect visualRect(const QModelIndex&) const Q_DECL_OVERRIDE;
+    virtual QModelIndex indexAt(const QPoint&) const Q_DECL_OVERRIDE;
+    virtual void scrollTo(const QModelIndex&, QAbstractItemView::ScrollHint = QAbstractItemView::EnsureVisible) Q_DECL_OVERRIDE;
 
     // ---- reimplemented from KrView ----
-    virtual int  itemsPerPage();
-    virtual void updateView();
-    virtual bool ensureVisibilityAfterSelect() {
+    virtual int  itemsPerPage() Q_DECL_OVERRIDE;
+    virtual void updateView() Q_DECL_OVERRIDE;
+    virtual bool ensureVisibilityAfterSelect() Q_DECL_OVERRIDE {
         return false;
     }
-    virtual void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending);
+    virtual void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending) Q_DECL_OVERRIDE;
 
 protected slots:
     // ---- reimplemented from QAbstractItemView ----
-    virtual void updateGeometries();
+    virtual void updateGeometries() Q_DECL_OVERRIDE;
 
 protected:
     // ---- reimplemented from QAbstractItemView ----
-    virtual bool eventFilter(QObject *object, QEvent *event);
-    virtual void keyPressEvent(QKeyEvent *e);
-    virtual void wheelEvent(QWheelEvent *);
-    virtual void paintEvent(QPaintEvent *e);
-    virtual QModelIndex moveCursor(QAbstractItemView::CursorAction, Qt::KeyboardModifiers);
-    virtual int horizontalOffset() const;
-    virtual int verticalOffset() const;
-    virtual bool isIndexHidden(const QModelIndex&) const;
-//     virtual QRegion visualRegionForSelection(const QItemSelection&) const;
+    virtual bool eventFilter(QObject *object, QEvent *event) Q_DECL_OVERRIDE;
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    virtual void wheelEvent(QWheelEvent *) Q_DECL_OVERRIDE;
+    virtual void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE;
+    virtual QModelIndex moveCursor(QAbstractItemView::CursorAction, Qt::KeyboardModifiers) Q_DECL_OVERRIDE;
+    virtual int horizontalOffset() const Q_DECL_OVERRIDE;
+    virtual int verticalOffset() const Q_DECL_OVERRIDE;
+    virtual bool isIndexHidden(const QModelIndex&) const Q_DECL_OVERRIDE;
+//     virtual QRegion visualRegionForSelection(const QItemSelection&) const Q_DECL_OVERRIDE;
 
     // ---- reimplemented from KrView ----
-    virtual void setup();
-    virtual void doRestoreSettings(KConfigGroup group);
-    virtual void saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties);
-    virtual void copySettingsFrom(KrView *other);
-    virtual QRect itemRect(const vfile *vf);
-    virtual void showContextMenu(const QPoint & p);
+    virtual void setup() Q_DECL_OVERRIDE;
+    virtual void doRestoreSettings(KConfigGroup group) Q_DECL_OVERRIDE;
+    virtual void saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties) Q_DECL_OVERRIDE;
+    virtual void copySettingsFrom(KrView *other) Q_DECL_OVERRIDE;
+    virtual QRect itemRect(const vfile *vf) Q_DECL_OVERRIDE;
+    virtual void showContextMenu(const QPoint & p) Q_DECL_OVERRIDE;
 
     int getItemHeight() const;
     int elementWidth(const QModelIndex & index);

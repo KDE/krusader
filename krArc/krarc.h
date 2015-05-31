@@ -39,13 +39,13 @@ class kio_krarcProtocol : public QObject, public KIO::SlaveBase
 public:
     kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
     virtual ~kio_krarcProtocol();
-    virtual void stat(const QUrl &url);
-    virtual void get(const QUrl &url);
-    virtual void put(const QUrl &url, int permissions, KIO::JobFlags flags);
-    virtual void mkdir(const QUrl &url, int permissions);
-    virtual void listDir(const QUrl &url);
-    virtual void del(QUrl const & url, bool isFile);
-    virtual void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags);
+    virtual void stat(const QUrl &url) Q_DECL_OVERRIDE;
+    virtual void get(const QUrl &url) Q_DECL_OVERRIDE;
+    virtual void put(const QUrl &url, int permissions, KIO::JobFlags flags) Q_DECL_OVERRIDE;
+    virtual void mkdir(const QUrl &url, int permissions) Q_DECL_OVERRIDE;
+    virtual void listDir(const QUrl &url) Q_DECL_OVERRIDE;
+    virtual void del(QUrl const & url, bool isFile) Q_DECL_OVERRIDE;
+    virtual void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) Q_DECL_OVERRIDE;
 
 public slots:
     void receivedData(KProcess *, QByteArray &);

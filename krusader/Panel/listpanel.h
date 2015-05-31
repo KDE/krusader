@@ -90,7 +90,7 @@ public:
     ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg = KConfigGroup());
     ~ListPanel();
 
-    virtual void otherPanelChanged();
+    virtual void otherPanelChanged() Q_DECL_OVERRIDE;
 
     void start(QUrl url = QUrl(), bool immediate = false);
 
@@ -157,13 +157,13 @@ public slots:
     void prepareToDelete();                   // internal use only
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *e);
-    virtual void mousePressEvent(QMouseEvent*) {
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    virtual void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE {
         slotFocusOnMe();
     }
-    virtual void showEvent(QShowEvent *);
-    virtual void hideEvent(QHideEvent *);
-    virtual bool eventFilter(QObject * watched, QEvent * e);
+    virtual void showEvent(QShowEvent *) Q_DECL_OVERRIDE;
+    virtual void hideEvent(QHideEvent *) Q_DECL_OVERRIDE;
+    virtual bool eventFilter(QObject * watched, QEvent * e) Q_DECL_OVERRIDE;
 
     void showButtonMenu(QToolButton *b);
     void createView();

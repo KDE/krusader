@@ -81,7 +81,7 @@ protected slots:
     void quickSelectStore();
 
 protected:
-    virtual void focusInEvent(QFocusEvent*);
+    virtual void focusInEvent(QFocusEvent*) Q_DECL_OVERRIDE;
 
     bool _left;
     bool _hidden;

@@ -59,17 +59,17 @@ public:
     Konfigurator(bool f = false, int startPage = 0); // true if Konfigurator is run for the first time
     ~Konfigurator() {};
 
-    virtual void accept();
-    virtual void reject();
+    virtual void accept() Q_DECL_OVERRIDE;
+    virtual void reject() Q_DECL_OVERRIDE;
 
 protected:
     void newPage(KonfiguratorPage *, const QString &, const QString &, const KIcon &); // adds widget and connects to slot
     void createLayout(int startPage);
     void closeDialog();
 
-    virtual void resizeEvent(QResizeEvent *e);
-    virtual void slotButtonClicked(int button);
-    virtual void closeEvent(QCloseEvent *event);
+    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    virtual void slotButtonClicked(int button); // KF5 TODO, this no longer overrides the method in KDialog, needs to be ported.
+    virtual void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
 
 protected slots:
     void slotApplyEnable();

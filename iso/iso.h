@@ -39,9 +39,9 @@ public:
     kio_isoProtocol(const QByteArray &pool, const QByteArray &app);
     virtual ~kio_isoProtocol();
 
-    virtual void listDir(const QUrl &url);
-    virtual void stat(const QUrl &url);
-    virtual void get(const QUrl &url);
+    virtual void listDir(const QUrl &url) Q_DECL_OVERRIDE;
+    virtual void stat(const QUrl &url) Q_DECL_OVERRIDE;
+    virtual void get(const QUrl &url) Q_DECL_OVERRIDE;
 
 protected:
     void getFile(const KIsoFile *isoFileEntry, const QString &path);

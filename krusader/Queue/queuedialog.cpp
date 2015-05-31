@@ -53,12 +53,12 @@ public:
     KrImageButton(QWidget * parent) : QToolButton(parent), _onIcon(false) {
     }
 
-    virtual QSize sizeHint() const {
+    virtual QSize sizeHint() const Q_DECL_OVERRIDE {
         int size = QFontMetrics(font()).height();
         return QSize(size, size);
     }
 
-    virtual void paintEvent(QPaintEvent*) {
+    virtual void paintEvent(QPaintEvent*) Q_DECL_OVERRIDE {
         int size = QFontMetrics(font()).height();
 
         QPixmap pm = icon().pixmap(size, size);
@@ -73,12 +73,12 @@ public:
         paint.drawPixmap(QPoint(), pm);
     }
 
-    virtual void enterEvent(QEvent *) {
+    virtual void enterEvent(QEvent *) Q_DECL_OVERRIDE {
         _onIcon = true;
         repaint();
     }
 
-    virtual void leaveEvent(QEvent *) {
+    virtual void leaveEvent(QEvent *) Q_DECL_OVERRIDE {
         _onIcon = false;
         repaint();
     }

@@ -55,7 +55,7 @@ public:
     static void edit(QUrl url, Mode mode = Text, int new_window = -1, QWidget * parent = krMainWindow);
     static void configureDeps();
 
-    virtual bool eventFilter(QObject * watched, QEvent * e);
+    virtual bool eventFilter(QObject * watched, QEvent * e) Q_DECL_OVERRIDE;
 
 public slots:
     void keyPressEvent(QKeyEvent *e);
@@ -82,11 +82,10 @@ public slots:
     void checkModified();
 
 protected:
-    virtual bool queryClose();
-    virtual void windowActivationChange(bool oldActive);
-    virtual void resizeEvent(QResizeEvent *e);
-
-    virtual void focusInEvent(QFocusEvent *) {
+    virtual bool queryClose() Q_DECL_OVERRIDE;
+    virtual void changeEvent(QEvent *e) Q_DECL_OVERRIDE;
+    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    virtual void focusInEvent(QFocusEvent *) Q_DECL_OVERRIDE {
         if (viewers.removeAll(this)) viewers.prepend(this);
     } // move to first
 

@@ -31,6 +31,7 @@
 #include "konfiguratoritems.h"
 #include "../krglobal.h"
 
+#include <QtCore/QMetaMethod>
 #include <QtGui/QPainter>
 #include <QtGui/QPen>
 #include <QtGui/QPixmap>
@@ -50,19 +51,14 @@ KonfiguratorExtension::KonfiguratorExtension(QObject *obj, QString cfgClass, QSt
 {
 }
 
-void KonfiguratorExtension::connectNotify(const char *signal)
+void KonfiguratorExtension::connectNotify(const QMetaMethod &signal)
 {
-    QString signalString = QString(signal).remove(' ');
-    QString applyString = QString(SIGNAL(applyManually(QObject *, QString, QString))).remove(' ');
-    QString defaultsString = QString(SIGNAL(setDefaultsManually(QObject *))).remove(' ');
-
-    if (signalString == applyString)
+    if (signal == QMetaMethod::fromSignal(&KonfiguratorExtension::applyManually))
         applyConnected = true;
-    else if (signalString == defaultsString)
+    else if (signal == QMetaMethod::fromSignal(&KonfiguratorExtension::setDefaultsManually))
         setDefaultsConnected = true;
 
-    // TODO KF5 removed
-    //QObject::connectNotify(signal);
+    QObject::connectNotify(signal);
 }
 
 bool KonfiguratorExtension::apply()

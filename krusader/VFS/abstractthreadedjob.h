@@ -64,9 +64,9 @@ protected:
     void  sendEvent(UserEvent * event);
 
     virtual ~AbstractThreadedJob();
-    virtual bool event(QEvent *);
+    virtual bool event(QEvent *) Q_DECL_OVERRIDE;
     virtual void startAbstractJobThread(AbstractJobThread*);
-    virtual bool doSuspend() {
+    virtual bool doSuspend() Q_DECL_OVERRIDE {
         return false;
     }
 
@@ -111,7 +111,7 @@ protected slots:
     virtual void slotStart() = 0;
 
 protected:
-    virtual void run();
+    virtual void run() Q_DECL_OVERRIDE;
     void setJob(AbstractThreadedJob * job) {
         _job = job;
     }

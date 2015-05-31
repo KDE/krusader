@@ -34,11 +34,11 @@ public:
     KrusaderImageFilePreview(QWidget *parent);
     ~KrusaderImageFilePreview();
 
-    virtual QSize sizeHint() const;
+    virtual QSize sizeHint() const Q_DECL_OVERRIDE;
 
 public slots:
-    void showPreview(const QUrl&);
-    virtual void clearPreview();
+    virtual void showPreview(const QUrl&) Q_DECL_OVERRIDE;
+    virtual void clearPreview() Q_DECL_OVERRIDE;
 
 protected slots:
     void showPreview();
@@ -47,7 +47,7 @@ protected slots:
     virtual void gotPreview(const KFileItem&, const QPixmap&);
 
 protected:
-    virtual void resizeEvent(QResizeEvent *e);
+    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
     virtual KIO::PreviewJob * createJob(const QUrl &url,
                                         int w, int h);
 

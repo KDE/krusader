@@ -44,10 +44,10 @@ class KgProtocols : public KonfiguratorPage
 public:
     KgProtocols(bool first, QWidget* parent = 0);
 
-    virtual void loadInitialValues();
-    virtual void setDefaults();
-    virtual bool apply();
-    virtual bool isChanged();
+    virtual void loadInitialValues() Q_DECL_OVERRIDE;
+    virtual void setDefaults() Q_DECL_OVERRIDE;
+    virtual bool apply() Q_DECL_OVERRIDE;
+    virtual bool isChanged() Q_DECL_OVERRIDE;
 
     static  void init();
 

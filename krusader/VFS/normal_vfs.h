@@ -56,20 +56,20 @@ public:
     }
 
     /// Copy a file to the vfs (physical).
-    virtual void vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT);
+    virtual void vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) Q_DECL_OVERRIDE;
     /// Remove a file from the vfs (physical)
-    virtual void vfs_delFiles(QStringList *fileNames, bool reallyDelete = false);
+    virtual void vfs_delFiles(QStringList *fileNames, bool reallyDelete = false) Q_DECL_OVERRIDE;
     /// Return a list of URLs for multiple files
-    virtual QList<QUrl>* vfs_getFiles(QStringList* names);
+    virtual QList<QUrl>* vfs_getFiles(QStringList* names) Q_DECL_OVERRIDE;
     /// Return a URL to a single file
-    virtual QUrl vfs_getFile(const QString& name);
+    virtual QUrl vfs_getFile(const QString& name) Q_DECL_OVERRIDE;
     /// Create a new directory
-    virtual void vfs_mkdir(const QString& name);
+    virtual void vfs_mkdir(const QString& name) Q_DECL_OVERRIDE;
     /// Rename file
-    virtual void vfs_rename(const QString& fileName, const QString& newName);
+    virtual void vfs_rename(const QString& fileName, const QString& newName) Q_DECL_OVERRIDE;
 
     /// return the VFS working dir
-    virtual QString vfs_workingDir() {
+    virtual QString vfs_workingDir() Q_DECL_OVERRIDE {
 #ifdef Q_OS_WIN
 
         QString path = vfs_origin.toLocalFile();
@@ -91,7 +91,7 @@ public slots:
 
 protected:
     /// Re-reads files and stats and fills the vfile list
-    virtual bool populateVfsList(const QUrl &origin, bool showHidden);
+    virtual bool populateVfsList(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;
 
     QTimer refreshTimer;         //< Timer to exclude sudden refreshes
     KDirWatch *watcher;          //< The internal dir watcher - use to detect changes in directories

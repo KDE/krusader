@@ -63,7 +63,7 @@ public:
     KrDirModel(QWidget *parent, KrFileTreeView *ftv) : KDirModel(parent), fileTreeView(ftv) {}
 
 protected:
-    virtual bool dropMimeData(const QMimeData * data, Qt::DropAction /* action */, int /* row */, int /* column */, const QModelIndex & parent) {
+    virtual bool dropMimeData(const QMimeData * data, Qt::DropAction /* action */, int /* row */, int /* column */, const QModelIndex & parent) Q_DECL_OVERRIDE {
         KFileItem item = itemForIndex(parent);
         if (item.isNull())
             return false;
@@ -76,7 +76,7 @@ protected:
         return true;
     }
 
-    virtual Qt::ItemFlags flags(const QModelIndex & index) const {
+    virtual Qt::ItemFlags flags(const QModelIndex & index) const Q_DECL_OVERRIDE {
         Qt::ItemFlags itflags = KDirModel::flags(index);
         if (index.column() != KDirModel::Name)
             itflags &= ~Qt::ItemIsDropEnabled;

@@ -73,7 +73,7 @@ protected slots:
     void minFontSize();
 
 protected:
-    virtual void mousePressEvent(QMouseEvent*);
+    virtual void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE;
 
     void setScheme(Filelight::MapScheme);
 

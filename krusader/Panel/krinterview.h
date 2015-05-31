@@ -37,35 +37,35 @@ class KrInterView : public KrView
 public:
     KrInterView(KrViewInstance &instance, KConfig *cfg, QAbstractItemView *itemView);
     virtual ~KrInterView();
-    virtual QModelIndex getCurrentIndex() {
+    virtual QModelIndex getCurrentIndex() Q_DECL_OVERRIDE {
         return _itemView->currentIndex();
     }
-    virtual bool isSelected(const QModelIndex &ndx);
-    virtual uint numSelected() const {
+    virtual bool isSelected(const QModelIndex &ndx) Q_DECL_OVERRIDE;
+    virtual uint numSelected() const Q_DECL_OVERRIDE {
         return _selection.count();
     }
-    virtual QList<QUrl> selectedUrls();
-    virtual void setSelection(const QList<QUrl> urls);
-    virtual KrViewItem* getFirst();
-    virtual KrViewItem* getLast();
-    virtual KrViewItem* getNext(KrViewItem *current);
-    virtual KrViewItem* getPrev(KrViewItem *current);
-    virtual KrViewItem* getCurrentKrViewItem();
-    virtual KrViewItem* findItemByName(const QString &name);
-    virtual KrViewItem *findItemByVfile(vfile *vf);
-    virtual QString getCurrentItem() const;
-    virtual KrViewItem* getKrViewItemAt(const QPoint &vp);
-    virtual void setCurrentItem(const QString& name);
-    virtual void setCurrentKrViewItem(KrViewItem *item);
-    virtual void makeItemVisible(const KrViewItem *item);
-    virtual void clear();
-    virtual void sort();
-    virtual void refreshColors();
-    virtual void redraw();
-    virtual void prepareForActive();
-    virtual void prepareForPassive();
-    virtual void showContextMenu();
-    virtual void selectRegion(KrViewItem *i1, KrViewItem *i2, bool select);
+    virtual QList<QUrl> selectedUrls() Q_DECL_OVERRIDE;
+    virtual void setSelection(const QList<QUrl> urls) Q_DECL_OVERRIDE;
+    virtual KrViewItem* getFirst() Q_DECL_OVERRIDE;
+    virtual KrViewItem* getLast() Q_DECL_OVERRIDE;
+    virtual KrViewItem* getNext(KrViewItem *current) Q_DECL_OVERRIDE;
+    virtual KrViewItem* getPrev(KrViewItem *current) Q_DECL_OVERRIDE;
+    virtual KrViewItem* getCurrentKrViewItem() Q_DECL_OVERRIDE;
+    virtual KrViewItem* findItemByName(const QString &name) Q_DECL_OVERRIDE;
+    virtual KrViewItem *findItemByVfile(vfile *vf) Q_DECL_OVERRIDE;
+    virtual QString getCurrentItem() const Q_DECL_OVERRIDE;
+    virtual KrViewItem* getKrViewItemAt(const QPoint &vp) Q_DECL_OVERRIDE;
+    virtual void setCurrentItem(const QString& name) Q_DECL_OVERRIDE;
+    virtual void setCurrentKrViewItem(KrViewItem *item) Q_DECL_OVERRIDE;
+    virtual void makeItemVisible(const KrViewItem *item) Q_DECL_OVERRIDE;
+    virtual void clear() Q_DECL_OVERRIDE;
+    virtual void sort() Q_DECL_OVERRIDE;
+    virtual void refreshColors() Q_DECL_OVERRIDE;
+    virtual void redraw() Q_DECL_OVERRIDE;
+    virtual void prepareForActive() Q_DECL_OVERRIDE;
+    virtual void prepareForPassive() Q_DECL_OVERRIDE;
+    virtual void showContextMenu() Q_DECL_OVERRIDE;
+    virtual void selectRegion(KrViewItem *i1, KrViewItem *i2, bool select) Q_DECL_OVERRIDE;
 
     void sortModeUpdated(int column, Qt::SortOrder order);
 
@@ -80,17 +80,17 @@ protected:
         DummySelectionModel(QAbstractItemModel *model, QObject *parent) :
             QItemSelectionModel(model, parent) {}
         // do nothing - selection is managed by KrInterView
-        virtual void select (const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { Q_UNUSED(index); Q_UNUSED(command); }
-        virtual void select(const QItemSelection & selection, QItemSelectionModel::SelectionFlags command) { Q_UNUSED(selection); Q_UNUSED(command); }
+        virtual void select (const QModelIndex & index, QItemSelectionModel::SelectionFlags command) Q_DECL_OVERRIDE { Q_UNUSED(index); Q_UNUSED(command); }
+        virtual void select(const QItemSelection & selection, QItemSelectionModel::SelectionFlags command) Q_DECL_OVERRIDE { Q_UNUSED(selection); Q_UNUSED(command); }
     };
 
-    virtual KIO::filesize_t calcSize();
-    virtual KIO::filesize_t calcSelectedSize();
-    virtual void populate(const QList<vfile*> &vfiles, vfile *dummy);
-    virtual KrViewItem* preAddItem(vfile *vf);
-    virtual void preDelItem(KrViewItem *item);
-    virtual void preUpdateItem(vfile *vf);
-    virtual void intSetSelected(const vfile* vf, bool select);
+    virtual KIO::filesize_t calcSize() Q_DECL_OVERRIDE;
+    virtual KIO::filesize_t calcSelectedSize() Q_DECL_OVERRIDE;
+    virtual void populate(const QList<vfile*> &vfiles, vfile *dummy) Q_DECL_OVERRIDE;
+    virtual KrViewItem* preAddItem(vfile *vf) Q_DECL_OVERRIDE;
+    virtual void preDelItem(KrViewItem *item) Q_DECL_OVERRIDE;
+    virtual void preUpdateItem(vfile *vf) Q_DECL_OVERRIDE;
+    virtual void intSetSelected(const vfile* vf, bool select) Q_DECL_OVERRIDE;
     virtual void showContextMenu(const QPoint & p) = 0;
 
     virtual QRect itemRect(const vfile *vf) = 0;

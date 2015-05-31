@@ -34,24 +34,24 @@ class UrlRequester::PathLabel : public KSqueezedTextLabel
 public:
     PathLabel (QWidget *parent, QLineEdit *le) : KSqueezedTextLabel(parent), _lineEdit(le) {}
 
-    virtual void mousePressEvent(QMouseEvent *event) {
+    virtual void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE {
         Q_UNUSED(event);
         hide();
         _lineEdit->show();
         _lineEdit->setFocus();
     }
 
-    virtual void enterEvent(QEvent *event) {
+    virtual void enterEvent(QEvent *event) Q_DECL_OVERRIDE {
         Q_UNUSED(event);
         update();
     }
 
-    virtual void leaveEvent(QEvent *event) {
+    virtual void leaveEvent(QEvent *event) Q_DECL_OVERRIDE {
         Q_UNUSED(event);
         update();
     }
 
-    virtual void paintEvent(QPaintEvent *event) {
+    virtual void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE {
         Q_UNUSED(event);
         QPainter p(this);
         //QStyleOption opt;

@@ -183,9 +183,9 @@ private:
     void    convertFromSeconds(int &time, int &unit, int second);
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *);
-    virtual void resizeEvent(QResizeEvent *e);
-    virtual bool eventFilter(QObject *, QEvent *);
+    virtual void keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
+    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    virtual bool eventFilter(QObject *, QEvent *) Q_DECL_OVERRIDE;
 
     void executeOperation(SynchronizerFileItem *item, int op);
 

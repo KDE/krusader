@@ -557,9 +557,9 @@ void KrViewer::detachTab()
     viewer->show();
 }
 
-void KrViewer::windowActivationChange(bool /* oldActive */)
+void KrViewer::changeEvent(QEvent *e)
 {
-    if (isActiveWindow())
+    if (e->type() == QEvent::ActivationChange && isActiveWindow())
         if (viewers.removeAll(this)) viewers.prepend(this);      // move to first
 }
 
