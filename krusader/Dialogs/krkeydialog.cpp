@@ -18,6 +18,7 @@
 
 #include "krkeydialog.h"
 
+#include <QtCore/QStandardPaths>
 #include <QtCore/QTextStream>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QDialogButtonBox>
@@ -26,7 +27,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KStandardDirs>
 #include <KDE/KDebug>
 #include <KDE/KGlobal>
 #include <KDE/KDialog>
@@ -76,7 +76,8 @@ KrKeyDialog::~KrKeyDialog()
 void KrKeyDialog::slotImportShortcuts()
 {
     // find $KDEDIR/share/apps/krusader
-    QString basedir = KGlobal::dirs()->findResourceDir("appdata", "total_commander.keymap");
+    QString basedir= QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("total_commander.keymap"));
+    basedir = QFileInfo(basedir).absolutePath();
     // let the user select a file to load
     QString filename = QFileDialog::getOpenFileName(0, i18n("Select a keymap file"), basedir, i18n(FILE_FILTER));
     if (filename.isEmpty())

@@ -27,7 +27,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDebug>
-#include <KDE/KStandardDirs>
 
 #include "krglobal.h"
 #include "defaults.h"
@@ -40,7 +39,7 @@ bool KrServices::cmdExist(QString cmdName)
     if (QFile(group.readEntry(cmdName, QString())).exists())
         return true;
 
-    return !KStandardDirs::findExe(cmdName).isEmpty();
+    return !QStandardPaths::findExecutable(cmdName).isEmpty();
 }
 
 static const QStringList bin_suffixes = QStringList()
@@ -62,7 +61,7 @@ QString KrServices::fullPathName(QString name, QString confName)
     if (QFile(supposedName = config.readEntry(confName, QString())).exists())
         return supposedName;
 
-    if ((supposedName = KStandardDirs::findExe(name)).isEmpty())
+    if ((supposedName = QStandardPaths::findExecutable(name)).isEmpty())
         return "";
 
     config.writeEntry(confName, supposedName);

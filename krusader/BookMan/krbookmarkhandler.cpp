@@ -30,13 +30,13 @@
 #include <QtCore/QTextStream>
 #include <QtCore/QFile>
 #include <QtCore/QEvent>
+#include <QtCore/QStandardPaths>
 #include <QtGui/QMouseEvent>
 #include <QtGui/QCursor>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KDebug>
-#include <KDE/KStandardDirs>
 
 #include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
@@ -64,7 +64,8 @@ KrBookmarkHandler::KrBookmarkHandler(FileManagerWindow *mainWindow) : QObject(ma
     importFromFile();
 
     // hack
-    manager = KBookmarkManager::managerForFile(KStandardDirs::locateLocal("data", BOOKMARKS_FILE), "krusader");
+    QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
+    manager = KBookmarkManager::managerForFile(filename, QStringLiteral("krusader"));
     connect(manager, SIGNAL(changed(const QString&, const QString&)), this, SLOT(bookmarksChanged(const QString&, const QString&)));
 }
 
@@ -196,7 +197,7 @@ void KrBookmarkHandler::exportToFile()
     }
 
 
-    QString filename = KStandardDirs::locateLocal("data", BOOKMARKS_FILE);
+    QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
     QFile file(filename);
     if (file.open(QIODevice::WriteOnly)) {
         QTextStream stream(&file);
@@ -278,7 +279,7 @@ void KrBookmarkHandler::importFromFile()
 {
     clearBookmarks(_root);
 
-    QString filename = KStandardDirs::locateLocal("data", BOOKMARKS_FILE);
+    QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly))
         return; // no bookmarks file

@@ -46,12 +46,12 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KGlobal>
 #include <KDE/KDebug>
 #include <KDE/KIcon>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KConfigCore/KConfigGroup>
+#include <KConfigCore/KSharedConfig>
 
 struct SplitterGUI::PredefinedDevice
 {
@@ -169,7 +169,7 @@ SplitterGUI::SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir) :
     setWindowTitle(i18n("Krusader::Splitter"));
 
 
-    KConfigGroup cfg(KGlobal::config(), "Splitter");
+    KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("Splitter"));
     overwriteCb->setChecked(cfg.readEntry("OverWriteFiles", false));
 
     connect(sizeCombo, SIGNAL(activated(int)), this, SLOT(sizeComboActivated(int)));
@@ -183,7 +183,7 @@ SplitterGUI::SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir) :
 
 SplitterGUI::~SplitterGUI()
 {
-    KConfigGroup cfg(KGlobal::config(), "Splitter");
+    KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("Splitter"));
     cfg.writeEntry("OverWriteFiles", overwriteCb->isChecked());
 }
 

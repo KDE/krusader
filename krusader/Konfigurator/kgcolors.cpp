@@ -33,6 +33,7 @@
 #include "../Panel/krcolorcache.h"
 
 #include <QtCore/QList>
+#include <QtCore/QStandardPaths>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QHeaderView>
@@ -41,8 +42,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KStandardDirs>
-#include <KDE/KGlobal>
 
 #include <KConfigWidgets/KColorScheme>
 #include <KWidgetsAddons/KMessageBox>
@@ -567,7 +566,8 @@ bool KgColors::apply()
 void KgColors::slotImportColors()
 {
     // find $KDEDIR/share/apps/krusader
-    QString basedir = KGlobal::dirs()->findResourceDir("appdata", "total_commander.keymap");
+    QString basedir= QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("total_commander.keymap"));
+    basedir = QFileInfo(basedir).absolutePath();
     // let the user select a file to load
     QString file = QFileDialog::getOpenFileName(0, i18n("Select a color-scheme file"), basedir, QStringLiteral("*.color"));
     if (file.isEmpty()) {

@@ -42,11 +42,12 @@
 #include <KDE/KLocale>
 #include <KDE/KCmdLineArgs>
 
-#include <KXmlGui/KToolBar>
+#include <KCoreAddons/KShell>
 #include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KMessageBox>
-#include <KCoreAddons/KShell>
+#include <KConfigCore/KSharedConfig>
 #include <KXmlGui/KEditToolBar>
+#include <KXmlGui/KToolBar>
 
 #ifdef __KJSEMBED__
 #include <kjsembed/jsconsolewidget.h>
@@ -499,7 +500,7 @@ void KRslots::rootKrusader()
 // settings slots
 void KRslots::configToolbar()
 {
-    KConfigGroup cg(KGlobal::config(), QString());
+    KConfigGroup cg(KSharedConfig::openConfig(), QString());
     krApp->saveMainWindowSettings(cg);
     QPointer<KEditToolBar> dlg = new KEditToolBar(krApp->factory());
     connect(dlg, SIGNAL(newToolBarConfig()), this, SLOT(saveNewToolbarConfig()));
@@ -511,7 +512,7 @@ void KRslots::configToolbar()
 
 void KRslots::saveNewToolbarConfig()
 {
-    KConfigGroup cg(KGlobal::config(), QString());
+    KConfigGroup cg(KSharedConfig::openConfig(), QString());
     krApp->applyMainWindowSettings(cg);
     krApp->updateGUI();
 }

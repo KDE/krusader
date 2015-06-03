@@ -32,10 +32,9 @@
 
 #include <QtCore/QByteArray>
 #include <QtCore/QDataStream>
+#include <QtCore/QStandardPaths>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KGlobal>
-#include <KDE/KStandardDirs>
 #include <KDE/KIcon>
 
 #include <KConfigCore/KConfig>
@@ -154,7 +153,7 @@ void KonqMultiRestoreJob::slotResult(KJob *job)
 
 KrTrashWatcher::KrTrashWatcher()
 {
-    QString trashrcFile = KGlobal::dirs()->saveLocation("config") +
+    QString trashrcFile = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) +
                           QString::fromLatin1("trashrc");
     _watcher = new KDirWatch();
     // connect the watcher

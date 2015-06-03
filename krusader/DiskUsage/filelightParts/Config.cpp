@@ -20,9 +20,6 @@
 
 #include <QtGui/QFont>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KGlobal>
-
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KSharedConfig>
 #include <KConfigCore/KConfigGroup>
@@ -38,7 +35,7 @@ Filelight::MapScheme Config::scheme;
 inline KConfigGroup
 Filelight::Config::kconfig()
 {
-    KSharedConfigPtr config = KGlobal::config();
+    KSharedConfigPtr config = KSharedConfig::openConfig();
     return KConfigGroup(config, "DiskUsage");
 }
 

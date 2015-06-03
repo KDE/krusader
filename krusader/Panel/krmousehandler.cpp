@@ -23,12 +23,12 @@
 #include "../krglobal.h"
 #include "../defaults.h"
 
+#include <QtCore/QStandardPaths>
 #include <QtWidgets/QApplication>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KGlobal>
+#include <QtWidgets/QStyle>
 
 #include <KCoreAddons/KUrlMimeData>
+#include <KConfigCore/KSharedConfig>
 
 #define CANCEL_TWO_CLICK_RENAME {_singleClicked = false;_renameTimer.stop();}
 
@@ -38,7 +38,8 @@ KrMouseHandler::KrMouseHandler(KrView * view, int contextMenuShift) : _view(view
 {
     KConfigGroup grpSvr(krConfig, "Look&Feel");
     // decide on single click/double click selection
-    _singleClick = grpSvr.readEntry("Single Click Selects", _SingleClickSelects) && KGlobalSettings::singleClick();
+    bool singleClickTmp = QApplication::style()->styleHint(QStyle::SH_ItemView_ActivateItemOnSingleClick);
+    _singleClick = grpSvr.readEntry("Single Click Selects", _SingleClickSelects) && singleClickTmp;
     connect(&_contextMenuTimer, SIGNAL(timeout()), this, SLOT(showContextMenu()));
     connect(&_renameTimer, SIGNAL(timeout()), this, SIGNAL(renameCurrentItem()));
 }
@@ -177,7 +178,7 @@ bool KrMouseHandler::mouseReleaseEvent(QMouseEvent *e)
     } else if (!_singleClick && e->button() == Qt::LeftButton) {
         if (item && e->modifiers() == Qt::NoModifier) {
             if (_singleClicked && !_renameTimer.isActive() && _singleClickedItem == item) {
-                KSharedConfigPtr config = KGlobal::config();
+                KSharedConfigPtr config = KSharedConfig::openConfig();
                 KConfigGroup group(krConfig, "KDE");
                 int doubleClickInterval = group.readEntry("DoubleClickInterval", 400);
 

@@ -32,10 +32,11 @@
 #include <unistd.h>
 #include <signal.h>
 
+#include <QtCore/QAbstractEventDispatcher>
 #include <QtCore/QCommandLineOption>
 #include <QtCore/QCommandLineParser>
 #include <QtCore/QEventLoop>
-#include <QtCore/QAbstractEventDispatcher>
+#include <QtCore/QStandardPaths>
 #include <QtGui/QPixmap>
 #include <QtDBus/QtDBus>
 #include <QtWidgets/QSplashScreen>
@@ -43,10 +44,9 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
 #include <KDE/KLocale>
-#include <KDE/KStandardDirs>
-#include <KDE/KGlobal>
 
 #include <KCoreAddons/KAboutData>
+#include <KConfigCore/KSharedConfig>
 #include <KWidgetsAddons/KActionMenu>
 #include <KWindowSystem/KStartupInfo>
 
@@ -227,7 +227,7 @@ int main(int argc, char *argv[])
     parser.process(app);
     aboutData.processCommandLine(&parser);
 
-    KConfigGroup cfg(KGlobal::config().data(), "Look&Feel");
+    KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("Look&Feel"));
     bool singleInstanceMode = cfg.readEntry("Single Instance Mode", _SingleInstanceMode);
 
     QString url;
@@ -275,9 +275,9 @@ int main(int argc, char *argv[])
     // splash screen - if the user wants one
     QSplashScreen *splash = 0;
     { // don't remove bracket
-        KConfigGroup cfg(KGlobal::config().data(), "Look&Feel");
+        KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("Look&Feel"));
         if (cfg.readEntry("Show splashscreen", _ShowSplashScreen)) {
-            QString splashFilename = KStandardDirs::locate("data", "krusader/splash.png");
+            QString splashFilename = QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("splash.png"));
             QPixmap pixmap(splashFilename);
             if (!pixmap.isNull()) {
                 splash = new QSplashScreen(pixmap);

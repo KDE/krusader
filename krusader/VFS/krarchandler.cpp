@@ -32,12 +32,12 @@
 
 #include <unistd.h> // for usleep
 
+#include <QtCore/QDir>
 #include <QtCore/QFile>
 #include <QtWidgets/QApplication>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KStandardDirs>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KPasswordDialog>
@@ -318,9 +318,8 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
             packer << KrServices::fullPathName("unarj") << "x";
     } else if (type == "-7z")  packer << KrServices::fullPathName("7z") << "-y" << "x";
     else if (type == "-rpm") {
-        QString tempDir = KStandardDirs::locateLocal("tmp", QString());
-
-        cpioName = tempDir + "/contents.cpio"; // TODO use QTemporaryFile (setAutoRemove(false) when asynchrone)
+        // TODO use QTemporaryFile (setAutoRemove(false) when asynchrone)
+        cpioName = QDir::tempPath() + QStringLiteral("/contents.cpio");
 
         KrLinecountingProcess cpio;
         cpio << KrServices::fullPathName("rpm2cpio") << archive;
@@ -334,9 +333,8 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
         archive = cpioName;
         packer << KrServices::fullPathName("cpio") << "--force-local" << "--no-absolute-filenames" <<  "-iuvdF";
     } else if (type == "-deb") {
-        QString tempDir = KStandardDirs::locateLocal("tmp", QString());
-
-        cpioName = tempDir + "/contents.tar"; // TODO use QTemporaryFile (setAutoRemove(false) when asynchrone)
+        // TODO use QTemporaryFile (setAutoRemove(false) when asynchrone)
+        cpioName = QDir::tempPath() + QStringLiteral("/contents.tar");
 
         KrLinecountingProcess dpkg;
         dpkg << KrServices::fullPathName("dpkg") << "--fsys-tarfile" << archive;

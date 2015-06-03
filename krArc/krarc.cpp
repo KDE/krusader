@@ -38,7 +38,6 @@
 #include <KDE/KComponentData>
 #include <KDE/KLocale>
 #include <kde_file.h>
-#include <KDE/KStandardDirs>
 #include <KDE/KMimeType>
 
 #include <KIOCore/KFileItem>
@@ -168,7 +167,7 @@ kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteA
     krConfig = new KConfig("krusaderrc");
     confGrp = KConfigGroup(krConfig, "Dependencies");
 
-    arcTempDir = KStandardDirs::locateLocal("tmp", QString());
+    arcTempDir = QDir::tempPath() + DIR_SEPARATOR;
     QString dirName = "krArc" + QDateTime::currentDateTime().toString(Qt::ISODate);
     dirName.replace(QRegExp(":"), "_");
     QDir(arcTempDir).mkdir(dirName);
@@ -1485,7 +1484,7 @@ bool kio_krarcProtocol::initArcParameters()
         getCmd  << fullPathName("unzip") << "-p";
         copyCmd << fullPathName("unzip") << "-jo";
 
-        if (KStandardDirs::findExe("zip").isEmpty()) {
+        if (QStandardPaths::findExecutable(QStringLiteral("zip")).isEmpty()) {
             delCmd  = QStringList();
             putCmd  = QStringList();
         } else {
@@ -1499,7 +1498,7 @@ bool kio_krarcProtocol::initArcParameters()
             putCmd  << "-P" << password;
         }
     } else if (arcType == "rar") {
-        if (KStandardDirs::findExe("rar").isEmpty()) {
+        if (QStandardPaths::findExecutable(QStringLiteral("rar")).isEmpty()) {
             cmd     = fullPathName("unrar");
             listCmd << fullPathName("unrar") << "-c-" << "-v" << "v";
             getCmd  << fullPathName("unrar") << "p" << "-ierr" << "-idp" << "-c-" << "-y";
@@ -1598,7 +1597,7 @@ bool kio_krarcProtocol::initArcParameters()
     } else if (arcType == "7z") {
         noencoding = true;
         cmd = fullPathName("7z");
-        if (KStandardDirs::findExe(cmd).isEmpty())
+        if (QStandardPaths::findExecutable(cmd).isEmpty())
             cmd = fullPathName("7za");
 
         listCmd << cmd << "l" << "-y";
@@ -1624,7 +1623,7 @@ bool kio_krarcProtocol::initArcParameters()
     if (cmd.startsWith(DIR_SEPARATOR))
         return true;
 #endif
-    if (KStandardDirs::findExe(cmd).isEmpty()) {
+    if (QStandardPaths::findExecutable(cmd).isEmpty()) {
         error(KIO::ERR_CANNOT_LAUNCH_PROCESS,
               cmd +
               i18n("\nMake sure that the %1 binary is installed properly on your system.", cmd));
@@ -1759,9 +1758,9 @@ QString kio_krarcProtocol::detectArchive(bool &encrypted, QString fileName)
                     else {  // we try to find whether the 7z archive is encrypted
                         // this is hard as the headers are also compresseds
                         QString tester = fullPathName("7z");
-                        if (KStandardDirs::findExe(tester).isEmpty()) {
+                        if (QStandardPaths::findExecutable(tester).isEmpty()) {
                             tester = fullPathName("7za");
-                            if (KStandardDirs::findExe(tester).isEmpty()) {
+                            if (QStandardPaths::findExecutable(tester).isEmpty()) {
                                 return type;
                             }
                         }

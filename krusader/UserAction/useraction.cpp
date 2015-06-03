@@ -18,9 +18,10 @@
 
 #include "useraction.h"
 
-#include <QtCore/QHash>
-#include <QtCore/QTextStream>
 #include <QtCore/QFile>
+#include <QtCore/QHash>
+#include <QtCore/QStandardPaths>
+#include <QtCore/QTextStream>
 #include <QtCore/QUrl>
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement>
@@ -28,7 +29,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDebug>
-#include <KDE/KStandardDirs>
 
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KActionMenu>
@@ -141,13 +141,13 @@ QStringList UserAction::allNames()
 
 void UserAction::readAllFiles()
 {
-    QString filename = KStandardDirs::locate("data", ACTION_XML);   // locate returns the local file if it exists, else the global one is retrieved.
+    QString filename = QStandardPaths::locate(QStandardPaths::GenericDataLocation, ACTION_XML);   // locate returns the local file if it exists, else the global one is retrieved.
     if (! filename.isEmpty())
-        readFromFile(KStandardDirs::locate("data", ACTION_XML), renameDoublicated);
+        readFromFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, ACTION_XML), renameDoublicated);
 
-    filename = KStandardDirs::locate("data", ACTION_XML_EXAMPLES);
+    filename = QStandardPaths::locate(QStandardPaths::GenericDataLocation, ACTION_XML_EXAMPLES);
     if (! filename.isEmpty())
-        readFromFile(KStandardDirs::locate("data", ACTION_XML_EXAMPLES), ignoreDoublicated);     // ignore samples which are already in the normal file
+        readFromFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, ACTION_XML_EXAMPLES), ignoreDoublicated);     // ignore samples which are already in the normal file
 }
 
 void UserAction::readFromFile(const QString& filename, ReadMode mode, KrActionList* list)
@@ -255,7 +255,7 @@ QDomDocument UserAction::createEmptyDoc()
 
 bool UserAction::writeActionFile()
 {
-    QString filename = KStandardDirs::locateLocal("data", ACTION_XML);
+    QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + ACTION_XML;
 
     QDomDocument doc = createEmptyDoc();
     QDomElement root = doc.documentElement();

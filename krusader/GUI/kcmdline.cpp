@@ -47,7 +47,6 @@
 #include <QtWidgets/QLabel>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KStandardDirs>
 #include <KDE/KLocale>
 #include <KDE/KGlobalSettings>
 

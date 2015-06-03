@@ -36,6 +36,7 @@ A
 #include <QtCore/QMetaEnum>
 #include <QtCore/QFile>
 #include <QtCore/QResource>
+#include <QtCore/QStandardPaths>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QHBoxLayout>
@@ -44,11 +45,8 @@ A
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KStandardDirs>
-#include <KDE/KComponentData>
 #include <KDE/KDebug>
 #include <KDE/KDialog>
-#include <KDE/KGlobal>
 
 #define XMLFILE_VERSION "1.0"
 #define MAIN_FILE "layout.xml"
@@ -79,14 +77,12 @@ bool KrLayoutFactory::parseFiles()
     if (_parsed)
         return true;
 
-    QString dataDir = KGlobal::mainComponent().componentName() + "/";
-
-    QString mainFilePath = KStandardDirs::locate("data", dataDir + MAIN_FILE);
+    QString mainFilePath = QStandardPaths::locate(QStandardPaths::DataLocation, MAIN_FILE);
 
     if (!mainFilePath.isEmpty())
         _parsed = parseFile(mainFilePath, _mainDoc);
     else
-        krOut << "can't locate" << dataDir + MAIN_FILE << endl;
+        krOut << "can't locate" << MAIN_FILE << endl;
 
     if (!_parsed)
         _parsed = parseRessource(MAIN_FILE_RC_PATH, _mainDoc);
@@ -94,7 +90,7 @@ bool KrLayoutFactory::parseFiles()
     if (!_parsed)
         return false;
 
-    QStringList extraFilePaths = KGlobal::dirs()->findAllResources("data", dataDir + EXTRA_FILE_MASK);
+    QStringList extraFilePaths = QStandardPaths::locateAll(QStandardPaths::DataLocation, EXTRA_FILE_MASK);
 
     foreach(QString path, extraFilePaths) {
         krOut << "extra file: " << path << endl;

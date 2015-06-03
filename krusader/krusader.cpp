@@ -35,9 +35,9 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <sys/param.h>
 #include <unistd.h>
 
-#include <QtCore/QStringList>
 #include <QtCore/QDir>
 #include <QtCore/QDateTime>
+#include <QtCore/QStringList>
 #include <QtGui/QPixmap>
 #include <QtGui/QMoveEvent>
 #include <QtGui/QResizeEvent>
@@ -64,6 +64,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KWidgetsAddons/KCursor>
 
 #include <KCoreAddons/KRandom>
+#include <KConfigCore/KSharedConfig>
 #include <KXmlGui/KXMLGUIFactory>
 #include <KXmlGui/KToolBar>
 #include <KWidgetsAddons/KAcceleratorManager>
@@ -313,7 +314,7 @@ bool Krusader::versionControl()
 #define FIRST_RUN "First Time"
     bool retval = false;
     // create config file
-    krConfig = KGlobal::config().data();
+    krConfig = KSharedConfig::openConfig().data();
     KConfigGroup nogroup(krConfig, QString());
 
     bool firstRun = nogroup.readEntry(FIRST_RUN, true);

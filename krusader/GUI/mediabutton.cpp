@@ -27,12 +27,12 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KGlobal>
 #include <KDE/KIcon>
 #include <KDELibs4Support/kmessagebox_queued.h>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KConfigCore/KConfigGroup>
+#include <KConfigCore/KSharedConfig>
 #include <KIO/Global>
 #include <KIOCore/KMountPoint>
 
@@ -211,7 +211,7 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, KIcon &k
     else if (icon == "media-optical")
         type = i18n("Recordable CD/DVD-ROM");
 
-    KConfigGroup cfg(KGlobal::config(), "MediaMenu");
+    KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("MediaMenu"));
 
     if (printSize) {
         QString showSizeSetting = cfg.readEntry("ShowSize", "Always");
