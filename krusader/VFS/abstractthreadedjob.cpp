@@ -35,11 +35,11 @@
 #include <QtCore/QPointer>
 #include <QtCore/QEventLoop>
 #include <QtCore/QTemporaryDir>
+#include <QtCore/QTemporaryFile>
 #include <QtWidgets/QApplication>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KTemporaryFile>
 
 #include <KIO/JobUiDelegate>
 #include <KWidgetsAddons/KMessageBox>
@@ -401,8 +401,7 @@ QString AbstractJobThread::tempFileIfRemote(const QUrl &kurl, const QString &typ
         return kurl.path();
     }
 
-    _tempFile = new KTemporaryFile();
-    _tempFile->setSuffix(QString(".") + type);
+    _tempFile = new QTemporaryFile(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.") + type);
     _tempFile->open();
     _tempFileName = _tempFile->fileName();
     _tempFile->close(); // necessary to create the filename

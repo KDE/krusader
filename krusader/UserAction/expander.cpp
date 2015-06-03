@@ -42,6 +42,7 @@
 #include <QtCore/QStringList>
 #include <QtCore/QTextStream>
 #include <QtCore/QList>
+#include <QtCore/QTemporaryFile>
 #include <QtGui/QClipboard>
 #include <QtWidgets/QApplication>
 
@@ -49,7 +50,6 @@
 #include <KDE/KDebug>
 #include <KDE/KInputDialog>
 #include <KDE/KStandardDirs>
-#include <KDE/KTemporaryFile>
 
 #include <KWidgetsAddons/KMessageBox>
 
@@ -436,9 +436,8 @@ TagString exp_ListFile::expFunc(const KrPanel* panel, const QStringList& paramet
         mask = '*';
     else
         mask = parameter[3];
-    KTemporaryFile tmpFile;
+    QTemporaryFile tmpFile(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.itemlist"));
     tmpFile.setAutoRemove(false);
-    tmpFile.setSuffix(".itemlist");
 
     if (!tmpFile.open()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_WORLD, i18n("Expander: temporary file could not be opened (%1)", tmpFile.errorString())));

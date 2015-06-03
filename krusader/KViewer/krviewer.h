@@ -31,7 +31,6 @@
 #include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KTemporaryFile>
 #include <KDE/KTabWidget>
 
 #include <KParts/MainWindow>
@@ -112,7 +111,6 @@ private:
 
     KParts::PartManager manager;
     QMenu* viewerMenu;
-    KTemporaryFile tmpFile;
     KTabWidget tabBar;
     QPointer<QWidget> returnFocusTo;
 

@@ -33,6 +33,7 @@
 #include "../KViewer/diskusageviewer.h"
 
 #include <QtCore/QDir>
+#include <QtCore/QMimeData>
 #include <QtGui/QDropEvent>
 #include <QtGui/QCursor>
 #include <QtWidgets/QButtonGroup>

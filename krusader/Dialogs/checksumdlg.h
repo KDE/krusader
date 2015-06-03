@@ -24,7 +24,6 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDialog>
 
-class KTemporaryFile;
 class KUrlRequester;
 class QCheckBox;
 
@@ -34,9 +33,6 @@ class CreateChecksumDlg: public KDialog
 {
 public:
     CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path);
-
-private:
-    KTemporaryFile *tmpOut, *tmpErr;
 };
 
 
@@ -50,9 +46,6 @@ public:
 
 protected:
     bool verifyChecksumFile(QString path, QString& extension);
-
-private:
-    KTemporaryFile *tmpOut, *tmpErr;
 };
 
 

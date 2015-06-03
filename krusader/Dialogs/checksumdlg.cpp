@@ -27,10 +27,11 @@
 #include <unistd.h> // for usleep
 
 #include <QtCore/QFile>
-#include <QtCore/QTextStream>
 #include <QtCore/QFileInfo>
 #include <QtCore/QList>
 #include <QtCore/QMap>
+#include <QtCore/QTemporaryFile>
+#include <QtCore/QTextStream>
 #include <QtGui/QPixmap>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLayout>
@@ -42,7 +43,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KTemporaryFile>
 #include <KDE/KStandardDirs>
 
 #include <KCoreAddons/KProcess>
@@ -307,18 +307,16 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 
     if (exec() != Accepted) return;
     // else implied: run the process
-    tmpOut = new KTemporaryFile();
-    tmpOut->setSuffix(".stdout");
-    tmpOut->open(); // necessary to create the filename
-    tmpErr = new KTemporaryFile();
-    tmpErr->setSuffix(".stderr");
-    tmpErr->open(); // necessary to create the filename
+    QTemporaryFile tmpOut(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.stdout"));
+    tmpOut.open(); // necessary to create the filename
+    QTemporaryFile tmpErr(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.stderr"));
+    tmpErr.open(); // necessary to create the filename
     KProcess proc;
     CS_Tool *mytool = tools.at(method->currentIndex());
     mytool->create(proc, mytool, files, QString(), containFolders, method->currentText());
     proc.setOutputChannelMode(KProcess::SeparateChannels); // without this the next 2 lines have no effect!
-    proc.setStandardOutputFile(tmpOut->fileName());
-    proc.setStandardErrorFile(tmpErr->fileName());
+    proc.setStandardOutputFile(tmpOut.fileName());
+    proc.setStandardErrorFile(tmpErr.fileName());
     proc.setWorkingDirectory(path);
 
     krApp->startWaiting(i18n("Calculating checksums..."), 0, true);
@@ -348,15 +346,13 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
     else suggestedFilename += (files[0] + '.' + cs_typeToText[mytool->type]);
     // send both stdout and stderr
     QStringList stdOut, stdErr;
-    if (!KrServices::fileToStringList(tmpOut, stdOut) ||
-            !KrServices::fileToStringList(tmpErr, stdErr)) {
+    if (!KrServices::fileToStringList(&tmpOut, stdOut) ||
+            !KrServices::fileToStringList(&tmpErr, stdErr)) {
         KMessageBox::error(krApp, i18n("Error reading stdout or stderr"));
         return;
     }
 
     ChecksumResultsDlg dlg(stdOut, stdErr, suggestedFilename, mytool->standardFormat);
-    delete tmpOut; // this also unlinks the files
-    delete tmpErr;
 }
 
 // ------------- MatchChecksumDlg
@@ -450,17 +446,15 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
     }
 
     // else implied: run the process
-    tmpOut = new KTemporaryFile();
-    tmpOut->setSuffix(".stdout");
-    tmpOut->open(); // necessary to create the filename
-    tmpErr = new KTemporaryFile();
-    tmpErr->setSuffix(".stderr");
-    tmpErr->open(); // necessary to create the filename
+    QTemporaryFile tmpOut(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.stdout"));
+    tmpOut.open(); // necessary to create the filename
+    QTemporaryFile tmpErr(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.stderr"));
+    tmpErr.open(); // necessary to create the filename
     KProcess proc;
     mytool->verify(proc, mytool, files, file, containFolders, extension);
     proc.setOutputChannelMode(KProcess::SeparateChannels); // without this the next 2 lines have no effect!
-    proc.setStandardOutputFile(tmpOut->fileName());
-    proc.setStandardErrorFile(tmpErr->fileName());
+    proc.setStandardOutputFile(tmpOut.fileName());
+    proc.setStandardErrorFile(tmpErr.fileName());
     proc.setWorkingDirectory(path);
 
     krApp->startWaiting(i18n("Verifying checksums..."), 0, true);
@@ -485,14 +479,12 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
     krApp->stopWait();
     // send both stdout and stderr
     QStringList stdOut, stdErr;
-    if (!KrServices::fileToStringList(tmpOut, stdOut) ||
-            !KrServices::fileToStringList(tmpErr, stdErr)) {
+    if (!KrServices::fileToStringList(&tmpOut, stdOut) ||
+            !KrServices::fileToStringList(&tmpErr, stdErr)) {
         KMessageBox::error(krApp, i18n("Error reading stdout or stderr"));
         return;
     }
     VerifyResultDlg dlg(mytool->failed(stdOut, stdErr));
-    delete tmpOut;
-    delete tmpErr;
 }
 
 bool MatchChecksumDlg::verifyChecksumFile(QString path,  QString& extension)

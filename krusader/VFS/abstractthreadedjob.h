@@ -48,7 +48,7 @@ class AbstractJobThread;
 class QTemporaryDir;
 class UserEvent;
 class KRarcObserver;
-class KTemporaryFile;
+class QTemporaryFile;
 
 class AbstractThreadedJob : public KIO::Job
 {
@@ -150,7 +150,7 @@ protected:
     QTemporaryDir       *_downloadTempDir;
     KRarcObserver       *_observer;
 
-    KTemporaryFile      *_tempFile;
+    QTemporaryFile      *_tempFile;
     QString              _tempFileName;
     QUrl                 _tempFileTarget;
     QTemporaryDir       *_tempDir;

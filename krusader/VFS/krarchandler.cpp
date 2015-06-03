@@ -320,7 +320,7 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
     else if (type == "-rpm") {
         QString tempDir = KStandardDirs::locateLocal("tmp", QString());
 
-        cpioName = tempDir + "/contents.cpio"; // TODO use KTemporaryFile (setAutoRemove(false) when asynchrone)
+        cpioName = tempDir + "/contents.cpio"; // TODO use QTemporaryFile (setAutoRemove(false) when asynchrone)
 
         KrLinecountingProcess cpio;
         cpio << KrServices::fullPathName("rpm2cpio") << archive;
@@ -336,7 +336,7 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
     } else if (type == "-deb") {
         QString tempDir = KStandardDirs::locateLocal("tmp", QString());
 
-        cpioName = tempDir + "/contents.tar"; // TODO use KTemporaryFile (setAutoRemove(false) when asynchrone)
+        cpioName = tempDir + "/contents.tar"; // TODO use QTemporaryFile (setAutoRemove(false) when asynchrone)
 
         KrLinecountingProcess dpkg;
         dpkg << KrServices::fullPathName("dpkg") << "--fsys-tarfile" << archive;

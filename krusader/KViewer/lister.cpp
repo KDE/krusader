@@ -33,6 +33,7 @@
 #include <QtCore/QFile>
 #include <QtCore/QRect>
 #include <QtCore/QDate>
+#include <QtCore/QTemporaryFile>
 #include <QtCore/QTextCodec>
 #include <QtCore/QTextStream>
 #include <QtGui/QPainter>
@@ -56,7 +57,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KTemporaryFile>
 #include <KDE/KInputDialog>
 #include <KDE/KGlobalSettings>
 #include <KIO/Job>
@@ -1252,8 +1252,7 @@ bool Lister::openUrl(const QUrl &listerUrl)
             return false;
         _fileSize = getFileSize();
     } else {
-        _tempFile = new KTemporaryFile();
-        _tempFile->setSuffix(listerUrl.fileName());
+        _tempFile = new QTemporaryFile(QDir::tempPath() + QLatin1String("/krusader_XXXXXX_") + listerUrl.fileName());
         _tempFile->open();
 
         _filePath = _tempFile->fileName();

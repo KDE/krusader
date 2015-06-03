@@ -52,7 +52,7 @@ class QProgressBar;
 class QPushButton;
 class QToolButton;
 class QAction;
-class KTemporaryFile;
+class QTemporaryFile;
 class ListerEncodingMenu;
 
 class ListerTextArea : public KTextEdit
@@ -292,7 +292,7 @@ protected:
 
     QString         _characterSet;
 
-    KTemporaryFile *_tempFile;
+    QTemporaryFile *_tempFile;
 
     bool            _downloading;
     bool            _restartFromBeginning;

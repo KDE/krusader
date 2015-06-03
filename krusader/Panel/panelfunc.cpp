@@ -36,6 +36,7 @@ A
 #include <QtCore/QList>
 #include <QtCore/QMimeData>
 #include <QtCore/QDir>
+#include <QtCore/QTemporaryFile>
 #include <QtCore/QUrl>
 #include <QtGui/QClipboard>
 #include <QtGui/QDrag>
@@ -44,7 +45,6 @@ A
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KStandardDirs>
-#include <KDE/KTemporaryFile>
 #include <KDE/KInputDialog>
 #include <KDE/KDebug>
 #include <KIO/NetAccess>
@@ -514,7 +514,7 @@ void ListPanelFunc::editNew()
     if(fileToCreate.isEmpty())
         return ;   // the user canceled
 
-    KTemporaryFile *tempFile = new KTemporaryFile;
+    QTemporaryFile *tempFile = new QTemporaryFile;
     tempFile->open();
 
     KIO::CopyJob *job = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), fileToCreate);
@@ -1069,26 +1069,8 @@ void ListPanelFunc::pack()
 
     bool packToOtherPanel = (destDir == vfs::ensureTrailingSlash(panel->otherPanel()->virtualPath()).toDisplayString(QUrl::PreferLocalFile));
 
-    // on remote URL-s first pack into a temp file then copy to its right place
     QUrl destURL = QUrl::fromUserInput(destDir + PackGUI::filename + '.' + PackGUI::type, QString(), QUrl::AssumeLocalFile);
-    KTemporaryFile *tempDestFile = 0;
-    QString arcFile;
-    if (destURL.isLocalFile())
-        arcFile = destURL.path();
-    else if (destURL.scheme() == QStringLiteral("virt")) {
-        KMessageBox::error(krMainWindow, i18n("Cannot pack files onto a virtual destination."));
-        return;
-    } else {
-        tempDestFile = new KTemporaryFile();
-        tempDestFile->setSuffix(QString(".") + PackGUI::type);
-        tempDestFile->open();
-        arcFile = tempDestFile->fileName();
-        tempDestFile->close(); // necessary to create the filename
-        QFile::remove
-        (arcFile);
-    }
-
-    if (QFileInfo(arcFile).exists()) {
+    if (destURL.isLocalFile() && QFile::exists(destURL.path())) {
         QString msg = i18n("<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>All data in the previous archive will be lost.</p></qt>", PackGUI::filename, PackGUI::type);
         if (PackGUI::type == "zip") {
             msg = i18n("<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>Zip will replace identically named entries in the zip archive or add entries for new names.</p></qt>", PackGUI::filename, PackGUI::type);
@@ -1096,6 +1078,9 @@ void ListPanelFunc::pack()
         if (KMessageBox::warningContinueCancel(krMainWindow, msg, QString(), KGuiItem(i18n("&Overwrite")))
                 == KMessageBox::Cancel)
             return ; // stop operation
+    } else if (destURL.scheme() == QStringLiteral("virt")) {
+        KMessageBox::error(krMainWindow, i18n("Cannot pack files onto a virtual destination."));
+        return;
     }
 
     // get the files to be packed:

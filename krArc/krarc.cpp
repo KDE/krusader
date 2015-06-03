@@ -25,18 +25,18 @@
 #include <errno.h>
 #include <iostream>
 
+#include <QtCore/QByteArray>
 #include <QtCore/QDir>
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
 #include <QtCore/QRegExp>
-#include <QtCore/QByteArray>
+#include <QtCore/QTemporaryFile>
 #include <QtCore/QTextCodec>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDebug>
 #include <KDE/KComponentData>
 #include <KDE/KLocale>
-#include <KDE/KTemporaryFile>
 #include <kde_file.h>
 #include <KDE/KStandardDirs>
 #include <KDE/KMimeType>
@@ -927,7 +927,7 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
 
     // write the temp file
     KrLinecountingProcess proc;
-    KTemporaryFile temp;
+    QTemporaryFile temp;
 
     // parse the temp file
     if (!temp.open()) {
