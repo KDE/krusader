@@ -26,12 +26,9 @@
 #include <QtCore/QUrl>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QFocusEvent>
-#include <QtWidgets/QWidget>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QMenu>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KTabWidget>
+#include <QtWidgets/QTabWidget>
 
 #include <KParts/MainWindow>
 #include <KParts/PartManager>
@@ -70,9 +67,9 @@ public slots:
     void print();
     void copy();
 
-    void tabChanged(QWidget* w);
+    void tabChanged(int index);
     void tabURLChanged(PanelViewerBase * pvb, const QUrl &url);
-    void tabCloseRequest(QWidget *w, bool force = false);
+    void tabCloseRequest(int index, bool force = false);
     void tabCloseRequest();
 
     void nextTab();
@@ -111,7 +108,7 @@ private:
 
     KParts::PartManager manager;
     QMenu* viewerMenu;
-    KTabWidget tabBar;
+    QTabWidget tabBar;
     QPointer<QWidget> returnFocusTo;
 
     QAction *detachAction;

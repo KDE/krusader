@@ -20,16 +20,14 @@
 #define QUEUEWIDGET_H
 
 #include <QtCore/QPointer>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KTabWidget>
+#include <QtWidgets/QTabWidget>
 
 #include "queue.h"
 #include "../GUI/krlistwidget.h"
 
 class KrQueueListWidget;
 
-class QueueWidget: public KTabWidget
+class QueueWidget: public QTabWidget
 {
     Q_OBJECT
 public:

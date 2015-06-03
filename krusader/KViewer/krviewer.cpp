@@ -76,15 +76,11 @@ KrViewer::KrViewer(QWidget *parent) :
 
     connect(&manager, SIGNAL(activePartChanged(KParts::Part*)),
             this, SLOT(createGUI(KParts::Part*)));
-    connect(&tabBar, SIGNAL(currentChanged(QWidget *)),
-            this, SLOT(tabChanged(QWidget*)));
-    connect(&tabBar, SIGNAL(closeRequest(QWidget *)),
-            this, SLOT(tabCloseRequest(QWidget*)));
+    connect(&tabBar, &QTabWidget::currentChanged, this, &KrViewer::tabChanged);
+    connect(&tabBar, SIGNAL(tabCloseRequested(int)), this, SLOT(tabCloseRequest(int)));
 
     tabBar.setDocumentMode(true);
     tabBar.setMovable(true);
-    tabBar.setTabReorderingEnabled(false);
-    tabBar.setAutomaticResizeTabs(true);
 // "edit"
 // "document-save-as"
     setCentralWidget(&tabBar);
@@ -126,7 +122,7 @@ KrViewer::KrViewer(QWidget *parent) :
     (tabClose = viewerMenu->addAction(i18n("&Close Current Tab"), this, SLOT(tabCloseRequest())))->setShortcut(Qt::Key_Escape);
     (closeAct = viewerMenu->addAction(i18n("&Quit"), this, SLOT(close())))->setShortcut(Qt::CTRL + Qt::Key_Q);
 
-    tabBar.setHoverCloseButton(true);
+    tabBar.setTabsClosable(true);
 
     checkModified();
 
@@ -157,7 +153,7 @@ KrViewer::~KrViewer()
     // close tabs before deleting tab bar - this avoids Qt bug 26115
     // https://bugreports.qt-project.org/browse/QTBUG-26115
     while(tabBar.count())
-        tabCloseRequest(tabBar.currentWidget(), true);
+        tabCloseRequest(tabBar.currentIndex(), true);
 
     delete printAction;
     delete copyAction;
@@ -321,9 +317,9 @@ void KrViewer::edit(QUrl url, Mode mode, int new_window, QWidget * parent)
 
 void KrViewer::addTab(PanelViewerBase *pvb)
 {
-    tabBar.addTab(pvb, makeTabIcon(pvb), makeTabText(pvb));
-    tabBar.setCurrentIndex(tabBar.indexOf(pvb));
-    tabBar.setTabToolTip(tabBar.indexOf(pvb), makeTabToolTip(pvb));
+    int tabIndex = tabBar.addTab(pvb, makeTabIcon(pvb), makeTabText(pvb));
+    tabBar.setCurrentIndex(tabIndex);
+    tabBar.setTabToolTip(tabIndex, makeTabToolTip(pvb));
 
     updateActions();
 
@@ -363,11 +359,10 @@ void KrViewer::openUrlFinished(PanelViewerBase *pvb, bool success)
     }
 }
 
-void KrViewer::tabChanged(QWidget* w)
+void KrViewer::tabChanged(int index)
 {
-    if (w == 0)
-        return;
-
+    QWidget *w = tabBar.widget(index);
+    if(!w) return;
     KParts::ReadOnlyPart *part = static_cast<PanelViewerBase*>(w)->part();
     if (part && isPartAdded(part)) {
         manager.setActivePart(part);
@@ -381,14 +376,13 @@ void KrViewer::tabChanged(QWidget* w)
     if (viewers.removeAll(this)) viewers.prepend(this);      // move to first
 }
 
-void KrViewer::tabCloseRequest(QWidget *w, bool force)
+void KrViewer::tabCloseRequest(int index, bool force)
 {
-    if (!w) return;
-
     // important to save as returnFocusTo will be cleared at removePart
     QWidget * returnFocusToThisWidget = returnFocusTo;
 
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(w);
+    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.widget(index));
+    if (!pvb) return;
 
     if (!force && !pvb->queryClose())
         return;
@@ -400,10 +394,10 @@ void KrViewer::tabCloseRequest(QWidget *w, bool force)
 
     pvb->closeUrl();
 
-    tabBar.removePage(w);
+    tabBar.removeTab(index);
 
     delete pvb;
-    w = pvb = 0;
+    pvb = 0;
 
     if (tabBar.count() <= 0) {
         if (returnFocusToThisWidget) {
@@ -430,7 +424,7 @@ void KrViewer::tabCloseRequest(QWidget *w, bool force)
 
 void KrViewer::tabCloseRequest()
 {
-    tabCloseRequest(tabBar.currentWidget());
+    tabCloseRequest(tabBar.currentIndex());
 }
 
 bool KrViewer::queryClose()
@@ -536,7 +530,7 @@ void KrViewer::detachTab()
 
     disconnect(pvb, 0, this, 0);
 
-    tabBar.removePage(pvb);
+    tabBar.removeTab(tabBar.indexOf(pvb));
 
     if (tabBar.count() == 1) {
         //no point in detaching only one tab..

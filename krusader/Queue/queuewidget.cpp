@@ -27,7 +27,7 @@
 
 #include <KWidgetsAddons/KMessageBox>
 
-QueueWidget::QueueWidget(QWidget * parent): KTabWidget(parent)
+QueueWidget::QueueWidget(QWidget * parent): QTabWidget(parent)
 {
     QList<QString> queueList = QueueManager::queues();
     foreach(const QString &name, queueList) {

@@ -48,7 +48,7 @@ class KrViewItem;
 class ProfileManager;
 class FilterTabs;
 class GeneralFilter;
-class KTabWidget;
+class QTabWidget;
 class KSqueezedTextLabel;
 class KrSqueezedTextLabel;
 
@@ -99,7 +99,7 @@ private:
     QPushButton* mainCloseBtn;
     QPushButton* mainFeedToListBoxBtn;
 
-    KTabWidget* searcherTabs;
+    QTabWidget* searcherTabs;
     QLabel* foundLabel;
     KrSqueezedTextLabel *foundTextLabel;
     KSqueezedTextLabel *searchingLabel;

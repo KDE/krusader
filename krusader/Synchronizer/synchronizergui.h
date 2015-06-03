@@ -38,9 +38,7 @@
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KTabWidget>
+#include <QtWidgets/QTabWidget>
 
 #include <KCompletion/KComboBox>
 
@@ -193,7 +191,7 @@ protected:
     FilterTabs     *filterTabs;
     GeneralFilter  *generalFilter;
 
-    KTabWidget    *synchronizerTabs;
+    QTabWidget    *synchronizerTabs;
 
     KHistoryComboBox *leftLocation;
     KHistoryComboBox *rightLocation;

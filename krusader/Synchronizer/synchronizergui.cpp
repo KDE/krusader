@@ -1131,7 +1131,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
     folderIcon =   QPixmap((const char**) folder_data);
     fileIcon   =   QPixmap((const char**) file_data);
 
-    synchronizerTabs = new KTabWidget(this);
+    synchronizerTabs = new QTabWidget(this);
 
     /* ============================== Compare groupbox ============================== */
 

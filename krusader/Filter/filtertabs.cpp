@@ -34,13 +34,15 @@
 #include "advancedfilter.h"
 #include "../krglobal.h"
 
+#include <QtWidgets/QTabWidget>
+
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 
 #include <KWidgetsAddons/KMessageBox>
 
 
-FilterTabs::FilterTabs(int properties, KTabWidget *tabWidget,
+FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget,
                        QObject *parent, QStringList extraOptions) :
         QObject(parent)
 {
@@ -69,7 +71,7 @@ void FilterTabs::checkExtraOption(QString name, bool check)
     static_cast<GeneralFilter*>(get("GeneralFilter"))->checkExtraOption(name, check);
 }
 
-FilterTabs * FilterTabs::addTo(KTabWidget *tabWidget, int props, QStringList extraOptions)
+FilterTabs * FilterTabs::addTo(QTabWidget *tabWidget, int props, QStringList extraOptions)
 {
     return new FilterTabs(props, tabWidget, tabWidget, extraOptions);
 }
