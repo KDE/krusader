@@ -25,14 +25,14 @@
 #include <QtCore/QRegExp>
 #include <QtCore/QTextStream>
 #include <QtGui/QKeyEvent>
-#include <QtWidgets/QBoxLayout>
-#include <QtWidgets/QFileDialog>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QSplitter>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QAction>
+#include <QtWidgets/QBoxLayout>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSplitter>
 #include <QtXml/QDomElement>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
@@ -41,7 +41,6 @@
 #include <KDE/KLocale>
 #include <KDE/KInputDialog>
 #include <KDE/KMimeType>
-#include <KDE/KVBox>
 
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KMessageBox>
@@ -72,11 +71,14 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
 
     setButtonText(KDialog::User1, i18n("Save as"));
 
-    KVBox *page = new KVBox(this);
+    QWidget *page = new QWidget(this);
+    QVBoxLayout *pageBox = new QVBoxLayout(page);
+    pageBox->setMargin(0);
     setMainWidget(page);
     // do we need to separate stderr and stdout?
     if (enableStderr) {
         QSplitter *splitt = new QSplitter(Qt::Vertical, page);
+        pageBox->addWidget(splitt);
         // create stdout
         QWidget *stdoutWidget = new QWidget(splitt);
         QVBoxLayout *stdoutBox = new QVBoxLayout(stdoutWidget);
@@ -99,10 +101,11 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
         stderrBox->addWidget(_stderr);
     } else {
         // create stdout
-        new QLabel(i18n("Output"), page);
+        pageBox->addWidget(new QLabel(i18n("Output"), page));
         _stdout = new KTextEdit(page);
         _stdout->setReadOnly(true);
         _stdout->setMinimumWidth(fontMetrics().maxWidth() * 40);
+        pageBox->addWidget(_stdout);
     }
 
     _currentTextEdit = _stdout;
