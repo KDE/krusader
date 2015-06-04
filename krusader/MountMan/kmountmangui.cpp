@@ -56,7 +56,6 @@ A
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KDebug>
-#include <KDE/KIcon>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KGuiItem>
@@ -323,7 +322,7 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     if (vol && vol->usage() == Solid::StorageVolume::Encrypted) {
         overlays << "security-high";
     }
-    item->setIcon(0, KIcon(icon, 0, overlays));
+    item->setIcon(0, KDE::icon(icon, overlays));
 }
 
 void KMountManGUI::updateList()

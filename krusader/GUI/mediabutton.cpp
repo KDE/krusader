@@ -27,7 +27,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KIcon>
 #include <KDELibs4Support/kmessagebox_queued.h>
 
 #include <KWidgetsAddons/KMessageBox>
@@ -35,6 +34,7 @@
 #include <KConfigCore/KSharedConfig>
 #include <KIO/Global>
 #include <KIOCore/KMountPoint>
+#include <KIconThemes/KIconLoader>
 
 #include <Solid/DeviceInterface>
 #include <Solid/StorageAccess>
@@ -50,7 +50,7 @@ MediaButton::MediaButton(QWidget *parent) : QToolButton(parent),
         popupMenu(0), rightMenu(0), openInNewTab(false)
 {
     setAutoRaise(true);
-    setIcon(KIcon("system-file-manager"));
+    setIcon(QIcon::fromTheme("system-file-manager"));
     setText(i18n("Open the available media list"));
     setToolTip(i18n("Open the available media list"));
     setPopupMode(QToolButton::InstantPopup);
@@ -93,7 +93,7 @@ void MediaButton::mountPointChanged(QString mp)
         if (vol && vol->usage() == Solid::StorageVolume::Encrypted)
             overlays << "security-high";
     }
-    setIcon(KIcon(icon, 0, overlays));
+    setIcon(KDE::icon(icon, overlays));
 }
 
 void MediaButton::slotAboutToShow()
@@ -123,7 +123,7 @@ void MediaButton::createMediaList()
         QString udi     = device.udi();
 
         QString name;
-        KIcon kdeIcon;
+        QIcon kdeIcon;
         if (!getNameAndIcon(device, name, kdeIcon))
             continue;
 
@@ -155,8 +155,7 @@ void MediaButton::createMediaList()
             QStringList overlays;
             if (mounted)
                 overlays << "emblem-mounted";
-            KIcon kdeIcon("network-wired", 0, overlays);
-            QAction * act = popupMenu->addAction(kdeIcon, name);
+            QAction * act = popupMenu->addAction(KDE::icon("network-wired", overlays), name);
             QString udi = remotePrefix + (*it)->mountPoint();
             act->setData(QVariant(udi));
         }
@@ -166,7 +165,7 @@ void MediaButton::createMediaList()
     mountCheckerTimer.start(1000);
 }
 
-bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, KIcon &kicon)
+bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &iconOut)
 {
     Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
     if (access == 0)
@@ -243,8 +242,7 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, KIcon &k
     if (vol && vol->usage() == Solid::StorageVolume::Encrypted) {
         overlays << "security-high";
     }
-    // TODO KF5
-    //kicon = KIcon(icon, 0, overlays);
+    iconOut = KDE::icon(icon, overlays);
     return true;
 }
 
@@ -510,7 +508,7 @@ void MediaButton::slotAccessibilityChanged(bool /*accessible*/, const QString & 
             Solid::Device device(udi);
 
             QString name;
-            KIcon kdeIcon;
+            QIcon kdeIcon;
             if (getNameAndIcon(device, name, kdeIcon)) {
                 act->setText(name);
                 act->setIcon(kdeIcon);
@@ -531,7 +529,7 @@ void MediaButton::slotDeviceAdded(const QString& udi)
         return;
 
     QString name;
-    KIcon kdeIcon;
+    QIcon kdeIcon;
     if (!getNameAndIcon(device, name, kdeIcon))
         return;
 
@@ -614,7 +612,7 @@ void MediaButton::slotCheckMounts()
             QStringList overlays;
             if (mounted)
                 overlays << "emblem-mounted";
-            KIcon kdeIcon("network-wired", 0, overlays);
+            QIcon kdeIcon = KDE::icon("network-wired", overlays);
 
             if (!correspondingAct) {
                 QAction * act = popupMenu->addAction(kdeIcon, name);

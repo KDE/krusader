@@ -28,20 +28,19 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KDebug>
-#include <KDE/KIcon>
 
 #include <KIconThemes/KIconLoader>
 
 KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent)
 {
     setAutoRaise(true);
-    setIcon(KIcon("bookmarks"));
+    setIcon(QIcon::fromTheme("bookmarks"));
     setText(i18n("BookMan II"));
     setToolTip(i18n("BookMan II"));
     setPopupMode(QToolButton::InstantPopup);
     setAcceptDrops(false);
 
-    acmBookmarks = new KActionMenu(KIcon("bookmarks"), i18n("Bookmarks"), this);
+    acmBookmarks = new KActionMenu(QIcon::fromTheme("bookmarks"), i18n("Bookmarks"), this);
     acmBookmarks->setDelayed(false);
     // TODO KF5 : explicit cast as QMenu doesn't have those methods
     //(acmBookmarks->menu())->setKeyboardShortcutsEnabled(true);

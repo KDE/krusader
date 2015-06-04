@@ -36,7 +36,6 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KInputDialog>
-#include <KDE/KIcon>
 
 #include "../krglobal.h"
 
@@ -44,7 +43,7 @@ ProfileManager::ProfileManager(QString profileType, QWidget * parent)
         : QPushButton(parent)
 {
     setText("");
-    setIcon(KIcon("kr_profile"));
+    setIcon(QIcon::fromTheme("kr_profile"));
     setFixedWidth(16 + 15);
     setToolTip(i18n("Profiles"));
 

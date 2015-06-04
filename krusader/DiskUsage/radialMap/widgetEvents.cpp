@@ -32,7 +32,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KIcon>
 #include <KIO/JobUiDelegate>
 
 #include <KWidgetsAddons/KCursor>     //::mouseMoveEvent()
@@ -171,19 +170,19 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
             QAction * actKonq = 0, * actKonsole = 0, *actViewMag = 0, * actFileOpen = 0, * actEditDel = 0;
 
             if (isDir) {
-                actKonq = popup.addAction(KIcon("konqueror"), i18n("Open &Konqueror Here"));
+                actKonq = popup.addAction(QIcon::fromTheme("konqueror"), i18n("Open &Konqueror Here"));
                 if (url.scheme() == "file")
-                    actKonsole = popup.addAction(KIcon("konsole"), i18n("Open &Konsole Here"));
+                    actKonsole = popup.addAction(QIcon::fromTheme("konsole"), i18n("Open &Konsole Here"));
 
                 if (m_focus->file() != m_tree) {
                     popup.addSeparator();
-                    actViewMag = popup.addAction(KIcon("zoom-original"), i18n("&Center Map Here"));
+                    actViewMag = popup.addAction(QIcon::fromTheme("zoom-original"), i18n("&Center Map Here"));
                 }
             } else
-                actFileOpen = popup.addAction(KIcon("document-open"), i18n("&Open"));
+                actFileOpen = popup.addAction(QIcon::fromTheme("document-open"), i18n("&Open"));
 
             popup.addSeparator();
-            actEditDel = popup.addAction(KIcon("edit-delete"), i18n("&Delete"));
+            actEditDel = popup.addAction(QIcon::fromTheme("edit-delete"), i18n("&Delete"));
 
             QAction * result = popup.exec(e->globalPos());
             if (result == 0)

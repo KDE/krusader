@@ -25,7 +25,6 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KDebug>
-#include <KDE/KIcon>
 
 #include <KIconThemes/KIconLoader>
 #include <KXmlGui/KActionCollection>
@@ -46,23 +45,23 @@ KrBookmark::KrBookmark(QString name, QUrl url, KActionCollection *parent, QStrin
 
     // do we have an icon?
     if (!icon.isEmpty())
-        setIcon(KIcon(icon));
+        setIcon(QIcon::fromTheme(icon));
     else {
         // what kind of a url is it?
         if (_url.isLocalFile()) {
-            setIcon(KIcon("folder"));
+            setIcon(QIcon::fromTheme("folder"));
         } else { // is it an archive?
             if (KRarcHandler::isArchive(_url))
-                setIcon(KIcon("tar"));
-            else setIcon(KIcon("folder-html"));
+                setIcon(QIcon::fromTheme("tar"));
+            else setIcon(QIcon::fromTheme("folder-html"));
         }
     }
 }
 
 KrBookmark::KrBookmark(QString name, QString icon) :
-        QAction(KIcon(icon), name, 0), _icon(icon), _folder(true), _separator(false), _autoDelete(false)
+        QAction(QIcon::fromTheme(icon), name, 0), _icon(icon), _folder(true), _separator(false), _autoDelete(false)
 {
-    setIcon(KIcon(icon == "" ? "folder" : icon));
+    setIcon(QIcon::fromTheme(icon == "" ? "folder" : icon));
 }
 
 KrBookmark::~KrBookmark()

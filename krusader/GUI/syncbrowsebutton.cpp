@@ -29,13 +29,10 @@ The current version only manages sync-browse and got no mode-switch options.
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KIcon>
-
-//#include <KDE/KDebug>
 
 SyncBrowseButton::SyncBrowseButton(QWidget *parent) : QToolButton(parent)
 {
-    setIcon(KIcon("kr_syncbrowse_off"));
+    setIcon(QIcon::fromTheme("kr_syncbrowse_off"));
     setCheckable(true);
 
     setText(i18n("This button toggles the sync-browse mode.\n"
@@ -55,9 +52,9 @@ SyncBrowseButton::~SyncBrowseButton()
 void SyncBrowseButton::slotToggled(bool on)
 {
     if (on)
-        setIcon(KIcon("kr_syncbrowse_on"));
+        setIcon(QIcon::fromTheme("kr_syncbrowse_on"));
     else
-        setIcon(KIcon("kr_syncbrowse_off"));
+        setIcon(QIcon::fromTheme("kr_syncbrowse_off"));
 }
 
 int SyncBrowseButton::state()

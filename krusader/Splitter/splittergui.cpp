@@ -47,7 +47,6 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KDebug>
-#include <KDE/KIcon>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KConfigCore/KConfigGroup>
@@ -156,12 +155,12 @@ SplitterGUI::SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir) :
 
     QPushButton *splitBtn = new QPushButton(this);
     splitBtn->setText(i18n("&Split"));
-    splitBtn->setIcon(KIcon("dialog-ok"));
+    splitBtn->setIcon(QIcon::fromTheme("dialog-ok"));
     splitButtons->addWidget(splitBtn);
 
     QPushButton *cancelBtn = new QPushButton(this);
     cancelBtn->setText(i18n("&Cancel"));
-    cancelBtn->setIcon(KIcon("dialog-cancel"));
+    cancelBtn->setIcon(QIcon::fromTheme("dialog-cancel"));
     splitButtons->addWidget(cancelBtn);
 
     grid->addLayout(splitButtons, 5 , 0);

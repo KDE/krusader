@@ -24,7 +24,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KIcon>
 
 QuickFilter::QuickFilter(QWidget *parent) : QWidget(parent)
 {
@@ -33,7 +32,7 @@ QuickFilter::QuickFilter(QWidget *parent) : QWidget(parent)
 
     QToolButton *closeButton = new QToolButton(this);
     closeButton->setAutoRaise(true);
-    closeButton->setIcon(KIcon("dialog-close"));
+    closeButton->setIcon(QIcon::fromTheme("dialog-close"));
     connect(closeButton, SIGNAL(clicked()), SIGNAL(stop()));
     layout->addWidget(closeButton);
 

@@ -41,7 +41,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KIcon>
 
 #include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
@@ -66,12 +65,12 @@ KURLListRequester::KURLListRequester(Mode requestMode, QWidget *parent)
 
     urlAddBtn = new QToolButton(this);
     urlAddBtn->setText("");
-    urlAddBtn->setIcon(KIcon("arrow-down"));
+    urlAddBtn->setIcon(QIcon::fromTheme("arrow-down"));
     urlListRequesterGrid->addWidget(urlAddBtn, 0, 1);
 
     urlBrowseBtn = new QToolButton(this);
     urlBrowseBtn->setText("");
-    urlBrowseBtn->setIcon(KIcon("folder"));
+    urlBrowseBtn->setIcon(QIcon::fromTheme("folder"));
     urlListRequesterGrid->addWidget(urlBrowseBtn, 0, 2);
 
     // add shell completion

@@ -41,7 +41,6 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KStatusBar>
 #include <KDE/KLibLoader>
-#include <KDE/KIcon>
 
 #include <KXmlGui/KToolBar>
 #include <KWidgetsAddons/KToggleAction>
@@ -467,11 +466,11 @@ void KrusaderView::toggleVerticalMode()
     if (horiz_splitter->orientation() == Qt::Vertical) {
         horiz_splitter->setOrientation(Qt::Horizontal);
         KrActions::actVerticalMode->setText(i18n("Vertical Mode"));
-        KrActions::actVerticalMode->setIcon(KIcon("view-split-top-bottom"));
+        KrActions::actVerticalMode->setIcon(QIcon::fromTheme("view-split-top-bottom"));
     } else {
         horiz_splitter->setOrientation(Qt::Vertical);
         KrActions::actVerticalMode->setText(i18n("Horizontal Mode"));
-        KrActions::actVerticalMode->setIcon(KIcon("view-split-left-right"));
+        KrActions::actVerticalMode->setIcon(QIcon::fromTheme("view-split-left-right"));
     }
 }
 
@@ -517,7 +516,7 @@ void KrusaderView::draggingTab(PanelManager *from, QMouseEvent *e)
     else
         icon = (from == leftMng) ? "arrow-down" : "arrow-up";
 
-    QCursor cursor(KIcon(icon).pixmap(22));
+    QCursor cursor(QIcon::fromTheme(icon).pixmap(22));
 
     if (cursorIsOnOtherSide(from, e->globalPos())) {
         if(!qApp->overrideCursor())

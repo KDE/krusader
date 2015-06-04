@@ -38,7 +38,6 @@
 #include <KDE/KLocale>
 #include <KDE/KGlobalSettings>
 #include <KDE/KInputDialog>
-#include <KDE/KIcon>
 
 #include <KIconThemes/KIconEffect>
 #include <KWidgetsAddons/KMessageBox>
@@ -158,7 +157,7 @@ QueueDialog::QueueDialog() : KDialog(0, Qt::FramelessWindowHint), _autoHide(true
     hbox->addWidget(title);
 
     KrImageButton * closeBtn = new KrImageButton(titleWg);
-    closeBtn->setIcon(KIcon("window-close"));
+    closeBtn->setIcon(QIcon::fromTheme("window-close"));
     closeBtn->setToolTip(i18n("Close"));
     connect(closeBtn, SIGNAL(clicked()), this, SLOT(reject()));
     hbox->addWidget(closeBtn);
@@ -170,19 +169,19 @@ QueueDialog::QueueDialog() : KDialog(0, Qt::FramelessWindowHint), _autoHide(true
     hbox2->setSpacing(0);
 
     _newTabButton = new QToolButton(mainWidget());
-    _newTabButton->setIcon(KIcon("tab-new"));
+    _newTabButton->setIcon(QIcon::fromTheme("tab-new"));
     _newTabButton->setToolTip(i18n("Create a new queue (Ctrl+T)"));
     connect(_newTabButton, SIGNAL(clicked()), this, SLOT(slotNewTab()));
     hbox2->addWidget(_newTabButton);
 
     _closeTabButton = new QToolButton(mainWidget());
-    _closeTabButton->setIcon(KIcon("tab-close"));
+    _closeTabButton->setIcon(QIcon::fromTheme("tab-close"));
     _closeTabButton->setToolTip(i18n("Remove the current queue (Ctrl+W)"));
     connect(_closeTabButton, SIGNAL(clicked()), this, SLOT(slotDeleteCurrentTab()));
     hbox2->addWidget(_closeTabButton);
 
     _pauseButton = new QToolButton(mainWidget());
-    _pauseButton->setIcon(KIcon("media-playback-pause"));
+    _pauseButton->setIcon(QIcon::fromTheme("media-playback-pause"));
     connect(_pauseButton, SIGNAL(clicked()), this, SLOT(slotPauseClicked()));
     hbox2->addWidget(_pauseButton);
 
@@ -195,7 +194,7 @@ QueueDialog::QueueDialog() : KDialog(0, Qt::FramelessWindowHint), _autoHide(true
     hbox2->addWidget(_progressBar);
 
     _scheduleButton = new QToolButton(mainWidget());
-    _scheduleButton->setIcon(KIcon("chronometer"));
+    _scheduleButton->setIcon(QIcon::fromTheme("chronometer"));
     _scheduleButton->setToolTip(i18n("Schedule queue starting (Ctrl+S)"));
     connect(_scheduleButton, SIGNAL(clicked()), this, SLOT(slotScheduleClicked()));
     hbox2->addWidget(_scheduleButton);
@@ -332,7 +331,7 @@ void QueueDialog::slotUpdateToolbar()
     Queue * currentQueue = QueueManager::currentQueue();
     if (currentQueue) {
         if (currentQueue->isSuspended()) {
-            _pauseButton->setIcon(KIcon("media-playback-start"));
+            _pauseButton->setIcon(QIcon::fromTheme("media-playback-start"));
             _pauseButton->setToolTip(i18n("Start processing the queue (Ctrl+P)"));
             QTime time = currentQueue->scheduleTime();
             if (time.isNull()) {
@@ -343,7 +342,7 @@ void QueueDialog::slotUpdateToolbar()
             }
         } else {
             _statusLabel->setText(i18n("The queue is running."));
-            _pauseButton->setIcon(KIcon("media-playback-pause"));
+            _pauseButton->setIcon(QIcon::fromTheme("media-playback-pause"));
             _pauseButton->setToolTip(i18n("Pause processing the queue (Ctrl+P)"));
         }
 

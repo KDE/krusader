@@ -23,7 +23,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KIcon>
 #include <kdeversion.h>
 
 #include <KXmlGui/KActionCollection>
@@ -43,7 +42,7 @@
 #define DATA_KEY    QString::fromLatin1("Charset")
 
 KrRemoteEncodingMenu::KrRemoteEncodingMenu(const QString &text, const QString &icon, KActionCollection *parent) :
-        KActionMenu(KIcon(icon, krLoader), text, parent), settingsLoaded(false)
+        KActionMenu(QIcon::fromTheme(icon), text, parent), settingsLoaded(false)
 {
     connect(menu(), SIGNAL(aboutToShow()), this, SLOT(slotAboutToShow()));
 

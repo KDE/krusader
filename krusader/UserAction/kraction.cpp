@@ -458,7 +458,7 @@ bool KrAction::xmlRead(const QDomElement& element)
                 setToolTip(e.text());
             else
                 if (e.tagName() == "icon")
-                    setIcon(KIcon(_iconName = e.text()));
+                    setIcon(QIcon::fromTheme(_iconName = e.text()));
                 else
                     if (e.tagName() == "category")
                         setCategory(e.text());

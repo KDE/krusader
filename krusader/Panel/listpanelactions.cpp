@@ -58,7 +58,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     QList<KrViewInstance*> views = KrViewFactory::registeredViews();
     for(int i = 0; i < views.count(); i++) {
         KrViewInstance *inst = views[i];
-        QAction *action = new QAction(KIcon(inst->icon()), inst->description(), group);
+        QAction *action = new QAction(QIcon::fromTheme(inst->icon()), inst->description(), group);
         action->setShortcut(inst->shortcut());
         action->setCheckable(true);
         connect(action, SIGNAL(triggered()), mapper, SLOT(map()));

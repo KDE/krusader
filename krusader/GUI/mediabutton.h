@@ -32,7 +32,6 @@
 #include <Solid/SolidNamespace>
 
 class QMenu;
-class KIcon;
 
 class MediaButton : public QToolButton
 {
@@ -59,7 +58,7 @@ signals:
 
 protected:
     bool eventFilter(QObject *o, QEvent *e);
-    bool getNameAndIcon(Solid::Device &, QString &, KIcon &);
+    bool getNameAndIcon(Solid::Device &, QString &, QIcon &);
 
 private:
     void createMediaList();

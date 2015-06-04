@@ -40,7 +40,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KIcon>
 
 #include <KCompletion/KLineEdit>
 #include <KIconThemes/KIconLoader>
@@ -388,7 +387,6 @@ KonfiguratorURLRequester::KonfiguratorURLRequester(QString cls, QString name, QS
 
     connect(this, SIGNAL(textChanged(const QString &)), ext, SLOT(setChanged()));
 
-    button()->setIcon(KIcon(SmallIcon("document-open")));
     loadInitialValue();
 }
 

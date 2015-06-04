@@ -69,7 +69,6 @@
 #include <QtWidgets/QSpinBox>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KIcon>
 #include <KDE/KLocale>
 #include <KDE/KInputDialog>
 
@@ -1509,26 +1508,26 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
 
     btnStopComparing = new QPushButton(this);
     btnStopComparing->setText(i18n("Stop"));
-    btnStopComparing->setIcon(KIcon("process-stop"));
+    btnStopComparing->setIcon(QIcon::fromTheme("process-stop"));
     btnStopComparing->setEnabled(false);
     buttons->addWidget(btnStopComparing);
 
     btnFeedToListBox = new QPushButton(this);
     btnFeedToListBox->setText(i18n("Feed to listbox"));
-    btnFeedToListBox->setIcon(KIcon("list-add"));
+    btnFeedToListBox->setIcon(QIcon::fromTheme("list-add"));
     btnFeedToListBox->setEnabled(false);
     btnFeedToListBox->hide();
     buttons->addWidget(btnFeedToListBox);
 
     btnSynchronize = new QPushButton(this);
     btnSynchronize->setText(i18n("Synchronize"));
-    btnSynchronize->setIcon(KIcon("folder-sync"));
+    btnSynchronize->setIcon(QIcon::fromTheme("folder-sync"));
     btnSynchronize->setEnabled(false);
     buttons->addWidget(btnSynchronize);
 
     QPushButton *btnCloseSync = new QPushButton(this);
     btnCloseSync->setText(i18n("Close"));
-    btnCloseSync->setIcon(KIcon("dialog-close"));
+    btnCloseSync->setIcon(QIcon::fromTheme("dialog-close"));
     buttons->addWidget(btnCloseSync);
 
     synchGrid->addLayout(buttons, 1, 0);

@@ -22,9 +22,6 @@
 
 #include <QtWidgets/QAction>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KIcon>
-
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KToggleAction>
 
@@ -49,12 +46,12 @@ QAction *ActionsBase::createAction(QString text, QString icon, bool isToggleActi
         if (icon == 0)
             a = (QAction *)(new KToggleAction(text, this));
         else
-            a = (QAction *)new KToggleAction(KIcon(icon), text, this);
+            a = (QAction *)new KToggleAction(QIcon::fromTheme(icon), text, this);
     } else {
         if (icon == 0)
             a = new QAction(text, this);
         else
-            a = new QAction(KIcon(icon), text, this);
+            a = new QAction(QIcon::fromTheme(icon), text, this);
     }
 
     return a;

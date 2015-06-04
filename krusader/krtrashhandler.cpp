@@ -34,9 +34,6 @@
 #include <QtCore/QDataStream>
 #include <QtCore/QStandardPaths>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KIcon>
-
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
 #include <KJobWidgets/KUiServerJobTracker>
@@ -171,10 +168,10 @@ KrTrashWatcher::~KrTrashWatcher()
 
 void KrTrashWatcher::slotDirty(const QString&)
 {
-    KrActions::actTrashBin->setIcon(KIcon(KrTrashHandler::trashIcon()));
+    KrActions::actTrashBin->setIcon(QIcon::fromTheme(KrTrashHandler::trashIcon()));
 }
 
 void KrTrashWatcher::slotCreated(const QString&)
 {
-    KrActions::actTrashBin->setIcon(KIcon(KrTrashHandler::trashIcon()));
+    KrActions::actTrashBin->setIcon(QIcon::fromTheme(KrTrashHandler::trashIcon()));
 }

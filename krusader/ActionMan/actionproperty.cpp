@@ -33,7 +33,6 @@
 #include <KDE/KLocale>
 #include <KDE/KDebug>
 #include <KDE/KInputDialog>
-#include <KDE/KIcon>
 
 #include <KXmlGui/KActionCollection>
 #include <KXmlGui/KKeySequenceWidget>
@@ -298,7 +297,7 @@ void ActionProperty::updateAction(KrAction *action)
 
     _action->setConfirmExecution(chkConfirmExecution->isChecked());
 
-    _action->setIcon(KIcon(ButtonIcon->icon()));
+    _action->setIcon(QIcon::fromTheme(ButtonIcon->icon()));
     _action->setIconName(ButtonIcon->icon());
 
     _action->setUser(leDifferentUser->text());

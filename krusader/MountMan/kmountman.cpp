@@ -40,7 +40,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KDE/KLocale>
 #include <KDE/KDebug>
 #include <KDE/KGlobal>
-#include <KDE/KIcon>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KCoreAddons/KProcess>
@@ -74,7 +73,7 @@ KMountMan::KMountMan(QWidget *parent) : QObject(), Operational(false), waiting(f
 {
     _actions = 0L;
 
-    _action = new KToolBarPopupAction(KIcon("kr_mountman"), i18n("&MountMan..."), this);
+    _action = new KToolBarPopupAction(QIcon::fromTheme("kr_mountman"), i18n("&MountMan..."), this);
     connect(_action, SIGNAL(triggered(bool)), SLOT(mainWindow()));
     connect(_action->menu(), SIGNAL(aboutToShow()), SLOT(quickList()));
 

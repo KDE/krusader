@@ -130,10 +130,10 @@ void Konfigurator::accept()
     //KDialog::accept();
 }
 
-void Konfigurator::newPage(KonfiguratorPage *page, const QString &name, const QString &desc, const KIcon &kicon)
+void Konfigurator::newPage(KonfiguratorPage *page, const QString &name, const QString &desc, const QIcon &icon)
 {
     KPageWidgetItem *item = new KPageWidgetItem(page, name);
-    item->setIcon(kicon);
+    item->setIcon(icon);
     item->setHeader(desc);
     addPage(item);
 
@@ -144,27 +144,27 @@ void Konfigurator::newPage(KonfiguratorPage *page, const QString &name, const QS
 void Konfigurator::createLayout(int startPage)
 {
     // startup
-    newPage(new KgStartup(firstTime, this), i18n("Startup"), i18n("Krusader's settings upon startup"), KIcon("go-home", krLoader));
+    newPage(new KgStartup(firstTime, this), i18n("Startup"), i18n("Krusader's settings upon startup"), QIcon::fromTheme("go-home"));
     // panel
-    newPage(new KgPanel(firstTime, this), i18n("Panel"), i18n("Panel"), KIcon("view-choose", krLoader));
+    newPage(new KgPanel(firstTime, this), i18n("Panel"), i18n("Panel"), QIcon::fromTheme("view-choose"));
     // colors
-    newPage(new KgColors(firstTime, this), i18n("Colors"), i18n("Colors"), KIcon("preferences-desktop-color", krLoader));
+    newPage(new KgColors(firstTime, this), i18n("Colors"), i18n("Colors"), QIcon::fromTheme("preferences-desktop-color"));
     // general
-    newPage(new KgGeneral(firstTime, this), i18n("General"), i18n("Basic Operations"), KIcon("preferences-other", krLoader));
+    newPage(new KgGeneral(firstTime, this), i18n("General"), i18n("Basic Operations"), QIcon::fromTheme("preferences-other"));
     // advanced
-    newPage(new KgAdvanced(firstTime, this), i18n("Advanced"), i18n("Be sure you know what you are doing."), KIcon("dialog-warning", krLoader));
+    newPage(new KgAdvanced(firstTime, this), i18n("Advanced"), i18n("Be sure you know what you are doing."), QIcon::fromTheme("dialog-warning"));
     // archives
     newPage(new KgArchives(firstTime, this), i18n("Archives"), i18n("Customize the way Krusader deals with archives"),
-            KIcon("utilities-file-archiver", krLoader));
+            QIcon::fromTheme("utilities-file-archiver"));
     // dependencies
     newPage(new KgDependencies(firstTime, this), i18n("Dependencies"), i18n("Set the full path of the external applications"),
-            KIcon("kr_dependencies", krLoader));
+            QIcon::fromTheme("kr_dependencies"));
     // useractions
     newPage(new KgUserActions(firstTime, this), i18n("User Actions"), i18n("Configure your personal actions"),
-            KIcon("user-properties", krLoader));
+            QIcon::fromTheme("user-properties"));
     // protocols
     newPage(new KgProtocols(firstTime, this), i18n("Protocols"), i18n("Link MIMEs to protocols"),
-            KIcon("kde", krLoader));
+            QIcon::fromTheme("kde"));
 
     setCurrentPage(kgPages.at(startPage));
     slotApplyEnable();

@@ -29,12 +29,11 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KDebug>
-#include <KDE/KIcon>
 
 DirHistoryButton::DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent) : QToolButton(parent)
 {
     setAutoRaise(true);
-    setIcon(KIcon("chronometer"));
+    setIcon(QIcon::fromTheme("chronometer"));
     setText(i18n("Open the directory history list"));
     setToolTip(i18n("Open the directory history list"));
     setPopupMode(QToolButton::InstantPopup);

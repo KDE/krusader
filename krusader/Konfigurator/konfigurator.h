@@ -40,7 +40,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDialog>
-#include <KDE/KIcon>
 
 #include <KWidgetsAddons/KPageDialog>
 
@@ -63,7 +62,7 @@ public:
     virtual void reject() Q_DECL_OVERRIDE;
 
 protected:
-    void newPage(KonfiguratorPage *, const QString &, const QString &, const KIcon &); // adds widget and connects to slot
+    void newPage(KonfiguratorPage *, const QString &, const QString &, const QIcon &); // adds widget and connects to slot
     void createLayout(int startPage);
     void closeDialog();
 
