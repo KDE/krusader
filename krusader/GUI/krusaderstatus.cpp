@@ -33,7 +33,7 @@
 #include <QtGui/QFontMetrics>
 
 KrusaderStatus::KrusaderStatus(QWidget *parent):
-        KStatusBar(parent)
+    QStatusBar(parent)
 {
     showMessage(i18n("Ready."), 5000);
     setMaximumHeight(QFontMetrics(font()).height() + 2);

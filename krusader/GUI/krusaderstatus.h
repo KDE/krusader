@@ -34,13 +34,13 @@
 #define KRUSADERSTATUS_H
 
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KStatusBar>
 #include <KDE/KLocale>
 
-class KrusaderStatus : public KStatusBar
+class KrusaderStatus : public QStatusBar
 {
     Q_OBJECT
 public:

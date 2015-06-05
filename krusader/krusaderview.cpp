@@ -37,9 +37,9 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QStatusBar>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KStatusBar>
 #include <KDE/KLibLoader>
 
 #include <KXmlGui/KToolBar>

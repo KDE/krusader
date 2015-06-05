@@ -26,12 +26,12 @@
 #include <QtCore/QEvent>
 #include <QtGui/QKeyEvent>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QStatusBar>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KMimeType>
 #include <KDE/KLocale>
 #include <KDE/KLibLoader>
-#include <KDE/KStatusBar>
 #include <KIO/NetAccess>
 #include <KIO/JobClasses>
 #include <KIO/Job>
