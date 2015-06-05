@@ -20,6 +20,7 @@
 
 #include "kraction.h"
 
+#include <QtCore/QDebug>
 #include <QtCore/QEvent>
 #include <QtCore/QFile>
 #include <QtCore/QRegExp>
@@ -37,7 +38,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDialog>
-#include <KDE/KDebug>
 #include <KDE/KLocale>
 #include <KDE/KInputDialog>
 #include <KDE/KMimeType>
@@ -364,7 +364,7 @@ bool KrAction::isAvailable(const QUrl &currentURL)
     if (! _showonlyProtocol.empty()) {
         available = false;
         for (QStringList::Iterator it = _showonlyProtocol.begin(); it != _showonlyProtocol.end(); ++it) {
-            //kDebug() << "KrAction::isAvailable currendProtocol: " << currentURL.scheme() << " =?= " << *it << endl;
+            //qDebug() << "KrAction::isAvailable currendProtocol: " << currentURL.scheme() << " =?= " << *it << endl;
             if (currentURL.scheme() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
                 available = true;
                 break;

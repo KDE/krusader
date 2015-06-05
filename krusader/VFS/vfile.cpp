@@ -41,7 +41,6 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KMimeType>
 #include <kdeversion.h>
-#include <KDE/KDebug>
 
 #include <KConfigCore/KDesktopFile>
 

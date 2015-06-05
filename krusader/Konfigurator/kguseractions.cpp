@@ -38,7 +38,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KDebug>
 
 KgUserActions::KgUserActions(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)

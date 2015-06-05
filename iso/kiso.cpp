@@ -31,12 +31,12 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include <QtCore/QDebug>
 #include <QtCore/QDir>
 #include <QtCore/QFile>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KDE/KDebug>
 #include <KDE/KMimeType>
 
 #include <KConfigCore/KConfig>
@@ -75,20 +75,20 @@ static int getTracks(const char *fname, int *tracks)
     struct cdrom_tochdr tochead;
     struct cdrom_tocentry tocentry;
 
-    kDebug() << "getTracks open:" << fname << endl;
+    //qDebug() << "getTracks open:" << fname << endl;
     fd = KDE_open(fname, O_RDONLY | O_NONBLOCK);
     if (fd > 0) {
         if (ioctl(fd, CDROMREADTOCHDR, &tochead) != -1) {
-            kDebug() << "getTracks first track:" << tochead.cdth_trk0
-            << " last track " << tochead.cdth_trk1 << endl;
+//            qDebug() << "getTracks first track:" << tochead.cdth_trk0
+//            << " last track " << tochead.cdth_trk1 << endl;
             for (i = tochead.cdth_trk0;i <= tochead.cdth_trk1;i++) {
                 if (ret > 99) break;
                 memset(&tocentry, 0, sizeof(struct cdrom_tocentry));
                 tocentry.cdte_track = i;
                 tocentry.cdte_format = CDROM_LBA;
                 if (ioctl(fd, CDROMREADTOCENTRY, &tocentry) < 0) break;
-                kDebug() << "getTracks got track " << i << " starting at: " <<
-                tocentry.cdte_addr.lba << endl;
+//                qDebug() << "getTracks got track " << i << " starting at: " <<
+//                tocentry.cdte_addr.lba << endl;
                 if ((tocentry.cdte_ctrl & 0x4) == 0x4) {
                     tracks[ret<<1] = tocentry.cdte_addr.lba;
                     tracks[(ret<<1)+1] = i;
@@ -123,7 +123,7 @@ KIso::KIso(const QString& filename, const QString & _mimetype)
         if (KMimeType::findByFileContent(filename))
             mimetype = KMimeType::findByFileContent(filename)->name();
 
-        kDebug() << "KIso::KIso mimetype=" << mimetype << endl;
+        //qDebug() << "KIso::KIso mimetype=" << mimetype << endl;
 
         // Don't move to prepareDevice - the other constructor theoretically allows ANY filter
         if (mimetype == "application/x-tgz" || mimetype == "application/x-targz" ||  // the latter is deprecated but might still be around
@@ -203,7 +203,7 @@ static int readf(char *buf, unsigned int start, unsigned int len, void *udata)
     if (dev->seek((qint64)start << (qint64)11)) {
         if ((dev->read(buf, len << 11u)) != -1) return (len);
     }
-    kDebug() << "KIso::ReadRequest failed start: " << start << " len: " << len << endl;
+    //qDebug() << "KIso::ReadRequest failed start: " << start << " len: " << len << endl;
 
     return -1;
 }
@@ -363,7 +363,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
 
     tracks[0] = 0;
     if (m_startsec > 0) tracks[0] = m_startsec;
-    kDebug() << " m_startsec: " << m_startsec << endl;
+    //qDebug() << " m_startsec: " << m_startsec << endl;
     /* We'll use the permission and user/group of the 'host' file except
      * in Rock Ridge, where the permissions are stored on the file system
      */
@@ -380,7 +380,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
     gid.setNum(buf.st_gid);
     access = buf.st_mode & ~S_IFMT;
 
-    kDebug() << "KIso::openArchive number of tracks: " << trackno << endl;
+    //qDebug() << "KIso::openArchive number of tracks: " << trackno << endl;
 
     if (trackno == 0) trackno = 1;
     for (i = 0;i < trackno;i++) {
@@ -397,7 +397,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
 
         desc = ReadISO9660(&readf, tracks[i<<1], this);
         if (!desc) {
-            kDebug() << "KIso::openArchive no volume descriptors" << endl;
+            //qDebug() << "KIso::openArchive no volume descriptors" << endl;
             continue;
         }
 

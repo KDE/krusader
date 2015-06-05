@@ -26,7 +26,6 @@
 #include <KDE/KMimeType>
 #include <KDE/KLocale>
 #include <KDE/KLibLoader>
-#include <KDE/KDebug>
 #include <KIO/NetAccess>
 #include <kde_file.h>
 

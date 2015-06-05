@@ -32,6 +32,7 @@
 
 #include "../VFS/vfs.h"
 
+#include <QtCore/QDebug>
 #include <QtGui/QValidator>
 #include <QtGui/QKeyEvent>
 #include <QtWidgets/QDoubleSpinBox>
@@ -46,7 +47,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KDebug>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KConfigCore/KConfigGroup>
@@ -243,7 +243,7 @@ void SplitterGUI::predefinedComboActivated(int item)
     } else // user defined size selected
         spinBox->setEnabled(true);
 
-    kDebug() << capacity;
+    //qDebug() << capacity;
 
     if (capacity >= 0x40000000) {          /* Gbyte */
         sizeCombo->setCurrentIndex(3);

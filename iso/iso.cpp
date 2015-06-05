@@ -28,13 +28,13 @@
 #include <zlib.h>
 #include <errno.h> // to be removed
 
-#include <QtCore/QFile>
+#include <QtCore/QDebug>
 #include <QtCore/QDir>
+#include <QtCore/QFile>
 #include <QtCore/QByteArray>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KDE/KDebug>
 #include <KDE/KComponentData>
 #include <KDE/KMimeType>
 
@@ -50,7 +50,7 @@ extern "C"
     int Q_DECL_EXPORT kdemain(int argc, char **argv) {
         KComponentData instance("kio_iso", "krusader");
 
-        kDebug()   << "Starting " << getpid() << endl;
+        //qDebug()   << "Starting " << getpid() << endl;
 
         if (argc != 4) {
             fprintf(stderr, "Usage: kio_iso protocol domain-socket1 domain-socket2\n");
@@ -60,7 +60,7 @@ extern "C"
         kio_isoProtocol slave(argv[2], argv[3]);
         slave.dispatchLoop();
 
-        kDebug()   << "Done" << endl;
+        //qDebug()   << "Done" << endl;
         return 0;
     }
 
@@ -81,7 +81,7 @@ static const unsigned char zisofs_magic[8] = {
 
 kio_isoProtocol::kio_isoProtocol(const QByteArray &pool, const QByteArray &app) : SlaveBase("iso", pool, app)
 {
-    kDebug() << "kio_isoProtocol::kio_isoProtocol" << endl;
+    //qDebug() << "kio_isoProtocol::kio_isoProtocol" << endl;
     m_isoFile = 0L;
 }
 
@@ -92,8 +92,8 @@ kio_isoProtocol::~kio_isoProtocol()
 
 bool kio_isoProtocol::checkNewFile(QString fullPath, QString & path, int startsec)
 {
-    kDebug()   << "kio_isoProtocol::checkNewFile " << fullPath << " startsec: " <<
-    startsec << endl;
+    //qDebug()   << "kio_isoProtocol::checkNewFile " << fullPath << " startsec: " <<
+    //startsec << endl;
 
     // Are we already looking at that file ?
     if (m_isoFile && startsec == m_isoFile->startSec() &&
@@ -103,12 +103,12 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString & path, int startse
         if (KDE_stat(QFile::encodeName(m_isoFile->fileName()), &statbuf) == 0) {
             if (m_mtime == statbuf.st_mtime) {
                 path = fullPath.mid(m_isoFile->fileName().length());
-                kDebug()   << "kio_isoProtocol::checkNewFile returning " << path << endl;
+                //qDebug()   << "kio_isoProtocol::checkNewFile returning " << path << endl;
                 return true;
             }
         }
     }
-    kDebug() << "Need to open a new file" << endl;
+    //qDebug() << "Need to open a new file" << endl;
 
     // Close previous file
     if (m_isoFile) {
@@ -126,10 +126,10 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString & path, int startse
     if (len != 0 && fullPath[ len - 1 ] != DIR_SEPARATOR_CHAR)
         fullPath += DIR_SEPARATOR_CHAR;
 
-    kDebug()   << "the full path is " << fullPath << endl;
+    //qDebug()   << "the full path is " << fullPath << endl;
     while ((pos = fullPath.indexOf(DIR_SEPARATOR_CHAR, pos + 1)) != -1) {
         QString tryPath = fullPath.left(pos);
-        kDebug()   << fullPath << "  trying " << tryPath << endl;
+        //qDebug()   << fullPath << "  trying " << tryPath << endl;
 
         KDE_struct_stat statbuf;
         if (KDE_lstat(QFile::encodeName(tryPath), &statbuf) == 0 && !S_ISDIR(statbuf.st_mode)) {
@@ -149,29 +149,29 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString & path, int startse
                 m_mtime = statbuf.st_mtime;
                 m_mode = statbuf.st_mode;
                 path = fullPath.mid(pos + 1);
-                kDebug()   << "fullPath=" << fullPath << " path=" << path << endl;
+                //qDebug()   << "fullPath=" << fullPath << " path=" << path << endl;
                 len = path.length();
                 if (len > 1) {
                     if (path[ len - 1 ] == DIR_SEPARATOR_CHAR)
                         path.truncate(len - 1);
                 } else
                     path = QString::fromLatin1(DIR_SEPARATOR);
-                kDebug()   << "Found. isoFile=" << isoFile << " path=" << path << endl;
+                //qDebug()   << "Found. isoFile=" << isoFile << " path=" << path << endl;
                 break;
             }
         }
     }
     if (isoFile.isEmpty()) {
-        kDebug()   << "kio_isoProtocol::checkNewFile: not found" << endl;
+        //qDebug()   << "kio_isoProtocol::checkNewFile: not found" << endl;
         return false;
     }
 
     // Open new file
-    kDebug() << "Opening KIso on " << isoFile << endl;
+    //qDebug() << "Opening KIso on " << isoFile << endl;
     m_isoFile = new KIso(isoFile);
     m_isoFile->setStartSec(startsec);
     if (!m_isoFile->open(QIODevice::ReadOnly)) {
-        kDebug()   << "Opening " << isoFile << " failed." << endl;
+        //qDebug()   << "Opening " << isoFile << " failed." << endl;
         delete m_isoFile;
         m_isoFile = 0L;
         return false;
@@ -212,12 +212,12 @@ void kio_isoProtocol::createUDSEntry(const KArchiveEntry * isoEntry, UDSEntry & 
 
 void kio_isoProtocol::listDir(const QUrl &url)
 {
-    kDebug() << "kio_isoProtocol::listDir " << url.url() << endl;
+    //qDebug() << "kio_isoProtocol::listDir " << url.url() << endl;
 
     QString path;
     if (!checkNewFile(getPath(url), path, url.hasFragment() ? url.fragment(QUrl::FullyDecoded).toInt() : -1)) {
         QByteArray _path(QFile::encodeName(getPath(url)));
-        kDebug()  << "Checking (stat) on " << _path << endl;
+        //qDebug()  << "Checking (stat) on " << _path << endl;
         KDE_struct_stat buff;
         if (KDE_stat(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
             error(KIO::ERR_DOES_NOT_EXIST, getPath(url));
@@ -227,7 +227,7 @@ void kio_isoProtocol::listDir(const QUrl &url)
         QUrl redir;
         redir.setPath(getPath(url));
         if (url.hasFragment()) redir.setFragment(url.fragment(QUrl::FullyDecoded));
-        kDebug()  << "Ok, redirection to " << redir.url() << endl;
+        //qDebug()  << "Ok, redirection to " << redir.url() << endl;
         redirection(redir);
         finished();
         // And let go of the iso file - for people who want to unmount a cdrom after that
@@ -238,20 +238,20 @@ void kio_isoProtocol::listDir(const QUrl &url)
 
     if (path.isEmpty()) {
         QUrl redir(QStringLiteral("iso:/"));
-        kDebug() << "url.path()==" << getPath(url) << endl;
+        //qDebug() << "url.path()==" << getPath(url) << endl;
         if (url.hasFragment()) redir.setFragment(url.fragment(QUrl::FullyDecoded));
         redir.setPath(getPath(url) + QString::fromLatin1(DIR_SEPARATOR));
-        kDebug() << "kio_isoProtocol::listDir: redirection " << redir.url() << endl;
+        //qDebug() << "kio_isoProtocol::listDir: redirection " << redir.url() << endl;
         redirection(redir);
         finished();
         return;
     }
 
-    kDebug()  << "checkNewFile done" << endl;
+    //qDebug()  << "checkNewFile done" << endl;
     const KArchiveDirectory* root = m_isoFile->directory();
     const KArchiveDirectory* dir;
     if (!path.isEmpty() && path != DIR_SEPARATOR) {
-        kDebug()   << QString("Looking for entry %1").arg(path) << endl;
+        //qDebug()   << QString("Looking for entry %1").arg(path) << endl;
         const KArchiveEntry* e = root->entry(path);
         if (!e) {
             error(KIO::ERR_DOES_NOT_EXIST, path);
@@ -272,7 +272,7 @@ void kio_isoProtocol::listDir(const QUrl &url)
     UDSEntry entry;
     QStringList::Iterator it = l.begin();
     for (; it != l.end(); ++it) {
-        kDebug()   << (*it) << endl;
+        //qDebug()   << (*it) << endl;
         const KArchiveEntry* isoEntry = dir->entry((*it));
 
         createUDSEntry(isoEntry, entry);
@@ -284,7 +284,7 @@ void kio_isoProtocol::listDir(const QUrl &url)
 
     finished();
 
-    kDebug()  << "kio_isoProtocol::listDir done" << endl;
+    //qDebug()  << "kio_isoProtocol::listDir done" << endl;
 }
 
 void kio_isoProtocol::stat(const QUrl &url)
@@ -292,21 +292,21 @@ void kio_isoProtocol::stat(const QUrl &url)
     QString path;
     UDSEntry entry;
 
-    kDebug() << "kio_isoProtocol::stat " << url.url() << endl;
+    //qDebug() << "kio_isoProtocol::stat " << url.url() << endl;
     if (!checkNewFile(getPath(url), path, url.hasFragment() ? url.fragment(QUrl::FullyDecoded).toInt() : -1)) {
         // We may be looking at a real directory - this happens
         // when pressing up after being in the root of an archive
         QByteArray _path(QFile::encodeName(getPath(url)));
-        kDebug()  << "kio_isoProtocol::stat (stat) on " << _path << endl;
+        //qDebug()  << "kio_isoProtocol::stat (stat) on " << _path << endl;
         KDE_struct_stat buff;
         if (KDE_stat(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
-            kDebug() << "isdir=" << S_ISDIR(buff.st_mode) << "  errno=" << strerror(errno) << endl;
+            //qDebug() << "isdir=" << S_ISDIR(buff.st_mode) << "  errno=" << strerror(errno) << endl;
             error(KIO::ERR_DOES_NOT_EXIST, getPath(url));
             return;
         }
         // Real directory. Return just enough information for KRun to work
         entry.insert(UDSEntry::UDS_NAME, url.fileName());
-        kDebug()  << "kio_isoProtocol::stat returning name=" << url.fileName() << endl;
+        //qDebug()  << "kio_isoProtocol::stat returning name=" << url.fileName() << endl;
 
         entry.insert(UDSEntry::UDS_FILE_TYPE, buff.st_mode & S_IFMT);
 
@@ -440,7 +440,7 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
         }
         if (!mime) {
             if (KMimeType::findByNameAndContent(path, fileData)) {
-                kDebug() << "Emitting mimetype " << KMimeType::findByNameAndContent(path, fileData)->name() << endl;
+                //qDebug() << "Emitting mimetype " << KMimeType::findByNameAndContent(path, fileData)->name() << endl;
                 mimeType(KMimeType::findByNameAndContent(path, fileData)->name());
                 mime = true;
             }
@@ -464,7 +464,7 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
 
 void kio_isoProtocol::get(const QUrl &url)
 {
-    kDebug()  << "kio_isoProtocol::get" << url.url() << endl;
+    //qDebug()  << "kio_isoProtocol::get" << url.url() << endl;
 
     QString path;
     if (!checkNewFile(getPath(url), path, url.hasFragment() ? url.fragment(QUrl::FullyDecoded).toInt() : -1)) {
@@ -486,9 +486,9 @@ void kio_isoProtocol::get(const QUrl &url)
 
     const KIsoFile* isoFileEntry = static_cast<const KIsoFile *>(isoEntry);
     if (!isoEntry->symLinkTarget().isEmpty()) {
-        kDebug() << "Redirection to " << isoEntry->symLinkTarget() << endl;
+        //qDebug() << "Redirection to " << isoEntry->symLinkTarget() << endl;
         QUrl realURL = QUrl(url).resolved(QUrl(isoEntry->symLinkTarget()));
-        kDebug() << "realURL= " << realURL.url() << endl;
+        //qDebug() << "realURL= " << realURL.url() << endl;
         redirection(realURL);
         finished();
         return;

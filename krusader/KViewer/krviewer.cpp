@@ -20,6 +20,7 @@
 #include "krviewer.h"
 
 #include <QtCore/QDataStream>
+#include <QtCore/QDebug>
 #include <QtCore/QFile>
 #include <QtCore/QTimer>
 #include <QtCore/QEvent>
@@ -31,7 +32,6 @@
 #include <KDE/KLocale>
 #include <KDE/KLibLoader>
 #include <KDE/KStatusBar>
-#include <KDE/KDebug>
 #include <KIO/NetAccess>
 #include <KIO/JobClasses>
 #include <KIO/Job>
@@ -648,7 +648,7 @@ void KrViewer::addPart(KParts::ReadOnlyPart *part)
     Q_ASSERT(!isPartAdded(part));
 
     if (isPartAdded(part)) {
-        kDebug()<<"part already added:"<<part;
+        qDebug()<<"part already added:"<<part;
         return;
     }
 
@@ -670,7 +670,7 @@ void KrViewer::removePart(KParts::ReadOnlyPart *part)
         part->removeEventFilter(this);
         manager.removePart(part);
     } else
-        kDebug()<<"part hasn't been added:"<<part;
+        qDebug()<<"part hasn't been added:"<<part;
 }
 
 void KrViewer::viewInternal(QUrl url, Mode mode, QWidget *parent)

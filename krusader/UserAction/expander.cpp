@@ -39,6 +39,7 @@
 #include "../KrJS/krjs.h"
 #endif
 
+#include <QtCore/QDebug>
 #include <QtCore/QStringList>
 #include <QtCore/QTextStream>
 #include <QtCore/QList>
@@ -47,7 +48,6 @@
 #include <QtWidgets/QApplication>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDebug>
 #include <KDE/KInputDialog>
 
 #include <KWidgetsAddons/KMessageBox>
@@ -589,7 +589,7 @@ exp_Clipboard::exp_Clipboard()
 }
 TagString exp_Clipboard::expFunc(const KrPanel*, const TagStringList& parameter, const bool&, Expander& exp) const
 {
-//    kDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << QApplication::clipboard()->text() << endl;
+//    qDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << QApplication::clipboard()->text() << endl;
     if (parameter.count() == 0) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Clipboard.")));
         return QString();
@@ -1047,7 +1047,7 @@ TagString Expander::expandCurrent(const QString& stringToExpand, bool useUrl)
 
         // get the expression, and expand it using the correct expander function
         exp = stringToExpand.mid(begin + 1, end - begin - 1);
-//       kDebug() << "------------- exp: '" << exp << "'" << endl;
+//       qDebug() << "------------- exp: '" << exp << "'" << endl;
         if (exp.isEmpty())
             result += QString(QChar('%'));
         else {
@@ -1058,13 +1058,13 @@ TagString Expander::expandCurrent(const QString& stringToExpand, bool useUrl)
             exp.replace(0, 1, "");
             for (i = 0; i < placeholderCount(); ++i)
                 if (exp == placeholder(i)->expression()) {
-//               kDebug() << "---------------------------------------" << endl;
+//               qDebug() << "---------------------------------------" << endl;
                     tmpResult = placeholder(i)->expFunc(getPanel(panelIndicator, placeholder(i), *this), parameter, useUrl, *this);
                     if (error()) {
                         return QString();
                     } else
                         result += tmpResult;
-//               kDebug() << "---------------------------------------" << endl;
+//               qDebug() << "---------------------------------------" << endl;
                     break;
                 }
             if (i == placeholderCount()) {   // didn't find an expander
@@ -1076,7 +1076,7 @@ TagString Expander::expandCurrent(const QString& stringToExpand, bool useUrl)
     }
     // copy the rest of the string
     result += stringToExpand.mid(idx);
-//    kDebug() << "============== result '" << result << "'" << endl;
+//    qDebug() << "============== result '" << result << "'" << endl;
     return result;
 }
 
@@ -1097,7 +1097,7 @@ QStringList Expander::splitEach(TagString stringToSplit)
         ret += splitEach(s);
     }
     return ret;
-//    kDebug() << "stringToSplit: " << stringToSplit << endl;
+//    qDebug() << "stringToSplit: " << stringToSplit << endl;
 }
 
 TagStringList Expander::separateParameter(QString* const exp, bool useUrl)

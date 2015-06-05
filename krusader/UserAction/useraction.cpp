@@ -18,6 +18,7 @@
 
 #include "useraction.h"
 
+#include <QtCore/QDebug>
 #include <QtCore/QFile>
 #include <QtCore/QHash>
 #include <QtCore/QStandardPaths>
@@ -26,9 +27,6 @@
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement>
 #include <QtWidgets/QMenu>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDebug>
 
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KActionMenu>
@@ -66,7 +64,7 @@ void UserAction::setAvailability()
 
 void UserAction::setAvailability(const QUrl &currentURL)
 {
-    //kDebug() << "UserAction::setAvailability currendFile: " << currentURL.url() << endl;
+    //qDebug() << "UserAction::setAvailability currendFile: " << currentURL.url() << endl;
     // disable the entries that should not appear in this folder
     QListIterator<KrAction *> it(_actions);
     while (it.hasNext()) {
@@ -155,9 +153,9 @@ void UserAction::readFromFile(const QString& filename, ReadMode mode, KrActionLi
     QDomDocument* doc = new QDomDocument(ACTION_DOCTYPE);
     QFile file(filename);
     if (file.open(QIODevice::ReadOnly)) {
-        //kDebug() << "UserAction::readFromFile - " << filename << "could be opened" << endl;
+        //qDebug() << "UserAction::readFromFile - " << filename << "could be opened" << endl;
         if (! doc->setContent(&file)) {
-            //kDebug() << "UserAction::readFromFile - content set - failed" << endl;
+            //qDebug() << "UserAction::readFromFile - content set - failed" << endl;
             // if the file doesn't exist till now, the content CAN be set but is empty.
             // if the content can't be set, the file exists and is NOT an xml-file.
             file.close();

@@ -45,7 +45,6 @@ A
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KDebug>
 #include <KDE/KDialog>
 
 #define XMLFILE_VERSION "1.0"

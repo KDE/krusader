@@ -32,15 +32,13 @@
 #ifndef KRGLOBAL_H
 #define KRGLOBAL_H
 
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDebug>
+#include <QtCore/QDebug>
 #include <QtGui/QKeySequence>
 
 #include <KConfigCore/KConfigGroup>
 #include <KIconThemes/KIconLoader>
 
-#define krOut kDebug()
+#define krOut qDebug()
 
 class KConfig;
 class KMountMan;

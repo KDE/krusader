@@ -35,7 +35,6 @@
 #include <QtWidgets/QLayout>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDebug>
 #include <KDE/KLocale>
 
 #include <KWidgetsAddons/KMessageBox>

@@ -26,6 +26,7 @@
 #include <iostream>
 
 #include <QtCore/QByteArray>
+#include <QtCore/QDebug>
 #include <QtCore/QDir>
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
@@ -34,7 +35,6 @@
 #include <QtCore/QTextCodec>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDebug>
 #include <KDE/KComponentData>
 #include <KDE/KLocale>
 #include <kde_file.h>
@@ -64,7 +64,7 @@
     } while(0);
 #else
 // #define KRDEBUG(X...)
-#define KRDEBUG(X...) kDebug()<<X
+#define KRDEBUG(X...) qDebug()<<X
 #endif
 
 using namespace KIO;
@@ -141,7 +141,7 @@ extern "C"
         KComponentData instance("kio_krarc", "krusader");
 
         if (argc != 4) {
-            kWarning() << "Usage: kio_krarc  protocol domain-socket1 domain-socket2" << endl;
+            qWarning() << "Usage: kio_krarc  protocol domain-socket1 domain-socket2" << endl;
             exit(-1);
         }
 
@@ -315,7 +315,7 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
 
     QString arcDir  = findArcDirectory(url);
     if (arcDir.isEmpty())
-        kDebug() << "arcDir is enpty.";
+        qDebug() << "arcDir is enpty.";
 
     QString tempFile = arcDir.mid(1) + getPath(url).mid(getPath(url).lastIndexOf(DIR_SEPARATOR) + 1);
     QString tempDir  = arcDir.mid(1);
@@ -684,7 +684,7 @@ void kio_krarcProtocol::stat(const QUrl &url)
 
 void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFlags flags)
 {
-    kDebug() << "url:" << url << "dest:" << dest;
+    //qDebug() << "url:" << url << "dest:" << dest;
 
     if (!checkWriteSupport())
         return;
@@ -760,9 +760,9 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
         } while (0);
 
     if (encrypted)
-        kDebug() << "ERROR:" << url << "is encrypted.";
+        qDebug() << "ERROR:" << url << "is encrypted.";
     if (!dest.isLocalFile())
-        kDebug() << "ERROR:" << url << "is not a local file.";
+        qDebug() << "ERROR:" << url << "is not a local file.";
 
     // CMD_COPY is no more in KF5 - TODO?
     //error(ERR_UNSUPPORTED_ACTION, unsupportedActionErrorString(mProtocol, CMD_COPY));
@@ -815,7 +815,7 @@ void kio_krarcProtocol::listDir(const QUrl &url)
 
 bool kio_krarcProtocol::setArcFile(const QUrl &url)
 {
-    kDebug() << url;
+    //qDebug() << url;
 
     QString path = getPath(url);
     time_t currTime = time(0);
@@ -862,7 +862,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
             }
         }
         if (!arcFile) {
-            kDebug() << "ERROR:" << path << "does not exist.";
+            //qDebug() << "ERROR:" << path << "does not exist.";
             error(ERR_DOES_NOT_EXIST, path);
             return false; // file not found
         }
@@ -913,9 +913,9 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
     // set the archive location
     //if( !setArcFile(getPath(url)) ) return false;
     // no need to rescan the archive if it's not changed
-        kDebug() << "achiveChanged:" << archiveChanged << "forced:" << forced;
+        //qDebug() << "achiveChanged:" << archiveChanged << "forced:" << forced;
     if (!archiveChanged && !forced) {
-        kDebug() << "doing nothing.";
+        //qDebug() << "doing nothing.";
         return true;
     }
 
@@ -1032,13 +1032,13 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
     temp.close();
 
     archiveChanged = false;
-    kDebug() << "done.";
+    //qDebug() << "done.";
     return true;
 }
 
 QString kio_krarcProtocol::findArcDirectory(const QUrl &url)
 {
-    kDebug() << url;
+    //qDebug() << url;
 
     QString path = getPath(url);
     if (path.right(1) == DIR_SEPARATOR) path.truncate(path.length() - 1);
@@ -1134,7 +1134,7 @@ UDSEntryList* kio_krarcProtocol::addNewDir(QString path)
     if (name == "." || name == "..") { // entries with these names wouldn't be displayed
         // don't translate since this is an internal error
         QString err = QString("Cannot handle path: ") + path;
-        kDebug()<<"ERROR:"<<err;
+        //qDebug()<<"ERROR:"<<err;
         error(KIO::ERR_INTERNAL, err);
         exit();
     }

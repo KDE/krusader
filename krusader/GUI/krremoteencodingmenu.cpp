@@ -19,6 +19,7 @@
 
 #include "krremoteencodingmenu.h"
 
+#include <QtCore/QDebug>
 #include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
@@ -81,7 +82,7 @@ void KrRemoteEncodingMenu::slotAboutToShow()
         }
 
         if (!found)
-            kWarning() << k_funcinfo << "could not find entry for charset=" << charset << endl;
+            qWarning() << Q_FUNC_INFO << "could not find entry for charset=" << charset << endl;
     } else {
         foreach(QAction *act, acts) {
             if (act->data().canConvert<int> ()) {
@@ -206,7 +207,7 @@ void KrRemoteEncodingMenu::chooseDefault()
         }
 
         for (QStringList::Iterator it = domains.begin(); it != domains.end(); ++it) {
-            kDebug() << "Domain to remove: " << *it;
+            //qDebug() << "Domain to remove: " << *it;
             if (config.hasGroup(*it))
                 config.deleteGroup(*it);
             else if (config.group("").hasKey(*it))

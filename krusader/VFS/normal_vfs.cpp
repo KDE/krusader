@@ -52,7 +52,6 @@
 #include <KDE/KMimeType>
 #include <KDE/KLocale>
 #include <KDE/KGlobalSettings>
-#include <KDE/KDebug>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KIO/DeleteJob>

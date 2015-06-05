@@ -19,8 +19,9 @@
 
 #include "usermenu.h"
 
+#include <QtCore/QDebug>
+
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDebug>
 #include <KDE/KLocale>
 
 #include "../krglobal.h"
@@ -54,7 +55,7 @@ UserMenuGui::UserMenuGui(QWidget * parent) : QMenu(parent)
 
 void UserMenuGui::createMenu()
 {
-//    kDebug() << "UserMenuGui::createMenu called" << endl;
+//    qDebug() << "UserMenuGui::createMenu called" << endl;
     clear();
     setTitle(i18n("User Menu"));
 

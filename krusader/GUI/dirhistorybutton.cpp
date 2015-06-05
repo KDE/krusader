@@ -22,13 +22,13 @@
 
 #include "../VFS/vfs.h"
 
+#include <QtCore/QDebug>
 #include <QtCore/QDir>
 #include <QtGui/QPixmap>
 #include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KDebug>
 
 DirHistoryButton::DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent) : QToolButton(parent)
 {
@@ -62,13 +62,13 @@ void DirHistoryButton::showMenu()
 /** No descriptions */
 void DirHistoryButton::slotPopup()
 {
-    //  kDebug() << "History slot" << endl;
+//    qDebug() << "History slot" << endl;
 }
 /** No descriptions */
 void DirHistoryButton::slotAboutToShow()
 {
     emit aboutToShow();
-    //  kDebug() << "about to show" << endl;
+//    qDebug() << "about to show" << endl;
     popupMenu->clear();
 
     for (int i = 0; i < historyQueue->count(); i++) {

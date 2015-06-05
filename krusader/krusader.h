@@ -47,9 +47,6 @@
 #include <QtGui/QMoveEvent>
 #include <QtWidgets/QAction>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDebug>
-
 #include <KParts/MainWindow>
 #include <KConfigWidgets/KStandardAction>
 #include <KConfigCore/KConfig>

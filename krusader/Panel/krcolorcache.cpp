@@ -25,9 +25,6 @@
 #include <QtCore/QList>
 #include <QtGui/QPixmapCache>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDebug>
-
 #include <KConfigWidgets/KColorScheme>
 
 // Macro: set target = col, if col is valid

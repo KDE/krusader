@@ -39,9 +39,6 @@
 #include <QtGui/QPixmap>
 #include <QtGui/QDropEvent>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDebug>
-
 #include "../krglobal.h"
 #include "../VFS/vfile.h"
 #include "../VFS/krquery.h"

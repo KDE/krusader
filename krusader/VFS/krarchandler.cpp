@@ -32,6 +32,7 @@
 
 #include <unistd.h> // for usleep
 
+#include <QtCore/QDebug>
 #include <QtCore/QDir>
 #include <QtCore/QFile>
 #include <QtWidgets/QApplication>
@@ -114,10 +115,10 @@ QStringList KRarcHandler::supportedPackers()
     if (KrServices::cmdExist("dpkg")) packers.append("dpkg");
     if (KrServices::cmdExist("7z") || KrServices::cmdExist("7za")) packers.append("7z");
     if (KrServices::cmdExist("rpm") && KrServices::cmdExist("rpm2cpio")) packers.append("rpm");
-    // kDebug() << "Supported Packers:" << endl;
+    // qDebug() << "Supported Packers:" << endl;
     //QStringList::Iterator it;
     //for( it = packers.begin(); it != packers.end(); ++it )
-    // kDebug() << *it << endl;
+    // qDebug() << *it << endl;
 
     return packers;
 }
