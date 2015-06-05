@@ -261,6 +261,21 @@ void ListPanelFunc::doRefresh()
 
     bool refreshFailed = false;
     while (true) {
+        QString tmp;
+
+        if (refreshFailed) {
+            tmp = history->currentUrl().fileName();
+            history->goForward();
+            QUrl t = history->currentUrl();
+            if (t.scheme() == "krarc") {
+                t.setScheme("file");
+                history->setCurrentUrl(t);
+		panel->vfsError->hide();
+            } else {
+                history->goBack();
+            }
+        }
+
         QUrl u = history->currentUrl();
 
         isEqualUrl = files()->vfs_getOrigin().matches(u, QUrl::StripTrailingSlash);
@@ -311,7 +326,11 @@ void ListPanelFunc::doRefresh()
             panel->view->setCurrentItem(history->currentItem());
             panel->view->makeItemVisible(panel->view->getCurrentKrViewItem());
         }
-        panel->view->setNameToMakeCurrent(history->currentItem());
+        if (!tmp.isEmpty())
+            panel->view->setNameToMakeCurrent(tmp);
+        else
+            panel->view->setNameToMakeCurrent(history->currentItem());
+
 
         int savedHistoryState = history->state();
 
