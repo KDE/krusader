@@ -24,11 +24,12 @@
 #include <time.h>
 #include <stdlib.h>
 
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 #include <QtGui/QPixmap>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KMimeType>
 #include <KDE/KGlobal>
 
 #define PROPS static_cast<const KrViewProperties*>(_viewProperties)
@@ -71,9 +72,10 @@ QString KrViewItem::description() const
     // else is implied
     QString text = _vf->vfile_getName();
     QString comment;
-    KMimeType::Ptr mt = KMimeType::mimeType(_vf->vfile_getMime());
-    if (mt)
-        comment = mt->comment(/*_vf->vfile_getUrl()*/);
+    QMimeDatabase db;
+    QMimeType mt = db.mimeTypeForName(_vf->vfile_getMime());
+    if (mt.isValid())
+        comment = mt.comment();
     QString myLinkDest = _vf->vfile_getSymDest();
     KIO::filesize_t mySize = _vf->vfile_getSize();
 

@@ -35,9 +35,6 @@
 #include <QtCore/QObject>
 #include <QtCore/QUrl>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KMimeType>
-
 #include <KIO/Global>
 #include <KIO/UDSEntry>
 

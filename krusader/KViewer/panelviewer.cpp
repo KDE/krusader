@@ -23,7 +23,6 @@
 #include <QtWidgets/QApplication>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KMimeType>
 #include <KDE/KLocale>
 #include <KDE/KLibLoader>
 #include <KIO/NetAccess>
@@ -165,6 +164,23 @@ KParts::ReadOnlyPart* PanelViewer::getTextPart()
     return part ? part : getListerPart();
 }
 
+static bool isBinaryData(const QString &fileName)
+{
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly)) {
+        return false;    // err, whatever
+    }
+    // Check the first 32 bytes (see shared-mime spec)
+    const QByteArray data = file.read(32);
+    const char *p = data.data();
+    for (int i = 0; i < data.size(); ++i) {
+        if ((unsigned char)(p[i]) < 32 && p[i] != 9 && p[i] != 10 && p[i] != 13) { // ASCII control character
+            return true;
+        }
+    }
+    return false;
+}
+
 KParts::ReadOnlyPart* PanelViewer::getDefaultPart(KFileItem fi)
 {
     KConfigGroup group(krConfig, "General");
@@ -180,7 +196,7 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(KFileItem fi)
     bool isBinary = false;
     // FIXME isBinaryData() only works on local files
     if (fi.isLocalFile())
-        isBinary  = KMimeType::isBinaryData(fi.localPath());
+        isBinary = isBinaryData(fi.localPath());
 
     KIO::filesize_t fileSize = fi.size();
     KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit) * 0x100000;

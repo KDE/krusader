@@ -23,8 +23,10 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 
-#include <QtCore/QtDebug>
 #include <QtCore/QtAlgorithms>
+#include <QtCore/QtDebug>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
@@ -147,9 +149,10 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
         case KrViewProperties::Type: {
             if (vf == _dummyVfile)
                 return QVariant();
-            KMimeType::Ptr mt = KMimeType::mimeType(vf->vfile_getMime());
-            if (mt)
-                return mt->comment();
+            QMimeDatabase db;
+            QMimeType mt = db.mimeTypeForName(vf->vfile_getMime());
+            if (mt.isValid())
+                return mt.comment();
             return QVariant();
         }
         case KrViewProperties::Modified: {
@@ -528,7 +531,7 @@ QString KrVfsModel::nameWithoutExtension(const vfile * vf, bool checkEnabled) co
     // check if the file has an extension
     const QString& vfName = vf->vfile_getName();
     int loc = vfName.lastIndexOf('.');
-    // avoid mishandling of .bashrc and friend 
+    // avoid mishandling of .bashrc and friend
     // and virtfs / search result names like "/dir/.file" which whould become "/dir/"
     if (loc > 0 && vfName.lastIndexOf('/') < loc) {
         // check if it has one of the predefined 'atomic extensions'

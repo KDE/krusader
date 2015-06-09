@@ -24,6 +24,8 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLineEdit>
 
+#include <KConfigCore/KSharedConfig>
+
 KrInterViewItemDelegate::KrInterViewItemDelegate(QObject *parent) :
         QItemDelegate(parent), _currentlyEdited(-1), _dontDraw(false) {}
 

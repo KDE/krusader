@@ -30,6 +30,8 @@
 #include <QtCore/QDir>
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 #include <QtCore/QRegExp>
 #include <QtCore/QTemporaryFile>
 #include <QtCore/QTextCodec>
@@ -38,7 +40,6 @@
 #include <KDE/KComponentData>
 #include <KDE/KLocale>
 #include <kde_file.h>
-#include <KDE/KMimeType>
 
 #include <KIOCore/KFileItem>
 #include <KWidgetsAddons/KMessageBox>
@@ -461,9 +462,10 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
         decompressedLen = 0;
         // Determine the mimetype of the file to be retrieved, and emit it.
         // This is mandatory in all slaves (for KRun/BrowserRun to work).
-        KMimeType::Ptr mt = KMimeType::findByUrl(QUrl::fromLocalFile(arcTempDir + file), 0, false /* NOT local URL */);
-        if (mt)
-            emit mimeType(mt->name());
+        QMimeDatabase db;
+        QMimeType mt = db.mimeTypeForFile(arcTempDir + file);
+        if (mt.isValid())
+            emit mimeType(mt.name());
 
         QString escapedFilename = file;
         if(arcType == "zip") // left bracket needs to be escaped
@@ -533,9 +535,10 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
         }
         // Determine the mimetype of the file to be retrieved, and emit it.
         // This is mandatory in all slaves (for KRun/BrowserRun to work).
-        KMimeType::Ptr mt = KMimeType::findByUrl(QUrl::fromLocalFile(arcTempDir + file), buff.st_mode, true /* local URL */);
-        if (mt)
-            emit mimeType(mt->name());
+        QMimeDatabase db;
+        QMimeType mt = db.mimeTypeForFile(arcTempDir + file);
+        if (mt.isValid())
+            emit mimeType(mt.name());
 
         KIO::filesize_t processed_size = 0;
 
@@ -668,9 +671,10 @@ void kio_krarcProtocol::stat(const QUrl &url)
         KDE_struct_stat buff;
         KDE_stat(path.toLocal8Bit(), &buff);
         QString mime;
-        KMimeType::Ptr result = KMimeType::findByPath(path, buff.st_mode);
-        if (result)
-            mime = result->name();
+        QMimeDatabase db;
+        QMimeType result = db.mimeTypeForFile(path);
+        if (result.isValid())
+            mime = result.name();
         statEntry(KFileItem(QUrl::fromLocalFile(path), mime, buff.st_mode).entry());
         finished();
         return;

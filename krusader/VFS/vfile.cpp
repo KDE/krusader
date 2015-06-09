@@ -37,9 +37,10 @@
 #include <sys/stat.h>
 
 #include <QtCore/QDateTime>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KMimeType>
 #include <kdeversion.h>
 
 #include <KConfigCore/KDesktopFile>
@@ -165,10 +166,11 @@ const QString& vfile::vfile_getMime(bool fast)
         else if(vfile_isBrokenLink())
             vfile_mimeType = "unknown";
         else {
-            KMimeType::Ptr mt = KMimeType::findByUrl(vfile_getUrl(), vfile_getMode(), vfile_getUrl().isLocalFile(), fast);
-            vfile_mimeType = mt ? mt->name() : "unknown";
-            if (mt)
-                vfile_icon = mt->iconName();
+            QMimeDatabase db;
+            QMimeType mt = db.mimeTypeForUrl(vfile_getUrl());
+            vfile_mimeType = mt.isValid() ? mt.name() : "unknown";
+            if (mt.isValid())
+                vfile_icon = mt.iconName();
             if (vfile_mimeType == "inode/directory") {
                 vfile_perm[0] = 'd';
                 vfile_isdir = true;
@@ -198,8 +200,9 @@ QString vfile::vfile_getIcon()
         if (vfile_isBrokenLink())
             vfile_icon = "file-broken";
         else if (vfile_icon.isEmpty()) {
-            KMimeType::Ptr mt = KMimeType::mimeType(mime);
-            vfile_icon = mt ? mt->iconName() : "file-broken";
+            QMimeDatabase db;
+            QMimeType mt = db.mimeTypeForName(mime);
+            vfile_icon = mt.isValid() ? mt.iconName() : "file-broken";
         }
     }
     return vfile_icon;

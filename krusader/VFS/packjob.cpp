@@ -31,12 +31,13 @@
 #include "packjob.h"
 #include "krarchandler.h"
 
-#include <QtCore/QTimer>
 #include <QtCore/QDir>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
+#include <QtCore/QTimer>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KMimeType>
 
 PackJob::PackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps) : AbstractThreadedJob()
 {
@@ -123,8 +124,9 @@ void TestArchiveThread::slotStart()
 
         QString path = url.adjusted(QUrl::StripTrailingSlash).path();
 
-        KMimeType::Ptr mt = KMimeType::findByUrl(url);
-        QString mime = mt ? mt->name() : QString();
+        QMimeDatabase db;
+        QMimeType mt = db.mimeTypeForUrl(url);
+        QString mime = mt.isValid() ? mt.name() : QString();
         bool encrypted = false;
         QString type = KRarcHandler::getType(encrypted, path, mime);
 
@@ -183,8 +185,9 @@ void UnpackThread::slotStart()
 
         QString path = url.adjusted(QUrl::StripTrailingSlash).path();
 
-        KMimeType::Ptr mt = KMimeType::findByUrl(url);
-        QString mime = mt ? mt->name() : QString();
+        QMimeDatabase db;
+        QMimeType mt = db.mimeTypeForUrl(url);
+        QString mime = mt.isValid() ? mt.name() : QString();
         bool encrypted = false;
         QString type = KRarcHandler::getType(encrypted, path, mime);
 

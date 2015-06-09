@@ -34,10 +34,11 @@
 #include <QtCore/QDebug>
 #include <QtCore/QDir>
 #include <QtCore/QFile>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KDE/KMimeType>
 
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
@@ -120,8 +121,10 @@ KIso::KIso(const QString& filename, const QString & _mimetype)
     QString mimetype(_mimetype);
     bool forced = true;
     if (mimetype.isEmpty()) {
-        if (KMimeType::findByFileContent(filename))
-            mimetype = KMimeType::findByFileContent(filename)->name();
+        QMimeDatabase db;
+        QMimeType mt = db.mimeTypeForFile(filename, QMimeDatabase::MatchContent);
+        if (mt.isValid())
+            mimetype = mt.name();
 
         //qDebug() << "KIso::KIso mimetype=" << mimetype << endl;
 

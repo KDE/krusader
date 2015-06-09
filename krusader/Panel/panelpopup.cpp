@@ -34,6 +34,8 @@
 
 #include <QtCore/QDir>
 #include <QtCore/QMimeData>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 #include <QtGui/QDropEvent>
 #include <QtGui/QCursor>
 #include <QtWidgets/QButtonGroup>
@@ -502,8 +504,9 @@ void PanelPopup::saveSizes()
 
 void PanelPopup::handleOpenUrlRequest(const QUrl &url)
 {
-    KMimeType::Ptr mime = KMimeType::findByUrl(url);
-    if (mime && mime->name() == "inode/directory") ACTIVE_PANEL->func->openUrl(url);
+    QMimeDatabase db;
+    QMimeType mime = db.mimeTypeForUrl(url);
+    if (mime.isValid() && mime.name() == "inode/directory") ACTIVE_PANEL->func->openUrl(url);
 }
 
 

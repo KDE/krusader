@@ -32,13 +32,14 @@
 #include "../krglobal.h"
 #include "../krservices.h"
 
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QVBoxLayout>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KMimeType>
 
 #include <KIOCore/KProtocolInfo>
 #include <KIconThemes/KIconLoader>
@@ -182,10 +183,11 @@ void KgProtocols::loadListCapableProtocols()
 
 void KgProtocols::loadMimes()
 {
-    KMimeType::List mimes = KMimeType::allMimeTypes();
+    QMimeDatabase db;
+    QList<QMimeType> mimes = db.allMimeTypes();
 
-    for (KMimeType::List::const_iterator it = mimes.constBegin(); it != mimes.constEnd(); it++)
-        mimeList->addItem((*it)->name());
+    for (QList<QMimeType>::const_iterator it = mimes.constBegin(); it != mimes.constEnd(); it++)
+        mimeList->addItem((*it).name());
 
     mimeList->sortItems();
 }

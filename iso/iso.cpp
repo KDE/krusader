@@ -28,15 +28,16 @@
 #include <zlib.h>
 #include <errno.h> // to be removed
 
+#include <QtCore/QByteArray>
 #include <QtCore/QDebug>
 #include <QtCore/QDir>
 #include <QtCore/QFile>
-#include <QtCore/QByteArray>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
 #include <KDE/KComponentData>
-#include <KDE/KMimeType>
 
 #include "libisofs/iso_fs.h"
 #include "kiso.h"
@@ -439,9 +440,11 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
             if (fileData.size() == 0) break;
         }
         if (!mime) {
-            if (KMimeType::findByNameAndContent(path, fileData)) {
-                //qDebug() << "Emitting mimetype " << KMimeType::findByNameAndContent(path, fileData)->name() << endl;
-                mimeType(KMimeType::findByNameAndContent(path, fileData)->name());
+            QMimeDatabase db;
+            QMimeType mt = db.mimeTypeForFileNameAndData(path, fileData);
+            if (mt.isValid()) {
+                //qDebug() << "Emitting mimetype " << mt.name() << endl;
+                mimeType(mt.name());
                 mime = true;
             }
         }

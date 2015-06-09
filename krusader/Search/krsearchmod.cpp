@@ -36,6 +36,8 @@
 #include <sys/stat.h>
 
 #include <QtCore/QDir>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 #include <QtCore/QRegExp>
 #include <QtWidgets/QApplication>
 
@@ -43,7 +45,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KMimeType>
 #include <kde_file.h>
 
 #include "../VFS/krquery.h"
@@ -145,9 +146,10 @@ void KRSearchMod::scanLocalDir(QUrl urlToScan)
 
         QString mime;
         if (query->searchInArchives() || !query->hasMimeType()) {
-            KMimeType::Ptr mt = KMimeType::findByUrl(url, stat_p.st_mode, true, false);
-            if (mt)
-                mime = mt->name();
+            QMimeDatabase db;
+            QMimeType mt = db.mimeTypeForUrl(url);
+            if (mt.isValid())
+                mime = mt.name();
         }
 
         // creating a vfile object for matching with krquery

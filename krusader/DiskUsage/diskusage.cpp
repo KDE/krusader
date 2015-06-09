@@ -34,6 +34,8 @@
 
 #include <QtCore/QEvent>
 #include <QtCore/QHash>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 #include <QtCore/QPointer>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QPixmap>
@@ -51,7 +53,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
-#include <KDE/KMimeType>
 #include <KDE/KGlobalSettings>
 #include <KDE/KGlobal>
 
@@ -966,9 +967,10 @@ QPixmap DiskUsage::getIcon(QString mime)
         if (mime == "Broken Link !") // FIXME: this doesn't work anymore - the reported mimetype for a broken link is now "unknown"
             icon = FL_LOADICON("file-broken");
         else {
-            KMimeType::Ptr mt = KMimeType::mimeType(mime);
-            if (mt)
-                icon = FL_LOADICON(mt->iconName());
+            QMimeDatabase db;
+            QMimeType mt = db.mimeTypeForName(mime);
+            if (mt.isValid())
+                icon = FL_LOADICON(mt.iconName());
             else
                 icon = FL_LOADICON("file-broken");
         }
@@ -1019,10 +1021,11 @@ int DiskUsage::calculatePercents(bool emitSig, Directory *dirEntry, int depth)
 
 QString DiskUsage::getToolTip(File *item)
 {
-    KMimeType::Ptr mimePtr = KMimeType::mimeType(item->mime());
+    QMimeDatabase db;
+    QMimeType mt = db.mimeTypeForName(item->mime());
     QString mime;
-    if (mimePtr)
-        mime = mimePtr->comment();
+    if (mt.isValid())
+        mime = mt.comment();
 
     time_t tma = item->time();
     struct tm* t = localtime((time_t *) & tma);

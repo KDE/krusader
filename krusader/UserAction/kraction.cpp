@@ -23,6 +23,8 @@
 #include <QtCore/QDebug>
 #include <QtCore/QEvent>
 #include <QtCore/QFile>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 #include <QtCore/QRegExp>
 #include <QtCore/QTextStream>
 #include <QtGui/QKeyEvent>
@@ -40,7 +42,6 @@
 #include <KDE/KDialog>
 #include <KDE/KLocale>
 #include <KDE/KInputDialog>
-#include <KDE/KMimeType>
 
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KMessageBox>
@@ -392,16 +393,17 @@ bool KrAction::isAvailable(const QUrl &currentURL)
     //check mime-type
     if (available && ! _showonlyMime.empty()) {
         available = false;
-        KMimeType::Ptr mime = KMimeType::findByUrl(currentURL);
-        if (mime) {
+        QMimeDatabase db;
+        QMimeType mime = db.mimeTypeForUrl(currentURL);
+        if (mime.isValid()) {
             for (QStringList::Iterator it = _showonlyMime.begin(); it != _showonlyMime.end(); ++it) {
                 if ((*it).contains("/")) {
-                    if (mime->is(*it)) {      // don't use ==; use 'is()' instead, which is aware of inheritence (ie: text/x-makefile is also text/plain)
+                    if (mime.inherits(*it)) {      // don't use ==; use 'inherits()' instead, which is aware of inheritence (ie: text/x-makefile is also text/plain)
                         available = true;
                         break;
                     }
                 } else {
-                    if (mime->name().indexOf(*it) == 0) {      // 0 is the beginning, -1 is not found
+                    if (mime.name().indexOf(*it) == 0) {      // 0 is the beginning, -1 is not found
                         available = true;
                         break;
                     }

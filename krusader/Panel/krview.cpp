@@ -53,7 +53,6 @@
 #include <qnamespace.h>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KMimeType>
 #include <KDE/KLocale>
 #include <KDE/KInputDialog>
 
@@ -415,7 +414,7 @@ void KrView::enableUpdateDefaultSettings(bool enable)
 
 void KrView::showPreviews(bool show)
 {
-    if(show) { 
+    if(show) {
         if(!_previews) {
             _previews = new KrPreviews(this);
             _previews->update();
@@ -678,7 +677,7 @@ void KrView::addItem(vfile *vf)
     if (isFiltered(vf))
         return;
     KrViewItem *item = preAddItem(vf);
-    if (!item) 
+    if (!item)
         return; // don't add it after all
 
     if(_previews)
@@ -825,7 +824,7 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
     }
     case Qt::Key_Backspace :                         // Terminal Emulator bugfix
     case Qt::Key_Left :
-        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier || 
+        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier ||
                 e->modifiers() == Qt::AltModifier) {   // let the panel handle it
             e->ignore();
         } else {          // a normal click - do a lynx-like moving thing

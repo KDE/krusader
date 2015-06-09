@@ -38,7 +38,6 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
 #include <KDE/KLocale>
-#include <KDE/KMimeType>
 
 #include <KIOWidgets/KUrlCompletion>
 #include <KIO/Job>

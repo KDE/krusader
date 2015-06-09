@@ -33,6 +33,8 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 
+#include <KConfigCore/KSharedConfig>
+
 #include "../krglobal.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"

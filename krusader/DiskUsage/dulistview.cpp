@@ -35,6 +35,8 @@
 
 #include <time.h>
 
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 #include <QtGui/QMouseEvent>
 #include <QtGui/QFontMetrics>
 #include <QtGui/QKeyEvent>
@@ -43,7 +45,6 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLocale>
 #include <KDE/KGlobal>
-#include <KDE/KMimeType>
 
 DUListView::DUListView(DiskUsage *usage)
         : KrTreeWidget(usage), diskUsage(usage)
@@ -129,10 +130,11 @@ void DUListView::addDirectory(Directory *dirEntry, QTreeWidgetItem *parent)
     for (Iterator<File> it = dirEntry->iterator(); it != dirEntry->end(); ++it) {
         File *item = *it;
 
-        KMimeType::Ptr mimePtr = KMimeType::mimeType(item->mime());
+        QMimeDatabase db;
+        QMimeType mt = db.mimeTypeForName(item->mime());
         QString mime;
-        if (mimePtr)
-            mime = mimePtr->comment();
+        if (mt.isValid())
+            mime = mt.comment();
 
         time_t tma = item->time();
         struct tm* t = localtime((time_t *) & tma);
