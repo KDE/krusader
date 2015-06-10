@@ -34,10 +34,8 @@
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QGridLayout>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
 #include <KConfigCore/KConfig>
+#include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 
 

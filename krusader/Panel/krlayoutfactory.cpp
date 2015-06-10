@@ -44,8 +44,10 @@ A
 #include <QtXml/QDomDocument>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
 #include <KDE/KDialog>
+
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 
 #define XMLFILE_VERSION "1.0"
 #define MAIN_FILE "layout.xml"

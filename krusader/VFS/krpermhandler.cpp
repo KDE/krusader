@@ -41,11 +41,10 @@
 
 #include <QtCore/QDateTime>
 #include <QtCore/QDir>
+#include <QtCore/QLocale>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KDE/KLocale>
-#include <KDE/KGlobal>
 
 QHash<QString, uid_t> *KRpermHandler::passwdCache = 0L;
 QHash<QString, gid_t> *KRpermHandler::groupCache = 0L;
@@ -282,7 +281,7 @@ bool KRpermHandler::fileExist(QString path, QString name)
 
 QString KRpermHandler::parseSize(KIO::filesize_t val)
 {
-    return KGlobal::locale()->formatNumber(QString::number(val), false, 0);
+    return QLocale().toString(val);
 #if 0
     QString temp;
     temp.sprintf("%llu", val);

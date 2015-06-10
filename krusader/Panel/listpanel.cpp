@@ -55,17 +55,17 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QtWidgets/QTabBar>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
 #include <KDE/KGlobalSettings>
 #include <kdeversion.h>
 
+#include <KConfigWidgets/KColorScheme>
 #include <KCoreAddons/KUrlMimeData>
-#include <KWidgetsAddons/KMessageBox>
+#include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
-#include <KWidgetsAddons/KCursor>
 #include <KIOCore/KMountPoint>
 #include <KIOCore/KDiskFreeSpaceInfo>
-#include <KConfigWidgets/KColorScheme>
+#include <KWidgetsAddons/KCursor>
+#include <KWidgetsAddons/KMessageBox>
 
 //#ifdef __LIBKONQ__
 //#include <konq_popupmenu.h>

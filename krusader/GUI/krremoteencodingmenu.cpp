@@ -23,7 +23,6 @@
 #include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
 #include <kdeversion.h>
 
 #include <KXmlGui/KActionCollection>
@@ -110,7 +109,7 @@ QString KrRemoteEncodingMenu::currentCharacterSet()
 void KrRemoteEncodingMenu::loadSettings()
 {
     settingsLoaded = true;
-    encodingNames = KGlobal::charsets()->descriptiveEncodingNames();
+    encodingNames = KCharsets::charsets()->descriptiveEncodingNames();
 
     QMenu *qmenu = menu();
     disconnect(qmenu, SIGNAL(triggered(QAction *)), this, SLOT(slotTriggered(QAction *)));
@@ -163,7 +162,7 @@ void KrRemoteEncodingMenu::chooseEncoding(QString encoding)
     KConfig config(("kio_" + currentURL.scheme() + "rc").toLatin1());
     QString host = currentURL.host();
 
-    QString charset = KGlobal::charsets()->encodingForName(encoding);
+    QString charset = KCharsets::charsets()->encodingForName(encoding);
 
     KConfigGroup group(&config, host);
     group.writeEntry(DATA_KEY, charset);

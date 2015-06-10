@@ -65,10 +65,10 @@
 #include <QtWidgets/QTreeWidget>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
 #include <KDE/KInputDialog>
 
 #include <KCoreAddons/KProcess>
+#include <KI18n/KLocalizedString>
 #include <KIOCore/KFileItem>
 #include <KWidgetsAddons/KMessageBox>
 #include <KCoreAddons/KShell>

@@ -30,9 +30,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QScrollBar>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
+#include <KI18n/KLocalizedString>
 #include <KIOWidgets/KDirLister>
 
 #include "krinterviewitem.h"

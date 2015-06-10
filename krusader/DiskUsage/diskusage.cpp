@@ -52,10 +52,9 @@
 #include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
 #include <KDE/KGlobalSettings>
-#include <KDE/KGlobal>
 
+#include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 #include <KIO/Job>
 #include <KIO/DeleteJob>
@@ -1030,7 +1029,7 @@ QString DiskUsage::getToolTip(File *item)
     time_t tma = item->time();
     struct tm* t = localtime((time_t *) & tma);
     QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-    QString date = KGlobal::locale()->formatDateTime(tmp);
+    QString date = QLocale().toString(tmp);
 
     QString str = "<qt><h5><table><tr><td>" + i18n("Name:") +  "</td><td>" + item->name() + "</td></tr>" +
                   "<tr><td>" + i18n("Type:") +  "</td><td>" + mime + "</td></tr>" +

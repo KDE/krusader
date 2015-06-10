@@ -34,10 +34,6 @@
 #include "../krglobal.h"
 #include "../krservices.h"
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-#include <KDE/KGlobal>
-
 #include <KCodecs/KCharsets>
 
 FilterSettings::FileSize& FilterSettings::FileSize::operator=(const FileSize &other)
@@ -283,7 +279,7 @@ KRQuery FilterSettings::toQuery() const
 
     QString charset;
     if (!contentEncoding.isEmpty())
-        charset = KGlobal::charsets()->encodingForName(contentEncoding);
+        charset = KCharsets::charsets()->encodingForName(contentEncoding);
 
     if (!containsText.isEmpty()) {
         query.setContent(containsText,

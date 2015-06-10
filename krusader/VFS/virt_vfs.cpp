@@ -26,14 +26,14 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KDE/KLocale>
 
+#include <KI18n/KLocalizedString>
 #include <KIOCore/KFileItem>
-#include <KWidgetsAddons/KMessageBox>
 #include <KIO/CopyJob>
 #include <KIO/DeleteJob>
 #include <KIO/StatJob>
 #include <KIO/DirectorySizeJob>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "krpermhandler.h"
 #include "../krglobal.h"

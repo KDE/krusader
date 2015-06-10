@@ -38,10 +38,6 @@
 #include <QtGui/QPixmapCache>
 #include <QtGui/QKeyEvent>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-#include <KDE/KCmdLineArgs>
-
 #include <KCoreAddons/KShell>
 #include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KMessageBox>

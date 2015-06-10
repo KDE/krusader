@@ -38,9 +38,7 @@
 #include <QtCore/QTemporaryFile>
 #include <QtWidgets/QApplication>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
+#include <KI18n/KLocalizedString>
 #include <KIO/JobUiDelegate>
 #include <KWidgetsAddons/KMessageBox>
 

@@ -40,9 +40,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMenu>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
 #include <KWidgetsAddons/KMessageBox>
 #include <KIconThemes/KIconLoader>
 #include <KCodecs/KCharsets>
@@ -294,7 +291,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     contentEncoding = new KComboBox(containsGroup);
     contentEncoding->setEditable(false);
     contentEncoding->addItem(i18nc("Default encoding", "Default"));
-    contentEncoding->addItems(KGlobal::charsets()->descriptiveEncodingNames());
+    contentEncoding->addItems(KCharsets::charsets()->descriptiveEncodingNames());
     containsCbsLayout->addWidget(contentEncoding);
 
     QSpacerItem* cbSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
@@ -551,7 +548,7 @@ bool GeneralFilter::getSettings(FilterSettings &s)
 
     if (contentEncoding->currentIndex() != 0)
         s.contentEncoding =
-            KGlobal::charsets()->encodingForName(contentEncoding->currentText());
+            KCharsets::charsets()->encodingForName(contentEncoding->currentText());
 
     if (properties & FilterTabs::HasRecurseOptions) {
         s.recursive = searchInDirs->isChecked();
@@ -588,7 +585,7 @@ void GeneralFilter::applySettings(const FilterSettings &s)
     remoteContentSearch->setChecked(s.remoteContentSearch);
 
     setComboBoxValue(contentEncoding,
-            KGlobal::charsets()->descriptionForEncoding(s.contentEncoding));
+            KCharsets::charsets()->descriptionForEncoding(s.contentEncoding));
 
     if (properties & FilterTabs::HasRecurseOptions) {
         searchInDirs->setChecked(s.recursive);

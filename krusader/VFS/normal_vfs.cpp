@@ -49,13 +49,13 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KDE/KLocale>
 #include <KDE/KGlobalSettings>
 
-#include <KWidgetsAddons/KMessageBox>
+#include <KI18n/KLocalizedString>
 #include <KIO/DeleteJob>
 #include <KIO/JobUiDelegate>
 #include <KIOCore/KFileItem>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "../Dialogs/krdialogs.h"
 #include "../MountMan/kmountman.h"

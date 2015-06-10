@@ -42,9 +42,8 @@
 #include <QtGui/QKeyEvent>
 #include <QtWidgets/QHeaderView>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-#include <KDE/KGlobal>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 
 DUListView::DUListView(DiskUsage *usage)
         : KrTreeWidget(usage), diskUsage(usage)
@@ -139,7 +138,7 @@ void DUListView::addDirectory(Directory *dirEntry, QTreeWidgetItem *parent)
         time_t tma = item->time();
         struct tm* t = localtime((time_t *) & tma);
         QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-        QString date = KGlobal::locale()->formatDateTime(tmp);
+        QString date = QLocale().toString(tmp);
 
         QString totalSize = KRpermHandler::parseSize(item->size()) + ' ';
         QString ownSize = KRpermHandler::parseSize(item->ownSize()) + ' ';

@@ -21,10 +21,8 @@
 
 #include <QtGui/QPixmap>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
 #include <KCoreAddons/KProcess>
+#include <KI18n/KLocalizedString>
 #include <KIOWidgets/KRun>
 #include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>

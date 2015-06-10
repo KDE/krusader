@@ -34,8 +34,10 @@
 #include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
 #include <KDE/KInputDialog>
+
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 
 #include "../krglobal.h"
 

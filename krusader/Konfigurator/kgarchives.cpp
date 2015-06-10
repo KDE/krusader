@@ -34,6 +34,8 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QGridLayout>
 
+#include <KI18n/KLocalizedString>
+
 #include "krresulttable.h"
 #include "krresulttabledialog.h"
 #include "searchobject.h"

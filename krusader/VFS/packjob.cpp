@@ -36,8 +36,7 @@
 #include <QtCore/QMimeType>
 #include <QtCore/QTimer>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
+#include <KI18n/KLocalizedString>
 
 PackJob::PackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps) : AbstractThreadedJob()
 {

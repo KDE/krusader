@@ -35,10 +35,8 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
 #include <KCompletion/KLineEdit>
+#include <KI18n/KLocalizedString>
 
 KgStartup::KgStartup(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent), profileCombo(0)

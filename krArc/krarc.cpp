@@ -38,9 +38,9 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KComponentData>
-#include <KDE/KLocale>
 #include <kde_file.h>
 
+#include <KI18n/KLocalizedString>
 #include <KIOCore/KFileItem>
 #include <KWidgetsAddons/KMessageBox>
 #include <KIO/Job>

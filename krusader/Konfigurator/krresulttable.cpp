@@ -25,6 +25,7 @@
 #include <QtWidgets/QLabel>
 
 #include <KConfigWidgets/KColorScheme>
+#include <KI18n/KLocalizedString>
 
 #include "../krusader.h"
 

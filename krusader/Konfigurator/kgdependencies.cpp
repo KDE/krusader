@@ -37,9 +37,8 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QScrollArea>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
 #define PAGE_GENERAL   0

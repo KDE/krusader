@@ -44,9 +44,6 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QVBoxLayout>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
 #include <KWidgetsAddons/KMessageBox>
 
 #define  S_LEFT        0

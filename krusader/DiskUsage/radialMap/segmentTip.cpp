@@ -24,9 +24,9 @@
 #include <QtWidgets/QToolTip>                               //for its palette
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KGlobal>
 #include <KDE/KGlobalSettings>
-#include <KDE/KLocale>
+
+#include <KI18n/KLocalizedString>
 
 #include "fileTree.h"
 
@@ -109,13 +109,13 @@ SegmentTip::updateTip(const File* const file, const Directory* const root)
 {
     const QString s1  = file->fullPath(root);
     QString s2        = file->humanReadableSize();
-    KLocale *loc      = KGlobal::locale();
+    QLocale loc;
     const uint MARGIN = 3;
     const uint pc     = 100 * file->size() / root->size();
     uint maxw         = 0;
     uint h            = fontMetrics().height() * 2 + 2 * MARGIN;
 
-    if (pc > 0) s2 += QString(" (%1%)").arg(loc->formatNumber(pc, 0));
+    if (pc > 0) s2 += QString(" (%1%)").arg(loc.toString(pc));
 
     m_text  = s1;
     m_text += '\n';
@@ -124,9 +124,9 @@ SegmentTip::updateTip(const File* const file, const Directory* const root)
     if (file->isDir()) {
         double files  = static_cast<const Directory*>(file)->fileCount();
         const uint pc = uint((100 * files) / (double)root->fileCount());
-        QString s3    = i18n("Files: %1", loc->formatNumber(files, 0));
+        QString s3    = i18n("Files: %1", loc.toString(files, 'f', 0));
 
-        if (pc > 0) s3 += QString(" (%1%)").arg(loc->formatNumber(pc, 0));
+        if (pc > 0) s3 += QString(" (%1%)").arg(loc.toString(pc));
 
         maxw    = fontMetrics().width(s3);
         h      += fontMetrics().height();

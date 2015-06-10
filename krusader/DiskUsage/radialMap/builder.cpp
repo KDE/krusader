@@ -21,9 +21,9 @@
 #include "fileTree.h"
 #include "widget.h"
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KGlobal> //locale object
-#include <KDE/KLocale>
+#include <QtCore/QLocale>
+
+#include <KI18n/KLocalizedString>
 
 //**** REMOVE NEED FOR the +1 with MAX_RING_DEPTH uses
 //**** add some angle bounds checking (possibly in Segment ctor? can I delete in a ctor?)
@@ -139,7 +139,7 @@ RadialMap::Builder::build(const Directory* const dir, const unsigned int depth, 
     else if ((Config::showSmallFiles && hiddenSize > m_limits[depth]) || (depth == 0 && (hiddenSize > dir->size() / 8)) /*|| > size() * 0.75*/) {
         //append a segment for unrepresented space - a "fake" segment
 
-        const QString s = i18np("%1 file: ~ %2", "%1 files: ~ %2", KGlobal::locale()->formatNumber(hiddenFileCount, 0), File::humanReadableSize(hiddenSize / hiddenFileCount));
+        const QString s = i18np("%1 file: ~ %2", "%1 files: ~ %2", QLocale().toString(hiddenFileCount), File::humanReadableSize(hiddenSize / hiddenFileCount));
         (m_signature + depth)->append(new Segment(new File(s, hiddenSize), a_start, a_end - a_start, true));
     }
 

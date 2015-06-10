@@ -28,9 +28,7 @@
 #include <QtCore/QMimeType>
 #include <QtGui/QPixmap>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-#include <KDE/KGlobal>
+#include <KI18n/KLocalizedString>
 
 #define PROPS static_cast<const KrViewProperties*>(_viewProperties)
 
@@ -121,7 +119,7 @@ QString KrViewItem::dateTime() const
     struct tm* t = localtime((time_t *) & time);
 
     QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-    return KGlobal::locale()->formatDateTime(tmp);
+    return QLocale().toString(tmp);
 }
 
 QPixmap KrViewItem::icon()

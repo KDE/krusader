@@ -33,6 +33,7 @@
 #include <KParts/Part>
 #include <KCoreAddons/KPluginLoader>
 #include <KCoreAddons/KPluginFactory>
+#include <KI18n/KLocalizedString>
 #include <KService/KService>
 #include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KMessageBox>

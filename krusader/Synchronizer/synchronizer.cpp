@@ -58,17 +58,16 @@
 #include <QtWidgets/QLabel>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
 #include <KDE/KDialog>
 
-#include <KWidgetsAddons/KMessageBox>
-#include <KIO/Job>
-#include <KCoreAddons/KProcess>
-#include <KIOWidgets/KUrlCompletion>
-
+#include <KI18n/KLocalizedString>
 #include <KIO/DeleteJob>
 #include <KIO/JobUiDelegate>
 #include <KIO/SkipDialog>
+#include <KCoreAddons/KProcess>
+#include <KIOWidgets/KUrlCompletion>
+#include <KWidgetsAddons/KMessageBox>
+
 
 #ifdef HAVE_POSIX_ACL
 #include <sys/acl.h>

@@ -41,6 +41,7 @@
 #include <QtWidgets/QComboBox>
 
 #include <KCompletion/KHistoryComboBox>
+#include <KI18n/KLocalizedString>
 
 #define PS(x) lst.contains(x)>0
 

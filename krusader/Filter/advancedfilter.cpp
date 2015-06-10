@@ -43,9 +43,6 @@
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QLabel>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
 #include <KWidgetsAddons/KMessageBox>
 #include <KIconThemes/KIconLoader>
 
@@ -450,14 +447,14 @@ void AdvancedFilter::notModifiedAfterSetDate()
 void AdvancedFilter::changeDate(KLineEdit *p)
 {
     // check if the current date is valid
-    QDate d = KGlobal::locale()->readDate(p->text());
+    QDate d = QLocale().toDate(p->text());
     if (!d.isValid()) d = QDate::currentDate();
 
     KRGetDate *gd = new KRGetDate(d, this);
     d = gd->getDate();
     // if a user pressed ESC or closed the dialog, we'll return an invalid date
     if (d.isValid())
-        p->setText(KGlobal::locale()->formatDate(d, KLocale::ShortDate));
+        p->setText(QLocale().toString(d, QLocale::ShortFormat));
     delete gd;
 }
 
@@ -505,8 +502,8 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
     }
 
     s.modifiedBetweenEnabled = modifiedBetweenEnabled->isChecked();
-    s.modifiedBetween1 = KGlobal::locale()->readDate(modifiedBetweenData1->text());
-    s.modifiedBetween2 = KGlobal::locale()->readDate(modifiedBetweenData2->text());
+    s.modifiedBetween1 = QLocale().toDate(modifiedBetweenData1->text());
+    s.modifiedBetween2 = QLocale().toDate(modifiedBetweenData2->text());
 
     if (s.modifiedBetweenEnabled) {
         // check if date is valid
@@ -527,7 +524,7 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
     }
 
     s.notModifiedAfterEnabled = notModifiedAfterEnabled->isChecked();
-    s.notModifiedAfter = KGlobal::locale()->readDate(notModifiedAfterData->text());
+    s.notModifiedAfter = QLocale().toDate(notModifiedAfterData->text());
 
     if(s.notModifiedAfterEnabled && !s.notModifiedAfter.isValid()) {
         invalidDateMessage(notModifiedAfterData);
@@ -588,12 +585,12 @@ void AdvancedFilter::applySettings(const FilterSettings &s)
         anyDateEnabled->setChecked(true);
 
     modifiedBetweenData1->setText(
-        KGlobal::locale()->formatDate(s.modifiedBetween1, KLocale::ShortDate));
+        QLocale().toString(s.modifiedBetween1, QLocale::ShortFormat));
     modifiedBetweenData2->setText(
-        KGlobal::locale()->formatDate(s.modifiedBetween2, KLocale::ShortDate));
+        QLocale().toString(s.modifiedBetween2, QLocale::ShortFormat));
 
     notModifiedAfterData->setText(
-        KGlobal::locale()->formatDate(s.notModifiedAfter, KLocale::ShortDate));
+        QLocale().toString(s.notModifiedAfter, QLocale::ShortFormat));
 
     modifiedInTheLastData->setValue(s.modifiedInTheLast.amount);
     modifiedInTheLastType->setCurrentIndex(s.modifiedInTheLast.unit);

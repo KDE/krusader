@@ -43,7 +43,6 @@ A
 #include <QtWidgets/QApplication>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
 #include <KDE/KInputDialog>
 #include <KIO/NetAccess>
 #include <KIO/JobUiDelegate>
@@ -51,6 +50,7 @@ A
 #include <KCoreAddons/KProcess>
 #include <KCoreAddons/KShell>
 #include <KCoreAddons/KUrlMimeData>
+#include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KCursor>
 #include <KArchive/KTar>

@@ -45,12 +45,10 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QFrame>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
-#include <KWidgetsAddons/KMessageBox>
 #include <KConfigCore/KConfigGroup>
 #include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
 
 struct SplitterGUI::PredefinedDevice
 {

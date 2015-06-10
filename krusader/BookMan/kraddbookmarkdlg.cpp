@@ -27,9 +27,9 @@
 #include <QtWidgets/QGridLayout>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
 #include <KDE/KInputDialog>
 
+#include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 
 KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, QUrl url):

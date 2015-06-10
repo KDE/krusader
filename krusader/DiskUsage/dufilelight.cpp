@@ -36,8 +36,9 @@
 #include <QtWidgets/QMenu>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
 #include <KDE/KInputDialog>
+
+#include <KI18n/KLocalizedString>
 
 #define SCHEME_POPUP_ID    6730
 

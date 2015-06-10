@@ -40,9 +40,9 @@
 #include <QtWidgets/QWidget>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
 #include <KDE/KDialog>
 
+#include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
 #include "../defaults.h"
@@ -60,7 +60,6 @@
 #include "kgcolors.h"
 #include "kguseractions.h"
 #include "kgprotocols.h"
-#include <QtCore/QEvent>
 
 Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)0),
         firstTime(f), internalCall(false), sizeX(-1), sizeY(-1)

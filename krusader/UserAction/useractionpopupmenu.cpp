@@ -20,8 +20,7 @@
 
 #include <QtCore/QUrl>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
+#include <KI18n/KLocalizedString>
 
 #include "../krglobal.h"
 #include "useraction.h"

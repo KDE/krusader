@@ -43,10 +43,10 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KDE/KLocale>
 
 #include <KCoreAddons/KAboutData>
 #include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KActionMenu>
 #include <KWindowSystem/KStartupInfo>
 

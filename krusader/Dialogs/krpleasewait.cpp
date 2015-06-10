@@ -40,10 +40,10 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QProgressBar>
 
+#include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KCursor>
 
 #include "../krglobal.h"
-#include "klocale.h"
 
 KRPleaseWait::KRPleaseWait(QString msg, QWidget *parent, int count, bool cancel):
         QProgressDialog(cancel ? 0 : parent) , inc(true)

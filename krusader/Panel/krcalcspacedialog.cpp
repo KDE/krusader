@@ -37,9 +37,7 @@ A
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QVBoxLayout>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
+#include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KCursor>
 
 #include "krpanel.h"
@@ -106,7 +104,7 @@ void KrCalcSpaceDialog::CalcThread::stop()
 
 
 KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, KrPanel * panel, const QStringList & items, bool autoclose) :
-        KDialog(parent), m_autoClose(autoclose), m_canceled(false), 
+        KDialog(parent), m_autoClose(autoclose), m_canceled(false),
                 m_timerCounter(0), m_items(items), m_view(panel->view)
 {
     setButtons(KDialog::Ok | KDialog::Cancel);

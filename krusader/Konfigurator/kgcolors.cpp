@@ -40,10 +40,8 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QGridLayout>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
 #include <KConfigWidgets/KColorScheme>
+#include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
 KgColors::KgColors(bool first, QWidget* parent) :

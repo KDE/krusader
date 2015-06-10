@@ -48,13 +48,11 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QSplitter>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
 #include <KCompletion/KLineEdit>
 #include <KIO/JobClasses>
 #include <KConfigWidgets/KColorScheme>
 #include <KCompletion/KComboBox>
+#include <KI18n/KLocalizedString>
 #include <KIOWidgets/KDirLister>
 #include <KIOWidgets/KDirModel>
 #include <KIOWidgets/KFileItemDelegate>

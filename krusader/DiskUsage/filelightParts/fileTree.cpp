@@ -18,11 +18,8 @@
 
 #include "fileTree.h"
 
+#include <QtCore/QLocale>
 #include <QtCore/QString>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KGlobal>
-#include <KDE/KLocale>
 
 //static definitions
 const FileSize File::DENOMINATOR[4] = { 1ull, 1ull << 10, 1ull << 20, 1ull << 30 };
@@ -67,12 +64,12 @@ File::humanReadableSize(FileSize size, UnitPrefix key /*= mega*/)   //static
 {
     QString s;
     double prettySize = (double)size / (double)DENOMINATOR[key];
-    const KLocale &locale = *KGlobal::locale();
+    const QLocale locale;
 
     if (prettySize >= 0.01) {
-        if (prettySize < 1)        s = locale.formatNumber(prettySize, 2);
-        else if (prettySize < 100) s = locale.formatNumber(prettySize, 1);
-        else                        s = locale.formatNumber(prettySize, 0);
+        if (prettySize < 1)        s = locale.toString(prettySize, 'f', 2);
+        else if (prettySize < 100) s = locale.toString(prettySize, 'f', 1);
+        else                        s = locale.toString(prettySize, 'f', 0);
 
         s += ' ';
         s += PREFIX[key];
@@ -81,7 +78,7 @@ File::humanReadableSize(FileSize size, UnitPrefix key /*= mega*/)   //static
 
     if (prettySize < 0.1) {
         s += " (";
-        s += locale.formatNumber(size / DENOMINATOR[ key ? key - 1 : 0 ], 0);
+        s += locale.toString(size / DENOMINATOR[ key ? key - 1 : 0 ]);
         s += ' ';
         s += PREFIX[key];
         s += "B)";

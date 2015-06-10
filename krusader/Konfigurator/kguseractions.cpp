@@ -36,8 +36,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
+#include <KI18n/KLocalizedString>
 
 KgUserActions::KgUserActions(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)

@@ -48,6 +48,7 @@
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QVBoxLayout>
 
+#include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 #include <KConfigWidgets/KColorScheme>
 #include <KCompletion/KComboBox>

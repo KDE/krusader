@@ -40,12 +40,12 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KDialog>
-#include <KDE/KLocale>
 #include <KDE/KInputDialog>
 
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KMessageBox>
 #include <KCoreAddons/KShell>
+#include <KI18n/KLocalizedString>
 #include <KParts/ReadOnlyPart>
 
 #include "expander.h"

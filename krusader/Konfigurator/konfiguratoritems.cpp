@@ -38,10 +38,9 @@
 #include <QtWidgets/QColorDialog>
 #include <QtWidgets/QLabel>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
 #include <KCompletion/KLineEdit>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 
 KonfiguratorExtension::KonfiguratorExtension(QObject *obj, QString cfgClass, QString cfgName, bool rst, int pg) :

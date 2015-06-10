@@ -39,10 +39,8 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QLineEdit>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
 #include <KCompletion/KComboBox>
+#include <KI18n/KLocalizedString>
 
 #include "../GUI/krlistwidget.h"
 

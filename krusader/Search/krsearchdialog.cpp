@@ -52,8 +52,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KInputDialog>
-#include <KDE/KGlobal>
-#include <KDE/KLocale>
 
 #include <KWidgetsAddons/KMessageBox>
 

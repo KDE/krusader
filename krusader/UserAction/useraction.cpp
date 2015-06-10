@@ -28,6 +28,7 @@
 #include <QtXml/QDomElement>
 #include <QtWidgets/QMenu>
 
+#include <KI18n/KLocalizedString>
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KActionMenu>
 #include <KWidgetsAddons/KMessageBox>

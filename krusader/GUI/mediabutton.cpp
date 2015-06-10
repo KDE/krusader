@@ -26,12 +26,12 @@
 #include <QtGui/QCursor>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
 #include <KDELibs4Support/kmessagebox_queued.h>
 
 #include <KWidgetsAddons/KMessageBox>
 #include <KConfigCore/KConfigGroup>
 #include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 #include <KIO/Global>
 #include <KIOCore/KMountPoint>
 #include <KIconThemes/KIconLoader>

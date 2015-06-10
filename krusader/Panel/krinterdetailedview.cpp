@@ -26,10 +26,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QApplication>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-#include <KDE/KGlobal>
-
+#include <KI18n/KLocalizedString>
 #include <KIOWidgets/KDirLister>
 
 #include "krinterviewitem.h"
@@ -118,7 +115,7 @@ void KrInterDetailedView::doRestoreSettings(KConfigGroup grp)
         header()->resizeSection(KrViewProperties::Size, QFontMetrics(_viewFont).width("9") * 10);
 
         QDateTime tmp(QDate(2099, 12, 29), QTime(23, 59));
-        QString desc = KGlobal::locale()->formatDateTime(tmp) + "  ";
+        QString desc = QLocale().toString(tmp) + "  ";
 
         header()->resizeSection(KrViewProperties::Modified, QFontMetrics(_viewFont).width(desc));
     } else {

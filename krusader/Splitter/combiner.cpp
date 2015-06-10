@@ -33,13 +33,11 @@
 
 #include <QtCore/QFileInfo>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
-#include <KWidgetsAddons/KMessageBox>
+#include <KI18n/KLocalizedString>
 #include <KIOCore/KFileItem>
 #include <KIO/Job>
 #include <KIO/JobUiDelegate>
+#include <KWidgetsAddons/KMessageBox>
 
 //TODO: delete destination file on error
 //TODO: cache more than one byte array of data

@@ -39,9 +39,6 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QGridLayout>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
 #include <KParts/Part>
 
 #include "krglobal.h"

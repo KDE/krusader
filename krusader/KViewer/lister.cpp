@@ -56,7 +56,6 @@
 #include <QtPrintSupport/QPrinter>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
 #include <KDE/KInputDialog>
 #include <KDE/KGlobalSettings>
 #include <KIO/Job>
@@ -1082,7 +1081,7 @@ protected:
     }
 
     virtual void chooseEncoding(QString encodingName) {
-        QString charset = KGlobal::charsets()->encodingForName(encodingName);
+        QString charset = KCharsets::charsets()->encodingForName(encodingName);
         _lister->setCharacterSet(charset);
     }
 

@@ -22,8 +22,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QToolButton>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
+#include <KI18n/KLocalizedString>
 
 QuickFilter::QuickFilter(QWidget *parent) : QWidget(parent)
 {

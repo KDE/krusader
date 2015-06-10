@@ -28,10 +28,9 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLocale>
-
 #include <KConfigCore/KConfigGroup>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 #include <KIOCore/KProtocolInfo>
 
@@ -139,7 +138,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : KDialog(parent)
             url, SLOT(addToHistory(const QString &)));
 
     if(!lastUsedProtocol.isEmpty()) {
-        // update the port field 
+        // update the port field
         slotTextChanged(lastUsedProtocol);
     }
 
