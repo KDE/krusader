@@ -50,7 +50,6 @@
 #include "../GUI/kfnkeys.h"
 
 // the frames
-#include "kgwelcome.h"
 #include "kgstartup.h"
 #include "kgpanel.h"
 #include "kggeneral.h"
