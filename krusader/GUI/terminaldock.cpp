@@ -39,7 +39,6 @@
 #include <KWidgetsAddons/KMessageBox>
 
 #include "../kractions.h"
-#include "../krusaderapp.h"
 #include "../krusaderview.h"
 #include "../filemanagerwindow.h"
 #include "kcmdline.h"

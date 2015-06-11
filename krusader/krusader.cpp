@@ -295,6 +295,12 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
 
     _openUrlTimer.setSingleShot(true);
     connect(&_openUrlTimer, SIGNAL(timeout()), SLOT(doOpenUrl()));
+
+    KStartupInfo *startupInfo = new KStartupInfo(0, this);
+    connect(startupInfo, &KStartupInfo::gotNewStartup,
+            this, &Krusader::slotGotNewStartup);
+    connect(startupInfo, &KStartupInfo::gotRemoveStartup,
+            this, &Krusader::slotGotRemoveStartup);
 }
 
 Krusader::~Krusader()
@@ -839,6 +845,21 @@ void Krusader::doOpenUrl()
         OTHER_MNG->currentPanel()->view->widget()->setFocus();
     } else
         ACTIVE_MNG->slotNewTab(url);
+}
+
+void Krusader::slotGotNewStartup(const KStartupInfoId &id, const KStartupInfoData &data)
+{
+    Q_UNUSED(id)
+    Q_UNUSED(data)
+    // This is here to show busy mouse cursor when _other_ applications are launched, not for krusader itself.
+    qApp->setOverrideCursor(Qt::BusyCursor);
+}
+
+void Krusader::slotGotRemoveStartup(const KStartupInfoId &id, const KStartupInfoData &data)
+{
+    Q_UNUSED(id)
+    Q_UNUSED(data)
+    qApp->restoreOverrideCursor();
 }
 
 KrView *Krusader::activeView()

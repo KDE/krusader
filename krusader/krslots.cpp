@@ -37,6 +37,7 @@
 #include <QtCore/QEvent>
 #include <QtGui/QPixmapCache>
 #include <QtGui/QKeyEvent>
+#include <QtWidgets/QApplication>
 
 #include <KConfigCore/KSharedConfig>
 #include <KCoreAddons/KShell>
@@ -726,20 +727,15 @@ void KRslots::slotQueueManager()
     QueueDialog::showDialog(false);
 }
 
-// when window becomes focused, enable the refresh in the visible panels
-void KRslots::windowActive()
+void KRslots::applicationStateChanged()
 {
-    if (MAIN_VIEW != 0) {  /* CRASH FIX: it's possible that the method is called after destroying the main view */
+    if (MAIN_VIEW == 0) {  /* CRASH FIX: it's possible that the method is called after destroying the main view */
+        return;
+    }
+    if(qApp->applicationState() == Qt::ApplicationActive) {
         LEFT_PANEL->panelActive();
         RIGHT_PANEL->panelActive();
-    }
-}
-
-// when another application becomes focused, do a windows-commander style refresh: don't
-// refresh at all until krusader becomes focused again
-void KRslots::windowInactive()
-{
-    if (MAIN_VIEW != 0) {  /* CRASH FIX: it's possible that the method is called after destroying the main view */
+    } else {
         LEFT_PANEL->panelInactive();
         RIGHT_PANEL->panelInactive();
     }

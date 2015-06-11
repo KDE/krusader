@@ -39,6 +39,7 @@
 #include <QtCore/QStandardPaths>
 #include <QtGui/QPixmap>
 #include <QtDBus/QtDBus>
+#include <QtWidgets/QApplication>
 #include <QtWidgets/QSplashScreen>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
@@ -55,7 +56,6 @@
 #include "panelmanager.h"
 #include "krusaderversion.h"
 #include "krslots.h"
-#include "krusaderapp.h"
 #include "defaults.h"
 #include "Panel/krviewfactory.h"
 
@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
 // ============ end icon-stuff ===========
 
     // create the application and set application domain so that calls to i18n get strings from right place.
-    KrusaderApp app(argc, argv);
+    QApplication app(argc, argv);
     KLocalizedString::setApplicationDomain("krusader");
 
     // ABOUT data information
@@ -313,9 +313,7 @@ int main(int argc, char *argv[])
     KDE_signal(SIGPIPE, sigterm_handler);
     KDE_signal(SIGHUP, sigterm_handler);
 
-    // make sure we receive X's focus in/out events
-    QObject::connect(&app, SIGNAL(windowActive()), SLOTS, SLOT(windowActive()));
-    QObject::connect(&app, SIGNAL(windowInactive()), SLOTS, SLOT(windowInactive()));
+    QObject::connect(&app, &QGuiApplication::applicationStateChanged, SLOTS, &KRslots::applicationStateChanged);
 
     // hide splashscreen
     if (splash) {

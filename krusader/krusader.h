@@ -51,6 +51,7 @@
 #include <KConfigWidgets/KStandardAction>
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
+#include <KWindowSystem/KStartupInfo>
 
 #include "VFS/kiojobwrapper.h"
 
@@ -133,15 +134,17 @@ public slots:
 
 protected slots:
     void doOpenUrl();
+    void slotGotNewStartup(const KStartupInfoId &id, const KStartupInfoData &data);
+    void slotGotRemoveStartup(const KStartupInfoId &id, const KStartupInfoData &data);
 
 protected:
-    bool queryClose();
+    bool queryClose() Q_DECL_OVERRIDE;
     void setupActions();
     bool versionControl();  // handle version differences in krusaderrc
-    void showEvent(QShowEvent *);
-    void hideEvent(QHideEvent *);
-    void moveEvent(QMoveEvent *);
-    void resizeEvent(QResizeEvent *);
+    void showEvent(QShowEvent *) Q_DECL_OVERRIDE;
+    void hideEvent(QHideEvent *) Q_DECL_OVERRIDE;
+    void moveEvent(QMoveEvent *) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE;
     bool event(QEvent *) Q_DECL_OVERRIDE;
 
 public Q_SLOTS:

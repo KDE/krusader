@@ -49,15 +49,14 @@ set(krusader_SRCS
     actionsbase.cpp
     tabactions.cpp
     kractions.cpp
-    paneltabbar.cpp 
-    panelmanager.cpp 
-    krservices.cpp 
-    main.cpp 
-    krusaderview.cpp 
-    krusader.cpp 
-    krslots.cpp 
-    kicons.cpp 
-    krusaderapp.cpp
+    paneltabbar.cpp
+    panelmanager.cpp
+    krservices.cpp
+    main.cpp
+    krusaderview.cpp
+    krusader.cpp
+    krslots.cpp
+    kicons.cpp
     krtrashhandler.cpp)
 
 # TODO porting: missing kf5 equivalent
@@ -119,7 +118,7 @@ install(FILES krusaderui.rc
               splash.png
         DESTINATION ${DATA_INSTALL_DIR}/krusader)
 
-ecm_install_icons(ICONS 
+ecm_install_icons(ICONS
 hi16-apps-krusader_blue.png
 hi16-apps-krusader_red.png
 hi16-apps-krusader_root.png

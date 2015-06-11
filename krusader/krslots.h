@@ -121,8 +121,7 @@ public slots:
 #endif
     void slotDiskUsage();
     void slotQueueManager();
-    void windowActive(); // called when krusader's window becomes focused
-    void windowInactive(); // called when another application steals the focus
+    void applicationStateChanged();
     void jsConsole();
     void saveNewToolbarConfig();
 
