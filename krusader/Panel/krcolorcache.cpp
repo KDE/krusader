@@ -148,7 +148,7 @@ void KrColorSettingsImpl::loadFromConfig()
     QStringList names = KrColorSettingNames::getColorNames();
     for (QStringList::Iterator it = names.begin(); it != names.end(); ++it) {
         m_colorTextValues[*it] = group.readEntry(*it, QString());
-        if (m_colorTextValues[*it].contains(',') == 3)
+        if (m_colorTextValues[*it].count(',') == 3)
             m_colorValues[*it] = group.readEntry(*it, QColor());
         else
             m_colorValues[*it] = QColor();
