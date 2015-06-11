@@ -37,9 +37,6 @@
 #include <QtCore/QString>
 #include <QtWidgets/QComboBox>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KGlobal>
-
 class FilterTabs;
 
 class FilterBase

@@ -21,10 +21,8 @@
 #include <QtCore/QEvent>
 #include <QtGui/QPainter>
 #include <QtWidgets/QApplication>                           //installing eventFilters
+#include <QtWidgets/QDesktopWidget>
 #include <QtWidgets/QToolTip>                               //for its palette
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KGlobalSettings>
 
 #include <KI18n/KLocalizedString>
 
@@ -50,7 +48,7 @@ SegmentTip::moveto(QPoint p, QWidget &canvas, bool placeAbove)
     p.rx() -= rect().center().x();
     p.ry() -= (placeAbove ? 8 + height() : m_cursorHeight - 8);
 
-    const QRect screen = KGlobalSettings::desktopGeometry(parentWidget());
+    const QRect screen = QApplication::desktop()->screenGeometry(parentWidget());
 
     const int x  = p.x();
     const int y  = p.y();

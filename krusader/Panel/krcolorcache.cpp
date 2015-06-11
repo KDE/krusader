@@ -381,7 +381,6 @@ KrColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 {
     KrColorGroup result;
     if (m_colorSettings.getBoolValue("KDE Default", _KDEDefaultColors)) {
-        // KDE default? Getcolors from KGlobalSettings.
         bool enableAlternateBackground = m_colorSettings.getBoolValue("Enable Alternate Background", _AlternateBackground);
         QColor background = enableAlternateBackground && type.m_alternateBackgroundColor ?
                             KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color()
@@ -654,8 +653,6 @@ KrColorCache * KrColorCache::m_instance = 0;
 KrColorCache::KrColorCache()
 {
     m_impl = new KrColorCacheImpl;
-
-    connect(KGlobalSettings::self(), SIGNAL(kdisplayPaletteChanged()), SLOT(refreshColors()));
 }
 
 KrColorCache::~KrColorCache()

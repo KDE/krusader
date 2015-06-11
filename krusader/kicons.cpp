@@ -25,6 +25,7 @@
 #include <QtGui/QPixmap>
 #include <QtWidgets/QStyle>
 
+#include <KConfigCore/KSharedConfig>
 #include <KIconThemes/KIconLoader>
 
 QPixmap FL_LOADICON(QString name)

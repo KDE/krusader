@@ -142,6 +142,7 @@ protected:
     void hideEvent(QHideEvent *);
     void moveEvent(QMoveEvent *);
     void resizeEvent(QResizeEvent *);
+    bool event(QEvent *) Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
     Q_SCRIPTABLE bool isRunning();

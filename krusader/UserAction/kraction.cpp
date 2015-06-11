@@ -42,6 +42,7 @@
 #include <KDE/KDialog>
 #include <KDE/KInputDialog>
 
+#include <KConfigCore/KSharedConfig>
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KMessageBox>
 #include <KCoreAddons/KShell>

@@ -35,9 +35,9 @@
 #include <QtWidgets/qdrawutil.h>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KGlobalSettings>
 #include <KDE/KInputDialog>
 
+#include <KConfigWidgets/KColorScheme>
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconEffect>
 #include <KWidgetsAddons/KMessageBox>
@@ -140,8 +140,8 @@ QueueDialog::QueueDialog() : KDialog(0, Qt::FramelessWindowHint), _autoHide(true
     titleWg->setContentsMargins(2, 2, 2, 2);
 
     QPalette palette = titleWg->palette();
-    palette.setColor(QPalette::WindowText, KGlobalSettings::activeTextColor());
-    palette.setColor(QPalette::Window, KGlobalSettings::activeTitleColor());
+    palette.setColor(QPalette::WindowText, KColorScheme(QPalette::Active, KColorScheme::Window).foreground(KColorScheme::ActiveText).color());
+    palette.setColor(QPalette::Window, KColorScheme(QPalette::Active, KColorScheme::Window).background(KColorScheme::ActiveBackground).color());
     titleWg->setPalette(palette);
 
     QHBoxLayout * hbox = new QHBoxLayout(titleWg);

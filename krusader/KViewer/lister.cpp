@@ -37,6 +37,7 @@
 #include <QtCore/QTextCodec>
 #include <QtCore/QTextStream>
 #include <QtGui/QPainter>
+#include <QtGui/QFontDatabase>
 #include <QtGui/QFontMetrics>
 #include <QtGui/QClipboard>
 #include <QtGui/QKeyEvent>
@@ -57,7 +58,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KInputDialog>
-#include <KDE/KGlobalSettings>
 #include <KIO/Job>
 #include <KIO/CopyJob>
 #include <KIO/JobUiDelegate>
@@ -513,7 +513,7 @@ QTextCodec * ListerTextArea::codec()
     if (cs.isEmpty())
         return QTextCodec::codecForLocale();
     else
-        return KGlobal::charsets()->codecForName(cs);
+        return KCharsets::charsets()->codecForName(cs);
 }
 
 void ListerTextArea::setUpScrollBar()
@@ -1137,7 +1137,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     widget->setFocusPolicy(Qt::StrongFocus);
     QGridLayout *grid = new QGridLayout(widget);
     _textArea = new ListerTextArea(this, widget);
-    _textArea->setFont(KGlobalSettings::fixedFont());
+    _textArea->setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
     _textArea->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
     _textArea->setCursorWidth(2);
     _textArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -1898,8 +1898,8 @@ void Lister::print()
         QRect pageRect = printer.pageRect();
         QRect drawingRect(0, 0, pageRect.width(), pageRect.height());
 
-        QFont normalFont = KGlobalSettings::generalFont();
-        QFont fixedFont  = KGlobalSettings::fixedFont();
+        QFont normalFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
+        QFont fixedFont  = QFontDatabase::systemFont(QFontDatabase::FixedFont);
 
         QFontMetrics fmNormal(normalFont);
         int normalFontHeight = fmNormal.height();

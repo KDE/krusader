@@ -26,6 +26,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QApplication>
 
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KDirLister>
 

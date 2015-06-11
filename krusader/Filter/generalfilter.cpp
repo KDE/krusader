@@ -40,9 +40,11 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMenu>
 
-#include <KWidgetsAddons/KMessageBox>
-#include <KIconThemes/KIconLoader>
 #include <KCodecs/KCharsets>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KMessageBox>
 
 typedef struct {
     const char *description;

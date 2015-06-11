@@ -21,6 +21,7 @@
 #include <iostream>
 
 #include <QtCore/QList>
+#include <QtGui/QFontDatabase>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 
@@ -59,7 +60,7 @@ QGridLayout* KrResultTable::initTable()
         _grid->addWidget(_label, 0, column);
 
         // Set font
-        QFont defFont = KGlobalSettings::generalFont();
+        QFont defFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
         defFont.setPointSize(defFont.pointSize() - 1);
         defFont.setBold(true);
         _label->setFont(defFont);

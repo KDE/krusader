@@ -44,6 +44,7 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QVBoxLayout>
 
+#include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
 #define  S_LEFT        0

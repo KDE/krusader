@@ -25,6 +25,8 @@
 #include <QtCore/QDir>
 #include <QtCore/QTextStream>
 
+#include <KConfigCore/KSharedConfig>
+
 #include "krglobal.h"
 #include "defaults.h"
 

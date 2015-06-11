@@ -36,6 +36,8 @@
 
 #include <QtWidgets/QTabWidget>
 
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
 

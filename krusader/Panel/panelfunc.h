@@ -59,7 +59,6 @@ public slots:
     void immediateOpenUrl(const QUrl &url, bool disableLock = false);
     void rename(const QString &oldname, const QString &newname);
     void calcSpace(KrViewItem *item);
-    void trashJobStarted(KIO::Job *job);
 
     // actions
     void historyBackward();

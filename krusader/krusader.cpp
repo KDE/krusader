@@ -80,6 +80,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krglobal.h"
 #include "kractions.h"
 #include "panelmanager.h"
+#include "Panel/krcolorcache.h"
 #include "Panel/viewactions.h"
 #include "Panel/listpanelactions.h"
 #include "Panel/krview.h"
@@ -404,6 +405,13 @@ void Krusader::moveEvent(QMoveEvent *e) {
 void Krusader::resizeEvent(QResizeEvent *e) {
     oldSize = e->oldSize();
     KParts::MainWindow::resizeEvent(e);
+}
+
+bool Krusader::event(QEvent *e) {
+    if(e->type() == QEvent::ApplicationPaletteChange) {
+        KrColorCache::getColorCache().refreshColors();
+    }
+    return KParts::MainWindow::event(e);
 }
 
 // <patch> Moving from Pixmap actions to generic filenames - thanks to Carsten Pfeiffer

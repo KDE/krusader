@@ -37,6 +37,7 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QLabel>
 
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 
 SynchronizeDialog::SynchronizeDialog(QWidget* parent,

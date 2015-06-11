@@ -51,9 +51,7 @@
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QMenu>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KGlobalSettings>
-
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 #include <KIO/Job>
@@ -633,7 +631,6 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
 
     if (trash) {
         job = KIO::trash(url);
-        connect(job, SIGNAL(result(KJob*)), krMainWindow, SLOT(changeTrashIcon()));
     } else {
         job = KIO::del(QUrl::fromLocalFile(file->fullPath()), KIO::HideProgressInfo);
     }

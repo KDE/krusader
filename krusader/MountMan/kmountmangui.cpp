@@ -53,6 +53,7 @@ A
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QMenu>
 
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KGuiItem>

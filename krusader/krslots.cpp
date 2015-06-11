@@ -38,10 +38,11 @@
 #include <QtGui/QPixmapCache>
 #include <QtGui/QKeyEvent>
 
+#include <KConfigCore/KSharedConfig>
 #include <KCoreAddons/KShell>
+#include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KMessageBox>
-#include <KConfigCore/KSharedConfig>
 #include <KXmlGui/KEditToolBar>
 #include <KXmlGui/KToolBar>
 
@@ -516,22 +517,6 @@ void KRslots::saveNewToolbarConfig()
 void KRslots::configKeys()
 {
     KrKeyDialog d(MAIN_VIEW);
-}
-
-// misc
-void KRslots::changeTrashIcon()
-{
-#if 0 // TODO: is this needed?
-    // update trash bin icon - this is "stolen" konqi code
-    // Copyright (C) 2000  David Faure <faure@kde.org>
-    QUrl trash;
-    trash.setPath(KGlobalSettings::trashPath());
-    QList<QUrl> lst;
-    lst.append(trash);
-    KDirNotify_stub allDirNotify("*", "KDirNotify*");
-    allDirNotify.FilesChanged(lst);
-    // end of konqi code
-#endif
 }
 
 void KRslots::slotSplit()

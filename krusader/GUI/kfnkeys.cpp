@@ -30,11 +30,7 @@
 
 #include "kfnkeys.h"
 
-#include <QtGui/QFontMetrics>
 #include <QtWidgets/QGridLayout>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KGlobalSettings>
 
 #include <KI18n/KLocalizedString>
 
@@ -54,7 +50,6 @@ KFnKeys::KFnKeys(QWidget *parent, FileManagerWindow *mainWindow) :
         connect(TARGET, SIGNAL(clicked()), mainWindow->listPanelActions()->act##TARGET, SLOT(trigger())); \
     }
 
-    setFont(KGlobalSettings::generalFont());
     layout = new QGridLayout(this); // 9 keys
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);

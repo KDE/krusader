@@ -45,6 +45,8 @@
 
 #include <KCompletion/KComboBox>
 #include <KCompletion/KHistoryComboBox>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KCursor>
 
@@ -291,7 +293,6 @@ void QuickNavLineEdit::init()
     _numOfSelectedChars = 0;
     _dummyDisplayed = false;
     _pop = 0;
-    //setCompletionMode( KGlobalSettings::CompletionPopupAuto );  ==> removed by public demand
 }
 
 void QuickNavLineEdit::leaveEvent(QEvent *)

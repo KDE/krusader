@@ -31,6 +31,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QMenu>
 
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KActionMenu>
 

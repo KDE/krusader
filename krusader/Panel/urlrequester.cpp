@@ -26,6 +26,7 @@
 #include <QtGui/QFont>
 #include <QtWidgets/QStyleOption>
 
+#include <KConfigCore/KSharedConfig>
 #include <KCompletion/KLineEdit>
 #include <KWidgetsAddons/KSqueezedTextLabel>
 

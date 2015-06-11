@@ -34,6 +34,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QGridLayout>
 
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 
 #include "krresulttable.h"

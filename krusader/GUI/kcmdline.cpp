@@ -38,6 +38,7 @@
 #include <QtCore/QUrl>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QIcon>
+#include <QtGui/QFontDatabase>
 #include <QtGui/QFontMetrics>
 #include <QtGui/QImage>
 #include <QtWidgets/QSizePolicy>
@@ -46,9 +47,7 @@
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QLabel>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KGlobalSettings>
-
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 
 #include "../krglobal.h"
@@ -172,7 +171,7 @@ KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    int height = QFontMetrics(KGlobalSettings::generalFont()).height();
+    int height = QFontMetrics(QFontDatabase::systemFont(QFontDatabase::GeneralFont)).height();
     height =  height + 5 * (height > 14) + 6;
 
     // and editable command line
@@ -181,7 +180,6 @@ KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
     cmdLine->setMaxCount(100);  // remember 100 commands
     cmdLine->setMinimumContentsLength(10);
     cmdLine->setDuplicatesEnabled(false);
-    cmdLine->setFont(KGlobalSettings::generalFont());
     cmdLine->setMaximumHeight(height);
     cmdLine->setCompletionObject(&completion);
     cmdLine->setSizePolicy(QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed));

@@ -34,6 +34,8 @@
 
 #include <QtWidgets/QGridLayout>
 
+#include <KI18n/KLocalizedString>
+
 FilterDialog::FilterDialog(QWidget *parent, QString caption, QStringList extraOptions, bool modal)
         : KDialog(parent)
 {

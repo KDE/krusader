@@ -310,8 +310,6 @@ void ListPanelFunc::doRefresh()
                 panel, SLOT(slotJobStarted(KIO::Job*)));
         connect(files(), SIGNAL(error(QString)),
                 panel, SLOT(slotVfsError(QString)));
-        connect(files(), SIGNAL(trashJobStarted(KIO::Job*)),
-                this, SLOT(trashJobStarted(KIO::Job*)));
 
         panel->view->setFiles(files());
 
@@ -1440,11 +1438,6 @@ void ListPanelFunc::pasteFromClipboard()
 ListPanelFunc* ListPanelFunc::otherFunc()
 {
     return panel->otherPanel()->func;
-}
-
-void ListPanelFunc::trashJobStarted(KIO::Job *job)
-{
-    connect(job, SIGNAL(result(KJob*)), SLOTS, SLOT(changeTrashIcon()));
 }
 
 void ListPanelFunc::historyGotoPos(int pos)

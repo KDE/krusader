@@ -49,8 +49,8 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <kde_file.h>
-#include <KDE/KGlobalSettings>
 
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIO/DeleteJob>
 #include <KIO/JobUiDelegate>

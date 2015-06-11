@@ -55,6 +55,7 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KInputDialog>
 
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 
 #define VF getVfile()

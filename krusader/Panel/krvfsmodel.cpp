@@ -28,6 +28,7 @@
 #include <QtCore/QMimeDatabase>
 #include <QtCore/QMimeType>
 
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 
 #include "krpanel.h"

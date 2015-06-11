@@ -109,7 +109,6 @@ public slots:
     void addBookmark();
     void toggleFnkeys();
     void toggleCmdline();
-    void changeTrashIcon();
     void multiRename();
     void bookmarkCurrent();
     void cmdlinePopup();

@@ -18,6 +18,7 @@
 
 #include "krresulttabledialog.h"
 
+#include <QtGui/QFontDatabase>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QFrame>
@@ -51,7 +52,7 @@ KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
     _iconLabel->setFixedSize(_iconLabel->sizeHint());
     _iconBox->addWidget(_iconLabel);
     _headingLabel = new QLabel(heading, _iconWidget);
-    QFont defFont = KGlobalSettings::generalFont();
+    QFont defFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
     defFont.setBold(true);
     _headingLabel->setFont(defFont);
     _headingLabel->setIndent(10);
