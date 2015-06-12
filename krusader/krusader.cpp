@@ -510,7 +510,7 @@ void Krusader::configChanged() {
 
 void Krusader::slotClose() {
     directExit = true;
-    close();
+    qApp->quit();
 }
 
 bool Krusader::queryClose() {
@@ -636,6 +636,7 @@ bool Krusader::queryClose() {
         delete sysTray;   // In KDE 4.1, KGlobal::ref() and deref() is done in KSystray constructor/destructor
         sysTray = NULL;
         KGlobal::deref(); // and close the application
+        qApp->quit();
         return false;  // don't let the main widget close. It stops the pendig copies!
         //FIXME: The above intention does not work (at least in KDE 4.1), because the job
         //progress window (class KWidgetJobTracker::Private::ProgressWidget)
