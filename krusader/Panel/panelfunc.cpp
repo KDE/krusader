@@ -266,7 +266,7 @@ void ListPanelFunc::doRefresh()
             tmp = history->currentUrl().fileName();
             history->goForward();
             QUrl t = history->currentUrl();
-            if (t.scheme() == "krarc" || t.scheme() == "tar") {
+            if (t.scheme() == "krarc" || t.scheme() == "tar" || t.scheme() == "iso") {
                 t.setScheme("file");
                 history->setCurrentUrl(t);
                 panel->vfsError->hide();
