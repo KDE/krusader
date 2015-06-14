@@ -38,9 +38,6 @@
 #include <QtCore/QTimer>
 #include <QtWidgets/QWidget>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
-
 #include <KWidgetsAddons/KPageDialog>
 
 class QString;
@@ -58,25 +55,25 @@ public:
     Konfigurator(bool f = false, int startPage = 0); // true if Konfigurator is run for the first time
     ~Konfigurator() {};
 
-    virtual void accept() Q_DECL_OVERRIDE;
-    virtual void reject() Q_DECL_OVERRIDE;
-
 protected:
     void newPage(KonfiguratorPage *, const QString &, const QString &, const QIcon &); // adds widget and connects to slot
     void createLayout(int startPage);
     void closeDialog();
 
     virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
-    virtual void slotButtonClicked(int button); // KF5 TODO, this no longer overrides the method in KDialog, needs to be ported.
     virtual void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
 
 protected slots:
     void slotApplyEnable();
     bool slotPageSwitch(KPageWidgetItem *, KPageWidgetItem *);
     void slotRestorePage();
+    void slotClose();
+    void slotApply();
+    void slotReset();
+    void slotRestore();
 
 private:
-    KDialog                    *dialog;
+    QDialog                    *dialog;
     QList<KPageWidgetItem*>     kgPages;
     bool                        firstTime;
     KPageWidgetItem            *lastPage;
