@@ -161,7 +161,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
             struct tm* t = localtime((time_t *) & time);
 
             QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-            return QLocale().toString(tmp);
+            return QLocale().toString(tmp, QLocale::ShortFormat);
         }
         case KrViewProperties::Permissions: {
             if (vf == _dummyVfile)

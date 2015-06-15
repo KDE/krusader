@@ -1026,7 +1026,7 @@ QString DiskUsage::getToolTip(File *item)
     time_t tma = item->time();
     struct tm* t = localtime((time_t *) & tma);
     QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-    QString date = QLocale().toString(tmp);
+    QString date = QLocale().toString(tmp, QLocale::ShortFormat);
 
     QString str = "<qt><h5><table><tr><td>" + i18n("Name:") +  "</td><td>" + item->name() + "</td></tr>" +
                   "<tr><td>" + i18n("Type:") +  "</td><td>" + mime + "</td></tr>" +

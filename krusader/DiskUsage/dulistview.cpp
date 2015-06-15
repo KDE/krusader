@@ -138,7 +138,7 @@ void DUListView::addDirectory(Directory *dirEntry, QTreeWidgetItem *parent)
         time_t tma = item->time();
         struct tm* t = localtime((time_t *) & tma);
         QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-        QString date = QLocale().toString(tmp);
+        QString date = QLocale().toString(tmp, QLocale::ShortFormat);
 
         QString totalSize = KRpermHandler::parseSize(item->size()) + ' ';
         QString ownSize = KRpermHandler::parseSize(item->ownSize()) + ' ';

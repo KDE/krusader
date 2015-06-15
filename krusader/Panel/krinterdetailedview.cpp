@@ -116,7 +116,7 @@ void KrInterDetailedView::doRestoreSettings(KConfigGroup grp)
         header()->resizeSection(KrViewProperties::Size, QFontMetrics(_viewFont).width("9") * 10);
 
         QDateTime tmp(QDate(2099, 12, 29), QTime(23, 59));
-        QString desc = QLocale().toString(tmp) + "  ";
+        QString desc = QLocale().toString(tmp, QLocale::ShortFormat) + "  ";
 
         header()->resizeSection(KrViewProperties::Modified, QFontMetrics(_viewFont).width(desc));
     } else {
