@@ -1568,9 +1568,9 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
     connect(btnDuplicates,     SIGNAL(toggled(bool)), this, SLOT(refresh()));
     connect(btnSingles,        SIGNAL(toggled(bool)), this, SLOT(refresh()));
 
-    connect(fileFilter,        SIGNAL(textChanged(const QString &)), this, SLOT(connectFilters(const QString &)));
-    connect(generalFilter->searchFor, SIGNAL(textChanged(const QString &)), this, SLOT(connectFilters(const QString &)));
-    connect(generalFilter->searchFor, SIGNAL(textChanged(const QString &)), this, SLOT(setCompletion()));
+    connect(fileFilter,        SIGNAL(currentTextChanged(QString)), this, SLOT(connectFilters(QString)));
+    connect(generalFilter->searchFor, SIGNAL(currentTextChanged(QString)), this, SLOT(connectFilters(QString)));
+    connect(generalFilter->searchFor, SIGNAL(currentTextChanged(QString)), this, SLOT(setCompletion()));
     connect(generalFilter->dontSearchIn, SIGNAL(checkValidity(QString &, QString &)),
             this, SLOT(checkExcludeURLValidity(QString &, QString &)));
 

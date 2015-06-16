@@ -501,7 +501,7 @@ KonfiguratorComboBox::KonfiguratorComboBox(QString cls, QString name, QString df
 
 //  connect( this, SIGNAL( highlighted(int) ), ext, SLOT( setChanged() ) ); /* Removed because of startup combo failure */
     connect(this, SIGNAL(activated(int)), ext, SLOT(setChanged()));
-    connect(this, SIGNAL(textChanged(const QString &)), ext, SLOT(setChanged()));
+    connect(this, SIGNAL(currentTextChanged(QString)), ext, SLOT(setChanged()));
 
     setEditable(editable);
     loadInitialValue();

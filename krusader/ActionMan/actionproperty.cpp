@@ -82,10 +82,9 @@ ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
     connect(leDistinctName, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
     connect(leTitle, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
     connect(ButtonIcon, SIGNAL(iconChanged(QString)), SLOT(setModified()));
-    connect(cbCategory, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
+    connect(cbCategory, SIGNAL(currentTextChanged(QString)), SLOT(setModified()));
     connect(leTooltip, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
     connect(textDescription, SIGNAL(textChanged()), SLOT(setModified()));
-    connect(leDistinctName, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
     connect(leCommandline, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
     connect(leStartpath, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
     connect(bgExecType, SIGNAL(clicked(int)), SLOT(setModified()));

@@ -222,7 +222,6 @@ DULines::DULines(DiskUsage *usage)
     connect(diskUsage, SIGNAL(clearing()), this, SLOT(clear()));
 
     connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(sectionResized(int)));
-    connect(header(), SIGNAL(sectionAutoResize(int, QHeaderView::ResizeMode)), this, SLOT(sectionResized(int)));
 
     connect(this, SIGNAL(itemRightClicked(QTreeWidgetItem*, const QPoint &, int)),
             this, SLOT(slotRightClicked(QTreeWidgetItem *, const QPoint &)));
