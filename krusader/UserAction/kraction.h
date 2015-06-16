@@ -65,11 +65,6 @@ public:
     bool xmlRead(const QDomElement& element);
     QDomElement xmlDump(QDomDocument& doc) const;
 
-    void setName(const char*) { /* empty reimplementation to prevent a name-change */ };
-    const QString & getName()   {
-        return _name;
-    }
-
     QString category() const {
         return _category;
     };
@@ -180,8 +175,6 @@ private:
     QStringList _showonlyPath;
     QStringList _showonlyMime;
     QStringList _showonlyFile;
-
-    QString  _name;
 };
 
 class QFont;

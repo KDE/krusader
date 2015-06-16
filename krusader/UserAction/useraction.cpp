@@ -54,8 +54,8 @@ UserAction::~UserAction()
 void UserAction::removeKrAction(KrAction* action)
 {
     _actions.removeAll(action);
-    if (_defaultActions.contains(action->getName()))
-        _deletedActions.insert(action->getName());
+    if (_defaultActions.contains(action->objectName()))
+        _deletedActions.insert(action->objectName());
 }
 
 void UserAction::setAvailability()
@@ -132,7 +132,7 @@ QStringList UserAction::allNames()
     QListIterator<KrAction *> it(_actions);
     while (it.hasNext()) {
         KrAction * action = it.next();
-        actionNames.append(action->getName());
+        actionNames.append(action->objectName());
     }
 
     return actionNames;
