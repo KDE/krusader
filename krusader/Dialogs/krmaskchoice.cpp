@@ -31,13 +31,13 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QGroupBox>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QMessageBox>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLayout>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QMessageBox>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QVBoxLayout>
 
 #include <KCompletion/KComboBox>
 #include <KI18n/KLocalizedString>
@@ -52,7 +52,7 @@
  * TRUE to construct a modal dialog.
  */
 KRMaskChoice::KRMaskChoice(QWidget* parent)
-        : KDialog(parent)
+        : QDialog(parent)
 {
     setModal(true);
     resize(401, 314);

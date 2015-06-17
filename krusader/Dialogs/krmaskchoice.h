@@ -30,17 +30,10 @@
 #ifndef KRMASKCHOICE_H
 #define KRMASKCHOICE_H
 
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QLabel>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
+#include <QtWidgets/QDialog>
 
 class QVBoxLayout;
 class QHBoxLayout;
-class QGridLayout;
 class QGroupBox;
 class QLabel;
 class QListWidgetItem;
@@ -48,7 +41,7 @@ class QPushButton;
 class KComboBox;
 class KrListWidget;
 
-class KRMaskChoice : public KDialog
+class KRMaskChoice : public QDialog
 {
     Q_OBJECT
 

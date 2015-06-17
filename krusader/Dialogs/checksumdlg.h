@@ -21,22 +21,21 @@
 #ifndef CHECKSUMDLG_H
 #define CHECKSUMDLG_H
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
+#include <QtWidgets/QDialog>
 
 class KUrlRequester;
 class QCheckBox;
 
 extern void initChecksumModule();
 
-class CreateChecksumDlg: public KDialog
+class CreateChecksumDlg: public QDialog
 {
 public:
     CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path);
 };
 
 
-class MatchChecksumDlg: public KDialog
+class MatchChecksumDlg: public QDialog
 {
 public:
     MatchChecksumDlg(const QStringList& files, bool containFolders,
@@ -49,7 +48,7 @@ protected:
 };
 
 
-class ChecksumResultsDlg: public KDialog
+class ChecksumResultsDlg: public QDialog
 {
 public:
     ChecksumResultsDlg(const QStringList &stdOut, const QStringList &stdErr,
@@ -70,7 +69,7 @@ private:
 };
 
 
-class VerifyResultDlg: public KDialog
+class VerifyResultDlg: public QDialog
 {
 public:
     VerifyResultDlg(const QStringList& failed);

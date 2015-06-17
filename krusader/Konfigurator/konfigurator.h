@@ -36,7 +36,6 @@
 #include "konfiguratorpage.h"
 
 #include <QtCore/QTimer>
-#include <QtWidgets/QWidget>
 
 #include <KWidgetsAddons/KPageDialog>
 
@@ -53,15 +52,16 @@ signals:
 
 public:
     Konfigurator(bool f = false, int startPage = 0); // true if Konfigurator is run for the first time
-    ~Konfigurator() {};
+
+    void reject() Q_DECL_OVERRIDE;
 
 protected:
     void newPage(KonfiguratorPage *, const QString &, const QString &, const QIcon &); // adds widget and connects to slot
     void createLayout(int startPage);
     void closeDialog();
 
-    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
-    virtual void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
 
 protected slots:
     void slotApplyEnable();
@@ -71,9 +71,9 @@ protected slots:
     void slotApply();
     void slotReset();
     void slotRestore();
+    void slotShowHelp();
 
 private:
-    QDialog                    *dialog;
     QList<KPageWidgetItem*>     kgPages;
     bool                        firstTime;
     KPageWidgetItem            *lastPage;

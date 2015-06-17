@@ -32,6 +32,7 @@
 
 #include <QtCore/QTimer>
 #include <QtGui/QResizeEvent>
+#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
@@ -45,7 +46,7 @@
 #include "../Dialogs/krdialogs.h"
 
 DiskUsageGUI::DiskUsageGUI(QUrl openDir, QWidget* parent)
-        : KDialog(parent), exitAtFailure(true)
+        : QDialog(parent), exitAtFailure(true)
 {
     setWindowTitle(i18n("Krusader::Disk Usage"));
 
@@ -53,11 +54,14 @@ DiskUsageGUI::DiskUsageGUI(QUrl openDir, QWidget* parent)
     if (!newSearch())
         return;
 
-    QGridLayout *duGrid = new QGridLayout(mainWidget());
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+
+    QGridLayout *duGrid = new QGridLayout();
     duGrid->setSpacing(6);
     duGrid->setContentsMargins(11, 11, 11, 11);
 
-    QWidget *duTools = new QWidget(mainWidget());
+    QWidget *duTools = new QWidget(this);
     QHBoxLayout *duHBox = new QHBoxLayout(duTools);
     duHBox->setContentsMargins(0, 0, 0, 0);
     duTools->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -107,14 +111,18 @@ DiskUsageGUI::DiskUsageGUI(QUrl openDir, QWidget* parent)
 
     duGrid->addWidget(duTools, 0, 0);
 
-    diskUsage = new DiskUsage("DiskUsage", mainWidget());
+    diskUsage = new DiskUsage("DiskUsage", this);
     duGrid->addWidget(diskUsage, 1, 0);
 
-    status = new KSqueezedTextLabel(mainWidget());
-    status->setFrameShape(QLabel::StyledPanel);
-    status->setFrameShadow(QLabel::Sunken);
+    status = new KSqueezedTextLabel(this);
     duGrid->addWidget(status, 2, 0);
 
+    mainLayout->addLayout(duGrid);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
+    mainLayout->addWidget(buttonBox);
+
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
     connect(diskUsage, SIGNAL(status(QString)), this, SLOT(setStatus(QString)));
     connect(diskUsage, SIGNAL(viewChanged(int)), this, SLOT(slotViewChanged(int)));
     connect(diskUsage, SIGNAL(newSearch()), this,  SLOT(newSearch()));
@@ -173,7 +181,7 @@ void DiskUsageGUI::resizeEvent(QResizeEvent *e)
         sizeX = e->size().width();
         sizeY = e->size().height();
     }
-    KDialog::resizeEvent(e);
+    QDialog::resizeEvent(e);
 }
 
 void DiskUsageGUI::reject()
@@ -184,7 +192,7 @@ void DiskUsageGUI::reject()
     group.writeEntry("Window Maximized", isMaximized());
     group.writeEntry("View", diskUsage->getActiveView());
 
-    KDialog::reject();
+    QDialog::reject();
 }
 
 void DiskUsageGUI::loadUsageInfo()

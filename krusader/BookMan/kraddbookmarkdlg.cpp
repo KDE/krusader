@@ -21,10 +21,11 @@
 #include "../krglobal.h"
 #include "krbookmarkhandler.h"
 
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QLabel>
+#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KInputDialog>
@@ -33,63 +34,71 @@
 #include <KIconThemes/KIconLoader>
 
 KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, QUrl url):
-        KDialog(parent)
+        QDialog(parent)
 {
-    setButtons(KDialog::User1 | KDialog::Ok | KDialog::Cancel);
-    setDefaultButton(KDialog::Ok);
-    setWindowTitle(i18n("Add Bookmark"));
     setWindowModality(Qt::WindowModal);
-    // create the 'new folder' button
-    setButtonText(KDialog::User1, i18n("New Folder"));
-    showButton(KDialog::User1, false); // hide it until _createIn is shown
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(newFolder()));
-    connect(this, SIGNAL(okClicked()), this, SLOT(accept()));
-    connect(this, SIGNAL(cancelClicked()), this, SLOT(reject()));
+    setWindowTitle(i18n("Add Bookmark"));
 
-    // create the main widget
-    QWidget *page = new QWidget(this);
-    setMainWidget(page);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
 
-    QGridLayout *layout = new QGridLayout(page); // expanding
-    layout->setSpacing(spacingHint());
-    layout->setContentsMargins(0, 0, 0, 0);
+    QGridLayout *layout = new QGridLayout; // expanding
     // name and url
-    QLabel *lb1 = new QLabel(i18n("Name:"), page);
-    _name = new KLineEdit(page);
+    QLabel *lb1 = new QLabel(i18n("Name:"), this);
+    _name = new KLineEdit(this);
     _name->setText(url.toDisplayString()); // default name is the url
     _name->selectAll(); // make the text selected
     layout->addWidget(lb1, 0, 0);
     layout->addWidget(_name, 0, 1);
 
-    QLabel *lb2 = new QLabel(i18n("URL:"), page);
-    _url = new KLineEdit(page);
+    QLabel *lb2 = new QLabel(i18n("URL:"), this);
+    _url = new KLineEdit(this);
     layout->addWidget(lb2, 1, 0);
     layout->addWidget(_url, 1, 1);
     _url->setText(url.toDisplayString()); // set the url in the field
 
     // create in linedit and button
-    QLabel *lb3 = new QLabel(i18n("Create in:"), page);
-    _folder = new KLineEdit(page);
+    QLabel *lb3 = new QLabel(i18n("Create in:"), this);
+    _folder = new KLineEdit(this);
     layout->addWidget(lb3, 2, 0);
     layout->addWidget(_folder, 2, 1);
     _folder->setReadOnly(true);
 
-    _createInBtn = new QToolButton(page);
+    _createInBtn = new QToolButton(this);
     _createInBtn->setIcon(krLoader->loadIcon("go-down", KIconLoader::Small));
     _createInBtn->setCheckable(true);
     connect(_createInBtn, SIGNAL(toggled(bool)), this, SLOT(toggleCreateIn(bool)));
     layout->addWidget(_createInBtn, 2, 2);
 
-    setDetailsWidget(createInWidget());
+    mainLayout->addLayout(layout);
+
+    detailsWidget = createInWidget();
+    detailsWidget->setVisible(false);
+    mainLayout->addWidget(detailsWidget);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    mainLayout->addWidget(buttonBox);
+
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    newFolderButton = new QPushButton(i18n("New Folder"));
+    buttonBox->addButton(newFolderButton, QDialogButtonBox::ActionRole);
+    newFolderButton->setVisible(false);// hide it until _createIn is shown
+    connect(newFolderButton, SIGNAL(clicked()), this, SLOT(newFolder()));
+
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
     _name->setFocus();
+    resize(sizeHint().width() * 2, sizeHint().height());
 }
 
 void KrAddBookmarkDlg::toggleCreateIn(bool show)
 {
     _createInBtn->setIcon(krLoader->loadIcon(show ? "go-up" : "go-down", KIconLoader::Small));
-    showButton(KDialog::User1, show);
-    setDetailsWidgetVisible(show);
+    newFolderButton->setVisible(show);
+    detailsWidget->setVisible(show);
 }
 
 // creates the widget that lets you decide where to put the new bookmark

@@ -12,7 +12,7 @@ set(Dialogs_SRCS
     popularurls.cpp
     checksumdlg.cpp
     percentalsplitter.cpp
-    krkeydialog.cpp)
+)
 
 add_library(Dialogs STATIC ${Dialogs_SRCS})
 

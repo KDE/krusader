@@ -81,7 +81,7 @@ void KrBookmarkHandler::slotBookmarkCurrent()
 void KrBookmarkHandler::bookmarkCurrent(QUrl url)
 {
     QPointer<KrAddBookmarkDlg> dlg = new KrAddBookmarkDlg(_mainWindow->widget(), url);
-    if (dlg->exec() == KDialog::Accepted) {
+    if (dlg->exec() == QDialog::Accepted) {
         KrBookmark *bm = new KrBookmark(dlg->name(), dlg->url(), _collection);
         addBookmark(bm, dlg->folder());
     }

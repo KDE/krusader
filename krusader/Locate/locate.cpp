@@ -55,6 +55,7 @@
 #include <QtGui/QFont>
 #include <QtGui/QDrag>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLayout>
@@ -74,7 +75,6 @@
 #include <KCoreAddons/KShell>
 #include <KTextWidgets/KFindDialog>
 #include <KTextWidgets/KFind>
-
 
 // these are the values that will exist in the menu
 #define VIEW_ID                     90
@@ -123,23 +123,19 @@ public:
 KProcess *  LocateDlg::updateProcess = 0;
 LocateDlg * LocateDlg::LocateDialog = 0;
 
-LocateDlg::LocateDlg() : KDialog(0), isFeedToListBox(false)
+LocateDlg::LocateDlg() : QDialog(0), isFeedToListBox(false)
 {
-    setButtons(KDialog::User1 | KDialog::User2 | KDialog::User3 | KDialog::Close);
-    setDefaultButton(KDialog::User3);
-    setWindowTitle(i18nc("@title:window", "Locate"));
+    setWindowTitle(i18n("Krusader::Locate"));
     setWindowModality(Qt::NonModal);
-    setButtonGuiItem(KDialog::User2, KGuiItem(i18n("Update DB")));
-    setButtonGuiItem(KDialog::User3, KGuiItem(i18n("Locate"), "system-search"));
 
-    QWidget *widget = new QWidget(this);
-    QGridLayout *grid = new QGridLayout(widget);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+
+    QGridLayout *grid = new QGridLayout();
     grid->setSpacing(6);
     grid->setContentsMargins(11, 11, 11, 11);
 
-    setPlainCaption(i18n("Krusader::Locate"));
-
-    QWidget *hboxWidget = new QWidget(widget);
+    QWidget *hboxWidget = new QWidget(this);
     QHBoxLayout *hbox = new QHBoxLayout(hboxWidget);
     hbox->setContentsMargins(0, 0, 0, 0);
 
@@ -162,7 +158,7 @@ LocateDlg::LocateDlg() : KDialog(0), isFeedToListBox(false)
 
     grid->addWidget(hboxWidget, 0, 0);
 
-    QWidget *hboxWidget2 = new QWidget(widget);
+    QWidget *hboxWidget2 = new QWidget(this);
     QHBoxLayout * hbox2 = new QHBoxLayout(hboxWidget2);
     hbox2->setContentsMargins(0, 0, 0, 0);
 
@@ -183,11 +179,11 @@ LocateDlg::LocateDlg() : KDialog(0), isFeedToListBox(false)
 
     grid->addWidget(hboxWidget2, 1, 0);
 
-    QFrame *line1 = new QFrame(widget);
+    QFrame *line1 = new QFrame(this);
     line1->setFrameStyle(QFrame::HLine | QFrame::Sunken);
     grid->addWidget(line1, 2, 0);
 
-    resultList = new LocateListView(widget);  // create the main container
+    resultList = new LocateListView(this);  // create the main container
     resultList->setColumnCount(1);
     resultList->setHeaderLabel(i18n("Results"));
 
@@ -209,33 +205,51 @@ LocateDlg::LocateDlg() : KDialog(0), isFeedToListBox(false)
             this, SLOT(slotDoubleClick(QTreeWidgetItem *)));
     connect(resultList, SIGNAL(itemActivated(QTreeWidgetItem *, int)),
             this, SLOT(slotDoubleClick(QTreeWidgetItem *)));
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
-    connect(this, SIGNAL(user2Clicked()), this, SLOT(slotUser2()));
-    connect(this, SIGNAL(user3Clicked()), this, SLOT(slotUser3()));
 
     grid->addWidget(resultList, 3, 0);
 
-    QFrame *line2 = new QFrame(widget);
+    QFrame *line2 = new QFrame(this);
     line2->setFrameStyle(QFrame::HLine | QFrame::Sunken);
     grid->addWidget(line2, 4, 0);
+
+    mainLayout->addLayout(grid);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
+    mainLayout->addWidget(buttonBox);
+
+    locateButton = new QPushButton(i18n("Locate"));
+    locateButton->setIcon(QIcon::fromTheme(QStringLiteral("system-search")));
+    locateButton->setDefault(true);
+    buttonBox->addButton(locateButton, QDialogButtonBox::ActionRole);
+
+    updateDbButton = new QPushButton(i18n("Update DB"));
+    updateDbButton->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
+    buttonBox->addButton(updateDbButton, QDialogButtonBox::ActionRole);
+
+    feedStopButton = new QPushButton;
+    buttonBox->addButton(feedStopButton, QDialogButtonBox::ActionRole);
+
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(locateButton, SIGNAL(clicked()), this, SLOT(slotLocate()));
+    connect(updateDbButton, SIGNAL(clicked()), this, SLOT(slotUpdateDb()));
+    connect(feedStopButton, SIGNAL(clicked()), this, SLOT(slotFeedStop()));
 
     updateButtons(false);
 
     if (updateProcess) {
         if (updateProcess->state() == QProcess::Running) {
             connect(updateProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(updateFinished()));
-            enableButton(KDialog::User2, false);
+            updateDbButton->setEnabled(false);
         } else
             updateFinished();
     }
 
-    setMainWidget(widget);
     show();
 
     LocateDialog = this;
 }
 
-void LocateDlg::slotUser1()   /* The stop / feed to listbox button */
+void LocateDlg::slotFeedStop()   /* The stop / feed to listbox button */
 {
     if (isFeedToListBox)
         feedToListBox();
@@ -243,7 +257,7 @@ void LocateDlg::slotUser1()   /* The stop / feed to listbox button */
         locateProc->kill();
 }
 
-void LocateDlg::slotUser2()   /* The Update DB button */
+void LocateDlg::slotUpdateDb()   /* The Update DB button */
 {
     if (!updateProcess) {
         KConfigGroup group(krConfig, "Locate");
@@ -254,7 +268,7 @@ void LocateDlg::slotUser2()   /* The Update DB button */
 
         connect(updateProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(updateFinished()));
         updateProcess->start();
-        enableButton(KDialog::User2, false);
+        updateDbButton->setEnabled(false);
     }
 }
 
@@ -262,10 +276,10 @@ void LocateDlg::updateFinished()
 {
     delete updateProcess;
     updateProcess = 0;
-    enableButton(KDialog::User2, true);
+    updateDbButton->setEnabled(true);
 }
 
-void LocateDlg::slotUser3()   /* The locate button */
+void LocateDlg::slotLocate()   /* The locate button */
 {
     locateSearchFor->addToHistory(locateSearchFor->currentText());
     QStringList list = locateSearchFor->historyItems();
@@ -440,7 +454,7 @@ void LocateDlg::slotDoubleClick(QTreeWidgetItem *item)
     }
 
     ACTIVE_FUNC->openUrl(QUrl::fromLocalFile(dirName), fileName);
-    KDialog::accept();
+    QDialog::accept();
 }
 
 void LocateDlg::keyPressEvent(QKeyEvent *e)
@@ -483,7 +497,7 @@ void LocateDlg::keyPressEvent(QKeyEvent *e)
         break;
     }
 
-    KDialog::keyPressEvent(e);
+    QDialog::keyPressEvent(e);
 }
 
 void LocateDlg::operate(QTreeWidgetItem *item, int task)
@@ -663,25 +677,27 @@ void LocateDlg::feedToListBox()
 
 void LocateDlg::reset()
 {
-    setDefaultButton(KDialog::User3);   // KDE HACK, it's a bug, that the default button is lost somehow
     locateSearchFor->lineEdit()->setFocus();
     locateSearchFor->lineEdit()->selectAll();
 }
 
 void LocateDlg::updateButtons(bool locateIsRunning)
 {
-    enableButton(KDialog::User3, !locateIsRunning);    /* locate button */
+    locateButton->setEnabled(!locateIsRunning);
 
     if (locateIsRunning) {
-        setButtonGuiItem(KDialog::User1, KGuiItem(i18n("Stop"), "process-stop"));
-        enableButton(KDialog::User1, true);     /* enable the stop button */
+        feedStopButton->setEnabled(true);
+        feedStopButton->setText(i18n("Stop"));
+        feedStopButton->setIcon(QIcon::fromTheme(QStringLiteral("process-stop")));
     } else {
         if (resultList->topLevelItemCount() == 0) {
-            setButtonGuiItem(KDialog::User1, KGuiItem(i18n("Stop"), "process-stop"));
-            enableButton(KDialog::User1, false);   /* disable the stop button */
+            feedStopButton->setEnabled(false);
+            feedStopButton->setText(i18n("Stop"));
+            feedStopButton->setIcon(QIcon::fromTheme(QStringLiteral("process-stop")));
         } else {
-            setButtonGuiItem(KDialog::User1, KGuiItem(i18n("Feed to listbox"), "list-add"));   /* feed to listbox */
-            enableButton(KDialog::User1, true);    /* enable the Feed to listbox button */
+            feedStopButton->setEnabled(true);
+            feedStopButton->setText(i18n("Feed to listbox"));
+            feedStopButton->setIcon(QIcon::fromTheme(QStringLiteral("list-add")));
         }
     }
 }

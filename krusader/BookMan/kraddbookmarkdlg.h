@@ -26,14 +26,12 @@
 
 #include <QtCore/QMap>
 #include <QtCore/QUrl>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QToolButton>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
 
 #include <KCompletion/KLineEdit>
 
-class KrAddBookmarkDlg: public KDialog
+class KrAddBookmarkDlg: public QDialog
 {
     Q_OBJECT
 public:
@@ -62,6 +60,8 @@ private:
     KrTreeWidget *_createIn;
     QMap<QTreeWidgetItem*, KrBookmark*> _xr;
     QToolButton *_createInBtn;
+    QPushButton *newFolderButton;
+    QWidget *detailsWidget;
 };
 
 #endif // KRADDBOOKMARKDLG_H

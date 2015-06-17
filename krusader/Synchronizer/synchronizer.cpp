@@ -50,15 +50,13 @@
 #include <QtCore/QDateTime>
 #include <QtCore/QUrl>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QLabel>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
 
 #include <KI18n/KLocalizedString>
 #include <KIO/DeleteJob>
@@ -1280,49 +1278,45 @@ QString Synchronizer::rightBaseDirectory()
 }
 
 KgetProgressDialog::KgetProgressDialog(QWidget *parent, const QString &caption,
-                                       const QString &text, bool modal) : KDialog(parent)
+                                       const QString &text, bool modal) : QDialog(parent)
 {
     if (caption.isEmpty())
         setWindowTitle(caption);
-    setButtons(KDialog::User1 | KDialog::Cancel);
-    setDefaultButton(KDialog::Cancel);
     setModal(modal);
 
-    showButton(KDialog::Close, false);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
 
-    QWidget* mainWidget = new QWidget(this);
-    QVBoxLayout* layout = new QVBoxLayout(mainWidget);
-    layout->setContentsMargins(10, 10, 10, 10);
+    mainLayout->addWidget(new QLabel(text));
 
-    QLabel *mLabel = new QLabel(text, mainWidget);
-    layout->addWidget(mLabel);
+    mProgressBar = new QProgressBar;
+    mainLayout->addWidget(mProgressBar);
 
-    mProgressBar = new QProgressBar(mainWidget);
-    layout->addWidget(mProgressBar);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Cancel);
+    mainLayout->addWidget(buttonBox);
 
-    setButtonText(KDialog::User1, i18n("Pause"));
+    mPauseButton = new QPushButton(i18n("Pause"));
+    buttonBox->addButton(mPauseButton, QDialogButtonBox::ActionRole);
+    buttonBox->button(QDialogButtonBox::Cancel)->setDefault(true);
+
+    connect(mPauseButton, SIGNAL(clicked()), SLOT(slotPause()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(slotCancel()));
 
     mCancelled = mPaused = false;
-
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
-    connect(this, SIGNAL(cancelClicked()), this, SLOT(reject()));
-
-    setMainWidget(mainWidget);
 }
 
-void KgetProgressDialog::slotUser1()
+void KgetProgressDialog::slotPause()
 {
     if ((mPaused = !mPaused) == false)
-        setButtonText(KDialog::User1, i18n("Pause"));
+        mPauseButton->setText(i18n("Pause"));
     else
-        setButtonText(KDialog::User1, i18n("Resume"));
+        mPauseButton->setText(i18n("Resume"));
 }
 
 void KgetProgressDialog::slotCancel()
 {
     mCancelled = true;
-
-    KDialog::reject();
+    reject();
 }
 
 

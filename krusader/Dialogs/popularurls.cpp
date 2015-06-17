@@ -22,6 +22,7 @@
 #include <stdio.h>
 
 #include <QtCore/QList>
+#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
@@ -270,47 +271,43 @@ void PopularUrls::showDialog()
 
 // ===================================== PopularUrlsDlg ======================================
 PopularUrlsDlg::PopularUrlsDlg():
-        KDialog(krMainWindow)
+        QDialog(krMainWindow)
 {
-    setButtons(KDialog::Close);
-    setDefaultButton(KDialog::NoDefault);
     setWindowTitle(i18n("Popular URLs"));
     setWindowModality(Qt::WindowModal);
 
-    QWidget * widget = new QWidget(this);
-    QGridLayout *layout = new QGridLayout(widget);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+
+    QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(0, 0, 0, 0);
 
     // listview to contain the urls
-    urls = new KrTreeWidget(widget);
-    urls->setHeaderLabel("");
+    urls = new KrTreeWidget(this);
     urls->header()->hide();
     urls->setSortingEnabled(false);
     urls->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
     // quick search
-    QToolButton *btn = new QToolButton(widget);
-    btn->setIcon(SmallIcon("edit-clear-locationbar-ltr"));
-    search = new KTreeWidgetSearchLine(widget, urls);
-    // TODO KF5: not found?
-    //search->setTrapReturnKey(true);
-    QLabel *lbl = new QLabel(i18n("&Search:"), widget);
+    search = new KTreeWidgetSearchLine(this, urls);
+    QLabel *lbl = new QLabel(i18n("&Search:"), this);
     lbl->setBuddy(search);
 
-    layout->addWidget(btn, 0, 0);
-    layout->addWidget(lbl, 0, 1);
-    layout->addWidget(search, 0, 2);
-    layout->addWidget(urls, 1, 0, 1, 3);
-    setMaximumSize(600, 500);
+    layout->addWidget(lbl, 0, 0);
+    layout->addWidget(search, 0, 1);
+    layout->addWidget(urls, 1, 0, 1, 2);
 
-    setMainWidget(widget);
+    mainLayout->addLayout(layout);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
+    mainLayout->addWidget(buttonBox);
 
     setTabOrder(search, urls);
-    setTabOrder((QWidget *)urls, (QWidget *)button(KDialog::Close));
+    setTabOrder((QWidget *)urls, buttonBox->button(QDialogButtonBox::Close));
 
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
     connect(urls, SIGNAL(activated(const QModelIndex &)),
             this, SLOT(slotItemSelected(const QModelIndex &)));
-    connect(btn, SIGNAL(clicked()), search, SLOT(clear()));
     connect(search, SIGNAL(hiddenChanged(QTreeWidgetItem *, bool)),
             this, SLOT(slotVisibilityChanged()));
 }

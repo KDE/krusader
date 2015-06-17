@@ -23,9 +23,7 @@
 #include <QtCore/QObject>
 #include <QtCore/QHash>
 #include <QtCore/QUrl>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
+#include <QtWidgets/QDialog>
 
 // the class holds a list of most popular links in a dual data structure
 // * linked list, with head and tail: for fast append/prepend support
@@ -84,7 +82,7 @@ class KrTreeWidget;
 class KTreeWidgetSearchLine;
 class QModelIndex;
 
-class PopularUrlsDlg: public KDialog
+class PopularUrlsDlg: public QDialog
 {
     Q_OBJECT
 public:

@@ -34,13 +34,12 @@
 #include "filtersettings.h"
 #include "../VFS/krquery.h"
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
+#include <QtWidgets/QDialog>
 
 class FilterTabs;
 class GeneralFilter;
 
-class FilterDialog : public KDialog
+class FilterDialog : public QDialog
 {
     Q_OBJECT
 
@@ -57,9 +56,7 @@ public:
 
 public slots:
     void slotCloseRequest(bool doAccept);
-
-protected slots:
-    virtual void slotButtonClicked(int button) Q_DECL_OVERRIDE;
+    void slotReset();
     void slotOk();
 
 private:

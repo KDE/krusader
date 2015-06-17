@@ -19,20 +19,11 @@
 #ifndef KRRESULTTABLEDIALOG_H
 #define KRRESULTTABLEDIALOG_H
 
-#include <QtCore/QStringList>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QVBoxLayout>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
-
-# include <KIconThemes/KIconLoader>
+#include <QtWidgets/QDialog>
 
 #include "../Konfigurator/krresulttable.h"
-#include "../Konfigurator/searchobject.h"
 
-class KrResultTableDialog : public KDialog
+class KrResultTableDialog : public QDialog
 {
 public:
 
@@ -57,15 +48,14 @@ public:
         _hint = s;
     }
 
+public slots:
+    void showHelp();
+
 protected:
     QString _heading;
     QString _hint;
+    QString helpAnchor;
 
-    QLabel* _headingLabel;
-    QLabel* _iconLabel;
-    QLabel* _hintLabel;
-    QWidget* _page;
-    QVBoxLayout* _topLayout;
     KrResultTable* _resultTable;
 };
 

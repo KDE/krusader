@@ -33,8 +33,9 @@ A
 
 #include <QtCore/QTimer>
 #include <QtCore/QMutexLocker>
-#include <QtWidgets/QLayout>
+#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
 
 #include <KI18n/KLocalizedString>
@@ -104,29 +105,34 @@ void KrCalcSpaceDialog::CalcThread::stop()
 
 
 KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, KrPanel * panel, const QStringList & items, bool autoclose) :
-        KDialog(parent), m_autoClose(autoclose), m_canceled(false),
+        QDialog(parent), m_autoClose(autoclose), m_canceled(false),
                 m_timerCounter(0), m_items(items), m_view(panel->view)
 {
-    setButtons(KDialog::Ok | KDialog::Cancel);
-    setDefaultButton(KDialog::Ok);
     setWindowTitle(i18n("Calculate Occupied Space"));
     setWindowModality(Qt::WindowModal);
-    // the dialog: The Ok button is hidden until it is needed
-    showButton(KDialog::Ok, false);
+
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+
     m_thread = new CalcThread(panel->virtualPath(), items);
     m_pollTimer = new QTimer(this);
-    QWidget * mainWidget = new QWidget(this);
-    setMainWidget(mainWidget);
-    QVBoxLayout *topLayout = new QVBoxLayout(mainWidget);
-    topLayout->setContentsMargins(0, 0, 0, 0);
-    topLayout->setSpacing(spacingHint());
-
-    m_label = new QLabel("", mainWidget);
+    m_label = new QLabel("", this);
+    mainLayout->addWidget(m_label);
     showResult(); // fill m_label with something useful
-    topLayout->addWidget(m_label);
-    topLayout->addStretch(10);
+    mainLayout->addStretch(10);
 
-    connect(this, SIGNAL(cancelClicked()), this, SLOT(reject()));
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    mainLayout->addWidget(buttonBox);
+
+    okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    // the dialog: The Ok button is hidden until it is needed
+    okButton->setVisible(false);
+    cancelButton = buttonBox->button(QDialogButtonBox::Cancel);
+
+    connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), SLOT(slotCancel()));
 }
 
 void KrCalcSpaceDialog::calculationFinished()
@@ -138,8 +144,8 @@ void KrCalcSpaceDialog::calculationFinished()
         return;
     }
     // otherwise hide cancel and show ok button
-    showButton(KDialog::Cancel, false);
-    showButton(KDialog::Ok, true);
+    cancelButton->setVisible(false);
+    okButton->setVisible(true);
     showResult(); // and show final result
 }
 
@@ -190,7 +196,7 @@ void KrCalcSpaceDialog::slotCancel()
 {
     m_thread->stop(); // notify the thread to stop
     m_canceled = true; // set the cancel flag
-    KDialog::reject(); // close the dialog
+    reject(); // close the dialog
 }
 
 KrCalcSpaceDialog::~KrCalcSpaceDialog()
@@ -219,7 +225,7 @@ int KrCalcSpaceDialog::exec()
     // prepare and start the poll timer
     connect(m_pollTimer, SIGNAL(timeout()), this, SLOT(timer()));
     m_pollTimer->start(100);
-    return KDialog::exec();                                 // show the dialog
+    return QDialog::exec();                                 // show the dialog
 }
 /* --=={ End of patch by Heiner <h.eichmann@gmx.de> }==-- */
 

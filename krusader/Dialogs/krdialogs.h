@@ -24,14 +24,12 @@
 #include <QtCore/QUrl>
 #include <QtWidgets/QLineEdit>
 #include <QtGui/QPixmap>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QPushButton>
 
 #include <KWidgetsAddons/KAnimatedButton>
 #include <KIOWidgets/KUrlRequesterDialog>
@@ -65,7 +63,7 @@ public:
     static QUrl getDir(QString text, const QUrl& url, const QUrl& cwd, bool & queue, bool & preserveAttrs, QUrl &baseURL);
 };
 
-class KUrlRequesterDlgForCopy : public KDialog
+class KUrlRequesterDlgForCopy : public QDialog
 {
     Q_OBJECT
 public:
@@ -90,7 +88,6 @@ protected:
     virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 
 private slots:
-    void slotClear();
     void slotQueue();
     void slotTextChanged(const QString &);
     void slotDirStructCBChanged();
@@ -99,10 +96,11 @@ private:
     QComboBox *baseUrlCombo;
 //     QCheckBox *preserveAttrsCB;
     QCheckBox *copyDirStructureCB;
+    QPushButton *okButton;
     bool queue;
 };
 
-class KRGetDate : public KDialog
+class KRGetDate : public QDialog
 {
     Q_OBJECT
 public:

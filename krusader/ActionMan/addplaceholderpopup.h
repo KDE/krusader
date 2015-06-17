@@ -22,10 +22,8 @@
 #define ADDPLACEHOLDERPOPUP_H
 
 #include <QtCore/QList>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QMenu>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
 
 #include "../UserAction/expander.h"
 
@@ -321,7 +319,7 @@ private:
  *  Opens a dialog for the parameter. Depending on the default (preset) a differend widget is used.
  *  See Parameter-Classes for details
  */
-class ParameterDialog : public KDialog
+class ParameterDialog : public QDialog
 {
     Q_OBJECT
 public:

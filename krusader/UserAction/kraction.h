@@ -24,9 +24,7 @@
 #include <QtCore/QByteArray>
 #include <QtCore/QUrl>
 #include <QtWidgets/QAction>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
+#include <QtWidgets/QDialog>
 
 #include <KCoreAddons/KProcess>
 #include <KTextWidgets/KTextEdit>
@@ -190,7 +188,7 @@ class QFont;
 /**
  * This displays the output of a process
  */
-class KrActionProcDlg: public KDialog
+class KrActionProcDlg: public QDialog
 {
     Q_OBJECT
 public:
@@ -199,10 +197,15 @@ public:
 public slots:
     void addStderr(const QString& str);
     void addStdout(const QString& str);
+    void slotProcessFinished();
 
 protected slots:
     void toggleFixedFont(bool state);
-    void slotUser1(); ///< This is used to save the buffer to disc
+    void slotSaveAs();
+
+
+signals:
+    void killClicked();
 
 private:
     KTextEdit *_stdout;
@@ -210,6 +213,8 @@ private:
     KTextEdit *_currentTextEdit;
     QFont normalFont;
     QFont fixedFont;
+    QPushButton *closeButton;
+    QPushButton *killButton;
 private slots:
     void currentTextEditChanged();
 };

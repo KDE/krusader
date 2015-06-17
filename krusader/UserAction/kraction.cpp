@@ -31,6 +31,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QBoxLayout>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLayout>
@@ -39,7 +40,6 @@
 #include <QtXml/QDomElement>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
 #include <KDE/KInputDialog>
 
 #include <KConfigCore/KSharedConfig>
@@ -59,55 +59,40 @@
 
 // KrActionProcDlg
 KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *parent) :
-        KDialog(parent), _stdout(0), _stderr(0), _currentTextEdit(0)
+        QDialog(parent), _stdout(0), _stderr(0), _currentTextEdit(0)
 {
     setWindowTitle(caption);
-    setButtons(KDialog::User1 | KDialog::Ok | KDialog::Cancel);
-    setDefaultButton(KDialog::Cancel);
     setWindowModality(Qt::NonModal);
 
-    setButtonGuiItem(KDialog::Ok, KGuiItem(i18n("Close")));
-    enableButtonOk(false);   // disable the close button, until the process finishes
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
 
-    setButtonGuiItem(KDialog::Cancel, KGuiItem(i18n("Kill"), i18n("Kill the running process")));
-
-    setButtonText(KDialog::User1, i18n("Save as"));
-
-    QWidget *page = new QWidget(this);
-    QVBoxLayout *pageBox = new QVBoxLayout(page);
-    pageBox->setMargin(0);
-    setMainWidget(page);
     // do we need to separate stderr and stdout?
     if (enableStderr) {
-        QSplitter *splitt = new QSplitter(Qt::Vertical, page);
-        pageBox->addWidget(splitt);
+        QSplitter *splitt = new QSplitter(Qt::Horizontal, this);
+        mainLayout->addWidget(splitt);
         // create stdout
         QWidget *stdoutWidget = new QWidget(splitt);
         QVBoxLayout *stdoutBox = new QVBoxLayout(stdoutWidget);
 
-        stdoutBox->setSpacing(6);
         stdoutBox->addWidget(new QLabel(i18n("Standard Output (stdout)"), stdoutWidget));
         _stdout = new KTextEdit(stdoutWidget);
         _stdout->setReadOnly(true);
-        _stdout->setMinimumWidth(fontMetrics().maxWidth() * 40);
         stdoutBox->addWidget(_stdout);
         // create stderr
         QWidget *stderrWidget = new QWidget(splitt);
         QVBoxLayout *stderrBox = new QVBoxLayout(stderrWidget);
 
-        stderrBox->setSpacing(6);
         stderrBox->addWidget(new QLabel(i18n("Standard Error (stderr)"), stderrWidget));
         _stderr = new KTextEdit(stderrWidget);
         _stderr->setReadOnly(true);
-        _stderr->setMinimumWidth(fontMetrics().maxWidth() * 40);
         stderrBox->addWidget(_stderr);
     } else {
         // create stdout
-        pageBox->addWidget(new QLabel(i18n("Output"), page));
-        _stdout = new KTextEdit(page);
+        mainLayout->addWidget(new QLabel(i18n("Output")));
+        _stdout = new KTextEdit;
         _stdout->setReadOnly(true);
-        _stdout->setMinimumWidth(fontMetrics().maxWidth() * 40);
-        pageBox->addWidget(_stdout);
+        mainLayout->addWidget(_stdout);
     }
 
     _currentTextEdit = _stdout;
@@ -121,17 +106,34 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
     bool startupState = group.readEntry("Use Fixed Font", _UserActions_UseFixedFont);
     toggleFixedFont(startupState);
 
-    // HACK This fetches the layout of the buttonbox from KDialog, although it is not accessable with KDialog's API
-    // None the less it's quite save to use since this implementation hasn't changed since KDE-3.3 (I haven't looked at earlier
-    // versions since we don't support them) and now all work is done in KDE-4.
-    QWidget* buttonBox = static_cast<QWidget*>(button(KDialog::Ok)->parent());
-    QBoxLayout* buttonBoxLayout = static_cast<QBoxLayout*>(buttonBox->layout());
-    QCheckBox* useFixedFont = new QCheckBox(i18n("Use font with fixed width"), buttonBox);
-    buttonBoxLayout->insertWidget(0, useFixedFont);
+    QHBoxLayout *hbox = new QHBoxLayout;
+    QCheckBox* useFixedFont = new QCheckBox(i18n("Use font with fixed width"));
     useFixedFont->setChecked(startupState);
+    hbox->addWidget(useFixedFont);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
+    hbox->addWidget(buttonBox);
+
+    mainLayout->addLayout(hbox);
+
+    closeButton = buttonBox->button(QDialogButtonBox::Close);
+    closeButton->setEnabled(false);
+
+    QPushButton *saveAsButton = new QPushButton;
+    KGuiItem::assign(saveAsButton, KStandardGuiItem::saveAs());
+    buttonBox->addButton(saveAsButton, QDialogButtonBox::ActionRole);
+
+    killButton = new QPushButton(i18n("Kill"));
+    killButton->setToolTip(i18n("Kill the running process"));
+    killButton->setDefault(true);
+    buttonBox->addButton(killButton, QDialogButtonBox::ActionRole);
+
+    connect(killButton, SIGNAL(clicked()), this, SIGNAL(killClicked()));
+    connect(saveAsButton, SIGNAL(clicked()), this, SLOT(slotSaveAs()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
     connect(useFixedFont, SIGNAL(toggled(bool)), SLOT(toggleFixedFont(bool)));
 
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+    resize(sizeHint() * 2);
 }
 
 void KrActionProcDlg::addStderr(const QString& str)
@@ -163,7 +165,7 @@ void KrActionProcDlg::toggleFixedFont(bool state)
     }
 }
 
-void KrActionProcDlg::slotUser1()
+void KrActionProcDlg::slotSaveAs()
 {
     QString filename = QFileDialog::getSaveFileName(this, QString(), QString(), i18n("*.txt|Text files\n*|All files"));
     if (filename.isEmpty())
@@ -196,6 +198,12 @@ void KrActionProcDlg::slotUser1()
     QTextStream stream(&file);
     stream << _currentTextEdit->toPlainText();
     file.close();
+}
+
+void KrActionProcDlg::slotProcessFinished()
+{
+    closeButton->setEnabled(true);
+    killButton->setEnabled(false);
 }
 
 void KrActionProcDlg::currentTextEditChanged()
@@ -298,7 +306,7 @@ void KrActionProc::start(QStringList cmdLineList)
             _proc->setOutputChannelMode(KProcess::SeparateChannels);
             connect(_proc, SIGNAL(readyReadStandardError()), SLOT(addStderr()));
             connect(_proc, SIGNAL(readyReadStandardOutput()), SLOT(addStdout()));
-            connect(_output, SIGNAL(cancelClicked()), this, SLOT(kill()));
+            connect(_output, SIGNAL(killClicked()), this, SLOT(kill()));
             _output->show();
 
             if (!_action->user().isEmpty()) {
@@ -317,8 +325,7 @@ void KrActionProc::processExited(int /*exitCode*/, QProcess::ExitStatus /*exitSt
     // enable the 'close' button on the dialog (if active), disable 'kill' button
     if (_output) {
         // TODO tell the user the program exit code
-        _output->enableButtonOk(true);
-        _output->enableButtonCancel(false);
+        _output->slotProcessFinished();
     }
     delete this; // banzai!!
 }

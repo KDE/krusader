@@ -21,11 +21,9 @@
 #ifndef NEWFTPGUI_H
 #define NEWFTPGUI_H
 
-#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
+#include <QtWidgets/QSpinBox>
 
 #include <KCompletion/KComboBox>
 #include <KCompletion/KHistoryComboBox>
@@ -35,7 +33,7 @@ class QEvent;
 class QString;
 class QWidget;
 
-class newFTPGUI : public KDialog
+class newFTPGUI : public QDialog
 {
     Q_OBJECT
 

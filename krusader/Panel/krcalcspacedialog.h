@@ -36,10 +36,10 @@
 
 #include <QtCore/QMutex>
 #include <QtCore/QThread>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
 #include <KIO/JobClasses>
 
 #include "../VFS/vfs.h"
@@ -53,7 +53,7 @@ class KrView;
  * calculation, to avoid a short appearance if the result was found quickly.
  * Computes the result in a different thread.
  */
-class KrCalcSpaceDialog : public KDialog
+class KrCalcSpaceDialog : public QDialog
 {
     Q_OBJECT
 
@@ -84,7 +84,9 @@ class KrCalcSpaceDialog : public KDialog
         void stop(); // stop it. Thread continues until vfs_calcSpace returns
     } * m_thread;
 
-    QLabel * m_label;
+    QLabel *m_label;
+    QPushButton *okButton;
+    QPushButton *cancelButton;
     bool m_autoClose; // true: wait 3 sec. before showing the dialog. Close it, when done
     bool m_canceled; // true: cancel was pressed
     int m_timerCounter; // internal counter. The timer runs faster as the rehresh (see comment there)
@@ -113,7 +115,7 @@ public:
     } // cancel was pressed; result is probably wrong
 
 public slots:
-    int exec(); // start calculation
+    int exec() Q_DECL_OVERRIDE; // start calculation
 };
 /* End of patch by Heiner <h.eichmann@gmx.de> */
 

@@ -33,17 +33,15 @@
 
 #include <QtCore/QUrl>
 #include <QtGui/QResizeEvent>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QToolButton>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
 
 #include <KWidgetsAddons/KSqueezedTextLabel>
 
 #include "diskusage.h"
 
-class DiskUsageGUI : public KDialog
+class DiskUsageGUI : public QDialog
 {
     Q_OBJECT
 

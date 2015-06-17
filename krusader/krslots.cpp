@@ -45,6 +45,7 @@
 #include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KMessageBox>
 #include <KXmlGui/KEditToolBar>
+#include <KXmlGui/KShortcutsDialog>
 #include <KXmlGui/KToolBar>
 
 #ifdef __KJSEMBED__
@@ -61,7 +62,6 @@
 #include "Panel/krselectionmode.h"
 #include "Dialogs/krdialogs.h"
 #include "Dialogs/krspwidgets.h"
-#include "Dialogs/krkeydialog.h"
 #include "GUI/krusaderstatus.h"
 #include "Panel/panelfunc.h"
 #include "Konfigurator/konfigurator.h"
@@ -517,7 +517,7 @@ void KRslots::saveNewToolbarConfig()
 
 void KRslots::configKeys()
 {
-    KrKeyDialog d(MAIN_VIEW);
+    KShortcutsDialog::configure(krApp->actionCollection(), KShortcutsEditor::LetterShortcutsAllowed, krMainWindow);
 }
 
 void KRslots::slotSplit()

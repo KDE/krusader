@@ -22,13 +22,13 @@
 #include <QtCore/QDir>
 #include <QtGui/QFontMetrics>
 #include <QtGui/QKeyEvent>
-#include <QtWidgets/QMessageBox>
-#include <QtWidgets/QWidget>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QMessageBox>
 #include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QCheckBox>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KStandardGuiItem>
@@ -39,6 +39,7 @@
 #include <KCompletion/KLineEdit>
 #include <KIOWidgets/KUrlRequester>
 #include <KIOCore/KRecentDocument>
+#include <KWidgetsAddons/KGuiItem>
 
 #include "../krglobal.h"
 #include "../VFS/vfs.h"
@@ -138,38 +139,30 @@ QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &qu
 
 KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QString& _text, bool /*presAttrs*/, QWidget *parent,
         bool modal, QUrl baseURL)
-        :   KDialog(parent), baseUrlCombo(0), copyDirStructureCB(0), queue(false)
+        :   QDialog(parent), baseUrlCombo(0), copyDirStructureCB(0), queue(false)
 {
-    setButtons(KDialog::Ok | KDialog::User1 | KDialog::User2 | KDialog::Cancel);
-    setDefaultButton(KDialog::Ok);
-    setButtonGuiItem(KDialog::User1, KGuiItem(i18n("F2 Queue")));
-    setButtonGuiItem(KDialog::User2, KStandardGuiItem::clear());
     setWindowModality(modal ? Qt::WindowModal : Qt::NonModal);
-    showButtonSeparator(true);
 
-    QWidget * widget = new QWidget(this);
-    QVBoxLayout * topLayout = new QVBoxLayout(widget);
-    topLayout->setContentsMargins(0, 0, 0, 0);
-    topLayout->setSpacing(spacingHint());
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
 
-    QLabel * label = new QLabel(_text, widget);
-    topLayout->addWidget(label);
+    mainLayout->addWidget(new QLabel(_text));
 
-    urlRequester_ = new KUrlRequester(urlName, widget);
+    urlRequester_ = new KUrlRequester(urlName, this);
     urlRequester_->setMinimumWidth(urlRequester_->sizeHint().width() * 3);
-    topLayout->addWidget(urlRequester_);
+    mainLayout->addWidget(urlRequester_);
 //     preserveAttrsCB = new QCheckBox(i18n("Preserve attributes (only for local targets)"), widget);
 //     preserveAttrsCB->setChecked(presAttrs);
 //     topLayout->addWidget(preserveAttrsCB);
     if (!baseURL.isEmpty()) {
-        QFrame *line = new QFrame(widget);
+        QFrame *line = new QFrame(this);
         line->setFrameStyle(QFrame::HLine | QFrame::Sunken);
-        topLayout->addWidget(line);
-        copyDirStructureCB = new QCheckBox(i18n("Keep virtual directory structure"), widget);
+        mainLayout->addWidget(line);
+        copyDirStructureCB = new QCheckBox(i18n("Keep virtual directory structure"), this);
         connect(copyDirStructureCB, SIGNAL(toggled(bool)), this, SLOT(slotDirStructCBChanged()));
         copyDirStructureCB->setChecked(false);
-        topLayout->addWidget(copyDirStructureCB);
-        QWidget *hboxWidget = new QWidget(widget);
+        mainLayout->addWidget(copyDirStructureCB);
+        QWidget *hboxWidget = new QWidget(this);
         QHBoxLayout * hbox = new QHBoxLayout(hboxWidget);
         QLabel * lbl = new QLabel(i18n("Base URL:"),  hboxWidget);
         hbox->addWidget(lbl);
@@ -188,19 +181,25 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QStr
         } while (!tempOld.matches(temp, QUrl::StripTrailingSlash));
         baseUrlCombo->setCurrentIndex(0);
 
-        topLayout->addWidget(hboxWidget);
+        mainLayout->addWidget(hboxWidget);
     }
-    widget->setLayout(topLayout);
-    setMainWidget(widget);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    mainLayout->addWidget(buttonBox);
+
+    okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    QPushButton *queueButton = new QPushButton(i18n("F2 Queue"), this);
+    buttonBox->addButton(queueButton, QDialogButtonBox::ActionRole);
+    connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
+    connect(queueButton, SIGNAL(clicked()), SLOT(slotQueue()));
+    connect(urlRequester_, SIGNAL(textChanged(QString)), SLOT(slotTextChanged(QString)));
 
     urlRequester_->setFocus();
-    connect(urlRequester_->lineEdit(), SIGNAL(textChanged(const QString&)),
-            SLOT(slotTextChanged(const QString&)));
     bool state = !urlName.isEmpty();
-    enableButtonOk(state);
-    enableButton(KDialog::User2, state);
-    connect(this, SIGNAL(user2Clicked()), SLOT(slotClear()));
-    connect(this, SIGNAL(user1Clicked()), SLOT(slotQueue()));
+    okButton->setEnabled(state);
 }
 
 KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy()
@@ -234,19 +233,13 @@ bool KUrlRequesterDlgForCopy::copyDirStructure()
 void KUrlRequesterDlgForCopy::slotTextChanged(const QString & text)
 {
     bool state = !text.trimmed().isEmpty();
-    enableButtonOk(state);
-    enableButton(KDialog::User2, state);
+    okButton->setEnabled(state);
 }
 
 void KUrlRequesterDlgForCopy::slotQueue()
 {
     queue = true;
     accept();
-}
-
-void KUrlRequesterDlgForCopy::slotClear()
-{
-    urlRequester_->clear();
 }
 
 void KUrlRequesterDlgForCopy::slotDirStructCBChanged()
@@ -277,7 +270,7 @@ QUrl KUrlRequesterDlgForCopy::baseURL() const
     return QUrl::fromUserInput(baseUrlCombo->currentText(), QString(), QUrl::AssumeLocalFile);
 }
 
-KRGetDate::KRGetDate(QDate date, QWidget *parent) : KDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
+KRGetDate::KRGetDate(QDate date, QWidget *parent) : QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
 {
     setWindowModality(Qt::WindowModal);
     dateWidget = new KDatePicker(this);

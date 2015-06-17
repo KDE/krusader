@@ -46,12 +46,13 @@ A
 #include <QtGui/QPixmap>
 #include <QtGui/QBitmap>
 #include <QtGui/QCursor>
+#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QGridLayout>
-#include <QtWidgets/QLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QMenu>
+#include <QtWidgets/QPushButton>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
@@ -67,38 +68,42 @@ A
 #define MTAB "/etc/mtab"
 #endif
 
-#define EJECT_BTN KDialog::User1
-#define UMOUNT_BTN KDialog::User2
-
-
-KMountManGUI::KMountManGUI(KMountMan *mntMan) : KDialog(mntMan->parentWindow),
+KMountManGUI::KMountManGUI(KMountMan *mntMan) : QDialog(mntMan->parentWindow),
     mountMan(mntMan),
     info(0),
-    mainPage(0),
     mountList(0),
     cbShowOnlyRemovable(0),
     watcher(0),
     sizeX(-1),
     sizeY(-1)
 {
-    setWindowTitle(i18n("Mount.Man"));
+    setWindowTitle(i18n("MountMan - Your Mount-Manager"));
     setWindowModality(Qt::WindowModal);
+
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
 
     watcher = new QTimer(this);
     connect(watcher, SIGNAL(timeout()), this, SLOT(checkMountChange()));
 
-    setButtons(KDialog::Close | UMOUNT_BTN | EJECT_BTN);
-    setButtonGuiItem(UMOUNT_BTN, KGuiItem(i18n("&Unmount")));
-    setButtonGuiItem(EJECT_BTN, KGuiItem(i18n("&Eject"), "media-eject"));
-    enableButton(UMOUNT_BTN, false);
-    enableButton(EJECT_BTN, false);
-    showButton(KDialog::Apply, false);
-    showButton(KDialog::Cancel, false);
-    setPlainCaption(i18n("MountMan - Your Mount-Manager"));
-    createLayout();
-    setMainWidget(mainPage);
+    mainLayout->addLayout(createMainPage());
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
+    mainLayout->addWidget(buttonBox);
+
+    ejectButton = new QPushButton(i18n("&Eject"));
+    ejectButton->setIcon(QIcon::fromTheme(QStringLiteral("media-eject")));
+    ejectButton->setEnabled(false);
+    buttonBox->addButton(ejectButton, QDialogButtonBox::ActionRole);
+
+    mountButton = new QPushButton(i18n("&Unmount"));
+    mountButton->setEnabled(false);
+    buttonBox->addButton(mountButton, QDialogButtonBox::ActionRole);
 
     // connections
+    connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
+    connect(ejectButton, SIGNAL(clicked()), SLOT(slotEject()));
+    connect(mountButton, SIGNAL(clicked()), SLOT(slotToggleMount()));
     connect(mountList, SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)), this,
             SLOT(doubleClicked(QTreeWidgetItem *)));
     connect(mountList, SIGNAL(itemRightClicked(QTreeWidgetItem *, const QPoint &, int)),
@@ -149,20 +154,14 @@ void KMountManGUI::resizeEvent(QResizeEvent *e)
         sizeY = e->size().height();
     }
 
-    KDialog::resizeEvent(e);
+    QDialog::resizeEvent(e);
 }
 
-void KMountManGUI::createLayout()
+QLayout *KMountManGUI::createMainPage()
 {
-    mainPage = new QWidget(this);
-    createMainPage();
-}
-
-void KMountManGUI::createMainPage()
-{
-    QGridLayout *layout = new QGridLayout(mainPage);
+    QGridLayout *layout = new QGridLayout();
     layout->setSpacing(10);
-    mountList = new KrTreeWidget(mainPage);    // create the main container
+    mountList = new KrTreeWidget(this);    // create the main container
     KConfigGroup grp(krConfig, "Look&Feel");
     mountList->setFont(grp.readEntry("Filelist Font", _FilelistFont));
     mountList->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -209,14 +208,14 @@ void KMountManGUI::createMainPage()
     // now the list is created, time to fill it with data.
     //=>mountMan->forceUpdate();
 
-    QGroupBox *box = new QGroupBox(i18n("MountMan.Info"), mainPage);
+    QGroupBox *box = new QGroupBox(i18n("MountMan.Info"), this);
     box->setAlignment(Qt::AlignHCenter);
     QVBoxLayout *vboxl = new QVBoxLayout(box);
     info = new KRFSDisplay(box);
     vboxl->addWidget(info);
     info->resize(info->width(), height());
 
-    cbShowOnlyRemovable = new QCheckBox(i18n("Show only removable devices"), mainPage);
+    cbShowOnlyRemovable = new QCheckBox(i18n("Show only removable devices"), this);
     cbShowOnlyRemovable->setChecked(grp.readEntry("ShowOnlyRemovable", false));
     connect(cbShowOnlyRemovable , SIGNAL(stateChanged(int)), SLOT(updateList()));
 
@@ -224,7 +223,7 @@ void KMountManGUI::createMainPage()
     layout->addWidget(cbShowOnlyRemovable, 1, 0);
     layout->addWidget(mountList, 0, 1, 2, 1);
 
-    mainPage->setLayout(layout);
+    return layout;
 }
 
 void KMountManGUI::getSpaceData()
@@ -389,8 +388,8 @@ void KMountManGUI::changeActive(QTreeWidgetItem *i)
             info->setEmpty(true);
             info->update();
         }
-        enableButton(UMOUNT_BTN, false);
-        enableButton(EJECT_BTN, false);
+        mountButton->setEnabled(false);
+        ejectButton->setEnabled(false);
         return;
     }
 
@@ -405,12 +404,12 @@ void KMountManGUI::changeActive(QTreeWidgetItem *i)
     info->repaint();
 
     if(system->mounted())
-        setButtonGuiItem(UMOUNT_BTN, KGuiItem(i18n("&Unmount")));
+        mountButton->setText(i18n("&Unmount"));
     else
-        setButtonGuiItem(UMOUNT_BTN, KGuiItem(i18n("&Mount")));
+        mountButton->setText(i18n("&Mount"));
 
-    enableButton(EJECT_BTN, mountMan->ejectable(system->mntPoint()));
-    enableButton(UMOUNT_BTN, true);
+    ejectButton->setEnabled(mountMan->ejectable(system->mntPoint()));
+    mountButton->setEnabled(true);
 }
 
 // called when right-clicked on a filesystem
@@ -471,17 +470,20 @@ void KMountManGUI::clicked(QTreeWidgetItem *item, const QPoint & pos)
     }
 }
 
-void KMountManGUI::slotButtonClicked(int button)
+void KMountManGUI::slotToggleMount()
 {
     QTreeWidgetItem *item = mountList->currentItem();
     if(item) {
-        QString mountPoint = getFsData(item)->mntPoint();
-        if(button == UMOUNT_BTN)
-            mountMan->toggleMount(mountPoint);
-        else if(button == EJECT_BTN)
-            mountMan->eject(mountPoint);
+        mountMan->toggleMount(getFsData(item)->mntPoint());
     }
-    KDialog::slotButtonClicked(button);
+}
+
+void KMountManGUI::slotEject()
+{
+    QTreeWidgetItem *item = mountList->currentItem();
+    if(item) {
+        mountMan->eject(getFsData(item)->mntPoint());
+    }
 }
 
 fsData* KMountManGUI::getFsData(QTreeWidgetItem *item)

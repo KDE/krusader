@@ -35,9 +35,7 @@
 #include <QtCore/QMap>
 #include <QtCore/QList>
 #include <QtGui/QColor>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
+#include <QtWidgets/QDialog>
 
 #include <KIO/Job>
 
@@ -215,7 +213,7 @@ private:
 
 class QProgressBar;
 
-class KgetProgressDialog : public KDialog
+class KgetProgressDialog : public QDialog
 {
     Q_OBJECT
 
@@ -228,7 +226,7 @@ public:
     }
 
 public slots:
-    void slotUser1();
+    void slotPause();
     void slotCancel();
 
     bool wasCancelled()      {
@@ -240,6 +238,7 @@ public slots:
 
 private:
     QProgressBar *mProgressBar;
+    QPushButton *mPauseButton;
     bool          mCancelled;
     bool          mPaused;
 };

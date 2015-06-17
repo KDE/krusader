@@ -26,6 +26,7 @@
 #include "../BookMan/krbookmarkbutton.h"
 #include "../GUI/profilemanager.h"
 
+#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QToolButton>
@@ -152,17 +153,17 @@ QString AddPlaceholderPopup::getPlaceholder(const QPoint& pos)
 /////////////////////////////// ParameterDialog ////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-ParameterDialog::ParameterDialog(const exp_placeholder* currentPlaceholder, QWidget *parent) : KDialog(parent)
+ParameterDialog::ParameterDialog(const exp_placeholder* currentPlaceholder, QWidget *parent) : QDialog(parent)
 {
-    //KDialog( Plain, i18n("User Action Parameter Dialog"), Default | Ok, Ok, parent ) {
     setWindowTitle(i18n("User Action Parameter Dialog"));
-    setButtons(Ok | Default);
-    setDefaultButton(Ok);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+
     _parameter.clear();
     _parameterCount = currentPlaceholder->parameterCount();
 
     QWidget *page = new QWidget(this);
-    setMainWidget(page);
+    mainLayout->addWidget(page);
     QVBoxLayout* layout = new QVBoxLayout(page);
     layout->setSpacing(11);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -203,8 +204,16 @@ ParameterDialog::ParameterDialog(const exp_placeholder* currentPlaceholder, QWid
     line->setFrameShadow(QFrame::Sunken);
     layout->addWidget(line);
 
-    connect(this, SIGNAL(defaultClicked()), this, SLOT(reset()));
-    connect(this, SIGNAL(okClicked()), this, SLOT(slotOk()));
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::RestoreDefaults);
+    mainLayout->addWidget(buttonBox);
+
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    connect(okButton, SIGNAL(clicked()), this, SLOT(slotOk()));
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox->button(QDialogButtonBox::RestoreDefaults), SIGNAL(clicked()), this, SLOT(reset()));
 }
 
 QString ParameterDialog::getParameter()

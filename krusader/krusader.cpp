@@ -594,21 +594,8 @@ bool Krusader::queryClose() {
             }
 
             if (!w) break;
-            bool hid = false;
-
-            if (w->inherits("KDialog") && !w->inherits("Konfigurator")) {
-                // KDE is funny and rejects the close event for
-                // playing a fancy animation with the CANCEL button.
-                // if we hide the widget, KDialog accepts the close event
-                // don't hide Konfigurator - see Konfigurator::closeEvent()
-                w->hide();
-                hid = true;
-            }
 
             if (!w->close()) {
-                if (hid)
-                    w->show();
-
                 if (w->inherits("QDialog"))
                     fprintf(stderr, "Failed to close: %s\n", w->metaObject()->className());
 

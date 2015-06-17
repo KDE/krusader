@@ -38,10 +38,8 @@
 #include <QtCore/QTimer>
 #include <QtCore/QList>
 #include <QtCore/QDateTime>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QFrame>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
 
 #include <KIOCore/KMountPoint>
 
@@ -56,7 +54,7 @@ class KRFSDisplay;
 // forward definitions
 class fsData;
 
-class KMountManGUI : public KDialog
+class KMountManGUI : public QDialog
 {
     Q_OBJECT
 
@@ -74,7 +72,8 @@ protected:
 protected slots:
     void doubleClicked(QTreeWidgetItem *);
     void clicked(QTreeWidgetItem *, const QPoint &);
-    void slotButtonClicked(int button);
+    void slotToggleMount();
+    void slotEject();
     void changeActive();
     void changeActive(QTreeWidgetItem *);
     void checkMountChange(); // check whether the mount table was changed
@@ -83,8 +82,7 @@ protected slots:
     void getSpaceData();
 
 protected:
-    void createLayout();   // calls the various tab layout-creators
-    void createMainPage(); // creator of the main page - filesystems
+    QLayout *createMainPage(); // creator of the main page - filesystems
     void addItemToMountList(KrTreeWidget *lst, fsData &fs);
     fsData* getFsData(QTreeWidgetItem *item);
     QString getMntPoint(QTreeWidgetItem *item);
@@ -93,9 +91,10 @@ protected:
 private:
     KMountMan *mountMan;
     KRFSDisplay *info;
-    QWidget *mainPage;
     KrTreeWidget *mountList;
     QCheckBox *cbShowOnlyRemovable;
+    QPushButton *mountButton;
+    QPushButton *ejectButton;
     QTimer *watcher;
     QDateTime lastMtab;
     // used for the getSpace - gotSpace functions

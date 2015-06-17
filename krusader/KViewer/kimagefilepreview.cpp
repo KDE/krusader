@@ -19,9 +19,6 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QFrame>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
-
 #include <KIconThemes/KIconLoader>
 #include <KIOCore/KFileItem>
 #include <KIO/PreviewJob>
@@ -31,7 +28,6 @@ KrusaderImageFilePreview::KrusaderImageFilePreview(QWidget *parent)
         m_job(0L)
 {
     QVBoxLayout *vb = new QVBoxLayout(this);
-    vb->setContentsMargins(KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint());
 
     imageLabel = new QLabel(this);
     imageLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);

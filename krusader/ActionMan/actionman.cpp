@@ -18,6 +18,10 @@
 
 #include "actionman.h"
 
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QVBoxLayout>
+
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
@@ -26,20 +30,27 @@
 #include "../UserAction/useraction.h"
 
 ActionMan::ActionMan(QWidget * parent)
-        : KDialog(parent)
+    : QDialog(parent)
 {
     setWindowModality(Qt::WindowModal);
     setWindowTitle(i18n("ActionMan - Manage Your Useractions"));
-    setButtons(KDialog::Apply | KDialog::Close);
+
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
 
     userActionPage = new UserActionPage(this);
-    setMainWidget(userActionPage);
+    mainLayout->addWidget(userActionPage);
 
-    connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
-    connect(this, SIGNAL(closeClicked()), this, SLOT(slotClose()));
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close|QDialogButtonBox::Apply);
+    mainLayout->addWidget(buttonBox);
+
+    applyButton = buttonBox->button(QDialogButtonBox::Apply);
+    applyButton->setEnabled(false);
+
+    connect(buttonBox, SIGNAL(rejected()), SLOT(slotClose()));
+    connect(applyButton, SIGNAL(clicked()), SLOT(slotApply()));
     connect(userActionPage, SIGNAL(changed()), SLOT(slotEnableApplyButton()));
     connect(userActionPage, SIGNAL(applied()), SLOT(slotDisableApplyButton()));
-    enableButtonApply(false);
 
     exec();
 
@@ -63,12 +74,12 @@ void ActionMan::slotApply()
 
 void ActionMan::slotEnableApplyButton()
 {
-    enableButtonApply(true);
+    applyButton->setEnabled(true);
 }
 
 void ActionMan::slotDisableApplyButton()
 {
-    enableButtonApply(false);
+    applyButton->setEnabled(false);
 }
 
 

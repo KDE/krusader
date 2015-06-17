@@ -33,9 +33,7 @@
 
 #include <QtGui/QKeyEvent>
 #include <QtWidgets/QCheckBox>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KDialog>
+#include <QtWidgets/QDialog>
 
 #include <KCompletion/KComboBox>
 #include <KCompletion/KHistoryComboBox>
@@ -44,7 +42,7 @@ class KProcess;
 class KrTreeWidget;
 class QTreeWidgetItem;
 
-class LocateDlg : public KDialog
+class LocateDlg : public QDialog
 {
     Q_OBJECT
 
@@ -58,9 +56,9 @@ public:
     void              reset();
 
 public slots:
-    virtual void      slotUser1();
-    virtual void      slotUser2();
-    virtual void      slotUser3();
+    void              slotFeedStop();
+    void              slotUpdateDb();
+    void              slotLocate();
 
     void              processStdout();
     void              processStderr();
@@ -71,7 +69,7 @@ public slots:
     void              updateFinished();
 
 protected:
-    virtual void      keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
+    void              keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
 
 private:
     void              operate(QTreeWidgetItem *item, int task);
@@ -105,7 +103,11 @@ private:
     QCheckBox        *existingFiles;
     QCheckBox        *caseSensitive;
 
-    KProcess *locateProc;
+    QPushButton      *feedStopButton;
+    QPushButton      *updateDbButton;
+    QPushButton      *locateButton;
+
+    KProcess         *locateProc;
     static KProcess *updateProcess;
 };
 
