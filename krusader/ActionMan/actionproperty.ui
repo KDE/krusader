@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>520</width>
+    <width>538</width>
     <height>497</height>
    </rect>
   </property>
@@ -14,7 +14,16 @@
    <string>Action Property</string>
   </property>
   <layout class="QGridLayout">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <property name="spacing">
@@ -25,7 +34,7 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="tabBasic">
       <attribute name="title">
        <string>Basic Properties</string>
       </attribute>
@@ -57,7 +66,7 @@
         </widget>
        </item>
        <item row="9" column="2" colspan="2">
-        <widget class="KButtonGroup" name="bgAccept">
+        <widget class="QGroupBox" name="bgAccept">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -74,7 +83,7 @@
              <string>Substitute the &lt;b&gt;Placeholders&lt;/b&gt; with local filenames.</string>
             </property>
             <property name="text">
-             <string>Local files only (no URLs)</string>
+             <string>&amp;Local files only (no URLs)</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -87,7 +96,7 @@
              <string>Substitute the &lt;b&gt;Placeholders&lt;/b&gt; with valid URLs.</string>
             </property>
             <property name="text">
-             <string>URLs (remote and local)</string>
+             <string>URLs (re&amp;mote and local)</string>
             </property>
            </widget>
           </item>
@@ -391,7 +400,7 @@ Please consult the handbook to learn more about the syntax.</string>
         </widget>
        </item>
        <item row="9" column="0" rowspan="3" colspan="2">
-        <widget class="KButtonGroup" name="bgExecType">
+        <widget class="QGroupBox" name="bgExecType">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -428,7 +437,7 @@ Please consult the handbook to learn more about the syntax.</string>
           <item row="0" column="0">
            <widget class="QRadioButton" name="radioNormal">
             <property name="text">
-             <string>Normal</string>
+             <string>&amp;Normal</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -460,7 +469,7 @@ Please consult the handbook to learn more about the syntax.</string>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="tabAdv">
       <attribute name="title">
        <string>Advanced Properties</string>
       </attribute>
@@ -482,7 +491,7 @@ Please consult the handbook to learn more about the syntax.</string>
             <property name="tabShape">
              <enum>QTabWidget::Triangular</enum>
             </property>
-            <widget class="QWidget" name="TabPage">
+            <widget class="QWidget" name="tabProt">
              <attribute name="title">
               <string>Protocol</string>
              </attribute>
@@ -587,7 +596,7 @@ Please consult the handbook to learn more about the syntax.</string>
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="tab">
+            <widget class="QWidget" name="tabPath">
              <attribute name="title">
               <string>Path</string>
              </attribute>
@@ -692,7 +701,7 @@ Please consult the handbook to learn more about the syntax.</string>
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="tab">
+            <widget class="QWidget" name="tabMime">
              <attribute name="title">
               <string>MIME Type</string>
              </attribute>
@@ -797,7 +806,7 @@ Please consult the handbook to learn more about the syntax.</string>
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="TabPage">
+            <widget class="QWidget" name="TabFile">
              <attribute name="title">
               <string>File Name</string>
              </attribute>
@@ -960,27 +969,11 @@ Please consult the handbook to learn more about the syntax.</string>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
-  <customwidgets>
+ <customwidgets>
   <customwidget>
-   <class>KButtonGroup</class>
-   <extends>QGroupBox</extends>
-   <header>kbuttongroup.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KIconButton</class>
-   <extends>QPushButton</extends>
-   <header>kiconbutton.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KKeySequenceWidget</class>
-   <extends>QWidget</extends>
-   <header>kkeysequencewidget.h</header>
+   <class>KTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>ktextedit.h</header>
   </customwidget>
   <customwidget>
    <class>KLineEdit</class>
@@ -988,9 +981,19 @@ Please consult the handbook to learn more about the syntax.</string>
    <header>klineedit.h</header>
   </customwidget>
   <customwidget>
-   <class>KTextEdit</class>
-   <extends>QTextEdit</extends>
-   <header>ktextedit.h</header>
+   <class>KKeySequenceWidget</class>
+   <extends>QWidget</extends>
+   <header>kkeysequencewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KIconButton</class>
+   <extends>QPushButton</extends>
+   <header>kiconbutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
   </customwidget>
   <customwidget>
    <class>KrListWidget</class>

@@ -87,8 +87,13 @@ ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
     connect(textDescription, SIGNAL(textChanged()), SLOT(setModified()));
     connect(leCommandline, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
     connect(leStartpath, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
-    connect(bgExecType, SIGNAL(clicked(int)), SLOT(setModified()));
-    connect(bgAccept, SIGNAL(clicked(int)), SLOT(setModified()));
+    connect(chkSeparateStdError, SIGNAL(clicked()), SLOT(setModified()));
+    connect(radioCollectOutput, SIGNAL(clicked()), SLOT(setModified()));
+    connect(radioNormal, SIGNAL(clicked()), SLOT(setModified()));
+    connect(radioTE, SIGNAL(clicked()), SLOT(setModified()));
+    connect(radioTerminal, SIGNAL(clicked()), SLOT(setModified()));
+    connect(radioLocal, SIGNAL(clicked()), SLOT(setModified()));
+    connect(radioUrl, SIGNAL(clicked()), SLOT(setModified()));
     connect(KeyButtonShortcut, SIGNAL(keySequenceChanged(const QKeySequence&)), SLOT(setModified()));
     connect(chkEnabled, SIGNAL(clicked()), SLOT(setModified()));
     connect(leDifferentUser, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
