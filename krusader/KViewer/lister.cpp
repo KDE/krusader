@@ -2105,7 +2105,7 @@ QStringList Lister::readHexLines(qint64 &filePos, qint64 endPos, int columns, in
                 if (hex.length() < 2)
                     hex = QString("0") + hex;
                 pos += hex + QString(" ");
-                if (c < 32 || c >= 128)
+                if (c < 32)
                     c = '.';
                 charData += QChar(c);
             }
