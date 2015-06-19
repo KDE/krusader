@@ -748,7 +748,7 @@ void KRQuery::setSearchInDirs(const QList<QUrl> &urls)
     whereToSearch.clear();
     for (int i = 0; i < urls.count(); ++i) {
         QString url = urls[ i ].url();
-        QUrl completed = QUrl(KUrlCompletion::replacedPath(url, true, true));
+        QUrl completed = QUrl::fromUserInput(KUrlCompletion::replacedPath(url, true, true), QString(), QUrl::AssumeLocalFile);
         whereToSearch.append(completed);
     }
 }
@@ -758,7 +758,7 @@ void KRQuery::setDontSearchInDirs(const QList<QUrl> &urls)
     whereNotToSearch.clear();
     for (int i = 0; i < urls.count(); ++i) {
         QString url = urls[ i ].url();
-        QUrl completed = QUrl(KUrlCompletion::replacedPath(url, true, true));
+        QUrl completed = QUrl::fromUserInput(KUrlCompletion::replacedPath(url, true, true), QString(), QUrl::AssumeLocalFile);
         whereNotToSearch.append(completed);
     }
 }
