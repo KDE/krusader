@@ -46,9 +46,7 @@
 #include <QtCore/QTemporaryFile>
 #include <QtGui/QClipboard>
 #include <QtWidgets/QApplication>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KInputDialog>
+#include <QtWidgets/QInputDialog>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
@@ -565,11 +563,7 @@ TagString exp_Ask::expFunc(const KrPanel*, const QStringList& parameter, const b
         preset = parameter[1];
 
     bool ok;
-    result = KInputDialog::getText(
-                 caption,
-                 parameter[0],
-                 preset,
-                 &ok);
+    result = QInputDialog::getText(krMainWindow, caption, parameter[0], QLineEdit::Normal, preset, &ok);
 
     if (ok)
         return result;

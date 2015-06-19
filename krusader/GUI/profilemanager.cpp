@@ -31,10 +31,8 @@
 #include "profilemanager.h"
 
 #include <QtGui/QCursor>
+#include <QtWidgets/QInputDialog>
 #include <QtWidgets/QMenu>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KInputDialog>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
@@ -111,8 +109,8 @@ void ProfileManager::profilePopup()
 
 void ProfileManager::newProfile(QString defaultName)
 {
-    QString profile = KInputDialog::getText(i18n("Krusader::ProfileManager"), i18n("Enter the profile name:"),
-                                            defaultName, 0, this);
+    QString profile = QInputDialog::getText(this, i18n("Krusader::ProfileManager"), i18n("Enter the profile name:"),
+                                            QLineEdit::Normal, defaultName);
     if (!profile.isEmpty()) {
         int profileNum = 1;
         while (profileList.contains(QString("%1").arg(profileNum)))

@@ -43,15 +43,12 @@
 #include <QtGui/QCloseEvent>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
-#include <QtWidgets/QTabWidget>
+#include <QtWidgets/QInputDialog>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QMenu>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KInputDialog>
+#include <QtWidgets/QTabWidget>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
@@ -633,11 +630,8 @@ void KrSearchDialog::feedToListBox()
     KConfigGroup ga(krConfig, "Advanced");
     if (ga.readEntry("Confirm Feed to Listbox",  _ConfirmFeedToListbox)) {
         bool ok;
-        vfsName = KInputDialog::getText(
-                        i18n("Query name"),  // Caption
-                        i18n("Here you can name the file collection"), // Questiontext
-                        vfsName, // Default
-                        &ok, this);
+        vfsName = QInputDialog::getText(this, i18n("Query name"), i18n("Here you can name the file collection"),
+                                        QLineEdit::Normal, vfsName, &ok);
         if (! ok)
             return;
     }

@@ -41,23 +41,22 @@
 #include <QtGui/QFontMetrics>
 #include <QtGui/QClipboard>
 #include <QtGui/QKeyEvent>
-#include <QtWidgets/QFileDialog>
-#include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QProgressBar>
-#include <QtWidgets/QScrollBar>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QLayout>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QInputDialog>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QToolButton>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMenu>
+#include <QtWidgets/QProgressBar>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QScrollBar>
+#include <QtWidgets/QToolButton>
 #include <QtPrintSupport/QPrintDialog>
 #include <QtPrintSupport/QPrinter>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KInputDialog>
 #include <KIO/Job>
 #include <KIO/CopyJob>
 #include <KIO/JobUiDelegate>
@@ -1746,8 +1745,8 @@ void Lister::updateProgressBar()
 void Lister::jumpToPosition()
 {
     bool ok = true;
-    QString res = KInputDialog::getText(i18n("Jump to position"), i18n("Text position:"), "0",
-                                        &ok, _textArea);
+    QString res = QInputDialog::getText(_textArea, i18n("Jump to position"), i18n("Text position:"),
+                                        QLineEdit::Normal, "0", &ok);
     if (!ok)
         return;
 

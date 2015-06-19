@@ -33,12 +33,10 @@
 #include <QtCore/QPointer>
 #include <QtGui/QPixmap>
 #include <QtGui/QFontMetrics>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QFrame>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KInputDialog>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QInputDialog>
+#include <QtWidgets/QLabel>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
@@ -322,8 +320,8 @@ void KgGeneral::slotFindTools()
 void KgGeneral::slotAddExtension()
 {
     bool ok;
-    QString atomExt =
-        KInputDialog::getText(i18n("Add new atomic extension"), i18n("Extension:"), QString(), &ok);
+    QString atomExt = QInputDialog::getText(this, i18n("Add new atomic extension"), i18n("Extension:"),
+                                            QLineEdit::Normal, QString(), &ok);
 
     if (ok) {
         if (!atomExt.startsWith('.') || atomExt.indexOf('.', 1) == -1)

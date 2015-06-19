@@ -41,27 +41,27 @@ A
 #include <QtGui/QClipboard>
 #include <QtGui/QDrag>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QInputDialog>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KInputDialog>
 #include <KIO/NetAccess>
 #include <KIO/JobUiDelegate>
 
+#include <KArchive/KTar>
+#include <KConfigCore/KDesktopFile>
 #include <KCoreAddons/KProcess>
 #include <KCoreAddons/KShell>
 #include <KCoreAddons/KUrlMimeData>
 #include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
-#include <KWidgetsAddons/KCursor>
-#include <KArchive/KTar>
+#include <KIOWidgets/KOpenWithDialog>
+#include <KIOWidgets/KPropertiesDialog>
 #include <KIOWidgets/KRun>
 #include <KIOWidgets/KUrlCompletion>
-#include <KWidgetsAddons/KToggleAction>
-#include <KService/KMimeTypeTrader>
 #include <KJobWidgets/KUiServerJobTracker>
-#include <KIOWidgets/KPropertiesDialog>
-#include <KConfigCore/KDesktopFile>
-#include <KIOWidgets/KOpenWithDialog>
+#include <KService/KMimeTypeTrader>
+#include <KWidgetsAddons/KCursor>
+#include <KWidgetsAddons/KMessageBox>
+#include <KWidgetsAddons/KToggleAction>
 
 #include "dirhistoryqueue.h"
 #include "krcalcspacedialog.h"
@@ -93,16 +93,6 @@ A
 #include "../KViewer/krviewer.h"
 #include "../GUI/syncbrowsebutton.h"
 #include "../Queue/queue_mgr.h"
-
-
-class FilePathValidator : public QValidator
-{
-public:
-    virtual State validate(QString &input, int &/*pos*/) const Q_DECL_OVERRIDE {
-            return input.isEmpty() ? Intermediate : Acceptable;
-    }
-};
-
 
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
@@ -407,8 +397,7 @@ void ListPanelFunc::redirectLink()
     // ask the user for a new destination
     bool ok = false;
     QString newLink =
-        KInputDialog::getText(i18n("Link Redirection"),
-                              i18n("Please enter the new link destination:"), currentLink, &ok, krMainWindow);
+        QInputDialog::getText(krMainWindow, i18n("Link Redirection"), i18n("Please enter the new link destination:"), QLineEdit::Normal, currentLink, &ok);
 
     // if the user canceled - quit
     if (!ok || newLink == currentLink)
@@ -437,7 +426,7 @@ void ListPanelFunc::krlink(bool sym)
     // ask the new link name..
     bool ok = false;
     QString linkName =
-        KInputDialog::getText(i18n("New Link"), i18n("Create a new link to: %1", name), name, &ok, krMainWindow);
+        QInputDialog::getText(krMainWindow, i18n("New Link"), i18n("Create a new link to: %1", name), QLineEdit::Normal, name, &ok);
 
     // if the user canceled - quit
     if (!ok || linkName == name)
@@ -676,15 +665,11 @@ void ListPanelFunc::rename(const QString &oldname, const QString &newname)
 
 void ListPanelFunc::mkdir()
 {
-    FilePathValidator validator;
     // ask the new dir name..
-    bool ok = false;
-    QString dirName =
-        KInputDialog::getText(i18n("New directory"), i18n("Directory's name:"), "",
-                              &ok, krMainWindow, &validator);
+    QString dirName = QInputDialog::getText(krMainWindow, i18n("New directory"), i18n("Directory's name:"));
 
     // if the user canceled - quit
-    if (!ok || dirName.isEmpty())
+    if (dirName.isEmpty())
         return ;
 
     QStringList dirTree = dirName.split('/');

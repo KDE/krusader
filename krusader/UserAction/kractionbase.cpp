@@ -20,13 +20,12 @@
 #include "kractionbase.h"
 
 #include <QtWidgets/QErrorMessage>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KInputDialog>
+#include <QtWidgets/QInputDialog>
 
 #include <KI18n/KLocalizedString>
 
 #include "kraction.h"
+#include "../krglobal.h"
 #include "expander.h"
 
 KrActionBase::~KrActionBase()
@@ -58,12 +57,8 @@ void KrActionBase::exec()
     if (confirmExecution()) {
         for (QStringList::iterator it = commandList.begin(); it != commandList.end(); ++it) {
             bool exec = true;
-            *it = KInputDialog::getText(
-                      i18n("Confirm Execution"),
-                      i18n("Command being executed:"),
-                      *it,
-                      &exec, 0
-                  );
+            *it = QInputDialog::getText(krMainWindow, i18n("Confirm Execution"), i18n("Command being executed:"),
+                      QLineEdit::Normal, *it, &exec);
             if (exec) {
                 proc = actionProcFactoryMethod();
                 proc->start(*it);

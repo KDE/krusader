@@ -24,13 +24,11 @@
 #include "../krusader.h"
 #include "../krglobal.h"
 
-#include <QtWidgets/QFileDialog>
-#include <QtWidgets/QToolButton>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QInputDialog>
 #include <QtWidgets/QRadioButton>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KInputDialog>
+#include <QtWidgets/QToolButton>
 
 #include <KI18n/KLocalizedString>
 #include <KXmlGui/KActionCollection>
@@ -338,11 +336,8 @@ void ActionProperty::newProtocol()
     if (lbShowonlyProtocol->currentItem())
         currentText = lbShowonlyProtocol->currentItem()->text();
 
-    QString text = KInputDialog::getText(
-                       i18n("New protocol"),
-                       i18n("Set a protocol:"),
-                       currentText,
-                       &ok, this);
+    QString text = QInputDialog::getText(this, i18n("New protocol"), i18n("Set a protocol:"),
+                                         QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyProtocol->addItems(text.split(';'));
         setModified();
@@ -358,11 +353,8 @@ void ActionProperty::editProtocol()
 
     QString currentText = lbShowonlyProtocol->currentItem()->text();
 
-    QString text = KInputDialog::getText(
-                       i18n("Edit Protocol"),
-                       i18n("Set another protocol:"),
-                       currentText,
-                       &ok, this);
+    QString text = QInputDialog::getText(this, i18n("Edit Protocol"), i18n("Set another protocol:"),
+                                         QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyProtocol->currentItem()->setText(text);
         setModified();
@@ -395,11 +387,8 @@ void ActionProperty::editPath()
 
     QString currentText = lbShowonlyPath->currentItem()->text();
 
-    QString text = KInputDialog::getText(
-                       i18n("Edit Path"),
-                       i18n("Set another path:"),
-                       currentText,
-                       &ok, this);
+    QString text = QInputDialog::getText(this, i18n("Edit Path"), i18n("Set another path:"),
+                                         QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyPath->currentItem()->setText(text);
         setModified();
@@ -422,11 +411,8 @@ void ActionProperty::addMime()
     if (lbShowonlyMime->currentItem())
         currentText = lbShowonlyMime->currentItem()->text();
 
-    QString text = KInputDialog::getText(
-                       i18n("New MIME Type"),
-                       i18n("Set a MIME type:"),
-                       currentText,
-                       &ok, this);
+    QString text = QInputDialog::getText(this, i18n("New MIME Type"), i18n("Set a MIME type:"),
+                                         QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyMime->addItems(text.split(';'));
         setModified();
@@ -442,11 +428,8 @@ void ActionProperty::editMime()
 
     QString currentText = lbShowonlyMime->currentItem()->text();
 
-    QString text = KInputDialog::getText(
-                       i18n("Edit MIME Type"),
-                       i18n("Set another MIME type:"),
-                       currentText,
-                       &ok, this);
+    QString text = QInputDialog::getText(this, i18n("Edit MIME Type"), i18n("Set another MIME type:"),
+                                         QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyMime->currentItem()->setText(text);
         setModified();
@@ -469,11 +452,8 @@ void ActionProperty::newFile()
     if (lbShowonlyFile->currentItem())
         currentText = lbShowonlyFile->currentItem()->text();
 
-    QString text = KInputDialog::getText(
-                       i18n("New File Name"),
-                       i18n("Set a file name:"),
-                       currentText,
-                       &ok, this);
+    QString text = QInputDialog::getText(this, i18n("New File Name"), i18n("Set a file name:"),
+                                         QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyFile->addItems(text.split(';'));
         setModified();
@@ -489,11 +469,8 @@ void ActionProperty::editFile()
 
     QString currentText = lbShowonlyFile->currentItem()->text();
 
-    QString text = KInputDialog::getText(
-                       i18n("Edit File Name"),
-                       i18n("Set another file name:"),
-                       currentText,
-                       &ok, this);
+    QString text = QInputDialog::getText(this, i18n("Edit File Name"), i18n("Set another file name:"),
+                                         QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyFile->currentItem()->setText(text);
         setModified();

@@ -33,10 +33,8 @@
 
 #include <QtGui/QMouseEvent>
 #include <QtGui/QPixmap>
+#include <QtWidgets/QInputDialog>
 #include <QtWidgets/QMenu>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KInputDialog>
 
 #include <KI18n/KLocalizedString>
 
@@ -192,8 +190,8 @@ void DUFilelight::minFontSize()
 {
     bool ok = false;
 
-    int result = KInputDialog::getInteger(i18n("Krusader::Filelight"),
-                                          i18n("Minimum font size"), (int)Filelight::Config::minFontPitch, 1, 100, 1, &ok, this);
+    int result = QInputDialog::getInt(this, i18n("Krusader::Filelight"), i18n("Minimum font size"),
+                                      (int)Filelight::Config::minFontPitch, 1, 100, 1, &ok);
 
     if (ok) {
         Filelight::Config::minFontPitch = (uint)result;

@@ -56,17 +56,14 @@
 #include <QtGui/QDrag>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QInputDialog>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QTreeWidget>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KInputDialog>
 
 #include <KCoreAddons/KProcess>
 #include <KI18n/KLocalizedString>
@@ -651,11 +648,8 @@ void LocateDlg::feedToListBox()
     KConfigGroup ga(krConfig, "Advanced");
     if (ga.readEntry("Confirm Feed to Listbox",  _ConfirmFeedToListbox)) {
         bool ok;
-        queryName = KInputDialog::getText(
-                        i18n("Query Name"),  // Caption
-                        i18n("Here you can name the file collection:"), // Questiontext
-                        queryName, // Default
-                        &ok, this);
+        queryName = QInputDialog::getText(this, i18n("Query Name"), i18n("Here you can name the file collection:"),
+                                          QLineEdit::Normal, queryName, &ok);
         if (! ok)
             return;
     }

@@ -24,11 +24,9 @@
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QInputDialog>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KInputDialog>
 
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
@@ -151,7 +149,7 @@ void KrAddBookmarkDlg::populateCreateInWidget(KrBookmark *root, QTreeWidgetItem 
 void KrAddBookmarkDlg::newFolder()
 {
     // get the name
-    QString newFolder = KInputDialog::getText(i18n("New Folder"), i18n("Folder name:"), QString(), 0, this);
+    QString newFolder = QInputDialog::getText(this, i18n("New Folder"), i18n("Folder name:"));
     if (newFolder.isEmpty()) {
         return;
     }

@@ -39,9 +39,6 @@
 #include <QtWidgets/QSplitter>
 #include <QtXml/QDomElement>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KInputDialog>
-
 #include <KConfigCore/KSharedConfig>
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KMessageBox>

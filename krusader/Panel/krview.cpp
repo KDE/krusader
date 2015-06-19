@@ -50,10 +50,8 @@
 #include <QtGui/QPainter>
 #include <QtGui/QPixmap>
 #include <QtWidgets/QAction>
+#include <QtWidgets/QInputDialog>
 #include <qnamespace.h>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KInputDialog>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
@@ -738,8 +736,8 @@ void KrView::renameCurrentItem()
     if (fileName == "..") return ;
 
     bool ok = false;
-    newName = KInputDialog::getText(i18n("Rename"), i18n("Rename %1 to:", fileName),
-                                    fileName, &ok, _mainWindow);
+    newName = QInputDialog::getText(_mainWindow, i18n("Rename"), i18n("Rename %1 to:", fileName),
+                                    QLineEdit::Normal, fileName, &ok);
     // if the user canceled - quit
     if (!ok || newName == fileName)
         return ;

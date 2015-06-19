@@ -20,15 +20,13 @@
 
 #include <QtWidgets/QAction>
 #include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QInputDialog>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTimeEdit>
 #include <QtWidgets/QToolButton>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KInputDialog>
 
 #include <KConfigCore/KSharedConfig>
 #include <KConfigGui/KStandardShortcut>
@@ -283,11 +281,9 @@ void QueueDialog::slotScheduleClicked()
 void QueueDialog::slotNewTab()
 {
     bool ok = false;
-    QString queueName = KInputDialog::getText(
-                            i18n("Krusader::Queue Manager"),  // Caption
-                            i18n("Please enter the name of the new queue"), // Questiontext
-                            QString(), // Default
-                            &ok, this);
+    QString queueName = QInputDialog::getText(this, i18n("Krusader::Queue Manager"),
+                                              i18n("Please enter the name of the new queue"),
+                                              QLineEdit::Normal, QString(), &ok);
 
     if (!ok || queueName.isEmpty())
         return;
