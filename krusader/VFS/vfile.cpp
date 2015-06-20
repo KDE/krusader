@@ -40,9 +40,6 @@
 #include <QtCore/QMimeDatabase>
 #include <QtCore/QMimeType>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <kdeversion.h>
-
 #include <KConfigCore/KDesktopFile>
 
 #include "krpermhandler.h"

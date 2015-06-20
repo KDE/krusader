@@ -32,7 +32,6 @@
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KStandardGuiItem>
-#include <kdeversion.h>
 
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KUrlCompletion>

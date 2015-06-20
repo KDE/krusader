@@ -54,9 +54,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QTabBar>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <kdeversion.h>
-
 #include <KConfigWidgets/KColorScheme>
 #include <KCoreAddons/KUrlMimeData>
 #include <KI18n/KLocalizedString>

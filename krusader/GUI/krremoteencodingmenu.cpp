@@ -22,17 +22,10 @@
 #include <QtCore/QDebug>
 #include <QtWidgets/QMenu>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <kdeversion.h>
-
 #include <KXmlGui/KActionCollection>
 #include <KCodecs/KCharsets>
 #include <KIO/Scheduler>
-#if KDE_VERSION < KDE_MAKE_VERSION(4,10,0)
-#include <KIO/SlaveConfig>
-#else
 #include <KIOCore/KProtocolManager>
-#endif
 
 #include "../krglobal.h"
 #include "../Panel/krpanel.h"
@@ -99,11 +92,7 @@ void KrRemoteEncodingMenu::slotAboutToShow()
 QString KrRemoteEncodingMenu::currentCharacterSet()
 {
     QUrl currentURL = ACTIVE_PANEL->virtualPath();
-#if KDE_IS_VERSION(4,10,0)
     return KProtocolManager::charsetFor(currentURL);
-#else
-    return KIO::SlaveConfig::self()->configData(currentURL.scheme(), currentURL.host(), DATA_KEY);
-#endif
 }
 
 void KrRemoteEncodingMenu::loadSettings()

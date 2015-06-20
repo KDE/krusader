@@ -41,9 +41,6 @@ A
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QAction>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <kdeversion.h>
-
 #include <KIO/JobClasses>
 #include <KIO/Job>
 #include <KIO/Global>

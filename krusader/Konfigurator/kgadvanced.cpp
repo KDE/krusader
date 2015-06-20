@@ -36,9 +36,6 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <kdeversion.h>
-
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KProtocolInfo>
 

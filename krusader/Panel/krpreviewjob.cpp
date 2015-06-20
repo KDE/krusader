@@ -40,9 +40,6 @@ A
 
 #include <QtWidgets/QWidget>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <kdeversion.h>
-
 #define ASSERT(what) if(!what) abort();
 
 // how much items to process by a single job
@@ -120,16 +117,11 @@ void KrPreviewJob::slotStartJob()
         list.append(fi);
         _hash.insert(fi, _scheduled[i]);
     }
-
-#if KDE_IS_VERSION(4,7,0)
     QStringList allPlugins = KIO::PreviewJob::availablePlugins();
     _job = new KIO::PreviewJob(list, QSize(size, size), &allPlugins);
     _job->setOverlayIconAlpha(0);
     _job->setOverlayIconSize(0);
     _job->setScaleType(KIO::PreviewJob::ScaledAndCached);
-#else
-    _job = new KIO::PreviewJob(list, size, size, 0, 0, true, true, NULL);
-#endif
     connect(_job, SIGNAL(gotPreview(const KFileItem&, const QPixmap&)), SLOT(slotGotPreview(const KFileItem&, const QPixmap&)));
     connect(_job, SIGNAL(failed(const KFileItem&)), SLOT(slotFailed(const KFileItem&)));
     connect(_job, SIGNAL(result(KJob*)), SLOT(slotJobResult(KJob*)));

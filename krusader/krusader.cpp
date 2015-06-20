@@ -53,7 +53,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KSystemTrayIcon>
-#include <kdeversion.h>
 
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KMessageBox>
