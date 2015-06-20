@@ -117,10 +117,10 @@ QAction *createAction(QString text, QString icon, QKeySequence shortcut,
                                  QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
 {
     QAction *a;
-    if (icon == 0)
+    if (icon.isEmpty())
         a = new QAction(text, krusaderApp);
     else
-        a = new QAction(QIcon(icon), text, krusaderApp);
+        a = new QAction(QIcon::fromTheme(icon), text, krusaderApp);
     a->setShortcut(shortcut);
     krusaderApp->connect(a, SIGNAL(triggered(bool)), recv, slot);
     krusaderApp->actionCollection()->addAction(name, a);
@@ -134,7 +134,7 @@ KToggleAction *createToggleAction(QString text, QString icon, QKeySequence short
     if (icon == 0)
         a = new KToggleAction(text, krusaderApp);
     else
-        a = new KToggleAction(QIcon(icon), text, krusaderApp);
+        a = new KToggleAction(QIcon::fromTheme(icon), text, krusaderApp);
     a->setShortcut(shortcut);
     krusaderApp->connect(a, SIGNAL(triggered(bool)), recv, slot);
     krusaderApp->actionCollection()->addAction(name, a);
