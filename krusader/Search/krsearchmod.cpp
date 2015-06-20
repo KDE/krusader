@@ -126,7 +126,7 @@ void KRSearchMod::scanLocalDir(QUrl urlToScan)
 {
     QString dir = vfs::ensureTrailingSlash(urlToScan).path();
 
-    DIR* d = opendir(dir.toLocal8Bit());
+    QT_DIR* d = QT_OPENDIR(dir.toLocal8Bit());
     if (!d) return ;
 
     QT_DIRENT* dirEnt;
@@ -197,7 +197,7 @@ void KRSearchMod::scanLocalDir(QUrl urlToScan)
         }
     }
     // clean up
-    closedir(d);
+    QT_CLOSEDIR(d);
 }
 
 void KRSearchMod::scanRemoteDir(QUrl url)

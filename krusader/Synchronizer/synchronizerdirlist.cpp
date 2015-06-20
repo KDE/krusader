@@ -40,6 +40,7 @@
 #include <string.h>
 #include <dirent.h>
 
+#include <qplatformdefs.h>
 #include <QtCore/QDir>
 #include <QtWidgets/QApplication>
 
@@ -127,17 +128,17 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
 
     if (url.isLocalFile()) {
         QString path = url.adjusted(QUrl::StripTrailingSlash).path();
-        DIR* dir = opendir(path.toLocal8Bit());
+        QT_DIR* dir = QT_OPENDIR(path.toLocal8Bit());
         if (!dir)  {
             KMessageBox::error(parentWidget, i18n("Cannot open the %1 directory.", path), i18n("Error"));
             emit finished(result = false);
             return false;
         }
 
-        KDE_struct_dirent* dirEnt;
+        QT_DIRENT* dirEnt;
         QString name;
 
-        while ((dirEnt = KDE_readdir(dir)) != NULL) {
+        while ((dirEnt = QT_READDIR(dir)) != NULL) {
             name = QString::fromLocal8Bit(dirEnt->d_name);
 
             if (name == "." || name == "..") continue;
@@ -145,8 +146,8 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
 
             QString fullName = path + '/' + name;
 
-            KDE_struct_stat stat_p;
-            KDE_lstat(fullName.toLocal8Bit(), &stat_p);
+            QT_STATBUF stat_p;
+            QT_LSTAT(fullName.toLocal8Bit(), &stat_p);
 
             QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
 
@@ -183,7 +184,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
             insert(name, item);
         }
 
-        closedir(dir);
+        QT_CLOSEDIR(dir);
         emit finished(result = true);
         return true;
     } else {

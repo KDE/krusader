@@ -101,7 +101,7 @@ bool normal_vfs::populateVfsList(const QUrl &origin, bool showHidden)
     if (group.readEntry("AutoMount", _AutoMount) && !mountMan.isNull())
         mountMan->autoMount(path);
 
-    DIR* dir = opendir(path.toLocal8Bit());
+    QT_DIR* dir = QT_OPENDIR(path.toLocal8Bit());
     if (!dir) {
         if (!quietMode)
             emit error(i18n("Cannot open the directory %1.", path));
@@ -113,7 +113,7 @@ bool normal_vfs::populateVfsList(const QUrl &origin, bool showHidden)
     if (! QDir::setCurrent(path)) {
         if (!quietMode)
             emit error(i18nc("%1=directory path", "Access to %1 denied", path));
-        closedir(dir);
+        QT_CLOSEDIR(dir);
         return false;
     }
 
@@ -132,7 +132,7 @@ bool normal_vfs::populateVfsList(const QUrl &origin, bool showHidden)
         foundVfile(temp);
     }
     // clean up
-    closedir(dir);
+    QT_CLOSEDIR(dir);
     QDir::setCurrent(save);
 
     if (panelConnected) {

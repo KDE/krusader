@@ -349,7 +349,7 @@ void KIso::readParams()
 bool KIso::openArchive(QIODevice::OpenMode mode)
 {
     iso_vol_desc *desc;
-    QString path, tmp, uid, gid;
+    QString path, uid, gid;
     QT_STATBUF buf;
     int tracks[2*100], trackno = 0, i, access, c_b, c_i, c_j;
     KArchiveDirectory *root;
