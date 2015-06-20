@@ -37,9 +37,6 @@
 #endif
 #endif
 
-#include <string.h>
-#include <dirent.h>
-
 #include <qplatformdefs.h>
 #include <QtCore/QDir>
 #include <QtWidgets/QApplication>

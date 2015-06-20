@@ -19,9 +19,6 @@
 #ifndef FILETREE_H
 #define FILETREE_H
 
-#include <stdlib.h>
-#include <sys/types.h>
-
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KIO/Global>
 

@@ -20,8 +20,6 @@
 #include "radialMap.h"   //class Segment
 #include "widget.h"
 
-#include <math.h>        //::segmentAt()
-
 #include <QtCore/QTimer>                                    //::resizeEvent()
 #include <QtGui/QMouseEvent>
 #include <QtGui/QPainter>

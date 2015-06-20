@@ -38,8 +38,6 @@ A
 #include "../defaults.h"
 #include "../VFS/vfs.h"
 
-#include <sys/param.h>
-
 #include <QtCore/QCryptographicHash>
 #include <QtCore/QList>
 #include <QtCore/QFileInfo>

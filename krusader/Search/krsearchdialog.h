@@ -31,9 +31,6 @@
 #ifndef KRSEARCHDIALOG_H
 #define KRSEARCHDIALOG_H
 
-#include <sys/types.h>
-#include <time.h>
-
 #include <QtCore/QString>
 #include <QtCore/QStringList>
 #include <QtWidgets/QDialog>

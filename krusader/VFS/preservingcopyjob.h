@@ -31,8 +31,6 @@
 #ifndef PRESERVINGCOPYJOB_H
 #define PRESERVINGCOPYJOB_H
 
-#include <time.h>
-
 #include <QtCore/QMap>
 #include <QtCore/QList>
 #include <QtCore/QUrl>

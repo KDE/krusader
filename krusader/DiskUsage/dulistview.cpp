@@ -33,8 +33,6 @@
 #include "../kicons.h"
 #include "../VFS/krpermhandler.h"
 
-#include <time.h>
-
 #include <QtCore/QMimeDatabase>
 #include <QtCore/QMimeType>
 #include <QtGui/QMouseEvent>

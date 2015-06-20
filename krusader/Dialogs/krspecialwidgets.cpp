@@ -36,8 +36,6 @@ A
 #include "../krglobal.h"
 #include "../MountMan/kmountman.h"
 
-#include <math.h>
-
 #include <QtGui/QKeyEvent>
 #include <QtGui/QPaintEvent>
 

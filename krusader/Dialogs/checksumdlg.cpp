@@ -24,8 +24,6 @@
 #include "../GUI/krlistwidget.h"
 #include "../GUI/krtreewidget.h"
 
-#include <unistd.h> // for usleep
-
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
 #include <QtCore/QList>

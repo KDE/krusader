@@ -32,8 +32,6 @@
 #ifndef KRPERMHANDLER_H
 #define KRPERMHANDLER_H
 
-#include <sys/types.h>
-
 #include <QtCore/QString>
 #include <QtCore/QFileInfo>
 #include <QtCore/QHash>

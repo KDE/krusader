@@ -30,8 +30,6 @@
 
 #include "advancedfilter.h"
 
-#include <time.h>
-
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 #include <QtGui/QPixmap>

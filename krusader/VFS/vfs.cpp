@@ -33,9 +33,6 @@
 
 #include "vfs.h"
 
-#include <unistd.h>
-#include <time.h>
-
 #include <QtCore/QEventLoop>
 #include <QtCore/QList>
 #include <QtCore/QDir>

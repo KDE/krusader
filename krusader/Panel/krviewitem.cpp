@@ -20,10 +20,6 @@
 #include "krviewitem.h"
 #include "../VFS/krpermhandler.h"
 
-#include <sys/types.h>
-#include <time.h>
-#include <stdlib.h>
-
 #include <QtCore/QMimeDatabase>
 #include <QtCore/QMimeType>
 #include <QtGui/QPixmap>

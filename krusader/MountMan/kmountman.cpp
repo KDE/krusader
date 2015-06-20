@@ -28,10 +28,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include "kmountman.h"
 
-#include <sys/param.h>
-#include <time.h>
-#include <unistd.h>
-
 #include <QtCore/QDir>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMenu>

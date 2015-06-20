@@ -30,9 +30,6 @@
 
 #include "kcmdline.h"
 
-#include <stdlib.h>
-#include <unistd.h>
-
 #include <QtCore/QDir>
 #include <QtCore/QStringList>
 #include <QtCore/QUrl>

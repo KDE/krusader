@@ -21,12 +21,7 @@
 
 #include "iso.h"
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include <zlib.h>
-#include <errno.h> // to be removed
 
 #include <QtCore/QByteArray>
 #include <QtCore/QDebug>

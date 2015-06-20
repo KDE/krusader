@@ -30,11 +30,6 @@
 
 #include "krsearchmod.h"
 
-#include <dirent.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-
 #include <QtCore/QDir>
 #include <QtCore/QMimeDatabase>
 #include <QtCore/QMimeType>

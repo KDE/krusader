@@ -22,8 +22,6 @@
 #ifndef ISO_H
 #define ISO_H
 
-#include <sys/types.h>
-
 #include <QtCore/QByteArray>
 #include <QtCore/QUrl>
 

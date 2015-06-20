@@ -31,8 +31,6 @@
 #include "kgadvanced.h"
 #include "../defaults.h"
 
-#include <sys/param.h>
-
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 

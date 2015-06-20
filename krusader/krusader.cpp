@@ -30,11 +30,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include "krusader.h"
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/param.h>
-#include <unistd.h>
-
 #include <QtCore/QDir>
 #include <QtCore/QDateTime>
 #include <QtCore/QStringList>

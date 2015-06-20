@@ -35,12 +35,7 @@
 #include "../VFS/vfs.h"
 #include "../VFS/krquery.h"
 
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/time.h>
 #include <utime.h>
-#include <pwd.h>
-#include <grp.h>
 
 #include <QtCore/QRegExp>
 #include <QtCore/QDir>

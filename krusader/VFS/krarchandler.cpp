@@ -30,8 +30,6 @@
 
 #include "krarchandler.h"
 
-#include <unistd.h> // for usleep
-
 #include <QtCore/QDebug>
 #include <QtCore/QDir>
 #include <QtCore/QFile>

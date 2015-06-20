@@ -21,16 +21,6 @@
 
 #include "kiso.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <unistd.h>
-#include <grp.h>
-#include <pwd.h>
-#include <assert.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-
 #include <QtCore/QDebug>
 #include <QtCore/QDir>
 #include <QtCore/QFile>

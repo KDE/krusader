@@ -30,9 +30,6 @@ A
 #ifndef KMOUNTMAN_H
 #define KMOUNTMAN_H
 
-#include <stdlib.h>
-#include <math.h>
-
 #include <QtCore/QExplicitlySharedDataPointer>
 #include <QtCore/QObject>
 #include <QtCore/QString>

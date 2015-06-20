@@ -30,12 +30,6 @@
 
 #include "vfile.h"
 
-#include <unistd.h>
-#include <pwd.h>
-#include <grp.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-
 #include <QtCore/QDateTime>
 #include <QtCore/QMimeDatabase>
 #include <QtCore/QMimeType>
@@ -157,6 +151,7 @@ char vfile::vfile_isExecutable() const
 
 const QString& vfile::vfile_getMime(bool fast)
 {
+    Q_UNUSED(fast)
     if (vfile_mimeType.isEmpty()) {
         if(vfile_isdir)
             vfile_mimeType = "inode/directory";

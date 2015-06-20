@@ -30,8 +30,6 @@
 
 #include "krpleasewait.h"
 
-#include <unistd.h>
-
 #include <QtCore/QTimer>
 #include <QtCore/QDateTime>
 #include <QtGui/QCloseEvent>

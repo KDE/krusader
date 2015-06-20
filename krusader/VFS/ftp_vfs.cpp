@@ -30,14 +30,6 @@
 
 #include "ftp_vfs.h"
 
-#include <time.h>
-#include <sys/param.h>
-#include <unistd.h>
-
-#ifdef BSD
-#include <sys/types.h>
-#endif
-
 #include <QtCore/QDir>
 #include <QtCore/QRegExp>
 #include <QtCore/QTimer>

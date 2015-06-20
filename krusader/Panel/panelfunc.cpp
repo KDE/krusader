@@ -30,8 +30,6 @@ A
 
 #include "panelfunc.h"
 
-#include <unistd.h>
-
 #include <QtCore/QEventLoop>
 #include <QtCore/QList>
 #include <QtCore/QMimeData>
@@ -889,14 +887,14 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
                 switch (KMessageBox::warningYesNoCancel(krMainWindow,
                                                         i18n("<qt><p>Directory <b>%1</b> is not empty.</p><p>Skip this one or delete all?</p></qt>", *name),
                                                         QString(), KGuiItem(i18n("&Skip")), KGuiItem(i18n("&Delete All")))) {
-                case KMessageBox::Cancel :
-                    return ;
                 case KMessageBox::No :
                     emptyDirVerify = false;
                     break;
                 case KMessageBox::Yes :
                     name = fileNames.erase(name);
                     continue;
+                default :
+                    return ;
                 }
             }
         }

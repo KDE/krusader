@@ -33,8 +33,6 @@
 #ifndef KMOUNTMANGUI_H
 #define KMOUNTMANGUI_H
 
-#include <sys/param.h>
-
 #include <QtCore/QTimer>
 #include <QtCore/QList>
 #include <QtCore/QDateTime>

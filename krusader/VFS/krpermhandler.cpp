@@ -30,15 +30,6 @@
 
 #include "krpermhandler.h"
 
-#include <unistd.h>
-#include <math.h>
-#include <pwd.h>
-#include <grp.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <dirent.h>
-#include <time.h>
-
 #include <QtCore/QDateTime>
 #include <QtCore/QDir>
 #include <QtCore/QLocale>

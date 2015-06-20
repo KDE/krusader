@@ -33,8 +33,6 @@
 #ifndef KRSEARCHMOD_H
 #define KRSEARCHMOD_H
 
-#include <time.h>
-
 #include <QtCore/QObject>
 #include <QtCore/QStringList>
 #include <QtCore/QDateTime>

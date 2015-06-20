@@ -17,8 +17,6 @@
 #ifndef KRARC_H
 #define KRARC_H
 
-#include <sys/types.h>
-
 #include <QtCore/QString>
 #include <QtCore/QHash>
 #include <QtCore/QFile>

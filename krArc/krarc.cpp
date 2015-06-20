@@ -17,14 +17,6 @@
 
 #include "krarc.h"
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <time.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <iostream>
-
 #include <QtCore/QByteArray>
 #include <QtCore/QDebug>
 #include <QtCore/QDir>

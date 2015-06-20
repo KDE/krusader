@@ -30,8 +30,6 @@
 
 #include "diskusage.h"
 
-#include <time.h>
-
 #include <QtCore/QEvent>
 #include <QtCore/QHash>
 #include <QtCore/QMimeDatabase>

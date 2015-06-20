@@ -30,12 +30,6 @@
 
 #include "normal_vfs.h"
 
-#include <string.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <dirent.h>
-
 #ifdef HAVE_POSIX_ACL
 #include <sys/acl.h>
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS

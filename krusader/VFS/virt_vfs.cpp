@@ -19,9 +19,6 @@
 
 #include "virt_vfs.h"
 
-#include <unistd.h>
-#include <time.h>
-
 #include <QtCore/QUrl>
 
 #include <KI18n/KLocalizedString>

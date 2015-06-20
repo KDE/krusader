@@ -44,8 +44,6 @@
 #include "synchronizedialog.h"
 #include "feedtolistboxdialog.h"
 
-#include <time.h>
-
 #include <QtCore/QEventLoop>
 #include <QtCore/QRegExp>
 #include <QtCore/QMimeData>

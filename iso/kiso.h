@@ -22,9 +22,6 @@
 #ifndef KISO_H
 #define KISO_H
 
-#include <sys/stat.h>
-#include <sys/types.h>
-
 #include <QtCore/QDateTime>
 #include <QtCore/QString>
 #include <QtCore/QStringList>

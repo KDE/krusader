@@ -28,10 +28,6 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <signal.h>
-
 #include <QtCore/QAbstractEventDispatcher>
 #include <QtCore/QCommandLineOption>
 #include <QtCore/QCommandLineParser>
