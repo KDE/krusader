@@ -33,7 +33,6 @@
 #include <KIO/NetAccess>
 #include <KIO/JobClasses>
 #include <KIO/Job>
-#include <kde_file.h>
 #include <KDE/KStandardAction>
 
 #include <KParts/Part>

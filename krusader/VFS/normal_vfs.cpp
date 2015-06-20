@@ -46,9 +46,7 @@
 #include <QtCore/QTimer>
 #include <QtCore/QByteArray>
 #include <QtCore/QDir>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <kde_file.h>
+#include <qplatformdefs.h>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
@@ -119,10 +117,10 @@ bool normal_vfs::populateVfsList(const QUrl &origin, bool showHidden)
         return false;
     }
 
-    KDE_struct_dirent* dirEnt;
+    QT_DIRENT* dirEnt;
     QString name;
 
-    while ((dirEnt = KDE_readdir(dir)) != NULL) {
+    while ((dirEnt = QT_READDIR(dir)) != NULL) {
         name = QString::fromLocal8Bit(dirEnt->d_name);
 
         // show hidden files ?
@@ -245,13 +243,13 @@ vfile* normal_vfs::vfileFromName(const QString& name, char * rawName)
     QString path = vfs_workingDir() + '/' + name;
     QByteArray fileName = rawName == 0 ? path.toLocal8Bit() : (vfs_workingDir() + '/').toLocal8Bit().append(rawName);
 
-    KDE_struct_stat stat_p;
+    QT_STATBUF stat_p;
     stat_p.st_size = 0;
     stat_p.st_mode = 0;
     stat_p.st_mtime = 0;
     stat_p.st_uid = 0;
     stat_p.st_gid = 0;
-    KDE_lstat(fileName.data(), &stat_p);
+    QT_LSTAT(fileName.data(), &stat_p);
     KIO::filesize_t size = stat_p.st_size;
     QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
     bool symLink = S_ISLNK(stat_p.st_mode);

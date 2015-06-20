@@ -42,9 +42,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QSplashScreen>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <kde_file.h>
-
 #include <KCoreAddons/KAboutData>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
@@ -309,9 +306,9 @@ int main(int argc, char *argv[])
 
 
     // catching SIGTERM, SIGHUP, SIGQUIT
-    KDE_signal(SIGTERM, sigterm_handler);
-    KDE_signal(SIGPIPE, sigterm_handler);
-    KDE_signal(SIGHUP, sigterm_handler);
+    signal(SIGTERM, sigterm_handler);
+    signal(SIGPIPE, sigterm_handler);
+    signal(SIGHUP, sigterm_handler);
 
     QObject::connect(&app, &QGuiApplication::applicationStateChanged, SLOTS, &KRslots::applicationStateChanged);
 

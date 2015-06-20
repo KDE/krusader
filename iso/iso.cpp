@@ -34,9 +34,9 @@
 #include <QtCore/QFile>
 #include <QtCore/QMimeDatabase>
 #include <QtCore/QMimeType>
+#include <qplatformdefs.h>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <kde_file.h>
 #include <KDE/KComponentData>
 
 #include "libisofs/iso_fs.h"
@@ -100,8 +100,8 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString & path, int startse
     if (m_isoFile && startsec == m_isoFile->startSec() &&
             m_isoFile->fileName() == fullPath.left(m_isoFile->fileName().length())) {
         // Has it changed ?
-        KDE_struct_stat statbuf;
-        if (KDE_stat(QFile::encodeName(m_isoFile->fileName()), &statbuf) == 0) {
+        QT_STATBUF statbuf;
+        if (QT_STAT(QFile::encodeName(m_isoFile->fileName()), &statbuf) == 0) {
             if (m_mtime == statbuf.st_mtime) {
                 path = fullPath.mid(m_isoFile->fileName().length());
                 //qDebug()   << "kio_isoProtocol::checkNewFile returning " << path << endl;
@@ -132,8 +132,8 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString & path, int startse
         QString tryPath = fullPath.left(pos);
         //qDebug()   << fullPath << "  trying " << tryPath << endl;
 
-        KDE_struct_stat statbuf;
-        if (KDE_lstat(QFile::encodeName(tryPath), &statbuf) == 0 && !S_ISDIR(statbuf.st_mode)) {
+        QT_STATBUF statbuf;
+        if (QT_LSTAT(QFile::encodeName(tryPath), &statbuf) == 0 && !S_ISDIR(statbuf.st_mode)) {
             bool isFile = true;
             if (S_ISLNK(statbuf.st_mode)) {
                 char symDest[256];
@@ -219,8 +219,8 @@ void kio_isoProtocol::listDir(const QUrl &url)
     if (!checkNewFile(getPath(url), path, url.hasFragment() ? url.fragment(QUrl::FullyDecoded).toInt() : -1)) {
         QByteArray _path(QFile::encodeName(getPath(url)));
         //qDebug()  << "Checking (stat) on " << _path << endl;
-        KDE_struct_stat buff;
-        if (KDE_stat(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
+        QT_STATBUF buff;
+        if (QT_STAT(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
             error(KIO::ERR_DOES_NOT_EXIST, getPath(url));
             return;
         }
@@ -299,8 +299,8 @@ void kio_isoProtocol::stat(const QUrl &url)
         // when pressing up after being in the root of an archive
         QByteArray _path(QFile::encodeName(getPath(url)));
         //qDebug()  << "kio_isoProtocol::stat (stat) on " << _path << endl;
-        KDE_struct_stat buff;
-        if (KDE_stat(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
+        QT_STATBUF buff;
+        if (QT_STAT(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
             //qDebug() << "isdir=" << S_ISDIR(buff.st_mode) << "  errno=" << strerror(errno) << endl;
             error(KIO::ERR_DOES_NOT_EXIST, getPath(url));
             return;

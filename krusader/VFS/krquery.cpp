@@ -35,9 +35,6 @@
 #include <QtCore/QRegExp>
 #include <QtCore/QFile>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <kde_file.h>
-
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KUrlCompletion>
 #include <KIO/Job>

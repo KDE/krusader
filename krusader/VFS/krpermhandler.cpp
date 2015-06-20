@@ -42,9 +42,7 @@
 #include <QtCore/QDateTime>
 #include <QtCore/QDir>
 #include <QtCore/QLocale>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <kde_file.h>
+#include <qplatformdefs.h>
 
 QHash<QString, uid_t> *KRpermHandler::passwdCache = 0L;
 QHash<QString, gid_t> *KRpermHandler::groupCache = 0L;
@@ -108,8 +106,8 @@ char KRpermHandler::executable(QString perm, gid_t gid, uid_t uid, int rwx)
 
 bool KRpermHandler::fileWriteable(QString localFile)
 {
-    KDE_struct_stat stat_p;
-    if (KDE_stat(localFile.toLocal8Bit(), &stat_p) == -1) return false;
+    QT_STATBUF stat_p;
+    if (QT_STAT(localFile.toLocal8Bit(), &stat_p) == -1) return false;
     mode_t m = stat_p.st_mode;
     QString perm = mode2QString(m);
     return writeable(perm, stat_p.st_gid, stat_p.st_uid);
@@ -117,8 +115,8 @@ bool KRpermHandler::fileWriteable(QString localFile)
 
 bool KRpermHandler::fileReadable(QString localFile)
 {
-    KDE_struct_stat stat_p;
-    if (KDE_stat(localFile.toLocal8Bit(), &stat_p) == -1) return false;
+    QT_STATBUF stat_p;
+    if (QT_STAT(localFile.toLocal8Bit(), &stat_p) == -1) return false;
     mode_t m = stat_p.st_mode;
     QString perm = mode2QString(m);
     return readable(perm, stat_p.st_gid, stat_p.st_uid);
@@ -126,8 +124,8 @@ bool KRpermHandler::fileReadable(QString localFile)
 
 bool KRpermHandler::fileExecutable(QString localFile)
 {
-    KDE_struct_stat stat_p;
-    if (KDE_stat(localFile.toLocal8Bit(), &stat_p) == -1) return false;
+    QT_STATBUF stat_p;
+    if (QT_STAT(localFile.toLocal8Bit(), &stat_p) == -1) return false;
     mode_t m = stat_p.st_mode;
     QString perm = mode2QString(m);
     return executable(perm, stat_p.st_gid, stat_p.st_uid);
@@ -268,8 +266,8 @@ bool KRpermHandler::fileExist(QString path, QString name)
     if (QDir(path).exists(name)) return true;
     DIR* dir = opendir(path.toLocal8Bit());
     if (!dir) return false;
-    KDE_struct_dirent* dirEnt;
-    while ((dirEnt = KDE_readdir(dir))) {
+    QT_DIRENT* dirEnt;
+    while ((dirEnt = QT_READDIR(dir))) {
         if (dirEnt->d_name == name) {
             closedir(dir);
             return true;

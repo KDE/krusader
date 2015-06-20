@@ -36,9 +36,7 @@
 #include <QtCore/QFile>
 #include <QtCore/QMimeDatabase>
 #include <QtCore/QMimeType>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <kde_file.h>
+#include <qplatformdefs.h>
 
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
@@ -77,7 +75,7 @@ static int getTracks(const char *fname, int *tracks)
     struct cdrom_tocentry tocentry;
 
     //qDebug() << "getTracks open:" << fname << endl;
-    fd = KDE_open(fname, O_RDONLY | O_NONBLOCK);
+    fd = QT_OPEN(fname, O_RDONLY | O_NONBLOCK);
     if (fd > 0) {
         if (ioctl(fd, CDROMREADTOCHDR, &tochead) != -1) {
 //            qDebug() << "getTracks first track:" << tochead.cdth_trk0
@@ -352,7 +350,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
 {
     iso_vol_desc *desc;
     QString path, tmp, uid, gid;
-    KDE_struct_stat buf;
+    QT_STATBUF buf;
     int tracks[2*100], trackno = 0, i, access, c_b, c_i, c_j;
     KArchiveDirectory *root;
     struct iso_directory_record* idr;
@@ -370,7 +368,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
     /* We'll use the permission and user/group of the 'host' file except
      * in Rock Ridge, where the permissions are stored on the file system
      */
-    if (KDE_stat(m_filename.toLocal8Bit(), &buf) < 0) {
+    if (QT_STAT(m_filename.toLocal8Bit(), &buf) < 0) {
         /* defaults, if stat fails */
         memset(&buf, 0, sizeof(struct stat));
         buf.st_mode = 0777;
@@ -475,17 +473,17 @@ bool KIso::writeSymLink(const QString &, const QString &, const QString &, const
     return false;
 }
 
-bool KIso::doWriteDir(const QString&, const QString&, const QString&, mode_t, const QDateTime &atime, const QDateTime &mtime, const QDateTime &ctime)
+bool KIso::doWriteDir(const QString&, const QString&, const QString&, mode_t, const QDateTime&, const QDateTime &, const QDateTime &)
 {
     return false;
 }
 
-bool KIso::doWriteSymLink(const QString &, const QString &, const QString &, const QString &, mode_t, const QDateTime &atime, const QDateTime &mtime, const QDateTime &ctime)
+bool KIso::doWriteSymLink(const QString &, const QString &, const QString &, const QString &, mode_t, const QDateTime&, const QDateTime&, const QDateTime&)
 {
     return false;
 }
 
-bool KIso::doPrepareWriting(const QString& , const QString& , const QString& , qint64, mode_t, const QDateTime &atime, const QDateTime &mtime, const QDateTime &ctime)
+bool KIso::doPrepareWriting(const QString& , const QString& , const QString& , qint64, mode_t, const QDateTime&, const QDateTime&, const QDateTime&)
 {
     return false;
 }

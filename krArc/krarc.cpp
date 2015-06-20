@@ -35,10 +35,10 @@
 #include <QtCore/QRegExp>
 #include <QtCore/QTemporaryFile>
 #include <QtCore/QTextCodec>
+#include <qplatformdefs.h>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KComponentData>
-#include <kde_file.h>
 
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KFileItem>
@@ -254,7 +254,7 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
     for (int i = 0;i < tempDir.length() && i >= 0; i = tempDir.indexOf(DIR_SEPARATOR, i + 1)) {
         QByteArray newDirs = encodeString(tempDir.left(i));
         newDirs.prepend(arcTempDirEnc);
-        KDE_mkdir(newDirs, permissions);
+        QT_MKDIR(newDirs, permissions);
     }
 
     if (tempDir.endsWith(DIR_SEPARATOR))
@@ -328,15 +328,15 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
     for (int i = 0;i < tempDir.length() && i >= 0; i = tempDir.indexOf(DIR_SEPARATOR, i + 1)) {
         QByteArray newDirs = encodeString(tempDir.left(i));
         newDirs.prepend(arcTempDirEnc);
-        KDE_mkdir(newDirs, 0755);
+        QT_MKDIR(newDirs, 0755);
     }
 
     int fd;
     if (resume) {
         QByteArray ba = encodeString(tempFile);
         ba.prepend(arcTempDirEnc);
-        fd = KDE_open(ba, O_RDWR);    // append if resuming
-        KDE_lseek(fd, 0, SEEK_END); // Seek to end
+        fd = QT_OPEN(ba, O_RDWR);    // append if resuming
+        QT_LSEEK(fd, 0, SEEK_END); // Seek to end
     } else {
         // WABA: Make sure that we keep writing permissions ourselves,
         // otherwise we can be in for a surprise on NFS.
@@ -348,7 +348,7 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
 
         QByteArray ba = encodeString(tempFile);
         ba.prepend(arcTempDirEnc);
-        fd = KDE_open(ba, O_CREAT | O_TRUNC | O_WRONLY, initialMode);
+        fd = QT_OPEN(ba, O_CREAT | O_TRUNC | O_WRONLY, initialMode);
     }
     QByteArray buffer;
     int readResult;
@@ -512,8 +512,8 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
         // the following block is ripped from KDE file KIO::Slave
         // $Id: krarc.cpp,v 1.43 2007/01/13 13:39:51 ckarai Exp $
         QByteArray _path(QFile::encodeName(arcTempDir + file));
-        KDE_struct_stat buff;
-        if (KDE_lstat(_path.data(), &buff) == -1) {
+        QT_STATBUF buff;
+        if (QT_LSTAT(_path.data(), &buff) == -1) {
             if (errno == EACCES)
                 error(KIO::ERR_ACCESS_DENIED, getPath(url));
             else
@@ -528,7 +528,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
             error(KIO::ERR_CANNOT_OPEN_FOR_READING, getPath(url));
             return;
         }
-        int fd = KDE_open(_path.data(), O_RDONLY);
+        int fd = QT_OPEN(_path.data(), O_RDONLY);
         if (fd < 0) {
             error(KIO::ERR_CANNOT_OPEN_FOR_READING, getPath(url));
             return;
@@ -547,7 +547,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
             bool ok;
             KIO::fileoffset_t offset = resumeOffset.toLongLong(&ok);
             if (ok && (offset > 0) && (offset < buff.st_size)) {
-                if (KDE_lseek(fd, offset, SEEK_SET) == offset) {
+                if (QT_LSEEK(fd, offset, SEEK_SET) == offset) {
                     canResume();
                     processed_size = offset;
                 }
@@ -668,8 +668,8 @@ void kio_krarcProtocol::stat(const QUrl &url)
     }
     // we might be stating a real file
     if (QFileInfo(path).exists()) {
-        KDE_struct_stat buff;
-        KDE_stat(path.toLocal8Bit(), &buff);
+        QT_STATBUF buff;
+        QT_STAT(path.toLocal8Bit(), &buff);
         QString mime;
         QMimeDatabase db;
         QMimeType result = db.mimeTypeForFile(path);
@@ -859,8 +859,8 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
         for (int pos = 0; pos >= 0; pos = newPath.indexOf(DIR_SEPARATOR, pos + 1)) {
             QFileInfo qfi(newPath.left(pos));
             if (qfi.exists() && !qfi.isDir()) {
-                KDE_struct_stat stat_p;
-                KDE_lstat(newPath.left(pos).toLocal8Bit(), &stat_p);
+                QT_STATBUF stat_p;
+                QT_LSTAT(newPath.left(pos).toLocal8Bit(), &stat_p);
                 arcFile = new KFileItem(QUrl::fromLocalFile(newPath.left(pos)), QString(), stat_p.st_mode);
                 break;
             }

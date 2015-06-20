@@ -43,9 +43,6 @@
 #include <QtCore/QDir>
 #include <QtWidgets/QApplication>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <kde_file.h>
-
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KFileItem>
 #include <KIO/JobUiDelegate>

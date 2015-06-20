@@ -40,11 +40,10 @@
 #include <QtCore/QMimeType>
 #include <QtCore/QRegExp>
 #include <QtWidgets/QApplication>
+#include <qplatformdefs.h>
 
 #include <KIO/Global>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <kde_file.h>
 
 #include "../VFS/krquery.h"
 #include "../VFS/vfile.h"
@@ -130,16 +129,16 @@ void KRSearchMod::scanLocalDir(QUrl urlToScan)
     DIR* d = opendir(dir.toLocal8Bit());
     if (!d) return ;
 
-    KDE_struct_dirent* dirEnt;
+    QT_DIRENT* dirEnt;
 
-    while ((dirEnt = KDE_readdir(d)) != NULL) {
+    while ((dirEnt = QT_READDIR(d)) != NULL) {
         QString name = QString::fromLocal8Bit(dirEnt->d_name);
 
         // we don't scan the ".",".." enteries
         if (name == "." || name == "..") continue;
 
-        KDE_struct_stat stat_p;
-        KDE_lstat((dir + name).toLocal8Bit(), &stat_p);
+        QT_STATBUF stat_p;
+        QT_LSTAT((dir + name).toLocal8Bit(), &stat_p);
 
         QUrl url = QUrl::fromLocalFile(dir + name);
 

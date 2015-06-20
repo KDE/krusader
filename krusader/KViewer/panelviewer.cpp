@@ -25,7 +25,6 @@
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KDE/KLibLoader>
 #include <KIO/NetAccess>
-#include <kde_file.h>
 
 #include <KParts/BrowserExtension>
 #include <KParts/ReadWritePart>
