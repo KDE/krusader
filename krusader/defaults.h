@@ -51,8 +51,6 @@
 #define _ShowTerminalEmulator false
 // Remember Position
 #define _RememberPos      true
-// Start to tray
-#define _StartToTray      false
 // Left Tab Bar
 // Right Tab Bar
 // Left Panel Popup
@@ -69,8 +67,6 @@
 #define _FilelistFont   QFontDatabase::systemFont(QFontDatabase::GeneralFont)
 // Warn On Exit ////////
 #define _WarnOnExit     false
-// Minimize To Tray ////
-#define _MinimizeToTray false
 // Mark Dirs ///////////
 #define _MarkDirs       false
 // Show Hidden /////////

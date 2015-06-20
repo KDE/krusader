@@ -175,7 +175,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     krusaderApp->actionCollection()->addAction("toggle actions toolbar", actShowActionsToolBar);
 
     actShowStatusBar = KStandardAction::showStatusbar(SLOTS, SLOT(toggleStatusbar()), krusaderApp->actionCollection());
-    KStandardAction::quit(krusaderApp, SLOT(slotClose()), krusaderApp->actionCollection());
+    KStandardAction::quit(krusaderApp, SLOT(close()), krusaderApp->actionCollection());
     KStandardAction::configureToolbars(SLOTS, SLOT(configToolbar()), krusaderApp->actionCollection());
     KStandardAction::keyBindings(SLOTS, SLOT(configKeys()), krusaderApp->actionCollection());
 
@@ -277,7 +277,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     actRemoteEncoding = new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "character-set", krusaderApp->actionCollection());
 
-    NEW_KACTION(actF10, i18n("Quit"), 0, Qt::Key_F10, krusaderApp, SLOT(slotClose()) , "F10_Quit");
+    NEW_KACTION(actF10, i18n("Quit"), 0, Qt::Key_F10, krusaderApp, SLOT(close()) , "F10_Quit");
     NEW_KACTION(actPopularUrls, i18n("Popular URLs..."), 0, Qt::CTRL + Qt::Key_Z, krusaderApp->popularUrls(), SLOT(showDialog()), "Popular_Urls");
     NEW_KACTION(actSwitchFullScreenTE, i18n("Toggle Fullscreen Terminal Emulator"), 0, Qt::CTRL + Qt::Key_F, MAIN_VIEW, SLOT(switchFullScreenTE()), "switch_fullscreen_te");
 

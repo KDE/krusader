@@ -61,7 +61,6 @@ class KrJS;
 
 class KrusaderStatus;
 class KRPleaseWaitHandler;
-class KSystemTrayIcon;
 class UserMenu;
 class UserAction;
 class PopularUrls;
@@ -109,8 +108,6 @@ public:
     virtual void plugActionList(const char *name, QList<QAction*> &list) Q_DECL_OVERRIDE {
         KParts::MainWindow::plugActionList(name, list);
     }
-
-    void configChanged();
     /**
      * This returns a defferent icon if krusader runs with root-privileges
      * @return a character string with the specitif icon-name
@@ -127,10 +124,6 @@ public slots:
     void savePosition();
     void updateUserActions();
     void updateGUI(bool enforce = false);
-    void slotClose();
-    void setDirectExit() {
-        directExit = true;
-    }
 
 protected slots:
     void doOpenUrl();
@@ -141,8 +134,6 @@ protected:
     bool queryClose() Q_DECL_OVERRIDE;
     void setupActions();
     bool versionControl();  // handle version differences in krusaderrc
-    void showEvent(QShowEvent *) Q_DECL_OVERRIDE;
-    void hideEvent(QHideEvent *) Q_DECL_OVERRIDE;
     void moveEvent(QMoveEvent *) Q_DECL_OVERRIDE;
     void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE;
     bool event(QEvent *) Q_DECL_OVERRIDE;
@@ -187,12 +178,10 @@ private:
     ViewActions *_viewActions;
     ListPanelActions *_listPanelActions;
     TabActions *_tabActions;
-    KSystemTrayIcon *sysTray;
     QPoint       oldPos;
     QSize        oldSize;
     bool         isStarting;
     bool         isExiting;
-    bool         directExit;
     KrJobStarter jobStarter;
     QTimer      _openUrlTimer;
     QString     _urlToOpen;

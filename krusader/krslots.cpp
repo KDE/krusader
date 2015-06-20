@@ -342,8 +342,6 @@ void KRslots::configChanged(bool isGUIRestartNeeded)
         MAIN_VIEW->leftManager()->refreshAllTabs(true);
         MAIN_VIEW->rightManager()->refreshAllTabs(true);
     }
-
-    krApp->configChanged();
 }
 
 void KRslots::showHiddenFiles(bool show)

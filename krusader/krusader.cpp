@@ -51,20 +51,16 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QtDBus/QtDBus>
 #include <QtPrintSupport/QPrinter>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KSystemTrayIcon>
-
-#include <KXmlGui/KActionCollection>
-#include <KWidgetsAddons/KMessageBox>
-#include <KWidgetsAddons/KToggleAction>
-#include <KWidgetsAddons/KToolBarPopupAction>
-#include <KWidgetsAddons/KCursor>
-
 #include <KCoreAddons/KRandom>
 #include <KConfigCore/KSharedConfig>
+#include <KXmlGui/KActionCollection>
 #include <KXmlGui/KXMLGUIFactory>
 #include <KXmlGui/KToolBar>
 #include <KWidgetsAddons/KAcceleratorManager>
+#include <KWidgetsAddons/KCursor>
+#include <KWidgetsAddons/KMessageBox>
+#include <KWidgetsAddons/KToggleAction>
+#include <KWidgetsAddons/KToolBarPopupAction>
 #include <KWindowSystem/KWindowSystem>
 
 #include "krusaderversion.h"
@@ -126,8 +122,7 @@ QAction *Krusader::actShowJSConsole = 0;
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
                 Qt::Window | Qt::WindowTitleHint | Qt::WindowContextHelpButtonHint),
-        status(0), _listPanelActions(0), sysTray(0), isStarting(true),
-        isExiting(false), directExit(false)
+        status(0), _listPanelActions(0), isStarting(true), isExiting(false)
 {
     // create the "krusader"
     App = this;
@@ -225,25 +220,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     status->setWhatsThis(i18n("Statusbar will show basic information "
                               "about file below mouse pointer."));
 
-    KGlobal::ref(); // FIX: krusader exits at closing the viewer when minimized to tray
-    // This enables Krusader to show a tray icon
-    sysTray = new KSystemTrayIcon(this);
-    // Krusader::privIcon() returns either "krusader_blue" or "krusader_red" if the user got root-privileges
-    sysTray->setIcon(krLoader->loadIcon(privIcon(), KIconLoader::Panel, 22));
-    sysTray->hide();
-
-    connect(sysTray, SIGNAL(quitSelected()), this, SLOT(setDirectExit()));
-
     setCentralWidget(MAIN_VIEW);
-    bool startToTray = gs.readEntry("Start To Tray", _StartToTray);
-    bool minimizeToTray = gl.readEntry("Minimize To Tray", _MinimizeToTray);
-    bool singleInstanceMode = gl.readEntry("Single Instance Mode", _SingleInstanceMode);
-
-    startToTray = startToTray && minimizeToTray;
-
-    if (singleInstanceMode && minimizeToTray)
-        sysTray->show();
-
 
     // manage our keyboard short-cuts
     //KAcceleratorManager::manage(this,true);
@@ -274,12 +251,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
         }
     }
 
-    if (startToTray) {
-        sysTray->show();
-        hide();
-    } else
-        show();
-
+    show();
 
     KrTrashHandler::startWatcher();
     isStarting = false;
@@ -356,50 +328,6 @@ void Krusader::statusBarUpdate(QString& mess)
     if (status) // ugly!!!! But as statusBar() creates a status bar if there is no, I have to ask status to prevent
         // the creation of the KDE default status bar instead of KrusaderStatus.
         statusBar() ->showMessage(mess, 5000);
-}
-
-void Krusader::showEvent(QShowEvent *)
-{
-    if (isExiting)
-        return;
-    KConfigGroup group(krConfig, "Look&Feel");
-    bool showTrayIcon = group.readEntry("Minimize To Tray", _MinimizeToTray);
-    bool singleInstanceMode = group.readEntry("Single Instance Mode", _SingleInstanceMode);
-
-    if (showTrayIcon && !singleInstanceMode && sysTray)
-        sysTray->hide();
-    show(); // needed to make sure krusader is removed from
-    // the taskbar when minimizing (system tray issue)
-}
-
-void Krusader::hideEvent(QHideEvent *e)
-{
-    if (isExiting) {
-        KParts::MainWindow::hideEvent(e);
-        if (sysTray)
-            sysTray->hide();
-        return;
-    }
-    KConfigGroup group(krConfig, "Look&Feel");
-    bool showTrayIcon = group.readEntry("Minimize To Tray", _MinimizeToTray);
-
-    bool isModalTopWidget = false;
-
-    QWidget *actWnd = qApp->activeWindow();
-    if (actWnd)
-        isModalTopWidget = actWnd->isModal();
-
-#ifdef Q_WS_X11
-    // KWindowSystem::windowInfo is only available for X11
-    if (showTrayIcon  && !isModalTopWidget  && KWindowSystem::windowInfo(winId(), NET::WMDesktop).isOnCurrentDesktop()) {
-#else
-    if (showTrayIcon  && !isModalTopWidget) {
-#endif
-        if (sysTray)
-            sysTray->show();
-        hide(); // needed to make sure krusader is removed from
-        // the taskbar when minimizing (system tray issue)
-    } else KParts::MainWindow::hideEvent(e);
 }
 
 void Krusader::moveEvent(QMoveEvent *e) {
@@ -480,36 +408,12 @@ void Krusader::saveSettings() {
         cfg.writeEntry("Show FN Keys", KrActions::actToggleFnkeys->isChecked());
         cfg.writeEntry("Show Cmd Line", KrActions::actToggleCmdline->isChecked());
         cfg.writeEntry("Show Terminal Emulator", KrActions::actToggleTerminal->isChecked());
-        cfg.writeEntry("Start To Tray", isHidden());
     }
 
     // save popular links
     _popularUrls->save();
 
     krConfig->sync();
-}
-
-void Krusader::configChanged() {
-    KConfigGroup group(krConfig, "Look&Feel");
-    bool minimizeToTray = group.readEntry("Minimize To Tray", _MinimizeToTray);
-    bool singleInstanceMode = group.readEntry("Single Instance Mode", _SingleInstanceMode);
-
-    if (sysTray) {
-        if (!isHidden()) {
-            if (singleInstanceMode && minimizeToTray)
-                sysTray->show();
-            else
-                sysTray->hide();
-        } else {
-            if (minimizeToTray)
-                sysTray->show();
-        }
-    }
-}
-
-void Krusader::slotClose() {
-    directExit = true;
-    qApp->quit();
 }
 
 bool Krusader::queryClose() {
@@ -528,25 +432,10 @@ bool Krusader::queryClose() {
         QDBusConnection dbus = QDBusConnection::sessionBus();
         dbus.unregisterObject("/Instances/" + Krusader::AppName);
 
-        KGlobal::deref(); // FIX: krusader exits at closing the viewer when minimized to tray
-        sysTray->hide();
-        delete sysTray;   // In KDE 4.1, KGlobal::ref() and deref() is done in KSystray constructor/destructor
-        sysTray = NULL;
-        KGlobal::deref(); // and close the application
         return isExiting = true;              // this will also kill the pending jobs
     }
 
     KConfigGroup cfg = krConfig->group("Look&Feel");
-    if (!directExit && cfg.readEntry("Single Instance Mode", _SingleInstanceMode) &&
-            cfg.readEntry("Minimize To Tray", _MinimizeToTray)) {
-        hide();
-        return false;
-    }
-
-    // the shutdown process can be cancelled. That's why
-    // the directExit variable is set to normal here.
-    directExit = false;
-
     bool quit = true;
 
     if (cfg.readEntry("Warn On Exit", _WarnOnExit)) {
@@ -576,7 +465,6 @@ bool Krusader::queryClose() {
             if (activeModal &&
                     activeModal != this &&
                     activeModal != menuBar() &&
-                    /*activeModal != sysTray && ==> TODO: commented since KSystemTrayIcon is no longer a QWidget  */
                     list.contains(activeModal) &&
                     !activeModal->isHidden()) {
                 w = activeModal;
@@ -584,7 +472,7 @@ bool Krusader::queryClose() {
                 int i = 1;
                 for (; i < list.count(); ++i) {
                     w = list.at(i);
-                    if (!(w && (w == this || /* w==sysTray ||*/ w->isHidden() || w == menuBar())))
+                    if (!(w && (w == this || w->isHidden() || w == menuBar())))
                         break;
                 }
 
@@ -608,7 +496,6 @@ bool Krusader::queryClose() {
         emit shutdown();
 
         isExiting = true;
-        hide();        // hide
 
         // Removes the DBUS registration of the application. Single instance mode requires unique appid.
         // As Krusader is exiting, we release that unique appid, so new Krusader instances
@@ -616,18 +503,7 @@ bool Krusader::queryClose() {
 
         QDBusConnection dbus = QDBusConnection::sessionBus();
         dbus.unregisterObject("/Instances/" + Krusader::AppName);
-
-        KGlobal::deref(); // FIX: krusader exits at closing the viewer when minimized to tray
-        sysTray->hide();
-        delete sysTray;   // In KDE 4.1, KGlobal::ref() and deref() is done in KSystray constructor/destructor
-        sysTray = NULL;
-        KGlobal::deref(); // and close the application
-        qApp->quit();
-        return false;  // don't let the main widget close. It stops the pendig copies!
-        //FIXME: The above intention does not work (at least in KDE 4.1), because the job
-        //progress window (class KWidgetJobTracker::Private::ProgressWidget)
-        //is closed above among other top level windows, and when closed
-        //stops the copy.
+        return true;
     } else
         return false;
 }
