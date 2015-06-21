@@ -704,4 +704,3 @@ void KgColors::serializeItem(class QDataStream & stream, const char * name)
     }
 }
 
-#include "kgcolors.moc"

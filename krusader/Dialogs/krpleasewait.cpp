@@ -160,4 +160,3 @@ void KRPleaseWaitHandler::incProgress(int i)
     incMutex = false;
 }
 
-#include "krpleasewait.moc"

@@ -338,4 +338,3 @@ void KgGeneral::slotRemoveExtension()
         listBox->removeItem(list[ i ]->text());
 }
 
-#include "kggeneral.moc"

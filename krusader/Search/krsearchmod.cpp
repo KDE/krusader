@@ -242,4 +242,3 @@ void KRSearchMod::slotProcessEvents(bool & stopped)
     stopped = stopSearch;
 }
 
-#include "krsearchmod.moc"

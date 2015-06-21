@@ -617,4 +617,3 @@ void AdvancedFilter::applySettings(const FilterSettings &s)
     setComboBoxValue(allX, QString(perm[8]));
 }
 
-#include "advancedfilter.moc"

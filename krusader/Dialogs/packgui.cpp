@@ -140,4 +140,3 @@ void PackGUI::slotQueue()
     PackGUIBase::slotQueue();
 }
 
-#include "packgui.moc"

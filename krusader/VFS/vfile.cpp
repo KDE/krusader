@@ -319,4 +319,3 @@ vfile& vfile::operator= (const vfile & vf)
     return (*this);
 }
 
-#include "vfile.moc"

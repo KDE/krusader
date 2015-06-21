@@ -874,5 +874,3 @@ QString KRarcHandler::detectArchive(bool &encrypted, QString fileName, bool chec
     return QString();
 }
 
-#include "krarchandler.moc"
-

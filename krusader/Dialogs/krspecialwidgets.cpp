@@ -320,4 +320,3 @@ void KrQuickSearch::setMatch(bool match)
     setPalette(pal);
 }
 
-#include "krspecialwidgets.moc"

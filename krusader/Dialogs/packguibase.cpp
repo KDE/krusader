@@ -516,4 +516,3 @@ void PackGUIBase::keyPressEvent(QKeyEvent *e)
     }
 }
 
-#include "packguibase.moc"

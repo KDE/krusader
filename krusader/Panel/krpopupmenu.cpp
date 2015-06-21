@@ -413,4 +413,3 @@ void KrPopupMenu::performAction(int id)
     }
 }
 
-#include "krpopupmenu.moc"

@@ -194,4 +194,3 @@ bool newFTPGUI::event(QEvent *ev)
     return ret;
 }
 
-#include "newftpgui.moc"

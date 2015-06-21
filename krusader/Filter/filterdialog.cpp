@@ -113,4 +113,3 @@ void FilterDialog::slotOk()
         accept();
 }
 
-#include "filterdialog.moc"

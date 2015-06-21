@@ -416,4 +416,3 @@ bool PanelEditor::isModified()
         return false;
 }
 
-#include "panelviewer.moc"

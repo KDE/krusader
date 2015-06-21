@@ -121,5 +121,3 @@ void KgUserActions::startActionMan()
     ActionMan actionMan(static_cast<QWidget*>(this));
 }
 
-
-#include "kguseractions.moc"

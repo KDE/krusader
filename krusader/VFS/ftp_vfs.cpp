@@ -297,4 +297,3 @@ QString ftp_vfs::vfs_workingDir()
     return vfs_origin.adjusted(QUrl::StripTrailingSlash).url();
 }
 
-#include "ftp_vfs.moc"

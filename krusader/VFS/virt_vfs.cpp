@@ -381,4 +381,3 @@ void virt_vfs::setMetaInformation(QString info) {
     vfs_refresh();
 }
 
-#include "virt_vfs.moc"

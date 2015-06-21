@@ -536,4 +536,3 @@ KrMountDetector * KrMountDetector::getInstance()
     return & krMountDetector;
 }
 
-#include "kmountmangui.moc"

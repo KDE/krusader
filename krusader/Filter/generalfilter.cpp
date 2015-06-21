@@ -608,4 +608,3 @@ void GeneralFilter::applySettings(const FilterSettings &s)
     }
 }
 
-#include "generalfilter.moc"

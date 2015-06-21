@@ -284,4 +284,3 @@ void SplitterGUI::keyPressEvent(QKeyEvent *e)
     }
 }
 
-#include "splittergui.moc"

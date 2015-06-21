@@ -1468,4 +1468,3 @@ bool ListPanelFunc::atHome()
     return QUrl::fromLocalFile(QDir::homePath()).matches(panel->virtualPath(), QUrl::StripTrailingSlash);
 }
 
-#include "panelfunc.moc"

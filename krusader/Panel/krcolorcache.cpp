@@ -748,4 +748,3 @@ void KrColorCache::setColors(const KrColorSettings & colorSettings)
     colorsRefreshed();
 }
 
-#include "krcolorcache.moc"

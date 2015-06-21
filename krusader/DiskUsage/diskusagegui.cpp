@@ -244,4 +244,3 @@ bool DiskUsageGUI::newSearch()
     return true;
 }
 
-#include "diskusagegui.moc"

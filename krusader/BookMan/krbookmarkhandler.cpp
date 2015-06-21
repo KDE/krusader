@@ -644,5 +644,3 @@ void KrBookmarkHandler::slotActivated(const QUrl &url)
         SLOTS->refresh(url);
 }
 
-
-#include "krbookmarkhandler.moc"

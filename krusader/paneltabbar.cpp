@@ -314,4 +314,3 @@ void PanelTabBar::layoutTabs()
         setTabText(i, squeeze(DISPLAY(((ListPanel*)tabData(i).toLongLong())->virtualPath()), i));
 }
 
-#include "paneltabbar.moc"

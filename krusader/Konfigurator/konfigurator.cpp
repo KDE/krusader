@@ -247,4 +247,3 @@ void Konfigurator::slotShowHelp()
     KHelpClient::invokeHelp(QStringLiteral("konfigurator"));
 }
 
-#include "konfigurator.moc"

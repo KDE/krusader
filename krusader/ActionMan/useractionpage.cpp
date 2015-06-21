@@ -351,4 +351,3 @@ void UserActionPage::applyChanges()
     slotUpdateAction();
 }
 
-#include "useractionpage.moc"

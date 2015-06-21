@@ -835,4 +835,3 @@ void KonfiguratorListBox::removeItem(const QString & item)
         ext->setChanged();
 }
 
-#include "konfiguratoritems.moc"

@@ -1974,6 +1974,4 @@ QString kio_krarcProtocol::getPath(const QUrl &url, QUrl::FormattingOptions opti
     return path;
 }
 
-#include "krarc.moc"
-
 #endif // KRARC_ENABLED

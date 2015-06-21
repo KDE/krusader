@@ -696,4 +696,3 @@ void LocateDlg::updateButtons(bool locateIsRunning)
     }
 }
 
-#include "locate.moc"

@@ -839,7 +839,8 @@ void Synchronizer::swapSides()
 
 void Synchronizer::setScrolling(bool scroll)
 {
-    if (autoScroll = scroll) {
+    autoScroll = scroll;
+    if (autoScroll) {
         int oldFileCount = fileCount;
         refresh(true);
         fileCount = oldFileCount;
@@ -1442,4 +1443,3 @@ SynchronizerFileItem *Synchronizer::getItemAt(unsigned ndx)
         return 0;
 }
 
-#include "synchronizer.moc"

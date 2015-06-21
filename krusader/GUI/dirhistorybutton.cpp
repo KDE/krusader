@@ -88,4 +88,3 @@ void DirHistoryButton::slotPopupActivated(QAction * action)
     }
 }
 
-#include "dirhistorybutton.moc"

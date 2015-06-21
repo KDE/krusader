@@ -196,4 +196,3 @@ void KURLListRequester::setUrlList(QList<QUrl> urlList)
     emit changed();
 }
 
-#include "kurllistrequester.moc"

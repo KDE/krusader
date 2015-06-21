@@ -469,4 +469,3 @@ void normal_vfs::vfs_slotDeleted(const QString& path)
     }
 }
 
-#include "normal_vfs.moc"

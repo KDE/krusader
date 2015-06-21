@@ -402,4 +402,3 @@ bool vfs::vfs_showHidden()
     return gl.readEntry("Show Hidden", _ShowHidden);
 }
 
-#include "vfs.moc"

@@ -735,4 +735,3 @@ AbstractPanelManager *Krusader::rightManager()
     return MAIN_VIEW->rightManager();
 }
 
-#include "krusader.moc"

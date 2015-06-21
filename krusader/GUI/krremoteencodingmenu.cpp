@@ -219,4 +219,3 @@ void KrRemoteEncodingMenu::updateKIOSlaves()
     QTimer::singleShot(500, ACTIVE_FUNC, SLOT(refresh()));
 }
 
-#include "krremoteencodingmenu.moc"

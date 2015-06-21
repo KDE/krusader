@@ -60,4 +60,3 @@ void KrBookmarkButton::showMenu()
     menu()->exec(mapToGlobal(QPoint(0, height())));
 }
 
-#include "krbookmarkbutton.moc"

@@ -145,4 +145,3 @@ void KrPreviewPopup::view(QAction *clicked)
         KrViewer::view(clicked->data().value<QUrl>());
 }
 
-#include "krpreviewpopup.moc"

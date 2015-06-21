@@ -350,4 +350,3 @@ void Combiner::combineWritePercent(KJob *, unsigned long)
     setValue(percent);
 }
 
-#include "combiner.moc"

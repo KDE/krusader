@@ -245,4 +245,3 @@ void SynchronizerDirList::slotListResult(KJob *job)
     emit finished(result = true);
 }
 
-#include "synchronizerdirlist.moc"

@@ -202,4 +202,3 @@ void KgArchives::setDefaults()
     return KonfiguratorPage::setDefaults();
 }
 
-#include "kgarchives.moc"

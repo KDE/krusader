@@ -267,4 +267,3 @@ void TerminalDock::showEvent(QShowEvent * /*e*/)
     }
 }
 
-#include "terminaldock.moc"

@@ -82,6 +82,3 @@ void ActionMan::slotDisableApplyButton()
     applyButton->setEnabled(false);
 }
 
-
-
-#include "actionman.moc"

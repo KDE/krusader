@@ -410,4 +410,3 @@ void VirtualCopyJob::slotProcessedSize(KJob *, qulonglong size)
     m_tempSize = size;
 }
 
-#include "virtualcopyjob.moc"

@@ -184,4 +184,3 @@ void KRMaskChoice::currentItemChanged(QListWidgetItem *)
     qWarning("KRMaskChoice::currentItemChanged(QListWidgetItem *): Not implemented yet!");
 }
 
-#include "krmaskchoice.moc"

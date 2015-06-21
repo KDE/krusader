@@ -183,4 +183,3 @@ int KgDependencies::activeSubPage()
     return tabWidget->currentIndex();
 }
 
-#include "kgdependencies.moc"

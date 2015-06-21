@@ -128,4 +128,3 @@ void KgStartup::slotDisable()
         uiCbGroup->find(i++)->setEnabled(isUiSave);
 }
 
-#include "kgstartup.moc"

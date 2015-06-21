@@ -214,4 +214,3 @@ void FeedToListBoxDialog::slotOk()
     accept();
 }
 
-#include "feedtolistboxdialog.moc"

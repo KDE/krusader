@@ -120,4 +120,3 @@ void KrBookmark::activatedProxy()
     emit activated(url());
 }
 
-#include "krbookmark.moc"

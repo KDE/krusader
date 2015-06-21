@@ -443,4 +443,3 @@ KrPanel *PanelManager::currentPanel()
     return _self;
 }
 
-#include "panelmanager.moc"

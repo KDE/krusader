@@ -674,4 +674,3 @@ void KrSearchDialog::copyToClipBoard()
     QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);
 }
 
-#include "krsearchdialog.moc"

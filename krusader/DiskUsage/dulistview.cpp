@@ -278,4 +278,3 @@ void DUListView::slotExpanded(QTreeWidgetItem * item)
     }
 }
 
-#include "dulistview.moc"

@@ -2588,4 +2588,3 @@ QString SynchronizerGUI::dirLabel()
     return label;
 }
 
-#include "synchronizergui.moc"

@@ -442,4 +442,3 @@ void KgProtocols::init()
     }
 }
 
-#include "kgprotocols.moc"

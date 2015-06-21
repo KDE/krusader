@@ -127,4 +127,3 @@ void DiskUsageViewer::slotNewSearch()
     diskUsage->load(ACTIVE_PANEL->func->files()->vfs_getOrigin());
 }
 
-#include "diskusageviewer.moc"

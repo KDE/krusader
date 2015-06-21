@@ -760,4 +760,3 @@ void KRQuery::setDontSearchInDirs(const QList<QUrl> &urls)
     }
 }
 
-#include "krquery.moc"

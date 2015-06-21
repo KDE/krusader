@@ -180,5 +180,3 @@ KrBookmark * KrAddBookmarkDlg::folder() const
     return _xr[ items[ 0 ] ];
 }
 
-
-#include "kraddbookmarkdlg.moc"

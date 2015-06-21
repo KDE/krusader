@@ -122,4 +122,3 @@ KgAdvanced::KgAdvanced(bool first, QWidget* parent) :
     kgAdvancedLayout->addWidget(fineTuneGrp, 2 , 0);
 }
 
-#include "kgadvanced.moc"

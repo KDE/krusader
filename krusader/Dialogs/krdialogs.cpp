@@ -295,4 +295,3 @@ void KRGetDate::setDate(QDate date)
     accept();
 }
 
-#include "krdialogs.moc"

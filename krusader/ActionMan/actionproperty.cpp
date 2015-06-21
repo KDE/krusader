@@ -524,5 +524,3 @@ void ActionProperty::setModified(bool m)
     _modified = m;
 }
 
-
-#include "actionproperty.moc"

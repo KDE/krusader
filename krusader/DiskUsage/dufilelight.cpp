@@ -231,4 +231,3 @@ void DUFilelight::slotChanged(File *)
         refreshNeeded = true;
 }
 
-#include "dufilelight.moc"

@@ -686,5 +686,3 @@ void KrViewer::editInternal(QUrl url, Mode mode, QWidget * parent)
     addTab(editWidget);
     editWidget->openUrl(url);
 }
-
-#include "krviewer.moc"

@@ -618,4 +618,3 @@ void PanelPopup::quickSelectStore()
     group.writeEntry("Predefined Selections", lst);
 }
 
-#include "panelpopup.moc"

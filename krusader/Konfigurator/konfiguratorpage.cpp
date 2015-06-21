@@ -291,4 +291,3 @@ KonfiguratorColorChooser *KonfiguratorPage::createColorChooser(QString cls, QStr
     return colorChooser;
 }
 
-#include "konfiguratorpage.moc"

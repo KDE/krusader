@@ -189,4 +189,3 @@ QStringList ProfileManager::availableProfiles(QString profileType)
     return profileNames;
 }
 
-#include "profilemanager.moc"

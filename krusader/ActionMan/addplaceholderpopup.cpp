@@ -700,5 +700,3 @@ bool ParameterInt::valid()
     return true;
 }
 
-
-#include "addplaceholderpopup.moc"

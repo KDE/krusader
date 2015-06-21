@@ -306,4 +306,3 @@ void Splitter::splitFileFinished(KJob *job)
     emit accept();
 }
 
-#include "splitter.moc"

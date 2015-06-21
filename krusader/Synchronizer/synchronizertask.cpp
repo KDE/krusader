@@ -352,4 +352,3 @@ void CompareContentTask::sendStatusMessage()
     timer->start(500);
 }
 
-#include "synchronizertask.moc"

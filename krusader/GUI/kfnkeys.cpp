@@ -107,5 +107,3 @@ void KFnKeys::updateShortcuts()
     F10->setText(mainWindow->krActions()->actF10->shortcut().toString() + i18n(" Quit"));
 }
 
-#include "kfnkeys.moc"
-

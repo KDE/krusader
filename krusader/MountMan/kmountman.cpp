@@ -524,4 +524,3 @@ void KMountMan::slotSetupDone(Solid::ErrorType error, QVariant errorData, const 
     }
 }
 
-#include "kmountman.moc"

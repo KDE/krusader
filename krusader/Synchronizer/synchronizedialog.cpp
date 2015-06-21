@@ -210,4 +210,3 @@ void SynchronizeDialog::pauseAccepted()
     isPause = false;
 }
 
-#include "synchronizedialog.moc"

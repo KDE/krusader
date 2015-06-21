@@ -66,5 +66,3 @@ int SyncBrowseButton::state()
     return _state;
 }
 
-
-#include "syncbrowsebutton.moc"

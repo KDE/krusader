@@ -88,4 +88,3 @@ void PercentalSplitter::showEvent(QShowEvent * event)
     QSplitter::showEvent(event);
 }
 
-#include "percentalsplitter.moc"

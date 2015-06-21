@@ -678,4 +678,3 @@ QDomElement KrAction::dumpAvailability(QDomDocument& doc) const
                     return availabilityElement;
 } //KrAction::dumpAvailability
 
-#include "kraction.moc"

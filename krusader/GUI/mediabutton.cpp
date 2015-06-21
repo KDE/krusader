@@ -622,4 +622,3 @@ void MediaButton::slotCheckMounts()
     mountCheckerTimer.start(1000);
 }
 
-#include "mediabutton.moc"

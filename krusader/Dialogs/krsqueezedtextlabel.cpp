@@ -116,5 +116,4 @@ void KrSqueezedTextLabel::paintEvent(QPaintEvent * e)
     KSqueezedTextLabel::paintEvent(e);
 }
 
-#include "krsqueezedtextlabel.moc"
 

@@ -531,5 +531,3 @@ void KrusaderView::draggingTabFinished(PanelManager *from, QMouseEvent *e)
         from->moveTabToOtherSide();
 }
 
-
-#include "krusaderview.moc"

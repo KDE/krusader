@@ -1134,4 +1134,3 @@ bool DiskUsage::event(QEvent * e)
     return QStackedWidget::event(e);
 }
 
-#include "diskusage.moc"

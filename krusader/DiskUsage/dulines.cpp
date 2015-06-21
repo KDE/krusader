@@ -539,4 +539,3 @@ void DULines::slotRefresh()
     }
 }
 
-#include "dulines.moc"

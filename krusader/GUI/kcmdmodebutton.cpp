@@ -69,6 +69,3 @@ void KCMDModeButton::showMenu()
     }
 }
 
-
-
-#include "kcmdmodebutton.moc"

@@ -147,4 +147,3 @@ void KrusaderImageFilePreview::clearPreview()
     currentURL = QUrl();
 }
 
-#include "kimagefilepreview.moc"

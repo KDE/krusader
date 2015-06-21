@@ -369,4 +369,3 @@ void PopularUrlsDlg::run(QList<QUrl> list)
     exec();
 }
 
-#include "popularurls.moc"

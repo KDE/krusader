@@ -45,4 +45,3 @@ KrusaderStatus::~KrusaderStatus()
 {
 }
 
-#include "krusaderstatus.moc"

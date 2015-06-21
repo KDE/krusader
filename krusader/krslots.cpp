@@ -802,4 +802,3 @@ void KRslots::cmdlinePopup()
     MAIN_VIEW->cmdLine()->popup();
 }
 
-#include "krslots.moc"
