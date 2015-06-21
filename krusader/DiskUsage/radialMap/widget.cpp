@@ -31,7 +31,6 @@
 
 #include "fileTree.h"
 #include "Config.h"
-#include "debug.h"
 #include "radialMap.h" //constants
 
 RadialMap::Widget::Widget(QWidget *parent)

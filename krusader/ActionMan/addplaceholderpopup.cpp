@@ -26,18 +26,15 @@
 #include "../BookMan/krbookmarkbutton.h"
 #include "../GUI/profilemanager.h"
 
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QFileDialog>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QToolButton>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QFrame>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KNumInput>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QVBoxLayout>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

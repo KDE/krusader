@@ -33,6 +33,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QAction>
 
+#include <KI18n/KLocalizedString>
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KToolBarPopupAction>

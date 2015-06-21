@@ -29,7 +29,6 @@
 #include <QtWidgets/QStatusBar>
 
 // TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLibLoader>
 #include <KIO/NetAccess>
 #include <KIO/JobClasses>
 #include <KIO/Job>
@@ -40,6 +39,7 @@
 #include <KWidgetsAddons/KMessageBox>
 #include <KHtml/KHTMLPart>
 #include <KCoreAddons/KProcess>
+#include <KConfigCore/KSharedConfig>
 #include <KIOCore/KFileItem>
 #include <KXmlGui/KToolBar>
 #include <KConfigWidgets/KStandardAction>

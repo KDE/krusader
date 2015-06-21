@@ -23,9 +23,6 @@
 #include <QtCore/QStringList>
 #include <QtWidgets/QAction>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLibLoader>
-
 # include <KWidgetsAddons/KActionMenu>
 
 class KActionCollection;

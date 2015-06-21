@@ -24,6 +24,9 @@
 
 #include <KXmlGui/KActionCollection>
 #include <KCodecs/KCharsets>
+#include <KConfigCore/KConfig>
+#include <KConfigCore/KConfigGroup>
+#include <KI18n/KLocalizedString>
 #include <KIO/Scheduler>
 #include <KIOCore/KProtocolManager>
 

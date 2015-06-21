@@ -33,21 +33,16 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QtCore/QDir>
 #include <QtCore/QDateTime>
 #include <QtCore/QStringList>
-#include <QtGui/QPixmap>
 #include <QtGui/QMoveEvent>
 #include <QtGui/QResizeEvent>
-#include <QtGui/QShowEvent>
-#include <QtGui/QHideEvent>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QActionGroup>
 #include <QtWidgets/QDesktopWidget>
 #include <QtDBus/QtDBus>
-#include <QtPrintSupport/QPrinter>
 
 #include <KCoreAddons/KRandom>
 #include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 #include <KXmlGui/KActionCollection>
 #include <KXmlGui/KXMLGUIFactory>
 #include <KXmlGui/KToolBar>

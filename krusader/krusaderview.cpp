@@ -39,9 +39,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KLibLoader>
-
+#include <KI18n/KLocalizedString>
 #include <KXmlGui/KToolBar>
 #include <KWidgetsAddons/KToggleAction>
 

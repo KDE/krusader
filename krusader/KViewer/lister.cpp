@@ -61,6 +61,7 @@
 #include <KIO/CopyJob>
 #include <KIO/JobUiDelegate>
 
+#include <KI18n/KLocalizedString>
 #include <KParts/GUIActivateEvent>
 #include <KJobWidgets/KUiServerJobTracker>
 #include <KConfigWidgets/KColorScheme>
