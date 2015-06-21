@@ -3,8 +3,8 @@ project(krusader)
 cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 set (QT_MIN_VERSION "5.2.0")
 
-set(VERSION "2.4.0-beta3" )
-set(RELEASE_NAME "Single Step")
+set(VERSION "15.08-beta" )
+set(RELEASE_NAME "Clear Skies")
 
 find_package(ECM 1.1.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
@@ -25,11 +25,6 @@ include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings)
 
-#find_package(KDE4 REQUIRED)
-#include(KDE4Defaults)
-#include_directories( ${KDE4_INCLUDES} ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
-
-# TODO Qt5
 find_package(Qt5 CONFIG REQUIRED
   Core
   DBus
@@ -40,7 +35,6 @@ find_package(Qt5 CONFIG REQUIRED
   Xml
 )
 
-# TODO KF5 port (KDE4 -> KF5Config)
 find_package(KF5 REQUIRED COMPONENTS
   Archive
   Config

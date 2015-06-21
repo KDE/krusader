@@ -1,22 +1,17 @@
 include_directories(${KF5_INCLUDE_DIRS})
 
-# TODO porting : don't remember anymore
-#include_directories(
-#  ${CMAKE_CURRENT_SOURCE_DIR}
-#  ${CMAKE_CURRENT_SOURCE_DIR}/session
-#)
-
 configure_file(krusaderversion.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/krusaderversion.h)
 
+# keep it disabled until kde-baseapps will be ported
 #find_package(LibKonq)
 
-#if(LIBKONQ_FOUND)
-#    message(STATUS "libkonq library found")
-#    add_definitions(-D__LIBKONQ__)
-#    include_directories( ${LIBKONQ_INCLUDE_DIR} )
-#else(LIBKONQ_FOUND)
-#    message(STATUS "libkonq library not found")
-#endif(LIBKONQ_FOUND)
+if(LIBKONQ_FOUND)
+    message(STATUS "libkonq library found")
+    add_definitions(-D__LIBKONQ__)
+    include_directories( ${LIBKONQ_INCLUDE_DIR} )
+else(LIBKONQ_FOUND)
+    message(STATUS "libkonq library not found")
+endif(LIBKONQ_FOUND)
 
 add_subdirectory(ActionMan)
 add_subdirectory(BookMan)
@@ -87,11 +82,6 @@ target_link_libraries(krusader
                       Filter
                       Dialogs
                       GUI
-#                       ${KDE4_KPARTS_LIBS}
-#                       ${KDE4_KDEUI_LIBS}
-#                       ${KDE4_KFILE_LIBS}
-#                       ${KDE4_KDECORE_LIBS}
-#                       ${KDE4_SOLID_LIBS}
                       )
 
 if(ENABLE_SYNCHRONIZER)
@@ -109,7 +99,8 @@ install(PROGRAMS krusader.desktop
 install(FILES krusaderui.rc
               krusaderlisterui.rc
               krviewer.rc
-              midnight_commander.color
+        DESTINATION ${KXMLGUI_INSTALL_DIR}/krusader)
+install(FILES midnight_commander.color
               total_commander.color
               total_commander.keymap
               total_commander.keymap.info
@@ -119,30 +110,31 @@ install(FILES krusaderui.rc
         DESTINATION ${DATA_INSTALL_DIR}/krusader)
 
 ecm_install_icons(ICONS
-hi16-apps-krusader_blue.png
-hi16-apps-krusader_red.png
-hi16-apps-krusader_root.png
-hi16-apps-krusader_user.png
-hi22-apps-krusader_blue.png
-hi22-apps-krusader_red.png
-hi22-apps-krusader_root.png
-hi22-apps-krusader_shield.png
-hi22-apps-krusader_user.png
-hi32-apps-krusader_blue.png
-hi32-apps-krusader_red.png
-hi32-apps-krusader_root.png
-hi32-apps-krusader_shield.png
-hi32-apps-krusader_user.png
-hi48-apps-krusader_blue.png
-hi48-apps-krusader_red.png
-hi48-apps-krusader_root.png
-hi48-apps-krusader_shield.png
-hi48-apps-krusader_user.png
-hi64-apps-krusader_blue.png
-hi64-apps-krusader_red.png
-hi64-apps-krusader_root.png
-hi64-apps-krusader_shield.png
-hi64-apps-krusader_user.png
-hi128-apps-krusader_root.png
-hi128-apps-krusader_user.png
-DESTINATION ${ICON_INSTALL_DIR})
+    icons/16-apps-krusader_blue.png
+    icons/16-apps-krusader_red.png
+    icons/16-apps-krusader_root.png
+    icons/16-apps-krusader_user.png
+    icons/22-apps-krusader_blue.png
+    icons/22-apps-krusader_red.png
+    icons/22-apps-krusader_root.png
+    icons/22-apps-krusader_shield.png
+    icons/22-apps-krusader_user.png
+    icons/32-apps-krusader_blue.png
+    icons/32-apps-krusader_red.png
+    icons/32-apps-krusader_root.png
+    icons/32-apps-krusader_shield.png
+    icons/32-apps-krusader_user.png
+    icons/48-apps-krusader_blue.png
+    icons/48-apps-krusader_red.png
+    icons/48-apps-krusader_root.png
+    icons/48-apps-krusader_shield.png
+    icons/48-apps-krusader_user.png
+    icons/64-apps-krusader_blue.png
+    icons/64-apps-krusader_red.png
+    icons/64-apps-krusader_root.png
+    icons/64-apps-krusader_shield.png
+    icons/64-apps-krusader_user.png
+    icons/128-apps-krusader_root.png
+    icons/128-apps-krusader_user.png
+    DESTINATION ${ICON_INSTALL_DIR}
+)
