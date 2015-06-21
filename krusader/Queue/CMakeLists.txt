@@ -8,4 +8,5 @@ set(Queue_SRCS
 
 add_library(Queue STATIC ${Queue_SRCS})
 
-target_link_libraries(Queue KF5::ConfigCore KF5::KDELibs4Support)
+target_link_libraries(Queue KF5::ConfigCore KF5::ConfigGui KF5::I18n
+                      KF5::IconThemes KF5::KIOCore KF5::WidgetsAddons)
