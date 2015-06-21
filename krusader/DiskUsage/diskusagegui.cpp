@@ -39,6 +39,7 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
 
 #include "../kicons.h"
 #include "../krglobal.h"

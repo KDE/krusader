@@ -43,7 +43,8 @@
 #include "vfile.h"
 #include "preservingcopyjob.h"
 #include "krquery.h"
-#include "../MountMan/kmountman.h"
+
+class KMountMan;
 
 /**
  * The vfs class is an extendable class which by itself does (almost)
@@ -147,9 +148,7 @@ public:
         parentWindow = widget;
     }
     // set the mount manager
-    void setMountMan(KMountMan *mtMan) {
-        mountMan = mtMan;
-    }
+    void setMountMan(KMountMan *mtMan);
 
     static QUrl ensureTrailingSlash(const QUrl &url);
 

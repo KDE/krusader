@@ -52,6 +52,7 @@
 #include <KConfigWidgets/KColorScheme>
 #include <KCompletion/KComboBox>
 #include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
 #include <KIOWidgets/KDirLister>
 #include <KIOWidgets/KDirModel>
 #include <KIOWidgets/KFileItemDelegate>

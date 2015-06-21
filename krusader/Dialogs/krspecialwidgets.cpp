@@ -34,7 +34,6 @@ A
 #include "krmaskchoice.h"
 #include "newftpgui.h"
 #include "../krglobal.h"
-#include "../MountMan/kmountman.h"
 
 #include <QtGui/QKeyEvent>
 #include <QtGui/QPaintEvent>

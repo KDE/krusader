@@ -38,7 +38,10 @@
 #include <QtCore/QUrl>
 
 #include <KCoreAddons/KProcess>
-#include <KWallet/KWallet>
+
+namespace KWallet {
+class Wallet;
+}
 
 class KRarcObserver : public QObject
 {

@@ -26,7 +26,6 @@
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QGridLayout>
 
-#include <KIconThemes/KIconLoader>
 #include <KIOWidgets/KRun>
 #include <KWidgetsAddons/KSeparator>
 #include <KWidgetsAddons/KUrlLabel>

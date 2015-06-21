@@ -45,6 +45,7 @@
 
 #include "../krglobal.h"
 #include "../defaults.h"
+#include "../MountMan/kmountman.h"
 #include "kiojobwrapper.h"
 
 vfs::vfs(QObject* panel, bool quiet) : VfileContainer(0),
@@ -283,6 +284,10 @@ void vfs::vfs_requestDelete()
     if (deletePossible)
         emit deleteAllowed();
     deleteRequested = true;
+}
+
+void vfs::setMountMan(KMountMan *mtMan) {
+    mountMan = mtMan;
 }
 
 /// to be implemented

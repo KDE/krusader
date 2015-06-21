@@ -43,6 +43,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KCoreAddons/KRandom>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
 #include <KXmlGui/KActionCollection>
 #include <KXmlGui/KXMLGUIFactory>
 #include <KXmlGui/KToolBar>
@@ -51,6 +52,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KToolBarPopupAction>
+#include <KWindowSystem/KStartupInfo>
 #include <KWindowSystem/KWindowSystem>
 
 #include "krusaderversion.h"
@@ -555,51 +557,6 @@ void Krusader::updateGUI(bool enforce) {
     }
     // popular urls
     _popularUrls->load();
-}
-
-// Adds one tool to the list in the supportedTools method
-void Krusader::supportedTool(QStringList &tools, QString toolType,
-                             QStringList names, QString confName) {
-    QString foundTool = KrServices::chooseFullPathName(names, confName);
-    if (! foundTool.isEmpty()) {
-        tools.append(toolType);
-        tools.append(foundTool);
-    }
-}
-
-// return a list in the format of TOOLS,PATH. for example
-// DIFF,kdiff,TERMINAL,konsole,...
-//
-// currently supported tools: DIFF, MAIL, RENAME
-//
-// to use it: QStringList lst = supportedTools();
-//            int i = lst.indexOf("DIFF");
-//            if (i!=-1) pathToDiff=lst[i+1];
-QStringList Krusader::supportedTools() {
-    QStringList tools;
-
-    // first, a diff program: kdiff
-    supportedTool(tools, "DIFF",
-                  QStringList() << "kdiff3" << "kompare" << "xxdiff",
-                  "diff utility");
-
-    // a mailer: kmail or thunderbird
-    supportedTool(tools, "MAIL",
-                  QStringList() << "thunderbird" << "kmail",
-                  "mailer");
-
-    // rename tool: krename
-    supportedTool(tools, "RENAME",
-                  QStringList() << "krename",
-                  "krename");
-
-    // checksum utility
-    supportedTool(tools, "MD5",
-                  QStringList() << "md5deep" << "md5sum" << "sha1deep" << "sha256deep"
-                  << "tigerdeep" << "whirlpooldeep" << "cfv",
-                  "checksum utility");
-
-    return tools;
 }
 
 QString Krusader::getTempDir() {

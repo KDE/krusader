@@ -26,6 +26,7 @@
 #include <QtWidgets/QVBoxLayout>
 
 #include <KConfigWidgets/KHelpClient>
+#include <KIconThemes/KIconLoader>
 
 KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
         const QString& caption, const QString& heading, const QString& headerIcon,

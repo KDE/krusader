@@ -37,10 +37,10 @@
 #include <KIO/Job>
 #include <KConfigCore/KConfigGroup>
 
-#include "vfile.h"
-
 class KFileItem;
 class QTextCodec;
+
+class vfile;
 
 class KRQuery : public QObject
 {

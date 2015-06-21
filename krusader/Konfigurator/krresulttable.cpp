@@ -28,8 +28,6 @@
 #include <KConfigWidgets/KColorScheme>
 #include <KI18n/KLocalizedString>
 
-#include "../krusader.h"
-
 using namespace std;
 
 #define PS(x) _supported.contains(x)>0
@@ -263,7 +261,7 @@ void KrArchiverResultTable::website(const QString& url)
 KrToolResultTable::KrToolResultTable(QWidget* parent)
         : KrResultTable(parent)
 {
-    _supported = Krusader::supportedTools(); // get list of available tools
+    _supported = KrServices::supportedTools(); // get list of available tools
 
     QList<Application*> vecDiff, vecMail, vecRename, vecChecksum;
     Application* kdiff3         = new Application("kdiff3",        "http://kdiff3.sourceforge.net/", KrServices::cmdExist("kdiff3"));

@@ -34,6 +34,8 @@
 #include <KHtml/KHTMLPart>
 #include <KCoreAddons/KProcess>
 #include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
 #include <KIOCore/KFileItem>
 #include <KXmlGui/KToolBar>
 #include <KConfigWidgets/KStandardAction>

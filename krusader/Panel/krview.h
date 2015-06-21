@@ -40,7 +40,6 @@
 #include <QtGui/QDropEvent>
 
 #include "../krglobal.h"
-#include "../VFS/vfile.h"
 #include "../VFS/krquery.h"
 #include "../Filter/filtersettings.h"
 

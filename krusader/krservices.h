@@ -46,6 +46,8 @@ public:
     static QStringList  quote(const QStringList& names);
     static QList<QUrl>  toUrlList(const QStringList &list);
     static QStringList  toStringList(const QList<QUrl> &list);
+    static QStringList  supportedTools(); // find supported tools
+
 
 protected:
     static QString    escape(QString name);

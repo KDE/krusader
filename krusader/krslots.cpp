@@ -43,6 +43,7 @@
 #include <KConfigCore/KSharedConfig>
 #include <KCoreAddons/KShell>
 #include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KMessageBox>
 #include <KXmlGui/KEditToolBar>
@@ -116,7 +117,7 @@ void KRslots::sendFileByEmail(const QList<QUrl> &urls)
     }
 
     QString mailProg;
-    QStringList lst = Krusader::supportedTools();
+    QStringList lst = KrServices::supportedTools();
     if (lst.contains("MAIL")) mailProg = lst[lst.indexOf("MAIL") + 1];
     else {
         KMessageBox::error(0, i18n("Krusader cannot find a supported mail client. Please install one to your path. Hint: Krusader supports KMail."));
@@ -214,7 +215,7 @@ bool downloadToTemp(const QUrl &url, QString &dest) {
 void KRslots::compareContent(QUrl url1, QUrl url2)
 {
     QString diffProg;
-    QStringList lst = Krusader::supportedTools();
+    QStringList lst = KrServices::supportedTools();
     if (lst.contains("DIFF")) diffProg = lst[lst.indexOf("DIFF") + 1];
     else {
         KMessageBox::error(0, i18n("Krusader cannot find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports Kompare, KDiff3 and Xxdiff."));
@@ -462,7 +463,7 @@ void KRslots::sysInfo()
 
 void KRslots::multiRename()
 {
-    QStringList lst = Krusader::supportedTools();
+    QStringList lst = KrServices::supportedTools();
     int i = lst.indexOf("RENAME");
     if (i == -1) {
         KMessageBox::sorry(krApp, i18n("Cannot find a batch rename tool.\nYou can get KRename at http://www.krename.net"));

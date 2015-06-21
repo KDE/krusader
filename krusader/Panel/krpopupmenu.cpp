@@ -234,7 +234,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     }
 
     // --------- send by mail
-    if (Krusader::supportedTools().contains("MAIL") && !vf->vfile_isDir()) {
+    if (KrServices::supportedTools().contains("MAIL") && !vf->vfile_isDir()) {
         addAction(i18n("Send by Email"))->setData(QVariant(SEND_BY_EMAIL_ID));
     }
 

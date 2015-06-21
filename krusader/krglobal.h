@@ -36,7 +36,6 @@
 #include <QtGui/QKeySequence>
 
 #include <KConfigCore/KConfigGroup>
-#include <KIconThemes/KIconLoader>
 
 #define krOut qDebug()
 

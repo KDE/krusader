@@ -51,13 +51,15 @@
 #include <KConfigWidgets/KStandardAction>
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
-#include <KWindowSystem/KStartupInfo>
 
 #include "VFS/kiojobwrapper.h"
 
 #ifdef __KJSEMBED__
 class KrJS;
 #endif
+
+class KStartupInfoData;
+class KStartupInfoId;
 
 class KrusaderStatus;
 class KRPleaseWaitHandler;
@@ -113,7 +115,6 @@ public:
      * @return a character string with the specitif icon-name
      */
     static const char* privIcon();
-    static QStringList supportedTools(); // find supported tools
 
 
 public slots:
@@ -171,9 +172,6 @@ signals:
     void shutdown();
 
 private:
-    static void supportedTool(QStringList &tools, QString toolType,
-                              QStringList names, QString confName);
-
     KrActions *_krActions;
     ViewActions *_viewActions;
     ListPanelActions *_listPanelActions;
