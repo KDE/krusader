@@ -25,9 +25,6 @@
 #include <QtGui/QMouseEvent>
 #include <QtGui/QCursor>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDELibs4Support/kmessagebox_queued.h>
-
 #include <KWidgetsAddons/KMessageBox>
 #include <KConfigCore/KConfigGroup>
 #include <KConfigCore/KSharedConfig>
@@ -475,13 +472,13 @@ void MediaButton::slotSetupDone(Solid::ErrorType error, QVariant errorData, cons
             name = udiNameMap[ udi ];
 
         if (errorData.isValid()) {
-            KMessageBox::queuedMessageBox(this, KMessageBox::Sorry,
-                                          i18n("An error occurred while accessing '%1', the system responded: %2",
-                                          name, errorData.toString()));
+            KMessageBox::sorry(this,
+                               i18n("An error occurred while accessing '%1', the system responded: %2",
+                               name, errorData.toString()));
         } else {
-            KMessageBox::queuedMessageBox(this, KMessageBox::Sorry,
-                                          i18n("An error occurred while accessing '%1'",
-                                          name));
+            KMessageBox::sorry(this,
+                               i18n("An error occurred while accessing '%1'",
+                               name));
         }
     }
 }
