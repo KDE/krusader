@@ -151,9 +151,14 @@ void normal_vfs::vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode mode
         watcher = 0;
     }
 
+    QList<QUrl> *list = new QList<QUrl>;
+    for (QList<QUrl>::ConstIterator it = fileUrls->constBegin(); it != fileUrls->constEnd(); it++) {
+        list->append(QUrl(it->url(QUrl::StripTrailingSlash)));
+    }
+
     QUrl dest = QUrl::fromLocalFile(vfs_workingDir() + '/' + dir);
 
-    KIO::Job* job = PreservingCopyJob::createCopyJob(pmode, *fileUrls, dest, mode, false, true);
+    KIO::Job* job = PreservingCopyJob::createCopyJob(pmode, *list, dest, mode, false, true);
     connect(job, SIGNAL(result(KJob*)), this, SLOT(vfs_refresh(KJob *)));
     if (mode == KIO::CopyJob::Move) // notify the other panel
         connect(job, SIGNAL(result(KJob*)), toNotify, SLOT(vfs_refresh(KJob*)));
