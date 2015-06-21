@@ -29,16 +29,12 @@
 #include <QtCore/QTextCodec>
 #include <qplatformdefs.h>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KComponentData>
-
-#include <KI18n/KLocalizedString>
-#include <KIOCore/KFileItem>
-#include <KWidgetsAddons/KMessageBox>
-#include <KIO/Job>
-#include <KIO/JobClasses>
 #include <KArchive/KTar>
+#include <KConfigCore/KConfig>
 #include <KCoreAddons/KProcess>
+#include <KI18n/KLocalizedString>
+#include <KIO/Job>
+#include <KIOCore/KFileItem>
 
 #define MAX_IPC_SIZE           (1024*32)
 #define TRIES_WITH_PASSWORDS   3
@@ -131,8 +127,6 @@ extern "C"
     };
 
     int Q_DECL_EXPORT kdemain(int argc, char **argv) {
-        KComponentData instance("kio_krarc", "krusader");
-
         if (argc != 4) {
             qWarning() << "Usage: kio_krarc  protocol domain-socket1 domain-socket2" << endl;
             exit(-1);

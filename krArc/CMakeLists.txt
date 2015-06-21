@@ -4,12 +4,17 @@ set(kio_krarc_PART_SRCS krarc.cpp)
 
 add_library(kio_krarc ${kio_krarc_PART_SRCS})
 
+#this is a library so it needs to enforce it's translation domain, not use the application's domain.
+add_definitions(-DTRANSLATION_DOMAIN="krusader")
+
 # TODO porting : new variables needed?
-target_link_libraries(kio_krarc KF5::Archive KF5::KIOCore KF5::WidgetsAddons KF5::KDELibs4Support
-# 		      ${KDE4_KDECORE_LIBS}
-# 		      ${KDE4_KIO_LIBS}
-# 		      ${KDE4_KFILE_LIBS}
-		      )
+target_link_libraries(kio_krarc
+    KF5::Archive
+    KF5::ConfigCore
+    KF5::CoreAddons
+    KF5::I18n
+    KF5::KIOCore
+)
 
 install(TARGETS kio_krarc DESTINATION ${PLUGIN_INSTALL_DIR})
 install(FILES krarc.protocol DESTINATION  ${SERVICES_INSTALL_DIR})

@@ -31,9 +31,6 @@
 #include <QtCore/QMimeType>
 #include <qplatformdefs.h>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KComponentData>
-
 #include "libisofs/iso_fs.h"
 #include "kiso.h"
 #include "kisofile.h"
@@ -44,8 +41,6 @@ extern "C"
 {
 
     int Q_DECL_EXPORT kdemain(int argc, char **argv) {
-        KComponentData instance("kio_iso", "krusader");
-
         //qDebug()   << "Starting " << getpid() << endl;
 
         if (argc != 4) {
