@@ -21,13 +21,10 @@
 #ifndef PANELTABBAR_H
 #define PANELTABBAR_H
 
-#include <QtCore/QVariant>
 #include <QtCore/QUrl>
 #include <QtGui/QDragMoveEvent>
 #include <QtGui/QDragEnterEvent>
-
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KTabBar>
+#include <QtWidgets/QTabBar>
 
 class QMouseEvent;
 class QAction;
@@ -37,11 +34,11 @@ class ListPanel;
 class TabActions;
 
 /**
- * This class extends KTabBar such that right-clicking on a tab pops-up a menu
+ * This class extends QTabBar such that right-clicking on a tab pops-up a menu
  * containing relevant actions for the tab. It also emits signals (caught by PanelManager)
  * to create a new tab, close the current tab and change a panel when a tab was clicked
  */
-class PanelTabBar : public KTabBar
+class PanelTabBar : public QTabBar
 {
     Q_OBJECT
 public:
