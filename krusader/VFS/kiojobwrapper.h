@@ -36,7 +36,7 @@
 #include <QtCore/QMap>
 #include <QtCore/QUrl>
 
-#include <KIO/JobClasses>
+#include <kio/jobclasses.h>
 
 class QEvent;
 class vfs;

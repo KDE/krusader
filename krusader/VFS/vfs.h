@@ -40,7 +40,7 @@
 #include <QtCore/QUrl>
 #include <QtWidgets/QWidget>
 
-#include <KIO/JobClasses>
+#include <kio/jobclasses.h>
 
 #include "vfile.h"
 #include "preservingcopyjob.h"

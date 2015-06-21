@@ -38,7 +38,7 @@ A
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QAction>
 
-#include <KIO/JobClasses>
+#include <kio/jobclasses.h>
 #include <KIO/Job>
 #include <KIO/Global>
 #include <KIOCore/KMountPoint>

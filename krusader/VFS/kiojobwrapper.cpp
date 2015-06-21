@@ -39,7 +39,6 @@
 
 #include <KI18n/KLocalizedString>
 #include <KIO/Global>
-#include <KIO/JobClasses>
 #include <KIO/DirectorySizeJob>
 #include <KIO/JobUiDelegate>
 #include <KIO/Job>

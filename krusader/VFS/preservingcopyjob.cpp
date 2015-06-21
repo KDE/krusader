@@ -33,7 +33,6 @@
 #include "../krglobal.h"
 
 #include <KIO/Global>
-#include <KIO/JobClasses>
 #include <KIO/JobUiDelegate>
 #include <KJobWidgets/KUiServerJobTracker>
 

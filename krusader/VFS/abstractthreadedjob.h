@@ -42,7 +42,7 @@
 #include <QtCore/QTime>
 #include <QtCore/QUrl>
 
-#include <KIO/JobClasses>
+#include <kio/jobclasses.h>
 
 class AbstractJobThread;
 class QTemporaryDir;

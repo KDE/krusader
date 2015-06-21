@@ -36,7 +36,7 @@
 
 #include <KI18n/KLocalizedString>
 #include <KIO/Global>
-#include <KIO/JobClasses>
+#include <kio/jobclasses.h>
 #include <KIO/DirectorySizeJob>
 #include <KIO/JobUiDelegate>
 #include <KJobWidgets/KUiServerJobTracker>
