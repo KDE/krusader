@@ -46,9 +46,6 @@
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QComboBox>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KFontDialog>
-
 #include <KIOWidgets/KUrlRequester>
 
 #include "../GUI/krlistwidget.h"

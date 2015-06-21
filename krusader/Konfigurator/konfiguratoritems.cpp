@@ -36,6 +36,7 @@
 #include <QtGui/QPen>
 #include <QtGui/QPixmap>
 #include <QtWidgets/QColorDialog>
+#include <QtWidgets/QFontDialog>
 #include <QtWidgets/QLabel>
 
 #include <KCompletion/KLineEdit>
@@ -473,8 +474,9 @@ void KonfiguratorFontChooser::slotSetDefaults(QObject *)
 
 void KonfiguratorFontChooser::slotBrowseFont()
 {
-    int ok = KFontDialog::getFont(font);
-    if (ok != 1) return;  // cancelled by the user
+    bool ok;
+    font = QFontDialog::getFont(&ok, font, this);
+    if (!ok) return;  // cancelled by the user, and font is actually not changed (getFont returns the font we gave it)
     ext->setChanged();
     setFont();
 }
