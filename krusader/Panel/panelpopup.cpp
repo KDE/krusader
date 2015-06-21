@@ -49,7 +49,6 @@
 #include <QtWidgets/QSplitter>
 
 #include <KCompletion/KLineEdit>
-#include <KIO/JobClasses>
 #include <KConfigWidgets/KColorScheme>
 #include <KCompletion/KComboBox>
 #include <KI18n/KLocalizedString>

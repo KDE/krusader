@@ -41,16 +41,13 @@ A
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QInputDialog>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KIO/NetAccess>
-#include <KIO/JobUiDelegate>
-
 #include <KArchive/KTar>
 #include <KConfigCore/KDesktopFile>
 #include <KCoreAddons/KProcess>
 #include <KCoreAddons/KShell>
 #include <KCoreAddons/KUrlMimeData>
 #include <KI18n/KLocalizedString>
+#include <KIO/JobUiDelegate>
 #include <KIOWidgets/KOpenWithDialog>
 #include <KIOWidgets/KPropertiesDialog>
 #include <KIOWidgets/KRun>

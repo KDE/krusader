@@ -56,11 +56,8 @@
 #include <QtPrintSupport/QPrintDialog>
 #include <QtPrintSupport/QPrinter>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KIO/Job>
 #include <KIO/CopyJob>
 #include <KIO/JobUiDelegate>
-
 #include <KI18n/KLocalizedString>
 #include <KParts/GUIActivateEvent>
 #include <KJobWidgets/KUiServerJobTracker>

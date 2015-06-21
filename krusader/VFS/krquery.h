@@ -34,7 +34,7 @@
 #include <QtCore/QDateTime>
 #include <QtCore/QUrl>
 
-#include <kio/jobclasses.h>
+#include <KIO/Job>
 #include <KConfigCore/KConfigGroup>
 
 #include "vfile.h"

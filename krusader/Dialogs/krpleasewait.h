@@ -36,7 +36,7 @@
 #include <QtGui/QCloseEvent>
 #include <QtWidgets/QProgressDialog>
 
-#include <kio/jobclasses.h>
+#include <KIO/Job>
 
 class KRPleaseWait;
 

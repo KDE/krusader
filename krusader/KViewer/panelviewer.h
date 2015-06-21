@@ -26,9 +26,6 @@
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QLabel>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KIO/Job>
-
 # include <KParts/Part>
 
 #include "krviewer.h"

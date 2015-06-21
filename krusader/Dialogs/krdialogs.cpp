@@ -30,9 +30,6 @@
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QVBoxLayout>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KDE/KStandardGuiItem>
-
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KUrlCompletion>
 #include <KCompletion/KLineEdit>

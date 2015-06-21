@@ -19,7 +19,6 @@
 #ifndef FILETREE_H
 #define FILETREE_H
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
 #include <KIO/Global>
 
 // TODO these are pointlessly general purpose now, make them incredibly specific

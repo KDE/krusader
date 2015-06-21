@@ -35,6 +35,7 @@
 #include <QtCore/QStringList>
 #include <QtCore/QList>
 #include <QtCore/QEvent>
+#include <QtCore/QTemporaryFile>
 #include <QtGui/QPixmapCache>
 #include <QtGui/QKeyEvent>
 #include <QtWidgets/QApplication>
@@ -194,6 +195,22 @@ void KRslots::compareContent()
     compareContent(name1, name2);
 }
 
+bool downloadToTemp(const QUrl &url, QString &dest) {
+    QTemporaryFile tmpFile;
+    tmpFile.setAutoRemove(false);
+    if (tmpFile.open()) {
+        dest = tmpFile.fileName();
+        KIO::Job* job = KIO::file_copy(url, QUrl::fromLocalFile(dest), -1,
+                                       KIO::Overwrite | KIO::HideProgressInfo);
+        if(!job->exec()) {
+            KMessageBox::error(krApp, i18n("Krusader is unable to download %1", url.fileName()));
+            return false;
+        }
+        return true;
+    }
+    return false;
+}
+
 void KRslots::compareContent(QUrl url1, QUrl url2)
 {
     QString diffProg;
@@ -213,16 +230,14 @@ void KRslots::compareContent(QUrl url1, QUrl url2)
         tmp2 = url2.toDisplayString();
     } else {
         if (!url1.isLocalFile()) {
-            if (!KIO::NetAccess::download(url1, tmp1, 0)) {
-                KMessageBox::sorry(krApp, i18n("Krusader is unable to download %1", url1.fileName()));
+            if (!downloadToTemp(url1, tmp1)) {
                 return;
             }
         } else tmp1 = url1.path();
         if (!url2.isLocalFile()) {
-            if (!KIO::NetAccess::download(url2, tmp2, 0)) {
-                KMessageBox::sorry(krApp, i18n("Krusader is unable to download %1", url2.fileName()));
+            if (!downloadToTemp(url2, tmp2)) {
                 if (tmp1 != url1.path())
-                    KIO::NetAccess::removeTempFile(tmp1);
+                    QFile::remove(tmp1);
                 return;
             }
         } else tmp2 = url2.path();

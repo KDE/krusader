@@ -35,7 +35,6 @@
 #include <QtCore/QList>
 #include <QtCore/QUrl>
 
-#include <kio/jobclasses.h>
 #include <KIO/CopyJob>
 
 typedef enum {

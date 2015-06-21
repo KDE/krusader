@@ -70,7 +70,6 @@
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 #include <KIOWidgets/KUrlRequester>
-#include <KIO/NetAccess>
 
 static const char * const right_arrow_button_data[] = {
     "18 18 97 2",

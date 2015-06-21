@@ -36,7 +36,6 @@
 #include <QtCore/QEventLoop>
 
 #include <KI18n/KLocalizedString>
-#include <kio/jobclasses.h>
 #include <KIO/Job>
 #include <KIO/JobUiDelegate>
 #include <KIO/DeleteJob>

@@ -39,9 +39,6 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KIO/JobClasses>
-
 #include "../VFS/vfs.h"
 class KrPanel;
 class KrView;

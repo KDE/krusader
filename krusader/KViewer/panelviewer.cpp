@@ -22,9 +22,6 @@
 #include <QtCore/QFile>
 #include <QtWidgets/QApplication>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KIO/NetAccess>
-
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KParts/BrowserExtension>

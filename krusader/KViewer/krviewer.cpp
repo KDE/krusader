@@ -28,12 +28,6 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KIO/NetAccess>
-#include <KIO/JobClasses>
-#include <KIO/Job>
-#include <KDE/KStandardAction>
-
 #include <KParts/Part>
 //#include <KParts/ComponentFactory> // missing?
 #include <KWidgetsAddons/KMessageBox>

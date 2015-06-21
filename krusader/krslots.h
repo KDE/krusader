@@ -33,11 +33,11 @@
 #ifndef KRSLOTS_H
 #define KRSLOTS_H
 
+#include <QtCore/QFile>
 #include <QtCore/QObject>
 #include <QtCore/QUrl>
 
 #include <KCoreAddons/KProcess>
-#include <KIO/NetAccess>
 
 #include "krglobal.h"
 
@@ -61,9 +61,9 @@ public:
 public slots:
     void processHasExited() {
         if (!tmp1.isEmpty())
-            KIO::NetAccess::removeTempFile(tmp1);
+            QFile::remove(tmp1);
         if (!tmp2.isEmpty())
-            KIO::NetAccess::removeTempFile(tmp2);
+            QFile::remove(tmp2);
         deleteLater();
     }
 };

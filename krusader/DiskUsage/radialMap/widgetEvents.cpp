@@ -28,13 +28,11 @@
 #include <QtWidgets/QApplication>          //QApplication::setOverrideCursor()
 #include <QtWidgets/QMenu>
 
-// TODO KF5 - these headers are from deprecated KDE4LibsSupport : remove them
-#include <KIO/JobUiDelegate>
-
 #include <KWidgetsAddons/KCursor>     //::mouseMoveEvent()
 #include <KWidgetsAddons/KMessageBox> //::mousePressEvent()
 #include <KI18n/KLocalizedString>
 #include <KIO/Job>     //::mousePressEvent()
+#include <KIO/JobUiDelegate>
 #include <KIconThemes/KIconLoader> //::mousePressEvent()
 #include <KIconThemes/KIconEffect>                        //::mousePressEvent()
 #include <KIOWidgets/KRun>                                //::mousePressEvent()

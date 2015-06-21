@@ -35,7 +35,7 @@
 #include <QtCore/QUrl>
 #include <QtWidgets/QProgressDialog>
 
-#include <kio/jobclasses.h>
+#include <KIO/Job>
 
 #include "crc32.h"
 
