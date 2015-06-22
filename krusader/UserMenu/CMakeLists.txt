@@ -9,5 +9,7 @@ target_link_libraries(UserMenu
     KF5::CoreAddons
     KF5::ConfigCore
     KF5::I18n
+    KF5::KIOWidgets
+    KF5::TextWidgets
     KF5::WidgetsAddons
 )
