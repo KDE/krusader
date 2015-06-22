@@ -36,7 +36,7 @@
 
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
-#include <KJobWidgets/KUiServerJobTracker>
+#include <KCoreAddons/KJobTrackerInterface>
 #include <KIO/Job>
 #include <KNotifications/KNotification>
 #include <KIO/JobUiDelegate>

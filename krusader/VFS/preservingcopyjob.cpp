@@ -34,7 +34,6 @@
 
 #include <KIO/Global>
 #include <KIO/JobUiDelegate>
-#include <KJobWidgets/KUiServerJobTracker>
 
 
 KIO::Job * PreservingCopyJob::createCopyJob(PreserveMode pmode, const QList<QUrl>& src, const QUrl &dest, KIO::CopyJob::CopyMode mode, bool /*asMethod*/, bool showProgressInfo)

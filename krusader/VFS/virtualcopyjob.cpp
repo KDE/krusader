@@ -34,11 +34,11 @@
 
 #include <QtCore/QDir>
 
+#include <KCoreAddons/KJobTrackerInterface>
 #include <KI18n/KLocalizedString>
 #include <KIO/Global>
 #include <KIO/DirectorySizeJob>
 #include <KIO/JobUiDelegate>
-#include <KJobWidgets/KUiServerJobTracker>
 
 #define REPORT_TIMEOUT 200
 

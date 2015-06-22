@@ -46,7 +46,6 @@ protected:
     bool jobStarted;
 
 private:
-    class ProxyStyle;
     static const int MAX_SIZE =400;
     static const short MARGIN =5;
 };

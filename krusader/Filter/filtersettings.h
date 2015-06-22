@@ -35,7 +35,6 @@
 
 #include <KConfigCore/KConfigGroup>
 
-class QWidget;
 
 class FilterSettings
 {

@@ -33,10 +33,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QtWidgets/QMenu>
 
 #include <KConfigCore/KSharedConfig>
+#include <KCoreAddons/KJobTrackerInterface>
 #include <KCoreAddons/KProcess>
 #include <KI18n/KLocalizedString>
 #include <KIO/JobUiDelegate>
-#include <KJobWidgets/KUiServerJobTracker>
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KToolBarPopupAction>
 

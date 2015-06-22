@@ -31,7 +31,6 @@
 #include <KParts/Part>
 //#include <KParts/ComponentFactory> // missing?
 #include <KWidgetsAddons/KMessageBox>
-#include <KHtml/KHTMLPart>
 #include <KCoreAddons/KProcess>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

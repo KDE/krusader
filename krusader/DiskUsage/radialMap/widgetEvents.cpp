@@ -28,15 +28,15 @@
 #include <QtWidgets/QApplication>          //QApplication::setOverrideCursor()
 #include <QtWidgets/QMenu>
 
-#include <KWidgetsAddons/KCursor>     //::mouseMoveEvent()
-#include <KWidgetsAddons/KMessageBox> //::mousePressEvent()
 #include <KI18n/KLocalizedString>
-#include <KIO/Job>     //::mousePressEvent()
-#include <KIO/JobUiDelegate>
-#include <KIconThemes/KIconLoader> //::mousePressEvent()
-#include <KIconThemes/KIconEffect>                        //::mousePressEvent()
-#include <KIOWidgets/KRun>                                //::mousePressEvent()
+#include <KIconThemes/KIconLoader>
+#include <KIconThemes/KIconEffect>
 #include <KIO/DeleteJob>
+#include <KIO/JobUiDelegate>
+#include <KIOWidgets/KRun>
+#include <KWidgetsAddons/KCursor>
+#include <KWidgetsAddons/KMessageBox>
+
 
 void
 RadialMap::Widget::resizeEvent(QResizeEvent*)

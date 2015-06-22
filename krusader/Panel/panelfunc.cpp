@@ -43,6 +43,7 @@ A
 
 #include <KArchive/KTar>
 #include <KConfigCore/KDesktopFile>
+#include <KCoreAddons/KJobTrackerInterface>
 #include <KCoreAddons/KProcess>
 #include <KCoreAddons/KShell>
 #include <KCoreAddons/KUrlMimeData>
@@ -52,7 +53,6 @@ A
 #include <KIOWidgets/KPropertiesDialog>
 #include <KIOWidgets/KRun>
 #include <KIOWidgets/KUrlCompletion>
-#include <KJobWidgets/KUiServerJobTracker>
 #include <KService/KMimeTypeTrader>
 #include <KWidgetsAddons/KCursor>
 #include <KWidgetsAddons/KMessageBox>

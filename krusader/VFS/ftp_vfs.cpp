@@ -39,7 +39,6 @@
 #include <KIO/Job>
 #include <KIO/JobUiDelegate>
 #include <KIO/DeleteJob>
-#include <KJobWidgets/KUiServerJobTracker>
 #include <KWidgetsAddons/KMessageBox>
 #include <KIOCore/KProtocolManager>
 

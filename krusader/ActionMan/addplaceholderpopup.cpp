@@ -38,10 +38,8 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
 #include <KCompletion/KLineEdit>
 #include <KCompletion/KComboBox>
-#include <KIconThemes/KIconLoader>
 #include <KIOWidgets/KUrlCompletion>
 
 #define ACTIVE_MASK  0x0100

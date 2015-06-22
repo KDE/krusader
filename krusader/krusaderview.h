@@ -39,8 +39,6 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QGridLayout>
 
-#include <KParts/Part>
-
 #include "krglobal.h"
 
 //HACK

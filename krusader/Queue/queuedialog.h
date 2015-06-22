@@ -21,7 +21,6 @@
 
 #include <QtWidgets/QDialog>
 
-class QPaintEvent;
 class QToolButton;
 class QueueWidget;
 class QLabel;

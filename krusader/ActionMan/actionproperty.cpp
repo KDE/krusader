@@ -24,22 +24,13 @@
 #include "../krusader.h"
 #include "../krglobal.h"
 
-#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QInputDialog>
-#include <QtWidgets/QRadioButton>
-#include <QtWidgets/QToolButton>
 
 #include <KI18n/KLocalizedString>
-#include <KXmlGui/KActionCollection>
-#include <KXmlGui/KKeySequenceWidget>
-#include <KCompletion/KComboBox>
-#include <KCompletion/KLineEdit>
-#include <KWidgetsAddons/KMessageBox>
-#include <KIconThemes/KIconDialog>
-#include <KIconThemes/KIconButton>
 #include <KIconThemes/KIconLoader>
-#include <KTextWidgets/KTextEdit>
+#include <KWidgetsAddons/KMessageBox>
+#include <KXmlGui/KActionCollection>
 
 
 #define ICON(N)  KIconLoader::global()->loadIcon(N, KIconLoader::Small)

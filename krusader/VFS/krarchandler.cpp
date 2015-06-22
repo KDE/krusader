@@ -35,13 +35,13 @@
 #include <QtCore/QFile>
 #include <QtWidgets/QApplication>
 
+#include <KArchive/KTar>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
+#include <KIO/Global>
 #include <KWallet/KWallet>
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KPasswordDialog>
-#include <KArchive/KTar>
-#include <KIO/Global>
 
 #include "../krglobal.h"
 #include "../defaults.h"

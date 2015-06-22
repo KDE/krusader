@@ -56,15 +56,15 @@
 #include <QtPrintSupport/QPrintDialog>
 #include <QtPrintSupport/QPrinter>
 
+#include <KCodecs/KCharsets>
+#include <KConfigWidgets/KColorScheme>
+#include <KCoreAddons/KJobTrackerInterface>
+#include <KI18n/KLocalizedString>
 #include <KIO/CopyJob>
 #include <KIO/JobUiDelegate>
-#include <KI18n/KLocalizedString>
 #include <KParts/GUIActivateEvent>
-#include <KJobWidgets/KUiServerJobTracker>
-#include <KConfigWidgets/KColorScheme>
 #include <KWidgetsAddons/KMessageBox>
 #include <KXmlGui/KActionCollection>
-#include <KCodecs/KCharsets>
 
 #include "../krglobal.h"
 #include "../kractions.h"

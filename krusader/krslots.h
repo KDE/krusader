@@ -42,7 +42,6 @@
 #include "krglobal.h"
 
 class KrMainWindow;
-class KrViewItem;
 class QUrl;
 
 class KrProcess: public KProcess

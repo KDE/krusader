@@ -40,7 +40,6 @@
 #include <QtGui/QResizeEvent>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QCloseEvent>
-#include <QtGui/QCloseEvent>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QInputDialog>
