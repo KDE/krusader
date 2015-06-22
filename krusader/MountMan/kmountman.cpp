@@ -512,8 +512,7 @@ void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, con
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        // TODO KF5 removed
-        //KMessageBox::queuedMessageBox(parentWindow, KMessageBox::Sorry, errorData.toString());
+        KMessageBox::sorry(parentWindow, errorData.toString());
     }
 }
 
@@ -521,8 +520,7 @@ void KMountMan::slotSetupDone(Solid::ErrorType error, QVariant errorData, const 
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        // TODO KF5 removed
-        //KMessageBox::queuedMessageBox(parentWindow, KMessageBox::Sorry, errorData.toString());
+        KMessageBox::sorry(parentWindow, errorData.toString());
     }
 }
 

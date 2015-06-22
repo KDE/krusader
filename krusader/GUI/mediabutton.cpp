@@ -25,13 +25,13 @@
 #include <QtGui/QMouseEvent>
 #include <QtGui/QCursor>
 
-#include <KWidgetsAddons/KMessageBox>
 #include <KConfigCore/KConfigGroup>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIO/Global>
 #include <KIOCore/KMountPoint>
 #include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KMessageBox>
 
 #include <Solid/DeviceInterface>
 #include <Solid/StorageAccess>
@@ -472,13 +472,10 @@ void MediaButton::slotSetupDone(Solid::ErrorType error, QVariant errorData, cons
             name = udiNameMap[ udi ];
 
         if (errorData.isValid()) {
-            KMessageBox::sorry(this,
-                               i18n("An error occurred while accessing '%1', the system responded: %2",
-                               name, errorData.toString()));
+            KMessageBox::sorry(this, i18n("An error occurred while accessing '%1', the system responded: %2",
+                                          name, errorData.toString()));
         } else {
-            KMessageBox::sorry(this,
-                               i18n("An error occurred while accessing '%1'",
-                               name));
+            KMessageBox::sorry(this, i18n("An error occurred while accessing '%1'", name));
         }
     }
 }
