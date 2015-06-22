@@ -73,8 +73,7 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
     setAcceptDrops(true);
     setDropIndicatorShown(true);
 
-    for (int i = 0; i != KrViewProperties::MAX_COLUMNS; i++)
-        header()->setResizeMode(i, QHeaderView::Interactive);
+    header()->setSectionResizeMode(QHeaderView::Interactive);
     header()->setStretchLastSection(false);
 
     connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(sectionResized(int, int, int)));

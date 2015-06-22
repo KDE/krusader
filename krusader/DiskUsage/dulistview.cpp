@@ -65,15 +65,7 @@ DUListView::DUListView(DiskUsage *usage)
     labels << i18n("Group");
     setHeaderLabels(labels);
 
-    header()->setResizeMode(0, QHeaderView::Interactive);
-    header()->setResizeMode(1, QHeaderView::Interactive);
-    header()->setResizeMode(2, QHeaderView::Interactive);
-    header()->setResizeMode(3, QHeaderView::Interactive);
-    header()->setResizeMode(4, QHeaderView::Interactive);
-    header()->setResizeMode(5, QHeaderView::Interactive);
-    header()->setResizeMode(6, QHeaderView::Interactive);
-    header()->setResizeMode(7, QHeaderView::Interactive);
-    header()->setResizeMode(8, QHeaderView::Interactive);
+    header()->setSectionResizeMode(QHeaderView::Interactive);
 
     KConfigGroup group(krConfig, diskUsage->getConfigGroup());
 

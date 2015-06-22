@@ -70,7 +70,7 @@ SegmentTip::moveto(QPoint p, QWidget &canvas, bool placeAbove)
 
 
     const QRect alphaMaskRect(canvas.mapFromGlobal(p), size());
-    const QRect intersection(alphaMaskRect.intersect(canvas.rect()));
+    const QRect intersection(alphaMaskRect.intersected(canvas.rect()));
 
     m_pixmap = QPixmap(size());   //move to updateTip once you are sure it can never be null
     //bitBlt( &m_pixmap, offset, &canvas, intersection, Qt::CopyROP );

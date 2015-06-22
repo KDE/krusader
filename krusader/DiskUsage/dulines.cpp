@@ -195,9 +195,7 @@ DULines::DULines(DiskUsage *usage)
     labels << i18n("Name");
     setHeaderLabels(labels);
 
-    header()->setResizeMode(0, QHeaderView::Interactive);
-    header()->setResizeMode(1, QHeaderView::Interactive);
-    header()->setResizeMode(2, QHeaderView::Interactive);
+    header()->setSectionResizeMode(QHeaderView::Interactive);
 
     KConfigGroup group(krConfig, diskUsage->getConfigGroup());
 

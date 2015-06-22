@@ -284,7 +284,7 @@ KRGetDate::KRGetDate(QDate date, QWidget *parent) : QDialog(parent, Qt::MSWindow
 
 QDate KRGetDate::getDate()
 {
-    if (exec() == QDialog::Rejected) chosenDate.setYMD(0, 0, 0);
+    if (exec() == QDialog::Rejected) chosenDate = QDate();
     hide();
     return chosenDate;
 }

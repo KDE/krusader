@@ -293,16 +293,16 @@ QWidget *KrLayoutFactory::createFrame(QDomElement e, QWidget *parent)
     QMetaEnum shadowEnum = QFrame::staticMetaObject.enumerator(QFrame::staticMetaObject.indexOfEnumerator("Shadow"));
     QString cfgShadow = cg.readEntry("FrameShadow", "default");
     if(cfgShadow != "default")
-        shadow = shadowEnum.keyToValue(cfgShadow.toAscii().data());
+        shadow = shadowEnum.keyToValue(cfgShadow.toLatin1().data());
     if(shadow < 0)
-        shadow = shadowEnum.keyToValue(e.attribute("shadow").toAscii().data());
+        shadow = shadowEnum.keyToValue(e.attribute("shadow").toLatin1().data());
 
     QMetaEnum shapeEnum = QFrame::staticMetaObject.enumerator(QFrame::staticMetaObject.indexOfEnumerator("Shape"));
     QString cfgShape = cg.readEntry("FrameShape", "default");
     if(cfgShape!= "default")
-        shape = shapeEnum.keyToValue(cfgShape.toAscii().data());
+        shape = shapeEnum.keyToValue(cfgShape.toLatin1().data());
     if(shape < 0)
-        shape = shapeEnum.keyToValue(e.attribute("shape").toAscii().data());
+        shape = shapeEnum.keyToValue(e.attribute("shape").toLatin1().data());
 
     QFrame *frame = new ListPanelFrame(parent, color);
     frame->setFrameStyle(shape | shadow);

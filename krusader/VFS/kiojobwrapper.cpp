@@ -281,12 +281,12 @@ void KIOJobWrapper::abort()
 QString KIOJobWrapper::toolTip()
 {
     QString tip = "<qt><div align=\"center\">";
-    tip += "<h3>" + Qt::escape(typeStr()) + "</h3>";
+    tip += "<h3>" + typeStr().toHtmlEscaped() + "</h3>";
     tip += "<table frame=\"box\" border=\"1\"><tbody>";
-    tip += "<tr><td>" + Qt::escape(i18n("Target")) + "</td><td>" + Qt::escape(url().toDisplayString()) + "</td></tr>";
-    tip += "<tr><td>" + Qt::escape(i18n("Source")) + "</td><td>";
+    tip += "<tr><td>" + i18n("Target").toHtmlEscaped() + "</td><td>" + url().toDisplayString().toHtmlEscaped() + "</td></tr>";
+    tip += "<tr><td>" + i18n("Source").toHtmlEscaped() + "</td><td>";
     foreach(const QUrl &urlIn, urlList()) {
-        tip += "<li>" + Qt::escape(urlIn.toDisplayString()) + "</li>";
+        tip += "<li>" + urlIn.toDisplayString().toHtmlEscaped() + "</li>";
     }
     tip += "</td></tr>";
     tip += "</tbody></table>";

@@ -175,12 +175,7 @@ QLayout *KMountManGUI::createMainPage()
     labels << i18n("Free %");
     mountList->setHeaderLabels(labels);
 
-    mountList->header()->setResizeMode(0, QHeaderView::Interactive);
-    mountList->header()->setResizeMode(1, QHeaderView::Interactive);
-    mountList->header()->setResizeMode(2, QHeaderView::Interactive);
-    mountList->header()->setResizeMode(3, QHeaderView::Interactive);
-    mountList->header()->setResizeMode(4, QHeaderView::Interactive);
-    mountList->header()->setResizeMode(5, QHeaderView::Interactive);
+    mountList->header()->setSectionResizeMode(QHeaderView::Interactive);
 
     grp = KConfigGroup(krConfig, "MountMan");
     if (grp.hasKey("Last State"))

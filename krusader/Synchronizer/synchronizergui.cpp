@@ -1354,13 +1354,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
     labels << i18nc("@title:column file name", "Name");
     syncList->setHeaderLabels(labels);
 
-    syncList->header()->setResizeMode(0, QHeaderView::Interactive);
-    syncList->header()->setResizeMode(1, QHeaderView::Interactive);
-    syncList->header()->setResizeMode(2, QHeaderView::Interactive);
-    syncList->header()->setResizeMode(3, QHeaderView::Interactive);
-    syncList->header()->setResizeMode(4, QHeaderView::Interactive);
-    syncList->header()->setResizeMode(5, QHeaderView::Interactive);
-    syncList->header()->setResizeMode(6, QHeaderView::Interactive);
+    syncList->header()->setSectionResizeMode(QHeaderView::Interactive);
 
     if (group.hasKey("State"))
         syncList->header()->restoreState(group.readEntry("State", QByteArray()));

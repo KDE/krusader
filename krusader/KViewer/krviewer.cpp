@@ -176,8 +176,11 @@ void KrViewer::createGUI(KParts::Part* part)
         QList<QKeySequence> sequences = act->shortcuts();
         if (!sequences.isEmpty()) {
             for (int i = 0; i != sequences.count(); i++) {
-                reservedKeys.push_back(sequences[ i ]);
-                reservedKeyActions.push_back(act);
+                QKeySequence keySeq = sequences.at(i);
+                if(keySeq.count() > 0) {
+                    reservedKeys.push_back(keySeq[0]);
+                    reservedKeyActions.push_back(act);
+                }
             }
         }
     }
