@@ -19,4 +19,12 @@ set(Konfigurator_SRCS
 
 add_library(Konfigurator STATIC ${Konfigurator_SRCS})
 
-target_link_libraries(Konfigurator KF5::KIOWidgets KF5::ConfigWidgets KF5::KDELibs4Support KF5::Wallet)
+target_link_libraries(Konfigurator
+    KF5::I18n
+    KF5::IconThemes
+    KF5::KIOCore
+    KF5::KIOWidgets
+    KF5::ConfigCore
+    KF5::ConfigWidgets
+    KF5::WidgetsAddons
+)

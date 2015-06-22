@@ -48,6 +48,8 @@ protected:
 private:
     static const int MAX_SIZE =400;
     static const short MARGIN =5;
+
+    class ProxyStyle;
 };
 
 #endif

@@ -9,4 +9,12 @@ qt5_wrap_ui(ActionMan_SRCS actionproperty.ui)
 
 add_library(ActionMan STATIC ${ActionMan_SRCS})
 
-target_link_libraries(ActionMan KF5::Parts KF5::WidgetsAddons KF5::KDELibs4Support)
+target_link_libraries(ActionMan
+    KF5::ConfigCore
+    KF5::I18n
+    KF5::IconThemes
+    KF5::KIOCore
+    KF5::KIOWidgets
+    KF5::Parts
+    KF5::WidgetsAddons
+)

@@ -27,25 +27,34 @@ include(KDECompilerSettings)
 
 find_package(Qt5 CONFIG REQUIRED
   Core
+  Gui
   DBus
   Widgets
-  Script
-  Sql
-  Test
+  PrintSupport
   Xml
 )
 
 find_package(KF5 REQUIRED COMPONENTS
   Archive
+  Bookmarks
+  Codecs
+  Completion
+  CoreAddons
   Config
   DocTools
-  KDELibs4Support
+  I18n
+  IconThemes
+  ItemViews
+  KIO
+  Notifications
   Parts
+  Solid
+  TextWidgets
   Wallet
-  KHtml
+  WidgetsAddons
+  WindowSystem
+  XmlGui
 )
-
-set(CMAKE_VERBOSE_MAKEFILE OFF)
 
 add_definitions(${QT_DEFINITIONS} ${KF5_DEFINITIONS})
 add_definitions( "-DKRARC_ENABLED" )

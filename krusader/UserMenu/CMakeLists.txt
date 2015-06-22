@@ -5,4 +5,9 @@ set(UserMenu_SRCS
 
 add_library(UserMenu STATIC ${UserMenu_SRCS})
 
-target_link_libraries(UserMenu KF5::ConfigCore KF5::IconThemes KF5::CoreAddons KF5::KDELibs4Support)
+target_link_libraries(UserMenu
+    KF5::CoreAddons
+    KF5::ConfigCore
+    KF5::I18n
+    KF5::WidgetsAddons
+)

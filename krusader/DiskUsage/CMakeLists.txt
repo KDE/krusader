@@ -14,4 +14,11 @@ set(DiskUsage_SRCS
 
 add_library(DiskUsage STATIC ${DiskUsage_SRCS} ${radialMap_SRCS} ${filelightParts_SRCS})
 
-target_link_libraries(DiskUsage KF5::ConfigWidgets KF5::I18n KF5::IconThemes KF5::KIOCore KF5::KIOWidgets KF5::Solid KF5::WidgetsAddons)
+target_link_libraries(DiskUsage
+    KF5::ConfigWidgets
+    KF5::I18n
+    KF5::IconThemes
+    KF5::KIOCore
+    KF5::KIOWidgets
+    KF5::WidgetsAddons
+)

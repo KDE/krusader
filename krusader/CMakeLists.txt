@@ -1,4 +1,4 @@
-include_directories(${KF5_INCLUDE_DIRS})
+include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
 
 configure_file(krusaderversion.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/krusaderversion.h)
 
@@ -25,7 +25,6 @@ add_subdirectory(Locate)
 add_subdirectory(MountMan)
 add_subdirectory(Queue)
 add_subdirectory(Panel)
-### add_subdirectory(RemoteMan) - deprecated ###
 add_subdirectory(Search)
 add_subdirectory(Splitter)
 add_subdirectory(UserAction)
@@ -82,7 +81,11 @@ target_link_libraries(krusader
                       Filter
                       Dialogs
                       GUI
-                      )
+                      KF5::Notifications
+                      KF5::Parts
+                      KF5::WindowSystem
+                      Qt5::PrintSupport
+)
 
 if(ENABLE_SYNCHRONIZER)
     target_link_libraries( krusader Synchronizer )

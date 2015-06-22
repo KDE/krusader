@@ -26,7 +26,7 @@
 #include <QtWidgets/QWidget>
 
 #include <kde_terminal_interface.h>
-#include <KParts/Part>
+#include <KParts/ReadOnlyPart>
 
 class FileManagerWindow;
 

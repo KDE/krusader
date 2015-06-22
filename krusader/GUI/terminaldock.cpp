@@ -30,7 +30,6 @@
 #include <QtWidgets/QWidget>
 
 #include <kde_terminal_interface.h>
-#include <KParts/Part>
 #include <KCoreAddons/KPluginLoader>
 #include <KCoreAddons/KPluginFactory>
 #include <KI18n/KLocalizedString>
