@@ -473,24 +473,22 @@ void KRslots::multiRename()
 
     QStringList names;
     ACTIVE_PANEL->gui->getSelectedNames(&names);
-    QList<QUrl>* urls = ACTIVE_FUNC->files()->vfs_getFiles(&names);
+    QList<QUrl> urls = ACTIVE_FUNC->files()->vfs_getFiles(names);
 
-    if (urls->isEmpty()) {
-        delete urls;
+    if (urls.isEmpty()) {
         return;
     }
 
     KProcess proc;
     proc << pathToRename;
 
-    for (QList<QUrl>::iterator u = urls->begin(); u != urls->end(); ++u) {
-        if (QFileInfo((*u).path()).isDir()) proc << "-r";
-        proc << (*u).path();
+    foreach (const QUrl &url, urls) {
+        if (QFileInfo(url.path()).isDir()) proc << "-r";
+        proc << url.path();
     }
 
     if (!proc.startDetached())
         KMessageBox::error(0, i18n("Error executing %1.", pathToRename));
-    delete urls;
 }
 
 void KRslots::rootKrusader()

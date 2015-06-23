@@ -94,13 +94,12 @@ QStringList exp_placeholder::fileList(const KrPanel* const panel, const QString&
     }
     if (!omitPath) {    // add the current path
         // translate to urls using vfs
-        QList<QUrl>* list = panel->func->files()->vfs_getFiles(&items);
+        QList<QUrl> list = panel->func->files()->vfs_getFiles(items);
         items.clear();
         // parse everything to a single qstring
-        for (QList<QUrl>::Iterator it = list->begin(); it != list->end(); ++it) {
-            items.push_back(useUrl ? (*it).url() : (*it).path());
+        foreach(const QUrl &url, list) {
+            items.push_back(useUrl ? url.url() : url.path());
         }
-        delete list;
     }
 
     return items;

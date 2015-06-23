@@ -888,7 +888,7 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
         dir = i->name();
     }
     QObject *notify = (!e->source() ? 0 : e->source());
-    tempFiles->vfs_addFiles(&URLs, mode, notify, dir);
+    tempFiles->vfs_addFiles(URLs, mode, notify, dir);
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         KrPanel *p = (dragFromThisPanel ? this : otherPanel());
         p->view->saveSelection();
@@ -904,22 +904,19 @@ void ListPanel::vfs_refresh(KJob* /*job*/)
 
 void ListPanel::startDragging(QStringList names, QPixmap px)
 {
-    QList<QUrl> * urls = func->files() ->vfs_getFiles(&names);
-
-    if (urls->isEmpty()) {   // avoid dragging empty urls
-        delete urls;
-        return ;
+    if (names.isEmpty()) {  // avoid dragging empty urls
+        return;
     }
+
+    QList<QUrl> urls = func->files() ->vfs_getFiles(names);
 
     QDrag *drag = new QDrag(this);
     QMimeData *mimeData = new QMimeData;
     drag->setPixmap(px);
-    KUrlMimeData::setUrls(*urls, QList<QUrl>(), mimeData);
+    KUrlMimeData::setUrls(urls, QList<QUrl>(), mimeData);
     drag->setMimeData(mimeData);
 
     drag->start();
-
-    delete urls; // free memory
 }
 
 // pops a right-click menu for items

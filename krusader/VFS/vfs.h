@@ -76,11 +76,11 @@ public:
     virtual bool isRoot();
 
     /// Copy a file to the vfs (physical).
-    virtual void vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) = 0;
+    virtual void vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) = 0;
     /// Remove a file from the vfs (physical)
-    virtual void vfs_delFiles(QStringList *fileNames, bool reallyDelete = false) = 0;
+    virtual void vfs_delFiles(const QStringList &fileNames, bool reallyDelete = false) = 0;
     /// Return a list of URLs for multiple files
-    virtual QList<QUrl>* vfs_getFiles(QStringList* names) = 0;
+    virtual QList<QUrl> vfs_getFiles(const QStringList &names) = 0;
     /// Return a URL to a single file
     virtual QUrl vfs_getFile(const QString& name) = 0;
     /// Create a new directory

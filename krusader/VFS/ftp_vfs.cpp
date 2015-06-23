@@ -201,7 +201,7 @@ bool ftp_vfs::populateVfsList(const QUrl &origin, bool showHidden)
 
 
 // copy a file to the vfs (physical)
-void ftp_vfs::vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir,  PreserveMode /*pmode*/)
+void ftp_vfs::vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir, PreserveMode /*pmode*/)
 {
     QUrl destUrl = vfs_origin;
 
@@ -217,13 +217,13 @@ void ftp_vfs::vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode mode, Q
     KIO::Job* job = 0;
     switch (mode) {
     case KIO::CopyJob::Copy:
-        job = KIO::copy(*fileUrls, destUrl);
+        job = KIO::copy(fileUrls, destUrl);
         break;
     case KIO::CopyJob::Move:
-        job = KIO::move(*fileUrls, destUrl);
+        job = KIO::move(fileUrls, destUrl);
         break;
     case KIO::CopyJob::Link:
-        job = KIO::link(*fileUrls, destUrl);
+        job = KIO::link(fileUrls, destUrl);
         break;
     }
 
@@ -233,22 +233,20 @@ void ftp_vfs::vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode mode, Q
 }
 
 // remove a file from the vfs (physical)
-void ftp_vfs::vfs_delFiles(QStringList *fileNames, bool /* reallyDelete */)
+void ftp_vfs::vfs_delFiles(const QStringList &fileNames, bool /* reallyDelete */)
 {
-    QList<QUrl> *filesUrls = vfs_getFiles(fileNames);
+    QList<QUrl> filesUrls = vfs_getFiles(fileNames);
 
-    KIO::Job *job = KIO::del(*filesUrls);
+    KIO::Job *job = KIO::del(filesUrls);
     connect(job, SIGNAL(result(KJob*)), this, SLOT(vfs_refresh(KJob*)));
 }
 
 
-QList<QUrl>* ftp_vfs::vfs_getFiles(QStringList* names)
+QList<QUrl> ftp_vfs::vfs_getFiles(const QStringList &names)
 {
-    QUrl url;
-    QList<QUrl>* urls = new QList<QUrl>();
-    for (QStringList::Iterator name = names->begin(); name != names->end(); ++name) {
-        url = vfs_getFile(*name);
-        urls->append(url);
+    QList<QUrl> urls;
+    foreach (const QString &name, names) {
+        urls.append(vfs_getFile(name));
     }
     return urls;
 }

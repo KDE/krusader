@@ -143,7 +143,7 @@ bool normal_vfs::populateVfsList(const QUrl &origin, bool showHidden)
 }
 
 // copy a file to the vfs (physical)
-void normal_vfs::vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir, PreserveMode pmode)
+void normal_vfs::vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir, PreserveMode pmode)
 {
     //if( watcher ) watcher->stopScan(); // we will refresh manually this time...
     if (watcher) {
@@ -152,7 +152,7 @@ void normal_vfs::vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode mode
     }
 
     QList<QUrl> *list = new QList<QUrl>;
-    for (QList<QUrl>::ConstIterator it = fileUrls->constBegin(); it != fileUrls->constEnd(); it++) {
+    for (QList<QUrl>::ConstIterator it = fileUrls.constBegin(); it != fileUrls.constEnd(); it++) {
         list->append(QUrl(it->url(QUrl::StripTrailingSlash)));
     }
 
@@ -167,10 +167,8 @@ void normal_vfs::vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode mode
 }
 
 // remove a file from the vfs (physical)
-void normal_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
+void normal_vfs::vfs_delFiles(const QStringList &fileNames, bool reallyDelete)
 {
-    QList<QUrl> filesUrls;
-
 //  if( watcher ) watcher->stopScan(); // we will refresh manually this time...
     if (watcher) {
         delete watcher;   // stopScan is buggy, leaves reference on the directory, that's why we delete the watcher
@@ -178,10 +176,8 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
     }
 
     // names -> urls
-    for (int i = 0 ; i < fileNames->count(); ++i) {
-        QString filename = (*fileNames)[i];
-        filesUrls.append(QUrl::fromLocalFile(vfs_workingDir() + '/' + filename));
-    }
+    QList<QUrl> filesUrls = vfs_getFiles(fileNames);
+
     KIO::Job *job;
 
     // delete of move to trash ?
@@ -205,11 +201,11 @@ QUrl normal_vfs::vfs_getFile(const QString& name)
     return QUrl::fromLocalFile(url);
 }
 
-QList<QUrl>* normal_vfs::vfs_getFiles(QStringList* names)
+QList<QUrl> normal_vfs::vfs_getFiles(const QStringList &names)
 {
-    QList<QUrl>* urls = new QList<QUrl>();
-    for (QStringList::Iterator name = names->begin(); name != names->end(); ++name) {
-        urls->append(vfs_getFile(*name));
+    QList<QUrl> urls;
+    foreach (const QString &name, names) {
+        urls.append(vfs_getFile(name));
     }
     return urls;
 }

@@ -33,7 +33,7 @@ class KrPreviewPopup : public QMenu
 public:
     KrPreviewPopup();
 
-    void setUrls(const QList<QUrl>* urls);
+    void setUrls(const QList<QUrl> &urls);
 public slots:
     void addPreview(const KFileItem& file, const QPixmap& preview);
     void view(QAction *);

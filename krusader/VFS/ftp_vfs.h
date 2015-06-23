@@ -45,11 +45,11 @@ public:
     ~ftp_vfs();
 
     /// Copy a file to the vfs (physical).
-    virtual void vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) Q_DECL_OVERRIDE;
+    virtual void vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) Q_DECL_OVERRIDE;
     /// Remove a file from the vfs (physical)
-    virtual void vfs_delFiles(QStringList *fileNames, bool reallyDelete = false) Q_DECL_OVERRIDE;
+    virtual void vfs_delFiles(const QStringList &fileNames, bool reallyDelete = false) Q_DECL_OVERRIDE;
     /// Return a list of URLs for multiple files
-    virtual QList<QUrl>* vfs_getFiles(QStringList* names) Q_DECL_OVERRIDE;
+    virtual QList<QUrl> vfs_getFiles(const QStringList &names) Q_DECL_OVERRIDE;
     /// Return a URL to a single file
     virtual QUrl vfs_getFile(const QString& name) Q_DECL_OVERRIDE;
     /// Create a new directory

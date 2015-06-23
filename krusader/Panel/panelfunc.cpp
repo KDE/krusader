@@ -576,7 +576,7 @@ void ListPanelFunc::moveFiles(bool enqueue)
     if (fileNames.isEmpty())
         return ; // nothing to copy
 
-    QList<QUrl>* fileUrls = files() ->vfs_getFiles(&fileNames);
+    QList<QUrl> fileUrls = files() ->vfs_getFiles(fileNames);
 
     // after the delete return the cursor to the first unmarked
     // file above the current item;
@@ -595,7 +595,7 @@ void ListPanelFunc::moveFiles(bool enqueue)
             if (fileNames.count() > 1) {
                 dest = vfs::ensureTrailingSlash(dest);
             }
-            job = KIOJobWrapper::move(pmode, *fileUrls, dest, true);
+            job = KIOJobWrapper::move(pmode, fileUrls, dest, true);
             job->setAutoErrorHandlingEnabled(true);
             // refresh our panel when done
             job->connectTo(SIGNAL(result(KJob*)), this, SLOT(refresh()));
@@ -619,7 +619,7 @@ void ListPanelFunc::moveFiles(bool enqueue)
         if (fileNames.count() > 1) {
             dest = vfs::ensureTrailingSlash(dest);
         }
-        KIO::Job* job = PreservingCopyJob::createCopyJob(pmode, *fileUrls, dest, KIO::CopyJob::Move, false, true);
+        KIO::Job* job = PreservingCopyJob::createCopyJob(pmode, fileUrls, dest, KIO::CopyJob::Move, false, true);
         job->ui()->setAutoErrorHandlingEnabled(true);
         // refresh our panel when done
         connect(job, SIGNAL(result(KJob*)), this, SLOT(refresh()));
@@ -706,19 +706,19 @@ QUrl ListPanelFunc::getVirtualBaseURL()
     QStringList fileNames;
     panel->getSelectedNames(&fileNames);
 
-    QList<QUrl>* fileUrls = files() ->vfs_getFiles(&fileNames);
-    if (fileUrls->count() == 0)
+    QList<QUrl> fileUrls = files() ->vfs_getFiles(fileNames);
+    if (fileUrls.count() == 0)
         return QUrl();
 
-    QUrl base = KIO::upUrl((*fileUrls)[ 0 ]);
+    QUrl base = KIO::upUrl(fileUrls.first());
 
     if (base.scheme() == QStringLiteral("virt"))  // is it a virtual subfolder?
         return QUrl();          // --> cannot keep the directory structure
 
-    for (int i = 1; i < fileUrls->count(); i++) {
-        if (base.isParentOf((*fileUrls)[ i ]))
+    for (int i = 1; i < fileUrls.count(); i++) {
+        if (base.isParentOf(fileUrls.at(i)))
             continue;
-        if (base.scheme() != (*fileUrls)[ i ].scheme())
+        if (base.scheme() != fileUrls.at(i).scheme())
             return QUrl();
 
         do {
@@ -726,7 +726,7 @@ QUrl ListPanelFunc::getVirtualBaseURL()
             base = KIO::upUrl(base);
             if (oldBase.matches(base, QUrl::StripTrailingSlash))
                 return QUrl();
-            if (base.isParentOf((*fileUrls)[ i ]))
+            if (base.isParentOf(fileUrls.at(i)))
                 break;
         } while (true);
     }
@@ -768,7 +768,7 @@ void ListPanelFunc::copyFiles(bool enqueue)
             pmode = PM_NONE;
     }
 
-    QList<QUrl>* fileUrls = files() ->vfs_getFiles(&fileNames);
+    QList<QUrl> fileUrls = files() ->vfs_getFiles(fileNames);
 
     if (queue) {
         KIOJobWrapper *job = 0;
@@ -783,7 +783,7 @@ void ListPanelFunc::copyFiles(bool enqueue)
             if (fileNames.count() > 1) {
                 dest = vfs::ensureTrailingSlash(dest);
             }
-            job = KIOJobWrapper::copy(pmode, *fileUrls, dest, true);
+            job = KIOJobWrapper::copy(pmode, fileUrls, dest, true);
             job->setAutoErrorHandlingEnabled(true);
             if (dest.matches(panel->virtualPath(), QUrl::StripTrailingSlash) ||
                     KIO::upUrl(dest).matches(panel->virtualPath(), QUrl::StripTrailingSlash))
@@ -805,7 +805,7 @@ void ListPanelFunc::copyFiles(bool enqueue)
         if (fileNames.count() > 1) {
             dest = vfs::ensureTrailingSlash(dest);
         }
-        KIO::Job* job = PreservingCopyJob::createCopyJob(pmode, *fileUrls, dest, KIO::CopyJob::Copy, false, true);
+        KIO::Job* job = PreservingCopyJob::createCopyJob(pmode, fileUrls, dest, KIO::CopyJob::Copy, false, true);
         job->ui()->setAutoErrorHandlingEnabled(true);
         if (dest.matches(panel->virtualPath(), QUrl::StripTrailingSlash) ||
                 KIO::upUrl(dest).matches(panel->virtualPath(), QUrl::StripTrailingSlash))
@@ -906,7 +906,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
     panel->prepareToDelete();
 
     // let the vfs do the job...
-    files() ->vfs_delFiles(&fileNames, reallyDelete);
+    files() ->vfs_delFiles(fileNames, reallyDelete);
 }
 
 void ListPanelFunc::goInside(const QString& name)
@@ -1077,9 +1077,6 @@ void ListPanelFunc::pack()
         KMessageBox::error(krMainWindow, i18n("Cannot pack files onto a virtual destination."));
         return;
     }
-
-    // get the files to be packed:
-    files() ->vfs_getFiles(&fileNames);
 
     if (PackGUI::queue) {
         KIOJobWrapper *job = KIOJobWrapper::pack(files()->vfs_getOrigin(), destURL, fileNames,
@@ -1359,22 +1356,18 @@ void ListPanelFunc::copyToClipboard(bool move)
     if (fileNames.isEmpty())
         return ;  // safety
 
-    QList<QUrl>* fileUrls = files() ->vfs_getFiles(&fileNames);
-    if (fileUrls) {
-        QMimeData *mimeData = new QMimeData;
-        mimeData->setData("application/x-kde-cutselection", move ? "1" : "0");
-        KUrlMimeData::setUrls(*fileUrls, QList<QUrl>(), mimeData);
+    QList<QUrl> fileUrls = files() ->vfs_getFiles(fileNames);
+    QMimeData *mimeData = new QMimeData;
+    mimeData->setData("application/x-kde-cutselection", move ? "1" : "0");
+    KUrlMimeData::setUrls(fileUrls, QList<QUrl>(), mimeData);
 
-        if (copyToClipboardOrigin)
-            disconnect(QApplication::clipboard(), 0, copyToClipboardOrigin, 0);
-        copyToClipboardOrigin = this;
+    if (copyToClipboardOrigin)
+        disconnect(QApplication::clipboard(), 0, copyToClipboardOrigin, 0);
+    copyToClipboardOrigin = this;
 
-        QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);
+    QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);
 
-        connect(QApplication::clipboard(), SIGNAL(changed(QClipboard::Mode)), this, SLOT(clipboardChanged(QClipboard::Mode)));
-
-        delete fileUrls;
-    }
+    connect(QApplication::clipboard(), SIGNAL(changed(QClipboard::Mode)), this, SLOT(clipboardChanged(QClipboard::Mode)));
 }
 
 void ListPanelFunc::pasteFromClipboard()
@@ -1411,7 +1404,7 @@ void ListPanelFunc::pasteFromClipboard()
         }
     }
 
-    files()->vfs_addFiles(&urls, move ? KIO::CopyJob::Move : KIO::CopyJob::Copy, otherFunc()->files(),
+    files()->vfs_addFiles(urls, move ? KIO::CopyJob::Move : KIO::CopyJob::Copy, otherFunc()->files(),
                           "", PM_DEFAULT);
 }
 

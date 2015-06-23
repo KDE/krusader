@@ -120,10 +120,11 @@ void KrPreviewPopup::showEvent(QShowEvent *event)
     }
 }
 
-void KrPreviewPopup::setUrls(const QList<QUrl>* urls)
+void KrPreviewPopup::setUrls(const QList<QUrl> &urls)
 {
-    for (int i = 0; i < urls->count(); ++i)
-        files.push_back(KFileItem(KFileItem::Unknown, KFileItem::Unknown, (*urls)[ i ]));
+    foreach(const QUrl &url, urls) {
+        files.push_back(KFileItem(KFileItem::Unknown, KFileItem::Unknown, url));
+    }
 }
 
 void KrPreviewPopup::addPreview(const KFileItem& file, const QPixmap& preview)

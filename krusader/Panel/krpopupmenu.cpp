@@ -116,7 +116,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
         // create the preview popup
         QStringList names;
         panel->gui->getSelectedNames(&names);
-        preview.setUrls(panel->func->files() ->vfs_getFiles(&names));
+        preview.setUrls(panel->func->files() ->vfs_getFiles(names));
         QAction *pAct = addMenu(&preview);
         pAct->setData(QVariant(PREVIEW_ID));
         pAct->setText(i18n("Preview"));
@@ -409,7 +409,7 @@ void KrPopupMenu::performAction(int id)
         QStringList names;
         panel->gui->getSelectedNames(&names);
         panel->func->runService(*(offers[ id - SERVICE_LIST_ID ]),
-                                *(panel->func->files()->vfs_getFiles(&names)));
+                                panel->func->files()->vfs_getFiles(names));
     }
 }
 

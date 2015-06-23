@@ -88,7 +88,7 @@ bool virt_vfs::populateVfsList(const QUrl &origin, bool /*showHidden*/)
     return true;
 }
 
-void virt_vfs::vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode /*mode*/, QObject* /*toNotify*/, QString /*dir*/, PreserveMode /*pmode*/)
+void virt_vfs::vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mode*/, QObject* /*toNotify*/, QString /*dir*/, PreserveMode /*pmode*/)
 {
     if (path == "/") {
         if (!quietMode)
@@ -102,19 +102,18 @@ void virt_vfs::vfs_addFiles(QList<QUrl> *fileUrls, KIO::CopyJob::CopyMode /*mode
         virtVfsDict[ "/" ] ->append(QUrl("virt:/" + path));
     }
     QList<QUrl>* urlList = virtVfsDict[ path ];
-    for (int i = 0; i != fileUrls->count(); i++) {
-        if (!urlList->contains((*fileUrls)[ i ]))
-            urlList->push_back((*fileUrls)[ i ]);
+    foreach (const QUrl &fileUrl, fileUrls) {
+        if (!urlList->contains(fileUrl))
+            urlList->push_back(fileUrl);
     }
 
     vfs_refresh();
 }
 
-void virt_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
+void virt_vfs::vfs_delFiles(const QStringList &fileNames, bool reallyDelete)
 {
     if (path == "/") {
-        for (int i = 0 ; i < fileNames->count(); ++i) {
-            QString filename = (*fileNames)[ i ];
+        foreach (const QString &filename, fileNames) {
             virtVfsDict[ "/" ] ->removeAll(QUrl(QStringLiteral("virt:/") + filename));
             delete virtVfsDict[ filename ];
             virtVfsDict.remove(filename);
@@ -124,13 +123,9 @@ void virt_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
         return ;
     }
 
-    QList<QUrl> filesUrls;
-
     // names -> urls
-    for (int i = 0 ; i < fileNames->count(); ++i) {
-        QString filename = (*fileNames)[ i ];
-        filesUrls.append(vfs_getFile(filename));
-    }
+    QList<QUrl> filesUrls = vfs_getFiles(fileNames);
+
     KIO::Job *job;
 
     // delete of move to trash ?
@@ -162,13 +157,12 @@ void virt_vfs::vfs_removeFiles(QStringList *fileNames)
     vfs_refresh();
 }
 
-QList<QUrl>* virt_vfs::vfs_getFiles(QStringList* names)
+QList<QUrl> virt_vfs::vfs_getFiles(const QStringList &names)
 {
     QUrl url;
-    QList<QUrl>* urls = new QList<QUrl>();
-    for (QStringList::Iterator name = names->begin(); name != names->end(); ++name) {
-        url = vfs_getFile(*name);
-        urls->append(url);
+    QList<QUrl> urls;
+    foreach (const QString &name, names) {
+        urls.append(vfs_getFile(name));
     }
     return urls;
 }

@@ -647,7 +647,7 @@ void KrSearchDialog::feedToListBox()
 
     QUrl url = QUrl(QString("virt:/") + vfsName);
     v.vfs_refresh(url);
-    v.vfs_addFiles(&urlList, KIO::CopyJob::Copy, 0);
+    v.vfs_addFiles(urlList, KIO::CopyJob::Copy, 0);
     v.setMetaInformation(queryName);
     //ACTIVE_FUNC->openUrl(url);
     ACTIVE_MNG->slotNewTab(url);
