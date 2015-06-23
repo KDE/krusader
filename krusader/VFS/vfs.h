@@ -81,7 +81,7 @@ public:
     virtual void vfs_delFiles(const QStringList &fileNames, bool reallyDelete = false) = 0;
     /// Return a list of URLs for multiple files
     virtual QList<QUrl> vfs_getFiles(const QStringList &names) = 0;
-    /// Return a URL to a single file
+    /// Return a URL to a single file, with no trailing slash
     virtual QUrl vfs_getFile(const QString& name) = 0;
     /// Create a new directory
     virtual void vfs_mkdir(const QString& name) = 0;

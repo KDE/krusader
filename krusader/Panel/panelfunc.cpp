@@ -382,7 +382,7 @@ void ListPanelFunc::redirectLink()
     if (!vf)
         return ;
 
-    QString file = files() ->vfs_getFile(vf->vfile_getName()).adjusted(QUrl::StripTrailingSlash).path();
+    QString file = files() ->vfs_getFile(vf->vfile_getName()).path();
     QString currentLink = vf->vfile_getSymDest();
     if (currentLink.isEmpty()) {
         KMessageBox::sorry(krMainWindow, i18n("The current file is not a link, so it cannot be redirected."));
@@ -437,7 +437,7 @@ void ListPanelFunc::krlink(bool sym)
         linkName = files() ->vfs_workingDir() + '/' + linkName;
 
     if (linkName.contains("/"))
-        name = files() ->vfs_getFile(name).adjusted(QUrl::StripTrailingSlash).path();
+        name = files() ->vfs_getFile(name).path();
 
     if (sym) {
         if (symlink(name.toLocal8Bit(), linkName.toLocal8Bit()) == -1)

@@ -172,11 +172,7 @@ QUrl virt_vfs::vfs_getFile(const QString& name)
     vfile * vf = vfs_search(name);
     if (!vf) return QUrl();   // empty
 
-    QUrl url = vf->vfile_getUrl();
-    if (vf->vfile_isDir()) {
-        url = vfs::ensureTrailingSlash(url);
-    }
-    return url;
+    return vf->vfile_getUrl();
 }
 
 void virt_vfs::vfs_mkdir(const QString& name)

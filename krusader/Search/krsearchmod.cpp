@@ -221,7 +221,7 @@ void KRSearchMod::scanRemoteDir(QUrl url)
 
         if (query->match(vf)) {
             // if we got here - we got a winner
-            results.append(fileURL.toDisplayString(QUrl::PreferLocalFile | QUrl::StripTrailingSlash));
+            results.append(fileURL.toDisplayString(QUrl::PreferLocalFile));
 
             emit found(fileURL.fileName(), KIO::upUrl(fileURL).toDisplayString(QUrl::PreferLocalFile | QUrl::StripTrailingSlash),
                        vf->vfile_getSize(), vf->vfile_getTime_t(), vf->vfile_getPerm(), vf->vfile_getUid(),

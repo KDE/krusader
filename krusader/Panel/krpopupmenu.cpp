@@ -225,11 +225,11 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
 
     // ---------- mount/umount/eject
     if (panel->func->files() ->vfs_getType() == vfs::VFS_NORMAL && vf->vfile_isDir() && !multipleSelections) {
-        if (krMtMan.getStatus(panel->func->files() ->vfs_getFile(item->name()).adjusted(QUrl::StripTrailingSlash).path()) == KMountMan::MOUNTED)
+        if (krMtMan.getStatus(panel->func->files() ->vfs_getFile(item->name()).path()) == KMountMan::MOUNTED)
             addAction(i18n("Unmount"))->setData(QVariant(UNMOUNT_ID));
-        else if (krMtMan.getStatus(panel->func->files() ->vfs_getFile(item->name()).adjusted(QUrl::StripTrailingSlash).path()) == KMountMan::NOT_MOUNTED)
+        else if (krMtMan.getStatus(panel->func->files() ->vfs_getFile(item->name()).path()) == KMountMan::NOT_MOUNTED)
             addAction(i18n("Mount"))->setData(QVariant(MOUNT_ID));
-        if (krMtMan.ejectable(panel->func->files() ->vfs_getFile(item->name()).adjusted(QUrl::StripTrailingSlash).path()))
+        if (krMtMan.ejectable(panel->func->files() ->vfs_getFile(item->name()).path()))
             addAction(i18n("Eject"))->setData(QVariant(EJECT_ID));
     }
 
