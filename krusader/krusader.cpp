@@ -42,6 +42,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include <KCoreAddons/KRandom>
 #include <KConfigCore/KSharedConfig>
+#include <KConfigGui/KWindowConfig>
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 #include <KXmlGui/KActionCollection>
@@ -236,7 +237,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     if (!runKonfig) {
         KConfigGroup cfg(krConfig, "Private");
         if (cfg.readEntry("Maximized", false))
-            restoreWindowSize(cfg);
+            KWindowConfig::restoreWindowSize(windowHandle(), cfg);
         else {
             move(oldPos = cfg.readEntry("Start Position", _StartPosition));
             resize(oldSize = cfg.readEntry("Start Size", _StartSize));
@@ -359,9 +360,10 @@ void Krusader::setupActions() {
 void Krusader::savePosition() {
     KConfigGroup cfg(krConfig, "Private");
     cfg.writeEntry("Maximized", isMaximized());
-    if (isMaximized()) {}
-        // KF5 TODO commented
-        //KWindowConfig::saveWindowSize(this, krConfig->group("Private"), KConfigGroup::Normal);
+    if (isMaximized()) {
+        KConfigGroup cg = krConfig->group("Private");
+        KWindowConfig::saveWindowSize(windowHandle(), cg, KConfigGroup::Normal);
+    }
     else {
         cfg.writeEntry("Start Position", isMaximized() ? oldPos : pos());
         cfg.writeEntry("Start Size", isMaximized() ? oldSize : size());
