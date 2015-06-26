@@ -191,9 +191,6 @@ void virt_vfs::vfs_mkdir(const QString& name)
 
 void virt_vfs::vfs_rename(const QString& fileName, const QString& newName)
 {
-    QList<QUrl> fileUrls;
-    QUrl url , dest;
-
     vfile* vf = vfs_search(fileName);
     if (!vf) return ;   // not found
 
@@ -205,11 +202,13 @@ void virt_vfs::vfs_rename(const QString& fileName, const QString& newName)
         return ;
     }
 
-    url = vf->vfile_getUrl();
+    QUrl url = vf->vfile_getUrl();
+
+    QList<QUrl> fileUrls;
     fileUrls.append(url);
 
-    // TODO KF5: verify that this still works...
-    dest = QUrl(newName);
+    QUrl dest = url; // keep same url scheme and host as source.
+    dest.setPath(newName);
     // add the new url to the list
     // the list is refreshed only existing files remain -
     // so we don't have to worry if the job was successful
