@@ -35,13 +35,14 @@ A
 #include "newftpgui.h"
 #include "../krglobal.h"
 
+#include <QtGui/QGuiApplication>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QPaintEvent>
 
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KFileItem>
 #include <KCompletion/KLineEdit>
-#include <KConfigWidgets/KColorScheme>
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////// Pie related widgets /////////////////////////////////
@@ -290,6 +291,7 @@ void KrQuickSearch::setMatch(bool match)
 
     QString foreground, background;
     QColor  fore, back;
+    QPalette p = QGuiApplication::palette();
 
     if (match) {
         foreground = "Quicksearch Match Foreground";
@@ -304,12 +306,12 @@ void KrQuickSearch::setMatch(bool match)
     }
 
     if (gc.readEntry(foreground, QString()) == "KDE default")
-        fore = KColorScheme(QPalette::Active, KColorScheme::View).foreground().color();
+        fore = p.color(QPalette::Active, QPalette::Text);
     else if (!gc.readEntry(foreground, QString()).isEmpty())
         fore = gc.readEntry(foreground, fore);
 
     if (gc.readEntry(background, QString()) == "KDE default")
-        back = KColorScheme(QPalette::Active, KColorScheme::View).background().color();
+        back = p.color(QPalette::Active, QPalette::Base);
     else if (!gc.readEntry(background, QString()).isEmpty())
         back = gc.readEntry(background, back);
 

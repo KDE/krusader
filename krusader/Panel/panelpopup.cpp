@@ -49,8 +49,8 @@
 #include <QtWidgets/QSplitter>
 
 #include <KCompletion/KLineEdit>
-#include <KConfigWidgets/KColorScheme>
 #include <KCompletion/KComboBox>
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 #include <KIOWidgets/KDirLister>
@@ -284,12 +284,6 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
     dataLine->setFont(lg.readEntry("Filelist Font", _FilelistFont));
     // --- hack: setup colors to be the same as an inactive panel
     dataLine->setBackgroundRole(QPalette::Window);
-    QPalette q(dataLine->palette());
-    q.setColor(QPalette::WindowText, KColorScheme(QPalette::Active, KColorScheme::View).foreground().color());
-    q.setColor(QPalette::Window, KColorScheme(QPalette::Active, KColorScheme::View).background().color());
-    dataLine->setPalette(q);
-    dataLine->setFrameStyle(QFrame::Box | QFrame::Raised);
-    dataLine->setLineWidth(1);    // a nice 3D touch :-)
     int sheight = QFontMetrics(dataLine->font()).height() + 4;
     dataLine->setMaximumHeight(sheight);
 

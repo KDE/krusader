@@ -31,6 +31,7 @@
 #include "packguibase.h"
 
 #include <QtCore/QVariant>
+#include <QtGui/QGuiApplication>
 #include <QtGui/QImage>
 #include <QtGui/QPixmap>
 #include <QtGui/QKeyEvent>
@@ -48,9 +49,9 @@
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QVBoxLayout>
 
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
-#include <KConfigWidgets/KColorScheme>
 #include <KCompletion/KComboBox>
 #include <KWidgetsAddons/KMessageBox>
 #include <KIO/Global>
@@ -360,12 +361,13 @@ void PackGUIBase::expand()
 
 void PackGUIBase::checkConsistency()
 {
+    QPalette p = QGuiApplication::palette();
     QPalette pal = passwordConsistencyLabel->palette();
     if (password->text().isEmpty() && passwordAgain->text().isEmpty()) {
-        pal.setColor(passwordConsistencyLabel->foregroundRole(), KColorScheme(QPalette::Active, KColorScheme::View).foreground().color());
+        pal.setColor(passwordConsistencyLabel->foregroundRole(), p.color(QPalette::Active, QPalette::Text));
         passwordConsistencyLabel->setText(i18n("No password specified"));
     } else if (password->text() == passwordAgain->text()) {
-        pal.setColor(passwordConsistencyLabel->foregroundRole(), KColorScheme(QPalette::Active, KColorScheme::View).foreground().color());
+        pal.setColor(passwordConsistencyLabel->foregroundRole(), p.color(QPalette::Active, QPalette::Text));
         passwordConsistencyLabel->setText(i18n("The passwords are equal"));
     } else {
         pal.setColor(passwordConsistencyLabel->foregroundRole(), Qt::red);

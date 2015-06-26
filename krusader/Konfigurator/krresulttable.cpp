@@ -22,10 +22,10 @@
 
 #include <QtCore/QList>
 #include <QtGui/QFontDatabase>
+#include <QtGui/QGuiApplication>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 
-#include <KConfigWidgets/KColorScheme>
 #include <KI18n/KLocalizedString>
 
 using namespace std;
@@ -83,8 +83,9 @@ void KrResultTable::adjustRow(QGridLayout* grid)
         // Paint uneven rows in alternate color
         if (((col / _numColumns) % 2)) {
             child->widget()->setAutoFillBackground(true);
+            QPalette p = QGuiApplication::palette();
             QPalette pal = child->widget()->palette();
-            pal.setColor(child->widget()->backgroundRole(), KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color());
+            pal.setColor(child->widget()->backgroundRole(), p.color(QPalette::Active, QPalette::AlternateBase));
             child->widget()->setPalette(pal);
         }
 

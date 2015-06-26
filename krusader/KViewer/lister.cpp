@@ -57,7 +57,7 @@
 #include <QtPrintSupport/QPrinter>
 
 #include <KCodecs/KCharsets>
-#include <KConfigWidgets/KColorScheme>
+#include <KConfigCore/KSharedConfig>
 #include <KCoreAddons/KJobTrackerInterface>
 #include <KI18n/KLocalizedString>
 #include <KIO/CopyJob>
@@ -1673,6 +1673,7 @@ void Lister::setColor(bool match, bool restore)
         KConfigGroup gc(krConfig, "Colors");
 
         QString foreground, background;
+        QPalette p = QGuiApplication::palette();
 
         if (match) {
             foreground = "Quicksearch Match Foreground";
@@ -1687,12 +1688,12 @@ void Lister::setColor(bool match, bool restore)
         }
 
         if (gc.readEntry(foreground, QString()) == "KDE default")
-            fore = KColorScheme(QPalette::Active, KColorScheme::View).foreground().color();
+            fore = p.color(QPalette::Active, QPalette::Text);
         else if (!gc.readEntry(foreground, QString()).isEmpty())
             fore = gc.readEntry(foreground, fore);
 
         if (gc.readEntry(background, QString()) == "KDE default")
-            back = KColorScheme(QPalette::Active, KColorScheme::View).background().color();
+            back = p.color(QPalette::Active, QPalette::Base);
         else if (!gc.readEntry(background, QString()).isEmpty())
             back = gc.readEntry(background, back);
     } else {
