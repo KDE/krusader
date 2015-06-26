@@ -219,6 +219,7 @@ void kio_isoProtocol::listDir(const QUrl &url)
         redir.setPath(getPath(url));
         if (url.hasFragment()) redir.setFragment(url.fragment(QUrl::FullyDecoded));
         //qDebug()  << "Ok, redirection to " << redir.url() << endl;
+        redir.setScheme("file");
         redirection(redir);
         finished();
         // And let go of the iso file - for people who want to unmount a cdrom after that
@@ -233,6 +234,7 @@ void kio_isoProtocol::listDir(const QUrl &url)
         if (url.hasFragment()) redir.setFragment(url.fragment(QUrl::FullyDecoded));
         redir.setPath(getPath(url) + QString::fromLatin1(DIR_SEPARATOR));
         //qDebug() << "kio_isoProtocol::listDir: redirection " << redir.url() << endl;
+        redir.setScheme("file");
         redirection(redir);
         finished();
         return;
@@ -482,6 +484,7 @@ void kio_isoProtocol::get(const QUrl &url)
         //qDebug() << "Redirection to " << isoEntry->symLinkTarget() << endl;
         QUrl realURL = QUrl(url).resolved(QUrl(isoEntry->symLinkTarget()));
         //qDebug() << "realURL= " << realURL.url() << endl;
+        realURL.setScheme("file");
         redirection(realURL);
         finished();
         return;
