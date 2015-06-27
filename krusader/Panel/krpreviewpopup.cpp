@@ -123,7 +123,7 @@ void KrPreviewPopup::showEvent(QShowEvent *event)
 void KrPreviewPopup::setUrls(const QList<QUrl> &urls)
 {
     foreach(const QUrl &url, urls) {
-        files.push_back(KFileItem(KFileItem::Unknown, KFileItem::Unknown, url));
+        files.push_back(KFileItem(url));
     }
 }
 

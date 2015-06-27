@@ -72,7 +72,7 @@ void Combiner::combine()
     /* check whether the .crc file exists */
     splURL = baseURL.adjusted(QUrl::RemoveFilename);
     splURL.setPath(splURL.path() + baseURL.fileName() + ".crc");
-    KFileItem file(KFileItem::Unknown, KFileItem::Unknown, splURL);
+    KFileItem file(splURL);
     //FIXME: works only for local files - use KIO::stat() instead
     file.refresh();
 

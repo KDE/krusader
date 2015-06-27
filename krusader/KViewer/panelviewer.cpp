@@ -97,7 +97,7 @@ void PanelViewerBase::openUrl(QUrl url)
     emit urlChanged(this, url);
 
     if (url.isLocalFile())
-        openFile(KFileItem(KFileItem::Unknown, KFileItem::Unknown, url));
+        openFile(KFileItem(url));
     else {
         KIO::StatJob* statJob = KIO::stat(url, KIO::HideProgressInfo);
         connect(statJob, SIGNAL(result(KJob*)), this, SLOT(slotStatResult(KJob*)));

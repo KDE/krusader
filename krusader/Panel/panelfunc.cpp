@@ -48,6 +48,7 @@ A
 #include <KCoreAddons/KShell>
 #include <KCoreAddons/KUrlMimeData>
 #include <KI18n/KLocalizedString>
+#include <KIO/DesktopExecParser>
 #include <KIO/JobUiDelegate>
 #include <KIOWidgets/KOpenWithDialog>
 #include <KIOWidgets/KPropertiesDialog>
@@ -964,8 +965,9 @@ void ListPanelFunc::runCommand(QString cmd)
 void ListPanelFunc::runService(const KService &service, QList<QUrl> urls)
 {
     krOut<<service.name()<<endl;
-    QStringList args = KRun::processDesktopExec(service, urls);
-    if (args.count())
+    KIO::DesktopExecParser parser(service, urls);
+    QStringList args = parser.resultingArguments();
+    if (!args.isEmpty())
         runCommand(KShell::joinArgs(args));
     else
         KMessageBox::error(0, i18n("%1 cannot open %2", service.name(), KrServices::toStringList(urls).join(", ")));

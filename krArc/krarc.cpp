@@ -1432,10 +1432,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
             for (entryIt = dir->begin(); entryIt != dir->end(); ++entryIt) {
                 if (entryIt->contains(KIO::UDSEntry::UDS_NAME) &&
                         entryIt->stringValue(KIO::UDSEntry::UDS_NAME) == name) {
-                    // removed in KF5 - TODO?
-                    //entryIt->remove(KIO::UDSEntry::UDS_MODIFICATION_TIME);
                     entryIt->insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, time);
-                    //entryIt->remove(KIO::UDSEntry::UDS_ACCESS);
                     entryIt->insert(KIO::UDSEntry::UDS_ACCESS, mode);
                     return;
                 }

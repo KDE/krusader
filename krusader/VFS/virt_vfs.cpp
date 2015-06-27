@@ -236,7 +236,8 @@ vfile* virt_vfs::stat(const QUrl &url)
     }
     KFileItem* kfi;
     if (url.isLocalFile()) {
-        kfi = new KFileItem(KFileItem::Unknown, KFileItem::Unknown, url, true);
+        kfi = new KFileItem(url);
+        kfi->setDelayedMimeTypes(true);
     } else {
         busy = true;
         KIO::StatJob* statJob = KIO::stat(url, KIO::HideProgressInfo);

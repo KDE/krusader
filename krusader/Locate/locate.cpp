@@ -370,7 +370,7 @@ void LocateDlg::processStdout()
                     continue;
             }
             if (onlyExist) {
-                KFileItem file(KFileItem::Unknown, KFileItem::Unknown, QUrl::fromLocalFile((*it).trimmed()));
+                KFileItem file(QUrl::fromLocalFile((*it).trimmed()));
                 if (!file.isReadable())
                     continue;
             }

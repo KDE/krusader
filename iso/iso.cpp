@@ -270,13 +270,10 @@ void kio_isoProtocol::listDir(const QUrl &url)
 
         createUDSEntry(isoEntry, entry);
 
-        listEntry(entry, false);
+        listEntry(entry);
     }
 
-    listEntry(entry, true);   // ready
-
     finished();
-
     //qDebug()  << "kio_isoProtocol::listDir done" << endl;
 }
 
