@@ -1,39 +1,44 @@
-Krusader installation instructions for KDE 4.x
-----------------------------------------------
-
-Note
-----
-Krusader-2.0 versions and higher are for KDE 4.x only and will not work anymore on KDE 3.x
+            ---------------------------------------------------
+            Krusader installation instructions for KDE Plasma 5
+            ---------------------------------------------------
 
 
-Krusader-SVN development download
----------------------------------
+--- Note
+
+Krusader-15.08 versions and higher are for KDE Plasma 5 only and will not work
+anymore on KDE 4.x or 3.x
+
+
+--- Krusader development download
+
 Krusader is developed in KDE Extragear.
-Download the latest available Krusader-2.x sourcecode with subversion.
-  
-$ svn co svn://anonsvn.kde.org/home/kde/trunk/KDE/kdesdk/scripts/createtarball
-$ cd createtarball
-$ ./create_tarball.rb -n -a krusader -v svn`date +%Y%m%d`
+Download the latest available Krusader-15.xx sourcecode with git.
+
+$ git clone http://anongit.kde.org/krusader.git
+$ cd krusader
+$ git checkout plasma
 
 
+--- Supported Platforms
 
-Supported Platforms
--------------------
 * All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris™
-* All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®)
-* Tested on Mac® OS X 10.4 "Tiger" on ppc, should work on all versions and
-  architectures supported by KDE.
-* Tested on Windows XP® with KDE 4.1.2, not yet tested on Windows Vista® but it should work.
+
+At the moment, there are no KDE Plasma 5 ports for Windows or Mac® OS X, which
+means these platforms are not supported.
 
 
+
+========================================
 Installation on Linux® and BSD platforms
 ========================================
 
-Krusader dependencies
----------------------
-The next pacakeg are needed when running the Krusader binary.
-The next packages are the names that Debian/Ubuntu uses, other Linux
-distros will probably use similar names.
+
+--- Krusader dependencies            // TODO KF5
+
+The next packages are needed when running the Krusader binary.
+
+The next packages are the names that KUbuntu uses, other Linux distros will
+probably use similar names.
 
 - kdebase-runtime     runtime components from the official KDE 4 release
 - kdelibs5            core libraries for all KDE 4 applications
@@ -48,11 +53,11 @@ distros will probably use similar names.
 
 Optional:
 - libkjsembed1        Embedded JavaScript library
-  If Krusader is compiled with the the optional Javascripting function 
+  If Krusader is compiled with the the optional Javascripting function
 
 
-Suggested packages
-------------------
+--- Suggested packages            // TODO KF5
+
 These packages are optional but they will make Krusader much more powerful and useful.
 The next packages are the names that Debian/Ubuntu uses, other Linux
 distros will probably use similar names.
@@ -92,56 +97,48 @@ or rar                   Archiver for .rar files
 - zip                    Archiver for .zip files 
 
 
-Compilation requirements
-------------------------
-The next packages are needed for compiling the Krusader sourcecode, 
-if you only run the Krusader binary you don't need to install these packages.
+--- Compilation requirements
 
-- gcc                    The GNU C compiler
-- g++                    The GNU C++ compiler
-- cmake                  A cross-platform, open-source make system
-- zlib1g-dev             library for implementing the deflate compression method found in gzip and PKZIP
-- gettext                GNU Internationalization utilities
-- kdelibs5-dev           development files for the KDE 4 core libraries
-- libkonq5-dev           development files for the Konqueror libraries 
-- libphonon-dev          libphonon-dev cross-platform multimedia framework development
+The next packages are needed for compiling the Krusader sourcecode, if you only
+run the Krusader binary you don't need to install these packages.
 
+- build-essential        a group of packages needed to compile source code
+- cmake                  a cross-platform, open-source make system
+- extra-cmake-modules    extra cmake modules for compiling KDE Frameworks
+- qt5-default            development files for the Qt5 libraries
+- plasma-framework-dev   development files for plasma-framework
 
-cmake options
--------------
--DQT_INCLUDES=/usr/share/qt4/include
- is the location of the QT4 includes
-
--DCMAKE_INSTALL_PREFIX=/usr/
- is the location where Krusader will be installed with the make command.
- An other example is: -DCMAKE_INSTALL_PRFIX=/opt/krusader
- to install the compiled Krusader in an other directory to not overwrite
- the Krusader version installed by your package manager. 
+The following packages should install (through dependencies) all the packages
+you need to compile a KDE 5 software
+- libkf5parts-dev       
+- libkf5wallet-dev
+- libkf5xmlgui-dev
+- kdoctools-dev
 
 
-$ tar -xzvf krusader_kde4.tar.gz
-$ cd krusader_kde4
-$ cmake  -DCMAKE_INSTALL_PREFIX=/usr/ -DQT_INCLUDES=/usr/share/qt4/include
+--- CMake options
+
+-DCMAKE_INSTALL_PREFIX=/usr
+  is the location where Krusader will be installed with the make command.
+  Another example is: -DCMAKE_INSTALL_PRFIX=/opt/krusader
+  to install the compiled Krusader in an other directory to not overwrite
+  the Krusader version installed by your package manager.
+
+-DCMAKE_CXX_FLAGS="-O2 -fPIC"
+  this flag is required if you have a 64 bit system
+
+-DQT_PLUGIN_INSTALL_DIR=
+  many system force this path to keep kde4 plugins separated from the kde5 ones
+
+$ tar xvf krusader-xx.xx.tar.gz
+$ cd krusader-xx.xx
+$ mkdir build
+$ cd build
+$ cmake -DCMAKE_INSTALL_PREFIX=/usr ..
 
 
-Known cmake trouble and fixes
------------------------------
-We had a problem with cmake-2.4 on (K)ubuntu 8.04 and probably other distro's as well.
-------------
-CMake Error: CPack welcome resource file:
-"/usr/share/cmake/Templates/CPack.GenericWelcome.txt" could not be found.
-------------
-To fix the error:
-$ sudo mkdir /usr/share/cmake/
-$ sudo ln -s /usr/share/cmake-2.4/Templates /usr/share/cmake/Templates
-or
-https://bugs.launchpad.net/ubuntu/+source/cmake/+bug/135595
-This bug is fixed in (K)ubuntu 8.10
+--- Compilation and installation
 
-
-
-Compilation and installation
-----------------------------
 Compilation will take about 5 to 10 minutes depending on your CPU speed.
 
 $ make
@@ -150,326 +147,173 @@ or
 $ sudo make install
 
 
-Uninstall
----------
+--- Uninstall
+
 $ su -c "make uninstall"
 or
 $ sudo make uninstall
 
 
 
-Compilation and installation on BSD
-===================================
-$ cmake -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` -DCMAKE_DQT_INCLUDES=`kde4-config --qt-libraries`
-$ gmake
+FYI - The output of cmake on Kubuntu 15.04
 
-Then, su to root, and install.
-$ gmake install
-
-For uninstalling, run in the sourcecode directory the next command.
-# gmake uninstall
-
-
-
-Installation on Mac® OS X
-=========================
-With KDE-4 Krusader runs natively on Mac OS X, using it's Aqua user interface
-(No more X11 needed!).
-
-Install the required libs and tools
------------------------------------
-Install MacPorts from http://www.macports.org/
-Since Mac OS X doesn't ship a compiler by default any more, you have to
-install Apple's XCode to get gcc. All this is described in the MacPorts
-Guide at http://guide.macports.org/
-
-At the time of this writing MacPorts does not install Qt4 with ssl support
-by default. A ticket for this is already filed at
-http://trac.macports.org/ticket/17730
-For now, you have to install Qt4 manualy with ssl:
-$ sudo port install qt4-mac +ssl
-
-Now you can install KDE-4's libraries and all it's dependencies with a
-simeple command:
-$ sudo port install kdelibs4
-
-If you don't want to do all the compiling, you can see if there are recent
-binaries at http://mac.kde.org/ The kde-4.1.3 release as also build with
-MacPorts.
-
-
-Build Krusader using GNU make
------------------------------
-Now you can proceed with the standard unix build process for Krusader. Note
-that we create a build directory with the suffix ".build" for the compiled
-objects. This tells Spotlight not to index the content of this directory.
-
-$ tar -xzvf krusader_kde4.tar.gz
-$ mkdir krusader.build
-$ cd krusader.build
-$ cmake ../krusader_kde4 -DCMAKE_INSTALL_PREFIX=/opt/local/
-$ make
-$ sudo make install
-
-Now you should have a working Krusader.app inside /opt/local/bin.
-See below how to create a relocatable aplication bundle.
-
-Build Krusader using XCode
---------------------------
-An other method is to use Apple's IDE XCode to build Krusader.
-You have to install the Apple Developer Tools and change the commands above to:
-
-$ tar -xzvf krusader_kde4.tar.gz
-$ mkdir krusader_xcode
-$ cd krusader_xcode
-$ cmake ../krusader_kde4 -G Xcode
-$ open Project.xcodeproj
-
-Please consult the XCode manual for details about how to proceed.
-Any feedback is wellcome, since we have no XCode guru in our Krusader development team ;-)
-
-Create a relocatable application bundle
----------------------------------------
-To create a Krusader.app which has all resources embedded (like icons and stuff)
-tell cmake to use an empty directory as installation prefix, let's say /opt/tmp.
-Now build and install Krusader normaly, which should result in a /opt/tmp/share/
-directory. Move this dir into Krusader.app:
-
-$ mv /opt/tmp/share /opt/tmp/bin/Krusader.app/Contents/
-
-As of KDE-4.1 Krusader.app should find it's resources this way as
-"<self>.app/Contents/" is added as possible KDEDIR. If you really need an older
-version of KDE-4, you have to use a wrapper script as described a mail from
-Jonas Bähr to the kde-mac mailing list on 3 February 2008.
-http://mail.kde.org/pipermail/kde-mac/2008-February/000002.html
-
-We hope to integrate this resource bundling into the normal build process for
-future versions.
-
-
-
-Installation on Windows®
-========================
-TODO
-At moment of Writing Krusader is not available yet in the KDE-Win installer.
-http://windows.kde.org/
-http://www.winkde.org/pub/kde/ports/win32/installer/
-
-
-Krusader compiles on Windows®,
-but some development work needs to be done to make it more usable on the Windows® platform.
-All feedback is welcome!
-
-- Install KDE for Windows with the kdewin-installer from 
-  http://winkde.org/pub/kde/ports/win32/installer/
-  We have used kdewin-installer-gui-0.9.3-3.exe
-  See also at http://windows.kde.org/ if needed
-
-  During the kdewin installation, choose the following options:
-  + installation path c:\kde4
-  + Select KDE 4.1.2
-    (We have encountered Krusader compile troubles with KDE 4.1.3 ,
-     but AFAIK they are not caused by the Krusader sourcecode)
-  + install mode: developer installation
-  + compiler mode: mingw
-  + select installation of binary and developement files of the following
-    packages (Note that some packages are not in any category and one
-    needs to view all to find them):
-    * mingw
-    * gcc (including g++)
-    * cmake
-    * dbus
-    * qt4
-    * kdelibs
-    * kdebase
-    * automoc4 (including the source package - because of a automoc4 bug at this moment)
-    * gettext-tools  
-
-- When KDE 4.1.2 is installed png2ico.exe should be already installed in c:\kde4\bin
-  In the case that png2ico.exe is not installed, than install it manually in c:\kde4\bin
-  http://winterdrache.de/freeware/png2ico/
-  This programs is needed for icons  
-  If png2ico.exe is not installed, Krusader will compile fine but it will miss the application icon.  
-
-- Download the Krusader sourcecode
-  
-  You can also access the Krusader Git repository with TortoiseGit
-  http://code.google.com/p/tortoisegit/
-
-- Unpack the sourcecode into c:/kde4/src/krusader_kde4
-
-- Create a Krusader build directory in c:/kde4/build/krusader_kde4
-  Unpack the source code (again) into this directory
-  This directory will be used to compile Krusader and to create all the
-  compiled files and the krusader.exe file.
-
-- Because of a bug (at least in the KDE 4.1.2 and KDE 4.1.3 installation) 
-  you need to edit some files, otherwise Krusader will fail to compile.
-  In the next files you need to replace "d:/kderoot" into "c:/kde4" when KDE4 is installed in c:\kde4
-  The problem is that the kde4 directory is wrong hardcoded in several files.
-  c:\KDE4\share\apps\cmake\modules\KDELibsDependencies.cmake
-  c:\KDE4\share\apps\cmake\modules\KDELibsDependenciesInternal.cmake
-  c:\KDE4\share\apps\cmake\modules\KDELibsDependenciesInternal.cmake.template
-  c:\KDE4\share\apps\cmake\modules\KDEPimLibsDependencies.cmake
-  c:\KDE4\share\apps\cmake\modules\KDEPimLibsDependencies.cmake.template
-  The bug is also explained in:
-  http://mail.kde.org/pipermail/kde-windows/2008-January/002000.html
-  http://www.cmake.org/pipermail/cmake/2008-January/018971.html  
-
-- Because of an Automoc4 installation bug (at least in the KDE 4.1.2 and KDE 4.1.3 installation) 
-  you need to todo the next, otherwise Krusader will fail to compile.
-  - Create directory c:\kde4\lib\automoc4
-  - Install the automoc4 source package if it's not installed (with the kdewin-installer)
-    The automoc4 source package will be installed in c:\kde\src\
-  - Copy Automoc4Config.cmake, Automoc4Version.cmake and automoc4.files.in (but NOT the file kde4automoc.cpp)
-    into the new directory c:\kde4\lib\automoc4
-
-- Open the Windows terminal (cmd.exe) and go to the build directory
-  c:
-  cd \kde4\build\krusader_kde4
-
-- Run "cmake" in the Krusader build directory c:\kde4\build\krusader_kde4 with the following parameters:
-  c:\kde4\bin\cmake.exe -G "MinGW Makefiles" c:/kde4/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_PREFIX_PATH=c:/kde4;c:/MinGW -DKDE4_INSTALL_DIR=c:/kde4 -DQT_INSTALL_DIR=c:/kde4 -DCMAKE_BUILD_TYPE=Release
-
-  Optional:
-  If you want to use eclipse IDE, you may want to run instead:
-  c:\kde4\bin\cmake.exe -G "Eclipse CDT4 - MinGW Makefiles" c:/krusader/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_PREFIX_PATH=c:/kde4;c:/MinGW -DKDE4_INSTALL_DIR=c:/kde4 -DQT_INSTALL_DIR=c:/kde4 -DCMAKE_BUILD_TYPE=debugfull
-  and in Eclipse with C++ development tools 4 rigth click in the Project Explorer, choose Import...,
-  select "General->Existing projects into workspace" and choose the c:/kde4/build/krusader_kde4 directory.
-  
-- Run "make install" in the Krusader build directory c:\kde4\build\krusader_kde4
-  C:\MinGW\bin\mingw32-make.exe install
-  Krusader will now be compiled, if compilation is succesfully the exe file will be installed in c:\kde4\bin\krusader.exe
-
-- Run krusader.exe (or choose it from the start menu) and enjoy!
-
-- If Krusader-Windows compilation fails please read the next url for more information
-  http://groups.google.com/group/krusader-devel/browse_thread/thread/fd28022291291333
-
-- Known problems on Windows at the moment (22 Oct 2008):
-  + Archives don't work
-  + The media button does not work (seems to be a problem in KDEwin libraries, it used to work)
-  + Most external tools don't work
-  + No support of "My Computer" yet (It is planned to be supported by kdelibs in the future)
-  + Many useful kio slaves missing (KDE issue)
-
-
-FYI
-The output of cmake on Kubuntu 8.04 (KDE 4 Remix)
--------------------------------------------------
 This is the cmake output 
 
-frank@kubuntu:~/krusader_kde4$ cmake -DCMAKE_INSTALL_PREFIX=/usr -DQT_INCLUDES=/usr/share/qt4/include
--- Check for working C compiler: /usr/bin/gcc
--- Check for working C compiler: /usr/bin/gcc -- works
--- Check size of void*
--- Check size of void* - done
+ubuntu@ubuntu-VirtualBox:~/src/krusader/build$ cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+-- The C compiler identification is GNU 4.9.2
+-- The CXX compiler identification is GNU 4.9.2
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
 -- Check for working CXX compiler: /usr/bin/c++
 -- Check for working CXX compiler: /usr/bin/c++ -- works
--- Looking for Q_WS_X11
--- Looking for Q_WS_X11 - found
--- Looking for Q_WS_WIN
--- Looking for Q_WS_WIN - not found.
--- Looking for Q_WS_QWS
--- Looking for Q_WS_QWS - not found.
--- Looking for Q_WS_MAC
--- Looking for Q_WS_MAC - not found.
--- Found Qt-Version 4.3.4 (using /usr/bin/qmake)
--- Looking for XOpenDisplay in /usr/lib/libX11.so;/usr/lib/libXext.so;/usr/lib/libXft.so;/usr/lib/libXau.so;/usr/lib/libXdmcp.so
--- Looking for XOpenDisplay in /usr/lib/libX11.so;/usr/lib/libXext.so;/usr/lib/libXft.so;/usr/lib/libXau.so;/usr/lib/libXdmcp.so - found
--- Looking for gethostbyname
--- Looking for gethostbyname - found
--- Looking for connect
--- Looking for connect - found
--- Looking for remove
--- Looking for remove - found
--- Looking for shmat
--- Looking for shmat - found
--- Looking for IceConnectionNumber in ICE
--- Looking for IceConnectionNumber in ICE - found
--- Found X11: /usr/lib/libX11.so
--- Looking for pthread.h
--- Looking for pthread.h - found
--- Looking for pthread_create in pthreads
--- Looking for pthread_create in pthreads - not found
--- Looking for pthread_create in pthread
--- Looking for pthread_create in pthread - found
--- Performing Test HAVE_FPIE_SUPPORT
--- Performing Test HAVE_FPIE_SUPPORT - Success
--- Performing Test __KDE_HAVE_NO_THREADSAFE_STATICS
--- Performing Test __KDE_HAVE_NO_THREADSAFE_STATICS - Success
--- Performing Test __KDE_HAVE_W_OVERLOADED_VIRTUAL
--- Performing Test __KDE_HAVE_W_OVERLOADED_VIRTUAL - Success
--- Performing Test __KDE_HAVE_GCC_VISIBILITY
--- Performing Test __KDE_HAVE_GCC_VISIBILITY - Success
--- Found KDE 4.0 include dir: /usr/lib/kde4/include
--- Found KDE 4 library dir: /usr/lib/kde4/lib
--- Found KDE4 kconfig_compiler preprocessor: /usr/lib/kde4/bin/kconfig_compiler
--- Found KDE4 automoc: /usr/lib/kde4/bin/kde4automoc
--- /home/frank/krusader_kde4/krusader: skipped subdir $(KRJSDIR)
--- Looking for include files HAVE_LIBINTL_H
--- Looking for include files HAVE_LIBINTL_H - found
--- Looking for dgettext
--- Looking for dgettext - found
--- Found Gettext: built in libc
--- Found ZLIB: /usr/lib/libz.so
--- /home/frank/krusader_kde4: skipped subdir $(TARDIR)
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Looking for __GLIBC__
+-- Looking for __GLIBC__ - found
+-- Performing Test _OFFT_IS_64BIT
+-- Performing Test _OFFT_IS_64BIT - Success
+-- Found KF5Archive: /usr/lib/x86_64-linux-gnu/cmake/KF5Archive/KF5ArchiveConfig.cmake (found version "5.9.0")
+-- Found KF5Bookmarks: /usr/lib/x86_64-linux-gnu/cmake/KF5Bookmarks/KF5BookmarksConfig.cmake (found version "5.9.0")
+-- Found KF5Codecs: /usr/lib/x86_64-linux-gnu/cmake/KF5Codecs/KF5CodecsConfig.cmake (found version "5.9.0")
+-- Found KF5Completion: /usr/lib/x86_64-linux-gnu/cmake/KF5Completion/KF5CompletionConfig.cmake (found version "5.9.0")
+-- Found KF5CoreAddons: /usr/lib/x86_64-linux-gnu/cmake/KF5CoreAddons/KF5CoreAddonsConfig.cmake (found version "5.9.0")
+-- Found KF5Config: /usr/lib/x86_64-linux-gnu/cmake/KF5Config/KF5ConfigConfig.cmake (found version "5.9.0")
+-- Found KF5DocTools: /usr/lib/x86_64-linux-gnu/cmake/KF5DocTools/KF5DocToolsConfig.cmake (found version "5.9.0")
+-- Found Gettext: /usr/bin/msgmerge (found version "0.19.2")
+-- Found PythonInterp: /usr/bin/python (found version "2.7.9")
+-- Found KF5I18n: /usr/lib/x86_64-linux-gnu/cmake/KF5I18n/KF5I18nConfig.cmake (found version "5.9.0")
+-- Found KF5IconThemes: /usr/lib/x86_64-linux-gnu/cmake/KF5IconThemes/KF5IconThemesConfig.cmake (found version "5.9.0")
+-- Found KF5ItemViews: /usr/lib/x86_64-linux-gnu/cmake/KF5ItemViews/KF5ItemViewsConfig.cmake (found version "5.9.0")
+-- Found KF5KIO: /usr/lib/x86_64-linux-gnu/cmake/KF5KIO/KF5KIOConfig.cmake (found version "5.9.0")
+-- Found KF5Notifications: /usr/lib/x86_64-linux-gnu/cmake/KF5Notifications/KF5NotificationsConfig.cmake (found version "5.9.0")
+-- Found KF5Parts: /usr/lib/x86_64-linux-gnu/cmake/KF5Parts/KF5PartsConfig.cmake (found version "5.9.0")
+-- Found KF5Solid: /usr/lib/x86_64-linux-gnu/cmake/KF5Solid/KF5SolidConfig.cmake (found version "5.9.0")
+-- Found KF5TextWidgets: /usr/lib/x86_64-linux-gnu/cmake/KF5TextWidgets/KF5TextWidgetsConfig.cmake (found version "5.9.0")
+-- Found KF5Wallet: /usr/lib/x86_64-linux-gnu/cmake/KF5Wallet/KF5WalletConfig.cmake (found version "5.9.0")
+-- Found KF5WidgetsAddons: /usr/lib/x86_64-linux-gnu/cmake/KF5WidgetsAddons/KF5WidgetsAddonsConfig.cmake (found version "5.9.0")
+-- Found KF5WindowSystem: /usr/lib/x86_64-linux-gnu/cmake/KF5WindowSystem/KF5WindowSystemConfig.cmake (found version "5.9.0")
+-- Found KF5XmlGui: /usr/lib/x86_64-linux-gnu/cmake/KF5XmlGui/KF5XmlGuiConfig.cmake (found version "5.9.0")
+-- Found KF5: success (found version "5.9.0") found components:  Archive Bookmarks Codecs Completion CoreAddons Config DocTools I18n IconThemes ItemViews KIO Notifications Parts Solid TextWidgets Wallet WidgetsAddons WindowSystem XmlGui
+CMake Warning at CMakeLists.txt:67 (find_package):
+  By not providing "FindACL.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "ACL", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "ACL" with any of
+  the following names:
+
+    ACLConfig.cmake
+    acl-config.cmake
+
+  Add the installation prefix of "ACL" to CMAKE_PREFIX_PATH or set "ACL_DIR"
+  to a directory containing one of the above files.  If "ACL" provides a
+  separate development package or SDK, be sure it has been installed.
+
+
+-- libkonq library not found
+-- /home/ubuntu/src/krusader/krusader: skipped subdir $(KRJSDIR)
+-- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.2.8")
+--
+-- The following REQUIRED packages have been found:
+
+ * ECM (required version >= 1.1.0)
+ * Qt5Core
+ * Qt5Gui
+ * Qt5DBus
+ * Qt5Widgets
+ * Qt5PrintSupport
+ * Qt5Xml
+ * Qt5
+ * KF5Archive
+ * KF5Bookmarks
+ * KF5Codecs
+ * KF5Completion
+ * KF5CoreAddons
+ * KF5Config
+ * KF5DocTools
+ * Gettext
+ * PythonInterp
+ * KF5I18n
+ * KF5IconThemes
+ * KF5ItemViews
+ * KF5KIO
+ * KF5Notifications
+ * KF5Parts
+ * KF5Solid
+ * KF5TextWidgets
+ * KF5Wallet
+ * KF5WidgetsAddons
+ * KF5WindowSystem
+ * KF5XmlGui
+ * KF5
+
+-- The following OPTIONAL packages have not been found:
+
+ * ACL
+
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/frank/krusader_kde4
-frank@kubuntu:~/krusader_kde4$
+-- Build files have been written to: /home/ubuntu/src/krusader/build
+ubuntu@ubuntu-VirtualBox:~/src/krusader/build$ 
 
 
 
+FYI - The output of make (partial) on Kubuntu 15.04
 
-FYI
-The output of make (partial) on Kubuntu 8.04 (KDE 4 Remix)
-----------------------------------------------------------
-frank@frank-kubuntu:~/krusader_kde4$ make
-/usr/bin/cmake -H/home/frank/krusader_kde4 -B/home/frank/krusader_kde4 --check-build-system CMakeFiles/Makefile.cmake 0
-/usr/bin/cmake -E cmake_progress_start /home/frank/krusader_kde4/CMakeFiles 100
-make -f CMakeFiles/Makefile2 all
-make[1]: Entering directory `/home/frank/krusader_kde4'
-make -f krusader/Filter/CMakeFiles/Filter.dir/build.make krusader/Filter/CMakeFiles/Filter.dir/depend
-make[2]: Entering directory `/home/frank/krusader_kde4'
-/usr/bin/cmake -E cmake_progress_report /home/frank/krusader_kde4/CMakeFiles 30
-[  1%] Generating Filter_automoc.cpp
-cd /home/frank/krusader_kde4/krusader/Filter && /usr/lib/kde4/bin/kde4automoc /home/frank/krusader_kde4/krusader/Filter/Filter_automoc.cpp /home/frank/krusader_kde4/krusader/Filter /home/frank/krusader_kde4/krusader/Filter /usr/bin/moc-qt4
-Generating filterdialog.moc
-Generating filtertabs.moc
-Generating advancedfilter.moc
-Generating generalfilter.moc
-Scanning dependencies of target Filter
-cd /home/frank/krusader_kde4 && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/frank/krusader_kde4 /home/frank/krusader_kde4/krusader/Filter /home/frank/krusader_kde4 /home/frank/krusader_kde4/krusader/Filter /home/frank/krusader_kde4/krusader/Filter/CMakeFiles/Filter.dir/DependInfo.cmake
-make[2]: Leaving directory `/home/frank/krusader_kde4'
-make -f krusader/Filter/CMakeFiles/Filter.dir/build.make krusader/Filter/CMakeFiles/Filter.dir/build
-make[2]: Entering directory `/home/frank/krusader_kde4'
-/usr/bin/cmake -E cmake_progress_report /home/frank/krusader_kde4/CMakeFiles 28
-[  2%] Building CXX object krusader/Filter/CMakeFiles/Filter.dir/Filter_automoc.o
-/usr/bin/c++   -Wnon-virtual-dtor -Wno-long-long -ansi -Wundef -Wcast-align -Wchar-subscripts -Wall -W -Wpointer-arith -Wformat-security -fno-exceptions -fno-check-new -fno-common -Woverloaded-virtual -fvisibility=hidden -fvisibility-inlines-hidden -O2 -g -I/home/frank/krusader_kde4/krusader/Filter -I/usr/lib/kde4/include -I/usr/include/qt4/QtDBus -I/usr/include/qt4/QtTest -I/usr/include/qt4/QtUiTools -I/usr/include/qt4/QtScript -I/usr/include/qt4/QtSvg -I/usr/include/qt4/QtXml -I/usr/include/qt4/QtSql -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtDesigner -I/usr/include/qt4/QtAssistant -I/usr/include/qt4/Qt3Support -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtCore -I/usr/include/qt4/Qt -I/usr/share/qt4/mkspecs/default -I/usr/include/qt4   -D_BSD_SOURCE -D_XOPEN_SOURCE=500 -D_BSD_SOURCE -D_GNU_SOURCE -DQT_NO_STL -DQT_NO_CAST_TO_ASCII -D_REENTRANT -DKDE_DEPRECATED_WARNINGS -DVERSION='"2.0.0-beta1"' -DRELEASE_NAME='"Phoenix` Egg"' -o krusader/Filter/CMakeFiles/Filter.dir/Filter_automoc.o -c /home/frank/krusader_kde4/krusader/Filter/Filter_automoc.cpp
-/usr/bin/cmake -E cmake_progress_report /home/frank/krusader_kde4/CMakeFiles
-[  2%] Building CXX object krusader/Filter/CMakeFiles/Filter.dir/advancedfilter.o
-/usr/bin/c++   -Wnon-virtual-dtor -Wno-long-long -ansi -Wundef -Wcast-align -Wchar-subscripts -Wall -W -Wpointer-arith -Wformat-security -fno-exceptions -fno-check-new -fno-common -Woverloaded-virtual -fvisibility=hidden -fvisibility-inlines-hidden -O2 -g -I/home/frank/krusader_kde4/krusader/Filter -I/usr/lib/kde4/include -I/usr/include/qt4/QtDBus -I/usr/include/qt4/QtTest -I/usr/include/qt4/QtUiTools -I/usr/include/qt4/QtScript -I/usr/include/qt4/QtSvg -I/usr/include/qt4/QtXml -I/usr/include/qt4/QtSql -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtDesigner -I/usr/include/qt4/QtAssistant -I/usr/include/qt4/Qt3Support -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtCore -I/usr/include/qt4/Qt -I/usr/share/qt4/mkspecs/default -I/usr/include/qt4   -D_BSD_SOURCE -D_XOPEN_SOURCE=500 -D_BSD_SOURCE -D_GNU_SOURCE -DQT_NO_STL -DQT_NO_CAST_TO_ASCII -D_REENTRANT -DKDE_DEPRECATED_WARNINGS -DVERSION='"2.0.0-beta1"' -DRELEASE_NAME='"Phoenix` Egg"' -o krusader/Filter/CMakeFiles/Filter.dir/advancedfilter.o -c /home/frank/krusader_kde4/krusader/Filter/advancedfilter.cpp
+ubuntu@ubuntu-VirtualBox:~/src/krusader/build$ make
+[  1%] Automatic moc for target krusader
+Generating moc_actionsbase.cpp
+Generating moc_kractions.cpp
+Generating moc_krslots.cpp
+Generating moc_krtrashhandler.cpp
+Generating moc_krusader.cpp
+Generating moc_krusaderview.cpp
+Generating moc_panelmanager.cpp
+Generating moc_paneltabbar.cpp
+Generating moc_tabactions.cpp
+[  1%] Built target krusader_automoc
+[  1%] Automatic moc for target ActionMan
+Generating moc_actionman.cpp
+Generating moc_actionproperty.cpp
+Generating moc_addplaceholderpopup.cpp
+Generating moc_useractionlistview.cpp
+Generating moc_useractionpage.cpp
+[  1%] Built target ActionMan_automoc
+[  1%] Generating ui_actionproperty.h
+Scanning dependencies of target ActionMan
+[  1%] Building CXX object krusader/ActionMan/CMakeFiles/ActionMan.dir/actionman.cpp.o
+[  2%] Building CXX object krusader/ActionMan/CMakeFiles/ActionMan.dir/actionproperty.cpp.o
 ...
 ...
 ...
-[100%] Building C object iso/CMakeFiles/kio_iso.dir/libisofs/isofs.o
-/usr/bin/gcc  -Dkio_iso_EXPORTS   -Wno-long-long -std=iso9899:1990 -Wundef -Wcast-align -Werror-implicit-function-declaration -Wchar-subscripts -Wall -W -Wpointer-arith -Wwrite-strings -Wformat-security -Wmissing-format-attribute -fno-common -O2 -g -fPIC -I/home/frank/krusader_kde4/iso -I/usr/lib/kde4/include -I/usr/include/qt4/QtDBus -I/usr/include/qt4/QtTest -I/usr/include/qt4/QtUiTools -I/usr/include/qt4/QtScript -I/usr/include/qt4/QtSvg -I/usr/include/qt4/QtXml -I/usr/include/qt4/QtSql -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtDesigner -I/usr/include/qt4/QtAssistant -I/usr/include/qt4/Qt3Support -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtCore -I/usr/include/qt4/Qt -I/usr/share/qt4/mkspecs/default -I/usr/include/qt4   -D_BSD_SOURCE -D_XOPEN_SOURCE=500 -D_BSD_SOURCE -D_GNU_SOURCE -DQT_NO_STL -DQT_NO_CAST_TO_ASCII -D_REENTRANT -DKDE_DEPRECATED_WARNINGS -DVERSION='"2.0.0-beta1"' -DRELEASE_NAME='"Phoenix` Egg"' -o iso/CMakeFiles/kio_iso.dir/libisofs/isofs.o   -c /home/frank/krusader_kde4/iso/libisofs/isofs.c
-Linking CXX shared module ../lib/kio_iso.so
-cd /home/frank/krusader_kde4/iso && /usr/bin/cmake -P CMakeFiles/kio_iso.dir/cmake_clean_target.cmake
-cd /home/frank/krusader_kde4/iso && /usr/bin/cmake -E cmake_link_script CMakeFiles/kio_iso.dir/link.txt --verbose=1
-/usr/bin/c++  -fPIC   -Wnon-virtual-dtor -Wno-long-long -ansi -Wundef -Wcast-align -Wchar-subscripts -Wall -W -Wpointer-arith -Wformat-security -fno-exceptions -fno-check-new -fno-common -Woverloaded-virtual -fvisibility=hidden -fvisibility-inlines-hidden -O2 -g -Wl,--enable-new-dtags -Wl,--fatal-warnings -Wl,--no-undefined -lc  -shared -Wl,-soname,kio_iso.so -o ../lib/kio_iso.so "CMakeFiles/kio_iso.dir/kio_iso_automoc.o" "CMakeFiles/kio_iso.dir/kisodirectory.o" "CMakeFiles/kio_iso.dir/kisofile.o" "CMakeFiles/kio_iso.dir/qfilehack.o" "CMakeFiles/kio_iso.dir/kiso.o" "CMakeFiles/kio_iso.dir/iso.o" "CMakeFiles/kio_iso.dir/libisofs/isofs.o" -L/usr/lib/kde4/lib -lQtCore -lpthread -lQtNetwork -lQtDBus -lQtXml -lz -lbz2 -lresolv -lkdecore -lQtCore -lpthread -lkdecore -lkdeui -lz -lstreamanalyzer -lstreams -lQtCore -lpthread -lkdecore -lsolid -lXrender -lkio -lz -lQtSvg -lSM -lICE -lX11 -lXext -lXft -lXau -lXdmcp -lXtst -lXcursor -lXfixes -lQtNetwork -lbz2 -lresolv -lQtCore -lpthread -lQtDBus -lQtXml -lQtGui
-make[2]: Leaving directory `/home/frank/krusader_kde4'
-/usr/bin/cmake -E cmake_progress_report /home/frank/krusader_kde4/CMakeFiles  97 98 99 100
-[100%] Built target kio_iso
-make[1]: Leaving directory `/home/frank/krusader_kde4'
-/usr/bin/cmake -E cmake_progress_start /home/frank/krusader_kde4/CMakeFiles 0
-frank@frank-kubuntu:~/krusader_kde4$
+[ 95%] Built target kio_krarc
+Scanning dependencies of target kio_iso_automoc
+[ 95%] Automatic moc for target kio_iso
+[ 95%] Built target kio_iso_automoc
+Scanning dependencies of target kio_iso
+[ 96%] Building CXX object iso/CMakeFiles/kio_iso.dir/kisodirectory.cpp.o
+[ 96%] Building CXX object iso/CMakeFiles/kio_iso.dir/kisofile.cpp.o
+[ 97%] Building CXX object iso/CMakeFiles/kio_iso.dir/qfilehack.cpp.o
+[ 97%] Building CXX object iso/CMakeFiles/kio_iso.dir/kiso.cpp.o
+[ 98%] Building CXX object iso/CMakeFiles/kio_iso.dir/iso.cpp.o
+[ 98%] Building C object iso/CMakeFiles/kio_iso.dir/libisofs/isofs.c.o
+[ 99%] Building CXX object iso/CMakeFiles/kio_iso.dir/kio_iso_automoc.cpp.o
+Linking CXX shared library libkio_iso.so
+[ 99%] Built target kio_iso
+Scanning dependencies of target doc-index-cache-bz2
+[100%] Generating index.cache.bz2
+[100%] Built target doc-index-cache-bz2
+Scanning dependencies of target doc-krusader-1
+[100%] Generating krusader.1
+Note: Writing krusader.1
+[100%] Built target doc-krusader-1
+ubuntu@ubuntu-VirtualBox:~/src/krusader/build$
 
 
---------------------------------------------------------------------------
-FYI
-THE CMAKE OPTIONS
+FYI - THE CMAKE OPTIONS           // TODO KF5
+
 http://websvn.kde.org/trunk/KDE/kdelibs/cmake/modules/FindKDE4Internal.cmake?view=markup
 
 # - Find the KDE4 include and library dirs, KDE preprocessors and define a some macros
