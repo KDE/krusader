@@ -237,7 +237,7 @@ void Konfigurator::slotReset()
     ((KonfiguratorPage *)(currentPage()->widget()))->loadInitialValues();
 }
 
-void Konfigurator::slotRestore()
+void Konfigurator::slotRestoreDefaults()
 {
     ((KonfiguratorPage *)(currentPage()->widget()))->setDefaults();
 }

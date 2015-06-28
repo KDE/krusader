@@ -99,8 +99,8 @@ KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
-    connect(buttonBox, SIGNAL(helpRequested()), SLOT(showHelp()));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &KrResultTableDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::helpRequested, this, &KrResultTableDialog::showHelp);
     buttonBox->button(QDialogButtonBox::Ok)->setDefault(true);
 
     this->setFixedSize(this->sizeHint());   // make non-resizeable

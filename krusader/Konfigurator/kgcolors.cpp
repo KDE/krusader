@@ -266,7 +266,7 @@ KgColors::KgColors(bool first, QWidget* parent) :
     hbox->addWidget(previewGrp);
 
     connect(generals->find("Enable Alternate Background"), SIGNAL(stateChanged(int)), this, SLOT(generatePreview()));
-    connect(colorTabWidget, SIGNAL(currentChanged(QWidget *)), this, SLOT(generatePreview()));
+    connect(colorTabWidget, SIGNAL(currentChanged(int)), this, SLOT(generatePreview()));
     connect(dimFactor, SIGNAL(valueChanged(int)), this, SLOT(generatePreview()));
 
     kgColorsLayout->addWidget(hboxWidget, 1 , 0, 1,  3);

@@ -70,7 +70,7 @@ protected slots:
     void slotClose();
     void slotApply();
     void slotReset();
-    void slotRestore();
+    void slotRestoreDefaults();
     void slotShowHelp();
 
 private:
