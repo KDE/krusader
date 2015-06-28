@@ -95,6 +95,12 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString & path, int startse
             if (m_mtime == statbuf.st_mtime) {
                 path = fullPath.mid(m_isoFile->fileName().length());
                 //qDebug()   << "kio_isoProtocol::checkNewFile returning " << path << endl;
+                if(path.endsWith(DIR_SEPARATOR_CHAR)) {
+                    path.chop(1);
+                }
+                if(path.isEmpty()) {
+                    path = DIR_SEPARATOR_CHAR;
+                }
                 return true;
             }
         }
@@ -141,12 +147,12 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString & path, int startse
                 m_mode = statbuf.st_mode;
                 path = fullPath.mid(pos + 1);
                 //qDebug()   << "fullPath=" << fullPath << " path=" << path << endl;
-                len = path.length();
-                if (len > 1) {
-                    if (path[ len - 1 ] == DIR_SEPARATOR_CHAR)
-                        path.truncate(len - 1);
-                } else
-                    path = QString::fromLatin1(DIR_SEPARATOR);
+                if(path.endsWith(DIR_SEPARATOR_CHAR)) {
+                    path.chop(1);
+                }
+                if(path.isEmpty()) {
+                    path = DIR_SEPARATOR_CHAR;
+                }
                 //qDebug()   << "Found. isoFile=" << isoFile << " path=" << path << endl;
                 break;
             }
