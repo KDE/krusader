@@ -11,7 +11,7 @@ set(kio_iso_PART_SRCS
     kiso.cpp
     iso.cpp)
 
-add_library(kio_iso ${kio_iso_PART_SRCS} ${libisofs_SRCS})
+add_library(kio_iso MODULE ${kio_iso_PART_SRCS} ${libisofs_SRCS})
 
 #this is a library so it needs to enforce it's translation domain, not use the application's domain.
 add_definitions(-DTRANSLATION_DOMAIN="krusader")

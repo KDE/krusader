@@ -2,7 +2,7 @@ include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
 
 set(kio_krarc_PART_SRCS krarc.cpp)
 
-add_library(kio_krarc ${kio_krarc_PART_SRCS})
+add_library(kio_krarc MODULE ${kio_krarc_PART_SRCS})
 
 #this is a library so it needs to enforce it's translation domain, not use the application's domain.
 add_definitions(-DTRANSLATION_DOMAIN="krusader")
