@@ -57,11 +57,11 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     for(int i = 0; i < views.count(); i++) {
         KrViewInstance *inst = views[i];
         QAction *action = new QAction(QIcon::fromTheme(inst->icon()), inst->description(), group);
-        action->setShortcut(inst->shortcut());
         action->setCheckable(true);
         connect(action, SIGNAL(triggered()), mapper, SLOT(map()));
         mapper->setMapping(action, inst->id());
         _mainWindow->actions()->addAction("view" + QString::number(i), action);
+        _mainWindow->actions()->setDefaultShortcut(action, inst->shortcut());
         setViewActions.insert(inst->id(), action);
     }
 

@@ -345,6 +345,7 @@ void KrActionProc::addStdout()
 // KrAction
 KrAction::KrAction(KActionCollection *parent, QString name) : QAction((QObject *)parent)
 {
+    _actionCollection = parent;
     setObjectName(name);
     parent->addAction(name, this);
 
@@ -479,7 +480,7 @@ bool KrAction::xmlRead(const QDomElement& element)
                                         readAvailability(e);
                                     else
                                         if (e.tagName() == "defaultshortcut")
-                                            setShortcut(QKeySequence(e.text()));
+                                            _actionCollection->setDefaultShortcut(this, QKeySequence(e.text()));
                                         else
 
                                             // unknown but not empty

@@ -1099,34 +1099,34 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     actionCollection()->addAction("save_as", _actionSaveAs);
 
     _actionPrint = new QAction(QIcon::fromTheme("document-print"), i18n("Print..."), this);
-    _actionPrint->setShortcut(Qt::CTRL + Qt::Key_P);
     connect(_actionPrint, SIGNAL(triggered(bool)), SLOT(print()));
     actionCollection()->addAction("print", _actionPrint);
+    actionCollection()->setDefaultShortcut(_actionPrint, Qt::CTRL + Qt::Key_P);
 
     _actionSearch = new QAction(QIcon::fromTheme("system-search"), i18n("Search"), this);
-    _actionSearch->setShortcut(Qt::CTRL + Qt::Key_F);
     connect(_actionSearch, SIGNAL(triggered(bool)), SLOT(searchAction()));
     actionCollection()->addAction("search", _actionSearch);
+    actionCollection()->setDefaultShortcut(_actionSearch, Qt::CTRL + Qt::Key_F);
 
     _actionSearchNext = new QAction(QIcon::fromTheme("go-down"), i18n("Search next"), this);
-    _actionSearchNext->setShortcut(Qt::Key_F3);
     connect(_actionSearchNext, SIGNAL(triggered(bool)), SLOT(searchNext()));
     actionCollection()->addAction("search_next", _actionSearchNext);
+    actionCollection()->setDefaultShortcut(_actionSearchNext, Qt::Key_F3);
 
     _actionSearchPrev = new QAction(QIcon::fromTheme("go-up"), i18n("Search previous"), this);
-    _actionSearchPrev->setShortcut(Qt::SHIFT + Qt::Key_F3);
     connect(_actionSearchPrev, SIGNAL(triggered(bool)), SLOT(searchPrev()));
     actionCollection()->addAction("search_prev", _actionSearchPrev);
+    actionCollection()->setDefaultShortcut(_actionSearchPrev, Qt::SHIFT + Qt::Key_F3);
 
     _actionJumpToPosition = new QAction(QIcon::fromTheme("go-jump"), i18n("Jump to position"), this);
-    _actionJumpToPosition->setShortcut(Qt::CTRL + Qt::Key_G);
     connect(_actionJumpToPosition, SIGNAL(triggered(bool)), SLOT(jumpToPosition()));
     actionCollection()->addAction("jump_to_position", _actionJumpToPosition);
+    actionCollection()->setDefaultShortcut(_actionJumpToPosition, Qt::CTRL + Qt::Key_G);
 
     _actionHexMode = new QAction(QIcon::fromTheme("document-preview"), i18n("Hex mode"), this);
-    _actionHexMode->setShortcut(Qt::CTRL + Qt::Key_H);
     connect(_actionHexMode, SIGNAL(triggered(bool)), SLOT(toggleHexMode()));
     actionCollection()->addAction("hex_mode", _actionHexMode);
+    actionCollection()->setDefaultShortcut(_actionHexMode, Qt::CTRL + Qt::Key_H);
 
     _actionEncoding = new ListerEncodingMenu(this, i18n("Select charset"), "character-set", actionCollection());
 

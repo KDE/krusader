@@ -122,9 +122,9 @@ QAction *createAction(QString text, QString icon, QKeySequence shortcut,
         a = new QAction(text, krusaderApp);
     else
         a = new QAction(QIcon::fromTheme(icon), text, krusaderApp);
-    a->setShortcut(shortcut);
     krusaderApp->connect(a, SIGNAL(triggered(bool)), recv, slot);
     krusaderApp->actionCollection()->addAction(name, a);
+    krusaderApp->actionCollection()->setDefaultShortcut(a, shortcut);
     return a;
 }
 
@@ -136,9 +136,9 @@ KToggleAction *createToggleAction(QString text, QString icon, QKeySequence short
         a = new KToggleAction(text, krusaderApp);
     else
         a = new KToggleAction(QIcon::fromTheme(icon), text, krusaderApp);
-    a->setShortcut(shortcut);
     krusaderApp->connect(a, SIGNAL(triggered(bool)), recv, slot);
     krusaderApp->actionCollection()->addAction(name, a);
+    krusaderApp->actionCollection()->setDefaultShortcut(a, shortcut);
     return a;
 }
 
@@ -250,8 +250,8 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actHomeTerminal, i18n("Start &Terminal"), "utilities-terminal", 0, SLOTS, SLOT(homeTerminal()), "terminal@home");
 
     actMountMan = krMtMan.action();
-    actMountMan->setShortcut(Qt::ALT + Qt::Key_Slash);
     krusaderApp->actionCollection()->addAction("mountman", actMountMan);
+    krusaderApp->actionCollection()->setDefaultShortcut(actMountMan, Qt::ALT + Qt::Key_Slash);
 
     NEW_KACTION(actFind, i18n("&Search..."), "system-search", Qt::CTRL + Qt::Key_S, SLOTS, SLOT(search()), "find");
     NEW_KACTION(actLocate, i18n("&Locate..."), "edit-find", Qt::SHIFT + Qt::CTRL + Qt::Key_L, SLOTS, SLOT(locate()), "locate");

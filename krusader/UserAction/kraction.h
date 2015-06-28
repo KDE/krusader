@@ -175,6 +175,7 @@ private:
     QStringList _showonlyPath;
     QStringList _showonlyMime;
     QStringList _showonlyFile;
+    KActionCollection *_actionCollection;
 };
 
 class QFont;
