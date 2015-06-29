@@ -1314,14 +1314,6 @@ void ListPanelFunc::clipboardChanged(QClipboard::Mode mode)
 
 void ListPanelFunc::copyToClipboard(bool move)
 {
-    if (files()->vfs_getOrigin().matches(QUrl(QStringLiteral("virt:/")), QUrl::StripTrailingSlash)) {
-        if (move)
-            KMessageBox::error(krMainWindow, i18n("Cannot cut a virtual URL collection to the clipboard."));
-        else
-            KMessageBox::error(krMainWindow, i18n("Cannot copy a virtual URL collection onto the clipboard."));
-        return;
-    }
-
     QStringList fileNames;
 
     panel->getSelectedNames(&fileNames);
@@ -1331,7 +1323,7 @@ void ListPanelFunc::copyToClipboard(bool move)
     QList<QUrl> fileUrls = files() ->vfs_getFiles(fileNames);
     QMimeData *mimeData = new QMimeData;
     mimeData->setData("application/x-kde-cutselection", move ? "1" : "0");
-    KUrlMimeData::setUrls(fileUrls, QList<QUrl>(), mimeData);
+    mimeData->setUrls(fileUrls);
 
     if (copyToClipboardOrigin)
         disconnect(QApplication::clipboard(), 0, copyToClipboardOrigin, 0);
@@ -1365,8 +1357,6 @@ void ListPanelFunc::pasteFromClipboard()
     QList<QUrl> urls = data->urls();
     if (urls.isEmpty())
         return ;
-
-    QUrl destUrl = panel->virtualPath();
 
     if(origin && KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         origin->panel->view->saveSelection();
