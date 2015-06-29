@@ -43,28 +43,6 @@
 #include <KIOCore/KProtocolInfo>
 #include <KIconThemes/KIconLoader>
 
-QString KgProtocols::defaultProtocols  = "krarc,iso,tar";
-QString KgProtocols::defaultIsoMimes   = "application/x-iso,application/x-cd-image,"
-        "application/x-dvd-image";
-QString KgProtocols::defaultKrarcMimes = "application/x-7z,application/x-7z-compressed,"
-        "application/x-ace,application/x-ace-compressed,"
-        "application/x-arj,application/x-arj-compressed,"
-        "application/x-bzip2,"
-        "application/x-cpio,application/x-deb,"
-        "application/x-debian-package,"
-        "application/x-gzip,application/x-jar,"
-        "application/x-lha,application/x-lha-compressed,"
-        "application/x-rar,application/x-rar-compressed,"
-        "application/x-xz,"
-        "application/x-rpm,application/zip,"
-        "application/x-source-rpm,"
-        "application/x-zip,application/x-zip-compressed";
-QString KgProtocols::defaultTarMimes   = "application/x-tar,application/x-tarz,"
-        "application/x-bzip-compressed-tar,"
-        "application/x-compressed-tar,"
-        "application/x-tbz,application/x-tgz,"
-        "application/x-xz-compressed-tar";
-
 KgProtocols::KgProtocols(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)
 {
@@ -351,21 +329,6 @@ void KgProtocols::setDefaults()
     while (linkList->topLevelItemCount() != 0)
         removeProtocol(linkList->topLevelItem(0)->text(0));
 
-    addProtocol("iso");
-    QStringList isoMimes = defaultIsoMimes.split(',');
-    for (QStringList::Iterator it = isoMimes.begin(); it != isoMimes.end(); it++)
-        addMime(*it, "iso");
-#ifdef KRARC_ENABLED
-    addProtocol("krarc");
-    QStringList krarcMimes = defaultKrarcMimes.split(',');
-    for (QStringList::Iterator it = krarcMimes.begin(); it != krarcMimes.end(); it++)
-        addMime(*it, "krarc");
-#endif
-    addProtocol("tar");
-    QStringList tarMimes = defaultTarMimes.split(',');
-    for (QStringList::Iterator it = tarMimes.begin(); it != tarMimes.end(); it++)
-        addMime(*it, "tar");
-
     slotDisableButtons();
 
     if (isChanged())
@@ -429,16 +392,5 @@ bool KgProtocols::apply()
 
     emit sigChanged();
     return false;
-}
-
-void KgProtocols::init()
-{
-    if (!krConfig->groupList().contains("Protocols")) {
-        KConfigGroup group(krConfig, "Protocols");
-        group.writeEntry("Handled Protocols", defaultProtocols);
-        group.writeEntry("Mimes For iso",     defaultIsoMimes);
-        group.writeEntry("Mimes For krarc",   defaultKrarcMimes);
-        group.writeEntry("Mimes For tar",     defaultTarMimes);
-    }
 }
 

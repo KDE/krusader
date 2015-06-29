@@ -50,6 +50,7 @@ A
 #include <KI18n/KLocalizedString>
 #include <KIO/DesktopExecParser>
 #include <KIO/JobUiDelegate>
+#include <KIOCore/KProtocolInfo>
 #include <KIOWidgets/KOpenWithDialog>
 #include <KIOWidgets/KPropertiesDialog>
 #include <KIOWidgets/KRun>
@@ -252,7 +253,8 @@ void ListPanelFunc::doRefresh()
             tmp = history->currentUrl().fileName();
             history->goForward();
             QUrl t = history->currentUrl();
-            if (t.scheme() == "krarc" || t.scheme() == "tar" || t.scheme() == "iso") {
+            QString protocol = t.scheme();
+            if (protocol != QStringLiteral("file") && KProtocolInfo::protocolClass(protocol).toLower() == QStringLiteral(":local")) {
                 t.setScheme("file");
                 history->setCurrentUrl(t);
                 panel->vfsError->hide();
@@ -920,35 +922,17 @@ void ListPanelFunc::goInside(const QString& name)
     if (vf == 0)
         return ;
 
-    QUrl origin = files() ->vfs_getOrigin();
     QUrl url = vf->vfile_getUrl();
 
-    if (vf->vfile_isDir()) {               // we create a return-pressed event,
-        execute(name); // thereby emulating a chdir
+    if (vf->vfile_isDir()) {
+        panel->view->setNameToMakeCurrent(QString());
+        openUrl(url);
     } else if (url.isLocalFile()) {
-        bool encrypted;
         QString mime = vf->vfile_getMime();
-        QString type = KRarcHandler::getType(encrypted, url.path(), mime, false, true);
-
-        if (KRarcHandler::arcSupported(type)) {    // archive autodetection
-            // here we check whether KDE supports tar
-            if (type == "-tlz") {
-                KTar tapeArchive(url.path());
-                if (tapeArchive.open(QIODevice::ReadOnly))
-                    url.setScheme("tar");
-                else
-                    url.setScheme("krarc");
-            } else if (type == "-tar" || type == "-tgz" || type == "-tbz")
-                url.setScheme("tar");
-            else
-                url.setScheme("krarc");
+        QString protocol = KrServices::registeredProtocol(mime);
+        if(!protocol.isEmpty()) {
+            url.setScheme(protocol);
             openUrl(url);
-        } else {
-            QString protocol = KrServices::registerdProtocol(mime);
-            if (protocol == "iso") {
-                url.setScheme(protocol);
-                openUrl(url);
-            }
         }
     }
 }
@@ -993,31 +977,17 @@ void ListPanelFunc::execute(const QString& name)
         return ;
     }
 
-    krOut<<name<<endl;
-
     vfile *vf = files() ->vfs_search(name);
     if (vf == 0)
         return ;
 
-    QUrl origin = files() ->vfs_getOrigin();
-
-    QString protocol = origin.isLocalFile() ? KrServices::registerdProtocol(vf->vfile_getMime()) : "";
-
-    if (protocol == "tar" || protocol == "krarc") {
-        bool encrypted;
-        QString type = KRarcHandler::getType(encrypted, vf->vfile_getUrl().path(), vf->vfile_getMime(), false, true);
-        if (!KRarcHandler::arcHandled(type))       // if the specified archive is disabled delete the protocol
-            protocol = "";
+    QString protocol;
+    if(files()->vfs_getOrigin().isLocalFile()) {
+        protocol = KrServices::registeredProtocol(vf->vfile_getMime());
     }
 
-    if (vf->vfile_isDir()) {
-        origin = files() ->vfs_getFile(name);
-        panel->view->setNameToMakeCurrent(QString());
-        openUrl(origin);
-    } else if (!protocol.isEmpty()) {
-        QUrl path = files() ->vfs_getFile(vf->vfile_getName());
-        path.setScheme(protocol);
-        openUrl(path);
+    if (vf->vfile_isDir() || !protocol.isEmpty()) {
+        goInside(name);
     } else {
         QUrl url = files() ->vfs_getFile(name);
         if (KRun::isExecutableFile(url, vf->vfile_getMime()))

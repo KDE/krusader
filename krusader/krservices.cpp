@@ -23,6 +23,7 @@
 #include <QtCore/QTextStream>
 
 #include <KConfigCore/KSharedConfig>
+#include <KIOCore/KProtocolManager>
 
 #include "krglobal.h"
 #include "defaults.h"
@@ -76,7 +77,7 @@ QString KrServices::chooseFullPathName(QStringList names, QString confName)
     return "";
 }
 
-QString KrServices::registerdProtocol(QString mimetype)
+QString KrServices::registeredProtocol(QString mimetype)
 {
     if (slaveMap == 0) {
         slaveMap = new QMap<QString, QString>();
@@ -88,10 +89,12 @@ QString KrServices::registerdProtocol(QString mimetype)
             for (QStringList::Iterator it2 = mimes.begin(); it2 != mimes.end(); it2++)
                 (*slaveMap)[*it2] = *it;
         }
-
-
     }
-    return (*slaveMap)[mimetype];
+    QString protocol = (*slaveMap)[mimetype];
+    if(protocol.isEmpty()) {
+        protocol = KProtocolManager::protocolForArchiveMimetype(mimetype);
+    }
+    return protocol;
 }
 
 void KrServices::clearProtocolCache()

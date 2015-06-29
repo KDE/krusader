@@ -37,7 +37,7 @@ public:
     static bool         cmdExist(QString cmdName);
     static QString      chooseFullPathName(QStringList names, QString confName);
     static QString      fullPathName(QString name, QString confName = QString());
-    static QString      registerdProtocol(QString mimetype);
+    static QString      registeredProtocol(QString mimetype);
     static QString      getPath(const QUrl &url, QUrl::FormattingOptions options = QUrl::PrettyDecoded);
     static void         clearProtocolCache();
     static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines = false);
