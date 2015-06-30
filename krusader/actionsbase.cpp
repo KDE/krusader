@@ -69,6 +69,18 @@ QAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
     return a;
 }
 
+QAction *ActionsBase::action(QString text, QString icon, const QList<QKeySequence> &shortcuts,
+                             QObject *recv, const char *slot, QString name, bool isToggleAction)
+{
+    QAction *a = createAction(text, icon, isToggleAction);
+
+    connect(a, SIGNAL(triggered(bool)), recv, slot);
+    _mainWindow->actions()->addAction(name, a);
+    _mainWindow->actions()->setDefaultShortcuts(a, shortcuts);
+
+    return a;
+}
+
 QAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
                              ActionGroup &group, const char *slot, QString name, bool isToggleAction)
 {

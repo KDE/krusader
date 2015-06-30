@@ -86,11 +86,13 @@ QueueDialog::QueueDialog() : QDialog(), _autoHide(true)
 
     QHBoxLayout * hbox2 = new QHBoxLayout;
 
+    QAction *act = new QAction(this);
+    act->setIcon(QIcon::fromTheme("tab-new"));
+    act->setToolTip(i18n("Create a new queue"));
+    act->setShortcuts(QKeySequence::keyBindings(QKeySequence::AddTab));
+    connect(act, SIGNAL(triggered(bool)), this, SLOT(slotNewTab()));
     _newTabButton = new QToolButton(this);
-    _newTabButton->setIcon(QIcon::fromTheme("tab-new"));
-    _newTabButton->setToolTip(i18n("Create a new queue"));
-    _newTabButton->setShortcut(QKeySequence::AddTab);
-    connect(_newTabButton, SIGNAL(clicked()), this, SLOT(slotNewTab()));
+    _newTabButton->setDefaultAction(act);
     hbox2->addWidget(_newTabButton);
 
     _closeTabButton = new QToolButton(this);

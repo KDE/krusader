@@ -50,6 +50,8 @@ protected:
                     const char *slot, QString name) {
         return action(text, icon, shortcut, this, slot, name);
     }
+    QAction *action(QString text, QString icon, const QList<QKeySequence> &shortcuts,
+                    QObject *recv, const char *slot, QString name, bool isToggleAction = false);
     QAction *action(QString text, QString icon, QKeySequence shortcut,
                     ActionGroup &group, const char *slot, QString name, bool isToggleAction = false);
 

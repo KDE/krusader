@@ -38,7 +38,7 @@
 // UI Save Settings
 #define _UiSave           false
 // Show Cmd Line
-#define _ShowCmdline      true
+#define _ShowCmdline      false
 // Show status bar
 #define _ShowStatusBar    true
 // Show actions tool bar

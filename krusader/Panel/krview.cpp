@@ -559,7 +559,7 @@ QString KrView::statistics()
     KIO::filesize_t selectedSize = calcSelectedSize();
     QString tmp;
     KConfigGroup grp(_config, "Look&Feel");
-    if(grp.readEntry("Show Size In Bytes", true)) {
+    if(grp.readEntry("Show Size In Bytes", false)) {
         tmp = i18nc("%1=number of selected items,%2=total number of items, \
                     %3=filesize of selected items,%4=filesize in Bytes, \
                     %5=filesize of all items in directory,%6=filesize in Bytes",

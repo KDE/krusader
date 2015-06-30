@@ -41,9 +41,7 @@
 
 UserAction::UserAction()
 {
-    krOut << "Initialisising useractions..." << endl;
     readAllFiles();
-    krOut << _actions.count() << " useractions read." << endl;
 }
 
 UserAction::~UserAction()

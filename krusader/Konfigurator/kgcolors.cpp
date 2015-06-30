@@ -179,11 +179,11 @@ KgColors::KgColors(bool first, QWidget* parent) :
     colorsGrid->setSpacing(0);
     colorsGrid->setContentsMargins(2, 2, 2, 2);
 
-    addColorSelector("Dim Target Color", i18n("Dim target color:"), Qt::white);
+    addColorSelector("Dim Target Color", i18n("Dim target color:"), Qt::black);
 
     int index = itemList.count() - offset;
     labelList.append(addLabel(colorsGrid, index, 0, i18n("Dim factor:"), colorsGrp));
-    dimFactor = createSpinBox("Colors", "Dim Factor", 100, 0, 100, colorsGrp);
+    dimFactor = createSpinBox("Colors", "Dim Factor", 80, 0, 100, colorsGrp);
     dimFactor->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     colorsGrid->addWidget(dimFactor, index++, 1);
 

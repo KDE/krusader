@@ -115,7 +115,7 @@ KToggleAction *KrActions::actCompareDirs = 0;
 
 
 QAction *createAction(QString text, QString icon, QKeySequence shortcut,
-                                 QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
+                      QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
 {
     QAction *a;
     if (icon.isEmpty())
@@ -127,6 +127,21 @@ QAction *createAction(QString text, QString icon, QKeySequence shortcut,
     krusaderApp->actionCollection()->setDefaultShortcut(a, shortcut);
     return a;
 }
+
+QAction *createAction(QString text, QString icon, QList<QKeySequence> shortcuts,
+                      QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
+{
+    QAction *a;
+    if (icon.isEmpty())
+        a = new QAction(text, krusaderApp);
+    else
+        a = new QAction(QIcon::fromTheme(icon), text, krusaderApp);
+    krusaderApp->connect(a, SIGNAL(triggered(bool)), recv, slot);
+    krusaderApp->actionCollection()->addAction(name, a);
+    krusaderApp->actionCollection()->setDefaultShortcuts(a, shortcuts);
+    return a;
+}
+
 
 KToggleAction *createToggleAction(QString text, QString icon, QKeySequence shortcut,
                                  QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
@@ -206,7 +221,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(tmp, i18n("Start &Root Mode Krusader"), "krusader_root", Qt::ALT + Qt::SHIFT + Qt::Key_K, SLOTS, SLOT(rootKrusader()), "root krusader");
     NEW_KACTION(actProfiles, i18n("Pro&files"), "user-identity", Qt::ALT + Qt::SHIFT + Qt::Key_L, MAIN_VIEW, SLOT(profiles()), "profile");
     NEW_KACTION(actSplit, i18n("Sp&lit File..."), "kr_split", Qt::CTRL + Qt::Key_P, SLOTS, SLOT(slotSplit()), "split");
-    NEW_KACTION(actCombine, i18n("Com&bine Files..."), "kr_combine", Qt::CTRL + Qt::Key_B, SLOTS, SLOT(slotCombine()), "combine");
+    NEW_KACTION(actCombine, i18n("Com&bine Files..."), "kr_combine", 0, SLOTS, SLOT(slotCombine()), "combine");
     NEW_KACTION(actSelectNewerAndSingle, i18n("&Select Newer and Single"), 0, 0, SLOTS, SLOT(compareSetup()), "select_newer_and_single");
     NEW_KACTION(actSelectNewer, i18n("Select &Newer"), 0, 0, SLOTS, SLOT(compareSetup()), "select_newer");
     NEW_KACTION(actSelectSingle, i18n("Select &Single"), 0, 0, SLOTS, SLOT(compareSetup()), "select_single");
@@ -265,7 +280,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actCompare, i18n("Compare b&y Content..."), "document-multiple", 0, SLOTS, SLOT(compareContent()), "compare");
     NEW_KACTION(actMultiRename, i18n("Multi &Rename..."), "krename", Qt::SHIFT + Qt::Key_F9, SLOTS, SLOT(multiRename()), "multirename");
 
-    NEW_KACTION(tmp, i18n("Bookmark Current"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_D, SLOTS, SLOT(bookmarkCurrent()), "bookmark current");
+    NEW_KACTION(tmp, i18n("Bookmark Current"), 0, KStandardShortcut::addBookmark(), SLOTS, SLOT(bookmarkCurrent()), "bookmark current");
     NEW_KACTION(actVerticalMode, i18n("Vertical Mode"), "view-split-top-bottom", Qt::ALT + Qt::CTRL + Qt::Key_R, MAIN_VIEW, SLOT(toggleVerticalMode()), "toggle vertical mode");
 #if 0
     actUserMenu = new QAction(i18n("User Menu"), ALT + Qt::Key_QuoteLeft, SLOTS,

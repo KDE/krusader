@@ -187,7 +187,7 @@ void KgPanel::setupMiscTab()
 
     KONFIGURATOR_CHECKBOX_PARAM barSettings[] =
     {
-        {"Look&Feel", "Show Size In Bytes", true, i18n("Show size in bytes too"), true,  i18n("Show size in bytes too") },
+        {"Look&Feel", "Show Size In Bytes", false, i18n("Show size in bytes too"), true,  i18n("Show size in bytes too") },
         {"Look&Feel", "ShowSpaceInformation", true, i18n("Show space information"), true,  i18n("Show free/total space on the device") },
     };
     KonfiguratorCheckBoxGroup *barSett = createCheckBoxGroup(2, 0, barSettings,
