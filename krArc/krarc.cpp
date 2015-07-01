@@ -980,13 +980,11 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
             // the rar list is ended with a ------ line.
             if (line.startsWith(QLatin1String("----------"))) {
                 invalidLine = !invalidLine;
-                continue;
+                break;
             }
             if (invalidLine)
                 continue;
             else {
-                temp.readLine(buf, 1000);
-                line = line + decodeString(buf);
                 if (line[0] == '*') // encrypted archives starts with '*'
                     line[0] = ' ';
             }
@@ -1182,22 +1180,25 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         mode = parsePermString(perm);
     }
     if (arcType == "rar") {
-        // full name
-        fullName = nextWord(line, '\n');
+        // permissions
+        perm = nextWord(line);
         // size
         size = nextWord(line).toLong();
-        // ignore the next 2 fields
+        // ignore the next 2 fields : packed size and compression ration
         nextWord(line); nextWord(line);
         // date & time
         QString d = nextWord(line);
         int year = 1900 + d.mid(6, 2).toInt();
-        if (year < 1930) year += 100;
+        if (year < 1930)
+            year += 100;
         QDate qdate(year, d.mid(3, 2).toInt(), d.mid(0, 2).toInt());
         QString t = nextWord(line);
         QTime qtime(t.mid(0, 2).toInt(), t.mid(3, 2).toInt(), 0);
         time = QDateTime(qdate, qtime).toTime_t();
-        // permissions
-        perm = nextWord(line);
+        // checksum : ignored
+        nextWord(line);
+        // full name
+        fullName = nextWord(line, '\n');
 
         if (perm.length() == 7) { // windows rar permission format
             bool isDir  = (perm.at(1).toLower() == 'd');
@@ -1486,6 +1487,7 @@ bool kio_krarcProtocol::initArcParameters()
         }
     } else if (arcType == "rar") {
         if (QStandardPaths::findExecutable(QStringLiteral("rar")).isEmpty()) {
+            noencoding = true;
             cmd     = fullPathName("unrar");
             listCmd << fullPathName("unrar") << "-c-" << "-v" << "v";
             getCmd  << fullPathName("unrar") << "p" << "-ierr" << "-idp" << "-c-" << "-y";
