@@ -33,6 +33,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QtCore/QDir>
 #include <QtCore/QDateTime>
 #include <QtCore/QStringList>
+#include <QtCore/QStandardPaths>
 #include <QtGui/QMoveEvent>
 #include <QtGui/QResizeEvent>
 #include <QtWidgets/QApplication>
@@ -309,6 +310,9 @@ bool Krusader::versionControl()
     nogroup.writeEntry("Version", VERSION);
     nogroup.writeEntry(FIRST_RUN, false);
     krConfig->sync();
+
+    QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/krusader/"));
+
     return retval;
 }
 
