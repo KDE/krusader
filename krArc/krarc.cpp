@@ -30,7 +30,6 @@
 #include <qplatformdefs.h>
 
 #include <KArchive/KTar>
-#include <KConfigCore/KConfig>
 #include <KCoreAddons/KProcess>
 #include <KI18n/KLocalizedString>
 #include <KIO/Job>
@@ -148,11 +147,9 @@ extern "C"
 #ifdef KRARC_ENABLED
 kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
         : SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(0L), extArcReady(false),
-        password(QString()), codec(0)
+        password(QString()), krConfig("krusaderrc"), codec(0)
 {
-
-    krConfig = new KConfig("krusaderrc");
-    confGrp = KConfigGroup(krConfig, "Dependencies");
+    confGrp = KConfigGroup(&krConfig, "Dependencies");
 
     arcTempDir = QDir::tempPath() + DIR_SEPARATOR;
     QString dirName = "krArc" + QDateTime::currentDateTime().toString(Qt::ISODate);
@@ -167,7 +164,6 @@ kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteA
 kio_krarcProtocol::~kio_krarcProtocol()
 {
     // delete the temp directory
-    delete krConfig;
     KProcess proc;
     proc << fullPathName("rm") << "-rf" << arcTempDir;
     proc.start();
@@ -178,8 +174,8 @@ kio_krarcProtocol::~kio_krarcProtocol()
 
 bool kio_krarcProtocol::checkWriteSupport()
 {
-    krConfig->reparseConfiguration();
-    if (KConfigGroup(krConfig, "kio_krarc").readEntry("EnableWrite", false))
+    krConfig.reparseConfiguration();
+    if (KConfigGroup(&krConfig, "kio_krarc").readEntry("EnableWrite", false))
         return true;
     else {
         error(ERR_UNSUPPORTED_ACTION,
@@ -1914,7 +1910,7 @@ QString kio_krarcProtocol::detectFullPathName(QString name)
 
 QString kio_krarcProtocol::fullPathName(QString name)
 {
-    QString supposedName = confGrp.readEntry(name, name);
+    QString supposedName = confGrp.readEntry(name, QString());
     if (supposedName.isEmpty())
         supposedName = detectFullPathName(name);
     return supposedName;

@@ -25,6 +25,7 @@
 #include <KIO/Global>
 #include <KIO/SlaveBase>
 #include <KCoreAddons/KProcess>
+#include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
 
 class KFileItem;
@@ -102,7 +103,7 @@ private:
     QString arcType;                  //< the archive type.
     bool extArcReady;                 //< Used for RPM & DEB files.
     QString password;                 //< Password for the archives
-    KConfig *krConfig;                //< The configuration file for krusader
+    KConfig krConfig;                //< The configuration file for krusader
     KConfigGroup confGrp;             //< the 'Dependencies' config group
 
     QString lastData;
