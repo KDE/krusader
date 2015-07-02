@@ -925,6 +925,7 @@ void ListPanelFunc::goInside(const QString& name)
     QUrl url = vf->vfile_getUrl();
 
     if (vf->vfile_isDir()) {
+        url = files()->vfs_getFile(name);
         panel->view->setNameToMakeCurrent(QString());
         openUrl(url);
     } else if (url.isLocalFile()) {
