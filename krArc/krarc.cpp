@@ -1635,7 +1635,7 @@ bool kio_krarcProtocol::checkStatus(int exitCode)
 struct AutoDetectParams {
     QString type;
     int location;
-    QString detectionString;
+    QByteArray detectionString;
 };
 
 QString kio_krarcProtocol::detectArchive(bool &encrypted, QString fileName)
@@ -1662,7 +1662,7 @@ QString kio_krarcProtocol::detectArchive(bool &encrypted, QString fileName)
         arcFile.close();
 
         for (int i = 0; i < autoDetectElems; i++) {
-            QString detectionString = autoDetectParams[ i ].detectionString;
+            QByteArray detectionString = autoDetectParams[ i ].detectionString;
             int location = autoDetectParams[ i ].location;
 
             int endPtr = detectionString.length() + location;
