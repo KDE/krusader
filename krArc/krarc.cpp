@@ -1482,8 +1482,8 @@ bool kio_krarcProtocol::initArcParameters()
             putCmd  << "-P" << password;
         }
     } else if (arcType == "rar") {
+        noencoding = true;
         if (QStandardPaths::findExecutable(QStringLiteral("rar")).isEmpty()) {
-            noencoding = true;
             cmd     = fullPathName("unrar");
             listCmd << fullPathName("unrar") << "-c-" << "-v" << "v";
             getCmd  << fullPathName("unrar") << "p" << "-ierr" << "-idp" << "-c-" << "-y";
