@@ -191,8 +191,8 @@ void KRslots::compareContent()
         return;
     }
 
-    // else implied: all ok, let's call kdiff
-    // but if one of the files isn't local, download them first
+    // else implied: all ok, let's call an external program to compare files
+    // but if any of the files isn't local, download it first
     compareContent(name1, name2);
 }
 
