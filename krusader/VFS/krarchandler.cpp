@@ -710,7 +710,7 @@ bool KRarcHandler::checkStatus(QString type, int exitCode)
 struct AutoDetectParams {
     QString type;
     int location;
-    QString detectionString;
+    QByteArray detectionString;
 };
 
 QString KRarcHandler::detectArchive(bool &encrypted, QString fileName, bool checkEncrypted, bool fast)
@@ -737,7 +737,7 @@ QString KRarcHandler::detectArchive(bool &encrypted, QString fileName, bool chec
         arcFile.close();
 
         for (int i = 0; i < autoDetectElems; i++) {
-            QString detectionString = autoDetectParams[ i ].detectionString;
+            QByteArray detectionString = autoDetectParams[ i ].detectionString;
             int location = autoDetectParams[ i ].location;
 
             int endPtr = detectionString.length() + location;
