@@ -39,7 +39,7 @@ class FileManagerWindow;
 class TabActions;
 
 /**
- * Implements tabbed-browsing by managing a list of tabs and corrosponding panels.
+ * Implements tabbed-browsing by managing a list of tabs and corresponding panels.
  */
 class PanelManager: public QWidget, public AbstractPanelManager
 {

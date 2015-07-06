@@ -46,7 +46,7 @@ public:
 
 public slots:
     /**
-     * called by PanelManager with an already created panel, and creates the corrosponding tab
+     * called by PanelManager with an already created panel, and creates the corresponding tab
      */
     int addPanel(ListPanel *panel, bool setCurrent = true, KrPanel *nextTo = 0);
 

@@ -265,7 +265,7 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
                 this, SLOT(combineSendFinished(KJob *)));
     }
 
-     // continue writing and suspend read job until recieved data is handed over to the write job
+     // continue writing and suspend read job until received data is handed over to the write job
     combineReadJob->suspend();
     combineWriteJob->resume();
 }
@@ -281,7 +281,7 @@ void Combiner::combineReceiveFinished(KJob *job)
                 KMessageBox::error(0, i18n("Cannot open the first split file of %1.",
                                            baseURL.toDisplayString(QUrl::PreferLocalFile)));
                 emit reject();
-            } else { // we've recieved the last file
+            } else { // we've received the last file
                 // write out the remaining part of the file
                 combineWriteJob->resume();
 

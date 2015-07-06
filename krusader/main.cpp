@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
     aboutData.addCredit(i18n("Jiří Paleček"), i18n("QA, bug-hunting, patches and general help"), QStringLiteral("jpalecek@web.de"), 0);
     aboutData.addCredit(i18n("Jiří Klement"), i18n("Important help in KDE 4 porting"), 0, 0);
     aboutData.addCredit(i18n("Andrew Neupokoev"), i18n("Killer Logo and Icons for Krusader (contest winner)"), QStringLiteral("doom-blue@yandex.ru"), 0);
-    aboutData.addCredit(i18n("The UsefulArts Organization"), i18n("Icon for Krusader"), QStringLiteral("mail@usefularts.rg"), 0);
+    aboutData.addCredit(i18n("The UsefulArts Organization"), i18n("Icon for Krusader"), QStringLiteral("mail@usefularts.org"), 0);
     aboutData.addCredit(i18n("Gábor Lehel"), i18n("Viewer module for 3rd Hand"), QStringLiteral("illissius@gmail.com"), 0);
     aboutData.addCredit(i18n("Mark Eatough"), i18n("Handbook Proof-Reader"), QStringLiteral("markeatough@yahoo.com"), 0);
     aboutData.addCredit(i18n("Jan Halasa"), i18n("The old Bookmark Module"), QStringLiteral("xhalasa@fi.muni.cz"), 0);

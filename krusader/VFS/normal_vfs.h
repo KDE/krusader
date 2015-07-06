@@ -41,7 +41,7 @@
 #include "vfs.h"
 
 /**
- * The normal_vfs class is Kruasder implemention for local directories.
+ * The normal_vfs class is Krusader implemention for local directories.
  * As this is the most common case, we try to make it as fast and efficient
  * as possible.
  */

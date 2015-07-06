@@ -43,7 +43,7 @@
 /**
  * The Virtual File class handles all the details of maintaining a single
  * file component within the virtual file system (vfs). a vfile object
- * contains the nessecery details about a file and member functions which
+ * contains the necessary details about a file and member functions which
  *  allow the object to give out the needed details about the file.
  */
 class vfile : public QObject

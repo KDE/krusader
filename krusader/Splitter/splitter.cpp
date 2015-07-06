@@ -49,7 +49,7 @@ Splitter::Splitter(QWidget* parent,  QUrl fileNameIn, QUrl destinationDirIn, boo
         overwrite(overWriteIn),
         fileNumber(0),
         outputFileRemaining(0),
-        recievedSize(0),
+        receivedSize(0),
         crcContext(new CRC32()),
         statJob(0),
         splitReadJob(0),
@@ -74,11 +74,11 @@ void Splitter::split(KIO::filesize_t splitSizeIn)
     Q_ASSERT(!splitReadJob);
     Q_ASSERT(!splitWriteJob);
     Q_ASSERT(!fileNumber);
-    Q_ASSERT(!recievedSize);
+    Q_ASSERT(!receivedSize);
     Q_ASSERT(!outputFileRemaining);
 
     splitReadJob = splitWriteJob = 0;
-    fileNumber = recievedSize = outputFileRemaining = 0;
+    fileNumber = receivedSize = outputFileRemaining = 0;
 
     splitSize = splitSizeIn;
 
@@ -115,7 +115,7 @@ void Splitter::splitDataReceived(KIO::Job *, const QByteArray &byteArray)
         return;
 
     crcContext->update((unsigned char *)byteArray.data(), byteArray.size());
-    recievedSize += byteArray.size();
+    receivedSize += byteArray.size();
 
     if (!splitWriteJob)
         nextOutputFile();
@@ -148,7 +148,7 @@ void Splitter::splitReceiveFinished(KJob *job)
                         .rightJustified(8, '0');
 
     splitInfoFileContent = QString("filename=%1\n").arg(fileName.fileName()) +
-                QString("size=%1\n")    .arg(KIO::number(recievedSize)) +
+                QString("size=%1\n")    .arg(KIO::number(receivedSize)) +
                 QString("crc32=%1\n")   .arg(crcResult);
 }
 

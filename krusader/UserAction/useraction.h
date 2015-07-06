@@ -74,7 +74,7 @@ public:
     };
 
     /**
-     * Use this to access the whole list of registerd KrActions.
+     * Use this to access the whole list of registered KrActions.
      * currently only used to fill the usermenu with all available actions. This should change...
      * @return A reference to the internal KrActionList
      */

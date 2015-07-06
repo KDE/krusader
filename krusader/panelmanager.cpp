@@ -166,7 +166,7 @@ ListPanel* PanelManager::addPanel(bool setCurrent, KConfigGroup cfg, KrPanel *ne
     ListPanel * p = createPanel(cfg);
     _stack->addWidget(p);
 
-    // now, create the corrosponding tab
+    // now, create the corresponding tab
     int index = _tabbar->addPanel(p, setCurrent, nextTo);
     tabsCountChanged();
 

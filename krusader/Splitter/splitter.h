@@ -79,7 +79,7 @@ private:
     KIO::filesize_t outputFileRemaining;
 
     QByteArray      transferArray;
-    KIO::filesize_t recievedSize;
+    KIO::filesize_t receivedSize;
     QString         splitInfoFileContent;
     CRC32          *crcContext;
     KIO::Job         *statJob;

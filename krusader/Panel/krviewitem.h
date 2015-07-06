@@ -77,7 +77,7 @@ public:
     }
 
 protected:
-    vfile* _vf;   // each view item holds a pointer to a corrosponding vfile for fast access
+    vfile* _vf;   // each view item holds a pointer to a corresponding vfile for fast access
     bool dummyVfile; // used in case our item represents the ".." (updir) item
     const KrViewProperties* _viewProperties;
     bool _hasExtension;
