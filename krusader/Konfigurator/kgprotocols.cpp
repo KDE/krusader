@@ -270,9 +270,7 @@ void KgProtocols::addMime(QString name, QString protocol)
         QTreeWidgetItem *listViewItem = new QTreeWidgetItem(currentListItem);
         listViewItem->setText(0, name);
         listViewItem->setIcon(0, krLoader->loadMimeTypeIcon(name, KIconLoader::Small));
-        // FIXME The following causes crash due to bug in QT 4.3.4 - 4.4.
-        // reenable in the future, when the problem will be fixed.
-        // linkList->expandItem( currentListItem );
+        linkList->expandItem( currentListItem );
     }
 }
 
