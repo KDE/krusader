@@ -66,7 +66,7 @@ QAction *KrActions::actSwapSides = 0;
 QAction *KrActions::actFind = 0;
 QAction *KrActions::actLocate = 0;
 QAction *KrActions::actSwitchFullScreenTE = 0;
-//QAction *KrActions::actAddBookmark = 0;
+QAction *KrActions::actAddBookmark = 0;
 QAction *KrActions::actSavePosition = 0;
 QAction *KrActions::actSelectColorMask = 0;
 QAction *KrActions::actOpenLeftBm = 0;
@@ -280,7 +280,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actCompare, i18n("Compare b&y Content..."), "document-multiple", 0, SLOTS, SLOT(compareContent()), "compare");
     NEW_KACTION(actMultiRename, i18n("Multi &Rename..."), "krename", Qt::SHIFT + Qt::Key_F9, SLOTS, SLOT(multiRename()), "multirename");
 
-    NEW_KACTION(tmp, i18n("Bookmark Current"), 0, KStandardShortcut::addBookmark(), SLOTS, SLOT(bookmarkCurrent()), "bookmark current");
+    NEW_KACTION(actAddBookmark, i18n("Add Bookmark"), "bookmark-new", KStandardShortcut::addBookmark(), SLOTS, SLOT(addBookmark()), "add bookmark");
     NEW_KACTION(actVerticalMode, i18n("Vertical Mode"), "view-split-top-bottom", Qt::ALT + Qt::CTRL + Qt::Key_R, MAIN_VIEW, SLOT(toggleVerticalMode()), "toggle vertical mode");
 #if 0
     actUserMenu = new QAction(i18n("User Menu"), ALT + Qt::Key_QuoteLeft, SLOTS,

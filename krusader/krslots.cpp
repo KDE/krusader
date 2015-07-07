@@ -252,11 +252,6 @@ void KRslots::compareContent(QUrl url1, QUrl url2)
         KMessageBox::error(0, i18n("Error executing %1.", diffProg));
 }
 
-void KRslots::addBookmark()
-{
-    // TODO: this no longer works!
-}
-
 // GUI toggle slots
 void KRslots::toggleFnkeys()
 {
@@ -791,7 +786,7 @@ void KRslots::jsConsole()
 #endif
 }
 
-void KRslots::bookmarkCurrent()
+void KRslots::addBookmark()
 {
     krBookMan->bookmarkCurrent(ACTIVE_PANEL->virtualPath());
 }

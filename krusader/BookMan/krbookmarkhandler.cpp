@@ -73,11 +73,6 @@ KrBookmarkHandler::~KrBookmarkHandler()
     delete _privateCollection;
 }
 
-void KrBookmarkHandler::slotBookmarkCurrent()
-{
-    bookmarkCurrent(ACTIVE_PANEL->virtualPath());
-}
-
 void KrBookmarkHandler::bookmarkCurrent(QUrl url)
 {
     QPointer<KrAddBookmarkDlg> dlg = new KrAddBookmarkDlg(_mainWindow->widget(), url);
@@ -434,9 +429,8 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu)
         if (!hasJumpback)
             menu->addSeparator();
 
-        QAction *bmAddAct = menu->addAction(krLoader->loadIcon("bookmark-new", KIconLoader::Small),
-                                            i18n("Bookmark Current"), this, SLOT(slotBookmarkCurrent()));
-        _specialBookmarks.append(bmAddAct);
+        menu->addAction(KrActions::actAddBookmark);
+        _specialBookmarks.append(KrActions::actAddBookmark);
         QAction *bmAct = menu->addAction(krLoader->loadIcon("bookmarks", KIconLoader::Small),
                                          i18n("Manage Bookmarks"), manager, SLOT(slotEditBookmarks()));
         _specialBookmarks.append(bmAct);

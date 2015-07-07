@@ -65,7 +65,6 @@ protected:
     void removeReferences(KrBookmark *root, KrBookmark *bmToRemove);
 
 protected slots:
-    void slotBookmarkCurrent();
     void bookmarksChanged(const QString&, const QString&);
     void slotActivated(const QUrl &url);
 

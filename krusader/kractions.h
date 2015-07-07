@@ -53,7 +53,7 @@ public:
     static QAction *actMountMan, *actNewTool, *actSwapPanels, *actSwapSides;
     static QAction *actKonfigurator, *actToolsSetup, *actFind;
     static QAction *actRemoteEncoding;
-    static QAction *actSelectColorMask, *actMultiRename, *actOpenLeftBm, *actOpenRightBm;
+    static QAction *actSelectColorMask, *actMultiRename, *actOpenLeftBm, *actOpenRightBm, *actAddBookmark;
     static QAction *actSplit, *actQueueManager;
     static QAction *actCombine;
     static QAction *actUserMenu;

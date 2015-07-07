@@ -109,7 +109,6 @@ public slots:
     void toggleFnkeys();
     void toggleCmdline();
     void multiRename();
-    void bookmarkCurrent();
     void cmdlinePopup();
     void slotSplit();
     void slotCombine();
