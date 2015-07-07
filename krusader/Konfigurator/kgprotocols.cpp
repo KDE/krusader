@@ -40,7 +40,7 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIOCore/KProtocolInfo>
+#include <KIOCore/KProtocolManager>
 #include <KIconThemes/KIconLoader>
 
 QString KgProtocols::defaultProtocols  = "krarc";
@@ -109,7 +109,7 @@ KgProtocols::KgProtocols(bool first, QWidget* parent) :
     QGridLayout *protocolGrid = createGridLayout(protocolGrp);
 
     protocolList = new KrListWidget(protocolGrp);
-    loadListCapableProtocols();
+    loadProtocols();
     protocolGrid->addWidget(protocolList, 0, 0);
 
     KgProtocolsLayout->addWidget(protocolGrp, 0 , 2);
@@ -145,20 +145,18 @@ void KgProtocols::addSpacer(QBoxLayout *layout)
     layout->addItem(new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding));
 }
 
-void KgProtocols::loadListCapableProtocols()
+void KgProtocols::loadProtocols()
 {
     QStringList protocols = KProtocolInfo::protocols();
     protocols.sort();
 
-    for (QStringList::Iterator it = protocols.begin(); it != protocols.end();) {
-//    if( !KProtocolInfo::supportsListing( *it ) )    // TODO TODO
-//    {
-//      it = protocols.remove( it );
-//      continue;
-//    }
-        ++it;
+    foreach(const QString &protocol, protocols) {
+        QUrl u;
+        u.setScheme(protocol);
+        if(KProtocolManager::inputType(u) == KProtocolInfo::T_FILESYSTEM) {
+            protocolList->addItem(protocol);
+        }
     }
-    protocolList->addItems(protocols);
 }
 
 void KgProtocols::loadMimes()

@@ -59,7 +59,7 @@ public slots:
     void         slotRemoveMime();
 
 protected:
-    void         loadListCapableProtocols();
+    void         loadProtocols();
     void         loadMimes();
     void         addSpacer(QBoxLayout *parent);
 
