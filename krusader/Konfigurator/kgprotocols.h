@@ -49,6 +49,8 @@ public:
     virtual bool apply() Q_DECL_OVERRIDE;
     virtual bool isChanged() Q_DECL_OVERRIDE;
 
+    static  void init();
+
 public slots:
     void         slotDisableButtons();
     void         slotAddProtocol();

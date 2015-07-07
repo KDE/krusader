@@ -43,6 +43,9 @@
 #include <KIOCore/KProtocolInfo>
 #include <KIconThemes/KIconLoader>
 
+QString KgProtocols::defaultProtocols  = "krarc";
+QString KgProtocols::defaultKrarcMimes = "application/zip";
+
 KgProtocols::KgProtocols(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)
 {
@@ -329,6 +332,14 @@ void KgProtocols::setDefaults()
     while (linkList->topLevelItemCount() != 0)
         removeProtocol(linkList->topLevelItem(0)->text(0));
 
+#ifdef KRARC_ENABLED
+    addProtocol("krarc");
+    QStringList krarcMimes = defaultKrarcMimes.split(',');
+    foreach(const QString &mime, krarcMimes) {
+        addMime(mime, "krarc");
+    }
+#endif
+
     slotDisableButtons();
 
     if (isChanged())
@@ -394,3 +405,11 @@ bool KgProtocols::apply()
     return false;
 }
 
+void KgProtocols::init()
+{
+    if (!krConfig->groupList().contains("Protocols")) {
+        KConfigGroup group(krConfig, "Protocols");
+        group.writeEntry("Handled Protocols", defaultProtocols);
+        group.writeEntry("Mimes For krarc",   defaultKrarcMimes);
+    }
+}

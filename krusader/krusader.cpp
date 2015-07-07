@@ -168,6 +168,9 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     // init the permmision handler class
     KRpermHandler::init();
 
+    // init the protocol handler
+    KgProtocols::init();
+
     // init the checksum tools
     initChecksumModule();
 
