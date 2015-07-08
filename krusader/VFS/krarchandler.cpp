@@ -168,35 +168,6 @@ bool KRarcHandler::arcSupported(QString type)
     return false;
 }
 
-bool KRarcHandler::arcHandled(QString type)
-{
-    // first check if supported
-    if (!arcSupported(type)) return false;
-
-    KConfigGroup group(krConfig, "Archives");
-    if ((type == "-tgz" && group.readEntry("Do GZip" , _DoGZip)) ||
-            (type == "tarz" && group.readEntry("Do GZip" , _DoGZip)) ||
-            (type == "-tar" && group.readEntry("Do Tar" , _DoTar)) ||
-            (type == "-tbz" && group.readEntry("Do BZip2", _DoBZip2)) ||
-            (type == "-tlz" && group.readEntry("Do LZMA", _DoLZMA)) ||
-            (type == "-txz" && group.readEntry("Do XZ", _DoXZ)) ||
-            (type == "gzip" && group.readEntry("Do GZip" , _DoGZip)) ||
-            (type == "zip2" && group.readEntry("Do BZip2", _DoBZip2)) ||
-            (type == "-zip" && group.readEntry("Do UnZip", _DoUnZip)) ||
-            (type == "-lha" && group.readEntry("Do Lha", _DoUnZip)) ||
-            (type == "-rar" && group.readEntry("Do UnRar", _DoUnRar)) ||
-            (type == "-arj" && group.readEntry("Do UnArj", _DoUnarj)) ||
-            (type == "-ace" && group.readEntry("Do UnAce", _DoUnAce)) ||
-            (type == "cpio" && group.readEntry("Do RPM" , _DoRPM)) ||
-            (type == "-rpm" && group.readEntry("Do RPM"  , _DoRPM)) ||
-            (type == "-deb" && group.readEntry("Do DEB"  , _DoDEB)) ||
-            (type == "-7z"  && group.readEntry("Do 7z"  , _Do7z)))
-        return true;
-    else
-        return false;
-}
-
-
 long KRarcHandler::arcFileCount(QString archive, QString type, QString password, KRarcObserver *observer)
 {
     int divideWith = 1;

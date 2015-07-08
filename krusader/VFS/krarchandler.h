@@ -74,8 +74,6 @@ public:
     static bool test(QString archive, QString type, QString password,  KRarcObserver *observer,long count = 0L );
     // true - if the right unpacker exist in the system
     static bool arcSupported(QString type);
-    // true - if supported and the user want us to handle this kind of archive
-    static bool arcHandled(QString type);
     // return the a list of supported packers
     static QStringList supportedPackers();
     // true - if the url is an archive (ie: tar:/home/test/file.tar.bz2)

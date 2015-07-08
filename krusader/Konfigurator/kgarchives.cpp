@@ -52,56 +52,6 @@ KgArchives::KgArchives(bool first, QWidget* parent) :
     QGridLayout *kgArchivesLayout = new QGridLayout(innerWidget);
     kgArchivesLayout->setSpacing(6);
 
-    //  -------------------------- GENERAL GROUPBOX ----------------------------------
-
-    QGroupBox *generalGrp = createFrame(i18n("General"), innerWidget);
-    QGridLayout *generalGrid = createGridLayout(generalGrp);
-
-    addLabel(generalGrid, 0, 0, i18n("Krusader transparently handles the following types of archives:"),
-             generalGrp);
-
-    KONFIGURATOR_CHECKBOX_PARAM packers[] =
-        //   cfg_class  cfg_name   default   text             restart tooltip
-    {{"Archives", "Do Tar",   _DoTar,   i18n("Tar"),   false,  ""},
-        {"Archives", "Do GZip",  _DoGZip,  i18n("GZip"),  false,  ""},
-        {"Archives", "Do LZMA",  _DoLZMA,  i18n("LZMA"),  false,  ""},
-        {"Archives", "Do XZ",    _DoXZ,    i18n("XZ"),    false,  ""},
-        {"Archives", "Do BZip2", _DoBZip2, i18n("BZip2"), false,  ""},
-        {"Archives", "Do UnZip", _DoUnZip, i18n("Zip"),   false,  ""},
-        {"Archives", "Do UnRar", _DoUnRar, i18n("Rar"),   false,  ""},
-        {"Archives", "Do Unarj", _DoArj,   i18n("Arj"),   false,  ""},
-        {"Archives", "Do RPM",   _DoRPM,   i18n("Rpm"),   false,  ""},
-        {"Archives", "Do UnAce", _DoUnAce, i18n("Ace"),   false,  ""},
-        {"Archives", "Do Lha",   _DoLha,   i18n("Lha"),   false,  ""},
-        {"Archives", "Do DEB",   _DoDEB,   i18n("Deb"),   false,  ""},
-        {"Archives", "Do 7z",    _Do7z,    i18n("7zip"),  false,  ""}
-    };
-
-    cbs = createCheckBoxGroup(3, 0, packers, 13, generalGrp);
-    generalGrid->addWidget(cbs, 1, 0);
-
-    addLabel(generalGrid, 2, 0, i18n("The archives that are \"grayed out\" were unavailable on your\n"
-                                     "system last time Krusader checked. If you wish Krusader to\n"
-                                     "search again, click the 'Auto Configure' button."),
-             generalGrp);
-
-    QWidget *hboxWidget = new QWidget(generalGrp);
-    QHBoxLayout *hbox = new QHBoxLayout(hboxWidget);
-
-    QWidget * spcer1 = createSpacer(hboxWidget);
-    hbox->addWidget(spcer1);
-
-    QPushButton *btnAutoConfigure = new QPushButton(i18n("Auto Configure"), hboxWidget);
-    hbox->addWidget(btnAutoConfigure);
-
-    QWidget *spcer2 = createSpacer(hboxWidget);
-    hbox->addWidget(spcer2);
-
-    generalGrid->addWidget(hboxWidget, 3, 0);
-    connect(btnAutoConfigure, SIGNAL(clicked()), this, SLOT(slotAutoConfigure()));
-
-    kgArchivesLayout->addWidget(generalGrp, 0 , 0);
-
     //  ------------------------ KRARC GROUPBOX --------------------------------
 
     QGroupBox *krarcGrp = createFrame(i18n("krarc ioslave"), innerWidget);
@@ -166,39 +116,8 @@ void KgArchives::slotAutoConfigure()
 
 void KgArchives::disableNonExistingPackers()
 {
-#define PS(x) lst.contains(x)>0
-
-    // get list of available packers
-    QStringList lst = KRarcHandler::supportedPackers();
-    cbs->find("Do Tar")->setEnabled(PS("tar"));
-    cbs->find("Do GZip")->setEnabled(PS("gzip"));
-    cbs->find("Do BZip2")->setEnabled(PS("bzip2"));
-    cbs->find("Do LZMA")->setEnabled(PS("lzma"));
-    cbs->find("Do XZ")->setEnabled(PS("xz"));
-    cbs->find("Do UnZip")->setEnabled(PS("unzip"));
-    cbs->find("Do Lha")->setEnabled(PS("lha"));
-    cbs->find("Do RPM")->setEnabled(PS("rpm") || PS("cpio"));
-    cbs->find("Do UnRar")->setEnabled(PS("unrar") || PS("rar"));
-    cbs->find("Do UnAce")->setEnabled(PS("unace"));
-    cbs->find("Do Unarj")->setEnabled(PS("unarj") || PS("arj"));
-    cbs->find("Do DEB")->setEnabled(PS("dpkg") && PS("tar"));
-    cbs->find("Do 7z")->setEnabled(PS("7z"));
-
-    KConfigGroup group(krConfig, "Archives");
-    group.writeEntry("Supported Packers", lst);
-}
-
-bool KgArchives::apply()
-{
     KConfigGroup group(krConfig, "Archives");
     group.writeEntry("Supported Packers", KRarcHandler::supportedPackers());
-    return KonfiguratorPage::apply();
 }
 
-void KgArchives::setDefaults()
-{
-    KConfigGroup group(krConfig, "Archives");
-    group.writeEntry("Supported Packers", KRarcHandler::supportedPackers());
-    return KonfiguratorPage::setDefaults();
-}
 

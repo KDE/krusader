@@ -137,6 +137,55 @@ bool ListPanelFunc::isSyncing(const QUrl &url)
 
     return false;
 }
+
+void ListPanelFunc::openFileNameInternal(const QString &name, bool canExecuteFile)
+{
+    if (name == "..") {
+        dirUp();
+        return ;
+    }
+
+    vfile *vf = files() ->vfs_search(name);
+    if (vf == 0)
+        return ;
+
+    QUrl url = files()->vfs_getFile(name);
+
+    if (vf->vfile_isDir()) {
+        panel->view->setNameToMakeCurrent(QString());
+        openUrl(url);
+        return;
+    }
+
+    QString mime = vf->vfile_getMime();
+
+    if(canExecuteFile) {
+        if (KRun::isExecutableFile(url, mime)) {
+            runCommand(KShell::quoteArg(url.path()));
+            return;
+        }
+
+        KService::Ptr service = KMimeTypeTrader::self()->preferredService(mime);
+        if(service) {
+            runService(*service, QList<QUrl>() << url);
+            return;
+        }
+    }
+
+    if(url.isLocalFile()) {
+        QString protocol = KrServices::registeredProtocol(mime);
+        if(!protocol.isEmpty()) {
+            url.setScheme(protocol);
+            openUrl(url);
+            return;
+        }
+    }
+
+    if(canExecuteFile) {
+        displayOpenWithDialog(QList<QUrl>() << url);
+    }
+}
+
 #if 0
 //FIXME: see if this is still needed
 void ListPanelFunc::popErronousUrl()
@@ -914,28 +963,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
 
 void ListPanelFunc::goInside(const QString& name)
 {
-    if (name == "..") {
-        dirUp();
-        return ;
-    }
-    vfile *vf = files() ->vfs_search(name);
-    if (vf == 0)
-        return ;
-
-    QUrl url = vf->vfile_getUrl();
-
-    if (vf->vfile_isDir()) {
-        url = files()->vfs_getFile(name);
-        panel->view->setNameToMakeCurrent(QString());
-        openUrl(url);
-    } else if (url.isLocalFile()) {
-        QString mime = vf->vfile_getMime();
-        QString protocol = KrServices::registeredProtocol(mime);
-        if(!protocol.isEmpty()) {
-            url.setScheme(protocol);
-            openUrl(url);
-        }
-    }
+    openFileNameInternal(name, false);
 }
 
 void ListPanelFunc::runCommand(QString cmd)
@@ -973,34 +1001,7 @@ void ListPanelFunc::displayOpenWithDialog(QList<QUrl> urls)
 // this is done when you double click on a file
 void ListPanelFunc::execute(const QString& name)
 {
-    if (name == "..") {
-        dirUp();
-        return ;
-    }
-
-    vfile *vf = files() ->vfs_search(name);
-    if (vf == 0)
-        return ;
-
-    QString protocol;
-    if(files()->vfs_getOrigin().isLocalFile()) {
-        protocol = KrServices::registeredProtocol(vf->vfile_getMime());
-    }
-
-    if (vf->vfile_isDir() || !protocol.isEmpty()) {
-        goInside(name);
-    } else {
-        QUrl url = files() ->vfs_getFile(name);
-        if (KRun::isExecutableFile(url, vf->vfile_getMime()))
-            runCommand(KShell::quoteArg(url.path()));
-        else {
-            KService::Ptr service = KMimeTypeTrader::self()->preferredService(vf->vfile_getMime());
-            if(service)
-                runService(*service, QList<QUrl>() << url);
-            else
-                displayOpenWithDialog(QList<QUrl>() << url);
-        }
-    }
+    openFileNameInternal(name, true);
 }
 
 void ListPanelFunc::pack()
