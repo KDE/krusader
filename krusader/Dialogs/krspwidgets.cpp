@@ -32,21 +32,23 @@
 #include "../krglobal.h"
 #include "../kicons.h"
 #include "../Filter/filtertabs.h"
-#include <QtGui/QComboBox>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QCheckBox>
 #include "../GUI/krlistwidget.h"
-#include <qspinbox.h>
-#include <qnamespace.h>
-#include <QMouseEvent>
-#include <QEvent>
-#include <klocale.h>
-#include <kcombobox.h>
-#include <khistorycombobox.h>
-#include <kiconloader.h>
-#include <kcursor.h>
+
+#include <QtCore/QEvent>
 #include <QtGui/QBitmap>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QSpinBox>
+#include <qnamespace.h>		// missing ?
+
+#include <KCompletion/KComboBox>
+#include <KCompletion/KHistoryComboBox>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KCursor>
 
 ///////////////////// initiation of the static members ////////////////////////
 QStringList KRSpWidgets::maskList;
@@ -76,14 +78,14 @@ KRQuery KRSpWidgets::getMask(QString caption, bool nameOnly, QWidget * parent)
 }
 
 /////////////////////////// newFTP ////////////////////////////////////////
-KUrl KRSpWidgets::newFTP()
+QUrl KRSpWidgets::newFTP()
 {
     QPointer<newFTPSub> p = new newFTPSub();
     p->exec();
     QString uri = p->url->currentText();
     if (uri.isEmpty()) {
         delete p;
-        return KUrl(); // empty url
+        return QUrl(); // empty url
     }
 
     QString protocol = p->prefix->currentText();
@@ -122,18 +124,18 @@ KUrl KRSpWidgets::newFTP()
     }
 
     /* setting the parameters of the URL */
-    KUrl url;
-    url.setProtocol(protocol);
+    QUrl url;
+    url.setScheme(protocol);
     url.setHost(host);
     url.setPath(path);
     if (protocol == "ftp" || protocol == "fish" || protocol == "sftp") {
         url.setPort(p->port->cleanText().toInt());
     }
     if (!username.isEmpty()) {
-        url.setUser(username);
+        url.setUserName(username);
     }
     if (!password.isEmpty()) {
-        url.setPass(password);
+        url.setPassword(password);
     }
 
     delete p;
@@ -291,7 +293,6 @@ void QuickNavLineEdit::init()
     _numOfSelectedChars = 0;
     _dummyDisplayed = false;
     _pop = 0;
-    //setCompletionMode( KGlobalSettings::CompletionPopupAuto );  ==> removed by public demand
 }
 
 void QuickNavLineEdit::leaveEvent(QEvent *)

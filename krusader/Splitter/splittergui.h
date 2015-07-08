@@ -31,10 +31,11 @@
 #ifndef SPLITTERGUI_H
 #define SPLITTERGUI_H
 
-#include <QtGui/QDialog>
+#include <QtCore/QUrl>
+#include <QtWidgets/QDialog>
 
-#include <kurlrequester.h>
-#include <kio/global.h>
+#include <KIOWidgets/KUrlRequester>
+#include <KIO/Global>
 
 class QComboBox;
 class QCheckBox;
@@ -61,11 +62,11 @@ private:
     KUrlRequester   *urlReq;
 
 public:
-    SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir);
+    SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir);
     ~SplitterGUI();
 
-    KUrl    getDestinationDir()     {
-        return KUrl(urlReq->url().prettyUrl()); /* TODO: is prettyUrl what we need? */
+    QUrl    getDestinationDir()     {
+        return urlReq->url();
     }
     KIO::filesize_t getSplitSize();
     int     result()                {
@@ -79,7 +80,7 @@ public slots:
     virtual void splitPressed();
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *e);
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 };
 
 #endif /* __SPLITTERGUI_H__ */

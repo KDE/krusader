@@ -33,9 +33,9 @@
 
 #include <QtCore/QList>
 
-#include <KTabWidget>
-
 #include "filterbase.h"
+
+class QTabWidget;
 
 class FilterTabs : public QObject
 {
@@ -53,7 +53,7 @@ public:
         Default                 =   0xe000
     };
 
-    static FilterTabs * addTo(KTabWidget *tabWidget, int props = FilterTabs::Default,
+    static FilterTabs * addTo(QTabWidget *tabWidget, int props = FilterTabs::Default,
                               QStringList extraOptions = QStringList());
     static KRQuery      getQuery(QWidget *parent = 0);
 
@@ -76,13 +76,13 @@ signals:
     void  closeRequest(bool accept = true);
 
 private:
-    FilterTabs(int properties, KTabWidget *tabWidget, QObject *parent, QStringList extraOptions);
+    FilterTabs(int properties, QTabWidget *tabWidget, QObject *parent, QStringList extraOptions);
     void  acceptQuery();
 
     QList<FilterBase *> filterList;
     QList<int>      pageNumbers;
 
-    KTabWidget * tabWidget;
+    QTabWidget * tabWidget;
 };
 
 #endif /* FILTERTABS_H */

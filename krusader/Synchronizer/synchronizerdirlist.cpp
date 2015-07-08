@@ -36,18 +36,15 @@
 #include <acl/libacl.h>
 #endif
 #endif
-#include <string.h>
-#include <dirent.h>
 
+#include <qplatformdefs.h>
 #include <QtCore/QDir>
-#include <QtGui/QApplication>
+#include <QtWidgets/QApplication>
 
-#include <kde_file.h>
-#include <kdeversion.h>
-#include <KLocale>
-#include <KMessageBox>
-#include <KFileItem>
+#include <KI18n/KLocalizedString>
+#include <KIOCore/KFileItem>
 #include <KIO/JobUiDelegate>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "../VFS/vfs.h"
 #include "../VFS/krpermhandler.h"
@@ -115,7 +112,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
         return false;
 
     currentUrl = urlIn;
-    KUrl url = KUrl(urlIn);
+    QUrl url = QUrl::fromUserInput(urlIn, QString(), QUrl::AssumeLocalFile);
 
     QHashIterator< QString, vfile *> lit(*this);
     while (lit.hasNext())
@@ -127,18 +124,18 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
     }
 
     if (url.isLocalFile()) {
-        QString path = url.path(KUrl::RemoveTrailingSlash);
-        DIR* dir = opendir(path.toLocal8Bit());
+        QString path = url.adjusted(QUrl::StripTrailingSlash).path();
+        QT_DIR* dir = QT_OPENDIR(path.toLocal8Bit());
         if (!dir)  {
             KMessageBox::error(parentWidget, i18n("Cannot open the %1 directory.", path), i18n("Error"));
             emit finished(result = false);
             return false;
         }
 
-        KDE_struct_dirent* dirEnt;
+        QT_DIRENT* dirEnt;
         QString name;
 
-        while ((dirEnt = KDE_readdir(dir)) != NULL) {
+        while ((dirEnt = QT_READDIR(dir)) != NULL) {
             name = QString::fromLocal8Bit(dirEnt->d_name);
 
             if (name == "." || name == "..") continue;
@@ -146,8 +143,8 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
 
             QString fullName = path + '/' + name;
 
-            KDE_struct_stat stat_p;
-            KDE_lstat(fullName.toLocal8Bit(), &stat_p);
+            QT_STATBUF stat_p;
+            QT_LSTAT(fullName.toLocal8Bit(), &stat_p);
 
             QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
 
@@ -175,7 +172,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
 
             QString mime;
 
-            KUrl fileURL = KUrl(fullName);
+            QUrl fileURL = QUrl::fromLocalFile(fullName);
 
             vfile* item = new vfile(name, stat_p.st_size, perm, stat_p.st_mtime, symLink, brokenLink, stat_p.st_uid,
                                     stat_p.st_gid, mime, symlinkDest, stat_p.st_mode);
@@ -184,7 +181,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
             insert(name, item);
         }
 
-        closedir(dir);
+        QT_CLOSEDIR(dir);
         emit finished(result = true);
         return true;
     } else {
@@ -210,7 +207,7 @@ void SynchronizerDirList::slotEntries(KIO::Job * job, const KIO::UDSEntryList& e
     KIO::UDSEntryList::const_iterator end = entries.end();
 
     int rwx = -1;
-    QString prot = ((KIO::ListJob *)job)->url().protocol();
+    QString prot = ((KIO::ListJob *)job)->url().scheme();
 
     if (prot == "krarc" || prot == "tar" || prot == "zip")
         rwx = PERM_ALL;
@@ -248,4 +245,3 @@ void SynchronizerDirList::slotListResult(KJob *job)
     emit finished(result = true);
 }
 
-#include "synchronizerdirlist.moc"

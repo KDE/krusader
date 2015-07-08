@@ -32,10 +32,13 @@
 #include "../VFS/krpermhandler.h"
 #include "../krglobal.h"
 #include "../defaults.h"
-#include <QtGui/QLayout>
-#include <QVBoxLayout>
-#include <QLabel>
-#include <klocale.h>
+
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QLabel>
+
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 
 SynchronizeDialog::SynchronizeDialog(QWidget* parent,
                                      Synchronizer *sync, int pleftCopyNr, KIO::filesize_t pleftCopySize,
@@ -115,18 +118,18 @@ SynchronizeDialog::SynchronizeDialog(QWidget* parent,
 
     btnStart = new QPushButton(hboxWidget);
     btnStart->setText(i18n("&Start"));
-    btnStart->setIcon(KIcon("media-playback-start"));
+    btnStart->setIcon(QIcon::fromTheme("media-playback-start"));
     hbox->addWidget(btnStart);
 
     btnPause = new QPushButton(hboxWidget);
     btnPause->setEnabled(false);
     btnPause->setText(i18n("&Pause"));
-    btnPause->setIcon(KIcon("media-playback-pause"));
+    btnPause->setIcon(QIcon::fromTheme("media-playback-pause"));
     hbox->addWidget(btnPause);
 
     QPushButton *btnClose = new QPushButton(hboxWidget);
     btnClose->setText(i18n("&Close"));
-    btnClose->setIcon(KIcon("dialog-close"));
+    btnClose->setIcon(QIcon::fromTheme("dialog-close"));
     hbox->addWidget(btnClose);
 
     layout->addWidget(hboxWidget);
@@ -207,4 +210,3 @@ void SynchronizeDialog::pauseAccepted()
     isPause = false;
 }
 
-#include "synchronizedialog.moc"

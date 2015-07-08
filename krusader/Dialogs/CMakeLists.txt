@@ -12,6 +12,20 @@ set(Dialogs_SRCS
     popularurls.cpp
     checksumdlg.cpp
     percentalsplitter.cpp
-    krkeydialog.cpp)
+)
 
-kde4_add_library(Dialogs STATIC ${Dialogs_SRCS})
+add_library(Dialogs STATIC ${Dialogs_SRCS})
+
+target_link_libraries(Dialogs
+    KF5::Completion
+    KF5::ConfigWidgets
+    KF5::CoreAddons
+    KF5::I18n
+    KF5::IconThemes
+    KF5::ItemViews
+    KF5::KIOCore
+    KF5::KIOWidgets
+    KF5::Notifications
+    KF5::Parts
+    KF5::WidgetsAddons
+)

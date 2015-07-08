@@ -22,11 +22,12 @@
 #define KRACTION_H
 
 #include <QtCore/QByteArray>
+#include <QtCore/QUrl>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QDialog>
 
-#include <KAction>
-#include <KProcess>
-#include <KDialog>
-#include <KTextEdit>
+#include <KCoreAddons/KProcess>
+#include <KTextWidgets/KTextEdit>
 
 #include "kractionbase.h"
 
@@ -36,11 +37,11 @@ class QDomElement;
 class KActionCollection;
 
 /**
- * This subclass of KAction extends it with an individual executor and
+ * This subclass of QAction extends it with an individual executor and
  * a struct UserActionProperties.
- * It is used to integrate useractions into KDE's KAction-System
+ * It is used to integrate useractions into KDE's QAction-System
  */
-class KrAction: public KAction, public KrActionBase
+class KrAction: public QAction, public KrActionBase
 {
     Q_OBJECT
 public:
@@ -52,7 +53,7 @@ public:
      * @param currentURL Check for this file
      * @return true if the KrAction if available
      */
-    bool isAvailable(const KUrl& currentURL);
+    bool isAvailable(const QUrl &currentURL);
 
     const QString& iconName() const {
         return _iconName;
@@ -63,11 +64,6 @@ public:
 
     bool xmlRead(const QDomElement& element);
     QDomElement xmlDump(QDomDocument& doc) const;
-
-    void setName(const char*) { /* empty reimplementation to prevent a name-change */ };
-    const QString & getName()   {
-        return _name;
-    }
 
     QString category() const {
         return _category;
@@ -151,7 +147,7 @@ public:
     }
 
     QString text() const {
-        return KAction::text();
+        return QAction::text();
     }
 
 public slots:
@@ -179,15 +175,14 @@ private:
     QStringList _showonlyPath;
     QStringList _showonlyMime;
     QStringList _showonlyFile;
-
-    QString  _name;
+    KActionCollection *_actionCollection;
 };
 
 class QFont;
 /**
  * This displays the output of a process
  */
-class KrActionProcDlg: public KDialog
+class KrActionProcDlg: public QDialog
 {
     Q_OBJECT
 public:
@@ -196,10 +191,15 @@ public:
 public slots:
     void addStderr(const QString& str);
     void addStdout(const QString& str);
+    void slotProcessFinished();
 
 protected slots:
     void toggleFixedFont(bool state);
-    void slotUser1(); ///< This is used to save the buffer to disc
+    void slotSaveAs();
+
+
+signals:
+    void killClicked();
 
 private:
     KTextEdit *_stdout;
@@ -207,6 +207,8 @@ private:
     KTextEdit *_currentTextEdit;
     QFont normalFont;
     QFont fixedFont;
+    QPushButton *closeButton;
+    QPushButton *killButton;
 private slots:
     void currentTextEditChanged();
 };

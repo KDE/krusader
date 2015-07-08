@@ -20,26 +20,28 @@
 #include "krbookmarkbutton.h"
 #include "krbookmarkhandler.h"
 #include "../krglobal.h"
+
 #include <QtGui/QPixmap>
-#include <kiconloader.h>
-#include <kaction.h>
-#include <klocale.h>
-#include <kmenu.h>
-#include <kdebug.h>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QMenu>
+
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
 
 KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent)
 {
     setAutoRaise(true);
-    setIcon(KIcon("bookmarks"));
+    setIcon(QIcon::fromTheme("bookmarks"));
     setText(i18n("BookMan II"));
     setToolTip(i18n("BookMan II"));
     setPopupMode(QToolButton::InstantPopup);
     setAcceptDrops(false);
 
-    acmBookmarks = new KActionMenu(KIcon("bookmarks"), i18n("Bookmarks"), this);
+    acmBookmarks = new KActionMenu(QIcon::fromTheme("bookmarks"), i18n("Bookmarks"), this);
     acmBookmarks->setDelayed(false);
-    acmBookmarks->menu()->setKeyboardShortcutsEnabled(true);
-    acmBookmarks->menu()->setKeyboardShortcutsExecute(true);
+    // TODO KF5 : explicit cast as QMenu doesn't have those methods
+    //(acmBookmarks->menu())->setKeyboardShortcutsEnabled(true);
+    //(acmBookmarks->menu())->setKeyboardShortcutsExecute(true);
 
     setMenu(acmBookmarks->menu());
     connect(acmBookmarks->menu(), SIGNAL(aboutToShow()), this, SLOT(populate()));
@@ -49,7 +51,7 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent)
 
 void KrBookmarkButton::populate()
 {
-    krBookMan->populate(static_cast<KMenu*>(menu()));
+    krBookMan->populate(static_cast<QMenu*>(menu()));
 }
 
 void KrBookmarkButton::showMenu()
@@ -58,4 +60,3 @@ void KrBookmarkButton::showMenu()
     menu()->exec(mapToGlobal(QPoint(0, height())));
 }
 
-#include "krbookmarkbutton.moc"

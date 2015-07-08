@@ -30,14 +30,19 @@
 
 #include "konfiguratoritems.h"
 #include "../krglobal.h"
-#include <klocale.h>
-#include <klineedit.h>
+
+#include <QtCore/QMetaMethod>
 #include <QtGui/QPainter>
 #include <QtGui/QPen>
-#include <QtGui/QColorDialog>
-#include <QPixmap>
-#include <QLabel>
-#include <kiconloader.h>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QColorDialog>
+#include <QtWidgets/QFontDialog>
+#include <QtWidgets/QLabel>
+
+#include <KCompletion/KLineEdit>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
 
 KonfiguratorExtension::KonfiguratorExtension(QObject *obj, QString cfgClass, QString cfgName, bool rst, int pg) :
         QObject(), objectPtr(obj), applyConnected(false), setDefaultsConnected(false),
@@ -45,15 +50,11 @@ KonfiguratorExtension::KonfiguratorExtension(QObject *obj, QString cfgClass, QSt
 {
 }
 
-void KonfiguratorExtension::connectNotify(const char *signal)
+void KonfiguratorExtension::connectNotify(const QMetaMethod &signal)
 {
-    QString signalString = QString(signal).remove(' ');
-    QString applyString = QString(SIGNAL(applyManually(QObject *, QString, QString))).remove(' ');
-    QString defaultsString = QString(SIGNAL(setDefaultsManually(QObject *))).remove(' ');
-
-    if (signalString == applyString)
+    if (signal == QMetaMethod::fromSignal(&KonfiguratorExtension::applyManually))
         applyConnected = true;
-    else if (signalString == defaultsString)
+    else if (signal == QMetaMethod::fromSignal(&KonfiguratorExtension::setDefaultsManually))
         setDefaultsConnected = true;
 
     QObject::connectNotify(signal);
@@ -386,7 +387,6 @@ KonfiguratorURLRequester::KonfiguratorURLRequester(QString cls, QString name, QS
 
     connect(this, SIGNAL(textChanged(const QString &)), ext, SLOT(setChanged()));
 
-    button()->setIcon(KIcon(SmallIcon("document-open")));
     loadInitialValue();
 }
 
@@ -404,12 +404,12 @@ void KonfiguratorURLRequester::loadInitialValue()
 
 void KonfiguratorURLRequester::slotApply(QObject *, QString cls, QString name)
 {
-    KConfigGroup(krConfig, cls).writeEntry(name, expansion ? url().pathOrUrl() : text());
+    KConfigGroup(krConfig, cls).writeEntry(name, expansion ? url().toDisplayString(QUrl::PreferLocalFile) : text());
 }
 
 void KonfiguratorURLRequester::slotSetDefaults(QObject *)
 {
-    if (url() != defaultValue)
+    if (url().toDisplayString(QUrl::PreferLocalFile) != defaultValue)
         lineEdit()->setText(defaultValue);
 }
 
@@ -474,8 +474,9 @@ void KonfiguratorFontChooser::slotSetDefaults(QObject *)
 
 void KonfiguratorFontChooser::slotBrowseFont()
 {
-    int ok = KFontDialog::getFont(font);
-    if (ok != 1) return;  // cancelled by the user
+    bool ok;
+    font = QFontDialog::getFont(&ok, font, this);
+    if (!ok) return;  // cancelled by the user, and font is actually not changed (getFont returns the font we gave it)
     ext->setChanged();
     setFont();
 }
@@ -502,7 +503,7 @@ KonfiguratorComboBox::KonfiguratorComboBox(QString cls, QString name, QString df
 
 //  connect( this, SIGNAL( highlighted(int) ), ext, SLOT( setChanged() ) ); /* Removed because of startup combo failure */
     connect(this, SIGNAL(activated(int)), ext, SLOT(setChanged()));
-    connect(this, SIGNAL(textChanged(const QString &)), ext, SLOT(setChanged()));
+    connect(this, SIGNAL(currentTextChanged(QString)), ext, SLOT(setChanged()));
 
     setEditable(editable);
     loadInitialValue();
@@ -834,4 +835,3 @@ void KonfiguratorListBox::removeItem(const QString & item)
         ext->setChanged();
 }
 
-#include "konfiguratoritems.moc"

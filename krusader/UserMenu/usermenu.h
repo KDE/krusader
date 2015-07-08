@@ -20,16 +20,16 @@
 #ifndef USERMENU_H
 #define USERMENU_H
 
-#include <kmenu.h>
+#include <QtWidgets/QMenu>
 
 class QWidget;
 class UserMenu;
 class QAction;
 
-class UserMenuGui: public KMenu
+class UserMenuGui: public QMenu
 {
 public:
-    UserMenuGui(UserMenu* menu, QWidget *parent = 0);
+    UserMenuGui(QWidget *parent = 0);
     void run();
     void createMenu();
 

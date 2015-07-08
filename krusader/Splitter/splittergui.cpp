@@ -32,24 +32,23 @@
 
 #include "../VFS/vfs.h"
 
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kconfiggroup.h>
-#include <kglobal.h>
-#include <kdebug.h>
+#include <QtCore/QDebug>
+#include <QtGui/QValidator>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QDoubleSpinBox>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QFrame>
 
-#include <QDoubleSpinBox>
-#include <QValidator>
-#include <QLineEdit>
-#include <QComboBox>
-#include <QCheckBox>
-#include <QLayout>
-#include <QLabel>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QFrame>
-#include <QKeyEvent>
-
+#include <KConfigCore/KConfigGroup>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
 
 struct SplitterGUI::PredefinedDevice
 {
@@ -80,7 +79,7 @@ const QList<SplitterGUI::PredefinedDevice> &SplitterGUI::predefinedDevices()
     return list;
 };
 
-SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
+SplitterGUI::SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir) :
         QDialog(parent),
         userDefinedSize(0x100000), lastSelectedDevice(-1), resultCode(QDialog::Rejected),
         division(1)
@@ -92,12 +91,12 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
     grid->setContentsMargins(11, 11, 11, 11);
 
     QLabel *splitterLabel = new QLabel(this);
-    splitterLabel->setText(i18n("Split the file %1 to directory:", fileURL.pathOrUrl()));
+    splitterLabel->setText(i18n("Split the file %1 to directory:", fileURL.toDisplayString(QUrl::PreferLocalFile)));
     splitterLabel->setMinimumWidth(400);
     grid->addWidget(splitterLabel, 0 , 0);
 
     urlReq = new KUrlRequester(this);
-    urlReq->setUrl(defaultDir.pathOrUrl());
+    urlReq->setUrl(defaultDir);
     urlReq->setMode(KFile::Directory);
     grid->addWidget(urlReq, 1 , 0);
 
@@ -154,12 +153,12 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
 
     QPushButton *splitBtn = new QPushButton(this);
     splitBtn->setText(i18n("&Split"));
-    splitBtn->setIcon(KIcon("dialog-ok"));
+    splitBtn->setIcon(QIcon::fromTheme("dialog-ok"));
     splitButtons->addWidget(splitBtn);
 
     QPushButton *cancelBtn = new QPushButton(this);
     cancelBtn->setText(i18n("&Cancel"));
-    cancelBtn->setIcon(KIcon("dialog-cancel"));
+    cancelBtn->setIcon(QIcon::fromTheme("dialog-cancel"));
     splitButtons->addWidget(cancelBtn);
 
     grid->addLayout(splitButtons, 5 , 0);
@@ -167,7 +166,7 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
     setWindowTitle(i18n("Krusader::Splitter"));
 
 
-    KConfigGroup cfg(KGlobal::config(), "Splitter");
+    KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("Splitter"));
     overwriteCb->setChecked(cfg.readEntry("OverWriteFiles", false));
 
     connect(sizeCombo, SIGNAL(activated(int)), this, SLOT(sizeComboActivated(int)));
@@ -181,7 +180,7 @@ SplitterGUI::SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir) :
 
 SplitterGUI::~SplitterGUI()
 {
-    KConfigGroup cfg(KGlobal::config(), "Splitter");
+    KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("Splitter"));
     cfg.writeEntry("OverWriteFiles", overwriteCb->isChecked());
 }
 
@@ -242,7 +241,7 @@ void SplitterGUI::predefinedComboActivated(int item)
     } else // user defined size selected
         spinBox->setEnabled(true);
 
-    kDebug() << capacity;
+    //qDebug() << capacity;
 
     if (capacity >= 0x40000000) {          /* Gbyte */
         sizeCombo->setCurrentIndex(3);
@@ -285,4 +284,3 @@ void SplitterGUI::keyPressEvent(QKeyEvent *e)
     }
 }
 
-#include "splittergui.moc"

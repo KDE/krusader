@@ -19,7 +19,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include <QStringList>
+#include <QtCore/QStringList>
 
 class KConfigGroup;
 

@@ -39,15 +39,17 @@
 #include "../KrJS/krjs.h"
 #endif
 
-#include <kdebug.h>
-#include <kinputdialog.h>
-#include <kstandarddirs.h>
-#include <kmessagebox.h>
-#include <ktemporaryfile.h>
+#include <QtCore/QDebug>
 #include <QtCore/QStringList>
-#include <QtGui/QClipboard>
 #include <QtCore/QTextStream>
-#include <QList>
+#include <QtCore/QList>
+#include <QtCore/QTemporaryFile>
+#include <QtGui/QClipboard>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QInputDialog>
+
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
 
 #include <functional>
 #include <algorithm>
@@ -92,13 +94,12 @@ QStringList exp_placeholder::fileList(const KrPanel* const panel, const QString&
     }
     if (!omitPath) {    // add the current path
         // translate to urls using vfs
-        KUrl::List* list = panel->func->files()->vfs_getFiles(&items);
+        QList<QUrl> list = panel->func->files()->vfs_getFiles(items);
         items.clear();
         // parse everything to a single qstring
-        for (KUrl::List::Iterator it = list->begin(); it != list->end(); ++it) {
-            items.push_back(useUrl ? (*it).url() : (*it).path());
+        foreach(const QUrl &url, list) {
+            items.push_back(useUrl ? url.url() : url.path());
         }
-        delete list;
     }
 
     return items;
@@ -361,7 +362,7 @@ TagString exp_Current::expFunc(const KrPanel* panel, const QStringList& paramete
     if (parameter.count() > 0 && parameter[0].toLower() == "yes")    // omit the current path
         result = item;
     else {
-        KUrl url = panel->func->files()->vfs_getFile(item);
+        QUrl url = panel->func->files()->vfs_getFile(item);
         if (useUrl)
             result = url.url();
         else
@@ -432,9 +433,8 @@ TagString exp_ListFile::expFunc(const KrPanel* panel, const QStringList& paramet
         mask = '*';
     else
         mask = parameter[3];
-    KTemporaryFile tmpFile;
+    QTemporaryFile tmpFile(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.itemlist"));
     tmpFile.setAutoRemove(false);
-    tmpFile.setSuffix(".itemlist");
 
     if (!tmpFile.open()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_WORLD, i18n("Expander: temporary file could not be opened (%1)", tmpFile.errorString())));
@@ -508,13 +508,14 @@ TagString exp_Goto::expFunc(const KrPanel* panel, const QStringList& parameter, 
         return QString();
     }
 
+    QUrl url = QUrl::fromUserInput(parameter[0], QString(), QUrl::AssumeLocalFile);
     if (newTab) {
         if (panel == LEFT_PANEL)
-            MAIN_VIEW->leftManager()->slotNewTab(parameter[0]);
+            MAIN_VIEW->leftManager()->slotNewTab(url);
         else
-            MAIN_VIEW->rightManager()->slotNewTab(parameter[0]);
+            MAIN_VIEW->rightManager()->slotNewTab(url);
     } else {
-        panel->func->openUrl(parameter[0], "");
+        panel->func->openUrl(url, "");
         panel->gui->slotFocusOnMe();
     }
 
@@ -561,11 +562,7 @@ TagString exp_Ask::expFunc(const KrPanel*, const QStringList& parameter, const b
         preset = parameter[1];
 
     bool ok;
-    result = KInputDialog::getText(
-                 caption,
-                 parameter[0],
-                 preset,
-                 &ok);
+    result = QInputDialog::getText(krMainWindow, caption, parameter[0], QLineEdit::Normal, preset, &ok);
 
     if (ok)
         return result;
@@ -586,7 +583,7 @@ exp_Clipboard::exp_Clipboard()
 }
 TagString exp_Clipboard::expFunc(const KrPanel*, const TagStringList& parameter, const bool&, Expander& exp) const
 {
-//    kDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << KApplication::clipboard()->text() << endl;
+//    qDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << QApplication::clipboard()->text() << endl;
     if (parameter.count() == 0) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Clipboard.")));
         return QString();
@@ -597,10 +594,10 @@ TagString exp_Clipboard::expFunc(const KrPanel*, const TagStringList& parameter,
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("Expander: %Each% may not be in the second argument of %Clipboard%")));
         return QString();
     }
-    if (parameter.count() <= 1 || parameter[1].string().isEmpty() || KApplication::clipboard()->text().isEmpty())
-        KApplication::clipboard()->setText(lst.join("\n"));
+    if (parameter.count() <= 1 || parameter[1].string().isEmpty() || QApplication::clipboard()->text().isEmpty())
+        QApplication::clipboard()->setText(lst.join("\n"));
     else
-        KApplication::clipboard()->setText(KApplication::clipboard()->text() + parameter[1].string() + lst.join("\n"));
+        QApplication::clipboard()->setText(QApplication::clipboard()->text() + parameter[1].string() + lst.join("\n"));
 
     return QString();  // this doesn't return anything, that's normal!
 }
@@ -621,19 +618,19 @@ TagString exp_Copy::expFunc(const KrPanel*, const TagStringList& parameter, cons
         return QString();
     }
 
-    // basically the parameter can already be used as URL, but since KUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
+    // basically the parameter can already be used as URL, but since QUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
     QStringList lst = splitEach(parameter[0]);
     if (!parameter[1].isSimple()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("Expander: %Each% may not be in the second argument of %Copy%")));
         return QString();
     }
-    KUrl::List src;
+    QList<QUrl> src;
     for (QStringList::const_iterator it = lst.constBegin(), end = lst.constEnd();it != end;++it)
-        src.push_back(KUrl(*it));
+        src.push_back(QUrl::fromUserInput(*it, QString(), QUrl::AssumeLocalFile));
     // or transform(...) ?
-    KUrl dest = KUrl(parameter[1].string());
+    QUrl dest = QUrl::fromUserInput(parameter[1].string(), QString(), QUrl::AssumeLocalFile);
 
-    if (!dest.isValid() || find_if(src.constBegin(), src.constEnd(), not1(mem_fun_ref(&KUrl::isValid))) != src.constEnd()) {
+    if (!dest.isValid() || find_if(src.constBegin(), src.constEnd(), not1(mem_fun_ref(&QUrl::isValid))) != src.constEnd()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: invalid URLs in %_Copy(\"src\", \"dest\")%")));
         return QString();
     }
@@ -659,19 +656,19 @@ TagString exp_Move::expFunc(const KrPanel*, const TagStringList& parameter, cons
         return QString();
     }
 
-    // basically the parameter can already be used as URL, but since KUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
+    // basically the parameter can already be used as URL, but since QUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
     QStringList lst = splitEach(parameter[0]);
     if (!parameter[1].isSimple()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("%Each% may not be in the second argument of %Move%")));
         return QString();
     }
-    KUrl::List src;
+    QList<QUrl> src;
     for (QStringList::const_iterator it = lst.constBegin(), end = lst.constEnd();it != end;++it)
-        src.push_back(KUrl(*it));
+        src.push_back(QUrl::fromUserInput(*it, QString(), QUrl::AssumeLocalFile));
     // or transform(...) ?
-    KUrl dest = KUrl(parameter[1].string());
+    QUrl dest = QUrl::fromUserInput(parameter[1].string(), QString(), QUrl::AssumeLocalFile);
 
-    if (!dest.isValid() || find_if(src.constBegin(), src.constEnd(), not1(mem_fun_ref(&KUrl::isValid))) != src.constEnd()) {
+    if (!dest.isValid() || find_if(src.constBegin(), src.constEnd(), not1(mem_fun_ref(&QUrl::isValid))) != src.constEnd()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: invalid URLs in %_Move(\"src\", \"dest\")%")));
         return QString();
     }
@@ -894,7 +891,7 @@ TagString exp_Script::expFunc(const KrPanel*, const QStringList& parameter, cons
     }
 
     QString filename = parameter[0];
-    if (filename.find('/') && KUrl::isRelativeUrl(filename)) {
+    if (filename.find('/') && QUrl::isRelativeUrl(filename)) {
         // this return the local version of the file if this exists. else the global one is returnd
         filename = locate("data", "krusader/js/" + filename);
     }
@@ -963,7 +960,8 @@ TagString exp_View::expFunc(const KrPanel*, const QStringList& parameter, const 
     if (viewMode == "text") mode = KrViewer::Text;
     else if (viewMode == "hex") mode = KrViewer::Hex;
 
-    KrViewer::view(parameter[0], mode, (windowMode == "window"));
+    QUrl url = QUrl::fromUserInput(parameter[0], QString(), QUrl::AssumeLocalFile);
+    KrViewer::view(url, mode, (windowMode == "window"));
     //TODO: Call the viewer with viewMode and windowMode. Filename is in parameter[0].
     // It would be nice if parameter[0] could also be a space-separated filename-list (provided if the first parameter is %aList(selected)%)
 
@@ -1043,7 +1041,7 @@ TagString Expander::expandCurrent(const QString& stringToExpand, bool useUrl)
 
         // get the expression, and expand it using the correct expander function
         exp = stringToExpand.mid(begin + 1, end - begin - 1);
-//       kDebug() << "------------- exp: '" << exp << "'" << endl;
+//       qDebug() << "------------- exp: '" << exp << "'" << endl;
         if (exp.isEmpty())
             result += QString(QChar('%'));
         else {
@@ -1054,13 +1052,13 @@ TagString Expander::expandCurrent(const QString& stringToExpand, bool useUrl)
             exp.replace(0, 1, "");
             for (i = 0; i < placeholderCount(); ++i)
                 if (exp == placeholder(i)->expression()) {
-//               kDebug() << "---------------------------------------" << endl;
+//               qDebug() << "---------------------------------------" << endl;
                     tmpResult = placeholder(i)->expFunc(getPanel(panelIndicator, placeholder(i), *this), parameter, useUrl, *this);
                     if (error()) {
                         return QString();
                     } else
                         result += tmpResult;
-//               kDebug() << "---------------------------------------" << endl;
+//               qDebug() << "---------------------------------------" << endl;
                     break;
                 }
             if (i == placeholderCount()) {   // didn't find an expander
@@ -1072,7 +1070,7 @@ TagString Expander::expandCurrent(const QString& stringToExpand, bool useUrl)
     }
     // copy the rest of the string
     result += stringToExpand.mid(idx);
-//    kDebug() << "============== result '" << result << "'" << endl;
+//    qDebug() << "============== result '" << result << "'" << endl;
     return result;
 }
 
@@ -1093,7 +1091,7 @@ QStringList Expander::splitEach(TagString stringToSplit)
         ret += splitEach(s);
     }
     return ret;
-//    kDebug() << "stringToSplit: " << stringToSplit << endl;
+//    qDebug() << "stringToSplit: " << stringToSplit << endl;
 }
 
 TagStringList Expander::separateParameter(QString* const exp, bool useUrl)

@@ -34,12 +34,13 @@
 #define KRSEARCHMOD_H
 
 #include <QtCore/QObject>
-#include <qstack.h>
 #include <QtCore/QStringList>
 #include <QtCore/QDateTime>
-#include <time.h>
-#include <kio/global.h>
-#include <kurl.h>
+#include <QtCore/QStack>
+#include <QtCore/QUrl>
+
+#include <KIO/Global>
+
 #include "../VFS/ftp_vfs.h"
 #include "../VFS/virt_vfs.h"
 
@@ -54,13 +55,13 @@ public:
     KRSearchMod(const KRQuery *q);
     ~KRSearchMod();
 
-    void scanURL(KUrl url);
+    void scanURL(QUrl url);
     void start();
     void stop();
 
 private:
-    void scanLocalDir(KUrl url);
-    void scanRemoteDir(KUrl url);
+    void scanLocalDir(QUrl url);
+    void scanRemoteDir(QUrl url);
 
 signals:
     void finished();
@@ -73,8 +74,8 @@ private slots:
 
 private:
     bool stopSearch;
-    QStack<KUrl> scannedUrls;
-    QStack<KUrl> unScannedUrls;
+    QStack<QUrl> scannedUrls;
+    QStack<QUrl> unScannedUrls;
     KRQuery *query;
     QStringList results;
 

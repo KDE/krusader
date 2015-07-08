@@ -16,15 +16,16 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include <kcursor.h>         //make()
-#include <kglobalsettings.h> //kdeColours
-#include <kiconeffect.h>     //desaturate()
-#include <QApplication>    //make()
-#include <QImage>          //make() & paint()
-#include <qfont.h>           //ctor
-#include <QFontMetrics>    //ctor
-#include <QPainter>
-#include <QPolygon>
+#include <QtGui/QImage>          //make() & paint()
+#include <QtGui/QFont>                                    //ctor
+#include <QtGui/QFontMetrics>                               //ctor
+#include <QtGui/QPainter>
+#include <QtGui/QPolygon>
+#include <QtWidgets/QApplication>    //make()
+
+#include <KIconThemes/KIconEffect>                        //desaturate()
+#include <KWidgetsAddons/KCursor>         //make()
+#include <KConfigWidgets/KColorScheme>
 
 #include "builder.h"
 #include "Config.h"
@@ -168,7 +169,8 @@ RadialMap::Map::colorise()
     double contrast = (double)Config::contrast / (double)100;
     int h, s1, s2, v1, v2;
 
-    QColor kdeColour[2] = { KGlobalSettings::inactiveTitleColor(), KGlobalSettings::activeTitleColor() };
+    QColor kdeColour[2] = { KColorScheme(QPalette::Inactive, KColorScheme::Window).background().color(),
+                            KColorScheme(QPalette::Active, KColorScheme::Window).background(KColorScheme::ActiveBackground).color() };
 
     double deltaRed   = (double)(kdeColour[0].red()   - kdeColour[1].red())   / 2880; //2880 for semicircle
     double deltaGreen = (double)(kdeColour[0].green() - kdeColour[1].green()) / 2880;

@@ -21,9 +21,12 @@
 #include "krcolorcache.h"
 #include "../krglobal.h"
 
-#include <kcolorscheme.h>
-#include <kurl.h>
-#include <QDragEnterEvent>
+#include <QtCore/QUrl>
+#include <QtGui/QDragEnterEvent>
+#include <QtGui/QGuiApplication>
+
+#include <KConfigCore/KSharedConfig>
+#include <KCoreAddons/KUrlMimeData>
 
 ListPanelFrame::ListPanelFrame(QWidget *parent, QString color) : QFrame(parent), color(color)
 {
@@ -38,7 +41,7 @@ ListPanelFrame::ListPanelFrame(QWidget *parent, QString color) : QFrame(parent),
 void ListPanelFrame::dragEnterEvent(QDragEnterEvent *e)
 {
     if (acceptDrops()) {
-        KUrl::List URLs = KUrl::List::fromMimeData(e->mimeData());
+        QList<QUrl> URLs = KUrlMimeData::urlsFromMimeData(e->mimeData());
         e->setAccepted(!URLs.isEmpty());
     } else
         QFrame::dragEnterEvent(e);
@@ -46,18 +49,23 @@ void ListPanelFrame::dragEnterEvent(QDragEnterEvent *e)
 
 void ListPanelFrame::colorsChanged()
 {
-    QColor windowForeground = KColorScheme(QPalette::Active, KColorScheme::Window).foreground().color();
-    QColor windowBackground = KColorScheme(QPalette::Active, KColorScheme::Window).background().color();
+    QPalette p = QGuiApplication::palette();
+    QColor windowForeground = p.color(QPalette::Active, QPalette::WindowText);
+    QColor windowBackground = p.color(QPalette::Active, QPalette::Window);
 
     KConfigGroup gc(krConfig, "Colors");
     QColor fgAct = getColor(gc, color + " Foreground Active",
-        KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color(), windowForeground);
+                            p.color(QPalette::Active, QPalette::HighlightedText),
+                            windowForeground);
     QColor bgAct = getColor(gc, color + " Background Active",
-        KColorScheme(QPalette::Active, KColorScheme::Selection).background().color(), windowBackground);
+                            p.color(QPalette::Active, QPalette::Highlight),
+                            windowBackground);
     QColor fgInact = getColor(gc, color + " Foreground Inactive",
-        KColorScheme(QPalette::Active, KColorScheme::View).foreground().color(), windowForeground);
+                              p.color(QPalette::Active, QPalette::Text),
+                              windowForeground);
     QColor bgInact = getColor(gc, color + " Background Inactive",
-        KColorScheme(QPalette::Active, KColorScheme::View).background().color(), windowBackground);
+                              p.color(QPalette::Active, QPalette::Base),
+                              windowBackground);
 
     palActive = palInactive = palette();
 

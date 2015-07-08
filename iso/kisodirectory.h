@@ -20,7 +20,8 @@
 #define KISODIRECTORY_H
 
 #include <QtCore/QString>
-#include <karchive.h>
+
+#include <KArchive/KArchive>
 
 class KIsoDirectory : public KArchiveDirectory
 {
@@ -29,6 +30,9 @@ public:
                   int adate, int cdate, const QString& user, const QString& group,
                   const QString& symlink);
     ~KIsoDirectory();
+    int date() const {
+        return m_date;
+    }
     int adate() const {
         return m_adate;
     }
@@ -36,7 +40,7 @@ public:
         return m_cdate;
     }
 private:
-    int m_adate, m_cdate;
+    int m_date, m_adate, m_cdate;
 };
 
 #endif

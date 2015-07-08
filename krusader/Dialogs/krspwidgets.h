@@ -30,14 +30,15 @@
 #ifndef KRSPWIDGETS_H
 #define KRSPWIDGETS_H
 
-#include <QMouseEvent>
-#include <QEvent>
-#include <kurl.h>
+#include <QtCore/QEvent>
+#include <QtGui/QMouseEvent>
+
+#include <KCompletion/KLineEdit>
+#include <KNotifications/KPassivePopup>
+
 #include "krmaskchoice.h"
 #include "newftpgui.h"
 #include "../VFS/krquery.h"
-#include <klineedit.h>
-#include <kpassivepopup.h>
 
 class newFTPGUI;
 
@@ -51,7 +52,7 @@ public:
     KRSpWidgets();
 
     static KRQuery getMask(QString caption, bool nameOnly = false, QWidget * parent = 0); // get file-mask for (un)selecting files
-    static KUrl newFTP();
+    static QUrl newFTP();
 
 private:
     static QStringList maskList;  // used by KRMaskChoiceSub

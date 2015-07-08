@@ -19,14 +19,14 @@
 #ifndef USERACTIONPOPUPMENU_H
 #define USERACTIONPOPUPMENU_H
 
-#include <kactionmenu.h>
+#include <KWidgetsAddons/KActionMenu>
 
-class KUrl;
+class QUrl;
 
 class UserActionPopupMenu : public KActionMenu
 {
 public:
-    UserActionPopupMenu(const KUrl &currentURL, QWidget *parent = 0);
+    UserActionPopupMenu(const QUrl &currentURL, QWidget *parent = 0);
 };
 
 #endif // USERACTIONPOPUPMENU_H

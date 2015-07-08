@@ -30,20 +30,18 @@
 #ifndef KRVIEW_H
 #define KRVIEW_H
 
-#include <QtGui/QPixmap>
 #include <QtCore/QVariant>
 #include <QtCore/QHash>
 #include <QtCore/QRegExp>
-#include <QDropEvent>
-#include <QList>
-#include <QModelIndex>
-#include <QTimer>
+#include <QtCore/QList>
+#include <QtCore/QModelIndex>
+#include <QtCore/QTimer>
+#include <QtGui/QPixmap>
+#include <QtGui/QDropEvent>
+
 #include "../krglobal.h"
-#include "../VFS/vfile.h"
 #include "../VFS/krquery.h"
 #include "../Filter/filtersettings.h"
-
-#include <kdebug.h>
 
 #define MAX_BRIEF_COLS 5
 
@@ -125,7 +123,7 @@ public:
     KrViewOperator(KrView *view, QWidget *widget);
     ~KrViewOperator();
 
-    virtual bool eventFilter(QObject *watched, QEvent *event);
+    virtual bool eventFilter(QObject *watched, QEvent *event) Q_DECL_OVERRIDE;
 
     KrView *view() const {
         return _view;
@@ -332,8 +330,8 @@ public:
     virtual void        selectRegion(KrViewItem *, KrViewItem *, bool) = 0;
 
     virtual uint numSelected() const = 0;
-    virtual KUrl::List selectedUrls() = 0;
-    virtual void setSelection(const KUrl::List urls) = 0;
+    virtual QList<QUrl> selectedUrls() = 0;
+    virtual void setSelection(const QList<QUrl> urls) = 0;
     virtual KrViewItem *getFirst() = 0;
     virtual KrViewItem *getLast() = 0;
     virtual KrViewItem *getNext(KrViewItem *current) = 0;
@@ -527,7 +525,7 @@ protected:
     KConfig *_config;
     QWidget *_mainWindow;
     QWidget *_widget;
-    KUrl::List _savedSelection;
+    QList<QUrl> _savedSelection;
     QString _nameToMakeCurrent;
     QString _nameToMakeCurrentIfAdded;
     KrViewProperties *_properties;

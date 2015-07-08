@@ -20,20 +20,16 @@
 #include "panelviewer.h"
 
 #include <QtCore/QFile>
-#include <QApplication>
+#include <QtWidgets/QApplication>
 
-#include <kparts/browserextension.h>
-#include <kmessagebox.h>
-#include <kmimetype.h>
-#include <ktemporaryfile.h>
-#include <klocale.h>
-#include <klibloader.h>
-#include <kservicetypeprofile.h>
-#include <kmimetypetrader.h>
-#include <kdebug.h>
-#include <kfileitem.h>
-#include <kio/netaccess.h>
-#include <kde_file.h>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KParts/BrowserExtension>
+#include <KParts/ReadWritePart>
+#include <KWidgetsAddons/KMessageBox>
+#include <KService/KServiceTypeProfile>
+#include <KService/KMimeTypeTrader>
+#include <KIOCore/KFileItem>
 
 #include "lister.h"
 #include "../defaults.h"
@@ -94,14 +90,14 @@ KParts::ReadOnlyPart* PanelViewerBase::getPart(QString mimetype)
     return part;
 }
 
-void PanelViewerBase::openUrl(KUrl url)
+void PanelViewerBase::openUrl(QUrl url)
 {
     closeUrl();
     curl = url;
     emit urlChanged(this, url);
 
     if (url.isLocalFile())
-        openFile(KFileItem(KFileItem::Unknown, KFileItem::Unknown, url));
+        openFile(KFileItem(url));
     else {
         KIO::StatJob* statJob = KIO::stat(url, KIO::HideProgressInfo);
         connect(statJob, SIGNAL(result(KJob*)), this, SLOT(slotStatResult(KJob*)));
@@ -176,10 +172,7 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(KFileItem fi)
     else if (modeString == "hex") mode = KrViewer::Hex;
     else if (modeString == "lister") mode = KrViewer::Lister;
 
-    bool isBinary = false;
-    // FIXME isBinaryData() only works on local files
-    if (fi.isLocalFile())
-        isBinary  = KMimeType::isBinaryData(fi.localPath());
+    bool isBinary = !fi.determineMimeType().inherits(QStringLiteral("text/plain"));
 
     KIO::filesize_t fileSize = fi.size();
     KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit) * 0x100000;
@@ -289,8 +282,8 @@ KParts::ReadOnlyPart* PanelViewer::createPart(QString mimetype)
     if (part) {
         KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(part);
         if (ext) {
-            connect(ext, SIGNAL(openUrlRequestDelayed(const KUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SLOT(openUrl(const KUrl &)));
-            connect(ext, SIGNAL(openUrlRequestDelayed(const KUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SIGNAL(openUrlRequest(const KUrl &)));
+            connect(ext, SIGNAL(openUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SLOT(openUrl(const QUrl &)));
+            connect(ext, SIGNAL(openUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SIGNAL(openUrlRequest(const QUrl &)));
         }
     }
     return part;
@@ -342,7 +335,7 @@ void PanelEditor::openFile(KFileItem fi)
         if(!cpart || mimetype.startsWith(QLatin1String("text/")) ||
                 mimetype.startsWith(QLatin1String("all/"))) {
             if(KMessageBox::Cancel == KMessageBox::warningContinueCancel(this,
-                  i18n("%1 is bigger than %2 MB" , curl.pathOrUrl(), limitMB))) {
+                  i18n("%1 is bigger than %2 MB" , curl.toDisplayString(QUrl::PreferLocalFile), limitMB))) {
                 setCurrentWidget(fallback);
                 emit openUrlFinished(this, false);
                 return;
@@ -368,7 +361,7 @@ void PanelEditor::openFile(KFileItem fi)
             return;
         } // else: don't show error message - assume this has been done by the editor part
     } else
-        KMessageBox::sorry(this, missingKPartMsg(), i18n("Cannot edit %1", curl.pathOrUrl()),
+        KMessageBox::sorry(this, missingKPartMsg(), i18n("Cannot edit %1", curl.toDisplayString(QUrl::PreferLocalFile)),
                            KMessageBox::AllowLink);
 
     setCurrentWidget(fallback);
@@ -408,8 +401,8 @@ KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
     if (part) {
         KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(part);
         if (ext) {
-            connect(ext, SIGNAL(openUrlRequestDelayed(const KUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SLOT(openUrl(const KUrl &)));
-            connect(ext, SIGNAL(openUrlRequestDelayed(const KUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SIGNAL(openUrlRequest(const KUrl &)));
+            connect(ext, SIGNAL(openUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SLOT(openUrl(const QUrl &)));
+            connect(ext, SIGNAL(openUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SIGNAL(openUrlRequest(const QUrl &)));
         }
     }
     return part;
@@ -423,4 +416,3 @@ bool PanelEditor::isModified()
         return false;
 }
 
-#include "panelviewer.moc"

@@ -18,14 +18,15 @@
 
 #include "useractionpopupmenu.h"
 
-#include <kurl.h>
-#include <klocale.h>
+#include <QtCore/QUrl>
+
+#include <KI18n/KLocalizedString>
 
 #include "../krglobal.h"
 #include "useraction.h"
 #include "kraction.h"
 
-UserActionPopupMenu::UserActionPopupMenu(const KUrl &currentURL, QWidget *parent)
+UserActionPopupMenu::UserActionPopupMenu(const QUrl &currentURL, QWidget *parent)
         : KActionMenu(i18n("User Actions"), parent)
 {
     krUserAction->populateMenu(this, &currentURL);

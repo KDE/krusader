@@ -19,16 +19,15 @@
 #ifndef QUEUEDIALOG_H
 #define QUEUEDIALOG_H
 
-#include <KDialog>
+#include <QtWidgets/QDialog>
 
-class QPaintEvent;
 class QToolButton;
 class QueueWidget;
 class QLabel;
 class QProgressBar;
 class Queue;
 
-class QueueDialog : public KDialog
+class QueueDialog : public QDialog
 {
     Q_OBJECT
 
@@ -43,24 +42,19 @@ public:
     static void everyQueueIsEmpty();
 
 public slots:
-    virtual void accept();
-    virtual void reject();
+    void reject() Q_DECL_OVERRIDE;
 
     void slotUpdateToolbar();
     void slotPauseClicked();
     void slotScheduleClicked();
     void slotNewTab();
+    void slotNextTab();
+    void slotPrevTab();
     void slotDeleteCurrentTab();
     void slotPercentChanged(Queue *, int);
 
 protected:
-    virtual void paintEvent(QPaintEvent * event);
-    virtual void mousePressEvent(QMouseEvent *me);
-    virtual void mouseMoveEvent(QMouseEvent *me);
-    virtual void keyPressEvent(QKeyEvent *ke);
-    virtual void slotButtonClicked(int button);
-
-    void         saveSettings();
+    void saveSettings();
 
 private:
     static QueueDialog * _queueDialog;
@@ -74,8 +68,6 @@ private:
     QueueWidget        * _queueWidget;
     QLabel             * _statusLabel;
 
-    QPoint               _clickPos;
-    QPoint               _startPos;
     bool                 _autoHide;
 };
 

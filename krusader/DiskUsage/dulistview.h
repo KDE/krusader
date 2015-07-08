@@ -31,8 +31,8 @@
 #ifndef DULISTVIEW_H
 #define DULISTVIEW_H
 
-#include <QMouseEvent>
-#include <QKeyEvent>
+#include <QtGui/QMouseEvent>
+#include <QtGui/QKeyEvent>
 
 #include "../GUI/krtreewidget.h"
 #include "diskusage.h"
@@ -129,7 +129,7 @@ public:
         diskUsage->removeProperty(file, "ListView-Ref");
     }
 
-    virtual bool operator<(const QTreeWidgetItem &other) const {
+    virtual bool operator<(const QTreeWidgetItem &other) const Q_DECL_OVERRIDE {
         int column = treeWidget() ? treeWidget()->sortColumn() : 0;
 
         if (text(0) == "..")
@@ -181,8 +181,8 @@ public slots:
 protected:
     DiskUsage *diskUsage;
 
-    virtual void mouseDoubleClickEvent(QMouseEvent * e);
-    virtual void keyPressEvent(QKeyEvent *e);
+    virtual void mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 
 private:
     void addDirectory(Directory *dirEntry, QTreeWidgetItem *parent);

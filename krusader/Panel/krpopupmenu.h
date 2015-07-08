@@ -20,14 +20,14 @@
 #ifndef KRPOPUPMENU_H
 #define KRPOPUPMENU_H
 
-#include <kmenu.h>
-#include <kurl.h>
-#include <kservice.h>
+#include <QtWidgets/QMenu>
+
+#include <KService/KService>
 
 #ifdef __LIBKONQ__
 #include <konq_popupmenu.h>
 #include <konq_menuactions.h>
-#include <kbookmarkmanager.h>
+#include <KBookmarks/KBookmarkManager>
 #endif
 
 #include "krpreviewpopup.h"
@@ -38,7 +38,7 @@ class KActionCollection;
 class KrPanel;
 
 // should be renamed to KrContextMenu or similar
-class KrPopupMenu : public KMenu
+class KrPopupMenu : public QMenu
 {
     Q_OBJECT
 public:
@@ -89,7 +89,7 @@ protected:
 private:
     KrPanel *panel;
     bool empty, multipleSelections;
-    KMenu openWith, linkPopup, createNewPopup;
+    QMenu openWith, linkPopup, createNewPopup;
     KrPreviewPopup preview;
     KActionCollection *actions;
     KFileItem *_item;

@@ -31,18 +31,18 @@
 #ifndef LOCATE_H
 #define LOCATE_H
 
-#include <QtGui/QCheckBox>
 #include <QtGui/QKeyEvent>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QDialog>
 
-#include <KDialog>
-#include <KComboBox>
-#include <KHistoryComboBox>
+#include <KCompletion/KComboBox>
+#include <KCompletion/KHistoryComboBox>
 
 class KProcess;
 class KrTreeWidget;
 class QTreeWidgetItem;
 
-class LocateDlg : public KDialog
+class LocateDlg : public QDialog
 {
     Q_OBJECT
 
@@ -56,9 +56,9 @@ public:
     void              reset();
 
 public slots:
-    virtual void      slotUser1();
-    virtual void      slotUser2();
-    virtual void      slotUser3();
+    void              slotFeedStop();
+    void              slotUpdateDb();
+    void              slotLocate();
 
     void              processStdout();
     void              processStderr();
@@ -69,7 +69,7 @@ public slots:
     void              updateFinished();
 
 protected:
-    virtual void      keyPressEvent(QKeyEvent *);
+    void              keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
 
 private:
     void              operate(QTreeWidgetItem *item, int task);
@@ -103,7 +103,11 @@ private:
     QCheckBox        *existingFiles;
     QCheckBox        *caseSensitive;
 
-    KProcess *locateProc;
+    QPushButton      *feedStopButton;
+    QPushButton      *updateDbButton;
+    QPushButton      *locateButton;
+
+    KProcess         *locateProc;
     static KProcess *updateProcess;
 };
 

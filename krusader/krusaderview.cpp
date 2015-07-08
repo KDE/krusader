@@ -30,18 +30,18 @@
 
 #include "krusaderview.h"
 
-#include <QGridLayout>
-#include <QList>
-#include <QKeyEvent>
-#include <QEvent>
+#include <QtCore/QList>
+#include <QtCore/QEvent>
+#include <QtGui/QKeyEvent>
 #include <QtGui/QClipboard>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QStatusBar>
 
-#include <kstatusbar.h>
-#include <kmenubar.h>
-#include <kshortcut.h>
-#include <ktoolbar.h>
-#include <ktoggleaction.h>
-#include <klibloader.h>
+#include <KI18n/KLocalizedString>
+#include <KXmlGui/KToolBar>
+#include <KWidgetsAddons/KToggleAction>
 
 #include "krusader.h"
 #include "kractions.h"
@@ -63,7 +63,7 @@ KrusaderView::KrusaderView(QWidget *parent) : QWidget(parent),
 {
 }
 
-void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList leftTabs, QStringList rightTabs)
+void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, const QList<QUrl> &leftTabs, const QList<QUrl> &rightTabs)
 {
     ////////////////////////////////
     // make a 1x1 mainLayout, it will auto-expand:
@@ -125,31 +125,32 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, QStringList le
         verticalSplitterSizes[1] = 100;
     }
 
+    if(leftTabs.isEmpty())
+        leftPanel()->start(QUrl::fromLocalFile(QDir::homePath()));
+    else
+        leftPanel()->start(leftTabs.at(0));
 
-    KUrl leftUrl(QDir::homePath()), rightUrl(QDir::homePath());
-    if(leftTabs.count())
-        leftUrl = leftTabs[0];
-    if(rightTabs.count())
-        rightUrl = rightTabs[0];
-    leftPanel()->start(leftUrl);
-    rightPanel()->start(rightUrl);
+    if(rightTabs.isEmpty())
+        rightPanel()->start(QUrl::fromLocalFile(QDir::homePath()));
+    else
+        rightPanel()->start(rightTabs.at(0));
 
     ACTIVE_PANEL->gui->slotFocusOnMe();  // left starts out active
 
     for (int i = 1; i < leftTabs.count(); i++)
-        leftMng->slotNewTab(leftTabs[ i ], false);
+        leftMng->slotNewTab(leftTabs.at(i), false);
 
     for (int j = 1; j < rightTabs.count(); j++)
-        rightMng->slotNewTab(rightTabs[ j ], false);
+        rightMng->slotNewTab(rightTabs.at(j), false);
 
     // this is needed so that all tab labels get updated
     leftMng->layoutTabs();
     rightMng->layoutTabs();
 
     if(restoreSettings) {
-        if(!leftTabs.count())
+        if(leftTabs.isEmpty())
             leftMng->loadSettings(KConfigGroup(&cfg, "Left Tab Bar"));
-        if(!rightTabs.count())
+        if(rightTabs.isEmpty())
             rightMng->loadSettings(KConfigGroup(&cfg, "Right Tab Bar"));
         if (cfg.readEntry("Left Side Is Active", false))
             leftPanel()->slotFocusOnMe();
@@ -463,11 +464,11 @@ void KrusaderView::toggleVerticalMode()
     if (horiz_splitter->orientation() == Qt::Vertical) {
         horiz_splitter->setOrientation(Qt::Horizontal);
         KrActions::actVerticalMode->setText(i18n("Vertical Mode"));
-        KrActions::actVerticalMode->setIcon(KIcon("view-split-top-bottom"));
+        KrActions::actVerticalMode->setIcon(QIcon::fromTheme("view-split-top-bottom"));
     } else {
         horiz_splitter->setOrientation(Qt::Vertical);
         KrActions::actVerticalMode->setText(i18n("Horizontal Mode"));
-        KrActions::actVerticalMode->setIcon(KIcon("view-split-left-right"));
+        KrActions::actVerticalMode->setIcon(QIcon::fromTheme("view-split-left-right"));
     }
 }
 
@@ -513,7 +514,7 @@ void KrusaderView::draggingTab(PanelManager *from, QMouseEvent *e)
     else
         icon = (from == leftMng) ? "arrow-down" : "arrow-up";
 
-    QCursor cursor(KIcon(icon).pixmap(22));
+    QCursor cursor(QIcon::fromTheme(icon).pixmap(22));
 
     if (cursorIsOnOtherSide(from, e->globalPos())) {
         if(!qApp->overrideCursor())
@@ -526,9 +527,7 @@ void KrusaderView::draggingTabFinished(PanelManager *from, QMouseEvent *e)
 {
     qApp->restoreOverrideCursor();
 
-    if (cursorIsOnOtherSide(from, e->globalPos())) 
+    if (cursorIsOnOtherSide(from, e->globalPos()))
         from->moveTabToOtherSide();
 }
 
-
-#include "krusaderview.moc"

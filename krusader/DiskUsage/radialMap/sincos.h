@@ -20,6 +20,7 @@
 #define SINCOS_H
 
 #include <math.h>
+
 #if 0
 #if __GLIBC__ < 2 ||  __GLIBC__ == 2 && __GLIBC_MINOR__ < 1
 

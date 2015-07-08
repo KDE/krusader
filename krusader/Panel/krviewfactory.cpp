@@ -35,7 +35,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include <stdio.h>
 
-#include <klocale.h>
+#include <KI18n/KLocalizedString>
 
 KrViewInstance::KrViewInstance(int id, QString name, QString desc, QString icon, QKeySequence shortcut) :
         m_id(id), m_name(name), m_description(desc), m_icon(icon), m_shortcut(shortcut)

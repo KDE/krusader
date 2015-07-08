@@ -17,10 +17,12 @@
  *****************************************************************************/
 
 #include "Config.h"
-#include <kconfig.h>
-#include <kglobal.h>
-#include <ksharedconfig.h>
-#include <kconfiggroup.h>
+
+#include <QtGui/QFont>
+
+#include <KConfigCore/KConfig>
+#include <KConfigCore/KSharedConfig>
+#include <KConfigCore/KConfigGroup>
 
 bool Config::varyLabelFontSizes = true;
 bool Config::showSmallFiles = false;
@@ -33,7 +35,7 @@ Filelight::MapScheme Config::scheme;
 inline KConfigGroup
 Filelight::Config::kconfig()
 {
-    KSharedConfigPtr config = KGlobal::config();
+    KSharedConfigPtr config = KSharedConfig::openConfig();
     return KConfigGroup(config, "DiskUsage");
 }
 

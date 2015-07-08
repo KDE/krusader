@@ -19,7 +19,7 @@
 #ifndef KRINTERVIEWITEMDELEGATE_H
 #define KRINTERVIEWITEMDELEGATE_H
 
-#include <QtGui/QItemDelegate>
+#include <QtWidgets/QItemDelegate>
 
 class KrInterViewItemDelegate : public QItemDelegate
 {

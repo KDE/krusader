@@ -33,9 +33,8 @@
 
 #include "../VFS/krquery.h"
 
-#include <kconfiggroup.h>
+#include <KConfigCore/KConfigGroup>
 
-class QWidget;
 
 class FilterSettings
 {
@@ -97,8 +96,8 @@ private:
     bool searchInArchives;
     bool recursive;
     bool followLinks;
-    KUrl::List searchIn;
-    KUrl::List dontSearchIn;
+    QList<QUrl> searchIn;
+    QList<QUrl> dontSearchIn;
     bool remoteContentSearch;
     QString contentEncoding;
     QString containsText;

@@ -20,24 +20,22 @@
 #include "radialMap.h"   //class Segment
 #include "widget.h"
 
-#include <kcursor.h>     //::mouseMoveEvent()
-#include <kiconeffect.h> //::mousePressEvent()
-#include <kiconloader.h> //::mousePressEvent()
-#include <kio/job.h>     //::mousePressEvent()
-#include <kio/deletejob.h>
-#include <kio/jobuidelegate.h>
-#include <klocale.h>
-#include <kmessagebox.h> //::mousePressEvent()
-#include <kmenu.h>  //::mousePressEvent()
-#include <krun.h>        //::mousePressEvent()
-#include <math.h>        //::segmentAt()
-#include <QApplication>//QApplication::setOverrideCursor()
-#include <QPainter>
-#include <QTimer>      //::resizeEvent()
-#include <QPaintEvent>
-#include <QResizeEvent>
-#include <QMouseEvent>
+#include <QtCore/QTimer>                                    //::resizeEvent()
+#include <QtGui/QMouseEvent>
+#include <QtGui/QPainter>
+#include <QtGui/QPaintEvent>
+#include <QtGui/QResizeEvent>
+#include <QtWidgets/QApplication>          //QApplication::setOverrideCursor()
+#include <QtWidgets/QMenu>
 
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
+#include <KIconThemes/KIconEffect>
+#include <KIO/DeleteJob>
+#include <KIO/JobUiDelegate>
+#include <KIOWidgets/KRun>
+#include <KWidgetsAddons/KCursor>
+#include <KWidgetsAddons/KMessageBox>
 
 
 void
@@ -158,29 +156,29 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
     //m_focus is set correctly (I've been strict, I assure you it is correct!)
 
     if (m_focus && !m_focus->isFake()) {
-        const KUrl url   = Widget::url(m_focus->file());
+        const QUrl url   = Widget::url(m_focus->file());
         const bool isDir = m_focus->file()->isDir();
 
         if (e->button() == Qt::RightButton) {
-            KMenu popup;
+            QMenu popup;
             popup.setTitle(m_focus->file()->fullPath(m_tree));
 
             QAction * actKonq = 0, * actKonsole = 0, *actViewMag = 0, * actFileOpen = 0, * actEditDel = 0;
 
             if (isDir) {
-                actKonq = popup.addAction(KIcon("konqueror"), i18n("Open &Konqueror Here"));
-                if (url.protocol() == "file")
-                    actKonsole = popup.addAction(KIcon("konsole"), i18n("Open &Konsole Here"));
+                actKonq = popup.addAction(QIcon::fromTheme("konqueror"), i18n("Open &Konqueror Here"));
+                if (url.scheme() == "file")
+                    actKonsole = popup.addAction(QIcon::fromTheme("konsole"), i18n("Open &Konsole Here"));
 
                 if (m_focus->file() != m_tree) {
                     popup.addSeparator();
-                    actViewMag = popup.addAction(KIcon("zoom-original"), i18n("&Center Map Here"));
+                    actViewMag = popup.addAction(QIcon::fromTheme("zoom-original"), i18n("&Center Map Here"));
                 }
             } else
-                actFileOpen = popup.addAction(KIcon("document-open"), i18n("&Open"));
+                actFileOpen = popup.addAction(QIcon::fromTheme("document-open"), i18n("&Open"));
 
             popup.addSeparator();
-            actEditDel = popup.addAction(KIcon("edit-delete"), i18n("&Delete"));
+            actEditDel = popup.addAction(QIcon::fromTheme("edit-delete"), i18n("&Delete"));
 
             QAction * result = popup.exec(e->globalPos());
             if (result == 0)
@@ -194,15 +192,16 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
             else if (result == actViewMag || result == actFileOpen)
                 goto sectionTwo;
             else if (result == actEditDel) {
-                const KUrl url = Widget::url(m_focus->file());
+                const QUrl url = Widget::url(m_focus->file());
                 const QString message = (m_focus->file()->isDir()
-                                         ? i18n("<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</b> deleted.</qt>", url.prettyUrl())
-                                         : i18n("<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>", url.prettyUrl()));
+                                         ? i18n("<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</b> deleted.</qt>", url.toDisplayString())
+                                         : i18n("<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>", url.toDisplayString()));
                 const int userIntention = KMessageBox::warningContinueCancel(this, message, QString(), KGuiItem(i18n("&Delete"), "edit-delete"));
 
                 if (userIntention == KMessageBox::Continue) {
                     KIO::Job *job = KIO::del(url);
-                    job->ui()->setWindow(this);
+                    KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
+                    ui->setWindow(this);
                     connect(job, SIGNAL(result(KJob*)), SLOT(deleteJobFinished(KJob*)));
                     QApplication::setOverrideCursor(Qt::BusyCursor);
                 }

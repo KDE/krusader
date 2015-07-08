@@ -38,9 +38,9 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QTimer>
-#include <QClipboard>
-#include <kservice.h>
+#include <QtGui/QClipboard>
 
+#include <KService/KService>
 
 class DirHistoryQueue;
 
@@ -52,14 +52,13 @@ public slots:
     void execute(const QString&);
     void goInside(const QString&);
     void urlEntered(const QString &url);
-    void urlEntered(const KUrl &url);
-    void openUrl(const KUrl& path, const QString& nameToMakeCurrent = QString(),
+    void urlEntered(const QUrl &url);
+    void openUrl(const QUrl &path, const QString& nameToMakeCurrent = QString(),
                  bool manuallyEntered = false);
 //     void popErronousUrl();
-    void immediateOpenUrl(const KUrl &url, bool disableLock = false);
+    void immediateOpenUrl(const QUrl &url, bool disableLock = false);
     void rename(const QString &oldname, const QString &newname);
     void calcSpace(KrViewItem *item);
-    void trashJobStarted(KIO::Job *job);
 
     // actions
     void historyBackward();
@@ -117,8 +116,8 @@ public:
 
     void refreshActions();
     void redirectLink();
-    void runService(const KService &service, KUrl::List urls);
-    void displayOpenWithDialog(KUrl::List urls);
+    void runService(const KService &service, QList<QUrl> urls);
+    void displayOpenWithDialog(QList<QUrl> urls);
 
     // calculate the occupied space. A dialog appears, if calculation lasts more than 3 seconds
     // and disappears, if the calculation is done. Returns true, if the result is ok and false
@@ -134,9 +133,10 @@ protected slots:
     void clipboardChanged(QClipboard::Mode mode);
 
 protected:
-    KUrl cleanPath(const KUrl &url);
-    bool isSyncing(const KUrl &url);
-    void openUrlInternal(const KUrl& url, const QString& makeCurrent,
+    QUrl cleanPath(const QUrl &url);
+    bool isSyncing(const QUrl &url);
+    void openFileNameInternal(const QString &name, bool canExecuteFile);
+    void openUrlInternal(const QUrl &url, const QString& makeCurrent,
                          bool immediately, bool disableLock, bool manuallyEntered);
     void runCommand(QString cmd);
 
@@ -144,14 +144,14 @@ protected:
     DirHistoryQueue*     history;
     vfs*                 vfsP;      // pointer to vfs.
     QTimer               delayTimer;
-    KUrl                 syncURL;
-    KUrl                 fileToCreate; // file that's to be created by editNewFile()
+    QUrl                 syncURL;
+    QUrl                 fileToCreate; // file that's to be created by editNewFile()
     bool                 urlManuallyEntered;
 
     static QPointer<ListPanelFunc> copyToClipboardOrigin;
 
 private:
-    KUrl getVirtualBaseURL();
+    QUrl getVirtualBaseURL();
 };
 
 #endif

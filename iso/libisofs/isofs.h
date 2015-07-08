@@ -19,7 +19,6 @@
 #ifndef ISOFS_H
 #define ISOFS_H
 
-#include <sys/time.h>
 #ifdef __cplusplus
 extern "C"
 {

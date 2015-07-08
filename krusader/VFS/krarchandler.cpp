@@ -30,18 +30,19 @@
 
 #include "krarchandler.h"
 
-#include <unistd.h> // for usleep
-
+#include <QtCore/QDebug>
+#include <QtCore/QDir>
 #include <QtCore/QFile>
+#include <QtWidgets/QApplication>
 
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <KPasswordDialog>
-#include <kstandarddirs.h>
-#include <ktar.h>
-#include <kio/global.h>
+#include <KArchive/KTar>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIO/Global>
+#include <KWallet/KWallet>
+#include <KWidgetsAddons/KMessageBox>
+#include <KWidgetsAddons/KPasswordDialog>
 
-#include "../krusader.h"
 #include "../krglobal.h"
 #include "../defaults.h"
 #include "../krservices.h"
@@ -54,32 +55,32 @@ public:
     DefaultKRarcObserver() {}
     virtual ~DefaultKRarcObserver() {}
 
-    virtual void processEvents() {
+    virtual void processEvents() Q_DECL_OVERRIDE {
         usleep(1000);
         qApp->processEvents();
     }
 
-    virtual void subJobStarted(const QString & jobTitle, int count) {
+    virtual void subJobStarted(const QString & jobTitle, int count) Q_DECL_OVERRIDE {
         krApp->startWaiting(jobTitle, count, true);
     }
 
-    virtual void subJobStopped() {
+    virtual void subJobStopped() Q_DECL_OVERRIDE {
         krApp->stopWait();
     }
 
-    virtual bool wasCancelled() {
+    virtual bool wasCancelled() Q_DECL_OVERRIDE {
         return krApp->wasWaitingCancelled();
     }
 
-    virtual void error(const QString & error) {
+    virtual void error(const QString & error) Q_DECL_OVERRIDE {
         KMessageBox::error(krApp, error, i18n("Error"));
     }
 
-    virtual void detailedError(const QString & error, const QString & details) {
+    virtual void detailedError(const QString & error, const QString & details) Q_DECL_OVERRIDE {
         KMessageBox::detailedError(krApp, error, details, i18n("Error"));
     }
 
-    virtual void incrementProgress(int c) {
+    virtual void incrementProgress(int c) Q_DECL_OVERRIDE {
         krApp->plzWait->incProgress(c);
     }
 };
@@ -111,10 +112,10 @@ QStringList KRarcHandler::supportedPackers()
     if (KrServices::cmdExist("dpkg")) packers.append("dpkg");
     if (KrServices::cmdExist("7z") || KrServices::cmdExist("7za")) packers.append("7z");
     if (KrServices::cmdExist("rpm") && KrServices::cmdExist("rpm2cpio")) packers.append("rpm");
-    // kDebug() << "Supported Packers:" << endl;
+    // qDebug() << "Supported Packers:" << endl;
     //QStringList::Iterator it;
     //for( it = packers.begin(); it != packers.end(); ++it )
-    // kDebug() << *it << endl;
+    // qDebug() << *it << endl;
 
     return packers;
 }
@@ -166,35 +167,6 @@ bool KRarcHandler::arcSupported(QString type)
     // not supported : (
     return false;
 }
-
-bool KRarcHandler::arcHandled(QString type)
-{
-    // first check if supported
-    if (!arcSupported(type)) return false;
-
-    KConfigGroup group(krConfig, "Archives");
-    if ((type == "-tgz" && group.readEntry("Do GZip" , _DoGZip)) ||
-            (type == "tarz" && group.readEntry("Do GZip" , _DoGZip)) ||
-            (type == "-tar" && group.readEntry("Do Tar" , _DoTar)) ||
-            (type == "-tbz" && group.readEntry("Do BZip2", _DoBZip2)) ||
-            (type == "-tlz" && group.readEntry("Do LZMA", _DoLZMA)) ||
-            (type == "-txz" && group.readEntry("Do XZ", _DoXZ)) ||
-            (type == "gzip" && group.readEntry("Do GZip" , _DoGZip)) ||
-            (type == "zip2" && group.readEntry("Do BZip2", _DoBZip2)) ||
-            (type == "-zip" && group.readEntry("Do UnZip", _DoUnZip)) ||
-            (type == "-lha" && group.readEntry("Do Lha", _DoUnZip)) ||
-            (type == "-rar" && group.readEntry("Do UnRar", _DoUnRar)) ||
-            (type == "-arj" && group.readEntry("Do UnArj", _DoUnarj)) ||
-            (type == "-ace" && group.readEntry("Do UnAce", _DoUnAce)) ||
-            (type == "cpio" && group.readEntry("Do RPM" , _DoRPM)) ||
-            (type == "-rpm" && group.readEntry("Do RPM"  , _DoRPM)) ||
-            (type == "-deb" && group.readEntry("Do DEB"  , _DoDEB)) ||
-            (type == "-7z"  && group.readEntry("Do 7z"  , _Do7z)))
-        return true;
-    else
-        return false;
-}
-
 
 long KRarcHandler::arcFileCount(QString archive, QString type, QString password, KRarcObserver *observer)
 {
@@ -315,9 +287,8 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
             packer << KrServices::fullPathName("unarj") << "x";
     } else if (type == "-7z")  packer << KrServices::fullPathName("7z") << "-y" << "x";
     else if (type == "-rpm") {
-        QString tempDir = KStandardDirs::locateLocal("tmp", QString());
-
-        cpioName = tempDir + "/contents.cpio"; // TODO use KTemporaryFile (setAutoRemove(false) when asynchrone)
+        // TODO use QTemporaryFile (setAutoRemove(false) when asynchrone)
+        cpioName = QDir::tempPath() + QStringLiteral("/contents.cpio");
 
         KrLinecountingProcess cpio;
         cpio << KrServices::fullPathName("rpm2cpio") << archive;
@@ -331,9 +302,8 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
         archive = cpioName;
         packer << KrServices::fullPathName("cpio") << "--force-local" << "--no-absolute-filenames" <<  "-iuvdF";
     } else if (type == "-deb") {
-        QString tempDir = KStandardDirs::locateLocal("tmp", QString());
-
-        cpioName = tempDir + "/contents.tar"; // TODO use KTemporaryFile (setAutoRemove(false) when asynchrone)
+        // TODO use QTemporaryFile (setAutoRemove(false) when asynchrone)
+        cpioName = QDir::tempPath() + QStringLiteral("/contents.tar");
 
         KrLinecountingProcess dpkg;
         dpkg << KrServices::fullPathName("dpkg") << "--fsys-tarfile" << archive;
@@ -665,9 +635,9 @@ QString KRarcHandler::getPassword(QString path)
     return "";
 }
 
-bool KRarcHandler::isArchive(const KUrl& url)
+bool KRarcHandler::isArchive(const QUrl &url)
 {
-    QString protocol = url.protocol();
+    QString protocol = url.scheme();
     if (arcProtocols.indexOf(protocol) != -1)
         return true;
     else return false;
@@ -711,7 +681,7 @@ bool KRarcHandler::checkStatus(QString type, int exitCode)
 struct AutoDetectParams {
     QString type;
     int location;
-    QString detectionString;
+    QByteArray detectionString;
 };
 
 QString KRarcHandler::detectArchive(bool &encrypted, QString fileName, bool checkEncrypted, bool fast)
@@ -738,7 +708,7 @@ QString KRarcHandler::detectArchive(bool &encrypted, QString fileName, bool chec
         arcFile.close();
 
         for (int i = 0; i < autoDetectElems; i++) {
-            QString detectionString = autoDetectParams[ i ].detectionString;
+            QByteArray detectionString = autoDetectParams[ i ].detectionString;
             int location = autoDetectParams[ i ].location;
 
             int endPtr = detectionString.length() + location;
@@ -875,6 +845,4 @@ QString KRarcHandler::detectArchive(bool &encrypted, QString fileName, bool chec
 
     return QString();
 }
-
-#include "krarchandler.moc"
 

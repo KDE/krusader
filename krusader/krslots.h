@@ -33,14 +33,16 @@
 #ifndef KRSLOTS_H
 #define KRSLOTS_H
 
+#include <QtCore/QFile>
 #include <QtCore/QObject>
-#include <kprocess.h>
-#include <kio/netaccess.h>
+#include <QtCore/QUrl>
+
+#include <KCoreAddons/KProcess>
+
 #include "krglobal.h"
 
 class KrMainWindow;
-class KrViewItem;
-class KUrl;
+class QUrl;
 
 class KrProcess: public KProcess
 {
@@ -58,9 +60,9 @@ public:
 public slots:
     void processHasExited() {
         if (!tmp1.isEmpty())
-            KIO::NetAccess::removeTempFile(tmp1);
+            QFile::remove(tmp1);
         if (!tmp2.isEmpty())
-            KIO::NetAccess::removeTempFile(tmp2);
+            QFile::remove(tmp2);
         deleteLater();
     }
 };
@@ -76,9 +78,9 @@ public:
     ~KRslots() {}
 
 public slots:
-    void sendFileByEmail(const KUrl::List &filename);
+    void sendFileByEmail(const QList<QUrl> &filename);
     void compareContent();
-    void compareContent(KUrl, KUrl);
+    void compareContent(QUrl, QUrl);
     void insertFileName(bool full_path);
     void rootKrusader();
     void swapPanels();
@@ -93,7 +95,7 @@ public slots:
     void trashBin();
     /** called by actExec* actions to choose the built-in command line mode */
     void execTypeSetup();
-    void refresh(const KUrl& u);
+    void refresh(const QUrl &u);
     void runKonfigurator(bool firstTime = false);
     void startKonfigurator() {
         runKonfigurator(false);
@@ -106,9 +108,7 @@ public slots:
     void addBookmark();
     void toggleFnkeys();
     void toggleCmdline();
-    void changeTrashIcon();
     void multiRename();
-    void bookmarkCurrent();
     void cmdlinePopup();
     void slotSplit();
     void slotCombine();
@@ -119,8 +119,7 @@ public slots:
 #endif
     void slotDiskUsage();
     void slotQueueManager();
-    void windowActive(); // called when krusader's window becomes focused
-    void windowInactive(); // called when another application steals the focus
+    void applicationStateChanged();
     void jsConsole();
     void saveNewToolbarConfig();
 

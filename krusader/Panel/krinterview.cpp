@@ -343,22 +343,22 @@ KIO::filesize_t KrInterView::calcSelectedSize()
     return size;
 }
 
-KUrl::List KrInterView::selectedUrls()
+QList<QUrl> KrInterView::selectedUrls()
 {
-    KUrl::List list;
+    QList<QUrl> list;
     foreach(const vfile *vf, _selection) {
         list << vf->vfile_getUrl();
     }
     return list;
 }
 
-void KrInterView::setSelection(const KUrl::List urls)
+void KrInterView::setSelection(const QList<QUrl> urls)
 {
     op()->setMassSelectionUpdate(true);
 
     _selection.clear();
 
-    foreach(const KUrl &url, urls) {
+    foreach(const QUrl &url, urls) {
         QModelIndex idx = _model->indexFromUrl(url);
         if(idx.isValid())
             setSelected(_model->vfileAt(idx), true);

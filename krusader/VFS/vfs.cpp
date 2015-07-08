@@ -33,20 +33,19 @@
 
 #include "vfs.h"
 
-#include <unistd.h>
-#include <time.h>
-
 #include <QtCore/QEventLoop>
-#include <QList>
+#include <QtCore/QList>
 #include <QtCore/QDir>
+#include <QtWidgets/QApplication>
+#include <qplatformdefs.h>
 
-#include <kapplication.h>
-#include <kio/directorysizejob.h>
-#include <kio/jobuidelegate.h>
-#include <kde_file.h>
+#include <KConfigCore/KSharedConfig>
+#include <KIO/DirectorySizeJob>
+#include <KIO/JobUiDelegate>
 
 #include "../krglobal.h"
 #include "../defaults.h"
+#include "../MountMan/kmountman.h"
 #include "kiojobwrapper.h"
 
 vfs::vfs(QObject* panel, bool quiet) : VfileContainer(0),
@@ -66,13 +65,14 @@ vfs::~vfs()
         fprintf(stderr, "INTERNAL ERROR: trying to delete vfs while it is used! This may cause crash. Hoping the best...\n");
     clear(); // please don't remove this line. This informs the view about deleting the references
     delete vfs_filesP;
+    delete vfs_tempFilesP;
 }
 
 bool vfs::isRoot()
 {
-    QString protocol = vfs_getOrigin().protocol();
+    QString protocol = vfs_getOrigin().scheme();
     bool isFtp = (protocol == "ftp" || protocol == "smb" || protocol == "sftp" || protocol == "fish");
-    QString origin = vfs_getOrigin().prettyUrl(KUrl::RemoveTrailingSlash);
+    QString origin = vfs_getOrigin().toDisplayString(QUrl::StripTrailingSlash);
 
     if (origin.right(1) != "/" && !((vfs_getType() == vfs::VFS_FTP) && isFtp &&
                                     origin.indexOf('/', origin.indexOf(":/") + 3) == -1))
@@ -104,11 +104,13 @@ bool vfs::vfs_refresh(KJob* job)
     return vfs_refresh(vfs_origin);
 }
 
-QString vfs::pathOrUrl(const KUrl &originIn, KUrl::AdjustPathOption trailingSlash)
+QUrl vfs::ensureTrailingSlash(const QUrl &url)
 {
-    if (originIn.isLocalFile())
-        return originIn.path(trailingSlash);
-    return originIn.prettyUrl(trailingSlash);
+    QUrl adjustedUrl = url;
+    if (!adjustedUrl.path().endsWith('/')) {
+        adjustedUrl.setPath(adjustedUrl.path() + '/');
+    }
+    return adjustedUrl;
 }
 
 void vfs::setVfsFilesP(vfileDict* dict)
@@ -205,20 +207,20 @@ bool vfs::vfs_refresh()
     return res;
 }
 
-bool vfs::vfs_refresh(const KUrl& origin)
+bool vfs::vfs_refresh(const QUrl &origin)
 {
     if (vfs_busy)
         return false;
 
     if (disableRefresh) {
         postponedRefreshURL = origin;
-        if (!origin.equals(vfs_getOrigin(), KUrl::CompareWithoutTrailingSlash))
+        if (!origin.matches(vfs_getOrigin(), QUrl::StripTrailingSlash))
             invalidated = true;
         vfs_origin = origin;
         return true;
     }
 
-    if (!invalidated && origin.equals(vfs_getOrigin(), KUrl::CompareWithoutTrailingSlash)) return vfs_refresh();
+    if (!invalidated && origin.matches(vfs_getOrigin(), QUrl::StripTrailingSlash)) return vfs_refresh();
 
     vfs_busy = true;
 
@@ -250,7 +252,7 @@ bool vfs::vfs_enableRefresh(bool enable)
     disableRefresh = quietMode = !enable;
     bool res = true;
     if (enable && !postponedRefreshURL.isEmpty()) res = vfs_refresh(postponedRefreshURL);
-    postponedRefreshURL = KUrl();
+    postponedRefreshURL = QUrl();
     return res;
 }
 
@@ -284,6 +286,10 @@ void vfs::vfs_requestDelete()
     deleteRequested = true;
 }
 
+void vfs::setMountMan(KMountMan *mtMan) {
+    mountMan = mtMan;
+}
+
 /// to be implemented
 void vfs::slotKdsResult(KJob* job)
 {
@@ -301,7 +307,7 @@ void vfs::vfs_calcSpace(QString name , KIO::filesize_t* totalSize, unsigned long
     calculateURLSize(vfs_getFile(name), totalSize, totalFiles, totalDirs, stop);
 }
 
-void vfs::calculateURLSize(KUrl url,  KIO::filesize_t* totalSize, unsigned long* totalFiles, unsigned long* totalDirs, bool* stop)
+void vfs::calculateURLSize(QUrl url,  KIO::filesize_t* totalSize, unsigned long* totalFiles, unsigned long* totalDirs, bool* stop)
 {
     if (stop && *stop) return ;
     kds_busy = stop;
@@ -310,7 +316,7 @@ void vfs::calculateURLSize(KUrl url,  KIO::filesize_t* totalSize, unsigned long*
     kds_totalDirs  = totalDirs;
 
     if (url.isLocalFile()) {
-        vfs_calcSpaceLocal(url.path(KUrl::RemoveTrailingSlash), totalSize, totalFiles, totalDirs, stop);
+        vfs_calcSpaceLocal(url.adjusted(QUrl::StripTrailingSlash).path(), totalSize, totalFiles, totalDirs, stop);
         return;
     } else {
         stat_busy = true;
@@ -345,11 +351,11 @@ void vfs::vfs_calcSpaceLocal(QString name , KIO::filesize_t *totalSize, unsigned
     if (!name.contains("/")) name = vfs_workingDir() + '/' + name;
     if (name == "/proc") return;
 
-    KDE_struct_stat stat_p;                // KDE lstat is necessary as QFileInfo and KFileItem
+    QT_STATBUF stat_p;                // KDE lstat is necessary as QFileInfo and KFileItem
     // if the name is wrongly encoded, then we zero the size out
     stat_p.st_size = 0;
     stat_p.st_mode = 0;
-    KDE_lstat(name.toLocal8Bit(), &stat_p);  //         reports wrong size for a symbolic link
+    QT_LSTAT(name.toLocal8Bit(), &stat_p);  //         reports wrong size for a symbolic link
 
     if (S_ISLNK(stat_p.st_mode) || !S_ISDIR(stat_p.st_mode)) {  // single files are easy : )
         ++(*totalFiles);
@@ -401,4 +407,3 @@ bool vfs::vfs_showHidden()
     return gl.readEntry("Show Hidden", _ShowHidden);
 }
 
-#include "vfs.moc"

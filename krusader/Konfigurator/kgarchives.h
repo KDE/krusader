@@ -39,15 +39,11 @@ class KgArchives : public KonfiguratorPage
 
 public:
     KgArchives(bool first, QWidget* parent = 0);
-    virtual bool apply();
-    virtual void setDefaults();
 
 public slots:
     void slotAutoConfigure();
 
 protected:
-    KonfiguratorCheckBoxGroup *cbs;
-
     void disableNonExistingPackers();
 };
 

@@ -30,17 +30,17 @@
 #include "krmaskchoice.h"
 
 #include <QtCore/QVariant>
-#include <QtGui/QGroupBox>
-#include <QtGui/QLabel>
-#include <QtGui/QPushButton>
-#include <QtGui/QLayout>
-#include <QtGui/QMessageBox>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QLineEdit>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QMessageBox>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QVBoxLayout>
 
-#include <KLocale>
-#include <KComboBox>
+#include <KCompletion/KComboBox>
+#include <KI18n/KLocalizedString>
 
 #include "../GUI/krlistwidget.h"
 
@@ -52,7 +52,7 @@
  * TRUE to construct a modal dialog.
  */
 KRMaskChoice::KRMaskChoice(QWidget* parent)
-        : KDialog(parent)
+        : QDialog(parent)
 {
     setModal(true);
     resize(401, 314);
@@ -184,4 +184,3 @@ void KRMaskChoice::currentItemChanged(QListWidgetItem *)
     qWarning("KRMaskChoice::currentItemChanged(QListWidgetItem *): Not implemented yet!");
 }
 
-#include "krmaskchoice.moc"

@@ -9,33 +9,25 @@
 
 #include "kimagefilepreview.h"
 
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
-#include <QtGui/QComboBox>
-#include <QtGui/QCheckBox>
 #include <QtCore/QTimer>
-#include <QPixmap>
-#include <QResizeEvent>
-#include <QVBoxLayout>
-#include <QFrame>
+#include <QtGui/QPixmap>
+#include <QtGui/QResizeEvent>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QFrame>
 
-#include <kapplication.h>
-#include <kglobal.h>
-#include <kiconloader.h>
-#include <kpushbutton.h>
-#include <kstandarddirs.h>
-#include <kdebug.h>
-#include <klocale.h>
-#include <kfiledialog.h>
-#include <kfileitem.h>
-#include <kio/previewjob.h>
+#include <KIconThemes/KIconLoader>
+#include <KIOCore/KFileItem>
+#include <KIO/PreviewJob>
 
 KrusaderImageFilePreview::KrusaderImageFilePreview(QWidget *parent)
         : KPreviewWidgetBase(parent),
         m_job(0L)
 {
     QVBoxLayout *vb = new QVBoxLayout(this);
-    vb->setContentsMargins(KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint());
 
     imageLabel = new QLabel(this);
     imageLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);
@@ -58,17 +50,17 @@ KrusaderImageFilePreview::~KrusaderImageFilePreview()
 void KrusaderImageFilePreview::showPreview()
 {
     // Pass a copy since clearPreview() will clear currentURL
-    KUrl url = currentURL;
+    QUrl url = currentURL;
     showPreview(url, true);
 }
 
 // called via KPreviewWidgetBase interface
-void KrusaderImageFilePreview::showPreview(const KUrl& url)
+void KrusaderImageFilePreview::showPreview(const QUrl& url)
 {
     showPreview(url, false);
 }
 
-void KrusaderImageFilePreview::showPreview(const KUrl &url, bool force)
+void KrusaderImageFilePreview::showPreview(const QUrl &url, bool force)
 {
     if (!url.isValid()) {
         clearPreview();
@@ -105,22 +97,15 @@ QSize KrusaderImageFilePreview::sizeHint() const
     return QSize(20, 200);   // otherwise it ends up huge???
 }
 
-KIO::PreviewJob * KrusaderImageFilePreview::createJob(const KUrl& url, int w, int h)
+KIO::PreviewJob * KrusaderImageFilePreview::createJob(const QUrl &url, int w, int h)
 {
-#if KDE_IS_VERSION(4,7,0)
+    KFileItem fi(url);
+    fi.setDelayedMimeTypes(true);
     KFileItemList fileItemList;
-    fileItemList.append(KFileItem(KFileItem::Unknown,KFileItem::Unknown, url, true));
+    fileItemList.append(fi);
     QStringList allPlugins = KIO::PreviewJob::availablePlugins();
     KIO::PreviewJob * job = new KIO::PreviewJob(fileItemList, QSize(w, h), &(allPlugins));
-        job->setOverlayIconAlpha(0);
-        job->setOverlayIconSize(0);
-        job->setScaleType(KIO::PreviewJob::Scaled);
     return job;
-#else
-    KUrl::List urls;
-    urls.append(url);
-    return KIO::filePreview(urls, w, h, 0, 0, true, false);	
-#endif
 }
 
 void KrusaderImageFilePreview::gotPreview(const KFileItem& item, const QPixmap& pm)
@@ -152,7 +137,6 @@ void KrusaderImageFilePreview::clearPreview()
     }
 
     imageLabel->clear();
-    currentURL = KUrl();
+    currentURL = QUrl();
 }
 
-#include "kimagefilepreview.moc"

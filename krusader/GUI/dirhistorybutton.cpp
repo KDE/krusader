@@ -21,18 +21,18 @@
 #include "../Panel/dirhistoryqueue.h"
 
 #include "../VFS/vfs.h"
-#include <QtGui/QMenu>
-#include <QtCore/QDir>
-#include <QPixmap>
-#include <klocale.h>
-#include <kicon.h>
 
-#include <kdebug.h>
+#include <QtCore/QDebug>
+#include <QtCore/QDir>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QMenu>
+
+#include <KI18n/KLocalizedString>
 
 DirHistoryButton::DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent) : QToolButton(parent)
 {
     setAutoRaise(true);
-    setIcon(KIcon("chronometer"));
+    setIcon(QIcon::fromTheme("chronometer"));
     setText(i18n("Open the directory history list"));
     setToolTip(i18n("Open the directory history list"));
     setPopupMode(QToolButton::InstantPopup);
@@ -61,18 +61,17 @@ void DirHistoryButton::showMenu()
 /** No descriptions */
 void DirHistoryButton::slotPopup()
 {
-    //  kDebug() << "History slot" << endl;
+//    qDebug() << "History slot" << endl;
 }
 /** No descriptions */
 void DirHistoryButton::slotAboutToShow()
 {
     emit aboutToShow();
-    //  kDebug() << "about to show" << endl;
+//    qDebug() << "about to show" << endl;
     popupMenu->clear();
-    KUrl::List::iterator it;
 
     for (int i = 0; i < historyQueue->count(); i++) {
-        QAction *act = popupMenu->addAction(historyQueue->get(i).prettyUrl());
+        QAction *act = popupMenu->addAction(historyQueue->get(i).toDisplayString());
         act->setData(QVariant(i));
         if(historyQueue->currentPos() == i) {
             act->setCheckable(true);
@@ -89,4 +88,3 @@ void DirHistoryButton::slotPopupActivated(QAction * action)
     }
 }
 
-#include "dirhistorybutton.moc"

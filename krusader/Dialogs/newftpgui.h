@@ -21,19 +21,19 @@
 #ifndef NEWFTPGUI_H
 #define NEWFTPGUI_H
 
-#include <QtGui/QLabel>
-#include <QtGui/QSpinBox>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QSpinBox>
 
-#include <KDialog>
-#include <KComboBox>
-#include <KHistoryComboBox>
-#include <KLineEdit>
+#include <KCompletion/KComboBox>
+#include <KCompletion/KHistoryComboBox>
+#include <KCompletion/KLineEdit>
 
 class QEvent;
 class QString;
 class QWidget;
 
-class newFTPGUI : public KDialog
+class newFTPGUI : public QDialog
 {
     Q_OBJECT
 

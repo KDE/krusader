@@ -19,15 +19,16 @@
 
 #include "krinterdetailedview.h"
 
-#include <QDir>
-#include <QDirModel>
-#include <QHashIterator>
-#include <QHeaderView>
-#include <QApplication>
+#include <QtCore/QDir>
+#include <QtCore/QHashIterator>
+#include <QtWidgets/QDirModel>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QApplication>
 
-#include <klocale.h>
-#include <kdirlister.h>
-#include <kmenu.h>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIOWidgets/KDirLister>
 
 #include "krinterviewitem.h"
 #include "krviewfactory.h"
@@ -64,14 +65,15 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
     setAllColumnsShowFocus(true);
     setUniformRowHeights(true);
 
-    setStyle(new KrStyleProxy());
-    setItemDelegate(new KrInterViewItemDelegate());
+    KrStyleProxy *krstyle = new KrStyleProxy();
+    krstyle->setParent(this);
+    setStyle(krstyle);
+    setItemDelegate(new KrInterViewItemDelegate(this));
     setMouseTracking(true);
     setAcceptDrops(true);
     setDropIndicatorShown(true);
 
-    for (int i = 0; i != KrViewProperties::MAX_COLUMNS; i++)
-        header()->setResizeMode(i, QHeaderView::Interactive);
+    header()->setSectionResizeMode(QHeaderView::Interactive);
     header()->setStretchLastSection(false);
 
     connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(sectionResized(int, int, int)));
@@ -113,7 +115,7 @@ void KrInterDetailedView::doRestoreSettings(KConfigGroup grp)
         header()->resizeSection(KrViewProperties::Size, QFontMetrics(_viewFont).width("9") * 10);
 
         QDateTime tmp(QDate(2099, 12, 29), QTime(23, 59));
-        QString desc = KGlobal::locale()->formatDateTime(tmp) + "  ";
+        QString desc = QLocale().toString(tmp, QLocale::ShortFormat) + "  ";
 
         header()->resizeSection(KrViewProperties::Modified, QFontMetrics(_viewFont).width(desc));
     } else {
@@ -259,7 +261,7 @@ bool KrInterDetailedView::eventFilter(QObject *object, QEvent *event)
 
 void KrInterDetailedView::showContextMenu(const QPoint & p)
 {
-    KMenu popup(this);
+    QMenu popup(this);
     popup.setTitle(i18n("Columns"));
 
     QVector<QAction*> actions;

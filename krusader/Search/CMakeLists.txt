@@ -1,7 +1,14 @@
+include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
+
 set(Search_SRCS
     krsearchmod.cpp
     krsearchdialog.cpp)
 
-kde4_add_library(Search STATIC ${Search_SRCS})
+add_library(Search STATIC ${Search_SRCS})
 
-target_link_libraries(Search Dialogs)
+target_link_libraries(Search
+    Dialogs
+    KF5::I18n
+    KF5::KIOCore
+    KF5::WidgetsAddons
+)

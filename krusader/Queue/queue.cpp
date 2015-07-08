@@ -18,10 +18,11 @@
 
 #include "queue.h"
 #include "../krglobal.h"
-#include <kdebug.h>
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <QTime>
+
+#include <QtCore/QTime>
+
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
 
 Queue::Queue(const QString& name): _name(name), _suspended(false), _percent(PERCENT_UNUSED)
 {
@@ -128,7 +129,7 @@ QList<QString> Queue::itemDescriptions()
 {
     QList<QString> ret;
     foreach(KIOJobWrapper *job, _jobs) {
-        ret.append(job->typeStr() + " : " + job->url().prettyUrl());
+        ret.append(job->typeStr() + " : " + job->url().toDisplayString());
     }
     return ret;
 }

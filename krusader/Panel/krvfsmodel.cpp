@@ -19,12 +19,18 @@
 
 #include "krvfsmodel.h"
 #include "../VFS/vfile.h"
-#include <klocale.h>
-#include <QtDebug>
-#include <QtAlgorithms>
 #include "../VFS/krpermhandler.h"
 #include "../defaults.h"
 #include "../krglobal.h"
+
+#include <QtCore/QtAlgorithms>
+#include <QtCore/QtDebug>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
+
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+
 #include "krpanel.h"
 #include "krcolorcache.h"
 #include "krsort.h"
@@ -142,9 +148,10 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
         case KrViewProperties::Type: {
             if (vf == _dummyVfile)
                 return QVariant();
-            KMimeType::Ptr mt = KMimeType::mimeType(vf->vfile_getMime());
-            if (mt)
-                return mt->comment();
+            QMimeDatabase db;
+            QMimeType mt = db.mimeTypeForName(vf->vfile_getMime());
+            if (mt.isValid())
+                return mt.comment();
             return QVariant();
         }
         case KrViewProperties::Modified: {
@@ -154,7 +161,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
             struct tm* t = localtime((time_t *) & time);
 
             QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-            return KGlobal::locale()->formatDateTime(tmp);
+            return QLocale().toString(tmp, QLocale::ShortFormat);
         }
         case KrViewProperties::Permissions: {
             if (vf == _dummyVfile)
@@ -523,7 +530,7 @@ QString KrVfsModel::nameWithoutExtension(const vfile * vf, bool checkEnabled) co
     // check if the file has an extension
     const QString& vfName = vf->vfile_getName();
     int loc = vfName.lastIndexOf('.');
-    // avoid mishandling of .bashrc and friend 
+    // avoid mishandling of .bashrc and friend
     // and virtfs / search result names like "/dir/.file" which whould become "/dir/"
     if (loc > 0 && vfName.lastIndexOf('/') < loc) {
         // check if it has one of the predefined 'atomic extensions'
@@ -538,7 +545,7 @@ QString KrVfsModel::nameWithoutExtension(const vfile * vf, bool checkEnabled) co
     return vfName.left(loc);
 }
 
-const QModelIndex & KrVfsModel::indexFromUrl(const KUrl &url)
+const QModelIndex & KrVfsModel::indexFromUrl(const QUrl &url)
 {
     //TODO: use url index instead of name index
     //HACK

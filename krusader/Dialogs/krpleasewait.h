@@ -31,11 +31,12 @@
 #ifndef KRPLEASEWAIT_H
 #define KRPLEASEWAIT_H
 
-#include <qprogressdialog.h>
 #include <QtCore/QTimer>
 #include <QtCore/QPointer>
-#include <QCloseEvent>
-#include <kio/jobclasses.h>
+#include <QtGui/QCloseEvent>
+#include <QtWidgets/QProgressDialog>
+
+#include <KIO/Job>
 
 class KRPleaseWait;
 
@@ -79,7 +80,7 @@ public slots:
 protected:
     bool inc;
     QTimer* timer;
-    virtual void closeEvent(QCloseEvent * e);
+    virtual void closeEvent(QCloseEvent * e) Q_DECL_OVERRIDE;
     bool canClose;
 };
 

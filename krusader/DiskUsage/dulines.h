@@ -31,10 +31,10 @@
 #ifndef DULINES_H
 #define DULINES_H
 
+#include <QtGui/QMouseEvent>
 #include <QtGui/QPixmap>
-#include <QMouseEvent>
-#include <QKeyEvent>
-#include <QResizeEvent>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QResizeEvent>
 
 #include "diskusage.h"
 #include "../GUI/krtreewidget.h"
@@ -64,10 +64,10 @@ public slots:
 protected:
     DiskUsage *diskUsage;
 
-    virtual bool event(QEvent * event);
-    virtual void mouseDoubleClickEvent(QMouseEvent * e);
-    virtual void keyPressEvent(QKeyEvent *e);
-    virtual void resizeEvent(QResizeEvent *);
+    virtual bool event(QEvent * event) Q_DECL_OVERRIDE;
+    virtual void mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    virtual void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE;
 
 private:
     QPixmap createPixmap(int percent, int maxPercent, int maxWidth);

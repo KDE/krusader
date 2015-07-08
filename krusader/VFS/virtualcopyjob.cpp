@@ -31,12 +31,14 @@
 #include "virtualcopyjob.h"
 #include "vfs.h"
 #include "vfile.h"
-#include <kio/global.h>
-#include <kio/jobclasses.h>
-#include <kio/directorysizejob.h>
-#include <kio/jobuidelegate.h>
-#include <kuiserverjobtracker.h>
-#include <klocale.h>
+
+#include <QtCore/QDir>
+
+#include <KCoreAddons/KJobTrackerInterface>
+#include <KI18n/KLocalizedString>
+#include <KIO/Global>
+#include <KIO/DirectorySizeJob>
+#include <KIO/JobUiDelegate>
 
 #define REPORT_TIMEOUT 200
 
@@ -45,12 +47,12 @@ class MyUiDelegate : public KIO::JobUiDelegate
 public:
     MyUiDelegate(VirtualCopyJob * ref) : KIO::JobUiDelegate(), copyJobRef(ref) {}
 
-    virtual KIO::RenameDialog_Result askFileRename(KJob * job, const QString & caption, const QString& src,
-            const QString & dest, KIO::RenameDialog_Mode mode,
+    virtual KIO::RenameDialog_Result askFileRename(KJob * job, const QString & caption, const QUrl& src,
+            const QUrl & dest, KIO::RenameDialog_Options mode,
             QString& newDest, KIO::filesize_t sizeSrc = (KIO::filesize_t) - 1,
             KIO::filesize_t sizeDest = (KIO::filesize_t) - 1,
-            time_t ctimeSrc = (time_t) - 1, time_t ctimeDest = (time_t) - 1,
-            time_t mtimeSrc = (time_t) - 1, time_t mtimeDest = (time_t) - 1) {
+            const QDateTime &ctimeSrc = QDateTime(), const QDateTime &ctimeDest = QDateTime(),
+            const QDateTime &mtimeSrc = QDateTime(), const QDateTime &mtimeDest = QDateTime()) Q_DECL_OVERRIDE {
         if (copyJobRef->isSkipAll()) {
             if (mode & KIO::M_MULTI)
                 return KIO::R_AUTO_SKIP;
@@ -68,7 +70,7 @@ public:
         if (copyJobRef->isMulti())
             mmode = (KIO::RenameDialog_Mode)(mmode | KIO::M_MULTI | KIO::M_SKIP);
         else
-            mmode = (KIO::RenameDialog_Mode)(mmode | KIO::M_SINGLE);
+            mmode = (KIO::RenameDialog_Mode)(mmode /*| KIO::M_SINGLE*/);
 
         if (mode & KIO::M_OVERWRITE)
             mmode = (KIO::RenameDialog_Mode)(mmode | KIO::M_OVERWRITE);
@@ -91,18 +93,21 @@ public:
         return res;
     }
 
-    virtual KIO::SkipDialog_Result askSkip(KJob * job, bool multi, const QString & error_text) {
+    virtual KIO::SkipDialog_Result askSkip(KJob * job, KIO::SkipDialog_Options options,
+                                           const QString & error_text) Q_DECL_OVERRIDE {
         if (copyJobRef->isSkipAll()) {
-            if (multi)
+            if (options & KIO::SkipDialog_MultipleItems)
                 return KIO::S_AUTO_SKIP;
             else
                 return KIO::S_SKIP;
         }
 
-        KIO::SkipDialog_Result res = KIO::JobUiDelegate::askSkip(job, copyJobRef->isMulti(), error_text);
+        KIO::SkipDialog_Result res = KIO::JobUiDelegate::askSkip(job,
+                                                                 copyJobRef->isMulti() ? KIO::SkipDialog_MultipleItems: (KIO::SkipDialog_Option)0,
+                                                                 error_text);
         if (res == KIO::S_AUTO_SKIP) {
             copyJobRef->setSkipAll();
-            if (!multi)
+            if (!(options & KIO::SkipDialog_MultipleItems))
                 res = KIO::S_SKIP;
         }
 
@@ -113,7 +118,7 @@ private:
     VirtualCopyJob * copyJobRef;
 };
 
-VirtualCopyJob::VirtualCopyJob(const QStringList *names, vfs * vfs, const KUrl& dest, const KUrl& baseURL,
+VirtualCopyJob::VirtualCopyJob(const QStringList *names, vfs * vfs, const QUrl &dest, const QUrl& baseURL,
                                PreserveMode pmode, KIO::CopyJob::CopyMode mode, bool showProgressInfo, bool autoStart) : KIO::Job(), m_overwriteAll(false),
         m_skipAll(false), m_multi(false), m_totalSize(0), m_totalFiles(0), m_totalSubdirs(0),
         m_processedSize(0), m_processedFiles(0), m_processedSubdirs(0), m_tempSize(0), m_tempFiles(0),
@@ -122,21 +127,21 @@ VirtualCopyJob::VirtualCopyJob(const QStringList *names, vfs * vfs, const KUrl& 
         m_state(ST_STARTING), m_reportTimer(), m_current(), m_currentDir(), m_dirStack()
 {
 
-    m_dest.adjustPath(KUrl::AddTrailingSlash);
+    m_dest = vfs->ensureTrailingSlash(m_dest);
 
     vfile * file = vfs->vfs_getFirstFile();
     while (file) {
         if (names->contains(file->vfile_getName())) {
-            QString relativeDir = KUrl::relativeUrl(baseURL, file->vfile_getUrl().upUrl());
+            QString relativeDir = QDir(baseURL.path()).relativeFilePath(KIO::upUrl(file->vfile_getUrl()).path());
 
             if (m_filesToCopy.find(relativeDir) == m_filesToCopy.end()) {
-                m_filesToCopy.insert(relativeDir, new KUrl::List());
+                m_filesToCopy.insert(relativeDir, new QList<QUrl>());
                 // initialize the dir content
                 m_size[ relativeDir ] = 0;
                 m_filenum[ relativeDir ] = 0;
                 m_subdirs[ relativeDir ] = 0;
             }
-            KUrl::List *list = m_filesToCopy[ relativeDir ];
+            QList<QUrl> *list = m_filesToCopy[ relativeDir ];
 
             if (!list->contains(file->vfile_getUrl())) {
                 if (file->vfile_isDir()) {
@@ -166,7 +171,7 @@ VirtualCopyJob::VirtualCopyJob(const QStringList *names, vfs * vfs, const KUrl& 
 
 VirtualCopyJob::~VirtualCopyJob()
 {
-    QHashIterator< QString, KUrl::List *> lit(m_filesToCopy);
+    QHashIterator< QString, QList<QUrl> *> lit(m_filesToCopy);
     while (lit.hasNext())
         delete lit.next().value();
 }
@@ -216,10 +221,10 @@ void VirtualCopyJob::statNextDir()
         createNextDir();
         return;
     }
-    KUrl dirToCheck = m_dirsToGetSize.first();
+    QUrl dirToCheck = m_dirsToGetSize.first();
     m_dirsToGetSize.pop_front();
 
-    m_currentDir = KUrl::relativeUrl(m_baseURL, dirToCheck.upUrl());
+    m_currentDir = QDir(m_baseURL.path()).relativeFilePath(KIO::upUrl(dirToCheck).path());
 
     KIO::DirectorySizeJob* kds  = KIO::directorySize(dirToCheck);
     connect(kds, SIGNAL(result(KJob*)), this, SLOT(slotKdsResult(KJob*)));
@@ -245,7 +250,7 @@ void VirtualCopyJob::createNextDir()
     if (m_totalFiles + m_totalSubdirs > 1)
         m_multi = true;
 
-    QHashIterator<QString, KUrl::List *> diter(m_filesToCopy);
+    QHashIterator<QString, QList<QUrl> *> diter(m_filesToCopy);
     if (!diter.hasNext()) {
         emitResult();
         return;
@@ -254,7 +259,8 @@ void VirtualCopyJob::createNextDir()
     m_currentDir = diter.next().key();
     m_current = m_dest;
     if (m_currentDir != "./" && !m_currentDir.isEmpty())
-        m_current.addPath(m_currentDir);
+        m_current = m_current.adjusted(QUrl::StripTrailingSlash);
+        m_current.setPath(m_current.path() + '/' + (m_currentDir));
 
     KIO::Job *job = KIO::stat(m_current, KIO::HideProgressInfo);
     connect(job, SIGNAL(result(KJob*)), this, SLOT(slotStatResult(KJob*)));
@@ -262,12 +268,12 @@ void VirtualCopyJob::createNextDir()
 
 void VirtualCopyJob::slotStatResult(KJob *job)
 {
-    KUrl url = (static_cast<KIO::SimpleJob*>(job))->url();
+    QUrl url = (static_cast<KIO::SimpleJob*>(job))->url();
 
     if (job && job->error()) {
-        if (job->error() == KIO::ERR_DOES_NOT_EXIST && !url.equals(url.upUrl(), KUrl::CompareWithoutTrailingSlash)) {
+        if (job->error() == KIO::ERR_DOES_NOT_EXIST && !url.matches(KIO::upUrl(url), QUrl::StripTrailingSlash)) {
             m_dirStack.push_back(url.fileName());
-            KIO::Job *job = KIO::stat(url.upUrl(), KIO::HideProgressInfo);
+            KIO::Job *job = KIO::stat(KIO::upUrl(url), KIO::HideProgressInfo);
             connect(job, SIGNAL(result(KJob*)), this, SLOT(slotStatResult(KJob*)));
             return;
         }
@@ -278,8 +284,7 @@ void VirtualCopyJob::slotStatResult(KJob *job)
     }
 
     if (m_dirStack.count()) {
-        url.adjustPath(KUrl::AddTrailingSlash);
-        url.addPath(m_dirStack.last());
+        url.setPath(vfs::ensureTrailingSlash(url).path() + m_dirStack.last());
         m_dirStack.pop_back();
 
         KIO::Job *mkdir_job = KIO::mkdir(url);
@@ -290,12 +295,12 @@ void VirtualCopyJob::slotStatResult(KJob *job)
 
 void VirtualCopyJob::slotMkdirResult(KJob *job)
 {
-    KUrl url = (static_cast<KIO::SimpleJob*>(job))->url();
+    QUrl url = (static_cast<KIO::SimpleJob*>(job))->url();
 
     if (job && job->error()) {
-        if (ui() && !m_skipAll) {
-            KIO::SkipDialog_Result skipResult = ui()->askSkip(this, m_multi,
-                                                job->errorString());
+        if (uiDelegate() && !m_skipAll) {
+            KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(uiDelegate());
+            KIO::SkipDialog_Result skipResult = ui->askSkip(this, m_multi ? KIO::SkipDialog_MultipleItems: (KIO::SkipDialog_Option)0, job->errorString());
             switch (skipResult) {
             case KIO::S_CANCEL:
                 setError(KIO::ERR_USER_CANCELED);
@@ -316,8 +321,7 @@ void VirtualCopyJob::slotMkdirResult(KJob *job)
     }
 
     if (m_dirStack.count()) {
-        url.adjustPath(KUrl::AddTrailingSlash);
-        url.addPath(m_dirStack.last());
+        url.setPath(vfs::ensureTrailingSlash(url).path() + m_dirStack.last());
         m_dirStack.pop_back();
 
         KIO::Job *mkdir_job = KIO::mkdir(url);
@@ -335,10 +339,10 @@ void VirtualCopyJob::copyCurrentDir()
     copy_job->setParentJob(this);
     copy_job->setUiDelegate(new MyUiDelegate(this));
 
-    connect(copy_job, SIGNAL(copying(KIO::Job *, const KUrl &, const KUrl &)),
-            this, SLOT(slotCopying(KIO::Job *, const KUrl &, const KUrl &)));
-    connect(copy_job, SIGNAL(moving(KIO::Job *, const KUrl &, const KUrl &)),
-            this, SLOT(slotMoving(KIO::Job *, const KUrl &, const KUrl &)));
+    connect(copy_job, SIGNAL(copying(KIO::Job *, const QUrl &, const QUrl &)),
+            this, SLOT(slotCopying(KIO::Job *, const QUrl &, const QUrl &)));
+    connect(copy_job, SIGNAL(moving(KIO::Job *, const QUrl &, const QUrl &)),
+            this, SLOT(slotMoving(KIO::Job *, const QUrl &, const QUrl &)));
     connect(copy_job, SIGNAL(processedFiles(KIO::Job *, unsigned long)),
             this, SLOT(slotProcessedFiles(KIO::Job *, unsigned long)));
     connect(copy_job, SIGNAL(processedSize(KJob *, qulonglong)),
@@ -382,18 +386,18 @@ void VirtualCopyJob::directoryFinished(const QString &name)
     m_subdirs.remove(name);
 }
 
-void VirtualCopyJob::slotCopying(KIO::Job *, const KUrl &src, const KUrl &dest)
+void VirtualCopyJob::slotCopying(KIO::Job *, const QUrl &src, const QUrl &dest)
 {
     emit description(this, i18nc("@title job", "Copying"),
-                     qMakePair(i18n("Source"), src.prettyUrl()),
-                     qMakePair(i18n("Destination"), dest.prettyUrl()));
+                     qMakePair(i18n("Source"), src.toDisplayString()),
+                     qMakePair(i18n("Destination"), dest.toDisplayString()));
 }
 
-void VirtualCopyJob::slotMoving(KIO::Job *, const KUrl &src, const KUrl &dest)
+void VirtualCopyJob::slotMoving(KIO::Job *, const QUrl &src, const QUrl &dest)
 {
     emit description(this, i18nc("@title job", "Moving"),
-                     qMakePair(i18n("Source"), src.prettyUrl()),
-                     qMakePair(i18n("Destination"), dest.prettyUrl()));
+                     qMakePair(i18n("Source"), src.toDisplayString()),
+                     qMakePair(i18n("Destination"), dest.toDisplayString()));
 }
 
 void VirtualCopyJob::slotProcessedFiles(KIO::Job *, unsigned long filenum)
@@ -406,4 +410,3 @@ void VirtualCopyJob::slotProcessedSize(KJob *, qulonglong size)
     m_tempSize = size;
 }
 
-#include "virtualcopyjob.moc"

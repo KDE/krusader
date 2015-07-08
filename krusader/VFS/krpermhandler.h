@@ -34,9 +34,9 @@
 
 #include <QtCore/QString>
 #include <QtCore/QFileInfo>
-#include <sys/types.h>
 #include <QtCore/QHash>
-#include <kio/global.h>
+
+#include <KIO/Global>
 
 #define NO_PERM      0
 #define UNKNOWN_PERM 1

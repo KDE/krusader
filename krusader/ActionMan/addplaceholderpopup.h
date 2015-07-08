@@ -21,24 +21,25 @@
 #ifndef ADDPLACEHOLDERPOPUP_H
 #define ADDPLACEHOLDERPOPUP_H
 
-#include <kmenu.h>
-#include <kdialog.h>
+#include <QtCore/QList>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QMenu>
+
 #include "../UserAction/expander.h"
-#include <QList>
 
 class QString;
 class KLineEdit;
 class QToolButton;
 class QCheckBox;
 class KComboBox;
-class KIntSpinBox;
+class QSpinBox;
 
 
 /**
  * This reads Expander::placeholder[] and
  * fills a popup for easy access to the UserAction Placeholder
  */
-class AddPlaceholderPopup : public KMenu
+class AddPlaceholderPopup : public QMenu
 {
 
 public:
@@ -60,7 +61,7 @@ protected:
     QString getParameter(exp_placeholder* currentPlaceholder);
 
 private:
-    KMenu *_activeSub, *_otherSub, *_leftSub, *_rightSub, *_independentSub;
+    QMenu *_activeSub, *_otherSub, *_leftSub, *_rightSub, *_independentSub;
 };
 
 
@@ -306,7 +307,7 @@ public:
     void reset();
     bool valid();
 private:
-    KIntSpinBox * _spinbox;
+    QSpinBox * _spinbox;
     int _default;
 };
 
@@ -318,7 +319,7 @@ private:
  *  Opens a dialog for the parameter. Depending on the default (preset) a differend widget is used.
  *  See Parameter-Classes for details
  */
-class ParameterDialog : public KDialog
+class ParameterDialog : public QDialog
 {
     Q_OBJECT
 public:

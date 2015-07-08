@@ -31,11 +31,11 @@
 #include "profilemanager.h"
 
 #include <QtGui/QCursor>
+#include <QtWidgets/QInputDialog>
+#include <QtWidgets/QMenu>
 
-#include <klocale.h>
-#include <kmenu.h>
-#include <kinputdialog.h>
-#include <kicon.h>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 
 #include "../krglobal.h"
 
@@ -43,7 +43,7 @@ ProfileManager::ProfileManager(QString profileType, QWidget * parent)
         : QPushButton(parent)
 {
     setText("");
-    setIcon(KIcon("kr_profile"));
+    setIcon(QIcon::fromTheme("kr_profile"));
     setFixedWidth(16 + 15);
     setToolTip(i18n("Profiles"));
 
@@ -64,7 +64,7 @@ void ProfileManager::profilePopup()
 #define OVERWRITE_ENTRY_ID  4000
 
     // create the menu
-    KMenu popup, removePopup, overwritePopup;
+    QMenu popup, removePopup, overwritePopup;
     popup.setTitle(i18n("Profiles"));
 
     for (int i = 0; i != profileList.count() ; i++) {
@@ -109,8 +109,8 @@ void ProfileManager::profilePopup()
 
 void ProfileManager::newProfile(QString defaultName)
 {
-    QString profile = KInputDialog::getText(i18n("Krusader::ProfileManager"), i18n("Enter the profile name:"),
-                                            defaultName, 0, this);
+    QString profile = QInputDialog::getText(this, i18n("Krusader::ProfileManager"), i18n("Enter the profile name:"),
+                                            QLineEdit::Normal, defaultName);
     if (!profile.isEmpty()) {
         int profileNum = 1;
         while (profileList.contains(QString("%1").arg(profileNum)))
@@ -189,4 +189,3 @@ QStringList ProfileManager::availableProfiles(QString profileType)
     return profileNames;
 }
 
-#include "profilemanager.moc"

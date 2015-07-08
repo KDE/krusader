@@ -25,9 +25,6 @@
 
 #include <QtCore/QDir>
 
-#include <kdebug.h>
-
-
 KrVfsHandler::KrVfsHandler()
 {
 }
@@ -35,24 +32,24 @@ KrVfsHandler::~KrVfsHandler()
 {
 }
 
-vfs::VFS_TYPE KrVfsHandler::getVfsType(const KUrl& url)
+vfs::VFS_TYPE KrVfsHandler::getVfsType(const QUrl &url)
 {
-    QString protocol = url.protocol();
+    QString protocol = url.scheme();
 
     if ((protocol == "krarc" || protocol == "tar" || protocol == "zip") &&
-            QDir(KrServices::getPath(url, KUrl::RemoveTrailingSlash)).exists())
+            QDir(KrServices::getPath(url, QUrl::StripTrailingSlash)).exists())
         return vfs::VFS_NORMAL;
 
     if (url.isLocalFile())
         return vfs::VFS_NORMAL;
 
-    if (url.protocol() == "virt")
+    if (protocol == QStringLiteral("virt"))
         return vfs::VFS_VIRT;
 
     return vfs::VFS_FTP;
 }
 
-vfs* KrVfsHandler::getVfs(const KUrl& url, QObject* parent, vfs* oldVfs)
+vfs* KrVfsHandler::getVfs(const QUrl &url, QObject* parent, vfs* oldVfs)
 {
     vfs::VFS_TYPE newType, oldType = vfs::VFS_ERROR;
 

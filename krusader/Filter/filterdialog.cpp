@@ -32,27 +32,40 @@
 #include "filtertabs.h"
 #include "generalfilter.h"
 
-#include <klocale.h>
-#include <QGridLayout>
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QPushButton>
 
+#include <KI18n/KLocalizedString>
 
 FilterDialog::FilterDialog(QWidget *parent, QString caption, QStringList extraOptions, bool modal)
-        : KDialog(parent)
+        : QDialog(parent)
 {
     setWindowTitle(caption.isNull() ? i18n("Krusader::Choose Files") : caption);
     setModal(modal);
-    setButtons(Ok | Cancel | Reset);
 
-    KTabWidget *filterWidget = new KTabWidget;
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+
+    QTabWidget *filterWidget = new QTabWidget;
 
     filterTabs = FilterTabs::addTo(filterWidget, FilterTabs::HasProfileHandler, extraOptions);
     generalFilter = static_cast<GeneralFilter*> (filterTabs->get("GeneralFilter"));
 
-    setMainWidget(filterWidget);
+    mainLayout->addWidget(filterWidget);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel|QDialogButtonBox::Reset);
+    mainLayout->addWidget(buttonBox);
+
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    connect(buttonBox, SIGNAL(accepted()), SLOT(slotOk()));
+    connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
+    connect(buttonBox->button(QDialogButtonBox::Reset), SIGNAL(clicked()), SLOT(slotReset()));
+    connect(filterTabs, SIGNAL(closeRequest(bool)), this, SLOT(slotCloseRequest(bool)));
 
     generalFilter->searchFor->setFocus();
-
-    connect(filterTabs, SIGNAL(closeRequest(bool)), this, SLOT(slotCloseRequest(bool)));
 
     if(modal)
         exec();
@@ -87,19 +100,10 @@ void FilterDialog::slotCloseRequest(bool doAccept)
         reject();
 }
 
-void FilterDialog::slotButtonClicked(int button)
+void FilterDialog::slotReset()
 {
-    switch(button) {
-    case KDialog::Ok:
-        slotOk();
-        break;
-    case KDialog::Reset:
-        filterTabs->reset();
-        generalFilter->searchFor->setFocus();
-        break;
-    default:
-        KDialog::slotButtonClicked(button);
-    }
+    filterTabs->reset();
+    generalFilter->searchFor->setFocus();
 }
 
 void FilterDialog::slotOk()
@@ -109,4 +113,3 @@ void FilterDialog::slotOk()
         accept();
 }
 
-#include "filterdialog.moc"

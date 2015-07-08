@@ -29,10 +29,11 @@
  ***************************************************************************/
 
 #include "krstyleproxy.h"
+
 #include <QtGui/QPen>
 #include <QtGui/QPainter>
-#include <QStyleOptionViewItem>
-#include <QtGui/QApplication>
+#include <QtWidgets/QStyleOptionViewItem>
+#include <QtWidgets/QApplication>
 
 void KrStyleProxy::drawComplexControl(ComplexControl control, const QStyleOptionComplex * option, QPainter * painter, const QWidget * widget) const
 {
@@ -102,6 +103,11 @@ QRect KrStyleProxy::itemTextRect(const QFontMetrics & metrics, const QRect & rec
     return QApplication::style()->itemTextRect(metrics, rectangle, alignment, enabled, text);
 }
 
+int KrStyleProxy::layoutSpacing(QSizePolicy::ControlType ctrl1, QSizePolicy::ControlType ctrl2, Qt::Orientation orientation, const QStyleOption *option, const QWidget *widget) const
+{
+    return QApplication::style()->layoutSpacing(ctrl1, ctrl2, orientation, option, widget);
+}
+
 int KrStyleProxy::pixelMetric(PixelMetric metric, const QStyleOption * option, const QWidget * widget) const
 {
     return QApplication::style()->pixelMetric(metric, option, widget);
@@ -125,6 +131,11 @@ void KrStyleProxy::polish(QPalette & palette)
 QSize KrStyleProxy::sizeFromContents(ContentsType type, const QStyleOption * option, const QSize & contentsSize, const QWidget * widget) const
 {
     return QApplication::style()->sizeFromContents(type, option, contentsSize, widget);
+}
+
+QIcon KrStyleProxy::standardIcon(StandardPixmap stdIcon, const QStyleOption *option, const QWidget *widget) const
+{
+    return QApplication::style()->standardIcon(stdIcon, option, widget);
 }
 
 QPalette KrStyleProxy::standardPalette() const

@@ -18,27 +18,26 @@
 
 #include "terminaldock.h"
 
-#include <QEvent>
-#include <QHBoxLayout>
-#include <QKeyEvent>
-#include <QApplication>
-#include <QClipboard>
-#include <QWidget>
-#include <QDir>
-#include <QString>
-#include <QObject>
+#include <QtCore/QEvent>
+#include <QtCore/QDir>
+#include <QtCore/QString>
+#include <QtCore/QObject>
+#include <QtCore/QUrl>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QClipboard>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QWidget>
 
 #include <kde_terminal_interface.h>
-#include <kparts/part.h>
-#include <kpluginloader.h>
-#include <kpluginfactory.h>
-#include <kservice.h>
-#include <ktoggleaction.h>
-#include <kurl.h>
-#include <kmessagebox.h>
+#include <KCoreAddons/KPluginLoader>
+#include <KCoreAddons/KPluginFactory>
+#include <KI18n/KLocalizedString>
+#include <KService/KService>
+#include <KWidgetsAddons/KToggleAction>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "../kractions.h"
-#include "../krusaderapp.h"
 #include "../krusaderview.h"
 #include "../filemanagerwindow.h"
 #include "kcmdline.h"
@@ -136,17 +135,18 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
 {
     int pressedKey = (ke->key() | ke->modifiers());
 
-    if (krToggleTerminal->shortcut().contains(pressedKey)) {
+    // TODO KF5 removed
+    if (krToggleTerminal->shortcut().matches(pressedKey)) {
         krToggleTerminal->activate(QAction::Trigger);
         return true;
     }
 
-    if (krSwitchFullScreenTE->shortcut().contains(pressedKey)) {
+    if (krSwitchFullScreenTE->shortcut().matches(pressedKey)) {
         krSwitchFullScreenTE->activate(QAction::Trigger);
         return true;
     }
 
-    if (_mainWindow->listPanelActions()->actPaste->shortcut().contains(pressedKey)) {
+    if (_mainWindow->listPanelActions()->actPaste->shortcut().matches(pressedKey)) {
         QString text = QApplication::clipboard()->text();
         if (! text.isEmpty()) {
             text.replace('\n', '\r');
@@ -164,7 +164,7 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
             return true;
         }
         if (ke->modifiers() & Qt::ShiftModifier) {
-            QString path = vfs::pathOrUrl(ACTIVE_FUNC->files()->vfs_getOrigin(), KUrl::AddTrailingSlash);
+            QString path = vfs::ensureTrailingSlash(ACTIVE_FUNC->files()->vfs_getOrigin()).toDisplayString(QUrl::PreferLocalFile);
             filename = path + filename;
         }
 
@@ -266,4 +266,3 @@ void TerminalDock::showEvent(QShowEvent * /*e*/)
     }
 }
 
-#include "terminaldock.moc"

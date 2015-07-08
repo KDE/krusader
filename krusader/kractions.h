@@ -32,10 +32,10 @@
 #ifndef KRACTIONS_H
 #define KRACTIONS_H
 
-#include <QObject>
-#include <kaction.h>
-#include <ktoggleaction.h>
+#include <QtCore/QObject>
+#include <QtWidgets/QAction>
 
+#include <KWidgetsAddons/KToggleAction>
 
 class Krusader;
 
@@ -46,40 +46,43 @@ public:
     KrActions(QObject *parent) : QObject(parent) {}
 
     // Actions
-    static KAction *actCompare;
-    static KAction *actCmdlinePopup, *actLocate, *actSwitchFullScreenTE;
-    static KAction *actDiskUsage, *actSavePosition;
-    static KAction *actHomeTerminal, *actProfiles;
-    static KAction *actMountMan, *actNewTool, *actSwapPanels, *actSwapSides;
-    static KAction *actKonfigurator, *actToolsSetup, *actFind, *actRemoteEncoding;
-    static KAction *actSelectColorMask, *actMultiRename, *actOpenLeftBm, *actOpenRightBm;
-    static KAction *actSplit, *actQueueManager;
-    static KAction *actCombine, *actUserMenu, *actManageUseractions;
+    static QAction *actCompare;
+    static QAction *actCmdlinePopup, *actLocate, *actSwitchFullScreenTE;
+    static QAction *actDiskUsage, *actSavePosition;
+    static QAction *actHomeTerminal, *actProfiles;
+    static QAction *actMountMan, *actNewTool, *actSwapPanels, *actSwapSides;
+    static QAction *actKonfigurator, *actToolsSetup, *actFind;
+    static QAction *actRemoteEncoding;
+    static QAction *actSelectColorMask, *actMultiRename, *actOpenLeftBm, *actOpenRightBm, *actAddBookmark;
+    static QAction *actSplit, *actQueueManager;
+    static QAction *actCombine;
+    static QAction *actUserMenu;
+    static QAction *actManageUseractions;
 #ifdef ENABLE_SYNCHRONIZER
-    static KAction *actSyncDirs;
+    static QAction *actSyncDirs;
 #endif
-    static KAction *actVerticalMode;
-    static KAction *actEmptyTrash, *actTrashBin;
-    static KAction *actPopularUrls;
+    static QAction *actVerticalMode;
+    static QAction *actEmptyTrash, *actTrashBin;
+    static QAction *actPopularUrls;
     static KToggleAction *actToggleTerminal;
-    static KAction *actSelectNewerAndSingle, *actSelectNewer, *actSelectSingle,
+    static QAction *actSelectNewerAndSingle, *actSelectNewer, *actSelectSingle,
     *actSelectDifferentAndSingle, *actSelectDifferent;
-    static KAction *actF10;
+    static QAction *actF10;
     /** actions for setting the execution mode of commands from commanddline */
-    static KAction *actExecStartAndForget,
+    static QAction *actExecStartAndForget,
     *actExecCollectSeparate, *actExecCollectTogether,
     *actExecTerminalExternal, *actExecTerminalEmbedded;
     static KToggleAction *actToggleFnkeys, *actToggleCmdline,
     *actShowStatusBar, *actToggleHidden, *actCompareDirs;
 
-    static KAction **compareArray[];
+    static QAction **compareArray[];
     /** actions for setting the execution mode of commands from commanddline */
-    static KAction **execTypeArray[];
+    static QAction **execTypeArray[];
 
 
 
 #ifdef __KJSEMBED__
-    static KAction *actShowJSConsole;
+    static QAction *actShowJSConsole;
 #endif
 
     static void setupActions(Krusader *krusader);

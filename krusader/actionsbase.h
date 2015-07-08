@@ -19,11 +19,12 @@
 #ifndef __ACTIONSBASE_H__
 #define __ACTIONSBASE_H__
 
-#include <QObject>
-#include <QKeySequence>
-#include <QHash>
-#include <kstandardaction.h>
+#include <QtCore/QObject>
+#include <QtCore/QHash>
+#include <QtGui/QKeySequence>
+#include <QtWidgets/QAction>
 
+#include <KConfigWidgets/KStandardAction>
 
 class KrMainWindow;
 
@@ -35,21 +36,23 @@ protected:
                 _mainWindow(mainWindow) {}
     class ActionGroup
     {
-        QHash<KAction*, const char*> _slots;
+        QHash<QAction*, const char*> _slots;
     public:
         void reconnect(QObject *recv);
-        void addAction(KAction *action, const char *slot);
+        void addAction(QAction *action, const char *slot);
     };
 
-    KAction *createAction(QString text, QString icon, bool isToggleAction);
+    QAction *createAction(QString text, QString icon, bool isToggleAction);
 
-    KAction *action(QString text, QString icon, QKeySequence shortcut,
+    QAction *action(QString text, QString icon, QKeySequence shortcut,
                     QObject *recv, const char *slot, QString name, bool isToggleAction = false);
-    KAction *action(QString text, QString icon, QKeySequence shortcut,
+    QAction *action(QString text, QString icon, QKeySequence shortcut,
                     const char *slot, QString name) {
         return action(text, icon, shortcut, this, slot, name);
     }
-    KAction *action(QString text, QString icon, QKeySequence shortcut,
+    QAction *action(QString text, QString icon, const QList<QKeySequence> &shortcuts,
+                    QObject *recv, const char *slot, QString name, bool isToggleAction = false);
+    QAction *action(QString text, QString icon, QKeySequence shortcut,
                     ActionGroup &group, const char *slot, QString name, bool isToggleAction = false);
 
     KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,
@@ -61,11 +64,11 @@ protected:
     KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,
                                 ActionGroup &group, const char *slot, QString name);
 
-    KAction *stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot);
-    KAction *stdAction(KStandardAction::StandardAction id, const char *slot) {
+    QAction *stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot);
+    QAction *stdAction(KStandardAction::StandardAction id, const char *slot) {
         return stdAction(id, this, slot);
     }
-    KAction *stdAction(KStandardAction::StandardAction id,
+    QAction *stdAction(KStandardAction::StandardAction id,
                        ActionGroup &group, const char *slot);
 
     KrMainWindow *_mainWindow;

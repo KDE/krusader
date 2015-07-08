@@ -29,16 +29,20 @@
  ***************************************************************************/
 
 #include "packgui.h"
-#include <kfiledialog.h>
 #include "../krglobal.h"
 #include "../defaults.h"
-#include <QtGui/QLineEdit>
-#include <QtGui/QCheckBox>
+
 #include <QtCore/QStringList>
-#include <QtGui/QLabel>
-#include <QtGui/QPushButton>
-#include <QtGui/QComboBox>
-#include <khistorycombobox.h>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QComboBox>
+
+#include <KCompletion/KHistoryComboBox>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 
 #define PS(x) lst.contains(x)>0
 
@@ -101,7 +105,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
 
 void PackGUI::browse()
 {
-    QString temp = KFileDialog::getExistingDirectory(dirData->text(), 0, i18n("Please select a directory"));
+    QString temp = QFileDialog::getExistingDirectory(0, i18n("Please select a directory"), dirData->text());
     if (!temp.isEmpty()) {
         dirData->setText(temp);
     }
@@ -136,4 +140,3 @@ void PackGUI::slotQueue()
     PackGUIBase::slotQueue();
 }
 
-#include "packgui.moc"

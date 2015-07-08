@@ -33,15 +33,11 @@
 #ifndef KRUSADERSTATUS_H
 #define KRUSADERSTATUS_H
 
-// QT includes
-#include <QtGui/QLabel>
-#include <qwidget.h>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QStatusBar>
+#include <QtWidgets/QWidget>
 
-// KDE includes
-#include <kstatusbar.h>
-#include <klocale.h>
-
-class KrusaderStatus : public KStatusBar
+class KrusaderStatus : public QStatusBar
 {
     Q_OBJECT
 public:

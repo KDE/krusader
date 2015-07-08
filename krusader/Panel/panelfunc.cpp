@@ -30,38 +30,35 @@ A
 
 #include "panelfunc.h"
 
-#include <unistd.h>
-
 #include <QtCore/QEventLoop>
+#include <QtCore/QList>
+#include <QtCore/QMimeData>
+#include <QtCore/QDir>
+#include <QtCore/QTemporaryFile>
+#include <QtCore/QUrl>
 #include <QtGui/QClipboard>
-#include <QList>
-#include <QDir>
-#include <QDrag>
-#include <QMimeData>
-#include <QApplication>
+#include <QtGui/QDrag>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QInputDialog>
 
-#include <kuiserverjobtracker.h>
-#include <klocale.h>
-#include <kprocess.h>
-#include <kpropertiesdialog.h>
-#include <kmessagebox.h>
-#include <kcursor.h>
-#include <kstandarddirs.h>
-#include <ktemporaryfile.h>
-#include <kurl.h>
-#include <ktar.h>
-#include <krun.h>
-#include <kinputdialog.h>
-#include <kdebug.h>
-#include <kio/netaccess.h>
-#include <kio/jobuidelegate.h>
-#include <ktempdir.h>
-#include <kdesktopfile.h>
-#include <ktoggleaction.h>
-#include <kurlcompletion.h>
-#include <kmimetypetrader.h>
-#include <kopenwithdialog.h>
-#include <kshell.h>
+#include <KArchive/KTar>
+#include <KConfigCore/KDesktopFile>
+#include <KCoreAddons/KJobTrackerInterface>
+#include <KCoreAddons/KProcess>
+#include <KCoreAddons/KShell>
+#include <KCoreAddons/KUrlMimeData>
+#include <KI18n/KLocalizedString>
+#include <KIO/DesktopExecParser>
+#include <KIO/JobUiDelegate>
+#include <KIOCore/KProtocolInfo>
+#include <KIOWidgets/KOpenWithDialog>
+#include <KIOWidgets/KPropertiesDialog>
+#include <KIOWidgets/KRun>
+#include <KIOWidgets/KUrlCompletion>
+#include <KService/KMimeTypeTrader>
+#include <KWidgetsAddons/KCursor>
+#include <KWidgetsAddons/KMessageBox>
+#include <KWidgetsAddons/KToggleAction>
 
 #include "dirhistoryqueue.h"
 #include "krcalcspacedialog.h"
@@ -94,16 +91,6 @@ A
 #include "../GUI/syncbrowsebutton.h"
 #include "../Queue/queue_mgr.h"
 
-
-class FilePathValidator : public QValidator
-{
-public:
-    virtual State validate(QString &input, int &/*pos*/) const {
-            return input.isEmpty() ? Intermediate : Acceptable;
-    }
-};
-
-
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
 ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
@@ -129,19 +116,18 @@ ListPanelFunc::~ListPanelFunc()
 
 void ListPanelFunc::urlEntered(const QString &url)
 {
-    urlEntered(KUrl(
-                // KUrlRequester is buggy: it should return a string containing "/home/shie/downloads"
-                // but it returns "~/downloads" which is parsed incorrectly by KUrl.
-                // replacedPath should replace ONLY $HOME and environment variables
-                panel->origin->completionObject()->replacedPath(url)));
+    // The string passed by the signal is not processed, no replacements done (like ~ for home directory)
+    // Instead, since we know where the signal came from, get the correct url directly from the sender
+    Q_UNUSED(url)
+    urlEntered(panel->origin->url());
 }
 
-void ListPanelFunc::urlEntered(const KUrl &url)
+void ListPanelFunc::urlEntered(const QUrl &url)
 {
     openUrl(url, QString(), true);
 }
 
-bool ListPanelFunc::isSyncing(const KUrl &url)
+bool ListPanelFunc::isSyncing(const QUrl &url)
 {
     if(otherFunc()->otherFunc() == this &&
        panel->otherPanel()->gui->syncBrowseButton->state() == SYNCBROWSE_CD &&
@@ -151,39 +137,88 @@ bool ListPanelFunc::isSyncing(const KUrl &url)
 
     return false;
 }
+
+void ListPanelFunc::openFileNameInternal(const QString &name, bool canExecuteFile)
+{
+    if (name == "..") {
+        dirUp();
+        return ;
+    }
+
+    vfile *vf = files() ->vfs_search(name);
+    if (vf == 0)
+        return ;
+
+    QUrl url = files()->vfs_getFile(name);
+
+    if (vf->vfile_isDir()) {
+        panel->view->setNameToMakeCurrent(QString());
+        openUrl(url);
+        return;
+    }
+
+    QString mime = vf->vfile_getMime();
+
+    if(canExecuteFile) {
+        if (KRun::isExecutableFile(url, mime)) {
+            runCommand(KShell::quoteArg(url.path()));
+            return;
+        }
+
+        KService::Ptr service = KMimeTypeTrader::self()->preferredService(mime);
+        if(service) {
+            runService(*service, QList<QUrl>() << url);
+            return;
+        }
+    }
+
+    if(url.isLocalFile()) {
+        QString protocol = KrServices::registeredProtocol(mime);
+        if(!protocol.isEmpty()) {
+            url.setScheme(protocol);
+            openUrl(url);
+            return;
+        }
+    }
+
+    if(canExecuteFile) {
+        displayOpenWithDialog(QList<QUrl>() << url);
+    }
+}
+
 #if 0
 //FIXME: see if this is still needed
 void ListPanelFunc::popErronousUrl()
 {
-    KUrl current = urlStack.last();
+    QUrl current = urlStack.last();
     while (urlStack.count() != 0) {
-        KUrl url = urlStack.takeLast();
+        QUrl url = urlStack.takeLast();
         if (!current.equals(url)) {
             immediateOpenUrl(url, true);
             return;
         }
     }
-    immediateOpenUrl(KUrl(ROOT_DIR), true);
+    immediateOpenUrl(QUrl::fromLocalFile(ROOT_DIR), true);
 }
 #endif
-KUrl ListPanelFunc::cleanPath(const KUrl &urlIn)
+QUrl ListPanelFunc::cleanPath(const QUrl &urlIn)
 {
-    KUrl url = urlIn;
-    url.cleanPath();
+    QUrl url = urlIn;
+    url.setPath(QDir::cleanPath(url.path()));
     if (!url.isValid() || url.isRelative()) {
         if (url.url() == "~")
-            url = KUrl(QDir::homePath());
+            url = QUrl::fromLocalFile(QDir::homePath());
         else if (!url.url().startsWith('/')) {
             // possible relative URL - translate to full URL
             url = files()->vfs_getOrigin();
-            url.addPath(urlIn.url());
+            url.setPath(url.path() + '/' + urlIn.path());
         }
     }
-    url.cleanPath();
+    url.setPath(QDir::cleanPath(url.path()));
     return url;
 }
 
-void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent,
+void ListPanelFunc::openUrl(const QUrl &url, const QString& nameToMakeCurrent,
                             bool manuallyEntered)
 {
     if (panel->syncBrowseButton->state() == SYNCBROWSE_CD) {
@@ -191,26 +226,26 @@ void ListPanelFunc::openUrl(const KUrl& url, const QString& nameToMakeCurrent,
         if(syncURL.isEmpty())
             syncURL = panel->otherPanel()->virtualPath();
 
-        syncURL.addPath(KUrl::relativeUrl(panel->virtualPath().url() + '/', url.url()));
-        syncURL.cleanPath();
+        QString relative = QDir(panel->virtualPath().path() + '/').relativeFilePath(url.path());
+        syncURL.setPath(QDir::cleanPath(syncURL.path() + '/' + relative));
         panel->otherPanel()->gui->setLocked(false);
         otherFunc()->openUrlInternal(syncURL, nameToMakeCurrent, false, false, false);
     }
     openUrlInternal(url, nameToMakeCurrent, false, false, manuallyEntered);
 }
 
-void ListPanelFunc::immediateOpenUrl(const KUrl& url, bool disableLock)
+void ListPanelFunc::immediateOpenUrl(const QUrl &url, bool disableLock)
 {
     openUrlInternal(url, QString(), true, disableLock, false);
 }
 
-void ListPanelFunc::openUrlInternal(const KUrl& url, const QString& nameToMakeCurrent,
+void ListPanelFunc::openUrlInternal(const QUrl &url, const QString& nameToMakeCurrent,
                                     bool immediately, bool disableLock, bool manuallyEntered)
 {
-    KUrl cleanUrl = cleanPath(url);
+    QUrl cleanUrl = cleanPath(url);
 
     if (!disableLock && panel->isLocked() &&
-            !files()->vfs_getOrigin().equals(cleanUrl, KUrl::CompareWithoutTrailingSlash)) {
+            !files()->vfs_getOrigin().matches(cleanUrl, QUrl::StripTrailingSlash)) {
         panel->_manager->newTab(url);
         urlManuallyEntered = false;
         return;
@@ -236,7 +271,7 @@ void ListPanelFunc::doRefresh()
 {
     delayTimer.stop();
 
-    KUrl url = history->currentUrl();
+    QUrl url = history->currentUrl();
 
     if(!url.isValid()) {
         //FIXME go back in history here ?
@@ -248,7 +283,7 @@ void ListPanelFunc::doRefresh()
     panel->inlineRefreshCancel();
 
     // if we are not refreshing to current URL
-    bool isEqualUrl = files()->vfs_getOrigin().equals(url, KUrl::CompareWithoutTrailingSlash);
+    bool isEqualUrl = files()->vfs_getOrigin().matches(url, QUrl::StripTrailingSlash);
 
     if (!isEqualUrl) {
         panel->setCursor(Qt::WaitCursor);
@@ -261,9 +296,25 @@ void ListPanelFunc::doRefresh()
 
     bool refreshFailed = false;
     while (true) {
-        KUrl u = history->currentUrl();
+        QString tmp;
 
-        isEqualUrl = files()->vfs_getOrigin().equals(u, KUrl::CompareWithoutTrailingSlash);
+        if (refreshFailed) {
+            tmp = history->currentUrl().fileName();
+            history->goForward();
+            QUrl t = history->currentUrl();
+            QString protocol = t.scheme();
+            if (protocol != QStringLiteral("file") && KProtocolInfo::protocolClass(protocol).toLower() == QStringLiteral(":local")) {
+                t.setScheme("file");
+                history->setCurrentUrl(t);
+                panel->vfsError->hide();
+            } else {
+                history->goBack();
+            }
+        }
+
+        QUrl u = history->currentUrl();
+
+        isEqualUrl = files()->vfs_getOrigin().matches(u, QUrl::StripTrailingSlash);
 
         vfs* v = KrVfsHandler::getVfs(u, panel, files());
         v->setParentWindow(krMainWindow);
@@ -290,14 +341,12 @@ void ListPanelFunc::doRefresh()
         // (re)connect vfs signals
         disconnect(files(), 0, panel, 0);
         connect(files(), SIGNAL(startUpdate()), panel, SLOT(slotStartUpdate()));
-        connect(files(), SIGNAL(incrementalRefreshFinished(const KUrl&)),
-                panel, SLOT(slotGetStats(const KUrl&)));
+        connect(files(), SIGNAL(incrementalRefreshFinished(const QUrl&)),
+                panel, SLOT(slotGetStats(const QUrl&)));
         connect(files(), SIGNAL(startJob(KIO::Job*)),
                 panel, SLOT(slotJobStarted(KIO::Job*)));
         connect(files(), SIGNAL(error(QString)),
                 panel, SLOT(slotVfsError(QString)));
-        connect(files(), SIGNAL(trashJobStarted(KIO::Job*)),
-                this, SLOT(trashJobStarted(KIO::Job*)));
 
         panel->view->setFiles(files());
 
@@ -311,14 +360,18 @@ void ListPanelFunc::doRefresh()
             panel->view->setCurrentItem(history->currentItem());
             panel->view->makeItemVisible(panel->view->getCurrentKrViewItem());
         }
-        panel->view->setNameToMakeCurrent(history->currentItem());
+        if (!tmp.isEmpty())
+            panel->view->setNameToMakeCurrent(tmp);
+        else
+            panel->view->setNameToMakeCurrent(history->currentItem());
+
 
         int savedHistoryState = history->state();
 
         if (vfsP->vfs_refresh(u)) {
             // update the history and address bar, as the actual url might differ from the one requested
             history->setCurrentUrl(vfsP->vfs_getOrigin());
-            panel->origin->setUrl(vfsP->vfs_getOrigin().prettyUrl());
+            panel->origin->setUrl(vfsP->vfs_getOrigin());
             break; // we have a valid refreshed URL now
         }
 
@@ -333,7 +386,7 @@ void ListPanelFunc::doRefresh()
             break;
         if(!history->goBack()) {
             // put the root dir to the beginning of history, if it's not there yet
-            if (!u.equals(KUrl(ROOT_DIR), KUrl::CompareWithoutTrailingSlash))
+            if (!u.matches(QUrl::fromLocalFile(ROOT_DIR), QUrl::StripTrailingSlash))
                 history->pushBackRoot();
             else
                 break;
@@ -342,7 +395,7 @@ void ListPanelFunc::doRefresh()
     }
     vfsP->vfs_setQuiet(false);
     panel->view->setNameToMakeCurrent(QString());
-    panel->origin->setStartDir(vfsP->vfs_getOrigin().prettyUrl());
+    panel->origin->setStartDir(vfsP->vfs_getOrigin());
 
     panel->setCursor(Qt::ArrowCursor);
 
@@ -356,14 +409,14 @@ void ListPanelFunc::doRefresh()
         if(isSyncing(url))
             panel->otherPanel()->gui->syncBrowseButton->setChecked(false);
         else if(urlManuallyEntered) {
-            panel->origin->setUrl(url.prettyUrl());
+            panel->origin->setUrl(url);
             if(panel == ACTIVE_PANEL)
                 panel->origin->edit();
         }
     }
 
     if(otherFunc()->otherFunc() == this)  // not true if our tab is not active
-        otherFunc()->syncURL = KUrl();
+        otherFunc()->syncURL = QUrl();
 
     urlManuallyEntered = false;
 
@@ -381,7 +434,7 @@ void ListPanelFunc::redirectLink()
     if (!vf)
         return ;
 
-    QString file = files() ->vfs_getFile(vf->vfile_getName()).path(KUrl::RemoveTrailingSlash);
+    QString file = files() ->vfs_getFile(vf->vfile_getName()).path();
     QString currentLink = vf->vfile_getSymDest();
     if (currentLink.isEmpty()) {
         KMessageBox::sorry(krMainWindow, i18n("The current file is not a link, so it cannot be redirected."));
@@ -391,8 +444,7 @@ void ListPanelFunc::redirectLink()
     // ask the user for a new destination
     bool ok = false;
     QString newLink =
-        KInputDialog::getText(i18n("Link Redirection"),
-                              i18n("Please enter the new link destination:"), currentLink, &ok, krMainWindow);
+        QInputDialog::getText(krMainWindow, i18n("Link Redirection"), i18n("Please enter the new link destination:"), QLineEdit::Normal, currentLink, &ok);
 
     // if the user canceled - quit
     if (!ok || newLink == currentLink)
@@ -421,7 +473,7 @@ void ListPanelFunc::krlink(bool sym)
     // ask the new link name..
     bool ok = false;
     QString linkName =
-        KInputDialog::getText(i18n("New Link"), i18n("Create a new link to: %1", name), name, &ok, krMainWindow);
+        QInputDialog::getText(krMainWindow, i18n("New Link"), i18n("Create a new link to: %1", name), QLineEdit::Normal, name, &ok);
 
     // if the user canceled - quit
     if (!ok || linkName == name)
@@ -437,7 +489,7 @@ void ListPanelFunc::krlink(bool sym)
         linkName = files() ->vfs_workingDir() + '/' + linkName;
 
     if (linkName.contains("/"))
-        name = files() ->vfs_getFile(name).path(KUrl::RemoveTrailingSlash);
+        name = files() ->vfs_getFile(name).path();
 
     if (sym) {
         if (symlink(name.toLocal8Bit(), linkName.toLocal8Bit()) == -1)
@@ -472,7 +524,7 @@ void ListPanelFunc::view()
 void ListPanelFunc::viewDlg()
 {
     // ask the user for a url to view
-    KUrl dest = KChooseDir::getFile(i18n("Enter a URL to view:"), panel->virtualPath(), panel->virtualPath());
+    QUrl dest = KChooseDir::getFile(i18n("Enter a URL to view:"), panel->virtualPath(), panel->virtualPath());
     if (dest.isEmpty())
         return ;   // the user canceled
 
@@ -513,10 +565,10 @@ void ListPanelFunc::editNew()
     if(fileToCreate.isEmpty())
         return ;   // the user canceled
 
-    KTemporaryFile *tempFile = new KTemporaryFile;
+    QTemporaryFile *tempFile = new QTemporaryFile;
     tempFile->open();
 
-    KIO::CopyJob *job = KIO::copy(tempFile->fileName(), fileToCreate);
+    KIO::CopyJob *job = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), fileToCreate);
     job->setUiDelegate(0);
     job->setDefaultPermissions(true);
     connect(job, SIGNAL(result(KJob*)), SLOT(slotFileCreated(KJob*)));
@@ -528,15 +580,15 @@ void ListPanelFunc::slotFileCreated(KJob *job)
     if(!job->error() || job->error() == KIO::ERR_FILE_ALREADY_EXIST) {
         KrViewer::edit(fileToCreate);
 
-        if(fileToCreate.upUrl().equals(panel->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+        if(KIO::upUrl(fileToCreate).matches(panel->virtualPath(), QUrl::StripTrailingSlash))
             refresh();
-        else if(fileToCreate.upUrl().equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+        else if(KIO::upUrl(fileToCreate).matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash))
             otherFunc()->refresh();
     }
     else
         KMessageBox::sorry(krMainWindow, job->errorString());
 
-    fileToCreate = KUrl();
+    fileToCreate = QUrl();
 }
 
 void ListPanelFunc::moveFiles(bool enqueue)
@@ -549,8 +601,8 @@ void ListPanelFunc::moveFiles(bool enqueue)
     if (fileNames.isEmpty())
         return ;  // safety
 
-    KUrl dest = panel->otherPanel()->virtualPath();
-    KUrl virtualBaseURL;
+    QUrl dest = panel->otherPanel()->virtualPath();
+    QUrl virtualBaseURL;
 
     KConfigGroup group(krConfig, "Advanced");
     if (group.readEntry("Confirm Move", _ConfirmMove)) {
@@ -576,7 +628,7 @@ void ListPanelFunc::moveFiles(bool enqueue)
     if (fileNames.isEmpty())
         return ; // nothing to copy
 
-    KUrl::List* fileUrls = files() ->vfs_getFiles(&fileNames);
+    QList<QUrl> fileUrls = files() ->vfs_getFiles(fileNames);
 
     // after the delete return the cursor to the first unmarked
     // file above the current item;
@@ -587,18 +639,20 @@ void ListPanelFunc::moveFiles(bool enqueue)
         if (!virtualBaseURL.isEmpty()) {
             job = KIOJobWrapper::virtualMove(&fileNames, files(), dest, virtualBaseURL, pmode, true);
             job->connectTo(SIGNAL(result(KJob*)), this, SLOT(refresh()));
-            if (dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+            if (dest.matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash))
                 job->connectTo(SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
         } else {
             // you can rename only *one* file not a batch,
             // so a batch dest must alwayes be a directory
-            if (fileNames.count() > 1) dest.adjustPath(KUrl::AddTrailingSlash);
-            job = KIOJobWrapper::move(pmode, *fileUrls, dest, true);
+            if (fileNames.count() > 1) {
+                dest = vfs::ensureTrailingSlash(dest);
+            }
+            job = KIOJobWrapper::move(pmode, fileUrls, dest, true);
             job->setAutoErrorHandlingEnabled(true);
             // refresh our panel when done
             job->connectTo(SIGNAL(result(KJob*)), this, SLOT(refresh()));
-            if (dest.equals(panel->virtualPath(), KUrl::CompareWithoutTrailingSlash) ||
-                    dest.upUrl().equals(panel->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+            if (dest.matches(panel->virtualPath(), QUrl::StripTrailingSlash) ||
+                    KIO::upUrl(dest).matches(panel->virtualPath(), QUrl::StripTrailingSlash))
                 // refresh our panel when done
                 job->connectTo(SIGNAL(result(KJob*)), this, SLOT(refresh()));
         }
@@ -607,20 +661,22 @@ void ListPanelFunc::moveFiles(bool enqueue)
         // keep the directory structure for virtual paths
         VirtualCopyJob *vjob = new VirtualCopyJob(&fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Move, true);
         connect(vjob, SIGNAL(result(KJob*)), this, SLOT(refresh()));
-        if (dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+        if (dest.matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash))
             connect(vjob, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
     }
     // if we are not moving to the other panel :
-    else if (!dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash)) {
+    else if (!dest.matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash)) {
         // you can rename only *one* file not a batch,
         // so a batch dest must alwayes be a directory
-        if (fileNames.count() > 1) dest.adjustPath(KUrl::AddTrailingSlash);
-        KIO::Job* job = PreservingCopyJob::createCopyJob(pmode, *fileUrls, dest, KIO::CopyJob::Move, false, true);
+        if (fileNames.count() > 1) {
+            dest = vfs::ensureTrailingSlash(dest);
+        }
+        KIO::Job* job = PreservingCopyJob::createCopyJob(pmode, fileUrls, dest, KIO::CopyJob::Move, false, true);
         job->ui()->setAutoErrorHandlingEnabled(true);
         // refresh our panel when done
         connect(job, SIGNAL(result(KJob*)), this, SLOT(refresh()));
         // and if needed the other panel as well
-        if (dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+        if (dest.matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash))
             connect(job, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
 
     } else { // let the other panel do the dirty job
@@ -656,15 +712,11 @@ void ListPanelFunc::rename(const QString &oldname, const QString &newname)
 
 void ListPanelFunc::mkdir()
 {
-    FilePathValidator validator;
     // ask the new dir name..
-    bool ok = false;
-    QString dirName =
-        KInputDialog::getText(i18n("New directory"), i18n("Directory's name:"), "",
-                              &ok, krMainWindow, &validator);
+    QString dirName = QInputDialog::getText(krMainWindow, i18n("New directory"), i18n("Directory's name:"));
 
     // if the user canceled - quit
-    if (!ok || dirName.isEmpty())
+    if (dirName.isEmpty())
         return ;
 
     QStringList dirTree = dirName.split('/');
@@ -673,7 +725,7 @@ void ListPanelFunc::mkdir()
         if (*it == ".")
             continue;
         if (*it == "..") {
-            immediateOpenUrl(*it);
+            immediateOpenUrl(QUrl::fromUserInput(*it, QString(), QUrl::AssumeLocalFile));
             continue;
         }
         // check if the name is already taken
@@ -685,7 +737,7 @@ void ListPanelFunc::mkdir()
             }
             // else go into this dir
             else {
-                immediateOpenUrl(*it);
+                immediateOpenUrl(QUrl::fromUserInput(*it, QString(), QUrl::AssumeLocalFile));
                 continue;
             }
         }
@@ -694,39 +746,39 @@ void ListPanelFunc::mkdir()
         // as always - the vfs do the job
         files() ->vfs_mkdir(*it);
         if (dirTree.count() > 1)
-            immediateOpenUrl(*it);
+            immediateOpenUrl(QUrl::fromUserInput(*it, QString(), QUrl::AssumeLocalFile));
     } // for
 }
 
-KUrl ListPanelFunc::getVirtualBaseURL()
+QUrl ListPanelFunc::getVirtualBaseURL()
 {
     if (files()->vfs_getType() != vfs::VFS_VIRT || otherFunc()->files()->vfs_getType() == vfs::VFS_VIRT)
-        return KUrl();
+        return QUrl();
 
     QStringList fileNames;
     panel->getSelectedNames(&fileNames);
 
-    KUrl::List* fileUrls = files() ->vfs_getFiles(&fileNames);
-    if (fileUrls->count() == 0)
-        return KUrl();
+    QList<QUrl> fileUrls = files() ->vfs_getFiles(fileNames);
+    if (fileUrls.count() == 0)
+        return QUrl();
 
-    KUrl base = (*fileUrls)[ 0 ].upUrl();
+    QUrl base = KIO::upUrl(fileUrls.first());
 
-    if (base.protocol() == "virt")  // is it a virtual subfolder?
-        return KUrl();          // --> cannot keep the directory structure
+    if (base.scheme() == QStringLiteral("virt"))  // is it a virtual subfolder?
+        return QUrl();          // --> cannot keep the directory structure
 
-    for (int i = 1; i < fileUrls->count(); i++) {
-        if (base.isParentOf((*fileUrls)[ i ]))
+    for (int i = 1; i < fileUrls.count(); i++) {
+        if (base.isParentOf(fileUrls.at(i)))
             continue;
-        if (base.protocol() != (*fileUrls)[ i ].protocol())
-            return KUrl();
+        if (base.scheme() != fileUrls.at(i).scheme())
+            return QUrl();
 
         do {
-            KUrl oldBase = base;
-            base = base.upUrl();
-            if (oldBase.equals(base, KUrl::CompareWithoutTrailingSlash))
-                return KUrl();
-            if (base.isParentOf((*fileUrls)[ i ]))
+            QUrl oldBase = base;
+            base = KIO::upUrl(base);
+            if (oldBase.matches(base, QUrl::StripTrailingSlash))
+                return QUrl();
+            if (base.isParentOf(fileUrls.at(i)))
                 break;
         } while (true);
     }
@@ -743,8 +795,8 @@ void ListPanelFunc::copyFiles(bool enqueue)
     if (fileNames.isEmpty())
         return ;  // safety
 
-    KUrl dest = panel->otherPanel()->virtualPath();
-    KUrl virtualBaseURL;
+    QUrl dest = panel->otherPanel()->virtualPath();
+    QUrl virtualBaseURL;
 
     // confirm copy
     KConfigGroup group(krConfig, "Advanced");
@@ -768,23 +820,25 @@ void ListPanelFunc::copyFiles(bool enqueue)
             pmode = PM_NONE;
     }
 
-    KUrl::List* fileUrls = files() ->vfs_getFiles(&fileNames);
+    QList<QUrl> fileUrls = files() ->vfs_getFiles(fileNames);
 
     if (queue) {
         KIOJobWrapper *job = 0;
         if (!virtualBaseURL.isEmpty()) {
             job = KIOJobWrapper::virtualCopy(&fileNames, files(), dest, virtualBaseURL, pmode, true);
             job->connectTo(SIGNAL(result(KJob*)), this, SLOT(refresh()));
-            if (dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+            if (dest.matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash))
                 job->connectTo(SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
         } else {
             // you can rename only *one* file not a batch,
             // so a batch dest must alwayes be a directory
-            if (fileNames.count() > 1) dest.adjustPath(KUrl::AddTrailingSlash);
-            job = KIOJobWrapper::copy(pmode, *fileUrls, dest, true);
+            if (fileNames.count() > 1) {
+                dest = vfs::ensureTrailingSlash(dest);
+            }
+            job = KIOJobWrapper::copy(pmode, fileUrls, dest, true);
             job->setAutoErrorHandlingEnabled(true);
-            if (dest.equals(panel->virtualPath(), KUrl::CompareWithoutTrailingSlash) ||
-                    dest.upUrl().equals(panel->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+            if (dest.matches(panel->virtualPath(), QUrl::StripTrailingSlash) ||
+                    KIO::upUrl(dest).matches(panel->virtualPath(), QUrl::StripTrailingSlash))
                 // refresh our panel when done
                 job->connectTo(SIGNAL(result(KJob*)), this, SLOT(refresh()));
         }
@@ -793,18 +847,20 @@ void ListPanelFunc::copyFiles(bool enqueue)
         // keep the directory structure for virtual paths
         VirtualCopyJob *vjob = new VirtualCopyJob(&fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Copy, true);
         connect(vjob, SIGNAL(result(KJob*)), this, SLOT(refresh()));
-        if (dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+        if (dest.matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash))
             connect(vjob, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
     }
     // if we are  not copying to the other panel :
-    else if (!dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash)) {
+    else if (!dest.matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash)) {
         // you can rename only *one* file not a batch,
         // so a batch dest must alwayes be a directory
-        if (fileNames.count() > 1) dest.adjustPath(KUrl::AddTrailingSlash);
-        KIO::Job* job = PreservingCopyJob::createCopyJob(pmode, *fileUrls, dest, KIO::CopyJob::Copy, false, true);
+        if (fileNames.count() > 1) {
+            dest = vfs::ensureTrailingSlash(dest);
+        }
+        KIO::Job* job = PreservingCopyJob::createCopyJob(pmode, fileUrls, dest, KIO::CopyJob::Copy, false, true);
         job->ui()->setAutoErrorHandlingEnabled(true);
-        if (dest.equals(panel->virtualPath(), KUrl::CompareWithoutTrailingSlash) ||
-                dest.upUrl().equals(panel->virtualPath(), KUrl::CompareWithoutTrailingSlash))
+        if (dest.matches(panel->virtualPath(), QUrl::StripTrailingSlash) ||
+                KIO::upUrl(dest).matches(panel->virtualPath(), QUrl::StripTrailingSlash))
             // refresh our panel when done
             connect(job, SIGNAL(result(KJob*)), this, SLOT(refresh()));
         // let the other panel do the dirty job
@@ -847,7 +903,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
         if (!reallyDelete && trash && files() ->vfs_getType() == vfs::VFS_NORMAL) {
             s = i18np("Do you really want to move this item to the trash?", "Do you really want to move these %1 items to the trash?", fileNames.count());
             b = i18n("&Trash");
-        } else if (files() ->vfs_getType() == vfs::VFS_VIRT && files()->vfs_getOrigin().equals(KUrl("virt:/"), KUrl::CompareWithoutTrailingSlash)) {
+        } else if (files() ->vfs_getType() == vfs::VFS_VIRT && files()->vfs_getOrigin().matches(QUrl("virt:/"), QUrl::StripTrailingSlash)) {
             s = i18np("Do you really want to delete this virtual item (physical files stay untouched)?", "Do you really want to delete these %1 virtual items (physical files stay untouched)?", fileNames.count());
             b = i18n("&Delete");
         } else if (files() ->vfs_getType() == vfs::VFS_VIRT) {
@@ -880,14 +936,14 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
                 switch (KMessageBox::warningYesNoCancel(krMainWindow,
                                                         i18n("<qt><p>Directory <b>%1</b> is not empty.</p><p>Skip this one or delete all?</p></qt>", *name),
                                                         QString(), KGuiItem(i18n("&Skip")), KGuiItem(i18n("&Delete All")))) {
-                case KMessageBox::Cancel :
-                    return ;
                 case KMessageBox::No :
                     emptyDirVerify = false;
                     break;
                 case KMessageBox::Yes :
                     name = fileNames.erase(name);
                     continue;
+                default :
+                    return ;
                 }
             }
         }
@@ -902,50 +958,12 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
     panel->prepareToDelete();
 
     // let the vfs do the job...
-    files() ->vfs_delFiles(&fileNames, reallyDelete);
+    files() ->vfs_delFiles(fileNames, reallyDelete);
 }
 
 void ListPanelFunc::goInside(const QString& name)
 {
-    if (name == "..") {
-        dirUp();
-        return ;
-    }
-    vfile *vf = files() ->vfs_search(name);
-    if (vf == 0)
-        return ;
-
-    KUrl origin = files() ->vfs_getOrigin();
-    KUrl url = vf->vfile_getUrl();
-
-    if (vf->vfile_isDir()) {               // we create a return-pressed event,
-        execute(name); // thereby emulating a chdir
-    } else if (url.isLocalFile()) {
-        bool encrypted;
-        QString mime = vf->vfile_getMime();
-        QString type = KRarcHandler::getType(encrypted, url.path(), mime, false, true);
-
-        if (KRarcHandler::arcSupported(type)) {    // archive autodetection
-            // here we check whether KDE supports tar
-            if (type == "-tlz") {
-                KTar tapeArchive(url.path());
-                if (tapeArchive.open(QIODevice::ReadOnly))
-                    url.setProtocol("tar");
-                else
-                    url.setProtocol("krarc");
-            } else if (type == "-tar" || type == "-tgz" || type == "-tbz")
-                url.setProtocol("tar");
-            else
-                url.setProtocol("krarc");
-            openUrl(url);
-        } else {
-            QString protocol = KrServices::registerdProtocol(mime);
-            if (protocol == "iso") {
-                url.setProtocol(protocol);
-                openUrl(url);
-            }
-        }
-    }
+    openFileNameInternal(name, false);
 }
 
 void ListPanelFunc::runCommand(QString cmd)
@@ -957,17 +975,18 @@ void ListPanelFunc::runCommand(QString cmd)
         KMessageBox::error(0, i18n("Could not start %1", cmd));
 }
 
-void ListPanelFunc::runService(const KService &service, KUrl::List urls)
+void ListPanelFunc::runService(const KService &service, QList<QUrl> urls)
 {
     krOut<<service.name()<<endl;
-    QStringList args = KRun::processDesktopExec(service, urls);
-    if (args.count())
+    KIO::DesktopExecParser parser(service, urls);
+    QStringList args = parser.resultingArguments();
+    if (!args.isEmpty())
         runCommand(KShell::joinArgs(args));
     else
-        KMessageBox::error(0, i18n("%1 cannot open %2", service.name(), urls.toStringList().join(", ")));
+        KMessageBox::error(0, i18n("%1 cannot open %2", service.name(), KrServices::toStringList(urls).join(", ")));
 }
 
-void ListPanelFunc::displayOpenWithDialog(KUrl::List urls)
+void ListPanelFunc::displayOpenWithDialog(QList<QUrl> urls)
 {
     KOpenWithDialog dialog(urls, panel);
     dialog.hideRunInTerminal();
@@ -982,48 +1001,7 @@ void ListPanelFunc::displayOpenWithDialog(KUrl::List urls)
 // this is done when you double click on a file
 void ListPanelFunc::execute(const QString& name)
 {
-    if (name == "..") {
-        dirUp();
-        return ;
-    }
-
-    krOut<<name<<endl;
-
-    vfile *vf = files() ->vfs_search(name);
-    if (vf == 0)
-        return ;
-
-    KUrl origin = files() ->vfs_getOrigin();
-
-    QString protocol = origin.isLocalFile() ? KrServices::registerdProtocol(vf->vfile_getMime()) : "";
-
-    if (protocol == "tar" || protocol == "krarc") {
-        bool encrypted;
-        QString type = KRarcHandler::getType(encrypted, vf->vfile_getUrl().path(), vf->vfile_getMime(), false, true);
-        if (!KRarcHandler::arcHandled(type))       // if the specified archive is disabled delete the protocol
-            protocol = "";
-    }
-
-    if (vf->vfile_isDir()) {
-        origin = files() ->vfs_getFile(name);
-        panel->view->setNameToMakeCurrent(QString());
-        openUrl(origin);
-    } else if (!protocol.isEmpty()) {
-        KUrl path = files() ->vfs_getFile(vf->vfile_getName());
-        path.setProtocol(protocol);
-        openUrl(path);
-    } else {
-        KUrl url = files() ->vfs_getFile(name);
-        if (KRun::isExecutableFile(url, vf->vfile_getMime()))
-            runCommand(KShell::quoteArg(url.path()));
-        else {
-            KService::Ptr service = KMimeTypeTrader::self()->preferredService(vf->vfile_getMime());
-            if(service)
-                runService(*service, KUrl::List(url));
-            else
-                displayOpenWithDialog(KUrl::List(url));
-        }
-    }
+    openFileNameInternal(name, true);
 }
 
 void ListPanelFunc::pack()
@@ -1043,42 +1021,25 @@ void ListPanelFunc::pack()
     if (fileNames.count() == 1)
         defaultName = fileNames.first();
     // ask the user for archive name and packer
-    new PackGUI(defaultName, vfs::pathOrUrl(panel->otherPanel()->virtualPath(), KUrl::RemoveTrailingSlash), fileNames.count(), fileNames.first());
+    new PackGUI(defaultName, panel->otherPanel()->virtualPath().toDisplayString(QUrl::PreferLocalFile | QUrl::StripTrailingSlash),
+                fileNames.count(), fileNames.first());
     if (PackGUI::type.isEmpty()) {
         return ; // the user canceled
     }
 
     // check for partial URLs
     if (!PackGUI::destination.contains(":/") && !PackGUI::destination.startsWith('/')) {
-        PackGUI::destination = panel->virtualPath().prettyUrl() + '/' + PackGUI::destination;
+        PackGUI::destination = panel->virtualPath().toDisplayString() + '/' + PackGUI::destination;
     }
 
     QString destDir = PackGUI::destination;
     if (!destDir.endsWith('/'))
         destDir += '/';
 
-    bool packToOtherPanel = (destDir == panel->otherPanel()->virtualPath().prettyUrl(KUrl::AddTrailingSlash));
+    bool packToOtherPanel = (destDir == vfs::ensureTrailingSlash(panel->otherPanel()->virtualPath()).toDisplayString(QUrl::PreferLocalFile));
 
-    // on remote URL-s first pack into a temp file then copy to its right place
-    KUrl destURL = KUrl(destDir + PackGUI::filename + '.' + PackGUI::type);
-    KTemporaryFile *tempDestFile = 0;
-    QString arcFile;
-    if (destURL.isLocalFile())
-        arcFile = destURL.path();
-    else if (destURL.protocol() == "virt") {
-        KMessageBox::error(krMainWindow, i18n("Cannot pack files onto a virtual destination."));
-        return;
-    } else {
-        tempDestFile = new KTemporaryFile();
-        tempDestFile->setSuffix(QString(".") + PackGUI::type);
-        tempDestFile->open();
-        arcFile = tempDestFile->fileName();
-        tempDestFile->close(); // necessary to create the filename
-        QFile::remove
-        (arcFile);
-    }
-
-    if (QFileInfo(arcFile).exists()) {
+    QUrl destURL = QUrl::fromUserInput(destDir + PackGUI::filename + '.' + PackGUI::type, QString(), QUrl::AssumeLocalFile);
+    if (destURL.isLocalFile() && QFile::exists(destURL.path())) {
         QString msg = i18n("<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>All data in the previous archive will be lost.</p></qt>", PackGUI::filename, PackGUI::type);
         if (PackGUI::type == "zip") {
             msg = i18n("<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>Zip will replace identically named entries in the zip archive or add entries for new names.</p></qt>", PackGUI::filename, PackGUI::type);
@@ -1086,10 +1047,10 @@ void ListPanelFunc::pack()
         if (KMessageBox::warningContinueCancel(krMainWindow, msg, QString(), KGuiItem(i18n("&Overwrite")))
                 == KMessageBox::Cancel)
             return ; // stop operation
+    } else if (destURL.scheme() == QStringLiteral("virt")) {
+        KMessageBox::error(krMainWindow, i18n("Cannot pack files onto a virtual destination."));
+        return;
     }
-
-    // get the files to be packed:
-    files() ->vfs_getFiles(&fileNames);
 
     if (PackGUI::queue) {
         KIOJobWrapper *job = KIOJobWrapper::pack(files()->vfs_getOrigin(), destURL, fileNames,
@@ -1140,10 +1101,10 @@ void ListPanelFunc::unpack()
 
     // ask the user for the copy dest
     bool queue = false;
-    KUrl dest = KChooseDir::getDir(s, panel->otherPanel()->virtualPath(), panel->virtualPath(), queue);
+    QUrl dest = KChooseDir::getDir(s, panel->otherPanel()->virtualPath(), panel->virtualPath(), queue);
     if (dest.isEmpty()) return ;   // the user canceled
 
-    bool packToOtherPanel = (dest.equals(panel->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash));
+    bool packToOtherPanel = (dest.matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash));
 
     if (queue) {
         KIOJobWrapper *job = KIOJobWrapper::unpack(files()->vfs_getOrigin(), dest, fileNames, true);
@@ -1198,7 +1159,7 @@ void ListPanelFunc::matchChecksum()
                                       KRQuery(MatchChecksumDlg::checksumTypesFilter)
                                   );
     MatchChecksumDlg dlg(args, folders, panel->realPath(),
-                         (checksumFiles.size() == 1 ? checksumFiles[0]->vfile_getUrl().prettyUrl() : QString()));
+                         (checksumFiles.size() == 1 ? checksumFiles[0]->vfile_getUrl().toDisplayString(QUrl::PreferLocalFile) : QString()));
 }
 
 void ListPanelFunc::calcSpace()
@@ -1256,13 +1217,13 @@ void ListPanelFunc::FTPDisconnect()
     if (files() ->vfs_getType() == vfs::VFS_FTP) {
         panel->_actions->actFTPDisconnect->setEnabled(false);
         panel->view->setNameToMakeCurrent(QString());
-        openUrl(panel->realPath());   // open the last local URL
+        openUrl(QUrl::fromLocalFile(panel->realPath()));   // open the last local URL
     }
 }
 
 void ListPanelFunc::newFTPconnection()
 {
-    KUrl url = KRSpWidgets::newFTP();
+    QUrl url = KRSpWidgets::newFTP();
     // if the user canceled - quit
     if (url.isEmpty())
         return ;
@@ -1283,7 +1244,7 @@ void ListPanelFunc::properties()
         vfile* vf = files() ->vfs_search(names[ i ]);
         if (!vf)
             continue;
-        KUrl url = files()->vfs_getFile(names[i]);
+        QUrl url = files()->vfs_getFile(names[i]);
         fi.push_back(KFileItem(vf->vfile_getEntry(), url));
     }
 
@@ -1305,7 +1266,7 @@ void ListPanelFunc::refreshActions()
 
     vfs::VFS_TYPE vfsType = files() ->vfs_getType();
 
-    QString protocol = files()->vfs_getOrigin().protocol();
+    QString protocol = files()->vfs_getOrigin().scheme();
     krRemoteEncoding->setEnabled(protocol == "ftp" || protocol == "sftp" || protocol == "fish" || protocol == "krarc");
     //krMultiRename->setEnabled( vfsType == vfs::VFS_NORMAL );  // batch rename
     //krProperties ->setEnabled( vfsType == vfs::VFS_NORMAL || vfsType == vfs::VFS_FTP ); // file properties
@@ -1330,8 +1291,8 @@ void ListPanelFunc::refreshActions()
     panel->_actions->actFTPDisconnect->setEnabled(vfsType == vfs::VFS_FTP);       // disconnect an FTP session
     panel->_actions->actCreateChecksum->setEnabled(vfsType == vfs::VFS_NORMAL);
     panel->_actions->actDirUp->setEnabled(!files()->isRoot());
-    panel->_actions->actRoot->setEnabled(!panel->virtualPath().equals(KUrl(ROOT_DIR),
-                                         KUrl::CompareWithoutTrailingSlash));
+    panel->_actions->actRoot->setEnabled(!panel->virtualPath().matches(QUrl::fromLocalFile(ROOT_DIR),
+                                                                       QUrl::StripTrailingSlash));
     panel->_actions->actHome->setEnabled(!atHome());
     panel->_actions->actHistoryBackward->setEnabled(history->canGoBack());
     panel->_actions->actHistoryForward->setEnabled(history->canGoForward());
@@ -1341,7 +1302,7 @@ void ListPanelFunc::refreshActions()
 vfs* ListPanelFunc::files()
 {
     if (!vfsP)
-        vfsP = KrVfsHandler::getVfs(KUrl("/"), panel, 0);
+        vfsP = KrVfsHandler::getVfs(QUrl::fromLocalFile("/"), panel, 0);
     return vfsP;
 }
 
@@ -1355,36 +1316,24 @@ void ListPanelFunc::clipboardChanged(QClipboard::Mode mode)
 
 void ListPanelFunc::copyToClipboard(bool move)
 {
-    if (files()->vfs_getOrigin().equals(KUrl("virt:/"), KUrl::CompareWithoutTrailingSlash)) {
-        if (move)
-            KMessageBox::error(krMainWindow, i18n("Cannot cut a virtual URL collection to the clipboard."));
-        else
-            KMessageBox::error(krMainWindow, i18n("Cannot copy a virtual URL collection onto the clipboard."));
-        return;
-    }
-
     QStringList fileNames;
 
     panel->getSelectedNames(&fileNames);
     if (fileNames.isEmpty())
         return ;  // safety
 
-    KUrl::List* fileUrls = files() ->vfs_getFiles(&fileNames);
-    if (fileUrls) {
-        QMimeData *mimeData = new QMimeData;
-        mimeData->setData("application/x-kde-cutselection", move ? "1" : "0");
-        fileUrls->populateMimeData(mimeData);
+    QList<QUrl> fileUrls = files() ->vfs_getFiles(fileNames);
+    QMimeData *mimeData = new QMimeData;
+    mimeData->setData("application/x-kde-cutselection", move ? "1" : "0");
+    mimeData->setUrls(fileUrls);
 
-        if (copyToClipboardOrigin)
-            disconnect(QApplication::clipboard(), 0, copyToClipboardOrigin, 0);
-        copyToClipboardOrigin = this;
+    if (copyToClipboardOrigin)
+        disconnect(QApplication::clipboard(), 0, copyToClipboardOrigin, 0);
+    copyToClipboardOrigin = this;
 
-        QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);
+    QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);
 
-        connect(QApplication::clipboard(), SIGNAL(changed(QClipboard::Mode)), this, SLOT(clipboardChanged(QClipboard::Mode)));
-
-        delete fileUrls;
-    }
+    connect(QApplication::clipboard(), SIGNAL(changed(QClipboard::Mode)), this, SLOT(clipboardChanged(QClipboard::Mode)));
 }
 
 void ListPanelFunc::pasteFromClipboard()
@@ -1407,11 +1356,9 @@ void ListPanelFunc::pasteFromClipboard()
             move = (a.at(0) == '1'); // true if 1
     }
 
-    KUrl::List urls = KUrl::List::fromMimeData(data);
+    QList<QUrl> urls = data->urls();
     if (urls.isEmpty())
         return ;
-
-    KUrl destUrl = panel->virtualPath();
 
     if(origin && KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         origin->panel->view->saveSelection();
@@ -1421,18 +1368,13 @@ void ListPanelFunc::pasteFromClipboard()
         }
     }
 
-    files()->vfs_addFiles(&urls, move ? KIO::CopyJob::Move : KIO::CopyJob::Copy, otherFunc()->files(),
+    files()->vfs_addFiles(urls, move ? KIO::CopyJob::Move : KIO::CopyJob::Copy, otherFunc()->files(),
                           "", PM_DEFAULT);
 }
 
 ListPanelFunc* ListPanelFunc::otherFunc()
 {
     return panel->otherPanel()->func;
-}
-
-void ListPanelFunc::trashJobStarted(KIO::Job *job)
-{
-    connect(job, SIGNAL(result(KJob*)), SLOTS, SLOT(changeTrashIcon()));
 }
 
 void ListPanelFunc::historyGotoPos(int pos)
@@ -1455,17 +1397,17 @@ void ListPanelFunc::historyForward()
 
 void ListPanelFunc::dirUp()
 {
-    openUrl(files() ->vfs_getOrigin().upUrl(), files() ->vfs_getOrigin().fileName());
+    openUrl(KIO::upUrl(files() ->vfs_getOrigin()), files() ->vfs_getOrigin().fileName());
 }
 
 void ListPanelFunc::home()
 {
-    openUrl(QDir::homePath());
+    openUrl(QUrl::fromLocalFile(QDir::homePath()));
 }
 
 void ListPanelFunc::root()
 {
-    openUrl(KUrl(ROOT_DIR));
+    openUrl(QUrl::fromLocalFile(ROOT_DIR));
 }
 
 void ListPanelFunc::cdToOtherPanel()
@@ -1480,7 +1422,6 @@ void ListPanelFunc::syncOtherPanel()
 
 bool ListPanelFunc::atHome()
 {
-    return KUrl(QDir::homePath()).equals(panel->virtualPath(), KUrl::CompareWithoutTrailingSlash);
+    return QUrl::fromLocalFile(QDir::homePath()).matches(panel->virtualPath(), QUrl::StripTrailingSlash);
 }
 
-#include "panelfunc.moc"

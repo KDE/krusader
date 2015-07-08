@@ -31,12 +31,9 @@
 #ifndef KRSEARCHDIALOG_H
 #define KRSEARCHDIALOG_H
 
-#include <sys/types.h>
-#include <time.h>
-
 #include <QtCore/QString>
 #include <QtCore/QStringList>
-#include <QtGui/QDialog>
+#include <QtWidgets/QDialog>
 
 #include "krsearchmod.h"
 
@@ -48,7 +45,7 @@ class KrViewItem;
 class ProfileManager;
 class FilterTabs;
 class GeneralFilter;
-class KTabWidget;
+class QTabWidget;
 class KSqueezedTextLabel;
 class KrSqueezedTextLabel;
 
@@ -73,11 +70,11 @@ public slots:
     void closeDialog(bool isAccept = true);
     void executed(const QString &name);
     void currentChanged(KrViewItem *item);
+    void contextMenu(const QPoint &);
 
-    virtual void keyPressEvent(QKeyEvent *e);
-    virtual void closeEvent(QCloseEvent *e);
-    virtual void contextMenu(const QPoint &);
-    virtual void resizeEvent(QResizeEvent *e);
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    virtual void closeEvent(QCloseEvent *e) Q_DECL_OVERRIDE;
+    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
 
 protected slots:
     void reject();
@@ -99,7 +96,7 @@ private:
     QPushButton* mainCloseBtn;
     QPushButton* mainFeedToListBoxBtn;
 
-    KTabWidget* searcherTabs;
+    QTabWidget* searcherTabs;
     QLabel* foundLabel;
     KrSqueezedTextLabel *foundTextLabel;
     KSqueezedTextLabel *searchingLabel;

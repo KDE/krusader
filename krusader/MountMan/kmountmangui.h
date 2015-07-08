@@ -33,14 +33,13 @@
 #ifndef KMOUNTMANGUI_H
 #define KMOUNTMANGUI_H
 
-#include <sys/param.h>
-#include <kdialog.h>
-#include <QFrame>
 #include <QtCore/QTimer>
-#include <kurl.h>
 #include <QtCore/QList>
-#include <kmountpoint.h>
 #include <QtCore/QDateTime>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QFrame>
+
+#include <KIOCore/KMountPoint>
 
 #include "../GUI/krtreewidget.h"
 #include "kmountman.h"
@@ -53,7 +52,7 @@ class KRFSDisplay;
 // forward definitions
 class fsData;
 
-class KMountManGUI : public KDialog
+class KMountManGUI : public QDialog
 {
     Q_OBJECT
 
@@ -66,25 +65,22 @@ public:
     ~KMountManGUI();
 
 protected:
-    virtual void resizeEvent(QResizeEvent *e);
+    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
 
 protected slots:
     void doubleClicked(QTreeWidgetItem *);
     void clicked(QTreeWidgetItem *, const QPoint &);
-    void slotButtonClicked(int button);
+    void slotToggleMount();
+    void slotEject();
     void changeActive();
     void changeActive(QTreeWidgetItem *);
     void checkMountChange(); // check whether the mount table was changed
 
     void updateList();     // fill-up the filesystems list
     void getSpaceData();
-    void finishedGettingSpaceData();
-    void gettingSpaceData(const QString &mountPoint, quint64 kBSize,
-                          quint64 kBUsed, quint64 kBAvail);
 
 protected:
-    void createLayout();   // calls the various tab layout-creators
-    void createMainPage(); // creator of the main page - filesystems
+    QLayout *createMainPage(); // creator of the main page - filesystems
     void addItemToMountList(KrTreeWidget *lst, fsData &fs);
     fsData* getFsData(QTreeWidgetItem *item);
     QString getMntPoint(QTreeWidgetItem *item);
@@ -93,16 +89,15 @@ protected:
 private:
     KMountMan *mountMan;
     KRFSDisplay *info;
-    QWidget *mainPage;
     KrTreeWidget *mountList;
     QCheckBox *cbShowOnlyRemovable;
+    QPushButton *mountButton;
+    QPushButton *ejectButton;
     QTimer *watcher;
     QDateTime lastMtab;
     // used for the getSpace - gotSpace functions
     KMountPoint::List possible, mounted;
     QList<fsData> fileSystems;
-    QList<fsData> fileSystemsTemp;  // first collect to a temporary place
-    int numOfMountPoints;
 
     int sizeX;
     int sizeY;

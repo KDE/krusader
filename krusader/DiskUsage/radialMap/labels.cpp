@@ -16,11 +16,12 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include <kstringhandler.h>
-#include <qfont.h>
-#include <QFontMetrics>
-#include <QPainter>
-#include <QList>
+#include <QtCore/QList>
+#include <QtGui/QFont>
+#include <QtGui/QFontMetrics>
+#include <QtGui/QPainter>
+
+#include <KCoreAddons/KStringHandler>
 
 #include "Config.h"
 #include "fileTree.h"

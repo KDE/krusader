@@ -29,13 +29,14 @@
  ***************************************************************************/
 
 #include "percentalsplitter.h"
+
+#include <QtCore/QList>
 #include <QtGui/QPainter>
-#include <QtGui/QApplication>
-#include <QLabel>
-#include <QList>
-#include <QFrame>
-#include <QtGui/QToolTip>
 #include <QtGui/QCursor>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QToolTip>
 
 PercentalSplitter::PercentalSplitter(QWidget * parent) : QSplitter(parent), label(0), opaqueOldPos(-1)
 {
@@ -87,4 +88,3 @@ void PercentalSplitter::showEvent(QShowEvent * event)
     QSplitter::showEvent(event);
 }
 
-#include "percentalsplitter.moc"

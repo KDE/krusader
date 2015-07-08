@@ -32,18 +32,12 @@
 #ifndef KRUSADERVIEW_H
 #define KRUSADERVIEW_H
 
-// KDE includes
-#include <klocale.h>
-#include <kapplication.h>
-#include <kparts/part.h>
-
-// QT includes
-#include <QtGui/QLayout>
-#include <QtGui/QSplitter>
-#include <qwidget.h>
-#include <QtGui/QPushButton>
-#include <QGridLayout>
-#include <QEvent>
+#include <QtCore/QEvent>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QSplitter>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QGridLayout>
 
 #include "krglobal.h"
 
@@ -65,7 +59,7 @@ class KrusaderView : public QWidget
 public:
     KrusaderView(QWidget *parent = 0);
     virtual ~KrusaderView() {}
-    void start(KConfigGroup &cfg, bool restoreSettings, QStringList leftTabs, QStringList rightTabs);
+    void start(KConfigGroup &cfg, bool restoreSettings, const QList<QUrl> &leftTabs, const QList<QUrl> &rightTabs);
     void updateGUI(KConfigGroup &cfg);
     void saveSettings(KConfigGroup &cfg);
     void cmdLineFocus();  // command line receive's keyboard focus

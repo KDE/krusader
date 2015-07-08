@@ -30,12 +30,12 @@
 
 #include "kgadvanced.h"
 #include "../defaults.h"
-#include <klocale.h>
-#include <QGridLayout>
-#include <QLabel>
-#include <sys/param.h>
-#include <kdeversion.h>
-#include <kprotocolinfo.h>
+
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
+
+#include <KI18n/KLocalizedString>
+#include <KIOCore/KProtocolInfo>
 
 KgAdvanced::KgAdvanced(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)
@@ -122,4 +122,3 @@ KgAdvanced::KgAdvanced(bool first, QWidget* parent) :
     kgAdvancedLayout->addWidget(fineTuneGrp, 2 , 0);
 }
 
-#include "kgadvanced.moc"

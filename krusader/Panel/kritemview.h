@@ -21,7 +21,7 @@
 
 #include "krinterview.h"
 
-#include <QFont>
+#include <QtGui/QFont>
 
 class KrItemView : public QAbstractItemView, public KrInterView
 {
@@ -32,35 +32,35 @@ public:
 
     // ---- reimplemented from QAbstractItemView ----
     // Don't do anything, selections are handled by the mouse handler
-    virtual void setSelection(const QRect &rect, QItemSelectionModel::SelectionFlags command) { Q_UNUSED(rect); Q_UNUSED(command); }
-    virtual void selectAll() {}
+    virtual void setSelection(const QRect &rect, QItemSelectionModel::SelectionFlags command) Q_DECL_OVERRIDE { Q_UNUSED(rect); Q_UNUSED(command); }
+    virtual void selectAll() Q_DECL_OVERRIDE {}
     // this shouldn't be called
-    virtual QRegion visualRegionForSelection(const QItemSelection&) const {
+    virtual QRegion visualRegionForSelection(const QItemSelection&) const Q_DECL_OVERRIDE {
         return QRegion();
     }
 
     // ---- reimplemented from KrView ----
-    virtual void setFileIconSize(int size);
+    virtual void setFileIconSize(int size) Q_DECL_OVERRIDE;
 
 protected slots:
     // ---- reimplemented from KrView ----
-    virtual void currentChanged(const QModelIndex & current, const QModelIndex & previous);
+    virtual void currentChanged(const QModelIndex & current, const QModelIndex & previous) Q_DECL_OVERRIDE;
 
-    virtual void renameCurrentItem();
+    virtual void renameCurrentItem() Q_DECL_OVERRIDE;
 
 protected:
     // ---- reimplemented from QAbstractItemView ----
-    virtual bool event(QEvent * e);
-    virtual void mousePressEvent(QMouseEvent *);
-    virtual void mouseReleaseEvent(QMouseEvent *);
-    virtual void mouseDoubleClickEvent(QMouseEvent *ev);
-    virtual void mouseMoveEvent(QMouseEvent *);
-    virtual void wheelEvent(QWheelEvent *);
-    virtual void dragEnterEvent(QDragEnterEvent *e);
-    virtual void dragMoveEvent(QDragMoveEvent *e);
-    virtual void dragLeaveEvent(QDragLeaveEvent *e);
-    virtual void dropEvent(QDropEvent *);
-    virtual bool viewportEvent(QEvent * event);
+    virtual bool event(QEvent * e) Q_DECL_OVERRIDE;
+    virtual void mousePressEvent(QMouseEvent *) Q_DECL_OVERRIDE;
+    virtual void mouseReleaseEvent(QMouseEvent *) Q_DECL_OVERRIDE;
+    virtual void mouseDoubleClickEvent(QMouseEvent *ev) Q_DECL_OVERRIDE;
+    virtual void mouseMoveEvent(QMouseEvent *) Q_DECL_OVERRIDE;
+    virtual void wheelEvent(QWheelEvent *) Q_DECL_OVERRIDE;
+    virtual void dragEnterEvent(QDragEnterEvent *e) Q_DECL_OVERRIDE;
+    virtual void dragMoveEvent(QDragMoveEvent *e) Q_DECL_OVERRIDE;
+    virtual void dragLeaveEvent(QDragLeaveEvent *e) Q_DECL_OVERRIDE;
+    virtual void dropEvent(QDropEvent *) Q_DECL_OVERRIDE;
+    virtual bool viewportEvent(QEvent * event) Q_DECL_OVERRIDE;
 
     // ---- reimplemented from KrView ----
     virtual int elementWidth(const QModelIndex & index) = 0;

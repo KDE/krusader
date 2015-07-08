@@ -30,16 +30,15 @@
 
 #include "krquery.h"
 
+#include <QtCore/QMetaMethod>
 #include <QtCore/QTextCodec>
 #include <QtCore/QRegExp>
 #include <QtCore/QFile>
 
-#include <kde_file.h>
-#include <klocale.h>
-#include <kmimetype.h>
-#include <kurlcompletion.h>
-#include <kio/job.h>
-#include <kfileitem.h>
+#include <KI18n/KLocalizedString>
+#include <KIOWidgets/KUrlCompletion>
+#include <KIO/Job>
+#include <KIOCore/KFileItem>
 
 #include "vfs.h"
 #include "krarchandler.h"
@@ -164,8 +163,9 @@ void KRQuery::load(KConfigGroup cfg)
     LOAD("InArchive", inArchive);
     LOAD("Recurse", recurse);
     LOAD("FollowLinks", followLinksP);
-    LOAD("WhereToSearch", whereToSearch);
-    LOAD("WhereNotToSearch", whereNotToSearch);
+    // KF5 TODO?
+    //LOAD("WhereToSearch", whereToSearch);
+    //LOAD("WhereNotToSearch", whereNotToSearch);
     LOAD("OrigFilter", origFilter);
 
     codec = QTextCodec::codecForName(cfg.readEntry("Codec", codec->name()));
@@ -209,8 +209,9 @@ void KRQuery::save(KConfigGroup cfg)
     cfg.writeEntry("InArchive", inArchive);
     cfg.writeEntry("Recurse", recurse);
     cfg.writeEntry("FollowLinks", followLinksP);
-    cfg.writeEntry("WhereToSearch", whereToSearch);
-    cfg.writeEntry("WhereNotToSearch", whereNotToSearch);
+    // KF5 TODO?
+    //cfg.writeEntry("WhereToSearch", whereToSearch);
+    //cfg.writeEntry("WhereNotToSearch", whereNotToSearch);
     cfg.writeEntry("OrigFilter", origFilter);
 
     cfg.writeEntry("Codec", codec->name());
@@ -219,19 +220,15 @@ void KRQuery::save(KConfigGroup cfg)
     cfg.writeEntry("EncodedEnterLen", encodedEnterLen);
 }
 
-void KRQuery::connectNotify(const char * signal)
+void KRQuery::connectNotify(const QMetaMethod &signal)
 {
-    QString signalString  = QString(signal).remove(' ');
-    QString processString = QString(SIGNAL(processEvents(bool &))).remove(' ');
-    if (signalString == processString)
+    if (signal == QMetaMethod::fromSignal(&KRQuery::processEvents))
         processEventsConnected++;
 }
 
-void KRQuery::disconnectNotify(const char * signal)
+void KRQuery::disconnectNotify(const QMetaMethod &signal)
 {
-    QString signalString  = QString(signal).remove(' ');
-    QString processString = QString(SIGNAL(processEvents(bool &))).remove(' ');
-    if (signalString == processString)
+    if (signal == QMetaMethod::fromSignal(&KRQuery::processEvents))
         processEventsConnected--;
 }
 
@@ -507,7 +504,7 @@ bool KRQuery::containsContent(QString file) const
 
 
 
-bool KRQuery::containsContent(KUrl url) const
+bool KRQuery::containsContent(QUrl url) const
 {
     KIO::TransferJob *contentReader = KIO::get(url, KIO::NoReload, KIO::HideProgressInfo);
     connect(contentReader, SIGNAL(data(KIO::Job *, const QByteArray &)),
@@ -731,10 +728,10 @@ void KRQuery::setMimeType(const QString &typeIn, QStringList customList)
     customType = customList;
 }
 
-bool KRQuery::isExcluded(const KUrl &url)
+bool KRQuery::isExcluded(const QUrl &url)
 {
     for (int i = 0; i < whereNotToSearch.count(); ++i)
-        if (whereNotToSearch [ i ].isParentOf(url) || url.equals(whereNotToSearch [ i ], KUrl::CompareWithoutTrailingSlash))
+        if (whereNotToSearch [ i ].isParentOf(url) || url.matches(whereNotToSearch [ i ], QUrl::StripTrailingSlash))
             return true;
 
     if (!matchDirName(url.fileName()))
@@ -743,24 +740,23 @@ bool KRQuery::isExcluded(const KUrl &url)
     return false;
 }
 
-void KRQuery::setSearchInDirs(const KUrl::List &urls)
+void KRQuery::setSearchInDirs(const QList<QUrl> &urls)
 {
     whereToSearch.clear();
     for (int i = 0; i < urls.count(); ++i) {
         QString url = urls[ i ].url();
-        KUrl completed = KUrl(KUrlCompletion::replacedPath(url, true, true));
+        QUrl completed = QUrl::fromUserInput(KUrlCompletion::replacedPath(url, true, true), QString(), QUrl::AssumeLocalFile);
         whereToSearch.append(completed);
     }
 }
 
-void KRQuery::setDontSearchInDirs(const KUrl::List &urls)
+void KRQuery::setDontSearchInDirs(const QList<QUrl> &urls)
 {
     whereNotToSearch.clear();
     for (int i = 0; i < urls.count(); ++i) {
         QString url = urls[ i ].url();
-        KUrl completed = KUrl(KUrlCompletion::replacedPath(url, true, true));
+        QUrl completed = QUrl::fromUserInput(KUrlCompletion::replacedPath(url, true, true), QString(), QUrl::AssumeLocalFile);
         whereNotToSearch.append(completed);
     }
 }
 
-#include "krquery.moc"

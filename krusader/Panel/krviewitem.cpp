@@ -19,12 +19,12 @@
 
 #include "krviewitem.h"
 #include "../VFS/krpermhandler.h"
-#include <klocale.h>
-#include <kmimetype.h>
-#include <sys/types.h>
-#include <time.h>
-#include <stdlib.h>
-#include <QPixmap>
+
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
+#include <QtGui/QPixmap>
+
+#include <KI18n/KLocalizedString>
 
 #define PROPS static_cast<const KrViewProperties*>(_viewProperties)
 
@@ -66,9 +66,10 @@ QString KrViewItem::description() const
     // else is implied
     QString text = _vf->vfile_getName();
     QString comment;
-    KMimeType::Ptr mt = KMimeType::mimeType(_vf->vfile_getMime());
-    if (mt)
-        comment = mt->comment(_vf->vfile_getUrl());
+    QMimeDatabase db;
+    QMimeType mt = db.mimeTypeForName(_vf->vfile_getMime());
+    if (mt.isValid())
+        comment = mt.comment();
     QString myLinkDest = _vf->vfile_getSymDest();
     KIO::filesize_t mySize = _vf->vfile_getSize();
 
@@ -114,7 +115,7 @@ QString KrViewItem::dateTime() const
     struct tm* t = localtime((time_t *) & time);
 
     QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-    return KGlobal::locale()->formatDateTime(tmp);
+    return QLocale().toString(tmp, QLocale::ShortFormat);
 }
 
 QPixmap KrViewItem::icon()

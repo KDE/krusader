@@ -31,7 +31,7 @@
 #ifndef KGPROTOCOLS_H
 #define KGPROTOCOLS_H
 
-#include <QtGui/QPushButton>
+#include <QtWidgets/QPushButton>
 
 #include "konfiguratorpage.h"
 #include "../GUI/krtreewidget.h"
@@ -44,10 +44,10 @@ class KgProtocols : public KonfiguratorPage
 public:
     KgProtocols(bool first, QWidget* parent = 0);
 
-    virtual void loadInitialValues();
-    virtual void setDefaults();
-    virtual bool apply();
-    virtual bool isChanged();
+    virtual void loadInitialValues() Q_DECL_OVERRIDE;
+    virtual void setDefaults() Q_DECL_OVERRIDE;
+    virtual bool apply() Q_DECL_OVERRIDE;
+    virtual bool isChanged() Q_DECL_OVERRIDE;
 
     static  void init();
 
@@ -59,7 +59,7 @@ public slots:
     void         slotRemoveMime();
 
 protected:
-    void         loadListCapableProtocols();
+    void         loadProtocols();
     void         loadMimes();
     void         addSpacer(QBoxLayout *parent);
 

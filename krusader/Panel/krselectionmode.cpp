@@ -21,6 +21,8 @@
 #include "../krglobal.h"
 #include "../defaults.h"
 
+#include <KConfigCore/KSharedConfig>
+
 static KrSelectionMode *__currentSelectionMode = 0; // uninitiated, at first
 
 

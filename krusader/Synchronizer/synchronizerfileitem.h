@@ -33,7 +33,7 @@
 
 #include <QtCore/QString>
 
-#include <kio/global.h>
+#include <KIO/Global>
 
 typedef enum {
     TT_EQUALS        = 0,   // the files are equals     -> do nothing

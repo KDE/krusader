@@ -1,7 +1,17 @@
+include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
+
 set(MountMan_SRCS
     kmountmangui.cpp
     kmountman.cpp)
 
-kde4_add_library(MountMan STATIC ${MountMan_SRCS})
+add_library(MountMan STATIC ${MountMan_SRCS})
 
-target_link_libraries(MountMan Dialogs)
+target_link_libraries(MountMan
+    Dialogs
+    KF5::ConfigCore
+    KF5::CoreAddons
+    KF5::I18n
+    KF5::KIOCore
+    KF5::WidgetsAddons
+    KF5::Solid
+)

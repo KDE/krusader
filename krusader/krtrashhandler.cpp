@@ -30,19 +30,17 @@
 
 #include "krtrashhandler.h"
 
-#include <QByteArray>
-#include <QDataStream>
+#include <QtCore/QByteArray>
+#include <QtCore/QDataStream>
+#include <QtCore/QStandardPaths>
 
-#include <kconfig.h>
-#include <kconfiggroup.h>
-#include <kuiserverjobtracker.h>
-#include <kio/jobclasses.h>
-#include <kio/job.h>
-#include <knotification.h>
-#include <kio/jobuidelegate.h>
-#include <kglobal.h>
-#include <kstandarddirs.h>
-#include <kdirwatch.h>
+#include <KConfigCore/KConfig>
+#include <KConfigCore/KConfigGroup>
+#include <KCoreAddons/KJobTrackerInterface>
+#include <KIO/Job>
+#include <KNotifications/KNotification>
+#include <KIO/JobUiDelegate>
+#include <KCoreAddons/KDirWatch>
 
 #include "kractions.h"
 #include "Panel/krpanel.h"
@@ -67,16 +65,18 @@ void KrTrashHandler::emptyTrash()
     QByteArray packedArgs;
     QDataStream stream(&packedArgs, QIODevice::WriteOnly);
     stream << (int)1;
-    KIO::Job *job = KIO::special(KUrl("trash:/"), packedArgs);
+    KIO::Job *job = KIO::special(QUrl(QStringLiteral("trash:/")), packedArgs);
     KNotification::event("Trash: emptied", QString() , QPixmap() , 0l, KNotification::DefaultEvent);
-    job->ui()->setWindow(krMainWindow);
+    KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
+    ui->setWindow(krMainWindow);
     QObject::connect(job, SIGNAL(result(KJob *)), ACTIVE_PANEL->func, SLOT(refresh()));
 }
 
-void KrTrashHandler::restoreTrashedFiles(const KUrl::List &urls)
+void KrTrashHandler::restoreTrashedFiles(const QList<QUrl> &urls)
 {
     KonqMultiRestoreJob* job = new KonqMultiRestoreJob(urls);
-    job->ui()->setWindow(krMainWindow);
+    KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
+    ui->setWindow(krMainWindow);
     KIO::getJobTracker()->registerJob(job);
     QObject::connect(job, SIGNAL(result(KJob *)), ACTIVE_PANEL->func, SLOT(refresh()));
 }
@@ -93,7 +93,7 @@ void KrTrashHandler::stopWatcher()
     _trashWatcher = 0;
 }
 
-KonqMultiRestoreJob::KonqMultiRestoreJob(const KUrl::List& urls)
+KonqMultiRestoreJob::KonqMultiRestoreJob(const QList<QUrl>& urls)
         : KIO::Job(),
         m_urls(urls), m_urlsIterator(m_urls.begin()),
         m_progress(0)
@@ -108,18 +108,18 @@ void KonqMultiRestoreJob::slotStart()
         setTotalAmount(KJob::Files, m_urls.count());
 
     if (m_urlsIterator != m_urls.end()) {
-        const KUrl& url = *m_urlsIterator;
+        const QUrl &url = *m_urlsIterator;
 
-        KUrl new_url = url;
-        if (new_url.protocol() == "system" &&
+        QUrl new_url = url;
+        if (new_url.scheme() == QStringLiteral("system") &&
                 new_url.path().startsWith(QLatin1String("/trash"))) {
             QString path = new_url.path();
             path.remove(0, 6);
-            new_url.setProtocol("trash");
+            new_url.setScheme(QStringLiteral("trash"));
             new_url.setPath(path);
         }
 
-        Q_ASSERT(new_url.protocol() == "trash");
+        Q_ASSERT(new_url.scheme() == QStringLiteral("trash"));
         QByteArray packedArgs;
         QDataStream stream(&packedArgs, QIODevice::WriteOnly);
         stream << (int)3 << new_url;
@@ -149,7 +149,7 @@ void KonqMultiRestoreJob::slotResult(KJob *job)
 
 KrTrashWatcher::KrTrashWatcher()
 {
-    QString trashrcFile = KGlobal::mainComponent().dirs()->saveLocation("config") +
+    QString trashrcFile = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) +
                           QString::fromLatin1("trashrc");
     _watcher = new KDirWatch();
     // connect the watcher
@@ -167,10 +167,10 @@ KrTrashWatcher::~KrTrashWatcher()
 
 void KrTrashWatcher::slotDirty(const QString&)
 {
-    KrActions::actTrashBin->setIcon(KIcon(KrTrashHandler::trashIcon()));
+    KrActions::actTrashBin->setIcon(QIcon::fromTheme(KrTrashHandler::trashIcon()));
 }
 
 void KrTrashWatcher::slotCreated(const QString&)
 {
-    KrActions::actTrashBin->setIcon(KIcon(KrTrashHandler::trashIcon()));
+    KrActions::actTrashBin->setIcon(QIcon::fromTheme(KrTrashHandler::trashIcon()));
 }

@@ -36,34 +36,31 @@
 #include "../krglobal.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <QtGui/QCheckBox>
-#include <QtGui/QLayout>
-#include <QtGui/QLineEdit>
-#include <QtGui/QLabel>
-#include <QtGui/QComboBox>
-#include <QVBoxLayout>
+
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QVBoxLayout>
+
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
 
 #define  S_LEFT        0
 #define  S_RIGHT       1
 #define  S_BOTH        2
 
 FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
-        QTreeWidget *syncL, bool equOK) : KDialog(parent),
+        QTreeWidget *syncL, bool equOK) : QDialog(parent),
         synchronizer(sync), syncList(syncL), equalAllowed(equOK), accepted(false)
 {
 
     setWindowTitle(i18n("Krusader::Feed to listbox"));
-    setButtons(KDialog::Ok | KDialog::Cancel | KDialog::User1);
-    setDefaultButton(KDialog::Ok);
     setWindowModality(Qt::WindowModal);
-    showButtonSeparator(true);
-    setButtonGuiItem(KDialog::User1, KStandardGuiItem::clear());
 
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
-    connect(this, SIGNAL(cancelClicked()), this, SLOT(reject()));
-    connect(this, SIGNAL(okClicked()), this, SLOT(slotOk()));
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
 
     // autodetecting the parameters
 
@@ -101,7 +98,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
     // guessing the collection name
 
     virt_vfs v(0, true);
-    if (!v.vfs_refresh(KUrl("virt:/")))
+    if (!v.vfs_refresh(QUrl("virt:/")))
         return;
 
     KConfigGroup group(krConfig, "Synchronize");
@@ -114,27 +111,22 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
 
     // creating the widget
 
-    QWidget *widget = new QWidget(this);
-    QVBoxLayout *layout = new QVBoxLayout(widget);
-    layout->setContentsMargins(0, 0, 0, 0);
-    layout->setSpacing(10);
+    QLabel *label = new QLabel(i18n("Here you can name the file collection"), this);
+    mainLayout->addWidget(label);
 
-    QLabel *label = new QLabel(i18n("Here you can name the file collection"), widget);
-    layout->addWidget(label);
-
-    lineEdit = new QLineEdit(widget);
+    lineEdit = new QLineEdit(this);
     lineEdit->setText(queryName);
+    lineEdit->setClearButtonEnabled(true);
     lineEdit->selectAll();
-    layout->addWidget(lineEdit);
+    mainLayout->addWidget(lineEdit);
 
-    QWidget *hboxWidget = new QWidget(widget);
-    QHBoxLayout * hbox = new QHBoxLayout(hboxWidget);
+    QHBoxLayout * hbox = new QHBoxLayout;
 
-    QLabel *label2 = new QLabel(i18n("Side to feed:"), hboxWidget);
+    QLabel *label2 = new QLabel(i18n("Side to feed:"), this);
     label2->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     hbox->addWidget(label2);
 
-    sideCombo = new QComboBox(hboxWidget);
+    sideCombo = new QComboBox(this);
     sideCombo->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     sideCombo->addItem(i18n("Left"));
     sideCombo->addItem(i18n("Right"));
@@ -150,27 +142,30 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
     } else
         sideCombo->setCurrentIndex(2);
 
-    QFrame *line = new QFrame(hboxWidget);
+    QFrame *line = new QFrame(this);
     line->setFrameStyle(QFrame::VLine | QFrame::Sunken);
     line->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     hbox->addWidget(line);
 
-    cbSelected = new QCheckBox(i18n("Selected files only"), hboxWidget);
+    cbSelected = new QCheckBox(i18n("Selected files only"), this);
     cbSelected->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     cbSelected->setEnabled(selectedNum != 0);
     cbSelected->setChecked(selectedNum != 0);
     hbox->addWidget(cbSelected);
 
-    layout->addWidget(hboxWidget);
+    mainLayout->addLayout(hbox);
 
-    setMainWidget(widget);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    mainLayout->addWidget(buttonBox);
+
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+
+    connect(buttonBox, SIGNAL(accepted()), SLOT(slotOk()));
+    connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
 
     exec();
-}
-
-void FeedToListBoxDialog::slotUser1()
-{
-    lineEdit->clear();
 }
 
 void FeedToListBoxDialog::slotOk()
@@ -178,7 +173,7 @@ void FeedToListBoxDialog::slotOk()
     int side = sideCombo->currentIndex();
     bool selected = cbSelected->isChecked();
     QString name = lineEdit->text();
-    KUrl::List urlList;
+    QList<QUrl> urlList;
 
     QTreeWidgetItemIterator it(syncList);
     for (;*it; it++) {
@@ -194,27 +189,28 @@ void FeedToListBoxDialog::slotOk()
 
         if ((side == S_BOTH || side == S_LEFT) && syncItem->existsInLeft()) {
             QString leftDirName = syncItem->leftDirectory().isEmpty() ? "" : syncItem->leftDirectory() + '/';
-            KUrl leftURL = KUrl(synchronizer->leftBaseDirectory() + leftDirName + syncItem->leftName());
+            QUrl leftURL = QUrl::fromUserInput(synchronizer->leftBaseDirectory() + leftDirName + syncItem->leftName(),
+                                               QString(), QUrl::AssumeLocalFile);
             urlList.push_back(leftURL);
         }
 
         if ((side == S_BOTH || side == S_RIGHT) && syncItem->existsInRight()) {
             QString rightDirName = syncItem->rightDirectory().isEmpty() ? "" : syncItem->rightDirectory() + '/';
-            KUrl leftURL = KUrl(synchronizer->rightBaseDirectory() + rightDirName + syncItem->rightName());
+            QUrl leftURL = QUrl::fromUserInput(synchronizer->rightBaseDirectory() + rightDirName + syncItem->rightName(),
+                                               QString(), QUrl::AssumeLocalFile);
             urlList.push_back(leftURL);
         }
     }
 
-    KUrl url = KUrl(QString("virt:/") + name);
+    QUrl url = QUrl(QString("virt:/") + name);
     virt_vfs v(0, true);
     if (!v.vfs_refresh(url)) {
-        KMessageBox::error(parentWidget(), i18n("Cannot open %1.", url.prettyUrl()));
+        KMessageBox::error(parentWidget(), i18n("Cannot open %1.", url.toDisplayString()));
         return;
     }
-    v.vfs_addFiles(&urlList, KIO::CopyJob::Copy, 0);
-    ACTIVE_MNG->slotNewTab(url.prettyUrl());
+    v.vfs_addFiles(urlList, KIO::CopyJob::Copy, 0);
+    ACTIVE_MNG->slotNewTab(url);
     accepted = true;
     accept();
 }
 
-#include "feedtolistboxdialog.moc"

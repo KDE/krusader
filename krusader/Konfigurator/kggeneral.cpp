@@ -30,16 +30,18 @@
 
 #include "kggeneral.h"
 
-#include <QtGui/QLabel>
+#include <QtCore/QPointer>
+#include <QtGui/QPixmap>
 #include <QtGui/QFontMetrics>
-#include <QGridLayout>
-#include <QFrame>
-#include <QPixmap>
-#include <QPointer>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QInputDialog>
+#include <QtWidgets/QLabel>
 
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kinputdialog.h>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "krresulttabledialog.h"
 #include "../defaults.h"
@@ -224,9 +226,8 @@ void KgGeneral::createGeneralTab()
 
     KONFIGURATOR_CHECKBOX_PARAM settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
         {"Look&Feel", "Warn On Exit",         _WarnOnExit,        i18n("Warn on exit"),           false,  i18n("Display a warning when trying to close the main window.") },    // KDE4: move warn on exit to the other confirmations
-        {"Look&Feel", "Minimize To Tray",     _MinimizeToTray,    i18n("Minimize to tray"),       false,  i18n("The icon will appear in the system tray instead of the taskbar, when Krusader is minimized.") },
     };
-    KonfiguratorCheckBoxGroup *cbs = createCheckBoxGroup(2, 0, settings, 2 /*count*/, generalGrp, PAGE_GENERAL);
+    KonfiguratorCheckBoxGroup *cbs = createCheckBoxGroup(2, 0, settings, 1 /*count*/, generalGrp, PAGE_GENERAL);
     generalGrid->addWidget(cbs, 0, 0);
 
 
@@ -241,7 +242,7 @@ void KgGeneral::createGeneralTab()
     QHBoxLayout *hbox = new QHBoxLayout();
 
     hbox->addWidget(new QLabel(i18n("Temp Directory:"), generalGrp));
-    KonfiguratorURLRequester *urlReq3 = createURLRequester("General", "Temp Directory", "/tmp/krusader.tmp",
+    KonfiguratorURLRequester *urlReq3 = createURLRequester("General", "Temp Directory", _TempDirectory,
                                         generalGrp, false, PAGE_GENERAL);
     urlReq3->setMode(KFile::Directory);
     connect(urlReq3->extension(), SIGNAL(applyManually(QObject *, QString, QString)),
@@ -299,7 +300,7 @@ void KgGeneral::createGeneralTab()
 void KgGeneral::applyTempDir(QObject *obj, QString cls, QString name)
 {
     KonfiguratorURLRequester *urlReq = (KonfiguratorURLRequester *)obj;
-    QString value = QDir(urlReq->url().prettyUrl()).path();
+    QString value = urlReq->url().toDisplayString(QUrl::PreferLocalFile);
 
     KConfigGroup(krConfig, cls).writeEntry(name, value);
 }
@@ -319,8 +320,8 @@ void KgGeneral::slotFindTools()
 void KgGeneral::slotAddExtension()
 {
     bool ok;
-    QString atomExt =
-        KInputDialog::getText(i18n("Add new atomic extension"), i18n("Extension:"), QString(), &ok);
+    QString atomExt = QInputDialog::getText(this, i18n("Add new atomic extension"), i18n("Extension:"),
+                                            QLineEdit::Normal, QString(), &ok);
 
     if (ok) {
         if (!atomExt.startsWith('.') || atomExt.indexOf('.', 1) == -1)
@@ -338,4 +339,3 @@ void KgGeneral::slotRemoveExtension()
         listBox->removeItem(list[ i ]->text());
 }
 
-#include "kggeneral.moc"

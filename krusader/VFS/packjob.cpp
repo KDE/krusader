@@ -30,22 +30,25 @@
 
 #include "packjob.h"
 #include "krarchandler.h"
-#include <QtCore/QTimer>
-#include <QtCore/QDir>
-#include <klocale.h>
-#include <kmimetype.h>
 
-PackJob::PackJob(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps) : AbstractThreadedJob()
+#include <QtCore/QDir>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
+#include <QtCore/QTimer>
+
+#include <KI18n/KLocalizedString>
+
+PackJob::PackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps) : AbstractThreadedJob()
 {
     startAbstractJobThread(new PackThread(srcUrl, destUrl, fileNames, type, packProps));
 }
 
-PackJob * PackJob::createPacker(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps)
+PackJob * PackJob::createPacker(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps)
 {
     return new PackJob(srcUrl, destUrl, fileNames, type, packProps);
 }
 
-PackThread::PackThread(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames,
+PackThread::PackThread(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames,
                        const QString &type, const QMap<QString, QString> &packProps) :
         AbstractJobThread(), _sourceUrl(srcUrl), _destUrl(destUrl), _fileNames(fileNames),
         _type(type), _packProperties(packProps)
@@ -55,7 +58,7 @@ PackThread::PackThread(const KUrl &srcUrl, const KUrl &destUrl, const QStringLis
 
 void PackThread::slotStart()
 {
-    KUrl newSource = downloadIfRemote(_sourceUrl, _fileNames);
+    QUrl newSource = downloadIfRemote(_sourceUrl, _fileNames);
     if (newSource.isEmpty())
         return;
 
@@ -65,7 +68,7 @@ void PackThread::slotStart()
     calcSpaceLocal(newSource, _fileNames, totalSize, totalDirs, totalFiles);
 
     QString arcFile = tempFileIfRemote(_destUrl, _type);
-    QString arcDir = newSource.path(KUrl::RemoveTrailingSlash);
+    QString arcDir = newSource.adjusted(QUrl::StripTrailingSlash).path();
 
     setProgressTitle(i18n("Processed files"));
 
@@ -87,24 +90,24 @@ void PackThread::slotStart()
     sendSuccess();
 }
 
-TestArchiveJob::TestArchiveJob(const KUrl &srcUrl, const QStringList & fileNames) : AbstractThreadedJob()
+TestArchiveJob::TestArchiveJob(const QUrl &srcUrl, const QStringList & fileNames) : AbstractThreadedJob()
 {
     startAbstractJobThread(new TestArchiveThread(srcUrl, fileNames));
 }
 
-TestArchiveJob * TestArchiveJob::testArchives(const KUrl &srcUrl, const QStringList & fileNames)
+TestArchiveJob * TestArchiveJob::testArchives(const QUrl &srcUrl, const QStringList & fileNames)
 {
     return new TestArchiveJob(srcUrl, fileNames);
 }
 
-TestArchiveThread::TestArchiveThread(const KUrl &srcUrl, const QStringList & fileNames) : AbstractJobThread(),
+TestArchiveThread::TestArchiveThread(const QUrl &srcUrl, const QStringList & fileNames) : AbstractJobThread(),
         _sourceUrl(srcUrl), _fileNames(fileNames)
 {
 }
 
 void TestArchiveThread::slotStart()
 {
-    KUrl newSource = downloadIfRemote(_sourceUrl, _fileNames);
+    QUrl newSource = downloadIfRemote(_sourceUrl, _fileNames);
     if (newSource.isEmpty())
         return;
 
@@ -115,13 +118,14 @@ void TestArchiveThread::slotStart()
         if (arcName == "..")
             continue; // safety
 
-        KUrl url = newSource;
-        url.addPath(arcName);
+        QUrl url = newSource.adjusted(QUrl::StripTrailingSlash);
+        url.setPath(url.path() + '/' + arcName);
 
-        QString path = url.path(KUrl::RemoveTrailingSlash);
+        QString path = url.adjusted(QUrl::StripTrailingSlash).path();
 
-        KMimeType::Ptr mt = KMimeType::findByUrl(url);
-        QString mime = mt ? mt->name() : QString();
+        QMimeDatabase db;
+        QMimeType mt = db.mimeTypeForUrl(url);
+        QString mime = mt.isValid() ? mt.name() : QString();
         bool encrypted = false;
         QString type = KRarcHandler::getType(encrypted, path, mime);
 
@@ -145,24 +149,24 @@ void TestArchiveThread::slotStart()
 }
 
 
-UnpackJob::UnpackJob(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames) : AbstractThreadedJob()
+UnpackJob::UnpackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames) : AbstractThreadedJob()
 {
     startAbstractJobThread(new UnpackThread(srcUrl, destUrl, fileNames));
 }
 
-UnpackJob * UnpackJob::createUnpacker(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames)
+UnpackJob * UnpackJob::createUnpacker(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames)
 {
     return new UnpackJob(srcUrl, destUrl, fileNames);
 }
 
-UnpackThread::UnpackThread(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames) :
+UnpackThread::UnpackThread(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames) :
         AbstractJobThread(), _sourceUrl(srcUrl), _destUrl(destUrl), _fileNames(fileNames)
 {
 }
 
 void UnpackThread::slotStart()
 {
-    KUrl newSource = downloadIfRemote(_sourceUrl, _fileNames);
+    QUrl newSource = downloadIfRemote(_sourceUrl, _fileNames);
     if (newSource.isEmpty())
         return;
 
@@ -175,13 +179,14 @@ void UnpackThread::slotStart()
         if (arcName == "..")
             continue; // safety
 
-        KUrl url = newSource;
-        url.addPath(arcName);
+        QUrl url = newSource.adjusted(QUrl::StripTrailingSlash);
+        url.setPath(url.path() + '/' + arcName);
 
-        QString path = url.path(KUrl::RemoveTrailingSlash);
+        QString path = url.adjusted(QUrl::StripTrailingSlash).path();
 
-        KMimeType::Ptr mt = KMimeType::findByUrl(url);
-        QString mime = mt ? mt->name() : QString();
+        QMimeDatabase db;
+        QMimeType mt = db.mimeTypeForUrl(url);
+        QString mime = mt.isValid() ? mt.name() : QString();
         bool encrypted = false;
         QString type = KRarcHandler::getType(encrypted, path, mime);
 

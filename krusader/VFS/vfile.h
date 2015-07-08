@@ -29,22 +29,21 @@
 #ifndef VFILE_H
 #define VFILE_H
 
-// QT includes
+#include <sys/types.h>
+
 #include <QtCore/QString>
 #include <QtCore/QObject>
-// System includes
-#include <sys/types.h>
-// KDE includes
-#include <kio/global.h>
-#include <kio/udsentry.h>
-#include <kmimetype.h>
+#include <QtCore/QUrl>
+
+#include <KIO/Global>
+#include <KIO/UDSEntry>
 
 #define PERM_ALL          -2
 
 /**
  * The Virtual File class handles all the details of maintaining a single
  * file component within the virtual file system (vfs). a vfile object
- * contains the nessecery details about a file and member functions which
+ * contains the necessary details about a file and member functions which
  *  allow the object to give out the needed details about the file.
  */
 class vfile : public QObject
@@ -127,7 +126,7 @@ public:
     inline time_t           vfile_getTime_t()  const {
         return vfile_time_t;
     }
-    inline const KUrl&      vfile_getUrl()     const {
+    inline const QUrl&      vfile_getUrl()     const {
         return vfile_url;
     }
 
@@ -148,7 +147,7 @@ public:
     inline void             vfile_setSize(KIO::filesize_t size) {
         vfile_size = size;
     }
-    inline void             vfile_setUrl(const KUrl& url)       {
+    inline void             vfile_setUrl(const QUrl &url)       {
         vfile_url = url;
     }
 
@@ -185,7 +184,7 @@ protected:
     bool             vfile_brokenLink;
     QString          vfile_mimeType; //< file mimetype
     QString          vfile_symDest;  //< if it's a sym link - its detination
-    KUrl             vfile_url;      //< file URL - empty by default
+    QUrl             vfile_url;      //< file URL - empty by default
     QString          vfile_icon;     //< the name of the icon file
     bool             vfile_isdir;    //< flag, if it's a directory
     int              vfile_rwx;      //< flag, showing read, write, execute properties

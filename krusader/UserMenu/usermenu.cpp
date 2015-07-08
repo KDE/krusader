@@ -19,8 +19,9 @@
 
 #include "usermenu.h"
 
-#include <kdebug.h>
-#include <klocale.h>
+#include <QtCore/QDebug>
+
+#include <KI18n/KLocalizedString>
 
 #include "../krglobal.h"
 #include "../Konfigurator/konfigurator.h"
@@ -46,14 +47,14 @@ void UserMenu::update()
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-UserMenuGui::UserMenuGui(UserMenu *, QWidget * parent) : KMenu(parent)
+UserMenuGui::UserMenuGui(QWidget * parent) : QMenu(parent)
 {
     createMenu();
 }
 
 void UserMenuGui::createMenu()
 {
-//    kDebug() << "UserMenuGui::createMenu called" << endl;
+//    qDebug() << "UserMenuGui::createMenu called" << endl;
     clear();
     setTitle(i18n("User Menu"));
 

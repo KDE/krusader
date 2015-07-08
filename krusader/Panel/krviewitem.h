@@ -20,11 +20,12 @@
 #ifndef KRVIEWITEM_H
 #define KRVIEWITEM_H
 
-#include <sys/types.h>
-#include <kio/global.h>
 #include "../VFS/vfile.h"
 #include "krview.h"
-#include <QPixmap>
+
+#include <QtGui/QPixmap>
+
+#include <KIO/Global>
 
 class QString;
 class QPixmap;
@@ -76,7 +77,7 @@ public:
     }
 
 protected:
-    vfile* _vf;   // each view item holds a pointer to a corrosponding vfile for fast access
+    vfile* _vf;   // each view item holds a pointer to a corresponding vfile for fast access
     bool dummyVfile; // used in case our item represents the ".." (updir) item
     const KrViewProperties* _viewProperties;
     bool _hasExtension;

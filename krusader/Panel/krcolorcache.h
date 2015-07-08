@@ -21,8 +21,8 @@
 #define KRCOLORCACHE_H
 
 #include <QtCore/QObject>
-#include <QList>
-#include <qcolor.h>
+#include <QtCore/QList>
+#include <QtGui/QColor>
 #include <QtGui/QPalette>
 
 /**

@@ -18,14 +18,13 @@
 
 #include "segmentTip.h"
 
-#include <QPainter>
-#include <QToolTip>        //for its palette
-#include <QEvent>
+#include <QtCore/QEvent>
+#include <QtGui/QPainter>
+#include <QtWidgets/QApplication>                           //installing eventFilters
+#include <QtWidgets/QDesktopWidget>
+#include <QtWidgets/QToolTip>                               //for its palette
 
-#include <kapplication.h>    //installing eventFilters
-#include <kglobal.h>
-#include <kglobalsettings.h>
-#include <klocale.h>
+#include <KI18n/KLocalizedString>
 
 #include "fileTree.h"
 
@@ -49,7 +48,7 @@ SegmentTip::moveto(QPoint p, QWidget &canvas, bool placeAbove)
     p.rx() -= rect().center().x();
     p.ry() -= (placeAbove ? 8 + height() : m_cursorHeight - 8);
 
-    const QRect screen = KGlobalSettings::desktopGeometry(parentWidget());
+    const QRect screen = QApplication::desktop()->screenGeometry(parentWidget());
 
     const int x  = p.x();
     const int y  = p.y();
@@ -71,7 +70,7 @@ SegmentTip::moveto(QPoint p, QWidget &canvas, bool placeAbove)
 
 
     const QRect alphaMaskRect(canvas.mapFromGlobal(p), size());
-    const QRect intersection(alphaMaskRect.intersect(canvas.rect()));
+    const QRect intersection(alphaMaskRect.intersected(canvas.rect()));
 
     m_pixmap = QPixmap(size());   //move to updateTip once you are sure it can never be null
     //bitBlt( &m_pixmap, offset, &canvas, intersection, Qt::CopyROP );
@@ -108,13 +107,13 @@ SegmentTip::updateTip(const File* const file, const Directory* const root)
 {
     const QString s1  = file->fullPath(root);
     QString s2        = file->humanReadableSize();
-    KLocale *loc      = KGlobal::locale();
+    QLocale loc;
     const uint MARGIN = 3;
     const uint pc     = 100 * file->size() / root->size();
     uint maxw         = 0;
     uint h            = fontMetrics().height() * 2 + 2 * MARGIN;
 
-    if (pc > 0) s2 += QString(" (%1%)").arg(loc->formatNumber(pc, 0));
+    if (pc > 0) s2 += QString(" (%1%)").arg(loc.toString(pc));
 
     m_text  = s1;
     m_text += '\n';
@@ -123,9 +122,9 @@ SegmentTip::updateTip(const File* const file, const Directory* const root)
     if (file->isDir()) {
         double files  = static_cast<const Directory*>(file)->fileCount();
         const uint pc = uint((100 * files) / (double)root->fileCount());
-        QString s3    = i18n("Files: %1", loc->formatNumber(files, 0));
+        QString s3    = i18n("Files: %1", loc.toString(files, 'f', 0));
 
-        if (pc > 0) s3 += QString(" (%1%)").arg(loc->formatNumber(pc, 0));
+        if (pc > 0) s3 += QString(" (%1%)").arg(loc.toString(pc));
 
         maxw    = fontMetrics().width(s3);
         h      += fontMetrics().height();
@@ -145,10 +144,10 @@ SegmentTip::event(QEvent *e)
 {
     switch (e->type()) {
     case QEvent::Show:
-        kapp->installEventFilter(this);
+        qApp->installEventFilter(this);
         break;
     case QEvent::Hide:
-        kapp->removeEventFilter(this);
+        qApp->removeEventFilter(this);
         break;
     case QEvent::Paint: {
         // bitBlt( this, 0, 0, &m_pixmap );

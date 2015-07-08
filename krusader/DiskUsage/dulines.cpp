@@ -32,19 +32,23 @@
 #include "../kicons.h"
 #include "../krglobal.h"
 #include "../VFS/krpermhandler.h"
-#include <QPixmap>
-#include <QMouseEvent>
-#include <QKeyEvent>
-#include <klocale.h>
+
+#include <QtCore/QTimer>
+#include <QtGui/QMouseEvent>
+#include <QtGui/QPixmap>
+#include <QtGui/QKeyEvent>
 #include <QtGui/QPen>
 #include <QtGui/QPainter>
 #include <QtGui/QFontMetrics>
-#include <QtCore/QTimer>
-#include <QtGui/QApplication>
-#include <qheaderview.h>
-#include <kmenu.h>
-#include <QItemDelegate>
-#include <QtGui/QToolTip>
+#include <QtWidgets/QToolTip>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QItemDelegate>
+#include <QtWidgets/QMenu>
+
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+
 
 class DULinesItemDelegate : public QItemDelegate
 {
@@ -52,7 +56,7 @@ public:
 
     DULinesItemDelegate(QObject *parent = 0) : QItemDelegate(parent) {}
 
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const Q_DECL_OVERRIDE {
         QItemDelegate::paint(painter, option, index);
 
         QVariant value = index.data(Qt::UserRole);
@@ -145,7 +149,7 @@ public:
         setTextAlignment(1, Qt::AlignRight);
     }
 
-    virtual bool operator<(const QTreeWidgetItem &other) const {
+    virtual bool operator<(const QTreeWidgetItem &other) const Q_DECL_OVERRIDE {
         int column = treeWidget() ? treeWidget()->sortColumn() : 0;
 
         if (text(0) == "..")
@@ -191,9 +195,7 @@ DULines::DULines(DiskUsage *usage)
     labels << i18n("Name");
     setHeaderLabels(labels);
 
-    header()->setResizeMode(0, QHeaderView::Interactive);
-    header()->setResizeMode(1, QHeaderView::Interactive);
-    header()->setResizeMode(2, QHeaderView::Interactive);
+    header()->setSectionResizeMode(QHeaderView::Interactive);
 
     KConfigGroup group(krConfig, diskUsage->getConfigGroup());
 
@@ -218,7 +220,6 @@ DULines::DULines(DiskUsage *usage)
     connect(diskUsage, SIGNAL(clearing()), this, SLOT(clear()));
 
     connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(sectionResized(int)));
-    connect(header(), SIGNAL(sectionAutoResize(int, QHeaderView::ResizeMode)), this, SLOT(sectionResized(int)));
 
     connect(this, SIGNAL(itemRightClicked(QTreeWidgetItem*, const QPoint &, int)),
             this, SLOT(slotRightClicked(QTreeWidgetItem *, const QPoint &)));
@@ -466,7 +467,7 @@ void DULines::slotRightClicked(QTreeWidgetItem *item, const QPoint &pos)
     if (item && item->text(0) != "..")
         file = ((DULinesItem *)item)->getFile();
 
-    KMenu linesPopup;
+    QMenu linesPopup;
     QAction *act = linesPopup.addAction(i18n("Show file sizes"), this, SLOT(slotShowFileSizes()));
     act->setChecked(showFileSize);
 
@@ -538,4 +539,3 @@ void DULines::slotRefresh()
     }
 }
 
-#include "dulines.moc"

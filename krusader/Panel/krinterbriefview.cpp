@@ -18,20 +18,20 @@
 
 #include "krinterbriefview.h"
 
-#include <QDir>
-#include <QDirModel>
-#include <QHashIterator>
-#include <QHeaderView>
-#include <QPainter>
-#include <QScrollBar>
-#include <QRegion>
-#include <QItemSelection>
-#include <QItemSelectionRange>
-#include <QApplication>
+#include <QtCore/QDir>
+#include <QtCore/QHashIterator>
+#include <QtCore/QItemSelection>
+#include <QtCore/QItemSelectionRange>
+#include <QtGui/QPainter>
+#include <QtGui/QRegion>
+#include <QtWidgets/QDirModel>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QScrollBar>
 
-#include <kmenu.h>
-#include <klocale.h>
-#include <kdirlister.h>
+#include <KI18n/KLocalizedString>
+#include <KIOWidgets/KDirLister>
 
 #include "krinterviewitem.h"
 #include "krviewfactory.h"
@@ -106,8 +106,8 @@ void KrInterBriefView::setup()
     _header->hideSection(KrViewProperties::Owner);
     _header->hideSection(KrViewProperties::Group);
     _header->setStretchLastSection(true);
-    _header->setResizeMode(QHeaderView::Fixed);
-    _header->setClickable(true);
+    _header->setSectionResizeMode(QHeaderView::Fixed);
+    _header->setSectionsClickable(true);
     _header->setSortIndicatorShown(true);
     connect(_header, SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)),
             _model, SLOT(sort(int, Qt::SortOrder)));
@@ -211,7 +211,7 @@ bool KrInterBriefView::eventFilter(QObject *object, QEvent *event)
 
 void KrInterBriefView::showContextMenu(const QPoint & p)
 {
-    KMenu popup(this);
+    QMenu popup(this);
     popup.setTitle(i18n("Columns"));
 
     int COL_ID = 14700;

@@ -31,35 +31,20 @@
 #include "kgprotocols.h"
 #include "../krglobal.h"
 #include "../krservices.h"
-#include <klocale.h>
-#include <kprotocolinfo.h>
-#include <kmimetype.h>
-#include <qheaderview.h>
-#include <QGridLayout>
-#include <QVBoxLayout>
-#include <kiconloader.h>
 
-QString KgProtocols::defaultProtocols  = "krarc,iso,tar";
-QString KgProtocols::defaultIsoMimes   = "application/x-iso,application/x-cd-image,"
-        "application/x-dvd-image";
-QString KgProtocols::defaultKrarcMimes = "application/x-7z,application/x-7z-compressed,"
-        "application/x-ace,application/x-ace-compressed,"
-        "application/x-arj,application/x-arj-compressed,"
-        "application/x-bzip2,"
-        "application/x-cpio,application/x-deb,"
-        "application/x-debian-package,"
-        "application/x-gzip,application/x-jar,"
-        "application/x-lha,application/x-lha-compressed,"
-        "application/x-rar,application/x-rar-compressed,"
-        "application/x-xz,"
-        "application/x-rpm,application/zip,"
-        "application/x-source-rpm,"
-        "application/x-zip,application/x-zip-compressed";
-QString KgProtocols::defaultTarMimes   = "application/x-tar,application/x-tarz,"
-        "application/x-bzip-compressed-tar,"
-        "application/x-compressed-tar,"
-        "application/x-tbz,application/x-tgz,"
-        "application/x-xz-compressed-tar";
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QVBoxLayout>
+
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIOCore/KProtocolManager>
+#include <KIconThemes/KIconLoader>
+
+QString KgProtocols::defaultProtocols  = "krarc";
+QString KgProtocols::defaultKrarcMimes = "application/zip";
 
 KgProtocols::KgProtocols(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)
@@ -124,7 +109,7 @@ KgProtocols::KgProtocols(bool first, QWidget* parent) :
     QGridLayout *protocolGrid = createGridLayout(protocolGrp);
 
     protocolList = new KrListWidget(protocolGrp);
-    loadListCapableProtocols();
+    loadProtocols();
     protocolGrid->addWidget(protocolList, 0, 0);
 
     KgProtocolsLayout->addWidget(protocolGrp, 0 , 2);
@@ -160,28 +145,27 @@ void KgProtocols::addSpacer(QBoxLayout *layout)
     layout->addItem(new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding));
 }
 
-void KgProtocols::loadListCapableProtocols()
+void KgProtocols::loadProtocols()
 {
     QStringList protocols = KProtocolInfo::protocols();
     protocols.sort();
 
-    for (QStringList::Iterator it = protocols.begin(); it != protocols.end();) {
-//    if( !KProtocolInfo::supportsListing( *it ) )    // TODO TODO
-//    {
-//      it = protocols.remove( it );
-//      continue;
-//    }
-        ++it;
+    foreach(const QString &protocol, protocols) {
+        QUrl u;
+        u.setScheme(protocol);
+        if(KProtocolManager::inputType(u) == KProtocolInfo::T_FILESYSTEM) {
+            protocolList->addItem(protocol);
+        }
     }
-    protocolList->addItems(protocols);
 }
 
 void KgProtocols::loadMimes()
 {
-    KMimeType::List mimes = KMimeType::allMimeTypes();
+    QMimeDatabase db;
+    QList<QMimeType> mimes = db.allMimeTypes();
 
-    for (KMimeType::List::const_iterator it = mimes.constBegin(); it != mimes.constEnd(); it++)
-        mimeList->addItem((*it)->name());
+    for (QList<QMimeType>::const_iterator it = mimes.constBegin(); it != mimes.constEnd(); it++)
+        mimeList->addItem((*it).name());
 
     mimeList->sortItems();
 }
@@ -286,9 +270,7 @@ void KgProtocols::addMime(QString name, QString protocol)
         QTreeWidgetItem *listViewItem = new QTreeWidgetItem(currentListItem);
         listViewItem->setText(0, name);
         listViewItem->setIcon(0, krLoader->loadMimeTypeIcon(name, KIconLoader::Small));
-        // FIXME The following causes crash due to bug in QT 4.3.4 - 4.4.
-        // reenable in the future, when the problem will be fixed.
-        // linkList->expandItem( currentListItem );
+        linkList->expandItem( currentListItem );
     }
 }
 
@@ -339,6 +321,7 @@ void KgProtocols::loadInitialValues()
         linkList->setCurrentItem(linkList->topLevelItem(0));
     slotDisableButtons();
     linkList->expandAll();
+    emit sigChanged();
 }
 
 void KgProtocols::setDefaults()
@@ -346,20 +329,13 @@ void KgProtocols::setDefaults()
     while (linkList->topLevelItemCount() != 0)
         removeProtocol(linkList->topLevelItem(0)->text(0));
 
-    addProtocol("iso");
-    QStringList isoMimes = defaultIsoMimes.split(',');
-    for (QStringList::Iterator it = isoMimes.begin(); it != isoMimes.end(); it++)
-        addMime(*it, "iso");
 #ifdef KRARC_ENABLED
     addProtocol("krarc");
     QStringList krarcMimes = defaultKrarcMimes.split(',');
-    for (QStringList::Iterator it = krarcMimes.begin(); it != krarcMimes.end(); it++)
-        addMime(*it, "krarc");
+    foreach(const QString &mime, krarcMimes) {
+        addMime(mime, "krarc");
+    }
 #endif
-    addProtocol("tar");
-    QStringList tarMimes = defaultTarMimes.split(',');
-    for (QStringList::Iterator it = tarMimes.begin(); it != tarMimes.end(); it++)
-        addMime(*it, "tar");
 
     slotDisableButtons();
 
@@ -431,10 +407,6 @@ void KgProtocols::init()
     if (!krConfig->groupList().contains("Protocols")) {
         KConfigGroup group(krConfig, "Protocols");
         group.writeEntry("Handled Protocols", defaultProtocols);
-        group.writeEntry("Mimes For iso",     defaultIsoMimes);
         group.writeEntry("Mimes For krarc",   defaultKrarcMimes);
-        group.writeEntry("Mimes For tar",     defaultTarMimes);
     }
 }
-
-#include "kgprotocols.moc"

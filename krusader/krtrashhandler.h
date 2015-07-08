@@ -31,10 +31,10 @@
 #ifndef KRTRASHHANDLER_H
 #define KRTRASHHANDLER_H
 
-#include <QString>
+#include <QtCore/QString>
+#include <QtCore/QUrl>
 
-#include <kurl.h>
-#include <kio/job.h>
+#include <KIO/Job>
 
 class KrTrashWatcher;
 class KDirWatch;
@@ -45,7 +45,7 @@ public:
     static bool    isTrashEmpty();
     static QString trashIcon();
     static void    emptyTrash();
-    static void    restoreTrashedFiles(const KUrl::List &url);
+    static void    restoreTrashedFiles(const QList<QUrl> &url);
     static void    startWatcher();
     static void    stopWatcher();
 
@@ -59,15 +59,15 @@ class KonqMultiRestoreJob : public KIO::Job
     Q_OBJECT
 
 public:
-    KonqMultiRestoreJob(const KUrl::List& urls);
+    KonqMultiRestoreJob(const QList<QUrl>& urls);
 
 protected Q_SLOTS:
     virtual void slotStart();
     virtual void slotResult(KJob *job);
 
 private:
-    const KUrl::List m_urls;
-    KUrl::List::const_iterator m_urlsIterator;
+    const QList<QUrl> m_urls;
+    QList<QUrl>::const_iterator m_urlsIterator;
     int m_progress;
 };
 

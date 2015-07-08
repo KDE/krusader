@@ -22,7 +22,7 @@
 #include "../krusaderview.h"
 #include "../panelmanager.h"
 
-#include <kmessagebox.h>
+#include <KWidgetsAddons/KMessageBox>
 
 KrJS::KrJS() : KJSEmbed::KJSEmbedPart()
 {
@@ -40,7 +40,7 @@ bool KrJS::runFile(const QString & filename)
     KJS::ExecState *exec = globalExec();
 
     // set up the variable scriptDir with the directory of the current script
-    putValue("scriptDir", KJSEmbed::convertToValue(exec, KUrl(filename).directory(false)));
+    putValue("scriptDir", KJSEmbed::convertToValue(exec, QUrl(filename).directory(false)));
 
     bool ok = KJSEmbedPart::runFile(filename);
 

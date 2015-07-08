@@ -34,14 +34,11 @@
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
 
-// KDE Includes
-#include <kdialog.h>
 #include <QtCore/QMutex>
-#include <kio/jobclasses.h>
-// Qt Includes
 #include <QtCore/QThread>
-#include <QLabel>
-// Krusader Includes
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QLabel>
+
 #include "../VFS/vfs.h"
 class KrPanel;
 class KrView;
@@ -53,7 +50,7 @@ class KrView;
  * calculation, to avoid a short appearance if the result was found quickly.
  * Computes the result in a different thread.
  */
-class KrCalcSpaceDialog : public KDialog
+class KrCalcSpaceDialog : public QDialog
 {
     Q_OBJECT
 
@@ -68,12 +65,12 @@ class KrCalcSpaceDialog : public KDialog
         unsigned long m_totalDirs;
         const QStringList m_items;
         QHash <QString, KIO::filesize_t> m_sizes;
-        KUrl m_url;
+        QUrl m_url;
         mutable QMutex m_mutex;
         bool m_stop;
 
     public:
-        CalcThread(KUrl url, const QStringList & items);
+        CalcThread(QUrl url, const QStringList & items);
 
         KIO::filesize_t getItemSize(QString item) const;
         void updateItems(KrView *view) const;
@@ -84,7 +81,9 @@ class KrCalcSpaceDialog : public KDialog
         void stop(); // stop it. Thread continues until vfs_calcSpace returns
     } * m_thread;
 
-    QLabel * m_label;
+    QLabel *m_label;
+    QPushButton *okButton;
+    QPushButton *cancelButton;
     bool m_autoClose; // true: wait 3 sec. before showing the dialog. Close it, when done
     bool m_canceled; // true: cancel was pressed
     int m_timerCounter; // internal counter. The timer runs faster as the rehresh (see comment there)
@@ -113,7 +112,7 @@ public:
     } // cancel was pressed; result is probably wrong
 
 public slots:
-    void exec(); // start calculation
+    int exec() Q_DECL_OVERRIDE; // start calculation
 };
 /* End of patch by Heiner <h.eichmann@gmx.de> */
 

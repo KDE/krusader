@@ -44,17 +44,18 @@
 #include "../Dialogs/krspecialwidgets.h"
 #include "../Filter/filterdialog.h"
 
-#include <qnamespace.h>
-#include <qpixmapcache.h>
 #include <QtCore/QDir>
+#include <QtGui/QPixmapCache>
 #include <QtGui/QBitmap>
 #include <QtGui/QPainter>
-#include <QPixmap>
-#include <QAction>
-#include <kmimetype.h>
-#include <klocale.h>
-#include <kinputdialog.h>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QInputDialog>
+#include <qnamespace.h>
 
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
 
 #define VF getVfile()
 
@@ -413,7 +414,7 @@ void KrView::enableUpdateDefaultSettings(bool enable)
 
 void KrView::showPreviews(bool show)
 {
-    if(show) { 
+    if(show) {
         if(!_previews) {
             _previews = new KrPreviews(this);
             _previews->update();
@@ -558,7 +559,7 @@ QString KrView::statistics()
     KIO::filesize_t selectedSize = calcSelectedSize();
     QString tmp;
     KConfigGroup grp(_config, "Look&Feel");
-    if(grp.readEntry("Show Size In Bytes", true)) {
+    if(grp.readEntry("Show Size In Bytes", false)) {
         tmp = i18nc("%1=number of selected items,%2=total number of items, \
                     %3=filesize of selected items,%4=filesize in Bytes, \
                     %5=filesize of all items in directory,%6=filesize in Bytes",
@@ -676,7 +677,7 @@ void KrView::addItem(vfile *vf)
     if (isFiltered(vf))
         return;
     KrViewItem *item = preAddItem(vf);
-    if (!item) 
+    if (!item)
         return; // don't add it after all
 
     if(_previews)
@@ -736,8 +737,8 @@ void KrView::renameCurrentItem()
     if (fileName == "..") return ;
 
     bool ok = false;
-    newName = KInputDialog::getText(i18n("Rename"), i18n("Rename %1 to:", fileName),
-                                    fileName, &ok, _mainWindow);
+    newName = QInputDialog::getText(_mainWindow, i18n("Rename"), i18n("Rename %1 to:", fileName),
+                                    QLineEdit::Normal, fileName, &ok);
     // if the user canceled - quit
     if (!ok || newName == fileName)
         return ;
@@ -823,7 +824,7 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
     }
     case Qt::Key_Backspace :                         // Terminal Emulator bugfix
     case Qt::Key_Left :
-        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier || 
+        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier ||
                 e->modifiers() == Qt::AltModifier) {   // let the panel handle it
             e->ignore();
         } else {          // a normal click - do a lynx-like moving thing
@@ -1257,7 +1258,7 @@ void KrView::customSelection(bool select)
 void KrView::refresh()
 {
     QString current = getCurrentItem();
-    KUrl::List selection = selectedUrls();
+    QList<QUrl> selection = selectedUrls();
 
     clear();
 

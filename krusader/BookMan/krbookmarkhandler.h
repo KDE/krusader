@@ -22,12 +22,11 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QPointer>
-#include <QEvent>
-#include <qdom.h>
-#include <qmap.h>
-
-#include <kmenu.h>
-#include <kurl.h>
+#include <QtCore/QEvent>
+#include <QtCore/QMap>
+#include <QtCore/QUrl>
+#include <QtXml/QDomEntity>
+#include <QtWidgets/QMenu>
 
 #include "krbookmark.h"
 
@@ -43,9 +42,9 @@ class KrBookmarkHandler: public QObject
 public:
     KrBookmarkHandler(FileManagerWindow *mainWindow);
     ~KrBookmarkHandler();
-    void populate(KMenu *menu);
+    void populate(QMenu *menu);
     void addBookmark(KrBookmark *bm, KrBookmark *parent = 0);
-    void bookmarkCurrent(KUrl url);
+    void bookmarkCurrent(QUrl url);
 
 protected:
     void deleteBookmark(KrBookmark *bm);
@@ -56,7 +55,7 @@ protected:
     void exportToFileFolder(QDomDocument &doc, QDomElement &parent, KrBookmark *folder);
     void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);
     void clearBookmarks(KrBookmark *root);
-    void buildMenu(KrBookmark *parent, KMenu *menu);
+    void buildMenu(KrBookmark *parent, QMenu *menu);
 
     bool eventFilter(QObject *obj, QEvent *ev);
 
@@ -66,9 +65,8 @@ protected:
     void removeReferences(KrBookmark *root, KrBookmark *bmToRemove);
 
 protected slots:
-    void slotBookmarkCurrent();
     void bookmarksChanged(const QString&, const QString&);
-    void slotActivated(const KUrl& url);
+    void slotActivated(const QUrl &url);
 
 private:
     FileManagerWindow *_mainWindow;
@@ -78,7 +76,7 @@ private:
     KBookmarkManager *manager;
     bool _middleClick; // if true, the user clicked the middle button to open the bookmark
 
-    QPointer<KMenu>            _mainBookmarkPopup; // main bookmark popup menu
+    QPointer<QMenu>            _mainBookmarkPopup; // main bookmark popup menu
     QList<QAction *>           _specialBookmarks; // the action list of the special bookmarks
 };
 

@@ -33,21 +33,20 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QString>
-#include <QtGui/QCheckBox>
-#include <qspinbox.h>
-#include <QtGui/QPushButton>
-#include <QtGui/QRadioButton>
 #include <QtCore/QList>
-#include <QtGui/QLineEdit>
-#include <QPixmap>
-#include <QtGui/QBoxLayout>
-#include <QtGui/QLabel>
-#include <qfont.h>
-#include <QtGui/QToolButton>
-#include <QtGui/QComboBox>
+#include <QtGui/QPixmap>
+#include <QtGui/QFont>
+#include <QtWidgets/QBoxLayout>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QComboBox>
 
-#include <kurlrequester.h>
-#include <kfontdialog.h>
+#include <KIOWidgets/KUrlRequester>
 
 #include "../GUI/krlistwidget.h"
 
@@ -110,7 +109,7 @@ protected:
     QString configClass;
     QString configName;
 
-    virtual void connectNotify(const char *signal);
+    virtual void connectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE;
 };
 
 

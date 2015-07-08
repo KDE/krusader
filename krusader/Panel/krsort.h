@@ -21,10 +21,11 @@
 #define __KRSORT_H__
 
 #include "krview.h"
+#include "../VFS/vfile.h"
 
-#include <QString>
-#include <QVector>
-#include <QVariant>
+#include <QtCore/QString>
+#include <QtCore/QVector>
+#include <QtCore/QVariant>
 
 #define PERM_BITMASK (S_ISUID|S_ISGID|S_ISVTX|S_IRWXU|S_IRWXG|S_IRWXO)
 

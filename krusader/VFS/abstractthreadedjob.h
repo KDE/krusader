@@ -31,24 +31,24 @@
 #ifndef ABSTRACTTHREADEDJOB_H
 #define ABSTRACTTHREADEDJOB_H
 
-#include <QThread>
-#include <QEvent>
-#include <QMutex>
-#include <QWaitCondition>
-#include <QStack>
-#include <QVariant>
-#include <QList>
-#include <QEventLoop>
-#include <QTime>
+#include <QtCore/QThread>
+#include <QtCore/QEvent>
+#include <QtCore/QMutex>
+#include <QtCore/QWaitCondition>
+#include <QtCore/QStack>
+#include <QtCore/QVariant>
+#include <QtCore/QList>
+#include <QtCore/QEventLoop>
+#include <QtCore/QTime>
+#include <QtCore/QUrl>
 
-#include <kurl.h>
-#include <kio/jobclasses.h>
+#include <KIO/Job>
 
 class AbstractJobThread;
-class KTempDir;
+class QTemporaryDir;
 class UserEvent;
 class KRarcObserver;
-class KTemporaryFile;
+class QTemporaryFile;
 
 class AbstractThreadedJob : public KIO::Job
 {
@@ -64,9 +64,9 @@ protected:
     void  sendEvent(UserEvent * event);
 
     virtual ~AbstractThreadedJob();
-    virtual bool event(QEvent *);
+    virtual bool event(QEvent *) Q_DECL_OVERRIDE;
     virtual void startAbstractJobThread(AbstractJobThread*);
-    virtual bool doSuspend() {
+    virtual bool doSuspend() Q_DECL_OVERRIDE {
         return false;
     }
 
@@ -111,14 +111,14 @@ protected slots:
     virtual void slotStart() = 0;
 
 protected:
-    virtual void run();
+    virtual void run() Q_DECL_OVERRIDE;
     void setJob(AbstractThreadedJob * job) {
         _job = job;
     }
 
-    KUrl::List remoteUrls(const KUrl &baseUrl, const QStringList & files);
-    KUrl downloadIfRemote(const KUrl &baseUrl, const QStringList & files);
-    void calcSpaceLocal(const KUrl &baseUrl, const QStringList & files, KIO::filesize_t &totalSize,
+    QList<QUrl> remoteUrls(const QUrl &baseUrl, const QStringList & files);
+    QUrl downloadIfRemote(const QUrl &baseUrl, const QStringList & files);
+    void calcSpaceLocal(const QUrl &baseUrl, const QStringList & files, KIO::filesize_t &totalSize,
                         unsigned long &totalDirs, unsigned long &totalFiles);
 
     void sendError(int errorCode, QString message);
@@ -133,8 +133,8 @@ protected:
         _progressTitle = title;
     }
 
-    QString tempFileIfRemote(const KUrl &kurl, const QString &type);
-    QString tempDirIfRemote(const KUrl &kurl);
+    QString tempFileIfRemote(const QUrl &kurl, const QString &type);
+    QString tempDirIfRemote(const QUrl &kurl);
     bool uploadTempFiles();
 
     bool isExited() {
@@ -147,15 +147,15 @@ protected:
     AbstractThreadedJob *_job;
     QEventLoop          *_loop;
 
-    KTempDir            *_downloadTempDir;
+    QTemporaryDir       *_downloadTempDir;
     KRarcObserver       *_observer;
 
-    KTemporaryFile      *_tempFile;
+    QTemporaryFile      *_tempFile;
     QString              _tempFileName;
-    KUrl                 _tempFileTarget;
-    KTempDir            *_tempDir;
+    QUrl                 _tempFileTarget;
+    QTemporaryDir       *_tempDir;
     QString              _tempDirName;
-    KUrl                 _tempDirTarget;
+    QUrl                 _tempDirTarget;
 
     bool                 _exited;
 

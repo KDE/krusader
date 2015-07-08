@@ -21,25 +21,21 @@
 #ifndef CHECKSUMDLG_H
 #define CHECKSUMDLG_H
 
-#include <kdialog.h>
+#include <QtWidgets/QDialog>
 
-class KTemporaryFile;
 class KUrlRequester;
 class QCheckBox;
 
 extern void initChecksumModule();
 
-class CreateChecksumDlg: public KDialog
+class CreateChecksumDlg: public QDialog
 {
 public:
     CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path);
-
-private:
-    KTemporaryFile *tmpOut, *tmpErr;
 };
 
 
-class MatchChecksumDlg: public KDialog
+class MatchChecksumDlg: public QDialog
 {
 public:
     MatchChecksumDlg(const QStringList& files, bool containFolders,
@@ -49,20 +45,17 @@ public:
 
 protected:
     bool verifyChecksumFile(QString path, QString& extension);
-
-private:
-    KTemporaryFile *tmpOut, *tmpErr;
 };
 
 
-class ChecksumResultsDlg: public KDialog
+class ChecksumResultsDlg: public QDialog
 {
 public:
     ChecksumResultsDlg(const QStringList &stdOut, const QStringList &stdErr,
                        const QString& suggestedFilename, bool standardFormat);
 
 public slots:
-    virtual void accept();
+    virtual void accept() Q_DECL_OVERRIDE;
 
 protected:
     bool saveChecksum(const QStringList& data, QString filename);
@@ -76,7 +69,7 @@ private:
 };
 
 
-class VerifyResultDlg: public KDialog
+class VerifyResultDlg: public QDialog
 {
 public:
     VerifyResultDlg(const QStringList& failed);

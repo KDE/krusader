@@ -23,8 +23,9 @@
 #include "krpanel.h"
 #include "krview.h"
 #include "../defaults.h"
+#include "../krservices.h"
 
-#include <kdebug.h>
+#include <QtCore/QDir>
 
 DirHistoryQueue::DirHistoryQueue(KrPanel *panel) :
     _panel(panel), _state(0), _currentPos(0)
@@ -41,15 +42,15 @@ void DirHistoryQueue::clear()
     _state++;
 }
 
-KUrl DirHistoryQueue::currentUrl()
+QUrl DirHistoryQueue::currentUrl()
 {
     if(_urlQueue.count())
         return _urlQueue[_currentPos];
     else
-        return KUrl();
+        return QUrl();
 }
 
-void DirHistoryQueue::setCurrentUrl(const KUrl &url)
+void DirHistoryQueue::setCurrentUrl(const QUrl &url)
 {
     if(_urlQueue.count())
         _urlQueue[_currentPos] = url;
@@ -67,13 +68,13 @@ void DirHistoryQueue::saveCurrentItem()
 {
     // if the vfs-url hasn't been refreshed yet,
     // avoid saving current item for the wrong url
-    if(count() &&  _panel->virtualPath().equals(_urlQueue[_currentPos], KUrl::CompareWithoutTrailingSlash))
+    if(count() &&  _panel->virtualPath().matches(_urlQueue[_currentPos], QUrl::StripTrailingSlash))
         _currentItems[_currentPos] = _panel->view->getCurrentItem();
 }
 
-void DirHistoryQueue::add(KUrl url, QString currentItem)
+void DirHistoryQueue::add(QUrl url, QString currentItem)
 {
-    url.cleanPath();
+    url.setPath(QDir::cleanPath(url.path()));
 
     if(_urlQueue.isEmpty()) {
         _urlQueue.push_front(url);
@@ -82,7 +83,7 @@ void DirHistoryQueue::add(KUrl url, QString currentItem)
         return;
     }
 
-    if(_urlQueue[_currentPos].equals(url, KUrl::CompareWithoutTrailingSlash)) {
+    if(_urlQueue[_currentPos].matches(url, QUrl::StripTrailingSlash)) {
         _currentItems[_currentPos] = currentItem;
         return;
     }
@@ -139,14 +140,14 @@ void DirHistoryQueue::save(KConfigGroup cfg)
 {
     saveCurrentItem();
 
-    KUrl::List urls;
-    foreach(KUrl url, _urlQueue) {
+    QList<QUrl> urls;
+    foreach(QUrl url, _urlQueue) {
         // make sure no passwords are permanently stored
-        url.setPass(QString());
+        url.setPassword(QString());
         urls << url;
     }
 
-    cfg.writeEntry("Entrys", urls.toStringList());
+    cfg.writeEntry("Entrys", KrServices::toStringList(urls));
     cfg.writeEntry("CurrentItems", _currentItems);
     cfg.writeEntry("CurrentIndex", _currentPos);
 }
@@ -154,7 +155,7 @@ void DirHistoryQueue::save(KConfigGroup cfg)
 bool DirHistoryQueue::restore(KConfigGroup cfg)
 {
     clear();
-    _urlQueue = KUrl::List(cfg.readEntry("Entrys", QStringList()));
+    _urlQueue = KrServices::toUrlList(cfg.readEntry("Entrys", QStringList()));
     _currentItems = cfg.readEntry("CurrentItems", QStringList());
     if(!_urlQueue.count() || _urlQueue.count() != _currentItems.count()) {
         clear();

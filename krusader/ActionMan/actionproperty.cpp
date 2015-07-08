@@ -24,21 +24,14 @@
 #include "../krusader.h"
 #include "../krglobal.h"
 
-#include <kactioncollection.h>
-#include <QtGui/QToolButton>
-#include <QtGui/QCheckBox>
-#include <QtGui/QRadioButton>
-#include <klocale.h>
-#include <kfiledialog.h>
-#include <klineedit.h>
-#include <kdebug.h>
-#include <kmessagebox.h>
-#include <kinputdialog.h>
-#include <kkeysequencewidget.h>
-#include <kcombobox.h>
-#include <kicondialog.h>
-#include <ktextedit.h>
-#include <kiconloader.h>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QInputDialog>
+
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KMessageBox>
+#include <KXmlGui/KActionCollection>
+
 
 #define ICON(N)  KIconLoader::global()->loadIcon(N, KIconLoader::Small)
 
@@ -78,14 +71,18 @@ ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
     connect(leDistinctName, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
     connect(leTitle, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
     connect(ButtonIcon, SIGNAL(iconChanged(QString)), SLOT(setModified()));
-    connect(cbCategory, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
+    connect(cbCategory, SIGNAL(currentTextChanged(QString)), SLOT(setModified()));
     connect(leTooltip, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
     connect(textDescription, SIGNAL(textChanged()), SLOT(setModified()));
-    connect(leDistinctName, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
     connect(leCommandline, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
     connect(leStartpath, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
-    connect(bgExecType, SIGNAL(clicked(int)), SLOT(setModified()));
-    connect(bgAccept, SIGNAL(clicked(int)), SLOT(setModified()));
+    connect(chkSeparateStdError, SIGNAL(clicked()), SLOT(setModified()));
+    connect(radioCollectOutput, SIGNAL(clicked()), SLOT(setModified()));
+    connect(radioNormal, SIGNAL(clicked()), SLOT(setModified()));
+    connect(radioTE, SIGNAL(clicked()), SLOT(setModified()));
+    connect(radioTerminal, SIGNAL(clicked()), SLOT(setModified()));
+    connect(radioLocal, SIGNAL(clicked()), SLOT(setModified()));
+    connect(radioUrl, SIGNAL(clicked()), SLOT(setModified()));
     connect(KeyButtonShortcut, SIGNAL(keySequenceChanged(const QKeySequence&)), SLOT(setModified()));
     connect(chkEnabled, SIGNAL(clicked()), SLOT(setModified()));
     connect(leDifferentUser, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
@@ -153,7 +150,7 @@ void ActionProperty::updateGUI(KrAction *action)
     // This prevents the changed-signal from being emitted during the GUI-update.
     _modified = true; // The real state is set at the end of this function.
 
-    leDistinctName->setText(_action->getName());
+    leDistinctName->setText(_action->objectName());
     cbCategory->lineEdit()->setText(_action->category());
     leTitle->setText(_action->text());
     leTooltip->setText(_action->toolTip());
@@ -161,7 +158,7 @@ void ActionProperty::updateGUI(KrAction *action)
     leCommandline->setText(_action->command());
     leCommandline->home(false);
     leStartpath->setText(_action->startpath());
-    KeyButtonShortcut->setKeySequence(_action->shortcut().primary());
+    KeyButtonShortcut->setKeySequence(_action->shortcut());
 
     lbShowonlyProtocol->clear();
     lbShowonlyProtocol->addItems(_action->showonlyProtocol());
@@ -230,7 +227,7 @@ void ActionProperty::updateAction(KrAction *action)
         cbCategory->lineEdit()->setText(_action->category());
     }
 
-    _action->setName(leDistinctName->text().toLatin1());
+    _action->setObjectName(leDistinctName->text());
     _action->setText(leTitle->text());
     _action->setToolTip(leTooltip->text());
     _action->setWhatsThis(textDescription->toPlainText());
@@ -292,7 +289,7 @@ void ActionProperty::updateAction(KrAction *action)
 
     _action->setConfirmExecution(chkConfirmExecution->isChecked());
 
-    _action->setIcon(KIcon(ButtonIcon->icon()));
+    _action->setIcon(QIcon::fromTheme(ButtonIcon->icon()));
     _action->setIconName(ButtonIcon->icon());
 
     _action->setUser(leDifferentUser->text());
@@ -315,7 +312,7 @@ void ActionProperty::addPlaceholder()
 
 void ActionProperty::addStartpath()
 {
-    QString folder = KFileDialog::getExistingDirectory(QString(), this);
+    QString folder = QFileDialog::getExistingDirectory(this);
     if (!folder.isEmpty()) {
         leStartpath->setText(folder);
     }
@@ -330,11 +327,8 @@ void ActionProperty::newProtocol()
     if (lbShowonlyProtocol->currentItem())
         currentText = lbShowonlyProtocol->currentItem()->text();
 
-    QString text = KInputDialog::getText(
-                       i18n("New protocol"),
-                       i18n("Set a protocol:"),
-                       currentText,
-                       &ok, this);
+    QString text = QInputDialog::getText(this, i18n("New protocol"), i18n("Set a protocol:"),
+                                         QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyProtocol->addItems(text.split(';'));
         setModified();
@@ -350,11 +344,8 @@ void ActionProperty::editProtocol()
 
     QString currentText = lbShowonlyProtocol->currentItem()->text();
 
-    QString text = KInputDialog::getText(
-                       i18n("Edit Protocol"),
-                       i18n("Set another protocol:"),
-                       currentText,
-                       &ok, this);
+    QString text = QInputDialog::getText(this, i18n("Edit Protocol"), i18n("Set another protocol:"),
+                                         QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyProtocol->currentItem()->setText(text);
         setModified();
@@ -371,7 +362,7 @@ void ActionProperty::removeProtocol()
 
 void ActionProperty::addPath()
 {
-    QString folder = KFileDialog::getExistingDirectory(QString(), this);
+    QString folder = QFileDialog::getExistingDirectory(this);
     if (!folder.isEmpty()) {
         lbShowonlyPath->addItem(folder);
         setModified();
@@ -387,11 +378,8 @@ void ActionProperty::editPath()
 
     QString currentText = lbShowonlyPath->currentItem()->text();
 
-    QString text = KInputDialog::getText(
-                       i18n("Edit Path"),
-                       i18n("Set another path:"),
-                       currentText,
-                       &ok, this);
+    QString text = QInputDialog::getText(this, i18n("Edit Path"), i18n("Set another path:"),
+                                         QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyPath->currentItem()->setText(text);
         setModified();
@@ -414,11 +402,8 @@ void ActionProperty::addMime()
     if (lbShowonlyMime->currentItem())
         currentText = lbShowonlyMime->currentItem()->text();
 
-    QString text = KInputDialog::getText(
-                       i18n("New MIME Type"),
-                       i18n("Set a MIME type:"),
-                       currentText,
-                       &ok, this);
+    QString text = QInputDialog::getText(this, i18n("New MIME Type"), i18n("Set a MIME type:"),
+                                         QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyMime->addItems(text.split(';'));
         setModified();
@@ -434,11 +419,8 @@ void ActionProperty::editMime()
 
     QString currentText = lbShowonlyMime->currentItem()->text();
 
-    QString text = KInputDialog::getText(
-                       i18n("Edit MIME Type"),
-                       i18n("Set another MIME type:"),
-                       currentText,
-                       &ok, this);
+    QString text = QInputDialog::getText(this, i18n("Edit MIME Type"), i18n("Set another MIME type:"),
+                                         QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyMime->currentItem()->setText(text);
         setModified();
@@ -461,11 +443,8 @@ void ActionProperty::newFile()
     if (lbShowonlyFile->currentItem())
         currentText = lbShowonlyFile->currentItem()->text();
 
-    QString text = KInputDialog::getText(
-                       i18n("New File Name"),
-                       i18n("Set a file name:"),
-                       currentText,
-                       &ok, this);
+    QString text = QInputDialog::getText(this, i18n("New File Name"), i18n("Set a file name:"),
+                                         QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyFile->addItems(text.split(';'));
         setModified();
@@ -481,11 +460,8 @@ void ActionProperty::editFile()
 
     QString currentText = lbShowonlyFile->currentItem()->text();
 
-    QString text = KInputDialog::getText(
-                       i18n("Edit File Name"),
-                       i18n("Set another file name:"),
-                       currentText,
-                       &ok, this);
+    QString text = QInputDialog::getText(this, i18n("Edit File Name"), i18n("Set another file name:"),
+                                         QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyFile->currentItem()->setText(text);
         setModified();
@@ -539,5 +515,3 @@ void ActionProperty::setModified(bool m)
     _modified = m;
 }
 
-
-#include "actionproperty.moc"

@@ -26,24 +26,26 @@
 #include "../VFS/vfs.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/listpanelactions.h"
-#include <kiconloader.h>
-#include <kmessagebox.h>
+
 #include <QtCore/QTextStream>
-#include <QMouseEvent>
-#include <QEvent>
-#include <kactioncollection.h>
-#include <klocale.h>
-#include <kdebug.h>
-#include <kbookmarkmanager.h>
-#include <kstandarddirs.h>
 #include <QtCore/QFile>
+#include <QtCore/QEvent>
+#include <QtCore/QStandardPaths>
+#include <QtGui/QMouseEvent>
 #include <QtGui/QCursor>
+
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KMessageBox>
+#include <KXmlGui/KActionCollection>
+#include <KBookmarks/KBookmarkManager>
 
 #define SPECIAL_BOOKMARKS true
 
 // ------------------------ for internal use
 #define BOOKMARKS_FILE "krusader/krbookmarks.xml"
-#define CONNECT_BM(X) { disconnect(X, SIGNAL(activated(const KUrl&)), 0, 0); connect(X, SIGNAL(activated(const KUrl&)), this, SLOT(slotActivated(const KUrl&))); }
+#define CONNECT_BM(X) { disconnect(X, SIGNAL(activated(const QUrl&)), 0, 0); connect(X, SIGNAL(activated(const QUrl&)), this, SLOT(slotActivated(const QUrl&))); }
 
 KrBookmarkHandler::KrBookmarkHandler(FileManagerWindow *mainWindow) : QObject(mainWindow->widget()),
         _mainWindow(mainWindow), _middleClick(false), _mainBookmarkPopup(0), _specialBookmarks()
@@ -54,12 +56,14 @@ KrBookmarkHandler::KrBookmarkHandler(FileManagerWindow *mainWindow) : QObject(ma
 
     // create _root: father of all bookmarks. it is a dummy bookmark and never shown
     _root = new KrBookmark(i18n("Bookmarks"));
+    _root->setParent(this);
 
     // load bookmarks
     importFromFile();
 
     // hack
-    manager = KBookmarkManager::managerForFile(KStandardDirs::locateLocal("data", BOOKMARKS_FILE), "krusader");
+    QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
+    manager = KBookmarkManager::managerForFile(filename, QStringLiteral("krusader"));
     connect(manager, SIGNAL(changed(const QString&, const QString&)), this, SLOT(bookmarksChanged(const QString&, const QString&)));
 }
 
@@ -69,15 +73,10 @@ KrBookmarkHandler::~KrBookmarkHandler()
     delete _privateCollection;
 }
 
-void KrBookmarkHandler::slotBookmarkCurrent()
-{
-    bookmarkCurrent(ACTIVE_PANEL->virtualPath());
-}
-
-void KrBookmarkHandler::bookmarkCurrent(KUrl url)
+void KrBookmarkHandler::bookmarkCurrent(QUrl url)
 {
     QPointer<KrAddBookmarkDlg> dlg = new KrAddBookmarkDlg(_mainWindow->widget(), url);
-    if (dlg->exec() == KDialog::Accepted) {
+    if (dlg->exec() == QDialog::Accepted) {
         KrBookmark *bm = new KrBookmark(dlg->name(), dlg->url(), _collection);
         addBookmark(bm, dlg->folder());
     }
@@ -129,7 +128,7 @@ void KrBookmarkHandler::exportToFileBookmark(QDomDocument &doc, QDomElement &whe
     } else {
         QDomElement bookmark = doc.createElement("bookmark");
         // url
-        bookmark.setAttribute("href", bm->url().prettyUrl());
+        bookmark.setAttribute("href", bm->url().toDisplayString());
         // icon
         bookmark.setAttribute("icon", bm->iconName());
         // title
@@ -191,7 +190,7 @@ void KrBookmarkHandler::exportToFile()
     }
 
 
-    QString filename = KStandardDirs::locateLocal("data", BOOKMARKS_FILE);
+    QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
     QFile file(filename);
     if (file.open(QIODevice::WriteOnly)) {
         QTextStream stream(&file);
@@ -229,7 +228,7 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
     // ok: got name and url, let's add a bookmark
     KrBookmark *bm = KrBookmark::getExistingBookmark(path + name, _collection);
     if (!bm) {
-        bm = new KrBookmark(name, KUrl(url), _collection, icon, path + name);
+        bm = new KrBookmark(name, QUrl(url), _collection, icon, path + name);
         parent->children().append(bm);
     }
 
@@ -273,7 +272,7 @@ void KrBookmarkHandler::importFromFile()
 {
     clearBookmarks(_root);
 
-    QString filename = KStandardDirs::locateLocal("data", BOOKMARKS_FILE);
+    QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly))
         return; // no bookmarks file
@@ -304,7 +303,7 @@ BM_SUCCESS:
     file.close();
 }
 
-void KrBookmarkHandler::populate(KMenu *menu)
+void KrBookmarkHandler::populate(QMenu *menu)
 {
     _mainBookmarkPopup = menu;
     menu->clear();
@@ -312,7 +311,7 @@ void KrBookmarkHandler::populate(KMenu *menu)
     buildMenu(_root, menu);
 }
 
-void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu)
+void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu)
 {
     static int inSecondaryMenu = 0; // used to know if we're on the top menu
 
@@ -323,7 +322,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu)
         KrBookmark *bm = it.next();
 
         if (!bm->isFolder()) continue;
-        KMenu *newMenu = new KMenu(menu);
+        QMenu *newMenu = new QMenu(menu);
         newMenu->setIcon(QIcon(krLoader->loadIcon(bm->iconName(), KIconLoader::Small)));
         newMenu->setTitle(bm->text());
         QAction *menuAction = menu->addMenu(newMenu);
@@ -360,19 +359,19 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu)
             menu->addSeparator();
 
             // add the popular links submenu
-            KMenu *newMenu = new KMenu(menu);
+            QMenu *newMenu = new QMenu(menu);
             newMenu->setTitle(i18n("Popular URLs"));
             newMenu->setIcon(QIcon(krLoader->loadIcon("folder-bookmarks", KIconLoader::Small)));
             QAction *bmfAct  = menu->addMenu(newMenu);
             _specialBookmarks.append(bmfAct);
             // add the top 15 urls
 #define MAX 15
-            KUrl::List list = _mainWindow->popularUrls()->getMostPopularUrls(MAX);
-            KUrl::List::Iterator it;
+            QList<QUrl> list = _mainWindow->popularUrls()->getMostPopularUrls(MAX);
+            QList<QUrl>::Iterator it;
             for (it = list.begin(); it != list.end(); ++it) {
                 QString name;
                 if ((*it).isLocalFile()) name = (*it).path();
-                else name = (*it).prettyUrl();
+                else name = (*it).toDisplayString();
                 // note: these bookmark are put into the private collection
                 // as to not spam the general collection
                 KrBookmark *bm = KrBookmark::getExistingBookmark(name, _privateCollection);
@@ -430,9 +429,8 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu)
         if (!hasJumpback)
             menu->addSeparator();
 
-        QAction *bmAddAct = menu->addAction(krLoader->loadIcon("bookmark-new", KIconLoader::Small),
-                                            i18n("Bookmark Current"), this, SLOT(slotBookmarkCurrent()));
-        _specialBookmarks.append(bmAddAct);
+        menu->addAction(KrActions::actAddBookmark);
+        _specialBookmarks.append(KrActions::actAddBookmark);
         QAction *bmAct = menu->addAction(krLoader->loadIcon("bookmarks", KIconLoader::Small),
                                          i18n("Manage Bookmarks"), manager, SLOT(slotEditBookmarks()));
         _specialBookmarks.append(bmAct);
@@ -630,7 +628,7 @@ void KrBookmarkHandler::rightClicked(QMenu *menu, KrBookmark * bm)
 // used to monitor middle clicks. if mid is found, then the
 // bookmark is opened in a new tab. ugly, but easier than overloading
 // KAction and KActionCollection.
-void KrBookmarkHandler::slotActivated(const KUrl& url)
+void KrBookmarkHandler::slotActivated(const QUrl &url)
 {
     if (_mainBookmarkPopup && !_mainBookmarkPopup->isHidden())
         _mainBookmarkPopup->close();
@@ -640,5 +638,3 @@ void KrBookmarkHandler::slotActivated(const KUrl& url)
         SLOTS->refresh(url);
 }
 
-
-#include "krbookmarkhandler.moc"

@@ -1,3 +1,5 @@
+include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
+
 set(Konfigurator_SRCS
     kgcolors.cpp
     kgdependencies.cpp
@@ -15,4 +17,14 @@ set(Konfigurator_SRCS
     krresulttabledialog.cpp
     searchobject.cpp)
 
-kde4_add_library(Konfigurator STATIC ${Konfigurator_SRCS})
+add_library(Konfigurator STATIC ${Konfigurator_SRCS})
+
+target_link_libraries(Konfigurator
+    KF5::I18n
+    KF5::IconThemes
+    KF5::KIOCore
+    KF5::KIOWidgets
+    KF5::ConfigCore
+    KF5::ConfigWidgets
+    KF5::WidgetsAddons
+)

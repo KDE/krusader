@@ -31,13 +31,12 @@
 #ifndef KURLLISTREQUESTER_H
 #define KURLLISTREQUESTER_H
 
-#include <qwidget.h>
-#include <QtGui/QToolButton>
-#include <QKeyEvent>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QToolButton>
 
-#include <klineedit.h>
-#include <kurl.h>
-#include <kurlcompletion.h>
+#include <KCompletion/KLineEdit>
+#include <KIOWidgets/KUrlCompletion>
 
 #include "../GUI/krlistwidget.h"
 
@@ -50,8 +49,8 @@ public:
 
     KURLListRequester(Mode requestMode, QWidget *parent = 0);
 
-    KUrl::List   urlList();
-    void         setUrlList(KUrl::List);
+    QList<QUrl>  urlList();
+    void         setUrlList(QList<QUrl>);
 
     KLineEdit    *lineEdit()    {
         return urlLineEdit;
@@ -60,7 +59,7 @@ public:
         return urlListBox;
     }
 
-    void         setCompletionDir(QString dir) {
+    void         setCompletionDir(const QUrl &dir) {
         completion.setDir(dir);
     }
 
@@ -74,7 +73,7 @@ protected slots:
     void         slotRightClicked(QListWidgetItem *, const QPoint &);
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *e);
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
     void         deleteSelectedItems();
 
     Mode          mode;

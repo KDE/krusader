@@ -21,27 +21,17 @@
 
 #include "kiso.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <unistd.h>
-#include <grp.h>
-#include <pwd.h>
-#include <assert.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-
+#include <QtCore/QDebug>
 #include <QtCore/QDir>
 #include <QtCore/QFile>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
+#include <qplatformdefs.h>
 
-#include <kde_file.h>
-#include <KDebug>
-#include <KUrl>
-#include <KMimeType>
-#include <KConfig>
-#include <KConfigGroup>
-#include <KFilterBase>
-#include <KFilterDev>
+#include <KConfigCore/KConfig>
+#include <KConfigCore/KConfigGroup>
+#include <KArchive/KFilterBase>
+#include <KArchive/KFilterDev>
 
 #include "libisofs/isofs.h"
 #include "qfilehack.h"
@@ -74,20 +64,20 @@ static int getTracks(const char *fname, int *tracks)
     struct cdrom_tochdr tochead;
     struct cdrom_tocentry tocentry;
 
-    kDebug() << "getTracks open:" << fname << endl;
-    fd = KDE_open(fname, O_RDONLY | O_NONBLOCK);
+    //qDebug() << "getTracks open:" << fname << endl;
+    fd = QT_OPEN(fname, O_RDONLY | O_NONBLOCK);
     if (fd > 0) {
         if (ioctl(fd, CDROMREADTOCHDR, &tochead) != -1) {
-            kDebug() << "getTracks first track:" << tochead.cdth_trk0
-            << " last track " << tochead.cdth_trk1 << endl;
+//            qDebug() << "getTracks first track:" << tochead.cdth_trk0
+//            << " last track " << tochead.cdth_trk1 << endl;
             for (i = tochead.cdth_trk0;i <= tochead.cdth_trk1;i++) {
                 if (ret > 99) break;
                 memset(&tocentry, 0, sizeof(struct cdrom_tocentry));
                 tocentry.cdte_track = i;
                 tocentry.cdte_format = CDROM_LBA;
                 if (ioctl(fd, CDROMREADTOCENTRY, &tocentry) < 0) break;
-                kDebug() << "getTracks got track " << i << " starting at: " <<
-                tocentry.cdte_addr.lba << endl;
+//                qDebug() << "getTracks got track " << i << " starting at: " <<
+//                tocentry.cdte_addr.lba << endl;
                 if ((tocentry.cdte_ctrl & 0x4) == 0x4) {
                     tracks[ret<<1] = tocentry.cdte_addr.lba;
                     tracks[(ret<<1)+1] = i;
@@ -119,11 +109,12 @@ KIso::KIso(const QString& filename, const QString & _mimetype)
     QString mimetype(_mimetype);
     bool forced = true;
     if (mimetype.isEmpty()) {
-        KSharedPtr<KMimeType> result = KMimeType::findByFileContent(filename);
-        if (result)
-            mimetype = result->name();
+        QMimeDatabase db;
+        QMimeType mt = db.mimeTypeForFile(filename, QMimeDatabase::MatchContent);
+        if (mt.isValid())
+            mimetype = mt.name();
 
-        kDebug() << "KIso::KIso mimetype=" << mimetype << endl;
+        //qDebug() << "KIso::KIso mimetype=" << mimetype << endl;
 
         // Don't move to prepareDevice - the other constructor theoretically allows ANY filter
         if (mimetype == "application/x-tgz" || mimetype == "application/x-targz" ||  // the latter is deprecated but might still be around
@@ -203,7 +194,7 @@ static int readf(char *buf, unsigned int start, unsigned int len, void *udata)
     if (dev->seek((qint64)start << (qint64)11)) {
         if ((dev->read(buf, len << 11u)) != -1) return (len);
     }
-    kDebug() << "KIso::ReadRequest failed start: " << start << " len: " << len << endl;
+    //qDebug() << "KIso::ReadRequest failed start: " << start << " len: " << len << endl;
 
     return -1;
 }
@@ -306,10 +297,11 @@ void KIso::addBoot(struct el_torito_boot_descriptor* bootdesc)
     QString path;
     KIsoFile *entry;
 
-    entry = new KIsoFile(this, "Catalog", dirent->permissions() & ~S_IFDIR,
+    path = "Catalog";
+    entry = new KIsoFile(this, path, dirent->permissions() & ~S_IFDIR,
                          dirent->date(), dirent->adate(), dirent->cdate(),
                          dirent->user(), dirent->group(), QString(),
-                         (long long)isonum_731(bootdesc->boot_catalog) << (long long)11, 2048);
+                         (long long)isonum_731(bootdesc->boot_catalog) << (long long)11, (long long)2048);
     dirent->addEntry(entry);
     if (!ReadBootTable(&readf, isonum_731(bootdesc->boot_catalog), &boot, this)) {
         i = 1;
@@ -347,8 +339,8 @@ void KIso::readParams()
 bool KIso::openArchive(QIODevice::OpenMode mode)
 {
     iso_vol_desc *desc;
-    QString path, tmp, uid, gid;
-    KDE_struct_stat buf;
+    QString path, uid, gid;
+    QT_STATBUF buf;
     int tracks[2*100], trackno = 0, i, access, c_b, c_i, c_j;
     KArchiveDirectory *root;
     struct iso_directory_record* idr;
@@ -362,11 +354,11 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
 
     tracks[0] = 0;
     if (m_startsec > 0) tracks[0] = m_startsec;
-    kDebug() << " m_startsec: " << m_startsec << endl;
+    //qDebug() << " m_startsec: " << m_startsec << endl;
     /* We'll use the permission and user/group of the 'host' file except
      * in Rock Ridge, where the permissions are stored on the file system
      */
-    if (KDE_stat(m_filename.toLocal8Bit(), &buf) < 0) {
+    if (QT_STAT(m_filename.toLocal8Bit(), &buf) < 0) {
         /* defaults, if stat fails */
         memset(&buf, 0, sizeof(struct stat));
         buf.st_mode = 0777;
@@ -379,7 +371,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
     gid.setNum(buf.st_gid);
     access = buf.st_mode & ~S_IFMT;
 
-    kDebug() << "KIso::openArchive number of tracks: " << trackno << endl;
+    //qDebug() << "KIso::openArchive number of tracks: " << trackno << endl;
 
     if (trackno == 0) trackno = 1;
     for (i = 0;i < trackno;i++) {
@@ -396,7 +388,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
 
         desc = ReadISO9660(&readf, tracks[i<<1], this);
         if (!desc) {
-            kDebug() << "KIso::openArchive no volume descriptors" << endl;
+            //qDebug() << "KIso::openArchive no volume descriptors" << endl;
             continue;
         }
 
@@ -471,17 +463,17 @@ bool KIso::writeSymLink(const QString &, const QString &, const QString &, const
     return false;
 }
 
-bool KIso::doWriteDir(const QString&, const QString&, const QString&, mode_t, time_t, time_t, time_t)
+bool KIso::doWriteDir(const QString&, const QString&, const QString&, mode_t, const QDateTime&, const QDateTime &, const QDateTime &)
 {
     return false;
 }
 
-bool KIso::doWriteSymLink(const QString &, const QString &, const QString &, const QString &, mode_t, time_t, time_t, time_t)
+bool KIso::doWriteSymLink(const QString &, const QString &, const QString &, const QString &, mode_t, const QDateTime&, const QDateTime&, const QDateTime&)
 {
     return false;
 }
 
-bool KIso::doPrepareWriting(const QString& , const QString& , const QString& , qint64, mode_t, time_t, time_t, time_t)
+bool KIso::doPrepareWriting(const QString& , const QString& , const QString& , qint64, mode_t, const QDateTime&, const QDateTime&, const QDateTime&)
 {
     return false;
 }

@@ -20,9 +20,9 @@
 #ifndef KRBOOKMARKBUTTON_H
 #define KRBOOKMARKBUTTON_H
 
-#include <QtGui/QToolButton>
+#include <QtWidgets/QToolButton>
 
-#include <kactionmenu.h>
+#include <KWidgetsAddons/KActionMenu>
 
 #include "krbookmarkhandler.h"
 
@@ -34,7 +34,7 @@ public:
     void showMenu();
 
 signals:
-    void openUrl(const KUrl &url);
+    void openUrl(const QUrl &url);
     void aboutToShow();
 
 protected slots:

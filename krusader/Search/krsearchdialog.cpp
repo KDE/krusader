@@ -31,32 +31,31 @@
 #include "krsearchdialog.h"
 
 #include <QtCore/QRegExp>
-#include <QHBoxLayout>
-#include <QKeyEvent>
-#include <QLabel>
-#include <QGridLayout>
-#include <QResizeEvent>
-#include <QCloseEvent>
+#include <QtCore/QMimeData>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QResizeEvent>
 #include <QtGui/QCursor>
 #include <QtGui/QClipboard>
-#include <QDrag>
-#include <QMimeData>
+#include <QtGui/QDrag>
 #include <QtGui/QResizeEvent>
-#include <QtGui/QGridLayout>
-#include <QtGui/QLabel>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QCloseEvent>
-#include <QtGui/QTabWidget>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QInputDialog>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QTabWidget>
 
-#include <kinputdialog.h>
-#include <kmessagebox.h>
-#include <kmenu.h>
-#include <KGlobal>
-#include <KLocale>
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "krsearchmod.h"
 #include "../krglobal.h"
 #include "../kractions.h"
+#include "../krservices.h"
 #include "../krslots.h"
 #include "../defaults.h"
 #include "../panelmanager.h"
@@ -87,13 +86,13 @@ public:
         clear();
     }
 
-    virtual QList<vfile*> vfiles() {
+    virtual QList<vfile*> vfiles() Q_DECL_OVERRIDE {
         return _vfiles;
     }
-    virtual unsigned long numVfiles() {
+    virtual unsigned long numVfiles() Q_DECL_OVERRIDE {
         return _vfiles.count();
     }
-    virtual bool isRoot() {
+    virtual bool isRoot() Q_DECL_OVERRIDE {
         return true;
     }
 
@@ -110,7 +109,7 @@ public:
     {
         vfile *vf = new vfile(path, size, perm, mtime, false/*FIXME*/, false/*FIXME*/,
                               uid, gid, QString(), QString(), 0);
-        vf->vfile_setUrl(KUrl(path));
+        vf->vfile_setUrl(QUrl::fromLocalFile(path));
         _vfiles << vf;
         if(!foundText.isEmpty())
             _foundText[vf] = foundText;
@@ -148,7 +147,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     KConfigGroup group(krConfig, "Search");
 
     setWindowTitle(i18n("Krusader::Search"));
-    setWindowIcon(KIcon("system-search"));
+    setWindowIcon(QIcon::fromTheme("system-search"));
 
     QGridLayout* searchBaseLayout = new QGridLayout(this);
     searchBaseLayout->setSpacing(6);
@@ -168,32 +167,32 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 
     mainFeedToListBoxBtn = new QPushButton(this);
     mainFeedToListBoxBtn->setText(i18n("Feed to listbox"));
-    mainFeedToListBoxBtn->setIcon(KIcon("list-add"));
+    mainFeedToListBoxBtn->setIcon(QIcon::fromTheme("list-add"));
     mainFeedToListBoxBtn->setEnabled(false);
     buttonsLayout->addWidget(mainFeedToListBoxBtn);
 
     mainSearchBtn = new QPushButton(this);
     mainSearchBtn->setText(i18n("Search"));
-    mainSearchBtn->setIcon(KIcon("system-search"));
+    mainSearchBtn->setIcon(QIcon::fromTheme("system-search"));
     mainSearchBtn->setDefault(true);
     buttonsLayout->addWidget(mainSearchBtn);
 
     mainStopBtn = new QPushButton(this);
     mainStopBtn->setEnabled(false);
     mainStopBtn->setText(i18n("Stop"));
-    mainStopBtn->setIcon(KIcon("process-stop"));
+    mainStopBtn->setIcon(QIcon::fromTheme("process-stop"));
     buttonsLayout->addWidget(mainStopBtn);
 
     mainCloseBtn = new QPushButton(this);
     mainCloseBtn->setText(i18n("Close"));
-    mainCloseBtn->setIcon(KIcon("dialog-close"));
+    mainCloseBtn->setIcon(QIcon::fromTheme("dialog-close"));
     buttonsLayout->addWidget(mainCloseBtn);
 
     searchBaseLayout->addLayout(buttonsLayout, 1, 0);
 
     // creating the searcher tabs
 
-    searcherTabs = new KTabWidget(this);
+    searcherTabs = new QTabWidget(this);
 
     filterTabs = FilterTabs::addTo(searcherTabs, FilterTabs::Default | FilterTabs::HasRemoteContentSearch);
     generalFilter = (GeneralFilter *)filterTabs->get("GeneralFilter");
@@ -324,7 +323,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
         generalFilter->searchInArchives->setChecked(lastSearchInArchives);
         generalFilter->followLinks->setChecked(lastFollowSymLinks);
         // the path in the active panel should be the default search location
-        generalFilter->searchIn->lineEdit()->setText(ACTIVE_PANEL->virtualPath().pathOrUrl());
+        generalFilter->searchIn->lineEdit()->setText(ACTIVE_PANEL->virtualPath().toDisplayString(QUrl::PreferLocalFile));
     } else
         profileManager->loadProfile(profile);   // important: call this _after_ you've connected profileManager ot the loadFromProfile!!
 }
@@ -495,7 +494,7 @@ void KrSearchDialog::executed(const QString &name)
         fileName = name.mid(idx+1);
         path = name.left(idx);
     }
-    ACTIVE_FUNC->openUrl(KUrl(path), fileName);
+    ACTIVE_FUNC->openUrl(QUrl::fromLocalFile(path), fileName);
     showMinimized();
 }
 
@@ -548,7 +547,7 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
         } else if (e->key() == Qt::Key_F10) {
             compareByContent();
             return;
-        } else if (KrGlobal::copyShortcut.contains(QKeySequence(e->key() | e->modifiers()))) {
+        } else if (KrGlobal::copyShortcut == QKeySequence(e->key() | e->modifiers())) {
             copyToClipBoard();
             return;
         }
@@ -559,14 +558,14 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
 void KrSearchDialog::editCurrent()
 {
     KrViewItem *current = resultView->getCurrentKrViewItem();
-    if (current) 
+    if (current)
         KrViewer::edit(current->getVfile()->vfile_getUrl(), this);
 }
 
 void KrSearchDialog::viewCurrent()
 {
     KrViewItem *current = resultView->getCurrentKrViewItem();
-    if (current) 
+    if (current)
         KrViewer::view(current->getVfile()->vfile_getUrl(), this);
 }
 
@@ -583,7 +582,7 @@ void KrSearchDialog::compareByContent()
 void KrSearchDialog::contextMenu(const QPoint &pos)
 {
     // create the menu
-    KMenu popup;
+    QMenu popup;
     popup.setTitle(i18n("Krusader Search"));
 
     QAction *actView = popup.addAction(i18n("View File (F3)"));
@@ -609,13 +608,13 @@ void KrSearchDialog::contextMenu(const QPoint &pos)
 void KrSearchDialog::feedToListBox()
 {
     virt_vfs v(0, true);
-    v.vfs_refresh(KUrl("/"));
+    v.vfs_refresh(QUrl::fromLocalFile("/"));
 
     KConfigGroup group(krConfig, "Search");
     int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
     QString queryName;
     if(query) {
-        QString where = query->searchInDirs().toStringList().join(", ");
+        QString where = KrServices::toStringList(query->searchInDirs()).join(", ");
         if(query->content().isEmpty())
             queryName = i18n("Search results for \"%1\" in %2", query->nameFilter(), where);
         else
@@ -630,16 +629,13 @@ void KrSearchDialog::feedToListBox()
     KConfigGroup ga(krConfig, "Advanced");
     if (ga.readEntry("Confirm Feed to Listbox",  _ConfirmFeedToListbox)) {
         bool ok;
-        vfsName = KInputDialog::getText(
-                        i18n("Query name"),  // Caption
-                        i18n("Here you can name the file collection"), // Questiontext
-                        vfsName, // Default
-                        &ok, this);
+        vfsName = QInputDialog::getText(this, i18n("Query name"), i18n("Here you can name the file collection"),
+                                        QLineEdit::Normal, vfsName, &ok);
         if (! ok)
             return;
     }
 
-    KUrl::List urlList;
+    QList<QUrl> urlList;
     foreach(vfile *vf, result->vfiles())
         urlList.push_back(vf->vfile_getUrl());
 
@@ -649,12 +645,12 @@ void KrSearchDialog::feedToListBox()
 
     isBusy = true;
 
-    KUrl url = KUrl(QString("virt:/") + vfsName);
+    QUrl url = QUrl(QString("virt:/") + vfsName);
     v.vfs_refresh(url);
-    v.vfs_addFiles(&urlList, KIO::CopyJob::Copy, 0);
+    v.vfs_addFiles(urlList, KIO::CopyJob::Copy, 0);
     v.setMetaInformation(queryName);
     //ACTIVE_FUNC->openUrl(url);
-    ACTIVE_MNG->slotNewTab(url.prettyUrl());
+    ACTIVE_MNG->slotNewTab(url);
 
     isBusy = false;
 
@@ -663,7 +659,7 @@ void KrSearchDialog::feedToListBox()
 
 void KrSearchDialog::copyToClipBoard()
 {
-    KUrl::List urls;
+    QList<QUrl> urls;
     foreach(vfile *vf, result->vfiles())
         urls.push_back(vf->vfile_getUrl());
 
@@ -672,9 +668,8 @@ void KrSearchDialog::copyToClipBoard()
 
     QMimeData *mimeData = new QMimeData;
     mimeData->setImageData(FL_LOADICON("file"));
-    urls.populateMimeData(mimeData);
+    mimeData->setUrls(urls);
 
     QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);
 }
 
-#include "krsearchdialog.moc"

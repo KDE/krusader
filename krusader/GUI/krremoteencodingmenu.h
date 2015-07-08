@@ -21,11 +21,9 @@
 #define KRREMOTEENCODINGMENU_H
 
 #include <QtCore/QStringList>
+#include <QtWidgets/QAction>
 
-#include <kurl.h>
-#include <klibloader.h>
-#include <kaction.h>
-#include <kactionmenu.h>
+# include <KWidgetsAddons/KActionMenu>
 
 class KActionCollection;
 

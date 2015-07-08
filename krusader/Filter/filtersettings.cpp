@@ -32,11 +32,9 @@
 #include "filtersettings.h"
 
 #include "../krglobal.h"
+#include "../krservices.h"
 
-#include <kdebug.h>
-#include <klocale.h>
-#include <kcharsets.h>
-
+#include <KCodecs/KCharsets>
 
 FilterSettings::FileSize& FilterSettings::FileSize::operator=(const FileSize &other)
 {
@@ -161,8 +159,8 @@ void FilterSettings::load(KConfigGroup cfg) {
     LOAD("SearchInArchives", searchInArchives);
     LOAD("Recursive", recursive);
     LOAD("FollowLinks", followLinks);
-    searchIn = cfg.readEntry("SearchIn", QStringList());
-    dontSearchIn = cfg.readEntry("DontSearchIn", QStringList());
+    searchIn = KrServices::toUrlList(cfg.readEntry("SearchIn", QStringList()));
+    dontSearchIn = KrServices::toUrlList(cfg.readEntry("DontSearchIn", QStringList()));
     LOAD("RemoteContentSearch", remoteContentSearch);
     LOAD("ContentEncoding", contentEncoding);
     LOAD("ContainsText", containsText);
@@ -214,8 +212,8 @@ void FilterSettings::save(KConfigGroup cfg) const
     cfg.writeEntry("SearchInArchives", searchInArchives);
     cfg.writeEntry("Recursive", recursive);
     cfg.writeEntry("FollowLinks", followLinks);
-    cfg.writeEntry("SearchIn", searchIn.toStringList());
-    cfg.writeEntry("DontSearchIn", dontSearchIn.toStringList());
+    cfg.writeEntry("SearchIn", KrServices::toStringList(searchIn));
+    cfg.writeEntry("DontSearchIn", KrServices::toStringList(dontSearchIn));
     cfg.writeEntry("RemoteContentSearch", remoteContentSearch);
     cfg.writeEntry("ContentEncoding", contentEncoding);
     cfg.writeEntry("ContainsText", containsText);
@@ -281,7 +279,7 @@ KRQuery FilterSettings::toQuery() const
 
     QString charset;
     if (!contentEncoding.isEmpty())
-        charset = KGlobal::charsets()->encodingForName(contentEncoding);
+        charset = KCharsets::charsets()->encodingForName(contentEncoding);
 
     if (!containsText.isEmpty()) {
         query.setContent(containsText,

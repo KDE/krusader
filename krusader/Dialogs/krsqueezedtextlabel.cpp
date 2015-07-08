@@ -18,14 +18,15 @@
  *****************************************************************************/
 
 #include "krsqueezedtextlabel.h"
-#include <kstringhandler.h>
-#include <QtGui/QToolTip>
-#include <QMouseEvent>
-#include <QDropEvent>
-#include <QDragEnterEvent>
-#include <QLabel>
-#include <QPainter>
-#include <kurl.h>
+
+#include <QtGui/QDropEvent>
+#include <QtGui/QDragEnterEvent>
+#include <QtGui/QPainter>
+#include <QtWidgets/QToolTip>
+#include <QtWidgets/QLabel>
+
+#include <KCoreAddons/KUrlMimeData>
+#include <KCoreAddons/KStringHandler>
 
 KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent):
         KSqueezedTextLabel(parent), acceptDrops(false), _index(-1), _length(-1)
@@ -57,7 +58,7 @@ void KrSqueezedTextLabel::dropEvent(QDropEvent *e)
 void KrSqueezedTextLabel::dragEnterEvent(QDragEnterEvent *e)
 {
     if (acceptDrops) {
-        KUrl::List URLs = KUrl::List::fromMimeData(e->mimeData());
+        QList<QUrl> URLs = KUrlMimeData::urlsFromMimeData(e->mimeData());
         e->setAccepted(!URLs.isEmpty());
     } else
         KSqueezedTextLabel::dragEnterEvent(e);
@@ -115,5 +116,4 @@ void KrSqueezedTextLabel::paintEvent(QPaintEvent * e)
     KSqueezedTextLabel::paintEvent(e);
 }
 
-#include "krsqueezedtextlabel.moc"
 

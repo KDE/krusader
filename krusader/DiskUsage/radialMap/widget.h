@@ -19,18 +19,18 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
-#include <kurl.h>
-#include <QTimer>
-#include <QResizeEvent>
-#include <QMouseEvent>
-#include <QPaintEvent>
+#include <QtCore/QTimer>
+#include <QtCore/QUrl>
+#include <QtGui/QMouseEvent>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QPaintEvent>
+
 #include "segmentTip.h"
 
 template <class T> class Chain;
 class Directory;
 class File;
 class KJob;
-class KUrl;
 
 namespace RadialMap
 {
@@ -78,7 +78,7 @@ public:
     Widget(QWidget* = 0);
 
     QString path() const;
-    KUrl url(File const * const = 0) const;
+    QUrl url(File const * const = 0) const;
 
     bool isValid() const {
         return m_tree != 0;
@@ -100,16 +100,16 @@ private slots:
     void createFromCache(const Directory*);
 
 signals:
-    void activated(const KUrl&);
-    void invalidated(const KUrl&);
+    void activated(const QUrl&);
+    void invalidated(const QUrl&);
     void created(const Directory*);
     void mouseHover(const QString&);
 
 protected:
-    virtual void paintEvent(QPaintEvent*);
-    virtual void resizeEvent(QResizeEvent*);
-    virtual void mouseMoveEvent(QMouseEvent*);
-    virtual void mousePressEvent(QMouseEvent*);
+    virtual void paintEvent(QPaintEvent*) Q_DECL_OVERRIDE;
+    virtual void resizeEvent(QResizeEvent*) Q_DECL_OVERRIDE;
+    virtual void mouseMoveEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    virtual void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE;
 
 protected:
     const Segment *segmentAt(QPoint&) const;   //FIXME const reference for a library others can use

@@ -17,40 +17,44 @@
  *****************************************************************************/
 
 #include "krresulttabledialog.h"
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QFrame>
+
+#include <QtGui/QFontDatabase>
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QVBoxLayout>
+
+#include <KConfigWidgets/KHelpClient>
+#include <KIconThemes/KIconLoader>
 
 KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
         const QString& caption, const QString& heading, const QString& headerIcon,
         const QString& hint)
-        : KDialog(parent, 0)
+        : QDialog(parent, 0)
 
 {
-    setButtons(KDialog::Help | KDialog::Ok);
-    setDefaultButton(KDialog::Ok);
     setWindowTitle(caption);
     setWindowModality(Qt::WindowModal);
 
-    _page = new QWidget(this);
-    setMainWidget(_page);
-    _topLayout = new QVBoxLayout(_page);
-    _topLayout->setContentsMargins(0, 0, 0, 0);
-    _topLayout->setSpacing(spacingHint());
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+
+    QVBoxLayout *_topLayout = new QVBoxLayout();
     _topLayout->setAlignment(Qt::AlignTop);
 
     // +++ Heading +++
     // prepare the icon
-    QWidget *_iconWidget = new QWidget(_page);
+    QWidget *_iconWidget = new QWidget(this);
     QHBoxLayout * _iconBox = new QHBoxLayout(_iconWidget);
-    _iconLabel = new QLabel(_iconWidget);
+    QLabel *_iconLabel = new QLabel(_iconWidget);
     _iconLabel->setPixmap(krLoader->loadIcon(headerIcon, KIconLoader::Desktop, 32));
     _iconLabel->setMinimumWidth(fontMetrics().maxWidth()*20);
     _iconLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     _iconLabel->setFixedSize(_iconLabel->sizeHint());
     _iconBox->addWidget(_iconLabel);
-    _headingLabel = new QLabel(heading, _iconWidget);
-    QFont defFont = KGlobalSettings::generalFont();
+    QLabel *_headingLabel = new QLabel(heading, _iconWidget);
+    QFont defFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
     defFont.setBold(true);
     _headingLabel->setFont(defFont);
     _headingLabel->setIndent(10);
@@ -64,12 +68,12 @@ KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
     // +++ Table +++
     switch (type) {
     case Archiver:
-        _resultTable = new KrArchiverResultTable(_page);
-        setHelp("konfig-archives"); // launch handbook at sect1-id via help button
+        _resultTable = new KrArchiverResultTable(this);
+        helpAnchor = QStringLiteral("konfig-archives"); // launch handbook at sect1-id via help button
         break;
     case Tool:
-        _resultTable = new KrToolResultTable(_page);
-        setHelp("konfig-dependencies"); // TODO find a good anchor
+        _resultTable = new KrToolResultTable(this);
+        helpAnchor = QStringLiteral("konfig-dependencies"); // TODO find a good anchor
         break;
     default:
         break;
@@ -77,21 +81,38 @@ KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
     _topLayout->addWidget(_resultTable);
 
     // +++ Separator +++
-    KSeparator* hSep = new KSeparator(Qt::Horizontal, _page);
+    KSeparator* hSep = new KSeparator(Qt::Horizontal, this);
     hSep->setContentsMargins(5, 5, 5, 5);
     _topLayout->addWidget(hSep);
 
     // +++ Hint +++
     if (!hint.isEmpty()) {
-        _hintLabel = new QLabel(hint, _page);
+        QLabel *_hintLabel = new QLabel(hint, this);
         _hintLabel->setIndent(5);
         _hintLabel->setAlignment(Qt::AlignRight);
         _topLayout->addWidget(_hintLabel);
     }
+    mainLayout->addLayout(_topLayout);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Help);
+    mainLayout->addWidget(buttonBox);
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &KrResultTableDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::helpRequested, this, &KrResultTableDialog::showHelp);
+    buttonBox->button(QDialogButtonBox::Ok)->setDefault(true);
 
     this->setFixedSize(this->sizeHint());   // make non-resizeable
 }
 
 KrResultTableDialog::~KrResultTableDialog()
 {
+}
+
+void KrResultTableDialog::showHelp()
+{
+    if(!helpAnchor.isEmpty()) {
+        KHelpClient::invokeHelp(helpAnchor);
+    }
 }

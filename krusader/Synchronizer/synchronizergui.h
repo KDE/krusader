@@ -32,15 +32,15 @@
 #define SYNCHRONIZERGUI_H
 
 #include <QtCore/QMap>
-#include <QtGui/QDialog>
 #include <QtGui/QResizeEvent>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QPixmap>
-#include <QtGui/QCheckBox>
-#include <QtGui/QLabel>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QTabWidget>
 
-#include <KComboBox>
-#include <KTabWidget>
+#include <KCompletion/KComboBox>
 
 #include "synchronizer.h"
 #include "../GUI/profilemanager.h"
@@ -135,7 +135,7 @@ public:
 
 public:
     // if rightDirectory is null, leftDirectory is actually the profile name to load
-    SynchronizerGUI(QWidget* parent,  KUrl leftDirectory, KUrl rightDirectory = QString(), QStringList selList = QStringList());
+    SynchronizerGUI(QWidget* parent,  QUrl leftDirectory, QUrl rightDirectory = QUrl(), QStringList selList = QStringList());
     SynchronizerGUI(QWidget* parent,  QString profile);
     ~SynchronizerGUI();
 
@@ -169,7 +169,7 @@ protected slots:
     void connectFilters(const QString &);
 
 private:
-    void initGUI(QWidget* parent, QString profile, KUrl leftURL, KUrl rightURL, QStringList selList);
+    void initGUI(QWidget* parent, QString profile, QUrl leftURL, QUrl rightURL, QStringList selList);
 
     QString convertTime(time_t time) const;
     void    setMarkFlags();
@@ -181,9 +181,9 @@ private:
     void    convertFromSeconds(int &time, int &unit, int second);
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *);
-    virtual void resizeEvent(QResizeEvent *e);
-    virtual bool eventFilter(QObject *, QEvent *);
+    virtual void keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
+    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    virtual bool eventFilter(QObject *, QEvent *) Q_DECL_OVERRIDE;
 
     void executeOperation(SynchronizerFileItem *item, int op);
 
@@ -191,7 +191,7 @@ protected:
     FilterTabs     *filterTabs;
     GeneralFilter  *generalFilter;
 
-    KTabWidget    *synchronizerTabs;
+    QTabWidget    *synchronizerTabs;
 
     KHistoryComboBox *leftLocation;
     KHistoryComboBox *rightLocation;

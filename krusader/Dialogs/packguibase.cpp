@@ -30,29 +30,32 @@
 
 #include "packguibase.h"
 
-#include <QtGui/QCheckBox>
-#include <QtGui/QComboBox>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QPushButton>
-#include <QtGui/QToolButton>
-#include <QtGui/QLayout>
 #include <QtCore/QVariant>
+#include <QtGui/QGuiApplication>
 #include <QtGui/QImage>
 #include <QtGui/QPixmap>
-#include <qspinbox.h>
-#include <QtGui/QSlider>
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <QFrame>
-#include <QVBoxLayout>
-#include <QKeyEvent>
-#include <kiconloader.h>
-#include <kcolorscheme.h>
-#include <kcombobox.h>
-#include <kmessagebox.h>
-#include <kio/global.h>
-#include <khistorycombobox.h>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QSlider>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QVBoxLayout>
+
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
+#include <KCompletion/KComboBox>
+#include <KWidgetsAddons/KMessageBox>
+#include <KIO/Global>
+#include <KCompletion/KHistoryComboBox>
 
 #include "../defaults.h"
 #include "../krglobal.h"
@@ -358,12 +361,13 @@ void PackGUIBase::expand()
 
 void PackGUIBase::checkConsistency()
 {
+    QPalette p = QGuiApplication::palette();
     QPalette pal = passwordConsistencyLabel->palette();
     if (password->text().isEmpty() && passwordAgain->text().isEmpty()) {
-        pal.setColor(passwordConsistencyLabel->foregroundRole(), KColorScheme(QPalette::Active, KColorScheme::View).foreground().color());
+        pal.setColor(passwordConsistencyLabel->foregroundRole(), p.color(QPalette::Active, QPalette::Text));
         passwordConsistencyLabel->setText(i18n("No password specified"));
     } else if (password->text() == passwordAgain->text()) {
-        pal.setColor(passwordConsistencyLabel->foregroundRole(), KColorScheme(QPalette::Active, KColorScheme::View).foreground().color());
+        pal.setColor(passwordConsistencyLabel->foregroundRole(), p.color(QPalette::Active, QPalette::Text));
         passwordConsistencyLabel->setText(i18n("The passwords are equal"));
     } else {
         pal.setColor(passwordConsistencyLabel->foregroundRole(), Qt::red);
@@ -514,4 +518,3 @@ void PackGUIBase::keyPressEvent(QKeyEvent *e)
     }
 }
 
-#include "packguibase.moc"

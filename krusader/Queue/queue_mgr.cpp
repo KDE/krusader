@@ -19,10 +19,14 @@
 #include "queue_mgr.h"
 #include "queuedialog.h"
 #include "queue.h"
-#include <QList>
-#include <QVector>
-#include <QVariant>
-#include <klocale.h>
+
+#include <QtCore/QList>
+#include <QtCore/QVector>
+#include <QtCore/QVariant>
+
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+
 #include "../krglobal.h"
 
 QMap<QString, Queue*> QueueManager::_queues;
@@ -30,7 +34,7 @@ Queue * QueueManager::_current = 0;
 QueueManager * QueueManager::_self = 0;
 int QueueManager::_nextId = 1;
 
-QueueManager::QueueManager()
+QueueManager::QueueManager(QObject *parent): QObject(parent)
 {
     _self = this;
     QStringList queues;

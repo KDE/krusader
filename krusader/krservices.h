@@ -22,8 +22,8 @@
 
 #include <QtCore/QString>
 #include <QtCore/QStringList>
-#include <qmap.h>
-#include <kurl.h>
+#include <QtCore/QMap>
+#include <QtCore/QUrl>
 
 class QTextStream;
 class QFile;
@@ -37,13 +37,17 @@ public:
     static bool         cmdExist(QString cmdName);
     static QString      chooseFullPathName(QStringList names, QString confName);
     static QString      fullPathName(QString name, QString confName = QString());
-    static QString      registerdProtocol(QString mimetype);
-    static QString      getPath(const KUrl &url, KUrl::AdjustPathOption trailing = KUrl::LeaveTrailingSlash);
+    static QString      registeredProtocol(QString mimetype);
+    static QString      getPath(const QUrl &url, QUrl::FormattingOptions options = QUrl::PrettyDecoded);
     static void         clearProtocolCache();
     static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines = false);
     static bool         fileToStringList(QFile *file, QStringList& target, bool keepEmptyLines = false);
     static QString      quote(QString name);
     static QStringList  quote(const QStringList& names);
+    static QList<QUrl>  toUrlList(const QStringList &list);
+    static QStringList  toStringList(const QList<QUrl> &list);
+    static QStringList  supportedTools(); // find supported tools
+
 
 protected:
     static QString    escape(QString name);

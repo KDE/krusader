@@ -32,14 +32,15 @@
 
 #include <QtCore/QStringList>
 #include <QtCore/QDateTime>
-#include <time.h>
-#include <kurl.h>
-#include <kio/jobclasses.h>
-#include <kconfiggroup.h>
-#include "vfile.h"
+#include <QtCore/QUrl>
+
+#include <KIO/Job>
+#include <KConfigCore/KConfigGroup>
 
 class KFileItem;
 class QTextCodec;
+
+class vfile;
 
 class KRQuery : public QObject
 {
@@ -149,19 +150,19 @@ public:
     }
 
     // sets the folders where the searcher will search
-    void setSearchInDirs(const KUrl::List &urls);
+    void setSearchInDirs(const QList<QUrl> &urls);
     // gets the folders where the searcher searches
-    const KUrl::List & searchInDirs() {
+    const QList<QUrl> & searchInDirs() {
         return whereToSearch;
     }
     // sets the folders where search is not permitted
-    void setDontSearchInDirs(const KUrl::List &urls);
+    void setDontSearchInDirs(const QList<QUrl> &urls);
     // gets the folders where search is not permitted
-    const KUrl::List & dontSearchInDirs() {
+    const QList<QUrl> & dontSearchInDirs() {
         return whereNotToSearch;
     }
     // checks if a URL is excluded
-    bool isExcluded(const KUrl &url);
+    bool isExcluded(const QUrl &url);
     // gives whether we search for content
     bool isContentSearched() const {
         return !contain.isEmpty();
@@ -180,9 +181,9 @@ public:
 
 protected:
     // important to know whether the event processor is connected
-    virtual void connectNotify(const char * signal);
+    virtual void connectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE;
     // important to know whether the event processor is connected
-    virtual void disconnectNotify(const char * signal);
+    virtual void disconnectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE;
 
 protected:
     QStringList matches;           // what to search
@@ -216,8 +217,8 @@ protected:
     bool recurse;                  // if true recurse ob sub-dirs...
     bool followLinksP;
 
-    KUrl::List whereToSearch;     // directories to search
-    KUrl::List whereNotToSearch;  // directories NOT to search
+    QList<QUrl> whereToSearch;     // directories to search
+    QList<QUrl> whereNotToSearch;  // directories NOT to search
 
 signals:
     void status(const QString &name);
@@ -228,7 +229,7 @@ private:
     bool checkPerm(QString perm) const;
     bool checkType(QString mime) const;
     bool containsContent(QString file) const;
-    bool containsContent(KUrl url) const;
+    bool containsContent(QUrl url) const;
     bool checkBuffer(const char * data, int len) const;
     bool checkTimer() const;
     QStringList split(QString);

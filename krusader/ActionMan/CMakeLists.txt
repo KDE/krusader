@@ -5,6 +5,16 @@ set(ActionMan_SRCS
     useractionlistview.cpp
     useractionpage.cpp)
 
-kde4_add_ui_files(ActionMan_SRCS actionproperty.ui)
+qt5_wrap_ui(ActionMan_SRCS actionproperty.ui)
 
-kde4_add_library(ActionMan STATIC ${ActionMan_SRCS})
+add_library(ActionMan STATIC ${ActionMan_SRCS})
+
+target_link_libraries(ActionMan
+    KF5::ConfigCore
+    KF5::I18n
+    KF5::IconThemes
+    KF5::KIOCore
+    KF5::KIOWidgets
+    KF5::Parts
+    KF5::WidgetsAddons
+)

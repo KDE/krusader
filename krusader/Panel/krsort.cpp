@@ -19,9 +19,11 @@
 
 #include "krsort.h"
 
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
+
 #include "krview.h"
 #include "../VFS/krpermhandler.h"
-
 
 namespace KrSort {
 
@@ -64,9 +66,10 @@ void SortProps::init(vfile *vf, int col, const KrViewProperties * props, bool is
         if (isDummy)
             _data = "";
         else {
-            KMimeType::Ptr mt = KMimeType::mimeType(vf->vfile_getMime());
-            if (mt)
-                _data = mt->comment();
+            QMimeDatabase db;
+            QMimeType mt = db.mimeTypeForName(vf->vfile_getMime());
+            if (mt.isValid())
+                _data = mt.comment();
         }
         break;
     }

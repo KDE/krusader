@@ -19,14 +19,14 @@
 #ifndef ACTIONMAN_H
 #define ACTIONMAN_H
 
-#include <kdialog.h>
+#include <QtWidgets/QDialog>
 
 class UserActionPage;
 
 /**
  * This manages all useractions
  */
-class ActionMan : public KDialog
+class ActionMan : public QDialog
 {
     Q_OBJECT
 public:
@@ -41,6 +41,7 @@ protected slots:
 
 private:
     UserActionPage* userActionPage;
+    QPushButton *applyButton;
 };
 
 #endif // ifndef ACTIONMAN_H

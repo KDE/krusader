@@ -31,13 +31,11 @@
 #ifndef PRESERVINGCOPYJOB_H
 #define PRESERVINGCOPYJOB_H
 
-#include <time.h>
-
-#include <qmap.h>
+#include <QtCore/QMap>
 #include <QtCore/QList>
+#include <QtCore/QUrl>
 
-#include <kio/jobclasses.h>
-#include <kio/copyjob.h>
+#include <KIO/CopyJob>
 
 typedef enum {
     PM_NONE          = 0,
@@ -49,7 +47,7 @@ class PreservingCopyJob
 {
 
 public:
-    static KIO::Job *createCopyJob(PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool /* asMethod */, bool showProgressInfo);
+    static KIO::Job *createCopyJob(PreserveMode pmode, const QList<QUrl>& src, const QUrl &dest, KIO::CopyJob::CopyMode mode, bool /* asMethod */, bool showProgressInfo);
 };
 
 #endif /* __PRESERVING_COPY_JOB_H__ */

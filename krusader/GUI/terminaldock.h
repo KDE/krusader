@@ -19,14 +19,14 @@
 #ifndef TERMINALDOCK_H
 #define TERMINALDOCK_H
 
-#include <kde_terminal_interface.h>
-#include <kparts/part.h>
+#include <QtCore/QEvent>
+#include <QtCore/QString>
+#include <QtCore/QObject>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QWidget>
 
-#include <QHBoxLayout>
-#include <QWidget>
-#include <QEvent>
-#include <QString>
-#include <QObject>
+#include <kde_terminal_interface.h>
+#include <KParts/ReadOnlyPart>
 
 class FileManagerWindow;
 
@@ -47,12 +47,12 @@ public:
     virtual ~TerminalDock();
     void sendInput(const QString& input);
     void sendCd(const QString& path);
-    virtual bool eventFilter(QObject * watched, QEvent * e);
+    virtual bool eventFilter(QObject * watched, QEvent * e) Q_DECL_OVERRIDE;
     bool isTerminalVisible() const;
     bool isInitialised() const;
     bool initialise();
-    virtual void hideEvent(QHideEvent * e);
-    virtual void showEvent(QShowEvent * e);
+    virtual void hideEvent(QHideEvent * e) Q_DECL_OVERRIDE;
+    virtual void showEvent(QShowEvent * e) Q_DECL_OVERRIDE;
     inline KParts::Part* part() {
         return konsole_part;
     }

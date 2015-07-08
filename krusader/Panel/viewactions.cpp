@@ -33,8 +33,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krview.h"
 #include "../krmainwindow.h"
 
-#include <klocale.h>
-#include <ktoggleaction.h>
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KToggleAction>
 
 ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
     ActionsBase(parent, mainWindow)
@@ -46,7 +46,7 @@ ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
 
     // filter
     action(i18n("&All Files"), 0, Qt::SHIFT + Qt::Key_F10, SLOT(allFilter()), "all files");
-    //actExecFilter = new KAction( i18n( "&Executables" ), SHIFT + Qt::Key_F11,
+    //actExecFilter = new QAction( i18n( "&Executables" ), SHIFT + Qt::Key_F11,
     //                             SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );
     action(i18n("&Custom"), 0, Qt::SHIFT + Qt::Key_F12, SLOT(customFilter()), "custom files");
 
@@ -66,7 +66,7 @@ ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
     action(i18n("Apply settings to other tabs"), 0, 0, SLOT(applySettingsToOthers()), "view_apply_settings_to_others");
     action(i18n("QuickFilter"), 0, Qt::CTRL + Qt::Key_I, SLOT(quickFilter()), "quick_filter");
     actTogglePreviews = toggleAction(i18n("Show Previews"), 0, 0, SLOT(togglePreviews(bool)), "toggle previews");
-    KAction *actSaveaveDefaultSettings = action(i18n("Save settings as default"), 0, 0, SLOT(saveDefaultSettings()), "view_save_default_settings");
+    QAction *actSaveaveDefaultSettings = action(i18n("Save settings as default"), 0, 0, SLOT(saveDefaultSettings()), "view_save_default_settings");
 
     // tooltips
     actSelect->setToolTip(i18n("Select files using a filter"));

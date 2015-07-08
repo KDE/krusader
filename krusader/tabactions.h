@@ -52,8 +52,8 @@ protected slots:
 protected:
     inline PanelManager *activeManager();
 
-    KAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actMoveTabToOtherSide;
-    KAction *actCloseInactiveTabs, *actCloseDuplicatedTabs, *actLockTab;
+    QAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actMoveTabToOtherSide;
+    QAction *actCloseInactiveTabs, *actCloseDuplicatedTabs, *actLockTab;
 };
 
 

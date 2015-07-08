@@ -32,15 +32,16 @@
 #include "../krglobal.h"
 #include "../kicons.h"
 #include "../VFS/krpermhandler.h"
-#include <QtGui/QFontMetrics>
-#include <QMouseEvent>
-#include <QKeyEvent>
-#include <klocale.h>
-#include <kmimetype.h>
-#include <kglobal.h>
-#include <qheaderview.h>
-#include <time.h>
 
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
+#include <QtGui/QMouseEvent>
+#include <QtGui/QFontMetrics>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QHeaderView>
+
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 
 DUListView::DUListView(DiskUsage *usage)
         : KrTreeWidget(usage), diskUsage(usage)
@@ -64,15 +65,7 @@ DUListView::DUListView(DiskUsage *usage)
     labels << i18n("Group");
     setHeaderLabels(labels);
 
-    header()->setResizeMode(0, QHeaderView::Interactive);
-    header()->setResizeMode(1, QHeaderView::Interactive);
-    header()->setResizeMode(2, QHeaderView::Interactive);
-    header()->setResizeMode(3, QHeaderView::Interactive);
-    header()->setResizeMode(4, QHeaderView::Interactive);
-    header()->setResizeMode(5, QHeaderView::Interactive);
-    header()->setResizeMode(6, QHeaderView::Interactive);
-    header()->setResizeMode(7, QHeaderView::Interactive);
-    header()->setResizeMode(8, QHeaderView::Interactive);
+    header()->setSectionResizeMode(QHeaderView::Interactive);
 
     KConfigGroup group(krConfig, diskUsage->getConfigGroup());
 
@@ -126,15 +119,16 @@ void DUListView::addDirectory(Directory *dirEntry, QTreeWidgetItem *parent)
     for (Iterator<File> it = dirEntry->iterator(); it != dirEntry->end(); ++it) {
         File *item = *it;
 
-        KMimeType::Ptr mimePtr = KMimeType::mimeType(item->mime());
+        QMimeDatabase db;
+        QMimeType mt = db.mimeTypeForName(item->mime());
         QString mime;
-        if (mimePtr)
-            mime = mimePtr->comment();
+        if (mt.isValid())
+            mime = mt.comment();
 
         time_t tma = item->time();
         struct tm* t = localtime((time_t *) & tma);
         QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-        QString date = KGlobal::locale()->formatDateTime(tmp);
+        QString date = QLocale().toString(tmp, QLocale::ShortFormat);
 
         QString totalSize = KRpermHandler::parseSize(item->size()) + ' ';
         QString ownSize = KRpermHandler::parseSize(item->ownSize()) + ' ';
@@ -284,4 +278,3 @@ void DUListView::slotExpanded(QTreeWidgetItem * item)
     }
 }
 
-#include "dulistview.moc"

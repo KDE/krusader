@@ -20,8 +20,9 @@
 #define QUEUE_MGR_H
 
 #include "queue.h"
-#include <qmap.h>
-#include <QList>
+
+#include <QtCore/QMap>
+#include <QtCore/QList>
 
 /**
  * QueueManager holds multiple queues and has a static
@@ -34,7 +35,7 @@ class QueueManager : public QObject
 
     static QString defaultName();
 public:
-    QueueManager();
+    QueueManager(QObject *parent = 0);
     ~QueueManager();
 
     static Queue* queue(const QString& queueName = defaultName());

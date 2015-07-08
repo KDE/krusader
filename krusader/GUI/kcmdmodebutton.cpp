@@ -20,12 +20,11 @@
 
 #include "../kractions.h"
 
-#include <klocale.h>
-#include <kiconloader.h>
-#include <kmenu.h>
-#include <kactionmenu.h>
+#include <QtWidgets/QMenu>
 
-#include <kdebug.h>
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KActionMenu>
 
 /**
  * KCMDModeButton class, which represents a button with popup menu to switch
@@ -70,6 +69,3 @@ void KCMDModeButton::showMenu()
     }
 }
 
-
-
-#include "kcmdmodebutton.moc"

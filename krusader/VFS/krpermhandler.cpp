@@ -30,21 +30,10 @@
 
 #include "krpermhandler.h"
 
-#include <unistd.h>
-#include <math.h>
-#include <pwd.h>
-#include <grp.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <dirent.h>
-#include <time.h>
-
 #include <QtCore/QDateTime>
 #include <QtCore/QDir>
-
-#include <kde_file.h>
-#include <KLocale>
-#include <KGlobal>
+#include <QtCore/QLocale>
+#include <qplatformdefs.h>
 
 QHash<QString, uid_t> *KRpermHandler::passwdCache = 0L;
 QHash<QString, gid_t> *KRpermHandler::groupCache = 0L;
@@ -108,8 +97,8 @@ char KRpermHandler::executable(QString perm, gid_t gid, uid_t uid, int rwx)
 
 bool KRpermHandler::fileWriteable(QString localFile)
 {
-    KDE_struct_stat stat_p;
-    if (KDE_stat(localFile.toLocal8Bit(), &stat_p) == -1) return false;
+    QT_STATBUF stat_p;
+    if (QT_STAT(localFile.toLocal8Bit(), &stat_p) == -1) return false;
     mode_t m = stat_p.st_mode;
     QString perm = mode2QString(m);
     return writeable(perm, stat_p.st_gid, stat_p.st_uid);
@@ -117,8 +106,8 @@ bool KRpermHandler::fileWriteable(QString localFile)
 
 bool KRpermHandler::fileReadable(QString localFile)
 {
-    KDE_struct_stat stat_p;
-    if (KDE_stat(localFile.toLocal8Bit(), &stat_p) == -1) return false;
+    QT_STATBUF stat_p;
+    if (QT_STAT(localFile.toLocal8Bit(), &stat_p) == -1) return false;
     mode_t m = stat_p.st_mode;
     QString perm = mode2QString(m);
     return readable(perm, stat_p.st_gid, stat_p.st_uid);
@@ -126,8 +115,8 @@ bool KRpermHandler::fileReadable(QString localFile)
 
 bool KRpermHandler::fileExecutable(QString localFile)
 {
-    KDE_struct_stat stat_p;
-    if (KDE_stat(localFile.toLocal8Bit(), &stat_p) == -1) return false;
+    QT_STATBUF stat_p;
+    if (QT_STAT(localFile.toLocal8Bit(), &stat_p) == -1) return false;
     mode_t m = stat_p.st_mode;
     QString perm = mode2QString(m);
     return executable(perm, stat_p.st_gid, stat_p.st_uid);
@@ -249,9 +238,9 @@ char KRpermHandler::ftpExecutable(QString fileOwner, QString userName, QString p
 
 bool KRpermHandler::dirExist(QString path)
 {
-    DIR * dir = opendir(path.toLocal8Bit());
+    QT_DIR * dir = QT_OPENDIR(path.toLocal8Bit());
     if (!dir) return false;
-    closedir(dir);   // bug fix Karai Csaba (ckarai)
+    QT_CLOSEDIR(dir);   // bug fix Karai Csaba (ckarai)
     return true;
 }
 
@@ -266,22 +255,22 @@ bool KRpermHandler::fileExist(QString fullPath)
 bool KRpermHandler::fileExist(QString path, QString name)
 {
     if (QDir(path).exists(name)) return true;
-    DIR* dir = opendir(path.toLocal8Bit());
+    QT_DIR* dir = QT_OPENDIR(path.toLocal8Bit());
     if (!dir) return false;
-    KDE_struct_dirent* dirEnt;
-    while ((dirEnt = KDE_readdir(dir))) {
+    QT_DIRENT* dirEnt;
+    while ((dirEnt = QT_READDIR(dir))) {
         if (dirEnt->d_name == name) {
-            closedir(dir);
+            QT_CLOSEDIR(dir);
             return true;
         }
     }
-    closedir(dir);
+    QT_CLOSEDIR(dir);
     return false;
 }
 
 QString KRpermHandler::parseSize(KIO::filesize_t val)
 {
-    return KGlobal::locale()->formatNumber(QString::number(val), false, 0);
+    return QLocale().toString(val);
 #if 0
     QString temp;
     temp.sprintf("%llu", val);

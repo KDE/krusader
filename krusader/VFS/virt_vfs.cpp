@@ -19,28 +19,24 @@
 
 #include "virt_vfs.h"
 
-#include <unistd.h>
-#include <time.h>
+#include <QtCore/QUrl>
 
-#include <kde_file.h>
-#include <KFileItem>
-#include <KGlobalSettings>
-#include <KUrl>
-#include <KMessageBox>
-#include <KLocale>
-#include <KStandardDirs>
+#include <KI18n/KLocalizedString>
+#include <KIOCore/KFileItem>
 #include <KIO/CopyJob>
 #include <KIO/DeleteJob>
 #include <KIO/StatJob>
-#include <kio/directorysizejob.h>
+#include <KIO/DirectorySizeJob>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "krpermhandler.h"
 #include "../krglobal.h"
+#include "../krservices.h"
 #include "../defaults.h"
 
 #define VIRT_VFS_DB "virt_vfs.db"
 
-QHash<QString, KUrl::List *> virt_vfs::virtVfsDict;
+QHash<QString, QList<QUrl> *> virt_vfs::virtVfsDict;
 QHash<QString, QString> virt_vfs::metaInfoDict;
 KConfig* virt_vfs::virt_vfs_db = 0;
 
@@ -58,18 +54,17 @@ virt_vfs::virt_vfs(QObject* panel, bool quiet) : vfs(panel, quiet)
 
 virt_vfs::~virt_vfs() {}
 
-bool virt_vfs::populateVfsList(const KUrl& origin, bool /*showHidden*/)
+bool virt_vfs::populateVfsList(const QUrl &origin, bool /*showHidden*/)
 {
-    vfs_origin = origin;
-    vfs_origin.adjustPath(KUrl::RemoveTrailingSlash);
-    path = origin.path(KUrl::RemoveTrailingSlash).mid(1);
+    vfs_origin = origin.adjusted(QUrl::StripTrailingSlash);
+    path = origin.adjusted(QUrl::StripTrailingSlash).path().mid(1);
     if (path.isEmpty()) path = '/';
 
-    KUrl::List* urlList;
+    QList<QUrl>* urlList;
     if (virtVfsDict.find(path) == virtVfsDict.end()) {
-        urlList = new KUrl::List();
+        urlList = new QList<QUrl>();
         virtVfsDict.insert(path, urlList);
-        virtVfsDict[ "/" ] ->append(KUrl("virt:/" + path));
+        virtVfsDict[ "/" ] ->append(QUrl("virt:/" + path));
     } else {
         urlList = virtVfsDict[ path ];
         metaInfo = metaInfoDict[ path ];
@@ -77,9 +72,9 @@ bool virt_vfs::populateVfsList(const KUrl& origin, bool /*showHidden*/)
 
     save();
     if (urlList->isEmpty()) return true;
-    KUrl::List::iterator it;
+    QList<QUrl>::iterator it;
     for (it = urlList->begin() ; it != urlList->end() ; /*++it*/) {
-        KUrl url = *it;
+        QUrl url = *it;
         // translate url->vfile and remove urls that no longer exist from the list
         vfile* vf = stat(url);
         if (!vf) {
@@ -93,7 +88,7 @@ bool virt_vfs::populateVfsList(const KUrl& origin, bool /*showHidden*/)
     return true;
 }
 
-void virt_vfs::vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode /*mode*/, QObject* /*toNotify*/, QString /*dir*/, PreserveMode /*pmode*/)
+void virt_vfs::vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mode*/, QObject* /*toNotify*/, QString /*dir*/, PreserveMode /*pmode*/)
 {
     if (path == "/") {
         if (!quietMode)
@@ -102,25 +97,24 @@ void virt_vfs::vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode /*mode*
     }
 
     if (virtVfsDict.find(path) == virtVfsDict.end()) {
-        KUrl::List *urlList = new KUrl::List();
+        QList<QUrl> *urlList = new QList<QUrl>();
         virtVfsDict.insert(path, urlList);
-        virtVfsDict[ "/" ] ->append(KUrl("virt:/" + path));
+        virtVfsDict[ "/" ] ->append(QUrl("virt:/" + path));
     }
-    KUrl::List* urlList = virtVfsDict[ path ];
-    for (int i = 0; i != fileUrls->count(); i++) {
-        if (!urlList->contains((*fileUrls)[ i ]))
-            urlList->push_back((*fileUrls)[ i ]);
+    QList<QUrl>* urlList = virtVfsDict[ path ];
+    foreach (const QUrl &fileUrl, fileUrls) {
+        if (!urlList->contains(fileUrl))
+            urlList->push_back(fileUrl);
     }
 
     vfs_refresh();
 }
 
-void virt_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
+void virt_vfs::vfs_delFiles(const QStringList &fileNames, bool reallyDelete)
 {
     if (path == "/") {
-        for (int i = 0 ; i < fileNames->count(); ++i) {
-            QString filename = (*fileNames)[ i ];
-            virtVfsDict[ "/" ] ->removeAll(QString("virt:/") + filename);
+        foreach (const QString &filename, fileNames) {
+            virtVfsDict[ "/" ] ->removeAll(QUrl(QStringLiteral("virt:/") + filename));
             delete virtVfsDict[ filename ];
             virtVfsDict.remove(filename);
             metaInfoDict.remove(filename);
@@ -129,14 +123,9 @@ void virt_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
         return ;
     }
 
-    KUrl::List filesUrls;
-    KUrl url;
-
     // names -> urls
-    for (int i = 0 ; i < fileNames->count(); ++i) {
-        QString filename = (*fileNames)[ i ];
-        filesUrls.append(vfs_getFile(filename));
-    }
+    QList<QUrl> filesUrls = vfs_getFiles(fileNames);
+
     KIO::Job *job;
 
     // delete of move to trash ?
@@ -160,7 +149,7 @@ void virt_vfs::vfs_removeFiles(QStringList *fileNames)
     // removing the URLs from the collection
     for (int i = 0 ; i < fileNames->count(); ++i) {
         if (virtVfsDict.find(path) != virtVfsDict.end()) {
-            KUrl::List* urlList = virtVfsDict[ path ];
+            QList<QUrl>* urlList = virtVfsDict[ path ];
             urlList->removeAll(vfs_getFile((*fileNames)[ i ]));
         }
     }
@@ -168,25 +157,22 @@ void virt_vfs::vfs_removeFiles(QStringList *fileNames)
     vfs_refresh();
 }
 
-KUrl::List* virt_vfs::vfs_getFiles(QStringList* names)
+QList<QUrl> virt_vfs::vfs_getFiles(const QStringList &names)
 {
-    KUrl url;
-    KUrl::List* urls = new KUrl::List();
-    for (QStringList::Iterator name = names->begin(); name != names->end(); ++name) {
-        url = vfs_getFile(*name);
-        urls->append(url);
+    QUrl url;
+    QList<QUrl> urls;
+    foreach (const QString &name, names) {
+        urls.append(vfs_getFile(name));
     }
     return urls;
 }
 
-KUrl virt_vfs::vfs_getFile(const QString& name)
+QUrl virt_vfs::vfs_getFile(const QString& name)
 {
     vfile * vf = vfs_search(name);
-    if (!vf) return KUrl();   // empty
+    if (!vf) return QUrl();   // empty
 
-    KUrl url = vf->vfile_getUrl();
-    if (vf->vfile_isDir()) url.adjustPath(KUrl::AddTrailingSlash);
-    return url;
+    return vf->vfile_getUrl();
 }
 
 void virt_vfs::vfs_mkdir(const QString& name)
@@ -196,33 +182,33 @@ void virt_vfs::vfs_mkdir(const QString& name)
             KMessageBox::error(parentWindow, i18n("Creating new directories is allowed only in the 'virt:/' directory."), i18n("Error"));
         return ;
     }
-    KUrl::List* temp = new KUrl::List();
+    QList<QUrl>* temp = new QList<QUrl>();
     virtVfsDict.insert(name, temp);
-    virtVfsDict[ "/" ] ->append(QString("virt:/") + name);
+    virtVfsDict[ "/" ] ->append(QUrl(QStringLiteral("virt:/") + name));
 
     vfs_refresh();
 }
 
 void virt_vfs::vfs_rename(const QString& fileName, const QString& newName)
 {
-    KUrl::List fileUrls;
-    KUrl url , dest;
-
     vfile* vf = vfs_search(fileName);
     if (!vf) return ;   // not found
 
     if (path == "/") {
-        virtVfsDict[ "/" ] ->append(QString("virt:/") + newName);
-        virtVfsDict[ "/" ] ->removeAll(QString("virt:/") + fileName);
+        virtVfsDict[ "/" ] ->append(QUrl(QStringLiteral("virt:/") + newName));
+        virtVfsDict[ "/" ] ->removeAll(QUrl(QStringLiteral("virt:/") + fileName));
         virtVfsDict.insert(newName, virtVfsDict.take(fileName));
         vfs_refresh();
         return ;
     }
 
-    url = vf->vfile_getUrl();
+    QUrl url = vf->vfile_getUrl();
+
+    QList<QUrl> fileUrls;
     fileUrls.append(url);
 
-    dest = KUrl(newName);
+    QUrl dest = url; // keep same url scheme and host as source.
+    dest.setPath(newName);
     // add the new url to the list
     // the list is refreshed only existing files remain -
     // so we don't have to worry if the job was successful
@@ -239,9 +225,9 @@ void virt_vfs::slotStatResult(KJob* job)
     busy = false;
 }
 
-vfile* virt_vfs::stat(const KUrl& url)
+vfile* virt_vfs::stat(const QUrl &url)
 {
-    if (url.protocol() == "virt") {
+    if (url.scheme() == "virt") {
         QString path = url.path().mid(1);
         if (path.isEmpty()) path = '/';
         vfile * temp = new vfile(path, 0, "drwxr-xr-x", time(0), false, false, getuid(), getgid(), "inode/directory", "", 0);
@@ -250,7 +236,8 @@ vfile* virt_vfs::stat(const KUrl& url)
     }
     KFileItem* kfi;
     if (url.isLocalFile()) {
-        kfi = new KFileItem(KFileItem::Unknown, KFileItem::Unknown, url, true);
+        kfi = new KFileItem(url);
+        kfi->setDelayedMimeTypes(true);
     } else {
         busy = true;
         KIO::StatJob* statJob = KIO::stat(url, KIO::HideProgressInfo);
@@ -273,7 +260,7 @@ vfile* virt_vfs::stat(const KUrl& url)
     if (url.isLocalFile())
         name = url.path();
     else
-        name = url.prettyUrl();
+        name = url.toDisplayString();
 
     KIO::filesize_t size = kfi->size();
     time_t mtime = kfi->time(KFileItem::ModificationTime).toTime_t();
@@ -292,7 +279,7 @@ vfile* virt_vfs::stat(const KUrl& url)
     if (kfi->user().isEmpty())
         temp = new vfile(name, size, perm, mtime, symLink, false, getuid(), getgid(), mime, symDest, mode);
     else {
-        QString currentUser = url.user();
+        QString currentUser = url.userName();
         if (currentUser.contains("@"))      /* remove the FTP proxy tags from the username */
             currentUser.truncate(currentUser.indexOf('@'));
         if (currentUser.isEmpty())
@@ -309,7 +296,7 @@ KConfig*  virt_vfs::getVirtDB()
 {
     if (!virt_vfs_db) {
 //  virt_vfs_db = new KConfig("data",VIRT_VFS_DB,KConfig::NoGlobals);
-        virt_vfs_db = new KConfig(VIRT_VFS_DB, KConfig:: CascadeConfig, "data");
+        virt_vfs_db = new KConfig(VIRT_VFS_DB, KConfig:: CascadeConfig, QStandardPaths::DataLocation);
     }
     return virt_vfs_db;
 }
@@ -320,14 +307,14 @@ bool virt_vfs::save()
     db->deleteGroup("virt_db");
     KConfigGroup group(db, "virt_db");
 
-    QHashIterator< QString, KUrl::List *> lit(virtVfsDict);
+    QHashIterator< QString, QList<QUrl> *> lit(virtVfsDict);
     while (lit.hasNext()) {
-        KUrl::List * curr = lit.next().value();
+        QList<QUrl> * curr = lit.next().value();
 
-        KUrl::List::iterator url;
+        QList<QUrl>::iterator url;
         QStringList entry;
         for (url = curr->begin() ; url != curr->end() ; ++url) {
-            entry.append((*url).prettyUrl());
+            entry.append((*url).toDisplayString());
         }
         // KDE 4.0 workaround, Item_ is added as KConfig fails on 1 char names (such as /)
         group.writeEntry("Item_" + lit.key(), entry);
@@ -346,11 +333,11 @@ bool virt_vfs::restore()
 
     QMap<QString, QString> map = db->entryMap("virt_db");
     QMap<QString, QString>::Iterator it;
-    KUrl::List* urlList;
+    QList<QUrl>* urlList;
     for (it = map.begin(); it != map.end(); ++it) {
         if(!it.key().startsWith("Item_"))
             continue;
-        urlList = new KUrl::List(dbGrp.readEntry(it.key(), QStringList()));
+        urlList = new QList<QUrl>(KrServices::toUrlList(dbGrp.readEntry(it.key(), QStringList())));
         // KDE 4.0 workaround, Item_ is removed (KConfig fails on 1 char names (such as /))
         QString key = it.key().mid(5);   // remove Item_
         virtVfsDict.insert(key, urlList);
@@ -358,7 +345,7 @@ bool virt_vfs::restore()
     }
 
     if (!virtVfsDict["/" ]) {
-        urlList = new KUrl::List();
+        urlList = new QList<QUrl>();
         virtVfsDict.insert("/", urlList);
     }
 
@@ -369,7 +356,7 @@ void virt_vfs::vfs_calcSpace(QString name , KIO::filesize_t* totalSize, unsigned
 {
     if (stop && *stop) return ;
     if (path == "/") {
-        KUrl::List* urlList = virtVfsDict[ name ];
+        QList<QUrl>* urlList = virtVfsDict[ name ];
         if (urlList)
             for (int i = 0; (i != urlList->size()) && !(*stop); i++)
                 calculateURLSize((*urlList)[ i ], totalSize, totalFiles, totalDirs, stop);
@@ -384,4 +371,3 @@ void virt_vfs::setMetaInformation(QString info) {
     vfs_refresh();
 }
 
-#include "virt_vfs.moc"

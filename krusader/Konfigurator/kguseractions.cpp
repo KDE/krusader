@@ -32,12 +32,11 @@
 #include "../defaults.h"
 #include "../ActionMan/actionman.h"
 
-#include <klocale.h>
-#include <kpushbutton.h>
-#include <kdebug.h>
-#include <QGridLayout>
-#include <QLabel>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 
+#include <KI18n/KLocalizedString>
 
 KgUserActions::KgUserActions(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)
@@ -57,7 +56,7 @@ KgUserActions::KgUserActions(bool first, QWidget* parent) :
                                        "To set up, configure and manage your useractions please use ActionMan."
                                    ), InfoGroup);
     InfoGrid->addWidget(labelInfo, 0, 0);
-    KPushButton *actionmanButton = new KPushButton(i18n("Start ActionMan"), InfoGroup);
+    QPushButton *actionmanButton = new QPushButton(i18n("Start ActionMan"), InfoGroup);
     connect(actionmanButton, SIGNAL(clicked()), SLOT(startActionMan()));
     InfoGrid->addWidget(actionmanButton, 1, 0);
 
@@ -122,5 +121,3 @@ void KgUserActions::startActionMan()
     ActionMan actionMan(static_cast<QWidget*>(this));
 }
 
-
-#include "kguseractions.moc"

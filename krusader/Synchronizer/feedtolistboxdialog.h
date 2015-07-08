@@ -31,7 +31,7 @@
 #ifndef FEEDTOLISTBOXDIALOG_H
 #define FEEDTOLISTBOXDIALOG_H
 
-#include <kdialog.h>
+#include <QtWidgets/QDialog>
 
 class Synchronizer;
 class QCheckBox;
@@ -39,20 +39,19 @@ class QLineEdit;
 class QComboBox;
 class QTreeWidget;
 
-class FeedToListBoxDialog : public KDialog
+class FeedToListBoxDialog : public QDialog
 {
     Q_OBJECT
 
 public:
     FeedToListBoxDialog(QWidget*, Synchronizer *, QTreeWidget *, bool);
-    virtual ~FeedToListBoxDialog() {};
+    virtual ~FeedToListBoxDialog() {}
 
     bool isAccepted() {
         return accepted;
-    };
+    }
 
 protected slots:
-    void slotUser1();
     void slotOk();
 
 private:

@@ -35,16 +35,20 @@
 #include <QtCore/QStringList>
 #include <QtCore/QList>
 #include <QtCore/QEvent>
+#include <QtCore/QTemporaryFile>
 #include <QtGui/QPixmapCache>
 #include <QtGui/QKeyEvent>
+#include <QtWidgets/QApplication>
 
-#include <KToggleAction>
-#include <KToolBar>
-#include <KLocale>
-#include <KMessageBox>
-#include <KEditToolBar>
-#include <KCmdLineArgs>
-#include <kshell.h>
+#include <KConfigCore/KSharedConfig>
+#include <KCoreAddons/KShell>
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KToggleAction>
+#include <KWidgetsAddons/KMessageBox>
+#include <KXmlGui/KEditToolBar>
+#include <KXmlGui/KShortcutsDialog>
+#include <KXmlGui/KToolBar>
 
 #ifdef __KJSEMBED__
 #include <kjsembed/jsconsolewidget.h>
@@ -60,7 +64,6 @@
 #include "Panel/krselectionmode.h"
 #include "Dialogs/krdialogs.h"
 #include "Dialogs/krspwidgets.h"
-#include "Dialogs/krkeydialog.h"
 #include "GUI/krusaderstatus.h"
 #include "Panel/panelfunc.h"
 #include "Konfigurator/konfigurator.h"
@@ -106,7 +109,7 @@ KRslots::KRslots(QObject *parent) : QObject(parent), _mainWindow(krApp)
 {
 }
 
-void KRslots::sendFileByEmail(const KUrl::List &urls)
+void KRslots::sendFileByEmail(const QList<QUrl> &urls)
 {
     if (urls.count() == 0) {
         KMessageBox::error(0, i18n("No selected files to send."));
@@ -114,7 +117,7 @@ void KRslots::sendFileByEmail(const KUrl::List &urls)
     }
 
     QString mailProg;
-    QStringList lst = Krusader::supportedTools();
+    QStringList lst = KrServices::supportedTools();
     if (lst.contains("MAIL")) mailProg = lst[lst.indexOf("MAIL") + 1];
     else {
         KMessageBox::error(0, i18n("Krusader cannot find a supported mail client. Please install one to your path. Hint: Krusader supports KMail."));
@@ -122,7 +125,7 @@ void KRslots::sendFileByEmail(const KUrl::List &urls)
     }
 
     QString subject, separator;
-    foreach(const KUrl &url, urls) {
+    foreach(const QUrl &url, urls) {
         subject += separator + url.fileName();
         separator = ',';
     }
@@ -130,25 +133,26 @@ void KRslots::sendFileByEmail(const KUrl::List &urls)
 
     KProcess proc;
 
-    if (KUrl(mailProg).fileName() == "kmail") {
+    QString executable = QUrl::fromLocalFile(mailProg).fileName();
+    if (executable == QStringLiteral("kmail")) {
         proc << mailProg << "--subject"
         << subject;
-        foreach(const KUrl &url2, urls)
-        proc << "--attach" << url2.prettyUrl();
-    } else   if (KUrl(mailProg).fileName() == "thunderbird") {
+        foreach(const QUrl &url2, urls)
+        proc << "--attach" << url2.toDisplayString();
+    } else if (executable == QStringLiteral("thunderbird")) {
         QString param = "attachment=\'";
         separator = "";
-        foreach(const KUrl &url2, urls) {
-            param += separator + url2.prettyUrl();
+        foreach(const QUrl &url2, urls) {
+            param += separator + url2.toDisplayString();
             separator = ',';
         }
         param += "\',subject=\'" + subject + "\'";
         proc << mailProg << "--compose" << param;
-    } else if (KUrl(mailProg).fileName() == "evolution") {
+    } else if (executable == QStringLiteral("evolution")) {
         QString param = "mailto:?cc=&subject=" + subject + "&attach=";
         separator = "";
-        foreach(const KUrl &url2, urls) {
-            param += separator + url2.prettyUrl();
+        foreach(const QUrl &url2, urls) {
+            param += separator + url2.toDisplayString();
             separator = "&attach=";
         }
         proc << mailProg << param + "";
@@ -162,7 +166,7 @@ void KRslots::compareContent()
 {
     QStringList lstLeft, lstRight;
     QStringList* lstActive;
-    KUrl name1, name2;
+    QUrl name1, name2;
 
     LEFT_PANEL->getSelectedNames(&lstLeft);
     RIGHT_PANEL->getSelectedNames(&lstRight);
@@ -187,15 +191,31 @@ void KRslots::compareContent()
         return;
     }
 
-    // else implied: all ok, let's call kdiff
-    // but if one of the files isn't local, download them first
+    // else implied: all ok, let's call an external program to compare files
+    // but if any of the files isn't local, download it first
     compareContent(name1, name2);
 }
 
-void KRslots::compareContent(KUrl url1, KUrl url2)
+bool downloadToTemp(const QUrl &url, QString &dest) {
+    QTemporaryFile tmpFile;
+    tmpFile.setAutoRemove(false);
+    if (tmpFile.open()) {
+        dest = tmpFile.fileName();
+        KIO::Job* job = KIO::file_copy(url, QUrl::fromLocalFile(dest), -1,
+                                       KIO::Overwrite | KIO::HideProgressInfo);
+        if(!job->exec()) {
+            KMessageBox::error(krApp, i18n("Krusader is unable to download %1", url.fileName()));
+            return false;
+        }
+        return true;
+    }
+    return false;
+}
+
+void KRslots::compareContent(QUrl url1, QUrl url2)
 {
     QString diffProg;
-    QStringList lst = Krusader::supportedTools();
+    QStringList lst = KrServices::supportedTools();
     if (lst.contains("DIFF")) diffProg = lst[lst.indexOf("DIFF") + 1];
     else {
         KMessageBox::error(0, i18n("Krusader cannot find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports Kompare, KDiff3 and Xxdiff."));
@@ -206,21 +226,19 @@ void KRslots::compareContent(KUrl url1, KUrl url2)
     QString tmp2;
 
     // kdiff3 sucks with spaces
-    if (KUrl(diffProg).fileName() == "kdiff3" && !url1.prettyUrl().contains(" ") && !url2.prettyUrl().contains(" ")) {
-        tmp1 = url1.prettyUrl();
-        tmp2 = url2.prettyUrl();
+    if (QUrl::fromLocalFile(diffProg).fileName() == "kdiff3" && !url1.toDisplayString().contains(" ") && !url2.toDisplayString().contains(" ")) {
+        tmp1 = url1.toDisplayString();
+        tmp2 = url2.toDisplayString();
     } else {
         if (!url1.isLocalFile()) {
-            if (!KIO::NetAccess::download(url1, tmp1, 0)) {
-                KMessageBox::sorry(krApp, i18n("Krusader is unable to download %1", url1.fileName()));
+            if (!downloadToTemp(url1, tmp1)) {
                 return;
             }
         } else tmp1 = url1.path();
         if (!url2.isLocalFile()) {
-            if (!KIO::NetAccess::download(url2, tmp2, 0)) {
-                KMessageBox::sorry(krApp, i18n("Krusader is unable to download %1", url2.fileName()));
+            if (!downloadToTemp(url2, tmp2)) {
                 if (tmp1 != url1.path())
-                    KIO::NetAccess::removeTempFile(tmp1);
+                    QFile::remove(tmp1);
                 return;
             }
         } else tmp2 = url2.path();
@@ -232,11 +250,6 @@ void KRslots::compareContent(KUrl url1, KUrl url2)
     p->start();
     if (!p->waitForStarted())
         KMessageBox::error(0, i18n("Error executing %1.", diffProg));
-}
-
-void KRslots::addBookmark()
-{
-    // TODO: this no longer works!
 }
 
 // GUI toggle slots
@@ -274,7 +287,7 @@ void KRslots::insertFileName(bool full_path)
     }
 
     if (full_path) {
-        QString path = vfs::pathOrUrl(ACTIVE_FUNC->files()->vfs_getOrigin(), KUrl::AddTrailingSlash);
+        QString path = vfs::ensureTrailingSlash(ACTIVE_FUNC->files()->vfs_getOrigin()).toDisplayString(QUrl::PreferLocalFile);
         filename = path + filename;
     }
 
@@ -293,7 +306,7 @@ void KRslots::insertFileName(bool full_path)
     }
 }
 
-void KRslots::refresh(const KUrl& u)
+void KRslots::refresh(const QUrl &u)
 {
     ACTIVE_FUNC->openUrl(u);
 }
@@ -340,8 +353,6 @@ void KRslots::configChanged(bool isGUIRestartNeeded)
         MAIN_VIEW->leftManager()->refreshAllTabs(true);
         MAIN_VIEW->rightManager()->refreshAllTabs(true);
     }
-
-    krApp->configChanged();
 }
 
 void KRslots::showHiddenFiles(bool show)
@@ -355,8 +366,8 @@ void KRslots::showHiddenFiles(bool show)
 
 void KRslots::swapPanels()
 {
-    KUrl leftURL = LEFT_PANEL->func->files()->vfs_getOrigin();
-    KUrl rightURL = RIGHT_PANEL->func->files()->vfs_getOrigin();
+    QUrl leftURL = LEFT_PANEL->func->files()->vfs_getOrigin();
+    QUrl rightURL = RIGHT_PANEL->func->files()->vfs_getOrigin();
 
     LEFT_PANEL->func->openUrl(rightURL);
     RIGHT_PANEL->func->openUrl(leftURL);
@@ -447,7 +458,7 @@ void KRslots::sysInfo()
 
 void KRslots::multiRename()
 {
-    QStringList lst = Krusader::supportedTools();
+    QStringList lst = KrServices::supportedTools();
     int i = lst.indexOf("RENAME");
     if (i == -1) {
         KMessageBox::sorry(krApp, i18n("Cannot find a batch rename tool.\nYou can get KRename at http://www.krename.net"));
@@ -457,24 +468,22 @@ void KRslots::multiRename()
 
     QStringList names;
     ACTIVE_PANEL->gui->getSelectedNames(&names);
-    KUrl::List* urls = ACTIVE_FUNC->files()->vfs_getFiles(&names);
+    QList<QUrl> urls = ACTIVE_FUNC->files()->vfs_getFiles(names);
 
-    if (urls->isEmpty()) {
-        delete urls;
+    if (urls.isEmpty()) {
         return;
     }
 
     KProcess proc;
     proc << pathToRename;
 
-    for (KUrl::List::iterator u = urls->begin(); u != urls->end(); ++u) {
-        if (QFileInfo((*u).path()).isDir()) proc << "-r";
-        proc << (*u).path();
+    foreach (const QUrl &url, urls) {
+        if (QFileInfo(url.path()).isDir()) proc << "-r";
+        proc << url.path();
     }
 
     if (!proc.startDetached())
         KMessageBox::error(0, i18n("Error executing %1.", pathToRename));
-    delete urls;
 }
 
 void KRslots::rootKrusader()
@@ -486,8 +495,8 @@ void KRslots::rootKrusader()
 
     KProcess proc;
     proc << KrServices::fullPathName("kdesu") << "-c" << KrServices::fullPathName("krusader")
-    + " --left=" + KrServices::quote(LEFT_PANEL->func->files()->vfs_getOrigin().pathOrUrl())
-    + " --right=" + KrServices::quote(RIGHT_PANEL->func->files()->vfs_getOrigin().pathOrUrl());
+    + " --left=" + KrServices::quote(LEFT_PANEL->func->files()->vfs_getOrigin().toDisplayString(QUrl::PreferLocalFile))
+    + " --right=" + KrServices::quote(RIGHT_PANEL->func->files()->vfs_getOrigin().toDisplayString(QUrl::PreferLocalFile));
 
     if (!proc.startDetached())
         KMessageBox::error(0, i18n("Error executing %1.", proc.program()[0]));
@@ -496,7 +505,7 @@ void KRslots::rootKrusader()
 // settings slots
 void KRslots::configToolbar()
 {
-    KConfigGroup cg(KGlobal::config(), QString());
+    KConfigGroup cg(KSharedConfig::openConfig(), QString());
     krApp->saveMainWindowSettings(cg);
     QPointer<KEditToolBar> dlg = new KEditToolBar(krApp->factory());
     connect(dlg, SIGNAL(newToolBarConfig()), this, SLOT(saveNewToolbarConfig()));
@@ -508,30 +517,14 @@ void KRslots::configToolbar()
 
 void KRslots::saveNewToolbarConfig()
 {
-    KConfigGroup cg(KGlobal::config(), QString());
+    KConfigGroup cg(KSharedConfig::openConfig(), QString());
     krApp->applyMainWindowSettings(cg);
     krApp->updateGUI();
 }
 
 void KRslots::configKeys()
 {
-    KrKeyDialog d(MAIN_VIEW);
-}
-
-// misc
-void KRslots::changeTrashIcon()
-{
-#if 0 // TODO: is this needed?
-    // update trash bin icon - this is "stolen" konqi code
-    // Copyright (C) 2000  David Faure <faure@kde.org>
-    KUrl trash;
-    trash.setPath(KGlobalSettings::trashPath());
-    KUrl::List lst;
-    lst.append(trash);
-    KDirNotify_stub allDirNotify("*", "KDirNotify*");
-    allDirNotify.FilesChanged(lst);
-    // end of konqi code
-#endif
+    KShortcutsDialog::configure(krApp->actionCollection(), KShortcutsEditor::LetterShortcutsAllowed, krMainWindow);
 }
 
 void KRslots::slotSplit()
@@ -550,7 +543,7 @@ void KRslots::slotSplit()
         return;
     }
 
-    KUrl fileURL = ACTIVE_FUNC->files()->vfs_getFile(name);
+    QUrl fileURL = ACTIVE_FUNC->files()->vfs_getFile(name);
     if (fileURL.isEmpty())
         return;
 
@@ -559,12 +552,13 @@ void KRslots::slotSplit()
         return ;
     }
 
-    KUrl destDir  = ACTIVE_PANEL->otherPanel()->func->files()->vfs_getOrigin();
+    QUrl destDir = ACTIVE_PANEL->otherPanel()->func->files()->vfs_getOrigin();
 
     SplitterGUI splitterGUI(MAIN_VIEW, fileURL, destDir);
 
     if (splitterGUI.result() == QDialog::Accepted) {
-        bool splitToOtherPanel = (splitterGUI.getDestinationDir().equals(ACTIVE_PANEL->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash));
+        bool splitToOtherPanel = splitterGUI.getDestinationDir().matches(ACTIVE_PANEL->otherPanel()->virtualPath(),
+                                                                         QUrl::StripTrailingSlash);
 
         Splitter split(MAIN_VIEW, fileURL, splitterGUI.getDestinationDir(), splitterGUI.overWriteFiles());
         split.split(splitterGUI.getSplitSize());
@@ -577,7 +571,7 @@ void KRslots::slotSplit()
 void KRslots::slotCombine()
 {
     QStringList   list;
-    KUrl          baseURL;
+    QUrl          baseURL;
     bool          unixStyle = false;
     bool          windowsStyle = false;
     QString       commonName;
@@ -591,7 +585,7 @@ void KRslots::slotCombine()
 
     /* checking splitter names */
     for (QStringList::Iterator it = list.begin(); it != list.end(); ++it) {
-        KUrl url = ACTIVE_FUNC->files()->vfs_getFile(*it);
+        QUrl url = ACTIVE_FUNC->files()->vfs_getFile(*it);
         if (url.isEmpty())
             return;
 
@@ -605,14 +599,15 @@ void KRslots::slotCombine()
             int extPos = name.lastIndexOf('.');
             QString ext = name.mid(extPos + 1);
             name.truncate(extPos);
-            url.setFileName(name);
+            url = url.adjusted(QUrl::RemoveFilename);
+            url.setPath(url.path() + name);
 
             bool isExtInt;
             ext.toInt(&isExtInt, 10);
 
             if (extPos < 1 || ext.isEmpty() || (ext != "crc" && !isExtInt)) {
                 if (windowsStyle) {
-                    KMessageBox::error(0, i18n("Not a split file: %1.", url.pathOrUrl()));
+                    KMessageBox::error(0, i18n("Not a split file: %1.", url.toDisplayString(QUrl::PreferLocalFile)));
                     return;
                 }
                 unixStyle = true;
@@ -652,8 +647,8 @@ void KRslots::slotCombine()
                                 break;
                             else {
                                 commonName = shorter;
-                                baseURL = ACTIVE_FUNC->files()->vfs_getOrigin();
-                                baseURL.addPath(testFile);
+                                baseURL = ACTIVE_FUNC->files()->vfs_getOrigin().adjusted(QUrl::StripTrailingSlash);
+                                baseURL.setPath(baseURL.path() + '/' + (testFile));
                             }
                         }
 
@@ -664,18 +659,18 @@ void KRslots::slotCombine()
             } while (false);
 
             if (error) {
-                KMessageBox::error(0, i18n("Not a split file: %1.", url.pathOrUrl()));
+                KMessageBox::error(0, i18n("Not a split file: %1.", url.toDisplayString(QUrl::PreferLocalFile)));
                 return;
             }
         }
     }
 
     // ask the user for the copy dest
-    KUrl dest = KChooseDir::getDir(i18n("Combining %1.* to directory:", baseURL.pathOrUrl()),
+    QUrl dest = KChooseDir::getDir(i18n("Combining %1.* to directory:", baseURL.toDisplayString(QUrl::PreferLocalFile)),
                                    ACTIVE_PANEL->otherPanel()->virtualPath(), ACTIVE_PANEL->virtualPath());
     if (dest.isEmpty()) return ;   // the user canceled
 
-    bool combineToOtherPanel = (dest.equals(ACTIVE_PANEL->otherPanel()->virtualPath(), KUrl::CompareWithoutTrailingSlash));
+    bool combineToOtherPanel = (dest.matches(ACTIVE_PANEL->otherPanel()->virtualPath(), QUrl::StripTrailingSlash));
 
     Combiner combine(MAIN_VIEW, baseURL, dest, unixStyle);
     combine.combine();
@@ -739,20 +734,15 @@ void KRslots::slotQueueManager()
     QueueDialog::showDialog(false);
 }
 
-// when window becomes focused, enable the refresh in the visible panels
-void KRslots::windowActive()
+void KRslots::applicationStateChanged()
 {
-    if (MAIN_VIEW != 0) {  /* CRASH FIX: it's possible that the method is called after destroying the main view */
+    if (MAIN_VIEW == 0) {  /* CRASH FIX: it's possible that the method is called after destroying the main view */
+        return;
+    }
+    if(qApp->applicationState() == Qt::ApplicationActive) {
         LEFT_PANEL->panelActive();
         RIGHT_PANEL->panelActive();
-    }
-}
-
-// when another application becomes focused, do a windows-commander style refresh: don't
-// refresh at all until krusader becomes focused again
-void KRslots::windowInactive()
-{
-    if (MAIN_VIEW != 0) {  /* CRASH FIX: it's possible that the method is called after destroying the main view */
+    } else {
         LEFT_PANEL->panelInactive();
         RIGHT_PANEL->panelInactive();
     }
@@ -780,7 +770,7 @@ void KRslots::trashBin()
         result = res->data().toInt();
 
     if (result == OPEN_ID) {
-        ACTIVE_FUNC->openUrl(KUrl("trash:/"));
+        ACTIVE_FUNC->openUrl(QUrl(QStringLiteral("trash:/")));
     } else if (result == EMPTY_TRASH_ID) {
         KrTrashHandler::emptyTrash();
     }
@@ -796,7 +786,7 @@ void KRslots::jsConsole()
 #endif
 }
 
-void KRslots::bookmarkCurrent()
+void KRslots::addBookmark()
 {
     krBookMan->bookmarkCurrent(ACTIVE_PANEL->virtualPath());
 }
@@ -806,4 +796,3 @@ void KRslots::cmdlinePopup()
     MAIN_VIEW->cmdLine()->popup();
 }
 
-#include "krslots.moc"

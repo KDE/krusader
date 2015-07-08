@@ -27,14 +27,11 @@ The current version only manages sync-browse and got no mode-switch options.
 
 #include "syncbrowsebutton.h"
 
-#include <klocale.h>
-#include <kicon.h>
-
-//#include <kdebug.h>
+#include <KI18n/KLocalizedString>
 
 SyncBrowseButton::SyncBrowseButton(QWidget *parent) : QToolButton(parent)
 {
-    setIcon(KIcon("kr_syncbrowse_off"));
+    setIcon(QIcon::fromTheme("kr_syncbrowse_off"));
     setCheckable(true);
 
     setText(i18n("This button toggles the sync-browse mode.\n"
@@ -54,9 +51,9 @@ SyncBrowseButton::~SyncBrowseButton()
 void SyncBrowseButton::slotToggled(bool on)
 {
     if (on)
-        setIcon(KIcon("kr_syncbrowse_on"));
+        setIcon(QIcon::fromTheme("kr_syncbrowse_on"));
     else
-        setIcon(KIcon("kr_syncbrowse_off"));
+        setIcon(QIcon::fromTheme("kr_syncbrowse_off"));
 }
 
 int SyncBrowseButton::state()
@@ -69,5 +66,3 @@ int SyncBrowseButton::state()
     return _state;
 }
 
-
-#include "syncbrowsebutton.moc"

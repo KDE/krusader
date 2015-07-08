@@ -19,31 +19,27 @@
 
 #include "krviewer.h"
 
-#include <QDataStream>
+#include <QtCore/QDataStream>
+#include <QtCore/QDebug>
 #include <QtCore/QFile>
 #include <QtCore/QTimer>
-#include <QKeyEvent>
-#include <QEvent>
+#include <QtCore/QEvent>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QStatusBar>
 
-#include <kmenubar.h>
-#include <kmimetype.h>
-#include <klocale.h>
-#include <kparts/part.h>
-#include <kparts/componentfactory.h>
-#include <kmessagebox.h>
-#include <klibloader.h>
-#include <kio/netaccess.h>
-#include <kio/jobclasses.h>
-#include <kio/job.h>
-#include <kstatusbar.h>
-#include <kdebug.h>
-#include <kde_file.h>
-#include <khtml_part.h>
-#include <kprocess.h>
-#include <kfileitem.h>
-#include <ktoolbar.h>
-#include <kstandardaction.h>
-#include <kshell.h>
+#include <KCoreAddons/KProcess>
+#include <KCoreAddons/KShell>
+#include <KConfigCore/KSharedConfig>
+#include <KConfigWidgets/KStandardAction>
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
+#include <KIOCore/KFileItem>
+#include <KParts/Part>
+#include <KWidgetsAddons/KMessageBox>
+#include <KXmlGui/KActionCollection>
+#include <KXmlGui/KShortcutsDialog>
+#include <KXmlGui/KToolBar>
 
 #include "../krglobal.h"
 #include "../defaults.h"
@@ -73,15 +69,11 @@ KrViewer::KrViewer(QWidget *parent) :
 
     connect(&manager, SIGNAL(activePartChanged(KParts::Part*)),
             this, SLOT(createGUI(KParts::Part*)));
-    connect(&tabBar, SIGNAL(currentChanged(QWidget *)),
-            this, SLOT(tabChanged(QWidget*)));
-    connect(&tabBar, SIGNAL(closeRequest(QWidget *)),
-            this, SLOT(tabCloseRequest(QWidget*)));
+    connect(&tabBar, &QTabWidget::currentChanged, this, &KrViewer::tabChanged);
+    connect(&tabBar, SIGNAL(tabCloseRequested(int)), this, SLOT(tabCloseRequest(int)));
 
     tabBar.setDocumentMode(true);
     tabBar.setMovable(true);
-    tabBar.setTabReorderingEnabled(false);
-    tabBar.setAutomaticResizeTabs(true);
 // "edit"
 // "document-save-as"
     setCentralWidget(&tabBar);
@@ -90,40 +82,70 @@ KrViewer::KrViewer(QWidget *parent) :
     copyAction = KStandardAction::copy(this, SLOT(copy()), 0);
 
     viewerMenu = new QMenu(this);
-    viewerMenu->addAction(i18n("&Generic Viewer"), this, SLOT(viewGeneric()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_G);
-    viewerMenu->addAction(i18n("&Text Viewer"), this, SLOT(viewText()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_T);
-    viewerMenu->addAction(i18n("&Hex Viewer"), this, SLOT(viewHex()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_H);
-    viewerMenu->addAction(i18n("&Lister"), this, SLOT(viewLister()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_L);
-    viewerMenu->addSeparator();
-    viewerMenu->addAction(i18n("Text &Editor"), this, SLOT(editText()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_E);
-    viewerMenu->addSeparator();
-    viewerMenu->addAction(i18n("&Next Tab"), this, SLOT(nextTab()))->setShortcut(Qt::ALT + Qt::Key_Right);
-    viewerMenu->addAction(i18n("&Previous Tab"), this, SLOT(prevTab()))->setShortcut(Qt::ALT + Qt::Key_Left);
+    QAction *tempAction;
+    KActionCollection *ac = actionCollection();
 
-    detachAction = viewerMenu->addAction(i18n("&Detach Tab"), this, SLOT(detachTab()));
-    detachAction->setShortcut(Qt::META + Qt::Key_D);
-    //no point in detaching only one tab..
-    detachAction->setEnabled(false);
+#define addCustomMenuAction(name, text, slot, shortcut)\
+    tempAction = ac->addAction(name, this, slot);\
+    tempAction->setText(text);\
+    ac->setDefaultShortcut(tempAction, shortcut);\
+    viewerMenu->addAction(tempAction);
+
+    addCustomMenuAction("genericViewer", i18n("&Generic Viewer"), SLOT(viewGeneric()), Qt::CTRL + Qt::SHIFT + Qt::Key_G);
+    addCustomMenuAction("textViewer", i18n("&Text Viewer"), SLOT(viewText()), Qt::CTRL + Qt::SHIFT + Qt::Key_T);
+    addCustomMenuAction("hexViewer", i18n("&Hex Viewer"), SLOT(viewHex()), Qt::CTRL + Qt::SHIFT + Qt::Key_H);
+    addCustomMenuAction("lister", i18n("&Lister"), SLOT(viewLister()), Qt::CTRL + Qt::SHIFT + Qt::Key_L);
     viewerMenu->addSeparator();
+
+    addCustomMenuAction("textEditor", i18n("Text &Editor"), SLOT(editText()), Qt::CTRL + Qt::SHIFT + Qt::Key_E);
+    viewerMenu->addSeparator();
+
     QList<QAction *> actList = menuBar()->actions();
     bool hasPrint = false, hasCopy = false;
     foreach(QAction *a, actList) {
-        if (a->shortcut().matches(printAction->shortcut().primary()) != QKeySequence::NoMatch)
+        if (a->shortcut().matches(printAction->shortcut()) != QKeySequence::NoMatch)
             hasPrint = true;
-        if (a->shortcut().matches(copyAction->shortcut().primary()) != QKeySequence::NoMatch)
+        if (a->shortcut().matches(copyAction->shortcut()) != QKeySequence::NoMatch)
             hasCopy = true;
     }
     QAction *printAct = viewerMenu->addAction(printAction->icon(), printAction->text(), this, SLOT(print()));
     if (hasPrint)
-        printAct->setShortcut(printAction->shortcut().primary());
+        printAct->setShortcut(printAction->shortcut());
     QAction *copyAct = viewerMenu->addAction(copyAction->icon(), copyAction->text(), this, SLOT(copy()));
     if (hasCopy)
-        copyAct->setShortcut(copyAction->shortcut().primary());
+        copyAct->setShortcut(copyAction->shortcut());
     viewerMenu->addSeparator();
-    (tabClose = viewerMenu->addAction(i18n("&Close Current Tab"), this, SLOT(tabCloseRequest())))->setShortcut(Qt::Key_Escape);
-    (closeAct = viewerMenu->addAction(i18n("&Quit"), this, SLOT(close())))->setShortcut(Qt::CTRL + Qt::Key_Q);
 
-    tabBar.setHoverCloseButton(true);
+    configKeysAction = ac->addAction(KStandardAction::KeyBindings, this, SLOT(configureShortcuts()));
+    viewerMenu->addAction(configKeysAction);
+    viewerMenu->addSeparator();
+
+    detachAction = ac->addAction("detachTab", this, SLOT(detachTab()));
+    detachAction->setText(i18n("&Detach Tab"));
+    //no point in detaching only one tab..
+    detachAction->setEnabled(false);
+    ac->setDefaultShortcut(detachAction, Qt::META + Qt::Key_D);
+    viewerMenu->addAction(detachAction);
+
+    quitAction = ac->addAction(KStandardAction::Quit, this, SLOT(close()));
+    viewerMenu->addAction(quitAction);
+
+    tabCloseAction = ac->addAction("closeTab", this, SLOT(tabCloseRequest()));
+    tabCloseAction->setText(i18n("&Close Current Tab"));
+    QList<QKeySequence> shortcuts = KStandardShortcut::close();
+    shortcuts.append(Qt::Key_Escape);
+    ac->setDefaultShortcuts(tabCloseAction, shortcuts);
+
+    tabNextAction = ac->addAction("nextTab", this, SLOT(nextTab()));
+    tabNextAction->setText(i18n("&Next Tab"));
+    ac->setDefaultShortcuts(tabNextAction, KStandardShortcut::tabNext());
+
+    tabPrevAction = ac->addAction("prevTab", this, SLOT(prevTab()));
+    tabPrevAction->setText(i18n("&Previous Tab"));
+    ac->setDefaultShortcuts(tabPrevAction, KStandardShortcut::tabPrev());
+
+
+    tabBar.setTabsClosable(true);
 
     checkModified();
 
@@ -154,7 +176,7 @@ KrViewer::~KrViewer()
     // close tabs before deleting tab bar - this avoids Qt bug 26115
     // https://bugreports.qt-project.org/browse/QTBUG-26115
     while(tabBar.count())
-        tabCloseRequest(tabBar.currentWidget(), true);
+        tabCloseRequest(tabBar.currentIndex(), true);
 
     delete printAction;
     delete copyAction;
@@ -180,14 +202,16 @@ void KrViewer::createGUI(KParts::Part* part)
     reservedKeyActions.clear();
 
     QList<QAction *> list = viewerMenu->actions();
+    // also add the actions that are not in the menu...
+    list << tabCloseAction << tabNextAction << tabPrevAction;
     // getting the key sequences of the viewer menu
     for (int w = 0; w != list.count(); w++) {
         QAction *act = list[ w ];
         QList<QKeySequence> sequences = act->shortcuts();
-        if (!sequences.isEmpty()) {
-            for (int i = 0; i != sequences.count(); i++) {
-                reservedKeys.push_back(sequences[ i ]);
-                reservedKeyActions.push_back(act);
+        foreach(QKeySequence keySeq, sequences) {
+            for(int i = 0; i < keySeq.count(); ++i) {
+                reservedKeys.push_back(keySeq[i]);
+                reservedKeyActions.push_back(act); //the same action many times in case of multiple shortcuts
             }
         }
     }
@@ -200,8 +224,16 @@ void KrViewer::createGUI(KParts::Part* part)
     menuBar() ->show();
 }
 
+void KrViewer::configureShortcuts()
+{
+    KShortcutsDialog::configure(actionCollection(), KShortcutsEditor::LetterShortcutsAllowed, this);
+}
+
 bool KrViewer::eventFilter(QObject * /* watched */, QEvent * e)
 {
+    // TODO: after porting to Qt5/KF5 we never catch *ANY* KeyPress or ShortcutOverride events here anymore.
+    // Should look into if there is any way to fix it. Currently if a KPart has same shortcut as KrViewer then
+    // it causes a conflict, messagebox shown to user and no action triggered.
     if (e->type() == QEvent::ShortcutOverride) {
         QKeyEvent* ke = (QKeyEvent*) e;
         if (reservedKeys.contains(ke->key())) {
@@ -211,11 +243,9 @@ bool KrViewer::eventFilter(QObject * /* watched */, QEvent * e)
             if (act != 0) {
                 // don't activate the close functions immediately!
                 // it can cause crash
-                if (act == tabClose)
-                    QTimer::singleShot(0, this, SLOT(tabCloseRequest()));
-                else if (act == closeAct)
-                    QTimer::singleShot(0, this, SLOT(close()));
-                else {
+                if (act == tabCloseAction || act == quitAction) {
+                    QTimer::singleShot(0, act, SLOT(trigger()));
+                } else {
                     act->activate(QAction::Trigger);
                 }
             }
@@ -266,7 +296,7 @@ KrViewer* KrViewer::getViewer(bool new_window)
     }
 }
 
-void KrViewer::view(KUrl url, QWidget * parent)
+void KrViewer::view(QUrl url, QWidget * parent)
 {
     KConfigGroup group(krConfig, "General");
     bool defaultWindow = group.readEntry("View In Separate Window", _ViewInSeparateWindow);
@@ -274,19 +304,19 @@ void KrViewer::view(KUrl url, QWidget * parent)
     view(url, Default, defaultWindow, parent);
 }
 
-void KrViewer::view(KUrl url, Mode mode,  bool new_window, QWidget * parent)
+void KrViewer::view(QUrl url, Mode mode,  bool new_window, QWidget * parent)
 {
     KrViewer* viewer = getViewer(new_window);
     viewer->viewInternal(url, mode, parent);
     viewer->show();
 }
 
-void KrViewer::edit(KUrl url, QWidget * parent)
+void KrViewer::edit(QUrl url, QWidget * parent)
 {
     edit(url, Text, -1, parent);
 }
 
-void KrViewer::edit(KUrl url, Mode mode, int new_window, QWidget * parent)
+void KrViewer::edit(QUrl url, Mode mode, int new_window, QWidget * parent)
 {
     KConfigGroup group(krConfig, "General");
     QString editor = group.readEntry("Editor", _Editor);
@@ -305,7 +335,7 @@ void KrViewer::edit(KUrl url, Mode mode, int new_window, QWidget * parent)
         }
         // if the file is local, pass a normal path and not a url. this solves
         // the problem for editors that aren't url-aware
-        proc << cmdArgs << url.pathOrUrl();
+        proc << cmdArgs << url.toDisplayString(QUrl::PreferLocalFile);
         if (!proc.startDetached())
             KMessageBox::sorry(krMainWindow, i18n("Can not open \"%1\"", editor));
         return ;
@@ -318,9 +348,9 @@ void KrViewer::edit(KUrl url, Mode mode, int new_window, QWidget * parent)
 
 void KrViewer::addTab(PanelViewerBase *pvb)
 {
-    tabBar.addTab(pvb, makeTabIcon(pvb), makeTabText(pvb));
-    tabBar.setCurrentIndex(tabBar.indexOf(pvb));
-    tabBar.setTabToolTip(tabBar.indexOf(pvb), makeTabToolTip(pvb));
+    int tabIndex = tabBar.addTab(pvb, makeTabIcon(pvb), makeTabText(pvb));
+    tabBar.setCurrentIndex(tabIndex);
+    tabBar.setTabToolTip(tabIndex, makeTabToolTip(pvb));
 
     updateActions();
 
@@ -334,11 +364,11 @@ void KrViewer::addTab(PanelViewerBase *pvb)
     connect(pvb, SIGNAL(openUrlFinished(PanelViewerBase*, bool)),
                  SLOT(openUrlFinished(PanelViewerBase*, bool)));
 
-    connect(pvb, SIGNAL(urlChanged(PanelViewerBase *, const KUrl &)),
-            this,  SLOT(tabURLChanged(PanelViewerBase *, const KUrl &)));
+    connect(pvb, SIGNAL(urlChanged(PanelViewerBase *, const QUrl &)),
+            this,  SLOT(tabURLChanged(PanelViewerBase *, const QUrl &)));
 }
 
-void KrViewer::tabURLChanged(PanelViewerBase *pvb, const KUrl & url)
+void KrViewer::tabURLChanged(PanelViewerBase *pvb, const QUrl &url)
 {
     Q_UNUSED(url)
     refreshTab(pvb);
@@ -360,11 +390,10 @@ void KrViewer::openUrlFinished(PanelViewerBase *pvb, bool success)
     }
 }
 
-void KrViewer::tabChanged(QWidget* w)
+void KrViewer::tabChanged(int index)
 {
-    if (w == 0)
-        return;
-
+    QWidget *w = tabBar.widget(index);
+    if(!w) return;
     KParts::ReadOnlyPart *part = static_cast<PanelViewerBase*>(w)->part();
     if (part && isPartAdded(part)) {
         manager.setActivePart(part);
@@ -378,14 +407,13 @@ void KrViewer::tabChanged(QWidget* w)
     if (viewers.removeAll(this)) viewers.prepend(this);      // move to first
 }
 
-void KrViewer::tabCloseRequest(QWidget *w, bool force)
+void KrViewer::tabCloseRequest(int index, bool force)
 {
-    if (!w) return;
-
     // important to save as returnFocusTo will be cleared at removePart
     QWidget * returnFocusToThisWidget = returnFocusTo;
 
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(w);
+    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.widget(index));
+    if (!pvb) return;
 
     if (!force && !pvb->queryClose())
         return;
@@ -397,10 +425,10 @@ void KrViewer::tabCloseRequest(QWidget *w, bool force)
 
     pvb->closeUrl();
 
-    tabBar.removePage(w);
+    tabBar.removeTab(index);
 
     delete pvb;
-    w = pvb = 0;
+    pvb = 0;
 
     if (tabBar.count() <= 0) {
         if (returnFocusToThisWidget) {
@@ -427,7 +455,7 @@ void KrViewer::tabCloseRequest(QWidget *w, bool force)
 
 void KrViewer::tabCloseRequest()
 {
-    tabCloseRequest(tabBar.currentWidget());
+    tabCloseRequest(tabBar.currentIndex());
 }
 
 bool KrViewer::queryClose()
@@ -533,7 +561,7 @@ void KrViewer::detachTab()
 
     disconnect(pvb, 0, this, 0);
 
-    tabBar.removePage(pvb);
+    tabBar.removeTab(tabBar.indexOf(pvb));
 
     if (tabBar.count() == 1) {
         //no point in detaching only one tab..
@@ -554,9 +582,9 @@ void KrViewer::detachTab()
     viewer->show();
 }
 
-void KrViewer::windowActivationChange(bool /* oldActive */)
+void KrViewer::changeEvent(QEvent *e)
 {
-    if (isActiveWindow())
+    if (e->type() == QEvent::ActivationChange && isActiveWindow())
         if (viewers.removeAll(this)) viewers.prepend(this);      // move to first
 }
 
@@ -626,7 +654,7 @@ QString KrViewer::makeTabText(PanelViewerBase *pvb)
 
 QString KrViewer::makeTabToolTip(PanelViewerBase *pvb)
 {
-    QString url = pvb->url().pathOrUrl();
+    QString url = pvb->url().toDisplayString(QUrl::PreferLocalFile);
     return pvb->isEditor() ?
             i18nc("filestate: filename", "Editing: %1", url) :
             i18nc("filestate: filename", "Viewing: %1", url);
@@ -651,7 +679,7 @@ void KrViewer::addPart(KParts::ReadOnlyPart *part)
     Q_ASSERT(!isPartAdded(part));
 
     if (isPartAdded(part)) {
-        kDebug()<<"part already added:"<<part;
+        qDebug()<<"part already added:"<<part;
         return;
     }
 
@@ -673,10 +701,10 @@ void KrViewer::removePart(KParts::ReadOnlyPart *part)
         part->removeEventFilter(this);
         manager.removePart(part);
     } else
-        kDebug()<<"part hasn't been added:"<<part;
+        qDebug()<<"part hasn't been added:"<<part;
 }
 
-void KrViewer::viewInternal(KUrl url, Mode mode, QWidget *parent)
+void KrViewer::viewInternal(QUrl url, Mode mode, QWidget *parent)
 {
     returnFocusTo = parent;
 
@@ -686,7 +714,7 @@ void KrViewer::viewInternal(KUrl url, Mode mode, QWidget *parent)
     viewWidget->openUrl(url);
 }
 
-void KrViewer::editInternal(KUrl url, Mode mode, QWidget * parent)
+void KrViewer::editInternal(QUrl url, Mode mode, QWidget * parent)
 {
     returnFocusTo = parent;
 
@@ -695,5 +723,3 @@ void KrViewer::editInternal(KUrl url, Mode mode, QWidget * parent)
     addTab(editWidget);
     editWidget->openUrl(url);
 }
-
-#include "krviewer.moc"

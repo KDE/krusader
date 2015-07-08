@@ -20,7 +20,8 @@
 #define KISOFILE_H
 
 #include <QtCore/QString>
-#include <karchive.h>
+
+#include <KArchive/KArchive>
 
 class KIsoFile : public KArchiveFile
 {
@@ -40,7 +41,7 @@ public:
         return m_realsize;
     }
 
-    virtual QByteArray data(long long pos, int count) const;
+    virtual QByteArray dataAt(long long pos, int count) const;
 private:
     /* hide this member function, it's broken by design, because the full
     data often requires too much memory */

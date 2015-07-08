@@ -31,22 +31,22 @@
 #ifndef DISKUSAGEGUI_H
 #define DISKUSAGEGUI_H
 
-#include <QtGui/QLayout>
-#include <QtGui/QToolButton>
+#include <QtCore/QUrl>
 #include <QtGui/QResizeEvent>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QToolButton>
 
-#include <KUrl>
-#include <KSqueezedTextLabel>
-#include <KDialog>
+#include <KWidgetsAddons/KSqueezedTextLabel>
 
 #include "diskusage.h"
 
-class DiskUsageGUI : public KDialog
+class DiskUsageGUI : public QDialog
 {
     Q_OBJECT
 
 public:
-    DiskUsageGUI(KUrl openDir, QWidget* parent = 0);
+    DiskUsageGUI(QUrl openDir, QWidget* parent = 0);
     ~DiskUsageGUI();
 
 
@@ -66,16 +66,16 @@ public slots:
     }
 
 protected slots:
-    virtual void               reject();
+    virtual void               reject() Q_DECL_OVERRIDE;
     void                       slotViewChanged(int view);
     void                       enableButtons(bool);
     void                       slotLoadFinished(bool);
 
 protected:
-    virtual void               resizeEvent(QResizeEvent *e);
+    virtual void               resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
 
     DiskUsage                 *diskUsage;
-    KUrl                       baseDirectory;
+    QUrl                       baseDirectory;
 
     KSqueezedTextLabel        *status;
 

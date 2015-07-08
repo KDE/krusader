@@ -28,26 +28,23 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include "kmountman.h"
 
-#include <sys/param.h>
-#include <time.h>
-#include <unistd.h>
-
-#include <QApplication>
 #include <QtCore/QDir>
-#include <solid/block.h>
-#include <solid/opticaldisc.h>
-#include <solid/opticaldrive.h>
-#include <solid/storageaccess.h>
-#include <solid/storagevolume.h>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QMenu>
 
-#include <kmessagebox.h>
-#include <kprocess.h>
-#include <klocale.h>
-#include <kmenu.h>
-#include <kdebug.h>
-#include <kio/jobuidelegate.h>
-#include <kuiserverjobtracker.h>
-#include <ktoolbarpopupaction.h>
+#include <KConfigCore/KSharedConfig>
+#include <KCoreAddons/KJobTrackerInterface>
+#include <KCoreAddons/KProcess>
+#include <KI18n/KLocalizedString>
+#include <KIO/JobUiDelegate>
+#include <KWidgetsAddons/KMessageBox>
+#include <KWidgetsAddons/KToolBarPopupAction>
+
+#include <Solid/Block>
+#include <Solid/OpticalDisc>
+#include <Solid/OpticalDrive>
+#include <Solid/StorageAccess>
+#include <Solid/StorageVolume>
 
 #include "../krglobal.h"
 #include "../kractions.h"
@@ -69,7 +66,7 @@ KMountMan::KMountMan(QWidget *parent) : QObject(), Operational(false), waiting(f
 {
     _actions = 0L;
 
-    _action = new KToolBarPopupAction(KIcon("kr_mountman"), i18n("&MountMan..."), this);
+    _action = new KToolBarPopupAction(QIcon::fromTheme("kr_mountman"), i18n("&MountMan..."), this);
     connect(_action, SIGNAL(triggered(bool)), SLOT(mainWindow()));
     connect(_action->menu(), SIGNAL(aboutToShow()), SLOT(quickList()));
 
@@ -137,14 +134,14 @@ void KMountMan::mainWindow()
     mountManGui = 0; /* for sanity */
 }
 
-KSharedPtr<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, QString value)
+QExplicitlySharedDataPointer<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, QString value)
 {
     if (value.length() > 1 && value.endsWith('/'))
         value = value.left(value.length() - 1);
 
-    KSharedPtr<KMountPoint> m;
+    QExplicitlySharedDataPointer<KMountPoint> m;
     for (KMountPoint::List::iterator it = lst.begin(); it != lst.end(); ++it) {
-        m = *it;
+        m = it->data();
         QString mntPnt = m->mountPoint();
         if (mntPnt.length() > 1 && mntPnt.endsWith('/'))
             mntPnt = mntPnt.left(mntPnt.length() - 1);
@@ -152,7 +149,7 @@ KSharedPtr<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, 
             return m;
     }
 
-    return KSharedPtr<KMountPoint>();
+    return QExplicitlySharedDataPointer<KMountPoint>();
 }
 
 void KMountMan::jobResult(KJob *job)
@@ -177,7 +174,7 @@ void KMountMan::mount(QString mntPoint, bool blocking)
         }
     } else {
         KMountPoint::List possible = KMountPoint::possibleMountPoints(KMountPoint::NeedMountOptions);
-        KSharedPtr<KMountPoint> m = findInListByMntPoint(possible, mntPoint);
+        QExplicitlySharedDataPointer<KMountPoint> m = findInListByMntPoint(possible, mntPoint);
         if (!((bool)m)) return;
         if (blocking)
             waiting = true; // prepare to block
@@ -209,7 +206,7 @@ void KMountMan::mount(QString mntPoint, bool blocking)
 void KMountMan::unmount(QString mntPoint, bool blocking)
 {
     //if working dir is below mountpoint cd to ~ first
-    if(KUrl(QDir(mntPoint).canonicalPath()).isParentOf(KUrl(QDir::current().canonicalPath())))
+    if(QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()).isParentOf(QUrl::fromLocalFile(QDir::current().canonicalPath())))
         QDir::setCurrent(QDir::homePath());
 
     QString udi = findUdiForPath(mntPoint, Solid::DeviceInterface::StorageAccess);
@@ -252,7 +249,7 @@ void KMountMan::unmount(QString mntPoint, bool blocking)
 KMountMan::mntStatus KMountMan::getStatus(QString mntPoint)
 {
     KMountPoint::List::iterator it;
-    KSharedPtr<KMountPoint> m;
+    QExplicitlySharedDataPointer<KMountPoint> m;
 
     // 1: is it already mounted
     KMountPoint::List current = KMountPoint::currentMountPoints();
@@ -305,7 +302,7 @@ void KMountMan::eject(QString mntPoint)
         return;
 
     //if working dir is below mountpoint cd to ~ first
-    if(KUrl(QDir(mntPoint).canonicalPath()).isParentOf(KUrl(QDir::current().canonicalPath())))
+    if(QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()).isParentOf(QUrl::fromLocalFile(QDir::current().canonicalPath())))
         QDir::setCurrent(QDir::homePath());
 
 
@@ -353,29 +350,30 @@ QString KMountMan::convertSize(KIO::filesize_t size)
 {
     float fsize;
     QString s;
+    QLocale loc;
     // Tera-byte
     if (size >= 1073741824) {
         fsize = (float) size / (float) 1073741824;
         if (fsize > 1024)           // no name for something bigger than tera byte
             // let's call it Zega-Byte, who'll ever find out? :-)
-            s = i18n("%1 ZB", KGlobal::locale() ->formatNumber(fsize / (float) 1024, 1));
+            s = i18n("%1 ZB", loc.toString(fsize / (float) 1024, 'f', 1));
         else
-            s = i18n("%1 TB", KGlobal::locale() ->formatNumber(fsize, 1));
+            s = i18n("%1 TB", loc.toString(fsize, 'f', 1));
     }
     // Giga-byte
     else if (size >= 1048576) {
         fsize = (float) size / (float) 1048576;
-        s = i18n("%1 GB", KGlobal::locale() ->formatNumber(fsize, 1));
+        s = i18n("%1 GB", loc.toString(fsize, 'f', 1));
     }
     // Mega-byte
     else if (size > 1024) {
         fsize = (float) size / (float) 1024;
-        s = i18n("%1 MB", KGlobal::locale() ->formatNumber(fsize, 1));
+        s = i18n("%1 MB", loc.toString(fsize, 'f', 1));
     }
     // Kilo-byte
     else {
         fsize = (float) size;
-        s = i18n("%1 KB", KGlobal::locale() ->formatNumber(fsize, 0));
+        s = i18n("%1 KB", loc.toString(fsize, 'f', 0));
     }
     return s;
 }
@@ -403,10 +401,10 @@ void KMountMan::quickList()
     _actions = new QString[ possible.size()];
 
     KMountPoint::List::iterator it;
-    KSharedPtr<KMountPoint> m;
+    QExplicitlySharedDataPointer<KMountPoint> m;
     int idx;
     for (it = possible.begin(), idx = 0; it != possible.end(); ++it, ++idx) {
-        m = *it;
+        m = it->data();
         // skip nonmountable file systems
         if (nonmountFilesystem(m->mountType(), m->mountPoint()) || invalidFilesystem(m->mountType()))
             continue;
@@ -474,7 +472,7 @@ QString KMountMan::findUdiForPath(QString path, const Solid::DeviceInterface::Ty
 {
     KMountPoint::List current = KMountPoint::currentMountPoints();
     KMountPoint::List possible = KMountPoint::possibleMountPoints();
-    KSharedPtr<KMountPoint> mp = findInListByMntPoint(current, path);
+    QExplicitlySharedDataPointer<KMountPoint> mp = findInListByMntPoint(current, path);
     if (!(bool)mp) {
         mp = findInListByMntPoint(possible, path);
         if (!(bool)mp)
@@ -514,7 +512,7 @@ void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, con
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::queuedMessageBox(parentWindow, KMessageBox::Sorry, errorData.toString());
+        KMessageBox::sorry(parentWindow, errorData.toString());
     }
 }
 
@@ -522,8 +520,7 @@ void KMountMan::slotSetupDone(Solid::ErrorType error, QVariant errorData, const 
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::queuedMessageBox(parentWindow, KMessageBox::Sorry, errorData.toString());
+        KMessageBox::sorry(parentWindow, errorData.toString());
     }
 }
 
-#include "kmountman.moc"

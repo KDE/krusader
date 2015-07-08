@@ -34,8 +34,9 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krusaderview.h"
 #include "panelmanager.h"
 
-#include <QtGlobal>
-#include <kactioncollection.h>
+#include <QtCore/QtGlobal>
+
+#include <KXmlGui/KActionCollection>
 
 KConfig *KrGlobal::config = 0;
 KMountMan *KrGlobal::mountMan = 0;
@@ -46,7 +47,7 @@ KrusaderView *KrGlobal::mainView = 0;
 QWidget *KrGlobal::mainWindow = 0;
 UserAction *KrGlobal::userAction = 0;
 // ListPanel *KrGlobal::activePanel = 0;
-KShortcut KrGlobal::copyShortcut;
+QKeySequence KrGlobal::copyShortcut;
 
 
 KrPanel *KrGlobal::activePanel()

@@ -23,30 +23,33 @@
 #include "../krglobal.h"
 #include "../GUI/krlistwidget.h"
 #include "../GUI/krtreewidget.h"
-#include <klocale.h>
-#include <kprocess.h>
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
-#include <QtGui/QCheckBox>
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <klineedit.h>
-#include <QtGui/QPixmap>
-#include <kcursor.h>
-#include <kmessagebox.h>
+
 #include <QtCore/QFile>
-#include <QtCore/QTextStream>
-#include <kfiledialog.h>
-#include <kiconloader.h>
-#include <kcombobox.h>
 #include <QtCore/QFileInfo>
-#include <kurlrequester.h>
-#include "../krservices.h"
 #include <QtCore/QList>
-#include <qmap.h>
-#include <ktemporaryfile.h>
-#include <kstandarddirs.h>
-#include <unistd.h> // for usleep
+#include <QtCore/QMap>
+#include <QtCore/QTemporaryFile>
+#include <QtCore/QTextStream>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
+
+#include <KCoreAddons/KProcess>
+#include <KCompletion/KLineEdit>
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KCursor>
+#include <KWidgetsAddons/KMessageBox>
+#include <KIconThemes/KIconLoader>
+#include <KCompletion/KComboBox>
+#include <KIOWidgets/KUrlRequester>
+
+#include "../krservices.h"
 
 class CS_Tool; // forward
 typedef void PREPARE_PROC_FUNC(KProcess& proc, CS_Tool *self, const QStringList& files,
@@ -232,13 +235,14 @@ static QList<CS_Tool *> getTools(bool folders)
 
 // ------------- CreateChecksumDlg
 
-CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path):
-        KDialog(krApp)
+CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path)
+    : QDialog(krApp)
 {
-    setButtons(KDialog::Ok | KDialog::Cancel);
-    setDefaultButton(KDialog::Ok);
-    setWindowTitle(i18n("Create Checksum"));
     setWindowModality(Qt::WindowModal);
+    setWindowTitle(i18n("Create Checksum"));
+
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
 
     QList<CS_Tool *> tools = getTools(containFolders);
 
@@ -254,22 +258,19 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 
     QWidget * widget = new QWidget(this);
     QGridLayout *layout = new QGridLayout(widget);
-    layout->setContentsMargins(KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint());
-    layout->setSpacing(KDialog::spacingHint());
 
     int row = 0;
 
     // title (icon+text)
     QHBoxLayout *hlayout = new QHBoxLayout;
-    hlayout->setSpacing(KDialog::spacingHint());
     QLabel *p = new QLabel(widget);
     p->setPixmap(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
     hlayout->addWidget(p);
     QLabel *l1 = new QLabel(widget);
-    
+
     if (containFolders)
         l1->setText(i18n("About to calculate checksum for the following files and directories:"));
-    else 
+    else
         l1->setText(i18n("About to calculate checksum for the following files:"));
 
     hlayout->addWidget(l1);
@@ -284,7 +285,6 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 
     // checksum method
     QHBoxLayout *hlayout2 = new QHBoxLayout;
-    hlayout2->setSpacing(KDialog::spacingHint());
     QLabel *l2 = new QLabel(i18n("Select the checksum method:"), widget);
     hlayout2->addWidget(l2);
     KComboBox *method = new KComboBox(widget);
@@ -296,22 +296,29 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
     hlayout2->addWidget(method);
     layout->addLayout(hlayout2, row, 0, 1, 2, Qt::AlignLeft);
     ++row;
-    setMainWidget(widget);
+    mainLayout->addWidget(widget);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    mainLayout->addWidget(buttonBox);
+
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
     if (exec() != Accepted) return;
     // else implied: run the process
-    tmpOut = new KTemporaryFile();
-    tmpOut->setSuffix(".stdout");
-    tmpOut->open(); // necessary to create the filename
-    tmpErr = new KTemporaryFile();
-    tmpErr->setSuffix(".stderr");
-    tmpErr->open(); // necessary to create the filename
+    QTemporaryFile tmpOut(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.stdout"));
+    tmpOut.open(); // necessary to create the filename
+    QTemporaryFile tmpErr(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.stderr"));
+    tmpErr.open(); // necessary to create the filename
     KProcess proc;
     CS_Tool *mytool = tools.at(method->currentIndex());
     mytool->create(proc, mytool, files, QString(), containFolders, method->currentText());
     proc.setOutputChannelMode(KProcess::SeparateChannels); // without this the next 2 lines have no effect!
-    proc.setStandardOutputFile(tmpOut->fileName());
-    proc.setStandardErrorFile(tmpErr->fileName());
+    proc.setStandardOutputFile(tmpOut.fileName());
+    proc.setStandardErrorFile(tmpErr.fileName());
     proc.setWorkingDirectory(path);
 
     krApp->startWaiting(i18n("Calculating checksums..."), 0, true);
@@ -341,15 +348,13 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
     else suggestedFilename += (files[0] + '.' + cs_typeToText[mytool->type]);
     // send both stdout and stderr
     QStringList stdOut, stdErr;
-    if (!KrServices::fileToStringList(tmpOut, stdOut) ||
-            !KrServices::fileToStringList(tmpErr, stdErr)) {
+    if (!KrServices::fileToStringList(&tmpOut, stdOut) ||
+            !KrServices::fileToStringList(&tmpErr, stdErr)) {
         KMessageBox::error(krApp, i18n("Error reading stdout or stderr"));
         return;
     }
 
     ChecksumResultsDlg dlg(stdOut, stdErr, suggestedFilename, mytool->standardFormat);
-    delete tmpOut; // this also unlinks the files
-    delete tmpErr;
 }
 
 // ------------- MatchChecksumDlg
@@ -357,13 +362,14 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 QString MatchChecksumDlg::checksumTypesFilter;
 
 MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders,
-                                   const QString& path, const QString& checksumFile):
-        KDialog(krApp)
+                                   const QString& path, const QString& checksumFile)
+    : QDialog(krApp)
 {
-    setButtons(KDialog::Ok | KDialog::Cancel);
-    setDefaultButton(KDialog::Ok);
     setWindowTitle(i18n("Verify Checksum"));
     setWindowModality(Qt::WindowModal);
+
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
 
     QList<CS_Tool *> tools = getTools(containFolders);
 
@@ -379,14 +385,11 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 
     QWidget * widget = new QWidget(this);
     QGridLayout *layout = new QGridLayout(widget);
-    layout->setContentsMargins(KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint());
-    layout->setSpacing(KDialog::spacingHint());
 
     int row = 0;
 
     // title (icon+text)
     QHBoxLayout *hlayout = new QHBoxLayout;
-    hlayout->setSpacing(KDialog::spacingHint());
     QLabel *p = new QLabel(widget);
     p->setPixmap(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
     hlayout->addWidget(p);
@@ -409,20 +412,28 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 
     // checksum file
     QHBoxLayout *hlayout2 = new QHBoxLayout;
-    hlayout2->setSpacing(KDialog::spacingHint());
     QLabel *l2 = new QLabel(i18n("Checksum file:"), widget);
     hlayout2->addWidget(l2);
     KUrlRequester *checksumFileReq = new KUrlRequester(widget);
+    checksumFileReq->setUrl(QUrl::fromLocalFile(path));
     if (!checksumFile.isEmpty())
-        checksumFileReq->setUrl(checksumFile);
-    checksumFileReq->fileDialog()->setUrl(path);
+        checksumFileReq->setUrl(QUrl::fromLocalFile(checksumFile));
     checksumFileReq->setFocus();
     hlayout2->addWidget(checksumFileReq);
     layout->addLayout(hlayout2, row, 0, 1, 2, Qt::AlignLeft);
-    setMainWidget(widget);
+    mainLayout->addWidget(widget);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    mainLayout->addWidget(buttonBox);
+
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
     if (exec() != Accepted) return;
-    QString file = checksumFileReq->url().pathOrUrl();
+    QString file = checksumFileReq->url().toDisplayString(QUrl::PreferLocalFile);
     QString extension;
     if (!verifyChecksumFile(file, extension)) {
         KMessageBox::error(0, i18n("<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid checksum file.</qt>", file));
@@ -443,17 +454,15 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
     }
 
     // else implied: run the process
-    tmpOut = new KTemporaryFile();
-    tmpOut->setSuffix(".stdout");
-    tmpOut->open(); // necessary to create the filename
-    tmpErr = new KTemporaryFile();
-    tmpErr->setSuffix(".stderr");
-    tmpErr->open(); // necessary to create the filename
+    QTemporaryFile tmpOut(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.stdout"));
+    tmpOut.open(); // necessary to create the filename
+    QTemporaryFile tmpErr(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.stderr"));
+    tmpErr.open(); // necessary to create the filename
     KProcess proc;
     mytool->verify(proc, mytool, files, file, containFolders, extension);
     proc.setOutputChannelMode(KProcess::SeparateChannels); // without this the next 2 lines have no effect!
-    proc.setStandardOutputFile(tmpOut->fileName());
-    proc.setStandardErrorFile(tmpErr->fileName());
+    proc.setStandardOutputFile(tmpOut.fileName());
+    proc.setStandardErrorFile(tmpErr.fileName());
     proc.setWorkingDirectory(path);
 
     krApp->startWaiting(i18n("Verifying checksums..."), 0, true);
@@ -478,14 +487,12 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
     krApp->stopWait();
     // send both stdout and stderr
     QStringList stdOut, stdErr;
-    if (!KrServices::fileToStringList(tmpOut, stdOut) ||
-            !KrServices::fileToStringList(tmpErr, stdErr)) {
+    if (!KrServices::fileToStringList(&tmpOut, stdOut) ||
+            !KrServices::fileToStringList(&tmpErr, stdErr)) {
         KMessageBox::error(krApp, i18n("Error reading stdout or stderr"));
         return;
     }
     VerifyResultDlg dlg(mytool->failed(stdOut, stdErr));
-    delete tmpOut;
-    delete tmpErr;
 }
 
 bool MatchChecksumDlg::verifyChecksumFile(QString path,  QString& extension)
@@ -502,25 +509,23 @@ bool MatchChecksumDlg::verifyChecksumFile(QString path,  QString& extension)
 }
 
 // ------------- VerifyResultDlg
-VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
-        KDialog(krApp)
+VerifyResultDlg::VerifyResultDlg(const QStringList& failed)
+    : QDialog(krApp)
 {
-    setButtons(KDialog::Close);
-    setDefaultButton(KDialog::Close);
     setWindowTitle(i18n("Verify Checksum"));
     setWindowModality(Qt::WindowModal);
 
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+
     QWidget * widget = new QWidget(this);
     QGridLayout *layout = new QGridLayout(widget);
-    layout->setContentsMargins(KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint());
-    layout->setSpacing(KDialog::spacingHint());
 
     bool errors = failed.size() > 0;
     int row = 0;
 
     // create the icon and title
     QHBoxLayout *hlayout = new QHBoxLayout;
-    hlayout->setSpacing(KDialog::spacingHint());
     QLabel p(widget);
     p.setPixmap(krLoader->loadIcon(errors ? "dialog-error" : "dialog-information", KIconLoader::Desktop, 32));
     hlayout->addWidget(&p);
@@ -541,41 +546,41 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
         ++row;
     }
 
-    setMainWidget(widget);
+    mainLayout->addWidget(widget);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
+    mainLayout->addWidget(buttonBox);
+    buttonBox->button(QDialogButtonBox::Close)->setDefault(true);
+
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+
     exec();
 }
 
 // ------------- ChecksumResultsDlg
 
 ChecksumResultsDlg::ChecksumResultsDlg(const QStringList &stdOut, const QStringList &stdErr,
-                                       const QString& suggestedFilename, bool standardFormat):
-        KDialog(krApp), _onePerFile(0), _checksumFileSelector(0), _data(stdOut), _suggestedFilename(suggestedFilename)
+                                       const QString& suggestedFilename, bool standardFormat)
+    : QDialog(krApp), _onePerFile(0), _checksumFileSelector(0), _data(stdOut), _suggestedFilename(suggestedFilename)
 {
     // md5 tools display errors into stderr, so we'll use that to determine the result of the job
     bool errors = stdErr.size() > 0;
     bool successes = stdOut.size() > 0;
 
-    if (successes) {
-        setButtons(KDialog::Ok | KDialog::Cancel);
-        setDefaultButton(KDialog::Ok);
-    }  else {
-        setButtons(KDialog::Close);
-        setDefaultButton(KDialog::Close);
-    }
-
     setWindowTitle(i18n("Create Checksum"));
     setWindowModality(Qt::WindowModal);
 
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+
     QWidget * widget = new QWidget(this);
     QGridLayout *layout = new QGridLayout(widget);
-    layout->setContentsMargins(KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint());
-    layout->setSpacing(KDialog::spacingHint());
 
     int row = 0;
 
     // create the icon and title
     QHBoxLayout *hlayout = new QHBoxLayout;
-    hlayout->setSpacing(KDialog::spacingHint());
     QLabel p(widget);
     p.setPixmap(krLoader->loadIcon(errors || !successes  ?
                 "dialog-error" : "dialog-information", KIconLoader::Desktop, 32));
@@ -644,11 +649,10 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList &stdOut, const QStringL
 
     if (successes) {
         QHBoxLayout *hlayout2 = new QHBoxLayout;
-        hlayout2->setSpacing(KDialog::spacingHint());
         QLabel *label = new QLabel(i18n("Save checksum to file:"), widget);
         hlayout2->addWidget(label);
 
-        _checksumFileSelector = new KUrlRequester(suggestedFilename, widget);
+        _checksumFileSelector = new KUrlRequester(QUrl::fromLocalFile(suggestedFilename), widget);
         hlayout2->addWidget(_checksumFileSelector, Qt::AlignLeft);
         layout->addLayout(hlayout2, row, 0, 1, 2, Qt::AlignLeft);
         ++row;
@@ -663,7 +667,22 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList &stdOut, const QStringL
         ++row;
     }
 
-    setMainWidget(widget);
+    mainLayout->addWidget(widget);
+
+    QDialogButtonBox *buttonBox;
+    if (successes) {
+        buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+        QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+        okButton->setDefault(true);
+        okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    }  else {
+        buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
+        buttonBox->button(QDialogButtonBox::Close)->setDefault(true);
+    }
+    mainLayout->addWidget(buttonBox);
+
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
     exec();
 }
@@ -673,10 +692,10 @@ void ChecksumResultsDlg::accept()
     if (_onePerFile && _onePerFile->isChecked()) {
         Q_ASSERT(_data.size() > 1);
         if (savePerFile())
-            KDialog::accept();
+            QDialog::accept();
     } else if (!_checksumFileSelector->url().isEmpty()) {
-        if (saveChecksum(_data, _checksumFileSelector->url().pathOrUrl()))
-            KDialog::accept();
+        if (saveChecksum(_data, _checksumFileSelector->url().toDisplayString(QUrl::PreferLocalFile)))
+            QDialog::accept();
     }
 }
 
@@ -687,7 +706,7 @@ bool ChecksumResultsDlg::saveChecksum(const QStringList& data, QString filename)
                                                i18n("File %1 already exists.\nAre you sure you want to overwrite it?", filename),
                                                i18n("Warning"), KGuiItem(i18n("Overwrite"))) != KMessageBox::Continue) {
         // find a better name to save to
-        filename = KFileDialog::getSaveFileName(QString(), "*", 0, i18n("Select a file to save to"));
+        filename = QFileDialog::getSaveFileName(0, i18n("Select a file to save to"), QString(), QStringLiteral("*"));
         if (filename.simplified().isEmpty())
             return false;
     }

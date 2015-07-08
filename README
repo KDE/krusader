@@ -1,37 +1,6 @@
-Krusader-2.4.0-beta3 "Single Step"
-==================================
-We are pleased to announce a new version of the Krusader file manager.
-The sole purpose of this beta is to address a regression introduced in beta2:
-A crash when trying to open/(un)mount an ejectable device via media menu.
-
-
-Following is the README of  Krusader-2.4.0-beta2 "Giant Steps":
-===============================================================
-We are pleased to announce a new version of the Krusader file manager. Besides
-the usual bugfixes it also includes some new features.
-
-With this release we finally enter a feature and string freeze (this time for real).
-We ask you to provide bug reports, feedback and patches to make the upcoming stable
-as solid as possible.
-
-The highlights of this release are:
-- Assignable global shortcut to bring Krusader's main window to top
-- Go to Other Panel's Directory - shortcut: CTRL+=
-- Use Okteta kpart as hex-viewer by default
-- Configurable media menu
-- Quicker (un)mounting: pressing CTRL+RETURN when media menu is open
-                        (un)mounts the highlighted device
-
-Read SVNNEWS for detailed information about the new features and the
-INSTALL file for installation instructions.
-
-Notice: if you've got bugs to report, please do so using KDE's bugtracker
-        (bugs.kde.org).
-
-            as always, enjoy
-                 Krusader Krew.
-
-                      http://www.krusader.org
+Krusader-15.08 "Clear Skies"
+==========================="
+We are pleased to announce the port of Krusader file manager to KDE Plasma 5.
 
 
 +----------------------------------------------------------------------+
@@ -43,11 +12,12 @@ Notice: if you've got bugs to report, please do so using KDE's bugtracker
 +----------------------------------------------------------------------+
 
 
+
 Installation
 ============
 Please read the INSTALL file.
 
-When you install a Krusader svn or beta version and if Krusader was
+When you install a Krusader git or beta version and if Krusader was
 previously installed on your computer, there is a possibility that you
 will have to update the krusaderui.rc file. please read the FAQ for more
 info.
@@ -58,9 +28,11 @@ For detailed installation instructions, please read the INSTALL and FAQ
 file.
 
 
-To checkout Krusader-2.x for KDE4 from SVN:
-===========================================
-Please read the INSTALL file.
+
+To checkout Krusader-15.x for KDE Plasma 5 from git:
+====================================================
+Please read the INSTALL file (section Krusader development download).
+
 
 
 Krusader Handbook
@@ -70,6 +42,8 @@ Or read it online at:
 http://krusader.org/handbook/index.html
 or
 http://docs.kde.org/development/en/extragear-utils/krusader/index.html
+
+
 
 Help Krusader
 =============
@@ -89,17 +63,20 @@ bugs will be fixed. This means that translators can update their
 translations, for the coming stable.
 The KDE translation teams will be notified.
 
+
 GUI-Translators
 ---------------
 Please join the KDE translation team of your language if you like to
 translate Krusader or other KDE applications.
 http://l10n.kde.org/teams-list.php
 
+
 Documentation Translators
 -------------------------
 Please join the KDE translation team of your language if you like to
 translate Krusader or other KDE documentation.
 http://l10n.kde.org/teams-list.php
+
 
 Translation status
 ------------------
@@ -130,6 +107,7 @@ FAQ
 If you have a question for the FAQ.
 Please contact Frank.
 
+
 Extensions (User Actions)
 -------------------------
 Krusader supports a wide variety of extensions. We are always glad to see
@@ -137,15 +115,18 @@ someone creating something new. Please upload your extensions at
 kde-files.org.
 http://www.kde-files.org/index.php?xcontentmode=660x661x662x663
 
+
 Feature Requests
 ----------------
 Discussions about new features for future Krusader versions. Please
 visit our "New Features Requests" forum.
 
+
 Packagers
 ---------
 We are always in need of packagers.
 Please contact Dirk Eschler.
+
 
 Donations
 ---------
@@ -157,12 +138,14 @@ want to see the project becomes even better. Donations for this project
 will be used for further development of Krusader, be it by purchasing
 hardware, or promoting of the project.
 
+
 Spread the Word
 ---------------
 If you like Krusader, let people know! Write articles and reviews for
 internet or print publications. Encourage your friends to give Krusader
 a try. Participate in forums to help others in the community.
 Help us spreading the word about Krusader!
+
 
 
 URL's
@@ -216,6 +199,7 @@ URL's
   http://sourceforge.net/project/showfiles.php?group_id=6488
 
 
+
 The Krusader Krew
 ==================
 Krusader is developed by a dedicated team of individuals, known as the
@@ -246,6 +230,7 @@ Krusader Krew:
   [matej * amis net]
 
 Since Krusader-2.1.0 we have joined KDE Extragear.
+
 
 
 Package Description

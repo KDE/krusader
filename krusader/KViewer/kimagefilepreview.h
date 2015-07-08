@@ -13,13 +13,13 @@
 #ifndef KIMAGEFILEPREVIEW_H
 #define KIMAGEFILEPREVIEW_H
 
+#include <QtCore/QUrl>
 #include <QtGui/QPixmap>
-#include <QResizeEvent>
-#include <QLabel>
+#include <QtGui/QResizeEvent>
+#include <QtWidgets/QLabel>
 
-#include <kurl.h>
-#include <kpreviewwidgetbase.h>
-#include <kio/previewjob.h>
+# include <KIOFileWidgets/KPreviewWidgetBase>
+#include <KIO/PreviewJob>
 
 class QLabel;
 class QTimer;
@@ -34,21 +34,21 @@ public:
     KrusaderImageFilePreview(QWidget *parent);
     ~KrusaderImageFilePreview();
 
-    virtual QSize sizeHint() const;
+    virtual QSize sizeHint() const Q_DECL_OVERRIDE;
 
 public slots:
-    virtual void showPreview(const KUrl &url);
-    virtual void clearPreview();
+    virtual void showPreview(const QUrl&) Q_DECL_OVERRIDE;
+    virtual void clearPreview() Q_DECL_OVERRIDE;
 
 protected slots:
     void showPreview();
-    void showPreview(const KUrl& url, bool force);
+    void showPreview(const QUrl &url, bool force);
 
     virtual void gotPreview(const KFileItem&, const QPixmap&);
 
 protected:
-    virtual void resizeEvent(QResizeEvent *e);
-    virtual KIO::PreviewJob * createJob(const KUrl& url,
+    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    virtual KIO::PreviewJob * createJob(const QUrl &url,
                                         int w, int h);
 
 private slots:
@@ -56,7 +56,7 @@ private slots:
     virtual void slotFailed(const KFileItem&);
 
 private:
-    KUrl currentURL;
+    QUrl currentURL;
     QTimer *timer;
     QLabel *imageLabel;
     QLabel *infoLabel;

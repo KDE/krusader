@@ -31,18 +31,18 @@
 #include "combiner.h"
 #include "../VFS/vfs.h"
 
-#include <klocale.h>
-#include <kdebug.h>
-#include <kmessagebox.h>
-#include <kfileitem.h>
-#include <kio/job.h>
-#include <kio/jobuidelegate.h>
 #include <QtCore/QFileInfo>
+
+#include <KI18n/KLocalizedString>
+#include <KIOCore/KFileItem>
+#include <KIO/Job>
+#include <KIO/JobUiDelegate>
+#include <KWidgetsAddons/KMessageBox>
 
 //TODO: delete destination file on error
 //TODO: cache more than one byte array of data
 
-Combiner::Combiner(QWidget* parent,  KUrl baseURLIn, KUrl destinationURLIn, bool unixNamingIn) :
+Combiner::Combiner(QWidget* parent,  QUrl baseURLIn, QUrl destinationURLIn, bool unixNamingIn) :
         QProgressDialog(parent, 0), baseURL(baseURLIn), destinationURL(destinationURLIn),
         hasValidSplitFile(false), fileCounter(0), permissions(-1), receivedSize(0),
         statJob(0), combineReadJob(0), combineWriteJob(0), unixNaming(unixNamingIn)
@@ -67,19 +67,19 @@ Combiner::~Combiner()
 void Combiner::combine()
 {
     setWindowTitle(i18n("Krusader::Combining..."));
-    setLabelText(i18n("Combining the file %1...", baseURL.pathOrUrl()));
+    setLabelText(i18n("Combining the file %1...", baseURL.toDisplayString(QUrl::PreferLocalFile)));
 
     /* check whether the .crc file exists */
-    splURL = baseURL;
-    splURL.setFileName(baseURL.fileName() + ".crc");
-    KFileItem file(KFileItem::Unknown, KFileItem::Unknown, splURL);
+    splURL = baseURL.adjusted(QUrl::RemoveFilename);
+    splURL.setPath(splURL.path() + baseURL.fileName() + ".crc");
+    KFileItem file(splURL);
     //FIXME: works only for local files - use KIO::stat() instead
     file.refresh();
 
     if (!file.isReadable()) {
         int ret = KMessageBox::questionYesNo(0, i18n("The CRC information file (%1) is missing.\n"
                                              "Validity checking is impossible without it. Continue combining?",
-                                             splURL.pathOrUrl()));
+                                             splURL.toDisplayString(QUrl::PreferLocalFile)));
 
         if (ret == KMessageBox::No) {
             emit reject();
@@ -112,7 +112,7 @@ void Combiner::combineSplitFileFinished(KJob *job)
     QString error;
 
     if (job->error())
-        error = i18n("Error at reading the CRC file (%1).", splURL.pathOrUrl());
+        error = i18n("Error at reading the CRC file (%1).", splURL.toDisplayString(QUrl::PreferLocalFile));
     else {
         splitFile.remove('\r');   // Windows compatibility
         QStringList splitFileContent = splitFile.split('\n');
@@ -161,13 +161,13 @@ void Combiner::combineSplitFileFinished(KJob *job)
 void Combiner::statDest()
 {
     if (writeURL.isEmpty()) {
-        writeURL = destinationURL;
-        writeURL.addPath(baseURL.fileName());
-
+        writeURL = vfs::ensureTrailingSlash(destinationURL);
         if (hasValidSplitFile)
-            writeURL.setFileName(expectedFileName);
+            writeURL.setPath(writeURL.path() + expectedFileName);
         else if (unixNaming)
-            writeURL.setFileName(baseURL.fileName() + ".out");
+            writeURL.setPath(writeURL.path() + baseURL.fileName() + ".out");
+        else
+            writeURL.setPath(writeURL.path() + baseURL.fileName());
     }
 
     statJob = KIO::stat(writeURL, KIO::StatJob::DestinationSide, 0, KIO::HideProgressInfo);
@@ -186,8 +186,8 @@ void Combiner::statDestResult(KJob* job)
             emit reject();
         }
     } else { // destination already exists
-        KIO::RenameDialog_Mode mode = static_cast<KIO::StatJob*>(job)->statResult().isDir() ?
-            KIO::M_ISDIR : KIO::M_OVERWRITE;
+        KIO::RenameDialog_Options mode = static_cast<KIO::StatJob*>(job)->statResult().isDir() ?
+            KIO::RenameDialog_IsDirectory : KIO::RenameDialog_Overwrite;
         KIO::RenameDialog dlg(this, i18n("File Already Exists"), QUrl(), writeURL, mode);
         switch (dlg.exec()) {
         case KIO::R_OVERWRITE:
@@ -223,14 +223,14 @@ void Combiner::openNextFile()
                 name[ pos ] = ch;
                 pos--;
             } while (pos >= 0 && ch.toUpper() == QChar('A'));
-
-            readURL.setFileName(name);
+            readURL = readURL.adjusted(QUrl::RemoveFilename);
+            readURL.setPath(readURL.path() + name);
         }
     } else {
         QString index("%1");        /* determining the filename */
         index = index.arg(++fileCounter).rightJustified(3, '0');
-        readURL = baseURL;
-        readURL.setFileName(baseURL.fileName() + '.' + index);
+        readURL = baseURL.adjusted(QUrl::RemoveFilename);
+        readURL.setPath(readURL.path() + baseURL.fileName() + '.' + index);
     }
 
     /* creating a read job */
@@ -265,7 +265,7 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
                 this, SLOT(combineSendFinished(KJob *)));
     }
 
-     // continue writing and suspend read job until recieved data is handed over to the write job
+     // continue writing and suspend read job until received data is handed over to the write job
     combineReadJob->suspend();
     combineWriteJob->resume();
 }
@@ -279,9 +279,9 @@ void Combiner::combineReceiveFinished(KJob *job)
             if (fileCounter == 1) { // first file doesn't exist
                 combineAbortJobs();
                 KMessageBox::error(0, i18n("Cannot open the first split file of %1.",
-                                                baseURL.pathOrUrl()));
+                                           baseURL.toDisplayString(QUrl::PreferLocalFile)));
                 emit reject();
-            } else { // we've recieved the last file
+            } else { // we've received the last file
                 // write out the remaining part of the file
                 combineWriteJob->resume();
 
@@ -350,4 +350,3 @@ void Combiner::combineWritePercent(KJob *, unsigned long)
     setValue(percent);
 }
 
-#include "combiner.moc"

@@ -22,12 +22,12 @@
 
 #include "abstractpanelmanager.h"
 
-#include <qwidget.h>
-#include <QtGui/QLayout>
-#include <QGridLayout>
-#include <QHBoxLayout>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 
-#include <kconfiggroup.h>
+#include <KConfigCore/KConfigGroup>
 
 #include "paneltabbar.h"
 
@@ -39,7 +39,7 @@ class FileManagerWindow;
 class TabActions;
 
 /**
- * Implements tabbed-browsing by managing a list of tabs and corrosponding panels.
+ * Implements tabbed-browsing by managing a list of tabs and corresponding panels.
  */
 class PanelManager: public QWidget, public AbstractPanelManager
 {
@@ -56,7 +56,7 @@ public:
 
     void saveSettings(KConfigGroup config, bool saveHistory);
     void loadSettings(KConfigGroup config);
-    int findTab(KUrl url);
+    int findTab(QUrl url);
     int tabCount() {
         return _tabbar->count();
     }
@@ -73,14 +73,14 @@ public:
     }
 
     // AbstractPanelManager implementation
-    virtual bool isLeft() {
+    virtual bool isLeft() Q_DECL_OVERRIDE {
         return _left;
     }
-    virtual AbstractPanelManager *otherManager() {
+    virtual AbstractPanelManager *otherManager() Q_DECL_OVERRIDE {
         return _otherManager;
     }
-    virtual KrPanel *currentPanel();
-    virtual void newTab(const KUrl &url, KrPanel *nextTo) {
+    virtual KrPanel *currentPanel() Q_DECL_OVERRIDE;
+    virtual void newTab(const QUrl &url, KrPanel *nextTo) Q_DECL_OVERRIDE {
         slotNewTab(url, true, nextTo);
     }
 
@@ -97,11 +97,11 @@ public slots:
      */
 
     Q_SCRIPTABLE void newTab(const QString& url) {
-        slotNewTab(KUrl(url));
+        slotNewTab(QUrl::fromUserInput(url, QString(), QUrl::AssumeLocalFile));
     }
     Q_SCRIPTABLE void newTabs(const QStringList& urls);
 
-    void slotNewTab(const KUrl& url, bool setCurrent = true, KrPanel *nextTo = 0);
+    void slotNewTab(const QUrl &url, bool setCurrent = true, KrPanel *nextTo = 0);
     void slotNewTab();
     void slotLockTab();
     void slotNextTab();

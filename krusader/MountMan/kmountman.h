@@ -30,30 +30,23 @@ A
 #ifndef KMOUNTMAN_H
 #define KMOUNTMAN_H
 
-// QT includes
+#include <QtCore/QExplicitlySharedDataPointer>
 #include <QtCore/QObject>
 #include <QtCore/QString>
-#include <QPointer>
-#include <QWidget>
-#include <qaction.h>
+#include <QtCore/QPointer>
+#include <QtCore/QUrl>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QAction>
 
-// KDE includes
-#include <kdeversion.h>
-#include <kio/jobclasses.h>
-#include <kio/job.h>
-#include <kio/global.h>
-#include <kmountpoint.h>
-#include <kurl.h>
+#include <KIO/Job>
+#include <KIO/Global>
+#include <KIOCore/KMountPoint>
 
-// krusader includes
-#include <stdlib.h>
-#include <math.h>
-
-#include <solid/device.h>
-#include <solid/solidnamespace.h>
+#include <Solid/Device>
+#include <Solid/SolidNamespace>
 
 class KMountManGUI;
-class KAction;
+class QAction;
 class KToolBarPopupAction;
 
 class KMountMan : public QObject
@@ -80,8 +73,8 @@ public:
     bool invalidFilesystem(QString type);
     bool networkFilesystem(QString type);
     bool nonmountFilesystem(QString type, QString mntPoint);
-    KAction *action() {
-        return (KAction*) _action;
+    QAction *action() {
+        return (QAction *) _action;
     }
 
     KMountMan(QWidget *parent);
@@ -103,14 +96,14 @@ protected slots:
 
 protected:
     // used internally
-    static KSharedPtr<KMountPoint> findInListByMntPoint(KMountPoint::List &lst, QString value);
+    static QExplicitlySharedDataPointer<KMountPoint> findInListByMntPoint(KMountPoint::List &lst, QString value);
     void toggleMount(QString mntPoint);
-    void emitRefreshPanel(const KUrl &url) {
+    void emitRefreshPanel(const QUrl &url) {
         emit refreshPanel(url);
     }
 
 signals:
-    void refreshPanel(const KUrl &);
+    void refreshPanel(const QUrl &);
 
 private:
     QString *_actions;

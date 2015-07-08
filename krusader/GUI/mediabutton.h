@@ -19,19 +19,19 @@
 #ifndef MEDIABUTTON_H
 #define MEDIABUTTON_H
 
-#include <qwidget.h>
-#include <QtGui/QToolButton>
-#include <QEvent>
-#include <QMenu>
-#include <kurl.h>
+#include <QtCore/QEvent>
 #include <QtCore/QList>
-#include <qmap.h>
-#include <solid/device.h>
-#include <solid/solidnamespace.h>
+#include <QtCore/QMap>
 #include <QtCore/QTimer>
+#include <QtCore/QUrl>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QMenu>
+
+#include <Solid/Device>
+#include <Solid/SolidNamespace>
 
 class QMenu;
-class KIcon;
 
 class MediaButton : public QToolButton
 {
@@ -52,13 +52,13 @@ public slots:
     void mountPointChanged(QString mp);
 
 signals:
-    void openUrl(const KUrl&);
-    void newTab(const KUrl&);
+    void openUrl(const QUrl&);
+    void newTab(const QUrl&);
     void aboutToShow();
 
 protected:
     bool eventFilter(QObject *o, QEvent *e);
-    bool getNameAndIcon(Solid::Device &, QString &, KIcon &);
+    bool getNameAndIcon(Solid::Device &, QString &, QIcon &);
 
 private:
     void createMediaList();

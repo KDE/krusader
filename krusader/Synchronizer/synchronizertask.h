@@ -33,7 +33,7 @@
 
 #include <QtCore/QObject>
 
-#include <kio/job.h>
+#include <KIO/Job>
 
 class Synchronizer;
 class SynchronizerDirList;
@@ -53,7 +53,7 @@ class SynchronizerTask : public QObject
 
 public:
     SynchronizerTask() : QObject(), m_state(ST_STATE_NEW), m_statusMessage(QString()) {}
-    virtual ~SynchronizerTask() {};
+    virtual ~SynchronizerTask() {}
 
     inline int start(QWidget *parentWidget) {
         this->parentWidget = parentWidget; start(); return state();
@@ -78,7 +78,7 @@ public:
     }
 
 protected:
-    virtual void start() {};
+    virtual void start() {}
     int m_state;
     QString m_statusMessage;
     QWidget *parentWidget;
@@ -160,7 +160,7 @@ class CompareContentTask : public SynchronizerTask
     Q_OBJECT
 
 public:
-    CompareContentTask(Synchronizer *, SynchronizerFileItem *, const KUrl &, const KUrl &, KIO::filesize_t);
+    CompareContentTask(Synchronizer *, SynchronizerFileItem *, const QUrl &, const QUrl &, KIO::filesize_t);
     virtual ~CompareContentTask();
 
 public slots:
@@ -177,8 +177,8 @@ protected slots:
 private:
     void    abortContentComparing();
 
-    KUrl                   leftURL;        // the currently processed URL (left)
-    KUrl                   rightURL;       // the currently processed URL (right)
+    QUrl                   leftURL;        // the currently processed URL (left)
+    QUrl                   rightURL;       // the currently processed URL (right)
     KIO::filesize_t        size;           // the size of the compared files
 
     bool                   errorPrinted;   // flag indicates error

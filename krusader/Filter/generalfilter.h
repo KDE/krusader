@@ -31,16 +31,16 @@
 #ifndef GENERALFILTER_H
 #define GENERALFILTER_H
 
-#include <QtGui/QWidget>
-#include <QtGui/QLayout>
-#include <QtGui/QGroupBox>
-#include <QtGui/QCheckBox>
-#include <QtGui/QLabel>
-#include <QtGui/QHBoxLayout>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QHBoxLayout>
 
-#include <KComboBox>
+#include <KCompletion/KComboBox>
 #include <KShellCompletion>
-#include <KHistoryComboBox>
+#include <KCompletion/KHistoryComboBox>
 
 #include "filterbase.h"
 #include "../VFS/krquery.h"
@@ -57,15 +57,15 @@ public:
                   QStringList extraOptions = QStringList());
     ~GeneralFilter();
 
-    virtual void          queryAccepted();
-    virtual QString       name() {
+    virtual void          queryAccepted() Q_DECL_OVERRIDE;
+    virtual QString       name() Q_DECL_OVERRIDE {
         return "GeneralFilter";
     }
-    virtual FilterTabs *  filterTabs() {
+    virtual FilterTabs *  filterTabs() Q_DECL_OVERRIDE {
         return fltTabs;
     }
-    virtual bool getSettings(FilterSettings&);
-    virtual void applySettings(const FilterSettings&);
+    virtual bool getSettings(FilterSettings&) Q_DECL_OVERRIDE;
+    virtual void applySettings(const FilterSettings&) Q_DECL_OVERRIDE;
 
     bool isExtraOptionChecked(QString name);
     void checkExtraOption(QString name, bool check);

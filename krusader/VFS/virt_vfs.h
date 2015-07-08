@@ -20,8 +20,9 @@
 #ifndef VIRT_VFS_H
 #define VIRT_VFS_H
 
-#include <kconfig.h>
 #include <QtCore/QHash>
+
+#include <KConfigCore/KConfig>
 
 #include "vfs.h"
 
@@ -33,31 +34,31 @@ public:
     ~virt_vfs();
 
     /// Copy a file to the vfs (physical).
-    void vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "",  PreserveMode pmode = PM_DEFAULT);
+    void vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "",  PreserveMode pmode = PM_DEFAULT) Q_DECL_OVERRIDE;
     /// Remove a file from the vfs (physical)
-    void vfs_delFiles(QStringList *fileNames, bool reallyDelete = true);
+    void vfs_delFiles(const QStringList &fileNames, bool reallyDelete = true) Q_DECL_OVERRIDE;
     /// Remove a file from the collection (only its link, not the file)
     void vfs_removeFiles(QStringList *fileNames);
     /// Return a list of URLs for multiple files
-    KUrl::List* vfs_getFiles(QStringList* names);
+    QList<QUrl> vfs_getFiles(const QStringList &names) Q_DECL_OVERRIDE;
     /// Return a URL to a single file
-    KUrl vfs_getFile(const QString& name);
+    QUrl vfs_getFile(const QString& name) Q_DECL_OVERRIDE;
     /// Create a new directory
-    void vfs_mkdir(const QString& name);
+    void vfs_mkdir(const QString& name) Q_DECL_OVERRIDE;
     /// Rename file
-    void vfs_rename(const QString& fileName, const QString& newName);
+    void vfs_rename(const QString& fileName, const QString& newName) Q_DECL_OVERRIDE;
     /// Calculate the amount of space occupied by a file or directory (recursive).
-    virtual void vfs_calcSpace(QString name , KIO::filesize_t *totalSize, unsigned long *totalFiles, unsigned long *totalDirs, bool * stop);
+    virtual void vfs_calcSpace(QString name , KIO::filesize_t *totalSize, unsigned long *totalFiles, unsigned long *totalDirs, bool * stop) Q_DECL_OVERRIDE;
 
     /// Return the VFS working dir
-    QString vfs_workingDir() {
+    QString vfs_workingDir() Q_DECL_OVERRIDE {
         return QString();
     }
 
-    virtual QString metaInformation() {
+    virtual QString metaInformation() Q_DECL_OVERRIDE {
         return metaInfo;
     }
-    virtual void setMetaInformation(QString info);
+    void setMetaInformation(QString info);
 
 protected slots:
     void slotStatResult(KJob *job);
@@ -70,10 +71,10 @@ protected:
     /// return the URLs DB
     KConfig*  getVirtDB();
 
-    bool populateVfsList(const KUrl& origin, bool showHidden);
-    vfile* stat(const KUrl& url);
+    bool populateVfsList(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;
+    vfile* stat(const QUrl &url);
 
-    static QHash<QString, KUrl::List *> virtVfsDict;
+    static QHash<QString, QList<QUrl> *> virtVfsDict;
     static QHash<QString, QString> metaInfoDict;
     static KConfig* virt_vfs_db;
     bool busy;

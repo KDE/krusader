@@ -32,14 +32,14 @@
 #define SYNCHRONIZER_H
 
 #include <QtCore/QObject>
-#include <qmap.h>
-#include <qcolor.h>
-#include <QList>
+#include <QtCore/QMap>
+#include <QtCore/QList>
+#include <QtGui/QColor>
+#include <QtWidgets/QDialog>
 
-#include <kio/job.h>
-#include <kdialog.h>
+#include <KIO/Job>
 
-#include "synchronizertask.h"
+# include "synchronizertask.h"
 #include "synchronizerfileitem.h"
 
 class KRQuery;
@@ -213,7 +213,7 @@ private:
 
 class QProgressBar;
 
-class KgetProgressDialog : public KDialog
+class KgetProgressDialog : public QDialog
 {
     Q_OBJECT
 
@@ -226,7 +226,7 @@ public:
     }
 
 public slots:
-    void slotUser1();
+    void slotPause();
     void slotCancel();
 
     bool wasCancelled()      {
@@ -238,6 +238,7 @@ public slots:
 
 private:
     QProgressBar *mProgressBar;
+    QPushButton *mPauseButton;
     bool          mCancelled;
     bool          mPaused;
 };

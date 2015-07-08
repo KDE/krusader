@@ -407,6 +407,20 @@
             <entry>
               <para>
                 <keycombo action="simul">&Alt;
+                  <keycap>.</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu">Show/Hide hidden (dot)
+                  files.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Alt;
                 <keycap>/</keycap></keycombo>
               </para>
             </entry>
@@ -664,7 +678,9 @@
               </para>
             </entry>
             <entry>
-              <para><link linkend="splitter">Combine files</link>.</para>
+              <para>
+                <link linkend="bookman">Add bookmark for the current item.</link>
+              </para>
             </entry>
           </row>
           <row>
@@ -812,13 +828,11 @@
             <entry>
               <para>
                 <keycombo action="simul">&Ctrl;
-                <keycap>U</keycap></keycombo>
+                <keycap>Q</keycap></keycombo>
               </para>
             </entry>
             <entry>
-              <para>
-                <link linkend="view-menu">Swap panels (do not swap all folder tabs)</link>.
-              </para>
+              <para>Quit &krusader;.</para>
             </entry>
           </row>
           <row>
@@ -854,11 +868,13 @@
             <entry>
               <para>
                 <keycombo action="simul">&Ctrl;
-                <keycap>Q</keycap></keycombo>
+                <keycap>U</keycap></keycombo>
               </para>
             </entry>
             <entry>
-              <para>Quit &krusader;.</para>
+              <para>
+                <link linkend="view-menu">Swap panels (do not swap all folder tabs)</link>.
+              </para>
             </entry>
           </row>
           <row>
@@ -921,20 +937,6 @@
             <entry>
               <para>
                 <link linkend="edit-menu">Unselect group.</link>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul">&Ctrl;
-                <keycap>.</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <link linkend="view-menu">Show/Hide hidden (dot)
-                files.</link>
               </para>
             </entry>
           </row>
@@ -1088,21 +1090,6 @@
     <informaltable>
       <tgroup cols="2">
         <tbody>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul">
-                &Ctrl;&Shift;
-                <keycap>D</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <link linkend="bookman">Bookmark current
-                item.</link>
-              </para>
-            </entry>
-          </row>
           <row>
             <entry>
               <para>

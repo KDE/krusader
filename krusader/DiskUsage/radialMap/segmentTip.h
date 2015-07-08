@@ -19,9 +19,9 @@
 #ifndef SEGMENTTIP_H
 #define SEGMENTTIP_H
 
-#include <QPixmap>
-#include <qwidget.h>
-#include <QEvent>
+#include <QtCore/QEvent>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QWidget>
 
 class File;
 class Directory;
@@ -37,8 +37,8 @@ public:
     void moveto(QPoint, QWidget&, bool);
 
 private:
-    virtual bool eventFilter(QObject*, QEvent*);
-    virtual bool event(QEvent*);
+    virtual bool eventFilter(QObject*, QEvent*) Q_DECL_OVERRIDE;
+    virtual bool event(QEvent*) Q_DECL_OVERRIDE;
 
     uint    m_cursorHeight;
     QPixmap m_pixmap;

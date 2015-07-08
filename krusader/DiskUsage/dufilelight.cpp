@@ -30,11 +30,13 @@
 
 #include "dufilelight.h"
 #include "radialMap/radialMap.h"
-#include <kmenu.h>
-#include <klocale.h>
-#include <kinputdialog.h>
-#include <QPixmap>
-#include <QMouseEvent>
+
+#include <QtGui/QMouseEvent>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QInputDialog>
+#include <QtWidgets/QMenu>
+
+#include <KI18n/KLocalizedString>
 
 #define SCHEME_POPUP_ID    6730
 
@@ -92,11 +94,11 @@ void DUFilelight::mousePressEvent(QMouseEvent *event)
         if (focus && !focus->isFake() && focus->file() != currentDir)
             file = (File *)focus->file();
 
-        KMenu filelightPopup;
+        QMenu filelightPopup;
         filelightPopup.addAction(i18n("Zoom In"),  this, SLOT(zoomIn()), Qt::Key_Plus);
         filelightPopup.addAction(i18n("Zoom Out"), this, SLOT(zoomOut()), Qt::Key_Minus);
 
-        KMenu schemePopup;
+        QMenu schemePopup;
         schemePopup.addAction(i18n("Rainbow"),       this, SLOT(schemeRainbow()));
         schemePopup.addAction(i18n("High Contrast"), this, SLOT(schemeHighContrast()));
         schemePopup.addAction(i18n("KDE"),           this, SLOT(schemeKDE()));
@@ -188,8 +190,8 @@ void DUFilelight::minFontSize()
 {
     bool ok = false;
 
-    int result = KInputDialog::getInteger(i18n("Krusader::Filelight"),
-                                          i18n("Minimum font size"), (int)Filelight::Config::minFontPitch, 1, 100, 1, &ok, this);
+    int result = QInputDialog::getInt(this, i18n("Krusader::Filelight"), i18n("Minimum font size"),
+                                      (int)Filelight::Config::minFontPitch, 1, 100, 1, &ok);
 
     if (ok) {
         Filelight::Config::minFontPitch = (uint)result;
@@ -229,4 +231,3 @@ void DUFilelight::slotChanged(File *)
         refreshNeeded = true;
 }
 
-#include "dufilelight.moc"

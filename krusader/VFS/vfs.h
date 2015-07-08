@@ -32,21 +32,19 @@
 
 #include "vfilecontainer.h"
 
-// QT includes
 #include <QtCore/QString>
 #include <QtCore/QList>
 #include <QtCore/QObject>
 #include <QtCore/QHash>
-#include <QPointer>
-#include <QWidget>
-// KDE includes
-#include <kurl.h>
-#include <kio/jobclasses.h>
-// Krusader includes
+#include <QtCore/QPointer>
+#include <QtCore/QUrl>
+#include <QtWidgets/QWidget>
+
 #include "vfile.h"
 #include "preservingcopyjob.h"
 #include "krquery.h"
-#include "../MountMan/kmountman.h"
+
+class KMountMan;
 
 /**
  * The vfs class is an extendable class which by itself does (almost)
@@ -78,13 +76,13 @@ public:
     virtual bool isRoot();
 
     /// Copy a file to the vfs (physical).
-    virtual void vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) = 0;
+    virtual void vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) = 0;
     /// Remove a file from the vfs (physical)
-    virtual void vfs_delFiles(QStringList *fileNames, bool reallyDelete = false) = 0;
+    virtual void vfs_delFiles(const QStringList &fileNames, bool reallyDelete = false) = 0;
     /// Return a list of URLs for multiple files
-    virtual KUrl::List* vfs_getFiles(QStringList* names) = 0;
-    /// Return a URL to a single file
-    virtual KUrl vfs_getFile(const QString& name) = 0;
+    virtual QList<QUrl> vfs_getFiles(const QStringList &names) = 0;
+    /// Return a URL to a single file, with no trailing slash
+    virtual QUrl vfs_getFile(const QString& name) = 0;
     /// Create a new directory
     virtual void vfs_mkdir(const QString& name) = 0;
     /// Rename file
@@ -109,7 +107,7 @@ public:
     /// The total size of all the files in the VFS,
     KIO::filesize_t vfs_totalSize();
     /// Returns the VFS url.
-    inline KUrl vfs_getOrigin()          {
+    inline QUrl vfs_getOrigin()          {
         return vfs_origin;
     }
     /// Return the VFS type.
@@ -150,17 +148,13 @@ public:
         parentWindow = widget;
     }
     // set the mount manager
-    void setMountMan(KMountMan *mtMan) {
-        mountMan = mtMan;
-    }
+    void setMountMan(KMountMan *mtMan);
 
-    // KDE FTP proxy bug correction
-    static QString pathOrUrl(const KUrl &originIn, KUrl::AdjustPathOption trailingSlash = KUrl::LeaveTrailingSlash);
-
+    static QUrl ensureTrailingSlash(const QUrl &url);
 
 public slots:
     /// Re-reads files and stats and fills the vfile list
-    bool vfs_refresh(const KUrl& origin);
+    bool vfs_refresh(const QUrl &origin);
     /// Used to refresh the VFS when a job finishs. it calls the refresh() slot
     /// or display a error message if the job fails
     bool vfs_refresh(KJob * job);
@@ -175,14 +169,14 @@ public slots:
 
 signals:
     void startJob(KIO::Job* job);
-    void incrementalRefreshFinished(const KUrl&);   //< emitted when the incremental refresh was finished
+    void incrementalRefreshFinished(const QUrl&);   //< emitted when the incremental refresh was finished
     void deleteAllowed();
     void trashJobStarted(KIO::Job *job);
     void error(QString msg);
 
 protected:
     /// Feel the vfs dictionary with vfiles, must be implemented for each vfs
-    virtual bool populateVfsList(const KUrl& origin, bool showHidden) = 0;
+    virtual bool populateVfsList(const QUrl &origin, bool showHidden) = 0;
     /// Called by populateVfsList for each file
     void foundVfile(vfile *vf) {
         vfs_tempFilesP->insert(vf->vfile_getName(), vf);
@@ -201,15 +195,15 @@ protected:
     }
 
     /// Deletes a vfile from the list.
-    void calculateURLSize(KUrl url, KIO::filesize_t *totalSize, unsigned long *totalFiles, unsigned long *totalDirs, bool * stop);
+    void calculateURLSize(QUrl url, KIO::filesize_t *totalSize, unsigned long *totalFiles, unsigned long *totalDirs, bool * stop);
 
     VFS_TYPE      vfs_type;     //< the vfs type.
-    KUrl          vfs_origin;   //< the path or file the VFS originates from.
+    QUrl          vfs_origin;   //< the path or file the VFS originates from.
     bool          vfs_busy;     //< true if vfs is busy with refreshing
     bool quietMode;             //< if true the vfs won't display error messages or emit signals
     bool disableRefresh;        //< true if refresh is disabled
     bool isWritable;            //< true if it's writable
-    KUrl postponedRefreshURL;   //< true if vfs_refresh() was called when refresh is disabled.
+    QUrl postponedRefreshURL;   //< true if vfs_refresh() was called when refresh is disabled.
     bool invalidated;           //< the content of the cache is invalidated
     bool panelConnected;        //< indicates that there's a panel connected. Important for disabling the dir watcher
     QPointer<QWidget> parentWindow;

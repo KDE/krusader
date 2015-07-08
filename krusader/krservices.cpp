@@ -19,14 +19,11 @@
 
 #include "krservices.h"
 
-#include <stdlib.h>
-#include <unistd.h>
-
 #include <QtCore/QDir>
 #include <QtCore/QTextStream>
 
-#include <kdebug.h>
-#include <kstandarddirs.h>
+#include <KConfigCore/KSharedConfig>
+#include <KIOCore/KProtocolManager>
 
 #include "krglobal.h"
 #include "defaults.h"
@@ -39,7 +36,7 @@ bool KrServices::cmdExist(QString cmdName)
     if (QFile(group.readEntry(cmdName, QString())).exists())
         return true;
 
-    return !KStandardDirs::findExe(cmdName).isEmpty();
+    return !QStandardPaths::findExecutable(cmdName).isEmpty();
 }
 
 static const QStringList bin_suffixes = QStringList()
@@ -61,7 +58,7 @@ QString KrServices::fullPathName(QString name, QString confName)
     if (QFile(supposedName = config.readEntry(confName, QString())).exists())
         return supposedName;
 
-    if ((supposedName = KStandardDirs::findExe(name)).isEmpty())
+    if ((supposedName = QStandardPaths::findExecutable(name)).isEmpty())
         return "";
 
     config.writeEntry(confName, supposedName);
@@ -80,7 +77,7 @@ QString KrServices::chooseFullPathName(QStringList names, QString confName)
     return "";
 }
 
-QString KrServices::registerdProtocol(QString mimetype)
+QString KrServices::registeredProtocol(QString mimetype)
 {
     if (slaveMap == 0) {
         slaveMap = new QMap<QString, QString>();
@@ -92,10 +89,12 @@ QString KrServices::registerdProtocol(QString mimetype)
             for (QStringList::Iterator it2 = mimes.begin(); it2 != mimes.end(); it2++)
                 (*slaveMap)[*it2] = *it;
         }
-
-
     }
-    return (*slaveMap)[mimetype];
+    QString protocol = (*slaveMap)[mimetype];
+    if(protocol.isEmpty()) {
+        protocol = KProtocolManager::protocolForArchiveMimetype(mimetype);
+    }
+    return protocol;
 }
 
 void KrServices::clearProtocolCache()
@@ -139,6 +138,70 @@ QStringList KrServices::quote(const QStringList& names)
     return result;
 }
 
+QList<QUrl> KrServices::toUrlList(const QStringList &list)
+{
+    QList<QUrl> result;
+    for (QStringList::ConstIterator it = list.constBegin(); it != list.constEnd(); ++it) {
+        result.append(QUrl::fromUserInput(*it, QDir::currentPath(), QUrl::AssumeLocalFile));
+    }
+    return result;
+}
+
+QStringList KrServices::toStringList(const QList<QUrl> &list)
+{
+    QStringList result;
+    for(QList<QUrl>::ConstIterator it = list.constBegin(); it != list.constEnd(); ++it) {
+        result.append(it->toString());
+    }
+    return result;
+}
+
+// Adds one tool to the list in the supportedTools method
+void supportedTool(QStringList &tools, QString toolType,
+                   QStringList names, QString confName) {
+    QString foundTool = KrServices::chooseFullPathName(names, confName);
+    if (! foundTool.isEmpty()) {
+        tools.append(toolType);
+        tools.append(foundTool);
+    }
+}
+
+// return a list in the format of TOOLS,PATH. for example
+// DIFF,kdiff,TERMINAL,konsole,...
+//
+// currently supported tools: DIFF, MAIL, RENAME
+//
+// to use it: QStringList lst = supportedTools();
+//            int i = lst.indexOf("DIFF");
+//            if (i!=-1) pathToDiff=lst[i+1];
+QStringList KrServices::supportedTools() {
+    QStringList tools;
+
+    // first, a diff program: kdiff
+    supportedTool(tools, "DIFF",
+                  QStringList() << "kdiff3" << "kompare" << "xxdiff",
+                  "diff utility");
+
+    // a mailer: kmail or thunderbird
+    supportedTool(tools, "MAIL",
+                  QStringList() << "thunderbird" << "kmail",
+                  "mailer");
+
+    // rename tool: krename
+    supportedTool(tools, "RENAME",
+                  QStringList() << "krename",
+                  "krename");
+
+    // checksum utility
+    supportedTool(tools, "MD5",
+                  QStringList() << "md5deep" << "md5sum" << "sha1deep" << "sha256deep"
+                  << "tigerdeep" << "whirlpooldeep" << "cfv",
+                  "checksum utility");
+
+    return tools;
+}
+
+
 QString KrServices::escape(QString name)
 {
     const QString evilstuff = "\\\"'`()[]{}!?;$&<>| \t\r\n";  // stuff that should get escaped
@@ -149,9 +212,9 @@ QString KrServices::escape(QString name)
     return name;
 }
 
-QString KrServices::getPath(const KUrl & url, KUrl::AdjustPathOption trailing)
+QString KrServices::getPath(const QUrl &url, QUrl::FormattingOptions options)
 {
-    QString path = url.path(trailing);
+    QString path = url.toDisplayString(options | QUrl::PreferLocalFile);
     REPLACE_DIR_SEP2(path);
 
 #ifdef Q_WS_WIN

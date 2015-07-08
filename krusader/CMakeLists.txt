@@ -1,8 +1,9 @@
-include_directories(${KDE4_INCLUDES})
+include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
 
 configure_file(krusaderversion.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/krusaderversion.h)
 
-find_package(LibKonq)
+# keep it disabled until kde-baseapps will be ported
+#find_package(LibKonq)
 
 if(LIBKONQ_FOUND)
     message(STATUS "libkonq library found")
@@ -24,7 +25,6 @@ add_subdirectory(Locate)
 add_subdirectory(MountMan)
 add_subdirectory(Queue)
 add_subdirectory(Panel)
-### add_subdirectory(RemoteMan) - deprecated ###
 add_subdirectory(Search)
 add_subdirectory(Splitter)
 add_subdirectory(UserAction)
@@ -43,22 +43,22 @@ set(krusader_SRCS
     actionsbase.cpp
     tabactions.cpp
     kractions.cpp
-    paneltabbar.cpp 
-    panelmanager.cpp 
-    krservices.cpp 
-    main.cpp 
-    krusaderview.cpp 
-    krusader.cpp 
-    krslots.cpp 
-    kicons.cpp 
-    krusaderapp.cpp
+    paneltabbar.cpp
+    panelmanager.cpp
+    krservices.cpp
+    main.cpp
+    krusaderview.cpp
+    krusader.cpp
+    krslots.cpp
+    kicons.cpp
     krtrashhandler.cpp)
 
-kde4_add_app_icon(krusader_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-krusader_user.png")
+# TODO porting: missing kf5 equivalent
+#kde4_add_app_icon(krusader_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-krusader_user.png")
 
-qt4_add_resources(krusader_RC_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc" )
+qt5_add_resources(krusader_RC_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc" )
 
-kde4_add_executable(krusader ${krusader_SRCS} ${krusader_RC_SRCS})
+add_executable(krusader ${krusader_SRCS} ${krusader_RC_SRCS})
 
 target_link_libraries(krusader
                       Panel
@@ -81,11 +81,11 @@ target_link_libraries(krusader
                       Filter
                       Dialogs
                       GUI
-                      ${KDE4_KPARTS_LIBS}
-                      ${KDE4_KDEUI_LIBS}
-                      ${KDE4_KFILE_LIBS}
-                      ${KDE4_KDECORE_LIBS}
-                      ${KDE4_SOLID_LIBS})
+                      KF5::Notifications
+                      KF5::Parts
+                      KF5::WindowSystem
+                      Qt5::PrintSupport
+)
 
 if(ENABLE_SYNCHRONIZER)
     target_link_libraries( krusader Synchronizer )
@@ -102,7 +102,8 @@ install(PROGRAMS krusader.desktop
 install(FILES krusaderui.rc
               krusaderlisterui.rc
               krviewer.rc
-              midnight_commander.color
+        DESTINATION ${KXMLGUI_INSTALL_DIR}/krusader)
+install(FILES midnight_commander.color
               total_commander.color
               total_commander.keymap
               total_commander.keymap.info
@@ -111,4 +112,32 @@ install(FILES krusaderui.rc
               splash.png
         DESTINATION ${DATA_INSTALL_DIR}/krusader)
 
-kde4_install_icons( ${ICON_INSTALL_DIR} )
+ecm_install_icons(ICONS
+    icons/16-apps-krusader_blue.png
+    icons/16-apps-krusader_red.png
+    icons/16-apps-krusader_root.png
+    icons/16-apps-krusader_user.png
+    icons/22-apps-krusader_blue.png
+    icons/22-apps-krusader_red.png
+    icons/22-apps-krusader_root.png
+    icons/22-apps-krusader_shield.png
+    icons/22-apps-krusader_user.png
+    icons/32-apps-krusader_blue.png
+    icons/32-apps-krusader_red.png
+    icons/32-apps-krusader_root.png
+    icons/32-apps-krusader_shield.png
+    icons/32-apps-krusader_user.png
+    icons/48-apps-krusader_blue.png
+    icons/48-apps-krusader_red.png
+    icons/48-apps-krusader_root.png
+    icons/48-apps-krusader_shield.png
+    icons/48-apps-krusader_user.png
+    icons/64-apps-krusader_blue.png
+    icons/64-apps-krusader_red.png
+    icons/64-apps-krusader_root.png
+    icons/64-apps-krusader_shield.png
+    icons/64-apps-krusader_user.png
+    icons/128-apps-krusader_root.png
+    icons/128-apps-krusader_user.png
+    DESTINATION ${ICON_INSTALL_DIR}
+)

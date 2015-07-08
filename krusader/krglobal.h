@@ -32,11 +32,12 @@
 #ifndef KRGLOBAL_H
 #define KRGLOBAL_H
 
-#include <kconfiggroup.h>
-#include <kshortcut.h>
-#include <kdebug.h>
+#include <QtCore/QDebug>
+#include <QtGui/QKeySequence>
 
-#define krOut kDebug()
+#include <KConfigCore/KConfigGroup>
+
+#define krOut qDebug()
 
 class KConfig;
 class KMountMan;
@@ -67,7 +68,7 @@ public:
     static KrPanel *activePanel();
 
     //HACK - used by [ListerTextArea|KrSearchDialog|LocateDlg]:keyPressEvent()
-    static KShortcut copyShortcut;
+    static QKeySequence copyShortcut;
 
 //     static void enableAction(const char *name, bool enable);
 //     static QAction *getAction(const char *name);

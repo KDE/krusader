@@ -31,12 +31,15 @@
 #include "kgdependencies.h"
 #include "../krservices.h"
 #include "../krglobal.h"
-#include <QtGui/QTabWidget>
-#include <QGridLayout>
-#include <QScrollArea>
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kurl.h>
+
+#include <QtCore/QUrl>
+#include <QtWidgets/QTabWidget>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QScrollArea>
+
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
 
 #define PAGE_GENERAL   0
 #define PAGE_PACKERS   1
@@ -159,19 +162,19 @@ void KgDependencies::slotApply(QObject *obj, QString cls, QString name)
     KonfiguratorURLRequester *urlRequester = (KonfiguratorURLRequester *) obj;
 
     KConfigGroup group(krConfig, cls);
-    group.writeEntry(name, urlRequester->url().pathOrUrl());
+    group.writeEntry(name, urlRequester->url().toDisplayString(QUrl::PreferLocalFile));
 
     QString usedPath = KrServices::fullPathName(name);
 
-    if (urlRequester->url() != usedPath) {
+    if (urlRequester->url().toDisplayString(QUrl::PreferLocalFile) != usedPath) {
         group.writeEntry(name, usedPath);
         if (usedPath.isEmpty())
             KMessageBox::error(this, i18n("The %1 path is incorrect, no valid path found.",
-                                          urlRequester->url().pathOrUrl()));
+                                          urlRequester->url().toDisplayString(QUrl::PreferLocalFile)));
         else
             KMessageBox::error(this, i18n("The %1 path is incorrect, %2 used instead.",
-                                          urlRequester->url().pathOrUrl(), usedPath));
-        urlRequester->setUrl(KUrl(usedPath));
+                                          urlRequester->url().toDisplayString(QUrl::PreferLocalFile), usedPath));
+        urlRequester->setUrl(QUrl::fromLocalFile(usedPath));
     }
 }
 
@@ -180,4 +183,3 @@ int KgDependencies::activeSubPage()
     return tabWidget->currentIndex();
 }
 
-#include "kgdependencies.moc"

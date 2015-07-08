@@ -18,19 +18,20 @@
 
 #include "useraction.h"
 
+#include <QtCore/QDebug>
+#include <QtCore/QFile>
 #include <QtCore/QHash>
+#include <QtCore/QStandardPaths>
 #include <QtCore/QTextStream>
+#include <QtCore/QUrl>
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement>
-#include <QFile>
+#include <QtWidgets/QMenu>
 
-#include <kdebug.h>
-#include <kurl.h>
-#include <kactioncollection.h>
-#include <kactionmenu.h>
-#include <kmenu.h>
-#include <kstandarddirs.h>
-#include <kmessagebox.h>
+#include <KI18n/KLocalizedString>
+#include <KXmlGui/KActionCollection>
+#include <KWidgetsAddons/KActionMenu>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "kraction.h"
 #include "../krusader.h"
@@ -40,9 +41,7 @@
 
 UserAction::UserAction()
 {
-    krOut << "Initialisising useractions..." << endl;
     readAllFiles();
-    krOut << _actions.count() << " useractions read." << endl;
 }
 
 UserAction::~UserAction()
@@ -53,8 +52,8 @@ UserAction::~UserAction()
 void UserAction::removeKrAction(KrAction* action)
 {
     _actions.removeAll(action);
-    if (_defaultActions.contains(action->getName()))
-        _deletedActions.insert(action->getName());
+    if (_defaultActions.contains(action->objectName()))
+        _deletedActions.insert(action->objectName());
 }
 
 void UserAction::setAvailability()
@@ -62,9 +61,9 @@ void UserAction::setAvailability()
     setAvailability(ACTIVE_FUNC->files()->vfs_getFile(ACTIVE_PANEL->view->getCurrentItem()));
 }
 
-void UserAction::setAvailability(const KUrl& currentURL)
+void UserAction::setAvailability(const QUrl &currentURL)
 {
-    //kDebug() << "UserAction::setAvailability currendFile: " << currentURL.url() << endl;
+    //qDebug() << "UserAction::setAvailability currendFile: " << currentURL.url() << endl;
     // disable the entries that should not appear in this folder
     QListIterator<KrAction *> it(_actions);
     while (it.hasNext()) {
@@ -73,7 +72,7 @@ void UserAction::setAvailability(const KUrl& currentURL)
     }
 }
 
-void UserAction::populateMenu(KActionMenu* menu, const KUrl *currentURL)
+void UserAction::populateMenu(KActionMenu* menu, const QUrl *currentURL)
 {
     // I have not found any method in Qt/KDE
     // for non-recursive searching of children by name ...
@@ -131,7 +130,7 @@ QStringList UserAction::allNames()
     QListIterator<KrAction *> it(_actions);
     while (it.hasNext()) {
         KrAction * action = it.next();
-        actionNames.append(action->getName());
+        actionNames.append(action->objectName());
     }
 
     return actionNames;
@@ -139,13 +138,13 @@ QStringList UserAction::allNames()
 
 void UserAction::readAllFiles()
 {
-    QString filename = KStandardDirs::locate("data", ACTION_XML);   // locate returns the local file if it exists, else the global one is retrieved.
+    QString filename = QStandardPaths::locate(QStandardPaths::GenericDataLocation, ACTION_XML);   // locate returns the local file if it exists, else the global one is retrieved.
     if (! filename.isEmpty())
-        readFromFile(KStandardDirs::locate("data", ACTION_XML), renameDoublicated);
+        readFromFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, ACTION_XML), renameDoublicated);
 
-    filename = KStandardDirs::locate("data", ACTION_XML_EXAMPLES);
+    filename = QStandardPaths::locate(QStandardPaths::GenericDataLocation, ACTION_XML_EXAMPLES);
     if (! filename.isEmpty())
-        readFromFile(KStandardDirs::locate("data", ACTION_XML_EXAMPLES), ignoreDoublicated);     // ignore samples which are already in the normal file
+        readFromFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, ACTION_XML_EXAMPLES), ignoreDoublicated);     // ignore samples which are already in the normal file
 }
 
 void UserAction::readFromFile(const QString& filename, ReadMode mode, KrActionList* list)
@@ -153,9 +152,9 @@ void UserAction::readFromFile(const QString& filename, ReadMode mode, KrActionLi
     QDomDocument* doc = new QDomDocument(ACTION_DOCTYPE);
     QFile file(filename);
     if (file.open(QIODevice::ReadOnly)) {
-        //kDebug() << "UserAction::readFromFile - " << filename << "could be opened" << endl;
+        //qDebug() << "UserAction::readFromFile - " << filename << "could be opened" << endl;
         if (! doc->setContent(&file)) {
-            //kDebug() << "UserAction::readFromFile - content set - failed" << endl;
+            //qDebug() << "UserAction::readFromFile - content set - failed" << endl;
             // if the file doesn't exist till now, the content CAN be set but is empty.
             // if the content can't be set, the file exists and is NOT an xml-file.
             file.close();
@@ -253,7 +252,7 @@ QDomDocument UserAction::createEmptyDoc()
 
 bool UserAction::writeActionFile()
 {
-    QString filename = KStandardDirs::locateLocal("data", ACTION_XML);
+    QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + ACTION_XML;
 
     QDomDocument doc = createEmptyDoc();
     QDomElement root = doc.documentElement();

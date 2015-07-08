@@ -20,9 +20,8 @@
 #ifndef DIRHISTORYBUTTON_H
 #define DIRHISTORYBUTTON_H
 
-#include <qwidget.h>
-#include <QtGui/QToolButton>
-#include <kurl.h>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QToolButton>
 
 class QMenu;
 class QAction;
@@ -53,7 +52,6 @@ public slots: // Public slots
     void slotPopupActivated(QAction *);
 signals: // Signals
     /** No descriptions */
-//     void openUrl(const KUrl&);
     void gotoPos(int pos);
 };
 

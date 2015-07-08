@@ -34,11 +34,14 @@
 #include "advancedfilter.h"
 #include "../krglobal.h"
 
-#include <klocale.h>
-#include <kmessagebox.h>
+#include <QtWidgets/QTabWidget>
+
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
 
 
-FilterTabs::FilterTabs(int properties, KTabWidget *tabWidget,
+FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget,
                        QObject *parent, QStringList extraOptions) :
         QObject(parent)
 {
@@ -67,7 +70,7 @@ void FilterTabs::checkExtraOption(QString name, bool check)
     static_cast<GeneralFilter*>(get("GeneralFilter"))->checkExtraOption(name, check);
 }
 
-FilterTabs * FilterTabs::addTo(KTabWidget *tabWidget, int props, QStringList extraOptions)
+FilterTabs * FilterTabs::addTo(QTabWidget *tabWidget, int props, QStringList extraOptions)
 {
     return new FilterTabs(props, tabWidget, tabWidget, extraOptions);
 }
@@ -159,5 +162,3 @@ KRQuery FilterTabs::getQuery(QWidget *parent)
     return dialog.getQuery();
 }
 
-
-#include "filtertabs.moc"

@@ -18,12 +18,14 @@
 
 #include "queuewidget.h"
 #include "queue_mgr.h"
-#include <kmessagebox.h>
-#include <klocale.h>
-#include <kmenu.h>
-#include <QtGui/QCursor>
 
-QueueWidget::QueueWidget(QWidget * parent): KTabWidget(parent)
+#include <QtGui/QCursor>
+#include <QtWidgets/QMenu>
+
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
+
+QueueWidget::QueueWidget(QWidget * parent): QTabWidget(parent)
 {
     QList<QString> queueList = QueueManager::queues();
     foreach(const QString &name, queueList) {
@@ -138,7 +140,7 @@ void KrQueueListWidget::slotItemRightClicked(QListWidgetItem * item)
     if (item) {
         KrQueueListWidgetItem * kitem = (KrQueueListWidgetItem *)item;
         if (kitem->job()) {
-            KMenu popup(this);
+            QMenu popup(this);
             popup.setTitle(i18n("Queue Manager"));
             QAction * actDelete = popup.addAction(i18n("Delete"));
             QAction * res = popup.exec(QCursor::pos());

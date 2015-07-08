@@ -21,9 +21,9 @@
 #define POPULARURLS_H
 
 #include <QtCore/QObject>
-#include <kurl.h>
 #include <QtCore/QHash>
-#include <kdialog.h>
+#include <QtCore/QUrl>
+#include <QtWidgets/QDialog>
 
 // the class holds a list of most popular links in a dual data structure
 // * linked list, with head and tail: for fast append/prepend support
@@ -38,7 +38,7 @@
 typedef struct _UrlNode* UrlNodeP;
 typedef struct _UrlNode {
     UrlNodeP prev;
-    KUrl url;
+    QUrl url;
     int rank;
     UrlNodeP next;
 } UrlNode;
@@ -53,8 +53,8 @@ public:
     ~PopularUrls();
     void save();
     void load();
-    void addUrl(const KUrl& url);
-    KUrl::List getMostPopularUrls(int max);
+    void addUrl(const QUrl& url);
+    QList<QUrl> getMostPopularUrls(int max);
 
 public slots:
     void showDialog();
@@ -82,13 +82,13 @@ class KrTreeWidget;
 class KTreeWidgetSearchLine;
 class QModelIndex;
 
-class PopularUrlsDlg: public KDialog
+class PopularUrlsDlg: public QDialog
 {
     Q_OBJECT
 public:
     PopularUrlsDlg();
     ~PopularUrlsDlg();
-    void run(KUrl::List list); // use this to open the dialog
+    void run(QList<QUrl> list); // use this to open the dialog
     inline int result() const {
         return selection;
     } // returns index 0 - topmost, or -1

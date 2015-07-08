@@ -20,11 +20,13 @@
 #include "krcolorcache.h"
 #include "../krglobal.h"
 #include "../defaults.h"
-#include <kcolorscheme.h>
-#include <kdebug.h>
+
 #include <QtCore/QFile>
-#include <QPixmapCache>
-#include <QList>
+#include <QtCore/QList>
+#include <QtGui/QPixmapCache>
+#include <QtWidgets/QApplication>
+
+#include <KConfigCore/KSharedConfig>
 
 // Macro: set target = col, if col is valid
 #define SETCOLOR(target, col) { if (col.isValid()) target = col; }
@@ -147,7 +149,7 @@ void KrColorSettingsImpl::loadFromConfig()
     QStringList names = KrColorSettingNames::getColorNames();
     for (QStringList::Iterator it = names.begin(); it != names.end(); ++it) {
         m_colorTextValues[*it] = group.readEntry(*it, QString());
-        if (m_colorTextValues[*it].contains(',') == 3)
+        if (m_colorTextValues[*it].count(',') == 2)
             m_colorValues[*it] = group.readEntry(*it, QColor());
         else
             m_colorValues[*it] = QColor();
@@ -380,15 +382,16 @@ KrColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 {
     KrColorGroup result;
     if (m_colorSettings.getBoolValue("KDE Default", _KDEDefaultColors)) {
-        // KDE default? Getcolors from KGlobalSettings.
         bool enableAlternateBackground = m_colorSettings.getBoolValue("Enable Alternate Background", _AlternateBackground);
+
+        QPalette p = QGuiApplication::palette();
         QColor background = enableAlternateBackground && type.m_alternateBackgroundColor ?
-                            KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color()
-                            : KColorScheme(QPalette::Active, KColorScheme::View).background().color();
+                    p.color(QPalette::Active, QPalette::Base)
+                  :  p.color(QPalette::Active, QPalette::AlternateBase);
         result.setBackground(background);
-        result.setText(KColorScheme(QPalette::Active, KColorScheme::View).foreground().color());
-        result.setHighlightedText(KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color());
-        result.setHighlight(KColorScheme(QPalette::Active, KColorScheme::Selection).background().color());
+        result.setText(p.color(QPalette::Active, QPalette::Text));
+        result.setHighlight(p.color(QPalette::Active, QPalette::Highlight));
+        result.setHighlightedText(p.color(QPalette::Active, QPalette::HighlightedText));
 
         /*  if (type.m_currentItem && type.m_activePanel)
           {
@@ -506,7 +509,8 @@ const QColor & KrColorCacheImpl::setColorIfContrastIsSufficient(const QColor & b
 
 QColor KrColorCacheImpl::getForegroundColor(bool isActive) const
 {
-    QColor color = KColorScheme(QPalette::Active, KColorScheme::View).foreground().color();
+    QPalette p = QGuiApplication::palette();
+    QColor color = p.color(QPalette::Active, QPalette::Text);
     SETCOLOR(color, m_colorSettings.getColorValue("Foreground"));
     if (!isActive) SETCOLOR(color, m_colorSettings.getColorValue("Inactive Foreground"));
     return color;
@@ -526,7 +530,7 @@ QColor KrColorCacheImpl::getSpecialForegroundColor(const QString & type, bool is
 
 QColor KrColorCacheImpl::getBackgroundColor(bool isActive) const
 {
-    QColor color = KColorScheme(QPalette::Active, KColorScheme::View).background().color();
+    QColor color = QGuiApplication::palette().color(QPalette::Active, QPalette::Base);
     SETCOLOR(color, m_colorSettings.getColorValue("Background"));
     if (!isActive) SETCOLOR(color, m_colorSettings.getColorValue("Inactive Background"));
     return color;
@@ -534,6 +538,7 @@ QColor KrColorCacheImpl::getBackgroundColor(bool isActive) const
 
 QColor KrColorCacheImpl::getAlternateBackgroundColor(bool isActive) const
 {
+    QPalette p = QGuiApplication::palette();
     if (isActive && m_colorSettings.getColorTextValue("Alternate Background") == "Background")
         return getBackgroundColor(true);
     if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Background").isEmpty())
@@ -544,9 +549,9 @@ QColor KrColorCacheImpl::getAlternateBackgroundColor(bool isActive) const
                    m_colorSettings.getColorValue("Alternate Background")
                    : m_colorSettings.getColorValue("Inactive Alternate Background");
     if (!color.isValid())
-        color = KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color();
+        color = p.color(QPalette::Active, QPalette::AlternateBase);
     if (!color.isValid())
-        color = KColorScheme(QPalette::Active, KColorScheme::View).background().color();
+        color = p.color(QPalette::Active, QPalette::Base);
     return color;
 }
 
@@ -556,7 +561,7 @@ QColor KrColorCacheImpl::getMarkedForegroundColor(bool isActive) const
     if (m_colorSettings.getColorTextValue(colorName) == "transparent")
         return QColor();
     if (isActive && m_colorSettings.getColorTextValue(colorName).isEmpty())
-        return KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color();
+        return QGuiApplication::palette().color(QPalette::Active, QPalette::HighlightedText);
     if (!isActive && m_colorSettings.getColorTextValue(colorName).isEmpty())
         return getMarkedForegroundColor(true);
     return m_colorSettings.getColorValue(colorName);
@@ -565,7 +570,7 @@ QColor KrColorCacheImpl::getMarkedForegroundColor(bool isActive) const
 QColor KrColorCacheImpl::getMarkedBackgroundColor(bool isActive) const
 {
     if (isActive && m_colorSettings.getColorTextValue("Marked Background").isEmpty())
-        return KColorScheme(QPalette::Active, KColorScheme::Selection).background().color();
+        return QGuiApplication::palette().color(QPalette::Active, QPalette::Highlight);
     if (isActive && m_colorSettings.getColorTextValue("Marked Background") == "Background")
         return getBackgroundColor(true);
     if (!isActive && m_colorSettings.getColorTextValue("Inactive Marked Background").isEmpty())
@@ -653,8 +658,6 @@ KrColorCache * KrColorCache::m_instance = 0;
 KrColorCache::KrColorCache()
 {
     m_impl = new KrColorCacheImpl;
-
-    connect(KGlobalSettings::self(), SIGNAL(kdisplayPaletteChanged()), SLOT(refreshColors()));
 }
 
 KrColorCache::~KrColorCache()
@@ -750,4 +753,3 @@ void KrColorCache::setColors(const KrColorSettings & colorSettings)
     colorsRefreshed();
 }
 
-#include "krcolorcache.moc"

@@ -43,7 +43,7 @@ class KgPanel : public KonfiguratorPage
 public:
     KgPanel(bool first, QWidget* parent = 0);
 
-    virtual int activeSubPage();
+    virtual int activeSubPage() Q_DECL_OVERRIDE;
 
 protected:
     KonfiguratorCheckBoxGroup *cbs;

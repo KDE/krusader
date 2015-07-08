@@ -32,17 +32,17 @@
 #include "kgpanel.h"
 #include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
-#include <QtGui/QTabWidget>
-#include <QFrame>
-#include <QGridLayout>
-#include <QLabel>
-#include <QVBoxLayout>
-#include <klocale.h>
+
 #include <QtGui/QValidator>
-#include <kmessagebox.h>
-#include <kfiledialog.h>
-#include <kglobal.h>
-#include <kstandarddirs.h>
+#include <QtWidgets/QTabWidget>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QVBoxLayout>
+
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
+
 #include "../GUI/krtreewidget.h"
 #include "../Panel/krselectionmode.h"
 #include "../Panel/krview.h"
@@ -187,7 +187,7 @@ void KgPanel::setupMiscTab()
 
     KONFIGURATOR_CHECKBOX_PARAM barSettings[] =
     {
-        {"Look&Feel", "Show Size In Bytes", true, i18n("Show size in bytes too"), true,  i18n("Show size in bytes too") },
+        {"Look&Feel", "Show Size In Bytes", false, i18n("Show size in bytes too"), true,  i18n("Show size in bytes too") },
         {"Look&Feel", "ShowSpaceInformation", true, i18n("Show space information"), true,  i18n("Show free/total space on the device") },
     };
     KonfiguratorCheckBoxGroup *barSett = createCheckBoxGroup(2, 0, barSettings,
@@ -632,7 +632,7 @@ void KgPanel::setupMediaMenuTab()
         {"MediaMenu", "ShowPath",   true, i18n("Show Mount Path"),       false, 0 },
         {"MediaMenu", "ShowFSType", true, i18n("Show File System Type"), false, 0 },
     };
-    KonfiguratorCheckBoxGroup *mediaMenuCheckBoxes = 
+    KonfiguratorCheckBoxGroup *mediaMenuCheckBoxes =
         createCheckBoxGroup(1, 0, mediaMenuParams,
                             sizeof(mediaMenuParams) / sizeof(*mediaMenuParams),
                             tab, PAGE_MEDIA_MENU);

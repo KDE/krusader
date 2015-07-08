@@ -20,32 +20,31 @@
 
 #include "kraction.h"
 
+#include <QtCore/QDebug>
 #include <QtCore/QEvent>
 #include <QtCore/QFile>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 #include <QtCore/QRegExp>
 #include <QtCore/QTextStream>
-
-#include <QtGui/QBoxLayout>
-#include <QtGui/QLayout>
-#include <QtGui/QSplitter>
-#include <QtGui/QPushButton>
-#include <QtGui/QCheckBox>
-#include <QtGui/QLabel>
 #include <QtGui/QKeyEvent>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QBoxLayout>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSplitter>
+#include <QtXml/QDomElement>
 
-#include <KDialog>
-#include <KDebug>
-#include <KLocale>
-#include <KInputDialog>
-#include <KActionCollection>
-#include <KShell>
-#include <KAction>
-#include <KUrl>
-#include <KMessageBox>
-#include <KFileDialog>
-#include <KVBox>
-#include <KPushButton>
-#include <KMimeType>
+#include <KConfigCore/KSharedConfig>
+#include <KXmlGui/KActionCollection>
+#include <KWidgetsAddons/KMessageBox>
+#include <KCoreAddons/KShell>
+#include <KI18n/KLocalizedString>
+#include <KParts/ReadOnlyPart>
 
 #include "expander.h"
 #include "useraction.h"
@@ -57,51 +56,40 @@
 
 // KrActionProcDlg
 KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *parent) :
-        KDialog(parent), _stdout(0), _stderr(0), _currentTextEdit(0)
+        QDialog(parent), _stdout(0), _stderr(0), _currentTextEdit(0)
 {
     setWindowTitle(caption);
-    setButtons(KDialog::User1 | KDialog::Ok | KDialog::Cancel);
-    setDefaultButton(KDialog::Cancel);
     setWindowModality(Qt::NonModal);
 
-    setButtonGuiItem(KDialog::Ok, KGuiItem(i18n("Close")));
-    enableButtonOk(false);   // disable the close button, until the process finishes
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
 
-    setButtonGuiItem(KDialog::Cancel, KGuiItem(i18n("Kill"), i18n("Kill the running process")));
-
-    setButtonText(KDialog::User1, i18n("Save as"));
-
-    KVBox *page = new KVBox(this);
-    setMainWidget(page);
     // do we need to separate stderr and stdout?
     if (enableStderr) {
-        QSplitter *splitt = new QSplitter(Qt::Vertical, page);
+        QSplitter *splitt = new QSplitter(Qt::Horizontal, this);
+        mainLayout->addWidget(splitt);
         // create stdout
         QWidget *stdoutWidget = new QWidget(splitt);
         QVBoxLayout *stdoutBox = new QVBoxLayout(stdoutWidget);
 
-        stdoutBox->setSpacing(6);
         stdoutBox->addWidget(new QLabel(i18n("Standard Output (stdout)"), stdoutWidget));
         _stdout = new KTextEdit(stdoutWidget);
         _stdout->setReadOnly(true);
-        _stdout->setMinimumWidth(fontMetrics().maxWidth() * 40);
         stdoutBox->addWidget(_stdout);
         // create stderr
         QWidget *stderrWidget = new QWidget(splitt);
         QVBoxLayout *stderrBox = new QVBoxLayout(stderrWidget);
 
-        stderrBox->setSpacing(6);
         stderrBox->addWidget(new QLabel(i18n("Standard Error (stderr)"), stderrWidget));
         _stderr = new KTextEdit(stderrWidget);
         _stderr->setReadOnly(true);
-        _stderr->setMinimumWidth(fontMetrics().maxWidth() * 40);
         stderrBox->addWidget(_stderr);
     } else {
         // create stdout
-        new QLabel(i18n("Output"), page);
-        _stdout = new KTextEdit(page);
+        mainLayout->addWidget(new QLabel(i18n("Output")));
+        _stdout = new KTextEdit;
         _stdout->setReadOnly(true);
-        _stdout->setMinimumWidth(fontMetrics().maxWidth() * 40);
+        mainLayout->addWidget(_stdout);
     }
 
     _currentTextEdit = _stdout;
@@ -115,17 +103,34 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
     bool startupState = group.readEntry("Use Fixed Font", _UserActions_UseFixedFont);
     toggleFixedFont(startupState);
 
-    // HACK This fetches the layout of the buttonbox from KDialog, although it is not accessable with KDialog's API
-    // None the less it's quite save to use since this implementation hasn't changed since KDE-3.3 (I haven't looked at earlier
-    // versions since we don't support them) and now all work is done in KDE-4.
-    QWidget* buttonBox = static_cast<QWidget*>(button(KDialog::Ok)->parent());
-    QBoxLayout* buttonBoxLayout = static_cast<QBoxLayout*>(buttonBox->layout());
-    QCheckBox* useFixedFont = new QCheckBox(i18n("Use font with fixed width"), buttonBox);
-    buttonBoxLayout->insertWidget(0, useFixedFont);
+    QHBoxLayout *hbox = new QHBoxLayout;
+    QCheckBox* useFixedFont = new QCheckBox(i18n("Use font with fixed width"));
     useFixedFont->setChecked(startupState);
+    hbox->addWidget(useFixedFont);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
+    hbox->addWidget(buttonBox);
+
+    mainLayout->addLayout(hbox);
+
+    closeButton = buttonBox->button(QDialogButtonBox::Close);
+    closeButton->setEnabled(false);
+
+    QPushButton *saveAsButton = new QPushButton;
+    KGuiItem::assign(saveAsButton, KStandardGuiItem::saveAs());
+    buttonBox->addButton(saveAsButton, QDialogButtonBox::ActionRole);
+
+    killButton = new QPushButton(i18n("Kill"));
+    killButton->setToolTip(i18n("Kill the running process"));
+    killButton->setDefault(true);
+    buttonBox->addButton(killButton, QDialogButtonBox::ActionRole);
+
+    connect(killButton, SIGNAL(clicked()), this, SIGNAL(killClicked()));
+    connect(saveAsButton, SIGNAL(clicked()), this, SLOT(slotSaveAs()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
     connect(useFixedFont, SIGNAL(toggled(bool)), SLOT(toggleFixedFont(bool)));
 
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+    resize(sizeHint() * 2);
 }
 
 void KrActionProcDlg::addStderr(const QString& str)
@@ -157,9 +162,9 @@ void KrActionProcDlg::toggleFixedFont(bool state)
     }
 }
 
-void KrActionProcDlg::slotUser1()
+void KrActionProcDlg::slotSaveAs()
 {
-    QString filename = KFileDialog::getSaveFileName(QString(), i18n("*.txt|Text files\n*|All files"), this);
+    QString filename = QFileDialog::getSaveFileName(this, QString(), QString(), i18n("*.txt|Text files\n*|All files"));
     if (filename.isEmpty())
         return;
     QFile file(filename);
@@ -190,6 +195,12 @@ void KrActionProcDlg::slotUser1()
     QTextStream stream(&file);
     stream << _currentTextEdit->toPlainText();
     file.close();
+}
+
+void KrActionProcDlg::slotProcessFinished()
+{
+    closeButton->setEnabled(true);
+    killButton->setEnabled(false);
 }
 
 void KrActionProcDlg::currentTextEditChanged()
@@ -292,7 +303,7 @@ void KrActionProc::start(QStringList cmdLineList)
             _proc->setOutputChannelMode(KProcess::SeparateChannels);
             connect(_proc, SIGNAL(readyReadStandardError()), SLOT(addStderr()));
             connect(_proc, SIGNAL(readyReadStandardOutput()), SLOT(addStdout()));
-            connect(_output, SIGNAL(cancelClicked()), this, SLOT(kill()));
+            connect(_output, SIGNAL(killClicked()), this, SLOT(kill()));
             _output->show();
 
             if (!_action->user().isEmpty()) {
@@ -311,8 +322,7 @@ void KrActionProc::processExited(int /*exitCode*/, QProcess::ExitStatus /*exitSt
     // enable the 'close' button on the dialog (if active), disable 'kill' button
     if (_output) {
         // TODO tell the user the program exit code
-        _output->enableButtonOk(true);
-        _output->enableButtonCancel(false);
+        _output->slotProcessFinished();
     }
     delete this; // banzai!!
 }
@@ -333,14 +343,11 @@ void KrActionProc::addStdout()
 
 
 // KrAction
-KrAction::KrAction(KActionCollection *parent, QString name) : KAction((QObject *)parent)
+KrAction::KrAction(KActionCollection *parent, QString name) : QAction((QObject *)parent)
 {
-    if (!name.isNull())
-        _name = name;
-    else
-        _name = "";
-
-    parent->addAction(_name, this);
+    _actionCollection = parent;
+    setObjectName(name);
+    parent->addAction(name, this);
 
     connect(this, SIGNAL(triggered()), this, SLOT(exec()));
 }
@@ -352,7 +359,7 @@ KrAction::~KrAction()
     krUserAction->removeKrAction(this);   // Importent! Else Krusader will crash when writing the actions to file
 }
 
-bool KrAction::isAvailable(const KUrl& currentURL)
+bool KrAction::isAvailable(const QUrl &currentURL)
 {
     bool available = true; //show per default (FIXME: make the default an attribute of <availability>)
 
@@ -360,8 +367,8 @@ bool KrAction::isAvailable(const KUrl& currentURL)
     if (! _showonlyProtocol.empty()) {
         available = false;
         for (QStringList::Iterator it = _showonlyProtocol.begin(); it != _showonlyProtocol.end(); ++it) {
-            //kDebug() << "KrAction::isAvailable currendProtocol: " << currentURL.protocol() << " =?= " << *it << endl;
-            if (currentURL.protocol() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
+            //qDebug() << "KrAction::isAvailable currendProtocol: " << currentURL.scheme() << " =?= " << *it << endl;
+            if (currentURL.scheme() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
                 available = true;
                 break;
             }
@@ -378,7 +385,7 @@ bool KrAction::isAvailable(const KUrl& currentURL)
                     break;
                 }
             } else
-                if (currentURL.directory() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
+                if (currentURL.adjusted(QUrl::RemoveFilename|QUrl::StripTrailingSlash).path() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
                     available = true;
                     break;
                 }
@@ -388,16 +395,17 @@ bool KrAction::isAvailable(const KUrl& currentURL)
     //check mime-type
     if (available && ! _showonlyMime.empty()) {
         available = false;
-        KMimeType::Ptr mime = KMimeType::findByUrl(currentURL);
-        if (mime) {
+        QMimeDatabase db;
+        QMimeType mime = db.mimeTypeForUrl(currentURL);
+        if (mime.isValid()) {
             for (QStringList::Iterator it = _showonlyMime.begin(); it != _showonlyMime.end(); ++it) {
                 if ((*it).contains("/")) {
-                    if (mime->is(*it)) {      // don't use ==; use 'is()' instead, which is aware of inheritence (ie: text/x-makefile is also text/plain)
+                    if (mime.inherits(*it)) {      // don't use ==; use 'inherits()' instead, which is aware of inheritence (ie: text/x-makefile is also text/plain)
                         available = true;
                         break;
                     }
                 } else {
-                    if (mime->name().indexOf(*it) == 0) {      // 0 is the beginning, -1 is not found
+                    if (mime.name().indexOf(*it) == 0) {      // 0 is the beginning, -1 is not found
                         available = true;
                         break;
                     }
@@ -454,7 +462,7 @@ bool KrAction::xmlRead(const QDomElement& element)
                 setToolTip(e.text());
             else
                 if (e.tagName() == "icon")
-                    setIcon(KIcon(_iconName = e.text()));
+                    setIcon(QIcon::fromTheme(_iconName = e.text()));
                 else
                     if (e.tagName() == "category")
                         setCategory(e.text());
@@ -472,12 +480,12 @@ bool KrAction::xmlRead(const QDomElement& element)
                                         readAvailability(e);
                                     else
                                         if (e.tagName() == "defaultshortcut")
-                                            setShortcut(KShortcut(e.text()));
+                                            _actionCollection->setDefaultShortcut(this, QKeySequence(e.text()));
                                         else
 
                                             // unknown but not empty
                                             if (! e.tagName().isEmpty())
-                                                krOut << "KrAction::xmlRead() - unrecognized tag found: <action name=\"" << _name << "\"><" << e.tagName() << ">" << endl;
+                                                krOut << "KrAction::xmlRead() - unrecognized tag found: <action name=\"" << objectName() << "\"><" << e.tagName() << ">" << endl;
 
     } // for ( QDomNode node = action->firstChild(); !node.isNull(); node = node.nextSibling() )
 
@@ -487,7 +495,7 @@ bool KrAction::xmlRead(const QDomElement& element)
 QDomElement KrAction::xmlDump(QDomDocument& doc) const
 {
     QDomElement actionElement = doc.createElement("action");
-    actionElement.setAttribute("name", _name);
+    actionElement.setAttribute("name", objectName());
 
     if (! isVisible()) {
         actionElement.setAttribute("enabled", "false");
@@ -547,7 +555,7 @@ void KrAction::readCommand(const QDomElement& element)
         else if (attr == "embedded_terminal")
             setExecType(RunInTE);
         else
-            krOut << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << _name << "\"><command executionmode=\"" << attr << "\"" << endl;
+            krOut << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << objectName() << "\"><command executionmode=\"" << attr << "\"" << endl;
 
     attr = element.attribute("accept", "local");   // default: "local"
     if (attr == "local")
@@ -555,7 +563,7 @@ void KrAction::readCommand(const QDomElement& element)
     else if (attr == "url")
         setAcceptURLs(true);
     else
-        krOut << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << _name << "\"><command accept=\"" << attr << "\"" << endl;
+        krOut << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << objectName() << "\"><command accept=\"" << attr << "\"" << endl;
 
     attr = element.attribute("confirmexecution", "false");   // default: "false"
     if (attr == "true")
@@ -626,7 +634,7 @@ void KrAction::readAvailability(const QDomElement& element)
                     if (e.tagName() == "filename")
                         showlist = & _showonlyFile;
                     else {
-                        krOut << "KrAction::readAvailability() - unrecognized element found: <action name=\"" << _name << "\"><availability><" << e.tagName() << ">" << endl;
+                        krOut << "KrAction::readAvailability() - unrecognized element found: <action name=\"" << objectName() << "\"><availability><" << e.tagName() << ">" << endl;
                         showlist = 0;
                     }
 
@@ -671,4 +679,3 @@ QDomElement KrAction::dumpAvailability(QDomDocument& doc) const
                     return availabilityElement;
 } //KrAction::dumpAvailability
 
-#include "kraction.moc"

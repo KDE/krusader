@@ -31,10 +31,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #ifndef KRERRORDISPLAY_H
 #define KRERRORDISPLAY_H
 
-#include <QWidget>
-#include <QLabel>
-#include <QTimer>
-#include <QColor>
+#include <QtCore/QTimer>
+#include <QtGui/QColor>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QLabel>
 
 class KrErrorDisplay: public QLabel
 {

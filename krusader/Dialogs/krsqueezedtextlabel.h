@@ -20,11 +20,12 @@
 #ifndef KRSQUEEZEDTEXTLABEL_H
 #define KRSQUEEZEDTEXTLABEL_H
 
-#include <ksqueezedtextlabel.h>
-#include <QResizeEvent>
-#include <QMouseEvent>
-#include <QDropEvent>
-#include <QDragEnterEvent>
+#include <QtGui/QMouseEvent>
+#include <QtGui/QDropEvent>
+#include <QtGui/QDragEnterEvent>
+#include <QtGui/QResizeEvent>
+
+#include <KWidgetsAddons/KSqueezedTextLabel>
 
 class QMouseEvent;
 class QDropEvent;
@@ -58,10 +59,10 @@ protected:
     void resizeEvent(QResizeEvent *) {
         squeezeTextToLabel(_index, _length);
     }
-    virtual void mousePressEvent(QMouseEvent *e);
-    virtual void dropEvent(QDropEvent *e);
-    virtual void dragEnterEvent(QDragEnterEvent *e);
-    virtual void paintEvent(QPaintEvent * e);
+    virtual void mousePressEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
+    virtual void dropEvent(QDropEvent *e) Q_DECL_OVERRIDE;
+    virtual void dragEnterEvent(QDragEnterEvent *e) Q_DECL_OVERRIDE;
+    virtual void paintEvent(QPaintEvent * e) Q_DECL_OVERRIDE;
     void squeezeTextToLabel(int index = -1, int length = -1);
 
     QString fullText;

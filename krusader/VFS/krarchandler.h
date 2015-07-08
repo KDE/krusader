@@ -30,13 +30,18 @@
 #ifndef KRARCHANDLER_H
 #define KRARCHANDLER_H
 
-#include <QtCore/QStringList>
-#include <QtCore/QObject>
-#include <kprocess.h>
-#include <kurl.h>
-#include <kwallet.h>
 #include <unistd.h> // for setsid, see Kr7zEncryptionChecker::setupChildProcess
 #include <signal.h> // for kill
+
+#include <QtCore/QStringList>
+#include <QtCore/QObject>
+#include <QtCore/QUrl>
+
+#include <KCoreAddons/KProcess>
+
+namespace KWallet {
+class Wallet;
+}
 
 class KRarcObserver : public QObject
 {
@@ -69,12 +74,10 @@ public:
     static bool test(QString archive, QString type, QString password,  KRarcObserver *observer,long count = 0L );
     // true - if the right unpacker exist in the system
     static bool arcSupported(QString type);
-    // true - if supported and the user want us to handle this kind of archive
-    static bool arcHandled(QString type);
     // return the a list of supported packers
     static QStringList supportedPackers();
     // true - if the url is an archive (ie: tar:/home/test/file.tar.bz2)
-    static bool isArchive(const KUrl& url);
+    static bool isArchive(const QUrl &url);
     // used to determine the type of the archive
     static QString getType(bool &encrypted, QString fileName, QString mime, bool checkEncrypted = true, bool fast = false);
     // queries the password from the user
@@ -148,7 +151,7 @@ public:
     }
 
 protected:
-    virtual void setupChildProcess() {
+    virtual void setupChildProcess() Q_DECL_OVERRIDE {
         // This function is called after the fork but for the exec. We create a process group
         // to work around a broken wrapper script of 7z. Without this only the wrapper is killed.
         setsid(); // make this process leader of a new process group

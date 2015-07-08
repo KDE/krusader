@@ -1,12 +1,15 @@
 [Protocol]
 exec=kio_iso
 protocol=iso
-listing=Name,Type,Size,Date,AccessDate,CreationDate,Access,Owner,Group,Link
+archiveMimetype=application/x-iso,application/x-cd-image,application/x-dvd-image
 input=filesystem
 output=filesystem
+listing=Name,Type,Size,Date,AccessDate,CreationDate,Access,Owner,Group,Link
 reading=true
 source=true
 Icon=media-optical
+Class=:local
+
 Description=A kioslave for ISO9660 filesystems
 Description[bg]=Поддръжка на файлови системи ISO9660
 Description[bs]=Kioslave za ISO9660 datotečne sisteme
@@ -46,4 +49,3 @@ Description[uk]=Kioslave для файлових систем ISO9660
 Description[x-test]=xxA kioslave for ISO9660 filesystemsxx
 Description[zh_CN]=ISO9660 文件系统的 kioslave
 Description[zh_TW]=ISO9660 檔案系統的 kioslave
-MimeType=application/x-iso

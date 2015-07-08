@@ -20,24 +20,23 @@
 #define QUEUEWIDGET_H
 
 #include <QtCore/QPointer>
-
-#include <ktabwidget.h>
+#include <QtWidgets/QTabWidget>
 
 #include "queue.h"
 #include "../GUI/krlistwidget.h"
 
 class KrQueueListWidget;
 
-class QueueWidget: public KTabWidget
+class QueueWidget: public QTabWidget
 {
     Q_OBJECT
 public:
     QueueWidget(QWidget * parent = 0);
     ~QueueWidget();
 
-    void deleteCurrent();
 
 protected slots:
+    void deleteCurrent();
     void slotQueueAdded(Queue *);
     void slotQueueDeleted(Queue *);
     void slotCurrentChanged(Queue *);

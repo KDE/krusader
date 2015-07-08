@@ -30,24 +30,23 @@
 
 #include "kcmdline.h"
 
-#include <stdlib.h>
-#include <unistd.h>
-
-#include <QtGui/QMessageBox>
-#include <QGridLayout>
-#include <QFrame>
-#include <QLabel>
-#include <QKeyEvent>
-#include <QtGui/QIcon>
 #include <QtCore/QDir>
+#include <QtCore/QStringList>
+#include <QtCore/QUrl>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QIcon>
+#include <QtGui/QFontDatabase>
 #include <QtGui/QFontMetrics>
 #include <QtGui/QImage>
-#include <QtCore/QStringList>
-#include <QtGui/QSizePolicy>
+#include <QtWidgets/QSizePolicy>
+#include <QtWidgets/QMessageBox>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QLabel>
 
-#include <kstandarddirs.h>
-#include <klocale.h>
-#include <kglobalsettings.h>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
 
 #include "../krglobal.h"
 #include "../kicons.h"
@@ -170,7 +169,7 @@ KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    int height = QFontMetrics(KGlobalSettings::generalFont()).height();
+    int height = QFontMetrics(QFontDatabase::systemFont(QFontDatabase::GeneralFont)).height();
     height =  height + 5 * (height > 14) + 6;
 
     // and editable command line
@@ -179,7 +178,6 @@ KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
     cmdLine->setMaxCount(100);  // remember 100 commands
     cmdLine->setMinimumContentsLength(10);
     cmdLine->setDuplicatesEnabled(false);
-    cmdLine->setFont(KGlobalSettings::generalFont());
     cmdLine->setMaximumHeight(height);
     cmdLine->setCompletionObject(&completion);
     cmdLine->setSizePolicy(QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed));
@@ -233,7 +231,7 @@ void KCMDLine::setCurrent(const QString &path)
 {
     cmdLine->setPath(path);
 
-    completion.setDir(path);
+    completion.setDir(QUrl::fromLocalFile(path));
     // make sure our command is executed in the right directory
     // This line is important for Krusader overall functions -> do not remove !
     QDir::setCurrent(path);
@@ -255,7 +253,7 @@ void KCMDLine::slotRun()
             dir = QDir::homePath();
         else if (dir.left(1) != "/" && !dir.contains(":/"))
             dir = cmdLine->path() + (cmdLine->path() == "/" ? "" : "/") + dir;
-        SLOTS->refresh(dir);
+        SLOTS->refresh(QUrl::fromUserInput(dir, QDir::currentPath(), QUrl::AssumeLocalFile));
     } else {
         exec();
         cmdLine->clearEditText();

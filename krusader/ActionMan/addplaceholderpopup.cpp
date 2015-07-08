@@ -21,30 +21,26 @@
 #include "addplaceholderpopup.h"
 
 #include "../UserAction/expander.h"
-
-#include <klocale.h>
-#include <kfiledialog.h>
-#include <kmessagebox.h>
-
 // for ParameterDialog
 #include "../krglobal.h" // for konfig-access
 #include "../BookMan/krbookmarkbutton.h"
 #include "../GUI/profilemanager.h"
 
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
-#include <QtGui/QToolButton>
-#include <QHBoxLayout>
-#include <QFrame>
-#include <QVBoxLayout>
-#include <klineedit.h>
-#include <QtGui/QCheckBox>
-#include <kiconloader.h>
-#include <kcombobox.h>
-#include <kurlcompletion.h>
-#include <knuminput.h>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QVBoxLayout>
 
-#include <kdebug.h>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KCompletion/KLineEdit>
+#include <KCompletion/KComboBox>
+#include <KIOWidgets/KUrlCompletion>
 
 #define ACTIVE_MASK  0x0100
 #define OTHER_MASK  0x0200
@@ -53,14 +49,14 @@
 #define INDEPENDENT_MASK 0x1000
 #define EXECUTABLE_ID  0xFFFF
 
-AddPlaceholderPopup::AddPlaceholderPopup(QWidget *parent) : KMenu(parent)
+AddPlaceholderPopup::AddPlaceholderPopup(QWidget *parent) : QMenu(parent)
 {
 
-    _activeSub = new KMenu(i18n("Active panel"), this);
-    _otherSub = new KMenu(i18n("Other panel"), this);
-    _leftSub = new KMenu(i18n("Left panel"), this);
-    _rightSub = new KMenu(i18n("Right panel"), this);
-    _independentSub = new KMenu(i18n("Panel independent"), this);
+    _activeSub = new QMenu(i18n("Active panel"), this);
+    _otherSub = new QMenu(i18n("Other panel"), this);
+    _leftSub = new QMenu(i18n("Left panel"), this);
+    _rightSub = new QMenu(i18n("Right panel"), this);
+    _independentSub = new QMenu(i18n("Panel independent"), this);
 
     addMenu(_activeSub);
     addMenu(_otherSub);
@@ -115,7 +111,7 @@ QString AddPlaceholderPopup::getPlaceholder(const QPoint& pos)
     // add the selected flag to the command line
     if (res->data().toInt() == EXECUTABLE_ID) {   // did the user need an executable ?
         // select an executable
-        QString filename = KFileDialog::getOpenFileName(QString(), QString(), this);
+        QString filename = QFileDialog::getOpenFileName(this);
         if (!filename.isEmpty()) {
             return filename + ' '; // with extra space
             // return filename; // without extra space
@@ -152,17 +148,17 @@ QString AddPlaceholderPopup::getPlaceholder(const QPoint& pos)
 /////////////////////////////// ParameterDialog ////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-ParameterDialog::ParameterDialog(const exp_placeholder* currentPlaceholder, QWidget *parent) : KDialog(parent)
+ParameterDialog::ParameterDialog(const exp_placeholder* currentPlaceholder, QWidget *parent) : QDialog(parent)
 {
-    //KDialog( Plain, i18n("User Action Parameter Dialog"), Default | Ok, Ok, parent ) {
     setWindowTitle(i18n("User Action Parameter Dialog"));
-    setButtons(Ok | Default);
-    setDefaultButton(Ok);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+
     _parameter.clear();
     _parameterCount = currentPlaceholder->parameterCount();
 
     QWidget *page = new QWidget(this);
-    setMainWidget(page);
+    mainLayout->addWidget(page);
     QVBoxLayout* layout = new QVBoxLayout(page);
     layout->setSpacing(11);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -203,8 +199,16 @@ ParameterDialog::ParameterDialog(const exp_placeholder* currentPlaceholder, QWid
     line->setFrameShadow(QFrame::Sunken);
     layout->addWidget(line);
 
-    connect(this, SIGNAL(defaultClicked()), this, SLOT(reset()));
-    connect(this, SIGNAL(okClicked()), this, SLOT(slotOk()));
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::RestoreDefaults);
+    mainLayout->addWidget(buttonBox);
+
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    connect(okButton, SIGNAL(clicked()), this, SLOT(slotOk()));
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox->button(QDialogButtonBox::RestoreDefaults), SIGNAL(clicked()), this, SLOT(reset()));
 }
 
 QString ParameterDialog::getParameter()
@@ -300,7 +304,7 @@ ParameterPlaceholder::ParameterPlaceholder(const exp_parameter& parameter, QWidg
     _lineEdit = new KLineEdit(hboxWidget);
     hbox->addWidget(_lineEdit);
     _button = new QToolButton(hboxWidget);
-    _button->setIcon(KIcon("list-add"));
+    _button->setIcon(QIcon::fromTheme("list-add"));
     hbox->addWidget(_button);
     connect(_button, SIGNAL(clicked()), this, SLOT(addPlaceholder()));
 }
@@ -413,7 +417,7 @@ ParameterFile::ParameterFile(const exp_parameter& parameter, QWidget* parent) : 
     hbox->addWidget(_lineEdit);
     _button = new QToolButton(hboxWidget);
     hbox->addWidget(_button);
-    _button->setIcon(KIcon("document-open"));
+    _button->setIcon(QIcon::fromTheme("document-open"));
     connect(_button, SIGNAL(clicked()), this, SLOT(addFile()));
 }
 
@@ -438,7 +442,7 @@ bool ParameterFile::valid()
 }
 void ParameterFile::addFile()
 {
-    QString filename = KFileDialog::getOpenFileName(QString(), QString(), this);
+    QString filename = QFileDialog::getOpenFileName(this);
     _lineEdit->insert(filename);
 }
 
@@ -526,10 +530,10 @@ ParameterGoto::ParameterGoto(const exp_parameter& parameter, QWidget* parent) : 
     hbox->addWidget(_lineEdit);
     _dirButton = new QToolButton(hboxWidget);
     hbox->addWidget(_dirButton);
-    _dirButton->setIcon(KIcon("document-open"));
+    _dirButton->setIcon(QIcon::fromTheme("document-open"));
     connect(_dirButton, SIGNAL(clicked()), this, SLOT(setDir()));
     _placeholderButton = new QToolButton(hboxWidget);
-    _placeholderButton->setIcon(KIcon("list-add"));
+    _placeholderButton->setIcon(QIcon::fromTheme("list-add"));
     hbox->addWidget(_placeholderButton);
     connect(_placeholderButton, SIGNAL(clicked()), this, SLOT(addPlaceholder()));
 
@@ -557,7 +561,7 @@ bool ParameterGoto::valid()
 }
 void ParameterGoto::setDir()
 {
-    QString folder = KFileDialog::getExistingDirectory(QString(), this);
+    QString folder = QFileDialog::getExistingDirectory(this);
     _lineEdit->setText(folder);
 }
 void ParameterGoto::addPlaceholder()
@@ -666,7 +670,7 @@ ParameterInt::ParameterInt(const exp_parameter& parameter, QWidget* parent) : Pa
     layout->setContentsMargins(0, 0, 0, 0);
 
     layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
-    layout->addWidget(_spinbox = new KIntSpinBox(this));
+    layout->addWidget(_spinbox = new QSpinBox(this));
     QStringList para = parameter.preset().section(':', 1).split(';');
 
     _spinbox->setMinimum(para[0].toInt());
@@ -694,5 +698,3 @@ bool ParameterInt::valid()
     return true;
 }
 
-
-#include "addplaceholderpopup.moc"

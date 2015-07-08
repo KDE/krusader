@@ -21,10 +21,11 @@
 #ifndef DIRHISTORYQUEUE_H
 #define DIRHISTORYQUEUE_H
 
-#include <QObject>
-#include <QStringList>
-#include <kurl.h>
-#include <kconfiggroup.h>
+#include <QtCore/QObject>
+#include <QtCore/QStringList>
+#include <QtCore/QUrl>
+
+# include <KConfigCore/KConfigGroup>
 
 class KrPanel;
 
@@ -45,12 +46,12 @@ public:
     int count() {
         return _urlQueue.count();
     }
-    KUrl currentUrl();
-    void setCurrentUrl(const KUrl &url);
-    const KUrl& get(int pos) {
+    QUrl currentUrl();
+    void setCurrentUrl(const QUrl &url);
+    const QUrl &get(int pos) {
         return _urlQueue[pos];
     }
-    void add(KUrl url, QString currentItem);
+    void add(QUrl url, QString currentItem);
     void pushBackRoot(); // add root dir to beginning of history
     bool gotoPos(int pos);
     bool goBack();
@@ -73,7 +74,7 @@ private:
     KrPanel* _panel;
     int _state; // increments when we move inside the history, or a new item is added
     int _currentPos;
-    KUrl::List _urlQueue;
+    QList<QUrl> _urlQueue;
     QStringList _currentItems;
 };
 

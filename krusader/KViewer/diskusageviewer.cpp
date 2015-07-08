@@ -30,8 +30,10 @@
 
 #include "diskusageviewer.h"
 
-#include <QGridLayout>
-#include <QLabel>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
+
+#include <KConfigCore/KSharedConfig>
 
 #include "../krglobal.h"
 #include "../Panel/krpanel.h"
@@ -53,7 +55,7 @@ DiskUsageViewer::~ DiskUsageViewer()
     }
 }
 
-void DiskUsageViewer::openUrl(KUrl url)
+void DiskUsageViewer::openUrl(QUrl url)
 {
     if (diskUsage == 0) {
         diskUsage = new DiskUsage("DiskUsageViewer", this);
@@ -72,12 +74,13 @@ void DiskUsageViewer::openUrl(KUrl url)
         diskUsage->setView(view);
     }
 
-    url.setPath(url.path(KUrl::RemoveTrailingSlash));
+    url.setPath(url.adjusted(QUrl::StripTrailingSlash).path());
 
-    KUrl baseURL = diskUsage->getBaseURL();
+    QUrl baseURL = diskUsage->getBaseURL();
     if (!diskUsage->isLoading() && !baseURL.isEmpty()) {
-        if (url.protocol() == baseURL.protocol() && (!url.hasHost() || url.host() == baseURL.host())) {
-            QString baseStr = baseURL.path(KUrl::AddTrailingSlash), urlStr = url.path(KUrl::AddTrailingSlash);
+        if (url.scheme() == baseURL.scheme() && (url.host().isEmpty() || url.host() == baseURL.host())) {
+            QString baseStr = vfs::ensureTrailingSlash(baseURL).path();
+            QString urlStr = vfs::ensureTrailingSlash(url).path();
 
             if (urlStr.startsWith(baseStr)) {
                 QString relURL = urlStr.mid(baseStr.length());
@@ -124,4 +127,3 @@ void DiskUsageViewer::slotNewSearch()
     diskUsage->load(ACTIVE_PANEL->func->files()->vfs_getOrigin());
 }
 
-#include "diskusageviewer.moc"

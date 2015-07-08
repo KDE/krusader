@@ -32,7 +32,7 @@
 #ifndef FTP_VFS_H
 #define FTP_VFS_H
 
-#include <kdirlister.h>
+#include <KIOWidgets/KDirLister>
 
 #include "vfs.h"
 
@@ -45,33 +45,33 @@ public:
     ~ftp_vfs();
 
     /// Copy a file to the vfs (physical).
-    virtual void vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT);
+    virtual void vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) Q_DECL_OVERRIDE;
     /// Remove a file from the vfs (physical)
-    virtual void vfs_delFiles(QStringList *fileNames, bool reallyDelete = false);
+    virtual void vfs_delFiles(const QStringList &fileNames, bool reallyDelete = false) Q_DECL_OVERRIDE;
     /// Return a list of URLs for multiple files
-    virtual KUrl::List* vfs_getFiles(QStringList* names);
+    virtual QList<QUrl> vfs_getFiles(const QStringList &names) Q_DECL_OVERRIDE;
     /// Return a URL to a single file
-    virtual KUrl vfs_getFile(const QString& name);
+    virtual QUrl vfs_getFile(const QString& name) Q_DECL_OVERRIDE;
     /// Create a new directory
-    virtual void vfs_mkdir(const QString& name);
+    virtual void vfs_mkdir(const QString& name) Q_DECL_OVERRIDE;
     /// Rename file
-    virtual void vfs_rename(const QString& fileName, const QString& newName);
+    virtual void vfs_rename(const QString& fileName, const QString& newName) Q_DECL_OVERRIDE;
     /// Return the VFS working dir
-    QString vfs_workingDir();
+    QString vfs_workingDir() Q_DECL_OVERRIDE;
 
 public slots:
     /// Handles new files from the dir lister
     void slotAddFiles(KIO::Job * job, const KIO::UDSEntryList& entries);
     /// Redirection signal handlers
-    void slotRedirection(KIO::Job *, const KUrl &url);
-    void slotPermanentRedirection(KIO::Job*, const KUrl&, const KUrl& newUrl);
+    void slotRedirection(KIO::Job *, const QUrl &url);
+    void slotPermanentRedirection(KIO::Job*, const QUrl &, const QUrl& newUrl);
     /// Called when the dir listing job is finished (for better or worst)
     void slotListResult(KJob *job);
     /// Active the dir listing job
-    bool populateVfsList(const KUrl& origin, bool showHidden);
+    virtual bool populateVfsList(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;
 
 protected:
-    KUrl origin_backup;         //< used to backup the old URL when refreshing to a new one,
+    QUrl origin_backup;         //< used to backup the old URL when refreshing to a new one,
     bool busy;
     bool listError;
 };

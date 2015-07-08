@@ -19,20 +19,22 @@
 
 #include "popularurls.h"
 
-#include <QtGui/QPushButton>
-#include <QGridLayout>
-#include <QtCore/QList>
-#include <qheaderview.h>
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
-#include <QToolButton>
-
-#include <kmessagebox.h>
-#include <klocale.h>
-#include <kiconloader.h>
-#include <ktreewidgetsearchline.h>
-
 #include <stdio.h>
+
+#include <QtCore/QList>
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QToolButton>
+
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
+#include <KIconThemes/KIconLoader>
+#include <KItemViews/KTreeWidgetSearchLine>
 
 #include "../krglobal.h"
 #include "../krslots.h"
@@ -76,7 +78,7 @@ void PopularUrls::save()
     QList<int> rankList;
     UrlNodeP p = head;
     while (p) {
-        urlList << p->url.prettyUrl();
+        urlList << p->url.toDisplayString();
         rankList << p->rank;
         p = p->next;
     }
@@ -100,7 +102,7 @@ void PopularUrls::load()
     QList<int>::Iterator rit;
     for (uit = urlList.begin(), rit = rankList.begin(); uit != urlList.end() && rit != rankList.end(); ++uit, ++rit) {
         UrlNodeP node = new UrlNode;
-        node->url = KUrl(*uit);
+        node->url = QUrl(*uit);
         node->rank = *rit;
         appendNode(node);
         ranks.insert(*uit, node);
@@ -109,10 +111,10 @@ void PopularUrls::load()
 
 
 // returns a url list with the 'max' top popular urls
-KUrl::List PopularUrls::getMostPopularUrls(int max)
+QList<QUrl> PopularUrls::getMostPopularUrls(int max)
 {
     // get at most 'max' urls
-    KUrl::List list;
+    QList<QUrl> list;
     UrlNodeP p = head;
     int tmp = 0;
     if (maxUrls < max) max = maxUrls; // don't give more than maxUrls
@@ -127,11 +129,12 @@ KUrl::List PopularUrls::getMostPopularUrls(int max)
 
 // adds a url to the list, or increase rank of an existing url, making
 // sure to bump it up the list if needed
-void PopularUrls::addUrl(const KUrl& url)
+void PopularUrls::addUrl(const QUrl& url)
 {
-    KUrl tmpurl = url;
-    tmpurl.setPass(QString()); // make sure no passwords are permanently stored
-    tmpurl.adjustPath(KUrl::AddTrailingSlash); // make a uniform trailing slash policy
+    QUrl tmpurl = url;
+    tmpurl.setPassword(QString()); // make sure no passwords are permanently stored
+    if (!tmpurl.path().endsWith('/')) // make a uniform trailing slash policy
+        tmpurl.setPath(tmpurl.path() + '/');
     UrlNodeP pnode;
 
     decreaseRanks();
@@ -259,7 +262,7 @@ void PopularUrls::dumpList()
 
 void PopularUrls::showDialog()
 {
-    KUrl::List list = getMostPopularUrls(maxUrls);
+    QList<QUrl> list = getMostPopularUrls(maxUrls);
     dlg->run(list);
     if (dlg->result() == -1) return;
     SLOTS->refresh(list[dlg->result()]);
@@ -268,46 +271,43 @@ void PopularUrls::showDialog()
 
 // ===================================== PopularUrlsDlg ======================================
 PopularUrlsDlg::PopularUrlsDlg():
-        KDialog(krMainWindow)
+        QDialog(krMainWindow)
 {
-    setButtons(KDialog::Close);
-    setDefaultButton(KDialog::NoDefault);
     setWindowTitle(i18n("Popular URLs"));
     setWindowModality(Qt::WindowModal);
 
-    QWidget * widget = new QWidget(this);
-    QGridLayout *layout = new QGridLayout(widget);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+
+    QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(0, 0, 0, 0);
 
     // listview to contain the urls
-    urls = new KrTreeWidget(widget);
-    urls->setHeaderLabel("");
+    urls = new KrTreeWidget(this);
     urls->header()->hide();
     urls->setSortingEnabled(false);
     urls->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
     // quick search
-    QToolButton *btn = new QToolButton(widget);
-    btn->setIcon(SmallIcon("edit-clear-locationbar-ltr"));
-    search = new KTreeWidgetSearchLine(widget, urls);
-    search->setTrapReturnKey(true);
-    QLabel *lbl = new QLabel(i18n("&Search:"), widget);
+    search = new KTreeWidgetSearchLine(this, urls);
+    QLabel *lbl = new QLabel(i18n("&Search:"), this);
     lbl->setBuddy(search);
 
-    layout->addWidget(btn, 0, 0);
-    layout->addWidget(lbl, 0, 1);
-    layout->addWidget(search, 0, 2);
-    layout->addWidget(urls, 1, 0, 1, 3);
-    setMaximumSize(600, 500);
+    layout->addWidget(lbl, 0, 0);
+    layout->addWidget(search, 0, 1);
+    layout->addWidget(urls, 1, 0, 1, 2);
 
-    setMainWidget(widget);
+    mainLayout->addLayout(layout);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
+    mainLayout->addWidget(buttonBox);
 
     setTabOrder(search, urls);
-    setTabOrder((QWidget *)urls, (QWidget *)button(KDialog::Close));
+    setTabOrder((QWidget *)urls, buttonBox->button(QDialogButtonBox::Close));
 
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
     connect(urls, SIGNAL(activated(const QModelIndex &)),
             this, SLOT(slotItemSelected(const QModelIndex &)));
-    connect(btn, SIGNAL(clicked()), search, SLOT(clear()));
     connect(search, SIGNAL(hiddenChanged(QTreeWidgetItem *, bool)),
             this, SLOT(slotVisibilityChanged()));
 }
@@ -345,18 +345,18 @@ PopularUrlsDlg::~PopularUrlsDlg()
     delete urls;
 }
 
-void PopularUrlsDlg::run(KUrl::List list)
+void PopularUrlsDlg::run(QList<QUrl> list)
 {
     // populate the listview
     urls->clear();
-    KUrl::List::Iterator it;
+    QList<QUrl>::Iterator it;
 
     QTreeWidgetItem * lastItem = 0;
 
     for (it = list.begin(); it != list.end(); ++it) {
         QTreeWidgetItem *item = new QTreeWidgetItem(urls, lastItem);
         lastItem = item;
-        item->setText(0, (*it).isLocalFile() ? (*it).path() : (*it).prettyUrl());
+        item->setText(0, (*it).isLocalFile() ? (*it).path() : (*it).toDisplayString());
         item->setIcon(0, (*it).isLocalFile() ? SmallIcon("folder") : SmallIcon("folder-html"));
     }
 
@@ -369,4 +369,3 @@ void PopularUrlsDlg::run(KUrl::List list)
     exec();
 }
 
-#include "popularurls.moc"

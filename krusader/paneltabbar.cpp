@@ -28,17 +28,16 @@
 #include <QtGui/QFontMetrics>
 #include <QtGui/QResizeEvent>
 #include <QtGui/QMouseEvent>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QMenu>
 
-#include <KAction>
-#include <KLocale>
-#include <KMenu>
-#include <KShortcut>
-#include <KDebug>
-#include <KActionMenu>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KActionMenu>
 
-#define DISPLAY(X) (X.isLocalFile() ? X.path() : X.prettyUrl())
+#define DISPLAY(X) (X.isLocalFile() ? X.path() : X.toDisplayString())
 
-PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): KTabBar(parent),
+PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
     _maxTabLength(0), _tabClicked(false), _draggingTab(false)
 {
     _panelActionMenu = new KActionMenu(i18n("Panel"), this);
@@ -53,12 +52,12 @@ PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): KTabBar(parent),
     insertAction(actions->actCloseInactiveTabs);
     insertAction(actions->actCloseDuplicatedTabs);
 
-    setMovable(true); // enable drag'n'drop 
+    setMovable(true); // enable drag'n'drop
 
-    setShape(KTabBar::TriangularSouth);
+    setShape(QTabBar::TriangularSouth);
 }
 
-void PanelTabBar::insertAction(KAction* action)
+void PanelTabBar::insertAction(QAction* action)
 {
     _panelActionMenu->addAction(action);
 }
@@ -237,14 +236,14 @@ QString PanelTabBar::squeeze(QString text, int index)
 
 void PanelTabBar::resizeEvent(QResizeEvent *e)
 {
-    KTabBar::resizeEvent(e);
+    QTabBar::resizeEvent(e);
 
     layoutTabs();
 }
 
 void PanelTabBar::mouseMoveEvent(QMouseEvent* e)
 {
-    KTabBar::mouseMoveEvent(e);
+    QTabBar::mouseMoveEvent(e);
     if(_tabClicked) {
         _draggingTab = true;
         emit draggingTab(e);
@@ -256,7 +255,7 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
     int clickedTab = tabAt(e->pos());
 
     if (-1 == clickedTab) { // clicked on nothing ...
-        KTabBar::mousePressEvent(e);
+        QTabBar::mousePressEvent(e);
         return;
     }
 
@@ -276,12 +275,12 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
             emit closeCurrentTab();
     }
 
-    KTabBar::mousePressEvent(e);
+    QTabBar::mousePressEvent(e);
 }
 
 void PanelTabBar::mouseReleaseEvent(QMouseEvent* e)
 {
-    KTabBar::mouseReleaseEvent(e);
+    QTabBar::mouseReleaseEvent(e);
     if(_draggingTab)
         emit draggingTabFinished(e);
     _draggingTab = false;
@@ -296,7 +295,7 @@ void PanelTabBar::dragEnterEvent(QDragEnterEvent *e)
         return;
     if (currentIndex() != t)
         setCurrentIndex(t);
-    KTabBar::dragEnterEvent(e);
+    QTabBar::dragEnterEvent(e);
 }
 
 void PanelTabBar::dragMoveEvent(QDragMoveEvent *e)
@@ -306,7 +305,7 @@ void PanelTabBar::dragMoveEvent(QDragMoveEvent *e)
     if (t == -1) return;
     if (currentIndex() != t)
         setCurrentIndex(t);
-    KTabBar::dragMoveEvent(e);
+    QTabBar::dragMoveEvent(e);
 }
 
 void PanelTabBar::layoutTabs()
@@ -315,4 +314,3 @@ void PanelTabBar::layoutTabs()
         setTabText(i, squeeze(DISPLAY(((ListPanel*)tabData(i).toLongLong())->virtualPath()), i));
 }
 
-#include "paneltabbar.moc"

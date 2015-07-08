@@ -30,18 +30,11 @@
 
 #include "vfile.h"
 
-#include <unistd.h>
-#include <pwd.h>
-#include <grp.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-
 #include <QtCore/QDateTime>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 
-#include <kmimetype.h>
-#include <kdeversion.h>
-#include <kdesktopfile.h>
-#include <kdebug.h>
+#include <KConfigCore/KDesktopFile>
 
 #include "krpermhandler.h"
 #include "normal_vfs.h"
@@ -158,16 +151,18 @@ char vfile::vfile_isExecutable() const
 
 const QString& vfile::vfile_getMime(bool fast)
 {
+    Q_UNUSED(fast)
     if (vfile_mimeType.isEmpty()) {
         if(vfile_isdir)
             vfile_mimeType = "inode/directory";
         else if(vfile_isBrokenLink())
             vfile_mimeType = "unknown";
         else {
-            KMimeType::Ptr mt = KMimeType::findByUrl(vfile_getUrl(), vfile_getMode(), vfile_getUrl().isLocalFile(), fast);
-            vfile_mimeType = mt ? mt->name() : "unknown";
-            if (mt)
-                vfile_icon = mt->iconName();
+            QMimeDatabase db;
+            QMimeType mt = db.mimeTypeForUrl(vfile_getUrl());
+            vfile_mimeType = mt.isValid() ? mt.name() : "unknown";
+            if (mt.isValid())
+                vfile_icon = mt.iconName();
             if (vfile_mimeType == "inode/directory") {
                 vfile_perm[0] = 'd';
                 vfile_isdir = true;
@@ -175,7 +170,7 @@ const QString& vfile::vfile_getMime(bool fast)
         }
 
         if (vfile_isdir && vfile_userDefinedFolderIcons) {
-            KUrl url = vfile_getUrl();
+            QUrl url = vfile_getUrl();
             if (url.isLocalFile()) {
                 QString file = url.toLocalFile() + "/.directory";
                 KDesktopFile cfg(file);
@@ -197,8 +192,9 @@ QString vfile::vfile_getIcon()
         if (vfile_isBrokenLink())
             vfile_icon = "file-broken";
         else if (vfile_icon.isEmpty()) {
-            KMimeType::Ptr mt = KMimeType::mimeType(mime);
-            vfile_icon = mt ? mt->iconName() : "file-broken";
+            QMimeDatabase db;
+            QMimeType mt = db.mimeTypeForName(mime);
+            vfile_icon = mt.isValid() ? mt.iconName() : "file-broken";
         }
     }
     return vfile_icon;
@@ -323,4 +319,3 @@ vfile& vfile::operator= (const vfile & vf)
     return (*this);
 }
 
-#include "vfile.moc"

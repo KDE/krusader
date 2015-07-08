@@ -32,9 +32,10 @@
 #define KGCOLORS_H
 
 #include <QtCore/QList>
-#include <qstackedwidget.h>
-#include <QGridLayout>
-#include <QLabel>
+#include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 
 #include "konfiguratorpage.h"
 #include "../GUI/krtreewidget.h"
@@ -46,7 +47,7 @@ class KgColors : public KonfiguratorPage
 public:
     KgColors(bool first, QWidget* parent = 0);
 
-    bool apply();
+    virtual bool apply() Q_DECL_OVERRIDE;
 
 public slots:
     void slotDisable();
@@ -105,7 +106,7 @@ private:
     QList<QString>                      itemNames;
 
     KrTreeWidget                       *preview;
-    KPushButton *importBtn, *exportBtn;
+    QPushButton *importBtn, *exportBtn;
 
     class PreviewItem : public QTreeWidgetItem
     {

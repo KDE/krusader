@@ -31,13 +31,12 @@
 #include "preservingcopyjob.h"
 #include "../defaults.h"
 #include "../krglobal.h"
-#include <kio/global.h>
-#include <kio/jobclasses.h>
-#include <kio/jobuidelegate.h>
-#include <kuiserverjobtracker.h>
+
+#include <KIO/Global>
+#include <KIO/JobUiDelegate>
 
 
-KIO::Job * PreservingCopyJob::createCopyJob(PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool /*asMethod*/, bool showProgressInfo)
+KIO::Job * PreservingCopyJob::createCopyJob(PreserveMode pmode, const QList<QUrl>& src, const QUrl &dest, KIO::CopyJob::CopyMode mode, bool /*asMethod*/, bool showProgressInfo)
 {
     switch (pmode) {
     // KIO always preserves attributes

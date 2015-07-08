@@ -30,16 +30,18 @@
 
 #include "kurllistrequester.h"
 #include "../VFS/vfs.h"
+
 #include <QtGui/QPixmap>
 #include <QtGui/QCursor>
-#include <QtGui/QLayout>
-#include <QGridLayout>
-#include <QKeyEvent>
-#include <kfiledialog.h>
-#include <kmenu.h>
-#include <kiconloader.h>
-#include <klocale.h>
-#include <kmessagebox.h>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QMenu>
+
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KMessageBox>
 
 #define DELETE_ITEM_ID    100
 
@@ -61,12 +63,12 @@ KURLListRequester::KURLListRequester(Mode requestMode, QWidget *parent)
 
     urlAddBtn = new QToolButton(this);
     urlAddBtn->setText("");
-    urlAddBtn->setIcon(KIcon("arrow-down"));
+    urlAddBtn->setIcon(QIcon::fromTheme("arrow-down"));
     urlListRequesterGrid->addWidget(urlAddBtn, 0, 1);
 
     urlBrowseBtn = new QToolButton(this);
     urlBrowseBtn->setText("");
-    urlBrowseBtn->setIcon(KIcon("folder"));
+    urlBrowseBtn->setIcon(QIcon::fromTheme("folder"));
     urlListRequesterGrid->addWidget(urlBrowseBtn, 0, 2);
 
     // add shell completion
@@ -103,17 +105,17 @@ void KURLListRequester::slotAdd()
 
 void KURLListRequester::slotBrowse()
 {
-    KUrl url;
+    QUrl url;
     switch (mode) {
         case RequestFiles:
-            url = KFileDialog::getOpenUrl(KUrl(), QString(), this);
+            url = QFileDialog::getOpenFileUrl(this);
             break;
         case RequestDirs:
-            url = KFileDialog::getExistingDirectoryUrl(KUrl(), this);
+            url = QFileDialog::getExistingDirectoryUrl(this);
             break;
     }
     if (!url.isEmpty())
-        urlLineEdit->setText(url.pathOrUrl());
+        urlLineEdit->setText(url.toDisplayString(QUrl::PreferLocalFile));
     urlLineEdit->setFocus();
 }
 
@@ -142,7 +144,7 @@ void KURLListRequester::slotRightClicked(QListWidgetItem *item, const QPoint &po
     if (item == 0)
         return;
 
-    KMenu popupMenu(this);
+    QMenu popupMenu(this);
     QAction * menuAction = popupMenu.addAction(i18n("Delete"));
 
     if (menuAction == popupMenu.exec(pos)) {
@@ -155,16 +157,16 @@ void KURLListRequester::slotRightClicked(QListWidgetItem *item, const QPoint &po
     }
 }
 
-KUrl::List KURLListRequester::urlList()
+QList<QUrl> KURLListRequester::urlList()
 {
-    KUrl::List urls;
+    QList<QUrl> urls;
 
     QString text = urlLineEdit->text().simplified();
     if (!text.isEmpty()) {
         QString error;
         emit checkValidity(text, error);
         if (error.isNull())
-            urls.append(KUrl(text));
+            urls.append(QUrl::fromUserInput(text, QString(), QUrl::AssumeLocalFile));
     }
 
     for (int i = 0; i != urlListBox->count(); i++) {
@@ -175,23 +177,22 @@ KUrl::List KURLListRequester::urlList()
         QString error;
         emit checkValidity(text, error);
         if (error.isNull())
-            urls.append(KUrl(text));
+            urls.append(QUrl::fromUserInput(text, QString(), QUrl::AssumeLocalFile));
     }
 
     return urls;
 }
 
-void KURLListRequester::setUrlList(KUrl::List urlList)
+void KURLListRequester::setUrlList(QList<QUrl> urlList)
 {
     urlLineEdit->clear();
     urlListBox->clear();
 
-    KUrl::List::iterator it;
+    QList<QUrl>::iterator it;
 
     for (it = urlList.begin(); it != urlList.end(); ++it)
-        urlListBox->addItem(it->pathOrUrl());
+        urlListBox->addItem(it->toDisplayString(QUrl::PreferLocalFile));
 
     emit changed();
 }
 
-#include "kurllistrequester.moc"

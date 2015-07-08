@@ -30,11 +30,9 @@
 
 #include "kfnkeys.h"
 
-#include <QGridLayout>
-#include <QtGui/QFontMetrics>
+#include <QtWidgets/QGridLayout>
 
-#include <klocale.h>
-#include <kglobalsettings.h>
+#include <KI18n/KLocalizedString>
 
 #include "../defaults.h"
 #include "../filemanagerwindow.h"
@@ -52,7 +50,6 @@ KFnKeys::KFnKeys(QWidget *parent, FileManagerWindow *mainWindow) :
         connect(TARGET, SIGNAL(clicked()), mainWindow->listPanelActions()->act##TARGET, SLOT(trigger())); \
     }
 
-    setFont(KGlobalSettings::generalFont());
     layout = new QGridLayout(this); // 9 keys
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
@@ -109,6 +106,4 @@ void KFnKeys::updateShortcuts()
     UPDATE(F9, i18n("Rename"));
     F10->setText(mainWindow->krActions()->actF10->shortcut().toString() + i18n(" Quit"));
 }
-
-#include "kfnkeys.moc"
 

@@ -20,17 +20,19 @@
 #ifndef KRVIEWER_H
 #define KRVIEWER_H
 
-#include <QWidget>
-#include <QEvent>
-#include <QList>
-#include <QKeyEvent>
-#include <QFocusEvent>
-#include <kparts/mainwindow.h>
-#include <kparts/partmanager.h>
-#include <kparts/browserextension.h>
+#include <QtCore/QEvent>
+#include <QtCore/QList>
 #include <QtCore/QPointer>
-#include <ktabwidget.h>
-#include <ktemporaryfile.h>
+#include <QtCore/QUrl>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QFocusEvent>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QTabWidget>
+
+#include <KParts/MainWindow>
+#include <KParts/PartManager>
+#include <KParts/BrowserExtension>
 
 #include "../krglobal.h"
 
@@ -44,17 +46,18 @@ public:
 
     enum Mode {Generic, Text, Hex, Lister, Default};
 
-    static void view(KUrl url, QWidget * parent = krMainWindow);
-    static void view(KUrl url, Mode mode, bool new_window, QWidget * parent = krMainWindow);
-    static void edit(KUrl url, QWidget * parent);
-    static void edit(KUrl url, Mode mode = Text, int new_window = -1, QWidget * parent = krMainWindow);
+    static void view(QUrl url, QWidget * parent = krMainWindow);
+    static void view(QUrl url, Mode mode, bool new_window, QWidget * parent = krMainWindow);
+    static void edit(QUrl url, QWidget * parent);
+    static void edit(QUrl url, Mode mode = Text, int new_window = -1, QWidget * parent = krMainWindow);
     static void configureDeps();
 
-    virtual bool eventFilter(QObject * watched, QEvent * e);
+    virtual bool eventFilter(QObject * watched, QEvent * e) Q_DECL_OVERRIDE;
 
 public slots:
-    void keyPressEvent(QKeyEvent *e);
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
     void createGUI(KParts::Part*);
+    void configureShortcuts();
 
     void viewGeneric();
     void viewText();
@@ -65,9 +68,9 @@ public slots:
     void print();
     void copy();
 
-    void tabChanged(QWidget* w);
-    void tabURLChanged(PanelViewerBase * pvb, const KUrl &url);
-    void tabCloseRequest(QWidget *w, bool force = false);
+    void tabChanged(int index);
+    void tabURLChanged(PanelViewerBase * pvb, const QUrl &url);
+    void tabCloseRequest(int index, bool force = false);
     void tabCloseRequest();
 
     void nextTab();
@@ -77,11 +80,10 @@ public slots:
     void checkModified();
 
 protected:
-    virtual bool queryClose();
-    virtual void windowActivationChange(bool oldActive);
-    virtual void resizeEvent(QResizeEvent *e);
-
-    virtual void focusInEvent(QFocusEvent *) {
+    virtual bool queryClose() Q_DECL_OVERRIDE;
+    virtual void changeEvent(QEvent *e) Q_DECL_OVERRIDE;
+    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    virtual void focusInEvent(QFocusEvent *) Q_DECL_OVERRIDE {
         if (viewers.removeAll(this)) viewers.prepend(this);
     } // move to first
 
@@ -94,8 +96,8 @@ private:
     void addTab(PanelViewerBase* pvb);
     void updateActions();
     void refreshTab(PanelViewerBase* pvb);
-    void viewInternal(KUrl url, Mode mode, QWidget * parent = krMainWindow);
-    void editInternal(KUrl url, Mode mode, QWidget * parent = krMainWindow);
+    void viewInternal(QUrl url, Mode mode, QWidget * parent = krMainWindow);
+    void editInternal(QUrl url, Mode mode, QWidget * parent = krMainWindow);
     void addPart(KParts::ReadOnlyPart *part);
     void removePart(KParts::ReadOnlyPart *part);
     bool isPartAdded(KParts::Part* part);
@@ -107,17 +109,18 @@ private:
 
     KParts::PartManager manager;
     QMenu* viewerMenu;
-    KTemporaryFile tmpFile;
-    KTabWidget tabBar;
+    QTabWidget tabBar;
     QPointer<QWidget> returnFocusTo;
 
     QAction *detachAction;
+    QAction *printAction;
+    QAction *copyAction;
+    QAction *quitAction;
 
-    KAction *printAction;
-    KAction *copyAction;
-
-    QAction *tabClose;
-    QAction *closeAct;
+    QAction *configKeysAction;
+    QAction *tabCloseAction;
+    QAction *tabNextAction;
+    QAction *tabPrevAction;
 
     static QList<KrViewer *> viewers; // the first viewer is the active one
     QList<int>    reservedKeys;   // the reserved key sequences

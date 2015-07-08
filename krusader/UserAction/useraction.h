@@ -28,7 +28,7 @@ class QDomElement;
 class QString;
 class QStringList;
 class KrAction;
-class KUrl;
+class QUrl;
 class KActionMenu;
 
 /**
@@ -74,7 +74,7 @@ public:
     };
 
     /**
-     * Use this to access the whole list of registerd KrActions.
+     * Use this to access the whole list of registered KrActions.
      * currently only used to fill the usermenu with all available actions. This should change...
      * @return A reference to the internal KrActionList
      */
@@ -103,13 +103,13 @@ public:
      * same as above but check for a specitic file
      * @param currentURL Check for this file
      */
-    void setAvailability(const KUrl& currentURL);
+    void setAvailability(const QUrl &currentURL);
 
     /**
      * Fills a KActionMenu with all available UserActions in the list
      * @param  popupmenu to populate
      */
-    void populateMenu(KActionMenu* menu, const KUrl *currentURL);
+    void populateMenu(KActionMenu* menu, const QUrl *currentURL);
 
     QStringList allCategories();
     QStringList allNames();

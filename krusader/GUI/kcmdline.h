@@ -33,17 +33,15 @@
 #ifndef KCMDLINE_H
 #define KCMDLINE_H
 
-// QT includes
-#include <qwidget.h>
-#include <QtGui/QLabel>
-#include <QtGui/QLayout>
-#include <QtGui/QToolButton>
-#include <QKeyEvent>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QToolButton>
 
-// KDE includes
-#include <klineedit.h>
-#include <kshellcompletion.h>
-#include <khistorycombobox.h>
+#include <KCompletion/KLineEdit>
+#include <KIOWidgets/KShellCompletion>
+#include <KCompletion/KHistoryComboBox>
 
 #include "../UserAction/kractionbase.h"
 
@@ -55,7 +53,7 @@ class CmdLineCombo : public KHistoryComboBox
 public:
     CmdLineCombo(QWidget *parent);
 
-    virtual bool eventFilter(QObject *watched, QEvent *e);
+    virtual bool eventFilter(QObject *watched, QEvent *e) Q_DECL_OVERRIDE;
 
     QString path() {
         return _path;
@@ -69,8 +67,8 @@ protected slots:
     void doLayout();
 
 protected:
-    virtual void resizeEvent(QResizeEvent *e);
-    virtual void keyPressEvent(QKeyEvent *e);
+    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 
     void updateLineEditGeometry();
 
@@ -113,7 +111,7 @@ public slots:
     }
 
 protected:
-    virtual void focusInEvent(QFocusEvent*) {
+    virtual void focusInEvent(QFocusEvent*) Q_DECL_OVERRIDE {
         cmdLine->setFocus();
     }
 

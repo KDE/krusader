@@ -21,26 +21,24 @@
 #ifndef PANELTABBAR_H
 #define PANELTABBAR_H
 
-#include <QtCore/QVariant>
+#include <QtCore/QUrl>
 #include <QtGui/QDragMoveEvent>
 #include <QtGui/QDragEnterEvent>
-
-#include <KUrl>
-#include <KTabBar>
+#include <QtWidgets/QTabBar>
 
 class QMouseEvent;
-class KAction;
+class QAction;
 class KActionMenu;
 class KrPanel;
 class ListPanel;
 class TabActions;
 
 /**
- * This class extends KTabBar such that right-clicking on a tab pops-up a menu
+ * This class extends QTabBar such that right-clicking on a tab pops-up a menu
  * containing relevant actions for the tab. It also emits signals (caught by PanelManager)
  * to create a new tab, close the current tab and change a panel when a tab was clicked
  */
-class PanelTabBar : public KTabBar
+class PanelTabBar : public QTabBar
 {
     Q_OBJECT
 public:
@@ -48,7 +46,7 @@ public:
 
 public slots:
     /**
-     * called by PanelManager with an already created panel, and creates the corrosponding tab
+     * called by PanelManager with an already created panel, and creates the corresponding tab
      */
     int addPanel(ListPanel *panel, bool setCurrent = true, KrPanel *nextTo = 0);
 
@@ -77,20 +75,20 @@ signals:
     /**
      * emitted when the user right-clicks and selects an action that creates a new tab
      */
-    void newTab(const KUrl& path);
+    void newTab(const QUrl &path);
 
     void draggingTab(QMouseEvent*);
     void draggingTabFinished(QMouseEvent*);
 
 protected:
-    void mouseMoveEvent(QMouseEvent*e);
-    void mousePressEvent(QMouseEvent*);
-    void mouseReleaseEvent(QMouseEvent*);
-    void insertAction(KAction*);
+    virtual void mouseMoveEvent(QMouseEvent*e) Q_DECL_OVERRIDE;
+    virtual void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    virtual void mouseReleaseEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    void insertAction(QAction*);
     QString squeeze(QString text, int index = -1);
-    virtual void dragEnterEvent(QDragEnterEvent *);
-    virtual void dragMoveEvent(QDragMoveEvent *);
-    virtual void resizeEvent(QResizeEvent *e);
+    virtual void dragEnterEvent(QDragEnterEvent *) Q_DECL_OVERRIDE;
+    virtual void dragMoveEvent(QDragMoveEvent *) Q_DECL_OVERRIDE;
+    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
 
 protected slots:
     void closeTab();

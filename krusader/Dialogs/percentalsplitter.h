@@ -31,8 +31,8 @@
 #ifndef PERCENTALSPLITTER_H
 #define PERCENTALSPLITTER_H
 
-#include <QtGui/QSplitter>
-#include <QtGui/QLabel>
+#include <QtWidgets/QSplitter>
+#include <QtWidgets/QLabel>
 
 class PercentalSplitter : public QSplitter
 {
@@ -45,7 +45,7 @@ public:
     QString toolTipString(int p);
 
 protected:
-    virtual void showEvent(QShowEvent * event);
+    virtual void showEvent(QShowEvent * event) Q_DECL_OVERRIDE;
 
 protected slots:
     void slotSplitterMoved(int pos, int index);

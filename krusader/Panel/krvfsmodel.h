@@ -20,8 +20,8 @@
 #ifndef KRVFSMODEL_H
 #define KRVFSMODEL_H
 
-#include <QAbstractListModel>
-#include <QFont>
+#include <QtCore/QAbstractListModel>
+#include <QtGui/QFont>
 
 #include "krinterview.h"
 #include "krsort.h"
@@ -70,8 +70,8 @@ public:
     }
     const QModelIndex & vfileIndex(const vfile *);
     const QModelIndex & nameIndex(const QString &);
-    const QModelIndex & indexFromUrl(const KUrl &url);
-    virtual Qt::ItemFlags flags(const QModelIndex & index) const;
+    const QModelIndex & indexFromUrl(const QUrl &url);
+    virtual Qt::ItemFlags flags(const QModelIndex & index) const Q_DECL_OVERRIDE;
     void emitChanged() {
         emit layoutChanged();
     }
@@ -86,7 +86,7 @@ public:
     }
 
 public slots:
-    virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
+    virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) Q_DECL_OVERRIDE;
 
 protected:
     virtual KrSort::LessThanFunc lessThanFunc() const {

@@ -17,13 +17,16 @@
  *****************************************************************************/
 
 #include "krresulttable.h"
-#include <iostream>
-#include <QGridLayout>
-#include <QLabel>
-#include <QtCore/QList>
-#include <kcolorscheme.h>
 
-#include "../krusader.h"
+#include <iostream>
+
+#include <QtCore/QList>
+#include <QtGui/QFontDatabase>
+#include <QtGui/QGuiApplication>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
+
+#include <KI18n/KLocalizedString>
 
 using namespace std;
 
@@ -55,7 +58,7 @@ QGridLayout* KrResultTable::initTable()
         _grid->addWidget(_label, 0, column);
 
         // Set font
-        QFont defFont = KGlobalSettings::generalFont();
+        QFont defFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
         defFont.setPointSize(defFont.pointSize() - 1);
         defFont.setBold(true);
         _label->setFont(defFont);
@@ -80,8 +83,9 @@ void KrResultTable::adjustRow(QGridLayout* grid)
         // Paint uneven rows in alternate color
         if (((col / _numColumns) % 2)) {
             child->widget()->setAutoFillBackground(true);
+            QPalette p = QGuiApplication::palette();
             QPalette pal = child->widget()->palette();
-            pal.setColor(child->widget()->backgroundRole(), KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color());
+            pal.setColor(child->widget()->backgroundRole(), p.color(QPalette::Active, QPalette::AlternateBase));
             child->widget()->setPalette(pal);
         }
 
@@ -249,7 +253,7 @@ bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
 
 void KrArchiverResultTable::website(const QString& url)
 {
-    (void) new KRun(KUrl(url), this);
+    (void) new KRun(QUrl(url), this);
 }
 
 // -----------------------------------------------------------------------------
@@ -258,7 +262,7 @@ void KrArchiverResultTable::website(const QString& url)
 KrToolResultTable::KrToolResultTable(QWidget* parent)
         : KrResultTable(parent)
 {
-    _supported = Krusader::supportedTools(); // get list of available tools
+    _supported = KrServices::supportedTools(); // get list of available tools
 
     QList<Application*> vecDiff, vecMail, vecRename, vecChecksum;
     Application* kdiff3         = new Application("kdiff3",        "http://kdiff3.sourceforge.net/", KrServices::cmdExist("kdiff3"));
@@ -399,5 +403,5 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
 
 void KrToolResultTable::website(const QString& url)
 {
-    (void) new KRun(KUrl(url), this);
+    (void) new KRun(QUrl(url), this);
 }

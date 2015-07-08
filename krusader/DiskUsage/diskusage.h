@@ -31,20 +31,20 @@
 #ifndef DISKUSAGE_H
 #define DISKUSAGE_H
 
-#include <QtGui/QDialog>
-#include <QtGui/QLabel>
 #include <QtCore/QHash>
-#include <qstack.h>
-#include <QResizeEvent>
-#include <QPixmap>
-#include <QKeyEvent>
-#include <QEvent>
-#include <qstackedwidget.h>
-#include <qscrollarea.h>
+#include <QtCore/QEvent>
 #include <QtCore/QTimer>
+#include <QtCore/QStack>
+#include <QtCore/QUrl>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QScrollArea>
 
-#include <kurl.h>
-#include <ksqueezedtextlabel.h>
+#include <KWidgetsAddons/KSqueezedTextLabel>
 
 #include "../VFS/vfs.h"
 #include "filelightParts/fileTree.h"
@@ -59,7 +59,7 @@ typedef QHash<QString, void *> Properties;
 class DUListView;
 class DULines;
 class DUFilelight;
-class KMenu;
+class QMenu;
 class LoaderWidget;
 
 class DiskUsage : public QStackedWidget
@@ -70,7 +70,7 @@ public:
     DiskUsage(QString confGroup, QWidget *parent = 0);
     ~DiskUsage();
 
-    void       load(KUrl dirName);
+    void       load(const QUrl &dirName);
     void       close();
     void       stopLoad();
     bool       isLoading()     {
@@ -100,7 +100,7 @@ public:
 
     QString    getToolTip(File *);
 
-    void       rightClickMenu(const QPoint &, File *, KMenu * = 0, QString = QString());
+    void       rightClickMenu(const QPoint &, File *, QMenu * = 0, QString = QString());
 
     void       changeDirectory(Directory *dir);
 
@@ -109,7 +109,7 @@ public:
 
     QPixmap    getIcon(QString mime);
 
-    KUrl       getBaseURL() {
+    QUrl       getBaseURL() {
         return baseURL;
     }
 
@@ -139,8 +139,8 @@ protected:
     Directory* currentDirectory;
     KIO::filesize_t currentSize;
 
-    virtual void keyPressEvent(QKeyEvent *);
-    virtual bool event(QEvent *);
+    virtual void keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
+    virtual bool event(QEvent *) Q_DECL_OVERRIDE;
 
     int        calculateSizes(Directory *dir = 0, bool emitSig = false, int depth = 0);
     int        calculatePercents(bool emitSig = false, Directory *dir = 0 , int depth = 0);
@@ -148,7 +148,7 @@ protected:
     void       createStatus();
     void       executeAction(int, File * = 0);
 
-    KUrl       baseURL;             //< the base URL of loading
+    QUrl       baseURL;             //< the base URL of loading
 
     DUListView                *listView;
     DULines                   *lineView;
@@ -191,7 +191,7 @@ public:
     LoaderWidget(QWidget *parent = 0);
 
     void init();
-    void setCurrentURL(KUrl url);
+    void setCurrentURL(const QUrl &url);
     void setValues(int fileNum, int dirNum, KIO::filesize_t total);
     bool wasCancelled()  {
         return cancelled;

@@ -17,12 +17,11 @@
  *****************************************************************************/
 
 #include "kisofile.h"
-#include <kdebug.h>
 
 KIsoFile::KIsoFile(KArchive* archive, const QString& name, int access,
-                   int date, int adate, int cdate, const QString& user, const QString& group,
-                   const QString& symlink, long long pos, long long size) :
-        KArchiveFile(archive, name, access, date, user, group, symlink, pos, size)
+		   int date, int adate, int cdate, const QString& user, const QString& group,
+		   const QString& symlink, long long pos, long long size) :
+	KArchiveFile(archive, name, access, QDateTime::fromTime_t(date), user, group, symlink, pos, size)
 {
 
 
@@ -42,7 +41,7 @@ void KIsoFile::setZF(char algo[2], char parms[2], long long realsize)
     m_realsize = realsize;
 }
 
-QByteArray KIsoFile::data(long long pos, int count) const
+QByteArray KIsoFile::dataAt(long long pos, int count) const
 {
     QByteArray r;
     int rlen;

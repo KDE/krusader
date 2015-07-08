@@ -1,3 +1,5 @@
+include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
+
 include(radialMap/CMakeLists.txt)
 include(filelightParts/CMakeLists.txt)
 
@@ -10,4 +12,13 @@ set(DiskUsage_SRCS
     dulines.cpp
     dufilelight.cpp )
 
-kde4_add_library(DiskUsage STATIC ${DiskUsage_SRCS} ${radialMap_SRCS} ${filelightParts_SRCS})
+add_library(DiskUsage STATIC ${DiskUsage_SRCS} ${radialMap_SRCS} ${filelightParts_SRCS})
+
+target_link_libraries(DiskUsage
+    KF5::ConfigWidgets
+    KF5::I18n
+    KF5::IconThemes
+    KF5::KIOCore
+    KF5::KIOWidgets
+    KF5::WidgetsAddons
+)

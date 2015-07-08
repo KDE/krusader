@@ -21,22 +21,24 @@
 #include "../krglobal.h"
 #include "../MountMan/kmountman.h"
 
-#include <QMouseEvent>
-#include <QEvent>
-
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kdiskfreespace.h>
-#include <kio/global.h>
+#include <QtCore/QEvent>
+#include <QtGui/QMouseEvent>
 #include <QtGui/QCursor>
-#include <kmountpoint.h>
-#include <kconfiggroup.h>
-#include <solid/deviceinterface.h>
-#include <solid/storageaccess.h>
-#include <solid/storagevolume.h>
-#include <solid/opticaldisc.h>
-#include <solid/opticaldrive.h>
-#include <solid/devicenotifier.h>
+
+#include <KConfigCore/KConfigGroup>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIO/Global>
+#include <KIOCore/KMountPoint>
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KMessageBox>
+
+#include <Solid/DeviceInterface>
+#include <Solid/StorageAccess>
+#include <Solid/StorageVolume>
+#include <Solid/OpticalDisc>
+#include <Solid/OpticalDrive>
+#include <Solid/DeviceNotifier>
 
 QString MediaButton::remotePrefix = QLatin1String("remote:");
 
@@ -45,7 +47,7 @@ MediaButton::MediaButton(QWidget *parent) : QToolButton(parent),
         popupMenu(0), rightMenu(0), openInNewTab(false)
 {
     setAutoRaise(true);
-    setIcon(KIcon("system-file-manager"));
+    setIcon(QIcon::fromTheme("system-file-manager"));
     setText(i18n("Open the available media list"));
     setToolTip(i18n("Open the available media list"));
     setPopupMode(QToolButton::InstantPopup);
@@ -88,7 +90,7 @@ void MediaButton::mountPointChanged(QString mp)
         if (vol && vol->usage() == Solid::StorageVolume::Encrypted)
             overlays << "security-high";
     }
-    setIcon(KIcon(icon, 0, overlays));
+    setIcon(KDE::icon(icon, overlays));
 }
 
 void MediaButton::slotAboutToShow()
@@ -118,7 +120,7 @@ void MediaButton::createMediaList()
         QString udi     = device.udi();
 
         QString name;
-        KIcon kdeIcon;
+        QIcon kdeIcon;
         if (!getNameAndIcon(device, name, kdeIcon))
             continue;
 
@@ -150,8 +152,7 @@ void MediaButton::createMediaList()
             QStringList overlays;
             if (mounted)
                 overlays << "emblem-mounted";
-            KIcon kdeIcon("network-wired", 0, overlays);
-            QAction * act = popupMenu->addAction(kdeIcon, name);
+            QAction * act = popupMenu->addAction(KDE::icon("network-wired", overlays), name);
             QString udi = remotePrefix + (*it)->mountPoint();
             act->setData(QVariant(udi));
         }
@@ -161,7 +162,7 @@ void MediaButton::createMediaList()
     mountCheckerTimer.start(1000);
 }
 
-bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, KIcon &kicon)
+bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &iconOut)
 {
     Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
     if (access == 0)
@@ -206,7 +207,7 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, KIcon &k
     else if (icon == "media-optical")
         type = i18n("Recordable CD/DVD-ROM");
 
-    KConfigGroup cfg(KGlobal::config(), "MediaMenu");
+    KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("MediaMenu"));
 
     if (printSize) {
         QString showSizeSetting = cfg.readEntry("ShowSize", "Always");
@@ -238,7 +239,7 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, KIcon &k
     if (vol && vol->usage() == Solid::StorageVolume::Encrypted) {
         overlays << "security-high";
     }
-    kicon = KIcon(icon, 0, overlays);
+    iconOut = KDE::icon(icon, overlays);
     return true;
 }
 
@@ -252,7 +253,7 @@ void MediaButton::slotPopupActivated(QAction *action)
             getStatus(udi, mounted, &mountPoint);
 
             if (mounted)
-                emit openUrl(KUrl(mountPoint));
+                emit openUrl(QUrl::fromLocalFile(mountPoint));
             else
                 mount(udi, true);
         }
@@ -321,7 +322,7 @@ void MediaButton::rightClickMenu(QString udi, QPoint pos)
 
     getStatus(udi, mounted, &mountPoint, &ejectable);
 
-    KUrl openURL = KUrl(mountPoint);
+    QUrl openURL = QUrl::fromLocalFile(mountPoint);
 
     QMenu * myMenu = rightMenu = new QMenu(popupMenu);
     QAction * actOpen = myMenu->addAction(i18n("Open"));
@@ -434,9 +435,9 @@ void MediaButton::mount(QString udi, bool open, bool newtab)
         QString mp = udi.mid(remotePrefix.length());
         krMtMan.mount(mp, true);
         if (newtab)
-            emit newTab(KUrl(mp));
+            emit newTab(QUrl::fromLocalFile(mp));
         else
-            emit openUrl(KUrl(mp));
+            emit openUrl(QUrl::fromLocalFile(mp));
         return;
     }
     Solid::Device device(udi);
@@ -457,9 +458,9 @@ void MediaButton::slotSetupDone(Solid::ErrorType error, QVariant errorData, cons
             Solid::StorageAccess *access = Solid::Device(udi).as<Solid::StorageAccess>();
             if (access && access->isAccessible()) {
                 if (openInNewTab)
-                    emit newTab(KUrl(access->filePath()));
+                    emit newTab(QUrl::fromLocalFile(access->filePath()));
                 else
-                    emit openUrl(KUrl(access->filePath()));
+                    emit openUrl(QUrl::fromLocalFile(access->filePath()));
             }
             udiToOpen = QString(), openInNewTab = false;
         }
@@ -471,13 +472,10 @@ void MediaButton::slotSetupDone(Solid::ErrorType error, QVariant errorData, cons
             name = udiNameMap[ udi ];
 
         if (errorData.isValid()) {
-            KMessageBox::queuedMessageBox(this, KMessageBox::Sorry,
-                                          i18n("An error occurred while accessing '%1', the system responded: %2",
+            KMessageBox::sorry(this, i18n("An error occurred while accessing '%1', the system responded: %2",
                                           name, errorData.toString()));
         } else {
-            KMessageBox::queuedMessageBox(this, KMessageBox::Sorry,
-                                          i18n("An error occurred while accessing '%1'",
-                                          name));
+            KMessageBox::sorry(this, i18n("An error occurred while accessing '%1'", name));
         }
     }
 }
@@ -504,7 +502,7 @@ void MediaButton::slotAccessibilityChanged(bool /*accessible*/, const QString & 
             Solid::Device device(udi);
 
             QString name;
-            KIcon kdeIcon;
+            QIcon kdeIcon;
             if (getNameAndIcon(device, name, kdeIcon)) {
                 act->setText(name);
                 act->setIcon(kdeIcon);
@@ -525,7 +523,7 @@ void MediaButton::slotDeviceAdded(const QString& udi)
         return;
 
     QString name;
-    KIcon kdeIcon;
+    QIcon kdeIcon;
     if (!getNameAndIcon(device, name, kdeIcon))
         return;
 
@@ -608,7 +606,7 @@ void MediaButton::slotCheckMounts()
             QStringList overlays;
             if (mounted)
                 overlays << "emblem-mounted";
-            KIcon kdeIcon("network-wired", 0, overlays);
+            QIcon kdeIcon = KDE::icon("network-wired", overlays);
 
             if (!correspondingAct) {
                 QAction * act = popupMenu->addAction(kdeIcon, name);
@@ -624,4 +622,3 @@ void MediaButton::slotCheckMounts()
     mountCheckerTimer.start(1000);
 }
 
-#include "mediabutton.moc"

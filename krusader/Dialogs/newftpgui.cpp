@@ -21,17 +21,19 @@
 #include "newftpgui.h"
 
 #include <QtCore/QStringList>
+#include <QtCore/QEvent>
 #include <QtGui/QFont>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QSizePolicy>
-#include <QtGui/QWidget>
-#include <QEvent>
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSizePolicy>
 
-#include <KConfigGroup>
-#include <KIconLoader>
-#include <KLocale>
-#include <KProtocolInfo>
+#include <KConfigCore/KConfigGroup>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
+#include <KIOCore/KProtocolInfo>
 
 #include "../krglobal.h"
 
@@ -41,38 +43,37 @@
  * Constructs a newFTPGUI which is a child of 'parent',
  * with the name 'name' and widget flags set to 'f'
  */
-newFTPGUI::newFTPGUI(QWidget* parent) : KDialog(parent)
+newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
 {
-    QWidget *widget = new QWidget(this);
-
-    resize(400, 240);
-    setButtonText(KDialog::Ok, i18n("&Connect"));
-    setMainWidget(widget);
     setModal(true);
     setWindowTitle(i18n("New Network Connection"));
+    resize(400, 240);
+
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
 
     QSizePolicy policy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     policy.setHeightForWidth(sizePolicy().hasHeightForWidth());
     setSizePolicy(policy);
 
-    iconLabel = new QLabel(widget);
+    iconLabel = new QLabel(this);
     iconLabel->setPixmap(krLoader->loadIcon("network-wired", KIconLoader::Desktop, 32));
     iconLabel->setSizePolicy(SIZE_MINIMUM);
 
-    aboutLabel = new QLabel(i18n("About to connect to..."), widget);
+    aboutLabel = new QLabel(i18n("About to connect to..."), this);
     QFont font(aboutLabel->font());
     font.setBold(true);
     aboutLabel->setFont(font);
 
-    protocolLabel = new QLabel(i18n("Protocol:"), widget);
-    hostLabel = new QLabel(i18n("Host:"), widget);
-    portLabel = new QLabel(i18n("Port:"), widget);
+    protocolLabel = new QLabel(i18n("Protocol:"), this);
+    hostLabel = new QLabel(i18n("Host:"), this);
+    portLabel = new QLabel(i18n("Port:"), this);
 
-    prefix = new KComboBox(widget);
+    prefix = new KComboBox(this);
     prefix->setObjectName(QString::fromUtf8("protocol"));
     prefix->setSizePolicy(SIZE_MINIMUM);
 
-    url = new KHistoryComboBox(widget);
+    url = new KHistoryComboBox(this);
     url->setMaxCount(50);
     url->setMinimumContentsLength(10);
 
@@ -100,15 +101,15 @@ newFTPGUI::newFTPGUI(QWidget* parent) : KDialog(parent)
     }
 
 
-    port = new QSpinBox(widget);
+    port = new QSpinBox(this);
     port->setMaximum(65535);
     port->setValue(21);
     port->setSizePolicy(SIZE_MINIMUM);
 
-    usernameLabel = new QLabel(i18n("Username:"), widget);
-    username = new KLineEdit(widget);
-    passwordLabel = new QLabel(i18n("Password:"), widget);
-    password = new KLineEdit(widget);
+    usernameLabel = new QLabel(i18n("Username:"), this);
+    username = new KLineEdit(this);
+    passwordLabel = new QLabel(i18n("Password:"), this);
+    password = new KLineEdit(this);
     password->setEchoMode(QLineEdit::Password);
 
     QHBoxLayout *horizontalLayout = new QHBoxLayout();
@@ -127,9 +128,20 @@ newFTPGUI::newFTPGUI(QWidget* parent) : KDialog(parent)
     gridLayout->addWidget(passwordLabel, 4, 0, 1, 1);
     gridLayout->addWidget(password, 5, 0, 1, 3);
 
-    QGridLayout *widgetLayout = new QGridLayout(widget);
+    QGridLayout *widgetLayout = new QGridLayout();
     widgetLayout->addLayout(horizontalLayout, 0, 0, 1, 1);
     widgetLayout->addLayout(gridLayout, 1, 0, 1, 1);
+    mainLayout->addLayout(widgetLayout);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    mainLayout->addWidget(buttonBox);
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setText(i18n("&Connect"));
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
     connect(prefix, SIGNAL(activated(const QString &)),
             this, SLOT(slotTextChanged(const QString &)));
@@ -137,7 +149,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : KDialog(parent)
             url, SLOT(addToHistory(const QString &)));
 
     if(!lastUsedProtocol.isEmpty()) {
-        // update the port field 
+        // update the port field
         slotTextChanged(lastUsedProtocol);
     }
 
@@ -173,7 +185,7 @@ void newFTPGUI::slotTextChanged(const QString &string)
  */
 bool newFTPGUI::event(QEvent *ev)
 {
-    bool ret = KDialog::event(ev);
+    bool ret = QDialog::event(ev);
     if (ev->type() == QEvent::ApplicationFontChange) {
         QFont font(aboutLabel->font());
         font.setBold(true);
@@ -182,4 +194,3 @@ bool newFTPGUI::event(QEvent *ev)
     return ret;
 }
 
-#include "newftpgui.moc"

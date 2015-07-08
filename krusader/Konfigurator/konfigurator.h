@@ -34,10 +34,10 @@
 #define KONFIGURATOR_H
 
 #include "konfiguratorpage.h"
-#include <qwidget.h>
-#include <kdialog.h>
-#include <kpagedialog.h>
+
 #include <QtCore/QTimer>
+
+#include <KWidgetsAddons/KPageDialog>
 
 class QString;
 class QResizeEvent;
@@ -52,24 +52,26 @@ signals:
 
 public:
     Konfigurator(bool f = false, int startPage = 0); // true if Konfigurator is run for the first time
-    ~Konfigurator() {};
 
-    virtual void accept();
-    virtual void reject();
+    void reject() Q_DECL_OVERRIDE;
 
 protected:
-    void newPage(KonfiguratorPage *, const QString &, const QString &, const KIcon &); // adds widget and connects to slot
+    void newPage(KonfiguratorPage *, const QString &, const QString &, const QIcon &); // adds widget and connects to slot
     void createLayout(int startPage);
     void closeDialog();
 
-    virtual void resizeEvent(QResizeEvent *e);
-    virtual void slotButtonClicked(int button);
-    virtual void closeEvent(QCloseEvent *event);
+    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
 
 protected slots:
     void slotApplyEnable();
     bool slotPageSwitch(KPageWidgetItem *, KPageWidgetItem *);
     void slotRestorePage();
+    void slotClose();
+    void slotApply();
+    void slotReset();
+    void slotRestoreDefaults();
+    void slotShowHelp();
 
 private:
     QList<KPageWidgetItem*>     kgPages;

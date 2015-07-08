@@ -30,12 +30,6 @@
 
 #include "normal_vfs.h"
 
-#include <string.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <dirent.h>
-
 #ifdef HAVE_POSIX_ACL
 #include <sys/acl.h>
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
@@ -46,16 +40,14 @@
 #include <QtCore/QTimer>
 #include <QtCore/QByteArray>
 #include <QtCore/QDir>
+#include <qplatformdefs.h>
 
-#include <kde_file.h>
-#include <KMessageBox>
-#include <KMimeType>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 #include <KIO/DeleteJob>
 #include <KIO/JobUiDelegate>
-#include <KLocale>
-#include <KGlobalSettings>
-#include <KDebug>
-#include <KFileItem>
+#include <KIOCore/KFileItem>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "../Dialogs/krdialogs.h"
 #include "../MountMan/kmountman.h"
@@ -69,9 +61,9 @@ normal_vfs::normal_vfs(QObject* panel): vfs(panel), watcher(0)
     vfs_type = VFS_NORMAL;
 }
 
-bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
+bool normal_vfs::populateVfsList(const QUrl &origin, bool showHidden)
 {
-    QString path = KrServices::getPath(origin, KUrl::RemoveTrailingSlash);
+    QString path = KrServices::getPath(origin, QUrl::StripTrailingSlash);
 #ifdef Q_WS_WIN
     if (! path.contains("/")) {  //change C: to C:/
         path = path + QString("/");
@@ -88,9 +80,9 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
     // set the origin...
     vfs_origin = origin;
     vfs_origin.setPath(path);
-    //vfs_origin.adjustPath(KUrl::RemoveTrailingSlash);
-    vfs_origin.setProtocol("file"); // do not remove !
-    vfs_origin.cleanPath();
+    //vfs_origin.vfs_origin = vfs_origin.adjusted(QUrl::StripTrailingSlash));
+    vfs_origin.setScheme("file"); // do not remove !
+    vfs_origin.setPath(QDir::cleanPath(vfs_origin.path()));
 
     // check that the new origin exists
     if (!QDir(path).exists()) {
@@ -103,7 +95,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
     if (group.readEntry("AutoMount", _AutoMount) && !mountMan.isNull())
         mountMan->autoMount(path);
 
-    DIR* dir = opendir(path.toLocal8Bit());
+    QT_DIR* dir = QT_OPENDIR(path.toLocal8Bit());
     if (!dir) {
         if (!quietMode)
             emit error(i18n("Cannot open the directory %1.", path));
@@ -115,14 +107,14 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
     if (! QDir::setCurrent(path)) {
         if (!quietMode)
             emit error(i18nc("%1=directory path", "Access to %1 denied", path));
-        closedir(dir);
+        QT_CLOSEDIR(dir);
         return false;
     }
 
-    KDE_struct_dirent* dirEnt;
+    QT_DIRENT* dirEnt;
     QString name;
 
-    while ((dirEnt = KDE_readdir(dir)) != NULL) {
+    while ((dirEnt = QT_READDIR(dir)) != NULL) {
         name = QString::fromLocal8Bit(dirEnt->d_name);
 
         // show hidden files ?
@@ -134,7 +126,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
         foundVfile(temp);
     }
     // clean up
-    closedir(dir);
+    QT_CLOSEDIR(dir);
     QDir::setCurrent(save);
 
     if (panelConnected) {
@@ -143,7 +135,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
         connect(watcher, SIGNAL(dirty(const QString&)), this, SLOT(vfs_slotDirty(const QString&)));
         connect(watcher, SIGNAL(created(const QString&)), this, SLOT(vfs_slotCreated(const QString&)));
         connect(watcher, SIGNAL(deleted(const QString&)), this, SLOT(vfs_slotDeleted(const QString&)));
-        watcher->addDir(vfs_getOrigin().path(KUrl::RemoveTrailingSlash), KDirWatch::WatchFiles); //start watching the new dir
+        watcher->addDir(vfs_getOrigin().adjusted(QUrl::StripTrailingSlash).path(), KDirWatch::WatchFiles); //start watching the new dir
         watcher->startScan(true);
     }
 
@@ -151,7 +143,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
 }
 
 // copy a file to the vfs (physical)
-void normal_vfs::vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir, PreserveMode pmode)
+void normal_vfs::vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir, PreserveMode pmode)
 {
     //if( watcher ) watcher->stopScan(); // we will refresh manually this time...
     if (watcher) {
@@ -159,10 +151,9 @@ void normal_vfs::vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode,
         watcher = 0;
     }
 
-    KUrl dest;
-    dest.setPath(vfs_workingDir() + '/' + dir);
+    QUrl dest = QUrl::fromLocalFile(vfs_workingDir() + '/' + dir);
 
-    KIO::Job* job = PreservingCopyJob::createCopyJob(pmode, *fileUrls, dest, mode, false, true);
+    KIO::Job* job = PreservingCopyJob::createCopyJob(pmode, fileUrls, dest, mode, false, true);
     connect(job, SIGNAL(result(KJob*)), this, SLOT(vfs_refresh(KJob *)));
     if (mode == KIO::CopyJob::Move) // notify the other panel
         connect(job, SIGNAL(result(KJob*)), toNotify, SLOT(vfs_refresh(KJob*)));
@@ -171,12 +162,8 @@ void normal_vfs::vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode,
 }
 
 // remove a file from the vfs (physical)
-void normal_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
+void normal_vfs::vfs_delFiles(const QStringList &fileNames, bool reallyDelete)
 {
-    KUrl::List filesUrls;
-    KUrl url;
-    QDir local(vfs_workingDir());
-
 //  if( watcher ) watcher->stopScan(); // we will refresh manually this time...
     if (watcher) {
         delete watcher;   // stopScan is buggy, leaves reference on the directory, that's why we delete the watcher
@@ -184,11 +171,8 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
     }
 
     // names -> urls
-    for (int i = 0 ; i < fileNames->count(); ++i) {
-        QString filename = (*fileNames)[i];
-        url.setPath(vfs_workingDir() + '/' + filename);
-        filesUrls.append(url);
-    }
+    QList<QUrl> filesUrls = vfs_getFiles(fileNames);
+
     KIO::Job *job;
 
     // delete of move to trash ?
@@ -203,20 +187,20 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete)
 }
 
 // return a path to the file
-KUrl normal_vfs::vfs_getFile(const QString& name)
+QUrl normal_vfs::vfs_getFile(const QString& name)
 {
     QString url;
     if (vfs_workingDir() == "/") url = "/" + name;
     else url = vfs_workingDir() + '/' + name;
 
-    return KUrl(url);
+    return QUrl::fromLocalFile(url);
 }
 
-KUrl::List* normal_vfs::vfs_getFiles(QStringList* names)
+QList<QUrl> normal_vfs::vfs_getFiles(const QStringList &names)
 {
-    KUrl::List* urls = new KUrl::List();
-    for (QStringList::Iterator name = names->begin(); name != names->end(); ++name) {
-        urls->append(vfs_getFile(*name));
+    QList<QUrl> urls;
+    foreach (const QString &name, names) {
+        urls.append(vfs_getFile(name));
     }
     return urls;
 }
@@ -231,20 +215,16 @@ void normal_vfs::vfs_mkdir(const QString& name)
 
 void normal_vfs::vfs_rename(const QString& fileName, const QString& newName)
 {
-    KUrl::List fileUrls;
-    KUrl url , dest;
-
     //if( watcher ) watcher->stopScan(); // we will refresh manually this time...
     if (watcher) {
         delete watcher;   // stopScan is buggy, leaves reference on the directory, that's why we delete the watcher
         watcher = 0;
     }
 
-    url.setPath(vfs_workingDir() + '/' + fileName);
-    fileUrls.append(url);
-    dest.setPath(vfs_workingDir() + '/' + newName);
+    QList<QUrl> fileUrls;
+    fileUrls.append(QUrl::fromLocalFile(vfs_workingDir() + '/' + fileName));
 
-    KIO::Job *job = KIO::move(fileUrls, dest);
+    KIO::Job *job = KIO::move(fileUrls, QUrl::fromLocalFile(vfs_workingDir() + '/' + newName));
     connect(job, SIGNAL(result(KJob*)), this, SLOT(vfs_refresh(KJob*)));
 }
 
@@ -253,20 +233,20 @@ vfile* normal_vfs::vfileFromName(const QString& name, char * rawName)
     QString path = vfs_workingDir() + '/' + name;
     QByteArray fileName = rawName == 0 ? path.toLocal8Bit() : (vfs_workingDir() + '/').toLocal8Bit().append(rawName);
 
-    KDE_struct_stat stat_p;
+    QT_STATBUF stat_p;
     stat_p.st_size = 0;
     stat_p.st_mode = 0;
     stat_p.st_mtime = 0;
     stat_p.st_uid = 0;
     stat_p.st_gid = 0;
-    KDE_lstat(fileName.data(), &stat_p);
+    QT_LSTAT(fileName.data(), &stat_p);
     KIO::filesize_t size = stat_p.st_size;
     QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
     bool symLink = S_ISLNK(stat_p.st_mode);
     bool brokenLink = false;
     if (S_ISDIR(stat_p.st_mode)) perm[0] = 'd';
 
-    KUrl mimeUrl = KUrl(path);
+    QUrl mimeUrl = QUrl::fromLocalFile(path);
     QString mime;
 
     QString symDest;
@@ -290,7 +270,7 @@ vfile* normal_vfs::vfileFromName(const QString& name, char * rawName)
         rwx |= R_OK;
     if (::access(fileName.data(), W_OK) == 0)
         rwx |= W_OK;
-        
+
 #ifndef Q_CC_MSVC
     if (::access(fileName.data(), X_OK) == 0)
         rwx |= X_OK;
@@ -309,7 +289,7 @@ void normal_vfs::getACL(vfile *file, QString &acl, QString &defAcl)
     acl.clear();
     defAcl.clear();
 #ifdef HAVE_POSIX_ACL
-    QString fileName = file->vfile_getUrl().path(KUrl::RemoveTrailingSlash);
+    QString fileName = file->vfile_getUrl().adjusted(QUrl::StripTrailingSlash).path();
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
     if (acl_extended_file(fileName)) {
 #endif
@@ -387,8 +367,8 @@ bool normal_vfs::burstRefresh(const QString& path)
     if (ndx >= 0)
         parentPath = path.left(ndx == 0 ? 1 : ndx);
 
-    if (path == vfs_getOrigin().path(KUrl::RemoveTrailingSlash) ||
-            parentPath == vfs_getOrigin().path(KUrl::RemoveTrailingSlash)) {
+    if (path == vfs_getOrigin().adjusted(QUrl::StripTrailingSlash).path() ||
+            parentPath == vfs_getOrigin().adjusted(QUrl::StripTrailingSlash).path()) {
         if (!refreshTimer.isActive()) {
             // the directory itself is dirty - full refresh is needed
             QTimer::singleShot(0, this, SLOT(vfs_slotRefresh()));    // safety: dirty signal comes from KDirWatch!
@@ -396,7 +376,7 @@ bool normal_vfs::burstRefresh(const QString& path)
         }
         disconnect(&refreshTimer, SIGNAL(timeout()), this, SLOT(vfs_slotRefresh()));
         connect(&refreshTimer, SIGNAL(timeout()), this, SLOT(vfs_slotRefresh()));
-        postponedRefreshURL = KUrl(path);
+        postponedRefreshURL = QUrl::fromLocalFile(path);
         return true;
     }
     return false;
@@ -413,7 +393,7 @@ void normal_vfs::vfs_slotDirty(const QString& path)
     if (burstRefresh(path))
         return;
 
-    KUrl url = KUrl(path);
+    QUrl url = QUrl::fromLocalFile(path);
     QString name = url.fileName();
 
     if (name.left(1) == "." && !vfs_showHidden())
@@ -441,7 +421,7 @@ void normal_vfs::vfs_slotCreated(const QString& path)
     if (burstRefresh(path))
         return;
 
-    KUrl url = KUrl(path);
+    QUrl url = QUrl::fromLocalFile(path);
     QString name = url.fileName();
 
     if (name.left(1) == "." && !vfs_showHidden())
@@ -468,7 +448,7 @@ void normal_vfs::vfs_slotDeleted(const QString& path)
         return;
 
 
-    KUrl url = KUrl(path);
+    QUrl url = QUrl::fromLocalFile(path);
     QString name = url.fileName();
 
     // if it's not in the CVS - do nothing
@@ -480,4 +460,3 @@ void normal_vfs::vfs_slotDeleted(const QString& path)
     }
 }
 
-#include "normal_vfs.moc"

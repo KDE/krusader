@@ -21,16 +21,14 @@
 
 #include <algorithm>
 
-#include <QPixmap>
-#include <QPainter>
-#include <QApplication>
-#include <QStyleOptionMenuItem>
-#include <QProxyStyle>
+#include <QtGui/QPixmap>
+#include <QtGui/QPainter>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QStyleOptionMenuItem>
+#include <QtWidgets/QProxyStyle>
 
-#include <kio/previewjob.h>
-#include <kdebug.h>
-#include <klocale.h>
-#include <kdeversion.h>
+#include <KI18n/KLocalizedString>
+#include <KIO/PreviewJob>
 
 #include "../KViewer/krviewer.h"
 
@@ -40,7 +38,7 @@ public:
     ProxyStyle() : QProxyStyle(QApplication::style()) {}
 
     virtual QSize sizeFromContents(ContentsType type, const QStyleOption *option,
-                                   const QSize &contentsSize, const QWidget *widget = 0) const
+                                   const QSize &contentsSize, const QWidget *widget = 0) const Q_DECL_OVERRIDE
     {
         if(type == QStyle::CT_MenuItem) {
             const QStyleOptionMenuItem *menuItem =
@@ -57,8 +55,8 @@ public:
             return QProxyStyle::sizeFromContents(type, option, contentsSize, widget);
     }
 
-    virtual void drawControl(ControlElement element, const QStyleOption *option, 
-                                    QPainter *painter, const QWidget *widget = 0 ) const
+    virtual void drawControl(ControlElement element, const QStyleOption *option,
+                                    QPainter *painter, const QWidget *widget = 0 ) const Q_DECL_OVERRIDE
     {
         if(element == QStyle::CE_MenuItem) {
             painter->save();
@@ -111,25 +109,22 @@ void KrPreviewPopup::showEvent(QShowEvent *event)
     QMenu::showEvent(event);
 
     if (!jobStarted) {
-#if KDE_IS_VERSION(4,7,0)
         QStringList allPlugins = KIO::PreviewJob::availablePlugins();
         KIO::PreviewJob *pjob = new KIO::PreviewJob(files, QSize(MAX_SIZE, MAX_SIZE), &allPlugins);
             pjob->setOverlayIconSize(0);
             pjob->setOverlayIconAlpha(1);
             pjob->setScaleType(KIO::PreviewJob::ScaledAndCached);
-#else
-        KIO::PreviewJob *pjob = new KIO::PreviewJob(files, MAX_SIZE, MAX_SIZE, 0, 1, true, true, 0);
-#endif
         connect(pjob, SIGNAL(gotPreview(const KFileItem&, const QPixmap&)),
                 this, SLOT(addPreview(const KFileItem&, const QPixmap&)));
         jobStarted = true;
     }
 }
 
-void KrPreviewPopup::setUrls(const KUrl::List* urls)
+void KrPreviewPopup::setUrls(const QList<QUrl> &urls)
 {
-    for (int i = 0; i < urls->count(); ++i)
-        files.push_back(KFileItem(KFileItem::Unknown, KFileItem::Unknown, (*urls)[ i ]));
+    foreach(const QUrl &url, urls) {
+        files.push_back(KFileItem(url));
+    }
 }
 
 void KrPreviewPopup::addPreview(const KFileItem& file, const QPixmap& preview)
@@ -147,8 +142,7 @@ void KrPreviewPopup::addPreview(const KFileItem& file, const QPixmap& preview)
 
 void KrPreviewPopup::view(QAction *clicked)
 {
-    if (clicked && clicked->data().canConvert<KUrl>())
-        KrViewer::view(clicked->data().value<KUrl>());
+    if (clicked && clicked->data().canConvert<QUrl>())
+        KrViewer::view(clicked->data().value<QUrl>());
 }
 
-#include "krpreviewpopup.moc"

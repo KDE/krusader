@@ -32,10 +32,10 @@
 #define COMBINER_H
 
 #include <QtCore/QString>
-#include <qprogressdialog.h>
+#include <QtCore/QUrl>
+#include <QtWidgets/QProgressDialog>
 
-#include <kurl.h>
-#include <kio/jobclasses.h>
+#include <KIO/Job>
 
 #include "crc32.h"
 
@@ -44,7 +44,7 @@ class Combiner : public QProgressDialog
     Q_OBJECT
 
 public:
-    Combiner(QWidget* parent,  KUrl baseURLIn, KUrl destinationURLIn, bool unixNamingIn = false);
+    Combiner(QWidget* parent,  QUrl baseURLIn, QUrl destinationURLIn, bool unixNamingIn = false);
     ~Combiner();
 
     void combine();
@@ -65,12 +65,12 @@ private:
     void combineAbortJobs();
 
 
-    KUrl            splURL;
-    KUrl            readURL;
-    KUrl            writeURL;
+    QUrl            splURL;
+    QUrl            readURL;
+    QUrl            writeURL;
 
-    KUrl            baseURL;
-    KUrl            destinationURL;
+    QUrl            baseURL;
+    QUrl            destinationURL;
     CRC32          *crcContext;
     QByteArray      transferArray;
 

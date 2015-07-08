@@ -18,11 +18,11 @@
 
 #include  "quickfilter.h"
 
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QToolButton>
-#include <klocale.h>
-#include <kicon.h>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QToolButton>
+
+#include <KI18n/KLocalizedString>
 
 QuickFilter::QuickFilter(QWidget *parent) : QWidget(parent)
 {
@@ -31,7 +31,7 @@ QuickFilter::QuickFilter(QWidget *parent) : QWidget(parent)
 
     QToolButton *closeButton = new QToolButton(this);
     closeButton->setAutoRaise(true);
-    closeButton->setIcon(KIcon("dialog-close"));
+    closeButton->setIcon(QIcon::fromTheme("dialog-close"));
     connect(closeButton, SIGNAL(clicked()), SIGNAL(stop()));
     layout->addWidget(closeButton);
 

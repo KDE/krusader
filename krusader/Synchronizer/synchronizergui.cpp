@@ -43,32 +43,33 @@
 #include "../kicons.h"
 #include "synchronizedialog.h"
 #include "feedtolistboxdialog.h"
-#include <QtGui/QLayout>
-#include <QtGui/QGroupBox>
-#include <QResizeEvent>
-#include <QLabel>
-#include <QPixmap>
-#include <QMouseEvent>
-#include <QGridLayout>
-#include <QKeyEvent>
-#include <QHBoxLayout>
-#include <QFrame>
-#include <kurlrequester.h>
-#include <klocale.h>
-#include <kmenu.h>
-#include <QtGui/QCursor>
-#include <time.h>
-#include <kmessagebox.h>
-#include <kio/netaccess.h>
+
 #include <QtCore/QEventLoop>
 #include <QtCore/QRegExp>
-#include <qheaderview.h>
-#include <qspinbox.h>
-#include <kinputdialog.h>
-#include <QDrag>
-#include <QMimeData>
-#include <QtGui/QClipboard>
+#include <QtCore/QMimeData>
 #include <QtCore/QHash>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QMouseEvent>
+#include <QtGui/QPixmap>
+#include <QtGui/QCursor>
+#include <QtGui/QDrag>
+#include <QtGui/QClipboard>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QSpinBox>
+
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
+#include <KIOWidgets/KUrlRequester>
 
 static const char * const right_arrow_button_data[] = {
     "18 18 97 2",
@@ -1048,7 +1049,7 @@ public:
     }
 
     void startDrag(Qt::DropActions /* supportedActs */) {
-        KUrl::List urls;
+        QList<QUrl> urls;
 
         unsigned              ndx = 0;
         SynchronizerFileItem  *currentItem;
@@ -1063,11 +1064,13 @@ public:
             if (item) {
                 if (isLeft && item->existsInLeft()) {
                     QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-                    KUrl leftURL = KUrl(synchronizer->leftBaseDirectory()  + leftDirName + item->leftName());
+                    QUrl leftURL = QUrl::fromUserInput(synchronizer->leftBaseDirectory()  + leftDirName + item->leftName(),
+                                                       QString(), QUrl::AssumeLocalFile);
                     urls.push_back(leftURL);
                 } else if (!isLeft && item->existsInRight()) {
                     QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
-                    KUrl rightURL = KUrl(synchronizer->rightBaseDirectory()  + rightDirName + item->rightName());
+                    QUrl rightURL = QUrl::fromUserInput(synchronizer->rightBaseDirectory()  + rightDirName + item->rightName(),
+                                                        QString(), QUrl::AssumeLocalFile);
                     urls.push_back(rightURL);
                 }
             }
@@ -1079,14 +1082,14 @@ public:
         QDrag *drag = new QDrag(this);
         QMimeData *mimeData = new QMimeData;
         mimeData->setImageData(FL_LOADICON(isLeft ? "arrow-left-double" : "arrow-right-double"));
-        urls.populateMimeData(mimeData);
+        mimeData->setUrls(urls);
         drag->setMimeData(mimeData);
         drag->start();
     }
 };
 
 
-SynchronizerGUI::SynchronizerGUI(QWidget* parent,  KUrl leftURL, KUrl rightURL, QStringList selList) :
+SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QUrl leftURL, QUrl rightURL, QStringList selList) :
         QDialog(parent)
 {
     initGUI(parent, QString(), leftURL, rightURL, selList);
@@ -1095,10 +1098,10 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  KUrl leftURL, KUrl rightURL, 
 SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString profile) :
         QDialog(parent)
 {
-    initGUI(parent, profile, KUrl(), KUrl(), QStringList());
+    initGUI(parent, profile, QUrl(), QUrl(), QStringList());
 }
 
-void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl leftURL, KUrl rightURL, QStringList selList)
+void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl leftURL, QUrl rightURL, QStringList selList)
 {
     selectedFiles = selList;
     isComparing = wasClosed = wasSync = false;
@@ -1110,9 +1113,9 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     hasSelectedFiles = (selectedFiles.count() != 0);
 
     if (leftURL.isEmpty())
-        leftURL = KUrl(ROOT_DIR);
+        leftURL = QUrl::fromLocalFile(ROOT_DIR);
     if (rightURL.isEmpty())
-        rightURL = KUrl(ROOT_DIR);
+        rightURL = QUrl::fromLocalFile(ROOT_DIR);
 
     setWindowTitle(i18n("Krusader::Synchronize Directories"));
     QGridLayout *synchGrid = new QGridLayout(this);
@@ -1122,7 +1125,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     folderIcon =   QPixmap((const char**) folder_data);
     fileIcon   =   QPixmap((const char**) file_data);
 
-    synchronizerTabs = new KTabWidget(this);
+    synchronizerTabs = new QTabWidget(this);
 
     /* ============================== Compare groupbox ============================== */
 
@@ -1162,7 +1165,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     QStringList list = group.readEntry("Left Directory History", QStringList());
     leftLocation->setHistoryItems(list);
     KUrlRequester *leftUrlReq = new KUrlRequester(leftLocation, compareDirs);
-    leftUrlReq->setUrl(leftURL.pathOrUrl());
+    leftUrlReq->setUrl(leftURL);
     leftUrlReq->setMode(KFile::Directory);
     leftUrlReq->setMinimumWidth(250);
     grid->addWidget(leftUrlReq, 1 , 0);
@@ -1195,7 +1198,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     list = group.readEntry("Right Directory History", QStringList());
     rightLocation->setHistoryItems(list);
     KUrlRequester *rightUrlReq = new KUrlRequester(rightLocation, compareDirs);
-    rightUrlReq->setUrl(rightURL.pathOrUrl());
+    rightUrlReq->setUrl(rightURL);
     rightUrlReq->setMode(KFile::Directory);
     rightUrlReq->setMinimumWidth(250);
     grid->addWidget(rightUrlReq, 1 , 2);
@@ -1351,13 +1354,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     labels << i18nc("@title:column file name", "Name");
     syncList->setHeaderLabels(labels);
 
-    syncList->header()->setResizeMode(0, QHeaderView::Interactive);
-    syncList->header()->setResizeMode(1, QHeaderView::Interactive);
-    syncList->header()->setResizeMode(2, QHeaderView::Interactive);
-    syncList->header()->setResizeMode(3, QHeaderView::Interactive);
-    syncList->header()->setResizeMode(4, QHeaderView::Interactive);
-    syncList->header()->setResizeMode(5, QHeaderView::Interactive);
-    syncList->header()->setResizeMode(6, QHeaderView::Interactive);
+    syncList->header()->setSectionResizeMode(QHeaderView::Interactive);
 
     if (group.hasKey("State"))
         syncList->header()->restoreState(group.readEntry("State", QByteArray()));
@@ -1500,26 +1497,26 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
     btnStopComparing = new QPushButton(this);
     btnStopComparing->setText(i18n("Stop"));
-    btnStopComparing->setIcon(KIcon("process-stop"));
+    btnStopComparing->setIcon(QIcon::fromTheme("process-stop"));
     btnStopComparing->setEnabled(false);
     buttons->addWidget(btnStopComparing);
 
     btnFeedToListBox = new QPushButton(this);
     btnFeedToListBox->setText(i18n("Feed to listbox"));
-    btnFeedToListBox->setIcon(KIcon("list-add"));
+    btnFeedToListBox->setIcon(QIcon::fromTheme("list-add"));
     btnFeedToListBox->setEnabled(false);
     btnFeedToListBox->hide();
     buttons->addWidget(btnFeedToListBox);
 
     btnSynchronize = new QPushButton(this);
     btnSynchronize->setText(i18n("Synchronize"));
-    btnSynchronize->setIcon(KIcon("folder-sync"));
+    btnSynchronize->setIcon(QIcon::fromTheme("folder-sync"));
     btnSynchronize->setEnabled(false);
     buttons->addWidget(btnSynchronize);
 
     QPushButton *btnCloseSync = new QPushButton(this);
     btnCloseSync->setText(i18n("Close"));
-    btnCloseSync->setIcon(KIcon("dialog-close"));
+    btnCloseSync->setIcon(QIcon::fromTheme("dialog-close"));
     buttons->addWidget(btnCloseSync);
 
     synchGrid->addLayout(buttons, 1, 0);
@@ -1559,9 +1556,9 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     connect(btnDuplicates,     SIGNAL(toggled(bool)), this, SLOT(refresh()));
     connect(btnSingles,        SIGNAL(toggled(bool)), this, SLOT(refresh()));
 
-    connect(fileFilter,        SIGNAL(textChanged(const QString &)), this, SLOT(connectFilters(const QString &)));
-    connect(generalFilter->searchFor, SIGNAL(textChanged(const QString &)), this, SLOT(connectFilters(const QString &)));
-    connect(generalFilter->searchFor, SIGNAL(textChanged(const QString &)), this, SLOT(setCompletion()));
+    connect(fileFilter,        SIGNAL(currentTextChanged(QString)), this, SLOT(connectFilters(QString)));
+    connect(generalFilter->searchFor, SIGNAL(currentTextChanged(QString)), this, SLOT(connectFilters(QString)));
+    connect(generalFilter->searchFor, SIGNAL(currentTextChanged(QString)), this, SLOT(setCompletion()));
     connect(generalFilter->dontSearchIn, SIGNAL(checkValidity(QString &, QString &)),
             this, SLOT(checkExcludeURLValidity(QString &, QString &)));
 
@@ -1655,30 +1652,31 @@ void SynchronizerGUI::setPanelLabels()
 
 void SynchronizerGUI::setCompletion()
 {
-    generalFilter->dontSearchIn->setCompletionDir(rightLocation->currentText());
+    generalFilter->dontSearchIn->setCompletionDir(QUrl::fromUserInput(rightLocation->currentText(),
+                                                                      QString(), QUrl::AssumeLocalFile));
 }
 
 void SynchronizerGUI::checkExcludeURLValidity(QString &text, QString &error)
 {
-    KUrl url = KUrl(text);
-    if (KUrl::isRelativeUrl(url.url()))
+    QUrl url = QUrl::fromUserInput(text, QString(), QUrl::AssumeLocalFile);
+    if (url.isRelative())
         return;
 
     QString leftBase = leftLocation->currentText();
     if (!leftBase.endsWith('/'))
         leftBase += '/';
-    KUrl leftBaseURL = KUrl(leftBase);
+    QUrl leftBaseURL = QUrl::fromUserInput(leftBase, QString(), QUrl::AssumeLocalFile);
     if (leftBaseURL.isParentOf(url) && !url.isParentOf(leftBaseURL)) {
-        text = KUrl::relativeUrl(leftBaseURL, url);
+        text = QDir(leftBaseURL.path()).relativeFilePath(url.path());
         return;
     }
 
     QString rightBase = rightLocation->currentText();
     if (!rightBase.endsWith('/'))
         rightBase += '/';
-    KUrl rightBaseURL = KUrl(rightBase);
+    QUrl rightBaseURL = QUrl::fromUserInput(rightBase, QString(), QUrl::AssumeLocalFile);
     if (rightBaseURL.isParentOf(url) && !url.isParentOf(rightBaseURL)) {
-        text = KUrl::relativeUrl(rightBaseURL, url);
+        text = QDir(rightBaseURL.path()).relativeFilePath(url.path());
         return;
     }
 
@@ -1695,8 +1693,10 @@ void SynchronizerGUI::doubleClicked(QTreeWidgetItem *itemIn)
     if (item && item->existsInLeft() && item->existsInRight() && !item->isDir()) {
         QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
         QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
-        KUrl leftURL  = KUrl(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName());
-        KUrl rightURL = KUrl(synchronizer.rightBaseDirectory() + rightDirName + item->rightName());
+        QUrl leftURL = QUrl::fromUserInput(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName(),
+                                           QString(), QUrl::AssumeLocalFile);
+        QUrl rightURL = QUrl::fromUserInput(synchronizer.rightBaseDirectory() + rightDirName + item->rightName(),
+                                            QString(), QUrl::AssumeLocalFile);
 
         SLOTS->compareContent(leftURL, rightURL);
     } else if (item && item->isDir()) {
@@ -1736,7 +1736,7 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
     bool    isDir       = item->isDir();
 
     // create the menu
-    KMenu popup;
+    QMenu popup;
     QAction *myact;
     QHash< QAction *, int > actHash;
 
@@ -1783,8 +1783,10 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
     myact = popup.addAction(i18n("I&nvert selection"));
     actHash[ myact ] = INVERT_SELECTION_ID;
 
-    KUrl leftBDir = KUrl(synchronizer.leftBaseDirectory());
-    KUrl rightBDir = KUrl(synchronizer.rightBaseDirectory());
+    QUrl leftBDir = QUrl::fromUserInput(synchronizer.leftBaseDirectory(),
+                                        QString(), QUrl::AssumeLocalFile);
+    QUrl rightBDir = QUrl::fromUserInput(synchronizer.rightBaseDirectory(),
+                                         QString(), QUrl::AssumeLocalFile);
 
     if (KrServices::cmdExist("kget") &&
             ((!leftBDir.isLocalFile() && rightBDir.isLocalFile() && btnLeftToRight->isChecked()) ||
@@ -1810,8 +1812,10 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
     QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
     QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
 
-    KUrl leftURL  = KUrl(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName());
-    KUrl rightURL = KUrl(synchronizer.rightBaseDirectory() + rightDirName + item->rightName());
+    QUrl leftURL = QUrl::fromUserInput(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName(),
+                                       QString(), QUrl::AssumeLocalFile);
+    QUrl rightURL = QUrl::fromUserInput(synchronizer.rightBaseDirectory() + rightDirName + item->rightName(),
+                                        QString(), QUrl::AssumeLocalFile);
 
     switch (op) {
     case EXCLUDE_ID:
@@ -1926,18 +1930,18 @@ void SynchronizerGUI::closeDialog()
     QStringList list;
 
     foreach(QString item, leftLocation->historyItems()) {
-        KUrl url(item);
+        QUrl url(item);
         // make sure no passwords are saved in config
-        url.setPass(QString());
-        list<<url.pathOrUrl();
+        url.setPassword(QString());
+        list << url.toDisplayString(QUrl::PreferLocalFile);
     }
     group.writeEntry("Left Directory History", list);
     list.clear();
     foreach(QString item, rightLocation->historyItems()) {
-        KUrl url(item);
+        QUrl url(item);
         // make sure no passwords are saved in config
-        url.setPass(QString());
-        list<<url.pathOrUrl();
+        url.setPassword(QString());
+        list << url.toDisplayString(QUrl::PreferLocalFile);
     }
     group.writeEntry("Right Directory History", list);
 
@@ -2174,7 +2178,7 @@ QString SynchronizerGUI::convertTime(time_t time) const
     struct tm* t = localtime((time_t *) & time);
 
     QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-    return KGlobal::locale()->formatDateTime(tmp);
+    return QLocale().toString(tmp, QLocale::ShortFormat);
 }
 
 void SynchronizerGUI::setMarkFlags()
@@ -2293,14 +2297,16 @@ void SynchronizerGUI::keyPressEvent(QKeyEvent *e)
             return;
 
         if (e->modifiers() == Qt::ShiftModifier && item->existsInRight()) {
-            KUrl rightURL = KUrl(synchronizer.rightBaseDirectory() + rightDirName + item->rightName());
+            QUrl rightURL = QUrl::fromUserInput(synchronizer.rightBaseDirectory() + rightDirName + item->rightName(),
+                                                QString(), QUrl::AssumeLocalFile);
             if (isedit)
                 KrViewer::edit(rightURL, this);   // view the file
             else
                 KrViewer::view(rightURL, this);   // view the file
             return;
         } else if (e->modifiers() == 0 && item->existsInLeft()) {
-            KUrl leftURL  = KUrl(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName());
+            QUrl leftURL = QUrl::fromUserInput(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName(),
+                                               QString(), QUrl::AssumeLocalFile);
             if (isedit)
                 KrViewer::edit(leftURL, this);   // view the file
             else
@@ -2537,7 +2543,7 @@ void SynchronizerGUI::convertFromSeconds(int &time, int &unit, int second)
 
 void SynchronizerGUI::copyToClipboard(bool isLeft)
 {
-    KUrl::List urls;
+    QList<QUrl> urls;
 
     unsigned              ndx = 0;
     SynchronizerFileItem  *currentItem;
@@ -2552,11 +2558,13 @@ void SynchronizerGUI::copyToClipboard(bool isLeft)
         if (item) {
             if (isLeft && item->existsInLeft()) {
                 QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-                KUrl leftURL = KUrl(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName());
+                QUrl leftURL = QUrl::fromUserInput(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName(),
+                                                   QString(), QUrl::AssumeLocalFile);
                 urls.push_back(leftURL);
             } else if (!isLeft && item->existsInRight()) {
                 QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
-                KUrl rightURL = KUrl(synchronizer.rightBaseDirectory()  + rightDirName + item->rightName());
+                QUrl rightURL = QUrl::fromUserInput(synchronizer.rightBaseDirectory()  + rightDirName + item->rightName(),
+                                                    QString(), QUrl::AssumeLocalFile);
                 urls.push_back(rightURL);
             }
         }
@@ -2567,7 +2575,7 @@ void SynchronizerGUI::copyToClipboard(bool isLeft)
 
     QMimeData *mimeData = new QMimeData;
     mimeData->setImageData(FL_LOADICON(isLeft ? "arrow-left-double" : "arrow-right-double"));
-    urls.populateMimeData(mimeData);
+    mimeData->setUrls(urls);
 
     QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);
 }
@@ -2580,4 +2588,3 @@ QString SynchronizerGUI::dirLabel()
     return label;
 }
 
-#include "synchronizergui.moc"

@@ -34,12 +34,12 @@
 #include "filtersettings.h"
 #include "../VFS/krquery.h"
 
-#include <kdialog.h>
+#include <QtWidgets/QDialog>
 
 class FilterTabs;
 class GeneralFilter;
 
-class FilterDialog : public KDialog
+class FilterDialog : public QDialog
 {
     Q_OBJECT
 
@@ -56,9 +56,7 @@ public:
 
 public slots:
     void slotCloseRequest(bool doAccept);
-
-protected slots:
-    virtual void slotButtonClicked(int button);
+    void slotReset();
     void slotOk();
 
 private:

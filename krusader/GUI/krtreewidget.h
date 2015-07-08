@@ -31,7 +31,8 @@
 #ifndef KRTREEWIDGET_H
 #define KRTREEWIDGET_H
 
-#include <QtGui/QTreeWidget>
+#include <QtWidgets/QAbstractScrollArea>
+#include <QtWidgets/QTreeWidget>
 
 class KrTreeWidget : public QTreeWidget
 {
@@ -54,7 +55,7 @@ signals:
     void itemRightClicked(QTreeWidgetItem * it, const QPoint & pos, int column);
 
 protected:
-    virtual bool event(QEvent * event);
+    virtual bool event(QEvent * event) Q_DECL_OVERRIDE;
 
 private:
     int  _stretchingColumn;

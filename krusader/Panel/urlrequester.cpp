@@ -21,41 +21,44 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 
-#include <KLineEdit>
-#include <ksqueezedtextlabel.h>
-#include <QPainter>
-#include <QFont>
-#include <QEvent>
+#include <QtCore/QEvent>
+#include <QtGui/QPainter>
+#include <QtGui/QFont>
+#include <QtWidgets/QStyleOption>
+
+#include <KConfigCore/KSharedConfig>
+#include <KCompletion/KLineEdit>
+#include <KWidgetsAddons/KSqueezedTextLabel>
 
 class UrlRequester::PathLabel : public KSqueezedTextLabel
 {
 public:
     PathLabel (QWidget *parent, QLineEdit *le) : KSqueezedTextLabel(parent), _lineEdit(le) {}
 
-    virtual void mousePressEvent(QMouseEvent *event) {
+    virtual void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE {
         Q_UNUSED(event);
         hide();
         _lineEdit->show();
         _lineEdit->setFocus();
     }
 
-    virtual void enterEvent(QEvent *event) {
+    virtual void enterEvent(QEvent *event) Q_DECL_OVERRIDE {
         Q_UNUSED(event);
         update();
     }
 
-    virtual void leaveEvent(QEvent *event) {
+    virtual void leaveEvent(QEvent *event) Q_DECL_OVERRIDE {
         Q_UNUSED(event);
         update();
     }
 
-    virtual void paintEvent(QPaintEvent *event) {
+    virtual void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE {
         Q_UNUSED(event);
         QPainter p(this);
-        QStyleOption opt;
-        opt.rect = rect();
+        //QStyleOption opt;
+        //opt.rect = rect();
         QRectF textRect;
-        QRect r  = rect();
+        QRect r = rect();
         r.adjust(0, 0, -5, 0); // reserve some space
         p.drawText(r, Qt::AlignLeft | Qt::AlignVCenter | Qt::TextSingleLine, text(), &textRect);
         int lineX = (textRect.right()) < r.right() ? textRect.right() : r.right() + 3;
@@ -78,6 +81,8 @@ UrlRequester::UrlRequester(KLineEdit *le, QWidget *parent) : KUrlRequester(le, p
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("FlatOriginBar", _FlatOriginBar)) {
         _path = new PathLabel(this, le);
         _path->setCursor(Qt::IBeamCursor);
+        // temporary workaround
+        _path->resize(1000,parent->height());
         le->hide();
         connect(le, SIGNAL(textChanged ( const QString & )), SLOT(slotTextChanged(const QString&)));
     }

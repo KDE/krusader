@@ -32,13 +32,13 @@
 #ifndef DEFAULTS_H
 #define DEFAULTS_H
 
-#include <kglobalsettings.h>
+#include <QtGui/QFontDatabase>
 
 ///////////////////////   [Startup]
 // UI Save Settings
 #define _UiSave           false
 // Show Cmd Line
-#define _ShowCmdline      true
+#define _ShowCmdline      false
 // Show status bar
 #define _ShowStatusBar    true
 // Show actions tool bar
@@ -51,8 +51,6 @@
 #define _ShowTerminalEmulator false
 // Remember Position
 #define _RememberPos      true
-// Start to tray
-#define _StartToTray      false
 // Left Tab Bar
 // Right Tab Bar
 // Left Panel Popup
@@ -66,11 +64,9 @@
 
 ////////////////////////[Look&Feel]
 // Filelist Font ///////
-#define _FilelistFont   KGlobalSettings::generalFont()
+#define _FilelistFont   QFontDatabase::systemFont(QFontDatabase::GeneralFont)
 // Warn On Exit ////////
 #define _WarnOnExit     false
-// Minimize To Tray ////
-#define _MinimizeToTray false
 // Mark Dirs ///////////
 #define _MarkDirs       false
 // Show Hidden /////////
@@ -225,9 +221,9 @@
 // Terminal for UserActions ///////////
 #define _UserActions_Terminal      "konsole --noclose --workdir %d --title %t -e"
 // Normal font for output collection ///////
-#define _UserActions_NormalFont   KGlobalSettings::generalFont()
+#define _UserActions_NormalFont  QFontDatabase::systemFont(QFontDatabase::GeneralFont)
 // Font for output collection with fixed width ///////
-#define _UserActions_FixedFont   KGlobalSettings::fixedFont()
+#define _UserActions_FixedFont   QFontDatabase::systemFont(QFontDatabase::FixedFont)
 // Use for output collection  fixed width font as default ///////
 #define _UserActions_UseFixedFont   false
 

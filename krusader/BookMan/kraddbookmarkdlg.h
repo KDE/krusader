@@ -23,19 +23,21 @@
 #include "krbookmark.h"
 #include "../VFS/vfs.h"
 #include "../GUI/krtreewidget.h"
-#include <kdialog.h>
-#include <kurl.h>
-#include <klineedit.h>
-#include <qmap.h>
-#include <QtGui/QToolButton>
 
-class KrAddBookmarkDlg: public KDialog
+#include <QtCore/QMap>
+#include <QtCore/QUrl>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QToolButton>
+
+#include <KCompletion/KLineEdit>
+
+class KrAddBookmarkDlg: public QDialog
 {
     Q_OBJECT
 public:
-    KrAddBookmarkDlg(QWidget *parent, KUrl url = KUrl());
-    KUrl url() const {
-        return KUrl(_url->text());
+    KrAddBookmarkDlg(QWidget *parent, QUrl url = QUrl());
+    QUrl url() const {
+        return QUrl::fromUserInput(_url->text(), QString(), QUrl::AssumeLocalFile);
     }
     QString name() const {
         return _name->text();
@@ -58,6 +60,8 @@ private:
     KrTreeWidget *_createIn;
     QMap<QTreeWidgetItem*, KrBookmark*> _xr;
     QToolButton *_createInBtn;
+    QPushButton *newFolderButton;
+    QWidget *detailsWidget;
 };
 
 #endif // KRADDBOOKMARKDLG_H

@@ -30,31 +30,30 @@
 
 #include "diskusage.h"
 
-#include <time.h>
-
-#include <QtGui/QLayout>
-#include <QKeyEvent>
-#include <QLabel>
-#include <QGridLayout>
-#include <QPixmap>
-#include <QFrame>
-#include <QResizeEvent>
-#include <QEvent>
-#include <QHash>
-#include <QtGui/QPushButton>
-#include <QtGui/QApplication>
-#include <QtGui/QCursor>
-#include <qpixmapcache.h>
-#include <QtGui/QGroupBox>
+#include <QtCore/QEvent>
+#include <QtCore/QHash>
+#include <QtCore/QMimeDatabase>
+#include <QtCore/QMimeType>
 #include <QtCore/QPointer>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QPixmap>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QCursor>
+#include <QtGui/QPixmapCache>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QMenu>
 
-#include <klocale.h>
-#include <kmenu.h>
-#include <kmimetype.h>
-#include <kmessagebox.h>
-#include <kglobalsettings.h>
-#include <kio/job.h>
-#include <kio/deletejob.h>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
+#include <KIO/Job>
+#include <KIO/DeleteJob>
 
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krvfshandler.h"
@@ -182,9 +181,9 @@ void LoaderWidget::init()
     cancelled = false;
 }
 
-void LoaderWidget::setCurrentURL(KUrl url)
+void LoaderWidget::setCurrentURL(const QUrl &url)
 {
-    searchedDirectory->setText(vfs::pathOrUrl(url, KUrl::AddTrailingSlash));
+    searchedDirectory->setText(vfs::ensureTrailingSlash(url).toDisplayString(QUrl::PreferLocalFile));
 }
 
 void LoaderWidget::setValues(int fileNum, int dirNum, KIO::filesize_t total)
@@ -237,7 +236,7 @@ DiskUsage::~DiskUsage()
         delete lit.next().value();
 }
 
-void DiskUsage::load(KUrl baseDir)
+void DiskUsage::load(const QUrl &baseDir)
 {
     if (searchVfs && !searchVfs->vfs_canDelete()) {
         return;
@@ -250,10 +249,9 @@ void DiskUsage::load(KUrl baseDir)
 
     clear();
 
-    baseURL = baseDir;
-    baseURL.setPath(baseDir.path(KUrl::RemoveTrailingSlash));
+    baseURL = baseDir.adjusted(QUrl::StripTrailingSlash);
 
-    root = new Directory(baseURL.fileName(), baseDir.pathOrUrl());
+    root = new Directory(baseURL.fileName(), baseDir.toDisplayString(QUrl::PreferLocalFile));
 
     directoryStack.clear();
     parentStack.clear();
@@ -327,10 +325,11 @@ void DiskUsage::slotLoadDirectory()
 
                 contentMap.insert(dirToCheck, currentParent);
 
-                KUrl url = baseURL;
+                QUrl url = baseURL;
 
                 if (!dirToCheck.isEmpty())
-                    url.addPath(dirToCheck);
+                    url = url.adjusted(QUrl::StripTrailingSlash);
+                    url.setPath(url.path() + '/' + (dirToCheck));
 
 #ifdef BSD
                 if (url.isLocalFile() && url.path().left(7) == "/procfs")
@@ -399,11 +398,11 @@ void DiskUsage::dirUp()
         if (currentDirectory->parent() != 0)
             changeDirectory((Directory *)(currentDirectory->parent()));
         else {
-            KUrl up = baseURL.upUrl();
+            QUrl up = KIO::upUrl(baseURL);
 
             if (KMessageBox::questionYesNo(this, i18n("Stepping into the parent directory requires "
                                            "loading the content of the \"%1\" URL. Do you wish "
-                                           "to continue?", up.pathOrUrl()),
+                                           "to continue?", up.toDisplayString(QUrl::PreferLocalFile)),
                                            i18n("Krusader::DiskUsage"), KStandardGuiItem::yes(),
                                            KStandardGuiItem::no(), "DiskUsageLoadParentDir"
                                           ) == KMessageBox::Yes)
@@ -453,7 +452,7 @@ File * DiskUsage::getFile(QString path)
 
 void DiskUsage::clear()
 {
-    baseURL = KUrl();
+    baseURL = QUrl();
     emit clearing();
 
     QHashIterator< File *, Properties * > lit(propertyMap);
@@ -576,7 +575,7 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
 
     KConfigGroup gg(krConfig, "General");
     bool trash = gg.readEntry("Move To Trash", _MoveToTrash);
-    KUrl url = KUrl(file->fullPath());
+    QUrl url = QUrl::fromLocalFile(file->fullPath());
 
     if (calcPercents) {
         // now ask the user if he want to delete:
@@ -630,9 +629,8 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
 
     if (trash) {
         job = KIO::trash(url);
-        connect(job, SIGNAL(result(KJob*)), krMainWindow, SLOT(changeTrashIcon()));
     } else {
-        job = KIO::del(KUrl(file->fullPath()), KIO::HideProgressInfo);
+        job = KIO::del(QUrl::fromLocalFile(file->fullPath()), KIO::HideProgressInfo);
     }
 
     deleting = true;    // during qApp->processEvent strange things can occur
@@ -708,12 +706,13 @@ void DiskUsage::createStatus()
     if (dirEntry == 0)
         return;
 
-    KUrl url = baseURL;
+    QUrl url = baseURL;
     if (dirEntry != root)
-        url.addPath(dirEntry->directory());
+        url = url.adjusted(QUrl::StripTrailingSlash);
+        url.setPath(url.path() + '/' + (dirEntry->directory()));
 
     emit status(i18n("Current directory:%1,  Total size:%2,  Own size:%3",
-                     vfs::pathOrUrl(url, KUrl::RemoveTrailingSlash),
+                     url.toDisplayString(QUrl::PreferLocalFile | QUrl::StripTrailingSlash),
                      ' ' + KRpermHandler::parseSize(dirEntry->size()),
                      ' ' + KRpermHandler::parseSize(dirEntry->ownSize())));
 }
@@ -734,9 +733,9 @@ Directory* DiskUsage::getCurrentDir()
     return currentDirectory;
 }
 
-void DiskUsage::rightClickMenu(const QPoint & pos, File *fileItem, KMenu *addPopup, QString addPopupName)
+void DiskUsage::rightClickMenu(const QPoint & pos, File *fileItem, QMenu *addPopup, QString addPopupName)
 {
-    KMenu popup(this);
+    QMenu popup(this);
 
     popup.setTitle(i18n("Disk Usage"));
 
@@ -780,7 +779,7 @@ void DiskUsage::rightClickMenu(const QPoint & pos, File *fileItem, KMenu *addPop
         menu->setText(addPopupName);
     }
 
-    KMenu viewPopup;
+    QMenu viewPopup;
 
     myAct = viewPopup.addAction(i18n("Lines"));
     actionHash[ myAct ] = LINES_VIEW_ID;
@@ -843,7 +842,7 @@ void DiskUsage::executeAction(int action, File * fileItem)
             uri = fileItem->fullPath();
         else
             uri = currentDirectory->fullPath();
-        ACTIVE_FUNC->openUrl(KUrl(uri));
+        ACTIVE_FUNC->openUrl(QUrl::fromLocalFile(uri));
     }
     break;
     case LINES_VIEW_ID:
@@ -962,9 +961,10 @@ QPixmap DiskUsage::getIcon(QString mime)
         if (mime == "Broken Link !") // FIXME: this doesn't work anymore - the reported mimetype for a broken link is now "unknown"
             icon = FL_LOADICON("file-broken");
         else {
-            KMimeType::Ptr mt = KMimeType::mimeType(mime);
-            if (mt)
-                icon = FL_LOADICON(mt->iconName());
+            QMimeDatabase db;
+            QMimeType mt = db.mimeTypeForName(mime);
+            if (mt.isValid())
+                icon = FL_LOADICON(mt.iconName());
             else
                 icon = FL_LOADICON("file-broken");
         }
@@ -1015,15 +1015,16 @@ int DiskUsage::calculatePercents(bool emitSig, Directory *dirEntry, int depth)
 
 QString DiskUsage::getToolTip(File *item)
 {
-    KMimeType::Ptr mimePtr = KMimeType::mimeType(item->mime());
+    QMimeDatabase db;
+    QMimeType mt = db.mimeTypeForName(item->mime());
     QString mime;
-    if (mimePtr)
-        mime = mimePtr->comment();
+    if (mt.isValid())
+        mime = mt.comment();
 
     time_t tma = item->time();
     struct tm* t = localtime((time_t *) & tma);
     QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-    QString date = KGlobal::locale()->formatDateTime(tmp);
+    QString date = QLocale().toString(tmp, QLocale::ShortFormat);
 
     QString str = "<qt><h5><table><tr><td>" + i18n("Name:") +  "</td><td>" + item->name() + "</td></tr>" +
                   "<tr><td>" + i18n("Type:") +  "</td><td>" + mime + "</td></tr>" +
@@ -1133,4 +1134,3 @@ bool DiskUsage::event(QEvent * e)
     return QStackedWidget::event(e);
 }
 
-#include "diskusage.moc"

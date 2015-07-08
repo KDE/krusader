@@ -28,30 +28,27 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <signal.h>
-
-#include <QtCore/QEventLoop>
 #include <QtCore/QAbstractEventDispatcher>
+#include <QtCore/QCommandLineOption>
+#include <QtCore/QCommandLineParser>
+#include <QtCore/QEventLoop>
+#include <QtCore/QStandardPaths>
 #include <QtGui/QPixmap>
 #include <QtDBus/QtDBus>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QSplashScreen>
 
-#include <kde_file.h>
-#include <KCmdLineArgs>
-#include <KAboutData>
-#include <KActionMenu>
-#include <KLocale>
-#include <KStandardDirs>
-#include <KSplashScreen>
-#include <KStartupInfo>
+#include <KCoreAddons/KAboutData>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KActionMenu>
+#include <KWindowSystem/KStartupInfo>
 
 #include "krusader.h"
 #include "krusaderview.h"
 #include "panelmanager.h"
 #include "krusaderversion.h"
 #include "krslots.h"
-#include "krusaderapp.h"
 #include "defaults.h"
 #include "Panel/krviewfactory.h"
 
@@ -64,7 +61,7 @@ static void sigterm_handler(int i)
     QAbstractEventDispatcher *instance = QAbstractEventDispatcher::instance();
     if (instance)
         instance->wakeUp();
-    KApplication::exit(- 15);
+    QApplication::exit(- 15);
 }
 
 void openTabsRemote(QStringList tabs, bool left, QString appName)
@@ -92,12 +89,12 @@ int main(int argc, char *argv[])
 // If the user has no icon specified over the commandline we set up uor own.
 // this is according to the users privileges. The icons are in Krusader::privIcon()
 
-    bool hasIcon = false;
+/*    bool hasIcon = false;
     int i = 0;
-    char * myArgv[argc+2];
+    char * myArgv[argc+2];*/
 
 // if no --miniicon is given, --icon is used. So we don't need to check for --miniicon separately
-    for (i = 0; i < argc; ++i) {
+/*    for (i = 0; i < argc; ++i) {
         if (strstr(argv[ i ], "-icon") != 0)   // important: just one dash because both can appear!
             hasIcon = true;
     }
@@ -118,8 +115,12 @@ int main(int argc, char *argv[])
         myArgv[ ++argc ] = 0;
 
         argv = myArgv;
-    }
+    }*/
 // ============ end icon-stuff ===========
+
+    // create the application and set application domain so that calls to i18n get strings from right place.
+    QApplication app(argc, argv);
+    KLocalizedString::setApplicationDomain("krusader");
 
     // ABOUT data information
 #ifdef RELEASE_NAME
@@ -128,108 +129,103 @@ int main(int argc, char *argv[])
     QString versionName = VERSION;
 #endif
 
-    KAboutData aboutData("krusader", 0, (geteuid() ? ki18n("Krusader") : ki18n("Krusader - ROOT PRIVILEGES")),
-                         versionName.toLocal8Bit(), ki18n(description), KAboutData::License_GPL_V2,
-                         ki18n("(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2012, Krusader Krew"),
-                         ki18n("Feedback:\nhttp://www.krusader.org/phpBB/\n\nIRC\nserver: irc.freenode.net, channel: #krusader"),
-                         "http://www.krusader.org");
+    KAboutData aboutData(QStringLiteral("krusader"), /*0,*/ (geteuid() ? i18n("Krusader") : i18n("Krusader - ROOT PRIVILEGES")),
+			 versionName, i18n(description), KAboutLicense::GPL_V2,
+			 i18n("(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2012, Krusader Krew"),
+			 i18n("Feedback:\nhttp://www.krusader.org/phpBB/\n\nIRC\nserver: irc.freenode.net, channel: #krusader"),
+			 QStringLiteral("http://www.krusader.org"));
 
-    aboutData.setProgramIconName(Krusader::privIcon());
+    aboutData.addAuthor(i18n("Rafi Yanai"), i18n("Author (retired)"), QStringLiteral("yanai@users.sourceforge.net"));
+    aboutData.addAuthor(i18n("Shie Erlich"), i18n("Author (retired)"), QStringLiteral("erlich@users.sourceforge.net"));
+    aboutData.addAuthor(i18n("Jan Lepper"), i18n("Developer"), QStringLiteral("jan_lepper@gmx.de"), 0);
+    aboutData.addAuthor(i18n("Andrey Matveyakin"), i18n("Developer"), QStringLiteral("a.matveyakin@gmail.com"), 0);
+    aboutData.addAuthor(i18n("Karai Csaba"), i18n("Developer (retired)"), QStringLiteral("ckarai@users.sourceforge.net"), 0);
+    aboutData.addAuthor(i18n("Heiner Eichmann"), i18n("Developer (retired)"), QStringLiteral("h.eichmann@gmx.de"), 0);
+    aboutData.addAuthor(i18n("Jonas Bähr"), i18n("Developer (retired)"), QStringLiteral("jonas.baehr@web.de"), 0);
+    aboutData.addAuthor(i18n("Václav Jůza"), i18n("Developer (retired)"), QStringLiteral("vaclavjuza@gmail.com"), 0);
+    aboutData.addAuthor(i18n("Dirk Eschler"), i18n("Webmaster"), QStringLiteral("deschler@users.sourceforge.net"), 0);
+    aboutData.addAuthor(i18n("Frank Schoolmeesters"), i18n("Documentation and marketing coordinator (retired)"), QStringLiteral("frank_schoolmeesters@yahoo.com"), 0);
+    aboutData.addAuthor(i18n("Richard Holt"), i18n("Documentation & Proofing (retired)"), QStringLiteral("richard.holt@gmail.com"), 0);
+    aboutData.addAuthor(i18n("Matej Urbancic"), i18n("Marketing & Product Research (retired)"), QStringLiteral("matej.urban@gmail.com"), 0);
+    aboutData.addCredit(i18n("kde.org"), i18n("Everyone involved in KDE"), 0, 0);
+    aboutData.addCredit(i18n("l10n.kde.org"), i18n("KDE Translation Teams"), 0, 0);
+    aboutData.addCredit(i18n("Jiří Paleček"), i18n("QA, bug-hunting, patches and general help"), QStringLiteral("jpalecek@web.de"), 0);
+    aboutData.addCredit(i18n("Jiří Klement"), i18n("Important help in KDE 4 porting"), 0, 0);
+    aboutData.addCredit(i18n("Andrew Neupokoev"), i18n("Killer Logo and Icons for Krusader (contest winner)"), QStringLiteral("doom-blue@yandex.ru"), 0);
+    aboutData.addCredit(i18n("The UsefulArts Organization"), i18n("Icon for Krusader"), QStringLiteral("mail@usefularts.org"), 0);
+    aboutData.addCredit(i18n("Gábor Lehel"), i18n("Viewer module for 3rd Hand"), QStringLiteral("illissius@gmail.com"), 0);
+    aboutData.addCredit(i18n("Mark Eatough"), i18n("Handbook Proof-Reader"), QStringLiteral("markeatough@yahoo.com"), 0);
+    aboutData.addCredit(i18n("Jan Halasa"), i18n("The old Bookmark Module"), QStringLiteral("xhalasa@fi.muni.cz"), 0);
+    aboutData.addCredit(i18n("Hans Löffler"), i18n("Dir history button"), 0, 0);
+    aboutData.addCredit(i18n("Szombathelyi György"), i18n("ISO KIO slave"), 0, 0);
+    aboutData.addCredit(i18n("Jan Willem van de Meent (Adios)"), i18n("Icons for Krusader"), QStringLiteral("janwillem@lorentz.leidenuniv.nl"), 0);
+    aboutData.addCredit(i18n("Mikolaj Machowski"), i18n("Usability and QA"), QStringLiteral("<mikmach@wp.pl>"), 0);
+    aboutData.addCredit(i18n("Cristi Dumitrescu"), i18n("QA, bug-hunting, patches and general help"), QStringLiteral("cristid@chip.ro"), 0);
+    aboutData.addCredit(i18n("Aurelien Gateau"), i18n("patch for KViewer"), QStringLiteral("aurelien.gateau@free.fr"), 0);
+    aboutData.addCredit(i18n("Milan Brabec"), i18n("the first patch ever!"), QStringLiteral("mbrabec@volny.cz"), 0);
+    aboutData.addCredit(i18n("Asim Husanovic"), i18n("Bosnian translation"), QStringLiteral("asim@megatel.ba"), 0);
+    aboutData.addCredit(i18n("Doutor Zero"), i18n("Brazilian Portuguese translation"), QStringLiteral("doutor.zero@gmail.com"), 0);
+    aboutData.addCredit(i18n("Milen Ivanov"), i18n("Bulgarian translation"), QStringLiteral("milen.ivanov@abv.bg"), 0);
+    aboutData.addCredit(i18n("Quim Perez"), i18n("Catalan translation"), QStringLiteral("noguer@osona.com"), 0);
+    aboutData.addCredit(i18n("Jinghua Luo"), i18n("Chinese Simplified translation"), QStringLiteral("luojinghua@msn.com"), 0);
+    aboutData.addCredit(i18n("Mitek"), i18n("Old Czech translation"), QStringLiteral("mitek@email.cz"), 0);
+    aboutData.addCredit(i18n("Martin Sixta"), i18n("Old Czech translation"), QStringLiteral("lukumo84@seznam.cz"), 0);
+    aboutData.addCredit(i18n("Vaclav Jůza"), i18n("Czech translation"), QStringLiteral("VaclavJuza@gmail.com"), 0);
+    aboutData.addCredit(i18n("Anders Bruun Olsen"), i18n("Old Danish translation"), QStringLiteral("anders@bruun-olsen.net"), 0);
+    aboutData.addCredit(i18n("Peter H. Sorensen"), i18n("Danish translation"), QStringLiteral("peters@skydebanen.net"), 0);
+    aboutData.addCredit(i18n("Frank Schoolmeesters"), i18n("Dutch translation"), QStringLiteral("frank_schoolmeesters@yahoo.com"), 0);
+    aboutData.addCredit(i18n("Rene-Pierre Lehmann"), i18n("Old French translation"), QStringLiteral("ripi@lepi.org"), 0);
+    aboutData.addCredit(i18n("David Guillerm"), i18n("French translation"), QStringLiteral("dguillerm@gmail.com"), 0);
+    aboutData.addCredit(i18n("Christoph Thielecke"), i18n("Old German translation"), QStringLiteral("crissi99@gmx.de"), 0);
+    aboutData.addCredit(i18n("Dirk Eschler"), i18n("German translation"), QStringLiteral("deschler@users.sourceforge.net"), 0);
+    aboutData.addCredit(i18n("Spiros Georgaras"), i18n("Greek translation"), QStringLiteral("sngeorgaras@gmail.com"), 0);
+    aboutData.addCredit(i18n("Kukk Zoltan"), i18n("Old Hungarian translation"), QStringLiteral("kukkzoli@freemail.hu"), 0);
+    aboutData.addCredit(i18n("Arpad Biro"), i18n("Hungarian translation"), QStringLiteral("biro_arpad@yahoo.com"), 0);
+    aboutData.addCredit(i18n("Giuseppe Bordoni"), i18n("Italian translation"), QStringLiteral("geppo@geppozone.com"), 0);
+    aboutData.addCredit(i18n("Hideki Kimura"), i18n("Japanese translation"), QStringLiteral("hangyo1973@gmail.com"), 0);
+    aboutData.addCredit(i18n("UTUMI Hirosi"), i18n("Old Japanese translation"), QStringLiteral("utuhiro@mx12.freecom.ne.jp"), 0);
+    aboutData.addCredit(i18n("Dovydas Sankauskas"), i18n("Lithuanian translation"), QStringLiteral("laisve@gmail.com"), 0);
+    aboutData.addCredit(i18n("Bruno Queiros"), i18n("Portuguese translation"), QStringLiteral("brunoqueiros@portugalmail.com"), 0);
+    aboutData.addCredit(i18n("Lukasz Janyst"), i18n("Old Polish translation"), QStringLiteral("ljan@wp.pl"), 0);
+    aboutData.addCredit(i18n("Pawel Salawa"), i18n("Polish translation"), QStringLiteral("boogie@myslenice.one.pl"), 0);
+    aboutData.addCredit(i18n("Tomek Grzejszczyk"), i18n("Polish translation"), QStringLiteral("tgrzej@onet.eu"), 0);
+    aboutData.addCredit(i18n("Dmitry A. Bugay"), i18n("Russian translation"), QStringLiteral("sam@vhnet.ru"), 0);
+    aboutData.addCredit(i18n("Dmitry Chernyak"), i18n("Old Russian translation"), QStringLiteral("chernyak@mail.ru"), 0);
+    aboutData.addCredit(i18n("Sasa Tomic"), i18n("Serbian translation"), QStringLiteral("stomic@gmx.net"), 0);
+    aboutData.addCredit(i18n("Zdenko Podobný and Ondrej Pačay (Yogi)"), i18n("Slovak translation"), QStringLiteral("zdenop@gmail.com"), 0);
+    aboutData.addCredit(i18n("Matej Urbancic"), i18n("Slovenian translation"), QStringLiteral("matej.urban@gmail.com"), 0);
+    aboutData.addCredit(i18n("Rafael Munoz"), i18n("Old Spanish translation"), QStringLiteral("muror@hotpop.com"), 0);
+    aboutData.addCredit(i18n("Alejandro Araiza Alvarado"), i18n("Spanish translation"), QStringLiteral("mebrelith@gmail.com"), 0);
+    aboutData.addCredit(i18n("Erik Johanssen"), i18n("Old Swedish translation"), QStringLiteral("erre@telia.com"), 0);
+    aboutData.addCredit(i18n("Anders Linden"), i18n("Old Swedish translation"), QStringLiteral("connyosis@gmx.net"), 0);
+    aboutData.addCredit(i18n("Peter Landgren"), i18n("Swedish translation"), QStringLiteral("peter.talken@telia.com"), 0);
+    aboutData.addCredit(i18n("Bekir Sonat"), i18n("Turkish translation"), QStringLiteral("bekirsonat@kde.org.tr"), 0);
+    aboutData.addCredit(i18n("Ivan Petrouchtchak"), i18n("Ukrainian translation"), QStringLiteral("connyosis@gmx.net"), 0);
+    aboutData.addCredit(i18n("Seongnam Jee"), i18n("Korean translation"), QStringLiteral("snjee@intellicam.com"), 0);
 
-    aboutData.addAuthor(ki18n("Rafi Yanai"), ki18n("Author (retired)"), "yanai@users.sourceforge.net");
-    aboutData.addAuthor(ki18n("Shie Erlich"), ki18n("Author (retired)"), "erlich@users.sourceforge.net");
-    aboutData.addAuthor(ki18n("Jan Lepper"), ki18n("Developer"), "jan_lepper@gmx.de", 0);
-    aboutData.addAuthor(ki18n("Andrey Matveyakin"), ki18n("Developer"), "a.matveyakin@gmail.com", 0);
-    aboutData.addAuthor(ki18n("Karai Csaba"), ki18n("Developer (retired)"), "ckarai@users.sourceforge.net", 0);
-    aboutData.addAuthor(ki18n("Heiner Eichmann"), ki18n("Developer (retired)"), "h.eichmann@gmx.de", 0);
-    aboutData.addAuthor(ki18n("Jonas Bähr"), ki18n("Developer (retired)"), "jonas.baehr@web.de", 0);
-    aboutData.addAuthor(ki18n("Václav Jůza"), ki18n("Developer (retired)"), "vaclavjuza@gmail.com", 0);
-    aboutData.addAuthor(ki18n("Dirk Eschler"), ki18n("Webmaster"), "deschler@users.sourceforge.net", 0);
-    aboutData.addAuthor(ki18n("Frank Schoolmeesters"), ki18n("Documentation and marketing coordinator (retired)"), "frank_schoolmeesters@yahoo.com", 0);
-    aboutData.addAuthor(ki18n("Richard Holt"), ki18n("Documentation & Proofing (retired)"), "richard.holt@gmail.com", 0);
-    aboutData.addAuthor(ki18n("Matej Urbancic"), ki18n("Marketing & Product Research (retired)"), "matej.urban@gmail.com", 0);
-    aboutData.addCredit(ki18n("kde.org"), ki18n("Everyone involved in KDE"), 0, 0);
-    aboutData.addCredit(ki18n("l10n.kde.org"), ki18n("KDE Translation Teams"), 0, 0);
-    aboutData.addCredit(ki18n("Jiří Paleček"), ki18n("QA, bug-hunting, patches and general help"), "jpalecek@web.de", 0);
-    aboutData.addCredit(ki18n("Jiří Klement"), ki18n("Important help in KDE 4 porting"), 0, 0);
-    aboutData.addCredit(ki18n("Andrew Neupokoev"), ki18n("Killer Logo and Icons for Krusader (contest winner)"), "doom-blue@yandex.ru", 0);
-    aboutData.addCredit(ki18n("The UsefulArts Organization"), ki18n("Icon for Krusader"), "mail@usefularts.rg", 0);
-    aboutData.addCredit(ki18n("Gábor Lehel"), ki18n("Viewer module for 3rd Hand"), "illissius@gmail.com", 0);
-    aboutData.addCredit(ki18n("Mark Eatough"), ki18n("Handbook Proof-Reader"), "markeatough@yahoo.com", 0);
-    aboutData.addCredit(ki18n("Jan Halasa"), ki18n("The old Bookmark Module"), "xhalasa@fi.muni.cz", 0);
-    aboutData.addCredit(ki18n("Hans Löffler"), ki18n("Dir history button"), 0, 0);
-    aboutData.addCredit(ki18n("Szombathelyi György"), ki18n("ISO KIO slave"), 0, 0);
-    aboutData.addCredit(ki18n("Jan Willem van de Meent (Adios)"), ki18n("Icons for Krusader"), "janwillem@lorentz.leidenuniv.nl", 0);
-    aboutData.addCredit(ki18n("Mikolaj Machowski"), ki18n("Usability and QA"), "<mikmach@wp.pl>", 0);
-    aboutData.addCredit(ki18n("Cristi Dumitrescu"), ki18n("QA, bug-hunting, patches and general help"), "cristid@chip.ro", 0);
-    aboutData.addCredit(ki18n("Aurelien Gateau"), ki18n("patch for KViewer"), "aurelien.gateau@free.fr", 0);
-    aboutData.addCredit(ki18n("Milan Brabec"), ki18n("the first patch ever!"), "mbrabec@volny.cz", 0);
-    aboutData.addCredit(ki18n("Asim Husanovic"), ki18n("Bosnian translation"), "asim@megatel.ba", 0);
-    aboutData.addCredit(ki18n("Doutor Zero"), ki18n("Brazilian Portuguese translation"), "doutor.zero@gmail.com", 0);
-    aboutData.addCredit(ki18n("Milen Ivanov"), ki18n("Bulgarian translation"), "milen.ivanov@abv.bg", 0);
-    aboutData.addCredit(ki18n("Quim Perez"), ki18n("Catalan translation"), "noguer@osona.com", 0);
-    aboutData.addCredit(ki18n("Jinghua Luo"), ki18n("Chinese Simplified translation"), "luojinghua@msn.com", 0);
-    aboutData.addCredit(ki18n("Mitek"), ki18n("Old Czech translation"), "mitek@email.cz", 0);
-    aboutData.addCredit(ki18n("Martin Sixta"), ki18n("Old Czech translation"), "lukumo84@seznam.cz", 0);
-    aboutData.addCredit(ki18n("Vaclav Jůza"), ki18n("Czech translation"), "VaclavJuza@gmail.com", 0);
-    aboutData.addCredit(ki18n("Anders Bruun Olsen"), ki18n("Old Danish translation"), "anders@bruun-olsen.net", 0);
-    aboutData.addCredit(ki18n("Peter H. Sorensen"), ki18n("Danish translation"), "peters@skydebanen.net", 0);
-    aboutData.addCredit(ki18n("Frank Schoolmeesters"), ki18n("Dutch translation"), "frank_schoolmeesters@yahoo.com", 0);
-    aboutData.addCredit(ki18n("Rene-Pierre Lehmann"), ki18n("Old French translation"), "ripi@lepi.org", 0);
-    aboutData.addCredit(ki18n("David Guillerm"), ki18n("French translation"), "dguillerm@gmail.com", 0);
-    aboutData.addCredit(ki18n("Christoph Thielecke"), ki18n("Old German translation"), "crissi99@gmx.de", 0);
-    aboutData.addCredit(ki18n("Dirk Eschler"), ki18n("German translation"), "deschler@users.sourceforge.net", 0);
-    aboutData.addCredit(ki18n("Spiros Georgaras"), ki18n("Greek translation"), "sngeorgaras@gmail.com", 0);
-    aboutData.addCredit(ki18n("Kukk Zoltan"), ki18n("Old Hungarian translation"), "kukkzoli@freemail.hu", 0);
-    aboutData.addCredit(ki18n("Arpad Biro"), ki18n("Hungarian translation"), "biro_arpad@yahoo.com", 0);
-    aboutData.addCredit(ki18n("Giuseppe Bordoni"), ki18n("Italian translation"), "geppo@geppozone.com", 0);
-    aboutData.addCredit(ki18n("Hideki Kimura"), ki18n("Japanese translation"), "hangyo1973@gmail.com", 0);
-    aboutData.addCredit(ki18n("UTUMI Hirosi"), ki18n("Old Japanese translation"), "utuhiro@mx12.freecom.ne.jp", 0);
-    aboutData.addCredit(ki18n("Dovydas Sankauskas"), ki18n("Lithuanian translation"), "laisve@gmail.com", 0);
-    aboutData.addCredit(ki18n("Bruno Queiros"), ki18n("Portuguese translation"), "brunoqueiros@portugalmail.com", 0);
-    aboutData.addCredit(ki18n("Lukasz Janyst"), ki18n("Old Polish translation"), "ljan@wp.pl", 0);
-    aboutData.addCredit(ki18n("Pawel Salawa"), ki18n("Polish translation"), "boogie@myslenice.one.pl", 0);
-    aboutData.addCredit(ki18n("Tomek Grzejszczyk"), ki18n("Polish translation"), "tgrzej@onet.eu", 0);
-    aboutData.addCredit(ki18n("Dmitry A. Bugay"), ki18n("Russian translation"), "sam@vhnet.ru", 0);
-    aboutData.addCredit(ki18n("Dmitry Chernyak"), ki18n("Old Russian translation"), "chernyak@mail.ru", 0);
-    aboutData.addCredit(ki18n("Sasa Tomic"), ki18n("Serbian translation"), "stomic@gmx.net", 0);
-    aboutData.addCredit(ki18n("Zdenko Podobný and Ondrej Pačay (Yogi)"), ki18n("Slovak translation"), "zdenop@gmail.com", 0);
-    aboutData.addCredit(ki18n("Matej Urbancic"), ki18n("Slovenian translation"), "matej.urban@gmail.com", 0);
-    aboutData.addCredit(ki18n("Rafael Munoz"), ki18n("Old Spanish translation"), "muror@hotpop.com", 0);
-    aboutData.addCredit(ki18n("Alejandro Araiza Alvarado"), ki18n("Spanish translation"), "mebrelith@gmail.com", 0);
-    aboutData.addCredit(ki18n("Erik Johanssen"), ki18n("Old Swedish translation"), "erre@telia.com", 0);
-    aboutData.addCredit(ki18n("Anders Linden"), ki18n("Old Swedish translation"), "connyosis@gmx.net", 0);
-    aboutData.addCredit(ki18n("Peter Landgren"), ki18n("Swedish translation"), "peter.talken@telia.com", 0);
-    aboutData.addCredit(ki18n("Bekir Sonat"), ki18n("Turkish translation"), "bekirsonat@kde.org.tr", 0);
-    aboutData.addCredit(ki18n("Ivan Petrouchtchak"), ki18n("Ukrainian translation"), "connyosis@gmx.net", 0);
-    aboutData.addCredit(ki18n("Seongnam Jee"), ki18n("Korean translation"), "snjee@intellicam.com", 0);
+    // This will call QCoreApplication::setApplicationName, etc for us by using info in the KAboutData instance.
+    // The only thing not called for us is setWindowIcon(), which is why we do it ourselves here.
+    KAboutData::setApplicationData(aboutData);
+    app.setWindowIcon(QIcon::fromTheme(Krusader::privIcon()));
 
     // Command line arguments ...
-    KCmdLineArgs::init(argc, argv, &aboutData);
-
-    KCmdLineOptions options;
-    options.add("left <path>", ki18n("Start left panel at <path>"));
-    options.add("right <path>", ki18n("Start right panel at <path>"));
-    options.add("profile <panel-profile>", ki18n("Load this profile on startup"));
-    options.add("+url", ki18n("URL to open"));
-
-    KCmdLineArgs::addCmdLineOptions(options);   // Add our own options.
+    QCommandLineParser parser;
+    aboutData.setupCommandLine(&parser);
+    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("left"), i18n("Start left panel at <path>"), QLatin1String("path")));
+    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("right"), i18n("Start right panel at <path>"), QLatin1String("path")));
+    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("profile"), i18n("Load this profile on startup"), QLatin1String("panel-profile")));
+    parser.addPositionalArgument(QLatin1String("url"), i18n("URL to open"));
 
     // check for command line arguments
+    parser.process(app);
+    aboutData.processCommandLine(&parser);
 
-    // create the application
-    KrusaderApp app;
-
-    KConfigGroup cfg(KGlobal::config().data(), "Look&Feel");
+    KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("Look&Feel"));
     bool singleInstanceMode = cfg.readEntry("Single Instance Mode", _SingleInstanceMode);
 
-    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-
     QString url;
-    for(int i = 0; i < args->count(); i++) {
-        url = args->url(i).pathOrUrl();
-        if(!url.isEmpty())
-            break;
+    if(!parser.positionalArguments().isEmpty()) {
+        url = parser.positionalArguments().first();
     }
 
     QString appName = "krusader";
@@ -256,10 +252,10 @@ int main(int argc, char *argv[])
         if (reply.isValid() && (bool)reply) {
             KStartupInfo::appStarted();
             QStringList tabs;
-            if (args->isSet("left"))
-                openTabsRemote(args->getOption("left").split(','), true, appName);
-            if (args->isSet("right"))
-                openTabsRemote(args->getOption("right").split(','), false, appName);
+            if (parser.isSet("left"))
+                openTabsRemote(parser.value("left").split(','), true, appName);
+            if (parser.isSet("right"))
+                openTabsRemote(parser.value("right").split(','), false, appName);
             if(!url.isEmpty()) {
                 reply = remoteApp.call("openUrl", url);
                 if (!reply.isValid())
@@ -270,30 +266,30 @@ int main(int argc, char *argv[])
     }
 
     // splash screen - if the user wants one
-    KSplashScreen *splash = 0;
+    QSplashScreen *splash = 0;
     { // don't remove bracket
-        KConfigGroup cfg(KGlobal::config().data(), "Look&Feel");
+        KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("Look&Feel"));
         if (cfg.readEntry("Show splashscreen", _ShowSplashScreen)) {
-            QString splashFilename = KStandardDirs::locate("data", "krusader/splash.png");
+            QString splashFilename = QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("splash.png"));
             QPixmap pixmap(splashFilename);
             if (!pixmap.isNull()) {
-                splash = new KSplashScreen(pixmap);
+                splash = new QSplashScreen(pixmap);
                 splash->show();
             }
         }
     } // don't remove bracket
 
     Krusader::AppName = appName;
-    Krusader krusader;
+    Krusader *krusader = new Krusader(parser);
 
     if(!url.isEmpty())
-        krusader.openUrl(url);
+        krusader->openUrl(url);
 
     QDBusConnection dbus = QDBusConnection::sessionBus();
     if (!dbus.interface()->isServiceRegistered("org.krusader") && !dbus.registerService("org.krusader")) {
         fprintf(stderr, "DBus Error: %s, %s\n", dbus.lastError().name().toLocal8Bit().constData(), dbus.lastError().message().toLocal8Bit().constData());
     }
-    if (!dbus.registerObject("/Instances/" + appName, &krusader, QDBusConnection::ExportScriptableSlots)) {
+    if (!dbus.registerObject("/Instances/" + appName, krusader, QDBusConnection::ExportScriptableSlots)) {
         fprintf(stderr, "DBus Error: %s, %s\n", dbus.lastError().name().toLocal8Bit().constData(), dbus.lastError().message().toLocal8Bit().constData());
     }
     if (!dbus.registerObject("/Instances/" + appName + "/left_manager", LEFT_MNG, QDBusConnection::ExportScriptableSlots)) {
@@ -306,20 +302,18 @@ int main(int argc, char *argv[])
 
 
     // catching SIGTERM, SIGHUP, SIGQUIT
-    KDE_signal(SIGTERM, sigterm_handler);
-    KDE_signal(SIGPIPE, sigterm_handler);
-    KDE_signal(SIGHUP, sigterm_handler);
+    signal(SIGTERM, sigterm_handler);
+    signal(SIGPIPE, sigterm_handler);
+    signal(SIGHUP, sigterm_handler);
 
-    // make sure we receive X's focus in/out events
-    QObject::connect(&app, SIGNAL(windowActive()), SLOTS, SLOT(windowActive()));
-    QObject::connect(&app, SIGNAL(windowInactive()), SLOTS, SLOT(windowInactive()));
+    QObject::connect(&app, &QGuiApplication::applicationStateChanged, SLOTS, &KRslots::applicationStateChanged);
 
     // hide splashscreen
     if (splash) {
-        splash->finish(&krusader);
+        splash->finish(krusader);
         delete splash;
     }
-
     // let's go.
     return app.exec();
+
 }

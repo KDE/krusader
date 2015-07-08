@@ -33,20 +33,18 @@ A
 #include "listpanelframe.h"
 #include "../krglobal.h"
 
-#include <QMetaEnum>
+#include <QtCore/QMetaEnum>
+#include <QtCore/QFile>
+#include <QtCore/QResource>
+#include <QtCore/QStandardPaths>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QVBoxLayout>
 #include <QtXml/QDomDocument>
-#include <QFile>
-#include <QWidget>
-#include <QLayout>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QResource>
 
-#include <klocale.h>
-#include <kstandarddirs.h>
-#include <kcomponentdata.h>
-#include <kdebug.h>
-
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 
 #define XMLFILE_VERSION "1.0"
 #define MAIN_FILE "layout.xml"
@@ -77,14 +75,12 @@ bool KrLayoutFactory::parseFiles()
     if (_parsed)
         return true;
 
-    QString dataDir = KGlobal::mainComponent().componentName() + "/";
-
-    QString mainFilePath = KStandardDirs::locate("data", dataDir + MAIN_FILE);
+    QString mainFilePath = QStandardPaths::locate(QStandardPaths::DataLocation, MAIN_FILE);
 
     if (!mainFilePath.isEmpty())
         _parsed = parseFile(mainFilePath, _mainDoc);
     else
-        krOut << "can't locate" << dataDir + MAIN_FILE << endl;
+        krOut << "can't locate" << MAIN_FILE << endl;
 
     if (!_parsed)
         _parsed = parseRessource(MAIN_FILE_RC_PATH, _mainDoc);
@@ -92,7 +88,7 @@ bool KrLayoutFactory::parseFiles()
     if (!_parsed)
         return false;
 
-    QStringList extraFilePaths = KGlobal::dirs()->findAllResources("data", dataDir + EXTRA_FILE_MASK);
+    QStringList extraFilePaths = QStandardPaths::locateAll(QStandardPaths::DataLocation, EXTRA_FILE_MASK);
 
     foreach(QString path, extraFilePaths) {
         krOut << "extra file: " << path << endl;
@@ -297,16 +293,16 @@ QWidget *KrLayoutFactory::createFrame(QDomElement e, QWidget *parent)
     QMetaEnum shadowEnum = QFrame::staticMetaObject.enumerator(QFrame::staticMetaObject.indexOfEnumerator("Shadow"));
     QString cfgShadow = cg.readEntry("FrameShadow", "default");
     if(cfgShadow != "default")
-        shadow = shadowEnum.keyToValue(cfgShadow.toAscii().data());
+        shadow = shadowEnum.keyToValue(cfgShadow.toLatin1().data());
     if(shadow < 0)
-        shadow = shadowEnum.keyToValue(e.attribute("shadow").toAscii().data());
+        shadow = shadowEnum.keyToValue(e.attribute("shadow").toLatin1().data());
 
     QMetaEnum shapeEnum = QFrame::staticMetaObject.enumerator(QFrame::staticMetaObject.indexOfEnumerator("Shape"));
     QString cfgShape = cg.readEntry("FrameShape", "default");
     if(cfgShape!= "default")
-        shape = shapeEnum.keyToValue(cfgShape.toAscii().data());
+        shape = shapeEnum.keyToValue(cfgShape.toLatin1().data());
     if(shape < 0)
-        shape = shapeEnum.keyToValue(e.attribute("shape").toAscii().data());
+        shape = shapeEnum.keyToValue(e.attribute("shape").toLatin1().data());
 
     QFrame *frame = new ListPanelFrame(parent, color);
     frame->setFrameStyle(shape | shadow);

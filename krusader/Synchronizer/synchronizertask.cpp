@@ -33,8 +33,8 @@
 #include <QtCore/QTimer>
 #include <QtCore/QFile>
 
-#include <klocale.h>
-#include <kmessagebox.h>
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "synchronizer.h"
 #include "synchronizerfileitem.h"
@@ -115,8 +115,8 @@ void CompareTask::slotOtherFinished(bool result)
         m_state = ST_STATE_READY;
 }
 
-CompareContentTask::CompareContentTask(Synchronizer *syn, SynchronizerFileItem *itemIn, const KUrl &leftURLIn,
-                                       const KUrl &rightURLIn, KIO::filesize_t sizeIn) : SynchronizerTask(),
+CompareContentTask::CompareContentTask(Synchronizer *syn, SynchronizerFileItem *itemIn, const QUrl &leftURLIn,
+                                       const QUrl &rightURLIn, KIO::filesize_t sizeIn) : SynchronizerTask(),
         leftURL(leftURLIn), rightURL(rightURLIn),
         size(sizeIn), errorPrinted(false), leftReadJob(0),
         rightReadJob(0), compareArray(), owner(-1), item(itemIn), timer(0),
@@ -312,7 +312,8 @@ void CompareContentTask::slotFinished(KJob *job)
     if (job->error() && job->error() != KIO::ERR_USER_CANCELED && !errorPrinted) {
         errorPrinted = true;
         KMessageBox::error(parentWidget, i18n("I/O error while comparing file %1 with %2.",
-                                              leftURL.pathOrUrl(), rightURL.pathOrUrl()));
+                                              leftURL.toDisplayString(QUrl::PreferLocalFile),
+                                              rightURL.toDisplayString(QUrl::PreferLocalFile)));
     }
 
     if (leftReadJob == 0 && rightReadJob == 0) {
@@ -351,4 +352,3 @@ void CompareContentTask::sendStatusMessage()
     timer->start(500);
 }
 
-#include "synchronizertask.moc"

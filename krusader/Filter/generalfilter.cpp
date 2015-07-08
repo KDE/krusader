@@ -31,18 +31,20 @@
 #include "generalfilter.h"
 #include "filtertabs.h"
 #include "../krglobal.h"
+#include "../krservices.h"
 #include "../VFS/vfs.h"
 
-#include <klocale.h>
-#include <kfiledialog.h>
-#include <kmessagebox.h>
-#include <kiconloader.h>
-#include <QtGui/QPushButton>
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <QMenu>
-#include <QLabel>
-#include <kcharsets.h>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QMenu>
+
+#include <KCodecs/KCharsets>
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
+#include <KWidgetsAddons/KMessageBox>
 
 typedef struct {
     const char *description;
@@ -291,7 +293,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     contentEncoding = new KComboBox(containsGroup);
     contentEncoding->setEditable(false);
     contentEncoding->addItem(i18nc("Default encoding", "Default"));
-    contentEncoding->addItems(KGlobal::charsets()->descriptiveEncodingNames());
+    contentEncoding->addItems(KCharsets::charsets()->descriptiveEncodingNames());
     containsCbsLayout->addWidget(contentEncoding);
 
     QSpacerItem* cbSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
@@ -489,10 +491,10 @@ void GeneralFilter::slotDisable()
     bool global = ofType->currentText() != i18n("Directories");
     bool remoteOnly = false;
     if (properties & FilterTabs::HasSearchIn) {
-        KUrl::List urlList = searchIn->urlList();
+        QList<QUrl> urlList = searchIn->urlList();
         remoteOnly = urlList.count() != 0;
-        foreach(const KUrl &url, urlList)
-        if (url.protocol() == "file")
+        foreach(const QUrl &url, urlList)
+        if (url.scheme() == "file")
             remoteOnly = false;
     }
 
@@ -548,7 +550,7 @@ bool GeneralFilter::getSettings(FilterSettings &s)
 
     if (contentEncoding->currentIndex() != 0)
         s.contentEncoding =
-            KGlobal::charsets()->encodingForName(contentEncoding->currentText());
+            KCharsets::charsets()->encodingForName(contentEncoding->currentText());
 
     if (properties & FilterTabs::HasRecurseOptions) {
         s.recursive = searchInDirs->isChecked();
@@ -585,7 +587,7 @@ void GeneralFilter::applySettings(const FilterSettings &s)
     remoteContentSearch->setChecked(s.remoteContentSearch);
 
     setComboBoxValue(contentEncoding,
-            KGlobal::charsets()->descriptionForEncoding(s.contentEncoding));
+            KCharsets::charsets()->descriptionForEncoding(s.contentEncoding));
 
     if (properties & FilterTabs::HasRecurseOptions) {
         searchInDirs->setChecked(s.recursive);
@@ -596,14 +598,13 @@ void GeneralFilter::applySettings(const FilterSettings &s)
     if (properties & FilterTabs::HasSearchIn) {
         searchIn->lineEdit()->clear();
         searchIn->listBox()->clear();
-        searchIn->listBox()->addItems(s.searchIn.toStringList());
+        searchIn->listBox()->addItems(KrServices::toStringList(s.searchIn));
     }
 
     if (properties & FilterTabs::HasDontSearchIn) {
         dontSearchIn->lineEdit()->clear();
         dontSearchIn->listBox()->clear();
-        dontSearchIn->listBox()->addItems(s.dontSearchIn.toStringList());
+        dontSearchIn->listBox()->addItems(KrServices::toStringList(s.dontSearchIn));
     }
 }
 
-#include "generalfilter.moc"

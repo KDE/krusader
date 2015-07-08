@@ -38,10 +38,11 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../Dialogs/krdialogs.h"
 #include "../KViewer/krviewer.h"
 
-#include <QSignalMapper>
-#include <QActionGroup>
-#include <klocale.h>
-#include <kactioncollection.h>
+#include <QtCore/QSignalMapper>
+#include <QtWidgets/QActionGroup>
+
+#include <KI18n/KLocalizedString>
+#include <KXmlGui/KActionCollection>
 
 
 ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindow) :
@@ -55,12 +56,12 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     QList<KrViewInstance*> views = KrViewFactory::registeredViews();
     for(int i = 0; i < views.count(); i++) {
         KrViewInstance *inst = views[i];
-        KAction *action = new KAction(KIcon(inst->icon()), inst->description(), group);
-        action->setShortcut(inst->shortcut());
+        QAction *action = new QAction(QIcon::fromTheme(inst->icon()), inst->description(), group);
         action->setCheckable(true);
         connect(action, SIGNAL(triggered()), mapper, SLOT(map()));
         mapper->setMapping(action, inst->id());
         _mainWindow->actions()->addAction("view" + QString::number(i), action);
+        _mainWindow->actions()->setDefaultShortcut(action, inst->shortcut());
         setViewActions.insert(inst->id(), action);
     }
 

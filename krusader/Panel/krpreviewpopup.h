@@ -20,10 +20,11 @@
 #ifndef KRPREVIEWPOPUP_H
 #define KRPREVIEWPOPUP_H
 
-#include <QtGui/QMenu>
+#include <QtCore/QUrl>
 #include <QtGui/QPixmap>
-#include <kfileitem.h>
-#include <kurl.h>
+#include <QtWidgets/QMenu>
+
+#include <KIOCore/KFileItem>
 
 class KrPreviewPopup : public QMenu
 {
@@ -32,22 +33,23 @@ class KrPreviewPopup : public QMenu
 public:
     KrPreviewPopup();
 
-    void setUrls(const KUrl::List* urls);
+    void setUrls(const QList<QUrl> &urls);
 public slots:
     void addPreview(const KFileItem& file, const QPixmap& preview);
     void view(QAction *);
 
 protected:
-    virtual void showEvent(QShowEvent *event);
+    virtual void showEvent(QShowEvent *event) Q_DECL_OVERRIDE;
 
     QAction * prevNotAvailAction;
     QList<KFileItem> files;
     bool jobStarted;
 
 private:
-    class ProxyStyle;
     static const int MAX_SIZE =400;
     static const short MARGIN =5;
+
+    class ProxyStyle;
 };
 
 #endif

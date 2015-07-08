@@ -19,20 +19,11 @@
 #ifndef KRRESULTTABLEDIALOG_H
 #define KRRESULTTABLEDIALOG_H
 
-#include <QtGui/QLabel>
-#include <QtGui/QLayout>
-#include <QtCore/QStringList>
-#include <QVBoxLayout>
-
-#include <kdialog.h>
-#include <kiconloader.h>
-#include <kglobalsettings.h>
-#include <klocale.h>
+#include <QtWidgets/QDialog>
 
 #include "../Konfigurator/krresulttable.h"
-#include "../Konfigurator/searchobject.h"
 
-class KrResultTableDialog : public KDialog
+class KrResultTableDialog : public QDialog
 {
 public:
 
@@ -57,15 +48,14 @@ public:
         _hint = s;
     }
 
+public slots:
+    void showHelp();
+
 protected:
     QString _heading;
     QString _hint;
+    QString helpAnchor;
 
-    QLabel* _headingLabel;
-    QLabel* _iconLabel;
-    QLabel* _hintLabel;
-    QWidget* _page;
-    QVBoxLayout* _topLayout;
     KrResultTable* _resultTable;
 };
 

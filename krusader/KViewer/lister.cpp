@@ -30,42 +30,41 @@
 
 #include "lister.h"
 
-#include <QApplication>
 #include <QtCore/QFile>
 #include <QtCore/QRect>
 #include <QtCore/QDate>
+#include <QtCore/QTemporaryFile>
 #include <QtCore/QTextCodec>
 #include <QtCore/QTextStream>
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
 #include <QtGui/QPainter>
+#include <QtGui/QFontDatabase>
 #include <QtGui/QFontMetrics>
-#include <QtGui/QLineEdit>
-#include <QtGui/QPushButton>
-#include <QtGui/QToolButton>
 #include <QtGui/QClipboard>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QProgressBar>
 #include <QtGui/QKeyEvent>
-#include <QtGui/QScrollBar>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QMenu>
-#include <QtGui/QPrintDialog>
-#include <QtGui/QPrinter>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QInputDialog>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QProgressBar>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QScrollBar>
+#include <QtWidgets/QToolButton>
+#include <QtPrintSupport/QPrintDialog>
+#include <QtPrintSupport/QPrinter>
 
-#include <kuiserverjobtracker.h>
-#include <KColorScheme>
-#include <KTemporaryFile>
-#include <KMessageBox>
-#include <KActionCollection>
-#include <KInputDialog>
-#include <KFileDialog>
-#include <KLocale>
-#include <KGlobalSettings>
-#include <KCharsets>
-#include <KIO/Job>
+#include <KCodecs/KCharsets>
+#include <KConfigCore/KSharedConfig>
+#include <KCoreAddons/KJobTrackerInterface>
+#include <KI18n/KLocalizedString>
 #include <KIO/CopyJob>
 #include <KIO/JobUiDelegate>
+#include <KParts/GUIActivateEvent>
+#include <KWidgetsAddons/KMessageBox>
+#include <KXmlGui/KActionCollection>
 
 #include "../krglobal.h"
 #include "../kractions.h"
@@ -511,7 +510,7 @@ QTextCodec * ListerTextArea::codec()
     if (cs.isEmpty())
         return QTextCodec::codecForLocale();
     else
-        return KGlobal::charsets()->codecForName(cs);
+        return KCharsets::charsets()->codecForName(cs);
 }
 
 void ListerTextArea::setUpScrollBar()
@@ -547,7 +546,7 @@ void ListerTextArea::setUpScrollBar()
 
 void ListerTextArea::keyPressEvent(QKeyEvent * ke)
 {
-    if (KrGlobal::copyShortcut.contains(QKeySequence(ke->key() | ke->modifiers()))) {
+    if (KrGlobal::copyShortcut == QKeySequence(ke->key() | ke->modifiers())) {
         copySelectedToClipboard();
         ke->accept();
         return;
@@ -1079,7 +1078,7 @@ protected:
     }
 
     virtual void chooseEncoding(QString encodingName) {
-        QString charset = KGlobal::charsets()->encodingForName(encodingName);
+        QString charset = KCharsets::charsets()->encodingForName(encodingName);
         _lister->setCharacterSet(charset);
     }
 
@@ -1091,43 +1090,43 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
 {
     setXMLFile("krusaderlisterui.rc");
 
-    _actionSaveSelected = new KAction(KIcon("document-save"), i18n("Save selection..."), this);
+    _actionSaveSelected = new QAction(QIcon::fromTheme("document-save"), i18n("Save selection..."), this);
     connect(_actionSaveSelected, SIGNAL(triggered(bool)), SLOT(saveSelected()));
     actionCollection()->addAction("save_selected", _actionSaveSelected);
 
-    _actionSaveAs = new KAction(KIcon("document-save-as"), i18n("Save as..."), this);
+    _actionSaveAs = new QAction(QIcon::fromTheme("document-save-as"), i18n("Save as..."), this);
     connect(_actionSaveAs, SIGNAL(triggered(bool)), SLOT(saveAs()));
     actionCollection()->addAction("save_as", _actionSaveAs);
 
-    _actionPrint = new KAction(KIcon("document-print"), i18n("Print..."), this);
-    _actionPrint->setShortcut(Qt::CTRL + Qt::Key_P);
+    _actionPrint = new QAction(QIcon::fromTheme("document-print"), i18n("Print..."), this);
     connect(_actionPrint, SIGNAL(triggered(bool)), SLOT(print()));
     actionCollection()->addAction("print", _actionPrint);
+    actionCollection()->setDefaultShortcut(_actionPrint, Qt::CTRL + Qt::Key_P);
 
-    _actionSearch = new KAction(KIcon("system-search"), i18n("Search"), this);
-    _actionSearch->setShortcut(Qt::CTRL + Qt::Key_F);
+    _actionSearch = new QAction(QIcon::fromTheme("system-search"), i18n("Search"), this);
     connect(_actionSearch, SIGNAL(triggered(bool)), SLOT(searchAction()));
     actionCollection()->addAction("search", _actionSearch);
+    actionCollection()->setDefaultShortcut(_actionSearch, Qt::CTRL + Qt::Key_F);
 
-    _actionSearchNext = new KAction(KIcon("go-down"), i18n("Search next"), this);
-    _actionSearchNext->setShortcut(Qt::Key_F3);
+    _actionSearchNext = new QAction(QIcon::fromTheme("go-down"), i18n("Search next"), this);
     connect(_actionSearchNext, SIGNAL(triggered(bool)), SLOT(searchNext()));
     actionCollection()->addAction("search_next", _actionSearchNext);
+    actionCollection()->setDefaultShortcut(_actionSearchNext, Qt::Key_F3);
 
-    _actionSearchPrev = new KAction(KIcon("go-up"), i18n("Search previous"), this);
-    _actionSearchPrev->setShortcut(Qt::SHIFT + Qt::Key_F3);
+    _actionSearchPrev = new QAction(QIcon::fromTheme("go-up"), i18n("Search previous"), this);
     connect(_actionSearchPrev, SIGNAL(triggered(bool)), SLOT(searchPrev()));
     actionCollection()->addAction("search_prev", _actionSearchPrev);
+    actionCollection()->setDefaultShortcut(_actionSearchPrev, Qt::SHIFT + Qt::Key_F3);
 
-    _actionJumpToPosition = new KAction(KIcon("go-jump"), i18n("Jump to position"), this);
-    _actionJumpToPosition->setShortcut(Qt::CTRL + Qt::Key_G);
+    _actionJumpToPosition = new QAction(QIcon::fromTheme("go-jump"), i18n("Jump to position"), this);
     connect(_actionJumpToPosition, SIGNAL(triggered(bool)), SLOT(jumpToPosition()));
     actionCollection()->addAction("jump_to_position", _actionJumpToPosition);
+    actionCollection()->setDefaultShortcut(_actionJumpToPosition, Qt::CTRL + Qt::Key_G);
 
-    _actionHexMode = new KAction(KIcon("document-preview"), i18n("Hex mode"), this);
-    _actionHexMode->setShortcut(Qt::CTRL + Qt::Key_H);
+    _actionHexMode = new QAction(QIcon::fromTheme("document-preview"), i18n("Hex mode"), this);
     connect(_actionHexMode, SIGNAL(triggered(bool)), SLOT(toggleHexMode()));
     actionCollection()->addAction("hex_mode", _actionHexMode);
+    actionCollection()->setDefaultShortcut(_actionHexMode, Qt::CTRL + Qt::Key_H);
 
     _actionEncoding = new ListerEncodingMenu(this, i18n("Select charset"), "character-set", actionCollection());
 
@@ -1135,7 +1134,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     widget->setFocusPolicy(Qt::StrongFocus);
     QGridLayout *grid = new QGridLayout(widget);
     _textArea = new ListerTextArea(this, widget);
-    _textArea->setFont(KGlobalSettings::fixedFont());
+    _textArea->setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
     _textArea->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
     _textArea->setCursorWidth(2);
     _textArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -1159,7 +1158,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     hbox->addWidget(_searchProgressBar);
 
     _searchStopButton = new QToolButton(statusWidget);
-    _searchStopButton->setIcon(KIcon("process-stop"));
+    _searchStopButton->setIcon(QIcon::fromTheme("process-stop"));
     _searchStopButton->setToolTip(i18n("Stop search"));
     _searchStopButton->hide();
     connect(_searchStopButton, SIGNAL(clicked()), this, SLOT(searchDelete()));
@@ -1175,11 +1174,11 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     connect(_searchLineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(searchTextChanged()));
 
     hbox->addWidget(_searchLineEdit);
-    _searchNextButton = new QPushButton(KIcon("go-down"), i18n("Next"), statusWidget);
+    _searchNextButton = new QPushButton(QIcon::fromTheme("go-down"), i18n("Next"), statusWidget);
     _searchNextButton->setToolTip(i18n("Jump to next match"));
     connect(_searchNextButton, SIGNAL(clicked()), this, SLOT(searchNext()));
     hbox->addWidget(_searchNextButton);
-    _searchPrevButton = new QPushButton(KIcon("go-up"), i18n("Previous"), statusWidget);
+    _searchPrevButton = new QPushButton(QIcon::fromTheme("go-up"), i18n("Previous"), statusWidget);
     _searchPrevButton->setToolTip(i18n("Jump to previous match"));
     connect(_searchPrevButton, SIGNAL(clicked()), this, SLOT(searchPrev()));
     hbox->addWidget(_searchPrevButton);
@@ -1231,7 +1230,7 @@ Lister::~Lister()
     }
 }
 
-bool Lister::openUrl(const KUrl &listerUrl)
+bool Lister::openUrl(const QUrl &listerUrl)
 {
     _downloading = false;
     setUrl(listerUrl);
@@ -1248,8 +1247,7 @@ bool Lister::openUrl(const KUrl &listerUrl)
             return false;
         _fileSize = getFileSize();
     } else {
-        _tempFile = new KTemporaryFile();
-        _tempFile->setSuffix(listerUrl.fileName());
+        _tempFile = new QTemporaryFile(QDir::tempPath() + QLatin1String("/krusader_XXXXXX_") + listerUrl.fileName());
         _tempFile->open();
 
         _filePath = _tempFile->fileName();
@@ -1268,7 +1266,7 @@ bool Lister::openUrl(const KUrl &listerUrl)
     }
     _textArea->reset();
     emit started(0);
-    emit setWindowCaption(listerUrl.prettyUrl());
+    emit setWindowCaption(listerUrl.toDisplayString());
     emit completed();
     return true;
 }
@@ -1284,7 +1282,7 @@ void Lister::slotFileFinished(KJob *job)
     _tempFile->flush();
     if (job->error()) {   /* any error occurred? */
         KIO::TransferJob *kioJob = (KIO::TransferJob *)job;
-        KMessageBox::error(_textArea, i18n("Error reading file %1.", kioJob->url().pathOrUrl()));
+        KMessageBox::error(_textArea, i18n("Error reading file %1.", kioJob->url().toDisplayString(QUrl::PreferLocalFile)));
     }
     _downloading = false;
 }
@@ -1675,6 +1673,7 @@ void Lister::setColor(bool match, bool restore)
         KConfigGroup gc(krConfig, "Colors");
 
         QString foreground, background;
+        QPalette p = QGuiApplication::palette();
 
         if (match) {
             foreground = "Quicksearch Match Foreground";
@@ -1689,12 +1688,12 @@ void Lister::setColor(bool match, bool restore)
         }
 
         if (gc.readEntry(foreground, QString()) == "KDE default")
-            fore = KColorScheme(QPalette::Active, KColorScheme::View).foreground().color();
+            fore = p.color(QPalette::Active, QPalette::Text);
         else if (!gc.readEntry(foreground, QString()).isEmpty())
             fore = gc.readEntry(foreground, fore);
 
         if (gc.readEntry(background, QString()) == "KDE default")
-            back = KColorScheme(QPalette::Active, KColorScheme::View).background().color();
+            back = p.color(QPalette::Active, QPalette::Base);
         else if (!gc.readEntry(background, QString()).isEmpty())
             back = gc.readEntry(background, back);
     } else {
@@ -1745,8 +1744,8 @@ void Lister::updateProgressBar()
 void Lister::jumpToPosition()
 {
     bool ok = true;
-    QString res = KInputDialog::getText(i18n("Jump to position"), i18n("Text position:"), "0",
-                                        &ok, _textArea);
+    QString res = QInputDialog::getText(_textArea, i18n("Jump to position"), i18n("Text position:"),
+                                        QLineEdit::Normal, "0", &ok);
     if (!ok)
         return;
 
@@ -1783,16 +1782,16 @@ void Lister::jumpToPosition()
 
 void Lister::saveAs()
 {
-    KUrl url = KFileDialog::getSaveUrl(KUrl(), QString(), _textArea, i18n("Lister"));
+    QUrl url = QFileDialog::getSaveFileUrl(_textArea, i18n("Lister"));
     if (url.isEmpty())
         return;
-    KUrl sourceUrl;
+    QUrl sourceUrl;
     if (!_downloading)
-        sourceUrl = KUrl(_filePath);
+        sourceUrl = QUrl::fromLocalFile(_filePath);
     else
         sourceUrl = this->url();
 
-    KUrl::List urlList;
+    QList<QUrl> urlList;
     urlList << sourceUrl;
 
     KIO::Job *job = KIO::copy(urlList, url);
@@ -1818,7 +1817,7 @@ void Lister::saveSelected()
         _saveEnd = end;
     }
 
-    KUrl url = KFileDialog::getSaveUrl(KUrl(), QString(), _textArea, i18n("Lister"));
+    QUrl url = QFileDialog::getSaveFileUrl(_textArea, i18n("Lister"));
     if (url.isEmpty())
         return;
 
@@ -1897,8 +1896,8 @@ void Lister::print()
         QRect pageRect = printer.pageRect();
         QRect drawingRect(0, 0, pageRect.width(), pageRect.height());
 
-        QFont normalFont = KGlobalSettings::generalFont();
-        QFont fixedFont  = KGlobalSettings::fixedFont();
+        QFont normalFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
+        QFont fixedFont  = QFontDatabase::systemFont(QFontDatabase::FixedFont);
 
         QFontMetrics fmNormal(normalFont);
         int normalFontHeight = fmNormal.height();
@@ -2105,7 +2104,7 @@ QStringList Lister::readHexLines(qint64 &filePos, qint64 endPos, int columns, in
                 if (hex.length() < 2)
                     hex = QString("0") + hex;
                 pos += hex + QString(" ");
-                if (c < 32 || c >= 128)
+                if (c < 32)
                     c = '.';
                 charData += QChar(c);
             }

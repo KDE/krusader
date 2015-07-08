@@ -33,27 +33,28 @@
 #ifndef LISTPANEL_H
 #define LISTPANEL_H
 
-#include <kfileitem.h>
-#include <kurl.h>
-#include <qwidget.h>
-#include <QtGui/QLabel>
-#include <QtGui/QLayout>
 #include <QtCore/QString>
-#include <QtGui/QPixmap>
-#include <QtGui/QToolButton>
-#include <QProgressBar>
 #include <QtCore/QDir>
-#include <qpixmapcache.h>
-#include <QtGui/QIcon>
-#include <QDropEvent>
-#include <QShowEvent>
-#include <QGridLayout>
-#include <QList>
-#include <QHideEvent>
-#include <QKeyEvent>
-#include <QEvent>
-#include <klineedit.h>
+#include <QtCore/QList>
+#include <QtCore/QEvent>
 #include <QtCore/QPointer>
+#include <QtCore/QUrl>
+#include <QtGui/QPixmap>
+#include <QtGui/QPixmapCache>
+#include <QtGui/QIcon>
+#include <QtGui/QDropEvent>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QShowEvent>
+#include <QtGui/QHideEvent>
+#include <QtWidgets/QProgressBar>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QGridLayout>
+
+#include <KIOCore/KFileItem>
+#include <KCompletion/KLineEdit>
 
 #include "krpanel.h"
 #include "krview.h"
@@ -74,7 +75,6 @@ class SyncBrowseButton;
 class KrBookmarkButton;
 class ListPanelFunc;
 class QSplitter;
-class KDiskFreeSpace;
 class KrErrorDisplay;
 class ListPanelActions;
 
@@ -89,9 +89,9 @@ public:
     ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg = KConfigGroup());
     ~ListPanel();
 
-    virtual void otherPanelChanged();
+    virtual void otherPanelChanged() Q_DECL_OVERRIDE;
 
-    void start(KUrl url = KUrl(), bool immediate = false);
+    void start(QUrl url = QUrl(), bool immediate = false);
 
     void reparent(QWidget *parent, AbstractPanelManager *manager);
 
@@ -115,7 +115,7 @@ public:
         view->getSelectedItems(fileNames);
     }
     void setButtons();
-    void setJumpBack(KUrl url);
+    void setJumpBack(QUrl url);
 
     int  getProperties();
     void setProperties(int);
@@ -126,14 +126,13 @@ public:
     void restoreSettings(KConfigGroup cfg);
 
 public slots:
-    void gotStats(const QString &mountPoint, quint64 kBSize, quint64 kBUsed, quint64 kBAvail);  // displays filesystem status
     void popRightClickMenu(const QPoint&);
     void popEmptyRightClickMenu(const QPoint &);
     void compareDirs(bool otherPanelToo = true);
     void slotFocusOnMe(bool focus = true);
     void slotUpdateTotals();
     void slotStartUpdate();                   // internal
-    void slotGetStats(const KUrl& url);            // get the disk-free stats
+    void slotGetStats(const QUrl &url);            // get the disk-free stats
     void togglePanelPopup();
     void panelActive(); // called when the panel becomes active
     void panelInactive(); // called when panel becomes inactive
@@ -156,13 +155,13 @@ public slots:
     void prepareToDelete();                   // internal use only
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *e);
-    virtual void mousePressEvent(QMouseEvent*) {
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    virtual void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE {
         slotFocusOnMe();
     }
-    virtual void showEvent(QShowEvent *);
-    virtual void hideEvent(QHideEvent *);
-    virtual bool eventFilter(QObject * watched, QEvent * e);
+    virtual void showEvent(QShowEvent *) Q_DECL_OVERRIDE;
+    virtual void hideEvent(QHideEvent *) Q_DECL_OVERRIDE;
+    virtual bool eventFilter(QObject * watched, QEvent * e) Q_DECL_OVERRIDE;
 
     void showButtonMenu(QToolButton *b);
     void createView();
@@ -184,7 +183,7 @@ protected slots:
     void inlineRefreshPercent(KJob*, unsigned long);
     void slotVfsError(QString msg);
     void newTab(KrViewItem *item);
-    void newTab(const KUrl &url, bool nextToThis = false) {
+    void newTab(const QUrl &url, bool nextToThis = false) {
         _manager->newTab(url, nextToThis ? this : 0);
     }
 
@@ -197,12 +196,11 @@ signals:
 
 protected:
     int panelType;
-    KUrl _realPath; // named with _ to keep realPath() compatibility
-    KUrl _jumpBackURL;
+    QUrl _realPath; // named with _ to keep realPath() compatibility
+    QUrl _jumpBackURL;
     int colorMask;
     bool compareMode;
     //FilterSpec    filter;
-    KDiskFreeSpace* statsAgent;
     KJob *previewJob;
     KIO::Job *inlineRefreshJob;
     ListPanelActions *_actions;

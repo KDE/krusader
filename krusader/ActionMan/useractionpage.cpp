@@ -19,18 +19,20 @@
 
 #include "useractionpage.h"
 
-#include <kstandardguiitem.h>
-#include <QtGui/QSplitter>
-#include <QtGui/QLayout>
-#include <QtGui/QToolButton>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QSplitter>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QVBoxLayout>
 #include <QtGui/QClipboard>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <klineedit.h>
-#include <kmessagebox.h>
-#include <kfiledialog.h>
-#include <kiconloader.h>
-#include <klocale.h>
+#include <QtXml/QDomDocumentType>
+
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KStandardGuiItem>
+#include <KCompletion/KLineEdit>
+#include <KWidgetsAddons/KMessageBox>
+#include <KIconThemes/KIconLoader>
 
 #include "actionproperty.h"
 #include "useractionlistview.h"
@@ -41,7 +43,7 @@
 #include "../krglobal.h"
 
 #define ICON(N)  KIconLoader::global()->loadIcon(N, KIconLoader::Toolbar)
-//This is the filter in the KFileDialog of Import/Export:
+//This is the filter in the QFileDialog of Import/Export:
 static const char* FILE_FILTER = I18N_NOOP("*.xml|XML files\n*|All files");
 
 
@@ -240,7 +242,7 @@ void UserActionPage::slotRemoveAction()
 
 void UserActionPage::slotImport()
 {
-    QString filename = KFileDialog::getOpenFileName(QString(), i18n(FILE_FILTER), this);
+    QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), i18n(FILE_FILTER));
     if (filename.isEmpty())
         return;
 
@@ -261,7 +263,7 @@ void UserActionPage::slotExport()
     if (! dynamic_cast<UserActionListViewItem*>(actionTree->currentItem()))
         return;
 
-    QString filename = KFileDialog::getSaveFileName(QString(), i18n(FILE_FILTER), this);
+    QString filename = QFileDialog::getSaveFileName(this, QString(), QString(), i18n(FILE_FILTER));
     if (filename.isEmpty())
         return;
 
@@ -349,4 +351,3 @@ void UserActionPage::applyChanges()
     slotUpdateAction();
 }
 
-#include "useractionpage.moc"

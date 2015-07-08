@@ -30,14 +30,12 @@
 #ifndef PACKGUIBASE_H
 #define PACKGUIBASE_H
 
-#include <klocale.h>
-#include <QtGui/QDialog>
-#include <qmap.h>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QLabel>
-
+#include <QtCore/QMap>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QLabel>
 
 class QVBoxLayout;
 class QHBoxLayout;
@@ -101,7 +99,7 @@ protected slots:
     virtual void slotQueue();
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *e);
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 
     QHBoxLayout* hbox;
     QHBoxLayout* hbox_2;

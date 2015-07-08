@@ -32,13 +32,14 @@ A
 #include "krcalcspacedialog.h"
 
 #include <QtCore/QTimer>
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
-#include <QVBoxLayout>
-#include <QMutexLocker>
+#include <QtCore/QMutexLocker>
+#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QVBoxLayout>
 
-#include <klocale.h>
-#include <kcursor.h>
+#include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KCursor>
 
 #include "krpanel.h"
 #include "panelfunc.h"
@@ -47,7 +48,7 @@ A
 #include "../VFS/krvfshandler.h"
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
-KrCalcSpaceDialog::CalcThread::CalcThread(KUrl url, const QStringList & items)
+KrCalcSpaceDialog::CalcThread::CalcThread(QUrl url, const QStringList & items)
         : m_totalSize(0), m_currentSize(0), m_totalFiles(0), m_totalDirs(0), m_items(items), m_url(url),
         m_stop(false) {}
 
@@ -104,29 +105,34 @@ void KrCalcSpaceDialog::CalcThread::stop()
 
 
 KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, KrPanel * panel, const QStringList & items, bool autoclose) :
-        KDialog(parent), m_autoClose(autoclose), m_canceled(false), 
+        QDialog(parent), m_autoClose(autoclose), m_canceled(false),
                 m_timerCounter(0), m_items(items), m_view(panel->view)
 {
-    setButtons(KDialog::Ok | KDialog::Cancel);
-    setDefaultButton(KDialog::Ok);
     setWindowTitle(i18n("Calculate Occupied Space"));
     setWindowModality(Qt::WindowModal);
-    // the dialog: The Ok button is hidden until it is needed
-    showButton(KDialog::Ok, false);
+
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+
     m_thread = new CalcThread(panel->virtualPath(), items);
     m_pollTimer = new QTimer(this);
-    QWidget * mainWidget = new QWidget(this);
-    setMainWidget(mainWidget);
-    QVBoxLayout *topLayout = new QVBoxLayout(mainWidget);
-    topLayout->setContentsMargins(0, 0, 0, 0);
-    topLayout->setSpacing(spacingHint());
-
-    m_label = new QLabel("", mainWidget);
+    m_label = new QLabel("", this);
+    mainLayout->addWidget(m_label);
     showResult(); // fill m_label with something useful
-    topLayout->addWidget(m_label);
-    topLayout->addStretch(10);
+    mainLayout->addStretch(10);
 
-    connect(this, SIGNAL(cancelClicked()), this, SLOT(reject()));
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    mainLayout->addWidget(buttonBox);
+
+    okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    // the dialog: The Ok button is hidden until it is needed
+    okButton->setVisible(false);
+    cancelButton = buttonBox->button(QDialogButtonBox::Cancel);
+
+    connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), SLOT(slotCancel()));
 }
 
 void KrCalcSpaceDialog::calculationFinished()
@@ -138,8 +144,8 @@ void KrCalcSpaceDialog::calculationFinished()
         return;
     }
     // otherwise hide cancel and show ok button
-    showButton(KDialog::Cancel, false);
-    showButton(KDialog::Ok, true);
+    cancelButton->setVisible(false);
+    okButton->setVisible(true);
     showResult(); // and show final result
 }
 
@@ -190,7 +196,7 @@ void KrCalcSpaceDialog::slotCancel()
 {
     m_thread->stop(); // notify the thread to stop
     m_canceled = true; // set the cancel flag
-    KDialog::reject(); // close the dialog
+    reject(); // close the dialog
 }
 
 KrCalcSpaceDialog::~KrCalcSpaceDialog()
@@ -203,7 +209,7 @@ KrCalcSpaceDialog::~KrCalcSpaceDialog()
     }
 }
 
-void KrCalcSpaceDialog::exec()
+int KrCalcSpaceDialog::exec()
 {
     m_thread->start(); // start the thread
     if (m_autoClose) { // autoclose
@@ -213,15 +219,13 @@ void KrCalcSpaceDialog::exec()
         krMainWindow->setCursor(Qt::ArrowCursor);    // return the cursor to normal mode
         m_thread->updateItems(m_view);
         if(m_thread->isFinished())
-            return; // thread finished: do not show the dialog
+            return -1;                                        // thread finished: do not show the dialog
         showResult(); // fill the invisible dialog with useful data
     }
     // prepare and start the poll timer
     connect(m_pollTimer, SIGNAL(timeout()), this, SLOT(timer()));
     m_pollTimer->start(100);
-    KDialog::exec(); // show the dialog
+    return QDialog::exec();                                 // show the dialog
 }
 /* --=={ End of patch by Heiner <h.eichmann@gmx.de> }==-- */
 
-
-#include "krcalcspacedialog.moc"

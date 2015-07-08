@@ -5,6 +5,13 @@ set(Filter_SRCS
     filtertabs.cpp
     filterdialog.cpp)
 
-kde4_add_library(Filter STATIC ${Filter_SRCS})
+add_library(Filter STATIC ${Filter_SRCS})
 
-target_link_libraries(Filter Dialogs)
+target_link_libraries(Filter
+    Dialogs
+    KF5::Codecs
+    KF5::ConfigCore
+    KF5::I18n
+    KF5::IconThemes
+    KF5::WidgetsAddons
+)

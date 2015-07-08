@@ -34,7 +34,7 @@
 
 #include "../actionsbase.h"
 
-#include <kaction.h>
+#include <QtWidgets/QAction>
 
 class KrView;
 
@@ -75,9 +75,9 @@ public slots:
     void refreshActions();
 
 public:
-    KAction *actZoomIn, *actZoomOut, *actDefaultZoom;
-    KAction *actSelect, *actUnselect, *actSelectAll, *actUnselectAll, *actInvert, *actRestoreSelection;
-    KAction *actMarkSameBaseName, *actMarkSameExtension;
+    QAction *actZoomIn, *actZoomOut, *actDefaultZoom;
+    QAction *actSelect, *actUnselect, *actSelectAll, *actUnselectAll, *actInvert, *actRestoreSelection;
+    QAction *actMarkSameBaseName, *actMarkSameExtension;
     KToggleAction *actTogglePreviews;
 
 protected:

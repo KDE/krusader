@@ -38,21 +38,19 @@
 
 #include "filemanagerwindow.h"
 
-// KDE includes
-#include <kapplication.h>
-#include <kparts/mainwindow.h>
-#include <kstandardaction.h>
-#include <kaction.h>
-#include <kconfig.h>
-#include <kconfiggroup.h>
+#include <QtCore/QCommandLineParser>
 #include <QtCore/QStringList>
-#include <QMoveEvent>
-#include <QShowEvent>
-#include <QResizeEvent>
-#include <QHideEvent>
-#include <kdebug.h>
+#include <QtCore/QTimer>
+#include <QtGui/QShowEvent>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QHideEvent>
+#include <QtGui/QMoveEvent>
+#include <QtWidgets/QAction>
 
-#include <QTimer>
+#include <KParts/MainWindow>
+#include <KConfigWidgets/KStandardAction>
+#include <KConfigCore/KConfig>
+#include <KConfigCore/KConfigGroup>
 
 #include "VFS/kiojobwrapper.h"
 
@@ -60,9 +58,11 @@
 class KrJS;
 #endif
 
+class KStartupInfoData;
+class KStartupInfoId;
+
 class KrusaderStatus;
 class KRPleaseWaitHandler;
-class KSystemTrayIcon;
 class UserMenu;
 class UserAction;
 class PopularUrls;
@@ -77,14 +77,14 @@ class Krusader : public KParts::MainWindow, public FileManagerWindow
     Q_CLASSINFO("D-Bus Interface", "org.krusader.Instance")
 
 public:
-    Krusader();
+    Krusader(const QCommandLineParser &parser);
     virtual ~Krusader();
 
     // KrMainWindow implementation
-    virtual QWidget *widget() {
+    virtual QWidget *widget() Q_DECL_OVERRIDE {
         return this;
     }
-    virtual KrView *activeView();
+    virtual KrView *activeView() Q_DECL_OVERRIDE;
     ViewActions *viewActions() {
         return _viewActions;
     }
@@ -92,32 +92,29 @@ public:
         return actionCollection();
     }
     // FileManagerWindow implementation
-    virtual AbstractPanelManager *activeManager();
-    virtual AbstractPanelManager *leftManager();
-    virtual AbstractPanelManager *rightManager();
-    virtual PopularUrls *popularUrls() {
+    virtual AbstractPanelManager *activeManager() Q_DECL_OVERRIDE;
+    virtual AbstractPanelManager *leftManager() Q_DECL_OVERRIDE;
+    virtual AbstractPanelManager *rightManager() Q_DECL_OVERRIDE;
+    virtual PopularUrls *popularUrls() Q_DECL_OVERRIDE {
         return _popularUrls;
     }
-    virtual KrActions *krActions() {
+    virtual KrActions *krActions() Q_DECL_OVERRIDE {
         return _krActions;
     }
-    virtual ListPanelActions *listPanelActions() {
+    virtual ListPanelActions *listPanelActions() Q_DECL_OVERRIDE {
         return _listPanelActions;
     }
-    virtual TabActions *tabActions() {
+    virtual TabActions *tabActions() Q_DECL_OVERRIDE {
         return _tabActions;
     }
-    virtual void plugActionList(const char *name, QList<QAction*> &list) {
+    virtual void plugActionList(const char *name, QList<QAction*> &list) Q_DECL_OVERRIDE {
         KParts::MainWindow::plugActionList(name, list);
     }
-
-    void configChanged();
     /**
      * This returns a defferent icon if krusader runs with root-privileges
      * @return a character string with the specitif icon-name
      */
     static const char* privIcon();
-    static QStringList supportedTools(); // find supported tools
 
 
 public slots:
@@ -128,22 +125,19 @@ public slots:
     void savePosition();
     void updateUserActions();
     void updateGUI(bool enforce = false);
-    void slotClose();
-    void setDirectExit() {
-        directExit = true;
-    }
 
 protected slots:
     void doOpenUrl();
+    void slotGotNewStartup(const KStartupInfoId &id, const KStartupInfoData &data);
+    void slotGotRemoveStartup(const KStartupInfoId &id, const KStartupInfoData &data);
 
 protected:
-    bool queryClose();
+    bool queryClose() Q_DECL_OVERRIDE;
     void setupActions();
     bool versionControl();  // handle version differences in krusaderrc
-    void showEvent(QShowEvent *);
-    void hideEvent(QHideEvent *);
-    void moveEvent(QMoveEvent *);
-    void resizeEvent(QResizeEvent *);
+    void moveEvent(QMoveEvent *) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE;
+    bool event(QEvent *) Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
     Q_SCRIPTABLE bool isRunning();
@@ -178,19 +172,14 @@ signals:
     void shutdown();
 
 private:
-    static void supportedTool(QStringList &tools, QString toolType,
-                              QStringList names, QString confName);
-
     KrActions *_krActions;
     ViewActions *_viewActions;
     ListPanelActions *_listPanelActions;
     TabActions *_tabActions;
-    KSystemTrayIcon *sysTray;
     QPoint       oldPos;
     QSize        oldSize;
     bool         isStarting;
     bool         isExiting;
-    bool         directExit;
     KrJobStarter jobStarter;
     QTimer      _openUrlTimer;
     QString     _urlToOpen;

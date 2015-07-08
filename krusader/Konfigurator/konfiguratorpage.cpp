@@ -29,12 +29,15 @@
  ***************************************************************************/
 
 #include "konfiguratorpage.h"
-#include <QtGui/QLayout>
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <QScrollArea>
-#include <QLabel>
-#include <kconfig.h>
+
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QScrollArea>
+#include <QtWidgets/QLabel>
+
+#include <KConfigCore/KConfig>
+
 #include "../krglobal.h"
 
 KonfiguratorPage::KonfiguratorPage(bool firstTime, QWidget* parent) :
@@ -288,4 +291,3 @@ KonfiguratorColorChooser *KonfiguratorPage::createColorChooser(QString cls, QStr
     return colorChooser;
 }
 
-#include "konfiguratorpage.moc"

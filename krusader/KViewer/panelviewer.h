@@ -22,12 +22,11 @@
 
 #include <QtCore/QHash>
 #include <QtCore/QString>
-#include <QtGui/QLabel>
-#include <QtGui/QStackedWidget>
+#include <QtCore/QUrl>
+#include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QLabel>
 
-#include <kurl.h>
-#include <kparts/part.h>
-#include <kio/job.h>
+# include <KParts/Part>
 
 #include "krviewer.h"
 
@@ -39,7 +38,7 @@ class PanelViewerBase: public QStackedWidget
 public:
     PanelViewerBase(QWidget *parent, KrViewer::Mode mode = KrViewer::Default);
     virtual ~PanelViewerBase();
-    inline KUrl url() const {
+    inline QUrl url() const {
         return curl;
     }
     inline KParts::ReadOnlyPart* part() const {
@@ -58,11 +57,11 @@ public slots:
         return true;
     }
 
-    void openUrl(KUrl url);
+    void openUrl(QUrl url);
 
 signals:
-    void openUrlRequest(const KUrl &url);
-    void urlChanged(PanelViewerBase *, const KUrl &);
+    void openUrlRequest(const QUrl &url);
+    void urlChanged(PanelViewerBase *, const QUrl &);
     void partDestroyed(PanelViewerBase *);
     void openUrlFinished(PanelViewerBase *viewWidget, bool success);
 
@@ -81,7 +80,7 @@ protected:
     QHash<QString, QPointer<KParts::ReadOnlyPart> > *mimes;
     QPointer<KParts::ReadOnlyPart> cpart;
 
-    KUrl curl;
+    QUrl curl;
     QLabel *fallback;
     KrViewer::Mode mode;
 };

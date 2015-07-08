@@ -22,10 +22,10 @@
 #ifndef ISO_H
 #define ISO_H
 
-#include <QByteArray>
+#include <QtCore/QByteArray>
+#include <QtCore/QUrl>
 
-#include <kio/slavebase.h>
-#include <sys/types.h>
+#include <KIO/SlaveBase>
 
 #include "kisofile.h"
 
@@ -37,15 +37,15 @@ public:
     kio_isoProtocol(const QByteArray &pool, const QByteArray &app);
     virtual ~kio_isoProtocol();
 
-    virtual void listDir(const KUrl & url);
-    virtual void stat(const KUrl & url);
-    virtual void get(const KUrl & url);
+    virtual void listDir(const QUrl &url) Q_DECL_OVERRIDE;
+    virtual void stat(const QUrl &url) Q_DECL_OVERRIDE;
+    virtual void get(const QUrl &url) Q_DECL_OVERRIDE;
 
 protected:
     void getFile(const KIsoFile *isoFileEntry, const QString &path);
     void createUDSEntry(const KArchiveEntry * isoEntry, KIO::UDSEntry & entry);
     bool checkNewFile(QString fullPath, QString & path, int startsec);
-    QString getPath(const KUrl & url);
+    QString getPath(const QUrl &url);
 
     KIso * m_isoFile;
     time_t m_mtime;

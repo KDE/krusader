@@ -34,12 +34,12 @@
 #include <QtCore/QList>
 #include <QtCore/QTimer>
 #include <QtGui/QColor>
-#include <QtGui/QWidget>
+#include <QtWidgets/QWidget>
 
-#include <KLineEdit>
+#include <KCompletion/KLineEdit>
 #include <KParts/BrowserExtension>
 #include <KParts/Part>
-#include <KTextEdit>
+#include <KTextWidgets/KTextEdit>
 
 #include "../VFS/krquery.h"
 
@@ -51,8 +51,8 @@ class QLabel;
 class QProgressBar;
 class QPushButton;
 class QToolButton;
-class KAction;
-class KTemporaryFile;
+class QAction;
+class QTemporaryFile;
 class ListerEncodingMenu;
 
 class ListerTextArea : public KTextEdit
@@ -94,12 +94,12 @@ public:
     void           sizeChanged();
 
 protected:
-    virtual void   resizeEvent(QResizeEvent * event);
-    virtual void   keyPressEvent(QKeyEvent * e);
-    virtual void   mousePressEvent(QMouseEvent * e);
-    virtual void   mouseDoubleClickEvent(QMouseEvent * e);
-    virtual void   mouseMoveEvent(QMouseEvent * e);
-    virtual void   wheelEvent(QWheelEvent * event);
+    virtual void   resizeEvent(QResizeEvent * event) Q_DECL_OVERRIDE;
+    virtual void   keyPressEvent(QKeyEvent * e) Q_DECL_OVERRIDE;
+    virtual void   mousePressEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
+    virtual void   mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
+    virtual void   mouseMoveEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
+    virtual void   wheelEvent(QWheelEvent * event) Q_DECL_OVERRIDE;
 
     QStringList    readLines(qint64 filePos, qint64 &endPos, int lines, QList<qint64> * locs = 0);
     QString        readSection(qint64 p1, qint64 p2);
@@ -224,14 +224,14 @@ protected slots:
     void            slotSendFinished(KJob *);
 
 protected:
-    virtual bool    openUrl(const KUrl &url);
-    virtual bool    closeUrl() {
+    virtual bool    openUrl(const QUrl &url) Q_DECL_OVERRIDE;
+    virtual bool    closeUrl() Q_DECL_OVERRIDE {
         return true;
     }
-    virtual bool    openFile() {
+    virtual bool    openFile() Q_DECL_OVERRIDE {
         return true;
     }
-    virtual void    guiActivateEvent(KParts::GUIActivateEvent * event);
+    virtual void    guiActivateEvent(KParts::GUIActivateEvent * event) Q_DECL_OVERRIDE;
     void            setColor(bool match, bool restore);
     void            hideProgressBar();
     void            updateProgressBar();
@@ -261,14 +261,14 @@ protected:
     QAction        *_regExpAction;
     QAction        *_hexAction;
 
-    KAction        *_actionSaveSelected;
-    KAction        *_actionSaveAs;
-    KAction        *_actionPrint;
-    KAction        *_actionSearch;
-    KAction        *_actionSearchNext;
-    KAction        *_actionSearchPrev;
-    KAction        *_actionJumpToPosition;
-    KAction        *_actionHexMode;
+    QAction *_actionSaveSelected;
+    QAction *_actionSaveAs;
+    QAction *_actionPrint;
+    QAction *_actionSearch;
+    QAction *_actionSearchNext;
+    QAction *_actionSearchPrev;
+    QAction *_actionJumpToPosition;
+    QAction *_actionHexMode;
     ListerEncodingMenu *_actionEncoding;
 
     QString         _filePath;
@@ -292,7 +292,7 @@ protected:
 
     QString         _characterSet;
 
-    KTemporaryFile *_tempFile;
+    QTemporaryFile *_tempFile;
 
     bool            _downloading;
     bool            _restartFromBeginning;
