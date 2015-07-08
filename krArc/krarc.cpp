@@ -1473,6 +1473,7 @@ bool kio_krarcProtocol::initArcParameters()
     putCmd  = QStringList();
 
     if (arcType == "zip") {
+        noencoding = true;
         cmd     = fullPathName("unzip");
         listCmd << fullPathName("unzip") << "-ZTs-z-t-h";
         getCmd  << fullPathName("unzip") << "-p";
