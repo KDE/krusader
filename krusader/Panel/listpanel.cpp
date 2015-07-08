@@ -912,7 +912,7 @@ void ListPanel::startDragging(QStringList names, QPixmap px)
     QDrag *drag = new QDrag(this);
     QMimeData *mimeData = new QMimeData;
     drag->setPixmap(px);
-    KUrlMimeData::setUrls(urls, QList<QUrl>(), mimeData);
+    mimeData->setUrls(urls);
     drag->setMimeData(mimeData);
 
     drag->start();
