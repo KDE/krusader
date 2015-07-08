@@ -47,7 +47,7 @@ class KgColors : public KonfiguratorPage
 public:
     KgColors(bool first, QWidget* parent = 0);
 
-    bool apply();
+    virtual bool apply() Q_DECL_OVERRIDE;
 
 public slots:
     void slotDisable();

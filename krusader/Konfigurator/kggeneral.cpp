@@ -242,7 +242,7 @@ void KgGeneral::createGeneralTab()
     QHBoxLayout *hbox = new QHBoxLayout();
 
     hbox->addWidget(new QLabel(i18n("Temp Directory:"), generalGrp));
-    KonfiguratorURLRequester *urlReq3 = createURLRequester("General", "Temp Directory", "/tmp/krusader.tmp",
+    KonfiguratorURLRequester *urlReq3 = createURLRequester("General", "Temp Directory", _TempDirectory,
                                         generalGrp, false, PAGE_GENERAL);
     urlReq3->setMode(KFile::Directory);
     connect(urlReq3->extension(), SIGNAL(applyManually(QObject *, QString, QString)),

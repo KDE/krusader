@@ -321,6 +321,7 @@ void KgProtocols::loadInitialValues()
         linkList->setCurrentItem(linkList->topLevelItem(0));
     slotDisableButtons();
     linkList->expandAll();
+    emit sigChanged();
 }
 
 void KgProtocols::setDefaults()
