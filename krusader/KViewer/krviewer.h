@@ -57,6 +57,7 @@ public:
 public slots:
     virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
     void createGUI(KParts::Part*);
+    void configureShortcuts();
 
     void viewGeneric();
     void viewText();
@@ -112,12 +113,14 @@ private:
     QPointer<QWidget> returnFocusTo;
 
     QAction *detachAction;
-
     QAction *printAction;
     QAction *copyAction;
+    QAction *quitAction;
 
-    QAction *tabClose;
-    QAction *closeAct;
+    QAction *configKeysAction;
+    QAction *tabCloseAction;
+    QAction *tabNextAction;
+    QAction *tabPrevAction;
 
     static QList<KrViewer *> viewers; // the first viewer is the active one
     QList<int>    reservedKeys;   // the reserved key sequences

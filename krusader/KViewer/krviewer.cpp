@@ -28,17 +28,18 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 
-#include <KParts/Part>
-//#include <KParts/ComponentFactory> // missing?
-#include <KWidgetsAddons/KMessageBox>
 #include <KCoreAddons/KProcess>
+#include <KCoreAddons/KShell>
 #include <KConfigCore/KSharedConfig>
+#include <KConfigWidgets/KStandardAction>
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 #include <KIOCore/KFileItem>
+#include <KParts/Part>
+#include <KWidgetsAddons/KMessageBox>
+#include <KXmlGui/KActionCollection>
+#include <KXmlGui/KShortcutsDialog>
 #include <KXmlGui/KToolBar>
-#include <KConfigWidgets/KStandardAction>
-#include <KCoreAddons/KShell>
 
 #include "../krglobal.h"
 #include "../defaults.h"
@@ -81,21 +82,24 @@ KrViewer::KrViewer(QWidget *parent) :
     copyAction = KStandardAction::copy(this, SLOT(copy()), 0);
 
     viewerMenu = new QMenu(this);
-    viewerMenu->addAction(i18n("&Generic Viewer"), this, SLOT(viewGeneric()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_G);
-    viewerMenu->addAction(i18n("&Text Viewer"), this, SLOT(viewText()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_T);
-    viewerMenu->addAction(i18n("&Hex Viewer"), this, SLOT(viewHex()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_H);
-    viewerMenu->addAction(i18n("&Lister"), this, SLOT(viewLister()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_L);
-    viewerMenu->addSeparator();
-    viewerMenu->addAction(i18n("Text &Editor"), this, SLOT(editText()))->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_E);
-    viewerMenu->addSeparator();
-    viewerMenu->addAction(i18n("&Next Tab"), this, SLOT(nextTab()))->setShortcut(Qt::ALT + Qt::Key_Right);
-    viewerMenu->addAction(i18n("&Previous Tab"), this, SLOT(prevTab()))->setShortcut(Qt::ALT + Qt::Key_Left);
+    QAction *tempAction;
+    KActionCollection *ac = actionCollection();
 
-    detachAction = viewerMenu->addAction(i18n("&Detach Tab"), this, SLOT(detachTab()));
-    detachAction->setShortcut(Qt::META + Qt::Key_D);
-    //no point in detaching only one tab..
-    detachAction->setEnabled(false);
+#define addCustomMenuAction(name, text, slot, shortcut)\
+    tempAction = ac->addAction(name, this, slot);\
+    tempAction->setText(text);\
+    ac->setDefaultShortcut(tempAction, shortcut);\
+    viewerMenu->addAction(tempAction);
+
+    addCustomMenuAction("genericViewer", i18n("&Generic Viewer"), SLOT(viewGeneric()), Qt::CTRL + Qt::SHIFT + Qt::Key_G);
+    addCustomMenuAction("textViewer", i18n("&Text Viewer"), SLOT(viewText()), Qt::CTRL + Qt::SHIFT + Qt::Key_T);
+    addCustomMenuAction("hexViewer", i18n("&Hex Viewer"), SLOT(viewHex()), Qt::CTRL + Qt::SHIFT + Qt::Key_H);
+    addCustomMenuAction("lister", i18n("&Lister"), SLOT(viewLister()), Qt::CTRL + Qt::SHIFT + Qt::Key_L);
     viewerMenu->addSeparator();
+
+    addCustomMenuAction("textEditor", i18n("Text &Editor"), SLOT(editText()), Qt::CTRL + Qt::SHIFT + Qt::Key_E);
+    viewerMenu->addSeparator();
+
     QList<QAction *> actList = menuBar()->actions();
     bool hasPrint = false, hasCopy = false;
     foreach(QAction *a, actList) {
@@ -111,8 +115,35 @@ KrViewer::KrViewer(QWidget *parent) :
     if (hasCopy)
         copyAct->setShortcut(copyAction->shortcut());
     viewerMenu->addSeparator();
-    (tabClose = viewerMenu->addAction(i18n("&Close Current Tab"), this, SLOT(tabCloseRequest())))->setShortcut(Qt::Key_Escape);
-    (closeAct = viewerMenu->addAction(i18n("&Quit"), this, SLOT(close())))->setShortcut(Qt::CTRL + Qt::Key_Q);
+
+    configKeysAction = ac->addAction(KStandardAction::KeyBindings, this, SLOT(configureShortcuts()));
+    viewerMenu->addAction(configKeysAction);
+    viewerMenu->addSeparator();
+
+    detachAction = ac->addAction("detachTab", this, SLOT(detachTab()));
+    detachAction->setText(i18n("&Detach Tab"));
+    //no point in detaching only one tab..
+    detachAction->setEnabled(false);
+    ac->setDefaultShortcut(detachAction, Qt::META + Qt::Key_D);
+    viewerMenu->addAction(detachAction);
+
+    quitAction = ac->addAction(KStandardAction::Quit, this, SLOT(close()));
+    viewerMenu->addAction(quitAction);
+
+    tabCloseAction = ac->addAction("closeTab", this, SLOT(tabCloseRequest()));
+    tabCloseAction->setText(i18n("&Close Current Tab"));
+    QList<QKeySequence> shortcuts = KStandardShortcut::close();
+    shortcuts.append(Qt::Key_Escape);
+    ac->setDefaultShortcuts(tabCloseAction, shortcuts);
+
+    tabNextAction = ac->addAction("nextTab", this, SLOT(nextTab()));
+    tabNextAction->setText(i18n("&Next Tab"));
+    ac->setDefaultShortcuts(tabNextAction, KStandardShortcut::tabNext());
+
+    tabPrevAction = ac->addAction("prevTab", this, SLOT(prevTab()));
+    tabPrevAction->setText(i18n("&Previous Tab"));
+    ac->setDefaultShortcuts(tabPrevAction, KStandardShortcut::tabPrev());
+
 
     tabBar.setTabsClosable(true);
 
@@ -171,17 +202,16 @@ void KrViewer::createGUI(KParts::Part* part)
     reservedKeyActions.clear();
 
     QList<QAction *> list = viewerMenu->actions();
+    // also add the actions that are not in the menu...
+    list << tabCloseAction << tabNextAction << tabPrevAction;
     // getting the key sequences of the viewer menu
     for (int w = 0; w != list.count(); w++) {
         QAction *act = list[ w ];
         QList<QKeySequence> sequences = act->shortcuts();
-        if (!sequences.isEmpty()) {
-            for (int i = 0; i != sequences.count(); i++) {
-                QKeySequence keySeq = sequences.at(i);
-                if(keySeq.count() > 0) {
-                    reservedKeys.push_back(keySeq[0]);
-                    reservedKeyActions.push_back(act);
-                }
+        foreach(QKeySequence keySeq, sequences) {
+            for(int i = 0; i < keySeq.count(); ++i) {
+                reservedKeys.push_back(keySeq[i]);
+                reservedKeyActions.push_back(act); //the same action many times in case of multiple shortcuts
             }
         }
     }
@@ -194,8 +224,16 @@ void KrViewer::createGUI(KParts::Part* part)
     menuBar() ->show();
 }
 
+void KrViewer::configureShortcuts()
+{
+    KShortcutsDialog::configure(actionCollection(), KShortcutsEditor::LetterShortcutsAllowed, this);
+}
+
 bool KrViewer::eventFilter(QObject * /* watched */, QEvent * e)
 {
+    // TODO: after porting to Qt5/KF5 we never catch *ANY* KeyPress or ShortcutOverride events here anymore.
+    // Should look into if there is any way to fix it. Currently if a KPart has same shortcut as KrViewer then
+    // it causes a conflict, messagebox shown to user and no action triggered.
     if (e->type() == QEvent::ShortcutOverride) {
         QKeyEvent* ke = (QKeyEvent*) e;
         if (reservedKeys.contains(ke->key())) {
@@ -205,11 +243,9 @@ bool KrViewer::eventFilter(QObject * /* watched */, QEvent * e)
             if (act != 0) {
                 // don't activate the close functions immediately!
                 // it can cause crash
-                if (act == tabClose)
-                    QTimer::singleShot(0, this, SLOT(tabCloseRequest()));
-                else if (act == closeAct)
-                    QTimer::singleShot(0, this, SLOT(close()));
-                else {
+                if (act == tabCloseAction || act == quitAction) {
+                    QTimer::singleShot(0, act, SLOT(trigger()));
+                } else {
                     act->activate(QAction::Trigger);
                 }
             }
