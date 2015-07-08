@@ -16,6 +16,7 @@
  ***************************************************************************/
 
 #include "krarc.h"
+#include "../krusader/defaults.h"
 
 #include <QtCore/QByteArray>
 #include <QtCore/QDebug>
@@ -151,10 +152,19 @@ kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteA
 {
     confGrp = KConfigGroup(&krConfig, "Dependencies");
 
-    arcTempDir = QDir::tempPath() + DIR_SEPARATOR;
+    KConfigGroup group(&krConfig, "General");
+    QString tmpDirPath = group.readEntry("Temp Directory", _TempDirectory);
+    QDir tmpDir(tmpDirPath);
+    if(!tmpDir.exists()) {
+        for (int i = 1 ; i != -1 ; i = tmpDirPath.indexOf('/', i + 1))
+            QDir().mkdir(tmpDirPath.left(i));
+        QDir().mkdir(tmpDirPath);
+    }
+
+    arcTempDir = tmpDirPath + DIR_SEPARATOR;
     QString dirName = "krArc" + QDateTime::currentDateTime().toString(Qt::ISODate);
     dirName.replace(QRegExp(":"), "_");
-    QDir(arcTempDir).mkdir(dirName);
+    tmpDir.mkdir(dirName);
     arcTempDir = arcTempDir + dirName + DIR_SEPARATOR;
 
     krArcCodec = new KrArcCodec(QTextCodec::codecForLocale());
