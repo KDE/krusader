@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<component type="desktop">
+  <id>krusader.desktop</id>
+  <metadata_license>GFDL-1.2-without-invariant</metadata_license>
+  <name>Krusader</name>
+  <summary>File Manager</summary>
+  <description>
+    <p>Krusader is an advanced twin panel (commander style) file manager </p>
+    <p>Features:</p>
+    <ul>
+      <li>Extensive archive handling</li>
+      <li>Mounted filesystem support</li>
+      <li>FTP support</li>
+      <li>Advanced search module</li>
+      <li>Internal viewer/editor</li>
+      <li>Directory synchronisation</li>
+      <li>File content comparisons</li>
+      <li>Powerful batch renaming</li>
+      <li>Support for a wide variety of archive formats and can handle other KIO slaves such as smb or fish.</li>
+      <li>Completely customizable and very user friendly</li>
+    </ul>
+  </description>
+  <url type="homepage">http://www.krusader.org/</url>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=krusader</url>
+  <url type="help">http://docs.kde.org/development/en/extragear-utils/krusader/index.html</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>http://kde.org/images/screenshots/krusader.png</image>
+    </screenshot>
+  </screenshots>
+  <project_group>KDE</project_group>
+  <provides>
+    <binary>krusader</binary>
+  </provides>
+</component>

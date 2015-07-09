@@ -111,6 +111,8 @@ install(FILES midnight_commander.color
               layout.xml
               splash.png
         DESTINATION ${DATA_INSTALL_DIR}/krusader)
+install(FILES krusader.appdata.xml
+        DESTINATION ${SHARE_INSTALL_PREFIX}/appdata)
 
 ecm_install_icons(ICONS
     icons/16-apps-krusader_blue.png
