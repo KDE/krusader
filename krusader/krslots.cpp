@@ -424,20 +424,10 @@ void KRslots::runTerminal(const QString & dir, const QStringList & args)
                                  "Bad quoting in terminal command:\n%1", term));
         return;
     }
-    for (int i = 0; i != sepdArgs.size(); i++)
-        if (sepdArgs[ i ] == "%d")
-            sepdArgs[ i ] = dir;
     proc << sepdArgs;
     if (!args.isEmpty()) {
         proc << "-e" << args; // FIXME this depends on term!! But works in konsole, xterm and gnome-terminal
     }
-#if 0 // I hope this is no longer needed...
-    if (term.contains("konsole"))      /* KDE 3.2 bug (konsole is killed by pressing Ctrl+C) */
-    {                                  /* Please remove the patch if the bug is corrected */
-        proc << "&";
-        proc.setUseShell(true);
-    }
-#endif
     if (!proc.startDetached())
         KMessageBox::sorry(krApp, i18n("Error executing %1.", term));
 }
