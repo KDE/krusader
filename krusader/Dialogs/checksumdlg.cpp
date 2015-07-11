@@ -83,6 +83,7 @@ public:
 void sumCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
                    const QString, bool recursive, const QString&)
 {
+    Q_UNUSED(recursive)
     proc << KrServices::fullPathName(self->binary);
     Q_ASSERT(!recursive);
     proc << files;
@@ -91,6 +92,7 @@ void sumCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
 void sumVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& /* files */,
                    const QString checksumFile, bool recursive, const QString& /* type */)
 {
+    Q_UNUSED(recursive)
     proc << KrServices::fullPathName(self->binary);
     Q_ASSERT(!recursive);
     proc << "-c" << checksumFile;

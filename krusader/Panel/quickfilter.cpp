@@ -47,5 +47,6 @@ QuickFilter::QuickFilter(QWidget *parent) : QWidget(parent)
 
 void QuickFilter::setMatch(bool match)
 {
-    // TODO
+    Q_UNUSED(match)
+    // TODO, set color of lineedit to highlight if anything matches
 }
