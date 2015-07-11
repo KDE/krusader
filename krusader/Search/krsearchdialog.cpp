@@ -37,13 +37,10 @@
 #include <QtGui/QCursor>
 #include <QtGui/QClipboard>
 #include <QtGui/QDrag>
-#include <QtGui/QResizeEvent>
-#include <QtGui/QKeyEvent>
 #include <QtGui/QCloseEvent>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QInputDialog>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMenu>
