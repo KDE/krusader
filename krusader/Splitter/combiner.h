@@ -83,6 +83,7 @@ private:
     QString         expectedCrcSum;
 
     int             fileCounter;
+    bool            firstFileIs000;
     int             permissions;
     KIO::filesize_t receivedSize;
 

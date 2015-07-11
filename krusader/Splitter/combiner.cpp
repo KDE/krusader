@@ -56,6 +56,8 @@ Combiner::Combiner(QWidget* parent,  QUrl baseURLIn, QUrl destinationURLIn, bool
     setAutoReset(false);
     setLabelText("Krusader::Combiner");
     setWindowModality(Qt::WindowModal);
+
+    firstFileIs000 = true; //start with this assumption, will set it to false as soon as .000 isn't found
 }
 
 Combiner::~Combiner()
@@ -228,7 +230,7 @@ void Combiner::openNextFile()
         }
     } else {
         QString index("%1");        /* determining the filename */
-        index = index.arg(++fileCounter).rightJustified(3, '0');
+        index = index.arg(fileCounter++).rightJustified(3, '0');
         readURL = baseURL.adjusted(QUrl::RemoveFilename);
         readURL.setPath(readURL.path() + baseURL.fileName() + '.' + index);
     }
@@ -273,10 +275,13 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
 void Combiner::combineReceiveFinished(KJob *job)
 {
     combineReadJob = 0;   /* KIO automatically deletes the object after Finished signal */
-
     if (job->error()) {
         if (job->error() == KIO::ERR_DOES_NOT_EXIST) {
-            if (fileCounter == 1) { // first file doesn't exist
+            if (fileCounter == 1) { // .000 file doesn't exist but .001 is still a valid first file
+                firstFileIs000 = false;
+                openNextFile();
+            }
+            else if (!firstFileIs000 && fileCounter == 2) { // neither .000 nor .001 exist
                 combineAbortJobs();
                 KMessageBox::error(0, i18n("Cannot open the first split file of %1.",
                                            baseURL.toDisplayString(QUrl::PreferLocalFile)));
