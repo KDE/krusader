@@ -161,7 +161,7 @@ static boot_entry *CreateBootEntry(char *be)
     entry = (boot_entry*) malloc(sizeof(boot_entry));
     if (!entry) return NULL;
     memset(entry, 0, sizeof(boot_entry));
-    memcpy(entry->data, be, 0x20);
+    memcpy(&(entry->data), be, sizeof(entry->data));
     return entry;
 }
 

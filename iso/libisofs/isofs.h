@@ -60,14 +60,20 @@ extern "C"
         struct iso_volume_descriptor data;
     } iso_vol_desc;
 
+    union default_entry_as_data {
+        char c[32];
+        struct default_entry d_e;
+    };
+
     typedef struct _boot_entry {
         struct _boot_entry *next;
         struct _boot_entry *prev;
         struct _boot_entry  *parent;
         struct _boot_entry  *child;
-        char data[32];
+        union default_entry_as_data data;
     }
     boot_entry;
+
 
     typedef struct _boot_head {
         struct validation_entry ventry;

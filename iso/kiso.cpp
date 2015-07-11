@@ -54,6 +54,7 @@
  * tracks should be 100*2 entry long (this is the maximum in the CD-ROM standard)
  * currently it's linux only, porters are welcome
  */
+
 static int getTracks(const char *fname, int *tracks)
 {
     int ret = 0;
@@ -316,14 +317,14 @@ void KIso::addBoot(struct el_torito_boot_descriptor* bootdesc)
         i = 1;
         be = boot.defentry;
         while (be) {
-            size = BootImageSize(isonum_711(((struct default_entry*) be->data)->media),
-                                 isonum_721(((struct default_entry*) be->data)->seccount));
+            size = BootImageSize(isonum_711(be->data.d_e.media),
+                                 isonum_721(be->data.d_e.seccount));
             path = "Default Image";
             if (i > 1) path += " (" + QString::number(i) + ')';
             entry = new KIsoFile(this, path, dirent->permissions() & ~S_IFDIR,
                                  dirent->date(), dirent->adate(), dirent->cdate(),
                                  dirent->user(), dirent->group(), QString(),
-                                 (long long)isonum_731(((struct default_entry*) be->data)->start) << (long long)11, size << (long long)9);
+                                 (long long)isonum_731(be->data.d_e.start) << (long long)11, size << (long long)9);
             dirent->addEntry(entry);
             be = be->next;
             i++;
