@@ -162,9 +162,18 @@ void KIso::prepareDevice(const QString & filename,
                 || "application/x-bzip2" == mimetype)
             forced = true;
 
-        QIODevice *dev = KFilterDev::deviceForFile(filename, mimetype, forced);
-        if (dev)
-            setDevice(dev);
+
+        KCompressionDevice *device;
+        if(mimetype.isEmpty()) {
+            device = new KFilterDev(filename);
+        } else {
+            device = new KCompressionDevice(filename, KFilterDev::compressionTypeForMimeType(mimetype));
+        }
+        if (device->compressionType() == KCompressionDevice::None && forced) {
+            delete device;
+        } else {
+            setDevice(device);
+        }
     }
 
 }
