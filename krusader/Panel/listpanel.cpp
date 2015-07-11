@@ -58,6 +58,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KIOCore/KDiskFreeSpaceInfo>
 #include <KWidgetsAddons/KCursor>
 #include <KWidgetsAddons/KMessageBox>
+#include <KWidgetsAddons/LineEditUrlDropEventFilter>
 
 //#ifdef __LIBKONQ__
 //#include <konq_popupmenu.h>
@@ -191,7 +192,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     QuickNavLineEdit *qnle = new QuickNavLineEdit(this);
     origin = new UrlRequester(qnle, this);
     origin->setWhatsThis(i18n("Use superb KDE file dialog to choose location."));
-    origin->lineEdit()->setUrlDropsEnabled(true);
+    origin->lineEdit()->installEventFilter(new LineEditUrlDropEventFilter(this));
     origin->lineEdit()->installEventFilter(this);
     origin->lineEdit()->setWhatsThis(i18n("Name of directory where you are. You can also "
                                           "enter name of desired location to move there. "
