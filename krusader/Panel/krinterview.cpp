@@ -314,9 +314,9 @@ void KrInterView::refreshColors()
     redraw();
 }
 
-void KrInterView::showContextMenu()
+void KrInterView::showContextMenu(const QPoint &point)
 {
-    showContextMenu(_itemView->viewport()->mapToGlobal(QPoint(0,0)));
+    showContextMenu(_itemView->viewport()->mapToGlobal(point));
 }
 
 void KrInterView::sortModeUpdated(int column, Qt::SortOrder order)
@@ -352,7 +352,7 @@ QList<QUrl> KrInterView::selectedUrls()
     return list;
 }
 
-void KrInterView::setSelection(const QList<QUrl> urls)
+void KrInterView::setSelectionUrls(const QList<QUrl> urls)
 {
     op()->setMassSelectionUpdate(true);
 

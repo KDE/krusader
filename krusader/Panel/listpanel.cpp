@@ -452,7 +452,7 @@ void ListPanel::changeType(int type)
 
         createView();
         view->setFilter(filter, filterSettings, filterApplysToDirs);
-        view->setSelection(selection);
+        view->setSelectionUrls(selection);
         view->setCurrentItem(current);
         view->makeItemVisible(view->getCurrentKrViewItem());
     }

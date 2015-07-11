@@ -1286,7 +1286,7 @@ void KrView::refresh()
     populate(vfiles, _dummyVfile);
 
     if(!selection.isEmpty())
-        setSelection(selection);
+        setSelectionUrls(selection);
 
     if (!nameToMakeCurrent().isEmpty())
         setCurrentItem(nameToMakeCurrent());
@@ -1318,7 +1318,7 @@ void KrView::saveSelection()
 void KrView::restoreSelection()
 {
     if(canRestoreSelection())
-        setSelection(_savedSelection);
+        setSelectionUrls(_savedSelection);
 }
 
 void KrView::clearSavedSelection() {

@@ -331,7 +331,7 @@ public:
 
     virtual uint numSelected() const = 0;
     virtual QList<QUrl> selectedUrls() = 0;
-    virtual void setSelection(const QList<QUrl> urls) = 0;
+    virtual void setSelectionUrls(const QList<QUrl> urls) = 0;
     virtual KrViewItem *getFirst() = 0;
     virtual KrViewItem *getLast() = 0;
     virtual KrViewItem *getNext(KrViewItem *current) = 0;
@@ -360,7 +360,7 @@ public:
     virtual int  itemsPerPage() {
         return 0;
     }
-    virtual void showContextMenu() = 0;
+    virtual void showContextMenu(const QPoint & point = QPoint(0,0)) = 0;
 
 protected:
     virtual KrViewItem *preAddItem(vfile *vf) = 0;

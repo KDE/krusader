@@ -45,7 +45,7 @@ public:
         return _selection.count();
     }
     virtual QList<QUrl> selectedUrls() Q_DECL_OVERRIDE;
-    virtual void setSelection(const QList<QUrl> urls) Q_DECL_OVERRIDE;
+    virtual void setSelectionUrls(const QList<QUrl> urls) Q_DECL_OVERRIDE;
     virtual KrViewItem* getFirst() Q_DECL_OVERRIDE;
     virtual KrViewItem* getLast() Q_DECL_OVERRIDE;
     virtual KrViewItem* getNext(KrViewItem *current) Q_DECL_OVERRIDE;
@@ -64,7 +64,7 @@ public:
     virtual void redraw() Q_DECL_OVERRIDE;
     virtual void prepareForActive() Q_DECL_OVERRIDE;
     virtual void prepareForPassive() Q_DECL_OVERRIDE;
-    virtual void showContextMenu() Q_DECL_OVERRIDE;
+    virtual void showContextMenu(const QPoint & point = QPoint(0,0)) Q_DECL_OVERRIDE;
     virtual void selectRegion(KrViewItem *i1, KrViewItem *i2, bool select) Q_DECL_OVERRIDE;
 
     void sortModeUpdated(int column, Qt::SortOrder order);
@@ -91,7 +91,6 @@ protected:
     virtual void preDelItem(KrViewItem *item) Q_DECL_OVERRIDE;
     virtual void preUpdateItem(vfile *vf) Q_DECL_OVERRIDE;
     virtual void intSetSelected(const vfile* vf, bool select) Q_DECL_OVERRIDE;
-    virtual void showContextMenu(const QPoint & p) = 0;
 
     virtual QRect itemRect(const vfile *vf) = 0;
 
