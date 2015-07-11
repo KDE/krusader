@@ -55,6 +55,8 @@ void KrInterViewItemDelegate::setEditorData(QWidget *editor, const QModelIndex &
     QLineEdit *lineEdit = qobject_cast<QLineEdit *> (editor);
     if (lineEdit) {
         KConfigGroup gl(krConfig, "Look&Feel");
+        QFont font = index.data(Qt::FontRole).value<QFont>();
+        lineEdit->setFont(font);
         if (gl.readEntry("Rename Selects Extension", true))
             lineEdit->selectAll();
         else {
