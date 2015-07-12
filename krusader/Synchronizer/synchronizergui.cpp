@@ -1990,6 +1990,36 @@ void SynchronizerGUI::compare()
     if (!filterTabs->fillQuery(&query))
         return;
 
+    // perform some previous tests
+    QString leftLocationTrimmed = leftLocation->currentText().trimmed();
+    QString rightLocationTrimmed = rightLocation->currentText().trimmed();
+    if (leftLocationTrimmed.isEmpty()) {
+        KMessageBox::error(this, i18n("The target directory must not be empty."));
+        leftLocation->setFocus();
+        return;
+    }
+    if (rightLocationTrimmed.isEmpty()) {
+        KMessageBox::error(this, i18n("The source directory must not be empty."));
+        rightLocation->setFocus();
+        return;
+    }
+    // until the bug https://bugs.kde.org/show_bug.cgi?id=270150 is solved,
+    // some protocols will not be directly used when synchronizing
+    QUrl leftUrl = QUrl::fromUserInput(leftLocationTrimmed, QString(), QUrl::AssumeLocalFile);
+    if (leftUrl.scheme() != QStringLiteral("file")) {
+        KMessageBox::error(this, i18n("In the target directory the synchronizer does not directly support protocols "
+                                      "like FISH, SFTP, SMB, etc."));
+        leftLocation->setFocus();
+        return;
+    }
+    QUrl rightUrl = QUrl::fromUserInput(rightLocationTrimmed, QString(), QUrl::AssumeLocalFile);
+    if (rightUrl.scheme() != QStringLiteral("file")) {
+        KMessageBox::error(this, i18n("In the source directory the synchronizer does not directly support protocols "
+                                      "like FISH, SFTP, SMB, etc."));
+        rightLocation->setFocus();
+        return;
+    }
+
     query.setNameFilter(fileFilter->currentText(), query.isCaseSensitive());
     synchronizerTabs->setCurrentIndex(0);
 
