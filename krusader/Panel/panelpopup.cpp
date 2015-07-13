@@ -278,8 +278,6 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
 
     // create the label+buttons setup
     dataLine = new KrSqueezedTextLabel(this);
-    dataLine->setText("blah blah");
-    connect(dataLine, SIGNAL(clicked()), this, SLOT(setFocus()));
     KConfigGroup lg(krConfig, "Look&Feel");
     dataLine->setFont(lg.readEntry("Filelist Font", _FilelistFont));
     // --- hack: setup colors to be the same as an inactive panel
