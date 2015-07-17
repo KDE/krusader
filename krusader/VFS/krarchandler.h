@@ -71,7 +71,7 @@ public:
     // pack an archive to destination directory
     static bool pack(QStringList fileNames, QString type, QString dest, long count, QMap<QString, QString> extraProps, KRarcObserver *observer );
     // test an archive
-    static bool test(QString archive, QString type, QString password,  KRarcObserver *observer,long count = 0L );
+    static bool test(QString archive, QString type, QString password, KRarcObserver *observer, long count = 0L );
     // true - if the right unpacker exist in the system
     static bool arcSupported(QString type);
     // return the a list of supported packers
