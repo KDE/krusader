@@ -60,12 +60,12 @@ find_package(KF5 REQUIRED COMPONENTS
 # if an old setting is being used, use the setting that complies with the structure of other Krusader settings
 if (ENABLE_SYNCHRONIZER)
     set(SYNCHRONIZER_ENABLED TRUE)
+    add_definitions( "-DSYNCHRONIZER_ENABLED" )
 endif(ENABLE_SYNCHRONIZER)
 
 add_definitions(${QT_DEFINITIONS} ${KF5_DEFINITIONS})
 add_definitions( "-DKRARC_ENABLED" )
 add_definitions( "-DQT_NO_URL_CAST_FROM_STRING" )
-add_definitions( "-DSYNCHRONIZER_ENABLED" )
 
 check_include_files(attr/libattr.h HAVE_ATTR_LIBATTR_H)
 check_include_files(sys/xattr.h HAVE_SYS_XATTR_H)
