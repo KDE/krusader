@@ -58,7 +58,7 @@ public:
     static QAction *actCombine;
     static QAction *actUserMenu;
     static QAction *actManageUseractions;
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
     static QAction *actSyncDirs;
 #endif
     static QAction *actVerticalMode;

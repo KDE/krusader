@@ -76,7 +76,7 @@ QAction *KrActions::actSplit = 0;
 QAction *KrActions::actCombine = 0;
 QAction *KrActions::actUserMenu = 0;
 QAction *KrActions::actManageUseractions = 0;
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
 QAction *KrActions::actSyncDirs = 0;
 #endif
 QAction *KrActions::actF10 = 0;
@@ -270,7 +270,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     NEW_KACTION(actFind, i18n("&Search..."), "system-search", Qt::CTRL + Qt::Key_S, SLOTS, SLOT(search()), "find");
     NEW_KACTION(actLocate, i18n("&Locate..."), "edit-find", Qt::SHIFT + Qt::CTRL + Qt::Key_L, SLOTS, SLOT(locate()), "locate");
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
     NEW_KACTION(actSyncDirs, i18n("Synchronize &Directories..."), "folder-sync", Qt::CTRL + Qt::Key_Y, SLOTS, SLOT(slotSynchronizeDirs()), "sync dirs");
 #endif
     NEW_KACTION(actDiskUsage, i18n("D&isk Usage..."), "kr_diskusage", Qt::ALT + Qt::SHIFT + Qt::Key_S, SLOTS, SLOT(slotDiskUsage()), "disk usage");

@@ -85,7 +85,7 @@ private:
     int                                 endOfActiveColors;
     int                                 endOfPanelColors;
     int                                 activeTabIdx, inactiveTabIdx;
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
     int                                 synchronizerTabIdx;
 #endif
     int                                 otherTabIdx;

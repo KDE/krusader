@@ -47,7 +47,7 @@
 KgColors::KgColors(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent), offset(0),
         activeTabIdx(-1), inactiveTabIdx(-1),
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
         synchronizerTabIdx(-1),
 #endif
         otherTabIdx(-1)
@@ -196,7 +196,7 @@ KgColors::KgColors(bool first, QWidget* parent) :
     ADDITIONAL_COLOR KDEDefaultBase = { i18n("KDE default"), p.color(QPalette::Active, QPalette::Base), "KDE default" };
     ADDITIONAL_COLOR KDEDefaultFore = { i18n("KDE default"), p.color(QPalette::Active, QPalette::Text), "KDE default" };
 
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
     colorsGrp = new QWidget(colorTabWidget);
     synchronizerTabIdx = colorTabWidget->addTab(colorsGrp, i18n("Synchronizer"));
 
@@ -520,7 +520,7 @@ void KgColors::generatePreview()
         colCache.getColors(cg, KrColorItemType(KrColorItemType::File, false, isActive, true, true));
         pwMarkCur->setColor(cg.highlightedText(), cg.highlight());
     }
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
     else if (currentPage == synchronizerTabIdx) {
         PreviewItem *pwDelete    = new PreviewItem(preview, i18n("Delete"));
         PreviewItem *pwRightCopy = new PreviewItem(preview, i18n("Copy to right"));
@@ -636,7 +636,7 @@ void KgColors::serialize(QDataStream & stream)
     serializeItem(stream, "Marked Current Foreground");
     serializeItem(stream, "Marked Foreground");
     serializeItem(stream, "Show Current Item Always");
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
     serializeItem(stream, "Synchronizer Equals Foreground");
     serializeItem(stream, "Synchronizer Equals Background");
     serializeItem(stream, "Synchronizer Differs Foreground");

@@ -97,7 +97,7 @@
 #include "BookMan/krbookmarkhandler.h"
 #include "BookMan/krbookmarkbutton.h"
 
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
     #include "Synchronizer/synchronizergui.h"
 #endif
 
@@ -681,7 +681,7 @@ void KRslots::manageUseractions()
     ActionMan actionMan(MAIN_VIEW);
 }
 
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
 void KRslots::slotSynchronizeDirs(QStringList selected)
 {
     new SynchronizerGUI(0, LEFT_PANEL->func->files()->vfs_getOrigin(),

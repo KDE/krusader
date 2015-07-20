@@ -31,7 +31,7 @@
 #include "../KViewer/krviewer.h"
 #include "../krservices.h"
 
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
 #include "../Synchronizer/synchronizergui.h"
 #endif
 
@@ -195,7 +195,7 @@ PLACEHOLDER_CLASS(exp_Copy);
   */
 PLACEHOLDER_CLASS(exp_Move);
 
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
 /**
   * This opens the synchronizer with a given profile
   */
@@ -678,7 +678,7 @@ TagString exp_Move::expFunc(const KrPanel*, const TagStringList& parameter, cons
     return QString();  // this doesn't return anything, that's normal!
 }
 
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
 exp_Sync::exp_Sync()
 {
     _expression = "Sync";
@@ -1189,7 +1189,7 @@ QList<const exp_placeholder*>& Expander::_placeholder()
         ret << new exp_Each;
         ret << new exp_Profile;
         ret << new exp_NewSearch;
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
         ret << new exp_Sync;
 #endif
         ret << new exp_Move;

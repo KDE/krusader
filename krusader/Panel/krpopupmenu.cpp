@@ -244,7 +244,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
         addAction(i18n("Empty Trash"))->setData(QVariant(EMPTY_TRASH_ID));
     }
 
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
     // --------- synchronize
     if (panel->view->numSelected()) {
         addAction(i18n("Synchronize Selected Files..."))->setData(QVariant(SYNC_SELECTED_ID));
@@ -376,7 +376,7 @@ void KrPopupMenu::performAction(int id)
     case NEW_TEXT_FILE_ID:
         panel->func->editNew();
         break;
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
     case SYNC_SELECTED_ID : {
         QStringList selectedNames;
         foreach(KFileItem item, _items)

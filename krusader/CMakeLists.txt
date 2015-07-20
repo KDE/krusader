@@ -31,9 +31,9 @@ add_subdirectory(UserAction)
 add_subdirectory(UserMenu)
 add_subdirectory(VFS)
 
-if(ENABLE_SYNCHRONIZER)
+if(SYNCHRONIZER_ENABLED)
     add_subdirectory(Synchronizer)
-endif(ENABLE_SYNCHRONIZER)
+endif(SYNCHRONIZER_ENABLED)
 
 message(STATUS "${CMAKE_CURRENT_SOURCE_DIR}: skipped subdir $(KRJSDIR)")
 
@@ -87,9 +87,9 @@ target_link_libraries(krusader
                       Qt5::PrintSupport
 )
 
-if(ENABLE_SYNCHRONIZER)
+if(SYNCHRONIZER_ENABLED)
     target_link_libraries( krusader Synchronizer )
-endif(ENABLE_SYNCHRONIZER)
+endif(SYNCHRONIZER_ENABLED)
 
 if(LIBKONQ_FOUND)
     target_link_libraries( krusader ${LIBKONQ_LIBRARY} )

@@ -114,7 +114,7 @@ public slots:
     void slotCombine();
     void userMenu();
     void manageUseractions();
-#ifdef ENABLE_SYNCHRONIZER
+#ifdef SYNCHRONIZER_ENABLED
     void slotSynchronizeDirs(QStringList selected = QStringList());
 #endif
     void slotDiskUsage();
