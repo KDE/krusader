@@ -57,11 +57,16 @@ find_package(KF5 REQUIRED COMPONENTS
   XmlGui
 )
 
+# Synchronizer is enabled by default, unless disabled from the command line (-DENABLE_SYNCHRONIZER=OFF)
+option(ENABLE_SYNCHRONIZER "Enable Synchronizer" ON)
+
 # if an old setting is being used, use the setting that complies with the structure of other Krusader settings
-if (ENABLE_SYNCHRONIZER)
+if(ENABLE_SYNCHRONIZER)
     set(SYNCHRONIZER_ENABLED TRUE)
     add_definitions( "-DSYNCHRONIZER_ENABLED" )
-endif(ENABLE_SYNCHRONIZER)
+else()
+    set(SYNCHRONIZER_ENABLED FALSE)
+endif()
 
 add_definitions(${QT_DEFINITIONS} ${KF5_DEFINITIONS})
 add_definitions( "-DKRARC_ENABLED" )

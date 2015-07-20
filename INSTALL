@@ -126,6 +126,10 @@ you need to compile a KDE 5 software
 -DQT_PLUGIN_INSTALL_DIR=
   many system force this path to keep kde4 plugins separated from the kde5 ones
 
+-DENABLE_SYNCHRONIZER=OFF
+  disables building the Synchronizer module. This module caused data loss, now
+  it is fixed, but we treat it as the thin ice.
+
 $ tar xvf krusader-xx.xx.tar.gz
 $ cd krusader-xx.xx
 $ mkdir build
