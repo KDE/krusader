@@ -6,7 +6,7 @@
 --- Note
 
 Krusader-15.08 versions and higher are for KDE Plasma 5 only and will not work
-anymore on KDE 4.x or 3.x
+anymore on KDE Plasma 4 or 3.
 
 
 --- Krusader development download
@@ -16,7 +16,6 @@ Download the latest available Krusader-15.xx sourcecode with git.
 
 $ git clone http://anongit.kde.org/krusader.git
 $ cd krusader
-$ git checkout plasma
 
 
 --- Supported Platforms
@@ -112,7 +111,7 @@ you need to compile a KDE 5 software
 - kdoctools-dev
 
 
---- CMake options
+--- CMake options and execution
 
 -DCMAKE_INSTALL_PREFIX=/usr
   is the location where Krusader will be installed with the make command.
@@ -245,11 +244,10 @@ ubuntu@ubuntu-VirtualBox:~/src/krusader/build$ cmake -DCMAKE_INSTALL_PREFIX=/usr
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/ubuntu/src/krusader/build
-ubuntu@ubuntu-VirtualBox:~/src/krusader/build$ 
 
 
 
-FYI - The output of make (partial) on Kubuntu 15.04
+FYI - The (partial) output of make on Kubuntu 15.04
 
 ubuntu@ubuntu-VirtualBox:~/src/krusader/build$ make
 [  1%] Automatic moc for target krusader
@@ -298,4 +296,15 @@ Scanning dependencies of target doc-krusader-1
 [100%] Generating krusader.1
 Note: Writing krusader.1
 [100%] Built target doc-krusader-1
-ubuntu@ubuntu-VirtualBox:~/src/krusader/build$
+
+
+--- To achieve that Krusader uses another translation
+
+There is a list of available language codes in the [10n.kde.org Krusader page](http://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/). In that list anyone can see which is his desired language code (e.g. for a German user normally his language code is: de), and consequently the XX that appears in the following commands must be replaced with his desired language code:
+
+    wget http://websvn.kde.org/*checkout*/trunk/l10n-kf5/XX/messages/extragear-utils/krusader.po
+    msgfmt krusader.po -o krusader.mo
+
+    # At the beginning of the following command: "sudo" must be added if Kubuntu, Ubuntu, Debian, or similar is being used
+    su -c "cp -a krusader.mo /usr/share/locale/XX/LC_MESSAGES/"
+
