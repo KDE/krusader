@@ -96,14 +96,14 @@ void KFnKeys::updateShortcuts()
 #define UPDATE(TARGET, TEXT)\
     TARGET->setText(mainWindow->listPanelActions()->act##TARGET->shortcut().toString() + ' ' + TEXT);
 
-    UPDATE(F2, i18n("Term"));
+    UPDATE(F2, i18n("Rename"));
     UPDATE(F3, i18n("View"));
     UPDATE(F4, i18n("Edit"));
     UPDATE(F5, i18n("Copy"));
     UPDATE(F6, i18n("Move"));
     UPDATE(F7, i18n("Mkdir"));
     UPDATE(F8, i18n("Delete"));
-    UPDATE(F9, i18n("Rename"));
+    UPDATE(F9, i18n("Term"));
     F10->setText(mainWindow->krActions()->actF10->shortcut().toString() + i18n(" Quit"));
 }
 

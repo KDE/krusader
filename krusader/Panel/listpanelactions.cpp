@@ -78,7 +78,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actPaste = stdAction(KStandardAction::Paste, _func, SLOT(pasteFromClipboard()));
 
     // Fn keys
-    actF2 = action(i18n("Start Terminal Here"), "utilities-terminal", Qt::Key_F2, _func, SLOT(terminal()) , "F2_Terminal");
+    actF2 = action(i18n("Rename"), 0, Qt::Key_F2, _func, SLOT(rename()) , "F2_Rename");
     actF3 = action(i18n("View File"), 0, Qt::Key_F3, _func, SLOT(view()), "F3_View");
     actF4 = action(i18n("Edit File"), 0, Qt::Key_F4, _func, SLOT(edit()) , "F4_Edit");
     actF5 = action(i18n("Copy to other panel"), 0, Qt::Key_F5, _func, SLOT(copyFiles()) , "F5_Copy");
@@ -87,7 +87,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actShiftF6 = action(i18n("Move by queue..."), 0, Qt::SHIFT + Qt::Key_F6, _func, SLOT(moveFilesByQueue()) , "F6_Move_Queue");
     actF7 = action(i18n("New Directory..."), "folder-new", Qt::Key_F7, _func, SLOT(mkdir()) , "F7_Mkdir");
     actF8 = action(i18n("Delete"), "edit-delete", Qt::Key_F8, _func, SLOT(deleteFiles()) , "F8_Delete");
-    actF9 = action(i18n("Rename"), 0, Qt::Key_F9, _func, SLOT(rename()) , "F9_Rename");
+    actF9 = action(i18n("Start Terminal Here"), "utilities-terminal", Qt::Key_F9, _func, SLOT(terminal()) , "F9_Terminal");
     action(i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, _func, SLOT(editNew()), "edit_new_file");
     action(i18n("F3 View Dialog"), 0, Qt::SHIFT + Qt::Key_F3, _func, SLOT(viewDlg()), "F3_ViewDlg");
 
@@ -129,9 +129,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     // and at last we can set the tool-tips
     actRoot->setToolTip(i18n("ROOT (/)"));
 
-    actF2->setToolTip("<qt>" + i18n("<p>Open terminal in current directory.</p>"
-                                 "<p>The terminal can be defined in Konfigurator, "
-                                 "default is <b>konsole</b>.</p>") + "</qt>");
+    actF2->setToolTip(i18n("Rename file, directory, etc."));
     actF3->setToolTip(i18n("Open file in viewer."));
     actF4->setToolTip("<qt>" + i18n("<p>Edit file.</p>"
                                  "<p>The editor can be defined in Konfigurator, "
@@ -140,7 +138,9 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actF6->setToolTip(i18n("Move file from one panel to the other."));
     actF7->setToolTip(i18n("Create directory in current panel."));
     actF8->setToolTip(i18n("Delete file, directory, etc."));
-    actF9->setToolTip(i18n("Rename file, directory, etc."));
+    actF9->setToolTip("<qt>" + i18n("<p>Open terminal in current directory.</p>"
+                                 "<p>The terminal can be defined in Konfigurator, "
+                                 "default is <b>konsole</b>.</p>") + "</qt>");
 }
 
 void ListPanelActions::activePanelChanged()
