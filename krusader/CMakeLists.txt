@@ -96,8 +96,8 @@ if(LIBKONQ_FOUND)
 endif(LIBKONQ_FOUND)
 
 install(TARGETS krusader ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(PROGRAMS krusader.desktop
-              krusader_root-mode.desktop
+install(PROGRAMS org.kde.krusader.desktop
+              org.kde.krusader.root-mode.desktop
         DESTINATION ${XDG_APPS_INSTALL_DIR} )
 install(FILES krusaderui.rc
               krusaderlisterui.rc
