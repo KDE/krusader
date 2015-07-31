@@ -148,11 +148,11 @@ extern "C"
 #ifdef KRARC_ENABLED
 kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
         : SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(0L), extArcReady(false),
-        password(QString()), krConfig("krusaderrc"), codec(0)
+        password(QString()), krConf("krusaderrc"), codec(0)
 {
-    confGrp = KConfigGroup(&krConfig, "Dependencies");
+    confGrp = KConfigGroup(&krConf, "Dependencies");
 
-    KConfigGroup group(&krConfig, "General");
+    KConfigGroup group(&krConf, "General");
     QString tmpDirPath = group.readEntry("Temp Directory", _TempDirectory);
     QDir tmpDir(tmpDirPath);
     if(!tmpDir.exists()) {
@@ -184,8 +184,8 @@ kio_krarcProtocol::~kio_krarcProtocol()
 
 bool kio_krarcProtocol::checkWriteSupport()
 {
-    krConfig.reparseConfiguration();
-    if (KConfigGroup(&krConfig, "kio_krarc").readEntry("EnableWrite", false))
+    krConf.reparseConfiguration();
+    if (KConfigGroup(&krConf, "kio_krarc").readEntry("EnableWrite", false))
         return true;
     else {
         error(ERR_UNSUPPORTED_ACTION,

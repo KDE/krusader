@@ -95,7 +95,7 @@ private:
     bool archiveChanged;              //< true if the archive was changed.
     bool archiveChanging;             //< true if the archive is currently changing.
     bool newArchiveURL;               //< true if new archive was entered for the protocol
-    bool noencoding;                   //< 7z files use UTF-16, so encoding is unnecessary
+    bool noencoding;                  //< 7z files use UTF-16, so encoding is unnecessary
     KIO::filesize_t decompressedLen;  //< the number of the decompressed bytes
     KFileItem* arcFile;               //< the archive file item.
     QString arcPath;                  //< the archive location
@@ -103,7 +103,7 @@ private:
     QString arcType;                  //< the archive type.
     bool extArcReady;                 //< Used for RPM & DEB files.
     QString password;                 //< Password for the archives
-    KConfig krConfig;                //< The configuration file for krusader
+    KConfig krConf;                   //< The configuration file for krusader
     KConfigGroup confGrp;             //< the 'Dependencies' config group
 
     QString lastData;
