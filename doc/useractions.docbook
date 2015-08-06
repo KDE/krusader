@@ -34,7 +34,7 @@
   standard Edit Toolbar and Edit Shortcut dialogs will show
   UserActions, too. The UserActions are stored in 
   <filename>
-  ~/.kde/share/apps/krusader/useraction.xml</filename> (the file
+  ~/.local/share/krusader/useraction.xml</filename> (the file
   structure is documentated in doxygen headers of UserActionXML).
   Several 
   <link linkend="useraction-xml">examples</link> are included in the
@@ -42,7 +42,7 @@
   exported by using ActionMan. The default UserActions are stored
   in 
   <filename>
-  ~/.kde/share/apps/krusader/useraction-examples.xml</filename>.
+  /usr/share/krusader/useraction-examples.xml</filename>.
   UserActions can appear nearly everywhere where "normal" KActions
   can be placed. The actions can even be placed in the menu bar, but for that the 
   <filename>krusaderui.rc</filename> file must be edited. A few

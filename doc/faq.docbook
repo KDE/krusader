@@ -317,16 +317,16 @@
           <para>The 
           <filename>krusaderui.rc</filename> file is stored in 
           <filename>
-          $KDEDIR/share/apps/krusader/krusaderui.rc</filename>.
+          $KDEDIR/share/kxmlgui5/krusader/krusaderui.rc</filename>.
           When you change the 
           <guilabel>Toolbar</guilabel>, &kde; makes a
           copy of that file in the home folder at 
           <filename>
-          ~/.kde/share/apps/krusader/krusaderui.rc</filename>. If
+          ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename>. If
           &krusader; was previously installed on your computer, and
           you install a newer &krusader; version the 
           <filename>
-          ~/.kde/share/apps/krusader/krusaderui.rc</filename> file
+          ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename> file
           must be replaced with the newer version. Note: this will
           also reset all your changes on toolbars and
           shortcuts!</para>
@@ -336,7 +336,7 @@
           version, &kde; will automatically replace the
           old 
           <filename>
-          ~/.kde/share/apps/krusader/krusaderui.rc</filename> with
+          ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename> with
           the newer version when starting the new
           &krusader; for the first time
           (&kde; will detect the newer version number in
@@ -350,11 +350,11 @@
           <userinput>
             <command>rm</command>
             <option>
-            ~/.kde/share/apps/krusader/krusaderui.rc</option>
+            ~/.local/share/kxmlgui5/krusader/krusaderui.rc</option>
           </userinput></para>
           <para>If the 
           <filename>
-          ~/.kde/share/apps/krusader/krusaderui.rc</filename> file
+          ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename> file
           is older, then the new menu elements will not be shown.
           Read the previous question for information on how to
           update the 
@@ -708,7 +708,7 @@
        
        Check the <link linkend="konfig-protocols">Konfigurator Protocol page</link>
    
-     If it does not work, backup your <filename>~/.kde/share/config/krusaderrc</filename> configuration file and remove it from this location.
+       If it does not work, backup your <filename><envar>XDG_CONFIG_HOME</envar>/krusaderrc</filename> (default is <filename>$<envar>HOME</envar>/.config/krusaderc</filename>) configuration file and remove it from this location.
      Restart &krusader;, &krusader; will now start the first start configuration wizard, follow these guidelines.
    
     </para>
@@ -936,9 +936,9 @@
           <para>Presuming that the current setup is the good
           configuration, you can copy the configuration to the
           other user. 
-          <screen><prompt>#</prompt> <userinput><command>cp ~/.kde/share/config/krusaderrc /home/foo_user/.kde/share/config</command></userinput></screen>
+          <screen><prompt>#</prompt> <userinput><command>cp ~/.config/krusaderrc /home/foo_user/.config</command></userinput></screen>
           And when the other user is Root use: 
-          <screen><prompt>#</prompt> <userinput><command>cp ~/.kde/share/config/krusaderrc /root/.kde/share/config</command></userinput></screen>
+          <screen><prompt>#</prompt> <userinput><command>cp ~/.config/krusaderrc /root/.config</command></userinput></screen>
           </para>
           <para></para>
           <!-- Empty line to make it more readable -->

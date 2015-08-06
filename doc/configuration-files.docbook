@@ -33,16 +33,16 @@
   <link linkend="faqi_missing_menus">krusaderui.rc
   &FAQ;</link>.</para>
   <para>Location: 
-  <filename>$KDEDIR/share/apps/krusader/krusaderui.rc</filename> or 
+  <filename>$KDEDIR/share/kxmlgui5/krusader/krusaderui.rc</filename> or 
   <filename>
-  ~/.kde/share/apps/krusader/krusaderui.rc</filename></para>
+  ~/.kde/share/kxmlgui5/krusader/krusaderui.rc</filename></para>
   <para>
     <emphasis role="bold">krusaderrc</emphasis>
   </para>
   <para>This file stores the &krusader;
   configuration.</para>
   <para>Location: 
-  <filename>~/.kde/share/config/krusaderrc</filename></para>
+  <filename>~/.config/krusaderrc</filename></para>
   <para>The following settings are &eg; stored:</para>
   <itemizedlist>
     <listitem>
@@ -125,7 +125,7 @@
   uses the <ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink>.</para>
   <para>Location: 
   <filename>
-  ~/.kde/share/apps/krusader/krbookmarks.xml</filename></para>
+  ~/.local/share/krusader/krbookmarks.xml</filename></para>
   <para>
     <emphasis role="bold">useractions.xml</emphasis>
   </para>
@@ -134,7 +134,7 @@
   Doxygen headers of UserActionXML.</para>
   <para>Location: 
   <filename>
-  ~/.kde/share/apps/krusader/useractions.xml</filename></para>
+  ~/.local/share/krusader/useractions.xml</filename></para>
   <para>
     <emphasis role="bold">useraction-examples.xml</emphasis>
   </para>
@@ -143,7 +143,7 @@
   UserActionXML.</para>
   <para>Location: 
   <filename>
-  $KDEDIR/share/apps/krusader/useraction-examples.xml</filename></para>
+  $KDEDIR/share/krusader/useraction-examples.xml</filename></para>
   <para>
     <emphasis role="bold">foo.keymap</emphasis>
   </para>
@@ -154,12 +154,12 @@
   legacy binary format.</para>
   <para>Location: 
   <filename>
-  $KDEDIR/share/apps/krusader/foo.keymap</filename></para>
+  $KDEDIR/share/krusader/foo.keymap</filename></para>
   <para>
     <emphasis role="bold">foo.color</emphasis>
   </para>
   <para>This is a binary file that holds the 
   <link linkend="konfig-color">Color Scheme</link>.</para>
   <para>Location: 
-  <filename>$KDEDIR/share/apps/krusader/foo.color</filename></para>
+  <filename>$KDEDIR/share/krusader/foo.color</filename></para>
 </appendix>
