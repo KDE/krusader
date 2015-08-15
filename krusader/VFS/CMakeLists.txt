@@ -15,7 +15,11 @@ set(VFS_SRCS
     krquery.cpp
     kiojobwrapper.cpp
     packjob.cpp
-    abstractthreadedjob.cpp)
+    abstractthreadedjob.cpp
+    kr7zencryptionchecker.cpp
+    ../../krArc/krarcbasemanager.cpp
+    ../../krArc/krlinecountingprocess.cpp
+)
 
 add_library(VFS STATIC ${VFS_SRCS})
 

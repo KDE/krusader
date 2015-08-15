@@ -30,14 +30,15 @@
 #ifndef KRARCHANDLER_H
 #define KRARCHANDLER_H
 
-#include <unistd.h> // for setsid, see Kr7zEncryptionChecker::setupChildProcess
-#include <signal.h> // for kill
-
 #include <QtCore/QStringList>
 #include <QtCore/QObject>
 #include <QtCore/QUrl>
 
 #include <KCoreAddons/KProcess>
+
+#include "../../krArc/krarcbasemanager.h"
+#include "../../krArc/krlinecountingprocess.h"
+#include "kr7zencryptionchecker.h"
 
 namespace KWallet {
 class Wallet;
@@ -60,7 +61,7 @@ public slots:
     virtual void incrementProgress(int) = 0;
 };
 
-class KRarcHandler: public QObject
+class KRarcHandler: public QObject, public KrArcBaseManager
 {
     Q_OBJECT
 public:
@@ -72,120 +73,24 @@ public:
     static bool pack(QStringList fileNames, QString type, QString dest, long count, QMap<QString, QString> extraProps, KRarcObserver *observer );
     // test an archive
     static bool test(QString archive, QString type, QString password, KRarcObserver *observer, long count = 0L );
-    // true - if the right unpacker exist in the system
+    // returns `true` if the right unpacker exist in the system
     static bool arcSupported(QString type);
-    // return the a list of supported packers
+    // return the list of supported packers
     static QStringList supportedPackers();
-    // true - if the url is an archive (ie: tar:/home/test/file.tar.bz2)
+    // returns `true` if the url is an archive (ie: tar:/home/test/file.tar.bz2)
     static bool isArchive(const QUrl &url);
     // used to determine the type of the archive
-    static QString getType(bool &encrypted, QString fileName, QString mime, bool checkEncrypted = true, bool fast = false);
+    QString getType(bool &encrypted, QString fileName, QString mime, bool checkEncrypted = true, bool fast = false);
     // queries the password from the user
     static QString getPassword(QString path);
     // detects the archive type
-    static QString detectArchive(bool &encrypted, QString fileName, bool checkEncrypted = true, bool fast = false);
+    void checkIf7zIsEncrypted(bool &, QString);
 private:
     // checks if the returned status is correct
     static bool checkStatus(QString type, int exitCode);
     static bool openWallet();
 
     static KWallet::Wallet * wallet;
-};
-
-/**
- * A Process which emits how manny lines it is writing to stdout or atderr.
- */
-class KrLinecountingProcess : public KProcess
-{
-    Q_OBJECT
-public:
-    KrLinecountingProcess() : KProcess() {
-        setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
-        connect(this, SIGNAL(readyReadStandardError()), SLOT(receivedError()));
-        connect(this, SIGNAL(readyReadStandardOutput()), SLOT(receivedOutput()));
-    }
-
-    QString getErrorMsg() {
-        if (errorData.trimmed().isEmpty())
-            return QString::fromLocal8Bit(outputData);
-        else
-            return QString::fromLocal8Bit(errorData);
-    }
-
-public slots:
-    void receivedError() {
-        QByteArray newData(this->readAllStandardError());
-        emit newErrorLines(newData.count('\n'));
-        errorData += newData;
-        if (errorData.length() > 500)
-            errorData = errorData.right(500);
-        receivedOutput(newData);
-    }
-
-    void receivedOutput(QByteArray newData = QByteArray()) {
-        if (newData.isEmpty())
-            newData = this->readAllStandardOutput();
-        emit newOutputLines(newData.count('\n'));
-        outputData += newData;
-        if (outputData.length() > 500)
-            outputData = outputData.right(500);
-    }
-
-signals:
-    void newOutputLines(int count);
-    void newErrorLines(int count);
-
-private:
-    QByteArray errorData;
-    QByteArray outputData;
-};
-
-class Kr7zEncryptionChecker : public KProcess
-{
-    Q_OBJECT
-
-public:
-    Kr7zEncryptionChecker() : KProcess(), encrypted(false), lastData() {
-        setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
-        connect(this, SIGNAL(readyReadStandardOutput()), SLOT(receivedOutput()));
-    }
-
-protected:
-    virtual void setupChildProcess() Q_DECL_OVERRIDE {
-        // This function is called after the fork but for the exec. We create a process group
-        // to work around a broken wrapper script of 7z. Without this only the wrapper is killed.
-        setsid(); // make this process leader of a new process group
-    }
-
-public slots:
-    void receivedOutput() {
-        QString data =  QString::fromLocal8Bit(this->readAllStandardOutput());
-
-        QString checkable = lastData + data;
-
-        QStringList lines = checkable.split('\n');
-        lastData = lines[ lines.count() - 1 ];
-        for (int i = 0; i != lines.count(); i++) {
-            QString line = lines[ i ].trimmed().toLower();
-            int ndx = line.indexOf("testing");
-            if (ndx >= 0)
-                line.truncate(ndx);
-            if (line.isEmpty())
-                continue;
-
-            if (line.contains("password") && line.contains("enter")) {
-                encrypted = true;
-                ::kill(- pid(), SIGKILL); // kill the whole process group by giving the negative PID
-            }
-        }
-    }
-
-    bool isEncrypted() {
-        return encrypted;
-    }
-private:
-    bool encrypted;
-    QString lastData;
 };
 
 #endif

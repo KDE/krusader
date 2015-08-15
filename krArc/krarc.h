@@ -28,11 +28,14 @@
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
 
+#include "krarcbasemanager.h"
+#include "krlinecountingprocess.h"
+
 class KFileItem;
 class QByteArray;
 class QTextCodec;
 
-class kio_krarcProtocol : public QObject, public KIO::SlaveBase
+class kio_krarcProtocol : public QObject, public KIO::SlaveBase, public KrArcBaseManager
 {
     Q_OBJECT
 public:
@@ -53,7 +56,7 @@ public slots:
 protected:
     virtual bool   initDirDict(const QUrl &url, bool forced = false);
     virtual bool   initArcParameters();
-    QString detectArchive(bool &encrypted, QString fileName);
+    void checkIf7zIsEncrypted(bool &, QString);
     virtual void parseLine(int lineNo, QString line);
     virtual bool setArcFile(const QUrl &url);
     virtual QString getPassword();
@@ -111,61 +114,6 @@ private:
 
     QString currentCharset;
     QTextCodec * codec;
-};
-
-class KrLinecountingProcess : public KProcess
-{
-    Q_OBJECT
-public:
-    KrLinecountingProcess() : KProcess() {
-        setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
-        connect(this, SIGNAL(readyReadStandardError()), SLOT(receivedError()));
-        connect(this, SIGNAL(readyReadStandardOutput()), SLOT(receivedOutput()));
-        mergedOutput = true;
-    }
-
-    void setMerge(bool value) {
-        mergedOutput = value;
-    }
-
-    QString getErrorMsg() {
-        if (errorData.trimmed().isEmpty())
-            return QString::fromLocal8Bit(outputData);
-        else
-            return QString::fromLocal8Bit(errorData);
-    }
-
-public slots:
-    void receivedError() {
-        QByteArray newData(this->readAllStandardError());
-        emit newErrorLines(newData.count('\n'));
-        errorData += newData;
-        if (errorData.length() > 500)
-            errorData = errorData.right(500);
-        if (mergedOutput)
-            receivedOutput(newData);
-    }
-
-    void receivedOutput(QByteArray newData = QByteArray()) {
-        if (newData.isEmpty())
-            newData = this->readAllStandardOutput();
-        emit newOutputLines(newData.count('\n'));
-        emit newOutputData(this, newData);
-        outputData += newData;
-        if (outputData.length() > 500)
-            outputData = outputData.right(500);
-    }
-
-signals:
-    void newOutputLines(int count);
-    void newErrorLines(int count);
-    void newOutputData(KProcess *, QByteArray &);
-
-private:
-    QByteArray errorData;
-    QByteArray outputData;
-
-    bool mergedOutput;
 };
 
 #ifdef Q_WS_WIN

@@ -44,6 +44,8 @@
 #include <KWidgetsAddons/KActionMenu>
 #include <KWindowSystem/KStartupInfo>
 
+#include "../VFS/krarchandler.h"
+
 #include "krusader.h"
 #include "krusaderview.h"
 #include "panelmanager.h"
@@ -83,10 +85,13 @@ void openTabsRemote(QStringList tabs, bool left, QString appName)
         fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
 }
 
+//! An object that manages archives in several parts of the source code.
+KRarcHandler arcHandler;
+
 int main(int argc, char *argv[])
 {
 // ============ begin icon-stuff ===========
-// If the user has no icon specified over the commandline we set up uor own.
+// If the user has no icon specified over the commandline we set up our own.
 // this is according to the users privileges. The icons are in Krusader::privIcon()
 
 /*    bool hasIcon = false;
@@ -117,6 +122,7 @@ int main(int argc, char *argv[])
         argv = myArgv;
     }*/
 // ============ end icon-stuff ===========
+
 
     // create the application and set application domain so that calls to i18n get strings from right place.
     QApplication app(argc, argv);

@@ -1,6 +1,10 @@
 include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
 
-set(kio_krarc_PART_SRCS krarc.cpp)
+set(kio_krarc_PART_SRCS
+    krarc.cpp
+    krarcbasemanager.cpp
+    krlinecountingprocess.cpp
+)
 
 add_library(kio_krarc MODULE ${kio_krarc_PART_SRCS})
 

@@ -39,13 +39,14 @@
 
 #include <KIO/Global>
 
-
 #include "../VFS/krquery.h"
 #include "../VFS/vfile.h"
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krarchandler.h"
 
 #define  EVENT_PROCESS_DELAY     250
+
+extern KRarcHandler arcHandler;
 
 KRSearchMod::KRSearchMod(const KRQuery* q)
 {
@@ -165,7 +166,7 @@ void KRSearchMod::scanLocalDir(QUrl urlToScan)
             if (KRarcHandler::arcSupported(type)) {
                 QUrl archiveURL = url;
                 bool encrypted;
-                QString realType = KRarcHandler::getType(encrypted, url.path(), mime);
+                QString realType = arcHandler.getType(encrypted, url.path(), mime);
 
                 if (!encrypted) {
                     if (realType == "-tbz" || realType == "-tgz" || realType == "tarz" || realType == "-tar" || realType == "-tlz")

@@ -38,6 +38,8 @@
 
 #include <KI18n/KLocalizedString>
 
+extern KRarcHandler arcHandler;
+
 PackJob::PackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps) : AbstractThreadedJob()
 {
     startAbstractJobThread(new PackThread(srcUrl, destUrl, fileNames, type, packProps));
@@ -127,7 +129,7 @@ void TestArchiveThread::slotStart()
         QMimeType mt = db.mimeTypeForUrl(url);
         QString mime = mt.isValid() ? mt.name() : QString();
         bool encrypted = false;
-        QString type = KRarcHandler::getType(encrypted, path, mime);
+        QString type = arcHandler.getType(encrypted, path, mime);
 
         // check we that archive is supported
         if (!KRarcHandler::arcSupported(type)) {
@@ -188,7 +190,7 @@ void UnpackThread::slotStart()
         QMimeType mt = db.mimeTypeForUrl(url);
         QString mime = mt.isValid() ? mt.name() : QString();
         bool encrypted = false;
-        QString type = KRarcHandler::getType(encrypted, path, mime);
+        QString type = arcHandler.getType(encrypted, path, mime);
 
         // check we that archive is supported
         if (!KRarcHandler::arcSupported(type)) {
