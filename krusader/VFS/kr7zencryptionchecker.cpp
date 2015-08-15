@@ -1,3 +1,20 @@
+/***************************************************************************
+                           kr7zencryptionchecker.cpp
+                           -------------------------
+    copyright            : (C) 2001 by Shie Erlich & Rafi Yanai
+    email                : krusader@users.sourceforge.net
+    web site             : http://krusader.sourceforge.net
+ ***************************************************************************
+
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
 #include "kr7zencryptionchecker.h"
 
 Kr7zEncryptionChecker::Kr7zEncryptionChecker() : KProcess(), encrypted(false), lastData()
@@ -15,7 +32,7 @@ void Kr7zEncryptionChecker::setupChildProcess()
 
 void Kr7zEncryptionChecker::receivedOutput()
 {
-    QString data =  QString::fromLocal8Bit(this->readAllStandardOutput());
+    QString data = QString::fromLocal8Bit(this->readAllStandardOutput());
 
     QString checkable = lastData + data;
 
