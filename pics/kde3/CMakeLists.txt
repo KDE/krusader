@@ -59,6 +59,6 @@ ecm_install_icons(ICONS
     64-mimetypes-inode-fifo.png
     64-mimetypes-tar.png
     64-places-document-multiple.png
-    DESTINATION ${DATA_INSTALL_DIR}/krusader/icons
+    DESTINATION ${ICON_INSTALL_DIR}
     THEME hicolor
 )

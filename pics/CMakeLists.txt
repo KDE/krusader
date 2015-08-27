@@ -91,7 +91,7 @@ ecm_install_icons(ICONS
     32-actions-kr_unselect.png
     32-actions-kr_unselectall.png
     32-actions-kr_useractions.png
-    DESTINATION ${DATA_INSTALL_DIR}/krusader/icons
+    DESTINATION ${ICON_INSTALL_DIR}
     THEME hicolor
 )
 
