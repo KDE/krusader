@@ -1,5 +1,4 @@
 ecm_install_icons(ICONS
-    128-apps-ark.png
     128-apps-date.png
     128-apps-konqueror.png
     128-apps-konsole.png
@@ -8,11 +7,9 @@ ecm_install_icons(ICONS
     128-mimetypes-tar.png
     128-places-document-multiple.png
     16-actions-edit.png
-    16-actions-history.png
     16-actions-tab-duplicate.png
     16-actions-view-preview.png
     16-actions-view-split-left-right.png
-    16-apps-ark.png
     16-apps-date.png
     16-apps-konqueror.png
     16-apps-konsole.png
@@ -21,10 +18,8 @@ ecm_install_icons(ICONS
     16-mimetypes-tar.png
     16-places-document-multiple.png
     22-actions-edit.png
-    22-actions-history.png
     22-actions-view-preview.png
     22-actions-view-split-left-right.png
-    22-apps-ark.png
     22-apps-date.png
     22-apps-konqueror.png
     22-apps-konsole.png
@@ -33,7 +28,6 @@ ecm_install_icons(ICONS
     22-places-document-multiple.png
     32-actions-edit.png
     32-actions-view-split-left-right.png
-    32-apps-ark.png
     32-apps-date.png
     32-apps-konqueror.png
     32-apps-konsole.png
@@ -42,7 +36,6 @@ ecm_install_icons(ICONS
     32-mimetypes-inode-fifo.png
     32-mimetypes-tar.png
     32-places-document-multiple.png
-    48-apps-ark.png
     48-apps-date.png
     48-apps-konqueror.png
     48-apps-konsole.png
@@ -51,7 +44,6 @@ ecm_install_icons(ICONS
     48-mimetypes-inode-fifo.png
     48-mimetypes-tar.png
     48-places-document-multiple.png
-    64-apps-ark.png
     64-apps-date.png
     64-apps-konqueror.png
     64-apps-konsole.png
