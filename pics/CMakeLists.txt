@@ -2,6 +2,7 @@ add_subdirectory(kde3)
 
 ecm_install_icons(ICONS
     16-actions-kr_combine.png
+    16-actions-kr_comparedirs.png
     16-actions-kr_diskusage.png
     16-actions-kr_invert.png
     16-actions-kr_jumpback.png
@@ -16,6 +17,7 @@ ecm_install_icons(ICONS
     16-actions-kr_unselect.png
     16-actions-kr_unselectall.png
     22-actions-kr_combine.png
+    22-actions-kr_comparedirs.png
     22-actions-kr_diskusage.png
     22-actions-kr_invert.png
     22-actions-kr_mountman.png
@@ -26,6 +28,7 @@ ecm_install_icons(ICONS
     22-actions-kr_unselect.png
     22-actions-kr_unselectall.png
     32-actions-kr_combine.png
+    32-actions-kr_comparedirs.png
     32-actions-kr_dependencies.png
     32-actions-kr_diskusage.png
     32-actions-kr_invert.png
