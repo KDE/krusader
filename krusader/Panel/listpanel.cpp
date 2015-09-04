@@ -1216,7 +1216,7 @@ void ListPanel::saveSettings(KConfigGroup cfg, bool saveHistory)
 {
     QUrl url = virtualPath();
     url.setPassword(QString()); // make sure no password is saved
-    cfg.writeEntry("Url", url.toDisplayString(QUrl::PreferLocalFile));
+    cfg.writeEntry("Url", url.toString());
     cfg.writeEntry("Type", getType());
     cfg.writeEntry("Properties", getProperties());
     if(popup) {
