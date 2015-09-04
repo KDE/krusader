@@ -170,7 +170,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 
     mainSearchBtn = new QPushButton(this);
     mainSearchBtn->setText(i18n("Search"));
-    mainSearchBtn->setIcon(QIcon::fromTheme("system-search"));
+    mainSearchBtn->setIcon(QIcon::fromTheme("edit-find"));
     mainSearchBtn->setDefault(true);
     buttonsLayout->addWidget(mainSearchBtn);
 

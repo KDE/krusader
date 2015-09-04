@@ -43,7 +43,7 @@ ProfileManager::ProfileManager(QString profileType, QWidget * parent)
         : QPushButton(parent)
 {
     setText("");
-    setIcon(QIcon::fromTheme("kr_profile"));
+    setIcon(QIcon::fromTheme("user-identity"));
     setFixedWidth(16 + 15);
     setToolTip(i18n("Profiles"));
 

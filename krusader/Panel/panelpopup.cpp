@@ -385,7 +385,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
             this, SLOT(quickSelect()));
 
     QToolButton *qselectBtn = new QToolButton(quickPanel);
-    qselectBtn->setIcon(krLoader->loadIcon("kr_selectall", KIconLoader::Toolbar, 16));
+    qselectBtn->setIcon(krLoader->loadIcon("edit-select-all", KIconLoader::Toolbar, 16));
     qselectBtn->setFixedSize(20, 20);
     qselectBtn->setToolTip(i18n("Apply the selection"));
     connect(qselectBtn, SIGNAL(clicked()), this, SLOT(quickSelect()));

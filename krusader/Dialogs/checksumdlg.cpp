@@ -266,7 +266,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
     // title (icon+text)
     QHBoxLayout *hlayout = new QHBoxLayout;
     QLabel *p = new QLabel(widget);
-    p->setPixmap(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
+    p->setPixmap(krLoader->loadIcon("document-edit-sign", KIconLoader::Desktop, 32));
     hlayout->addWidget(p);
     QLabel *l1 = new QLabel(widget);
 
@@ -393,7 +393,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
     // title (icon+text)
     QHBoxLayout *hlayout = new QHBoxLayout;
     QLabel *p = new QLabel(widget);
-    p->setPixmap(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
+    p->setPixmap(krLoader->loadIcon("document-edit-decrypt-verify", KIconLoader::Desktop, 32));
     hlayout->addWidget(p);
     QLabel *l1 = new QLabel(widget);
 

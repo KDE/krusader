@@ -49,7 +49,7 @@ KrBookmark::KrBookmark(QString name, QUrl url, KActionCollection *parent, QStrin
             setIcon(QIcon::fromTheme("folder"));
         } else { // is it an archive?
             if (KRarcHandler::isArchive(_url))
-                setIcon(QIcon::fromTheme("tar"));
+                setIcon(QIcon::fromTheme("application-x-tar"));
             else setIcon(QIcon::fromTheme("folder-html"));
         }
     }
@@ -91,7 +91,7 @@ KrBookmark* KrBookmark::virt(KActionCollection *collection)
     KrBookmark *bm = getExistingBookmark(i18n(NAME_VIRTUAL), collection);
     if (!bm) {
         bm = new KrBookmark(i18n(NAME_VIRTUAL), QUrl("virt:/"), collection);
-        bm->setIcon(krLoader->loadIcon("inode-fifo", KIconLoader::Small));
+        bm->setIcon(krLoader->loadIcon("document-open-remote", KIconLoader::Small));
     }
     return bm;
 }
@@ -101,7 +101,7 @@ KrBookmark* KrBookmark::lan(KActionCollection *collection)
     KrBookmark *bm = getExistingBookmark(i18n(NAME_LAN), collection);
     if (!bm) {
         bm = new KrBookmark(i18n(NAME_LAN), QUrl("remote:/"), collection);
-        bm->setIcon(krLoader->loadIcon("network-wired", KIconLoader::Small));
+        bm->setIcon(krLoader->loadIcon("network-workgroup", KIconLoader::Small));
     }
     return bm;
 }

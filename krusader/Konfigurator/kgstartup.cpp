@@ -52,7 +52,7 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
     QGroupBox *panelsGrp = createFrame(i18n("General"), innerWidget);
     QGridLayout *panelsGrid = createGridLayout(panelsGrp);
 
-    QString s = "<p><img src='toolbar|kr_profile'></p>" + i18n("Defines the panel profile used at startup. A panel profile contains:<ul><li>all the tabs paths</li><li>the current tab</li><li>the active panel</li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is saved automatically when Krusader is closed.");
+    QString s = "<p><img src='toolbar|user-identity'></p>" + i18n("Defines the panel profile used at startup. A panel profile contains:<ul><li>all the tabs paths</li><li>the current tab</li><li>the active panel</li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is saved automatically when Krusader is closed.");
     QLabel *label = addLabel(panelsGrid, 0, 0, i18n("Startup profile:"), panelsGrp);
     label->setWhatsThis(s);
     panelsGrp->setWhatsThis(s);

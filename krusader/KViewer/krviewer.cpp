@@ -46,8 +46,8 @@
 #include "../kicons.h"
 #include "panelviewer.h"
 
-#define VIEW_ICON     "zoom-original"
-#define EDIT_ICON     "edit"
+#define VIEW_ICON     "document-preview"
+#define EDIT_ICON     "document-edit"
 #define MODIFIED_ICON "document-save-as"
 
 #define CHECK_MODFIED_INTERVAL 500
@@ -74,8 +74,6 @@ KrViewer::KrViewer(QWidget *parent) :
 
     tabBar.setDocumentMode(true);
     tabBar.setMovable(true);
-// "edit"
-// "document-save-as"
     setCentralWidget(&tabBar);
 
     printAction = KStandardAction::print(this, SLOT(print()), 0);

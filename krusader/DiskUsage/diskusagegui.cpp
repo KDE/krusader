@@ -87,13 +87,13 @@ DiskUsageGUI::DiskUsageGUI(QUrl openDir, QWidget* parent)
     duHBox->addWidget(separatorWidget);
 
     btnLines = new QToolButton(duTools);
-    btnLines->setIcon(QIcon(krLoader->loadIcon("format-justify-left", KIconLoader::Desktop)));
+    btnLines->setIcon(QIcon(krLoader->loadIcon("view-list-details", KIconLoader::Desktop)));
     btnLines->setCheckable(true);
     duHBox->addWidget(btnLines);
     btnLines->setToolTip(i18n("Line view"));
 
     btnDetailed = new QToolButton(duTools);
-    btnDetailed->setIcon(QIcon(krLoader->loadIcon("view-list-details", KIconLoader::Desktop)));
+    btnDetailed->setIcon(QIcon(krLoader->loadIcon("view-list-tree", KIconLoader::Desktop)));
     btnDetailed->setCheckable(true);
     duHBox->addWidget(btnDetailed);
     btnDetailed->setToolTip(i18n("Detailed view"));

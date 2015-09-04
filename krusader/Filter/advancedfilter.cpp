@@ -117,7 +117,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
 
     // Options for date
 
-    QPixmap iconDate = krLoader->loadIcon("date", KIconLoader::Toolbar, 16);
+    QPixmap iconDate = krLoader->loadIcon("view-calendar", KIconLoader::Toolbar, 16);
 
     QGroupBox *dateGroup = new QGroupBox(this);
     QButtonGroup *btnGroup = new QButtonGroup(dateGroup);

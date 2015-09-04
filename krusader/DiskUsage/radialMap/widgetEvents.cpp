@@ -166,9 +166,9 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
             QAction * actKonq = 0, * actKonsole = 0, *actViewMag = 0, * actFileOpen = 0, * actEditDel = 0;
 
             if (isDir) {
-                actKonq = popup.addAction(QIcon::fromTheme("konqueror"), i18n("Open &Konqueror Here"));
+                actKonq = popup.addAction(QIcon::fromTheme("system-file-manager"), i18n("Open File Manager Here"));
                 if (url.scheme() == "file")
-                    actKonsole = popup.addAction(QIcon::fromTheme("konsole"), i18n("Open &Konsole Here"));
+                    actKonsole = popup.addAction(QIcon::fromTheme("utilities-terminal"), i18n("Open Terminal Here"));
 
                 if (m_focus->file() != m_tree) {
                     popup.addSeparator();

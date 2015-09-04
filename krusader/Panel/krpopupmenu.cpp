@@ -143,7 +143,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
         }
         openWith.addSeparator();
         if (vf->vfile_isDir())
-            openWith.addAction(krLoader->loadIcon("konsole", KIconLoader::Small), i18n("Terminal"))->setData(QVariant(OPEN_TERM_ID));
+            openWith.addAction(krLoader->loadIcon("utilities-terminal", KIconLoader::Small), i18n("Terminal"))->setData(QVariant(OPEN_TERM_ID));
         openWith.addAction(i18n("Other..."))->setData(QVariant(CHOOSE_ID));
         QAction *owAct = addMenu(&openWith);
         owAct->setData(QVariant(OPEN_WITH_ID));

@@ -361,7 +361,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu)
             // add the popular links submenu
             QMenu *newMenu = new QMenu(menu);
             newMenu->setTitle(i18n("Popular URLs"));
-            newMenu->setIcon(QIcon(krLoader->loadIcon("folder-bookmarks", KIconLoader::Small)));
+            newMenu->setIcon(QIcon(krLoader->loadIcon("folder-bookmark", KIconLoader::Small)));
             QAction *bmfAct  = menu->addMenu(newMenu);
             _specialBookmarks.append(bmfAct);
             // add the top 15 urls
