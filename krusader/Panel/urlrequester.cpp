@@ -109,6 +109,7 @@ bool UrlRequester::eventFilter(QObject * watched, QEvent * e)
     if(_path && watched == lineEdit() && e->type() == QEvent::FocusOut) {
         lineEdit()->hide();
         _path->show();
+        emit focusout();
     }
 
     return KUrlRequester::eventFilter(watched, e);

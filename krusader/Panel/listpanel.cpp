@@ -201,6 +201,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     origin->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Minimum);
     connect(origin, SIGNAL(returnPressed(const QString&)), func, SLOT(urlEntered(const QString&)));
     connect(origin, SIGNAL(returnPressed(const QString&)), this, SLOT(slotFocusOnMe()));
+    connect(origin, SIGNAL(focusout()), func, SLOT(refresh()));
     connect(origin, SIGNAL(urlSelected(const QUrl &)), func, SLOT(urlEntered(const QUrl &)));
     connect(origin, SIGNAL(urlSelected(const QUrl &)), this, SLOT(slotFocusOnMe()));
     ADD_WIDGET(origin);
