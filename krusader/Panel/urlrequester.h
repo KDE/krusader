@@ -31,6 +31,9 @@ public:
     void setActive(bool active);
     void edit();
 
+signals:
+    void focusout();
+
 public slots:
     void slotTextChanged(const QString &text);
 
