@@ -141,7 +141,7 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
         return true;
     }
 
-    if (krSwitchFullScreenTE->shortcut().matches(pressedKey)) {
+    if (!krSwitchFullScreenTE->shortcut().isEmpty() && krSwitchFullScreenTE->shortcut().matches(pressedKey)) {
         krSwitchFullScreenTE->activate(QAction::Trigger);
         return true;
     }
