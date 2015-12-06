@@ -149,7 +149,7 @@ void KgGeneral::createViewerTab()
     QLabel *label1 = new QLabel(i18n("Editor:"), editorGrp);
     editorGrid->addWidget(label1, 0, 0);
     KonfiguratorURLRequester *urlReq = createURLRequester("General", "Editor", "internal editor",
-                                       editorGrp, false, PAGE_VIEWER);
+                                       editorGrp, false, PAGE_VIEWER, false);
     editorGrid->addWidget(urlReq, 0, 1);
 
     QLabel *label2 = new QLabel(i18n("Hint: use 'internal editor' if you want to use Krusader's fast built-in editor"), editorGrp);
