@@ -264,9 +264,6 @@ void KrViewer::keyPressEvent(QKeyEvent *e)
     case Qt::Key_F10:
         close();
         break;
-    case Qt::Key_Escape:
-        tabCloseRequest();
-        break;
     default:
         e->ignore();
         break;
