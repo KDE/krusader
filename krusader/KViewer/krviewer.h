@@ -55,7 +55,6 @@ public:
     virtual bool eventFilter(QObject * watched, QEvent * e) Q_DECL_OVERRIDE;
 
 public slots:
-    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
     void createGUI(KParts::Part*);
     void configureShortcuts();
 

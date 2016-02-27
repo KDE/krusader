@@ -258,17 +258,6 @@ bool KrViewer::eventFilter(QObject * /* watched */, QEvent * e)
     }
     return false;
 }
-void KrViewer::keyPressEvent(QKeyEvent *e)
-{
-    switch (e->key()) {
-    case Qt::Key_F10:
-        close();
-        break;
-    default:
-        e->ignore();
-        break;
-    }
-}
 
 KrViewer* KrViewer::getViewer(bool new_window)
 {
