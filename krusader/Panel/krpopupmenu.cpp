@@ -95,7 +95,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     vfile *vf = panel->func->getVFile(item);
     _item = &_items.first();
 
-    // ------------ the OPEN option - open preferred service
+    // ------------ the OPEN/BROWSE option - open preferred service
     QAction * openAct = addAction(i18n("Open/Run"));
     openAct->setData(QVariant(OPEN_ID));
     if (!multipleSelections) {   // meaningful only if one file is selected
@@ -107,6 +107,14 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
             openTab->setData(QVariant(OPEN_TAB_ID));
             openTab->setIcon(krLoader->loadIcon("tab-new", KIconLoader::Panel));
             openTab->setText(i18n("Open in New Tab"));
+        }
+        bool ArchivesAsDirectories = KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories);
+        QUrl arcPath = panel->func->browsableArchivePath(vf->vfile_getName());
+        if (!arcPath.isEmpty() && !ArchivesAsDirectories) {
+            QAction *browseAct = addAction(i18n("Browse"));
+            browseAct->setData(QVariant(BROWSE_ID));
+            browseAct->setIcon(krLoader->loadIcon("", KIconLoader::Panel));
+            browseAct->setText(i18n("Browse Archive"));
         }
         addSeparator();
     }
@@ -304,6 +312,9 @@ void KrPopupMenu::performAction(int id)
     case OPEN_ID :
         foreach(KFileItem fi, _items)
             panel->func->execute(fi.name());
+        break;
+    case BROWSE_ID :
+        panel->func->goInside(_item->url().fileName());
         break;
     case COPY_ID :
         panel->func->copyFiles();

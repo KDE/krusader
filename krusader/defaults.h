@@ -216,6 +216,8 @@
 // Supported Packers // ====> a QStringList of SYSTEM supported archives ( also new )
 // default compression level
 #define _defaultCompressionLevel 5
+// treat Archives as Directories
+#define _ArchivesAsDirectories true
 
 /////////////////////// [UserActions]
 // Terminal for UserActions ///////////

@@ -159,6 +159,14 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool canExecuteFil
 
     QString mime = vf->vfile_getMime();
 
+    bool ArchivesAsDirectories = KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories);
+    QUrl arcPath = browsableArchivePath(name);
+
+    if (!arcPath.isEmpty() && (ArchivesAsDirectories || !canExecuteFile)) {
+        openUrl(arcPath);
+        return;
+    }
+
     if(canExecuteFile) {
         if (KRun::isExecutableFile(url, mime)) {
             runCommand(KShell::quoteArg(url.path()));
@@ -168,15 +176,6 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool canExecuteFil
         KService::Ptr service = KMimeTypeTrader::self()->preferredService(mime);
         if(service) {
             runService(*service, QList<QUrl>() << url);
-            return;
-        }
-    }
-
-    if(url.isLocalFile()) {
-        QString protocol = KrServices::registeredProtocol(mime);
-        if(!protocol.isEmpty()) {
-            url.setScheme(protocol);
-            openUrl(url);
             return;
         }
     }
@@ -996,6 +995,22 @@ void ListPanelFunc::displayOpenWithDialog(QList<QUrl> urls)
             service = KService::Ptr(new KService(dialog.text(), dialog.text(), QString()));
         runService(*service, urls);
     }
+}
+
+QUrl ListPanelFunc::browsableArchivePath(const QString &filename)
+{
+    vfile *vf = files()->vfs_search(filename);
+    QUrl url = files()->vfs_getFile(filename);
+    QString mime = vf->vfile_getMime();
+
+    if(url.isLocalFile()) {
+        QString protocol = KrServices::registeredProtocol(mime);
+        if(!protocol.isEmpty()) {
+            url.setScheme(protocol);
+            return url;
+        }
+    }
+    return QUrl();
 }
 
 // this is done when you double click on a file

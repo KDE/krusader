@@ -118,6 +118,7 @@ public:
     void redirectLink();
     void runService(const KService &service, QList<QUrl> urls);
     void displayOpenWithDialog(QList<QUrl> urls);
+    QUrl browsableArchivePath(const QString &);
 
     // calculate the occupied space. A dialog appears, if calculation lasts more than 3 seconds
     // and disappears, if the calculation is done. Returns true, if the result is ok and false

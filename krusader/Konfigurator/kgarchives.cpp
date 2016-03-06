@@ -74,6 +74,23 @@ KgArchives::KgArchives(bool first, QWidget* parent) :
 
     kgArchivesLayout->addWidget(krarcGrp, 1 , 0);
 
+    //  ------------------------ BROWSE GROUPBOX --------------------------------
+
+    QGroupBox *browseGrp = createFrame(i18n("archives handling"), innerWidget);
+    QGridLayout *browseGrid = createGridLayout(browseGrp);
+
+    KONFIGURATOR_CHECKBOX_PARAM browseOptions[] =
+        //   cfg_class  cfg_name                  default           text                                          restart ToolTip
+    {
+        {"Archives", "ArchivesAsDirectories", _ArchivesAsDirectories, i18n("Browse Archives As Directories"), false, i18n("Krusader will browse archives as folders.")}
+    };
+
+    KonfiguratorCheckBoxGroup *browseCheckBoxes = createCheckBoxGroup(1, 0, browseOptions, 1, browseGrp);
+
+    browseGrid->addWidget(browseCheckBoxes, 1, 0);
+
+    kgArchivesLayout->addWidget(browseGrp, 2 , 0);
+
     //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
 
     QGroupBox *fineTuneGrp = createFrame(i18n("Fine-Tuning"), innerWidget);
@@ -91,7 +108,7 @@ KgArchives::KgArchives(bool first, QWidget* parent) :
     disableNonExistingPackers();
     fineTuneGrid->addWidget(finetunes, 1, 0);
 
-    kgArchivesLayout->addWidget(fineTuneGrp, 2 , 0);
+    kgArchivesLayout->addWidget(fineTuneGrp, 3 , 0);
 
     if (first)
         slotAutoConfigure();

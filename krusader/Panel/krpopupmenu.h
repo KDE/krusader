@@ -53,6 +53,7 @@ protected:
 
     enum ID {
         OPEN_ID,
+        BROWSE_ID,
         OPEN_WITH_ID,
         OPEN_KONQ_ID,
         OPEN_TERM_ID,
