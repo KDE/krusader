@@ -1215,47 +1215,13 @@
   </sect1>
   <sect1 id="konfig-archives">
     <title>Archives</title>
-    <para>This page handles the way &krusader; works
-    with archives. In the
-    <guilabel>General</guilabel> section you will see a list of
-    archive formats. Some are checked and some are grayed-out. The
-    ones that are available (not grayed-out) are supported by
-    &krusader;. If you check them, &krusader;
-    will handle the archives transparently and let you open them as
-    folders; otherwise, &krusader; will attempt to
-    invoke an application which opens archives of that type. If a
-    certain archive is grayed-out, it means that
-    &krusader; could not find the appropriate executables
-    in the configured path. The next archives are supported: ace,
-    arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and
-    7-zip.</para>
-
-    <para>If you have installed a certain archive application (let's
-    say
-    <command>arj</command>) and want &krusader; to know
-    about it, just click the
-    <guibutton>Auto Configure</guibutton> button.
-    &krusader; will search for all supported executables
-    and print a report listing the archive formats that can be
-    handled. If the operation was successful the new archive should
-    be available and checked.</para>
-    <note>
-      <para>Please install new packagers to your
-      <envar>PATH</envar> (&ie;:
-      <filename>/usr/bin</filename> or
-      <filename>/usr/local/bin</filename> &etc;)</para>
-    </note>
-    <para>The full path of the packagers is stored in the
-    <link linkend="konfig-dependencies">Konfigurator Dependencies page</link> (&eg; to handle
-    ZIP archives, &krusader; needs the
-    <command>unzip</command> and
-    <command>zip</command> executables). It is possible that you need
-    to manually configure the MIMEs to the protocols in the
-    <link linkend="konfig-protocols">Konfigurator Protocol page</link>.</para>
+    <para>
+      This page configures some aspects of archive handling in &krusader;.
+    </para>
     <variablelist>
       <varlistentry>
 	<term>
-	  <guilabel>krarc</guilabel>
+	  <guilabel>krarc ioslave</guilabel>
 	</term>
 	<listitem>
 	  <para>
@@ -1268,6 +1234,19 @@
 		  Moving archives into themselves will delete them.
 		</para>
 	      </warning>
+	    </para>
+	  </listitem>
+	</varlistentry>
+              <varlistentry>
+	<term>
+	  <guilabel>Archive handling</guilabel>
+	</term>
+	<listitem>
+	  <para>
+	    <guilabel>Browse Archives As Directories</guilabel>: if checked,
+            &krusader; will handle the archives transparently and let you open them as
+    folders; otherwise, &krusader; will attempt to
+    invoke an application which opens archives of that type.
 	    </para>
 	  </listitem>
 	</varlistentry>
@@ -1320,42 +1299,13 @@
     <para>
       <emphasis role="bold">General tab</emphasis>
     </para>
-    <para>Here you can configure the full path of the following
-    external applications:
+    <para>Here you can configure the full path of the following 1external applications:</para>
     <informaltable>
       <tgroup cols="2">
         <tbody>
           <row>
             <entry>application</entry>
             <entry>configurable full path</entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>df</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/bin/df</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>eject</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/eject</replaceable>
-                </filename>
-              </para>
-            </entry>
           </row>
           <row>
             <entry>
@@ -1388,7 +1338,7 @@
           <row>
             <entry>
               <para>
-                <command>kmail</command>
+                <command>mailer</command>
               </para>
             </entry>
             <entry>
@@ -1495,7 +1445,7 @@
           </row>
         </tbody>
       </tgroup>
-    </informaltable></para>
+    </informaltable>
     <tip>
       <para>By default &kompare; (part of the kdesdk
       package) is used as external diff utility but you can also
@@ -1506,10 +1456,20 @@
     <para>
       <emphasis role="bold">Packers tab</emphasis>
     </para>
-    <para>Here you can configure the full path of the following
-    external packers. &krusader; also offers an
-    <link linkend="konfig-archives">auto configure tool</link> for
-    packagers.
+    <para>In the
+    <guilabel>Packers</guilabel> tab you will see a list of
+    archive formats. Some are filled and some are empty. The
+    ones that are available (filled) are supported by
+    &krusader;. For them, &krusader;
+    will handle the archives transparently and let you open them as
+    folders (provided you have checked the <guilabel>Browse Archives As Directories</guilabel>
+    item in the <link linkend="konfig-archives">Archives</link> section); otherwise, &krusader; will attempt to
+    invoke an application which opens archives of that type. If a
+    certain archive item is empty, it means that
+    &krusader; could not find the appropriate executables
+    in the configured path. The next archives are supported: ace,
+    arj, bzip2, deb, gzip, iso, lha, lzma, rar, rpm, tar, xz, zip and
+    7z.</para>
     <informaltable>
       <tgroup cols="2">
         <tbody>
@@ -1618,6 +1578,20 @@
           <row>
             <entry>
               <para>
+                <command>lzma</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable>/usr/bin/lzma</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
                 <command>rar</command>
               </para>
             </entry>
@@ -1713,9 +1687,23 @@
               </para>
             </entry>
           </row>
+          <row>
+            <entry>
+              <para>
+                <command>xz</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable>/usr/bin/xz</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
         </tbody>
       </tgroup>
-    </informaltable></para>
+    </informaltable>
     <note>
       <para>&krusader; may not be compatible with ACE despite our
       best efforts. Unace uses closed source and contains
