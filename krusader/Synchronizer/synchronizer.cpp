@@ -83,6 +83,15 @@ Synchronizer::~Synchronizer()
     clearLists();
 }
 
+QUrl Synchronizer::fsUrl(QString strUrl)
+{
+    QUrl result = QUrl::fromUserInput(strUrl, QString(), QUrl::AssumeLocalFile);
+    if (result.isLocalFile()) {
+        return result;
+    }
+    return QUrl(SynchronizerDirList::escapeUrlHashes(result.toString()));
+}
+
 void Synchronizer::clearLists()
 {
     QListIterator<SynchronizerFileItem *> i1(resultList);
@@ -509,10 +518,8 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem(SynchronizerFileItem *pare
                                           (TaskType)(task + uncertain), isDir, isTemp);
 
     if (uncertain == TT_UNKNOWN) {
-        QUrl leftURL = QUrl::fromUserInput(leftDir.isEmpty() ? leftBaseDir + leftName : leftBaseDir + leftDir + '/' + leftName,
-                                           QString(), QUrl::AssumeLocalFile);
-        QUrl rightURL = QUrl::fromUserInput(rightDir.isEmpty() ? rightBaseDir + rightName : rightBaseDir + rightDir + '/' + rightName,
-                                            QString(), QUrl::AssumeLocalFile);
+        QUrl leftURL = Synchronizer::fsUrl(leftDir.isEmpty() ? leftBaseDir + leftName : leftBaseDir + leftDir + '/' + leftName);
+        QUrl rightURL = Synchronizer::fsUrl(rightDir.isEmpty() ? rightBaseDir + rightName : rightBaseDir + rightDir + '/' + rightName);
         stack.append(new CompareContentTask(this, item, leftURL, rightURL, leftSize));
     }
 
@@ -929,10 +936,8 @@ void Synchronizer::executeTask(SynchronizerFileItem * task)
     if (!rightDirName.isEmpty())
         rightDirName += '/';
 
-    QUrl leftURL = QUrl::fromUserInput(leftBaseDir + leftDirName + task->leftName(),
-                                       QString(), QUrl::AssumeLocalFile);
-    QUrl rightURL = QUrl::fromUserInput(rightBaseDir + rightDirName + task->rightName(),
-                                        QString(), QUrl::AssumeLocalFile);
+    QUrl leftURL = Synchronizer::fsUrl(leftBaseDir + leftDirName + task->leftName());
+    QUrl rightURL = Synchronizer::fsUrl(rightBaseDir + rightDirName + task->rightName());
 
     switch (task->task()) {
     case TT_COPY_TO_LEFT:
@@ -944,7 +949,7 @@ void Synchronizer::executeTask(SynchronizerFileItem * task)
         } else {
             QUrl destURL(leftURL);
             if (!task->destination().isNull())
-                destURL = QUrl::fromUserInput(task->destination(), QString(), QUrl::AssumeLocalFile);
+                destURL = Synchronizer::fsUrl(task->destination());
 
             if (task->rightLink().isNull()) {
                 KIO::FileCopyJob *job = KIO::file_copy(rightURL, destURL, -1,
@@ -970,7 +975,7 @@ void Synchronizer::executeTask(SynchronizerFileItem * task)
         } else {
             QUrl destURL(rightURL);
             if (!task->destination().isNull())
-                destURL = QUrl::fromUserInput(task->destination(), QString(), QUrl::AssumeLocalFile);
+                destURL = Synchronizer::fsUrl(task->destination());
 
             if (task->leftLink().isNull()) {
                 KIO::FileCopyJob *job = KIO::file_copy(leftURL, destURL, -1,
@@ -1017,10 +1022,8 @@ void Synchronizer::slotTaskFinished(KJob *job)
 
     QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
     QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
-    QUrl leftURL = QUrl::fromUserInput(leftBaseDir + leftDirName + item->leftName(),
-                                       QString(), QUrl::AssumeLocalFile);
-    QUrl rightURL = QUrl::fromUserInput(rightBaseDir + rightDirName + item->rightName(),
-                                        QString(), QUrl::AssumeLocalFile);
+    QUrl leftURL = Synchronizer::fsUrl(leftBaseDir + leftDirName + item->leftName());
+    QUrl rightURL = Synchronizer::fsUrl(rightBaseDir + rightDirName + item->rightName());
 
     do {
         if (!job->error()) {
@@ -1347,19 +1350,17 @@ void Synchronizer::synchronizeWithKGet()
             }
 
             if (item->task() == TT_COPY_TO_RIGHT && !isLeftLocal) {
-                downloadURL = QUrl::fromUserInput(leftBaseDirectory() + leftDirName + item->leftName(),
-                                                  QString(), QUrl::AssumeLocalFile);
+                downloadURL = Synchronizer::fsUrl(leftBaseDirectory() + leftDirName + item->leftName());
                 destDir     = rightBaseDirectory() + rightDirName;
-                destURL     = QUrl::fromUserInput(destDir + item->rightName(), QString(), QUrl::AssumeLocalFile);
+                destURL     = Synchronizer::fsUrl(destDir + item->rightName());
 
                 if (item->isDir())
                     destDir += item->leftName();
             }
             if (item->task() == TT_COPY_TO_LEFT && isLeftLocal) {
-                downloadURL = QUrl::fromUserInput(rightBaseDirectory() + rightDirName + item->rightName(),
-                                                  QString(), QUrl::AssumeLocalFile);
+                downloadURL = Synchronizer::fsUrl(rightBaseDirectory() + rightDirName + item->rightName());
                 destDir     = leftBaseDirectory() + leftDirName;
-                destURL     = QUrl::fromUserInput(destDir + item->leftName(), QString(), QUrl::AssumeLocalFile);
+                destURL     = Synchronizer::fsUrl(destDir + item->leftName());
 
                 if (item->isDir())
                     destDir += item->rightName();

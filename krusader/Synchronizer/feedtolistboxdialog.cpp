@@ -189,15 +189,13 @@ void FeedToListBoxDialog::slotOk()
 
         if ((side == S_BOTH || side == S_LEFT) && syncItem->existsInLeft()) {
             QString leftDirName = syncItem->leftDirectory().isEmpty() ? "" : syncItem->leftDirectory() + '/';
-            QUrl leftURL = QUrl::fromUserInput(synchronizer->leftBaseDirectory() + leftDirName + syncItem->leftName(),
-                                               QString(), QUrl::AssumeLocalFile);
+            QUrl leftURL = Synchronizer::fsUrl(synchronizer->leftBaseDirectory() + leftDirName + syncItem->leftName());
             urlList.push_back(leftURL);
         }
 
         if ((side == S_BOTH || side == S_RIGHT) && syncItem->existsInRight()) {
             QString rightDirName = syncItem->rightDirectory().isEmpty() ? "" : syncItem->rightDirectory() + '/';
-            QUrl leftURL = QUrl::fromUserInput(synchronizer->rightBaseDirectory() + rightDirName + syncItem->rightName(),
-                                               QString(), QUrl::AssumeLocalFile);
+            QUrl leftURL = Synchronizer::fsUrl(synchronizer->rightBaseDirectory() + rightDirName + syncItem->rightName());
             urlList.push_back(leftURL);
         }
     }

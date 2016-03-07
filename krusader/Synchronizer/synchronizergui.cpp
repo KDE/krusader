@@ -1064,13 +1064,11 @@ public:
             if (item) {
                 if (isLeft && item->existsInLeft()) {
                     QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-                    QUrl leftURL = QUrl::fromUserInput(synchronizer->leftBaseDirectory()  + leftDirName + item->leftName(),
-                                                       QString(), QUrl::AssumeLocalFile);
+                    QUrl leftURL = Synchronizer::fsUrl(synchronizer->leftBaseDirectory()  + leftDirName + item->leftName());
                     urls.push_back(leftURL);
                 } else if (!isLeft && item->existsInRight()) {
                     QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
-                    QUrl rightURL = QUrl::fromUserInput(synchronizer->rightBaseDirectory()  + rightDirName + item->rightName(),
-                                                        QString(), QUrl::AssumeLocalFile);
+                    QUrl rightURL = Synchronizer::fsUrl(synchronizer->rightBaseDirectory()  + rightDirName + item->rightName());
                     urls.push_back(rightURL);
                 }
             }
@@ -1652,20 +1650,19 @@ void SynchronizerGUI::setPanelLabels()
 
 void SynchronizerGUI::setCompletion()
 {
-    generalFilter->dontSearchIn->setCompletionDir(QUrl::fromUserInput(rightLocation->currentText(),
-                                                                      QString(), QUrl::AssumeLocalFile));
+    generalFilter->dontSearchIn->setCompletionDir(Synchronizer::fsUrl(rightLocation->currentText()));
 }
 
 void SynchronizerGUI::checkExcludeURLValidity(QString &text, QString &error)
 {
-    QUrl url = QUrl::fromUserInput(text, QString(), QUrl::AssumeLocalFile);
+    QUrl url = Synchronizer::fsUrl(text);
     if (url.isRelative())
         return;
 
     QString leftBase = leftLocation->currentText();
     if (!leftBase.endsWith('/'))
         leftBase += '/';
-    QUrl leftBaseURL = QUrl::fromUserInput(leftBase, QString(), QUrl::AssumeLocalFile);
+    QUrl leftBaseURL = Synchronizer::fsUrl(leftBase);
     if (leftBaseURL.isParentOf(url) && !url.isParentOf(leftBaseURL)) {
         text = QDir(leftBaseURL.path()).relativeFilePath(url.path());
         return;
@@ -1674,7 +1671,7 @@ void SynchronizerGUI::checkExcludeURLValidity(QString &text, QString &error)
     QString rightBase = rightLocation->currentText();
     if (!rightBase.endsWith('/'))
         rightBase += '/';
-    QUrl rightBaseURL = QUrl::fromUserInput(rightBase, QString(), QUrl::AssumeLocalFile);
+    QUrl rightBaseURL = Synchronizer::fsUrl(rightBase);
     if (rightBaseURL.isParentOf(url) && !url.isParentOf(rightBaseURL)) {
         text = QDir(rightBaseURL.path()).relativeFilePath(url.path());
         return;
@@ -1693,10 +1690,8 @@ void SynchronizerGUI::doubleClicked(QTreeWidgetItem *itemIn)
     if (item && item->existsInLeft() && item->existsInRight() && !item->isDir()) {
         QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
         QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
-        QUrl leftURL = QUrl::fromUserInput(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName(),
-                                           QString(), QUrl::AssumeLocalFile);
-        QUrl rightURL = QUrl::fromUserInput(synchronizer.rightBaseDirectory() + rightDirName + item->rightName(),
-                                            QString(), QUrl::AssumeLocalFile);
+        QUrl leftURL = Synchronizer::fsUrl(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName());
+        QUrl rightURL = Synchronizer::fsUrl(synchronizer.rightBaseDirectory() + rightDirName + item->rightName());
 
         SLOTS->compareContent(leftURL, rightURL);
     } else if (item && item->isDir()) {
@@ -1783,10 +1778,8 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
     myact = popup.addAction(i18n("I&nvert selection"));
     actHash[ myact ] = INVERT_SELECTION_ID;
 
-    QUrl leftBDir = QUrl::fromUserInput(synchronizer.leftBaseDirectory(),
-                                        QString(), QUrl::AssumeLocalFile);
-    QUrl rightBDir = QUrl::fromUserInput(synchronizer.rightBaseDirectory(),
-                                         QString(), QUrl::AssumeLocalFile);
+    QUrl leftBDir = Synchronizer::fsUrl(synchronizer.leftBaseDirectory());
+    QUrl rightBDir = Synchronizer::fsUrl(synchronizer.rightBaseDirectory());
 
     if (KrServices::cmdExist("kget") &&
             ((!leftBDir.isLocalFile() && rightBDir.isLocalFile() && btnLeftToRight->isChecked()) ||
@@ -1812,10 +1805,8 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
     QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
     QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
 
-    QUrl leftURL = QUrl::fromUserInput(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName(),
-                                       QString(), QUrl::AssumeLocalFile);
-    QUrl rightURL = QUrl::fromUserInput(synchronizer.rightBaseDirectory() + rightDirName + item->rightName(),
-                                        QString(), QUrl::AssumeLocalFile);
+    QUrl leftURL = Synchronizer::fsUrl(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName());
+    QUrl rightURL = Synchronizer::fsUrl(synchronizer.rightBaseDirectory() + rightDirName + item->rightName());
 
     switch (op) {
     case EXCLUDE_ID:
@@ -2000,22 +1991,6 @@ void SynchronizerGUI::compare()
     }
     if (rightLocationTrimmed.isEmpty()) {
         KMessageBox::error(this, i18n("The source directory must not be empty."));
-        rightLocation->setFocus();
-        return;
-    }
-    // until the bug https://bugs.kde.org/show_bug.cgi?id=270150 is solved,
-    // some protocols will not be directly used when synchronizing
-    QUrl leftUrl = QUrl::fromUserInput(leftLocationTrimmed, QString(), QUrl::AssumeLocalFile);
-    if (leftUrl.scheme() != QStringLiteral("file")) {
-        KMessageBox::error(this, i18n("In the target directory the synchronizer does not directly support protocols "
-                                      "like FISH, SFTP, SMB, etc."));
-        leftLocation->setFocus();
-        return;
-    }
-    QUrl rightUrl = QUrl::fromUserInput(rightLocationTrimmed, QString(), QUrl::AssumeLocalFile);
-    if (rightUrl.scheme() != QStringLiteral("file")) {
-        KMessageBox::error(this, i18n("In the source directory the synchronizer does not directly support protocols "
-                                      "like FISH, SFTP, SMB, etc."));
         rightLocation->setFocus();
         return;
     }
@@ -2327,16 +2302,14 @@ void SynchronizerGUI::keyPressEvent(QKeyEvent *e)
             return;
 
         if (e->modifiers() == Qt::ShiftModifier && item->existsInRight()) {
-            QUrl rightURL = QUrl::fromUserInput(synchronizer.rightBaseDirectory() + rightDirName + item->rightName(),
-                                                QString(), QUrl::AssumeLocalFile);
+            QUrl rightURL = Synchronizer::fsUrl(synchronizer.rightBaseDirectory() + rightDirName + item->rightName());
             if (isedit)
                 KrViewer::edit(rightURL, this);   // view the file
             else
                 KrViewer::view(rightURL, this);   // view the file
             return;
         } else if (e->modifiers() == 0 && item->existsInLeft()) {
-            QUrl leftURL = QUrl::fromUserInput(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName(),
-                                               QString(), QUrl::AssumeLocalFile);
+            QUrl leftURL = Synchronizer::fsUrl(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName());
             if (isedit)
                 KrViewer::edit(leftURL, this);   // view the file
             else
@@ -2588,13 +2561,11 @@ void SynchronizerGUI::copyToClipboard(bool isLeft)
         if (item) {
             if (isLeft && item->existsInLeft()) {
                 QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-                QUrl leftURL = QUrl::fromUserInput(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName(),
-                                                   QString(), QUrl::AssumeLocalFile);
+                QUrl leftURL = Synchronizer::fsUrl(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName());
                 urls.push_back(leftURL);
             } else if (!isLeft && item->existsInRight()) {
                 QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
-                QUrl rightURL = QUrl::fromUserInput(synchronizer.rightBaseDirectory()  + rightDirName + item->rightName(),
-                                                    QString(), QUrl::AssumeLocalFile);
+                QUrl rightURL = Synchronizer::fsUrl(synchronizer.rightBaseDirectory()  + rightDirName + item->rightName());
                 urls.push_back(rightURL);
             }
         }

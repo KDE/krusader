@@ -64,6 +64,11 @@ SynchronizerDirList::~SynchronizerDirList()
         delete lit.next().value();
 }
 
+QString SynchronizerDirList::escapeUrlHashes(QString strUrl)
+{
+    return strUrl.replace("#", "%23");
+}
+
 vfile * SynchronizerDirList::search(const QString &name, bool ignoreCase)
 {
     if (!ignoreCase) {
@@ -185,7 +190,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
         emit finished(result = true);
         return true;
     } else {
-        KIO::Job *job = KIO::listDir(url, KIO::HideProgressInfo, true);
+        KIO::Job *job = KIO::listDir(QUrl(SynchronizerDirList::escapeUrlHashes(url.toString())), KIO::HideProgressInfo, true);
         connect(job, SIGNAL(entries(KIO::Job*, const KIO::UDSEntryList&)),
                 this, SLOT(slotEntries(KIO::Job*, const KIO::UDSEntryList&)));
         connect(job, SIGNAL(result(KJob*)),
