@@ -76,7 +76,7 @@ KgArchives::KgArchives(bool first, QWidget* parent) :
 
     //  ------------------------ BROWSE GROUPBOX --------------------------------
 
-    QGroupBox *browseGrp = createFrame(i18n("archives handling"), innerWidget);
+    QGroupBox *browseGrp = createFrame(i18n("Archives handling"), innerWidget);
     QGridLayout *browseGrid = createGridLayout(browseGrp);
 
     KONFIGURATOR_CHECKBOX_PARAM browseOptions[] =
