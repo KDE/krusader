@@ -310,7 +310,9 @@ void PanelTabBar::dragMoveEvent(QDragMoveEvent *e)
 
 void PanelTabBar::layoutTabs()
 {
-   for (int i = 0; i < count(); i++)
+   for (int i = 0; i < count(); i++) {
         setTabText(i, squeeze(DISPLAY(((ListPanel*)tabData(i).toLongLong())->virtualPath()), i));
+        emit ((ListPanel*)tabData(i).toLongLong())->refreshPathLabel();
+   }
 }
 

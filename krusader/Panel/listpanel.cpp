@@ -204,6 +204,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     connect(origin, SIGNAL(focusout()), func, SLOT(refresh()));
     connect(origin, SIGNAL(urlSelected(const QUrl &)), func, SLOT(urlEntered(const QUrl &)));
     connect(origin, SIGNAL(urlSelected(const QUrl &)), this, SLOT(slotFocusOnMe()));
+    connect(this, SIGNAL(refreshPathLabel()), origin, SLOT(refresh()));
     ADD_WIDGET(origin);
 
     // toolbar
@@ -660,6 +661,7 @@ void ListPanel::slotFocusOnMe(bool focus)
 
     origin->setActive(focus);
     refreshColors();
+    emit refreshPathLabel();
 
     krApp->setUpdatesEnabled(true);
 }

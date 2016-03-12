@@ -81,8 +81,6 @@ UrlRequester::UrlRequester(KLineEdit *le, QWidget *parent) : KUrlRequester(le, p
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("FlatOriginBar", _FlatOriginBar)) {
         _path = new PathLabel(this, le);
         _path->setCursor(Qt::IBeamCursor);
-        // temporary workaround
-        _path->resize(1000,parent->height());
         le->hide();
         connect(le, SIGNAL(textChanged ( const QString & )), SLOT(slotTextChanged(const QString&)));
     }
@@ -102,6 +100,16 @@ void UrlRequester::edit()
         _path->hide();
     lineEdit()->show();
     lineEdit()->setFocus();
+}
+
+void UrlRequester::refresh()
+{
+    _path->hide();
+    lineEdit()->show();
+    _path->resize(100, height());
+    _path->resize(lineEdit()->width(), height());
+    lineEdit()->hide();
+    _path->show();
 }
 
 bool UrlRequester::eventFilter(QObject * watched, QEvent * e)

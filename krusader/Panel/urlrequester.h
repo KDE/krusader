@@ -36,6 +36,10 @@ signals:
 
 public slots:
     void slotTextChanged(const QString &text);
+    /**
+     * takes the current width from the hidden KLineEdit and sets it to the PathLabel
+     */
+    void refresh();
 
 private:
     class PathLabel;
