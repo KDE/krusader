@@ -27,4 +27,5 @@ target_link_libraries(Konfigurator
     KF5::ConfigCore
     KF5::ConfigWidgets
     KF5::WidgetsAddons
+    KF5::GuiAddons
 )

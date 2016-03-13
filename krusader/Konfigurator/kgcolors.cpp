@@ -31,6 +31,7 @@
 #include "kgcolors.h"
 #include "../defaults.h"
 #include "../Panel/krcolorcache.h"
+#include "../Synchronizer/synchronizercolors.h"
 
 #include <QtCore/QList>
 #include <QtCore/QStandardPaths>
@@ -206,16 +207,19 @@ KgColors::KgColors(bool first, QWidget* parent) :
 
     offset = endOfPanelColors = itemList.count();
 
-    addColorSelector("Synchronizer Equals Foreground", i18n("Equals foreground:"), Qt::black, QString(), &KDEDefaultFore, 1);
-    addColorSelector("Synchronizer Equals Background", i18n("Equals background:"), p.color(QPalette::Active, QPalette::Base), QString(), &KDEDefaultBase, 1);
-    addColorSelector("Synchronizer Differs Foreground", i18n("Differing foreground:"), Qt::red, QString(), &KDEDefaultFore, 1);
-    addColorSelector("Synchronizer Differs Background", i18n("Differing background:"), p.color(QPalette::Active, QPalette::Base), QString(), &KDEDefaultBase, 1);
-    addColorSelector("Synchronizer LeftCopy Foreground", i18n("Copy to left foreground:"), Qt::blue, QString(), &KDEDefaultFore, 1);
-    addColorSelector("Synchronizer LeftCopy Background", i18n("Copy to left background:"), p.color(QPalette::Active, QPalette::Base), QString(), &KDEDefaultBase, 1);
-    addColorSelector("Synchronizer RightCopy Foreground", i18n("Copy to right foreground:"), Qt::darkGreen, QString(), &KDEDefaultFore, 1);
-    addColorSelector("Synchronizer RightCopy Background", i18n("Copy to right background:"), p.color(QPalette::Active, QPalette::Base), QString(), &KDEDefaultBase, 1);
-    addColorSelector("Synchronizer Delete Foreground", i18n("Delete foreground:"), Qt::white, QString(), &KDEDefaultFore, 1);
-    addColorSelector("Synchronizer Delete Background", i18n("Delete background:"), Qt::red, QString(), &KDEDefaultBase, 1);
+    DECLARE_SYNCHRONIZER_BACKGROUND_DEFAULTS;
+    DECLARE_SYNCHRONIZER_FOREGROUND_DEFAULTS;
+
+    addColorSelector("Synchronizer Equals Foreground", i18n("Equals foreground:"), SYNCHRONIZER_FOREGROUND_DEFAULTS[0], QString(), &KDEDefaultFore, 1);
+    addColorSelector("Synchronizer Equals Background", i18n("Equals background:"), SYNCHRONIZER_BACKGROUND_DEFAULTS[0], QString(), &KDEDefaultBase, 1);
+    addColorSelector("Synchronizer Differs Foreground", i18n("Differing foreground:"), SYNCHRONIZER_FOREGROUND_DEFAULTS[1], QString(), &KDEDefaultFore, 1);
+    addColorSelector("Synchronizer Differs Background", i18n("Differing background:"), SYNCHRONIZER_BACKGROUND_DEFAULTS[1], QString(), &KDEDefaultBase, 1);
+    addColorSelector("Synchronizer LeftCopy Foreground", i18n("Copy to left foreground:"), SYNCHRONIZER_FOREGROUND_DEFAULTS[2], QString(), &KDEDefaultFore, 1);
+    addColorSelector("Synchronizer LeftCopy Background", i18n("Copy to left background:"), SYNCHRONIZER_BACKGROUND_DEFAULTS[2], QString(), &KDEDefaultBase, 1);
+    addColorSelector("Synchronizer RightCopy Foreground", i18n("Copy to right foreground:"), SYNCHRONIZER_FOREGROUND_DEFAULTS[3], QString(), &KDEDefaultFore, 1);
+    addColorSelector("Synchronizer RightCopy Background", i18n("Copy to right background:"), SYNCHRONIZER_BACKGROUND_DEFAULTS[3], QString(), &KDEDefaultBase, 1);
+    addColorSelector("Synchronizer Delete Foreground", i18n("Delete foreground:"), SYNCHRONIZER_FOREGROUND_DEFAULTS[4], QString(), &KDEDefaultFore, 1);
+    addColorSelector("Synchronizer Delete Background", i18n("Delete background:"), SYNCHRONIZER_BACKGROUND_DEFAULTS[4], QString(), &KDEDefaultBase, 1);
 
     colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
 #endif

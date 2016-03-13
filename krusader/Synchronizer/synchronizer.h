@@ -45,13 +45,6 @@
 class KRQuery;
 class vfile;
 
-#define DECLARE_COLOR_NAME_ARRAY  QString COLOR_NAMES[] = { "Equals", "Differs", "LeftCopy", "RightCopy", "Delete", \
-        "Equals", "Equals",  "Equals",   "Equals",    "Equals" }
-#define DECLARE_BACKGROUND_DFLTS  QColor BCKG_DFLTS[] = { QColor(), QColor(), QColor(), QColor(), Qt::red, \
-        QColor(), QColor(), QColor(), QColor(), QColor() }
-#define DECLARE_FOREGROUND_DFLTS  QColor FORE_DFLTS[] = { Qt::black, Qt::red,  Qt::blue, Qt::darkGreen, Qt::white, \
-        Qt::black, Qt::black, Qt::black, Qt::black, Qt::black }
-
 class Synchronizer : public QObject
 {
     Q_OBJECT

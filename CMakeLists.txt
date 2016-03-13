@@ -55,6 +55,7 @@ find_package(KF5 REQUIRED COMPONENTS
   WidgetsAddons
   WindowSystem
   XmlGui
+  GuiAddons
 )
 
 # Synchronizer is enabled by default, unless disabled from the command line (-DENABLE_SYNCHRONIZER=OFF)

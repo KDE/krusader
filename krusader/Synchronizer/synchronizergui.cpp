@@ -43,6 +43,7 @@
 #include "../kicons.h"
 #include "synchronizedialog.h"
 #include "feedtolistboxdialog.h"
+#include "synchronizercolors.h"
 
 #include <QtCore/QEventLoop>
 #include <QtCore/QRegExp>
@@ -70,6 +71,7 @@
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 #include <KIOWidgets/KUrlRequester>
+#include <KGuiAddons/KColorUtils>
 
 static const char * const right_arrow_button_data[] = {
     "18 18 97 2",
@@ -1570,27 +1572,33 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
 
     KConfigGroup gc(krConfig, "Colors");
 
-    DECLARE_COLOR_NAME_ARRAY;
-    DECLARE_BACKGROUND_DFLTS;
-    DECLARE_FOREGROUND_DFLTS;
+    QString COLOR_NAMES[] = { "Equals", "Differs", "LeftCopy", "RightCopy", "Delete" };
+    QPalette defaultPalette = QGuiApplication::palette();
+
+    DECLARE_SYNCHRONIZER_BACKGROUND_DEFAULTS;
+    DECLARE_SYNCHRONIZER_FOREGROUND_DEFAULTS;
 
     for (int clr = 0; clr != TT_MAX; clr ++) {
-        QString foreEntry = QString("Synchronizer ") + COLOR_NAMES[ clr ] + QString(" Foreground");
-        QString bckgEntry = QString("Synchronizer ") + COLOR_NAMES[ clr ] + QString(" Background");
+        QString colorName = clr > 4 ? "Equals" : COLOR_NAMES[ clr ];
+        QColor backgroundDefault = clr > 4 ? defaultPalette.color(QPalette::Active, QPalette::Base) : SYNCHRONIZER_BACKGROUND_DEFAULTS[ clr ];
+        QColor foregroundDefault = clr > 4 ? defaultPalette.color(QPalette::Active, QPalette::Text) : SYNCHRONIZER_FOREGROUND_DEFAULTS[ clr ];
+
+        QString foreEntry = QString("Synchronizer ") + colorName + QString(" Foreground");
+        QString bckgEntry = QString("Synchronizer ") + colorName + QString(" Background");
 
         if (gc.readEntry(foreEntry, QString()) == "KDE default")
             foreGrounds[ clr ] = QColor();
         else if (gc.readEntry(foreEntry, QString()).isEmpty())    // KDE4 workaround, default color doesn't work
-            foreGrounds[ clr ] = FORE_DFLTS[ clr ];
+            foreGrounds[ clr ] = foregroundDefault;
         else
-            foreGrounds[ clr ] = gc.readEntry(foreEntry, FORE_DFLTS[ clr ]);
+            foreGrounds[ clr ] = gc.readEntry(foreEntry, foregroundDefault);
 
         if (gc.readEntry(bckgEntry, QString()) == "KDE default")
             backGrounds[ clr ] = QColor();
         else if (gc.readEntry(foreEntry, QString()).isEmpty())    // KDE4 workaround, default color doesn't work
-            backGrounds[ clr ] = BCKG_DFLTS[ clr ];
+            backGrounds[ clr ] = backgroundDefault;
         else
-            backGrounds[ clr ] = gc.readEntry(bckgEntry, BCKG_DFLTS[ clr ]);
+            backGrounds[ clr ] = gc.readEntry(bckgEntry, backgroundDefault);
     }
     if (backGrounds[ TT_EQUALS ].isValid()) {
         QPalette pal = syncList->palette();

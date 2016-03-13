@@ -17,4 +17,5 @@ target_link_libraries(Synchronizer
     KF5::I18n
     KF5::KIOWidgets
     KF5::WidgetsAddons
+    KF5::GuiAddons
 )
