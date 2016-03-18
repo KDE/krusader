@@ -159,11 +159,7 @@ void KRSearchMod::scanLocalDir(QUrl urlToScan)
                 unScannedUrls.push(url);
         }
         if (query->searchInArchives()) {
-            QString type = mime.right(4);
-            if (mime.contains("-rar")) type = "-rar";
-            if (mime.endsWith("/zip")) type = "-zip";
-
-            if (KRarcHandler::arcSupported(type)) {
+            if (KRarcHandler::arcSupported(mime)) {
                 QUrl archiveURL = url;
                 bool encrypted;
                 QString realType = arcHandler.getType(encrypted, url.path(), mime);

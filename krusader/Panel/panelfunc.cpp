@@ -162,7 +162,7 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool canExecuteFil
     bool ArchivesAsDirectories = KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories);
     QUrl arcPath = browsableArchivePath(name);
 
-    if (!arcPath.isEmpty() && (ArchivesAsDirectories || !canExecuteFile)) {
+    if (!arcPath.isEmpty() && ((ArchivesAsDirectories && KRarcHandler::arcSupported(mime)) || !canExecuteFile)) {
         openUrl(arcPath);
         return;
     }

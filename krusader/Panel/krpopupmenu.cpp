@@ -43,6 +43,7 @@
 #include "../krusaderview.h"
 #include "../panelmanager.h"
 #include "../krtrashhandler.h"
+#include "../VFS/krarchandler.h"
 
 #ifdef __LIBKONQ__
 #include <konq_popupmenu.h>
@@ -110,7 +111,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
         }
         bool ArchivesAsDirectories = KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories);
         QUrl arcPath = panel->func->browsableArchivePath(vf->vfile_getName());
-        if (!arcPath.isEmpty() && !ArchivesAsDirectories) {
+        if (!arcPath.isEmpty() && !(ArchivesAsDirectories && KRarcHandler::arcSupported(vf->vfile_getMime()))) {
             QAction *browseAct = addAction(i18n("Browse"));
             browseAct->setData(QVariant(BROWSE_ID));
             browseAct->setIcon(krLoader->loadIcon("", KIconLoader::Panel));

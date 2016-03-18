@@ -126,7 +126,21 @@ bool KRarcHandler::arcSupported(QString type)
     KConfigGroup group(krConfig, "Archives");
     QStringList lst = group.readEntry("Supported Packers", QStringList());
 
-    if (type == "-zip" && lst.contains("unzip"))
+    // Normalize the type of the file
+    if (type.length() > 4) {
+        // 7zip files are a not a normal case because their mimetype does not
+        // follow the norm of other types: zip, tar, lha, ace, arj, etc.
+        if (type == "application/x-7z-compressed")
+            type = "-7z";
+        else
+            // If it's a rar file but its mimetype isn't "application/x-rar"
+            if (type == "application/x-rar-compressed")
+                type = "-rar";
+            else
+                type = type.right(4);
+    }
+
+    if ((type == "-zip" || type == "/zip") && lst.contains("unzip"))
         return true;
     else if (type == "-tar" && lst.contains("tar"))
         return true;
