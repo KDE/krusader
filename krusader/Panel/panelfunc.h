@@ -136,7 +136,7 @@ protected slots:
 protected:
     QUrl cleanPath(const QUrl &url);
     bool isSyncing(const QUrl &url);
-    void openFileNameInternal(const QString &name, bool canExecuteFile);
+    void openFileNameInternal(const QString &name, bool theFileCanBeExecutedOrOpenedWithOtherSoftware);
     void openUrlInternal(const QUrl &url, const QString& makeCurrent,
                          bool immediately, bool disableLock, bool manuallyEntered);
     void runCommand(QString cmd);

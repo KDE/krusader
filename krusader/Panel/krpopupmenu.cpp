@@ -109,13 +109,17 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
             openTab->setIcon(krLoader->loadIcon("tab-new", KIconLoader::Panel));
             openTab->setText(i18n("Open in New Tab"));
         }
-        bool ArchivesAsDirectories = KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories);
         QUrl arcPath = panel->func->browsableArchivePath(vf->vfile_getName());
-        if (!arcPath.isEmpty() && !(ArchivesAsDirectories && KRarcHandler::arcSupported(vf->vfile_getMime()))) {
-            QAction *browseAct = addAction(i18n("Browse"));
-            browseAct->setData(QVariant(BROWSE_ID));
-            browseAct->setIcon(krLoader->loadIcon("", KIconLoader::Panel));
-            browseAct->setText(i18n("Browse Archive"));
+        if (!arcPath.isEmpty()) {
+            bool theArchiveMustBeBrowsedAsADirectory = KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories) &&
+                                                       KRarcHandler::arcSupported(vf->vfile_getMime());
+            if (!theArchiveMustBeBrowsedAsADirectory) {
+                // Add an option to browse the archive
+                QAction *browseAct = addAction(i18n("Browse"));
+                browseAct->setData(QVariant(BROWSE_ID));
+                browseAct->setIcon(krLoader->loadIcon("", KIconLoader::Panel));
+                browseAct->setText(i18n("Browse Archive"));
+            }
         }
         addSeparator();
     }
