@@ -123,10 +123,19 @@ void TerminalDock::sendInput(const QString& input)
     }
 }
 
+/*! Sends a `cd` command to the embedded terminal emulator so as to synchronize the directory of the actual panel and
+    the directory of the embedded terminal emulator.
+
+    To avoid that Krusader's embedded terminal adds a lot of `cd` messages to the shell history: the user has to use
+    bash and have set `HISTCONTROL=ignorespace` or `HISTCONTROL=ignoreboth` (which is the default in a lot of Linux
+    distributions so in that case the user hasn't got to do anything), or the user has to use an equivalent method.
+*/
 void TerminalDock::sendCd(const QString& path)
 {
     if (path.compare(lastPath) != 0) {
-        sendInput(QString("cd ") + KrServices::quote(path) + QString("\n"));
+        // A space exists in front of the `cd` so as to avoid that Krusader's embedded terminal adds a lot of `cd`
+        // messages to the shell history, in Dolphin it's done the same way: https://bugs.kde.org/show_bug.cgi?id=204039
+        sendInput(QString(" cd ") + KrServices::quote(path) + QString("\n"));
         lastPath = path;
     }
 }
