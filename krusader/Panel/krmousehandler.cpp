@@ -34,7 +34,7 @@
 
 KrMouseHandler::KrMouseHandler(KrView * view, int contextMenuShift) : _view(view), _rightClickedItem(0),
         _contextMenuTimer(), _contextMenuShift(contextMenuShift), _singleClicked(false), _singleClickTime(),
-        _renameTimer(), _dragStartPos(-1, -1), _emptyContextMenu(false)
+        _renameTimer(), _dragStartPos(-1, -1), _emptyContextMenu(false), _selectedItemNames()
 {
     KConfigGroup grpSvr(krConfig, "Look&Feel");
     // decide on single click/double click selection
@@ -72,12 +72,25 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
             e->accept();
             return true;
         } else if (e->modifiers() == Qt::ControlModifier) {
+
+            // get current selected item names
+            _selectedItemNames.clear();
+            _view->getSelectedItems(&_selectedItemNames, true);
+
             if (item && (KrSelectionMode::getSelectionHandler()->shiftCtrlLeftButtonSelects() ||
                          KrSelectionMode::getSelectionHandler()->leftButtonSelects())) {
                 item->setSelected(!item->isSelected());
             }
-            if (item)
+            if (item) {
+
+                // select also the focused item if there are no other selected items
+                KrViewItem * previousItem = _view->getCurrentKrViewItem();
+                if (previousItem->name() != ".." && _selectedItemNames.empty()) {
+                    previousItem->setSelected(true);
+                }
+
                 _view->setCurrentKrViewItem(item);
+            }
             e->accept();
             return true;
         } else if (e->modifiers() == Qt::ShiftModifier) {

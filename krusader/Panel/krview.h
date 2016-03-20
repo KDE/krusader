@@ -390,7 +390,7 @@ public:
     virtual uint count() const {
         return _count;
     }
-    virtual void getSelectedItems(QStringList* names);
+    virtual void getSelectedItems(QStringList* names, bool ignoreJustFocused = false);
     virtual void getItemsByMask(QString mask, QStringList* names, bool dirs = true, bool files = true);
     virtual void getSelectedKrViewItems(KrViewItemList *items);
     virtual void selectAllIncludingDirs() {

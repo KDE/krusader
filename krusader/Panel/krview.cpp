@@ -526,15 +526,17 @@ void KrView::getItemsByMask(QString mask, QStringList* names, bool dirs, bool fi
  * this function ADDs a list of selected item names into 'names'.
  * it assumes the list is ready and doesn't initialize it, or clears it
  */
-void KrView::getSelectedItems(QStringList *names)
+void KrView::getSelectedItems(QStringList *names, bool ignoreJustFocused)
 {
     for (KrViewItem * it = getFirst(); it != 0; it = getNext(it))
         if (it->isSelected() && (it->name() != "..")) names->append(it->name());
 
     // if all else fails, take the current item
-    QString item = getCurrentItem();
-    if (names->empty() && !item.isEmpty() && item != "..") {
-        names->append(item);
+    if (!ignoreJustFocused) {
+        QString item = getCurrentItem();
+        if (names->empty() && !item.isEmpty() && item != "..") {
+            names->append(item);
+        }
     }
 }
 

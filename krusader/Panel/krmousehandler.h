@@ -73,6 +73,7 @@ protected:
     QTimer       _renameTimer;
     QPoint       _dragStartPos;
     bool         _emptyContextMenu;
+    QStringList  _selectedItemNames;
 };
 
 #endif
