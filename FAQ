@@ -354,12 +354,12 @@ Installation FAQ
         recursive directories that your normal user can read-write-execute in
         these directories.
 
-     3. Copy kusader-1.xx.tar.gz to /usr/scr/RPM/SOURCE
+     3. Copy krusader-1.xx.tar.gz to /usr/scr/RPM/SOURCE
 
-     4. Copy kusader.spec to /usr/scr/RPM/SPECS Tip: the latest kusader.spec
+     4. Copy krusader.spec to /usr/scr/RPM/SPECS Tip: the latest kusader.spec
         can be found in CVS.
 
-     5. Edit kusader.spec and add your name, your e-mail address, the rpm name,
+     5. Edit krusader.spec and add your name, your e-mail address, the rpm name,
         ... Other changes may be needed if rpmbuild fails.
 
      6. Build the binary and the source RPM with:
