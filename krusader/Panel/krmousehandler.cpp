@@ -68,6 +68,14 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
                     }
                 }
                 _view->setCurrentKrViewItem(item);
+            } else {
+                // empty space under items clicked
+                if (KrSelectionMode::getSelectionHandler()->leftButtonSelects()
+                    && !KrSelectionMode::getSelectionHandler()->leftButtonPreservesSelection()) {
+
+                    // clear the current selection
+                    _view->changeSelection(KRQuery("*"), false, true);
+                }
             }
             e->accept();
             return true;
