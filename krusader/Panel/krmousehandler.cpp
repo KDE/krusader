@@ -73,22 +73,22 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
             return true;
         } else if (e->modifiers() == Qt::ControlModifier) {
 
-            // get current selected item names
-            _selectedItemNames.clear();
-            _view->getSelectedItems(&_selectedItemNames, true);
-
             if (item && (KrSelectionMode::getSelectionHandler()->shiftCtrlLeftButtonSelects() ||
                          KrSelectionMode::getSelectionHandler()->leftButtonSelects())) {
+
+                // get current selected item names
+                _selectedItemNames.clear();
+                _view->getSelectedItems(&_selectedItemNames, true);
+
                 item->setSelected(!item->isSelected());
-            }
-            if (item) {
 
                 // select also the focused item if there are no other selected items
                 KrViewItem * previousItem = _view->getCurrentKrViewItem();
                 if (previousItem->name() != ".." && _selectedItemNames.empty()) {
                     previousItem->setSelected(true);
                 }
-
+            }
+            if (item) {
                 _view->setCurrentKrViewItem(item);
             }
             e->accept();
