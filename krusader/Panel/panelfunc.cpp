@@ -689,7 +689,7 @@ void ListPanelFunc::moveFiles(bool enqueue)
     }
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         panel->view->saveSelection();
-        panel->view->unselect(KRQuery("*"));
+        panel->view->unselectAll();
     }
 }
 
@@ -874,7 +874,7 @@ void ListPanelFunc::copyFiles(bool enqueue)
     }
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         panel->view->saveSelection();
-        panel->view->unselect(KRQuery("*"));
+        panel->view->unselectAll();
     }
 }
 

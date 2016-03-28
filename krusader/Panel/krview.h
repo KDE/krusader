@@ -402,6 +402,9 @@ public:
     virtual void unselect(const KRQuery& filter = KRQuery("*")) {
         changeSelection(filter, false);
     }
+    virtual void unselectAll() {
+        changeSelection(KRQuery("*"), false, true);
+    }
     virtual void invertSelection();
     virtual QString nameToMakeCurrent() const {
         return _nameToMakeCurrent;

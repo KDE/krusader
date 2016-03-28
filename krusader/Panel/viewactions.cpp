@@ -128,7 +128,7 @@ void ViewActions::markAll()
 
 void ViewActions::unmarkAll()
 {
-    view()->changeSelection(KRQuery("*"), false);
+    view()->unselectAll();
 }
 
 void ViewActions::markGroup()

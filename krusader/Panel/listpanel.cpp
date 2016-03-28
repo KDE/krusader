@@ -895,7 +895,7 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         KrPanel *p = (dragFromThisPanel ? this : otherPanel());
         p->view->saveSelection();
-        p->view->unselect(KRQuery("*"));
+        p->view->unselectAll();
     }
 }
 
