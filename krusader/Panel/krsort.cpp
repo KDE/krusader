@@ -259,10 +259,10 @@ bool itemLessThan(SortProps *sp, SortProps *sp2)
 {
     vfile * file1 = sp->vf();
     vfile * file2 = sp2->vf();
-    bool alwaysSortDirsByName = sp->properties()->sortOptions & KrViewProperties::AlwaysSortDirsByName;
     bool isdir1 = file1->vfile_isDir();
     bool isdir2 = file2->vfile_isDir();
-    bool dirsFirst = sp->properties()->sortOptions  & KrViewProperties::DirsFirst;
+    bool alwaysSortDirsByName = sp->properties()->sortOptions & KrViewProperties::AlwaysSortDirsByName && isdir1 && isdir2;
+    bool dirsFirst = sp->properties()->sortOptions & KrViewProperties::DirsFirst;
 
     if(dirsFirst) {
         if (isdir1 && !isdir2)
