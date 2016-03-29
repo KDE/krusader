@@ -5,7 +5,10 @@ set(ActionMan_SRCS
     useractionlistview.cpp
     useractionpage.cpp)
 
-qt5_wrap_ui(ActionMan_SRCS actionproperty.ui)
+ki18n_wrap_ui (
+    ActionMan_SRCS
+    actionproperty.ui
+)
 
 add_library(ActionMan STATIC ${ActionMan_SRCS})
 
