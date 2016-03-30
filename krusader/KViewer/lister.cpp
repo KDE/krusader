@@ -1369,9 +1369,8 @@ void Lister::slotUpdate()
 
     int percent = (_fileSize == 0) ? 0 : (int)((201 * cursor) / _fileSize / 2);
 
-    QString status = i18n("Column: %1, Position: %2 (%3, %4%)")
-                     .arg(cursorX, 3, 10, QChar(' '))
-                     .arg(cursor).arg(_fileSize).arg(percent);
+    QString status = i18n("Column: %1, Position: %2 (%3, %4%)",
+                     cursorX, cursor, _fileSize, percent);
     _statusLabel->setText(status);
 
     if (_searchProgressCounter)

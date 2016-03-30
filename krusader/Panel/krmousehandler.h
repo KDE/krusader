@@ -22,6 +22,7 @@
 #include <QtCore/QPoint>
 #include <QtCore/QTimer>
 #include <QtCore/QTime>
+#include <QtCore/QStringList>
 
 class QMouseEvent;
 class QWheelEvent;

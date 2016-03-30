@@ -132,7 +132,7 @@ void Combiner::combineSplitFileFinished(KJob *job)
                 expectedFileName = value;
                 hasFileName = true;
             } else if (token == "size") {
-                //FIXME - dont use c functions !!!
+                //FIXME - don't use c functions !!!
                 sscanf(value.trimmed().toLocal8Bit(), "%llu", &expectedSize);
                 hasSize = true;
             }
