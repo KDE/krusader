@@ -66,6 +66,8 @@ SynchronizerDirList::~SynchronizerDirList()
 
 QString SynchronizerDirList::escapeUrlHashes(QString strUrl)
 {
+    // Avoid that if a path contains a '#' then what follows the '#' be interpreted as the fragment identifier of
+    // the URL and not a part of the file path; for more information https://bugs.kde.org/show_bug.cgi?id=270150 can be seen
     return strUrl.replace("#", "%23");
 }
 
