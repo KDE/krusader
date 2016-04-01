@@ -106,7 +106,7 @@ public:
     {
         vfile *vf = new vfile(path, size, perm, mtime, false/*FIXME*/, false/*FIXME*/,
                               uid, gid, QString(), QString(), 0);
-        vf->vfile_setUrl(QUrl::fromLocalFile(path));
+        vf->vfile_setUrl(QUrl::fromUserInput(path));
         _vfiles << vf;
         if(!foundText.isEmpty())
             _foundText[vf] = foundText;
