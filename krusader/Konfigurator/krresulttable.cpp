@@ -351,7 +351,7 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
     QWidget* toolBoxWidget = new QWidget(this);
     QVBoxLayout * toolBox = new QVBoxLayout(toolBoxWidget);
 
-    for (QList<Application*>::Iterator it = _apps.begin(); it != _apps.end(); it++) {
+    for (QList<Application*>::Iterator it = _apps.begin(); it != _apps.end(); ++it) {
         KUrlLabel* l = new KUrlLabel((*it)->getWebsite(), (*it)->getAppName(), toolBoxWidget);
         toolBox->addWidget(l);
 
@@ -366,7 +366,7 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
     QWidget* vboxWidget = new QWidget(this);
     QVBoxLayout * vbox = new QVBoxLayout(vboxWidget);
 
-    for (QList<Application*>::Iterator it = _apps.begin(); it != _apps.end(); it++) {
+    for (QList<Application*>::Iterator it = _apps.begin(); it != _apps.end(); ++it) {
         _label = new QLabel((*it)->getPath(), vboxWidget);
         _label->setContentsMargins(5, 5, 5, 5);
         _label->setAlignment(Qt::AlignTop);

@@ -175,7 +175,7 @@ const QString& vfile::vfile_getMime(bool fast)
                 QString file = url.toLocalFile() + "/.directory";
                 KDesktopFile cfg(file);
                 QString icon = cfg.readIcon();
-                if(icon.startsWith("./")) // relative path
+                if(icon.startsWith(QLatin1String("./"))) // relative path
                     icon = url.toLocalFile() + '/' + icon;
                 if (!icon.isEmpty())
                     vfile_icon = icon;

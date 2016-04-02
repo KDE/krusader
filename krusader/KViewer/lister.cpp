@@ -2088,7 +2088,7 @@ QStringList Lister::readHexLines(qint64 &filePos, qint64 endPos, int columns, in
 
         QString charData;
 
-        for (int i = 0; i != bytesPerRow; i++, cnt++) {
+        for (int i = 0; i != bytesPerRow; ++i, ++cnt) {
             qint64 currentPos = printPos + i;
             if (currentPos < filePos || currentPos >= endPos) {
                 pos += QString("   ");

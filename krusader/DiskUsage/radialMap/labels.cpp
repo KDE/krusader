@@ -59,7 +59,7 @@ public:
     }
 
     void inSort(Label * label1) {
-        for (QList<Label *>::iterator it(begin()); it != end(); it++) {
+        for (QList<Label *>::iterator it(begin()); it != end(); ++it) {
             Label * label2 = *it;
             bool ins = false;
 

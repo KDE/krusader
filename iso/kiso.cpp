@@ -71,7 +71,7 @@ static int getTracks(const char *fname, int *tracks)
         if (ioctl(fd, CDROMREADTOCHDR, &tochead) != -1) {
 //            qDebug() << "getTracks first track:" << tochead.cdth_trk0
 //            << " last track " << tochead.cdth_trk1 << endl;
-            for (i = tochead.cdth_trk0;i <= tochead.cdth_trk1;i++) {
+            for (i = tochead.cdth_trk0;i <= tochead.cdth_trk1;++i) {
                 if (ret > 99) break;
                 memset(&tocentry, 0, sizeof(struct cdrom_tocentry));
                 tocentry.cdte_track = i;
@@ -264,7 +264,7 @@ static int mycallb(struct iso_directory_record *idr, void *udata)
                         path += ch;
                     }
                 } else {
-                    for (i = 0;i < isonum_711(idr->name_len);i++) {
+                    for (i = 0;i < isonum_711(idr->name_len);++i) {
                         if (idr->name[i] == ';') break;
                         if (idr->name[i]) path += (idr->name[i]);
                     }
@@ -384,7 +384,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
     //qDebug() << "KIso::openArchive number of tracks: " << trackno << endl;
 
     if (trackno == 0) trackno = 1;
-    for (i = 0;i < trackno;i++) {
+    for (i = 0;i < trackno;++i) {
 
         c_b = 1;c_i = 1;c_j = 1;
         root = rootDir();

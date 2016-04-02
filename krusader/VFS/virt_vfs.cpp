@@ -335,7 +335,7 @@ bool virt_vfs::restore()
     QMap<QString, QString>::Iterator it;
     QList<QUrl>* urlList;
     for (it = map.begin(); it != map.end(); ++it) {
-        if(!it.key().startsWith("Item_"))
+        if(!it.key().startsWith(QLatin1String("Item_")))
             continue;
         urlList = new QList<QUrl>(KrServices::toUrlList(dbGrp.readEntry(it.key(), QStringList())));
         // KDE 4.0 workaround, Item_ is removed (KConfig fails on 1 char names (such as /))

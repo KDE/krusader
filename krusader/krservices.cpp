@@ -84,9 +84,9 @@ QString KrServices::registeredProtocol(QString mimetype)
 
         KConfigGroup group(krConfig, "Protocols");
         QStringList protList = group.readEntry("Handled Protocols", QStringList());
-        for (QStringList::Iterator it = protList.begin(); it != protList.end(); it++) {
+        for (QStringList::Iterator it = protList.begin(); it != protList.end(); ++it) {
             QStringList mimes = group.readEntry(QString("Mimes For %1").arg(*it), QStringList());
-            for (QStringList::Iterator it2 = mimes.begin(); it2 != mimes.end(); it2++)
+            for (QStringList::Iterator it2 = mimes.begin(); it2 != mimes.end(); ++it2)
                 (*slaveMap)[*it2] = *it;
         }
     }

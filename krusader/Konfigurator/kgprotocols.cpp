@@ -164,7 +164,7 @@ void KgProtocols::loadMimes()
     QMimeDatabase db;
     QList<QMimeType> mimes = db.allMimeTypes();
 
-    for (QList<QMimeType>::const_iterator it = mimes.constBegin(); it != mimes.constEnd(); it++)
+    for (QList<QMimeType>::const_iterator it = mimes.constBegin(); it != mimes.constEnd(); ++it)
         mimeList->addItem((*it).name());
 
     mimeList->sortItems();
@@ -308,12 +308,12 @@ void KgProtocols::loadInitialValues()
     KConfigGroup group(krConfig, "Protocols");
     QStringList protList = group.readEntry("Handled Protocols", QStringList());
 
-    for (QStringList::Iterator it = protList.begin(); it != protList.end(); it++) {
+    for (QStringList::Iterator it = protList.begin(); it != protList.end(); ++it) {
         addProtocol(*it);
 
         QStringList mimes = group.readEntry(QString("Mimes For %1").arg(*it), QStringList());
 
-        for (QStringList::Iterator it2 = mimes.begin(); it2 != mimes.end(); it2++)
+        for (QStringList::Iterator it2 = mimes.begin(); it2 != mimes.end(); ++it2)
             addMime(*it2, *it);
     }
 
