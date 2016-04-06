@@ -69,9 +69,9 @@ ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
     QAction *actSaveaveDefaultSettings = action(i18n("Save settings as default"), 0, 0, SLOT(saveDefaultSettings()), "view_save_default_settings");
 
     // tooltips
-    actSelect->setToolTip(i18n("Select files using a filter"));
+    actSelect->setToolTip(i18n("Select group"));
     actSelectAll->setToolTip(i18n("Select all files in the current directory"));
-    actUnselectAll->setToolTip(i18n("Unselect all selected files"));
+    actUnselectAll->setToolTip(i18n("Unselect all"));
     actSaveaveDefaultSettings->setToolTip(i18n("Save settings as default for new instances of this view type"));
 }
 
