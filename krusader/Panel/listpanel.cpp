@@ -72,6 +72,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../krusaderview.h"
 #include "../krservices.h"
 #include "../VFS/krpermhandler.h"
+#include "../VFS/krarchandler.h"
 #include "../MountMan/kmountman.h"
 #include "../BookMan/krbookmarkbutton.h"
 #include "../Dialogs/krdialogs.h"
@@ -988,10 +989,16 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                     newPath = KIO::upUrl(func->files()->vfs_getOrigin());
                 } else {
                     vfile *v = func->getVFile(it);
+                    // If it's a directory different from ".."
                     if (v && v->vfile_isDir() && v->vfile_getName() != "..") {
                         newPath = v->vfile_getUrl();
                     } else {
-                        newPath = func->files() ->vfs_getOrigin();
+                        // If it's a supported compressed file
+                        if (v && KRarcHandler::arcSupported(v->vfile_getMime()))   {
+                            newPath = func->browsableArchivePath(v->vfile_getUrl().fileName());
+                        } else {
+                            newPath = func->files()->vfs_getOrigin();
+                        }
                     }
                 }
                 otherPanel()->func->openUrl(newPath);
