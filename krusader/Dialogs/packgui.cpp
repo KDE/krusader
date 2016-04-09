@@ -74,7 +74,9 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
     if (PS("tar") && PS("lzma")) typeData->addItem("tar.lzma");
     if (PS("tar") && PS("xz")) typeData->addItem("tar.xz");
     if (PS("zip")) typeData->addItem("zip");
+    if (PS("zip")) typeData->addItem("cbz");
     if (PS("rar")) typeData->addItem("rar");
+    if (PS("rar")) typeData->addItem("cbr");
     if (PS("lha")) typeData->addItem("lha");
     if (PS("arj")) typeData->addItem("arj");
     if (PS("7z")) typeData->addItem("7z");

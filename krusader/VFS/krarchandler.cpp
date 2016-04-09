@@ -102,10 +102,12 @@ QStringList KRarcHandler::supportedPackers()
     if (KrServices::cmdExist("xz")) packers.append("xz");
     if (KrServices::cmdExist("unzip")) packers.append("unzip");
     if (KrServices::cmdExist("zip")) packers.append("zip");
+    if (KrServices::cmdExist("zip")) packers.append("cbz");
     if (KrServices::cmdExist("lha")) packers.append("lha");
     if (KrServices::cmdExist("cpio")) packers.append("cpio");
     if (KrServices::cmdExist("unrar")) packers.append("unrar");
     if (KrServices::cmdExist("rar")) packers.append("rar");
+    if (KrServices::cmdExist("rar")) packers.append("cbr");
     if (KrServices::cmdExist("arj")) packers.append("arj");
     if (KrServices::cmdExist("unarj")) packers.append("unarj");
     if (KrServices::cmdExist("unace")) packers.append("unace");
@@ -461,6 +463,8 @@ bool KRarcHandler::pack(QStringList fileNames, QString type, QString dest, long 
 
     if (type == "zip") {
         packer << KrServices::fullPathName("zip") << "-ry"; type = "-zip";
+    } else if (type == "cbz") {
+        packer << KrServices::fullPathName("zip") << "-ry"; type = "-zip";
     } else if (type == "tar") {
         packer << KrServices::fullPathName("tar") << "-cvf"; type = "-tar";
     } else if (type == "tar.gz") {
@@ -472,6 +476,8 @@ bool KRarcHandler::pack(QStringList fileNames, QString type, QString dest, long 
     } else if (type == "tar.xz") {
         packer << KrServices::fullPathName("tar") << "--xz" << "-cvf"; type = "-txz";
     } else if (type == "rar") {
+        packer << KrServices::fullPathName("rar") << "-r" << "a"; type = "-rar";
+    } else if (type == "cbr") {
         packer << KrServices::fullPathName("rar") << "-r" << "a"; type = "-rar";
     } else if (type == "lha") {
         packer << KrServices::fullPathName("lha") << "a"; type = "-lha";
