@@ -62,7 +62,7 @@ Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)0),
         firstTime(f), internalCall(false), sizeX(-1), sizeY(-1)
 {
     setWindowTitle(i18n("Konfigurator - Creating Your Own Krusader"));
-    setWindowModality(Qt::WindowModal);
+    setWindowModality(Qt::ApplicationModal);
     setFaceType(KPageDialog::List);
 
     setStandardButtons(QDialogButtonBox::Help|QDialogButtonBox::RestoreDefaults|QDialogButtonBox::Close|
