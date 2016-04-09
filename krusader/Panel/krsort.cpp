@@ -206,10 +206,10 @@ bool compareTextsCharacterCode(QString& aS1, QString& aS2, const KrViewPropertie
 bool compareTextsKrusader(QString& aS1, QString& aS2, const KrViewProperties * _viewProperties, bool asc, bool isName)
 {
     // ensure "hidden" before others
-    if (isName) {
-        if (aS1[0] == '.' && aS2[0] != '.') return asc;
-        if (aS1[0] != '.' && aS2[0] == '.') return !asc;
-    }
+    //if (isName) {
+    //    if (aS1[0] == '.' && aS2[0] != '.') return asc;
+    //    if (aS1[0] != '.' && aS2[0] == '.') return !asc;
+    //}
 
     // sometimes, localeAwareCompare is not case sensitive. in that case, we need to fallback to a simple string compare (KDE bug #40131)
     if (((_viewProperties->sortOptions & KrViewProperties::IgnoreCase)
@@ -261,8 +261,8 @@ bool itemLessThan(SortProps *sp, SortProps *sp2)
     vfile * file2 = sp2->vf();
     bool isdir1 = file1->vfile_isDir();
     bool isdir2 = file2->vfile_isDir();
-    bool alwaysSortDirsByName = sp->properties()->sortOptions & KrViewProperties::AlwaysSortDirsByName && isdir1 && isdir2;
     bool dirsFirst = sp->properties()->sortOptions & KrViewProperties::DirsFirst;
+    bool alwaysSortDirsByName = sp->properties()->sortOptions & KrViewProperties::AlwaysSortDirsByName && dirsFirst && isdir1 && isdir2;
 
     if(dirsFirst) {
         if (isdir1 && !isdir2)
