@@ -582,6 +582,17 @@ void ListPanel::slotUpdateTotals()
 
 void ListPanel::compareDirs(bool otherPanelToo)
 {
+    // Performs a check in order to avoid that the next code is executed twice
+    if (otherPanelToo == true) {
+        // If both panels are showing the same directory
+        if (_manager->currentPanel()->virtualPath() == otherPanel()->virtualPath()) {
+            if (KMessageBox::warningContinueCancel(this,
+                i18n("Warning: The left and the right side are showing the same directory!")) != KMessageBox::Continue) {
+                return;
+            }
+        }
+    }
+
     KConfigGroup pg(krConfig, "Private");
     int compareMode = pg.readEntry("Compare Mode", 0);
     KConfigGroup group(krConfig, "Look&Feel");
@@ -630,7 +641,7 @@ void ListPanel::compareDirs(bool otherPanelToo)
 
     view->updateView();
 
-    if(otherPanelToo)
+    if (otherPanelToo)
         otherPanel()->gui->compareDirs(false);
 }
 

@@ -2003,6 +2003,13 @@ void SynchronizerGUI::compare()
         return;
     }
 
+    if (leftLocationTrimmed == rightLocationTrimmed) {
+        if (KMessageBox::warningContinueCancel(this, i18n("Warning: The left and the right side are showing the same directory!"))
+            != KMessageBox::Continue) {
+            return;
+        }
+    }
+
     query.setNameFilter(fileFilter->currentText(), query.isCaseSensitive());
     synchronizerTabs->setCurrentIndex(0);
 
