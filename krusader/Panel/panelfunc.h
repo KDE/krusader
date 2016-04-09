@@ -83,6 +83,9 @@ public slots:
     void moveFilesByQueue() {
         moveFiles(true);
     }
+    /*!
+     * asks the user the new directory name
+     */
     void mkdir();
     void deleteFiles(bool reallyDelete = false);
     void rename();
