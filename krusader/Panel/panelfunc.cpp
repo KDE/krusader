@@ -715,7 +715,7 @@ void ListPanelFunc::mkdir()
     // suggested name is the complete name for the directories
     // while filenames are suggested without their extension
     QString suggestedName = panel->getCurrentName();
-    if (!files()->vfs_search(suggestedName)->vfile_isDir())
+    if (!suggestedName.isEmpty() && !files()->vfs_search(suggestedName)->vfile_isDir())
         suggestedName = QFileInfo(suggestedName).completeBaseName();
 
     QString dirName = QInputDialog::getText(krMainWindow, i18n("New directory"), i18n("Directory's name:"), QLineEdit::Normal, suggestedName);
