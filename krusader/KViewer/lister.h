@@ -106,6 +106,7 @@ protected:
     void           setUpScrollBar();
     void           setCursorPosition(int x, int y, int anchorX = -1, int anchorY = -1);
     void           handleAnchorChange(int oldAnchor);
+    void           performAnchorChange(int anchor);
     void           getScreenPosition(int position, int &x, int &y);
 
 protected slots:

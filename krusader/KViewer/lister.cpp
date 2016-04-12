@@ -552,9 +552,9 @@ void ListerTextArea::keyPressEvent(QKeyEvent * ke)
         return;
     }
 
-    if (ke->modifiers() == Qt::NoModifier || ke->modifiers() == Qt::ShiftModifier) {
+    if (ke->modifiers() == Qt::NoModifier || ke->modifiers() & Qt::ShiftModifier) {
         qint64 newAnchor = -1;
-        if (ke->modifiers() == Qt::ShiftModifier) {
+        if (ke->modifiers() & Qt::ShiftModifier) {
             newAnchor = _cursorAnchorPos;
             if (_cursorAnchorPos == -1)
                 newAnchor = _cursorPos;
@@ -693,10 +693,11 @@ void ListerTextArea::keyPressEvent(QKeyEvent * ke)
 
 void ListerTextArea::mousePressEvent(QMouseEvent * e)
 {
-    _cursorAnchorPos = -1;
-    int oldAnchor = textCursor().anchor();
     KTextEdit::mousePressEvent(e);
-    handleAnchorChange(oldAnchor);
+    // do change anchor only when shift is not pressed
+    if (!(QGuiApplication::keyboardModifiers() & Qt::ShiftModifier)) {
+        performAnchorChange(textCursor().anchor());
+    }
 }
 
 void ListerTextArea::mouseDoubleClickEvent(QMouseEvent * e)
@@ -714,11 +715,7 @@ void ListerTextArea::mouseMoveEvent(QMouseEvent * e)
     } else if (e->pos().y() > height()) {
         slotActionTriggered(QAbstractSlider::SliderSingleStepAdd);
     }
-    if (_cursorAnchorPos == -1)
-        _cursorAnchorPos = _cursorPos;
     KTextEdit::mouseMoveEvent(e);
-    if (_cursorAnchorPos == _cursorPos)
-        _cursorAnchorPos = -1;
 }
 
 void ListerTextArea::wheelEvent(QWheelEvent * e)
@@ -1015,20 +1012,20 @@ void ListerTextArea::copySelectedToClipboard()
     }
 }
 
+void ListerTextArea::performAnchorChange(int anchor)
+{
+    int x, y;
+    bool isfirst;
+    getScreenPosition(anchor, x, y);
+    _cursorAnchorPos = textToFilePosition(x, y, isfirst);
+}
+
 void ListerTextArea::handleAnchorChange(int oldAnchor)
 {
-    int cursor = textCursor().position();
     int anchor = textCursor().anchor();
 
-    if (anchor == cursor) {
-        _cursorAnchorPos = -1;
-    } else {
-        if (oldAnchor != anchor) {
-            int x, y;
-            bool isfirst;
-            getScreenPosition(anchor, x, y);
-            _cursorAnchorPos = textToFilePosition(x, y, isfirst);
-        }
+    if (oldAnchor != anchor) {
+        performAnchorChange(anchor);
     }
 }
 
