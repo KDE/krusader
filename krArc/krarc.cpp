@@ -760,8 +760,7 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
     if (!dest.isLocalFile())
         qDebug() << "ERROR:" << url << "is not a local file.";
 
-    // CMD_COPY is no more in KF5 - TODO?
-    //error(ERR_UNSUPPORTED_ACTION, unsupportedActionErrorString(mProtocol, CMD_COPY));
+    error(ERR_UNSUPPORTED_ACTION, unsupportedActionErrorString(mProtocol, 74));
 }
 
 void kio_krarcProtocol::listDir(const QUrl &url)
