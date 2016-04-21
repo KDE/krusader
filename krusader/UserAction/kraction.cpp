@@ -456,19 +456,19 @@ bool KrAction::xmlRead(const QDomElement& element)
             continue; // this should skip nodes which are not elements ( i.e. comments, <!-- -->, or text nodes)
 
         if (e.tagName() == "title")
-            setText(e.text());
+            setText(i18n(e.text().toUtf8().constData()));
         else
             if (e.tagName() == "tooltip")
-                setToolTip(e.text());
+                setToolTip(i18n(e.text().toUtf8().constData()));
             else
                 if (e.tagName() == "icon")
                     setIcon(QIcon::fromTheme(_iconName = e.text()));
                 else
                     if (e.tagName() == "category")
-                        setCategory(e.text());
+                        setCategory(i18n(e.text().toUtf8().constData()));
                     else
                         if (e.tagName() == "description")
-                            setWhatsThis(e.text());
+                            setWhatsThis(i18n(e.text().toUtf8().constData()));
                         else
                             if (e.tagName() == "command")
                                 readCommand(e);
