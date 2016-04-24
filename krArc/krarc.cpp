@@ -39,21 +39,71 @@
 #define MAX_IPC_SIZE           (1024*32)
 #define TRIES_WITH_PASSWORDS   3
 
-#if 0
+#ifdef QT_DEBUG
 
 #include <QtCore/QTextStream>
 
+//! Writes a function name in the krarc debug log, etc. when entering the function and automatically before exiting from it
+#define KRFUNC \
+        KrDebugLogger functionLogger(__FUNCTION__, __LINE__);
+
+//! A class to manage some aspects of the writing of messages into the krarc debug log file
+class KrDebugLogger
+{
+private:
+    QString function; //! The name of a function which is going to be written about
+    static int indentation;  //! The indentation that is presently used, it represents how many spaces are going to be used
+    const static int indentationIncrease; //! The quantity of spaces that are going be added to the indentation when increasing it
+    static const QString logFile;
+
+public:
+    //! Prepares some elements before a posterior writing into the krarc debug log file
+    static void prepareWriting(QFile &file, QTextStream &stream)
+    {
+        file.setFileName(logFile);
+        file.open(QIODevice::WriteOnly | QIODevice::Append);
+        stream.setDevice(&file);
+        stream << "Pid:" << (int)getpid();
+        // Applies the indentation level to make logs clearer
+        for (int x = 0; x < indentation; ++x)
+            stream << " ";
+    }
+
+    KrDebugLogger(const QString &argFunction, int line) : function(argFunction)
+    {
+        QFile file;
+        QTextStream stream;
+        prepareWriting(file, stream);
+        stream << QString("┏");
+        stream << function << "(" << line << ")" << endl;
+        indentation += indentationIncrease;
+    }
+
+    ~KrDebugLogger()
+    {
+        indentation -= indentationIncrease;
+        QFile file;
+        QTextStream stream;
+        prepareWriting(file, stream);
+        stream << QString("┗");
+        stream << function << endl;
+    }
+};
+
+int KrDebugLogger::indentation = 1;
+const int KrDebugLogger::indentationIncrease = 3;
+const QString KrDebugLogger::logFile = "/tmp/krdebug";
+
 #define KRDEBUG(X...) do{   \
-        QFile f("/tmp/debug");    \
-        f.open(QIODevice::WriteOnly | QIODevice::Append);     \
-        QTextStream stream( &f ); \
-        stream << "Pid:" << (int)getpid() << " " <<__FUNCTION__<<"(" <<__LINE__<<"): "; \
+        QFile file;     \
+        QTextStream stream;     \
+        KrDebugLogger::prepareWriting(file, stream);       \
+        stream << __FUNCTION__ << "(" <<__LINE__<< "): "; \
         stream << X << endl;      \
-        f.close();                \
     } while(0);
 #else
-// #define KRDEBUG(X...)
-#define KRDEBUG(X...) qDebug()<<X
+#define KRFUNC
+#define KRDEBUG(X...) qDebug() << X
 #endif
 
 using namespace KIO;
@@ -150,6 +200,7 @@ kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteA
         : SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(0L), extArcReady(false),
         password(QString()), krConf("krusaderrc"), codec(0)
 {
+    KRFUNC;
     confGrp = KConfigGroup(&krConf, "Dependencies");
 
     KConfigGroup group(&krConf, "General");
@@ -173,6 +224,7 @@ kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteA
 /* ---------------------------------------------------------------------------------- */
 kio_krarcProtocol::~kio_krarcProtocol()
 {
+    KRFUNC;
     // delete the temp directory
     KProcess proc;
     proc << fullPathName("rm") << "-rf" << arcTempDir;
@@ -184,6 +236,7 @@ kio_krarcProtocol::~kio_krarcProtocol()
 
 bool kio_krarcProtocol::checkWriteSupport()
 {
+    KRFUNC;
     krConf.reparseConfiguration();
     if (KConfigGroup(&krConf, "kio_krarc").readEntry("EnableWrite", false))
         return true;
@@ -197,6 +250,7 @@ bool kio_krarcProtocol::checkWriteSupport()
 
 void kio_krarcProtocol::receivedData(KProcess *, QByteArray &d)
 {
+    KRFUNC;
     QByteArray buf(d);
     data(buf);
     processedSize(d.length());
@@ -205,6 +259,7 @@ void kio_krarcProtocol::receivedData(KProcess *, QByteArray &d)
 
 void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
 {
+    KRFUNC;
     KRDEBUG(getPath(url));
 
     if (!checkWriteSupport())
@@ -279,6 +334,7 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
 
 void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flags)
 {
+    KRFUNC;
     KRDEBUG(getPath(url));
 
     if (!checkWriteSupport())
@@ -308,7 +364,7 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
 
     QString arcDir  = findArcDirectory(url);
     if (arcDir.isEmpty())
-        qDebug() << "arcDir is enpty.";
+        KRDEBUG("arcDir is empty.");
 
     QString tempFile = arcDir.mid(1) + getPath(url).mid(getPath(url).lastIndexOf(DIR_SEPARATOR) + 1);
     QString tempDir  = arcDir.mid(1);
@@ -376,13 +432,15 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
 
 void kio_krarcProtocol::get(const QUrl &url)
 {
+    KRFUNC;
     get(url, TRIES_WITH_PASSWORDS);
 }
 
 void kio_krarcProtocol::get(const QUrl &url, int tries)
 {
-    bool decompressToFile = false;
+    KRFUNC;
     KRDEBUG(getPath(url));
+    bool decompressToFile = false;
 
     if (!setArcFile(url)) {
         error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
@@ -585,6 +643,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
 
 void kio_krarcProtocol::del(QUrl const & url, bool isFile)
 {
+    KRFUNC;
     KRDEBUG(getPath(url));
 
     if (!checkWriteSupport())
@@ -635,6 +694,7 @@ void kio_krarcProtocol::del(QUrl const & url, bool isFile)
 
 void kio_krarcProtocol::stat(const QUrl &url)
 {
+    KRFUNC;
     KRDEBUG(getPath(url));
     if (!setArcFile(url)) {
         error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
@@ -680,7 +740,7 @@ void kio_krarcProtocol::stat(const QUrl &url)
 
 void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFlags flags)
 {
-    //qDebug() << "url:" << url << "dest:" << dest;
+    KRDEBUG("source: " << url.path() << " dest: " << dest.path());
 
     if (!checkWriteSupport())
         return;
@@ -756,9 +816,9 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
         } while (0);
 
     if (encrypted)
-        qDebug() << "ERROR:" << url << "is encrypted.";
+        KRDEBUG("ERROR: " << url.path() << " is encrypted.");
     if (!dest.isLocalFile())
-        qDebug() << "ERROR:" << url << "is not a local file.";
+        KRDEBUG("ERROR: " << url.path() << " is not a local file.");
 
     // CMD_COPY is no more in KF5 - replaced with 74 value (as stated in kio/src/core/commands_p.h, which could be found in quickgit.kde.org/?p=kio.git&a=tree)
     error(ERR_UNSUPPORTED_ACTION, unsupportedActionErrorString(mProtocol, 74));
@@ -766,6 +826,7 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
 
 void kio_krarcProtocol::listDir(const QUrl &url)
 {
+    KRFUNC;
     KRDEBUG(getPath(url));
     if (!setArcFile(url)) {
         error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
@@ -811,8 +872,8 @@ void kio_krarcProtocol::listDir(const QUrl &url)
 
 bool kio_krarcProtocol::setArcFile(const QUrl &url)
 {
-    //qDebug() << url;
-
+    KRFUNC;
+    KRDEBUG(url.fileName());
     QString path = getPath(url);
     time_t currTime = time(0);
     archiveChanged = true;
@@ -858,7 +919,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
             }
         }
         if (!arcFile) {
-            //qDebug() << "ERROR:" << path << "does not exist.";
+            // KRDEBUG("ERROR: " << path << " does not exist.");
             error(ERR_DOES_NOT_EXIST, path);
             return false; // file not found
         }
@@ -905,13 +966,14 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
 
 bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
 {
+    KRFUNC;
     KRDEBUG(getPath(url));
     // set the archive location
     //if( !setArcFile(getPath(url)) ) return false;
     // no need to rescan the archive if it's not changed
-        //qDebug() << "achiveChanged:" << archiveChanged << "forced:" << forced;
+        // KRDEBUG("achiveChanged: " << archiveChanged << " forced: " << forced);
     if (!archiveChanged && !forced) {
-        //qDebug() << "doing nothing.";
+        // KRDEBUG("doing nothing.");
         return true;
     }
 
@@ -1026,13 +1088,14 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
     temp.close();
 
     archiveChanged = false;
-    //qDebug() << "done.";
+    // KRDEBUG("done.");
     return true;
 }
 
 QString kio_krarcProtocol::findArcDirectory(const QUrl &url)
 {
-    //qDebug() << url;
+    KRFUNC;
+    KRDEBUG(url.fileName());
 
     QString path = getPath(url);
     if (path.right(1) == DIR_SEPARATOR) path.truncate(path.length() - 1);
@@ -1049,6 +1112,7 @@ QString kio_krarcProtocol::findArcDirectory(const QUrl &url)
 
 UDSEntry* kio_krarcProtocol::findFileEntry(const QUrl &url)
 {
+    KRFUNC;
     QString arcDir = findArcDirectory(url);
     if (arcDir.isEmpty()) return 0;
 
@@ -1076,6 +1140,7 @@ UDSEntry* kio_krarcProtocol::findFileEntry(const QUrl &url)
 
 QString kio_krarcProtocol::nextWord(QString &s, char d)
 {
+    // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     s = s.trimmed();
     int j = s.indexOf(d, 0);
     QString temp = s.left(j); // find the leftmost word.
@@ -1085,6 +1150,7 @@ QString kio_krarcProtocol::nextWord(QString &s, char d)
 
 mode_t kio_krarcProtocol::parsePermString(QString perm)
 {
+    KRFUNC;
     mode_t mode = 0;
     // file type
     if (perm[0] == 'd') mode |= S_IFDIR;
@@ -1111,6 +1177,7 @@ mode_t kio_krarcProtocol::parsePermString(QString perm)
 
 UDSEntryList* kio_krarcProtocol::addNewDir(QString path)
 {
+    KRFUNC;
     UDSEntryList* dir;
 
     // check if the current dir exists
@@ -1128,7 +1195,7 @@ UDSEntryList* kio_krarcProtocol::addNewDir(QString path)
     if (name == "." || name == "..") { // entries with these names wouldn't be displayed
         // don't translate since this is an internal error
         QString err = QString("Cannot handle path: ") + path;
-        //qDebug()<<"ERROR:"<<err;
+        // KRDEBUG("ERROR: " << err);
         error(KIO::ERR_INTERNAL, err);
         exit();
     }
@@ -1152,6 +1219,7 @@ UDSEntryList* kio_krarcProtocol::addNewDir(QString path)
 
 void kio_krarcProtocol::parseLine(int lineNo, QString line)
 {
+    KRFUNC;
     UDSEntryList* dir;
     UDSEntry entry;
 
@@ -1461,6 +1529,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
 
 bool kio_krarcProtocol::initArcParameters()
 {
+    KRFUNC;
     KRDEBUG("arcType: " << arcType);
 
     noencoding = false;
@@ -1631,6 +1700,7 @@ bool kio_krarcProtocol::initArcParameters()
 
 bool kio_krarcProtocol::checkStatus(int exitCode)
 {
+    KRFUNC;
     KRDEBUG(exitCode);
 
     // if this code is changed, the code of KRarcHandler::checkStatus() must be reviewed
@@ -1646,6 +1716,7 @@ bool kio_krarcProtocol::checkStatus(int exitCode)
 
 void kio_krarcProtocol::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
 {
+    KRFUNC;
     if (encryptedArchPath == fileName)
         encrypted = true;
     else {  // we try to find whether the 7z archive is encrypted
@@ -1678,6 +1749,7 @@ void kio_krarcProtocol::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
 
 void kio_krarcProtocol::checkOutputForPassword(KProcess * proc, QByteArray & buf)
 {
+    KRFUNC;
     QString data =  QString(buf);
 
     QString checkable = lastData + data;
@@ -1703,6 +1775,7 @@ void kio_krarcProtocol::checkOutputForPassword(KProcess * proc, QByteArray & buf
 
 void kio_krarcProtocol::invalidatePassword()
 {
+    KRFUNC;
     KRDEBUG(getPath(arcFile->url(), QUrl::StripTrailingSlash) + DIR_SEPARATOR);
 
     if (!encrypted)
@@ -1726,7 +1799,8 @@ void kio_krarcProtocol::invalidatePassword()
 
 QString kio_krarcProtocol::getPassword()
 {
-    KRDEBUG(encrypted);
+    KRFUNC;
+    KRDEBUG("Encrypted: " << encrypted);
 
     if (!password.isNull())
         return password;
@@ -1762,6 +1836,9 @@ QString kio_krarcProtocol::getPassword()
 
 QString kio_krarcProtocol::detectFullPathName(QString name)
 {
+    // Note: KRFUNC was not used here in order to avoid filling the log with too much information
+    KRDEBUG(name);
+
     name = name + EXEC_SUFFIX;
     QStringList path = QString::fromLocal8Bit(qgetenv("PATH")).split(':');
 
@@ -1779,6 +1856,9 @@ QString kio_krarcProtocol::detectFullPathName(QString name)
 
 QString kio_krarcProtocol::fullPathName(QString name)
 {
+    // Note: KRFUNC was not used here in order to avoid filling the log with too much information
+    KRDEBUG(name);
+
     QString supposedName = confGrp.readEntry(name, QString());
     if (supposedName.isEmpty())
         supposedName = detectFullPathName(name);
@@ -1787,6 +1867,7 @@ QString kio_krarcProtocol::fullPathName(QString name)
 
 QString kio_krarcProtocol::localeEncodedString(QString str)
 {
+    // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     if (noencoding)
         return str;
 
@@ -1807,6 +1888,7 @@ QString kio_krarcProtocol::localeEncodedString(QString str)
 
 QByteArray kio_krarcProtocol::encodeString(QString str)
 {
+    // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     if (noencoding)
         return QTextCodec::codecForLocale()->fromUnicode(str);
     return codec->fromUnicode(str);
@@ -1814,6 +1896,7 @@ QByteArray kio_krarcProtocol::encodeString(QString str)
 
 QString kio_krarcProtocol::decodeString(char * buf)
 {
+    // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     if (noencoding)
         return QTextCodec::codecForLocale()->toUnicode(buf);
     return codec->toUnicode(buf);
@@ -1821,6 +1904,7 @@ QString kio_krarcProtocol::decodeString(char * buf)
 
 QString kio_krarcProtocol::getPath(const QUrl &url, QUrl::FormattingOptions options)
 {
+    // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     QString path = url.adjusted(options).path();
     REPLACE_DIR_SEP2(path);
 
