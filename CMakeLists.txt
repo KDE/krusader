@@ -28,7 +28,7 @@ include(CheckIncludeFiles)
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
-include(KDECompilerSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
 
 find_package(Qt5 CONFIG REQUIRED
   Core
