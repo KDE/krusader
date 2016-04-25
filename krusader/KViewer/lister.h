@@ -78,6 +78,7 @@ public:
     void           setHexMode(bool hexMode);
 
     void           copySelectedToClipboard();
+    QString        getSelectedText();
 
     void           getCursorPosition(int &x, int &y);
     qint64         getCursorPosition(bool &isfirst);

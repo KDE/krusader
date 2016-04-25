@@ -1004,10 +1004,18 @@ void ListerTextArea::setAnchorAndCursor(qint64 anchor, qint64 cursor)
     ensureVisibleCursor();
 }
 
-void ListerTextArea::copySelectedToClipboard()
+QString ListerTextArea::getSelectedText()
 {
     if (_cursorAnchorPos != -1 && _cursorAnchorPos != _cursorPos) {
-        QString selection = readSection(_cursorAnchorPos, _cursorPos);
+        return readSection(_cursorAnchorPos, _cursorPos);
+    }
+    return QString();
+}
+
+void ListerTextArea::copySelectedToClipboard()
+{
+    QString selection = getSelectedText();
+    if (!selection.isEmpty()) {
         QApplication::clipboard()->setText(selection);
     }
 }
@@ -1382,7 +1390,14 @@ void Lister::enableSearch(bool enable)
         _searchNextButton->show();
         _searchPrevButton->show();
         _searchOptions->show();
-        _searchLineEdit->setFocus();
+        if (!_searchLineEdit->hasFocus()) {
+            _searchLineEdit->setFocus();
+            QString selection = _textArea->getSelectedText();
+            if (!selection.isEmpty()) {
+                _searchLineEdit->setText(selection);
+            }
+            _searchLineEdit->selectAll();
+        }
     } else {
         _listerLabel->setText(i18n("Lister:"));
         _searchLineEdit->hide();
