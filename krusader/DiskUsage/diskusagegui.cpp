@@ -80,7 +80,7 @@ DiskUsageGUI::DiskUsageGUI(QUrl openDir, QWidget* parent)
     btnDirUp = new QToolButton(duTools);
     btnDirUp->setIcon(QIcon(krLoader->loadIcon("go-up", KIconLoader::Desktop)));
     duHBox->addWidget(btnDirUp);
-    btnDirUp->setToolTip(i18n("Parent directory"));
+    btnDirUp->setToolTip(i18n("Parent folder"));
 
     QWidget * separatorWidget = new QWidget(duTools);
     separatorWidget->setMinimumWidth(10);
@@ -237,7 +237,7 @@ bool DiskUsageGUI::newSearch()
 {
     // ask the user for the copy dest
 
-    QUrl tmp = KChooseDir::getDir(i18n("Viewing the usage of directory:"), baseDirectory, baseDirectory);
+    QUrl tmp = KChooseDir::getDir(i18n("Viewing the usage of folder:"), baseDirectory, baseDirectory);
     if (tmp.isEmpty()) return false;
     baseDirectory = tmp;
 

@@ -114,7 +114,7 @@ public:
     // sets the mimetype for the query
     // type, must be one of the following:
     // 1. a valid mime type name
-    // 2. one of: i18n("Archives"),   i18n("Directories"), i18n("Image Files")
+    // 2. one of: i18n("Archives"),   i18n("Folders"), i18n("Image Files")
     //            i18n("Text Files"), i18n("Video Files"), i18n("Audio Files")
     // 3. i18n("Custom") in which case you must supply a list of valid mime-types
     //    in the member QStringList customType

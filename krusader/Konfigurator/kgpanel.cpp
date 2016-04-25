@@ -103,7 +103,7 @@ void KgPanel::setupMiscTab()
     QGridLayout *miscGrid = createGridLayout(miscGrp);
 
     KONFIGURATOR_CHECKBOX_PARAM operation_settings[] = { // cfg_class, cfg_name, default, text, restart, tooltip
-        {"Look&Feel", "Mark Dirs",            _MarkDirs,          i18n("Autoselect directories"),   false,  i18n("When matching the select criteria, not only files will be selected, but also directories.") },
+        {"Look&Feel", "Mark Dirs",            _MarkDirs,          i18n("Autoselect folders"),   false,  i18n("When matching the select criteria, not only files will be selected, but also folders.") },
         {"Look&Feel", "Rename Selects Extension", true,          i18n("Rename selects extension"),   false,  i18n("When renaming a file, the whole text is selected. If you want Total-Commander like renaming of just the name, without extension, uncheck this option.") },
         {"Look&Feel", "UnselectBeforeOperation", _UnselectBeforeOperation, i18n("Unselect files before copy/move"), false, i18n("Unselect files, which are to be copied/moved, before the operation starts.") },
         {"Look&Feel", "FilterDialogRemembersSettings", _FilterDialogRemembersSettings, i18n("Filter dialog remembers settings"), false, i18n("The filter dialog is opened with the last filter settings that where applied to the panel.") },
@@ -295,8 +295,8 @@ void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
     KONFIGURATOR_CHECKBOX_PARAM iconSettings[] =
         //   cfg_class             cfg_name        default       text            restart        tooltip
     {
-        {instance->name(), "With Icons",      _WithIcons,   i18n("Use icons in the filenames"), true,  i18n("Show the icons for filenames and directories.") },
-        {instance->name(), "ShowPreviews", false, i18n("Show previews by default"), false, i18n("Show previews of files and directories.") },
+        {instance->name(), "With Icons",      _WithIcons,   i18n("Use icons in the filenames"), true,  i18n("Show the icons for filenames and folders.") },
+        {instance->name(), "ShowPreviews", false, i18n("Show previews by default"), false, i18n("Show previews of files and folders.") },
     };
 
     KonfiguratorCheckBoxGroup *iconSett = createCheckBoxGroup(2, 0, iconSettings, 2 /*count*/, parent, PAGE_VIEW);
@@ -347,7 +347,7 @@ void KgPanel::setupPanelTab()
         {"Look&Feel", "Human Readable Size",            _HumanReadableSize,      i18n("Use human-readable file size"), true ,  i18n("File sizes are displayed in B, KB, MB and GB, not just in bytes.") },
         {"Look&Feel", "Show Hidden",                    _ShowHidden,             i18n("Show hidden files"),      false,  i18n("Display files beginning with a dot.") },
         {"Look&Feel", "Numeric permissions",            _NumericPermissions,     i18n("Numeric Permissions"), true,  i18n("Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.") },
-        {"Look&Feel", "Load User Defined Folder Icons", _UserDefinedFolderIcons, i18n("Load the user defined folder icons"), true ,  i18n("Load the user defined directory icons (can cause decrease in performance).") },
+        {"Look&Feel", "Load User Defined Folder Icons", _UserDefinedFolderIcons, i18n("Load the user defined folder icons"), true ,  i18n("Load the user defined folder icons (can cause decrease in performance).") },
     };
 
     KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup(2, 0, panelSettings, 4 /*count*/, panelGrp, PAGE_VIEW);
@@ -382,9 +382,9 @@ void KgPanel::setupPanelTab()
     {
         {"Look&Feel", "Case Sensative Sort", _CaseSensativeSort, i18n("Case sensitive sorting"), true,
             i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).") },
-        {"Look&Feel", "Show Directories First", true, i18n("Show directories first"), true, 0 },
+        {"Look&Feel", "Show Directories First", true, i18n("Show folders first"), true, 0 },
         {"Look&Feel", "Always sort dirs by name", false, i18n("Always sort dirs by name"), true,
-            i18n("Directories are sorted by name, regardless of the sort column.") },
+            i18n("Folders are sorted by name, regardless of the sort column.") },
         {"Look&Feel", "Locale Aware Sort", true, i18n("Locale aware sorting"), true,
             i18n("The sorting is performed in a locale- and also platform-dependent manner. Can be slow.") },
     };
@@ -478,12 +478,12 @@ void KgPanel::setupButtonsTab()
     QGridLayout * panelToolbarGrid = createGridLayout(panelToolbarGrp);
     KONFIGURATOR_CHECKBOX_PARAM panelToolbarButtonsParams[] = {
         //   cfg_class    cfg_name                default             text                       restart tooltip
-        {"Look&Feel",  "Open Button Visible",  _Open,      i18n("Open button"),     true ,  i18n("Opens the directory browser.") },
-        {"Look&Feel",  "Equal Button Visible", _cdOther,   i18n("Equal button (=)"), true ,  i18n("Changes the panel directory to the other panel directory.") },
-        {"Look&Feel",  "Up Button Visible",    _cdUp,      i18n("Up button (..)"),  true ,  i18n("Changes the panel directory to the parent directory.") },
-        {"Look&Feel",  "Home Button Visible",  _cdHome,    i18n("Home button (~)"), true ,  i18n("Changes the panel directory to the home directory.") },
-        {"Look&Feel",  "Root Button Visible",  _cdRoot,    i18n("Root button (/)"), true ,  i18n("Changes the panel directory to the root directory.") },
-        {"Look&Feel",  "SyncBrowse Button Visible",  _syncBrowseButton,    i18n("Toggle-button for sync-browsing"), true ,  i18n("Each directory change in the panel is also performed in the other panel.") },
+        {"Look&Feel",  "Open Button Visible",  _Open,      i18n("Open button"),     true ,  i18n("Opens the folder browser.") },
+        {"Look&Feel",  "Equal Button Visible", _cdOther,   i18n("Equal button (=)"), true ,  i18n("Changes the panel folder to the other panel folder.") },
+        {"Look&Feel",  "Up Button Visible",    _cdUp,      i18n("Up button (..)"),  true ,  i18n("Changes the panel folder to the parent folder.") },
+        {"Look&Feel",  "Home Button Visible",  _cdHome,    i18n("Home button (~)"), true ,  i18n("Changes the panel folder to the home folder.") },
+        {"Look&Feel",  "Root Button Visible",  _cdRoot,    i18n("Root button (/)"), true ,  i18n("Changes the panel folder to the root folder.") },
+        {"Look&Feel",  "SyncBrowse Button Visible",  _syncBrowseButton,    i18n("Toggle-button for sync-browsing"), true ,  i18n("Each folder change in the panel is also performed in the other panel.") },
     };
     panelToolbarButtonsCheckboxes = createCheckBoxGroup(1, 0, panelToolbarButtonsParams,
                                  sizeof(panelToolbarButtonsParams) / sizeof(*panelToolbarButtonsParams),
@@ -541,7 +541,7 @@ void KgPanel::setupMouseModeTab()
 
     KONFIGURATOR_NAME_VALUE_TIP singleOrDoubleClick[] = {
         //          name            value            tooltip
-        { i18n("Double-click selects (classic)"), "0", i18n("A single click on a file will select and focus, a double click opens the file or steps into the directory.") },
+        { i18n("Double-click selects (classic)"), "0", i18n("A single click on a file will select and focus, a double click opens the file or steps into the folder.") },
         { i18n("Obey KDE's global selection policy"), "1", i18n("<p>Use KDE's global setting:</p><p><i>KDE System Settings -> Input Devices -> Mouse</i></p>") }
     };
     KonfiguratorRadioButtons *clickRadio = createRadioButtonGroup("Look&Feel", "Single Click Selects", "0", 1, 0, singleOrDoubleClick, 2, mouseDetailGroup, true, PAGE_MOUSE);
@@ -578,7 +578,7 @@ void KgPanel::setupMouseModeTab()
          i18n("If checked, pressing the spacebar will select the current item and move down.\nOtherwise, current item is selected, but remains the current item.") },
         {"Custom Selection Mode",  "Space Calc Space",  _SpaceCalcSpace,
          i18n("Spacebar calculates disk space"), true,
-         i18n("If checked, pressing the spacebar while the current item is a directory, will (except from selecting the directory)\ncalculate space occupied of the directory (recursively).") },
+         i18n("If checked, pressing the spacebar while the current item is a folder, will (except from selecting the folder)\ncalculate space occupied of the folder (recursively).") },
         {"Custom Selection Mode",  "Insert Moves Down",  _InsertMovesDown,
          i18n("Insert moves down"), true,
          i18n("If checked, pressing Insert will select the current item, and move down to the next item.\nOtherwise, current item is not changed.") },

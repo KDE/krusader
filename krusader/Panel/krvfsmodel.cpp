@@ -138,7 +138,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
             if (vf->vfile_isDir() && vf->vfile_getSize() <= 0) {
                 //HACK add <> brackets AFTER translating - otherwise KUIT thinks it's a tag
                 static QString label = QString("<") +
-                    i18nc("'DIR' instead of file size in detailed view (for directories)", "DIR") + ">";
+                    i18nc("Show the string 'DIR' instead of file size in detailed view (for folders)", "DIR") + ">";
                 return label;
             } else
                 return (properties()->humanReadableSize) ?

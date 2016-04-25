@@ -154,7 +154,7 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QStr
         QFrame *line = new QFrame(this);
         line->setFrameStyle(QFrame::HLine | QFrame::Sunken);
         mainLayout->addWidget(line);
-        copyDirStructureCB = new QCheckBox(i18n("Keep virtual directory structure"), this);
+        copyDirStructureCB = new QCheckBox(i18n("Keep virtual folder structure"), this);
         connect(copyDirStructureCB, SIGNAL(toggled(bool)), this, SLOT(slotDirStructCBChanged()));
         copyDirStructureCB->setChecked(false);
         mainLayout->addWidget(copyDirStructureCB);

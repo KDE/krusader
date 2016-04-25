@@ -319,7 +319,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
     btns->addButton(viewerBtn, View);
 
     duBtn = new QToolButton(this);
-    duBtn->setToolTip(i18n("Disk Usage Panel: view the usage of a directory"));
+    duBtn->setToolTip(i18n("Disk Usage Panel: view the usage of a folder"));
     duBtn->setIcon(krLoader->loadIcon("kr_diskusage", KIconLoader::Toolbar, 16));
     duBtn->setFixedSize(20, 20);
     duBtn->setCheckable(true);

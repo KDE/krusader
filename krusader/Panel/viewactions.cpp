@@ -70,7 +70,7 @@ ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
 
     // tooltips
     actSelect->setToolTip(i18n("Select group"));
-    actSelectAll->setToolTip(i18n("Select all files in the current directory"));
+    actSelectAll->setToolTip(i18n("Select all files in the current folder"));
     actUnselectAll->setToolTip(i18n("Unselect all"));
     actSaveaveDefaultSettings->setToolTip(i18n("Save settings as default for new instances of this view type"));
 }

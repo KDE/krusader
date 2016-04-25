@@ -82,7 +82,7 @@ KgArchives::KgArchives(bool first, QWidget* parent) :
     KONFIGURATOR_CHECKBOX_PARAM browseOptions[] =
         //   cfg_class  cfg_name                  default           text                                          restart ToolTip
     {
-        {"Archives", "ArchivesAsDirectories", _ArchivesAsDirectories, i18n("Browse Archives As Directories"), false, i18n("Krusader will browse archives as folders.")}
+        {"Archives", "ArchivesAsDirectories", _ArchivesAsDirectories, i18n("Browse Archives As Folders"), false, i18n("Krusader will browse archives as folders.")}
     };
 
     KonfiguratorCheckBoxGroup *browseCheckBoxes = createCheckBoxGroup(1, 0, browseOptions, 1, browseGrp);

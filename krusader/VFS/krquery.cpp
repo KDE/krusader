@@ -243,7 +243,7 @@ bool KRQuery::checkType(QString mime) const
 {
     if (type == mime) return true;
     if (type == i18n("Archives")) return KRarcHandler::arcSupported(mime);
-    if (type == i18n("Directories")) return mime.contains("directory");
+    if (type == i18n("Folders")) return mime.contains("directory");
     if (type == i18n("Image Files")) return mime.contains("image/");
     if (type == i18n("Text Files")) return mime.contains("text/");
     if (type == i18n("Video Files")) return mime.contains("video/");

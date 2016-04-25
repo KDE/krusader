@@ -92,7 +92,7 @@ void virt_vfs::vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode 
 {
     if (path == "/") {
         if (!quietMode)
-            KMessageBox::error(parentWindow, i18n("You cannot copy files directly to the 'virt:/' directory.\nYou can create a sub directory and copy your files into it."), i18n("Error"));
+            KMessageBox::error(parentWindow, i18n("You cannot copy files directly to the 'virt:/' folder.\nYou can create a sub folder and copy your files into it."), i18n("Error"));
         return ;
     }
 
@@ -179,7 +179,7 @@ void virt_vfs::vfs_mkdir(const QString& name)
 {
     if (path != "/") {
         if (!quietMode)
-            KMessageBox::error(parentWindow, i18n("Creating new directories is allowed only in the 'virt:/' directory."), i18n("Error"));
+            KMessageBox::error(parentWindow, i18n("Creating new folders is allowed only in the 'virt:/' folder."), i18n("Error"));
         return ;
     }
     QList<QUrl>* temp = new QList<QUrl>();

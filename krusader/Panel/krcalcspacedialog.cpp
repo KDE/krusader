@@ -186,7 +186,7 @@ void KrCalcSpaceDialog::showResult()
     if (totalSize >= 1024)
         msg += i18np(" (%1 byte)", " (%1 bytes)", KRpermHandler::parseSize(totalSize));
     msg += '\n';
-    msg += i18np("in %1 directory", "in %1 directories", totalDirs);
+    msg += i18np("in %1 folder", "in %1 folders", totalDirs);
     msg += ' ';
     msg += i18np("and %1 file", "and %1 files", totalFiles);
     m_label->setText(msg);

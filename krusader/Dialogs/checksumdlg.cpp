@@ -252,7 +252,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
         QString error = i18n("<qt>Cannot calculate checksum since no supported tool was found. "
                              "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>");
         if (containFolders)
-            error += i18n("<qt><b>Note</b>: you have selected directories, and probably have no recursive checksum tool installed."
+            error += i18n("<qt><b>Note</b>: you have selected folders, and probably have no recursive checksum tool installed."
                           " Krusader currently supports <i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>");
         KMessageBox::error(0, error);
         return;
@@ -271,7 +271,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
     QLabel *l1 = new QLabel(widget);
 
     if (containFolders)
-        l1->setText(i18n("About to calculate checksum for the following files and directories:"));
+        l1->setText(i18n("About to calculate checksum for the following files and folders:"));
     else
         l1->setText(i18n("About to calculate checksum for the following files:"));
 
@@ -379,7 +379,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
         QString error = i18n("<qt>Cannot verify checksum since no supported tool was found. "
                              "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>");
         if (containFolders)
-            error += i18n("<qt><b>Note</b>: you have selected directories, and probably have no recursive checksum tool installed."
+            error += i18n("<qt><b>Note</b>: you have selected folders, and probably have no recursive checksum tool installed."
                           " Krusader currently supports <i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>");
         KMessageBox::error(0, error);
         return;

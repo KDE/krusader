@@ -564,7 +564,7 @@ QString KrView::statistics()
     if(grp.readEntry("Show Size In Bytes", false)) {
         tmp = i18nc("%1=number of selected items,%2=total number of items, \
                     %3=filesize of selected items,%4=filesize in Bytes, \
-                    %5=filesize of all items in directory,%6=filesize in Bytes",
+                    %5=filesize of all items in folder,%6=filesize in Bytes",
                     "%1 out of %2, %3 (%4) out of %5 (%6)",
                     numSelected(), _count, KIO::convertSize(selectedSize),
                     KRpermHandler::parseSize(selectedSize),
@@ -572,7 +572,7 @@ QString KrView::statistics()
                     KRpermHandler::parseSize(size));
     } else {
         tmp = i18nc("%1=number of selected items,%2=total number of items, \
-                    %3=filesize of selected items,%4=filesize of all items in directory",
+                    %3=filesize of selected items,%4=filesize of all items in folder",
                     "%1 out of %2, %3 out of %4",
                     numSelected(), _count, KIO::convertSize(selectedSize),
                     KIO::convertSize(size));
@@ -1219,8 +1219,8 @@ void KrView::setFilter(KrViewProperties::FilterSpec filter)
         break;
     case KrViewProperties::Custom :
         {
-            FilterDialog dialog(_widget, i18n("Filter Files"), QStringList(i18n("Apply filter to directories")), false);
-            dialog.checkExtraOption(i18n("Apply filter to directories"), applyToDirs);
+            FilterDialog dialog(_widget, i18n("Filter Files"), QStringList(i18n("Apply filter to folders")), false);
+            dialog.checkExtraOption(i18n("Apply filter to folders"), applyToDirs);
             if(rememberSettings)
                 dialog.applySettings(_properties->filterSettings);
             dialog.exec();
@@ -1229,7 +1229,7 @@ void KrView::setFilter(KrViewProperties::FilterSpec filter)
                 return;
             _properties->filterSettings = s;
             _properties->filterMask = s.toQuery();
-            applyToDirs = dialog.isExtraOptionChecked(i18n("Apply filter to directories"));
+            applyToDirs = dialog.isExtraOptionChecked(i18n("Apply filter to folders"));
         }
         break;
     default:
@@ -1245,14 +1245,14 @@ void KrView::customSelection(bool select)
     KConfigGroup grpSvr(_config, "Look&Feel");
     bool includeDirs = grpSvr.readEntry("Mark Dirs", _MarkDirs);
 
-    FilterDialog dialog(0, i18n("Select Files"), QStringList(i18n("Apply selection to directories")), false);
-    dialog.checkExtraOption(i18n("Apply selection to directories"), includeDirs);
+    FilterDialog dialog(0, i18n("Select Files"), QStringList(i18n("Apply selection to folders")), false);
+    dialog.checkExtraOption(i18n("Apply selection to folders"), includeDirs);
     dialog.exec();
     KRQuery query = dialog.getQuery();
     // if the user canceled - quit
     if (query.isNull())
         return ;
-    includeDirs = dialog.isExtraOptionChecked(i18n("Apply selection to directories"));
+    includeDirs = dialog.isExtraOptionChecked(i18n("Apply selection to folders"));
 
     changeSelection(query, select, includeDirs);
 }

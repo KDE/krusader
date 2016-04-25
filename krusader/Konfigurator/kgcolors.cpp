@@ -109,7 +109,7 @@ KgColors::KgColors(bool first, QWidget* parent) :
     QPalette p = QGuiApplication::palette();
 
     addColorSelector("Foreground",                 i18n("Foreground:"),                  p.color(QPalette::Active, QPalette::Text));
-    addColorSelector("Directory Foreground",       i18n("Directory foreground:"),        getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
+    addColorSelector("Directory Foreground",       i18n("Folder foreground:"),           getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
     addColorSelector("Executable Foreground",      i18n("Executable foreground:"),       getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
     addColorSelector("Symlink Foreground",         i18n("Symbolic link foreground:"),    getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
     addColorSelector("Invalid Symlink Foreground", i18n("Invalid symlink foreground:"),  getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
@@ -145,7 +145,7 @@ KgColors::KgColors(bool first, QWidget* parent) :
 
     addColorSelector("Inactive Foreground",                  i18n("Foreground:"),                  getColorSelector("Foreground")->getColor(), i18n("Same as active"));
     ADDITIONAL_COLOR sameAsInactForegnd = { i18n("Same as foreground"), getColorSelector("Inactive Foreground")->getColor(), "Inactive Foreground" };
-    addColorSelector("Inactive Directory Foreground",        i18n("Directory foreground:"),        getColorSelector("Directory Foreground")->getColor(), i18n("Same as active"), &sameAsInactForegnd, 1);
+    addColorSelector("Inactive Directory Foreground",        i18n("Folder foreground:"),           getColorSelector("Directory Foreground")->getColor(), i18n("Same as active"), &sameAsInactForegnd, 1);
     addColorSelector("Inactive Executable Foreground",       i18n("Executable foreground:"),       getColorSelector("Executable Foreground")->getColor(), i18n("Same as active"), &sameAsInactForegnd, 1);
     addColorSelector("Inactive Symlink Foreground",          i18n("Symbolic link foreground:"),    getColorSelector("Symlink Foreground")->getColor(), i18n("Same as active"), &sameAsInactForegnd, 1);
     addColorSelector("Inactive Invalid Symlink Foreground",  i18n("Invalid symlink foreground:"),  getColorSelector("Invalid Symlink Foreground")->getColor(), i18n("Same as active"), &sameAsInactForegnd, 1);
@@ -464,7 +464,7 @@ void KgColors::generatePreview()
         PreviewItem *pwSymLink = new PreviewItem(preview, i18n("Symbolic link"));
         PreviewItem *pwApp     = new PreviewItem(preview, i18n("Application"));
         PreviewItem *pwFile    = new PreviewItem(preview, i18n("File"));
-        PreviewItem *pwDir     = new PreviewItem(preview, i18n("Directory"));
+        PreviewItem *pwDir     = new PreviewItem(preview, i18n("Folder"));
 
         bool isActive = currentPage == 0;
 

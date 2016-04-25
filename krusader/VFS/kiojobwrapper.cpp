@@ -242,7 +242,7 @@ QString KIOJobWrapper::typeStr()
     case Stat:
         return i18nc("Job type", "Status");
     case DirectorySize:
-        return i18nc("Job type", "Directory Size");
+        return i18nc("Job type", "Folder Size");
     case Copy:
     case VirtualCopy:
         return i18nc("Job type", "Copy");

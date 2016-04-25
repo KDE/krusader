@@ -62,7 +62,7 @@ const QString& KrViewItem::name(bool withExtension) const
 QString KrViewItem::description() const
 {
     if (dummyVfile)
-        return i18n("Climb up the directory tree");
+        return i18n("Climb up the folder tree");
     // else is implied
     QString text = _vf->vfile_getName();
     QString comment;

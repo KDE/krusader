@@ -55,7 +55,7 @@ KgAdvanced::KgAdvanced(bool first, QWidget* parent) :
         //   cfg_class  cfg_name             default              text                                                        restart tooltip
     {
 //     {"Advanced", "PreserveAttributes", _PreserveAttributes, i18n("Preserve attributes for local copy/move (slower)"), false,  i18n("Krusader will try to preserve all attributes (time, owner, group) of the local files according to the source depending on your permissions:<ul><li>User preserving if you are root</li><li>Group preserving if you are root or member of the group</li><li>Preserving the timestamp</li></ul><b>Note</b>: This can slow down the copy process.") },
-        {"Advanced", "AutoMount",          _AutoMount,          i18n("Automount filesystems"),                            false,  i18n("When stepping into a directory which is defined as a mount point in the <b>fstab</b>, try mounting it with the defined parameters.")}
+        {"Advanced", "AutoMount",          _AutoMount,          i18n("Automount filesystems"),                            false,  i18n("When stepping into a folder which is defined as a mount point in the <b>fstab</b>, try mounting it with the defined parameters.")}
     };
 
     KonfiguratorCheckBoxGroup *generals = createCheckBoxGroup(1, 0, generalSettings, 1, generalGrp);
@@ -84,7 +84,7 @@ KgAdvanced::KgAdvanced(bool first, QWidget* parent) :
 
     KONFIGURATOR_CHECKBOX_PARAM confirmations[] =
         //   cfg_class  cfg_name                default             text                                          restart ToolTip
-    {{"Advanced", "Confirm Unempty Dir",   _ConfirmUnemptyDir, i18n("Deleting non-empty directories"),   false,  ""},
+    {{"Advanced", "Confirm Unempty Dir",   _ConfirmUnemptyDir, i18n("Deleting non-empty folders"),       false,  ""},
         {"Advanced", "Confirm Delete",        _ConfirmDelete,     i18n("Deleting files"),                   false,  ""},
         {"Advanced", "Confirm Copy",          _ConfirmCopy,       i18n("Copying files"),                    false,  ""},
         {"Advanced", "Confirm Move",          _ConfirmMove,       i18n("Moving files"),                     false,  ""},

@@ -91,7 +91,7 @@ SplitterGUI::SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir) :
     grid->setContentsMargins(11, 11, 11, 11);
 
     QLabel *splitterLabel = new QLabel(this);
-    splitterLabel->setText(i18n("Split the file %1 to directory:", fileURL.toDisplayString(QUrl::PreferLocalFile)));
+    splitterLabel->setText(i18n("Split the file %1 to folder:", fileURL.toDisplayString(QUrl::PreferLocalFile)));
     splitterLabel->setMinimumWidth(400);
     grid->addWidget(splitterLabel, 0 , 0);
 
@@ -265,7 +265,7 @@ void SplitterGUI::predefinedComboActivated(int item)
 void SplitterGUI::splitPressed()
 {
     if (!urlReq->url().isValid()) {
-        KMessageBox::error(this, i18n("The directory path URL is malformed."));
+        KMessageBox::error(this, i18n("The folder path URL is malformed."));
         return;
     }
     if(getSplitSize() > 0)

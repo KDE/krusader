@@ -161,7 +161,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     status->setAutoFillBackground(false);
     status->setText("");          // needed for initialization code!
     status->setWhatsThis(i18n("The statusbar displays information about the filesystem "
-                              "which holds your current directory: total size, free space, "
+                              "which holds your current folder: total size, free space, "
                               "type of filesystem, etc."));
     ADD_WIDGET(status);
 
@@ -195,7 +195,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     origin->setWhatsThis(i18n("Use superb KDE file dialog to choose location."));
     origin->lineEdit()->installEventFilter(new LineEditUrlDropEventFilter(this));
     origin->lineEdit()->installEventFilter(this);
-    origin->lineEdit()->setWhatsThis(i18n("Name of directory where you are. You can also "
+    origin->lineEdit()->setWhatsThis(i18n("Name of folder where you are. You can also "
                                           "enter name of desired location to move there. "
                                           "Use of Net protocols like ftp or fish is possible."));
     origin->setMode(KFile::Directory | KFile::ExistingOnly);
@@ -588,7 +588,7 @@ void ListPanel::compareDirs(bool otherPanelToo)
         // If both panels are showing the same directory
         if (_manager->currentPanel()->virtualPath() == otherPanel()->virtualPath()) {
             if (KMessageBox::warningContinueCancel(this,
-                i18n("Warning: The left and the right side are showing the same directory!")) != KMessageBox::Continue) {
+                i18n("Warning: The left and the right side are showing the same folder.")) != KMessageBox::Continue) {
                 return;
             }
         }

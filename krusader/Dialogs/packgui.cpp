@@ -107,7 +107,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
 
 void PackGUI::browse()
 {
-    QString temp = QFileDialog::getExistingDirectory(0, i18n("Please select a directory"), dirData->text());
+    QString temp = QFileDialog::getExistingDirectory(0, i18n("Please select a folder"), dirData->text());
     if (!temp.isEmpty()) {
         dirData->setText(temp);
     }

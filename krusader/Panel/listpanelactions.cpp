@@ -85,7 +85,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     actF6 = action(i18n("Move..."), 0, Qt::Key_F6, _func, SLOT(moveFiles()) , "F6_Move");
     actShiftF5 = action(i18n("Copy by queue..."), 0, Qt::SHIFT + Qt::Key_F5, _func, SLOT(copyFilesByQueue()) , "F5_Copy_Queue");
     actShiftF6 = action(i18n("Move by queue..."), 0, Qt::SHIFT + Qt::Key_F6, _func, SLOT(moveFilesByQueue()) , "F6_Move_Queue");
-    actF7 = action(i18n("New Directory..."), "folder-new", Qt::Key_F7, _func, SLOT(mkdir()) , "F7_Mkdir");
+    actF7 = action(i18n("New Folder..."), "folder-new", Qt::Key_F7, _func, SLOT(mkdir()) , "F7_Mkdir");
     actF8 = action(i18n("Delete"), "edit-delete", Qt::Key_F8, _func, SLOT(deleteFiles()) , "F8_Delete");
     actF9 = action(i18n("Start Terminal Here"), "utilities-terminal", Qt::Key_F9, _func, SLOT(terminal()) , "F9_Terminal");
     action(i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, _func, SLOT(editNew()), "edit_new_file");
@@ -94,7 +94,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     // file operations
     action(i18n("Right-click Menu"), 0, Qt::Key_Menu, _gui, SLOT(rightclickMenu()), "rightclick menu");
     actProperties = action(i18n("&Properties..."), 0, Qt::ALT + Qt::Key_Return, _func, SLOT(properties()), "properties");
-    actCompDirs = action(i18n("&Compare Directories"), "kr_comparedirs", Qt::ALT + Qt::SHIFT + Qt::Key_C, _gui, SLOT(compareDirs()), "compare dirs");
+    actCompDirs = action(i18n("&Compare Folders"), "kr_comparedirs", Qt::ALT + Qt::SHIFT + Qt::Key_C, _gui, SLOT(compareDirs()), "compare dirs");
     actCalculate = action(i18n("Calculate &Occupied Space"), "accessories-calculator", 0, _func, SLOT(calcSpace()), "calculate");
     actPack = action(i18n("Pac&k..."), "archive-insert", Qt::ALT + Qt::SHIFT + Qt::Key_P, _func, SLOT(pack()), "pack");
     actUnpack = action(i18n("&Unpack..."), "archive-extract", Qt::ALT + Qt::SHIFT + Qt::Key_U, _func, SLOT(unpack()), "unpack");
@@ -105,7 +105,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
 
     // navigation
     actRoot = action(i18n("Root"), "folder-red", Qt::CTRL + Qt::Key_Backspace, _func, SLOT(root()), "root");
-    actCdToOther = action(i18n("Go to Other Panel's Directory"), 0, Qt::CTRL + Qt::Key_Equal, _func, SLOT(cdToOtherPanel()), "cd to other panel");
+    actCdToOther = action(i18n("Go to Other Panel's Folder"), 0, Qt::CTRL + Qt::Key_Equal, _func, SLOT(cdToOtherPanel()), "cd to other panel");
     action(i18n("&Reload"), "view-refresh", Qt::CTRL + Qt::Key_R, _func, SLOT(refresh()), "std_redisplay");
     actCancelRefresh = action(i18n("Cancel Refresh of View"), "dialog-cancel", 0, _gui, SLOT(inlineRefreshCancel()), "cancel refresh");
     actFTPNewConnect = action(i18n("New Net &Connection..."), "network-connect", Qt::CTRL + Qt::Key_N, _func, SLOT(newFTPconnection()), "ftp new connection");
@@ -113,7 +113,7 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     action(i18n("Sync Panels"), 0, Qt::ALT + Qt::SHIFT + Qt::Key_O, _func, SLOT(syncOtherPanel()), "sync panels");
     actJumpBack = action(i18n("Jump Back"), "go-jump", Qt::CTRL + Qt::Key_J, _gui, SLOT(jumpBack()), "jump_back");
     actSetJumpBack = action(i18n("Set Jump Back Point"), "go-jump-definition", Qt::CTRL + Qt::SHIFT + Qt::Key_J, _gui, SLOT(setJumpBack()), "set_jump_back");
-    actSyncBrowse = action(i18n("S&ynchron Directory Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, _gui, SLOT(toggleSyncBrowse()), "sync browse");
+    actSyncBrowse = action(i18n("S&ynchron Folder Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, _gui, SLOT(toggleSyncBrowse()), "sync browse");
     actLocationBar = action(i18n("Go to Location Bar"), 0, Qt::CTRL + Qt::Key_L, _gui, SLOT(editLocation()), "location_bar");
     toggleAction(i18n("Toggle Popup Panel"), 0, Qt::ALT + Qt::Key_Down, _gui, SLOT(togglePanelPopup()), "toggle popup panel");
     action(i18n("Bookmarks"), 0, Qt::CTRL + Qt::Key_D, _gui, SLOT(openBookmarks()), "bookmarks");
@@ -129,18 +129,18 @@ ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindo
     // and at last we can set the tool-tips
     actRoot->setToolTip(i18n("ROOT (/)"));
 
-    actF2->setToolTip(i18n("Rename file, directory, etc."));
+    actF2->setToolTip(i18n("Rename file, folder, etc."));
     actF3->setToolTip(i18n("Open file in viewer."));
-    actF4->setToolTip("<qt>" + i18n("<p>Edit file.</p>"
-                                 "<p>The editor can be defined in Konfigurator, "
-                                 "default is <b>internal editor</b>.</p>") + "</qt>");
+    actF4->setToolTip(i18n("<qt><p>Edit file.</p>"
+                           "<p>The editor can be defined in Konfigurator, "
+                           "default is <b>internal editor</b>.</p></qt>"));
     actF5->setToolTip(i18n("Copy file from one panel to the other."));
     actF6->setToolTip(i18n("Move file from one panel to the other."));
-    actF7->setToolTip(i18n("Create directory in current panel."));
-    actF8->setToolTip(i18n("Delete file, directory, etc."));
-    actF9->setToolTip("<qt>" + i18n("<p>Open terminal in current directory.</p>"
-                                 "<p>The terminal can be defined in Konfigurator, "
-                                 "default is <b>konsole</b>.</p>") + "</qt>");
+    actF7->setToolTip(i18n("Create folder in current panel."));
+    actF8->setToolTip(i18n("Delete file, folder, etc."));
+    actF9->setToolTip(i18n("<qt><p>Open terminal in current folder.</p>"
+                           "<p>The terminal can be defined in Konfigurator, "
+                           "default is <b>konsole</b>.</p></qt>"));
 }
 
 void ListPanelActions::activePanelChanged()

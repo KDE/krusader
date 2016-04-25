@@ -1117,7 +1117,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
     if (rightURL.isEmpty())
         rightURL = QUrl::fromLocalFile(ROOT_DIR);
 
-    setWindowTitle(i18n("Krusader::Synchronize Directories"));
+    setWindowTitle(i18n("Krusader::Synchronize Folders"));
     QGridLayout *synchGrid = new QGridLayout(this);
     synchGrid->setSpacing(6);
     synchGrid->setContentsMargins(11, 11, 11, 11);
@@ -1136,7 +1136,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
 
     QGroupBox *compareDirs = new QGroupBox(synchronizerTab);
     compareDirs->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-    compareDirs->setTitle(i18n("Directory Comparison"));
+    compareDirs->setTitle(i18n("Folder Comparison"));
 
     QGridLayout *grid = new QGridLayout(compareDirs);
     grid->setSpacing(6);
@@ -1162,14 +1162,14 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
     leftLocation->setDuplicatesEnabled(false);
     leftLocation->setEditable(true);
     leftLocation->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
-    QStringList list = group.readEntry("Left Directory History", QStringList());
+    QStringList list = group.readEntry("Left Folder History", QStringList());
     leftLocation->setHistoryItems(list);
     KUrlRequester *leftUrlReq = new KUrlRequester(leftLocation, compareDirs);
     leftUrlReq->setUrl(leftURL);
     leftUrlReq->setMode(KFile::Directory);
     leftUrlReq->setMinimumWidth(250);
     grid->addWidget(leftUrlReq, 1 , 0);
-    leftLocation->setWhatsThis(i18n("The left base directory used during the synchronization process."));
+    leftLocation->setWhatsThis(i18n("The left base folder used during the synchronization process."));
     leftUrlReq->setEnabled(!hasSelectedFiles);
     leftLocation->setEnabled(!hasSelectedFiles);
     leftDirLabel->setBuddy(leftLocation);
@@ -1186,7 +1186,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
     grid->addWidget(fileFilter, 1 , 1);
     filterLabel->setBuddy(fileFilter);
 
-    QString wtFilter = "<p><img src='toolbar|find'></p>" + i18n("<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space (means logical OR) and patterns are excluded from the search using the pipe symbol.</p><p>If the pattern is ended with a slash (<code>*pattern*/</code>), that means that pattern relates to recursive search of directories.<ul><li><code>pattern</code> - means to search those files/directories that name is <code>pattern</code>, recursive search goes through all subdirectories independently of the value of <code>pattern</code></li><li><code>pattern/</code> - means to search all files/directories, but recursive search goes through/excludes the directories that name is <code>pattern</code></li></ul><p></p><p>It's allowed to use quotation marks for names that contain space. Filter <code>\"Program&nbsp;Files\"</code> searches out those files/directories that name is <code>Program&nbsp;Files</code>.</p><p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>");
+    QString wtFilter = "<p><img src='toolbar|find'></p>" + i18n("<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space (means logical OR) and patterns are excluded from the search using the pipe symbol.</p><p>If the pattern is ended with a slash (<code>*pattern*/</code>), that means that pattern relates to recursive search of folders.<ul><li><code>pattern</code> - means to search those files/folders that name is <code>pattern</code>, recursive search goes through all subfolders independently of the value of <code>pattern</code></li><li><code>pattern/</code> - means to search all files/folders, but recursive search goes through/excludes the folders that name is <code>pattern</code></li></ul><p></p><p>It's allowed to use quotation marks for names that contain space. Filter <code>\"Program&nbsp;Files\"</code> searches out those files/folders that name is <code>Program&nbsp;Files</code>.</p><p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>");
     fileFilter->setWhatsThis(wtFilter);
     filterLabel->setWhatsThis(wtFilter);
 
@@ -1195,14 +1195,14 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
     rightLocation->setDuplicatesEnabled(false);
     rightLocation->setEditable(true);
     rightLocation->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
-    list = group.readEntry("Right Directory History", QStringList());
+    list = group.readEntry("Right Folder History", QStringList());
     rightLocation->setHistoryItems(list);
     KUrlRequester *rightUrlReq = new KUrlRequester(rightLocation, compareDirs);
     rightUrlReq->setUrl(rightURL);
     rightUrlReq->setMode(KFile::Directory);
     rightUrlReq->setMinimumWidth(250);
     grid->addWidget(rightUrlReq, 1 , 2);
-    rightLocation->setWhatsThis(i18n("The right base directory used during the synchronization process."));
+    rightLocation->setWhatsThis(i18n("The right base folder used during the synchronization process."));
     rightUrlReq->setEnabled(!hasSelectedFiles);
     rightLocation->setEnabled(!hasSelectedFiles);
     rightDirLabel->setBuddy(rightLocation);
@@ -1216,10 +1216,10 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
 
     optionBox->addWidget(optionGridWidget);
 
-    cbSubdirs         = new QCheckBox(i18n("Recurse subdirectories"), optionGridWidget);
+    cbSubdirs         = new QCheckBox(i18n("Recurse subfolders"), optionGridWidget);
     cbSubdirs->setChecked(group.readEntry("Recurse Subdirectories", _RecurseSubdirs));
     optionGrid->addWidget(cbSubdirs, 0, 0);
-    cbSubdirs->setWhatsThis(i18n("Compare not only the base directories but their subdirectories as well."));
+    cbSubdirs->setWhatsThis(i18n("Compare not only the base folders but their subfolders as well."));
     cbSymlinks        = new QCheckBox(i18n("Follow symlinks"), optionGridWidget);
     cbSymlinks->setChecked(group.readEntry("Follow Symlinks", _FollowSymlinks));
     cbSymlinks->setEnabled(cbSubdirs->isChecked());
@@ -1236,7 +1236,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
     cbAsymmetric      = new QCheckBox(i18n("Asymmetric"), optionGridWidget);
     cbAsymmetric->setChecked(group.readEntry("Asymmetric", _Asymmetric));
     optionGrid->addWidget(cbAsymmetric, 1, 1);
-    cbAsymmetric->setWhatsThis(i18n("<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right is the source directory. Files existing only in the left directory will be deleted, the other differing ones will be copied from right to left.</p><p><b>Note</b>: useful when updating a directory from a file server.</p>"));
+    cbAsymmetric->setWhatsThis(i18n("<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right is the source folder. Files existing only in the left folder will be deleted, the other differing ones will be copied from right to left.</p><p><b>Note</b>: useful when updating a folder from a file server.</p>"));
     cbIgnoreCase      = new QCheckBox(i18n("Ignore Case"), optionGridWidget);
     cbIgnoreCase->setChecked(group.readEntry("Ignore Case", _IgnoreCase));
     optionGrid->addWidget(cbIgnoreCase, 1, 2);
@@ -1642,17 +1642,17 @@ SynchronizerGUI::~SynchronizerGUI()
 void SynchronizerGUI::setPanelLabels()
 {
     if (hasSelectedFiles && cbAsymmetric->isChecked()) {
-        leftDirLabel->setText(i18n("Selected files from targ&et directory:"));
-        rightDirLabel->setText(i18n("Selected files from sou&rce directory:"));
+        leftDirLabel->setText(i18n("Selected files from targ&et folder:"));
+        rightDirLabel->setText(i18n("Selected files from sou&rce folder:"));
     } else if (hasSelectedFiles && !cbAsymmetric->isChecked()) {
-        leftDirLabel->setText(i18n("Selected files from &left directory:"));
-        rightDirLabel->setText(i18n("Selected files from &right directory:"));
+        leftDirLabel->setText(i18n("Selected files from &left folder:"));
+        rightDirLabel->setText(i18n("Selected files from &right folder:"));
     } else if (cbAsymmetric->isChecked()) {
-        leftDirLabel->setText(i18n("Targ&et directory:"));
-        rightDirLabel->setText(i18n("Sou&rce directory:"));
+        leftDirLabel->setText(i18n("Targ&et folder:"));
+        rightDirLabel->setText(i18n("Sou&rce folder:"));
     } else {
-        leftDirLabel->setText(i18n("&Left directory:"));
-        rightDirLabel->setText(i18n("&Right directory:"));
+        leftDirLabel->setText(i18n("&Left folder:"));
+        rightDirLabel->setText(i18n("&Right folder:"));
     }
 }
 
@@ -1743,7 +1743,7 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
     QAction *myact;
     QHash< QAction *, int > actHash;
 
-    popup.setTitle(i18n("Synchronize Directories"));
+    popup.setTitle(i18n("Synchronize Folders"));
 
     myact = popup.addAction(i18n("E&xclude"));
     actHash[ myact ] = EXCLUDE_ID;
@@ -1934,7 +1934,7 @@ void SynchronizerGUI::closeDialog()
         url.setPassword(QString());
         list << url.toDisplayString(QUrl::PreferLocalFile);
     }
-    group.writeEntry("Left Directory History", list);
+    group.writeEntry("Left Folder History", list);
     list.clear();
     foreach(QString item, rightLocation->historyItems()) {
         QUrl url(item);
@@ -1942,7 +1942,7 @@ void SynchronizerGUI::closeDialog()
         url.setPassword(QString());
         list << url.toDisplayString(QUrl::PreferLocalFile);
     }
-    group.writeEntry("Right Directory History", list);
+    group.writeEntry("Right Folder History", list);
 
     list = fileFilter->historyItems();
     group.writeEntry("File Filter", list);
@@ -1993,18 +1993,18 @@ void SynchronizerGUI::compare()
     QString leftLocationTrimmed = leftLocation->currentText().trimmed();
     QString rightLocationTrimmed = rightLocation->currentText().trimmed();
     if (leftLocationTrimmed.isEmpty()) {
-        KMessageBox::error(this, i18n("The target directory must not be empty."));
+        KMessageBox::error(this, i18n("The target folder must not be empty."));
         leftLocation->setFocus();
         return;
     }
     if (rightLocationTrimmed.isEmpty()) {
-        KMessageBox::error(this, i18n("The source directory must not be empty."));
+        KMessageBox::error(this, i18n("The source folder must not be empty."));
         rightLocation->setFocus();
         return;
     }
 
     if (leftLocationTrimmed == rightLocationTrimmed) {
-        if (KMessageBox::warningContinueCancel(this, i18n("Warning: The left and the right side are showing the same directory!"))
+        if (KMessageBox::warningContinueCancel(this, i18n("Warning: The left and the right side are showing the same folder."))
             != KMessageBox::Continue) {
             return;
         }
@@ -2347,7 +2347,7 @@ void SynchronizerGUI::keyPressEvent(QKeyEvent *e)
             e->accept();
             if (syncList->topLevelItemCount() != 0) {
                 int result = KMessageBox::warningYesNo(this, i18n("The synchronizer window contains data from a previous compare. If you exit, this data will be lost. Do you really want to exit?"),
-                                                       i18n("Krusader::Synchronize Directories"),
+                                                       i18n("Krusader::Synchronize Folders"),
                                                        KStandardGuiItem::yes(), KStandardGuiItem::no(), "syncGUIexit");
                 if (result != KMessageBox::Yes)
                     return;
@@ -2600,7 +2600,7 @@ QString SynchronizerGUI::dirLabel()
 {
     //HACK add <> brackets AFTER translating - otherwise KUIT thinks it's a tag
     static QString label = QString("<") +
-        i18nc("'DIR' instead of file size in detailed view (for directories)", "DIR") + ">";
+        i18nc("Show the string 'DIR' instead of file size in detailed view (for folders)", "DIR") + ">";
     return label;
 }
 

@@ -605,7 +605,7 @@ TagString exp_Clipboard::expFunc(const KrPanel*, const TagStringList& parameter,
 exp_Copy::exp_Copy()
 {
     _expression = "Copy";
-    _description = i18n("Copy a File/Directory...");
+    _description = i18n("Copy a File/Folder...");
     _needPanel = false;
 
     addParameter(exp_parameter(i18n("What to copy:"), "__placeholder", true));
@@ -643,7 +643,7 @@ TagString exp_Copy::expFunc(const KrPanel*, const TagStringList& parameter, cons
 exp_Move::exp_Move()
 {
     _expression = "Move";
-    _description = i18n("Move/Rename a File/Directory...");
+    _description = i18n("Move/Rename a File/Folder...");
     _needPanel = false;
 
     addParameter(exp_parameter(i18n("What to move/rename:"), "__placeholder", true));

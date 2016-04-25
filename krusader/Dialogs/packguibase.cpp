@@ -103,7 +103,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     hbox_2->setContentsMargins(0, 0, 0, 0);
 
     TextLabel5 = new QLabel(this);
-    TextLabel5->setText(i18n("In directory"));
+    TextLabel5->setText(i18n("In folder"));
     hbox_2->addWidget(TextLabel5);
 
     dirData = new QLineEdit(this);

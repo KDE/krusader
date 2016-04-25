@@ -196,7 +196,7 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
             else if (result == actEditDel) {
                 const QUrl url = Widget::url(m_focus->file());
                 const QString message = (m_focus->file()->isDir()
-                                         ? i18n("<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</b> deleted.</qt>", url.toDisplayString())
+                                         ? i18n("<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</b> deleted.</qt>", url.toDisplayString())
                                          : i18n("<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>", url.toDisplayString()));
                 const int userIntention = KMessageBox::warningContinueCancel(this, message, QString(), KGuiItem(i18n("&Delete"), "edit-delete"));
 

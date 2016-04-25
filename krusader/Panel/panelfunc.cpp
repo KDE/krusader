@@ -480,7 +480,7 @@ void ListPanelFunc::krlink(bool sym)
 
     // if the name is already taken - quit
     if (files() ->vfs_search(linkName) != 0) {
-        KMessageBox::sorry(krMainWindow, i18n("A directory or a file with this name already exists."));
+        KMessageBox::sorry(krMainWindow, i18n("A folder or a file with this name already exists."));
         return ;
     }
 
@@ -542,7 +542,7 @@ void ListPanelFunc::edit()
         return ;
 
     if (files() ->vfs_search(name) ->vfile_isDir()) {
-        KMessageBox::sorry(krMainWindow, i18n("You cannot edit a directory"));
+        KMessageBox::sorry(krMainWindow, i18n("You cannot edit a folder"));
         return ;
     }
 
@@ -718,7 +718,7 @@ void ListPanelFunc::mkdir()
     if (!suggestedName.isEmpty() && !files()->vfs_search(suggestedName)->vfile_isDir())
         suggestedName = QFileInfo(suggestedName).completeBaseName();
 
-    QString dirName = QInputDialog::getText(krMainWindow, i18n("New directory"), i18n("Directory's name:"), QLineEdit::Normal, suggestedName);
+    QString dirName = QInputDialog::getText(krMainWindow, i18n("New folder"), i18n("Folder's name:"), QLineEdit::Normal, suggestedName);
 
     // if the user canceled - quit
     if (dirName.isEmpty())
@@ -737,7 +737,7 @@ void ListPanelFunc::mkdir()
         if (files() ->vfs_search(*it)) {
             // if it is the last dir to be created - quit
             if (*it == dirTree.last()) {
-                KMessageBox::sorry(krMainWindow, i18n("A directory or a file with this name already exists."));
+                KMessageBox::sorry(krMainWindow, i18n("A folder or a file with this name already exists."));
                 return ;
             }
             // else go into this dir
@@ -888,7 +888,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
 {
     // check that the you have write perm
     if (!files() ->vfs_isWritable()) {
-        KMessageBox::sorry(krMainWindow, i18n("You do not have write permission to this directory"));
+        KMessageBox::sorry(krMainWindow, i18n("You do not have write permission to this folder"));
         return ;
     }
 
@@ -939,7 +939,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
             dir.setPath(panel->virtualPath().path() + '/' + (*name));
             if (dir.entryList(QDir::TypeMask | QDir::System | QDir::Hidden).count() > 2) {
                 switch (KMessageBox::warningYesNoCancel(krMainWindow,
-                                                        i18n("<qt><p>Directory <b>%1</b> is not empty.</p><p>Skip this one or delete all?</p></qt>", *name),
+                                                        i18n("<qt><p>Folder <b>%1</b> is not empty.</p><p>Skip this one or delete all?</p></qt>", *name),
                                                         QString(), KGuiItem(i18n("&Skip")), KGuiItem(i18n("&Delete All")))) {
                 case KMessageBox::No :
                     emptyDirVerify = false;

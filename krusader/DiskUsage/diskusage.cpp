@@ -400,7 +400,7 @@ void DiskUsage::dirUp()
         else {
             QUrl up = KIO::upUrl(baseURL);
 
-            if (KMessageBox::questionYesNo(this, i18n("Stepping into the parent directory requires "
+            if (KMessageBox::questionYesNo(this, i18n("Stepping into the parent folder requires "
                                            "loading the content of the \"%1\" URL. Do you wish "
                                            "to continue?", up.toDisplayString(QUrl::PreferLocalFile)),
                                            i18n("Krusader::DiskUsage"), KStandardGuiItem::yes(),
@@ -711,7 +711,7 @@ void DiskUsage::createStatus()
         url = url.adjusted(QUrl::StripTrailingSlash);
         url.setPath(url.path() + '/' + (dirEntry->directory()));
 
-    emit status(i18n("Current directory:%1,  Total size:%2,  Own size:%3",
+    emit status(i18n("Current folder:%1,  Total size:%2,  Own size:%3",
                      url.toDisplayString(QUrl::PreferLocalFile | QUrl::StripTrailingSlash),
                      ' ' + KRpermHandler::parseSize(dirEntry->size()),
                      ' ' + KRpermHandler::parseSize(dirEntry->ownSize())));
@@ -751,7 +751,7 @@ void DiskUsage::rightClickMenu(const QPoint & pos, File *fileItem, QMenu *addPop
         popup.addSeparator();
     }
 
-    QAction * myAct = popup.addAction(i18n("Up one directory"));
+    QAction * myAct = popup.addAction(i18n("Up one folder"));
     actionHash[ myAct ] = PARENT_DIR_ID;
     myAct->setShortcut(Qt::SHIFT + Qt::Key_Up);
 

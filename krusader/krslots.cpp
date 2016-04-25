@@ -538,7 +538,7 @@ void KRslots::slotSplit()
         return;
 
     if (ACTIVE_FUNC->files()->vfs_search(name)->vfile_isDir()) {
-        KMessageBox::sorry(krApp, i18n("You cannot split a directory."));
+        KMessageBox::sorry(krApp, i18n("You cannot split a folder."));
         return ;
     }
 
@@ -580,7 +580,7 @@ void KRslots::slotCombine()
             return;
 
         if (ACTIVE_FUNC->files()->vfs_search(*it)->vfile_isDir()) {
-            KMessageBox::sorry(krApp, i18n("You cannot combine a directory."));
+            KMessageBox::sorry(krApp, i18n("You cannot combine a folder."));
             return ;
         }
 
@@ -656,7 +656,7 @@ void KRslots::slotCombine()
     }
 
     // ask the user for the copy dest
-    QUrl dest = KChooseDir::getDir(i18n("Combining %1.* to directory:", baseURL.toDisplayString(QUrl::PreferLocalFile)),
+    QUrl dest = KChooseDir::getDir(i18n("Combining %1.* to folder:", baseURL.toDisplayString(QUrl::PreferLocalFile)),
                                    ACTIVE_PANEL->otherPanel()->virtualPath(), ACTIVE_PANEL->virtualPath());
     if (dest.isEmpty()) return ;   // the user canceled
 

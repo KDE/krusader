@@ -91,7 +91,7 @@ void Splitter::split(KIO::filesize_t splitSizeIn)
     setLabelText(i18n("Splitting the file %1...", fileName.toDisplayString(QUrl::PreferLocalFile)));
 
     if (file.isDir()) {
-        KMessageBox::error(0, i18n("Cannot split a directory."));
+        KMessageBox::error(0, i18n("Cannot split a folder."));
         return;
     }
 

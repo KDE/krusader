@@ -62,7 +62,7 @@ CmdLineCombo::CmdLineCombo(QWidget *parent) : KHistoryComboBox(parent), _handlin
 {
     lineEdit()->installEventFilter(this);
     _pathLabel = new QLabel(this);
-    _pathLabel->setWhatsThis(i18n("Name of directory where command will be processed."));
+    _pathLabel->setWhatsThis(i18n("Name of folder where command will be processed."));
     _pathLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 }
 

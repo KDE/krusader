@@ -131,7 +131,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     searchForLabel->setBuddy(searchFor);
     nameGroupLayout->addWidget(searchFor, 0, 1, 1, 2);
 
-    QString s = "<p><img src='toolbar|find'></p>" + i18n("<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space (means logical OR) and patterns are excluded from the search using the pipe symbol.</p><p>If the pattern is ended with a slash (<code>*pattern*/</code>), that means that pattern relates to recursive search of directories.<ul><li><code>pattern</code> - means to search those files/directories that name is <code>pattern</code>, recursive search goes through all subdirectories independently of the value of <code>pattern</code></li><li><code>pattern/</code> - means to search all files/directories, but recursive search goes through/excludes the directories that name is <code>pattern</code></li></ul><p></p><p>It's allowed to use quotation marks for names that contain space. Filter <code>\"Program&nbsp;Files\"</code> searches out those files/directories that name is <code>Program&nbsp;Files</code>.</p><p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>");
+    QString s = "<p><img src='toolbar|find'></p>" + i18n("<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space (means logical OR) and patterns are excluded from the search using the pipe symbol.</p><p>If the pattern is ended with a slash (<code>*pattern*/</code>), that means that pattern relates to recursive search of folders.<ul><li><code>pattern</code> - means to search those files/folders that name is <code>pattern</code>, recursive search goes through all subfolders independently of the value of <code>pattern</code></li><li><code>pattern/</code> - means to search all files/folders, but recursive search goes through/excludes the folders that name is <code>pattern</code></li></ul><p></p><p>It's allowed to use quotation marks for names that contain space. Filter <code>\"Program&nbsp;Files\"</code> searches out those files/folders that name is <code>Program&nbsp;Files</code>.</p><p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>");
     searchFor->setWhatsThis(s);
     searchForLabel->setWhatsThis(s);
 
@@ -148,7 +148,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     searchType->setBuddy(ofType);
     ofType->addItem(i18n("All Files"));
     ofType->addItem(i18n("Archives"));
-    ofType->addItem(i18n("Directories"));
+    ofType->addItem(i18n("Folders"));
     ofType->addItem(i18n("Image Files"));
     ofType->addItem(i18n("Text Files"));
     ofType->addItem(i18n("Video Files"));
@@ -338,7 +338,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     if (properties & FilterTabs::HasRecurseOptions) {
         // Options for recursive searching
         searchInDirs = new QCheckBox(this);
-        searchInDirs->setText(i18n("Search in s&ubdirectories"));
+        searchInDirs->setText(i18n("Search in s&ub folders"));
         searchInDirs->setChecked(true);
         recurseLayout->addWidget(searchInDirs);
 
@@ -488,7 +488,7 @@ void GeneralFilter::slotLoadBtnClicked()
 void GeneralFilter::slotDisable()
 {
     bool state = containsRegExp->isChecked();
-    bool global = ofType->currentText() != i18n("Directories");
+    bool global = ofType->currentText() != i18n("Folders");
     bool remoteOnly = false;
     if (properties & FilterTabs::HasSearchIn) {
         QList<QUrl> urlList = searchIn->urlList();

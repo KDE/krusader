@@ -207,7 +207,7 @@ void Synchronizer::compareLoop()
                 break;
             case ST_STATE_READY:
             case ST_STATE_ERROR:
-                emit statusInfo(i18n("Number of compared directories: %1", comparedDirs));
+                emit statusInfo(i18n("Number of compared folders: %1", comparedDirs));
                 stack.removeAll(entry);
                 delete entry;
                 continue;

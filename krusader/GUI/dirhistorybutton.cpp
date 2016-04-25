@@ -33,8 +33,8 @@ DirHistoryButton::DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent) : QTool
 {
     setAutoRaise(true);
     setIcon(QIcon::fromTheme("chronometer"));
-    setText(i18n("Open the directory history list"));
-    setToolTip(i18n("Open the directory history list"));
+    setText(i18n("Open the folder history list"));
+    setToolTip(i18n("Open the folder history list"));
     setPopupMode(QToolButton::InstantPopup);
     setAcceptDrops(false);
 
