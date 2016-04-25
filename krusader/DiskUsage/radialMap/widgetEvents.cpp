@@ -20,6 +20,8 @@
 #include "radialMap.h"   //class Segment
 #include "widget.h"
 
+#include <cmath>
+
 #include <QtCore/QTimer>                                    //::resizeEvent()
 #include <QtGui/QMouseEvent>
 #include <QtGui/QPainter>
@@ -90,7 +92,7 @@ RadialMap::Widget::segmentAt(QPoint &e) const
         e.rx() -= m_map.width() / 2; //should be an int
         e.ry()  = m_map.height() / 2 - e.y();
 
-        double length = hypot(e.x(), e.y());
+        double length = std::hypot(e.x(), e.y());
 
         if (length >= m_map.m_innerRadius) { //not hovering over inner circle
             uint depth  = ((int)length - m_map.m_innerRadius) / m_map.m_ringBreadth;
