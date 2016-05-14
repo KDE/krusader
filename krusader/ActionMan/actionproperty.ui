@@ -207,8 +207,8 @@
           </sizepolicy>
          </property>
          <property name="whatsThis">
-          <string>&lt;p&gt;The &lt;i&gt;Command&lt;/i&gt; defines the command that will be executed when the &lt;b&gt;Useraction&lt;/b&gt; is used. It can be a simple shell command or a complex sequence of multiple commands with &lt;b&gt;Placeholders&lt;/b&gt;.&lt;/p&gt;&lt;p&gt;Examples:&lt;ul&gt;&lt;code&gt;&lt;li&gt;eject /mnt/cdrom&lt;/li&gt;&lt;li&gt;amarok --append %aList(&quot;Selected&quot;)%&lt;/li&gt;&lt;/code&gt;&lt;/ul&gt;
-Please consult the handbook to learn more about the syntax.&lt;/p&gt;</string>
+          <string>&lt;p&gt;The &lt;i&gt;Command&lt;/i&gt; defines the command that will be executed when the &lt;b&gt;Useraction&lt;/b&gt; is used. It can be a simple shell command or a complex sequence of multiple commands with &lt;b&gt;Placeholders&lt;/b&gt;.&lt;/p&gt;&lt;p&gt;Examples:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;code&gt;eject /mnt/cdrom&lt;/code&gt;&lt;/li&gt;&lt;li&gt;&lt;code&gt;amarok --append %aList(&quot;Selected&quot;)%&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;Please consult the handbook to learn more about the syntax.&lt;/p&gt;</string>
          </property>
          <property name="text">
           <string>Command:</string>
@@ -255,7 +255,7 @@ Please consult the handbook to learn more about the syntax.&lt;/p&gt;</string>
         <widget class="KLineEdit" name="leCommandline">
          <property name="whatsThis">
           <string>The &lt;i&gt;Command&lt;/i&gt; defines the command that will be executed when the &lt;b&gt;Useraction&lt;/b&gt; is used. It can be a simple shell command or a complex sequence of multiple commands with &lt;b&gt;Placeholders&lt;/b&gt;.&lt;p&gt;
-Examples:&lt;ul&gt;&lt;code&gt;&lt;li&gt;eject /mnt/cdrom&lt;/li&gt;&lt;li&gt;amarok --append %aList(&quot;Selected&quot;)%&lt;/li&gt;&lt;/code&gt;&lt;/ul&gt;
+Examples:&lt;ul&gt;&lt;li&gt;&lt;code&gt;eject /mnt/cdrom&lt;/code&gt;&lt;/li&gt;&lt;li&gt;&lt;code&gt;amarok --append %aList(&quot;Selected&quot;)%&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
 Please consult the handbook to learn more about the syntax.</string>
          </property>
          <property name="text">
