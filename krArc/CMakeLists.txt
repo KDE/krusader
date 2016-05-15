@@ -4,6 +4,7 @@ set(kio_krarc_PART_SRCS
     krarc.cpp
     krarcbasemanager.cpp
     krlinecountingprocess.cpp
+    krdebuglogger.cpp
 )
 
 add_library(kio_krarc MODULE ${kio_krarc_PART_SRCS})

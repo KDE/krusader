@@ -30,6 +30,7 @@
 
 #include "krarcbasemanager.h"
 #include "krlinecountingprocess.h"
+#include "krdebuglogger.h"
 
 class KFileItem;
 class QByteArray;
