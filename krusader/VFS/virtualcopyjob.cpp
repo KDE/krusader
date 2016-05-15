@@ -258,9 +258,10 @@ void VirtualCopyJob::createNextDir()
 
     m_currentDir = diter.next().key();
     m_current = m_dest;
-    if (m_currentDir != "./" && !m_currentDir.isEmpty())
+    if (m_currentDir != "./" && !m_currentDir.isEmpty()) {
         m_current = m_current.adjusted(QUrl::StripTrailingSlash);
         m_current.setPath(m_current.path() + '/' + (m_currentDir));
+    }
 
     KIO::Job *job = KIO::stat(m_current, KIO::HideProgressInfo);
     connect(job, SIGNAL(result(KJob*)), this, SLOT(slotStatResult(KJob*)));

@@ -327,9 +327,10 @@ void DiskUsage::slotLoadDirectory()
 
                 QUrl url = baseURL;
 
-                if (!dirToCheck.isEmpty())
+                if (!dirToCheck.isEmpty()) {
                     url = url.adjusted(QUrl::StripTrailingSlash);
                     url.setPath(url.path() + '/' + (dirToCheck));
+                }
 
 #ifdef BSD
                 if (url.isLocalFile() && url.path().left(7) == "/procfs")
@@ -707,9 +708,10 @@ void DiskUsage::createStatus()
         return;
 
     QUrl url = baseURL;
-    if (dirEntry != root)
+    if (dirEntry != root) {
         url = url.adjusted(QUrl::StripTrailingSlash);
         url.setPath(url.path() + '/' + (dirEntry->directory()));
+    }
 
     emit status(i18n("Current folder:%1,  Total size:%2,  Own size:%3",
                      url.toDisplayString(QUrl::PreferLocalFile | QUrl::StripTrailingSlash),
