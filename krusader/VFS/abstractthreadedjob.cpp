@@ -49,6 +49,8 @@
 #include "../krglobal.h"
 #include "../krservices.h"
 
+extern KRarcHandler arcHandler;
+
 AbstractThreadedJob::AbstractThreadedJob() : KIO::Job(), _locker(), _waiter(), _stack(), _maxProgressValue(0),
         _currentProgress(0), _exiting(false), _jobThread(0)
 {
@@ -608,3 +610,42 @@ void AbstractJobThread::sendMessage(const QString &message)
     delete result;
 }
 
+//! Gets some archive information that is needed in several cases.
+/*!
+    \param path A path to the archive.
+    \param type The type of the archive.
+    \param password The password of the archive.
+    \param arcName The name of the archive.
+    \param sourceFolder A QUrl, which may be remote, of the folder where the archive is.
+    \return If the archive information has been obtained.
+*/
+bool AbstractJobThread::getArchiveInformation(QString &path, QString &type, QString &password,
+                                              QString &arcName, const QUrl &sourceFolder)
+{
+    // Safety checks (though the user shouldn't have been able to select something named "" or "..")
+    if (arcName.isEmpty())
+        return false;
+    if (arcName == "..")
+        return false;
+
+    QUrl url = sourceFolder.adjusted(QUrl::StripTrailingSlash);
+    url.setPath(url.path() + '/' + arcName);
+
+    path = url.adjusted(QUrl::StripTrailingSlash).path();
+
+    QMimeDatabase db;
+    QMimeType mt = db.mimeTypeForUrl(url);
+    QString mime = mt.isValid() ? mt.name() : QString();
+    bool encrypted = false;
+    type = arcHandler.getType(encrypted, path, mime);
+
+    // Check that the archive is supported
+    if (!KRarcHandler::arcSupported(type)) {
+        sendError(KIO::ERR_NO_CONTENT, i18nc("%1=archive filename", "%1, unsupported archive type.", arcName));
+        return false;
+    }
+
+    password = encrypted ? getPassword(path) : QString();
+
+    return true;
+}

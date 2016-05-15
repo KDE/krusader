@@ -33,6 +33,7 @@
 
 #include <QtCore/QThread>
 #include <QtCore/QEvent>
+#include <QtCore/QMimeDatabase>
 #include <QtCore/QMutex>
 #include <QtCore/QWaitCondition>
 #include <QtCore/QStack>
@@ -143,6 +144,7 @@ protected:
     void terminate();
 
     QString getPassword(const QString &path);
+    bool getArchiveInformation(QString &, QString &, QString &, QString &, const QUrl &);
 
     AbstractThreadedJob *_job;
     QEventLoop          *_loop;

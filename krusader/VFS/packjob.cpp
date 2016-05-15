@@ -109,35 +109,15 @@ TestArchiveThread::TestArchiveThread(const QUrl &srcUrl, const QStringList & fil
 
 void TestArchiveThread::slotStart()
 {
+    // Gets a QUrl of the source folder, which may be remote
     QUrl newSource = downloadIfRemote(_sourceUrl, _fileNames);
     if (newSource.isEmpty())
         return;
 
     for (int i = 0; i < _fileNames.count(); ++i) {
-        QString arcName = _fileNames[ i ];
-        if (arcName.isEmpty())
-            continue;
-        if (arcName == "..")
-            continue; // safety
-
-        QUrl url = newSource.adjusted(QUrl::StripTrailingSlash);
-        url.setPath(url.path() + '/' + arcName);
-
-        QString path = url.adjusted(QUrl::StripTrailingSlash).path();
-
-        QMimeDatabase db;
-        QMimeType mt = db.mimeTypeForUrl(url);
-        QString mime = mt.isValid() ? mt.name() : QString();
-        bool encrypted = false;
-        QString type = arcHandler.getType(encrypted, path, mime);
-
-        // check we that archive is supported
-        if (!KRarcHandler::arcSupported(type)) {
-            sendError(KIO::ERR_NO_CONTENT, i18nc("%1=archive filename", "%1, unsupported archive type.", arcName));
-            return ;
-        }
-
-        QString password = encrypted ? getPassword(path) : QString();
+        QString path, type, password, arcName = _fileNames[i];
+        if (!getArchiveInformation(path, type, password, arcName, newSource))
+            return;
 
         // test the archive
         if (!KRarcHandler::test(path, type, password, observer(), 0)) {
@@ -168,6 +148,7 @@ UnpackThread::UnpackThread(const QUrl &srcUrl, const QUrl &destUrl, const QStrin
 
 void UnpackThread::slotStart()
 {
+    // Gets a QUrl of the source folder, which may be remote
     QUrl newSource = downloadIfRemote(_sourceUrl, _fileNames);
     if (newSource.isEmpty())
         return;
@@ -175,30 +156,9 @@ void UnpackThread::slotStart()
     QString localDest = tempDirIfRemote(_destUrl);
 
     for (int i = 0; i < _fileNames.count(); ++i) {
-        QString arcName = _fileNames[ i ];
-        if (arcName.isEmpty())
-            continue;
-        if (arcName == "..")
-            continue; // safety
-
-        QUrl url = newSource.adjusted(QUrl::StripTrailingSlash);
-        url.setPath(url.path() + '/' + arcName);
-
-        QString path = url.adjusted(QUrl::StripTrailingSlash).path();
-
-        QMimeDatabase db;
-        QMimeType mt = db.mimeTypeForUrl(url);
-        QString mime = mt.isValid() ? mt.name() : QString();
-        bool encrypted = false;
-        QString type = arcHandler.getType(encrypted, path, mime);
-
-        // check we that archive is supported
-        if (!KRarcHandler::arcSupported(type)) {
-            sendError(KIO::ERR_NO_CONTENT, i18nc("%1=archive filename", "%1, unsupported archive type.", arcName));
-            return ;
-        }
-
-        QString password = encrypted ? getPassword(path) : QString();
+        QString path, type, password, arcName = _fileNames[i];
+        if (!getArchiveInformation(path, type, password, arcName, newSource))
+            return;
 
         setProgressTitle(i18n("Processed files"));
         // unpack the files
