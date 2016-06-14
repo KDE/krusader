@@ -58,7 +58,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KIOCore/KDiskFreeSpaceInfo>
 #include <KWidgetsAddons/KCursor>
 #include <KWidgetsAddons/KMessageBox>
-#include <KWidgetsAddons/LineEditUrlDropEventFilter>
+#include <KIOFileWidgets/KFilePlacesModel>
+#include <KIOWidgets/KUrlComboBox>
 
 //#ifdef __LIBKONQ__
 //#include <konq_popupmenu.h>
@@ -98,7 +99,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krlayoutfactory.h"
 #include "quickfilter.h"
 #include "dirhistoryqueue.h"
-#include "urlrequester.h"
 
 
 class ActionButton : public QToolButton
@@ -189,24 +189,15 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
                                        "or add subfolder to the list."));
     ADD_WIDGET(bookmarksButton);
 
-    // origin input field
-    QuickNavLineEdit *qnle = new QuickNavLineEdit(this);
-    origin = new UrlRequester(qnle, this);
-    origin->setWhatsThis(i18n("Use superb KDE file dialog to choose location."));
-    origin->lineEdit()->installEventFilter(new LineEditUrlDropEventFilter(this));
-    origin->lineEdit()->installEventFilter(this);
-    origin->lineEdit()->setWhatsThis(i18n("Name of folder where you are. You can also "
-                                          "enter name of desired location to move there. "
-                                          "Use of Net protocols like ftp or fish is possible."));
-    origin->setMode(KFile::Directory | KFile::ExistingOnly);
-    origin->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Minimum);
-    connect(origin, SIGNAL(returnPressed(const QString&)), func, SLOT(urlEntered(const QString&)));
-    connect(origin, SIGNAL(returnPressed(const QString&)), this, SLOT(slotFocusOnMe()));
-    connect(origin, SIGNAL(focusout()), func, SLOT(refresh()));
-    connect(origin, SIGNAL(urlSelected(const QUrl &)), func, SLOT(urlEntered(const QUrl &)));
-    connect(origin, SIGNAL(urlSelected(const QUrl &)), this, SLOT(slotFocusOnMe()));
-    connect(this, SIGNAL(refreshPathLabel()), origin, SLOT(refresh()));
-    ADD_WIDGET(origin);
+    // url input field
+    urlNavigator = new KUrlNavigator(new KFilePlacesModel(this), QUrl(), this);
+    urlNavigator->setWhatsThis(i18n("Name of folder where you are. You can also "
+                                    "enter name of desired location to move there. "
+                                    "Use of Net protocols like ftp or fish is possible."));
+    urlNavigator->editor()->installEventFilter(this);
+    connect(urlNavigator, SIGNAL(returnPressed()), this, SLOT(slotFocusOnMe()));
+    connect(urlNavigator, SIGNAL(urlChanged(QUrl)), func, SLOT(navigatorUrlChanged(QUrl)));
+    ADD_WIDGET(urlNavigator);
 
     // toolbar
     QWidget * toolbar = new QWidget(this);
@@ -266,9 +257,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 #undef ADD_WIDGET
 
     // toolbar buttons
-
     cdOtherButton = new ActionButton(toolbar, this, _actions->actCdToOther, "=");
-    cdOtherButton->setFixedSize(20, origin->button()->height());
     toolbarLayout->addWidget(cdOtherButton);
 
     cdUpButton = new ActionButton(toolbar, this, _actions->actDirUp, "..");
@@ -324,7 +313,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
         QHBoxLayout *h = new QHBoxLayout;
         h->setContentsMargins(0, 0, 0, 0);
         h->setSpacing(0);
-        h->addWidget(origin);
+        h->addWidget(urlNavigator);
         h->addWidget(toolbar);
         h->addStretch();
         v->addLayout(h);
@@ -372,7 +361,7 @@ ListPanel::~ListPanel()
     delete bookmarksButton;
     delete totals;
     delete quickSearch;
-    delete origin;
+    delete urlNavigator;
     delete cdRootButton;
     delete cdHomeButton;
     delete cdUpButton;
@@ -495,13 +484,10 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
             }
         }
     }
-    else if(e->type() == QEvent::KeyPress && origin->lineEdit() == watched) {
+    else if(e->type() == QEvent::KeyPress && watched == urlNavigator->editor()) {
         QKeyEvent *ke = (QKeyEvent *)e;
-        if ((ke->key() ==  Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) {
-            slotFocusOnMe();
-            return true;
-        }
-        else if ((ke->key() ==  Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier)) {
+        if (((ke->key() ==  Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) ||
+                ((ke->key() ==  Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier))) {
             slotFocusOnMe();
             return true;
         }
@@ -564,14 +550,12 @@ void ListPanel::setButtons()
         cdHomeButton->setVisible(group.readEntry("Home Button Visible", _cdHome));
         cdUpButton->setVisible(group.readEntry("Up Button Visible", _cdUp));
         cdOtherButton->setVisible(group.readEntry("Equal Button Visible", _cdOther));
-        origin->button()->setVisible(group.readEntry("Open Button Visible", _Open));
         syncBrowseButton->setVisible(group.readEntry("SyncBrowse Button Visible", _syncBrowseButton));
     } else {
         cdRootButton->hide();
         cdHomeButton->hide();
         cdUpButton->hide();
         cdOtherButton->hide();
-        origin->button()->hide();
         syncBrowseButton->hide();
     }
 }
@@ -666,12 +650,12 @@ void ListPanel::slotFocusOnMe(bool focus)
         otherPanel()->gui->slotFocusOnMe(false);
     } else {
         // in case a new url was entered but not refreshed to,
-        // reset origin bar to the current url
-        origin->setUrl(virtualPath());
+        // reset url navigator to the current url
+        urlNavigator->setLocationUrl(virtualPath());
         view->prepareForPassive();
     }
 
-    origin->setActive(focus);
+    urlNavigator->setActive(focus);
     refreshColors();
     emit refreshPathLabel();
 
@@ -710,9 +694,9 @@ void ListPanel::slotStartUpdate()
 
     setCursor(Qt::BusyCursor);
 
-    if (func->files() ->vfs_getType() == vfs::VFS_NORMAL)
+    if (func->files()->vfs_getType() == vfs::VFS_NORMAL)
         _realPath = virtualPath();
-    this->origin->setUrl(virtualPath());
+    urlNavigator->setLocationUrl(virtualPath());
     emit pathChanged(this);
 
     slotGetStats(virtualPath());
@@ -1021,9 +1005,8 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
         break;
 
     case Qt::Key_Up :
-        if (e->modifiers() == Qt::ControlModifier) {   // give the keyboard focus to the command line
-            origin->lineEdit()->setFocus();
-            origin->lineEdit()->selectAll();
+        if (e->modifiers() == Qt::ControlModifier) {   // give the keyboard focus to the url navigator
+            editLocation();
             return ;
         } else
             e->ignore();
@@ -1099,7 +1082,7 @@ void ListPanel::slotJobStarted(KIO::Job* job)
 {
     // disable the parts of the panel we don't want touched
     status->setEnabled(false);
-    origin->setEnabled(false);
+    urlNavigator->setEnabled(false);
     cdRootButton->setEnabled(false);
     cdHomeButton->setEnabled(false);
     cdUpButton->setEnabled(false);
@@ -1157,7 +1140,7 @@ void ListPanel::inlineRefreshListResult(KJob*)
     inlineRefreshJob = 0;
     // reenable everything
     status->setEnabled(true);
-    origin->setEnabled(true);
+    urlNavigator->setEnabled(true);
     cdRootButton->setEnabled(true);
     cdHomeButton->setEnabled(true);
     cdUpButton->setEnabled(true);
@@ -1229,8 +1212,9 @@ void ListPanel::toggleSyncBrowse()
 
 void ListPanel::editLocation()
 {
-    origin->lineEdit()->selectAll();
-    origin->edit();
+    urlNavigator->setUrlEditable(true);
+    urlNavigator->setFocus();
+    urlNavigator->editor()->lineEdit()->selectAll();
 }
 
 void ListPanel::saveSettings(KConfigGroup cfg, bool saveHistory)
@@ -1296,8 +1280,8 @@ void ListPanel::otherPanelChanged()
 
 void ListPanel::getFocusCandidates(QVector<QWidget*> &widgets)
 {
-    if(origin->lineEdit()->isVisible())
-        widgets << origin->lineEdit();
+    if(urlNavigator->editor()->isVisible())
+        widgets << urlNavigator->editor();
     if(view->widget()->isVisible())
         widgets << view->widget();
     if(popup && popup->isVisible())

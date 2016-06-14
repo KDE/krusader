@@ -51,8 +51,7 @@ class ListPanelFunc : public QObject
 public slots:
     void execute(const QString&);
     void goInside(const QString&);
-    void urlEntered(const QString &url);
-    void urlEntered(const QUrl &url);
+    void navigatorUrlChanged(const QUrl &url);
     void openUrl(const QUrl &path, const QString& nameToMakeCurrent = QString(),
                  bool manuallyEntered = false);
 //     void popErronousUrl();
@@ -131,6 +130,8 @@ public:
     bool atHome();
 
 protected slots:
+    // Load the current url from history and refresh vfs and panel to it. If this fails, try the
+    // next url in history until success (last try is root)
     void doRefresh();
     void slotFileCreated(KJob *job); // a file has been created by editNewFile()
     void historyGotoPos(int pos);
@@ -156,6 +157,7 @@ protected:
 
 private:
     QUrl getVirtualBaseURL();
+    bool _refreshing; // ignore url changes while refreshing
 };
 
 #endif

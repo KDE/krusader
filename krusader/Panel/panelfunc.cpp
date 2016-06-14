@@ -66,7 +66,6 @@ A
 #include "krerrordisplay.h"
 #include "listpanelactions.h"
 #include "quickfilter.h"
-#include "urlrequester.h"
 #include "../krglobal.h"
 #include "../krslots.h"
 #include "../kractions.h"
@@ -94,7 +93,7 @@ A
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
 ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
-        panel(parent), vfsP(0), urlManuallyEntered(false)
+        panel(parent), vfsP(0), urlManuallyEntered(false), _refreshing(false)
 {
     history = new DirHistoryQueue(panel);
     delayTimer.setSingleShot(true);
@@ -114,16 +113,11 @@ ListPanelFunc::~ListPanelFunc()
     delete history;
 }
 
-void ListPanelFunc::urlEntered(const QString &url)
+void ListPanelFunc::navigatorUrlChanged(const QUrl &url)
 {
-    // The string passed by the signal is not processed, no replacements done (like ~ for home directory)
-    // Instead, since we know where the signal came from, get the correct url directly from the sender
-    Q_UNUSED(url)
-    urlEntered(panel->origin->url());
-}
-
-void ListPanelFunc::urlEntered(const QUrl &url)
-{
+    if (_refreshing)
+        return;
+    panel->urlNavigator->setUrlEditable(false);
     openUrl(url, QString(), true);
 }
 
@@ -268,6 +262,7 @@ void ListPanelFunc::refresh()
 
 void ListPanelFunc::doRefresh()
 {
+    _refreshing = true;
     delayTimer.stop();
 
     QUrl url = history->currentUrl();
@@ -370,7 +365,7 @@ void ListPanelFunc::doRefresh()
         if (vfsP->vfs_refresh(u)) {
             // update the history and address bar, as the actual url might differ from the one requested
             history->setCurrentUrl(vfsP->vfs_getOrigin());
-            panel->origin->setUrl(vfsP->vfs_getOrigin());
+            panel->urlNavigator->setLocationUrl(vfsP->vfs_getOrigin());
             break; // we have a valid refreshed URL now
         }
 
@@ -394,7 +389,6 @@ void ListPanelFunc::doRefresh()
     }
     vfsP->vfs_setQuiet(false);
     panel->view->setNameToMakeCurrent(QString());
-    panel->origin->setStartDir(vfsP->vfs_getOrigin());
 
     panel->setCursor(Qt::ArrowCursor);
 
@@ -403,14 +397,14 @@ void ListPanelFunc::doRefresh()
         QDir::setCurrent(KrServices::getPath(files()->vfs_getOrigin()));
 
     // see if the open url operation failed, and if so,
-    // put the attempted url in the origin bar and let the user change it
+    // put the attempted url in the navigator bar and let the user change it
     if (refreshFailed) {
         if(isSyncing(url))
             panel->otherPanel()->gui->syncBrowseButton->setChecked(false);
         else if(urlManuallyEntered) {
-            panel->origin->setUrl(url);
+            panel->urlNavigator->setLocationUrl(url);
             if(panel == ACTIVE_PANEL)
-                panel->origin->edit();
+                panel->editLocation();
         }
     }
 
@@ -420,6 +414,7 @@ void ListPanelFunc::doRefresh()
     urlManuallyEntered = false;
 
     refreshActions();
+    _refreshing = false;
 }
 
 void ListPanelFunc::redirectLink()

@@ -11,7 +11,7 @@
             </frame>
         </layout>
         <layout type="horizontal">
-            <widget name="origin"/>
+            <widget name="urlNavigator"/>
             <widget name="toolbar"/>
             <widget name="backButton"/>
             <widget name="forwardButton"/>
@@ -35,7 +35,7 @@
         <layout type="horizontal">
             <frame type="horizontal" color="Statusbar" shape="Box" shadow="Raised">
                 <widget name="mediaButton"/>
-                <widget name="origin"/>
+                <widget name="urlNavigator"/>
                 <widget name="toolbar"/>
                 <widget name="backButton"/>
                 <widget name="forwardButton"/>
@@ -59,7 +59,7 @@
     <layout name="krusader:classic" type="vertical">
         <hide_widget name="freeSpace"/>
         <layout type="horizontal">
-            <widget name="origin"/>
+            <widget name="urlNavigator"/>
             <widget name="toolbar"/>
         </layout>
         <layout type="horizontal">

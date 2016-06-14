@@ -55,6 +55,7 @@
 
 #include <KIOCore/KFileItem>
 #include <KCompletion/KLineEdit>
+#include <KIOFileWidgets/KUrlNavigator>
 
 #include "krpanel.h"
 #include "krview.h"
@@ -65,7 +66,6 @@
 
 class vfs;
 class KrView;
-class UrlRequester;
 class KrQuickSearch;
 class QuickFilter;
 class DirHistoryButton;
@@ -210,7 +210,7 @@ protected:
     QPixmap currDragPix;
     QWidget *clientArea;
     QSplitter *splt;
-    UrlRequester *origin;
+    KUrlNavigator* urlNavigator;
     KrQuickSearch *quickSearch;
     QuickFilter *quickFilter;
     QToolButton *backButton, *forwardButton;
