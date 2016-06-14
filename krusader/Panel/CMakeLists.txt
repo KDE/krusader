@@ -1,7 +1,6 @@
 include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
 
 set(Panel_SRCS
-    urlrequester.cpp
     kritemview.cpp
     quickfilter.cpp
     viewactions.cpp
