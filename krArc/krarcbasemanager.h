@@ -36,10 +36,15 @@ private:
     static AutoDetectParams autoDetectParams[]; //! Information used to detect if a file is an archive
     static int autoDetectElems; //!< The size of autoDetectParams[]
 
+protected:
+    //! The maximum length of a short QString that represents the type of a file
+    static const int maxLenType;
+
 public:
     KrArcBaseManager() {}
     QString detectArchive(bool &, QString, bool = true, bool = false);
     virtual void checkIf7zIsEncrypted(bool &, QString) = 0;
+    static QString getShortTypeFromMime(const QString &);
     virtual ~KrArcBaseManager() {}
 };
 

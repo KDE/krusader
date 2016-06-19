@@ -88,6 +88,7 @@ public:
 private:
     // checks if the returned status is correct
     static bool checkStatus(QString type, int exitCode);
+
     static bool openWallet();
 
     static KWallet::Wallet * wallet;

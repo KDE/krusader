@@ -721,8 +721,10 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
             QDir::setCurrent(destDir);
 
             QString escapedFilename = file;
-            if(arcType == "zip") // left bracket needs to be escaped
+            if(arcType == "zip") {
+                // left bracket needs to be escaped
                 escapedFilename.replace("[", "[[]");
+            }
 
             KrLinecountingProcess proc;
             proc << copyCmd << getPath(arcFile->url(), QUrl::StripTrailingSlash) << escapedFilename;
@@ -888,8 +890,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
 
     if (arcType.isEmpty()) {
         arcType = arcFile->mimetype();
-        arcType = arcType.mid(arcType.lastIndexOf("-") + 1);
-
+        arcType = getShortTypeFromMime(arcType);
         if (arcType == "jar")
             arcType = "zip";
     }

@@ -165,7 +165,7 @@ void KRSearchMod::scanLocalDir(QUrl urlToScan)
                 QString realType = arcHandler.getType(encrypted, url.path(), mime);
 
                 if (!encrypted) {
-                    if (realType == "-tbz" || realType == "-tgz" || realType == "tarz" || realType == "-tar" || realType == "-tlz")
+                    if (realType == "tbz" || realType == "tgz" || realType == "tarz" || realType == "tar" || realType == "tlz")
                         archiveURL.setScheme("tar");
                     else
                         archiveURL.setScheme("krarc");

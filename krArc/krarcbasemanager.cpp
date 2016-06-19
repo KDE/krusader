@@ -32,6 +32,7 @@ KrArcBaseManager::AutoDetectParams KrArcBaseManager::autoDetectParams[] = {{"zip
 };
 
 int KrArcBaseManager::autoDetectElems = sizeof(autoDetectParams) / sizeof(AutoDetectParams);
+const int KrArcBaseManager::maxLenType = 5;
 
 QString KrArcBaseManager::detectArchive(bool &encrypted, QString fileName, bool checkEncrypted, bool fast)
 {
@@ -172,4 +173,38 @@ QString KrArcBaseManager::detectArchive(bool &encrypted, QString fileName, bool 
     }
 
     return QString();
+}
+
+//! Returns a short identifier of the type of a file, obtained from the mime type of the file
+/*!
+    \param mime The mime type of the file.
+    \return A short QString which contains an identifier of the type of the file.
+*/
+QString KrArcBaseManager::getShortTypeFromMime(const QString &mime)
+{
+    // 7zip files are a not a normal case because their mimetype does not
+    // follow the norm of other types: zip, tar, lha, ace, arj, etc.
+    if (mime == "application/x-7z-compressed")
+        return "7z";
+
+    // If it's a rar file but its mimetype isn't "application/x-rar"
+    if (mime == "application/x-rar-compressed")
+        return "rar";
+
+    // The short type that will be returned
+    QString sType = mime;
+
+    int lastHyphen = sType.lastIndexOf('-');
+    if (lastHyphen != -1)
+        sType = sType.mid(lastHyphen + 1);
+    else {
+        int lastSlash = sType.lastIndexOf('/');
+        if (lastSlash != -1)
+            sType = sType.mid(lastSlash + 1);
+    }
+    // The identifier kept short
+    if (sType.length() > maxLenType)
+        sType = sType.right(maxLenType);
+
+    return sType;
 }

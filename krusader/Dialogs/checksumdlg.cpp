@@ -328,7 +328,8 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
     proc.start();
     // TODO make use of asynchronous process starting. waitForStarted(int msec = 30000) is blocking
     // it would be better to connect to started(), error() and finished()
-    if (proc.waitForStarted()) while (proc.state() == QProcess::Running) {
+    if (proc.waitForStarted())
+        while (proc.state() == QProcess::Running) {
             usleep(500);
             qApp->processEvents();
             if (krApp->wasWaitingCancelled()) { // user cancelled
@@ -472,7 +473,8 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
     proc.start();
     // TODO make use of asynchronous process starting. waitForStarted(int msec = 30000) is blocking
     // it would be better to connect to started(), error() and finished()
-    if (proc.waitForStarted()) while (proc.state() == QProcess::Running) {
+    if (proc.waitForStarted())
+        while (proc.state() == QProcess::Running) {
             usleep(500);
             qApp->processEvents();
             if (krApp->wasWaitingCancelled()) { // user cancelled
