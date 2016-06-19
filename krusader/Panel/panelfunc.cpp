@@ -537,21 +537,31 @@ void ListPanelFunc::terminal()
 
 void ListPanelFunc::edit()
 {
-    QString name = panel->getCurrentName();
-    if (name.isNull())
-        return ;
+    KFileItem tmp;
 
-    if (files() ->vfs_search(name) ->vfile_isDir()) {
+    if (fileToCreate.isEmpty()) {
+        QString name = panel->getCurrentName();
+        if (name.isNull())
+            return;
+        fileToCreate = files()->vfs_getFile(name);
+    }
+
+    tmp = KFileItem(fileToCreate);
+
+    if (tmp.isDir()) {
         KMessageBox::sorry(krMainWindow, i18n("You cannot edit a folder"));
+        fileToCreate = QUrl();
         return ;
     }
 
-    if (!files() ->vfs_search(name) ->vfile_isReadable()) {
+    if (!tmp.isReadable()) {
         KMessageBox::sorry(0, i18n("No permissions to edit this file."));
-        return ;
+        fileToCreate = QUrl();
+        return;
     }
 
-    KrViewer::edit(files() ->vfs_getFile(name));
+    KrViewer::edit(fileToCreate);
+    fileToCreate = QUrl();
 }
 
 void ListPanelFunc::editNew()
@@ -564,14 +574,21 @@ void ListPanelFunc::editNew()
     if(fileToCreate.isEmpty())
         return ;   // the user canceled
 
-    QTemporaryFile *tempFile = new QTemporaryFile;
-    tempFile->open();
+    // if the file exists, edit it instead of creating a new one
+    QFile f(fileToCreate.toLocalFile());
 
-    KIO::CopyJob *job = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), fileToCreate);
-    job->setUiDelegate(0);
-    job->setDefaultPermissions(true);
-    connect(job, SIGNAL(result(KJob*)), SLOT(slotFileCreated(KJob*)));
-    connect(job, SIGNAL(result(KJob*)), tempFile, SLOT(deleteLater()));
+    if(f.exists()) {
+        edit();
+    } else {
+        QTemporaryFile *tempFile = new QTemporaryFile;
+        tempFile->open();
+
+        KIO::CopyJob *job = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), fileToCreate);
+        job->setUiDelegate(0);
+        job->setDefaultPermissions(true);
+        connect(job, SIGNAL(result(KJob*)), SLOT(slotFileCreated(KJob*)));
+        connect(job, SIGNAL(result(KJob*)), tempFile, SLOT(deleteLater()));
+    }
 }
 
 void ListPanelFunc::slotFileCreated(KJob *job)
