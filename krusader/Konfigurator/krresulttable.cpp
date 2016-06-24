@@ -20,11 +20,14 @@
 
 #include <iostream>
 
-#include <QtCore/QList>
-#include <QtGui/QFontDatabase>
-#include <QtGui/QGuiApplication>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QLabel>
+// QtCore
+#include <QList>
+// QtGui
+#include <QFontDatabase>
+#include <QGuiApplication>
+// QtWidgets
+#include <QGridLayout>
+#include <QLabel>
 
 #include <KI18n/KLocalizedString>
 

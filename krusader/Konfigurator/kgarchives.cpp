@@ -30,9 +30,11 @@
 
 #include "kgarchives.h"
 
-#include <QtCore/QPointer>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QGridLayout>
+// QtCore
+#include <QPointer>
+// QtWidgets
+#include <QPushButton>
+#include <QGridLayout>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

@@ -32,10 +32,12 @@
 #include "../krservices.h"
 #include "../krglobal.h"
 
-#include <QtCore/QUrl>
-#include <QtWidgets/QTabWidget>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QScrollArea>
+// QtCore
+#include <QUrl>
+// QtWidgets
+#include <QTabWidget>
+#include <QGridLayout>
+#include <QScrollArea>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

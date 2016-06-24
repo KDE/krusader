@@ -31,13 +31,16 @@
 #include "konfiguratoritems.h"
 #include "../krglobal.h"
 
-#include <QtCore/QMetaMethod>
-#include <QtGui/QPainter>
-#include <QtGui/QPen>
-#include <QtGui/QPixmap>
-#include <QtWidgets/QColorDialog>
-#include <QtWidgets/QFontDialog>
-#include <QtWidgets/QLabel>
+// QtCore
+#include <QMetaMethod>
+// QtGui
+#include <QPainter>
+#include <QPen>
+#include <QPixmap>
+// QtWidgets
+#include <QColorDialog>
+#include <QFontDialog>
+#include <QLabel>
 
 #include <KCompletion/KLineEdit>
 #include <KConfigCore/KSharedConfig>

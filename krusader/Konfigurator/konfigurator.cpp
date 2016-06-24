@@ -35,8 +35,9 @@
 #include "../Dialogs/krdialogs.h"
 #include "../kicons.h"
 
-#include <QtGui/QPixmap>
-#include <QtGui/QResizeEvent>
+// QtGui
+#include <QPixmap>
+#include <QResizeEvent>
 
 #include <KConfigCore/KSharedConfig>
 #include <KConfigWidgets/KHelpClient>

@@ -32,9 +32,10 @@
 #include "../defaults.h"
 #include "../ActionMan/actionman.h"
 
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QPushButton>
+// QtWidgets
+#include <QGridLayout>
+#include <QLabel>
+#include <QPushButton>
 
 #include <KI18n/KLocalizedString>
 

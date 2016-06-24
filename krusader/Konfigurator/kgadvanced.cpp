@@ -31,8 +31,9 @@
 #include "kgadvanced.h"
 #include "../defaults.h"
 
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QLabel>
+// QtWidgets
+#include <QGridLayout>
+#include <QLabel>
 
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KProtocolInfo>

@@ -33,12 +33,14 @@
 #include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
 
-#include <QtGui/QValidator>
-#include <QtWidgets/QTabWidget>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QVBoxLayout>
+// QtGui
+#include <QValidator>
+// QtWidgets
+#include <QTabWidget>
+#include <QFrame>
+#include <QGridLayout>
+#include <QLabel>
+#include <QVBoxLayout>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>

@@ -31,7 +31,8 @@
 #ifndef KGDEPENDENCIES_H
 #define KGDEPENDENCIES_H
 
-#include <QtWidgets/QGridLayout>
+// QtWidgets
+#include <QGridLayout>
 
 #include "konfiguratorpage.h"
 

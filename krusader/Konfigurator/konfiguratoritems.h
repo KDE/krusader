@@ -31,20 +31,23 @@
 #ifndef KONFIGURATORITEMS_H
 #define KONFIGURATORITEMS_H
 
-#include <QtCore/QObject>
-#include <QtCore/QString>
-#include <QtCore/QList>
-#include <QtGui/QPixmap>
-#include <QtGui/QFont>
-#include <QtWidgets/QBoxLayout>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QSpinBox>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QRadioButton>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QToolButton>
-#include <QtWidgets/QComboBox>
+// QtCore
+#include <QObject>
+#include <QString>
+#include <QList>
+// QtGui
+#include <QPixmap>
+#include <QFont>
+// QtWidgets
+#include <QBoxLayout>
+#include <QCheckBox>
+#include <QSpinBox>
+#include <QPushButton>
+#include <QRadioButton>
+#include <QLineEdit>
+#include <QLabel>
+#include <QToolButton>
+#include <QComboBox>
 
 #include <KIOWidgets/KUrlRequester>
 

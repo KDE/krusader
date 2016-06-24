@@ -30,11 +30,12 @@
 
 #include "konfiguratorpage.h"
 
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QScrollArea>
-#include <QtWidgets/QLabel>
+// QtWidgets
+#include <QLayout>
+#include <QHBoxLayout>
+#include <QGridLayout>
+#include <QScrollArea>
+#include <QLabel>
 
 #include <KConfigCore/KConfig>
 

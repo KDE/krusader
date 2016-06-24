@@ -35,7 +35,8 @@
 
 #include "konfiguratorpage.h"
 
-#include <QtCore/QTimer>
+// QtCore
+#include <QTimer>
 
 #include <KWidgetsAddons/KPageDialog>
 

@@ -19,12 +19,14 @@
 #ifndef KRRESULTTABLE_H
 #define KRRESULTTABLE_H
 
-#include <QtCore/QString>
-#include <QtCore/QStringList>
-#include <QtCore/QList>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QGridLayout>
+// QtCore
+#include <QString>
+#include <QStringList>
+#include <QList>
+// QtWidgets
+#include <QLabel>
+#include <QLayout>
+#include <QGridLayout>
 
 #include <KIOWidgets/KRun>
 #include <KWidgetsAddons/KSeparator>

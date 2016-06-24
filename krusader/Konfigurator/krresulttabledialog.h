@@ -19,7 +19,8 @@
 #ifndef KRRESULTTABLEDIALOG_H
 #define KRRESULTTABLEDIALOG_H
 
-#include <QtWidgets/QDialog>
+// QtWidgets
+#include <QDialog>
 
 #include "../Konfigurator/krresulttable.h"
 

@@ -30,13 +30,16 @@
 
 #include "kggeneral.h"
 
-#include <QtCore/QPointer>
-#include <QtGui/QPixmap>
-#include <QtGui/QFontMetrics>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QInputDialog>
-#include <QtWidgets/QLabel>
+// QtCore
+#include <QPointer>
+// QtGui
+#include <QPixmap>
+#include <QFontMetrics>
+// QtWidgets
+#include <QFrame>
+#include <QGridLayout>
+#include <QInputDialog>
+#include <QLabel>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

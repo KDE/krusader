@@ -31,11 +31,12 @@
 #ifndef KONFIGURATORPAGE_H
 #define KONFIGURATORPAGE_H
 
-#include <QtWidgets/QGroupBox>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QScrollArea>
+// QtWidgets
+#include <QGroupBox>
+#include <QLabel>
+#include <QLayout>
+#include <QGridLayout>
+#include <QScrollArea>
 
 #include "konfiguratoritems.h"
 

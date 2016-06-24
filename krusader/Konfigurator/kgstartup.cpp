@@ -32,8 +32,9 @@
 #include "../defaults.h"
 #include "../GUI/profilemanager.h"
 
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QLabel>
+// QtWidgets
+#include <QGridLayout>
+#include <QLabel>
 
 #include <KCompletion/KLineEdit>
 #include <KI18n/KLocalizedString>

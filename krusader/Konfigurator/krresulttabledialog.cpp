@@ -18,12 +18,14 @@
 
 #include "krresulttabledialog.h"
 
-#include <QtGui/QFontDatabase>
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QVBoxLayout>
+// QtGui
+#include <QFontDatabase>
+// QtWidgets
+#include <QDialogButtonBox>
+#include <QFrame>
+#include <QLabel>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 #include <KConfigWidgets/KHelpClient>
 #include <KIconThemes/KIconLoader>

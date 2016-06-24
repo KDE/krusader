@@ -32,11 +32,13 @@
 #include "../krglobal.h"
 #include "../krservices.h"
 
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QMimeType>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QVBoxLayout>
+// QtCore
+#include <QMimeDatabase>
+#include <QMimeType>
+// QtWidgets
+#include <QHeaderView>
+#include <QGridLayout>
+#include <QVBoxLayout>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

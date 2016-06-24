@@ -31,11 +31,13 @@
 #ifndef KGCOLORS_H
 #define KGCOLORS_H
 
-#include <QtCore/QList>
-#include <QtWidgets/QStackedWidget>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QPushButton>
+// QtCore
+#include <QList>
+// QtWidgets
+#include <QStackedWidget>
+#include <QGridLayout>
+#include <QLabel>
+#include <QPushButton>
 
 #include "konfiguratorpage.h"
 #include "../GUI/krtreewidget.h"

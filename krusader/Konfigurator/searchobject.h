@@ -19,8 +19,9 @@
 #ifndef SEARCHOBJECT_H
 #define SEARCHOBJECT_H
 
-#include <QtCore/QString>
-#include <QtCore/QList>
+// QtCore
+#include <QString>
+#include <QList>
 
 # include "../krservices.h"
 

@@ -33,14 +33,17 @@
 #include "../Panel/krcolorcache.h"
 #include "../Synchronizer/synchronizercolors.h"
 
-#include <QtCore/QList>
-#include <QtCore/QStandardPaths>
-#include <QtGui/QGuiApplication>
-#include <QtWidgets/QFileDialog>
-#include <QtWidgets/QTabWidget>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QGridLayout>
+// QtCore
+#include <QList>
+#include <QStandardPaths>
+// QtGui
+#include <QGuiApplication>
+// QtWidgets
+#include <QFileDialog>
+#include <QTabWidget>
+#include <QHeaderView>
+#include <QLabel>
+#include <QGridLayout>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
