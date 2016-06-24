@@ -18,16 +18,17 @@
 #include "krarc.h"
 #include "../krusader/defaults.h"
 
-#include <QtCore/QByteArray>
-#include <QtCore/QDebug>
-#include <QtCore/QDir>
-#include <QtCore/QFile>
-#include <QtCore/QFileInfo>
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QMimeType>
-#include <QtCore/QRegExp>
-#include <QtCore/QTemporaryFile>
-#include <QtCore/QTextCodec>
+// QtCore
+#include <QByteArray>
+#include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
+#include <QMimeDatabase>
+#include <QMimeType>
+#include <QRegExp>
+#include <QTemporaryFile>
+#include <QTextCodec>
 #include <qplatformdefs.h>
 
 #include <KArchive/KTar>

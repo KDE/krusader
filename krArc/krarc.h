@@ -17,10 +17,11 @@
 #ifndef KRARC_H
 #define KRARC_H
 
-#include <QtCore/QString>
-#include <QtCore/QHash>
-#include <QtCore/QFile>
-#include <QtCore/QUrl>
+// QtCore
+#include <QString>
+#include <QHash>
+#include <QFile>
+#include <QUrl>
 
 #include <KIO/Global>
 #include <KIO/SlaveBase>

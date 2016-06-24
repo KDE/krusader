@@ -18,9 +18,10 @@
 #ifndef KRDEBUGLOGGER_H
 #define KRDEBUGLOGGER_H
 
-#include <QtCore/QFile>
-#include <QtCore/QDir>
-#include <QtCore/QTextStream>
+// QtCore
+#include <QFile>
+#include <QDir>
+#include <QTextStream>
 
 #include <unistd.h>
 

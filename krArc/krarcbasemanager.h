@@ -18,7 +18,8 @@
 #ifndef KRARCBASEMANAGER_H
 #define KRARCBASEMANAGER_H
 
-#include <QtCore/QFile>
+// QtCore
+#include <QFile>
 
 /*!
  * \brief An abstract base class for managing archives.
