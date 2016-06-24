@@ -20,11 +20,13 @@
 #ifndef PANELVIEWER_H
 #define PANELVIEWER_H
 
-#include <QtCore/QHash>
-#include <QtCore/QString>
-#include <QtCore/QUrl>
-#include <QtWidgets/QStackedWidget>
-#include <QtWidgets/QLabel>
+// QtCore
+#include <QHash>
+#include <QString>
+#include <QUrl>
+// QtWidgets
+#include <QStackedWidget>
+#include <QLabel>
 
 # include <KParts/Part>
 

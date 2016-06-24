@@ -20,15 +20,18 @@
 #ifndef KRVIEWER_H
 #define KRVIEWER_H
 
-#include <QtCore/QEvent>
-#include <QtCore/QList>
-#include <QtCore/QPointer>
-#include <QtCore/QUrl>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QFocusEvent>
-#include <QtWidgets/QAction>
-#include <QtWidgets/QMenu>
-#include <QtWidgets/QTabWidget>
+// QtCore
+#include <QEvent>
+#include <QList>
+#include <QPointer>
+#include <QUrl>
+// QtGui
+#include <QKeyEvent>
+#include <QFocusEvent>
+// QtWidgets
+#include <QAction>
+#include <QMenu>
+#include <QTabWidget>
 
 #include <KParts/MainWindow>
 #include <KParts/PartManager>

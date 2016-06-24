@@ -30,8 +30,9 @@
 
 #include "diskusageviewer.h"
 
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QLabel>
+// QtWidgets
+#include <QGridLayout>
+#include <QLabel>
 
 #include <KConfigCore/KSharedConfig>
 

@@ -19,14 +19,17 @@
 
 #include "krviewer.h"
 
-#include <QtCore/QDataStream>
-#include <QtCore/QDebug>
-#include <QtCore/QFile>
-#include <QtCore/QTimer>
-#include <QtCore/QEvent>
-#include <QtGui/QKeyEvent>
-#include <QtWidgets/QMenuBar>
-#include <QtWidgets/QStatusBar>
+// QtCore
+#include <QDataStream>
+#include <QDebug>
+#include <QFile>
+#include <QTimer>
+#include <QEvent>
+// QtGui
+#include <QKeyEvent>
+// QtWidgets
+#include <QMenuBar>
+#include <QStatusBar>
 
 #include <KCoreAddons/KProcess>
 #include <KCoreAddons/KShell>

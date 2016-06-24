@@ -9,15 +9,18 @@
 
 #include "kimagefilepreview.h"
 
-#include <QtCore/QTimer>
-#include <QtGui/QPixmap>
-#include <QtGui/QResizeEvent>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QComboBox>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QFrame>
+// QtCore
+#include <QTimer>
+// QtGui
+#include <QPixmap>
+#include <QResizeEvent>
+// QtWidgets
+#include <QLayout>
+#include <QLabel>
+#include <QComboBox>
+#include <QCheckBox>
+#include <QVBoxLayout>
+#include <QFrame>
 
 #include <KIconThemes/KIconLoader>
 #include <KIOCore/KFileItem>

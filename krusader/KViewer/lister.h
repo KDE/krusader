@@ -31,10 +31,13 @@
 #ifndef LISTER_H
 #define LISTER_H
 
-#include <QtCore/QList>
-#include <QtCore/QTimer>
-#include <QtGui/QColor>
-#include <QtWidgets/QWidget>
+// QtCore
+#include <QList>
+#include <QTimer>
+// QtGui
+#include <QColor>
+// QtWidgets
+#include <QWidget>
 
 #include <KCompletion/KLineEdit>
 #include <KParts/BrowserExtension>

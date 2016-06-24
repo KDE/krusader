@@ -19,8 +19,10 @@
 
 #include "panelviewer.h"
 
-#include <QtCore/QFile>
-#include <QtWidgets/QApplication>
+// QtCore
+#include <QFile>
+// QtWidgets
+#include <QApplication>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

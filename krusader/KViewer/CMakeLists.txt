@@ -10,6 +10,7 @@ set(KViewer_SRCS
 add_library(KViewer STATIC ${KViewer_SRCS})
 
 target_link_libraries(KViewer
+    Qt5::PrintSupport
     KF5::ConfigCore
     KF5::ConfigWidgets
     KF5::CoreAddons

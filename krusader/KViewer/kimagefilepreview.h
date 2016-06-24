@@ -13,10 +13,13 @@
 #ifndef KIMAGEFILEPREVIEW_H
 #define KIMAGEFILEPREVIEW_H
 
-#include <QtCore/QUrl>
-#include <QtGui/QPixmap>
-#include <QtGui/QResizeEvent>
-#include <QtWidgets/QLabel>
+// QtCore
+#include <QUrl>
+// QtGui
+#include <QPixmap>
+#include <QResizeEvent>
+// QtWidgets
+#include <QLabel>
 
 # include <KIOFileWidgets/KPreviewWidgetBase>
 #include <KIO/PreviewJob>
