@@ -24,10 +24,12 @@
 #include "../VFS/vfs.h"
 #include "../GUI/krtreewidget.h"
 
-#include <QtCore/QMap>
-#include <QtCore/QUrl>
-#include <QtWidgets/QDialog>
-#include <QtWidgets/QToolButton>
+// QtCore
+#include <QMap>
+#include <QUrl>
+// QtWidgets
+#include <QDialog>
+#include <QToolButton>
 
 #include <KCompletion/KLineEdit>
 

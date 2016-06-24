@@ -21,9 +21,11 @@
 #include "krbookmarkhandler.h"
 #include "../krglobal.h"
 
-#include <QtGui/QPixmap>
-#include <QtWidgets/QAction>
-#include <QtWidgets/QMenu>
+// QtGui
+#include <QPixmap>
+// QtWidgets
+#include <QAction>
+#include <QMenu>
 
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>

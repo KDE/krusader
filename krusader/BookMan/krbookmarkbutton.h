@@ -20,7 +20,8 @@
 #ifndef KRBOOKMARKBUTTON_H
 #define KRBOOKMARKBUTTON_H
 
-#include <QtWidgets/QToolButton>
+// QtWidgets
+#include <QToolButton>
 
 #include <KWidgetsAddons/KActionMenu>
 

@@ -27,12 +27,14 @@
 #include "../Panel/krpanel.h"
 #include "../Panel/listpanelactions.h"
 
-#include <QtCore/QTextStream>
-#include <QtCore/QFile>
-#include <QtCore/QEvent>
-#include <QtCore/QStandardPaths>
-#include <QtGui/QMouseEvent>
-#include <QtGui/QCursor>
+// QtCore
+#include <QTextStream>
+#include <QFile>
+#include <QEvent>
+#include <QStandardPaths>
+// QtGui
+#include <QMouseEvent>
+#include <QCursor>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

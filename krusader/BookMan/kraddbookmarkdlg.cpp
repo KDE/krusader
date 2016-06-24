@@ -21,12 +21,13 @@
 #include "../krglobal.h"
 #include "krbookmarkhandler.h"
 
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QInputDialog>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QPushButton>
+// QtWidgets
+#include <QDialogButtonBox>
+#include <QHeaderView>
+#include <QGridLayout>
+#include <QInputDialog>
+#include <QLabel>
+#include <QPushButton>
 
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>

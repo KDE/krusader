@@ -20,13 +20,16 @@
 #ifndef KRBOOKMARKHANDLER_H
 #define KRBOOKMARKHANDLER_H
 
-#include <QtCore/QObject>
-#include <QtCore/QPointer>
-#include <QtCore/QEvent>
-#include <QtCore/QMap>
-#include <QtCore/QUrl>
-#include <QtXml/QDomEntity>
-#include <QtWidgets/QMenu>
+// QtCore
+#include <QObject>
+#include <QPointer>
+#include <QEvent>
+#include <QMap>
+#include <QUrl>
+// QtXml
+#include <QDomEntity>
+// QtWidgets
+#include <QMenu>
 
 #include "krbookmark.h"
 

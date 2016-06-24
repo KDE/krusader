@@ -20,9 +20,11 @@
 #ifndef KRBOOKMARK_H
 #define KRBOOKMARK_H
 
-#include <QtCore/QList>
-#include <QtCore/QUrl>
-#include <QtWidgets/QAction>
+// QtCore
+#include <QList>
+#include <QUrl>
+// QtWidgets
+#include <QAction>
 
 
 class KActionCollection;
