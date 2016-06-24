@@ -19,9 +19,12 @@
 #ifndef __KRINTERBRIEFVIEW_H__
 #define __KRINTERBRIEFVIEW_H__
 
-#include <QtCore/QVector>
-#include <QtGui/QFont>
-#include <QtWidgets/QAbstractItemView>
+// QtCore
+#include <QVector>
+// QtGui
+#include <QFont>
+// QtWidgets
+#include <QAbstractItemView>
 
 #include "kritemview.h"
 

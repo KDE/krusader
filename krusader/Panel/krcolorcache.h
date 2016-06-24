@@ -20,10 +20,12 @@
 #ifndef KRCOLORCACHE_H
 #define KRCOLORCACHE_H
 
-#include <QtCore/QObject>
-#include <QtCore/QList>
-#include <QtGui/QColor>
-#include <QtGui/QPalette>
+// QtCore
+#include <QObject>
+#include <QList>
+// QtGui
+#include <QColor>
+#include <QPalette>
 
 /**
  * Design goals: Color calculation is done on one place only.

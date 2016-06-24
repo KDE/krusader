@@ -31,10 +31,12 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #ifndef KRPREVIEWS_H
 #define KRPREVIEWS_H
 
-#include <QtCore/QList>
-#include <QtCore/QHash>
-#include <QtGui/QPixmap>
-#include <QtGui/QColor>
+// QtCore
+#include <QList>
+#include <QHash>
+// QtGui
+#include <QPixmap>
+#include <QColor>
 
 class KJob;
 class KrView;

@@ -18,17 +18,20 @@
 
 #include "krinterbriefview.h"
 
-#include <QtCore/QDir>
-#include <QtCore/QHashIterator>
-#include <QtCore/QItemSelection>
-#include <QtCore/QItemSelectionRange>
-#include <QtGui/QPainter>
-#include <QtGui/QRegion>
-#include <QtWidgets/QDirModel>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QMenu>
-#include <QtWidgets/QScrollBar>
+// QtCore
+#include <QDir>
+#include <QHashIterator>
+#include <QItemSelection>
+#include <QItemSelectionRange>
+// QtGui
+#include <QPainter>
+#include <QRegion>
+// QtWidgets
+#include <QDirModel>
+#include <QHeaderView>
+#include <QApplication>
+#include <QMenu>
+#include <QScrollBar>
 
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KDirLister>

@@ -20,9 +20,11 @@
 #include "krviewitem.h"
 #include "../VFS/krpermhandler.h"
 
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QMimeType>
-#include <QtGui/QPixmap>
+// QtCore
+#include <QMimeDatabase>
+#include <QMimeType>
+// QtGui
+#include <QPixmap>
 
 #include <KI18n/KLocalizedString>
 

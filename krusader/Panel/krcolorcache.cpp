@@ -21,10 +21,13 @@
 #include "../krglobal.h"
 #include "../defaults.h"
 
-#include <QtCore/QFile>
-#include <QtCore/QList>
-#include <QtGui/QPixmapCache>
-#include <QtWidgets/QApplication>
+// QtCore
+#include <QFile>
+#include <QList>
+// QtGui
+#include <QPixmapCache>
+// QtWidgets
+#include <QApplication>
 
 #include <KConfigCore/KSharedConfig>
 

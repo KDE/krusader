@@ -21,9 +21,11 @@
 #include "krcolorcache.h"
 #include "../krglobal.h"
 
-#include <QtCore/QUrl>
-#include <QtGui/QDragEnterEvent>
-#include <QtGui/QGuiApplication>
+// QtCore
+#include <QUrl>
+// QtGui
+#include <QDragEnterEvent>
+#include <QGuiApplication>
 
 #include <KConfigCore/KSharedConfig>
 #include <KCoreAddons/KUrlMimeData>

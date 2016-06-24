@@ -19,10 +19,11 @@
 #ifndef KRMOUSEHANDLER_H
 #define KRMOUSEHANDLER_H
 
-#include <QtCore/QPoint>
-#include <QtCore/QTimer>
-#include <QtCore/QTime>
-#include <QtCore/QStringList>
+// QtCore
+#include <QPoint>
+#include <QTimer>
+#include <QTime>
+#include <QStringList>
 
 class QMouseEvent;
 class QWheelEvent;

@@ -20,7 +20,8 @@
 #ifndef KRPOPUPMENU_H
 #define KRPOPUPMENU_H
 
-#include <QtWidgets/QMenu>
+// QtWidgets
+#include <QMenu>
 
 #include <KService/KService>
 

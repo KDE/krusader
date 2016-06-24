@@ -33,15 +33,18 @@ A
 #include "listpanelframe.h"
 #include "../krglobal.h"
 
-#include <QtCore/QMetaEnum>
-#include <QtCore/QFile>
-#include <QtCore/QResource>
-#include <QtCore/QStandardPaths>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QVBoxLayout>
-#include <QtXml/QDomDocument>
+// QtCore
+#include <QMetaEnum>
+#include <QFile>
+#include <QResource>
+#include <QStandardPaths>
+// QtWidgets
+#include <QLayout>
+#include <QWidget>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+// QtXml
+#include <QDomDocument>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

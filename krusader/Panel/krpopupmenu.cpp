@@ -19,7 +19,8 @@
 
 #include "krpopupmenu.h"
 
-#include <QtGui/QPixmap>
+// QtGui
+#include <QPixmap>
 
 #include <KCoreAddons/KProcess>
 #include <KI18n/KLocalizedString>

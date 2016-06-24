@@ -18,9 +18,10 @@
 
 #include  "quickfilter.h"
 
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QToolButton>
+// QtWidgets
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QToolButton>
 
 #include <KI18n/KLocalizedString>
 

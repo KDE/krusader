@@ -19,12 +19,14 @@
 
 #include "krinterdetailedview.h"
 
-#include <QtCore/QDir>
-#include <QtCore/QHashIterator>
-#include <QtWidgets/QDirModel>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QMenu>
-#include <QtWidgets/QApplication>
+// QtCore
+#include <QDir>
+#include <QHashIterator>
+// QtWidgets
+#include <QDirModel>
+#include <QHeaderView>
+#include <QMenu>
+#include <QApplication>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

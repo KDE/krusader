@@ -38,8 +38,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../Dialogs/krdialogs.h"
 #include "../KViewer/krviewer.h"
 
-#include <QtCore/QSignalMapper>
-#include <QtWidgets/QActionGroup>
+// QtCore
+#include <QSignalMapper>
+// QtWidgets
+#include <QActionGroup>
 
 #include <KI18n/KLocalizedString>
 #include <KXmlGui/KActionCollection>

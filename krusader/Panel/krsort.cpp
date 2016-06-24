@@ -19,8 +19,9 @@
 
 #include "krsort.h"
 
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QMimeType>
+// QtCore
+#include <QMimeDatabase>
+#include <QMimeType>
 
 #include "krview.h"
 #include "../VFS/krpermhandler.h"

@@ -23,9 +23,11 @@
 #include "../krglobal.h"
 #include "../defaults.h"
 
-#include <QtCore/QStandardPaths>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QStyle>
+// QtCore
+#include <QStandardPaths>
+// QtWidgets
+#include <QApplication>
+#include <QStyle>
 
 #include <KCoreAddons/KUrlMimeData>
 #include <KConfigCore/KSharedConfig>

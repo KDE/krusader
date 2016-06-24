@@ -31,12 +31,14 @@ A
 
 #include "krcalcspacedialog.h"
 
-#include <QtCore/QTimer>
-#include <QtCore/QMutexLocker>
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QVBoxLayout>
+// QtCore
+#include <QTimer>
+#include <QMutexLocker>
+// QtWidgets
+#include <QDialogButtonBox>
+#include <QLabel>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KCursor>

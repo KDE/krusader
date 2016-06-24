@@ -35,7 +35,8 @@
 
 #include "../actionsbase.h"
 
-#include <QtWidgets/QAction>
+// QtWidgets
+#include <QAction>
 
 class FileManagerWindow;
 class KrPanel;

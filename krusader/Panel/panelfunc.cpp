@@ -30,16 +30,19 @@ A
 
 #include "panelfunc.h"
 
-#include <QtCore/QEventLoop>
-#include <QtCore/QList>
-#include <QtCore/QMimeData>
-#include <QtCore/QDir>
-#include <QtCore/QTemporaryFile>
-#include <QtCore/QUrl>
-#include <QtGui/QClipboard>
-#include <QtGui/QDrag>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QInputDialog>
+// QtCore
+#include <QEventLoop>
+#include <QList>
+#include <QMimeData>
+#include <QDir>
+#include <QTemporaryFile>
+#include <QUrl>
+// QtGui
+#include <QClipboard>
+#include <QDrag>
+// QtWidgets
+#include <QApplication>
+#include <QInputDialog>
 
 #include <KArchive/KTar>
 #include <KConfigCore/KDesktopFile>

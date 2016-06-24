@@ -38,7 +38,8 @@ A
 
 #include <stdio.h>
 
-#include <QtWidgets/QWidget>
+// QtWidgets
+#include <QWidget>
 
 #define ASSERT(what) if(!what) abort();
 

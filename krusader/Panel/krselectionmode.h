@@ -20,7 +20,8 @@
 #ifndef KRSELECTIONMODE_H
 #define KRSELECTIONMODE_H
 
-#include <QtCore/QString>
+// QtCore
+#include <QString>
 
 /**
  Every selection mode inherits this class, and has to implement init().

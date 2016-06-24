@@ -25,7 +25,8 @@
 #include "../defaults.h"
 #include "../krservices.h"
 
-#include <QtCore/QDir>
+// QtCore
+#include <QDir>
 
 DirHistoryQueue::DirHistoryQueue(KrPanel *panel) :
     _panel(panel), _state(0), _currentPos(0)

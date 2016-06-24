@@ -44,13 +44,16 @@
 #include "../Dialogs/krspecialwidgets.h"
 #include "../Filter/filterdialog.h"
 
-#include <QtCore/QDir>
-#include <QtGui/QPixmapCache>
-#include <QtGui/QBitmap>
-#include <QtGui/QPainter>
-#include <QtGui/QPixmap>
-#include <QtWidgets/QAction>
-#include <QtWidgets/QInputDialog>
+// QtCore
+#include <QDir>
+// QtGui
+#include <QPixmapCache>
+#include <QBitmap>
+#include <QPainter>
+#include <QPixmap>
+// QtWidgets
+#include <QAction>
+#include <QInputDialog>
 #include <qnamespace.h>
 
 #include <KConfigCore/KSharedConfig>

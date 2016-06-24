@@ -36,9 +36,11 @@
 #include "krviewitem.h"
 #include "../VFS/vfs.h"
 
-#include <QtCore/QObject>
-#include <QtCore/QTimer>
-#include <QtGui/QClipboard>
+// QtCore
+#include <QObject>
+#include <QTimer>
+// QtGui
+#include <QClipboard>
 
 #include <KService/KService>
 

@@ -34,10 +34,12 @@
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
 
-#include <QtCore/QMutex>
-#include <QtCore/QThread>
-#include <QtWidgets/QDialog>
-#include <QtWidgets/QLabel>
+// QtCore
+#include <QMutex>
+#include <QThread>
+// QtWidgets
+#include <QDialog>
+#include <QLabel>
 
 #include "../VFS/vfs.h"
 class KrPanel;

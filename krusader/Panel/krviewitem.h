@@ -23,7 +23,8 @@
 #include "../VFS/vfile.h"
 #include "krview.h"
 
-#include <QtGui/QPixmap>
+// QtGui
+#include <QPixmap>
 
 #include <KIO/Global>
 

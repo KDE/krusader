@@ -31,9 +31,11 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #ifndef KRLAYOUTFACTORY_H
 #define KRLAYOUTFACTORY_H
 
-#include <QtCore/QString>
-#include <QtCore/QHash>
-#include <QtXml/QDomElement>
+// QtCore
+#include <QString>
+#include <QHash>
+// QtXml
+#include <QDomElement>
 
 class QWidget;
 class QLayout;

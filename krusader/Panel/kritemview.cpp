@@ -24,8 +24,9 @@
 #include "../GUI/krstyleproxy.h"
 #include "../defaults.h"
 
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QAbstractItemView>
+// QtWidgets
+#include <QWidget>
+#include <QAbstractItemView>
 
 #include <KConfigCore/KConfig>
 

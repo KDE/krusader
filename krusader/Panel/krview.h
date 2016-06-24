@@ -30,14 +30,16 @@
 #ifndef KRVIEW_H
 #define KRVIEW_H
 
-#include <QtCore/QVariant>
-#include <QtCore/QHash>
-#include <QtCore/QRegExp>
-#include <QtCore/QList>
-#include <QtCore/QModelIndex>
-#include <QtCore/QTimer>
-#include <QtGui/QPixmap>
-#include <QtGui/QDropEvent>
+// QtCore
+#include <QVariant>
+#include <QHash>
+#include <QRegExp>
+#include <QList>
+#include <QModelIndex>
+#include <QTimer>
+// QtGui
+#include <QPixmap>
+#include <QDropEvent>
 
 #include "../krglobal.h"
 #include "../VFS/krquery.h"

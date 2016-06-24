@@ -21,7 +21,8 @@
 
 #include "krinterview.h"
 
-#include <QtGui/QFont>
+// QtGui
+#include <QFont>
 
 class KrItemView : public QAbstractItemView, public KrInterView
 {

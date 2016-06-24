@@ -21,11 +21,13 @@
 
 #include <algorithm>
 
-#include <QtGui/QPixmap>
-#include <QtGui/QPainter>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QStyleOptionMenuItem>
-#include <QtWidgets/QProxyStyle>
+// QtGui
+#include <QPixmap>
+#include <QPainter>
+// QtWidgets
+#include <QApplication>
+#include <QStyleOptionMenuItem>
+#include <QProxyStyle>
 
 #include <KI18n/KLocalizedString>
 #include <KIO/PreviewJob>

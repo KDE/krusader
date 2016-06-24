@@ -20,14 +20,17 @@
 #ifndef PANELPOPUP_H
 #define PANELPOPUP_H
 
-#include <QtCore/QPointer>
-#include <QtCore/QUrl>
-#include <QtGui/QPixmap>
-#include <QtGui/QDropEvent>
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QStackedWidget>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QTreeView>
+// QtCore
+#include <QPointer>
+#include <QUrl>
+// QtGui
+#include <QPixmap>
+#include <QDropEvent>
+// QtWidgets
+#include <QWidget>
+#include <QStackedWidget>
+#include <QLabel>
+#include <QTreeView>
 
 #include <KIOCore/KFileItem>
 #include <KIO/PreviewJob>

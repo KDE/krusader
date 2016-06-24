@@ -21,9 +21,10 @@
 #ifndef DIRHISTORYQUEUE_H
 #define DIRHISTORYQUEUE_H
 
-#include <QtCore/QObject>
-#include <QtCore/QStringList>
-#include <QtCore/QUrl>
+// QtCore
+#include <QObject>
+#include <QStringList>
+#include <QUrl>
 
 # include <KConfigCore/KConfigGroup>
 

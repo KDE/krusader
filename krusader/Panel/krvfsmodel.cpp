@@ -23,10 +23,11 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 
-#include <QtCore/QtAlgorithms>
-#include <QtCore/QtDebug>
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QMimeType>
+// QtCore
+#include <QtAlgorithms>
+#include <QtDebug>
+#include <QMimeDatabase>
+#include <QMimeType>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

@@ -34,7 +34,8 @@
 
 #include "../abstractpanelmanager.h"
 
-#include <QtCore/QUrl>
+// QtCore
+#include <QUrl>
 
 class ListPanelFunc;
 class ListPanel;

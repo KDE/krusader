@@ -19,10 +19,12 @@
 #include "krinterviewitemdelegate.h"
 #include "krvfsmodel.h"
 
-#include <QtGui/QPainter>
-#include <QtWidgets/QDialog>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QLineEdit>
+// QtGui
+#include <QPainter>
+// QtWidgets
+#include <QDialog>
+#include <QApplication>
+#include <QLineEdit>
 
 #include <KConfigCore/KSharedConfig>
 

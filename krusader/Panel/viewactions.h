@@ -34,7 +34,8 @@
 
 #include "../actionsbase.h"
 
-#include <QtWidgets/QAction>
+// QtWidgets
+#include <QAction>
 
 class KrView;
 

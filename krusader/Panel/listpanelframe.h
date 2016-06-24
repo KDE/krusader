@@ -19,7 +19,8 @@
 #ifndef __LISTPANELFRAME_H__
 #define __LISTPANELFRAME_H__
 
-#include <QtWidgets/QFrame>
+// QtWidgets
+#include <QFrame>
 
 # include <KConfigCore/KConfigGroup>
 

@@ -19,8 +19,10 @@
 #ifndef __QUICKFILTER_H__
 #define __QUICKFILTER_H__
 
-#include <QtCore/QString>
-#include <QtWidgets/QWidget>
+// QtCore
+#include <QString>
+// QtWidgets
+#include <QWidget>
 
 # include <KCompletion/KLineEdit>
 
