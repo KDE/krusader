@@ -28,9 +28,11 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include "kmountman.h"
 
-#include <QtCore/QDir>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QMenu>
+// QtCore
+#include <QDir>
+// QtWidgets
+#include <QApplication>
+#include <QMenu>
 
 #include <KConfigCore/KSharedConfig>
 #include <KCoreAddons/KJobTrackerInterface>

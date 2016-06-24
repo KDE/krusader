@@ -33,11 +33,13 @@
 #ifndef KMOUNTMANGUI_H
 #define KMOUNTMANGUI_H
 
-#include <QtCore/QTimer>
-#include <QtCore/QList>
-#include <QtCore/QDateTime>
-#include <QtWidgets/QDialog>
-#include <QtWidgets/QFrame>
+// QtCore
+#include <QTimer>
+#include <QList>
+#include <QDateTime>
+// QtWidgets
+#include <QDialog>
+#include <QFrame>
 
 #include <KIOCore/KMountPoint>
 

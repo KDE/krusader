@@ -30,13 +30,15 @@ A
 #ifndef KMOUNTMAN_H
 #define KMOUNTMAN_H
 
-#include <QtCore/QExplicitlySharedDataPointer>
-#include <QtCore/QObject>
-#include <QtCore/QString>
-#include <QtCore/QPointer>
-#include <QtCore/QUrl>
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QAction>
+// QtCore
+#include <QExplicitlySharedDataPointer>
+#include <QObject>
+#include <QString>
+#include <QPointer>
+#include <QUrl>
+// QtWidgets
+#include <QWidget>
+#include <QAction>
 
 #include <KIO/Job>
 #include <KIO/Global>

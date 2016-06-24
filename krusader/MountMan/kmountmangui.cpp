@@ -38,19 +38,22 @@ A
 #include "../defaults.h"
 #include "../VFS/vfs.h"
 
-#include <QtCore/QCryptographicHash>
-#include <QtCore/QList>
-#include <QtCore/QFileInfo>
-#include <QtGui/QPixmap>
-#include <QtGui/QBitmap>
-#include <QtGui/QCursor>
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QGroupBox>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QMenu>
-#include <QtWidgets/QPushButton>
+// QtCore
+#include <QCryptographicHash>
+#include <QList>
+#include <QFileInfo>
+// QtGui
+#include <QPixmap>
+#include <QBitmap>
+#include <QCursor>
+// QtWidgets
+#include <QDialogButtonBox>
+#include <QHeaderView>
+#include <QGridLayout>
+#include <QGroupBox>
+#include <QCheckBox>
+#include <QMenu>
+#include <QPushButton>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
