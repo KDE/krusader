@@ -30,21 +30,24 @@
 
 #include "krsearchdialog.h"
 
-#include <QtCore/QRegExp>
-#include <QtCore/QMimeData>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QResizeEvent>
-#include <QtGui/QCursor>
-#include <QtGui/QClipboard>
-#include <QtGui/QDrag>
-#include <QtGui/QCloseEvent>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QInputDialog>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QMenu>
-#include <QtWidgets/QTabWidget>
+// QtCore
+#include <QRegExp>
+#include <QMimeData>
+// QtGui
+#include <QKeyEvent>
+#include <QResizeEvent>
+#include <QCursor>
+#include <QClipboard>
+#include <QDrag>
+#include <QCloseEvent>
+// QtWidgets
+#include <QApplication>
+#include <QGridLayout>
+#include <QInputDialog>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QMenu>
+#include <QTabWidget>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>

@@ -31,9 +31,11 @@
 #ifndef KRSEARCHDIALOG_H
 #define KRSEARCHDIALOG_H
 
-#include <QtCore/QString>
-#include <QtCore/QStringList>
-#include <QtWidgets/QDialog>
+// QtCore
+#include <QString>
+#include <QStringList>
+// QtWidgets
+#include <QDialog>
 
 #include "krsearchmod.h"
 

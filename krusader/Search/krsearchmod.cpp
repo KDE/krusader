@@ -30,11 +30,13 @@
 
 #include "krsearchmod.h"
 
-#include <QtCore/QDir>
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QMimeType>
-#include <QtCore/QRegExp>
-#include <QtWidgets/QApplication>
+// QtCore
+#include <QDir>
+#include <QMimeDatabase>
+#include <QMimeType>
+#include <QRegExp>
+// QtWidgets
+#include <QApplication>
 #include <qplatformdefs.h>
 
 #include <KIO/Global>
