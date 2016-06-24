@@ -22,10 +22,13 @@
 
 #include "../VFS/vfs.h"
 
-#include <QtCore/QDebug>
-#include <QtCore/QDir>
-#include <QtGui/QPixmap>
-#include <QtWidgets/QMenu>
+// QtCore
+#include <QDebug>
+#include <QDir>
+// QtGui
+#include <QPixmap>
+// QtWidgets
+#include <QMenu>
 
 #include <KI18n/KLocalizedString>
 

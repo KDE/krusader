@@ -31,8 +31,10 @@
 #ifndef PROFILEMANAGER_H
 #define PROFILEMANAGER_H
 
-#include <QtCore/QString>
-#include <QtWidgets/QPushButton>
+// QtCore
+#include <QString>
+// QtWidgets
+#include <QPushButton>
 
 class ProfileManager : public QPushButton
 {

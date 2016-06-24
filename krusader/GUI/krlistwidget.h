@@ -31,7 +31,8 @@
 #ifndef KRLISTWIDGET_H
 #define KRLISTWIDGET_H
 
-#include <QtWidgets/QListWidget>
+// QtWidgets
+#include <QListWidget>
 
 class KrListWidget : public QListWidget
 {

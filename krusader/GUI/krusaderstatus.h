@@ -33,9 +33,10 @@
 #ifndef KRUSADERSTATUS_H
 #define KRUSADERSTATUS_H
 
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QStatusBar>
-#include <QtWidgets/QWidget>
+// QtWidgets
+#include <QLabel>
+#include <QStatusBar>
+#include <QWidget>
 
 class KrusaderStatus : public QStatusBar
 {

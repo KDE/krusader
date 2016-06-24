@@ -30,9 +30,11 @@
 
 #include "profilemanager.h"
 
-#include <QtGui/QCursor>
-#include <QtWidgets/QInputDialog>
-#include <QtWidgets/QMenu>
+// QtGui
+#include <QCursor>
+// QtWidgets
+#include <QInputDialog>
+#include <QMenu>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

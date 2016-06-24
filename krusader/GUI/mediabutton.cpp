@@ -21,9 +21,11 @@
 #include "../krglobal.h"
 #include "../MountMan/kmountman.h"
 
-#include <QtCore/QEvent>
-#include <QtGui/QMouseEvent>
-#include <QtGui/QCursor>
+// QtCore
+#include <QEvent>
+// QtGui
+#include <QMouseEvent>
+#include <QCursor>
 
 #include <KConfigCore/KConfigGroup>
 #include <KConfigCore/KSharedConfig>

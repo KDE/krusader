@@ -30,7 +30,8 @@
 
 #include "kfnkeys.h"
 
-#include <QtWidgets/QGridLayout>
+// QtWidgets
+#include <QGridLayout>
 
 #include <KI18n/KLocalizedString>
 

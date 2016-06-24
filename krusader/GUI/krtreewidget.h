@@ -31,8 +31,9 @@
 #ifndef KRTREEWIDGET_H
 #define KRTREEWIDGET_H
 
-#include <QtWidgets/QAbstractScrollArea>
-#include <QtWidgets/QTreeWidget>
+// QtWidgets
+#include <QAbstractScrollArea>
+#include <QTreeWidget>
 
 class KrTreeWidget : public QTreeWidget
 {

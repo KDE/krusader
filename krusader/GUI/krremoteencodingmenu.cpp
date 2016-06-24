@@ -19,8 +19,10 @@
 
 #include "krremoteencodingmenu.h"
 
-#include <QtCore/QDebug>
-#include <QtWidgets/QMenu>
+// QtCore
+#include <QDebug>
+// QtWidgets
+#include <QMenu>
 
 #include <KXmlGui/KActionCollection>
 #include <KCodecs/KCharsets>

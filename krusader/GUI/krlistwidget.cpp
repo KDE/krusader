@@ -31,7 +31,8 @@
 #include "krlistwidget.h"
 #include "krstyleproxy.h"
 
-#include <QtGui/QContextMenuEvent>
+// QtGui
+#include <QContextMenuEvent>
 
 KrListWidget::KrListWidget(QWidget * parent) : QListWidget(parent)
 {

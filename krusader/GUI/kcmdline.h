@@ -33,11 +33,13 @@
 #ifndef KCMDLINE_H
 #define KCMDLINE_H
 
-#include <QtGui/QKeyEvent>
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QToolButton>
+// QtGui
+#include <QKeyEvent>
+// QtWidgets
+#include <QWidget>
+#include <QLabel>
+#include <QLayout>
+#include <QToolButton>
 
 #include <KCompletion/KLineEdit>
 #include <KIOWidgets/KShellCompletion>

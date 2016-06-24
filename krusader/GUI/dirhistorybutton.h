@@ -20,8 +20,9 @@
 #ifndef DIRHISTORYBUTTON_H
 #define DIRHISTORYBUTTON_H
 
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QToolButton>
+// QtWidgets
+#include <QWidget>
+#include <QToolButton>
 
 class QMenu;
 class QAction;

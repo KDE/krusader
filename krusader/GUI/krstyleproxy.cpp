@@ -30,10 +30,12 @@
 
 #include "krstyleproxy.h"
 
-#include <QtGui/QPen>
-#include <QtGui/QPainter>
-#include <QtWidgets/QStyleOptionViewItem>
-#include <QtWidgets/QApplication>
+// QtGui
+#include <QPen>
+#include <QPainter>
+// QtWidgets
+#include <QStyleOptionViewItem>
+#include <QApplication>
 
 void KrStyleProxy::drawComplexControl(ComplexControl control, const QStyleOptionComplex * option, QPainter * painter, const QWidget * widget) const
 {

@@ -20,8 +20,10 @@
 #ifndef KRREMOTEENCODINGMENU_H
 #define KRREMOTEENCODINGMENU_H
 
-#include <QtCore/QStringList>
-#include <QtWidgets/QAction>
+// QtCore
+#include <QStringList>
+// QtWidgets
+#include <QAction>
 
 # include <KWidgetsAddons/KActionMenu>
 

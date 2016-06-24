@@ -30,19 +30,22 @@
 
 #include "kcmdline.h"
 
-#include <QtCore/QDir>
-#include <QtCore/QStringList>
-#include <QtCore/QUrl>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QIcon>
-#include <QtGui/QFontDatabase>
-#include <QtGui/QFontMetrics>
-#include <QtGui/QImage>
-#include <QtWidgets/QSizePolicy>
-#include <QtWidgets/QMessageBox>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QLabel>
+// QtCore
+#include <QDir>
+#include <QStringList>
+#include <QUrl>
+// QtGui
+#include <QKeyEvent>
+#include <QIcon>
+#include <QFontDatabase>
+#include <QFontMetrics>
+#include <QImage>
+// QtWidgets
+#include <QSizePolicy>
+#include <QMessageBox>
+#include <QGridLayout>
+#include <QFrame>
+#include <QLabel>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

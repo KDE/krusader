@@ -30,7 +30,8 @@
 
 #include "krusaderstatus.h"
 
-#include <QtGui/QFontMetrics>
+// QtGui
+#include <QFontMetrics>
 
 #include <KI18n/KLocalizedString>
 

@@ -18,16 +18,19 @@
 
 #include "terminaldock.h"
 
-#include <QtCore/QEvent>
-#include <QtCore/QDir>
-#include <QtCore/QString>
-#include <QtCore/QObject>
-#include <QtCore/QUrl>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QClipboard>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QWidget>
+// QtCore
+#include <QEvent>
+#include <QDir>
+#include <QString>
+#include <QObject>
+#include <QUrl>
+// QtGui
+#include <QKeyEvent>
+#include <QClipboard>
+// QtWidgets
+#include <QHBoxLayout>
+#include <QApplication>
+#include <QWidget>
 
 #include <kde_terminal_interface.h>
 #include <KCoreAddons/KPluginLoader>

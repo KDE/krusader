@@ -31,7 +31,8 @@
 #ifndef KRSTYLEPROXY_H
 #define KRSTYLEPROXY_H
 
-#include <QtWidgets/QStyle>
+// QtWidgets
+#include <QStyle>
 
 class QPainter;
 class QWidget;

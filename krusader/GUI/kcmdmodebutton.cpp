@@ -20,7 +20,8 @@
 
 #include "../kractions.h"
 
-#include <QtWidgets/QMenu>
+// QtWidgets
+#include <QMenu>
 
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>

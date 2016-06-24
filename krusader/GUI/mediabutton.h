@@ -19,14 +19,16 @@
 #ifndef MEDIABUTTON_H
 #define MEDIABUTTON_H
 
-#include <QtCore/QEvent>
-#include <QtCore/QList>
-#include <QtCore/QMap>
-#include <QtCore/QTimer>
-#include <QtCore/QUrl>
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QToolButton>
-#include <QtWidgets/QMenu>
+// QtCore
+#include <QEvent>
+#include <QList>
+#include <QMap>
+#include <QTimer>
+#include <QUrl>
+// QtWidgets
+#include <QWidget>
+#include <QToolButton>
+#include <QMenu>
 
 #include <Solid/Device>
 #include <Solid/SolidNamespace>

@@ -19,11 +19,13 @@
 #ifndef TERMINALDOCK_H
 #define TERMINALDOCK_H
 
-#include <QtCore/QEvent>
-#include <QtCore/QString>
-#include <QtCore/QObject>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QWidget>
+// QtCore
+#include <QEvent>
+#include <QString>
+#include <QObject>
+// QtWidgets
+#include <QHBoxLayout>
+#include <QWidget>
 
 #include <kde_terminal_interface.h>
 #include <KParts/ReadOnlyPart>
