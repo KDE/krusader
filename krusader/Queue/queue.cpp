@@ -19,7 +19,8 @@
 #include "queue.h"
 #include "../krglobal.h"
 
-#include <QtCore/QTime>
+// QtCore
+#include <QTime>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>

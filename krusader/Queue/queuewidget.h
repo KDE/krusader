@@ -19,8 +19,10 @@
 #ifndef QUEUEWIDGET_H
 #define QUEUEWIDGET_H
 
-#include <QtCore/QPointer>
-#include <QtWidgets/QTabWidget>
+// QtCore
+#include <QPointer>
+// QtWidgets
+#include <QTabWidget>
 
 #include "queue.h"
 #include "../GUI/krlistwidget.h"

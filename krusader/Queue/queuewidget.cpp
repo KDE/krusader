@@ -19,8 +19,10 @@
 #include "queuewidget.h"
 #include "queue_mgr.h"
 
-#include <QtGui/QCursor>
-#include <QtWidgets/QMenu>
+// QtGui
+#include <QCursor>
+// QtWidgets
+#include <QMenu>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>

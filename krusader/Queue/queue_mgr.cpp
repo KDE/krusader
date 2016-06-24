@@ -20,9 +20,10 @@
 #include "queuedialog.h"
 #include "queue.h"
 
-#include <QtCore/QList>
-#include <QtCore/QVector>
-#include <QtCore/QVariant>
+// QtCore
+#include <QList>
+#include <QVector>
+#include <QVariant>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

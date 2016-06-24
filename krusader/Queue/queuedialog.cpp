@@ -18,15 +18,16 @@
 
 #include "queuedialog.h"
 
-#include <QtWidgets/QAction>
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QInputDialog>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QProgressBar>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QTimeEdit>
-#include <QtWidgets/QToolButton>
+// QtWidgets
+#include <QAction>
+#include <QDialogButtonBox>
+#include <QInputDialog>
+#include <QLayout>
+#include <QLabel>
+#include <QProgressBar>
+#include <QPushButton>
+#include <QTimeEdit>
+#include <QToolButton>
 
 #include <KConfigCore/KSharedConfig>
 #include <KConfigGui/KStandardShortcut>

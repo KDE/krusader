@@ -21,10 +21,11 @@
 
 #include "../VFS/kiojobwrapper.h"
 
-#include <QtCore/QObject>
-#include <QtCore/QList>
-#include <QtCore/QTimer>
-#include <QtCore/QTime>
+// QtCore
+#include <QObject>
+#include <QList>
+#include <QTimer>
+#include <QTime>
 
 class KJob;
 

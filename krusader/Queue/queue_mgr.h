@@ -21,8 +21,9 @@
 
 #include "queue.h"
 
-#include <QtCore/QMap>
-#include <QtCore/QList>
+// QtCore
+#include <QMap>
+#include <QList>
 
 /**
  * QueueManager holds multiple queues and has a static

@@ -19,7 +19,8 @@
 #ifndef QUEUEDIALOG_H
 #define QUEUEDIALOG_H
 
-#include <QtWidgets/QDialog>
+// QtWidgets
+#include <QDialog>
 
 class QToolButton;
 class QueueWidget;
