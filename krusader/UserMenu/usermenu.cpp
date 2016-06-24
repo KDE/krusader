@@ -19,7 +19,8 @@
 
 #include "usermenu.h"
 
-#include <QtCore/QDebug>
+// QtCore
+#include <QDebug>
 
 #include <KI18n/KLocalizedString>
 

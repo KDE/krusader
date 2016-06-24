@@ -20,7 +20,8 @@
 #ifndef USERMENU_H
 #define USERMENU_H
 
-#include <QtWidgets/QMenu>
+// QtWidgets
+#include <QMenu>
 
 class QWidget;
 class UserMenu;
