@@ -32,9 +32,10 @@
 #include "filtertabs.h"
 #include "generalfilter.h"
 
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QPushButton>
+// QtWidgets
+#include <QDialogButtonBox>
+#include <QGridLayout>
+#include <QPushButton>
 
 #include <KI18n/KLocalizedString>
 

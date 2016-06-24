@@ -31,7 +31,8 @@
 #ifndef FILTERTABS_H
 #define FILTERTABS_H
 
-#include <QtCore/QList>
+// QtCore
+#include <QList>
 
 #include "filterbase.h"
 

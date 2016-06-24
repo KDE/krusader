@@ -30,16 +30,19 @@
 
 #include "advancedfilter.h"
 
-#include <QtCore/QFile>
-#include <QtCore/QTextStream>
-#include <QtGui/QPixmap>
-#include <QtWidgets/QSpinBox>
-#include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QGroupBox>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QLabel>
+// QtCore
+#include <QFile>
+#include <QTextStream>
+// QtGui
+#include <QPixmap>
+// QtWidgets
+#include <QSpinBox>
+#include <QButtonGroup>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QGroupBox>
+#include <QLayout>
+#include <QLabel>
 
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>

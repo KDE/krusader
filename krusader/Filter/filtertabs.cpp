@@ -34,7 +34,8 @@
 #include "advancedfilter.h"
 #include "../krglobal.h"
 
-#include <QtWidgets/QTabWidget>
+// QtWidgets
+#include <QTabWidget>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

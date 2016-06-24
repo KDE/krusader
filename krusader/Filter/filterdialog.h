@@ -34,7 +34,8 @@
 #include "filtersettings.h"
 #include "../VFS/krquery.h"
 
-#include <QtWidgets/QDialog>
+// QtWidgets
+#include <QDialog>
 
 class FilterTabs;
 class GeneralFilter;

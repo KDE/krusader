@@ -34,10 +34,11 @@
 #include "filterbase.h"
 #include "../VFS/krquery.h"
 
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QRadioButton>
-#include <QtWidgets/QToolButton>
+// QtWidgets
+#include <QWidget>
+#include <QCheckBox>
+#include <QRadioButton>
+#include <QToolButton>
 
 #include <KCompletion/KComboBox>
 #include <KCompletion/KLineEdit>

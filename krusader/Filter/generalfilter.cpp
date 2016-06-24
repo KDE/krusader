@@ -34,11 +34,12 @@
 #include "../krservices.h"
 #include "../VFS/vfs.h"
 
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QMenu>
+// QtWidgets
+#include <QPushButton>
+#include <QHBoxLayout>
+#include <QGridLayout>
+#include <QLabel>
+#include <QMenu>
 
 #include <KCodecs/KCharsets>
 #include <KConfigCore/KSharedConfig>
