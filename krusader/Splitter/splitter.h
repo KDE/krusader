@@ -31,9 +31,11 @@
 #ifndef SPLITTER_H
 #define SPLITTER_H
 
-#include <QtCore/QString>
-#include <QtCore/QUrl>
-#include <QtWidgets/QProgressDialog>
+// QtCore
+#include <QString>
+#include <QUrl>
+// QtWidgets
+#include <QProgressDialog>
 
 #include <KIO/Job>
 

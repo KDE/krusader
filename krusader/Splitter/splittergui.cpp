@@ -32,18 +32,21 @@
 
 #include "../VFS/vfs.h"
 
-#include <QtCore/QDebug>
-#include <QtGui/QValidator>
-#include <QtGui/QKeyEvent>
-#include <QtWidgets/QDoubleSpinBox>
-#include <QtWidgets/QComboBox>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QFrame>
+// QtCore
+#include <QDebug>
+// QtGui
+#include <QValidator>
+#include <QKeyEvent>
+// QtWidgets
+#include <QDoubleSpinBox>
+#include <QComboBox>
+#include <QCheckBox>
+#include <QLineEdit>
+#include <QLayout>
+#include <QLabel>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QFrame>
 
 #include <KConfigCore/KConfigGroup>
 #include <KConfigCore/KSharedConfig>

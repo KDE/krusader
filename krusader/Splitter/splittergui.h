@@ -31,8 +31,10 @@
 #ifndef SPLITTERGUI_H
 #define SPLITTERGUI_H
 
-#include <QtCore/QUrl>
-#include <QtWidgets/QDialog>
+// QtCore
+#include <QUrl>
+// QtWidgets
+#include <QDialog>
 
 #include <KIOWidgets/KUrlRequester>
 #include <KIO/Global>

@@ -31,7 +31,8 @@
 #include "combiner.h"
 #include "../VFS/vfs.h"
 
-#include <QtCore/QFileInfo>
+// QtCore
+#include <QFileInfo>
 
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KFileItem>

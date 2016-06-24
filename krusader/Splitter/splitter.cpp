@@ -31,8 +31,10 @@
 #include "splitter.h"
 #include "../VFS/vfs.h"
 
-#include <QtCore/QFileInfo>
-#include <QtWidgets/QLayout>
+// QtCore
+#include <QFileInfo>
+// QtWidgets
+#include <QLayout>
 
 #include <KI18n/KLocalizedString>
 #include <KIO/Job>
