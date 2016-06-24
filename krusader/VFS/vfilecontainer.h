@@ -19,7 +19,8 @@
 #ifndef _VFILECONTAINER_H__
 #define _VFILECONTAINER_H__
 
-#include <QtCore/QObject>
+// QtCore
+#include <QObject>
 
 class vfile;
 

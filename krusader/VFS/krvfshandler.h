@@ -20,8 +20,9 @@
 #ifndef KRVFSHANDLER_H
 #define KRVFSHANDLER_H
 
-#include <QtCore/QObject>
-#include <QtCore/QUrl>
+// QtCore
+#include <QObject>
+#include <QUrl>
 
 #include "vfs.h"
 

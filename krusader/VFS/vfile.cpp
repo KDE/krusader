@@ -30,9 +30,10 @@
 
 #include "vfile.h"
 
-#include <QtCore/QDateTime>
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QMimeType>
+// QtCore
+#include <QDateTime>
+#include <QMimeDatabase>
+#include <QMimeType>
 
 #include <KConfigCore/KDesktopFile>
 

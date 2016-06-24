@@ -37,9 +37,10 @@
 #endif
 #endif
 
-#include <QtCore/QTimer>
-#include <QtCore/QByteArray>
-#include <QtCore/QDir>
+// QtCore
+#include <QTimer>
+#include <QByteArray>
+#include <QDir>
 #include <qplatformdefs.h>
 
 #include <KConfigCore/KSharedConfig>

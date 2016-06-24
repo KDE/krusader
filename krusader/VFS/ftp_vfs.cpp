@@ -30,10 +30,11 @@
 
 #include "ftp_vfs.h"
 
-#include <QtCore/QDir>
-#include <QtCore/QRegExp>
-#include <QtCore/QTimer>
-#include <QtCore/QEventLoop>
+// QtCore
+#include <QDir>
+#include <QRegExp>
+#include <QTimer>
+#include <QEventLoop>
 
 #include <KI18n/KLocalizedString>
 #include <KIO/Job>

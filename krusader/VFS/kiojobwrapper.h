@@ -31,10 +31,11 @@
 #ifndef KIOJOBWRAPPER_H
 #define KIOJOBWRAPPER_H
 
-#include <QtCore/QObject>
-#include <QtCore/QPointer>
-#include <QtCore/QMap>
-#include <QtCore/QUrl>
+// QtCore
+#include <QObject>
+#include <QPointer>
+#include <QMap>
+#include <QUrl>
 
 #include <KIO/Job>
 

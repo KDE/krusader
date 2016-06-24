@@ -30,13 +30,15 @@
 
 #include "abstractthreadedjob.h"
 
-#include <QtCore/QTimer>
-#include <QtCore/QDir>
-#include <QtCore/QPointer>
-#include <QtCore/QEventLoop>
-#include <QtCore/QTemporaryDir>
-#include <QtCore/QTemporaryFile>
-#include <QtWidgets/QApplication>
+// QtCore
+#include <QTimer>
+#include <QDir>
+#include <QPointer>
+#include <QEventLoop>
+#include <QTemporaryDir>
+#include <QTemporaryFile>
+// QtWidgets
+#include <QApplication>
 
 #include <KI18n/KLocalizedString>
 #include <KIO/JobUiDelegate>

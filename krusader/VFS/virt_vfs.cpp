@@ -19,7 +19,8 @@
 
 #include "virt_vfs.h"
 
-#include <QtCore/QUrl>
+// QtCore
+#include <QUrl>
 
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KFileItem>

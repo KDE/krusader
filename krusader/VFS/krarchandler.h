@@ -30,9 +30,10 @@
 #ifndef KRARCHANDLER_H
 #define KRARCHANDLER_H
 
-#include <QtCore/QStringList>
-#include <QtCore/QObject>
-#include <QtCore/QUrl>
+// QtCore
+#include <QStringList>
+#include <QObject>
+#include <QUrl>
 
 #include <KCoreAddons/KProcess>
 

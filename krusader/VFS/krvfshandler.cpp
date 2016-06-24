@@ -23,7 +23,8 @@
 #include "virt_vfs.h"
 #include "../krservices.h"
 
-#include <QtCore/QDir>
+// QtCore
+#include <QDir>
 
 KrVfsHandler::KrVfsHandler()
 {

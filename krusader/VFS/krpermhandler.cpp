@@ -30,9 +30,10 @@
 
 #include "krpermhandler.h"
 
-#include <QtCore/QDateTime>
-#include <QtCore/QDir>
-#include <QtCore/QLocale>
+// QtCore
+#include <QDateTime>
+#include <QDir>
+#include <QLocale>
 #include <qplatformdefs.h>
 
 QHash<QString, uid_t> *KRpermHandler::passwdCache = 0L;

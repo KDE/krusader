@@ -31,17 +31,18 @@
 #ifndef ABSTRACTTHREADEDJOB_H
 #define ABSTRACTTHREADEDJOB_H
 
-#include <QtCore/QThread>
-#include <QtCore/QEvent>
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QMutex>
-#include <QtCore/QWaitCondition>
-#include <QtCore/QStack>
-#include <QtCore/QVariant>
-#include <QtCore/QList>
-#include <QtCore/QEventLoop>
-#include <QtCore/QTime>
-#include <QtCore/QUrl>
+// QtCore
+#include <QThread>
+#include <QEvent>
+#include <QMimeDatabase>
+#include <QMutex>
+#include <QWaitCondition>
+#include <QStack>
+#include <QVariant>
+#include <QList>
+#include <QEventLoop>
+#include <QTime>
+#include <QUrl>
 
 #include <KIO/Job>
 

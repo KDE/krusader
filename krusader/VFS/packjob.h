@@ -31,7 +31,8 @@
 #ifndef PACKJOB_H
 #define PACKJOB_H
 
-#include <QtCore/QMap>
+// QtCore
+#include <QMap>
 
 #include "abstractthreadedjob.h"
 

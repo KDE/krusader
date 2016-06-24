@@ -31,10 +31,11 @@
 #ifndef VIRTUALCOPYJOB_H
 #define VIRTUALCOPYJOB_H
 
-#include <QtCore/QList>
-#include <QtCore/QTimer>
-#include <QtCore/QHash>
-#include <QtCore/QMap>
+// QtCore
+#include <QList>
+#include <QTimer>
+#include <QHash>
+#include <QMap>
 
 #include <KIO/Job>
 

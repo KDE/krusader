@@ -33,9 +33,12 @@
 #include <cstdio>
 #include <iostream>
 
-#include <QtCore/QEvent>
-#include <QtGui/QTextDocument>
-#include <QtWidgets/QApplication>
+// QtCore
+#include <QEvent>
+// QtGui
+#include <QTextDocument>
+// QtWidgets
+#include <QApplication>
 
 #include <KI18n/KLocalizedString>
 #include <KIO/Global>

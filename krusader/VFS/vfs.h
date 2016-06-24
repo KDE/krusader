@@ -32,13 +32,15 @@
 
 #include "vfilecontainer.h"
 
-#include <QtCore/QString>
-#include <QtCore/QList>
-#include <QtCore/QObject>
-#include <QtCore/QHash>
-#include <QtCore/QPointer>
-#include <QtCore/QUrl>
-#include <QtWidgets/QWidget>
+// QtCore
+#include <QString>
+#include <QList>
+#include <QObject>
+#include <QHash>
+#include <QPointer>
+#include <QUrl>
+// QtWidgets
+#include <QWidget>
 
 #include "vfile.h"
 #include "preservingcopyjob.h"

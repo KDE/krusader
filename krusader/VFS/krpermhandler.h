@@ -32,9 +32,10 @@
 #ifndef KRPERMHANDLER_H
 #define KRPERMHANDLER_H
 
-#include <QtCore/QString>
-#include <QtCore/QFileInfo>
-#include <QtCore/QHash>
+// QtCore
+#include <QString>
+#include <QFileInfo>
+#include <QHash>
 
 #include <KIO/Global>
 

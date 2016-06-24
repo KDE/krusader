@@ -31,10 +31,11 @@
 #include "packjob.h"
 #include "krarchandler.h"
 
-#include <QtCore/QDir>
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QMimeType>
-#include <QtCore/QTimer>
+// QtCore
+#include <QDir>
+#include <QMimeDatabase>
+#include <QMimeType>
+#include <QTimer>
 
 #include <KI18n/KLocalizedString>
 

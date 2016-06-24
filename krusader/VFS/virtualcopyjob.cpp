@@ -32,7 +32,8 @@
 #include "vfs.h"
 #include "vfile.h"
 
-#include <QtCore/QDir>
+// QtCore
+#include <QDir>
 
 #include <KCoreAddons/KJobTrackerInterface>
 #include <KI18n/KLocalizedString>

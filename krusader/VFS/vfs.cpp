@@ -33,10 +33,12 @@
 
 #include "vfs.h"
 
-#include <QtCore/QEventLoop>
-#include <QtCore/QList>
-#include <QtCore/QDir>
-#include <QtWidgets/QApplication>
+// QtCore
+#include <QEventLoop>
+#include <QList>
+#include <QDir>
+// QtWidgets
+#include <QApplication>
 #include <qplatformdefs.h>
 
 #include <KConfigCore/KSharedConfig>

@@ -30,10 +30,11 @@
 
 #include "krquery.h"
 
-#include <QtCore/QMetaMethod>
-#include <QtCore/QTextCodec>
-#include <QtCore/QRegExp>
-#include <QtCore/QFile>
+// QtCore
+#include <QMetaMethod>
+#include <QTextCodec>
+#include <QRegExp>
+#include <QFile>
 
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KUrlCompletion>

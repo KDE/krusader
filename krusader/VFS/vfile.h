@@ -31,9 +31,10 @@
 
 #include <sys/types.h>
 
-#include <QtCore/QString>
-#include <QtCore/QObject>
-#include <QtCore/QUrl>
+// QtCore
+#include <QString>
+#include <QObject>
+#include <QUrl>
 
 #include <KIO/Global>
 #include <KIO/UDSEntry>

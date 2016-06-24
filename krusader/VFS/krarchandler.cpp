@@ -30,10 +30,12 @@
 
 #include "krarchandler.h"
 
-#include <QtCore/QDebug>
-#include <QtCore/QDir>
-#include <QtCore/QFile>
-#include <QtWidgets/QApplication>
+// QtCore
+#include <QDebug>
+#include <QDir>
+#include <QFile>
+// QtWidgets
+#include <QApplication>
 
 #include <KArchive/KTar>
 #include <KConfigCore/KSharedConfig>

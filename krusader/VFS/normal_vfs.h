@@ -31,9 +31,10 @@
 #ifndef NORMAL_VFS_H
 #define NORMAL_VFS_H
 
-#include <QtCore/QString>
-#include <QtCore/QTimer>
-#include <QtCore/QUrl>
+// QtCore
+#include <QString>
+#include <QTimer>
+#include <QUrl>
 
 #include <KIOCore/KFileItem>
 #include <KCoreAddons/KDirWatch>

@@ -31,9 +31,10 @@
 #ifndef PRESERVINGCOPYJOB_H
 #define PRESERVINGCOPYJOB_H
 
-#include <QtCore/QMap>
-#include <QtCore/QList>
-#include <QtCore/QUrl>
+// QtCore
+#include <QMap>
+#include <QList>
+#include <QUrl>
 
 #include <KIO/CopyJob>
 
