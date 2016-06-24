@@ -21,10 +21,12 @@
 #ifndef KRACTION_H
 #define KRACTION_H
 
-#include <QtCore/QByteArray>
-#include <QtCore/QUrl>
-#include <QtWidgets/QAction>
-#include <QtWidgets/QDialog>
+// QtCore
+#include <QByteArray>
+#include <QUrl>
+// QtWidgets
+#include <QAction>
+#include <QDialog>
 
 #include <KCoreAddons/KProcess>
 #include <KTextWidgets/KTextEdit>

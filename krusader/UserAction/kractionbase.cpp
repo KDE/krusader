@@ -19,8 +19,9 @@
 
 #include "kractionbase.h"
 
-#include <QtWidgets/QErrorMessage>
-#include <QtWidgets/QInputDialog>
+// QtWidgets
+#include <QErrorMessage>
+#include <QInputDialog>
 
 #include <KI18n/KLocalizedString>
 

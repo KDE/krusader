@@ -20,7 +20,8 @@
 #ifndef KRACTIONBASE_H
 #define KRACTIONBASE_H
 
-#include <QtCore/QString>
+// QtCore
+#include <QString>
 
 #include "expander.h"
 

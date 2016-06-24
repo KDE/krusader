@@ -18,7 +18,8 @@
 
 #include "useractionpopupmenu.h"
 
-#include <QtCore/QUrl>
+// QtCore
+#include <QUrl>
 
 #include <KI18n/KLocalizedString>
 

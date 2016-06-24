@@ -20,10 +20,10 @@
 #ifndef EXPANDER_H
 #define EXPANDER_H
 
-// class QString;
-#include <QtCore/QString>
-#include <QtCore/QStringList>
-#include <QtCore/QList>
+// QtCore
+#include <QString>
+#include <QStringList>
+#include <QList>
 
 # include "tstring.h"
 

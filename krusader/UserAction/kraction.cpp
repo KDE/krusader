@@ -20,24 +20,28 @@
 
 #include "kraction.h"
 
-#include <QtCore/QDebug>
-#include <QtCore/QEvent>
-#include <QtCore/QFile>
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QMimeType>
-#include <QtCore/QRegExp>
-#include <QtCore/QTextStream>
-#include <QtGui/QKeyEvent>
-#include <QtWidgets/QAction>
-#include <QtWidgets/QBoxLayout>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QFileDialog>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QSplitter>
-#include <QtXml/QDomElement>
+// QtCore
+#include <QDebug>
+#include <QEvent>
+#include <QFile>
+#include <QMimeDatabase>
+#include <QMimeType>
+#include <QRegExp>
+#include <QTextStream>
+// QtGui
+#include <QKeyEvent>
+// QtWidgets
+#include <QAction>
+#include <QBoxLayout>
+#include <QCheckBox>
+#include <QDialogButtonBox>
+#include <QFileDialog>
+#include <QLabel>
+#include <QLayout>
+#include <QPushButton>
+#include <QSplitter>
+// QtXml
+#include <QDomElement>
 
 #include <KConfigCore/KSharedConfig>
 #include <KXmlGui/KActionCollection>

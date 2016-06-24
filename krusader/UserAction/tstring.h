@@ -22,8 +22,9 @@
 #include <utility>
 #include <cassert>
 
-#include <QtCore/QString>
-#include <QtCore/QList>
+// QtCore
+#include <QString>
+#include <QList>
 
 template <class T>
 class TagString_t

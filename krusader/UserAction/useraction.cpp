@@ -18,15 +18,18 @@
 
 #include "useraction.h"
 
-#include <QtCore/QDebug>
-#include <QtCore/QFile>
-#include <QtCore/QHash>
-#include <QtCore/QStandardPaths>
-#include <QtCore/QTextStream>
-#include <QtCore/QUrl>
-#include <QtXml/QDomDocument>
-#include <QtXml/QDomElement>
-#include <QtWidgets/QMenu>
+// QtCore
+#include <QDebug>
+#include <QFile>
+#include <QHash>
+#include <QStandardPaths>
+#include <QTextStream>
+#include <QUrl>
+// QtXml
+#include <QDomDocument>
+#include <QDomElement>
+// QtWidgets
+#include <QMenu>
 
 #include <KI18n/KLocalizedString>
 #include <KXmlGui/KActionCollection>

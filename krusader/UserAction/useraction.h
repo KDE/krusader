@@ -19,9 +19,10 @@
 #ifndef USERACTION_H
 #define USERACTION_H
 
-#include <QtCore/QList>
-#include <QtCore/QSet>
-#include <QtCore/QString>
+// QtCore
+#include <QList>
+#include <QSet>
+#include <QString>
 
 class QDomDocument;
 class QDomElement;

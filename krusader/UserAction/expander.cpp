@@ -39,14 +39,17 @@
 #include "../KrJS/krjs.h"
 #endif
 
-#include <QtCore/QDebug>
-#include <QtCore/QStringList>
-#include <QtCore/QTextStream>
-#include <QtCore/QList>
-#include <QtCore/QTemporaryFile>
-#include <QtGui/QClipboard>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QInputDialog>
+// QtCore
+#include <QDebug>
+#include <QStringList>
+#include <QTextStream>
+#include <QList>
+#include <QTemporaryFile>
+// QtGui
+#include <QClipboard>
+// QtWidgets
+#include <QApplication>
+#include <QInputDialog>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
