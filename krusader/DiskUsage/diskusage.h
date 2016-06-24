@@ -31,18 +31,21 @@
 #ifndef DISKUSAGE_H
 #define DISKUSAGE_H
 
-#include <QtCore/QHash>
-#include <QtCore/QEvent>
-#include <QtCore/QTimer>
-#include <QtCore/QStack>
-#include <QtCore/QUrl>
-#include <QtGui/QResizeEvent>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QPixmap>
-#include <QtWidgets/QDialog>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QStackedWidget>
-#include <QtWidgets/QScrollArea>
+// QtCore
+#include <QHash>
+#include <QEvent>
+#include <QTimer>
+#include <QStack>
+#include <QUrl>
+// QtGui
+#include <QResizeEvent>
+#include <QKeyEvent>
+#include <QPixmap>
+// QtWidgets
+#include <QDialog>
+#include <QLabel>
+#include <QStackedWidget>
+#include <QScrollArea>
 
 #include <KWidgetsAddons/KSqueezedTextLabel>
 

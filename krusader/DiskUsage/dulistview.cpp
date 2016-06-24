@@ -33,12 +33,15 @@
 #include "../kicons.h"
 #include "../VFS/krpermhandler.h"
 
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QMimeType>
-#include <QtGui/QMouseEvent>
-#include <QtGui/QFontMetrics>
-#include <QtGui/QKeyEvent>
-#include <QtWidgets/QHeaderView>
+// QtCore
+#include <QMimeDatabase>
+#include <QMimeType>
+// QtGui
+#include <QMouseEvent>
+#include <QFontMetrics>
+#include <QKeyEvent>
+// QtWidgets
+#include <QHeaderView>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

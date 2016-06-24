@@ -18,8 +18,9 @@
 
 #include "fileTree.h"
 
-#include <QtCore/QLocale>
-#include <QtCore/QString>
+// QtCore
+#include <QLocale>
+#include <QString>
 
 //static definitions
 const FileSize File::DENOMINATOR[4] = { 1ull, 1ull << 10, 1ull << 20, 1ull << 30 };

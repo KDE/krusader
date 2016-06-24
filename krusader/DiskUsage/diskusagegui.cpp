@@ -30,12 +30,15 @@
 
 #include "diskusagegui.h"
 
-#include <QtCore/QTimer>
-#include <QtGui/QResizeEvent>
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QLabel>
+// QtCore
+#include <QTimer>
+// QtGui
+#include <QResizeEvent>
+// QtWidgets
+#include <QDialogButtonBox>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QLabel>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

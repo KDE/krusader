@@ -19,11 +19,13 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
-#include <QtCore/QTimer>
-#include <QtCore/QUrl>
-#include <QtGui/QMouseEvent>
-#include <QtGui/QResizeEvent>
-#include <QtGui/QPaintEvent>
+// QtCore
+#include <QTimer>
+#include <QUrl>
+// QtGui
+#include <QMouseEvent>
+#include <QResizeEvent>
+#include <QPaintEvent>
 
 #include "segmentTip.h"
 

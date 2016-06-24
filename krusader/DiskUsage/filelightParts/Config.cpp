@@ -18,7 +18,8 @@
 
 #include "Config.h"
 
-#include <QtGui/QFont>
+// QtGui
+#include <QFont>
 
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KSharedConfig>

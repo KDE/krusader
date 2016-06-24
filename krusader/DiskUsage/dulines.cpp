@@ -33,18 +33,21 @@
 #include "../krglobal.h"
 #include "../VFS/krpermhandler.h"
 
-#include <QtCore/QTimer>
-#include <QtGui/QMouseEvent>
-#include <QtGui/QPixmap>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QPen>
-#include <QtGui/QPainter>
-#include <QtGui/QFontMetrics>
-#include <QtWidgets/QToolTip>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QItemDelegate>
-#include <QtWidgets/QMenu>
+// QtCore
+#include <QTimer>
+// QtGui
+#include <QMouseEvent>
+#include <QPixmap>
+#include <QKeyEvent>
+#include <QPen>
+#include <QPainter>
+#include <QFontMetrics>
+// QtWidgets
+#include <QToolTip>
+#include <QApplication>
+#include <QHeaderView>
+#include <QItemDelegate>
+#include <QMenu>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

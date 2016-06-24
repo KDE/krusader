@@ -16,12 +16,14 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include <QtGui/QImage>          //make() & paint()
-#include <QtGui/QFont>                                    //ctor
-#include <QtGui/QFontMetrics>                               //ctor
-#include <QtGui/QPainter>
-#include <QtGui/QPolygon>
-#include <QtWidgets/QApplication>    //make()
+// QtGui
+#include <QImage>          //make() & paint()
+#include <QFont>                                    //ctor
+#include <QFontMetrics>                               //ctor
+#include <QPainter>
+#include <QPolygon>
+// QtWidgets
+#include <QApplication>    //make()
 
 #include <KIconThemes/KIconEffect>                        //desaturate()
 #include <KWidgetsAddons/KCursor>         //make()

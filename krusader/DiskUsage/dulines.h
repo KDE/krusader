@@ -31,10 +31,11 @@
 #ifndef DULINES_H
 #define DULINES_H
 
-#include <QtGui/QMouseEvent>
-#include <QtGui/QPixmap>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QResizeEvent>
+// QtGui
+#include <QMouseEvent>
+#include <QPixmap>
+#include <QKeyEvent>
+#include <QResizeEvent>
 
 #include "diskusage.h"
 #include "../GUI/krtreewidget.h"

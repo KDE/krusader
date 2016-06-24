@@ -19,7 +19,8 @@
 #ifndef RADIALMAP_H
 #define RADIALMAP_H
 
-#include <QtGui/QColor>
+// QtGui
+#include <QColor>
 
 class File;
 

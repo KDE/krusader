@@ -31,7 +31,8 @@
 #ifndef DUFILELIGHT_H
 #define DUFILELIGHT_H
 
-#include <QtGui/QMouseEvent>
+// QtGui
+#include <QMouseEvent>
 
 #include "diskusage.h"
 #include "radialMap/widget.h"

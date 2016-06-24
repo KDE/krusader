@@ -30,24 +30,27 @@
 
 #include "diskusage.h"
 
-#include <QtCore/QEvent>
-#include <QtCore/QHash>
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QMimeType>
-#include <QtCore/QPointer>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QPixmap>
-#include <QtGui/QResizeEvent>
-#include <QtGui/QCursor>
-#include <QtGui/QPixmapCache>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QGroupBox>
-#include <QtWidgets/QMenu>
+// QtCore
+#include <QEvent>
+#include <QHash>
+#include <QMimeDatabase>
+#include <QMimeType>
+#include <QPointer>
+// QtGui
+#include <QKeyEvent>
+#include <QPixmap>
+#include <QResizeEvent>
+#include <QCursor>
+#include <QPixmapCache>
+// QtWidgets
+#include <QLayout>
+#include <QLabel>
+#include <QGridLayout>
+#include <QFrame>
+#include <QPushButton>
+#include <QApplication>
+#include <QGroupBox>
+#include <QMenu>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

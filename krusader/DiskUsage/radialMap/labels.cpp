@@ -16,10 +16,12 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include <QtCore/QList>
-#include <QtGui/QFont>
-#include <QtGui/QFontMetrics>
-#include <QtGui/QPainter>
+// QtCore
+#include <QList>
+// QtGui
+#include <QFont>
+#include <QFontMetrics>
+#include <QPainter>
 
 #include <KCoreAddons/KStringHandler>
 

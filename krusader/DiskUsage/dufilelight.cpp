@@ -31,10 +31,12 @@
 #include "dufilelight.h"
 #include "radialMap/radialMap.h"
 
-#include <QtGui/QMouseEvent>
-#include <QtGui/QPixmap>
-#include <QtWidgets/QInputDialog>
-#include <QtWidgets/QMenu>
+// QtGui
+#include <QMouseEvent>
+#include <QPixmap>
+// QtWidgets
+#include <QInputDialog>
+#include <QMenu>
 
 #include <KI18n/KLocalizedString>
 

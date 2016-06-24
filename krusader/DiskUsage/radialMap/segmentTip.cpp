@@ -18,11 +18,14 @@
 
 #include "segmentTip.h"
 
-#include <QtCore/QEvent>
-#include <QtGui/QPainter>
-#include <QtWidgets/QApplication>                           //installing eventFilters
-#include <QtWidgets/QDesktopWidget>
-#include <QtWidgets/QToolTip>                               //for its palette
+// QtCore
+#include <QEvent>
+// QtGui
+#include <QPainter>
+// QtWidgets
+#include <QApplication>                           //installing eventFilters
+#include <QDesktopWidget>
+#include <QToolTip>                               //for its palette
 
 #include <KI18n/KLocalizedString>
 

@@ -19,9 +19,12 @@
 #ifndef SEGMENTTIP_H
 #define SEGMENTTIP_H
 
-#include <QtCore/QEvent>
-#include <QtGui/QPixmap>
-#include <QtWidgets/QWidget>
+// QtCore
+#include <QEvent>
+// QtGui
+#include <QPixmap>
+// QtWidgets
+#include <QWidget>
 
 class File;
 class Directory;

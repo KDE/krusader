@@ -21,7 +21,8 @@
 #include "fileTree.h"
 #include "widget.h"
 
-#include <QtCore/QLocale>
+// QtCore
+#include <QLocale>
 
 #include <KI18n/KLocalizedString>
 

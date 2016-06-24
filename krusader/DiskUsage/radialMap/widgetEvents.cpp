@@ -22,13 +22,16 @@
 
 #include <cmath>
 
-#include <QtCore/QTimer>                                    //::resizeEvent()
-#include <QtGui/QMouseEvent>
-#include <QtGui/QPainter>
-#include <QtGui/QPaintEvent>
-#include <QtGui/QResizeEvent>
-#include <QtWidgets/QApplication>          //QApplication::setOverrideCursor()
-#include <QtWidgets/QMenu>
+// QtCore
+#include <QTimer>                                    //::resizeEvent()
+// QtGui
+#include <QMouseEvent>
+#include <QPainter>
+#include <QPaintEvent>
+#include <QResizeEvent>
+// QtWidgets
+#include <QApplication>          //QApplication::setOverrideCursor()
+#include <QMenu>
 
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>

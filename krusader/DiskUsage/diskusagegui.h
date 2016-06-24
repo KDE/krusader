@@ -31,11 +31,14 @@
 #ifndef DISKUSAGEGUI_H
 #define DISKUSAGEGUI_H
 
-#include <QtCore/QUrl>
-#include <QtGui/QResizeEvent>
-#include <QtWidgets/QDialog>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QToolButton>
+// QtCore
+#include <QUrl>
+// QtGui
+#include <QResizeEvent>
+// QtWidgets
+#include <QDialog>
+#include <QLayout>
+#include <QToolButton>
 
 #include <KWidgetsAddons/KSqueezedTextLabel>
 
