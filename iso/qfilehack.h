@@ -19,8 +19,9 @@
 #ifndef QFILEHACK_H
 #define QFILEHACK_H
 
-#include <QtCore/QFile>
-#include <QtCore/QString>
+// QtCore
+#include <QFile>
+#include <QString>
 
 /**
  * Qt thinks if a file is not S_IFREG, you cannot seek in it.

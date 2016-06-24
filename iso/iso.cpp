@@ -23,12 +23,13 @@
 
 #include <zlib.h>
 
-#include <QtCore/QByteArray>
-#include <QtCore/QDebug>
-#include <QtCore/QDir>
-#include <QtCore/QFile>
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QMimeType>
+// QtCore
+#include <QByteArray>
+#include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QMimeDatabase>
+#include <QMimeType>
 #include <qplatformdefs.h>
 
 #include "libisofs/iso_fs.h"

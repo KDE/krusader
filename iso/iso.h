@@ -22,8 +22,9 @@
 #ifndef ISO_H
 #define ISO_H
 
-#include <QtCore/QByteArray>
-#include <QtCore/QUrl>
+// QtCore
+#include <QByteArray>
+#include <QUrl>
 
 #include <KIO/SlaveBase>
 

@@ -19,7 +19,8 @@
 #ifndef KISOFILE_H
 #define KISOFILE_H
 
-#include <QtCore/QString>
+// QtCore
+#include <QString>
 
 #include <KArchive/KArchive>
 

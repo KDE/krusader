@@ -21,11 +21,12 @@
 
 #include "kiso.h"
 
-#include <QtCore/QDebug>
-#include <QtCore/QDir>
-#include <QtCore/QFile>
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QMimeType>
+// QtCore
+#include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QMimeDatabase>
+#include <QMimeType>
 #include <qplatformdefs.h>
 
 #include <KConfigCore/KConfig>

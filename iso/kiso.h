@@ -22,9 +22,10 @@
 #ifndef KISO_H
 #define KISO_H
 
-#include <QtCore/QDateTime>
-#include <QtCore/QString>
-#include <QtCore/QStringList>
+// QtCore
+#include <QDateTime>
+#include <QString>
+#include <QStringList>
 
 #include "kisofile.h"
 #include "kisodirectory.h"
