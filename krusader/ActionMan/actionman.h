@@ -19,7 +19,8 @@
 #ifndef ACTIONMAN_H
 #define ACTIONMAN_H
 
-#include <QtWidgets/QDialog>
+// QtWidgets
+#include <QDialog>
 
 class UserActionPage;
 

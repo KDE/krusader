@@ -19,14 +19,17 @@
 
 #include "useractionpage.h"
 
-#include <QtWidgets/QFileDialog>
-#include <QtWidgets/QSplitter>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QToolButton>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QVBoxLayout>
-#include <QtGui/QClipboard>
-#include <QtXml/QDomDocumentType>
+// QtWidgets
+#include <QFileDialog>
+#include <QSplitter>
+#include <QLayout>
+#include <QToolButton>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+// QtGui
+#include <QClipboard>
+// QtXml
+#include <QDomDocumentType>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KStandardGuiItem>

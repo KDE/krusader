@@ -20,7 +20,8 @@
 #ifndef USERACTIONPAGE_H
 #define USERACTIONPAGE_H
 
-#include <QtWidgets/QWidget>
+// QtWidgets
+#include <QWidget>
 
 class UserActionListView;
 class ActionProperty;

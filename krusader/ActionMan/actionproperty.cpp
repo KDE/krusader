@@ -24,8 +24,9 @@
 #include "../krusader.h"
 #include "../krglobal.h"
 
-#include <QtWidgets/QFileDialog>
-#include <QtWidgets/QInputDialog>
+// QtWidgets
+#include <QFileDialog>
+#include <QInputDialog>
 
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>

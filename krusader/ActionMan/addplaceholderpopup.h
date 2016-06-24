@@ -21,9 +21,11 @@
 #ifndef ADDPLACEHOLDERPOPUP_H
 #define ADDPLACEHOLDERPOPUP_H
 
-#include <QtCore/QList>
-#include <QtWidgets/QDialog>
-#include <QtWidgets/QMenu>
+// QtCore
+#include <QList>
+// QtWidgets
+#include <QDialog>
+#include <QMenu>
 
 #include "../UserAction/expander.h"
 

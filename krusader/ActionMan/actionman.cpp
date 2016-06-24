@@ -18,9 +18,10 @@
 
 #include "actionman.h"
 
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QVBoxLayout>
+// QtWidgets
+#include <QDialogButtonBox>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>

@@ -26,15 +26,16 @@
 #include "../BookMan/krbookmarkbutton.h"
 #include "../GUI/profilemanager.h"
 
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QFileDialog>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QSpinBox>
-#include <QtWidgets/QToolButton>
-#include <QtWidgets/QVBoxLayout>
+// QtWidgets
+#include <QCheckBox>
+#include <QDialogButtonBox>
+#include <QFileDialog>
+#include <QFrame>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QSpinBox>
+#include <QToolButton>
+#include <QVBoxLayout>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

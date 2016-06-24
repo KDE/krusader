@@ -18,8 +18,10 @@
 
 #include "useractionlistview.h"
 
-#include <QtCore/QDebug>
-#include <QtXml/QDomEntity>
+// QtCore
+#include <QDebug>
+// QtXml
+#include <QDomEntity>
 
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
