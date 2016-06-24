@@ -31,9 +31,11 @@
 #ifndef LOCATE_H
 #define LOCATE_H
 
-#include <QtGui/QKeyEvent>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QDialog>
+// QtGui
+#include <QKeyEvent>
+// QtWidgets
+#include <QCheckBox>
+#include <QDialog>
 
 #include <KCompletion/KComboBox>
 #include <KCompletion/KHistoryComboBox>
