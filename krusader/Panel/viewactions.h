@@ -29,8 +29,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __VIEWACTIONS_H__
-#define __VIEWACTIONS_H__
+#ifndef VIEWACTIONS_H
+#define VIEWACTIONS_H
 
 #include "../actionsbase.h"
 
@@ -85,4 +85,4 @@ protected:
     KrView *view();
 };
 
-#endif // __VIEWACTIONS_H__
+#endif // VIEWACTIONS_H

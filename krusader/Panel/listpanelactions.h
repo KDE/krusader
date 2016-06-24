@@ -30,8 +30,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __LISTPANELACTIONS_H__
-#define __LISTPANELACTIONS_H__
+#ifndef LISTPANELACTIONS_H
+#define LISTPANELACTIONS_H
 
 #include "../actionsbase.h"
 
@@ -86,4 +86,4 @@ protected:
     ActionGroup _gui, _func;
 };
 
-#endif // __LISTPANELACTIONS_H__
+#endif // LISTPANELACTIONS_H

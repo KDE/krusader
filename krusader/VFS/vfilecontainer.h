@@ -16,8 +16,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef _VFILECONTAINER_H__
-#define _VFILECONTAINER_H__
+#ifndef VFILECONTAINER_H
+#define VFILECONTAINER_H
 
 // QtCore
 #include <QObject>
@@ -44,4 +44,4 @@ signals:
 };
 
 
-#endif // _VFILECONTAINER_H__
+#endif // VFILECONTAINER_H

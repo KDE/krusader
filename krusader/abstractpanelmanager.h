@@ -16,8 +16,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef __ABSTRACTPANELMANAGER_H__
-#define __ABSTRACTPANELMANAGER_H__
+#ifndef ABSTRACTPANELMANAGER_H
+#define ABSTRACTPANELMANAGER_H
 
 // QtCore
 #include <QUrl>
@@ -35,4 +35,4 @@ public:
 };
 
 
-#endif // __ABSTRACTPANELMANAGER_H__
+#endif // ABSTRACTPANELMANAGER_H

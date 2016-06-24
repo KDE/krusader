@@ -16,8 +16,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef __KRMAINWINDOW_H__
-#define __KRMAINWINDOW_H__
+#ifndef KRMAINWINDOW_H
+#define KRMAINWINDOW_H
 
 class QWidget;
 class KrView;
@@ -39,4 +39,4 @@ public:
 //     QAction *action(const char *name);
 };
 
-#endif // __KRMAINWINDOW_H__
+#endif // KRMAINWINDOW_H

@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef __KRSORT_H__
-#define __KRSORT_H__
+#ifndef KRSORT_H
+#define KRSORT_H
 
 #include "krview.h"
 #include "../VFS/vfile.h"
@@ -124,4 +124,4 @@ private:
 
 } // namespace KrSort
 
-#endif // __KRSORT_H__
+#endif // KRSORT_H

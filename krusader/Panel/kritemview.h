@@ -16,8 +16,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef __KRITEMVIEW_H__
-#define __KRITEMVIEW_H__
+#ifndef KRITEMVIEW_H
+#define KRITEMVIEW_H
 
 #include "krinterview.h"
 
@@ -70,4 +70,4 @@ protected:
     QFont _viewFont;
 };
 
-#endif // __KRITEMVIEW_H__
+#endif // KRITEMVIEW_H

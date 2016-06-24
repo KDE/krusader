@@ -16,8 +16,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef __QUICKFILTER_H__
-#define __QUICKFILTER_H__
+#ifndef QUICKFILTER_H
+#define QUICKFILTER_H
 
 // QtCore
 #include <QString>
@@ -45,4 +45,4 @@ private:
 };
 
 
-#endif //__QUICKFILTER_H__
+#endif // QUICKFILTER_H

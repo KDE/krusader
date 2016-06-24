@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __FILTERSETTINGS_H__
-#define __FILTERSETTINGS_H__
+#ifndef FILTERSETTINGS_H
+#define FILTERSETTINGS_H
 
 #include "../VFS/krquery.h"
 
@@ -124,4 +124,4 @@ private:
     QString permissions;
 };
 
-#endif //__FILTERSETTINGS_H__
+#endif //FILTERSETTINGS_H
