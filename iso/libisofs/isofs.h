@@ -24,6 +24,7 @@ extern "C"
 {
 #endif
 
+#include <stdlib.h>
 #include "iso_fs.h"
 #include "el_torito.h"
 #include "rock.h"
