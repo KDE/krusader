@@ -19,11 +19,13 @@
 
 #include "krsqueezedtextlabel.h"
 
-#include <QtGui/QDropEvent>
-#include <QtGui/QDragEnterEvent>
-#include <QtGui/QPainter>
-#include <QtWidgets/QToolTip>
-#include <QtWidgets/QLabel>
+// QtGui
+#include <QDropEvent>
+#include <QDragEnterEvent>
+#include <QPainter>
+// QtWidgets
+#include <QToolTip>
+#include <QLabel>
 
 #include <KCoreAddons/KUrlMimeData>
 #include <KCoreAddons/KStringHandler>

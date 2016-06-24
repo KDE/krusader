@@ -31,13 +31,15 @@
 #include "kurllistrequester.h"
 #include "../VFS/vfs.h"
 
-#include <QtGui/QPixmap>
-#include <QtGui/QCursor>
-#include <QtGui/QKeyEvent>
-#include <QtWidgets/QFileDialog>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QMenu>
+// QtGui
+#include <QPixmap>
+#include <QCursor>
+#include <QKeyEvent>
+// QtWidgets
+#include <QFileDialog>
+#include <QLayout>
+#include <QGridLayout>
+#include <QMenu>
 
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>

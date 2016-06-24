@@ -31,10 +31,13 @@
 #ifndef KRPLEASEWAIT_H
 #define KRPLEASEWAIT_H
 
-#include <QtCore/QTimer>
-#include <QtCore/QPointer>
-#include <QtGui/QCloseEvent>
-#include <QtWidgets/QProgressDialog>
+// QtCore
+#include <QTimer>
+#include <QPointer>
+// QtGui
+#include <QCloseEvent>
+// QtWidgets
+#include <QProgressDialog>
 
 #include <KIO/Job>
 

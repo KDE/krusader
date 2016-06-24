@@ -31,9 +31,11 @@
 #ifndef KURLLISTREQUESTER_H
 #define KURLLISTREQUESTER_H
 
-#include <QtGui/QKeyEvent>
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QToolButton>
+// QtGui
+#include <QKeyEvent>
+// QtWidgets
+#include <QWidget>
+#include <QToolButton>
 
 #include <KCompletion/KLineEdit>
 #include <KIOWidgets/KUrlCompletion>

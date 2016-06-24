@@ -21,7 +21,8 @@
 #ifndef CHECKSUMDLG_H
 #define CHECKSUMDLG_H
 
-#include <QtWidgets/QDialog>
+// QtWidgets
+#include <QDialog>
 
 class KUrlRequester;
 class QCheckBox;

@@ -34,13 +34,16 @@
 #include "../Filter/filtertabs.h"
 #include "../GUI/krlistwidget.h"
 
-#include <QtCore/QEvent>
-#include <QtGui/QBitmap>
-#include <QtWidgets/QComboBox>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QSpinBox>
+// QtCore
+#include <QEvent>
+// QtGui
+#include <QBitmap>
+// QtWidgets
+#include <QComboBox>
+#include <QLabel>
+#include <QLineEdit>
+#include <QCheckBox>
+#include <QSpinBox>
 #include <qnamespace.h>		// missing ?
 
 #include <KCompletion/KComboBox>

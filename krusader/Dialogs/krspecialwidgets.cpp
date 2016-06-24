@@ -35,9 +35,10 @@ A
 #include "newftpgui.h"
 #include "../krglobal.h"
 
-#include <QtGui/QGuiApplication>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QPaintEvent>
+// QtGui
+#include <QGuiApplication>
+#include <QKeyEvent>
+#include <QPaintEvent>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

@@ -30,13 +30,16 @@
 
 #include "percentalsplitter.h"
 
-#include <QtCore/QList>
-#include <QtGui/QPainter>
-#include <QtGui/QCursor>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QToolTip>
+// QtCore
+#include <QList>
+// QtGui
+#include <QPainter>
+#include <QCursor>
+// QtWidgets
+#include <QApplication>
+#include <QLabel>
+#include <QFrame>
+#include <QToolTip>
 
 PercentalSplitter::PercentalSplitter(QWidget * parent) : QSplitter(parent), label(0), opaqueOldPos(-1)
 {

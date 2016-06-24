@@ -29,15 +29,17 @@
  ***************************************************************************/
 #include "krmaskchoice.h"
 
-#include <QtCore/QVariant>
-#include <QtWidgets/QGroupBox>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QMessageBox>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QVBoxLayout>
+// QtCore
+#include <QVariant>
+// QtWidgets
+#include <QGroupBox>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QLayout>
+#include <QLineEdit>
+#include <QMessageBox>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 #include <KCompletion/KComboBox>
 #include <KI18n/KLocalizedString>

@@ -30,8 +30,10 @@
 #ifndef KRSPWIDGETS_H
 #define KRSPWIDGETS_H
 
-#include <QtCore/QEvent>
-#include <QtGui/QMouseEvent>
+// QtCore
+#include <QEvent>
+// QtGui
+#include <QMouseEvent>
 
 #include <KCompletion/KLineEdit>
 #include <KNotifications/KPassivePopup>

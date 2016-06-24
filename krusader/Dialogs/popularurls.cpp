@@ -21,14 +21,16 @@
 
 #include <stdio.h>
 
-#include <QtCore/QList>
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QToolButton>
+// QtCore
+#include <QList>
+// QtWidgets
+#include <QDialogButtonBox>
+#include <QPushButton>
+#include <QGridLayout>
+#include <QHeaderView>
+#include <QLayout>
+#include <QLabel>
+#include <QToolButton>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

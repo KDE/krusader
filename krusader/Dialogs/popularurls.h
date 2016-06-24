@@ -20,10 +20,12 @@
 #ifndef POPULARURLS_H
 #define POPULARURLS_H
 
-#include <QtCore/QObject>
-#include <QtCore/QHash>
-#include <QtCore/QUrl>
-#include <QtWidgets/QDialog>
+// QtCore
+#include <QObject>
+#include <QHash>
+#include <QUrl>
+// QtWidgets
+#include <QDialog>
 
 // the class holds a list of most popular links in a dual data structure
 // * linked list, with head and tail: for fast append/prepend support

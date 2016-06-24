@@ -19,16 +19,19 @@
 
 #include "krdialogs.h"
 
-#include <QtCore/QDir>
-#include <QtGui/QFontMetrics>
-#include <QtGui/QKeyEvent>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QMessageBox>
-#include <QtWidgets/QVBoxLayout>
+// QtCore
+#include <QDir>
+// QtGui
+#include <QFontMetrics>
+#include <QKeyEvent>
+// QtWidgets
+#include <QApplication>
+#include <QCheckBox>
+#include <QDialogButtonBox>
+#include <QFrame>
+#include <QLabel>
+#include <QMessageBox>
+#include <QVBoxLayout>
 
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KUrlCompletion>

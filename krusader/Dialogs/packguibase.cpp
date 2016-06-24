@@ -30,24 +30,27 @@
 
 #include "packguibase.h"
 
-#include <QtCore/QVariant>
-#include <QtGui/QGuiApplication>
-#include <QtGui/QImage>
-#include <QtGui/QPixmap>
-#include <QtGui/QKeyEvent>
-#include <QtWidgets/QSlider>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QComboBox>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QToolButton>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QSpinBox>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QVBoxLayout>
+// QtCore
+#include <QVariant>
+// QtGui
+#include <QGuiApplication>
+#include <QImage>
+#include <QPixmap>
+#include <QKeyEvent>
+// QtWidgets
+#include <QSlider>
+#include <QCheckBox>
+#include <QComboBox>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QToolButton>
+#include <QLayout>
+#include <QSpinBox>
+#include <QHBoxLayout>
+#include <QGridLayout>
+#include <QFrame>
+#include <QVBoxLayout>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

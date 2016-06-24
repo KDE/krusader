@@ -32,13 +32,15 @@
 #include "../krglobal.h"
 #include "../defaults.h"
 
-#include <QtCore/QStringList>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QFileDialog>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QComboBox>
+// QtCore
+#include <QStringList>
+// QtWidgets
+#include <QLineEdit>
+#include <QCheckBox>
+#include <QFileDialog>
+#include <QLabel>
+#include <QPushButton>
+#include <QComboBox>
 
 #include <KCompletion/KHistoryComboBox>
 #include <KConfigCore/KSharedConfig>

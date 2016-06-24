@@ -30,7 +30,8 @@
 #ifndef KRMASKCHOICE_H
 #define KRMASKCHOICE_H
 
-#include <QtWidgets/QDialog>
+// QtWidgets
+#include <QDialog>
 
 class QVBoxLayout;
 class QHBoxLayout;

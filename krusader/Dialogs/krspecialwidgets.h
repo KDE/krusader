@@ -32,12 +32,15 @@ A
 #ifndef KRSPECIALWIDGETS_H
 #define KRSPECIALWIDGETS_H
 
-#include <QtCore/QEvent>
-#include <QtGui/QPainter>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QPaintEvent>
-#include <QtGui/QColor>
-#include <QtWidgets/QWidget>
+// QtCore
+#include <QEvent>
+// QtGui
+#include <QPainter>
+#include <QKeyEvent>
+#include <QPaintEvent>
+#include <QColor>
+// QtWidgets
+#include <QWidget>
 
 #include <KCompletion/KLineEdit>
 #include <KIO/Global>

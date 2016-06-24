@@ -20,14 +20,17 @@
 
 #include "newftpgui.h"
 
-#include <QtCore/QStringList>
-#include <QtCore/QEvent>
-#include <QtGui/QFont>
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QSizePolicy>
+// QtCore
+#include <QStringList>
+#include <QEvent>
+// QtGui
+#include <QFont>
+// QtWidgets
+#include <QDialogButtonBox>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
+#include <QSizePolicy>
 
 #include <KConfigCore/KConfigGroup>
 #include <KConfigCore/KSharedConfig>

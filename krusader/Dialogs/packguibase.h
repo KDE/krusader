@@ -30,12 +30,14 @@
 #ifndef PACKGUIBASE_H
 #define PACKGUIBASE_H
 
-#include <QtCore/QMap>
-#include <QtWidgets/QDialog>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QLabel>
+// QtCore
+#include <QMap>
+// QtWidgets
+#include <QDialog>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QLabel>
 
 class QVBoxLayout;
 class QHBoxLayout;
