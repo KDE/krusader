@@ -32,12 +32,14 @@
 #ifndef KRUSADERVIEW_H
 #define KRUSADERVIEW_H
 
-#include <QtCore/QEvent>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QSplitter>
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QGridLayout>
+// QtCore
+#include <QEvent>
+// QtWidgets
+#include <QLayout>
+#include <QSplitter>
+#include <QWidget>
+#include <QPushButton>
+#include <QGridLayout>
 
 #include "krglobal.h"
 

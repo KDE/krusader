@@ -20,7 +20,8 @@
 
 #include "krmainwindow.h"
 
-#include <QtWidgets/QAction>
+// QtWidgets
+#include <QAction>
 
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KToggleAction>

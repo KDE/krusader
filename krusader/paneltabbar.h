@@ -21,10 +21,13 @@
 #ifndef PANELTABBAR_H
 #define PANELTABBAR_H
 
-#include <QtCore/QUrl>
-#include <QtGui/QDragMoveEvent>
-#include <QtGui/QDragEnterEvent>
-#include <QtWidgets/QTabBar>
+// QtCore
+#include <QUrl>
+// QtGui
+#include <QDragMoveEvent>
+#include <QDragEnterEvent>
+// QtWidgets
+#include <QTabBar>
 
 class QMouseEvent;
 class QAction;

@@ -29,10 +29,12 @@
 
 #include <assert.h>
 
-#include <QtGui/QImage>
-#include <QtWidgets/QStackedWidget>
-#include <QtWidgets/QToolButton>
-#include <QtWidgets/QGridLayout>
+// QtGui
+#include <QImage>
+// QtWidgets
+#include <QStackedWidget>
+#include <QToolButton>
+#include <QGridLayout>
 
 #include <KConfigCore/KConfig>
 #include <KI18n/KLocalizedString>

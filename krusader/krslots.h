@@ -33,9 +33,10 @@
 #ifndef KRSLOTS_H
 #define KRSLOTS_H
 
-#include <QtCore/QFile>
-#include <QtCore/QObject>
-#include <QtCore/QUrl>
+// QtCore
+#include <QFile>
+#include <QObject>
+#include <QUrl>
 
 #include <KCoreAddons/KProcess>
 

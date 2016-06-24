@@ -21,9 +21,12 @@
 #include "krglobal.h"
 #include "defaults.h"
 
-#include <QtCore/QString>
-#include <QtGui/QPixmap>
-#include <QtWidgets/QStyle>
+// QtCore
+#include <QString>
+// QtGui
+#include <QPixmap>
+// QtWidgets
+#include <QStyle>
 
 #include <KConfigCore/KSharedConfig>
 #include <KIconThemes/KIconLoader>

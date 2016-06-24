@@ -28,15 +28,21 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <QtCore/QAbstractEventDispatcher>
-#include <QtCore/QCommandLineOption>
-#include <QtCore/QCommandLineParser>
-#include <QtCore/QEventLoop>
-#include <QtCore/QStandardPaths>
-#include <QtGui/QPixmap>
-#include <QtDBus/QtDBus>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QSplashScreen>
+// QtCore
+#include <QAbstractEventDispatcher>
+#include <QCommandLineOption>
+#include <QCommandLineParser>
+#include <QEventLoop>
+#include <QStandardPaths>
+#include <QDir>
+// QtGui
+#include <QPixmap>
+// QtDBus
+#include <QDBusInterface>
+#include <QDBusConnectionInterface>
+// QtWidgets
+#include <QApplication>
+#include <QSplashScreen>
 
 #include <KCoreAddons/KAboutData>
 #include <KConfigCore/KSharedConfig>

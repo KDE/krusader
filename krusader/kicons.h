@@ -20,7 +20,8 @@
 #ifndef KICONS_H
 #define KICONS_H
 
-#include <QtGui/QPixmap>
+// QtGui
+#include <QPixmap>
 
 // used only for calls within the kfilelist framework, handles icon sizes
 QPixmap FL_LOADICON(QString name);

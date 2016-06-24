@@ -30,15 +30,18 @@
 
 #include "krslots.h"
 
-#include <QtCore/QDir>
-#include <QtCore/QPoint>
-#include <QtCore/QStringList>
-#include <QtCore/QList>
-#include <QtCore/QEvent>
-#include <QtCore/QTemporaryFile>
-#include <QtGui/QPixmapCache>
-#include <QtGui/QKeyEvent>
-#include <QtWidgets/QApplication>
+// QtCore
+#include <QDir>
+#include <QPoint>
+#include <QStringList>
+#include <QList>
+#include <QEvent>
+#include <QTemporaryFile>
+// QtGui
+#include <QPixmapCache>
+#include <QKeyEvent>
+// QtWidgets
+#include <QApplication>
 
 #include <KConfigCore/KSharedConfig>
 #include <KCoreAddons/KShell>

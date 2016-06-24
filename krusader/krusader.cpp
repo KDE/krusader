@@ -30,16 +30,20 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include "krusader.h"
 
-#include <QtCore/QDir>
-#include <QtCore/QDateTime>
-#include <QtCore/QStringList>
-#include <QtCore/QStandardPaths>
-#include <QtGui/QMoveEvent>
-#include <QtGui/QResizeEvent>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QMenuBar>
-#include <QtWidgets/QDesktopWidget>
-#include <QtDBus/QtDBus>
+// QtCore
+#include <QDir>
+#include <QDateTime>
+#include <QStringList>
+#include <QStandardPaths>
+// QtGui
+#include <QMoveEvent>
+#include <QResizeEvent>
+// QtWidgets
+#include <QApplication>
+#include <QMenuBar>
+#include <QDesktopWidget>
+// QtDBus
+#include <QDBusInterface>
 
 #include <KCoreAddons/KRandom>
 #include <KConfigCore/KSharedConfig>

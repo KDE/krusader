@@ -32,7 +32,8 @@
 #ifndef DEFAULTS_H
 #define DEFAULTS_H
 
-#include <QtGui/QFontDatabase>
+// QtGui
+#include <QFontDatabase>
 
 ///////////////////////   [Startup]
 // UI Save Settings

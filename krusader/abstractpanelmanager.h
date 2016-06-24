@@ -19,7 +19,8 @@
 #ifndef __ABSTRACTPANELMANAGER_H__
 #define __ABSTRACTPANELMANAGER_H__
 
-#include <QtCore/QUrl>
+// QtCore
+#include <QUrl>
 
 class KrPanel;
 

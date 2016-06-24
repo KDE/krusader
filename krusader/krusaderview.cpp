@@ -30,14 +30,17 @@
 
 #include "krusaderview.h"
 
-#include <QtCore/QList>
-#include <QtCore/QEvent>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QClipboard>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QMenuBar>
-#include <QtWidgets/QStatusBar>
+// QtCore
+#include <QList>
+#include <QEvent>
+// QtGui
+#include <QKeyEvent>
+#include <QClipboard>
+// QtWidgets
+#include <QApplication>
+#include <QGridLayout>
+#include <QMenuBar>
+#include <QStatusBar>
 
 #include <KI18n/KLocalizedString>
 #include <KXmlGui/KToolBar>

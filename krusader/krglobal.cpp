@@ -34,7 +34,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krusaderview.h"
 #include "panelmanager.h"
 
-#include <QtCore/QtGlobal>
+// QtCore
+#include <QtGlobal>
 
 #include <KXmlGui/KActionCollection>
 

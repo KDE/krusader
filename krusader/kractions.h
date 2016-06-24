@@ -32,8 +32,10 @@
 #ifndef KRACTIONS_H
 #define KRACTIONS_H
 
-#include <QtCore/QObject>
-#include <QtWidgets/QAction>
+// QtCore
+#include <QObject>
+// QtWidgets
+#include <QAction>
 
 #include <KWidgetsAddons/KToggleAction>
 

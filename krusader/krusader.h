@@ -38,14 +38,17 @@
 
 #include "filemanagerwindow.h"
 
-#include <QtCore/QCommandLineParser>
-#include <QtCore/QStringList>
-#include <QtCore/QTimer>
-#include <QtGui/QShowEvent>
-#include <QtGui/QResizeEvent>
-#include <QtGui/QHideEvent>
-#include <QtGui/QMoveEvent>
-#include <QtWidgets/QAction>
+// QtCore
+#include <QCommandLineParser>
+#include <QStringList>
+#include <QTimer>
+// QtGui
+#include <QShowEvent>
+#include <QResizeEvent>
+#include <QHideEvent>
+#include <QMoveEvent>
+// QtWidgets
+#include <QAction>
 
 #include <KParts/MainWindow>
 #include <KConfigWidgets/KStandardAction>

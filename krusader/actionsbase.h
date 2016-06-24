@@ -19,10 +19,13 @@
 #ifndef __ACTIONSBASE_H__
 #define __ACTIONSBASE_H__
 
-#include <QtCore/QObject>
-#include <QtCore/QHash>
-#include <QtGui/QKeySequence>
-#include <QtWidgets/QAction>
+// QtCore
+#include <QObject>
+#include <QHash>
+// QtGui
+#include <QKeySequence>
+// QtWidgets
+#include <QAction>
 
 #include <KConfigWidgets/KStandardAction>
 

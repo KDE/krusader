@@ -14,6 +14,7 @@ add_definitions(-DTRANSLATION_DOMAIN="krusader")
 
 # TODO porting : new variables needed?
 target_link_libraries(kio_krarc
+    Qt5::Gui
     KF5::Archive
     KF5::ConfigCore
     KF5::CoreAddons

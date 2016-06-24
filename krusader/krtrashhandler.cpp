@@ -30,9 +30,10 @@
 
 #include "krtrashhandler.h"
 
-#include <QtCore/QByteArray>
-#include <QtCore/QDataStream>
-#include <QtCore/QStandardPaths>
+// QtCore
+#include <QByteArray>
+#include <QDataStream>
+#include <QStandardPaths>
 
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>

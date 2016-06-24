@@ -24,12 +24,15 @@
 #include "tabactions.h"
 #include "Panel/listpanel.h"
 
-#include <QtCore/QEvent>
-#include <QtGui/QFontMetrics>
-#include <QtGui/QResizeEvent>
-#include <QtGui/QMouseEvent>
-#include <QtWidgets/QAction>
-#include <QtWidgets/QMenu>
+// QtCore
+#include <QEvent>
+// QtGui
+#include <QFontMetrics>
+#include <QResizeEvent>
+#include <QMouseEvent>
+// QtWidgets
+#include <QAction>
+#include <QMenu>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

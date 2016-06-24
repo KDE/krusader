@@ -24,7 +24,8 @@
 #include "panelmanager.h"
 #include "Panel/listpanel.h"
 
-#include <QtWidgets/QAction>
+// QtWidgets
+#include <QAction>
 
 #include <KI18n/KLocalizedString>
 

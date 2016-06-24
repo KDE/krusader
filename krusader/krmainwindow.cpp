@@ -18,8 +18,10 @@
 
 #include "krmainwindow.h"
 
-#include <QtCore/QtGlobal>
-#include <QtWidgets/QAction>
+// QtCore
+#include <QtGlobal>
+// QtWidgets
+#include <QAction>
 
 #include <KXmlGui/KActionCollection>
 

@@ -19,8 +19,9 @@
 
 #include "krservices.h"
 
-#include <QtCore/QDir>
-#include <QtCore/QTextStream>
+// QtCore
+#include <QDir>
+#include <QTextStream>
 
 #include <KConfigCore/KSharedConfig>
 #include <KIOCore/KProtocolManager>

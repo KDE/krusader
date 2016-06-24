@@ -31,8 +31,9 @@
 #ifndef KRTRASHHANDLER_H
 #define KRTRASHHANDLER_H
 
-#include <QtCore/QString>
-#include <QtCore/QUrl>
+// QtCore
+#include <QString>
+#include <QUrl>
 
 #include <KIO/Job>
 

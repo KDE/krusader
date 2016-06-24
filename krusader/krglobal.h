@@ -32,8 +32,10 @@
 #ifndef KRGLOBAL_H
 #define KRGLOBAL_H
 
-#include <QtCore/QDebug>
-#include <QtGui/QKeySequence>
+// QtCore
+#include <QDebug>
+// QtGui
+#include <QKeySequence>
 
 #include <KConfigCore/KConfigGroup>
 
