@@ -31,8 +31,9 @@
 #ifndef SYNCHRONIZERDIRLIST_H
 #define SYNCHRONIZERDIRLIST_H
 
-#include <QtCore/QObject>
-#include <QtCore/QHash>
+// QtCore
+#include <QObject>
+#include <QHash>
 
 #include <KIO/Job>
 

@@ -31,7 +31,8 @@
 #ifndef SYNCHRONIZERFILEITEM_H
 #define SYNCHRONIZERFILEITEM_H
 
-#include <QtCore/QString>
+// QtCore
+#include <QString>
 
 #include <KIO/Global>
 

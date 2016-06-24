@@ -31,7 +31,8 @@
 #ifndef SYNCHRONIZERTASK_H
 #define SYNCHRONIZERTASK_H
 
-#include <QtCore/QObject>
+// QtCore
+#include <QObject>
 
 #include <KIO/Job>
 

@@ -37,21 +37,23 @@
 
 #include <utime.h>
 
-#include <QtCore/QRegExp>
-#include <QtCore/QDir>
-#include <QtCore/QEventLoop>
-#include <QtCore/QTimer>
-#include <QtCore/QTime>
-#include <QtCore/QDateTime>
-#include <QtCore/QUrl>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QProgressBar>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QLabel>
+// QtCore
+#include <QRegExp>
+#include <QDir>
+#include <QEventLoop>
+#include <QTimer>
+#include <QTime>
+#include <QDateTime>
+#include <QUrl>
+// QtWidgets
+#include <QApplication>
+#include <QDialogButtonBox>
+#include <QFrame>
+#include <QVBoxLayout>
+#include <QLayout>
+#include <QProgressBar>
+#include <QPushButton>
+#include <QLabel>
 
 #include <KI18n/KLocalizedString>
 #include <KIO/DeleteJob>

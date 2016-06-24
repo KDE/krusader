@@ -31,11 +31,14 @@
 #ifndef SYNCHRONIZER_H
 #define SYNCHRONIZER_H
 
-#include <QtCore/QObject>
-#include <QtCore/QMap>
-#include <QtCore/QList>
-#include <QtGui/QColor>
-#include <QtWidgets/QDialog>
+// QtCore
+#include <QObject>
+#include <QMap>
+#include <QList>
+// QtGui
+#include <QColor>
+// QtWidgets
+#include <QDialog>
 
 #include <KIO/Job>
 

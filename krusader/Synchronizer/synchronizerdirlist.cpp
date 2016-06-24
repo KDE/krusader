@@ -38,8 +38,10 @@
 #endif
 
 #include <qplatformdefs.h>
-#include <QtCore/QDir>
-#include <QtWidgets/QApplication>
+// QtCore
+#include <QDir>
+// QtWidgets
+#include <QApplication>
 
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KFileItem>

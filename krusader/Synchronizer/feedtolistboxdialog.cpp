@@ -37,12 +37,13 @@
 #include "../krusaderview.h"
 #include "../panelmanager.h"
 
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QComboBox>
-#include <QtWidgets/QVBoxLayout>
+// QtWidgets
+#include <QCheckBox>
+#include <QDialogButtonBox>
+#include <QLineEdit>
+#include <QLabel>
+#include <QComboBox>
+#include <QVBoxLayout>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>

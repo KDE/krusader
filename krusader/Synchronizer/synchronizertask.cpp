@@ -30,8 +30,9 @@
 
 #include "synchronizertask.h"
 
-#include <QtCore/QTimer>
-#include <QtCore/QFile>
+// QtCore
+#include <QTimer>
+#include <QFile>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>

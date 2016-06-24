@@ -31,14 +31,17 @@
 #ifndef SYNCHRONIZERGUI_H
 #define SYNCHRONIZERGUI_H
 
-#include <QtCore/QMap>
-#include <QtGui/QResizeEvent>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QPixmap>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QDialog>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QTabWidget>
+// QtCore
+#include <QMap>
+// QtGui
+#include <QResizeEvent>
+#include <QKeyEvent>
+#include <QPixmap>
+// QtWidgets
+#include <QCheckBox>
+#include <QDialog>
+#include <QLabel>
+#include <QTabWidget>
 
 #include <KCompletion/KComboBox>
 

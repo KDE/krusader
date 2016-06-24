@@ -31,7 +31,8 @@
 #ifndef FEEDTOLISTBOXDIALOG_H
 #define FEEDTOLISTBOXDIALOG_H
 
-#include <QtWidgets/QDialog>
+// QtWidgets
+#include <QDialog>
 
 class Synchronizer;
 class QCheckBox;

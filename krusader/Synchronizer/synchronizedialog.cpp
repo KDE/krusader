@@ -33,9 +33,10 @@
 #include "../krglobal.h"
 #include "../defaults.h"
 
-#include <QtWidgets/QLayout>
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QLabel>
+// QtWidgets
+#include <QLayout>
+#include <QVBoxLayout>
+#include <QLabel>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
