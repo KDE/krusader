@@ -527,6 +527,11 @@ void ListPanel::togglePanelPopup()
 {
     if(!popup) {
         popup = new PanelPopup(splt, isLeft(), krApp);
+        // fix vertical grow of splitter (and entire window) if its content
+        // demands more space
+        QSizePolicy sizePolicy = popup->sizePolicy();
+        sizePolicy.setVerticalPolicy(QSizePolicy::Ignored);
+        popup->setSizePolicy(sizePolicy);
         connect(popup, SIGNAL(selection(const QUrl&)), SLOTS, SLOT(refresh(const QUrl&)));
         connect(popup, SIGNAL(hideMe()), this, SLOT(togglePanelPopup()));
     }

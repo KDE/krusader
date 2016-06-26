@@ -28,7 +28,6 @@
 #include "../filemanagerwindow.h"
 #include "../defaults.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
-#include "../KViewer/kimagefilepreview.h"
 #include "../KViewer/panelviewer.h"
 #include "../KViewer/diskusageviewer.h"
 
@@ -351,7 +350,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
     connect(tree, SIGNAL(activated(const QUrl &)), this, SLOT(treeSelection()));
 
     // create the quickview part ------
-    viewer = new KrusaderImageFilePreview(stack);
+    viewer = new KImageFilePreview(stack);
     viewer->setProperty("KrusaderWidgetId", QVariant(Preview));
     stack->addWidget(viewer);
 

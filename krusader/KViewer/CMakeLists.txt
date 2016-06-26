@@ -2,7 +2,6 @@ include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
 
 set(KViewer_SRCS
     krviewer.cpp
-    kimagefilepreview.cpp
     panelviewer.cpp
     diskusageviewer.cpp
     lister.cpp)

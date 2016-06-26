@@ -34,6 +34,7 @@
 
 #include <KIOCore/KFileItem>
 #include <KIO/PreviewJob>
+#include <KIOFileWidgets/KImageFilePreview>
 
 class QButtonGroup;
 class QLabel;
@@ -42,7 +43,6 @@ class QToolButton;
 class KrSqueezedTextLabel;
 class KLineEdit;
 class KComboBox;
-class KrusaderImageFilePreview;
 class PanelViewer;
 class DiskUsageViewer;
 class KrFileTreeView;
@@ -90,7 +90,7 @@ protected:
     bool _hidden;
     FileManagerWindow *_mainWindow;
     QStackedWidget *stack;
-    KrusaderImageFilePreview *viewer;
+    KImageFilePreview *viewer;
     KrSqueezedTextLabel *dataLine;
     QPointer<KIO::PreviewJob> pjob;
     KrFileTreeView *tree;
