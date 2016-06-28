@@ -171,6 +171,7 @@ protected:
     void updateButtons();
 
     static int defaultPanelType();
+    static bool isNavigatorEditModeSet(); // return the navigator edit mode setting
 
 protected slots:
     void updatePopupPanel(KrViewItem *item);
@@ -189,6 +190,7 @@ protected slots:
     void newTab(const QUrl &url, bool nextToThis = false) {
         _manager->newTab(url, nextToThis ? this : 0);
     }
+    void resetNavigatorMode(); // set navigator mode after focus was lost
 
 signals:
     void signalStatus(QString msg);         // emmited when we need to update the status bar

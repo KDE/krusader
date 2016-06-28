@@ -93,16 +93,26 @@ void KgPanel::setupMiscTab()
     miscLayout->setContentsMargins(11, 11, 11, 11);
 
 // ---------------------------------------------------------------------------------------
-    KONFIGURATOR_CHECKBOX_PARAM general_settings[] = { // cfg_class, cfg_name, default, text, restart, tooltip
-        {"Look&Feel", "FlatOriginBar", _FlatOriginBar, i18n("Flat Origin Bar"),   true,  0 },
-    };
-    miscLayout->addWidget(createCheckBoxGroup(2, 0, general_settings, 1 /*count*/, tab, PAGE_MISC), 0, Qt::AlignTop);
+// ------------------------------- Navigator bar -------------------------------------
+// ---------------------------------------------------------------------------------------
+        QGroupBox *miscGrp = createFrame(i18n("Navigator bar"), tab);
+        QGridLayout *miscGrid = createGridLayout(miscGrp);
+
+        KONFIGURATOR_CHECKBOX_PARAM navigatorbar_settings[] = {
+            // cfg_class, cfg_name, default, text, restart, tooltip
+            {"Look&Feel", "Navigator Edit Mode", false, i18n("Edit Mode by default"),       true, i18n("Show editable path in Navigator bar by default") },
+            {"Look&Feel", "Navigator Full Path", false, i18n("Show full path by default"),  true, i18n("Always show full path in Navigator bar by default.") },
+        };
+        cbs = createCheckBoxGroup(2, 0, navigatorbar_settings, 2 /*count*/, miscGrp, PAGE_MISC);
+        miscGrid->addWidget(cbs, 0, 0);
+
+        miscLayout->addWidget(miscGrp);
 
 // ---------------------------------------------------------------------------------------
 // ------------------------------- Operation ---------------------------------------------
 // ---------------------------------------------------------------------------------------
-    QGroupBox *miscGrp = createFrame(i18n("Operation"), tab);
-    QGridLayout *miscGrid = createGridLayout(miscGrp);
+    miscGrp = createFrame(i18n("Operation"), tab);
+    miscGrid = createGridLayout(miscGrp);
 
     KONFIGURATOR_CHECKBOX_PARAM operation_settings[] = { // cfg_class, cfg_name, default, text, restart, tooltip
         {"Look&Feel", "Mark Dirs",            _MarkDirs,          i18n("Autoselect folders"),   false,  i18n("When matching the select criteria, not only files will be selected, but also folders.") },
@@ -480,7 +490,6 @@ void KgPanel::setupButtonsTab()
     QGridLayout * panelToolbarGrid = createGridLayout(panelToolbarGrp);
     KONFIGURATOR_CHECKBOX_PARAM panelToolbarButtonsParams[] = {
         //   cfg_class    cfg_name                default             text                       restart tooltip
-        {"Look&Feel",  "Open Button Visible",  _Open,      i18n("Open button"),     true ,  i18n("Opens the folder browser.") },
         {"Look&Feel",  "Equal Button Visible", _cdOther,   i18n("Equal button (=)"), true ,  i18n("Changes the panel folder to the other panel folder.") },
         {"Look&Feel",  "Up Button Visible",    _cdUp,      i18n("Up button (..)"),  true ,  i18n("Changes the panel folder to the parent folder.") },
         {"Look&Feel",  "Home Button Visible",  _cdHome,    i18n("Home button (~)"), true ,  i18n("Changes the panel folder to the home folder.") },
@@ -672,7 +681,6 @@ void KgPanel::slotEnablePanelToolbar()
     panelToolbarButtonsCheckboxes->find("Home Button Visible")->setEnabled(enableTB);
     panelToolbarButtonsCheckboxes->find("Up Button Visible")->setEnabled(enableTB);
     panelToolbarButtonsCheckboxes->find("Equal Button Visible")->setEnabled(enableTB);
-    panelToolbarButtonsCheckboxes->find("Open Button Visible")->setEnabled(enableTB);
     panelToolbarButtonsCheckboxes->find("SyncBrowse Button Visible")->setEnabled(enableTB);
 }
 

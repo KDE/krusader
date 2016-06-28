@@ -197,9 +197,14 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     urlNavigator->setWhatsThis(i18n("Name of folder where you are. You can also "
                                     "enter name of desired location to move there. "
                                     "Use of Net protocols like ftp or fish is possible."));
+    // handle certain key events here in event filter
     urlNavigator->editor()->installEventFilter(this);
+    urlNavigator->setUrlEditable(isNavigatorEditModeSet());
+    urlNavigator->setShowFullPath(group.readEntry("Navigator Full Path", false));
     connect(urlNavigator, SIGNAL(returnPressed()), this, SLOT(slotFocusOnMe()));
     connect(urlNavigator, SIGNAL(urlChanged(QUrl)), func, SLOT(navigatorUrlChanged(QUrl)));
+    connect(urlNavigator->editor()->lineEdit(), SIGNAL(editingFinished()), this, SLOT(resetNavigatorMode()));
+    connect(urlNavigator, SIGNAL(tabRequested(QUrl)), this, SLOT(newTab(QUrl)));
     ADD_WIDGET(urlNavigator);
 
     // toolbar
@@ -385,6 +390,12 @@ int ListPanel::defaultPanelType()
     return group.readEntry("Default Panel Type", KrViewFactory::defaultViewId());
 }
 
+bool ListPanel::isNavigatorEditModeSet()
+{
+    KConfigGroup group(krConfig, "Look&Feel");
+    return group.readEntry("Navigator Edit Mode", false);
+}
+
 void ListPanel::createView()
 {
     view = KrViewFactory::createView(panelType, splt, krConfig);
@@ -487,10 +498,15 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
             }
         }
     }
+    // handle URL navigator key events
     else if(e->type() == QEvent::KeyPress && watched == urlNavigator->editor()) {
         QKeyEvent *ke = (QKeyEvent *)e;
-        if (((ke->key() ==  Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) ||
-                ((ke->key() ==  Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier))) {
+        if ((ke->key() == Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) {
+            slotFocusOnMe();
+            return true;
+        } else if ((ke->key() == Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier)) {
+            // reset navigator
+            urlNavigator->editor()->setUrl(urlNavigator->locationUrl());
             slotFocusOnMe();
             return true;
         }
@@ -641,10 +657,14 @@ void ListPanel::refreshColors()
 
 void ListPanel::slotFocusOnMe(bool focus)
 {
+    if (focus && _manager->currentPanel() != this) {
+        // ignore focus request if this panel is not shown
+        return;
+    }
+
     krApp->setUpdatesEnabled(false);
 
     if(focus) {
-        assert(_manager->currentPanel() == this);
         emit activate();
         _actions->activePanelChanged();
         func->refreshActions();
@@ -1313,5 +1333,18 @@ void ListPanel::newTab(KrViewItem *it)
         url = url.adjusted(QUrl::StripTrailingSlash);
         url.setPath(url.path() + '/' + (it->name()));
         newTab(url, true);
+    }
+}
+
+void ListPanel::resetNavigatorMode()
+{
+    if (isNavigatorEditModeSet())
+        return;
+
+    // set to "navigate" mode if url wasn't changed
+    if (urlNavigator->uncommittedUrl().matches(virtualPath(), QUrl::StripTrailingSlash)) {
+        // NOTE: this also sets focus to the navigator
+        urlNavigator->setUrlEditable(false);
+        slotFocusOnMe();
     }
 }

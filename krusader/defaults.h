@@ -90,8 +90,6 @@
 #define _UnselectBeforeOperation true
 // Filter dialog remembers settings
 #define _FilterDialogRemembersSettings false
-// Flat Origin Bar
-#define _FlatOriginBar true
 
 // Panel Toolbar Checkboxes
 // Panel Toolbar Visible checkbox turned off
@@ -104,8 +102,6 @@
 #define _cdUp               true
 // cd other panel is turned on
 #define _cdOther            false
-// Open directory is turned on
-#define _Open               false
 // syncBrowseButton is turned on
 #define _syncBrowseButton   false
 // Use the default colors of KDE

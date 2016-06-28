@@ -120,7 +120,11 @@ void ListPanelFunc::navigatorUrlChanged(const QUrl &url)
 {
     if (_refreshing)
         return;
-    panel->urlNavigator->setUrlEditable(false);
+
+    if (!ListPanel::isNavigatorEditModeSet()) {
+        panel->urlNavigator->setUrlEditable(false);
+    }
+
     openUrl(url, QString(), true);
 }
 
