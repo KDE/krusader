@@ -72,27 +72,9 @@ You should give it a try.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><option>--help</option></term>
-  <listitem>
-<para>show the general options</para>
-  </listitem>
-  </varlistentry>
-  <varlistentry>
-  <term><option>--help-all</option></term>
-  <listitem>
-<para>show all options</para>
-  </listitem>
-  </varlistentry>
-  <varlistentry>
   <term><option>--author</option></term>
   <listitem>
 <para>show the authors</para>
-  </listitem>
-  </varlistentry>
-  <varlistentry>
-  <term><option>-v, --version</option></term>
-  <listitem>
-<para>show the version</para>
   </listitem>
   </varlistentry>
   <varlistentry>
@@ -109,14 +91,6 @@ panel</para>
   </listitem>
   </varlistentry>
 </variablelist>
-</refsect1>
-
-<refsect1><title>Qt-options</title>
-<para>"$ krusader --help-qt"  shows all Qt-options</para>
-</refsect1>
-
-<refsect1><title>KDE-options</title>
-<para>"$ krusader --help-kde" shows all KDE-options</para>
 </refsect1>
 
 <refsect1><title>Examples</title>
@@ -223,15 +197,17 @@ Supports: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip, and 7-zi
 </refsect1>
 
 <refsect1><title>FAQ</title>
-<para>The latest version of the KRUSADER FAQ can be found <ulink url="http://docs.kde.org/development/en/extragear-utils/krusader/faq.html">here</ulink>.</para>
+<para>The latest version of the KRUSADER FAQ can be found on <ulink url="http://docs.kde.org/development/en/extragear-utils/krusader/faq.html">KDE documentation site</ulink>.</para>
 </refsect1>
 
 <refsect1><title>See Also</title>
-<para>The Krusader Handbook, at the krusader help menu.</para>
+<simplelist>
+<member>The Krusader Handbook, at the krusader help menu.</member>
 
-<para>The Krusader homepage on the World Wide Web:</para>
+<member>kf5options(7)</member>
 
-<para><ulink url='http://krusader.org'>http://krusader.org</ulink></para>
+<member>qt5options(7)</member>
+</simplelist>
 </refsect1>
 
 <refsect1 id='authors'><title>Authors</title>

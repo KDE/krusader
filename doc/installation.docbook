@@ -786,45 +786,10 @@ if you only run a Krusader binary you do not need these packages.</para>
     <screen><prompt>$</prompt> <userinput><command>krusader</command><replaceable>--profile &lt;panel-profile&gt;</replaceable></userinput></screen>
     <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--profile ftp-managment</replaceable></userinput></screen>
     </para>
-    <para>The standard &Qt; and &kde;
-    command-line options are available, and can be listed by
-    entering 
-    <userinput>
-      <command>krusader</command>
-      <option>--help</option>
-    </userinput>.</para>
+    <para>The standard &Qt; and &kde; command-line options are available.
+    </para>
     <variablelist>
       <title>Other command-line options:</title>
-      <varlistentry>
-        <term>
-          <option>--help-qt</option>
-        </term>
-        <listitem>
-          <para>
-            <action>List Qt-specific options</action>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>--help-kde</option>
-        </term>
-        <listitem>
-          <para>
-            <action>List KDE-specific options</action>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>--help-all</option>
-        </term>
-        <listitem>
-          <para>
-            <action>List all options</action>
-          </para>
-        </listitem>
-      </varlistentry>
       <varlistentry>
         <term>
           <option>--author</option>
@@ -832,16 +797,6 @@ if you only run a Krusader binary you do not need these packages.</para>
         <listitem>
           <para>
             <action>Show the authors names</action>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>-v,--version</option>
-        </term>
-        <listitem>
-          <para>
-            <action>Show the version number</action>
           </para>
         </listitem>
       </varlistentry>
