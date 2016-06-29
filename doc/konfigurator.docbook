@@ -193,8 +193,19 @@
 
     <sect2 id="konfig-panel-general">
       <title>General</title>
-      <para><guilabel>Flat Origin Bar</guilabel>: If checked,
-      &krusader; displays current folder address on a flat bar (without edit line frame).</para>
+      <itemizedlist>
+        <title>
+          <guilabel>Navigator bar</guilabel>
+        </title>
+        <listitem>
+          <para>
+          <guilabel>Edit Mode by default</guilabel>: If checked, show editable path in Navigator bar by default.</para>
+        </listitem>
+	<listitem>
+          <para>
+          <guilabel>Show full path by default</guilabel>: If checked, always show full path in Navigator bar by default.</para>
+        </listitem>
+      </itemizedlist>
       <itemizedlist>
         <title>
           <guilabel>Operation</guilabel>
@@ -525,10 +536,6 @@
           <guilabel>Clear Location Toolbar</guilabel> button: Clears
           the <link linkend="list_panel">Location Toolbar</link></para>
 	</listitem> -->
-        <listitem>
-          <para>
-          <guilabel>Open button</guilabel></para>
-        </listitem>
         <listitem>
           <para>
           <guilabel>Equal button (=)</guilabel></para>
