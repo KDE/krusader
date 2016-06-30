@@ -499,16 +499,25 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
         }
     }
     // handle URL navigator key events
-    else if(e->type() == QEvent::KeyPress && watched == urlNavigator->editor()) {
-        QKeyEvent *ke = (QKeyEvent *)e;
-        if ((ke->key() == Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) {
-            slotFocusOnMe();
-            return true;
-        } else if ((ke->key() == Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier)) {
-            // reset navigator
-            urlNavigator->editor()->setUrl(urlNavigator->locationUrl());
-            slotFocusOnMe();
-            return true;
+    else if(watched == urlNavigator->editor()) {
+        // override default shortcut for panel focus
+        if(e->type() == QEvent::ShortcutOverride) {
+            QKeyEvent *ke = static_cast<QKeyEvent *>(e);
+            if ((ke->key() == Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier)) {
+                e->accept(); // we will get the key press event now
+                return true;
+            }
+        } else if(e->type() == QEvent::KeyPress) {
+            QKeyEvent *ke = static_cast<QKeyEvent *>(e);
+            if ((ke->key() == Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) {
+                slotFocusOnMe();
+                return true;
+            } else if ((ke->key() == Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier)) {
+                // reset navigator
+                urlNavigator->editor()->setUrl(urlNavigator->locationUrl());
+                slotFocusOnMe();
+                return true;
+            }
         }
     }
     return false;

@@ -62,7 +62,7 @@ ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
 
     // other stuff
     action(i18n("Show View Options Menu"), 0, 0, SLOT(showOptionsMenu()), "show_view_options_menu");
-    action(i18n("Set Focus to the Panel"), 0, Qt::CTRL + Qt::Key_Escape, SLOT(focusPanel()), "focus_panel");
+    action(i18n("Set Focus to the Panel"), 0, Qt::Key_Escape, SLOT(focusPanel()), "focus_panel");
     action(i18n("Apply settings to other tabs"), 0, 0, SLOT(applySettingsToOthers()), "view_apply_settings_to_others");
     action(i18n("QuickFilter"), 0, Qt::CTRL + Qt::Key_I, SLOT(quickFilter()), "quick_filter");
     actTogglePreviews = toggleAction(i18n("Show Previews"), 0, 0, SLOT(togglePreviews(bool)), "toggle previews");
