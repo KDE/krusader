@@ -569,7 +569,7 @@ to get a list of commands.</para>
 </menuchoice> (Power user mode)</term>
 <listitem><para>This opens a tool view that allows you to run Javascript code
 interactively. For more information, see
-<ulink url="help:/kate/advanced-editing-tools-scripting.html">Extending &kate; with Scripts</ulink>
+<ulink url="help:/katepart/advanced-editing-tools-scripting.html">Extending &kate; with Scripts</ulink>
 </para></listitem>
 </varlistentry>
 
@@ -1371,7 +1371,7 @@ linkend="kredit_config">settings</link> may be adjusted.
 <para>This group contains all pages related to the editor component of
 &kappname;. Most of the settings here are defaults, they can be overridden by
 <link linkend="katepart-pref-open-save-modes-filetypes">defining a filetype</link>,
-by <ulink url="help:/kate/config-variables.html">Document Variables</ulink> or
+by <ulink url="help:/katepart/config-variables.html">Document Variables</ulink> or
 by changing them per document during an editing session.</para>
 <sect3 id="katepart-appearance"> <!-- updated to 4.7 + synced with kwrite -->
 <title>Appearance</title>
@@ -1843,7 +1843,7 @@ indentation modes for text formats like C/C++ code or &XML;.</para>
 <term><guilabel>Tabulators</guilabel></term>
 <listitem>
 <para>When this is enabled the editor will insert tabulator characters when you
-press the &Tab; key or use <ulink url="help:/kwrite/kate-part-autoindent.html">automatic
+press the &Tab; key or use <ulink url="help:/katepart/kate-part-autoindent.html">automatic
 indentation</ulink>.</para>
 </listitem>
 </varlistentry>
@@ -1852,7 +1852,7 @@ indentation</ulink>.</para>
 <listitem>
 <para>When this is enabled the editor will insert a calculated number of spaces
 according to the position in the text and the <option>tab-width</option> setting
-when you press the &Tab; key or use <ulink url="help:/kwrite/kate-part-autoindent.html">automatic
+when you press the &Tab; key or use <ulink url="help:/katepart/kate-part-autoindent.html">automatic
 indentation</ulink>.</para>
 </listitem>
 </varlistentry>
@@ -2165,7 +2165,7 @@ of text while loading/saving the file.</para>
 <para>The editor will search the given number of folder levels upwards
 for &kappname; config file and load the settings line from it.
 Further information about these hidden folder config files you find in the
-<ulink url="help:/kate/config-variables.html">document variables section</ulink>.
+<ulink url="help:/katepart/config-variables.html">document variables section</ulink>.
 </para>
 </listitem>
 </varlistentry>
@@ -2291,7 +2291,7 @@ variable and then set the value of the variable on the right.  Some variables
 provide a drop-down box to select possible values from while others require you
 to enter a valid value manually.</para>
 <para>For complete information on these variables, see
-<ulink url="help:/kate/config-variables.html">Configuring with Document
+<ulink url="help:/katepart/config-variables.html">Configuring with Document
 Variables</ulink>.</para>
 </listitem>
 </varlistentry>
