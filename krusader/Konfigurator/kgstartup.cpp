@@ -108,9 +108,11 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
                  "to manually set the main window's size and position at startup.</p>") },
         {"Startup", "Update Default Panel Settings", _RememberPos, i18n("Update default panel settings"), true,
             i18n("When settings of a panel are changed, save them as the default for new panels of the same type.") },
+        {"Startup", "Start To Tray", _StartToTray, i18n("Start to tray"), false,
+            i18n("Krusader starts to tray (if minimize to tray is set), without showing the main window") },
     };
 
-    uiCbGroup = createCheckBoxGroup(2, 0, uiCheckBoxes, 9, uiGrp);
+    uiCbGroup = createCheckBoxGroup(2, 0, uiCheckBoxes, 10, uiGrp);
     connect(uiCbGroup->find("UI Save Settings"), SIGNAL(stateChanged(int)), this, SLOT(slotDisable()));
 
     uiGrid->addWidget(uiCbGroup, 1, 0);

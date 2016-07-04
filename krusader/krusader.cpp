@@ -218,6 +218,20 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     status->setWhatsThis(i18n("Statusbar will show basic information "
                               "about file below mouse pointer."));
 
+    // create tray icon (even if not shown)
+    sysTray = new QSystemTrayIcon(this);
+    sysTray->setIcon(krLoader->loadIcon(privIcon(), KIconLoader::Panel, 22));
+    QMenu *trayMenu = new QMenu(this);
+    trayMenu->addSection(QGuiApplication::applicationDisplayName()); // show "title"
+    QAction *restoreAction = new QAction(i18n("Restore"), this);
+    connect(restoreAction, SIGNAL(triggered()), SLOT(showFromTray()));
+    trayMenu->addAction(restoreAction);
+    trayMenu->addSeparator();
+    trayMenu->addAction(actionCollection()->action(KStandardAction::name(KStandardAction::Quit)));
+    sysTray->setContextMenu(trayMenu);
+    // tray is only visible if main window is hidden, so action is always "show"
+    connect(sysTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), SLOT(showFromTray()));
+
     setCentralWidget(MAIN_VIEW);
 
     // manage our keyboard short-cuts
@@ -249,7 +263,12 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
         }
     }
 
-    show();
+    // view initialized; show window or tray
+    if (gs.readEntry("Start To Tray", _StartToTray)) {
+        sysTray->show();
+    } else {
+        show();
+    }
 
     KrTrashHandler::startWatcher();
     isStarting = false;
@@ -331,6 +350,31 @@ void Krusader::statusBarUpdate(QString& mess)
         statusBar() ->showMessage(mess, 5000);
 }
 
+void Krusader::showFromTray() {
+    setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+    show();
+    sysTray->hide();
+}
+
+void Krusader::changeEvent(QEvent *event) {
+    QMainWindow::changeEvent(event);
+    if (isExiting)
+        return;
+
+    // toggle tray when minimizing (if enabled)
+    if(event->type() == QEvent::WindowStateChange) {
+        if(isMinimized()) {
+            KConfigGroup group(krConfig, "Look&Feel");
+            if (group.readEntry("Minimize To Tray", _MinimizeToTray)) {
+                sysTray->show();
+                hide();
+            }
+        } else if(isVisible()) {
+            sysTray->hide();
+        }
+    }
+}
+
 void Krusader::moveEvent(QMoveEvent *e) {
     oldPos = e->oldPos();
     KParts::MainWindow::moveEvent(e);
@@ -410,6 +454,7 @@ void Krusader::saveSettings() {
         cfg.writeEntry("Show FN Keys", KrActions::actToggleFnkeys->isChecked());
         cfg.writeEntry("Show Cmd Line", KrActions::actToggleCmdline->isChecked());
         cfg.writeEntry("Show Terminal Emulator", KrActions::actToggleTerminal->isChecked());
+        cfg.writeEntry("Start To Tray", isHidden());
     }
 
     // save popular links

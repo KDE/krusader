@@ -230,8 +230,9 @@ void KgGeneral::createGeneralTab()
 
     KONFIGURATOR_CHECKBOX_PARAM settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
         {"Look&Feel", "Warn On Exit",         _WarnOnExit,        i18n("Warn on exit"),           false,  i18n("Display a warning when trying to close the main window.") },    // KDE4: move warn on exit to the other confirmations
+        {"Look&Feel", "Minimize To Tray",     _MinimizeToTray,    i18n("Minimize to tray"),       false,  i18n("The icon will appear in the system tray instead of the taskbar, when Krusader is minimized.") },
     };
-    KonfiguratorCheckBoxGroup *cbs = createCheckBoxGroup(2, 0, settings, 1 /*count*/, generalGrp, PAGE_GENERAL);
+    KonfiguratorCheckBoxGroup *cbs = createCheckBoxGroup(2, 0, settings, 2 /*count*/, generalGrp, PAGE_GENERAL);
     generalGrid->addWidget(cbs, 0, 0);
 
 

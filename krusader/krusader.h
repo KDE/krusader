@@ -40,6 +40,7 @@
 
 // QtCore
 #include <QCommandLineParser>
+#include <QEvent>
 #include <QStringList>
 #include <QTimer>
 // QtGui
@@ -49,6 +50,7 @@
 #include <QMoveEvent>
 // QtWidgets
 #include <QAction>
+#include <QSystemTrayIcon>
 
 #include <KParts/MainWindow>
 #include <KConfigWidgets/KStandardAction>
@@ -135,11 +137,13 @@ protected slots:
     void doOpenUrl();
     void slotGotNewStartup(const KStartupInfoId &id, const KStartupInfoData &data);
     void slotGotRemoveStartup(const KStartupInfoId &id, const KStartupInfoData &data);
+    void showFromTray();
 
 protected:
     bool queryClose() Q_DECL_OVERRIDE;
     void setupActions();
     bool versionControl();  // handle version differences in krusaderrc
+    void changeEvent(QEvent *even) Q_DECL_OVERRIDE;
     void moveEvent(QMoveEvent *) Q_DECL_OVERRIDE;
     void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE;
     bool event(QEvent *) Q_DECL_OVERRIDE;
@@ -184,6 +188,7 @@ private:
     ViewActions *_viewActions;
     ListPanelActions *_listPanelActions;
     TabActions *_tabActions;
+    QSystemTrayIcon *sysTray;
     QPoint       oldPos;
     QSize        oldSize;
     bool         isStarting;
