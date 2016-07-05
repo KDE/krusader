@@ -84,13 +84,11 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
 
 KrInterDetailedView::~KrInterDetailedView()
 {
-    setModel(0);
     delete _properties;
     _properties = 0;
     delete _operator;
     _operator = 0;
 }
-
 
 void KrInterDetailedView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
