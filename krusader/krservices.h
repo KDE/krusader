@@ -55,6 +55,7 @@ protected:
 
 private:
     static QMap<QString, QString>* slaveMap;
+    static QSet<QString> krarcArchiveMimetypes;
 
 };
 

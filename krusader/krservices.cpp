@@ -30,6 +30,11 @@
 #include "defaults.h"
 
 QMap<QString, QString>* KrServices::slaveMap = 0;
+#ifdef KRARC_QUERY_ENABLED
+QSet<QString> KrServices::krarcArchiveMimetypes = QSet<QString>::fromList(KProtocolInfo::archiveMimetypes("krarc"));
+#else
+QSet<QString> KrServices::krarcArchiveMimetypes;
+#endif
 
 bool KrServices::cmdExist(QString cmdName)
 {
@@ -92,7 +97,10 @@ QString KrServices::registeredProtocol(QString mimetype)
         }
     }
     QString protocol = (*slaveMap)[mimetype];
-    if(protocol.isEmpty()) {
+    if (protocol.isEmpty()) {
+        if (krarcArchiveMimetypes.contains(mimetype)) {
+            return "krarc";
+        }
         protocol = KProtocolManager::protocolForArchiveMimetype(mimetype);
     }
     return protocol;

@@ -39,6 +39,17 @@ find_package(Qt5 CONFIG REQUIRED
   Xml
 )
 
+# determine kf5 version is at least 5.23
+find_package(KF5 5.23 QUIET COMPONENTS
+  KIO
+)
+if(KF5_FOUND)
+  set(KRARC_QUERY_ENABLED TRUE)
+  add_definitions( "-DKRARC_QUERY_ENABLED" )
+else(KF5_FOUND)
+  set(KRARC_QUERY_ENABLED FALSE)
+endif(KF5_FOUND)
+
 find_package(KF5 REQUIRED COMPONENTS
   Archive
   Bookmarks
