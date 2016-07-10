@@ -1,4 +1,4 @@
-<!DOCTYPE kpartgui ><kpartgui version="21" name="krusader" >
+<!DOCTYPE kpartgui ><kpartgui version="22" name="krusader" >
  <MenuBar>
   <Menu name="file" >
    <text>&amp;File</text>
@@ -44,6 +44,8 @@
    <Action name="unselect all" />
    <Action name="invert" />
    <Action name="restore_selection" />
+   <Separator/>
+   <Action name="search bar" />
    <Separator/>
    <Action name="compare dirs" />
    <Menu name="compare setup">

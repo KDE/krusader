@@ -36,12 +36,10 @@
 #include "krselectionmode.h"
 #include "krcolorcache.h"
 #include "krpreviews.h"
-#include "quickfilter.h"
 #include "../kicons.h"
 #include "../defaults.h"
 #include "../VFS/krpermhandler.h"
 #include "../VFS/vfilecontainer.h"
-#include "../Dialogs/krspecialwidgets.h"
 #include "../Filter/filterdialog.h"
 
 // QtCore
@@ -68,11 +66,10 @@ KrViewProperties::PropertyType KrViewOperator::_changedProperties = KrViewProper
 
 // ----------------------------- operator
 KrViewOperator::KrViewOperator(KrView *view, QWidget *widget) :
-        _view(view), _widget(widget), _quickSearch(0), _quickFilter(0), _massSelectionUpdate(false)
+        _view(view), _widget(widget), _massSelectionUpdate(false)
 {
     _saveDefaultSettingsTimer.setSingleShot(true);
     connect(&_saveDefaultSettingsTimer, SIGNAL(timeout()), SLOT(saveDefaultSettings()));
-    _widget->installEventFilter(this);
 }
 
 KrViewOperator::~KrViewOperator()
@@ -120,62 +117,16 @@ void KrViewOperator::startDrag()
     emit letsDrag(items, px);
 }
 
-void KrViewOperator::setQuickSearch(KrQuickSearch *quickSearch)
-{
-    _quickSearch = quickSearch;
-
-    _quickSearch->setFocusProxy(_view->widget());
-
-    connect(quickSearch, SIGNAL(textChanged(const QString&)), this, SLOT(quickSearch(const QString&)));
-    connect(quickSearch, SIGNAL(otherMatching(const QString&, int)), this, SLOT(quickSearch(const QString& , int)));
-    connect(quickSearch, SIGNAL(stop(QKeyEvent*)), this, SLOT(stopQuickSearch(QKeyEvent*)));
-    connect(quickSearch, SIGNAL(process(QKeyEvent*)), this, SLOT(handleQuickSearchEvent(QKeyEvent*)));
-}
-
-void KrViewOperator::handleQuickSearchEvent(QKeyEvent * e)
-{
-    switch (e->key()) {
-    case Qt::Key_Insert: {
-        KrViewItem * item = _view->getCurrentKrViewItem();
-        if (item) {
-            item->setSelected(!item->isSelected());
-            quickSearch(_quickSearch->text(), 1);
-        }
-        break;
-    }
-    case Qt::Key_Home: {
-        KrViewItem * item = _view->getLast();
-        if (item) {
-            _view->setCurrentKrViewItem(_view->getLast());
-            quickSearch(_quickSearch->text(), 1);
-        }
-        break;
-    }
-    case Qt::Key_End: {
-        KrViewItem * item = _view->getFirst();
-        if (item) {
-            _view->setCurrentKrViewItem(_view->getFirst());
-            quickSearch(_quickSearch->text(), -1);
-        }
-        break;
-    }
-    }
-}
-
-void KrViewOperator::quickSearch(const QString & str, int direction)
+bool KrViewOperator::searchItem(const QString &text, bool caseSensitive, int direction)
 {
     KrViewItem * item = _view->getCurrentKrViewItem();
     if (!item) {
-        _quickSearch->setMatch(false);
-        return;
+        return false;
     }
-    KConfigGroup grpSvr(_view->_config, "Look&Feel");
-    bool caseSensitive = grpSvr.readEntry("Case Sensitive Quicksearch", _CaseSensitiveQuicksearch);
-    QRegExp rx(str, caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard);
+    QRegExp rx(text, caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard);
     if (!direction) {
         if (rx.indexIn(item->name()) == 0) {
-            _quickSearch->setMatch(true);
-            return ;
+            return true;
         }
         direction = 1;
     }
@@ -185,79 +136,23 @@ void KrViewOperator::quickSearch(const QString & str, int direction)
         if (!item)
             item = (direction > 0) ? _view->getFirst() : _view->getLast();
         if (item == startItem) {
-            _quickSearch->setMatch(false);
-            return ;
+            return false;
         }
         if (rx.indexIn(item->name()) == 0) {
             _view->setCurrentKrViewItem(item);
             _view->makeItemVisible(item);
-            _quickSearch->setMatch(true);
-            return ;
+            return true;
         }
     }
 }
 
-void KrViewOperator::stopQuickSearch(QKeyEvent * e)
+bool KrViewOperator::filterSearch(const QString &text, bool caseSensitive)
 {
-    if (_quickSearch) {
-        _quickSearch->hide();
-        _quickSearch->clear();
-        if (e)
-            _view->handleKeyEvent(e);
-    }
-}
-
-void KrViewOperator::setQuickFilter(QuickFilter *quickFilter)
-{
-    _quickFilter = quickFilter;
-    _quickFilter->lineEdit()->installEventFilter(this);
-    connect(_quickFilter, SIGNAL(stop()), SLOT(stopQuickFilter()));
-    connect(_quickFilter->lineEdit(), SIGNAL(textEdited(const QString&)), SLOT(quickFilterChanged(const QString&)));
-    connect(_quickFilter->lineEdit(), SIGNAL(returnPressed(const QString&)), _view->widget(), SLOT(setFocus()));
-}
-
-void KrViewOperator::quickFilterChanged(const QString &text)
-{
-    KConfigGroup grpSvr(_view->_config, "Look&Feel");
-    bool caseSensitive = grpSvr.readEntry("Case Sensitive Quicksearch", _CaseSensitiveQuicksearch);
-
-    _view->_quickFilterMask = QRegExp(text, caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard);
+    _view->_quickFilterMask = QRegExp(text,
+                                      caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive,
+                                      QRegExp::Wildcard);
     _view->refresh();
-    _quickFilter->setMatch(_view->_count || !_view->_files->numVfiles());
-}
-
-void KrViewOperator::startQuickFilter()
-{
-    _quickFilter->show();
-    _quickFilter->lineEdit()->setFocus();
-}
-
-void KrViewOperator::stopQuickFilter(bool refreshView)
-{
-    if(_quickFilter->lineEdit()->hasFocus())
-        _widget->setFocus();
-    _quickFilter->hide();
-    _quickFilter->lineEdit()->clear();
-    _quickFilter->setMatch(true);
-    _view->_quickFilterMask = QRegExp();
-    if(refreshView)
-        _view->refresh();
-}
-
-void KrViewOperator::prepareForPassive()
-{
-    if (_quickSearch && !_quickSearch->isHidden()) {
-        stopQuickSearch(0);
-    }
-}
-
-bool KrViewOperator::handleKeyEvent(QKeyEvent * e)
-{
-    if (!_quickSearch->isHidden()) {
-        _quickSearch->myKeyPressEvent(e);
-        return true;
-    }
-    return false;
+    return _view->_count || !_view->_files->numVfiles();
 }
 
 void KrViewOperator::setMassSelectionUpdate(bool upd)
@@ -287,34 +182,6 @@ void KrViewOperator::saveDefaultSettings()
         _changedView->saveDefaultSettings(_changedProperties);
     _changedProperties = KrViewProperties::NoProperty;
     _changedView = 0;
-}
-
-bool KrViewOperator::eventFilter(QObject *watched, QEvent *event)
-{
-    if(event->type() == QEvent::KeyPress) {
-        QKeyEvent *ke = static_cast<QKeyEvent*>(event);
-        if(ke->key() == Qt::Key_Escape && ke->modifiers() == Qt::NoModifier) {
-            if(!_quickSearch->isHidden())
-                stopQuickSearch(0);
-            else if(!_quickFilter->isHidden())
-                stopQuickFilter();
-            else
-                return false;
-            event->accept();
-            return true;
-        }
-    }
-    else if(event->type() == QEvent::ShortcutOverride) {
-        QKeyEvent *ke = static_cast<QKeyEvent*>(event);
-        if(ke->key() == Qt::Key_Escape && ke->modifiers() == Qt::NoModifier &&
-                (!_quickSearch->isHidden() || !_quickFilter->isHidden())) {
-            event->accept();
-            return true;
-        }
-        else if(watched == _widget && !_quickSearch->isHidden())
-            return _quickSearch->shortcutOverride(ke);
-    }
-    return false;
 }
 
 // ----------------------------- krview
@@ -587,17 +454,18 @@ QString KrView::statistics()
     return tmp;
 }
 
-void KrView::changeSelection(const KRQuery& filter, bool select)
+bool KrView::changeSelection(const KRQuery& filter, bool select)
 {
     KConfigGroup grpSvr(_config, "Look&Feel");
-    changeSelection(filter, select, grpSvr.readEntry("Mark Dirs", _MarkDirs));
+    return changeSelection(filter, select, grpSvr.readEntry("Mark Dirs", _MarkDirs), true);
 }
 
-void KrView::changeSelection(const KRQuery& filter, bool select, bool includeDirs)
+bool KrView::changeSelection(const KRQuery& filter, bool select, bool includeDirs, bool makeVisible)
 {
     if (op()) op()->setMassSelectionUpdate(true);
 
     KrViewItem *temp = getCurrentKrViewItem();
+    KrViewItem *firstMatch = 0;
     for (KrViewItem * it = getFirst(); it != 0; it = getNext(it)) {
         if (it->name() == "..")
             continue;
@@ -608,15 +476,35 @@ void KrView::changeSelection(const KRQuery& filter, bool select, bool includeDir
         if (file == 0)
             continue;
 
-        if (filter.match(file))
+        if (filter.match(file)) {
             it->setSelected(select);
+            if (!firstMatch) firstMatch = it;
+        }
     }
 
     if (op()) op()->setMassSelectionUpdate(false);
     updateView();
-    if (ensureVisibilityAfterSelect() && temp != 0)
+    if (ensureVisibilityAfterSelect() && temp != 0) {
         makeItemVisible(temp);
+    } else if (makeVisible && firstMatch != 0) {
+        // if no selected item is visible...
+        KrViewItemList selectedItems;
+        getSelectedKrViewItems(&selectedItems);
+        bool anyVisible = false;
+        for (KrViewItem *item : selectedItems) {
+            if (isItemVisible(item)) {
+                anyVisible = true;
+                break;
+            }
+        }
+        if (!anyVisible) {
+            // ...scroll to fist selected item
+            makeItemVisible(firstMatch);
+        }
+    }
     redraw();
+
+    return firstMatch != 0; // return if any file was selected
 }
 
 void KrView::invertSelection()
@@ -752,8 +640,6 @@ void KrView::renameCurrentItem()
 
 bool KrView::handleKeyEvent(QKeyEvent *e)
 {
-    if (op()->handleKeyEvent(e))
-        return true;
     bool res = handleKeyEventInt(e);
 
     // emit the new item description
@@ -972,38 +858,7 @@ bool KrView::handleKeyEventInt(QKeyEvent *e)
         }
         // default continues here !!!!!!!!!!!
     default:
-        // if the key is A..Z or 1..0 do quick search otherwise...
-        if (e->text().length() > 0 && e->text()[ 0 ].isPrint())    // better choice. Otherwise non-ascii characters like  can not be the first character of a filename
-            // are we doing quicksearch? if not, send keys to panel
-            //if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
-            // are we using krusader's classic quicksearch, or wincmd style?
-        {
-            KConfigGroup grpSv(_config, "Look&Feel");
-            if (!grpSv.readEntry("New Style Quicksearch", _NewStyleQuicksearch))
-                return false;
-            else {
-                // first, show the quicksearch if its hidden
-                if (op()->quickSearch()->isHidden()) {
-                    op()->quickSearch()->show();
-                    // HACK: if the pressed key requires a scroll down, the selected
-                    // item is "below" the quick search window, as the icon view will
-                    // realize its new size after the key processing. The following line
-                    // will resize the icon view immediately.
-                    // ACTIVE_PANEL->gui->layout->activate();
-                    // UPDATE: it seems like this isn't needed anymore, in case I'm wrong
-                    // do something like op()->emitQuickSearchStartet()
-                    // -----------------------------
-                }
-                // now, send the key to the quicksearch
-                op()->quickSearch()->myKeyPressEvent(e);
-                return true;
-            }
-        } else {
-            if (!op()->quickSearch()->isHidden()) {
-                op()->quickSearch()->hide();
-                op()->quickSearch()->clear();
-            }
-        }
+        return false;
     }
     return false;
 }

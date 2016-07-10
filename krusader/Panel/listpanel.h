@@ -69,8 +69,7 @@
 
 class vfs;
 class KrView;
-class KrQuickSearch;
-class QuickFilter;
+class KrSearchBar;
 class DirHistoryButton;
 class MediaButton;
 class PanelPopup;
@@ -149,6 +148,8 @@ public slots:
     void rightclickMenu();
     void toggleSyncBrowse();
     void editLocation();
+    void showSearchBar();
+    void showSearchFilter();
     void jumpBack();
     void setJumpBack() {
         setJumpBack(virtualPath());
@@ -216,8 +217,7 @@ protected:
     QWidget *clientArea;
     QSplitter *splt;
     KUrlNavigator* urlNavigator;
-    KrQuickSearch *quickSearch;
-    QuickFilter *quickFilter;
+    KrSearchBar* searchBar;
     QToolButton *backButton, *forwardButton;
     QToolButton *cdRootButton;
     QToolButton *cdHomeButton;

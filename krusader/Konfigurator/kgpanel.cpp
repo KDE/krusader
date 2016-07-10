@@ -46,6 +46,7 @@
 #include <KWidgetsAddons/KMessageBox>
 
 #include "../GUI/krtreewidget.h"
+#include "../Panel/krsearchbar.h"
 #include "../Panel/krselectionmode.h"
 #include "../Panel/krview.h"
 #include "../Panel/krviewfactory.h"
@@ -143,8 +144,9 @@ void KgPanel::setupMiscTab()
 
     hbox->addWidget(new QLabel(i18n("Tab Bar position:"), miscGrp));
 
-    KONFIGURATOR_NAME_VALUE_PAIR positions[] = {{ i18n("Top"),                "top" },
-        { i18n("Bottom"),                    "bottom" }
+    KONFIGURATOR_NAME_VALUE_PAIR positions[] = {
+        { i18n("Top"),      "top" },
+        { i18n("Bottom"),   "bottom" }
     };
 
     KonfiguratorComboBox *cmb = createComboBox("Look&Feel", "Tab Bar Position",
@@ -158,37 +160,48 @@ void KgPanel::setupMiscTab()
     miscLayout->addWidget(miscGrp);
 
 // ---------------------------------------------------------------------------------------
-// -----------------------------  Quicksearch  -------------------------------------------
+// -----------------------------  Search bar  --------------------------------------------
 // ---------------------------------------------------------------------------------------
-    miscGrp = createFrame(i18n("Quicksearch/Quickfilter"), tab);
+    miscGrp = createFrame(i18n("Search bar"), tab);
     miscGrid = createGridLayout(miscGrp);
 
     KONFIGURATOR_CHECKBOX_PARAM quicksearch[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
-        {"Look&Feel", "New Style Quicksearch",  _NewStyleQuicksearch, i18n("New style Quicksearch"), false,  i18n("Opens a quick search dialog box.") },
-        {"Look&Feel", "Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n("Case sensitive Quicksearch/QuickFilter"), false,  i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).") },
-        {"Look&Feel", "Up/Down Cancels Quicksearch",  false, i18n("Up/Down cancels Quicksearch"), false,  i18n("Pressing the Up/Down buttons cancels Quicksearch.") },
+        {"Look&Feel", "New Style Quicksearch",  _NewStyleQuicksearch, i18n("Start by typing"), false,  i18n("Open search bar and start searching by typing in panel.") },
+        {"Look&Feel", "Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n("Case sensitive"), false,  i18n("Search must match case.") },
+        {"Look&Feel", "Up/Down Cancels Quicksearch",  false, i18n("Up/Down cancels search"), false,  i18n("Pressing the Up/Down buttons closes the search bar (only in search mode).") },
     };
 
     quicksearchCheckboxes = createCheckBoxGroup(2, 0, quicksearch, 3 /*count*/, miscGrp, PAGE_MISC);
-    miscGrid->addWidget(quicksearchCheckboxes, 0, 0);
+    miscGrid->addWidget(quicksearchCheckboxes, 0, 0, 1, -1);
     connect(quicksearchCheckboxes->find("New Style Quicksearch"), SIGNAL(stateChanged(int)), this, SLOT(slotDisable()));
     slotDisable();
 
-    // -------------- Quicksearch position -----------------------
+    // -------------- Search bar position -----------------------
 
     hbox = new QHBoxLayout();
-
     hbox->addWidget(new QLabel(i18n("Position:"), miscGrp));
-
     cmb = createComboBox("Look&Feel", "Quicksearch Position",
                             "bottom", positions, 2, miscGrp, true, false, PAGE_MISC);
     hbox->addWidget(cmb);
-
     hbox->addWidget(createSpacer(miscGrp));
-
     miscGrid->addLayout(hbox, 1, 0);
+    miscLayout->addWidget(miscGrp);
 
+    // -------------- Default search mode -----------------------
 
+    hbox = new QHBoxLayout();
+    hbox->addWidget(new QLabel(i18n("Default mode:"), miscGrp));
+    KONFIGURATOR_NAME_VALUE_PAIR modes[] = {
+        { i18n("Search"),   QString::number(KrSearchBar::MODE_SEARCH) },
+        { i18n("Select"),   QString::number(KrSearchBar::MODE_SELECT) },
+        { i18n("Filter"),   QString::number(KrSearchBar::MODE_FILTER) }
+    };
+    cmb = createComboBox("Look&Feel", "Default Search Mode",
+                         QString::number(KrSearchBar::MODE_SEARCH), modes, 3, miscGrp, true, false, PAGE_MISC);
+    cmb->setToolTip(i18n("Set the default mode on first usage"));
+    hbox->addWidget(cmb);
+    hbox->addWidget(createSpacer(miscGrp));
+    miscGrid->addLayout(hbox, 1, 1);
     miscLayout->addWidget(miscGrp);
 
 // --------------------------------------------------------------------------------------------

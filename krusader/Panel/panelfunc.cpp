@@ -68,7 +68,6 @@ A
 #include "listpanel.h"
 #include "krerrordisplay.h"
 #include "listpanelactions.h"
-#include "quickfilter.h"
 #include "../krglobal.h"
 #include "../krslots.h"
 #include "../kractions.h"
@@ -288,7 +287,6 @@ void ListPanelFunc::doRefresh()
 
     if (!isEqualUrl) {
         panel->setCursor(Qt::WaitCursor);
-        panel->view->op()->stopQuickFilter(false);
         panel->view->clearSavedSelection();
     }
 

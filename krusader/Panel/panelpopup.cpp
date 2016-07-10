@@ -298,20 +298,12 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
     treeBtn->setCheckable(true);
     btns->addButton(treeBtn, Tree);
 
-
     previewBtn = new QToolButton(this);
     previewBtn->setToolTip(i18n("Preview Panel: display a preview of the current file"));
     previewBtn->setIcon(krLoader->loadIcon("view-preview", KIconLoader::Toolbar, 16));
     previewBtn->setFixedSize(20, 20);
     previewBtn->setCheckable(true);
     btns->addButton(previewBtn, Preview);
-
-    quickBtn = new QToolButton(this);
-    quickBtn->setToolTip(i18n("Quick Panel: quick way to perform actions"));
-    quickBtn->setIcon(krLoader->loadIcon("fork", KIconLoader::Toolbar, 16));
-    quickBtn->setFixedSize(20, 20);
-    quickBtn->setCheckable(true);
-    btns->addButton(quickBtn, QuickPanel);
 
     viewerBtn = new QToolButton(this);
     viewerBtn->setToolTip(i18n("View Panel: view the current file"));
@@ -330,9 +322,8 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
     layout->addWidget(dataLine, 0, 0);
     layout->addWidget(treeBtn, 0, 1);
     layout->addWidget(previewBtn, 0, 2);
-    layout->addWidget(quickBtn, 0, 3);
-    layout->addWidget(viewerBtn, 0, 4);
-    layout->addWidget(duBtn, 0, 5);
+    layout->addWidget(viewerBtn, 0, 3);
+    layout->addWidget(duBtn, 0, 4);
 
     // create a widget stack on which to put the parts
     stack = new QStackedWidget(this);
@@ -369,52 +360,8 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
     stack->addWidget(diskusage);
     connect(diskusage, SIGNAL(openUrlRequest(const QUrl &)), this, SLOT(handleOpenUrlRequest(const QUrl &)));
 
-    // create the quick-panel part ----
-
-    quickPanel = new QWidget(stack);
-    QGridLayout *qlayout = new QGridLayout(quickPanel);
-    // --- quick select
-    QLabel *selectLabel = new QLabel(i18n("Quick Select"), quickPanel);
-    quickSelectCombo = new KComboBox(quickPanel);
-    quickSelectCombo->setEditable(true);
-    QStringList lst = pg.readEntry("Predefined Selections", QStringList());
-    if (lst.count() > 0)
-        quickSelectCombo->addItems(lst);
-    quickSelectCombo->lineEdit()->setText("*");
-    quickSelectCombo->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred));
-
-    connect(quickSelectCombo->lineEdit(), SIGNAL(returnPressed()),
-            this, SLOT(quickSelect()));
-
-    QToolButton *qselectBtn = new QToolButton(quickPanel);
-    qselectBtn->setIcon(krLoader->loadIcon("edit-select-all", KIconLoader::Toolbar, 16));
-    qselectBtn->setFixedSize(20, 20);
-    qselectBtn->setToolTip(i18n("Apply the selection"));
-    connect(qselectBtn, SIGNAL(clicked()), this, SLOT(quickSelect()));
-
-    QToolButton *qstoreBtn = new QToolButton(quickPanel);
-    qstoreBtn->setIcon(krLoader->loadIcon("document-save", KIconLoader::Toolbar, 16));
-    qstoreBtn->setFixedSize(20, 20);
-    qstoreBtn->setToolTip(i18n("Store the current selection"));
-    connect(qstoreBtn, SIGNAL(clicked()), this, SLOT(quickSelectStore()));
-
-    QToolButton *qsettingsBtn = new QToolButton(quickPanel);
-    qsettingsBtn->setIcon(krLoader->loadIcon("configure", KIconLoader::Toolbar, 16));
-    qsettingsBtn->setFixedSize(20, 20);
-    qsettingsBtn->setToolTip(i18n("Select group dialog"));
-    connect(qsettingsBtn, SIGNAL(clicked()), _mainWindow->viewActions()->actSelect, SLOT(trigger()));
-
-    qlayout->addWidget(selectLabel, 0, 0);
-    qlayout->addWidget(quickSelectCombo, 0, 1);
-    qlayout->addWidget(qselectBtn, 0, 2);
-    qlayout->addWidget(qstoreBtn, 0, 3);
-    qlayout->addWidget(qsettingsBtn, 0, 4);
-
-    quickPanel->setProperty("KrusaderWidgetId", QVariant(QuickPanel));
-    stack->addWidget(quickPanel);
-
     // -------- finish the layout (General one)
-    layout->addWidget(stack, 1, 0, 1, 6);
+    layout->addWidget(stack, 1, 0, 1, 5);
 
     // set the wanted widget
     // ugly: are we left or right?
@@ -474,10 +421,6 @@ void PanelPopup::focusInEvent(QFocusEvent*)
         if (!isHidden())
             tree->setFocus();
         break;
-    case QuickPanel:
-        if (!isHidden())
-            quickSelectCombo->setFocus();
-        break;
     }
 }
 
@@ -525,12 +468,6 @@ void PanelPopup::tabSelected(int id)
         stack->setCurrentWidget(viewer);
         dataLine->setText(i18n("Preview:"));
         update(vf);
-        break;
-    case QuickPanel:
-        stack->setCurrentWidget(quickPanel);
-        dataLine->setText(i18n("Quick Select:"));
-        if (!isHidden())
-            quickSelectCombo->setFocus();
         break;
     case View:
         stack->setCurrentWidget(panelviewer);
@@ -591,25 +528,3 @@ void PanelPopup::treeSelection()
     emit selection(tree->currentUrl());
     //emit hideMe();
 }
-
-// ------------------- quick panel
-
-void PanelPopup::quickSelect()
-{
-    quickSelect(quickSelectCombo->currentText());
-}
-
-void PanelPopup::quickSelect(const QString &mask)
-{
-    _mainWindow->activeView()->changeSelection(KRQuery(mask), true);
-}
-
-void PanelPopup::quickSelectStore()
-{
-    KConfigGroup group(krConfig, "Private");
-    QStringList lst = group.readEntry("Predefined Selections", QStringList());
-    if (lst.indexOf(quickSelectCombo->currentText()) == -1)
-        lst.append(quickSelectCombo->currentText());
-    group.writeEntry("Predefined Selections", lst);
-}
-

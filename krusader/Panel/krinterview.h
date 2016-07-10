@@ -60,6 +60,7 @@ public:
     virtual void setCurrentItem(const QString& name) Q_DECL_OVERRIDE;
     virtual void setCurrentKrViewItem(KrViewItem *item) Q_DECL_OVERRIDE;
     virtual void makeItemVisible(const KrViewItem *item) Q_DECL_OVERRIDE;
+    virtual bool isItemVisible(const KrViewItem *item) Q_DECL_OVERRIDE;
     virtual void clear() Q_DECL_OVERRIDE;
     virtual void sort() Q_DECL_OVERRIDE;
     virtual void refreshColors() Q_DECL_OVERRIDE;

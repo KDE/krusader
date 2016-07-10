@@ -204,10 +204,16 @@ void KrInterView::makeItemVisible(const KrViewItem *item)
 {
     if (item == 0)
         return;
+
     vfile* vf = (vfile *)item->getVfile();
     QModelIndex ndx = _model->vfileIndex(vf);
     if (ndx.isValid())
         _itemView->scrollTo(ndx);
+}
+
+bool KrInterView::isItemVisible(const KrViewItem *item)
+{
+    return _itemView->viewport()->rect().contains(item->itemRect());
 }
 
 void KrInterView::setCurrentItem(const QString& name)

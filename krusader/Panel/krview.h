@@ -49,11 +49,9 @@
 
 class KrView;
 class KrViewItem;
-class KrQuickSearch;
 class KrPreviews;
 class QModelIndex;
 class KrViewInstance;
-class QuickFilter;
 class VfileContainer;
 
 typedef QList<KrViewItem*> KrViewItemList;
@@ -125,8 +123,6 @@ public:
     KrViewOperator(KrView *view, QWidget *widget);
     ~KrViewOperator();
 
-    virtual bool eventFilter(QObject *watched, QEvent *event) Q_DECL_OVERRIDE;
-
     KrView *view() const {
         return _view;
     }
@@ -187,16 +183,8 @@ public:
         emit refreshActions();
     }
 
-    void prepareForPassive();
-
-    void setQuickSearch(KrQuickSearch *quickSearch);
-    KrQuickSearch * quickSearch() {
-        return _quickSearch;
-    }
-
-    void setQuickFilter(QuickFilter*);
-
-    bool handleKeyEvent(QKeyEvent *e);
+    bool searchItem(const QString &, bool, int = 0); // search for item and set cursor
+    bool filterSearch(const QString &, bool); // filter view items
     void setMassSelectionUpdate(bool upd);
     bool isMassSelectionUpdate() {
         return _massSelectionUpdate;
@@ -208,12 +196,6 @@ public slots:
         if (!_massSelectionUpdate)
             emit selectionChanged();
     }
-    void quickSearch(const QString &, int = 0);
-    void stopQuickSearch(QKeyEvent*);
-    void handleQuickSearchEvent(QKeyEvent*);
-
-    void startQuickFilter();
-    void stopQuickFilter(bool refreshView = true);
 
 signals:
     void selectionChanged();
@@ -236,7 +218,6 @@ signals:
     void refreshActions();
 
 protected slots:
-    void quickFilterChanged(const QString &text);
     void saveDefaultSettings();
     void startUpdate();
     void cleared();
@@ -251,8 +232,6 @@ protected:
     QWidget *_widget;
 
 private:
-    KrQuickSearch *_quickSearch;
-    QuickFilter *_quickFilter;
     bool _massSelectionUpdate;
     QTimer _saveDefaultSettingsTimer;
     static KrViewProperties::PropertyType _changedProperties;
@@ -346,6 +325,7 @@ public:
     virtual void setCurrentItem(const QString& name) = 0;
     virtual void setCurrentKrViewItem(KrViewItem *item) = 0;
     virtual void makeItemVisible(const KrViewItem *item) = 0;
+    virtual bool isItemVisible(const KrViewItem *item) = 0;
     virtual void updateView() = 0;
     virtual void sort() = 0;
     virtual void refreshColors() = 0;
@@ -356,7 +336,6 @@ public:
     }
     virtual void prepareForPassive() {
         _focused = false;
-        _operator->prepareForPassive();
     }
     virtual void renameCurrentItem(); // Rename current item. returns immediately
     virtual int  itemsPerPage() {
@@ -437,8 +416,8 @@ public:
     virtual void setFiles(VfileContainer *files);
     virtual void refresh();
 
-    void changeSelection(const KRQuery& filter, bool select);
-    void changeSelection(const KRQuery& filter, bool select, bool includeDirs);
+    bool changeSelection(const KRQuery& filter, bool select);
+    bool changeSelection(const KRQuery& filter, bool select, bool includeDirs, bool makeVisible = false);
     bool isFiltered(vfile *vf);
     void enableUpdateDefaultSettings(bool enable);
     void setSelected(const vfile* vf, bool select);

@@ -70,7 +70,6 @@ public slots:
     void saveDefaultSettings();
     void applySettingsToOthers();
     void focusPanel();
-    void quickFilter();
     void togglePreviews(bool show);
 
     void refreshActions();

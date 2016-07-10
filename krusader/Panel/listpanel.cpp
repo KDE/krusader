@@ -81,7 +81,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../BookMan/krbookmarkbutton.h"
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krspwidgets.h"
-#include "../Dialogs/krspecialwidgets.h"
 #include "../Dialogs/percentalsplitter.h"
 #include "../Dialogs/popularurls.h"
 #include "../GUI/kcmdline.h"
@@ -100,7 +99,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krcolorcache.h"
 #include "krerrordisplay.h"
 #include "krlayoutfactory.h"
-#include "quickfilter.h"
+#include "krsearchbar.h"
 #include "dirhistoryqueue.h"
 
 
@@ -133,7 +132,7 @@ protected:
 ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg) :
         QWidget(parent), KrPanel(manager),
         panelType(-1), colorMask(255), compareMode(false),
-        previewJob(0), inlineRefreshJob(0), quickSearch(0), cdRootButton(0), cdUpButton(0),
+        previewJob(0), inlineRefreshJob(0), searchBar(0), cdRootButton(0), cdUpButton(0),
         popupBtn(0), popup(0), vfsError(0), _locked(false)
 {
     if(cfg.isValid())
@@ -290,24 +289,14 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     splt->setOrientation(Qt::Vertical);
     clientLayout->addWidget(splt);
 
-    // quicksearch
-    quickSearch = new KrQuickSearch(clientArea);
-    quickSearch->setFont(group.readEntry("Filelist Font", _FilelistFont));
-    quickSearch->hide();
-    // quickfilter
-    quickFilter = new QuickFilter(clientArea);
-    quickFilter->hide();
-
-    if(group.readEntry("Quicksearch Position", "bottom") == "top") {
-        clientLayout->insertWidget(0, quickSearch);
-        clientLayout->insertWidget(0, quickFilter);
-    } else {
-        clientLayout->insertWidget(-1, quickSearch);
-        clientLayout->insertWidget(-1, quickFilter);
-    }
-
     // view
     createView();
+
+    // search (in folder) bar
+    searchBar = new KrSearchBar(view, clientArea);
+    searchBar->hide();
+    bool top = group.readEntry("Quicksearch Position", "bottom") == "top";
+    clientLayout->insertWidget(top ? 0 : -1, searchBar);
 
     // create the layout
     KrLayoutFactory fact(this, widgets);
@@ -368,7 +357,6 @@ ListPanel::~ListPanel()
     delete status;
     delete bookmarksButton;
     delete totals;
-    delete quickSearch;
     delete urlNavigator;
     delete cdRootButton;
     delete cdHomeButton;
@@ -401,8 +389,6 @@ void ListPanel::createView()
     view = KrViewFactory::createView(panelType, splt, krConfig);
     view->init();
     view->setMainWindow(krApp);
-    view->op()->setQuickSearch(quickSearch);
-    view->op()->setQuickFilter(quickFilter);
 
     // KrViewFactory may create a different view type than requested
     panelType = view->instance()->id();
@@ -454,10 +440,12 @@ void ListPanel::changeType(int type)
         FilterSettings filterSettings = view->properties()->filterSettings;
 
         panelType = type;
-        quickSearch->setFocusProxy(0);
-        delete view;
 
+        KrView *oldView = view;
         createView();
+        searchBar->setView(view);
+        delete oldView;
+
         view->setFilter(filter, filterSettings, filterApplysToDirs);
         view->setSelectionUrls(selection);
         view->setCurrentItem(current);
@@ -744,6 +732,8 @@ void ListPanel::slotStartUpdate()
     setCursor(Qt::ArrowCursor);
     slotUpdateTotals();
     krApp->popularUrls()->addUrl(virtualPath());
+
+    searchBar->resetSearch();
 }
 
 void ListPanel::slotGetStats(const QUrl &url)
@@ -1252,6 +1242,16 @@ void ListPanel::editLocation()
     urlNavigator->setUrlEditable(true);
     urlNavigator->setFocus();
     urlNavigator->editor()->lineEdit()->selectAll();
+}
+
+void ListPanel::showSearchBar()
+{
+    searchBar->showBar();
+}
+
+void ListPanel::showSearchFilter()
+{
+    searchBar->showBar(KrSearchBar::MODE_FILTER);
 }
 
 void ListPanel::saveSettings(KConfigGroup cfg, bool saveHistory)

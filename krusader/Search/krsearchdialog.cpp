@@ -67,9 +67,9 @@
 #include "../VFS/virt_vfs.h"
 #include "../VFS/krquery.h"
 #include "../KViewer/krviewer.h"
+#include "../Panel/krsearchbar.h"
 #include "../Panel/krview.h"
 #include "../Panel/krviewfactory.h"
-#include "../Panel/quickfilter.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../Filter/filtertabs.h"
@@ -223,31 +223,25 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     searchingLabel->setText("");
     resultLabelLayout->addWidget(searchingLabel);
 
-    resultLayout->addLayout(resultLabelLayout, 3, 0);
+    resultLayout->addLayout(resultLabelLayout, 2, 0);
 
     // creating the result list view
     result = new SearchResultContainer(this);
-    // quicksearch
-    KrQuickSearch *quickSearch = new KrQuickSearch(this);
-    quickSearch->hide();
-    resultLayout->addWidget(quickSearch, 1, 0);
-    // quickfilter
-    QuickFilter *quickFilter = new QuickFilter(this);
-    quickFilter->hide();
-    resultLayout->addWidget(quickFilter, 2, 0);
     // the view
     resultView = KrViewFactory::createView(RESULTVIEW_TYPE, resultTab, krConfig);
     resultView->init();
     resultView->restoreSettings(KConfigGroup(&group, "ResultView"));
     resultView->enableUpdateDefaultSettings(false);
     resultView->setMainWindow(this);
-    resultView->op()->setQuickSearch(quickSearch);
-    resultView->op()->setQuickFilter(quickFilter);
     resultView->prepareForActive();
     resultView->refreshColors();
     resultView->setFiles(result);
     resultView->refresh();
     resultLayout->addWidget(resultView->widget(), 0, 0);
+    // search bar
+    searchBar = new KrSearchBar(resultView, this);
+    searchBar->hide();
+    resultLayout->addWidget(searchBar, 1, 0);
 
     QHBoxLayout* foundTextLayout = new QHBoxLayout();
     foundTextLayout->setSpacing(6);
@@ -267,7 +261,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     foundTextLabel->setFrameShadow(QLabel::Sunken);
     foundTextLabel->setText("");
     foundTextLayout->addWidget(foundTextLabel);
-    resultLayout->addLayout(foundTextLayout, 4, 0);
+    resultLayout->addLayout(foundTextLayout, 3, 0);
 
     searcherTabs->addTab(resultTab, i18n("&Results"));
 
@@ -532,9 +526,9 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
         return;
     }
     if (resultView->widget()->hasFocus()) {
-        if ((e->key() | e->modifiers()) == (Qt::CTRL | Qt::Key_I))
-            resultView->op()->startQuickFilter();
-        if (e->key() == Qt::Key_F4) {
+        if ((e->key() | e->modifiers()) == (Qt::CTRL | Qt::Key_I)) {
+            searchBar->showBar(KrSearchBar::MODE_FILTER);
+        } else if (e->key() == Qt::Key_F4) {
             if (!generalFilter->containsText->currentText().isEmpty() && QApplication::clipboard()->text() != generalFilter->containsText->currentText())
                 QApplication::clipboard()->setText(generalFilter->containsText->currentText());
             editCurrent();

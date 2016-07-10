@@ -50,6 +50,7 @@ class GeneralFilter;
 class QTabWidget;
 class KSqueezedTextLabel;
 class KrSqueezedTextLabel;
+class KrSearchBar;
 
 class KrSearchDialog : public QDialog
 {
@@ -105,6 +106,7 @@ private:
 
     SearchResultContainer *result;
     KrView *resultView;
+    KrSearchBar *searchBar;
 
     KRQuery *query;
     KRSearchMod *searcher;

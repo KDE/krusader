@@ -36,14 +36,9 @@ A
 #include "../krglobal.h"
 
 // QtGui
-#include <QGuiApplication>
-#include <QKeyEvent>
 #include <QPaintEvent>
 
-#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIOCore/KFileItem>
-#include <KCompletion/KLineEdit>
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////// Pie related widgets /////////////////////////////////
@@ -230,95 +225,3 @@ void KRPie::addSlice(KIO::filesize_t size, QString label)
     sizeLeft -= size;
     slices.push_back(KRPieSlice(sizeLeft * 100 / totalSize, Qt::yellow, "DEFAULT"));
 }
-
-////////////////////////////////////////////////////
-/////////////////// KrQuickSearch  /////////////////
-////////////////////////////////////////////////////
-KrQuickSearch::KrQuickSearch(QWidget *parent) : KLineEdit(parent)
-{
-    setMatch(true);
-}
-
-bool KrQuickSearch::shortcutOverride(QKeyEvent *e)
-{
-    if(e->key() == Qt::Key_Escape || e->key() == Qt::Key_Backspace) {
-        e->accept();
-        return true;
-    }
-    return false;
-}
-
-void KrQuickSearch::myKeyPressEvent(QKeyEvent *e)
-{
-    KConfigGroup gc(krConfig, "Look&Feel");
-    bool updownCancel = gc.readEntry("Up/Down Cancels Quicksearch", false);
-
-    switch (e->key()) {
-    case Qt::Key_Escape:
-        emit stop(0);
-        break;
-    case Qt::Key_Return:
-    case Qt::Key_Enter:
-    case Qt::Key_Tab:
-    case Qt::Key_Right:
-    case Qt::Key_Left:
-        emit stop(e);
-        break;
-    case Qt::Key_Down:
-        if(updownCancel)
-            emit stop(e);
-        else
-            otherMatching(text(), 1);
-        break;
-    case Qt::Key_Up:
-        if(updownCancel)
-            emit stop(e);
-        else
-            otherMatching(text(), -1);
-        break;
-    case Qt::Key_Insert:
-    case Qt::Key_Home:
-    case Qt::Key_End:
-        process(e);
-        break;
-    default:
-        keyPressEvent(e);
-    }
-}
-
-void KrQuickSearch::setMatch(bool match)
-{
-    KConfigGroup gc(krConfig, "Colors");
-
-    QString foreground, background;
-    QColor  fore, back;
-    QPalette p = QGuiApplication::palette();
-
-    if (match) {
-        foreground = "Quicksearch Match Foreground";
-        background = "Quicksearch Match Background";
-        fore = Qt::black;
-        back = QColor(192, 255, 192);
-    } else {
-        foreground = "Quicksearch Non-match Foreground";
-        background = "Quicksearch Non-match Background";
-        fore = Qt::black;
-        back = QColor(255, 192, 192);
-    }
-
-    if (gc.readEntry(foreground, QString()) == "KDE default")
-        fore = p.color(QPalette::Active, QPalette::Text);
-    else if (!gc.readEntry(foreground, QString()).isEmpty())
-        fore = gc.readEntry(foreground, fore);
-
-    if (gc.readEntry(background, QString()) == "KDE default")
-        back = p.color(QPalette::Active, QPalette::Base);
-    else if (!gc.readEntry(background, QString()).isEmpty())
-        back = gc.readEntry(background, back);
-
-    QPalette pal = palette();
-    pal.setColor(QPalette::Base, back);
-    pal.setColor(QPalette::Text, fore);
-    setPalette(pal);
-}
-

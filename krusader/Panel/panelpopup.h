@@ -56,7 +56,7 @@ class PanelPopup: public QWidget
 {
     Q_OBJECT
 
-    enum Parts { Tree, Preview, QuickPanel, View, DskUsage, Last = 0xFF };
+    enum Parts { Tree, Preview, View, DskUsage, Last = 0xFF };
 public:
     PanelPopup(QSplitter *splitter, bool left, FileManagerWindow *mainWindow);
     ~PanelPopup();
@@ -79,9 +79,6 @@ protected slots:
     void tabSelected(int id);
     void treeSelection();
     void handleOpenUrlRequest(const QUrl &url);
-    void quickSelect();
-    void quickSelect(const QString &);
-    void quickSelectStore();
 
 protected:
     virtual void focusInEvent(QFocusEvent*) Q_DECL_OVERRIDE;
@@ -94,13 +91,11 @@ protected:
     KrSqueezedTextLabel *dataLine;
     QPointer<KIO::PreviewJob> pjob;
     KrFileTreeView *tree;
-    QToolButton *treeBtn, *previewBtn, *quickBtn, *viewerBtn, *duBtn;
+    QToolButton *treeBtn, *previewBtn, *viewerBtn, *duBtn;
     QButtonGroup *btns;
-    KLineEdit *quickFilter;
     KComboBox *quickSelectCombo;
     PanelViewer *panelviewer;
     DiskUsageViewer *diskusage;
-    QWidget *quickPanel;
     QList<int> splitterSizes;
     QSplitter *splitter;
 };

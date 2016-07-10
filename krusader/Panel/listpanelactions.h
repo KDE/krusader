@@ -69,7 +69,7 @@ public:
     QAction *actShiftF5, *actShiftF6;
     QAction *actProperties, *actPack, *actUnpack, *actTest,  *actCompDirs, *actCalculate, *actSync;
     QAction *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
-    QAction *actLocationBar, *actJumpBack, *actSetJumpBack;
+    QAction *actLocationBar, *actSearchBar, *actJumpBack, *actSetJumpBack;
     QAction *actCreateChecksum, *actMatchChecksum;
     QAction *actCopy, *actPaste;
     QAction *actHistoryBackward, *actHistoryForward, *actDirUp, *actRoot, *actHome, *actCdToOther;
