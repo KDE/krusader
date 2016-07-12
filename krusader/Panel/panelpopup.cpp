@@ -184,7 +184,6 @@ void KrFileTreeView::slotExpanded(const QModelIndex &baseIndex)
     scrollTo(index);
 }
 
-
 QUrl KrFileTreeView::currentUrl() const
 {
     return urlForProxyIndex(currentIndex());
@@ -262,21 +261,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
     QGridLayout * layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    // loading the splitter sizes
-    KConfigGroup pg(krConfig, "Private");
-    if (left)
-        splitterSizes = pg.readEntry("Left PanelPopup Splitter Sizes", QList<int>());
-    else
-        splitterSizes = pg.readEntry("Right PanelPopup Splitter Sizes", QList<int>());
-
-    if (splitterSizes.count() == 2 && splitterSizes[ 0 ] == 0 && splitterSizes[ 1 ] == 0)
-        splitterSizes.clear();
-
-    if (splitterSizes.count() < 2) {
-        splitterSizes.clear();
-        splitterSizes.push_back(100);
-        splitterSizes.push_back(100);
-    }
+    splitterSizes << 100 << 100;
 
     // create the label+buttons setup
     dataLine = new KrSqueezedTextLabel(this);
@@ -363,24 +348,18 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWind
     // -------- finish the layout (General one)
     layout->addWidget(stack, 1, 0, 1, 5);
 
-    // set the wanted widget
-    // ugly: are we left or right?
-    int id;
-    KConfigGroup sg(krConfig, "Startup");
-    if (left) {
-        id = sg.readEntry("Left Panel Popup", _LeftPanelPopup);
-    } else {
-        id = sg.readEntry("Right Panel Popup", _RightPanelPopup);
-    }
-    QAbstractButton * curr = btns->button(id);
-    if (curr)
-        curr->click();
-
     hide(); // for not to open the 3rd hand tool at start (selecting the last used tab)
-    tabSelected(id);
+    setCurrentPage(0);
 }
 
 PanelPopup::~PanelPopup() {}
+
+void PanelPopup::setCurrentPage(int id) {
+    QAbstractButton * curr = btns->button(id);
+    if (curr) {
+        curr->click();
+    }
+}
 
 void PanelPopup::show()
 {
@@ -390,7 +369,6 @@ void PanelPopup::show()
     _hidden = false;
     tabSelected(currentPage());
 }
-
 
 void PanelPopup::hide()
 {
@@ -424,26 +402,12 @@ void PanelPopup::focusInEvent(QFocusEvent*)
     }
 }
 
-void PanelPopup::saveSizes()
-{
-    KConfigGroup group(krConfig, "Private");
-
-    if (!isHidden())
-        splitterSizes = splitter->sizes();
-
-    if (_left)
-        group.writeEntry("Left PanelPopup Splitter Sizes", splitterSizes);
-    else
-        group.writeEntry("Right PanelPopup Splitter Sizes", splitterSizes);
-}
-
 void PanelPopup::handleOpenUrlRequest(const QUrl &url)
 {
     QMimeDatabase db;
     QMimeType mime = db.mimeTypeForUrl(url);
     if (mime.isValid() && mime.name() == "inode/directory") ACTIVE_PANEL->func->openUrl(url);
 }
-
 
 void PanelPopup::tabSelected(int id)
 {

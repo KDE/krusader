@@ -54,10 +54,6 @@
 #define _RememberPos      true
 // Left Tab Bar
 // Right Tab Bar
-// Left Panel Popup
-#define _LeftPanelPopup  0
-// Right Panel Popup
-#define _RightPanelPopup 0
 // Size where lister is the default viewer
 #define _ListerLimit     10
 

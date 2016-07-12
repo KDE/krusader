@@ -253,6 +253,17 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     connect(inlineRefreshCancelButton, SIGNAL(clicked()), this, SLOT(inlineRefreshCancel()));
     ADD_WIDGET(inlineRefreshCancelButton);
 
+    // button for changing the panel popup position in the panel
+    popupPositionBtn = new QToolButton(this);
+    popupPositionBtn->hide();
+    popupPositionBtn->setAutoRaise(true);
+    popupPositionBtn->setIcon(krLoader->loadIcon("exchange-positions", KIconLoader::Toolbar, 16));
+    popupPositionBtn->setToolTip(i18n("Move popup panel clockwise"));
+    connect(popupPositionBtn, &QToolButton::clicked, [this]() {
+        // moving position clockwise
+        setPopupPosition((popupPosition() + 1) % 4); });
+    ADD_WIDGET(popupPositionBtn);
+
     // a quick button to open the popup panel
     popupBtn = new QToolButton(this);
     popupBtn->setAutoRaise(true);
@@ -287,6 +298,10 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     splt = new PercentalSplitter(clientArea);
     splt->setChildrenCollapsible(true);
     splt->setOrientation(Qt::Vertical);
+    // expand vertical if splitter orientation is horizontal
+    QSizePolicy sizePolicy = splt->sizePolicy();
+    sizePolicy.setVerticalPolicy(QSizePolicy::Expanding);
+    splt->setSizePolicy(sizePolicy);
     clientLayout->addWidget(splt);
 
     // view
@@ -526,26 +541,28 @@ void ListPanel::togglePanelPopup()
 
     if (popup->isHidden()) {
         if (popupSizes.count() > 0) {
-            dynamic_cast<QSplitter*>(popup->parent())->setSizes(popupSizes);
+            splt->setSizes(popupSizes);
         } else { // on the first time, resize to 50%
             QList<int> lst;
             lst << height() / 2 << height() / 2;
-            dynamic_cast<QSplitter*>(popup->parent())->setSizes(lst);
+            splt->setSizes(lst);
         }
 
         popup->show();
         popupBtn->setIcon(krLoader->loadIcon("arrow-down", KIconLoader::Toolbar, 16));
         popupBtn->setToolTip(i18n("Close the popup panel"));
+        popupPositionBtn->show();
     } else {
         popupSizes.clear();
-        popupSizes = dynamic_cast<QSplitter*>(popup->parent())->sizes();
+        popupSizes = splt->sizes();
         popup->hide();
         popupBtn->setIcon(krLoader->loadIcon("arrow-up", KIconLoader::Toolbar, 16));
         popupBtn->setToolTip(i18n("Open the popup panel"));
+        popupPositionBtn->hide();
 
         QList<int> lst;
         lst << height() << 0;
-        dynamic_cast<QSplitter*>(popup->parent())->setSizes(lst);
+        splt->setSizes(lst);
         if (ACTIVE_PANEL)
             ACTIVE_PANEL->gui->slotFocusOnMe();
     }
@@ -1261,13 +1278,20 @@ void ListPanel::saveSettings(KConfigGroup cfg, bool saveHistory)
     cfg.writeEntry("Url", url.toString());
     cfg.writeEntry("Type", getType());
     cfg.writeEntry("Properties", getProperties());
-    if(popup) {
-        popup->saveSizes(); //FIXME use this cfg group
-        cfg.writeEntry("PopupPage", popup->currentPage());
-    }
     if(saveHistory)
         func->history->save(KConfigGroup(&cfg, "History"));
     view->saveSettings(KConfigGroup(&cfg, "View"));
+
+    // splitter/popup state
+    if (popup && !popup->isHidden()) {
+        cfg.writeEntry("PopupPosition", popupPosition());
+        cfg.writeEntry("SplitterSizes", splt->saveState());
+        cfg.writeEntry("PopupPage", popup->currentPage());
+    } else {
+        cfg.deleteEntry("PopupPosition");
+        cfg.deleteEntry("SplitterSizes");
+        cfg.deleteEntry("PopupPage");
+    }
 }
 
 void ListPanel::restoreSettings(KConfigGroup cfg)
@@ -1291,6 +1315,13 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
     }
 
     setJumpBack(func->history->currentUrl());
+
+    if (cfg.hasKey("PopupPosition")) { // popup was visible, restore
+        togglePanelPopup(); // create and show
+        setPopupPosition(cfg.readEntry("PopupPosition", 42 /* dummy */));
+        splt->restoreState(cfg.readEntry("SplitterSizes", QByteArray()));
+        popup->setCurrentPage(cfg.readEntry("PopupPage", 0));
+    }
 }
 
 void ListPanel::updatePopupPanel(KrViewItem *item)
@@ -1360,5 +1391,20 @@ void ListPanel::resetNavigatorMode()
         // NOTE: this also sets focus to the navigator
         urlNavigator->setUrlEditable(false);
         slotFocusOnMe();
+    }
+}
+
+int ListPanel::popupPosition() {
+    int pos = splt->orientation() == Qt::Vertical ? 1 : 0;
+    return pos + (qobject_cast<PanelPopup*>(splt->widget(0)) == NULL ? 2 : 0);
+}
+
+void ListPanel::setPopupPosition(int pos) {
+    splt->setOrientation(pos % 2 == 0 ? Qt::Horizontal : Qt::Vertical);
+    if ((pos < 2) != (qobject_cast<PanelPopup*>(splt->widget(0)) != NULL)) {
+        // swapping widgets in splitter
+        QWidget *temp = splt->widget(0);
+        splt->insertWidget(0, splt->widget(1));
+        splt->insertWidget(1, temp);
     }
 }

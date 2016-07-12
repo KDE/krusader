@@ -61,8 +61,7 @@ public:
     inline int currentPage() const {
         return stack->currentWidget()->property("KrusaderWidgetId").toInt();
     }
-
-    void saveSizes();
+    void setCurrentPage(int);
 
 public slots:
     void update(const vfile *vf);

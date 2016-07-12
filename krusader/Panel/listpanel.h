@@ -222,6 +222,7 @@ protected:
     QToolButton *cdHomeButton;
     QToolButton *cdUpButton;
     QToolButton *cdOtherButton;
+    QToolButton *popupPositionBtn;
     QToolButton *popupBtn;
     PanelPopup *popup;
     KrBookmarkButton *bookmarksButton;
@@ -233,6 +234,10 @@ protected:
     SyncBrowseButton *syncBrowseButton;
     QToolButton *inlineRefreshCancelButton;
     KrErrorDisplay *vfsError;
+
+private:
+    int popupPosition(); // 0: West, 1: North, 2: East, 3: South
+    void setPopupPosition(int);
 
 private:
     bool _locked;
