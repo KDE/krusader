@@ -264,19 +264,20 @@
       </itemizedlist>
       <itemizedlist>
         <title>
-          <guilabel>Quicksearch/Quickfilter</guilabel>
+          <guilabel>Search bar</guilabel>
         </title>
         <listitem>
           <para>
-          <guilabel>New style Quicksearch</guilabel>: The new
-          <link linkend="quicksearch">Quicksearch</link> feature is
-          used.</para>
+          <guilabel>Start by typing</guilabel>: allows to select if
+          <link linkend="quicksearch">quick search</link> feature is
+          used. When checked, you can open search bar and start searching
+	  by typing something while viewing folder contents in the active panel.</para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Case sensitive Quicksearch/Quickfilter</guilabel>: When you
-          use the <link linkend="quicksearch">Quicksearch</link>
-          or <link linkend="quickfilter">Quickfilter</link> feature:
+          <guilabel>Case sensitive</guilabel>: When you
+          use the <link linkend="quicksearch">search</link>
+          or <link linkend="quickfilter">filter</link> feature:
           If checked (the &UNIX; default), all files
           beginning with capital letters appear before files
           beginning with lower case letters; otherwise, all files
@@ -285,12 +286,17 @@
         </listitem>
         <listitem>
           <para>
-          <guilabel>Up/Down cancels Quicksearch</guilabel>: Pressing <keycap>Arrow Up</keycap> or <keycap>Arrow Down</keycap> cancels <link linkend="quicksearch">Quicksearch</link> dialog.</para>
+          <guilabel>Up/Down cancels search</guilabel>: Pressing <keycap>Arrow Up</keycap> or <keycap>Arrow Down</keycap> cancels <link linkend="quicksearch">search</link> bar.</para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Position</guilabel>: Lets you choose <link linkend="quicksearch">Quicksearch</link>
-          and <link linkend="quickfilter">Quickfilter</link> bar position (<guimenuitem>Bottom</guimenuitem> or <guimenuitem>Top</guimenuitem>).</para>
+          <guilabel>Position</guilabel>: Lets you choose <link linkend="quicksearch">search</link>
+          and <link linkend="quickfilter">filter</link> bar position (<guimenuitem>Bottom</guimenuitem> or <guimenuitem>Top</guimenuitem>).</para>
+        </listitem>
+	<listitem>
+          <para>
+	    <guilabel>Default mode</guilabel>: Lets you choose the search bar default mode between <link linkend="quicksearch">Search</link>, <guilabel>Select</guilabel>
+          and <link linkend="quickfilter">Filter</link>. You can change the mode later using the search bar itself.</para>
         </listitem>
       </itemizedlist>
       <itemizedlist>
