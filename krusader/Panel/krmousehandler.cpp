@@ -285,10 +285,20 @@ bool KrMouseHandler::mouseMoveEvent(QMouseEvent *e)
     return false;
 }
 
-bool KrMouseHandler::wheelEvent(QWheelEvent *)
+bool KrMouseHandler::wheelEvent(QWheelEvent *e)
 {
     if (!_view->isFocused())
         _view->op()->emitNeedFocus();
+
+    if (e->modifiers() == Qt::ControlModifier) {
+        if (e->delta() > 0) {
+            _view->zoomIn();
+        } else {
+            _view->zoomOut();
+        }
+        e->accept();
+    }
+
     return false;
 }
 

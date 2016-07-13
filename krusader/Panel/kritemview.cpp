@@ -55,7 +55,6 @@ KrItemView::KrItemView(QWidget *parent, KrViewInstance &instance, KConfig *cfg) 
 
 KrItemView::~KrItemView()
 {
-    setModel(0);
     delete _operator;
     _operator = 0;
 }

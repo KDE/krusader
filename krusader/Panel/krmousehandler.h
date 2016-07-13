@@ -34,6 +34,9 @@ class QDragMoveEvent;
 class QDragLeaveEvent;
 class QDropEvent;
 
+/**
+ * @brief Mouse handler for view
+ */
 class KrMouseHandler : public QObject
 {
     Q_OBJECT
