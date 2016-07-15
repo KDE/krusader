@@ -22,8 +22,8 @@
 
 // QtWidgets
 #include <QMenu>
+#include <QWidget>
 
-class QWidget;
 class UserMenu;
 class QAction;
 

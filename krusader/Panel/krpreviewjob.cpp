@@ -29,7 +29,6 @@ A
 ***************************************************************************/
 
 #include "krpreviewjob.h"
-#include "krpreviews.h"
 
 #include "krview.h"
 #include "krviewitem.h"

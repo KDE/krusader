@@ -18,7 +18,6 @@
 
 #include "queue_mgr.h"
 #include "queuedialog.h"
-#include "queue.h"
 
 // QtCore
 #include <QList>

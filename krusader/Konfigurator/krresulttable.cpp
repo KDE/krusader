@@ -31,6 +31,9 @@
 
 #include <KI18n/KLocalizedString>
 
+#include "../krservices.h"
+#include "../VFS/krarchandler.h"
+
 using namespace std;
 
 #define PS(x) _supported.contains(x)>0

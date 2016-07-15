@@ -17,7 +17,9 @@
  *****************************************************************************/
 
 #include "krinterviewitemdelegate.h"
+
 #include "krvfsmodel.h"
+#include "../krglobal.h"
 
 // QtGui
 #include <QPainter>

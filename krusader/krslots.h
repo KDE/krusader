@@ -40,8 +40,6 @@
 
 #include <KCoreAddons/KProcess>
 
-#include "krglobal.h"
-
 class KrMainWindow;
 class QUrl;
 

@@ -44,7 +44,6 @@
 #include <KCompletion/KHistoryComboBox>
 
 #include "filterbase.h"
-#include "../VFS/krquery.h"
 #include "../Dialogs/kurllistrequester.h"
 #include "../GUI/profilemanager.h"
 #include "../GUI/krlistwidget.h"

@@ -45,10 +45,12 @@
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KPasswordDialog>
 
+#include "kr7zencryptionchecker.h"
 #include "../krglobal.h"
 #include "../defaults.h"
 #include "../krservices.h"
 #include "../Dialogs/krpleasewait.h"
+#include "../../krArc/krlinecountingprocess.h"
 
 #if 0
 class DefaultKRarcObserver : public KRarcObserver

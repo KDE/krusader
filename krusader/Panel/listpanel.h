@@ -61,13 +61,12 @@
 #include <KIOFileWidgets/KUrlNavigator>
 
 #include "krpanel.h"
-#include "krview.h"
+#include "krviewitem.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 
 #define PROP_SYNC_BUTTON_ON               1
 #define PROP_LOCKED                       2
 
-class vfs;
 class KrView;
 class KrSearchBar;
 class DirHistoryButton;

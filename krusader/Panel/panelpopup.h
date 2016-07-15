@@ -37,7 +37,6 @@
 #include <KIOFileWidgets/KImageFilePreview>
 
 class QButtonGroup;
-class QLabel;
 class QSplitter;
 class QToolButton;
 class KrSqueezedTextLabel;
@@ -48,7 +47,6 @@ class DiskUsageViewer;
 class KrFileTreeView;
 class KDirModel;
 class KDirSortFilterProxyModel;
-class QPoint;
 class vfile;
 class FileManagerWindow;
 

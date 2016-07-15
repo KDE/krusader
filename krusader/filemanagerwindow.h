@@ -19,6 +19,8 @@
 #ifndef FILEMANAGERWINDOW_H
 #define FILEMANAGERWINDOW_H
 
+#include <QAction>
+
 #include "krmainwindow.h"
 #include "abstractpanelmanager.h"
 

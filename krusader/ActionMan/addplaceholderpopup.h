@@ -23,13 +23,13 @@
 
 // QtCore
 #include <QList>
+#include <QString>
 // QtWidgets
 #include <QDialog>
 #include <QMenu>
 
 #include "../UserAction/expander.h"
 
-class QString;
 class KLineEdit;
 class QToolButton;
 class QCheckBox;

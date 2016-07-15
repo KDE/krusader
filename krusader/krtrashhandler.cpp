@@ -44,6 +44,7 @@
 #include <KCoreAddons/KDirWatch>
 
 #include "kractions.h"
+#include "../krglobal.h"
 #include "Panel/krpanel.h"
 #include "Panel/panelfunc.h"
 

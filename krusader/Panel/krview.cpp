@@ -37,6 +37,7 @@
 #include "krcolorcache.h"
 #include "krpreviews.h"
 #include "../kicons.h"
+#include "../krglobal.h"
 #include "../defaults.h"
 #include "../VFS/krpermhandler.h"
 #include "../VFS/vfilecontainer.h"

@@ -41,7 +41,6 @@
 #include <QPixmap>
 #include <QDropEvent>
 
-#include "../krglobal.h"
 #include "../VFS/krquery.h"
 #include "../Filter/filtersettings.h"
 
@@ -50,7 +49,6 @@
 class KrView;
 class KrViewItem;
 class KrPreviews;
-class QModelIndex;
 class KrViewInstance;
 class VfileContainer;
 

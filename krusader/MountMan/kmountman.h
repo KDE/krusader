@@ -48,7 +48,6 @@ A
 #include <Solid/SolidNamespace>
 
 class KMountManGUI;
-class QAction;
 class KToolBarPopupAction;
 
 class KMountMan : public QObject

@@ -24,6 +24,8 @@
 // QtCore
 #include <QByteArray>
 #include <QUrl>
+// QtGui
+#include <QFont>
 // QtWidgets
 #include <QAction>
 #include <QDialog>
@@ -33,7 +35,6 @@
 
 #include "kractionbase.h"
 
-class UserActionProperties;
 class QDomDocument;
 class QDomElement;
 class KActionCollection;
@@ -180,7 +181,6 @@ private:
     KActionCollection *_actionCollection;
 };
 
-class QFont;
 /**
  * This displays the output of a process
  */

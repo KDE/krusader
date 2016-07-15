@@ -18,6 +18,8 @@
 
 #include "searchobject.h"
 
+#include "../krservices.h"
+
 SearchObject::SearchObject()
 {
 }

@@ -39,7 +39,6 @@
 #include <QVBoxLayout>
 #include <QLabel>
 
-class QVBoxLayout;
 class QHBoxLayout;
 class QGridLayout;
 class QCheckBox;

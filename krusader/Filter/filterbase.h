@@ -32,7 +32,6 @@
 #define FILTERBASE_H
 
 #include "filtersettings.h"
-#include "../VFS/krquery.h"
 
 // QtCore
 #include <QString>

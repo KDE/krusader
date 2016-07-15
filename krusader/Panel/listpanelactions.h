@@ -40,7 +40,6 @@
 
 class FileManagerWindow;
 class KrPanel;
-class ListPanel;
 class ListPanelFunc;
 
 class ListPanelActions : public ActionsBase

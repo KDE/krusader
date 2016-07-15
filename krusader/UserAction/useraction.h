@@ -26,7 +26,6 @@
 
 class QDomDocument;
 class QDomElement;
-class QString;
 class QStringList;
 class KrAction;
 class QUrl;

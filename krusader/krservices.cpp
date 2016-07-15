@@ -45,14 +45,6 @@ bool KrServices::cmdExist(QString cmdName)
     return !QStandardPaths::findExecutable(cmdName).isEmpty();
 }
 
-static const QStringList bin_suffixes = QStringList()
-#ifdef Q_WS_WIN
-                                        << ".cmd" << ".exe" << ".bat"
-#else
-                                        << ""
-#endif
-                                        ;
-
 QString KrServices::fullPathName(QString name, QString confName)
 {
     QString supposedName;

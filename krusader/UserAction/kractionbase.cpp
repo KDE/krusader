@@ -27,7 +27,6 @@
 
 #include "kraction.h"
 #include "../krglobal.h"
-#include "expander.h"
 
 KrActionBase::~KrActionBase()
 {

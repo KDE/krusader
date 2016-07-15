@@ -23,7 +23,6 @@
 #include <QMimeDatabase>
 #include <QMimeType>
 
-#include "krview.h"
 #include "../VFS/krpermhandler.h"
 
 namespace KrSort {

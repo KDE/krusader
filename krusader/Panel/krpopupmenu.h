@@ -32,8 +32,6 @@
 #endif
 
 #include "krpreviewpopup.h"
-#include "krviewitem.h"
-#include "../UserAction/useractionpopupmenu.h"
 
 class KActionCollection;
 class KrPanel;

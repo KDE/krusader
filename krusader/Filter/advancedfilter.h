@@ -32,7 +32,6 @@
 #define ADVANCEDFILTER_H
 
 #include "filterbase.h"
-#include "../VFS/krquery.h"
 
 // QtWidgets
 #include <QWidget>

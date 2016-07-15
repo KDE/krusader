@@ -19,6 +19,8 @@
 #ifndef FILETREE_H
 #define FILETREE_H
 
+#include <QString>
+
 #include <KIO/Global>
 
 // TODO these are pointlessly general purpose now, make them incredibly specific
@@ -202,7 +204,6 @@ private:
 
 
 class Directory;
-class QString;
 
 class File
 {

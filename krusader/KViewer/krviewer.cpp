@@ -44,7 +44,6 @@
 #include <KXmlGui/KShortcutsDialog>
 #include <KXmlGui/KToolBar>
 
-#include "../krglobal.h"
 #include "../defaults.h"
 #include "../kicons.h"
 #include "panelviewer.h"

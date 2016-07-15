@@ -22,6 +22,7 @@
 
 #include "defaults.h"
 #include "tabactions.h"
+#include "../krglobal.h"
 #include "Panel/listpanel.h"
 
 // QtCore

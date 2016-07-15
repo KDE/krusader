@@ -21,6 +21,7 @@
 #include "../VFS/krpermhandler.h"
 
 // QtCore
+#include <QLocale>
 #include <QMimeDatabase>
 #include <QMimeType>
 // QtGui

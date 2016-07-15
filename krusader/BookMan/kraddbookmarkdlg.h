@@ -21,7 +21,6 @@
 #define KRADDBOOKMARKDLG_H
 
 #include "krbookmark.h"
-#include "../VFS/vfs.h"
 #include "../GUI/krtreewidget.h"
 
 // QtCore

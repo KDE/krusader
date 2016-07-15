@@ -18,7 +18,6 @@
 
 #include "builder.h"
 #include "Config.h"
-#include "fileTree.h"
 #include "widget.h"
 
 // QtCore

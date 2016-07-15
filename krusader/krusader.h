@@ -67,7 +67,6 @@ class KStartupInfoId;
 class KrusaderStatus;
 class KRPleaseWaitHandler;
 class UserMenu;
-class UserAction;
 class PopularUrls;
 class QueueManager;
 class ViewActions;

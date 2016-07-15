@@ -23,12 +23,13 @@
 #include "../VFS/vfile.h"
 #include "krview.h"
 
+// QtCore
+#include <QString>
 // QtGui
 #include <QPixmap>
 
 #include <KIO/Global>
 
-class QString;
 class QPixmap;
 
 class KrViewItem

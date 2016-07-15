@@ -32,7 +32,6 @@
 
 #include "paneltabbar.h"
 
-class KConfig;
 class QStackedWidget;
 class QToolButton;
 class ListPanel;

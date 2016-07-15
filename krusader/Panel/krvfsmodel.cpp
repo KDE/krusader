@@ -34,7 +34,6 @@
 
 #include "krpanel.h"
 #include "krcolorcache.h"
-#include "krsort.h"
 
 
 KrVfsModel::KrVfsModel(KrInterView * view): QAbstractListModel(0), _extensionEnabled(true), _view(view),

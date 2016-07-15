@@ -19,13 +19,14 @@
 #ifndef LISTPANELFRAME_H
 #define LISTPANELFRAME_H
 
+// QtGui
+#include <QDropEvent>
 // QtWidgets
 #include <QFrame>
 
 # include <KConfigCore/KConfigGroup>
 
 class QDragEnterEvent;
-class QDropEvent;
 
 class ListPanelFrame : public QFrame
 {

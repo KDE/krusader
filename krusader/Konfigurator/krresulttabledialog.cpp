@@ -30,6 +30,8 @@
 #include <KConfigWidgets/KHelpClient>
 #include <KIconThemes/KIconLoader>
 
+#include "../krglobal.h"
+
 KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
         const QString& caption, const QString& heading, const QString& headerIcon,
         const QString& hint)

@@ -38,8 +38,6 @@
 #include <KCoreAddons/KProcess>
 
 #include "../../krArc/krarcbasemanager.h"
-#include "../../krArc/krlinecountingprocess.h"
-#include "kr7zencryptionchecker.h"
 
 namespace KWallet {
 class Wallet;

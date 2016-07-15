@@ -23,8 +23,6 @@
 
 #include <KCoreAddons/KProcess>
 
-#include "../krservices.h"
-
 class Kr7zEncryptionChecker : public KProcess
 {
     Q_OBJECT

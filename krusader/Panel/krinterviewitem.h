@@ -23,9 +23,9 @@
 // QtWidgets
 #include <QAbstractItemView>
 
-#include "krviewitem.h"
+#include "krinterview.h"
 #include "krvfsmodel.h"
-
+#include "krviewitem.h"
 
 // dummy. remove this class when no longer needed
 class KrInterViewItem: public KrViewItem

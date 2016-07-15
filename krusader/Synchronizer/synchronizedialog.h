@@ -38,7 +38,6 @@
 #include <QProgressBar>
 #include <QPushButton>
 
-#include "../VFS/vfs.h"
 #include "synchronizer.h"
 
 class SynchronizeDialog : QDialog

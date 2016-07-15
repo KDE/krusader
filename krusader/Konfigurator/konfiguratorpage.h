@@ -41,8 +41,6 @@
 #include "konfiguratoritems.h"
 
 struct KONFIGURATOR_CHECKBOX_PARAM;
-struct KONFIGURATOR_NAME_VALUE_TIP;
-struct KONFIGURATOR_NAME_VALUE_PAIR;
 
 /**
   * KonfiguratorPage is responsible for handling pages in Konfigurator.

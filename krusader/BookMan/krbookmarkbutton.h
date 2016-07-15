@@ -25,8 +25,6 @@
 
 #include <KWidgetsAddons/KActionMenu>
 
-#include "krbookmarkhandler.h"
-
 class KrBookmarkButton: public QToolButton
 {
     Q_OBJECT

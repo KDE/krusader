@@ -23,8 +23,6 @@
 #include <QString>
 #include <QList>
 
-# include "../krservices.h"
-
 class SearchObject
 {
 public:

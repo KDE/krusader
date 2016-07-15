@@ -21,7 +21,6 @@
 
 class QWidget;
 class KrView;
-class QAction;
 class KActionCollection;
 class ViewActions;
 

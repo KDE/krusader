@@ -44,6 +44,7 @@
 #include "../krusaderview.h"
 #include "../panelmanager.h"
 #include "../krtrashhandler.h"
+#include "../UserAction/useractionpopupmenu.h"
 #include "../VFS/krarchandler.h"
 
 #ifdef __LIBKONQ__

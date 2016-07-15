@@ -39,6 +39,7 @@
 #include "krvfsmodel.h"
 #include "../VFS/krpermhandler.h"
 #include "../defaults.h"
+#include "../krglobal.h"
 #include "krmousehandler.h"
 #include "krcolorcache.h"
 #include "../GUI/krstyleproxy.h"

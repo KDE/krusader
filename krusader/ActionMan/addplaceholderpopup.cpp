@@ -20,7 +20,6 @@
 
 #include "addplaceholderpopup.h"
 
-#include "../UserAction/expander.h"
 // for ParameterDialog
 #include "../krglobal.h" // for konfig-access
 #include "../BookMan/krbookmarkbutton.h"

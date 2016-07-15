@@ -49,9 +49,7 @@ class KIconLoader;
 class KrusaderView;
 class UserAction;
 class QWidget;
-class ListPanel;
 class KrPanel;
-class QAction;
 
 // global references to frequently used objects
 

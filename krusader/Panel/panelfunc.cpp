@@ -75,7 +75,6 @@ A
 #include "../abstractpanelmanager.h"
 #include "../krservices.h"
 #include "../VFS/vfile.h"
-#include "../VFS/vfs.h"
 #include "../VFS/virt_vfs.h"
 #include "../VFS/krarchandler.h"
 #include "../VFS/krpermhandler.h"

@@ -43,6 +43,7 @@
 #include "krresulttabledialog.h"
 #include "searchobject.h"
 #include "../defaults.h"
+#include "../krglobal.h"
 #include "../VFS/krarchandler.h"
 
 KgArchives::KgArchives(bool first, QWidget* parent) :

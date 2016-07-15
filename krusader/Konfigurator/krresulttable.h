@@ -33,9 +33,6 @@
 #include <KWidgetsAddons/KUrlLabel>
 
 #include "searchobject.h"
-#include "../krglobal.h"
-#include "../krservices.h"
-#include "../VFS/krarchandler.h"
 
 class KrResultTable : public QWidget
 {

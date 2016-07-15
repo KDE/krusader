@@ -42,8 +42,6 @@
 #include "newftpgui.h"
 #include "../VFS/krquery.h"
 
-class newFTPGUI;
-
 class KRMaskChoiceSub;
 
 class KRSpWidgets

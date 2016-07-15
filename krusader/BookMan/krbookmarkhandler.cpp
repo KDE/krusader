@@ -19,6 +19,8 @@
 
 #include "krbookmarkhandler.h"
 #include "kraddbookmarkdlg.h"
+
+#include "../krglobal.h"
 #include "../krslots.h"
 #include "../kractions.h"
 #include "../filemanagerwindow.h"

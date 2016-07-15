@@ -45,6 +45,7 @@
 #include <KService/KService>
 
 class DirHistoryQueue;
+class ListPanel;
 
 class ListPanelFunc : public QObject
 {

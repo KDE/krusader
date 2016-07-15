@@ -76,6 +76,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "Panel/krcolorcache.h"
 #include "Panel/viewactions.h"
 #include "Panel/listpanelactions.h"
+#include "Panel/krpanel.h"
 #include "Panel/krview.h"
 #include "Panel/krviewfactory.h"
 #include "UserAction/kraction.h"
@@ -97,7 +98,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "Konfigurator/kgprotocols.h"
 #include "BookMan/krbookmarkhandler.h"
 #include "KViewer/krviewer.h"
-
 
 
 #ifdef __KJSEMBED__

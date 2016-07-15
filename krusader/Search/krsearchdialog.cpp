@@ -52,7 +52,6 @@
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
-#include "krsearchmod.h"
 #include "../krglobal.h"
 #include "../kractions.h"
 #include "../krservices.h"

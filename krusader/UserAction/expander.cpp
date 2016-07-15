@@ -60,8 +60,6 @@ using namespace std;
 
 #define NEED_PANEL if (panel==0) { panelMissingError(_expression,exp); return QString(); }
 
-#include "tstring.h"
-
 
 inline void exp_placeholder::setError(Expander& exp, const Error& e)
 {
