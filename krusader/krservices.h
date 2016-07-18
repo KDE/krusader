@@ -39,7 +39,7 @@ public:
     static QString      chooseFullPathName(QStringList names, QString confName);
     static QString      fullPathName(QString name, QString confName = QString());
     static QString      registeredProtocol(QString mimetype);
-    static QString      getPath(const QUrl &url, QUrl::FormattingOptions options = QUrl::PrettyDecoded);
+    static QString      urlToLocalPath(const QUrl &url);
     static void         clearProtocolCache();
     static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines = false);
     static bool         fileToStringList(QFile *file, QStringList& target, bool keepEmptyLines = false);

@@ -398,7 +398,7 @@ void ListPanelFunc::doRefresh()
 
     // on local file system change the working directory
     if (files() ->vfs_getType() == vfs::VFS_NORMAL)
-        QDir::setCurrent(KrServices::getPath(files()->vfs_getOrigin()));
+        QDir::setCurrent(KrServices::urlToLocalPath(files()->vfs_getOrigin()));
 
     // see if the open url operation failed, and if so,
     // put the attempted url in the navigator bar and let the user change it

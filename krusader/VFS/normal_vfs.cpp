@@ -64,7 +64,7 @@ normal_vfs::normal_vfs(QObject* panel): vfs(panel), watcher(0)
 
 bool normal_vfs::populateVfsList(const QUrl &origin, bool showHidden)
 {
-    QString path = KrServices::getPath(origin, QUrl::StripTrailingSlash);
+    QString path = KrServices::urlToLocalPath(origin);
 #ifdef Q_WS_WIN
     if (! path.contains("/")) {  //change C: to C:/
         path = path + QString("/");

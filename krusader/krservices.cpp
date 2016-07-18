@@ -213,9 +213,12 @@ QString KrServices::escape(QString name)
     return name;
 }
 
-QString KrServices::getPath(const QUrl &url, QUrl::FormattingOptions options)
+QString KrServices::urlToLocalPath(const QUrl &url)
 {
-    QString path = url.toDisplayString(options | QUrl::PreferLocalFile);
+    QUrl fileUrl = QUrl(url);
+    // QUrl::toLocalFile() does not work if the protocol is "file" e.g. when opening an archive
+    fileUrl.setScheme("file");
+    QString path = fileUrl.toLocalFile();
     REPLACE_DIR_SEP2(path);
 
 #ifdef Q_WS_WIN

@@ -38,7 +38,7 @@ vfs::VFS_TYPE KrVfsHandler::getVfsType(const QUrl &url)
     QString protocol = url.scheme();
 
     if ((protocol == "krarc" || protocol == "tar" || protocol == "zip") &&
-            QDir(KrServices::getPath(url, QUrl::StripTrailingSlash)).exists())
+            QDir(KrServices::urlToLocalPath(url)).exists())
         return vfs::VFS_NORMAL;
 
     if (url.isLocalFile())
