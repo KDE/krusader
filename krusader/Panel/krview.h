@@ -180,6 +180,12 @@ public:
     void emitRefreshActions() {
         emit refreshActions();
     }
+    void emitGoBack() {
+        emit goBack();
+    }
+    void emitGoForward() {
+        emit goForward();
+    }
 
     bool searchItem(const QString &, bool, int = 0); // search for item and set cursor
     bool filterSearch(const QString &, bool); // filter view items
@@ -214,6 +220,8 @@ signals:
     void dirUp();
     void calcSpace(KrViewItem *item);
     void refreshActions();
+    void goBack();
+    void goForward();
 
 protected slots:
     void saveDefaultSettings();

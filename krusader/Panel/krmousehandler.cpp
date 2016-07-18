@@ -164,6 +164,14 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
             return true;
         }
     }
+    if (e->button() == Qt::ForwardButton) {
+        _view->op()->emitGoForward();
+        return true;
+    }
+    if (e->button() == Qt::BackButton) {
+        _view->op()->emitGoBack();
+        return true;
+    }
     return false;
 }
 
@@ -297,6 +305,7 @@ bool KrMouseHandler::wheelEvent(QWheelEvent *e)
             _view->zoomOut();
         }
         e->accept();
+        return true;
     }
 
     return false;

@@ -439,6 +439,8 @@ void ListPanel::createView()
     connect(view->op(), SIGNAL(previewJobStarted(KJob*)), this, SLOT(slotPreviewJobStarted(KJob*)));
     connect(view->op(), SIGNAL(refreshActions()), krApp->viewActions(), SLOT(refreshActions()));
     connect(view->op(), SIGNAL(currentChanged(KrViewItem*)), func->history, SLOT(saveCurrentItem()));
+    connect(view->op(), &KrViewOperator::goBack, func, &ListPanelFunc::historyBackward);
+    connect(view->op(), &KrViewOperator::goForward, func, &ListPanelFunc::historyForward);
 
     view->setFiles(func->files());
 
