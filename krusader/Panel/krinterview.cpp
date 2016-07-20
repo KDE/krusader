@@ -19,11 +19,12 @@
  *****************************************************************************/
 
 #include "krinterview.h"
-#include "krvfsmodel.h"
-#include "krinterviewitem.h"
+
 #include "krcolorcache.h"
 #include "krmousehandler.h"
 #include "krpreviews.h"
+#include "krvfsmodel.h"
+#include "krviewitem.h"
 #include "../VFS/vfilecontainer.h"
 
 KrInterView::KrInterView(KrViewInstance &instance, KConfig *cfg,
@@ -48,7 +49,7 @@ KrInterView::~KrInterView()
     _model = 0;
     delete _mouseHandler;
     _mouseHandler = 0;
-    QHashIterator< vfile *, KrInterViewItem *> it(_itemHash);
+    QHashIterator< vfile *, KrViewItem *> it(_itemHash);
     while (it.hasNext())
         delete it.next().value();
     _itemHash.clear();
@@ -105,7 +106,7 @@ KrViewItem* KrInterView::findItemByName(const QString &name)
     QModelIndex ndx = _model->nameIndex(name);
     if (!ndx.isValid())
         return 0;
-    return getKrInterViewItem(ndx);
+    return getKrViewItem(ndx);
 }
 
 QString KrInterView::getCurrentItem() const
@@ -124,7 +125,7 @@ KrViewItem* KrInterView::getCurrentKrViewItem()
     if (!_model->ready())
         return 0;
 
-    return getKrInterViewItem(_itemView->currentIndex());
+    return getKrViewItem(_itemView->currentIndex());
 }
 
 KrViewItem* KrInterView::getFirst()
@@ -132,7 +133,7 @@ KrViewItem* KrInterView::getFirst()
     if (!_model->ready())
         return 0;
 
-    return getKrInterViewItem(_model->index(0, 0, QModelIndex()));
+    return getKrViewItem(_model->index(0, 0, QModelIndex()));
 }
 
 KrViewItem* KrInterView::getLast()
@@ -140,7 +141,7 @@ KrViewItem* KrInterView::getLast()
     if (!_model->ready())
         return 0;
 
-    return getKrInterViewItem(_model->index(_model->rowCount() - 1, 0, QModelIndex()));
+    return getKrViewItem(_model->index(_model->rowCount() - 1, 0, QModelIndex()));
 }
 
 KrViewItem* KrInterView::getNext(KrViewItem *current)
@@ -149,7 +150,7 @@ KrViewItem* KrInterView::getNext(KrViewItem *current)
     QModelIndex ndx = _model->vfileIndex(vf);
     if (ndx.row() >= _model->rowCount() - 1)
         return 0;
-    return getKrInterViewItem(_model->index(ndx.row() + 1, 0, QModelIndex()));
+    return getKrViewItem(_model->index(ndx.row() + 1, 0, QModelIndex()));
 }
 
 KrViewItem* KrInterView::getPrev(KrViewItem *current)
@@ -158,7 +159,7 @@ KrViewItem* KrInterView::getPrev(KrViewItem *current)
     QModelIndex ndx = _model->vfileIndex(vf);
     if (ndx.row() <= 0)
         return 0;
-    return getKrInterViewItem(_model->index(ndx.row() - 1, 0, QModelIndex()));
+    return getKrViewItem(_model->index(ndx.row() - 1, 0, QModelIndex()));
 }
 
 KrViewItem* KrInterView::getKrViewItemAt(const QPoint &vp)
@@ -166,25 +167,25 @@ KrViewItem* KrInterView::getKrViewItemAt(const QPoint &vp)
     if (!_model->ready())
         return 0;
 
-    return getKrInterViewItem(_itemView->indexAt(vp));
+    return getKrViewItem(_itemView->indexAt(vp));
 }
 
 KrViewItem *KrInterView::findItemByVfile(vfile *vf) {
-    return getKrInterViewItem(vf);
+    return getKrViewItem(vf);
 }
 
-KrInterViewItem * KrInterView::getKrInterViewItem(vfile *vf)
+KrViewItem * KrInterView::getKrViewItem(vfile *vf)
 {
-    QHash<vfile *, KrInterViewItem*>::iterator it = _itemHash.find(vf);
+    QHash<vfile *, KrViewItem*>::iterator it = _itemHash.find(vf);
     if (it == _itemHash.end()) {
-        KrInterViewItem * newItem =  new KrInterViewItem(this, vf);
+        KrViewItem * newItem =  new KrViewItem(vf, this);
         _itemHash[ vf ] = newItem;
         return newItem;
     }
     return *it;
 }
 
-KrInterViewItem * KrInterView::getKrInterViewItem(const QModelIndex & ndx)
+KrViewItem * KrInterView::getKrViewItem(const QModelIndex & ndx)
 {
     if (!ndx.isValid())
         return 0;
@@ -192,7 +193,7 @@ KrInterViewItem * KrInterView::getKrInterViewItem(const QModelIndex & ndx)
     if (vf == 0)
         return 0;
     else
-        return getKrInterViewItem(vf);
+        return getKrViewItem(vf);
 }
 
 void KrInterView::makeCurrentVisible()
@@ -248,7 +249,7 @@ void KrInterView::clear()
     _itemView->clearSelection();
     _itemView->setCurrentIndex(QModelIndex());
     _model->clear();
-    QHashIterator< vfile *, KrInterViewItem *> it(_itemHash);
+    QHashIterator< vfile *, KrViewItem *> it(_itemHash);
     while (it.hasNext())
         delete it.next().value();
     _itemHash.clear();
@@ -267,7 +268,7 @@ KrViewItem* KrInterView::preAddItem(vfile *vf)
     QModelIndex idx = _model->addItem(vf);
     if(_model->rowCount() == 1) // if this is the fist item to be added, make it current
         _itemView->setCurrentIndex(idx);
-    return getKrInterViewItem(idx);
+    return getKrViewItem(idx);
 }
 
 void KrInterView::preDelItem(KrViewItem *item)

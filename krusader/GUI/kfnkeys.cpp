@@ -36,11 +36,11 @@
 #include <KI18n/KLocalizedString>
 
 #include "../defaults.h"
-#include "../filemanagerwindow.h"
+#include "../krmainwindow.h"
 #include "../kractions.h"
 #include "../Panel/listpanelactions.h"
 
-KFnKeys::KFnKeys(QWidget *parent, FileManagerWindow *mainWindow) :
+KFnKeys::KFnKeys(QWidget *parent, KrMainWindow *mainWindow) :
         QWidget(parent), mainWindow(mainWindow)
 {
     ////////////////////////////////

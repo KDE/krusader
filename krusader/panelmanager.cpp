@@ -22,7 +22,7 @@
 #include "defaults.h"
 #include "tabactions.h"
 #include "krusaderview.h"
-#include "filemanagerwindow.h"
+#include "krmainwindow.h"
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
 #include "Panel/krviewfactory.h"
@@ -43,7 +43,7 @@
 
 #define HIDE_ON_SINGLE_TAB  false
 
-PanelManager::PanelManager(QWidget *parent, FileManagerWindow* mainWindow, bool left) :
+PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left) :
         QWidget(parent),
         _otherManager(0),
         _actions(mainWindow->tabActions()),

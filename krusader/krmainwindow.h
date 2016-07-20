@@ -19,12 +19,24 @@
 #ifndef KRMAINWINDOW_H
 #define KRMAINWINDOW_H
 
-class QWidget;
-class KrView;
+#include <QAction>
+#include <QWidget>
+
+#include "krmainwindow.h"
+#include "abstractpanelmanager.h"
+
 class KActionCollection;
+class KrPanel;
+class KrActions;
+class KrView;
+class ListPanelActions;
+class PopularUrls;
+class TabActions;
 class ViewActions;
 
-// abstract interface to the main window
+/**
+ * @brief Abstract file manager main window
+ */
 class KrMainWindow
 {
 public:
@@ -33,9 +45,24 @@ public:
     virtual KrView *activeView() = 0;
     virtual ViewActions *viewActions() = 0;
     virtual KActionCollection *actions() = 0;
+    virtual AbstractPanelManager *activeManager() = 0;
+    virtual AbstractPanelManager *leftManager() = 0;
+    virtual AbstractPanelManager *rightManager() = 0;
+    virtual PopularUrls *popularUrls() = 0;
+    virtual KrActions *krActions() = 0;
+    virtual ListPanelActions *listPanelActions() = 0;
+    virtual TabActions *tabActions() = 0;
+    virtual void plugActionList(const char *name, QList<QAction*> &list) = 0;
 
-//     void enableAction(const char *name, bool enable);
-//     QAction *action(const char *name);
+    KrPanel *activePanel() {
+        return activeManager()->currentPanel();
+    }
+    KrPanel *leftPanel() {
+        return leftManager()->currentPanel();
+    }
+    KrPanel *rightPanel() {
+        return rightManager()->currentPanel();
+    }
 };
 
 #endif // KRMAINWINDOW_H

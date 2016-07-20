@@ -42,7 +42,7 @@
 
 #include "../kractions.h"
 #include "../krusaderview.h"
-#include "../filemanagerwindow.h"
+#include "../krmainwindow.h"
 #include "kcmdline.h"
 #include "../VFS/vfs.h"
 #include "../Panel/listpanel.h"
@@ -53,7 +53,7 @@
 /**
  * A widget containing the konsolepart for the Embedded terminal emulator
  */
-TerminalDock::TerminalDock(QWidget* parent, FileManagerWindow *mainWindow) : QWidget(parent),
+TerminalDock::TerminalDock(QWidget* parent, KrMainWindow *mainWindow) : QWidget(parent),
     _mainWindow(mainWindow), konsole_part(0), t(0), initialised(false)
 {
     terminal_hbox = new QHBoxLayout(this);

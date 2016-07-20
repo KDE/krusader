@@ -38,7 +38,7 @@
 // QtWidgets
 #include <QAction>
 
-class FileManagerWindow;
+class KrMainWindow;
 class KrPanel;
 class ListPanelFunc;
 
@@ -46,7 +46,7 @@ class ListPanelActions : public ActionsBase
 {
     Q_OBJECT
 public:
-    ListPanelActions(QObject *parent, FileManagerWindow *mainWindow);
+    ListPanelActions(QObject *parent, KrMainWindow *mainWindow);
 
 public slots:
     // set view type

@@ -18,6 +18,9 @@
  *****************************************************************************/
 
 #include "krviewitem.h"
+
+#include "krinterview.h"
+#include "krvfsmodel.h"
 #include "../VFS/krpermhandler.h"
 
 // QtCore
@@ -31,9 +34,12 @@
 
 #define PROPS static_cast<const KrViewProperties*>(_viewProperties)
 
-KrViewItem::KrViewItem(vfile *vf, const KrViewProperties* properties):
-        _vf(vf), dummyVfile(false), _viewProperties(properties), _hasExtension(false), _hidden(false), _extension("")
+KrViewItem::KrViewItem(vfile *vf, KrInterView *parentView):
+        _vf(vf), _view(parentView), _viewProperties(parentView->properties()), _hasExtension(false),
+        _hidden(false), _extension("")
 {
+    dummyVfile = parentView->_model->dummyVfile() == vf;
+
     if (vf) {
         // check if the file has an extension
         const QString& vfName = vf->vfile_getName();
@@ -136,4 +142,24 @@ QPixmap KrViewItem::icon()
     if (dummyVfile || !_viewProperties->displayIcons)
         return QPixmap();
     else return KrView::getIcon(_vf, true);
+}
+
+bool KrViewItem::isSelected() const {
+    return _view->isSelected(_vf);
+}
+
+void KrViewItem::setSelected(bool s) {
+    _view->setSelected(_vf, s);
+    if(!_view->op()->isMassSelectionUpdate()) {
+        redraw();
+        _view->op()->emitSelectionChanged();
+    }
+}
+
+QRect KrViewItem::itemRect() const {
+    return _view->itemRect(_vf);
+}
+
+void KrViewItem::redraw() {
+    _view->_itemView->viewport()->update(itemRect());
 }

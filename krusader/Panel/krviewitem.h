@@ -24,20 +24,27 @@
 #include "krview.h"
 
 // QtCore
+#include <QRect>
 #include <QString>
 // QtGui
 #include <QPixmap>
 
 #include <KIO/Global>
 
-class QPixmap;
+class KrInterView;
 
+/**
+ * @brief A view item representing a file inside a KrView
+ */
 class KrViewItem
 {
     friend class KrView;
     friend class KrCalcSpaceDialog;
 
 public:
+    KrViewItem(vfile *vf, KrInterView *parentView);
+    virtual ~KrViewItem() {}
+
     virtual const QString& name(bool withExtension = true) const;
     virtual inline bool hasExtension() const {
         return _hasExtension;
@@ -47,14 +54,13 @@ public:
     }
     virtual QString dateTime() const;
     virtual QString description() const;
-    virtual bool isSelected() const = 0;
-    virtual void setSelected(bool s) = 0;
-    virtual QPixmap icon();
-    virtual QRect itemRect() const = 0;
-    virtual void redraw() = 0;
 
-    KrViewItem(vfile *vf, const KrViewProperties* properties);
-    virtual ~KrViewItem() {}
+    virtual QPixmap icon();
+
+    bool isSelected() const;
+    void setSelected(bool s);
+    QRect itemRect() const;
+    void redraw();
 
     // DON'T USE THOSE OUTSIDE THE VIEWS!!!
     inline const vfile* getVfile() const {
@@ -80,6 +86,7 @@ public:
 
 protected:
     vfile* _vf;   // each view item holds a pointer to a corresponding vfile for fast access
+    KrInterView * _view; // the parent view this item belongs to
     bool dummyVfile; // used in case our item represents the ".." (updir) item
     const KrViewProperties* _viewProperties;
     bool _hasExtension;

@@ -32,9 +32,8 @@
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KDirLister>
 
-#include "krinterviewitem.h"
 #include "krviewfactory.h"
-#include "krinterviewitemdelegate.h"
+#include "krviewitemdelegate.h"
 #include "krviewitem.h"
 #include "krvfsmodel.h"
 #include "../VFS/krpermhandler.h"
@@ -71,7 +70,7 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
     KrStyleProxy *krstyle = new KrStyleProxy();
     krstyle->setParent(this);
     setStyle(krstyle);
-    setItemDelegate(new KrInterViewItemDelegate(this));
+    setItemDelegate(new KrViewItemDelegate(this));
     setMouseTracking(true);
     setAcceptDrops(true);
     setDropIndicatorShown(true);
@@ -94,7 +93,7 @@ KrInterDetailedView::~KrInterDetailedView()
 void KrInterDetailedView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
     if (_model->ready()) {
-        KrViewItem * item = getKrInterViewItem(currentIndex());
+        KrViewItem * item = getKrViewItem(currentIndex());
         op()->emitCurrentChanged(item);
     }
     QTreeView::currentChanged(current, previous);

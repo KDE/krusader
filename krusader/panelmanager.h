@@ -35,7 +35,7 @@
 class QStackedWidget;
 class QToolButton;
 class ListPanel;
-class FileManagerWindow;
+class KrMainWindow;
 class TabActions;
 
 /**
@@ -52,7 +52,7 @@ public:
      * (self, other, active), which enables it to manage pointers held by the panels transparently.
      * It also receives a bool (left) which is true if the manager is the left one, or false otherwise.
      */
-    PanelManager(QWidget *parent, FileManagerWindow* mainWindow, bool left);
+    PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left);
 
     void saveSettings(KConfigGroup config, bool saveHistory);
     void loadSettings(KConfigGroup config);

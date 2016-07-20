@@ -1,7 +1,6 @@
 include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
 
 set(Panel_SRCS
-    kritemview.cpp
     viewactions.cpp
     listpanelactions.cpp
     dirhistoryqueue.cpp
@@ -26,8 +25,8 @@ set(Panel_SRCS
     krinterview.cpp
     krinterbriefview.cpp
     krinterdetailedview.cpp
-    krinterviewitemdelegate.cpp
     krviewfactory.cpp
+    krviewitemdelegate.cpp
     krmousehandler.cpp
     krsearchbar.cpp)
 

@@ -36,7 +36,7 @@
 #include <config.h>
 #endif
 
-#include "filemanagerwindow.h"
+#include "krmainwindow.h"
 
 // QtCore
 #include <QCommandLineParser>
@@ -72,8 +72,12 @@ class QueueManager;
 class ViewActions;
 class ListPanelActions;
 class TabActions;
+class KrView;
 
-class Krusader : public KParts::MainWindow, public FileManagerWindow
+/**
+ * @brief The main window of this file manager
+ */
+class Krusader : public KParts::MainWindow, public KrMainWindow
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.krusader.Instance")
@@ -93,7 +97,6 @@ public:
     virtual KActionCollection *actions() {
         return actionCollection();
     }
-    // FileManagerWindow implementation
     virtual AbstractPanelManager *activeManager() Q_DECL_OVERRIDE;
     virtual AbstractPanelManager *leftManager() Q_DECL_OVERRIDE;
     virtual AbstractPanelManager *rightManager() Q_DECL_OVERRIDE;
@@ -172,6 +175,9 @@ signals:
     void changeMessage(QString);
     // emitted when we are about to quit
     void shutdown();
+
+private:
+    void acceptClose();
 
 private:
     KrActions *_krActions;

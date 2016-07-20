@@ -20,7 +20,7 @@
 
 #include "tabactions.h"
 
-#include "filemanagerwindow.h"
+#include "krmainwindow.h"
 #include "panelmanager.h"
 #include "Panel/listpanel.h"
 
@@ -29,7 +29,7 @@
 
 #include <KI18n/KLocalizedString>
 
-TabActions::TabActions(QObject *parent, FileManagerWindow *mainWindow) : ActionsBase(parent, mainWindow)
+TabActions::TabActions(QObject *parent, KrMainWindow *mainWindow) : ActionsBase(parent, mainWindow)
 {
     actNewTab = action(i18n("New Tab"), "tab-new", QKeySequence::keyBindings(QKeySequence::AddTab), this, SLOT(newTab()), "new tab");
     actDupTab = action(i18n("Duplicate Current Tab"), "tab-duplicate", Qt::ALT + Qt::CTRL + Qt::SHIFT + Qt::Key_N, SLOT(duplicateTab()), "duplicate tab");
@@ -45,7 +45,7 @@ TabActions::TabActions(QObject *parent, FileManagerWindow *mainWindow) : Actions
 inline PanelManager *TabActions::activeManager()
 {
     return static_cast<PanelManager*>(
-        static_cast<FileManagerWindow*>(_mainWindow)->activeManager());
+        static_cast<KrMainWindow*>(_mainWindow)->activeManager());
 }
 
 void TabActions::refreshActions()
@@ -70,7 +70,7 @@ void TabActions::newTab()
 
 void TabActions::duplicateTab()
 {
-    KrPanel *activePanel = static_cast<FileManagerWindow*>(_mainWindow)->activePanel();
+    KrPanel *activePanel = static_cast<KrMainWindow*>(_mainWindow)->activePanel();
     activeManager()->newTab(activePanel->virtualPath(), activePanel);
 }
 

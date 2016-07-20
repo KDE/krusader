@@ -24,21 +24,21 @@
 #include <QItemSelection>
 #include <QItemSelectionRange>
 // QtGui
+#include <QFontMetrics>
 #include <QPainter>
 #include <QRegion>
 // QtWidgets
 #include <QDirModel>
-#include <QHeaderView>
 #include <QApplication>
 #include <QMenu>
 #include <QScrollBar>
 
+#include <KConfigCore/KConfig>
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KDirLister>
 
-#include "krinterviewitem.h"
 #include "krviewfactory.h"
-#include "krinterviewitemdelegate.h"
+#include "krviewitemdelegate.h"
 #include "krviewitem.h"
 #include "krvfsmodel.h"
 #include "krmousehandler.h"
@@ -49,9 +49,27 @@
 
 
 KrInterBriefView::KrInterBriefView(QWidget *parent, KrViewInstance &instance, KConfig *cfg) :
-        KrItemView(parent, instance, cfg),
+        QAbstractItemView(parent),
+        KrInterView(instance, cfg, this),
         _header(0)
 {
+    setWidget(this);
+    setModel(_model);
+
+    setSelectionMode(QAbstractItemView::NoSelection);
+    setSelectionModel(new DummySelectionModel(_model, this));
+
+    KConfigGroup grpSvr(_config, "Look&Feel");
+    _viewFont = grpSvr.readEntry("Filelist Font", _FilelistFont);
+
+    setStyle(new KrStyleProxy());
+    setItemDelegate(new KrViewItemDelegate());
+    setMouseTracking(true);
+    setAcceptDrops(true);
+    setDropIndicatorShown(true);
+
+    connect(_mouseHandler, SIGNAL(renameCurrentItem()), SLOT(renameCurrentItem()));
+
     _model->setExtensionEnabled(false);
     _model->setAlternatingTable(true);
     connect(_model, SIGNAL(layoutChanged()), SLOT(updateGeometries()));
@@ -61,6 +79,9 @@ KrInterBriefView::~KrInterBriefView()
 {
     delete _properties;
     _properties = 0;
+
+    delete _operator;
+    _operator = 0;
 }
 
 void KrInterBriefView::doRestoreSettings(KConfigGroup group)
@@ -73,14 +94,14 @@ void KrInterBriefView::doRestoreSettings(KConfigGroup group)
 
     _numOfColumns = _properties->numberOfColumns;
 
-    KrItemView::doRestoreSettings(group);
+    KrInterView::doRestoreSettings(group);
 
     updateGeometries();
 }
 
 void KrInterBriefView::saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties)
 {
-    KrItemView::saveSettings(grp, properties);
+    KrInterView::saveSettings(grp, properties);
     if(properties & KrViewProperties::PropColumns)
         grp.writeEntry("Number Of Brief Columns", _numOfColumns);
 }
@@ -567,4 +588,116 @@ void KrInterBriefView::copySettingsFrom(KrView *other)
         _model->sort(column, sortDir);
         setFileIconSize(v->fileIconSize());
     }
+}
+
+
+void KrInterBriefView::setFileIconSize(int size)
+{
+    KrView::setFileIconSize(size);
+    setIconSize(QSize(fileIconSize(), fileIconSize()));
+    updateGeometries();
+}
+
+void KrInterBriefView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
+{
+    if (_model->ready()) {
+        KrViewItem * item = getKrViewItem(currentIndex());
+        op()->emitCurrentChanged(item);
+    }
+    QAbstractItemView::currentChanged(current, previous);
+}
+
+void KrInterBriefView::renameCurrentItem()
+{
+    QModelIndex cIndex = currentIndex();
+    QModelIndex nameIndex = _model->index(cIndex.row(), KrViewProperties::Name);
+    edit(nameIndex);
+    updateEditorData();
+    update(nameIndex);
+}
+
+bool KrInterBriefView::event(QEvent * e)
+{
+    _mouseHandler->otherEvent(e);
+    return QAbstractItemView::event(e);
+}
+
+void KrInterBriefView::mousePressEvent(QMouseEvent * ev)
+{
+    if (!_mouseHandler->mousePressEvent(ev))
+        QAbstractItemView::mousePressEvent(ev);
+}
+
+void KrInterBriefView::mouseReleaseEvent(QMouseEvent * ev)
+{
+    if (!_mouseHandler->mouseReleaseEvent(ev))
+        QAbstractItemView::mouseReleaseEvent(ev);
+}
+
+void KrInterBriefView::mouseDoubleClickEvent(QMouseEvent *ev)
+{
+    if (!_mouseHandler->mouseDoubleClickEvent(ev))
+        QAbstractItemView::mouseDoubleClickEvent(ev);
+}
+
+void KrInterBriefView::mouseMoveEvent(QMouseEvent * ev)
+{
+    if (!_mouseHandler->mouseMoveEvent(ev))
+        QAbstractItemView::mouseMoveEvent(ev);
+}
+
+void KrInterBriefView::dragEnterEvent(QDragEnterEvent *ev)
+{
+    if (!_mouseHandler->dragEnterEvent(ev))
+        QAbstractItemView::dragEnterEvent(ev);
+}
+
+void KrInterBriefView::dragMoveEvent(QDragMoveEvent *ev)
+{
+    QAbstractItemView::dragMoveEvent(ev);
+    _mouseHandler->dragMoveEvent(ev);
+}
+
+void KrInterBriefView::dragLeaveEvent(QDragLeaveEvent *ev)
+{
+    if (!_mouseHandler->dragLeaveEvent(ev))
+        QAbstractItemView::dragLeaveEvent(ev);
+}
+
+void KrInterBriefView::dropEvent(QDropEvent *ev)
+{
+    if (!_mouseHandler->dropEvent(ev))
+        QAbstractItemView::dropEvent(ev);
+}
+
+bool KrInterBriefView::viewportEvent(QEvent * event)
+{
+    if (event->type() == QEvent::ToolTip) {
+        QHelpEvent *he = static_cast<QHelpEvent*>(event);
+        const QModelIndex index = indexAt(he->pos());
+
+        if (index.isValid()) {
+            int width = visualRect(index).width();
+            int textWidth = elementWidth(index);
+
+            if (textWidth <= width) {
+                event->accept();
+                return true;
+            }
+        }
+    }
+    return QAbstractItemView::viewportEvent(event);
+}
+
+QRect KrInterBriefView::mapToViewport(const QRect &rect) const
+{
+    if (!rect.isValid())
+        return rect;
+
+    QRect result = rect;
+
+    int dx = -horizontalOffset();
+    int dy = -verticalOffset();
+    result.adjust(dx, dy, dx, dy);
+    return result;
 }

@@ -423,91 +423,78 @@ bool Krusader::queryClose() {
         return false;
 
     if (qApp->isSavingSession()) { // KDE is logging out, accept the close
-        saveSettings();
-
-        emit shutdown();
-
-        // Removes the DBUS registration of the application. Single instance mode requires unique appid.
-        // As Krusader is exiting, we release that unique appid, so new Krusader instances
-        // can be started.
-
-        QDBusConnection dbus = QDBusConnection::sessionBus();
-        dbus.unregisterObject("/Instances/" + Krusader::AppName);
-
-        return isExiting = true;              // this will also kill the pending jobs
+        acceptClose();
+        return true;
     }
 
     KConfigGroup cfg = krConfig->group("Look&Feel");
-    bool quit = true;
-
     if (cfg.readEntry("Warn On Exit", _WarnOnExit)) {
-        switch (KMessageBox::warningYesNo(this,
-                                          i18n("Are you sure you want to quit?"))) {
-        case KMessageBox::Yes :
-            quit = true;
-            break;
-        case KMessageBox::No :
-            quit = false;
-            break;
-        default:
-            quit = false;
+        // If user decides to cancel...
+        if (KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit?"))
+            != KMessageBox::Yes) {
+            // ... stop quit
+            return false;
         }
     }
-    if (quit) {
-        /* First try to close the child windows, because it's the safer
-           way to avoid crashes, then close the main window.
-           If closing a child is not successful, then we cannot let the
-           main window close. */
 
-        for (;;) {
-            QWidgetList list = QApplication::topLevelWidgets();
-            QWidget *activeModal = QApplication::activeModalWidget();
-            QWidget *w = list.at(0);
+    /* First try to close the child windows, because it's the safer
+       way to avoid crashes, then close the main window.
+       If closing a child is not successful, then we cannot let the
+       main window close. */
 
-            if (activeModal &&
-                    activeModal != this &&
-                    activeModal != menuBar() &&
-                    list.contains(activeModal) &&
-                    !activeModal->isHidden()) {
-                w = activeModal;
-            } else {
-                int i = 1;
-                for (; i < list.count(); ++i) {
-                    w = list.at(i);
-                    if (!(w && (w == this || w->isHidden() || w == menuBar())))
-                        break;
-                }
+    for (;;) {
+        QWidgetList list = QApplication::topLevelWidgets();
+        QWidget *activeModal = QApplication::activeModalWidget();
+        QWidget *w = list.at(0);
 
-                if (i == list.count())
-                    w = 0;
+        if (activeModal &&
+                activeModal != this &&
+                activeModal != menuBar() &&
+                list.contains(activeModal) &&
+                !activeModal->isHidden()) {
+            w = activeModal;
+        } else {
+            int i = 1;
+            for (; i < list.count(); ++i) {
+                w = list.at(i);
+                if (!(w && (w == this || w->isHidden() || w == menuBar())))
+                    break;
             }
 
-            if (!w) break;
-
-            if (!w->close()) {
-                if (w->inherits("QDialog"))
-                    fprintf(stderr, "Failed to close: %s\n", w->metaObject()->className());
-
-                return false;
-            }
+            if (i == list.count())
+                w = 0;
         }
 
-        saveSettings();
-        krConfig->sync();
+        if (!w) break;
 
-        emit shutdown();
+        if (!w->close()) {
+            if (w->inherits("QDialog")) {
+                fprintf(stderr, "Failed to close: %s\n", w->metaObject()->className());
+            }
+            return false;
+        }
+    }
 
-        isExiting = true;
+    acceptClose();
+    return true;
+}
 
-        // Removes the DBUS registration of the application. Single instance mode requires unique appid.
-        // As Krusader is exiting, we release that unique appid, so new Krusader instances
-        // can be started.
+void Krusader::acceptClose() {
+    saveSettings();
+    krConfig->sync();
 
-        QDBusConnection dbus = QDBusConnection::sessionBus();
-        dbus.unregisterObject("/Instances/" + Krusader::AppName);
-        return true;
-    } else
-        return false;
+    emit shutdown();
+
+    // Removes the DBUS registration of the application. Single instance mode requires unique appid.
+    // As Krusader is exiting, we release that unique appid, so new Krusader instances
+    // can be started.
+
+    QDBusConnection dbus = QDBusConnection::sessionBus();
+    dbus.unregisterObject("/Instances/" + Krusader::AppName);
+
+    isExiting = true; // this will also kill the pending jobs
+
+    return;
 }
 
 // the please wait dialog functions

@@ -23,7 +23,7 @@
 #include "../krglobal.h"
 #include "../krslots.h"
 #include "../kractions.h"
-#include "../filemanagerwindow.h"
+#include "../krmainwindow.h"
 #include "../Dialogs/popularurls.h"
 #include "../VFS/vfs.h"
 #include "../Panel/krpanel.h"
@@ -51,7 +51,7 @@
 #define BOOKMARKS_FILE "krusader/krbookmarks.xml"
 #define CONNECT_BM(X) { disconnect(X, SIGNAL(activated(const QUrl&)), 0, 0); connect(X, SIGNAL(activated(const QUrl&)), this, SLOT(slotActivated(const QUrl&))); }
 
-KrBookmarkHandler::KrBookmarkHandler(FileManagerWindow *mainWindow) : QObject(mainWindow->widget()),
+KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) : QObject(mainWindow->widget()),
         _mainWindow(mainWindow), _middleClick(false), _mainBookmarkPopup(0), _specialBookmarks()
 {
     // create our own action collection and make the shortcuts apply only to parent

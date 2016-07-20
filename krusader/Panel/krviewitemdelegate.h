@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (C) 2010 Jan Lepper <dehtris@yahoo.de>                          *
+ * Copyright (C) 2009 Csaba Karai <cskarai@freemail.hu>                      *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -16,31 +16,27 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include "krmainwindow.h"
+#ifndef KRVIEWITEMDELEGATE_H
+#define KRVIEWITEMDELEGATE_H
 
-// QtCore
-#include <QtGlobal>
 // QtWidgets
-#include <QAction>
+#include <QItemDelegate>
 
-#include <KXmlGui/KActionCollection>
+class KrViewItemDelegate : public QItemDelegate
+{
+public:
+    KrViewItemDelegate(QObject *parent = 0);
 
-#include <stdio.h>
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    void drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const;
+    QWidget * createEditor(QWidget *parent, const QStyleOptionViewItem &sovi, const QModelIndex &index) const;
+    void setEditorData(QWidget *editor, const QModelIndex &index) const;
+    QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
+    bool eventFilter(QObject *object, QEvent *event);
 
+private:
+    mutable int _currentlyEdited;
+    mutable bool _dontDraw;
+};
 
-// void KrMainWindow::enableAction(const char *name, bool enable)
-// {
-//     QAction *act = actions()->action(name);
-//     if(act)
-//         act->setEnabled(enable);
-//     else
-//         fprintf(stderr, "no such action: \"%s\"\n", name);
-// }
-// 
-// QAction* KrMainWindow::action(const char *name)
-// {
-//     QAction *act = actions()->action(name);
-//     if(!act)
-//         qFatal("no such action: \"%s\"", name);
-//     return act;
-// }
+#endif

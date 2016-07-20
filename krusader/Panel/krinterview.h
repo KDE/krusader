@@ -28,14 +28,18 @@
 
 #include "krview.h"
 
-class KrInterViewItem;
 class KrVfsModel;
 class KrMouseHandler;
 class KrViewItem;
 
+/**
+ * @brief Abstract intermediate class between KrView and full view implementations.
+ *
+ * It contains the methods common to all implementing subclasses of KrView.
+ */
 class KrInterView : public KrView
 {
-    friend class KrInterViewItem;
+    friend class KrViewItem;
 public:
     KrInterView(KrViewInstance &instance, KConfig *cfg, QAbstractItemView *itemView);
     virtual ~KrInterView();
@@ -97,8 +101,8 @@ protected:
 
     virtual QRect itemRect(const vfile *vf) = 0;
 
-    KrInterViewItem * getKrInterViewItem(vfile *vf);
-    KrInterViewItem * getKrInterViewItem(const QModelIndex &);
+    KrViewItem * getKrViewItem(vfile *vf);
+    KrViewItem * getKrViewItem(const QModelIndex &);
     bool isSelected(const vfile *vf) const {
         return _selection.contains(vf);
     }
@@ -108,7 +112,7 @@ protected:
     KrVfsModel *_model;
     QAbstractItemView *_itemView;
     KrMouseHandler *_mouseHandler;
-    QHash<vfile *, KrInterViewItem*> _itemHash;
+    QHash<vfile *, KrViewItem*> _itemHash;
     QSet<const vfile*> _selection;
 };
 

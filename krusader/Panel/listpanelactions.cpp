@@ -34,7 +34,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "listpanel.h"
 #include "panelfunc.h"
 #include "krviewfactory.h"
-#include "../filemanagerwindow.h"
+#include "../krmainwindow.h"
 #include "../Dialogs/krdialogs.h"
 #include "../KViewer/krviewer.h"
 
@@ -47,7 +47,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KXmlGui/KActionCollection>
 
 
-ListPanelActions::ListPanelActions(QObject *parent, FileManagerWindow *mainWindow) :
+ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
         ActionsBase(parent, mainWindow)
 {
     // set view type
@@ -158,22 +158,22 @@ void ListPanelActions::guiUpdated()
     QList<QAction*> actions;
     foreach(QAction *action, setViewActions.values())
         actions << action;
-    static_cast<FileManagerWindow*>(_mainWindow)->plugActionList("view_actionlist", actions);
+    static_cast<KrMainWindow*>(_mainWindow)->plugActionList("view_actionlist", actions);
 }
 
 inline KrPanel *ListPanelActions::activePanel()
 {
-    return static_cast<FileManagerWindow*>(_mainWindow)->activePanel();
+    return static_cast<KrMainWindow*>(_mainWindow)->activePanel();
 }
 
 inline KrPanel *ListPanelActions::leftPanel()
 {
-    return static_cast<FileManagerWindow*>(_mainWindow)->leftPanel();
+    return static_cast<KrMainWindow*>(_mainWindow)->leftPanel();
 }
 
 inline KrPanel *ListPanelActions::rightPanel()
 {
-    return static_cast<FileManagerWindow*>(_mainWindow)->rightPanel();
+    return static_cast<KrMainWindow*>(_mainWindow)->rightPanel();
 }
 
 inline ListPanelFunc *ListPanelActions::activeFunc()

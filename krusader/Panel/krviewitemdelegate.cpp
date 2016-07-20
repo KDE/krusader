@@ -16,7 +16,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include "krinterviewitemdelegate.h"
+#include "krviewitemdelegate.h"
 
 #include "krvfsmodel.h"
 #include "../krglobal.h"
@@ -30,10 +30,10 @@
 
 #include <KConfigCore/KSharedConfig>
 
-KrInterViewItemDelegate::KrInterViewItemDelegate(QObject *parent) :
+KrViewItemDelegate::KrViewItemDelegate(QObject *parent) :
         QItemDelegate(parent), _currentlyEdited(-1), _dontDraw(false) {}
 
-void KrInterViewItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void KrViewItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QStyleOptionViewItemV4 opt = option;
     opt.state &= ~QStyle::State_Selected;
@@ -41,19 +41,19 @@ void KrInterViewItemDelegate::paint(QPainter *painter, const QStyleOptionViewIte
     QItemDelegate::paint(painter, opt, index);
 }
 
-void KrInterViewItemDelegate::drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const
+void KrViewItemDelegate::drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const
 {
     if (!_dontDraw)
         QItemDelegate::drawDisplay(painter, option, rect, text);
 }
 
-QWidget * KrInterViewItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &sovi, const QModelIndex &index) const
+QWidget * KrViewItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &sovi, const QModelIndex &index) const
 {
     _currentlyEdited = index.row();
     return QItemDelegate::createEditor(parent, sovi, index);
 }
 
-void KrInterViewItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
+void KrViewItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     QItemDelegate::setEditorData(editor, index);
     QLineEdit *lineEdit = qobject_cast<QLineEdit *> (editor);
@@ -71,7 +71,7 @@ void KrInterViewItemDelegate::setEditorData(QWidget *editor, const QModelIndex &
     }
 }
 
-QSize KrInterViewItemDelegate::sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const
+QSize KrViewItemDelegate::sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
     QSize size = QItemDelegate::sizeHint(option, index);
     if (size.isEmpty()) {
@@ -81,7 +81,7 @@ QSize KrInterViewItemDelegate::sizeHint(const QStyleOptionViewItem & option, con
     return size;
 }
 
-bool KrInterViewItemDelegate::eventFilter(QObject *object, QEvent *event)
+bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
 {
     QWidget *editor = qobject_cast<QWidget*>(object);
     if (!editor)

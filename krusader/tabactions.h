@@ -23,7 +23,7 @@
 
 #include "actionsbase.h"
 
-class FileManagerWindow;
+class KrMainWindow;
 class PanelManager;
 
 class TabActions : public ActionsBase
@@ -33,7 +33,7 @@ class TabActions : public ActionsBase
     Q_OBJECT
 
 public:
-    TabActions(QObject *parent, FileManagerWindow *mainWindow);
+    TabActions(QObject *parent, KrMainWindow *mainWindow);
 
 public slots:
     void refreshActions();

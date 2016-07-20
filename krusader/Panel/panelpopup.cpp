@@ -25,7 +25,7 @@
 #include "krviewitem.h"
 #include "viewactions.h"
 #include "../kicons.h"
-#include "../filemanagerwindow.h"
+#include "../krmainwindow.h"
 #include "../defaults.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 #include "../KViewer/panelviewer.h"
@@ -254,7 +254,7 @@ void KrFileTreeView::setRootUrl(const QUrl &url)
     mSourceModel->dirLister()->openUrl(url);
 }
 
-PanelPopup::PanelPopup(QSplitter *parent, bool left, FileManagerWindow *mainWindow) : QWidget(parent),
+PanelPopup::PanelPopup(QSplitter *parent, bool left, KrMainWindow *mainWindow) : QWidget(parent),
         _left(left), _hidden(true), _mainWindow(mainWindow), stack(0), viewer(0), pjob(0), splitterSizes()
 {
     splitter = parent;
