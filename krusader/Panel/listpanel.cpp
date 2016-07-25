@@ -414,7 +414,7 @@ void ListPanel::createView()
         view->prepareForPassive();
     view->refreshColors();
 
-    splt->insertWidget(0, view->widget());
+    splt->insertWidget(popupPosition() < 2 ? 1 : 0, view->widget());
 
     view->widget()->installEventFilter(this);
 
@@ -907,10 +907,8 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
     act = popup.addAction(i18n("Cancel"));
     act->setData(QVariant(4));
 
-    QPoint tmp = widget->mapToGlobal(e->pos());
-
     int result = -1;
-    QAction * res = popup.exec(tmp);
+    QAction * res = popup.exec(QCursor::pos());
     if (res && res->data().canConvert<int> ())
         result = res->data().toInt();
 
@@ -1404,9 +1402,6 @@ int ListPanel::popupPosition() {
 void ListPanel::setPopupPosition(int pos) {
     splt->setOrientation(pos % 2 == 0 ? Qt::Horizontal : Qt::Vertical);
     if ((pos < 2) != (qobject_cast<PanelPopup*>(splt->widget(0)) != NULL)) {
-        // swapping widgets in splitter
-        QWidget *temp = splt->widget(0);
-        splt->insertWidget(0, splt->widget(1));
-        splt->insertWidget(1, temp);
+        splt->insertWidget(0, splt->widget(1)); // swapping widgets in splitter
     }
 }
