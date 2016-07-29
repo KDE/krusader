@@ -132,8 +132,8 @@ public slots:
     void compareDirs(bool otherPanelToo = true);
     void slotFocusOnMe(bool focus = true);
     void slotUpdateTotals();
-    void slotStartUpdate();                   // internal
-    void slotGetStats(const QUrl &url);            // get the disk-free stats
+    void slotStartUpdate(); // react to file changes in vfs (path change or refresh)
+    void slotGetStats(const QUrl &url); // get the disk-free stats
     void togglePanelPopup();
     void panelActive(); // called when the panel becomes active
     void panelInactive(); // called when panel becomes inactive

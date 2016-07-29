@@ -35,6 +35,7 @@
 #include <KIconThemes/KIconLoader>
 #include <KI18n/KLocalizedString>
 
+
 KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
     : QWidget(parent), _view(0)
 {

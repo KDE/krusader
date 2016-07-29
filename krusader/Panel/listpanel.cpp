@@ -752,7 +752,7 @@ void ListPanel::slotStartUpdate()
     slotUpdateTotals();
     krApp->popularUrls()->addUrl(virtualPath());
 
-    searchBar->resetSearch();
+    searchBar->hideBar();
 }
 
 void ListPanel::slotGetStats(const QUrl &url)
