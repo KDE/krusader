@@ -20,7 +20,6 @@
 #include "krsqueezedtextlabel.h"
 
 // QtGui
-#include <QDropEvent>
 #include <QDragEnterEvent>
 #include <QPainter>
 // QtWidgets
@@ -31,7 +30,7 @@
 #include <KCoreAddons/KStringHandler>
 
 KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent):
-        KSqueezedTextLabel(parent), acceptDrops(false), _index(-1), _length(-1)
+        KSqueezedTextLabel(parent), _index(-1), _length(-1)
 {
     setAutoFillBackground(true);
 }
@@ -45,25 +44,6 @@ void KrSqueezedTextLabel::mousePressEvent(QMouseEvent *e)
 {
     e->ignore();
     emit clicked(e);
-}
-
-void KrSqueezedTextLabel::enableDrops(bool flag)
-{
-    setAcceptDrops(acceptDrops = flag);
-}
-
-void KrSqueezedTextLabel::dropEvent(QDropEvent *e)
-{
-    emit dropped(e);
-}
-
-void KrSqueezedTextLabel::dragEnterEvent(QDragEnterEvent *e)
-{
-    if (acceptDrops) {
-        QList<QUrl> URLs = KUrlMimeData::urlsFromMimeData(e->mimeData());
-        e->setAccepted(!URLs.isEmpty());
-    } else
-        KSqueezedTextLabel::dragEnterEvent(e);
 }
 
 void KrSqueezedTextLabel::squeezeTextToLabel(int index, int length)

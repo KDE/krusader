@@ -122,6 +122,9 @@ Q_SIGNALS:
     void activated(const QUrl &url);
     void changedUrls(const QUrl &url);
 
+protected:
+    void dropEvent(QDropEvent *event) Q_DECL_OVERRIDE;
+
 private Q_SLOTS:
     void slotActivated(const QModelIndex&);
     void slotCurrentChanged(const QModelIndex&, const QModelIndex&);
@@ -129,7 +132,7 @@ private Q_SLOTS:
 
 private:
     QUrl urlForProxyIndex(const QModelIndex &index) const;
-    void dropMimeData(const QList<QUrl> & lst, const QUrl &url, const QModelIndex & ind);
+    void dropMimeData(const QList<QUrl> & lst, const QUrl &url);
 
     KDirModel *mSourceModel;
     KDirSortFilterProxyModel *mProxyModel;

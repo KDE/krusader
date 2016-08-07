@@ -57,6 +57,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KCoreAddons/KUrlMimeData>
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
+#include <KIO/DropJob>
 #include <KIOCore/KMountPoint>
 #include <KIOCore/KDiskFreeSpaceInfo>
 #include <KWidgetsAddons/KCursor>
@@ -204,6 +205,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     connect(urlNavigator, SIGNAL(urlChanged(QUrl)), func, SLOT(navigatorUrlChanged(QUrl)));
     connect(urlNavigator->editor()->lineEdit(), SIGNAL(editingFinished()), this, SLOT(resetNavigatorMode()));
     connect(urlNavigator, SIGNAL(tabRequested(QUrl)), this, SLOT(newTab(QUrl)));
+    connect(urlNavigator, SIGNAL(urlsDropped(QUrl, QDropEvent*)), this, SLOT(handleDrop(QUrl, QDropEvent*)));
     ADD_WIDGET(urlNavigator);
 
     // toolbar
@@ -435,7 +437,8 @@ void ListPanel::createView()
     connect(view->op(), SIGNAL(emptyContextMenu(const QPoint &)),
             this, SLOT(popEmptyRightClickMenu(const QPoint &)));
     connect(view->op(), SIGNAL(letsDrag(QStringList, QPixmap)), this, SLOT(startDragging(QStringList, QPixmap)));
-    connect(view->op(), SIGNAL(gotDrop(QDropEvent *)), this, SLOT(handleDropOnView(QDropEvent *)));
+    connect(view->op(), &KrViewOperator::gotDrop,
+            this, [this](QDropEvent *event) {handleDrop(event, true); });
     connect(view->op(), SIGNAL(previewJobStarted(KJob*)), this, SLOT(slotPreviewJobStarted(KJob*)));
     connect(view->op(), SIGNAL(refreshActions()), krApp->viewActions(), SLOT(refreshActions()));
     connect(view->op(), SIGNAL(currentChanged(KrViewItem*)), func->history, SLOT(saveCurrentItem()));
@@ -826,116 +829,55 @@ void ListPanel::slotGetStats(const QUrl &url)
     mediaButton->mountPointChanged(info.mountPoint());
 }
 
-void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
+void ListPanel::handleDrop(QDropEvent *event, bool onView)
 {
-    // if copyToPanel is true, then we call a simple vfs_addfiles
-    bool copyToDirInPanel = false;
-    bool dragFromThisPanel = false;
-    bool isWritable = func->files() ->vfs_isWritable();
-
-    vfs* tempFiles = func->files();
-    vfile *file;
-    KrViewItem *i = 0;
-    if (widget == 0) {
-        i = view->getKrViewItemAt(e->pos());
-        widget = this;
+    // check what was dropped
+    const QList<QUrl> urls = KUrlMimeData::urlsFromMimeData(event->mimeData());
+    if (urls.isEmpty()) {
+        event->ignore(); // not for us to handle!
+        return;
     }
 
-    if (e->source() == this)
-        dragFromThisPanel = true;
-
-    if (i) {
-        file = func->files() ->vfs_search(i->name());
-
-        if (!file) {   // trying to drop on the ".."
-            copyToDirInPanel = true;
-        } else {
-            if (file->vfile_isDir()) {
-                copyToDirInPanel = true;
-                isWritable = file->vfile_isWriteable();
-                if (isWritable) {
-                    // keep the folder_open icon until we're finished, do it only
-                    // if the folder is writeable, to avoid flicker
-                }
-            } else if (e->source() == this)
-                return ; // no dragging onto ourselves
-        }
-    } else    // if dragged from this panel onto an empty spot in the panel...
-        if (dragFromThisPanel) {    // leave!
-            e->ignore();
+    // find dropping destination
+    QString destinationDir = "";
+    const bool dragFromThisPanel = event->source() == this;
+    const KrViewItem *item = onView ? view->getKrViewItemAt(event->pos()) : 0;
+    if (item) {
+        const vfile *file = item->getVfile();
+        if (file && !file->vfile_isDir() && dragFromThisPanel) {
+            event->ignore(); // dragging on files in same panel, ignore
             return ;
+        } else if (!file || file->vfile_isDir()) { // item is ".." dummy or a directory
+            destinationDir = item->name();
         }
-
-    if (!isWritable && getuid() != 0) {
-        e->ignore();
-        KMessageBox::sorry(0, i18n("Cannot drop here, no write permissions."));
-        return ;
-    }
-    //////////////////////////////////////////////////////////////////////////////
-    // decode the data
-    QList<QUrl> URLs = KUrlMimeData::urlsFromMimeData(e->mimeData());
-    if (URLs.isEmpty()) {
-        e->ignore(); // not for us to handle!
+    } else if (dragFromThisPanel) {
+        event->ignore(); // dragged from this panel onto an empty spot in this panel, ignore
         return ;
     }
 
-    bool isLocal = true;
-    for (int u = 0; u != URLs.count(); u++)
-        if (!URLs[ u ].isLocalFile()) {
-            isLocal = false;
-            break;
-        }
+    QUrl destination = QUrl(virtualPath());
+    destination.setPath(destination.path() + '/' + destinationDir);
 
-    KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy;
+    func->files()->vfs_drop(destination, event);
 
-    // the QList<QUrl> is finished, let's go
-    // --> display the COPY/MOVE/LINK menu
-
-    QMenu popup(this);
-    QAction * act;
-
-    act = popup.addAction(i18n("Copy Here"));
-    act->setData(QVariant(1));
-    if (func->files() ->vfs_isWritable()) {
-        act = popup.addAction(i18n("Move Here"));
-        act->setData(QVariant(2));
-    }
-    if (func->files() ->vfs_getType() == vfs::VFS_NORMAL && isLocal) {
-        act = popup.addAction(i18n("Link Here"));
-        act->setData(QVariant(3));
-    }
-    act = popup.addAction(i18n("Cancel"));
-    act->setData(QVariant(4));
-
-    int result = -1;
-    QAction * res = popup.exec(QCursor::pos());
-    if (res && res->data().canConvert<int> ())
-        result = res->data().toInt();
-
-    switch (result) {
-    case 1 :
-        mode = KIO::CopyJob::Copy;
-        break;
-    case 2 :
-        mode = KIO::CopyJob::Move;
-        break;
-    case 3 :
-        mode = KIO::CopyJob::Link;
-        break;
-    default :         // user pressed outside the menu
-        return ;          // or cancel was pressed;
-    }
-
-    QString dir = "";
-    if (copyToDirInPanel) {
-        dir = i->name();
-    }
-    QObject *notify = (!e->source() ? 0 : e->source());
-    tempFiles->vfs_addFiles(URLs, mode, notify, dir);
-    if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
-        KrPanel *p = (dragFromThisPanel ? this : otherPanel());
+    if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation",
+                                                     _UnselectBeforeOperation)) {
+        KrPanel *p = dragFromThisPanel ? this : otherPanel();
         p->view->saveSelection();
         p->view->unselectAll();
+    }
+}
+
+void ListPanel::handleDrop(const QUrl &destination, QDropEvent *event)
+{
+    func->files()->vfs_drop(destination, event);
+}
+
+void ListPanel::slotJobResult(KJob *job)
+{
+    func->refresh(); // see new files if not on local filesystem
+    if (job->error()) {
+        slotVfsError(job->errorString());
     }
 }
 
@@ -951,7 +893,7 @@ void ListPanel::startDragging(QStringList names, QPixmap px)
         return;
     }
 
-    QList<QUrl> urls = func->files() ->vfs_getFiles(names);
+    QList<QUrl> urls = func->files()->vfs_getFiles(names);
 
     QDrag *drag = new QDrag(this);
     QMimeData *mimeData = new QMimeData;

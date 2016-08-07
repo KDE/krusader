@@ -37,6 +37,7 @@
 #include <QEventLoop>
 
 #include <KI18n/KLocalizedString>
+#include <KIO/DropJob>
 #include <KIO/Job>
 #include <KIO/JobUiDelegate>
 #include <KIO/DeleteJob>
@@ -229,8 +230,17 @@ void ftp_vfs::vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode m
     }
 
     connect(job, SIGNAL(result(KJob*)), this, SLOT(vfs_refresh(KJob*)));
-    if (mode == KIO::CopyJob::Move)    // notify the other panel
+    if (mode == KIO::CopyJob::Move && toNotify)    // notify the other panel
         connect(job, SIGNAL(result(KJob*)), toNotify, SLOT(vfs_refresh(KJob*)));
+}
+
+void ftp_vfs::vfs_drop(const QUrl &destination, QDropEvent *event) {
+    KIO::DropJob *job = KIO::drop(event, destination);
+    connect(job, SIGNAL(result(KJob*)), this, SLOT(vfs_refresh(KJob *)));
+    QObject *dropSource = event->source();
+    if (dropSource) { // refresh source because files may have been removed
+        connect(job, SIGNAL(result(KJob*)), dropSource, SLOT(vfs_refresh(KJob*)));
+    }
 }
 
 // remove a file from the vfs (physical)

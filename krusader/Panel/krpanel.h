@@ -47,8 +47,7 @@ public:
     KrPanel(AbstractPanelManager *manager) :
         gui(0), func(0), view(0), _manager(manager) {}
     virtual ~KrPanel() {}
-
-    QUrl virtualPath() const;
+    QUrl virtualPath() const; // the current directory path of this panels view
     AbstractPanelManager *manager() {
         return _manager;
     }

@@ -22,14 +22,12 @@
 
 // QtGui
 #include <QMouseEvent>
-#include <QDropEvent>
 #include <QDragEnterEvent>
 #include <QResizeEvent>
 
 #include <KWidgetsAddons/KSqueezedTextLabel>
 
 class QMouseEvent;
-class QDropEvent;
 class QDragEnterEvent;
 class QPaintEvent;
 
@@ -47,29 +45,23 @@ public:
     KrSqueezedTextLabel(QWidget *parent = 0);
     ~KrSqueezedTextLabel();
 
-    void enableDrops(bool flag);
-
 public slots:
     void setText(const QString &text, int index = -1, int length = -1);
 
 signals:
     void clicked(QMouseEvent *); /**< emitted when someone clicks on the label */
-    void dropped(QDropEvent *); /**< emitted when someone drops URL onto the label */
 
 protected:
     void resizeEvent(QResizeEvent *) {
         squeezeTextToLabel(_index, _length);
     }
     virtual void mousePressEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
-    virtual void dropEvent(QDropEvent *e) Q_DECL_OVERRIDE;
-    virtual void dragEnterEvent(QDragEnterEvent *e) Q_DECL_OVERRIDE;
     virtual void paintEvent(QPaintEvent * e) Q_DECL_OVERRIDE;
     void squeezeTextToLabel(int index = -1, int length = -1);
 
     QString fullText;
 
 private:
-    bool  acceptDrops;
     int _index, _length;
 };
 

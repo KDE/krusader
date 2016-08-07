@@ -22,6 +22,7 @@
 // QtCore
 #include <QUrl>
 
+#include <KCoreAddons/KUrlMimeData>
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KFileItem>
 #include <KIO/CopyJob>
@@ -109,6 +110,14 @@ void virt_vfs::vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode 
     }
 
     vfs_refresh();
+}
+
+// TODO dropping to another directory in this vfs implementation is currently not supported
+void virt_vfs::vfs_drop(const QUrl &/*destination*/, QDropEvent *event)
+{
+    QList<QUrl> urls = KUrlMimeData::urlsFromMimeData(event->mimeData());
+    // dropping on virtual vfs (sic!) is always copy operation
+    vfs_addFiles(urls, KIO::CopyJob::Copy, 0);
 }
 
 void virt_vfs::vfs_delFiles(const QStringList &fileNames, bool reallyDelete)

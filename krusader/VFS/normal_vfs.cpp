@@ -46,6 +46,7 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIO/DeleteJob>
+#include <KIO/DropJob>
 #include <KIO/JobUiDelegate>
 #include <KIOCore/KFileItem>
 #include <KWidgetsAddons/KMessageBox>
@@ -156,10 +157,19 @@ void normal_vfs::vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMod
 
     KIO::Job* job = PreservingCopyJob::createCopyJob(pmode, fileUrls, dest, mode, false, true);
     connect(job, SIGNAL(result(KJob*)), this, SLOT(vfs_refresh(KJob *)));
-    if (mode == KIO::CopyJob::Move) // notify the other panel
+    if (mode == KIO::CopyJob::Move && toNotify) // notify the other panel
         connect(job, SIGNAL(result(KJob*)), toNotify, SLOT(vfs_refresh(KJob*)));
     else
         job->ui()->setAutoErrorHandlingEnabled(true);
+}
+
+void normal_vfs::vfs_drop(const QUrl &destination, QDropEvent *event) {
+    KIO::DropJob *job = KIO::drop(event, destination);
+    connect(job, SIGNAL(result(KJob*)), this, SLOT(vfs_refresh(KJob *)));
+    QObject *dropSource = event->source();
+    if (dropSource) { // refresh source because files may have been removed
+        connect(job, SIGNAL(result(KJob*)), dropSource, SLOT(vfs_refresh(KJob*)));
+    }
 }
 
 // remove a file from the vfs (physical)

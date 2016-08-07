@@ -39,6 +39,8 @@
 #include <QHash>
 #include <QPointer>
 #include <QUrl>
+// QtGui
+#include <QDropEvent>
 // QtWidgets
 #include <QWidget>
 
@@ -77,9 +79,12 @@ public:
     }
     virtual bool isRoot();
 
-    /// Copy a file to the vfs (physical).
+    /// Copy (copy, move or link) files to the vfs (physical). Copy destination is "dir", the
+    /// directory name to copy to relative to the current dir. May implemented async.
     virtual void vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) = 0;
-    /// Remove a file from the vfs (physical)
+    /// Handle file dropping in this vfs. Destination is absolute URL. May implemented async.
+    virtual void vfs_drop(const QUrl &destination, QDropEvent *event) = 0;
+    /// Remove a file from the vfs (physical). May implemented async.
     virtual void vfs_delFiles(const QStringList &fileNames, bool reallyDelete = false) = 0;
     /// Return a list of URLs for multiple files
     virtual QList<QUrl> vfs_getFiles(const QStringList &names) = 0;
@@ -87,7 +92,7 @@ public:
     virtual QUrl vfs_getFile(const QString& name) = 0;
     /// Create a new directory
     virtual void vfs_mkdir(const QString& name) = 0;
-    /// Rename file
+    /// Rename file. May implemented async.
     virtual void vfs_rename(const QString& fileName, const QString& newName) = 0;
     /// Calculate the amount of space occupied by a file or directory (recursive).
     virtual void vfs_calcSpace(QString name , KIO::filesize_t *totalSize, unsigned long *totalFiles, unsigned long *totalDirs, bool * stop);

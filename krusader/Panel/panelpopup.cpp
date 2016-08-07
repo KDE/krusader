@@ -55,6 +55,7 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
+#include <KIO/DropJob>
 #include <KIOWidgets/KDirLister>
 #include <KIOWidgets/KDirModel>
 #include <KIOWidgets/KFileItemDelegate>
@@ -66,19 +67,6 @@ public:
     KrDirModel(QWidget *parent, KrFileTreeView *ftv) : KDirModel(parent), fileTreeView(ftv) {}
 
 protected:
-    virtual bool dropMimeData(const QMimeData * data, Qt::DropAction /* action */, int /* row */, int /* column */, const QModelIndex & parent) Q_DECL_OVERRIDE {
-        KFileItem item = itemForIndex(parent);
-        if (item.isNull())
-            return false;
-
-        QList<QUrl> list = data->urls();
-        if (list.isEmpty())
-            return false;
-
-        fileTreeView->dropMimeData(list, item.url(), parent);
-        return true;
-    }
-
     virtual Qt::ItemFlags flags(const QModelIndex & index) const Q_DECL_OVERRIDE {
         Qt::ItemFlags itflags = KDirModel::flags(index);
         if (index.column() != KDirModel::Name)
@@ -130,42 +118,15 @@ void KrFileTreeView::slotActivated(const QModelIndex &index)
         emit activated(url);
 }
 
-void KrFileTreeView::dropMimeData(const QList<QUrl> & lst, const QUrl &url, const QModelIndex & ind)
+void KrFileTreeView::dropEvent(QDropEvent *event)
 {
-    QModelIndex ndx = mProxyModel->mapFromSource(ind);
-    QRect rect = visualRect(ndx);
-    QPoint pnt = viewport()->mapToGlobal(QPoint(rect.x(), rect.y() + rect.height() / 2));
-
-    QMenu popup(this);
-    QAction * act;
-
-    act = popup.addAction(i18n("Copy Here"));
-    act->setData(QVariant(1));
-    act = popup.addAction(i18n("Move Here"));
-    act->setData(QVariant(2));
-    act = popup.addAction(i18n("Link Here"));
-    act->setData(QVariant(3));
-    act = popup.addAction(i18n("Cancel"));
-    act->setData(QVariant(4));
-
-    int result = -1;
-    QAction * res = popup.exec(pnt);
-    if (res && res->data().canConvert<int> ())
-        result = res->data().toInt();
-
-    switch (result) {
-    case 1 :
-        KIO::copy(lst, url);
-        break;
-    case 2 :
-        KIO::move(lst, url);
-        break;
-    case 3 :
-        KIO::link(lst, url);
-        break;
-    default :         // user pressed outside the menu
-        return ;          // or cancel was pressed;
+    QUrl destination = urlForProxyIndex(indexAt(event->pos()));
+    if (destination.isEmpty()) {
+        return;
     }
+
+    KIO::drop(event, destination);
+    // TODO show error message job result and refresh event source
 }
 
 void KrFileTreeView::slotCurrentChanged(const QModelIndex &currentIndex, const QModelIndex&)

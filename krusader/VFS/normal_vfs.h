@@ -58,6 +58,8 @@ public:
 
     /// Copy a file to the vfs (physical).
     virtual void vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) Q_DECL_OVERRIDE;
+    /// Handle file drop
+    virtual void vfs_drop(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
     /// Remove a file from the vfs (physical)
     virtual void vfs_delFiles(const QStringList &fileNames, bool reallyDelete = false) Q_DECL_OVERRIDE;
     /// Return a list of URLs for multiple files

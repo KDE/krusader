@@ -316,7 +316,7 @@ QWidget *KrLayoutFactory::createFrame(QDomElement e, QWidget *parent)
         frame->setLayout(l);
     }
 
-    QObject::connect(frame, SIGNAL(dropped(QDropEvent*, QWidget*)), panel, SLOT(handleDropOnView(QDropEvent*, QWidget*)));
+    QObject::connect(frame, SIGNAL(dropped(QDropEvent*, QWidget*)), panel, SLOT(handleDrop(QDropEvent*)));
     if(!color.isEmpty())
         QObject::connect(panel, SIGNAL(refreshColors(bool)), frame, SLOT(refreshColors(bool)));
 
