@@ -47,8 +47,6 @@ public:
     SynchronizerDirList(QWidget *w, bool ignoreHidden);
     ~SynchronizerDirList();
 
-    static QString escapeUrlHashes(QString strUrl);
-
     vfile * search(const QString &name, bool ignoreCase = false);
     vfile * first();
     vfile * next();

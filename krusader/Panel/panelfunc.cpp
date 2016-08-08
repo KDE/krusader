@@ -123,7 +123,7 @@ void ListPanelFunc::navigatorUrlChanged(const QUrl &url)
         panel->urlNavigator->setUrlEditable(false);
     }
 
-    openUrl(url, QString(), true);
+    openUrl(KrServices::escapeFileUrl(url), QString(), true);
 }
 
 bool ListPanelFunc::isSyncing(const QUrl &url)

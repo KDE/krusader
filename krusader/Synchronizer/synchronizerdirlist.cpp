@@ -50,6 +50,7 @@
 
 #include "../VFS/vfs.h"
 #include "../VFS/krpermhandler.h"
+#include "../krservices.h"
 
 SynchronizerDirList::SynchronizerDirList(QWidget *w, bool hidden) : QObject(), QHash<QString, vfile *>(), fileIterator(0),
         parentWidget(w), busy(false), result(false), ignoreHidden(hidden), currentUrl()
@@ -64,13 +65,6 @@ SynchronizerDirList::~SynchronizerDirList()
     QHashIterator< QString, vfile *> lit(*this);
     while (lit.hasNext())
         delete lit.next().value();
-}
-
-QString SynchronizerDirList::escapeUrlHashes(QString strUrl)
-{
-    // Avoid that if a path contains a '#' then what follows the '#' be interpreted as the fragment identifier of
-    // the URL and not a part of the file path; for more information https://bugs.kde.org/show_bug.cgi?id=270150 can be seen
-    return strUrl.replace("#", "%23");
 }
 
 vfile * SynchronizerDirList::search(const QString &name, bool ignoreCase)
@@ -194,7 +188,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
         emit finished(result = true);
         return true;
     } else {
-        KIO::Job *job = KIO::listDir(QUrl(SynchronizerDirList::escapeUrlHashes(url.toString())), KIO::HideProgressInfo, true);
+        KIO::Job *job = KIO::listDir(KrServices::escapeFileUrl(url), KIO::HideProgressInfo, true);
         connect(job, SIGNAL(entries(KIO::Job*, const KIO::UDSEntryList&)),
                 this, SLOT(slotEntries(KIO::Job*, const KIO::UDSEntryList&)));
         connect(job, SIGNAL(result(KJob*)),

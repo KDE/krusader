@@ -48,6 +48,8 @@ public:
     static QList<QUrl>  toUrlList(const QStringList &list);
     static QStringList  toStringList(const QList<QUrl> &list);
     static QStringList  supportedTools(); // find supported tools
+    static QString      escapeFileUrl(QString urlString);
+    static QUrl         escapeFileUrl(const QUrl &url);
 
 
 protected:

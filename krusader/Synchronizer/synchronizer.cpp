@@ -88,10 +88,7 @@ Synchronizer::~Synchronizer()
 QUrl Synchronizer::fsUrl(QString strUrl)
 {
     QUrl result = QUrl::fromUserInput(strUrl, QString(), QUrl::AssumeLocalFile);
-    if (result.isLocalFile()) {
-        return result;
-    }
-    return QUrl(SynchronizerDirList::escapeUrlHashes(result.toString()));
+    return KrServices::escapeFileUrl(result);
 }
 
 void Synchronizer::clearLists()
