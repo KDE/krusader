@@ -535,6 +535,7 @@ void ListPanel::togglePanelPopup()
         QSizePolicy sizePolicy = popup->sizePolicy();
         sizePolicy.setVerticalPolicy(QSizePolicy::Ignored);
         popup->setSizePolicy(sizePolicy);
+        connect(this, SIGNAL(pathChanged(const QUrl&)), popup, SLOT(onPanelPathChange(const QUrl&)));
         connect(popup, SIGNAL(selection(const QUrl&)), SLOTS, SLOT(refresh(const QUrl&)));
         connect(popup, SIGNAL(hideMe()), this, SLOT(togglePanelPopup()));
     }
@@ -740,6 +741,7 @@ void ListPanel::slotStartUpdate()
         _realPath = virtualPath();
     urlNavigator->setLocationUrl(virtualPath());
     emit pathChanged(this);
+    emit pathChanged(virtualPath());
 
     slotGetStats(virtualPath());
     if (compareMode)
@@ -1221,6 +1223,7 @@ void ListPanel::saveSettings(KConfigGroup cfg, bool saveHistory)
 
     // splitter/popup state
     if (popup && !popup->isHidden()) {
+        popup->saveSettings(KConfigGroup(&cfg, "PanelPopup"));
         cfg.writeEntry("PopupPosition", popupPosition());
         cfg.writeEntry("SplitterSizes", splt->saveState());
         cfg.writeEntry("PopupPage", popup->currentPage());
@@ -1255,6 +1258,7 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
 
     if (cfg.hasKey("PopupPosition")) { // popup was visible, restore
         togglePanelPopup(); // create and show
+        popup->restoreSettings(KConfigGroup(&cfg, "PanelPopup"));
         setPopupPosition(cfg.readEntry("PopupPosition", 42 /* dummy */));
         splt->restoreState(cfg.readEntry("SplitterSizes", QByteArray()));
         popup->setCurrentPage(cfg.readEntry("PopupPage", 0));
@@ -1264,7 +1268,7 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
 void ListPanel::updatePopupPanel(KrViewItem *item)
 {
     // which panel to display on?
-    PanelPopup *p = 0;
+    PanelPopup *p;
     if(popup && !popup->isHidden())
         p = popup;
     else if(otherPanel()->gui->popup && !otherPanel()->gui->popup->isHidden())
@@ -1272,10 +1276,7 @@ void ListPanel::updatePopupPanel(KrViewItem *item)
     else
         return;
 
-    if(item)
-        p->update(func->files()->vfs_search(item->name()));
-    else
-        p->update(0);
+    p->update(item ? func->files()->vfs_search(item->name()) : 0);
 }
 
 void ListPanel::otherPanelChanged()
@@ -1331,12 +1332,14 @@ void ListPanel::resetNavigatorMode()
     }
 }
 
-int ListPanel::popupPosition() {
+int ListPanel::popupPosition() const
+{
     int pos = splt->orientation() == Qt::Vertical ? 1 : 0;
     return pos + (qobject_cast<PanelPopup*>(splt->widget(0)) == NULL ? 2 : 0);
 }
 
-void ListPanel::setPopupPosition(int pos) {
+void ListPanel::setPopupPosition(int pos)
+{
     splt->setOrientation(pos % 2 == 0 ? Qt::Horizontal : Qt::Vertical);
     if ((pos < 2) != (qobject_cast<PanelPopup*>(splt->widget(0)) != NULL)) {
         splt->insertWidget(0, splt->widget(1)); // swapping widgets in splitter

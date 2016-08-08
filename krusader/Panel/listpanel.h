@@ -195,10 +195,11 @@ protected slots:
     void resetNavigatorMode(); // set navigator mode after focus was lost
 
 signals:
-    void signalStatus(QString msg);         // emmited when we need to update the status bar
-    void pathChanged(ListPanel *panel);
-    void activate();   // emitted when the user changes panels
-    void finishedDragging();              // currently
+    void signalStatus(QString msg); // emmited when we need to update the status bar
+    void pathChanged(ListPanel *panel); // directory changed or refreshed
+    void pathChanged(const QUrl &url); // directory changed or refreshed
+    void activate(); // emitted when the user changes panels
+    void finishedDragging(); // NOTE: currently not used
     void refreshColors(bool active);
     // emitted when we have to update the path label width
     void refreshPathLabel();
@@ -226,7 +227,7 @@ protected:
     QToolButton *cdOtherButton;
     QToolButton *popupPositionBtn;
     QToolButton *popupBtn;
-    PanelPopup *popup;
+    PanelPopup *popup; // lazy initialized
     KrBookmarkButton *bookmarksButton;
     KrSqueezedTextLabel *status, *totals, *freeSpace;
 
@@ -238,7 +239,8 @@ protected:
     KrErrorDisplay *vfsError;
 
 private:
-    int popupPosition(); // 0: West, 1: North, 2: East, 3: South
+    bool handleDropInternal(QDropEvent *event, const QString &dir);
+    int popupPosition() const; // 0: West, 1: North, 2: East, 3: South
     void setPopupPosition(int);
 
 private:

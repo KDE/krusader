@@ -22,31 +22,23 @@
 
 // QtCore
 #include <QPointer>
-#include <QUrl>
 // QtGui
-#include <QPixmap>
-#include <QDropEvent>
 // QtWidgets
-#include <QWidget>
+#include <QButtonGroup>
+#include <QSplitter>
 #include <QStackedWidget>
-#include <QLabel>
-#include <QTreeView>
+#include <QToolButton>
+#include <QWidget>
 
-#include <KIOCore/KFileItem>
+#include <KCompletion/KComboBox>
+#include <KConfigCore/KConfigGroup>
 #include <KIO/PreviewJob>
 #include <KIOFileWidgets/KImageFilePreview>
 
-class QButtonGroup;
-class QSplitter;
-class QToolButton;
 class KrSqueezedTextLabel;
-class KLineEdit;
-class KComboBox;
 class PanelViewer;
 class DiskUsageViewer;
 class KrFileTreeView;
-class KDirModel;
-class KDirSortFilterProxyModel;
 class vfile;
 class KrMainWindow;
 
@@ -61,10 +53,13 @@ public:
     inline int currentPage() const {
         return stack->currentWidget()->property("KrusaderWidgetId").toInt();
     }
+    void saveSettings(KConfigGroup cfg) const;
+    void restoreSettings(KConfigGroup cfg);
     void setCurrentPage(int);
 
 public slots:
     void update(const vfile *vf);
+    void onPanelPathChange(const QUrl &url);
     void show();
     void hide();
 
@@ -95,47 +90,6 @@ protected:
     DiskUsageViewer *diskusage;
     QList<int> splitterSizes;
     QSplitter *splitter;
-};
-
-
-class KrFileTreeView : public QTreeView
-{
-    friend class KrDirModel;
-    Q_OBJECT
-
-public:
-    KrFileTreeView(QWidget *parent = 0);
-    virtual ~KrFileTreeView() {}
-
-    QUrl currentUrl() const;
-    QUrl selectedUrl() const;
-    QList<QUrl> selectedUrls() const;
-    QUrl rootUrl() const;
-
-public Q_SLOTS:
-    void setDirOnlyMode(bool enabled);
-    void setShowHiddenFiles(bool enabled);
-    void setCurrentUrl(const QUrl &url);
-    void setRootUrl(const QUrl &url);
-
-Q_SIGNALS:
-    void activated(const QUrl &url);
-    void changedUrls(const QUrl &url);
-
-protected:
-    void dropEvent(QDropEvent *event) Q_DECL_OVERRIDE;
-
-private Q_SLOTS:
-    void slotActivated(const QModelIndex&);
-    void slotCurrentChanged(const QModelIndex&, const QModelIndex&);
-    void slotExpanded(const QModelIndex&);
-
-private:
-    QUrl urlForProxyIndex(const QModelIndex &index) const;
-    void dropMimeData(const QList<QUrl> & lst, const QUrl &url);
-
-    KDirModel *mSourceModel;
-    KDirSortFilterProxyModel *mProxyModel;
 };
 
 #endif

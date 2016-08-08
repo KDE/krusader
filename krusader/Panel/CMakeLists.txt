@@ -28,7 +28,8 @@ set(Panel_SRCS
     krviewfactory.cpp
     krviewitemdelegate.cpp
     krmousehandler.cpp
-    krsearchbar.cpp)
+    krsearchbar.cpp
+    krfiletreeview.cpp)
 
 add_library(Panel STATIC ${Panel_SRCS})
 
