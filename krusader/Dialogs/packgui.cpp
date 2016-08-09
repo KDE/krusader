@@ -53,7 +53,6 @@ QString PackGUI::filename = 0;
 QString PackGUI::destination = 0;
 QString PackGUI::type = 0;
 QMap<QString, QString> PackGUI::extraProps;
-bool    PackGUI::queue = false;
 
 PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QString filename) :
         PackGUIBase(0)
@@ -95,8 +94,6 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
     }
     checkConsistency();
 
-    queue = false;
-
     // and go on with the normal stuff
     dirData->setText(defaultPath);
     nameData->setText(defaultName);
@@ -137,10 +134,3 @@ void PackGUI::reject()
     type.clear();
     PackGUIBase::reject();
 }
-
-void PackGUI::slotQueue()
-{
-    queue = true;
-    PackGUIBase::slotQueue();
-}
-

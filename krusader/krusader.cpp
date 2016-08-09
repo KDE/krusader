@@ -94,7 +94,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "VFS/vfile.h"
 #include "VFS/krpermhandler.h"
 #include "MountMan/kmountman.h"
-#include "Queue/queue_mgr.h"
 #include "Konfigurator/kgprotocols.h"
 #include "BookMan/krbookmarkhandler.h"
 #include "KViewer/krviewer.h"
@@ -160,8 +159,6 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     krBookMan = new KrBookmarkHandler(this);
 
     _popularUrls = new PopularUrls(this);
-
-    queueManager = new QueueManager(this);
 
     // create the main view
     MAIN_VIEW = new KrusaderView(this);

@@ -12,7 +12,6 @@ add_subdirectory(Konfigurator)
 add_subdirectory(KViewer)
 add_subdirectory(Locate)
 add_subdirectory(MountMan)
-add_subdirectory(Queue)
 add_subdirectory(Panel)
 add_subdirectory(Search)
 add_subdirectory(Splitter)
@@ -57,7 +56,6 @@ target_link_libraries(krusader
                       Konfigurator
                       KViewer
                       MountMan
-                      Queue
                       VFS
                       Search
                       Splitter

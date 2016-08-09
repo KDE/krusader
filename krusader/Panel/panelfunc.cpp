@@ -89,7 +89,6 @@ A
 #include "../Dialogs/checksumdlg.h"
 #include "../KViewer/krviewer.h"
 #include "../GUI/syncbrowsebutton.h"
-#include "../Queue/queue_mgr.h"
 
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
@@ -606,10 +605,9 @@ void ListPanelFunc::slotFileCreated(KJob *job)
     fileToCreate = QUrl();
 }
 
-void ListPanelFunc::moveFiles(bool enqueue)
+void ListPanelFunc::moveFiles()
 {
     PreserveMode pmode = PM_DEFAULT;
-    bool queue = enqueue;
 
     QStringList fileNames;
     panel->getSelectedNames(&fileNames);
@@ -631,7 +629,7 @@ void ListPanelFunc::moveFiles(bool enqueue)
 
         // ask the user for the copy dest
         virtualBaseURL = getVirtualBaseURL();
-        dest = KChooseDir::getDir(s, dest, panel->virtualPath(), queue, preserveAttrs, virtualBaseURL);
+        dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveAttrs, virtualBaseURL);
         if (dest.isEmpty())
             return ;   // the user canceled
         if (preserveAttrs)
@@ -649,30 +647,7 @@ void ListPanelFunc::moveFiles(bool enqueue)
     // file above the current item;
     panel->prepareToDelete();
 
-    if (queue) {
-        KIOJobWrapper *job = 0;
-        if (!virtualBaseURL.isEmpty()) {
-            job = KIOJobWrapper::virtualMove(&fileNames, files(), dest, virtualBaseURL, pmode, true);
-            job->connectTo(SIGNAL(result(KJob*)), this, SLOT(refresh()));
-            if (dest.matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash))
-                job->connectTo(SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
-        } else {
-            // you can rename only *one* file not a batch,
-            // so a batch dest must alwayes be a directory
-            if (fileNames.count() > 1) {
-                dest = vfs::ensureTrailingSlash(dest);
-            }
-            job = KIOJobWrapper::move(pmode, fileUrls, dest, true);
-            job->setAutoErrorHandlingEnabled(true);
-            // refresh our panel when done
-            job->connectTo(SIGNAL(result(KJob*)), this, SLOT(refresh()));
-            if (dest.matches(panel->virtualPath(), QUrl::StripTrailingSlash) ||
-                    KIO::upUrl(dest).matches(panel->virtualPath(), QUrl::StripTrailingSlash))
-                // refresh our panel when done
-                job->connectTo(SIGNAL(result(KJob*)), this, SLOT(refresh()));
-        }
-        QueueManager::currentQueue()->enqueue(job);
-    } else if (!virtualBaseURL.isEmpty()) {
+    if (!virtualBaseURL.isEmpty()) {
         // keep the directory structure for virtual paths
         VirtualCopyJob *vjob = new VirtualCopyJob(&fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Move, true);
         connect(vjob, SIGNAL(result(KJob*)), this, SLOT(refresh()));
@@ -806,10 +781,9 @@ QUrl ListPanelFunc::getVirtualBaseURL()
     return base;
 }
 
-void ListPanelFunc::copyFiles(bool enqueue)
+void ListPanelFunc::copyFiles()
 {
     PreserveMode pmode = PM_DEFAULT;
-    bool queue = enqueue;
 
     QStringList fileNames;
     panel->getSelectedNames(&fileNames);
@@ -832,7 +806,7 @@ void ListPanelFunc::copyFiles(bool enqueue)
 
         // ask the user for the copy dest
         virtualBaseURL = getVirtualBaseURL();
-        dest = KChooseDir::getDir(s, dest, panel->virtualPath(), queue, preserveAttrs, virtualBaseURL);
+        dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveAttrs, virtualBaseURL);
         if (dest.isEmpty())
             return ;   // the user canceled
         if (preserveAttrs)
@@ -843,28 +817,7 @@ void ListPanelFunc::copyFiles(bool enqueue)
 
     QList<QUrl> fileUrls = files() ->vfs_getFiles(fileNames);
 
-    if (queue) {
-        KIOJobWrapper *job = 0;
-        if (!virtualBaseURL.isEmpty()) {
-            job = KIOJobWrapper::virtualCopy(&fileNames, files(), dest, virtualBaseURL, pmode, true);
-            job->connectTo(SIGNAL(result(KJob*)), this, SLOT(refresh()));
-            if (dest.matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash))
-                job->connectTo(SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
-        } else {
-            // you can rename only *one* file not a batch,
-            // so a batch dest must alwayes be a directory
-            if (fileNames.count() > 1) {
-                dest = vfs::ensureTrailingSlash(dest);
-            }
-            job = KIOJobWrapper::copy(pmode, fileUrls, dest, true);
-            job->setAutoErrorHandlingEnabled(true);
-            if (dest.matches(panel->virtualPath(), QUrl::StripTrailingSlash) ||
-                    KIO::upUrl(dest).matches(panel->virtualPath(), QUrl::StripTrailingSlash))
-                // refresh our panel when done
-                job->connectTo(SIGNAL(result(KJob*)), this, SLOT(refresh()));
-        }
-        QueueManager::currentQueue()->enqueue(job);
-    } else if (!virtualBaseURL.isEmpty()) {
+    if (!virtualBaseURL.isEmpty()) {
         // keep the directory structure for virtual paths
         VirtualCopyJob *vjob = new VirtualCopyJob(&fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Copy, true);
         connect(vjob, SIGNAL(result(KJob*)), this, SLOT(refresh()));
@@ -1082,24 +1035,14 @@ void ListPanelFunc::pack()
         return;
     }
 
-    if (PackGUI::queue) {
-        KIOJobWrapper *job = KIOJobWrapper::pack(files()->vfs_getOrigin(), destURL, fileNames,
-                             PackGUI::type, PackGUI::extraProps, true);
-        job->setAutoErrorHandlingEnabled(true);
+    PackJob * job = PackJob::createPacker(files()->vfs_getOrigin(), destURL, fileNames, PackGUI::type, PackGUI::extraProps);
+    job->setUiDelegate(new KIO::JobUiDelegate());
+    KIO::getJobTracker()->registerJob(job);
+    job->ui()->setAutoErrorHandlingEnabled(true);
 
-        if (packToOtherPanel)
-            job->connectTo(SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
+    if (packToOtherPanel)
+        connect(job, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
 
-        QueueManager::currentQueue()->enqueue(job);
-    } else {
-        PackJob * job = PackJob::createPacker(files()->vfs_getOrigin(), destURL, fileNames, PackGUI::type, PackGUI::extraProps);
-        job->setUiDelegate(new KIO::JobUiDelegate());
-        KIO::getJobTracker()->registerJob(job);
-        job->ui()->setAutoErrorHandlingEnabled(true);
-
-        if (packToOtherPanel)
-            connect(job, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
-    }
 }
 
 void ListPanelFunc::testArchive()
@@ -1117,7 +1060,6 @@ void ListPanelFunc::testArchive()
 
 void ListPanelFunc::unpack()
 {
-
     QStringList fileNames;
     panel->getSelectedNames(&fileNames);
     if (fileNames.isEmpty())
@@ -1130,29 +1072,19 @@ void ListPanelFunc::unpack()
         s = i18np("Unpack %1 file to:", "Unpack %1 files to:", fileNames.count());
 
     // ask the user for the copy dest
-    bool queue = false;
-    QUrl dest = KChooseDir::getDir(s, panel->otherPanel()->virtualPath(), panel->virtualPath(), queue);
+    QUrl dest = KChooseDir::getDir(s, panel->otherPanel()->virtualPath(), panel->virtualPath());
     if (dest.isEmpty()) return ;   // the user canceled
 
     bool packToOtherPanel = (dest.matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash));
 
-    if (queue) {
-        KIOJobWrapper *job = KIOJobWrapper::unpack(files()->vfs_getOrigin(), dest, fileNames, true);
-        job->setAutoErrorHandlingEnabled(true);
+    UnpackJob * job = UnpackJob::createUnpacker(files()->vfs_getOrigin(), dest, fileNames);
+    job->setUiDelegate(new KIO::JobUiDelegate());
+    KIO::getJobTracker()->registerJob(job);
+    job->ui()->setAutoErrorHandlingEnabled(true);
 
-        if (packToOtherPanel)
-            job->connectTo(SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
+    if (packToOtherPanel)
+        connect(job, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
 
-        QueueManager::currentQueue()->enqueue(job);
-    } else {
-        UnpackJob * job = UnpackJob::createUnpacker(files()->vfs_getOrigin(), dest, fileNames);
-        job->setUiDelegate(new KIO::JobUiDelegate());
-        KIO::getJobTracker()->registerJob(job);
-        job->ui()->setAutoErrorHandlingEnabled(true);
-
-        if (packToOtherPanel)
-            connect(job, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
-    }
 }
 
 // a small ugly function, used to prevent duplication of EVERY line of

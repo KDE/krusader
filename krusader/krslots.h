@@ -117,7 +117,6 @@ public slots:
     void slotSynchronizeDirs(QStringList selected = QStringList());
 #endif
     void slotDiskUsage();
-    void slotQueueManager();
     void applicationStateChanged();
     void jsConsole();
     void saveNewToolbarConfig();

@@ -309,10 +309,6 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     QSpacerItem* spacer_2 = new QSpacerItem(140, 20, QSizePolicy::Expanding, QSizePolicy::Fixed);
     hbox_6->addItem(spacer_2);
 
-    queueButton = new QPushButton(this);
-    queueButton->setText(i18n("F2 Queue"));
-    hbox_6->addWidget(queueButton);
-
     okButton = new QPushButton(this);
     okButton->setText(i18n("OK"));
     okButton->setDefault(true);
@@ -325,7 +321,6 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     grid->addLayout(hbox_6, 6, 0);
 
     // signals and slots connections
-    connect(queueButton, SIGNAL(clicked()), this, SLOT(slotQueue()));
     connect(okButton, SIGNAL(clicked()), this, SLOT(accept()));
     connect(advancedButton, SIGNAL(clicked()), this, SLOT(expand()));
     connect(cancelButton, SIGNAL(clicked()), this, SLOT(reject()));
@@ -504,20 +499,3 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
     }
     return true;
 }
-
-void PackGUIBase::slotQueue()
-{
-    accept();
-}
-
-void PackGUIBase::keyPressEvent(QKeyEvent *e)
-{
-    switch (e->key()) {
-    case Qt::Key_F2:
-        slotQueue();
-        return;
-    default:
-        QDialog::keyPressEvent(e);
-    }
-}
-

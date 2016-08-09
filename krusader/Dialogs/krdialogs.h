@@ -61,9 +61,8 @@ public:
      */
     static QUrl getFile(QString text, const QUrl& url, const QUrl& cwd);
     static QUrl getDir(QString text, const QUrl& url, const QUrl& cwd);
-    static QUrl getDir(QString text, const QUrl& url, const QUrl& cwd, bool & queue);
-    static QUrl getDir(QString text, const QUrl& url, const QUrl& cwd, bool & queue, bool & preserveAttrs);
-    static QUrl getDir(QString text, const QUrl& url, const QUrl& cwd, bool & queue, bool & preserveAttrs, QUrl &baseURL);
+    static QUrl getDir(QString text, const QUrl& url, const QUrl& cwd, bool & preserveAttrs);
+    static QUrl getDir(QString text, const QUrl& url, const QUrl& cwd, bool & preserveAttrs, QUrl &baseURL);
 };
 
 class KUrlRequesterDlgForCopy : public QDialog
@@ -72,14 +71,11 @@ class KUrlRequesterDlgForCopy : public QDialog
 public:
     KUrlRequesterDlgForCopy(const QUrl& url, const QString& text, bool presAttrs,
                             QWidget *parent, bool modal = true, QUrl baseURL = QUrl());
-    KUrlRequesterDlgForCopy();
+    KUrlRequesterDlgForCopy() {};
 
     QUrl selectedURL() const;
     QUrl baseURL() const;
     bool preserveAttrs();
-    bool enqueue() {
-        return queue;
-    }
     bool copyDirStructure();
     void hidePreserveAttrs() {
 //         preserveAttrsCB->hide();
@@ -87,11 +83,7 @@ public:
 
     KUrlRequester *urlRequester();
 
-protected:
-    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-
 private slots:
-    void slotQueue();
     void slotTextChanged(const QString &);
     void slotDirStructCBChanged();
 private:
@@ -100,7 +92,6 @@ private:
 //     QCheckBox *preserveAttrsCB;
     QCheckBox *copyDirStructureCB;
     QPushButton *okButton;
-    bool queue;
 };
 
 class KRGetDate : public QDialog

@@ -95,7 +95,6 @@
 #include "DiskUsage/diskusagegui.h"
 #include "krservices.h"
 #include "Panel/krviewitem.h"
-#include "Queue/queuedialog.h"
 #include "krtrashhandler.h"
 #include "BookMan/krbookmarkhandler.h"
 #include "BookMan/krbookmarkbutton.h"
@@ -722,11 +721,6 @@ void KRslots::execTypeSetup()
 void KRslots::slotDiskUsage()
 {
     DiskUsageGUI du(ACTIVE_FUNC->files()->vfs_getOrigin(), MAIN_VIEW);
-}
-
-void KRslots::slotQueueManager()
-{
-    QueueDialog::showDialog(false);
 }
 
 void KRslots::applicationStateChanged()

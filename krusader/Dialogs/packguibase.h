@@ -77,7 +77,6 @@ public:
     QLineEdit* password;
     QLineEdit* passwordAgain;
     QLabel* passwordConsistencyLabel;
-    QPushButton* queueButton;
     QPushButton* okButton;
     QPushButton* cancelButton;
     QPushButton* advancedButton;
@@ -96,12 +95,7 @@ public slots:
     void expand();
     void checkConsistency();
 
-protected slots:
-    virtual void slotQueue();
-
 protected:
-    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-
     QHBoxLayout* hbox;
     QHBoxLayout* hbox_2;
     QHBoxLayout* hbox_3;
