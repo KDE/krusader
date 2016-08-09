@@ -30,6 +30,7 @@
 #include <KService/KMimeTypeTrader>
 #include <KService/KToolInvocation>
 #include <KXmlGui/KActionCollection>
+#include <KIOCore/KFileItemListProperties>
 
 #include "listpanel.h"
 #include "krview.h"
@@ -47,12 +48,6 @@
 #include "../UserAction/useractionpopupmenu.h"
 #include "../VFS/krarchandler.h"
 
-#ifdef __LIBKONQ__
-#include <konq_popupmenu.h>
-#include <konq_menuactions.h>
-#include <konq_popupmenuinformation.h>
-#endif
-
 void KrPopupMenu::run(const QPoint &pos, KrPanel *panel)
 {
     KrPopupMenu menu(panel);
@@ -66,11 +61,6 @@ void KrPopupMenu::run(const QPoint &pos, KrPanel *panel)
 KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), panel(thePanel), empty(false),
         multipleSelections(false), actions(0), _item(0)
 {
-#ifdef __LIBKONQ__
-    konqMenu = 0;
-    konqMenuActions = 0;
-#endif
-
     KrViewItemList items;
     panel->view->getSelectedKrViewItems(&items);
 
@@ -171,28 +161,9 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     addAction(uAct);
     uAct->setText(i18n("User Actions"));
 
-#ifdef __LIBKONQ__
-    // -------------- konqueror menu
-    // This section adds all Konqueror/Dolphin menu items.
-    // It's now updated to KDE4 and working, I've just commented it out.
-    // Section below this one adds only servicemenus.
-
-    // Append only servicemenus
-
-    //TODO: deprecated since KDE4.3: remove these three lines
-    KonqPopupMenuInformation info;
-    info.setItems(_items);
-    info.setParentWidget(this);
-
-    konqMenuActions = new KonqMenuActions();
-    //TODO: deprecated since KDE4.3: remove this line, use two commented lines
-    konqMenuActions->setPopupMenuInfo(info);
-    //konqMenuActions->setParentWidget( this );
-    //konqMenuActions->setItemListProperties( _items );
-    konqMenuActions->addActionsTo(this);
-
+    fileItemActions.setItemListProperties(KFileItemListProperties(_items));
+    fileItemActions.addServiceActionsTo(this);
     addSeparator();
-#endif
 
     // ------------- 'create new' submenu
     addCreateNewMenu();
@@ -283,10 +254,6 @@ KrPopupMenu::~KrPopupMenu()
 {
     _items.clear();
     if (actions) delete actions;
-#ifdef __LIBKONQ__
-    if (konqMenu) delete konqMenu;
-    if (konqMenuActions) delete konqMenuActions;
-#endif
 }
 
 void KrPopupMenu::addEmptyMenuEntries()

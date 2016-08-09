@@ -47,8 +47,3 @@ target_link_libraries(Panel
     KF5::WidgetsAddons
     KF5::XmlGui
 )
-
-if(LIBKONQ_FOUND)
-    target_link_libraries(Panel ${LIBKONQ_LIBRARY})
-endif(LIBKONQ_FOUND)
-

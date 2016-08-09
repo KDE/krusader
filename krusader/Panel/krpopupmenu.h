@@ -24,12 +24,7 @@
 #include <QMenu>
 
 #include <KService/KService>
-
-#ifdef __LIBKONQ__
-#include <konq_popupmenu.h>
-#include <konq_menuactions.h>
-#include <KBookmarks/KBookmarkManager>
-#endif
+#include <KIOWidgets/KFileItemActions>
 
 #include "krpreviewpopup.h"
 
@@ -95,10 +90,7 @@ private:
     KFileItem *_item;
     KFileItemList _items;
     KService::List offers;
-#ifdef __LIBKONQ__
-    KonqPopupMenu *konqMenu;
-    KonqMenuActions *konqMenuActions;
-#endif
+    KFileItemActions fileItemActions;
 };
 
 #endif

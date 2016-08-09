@@ -65,11 +65,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KIOFileWidgets/KFilePlacesModel>
 #include <KIOWidgets/KUrlComboBox>
 
-//#ifdef __LIBKONQ__
-//#include <konq_popupmenu.h>
-//#include <KBookmarks/KBookmarkManager>
-//#endif
-
 #include "../defaults.h"
 #include "../krusader.h"
 #include "../krslots.h"

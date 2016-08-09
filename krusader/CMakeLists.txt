@@ -2,17 +2,6 @@ include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
 
 configure_file(krusaderversion.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/krusaderversion.h)
 
-# keep it disabled until kde-baseapps will be ported
-#find_package(LibKonq)
-
-if(LIBKONQ_FOUND)
-    message(STATUS "libkonq library found")
-    add_definitions(-D__LIBKONQ__)
-    include_directories( ${LIBKONQ_INCLUDE_DIR} )
-else(LIBKONQ_FOUND)
-    message(STATUS "libkonq library not found")
-endif(LIBKONQ_FOUND)
-
 add_subdirectory(ActionMan)
 add_subdirectory(BookMan)
 add_subdirectory(Dialogs)
@@ -89,10 +78,6 @@ target_link_libraries(krusader
 if(SYNCHRONIZER_ENABLED)
     target_link_libraries( krusader Synchronizer )
 endif(SYNCHRONIZER_ENABLED)
-
-if(LIBKONQ_FOUND)
-    target_link_libraries( krusader ${LIBKONQ_LIBRARY} )
-endif(LIBKONQ_FOUND)
 
 install(TARGETS krusader ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS org.kde.krusader.desktop
