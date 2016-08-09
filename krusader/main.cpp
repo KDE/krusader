@@ -28,6 +28,9 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <csignal>
+#include <unistd.h>
+
 // QtCore
 #include <QAbstractEventDispatcher>
 #include <QCommandLineOption>

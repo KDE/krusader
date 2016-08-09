@@ -13,7 +13,6 @@ set(VFS_SRCS
     virtualcopyjob.cpp
     ftp_vfs.cpp
     krquery.cpp
-    kiojobwrapper.cpp
     packjob.cpp
     abstractthreadedjob.cpp
     kr7zencryptionchecker.cpp

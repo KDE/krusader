@@ -48,7 +48,6 @@
 #include "../krglobal.h"
 #include "../defaults.h"
 #include "../MountMan/kmountman.h"
-#include "kiojobwrapper.h"
 
 vfs::vfs(QObject* panel, bool quiet) : VfileContainer(0),
         vfs_busy(false), quietMode(quiet), disableRefresh(false), postponedRefreshURL(),
@@ -320,29 +319,30 @@ void vfs::calculateURLSize(QUrl url,  KIO::filesize_t* totalSize, unsigned long*
     if (url.isLocalFile()) {
         vfs_calcSpaceLocal(url.adjusted(QUrl::StripTrailingSlash).path(), totalSize, totalFiles, totalDirs, stop);
         return;
-    } else {
-        stat_busy = true;
-        KIOJobWrapper * statJob = KIOJobWrapper::stat(url);
-        statJob->connectTo(SIGNAL(result(KJob*)), this, SLOT(slotStatResultArrived(KJob*)));
-        statJob->start();
-        while (!(*stop) && stat_busy) {
-            usleep(1000);
-        }
-
-        if (entry.count() == 0) return;  // statJob failed
-        KFileItem kfi(entry, url, true);
-        if (kfi.isFile() || kfi.isLink()) {
-            (*totalFiles)++;
-            *totalSize += kfi.size();
-            return;
-        }
     }
 
-    KIOJobWrapper* kds  = KIOJobWrapper::directorySize(url);
-    kds->connectTo(SIGNAL(result(KJob*)), this, SLOT(slotKdsResult(KJob*)));
-    kds->start();
+    stat_busy = true;
+    KIO::StatJob * statJob = KIO::stat(url);
+    connect(statJob, SIGNAL(result(KJob*)), this, SLOT(slotStatResultArrived(KJob*)));
+    while (!(*stop) && stat_busy) {
+        usleep(1000);
+    }
+
+    if (entry.count() == 0)
+        return;  // statJob failed
+
+    KFileItem kfi(entry, url, true);
+    if (kfi.isFile() || kfi.isLink()) {
+        (*totalFiles)++;
+        *totalSize += kfi.size();
+        return;
+    }
+
+    KIO::DirectorySizeJob *directorySizeJob = KIO::directorySize(url);
+    connect(directorySizeJob, SIGNAL(result(KJob*)), this, SLOT(slotKdsResult(KJob*)));
+
     while (!(*stop)) {
-        // we are in a sepetate thread - so sleeping is OK
+        // we are in a separate thread - so sleeping is OK
         usleep(1000);
     }
 }

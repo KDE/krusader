@@ -55,8 +55,6 @@
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
 
-#include "VFS/kiojobwrapper.h"
-
 #ifdef __KJSEMBED__
 class KrJS;
 #endif
@@ -186,7 +184,6 @@ private:
     QSize        oldSize;
     bool         isStarting;
     bool         isExiting;
-    KrJobStarter jobStarter;
     QTimer      _openUrlTimer;
     QString     _urlToOpen;
 };

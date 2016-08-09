@@ -201,7 +201,6 @@ protected:
         vfs_filesP->remove(name);
     }
 
-    /// Deletes a vfile from the list.
     void calculateURLSize(QUrl url, KIO::filesize_t *totalSize, unsigned long *totalFiles, unsigned long *totalDirs, bool * stop);
 
     VFS_TYPE      vfs_type;     //< the vfs type.
