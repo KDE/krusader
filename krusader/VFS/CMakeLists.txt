@@ -10,7 +10,6 @@ set(VFS_SRCS
     krpermhandler.cpp
     krarchandler.cpp
     preservingcopyjob.cpp
-    virtualcopyjob.cpp
     ftp_vfs.cpp
     krquery.cpp
     packjob.cpp

@@ -94,29 +94,6 @@ QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &pr
     return u;
 }
 
-QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &preserveAttrs, QUrl &baseURL)
-{
-    QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(vfs::ensureTrailingSlash(url),
-                                                                            text, preserveAttrs, krMainWindow,
-                                                                            true, baseURL));
-    dlg->urlRequester()->setStartDir(cwd);
-    dlg->urlRequester()->setMode(KFile::Directory);
-    dlg->exec();
-    QUrl u = dlg->selectedURL();
-    if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
-        if (QDir(u.path()).exists()) {
-            u.setScheme("file");
-        }
-    }
-    if (dlg->copyDirStructure()) {
-        baseURL = dlg->baseURL();
-    } else {
-        baseURL = QUrl();
-    }
-    preserveAttrs = dlg->preserveAttrs();
-    return u;
-}
-
 KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QString& _text, bool /*presAttrs*/, QWidget *parent,
         bool modal, QUrl baseURL)
         :   QDialog(parent), baseUrlCombo(0), copyDirStructureCB(0)

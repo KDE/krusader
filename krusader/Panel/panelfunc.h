@@ -153,7 +153,6 @@ protected:
     static QPointer<ListPanelFunc> copyToClipboardOrigin;
 
 private:
-    QUrl getVirtualBaseURL();
     bool _refreshing; // ignore url changes while refreshing
 };
 
