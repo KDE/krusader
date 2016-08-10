@@ -33,9 +33,6 @@
 // QtCore
 #include <QDir>
 
-KrVfsHandler::KrVfsHandler() {}
-KrVfsHandler::~KrVfsHandler() {}
-
 vfs* KrVfsHandler::getVfs(const QUrl &url, QObject* parent, vfs* oldVfs)
 {
     vfs::VFS_TYPE newType = getVfsType(url);
@@ -50,6 +47,27 @@ vfs* KrVfsHandler::getVfs(const QUrl &url, QObject* parent, vfs* oldVfs)
     default:
         return new default_vfs(parent);
     }
+}
+
+KIO::Job *KrVfsHandler::createCopyJob(const QList<QUrl> &urls, const QUrl &destination,
+                                      KIO::CopyJob::CopyMode mode, bool showProgressInfo) {
+    KIO::JobFlags flags = showProgressInfo ? KIO::DefaultFlags : KIO::HideProgressInfo;
+    switch (mode) {
+    case KIO::CopyJob::Move:
+        return KIO::move(urls, destination, flags);
+    case KIO::CopyJob::Link:
+        return KIO::link(urls, destination, flags);
+    default:
+        return KIO::copy(urls, destination, flags);
+    }
+}
+
+// ==== static ====
+
+KrVfsHandler &KrVfsHandler::instance()
+{
+    static KrVfsHandler instance;
+    return instance;
 }
 
 vfs::VFS_TYPE KrVfsHandler::getVfsType(const QUrl &url)

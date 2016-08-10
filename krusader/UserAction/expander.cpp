@@ -27,7 +27,7 @@
 #include "../Panel/krview.h"
 #include "../Search/krsearchdialog.h"
 #include "../GUI/profilemanager.h"
-#include "../VFS/preservingcopyjob.h"
+#include "../VFS/krvfshandler.h"
 #include "../KViewer/krviewer.h"
 #include "../krservices.h"
 
@@ -636,7 +636,7 @@ TagString exp_Copy::expFunc(const KrPanel*, const TagStringList& parameter, cons
         return QString();
     }
 
-    PreservingCopyJob::createCopyJob(PM_DEFAULT, src, dest, KIO::CopyJob::Copy, false, true);
+    KrVfsHandler::instance().createCopyJob(src, dest);
 
     return QString();  // this doesn't return everything, that's normal!
 }
@@ -674,7 +674,7 @@ TagString exp_Move::expFunc(const KrPanel*, const TagStringList& parameter, cons
         return QString();
     }
 
-    PreservingCopyJob::createCopyJob(PM_DEFAULT, src, dest, KIO::CopyJob::Move, false, true);
+    KrVfsHandler::instance().createCopyJob(src, dest, KIO::CopyJob::Move);
 
     return QString();  // this doesn't return anything, that's normal!
 }

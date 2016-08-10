@@ -266,7 +266,7 @@ void DiskUsage::load(const QUrl &baseDir)
         delete searchVfs;
         searchVfs = 0;
     }
-    searchVfs = KrVfsHandler::getVfs(baseDir);
+    searchVfs = KrVfsHandler::instance().getVfs(baseDir);
     if (searchVfs == 0) {
         loading = abortLoading = clearAfterAbort = false;
         emit loadFinished(false);

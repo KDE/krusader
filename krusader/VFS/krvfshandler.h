@@ -24,21 +24,45 @@
 #include <QObject>
 #include <QUrl>
 
+#include <KIO/Job>
+
 #include "vfs.h"
 
-class KrVfsHandler : public QObject
-{
+/**
+ * @brief Provider for all IO and filesystem operations.
+ *
+ * This is a singleton.
+ */
+class KrVfsHandler : public QObject {
     Q_OBJECT
-public:
-    KrVfsHandler();
-    ~KrVfsHandler();
 
+public:
+    /**
+     * Get a directory for the filesystem target specified by url
+     */
+    vfs *getVfs(const QUrl &url, QObject *parent = 0, vfs *oldVfs = 0);
+
+    /**
+     * Create a copy job for copying moving or linking files to destination.
+     *
+     * Note: the job is done async and not done when returning
+     *
+     * @param urls the source files
+     * @param destination the destination folder
+     * @param mode copy, move or link
+     * @param showProgressInfo
+     */
+    KIO::Job *createCopyJob(const QList<QUrl> &urls, const QUrl &destination,
+                            KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
+                            bool showProgressInfo = true);
+
+    static KrVfsHandler &instance();
     static vfs::VFS_TYPE getVfsType(const QUrl &url);
-    static vfs* getVfs(const QUrl &url, QObject* parent = 0, vfs* oldVfs = 0);
     /** Get ACL permissions */
     static void getACL(vfile *file, QString &acl, QString &defAcl);
 
 private:
+    KrVfsHandler() {}
     static QString getACL(const QString & path, int type);
 };
 

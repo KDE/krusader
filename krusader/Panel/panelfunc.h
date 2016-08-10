@@ -77,8 +77,9 @@ public slots:
     void viewDlg();
     void edit();
     void editNew(); // create a new textfile and edit it
-    void copyFiles();
     void moveFiles();
+    void copyFiles(bool move = false);
+
     /*!
      * asks the user the new directory name
      */

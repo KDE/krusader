@@ -498,7 +498,7 @@ void AbstractJobThread::calcSpaceLocal(const QUrl &baseUrl, const QStringList & 
 {
     sendReset(i18n("Calculating space"));
 
-    vfs *calcSpaceVfs = KrVfsHandler::getVfs(baseUrl);
+    vfs *calcSpaceVfs = KrVfsHandler::instance().getVfs(baseUrl);
     KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(_job->uiDelegate());
     if(ui)
         calcSpaceVfs->setParentWindow(ui->window());
