@@ -52,7 +52,8 @@ public:
     /// Rename file
     void vfs_rename(const QString& fileName, const QString& newName) Q_DECL_OVERRIDE;
     /// Calculate the amount of space occupied by a file or directory (recursive).
-    virtual void vfs_calcSpace(QString name , KIO::filesize_t *totalSize, unsigned long *totalFiles, unsigned long *totalDirs, bool * stop) Q_DECL_OVERRIDE;
+    virtual void vfs_calcSpace(QString name, KIO::filesize_t *totalSize, unsigned long *totalFiles,
+                               unsigned long *totalDirs, bool *stop) Q_DECL_OVERRIDE;
 
     /// Return the VFS working dir
     QString vfs_workingDir() Q_DECL_OVERRIDE {
@@ -73,14 +74,14 @@ protected:
     /// Restore the dictionary from file
     bool restore();
     /// return the URLs DB
-    KConfig*  getVirtDB();
+    KConfig *getVirtDB();
 
     bool populateVfsList(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;
-    vfile* stat(const QUrl &url);
+    vfile *stat(const QUrl &url);
 
     static QHash<QString, QList<QUrl> *> virtVfsDict;
     static QHash<QString, QString> metaInfoDict;
-    static KConfig* virt_vfs_db;
+    static KConfig *virt_vfs_db;
     bool busy;
     QString path;
     QString metaInfo;

@@ -44,9 +44,6 @@ KConfig* virt_vfs::virt_vfs_db = 0;
 
 virt_vfs::virt_vfs(QObject* panel, bool quiet) : vfs(panel, quiet)
 {
-    // set the writable attribute
-    isWritable = true;
-
     if (virtVfsDict.isEmpty()) {
         restore();
     }

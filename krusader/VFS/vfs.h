@@ -64,20 +64,16 @@ public:
     enum VFS_TYPE {VFS_ERROR = 0, VFS_NORMAL, VFS_FTP, VFS_VIRT};
 
     /**
-     * Creates a vfs.
-     * @param panel the panel father
-     * @param quiet if true, the VFS will not display error messages
-     */
-    vfs(QObject* panel, bool quiet = false);
-    virtual   ~vfs();
+    * Creates a vfs.
+    * @param panel the panel father
+    * @param quiet if true, the VFS will not display error messages
+    */
+    vfs(QObject *panel = 0, bool quiet = false);
+    virtual ~vfs();
 
     // VfileContainer implementation
-    virtual QList<vfile*> vfiles() {
-        return vfs_filesP->values();
-    }
-    virtual unsigned long numVfiles() {
-        return vfs_filesP->count();
-    }
+    virtual QList<vfile *> vfiles() { return vfs_filesP->values(); }
+    virtual unsigned long numVfiles() { return vfs_filesP->count(); }
     virtual bool isRoot();
 
     /// Copy (copy, move or link) files to the vfs (physical). Copy destination is "dir", the
@@ -90,22 +86,24 @@ public:
     virtual void vfs_delFiles(const QStringList &fileNames, bool reallyDelete = false) = 0;
     /// Return a list of URLs for multiple files
     virtual QList<QUrl> vfs_getFiles(const QStringList &names) = 0;
-    /// Return a URL to a single file, with no trailing slash
-    virtual QUrl vfs_getFile(const QString& name) = 0;
+    /// Return an absolute URL to a single file, with no trailing slash
+    virtual QUrl vfs_getFile(const QString &name) = 0;
     /// Create a new directory
-    virtual void vfs_mkdir(const QString& name) = 0;
+    virtual void vfs_mkdir(const QString &name) = 0;
     /// Rename file. May implemented async.
-    virtual void vfs_rename(const QString& fileName, const QString& newName) = 0;
+    virtual void vfs_rename(const QString &fileName, const QString &newName) = 0;
     /// Calculate the amount of space occupied by a file or directory (recursive).
-    virtual void vfs_calcSpace(QString name , KIO::filesize_t *totalSize, unsigned long *totalFiles, unsigned long *totalDirs, bool * stop);
+    virtual void vfs_calcSpace(QString name, KIO::filesize_t *totalSize, unsigned long *totalFiles,
+                             unsigned long *totalDirs, bool *stop);
     /// Calculate the amount of space occupied by a local file or directory (recursive).
-    virtual void vfs_calcSpaceLocal(QString name , KIO::filesize_t *totalSize, unsigned long *totalFiles, unsigned long *totalDirs, bool * stop);
+    virtual void vfs_calcSpaceLocal(QString name, KIO::filesize_t *totalSize,
+                                  unsigned long *totalFiles, unsigned long *totalDirs, bool *stop);
 
     /// Return the VFS working dir
     virtual QString vfs_workingDir() = 0;
     /// Return true if the VFS url is writable
     virtual bool vfs_isWritable() {
-        return isWritable;
+        return true;
     }
     /// Return vfile* or 0 if not found
     inline vfile* vfs_search(const QString& name) {
@@ -162,11 +160,8 @@ public:
     static QUrl ensureTrailingSlash(const QUrl &url);
 
 public slots:
-    /// Re-reads files and stats and fills the vfile list
+    // Re-reads files and stats and fills the vfile list (blocking).
     bool vfs_refresh(const QUrl &origin);
-    /// Used to refresh the VFS when a job finishs. it calls the refresh() slot
-    /// or display a error message if the job fails
-    bool vfs_refresh(KJob * job);
     bool vfs_refresh();
     void vfs_setQuiet(bool beQuiet) {
         quietMode = beQuiet;
@@ -184,7 +179,7 @@ signals:
     void error(QString msg);
 
 protected:
-    /// Feel the vfs dictionary with vfiles, must be implemented for each vfs
+    /// Fill the vfs dictionary with vfiles, must be implemented for each vfs
     virtual bool populateVfsList(const QUrl &origin, bool showHidden) = 0;
     /// Called by populateVfsList for each file
     void foundVfile(vfile *vf) {
@@ -210,7 +205,6 @@ protected:
     bool          vfs_busy;     //< true if vfs is busy with refreshing
     bool quietMode;             //< if true the vfs won't display error messages or emit signals
     bool disableRefresh;        //< true if refresh is disabled
-    bool isWritable;            //< true if it's writable
     QUrl postponedRefreshURL;   //< true if vfs_refresh() was called when refresh is disabled.
     bool invalidated;           //< the content of the cache is invalidated
     bool panelConnected;        //< indicates that there's a panel connected. Important for disabling the dir watcher
@@ -221,21 +215,24 @@ protected slots:
     /// The slot for the KIO::DirectorySizeJob
     void slotKdsResult(KJob *job);
     void slotStatResultArrived(KJob *job);
+    /// Used to refresh the VFS when a job is finished. It calls the refresh() slot
+    /// or displays an error message if the job fails
+    bool vfs_refresh(KJob * job);
 
 private:
-    vfileDict*  vfs_filesP;    //< Point to a lists of virtual files (vfile).
-    vfileDict*  vfs_tempFilesP;//< Temporary files are stored here
-    QHash<QString, vfile *>::iterator vfileIterator; //< Point to a dictionary of virtual files (vfile).
+    vfileDict *vfs_filesP;     // Point to a lists of virtual files (vfile)
+    vfileDict *vfs_tempFilesP; // Temporary files are stored here
+    QHash<QString, vfile *>::iterator vfileIterator; // Point to a dictionary of virtual files (vfile)
 
     // used in the calcSpace function
-    bool* kds_busy;
-    bool  stat_busy;
-    bool  deletePossible;
-    bool  deleteRequested;
+    bool *kds_busy;
+    bool stat_busy;
+    bool deletePossible;
+    bool deleteRequested;
     KIO::UDSEntry entry;
-    KIO::filesize_t* kds_totalSize;
-    unsigned long*   kds_totalFiles;
-    unsigned long*   kds_totalDirs;
+    KIO::filesize_t *kds_totalSize;
+    unsigned long *kds_totalFiles;
+    unsigned long *kds_totalDirs;
 };
 
 #endif
