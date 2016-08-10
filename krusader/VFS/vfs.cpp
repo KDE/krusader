@@ -221,7 +221,8 @@ bool vfs::vfs_refresh(const QUrl &origin)
         return true;
     }
 
-    if (!invalidated && origin.matches(vfs_getOrigin(), QUrl::StripTrailingSlash)) return vfs_refresh();
+    if (!invalidated && origin.matches(vfs_getOrigin(), QUrl::StripTrailingSlash))
+        return vfs_refresh();
 
     vfs_busy = true;
 

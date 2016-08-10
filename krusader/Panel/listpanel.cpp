@@ -969,7 +969,9 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                     }
                 }
                 otherPanel()->func->openUrl(newPath);
-            } else func->openUrl(otherPanel()->func->files() ->vfs_getOrigin());
+            } else {
+                func->openUrl(otherPanel()->func->files()->vfs_getOrigin());
+            }
             return ;
         } else
             e->ignore();
