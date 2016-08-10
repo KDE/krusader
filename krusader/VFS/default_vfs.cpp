@@ -55,7 +55,7 @@ default_vfs::default_vfs(QObject* parent): vfs(parent), watcher(0)
 }
 
 void default_vfs::vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
-                               QObject *toNotify, QString dir, PreserveMode /*pmode*/)
+                               QObject *toNotify, QString dir)
 {
     //if (watcher) watcher->stopScan();
 

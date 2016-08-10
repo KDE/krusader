@@ -9,7 +9,6 @@ set(VFS_SRCS
     default_vfs.cpp
     krpermhandler.cpp
     krarchandler.cpp
-    preservingcopyjob.cpp
     krquery.cpp
     packjob.cpp
     abstractthreadedjob.cpp

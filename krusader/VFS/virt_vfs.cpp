@@ -90,7 +90,7 @@ bool virt_vfs::populateVfsList(const QUrl &origin, bool /*showHidden*/)
     return true;
 }
 
-void virt_vfs::vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mode*/, QObject* /*toNotify*/, QString /*dir*/, PreserveMode /*pmode*/)
+void virt_vfs::vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mode*/, QObject* /*toNotify*/, QString /*dir*/)
 {
     if (path == "/") {
         if (!quietMode)

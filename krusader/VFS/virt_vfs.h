@@ -35,7 +35,8 @@ public:
     ~virt_vfs();
 
     /// Copy a file to the vfs (physical).
-    void vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "",  PreserveMode pmode = PM_DEFAULT) Q_DECL_OVERRIDE;
+    void vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QObject *toNotify,
+                      QString dir = "") Q_DECL_OVERRIDE;
     /// Handle file drop
     virtual void vfs_drop(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
     /// Remove a file from the vfs (physical)

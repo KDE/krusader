@@ -1204,8 +1204,7 @@ void ListPanelFunc::pasteFromClipboard()
         }
     }
 
-    files()->vfs_addFiles(urls, move ? KIO::CopyJob::Move : KIO::CopyJob::Copy, otherFunc()->files(),
-                          "", PM_DEFAULT);
+    files()->vfs_addFiles(urls, move ? KIO::CopyJob::Move : KIO::CopyJob::Copy, otherFunc()->files());
 }
 
 ListPanelFunc* ListPanelFunc::otherFunc()

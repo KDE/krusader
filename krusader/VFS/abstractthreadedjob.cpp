@@ -47,7 +47,6 @@
 #include "krvfshandler.h"
 #include "krarchandler.h"
 #include "vfs.h"
-#include "preservingcopyjob.h"
 #include "../krglobal.h"
 #include "../krservices.h"
 
@@ -135,7 +134,7 @@ bool AbstractThreadedJob::event(QEvent *e)
         case CMD_DOWNLOAD_FILES: {
             QList<QUrl> sources = KrServices::toUrlList(event->args()[ 0 ].value<QStringList>());
             QUrl dest = event->args()[ 1 ].value<QUrl>();
-            KIO::Job *job = PreservingCopyJob::createCopyJob(PM_PRESERVE_ATTR, sources, dest, KIO::CopyJob::Copy, false, false);
+            KIO::Job *job = KIO::copy(sources, dest, KIO::HideProgressInfo);
             addSubjob(job);
             job->setUiDelegate(new KIO::JobUiDelegate());
 

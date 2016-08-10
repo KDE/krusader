@@ -44,8 +44,9 @@
 // QtWidgets
 #include <QWidget>
 
+#include <KIO/CopyJob>
+
 #include "vfile.h"
-#include "preservingcopyjob.h"
 #include "krquery.h"
 
 class KMountMan;
@@ -81,7 +82,8 @@ public:
 
     /// Copy (copy, move or link) files to the vfs (physical). Copy destination is "dir", the
     /// directory name to copy to relative to the current dir. May implemented async.
-    virtual void vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) = 0;
+    virtual void vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
+                            QObject *toNotify, QString dir = "") = 0;
     /// Handle file dropping in this vfs. Destination is absolute URL. May implemented async.
     virtual void vfs_drop(const QUrl &destination, QDropEvent *event) = 0;
     /// Remove a file from the vfs (physical). May implemented async.

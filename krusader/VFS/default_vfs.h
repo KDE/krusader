@@ -35,8 +35,6 @@
 
 #include <KCoreAddons/KDirWatch>
 
-#include "preservingcopyjob.h"
-
 /**
  * @brief Default filesystem implementation supporting all KIO protocols
  *
@@ -51,7 +49,7 @@ public:
     ~default_vfs() {}
 
     virtual void vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
-                              QObject *toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT) Q_DECL_OVERRIDE;
+                              QObject *toNotify, QString dir = "") Q_DECL_OVERRIDE;
     virtual void vfs_drop(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
     virtual void vfs_delFiles(const QStringList &fileNames,
                               bool reallyDelete = false) Q_DECL_OVERRIDE;
