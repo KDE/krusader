@@ -6,11 +6,10 @@ set(VFS_SRCS
     virt_vfs.cpp
     vfs.cpp
     vfile.cpp
-    normal_vfs.cpp
+    default_vfs.cpp
     krpermhandler.cpp
     krarchandler.cpp
     preservingcopyjob.cpp
-    ftp_vfs.cpp
     krquery.cpp
     packjob.cpp
     abstractthreadedjob.cpp

@@ -35,6 +35,11 @@ public:
 
     static vfs::VFS_TYPE getVfsType(const QUrl &url);
     static vfs* getVfs(const QUrl &url, QObject* parent = 0, vfs* oldVfs = 0);
+    /** Get ACL permissions */
+    static void getACL(vfile *file, QString &acl, QString &defAcl);
+
+private:
+    static QString getACL(const QString & path, int type);
 };
 
 #endif

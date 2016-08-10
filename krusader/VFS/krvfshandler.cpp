@@ -18,56 +18,108 @@
  *****************************************************************************/
 
 #include "krvfshandler.h"
-#include "normal_vfs.h"
-#include "ftp_vfs.h"
+
+#ifdef HAVE_POSIX_ACL
+#include <sys/acl.h>
+#ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
+#include <acl/libacl.h>
+#endif
+#endif
+
+#include "default_vfs.h"
 #include "virt_vfs.h"
 #include "../krservices.h"
 
 // QtCore
 #include <QDir>
 
-KrVfsHandler::KrVfsHandler()
+KrVfsHandler::KrVfsHandler() {}
+KrVfsHandler::~KrVfsHandler() {}
+
+vfs* KrVfsHandler::getVfs(const QUrl &url, QObject* parent, vfs* oldVfs)
 {
-}
-KrVfsHandler::~KrVfsHandler()
-{
+    vfs::VFS_TYPE newType = getVfsType(url);
+
+    if (oldVfs && oldVfs->vfs_getType() == newType) {
+        return oldVfs;
+    }
+
+    switch (newType) {
+    case (vfs::VFS_VIRT):
+        return new virt_vfs(parent);
+    default:
+        return new default_vfs(parent);
+    }
 }
 
 vfs::VFS_TYPE KrVfsHandler::getVfsType(const QUrl &url)
 {
-    QString protocol = url.scheme();
-
-    if ((protocol == "krarc" || protocol == "tar" || protocol == "zip") &&
-            QDir(KrServices::urlToLocalPath(url)).exists())
-        return vfs::VFS_NORMAL;
-
-    if (url.isLocalFile())
-        return vfs::VFS_NORMAL;
-
-    if (protocol == QStringLiteral("virt"))
-        return vfs::VFS_VIRT;
-
-    return vfs::VFS_FTP;
+    return url.scheme() == QStringLiteral("virt") ? vfs::VFS_VIRT : vfs::VFS_NORMAL;
 }
 
-vfs* KrVfsHandler::getVfs(const QUrl &url, QObject* parent, vfs* oldVfs)
+void KrVfsHandler::getACL(vfile *file, QString &acl, QString &defAcl)
 {
-    vfs::VFS_TYPE newType, oldType = vfs::VFS_ERROR;
+    Q_UNUSED(file);
+    acl.clear();
+    defAcl.clear();
+#ifdef HAVE_POSIX_ACL
+    QString fileName = file->vfile_getUrl().adjusted(QUrl::StripTrailingSlash).path();
+#ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
+    if (acl_extended_file(fileName)) {
+#endif
+        acl = getACL(fileName, ACL_TYPE_ACCESS);
+        if (file->vfile_isDir())
+            defAcl = getACL(fileName, ACL_TYPE_DEFAULT);
+#ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
+    }
+#endif
+#endif
+}
 
-    if (oldVfs) oldType = oldVfs->vfs_getType();
-    newType = getVfsType(url);
+QString KrVfsHandler::getACL(const QString & path, int type)
+{
+    Q_UNUSED(path);
+    Q_UNUSED(type);
+#ifdef HAVE_POSIX_ACL
+    acl_t acl = 0;
+    // do we have an acl for the file, and/or a default acl for the dir, if it is one?
+    if ((acl = acl_get_file(path.toLocal8Bit(), type)) != 0) {
+        bool aclExtended = false;
 
+#ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
+        aclExtended = acl_equiv_mode(acl, 0);
+#else
+        acl_entry_t entry;
+        int ret = acl_get_entry(acl, ACL_FIRST_ENTRY, &entry);
+        while (ret == 1) {
+            acl_tag_t currentTag;
+            acl_get_tag_type(entry, &currentTag);
+            if (currentTag != ACL_USER_OBJ &&
+                    currentTag != ACL_GROUP_OBJ &&
+                    currentTag != ACL_OTHER) {
+                aclExtended = true;
+                break;
+            }
+            ret = acl_get_entry(acl, ACL_NEXT_ENTRY, &entry);
+        }
+#endif
 
-    vfs* newVfs = oldVfs;
-
-    if (oldType != newType) {
-        switch (newType) {
-        case(vfs::VFS_NORMAL) : newVfs = new normal_vfs(parent); break;
-        case(vfs::VFS_FTP) : newVfs = new ftp_vfs(parent)   ; break;
-        case(vfs::VFS_VIRT) : newVfs = new virt_vfs(parent)  ; break;
-        case(vfs::VFS_ERROR) : newVfs = 0                     ; break;
+        if (!aclExtended) {
+            acl_free(acl);
+            acl = 0;
         }
     }
 
-    return newVfs;
+    if (acl == 0)
+        return QString();
+
+    char *aclString = acl_to_text(acl, 0);
+    QString ret = QString::fromLatin1(aclString);
+    acl_free((void*)aclString);
+    acl_free(acl);
+
+    return ret;
+#else
+    return QString();
+#endif
 }
