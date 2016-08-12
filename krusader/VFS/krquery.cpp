@@ -42,8 +42,8 @@
 #include <KIOCore/KFileItem>
 
 #include "vfs.h"
-#include "krarchandler.h"
 #include "krpermhandler.h"
+#include "../Archive/krarchandler.h"
 
 #define  STATUS_SEND_DELAY     250
 #define  MAX_LINE_LEN          1000

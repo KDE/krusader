@@ -53,7 +53,7 @@
 #include <KWidgetsAddons/KActionMenu>
 #include <KWindowSystem/KStartupInfo>
 
-#include "../VFS/krarchandler.h"
+#include "../Archive/krarchandler.h"
 
 #include "krusader.h"
 #include "krusaderview.h"

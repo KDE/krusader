@@ -44,11 +44,11 @@
 #include <KIO/JobUiDelegate>
 #include <KWidgetsAddons/KMessageBox>
 
-#include "krvfshandler.h"
 #include "krarchandler.h"
-#include "vfs.h"
 #include "../krglobal.h"
 #include "../krservices.h"
+#include "../VFS/krvfshandler.h"
+#include "../VFS/vfs.h"
 
 extern KRarcHandler arcHandler;
 

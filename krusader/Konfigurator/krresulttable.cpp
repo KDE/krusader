@@ -32,7 +32,7 @@
 #include <KI18n/KLocalizedString>
 
 #include "../krservices.h"
-#include "../VFS/krarchandler.h"
+#include "../Archive/krarchandler.h"
 
 using namespace std;
 
