@@ -129,7 +129,7 @@
 // Mimetype Magic /////
 #define _MimetypeMagic true
 // Move To Trash //////
-#define _MoveToTrash   false
+#define _MoveToTrash   true
 // Terminal ///////////
 #define _Terminal      "konsole --nofork"
 // Send CDs ///////////
