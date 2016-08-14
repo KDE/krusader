@@ -165,6 +165,22 @@ protected:
 };
 
 
+class ListerPane : public QWidget
+{
+    Q_OBJECT
+
+public:
+    ListerPane(Lister *lister, QWidget *parent);
+
+protected:
+    virtual bool   event(QEvent *event) Q_DECL_OVERRIDE;
+
+protected:
+    bool     handleCloseEvent(QEvent *e);
+    Lister        *_lister;
+};
+
+
 class Lister : public KParts::ReadOnlyPart
 {
     Q_OBJECT
@@ -185,8 +201,10 @@ public:
     }
     char *          cacheRef(qint64 filePos, int &size);
 
+    bool            isSearchEnabled();
     void            enableSearch(bool);
     void            enableActions(bool);
+    void            searchDelete();
 
     QString         characterSet() {
         return _characterSet;
@@ -219,7 +237,6 @@ protected slots:
 
     void            searchSucceeded();
     void            searchFailed();
-    void            searchDelete();
     void            searchTextChanged();
 
     void            slotFileDataReceived(KIO::Job *, const QByteArray &);

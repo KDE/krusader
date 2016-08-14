@@ -1052,6 +1052,33 @@ void ListerTextArea::setHexMode(bool hexMode)
     ensureVisibleCursor();
 }
 
+ListerPane::ListerPane(Lister *lister, QWidget *parent) : QWidget(parent), _lister(lister)
+{
+}
+
+bool ListerPane::event(QEvent *e)
+{
+    bool handled = ListerPane::handleCloseEvent(e);
+    if (!handled) {
+        return QWidget::event(e);
+    }
+    return true;
+}
+
+bool ListerPane::handleCloseEvent(QEvent *e)
+{
+    if (e->type() == QEvent::ShortcutOverride) {
+        QKeyEvent *ke = static_cast<QKeyEvent *>(e);
+        if (ke->key() == Qt::Key_Escape && _lister->isSearchEnabled()) {
+            _lister->searchDelete();
+            _lister->enableSearch(false);
+            ke->accept();
+            return true;
+        }
+    }
+    return false;
+}
+
 ListerBrowserExtension::ListerBrowserExtension(Lister * lister) : KParts::BrowserExtension(lister)
 {
     _lister = lister;
@@ -1139,7 +1166,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
 
     _actionEncoding = new ListerEncodingMenu(this, i18n("Select charset"), "character-set", actionCollection());
 
-    QWidget * widget = new QWidget(parent);
+    QWidget * widget = new ListerPane(this, parent);
     widget->setFocusPolicy(Qt::StrongFocus);
     QGridLayout *grid = new QGridLayout(widget);
     _textArea = new ListerTextArea(this, widget);
@@ -1384,6 +1411,11 @@ void Lister::slotUpdate()
 
     if (_searchProgressCounter)
         _searchProgressCounter--;
+}
+
+bool Lister::isSearchEnabled()
+{
+    return !_searchLineEdit->isHidden() || !_searchProgressBar->isHidden();
 }
 
 void Lister::enableSearch(bool enable)
@@ -1748,6 +1780,9 @@ void Lister::updateProgressBar()
         _searchNextButton->hide();
         _searchPrevButton->hide();
         _listerLabel->setText(i18n("Search position:"));
+
+        // otherwise focus is set to document tab
+        _textArea->setFocus();
     }
 
     qint64 pcnt = (_fileSize == 0) ? 1000 : (2001 * _searchPosition) / _fileSize / 2;
