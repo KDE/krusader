@@ -459,7 +459,7 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
     QString cmdArgs = commandLineSwitches->currentText().trimmed();
     if (!cmdArgs.isEmpty()) {
         bool firstChar = true;
-        QChar quote = '\0';
+        QChar quote = QChar::Null;
 
         for (int i = 0; i < cmdArgs.length(); i++) {
             QChar ch(cmdArgs[ i ]);
@@ -467,22 +467,22 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
                 continue;
 
             if (ch == quote) {
-                quote = '\0';
+                quote = QChar::Null;
                 continue;
             }
 
-            if (firstChar && ch != '-') {
+            if (firstChar && ch != QLatin1Char('-')) {
                 KMessageBox::error(this, i18n("Invalid command line switch.\nA switch must start with '-'."));
                 return false;
             }
 
             firstChar = false;
 
-            if (quote == '"')
+            if (quote == QLatin1Char('"'))
                 continue;
-            if (quote == '\0' && (ch == '\'' || ch == '"'))
+            if (quote == QChar::Null && (ch == QLatin1Char('\'') || ch == QLatin1Char('"')))
                 quote = ch;
-            if (ch == '\\') {
+            if (ch == QLatin1Char('\\')) {
                 if (i == cmdArgs.length() - 1) {
                     KMessageBox::error(this, i18n("Invalid command line switch.\nBackslashes cannot be the last character."));
                     return false;
@@ -491,7 +491,7 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
             }
         }
 
-        if (quote != '\0') {
+        if (quote != QChar::Null) {
             KMessageBox::error(this, i18n("Invalid command line switch.\nUnclosed quotation mark."));
             return false;
         }
