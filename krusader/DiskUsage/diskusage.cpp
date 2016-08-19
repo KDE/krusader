@@ -241,9 +241,6 @@ DiskUsage::~DiskUsage()
 
 void DiskUsage::load(const QUrl &baseDir)
 {
-    if (searchVfs && !searchVfs->vfs_canDelete()) {
-        return;
-    }
 
     fileNum = dirNum = 0;
     currentSize = 0;
@@ -273,7 +270,6 @@ void DiskUsage::load(const QUrl &baseDir)
         return;
     }
 
-    searchVfs->vfs_setQuiet(true);
     currentVfile = 0;
 
     if (!loading) {
@@ -293,11 +289,6 @@ void DiskUsage::load(const QUrl &baseDir)
 
 void DiskUsage::slotLoadDirectory()
 {
-    if (searchVfs && !searchVfs->vfs_canDelete()) {  // recursive call from slotLoadDirectory?
-        loadingTimer.setSingleShot(true);
-        loadingTimer.start(100);                       // as it can cause crash, ignore it and wait while
-        return;                                        // the recursion finishes
-    }
     if ((currentVfile == 0 && directoryStack.isEmpty()) || loaderView->wasCancelled() || abortLoading) {
         if (searchVfs)
             delete searchVfs;
@@ -318,6 +309,7 @@ void DiskUsage::slotLoadDirectory()
 
         loading = abortLoading = clearAfterAbort = false;
     } else if (loading) {
+        QList<vfile *> vfiles;
         for (int counter = 0; counter != MAX_FILENUM; counter ++) {
             if (currentVfile == 0) {
                 if (directoryStack.isEmpty())
@@ -347,10 +339,11 @@ void DiskUsage::slotLoadDirectory()
 
                 if (!searchVfs->vfs_refresh(url))
                     break;
+                vfiles = searchVfs->vfiles();
 
                 dirNum++;
 
-                currentVfile = searchVfs->vfs_getFirstFile();
+                currentVfile = vfiles.isEmpty() ? 0 : vfiles.takeFirst();
             } else {
                 fileNum++;
                 File *newItem = 0;
@@ -373,7 +366,7 @@ void DiskUsage::slotLoadDirectory()
                 }
                 currentParent->append(newItem);
 
-                currentVfile = searchVfs->vfs_getNextFile();
+                currentVfile = vfiles.isEmpty() ? 0 : vfiles.takeFirst();
             }
         }
 

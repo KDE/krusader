@@ -101,12 +101,7 @@ ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
 ListPanelFunc::~ListPanelFunc()
 {
     if (vfsP) {
-        if (vfsP->vfs_canDelete())
-            delete vfsP;
-        else {
-            connect(vfsP, SIGNAL(deleteAllowed()), vfsP, SLOT(deleteLater()));
-            vfsP->vfs_requestDelete();
-        }
+        vfsP->deleteLater();
     }
     delete history;
 }
@@ -375,9 +370,6 @@ void ListPanelFunc::doRefresh()
         panel->view->setNameToMakeCurrent(QString());
 
         if(history->state() != savedHistoryState) // don't go back if the history was touched
-            break;
-        // prevent repeated error messages
-        if (vfsP->vfs_isDeleting())
             break;
         if(!history->goBack()) {
             // put the root dir to the beginning of history, if it's not there yet
@@ -729,12 +721,6 @@ void ListPanelFunc::mkdir()
 
 void ListPanelFunc::deleteFiles(bool reallyDelete)
 {
-    // check that the you have write perm
-    if (!files() ->vfs_isWritable()) {
-        KMessageBox::sorry(krMainWindow, i18n("You do not have write permission to this folder"));
-        return ;
-    }
-
     // first get the selected file names list
     QStringList fileNames;
     panel->getSelectedNames(&fileNames);

@@ -352,7 +352,7 @@ void PanelManager::slotPreviousTab()
     _tabbar->setCurrentIndex(nextInd);
 }
 
-void PanelManager::refreshAllTabs(bool invalidate)
+void PanelManager::refreshAllTabs()
 {
     int i = 0;
     while (i < _tabbar->count()) {
@@ -360,8 +360,6 @@ void PanelManager::refreshAllTabs(bool invalidate)
         if (panel && panel->func) {
             vfs * vfs = panel->func->files();
             if (vfs) {
-                if (invalidate)
-                    vfs->vfs_invalidate();
                 vfs->vfs_refresh();
             }
         }
@@ -372,10 +370,8 @@ void PanelManager::refreshAllTabs(bool invalidate)
 void PanelManager::deletePanel(ListPanel * p)
 {
     disconnect(p);
-    if (p && p->func && p->func->files() && !p->func->files()->vfs_canDelete()) {
-        connect(p->func->files(), SIGNAL(deleteAllowed()), p, SLOT(deleteLater()));
-        p->func->files()->vfs_requestDelete();
-        return;
+    if (p && p->func && p->func->files()) {
+        p->func->files()->deleteLater();
     }
     delete p;
 }
