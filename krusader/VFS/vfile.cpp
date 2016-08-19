@@ -41,7 +41,6 @@
 #include "krvfshandler.h"
 
 bool vfile::vfile_userDefinedFolderIcons = true;
-bool vfile::vfile_useMimeTypeMagic = true;
 
 vfile::vfile(const QString& name,                   // useful construtor
              const KIO::filesize_t size,
@@ -150,9 +149,8 @@ char vfile::vfile_isExecutable() const
         return KRpermHandler::ftpExecutable(vfile_owner, vfile_userName, vfile_perm);
 }
 
-const QString& vfile::vfile_getMime(bool fast)
+const QString& vfile::vfile_getMime()
 {
-    Q_UNUSED(fast)
     if (vfile_mimeType.isEmpty()) {
         if(vfile_isdir)
             vfile_mimeType = "inode/directory";
@@ -189,7 +187,7 @@ const QString& vfile::vfile_getMime(bool fast)
 QString vfile::vfile_getIcon()
 {
     if (vfile_icon.isEmpty()) {
-        QString mime = vfile_getMime(!vfile_useMimeTypeMagic);
+        QString mime = vfile_getMime();
         if (vfile_isBrokenLink())
             vfile_icon = "file-broken";
         else if (vfile_icon.isEmpty()) {

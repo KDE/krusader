@@ -355,7 +355,7 @@ void DiskUsage::slotLoadDirectory()
                 fileNum++;
                 File *newItem = 0;
 
-                QString mime = currentVfile->vfile_getMime(true); // fast == not using mimetype magic
+                QString mime = currentVfile->vfile_getMime(); // fast == not using mimetype magic
 
                 if (currentVfile->vfile_isDir() && !currentVfile->vfile_isSymLink()) {
                     newItem = new Directory(currentParent, currentVfile->vfile_getName(), dirToCheck, currentVfile->vfile_getSize(),

@@ -176,9 +176,8 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     initChecksumModule();
 
     KConfigGroup gl(krConfig, "Look&Feel");
-    KConfigGroup glgen(krConfig, "General");
-    vfile::vfile_loadUserDefinedFolderIcons(gl.readEntry("Load User Defined Folder Icons", _UserDefinedFolderIcons));
-    vfile::vfile_enableMimeTypeMagic(glgen.readEntry("Mimetype Magic", _MimetypeMagic));
+    vfile::vfile_loadUserDefinedFolderIcons(gl.readEntry("Load User Defined Folder Icons",
+                                                         _UserDefinedFolderIcons));
 
     KConfigGroup gs(krConfig, "Startup");
     QString     startProfile = gs.readEntry("Starter Profile Name", QString());

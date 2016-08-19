@@ -131,7 +131,7 @@ public:
         return vfile_url;
     }
 
-    const QString&          vfile_getMime(bool fast = false);
+    const QString&          vfile_getMime();
     const QString&          vfile_getOwner();
     const QString&          vfile_getGroup();
     const QString&          vfile_getACL();
@@ -161,9 +161,6 @@ public:
 
     inline static void      vfile_loadUserDefinedFolderIcons(bool load) {
         vfile_userDefinedFolderIcons = load;
-    }
-    inline static void      vfile_enableMimeTypeMagic(bool enable)      {
-        vfile_useMimeTypeMagic = enable;
     }
 
 private:
@@ -195,7 +192,6 @@ protected:
     QString          vfile_def_acl;  //< ACL default string
 
     static bool      vfile_userDefinedFolderIcons;
-    static bool      vfile_useMimeTypeMagic;
 };
 
 

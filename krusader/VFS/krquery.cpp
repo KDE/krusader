@@ -291,7 +291,7 @@ bool KRQuery::match(vfile *vf) const
     // see if the name matches
     if (!match(vf->vfile_getName())) return false;
     // checking the mime
-    if (!type.isEmpty() && !checkType(vf->vfile_getMime(true))) return false;
+    if (!type.isEmpty() && !checkType(vf->vfile_getMime())) return false;
     // check that the size fit
     KIO::filesize_t size = vf->vfile_getSize();
     if (minSize && size < minSize) return false;

@@ -234,13 +234,6 @@ void KgGeneral::createGeneralTab()
     KonfiguratorCheckBoxGroup *cbs = createCheckBoxGroup(2, 0, settings, 1 /*count*/, generalGrp, PAGE_GENERAL);
     generalGrid->addWidget(cbs, 0, 0);
 
-
-    KonfiguratorCheckBox *checkBox = createCheckBox("General", "Mimetype Magic", _MimetypeMagic,
-                                     i18n("Use MIME type magic"), generalGrp, false,
-                                     i18n("MIME type magic allows better distinction of file types, but is slower."), PAGE_GENERAL);
-    generalGrid->addWidget(checkBox, 1, 0, 1, 1);
-
-
     // temp dir
 
     QHBoxLayout *hbox = new QHBoxLayout();
