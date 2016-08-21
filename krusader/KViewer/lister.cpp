@@ -86,6 +86,10 @@ ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent) : KTextEdit(pare
     _tabWidth = 4;
     setWordWrapMode(QTextOption::NoWrap);
     setLineWrapMode(QTextEdit::NoWrap);
+
+    // zoom shortcuts
+    connect(new QShortcut(QKeySequence("Ctrl++"), this), SIGNAL(activated()), this, SLOT(zoomIn()));
+    connect(new QShortcut(QKeySequence("Ctrl+-"), this), SIGNAL(activated()), this, SLOT(zoomOut()));
 }
 
 void ListerTextArea::reset()
@@ -726,6 +730,18 @@ void ListerTextArea::wheelEvent(QWheelEvent * e)
 {
     int delta = e->delta();
     if (delta) {
+
+        // zooming
+        if (e->modifiers() & Qt::ControlModifier) {
+            e->accept();
+            if (delta > 0) {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+            return;
+        }
+
         if (delta > 0) {
             e->accept();
             while (delta > 0) {
@@ -1050,6 +1066,18 @@ void ListerTextArea::setHexMode(bool hexMode)
     calculateText(true);
     setCursorPosition(pos, isfirst);
     ensureVisibleCursor();
+}
+
+void ListerTextArea::zoomIn(int range)
+{
+    KTextEdit::zoomIn(range);
+    redrawTextArea();
+}
+
+void ListerTextArea::zoomOut(int range)
+{
+    KTextEdit::zoomOut(range);
+    redrawTextArea();
 }
 
 ListerPane::ListerPane(Lister *lister, QWidget *parent) : QWidget(parent), _lister(lister)
@@ -1383,6 +1411,7 @@ void Lister::guiActivateEvent(KParts::GUIActivateEvent * event)
         _updateTimer.setInterval(150);
         _updateTimer.start();
         slotUpdate();
+        _textArea->redrawTextArea(true);
     } else {
         enableSearch(false);
         _active = false;

@@ -38,6 +38,7 @@
 #include <QColor>
 // QtWidgets
 #include <QWidget>
+#include <QShortcut>
 
 #include <KCompletion/KLineEdit>
 #include <KParts/BrowserExtension>
@@ -116,6 +117,8 @@ protected:
 protected slots:
     void           slotActionTriggered(int action);
     void           slotCursorPositionChanged();
+    void           zoomIn(int range = 1);
+    void           zoomOut(int range = 1);
 
 protected:
     Lister        *_lister;
