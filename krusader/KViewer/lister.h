@@ -118,6 +118,7 @@ protected:
 protected slots:
     void           slotActionTriggered(int action);
     void           slotCursorPositionChanged();
+    void           blinkCursor();
     void           zoomIn(int range = 1);
     void           zoomOut(int range = 1);
 
@@ -151,6 +152,8 @@ protected:
     bool           _inSliderOp;
     bool           _inCursorUpdate;
     bool           _hexMode;
+
+    bool           _cursorState = false;
 };
 
 class ListerBrowserExtension : public KParts::BrowserExtension
@@ -208,7 +211,6 @@ public:
     bool            isSearchEnabled();
     void            enableSearch(bool);
     void            enableActions(bool);
-    void            searchDelete();
 
     QString         characterSet() {
         return _characterSet;
@@ -229,6 +231,7 @@ public slots:
     }
     void            searchNext();
     void            searchPrev();
+    void            searchDelete();
     void            jumpToPosition();
     void            saveAs();
     void            saveSelected();

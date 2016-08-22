@@ -90,6 +90,17 @@ ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent) : KTextEdit(pare
     // zoom shortcuts
     connect(new QShortcut(QKeySequence("Ctrl++"), this), SIGNAL(activated()), this, SLOT(zoomIn()));
     connect(new QShortcut(QKeySequence("Ctrl+-"), this), SIGNAL(activated()), this, SLOT(zoomOut()));
+
+    // start cursor blinking
+    QTimer *blinkTimer = new QTimer(this);
+    connect(blinkTimer, SIGNAL(timeout()), this, SLOT(blinkCursor()));
+    blinkTimer->start(500);
+}
+
+void ListerTextArea::blinkCursor()
+{
+    _cursorState = !_cursorState;
+    setCursorWidth(_cursorState ? 2 : 0);
 }
 
 void ListerTextArea::reset()
@@ -265,7 +276,6 @@ void ListerTextArea::setCursorPosition(int x, int y, int anchorX, int anchorY)
 {
     _inCursorUpdate = true;
     if (x == -1 || y < 0) {
-        setCursorWidth(0);
         if (anchorY == -1) {
             _inCursorUpdate = false;
             return;
@@ -276,8 +286,7 @@ void ListerTextArea::setCursorPosition(int x, int y, int anchorX, int anchorY)
             x = (_rowContent.count() > _sizeY) ? _rowContent[ _sizeY ].length() : 0;
         } else
             x = y = 0;
-    } else
-        setCursorWidth(2);
+    }
 
     QTextCursor::MoveMode mode = QTextCursor::MoveAnchor;
     if (anchorX != -1 && anchorY != -1) {
@@ -367,7 +376,6 @@ void ListerTextArea::slotCursorPositionChanged()
     getCursorPosition(cursorX, cursorY);
     _cursorAtFirstColumn = (cursorX == 0);
     _cursorPos = textToFilePosition(cursorX, cursorY, _cursorAtFirstColumn);
-    setCursorWidth(2);
     //fprintf( stderr, "Cursor pos: %d %d %Ld\n", cursorX, cursorY, _cursorPos );
 }
 
@@ -1215,7 +1223,6 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     _textArea = new ListerTextArea(this, widget);
     _textArea->setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
     _textArea->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
-    _textArea->setCursorWidth(2);
     _textArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     _textArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     widget->setFocusProxy(_textArea);
