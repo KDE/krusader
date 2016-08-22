@@ -1637,16 +1637,7 @@ bool kio_krarcProtocol::checkStatus(int exitCode)
 {
     KRFUNC;
     KRDEBUG(exitCode);
-
-    // if this code is changed, the code of KRarcHandler::checkStatus() must be reviewed
-    if (arcType == "zip" || arcType == "rar" || arcType == "7z")
-        return exitCode == 0 || exitCode == 1;
-    else if (arcType == "ace" || arcType == "bzip2" || arcType == "lha" || arcType == "rpm" || arcType == "arj")
-        return exitCode == 0;
-    else if (arcType == "gzip" || arcType == "lzma" || arcType == "xz")
-        return exitCode == 0 || exitCode == 2;
-    else
-        return exitCode == 0;
+    return KrArcBaseManager::checkStatus(arcType, exitCode);
 }
 
 void kio_krarcProtocol::checkIf7zIsEncrypted(bool &encrypted, QString fileName)

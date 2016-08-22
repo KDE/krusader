@@ -41,6 +41,8 @@ protected:
     //! The maximum length of a short QString that represents the type of a file
     static const int maxLenType;
 
+    static bool checkStatus(const QString &, int);
+
 public:
     KrArcBaseManager() {}
     QString detectArchive(bool &, QString, bool = true, bool = false);

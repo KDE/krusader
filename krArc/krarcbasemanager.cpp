@@ -34,6 +34,26 @@ KrArcBaseManager::AutoDetectParams KrArcBaseManager::autoDetectParams[] = {{"zip
 int KrArcBaseManager::autoDetectElems = sizeof(autoDetectParams) / sizeof(AutoDetectParams);
 const int KrArcBaseManager::maxLenType = 5;
 
+//! Checks if a returned status ("exit code") of an archiving-related process is OK
+/*!
+    \param arcType A short QString which contains an identifier of the type of the archive.
+    \param exitCode The returned status ("exit code") of an archiving-related process.
+    \return If the exit code means that the archiving-related process ended without errors.
+*/
+bool KrArcBaseManager::checkStatus(const QString &arcType, int exitCode)
+{
+    if (arcType == "zip" || arcType == "rar" || arcType == "7z")
+        return exitCode == 0 || exitCode == 1;
+    else if (arcType == "ace" || arcType == "bzip2" || arcType == "lha" || arcType == "rpm" || arcType == "cpio" ||
+             arcType == "tar" || arcType == "tarz" || arcType == "tbz" || arcType == "tgz" || arcType == "arj" ||
+             arcType == "deb" || arcType == "tlz" || arcType == "txz")
+        return exitCode == 0;
+    else if (arcType == "gzip" || arcType == "lzma" || arcType == "xz")
+        return exitCode == 0 || exitCode == 2;
+    else
+        return exitCode == 0;
+}
+
 QString KrArcBaseManager::detectArchive(bool &encrypted, QString fileName, bool checkEncrypted, bool fast)
 {
     encrypted = false;

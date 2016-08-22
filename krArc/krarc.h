@@ -79,7 +79,7 @@ protected:
 
 private:
     void get(const QUrl &url, int tries);
-    /** checks if the exit code is OK. */
+    /** checks if a returned status ("exit code") of an archiving-related process is OK. */
     bool checkStatus(int exitCode);
     /** service function for parseLine. */
     QString nextWord(QString &s, char d = ' ');

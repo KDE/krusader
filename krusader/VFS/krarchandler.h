@@ -85,7 +85,7 @@ public:
     // detects the archive type
     void checkIf7zIsEncrypted(bool &, QString);
 private:
-    // checks if the returned status is correct
+    //! checks if a returned status ("exit code") of an archiving-related process is OK
     static bool checkStatus(QString type, int exitCode);
 
     static bool openWallet();

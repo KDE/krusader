@@ -140,7 +140,7 @@ bool KRarcHandler::arcSupported(QString type)
         type = getShortTypeFromMime(type);
     }
 
-    if ((type == "zip" || type == "/zip") && lst.contains("unzip"))
+    if (type == "zip" && lst.contains("unzip"))
         return true;
     else if (type == "tar" && lst.contains("tar"))
         return true;
@@ -686,17 +686,7 @@ QString KRarcHandler::getType(bool &encrypted, QString fileName, QString mime, b
 
 bool KRarcHandler::checkStatus(QString type, int exitCode)
 {
-    // if this code is changed, the code of kio_krarcProtocol::checkStatus() must be reviewed
-    if (type == "zip" || type == "rar" || type == "7z")
-        return exitCode == 0 || exitCode == 1;
-    else if (type == "ace" || type == "bzip2" || type == "lha" || type == "rpm" || type == "cpio" ||
-             type == "tar" || type == "tarz" || type == "tbz" || type == "tgz" || type == "arj" ||
-             type == "deb" || type == "tlz" || type == "txz")
-        return exitCode == 0;
-    else if (type == "gzip" || type == "lzma" || type == "xz")
-        return exitCode == 0 || exitCode == 2;
-    else
-        return exitCode == 0;
+    return KrArcBaseManager::checkStatus(type, exitCode);
 }
 
 void KRarcHandler::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
