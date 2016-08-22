@@ -1040,6 +1040,14 @@ void ListerTextArea::copySelectedToClipboard()
     }
 }
 
+void ListerTextArea::clearSelection()
+{
+    QTextCursor cursor = textCursor();
+    cursor.clearSelection();
+    setTextCursor(cursor);
+    _cursorAnchorPos = -1;
+}
+
 void ListerTextArea::performAnchorChange(int anchor)
 {
     int x, y;
@@ -1097,11 +1105,18 @@ bool ListerPane::handleCloseEvent(QEvent *e)
 {
     if (e->type() == QEvent::ShortcutOverride) {
         QKeyEvent *ke = static_cast<QKeyEvent *>(e);
-        if (ke->key() == Qt::Key_Escape && _lister->isSearchEnabled()) {
-            _lister->searchDelete();
-            _lister->enableSearch(false);
-            ke->accept();
-            return true;
+        if (ke->key() == Qt::Key_Escape) {
+            if (_lister->isSearchEnabled()) {
+                _lister->searchDelete();
+                _lister->enableSearch(false);
+                ke->accept();
+                return true;
+            }
+            if (!_lister->textArea()->getSelectedText().isEmpty()) {
+                _lister->textArea()->clearSelection();
+                ke->accept();
+                return true;
+            }
         }
     }
     return false;
@@ -1469,6 +1484,7 @@ void Lister::enableSearch(bool enable)
         _searchNextButton->hide();
         _searchPrevButton->hide();
         _searchOptions->hide();
+        _textArea->setFocus();
     }
 }
 

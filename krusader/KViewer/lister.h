@@ -83,6 +83,7 @@ public:
 
     void           copySelectedToClipboard();
     QString        getSelectedText();
+    void           clearSelection();
 
     void           getCursorPosition(int &x, int &y);
     qint64         getCursorPosition(bool &isfirst);
