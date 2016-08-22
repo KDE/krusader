@@ -418,7 +418,7 @@ QRegion KrInterBriefView::visualRegionForSelection(const QItemSelection &selecti
 #endif
 void KrInterBriefView::paintEvent(QPaintEvent *e)
 {
-    QStyleOptionViewItemV4 option = viewOptions();
+    QStyleOptionViewItem option = viewOptions();
     option.widget = this;
     option.decorationSize = QSize(_fileIconSize, _fileIconSize);
     option.decorationPosition = QStyleOptionViewItem::Left;

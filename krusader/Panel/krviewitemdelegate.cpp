@@ -35,7 +35,7 @@ KrViewItemDelegate::KrViewItemDelegate(QObject *parent) :
 
 void KrViewItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    QStyleOptionViewItemV4 opt = option;
+    QStyleOptionViewItem opt = option;
     opt.state &= ~QStyle::State_Selected;
     _dontDraw = (_currentlyEdited == index.row()) && (index.column() == KrViewProperties::Ext);
     QItemDelegate::paint(painter, opt, index);
