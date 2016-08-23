@@ -33,32 +33,46 @@
 // QtCore
 #include <QDir>
 
-vfs* KrVfsHandler::getVfs(const QUrl &url, QObject* parent, vfs* oldVfs)
+vfs* KrVfsHandler::getVfs(const QUrl &url, vfs* oldVfs)
 {
-    vfs::VFS_TYPE newType = getVfsType(url);
-
-    if (oldVfs && oldVfs->vfs_getType() == newType) {
+    if (oldVfs && oldVfs->type() == getVfsType(url)) {
         return oldVfs;
     }
 
-    switch (newType) {
-    case (vfs::VFS_VIRT):
-        return new virt_vfs(parent);
-    default:
-        return new default_vfs(parent);
-    }
+    vfs *newVfs = createVfs(url);
+
+    QPointer<vfs> vfsPointer(newVfs);
+    _vfs_list.append(vfsPointer);
+    connect(newVfs, SIGNAL(filesystemChanged(QUrl)), this, SLOT(refreshVfs(QUrl)));
+
+    return newVfs;
+
 }
 
-KIO::Job *KrVfsHandler::createCopyJob(const QList<QUrl> &urls, const QUrl &destination,
+void KrVfsHandler::startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,
                                       KIO::CopyJob::CopyMode mode, bool showProgressInfo) {
-    KIO::JobFlags flags = showProgressInfo ? KIO::DefaultFlags : KIO::HideProgressInfo;
-    switch (mode) {
-    case KIO::CopyJob::Move:
-        return KIO::move(urls, destination, flags);
-    case KIO::CopyJob::Link:
-        return KIO::link(urls, destination, flags);
-    default:
-        return KIO::copy(urls, destination, flags);
+    vfs *vfs = getVfs(destination); // implementation depends on filesystem of destination
+    vfs->copyFiles(urls, destination, mode, showProgressInfo);
+}
+
+void KrVfsHandler::refreshVfs(const QUrl &directory)
+{
+    QMutableListIterator<QPointer<vfs>> it(_vfs_list);
+    while (it.hasNext()) {
+        if (it.next().isNull()) {
+            it.remove();
+        }
+    }
+
+    // refresh all vfs currently showing this directory
+    for(QPointer<vfs> vfsPointer: _vfs_list) {
+        // always refresh virtual vfs showing a virtual directory; it can contain files from various
+        // places, we don't know if they were (re)moved, refreshing is also fast enough
+        vfs *vfs = vfsPointer.data();
+        const QUrl vfsDir = vfs->currentDirectory();
+        if (vfsDir == vfs::cleanUrl(directory) || (vfsDir.scheme() == "virt" && !vfs->isRoot())) {
+            vfs->mayRefresh();
+        }
     }
 }
 
@@ -72,7 +86,18 @@ KrVfsHandler &KrVfsHandler::instance()
 
 vfs::VFS_TYPE KrVfsHandler::getVfsType(const QUrl &url)
 {
-    return url.scheme() == QStringLiteral("virt") ? vfs::VFS_VIRT : vfs::VFS_NORMAL;
+    return url.scheme() == QStringLiteral("virt") ? vfs::VFS_VIRT : vfs::VFS_DEFAULT;
+}
+
+vfs* KrVfsHandler::createVfs(const QUrl &url)
+{
+    vfs::VFS_TYPE newType = getVfsType(url);
+    switch (newType) {
+    case (vfs::VFS_VIRT):
+        return new virt_vfs();
+    default:
+        return new default_vfs();
+    }
 }
 
 void KrVfsHandler::getACL(vfile *file, QString &acl, QString &defAcl)
@@ -81,7 +106,7 @@ void KrVfsHandler::getACL(vfile *file, QString &acl, QString &defAcl)
     acl.clear();
     defAcl.clear();
 #ifdef HAVE_POSIX_ACL
-    QString fileName = file->vfile_getUrl().adjusted(QUrl::StripTrailingSlash).path();
+    QString fileName = vfs::cleanUrl(file->vfile_getUrl()).path();
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
     if (acl_extended_file(fileName)) {
 #endif

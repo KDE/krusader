@@ -80,11 +80,12 @@ void KrCalcSpaceDialog::CalcThread::updateItems(KrView *view) const
 void KrCalcSpaceDialog::CalcThread::run()
 {
     if (!m_items.isEmpty()) { // if something to do: do the calculation
-        vfs * files = KrVfsHandler::instance().getVfs(m_url);
-        if(!files->vfs_refresh(m_url))
+        vfs *files = KrVfsHandler::instance().getVfs(m_url);
+        if(!files->refresh(m_url))
             return;
+
         for (QStringList::ConstIterator it = m_items.begin(); it != m_items.end(); ++it) {
-            files->vfs_calcSpace(*it, &m_currentSize, &m_totalFiles, &m_totalDirs , & m_stop);
+            files->calcSpace(*it, &m_currentSize, &m_totalFiles, &m_totalDirs , & m_stop);
 
             if (m_stop)
                 break;

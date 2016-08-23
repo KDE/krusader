@@ -33,54 +33,62 @@
 
 #include "vfs.h"
 
+#include <QFileSystemWatcher>
+
 #include <KCoreAddons/KDirWatch>
 
 /**
  * @brief Default filesystem implementation supporting all KIO protocols
  *
- * This vfs implementation allows file operations and listing of all supported KIO protocls (local,
- * virtual and remote/network).
+ * This vfs implementation allows file operations and listing for all supported KIO protocols (local
+ * and remote/network).
  *
+ * Refreshing local directories is optimized for performance.
  */
 class default_vfs : public vfs {
     Q_OBJECT
 public:
-    default_vfs(QObject *parent);
+    default_vfs();
     ~default_vfs() {}
 
-    virtual void vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
-                              QObject *toNotify, QString dir = "") Q_DECL_OVERRIDE;
-    virtual void vfs_drop(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
-    virtual void vfs_delFiles(const QStringList &fileNames,
-                              bool reallyDelete = false) Q_DECL_OVERRIDE;
-    virtual QList<QUrl> vfs_getFiles(const QStringList &names) Q_DECL_OVERRIDE;
-    virtual QUrl vfs_getFile(const QString &name) Q_DECL_OVERRIDE;
-    virtual void vfs_mkdir(const QString &name) Q_DECL_OVERRIDE;
-    virtual void vfs_rename(const QString &fileName, const QString &newName) Q_DECL_OVERRIDE;
-    virtual QString vfs_workingDir() Q_DECL_OVERRIDE {
-        return vfs_origin.path();
-    }
+    virtual void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
+                           KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
+                           bool showProgressInfo = true) Q_DECL_OVERRIDE;
+    virtual void dropFiles(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
+
+    virtual void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
+                              QString dir = "") Q_DECL_OVERRIDE;
+    virtual void deleteFiles(const QStringList &fileNames,
+                             bool forceDeletion = false) Q_DECL_OVERRIDE;
+    virtual void mkDir(const QString &name) Q_DECL_OVERRIDE;
+    virtual void rename(const QString &fileName, const QString &newName) Q_DECL_OVERRIDE;
+    /// Return URL for file name - even if file does not exist.
+    virtual QUrl getUrl(const QString &name) Q_DECL_OVERRIDE;
 
 protected:
-    virtual bool populateVfsList(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;
+    virtual bool refreshInternal(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;
+    virtual bool ignoreRefresh() Q_DECL_OVERRIDE;
 
 protected slots:
-    // handle result after job (except listing job!) finished
-    void slotJobResult(KJob *job);
-    // fill directory file list with new files from the dir lister
-    void slotAddFiles(KIO::Job *job, const KIO::UDSEntryList &entries);
-    // redirection signal from dir lister
-    void slotRedirection(const QUrl &url);
-    // handle result after dir listing job is finished
+    /// Handle result after dir listing job is finished
     void slotListResult(KJob *job);
-    // react to filesystem changes nofified by watcher
+    /// Fill directory file list with new files from the dir lister
+    void slotAddFiles(KIO::Job *job, const KIO::UDSEntryList &entries);
+    /// URL redirection signal from dir lister
+    void slotRedirection(const QUrl &url);
+    // React to filesystem changes nofified by watcher
+    // NOTE: the path parameter can be the directory itself or files in this directory
     void slotWatcherDirty(const QString &path);
-    void slotWatcherCreated(const QString &path);
     void slotWatcherDeleted(const QString &path);
 
 private:
-    KDirWatch *watcher; // dir watcher used to detect changes in the current dir
-    bool listError; // for async operation, return list job result
+    void connectSourceVFS(KIO::Job *job, const QList<QUrl> urls);
+
+    bool refreshLocal(const QUrl &directory); // NOTE: this is very fast
+    vfile *createLocalVFile(const QString &name);
+
+    QPointer<KDirWatch> _watcher; // dir watcher used to detect changes in the current dir
+    bool _listError; // for async operation, return list job result
 };
 
 #endif

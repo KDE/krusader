@@ -178,8 +178,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
             QUrl fileURL = QUrl::fromLocalFile(fullName);
 
             vfile* item = new vfile(name, stat_p.st_size, perm, stat_p.st_mtime, symLink, brokenLink, stat_p.st_uid,
-                                    stat_p.st_gid, mime, symlinkDest, stat_p.st_mode);
-            item->vfile_setUrl(fileURL);
+                                    stat_p.st_gid, mime, symlinkDest, stat_p.st_mode, -1, fileURL);
 
             insert(name, item);
         }

@@ -498,13 +498,10 @@ void AbstractJobThread::calcSpaceLocal(const QUrl &baseUrl, const QStringList & 
     sendReset(i18n("Calculating space"));
 
     vfs *calcSpaceVfs = KrVfsHandler::instance().getVfs(baseUrl);
-    KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(_job->uiDelegate());
-    if(ui)
-        calcSpaceVfs->setParentWindow(ui->window());
-    calcSpaceVfs->vfs_refresh(baseUrl);
+    calcSpaceVfs->refresh(baseUrl);
 
     for (int i = 0; i != files.count(); i++) {
-        calcSpaceVfs->vfs_calcSpaceLocal(files[ i ], &totalSize, &totalFiles, &totalDirs, &_exited);
+        calcSpaceVfs->calcSpace(files[i], &totalSize, &totalFiles, &totalDirs, &_exited);
     }
     delete calcSpaceVfs;
 }

@@ -35,5 +35,5 @@ A
 
 QUrl KrPanel::virtualPath() const
 {
-    return func->files()->vfs_getOrigin();
+    return func->files()->currentDirectory();
 }

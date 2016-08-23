@@ -125,6 +125,6 @@ void DiskUsageViewer::slotUpdateStatus(QString status)
 
 void DiskUsageViewer::slotNewSearch()
 {
-    diskUsage->load(ACTIVE_PANEL->func->files()->vfs_getOrigin());
+    diskUsage->load(ACTIVE_PANEL->func->files()->currentDirectory());
 }
 

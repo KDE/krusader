@@ -360,7 +360,7 @@ void PanelManager::refreshAllTabs()
         if (panel && panel->func) {
             vfs * vfs = panel->func->files();
             if (vfs) {
-                vfs->vfs_refresh();
+                vfs->refresh();
             }
         }
         ++i;

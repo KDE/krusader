@@ -265,6 +265,7 @@ void DiskUsage::load(const QUrl &baseDir)
     }
     searchVfs = KrVfsHandler::instance().getVfs(baseDir);
     if (searchVfs == 0) {
+        krOut << "diskusage could not get VFS for directory " << baseDir;
         loading = abortLoading = clearAfterAbort = false;
         emit loadFinished(false);
         return;
@@ -309,7 +310,6 @@ void DiskUsage::slotLoadDirectory()
 
         loading = abortLoading = clearAfterAbort = false;
     } else if (loading) {
-        QList<vfile *> vfiles;
         for (int counter = 0; counter != MAX_FILENUM; counter ++) {
             if (currentVfile == 0) {
                 if (directoryStack.isEmpty())
@@ -337,7 +337,7 @@ void DiskUsage::slotLoadDirectory()
 
                 loaderView->setCurrentURL(url);
 
-                if (!searchVfs->vfs_refresh(url))
+                if (!searchVfs->refresh(url))
                     break;
                 vfiles = searchVfs->vfiles();
 

@@ -24,6 +24,9 @@
 
 class vfile;
 
+/**
+ * A minimal interface for access to the files inside a filesystem directory.
+ */
 class VfileContainer : public QObject
 {
     Q_OBJECT
@@ -36,10 +39,12 @@ public:
     virtual bool isRoot() = 0;
 
 signals:
-    void startUpdate(); // emitted when the container has refreshed its list of vfiles.
+    /// Emitted when refreshing finished. The list of vfiles should now be updated by the view.
+    void refreshDone();
     void addedVfile(vfile* vf);
     void deletedVfile(const QString& name);
     void updatedVfile(vfile* vf);
+    /// Emitted when all vfiles in the VFS were removed
     void cleared();
 };
 

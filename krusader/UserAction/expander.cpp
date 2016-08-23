@@ -95,7 +95,7 @@ QStringList exp_placeholder::fileList(const KrPanel* const panel, const QString&
     }
     if (!omitPath) {    // add the current path
         // translate to urls using vfs
-        QList<QUrl> list = panel->func->files()->vfs_getFiles(items);
+        QList<QUrl> list = panel->func->files()->getUrls(items);
         items.clear();
         // parse everything to a single qstring
         foreach(const QUrl &url, list) {
@@ -291,9 +291,9 @@ TagString exp_Path::expFunc(const KrPanel* panel, const QStringList& parameter, 
     QString result;
 
     if (useUrl)
-        result = panel->func->files()->vfs_getOrigin().url() + '/';
+        result = panel->func->files()->currentDirectory().url() + '/';
     else
-        result = panel->func->files()->vfs_getOrigin().path() + '/';
+        result = panel->func->files()->currentDirectory().path() + '/';
 
     if (parameter.count() > 0 && parameter[0].toLower() == "no")    // don't escape spaces
         return TagString(result);
@@ -363,7 +363,7 @@ TagString exp_Current::expFunc(const KrPanel* panel, const QStringList& paramete
     if (parameter.count() > 0 && parameter[0].toLower() == "yes")    // omit the current path
         result = item;
     else {
-        QUrl url = panel->func->files()->vfs_getFile(item);
+        QUrl url = panel->func->files()->getUrl(item);
         if (useUrl)
             result = url.url();
         else
@@ -636,7 +636,7 @@ TagString exp_Copy::expFunc(const KrPanel*, const TagStringList& parameter, cons
         return QString();
     }
 
-    KrVfsHandler::instance().createCopyJob(src, dest);
+    KrVfsHandler::instance().startCopyFiles(src, dest);
 
     return QString();  // this doesn't return everything, that's normal!
 }
@@ -674,7 +674,7 @@ TagString exp_Move::expFunc(const KrPanel*, const TagStringList& parameter, cons
         return QString();
     }
 
-    KrVfsHandler::instance().createCopyJob(src, dest, KIO::CopyJob::Move);
+    KrVfsHandler::instance().startCopyFiles(src, dest, KIO::CopyJob::Move);
 
     return QString();  // this doesn't return anything, that's normal!
 }

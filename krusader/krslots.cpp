@@ -176,16 +176,16 @@ void KRslots::compareContent()
 
     if (lstLeft.count() == 1 && lstRight.count() == 1) {
         // first, see if we've got exactly 1 selected file in each panel:
-        name1 = LEFT_PANEL->func->files()->vfs_getFile(lstLeft[0]);
-        name2 = RIGHT_PANEL->func->files()->vfs_getFile(lstRight[0]);
+        name1 = LEFT_PANEL->func->files()->getUrl(lstLeft[0]);
+        name2 = RIGHT_PANEL->func->files()->getUrl(lstRight[0]);
     } else if (lstActive->count() == 2) {
         // next try: are in the current panel exacty 2 files selected?
-        name1 = ACTIVE_PANEL->func->files()->vfs_getFile((*lstActive)[0]);
-        name2 = ACTIVE_PANEL->func->files()->vfs_getFile((*lstActive)[1]);
-    } else if (ACTIVE_PANEL->otherPanel()->func->files()->vfs_search(ACTIVE_VIEW->getCurrentItem())) {
+        name1 = ACTIVE_PANEL->func->files()->getUrl((*lstActive)[0]);
+        name2 = ACTIVE_PANEL->func->files()->getUrl((*lstActive)[1]);
+    } else if (ACTIVE_PANEL->otherPanel()->func->files()->getVfile(ACTIVE_VIEW->getCurrentItem())) {
         // next try: is in the other panel a file with the same name?
-        name1 = ACTIVE_PANEL->func->files()->vfs_getFile(ACTIVE_VIEW->getCurrentItem());
-        name2 = ACTIVE_PANEL->otherPanel()->func->files()->vfs_getFile(ACTIVE_VIEW->getCurrentItem());
+        name1 = ACTIVE_PANEL->func->files()->getUrl(ACTIVE_VIEW->getCurrentItem());
+        name2 = ACTIVE_PANEL->otherPanel()->func->files()->getUrl(ACTIVE_VIEW->getCurrentItem());
     } else  {
         // if we got here, then we can't be sure what file to diff
         KMessageBox::detailedError(0, i18n("Do not know which files to compare."), "<qt>" + i18n("To compare two files by content, you can either:<ul><li>Select one file in the left panel, and one in the right panel.</li><li>Select exactly two files in the active panel.</li><li>Make sure there is a file in the other panel, with the same name as the current file in the active panel.</li></ul>") + "</qt>");
@@ -289,7 +289,7 @@ void KRslots::insertFileName(bool full_path)
     }
 
     if (full_path) {
-        QString path = vfs::ensureTrailingSlash(ACTIVE_FUNC->files()->vfs_getOrigin()).toDisplayString(QUrl::PreferLocalFile);
+        QString path = vfs::ensureTrailingSlash(ACTIVE_FUNC->files()->currentDirectory()).toDisplayString(QUrl::PreferLocalFile);
         filename = path + filename;
     }
 
@@ -368,8 +368,8 @@ void KRslots::showHiddenFiles(bool show)
 
 void KRslots::swapPanels()
 {
-    QUrl leftURL = LEFT_PANEL->func->files()->vfs_getOrigin();
-    QUrl rightURL = RIGHT_PANEL->func->files()->vfs_getOrigin();
+    QUrl leftURL = LEFT_PANEL->func->files()->currentDirectory();
+    QUrl rightURL = RIGHT_PANEL->func->files()->currentDirectory();
 
     LEFT_PANEL->func->openUrl(rightURL);
     RIGHT_PANEL->func->openUrl(leftURL);
@@ -462,7 +462,7 @@ void KRslots::multiRename()
 
     QStringList names;
     ACTIVE_PANEL->gui->getSelectedNames(&names);
-    QList<QUrl> urls = ACTIVE_FUNC->files()->vfs_getFiles(names);
+    QList<QUrl> urls = ACTIVE_FUNC->files()->getUrls(names);
 
     if (urls.isEmpty()) {
         return;
@@ -489,8 +489,8 @@ void KRslots::rootKrusader()
 
     KProcess proc;
     proc << KrServices::fullPathName("kdesu") << "-c" << KrServices::fullPathName("krusader")
-    + " --left=" + KrServices::quote(LEFT_PANEL->func->files()->vfs_getOrigin().toDisplayString(QUrl::PreferLocalFile))
-    + " --right=" + KrServices::quote(RIGHT_PANEL->func->files()->vfs_getOrigin().toDisplayString(QUrl::PreferLocalFile));
+    + " --left=" + KrServices::quote(LEFT_PANEL->func->files()->currentDirectory().toDisplayString(QUrl::PreferLocalFile))
+    + " --right=" + KrServices::quote(RIGHT_PANEL->func->files()->currentDirectory().toDisplayString(QUrl::PreferLocalFile));
 
     if (!proc.startDetached())
         KMessageBox::error(0, i18n("Error executing %1.", proc.program()[0]));
@@ -537,16 +537,16 @@ void KRslots::slotSplit()
         return;
     }
 
-    QUrl fileURL = ACTIVE_FUNC->files()->vfs_getFile(name);
+    QUrl fileURL = ACTIVE_FUNC->files()->getUrl(name);
     if (fileURL.isEmpty())
         return;
 
-    if (ACTIVE_FUNC->files()->vfs_search(name)->vfile_isDir()) {
+    if (ACTIVE_FUNC->files()->getVfile(name)->vfile_isDir()) {
         KMessageBox::sorry(krApp, i18n("You cannot split a folder."));
         return ;
     }
 
-    QUrl destDir = ACTIVE_PANEL->otherPanel()->func->files()->vfs_getOrigin();
+    QUrl destDir = ACTIVE_PANEL->otherPanel()->func->files()->currentDirectory();
 
     SplitterGUI splitterGUI(MAIN_VIEW, fileURL, destDir);
 
@@ -579,11 +579,11 @@ void KRslots::slotCombine()
 
     /* checking splitter names */
     for (QStringList::Iterator it = list.begin(); it != list.end(); ++it) {
-        QUrl url = ACTIVE_FUNC->files()->vfs_getFile(*it);
+        QUrl url = ACTIVE_FUNC->files()->getUrl(*it);
         if (url.isEmpty())
             return;
 
-        if (ACTIVE_FUNC->files()->vfs_search(*it)->vfile_isDir()) {
+        if (ACTIVE_FUNC->files()->getVfile(*it)->vfile_isDir()) {
             KMessageBox::sorry(krApp, i18n("You cannot combine a folder."));
             return ;
         }
@@ -637,11 +637,11 @@ void KRslots::slotCombine()
                             QString shorter  = commonName.left(commonName.length() - 1);
                             QString testFile = shorter.leftJustified(commonLength, fillLetter);
 
-                            if (ACTIVE_FUNC->files()->vfs_search(testFile) == 0)
+                            if (ACTIVE_FUNC->files()->getVfile(testFile) == 0)
                                 break;
                             else {
                                 commonName = shorter;
-                                baseURL = ACTIVE_FUNC->files()->vfs_getOrigin().adjusted(QUrl::StripTrailingSlash);
+                                baseURL = ACTIVE_FUNC->files()->currentDirectory().adjusted(QUrl::StripTrailingSlash);
                                 baseURL.setPath(baseURL.path() + '/' + (testFile));
                             }
                         }
@@ -688,8 +688,8 @@ void KRslots::manageUseractions()
 #ifdef SYNCHRONIZER_ENABLED
 void KRslots::slotSynchronizeDirs(QStringList selected)
 {
-    new SynchronizerGUI(0, LEFT_PANEL->func->files()->vfs_getOrigin(),
-                        RIGHT_PANEL->func->files()->vfs_getOrigin(), selected);
+    new SynchronizerGUI(0, LEFT_PANEL->func->files()->currentDirectory(),
+                        RIGHT_PANEL->func->files()->currentDirectory(), selected);
 }
 #endif
 
@@ -720,7 +720,7 @@ void KRslots::execTypeSetup()
 
 void KRslots::slotDiskUsage()
 {
-    DiskUsageGUI du(ACTIVE_FUNC->files()->vfs_getOrigin(), MAIN_VIEW);
+    DiskUsageGUI du(ACTIVE_FUNC->files()->currentDirectory(), MAIN_VIEW);
 }
 
 void KRslots::applicationStateChanged()

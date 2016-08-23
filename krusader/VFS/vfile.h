@@ -69,7 +69,8 @@ public:
           const QString& mime,
           const QString& symDest,
           const mode_t  mode,
-          const int rwx = -1);
+          const int rwx = -1,
+          const QUrl& url = QUrl());
 
     vfile(const QString& name,
           const KIO::filesize_t size,
@@ -85,7 +86,8 @@ public:
           const mode_t  mode,
           const int rwx = -1,
           const QString& aclString = QString(),
-          const QString& aclDfltString = QString());
+          const QString& aclDfltString = QString(),
+          const QUrl& url = QUrl());
 
     bool        operator==(const vfile& vf) const;
     vfile&      operator= (const vfile& vf);
@@ -147,9 +149,6 @@ public:
      */
     inline void             vfile_setSize(KIO::filesize_t size) {
         vfile_size = size;
-    }
-    inline void             vfile_setUrl(const QUrl &url)       {
-        vfile_url = url;
     }
 
     inline void             vfile_setIcon(const QString& icn)   {

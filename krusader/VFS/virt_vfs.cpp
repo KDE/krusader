@@ -20,361 +20,348 @@
 #include "virt_vfs.h"
 
 // QtCore
+#include <QDir>
+#include <QEventLoop>
 #include <QUrl>
 
 #include <KCoreAddons/KUrlMimeData>
 #include <KI18n/KLocalizedString>
-#include <KIOCore/KFileItem>
 #include <KIO/CopyJob>
 #include <KIO/DeleteJob>
-#include <KIO/StatJob>
 #include <KIO/DirectorySizeJob>
-#include <KWidgetsAddons/KMessageBox>
+#include <KIO/StatJob>
+#include <KIOCore/KFileItem>
 
-#include "krpermhandler.h"
+#include "../defaults.h"
 #include "../krglobal.h"
 #include "../krservices.h"
-#include "../defaults.h"
+#include "krpermhandler.h"
 
 #define VIRT_VFS_DB "virt_vfs.db"
 
-QHash<QString, QList<QUrl> *> virt_vfs::virtVfsDict;
-QHash<QString, QString> virt_vfs::metaInfoDict;
-KConfig* virt_vfs::virt_vfs_db = 0;
+QHash<QString, QList<QUrl> *> virt_vfs::_virtVfsDict;
+QHash<QString, QString> virt_vfs::_metaInfoDict;
 
-virt_vfs::virt_vfs(QObject* panel, bool quiet) : vfs(panel, quiet)
+virt_vfs::virt_vfs() : vfs()
 {
-    if (virtVfsDict.isEmpty()) {
+    if (_virtVfsDict.isEmpty()) {
         restore();
     }
 
-    vfs_type = VFS_VIRT;
+    _type = VFS_VIRT;
 }
 
 virt_vfs::~virt_vfs() {}
 
-bool virt_vfs::populateVfsList(const QUrl &origin, bool /*showHidden*/)
+void virt_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
+                         KIO::CopyJob::CopyMode /*mode*/, bool /*showProgressInfo*/)
 {
-    vfs_origin = origin.adjusted(QUrl::StripTrailingSlash);
-    path = origin.adjusted(QUrl::StripTrailingSlash).path().mid(1);
-    if (path.isEmpty()) path = '/';
+    const QString dir = QDir(destination.path()).absolutePath().remove('/');
 
-    QList<QUrl>* urlList;
-    if (virtVfsDict.find(path) == virtVfsDict.end()) {
-        urlList = new QList<QUrl>();
-        virtVfsDict.insert(path, urlList);
-        virtVfsDict[ "/" ] ->append(QUrl("virt:/" + path));
-    } else {
-        urlList = virtVfsDict[ path ];
-        metaInfo = metaInfoDict[ path ];
+    if (dir.isEmpty()) {
+        emit error(i18n("You cannot copy files directly to the 'virt:/' folder.\n"
+                        "You can create a sub folder and copy your files into it."));
+        return;
     }
 
-    save();
-    if (urlList->isEmpty()) return true;
-    QList<QUrl>::iterator it;
-    for (it = urlList->begin() ; it != urlList->end() ; /*++it*/) {
-        QUrl url = *it;
-        // translate url->vfile and remove urls that no longer exist from the list
-        vfile* vf = stat(url);
-        if (!vf) {
-            it = urlList->erase(it);
-            // the iterator is advanced automatically
-            continue;
-        }
-        foundVfile(vf);
-        ++it;
-    }
-    return true;
-}
-
-void virt_vfs::vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mode*/, QObject* /*toNotify*/, QString /*dir*/)
-{
-    if (path == "/") {
-        if (!quietMode)
-            KMessageBox::error(parentWindow, i18n("You cannot copy files directly to the 'virt:/' folder.\nYou can create a sub folder and copy your files into it."), i18n("Error"));
-        return ;
+    if (!_virtVfsDict.contains(dir)) {
+        mkDirInternal(dir);
     }
 
-    if (virtVfsDict.find(path) == virtVfsDict.end()) {
-        QList<QUrl> *urlList = new QList<QUrl>();
-        virtVfsDict.insert(path, urlList);
-        virtVfsDict[ "/" ] ->append(QUrl("virt:/" + path));
-    }
-    QList<QUrl>* urlList = virtVfsDict[ path ];
-    foreach (const QUrl &fileUrl, fileUrls) {
-        if (!urlList->contains(fileUrl))
+    QList<QUrl> *urlList = _virtVfsDict[dir];
+    for (const QUrl &fileUrl : urls) {
+        if (!urlList->contains(fileUrl)) {
             urlList->push_back(fileUrl);
+        }
     }
 
-    vfs_refresh();
+    emit filesystemChanged(QUrl("virt:///" + dir)); // may call refresh()
 }
 
-// TODO dropping to another directory in this vfs implementation is currently not supported
-void virt_vfs::vfs_drop(const QUrl &/*destination*/, QDropEvent *event)
+void virt_vfs::dropFiles(const QUrl &destination, QDropEvent *event)
 {
-    QList<QUrl> urls = KUrlMimeData::urlsFromMimeData(event->mimeData());
+    const QList<QUrl> &urls = KUrlMimeData::urlsFromMimeData(event->mimeData());
     // dropping on virtual vfs (sic!) is always copy operation
-    vfs_addFiles(urls, KIO::CopyJob::Copy, 0);
+    copyFiles(urls, destination);
 }
 
-void virt_vfs::vfs_delFiles(const QStringList &fileNames, bool reallyDelete)
+void virt_vfs::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mode*/, QString dir)
 {
-    if (path == "/") {
-        foreach (const QString &filename, fileNames) {
-            virtVfsDict[ "/" ] ->removeAll(QUrl(QStringLiteral("virt:/") + filename));
-            delete virtVfsDict[ filename ];
-            virtVfsDict.remove(filename);
-            metaInfoDict.remove(filename);
+    QUrl destination(_currentDirectory);
+    if (!dir.isEmpty()) {
+        destination.setPath(QDir::cleanPath(destination.path() + '/' + dir));
+    }
+    copyFiles(fileUrls, destination);
+}
+
+void virt_vfs::deleteFiles(const QStringList &fileNames, bool reallyDelete)
+{
+    if (currentDir() == "/") { // remove virtual directory
+        for (const QString &filename : fileNames) {
+            _virtVfsDict["/"]->removeAll(QUrl(QStringLiteral("virt:/") + filename));
+            delete _virtVfsDict[filename];
+            _virtVfsDict.remove(filename);
+            _metaInfoDict.remove(filename);
         }
-        vfs_refresh();
-        return ;
+        emit filesystemChanged(currentDirectory()); // will call refresh()
+        return;
     }
 
     // names -> urls
-    QList<QUrl> filesUrls = vfs_getFiles(fileNames);
+    QList<QUrl> filesUrls = getUrls(fileNames);
 
+    // delete or move to trash?
     KIO::Job *job;
-
-    // delete of move to trash ?
     KConfigGroup group(krConfig, "General");
     if (!reallyDelete && group.readEntry("Move To Trash", _MoveToTrash)) {
         job = KIO::trash(filesUrls);
-        if(parentWindow)
-            emit trashJobStarted(job);
-    } else
+    } else {
         job = KIO::del(filesUrls);
+    }
 
-    // refresh will remove the deleted files...
-    connect(job, SIGNAL(result(KJob*)), this, SLOT(vfs_refresh(KJob*)));
+    connect(job, SIGNAL(result(KJob *)), this, SLOT(slotJobResult(KJob *)));
+    // refresh will remove the deleted files from the vfs dict...
+    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(currentDirectory()); });
 }
 
 void virt_vfs::vfs_removeFiles(QStringList *fileNames)
 {
-    if (path == "/")
+    if (currentDir() == "/")
         return;
 
     // removing the URLs from the collection
-    for (int i = 0 ; i < fileNames->count(); ++i) {
-        if (virtVfsDict.find(path) != virtVfsDict.end()) {
-            QList<QUrl>* urlList = virtVfsDict[ path ];
-            urlList->removeAll(vfs_getFile((*fileNames)[ i ]));
+    for (int i = 0; i < fileNames->count(); ++i) {
+        if (_virtVfsDict.find(currentDir()) != _virtVfsDict.end()) {
+            QList<QUrl> *urlList = _virtVfsDict[currentDir()];
+            urlList->removeAll(getUrl((*fileNames)[i]));
         }
     }
 
-    vfs_refresh();
+    emit filesystemChanged(currentDirectory()); // will call refresh()
 }
 
-QList<QUrl> virt_vfs::vfs_getFiles(const QStringList &names)
+QUrl virt_vfs::getUrl(const QString &name)
 {
-    QUrl url;
-    QList<QUrl> urls;
-    foreach (const QString &name, names) {
-        urls.append(vfs_getFile(name));
+    vfile *vf = getVfile(name);
+    if (!vf) {
+        return QUrl(); // not found
     }
-    return urls;
-}
-
-QUrl virt_vfs::vfs_getFile(const QString& name)
-{
-    vfile * vf = vfs_search(name);
-    if (!vf) return QUrl();   // empty
 
     return vf->vfile_getUrl();
 }
 
-void virt_vfs::vfs_mkdir(const QString& name)
+void virt_vfs::mkDir(const QString &name)
 {
-    if (path != "/") {
-        if (!quietMode)
-            KMessageBox::error(parentWindow, i18n("Creating new folders is allowed only in the 'virt:/' folder."), i18n("Error"));
-        return ;
+    if (currentDir() != "/") {
+        emit error(i18n("Creating new folders is allowed only in the 'virt:/' folder."));
+        return;
     }
-    QList<QUrl>* temp = new QList<QUrl>();
-    virtVfsDict.insert(name, temp);
-    virtVfsDict[ "/" ] ->append(QUrl(QStringLiteral("virt:/") + name));
 
-    vfs_refresh();
+    mkDirInternal(name);
+
+    emit filesystemChanged(currentDirectory()); // will call refresh()
 }
 
-void virt_vfs::vfs_rename(const QString& fileName, const QString& newName)
+void virt_vfs::rename(const QString &fileName, const QString &newName)
 {
-    vfile* vf = vfs_search(fileName);
-    if (!vf) return ;   // not found
+    vfile *vf = getVfile(fileName);
+    if (!vf)
+        return; // not found
 
-    if (path == "/") {
-        virtVfsDict[ "/" ] ->append(QUrl(QStringLiteral("virt:/") + newName));
-        virtVfsDict[ "/" ] ->removeAll(QUrl(QStringLiteral("virt:/") + fileName));
-        virtVfsDict.insert(newName, virtVfsDict.take(fileName));
-        vfs_refresh();
-        return ;
+    if (currentDir() == "/") { // rename virtual directory
+        _virtVfsDict["/"]->append(QUrl(QStringLiteral("virt:/") + newName));
+        _virtVfsDict["/"]->removeAll(QUrl(QStringLiteral("virt:/") + fileName));
+        _virtVfsDict.insert(newName, _virtVfsDict.take(fileName));
+        refresh();
+        return;
     }
 
-    QUrl url = vf->vfile_getUrl();
+    // newName can be a (local) path or a full url
+    QUrl dest(newName);
+    if (dest.scheme().isEmpty())
+        dest.setScheme("file");
 
-    QList<QUrl> fileUrls;
-    fileUrls.append(url);
-
-    QUrl dest = url; // keep same url scheme and host as source.
-    dest.setPath(newName);
     // add the new url to the list
-    // the list is refreshed only existing files remain -
+    // the list is refreshed, only existing files remain -
     // so we don't have to worry if the job was successful
-    virtVfsDict[ path ] ->append(dest);
+    _virtVfsDict[currentDir()]->append(dest);
 
-    KIO::Job *job = KIO::move(fileUrls, dest);
-    connect(job, SIGNAL(result(KJob*)), this, SLOT(vfs_refresh(KJob*)));
+    KIO::Job *job = KIO::moveAs(vf->vfile_getUrl(), dest, KIO::HideProgressInfo);
+    connect(job, SIGNAL(result(KJob *)), this, SLOT(slotJobResult(KJob *)));
+    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(currentDirectory()); });
 }
 
-void virt_vfs::slotStatResult(KJob* job)
+void virt_vfs::calcSpace(const QString &name, KIO::filesize_t *totalSize, unsigned long *totalFiles,
+                         unsigned long *totalDirs, bool *stop)
 {
-    if (!job || job->error()) entry = KIO::UDSEntry();
-    else entry = static_cast<KIO::StatJob*>(job)->statResult();
-    busy = false;
+    if (currentDir() == "/") {
+        if (!_virtVfsDict.contains(name)) {
+            return; // virtual folder not found
+        }
+
+        const QList<QUrl> *urlList = _virtVfsDict[name];
+        if (urlList) {
+            for (int i = 0; (i != urlList->size()) && !(*stop); i++) {
+                vfs::calcSpace((*urlList)[i], totalSize, totalFiles, totalDirs, stop);
+            }
+        }
+        return;
+    }
+
+    vfs::calcSpace(name, totalSize, totalFiles, totalDirs, stop);
 }
 
-vfile* virt_vfs::stat(const QUrl &url)
+void virt_vfs::setMetaInformation(QString info)
 {
-    if (url.scheme() == "virt") {
-        QString path = url.path().mid(1);
-        if (path.isEmpty()) path = '/';
-        vfile * temp = new vfile(path, 0, "drwxr-xr-x", time(0), false, false, getuid(), getgid(), "inode/directory", "", 0);
-        temp->vfile_setUrl(url);
-        return temp;
-    }
-    KFileItem* kfi;
-    if (url.isLocalFile()) {
-        kfi = new KFileItem(url);
-        kfi->setDelayedMimeTypes(true);
-    } else {
-        busy = true;
-        KIO::StatJob* statJob = KIO::stat(url, KIO::HideProgressInfo);
-        connect(statJob, SIGNAL(result(KJob*)), this, SLOT(slotStatResult(KJob*)));
-        while (busy && vfs_processEvents());
-        if (entry.count() == 0) return 0;  // statJob failed
-
-        kfi = new KFileItem(entry, url, true);
-    }
-
-    if (kfi->time(KFileItem::ModificationTime).isNull()) {
-        delete kfi;
-        return 0; // file not found
-    }
-
-    vfile *temp;
-
-    // get file statistics
-    QString name;
-    if (url.isLocalFile())
-        name = url.path();
-    else
-        name = url.toDisplayString();
-
-    KIO::filesize_t size = kfi->size();
-    time_t mtime = kfi->time(KFileItem::ModificationTime).toTime_t();
-    bool symLink = kfi->isLink();
-    mode_t mode = kfi->mode() | kfi->permissions();
-    QString perm = KRpermHandler::mode2QString(mode);
-    // set the mimetype
-    QString mime;
-    QString symDest;
-    if (symLink) {
-        symDest = kfi->linkDest();
-        if (kfi->isDir()) perm[ 0 ] = 'd';
-    }
-
-    // create a new virtual file object
-    if (kfi->user().isEmpty())
-        temp = new vfile(name, size, perm, mtime, symLink, false, getuid(), getgid(), mime, symDest, mode);
-    else {
-        QString currentUser = url.userName();
-        if (currentUser.contains("@"))      /* remove the FTP proxy tags from the username */
-            currentUser.truncate(currentUser.indexOf('@'));
-        if (currentUser.isEmpty())
-            currentUser = KRpermHandler::uid2user(getuid());
-        temp = new vfile(name, size, perm, mtime, symLink, false, kfi->user(), kfi->group(), currentUser, mime, symDest, mode);
-    }
-
-    temp->vfile_setUrl(kfi->url());
-    delete kfi;
-    return temp;
+    _metaInfo = info;
+    _metaInfoDict[currentDir()] = _metaInfo;
+    refresh();
 }
 
-KConfig*  virt_vfs::getVirtDB()
+// ==== protected ====
+
+bool virt_vfs::refreshInternal(const QUrl &directory, bool /*showHidden*/)
 {
-    if (!virt_vfs_db) {
-//  virt_vfs_db = new KConfig("data",VIRT_VFS_DB,KConfig::NoGlobals);
-        virt_vfs_db = new KConfig(VIRT_VFS_DB, KConfig:: CascadeConfig, QStandardPaths::DataLocation);
+    _currentDirectory = cleanUrl(directory);
+    _currentDirectory.setHost("");
+    // remove invalid subdirectories
+    _currentDirectory.setPath("/" + _currentDirectory.path().remove('/'));
+
+    if (!_virtVfsDict.contains(currentDir())) {
+        // NOTE: silently creating non-existing directories here. The search and locate tools expect
+        // this. (And user can enter some directory and it will be created).
+        mkDirInternal(currentDir());
+        save();
+        // infinite loop possible
+        //emit filesystemChanged(currentDirectory());
+        return true;
     }
-    return virt_vfs_db;
+
+    QList<QUrl> *urlList = _virtVfsDict[currentDir()];
+    _metaInfo = _metaInfoDict[currentDir()];
+
+    QMutableListIterator<QUrl> it(*urlList);
+    while (it.hasNext()) {
+        const QUrl url = it.next();
+        vfile *vf = createVFile(url);
+        if (!vf) { // remove URL from the list for a file that no longer exists
+            it.remove();
+        } else {
+            addVfile(vf);
+        }
+    }
+
+    save();
+    return true;
 }
 
-bool virt_vfs::save()
+// ==== private ====
+
+void virt_vfs::mkDirInternal(const QString &name)
 {
-    KConfig* db = getVirtDB();
+    // clean path, consistent with currentDir()
+    QString dirName = name;
+    dirName = dirName.remove('/');
+    if (dirName.isEmpty())
+        dirName = "/";
+
+    _virtVfsDict.insert(dirName, new QList<QUrl>());
+    _virtVfsDict["/"]->append(QUrl(QStringLiteral("virt:/") + dirName));
+}
+
+void virt_vfs::save()
+{
+    KConfig *db = &virt_vfs::getVirtDB();
     db->deleteGroup("virt_db");
     KConfigGroup group(db, "virt_db");
 
-    QHashIterator< QString, QList<QUrl> *> lit(virtVfsDict);
-    while (lit.hasNext()) {
-        QList<QUrl> * curr = lit.next().value();
+    QHashIterator<QString, QList<QUrl> *> it(_virtVfsDict);
+    while (it.hasNext()) {
+        it.next();
+        QList<QUrl> *urlList = it.value();
 
         QList<QUrl>::iterator url;
         QStringList entry;
-        for (url = curr->begin() ; url != curr->end() ; ++url) {
+        for (url = urlList->begin(); url != urlList->end(); ++url) {
             entry.append((*url).toDisplayString());
         }
-        // KDE 4.0 workaround, Item_ is added as KConfig fails on 1 char names (such as /)
-        group.writeEntry("Item_" + lit.key(), entry);
-        group.writeEntry("MetaInfo_" + lit.key(), metaInfoDict[lit.key()]);
+        // KDE 4.0 workaround: 'Item_' prefix is added as KConfig fails on 1 char names (such as /)
+        group.writeEntry("Item_" + it.key(), entry);
+        group.writeEntry("MetaInfo_" + it.key(), _metaInfoDict[it.key()]);
     }
 
     db->sync();
-
-    return true;
 }
 
-bool virt_vfs::restore()
+void virt_vfs::restore()
 {
-    KConfig* db = getVirtDB();
-    KConfigGroup dbGrp(db, "virt_db");
+    KConfig *db = &virt_vfs::getVirtDB();
+    const KConfigGroup dbGrp(db, "virt_db");
 
-    QMap<QString, QString> map = db->entryMap("virt_db");
-    QMap<QString, QString>::Iterator it;
-    QList<QUrl>* urlList;
-    for (it = map.begin(); it != map.end(); ++it) {
-        if(!it.key().startsWith(QLatin1String("Item_")))
+    const QMap<QString, QString> map = db->entryMap("virt_db");
+    QMapIterator<QString, QString> it(map);
+    while (it.hasNext()) {
+        it.next();
+
+        // KDE 4.0 workaround: check and remove 'Item_' prefix
+        if (!it.key().startsWith(QLatin1String("Item_")))
             continue;
-        urlList = new QList<QUrl>(KrServices::toUrlList(dbGrp.readEntry(it.key(), QStringList())));
-        // KDE 4.0 workaround, Item_ is removed (KConfig fails on 1 char names (such as /))
-        QString key = it.key().mid(5);   // remove Item_
-        virtVfsDict.insert(key, urlList);
-        metaInfoDict.insert(key, dbGrp.readEntry("MetaInfo_" + key, QString()));
+        const QString key = it.key().mid(5);
+
+        const QList<QUrl> urlList = KrServices::toUrlList(dbGrp.readEntry(it.key(), QStringList()));
+        _virtVfsDict.insert(key, new QList<QUrl>(urlList));
+        _metaInfoDict.insert(key, dbGrp.readEntry("MetaInfo_" + key, QString()));
     }
 
-    if (!virtVfsDict["/" ]) {
-        urlList = new QList<QUrl>();
-        virtVfsDict.insert("/", urlList);
+    if (!_virtVfsDict["/"]) { // insert root element if missing for some reason
+        _virtVfsDict.insert("/", new QList<QUrl>());
     }
-
-    return true;
 }
 
-void virt_vfs::vfs_calcSpace(QString name , KIO::filesize_t* totalSize, unsigned long* totalFiles, unsigned long* totalDirs, bool* stop)
+vfile *virt_vfs::createVFile(const QUrl &url)
 {
-    if (stop && *stop) return ;
-    if (path == "/") {
-        QList<QUrl>* urlList = virtVfsDict[ name ];
-        if (urlList)
-            for (int i = 0; (i != urlList->size()) && !(*stop); i++)
-                calculateURLSize((*urlList)[ i ], totalSize, totalFiles, totalDirs, stop);
-        return;
+    if (url.scheme() == "virt") { // return a virtual directory in root
+        QString path = url.path().mid(1);
+        if (path.isEmpty())
+            path = '/';
+        return new vfile(path, 0, "drwxr-xr-x", time(0), false, false, getuid(), getgid(),
+                         "inode/directory", "", 0, -1, url);
     }
-    return vfs::vfs_calcSpace(name, totalSize, totalFiles, totalDirs, stop);
+
+    const QUrl directory = url.adjusted(QUrl::RemoveFilename);
+
+    if (url.isLocalFile()) {
+        QFileInfo file(url.path());
+        return file.exists() ? vfs::createLocalVFile(url.fileName(), directory.path(), true) : 0;
+    }
+
+    KIO::StatJob *statJob = KIO::stat(url, KIO::HideProgressInfo);
+    connect(statJob, SIGNAL(result(KJob *)), this, SLOT(slotStatResult(KJob *)));
+
+    // ugly: we have to wait here until the stat job is finished
+    QEventLoop eventLoop;
+    connect(statJob, SIGNAL(result(KJob *)), &eventLoop, SLOT(quit()));
+    eventLoop.exec(); // blocking until quit()
+
+    if (_fileEntry.count() == 0) {
+        return 0; // stat job failed
+    }
+
+    if (!_fileEntry.contains(KIO::UDSEntry::UDS_MODIFICATION_TIME)) {
+        return 0; // file not found
+    }
+
+    return vfs::createVFileFromKIO(_fileEntry, directory, true);
 }
 
-void virt_vfs::setMetaInformation(QString info) {
-    metaInfo = info;
-    metaInfoDict[path] = metaInfo;
-    vfs_refresh();
+KConfig &virt_vfs::getVirtDB()
+{
+    //virt_vfs_db = new KConfig("data",VIRT_VFS_DB,KConfig::NoGlobals);
+    static KConfig db(VIRT_VFS_DB, KConfig::CascadeConfig, QStandardPaths::AppDataLocation);
+    return db;
 }
 
+void virt_vfs::slotStatResult(KJob *job)
+{
+    _fileEntry = job->error() ? KIO::UDSEntry() : static_cast<KIO::StatJob *>(job)->statResult();
+}

@@ -84,8 +84,8 @@ class ListPanel : public QWidget, public KrPanel
     friend class ListPanelFunc;
     Q_OBJECT
 public:
-#define ITEM2VFILE(PANEL_PTR, KRVIEWITEM)  PANEL_PTR->func->files()->vfs_search(KRVIEWITEM->name())
-#define NAME2VFILE(PANEL_PTR, STRING_NAME) PANEL_PTR->func->files()->vfs_search(STRING_NAME)
+#define ITEM2VFILE(PANEL_PTR, KRVIEWITEM)  PANEL_PTR->func->files()->getVfile(KRVIEWITEM->name())
+#define NAME2VFILE(PANEL_PTR, STRING_NAME) PANEL_PTR->func->files()->getVfile(STRING_NAME)
     // constructor create the panel, but DOESN'T fill it with data, use start()
     ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg = KConfigGroup());
     ~ListPanel();
@@ -110,6 +110,7 @@ public:
     ListPanelActions *actions() {
         return _actions;
     }
+    /// The last shown local path.
     QString realPath() const;
     QString getCurrentName();
     void getSelectedNames(QStringList* fileNames) {
@@ -137,7 +138,7 @@ public slots:
     void togglePanelPopup();
     void panelActive(); // called when the panel becomes active
     void panelInactive(); // called when panel becomes inactive
-    void vfs_refresh(KJob *job);
+    void slotRefresh(KJob *job);
     void refreshColors();
     void inlineRefreshCancel();
 

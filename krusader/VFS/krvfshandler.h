@@ -29,7 +29,7 @@
 #include "vfs.h"
 
 /**
- * @brief Provider for all IO and filesystem operations.
+ * @brief Provider for virtual file systems.
  *
  * This is a singleton.
  */
@@ -38,31 +38,35 @@ class KrVfsHandler : public QObject {
 
 public:
     /**
-     * Get a directory for the filesystem target specified by url
+     * Get a VFS implementation for the filesystem target specified by URL. oldVfs is returned if
+     * the filesystem did not change.
+     *
+     * The VFS instances returned by this method are already connected with this handler and will
+     * notify each other about filesystem changes.
      */
-    vfs *getVfs(const QUrl &url, QObject *parent = 0, vfs *oldVfs = 0);
+    vfs *getVfs(const QUrl &url, vfs *oldVfs = 0);
 
     /**
-     * Create a copy job for copying moving or linking files to destination.
-     *
-     * Note: the job is done async and not done when returning
-     *
-     * @param urls the source files
-     * @param destination the destination folder
-     * @param mode copy, move or link
-     * @param showProgressInfo
+     * Start a copy job for copying, moving or linking files to a destination directory.
+     * May be implemented async depending on destination filesystem.
      */
-    KIO::Job *createCopyJob(const QList<QUrl> &urls, const QUrl &destination,
+    void startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,
                             KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
                             bool showProgressInfo = true);
 
     static KrVfsHandler &instance();
     static vfs::VFS_TYPE getVfsType(const QUrl &url);
-    /** Get ACL permissions */
+    /** Get ACL permissions for a file */
     static void getACL(vfile *file, QString &acl, QString &defAcl);
+
+protected slots:
+    void refreshVfs(const QUrl &directory);
 
 private:
     KrVfsHandler() {}
+    QList<QPointer<vfs>> _vfs_list;
+
+    static vfs *createVfs(const QUrl &url);
     static QString getACL(const QString & path, int type);
 };
 

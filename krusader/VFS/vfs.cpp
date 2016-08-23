@@ -34,343 +34,180 @@
 #include "vfs.h"
 
 // QtCore
+#include <QDir>
 #include <QEventLoop>
 #include <QList>
-#include <QDir>
 // QtWidgets
 #include <QApplication>
 #include <qplatformdefs.h>
 
 #include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 #include <KIO/DirectorySizeJob>
 #include <KIO/JobUiDelegate>
 
-#include "../krglobal.h"
-#include "../defaults.h"
 #include "../MountMan/kmountman.h"
+#include "../defaults.h"
+#include "../krglobal.h"
+#include "krpermhandler.h"
 
-vfs::vfs(QObject* panel, bool quiet) : VfileContainer(0),
-        vfs_busy(false), quietMode(quiet), disableRefresh(false), postponedRefreshURL(),
-        invalidated(true), panelConnected(false), vfs_tempFilesP(0), vfileIterator(0), deletePossible(true),
-        deleteRequested(false)
-{
-    setVfsFilesP(new vfileDict());
-    if (panel) {
-        panelConnected = true;
-    } else quietMode = true;
-}
+vfs::vfs() : VfileContainer(0), _refreshAfterJob(false), _isRefreshing(false) {}
 
 vfs::~vfs()
 {
-    if (!deletePossible)
-        fprintf(stderr, "INTERNAL ERROR: trying to delete vfs while it is used! This may cause crash. Hoping the best...\n");
     clear(); // please don't remove this line. This informs the view about deleting the references
-    delete vfs_filesP;
-    delete vfs_tempFilesP;
 }
 
-bool vfs::isRoot()
+QList<QUrl> vfs::getUrls(const QStringList &names)
 {
-    QString protocol = vfs_getOrigin().scheme();
-    bool isFtp = (protocol == "ftp" || protocol == "smb" || protocol == "sftp" || protocol == "fish");
-    QString origin = vfs_getOrigin().toDisplayString(QUrl::StripTrailingSlash);
+    QList<QUrl> urls;
+    for (const QString name : names) {
+        urls.append(getUrl(name));
+    }
+    return urls;
+}
 
-    if (origin.right(1) != "/" && !((vfs_getType() == vfs::VFS_FTP) && isFtp &&
-                                    origin.indexOf('/', origin.indexOf(":/") + 3) == -1))
-        return false;
+QList<vfile *> vfs::searchVfiles(const KRQuery &filter)
+{
+    QList<vfile *> result;
+    for (vfile *vf : _vfiles.values()) {
+        if (filter.match(vf)) {
+            result.append(vf);
+        }
+    }
 
-    return true;
+    return result;
 }
 
 KIO::filesize_t vfs::vfs_totalSize()
 {
     KIO::filesize_t temp = 0;
-    class vfile* vf = vfs_getFirstFile();
-
-    while (vf != 0) {
-        if ((vf->vfile_getName() != ".") && (vf->vfile_getName() != "..")
-                && !(vf->vfile_isDir()))
+    for (vfile *vf : _vfiles.values()) {
+        if (!vf->vfile_isDir() && vf->vfile_getName() != "." && vf->vfile_getName() != "..") {
             temp += vf->vfile_getSize();
-        vf = vfs_getNextFile();
+        }
     }
+
     return temp;
 }
 
-bool vfs::vfs_refresh(KJob* job)
+void vfs::calcSpace(const QString &name, KIO::filesize_t *totalSize,
+                            unsigned long *totalFiles, unsigned long *totalDirs, bool *stop)
 {
-    if (job && job->error()) {
-        if (job->uiDelegate())
-            job->uiDelegate()->showErrorMessage();
+    const QUrl url = getUrl(name);
+    if (url.isEmpty()) {
+        krOut << "item for calculating space not found: " << name;
+        return;
     }
-    return vfs_refresh(vfs_origin);
+
+    calcSpace(url, totalSize, totalFiles, totalDirs, stop);
 }
+
 
 QUrl vfs::ensureTrailingSlash(const QUrl &url)
 {
-    QUrl adjustedUrl = url;
-    if (!adjustedUrl.path().endsWith('/')) {
-        adjustedUrl.setPath(adjustedUrl.path() + '/');
+    if (url.path().endsWith('/')) {
+        return url;
     }
+
+    QUrl adjustedUrl(url);
+    adjustedUrl.setPath(adjustedUrl.path() + '/');
     return adjustedUrl;
 }
 
-void vfs::setVfsFilesP(vfileDict* dict)
+bool vfs::refresh(const QUrl &directory)
 {
-    vfs_filesP = dict;
-    vfs_tempFilesP = new vfileDict();
-    vfileIterator = vfs_filesP->begin();
-}
 
-bool vfs::vfs_refresh()
-{
-    if (vfs_busy)
-        return false;
-
-    if (invalidated)  // invalidated fs requires total refresh
-        return vfs_refresh(vfs_getOrigin());
-
-    if (disableRefresh) {
-        postponedRefreshURL = vfs_getOrigin();
+    if (_isRefreshing) {
+        // NOTE: this does not happen (unless async)";
         return false;
     }
 
-    vfs_busy = true;
-    // and populate it
-    KConfigGroup ga(krConfig, "Advanced");
-    int maxIncrementalRefreshFileNr = ga.readEntry("Max Incremental Refresh File Nr", 50);
-    KConfigGroup gl(krConfig, "Look&Feel");
-    bool showHidden = gl.readEntry("Show Hidden", _ShowHidden);
-    bool res = populateVfsList(vfs_getOrigin(), showHidden);
-
-    QString name;
-    if (res) {
-        // check if the maximum incremental refresh number is achieved
-        int diff = vfs_filesP->count() - vfs_tempFilesP->count();
-        if (diff < 0)
-            diff = -diff;
-        if (diff >= maxIncrementalRefreshFileNr) {
-            // total filesystem refresh is cheaper than incremental refresh for many files
-            clear();
-            delete vfs_filesP;
-            setVfsFilesP(vfs_tempFilesP);
-            vfs_busy = false;
-
-            emit startUpdate();
-            return true;
-        }
-
-        // compare the two list emiting signals when needed;;
-        QList<QString> keys = vfs_filesP->keys();
-        foreach(const QString &name, keys) {
-            vfile* vf = (*vfs_filesP)[name];
-            if (vf == 0)
-                continue;
-            vfile* newVf = (*vfs_tempFilesP)[name];
-            if (!newVf) {
-                if (name != "..") {
-                    // the file was deleted..
-                    emit deletedVfile(name);
-                    delete(*vfs_filesP)[ name ];
-                    vfs_filesP->remove(name);
-                }
-            } else {
-                if (*vf != *newVf) {
-                    // the file was changed..
-                    *vf = *newVf;
-                    emit updatedVfile(vf);
-                }
-            }
-            if ((*vfs_tempFilesP)[ name ])
-                delete(*vfs_tempFilesP)[ name ];
-            vfs_tempFilesP->remove(name);
-        }
-        // everything thats left is a new file
-        QHashIterator<QString, vfile *> it(*vfs_tempFilesP);
-        while (it.hasNext()) {
-            vfile *vf = it.next().value();
-
-            // sanity checking
-            if (!vf || (*vfs_filesP)[vf->vfile_getName()]) continue;
-
-            vfile* newVf = new vfile();
-            *newVf = *vf;
-            vfs_filesP->insert(newVf->vfile_getName(), newVf);
-            emit addedVfile(newVf);
-        }
-    }
-
-    // delete the temporary vfiles
-    vfs_tempFilesP->clear();
-    vfs_busy = false;
-
-    emit incrementalRefreshFinished(vfs_origin);
-
-    return res;
-}
-
-bool vfs::vfs_refresh(const QUrl &origin)
-{
-    if (vfs_busy)
-        return false;
-
-    if (disableRefresh) {
-        postponedRefreshURL = origin;
-        if (!origin.matches(vfs_getOrigin(), QUrl::StripTrailingSlash))
-            invalidated = true;
-        vfs_origin = origin;
-        return true;
-    }
-
-    if (!invalidated && origin.matches(vfs_getOrigin(), QUrl::StripTrailingSlash))
-        return vfs_refresh();
-
-    vfs_busy = true;
-
-    KConfigGroup group(krConfig, "Look&Feel");
-    bool showHidden = group.readEntry("Show Hidden", _ShowHidden);
-
-    vfs_tempFilesP->clear();
-    // and re-populate it
-    if (!populateVfsList(origin, showHidden)) {
-        vfs_busy = false;
+    const QUrl toRefresh =
+        directory.isEmpty() ? _currentDirectory : directory.adjusted(QUrl::NormalizePathSegments);
+    if (!toRefresh.isValid()) {
+        emit error(i18n("Malformed URL:\n%1", toRefresh.toDisplayString()));
         return false;
     }
 
+    _isRefreshing = true;
     clear();
-    delete vfs_filesP;
-    setVfsFilesP(vfs_tempFilesP);
-    vfs_busy = false;
+    const bool res = refreshInternal(toRefresh, showHiddenFiles());
+    if (!res) {
+        _isRefreshing = false;
+        return false;
+    }
 
-    emit startUpdate();
+    _isRefreshing = false;
 
-    invalidated = false;
+    emit refreshDone();
     return true;
 }
 
-bool vfs::vfs_enableRefresh(bool enable)
+void vfs::mayRefresh()
 {
-    if (vfs_type != VFS_NORMAL) return true;
-    if (disableRefresh == !enable) return true; // if gets called twice by mistake
-    disableRefresh = quietMode = !enable;
-    bool res = true;
-    if (enable && !postponedRefreshURL.isEmpty()) res = vfs_refresh(postponedRefreshURL);
-    postponedRefreshURL = QUrl();
-    return res;
+    if (ignoreRefresh()) {
+        return;
+    }
+    refresh();
+}
+
+void vfs::setMountMan(KMountMan *mountMan) { _mountMan = mountMan; }
+
+// ==== protected ====
+
+bool vfs::showHiddenFiles()
+{
+    const KConfigGroup gl(krConfig, "Look&Feel");
+    return gl.readEntry("Show Hidden", _ShowHidden);
 }
 
 void vfs::clear()
 {
-    emit cleared();
-    QHashIterator< QString, vfile *> lit(*vfs_filesP);
-    while (lit.hasNext())
+    QHashIterator<QString, vfile *> lit(_vfiles);
+    while (lit.hasNext()) {
         delete lit.next().value();
-    vfs_filesP->clear();
-}
-
-bool vfs::vfs_processEvents()
-{
-    if (deleteRequested)
-        return false;
-    deletePossible = false;
-    qApp->processEvents(QEventLoop::AllEvents | QEventLoop::WaitForMoreEvents);
-    deletePossible = true;
-    if (deleteRequested) {
-        emit deleteAllowed();
-        return false;
     }
-    return true;
+    _vfiles.clear();
+    emit cleared();
 }
 
-void vfs::vfs_requestDelete()
+void vfs::calcSpace(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
+                    unsigned long *totalDirs, bool *stop)
 {
-    if (deletePossible)
-        emit deleteAllowed();
-    deleteRequested = true;
-}
-
-void vfs::setMountMan(KMountMan *mtMan) {
-    mountMan = mtMan;
-}
-
-/// to be implemented
-void vfs::slotKdsResult(KJob* job)
-{
-    if (job && !job->error()) {
-        KIO::DirectorySizeJob* kds = static_cast<KIO::DirectorySizeJob*>(job);
-        *kds_totalSize += kds->totalSize();
-        *kds_totalFiles += kds->totalFiles();
-        *kds_totalDirs += kds->totalSubdirs();
-    }
-    *kds_busy = true;
-}
-
-void vfs::vfs_calcSpace(QString name , KIO::filesize_t* totalSize, unsigned long* totalFiles, unsigned long* totalDirs, bool* stop)
-{
-    calculateURLSize(vfs_getFile(name), totalSize, totalFiles, totalDirs, stop);
-}
-
-void vfs::calculateURLSize(QUrl url,  KIO::filesize_t* totalSize, unsigned long* totalFiles, unsigned long* totalDirs, bool* stop)
-{
-    if (stop && *stop) return ;
-    kds_busy = stop;
-    kds_totalSize  = totalSize ;
-    kds_totalFiles = totalFiles;
-    kds_totalDirs  = totalDirs;
-
     if (url.isLocalFile()) {
-        vfs_calcSpaceLocal(url.adjusted(QUrl::StripTrailingSlash).path(), totalSize, totalFiles, totalDirs, stop);
-        return;
-    }
-
-    stat_busy = true;
-    KIO::StatJob * statJob = KIO::stat(url);
-    connect(statJob, SIGNAL(result(KJob*)), this, SLOT(slotStatResultArrived(KJob*)));
-    while (!(*stop) && stat_busy) {
-        usleep(1000);
-    }
-
-    if (entry.count() == 0)
-        return;  // statJob failed
-
-    KFileItem kfi(entry, url, true);
-    if (kfi.isFile() || kfi.isLink()) {
-        (*totalFiles)++;
-        *totalSize += kfi.size();
-        return;
-    }
-
-    KIO::DirectorySizeJob *directorySizeJob = KIO::directorySize(url);
-    connect(directorySizeJob, SIGNAL(result(KJob*)), this, SLOT(slotKdsResult(KJob*)));
-
-    while (!(*stop)) {
-        // we are in a separate thread - so sleeping is OK
-        usleep(1000);
+        calcSpaceLocal(cleanUrl(url).path(), totalSize, totalFiles, totalDirs, stop);
+    } else {
+        calcSpaceKIO(url, totalSize, totalFiles, totalDirs, stop);
     }
 }
 
-void vfs::vfs_calcSpaceLocal(QString name , KIO::filesize_t *totalSize, unsigned long *totalFiles, unsigned long *totalDirs, bool* stop)
+void vfs::calcSpaceLocal(const QString &path, KIO::filesize_t *totalSize, unsigned long *totalFiles,
+                         unsigned long *totalDirs, bool *stop)
 {
-    if (*stop) return;
-    if (!name.contains("/")) name = vfs_workingDir() + '/' + name;
-    if (name == "/proc") return;
+    if (stop && *stop)
+        return;
 
-    QT_STATBUF stat_p;                // KDE lstat is necessary as QFileInfo and KFileItem
+    if (path == "/proc")
+        return;
+
+    QT_STATBUF stat_p; // KDE lstat is necessary as QFileInfo and KFileItem
     // if the name is wrongly encoded, then we zero the size out
     stat_p.st_size = 0;
     stat_p.st_mode = 0;
-    QT_LSTAT(name.toLocal8Bit(), &stat_p);  //         reports wrong size for a symbolic link
+    QT_LSTAT(path.toLocal8Bit(), &stat_p); // reports wrong size for a symbolic link
 
-    if (S_ISLNK(stat_p.st_mode) || !S_ISDIR(stat_p.st_mode)) {  // single files are easy : )
+    if (S_ISLNK(stat_p.st_mode) || !S_ISDIR(stat_p.st_mode)) { // single files are easy : )
         ++(*totalFiles);
         (*totalSize) += stat_p.st_size;
-    } else {  // handle directories
-        // avoid a nasty crash on un-readable dirs
-        bool readable = ::access(name.toLocal8Bit(), R_OK | X_OK) == 0;
+    } else { // handle directories avoid a nasty crash on un-readable dirs
+        bool readable = ::access(path.toLocal8Bit(), R_OK | X_OK) == 0;
         if (!readable)
             return;
 
-        QDir dir(name);
-        if (!dir.exists()) return;
+        QDir dir(path);
+        if (!dir.exists())
+            return;
 
         ++(*totalDirs);
         dir.setFilter(QDir::TypeMask | QDir::System | QDir::Hidden);
@@ -379,34 +216,196 @@ void vfs::vfs_calcSpaceLocal(QString name , KIO::filesize_t *totalSize, unsigned
         // recurse on all the files in the directory
         QFileInfoList fileList = dir.entryInfoList();
         for (int k = 0; k != fileList.size(); k++) {
-            if (*stop) return;
-            QFileInfo qfiP = fileList[ k ];
+            if (*stop)
+                return;
+            QFileInfo qfiP = fileList[k];
             if (qfiP.fileName() != "." && qfiP.fileName() != "..")
-                vfs_calcSpaceLocal(name + '/' + qfiP.fileName(), totalSize, totalFiles, totalDirs, stop);
+                calcSpaceLocal(path + '/' + qfiP.fileName(), totalSize, totalFiles, totalDirs,
+                               stop);
         }
     }
 }
 
-
-void vfs::slotStatResultArrived(KJob* job)
+void vfs::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
+                       unsigned long *totalDirs, bool *stop)
 {
-    if (!job || job->error()) entry = KIO::UDSEntry();
-    else entry = static_cast<KIO::StatJob*>(job)->statResult();
-    stat_busy = false;
+    // TODO does not work
+    return;
+
+    if (stop && *stop)
+        return;
+
+    _calcKdsBusy = stop;
+    _calcKdsTotalSize = totalSize;
+    _calcKdsTotalFiles = totalFiles;
+    _calcKdsTotalDirs = totalDirs;
+
+    _calcStatBusy = true;
+    KIO::StatJob *statJob = KIO::stat(url, KIO::HideProgressInfo); // thread problem here
+    connect(statJob, SIGNAL(result(KJob *)), this, SLOT(slotCalcStatResult(KJob *)));
+
+    while (!(*stop) && _calcStatBusy) {
+        usleep(1000);
+    }
+
+    if (_calcEntry.count() == 0)
+        return; // statJob failed
+
+    const KFileItem kfi(_calcEntry, url, true);
+    if (kfi.isFile() || kfi.isLink()) {
+        (*totalFiles)++;
+        *totalSize += kfi.size();
+        return;
+    }
+
+    KIO::DirectorySizeJob *directorySizeJob = KIO::directorySize(url);
+    connect(directorySizeJob, SIGNAL(result(KJob *)), this, SLOT(slotCalcKdsResult(KJob *)));
+
+    while (!(*stop)) {
+        // we are in a separate thread - so sleeping is OK
+        usleep(1000);
+    }
 }
 
-QList<vfile*> vfs::vfs_search(const KRQuery& filter)
+vfile *vfs::createLocalVFile(const QString &name, const QString &directory, bool virt)
 {
-    QList<vfile*> result;
-    for (vfile *vf = vfs_getFirstFile(); vf != 0 ; vf = vfs_getNextFile())
-        if (filter.match(vf))
-            result.append(vf);
-    return result;
+    const QString path = QDir(directory).filePath(name);
+    const QByteArray fileName = path.toLocal8Bit();
+
+    QT_STATBUF stat_p;
+    stat_p.st_size = 0;
+    stat_p.st_mode = 0;
+    stat_p.st_mtime = 0;
+    stat_p.st_uid = 0;
+    stat_p.st_gid = 0;
+    QT_LSTAT(fileName.data(), &stat_p);
+    const KIO::filesize_t size = stat_p.st_size;
+    QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
+    const bool symLink = S_ISLNK(stat_p.st_mode);
+
+    if (S_ISDIR(stat_p.st_mode))
+        perm[0] = 'd';
+
+    const QString mime;
+
+    QString symDest;
+    bool brokenLink = false;
+    if (S_ISLNK(stat_p.st_mode)) { // find where the link is pointing to
+        // the path of the symlink target cannot be longer than the file size of the symlink
+        char buffer[stat_p.st_size];
+        memset(buffer, 0, sizeof(buffer));
+        int bytesRead = readlink(fileName.data(), buffer, sizeof(buffer));
+        if (bytesRead != -1) {
+            symDest = QString::fromLocal8Bit(buffer, bytesRead);
+            if (QDir(symDest).exists())
+                perm[0] = 'd';
+            if (!QDir(directory).exists(symDest))
+                brokenLink = true;
+        } else {
+            krOut << "Failed to read link: " << path << endl;
+        }
+    }
+
+    int rwx = 0;
+    if (::access(fileName.data(), R_OK) == 0)
+        rwx |= R_OK;
+    if (::access(fileName.data(), W_OK) == 0)
+        rwx |= W_OK;
+#ifndef Q_CC_MSVC
+    if (::access(fileName.data(), X_OK) == 0)
+        rwx |= X_OK;
+#endif
+
+    // create a new virtual file object
+    return new vfile(virt ? path : name, size, perm, stat_p.st_mtime, symLink, brokenLink,
+                     stat_p.st_uid, stat_p.st_gid, mime, symDest, stat_p.st_mode, rwx,
+                     QUrl::fromLocalFile(path));
 }
 
-bool vfs::vfs_showHidden()
+vfile *vfs::createVFileFromKIO(const KIO::UDSEntry &entry, const QUrl &directory, bool virt)
 {
-    KConfigGroup gl(krConfig, "Look&Feel");
-    return gl.readEntry("Show Hidden", _ShowHidden);
+    const KFileItem kfi(entry, directory, true, true);
+
+    const QString name = kfi.text();
+    // ignore un-needed entries
+    if (name.isEmpty() || name == "." || name == "..") {
+        return 0;
+    }
+
+    // get file statistics...
+    const KIO::filesize_t size = kfi.size();
+    const time_t mtime = kfi.time(KFileItem::ModificationTime).toTime_t();
+    const bool symLink = kfi.isLink();
+    const mode_t mode = kfi.mode() | kfi.permissions();
+    // NOTE: we could get the mimetype (and file icon) from the kfileitem here but this is very
+    // slow. Instead, the vfile class has it's own (faster) way to determine the file type.
+    const QString mime;
+    QString perm = KRpermHandler::mode2QString(mode);
+    QString symDest = "";
+    if (symLink) {
+        symDest = kfi.linkDest();
+        if (kfi.isDir())
+            perm[0] = 'd';
+    }
+    int rwx = -1;
+    const QString prot = directory.scheme();
+    if (prot == "krarc" || prot == "tar" || prot == "zip")
+        rwx = PERM_ALL;
+    const QUrl url = !kfi.localPath().isEmpty() ? QUrl::fromLocalFile(kfi.localPath()) : kfi.url();
+    const QString fname = virt ? url.toDisplayString() : name;
+
+    // create a new virtual file object
+    vfile *vf;
+    if (kfi.user().isEmpty()) {
+        vf = new vfile(fname, size, perm, mtime, symLink, false, getuid(), getgid(), mime, symDest,
+                       mode, rwx, url);
+    } else {
+        QString currentUser = directory.userName();
+        if (currentUser.contains("@")) // remove the FTP proxy tags from the username
+            currentUser.truncate(currentUser.indexOf('@'));
+        if (currentUser.isEmpty()) {
+            if (directory.host().isEmpty()) {
+                currentUser = KRpermHandler::uid2user(getuid());
+            } else {
+                currentUser = ""; // empty, but not QString()
+            }
+        }
+        vf = new vfile(fname, size, perm, mtime, symLink, false, kfi.user(), kfi.group(),
+                       currentUser, mime, symDest, mode, rwx, kfi.ACL().asString(),
+                       kfi.defaultACL().asString(), url);
+    }
+
+    return vf;
 }
 
+// ==== protected slots ====
+
+void vfs::slotJobResult(KJob *job, bool refresh)
+{
+    if (job->error() && job->uiDelegate()) {
+        // show errors for modifying operations as popup (works always)
+        job->uiDelegate()->showErrorMessage();
+    }
+
+    if (refresh) {
+        vfs::refresh();
+    }
+}
+
+/// to be implemented
+void vfs::slotCalcKdsResult(KJob *job)
+{
+    if (!job->error()) {
+        KIO::DirectorySizeJob *kds = static_cast<KIO::DirectorySizeJob *>(job);
+        *_calcKdsTotalSize += kds->totalSize();
+        *_calcKdsTotalFiles += kds->totalFiles();
+        *_calcKdsTotalDirs += kds->totalSubdirs();
+    }
+    *_calcKdsBusy = true;
+}
+
+void vfs::slotCalcStatResult(KJob *job)
+{
+    _calcEntry = job->error() ? KIO::UDSEntry() : static_cast<KIO::StatJob *>(job)->statResult();
+    _calcStatBusy = false;
+}

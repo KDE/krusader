@@ -36,168 +36,153 @@
 #include <QDir>
 
 #include <KConfigCore/KSharedConfig>
+#include <KCoreAddons/KUrlMimeData>
 #include <KI18n/KLocalizedString>
 #include <KIO/DeleteJob>
 #include <KIO/DropJob>
+#include <KIO/ListJob>
 #include <KIO/JobUiDelegate>
 #include <KIOCore/KFileItem>
 #include <KIOCore/KProtocolManager>
 
-#include "krpermhandler.h"
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "../krservices.h"
 #include "../MountMan/kmountman.h"
 
-default_vfs::default_vfs(QObject* parent): vfs(parent), watcher(0)
+default_vfs::default_vfs(): vfs(), _watcher()
 {
-    vfs_type = VFS_NORMAL;
+    _type = VFS_DEFAULT;
 }
 
-void default_vfs::vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
-                               QObject *toNotify, QString dir)
+void default_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
+                            KIO::CopyJob::CopyMode mode, bool showProgressInfo)
 {
-    //if (watcher) watcher->stopScan();
-
-    QUrl destination(vfs_origin);
-    if (!dir.isEmpty()) {
-        destination.setPath(QDir::cleanPath(destination.path() + '/' + dir));
-
-        if (destination.scheme() == "tar" || destination.scheme() == "zip" || destination.scheme() == "krarc") {
-            if (QDir(destination.adjusted(QUrl::StripTrailingSlash).path()).exists())
-                destination.setScheme("file"); // if we get out from the archive change the protocol
-        }
-    }
-
-    KIO::Job *job = 0;
+    KIO::JobFlags flags = showProgressInfo ? KIO::DefaultFlags : KIO::HideProgressInfo;
+    KIO::Job *job;
     switch (mode) {
-    case KIO::CopyJob::Copy:
-        job = KIO::copy(fileUrls, destination);
-        break;
     case KIO::CopyJob::Move:
-        job = KIO::move(fileUrls, destination);
+        job = KIO::move(urls, destination, flags);
         break;
     case KIO::CopyJob::Link:
-        job = KIO::link(fileUrls, destination);
+        job = KIO::link(urls, destination, flags);
         break;
+    default:
+        job = KIO::copy(urls, destination, flags);
     }
 
     connect(job, SIGNAL(result(KJob *)), this, SLOT(slotJobResult(KJob *)));
-    if (toNotify && mode == KIO::CopyJob::Move) { // notify the other panel
-        connect(job, SIGNAL(result(KJob *)), toNotify, SLOT(vfs_refresh(KJob *)));
+    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(destination); });
+    if (mode == KIO::CopyJob::Move) { // notify source about removed files
+        connectSourceVFS(job, urls);
     }
 }
 
-void default_vfs::vfs_drop(const QUrl &destination, QDropEvent *event)
+void default_vfs::dropFiles(const QUrl &destination, QDropEvent *event)
 {
-    //if (watcher) watcher->stopScan();
-
     KIO::DropJob *job = KIO::drop(event, destination);
+    // NOTE: DropJob does not provide information about the actual user choice
+    // (move/copy/link/abort). We have to assume the worst (move)
     connect(job, SIGNAL(result(KJob*)), this, SLOT(slotJobResult(KJob *)));
-    QObject *dropSource = event->source();
-    if (dropSource) { // refresh source because files may have been removed
-        connect(job, SIGNAL(result(KJob*)), dropSource, SLOT(vfs_refresh(KJob*)));
+    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(destination); });
+    connectSourceVFS(job, KUrlMimeData::urlsFromMimeData(event->mimeData()));
+}
+
+void default_vfs::connectSourceVFS(KIO::Job *job, const QList<QUrl> urls)
+{
+    if (!urls.isEmpty()) {
+        // NOTE: we assume that all files were in the same directory and only emit one signal for
+        // the directory of the first file URL
+        // their current directory was deleted
+        const QUrl url = urls.first().adjusted(QUrl::RemoveFilename);
+        connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(url); });
     }
 }
 
-void default_vfs::vfs_delFiles(const QStringList &fileNames, bool reallyDelete)
+void default_vfs::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QString dir)
 {
-    //if (watcher) watcher->stopScan();
+    QUrl destination(_currentDirectory);
+    if (!dir.isEmpty()) {
+        destination.setPath(QDir::cleanPath(destination.path() + '/' + dir));
+        const QString scheme = destination.scheme();
+        if (scheme == "tar" || scheme == "zip" || scheme == "krarc") {
+            if (QDir(cleanUrl(destination).path()).exists())
+                // if we get out from the archive change the protocol
+                destination.setScheme("file");
+        }
+    }
 
+    copyFiles(fileUrls, destination, mode);
+}
+
+void default_vfs::deleteFiles(const QStringList &fileNames, bool forceDeletion)
+{
     // get absolute URLs for file names
-    QList<QUrl> filesUrls = vfs_getFiles(fileNames);
+    const QList<QUrl> fileUrls = getUrls(fileNames);
 
-    // create job: delete of move to trash ?
+    // delete or move to trash?
     KIO::Job *job;
-    KConfigGroup group(krConfig, "General");
-    if (!reallyDelete && group.readEntry("Move To Trash", _MoveToTrash)) {
-        job = KIO::trash(filesUrls);
-        emit trashJobStarted(job);
+    const KConfigGroup group(krConfig, "General");
+    bool refresh = false;
+    if (!forceDeletion && isLocal() && group.readEntry("Move To Trash", _MoveToTrash)) {
+        job = KIO::trash(fileUrls);
+        // watcher sends dirty signal sometimes before all files are moved, refresh on job result
+        refresh = true;
     } else {
-        job = KIO::del(filesUrls);
+        job = KIO::del(fileUrls);
     }
-    connect(job, SIGNAL(result(KJob*)), this, SLOT(slotJobResult(KJob*)));
+    connect(job, &KIO::Job::result, this,[=](KJob* job) { slotJobResult(job, refresh); });
+    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(currentDirectory()); });
 }
 
-QUrl default_vfs::vfs_getFile(const QString& name)
+void default_vfs::mkDir(const QString& name)
 {
-    QUrl absoluteUrl(vfs_origin);
+    KIO::SimpleJob* job = KIO::mkdir(getUrl(name));
+    connect(job, SIGNAL(result(KJob*)), this, SLOT(slotJobResult(KJob*)));
+    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(currentDirectory()); });
+}
+
+void default_vfs::rename(const QString& oldName, const QString& newName)
+{
+    const QUrl oldUrl = getUrl(oldName);
+    const QUrl newUrl = getUrl(newName);
+    KIO::Job *job = KIO::moveAs(oldUrl, newUrl, KIO::HideProgressInfo);
+    connect(job, SIGNAL(result(KJob *)), this, SLOT(slotJobResult(KJob *)));
+    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(currentDirectory()); });
+}
+
+QUrl default_vfs::getUrl(const QString& name)
+{
+    // NOTE: on non-local fs file URL does not have to be path + name!
+    vfile *vf = getVfile(name);
+    if (vf)
+        return vf->vfile_getUrl();
+
+    QUrl absoluteUrl(_currentDirectory);
     absoluteUrl.setPath(absoluteUrl.path() + "/" + name);
     return absoluteUrl;
 }
 
-QList<QUrl> default_vfs::vfs_getFiles(const QStringList &names)
-{
-    QList<QUrl> urls;
-    foreach (const QString &name, names) {
-        urls.append(vfs_getFile(name));
-    }
-    return urls;
-}
-
-void default_vfs::vfs_mkdir(const QString& name)
-{
-    KIO::SimpleJob* job = KIO::mkdir(vfs_getFile(name));
-    connect(job, SIGNAL(result(KJob*)), this, SLOT(slotJobResult(KJob*)));
-}
-
-void default_vfs::vfs_rename(const QString& oldName, const QString& newName)
-{
-    QUrl oldUrl = vfs_getFile(oldName);
-    QUrl newUrl = vfs_getFile(newName);
-    KIO::Job *job = KIO::moveAs(oldUrl, newUrl, KIO::HideProgressInfo);
-    connect(job, SIGNAL(result(KJob *)), this, SLOT(slotJobResult(KJob *)));
-}
-
 // ==== protected ====
 
-bool default_vfs::populateVfsList(const QUrl &origin, bool showHidden)
+bool default_vfs::refreshInternal(const QUrl &directory, bool showHidden)
 {
-    delete watcher; // stop watching the old dir
-
-    QString errorMsg;
-    if (!origin.isValid()) {
-        errorMsg = i18n("Malformed URL:\n%1", origin.url());
-    } else if (!KProtocolManager::supportsListing(origin)) {
-        errorMsg = i18n("Protocol not supported by Krusader:\n%1", origin.url());
-    }
-    if (!errorMsg.isEmpty()) {
-        if (!quietMode) {
-            emit error(errorMsg);
-        }
+    if (!KProtocolManager::supportsListing(directory)) {
+        emit error(i18n("Protocol not supported by Krusader:\n%1", directory.url()));
         return false;
     }
 
-    if (origin.isLocalFile()) {
-        QString path = KrServices::urlToLocalPath(origin);
+    delete _watcher; // stop watching the old dir
 
-#ifdef Q_WS_WIN
-        if (!path.contains("/")) { // change C: to C:/
-            path = path + QString("/");
-        }
-#endif
-
-        // check if the new origin exists
-        if (!QDir(path).exists()) {
-            if (!quietMode)
-                emit error(i18n("The folder %1 does not exist.", path));
-            return false;
-        }
-
-        KConfigGroup group(krConfig, "Advanced");
-        if (group.readEntry("AutoMount", _AutoMount) && !mountMan.isNull())
-            mountMan->autoMount(path);
-
-        // set the origin...
-        vfs_origin = origin;
-        vfs_origin.setPath(path);
-        vfs_origin.setPath(QDir::cleanPath(vfs_origin.path()));
-    } else {
-        vfs_origin = origin.adjusted(QUrl::StripTrailingSlash);
+    if (directory.isLocalFile()) {
+        // we could read local directories with KIO but using Qt is a lot faster!
+        return refreshLocal(directory);
     }
 
+    _currentDirectory = cleanUrl(directory);
+
     // start the listing job
-    KIO::ListJob *job = KIO::listDir(vfs_origin, KIO::HideProgressInfo, showHidden);
+    KIO::ListJob *job = KIO::listDir(_currentDirectory, KIO::HideProgressInfo, showHidden);
     connect(job, SIGNAL(entries(KIO::Job *, const KIO::UDSEntryList &)), this,
             SLOT(slotAddFiles(KIO::Job *, const KIO::UDSEntryList &)));
     connect(job, &KIO::ListJob::redirection,
@@ -206,140 +191,158 @@ bool default_vfs::populateVfsList(const QUrl &origin, bool showHidden)
             [=](KIO::Job *, const QUrl &, const QUrl &url) { slotRedirection(url); });
     connect(job, SIGNAL(result(KJob*)), this, SLOT(slotListResult(KJob*)));
 
-    if(!parentWindow.isNull()) {
-        KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
-        ui->setWindow(parentWindow);
-    }
+    emit refreshJobStarted(job);
 
-    if (!quietMode) {
-        emit startJob(job);
-    }
-
-    listError = false;
+    _listError = false;
     // ugly: we have to wait here until the list job is finished
     QEventLoop eventLoop;
     connect(job, SIGNAL(result(KJob*)), &eventLoop, SLOT(quit()));
     eventLoop.exec(); // blocking until quit()
 
-    if (panelConnected && vfs_origin.isLocalFile()) {
-        // start watching the new dir for file changes
-        watcher = new KDirWatch(this);
-        connect(watcher, SIGNAL(dirty(const QString&)), this, SLOT(slotWatcherDirty(const QString&)));
-        connect(watcher, SIGNAL(created(const QString&)), this, SLOT(slotWatcherCreated(const QString&)));
-        connect(watcher, SIGNAL(deleted(const QString&)), this, SLOT(slotWatcherDeleted(const QString&)));
-        watcher->addDir(vfs_getOrigin().toLocalFile(), KDirWatch::WatchFiles);
-        watcher->startScan(false);
-    }
-
-    return !listError;
+    return !_listError;
 }
 
-// ==== slots ====
-
-void default_vfs::slotJobResult(KJob *job)
+bool default_vfs::ignoreRefresh()
 {
-    if (job->error() && job->uiDelegate()) {
-        job->uiDelegate()->showErrorMessage();
-    }
-
-    vfs_refresh();
-
-    return;
+    return !_watcher.isNull();
 }
 
-void default_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries)
-{
-    int rwx = -1;
-
-    QString prot = vfs_origin.scheme();
-    if (prot == "krarc" || prot == "tar" || prot == "zip")
-        rwx = PERM_ALL;
-
-    // add all files to the vfs
-    for (const KIO::UDSEntry entry : entries) {
-        KFileItem kfi(entry, vfs_origin, true, true);
-        vfile *temp;
-
-        // get file statistics
-        QString name = kfi.text();
-        // ignore un-needed entries
-        // TODO do not filter ".." here
-        if (name.isEmpty() || name == "." || name == "..")
-            continue;
-
-        KIO::filesize_t size = kfi.size();
-        time_t mtime = kfi.time(KFileItem::ModificationTime).toTime_t();
-        bool symLink = kfi.isLink();
-        mode_t mode = kfi.mode() | kfi.permissions();
-        QString perm = KRpermHandler::mode2QString(mode);
-        // set the mimetype
-        QString mime = kfi.mimetype();
-        QString symDest = "";
-        if (symLink) {
-            symDest = kfi.linkDest();
-            if (kfi.isDir())
-                perm[0] = 'd';
-        }
-
-        // create a new virtual file object
-        if (kfi.user().isEmpty())
-            temp = new vfile(name, size, perm, mtime, symLink, false, getuid(), getgid(), mime,
-                             symDest, mode, rwx);
-        else {
-            QString currentUser = vfs_origin.userName();
-            if (currentUser.contains("@")) /* remove the FTP proxy tags from the username */
-                currentUser.truncate(currentUser.indexOf('@'));
-            if (currentUser.isEmpty()) {
-                if (vfs_origin.host().isEmpty()) {
-                    currentUser = KRpermHandler::uid2user(getuid());
-                } else {
-                    currentUser = ""; // empty, but not QString()
-                }
-            }
-            temp = new vfile(name, size, perm, mtime, symLink, false, kfi.user(), kfi.group(),
-                             currentUser, mime, symDest, mode, rwx, kfi.ACL().asString(),
-                             kfi.defaultACL().asString());
-        }
-
-        if (!kfi.localPath().isEmpty()) {
-            temp->vfile_setUrl(QUrl::fromLocalFile(kfi.localPath()));
-        } else {
-            temp->vfile_setUrl(kfi.url());
-        }
-        temp->vfile_setIcon(kfi.iconName());
-        foundVfile(temp);
-    }
-}
-
-void default_vfs::slotRedirection(const QUrl &url)
-{
-    // update the origin
-    vfs_origin = url.adjusted(QUrl::StripTrailingSlash);
-}
+// ==== protected slots ====
 
 void default_vfs::slotListResult(KJob *job)
 {
     if (job && job->error()) {
         // we failed to refresh
-        listError = true;
-        // display error message
-        if (!quietMode) {
-            emit error(job->errorString());
+        _listError = true;
+        emit error(job->errorString()); // display error message (in panel)
+    }
+}
+
+void default_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries)
+{
+    for (const KIO::UDSEntry entry : entries) {
+        vfile *vfile = vfs::createVFileFromKIO(entry, _currentDirectory);
+        if (vfile) {
+            addVfile(vfile);
         }
     }
 }
 
-void default_vfs::slotWatcherDirty(const QString& path)
+void default_vfs::slotRedirection(const QUrl &url)
 {
-    // TODO
+    _currentDirectory = cleanUrl(url);
 }
 
-void default_vfs::slotWatcherCreated(const QString& path)
+void default_vfs::slotWatcherDirty(const QString& path)
 {
-    // TODO
+    if (path == _currentDirectory.toLocalFile()) {
+        // this happens
+        //   1. if a directory was created/deleted/renamed inside this directory.
+        //   2. during and after a file operation (create/delete/rename/touch) inside this directory
+        // KDirWatcher doesn't reveal the name of changed files/directories and we have to refresh.
+        // (QFileSystemWatcher in Qt5.7 can't help here either)
+        refresh();
+        return;
+    }
+
+    const QString name = QUrl::fromLocalFile(path).fileName();
+
+    vfile * vf = getVfile(name);
+    if (!vf) {
+        krOut << "dirty watcher file not found (unexpected): " << path;
+        return;
+    }
+
+    // we have an updated file..
+    vfile *newVf = createLocalVFile(name);
+    *vf = *newVf;
+    delete newVf;
+    emit updatedVfile(vf);
 }
 
 void default_vfs::slotWatcherDeleted(const QString& path)
 {
-    // TODO
+    if (path != currentDirectory().path()) {
+        // we ignore deletion of files here, a 'dirty' signal will be send anyway
+        return;
+    }
+
+    // the current directory was deleted, we try a refresh, which will fail. An error message will
+    // be emitted and the empty (non-existing) directory remains.
+    refresh();
+}
+
+bool default_vfs::refreshLocal(const QUrl &directory) {
+    const QString path = KrServices::urlToLocalPath(directory);
+
+#ifdef Q_WS_WIN
+    if (!path.contains("/")) { // change C: to C:/
+        path = path + QString("/");
+    }
+#endif
+
+    // check if the new directory exists
+    if (!QDir(path).exists()) {
+        emit error(i18n("The folder %1 does not exist.", path));
+        return false;
+    }
+
+    KConfigGroup group(krConfig, "Advanced");
+    if (group.readEntry("AutoMount", _AutoMount) && !_mountMan.isNull())
+        _mountMan->autoMount(path);
+
+    // set the current directory...
+    _currentDirectory = directory;
+    _currentDirectory.setPath(QDir::cleanPath(_currentDirectory.path()));
+
+    // Note: we are using low-level Qt functions here.
+    // It's around twice as fast as using the QDir class.
+
+    QT_DIR* dir = QT_OPENDIR(path.toLocal8Bit());
+    if (!dir) {
+        emit error(i18n("Cannot open the folder %1.", path));
+        return false;
+    }
+
+    // change directory to the new directory
+    const QString savedDir = QDir::currentPath();
+    if (!QDir::setCurrent(path)) {
+        emit error(i18nc("%1=folder path", "Access to %1 denied", path));
+        QT_CLOSEDIR(dir);
+        return false;
+    }
+
+    QT_DIRENT* dirEnt;
+    QString name;
+    const bool showHidden = showHiddenFiles();
+    while ((dirEnt = QT_READDIR(dir)) != NULL) {
+        name = QString::fromLocal8Bit(dirEnt->d_name);
+
+        // show hidden files?
+        if (!showHidden && name.left(1) == ".") continue ;
+        // we don't need the "." and ".." entries
+        if (name == "." || name == "..") continue;
+
+        vfile* temp = createLocalVFile(name);
+        addVfile(temp);
+    }
+    // clean up
+    QT_CLOSEDIR(dir);
+    QDir::setCurrent(savedDir);
+
+    // start watching the new dir for file changes
+    _watcher = new KDirWatch(this);
+    _watcher->addDir(currentDirectory().toLocalFile(), KDirWatch::WatchFiles);
+    connect(_watcher, SIGNAL(dirty(const QString&)), this, SLOT(slotWatcherDirty(const QString&)));
+    // NOTE: not connecting 'created' signal. A 'dirty' is send after that anyway
+    //connect(_watcher, SIGNAL(created(const QString&)), this, SLOT(slotWatcherCreated(const QString&)));
+    connect(_watcher, SIGNAL(deleted(const QString&)), this, SLOT(slotWatcherDeleted(const QString&)));
+    _watcher->startScan(false);
+
+    return true;
+}
+
+vfile *default_vfs::createLocalVFile(const QString &name)
+{
+    return vfs::createLocalVFile(name, _currentDirectory.path());
 }

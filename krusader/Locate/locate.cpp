@@ -637,15 +637,15 @@ bool LocateDlg::find()
 
 void LocateDlg::feedToListBox()
 {
-    virt_vfs v(0, true);
-    v.vfs_refresh(QUrl::fromLocalFile(QStringLiteral("/")));
+    virt_vfs virtVfs;
+    virtVfs.refresh(QUrl::fromLocalFile(QStringLiteral("/")));
 
     KConfigGroup group(krConfig, "Locate");
     int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
     QString queryName;
     do {
         queryName = i18n("Locate results") + QString(" %1").arg(listBoxNum++);
-    } while (v.vfs_search(queryName) != 0);
+    } while (virtVfs.getVfile(queryName) != 0);
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");
@@ -665,8 +665,8 @@ void LocateDlg::feedToListBox()
         it++;
     }
     QUrl url = QUrl(QStringLiteral("virt:/") + queryName);
-    v.vfs_refresh(url);
-    v.vfs_addFiles(urlList, KIO::CopyJob::Copy, 0);
+    virtVfs.refresh(url);
+    virtVfs.addFiles(urlList);
     //ACTIVE_FUNC->openUrl(url);
     ACTIVE_MNG->slotNewTab(url);
     accept();

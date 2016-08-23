@@ -42,6 +42,7 @@
 
 bool vfile::vfile_userDefinedFolderIcons = true;
 
+
 vfile::vfile(const QString& name,                   // useful construtor
              const KIO::filesize_t size,
              const QString& perm,
@@ -53,7 +54,8 @@ vfile::vfile(const QString& name,                   // useful construtor
              const QString& mime,
              const QString& symDest,
              const mode_t mode,
-             const int rwx)
+             const int rwx,
+             const QUrl& url)
 {
     vfile_name = name;
     vfile_size = size;
@@ -73,6 +75,7 @@ vfile::vfile(const QString& name,                   // useful construtor
     if (vfile_isDir() && !vfile_symLink)
         vfile_size = 0;
     vfile_rwx = rwx;
+    vfile_url = url;
     vfile_acl_loaded = false;
 }
 
@@ -90,7 +93,8 @@ vfile::vfile(const QString& name,                   // useful construtor
              const mode_t mode,
              const int rwx,
              const QString& aclString,
-             const QString& aclDfltString)
+             const QString& aclDfltString,
+             const QUrl& url)
 {
     vfile_name = name;
     vfile_size = size;
@@ -114,6 +118,7 @@ vfile::vfile(const QString& name,                   // useful construtor
     vfile_has_acl = !aclString.isNull() || !aclDfltString.isNull();
     vfile_acl_loaded = true;
     vfile_rwx = rwx;
+    vfile_url = url;
 }
 
 char vfile::vfile_isReadable() const
