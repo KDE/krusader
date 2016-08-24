@@ -838,6 +838,10 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
         }
     } else { // it's a new file...
         extArcReady = false;
+
+        // new archive file means new dirDict, too
+        dirDict.clear();
+
         if (arcFile) {
             delete arcFile;
             password.clear();
