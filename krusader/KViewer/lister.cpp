@@ -1554,7 +1554,7 @@ void Lister::search(bool forward, bool restart)
             _searchHexQuery.push_back((char) c);
         }
     } else {
-        _searchQuery.setContent(_searchLineEdit->text(), caseSensitive, matchWholeWord, false, _textArea->codec()->name(), regExp);
+        _searchQuery.setContent(_searchLineEdit->text(), caseSensitive, matchWholeWord, _textArea->codec()->name(), regExp);
     }
     _searchIsForward = forward;
     _searchHexadecimal = hex;

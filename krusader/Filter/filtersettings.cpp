@@ -93,7 +93,6 @@ FilterSettings::FilterSettings() :
     searchInArchives(false),
     recursive(false),
     followLinks(false),
-    remoteContentSearch(false),
     containsTextCase(false),
     containsWholeWord(false),
     containsRegExp(false),
@@ -120,7 +119,6 @@ FilterSettings& FilterSettings::operator=(const FilterSettings& other)
     COPY(followLinks);
     COPY(searchIn);
     COPY(dontSearchIn);
-    COPY(remoteContentSearch);
     COPY(contentEncoding);
     COPY(containsText);
     COPY(containsTextCase);
@@ -161,7 +159,6 @@ void FilterSettings::load(KConfigGroup cfg) {
     LOAD("FollowLinks", followLinks);
     searchIn = KrServices::toUrlList(cfg.readEntry("SearchIn", QStringList()));
     dontSearchIn = KrServices::toUrlList(cfg.readEntry("DontSearchIn", QStringList()));
-    LOAD("RemoteContentSearch", remoteContentSearch);
     LOAD("ContentEncoding", contentEncoding);
     LOAD("ContainsText", containsText);
     LOAD("ContainsTextCase", containsTextCase);
@@ -214,7 +211,6 @@ void FilterSettings::save(KConfigGroup cfg) const
     cfg.writeEntry("FollowLinks", followLinks);
     cfg.writeEntry("SearchIn", KrServices::toStringList(searchIn));
     cfg.writeEntry("DontSearchIn", KrServices::toStringList(dontSearchIn));
-    cfg.writeEntry("RemoteContentSearch", remoteContentSearch);
     cfg.writeEntry("ContentEncoding", contentEncoding);
     cfg.writeEntry("ContainsText", containsText);
     cfg.writeEntry("ContainsTextCase", containsTextCase);
@@ -285,7 +281,6 @@ KRQuery FilterSettings::toQuery() const
         query.setContent(containsText,
                         containsTextCase,
                         containsWholeWord,
-                        remoteContentSearch,
                         charset,
                         containsRegExp);
     }

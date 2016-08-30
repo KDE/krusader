@@ -326,16 +326,6 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     QSpacerItem* recurseSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     recurseLayout->addItem(recurseSpacer);
 
-    remoteContentSearch = new QCheckBox(containsGroup);
-    QSizePolicy remoteContentSearchPolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    remoteContentSearchPolicy.setHeightForWidth(remoteContentSearch->sizePolicy().hasHeightForWidth());
-    remoteContentSearch->setSizePolicy(remoteContentSearchPolicy);
-    remoteContentSearch->setText(i18n("Remote co&ntent search"));
-    remoteContentSearch->setChecked(false);
-    recurseLayout->addWidget(remoteContentSearch);
-    if (!(properties & FilterTabs::HasRemoteContentSearch))
-        remoteContentSearch->hide();
-
     if (properties & FilterTabs::HasRecurseOptions) {
         // Options for recursive searching
         searchInDirs = new QCheckBox(this);
@@ -505,8 +495,6 @@ void GeneralFilter::slotDisable()
     contentEncoding->setEnabled(global);
     containsTextCase->setEnabled(global);
     containsRegExp->setEnabled(global);
-    if (properties & FilterTabs::HasRemoteContentSearch)
-        remoteContentSearch->setEnabled(global);
     if (properties & FilterTabs::HasRecurseOptions)
         searchInArchives->setEnabled(global && !remoteOnly);
     containsLabel->setEnabled(global);
@@ -545,8 +533,6 @@ bool GeneralFilter::getSettings(FilterSettings &s)
         s.containsTextCase = containsTextCase->isChecked();
         s.containsWholeWord = containsWholeWord->isChecked();
         s.containsRegExp = containsRegExp->isChecked();
-        s.remoteContentSearch = (properties & FilterTabs::HasRemoteContentSearch) ?
-                                    remoteContentSearch->isChecked() : false;
     }
 
     if (contentEncoding->currentIndex() != 0)
@@ -585,7 +571,6 @@ void GeneralFilter::applySettings(const FilterSettings &s)
     containsTextCase->setChecked(s.containsTextCase);
     containsWholeWord->setChecked(s.containsWholeWord);
     containsRegExp->setChecked(s.containsRegExp);
-    remoteContentSearch->setChecked(s.remoteContentSearch);
 
     setComboBoxValue(contentEncoding,
             KCharsets::charsets()->descriptionForEncoding(s.contentEncoding));

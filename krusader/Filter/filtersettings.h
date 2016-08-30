@@ -98,7 +98,6 @@ private:
     bool followLinks;
     QList<QUrl> searchIn;
     QList<QUrl> dontSearchIn;
-    bool remoteContentSearch;
     QString contentEncoding;
     QString containsText;
     bool containsTextCase;

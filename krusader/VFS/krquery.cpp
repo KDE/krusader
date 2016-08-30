@@ -51,7 +51,7 @@
 // set the defaults
 KRQuery::KRQuery(): QObject(), matchesCaseSensitive(true), bNull(true),
         contain(QString()), containCaseSensetive(true),
-        containWholeWord(false), containRegExp(false), containOnRemote(false),
+        containWholeWord(false), containRegExp(false),
         minSize(0), maxSize(0), newerThen(0), olderThen(0),
         owner(QString()), group(QString()), perm(QString()),
         type(QString()), inArchive(false), recurse(true),
@@ -68,7 +68,7 @@ KRQuery::KRQuery(): QObject(), matchesCaseSensitive(true), bNull(true),
 // set the defaults
 KRQuery::KRQuery(const QString &name, bool matchCase) : QObject(),
         bNull(true), contain(QString()), containCaseSensetive(true),
-        containWholeWord(false), containRegExp(false), containOnRemote(false),
+        containWholeWord(false), containRegExp(false),
         minSize(0), maxSize(0), newerThen(0), olderThen(0),
         owner(QString()), group(QString()), perm(QString()),
         type(QString()), inArchive(false), recurse(true),
@@ -108,7 +108,6 @@ KRQuery& KRQuery::operator=(const KRQuery & old)
     containCaseSensetive = old.containCaseSensetive;
     containWholeWord = old.containWholeWord;
     containRegExp = old.containRegExp;
-    containOnRemote = old.containOnRemote;
     minSize = old.minSize;
     maxSize = old.maxSize;
     newerThen = old.newerThen;
@@ -151,7 +150,6 @@ void KRQuery::load(KConfigGroup cfg)
     LOAD("ContainCaseSensetive", containCaseSensetive);
     LOAD("ContainWholeWord", containWholeWord);
     LOAD("ContainRegExp", containRegExp);
-    LOAD("ContainOnRemote", containOnRemote);
     LOAD("MinSize", minSize);
     LOAD("MaxSize", maxSize);
     newerThen = QDateTime::fromString(cfg.readEntry("NewerThan", QDateTime::fromTime_t(newerThen).toString())).toTime_t();
@@ -197,7 +195,6 @@ void KRQuery::save(KConfigGroup cfg)
     cfg.writeEntry("ContainCaseSensetive", containCaseSensetive);
     cfg.writeEntry("ContainWholeWord", containWholeWord);
     cfg.writeEntry("ContainRegExp", containRegExp);
-    cfg.writeEntry("ContainOnRemote", containOnRemote);
     cfg.writeEntry("MinSize", minSize);
     cfg.writeEntry("MaxSize", maxSize);
     cfg.writeEntry("NewerThan", QDateTime::fromTime_t(newerThen).toString());
@@ -321,19 +318,16 @@ bool KRQuery::match(vfile *vf) const
         fileName = vf->vfile_getName();
         timer.start();
 
+        // search locally
         if (vf->vfile_getUrl().isLocalFile()) {
-            if (!containsContent(vf->vfile_getUrl().path())) return false;
-        } else {
-            if (containOnRemote) {
-                if (processEventsConnected == 0)
-                    return false;
-                else if (containsContent(vf->vfile_getUrl()))
-                    return true;
-                else
-                    return false;
-            } else
-                return false;
+            return containsContent(vf->vfile_getUrl().path());
         }
+
+        // search remotely
+        if (processEventsConnected == 0) {
+            return false;
+        }
+        return containsContent(vf->vfile_getUrl());
     }
 
     return true;
@@ -656,14 +650,13 @@ void KRQuery::setNameFilter(const QString &text, bool cs)
     }
 }
 
-void KRQuery::setContent(const QString &content, bool cs, bool wholeWord, bool remoteSearch, QString encoding, bool regExp)
+void KRQuery::setContent(const QString &content, bool cs, bool wholeWord, QString encoding, bool regExp)
 {
     bNull = false;
     contain = content;
     containCaseSensetive = cs;
     containWholeWord = wholeWord;
     containRegExp = regExp;
-    containOnRemote = remoteSearch;
 
     if (encoding.isEmpty())
         codec = QTextCodec::codecForLocale();

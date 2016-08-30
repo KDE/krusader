@@ -90,7 +90,7 @@ public:
     };
 
     // sets the content part of the query
-    void setContent(const QString &content, bool cs = true, bool wholeWord = false, bool remoteSearch = false, QString encoding = QString(), bool regExp = false);
+    void setContent(const QString &content, bool cs = true, bool wholeWord = false, QString encoding = QString(), bool regExp = false);
     const QString content() {
         return contain;
     }
@@ -199,7 +199,6 @@ protected:
     bool containCaseSensetive;
     bool containWholeWord;
     bool containRegExp;
-    bool containOnRemote;
 
     KIO::filesize_t minSize;
     KIO::filesize_t maxSize;

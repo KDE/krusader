@@ -83,7 +83,6 @@ public slots:
 public:
     KComboBox* contentEncoding;
     QCheckBox* searchForCase;
-    QCheckBox* remoteContentSearch;
     QCheckBox* containsTextCase;
     QCheckBox* containsWholeWord;
     QCheckBox* searchInDirs;

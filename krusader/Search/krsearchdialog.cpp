@@ -130,7 +130,6 @@ KrSearchDialog *KrSearchDialog::SearchDialog = 0;
 QString KrSearchDialog::lastSearchText = "*";
 int KrSearchDialog::lastSearchType = 0;
 bool KrSearchDialog::lastSearchForCase = false;
-bool KrSearchDialog::lastRemoteContentSearch = false;
 bool KrSearchDialog::lastContainsWholeWord = false;
 bool KrSearchDialog::lastContainsWithCase = true;
 bool KrSearchDialog::lastSearchInSubDirs = true;
@@ -193,7 +192,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 
     searcherTabs = new QTabWidget(this);
 
-    filterTabs = FilterTabs::addTo(searcherTabs, FilterTabs::Default | FilterTabs::HasRemoteContentSearch);
+    filterTabs = FilterTabs::addTo(searcherTabs, FilterTabs::Default);
     generalFilter = (GeneralFilter *)filterTabs->get("GeneralFilter");
 
     QWidget* resultTab = new QWidget(searcherTabs);
@@ -308,7 +307,6 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
         generalFilter->searchFor->lineEdit()->selectAll();
         generalFilter->ofType->setCurrentIndex(lastSearchType);
         generalFilter->searchForCase->setChecked(lastSearchForCase);
-        generalFilter->remoteContentSearch->setChecked(lastRemoteContentSearch);
         generalFilter->containsWholeWord->setChecked(lastContainsWholeWord);
         generalFilter->containsTextCase->setChecked(lastContainsWithCase);
         generalFilter->containsRegExp->setChecked(lastContainsRegExp);
@@ -355,7 +353,6 @@ void KrSearchDialog::closeDialog(bool isAccept)
     lastSearchText = generalFilter->searchFor->currentText();
     lastSearchType = generalFilter->ofType->currentIndex();
     lastSearchForCase = generalFilter->searchForCase->isChecked();
-    lastRemoteContentSearch = generalFilter->remoteContentSearch->isChecked();
     lastContainsWholeWord = generalFilter->containsWholeWord->isChecked();
     lastContainsWithCase = generalFilter->containsTextCase->isChecked();
     lastContainsRegExp = generalFilter->containsRegExp->isChecked();
