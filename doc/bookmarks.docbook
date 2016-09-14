@@ -224,6 +224,11 @@
     bookmarks are stored in 
     <filename>
     ~/.local/share/krusader/krbookmarks.xml</filename>.</para>
+    <note>
+        <para>
+            The default folder for the bookmarks file <filename>krusader/krbookmarks.xml</filename> is <filename class="directory">~/.local/share</filename>. You can determine the needed folder in your system using the <userinput>qtpaths --paths GenericDataLocation</userinput> command in terminal.
+        </para>
+    </note>
     <para>You can import bookmarks from 
     <application>IE</application>, 
     <application>Opera</application>, 

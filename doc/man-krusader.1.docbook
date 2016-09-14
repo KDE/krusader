@@ -108,11 +108,14 @@ panel</para>
 
 <para><filename>~/.config/krusaderrc</filename></para>
 
-<para><filename>~/.local/share/krusader/krbookmarks.xml</filename></para>
+<para><filename>~/.local/share/krusader/krbookmarks.xml</filename> or <filename>krusader/krbookmarks.xml</filename> in the directory which can be determined using the <userinput>qtpaths --paths GenericDataLocation</userinput> command</para>
 
-<para><filename>$KDEDIR/share/kxmlgui5/krusader/krusaderui.rc</filename> or</para>
+<para><filename>~/.local/share/krusader/useractions.xml</filename> or <filename>krusader/useractions.xml</filename> in the directory which can be determined using the <userinput>qtpaths --paths GenericDataLocation</userinput> command</para>
 
-<para><filename>~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename></para>
+<para><filename>$KDEDIR/share/kxmlgui5/krusader/krusaderui.rc</filename></para>
+
+<para><filename>~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename> or <filename>kxmlgui5/krusader/krusaderui.rc</filename> in the directory which can be determined using the <userinput>qtpaths --paths GenericDataLocation</userinput> command</para>
+</para>
 
 </refsect1>
 

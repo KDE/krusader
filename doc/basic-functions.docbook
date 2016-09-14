@@ -380,7 +380,7 @@
       By <link linkend="konfig-general">default</link> it will be moved to &kde;'s Trash.
       You can open the &kde; Trash with the Trash icon in the <link linkend="main_toolbar">Main Toolbar</link> or with 
       the <filename>trash:/</filename> KIO slave.
-      Physically &kde; Trash is located in <filename>~/.local/share/Trash/</filename>.
+      Physically &kde; Trash is located in <filename>~/.local/share/Trash/</filename> or <filename>Trash</filename> in the subdirectory in user home directory which can be determined using the <userinput>qtpaths --paths GenericDataLocation</userinput> command.
       <keycombo action="simul">&Shift;
       <keycap>Delete</keycap></keycombo> will delete the file
       permanently. A dialog will ask for your confirmation and will
