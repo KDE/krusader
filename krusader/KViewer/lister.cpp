@@ -99,6 +99,9 @@ ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent) : KTextEdit(pare
 
 void ListerTextArea::blinkCursor()
 {
+    if (_inCursorUpdate) {
+        return;
+    }
     _cursorState = !_cursorState;
     setCursorWidth(_cursorState ? 2 : 0);
 }
@@ -276,6 +279,7 @@ void ListerTextArea::setCursorPosition(int x, int y, int anchorX, int anchorY)
 {
     _inCursorUpdate = true;
     if (x == -1 || y < 0) {
+        setCursorWidth(0);
         if (anchorY == -1) {
             _inCursorUpdate = false;
             return;
