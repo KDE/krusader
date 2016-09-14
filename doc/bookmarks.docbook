@@ -217,7 +217,7 @@
     <guimenuitem>Manage Bookmarks</guimenuitem>,
     <application>KeditBookmarks</application> will be displayed. This is where
     you can edit/remove and rearrange the bookmarks.
-    <application>KeditBookmarks</application> (part of the kde-baseapps package) is a
+    <application>KeditBookmarks</application> is a
     bookmark editor for &konqueror;,
     &krusader; and other applications, which use the
     <ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink> for the bookmark format. The
@@ -227,6 +227,12 @@
     <note>
         <para>
             The default folder for the bookmarks file <filename>krusader/krbookmarks.xml</filename> is <filename class="directory">~/.local/share</filename>. You can determine the needed folder in your system using the <userinput>qtpaths --paths GenericDataLocation</userinput> command in terminal.
+        </para>
+        <para>
+            This local file exists only if you have edited &krusader; bookmarks. It will be created after the first run of <application>KeditBookmarks</application> from &krusader;.
+        </para>
+        <para>
+            The default system bookmarks are stored in the <filename>kfileplaces/bookmarks.xml</filename> file in the directory which can be determined using the <userinput>qtpaths --paths GenericDataLocation</userinput> command.
         </para>
     </note>
     <para>You can import bookmarks from 
