@@ -274,8 +274,6 @@ void KrPopupMenu::addCreateNewMenu()
 
 void KrPopupMenu::performAction(int id)
 {
-    QList<QUrl> lst;
-
     switch (id) {
     case - 1 : // the user clicked outside of the menu
         return ;
@@ -318,8 +316,7 @@ void KrPopupMenu::performAction(int id)
         KToolInvocation::startServiceByDesktopName("konqueror", _item->url().toDisplayString(QUrl::PreferLocalFile));
         break;
     case CHOOSE_ID : // open-with dialog
-        lst << _item->url();
-        panel->func->displayOpenWithDialog(lst);
+        panel->func->displayOpenWithDialog(_items.urlList());
         break;
     case MOUNT_ID :
         krMtMan.mount(_item->url().adjusted(QUrl::StripTrailingSlash).path());
