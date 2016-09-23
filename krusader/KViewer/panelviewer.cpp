@@ -196,8 +196,6 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(KFileItem fi)
     case KrViewer::Text:
         if (fileSize > limit)
             part =  getListerPart(isBinary);
-        else if (isBinary && mimeType.name() != "application/octet-stream")
-            part = getHexPart();
         else
             part = getTextPart();
         break;
