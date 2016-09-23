@@ -131,7 +131,7 @@
 // Move To Trash //////
 #define _MoveToTrash   true
 // Terminal ///////////
-#define _Terminal      "konsole --nofork"
+#define _Terminal      "konsole --separate"
 // Send CDs ///////////
 #define _SendCDs  true
 // Editor /////////////

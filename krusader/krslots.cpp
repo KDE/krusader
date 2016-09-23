@@ -427,6 +427,11 @@ void KRslots::runTerminal(const QString & dir, const QStringList & args)
                                  "Bad quoting in terminal command:\n%1", term));
         return;
     }
+    for (int i = 0; i < sepdArgs.size(); i++) {
+        if (sepdArgs[i] == "%d") {
+            sepdArgs[i] = dir;
+        }
+    }
     proc << sepdArgs;
     if (!args.isEmpty()) {
         proc << "-e" << args; // FIXME this depends on term!! But works in konsole, xterm and gnome-terminal
