@@ -989,7 +989,7 @@ void ListPanelFunc::goInside(const QString& name)
 
 void ListPanelFunc::runCommand(QString cmd)
 {
-    krOut<<cmd<<endl;
+    krOut << "Run command: " << cmd;
     QString workdir = panel->virtualPath().isLocalFile() ?
             panel->virtualPath().path() : QDir::homePath();
     if(!KRun::runCommand(cmd, krMainWindow, workdir))
@@ -998,7 +998,7 @@ void ListPanelFunc::runCommand(QString cmd)
 
 void ListPanelFunc::runService(const KService &service, QList<QUrl> urls)
 {
-    krOut<<service.name()<<endl;
+    krOut << "Run service: " << service.name();
     KIO::DesktopExecParser parser(service, urls);
     QStringList args = parser.resultingArguments();
     if (!args.isEmpty())
@@ -1009,14 +1009,7 @@ void ListPanelFunc::runService(const KService &service, QList<QUrl> urls)
 
 void ListPanelFunc::displayOpenWithDialog(QList<QUrl> urls)
 {
-    KOpenWithDialog dialog(urls, panel);
-    dialog.hideRunInTerminal();
-    if (dialog.exec()) {
-        KService::Ptr service = dialog.service();
-        if(!service)
-            service = KService::Ptr(new KService(dialog.text(), dialog.text(), QString()));
-        runService(*service, urls);
-    }
+    KRun::displayOpenWithDialog(urls, krMainWindow);
 }
 
 QUrl ListPanelFunc::browsableArchivePath(const QString &filename)
