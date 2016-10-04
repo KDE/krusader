@@ -266,11 +266,12 @@ void KrInterDetailedView::showContextMenu(const QPoint & p)
 
     QVector<QAction*> actions;
 
-    for(int i = KrViewProperties::Name; i < KrViewProperties::MAX_COLUMNS; i++) {
+    for(int i = KrViewProperties::Ext; i < KrViewProperties::MAX_COLUMNS; i++) {
         QString text = (_model->headerData(i, Qt::Horizontal)).toString();
         QAction *act = popup.addAction(text);
         act->setCheckable(true);
         act->setChecked(!header()->isSectionHidden(i));
+        act->setData(i);
         actions.append(act);
     }
 
@@ -280,21 +281,21 @@ void KrInterDetailedView::showContextMenu(const QPoint & p)
     actAutoResize->setChecked(_autoResizeColumns);
 
     QAction *res = popup.exec(p);
+    if (res == 0)
+        return;
 
     if(res == actAutoResize) {
         _autoResizeColumns = actAutoResize->isChecked();
         recalculateColumnSizes();
     } else {
-        int idx = actions.indexOf(res);
-        if(idx < 0)
-            return;
+        int column = res->data().toInt();
 
-        if(header()->isSectionHidden(idx))
-            header()->showSection(idx);
+        if(header()->isSectionHidden(column))
+            header()->showSection(column);
         else
-            header()->hideSection(idx);
+            header()->hideSection(column);
 
-        if(KrViewProperties::Ext == idx)
+        if(KrViewProperties::Ext == column)
             _model->setExtensionEnabled(!header()->isSectionHidden(KrViewProperties::Ext));
     }
     op()->settingsChanged(KrViewProperties::PropColumns);
