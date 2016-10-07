@@ -414,7 +414,7 @@ void KRslots::locate()
         LocateDlg::LocateDialog = new LocateDlg();
 }
 
-void KRslots::runTerminal(const QString & dir, const QStringList & args)
+void KRslots::runTerminal(const QString & dir)
 {
     KProcess proc;
     proc.setWorkingDirectory(dir);
@@ -433,16 +433,13 @@ void KRslots::runTerminal(const QString & dir, const QStringList & args)
         }
     }
     proc << sepdArgs;
-    if (!args.isEmpty()) {
-        proc << "-e" << args; // FIXME this depends on term!! But works in konsole, xterm and gnome-terminal
-    }
     if (!proc.startDetached())
         KMessageBox::sorry(krApp, i18n("Error executing %1.", term));
 }
 
 void KRslots::homeTerminal()
 {
-    runTerminal(QDir::homePath(), QStringList());
+    runTerminal(QDir::homePath());
 }
 
 void KRslots::sysInfo()

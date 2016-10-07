@@ -531,7 +531,7 @@ void ListPanelFunc::viewDlg()
 
 void ListPanelFunc::terminal()
 {
-    SLOTS->runTerminal(panel->realPath(), QStringList());
+    SLOTS->runTerminal(panel->realPath());
 }
 
 void ListPanelFunc::edit()

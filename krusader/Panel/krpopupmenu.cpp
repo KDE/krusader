@@ -414,13 +414,9 @@ void KrPopupMenu::performAction(int id)
     }
     break;
 #endif
-    case OPEN_TERM_ID : {
-        QStringList args;
-        if (!_item->isDir())
-            args << _item->name();
-        SLOTS->runTerminal(_item->url().path(), args);
-    }
-    break;
+    case OPEN_TERM_ID :
+        SLOTS->runTerminal(_item->url().path());
+        break;
     }
 
     // check if something from the open-with-offered-services was selected

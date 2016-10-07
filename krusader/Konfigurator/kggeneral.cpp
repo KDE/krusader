@@ -289,13 +289,16 @@ void KgGeneral::createGeneralTab()
     KonfiguratorURLRequester *urlReq2 = createURLRequester("General", "Terminal", _Terminal,
                                         generalGrp, false, PAGE_GENERAL, false);
     terminalGrid->addWidget(urlReq2, 0, 1);
+    QLabel *terminalLabel = new QLabel(i18n("%d will be replaced by the workdir."),
+                                       terminalGrp);
+    terminalGrid->addWidget(terminalLabel, 1, 1);
 
     KONFIGURATOR_CHECKBOX_PARAM terminal_settings[] = { //   cfg_class  cfg_name     default        text            restart tooltip
         {"General", "Send CDs", _SendCDs, i18n("Terminal Emulator sends Chdir on panel change"), false, i18n("When checked, whenever the panel is changed (for example, by pressing Tab), Krusader changes the current folder in the terminal emulator.") },
         {"Look&Feel", "Fullscreen Terminal Emulator", false, i18n("Fullscreen terminal (mc-style)"), false,  i18n("Terminal is shown instead of the Krusader window (full screen).") },
     };
     cbs = createCheckBoxGroup(1, 0, terminal_settings, 2 /*count*/, terminalGrp, PAGE_GENERAL);
-    terminalGrid->addWidget(cbs, 1, 0, 1, 2);
+    terminalGrid->addWidget(cbs, 2, 0, 1, 2);
 
 
     kgGeneralLayout->addWidget(terminalGrp, 2 , 0);

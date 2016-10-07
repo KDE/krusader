@@ -101,7 +101,7 @@ public slots:
     }
     void search();           // call the search module
     void locate();
-    void runTerminal(const QString & dir, const QStringList & args);
+    void runTerminal(const QString & dir);
     void homeTerminal();
     void sysInfo();
     void addBookmark();
