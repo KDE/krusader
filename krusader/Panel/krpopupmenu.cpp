@@ -31,6 +31,8 @@
 #include <KService/KToolInvocation>
 #include <KXmlGui/KActionCollection>
 #include <KIOCore/KFileItemListProperties>
+#include <KIOWidgets/KAbstractFileItemActionPlugin>
+#include <KCoreAddons/KPluginMetaData>
 
 #include "listpanel.h"
 #include "krview.h"
@@ -56,6 +58,31 @@ void KrPopupMenu::run(const QPoint &pos, KrPanel *panel)
     if (res && res->data().canConvert<int>())
         result = res->data().toInt();
     menu.performAction(result);
+}
+
+/**
+ * Copied from dolphin/src/dolphincontextmenu.cpp and modified to add only compress and extract submenus.
+ */
+bool KrPopupMenu::addCompressAndExtractPluginActions()
+{
+
+    KFileItemListProperties props(_items);
+
+    QVector<KPluginMetaData> jsonPlugins = KPluginLoader::findPlugins("kf5/kfileitemaction",
+                                                                      [=](const KPluginMetaData& metaData) {
+        return metaData.pluginId() == "compressfileitemaction" || metaData.pluginId() == "extractfileitemaction";
+    });
+
+    foreach (const KPluginMetaData &jsonMetadata, jsonPlugins) {
+        KAbstractFileItemActionPlugin* abstractPlugin = KPluginLoader(jsonMetadata.fileName())
+                                                            .factory()->create<KAbstractFileItemActionPlugin>();
+        if (abstractPlugin) {
+            abstractPlugin->setParent(this);
+            addActions(abstractPlugin->actions(props, this));
+        }
+    }
+
+    return !jsonPlugins.isEmpty();
 }
 
 KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), panel(thePanel), empty(false),
@@ -161,8 +188,18 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     addAction(uAct);
     uAct->setText(i18n("User Actions"));
 
-    fileItemActions.setItemListProperties(KFileItemListProperties(_items));
-    fileItemActions.addServiceActionsTo(this);
+    // add compress and extract plugins (if available)
+    bool success = addCompressAndExtractPluginActions();
+
+    /*
+     * When KF 5.25 is adopted by all distros, we can remove these 2 lines (and corresponding code)
+     * because since KF 5.25 compress and extract submenus are standalone plugins.
+     */
+    if (!success) {
+        fileItemActions.setItemListProperties(KFileItemListProperties(_items));
+        fileItemActions.addServiceActionsTo(this);
+    }
+
     addSeparator();
 
     // ------------- 'create new' submenu

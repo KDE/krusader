@@ -44,6 +44,7 @@ protected:
     void performAction(int id);
     void addEmptyMenuEntries(); // adds the choices for a menu without selected items
     void addCreateNewMenu(); // adds a "create new" submenu
+    bool addCompressAndExtractPluginActions(); // adds various plugin actions
 
     enum ID {
         OPEN_ID,
