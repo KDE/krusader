@@ -348,6 +348,7 @@ vfile *virt_vfs::createVFile(const QUrl &url)
     }
 
     if (!_fileEntry.contains(KIO::UDSEntry::UDS_MODIFICATION_TIME)) {
+        // TODO this also happens for FTP directories
         return 0; // file not found
     }
 

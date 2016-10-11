@@ -115,6 +115,7 @@ QUrl vfs::ensureTrailingSlash(const QUrl &url)
     return adjustedUrl;
 }
 
+// TODO (re-)implement incremental refresh
 bool vfs::refresh(const QUrl &directory)
 {
 
@@ -226,10 +227,10 @@ void vfs::calcSpaceLocal(const QString &path, KIO::filesize_t *totalSize, unsign
     }
 }
 
+// TODO called from another thread, creating KIO jobs does not work here
 void vfs::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
                        unsigned long *totalDirs, bool *stop)
 {
-    // TODO does not work
     return;
 
     if (stop && *stop)

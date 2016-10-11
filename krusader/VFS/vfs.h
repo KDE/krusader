@@ -117,6 +117,7 @@ public:
     /// Return a list of vfiles for a search query. Or an empty list if nothing was found.
     QList<vfile *> searchVfiles(const KRQuery &filter);
     /// The total size of all files in the current directory (only valid after refresh).
+    // TODO unused
     KIO::filesize_t vfs_totalSize();
     /// Return the VFS type.
     inline VFS_TYPE type() { return _type; }
@@ -151,6 +152,7 @@ public:
 public slots:
     /// Re-read the current directory files or change to another directory. Blocking.
     /// If the directory was read true is returned else false.
+    // optional TODO: add an async version of this
     bool refresh(const QUrl &directory = QUrl());
     /// Notify this VFS that the current directory content may have changed.
     void mayRefresh();

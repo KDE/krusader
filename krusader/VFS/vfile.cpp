@@ -42,6 +42,8 @@
 
 bool vfile::vfile_userDefinedFolderIcons = true;
 
+// TODO set default vfile_size to '-1' to distinguish between empty directories and directories with
+// unknown size
 
 vfile::vfile(const QString& name,                   // useful construtor
              const KIO::filesize_t size,

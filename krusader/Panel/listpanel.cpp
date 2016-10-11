@@ -1029,6 +1029,8 @@ void ListPanel::panelActive()
 void ListPanel::panelInactive()
 {
     // don't refresh when not active (ie: hidden, application isn't focused ...)
+    // TODO disabled so that the user sees changes in non-focused window; if the performance impact
+    // is too high we need another solution here
     //func->files()->vfs_enableRefresh(false);
 }
 

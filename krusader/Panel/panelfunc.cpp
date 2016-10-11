@@ -703,6 +703,7 @@ void ListPanelFunc::mkdir()
     } // for
 }
 
+// TODO it is not possible to move virtual local files to trash
 void ListPanelFunc::deleteFiles(bool reallyDelete)
 {
     // first get the selected file names list
