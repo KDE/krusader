@@ -86,6 +86,8 @@ private:
 
     bool refreshLocal(const QUrl &directory); // NOTE: this is very fast
     vfile *createLocalVFile(const QString &name);
+    /// Returns the current path with symbolic links resolved
+    QString realPath();
 
     QPointer<KDirWatch> _watcher; // dir watcher used to detect changes in the current dir
     bool _listError; // for async operation, return list job result

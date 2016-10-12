@@ -235,11 +235,11 @@ void default_vfs::slotRedirection(const QUrl &url)
 
 void default_vfs::slotWatcherDirty(const QString& path)
 {
-    if (path == _currentDirectory.toLocalFile()) {
+    if (path == realPath()) {
         // this happens
         //   1. if a directory was created/deleted/renamed inside this directory.
         //   2. during and after a file operation (create/delete/rename/touch) inside this directory
-        // KDirWatcher doesn't reveal the name of changed files/directories and we have to refresh.
+        // KDirWatcher doesn't reveal the name of changed directories and we have to refresh.
         // (QFileSystemWatcher in Qt5.7 can't help here either)
         refresh();
         return;
@@ -262,12 +262,12 @@ void default_vfs::slotWatcherDirty(const QString& path)
 
 void default_vfs::slotWatcherDeleted(const QString& path)
 {
-    if (path != currentDirectory().path()) {
-        // we ignore deletion of files here, a 'dirty' signal will be send anyway
+    if (path != realPath()) {
+        // ignore deletion of files here, a 'dirty' signal will be send anyway
         return;
     }
 
-    // the current directory was deleted, we try a refresh, which will fail. An error message will
+    // the current directory was deleted, try a refresh, which will fail. An error message will
     // be emitted and the empty (non-existing) directory remains.
     refresh();
 }
@@ -332,7 +332,9 @@ bool default_vfs::refreshLocal(const QUrl &directory) {
 
     // start watching the new dir for file changes
     _watcher = new KDirWatch(this);
-    _watcher->addDir(currentDirectory().toLocalFile(), KDirWatch::WatchFiles);
+    // if the current dir is a link path the watcher needs to watch the real path - and signal
+    // parameters will be the real path
+    _watcher->addDir(realPath(), KDirWatch::WatchFiles);
     connect(_watcher, SIGNAL(dirty(const QString&)), this, SLOT(slotWatcherDirty(const QString&)));
     // NOTE: not connecting 'created' signal. A 'dirty' is send after that anyway
     //connect(_watcher, SIGNAL(created(const QString&)), this, SLOT(slotWatcherCreated(const QString&)));
@@ -345,4 +347,9 @@ bool default_vfs::refreshLocal(const QUrl &directory) {
 vfile *default_vfs::createLocalVFile(const QString &name)
 {
     return vfs::createLocalVFile(name, _currentDirectory.path());
+}
+
+QString default_vfs::default_vfs::realPath()
+{
+    return QDir(_currentDirectory.toLocalFile()).canonicalPath();
 }
