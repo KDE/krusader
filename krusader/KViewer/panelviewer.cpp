@@ -175,7 +175,10 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(KFileItem fi)
     else if (modeString == "lister") mode = KrViewer::Lister;
 
     QMimeType mimeType = fi.determineMimeType();
-    bool isBinary = !mimeType.inherits(QStringLiteral("text/plain"));
+    bool isBinary = false;
+    if (mode == KrViewer::Generic || mode == KrViewer::Lister) {
+        isBinary = !mimeType.inherits(QStringLiteral("text/plain"));
+    }
 
     KIO::filesize_t fileSize = fi.size();
     KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit) * 0x100000;
@@ -195,7 +198,7 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(KFileItem fi)
             break;
     case KrViewer::Text:
         if (fileSize > limit)
-            part =  getListerPart(isBinary);
+            part =  getListerPart(false);
         else
             part = getTextPart();
         break;
