@@ -198,7 +198,6 @@ protected slots:
 
 signals:
     void signalStatus(QString msg); // emmited when we need to update the status bar
-    void pathChanged(ListPanel *panel); // directory changed or refreshed
     void pathChanged(const QUrl &url); // directory changed or refreshed
     void activate(); // emitted when the user changes panels
     void finishedDragging(); // NOTE: currently not used

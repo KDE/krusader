@@ -151,8 +151,8 @@ ListPanel* PanelManager::createPanel(KConfigGroup cfg)
 void PanelManager::connectPanel(ListPanel *p)
 {
     connect(p, SIGNAL(activate()), this, SLOT(activate()));
-    connect(p, SIGNAL(pathChanged(ListPanel*)), this, SIGNAL(pathChanged(ListPanel*)));
-    connect(p, SIGNAL(pathChanged(ListPanel*)), _tabbar, SLOT(updateTab(ListPanel*)));
+    connect(p, &ListPanel::pathChanged, [=]() { pathChanged(p); });
+    connect(p, &ListPanel::pathChanged, [=]() { _tabbar->updateTab(p); });
 }
 
 void PanelManager::disconnectPanel(ListPanel *p)

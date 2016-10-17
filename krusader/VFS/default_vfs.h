@@ -97,7 +97,7 @@ private:
     QString realPath();
 
     QPointer<KDirWatch> _watcher; // dir watcher used to detect changes in the current dir
-    bool _listError; // for async operation, return list job result
+    bool _listError;              // for async operation, return list job result
 };
 
 #endif
