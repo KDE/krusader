@@ -40,7 +40,9 @@ public:
 
 signals:
     /// Emitted when refreshing finished. The list of vfiles should now be updated by the view.
-    void refreshDone();
+    /// dirChange is true if refresh was a change to another directory. Else it was only an update
+    /// of the file list in the current directory.
+    void refreshDone(bool dirChange);
     void addedVfile(vfile* vf);
     void deletedVfile(const QString& name);
     void updatedVfile(vfile* vf);

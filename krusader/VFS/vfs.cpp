@@ -51,6 +51,7 @@
 #include "../krglobal.h"
 #include "krpermhandler.h"
 
+
 vfs::vfs() : VfileContainer(0), _refreshAfterJob(false), _isRefreshing(false) {}
 
 vfs::~vfs()
@@ -124,8 +125,10 @@ bool vfs::refresh(const QUrl &directory)
         return false;
     }
 
+    const bool dirChange = !directory.isEmpty();
+
     const QUrl toRefresh =
-        directory.isEmpty() ? _currentDirectory : directory.adjusted(QUrl::NormalizePathSegments);
+            dirChange ? directory.adjusted(QUrl::NormalizePathSegments) : _currentDirectory ;
     if (!toRefresh.isValid()) {
         emit error(i18n("Malformed URL:\n%1", toRefresh.toDisplayString()));
         return false;
@@ -138,10 +141,9 @@ bool vfs::refresh(const QUrl &directory)
         _isRefreshing = false;
         return false;
     }
-
     _isRefreshing = false;
 
-    emit refreshDone();
+    emit refreshDone(dirChange);
     return true;
 }
 

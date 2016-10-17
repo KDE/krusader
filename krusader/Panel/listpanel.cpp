@@ -726,33 +726,41 @@ void ListPanel::start(QUrl url, bool immediate)
     setJumpBack(virt);
 }
 
-void ListPanel::slotStartUpdate()
+void ListPanel::slotStartUpdate(bool directoryChange)
 {
     if (inlineRefreshJob)
         inlineRefreshListResult(0);
 
-    if (this == ACTIVE_PANEL) {
-        slotFocusOnMe();
-    }
-
     setCursor(Qt::BusyCursor);
 
-    if (func->files()->isLocal())
-        _realPath = virtualPath();
-    urlNavigator->setLocationUrl(virtualPath());
-    emit pathChanged(this);
-    emit pathChanged(virtualPath());
+    if (directoryChange) {
 
-    slotGetStats(virtualPath());
+        if (this == ACTIVE_PANEL) {
+            slotFocusOnMe();
+        }
+
+        const QUrl currentUrl = virtualPath();
+        if (func->files()->isLocal())
+            _realPath = currentUrl;
+
+        urlNavigator->setLocationUrl(currentUrl);
+
+        emit pathChanged(currentUrl);
+
+        slotGetStats(currentUrl);
+
+        krApp->popularUrls()->addUrl(currentUrl);
+
+        searchBar->hideBar();
+    }
+
     if (compareMode)
         otherPanel()->view->refresh();
 
     // return cursor to normal arrow
     setCursor(Qt::ArrowCursor);
-    slotUpdateTotals();
-    krApp->popularUrls()->addUrl(virtualPath());
 
-    searchBar->hideBar();
+    slotUpdateTotals();
 }
 
 void ListPanel::slotGetStats(const QUrl &url)

@@ -1051,7 +1051,7 @@ void KrView::setFiles(VfileContainer *files)
         return;
 
     QObject::disconnect(_files, 0, op(), 0);
-    QObject::connect(_files, SIGNAL(refreshDone()), op(), SLOT(startUpdate()));
+    QObject::connect(_files, SIGNAL(refreshDone(bool)), op(), SLOT(startUpdate()));
     QObject::connect(_files, SIGNAL(cleared()), op(), SLOT(cleared()));
     QObject::connect(_files, SIGNAL(addedVfile(vfile*)), op(), SLOT(fileAdded(vfile*)));
     QObject::connect(_files, SIGNAL(updatedVfile(vfile*)), op(), SLOT(fileUpdated(vfile*)));

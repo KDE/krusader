@@ -265,7 +265,7 @@ void ListPanelFunc::doRefresh()
 
     if(!url.isValid()) {
         //FIXME go back in history here ?
-        panel->slotStartUpdate();  // refresh the panel
+        panel->slotStartUpdate(true);  // refresh the panel
         urlManuallyEntered = false;
         return ;
     }
@@ -324,7 +324,7 @@ void ListPanelFunc::doRefresh()
         }
         // (re)connect vfs signals
         disconnect(files(), 0, panel, 0);
-        connect(files(), SIGNAL(refreshDone()), panel, SLOT(slotStartUpdate()));
+        connect(files(), SIGNAL(refreshDone(bool)), panel, SLOT(slotStartUpdate(bool)));
         connect(files(), SIGNAL(refreshJobStarted(KIO::Job*)),
                 panel, SLOT(slotJobStarted(KIO::Job*)));
         connect(files(), SIGNAL(error(QString)),
