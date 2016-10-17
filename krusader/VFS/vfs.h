@@ -169,7 +169,7 @@ signals:
 protected:
     /// Fill the vfs dictionary with vfiles, must be implemented for each VFS.
     virtual bool refreshInternal(const QUrl &origin, bool showHidden) = 0;
-    /// Returns true if this VFS implementation does not need to notified about changes in the
+    /// Returns true if this VFS implementation does not need to be notified about changes in the
     /// current directory.
     virtual bool ignoreRefresh() { return false; }
 

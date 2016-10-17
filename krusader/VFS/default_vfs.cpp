@@ -71,8 +71,7 @@ void default_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
         job = KIO::copy(urls, destination, flags);
     }
 
-    connect(job, SIGNAL(result(KJob *)), this, SLOT(slotJobResult(KJob *)));
-    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(destination); });
+    connectJob(job, destination);
     if (mode == KIO::CopyJob::Move) { // notify source about removed files
         connectSourceVFS(job, urls);
     }
@@ -83,12 +82,11 @@ void default_vfs::dropFiles(const QUrl &destination, QDropEvent *event)
     KIO::DropJob *job = KIO::drop(event, destination);
     // NOTE: DropJob does not provide information about the actual user choice
     // (move/copy/link/abort). We have to assume the worst (move)
-    connect(job, SIGNAL(result(KJob*)), this, SLOT(slotJobResult(KJob *)));
-    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(destination); });
+    connectJob(job, destination);
     connectSourceVFS(job, KUrlMimeData::urlsFromMimeData(event->mimeData()));
 }
 
-void default_vfs::connectSourceVFS(KIO::Job *job, const QList<QUrl> urls)
+void default_vfs::connectSourceVFS(KJob *job, const QList<QUrl> urls)
 {
     if (!urls.isEmpty()) {
         // NOTE: we assume that all files were in the same directory and only emit one signal for
@@ -123,32 +121,33 @@ void default_vfs::deleteFiles(const QStringList &fileNames, bool forceDeletion)
     // delete or move to trash?
     KIO::Job *job;
     const KConfigGroup group(krConfig, "General");
-    bool refresh = false;
     if (!forceDeletion && isLocal() && group.readEntry("Move To Trash", _MoveToTrash)) {
         job = KIO::trash(fileUrls);
-        // watcher sends dirty signal sometimes before all files are moved, refresh on job result
-        refresh = true;
     } else {
         job = KIO::del(fileUrls);
     }
-    connect(job, &KIO::Job::result, this,[=](KJob* job) { slotJobResult(job, refresh); });
-    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(currentDirectory()); });
+    connectJob(job, currentDirectory());
 }
 
-void default_vfs::mkDir(const QString& name)
+void default_vfs::mkDir(const QString &name)
 {
     KIO::SimpleJob* job = KIO::mkdir(getUrl(name));
-    connect(job, SIGNAL(result(KJob*)), this, SLOT(slotJobResult(KJob*)));
-    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(currentDirectory()); });
+    connectJob(job, currentDirectory());
 }
 
-void default_vfs::rename(const QString& oldName, const QString& newName)
+void default_vfs::rename(const QString &oldName, const QString &newName)
 {
     const QUrl oldUrl = getUrl(oldName);
     const QUrl newUrl = getUrl(newName);
     KIO::Job *job = KIO::moveAs(oldUrl, newUrl, KIO::HideProgressInfo);
-    connect(job, SIGNAL(result(KJob *)), this, SLOT(slotJobResult(KJob *)));
-    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(currentDirectory()); });
+    connectJob(job, currentDirectory());
+}
+
+void default_vfs::connectJob(KJob *job, const QUrl &destination)
+{
+    // (additional) direct refresh if on local fs because watcher is too slow
+    connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, isLocal()); });
+    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(destination); });
 }
 
 QUrl default_vfs::getUrl(const QString& name)

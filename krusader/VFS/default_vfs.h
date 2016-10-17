@@ -37,6 +37,7 @@
 
 #include <KCoreAddons/KDirWatch>
 
+
 /**
  * @brief Default filesystem implementation supporting all KIO protocols
  *
@@ -44,6 +45,11 @@
  * and remote/network).
  *
  * Refreshing local directories is optimized for performance.
+ *
+ * NOTE: For detecting local file changes a filesystem watcher is used. It cannot be used for
+ * refreshing the view after own file operations are performed because the detection is to slow
+ * (~500ms delay between operation finished and watcher emits signals).
+ *
  */
 class default_vfs : public vfs {
     Q_OBJECT
@@ -82,7 +88,8 @@ protected slots:
     void slotWatcherDeleted(const QString &path);
 
 private:
-    void connectSourceVFS(KIO::Job *job, const QList<QUrl> urls);
+    void connectSourceVFS(KJob *job, const QList<QUrl> urls);
+    void connectJob(KJob *job, const QUrl &destination);
 
     bool refreshLocal(const QUrl &directory); // NOTE: this is very fast
     vfile *createLocalVFile(const QString &name);
