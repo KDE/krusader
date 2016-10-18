@@ -236,7 +236,7 @@ void default_vfs::slotWatcherDirty(const QString& path)
 {
     if (path == realPath()) {
         // this happens
-        //   1. if a directory was created/deleted/renamed inside this directory.
+        //   1. if a directory was created/deleted/renamed inside this directory. No deleted
         //   2. during and after a file operation (create/delete/rename/touch) inside this directory
         // KDirWatcher doesn't reveal the name of changed directories and we have to refresh.
         // (QFileSystemWatcher in Qt5.7 can't help here either)
@@ -246,7 +246,7 @@ void default_vfs::slotWatcherDirty(const QString& path)
 
     const QString name = QUrl::fromLocalFile(path).fileName();
 
-    vfile * vf = getVfile(name);
+    vfile *vf = getVfile(name);
     if (!vf) {
         krOut << "dirty watcher file not found (unexpected): " << path;
         return;

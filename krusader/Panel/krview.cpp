@@ -94,11 +94,6 @@ void KrViewOperator::fileAdded(vfile *vf)
     _view->addItem(vf);
 }
 
-void KrViewOperator::fileDeleted(const QString& name)
-{
-    _view->delItem(name);
-}
-
 void KrViewOperator::fileUpdated(vfile *vf)
 {
     _view->updateItem(vf);
@@ -1050,7 +1045,6 @@ void KrView::setFiles(VfileContainer *files)
     QObject::connect(_files, SIGNAL(cleared()), op(), SLOT(cleared()));
     QObject::connect(_files, SIGNAL(addedVfile(vfile*)), op(), SLOT(fileAdded(vfile*)));
     QObject::connect(_files, SIGNAL(updatedVfile(vfile*)), op(), SLOT(fileUpdated(vfile*)));
-    QObject::connect(_files, SIGNAL(deletedVfile(const QString&)), op(), SLOT(fileDeleted(const QString&)));
 }
 
 void KrView::setFilter(KrViewProperties::FilterSpec filter, FilterSettings customFilter, bool applyToDirs)

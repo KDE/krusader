@@ -177,8 +177,6 @@ protected:
     bool showHiddenFiles();
     /// Add a new vfile to the internal dictionary (while refreshing).
     inline void addVfile(vfile *vf) { _vfiles.insert(vf->vfile_getName(), vf); }
-    /// Deletes a vfile from the list.
-    inline void removeFromList(QString name) { _vfiles.remove(name); }
 
     /// Calculate the size of a file or directory (recursive).
     void calcSpace(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,

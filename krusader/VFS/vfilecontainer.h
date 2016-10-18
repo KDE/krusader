@@ -34,7 +34,7 @@ public:
     VfileContainer(QObject *parent) : QObject(parent) {}
     virtual ~VfileContainer() {}
 
-    virtual QList<vfile*> vfiles() = 0;
+    virtual QList<vfile *> vfiles() = 0;
     virtual unsigned long numVfiles() = 0;
     virtual bool isRoot() = 0;
 
@@ -43,12 +43,11 @@ signals:
     /// dirChange is true if refresh was a change to another directory. Else it was only an update
     /// of the file list in the current directory.
     void refreshDone(bool dirChange);
-    void addedVfile(vfile* vf);
-    void deletedVfile(const QString& name);
-    void updatedVfile(vfile* vf);
     /// Emitted when all vfiles in the VFS were removed
     void cleared();
-};
 
+    void addedVfile(vfile *vf);
+    void updatedVfile(vfile *vf);
+};
 
 #endif // VFILECONTAINER_H

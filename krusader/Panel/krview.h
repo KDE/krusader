@@ -227,9 +227,8 @@ protected slots:
     void saveDefaultSettings();
     void startUpdate();
     void cleared();
-    // for signals from vfs' dirwatch
+
     void fileAdded(vfile *vf);
-    void fileDeleted(const QString& name);
     void fileUpdated(vfile *vf);
 
 protected:
