@@ -177,8 +177,6 @@ protected:
     bool showHiddenFiles();
     /// Add a new vfile to the internal dictionary (while refreshing).
     inline void addVfile(vfile *vf) { _vfiles.insert(vf->vfile_getName(), vf); }
-    /// Clear and delete all current vfiles.
-    inline void clear();
     /// Deletes a vfile from the list.
     inline void removeFromList(QString name) { _vfiles.remove(name); }
 
@@ -215,6 +213,9 @@ private slots:
     void slotCalcStatResult(KJob *job);
 
 private:
+    /// Delete and clear vfiles.
+    void clear(vfileDict vfiles);
+
     vfileDict _vfiles;  // The list of files in the current dictionary
     bool _isRefreshing; // true if vfs is busy with refreshing
 

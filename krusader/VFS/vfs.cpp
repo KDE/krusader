@@ -56,7 +56,8 @@ vfs::vfs() : VfileContainer(0), _refreshAfterJob(false), _isRefreshing(false) {}
 
 vfs::~vfs()
 {
-    clear(); // please don't remove this line. This informs the view about deleting the references
+    clear(_vfiles);
+    emit cleared(); // please don't remove this line. This informs the view about deleting the references
 }
 
 QList<QUrl> vfs::getUrls(const QStringList &names)
@@ -116,7 +117,6 @@ QUrl vfs::ensureTrailingSlash(const QUrl &url)
     return adjustedUrl;
 }
 
-// TODO (re-)implement incremental refresh
 bool vfs::refresh(const QUrl &directory)
 {
 
@@ -125,25 +125,34 @@ bool vfs::refresh(const QUrl &directory)
         return false;
     }
 
-    const bool dirChange = !directory.isEmpty();
+    const bool dirChange = !directory.isEmpty() && cleanUrl(directory) != _currentDirectory;
 
     const QUrl toRefresh =
-            dirChange ? directory.adjusted(QUrl::NormalizePathSegments) : _currentDirectory ;
+            dirChange ? directory.adjusted(QUrl::NormalizePathSegments) : _currentDirectory;
     if (!toRefresh.isValid()) {
         emit error(i18n("Malformed URL:\n%1", toRefresh.toDisplayString()));
         return false;
     }
 
     _isRefreshing = true;
-    clear();
+
+    vfileDict tempVfiles(_vfiles); // old vfiles are still used during refresh
+    _vfiles.clear();
+    if (dirChange)
+        // show an empty directory while loading the new one and clear selection
+        emit cleared();
+
     const bool res = refreshInternal(toRefresh, showHiddenFiles());
-    if (!res) {
-        _isRefreshing = false;
-        return false;
-    }
     _isRefreshing = false;
 
+    if (!res) {
+        return false;
+    }
+
     emit refreshDone(dirChange);
+
+    clear(tempVfiles);
+
     return true;
 }
 
@@ -163,16 +172,6 @@ bool vfs::showHiddenFiles()
 {
     const KConfigGroup gl(krConfig, "Look&Feel");
     return gl.readEntry("Show Hidden", _ShowHidden);
-}
-
-void vfs::clear()
-{
-    QHashIterator<QString, vfile *> lit(_vfiles);
-    while (lit.hasNext()) {
-        delete lit.next().value();
-    }
-    _vfiles.clear();
-    emit cleared();
 }
 
 void vfs::calcSpace(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
@@ -411,4 +410,15 @@ void vfs::slotCalcStatResult(KJob *job)
 {
     _calcEntry = job->error() ? KIO::UDSEntry() : static_cast<KIO::StatJob *>(job)->statResult();
     _calcStatBusy = false;
+}
+
+// ==== private ====
+
+void vfs::clear(vfileDict vfiles)
+{
+    QHashIterator<QString, vfile *> lit(vfiles);
+    while (lit.hasNext()) {
+        delete lit.next().value();
+    }
+    vfiles.clear();
 }
