@@ -399,12 +399,6 @@ public:
     virtual void setNameToMakeCurrent(const QString name) {
         _nameToMakeCurrent = name;
     }
-    virtual QString nameToMakeCurrentIfAdded() const {
-        return _nameToMakeCurrentIfAdded;
-    }
-    virtual void setNameToMakeCurrentIfAdded(const QString name) {
-        _nameToMakeCurrentIfAdded = name;
-    }
     virtual QString firstUnmarkedBelowCurrent();
     virtual QString statistics();
     virtual const KrViewProperties* properties() const {
@@ -517,7 +511,6 @@ protected:
     QWidget *_widget;
     QList<QUrl> _savedSelection;
     QString _nameToMakeCurrent;
-    QString _nameToMakeCurrentIfAdded;
     KrViewProperties *_properties;
     KrViewOperator *_operator;
     bool _focused;

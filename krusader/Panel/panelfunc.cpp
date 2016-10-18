@@ -652,7 +652,10 @@ void ListPanelFunc::rename(const QString &oldname, const QString &newname)
 {
     if (oldname == newname)
         return ; // do nothing
-    panel->view->setNameToMakeCurrentIfAdded(newname);
+
+    // set current after rename
+    panel->view->setNameToMakeCurrent(newname);
+
     // as always - the vfs do the job
     files()->rename(oldname, newname);
 }

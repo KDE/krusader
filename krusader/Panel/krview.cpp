@@ -192,7 +192,7 @@ const KrView::IconSizes KrView::iconSizes;
 
 KrView::KrView(KrViewInstance &instance, KConfig *cfg) :
     _instance(instance), _files(0), _config(cfg), _mainWindow(0), _widget(0),
-    _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
+    _nameToMakeCurrent(QString()),
     _properties(0), _focused(false), _previews(0), _fileIconSize(0),
     _updateDefaultSettings(false), _count(0), _numDirs(0), _dummyVfile(0)
 {
@@ -584,11 +584,6 @@ void KrView::addItem(vfile *vf)
 
     if (item->name() == nameToMakeCurrent()) {
         setCurrentKrViewItem(item); // dictionary based - quick
-        makeItemVisible(item);
-    }
-    if (item->name() == nameToMakeCurrentIfAdded()) {
-        setCurrentKrViewItem(item);
-        setNameToMakeCurrentIfAdded(QString());
         makeItemVisible(item);
     }
 
