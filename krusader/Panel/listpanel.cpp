@@ -733,13 +733,13 @@ void ListPanel::slotStartUpdate(bool directoryChange)
 
     setCursor(Qt::BusyCursor);
 
+    const QUrl currentUrl = virtualPath();
     if (directoryChange) {
 
         if (this == ACTIVE_PANEL) {
             slotFocusOnMe();
         }
 
-        const QUrl currentUrl = virtualPath();
         if (func->files()->isLocal())
             _realPath = currentUrl;
 
@@ -747,12 +747,12 @@ void ListPanel::slotStartUpdate(bool directoryChange)
 
         emit pathChanged(currentUrl);
 
-        slotGetStats(currentUrl);
-
         krApp->popularUrls()->addUrl(currentUrl);
 
         searchBar->hideBar();
     }
+
+    updateFilesystemStats(currentUrl);
 
     if (compareMode)
         otherPanel()->view->refresh();
@@ -763,7 +763,7 @@ void ListPanel::slotStartUpdate(bool directoryChange)
     slotUpdateTotals();
 }
 
-void ListPanel::slotGetStats(const QUrl &url)
+void ListPanel::updateFilesystemStats(const QUrl &url)
 {
     mediaButton->mountPointChanged(QString());
     freeSpace->setText(QString());

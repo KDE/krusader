@@ -135,7 +135,6 @@ public slots:
     void slotUpdateTotals();
     // react to file changes in vfs (path change or refresh)
     void slotStartUpdate(bool directoryChange);
-    void slotGetStats(const QUrl &url); // get the disk-free stats
     void togglePanelPopup();
     void panelActive(); // called when the panel becomes active
     void panelInactive(); // called when panel becomes inactive
@@ -240,6 +239,7 @@ protected:
     KrErrorDisplay *vfsError;
 
 private:
+    void updateFilesystemStats(const QUrl &url); // update disk-free and mount status
     bool handleDropInternal(QDropEvent *event, const QString &dir);
     int popupPosition() const; // 0: West, 1: North, 2: East, 3: South
     void setPopupPosition(int);
