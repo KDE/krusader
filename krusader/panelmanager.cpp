@@ -201,11 +201,11 @@ void PanelManager::loadSettings(KConfigGroup config)
 
     for(int i = 0;  i < numTabsNew; i++) {
         KConfigGroup grpTab(&grpTabs, "Tab" + QString::number(i));
-        ListPanel *panel;
-        if(i < numTabsOld)
-            panel = _tabbar->getPanel(i);
-        else
-            panel = addPanel(false, grpTab);
+        // TODO workaround for bug 371453. Remove this when bug is fixed
+        if (grpTab.keyList().isEmpty())
+            continue;
+
+        ListPanel *panel = i < numTabsOld ? _tabbar->getPanel(i) : addPanel(false, grpTab);
         panel->restoreSettings(grpTab);
     }
 
