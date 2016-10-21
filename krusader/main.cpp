@@ -141,11 +141,13 @@ int main(int argc, char *argv[])
     QString versionName = VERSION;
 #endif
 
-    KAboutData aboutData(QStringLiteral("krusader"), /*0,*/ (geteuid() ? i18n("Krusader") : i18n("Krusader - ROOT PRIVILEGES")),
-			 versionName, i18n(description), KAboutLicense::GPL_V2,
-			 i18n("(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2015, Krusader Krew"),
-			 i18n("Feedback:\nhttp://www.krusader.org/phpBB/\n\nIRC\nserver: irc.freenode.net, channel: #krusader"),
-			 QStringLiteral("http://www.krusader.org"));
+    KAboutData aboutData(QStringLiteral("krusader"),
+        (geteuid() ? i18n("Krusader") : i18n("Krusader - ROOT PRIVILEGES")), versionName,
+        i18n(description), KAboutLicense::GPL_V2,
+        i18n("(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2016, Krusader Krew"),
+        i18n("Feedback:\nhttps://forum.kde.org/viewforum.php?f=225\n\nIRC\nserver: "
+             "irc.freenode.net, channel: #krusader"),
+        QStringLiteral("https://krusader.org"));
 
     aboutData.addAuthor(i18n("Rafi Yanai"), i18n("Author (retired)"), QStringLiteral("yanai@users.sourceforge.net"));
     aboutData.addAuthor(i18n("Shie Erlich"), i18n("Author (retired)"), QStringLiteral("erlich@users.sourceforge.net"));
@@ -154,11 +156,12 @@ int main(int argc, char *argv[])
     aboutData.addAuthor(i18n("Simon Persson"), i18n("Developer"), QStringLiteral("simon.persson@mykolab.com"), 0);
     aboutData.addAuthor(i18n("Davide Gianforte"), i18n("Developer"), QStringLiteral("davide@gengisdave.org"), 0);
     aboutData.addAuthor(i18n("Toni Asensi Esteve"), i18n("Developer"), QStringLiteral("toni.asensi@kdemail.net"), 0);
+    aboutData.addAuthor(i18n("Alexander Bikadorov"), i18n("Developer"), QStringLiteral("alex.bikadorov@kdemail.net"), 0);
     aboutData.addAuthor(i18n("Karai Csaba"), i18n("Developer (retired)"), QStringLiteral("ckarai@users.sourceforge.net"), 0);
     aboutData.addAuthor(i18n("Heiner Eichmann"), i18n("Developer (retired)"), QStringLiteral("h.eichmann@gmx.de"), 0);
     aboutData.addAuthor(i18n("Jonas Bähr"), i18n("Developer (retired)"), QStringLiteral("jonas.baehr@web.de"), 0);
     aboutData.addAuthor(i18n("Václav Jůza"), i18n("Developer (retired)"), QStringLiteral("vaclavjuza@gmail.com"), 0);
-    aboutData.addAuthor(i18n("Dirk Eschler"), i18n("Webmaster"), QStringLiteral("deschler@users.sourceforge.net"), 0);
+    aboutData.addAuthor(i18n("Dirk Eschler"), i18n("Webmaster (retired)"), QStringLiteral("deschler@users.sourceforge.net"), 0);
     aboutData.addAuthor(i18n("Frank Schoolmeesters"), i18n("Documentation and marketing coordinator (retired)"), QStringLiteral("frank_schoolmeesters@yahoo.com"), 0);
     aboutData.addAuthor(i18n("Richard Holt"), i18n("Documentation & Proofing (retired)"), QStringLiteral("richard.holt@gmail.com"), 0);
     aboutData.addAuthor(i18n("Matej Urbancic"), i18n("Marketing & Product Research (retired)"), QStringLiteral("matej.urban@gmail.com"), 0);
