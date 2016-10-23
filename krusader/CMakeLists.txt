@@ -96,7 +96,7 @@ install(FILES midnight_commander.color
               splash.png
         DESTINATION ${DATA_INSTALL_DIR}/krusader)
 install(FILES org.kde.krusader.appdata.xml
-        DESTINATION ${SHARE_INSTALL_PREFIX}/appdata)
+        DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 ecm_install_icons(ICONS
     icons/16-apps-krusader_blue.png
