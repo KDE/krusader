@@ -146,6 +146,10 @@ bool vfs::refresh(const QUrl &directory)
     _isRefreshing = false;
 
     if (!res) {
+        // cleanup and abort
+        if (!dirChange)
+            emit cleared();
+        clear(tempVfiles);
         return false;
     }
 
