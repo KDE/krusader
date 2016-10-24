@@ -340,7 +340,7 @@ vfile *virt_vfs::createVFile(const QUrl &url)
 
     // ugly: we have to wait here until the stat job is finished
     QEventLoop eventLoop;
-    connect(statJob, SIGNAL(result(KJob *)), &eventLoop, SLOT(quit()));
+    connect(statJob, SIGNAL(finished(KJob *)), &eventLoop, SLOT(quit()));
     eventLoop.exec(); // blocking until quit()
 
     if (_fileEntry.count() == 0) {

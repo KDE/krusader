@@ -197,7 +197,7 @@ protected:
 
     VFS_TYPE _type;         // the vfs type.
     QUrl _currentDirectory; // the path or file the VFS originates from.
-    bool _refreshAfterJob;  // refresh after a KIO job modifying the dir content finished
+    bool _isRefreshing; // true if vfs is busy with refreshing
     QPointer<KMountMan> _mountMan;
 
 protected slots:
@@ -215,7 +215,6 @@ private:
     void clear(vfileDict vfiles);
 
     vfileDict _vfiles;  // The list of files in the current dictionary
-    bool _isRefreshing; // true if vfs is busy with refreshing
 
     // used in the calcSpace function
     bool *_calcKdsBusy;

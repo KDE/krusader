@@ -52,7 +52,7 @@
 #include "krpermhandler.h"
 
 
-vfs::vfs() : VfileContainer(0), _refreshAfterJob(false), _isRefreshing(false) {}
+vfs::vfs() : VfileContainer(0), _isRefreshing(false) {}
 
 vfs::~vfs()
 {
@@ -372,6 +372,8 @@ vfile *vfs::createVFileFromKIO(const KIO::UDSEntry &entry, const QUrl &directory
                 currentUser = ""; // empty, but not QString()
             }
         }
+        // NOTE: "broken link" flag is always false, checking link destination existence is
+        // considered to be too expensive
         vf = new vfile(fname, size, perm, mtime, symLink, false, kfi.user(), kfi.group(),
                        currentUser, mime, symDest, mode, rwx, kfi.ACL().asString(),
                        kfi.defaultACL().asString(), url);

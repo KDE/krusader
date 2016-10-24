@@ -184,10 +184,8 @@ bool default_vfs::refreshInternal(const QUrl &directory, bool showHidden)
     KIO::ListJob *job = KIO::listDir(_currentDirectory, KIO::HideProgressInfo, showHidden);
     connect(job, SIGNAL(entries(KIO::Job *, const KIO::UDSEntryList &)), this,
             SLOT(slotAddFiles(KIO::Job *, const KIO::UDSEntryList &)));
-    connect(job, &KIO::ListJob::redirection,
-            [=](KIO::Job *, const QUrl &url) { slotRedirection(url); });
-    connect(job, &KIO::ListJob::permanentRedirection,
-            [=](KIO::Job *, const QUrl &, const QUrl &url) { slotRedirection(url); });
+    connect(job, &KIO::ListJob::redirection, this, &default_vfs::slotRedirection);
+    connect(job, &KIO::ListJob::permanentRedirection, this, &default_vfs::slotRedirection);
     connect(job, SIGNAL(result(KJob*)), this, SLOT(slotListResult(KJob*)));
 
     emit refreshJobStarted(job);
@@ -195,7 +193,7 @@ bool default_vfs::refreshInternal(const QUrl &directory, bool showHidden)
     _listError = false;
     // ugly: we have to wait here until the list job is finished
     QEventLoop eventLoop;
-    connect(job, SIGNAL(result(KJob*)), &eventLoop, SLOT(quit()));
+    connect(job, SIGNAL(finished(KJob*)), &eventLoop, SLOT(quit()));
     eventLoop.exec(); // blocking until quit()
 
     return !_listError;
@@ -227,8 +225,18 @@ void default_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries)
     }
 }
 
-void default_vfs::slotRedirection(const QUrl &url)
+void default_vfs::slotRedirection(KIO::Job *job, const QUrl &url)
 {
+   krOut << "default_vfs; redirection to " << url;
+
+   if (url.scheme() != _currentDirectory.scheme()) {
+       // abort and start over again, some protocols (iso) do this on transition to local fs
+       job->kill();
+       _isRefreshing = false;
+       refresh(url);
+       return;
+   }
+
     _currentDirectory = cleanUrl(url);
 }
 
