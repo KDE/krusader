@@ -58,20 +58,23 @@ default_vfs::default_vfs(): vfs(), _watcher()
 void default_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                             KIO::CopyJob::CopyMode mode, bool showProgressInfo)
 {
+    // resolve relative path before resolving symlinks
+    const QUrl dest = resolveRelativePath(destination);
+
     KIO::JobFlags flags = showProgressInfo ? KIO::DefaultFlags : KIO::HideProgressInfo;
     KIO::Job *job;
     switch (mode) {
     case KIO::CopyJob::Move:
-        job = KIO::move(urls, destination, flags);
+        job = KIO::move(urls, dest, flags);
         break;
     case KIO::CopyJob::Link:
-        job = KIO::link(urls, destination, flags);
+        job = KIO::link(urls, dest, flags);
         break;
     default:
-        job = KIO::copy(urls, destination, flags);
+        job = KIO::copy(urls, dest, flags);
     }
 
-    connectJob(job, destination);
+    connectJob(job, dest);
     if (mode == KIO::CopyJob::Move) { // notify source about removed files
         connectSourceVFS(job, urls);
     }
@@ -79,10 +82,13 @@ void default_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
 
 void default_vfs::dropFiles(const QUrl &destination, QDropEvent *event)
 {
-    KIO::DropJob *job = KIO::drop(event, destination);
+    // resolve relative path before resolving symlinks
+    const QUrl dest = resolveRelativePath(destination);
+
+    KIO::DropJob *job = KIO::drop(event, dest);
     // NOTE: DropJob does not provide information about the actual user choice
     // (move/copy/link/abort). We have to assume the worst (move)
-    connectJob(job, destination);
+    connectJob(job, dest);
     connectSourceVFS(job, KUrlMimeData::urlsFromMimeData(event->mimeData()));
 }
 
@@ -359,4 +365,11 @@ vfile *default_vfs::createLocalVFile(const QString &name)
 QString default_vfs::default_vfs::realPath()
 {
     return QDir(_currentDirectory.toLocalFile()).canonicalPath();
+}
+
+QUrl default_vfs::resolveRelativePath(const QUrl &url)
+{
+    // if e.g. "/tmp/bin" is a link to "/bin",
+    // resolve "/tmp/bin/.." to "/tmp" and not "/"
+    return url.adjusted(QUrl::NormalizePathSegments);
 }
