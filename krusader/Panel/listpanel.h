@@ -138,7 +138,6 @@ public slots:
     void togglePanelPopup();
     void panelActive(); // called when the panel becomes active
     void panelInactive(); // called when panel becomes inactive
-    void slotRefresh(KJob *job);
     void refreshColors();
     void inlineRefreshCancel();
 
@@ -179,7 +178,6 @@ protected slots:
     void handleDrop(QDropEvent *event, bool onView = false); // handle drops on frame or view
     void handleDrop(const QUrl &destination, QDropEvent *event); // handle drops with destination
     void startDragging(QStringList, QPixmap);
-    void slotJobResult(KJob *job);
     void slotPreviewJobStarted(KJob *job);
     void slotPreviewJobPercent(KJob *job, unsigned long percent);
     void slotPreviewJobResult(KJob *job);

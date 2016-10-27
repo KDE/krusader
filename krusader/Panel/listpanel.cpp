@@ -876,20 +876,6 @@ void ListPanel::handleDrop(const QUrl &destination, QDropEvent *event)
     func->files()->dropFiles(destination, event);
 }
 
-void ListPanel::slotJobResult(KJob *job)
-{
-    func->refresh(); // see new files if not on local filesystem
-    if (job->error()) {
-        slotVfsError(job->errorString());
-    }
-}
-
-void ListPanel::slotRefresh(KJob* /*job*/)
-{
-    if (func)
-        func->refresh();
-}
-
 void ListPanel::startDragging(QStringList names, QPixmap px)
 {
     if (names.isEmpty()) {  // avoid dragging empty urls
