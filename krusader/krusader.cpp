@@ -366,6 +366,21 @@ void Krusader::changeEvent(QEvent *event) {
         if(isMinimized()) {
             KConfigGroup group(krConfig, "Look&Feel");
             if (group.readEntry("Minimize To Tray", _MinimizeToTray)) {
+                // TODO tray created again to prevent bug in kf5,
+                // remove this if bug 365105 is resolved
+                sysTray->deleteLater();
+                sysTray = new QSystemTrayIcon(this);
+                sysTray->setIcon(krLoader->loadIcon(privIcon(), KIconLoader::Panel, 22));
+                QMenu *trayMenu = new QMenu(this);
+                trayMenu->addSection(QGuiApplication::applicationDisplayName()); // show "title"
+                QAction *restoreAction = new QAction(i18n("Restore"), this);
+                connect(restoreAction, SIGNAL(triggered()), SLOT(showFromTray()));
+                trayMenu->addAction(restoreAction);
+                trayMenu->addSeparator();
+                trayMenu->addAction(actionCollection()->action(KStandardAction::name(KStandardAction::Quit)));
+                sysTray->setContextMenu(trayMenu);
+                connect(sysTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), SLOT(showFromTray()));
+
                 sysTray->show();
                 hide();
             }
