@@ -212,7 +212,7 @@ private slots:
 
 private:
     /// Delete and clear vfiles.
-    void clear(vfileDict vfiles);
+    void clear(vfileDict &vfiles);
 
     vfileDict _vfiles;  // The list of files in the current dictionary
 

@@ -420,7 +420,7 @@ void vfs::slotCalcStatResult(KJob *job)
 
 // ==== private ====
 
-void vfs::clear(vfileDict vfiles)
+void vfs::clear(vfileDict &vfiles)
 {
     QHashIterator<QString, vfile *> lit(vfiles);
     while (lit.hasNext()) {
