@@ -221,6 +221,7 @@ void KrInterView::setCurrentItem(const QString& name)
 {
     QModelIndex ndx = _model->nameIndex(name);
     if (ndx.isValid())
+         // also sets the scrolling position
         _itemView->setCurrentIndex(ndx);
 }
 

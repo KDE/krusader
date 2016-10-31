@@ -1138,9 +1138,10 @@ void KrView::refresh()
     if(!selection.isEmpty())
         setSelectionUrls(selection);
 
-    if (!nameToMakeCurrent().isEmpty())
+    if (!nameToMakeCurrent().isEmpty()) {
         setCurrentItem(nameToMakeCurrent());
-    else if (!current.isEmpty())
+        setNameToMakeCurrent("");
+    } else if (!current.isEmpty())
         setCurrentItem(current);
 
     updatePreviews();
