@@ -1141,8 +1141,11 @@ void KrView::refresh()
     if (!nameToMakeCurrent().isEmpty()) {
         setCurrentItem(nameToMakeCurrent());
         setNameToMakeCurrent("");
-    } else if (!current.isEmpty())
+    } else if (!current.isEmpty()) {
         setCurrentItem(current);
+    } else {
+        setCurrentKrViewItem(getFirst());
+    }
 
     updatePreviews();
     redraw();
