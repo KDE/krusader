@@ -1,4 +1,4 @@
-<!DOCTYPE kpartgui ><kpartgui version="22" name="krusader" >
+<!DOCTYPE kpartgui ><kpartgui version="23" name="krusader" >
  <MenuBar>
   <Menu name="file" >
    <text>&amp;File</text>
@@ -127,14 +127,18 @@
    <text>&amp;Settings</text>
    <!-- Show Menubar -->
    <Action name="options_show_menubar" />
-   <Action name="options_show_toolbar" />
-   <Action name="toggle actions toolbar"/>
+   <Menu name="show_toolbars" >
+     <text>&amp;Toolbars</text>
+     <Action name="options_show_toolbar" />
+     <Action name="toggle show jobbar" />
+     <Action name="toggle actions toolbar"/>
+   </Menu>
    <Action name="options_show_statusbar" />
    <Action name="toggle fn bar" />
    <Action name="toggle terminal emulator" />
    <Action name="toggle command line" />
    <Menu name="command_execution_mode" >
-    <text>Command Execution Mode Se&amp;tup</text>
+    <text>Command Execution &amp;Mode Setup</text>
     <Action name="exec_start_and_forget" />
     <Action name="exec_collect_separate" />
     <Action name="exec_collect_together" />
@@ -198,6 +202,13 @@
   <Separator/>
   <Action name="zoom_in" />
   <Action name="zoom_out" />
+ </ToolBar>
+ <ToolBar iconText="icononly" noMerge="1" name="jobToolBar" fullWidth="false" >
+  <text>Job Toolbar</text>
+  <Action name="job menu" />
+  <Action name="job progress" />
+  <Action name="job pause" />
+  <Action name="job cancel" />
  </ToolBar>
  <ToolBar iconText="icononly" noMerge="1" name="actionsToolBar" fullWidth="false" >
   <text>Actions Toolbar</text>

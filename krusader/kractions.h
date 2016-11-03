@@ -81,6 +81,11 @@ public:
     /** actions for setting the execution mode of commands from commanddline */
     static QAction **execTypeArray[];
 
+    /** JobMan toolbar actions */
+    static QAction *actJobMenu;
+    static QAction *actJobProgress;
+    static QAction *actJobPlayPause;
+    static QAction *actJobCancel;
 
 
 #ifdef __KJSEMBED__

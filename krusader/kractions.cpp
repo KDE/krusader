@@ -50,6 +50,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "UserAction/useraction.h"
 #include "MountMan/kmountman.h"
 #include "Dialogs/popularurls.h"
+#include "JobMan/jobman.h"
 
 QAction *KrActions::actCompare = 0;
 QAction *KrActions::actDiskUsage = 0;
@@ -108,6 +109,10 @@ KToggleAction *KrActions::actShowStatusBar = 0;
 KToggleAction *KrActions::actToggleHidden = 0;
 KToggleAction *KrActions::actCompareDirs = 0;
 
+QAction *KrActions::actJobMenu = 0;
+QAction *KrActions::actJobProgress = 0;
+QAction *KrActions::actJobPlayPause = 0;
+QAction *KrActions::actJobCancel = 0;
 
 #ifdef __KJSEMBED__
     static QAction *actShowJSConsole;
@@ -186,6 +191,9 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     KToggleToolBarAction *actShowToolBar = new KToggleToolBarAction(krusaderApp->toolBar(), i18n("Show Main Toolbar"), krusaderApp);
     krusaderApp->actionCollection()->addAction(KStandardAction::name(KStandardAction::ShowToolbar), actShowToolBar);
+
+    KToggleToolBarAction *actShowJobToolBar = new KToggleToolBarAction(krusaderApp->toolBar("jobToolBar"), i18n("Show Job Toolbar"), krusaderApp);
+    krusaderApp->actionCollection()->addAction("toggle show jobbar", actShowJobToolBar);
 
     KToggleToolBarAction *actShowActionsToolBar = new KToggleToolBarAction(krusaderApp->toolBar("actionsToolBar"), i18n("Show Actions Toolbar"), krusaderApp);
     krusaderApp->actionCollection()->addAction("toggle actions toolbar", actShowActionsToolBar);
@@ -299,6 +307,19 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     NEW_KACTION(tmp, i18n("Move Focus Up"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Up, MAIN_VIEW, SLOT(focusUp()), "move_focus_up");
     NEW_KACTION(tmp, i18n("Move Focus Down"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Down, MAIN_VIEW, SLOT(focusDown()), "move_focus_down");
+
+    // job manager actions
+    actJobMenu = krJobMan->menuAction();
+    krusaderApp->actionCollection()->addAction("job menu", actJobMenu);
+    krusaderApp->actionCollection()->setDefaultShortcut(actJobMenu, Qt::CTRL + Qt::ALT + Qt::Key_J);
+    actJobProgress = krJobMan->progressAction();
+    krusaderApp->actionCollection()->addAction("job progress", actJobProgress);
+    actJobPlayPause = krJobMan->pauseResumeAction();
+    krusaderApp->actionCollection()->addAction("job pause", actJobPlayPause);
+    krusaderApp->actionCollection()->setDefaultShortcut(actJobPlayPause, Qt::CTRL + Qt::ALT + Qt::Key_P);
+    actJobCancel = krJobMan->cancelAction();
+    krusaderApp->actionCollection()->addAction("job cancel", actJobCancel);
+    krusaderApp->actionCollection()->setDefaultShortcut(actJobCancel, Qt::CTRL + Qt::ALT + Qt::Key_A);
 
     // and at last we can set the tool-tips
     actKonfigurator->setToolTip(i18n("Setup Krusader the way you like it"));
