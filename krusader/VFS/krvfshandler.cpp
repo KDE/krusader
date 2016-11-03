@@ -26,12 +26,15 @@
 #endif
 #endif
 
-#include "default_vfs.h"
-#include "virt_vfs.h"
-#include "../krservices.h"
-
 // QtCore
 #include <QDir>
+
+#include "default_vfs.h"
+#include "virt_vfs.h"
+#include "../krglobal.h"
+#include "../krservices.h"
+#include "../JobMan/jobman.h"
+
 
 vfs* KrVfsHandler::getVfs(const QUrl &url, vfs* oldVfs)
 {
@@ -43,10 +46,10 @@ vfs* KrVfsHandler::getVfs(const QUrl &url, vfs* oldVfs)
 
     QPointer<vfs> vfsPointer(newVfs);
     _vfs_list.append(vfsPointer);
-    connect(newVfs, SIGNAL(filesystemChanged(QUrl)), this, SLOT(refreshVfs(QUrl)));
+    connect(newVfs, &vfs::filesystemChanged, this, &KrVfsHandler::refreshVfs);
+    connect(newVfs, &vfs::newJob, krJobMan, &JobMan::manageJob);
 
     return newVfs;
-
 }
 
 void KrVfsHandler::startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,

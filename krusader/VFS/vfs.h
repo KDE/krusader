@@ -159,12 +159,15 @@ public slots:
 
 signals:
     /// Emitted when this VFS is currently refreshing the VFS directory.
-    void refreshJobStarted(KIO::Job* job);
+    void refreshJobStarted(KIO::Job *job);
     /// Emitted when an error occured in this VFS.
     /// The error can be caused by refresh or any filesystem operation
-    void error(QString msg);
+    void error(const QString &msg);
     /// Emitted when the content of a directory was changed by this VFS.
-    void filesystemChanged(const QUrl& directory);
+    void filesystemChanged(const QUrl &directory);
+    /// Emitted when a new file operation job was created. The job may be prepared to be queued
+    /// i.e. in suspend state.
+    void newJob(KIO::Job *job);
 
 protected:
     /// Fill the vfs dictionary with vfiles, must be implemented for each VFS.

@@ -78,6 +78,8 @@ void default_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
     if (mode == KIO::CopyJob::Move) { // notify source about removed files
         connectSourceVFS(job, urls);
     }
+
+    emit newJob(job);
 }
 
 void default_vfs::dropFiles(const QUrl &destination, QDropEvent *event)
@@ -90,6 +92,8 @@ void default_vfs::dropFiles(const QUrl &destination, QDropEvent *event)
     // (move/copy/link/abort). We have to assume the worst (move)
     connectJob(job, dest);
     connectSourceVFS(job, KUrlMimeData::urlsFromMimeData(event->mimeData()));
+
+    emit newJob(job);
 }
 
 void default_vfs::connectSourceVFS(KJob *job, const QList<QUrl> urls)
@@ -133,6 +137,8 @@ void default_vfs::deleteFiles(const QStringList &fileNames, bool forceDeletion)
         job = KIO::del(fileUrls);
     }
     connectJob(job, currentDirectory());
+
+    emit newJob(job);
 }
 
 void default_vfs::mkDir(const QString &name)
