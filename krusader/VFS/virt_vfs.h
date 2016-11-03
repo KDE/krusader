@@ -50,7 +50,7 @@ public:
     /// Create virtual files in this VFS. Copy mode and showProgressInfo are ignored.
     void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                    KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
-                   bool showProgressInfo = true) Q_DECL_OVERRIDE;
+                   bool showProgressInfo = true, bool enqueue = false) Q_DECL_OVERRIDE;
     /// Handle file dropping in this VFS: Always creates virtual files.
     void dropFiles(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
 

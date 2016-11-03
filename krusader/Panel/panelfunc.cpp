@@ -584,12 +584,7 @@ void ListPanelFunc::slotFileCreated(KJob *job)
     fileToCreate = QUrl();
 }
 
-void ListPanelFunc::moveFiles()
-{
-    copyFiles(true);
-}
-
-void ListPanelFunc::copyFiles(bool move)
+void ListPanelFunc::copyFiles(bool enqueue, bool move)
 {
     QStringList fileNames;
     panel->getSelectedNames(&fileNames);
@@ -615,12 +610,15 @@ void ListPanelFunc::copyFiles(bool move)
         }
 
         // ask the user for the copy/move dest
-        destination = KChooseDir::getDir(operationText, destination, panel->virtualPath());
+        KChooseDir::ChooseResult result = KChooseDir::getCopyDir(operationText, destination, panel->virtualPath());
+        destination = result.url;
         if (destination.isEmpty())
             return ; // the user canceled
+
+        enqueue = result.queue;
     }
 
-    QList<QUrl> fileUrls = files()->getUrls(fileNames);
+    const QList<QUrl> fileUrls = files()->getUrls(fileNames);
 
     if (move) {
         // after the delete return the cursor to the first unmarked file above the current item
@@ -633,7 +631,7 @@ void ListPanelFunc::copyFiles(bool move)
     }
 
     KIO::CopyJob::CopyMode mode = move ? KIO::CopyJob::Move : KIO::CopyJob::Copy;
-    KrVfsHandler::instance().startCopyFiles(fileUrls, destination, mode);
+    KrVfsHandler::instance().startCopyFiles(fileUrls, destination, mode, true, enqueue);
 
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         panel->view->saveSelection();

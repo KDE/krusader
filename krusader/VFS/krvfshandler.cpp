@@ -53,9 +53,10 @@ vfs* KrVfsHandler::getVfs(const QUrl &url, vfs* oldVfs)
 }
 
 void KrVfsHandler::startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,
-                                      KIO::CopyJob::CopyMode mode, bool showProgressInfo) {
+                                  KIO::CopyJob::CopyMode mode, bool showProgressInfo, bool enqueue)
+{
     vfs *vfs = getVfs(destination); // implementation depends on filesystem of destination
-    vfs->copyFiles(urls, destination, mode, showProgressInfo);
+    vfs->copyFiles(urls, destination, mode, showProgressInfo, enqueue);
 }
 
 void KrVfsHandler::refreshVfs(const QUrl &directory)

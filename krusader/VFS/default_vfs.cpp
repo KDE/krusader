@@ -56,7 +56,7 @@ default_vfs::default_vfs(): vfs(), _watcher()
 }
 
 void default_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
-                            KIO::CopyJob::CopyMode mode, bool showProgressInfo)
+                            KIO::CopyJob::CopyMode mode, bool showProgressInfo, bool enqueue)
 {
     // resolve relative path before resolving symlinks
     const QUrl dest = resolveRelativePath(destination);
@@ -77,6 +77,12 @@ void default_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
     connectJob(job, dest);
     if (mode == KIO::CopyJob::Move) { // notify source about removed files
         connectSourceVFS(job, urls);
+    }
+
+    if (enqueue) {
+        bool succ = job->suspend();
+        if (!succ)
+            krOut << "cannot suspend job";
     }
 
     emit newJob(job);

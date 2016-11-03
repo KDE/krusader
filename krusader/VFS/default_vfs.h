@@ -59,7 +59,7 @@ public:
 
     virtual void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                            KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
-                           bool showProgressInfo = true) Q_DECL_OVERRIDE;
+                           bool showProgressInfo = true, bool enqueue = false) Q_DECL_OVERRIDE;
     virtual void dropFiles(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
 
     virtual void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
