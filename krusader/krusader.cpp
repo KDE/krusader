@@ -97,6 +97,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "Konfigurator/kgprotocols.h"
 #include "BookMan/krbookmarkhandler.h"
 #include "KViewer/krviewer.h"
+#include "JobMan/jobman.h"
 
 
 #ifdef __KJSEMBED__
@@ -157,6 +158,9 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
 
     // create bookman
     krBookMan = new KrBookmarkHandler(this);
+
+    // create job manager
+    krJobMan = new JobMan(this);
 
     _popularUrls = new PopularUrls(this);
 

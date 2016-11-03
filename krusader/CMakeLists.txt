@@ -11,6 +11,7 @@ add_subdirectory(Filter)
 add_subdirectory(GUI)
 add_subdirectory(Konfigurator)
 add_subdirectory(KViewer)
+add_subdirectory(JobMan)
 add_subdirectory(Locate)
 add_subdirectory(MountMan)
 add_subdirectory(Panel)
@@ -69,6 +70,7 @@ target_link_libraries(krusader
                       Dialogs
                       GUI
                       Archive
+                      JobMan
                       KF5::Notifications
                       KF5::Parts
                       KF5::WindowSystem
