@@ -477,14 +477,19 @@ void KrSearchDialog::stopSearch()
 
 void KrSearchDialog::executed(const QString &name)
 {
+    // 'name' is (local) file path or complete URL
     QString path = name;
     QString fileName;
     if(!name.endsWith('/')) {
+        // not a directory, split filename and path
         int idx = name.lastIndexOf("/");
         fileName = name.mid(idx+1);
         path = name.left(idx);
     }
-    ACTIVE_FUNC->openUrl(QUrl::fromLocalFile(path), fileName);
+    QUrl url(path);
+    if (url.scheme().isEmpty())
+        url.setScheme("file");
+    ACTIVE_FUNC->openUrl(url, fileName);
     showMinimized();
 }
 
