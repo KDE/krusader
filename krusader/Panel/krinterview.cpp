@@ -217,12 +217,25 @@ bool KrInterView::isItemVisible(const KrViewItem *item)
     return _itemView->viewport()->rect().contains(item->itemRect());
 }
 
-void KrInterView::setCurrentItem(const QString& name)
+void KrInterView::setCurrentItem(const QString& name, const QModelIndex &fallbackToIndex)
 {
+    // find index by given name and set it as current
     QModelIndex ndx = _model->nameIndex(name);
-    if (ndx.isValid())
+    if (ndx.isValid()) {
          // also sets the scrolling position
         _itemView->setCurrentIndex(ndx);
+    } else if (fallbackToIndex.isValid()) {
+        // set fallback index as current index
+        // when fallback index is too big, set the last item as current
+        if (fallbackToIndex.row() >= _itemView->model()->rowCount()) {
+            setCurrentKrViewItem(getLast());
+        } else {
+            _itemView->setCurrentIndex(fallbackToIndex);
+        }
+    } else {
+        // when given parameters fail, set the first item as current
+        setCurrentKrViewItem(getFirst());
+    }
 }
 
 void KrInterView::setCurrentKrViewItem(KrViewItem *item)

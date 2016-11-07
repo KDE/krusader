@@ -327,7 +327,7 @@ public:
     virtual KrViewItem *findItemByName(const QString &name) = 0;
     virtual KrViewItem *findItemByVfile(vfile *vf) = 0;
     virtual QString getCurrentItem() const = 0;
-    virtual void setCurrentItem(const QString& name) = 0;
+    virtual void setCurrentItem(const QString& name, const QModelIndex &fallbackToIndex=QModelIndex()) = 0;
     virtual void setCurrentKrViewItem(KrViewItem *item) = 0;
     virtual void makeItemVisible(const KrViewItem *item) = 0;
     virtual bool isItemVisible(const KrViewItem *item) = 0;

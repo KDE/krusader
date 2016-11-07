@@ -1107,8 +1107,9 @@ void KrView::customSelection(bool select)
 
 void KrView::refresh()
 {
-    QString current = getCurrentItem();
+    QString currentItem = getCurrentItem();
     QList<QUrl> selection = selectedUrls();
+    QModelIndex currentIndex = getCurrentIndex();
 
     clear();
 
@@ -1141,8 +1142,8 @@ void KrView::refresh()
     if (!nameToMakeCurrent().isEmpty()) {
         setCurrentItem(nameToMakeCurrent());
         setNameToMakeCurrent("");
-    } else if (!current.isEmpty()) {
-        setCurrentItem(current);
+    } else if (!currentItem.isEmpty()) {
+        setCurrentItem(currentItem, currentIndex);
     } else {
         setCurrentKrViewItem(getFirst());
     }
