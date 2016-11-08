@@ -389,6 +389,9 @@ void Krusader::saveSettings() {
     KConfigGroup cfg(krConfig, "Main Toolbar");
     toolBar()->saveSettings(cfg);
 
+    cfg = krConfig->group("Job Toolbar");
+    toolBar("jobToolBar")->saveSettings(cfg);
+
     cfg = krConfig->group("Actions Toolbar");
     toolBar("actionsToolBar")->saveSettings(cfg);
 
@@ -406,6 +409,7 @@ void Krusader::saveSettings() {
         cfg = krConfig->group("Startup");
         cfg.writeEntry("Show status bar", KrActions::actShowStatusBar->isChecked());
         cfg.writeEntry("Show tool bar", !toolBar()->isHidden());
+        cfg.writeEntry("Show job tool bar", !toolBar("jobToolBar")->isHidden());
         cfg.writeEntry("Show actions tool bar", !toolBar("actionsToolBar")->isHidden());
         cfg.writeEntry("Show FN Keys", KrActions::actToggleFnkeys->isChecked());
         cfg.writeEntry("Show Cmd Line", KrActions::actToggleCmdline->isChecked());
@@ -533,14 +537,18 @@ void Krusader::updateGUI(bool enforce) {
     KConfigGroup cfg_toolbar(krConfig, "Main Toolbar");
     toolBar()->applySettings(cfg_toolbar);
 
+    KConfigGroup cfg_job(krConfig->group("Job Toolbar"));
+    toolBar("jobToolBar")->applySettings(cfg_job);
+
     KConfigGroup cfg_act(krConfig->group("Actions Toolbar"));
-    toolBar("actionsToolBar") ->applySettings(cfg_act);
+    toolBar("actionsToolBar")->applySettings(cfg_act);
 
     KConfigGroup cfg(krConfig, "Startup");
     if (enforce) {
         applyMainWindowSettings(KConfigGroup(&cfg, "MainWindowSettings"));
         // now, hide what need to be hidden
         toolBar()->setVisible(cfg.readEntry("Show tool bar", _ShowToolBar));
+        toolBar("jobToolBar")->setVisible(cfg.readEntry("Show job tool bar", true));
         toolBar("actionsToolBar")->setVisible(cfg.readEntry("Show actions tool bar", _ShowActionsToolBar));
         if (!cfg.readEntry("Show status bar", _ShowStatusBar)) {
             statusBar() ->hide();
