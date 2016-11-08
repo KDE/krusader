@@ -22,6 +22,7 @@
 // QtCore
 #include <QAction>
 // QtWidgets
+#include <QPushButton>
 #include <QProgressBar>
 
 #include <KCoreAddons/KJob>
@@ -42,6 +43,9 @@
  *
  * TODO: if a job still exists Krusader does not exit on quit() until the job is finished. If it is
  * suspended this takes forever.
+ *
+ * TODO
+ * KIOWidgets/KIO/FileUndoManager
  */
 class JobMan : public QObject
 {
@@ -51,8 +55,8 @@ public:
     explicit JobMan(QObject *parent = 0);
     QAction *menuAction() { return _menuAction; }
     QAction *progressAction() { return _progressAction; }
-    QAction *pauseResumeAction() { return _pauseResumeButton; }
-    QAction *cancelAction() { return _cancelButton; }
+    QAction *pauseResumeAction() { return _pauseResumeAction; }
+    QAction *cancelAction() { return _cancelAction; }
 
 public slots:
     /** Display, monitor and give user ability to control a job*/
@@ -75,8 +79,8 @@ private:
 
     KToolBarPopupAction *_menuAction;
     QProgressBar *_progressBar;
-    QAction *_pauseResumeButton;
-    QAction *_cancelButton;
+    QAction *_pauseResumeAction;
+    QAction *_cancelAction;
 
     QAction *_progressAction;
 
