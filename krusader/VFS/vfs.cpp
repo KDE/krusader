@@ -134,10 +134,17 @@ bool vfs::refresh(const QUrl &directory)
         return false;
     }
 
-    const bool dirChange = !directory.isEmpty() && cleanUrl(directory) != _currentDirectory;
+    // workaround for krarc: find out if transition to local fs is wanted and adjust URL manually
+    QUrl url = directory;
+    if (_currentDirectory.scheme() == "krarc" && url.scheme() == "krarc" &&
+        QDir(url.path()).exists()) {
+        url.setScheme("file");
+    }
+
+    const bool dirChange = !url.isEmpty() && cleanUrl(url) != _currentDirectory;
 
     const QUrl toRefresh =
-            dirChange ? directory.adjusted(QUrl::NormalizePathSegments) : _currentDirectory;
+            dirChange ? url.adjusted(QUrl::NormalizePathSegments) : _currentDirectory;
     if (!toRefresh.isValid()) {
         emit error(i18n("Malformed URL:\n%1", toRefresh.toDisplayString()));
         return false;
