@@ -82,10 +82,8 @@ public:
     static QAction **execTypeArray[];
 
     /** JobMan toolbar actions */
-    static QAction *actJobMenu;
     static QAction *actJobProgress;
-    static QAction *actJobPlayPause;
-    static QAction *actJobCancel;
+    static QAction *actJobControl;
 
 
 #ifdef __KJSEMBED__

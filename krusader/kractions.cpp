@@ -109,10 +109,8 @@ KToggleAction *KrActions::actShowStatusBar = 0;
 KToggleAction *KrActions::actToggleHidden = 0;
 KToggleAction *KrActions::actCompareDirs = 0;
 
-QAction *KrActions::actJobMenu = 0;
 QAction *KrActions::actJobProgress = 0;
-QAction *KrActions::actJobPlayPause = 0;
-QAction *KrActions::actJobCancel = 0;
+QAction *KrActions::actJobControl = 0;
 
 #ifdef __KJSEMBED__
     static QAction *actShowJSConsole;
@@ -309,17 +307,11 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(tmp, i18n("Move Focus Down"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Down, MAIN_VIEW, SLOT(focusDown()), "move_focus_down");
 
     // job manager actions
-    actJobMenu = krJobMan->menuAction();
-    krusaderApp->actionCollection()->addAction("job menu", actJobMenu);
-    krusaderApp->actionCollection()->setDefaultShortcut(actJobMenu, Qt::CTRL + Qt::ALT + Qt::Key_J);
+    actJobControl = krJobMan->controlAction();
+    krusaderApp->actionCollection()->addAction("job control", actJobControl);
+    krusaderApp->actionCollection()->setDefaultShortcut(actJobControl, Qt::CTRL + Qt::ALT + Qt::Key_P);
     actJobProgress = krJobMan->progressAction();
     krusaderApp->actionCollection()->addAction("job progress", actJobProgress);
-    actJobPlayPause = krJobMan->pauseResumeAction();
-    krusaderApp->actionCollection()->addAction("job pause", actJobPlayPause);
-    krusaderApp->actionCollection()->setDefaultShortcut(actJobPlayPause, Qt::CTRL + Qt::ALT + Qt::Key_P);
-    actJobCancel = krJobMan->cancelAction();
-    krusaderApp->actionCollection()->addAction("job cancel", actJobCancel);
-    krusaderApp->actionCollection()->setDefaultShortcut(actJobCancel, Qt::CTRL + Qt::ALT + Qt::Key_A);
 
     // and at last we can set the tool-tips
     actKonfigurator->setToolTip(i18n("Setup Krusader the way you like it"));

@@ -31,76 +31,94 @@
 
 
 /** The menu action entry for a job in the popup menu.*/
-class JobMenuAction : public QWidgetAction {
+class JobMenuAction : public QWidgetAction
+{
     Q_OBJECT
 
 public:
-  JobMenuAction(KJob *job) : QWidgetAction(job), _job(job)
-  {
-      QWidget *container = new QWidget();
-      QGridLayout *layout = new QGridLayout(container);
-      _description = new QLabel();
-      _progressBar = new QProgressBar();
-      layout->addWidget(_description, 0, 0, 1, 3);
-      layout->addWidget(_progressBar, 1, 0);
+    JobMenuAction(KJob *job, QObject *parent) : QWidgetAction(parent), _job(job)
+    {
+        QWidget *container = new QWidget();
+        QGridLayout *layout = new QGridLayout(container);
+        _description = new QLabel();
+        _progressBar = new QProgressBar();
+        layout->addWidget(_description, 0, 0, 1, 3);
+        layout->addWidget(_progressBar, 1, 0);
 
-      _pauseResumeButton = new QPushButton();
-      _pauseResumeButton->setIcon(QIcon::fromTheme("media-playback-pause"));
-      connect(_pauseResumeButton, &QPushButton::clicked, this,
+        _pauseResumeButton = new QPushButton();
+        _pauseResumeButton->setIcon(QIcon::fromTheme("media-playback-pause"));
+        connect(_pauseResumeButton, &QPushButton::clicked, this,
               &JobMenuAction::slotPauseResumeButtonClicked);
-      layout->addWidget(_pauseResumeButton, 1, 1);
+        layout->addWidget(_pauseResumeButton, 1, 1);
 
-      _cancelButton = new QPushButton();
-      _cancelButton->setIcon(QIcon::fromTheme("remove"));
-      connect(_cancelButton, &QPushButton::clicked, this, &JobMenuAction::slotCancelButtonClicked);
-      layout->addWidget(_cancelButton, 1, 2);
+        _cancelButton = new QPushButton();
+        _cancelButton->setIcon(QIcon::fromTheme("remove"));
+        _cancelButton->setToolTip(i18n("Cancel/Clear Job"));
+        connect(_cancelButton, &QPushButton::clicked,
+                this, &JobMenuAction::slotCancelButtonClicked);
+        layout->addWidget(_cancelButton, 1, 2);
 
-      setDefaultWidget(container);
+        setDefaultWidget(container);
 
-      connect(job, &KJob::description, this, &JobMenuAction::slotDescription);
-      connect(job, SIGNAL(percent(KJob *, unsigned long)), this,
+        connect(job, &KJob::description, this, &JobMenuAction::slotDescription);
+        connect(job, SIGNAL(percent(KJob *, unsigned long)), this,
               SLOT(slotPercent(KJob *, unsigned long)));
-      connect(job, &KJob::suspended, this, &JobMenuAction::slotSuspended);
-      connect(job, &KJob::resumed, this, &JobMenuAction::slotResumed);
-
-  }
-
-  KJob *job() { return _job; }
+        connect(job, &KJob::suspended, this, &JobMenuAction::slotSuspended);
+        connect(job, &KJob::resumed, this, &JobMenuAction::slotResumed);
+        connect(job, &KJob::finished, this, &JobMenuAction::slotFinished);
+    }
 
 protected slots:
-  void slotDescription(KJob *, const QString &description,
+    void slotDescription(KJob *, const QString &description,
                        const QPair<QString, QString> &field1,
                        const QPair<QString, QString> &field2)
-  {
-      _description->setText(QString("%1 - %2: %3").arg(description, field2.first, field2.second));
-      // MY TODO tooltips not shown in menu
-      setToolTip(QString("%1 %2").arg(field1.second, field1.second));
-  }
+    {
+        _description->setText(QString("%1 - %2: %3").arg(description, field2.first, field2.second));
+        setToolTip(QString("%1 %2").arg(field1.second, field1.second));
+    }
 
-  void slotPercent(KJob *, unsigned long percent) { _progressBar->setValue(percent); }
+    void slotPercent(KJob *, unsigned long percent) { _progressBar->setValue(percent); }
 
-  void slotPauseResumeButtonClicked()
-  {
-      if (_job->isSuspended())
+    void slotSuspended(KJob *)
+    {
+        _pauseResumeButton->setIcon(QIcon::fromTheme("media-playback-start"));
+    }
+
+    void slotResumed(KJob *)
+    {
+        _pauseResumeButton->setIcon(QIcon::fromTheme("media-playback-pause"));
+    }
+
+    void slotFinished()
+    {
+        _progressBar->setValue(_job->percent()); // in case signal for '100%' is not emitted
+        _job = 0;
+        _pauseResumeButton->setEnabled(false);
+        _cancelButton->setIcon(QIcon::fromTheme("edit-clear"));
+        _cancelButton->setToolTip(i18n("Clear"));
+    }
+
+    void slotPauseResumeButtonClicked()
+    {
+        if (!_job)
+          return;
+
+        if (_job->isSuspended())
           _job->resume();
-      else
+        else
           _job->suspend();
-  }
+    }
 
-  void slotCancelButtonClicked() { _job->kill(); }
-
-  void slotSuspended(KJob *)
-  {
-      _pauseResumeButton->setIcon(QIcon::fromTheme("media-playback-start"));
-  }
-
-  void slotResumed(KJob *)
-  {
-      _pauseResumeButton->setIcon(QIcon::fromTheme("media-playback-pause"));
-  }
+    void slotCancelButtonClicked()
+    {
+        if (_job) {
+          _job->kill();
+        } else {
+          deleteLater();
+        }
+    }
 
 private:
-
     KJob *_job;
 
     QLabel *_description;
@@ -114,15 +132,16 @@ private:
 
 const QString JobMan::sDefaultToolTip = i18n("No jobs");
 
-JobMan::JobMan(QObject *parent) : QObject(parent), _currentJob(0)
+JobMan::JobMan(QObject *parent) : QObject(parent)
 {
-    _menuAction = new KToolBarPopupAction(QIcon::fromTheme("filename-group-length"),
-                                          i18n("&Job List"), this);
-    _menuAction->setEnabled(false);
+    _controlAction = new KToolBarPopupAction(QIcon::fromTheme("media-playback-pause"),
+                                          i18n("Play/Pause &Job"), this);
+    _controlAction->setEnabled(false);
+    connect(_controlAction, &QAction::triggered, this, &JobMan::slotPauseResumeButtonClicked);
 
     QMenu *menu = new QMenu(krMainWindow);
     menu->setMinimumWidth(300);
-    _menuAction->setMenu(menu);
+    _controlAction->setMenu(menu);
 
     _progressBar = new QProgressBar();
     _progressBar->setToolTip(sDefaultToolTip);
@@ -134,118 +153,104 @@ JobMan::JobMan(QObject *parent) : QObject(parent), _currentJob(0)
     progressAction->setText("Job Progress Bar");
     progressAction->setDefaultWidget(_progressBar);
     _progressAction = progressAction;
-
-    _pauseResumeAction = new QAction(QIcon::fromTheme("media-playback-pause"),
-                                     i18n("Play/Pause Job"), this);
-    _pauseResumeAction->setEnabled(false);
-    connect(_pauseResumeAction, &QAction::triggered, this, &JobMan::slotPauseResumeButtonClicked);
-
-    _cancelAction = new QAction(QIcon::fromTheme("remove"), i18n("Cancel/Clear Job"), this);
-    _cancelAction->setEnabled(false);
-    connect(_cancelAction, &QAction::triggered, this, &JobMan::slotCancelButtonClicked);
-}
-
 }
 
 void JobMan::manageJob(KJob *job)
 {
-    JobMenuAction *menuAction = new JobMenuAction(job);
-    _menuAction->menu()->addAction(menuAction);
-    // Note: this must be done before setting current job
-    connect(job, &KJob::finished, [=](KJob *) { _menuAction->menu()->removeAction(menuAction); });
 
-    if (!_currentJob)
-        setCurrentJob(job);
-}
+    _jobs.append(job);
 
-void JobMan::slotPauseResumeButtonClicked()
-{
-    if (!_currentJob)
-        return;
-
-    if (_currentJob->isSuspended())
-        _currentJob->resume();
-    else
-        _currentJob->suspend();
-}
-
-void JobMan::slotCancelButtonClicked()
-{
-    if (_currentJob) {
-        _currentJob->kill();
-    } else {
-        // clear view
-        _progressBar->reset();
-        _progressBar->setToolTip(sDefaultToolTip);
-        _cancelAction->setEnabled(false);
-    }
-}
-
-void JobMan::slotPercent(KJob *, unsigned long percent)
-{
-    _progressBar->setValue(percent);
-}
-
-void JobMan::slotFinished(KJob *)
-{
-    _progressBar->setEnabled(false);
-    _pauseResumeAction->setEnabled(false);
-    _cancelAction->setIcon(QIcon::fromTheme("edit-clear"));
-    _cancelAction->setToolTip(i18n("Clear"));
-
-    // Note: by default KJobs are deleting its after finished
-    _currentJob = 0;
-
-    QList<QAction*> actions = _menuAction->menu()->actions();
-    if (actions.isEmpty()) {
-        _menuAction->setEnabled(false);
-    } else {
-        // set next job
-        setCurrentJob(qobject_cast<JobMenuAction *>(actions[0])->job());
-    }
-}
-
-void JobMan::slotDescription(KJob*,const QString &description, const QPair<QString,QString> &field1,
-                     const QPair<QString,QString> &field2)
-{
-    _progressBar->setToolTip(QString("%1\n%2: %3\n%4: %5").arg(description,
-                                                               field1.first, field1.second,
-                                                               field2.first, field2.second));
-}
-
-void JobMan::slotSuspended(KJob *)
-{
-    _pauseResumeAction->setIcon(QIcon::fromTheme("media-playback-start"));
-    _pauseResumeAction->setToolTip(i18n("Resume Job"));
-}
-
-void JobMan::slotResumed(KJob *)
-{
-    _pauseResumeAction->setIcon(QIcon::fromTheme("media-playback-pause"));
-    _pauseResumeAction->setToolTip(i18n("Pause Job"));
-}
-
-void JobMan::setCurrentJob(KJob *job)
-{
-    _currentJob = job;
-    _progressBar->setValue(job->percent());
-    _progressBar->setEnabled(true);
-     _menuAction->setEnabled(true);
-    _pauseResumeAction->setEnabled(true);
-    _pauseResumeAction->setToolTip(i18n("Pause Job"));
-    if (_currentJob->isSuspended())
-        slotSuspended(job);
-    else
-        slotResumed(job);
-    _cancelAction->setEnabled(true);
-    _cancelAction->setIcon(QIcon::fromTheme("remove"));
-    _cancelAction->setToolTip(i18n("Cancel Job"));
+    JobMenuAction *menuAction = new JobMenuAction(job, _controlAction);
+    connect(menuAction, &QObject::destroyed, this, &JobMan::slotUpdateControlAction);
+    _controlAction->menu()->addAction(menuAction);
+    slotUpdateControlAction();
 
     // KJob has two percent() functions
     connect(job, SIGNAL(percent(KJob *, unsigned long)), this,
             SLOT(slotPercent(KJob *, unsigned long)));
     connect(job, &KJob::description, this, &JobMan::slotDescription);
     connect(job, &KJob::finished, this, &JobMan::slotFinished);
-    connect(job, &KJob::suspended, this, &JobMan::slotSuspended);
-    connect(job, &KJob::resumed, this, &JobMan::slotResumed);
+    connect(job, &KJob::suspended, this, &JobMan::updateUI);
+    connect(job, &KJob::resumed, this, &JobMan::updateUI);
+
+    updateUI();
+}
+
+void JobMan::slotPauseResumeButtonClicked()
+{
+    if (_jobs.isEmpty()) {
+        _controlAction->menu()->clear();
+        _controlAction->setEnabled(false);
+        return;
+    }
+
+    bool allPaused = true;
+    for (KJob *job: _jobs) {
+        allPaused &= job->isSuspended();
+    }
+
+    for (KJob *job: _jobs) {
+        if (allPaused)
+            job->resume();
+        else
+            job->suspend();
+    }
+}
+
+void JobMan::slotPercent(KJob *, unsigned long)
+{
+    updateUI();
+}
+
+void JobMan::slotDescription(KJob*,const QString &description, const QPair<QString,QString> &field1,
+                     const QPair<QString,QString> &field2)
+{
+    // TODO cache all descriptions
+    if (_jobs.length() > 1)
+        return;
+
+    _progressBar->setToolTip(
+        QString("%1\n%2: %3\n%4: %5")
+            .arg(description, field1.first, field1.second, field2.first, field2.second));
+}
+
+void JobMan::slotFinished(KJob *job)
+{
+    // Note: by default KJobs are deleting its after finished
+    _jobs.removeAll(job);
+
+    updateUI();
+}
+
+void JobMan::slotUpdateControlAction()
+{
+    _controlAction->setEnabled(!_controlAction->menu()->isEmpty());
+}
+
+void JobMan::updateUI()
+{
+    bool allPaused = true;
+    int totalPercent = 0;
+    for (KJob *job: _jobs) {
+        totalPercent += job->percent();
+        allPaused &= job->isSuspended();
+    }
+
+    bool hasJobs = !_jobs.isEmpty();
+    _progressBar->setEnabled(hasJobs);
+    if (hasJobs) {
+        _progressBar->setValue(totalPercent / _jobs.length());
+    } else {
+        _progressBar->reset();
+    }
+    if (!hasJobs)
+        _progressBar->setToolTip(i18n("No Jobs"));
+    if (_jobs.length() > 1)
+        _progressBar->setToolTip(i18n("%1 Jobs", _jobs.length()));
+
+    _controlAction->setIcon(QIcon::fromTheme(
+        !hasJobs ? "edit-clear" : !allPaused ? "media-playback-pause" : "media-playback-start"));
+    _controlAction->setToolTip(
+        !hasJobs ? i18n("Clear list") : !allPaused ? i18n("Pause All Jobs") :
+                                                     i18n("Resume All Jobs"));
 }

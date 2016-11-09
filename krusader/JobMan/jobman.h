@@ -53,10 +53,8 @@ class JobMan : public QObject
 
 public:
     explicit JobMan(QObject *parent = 0);
-    QAction *menuAction() { return _menuAction; }
+    QAction *controlAction() { return _controlAction; }
     QAction *progressAction() { return _progressAction; }
-    QAction *pauseResumeAction() { return _pauseResumeAction; }
-    QAction *cancelAction() { return _cancelAction; }
 
 public slots:
     /** Display, monitor and give user ability to control a job*/
@@ -64,24 +62,19 @@ public slots:
 
 protected slots:
     void slotPauseResumeButtonClicked();
-    void slotCancelButtonClicked();
-    void slotPercent(KJob *, unsigned long percent);
+    void slotPercent(KJob *, unsigned long);
     void slotDescription(KJob*,const QString &description, const QPair<QString,QString> &field1,
                          const QPair<QString,QString> &field2);
-    void slotFinished(KJob *);
-    void slotSuspended(KJob *);
-    void slotResumed(KJob *);
+    void slotFinished(KJob *job);
+    void slotUpdateControlAction();
 
 private:
-    void setCurrentJob(KJob *job);
+    void updateUI();
 
-    KJob *_currentJob;
+    QList<KJob *> _jobs;
 
-    KToolBarPopupAction *_menuAction;
+    KToolBarPopupAction *_controlAction;
     QProgressBar *_progressBar;
-    QAction *_pauseResumeAction;
-    QAction *_cancelAction;
-
     QAction *_progressAction;
 
     static const QString sDefaultToolTip;

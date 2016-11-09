@@ -1,4 +1,4 @@
-<!DOCTYPE kpartgui ><kpartgui version="23" name="krusader" >
+<!DOCTYPE kpartgui ><kpartgui version="24" name="krusader" >
  <MenuBar>
   <Menu name="file" >
    <text>&amp;File</text>
@@ -205,10 +205,8 @@
  </ToolBar>
  <ToolBar iconText="icononly" noMerge="1" name="jobToolBar" fullWidth="false" >
   <text>Job Toolbar</text>
-  <Action name="job menu" />
   <Action name="job progress" />
-  <Action name="job pause" />
-  <Action name="job cancel" />
+  <Action name="job control" />
  </ToolBar>
  <ToolBar iconText="icononly" noMerge="1" name="actionsToolBar" fullWidth="false" >
   <text>Actions Toolbar</text>
