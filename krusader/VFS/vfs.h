@@ -49,7 +49,6 @@
 #include "vfile.h"
 #include "krquery.h"
 
-class KMountMan;
 
 /**
  * An abstract virtual filesystem. Use the implementations of this class for all file operations.
@@ -134,8 +133,6 @@ public:
     /// Return a displayable string containing special filesystem meta information. Or an empty
     /// string by default.
     virtual QString metaInformation() { return QString(); }
-    /// Set the mount manager (for automounting).
-    void setMountMan(KMountMan *mountMan);
 
     /// Calculate the amount of space occupied by a file or directory in the current directory
     /// (recursive).
@@ -170,6 +167,8 @@ signals:
     /// Emitted when a new file operation job was created. The job may be prepared to be queued
     /// i.e. in suspend state.
     void newJob(KIO::Job *job);
+    /// Emitted before a directory path is opened for reading. Used for automounting.
+    void aboutToOpenDir(const QString &path);
 
 protected:
     /// Fill the vfs dictionary with vfiles, must be implemented for each VFS.
@@ -203,7 +202,6 @@ protected:
     VFS_TYPE _type;         // the vfs type.
     QUrl _currentDirectory; // the path or file the VFS originates from.
     bool _isRefreshing; // true if vfs is busy with refreshing
-    QPointer<KMountMan> _mountMan;
 
 protected slots:
     /// Handle result after job (except when refreshing!) finished

@@ -46,7 +46,6 @@
 #include <KIO/DirectorySizeJob>
 #include <KIO/JobUiDelegate>
 
-#include "../MountMan/kmountman.h"
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "krpermhandler.h"
@@ -183,8 +182,6 @@ void vfs::mayRefresh()
     }
     refresh();
 }
-
-void vfs::setMountMan(KMountMan *mountMan) { _mountMan = mountMan; }
 
 // ==== protected ====
 

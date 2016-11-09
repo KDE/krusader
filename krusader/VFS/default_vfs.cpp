@@ -48,7 +48,6 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "../krservices.h"
-#include "../MountMan/kmountman.h"
 
 default_vfs::default_vfs(): vfs(), _watcher()
 {
@@ -316,9 +315,8 @@ bool default_vfs::refreshLocal(const QUrl &directory) {
         return false;
     }
 
-    KConfigGroup group(krConfig, "Advanced");
-    if (group.readEntry("AutoMount", _AutoMount) && !_mountMan.isNull())
-        _mountMan->autoMount(path);
+    // mount if needed
+    emit aboutToOpenDir(path);
 
     // set the current directory...
     _currentDirectory = directory;

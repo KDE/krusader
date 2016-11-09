@@ -86,6 +86,7 @@ A
 #include "../Dialogs/checksumdlg.h"
 #include "../KViewer/krviewer.h"
 #include "../GUI/syncbrowsebutton.h"
+#include "../MountMan/kmountman.h"
 
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
@@ -307,7 +308,7 @@ void ListPanelFunc::doRefresh()
 
         // may get a new vfs for this url
         vfs* vfs = KrVfsHandler::instance().getVfs(url, files());
-        vfs->setMountMan(&krMtMan);
+        connect(vfs, &vfs::aboutToOpenDir, &krMtMan, &KMountMan::autoMount, Qt::DirectConnection);
         if (vfs != vfsP) {
             panel->view->setFiles(0);
 

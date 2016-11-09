@@ -65,7 +65,6 @@ public:
     void mount(QString mntPoint, bool blocking = true); // this is probably what you need for mount
     void unmount(QString mntPoint, bool blocking = true); // this is probably what you need for unmount
     mntStatus getStatus(QString mntPoint);    // return the status of a mntPoint (if any)
-    void autoMount(QString path);             // just call it before refreshing into a dir
     void eject(QString mntPoint);
     bool ejectable(QString path);
     bool removable(QString path);
@@ -86,6 +85,7 @@ public:
 
 public slots:
     void mainWindow();                        // opens up the GUI
+    void autoMount(QString path);             // just call it before refreshing into a dir
     void delayedPerformAction(QAction *);
     void performAction();
     void quickList();
