@@ -145,9 +145,11 @@ public:
     /// Return the input URL with a trailing slash if absent.
     static QUrl ensureTrailingSlash(const QUrl &url);
     /// Return the input URL without trailing slash.
-    static inline QUrl cleanUrl(const QUrl &url) {
+    static QUrl cleanUrl(const QUrl &url) {
         return url.adjusted(QUrl::StripTrailingSlash);
     }
+    /// Add 'file' scheme to non-empty URL without scheme
+    static QUrl preferLocalUrl(const QUrl &url);
 
 public slots:
     /// Re-read the current directory files or change to another directory. Blocking.

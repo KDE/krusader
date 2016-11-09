@@ -117,6 +117,15 @@ QUrl vfs::ensureTrailingSlash(const QUrl &url)
     return adjustedUrl;
 }
 
+QUrl vfs::preferLocalUrl(const QUrl &url){
+    if (url.isEmpty() || !url.scheme().isEmpty())
+        return url;
+
+    QUrl adjustedUrl = url;
+    adjustedUrl.setScheme("file");
+    return adjustedUrl;
+}
+
 bool vfs::refresh(const QUrl &directory)
 {
 

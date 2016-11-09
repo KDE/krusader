@@ -247,15 +247,19 @@ void default_vfs::slotRedirection(KIO::Job *job, const QUrl &url)
 {
    krOut << "default_vfs; redirection to " << url;
 
-   if (url.scheme() != _currentDirectory.scheme()) {
-       // abort and start over again, some protocols (iso) do this on transition to local fs
+   // some protocols (zip, tar) send redirect to local URL without scheme
+   const QUrl newUrl = preferLocalUrl(url);
+
+   if (newUrl.scheme() != _currentDirectory.scheme()) {
+       // abort and start over again,
+       // some protocols (iso, zip, tar) do this on transition to local fs
        job->kill();
        _isRefreshing = false;
-       refresh(url);
+       refresh(newUrl);
        return;
    }
 
-    _currentDirectory = cleanUrl(url);
+    _currentDirectory = cleanUrl(newUrl);
 }
 
 void default_vfs::slotWatcherDirty(const QString& path)
