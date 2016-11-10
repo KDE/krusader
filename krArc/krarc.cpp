@@ -1755,7 +1755,8 @@ QString kio_krarcProtocol::getPassword()
 
     authInfo.password.clear();
 
-    if (openPasswordDialog(authInfo, i18n("Accessing the file requires a password.")) && !authInfo.password.isNull()) {
+    if (openPasswordDialogV2(authInfo, i18n("Accessing the file requires a password.")) &&
+        !authInfo.password.isNull()) {
         KRDEBUG(authInfo.password);
         return (password = authInfo.password);
     }
