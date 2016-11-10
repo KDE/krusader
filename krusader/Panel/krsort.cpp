@@ -203,14 +203,8 @@ bool compareTextsCharacterCode(QString& aS1, QString& aS2, const KrViewPropertie
     }
 }
 
-bool compareTextsKrusader(QString& aS1, QString& aS2, const KrViewProperties * _viewProperties, bool asc, bool isName)
+bool compareTextsKrusader(const QString &aS1, const QString &aS2, const KrViewProperties *_viewProperties)
 {
-    // ensure "hidden" before others
-    //if (isName) {
-    //    if (aS1[0] == '.' && aS2[0] != '.') return asc;
-    //    if (aS1[0] != '.' && aS2[0] == '.') return !asc;
-    //}
-
     // sometimes, localeAwareCompare is not case sensitive. in that case, we need to fallback to a simple string compare (KDE bug #40131)
     if (((_viewProperties->sortOptions & KrViewProperties::IgnoreCase)
                 || _viewProperties->localeAwareCompareIsCaseSensitive)
@@ -251,7 +245,7 @@ bool compareTexts(QString aS1, QString aS2, const KrViewProperties * _viewProper
         return compareTextsCharacterCode(aS1, aS2, _viewProperties, true);
     case KrViewProperties::Krusader:
     default:
-        return compareTextsKrusader(aS1, aS2, _viewProperties, asc, isName);
+        return compareTextsKrusader(aS1, aS2, _viewProperties);
     }
 }
 
