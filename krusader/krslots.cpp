@@ -49,9 +49,6 @@
 #include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KMessageBox>
-#include <KXmlGui/KEditToolBar>
-#include <KXmlGui/KShortcutsDialog>
-#include <KXmlGui/KToolBar>
 
 #ifdef __KJSEMBED__
 #include <kjsembed/jsconsolewidget.h>
@@ -269,11 +266,9 @@ void KRslots::toggleCmdline()
     else MAIN_VIEW->cmdLine()->show();
 }
 
-void KRslots::toggleStatusbar()
+void KRslots::updateStatusbarVisibility()
 {
-    if (krApp->statusBar()->isVisible())
-        krApp->statusBar()->hide();
-    else krApp->statusBar()->show();
+    krApp->statusBar()->setVisible(KrActions::actShowStatusBar->isChecked());
 }
 
 void KRslots::toggleTerminal()
@@ -495,31 +490,6 @@ void KRslots::rootKrusader()
 
     if (!proc.startDetached())
         KMessageBox::error(0, i18n("Error executing %1.", proc.program()[0]));
-}
-
-// settings slots
-void KRslots::configToolbar()
-{
-    KConfigGroup cg(KSharedConfig::openConfig(), QString());
-    krApp->saveMainWindowSettings(cg);
-    QPointer<KEditToolBar> dlg = new KEditToolBar(krApp->factory());
-    connect(dlg, SIGNAL(newToolBarConfig()), this, SLOT(saveNewToolbarConfig()));
-    if (dlg->exec()) {
-        krApp->updateGUI();
-    }
-    delete dlg;
-}
-
-void KRslots::saveNewToolbarConfig()
-{
-    KConfigGroup cg(KSharedConfig::openConfig(), QString());
-    krApp->applyMainWindowSettings(cg);
-    krApp->updateGUI();
-}
-
-void KRslots::configKeys()
-{
-    KShortcutsDialog::configure(krApp->actionCollection(), KShortcutsEditor::LetterShortcutsAllowed, krMainWindow);
 }
 
 void KRslots::slotSplit()

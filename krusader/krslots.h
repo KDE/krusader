@@ -85,9 +85,7 @@ public slots:
     void swapPanels();
     void showHiddenFiles(bool show);
     void toggleSwapSides();
-    void configToolbar();
-    void configKeys();
-    void toggleStatusbar();
+    void updateStatusbarVisibility();
     void toggleTerminal();
     void compareSetup();
     void emptyTrash();
@@ -120,7 +118,6 @@ public slots:
     void slotQueueManager();
     void applicationStateChanged();
     void jsConsole();
-    void saveNewToolbarConfig();
 
 protected slots:
     void configChanged(bool isGUIRestartNeeded);

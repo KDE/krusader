@@ -120,7 +120,7 @@ QAction *Krusader::actShowJSConsole = 0;
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
                 Qt::Window | Qt::WindowTitleHint | Qt::WindowContextHelpButtonHint),
-        status(0), _listPanelActions(0), isStarting(true), isExiting(false)
+        _listPanelActions(0), isStarting(true), isExiting(false)
 {
     // create the "krusader"
     App = this;
@@ -213,7 +213,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     userMenu->hide();
 
     // create a status bar
-    status = new KrusaderStatus(this);
+    KrusaderStatus *status = new KrusaderStatus(this);
     setStatusBar(status);
     status->setWhatsThis(i18n("Statusbar will show basic information "
                               "about file below mouse pointer."));
@@ -241,8 +241,36 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
 
     if (! startProfile.isEmpty())
         MAIN_VIEW->profiles(startProfile);
-    // let the good times rool :)
-    updateGUI(true);
+
+    // restore gui settings
+    {
+        // now, check if we need to create a konsole_part
+        // call the XML GUI function to draw the UI
+        createGUI(MAIN_VIEW->terminalDock()->part());
+
+        // this needs to be called AFTER createGUI() !!!
+        updateUserActions();
+        _listPanelActions->guiUpdated();
+
+        // not using this. See savePosition()
+        //applyMainWindowSettings();
+
+        const KConfigGroup cfgToolbar(krConfig, "Main Toolbar");
+        toolBar()->applySettings(cfgToolbar);
+
+        const KConfigGroup cfgActionsBar(krConfig, "Actions Toolbar");
+        toolBar("actionsToolBar")->applySettings(cfgActionsBar);
+
+        const KConfigGroup cfgStartup(krConfig->group("Startup"));
+        toolBar()->setVisible(cfgStartup.readEntry("Show tool bar", _ShowToolBar));
+        toolBar("actionsToolBar")->setVisible(cfgStartup.readEntry("Show actions tool bar", _ShowActionsToolBar));
+        statusBar()->setVisible(cfgStartup.readEntry("Show status bar", _ShowStatusBar));
+
+        MAIN_VIEW->updateGUI(cfgStartup);
+
+        // popular urls
+        _popularUrls->load();
+    }
 
     if (runKonfig)
         SLOTS->runKonfigurator(true);
@@ -255,12 +283,8 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
 
     if (!runKonfig) {
         KConfigGroup cfg(krConfig, "Private");
-        if (cfg.readEntry("Maximized", false))
-            KWindowConfig::restoreWindowSize(windowHandle(), cfg);
-        else {
-            move(oldPos = cfg.readEntry("Start Position", _StartPosition));
-            resize(oldSize = cfg.readEntry("Start Size", _StartSize));
-        }
+        move(cfg.readEntry("Start Position", _StartPosition));
+        resize(cfg.readEntry("Start Size", _StartSize));
     }
 
     // view initialized; show window or tray
@@ -344,10 +368,9 @@ bool Krusader::versionControl()
 
 void Krusader::statusBarUpdate(QString& mess)
 {
-    // change the message on the statusbar for 2 seconds
-    if (status) // ugly!!!! But as statusBar() creates a status bar if there is no, I have to ask status to prevent
-        // the creation of the KDE default status bar instead of KrusaderStatus.
-        statusBar() ->showMessage(mess, 5000);
+    // change the message on the statusbar for 5 seconds
+    if (statusBar()->isVisible())
+        statusBar()->showMessage(mess, 5000);
 }
 
 void Krusader::showFromTray() {
@@ -390,16 +413,6 @@ void Krusader::changeEvent(QEvent *event) {
     }
 }
 
-void Krusader::moveEvent(QMoveEvent *e) {
-    oldPos = e->oldPos();
-    KParts::MainWindow::moveEvent(e);
-}
-
-void Krusader::resizeEvent(QResizeEvent *e) {
-    oldSize = e->oldSize();
-    KParts::MainWindow::resizeEvent(e);
-}
-
 bool Krusader::event(QEvent *e) {
     if(e->type() == QEvent::ApplicationPaletteChange) {
         KrColorCache::getColorCache().refreshColors();
@@ -426,25 +439,27 @@ void Krusader::setupActions() {
 
 void Krusader::savePosition() {
     KConfigGroup cfg(krConfig, "Private");
-    cfg.writeEntry("Maximized", isMaximized());
-    if (isMaximized()) {
-        KConfigGroup cg = krConfig->group("Private");
-        KWindowConfig::saveWindowSize(windowHandle(), cg, KConfigGroup::Normal);
-    }
-    else {
-        cfg.writeEntry("Start Position", isMaximized() ? oldPos : pos());
-        cfg.writeEntry("Start Size", isMaximized() ? oldSize : size());
-    }
+    cfg.writeEntry("Start Position", pos());
+    cfg.writeEntry("Start Size", size());
 
     cfg = krConfig->group("Startup");
     MAIN_VIEW->saveSettings(cfg);
 
-    saveMainWindowSettings(cfg);
+    // NOTE: this would save current window state/size, statusbar and settings for each toolbar.
+    // We are not using this and saving everything manually because
+    // - it does not save window position
+    // - window size save/restore does sometimes not work (multi-monitor setup)
+    // - saving the statubar visibility should be independent from window position and restoring it
+    // it does not work properly.
+    //KConfigGroup cfg = KConfigGroup(&cfg, "MainWindowSettings");
+    //saveMainWindowSettings(cfg);
+    //statusBar()->setVisible(cfg.readEntry("StatusBar", "Enabled") != "Disabled");
 
     krConfig->sync();
 }
 
 void Krusader::saveSettings() {
+    // save toolbar settings
     KConfigGroup cfg(krConfig, "Main Toolbar");
     toolBar()->saveSettings(cfg);
 
@@ -452,24 +467,19 @@ void Krusader::saveSettings() {
     toolBar("actionsToolBar")->saveSettings(cfg);
 
     cfg = krConfig->group("Startup");
+    cfg.writeEntry("Show tool bar", !toolBar()->isHidden());
+    cfg.writeEntry("Show actions tool bar", !toolBar("actionsToolBar")->isHidden());
+    cfg.writeEntry("Show status bar", statusBar()->isVisible());
 
-    bool rememberpos = cfg.readEntry("Remember Position", _RememberPos);
-    bool uisavesettings = cfg.readEntry("UI Save Settings", _UiSave);
-
-    // save size and position
-    if (rememberpos || uisavesettings)
+    // save panel and window settings
+    if (cfg.readEntry("Remember Position", _RememberPos))
         savePosition();
 
-    // save the gui
-    if (uisavesettings) {
-        cfg = krConfig->group("Startup");
-        cfg.writeEntry("Show status bar", KrActions::actShowStatusBar->isChecked());
-        cfg.writeEntry("Show tool bar", !toolBar()->isHidden());
-        cfg.writeEntry("Show actions tool bar", !toolBar("actionsToolBar")->isHidden());
+    // save the gui components visibility
+    if (cfg.readEntry("UI Save Settings", _UiSave)) {
         cfg.writeEntry("Show FN Keys", KrActions::actToggleFnkeys->isChecked());
         cfg.writeEntry("Show Cmd Line", KrActions::actToggleCmdline->isChecked());
         cfg.writeEntry("Show Terminal Emulator", KrActions::actToggleTerminal->isChecked());
-        cfg.writeEntry("Start To Tray", isHidden());
     }
 
     // save popular links
@@ -579,41 +589,6 @@ void Krusader::updateUserActions() {
         userActionMenu->addSeparator();
         krUserAction->populateMenu(userActionMenu, NULL);
     }
-}
-
-void Krusader::updateGUI(bool enforce) {
-    // now, check if we need to create a konsole_part
-    // call the XML GUI function to draw the UI
-    createGUI(MAIN_VIEW->terminalDock()->part());
-
-    // this needs to be called AFTER createGUI() !!!
-    updateUserActions();
-    _listPanelActions->guiUpdated();
-
-    KConfigGroup cfg_toolbar(krConfig, "Main Toolbar");
-    toolBar()->applySettings(cfg_toolbar);
-
-    KConfigGroup cfg_act(krConfig->group("Actions Toolbar"));
-    toolBar("actionsToolBar") ->applySettings(cfg_act);
-
-    KConfigGroup cfg(krConfig, "Startup");
-    if (enforce) {
-        applyMainWindowSettings(KConfigGroup(&cfg, "MainWindowSettings"));
-        // now, hide what need to be hidden
-        toolBar()->setVisible(cfg.readEntry("Show tool bar", _ShowToolBar));
-        toolBar("actionsToolBar")->setVisible(cfg.readEntry("Show actions tool bar", _ShowActionsToolBar));
-        if (!cfg.readEntry("Show status bar", _ShowStatusBar)) {
-            statusBar() ->hide();
-            KrActions::actShowStatusBar->setChecked(false);
-        } else {
-            statusBar() ->show();
-            KrActions::actShowStatusBar->setChecked(true);
-        }
-
-        MAIN_VIEW->updateGUI(cfg);
-    }
-    // popular urls
-    _popularUrls->load();
 }
 
 QString Krusader::getTempDir() {

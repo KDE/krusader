@@ -36,8 +36,8 @@
 #include <QFontDatabase>
 
 ///////////////////////   [Startup]
-// UI Save Settings
-#define _UiSave           false
+// UI Save component Settings
+#define _UiSave           true
 // Show Cmd Line
 #define _ShowCmdline      false
 // Show status bar
