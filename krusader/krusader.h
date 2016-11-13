@@ -131,7 +131,6 @@ public slots:
     void saveSettings();
     void savePosition();
     void updateUserActions();
-    void updateGUI(bool enforce = false);
 
 protected slots:
     void doOpenUrl();
@@ -144,8 +143,6 @@ protected:
     void setupActions();
     bool versionControl();  // handle version differences in krusaderrc
     void changeEvent(QEvent *even) Q_DECL_OVERRIDE;
-    void moveEvent(QMoveEvent *) Q_DECL_OVERRIDE;
-    void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE;
     bool event(QEvent *) Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
@@ -168,7 +165,6 @@ public:
     void stopWait();
     bool wasWaitingCancelled() const;
 
-    KrusaderStatus *status;
     static UserMenu *userMenu;
 
 #ifdef __KJSEMBED__
@@ -189,8 +185,6 @@ private:
     ListPanelActions *_listPanelActions;
     TabActions *_tabActions;
     QSystemTrayIcon *sysTray;
-    QPoint       oldPos;
-    QSize        oldSize;
     bool         isStarting;
     bool         isExiting;
     KrJobStarter jobStarter;

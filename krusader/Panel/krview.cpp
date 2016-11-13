@@ -276,9 +276,8 @@ void KrView::initProperties()
 void KrView::enableUpdateDefaultSettings(bool enable)
 {
     if(enable) {
-        KConfigGroup grpStartup(_config, "Startup");
-        _updateDefaultSettings = grpStartup.readEntry("Update Default Panel Settings", _RememberPos)
-                                        || grpStartup.readEntry("UI Save Settings", _UiSave);
+        const KConfigGroup grpStartup(_config, "Startup");
+        _updateDefaultSettings = grpStartup.readEntry("Update Default Panel Settings", _RememberPos);
     } else
         _updateDefaultSettings  = false;
 }

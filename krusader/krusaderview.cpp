@@ -162,7 +162,7 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, const QList<QU
     }
 }
 
-void KrusaderView::updateGUI(KConfigGroup &cfg)
+void KrusaderView::updateGUI(const KConfigGroup &cfg)
 {
     if (!cfg.readEntry("Show Cmd Line", _ShowCmdline)) {
         cmdLine()->hide();
