@@ -85,7 +85,7 @@ public slots:
     void swapPanels();
     void showHiddenFiles(bool show);
     void toggleSwapSides();
-    void toggleStatusbar();
+    void updateStatusbarVisibility();
     void toggleTerminal();
     void compareSetup();
     void emptyTrash();

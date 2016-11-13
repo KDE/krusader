@@ -192,7 +192,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     KToggleToolBarAction *actShowActionsToolBar = new KToggleToolBarAction(krusaderApp->toolBar("actionsToolBar"), i18n("Show Actions Toolbar"), krusaderApp);
     krusaderApp->actionCollection()->addAction("toggle actions toolbar", actShowActionsToolBar);
 
-    actShowStatusBar = KStandardAction::showStatusbar(SLOTS, SLOT(toggleStatusbar()), krusaderApp->actionCollection());
+    actShowStatusBar = KStandardAction::showStatusbar(SLOTS, SLOT(updateStatusbarVisibility()), krusaderApp->actionCollection());
     KStandardAction::quit(krusaderApp, SLOT(close()), krusaderApp->actionCollection());
     KStandardAction::configureToolbars(krusaderApp, SLOT(configureToolbars()), krusaderApp->actionCollection());
     KStandardAction::keyBindings(krusaderApp->guiFactory(), SLOT(configureShortcuts()), krusaderApp->actionCollection());

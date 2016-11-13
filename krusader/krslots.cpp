@@ -266,11 +266,9 @@ void KRslots::toggleCmdline()
     else MAIN_VIEW->cmdLine()->show();
 }
 
-void KRslots::toggleStatusbar()
+void KRslots::updateStatusbarVisibility()
 {
-    if (krApp->statusBar()->isVisible())
-        krApp->statusBar()->hide();
-    else krApp->statusBar()->show();
+    krApp->statusBar()->setVisible(KrActions::actShowStatusBar->isChecked());
 }
 
 void KRslots::toggleTerminal()
