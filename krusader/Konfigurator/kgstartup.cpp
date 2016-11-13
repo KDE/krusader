@@ -91,16 +91,8 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
     QGroupBox *uiGrp = createFrame(i18n("User Interface"), innerWidget);
     QGridLayout *uiGrid = createGridLayout(uiGrp);
 
-   KONFIGURATOR_CHECKBOX_PARAM uiCheckBoxes[] = { //   cfg_class, cfg_name, default, text, restart, ToolTip
-        {"Startup", "UI Save Settings", _UiSave, i18n("Save settings on exit"), true,
-            i18n("Check the state of the user interface components and restore them to their condition when last shutdown.") },
-        {"Startup", "Show status bar", _ShowStatusBar, i18n("Show statusbar"),  false, i18n("Statusbar will be visible after startup.") },
-        {"Startup", "Show tool bar", _ShowToolBar, i18n("Show toolbar"), false, i18n("Toolbar will be visible after startup.") },
-        {"Startup", "Show actions tool bar", _ShowActionsToolBar, i18n("Show actions toolbar"), false, i18n("Actions toolbar will be visible after startup.") },
-        {"Startup", "Show FN Keys",  _ShowFNkeys, i18n("Show function keys"), false, i18n("Function keys will be visible after startup.") },
-        {"Startup", "Show Cmd Line",  _ShowCmdline,  i18n("Show command line"), false, i18n("Command line will be visible after startup.") },
-        {"Startup", "Show Terminal Emulator", _ShowTerminalEmulator, i18n("Show terminal emulator"),  false,
-            i18n("Terminal emulator will be visible after startup.") },
+    KONFIGURATOR_CHECKBOX_PARAM uiSettings[] = {
+        // cfg_class cfg_name default text restart tooltip
         {"Startup", "Remember Position", _RememberPos,i18n("Save last position, size and panel settings"), false,
             i18n("<p>At startup, the main window will resize itself to the size it was when last shutdown. "
                  "It will also appear in the same location of the screen, having panels sorted and aligned as they were before.</p> "
@@ -112,10 +104,22 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
             i18n("Krusader starts to tray (if minimize to tray is set), without showing the main window") },
     };
 
-    uiCbGroup = createCheckBoxGroup(2, 0, uiCheckBoxes, 10, uiGrp);
+    KonfiguratorCheckBoxGroup *uiSettingsGroup = createCheckBoxGroup(1, 0, uiSettings, 3, uiGrp);
+    uiGrid->addWidget(uiSettingsGroup, 1, 0);
+
+   KONFIGURATOR_CHECKBOX_PARAM uiCheckBoxes[] = { //   cfg_class, cfg_name, default, text, restart, ToolTip
+        {"Startup", "UI Save Settings", _UiSave, i18n("Save component settings on exit"), false,
+            i18n("Check the state of the user interface components and restore them to their condition when last shutdown.") },
+        {"Startup", "Show FN Keys",  _ShowFNkeys, i18n("Show function keys"), false, i18n("Function keys will be visible after startup.") },
+        {"Startup", "Show Cmd Line",  _ShowCmdline,  i18n("Show command line"), false, i18n("Command line will be visible after startup.") },
+        {"Startup", "Show Terminal Emulator", _ShowTerminalEmulator, i18n("Show terminal emulator"),  false,
+            i18n("Terminal emulator will be visible after startup.") },
+    };
+
+    uiCbGroup = createCheckBoxGroup(1, 0, uiCheckBoxes, 4, uiGrp);
     connect(uiCbGroup->find("UI Save Settings"), SIGNAL(stateChanged(int)), this, SLOT(slotDisable()));
 
-    uiGrid->addWidget(uiCbGroup, 1, 0);
+    uiGrid->addWidget(uiCbGroup, 2, 0);
 
     slotDisable();
 
