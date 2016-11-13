@@ -39,6 +39,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KToolBarPopupAction>
 #include <KXmlGui/KToggleToolBarAction>
+#include <KXmlGui/KXMLGUIFactory>
 
 #include "defaults.h"
 #include "krusader.h"
@@ -193,8 +194,8 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     actShowStatusBar = KStandardAction::showStatusbar(SLOTS, SLOT(toggleStatusbar()), krusaderApp->actionCollection());
     KStandardAction::quit(krusaderApp, SLOT(close()), krusaderApp->actionCollection());
-    KStandardAction::configureToolbars(SLOTS, SLOT(configToolbar()), krusaderApp->actionCollection());
-    KStandardAction::keyBindings(SLOTS, SLOT(configKeys()), krusaderApp->actionCollection());
+    KStandardAction::configureToolbars(krusaderApp, SLOT(configureToolbars()), krusaderApp->actionCollection());
+    KStandardAction::keyBindings(krusaderApp->guiFactory(), SLOT(configureShortcuts()), krusaderApp->actionCollection());
 
     // the toggle actions
     NEW_KTOGGLEACTION(actToggleFnkeys, i18n("Show &FN Keys Bar"), 0, 0, SLOTS,  SLOT(toggleFnkeys()), "toggle fn bar");
