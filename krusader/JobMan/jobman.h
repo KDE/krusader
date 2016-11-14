@@ -55,6 +55,7 @@ public:
     explicit JobMan(QObject *parent = 0);
     QAction *controlAction() { return _controlAction; }
     QAction *progressAction() { return _progressAction; }
+    QAction *modeAction() { return _modeAction; }
 
 public slots:
     /** Display, monitor and give user ability to control a job*/
@@ -62,6 +63,7 @@ public slots:
 
 protected slots:
     void slotPauseResumeButtonClicked();
+    void slotModeChange(int index);
     void slotPercent(KJob *, unsigned long);
     void slotDescription(KJob*,const QString &description, const QPair<QString,QString> &field1,
                          const QPair<QString,QString> &field2);
@@ -69,13 +71,24 @@ protected slots:
     void slotUpdateControlAction();
 
 private:
+    enum JobMode {
+        //MODE_LAST = -1,
+        // NOTE: values used for combobox index
+        MODE_QUEUEING = 0,
+        MODE_PAUSED = 1,
+        MODE_UNMANAGED = 2,
+    };
+
     void updateUI();
+    bool jobsAreRunning();
 
     QList<KJob *> _jobs;
+    JobMode _currentMode;
 
     KToolBarPopupAction *_controlAction;
     QProgressBar *_progressBar;
     QAction *_progressAction;
+    QAction *_modeAction;
 
     static const QString sDefaultToolTip;
 };
