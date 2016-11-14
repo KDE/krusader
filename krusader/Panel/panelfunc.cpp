@@ -348,12 +348,18 @@ void ListPanelFunc::doRefresh()
 
         int savedHistoryState = history->state();
 
-        if (vfsP->refresh(url)) {
+        // NOTE: this is blocking. Returns false on error or interruption (cancel requested or panel
+        // was deleted)
+        const bool refreshed = vfsP->refresh(url);
+        if (refreshed) {
             // update the history and address bar, as the actual url might differ from the one requested
             history->setCurrentUrl(vfsP->currentDirectory());
             panel->urlNavigator->setLocationUrl(vfsP->currentDirectory());
             break; // we have a valid refreshed URL now
         }
+        if (!panel || !panel->view)
+            // this panel was deleted while refreshing
+            return;
 
         refreshFailed = true;
 

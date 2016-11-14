@@ -150,7 +150,7 @@ public:
 
 public slots:
     /// Re-read the current directory files or change to another directory. Blocking.
-    /// If the directory was read true is returned else false.
+    /// Returns true if directory was read. Returns false if failed or refresh job was killed.
     // optional TODO: add an async version of this
     bool refresh(const QUrl &directory = QUrl());
     /// Notify this VFS that the current directory content may have changed.
