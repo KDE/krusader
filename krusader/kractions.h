@@ -84,6 +84,7 @@ public:
     /** JobMan toolbar actions */
     static QAction *actJobProgress;
     static QAction *actJobControl;
+    static QAction *actJobMode;
 
 
 #ifdef __KJSEMBED__

@@ -111,6 +111,7 @@ KToggleAction *KrActions::actCompareDirs = 0;
 
 QAction *KrActions::actJobProgress = 0;
 QAction *KrActions::actJobControl = 0;
+QAction *KrActions::actJobMode = 0;
 
 #ifdef __KJSEMBED__
     static QAction *actShowJSConsole;
@@ -312,6 +313,8 @@ void KrActions::setupActions(Krusader *krusaderApp)
     krusaderApp->actionCollection()->setDefaultShortcut(actJobControl, Qt::CTRL + Qt::ALT + Qt::Key_P);
     actJobProgress = krJobMan->progressAction();
     krusaderApp->actionCollection()->addAction("job progress", actJobProgress);
+    actJobMode = krJobMan->modeAction();
+    krusaderApp->actionCollection()->addAction("job mode", actJobMode);
 
     // and at last we can set the tool-tips
     actKonfigurator->setToolTip(i18n("Setup Krusader the way you like it"));
