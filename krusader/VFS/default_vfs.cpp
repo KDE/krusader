@@ -59,7 +59,7 @@ void default_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
     const QUrl dest = resolveRelativePath(destination);
 
     KIO::JobFlags flags = showProgressInfo ? KIO::DefaultFlags : KIO::HideProgressInfo;
-    KIO::Job *job;
+    KIO::CopyJob *job;
     switch (mode) {
     case KIO::CopyJob::Move:
         job = KIO::move(urls, dest, flags);
@@ -67,14 +67,17 @@ void default_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
     case KIO::CopyJob::Link:
         job = KIO::link(urls, dest, flags);
         break;
-    default:
+    case KIO::CopyJob::Copy:
         job = KIO::copy(urls, dest, flags);
+        break;
     }
 
     connectJob(job, dest);
     if (mode == KIO::CopyJob::Move) { // notify source about removed files
         connectSourceVFS(job, urls);
     }
+
+    KIO::FileUndoManager::self()->recordCopyJob(job);
 
     if (enqueue) {
         bool succ = job->suspend();
@@ -95,6 +98,9 @@ void default_vfs::dropFiles(const QUrl &destination, QDropEvent *event)
     // (move/copy/link/abort). We have to assume the worst (move)
     connectJob(job, dest);
     connectSourceVFS(job, KUrlMimeData::urlsFromMimeData(event->mimeData()));
+
+    // NOTE: DrobJobs are internally recorded
+    //recordJobUndo(job, type, dst, src);
 
     emit newJob(job);
 }
@@ -136,6 +142,7 @@ void default_vfs::deleteFiles(const QStringList &fileNames, bool forceDeletion)
     const KConfigGroup group(krConfig, "General");
     if (!forceDeletion && isLocal() && group.readEntry("Move To Trash", _MoveToTrash)) {
         job = KIO::trash(fileUrls);
+        recordJobUndo(job, KIO::FileUndoManager::Trash, QUrl("trash:/"), fileUrls);
     } else {
         job = KIO::del(fileUrls);
     }
@@ -156,6 +163,8 @@ void default_vfs::rename(const QString &oldName, const QString &newName)
     const QUrl newUrl = getUrl(newName);
     KIO::Job *job = KIO::moveAs(oldUrl, newUrl, KIO::HideProgressInfo);
     connectJob(job, currentDirectory());
+
+    recordJobUndo(job, KIO::FileUndoManager::Rename, newUrl, {oldUrl});
 }
 
 void default_vfs::connectJob(KJob *job, const QUrl &destination)
@@ -384,4 +393,10 @@ QUrl default_vfs::resolveRelativePath(const QUrl &url)
     // if e.g. "/tmp/bin" is a link to "/bin",
     // resolve "/tmp/bin/.." to "/tmp" and not "/"
     return url.adjusted(QUrl::NormalizePathSegments);
+}
+
+void default_vfs::recordJobUndo(KIO::Job *job, KIO::FileUndoManager::CommandType type,
+                                const QUrl &dst, const QList<QUrl> &src)
+{
+    KIO::FileUndoManager::self()->recordJob(type, src, dst, job);
 }

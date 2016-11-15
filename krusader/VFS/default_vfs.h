@@ -36,6 +36,7 @@
 #include <QFileSystemWatcher>
 
 #include <KCoreAddons/KDirWatch>
+#include <KIOWidgets/KIO/FileUndoManager>
 
 
 /**
@@ -96,6 +97,8 @@ private:
     /// Returns the current path with symbolic links resolved
     QString realPath();
     static QUrl resolveRelativePath(const QUrl &url);
+    static void recordJobUndo(KIO::Job *job, KIO::FileUndoManager::CommandType type,
+                              const QUrl &dst, const QList<QUrl> &src = {});
 
     QPointer<KDirWatch> _watcher; // dir watcher used to detect changes in the current dir
     bool _listError;              // for async operation, return list job result
