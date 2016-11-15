@@ -56,19 +56,21 @@ public:
     QAction *controlAction() { return _controlAction; }
     QAction *progressAction() { return _progressAction; }
     QAction *modeAction() { return _modeAction; }
+    QAction *undoAction() { return _undoAction; }
 
 public slots:
     /** Display, monitor and give user ability to control a job*/
     void manageJob(KJob *job);
 
 protected slots:
-    void slotPauseResumeButtonClicked();
+    void slotControlActionTriggered();
     void slotModeChange(int index);
     void slotPercent(KJob *, unsigned long);
     void slotDescription(KJob*,const QString &description, const QPair<QString,QString> &field1,
                          const QPair<QString,QString> &field2);
     void slotFinished(KJob *job);
     void slotUpdateControlAction();
+    void slotUndoTextChange(const QString &text);
 
 private:
     enum JobMode {
@@ -89,6 +91,7 @@ private:
     QProgressBar *_progressBar;
     QAction *_progressAction;
     QAction *_modeAction;
+    QAction *_undoAction;
 
     static const QString sDefaultToolTip;
 };

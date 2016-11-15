@@ -9,5 +9,6 @@ target_link_libraries(JobMan
     KF5::ConfigCore
     KF5::CoreAddons
     KF5::I18n
+    KF5::KIOWidgets
     KF5::WidgetsAddons
 )

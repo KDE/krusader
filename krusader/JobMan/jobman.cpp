@@ -28,6 +28,7 @@
 #include <QWidgetAction>
 
 #include <KI18n/KLocalizedString>
+#include <KIOWidgets/KIO/FileUndoManager>
 
 #include <../krglobal.h>
 
@@ -155,10 +156,11 @@ const QString JobMan::sDefaultToolTip = i18n("No jobs");
 
 JobMan::JobMan(QObject *parent) : QObject(parent), _currentMode(MODE_QUEUEING)
 {
+    // job control action
     _controlAction = new KToolBarPopupAction(QIcon::fromTheme("media-playback-pause"),
                                           i18n("Play/Pause &Job"), this);
     _controlAction->setEnabled(false);
-    connect(_controlAction, &QAction::triggered, this, &JobMan::slotPauseResumeButtonClicked);
+    connect(_controlAction, &QAction::triggered, this, &JobMan::slotControlActionTriggered);
 
     QMenu *menu = new QMenu(krMainWindow);
     menu->setMinimumWidth(300);
@@ -166,6 +168,7 @@ JobMan::JobMan(QObject *parent) : QObject(parent), _currentMode(MODE_QUEUEING)
     menu->setStyleSheet("QMenu { menu-scrollable: 1; }");
     _controlAction->setMenu(menu);
 
+    // progress bar action
     _progressBar = new QProgressBar();
     _progressBar->setToolTip(sDefaultToolTip);
     _progressBar->setEnabled(false);
@@ -177,6 +180,7 @@ JobMan::JobMan(QObject *parent) : QObject(parent), _currentMode(MODE_QUEUEING)
     progressAction->setDefaultWidget(_progressBar);
     _progressAction = progressAction;
 
+    // job mode action
     QComboBox *modeBox = new QComboBox(krMainWindow);
     modeBox->addItem(QIcon::fromTheme("media-playlist-repeat"), i18n("Queue"));
     modeBox->setItemData(0, i18n("Run one job simultaneously"), Qt::ToolTipRole);
@@ -189,9 +193,20 @@ JobMan::JobMan(QObject *parent) : QObject(parent), _currentMode(MODE_QUEUEING)
     connect(modeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotModeChange(int)));
 
     QWidgetAction *modeAction = new QWidgetAction(krMainWindow);
-    modeAction->setText(i18n("Job Mode"));
+    modeAction->setText(i18n("Job Manager Mode"));
     modeAction->setDefaultWidget(modeBox);
     _modeAction = modeAction;
+
+    // undo action
+    KIO::FileUndoManager *undoManager = KIO::FileUndoManager::self();
+    undoManager->uiInterface()->setParentWidget(krMainWindow);
+
+    _undoAction = new QAction(QIcon::fromTheme("edit-undo"), i18n("Undo Last Job"));
+    _undoAction->setEnabled(false);
+    connect(_undoAction, &QAction::triggered, undoManager, &KIO::FileUndoManager::undo);
+    connect(undoManager, static_cast<void(KIO::FileUndoManager::*)(bool)>(&KIO::FileUndoManager::undoAvailable),
+            _undoAction, &QAction::setEnabled);
+    connect(undoManager, &KIO::FileUndoManager::undoTextChanged, this, &JobMan::slotUndoTextChange);
 }
 
 void JobMan::manageJob(KJob *job)
@@ -211,15 +226,13 @@ void JobMan::manageJob(KJob *job)
     connect(job, &KJob::resumed, this, &JobMan::updateUI);
 
     switch(_currentMode) {
-        case MODE_QUEUEING: {
+        case MODE_QUEUEING:
             if (jobsAreRunning())
                 job->suspend();
             break;
-        }
-        case MODE_PAUSED: {
+        case MODE_PAUSED:
             job->suspend();
             break;
-        }
         case MODE_UNMANAGED:
             break;
     }
@@ -229,7 +242,9 @@ void JobMan::manageJob(KJob *job)
     updateUI();
 }
 
-void JobMan::slotPauseResumeButtonClicked()
+// #### protected slots
+
+void JobMan::slotControlActionTriggered()
 {
     if (_jobs.isEmpty()) {
         _controlAction->menu()->clear();
@@ -289,6 +304,14 @@ void JobMan::slotUpdateControlAction()
 {
     _controlAction->setEnabled(!_controlAction->menu()->isEmpty());
 }
+
+void JobMan::slotUndoTextChange(const QString &text)
+{
+    _undoAction->setToolTip(KIO::FileUndoManager::self()->undoAvailable() ? text :
+                                                                            i18n("Undo Last Job"));
+}
+
+// #### private
 
 void JobMan::updateUI()
 {
