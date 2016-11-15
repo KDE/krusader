@@ -40,6 +40,7 @@
 #include <KIO/DeleteJob>
 #include <KIO/DropJob>
 #include <KIO/ListJob>
+#include <KIO/JobUiDelegate>
 #include <KIOCore/KFileItem>
 #include <KIOCore/KProtocolManager>
 
@@ -211,6 +212,12 @@ bool default_vfs::refreshInternal(const QUrl &directory, bool showHidden)
     connect(job, &KIO::ListJob::redirection, this, &default_vfs::slotRedirection);
     connect(job, &KIO::ListJob::permanentRedirection, this, &default_vfs::slotRedirection);
     connect(job, SIGNAL(result(KJob*)), this, SLOT(slotListResult(KJob*)));
+
+    // ensure connection credentials are asked only once
+    if(!parentWindow.isNull()) {
+        KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
+        ui->setWindow(parentWindow);
+    }
 
     emit refreshJobStarted(job);
 

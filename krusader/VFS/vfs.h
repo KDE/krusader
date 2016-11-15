@@ -147,6 +147,9 @@ public:
     /// Add 'file' scheme to non-empty URL without scheme
     static QUrl preferLocalUrl(const QUrl &url);
 
+    // set the parent window to be used for dialogs
+    void setParentWindow(QWidget *widget) { parentWindow = widget; }
+
 public slots:
     /// Re-read the current directory files or change to another directory. Blocking.
     /// Returns true if directory was read. Returns false if failed or refresh job was killed.
@@ -201,6 +204,7 @@ protected:
     VFS_TYPE _type;         // the vfs type.
     QUrl _currentDirectory; // the path or file the VFS originates from.
     bool _isRefreshing; // true if vfs is busy with refreshing
+    QPointer<QWidget> parentWindow;
 
 protected slots:
     /// Handle result after job (except when refreshing!) finished

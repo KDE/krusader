@@ -308,6 +308,7 @@ void ListPanelFunc::doRefresh()
 
         // may get a new vfs for this url
         vfs* vfs = KrVfsHandler::instance().getVfs(url, files());
+        vfs->setParentWindow(krMainWindow);
         connect(vfs, &vfs::aboutToOpenDir, &krMtMan, &KMountMan::autoMount, Qt::DirectConnection);
         if (vfs != vfsP) {
             panel->view->setFiles(0);
