@@ -85,6 +85,7 @@ public:
     static QAction *actJobProgress;
     static QAction *actJobControl;
     static QAction *actJobMode;
+    static QAction *actJobUndo;
 
 
 #ifdef __KJSEMBED__
