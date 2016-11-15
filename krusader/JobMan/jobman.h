@@ -31,21 +31,28 @@
 /**
  * @brief The job manager provides a progress dialog and control over (KIO) file operation jobs.
  *
- * Job manager does not have a window (or dialog). All funtions are provided via toolbar actions.
+ * Job manager does not have a window (or dialog). All functions are provided via toolbar actions
+ * Icon and text are already set for them, shortcuts are missing.
  *
+ * Job manager mode can have three states:
  * TODO
- * Jobs can be queued, i.e. they are given to the manager in suspend state and can be started
- * later by the user.
+ *  -queue: Only first job is started. If more jobs are incoming via manageJob() they are
+ *      suspended (if not already suspended). If the running job finishes the next job in line is
+ *      started.
+ *  -unmanaged: No job state changes are automatically done.
+ *  -paused: All incoming jobs are suspended (if not already suspended).
  *
- * Note that the desktop system (KDE Plasma shell) may also has control over the jobs.
+ * Note that the desktop system (e.g. KDE Plasma Shell) may also has control over the jobs.
  *
  * Reference: plasma-workspace/kuiserver/progresslistdelegate.h
  *
  * TODO: if a job still exists Krusader does not exit on quit() until the job is finished. If it is
  * suspended this takes forever.
  *
- * TODO
- * KIOWidgets/KIO/FileUndoManager
+ * About undoing jobs: All jobs are recorded in VFS and we listen to FileUndoManager (which is a
+ * singleton) about its capabilities here.
+ * It would be great if each job could be undone invividually but FileUndoManager is currently
+ * (KF5.27) only able to undo the last recorded job.
  */
 class JobMan : public QObject
 {
@@ -53,13 +60,16 @@ class JobMan : public QObject
 
 public:
     explicit JobMan(QObject *parent = 0);
+    /** Toolbar action icon for pausing/starting all jobs with drop down menu showing all jobs.*/
     QAction *controlAction() { return _controlAction; }
+    /** Toolbar action progress bar showing the average job progress percentage of all jobs.*/
     QAction *progressAction() { return _progressAction; }
+    /** Toolbar action combo box for changing the .*/
     QAction *modeAction() { return _modeAction; }
     QAction *undoAction() { return _undoAction; }
 
 public slots:
-    /** Display, monitor and give user ability to control a job*/
+    /** Display, monitor and give user ability to control a job.*/
     void manageJob(KJob *job);
 
 protected slots:
@@ -73,6 +83,7 @@ protected slots:
     void slotUndoTextChange(const QString &text);
 
 private:
+    /** See description above.*/
     enum JobMode {
         //MODE_LAST = -1,
         // NOTE: values used for combobox index
