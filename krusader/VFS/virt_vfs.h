@@ -23,8 +23,6 @@
 // QtCore
 #include <QHash>
 
-#include <KConfigCore/KConfig>
-
 #include "vfs.h"
 
 /**

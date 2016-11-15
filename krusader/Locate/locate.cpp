@@ -68,6 +68,7 @@
 #include <QMenu>
 #include <QTreeWidget>
 
+#include <KConfigCore/KConfig>
 #include <KCoreAddons/KProcess>
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KFileItem>

@@ -45,6 +45,7 @@
 #include <QComboBox>
 #include <QVBoxLayout>
 
+#include <KConfigCore/KConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 

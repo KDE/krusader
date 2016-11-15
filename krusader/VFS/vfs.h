@@ -33,12 +33,11 @@
 #include "vfilecontainer.h"
 
 // QtCore
-#include <QString>
-#include <QList>
-#include <QObject>
 #include <QHash>
-#include <QPointer>
+#include <QList>
+#include <QString>
 #include <QUrl>
+#include <QPointer>
 // QtGui
 #include <QDropEvent>
 // QtWidgets

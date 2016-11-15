@@ -32,7 +32,6 @@
 
 // QtCore
 #include <QEventLoop>
-#include <QByteArray>
 #include <QDir>
 
 #include <KConfigCore/KSharedConfig>
@@ -41,7 +40,6 @@
 #include <KIO/DeleteJob>
 #include <KIO/DropJob>
 #include <KIO/ListJob>
-#include <KIO/JobUiDelegate>
 #include <KIOCore/KFileItem>
 #include <KIOCore/KProtocolManager>
 

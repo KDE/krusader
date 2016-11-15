@@ -49,6 +49,7 @@
 #include <QMenu>
 #include <QTabWidget>
 
+#include <KConfigCore/KConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
