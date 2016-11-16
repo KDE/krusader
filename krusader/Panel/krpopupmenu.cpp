@@ -63,9 +63,8 @@ void KrPopupMenu::run(const QPoint &pos, KrPanel *panel)
 /**
  * Copied from dolphin/src/dolphincontextmenu.cpp and modified to add only compress and extract submenus.
  */
-bool KrPopupMenu::addCompressAndExtractPluginActions()
+void KrPopupMenu::addCompressAndExtractPluginActions()
 {
-
     KFileItemListProperties props(_items);
 
     QVector<KPluginMetaData> jsonPlugins = KPluginLoader::findPlugins("kf5/kfileitemaction",
@@ -81,8 +80,6 @@ bool KrPopupMenu::addCompressAndExtractPluginActions()
             addActions(abstractPlugin->actions(props, this));
         }
     }
-
-    return !jsonPlugins.isEmpty();
 }
 
 KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), panel(thePanel), empty(false),
@@ -189,16 +186,13 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     uAct->setText(i18n("User Actions"));
 
     // add compress and extract plugins (if available)
-    bool success = addCompressAndExtractPluginActions();
+    addCompressAndExtractPluginActions();
 
-    /*
-     * When KF 5.25 is adopted by all distros, we can remove these 2 lines (and corresponding code)
-     * because since KF 5.25 compress and extract submenus are standalone plugins.
-     */
-    if (!success) {
-        fileItemActions.setItemListProperties(KFileItemListProperties(_items));
-        fileItemActions.addServiceActionsTo(this);
-    }
+    // NOTE: design and usability problem here. Services disabled in kservicemenurc settings won't
+    // be added to the menu. But Krusader does not provide a way do change these settings (only
+    // Dolphin does).
+    fileItemActions.setItemListProperties(KFileItemListProperties(_items));
+    fileItemActions.addServiceActionsTo(this);
 
     addSeparator();
 
