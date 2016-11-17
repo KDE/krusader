@@ -286,22 +286,6 @@ void ListPanelFunc::doRefresh()
 
     bool refreshFailed = false;
     while (true) {
-        QString tmp;
-
-        if (refreshFailed) {
-            tmp = history->currentUrl().fileName();
-            history->goForward();
-            QUrl t = history->currentUrl();
-            QString protocol = t.scheme();
-            if (protocol != QStringLiteral("file") && KProtocolInfo::protocolClass(protocol).toLower() == QStringLiteral(":local")) {
-                t.setScheme("file");
-                history->setCurrentUrl(t);
-                panel->vfsError->hide();
-            } else {
-                history->goBack();
-            }
-        }
-
         QUrl url = history->currentUrl();
 
         isEqualUrl = files()->currentDirectory().matches(url, QUrl::StripTrailingSlash);
@@ -341,11 +325,7 @@ void ListPanelFunc::doRefresh()
             panel->view->setCurrentItem(history->currentItem());
             panel->view->makeItemVisible(panel->view->getCurrentKrViewItem());
         }
-        if (!tmp.isEmpty())
-            panel->view->setNameToMakeCurrent(tmp);
-        else
-            panel->view->setNameToMakeCurrent(history->currentItem());
-
+        panel->view->setNameToMakeCurrent(history->currentItem());
 
         int savedHistoryState = history->state();
 
