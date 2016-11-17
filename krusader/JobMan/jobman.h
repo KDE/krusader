@@ -52,10 +52,10 @@ class KrJob;
  * TODO: if a job still exists Krusader does not exit on quit() until the job is finished. If it is
  * suspended this takes forever.
  *
- * About undoing jobs: All jobs are recorded in VFS and we listen to FileUndoManager (which is a
- * singleton) about its capabilities here.
- * It would be great if each job could be undone invividually but FileUndoManager is currently
- * (KF5.27) only able to undo the last recorded job.
+ * About undoing jobs: If jobs are recorded (all KrJobs are, some in VFS) we can undo them with
+ * FileUndoManager (which is a singleton) here.
+ * It would be great if each job in the job list could be undone invividually but FileUndoManager
+ * is currently (KF5.27) only able to undo the last recorded job.
  */
 class JobMan : public QObject
 {
@@ -64,12 +64,12 @@ class JobMan : public QObject
 public:
     explicit JobMan(QObject *parent = 0);
     /** Toolbar action icon for pausing/starting all jobs with drop down menu showing all jobs.*/
-    QAction *controlAction() { return _controlAction; }
+    QAction *controlAction() const { return _controlAction; }
     /** Toolbar action progress bar showing the average job progress percentage of all jobs.*/
-    QAction *progressAction() { return _progressAction; }
+    QAction *progressAction() const { return _progressAction; }
     /** Toolbar action combo box for changing the .*/
-    QAction *modeAction() { return _modeAction; }
-    QAction *undoAction() { return _undoAction; }
+    QAction *modeAction() const { return _modeAction; }
+    QAction *undoAction() const { return _undoAction; }
 
 public slots:
     /** Display, monitor and give user ability to control a job.
@@ -91,7 +91,6 @@ protected slots:
 private:
     /** See description above.*/
     enum JobMode {
-        //MODE_LAST = -1,
         // NOTE: values used for combobox index
         MODE_QUEUEING = 0,
         MODE_LAZY = 1,

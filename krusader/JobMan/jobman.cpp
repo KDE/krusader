@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (C) 2010 Jan Lepper <dehtris@yahoo.de>                          *
+ * Copyright (C) 2016 Krusader Krew                                          *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -56,7 +56,7 @@ public:
 
         _cancelButton = new QPushButton();
         _cancelButton->setIcon(QIcon::fromTheme("remove"));
-        _cancelButton->setToolTip(i18n("Cancel/Clear Job"));
+        _cancelButton->setToolTip(i18n("Cancel Job"));
         connect(_cancelButton, &QPushButton::clicked,
                 this, &JobMenuAction::slotCancelButtonClicked);
         layout->addWidget(_cancelButton, 1, 2);
@@ -356,7 +356,7 @@ void JobMan::updateUI()
     _controlAction->setIcon(QIcon::fromTheme(
         !hasJobs ? "edit-clear" : running ? "media-playback-pause" : "media-playback-start"));
     _controlAction->setToolTip(!hasJobs ? i18n("Clear list") : running ? i18n("Pause All Jobs") :
-                                                                         i18n("Resume All Jobs"));
+                                                                         i18n("Resume Job List"));
 }
 
 bool JobMan::jobsAreRunning()
