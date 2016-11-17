@@ -30,8 +30,8 @@
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KIO/FileUndoManager>
 
+#include <krjob.h>
 #include <../krglobal.h>
-
 
 /** The menu action entry for a job in the popup menu.*/
 class JobMenuAction : public QWidgetAction
@@ -39,11 +39,11 @@ class JobMenuAction : public QWidgetAction
     Q_OBJECT
 
 public:
-    JobMenuAction(KJob *job, QObject *parent) : QWidgetAction(parent), _job(job)
+    JobMenuAction(KrJob *krJob, QObject *parent) : QWidgetAction(parent), _krJob(krJob)
     {
         QWidget *container = new QWidget();
         QGridLayout *layout = new QGridLayout(container);
-        _description = new QLabel();
+        _description = new QLabel(krJob->description());
         _progressBar = new QProgressBar();
         layout->addWidget(_description, 0, 0, 1, 3);
         layout->addWidget(_progressBar, 1, 0);
@@ -63,17 +63,20 @@ public:
 
         setDefaultWidget(container);
 
-        connect(job, &KJob::description, this, &JobMenuAction::slotDescription);
-        connect(job, SIGNAL(percent(KJob *, unsigned long)), this,
-              SLOT(slotPercent(KJob *, unsigned long)));
-        connect(job, &KJob::suspended, this, &JobMenuAction::updatePauseResumeButton);
-        connect(job, &KJob::resumed, this, &JobMenuAction::updatePauseResumeButton);
-        connect(job, &KJob::result, this, &JobMenuAction::slotResult);
-        connect(job, &KJob::finished, this, &JobMenuAction::slotFinished);
-        connect(job, &KJob::warning, this,
-                [](KJob *, const QString &plain, const QString &) {
-                    krOut << "unexpected job warning: " << plain;
-                });
+        connect(krJob, &KrJob::started, this, [=](KJob *job) {
+            connect(job, &KJob::description, this, &JobMenuAction::slotDescription);
+            connect(job, SIGNAL(percent(KJob *, unsigned long)), this,
+                    SLOT(slotPercent(KJob *, unsigned long)));
+            connect(job, &KJob::suspended, this, &JobMenuAction::updatePauseResumeButton);
+            connect(job, &KJob::resumed, this, &JobMenuAction::updatePauseResumeButton);
+            connect(job, &KJob::result, this, &JobMenuAction::slotResult);
+            connect(job, &KJob::warning, this, [](KJob *, const QString &plain, const QString &) {
+                krOut << "unexpected job warning: " << plain;
+            });
+
+            updatePauseResumeButton();
+        });
+        connect(krJob, &KrJob::terminated, this, &JobMenuAction::slotTerminated);
     }
 
 protected slots:
@@ -98,8 +101,8 @@ protected slots:
 
     void updatePauseResumeButton()
     {
-        _pauseResumeButton->setIcon(QIcon::fromTheme(_job->isSuspended() ? "media-playback-start" :
-                                                                           "media-playback-pause"));
+        _pauseResumeButton->setIcon(QIcon::fromTheme(_krJob->isRunning() ? "media-playback-pause" :
+                                                                           "media-playback-start"));
     }
 
     void slotResult(KJob *job)
@@ -111,37 +114,37 @@ protected slots:
         }
     }
 
-    void slotFinished()
+    void slotTerminated()
     {
         _pauseResumeButton->setEnabled(false);
         _cancelButton->setIcon(QIcon::fromTheme("edit-clear"));
         _cancelButton->setToolTip(i18n("Clear"));
 
-        _job = 0;
+        _krJob = 0;
     }
 
     void slotPauseResumeButtonClicked()
     {
-        if (!_job)
+        if (!_krJob)
           return;
 
-        if (_job->isSuspended())
-          _job->resume();
+        if (_krJob->isRunning())
+            _krJob->pause();
         else
-          _job->suspend();
+            _krJob->start();
     }
 
     void slotCancelButtonClicked()
     {
-        if (_job) {
-          _job->kill();
+        if (_krJob) {
+          _krJob->cancel();
         } else {
           deleteLater();
         }
     }
 
 private:
-    KJob *_job;
+    KrJob *_krJob;
 
     QLabel *_description;
     QProgressBar *_progressBar;
@@ -209,7 +212,7 @@ JobMan::JobMan(QObject *parent) : QObject(parent), _currentMode(MODE_QUEUEING)
     connect(undoManager, &KIO::FileUndoManager::undoTextChanged, this, &JobMan::slotUndoTextChange);
 }
 
-void JobMan::manageJob(KJob *job)
+void JobMan::manageJob(KrJob *job, bool enqueue)
 {
 
     JobMenuAction *menuAction = new JobMenuAction(job, _controlAction);
@@ -217,24 +220,22 @@ void JobMan::manageJob(KJob *job)
     _controlAction->menu()->addAction(menuAction);
     slotUpdateControlAction();
 
-    // KJob has two percent() functions
-    connect(job, SIGNAL(percent(KJob *, unsigned long)), this,
-            SLOT(slotPercent(KJob *, unsigned long)));
-    connect(job, &KJob::description, this, &JobMan::slotDescription);
-    connect(job, &KJob::finished, this, &JobMan::slotFinished);
-    connect(job, &KJob::suspended, this, &JobMan::updateUI);
-    connect(job, &KJob::resumed, this, &JobMan::updateUI);
+    connect(job, &KrJob::started, this, &JobMan::slotKJobStarted);
+    connect(job, &KrJob::terminated, this, &JobMan::slotTerminated);
 
-    switch(_currentMode) {
-        case MODE_QUEUEING:
-            if (jobsAreRunning())
-                job->suspend();
-            break;
-        case MODE_PAUSED:
-            job->suspend();
-            break;
-        case MODE_UNMANAGED:
-            break;
+    // start
+    if (!enqueue) {
+        switch(_currentMode) {
+            case MODE_QUEUEING:
+                if (!jobsAreRunning())
+                    job->start();
+                break;
+            case MODE_LAZY:
+                break;
+            case MODE_UNMANAGED:
+                job->start();
+                break;
+        }
     }
 
     _jobs.append(job);
@@ -244,6 +245,16 @@ void JobMan::manageJob(KJob *job)
 
 // #### protected slots
 
+void JobMan::slotKJobStarted(KJob *job)
+{
+    // KJob has two percent() functions
+    connect(job, SIGNAL(percent(KJob *, unsigned long)), this,
+            SLOT(slotPercent(KJob *, unsigned long)));
+    connect(job, &KJob::description, this, &JobMan::slotDescription);
+    connect(job, &KJob::suspended, this, &JobMan::updateUI);
+    connect(job, &KJob::resumed, this, &JobMan::updateUI);
+}
+
 void JobMan::slotControlActionTriggered()
 {
     if (_jobs.isEmpty()) {
@@ -252,16 +263,26 @@ void JobMan::slotControlActionTriggered()
         return;
     }
 
-    bool allPaused = true;
-    for (KJob *job: _jobs) {
-        allPaused &= job->isSuspended();
-    }
-
-    for (KJob *job: _jobs) {
-        if (allPaused)
-            job->resume();
-        else
-            job->suspend();
+    const bool anyRunning = jobsAreRunning();
+    switch(_currentMode) {
+        case MODE_QUEUEING:
+            if (!anyRunning)
+                _jobs.first()->start();
+            else {
+                for (KrJob *job: _jobs)
+                    job->pause();
+            }
+            break;
+        case MODE_LAZY:
+            // falltrough
+        case MODE_UNMANAGED:
+            for (KrJob *job: _jobs) {
+                if (anyRunning)
+                    job->pause();
+                else
+                    job->start();
+            }
+            break;
     }
 }
 
@@ -287,14 +308,14 @@ void JobMan::slotDescription(KJob*,const QString &description, const QPair<QStri
             .arg(description, field1.first, field1.second, field2.first, field2.second));
 }
 
-void JobMan::slotFinished(KJob *job)
+void JobMan::slotTerminated(KrJob *krJob)
 {
     // Note: by default KJobs are deleted after finished
-    _jobs.removeAll(job);
+    _jobs.removeAll(krJob);
 
     if (_currentMode == MODE_QUEUEING && !_jobs.isEmpty() && !jobsAreRunning()) {
         // start next job
-        _jobs.first()->resume();
+        _jobs.first()->start();
     }
 
     updateUI();
@@ -316,7 +337,7 @@ void JobMan::slotUndoTextChange(const QString &text)
 void JobMan::updateUI()
 {
     int totalPercent = 0;
-    for (KJob *job: _jobs) {
+    for (KrJob *job: _jobs) {
         totalPercent += job->percent();
     }
     const bool hasJobs = !_jobs.isEmpty();
@@ -340,8 +361,8 @@ void JobMan::updateUI()
 
 bool JobMan::jobsAreRunning()
 {
-    for (KJob *job: _jobs)
-        if (!job->isSuspended())
+    for (KrJob *job: _jobs)
+        if (job->isRunning())
             return true;
 
     return false;

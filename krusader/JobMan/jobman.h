@@ -28,6 +28,9 @@
 #include <KCoreAddons/KJob>
 #include <KWidgetsAddons/KToolBarPopupAction>
 
+class KrJob;
+
+
 /**
  * @brief The job manager provides a progress dialog and control over (KIO) file operation jobs.
  *
@@ -69,16 +72,19 @@ public:
     QAction *undoAction() { return _undoAction; }
 
 public slots:
-    /** Display, monitor and give user ability to control a job.*/
-    void manageJob(KJob *job);
+    /** Display, monitor and give user ability to control a job.
+    *   If enqueued the job is not started. Otherwise this depends on the job manager mode.
+    */
+    void manageJob(KrJob *krJob, bool enqueue);
 
 protected slots:
+    void slotKJobStarted(KJob *krJob);
     void slotControlActionTriggered();
     void slotModeChange(int index);
     void slotPercent(KJob *, unsigned long);
     void slotDescription(KJob*,const QString &description, const QPair<QString,QString> &field1,
                          const QPair<QString,QString> &field2);
-    void slotFinished(KJob *job);
+    void slotTerminated(KrJob *krJob);
     void slotUpdateControlAction();
     void slotUndoTextChange(const QString &text);
 
@@ -88,14 +94,14 @@ private:
         //MODE_LAST = -1,
         // NOTE: values used for combobox index
         MODE_QUEUEING = 0,
-        MODE_PAUSED = 1,
+        MODE_LAZY = 1,
         MODE_UNMANAGED = 2,
     };
 
     void updateUI();
     bool jobsAreRunning();
 
-    QList<KJob *> _jobs;
+    QList<KrJob *> _jobs; // all jobs not terminated (finished or canceled) yet
     JobMode _currentMode;
 
     KToolBarPopupAction *_controlAction;

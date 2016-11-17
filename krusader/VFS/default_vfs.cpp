@@ -37,8 +37,8 @@
 #include <KConfigCore/KSharedConfig>
 #include <KCoreAddons/KUrlMimeData>
 #include <KI18n/KLocalizedString>
-#include <KIO/DeleteJob>
 #include <KIO/DropJob>
+#include <KIO/FileUndoManager>
 #include <KIO/ListJob>
 #include <KIO/JobUiDelegate>
 #include <KIOCore/KFileItem>
@@ -47,6 +47,7 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "../krservices.h"
+#include "../JobMan/krjob.h"
 
 default_vfs::default_vfs(): vfs(), _watcher()
 {
@@ -60,33 +61,12 @@ void default_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
     const QUrl dest = resolveRelativePath(destination);
 
     KIO::JobFlags flags = showProgressInfo ? KIO::DefaultFlags : KIO::HideProgressInfo;
-    KIO::CopyJob *job;
-    switch (mode) {
-    case KIO::CopyJob::Move:
-        job = KIO::move(urls, dest, flags);
-        break;
-    case KIO::CopyJob::Link:
-        job = KIO::link(urls, dest, flags);
-        break;
-    case KIO::CopyJob::Copy:
-        job = KIO::copy(urls, dest, flags);
-        break;
-    }
 
-    connectJob(job, dest);
+    KrJob *krJob = KrJob::copyJob(mode, urls, destination, flags, enqueue);
+    connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectJob(job, dest); });
     if (mode == KIO::CopyJob::Move) { // notify source about removed files
-        connectSourceVFS(job, urls);
+        connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectSourceVFS(job, urls); });
     }
-
-    KIO::FileUndoManager::self()->recordCopyJob(job);
-
-    if (enqueue) {
-        bool succ = job->suspend();
-        if (!succ)
-            krOut << "cannot suspend job";
-    }
-
-    emit newJob(job);
 }
 
 void default_vfs::dropFiles(const QUrl &destination, QDropEvent *event)
@@ -102,8 +82,6 @@ void default_vfs::dropFiles(const QUrl &destination, QDropEvent *event)
 
     // NOTE: DrobJobs are internally recorded
     //recordJobUndo(job, type, dst, src);
-
-    emit newJob(job);
 }
 
 void default_vfs::connectSourceVFS(KJob *job, const QList<QUrl> urls)
@@ -139,17 +117,11 @@ void default_vfs::deleteFiles(const QStringList &fileNames, bool forceDeletion)
     const QList<QUrl> fileUrls = getUrls(fileNames);
 
     // delete or move to trash?
-    KIO::Job *job;
     const KConfigGroup group(krConfig, "General");
-    if (!forceDeletion && isLocal() && group.readEntry("Move To Trash", _MoveToTrash)) {
-        job = KIO::trash(fileUrls);
-        recordJobUndo(job, KIO::FileUndoManager::Trash, QUrl("trash:/"), fileUrls);
-    } else {
-        job = KIO::del(fileUrls);
-    }
-    connectJob(job, currentDirectory());
-
-    emit newJob(job);
+    const bool moveToTrash = !forceDeletion && isLocal()
+                             && group.readEntry("Move To Trash", _MoveToTrash);
+    KrJob *krJob = KrJob::deleteJob(fileUrls, moveToTrash);
+    connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectJob(job, currentDirectory()); });
 }
 
 void default_vfs::mkDir(const QString &name)
@@ -165,7 +137,7 @@ void default_vfs::rename(const QString &oldName, const QString &newName)
     KIO::Job *job = KIO::moveAs(oldUrl, newUrl, KIO::HideProgressInfo);
     connectJob(job, currentDirectory());
 
-    recordJobUndo(job, KIO::FileUndoManager::Rename, newUrl, {oldUrl});
+    KIO::FileUndoManager::self()->recordJob(KIO::FileUndoManager::Rename, {oldUrl}, newUrl, job);
 }
 
 void default_vfs::connectJob(KJob *job, const QUrl &destination)
@@ -400,10 +372,4 @@ QUrl default_vfs::resolveRelativePath(const QUrl &url)
     // if e.g. "/tmp/bin" is a link to "/bin",
     // resolve "/tmp/bin/.." to "/tmp" and not "/"
     return url.adjusted(QUrl::NormalizePathSegments);
-}
-
-void default_vfs::recordJobUndo(KIO::Job *job, KIO::FileUndoManager::CommandType type,
-                                const QUrl &dst, const QList<QUrl> &src)
-{
-    KIO::FileUndoManager::self()->recordJob(type, src, dst, job);
 }

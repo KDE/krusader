@@ -1,7 +1,8 @@
 include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
 
 set(JobMan_SRCS
-    jobman.cpp)
+    jobman.cpp
+    krjob.cpp)
 
 add_library(JobMan STATIC ${JobMan_SRCS})
 

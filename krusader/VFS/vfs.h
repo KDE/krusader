@@ -166,9 +166,6 @@ signals:
     void error(const QString &msg);
     /// Emitted when the content of a directory was changed by this VFS.
     void filesystemChanged(const QUrl &directory);
-    /// Emitted when a new file operation job was created. The job may be prepared to be queued
-    /// i.e. in suspend state.
-    void newJob(KIO::Job *job);
     /// Emitted before a directory path is opened for reading. Used for automounting.
     void aboutToOpenDir(const QString &path);
 
