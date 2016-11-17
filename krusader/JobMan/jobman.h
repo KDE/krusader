@@ -34,16 +34,12 @@ class KrJob;
 /**
  * @brief The job manager provides a progress dialog and control over (KIO) file operation jobs.
  *
- * Job manager does not have a window (or dialog). All functions are provided via toolbar actions
- * Icon and text are already set for them, shortcuts are missing.
+ * Job manager does not have a window (or dialog). All functions are provided via toolbar actions.
+ * Icon, text and tooltip are already set, shortcuts are missing.
  *
- * Job manager mode can have three states:
- * TODO
- *  -queue: Only first job is started. If more jobs are incoming via manageJob() they are
- *      suspended (if not already suspended). If the running job finishes the next job in line is
- *      started.
- *  -unmanaged: No job state changes are automatically done.
- *  -paused: All incoming jobs are suspended (if not already suspended).
+ * If Job manager queue mode is activated only the first job is started. If more jobs are incoming
+ * via manageJob() they are not started. If the running job finishes the next job in line is
+ * started.
  *
  * Note that the desktop system (e.g. KDE Plasma Shell) may also has control over the jobs.
  *
@@ -80,7 +76,6 @@ public slots:
 protected slots:
     void slotKJobStarted(KJob *krJob);
     void slotControlActionTriggered();
-    void slotModeChange(int index);
     void slotPercent(KJob *, unsigned long);
     void slotDescription(KJob*,const QString &description, const QPair<QString,QString> &field1,
                          const QPair<QString,QString> &field2);
@@ -89,19 +84,11 @@ protected slots:
     void slotUndoTextChange(const QString &text);
 
 private:
-    /** See description above.*/
-    enum JobMode {
-        // NOTE: values used for combobox index
-        MODE_QUEUEING = 0,
-        MODE_LAZY = 1,
-        MODE_UNMANAGED = 2,
-    };
-
     void updateUI();
     bool jobsAreRunning();
 
     QList<KrJob *> _jobs; // all jobs not terminated (finished or canceled) yet
-    JobMode _currentMode;
+    bool _queueMode;
 
     KToolBarPopupAction *_controlAction;
     QProgressBar *_progressBar;

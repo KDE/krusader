@@ -157,7 +157,7 @@ private:
 
 const QString JobMan::sDefaultToolTip = i18n("No jobs");
 
-JobMan::JobMan(QObject *parent) : QObject(parent), _currentMode(MODE_QUEUEING)
+JobMan::JobMan(QObject *parent) : QObject(parent), _queueMode(true)
 {
     // job control action
     _controlAction = new KToolBarPopupAction(QIcon::fromTheme("media-playback-pause"),
@@ -183,22 +183,12 @@ JobMan::JobMan(QObject *parent) : QObject(parent), _currentMode(MODE_QUEUEING)
     progressAction->setDefaultWidget(_progressBar);
     _progressAction = progressAction;
 
-    // job mode action
-    QComboBox *modeBox = new QComboBox(krMainWindow);
-    modeBox->addItem(QIcon::fromTheme("media-playlist-repeat"), i18n("Queue"));
-    modeBox->setItemData(0, i18n("Run one job simultaneously"), Qt::ToolTipRole);
-    modeBox->addItem(QIcon::fromTheme("chronometer-pause"), i18n("Pause"));
-    modeBox->setItemData(1, i18n("Added jobs are paused"), Qt::ToolTipRole);
-    modeBox->addItem(QIcon::fromTheme("media-playlist-shuffle"), i18n("Unmanaged"));
-    modeBox->setItemData(2, i18n("Run jobs at the same time"), Qt::ToolTipRole);
-    modeBox->setCurrentIndex(_currentMode);
-    modeBox->setToolTip(i18n("Change job manager mode"));
-    connect(modeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotModeChange(int)));
-
-    QWidgetAction *modeAction = new QWidgetAction(krMainWindow);
-    modeAction->setText(i18n("Job Manager Mode"));
-    modeAction->setDefaultWidget(modeBox);
-    _modeAction = modeAction;
+    // job queue mode action
+    _modeAction = new QAction(QIcon::fromTheme("media-playlist-repeat"), i18n("Job Queue Mode"), this);
+    _modeAction->setToolTip(i18n("Run one job simultaneously"));
+    _modeAction->setCheckable(true);
+    _modeAction->setChecked(_queueMode);
+    connect(_modeAction, &QAction::toggled, [=](bool checked) { _queueMode = checked; });
 
     // undo action
     KIO::FileUndoManager *undoManager = KIO::FileUndoManager::self();
@@ -223,19 +213,8 @@ void JobMan::manageJob(KrJob *job, bool enqueue)
     connect(job, &KrJob::started, this, &JobMan::slotKJobStarted);
     connect(job, &KrJob::terminated, this, &JobMan::slotTerminated);
 
-    // start
-    if (!enqueue) {
-        switch(_currentMode) {
-            case MODE_QUEUEING:
-                if (!jobsAreRunning())
-                    job->start();
-                break;
-            case MODE_LAZY:
-                break;
-            case MODE_UNMANAGED:
-                job->start();
-                break;
-        }
+    if (!enqueue && !(_queueMode && jobsAreRunning())) {
+        job->start();
     }
 
     _jobs.append(job);
@@ -264,31 +243,16 @@ void JobMan::slotControlActionTriggered()
     }
 
     const bool anyRunning = jobsAreRunning();
-    switch(_currentMode) {
-        case MODE_QUEUEING:
-            if (!anyRunning)
-                _jobs.first()->start();
-            else {
-                for (KrJob *job: _jobs)
-                    job->pause();
-            }
-            break;
-        case MODE_LAZY:
-            // falltrough
-        case MODE_UNMANAGED:
-            for (KrJob *job: _jobs) {
-                if (anyRunning)
-                    job->pause();
-                else
-                    job->start();
-            }
-            break;
+    if (!anyRunning && _queueMode) {
+        _jobs.first()->start();
+    } else {
+        for (KrJob *job : _jobs) {
+            if (anyRunning)
+                job->pause();
+            else
+                job->start();
+        }
     }
-}
-
-void JobMan::slotModeChange(int index)
-{
-    _currentMode = static_cast<JobMode>(index);
 }
 
 void JobMan::slotPercent(KJob *, unsigned long)
@@ -313,7 +277,7 @@ void JobMan::slotTerminated(KrJob *krJob)
     // Note: by default KJobs are deleted after finished
     _jobs.removeAll(krJob);
 
-    if (_currentMode == MODE_QUEUEING && !_jobs.isEmpty() && !jobsAreRunning()) {
+    if (_queueMode && !_jobs.isEmpty() && !jobsAreRunning()) {
         // start next job
         _jobs.first()->start();
     }
