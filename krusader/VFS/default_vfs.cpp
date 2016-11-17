@@ -179,11 +179,10 @@ bool default_vfs::refreshInternal(const QUrl &directory, bool showHidden)
 
     // start the listing job
     KIO::ListJob *job = KIO::listDir(_currentDirectory, KIO::HideProgressInfo, showHidden);
-    connect(job, SIGNAL(entries(KIO::Job *, const KIO::UDSEntryList &)), this,
-            SLOT(slotAddFiles(KIO::Job *, const KIO::UDSEntryList &)));
+    connect(job, &KIO::ListJob::entries, this, &default_vfs::slotAddFiles);
     connect(job, &KIO::ListJob::redirection, this, &default_vfs::slotRedirection);
     connect(job, &KIO::ListJob::permanentRedirection, this, &default_vfs::slotRedirection);
-    connect(job, SIGNAL(result(KJob*)), this, SLOT(slotListResult(KJob*)));
+    connect(job, &KIO::Job::result, this, &default_vfs::slotListResult);
 
     // ensure connection credentials are asked only once
     if(!parentWindow.isNull()) {
@@ -196,7 +195,7 @@ bool default_vfs::refreshInternal(const QUrl &directory, bool showHidden)
     _listError = false;
     // ugly: we have to wait here until the list job is finished
     QEventLoop eventLoop;
-    connect(job, SIGNAL(finished(KJob*)), &eventLoop, SLOT(quit()));
+    connect(job, &KJob::finished, &eventLoop, &QEventLoop::quit);
     eventLoop.exec(); // blocking until quit()
 
     return !_listError;
@@ -348,10 +347,10 @@ bool default_vfs::refreshLocal(const QUrl &directory) {
     // if the current dir is a link path the watcher needs to watch the real path - and signal
     // parameters will be the real path
     _watcher->addDir(realPath(), KDirWatch::WatchFiles);
-    connect(_watcher, SIGNAL(dirty(const QString&)), this, SLOT(slotWatcherDirty(const QString&)));
+    connect(_watcher, &KDirWatch::dirty, this, &default_vfs::slotWatcherDirty);
     // NOTE: not connecting 'created' signal. A 'dirty' is send after that anyway
     //connect(_watcher, SIGNAL(created(const QString&)), this, SLOT(slotWatcherCreated(const QString&)));
-    connect(_watcher, SIGNAL(deleted(const QString&)), this, SLOT(slotWatcherDeleted(const QString&)));
+    connect(_watcher, &KDirWatch::deleted, this, &default_vfs::slotWatcherDeleted);
     _watcher->startScan(false);
 
     return true;

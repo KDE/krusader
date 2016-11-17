@@ -502,10 +502,8 @@ bool KRQuery::containsContent(QString file) const
 bool KRQuery::containsContent(QUrl url) const
 {
     KIO::TransferJob *contentReader = KIO::get(url, KIO::NoReload, KIO::HideProgressInfo);
-    connect(contentReader, SIGNAL(data(KIO::Job *, const QByteArray &)),
-            this, SLOT(containsContentData(KIO::Job *, const QByteArray &)));
-    connect(contentReader, SIGNAL(result(KJob*)),
-            this, SLOT(containsContentFinished(KJob*)));
+    connect(contentReader, &KIO::TransferJob::data, this, &KRQuery::containsContentData);
+    connect(contentReader, &KIO::Job::result, this, &KRQuery::containsContentFinished);
 
     busy = true;
     containsContentResult = false;

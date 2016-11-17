@@ -121,7 +121,7 @@ void virt_vfs::deleteFiles(const QStringList &fileNames, bool reallyDelete)
         job = KIO::del(filesUrls);
     }
 
-    connect(job, SIGNAL(result(KJob *)), this, SLOT(slotJobResult(KJob *)));
+    connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, false); });
     // refresh will remove the deleted files from the vfs dict...
     connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(currentDirectory()); });
 }
@@ -189,7 +189,7 @@ void virt_vfs::rename(const QString &fileName, const QString &newName)
     _virtVfsDict[currentDir()]->append(dest);
 
     KIO::Job *job = KIO::moveAs(vf->vfile_getUrl(), dest, KIO::HideProgressInfo);
-    connect(job, SIGNAL(result(KJob *)), this, SLOT(slotJobResult(KJob *)));
+    connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, false); });
     connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(currentDirectory()); });
 }
 
@@ -338,11 +338,11 @@ vfile *virt_vfs::createVFile(const QUrl &url)
     }
 
     KIO::StatJob *statJob = KIO::stat(url, KIO::HideProgressInfo);
-    connect(statJob, SIGNAL(result(KJob *)), this, SLOT(slotStatResult(KJob *)));
+    connect(statJob, &KIO::Job::result, this, &virt_vfs::slotStatResult);
 
     // ugly: we have to wait here until the stat job is finished
     QEventLoop eventLoop;
-    connect(statJob, SIGNAL(finished(KJob *)), &eventLoop, SLOT(quit()));
+    connect(statJob, &KJob::finished, &eventLoop, &QEventLoop::quit);
     eventLoop.exec(); // blocking until quit()
 
     if (_fileEntry.count() == 0) {

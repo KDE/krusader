@@ -205,7 +205,7 @@ protected:
 
 protected slots:
     /// Handle result after job (except when refreshing!) finished
-    void slotJobResult(KJob *job, bool refresh = false);
+    void slotJobResult(KJob *job, bool refresh);
 
 private slots:
     /// Handle result of KIO::DirectorySizeJob when calculating URL size

@@ -261,7 +261,7 @@ void vfs::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned lon
 
     _calcStatBusy = true;
     KIO::StatJob *statJob = KIO::stat(url, KIO::HideProgressInfo); // thread problem here
-    connect(statJob, SIGNAL(result(KJob *)), this, SLOT(slotCalcStatResult(KJob *)));
+    connect(statJob, &KIO::Job::result, this, &vfs::slotCalcStatResult);
 
     while (!(*stop) && _calcStatBusy) {
         usleep(1000);
@@ -278,7 +278,7 @@ void vfs::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned lon
     }
 
     KIO::DirectorySizeJob *directorySizeJob = KIO::directorySize(url);
-    connect(directorySizeJob, SIGNAL(result(KJob *)), this, SLOT(slotCalcKdsResult(KJob *)));
+    connect(directorySizeJob, &KIO::Job::result, this, &vfs::slotCalcKdsResult);
 
     while (!(*stop)) {
         // we are in a separate thread - so sleeping is OK
