@@ -105,54 +105,6 @@
           <itemizedlist>
             <listitem>
               <para>
-              <guilabel>Save settings on exit</guilabel>: If
-              checked, restores the user interface components to
-              their condition when last shut-down.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Show statusbar</guilabel>: If checked, the
-              <link linkend="mainwindow">Statusbar</link> is visible after
-              start-up.</para>
-            </listitem>
-	    <listitem>
-              <para>
-              <guilabel>Show actions toolbar</guilabel>: If checked, the
-              <link linkend="actions_toolbar">Actions Toolbar</link> is visible after
-              start-up.</para>
-            </listitem>
-	    <listitem>
-              <para>
-              <guilabel>Show toolbar</guilabel>: If checked,
-              <link linkend="mainwindow">Main Toolbar</link> is visible after
-              startup.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Show function keys</guilabel>: If checked,
-              the <link linkend="fnkeys">FN Keys Bar</link> is visible after
-              start-up.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Show command line</guilabel>: If checked,
-              the <link linkend="cmdline">Command Line</link> is visible after
-              start-up.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Update default panel settings</guilabel>: If checked,
-              the default panel settings will be updated after
-              start-up.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Show terminal emulator</guilabel>: If
-              checked, the <link linkend="termemu">Terminal emulator</link> is visible
-              after start-up.</para>
-            </listitem>
-            <listitem>
-              <para>
               <guilabel>Save last position, size and panel
               settings</guilabel>: When launched,
               &krusader; resizes itself to the size it
@@ -170,9 +122,45 @@
             </listitem>
             <listitem>
               <para>
+              <guilabel>Update default panel settings</guilabel>: If checked,
+              the default panel settings will be updated after
+              start-up.</para>
+            </listitem>
+            <listitem>
+              <para>
               <guilabel>Start to tray</guilabel>: if checked,
               &krusader; starts to tray (if minimize to
               tray is set), without showing the main window.</para>
+            </listitem>
+            <listitem>
+              <para>
+              <guilabel>Save component settings on exit</guilabel>: If
+              checked, restores the user interface components to
+              their condition when last shut-down.</para>
+            </listitem>
+            <listitem>
+              <para>
+              <guilabel>Show function keys</guilabel>: If checked,
+              the <link linkend="fnkeys">FN Keys Bar</link> is visible after
+              start-up.</para>
+            </listitem>
+            <listitem>
+              <para>
+              <guilabel>Show statusbar</guilabel>: If checked, the
+              <link linkend="mainwindow">Statusbar</link> is visible after
+              start-up. Available only if the <guilabel>Save component settings on exit</guilabel> item is unchecked.</para>
+            </listitem>
+            <listitem>
+              <para>
+              <guilabel>Show command line</guilabel>: If checked,
+              the <link linkend="cmdline">Command Line</link> is visible after
+              start-up. Available only if the <guilabel>Save component settings on exit</guilabel> item is unchecked.</para>
+            </listitem>
+            <listitem>
+              <para>
+              <guilabel>Show terminal emulator</guilabel>: If
+              checked, the <link linkend="termemu">Terminal emulator</link> is visible
+              after start-up. Available only if the <guilabel>Save component settings on exit</guilabel> item is unchecked.</para>
             </listitem>
           </itemizedlist></para>
         </listitem>
