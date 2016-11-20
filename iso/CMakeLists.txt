@@ -9,6 +9,7 @@ set(kio_iso_PART_SRCS
     kisofile.cpp
     qfilehack.cpp
     kiso.cpp
+    kisodebug.cpp
     iso.cpp)
 
 add_library(kio_iso MODULE ${kio_iso_PART_SRCS} ${libisofs_SRCS})

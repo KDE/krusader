@@ -29,6 +29,7 @@
 
 #include "kisofile.h"
 #include "kisodirectory.h"
+#include "kisodebug.h"
 
 /**
  * @short A class for reading (optionally compressed) iso9660 files.
