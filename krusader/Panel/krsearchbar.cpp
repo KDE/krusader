@@ -121,9 +121,9 @@ void KrSearchBar::showBar(SearchMode mode)
 void KrSearchBar::hideBar()
 {
     resetSearch();
+    if (_textBox->hasFocus())
+        _view->widget()->setFocus();
     hide();
-
-    _view->widget()->setFocus();
 }
 
 void KrSearchBar::resetSearch()
