@@ -1,4 +1,4 @@
-<!DOCTYPE kpartgui ><kpartgui version="26" name="krusader" >
+<!DOCTYPE kpartgui ><kpartgui version="27" name="krusader" >
  <MenuBar>
   <Menu name="file" >
    <text>&amp;File</text>
@@ -145,6 +145,7 @@
     <Action name="exec_terminal_external" />
     <Action name="exec_terminal_embedded" />
    </Menu>
+   <Action name="job mode"/>
    <Separator/>
    <Action name="options_configure_keybinding" />
    <Action name="options_configure_toolbars" />
@@ -208,7 +209,6 @@
   <Action name="job progress" />
   <Action name="job control" />
   <Action name="job undo" />
-  <Action name="job mode" />
  </ToolBar>
  <ToolBar iconText="icononly" noMerge="1" name="actionsToolBar" fullWidth="false" >
   <text>Actions Toolbar</text>

@@ -18,15 +18,17 @@
 
 #include "jobman.h"
 
+// QtCore
+#include <QUrl>
 // QtWidgets
 #include <QComboBox>
 #include <QLabel>
 #include <QMenu>
 #include <QPushButton>
-#include <QUrl>
 #include <QVBoxLayout>
 #include <QWidgetAction>
 
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KIO/FileUndoManager>
 
@@ -157,7 +159,7 @@ private:
 
 const QString JobMan::sDefaultToolTip = i18n("No jobs");
 
-JobMan::JobMan(QObject *parent) : QObject(parent), _queueMode(true)
+JobMan::JobMan(QObject *parent) : QObject(parent)
 {
     // job control action
     _controlAction = new KToolBarPopupAction(QIcon::fromTheme("media-playback-pause"),
@@ -184,11 +186,17 @@ JobMan::JobMan(QObject *parent) : QObject(parent), _queueMode(true)
     _progressAction = progressAction;
 
     // job queue mode action
-    _modeAction = new QAction(QIcon::fromTheme("media-playlist-repeat"), i18n("Job Queue Mode"), this);
-    _modeAction->setToolTip(i18n("Run one job simultaneously"));
+    KConfigGroup cfg(krConfig, "JobManager");
+    _queueMode = cfg.readEntry("Queue Mode", false);
+    _modeAction = new QAction(QIcon::fromTheme("media-playlist-repeat"), i18n("Job Queue Mode"),
+                              this);
+    _modeAction->setToolTip(i18n("Run only one job in parallel"));
     _modeAction->setCheckable(true);
     _modeAction->setChecked(_queueMode);
-    connect(_modeAction, &QAction::toggled, [=](bool checked) { _queueMode = checked; });
+    connect(_modeAction, &QAction::toggled, [=](bool checked) mutable {
+        _queueMode = checked;
+        cfg.writeEntry("Queue Mode", _queueMode);
+    });
 
     // undo action
     KIO::FileUndoManager *undoManager = KIO::FileUndoManager::self();
@@ -319,8 +327,9 @@ void JobMan::updateUI()
     const bool running = jobsAreRunning();
     _controlAction->setIcon(QIcon::fromTheme(
         !hasJobs ? "edit-clear" : running ? "media-playback-pause" : "media-playback-start"));
-    _controlAction->setToolTip(!hasJobs ? i18n("Clear list") : running ? i18n("Pause All Jobs") :
-                                                                         i18n("Resume Job List"));
+    _controlAction->setToolTip(!hasJobs ? i18n("Clear Job List") : running ?
+                                          i18n("Pause All Jobs") :
+                                          i18n("Resume Job List"));
 }
 
 bool JobMan::jobsAreRunning()
