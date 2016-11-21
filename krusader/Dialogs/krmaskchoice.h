@@ -33,9 +33,6 @@
 // QtWidgets
 #include <QDialog>
 
-class QVBoxLayout;
-class QHBoxLayout;
-class QGroupBox;
 class QLabel;
 class QListWidgetItem;
 class QPushButton;
@@ -53,7 +50,6 @@ public:
     KComboBox* selection;
     QLabel* PixmapLabel1;
     QLabel* label;
-    QGroupBox* GroupBox1;
     KrListWidget* preSelections;
     QPushButton* PushButton7;
     QPushButton* PushButton7_2;
@@ -67,12 +63,6 @@ public slots:
     virtual void deleteSelection();
     virtual void acceptFromList(QListWidgetItem *);
     virtual void currentItemChanged(QListWidgetItem *);
-
-protected:
-    QHBoxLayout* hbox;
-    QHBoxLayout* hbox_2;
-    QHBoxLayout* hbox_3;
-    QVBoxLayout* vbox;
 };
 
 #endif // KRMASKCHOICE_H
