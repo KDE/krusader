@@ -40,6 +40,7 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QDialogButtonBox>
 
 #include <KCompletion/KComboBox>
 #include <KI18n/KLocalizedString>
@@ -110,22 +111,12 @@ KRMaskChoice::KRMaskChoice(QWidget* parent)
     vbox->addWidget(PushButton7_3);
     vbox->addItem(new QSpacerItem(5, 5, QSizePolicy::Fixed, QSizePolicy::Expanding));
 
-    QHBoxLayout* ButtonLayout = new QHBoxLayout();
-    MainLayout->addLayout(ButtonLayout);
-
-    ButtonLayout->addItem(new QSpacerItem(5, 5, QSizePolicy::Expanding, QSizePolicy::Fixed));
-
-    PushButton3 = new QPushButton(this);
-    PushButton3->setText(i18n("OK"));
-    ButtonLayout->addWidget(PushButton3);
-
-    PushButton3_2 = new QPushButton(this);
-    PushButton3_2->setText(i18n("Cancel"));
-    ButtonLayout->addWidget(PushButton3_2);
+    QDialogButtonBox* ButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+    MainLayout->addWidget(ButtonBox);
 
     // signals and slots connections
-    connect(PushButton3_2, SIGNAL(clicked()), this, SLOT(reject()));
-    connect(PushButton3, SIGNAL(clicked()), this, SLOT(accept()));
+    connect(ButtonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(ButtonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(PushButton7, SIGNAL(clicked()), this, SLOT(addSelection()));
     connect(PushButton7_2, SIGNAL(clicked()), this, SLOT(deleteSelection()));
     connect(PushButton7_3, SIGNAL(clicked()), this, SLOT(clearSelections()));

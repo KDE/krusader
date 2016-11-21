@@ -54,8 +54,6 @@ public:
     QPushButton* PushButton7;
     QPushButton* PushButton7_2;
     QPushButton* PushButton7_3;
-    QPushButton* PushButton3;
-    QPushButton* PushButton3_2;
 
 public slots:
     virtual void addSelection();
