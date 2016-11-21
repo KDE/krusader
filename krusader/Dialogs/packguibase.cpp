@@ -59,6 +59,7 @@
 #include <KWidgetsAddons/KMessageBox>
 #include <KIO/Global>
 #include <KCompletion/KHistoryComboBox>
+#include <KWidgetsAddons/KStandardGuiItem>
 
 #include "../defaults.h"
 #include "../krglobal.h"
@@ -314,12 +315,12 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     hbox_6->addWidget(queueButton);
 
     okButton = new QPushButton(this);
-    okButton->setText(i18n("OK"));
+    KStandardGuiItem::assign(okButton, KStandardGuiItem::Ok);
     okButton->setDefault(true);
     hbox_6->addWidget(okButton);
 
     cancelButton = new QPushButton(this);
-    cancelButton->setText(i18n("Cancel"));
+    KStandardGuiItem::assign(cancelButton, KStandardGuiItem::Cancel);
     hbox_6->addWidget(cancelButton);
 
     grid->addLayout(hbox_6, 6, 0);
