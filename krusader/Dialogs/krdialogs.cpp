@@ -70,11 +70,13 @@ QUrl KChooseDir::get(const QString &text, const QUrl &url, const QUrl &cwd, KFil
     return u;
 }
 
-KChooseDir::ChooseResult KChooseDir::getCopyDir(const QString &text, const QUrl &url, const QUrl &cwd, bool preserveAttrs, const QUrl &baseURL)
+KChooseDir::ChooseResult KChooseDir::getCopyDir(const QString &text, const QUrl &url,
+                                                const QUrl &cwd, bool preserveAttrs,
+                                                const QUrl &baseURL)
 {
-    QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(vfs::ensureTrailingSlash(url),
-                                                                            text, preserveAttrs, krMainWindow,
-                                                                            true, baseURL));
+    QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(
+        vfs::ensureTrailingSlash(url), text, preserveAttrs, krMainWindow, true, baseURL));
+
     if (!preserveAttrs)
         dlg->hidePreserveAttrs();
 
@@ -96,9 +98,10 @@ KChooseDir::ChooseResult KChooseDir::getCopyDir(const QString &text, const QUrl 
     return result;
 }
 
-KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QString& _text, bool /*presAttrs*/, QWidget *parent,
-        bool modal, QUrl baseURL)
-        :   QDialog(parent), baseUrlCombo(0), copyDirStructureCB(0), queue(false)
+KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QString &_text,
+                                                 bool /*presAttrs*/, QWidget *parent, bool modal,
+                                                 QUrl baseURL)
+    : QDialog(parent), baseUrlCombo(0), copyDirStructureCB(0)
 {
     setWindowModality(modal ? Qt::WindowModal : Qt::NonModal);
 
@@ -145,31 +148,19 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QStr
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
-
     okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    QPushButton *queueButton = new QPushButton(i18n("F2 Queue"), this);
-    buttonBox->addButton(queueButton, QDialogButtonBox::ActionRole);
+    queueBox = new QCheckBox(i18n("En&queue Operation"), this);
+    buttonBox->addButton(queueBox, QDialogButtonBox::ActionRole);
+
     connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
-    connect(queueButton, SIGNAL(clicked()), SLOT(slotQueue()));
     connect(urlRequester_, SIGNAL(textChanged(QString)), SLOT(slotTextChanged(QString)));
 
     urlRequester_->setFocus();
     bool state = !urlName.isEmpty();
     okButton->setEnabled(state);
-}
-
-void KUrlRequesterDlgForCopy::keyPressEvent(QKeyEvent *e)
-{
-    switch (e->key()) {
-    case Qt::Key_F2:
-        slotQueue();
-        return;
-    default:
-        QDialog::keyPressEvent(e);
-    }
 }
 
 bool KUrlRequesterDlgForCopy::preserveAttrs()
@@ -189,12 +180,6 @@ void KUrlRequesterDlgForCopy::slotTextChanged(const QString & text)
 {
     bool state = !text.trimmed().isEmpty();
     okButton->setEnabled(state);
-}
-
-void KUrlRequesterDlgForCopy::slotQueue()
-{
-    queue = true;
-    accept();
 }
 
 void KUrlRequesterDlgForCopy::slotDirStructCBChanged()

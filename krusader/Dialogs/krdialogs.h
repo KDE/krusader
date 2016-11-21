@@ -57,8 +57,8 @@ public:
     struct ChooseResult {
         QUrl url;
         bool queue;
-        bool preserveAttrs;
-        QUrl baseURL;
+        bool preserveAttrs; // NOTE: field never read
+        QUrl baseURL;       // NOTE: field never read
     };
 
     /**
@@ -69,8 +69,6 @@ public:
      */
     static QUrl getFile(const QString &text, const QUrl &url, const QUrl &cwd);
     static QUrl getDir(const QString &text, const QUrl &url, const QUrl &cwd);
-    // MY TODO not everything used
-    // MY TODO make "queue" a toggle button
     static ChooseResult getCopyDir(const QString &text, const QUrl &url, const QUrl &cwd,
                                    bool preserveAttrs = false, const QUrl &baseURL = QUrl());
 
@@ -88,9 +86,7 @@ public:
     QUrl selectedURL() const;
     QUrl baseURL() const;
     bool preserveAttrs();
-    bool enqueue() {
-        return queue;
-    }
+    bool enqueue() { return queueBox->isChecked(); }
     bool copyDirStructure();
     void hidePreserveAttrs() {
 //         preserveAttrsCB->hide();
@@ -98,11 +94,7 @@ public:
 
     KUrlRequester *urlRequester();
 
-protected:
-    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-
 private slots:
-    void slotQueue();
     void slotTextChanged(const QString &);
     void slotDirStructCBChanged();
 private:
@@ -110,8 +102,8 @@ private:
     QComboBox *baseUrlCombo;
 //     QCheckBox *preserveAttrsCB;
     QCheckBox *copyDirStructureCB;
+    QCheckBox *queueBox;
     QPushButton *okButton;
-    bool queue;
 };
 
 class KRGetDate : public QDialog
