@@ -69,9 +69,9 @@ public:
 
 public slots:
     /** Display, monitor and give user ability to control a job.
-    *   If enqueued the job is not started. Otherwise this depends on the job manager mode.
-    */
-    void manageJob(KrJob *krJob, bool enqueue);
+     *  If enqueued the job is not started. Otherwise this depends on the job manager mode.
+     */
+    void manageJob(KrJob *krJob, bool enqueue = false);
 
 protected slots:
     void slotKJobStarted(KJob *krJob);

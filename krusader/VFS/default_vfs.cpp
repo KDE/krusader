@@ -47,6 +47,7 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "../krservices.h"
+#include "../JobMan/jobman.h"
 #include "../JobMan/krjob.h"
 
 default_vfs::default_vfs(): vfs(), _watcher()
@@ -62,11 +63,13 @@ void default_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
 
     KIO::JobFlags flags = showProgressInfo ? KIO::DefaultFlags : KIO::HideProgressInfo;
 
-    KrJob *krJob = KrJob::copyJob(mode, urls, destination, flags, enqueue);
+    KrJob *krJob = KrJob::createCopyJob(mode, urls, destination, flags);
     connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectJob(job, dest); });
     if (mode == KIO::CopyJob::Move) { // notify source about removed files
         connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectSourceVFS(job, urls); });
     }
+
+    krJobMan->manageJob(krJob, enqueue);
 }
 
 void default_vfs::dropFiles(const QUrl &destination, QDropEvent *event)
@@ -120,8 +123,10 @@ void default_vfs::deleteFiles(const QStringList &fileNames, bool forceDeletion)
     const KConfigGroup group(krConfig, "General");
     const bool moveToTrash = !forceDeletion && isLocal()
                              && group.readEntry("Move To Trash", _MoveToTrash);
-    KrJob *krJob = KrJob::deleteJob(fileUrls, moveToTrash);
+    KrJob *krJob = KrJob::createDeleteJob(fileUrls, moveToTrash);
     connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectJob(job, currentDirectory()); });
+
+    krJobMan->manageJob(krJob);
 }
 
 void default_vfs::mkDir(const QString &name)

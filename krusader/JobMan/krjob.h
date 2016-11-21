@@ -27,7 +27,7 @@
  * KIO::Jobs cannot be started in pause mode (and pausing direct after creation is buggy). Instead
  * a KrJob can be created which creates the KIO::Job on first start() call.
  *
- * All created jobs are managed by JobMan. If job is started it is recorded by KIO/FileUndoManager.
+ * Started jobs are recorded by KIO/FileUndoManager.
  *
  * KrJob is deleted after KIO::Job was deleted (which is after finished() call). Do not use
  * KIO::Job::finished() but KrJob::terminated() to be prepared for job deletion.
@@ -40,10 +40,10 @@ public:
     enum Type { Copy, Move, Link, Trash, Delete };
 
     /** Create a new copy, move, or link job. */
-    static KrJob *copyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &src,
-                         const QUrl &destination, KIO::JobFlags flags, bool enqueue);
+    static KrJob *createCopyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &src,
+                         const QUrl &destination, KIO::JobFlags flags);
     /** Create a new trash or delete job. */
-    static KrJob *deleteJob(const QList<QUrl> &urls, bool moveToTrash);
+    static KrJob *createDeleteJob(const QList<QUrl> &urls, bool moveToTrash);
 
     /** Start or resume this job. If job was started started() is emitted. */
     void start();

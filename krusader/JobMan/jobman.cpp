@@ -30,8 +30,8 @@
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KIO/FileUndoManager>
 
-#include <krjob.h>
-#include <../krglobal.h>
+#include "krjob.h"
+#include "../krglobal.h"
 
 /** The menu action entry for a job in the popup menu.*/
 class JobMenuAction : public QWidgetAction
