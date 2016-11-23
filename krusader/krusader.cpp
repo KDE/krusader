@@ -431,18 +431,12 @@ bool Krusader::queryClose() {
         return true;
     }
 
-    KConfigGroup cfg = krConfig->group("Look&Feel");
-    if (cfg.readEntry("Warn On Exit", _WarnOnExit)) {
-        // If user decides to cancel...
-        if (KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit?"))
-            != KMessageBox::Yes) {
-            // ... stop quit
-            return false;
-        }
-    }
+    const KConfigGroup cfg = krConfig->group("Look&Feel");
+    const bool confirmExit = cfg.readEntry("Warn On Exit", _WarnOnExit);
 
-    // wait until all KIO::job operations are terminated. Krusader won't exit before anyway
-    if (!krJobMan->waitForJobs())
+    // ask user and wait until all KIO::job operations are terminated. Krusader won't exit before
+    // that anyway
+    if (!krJobMan->waitForJobs(confirmExit))
         return false;
 
     /* First try to close the child windows, because it's the safer

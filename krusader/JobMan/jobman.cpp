@@ -210,19 +210,22 @@ JobMan::JobMan(QObject *parent) : QObject(parent), _messageBox(0)
     connect(undoManager, &KIO::FileUndoManager::undoTextChanged, this, &JobMan::slotUndoTextChange);
 }
 
-bool JobMan::waitForJobs()
+bool JobMan::waitForJobs(bool waitForUserInput)
 {
-    if (_jobs.isEmpty())
+    if (_jobs.isEmpty() && !waitForUserInput)
         return true;
 
     // attempt to get all job threads does not work
     //QList<QThread *> threads = krMainWindow->findChildren<QThread *>();
 
+    _autoCloseMessageBox = !waitForUserInput;
+
     _messageBox = new QMessageBox(krMainWindow);
-    _messageBox->setWindowTitle(i18n("Cancel all jobs?"));
-    _messageBox->setIconPixmap(QIcon::fromTheme("dialog-information")
+    _messageBox->setWindowTitle(i18n("Warning"));
+    _messageBox->setIconPixmap(QIcon::fromTheme("dialog-warning")
                              .pixmap(QMessageBox::standardIcon(QMessageBox::Information).size()));
-    _messageBox->addButton(i18n("Abort all jobs"), QMessageBox::AcceptRole);
+    _messageBox->setText(i18n("Are you sure you want to quit?"));
+    _messageBox->addButton(QMessageBox::Abort);
     _messageBox->addButton(QMessageBox::Cancel);
     _messageBox->setDefaultButton(QMessageBox::Cancel);
     for (KrJob *job: _jobs)
@@ -234,7 +237,7 @@ bool JobMan::waitForJobs()
     _messageBox = 0;
 
     // accepted -> cancel all jobs
-    if (result == QMessageBox::Accepted) {
+    if (result == QMessageBox::Abort) {
         for (KrJob *job: _jobs) {
             job->cancel();
         }
@@ -339,13 +342,20 @@ void JobMan::slotUndoTextChange(const QString &text)
 
 void JobMan::slotUpdateMessageBox()
 {
-    if (_jobs.isEmpty()) {
-        _messageBox->done(QMessageBox::Accepted);
+    if (_jobs.isEmpty() && _autoCloseMessageBox) {
+        _messageBox->done(QMessageBox::Abort);
         return;
     }
 
-    _messageBox->setText(i18np("There is one job operation left.",
-                               "There are %1 job operations left.", _jobs.length()));
+    if (_jobs.isEmpty()) {
+        _messageBox->setInformativeText("");
+        _messageBox->setButtonText(QMessageBox::Abort, "Quit");
+        return;
+    }
+
+    _messageBox->setInformativeText(i18np("There is one job operation left.",
+                                          "There are %1 job operations left.", _jobs.length()));
+    _messageBox->setButtonText(QMessageBox::Abort, "Abort Jobs and Quit");
 }
 
 // #### private

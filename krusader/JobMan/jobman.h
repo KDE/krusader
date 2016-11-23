@@ -70,12 +70,13 @@ public:
 
     /** Wait for all jobs to terminate (blocking!).
      *
-     * Returns true immediately if there are no jobs. Otherwise a modal UI dialog is shown and the
-     * user can abort all jobs or cancel the dialog with jobs left.
+     * Returns true immediately if there are no jobs and user input is not required. Otherwise a
+     * modal UI dialog is shown and the user can abort all jobs or cancel the dialog.
      *
-     * @return true if no jobs are running (anymore) else false
+     * @param waitForUserInput if true dialog is only closed after user interaction (button click)
+     * @return true if no jobs are running (anymore) and user wants to quit. Else false
      */
-    bool waitForJobs();
+    bool waitForJobs(bool waitForUserInput);
 
 public slots:
     /** Display, monitor and give user ability to control a job.
@@ -108,6 +109,7 @@ private:
     QAction *_undoAction;
 
     QMessageBox *_messageBox;
+    bool _autoCloseMessageBox;
 
     static const QString sDefaultToolTip;
 };
