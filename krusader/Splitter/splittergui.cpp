@@ -47,6 +47,7 @@
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QFrame>
+#include <QDialogButtonBox>
 
 #include <KConfigCore/KConfigGroup>
 #include <KConfigCore/KSharedConfig>
@@ -147,24 +148,10 @@ SplitterGUI::SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir) :
 
     grid->addWidget(separator, 4 , 0);
 
-    QHBoxLayout *splitButtons = new QHBoxLayout;
-    splitButtons->setSpacing(6);
-    splitButtons->setContentsMargins(0, 0, 0, 0);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+    buttonBox->button(QDialogButtonBox::Ok)->setText(i18n("&Split"));
 
-    QSpacerItem* spacer2 = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
-    splitButtons->addItem(spacer2);
-
-    QPushButton *splitBtn = new QPushButton(this);
-    splitBtn->setText(i18n("&Split"));
-    splitBtn->setIcon(QIcon::fromTheme("dialog-ok"));
-    splitButtons->addWidget(splitBtn);
-
-    QPushButton *cancelBtn = new QPushButton(this);
-    cancelBtn->setText(i18n("&Cancel"));
-    cancelBtn->setIcon(QIcon::fromTheme("dialog-cancel"));
-    splitButtons->addWidget(cancelBtn);
-
-    grid->addLayout(splitButtons, 5 , 0);
+    grid->addWidget(buttonBox, 5 , 0);
 
     setWindowTitle(i18n("Krusader::Splitter"));
 
@@ -174,8 +161,8 @@ SplitterGUI::SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir) :
 
     connect(sizeCombo, SIGNAL(activated(int)), this, SLOT(sizeComboActivated(int)));
     connect(deviceCombo, SIGNAL(activated(int)), this, SLOT(predefinedComboActivated(int)));
-    connect(cancelBtn, SIGNAL(clicked()), this, SLOT(reject()));
-    connect(splitBtn , SIGNAL(clicked()), this, SLOT(splitPressed()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox , SIGNAL(accepted()), this, SLOT(splitPressed()));
 
     predefinedComboActivated(0);
 }
