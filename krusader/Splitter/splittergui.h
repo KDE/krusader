@@ -44,7 +44,7 @@ class QCheckBox;
 class QDoubleSpinBox;
 
 
-class SplitterGUI : QDialog
+class SplitterGUI : public QDialog
 {
     Q_OBJECT
 private:
@@ -54,7 +54,6 @@ private:
 
     KIO::filesize_t                 userDefinedSize;
     int                             lastSelectedDevice;
-    int                             resultCode;
     KIO::filesize_t                 division;
 
     QDoubleSpinBox  *spinBox;
@@ -71,9 +70,6 @@ public:
         return urlReq->url();
     }
     KIO::filesize_t getSplitSize();
-    int     result()                {
-        return resultCode;
-    }
     bool overWriteFiles();
 
 public slots:

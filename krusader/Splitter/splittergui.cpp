@@ -84,7 +84,7 @@ const QList<SplitterGUI::PredefinedDevice> &SplitterGUI::predefinedDevices()
 
 SplitterGUI::SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir) :
         QDialog(parent),
-        userDefinedSize(0x100000), lastSelectedDevice(-1), resultCode(QDialog::Rejected),
+        userDefinedSize(0x100000), lastSelectedDevice(-1),
         division(1)
 {
     setModal(true);
@@ -178,7 +178,6 @@ SplitterGUI::SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir) :
     connect(splitBtn , SIGNAL(clicked()), this, SLOT(splitPressed()));
 
     predefinedComboActivated(0);
-    resultCode = exec();
 }
 
 SplitterGUI::~SplitterGUI()

@@ -521,7 +521,7 @@ void KRslots::slotSplit()
 
     SplitterGUI splitterGUI(MAIN_VIEW, fileURL, destDir);
 
-    if (splitterGUI.result() == QDialog::Accepted) {
+    if (splitterGUI.exec() == QDialog::Accepted) {
         bool splitToOtherPanel = splitterGUI.getDestinationDir().matches(ACTIVE_PANEL->otherPanel()->virtualPath(),
                                                                          QUrl::StripTrailingSlash);
 
