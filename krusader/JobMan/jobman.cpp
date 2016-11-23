@@ -159,7 +159,7 @@ private:
 
 const QString JobMan::sDefaultToolTip = i18n("No jobs");
 
-JobMan::JobMan(QObject *parent) : QObject(parent)
+JobMan::JobMan(QObject *parent) : QObject(parent), _messageBox(0)
 {
     // job control action
     _controlAction = new KToolBarPopupAction(QIcon::fromTheme("media-playback-pause"),
@@ -208,6 +208,40 @@ JobMan::JobMan(QObject *parent) : QObject(parent)
     connect(undoManager, static_cast<void(KIO::FileUndoManager::*)(bool)>(&KIO::FileUndoManager::undoAvailable),
             _undoAction, &QAction::setEnabled);
     connect(undoManager, &KIO::FileUndoManager::undoTextChanged, this, &JobMan::slotUndoTextChange);
+}
+
+bool JobMan::waitForJobs()
+{
+    if (_jobs.isEmpty())
+        return true;
+
+    // attempt to get all job threads does not work
+    //QList<QThread *> threads = krMainWindow->findChildren<QThread *>();
+
+    _messageBox = new QMessageBox(krMainWindow);
+    _messageBox->setWindowTitle(i18n("Cancel all jobs?"));
+    _messageBox->setIconPixmap(QIcon::fromTheme("dialog-information")
+                             .pixmap(QMessageBox::standardIcon(QMessageBox::Information).size()));
+    _messageBox->addButton(i18n("Abort all jobs"), QMessageBox::AcceptRole);
+    _messageBox->addButton(QMessageBox::Cancel);
+    _messageBox->setDefaultButton(QMessageBox::Cancel);
+    for (KrJob *job: _jobs)
+        connect(job, &KrJob::terminated, this, &JobMan::slotUpdateMessageBox);
+    slotUpdateMessageBox();
+
+    int result = _messageBox->exec(); // blocking
+    _messageBox->deleteLater();
+    _messageBox = 0;
+
+    // accepted -> cancel all jobs
+    if (result == QMessageBox::Accepted) {
+        for (KrJob *job: _jobs) {
+            job->cancel();
+        }
+        return true;
+    }
+    // else:
+    return false;
 }
 
 void JobMan::manageJob(KrJob *job, bool enqueue)
@@ -282,7 +316,6 @@ void JobMan::slotDescription(KJob*,const QString &description, const QPair<QStri
 
 void JobMan::slotTerminated(KrJob *krJob)
 {
-    // Note: by default KJobs are deleted after finished
     _jobs.removeAll(krJob);
 
     if (_queueMode && !_jobs.isEmpty() && !jobsAreRunning()) {
@@ -302,6 +335,17 @@ void JobMan::slotUndoTextChange(const QString &text)
 {
     _undoAction->setToolTip(KIO::FileUndoManager::self()->undoAvailable() ? text :
                                                                             i18n("Undo Last Job"));
+}
+
+void JobMan::slotUpdateMessageBox()
+{
+    if (_jobs.isEmpty()) {
+        _messageBox->done(QMessageBox::Accepted);
+        return;
+    }
+
+    _messageBox->setText(i18np("There is one job operation left.",
+                               "There are %1 job operations left.", _jobs.length()));
 }
 
 // #### private

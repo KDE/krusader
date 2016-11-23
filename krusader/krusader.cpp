@@ -441,6 +441,10 @@ bool Krusader::queryClose() {
         }
     }
 
+    // wait until all KIO::job operations are terminated. Krusader won't exit before anyway
+    if (!krJobMan->waitForJobs())
+        return false;
+
     /* First try to close the child windows, because it's the safer
        way to avoid crashes, then close the main window.
        If closing a child is not successful, then we cannot let the

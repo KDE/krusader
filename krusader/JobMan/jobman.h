@@ -22,6 +22,7 @@
 // QtCore
 #include <QAction>
 // QtWidgets
+#include <QMessageBox>
 #include <QPushButton>
 #include <QProgressBar>
 
@@ -45,8 +46,8 @@ class KrJob;
  *
  * Reference: plasma-workspace/kuiserver/progresslistdelegate.h
  *
- * TODO: if a job still exists Krusader does not exit on quit() until the job is finished. If it is
- * suspended this takes forever.
+ * If a job still exists Krusader does not exit on quit() until the job is finished. If the job is
+ * paused this takes forever. Call waitForJobs() before exit to prevent this.
  *
  * About undoing jobs: If jobs are recorded (all KrJobs are, some in VFS) we can undo them with
  * FileUndoManager (which is a singleton) here.
@@ -67,6 +68,15 @@ public:
     QAction *modeAction() const { return _modeAction; }
     QAction *undoAction() const { return _undoAction; }
 
+    /** Wait for all jobs to terminate (blocking!).
+     *
+     * Returns true immediately if there are no jobs. Otherwise a modal UI dialog is shown and the
+     * user can abort all jobs or cancel the dialog with jobs left.
+     *
+     * @return true if no jobs are running (anymore) else false
+     */
+    bool waitForJobs();
+
 public slots:
     /** Display, monitor and give user ability to control a job.
      *  If enqueued the job is not started. Otherwise this depends on the job manager mode.
@@ -82,6 +92,7 @@ protected slots:
     void slotTerminated(KrJob *krJob);
     void slotUpdateControlAction();
     void slotUndoTextChange(const QString &text);
+    void slotUpdateMessageBox();
 
 private:
     void updateUI();
@@ -95,6 +106,8 @@ private:
     QAction *_progressAction;
     QAction *_modeAction;
     QAction *_undoAction;
+
+    QMessageBox *_messageBox;
 
     static const QString sDefaultToolTip;
 };

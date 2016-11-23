@@ -47,7 +47,7 @@ public:
 
     /** Start or resume this job. If job was started started() is emitted. */
     void start();
-    /** Cancel this job and mark for deletion. */
+    /** Cancel this job and mark for deletion. terminated() will be emitted.*/
     void cancel();
     /** Suspend job (if started). */
     void pause();
