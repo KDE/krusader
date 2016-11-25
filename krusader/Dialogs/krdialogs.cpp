@@ -151,7 +151,7 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QStr
     okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    queueBox = new QCheckBox(i18n("En&queue Operation"), this);
+    queueBox = new QCheckBox(i18n("Start &Paused"), this);
     buttonBox->addButton(queueBox, QDialogButtonBox::ActionRole);
 
     connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
