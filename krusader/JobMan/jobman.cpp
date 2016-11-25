@@ -342,6 +342,9 @@ void JobMan::slotUndoTextChange(const QString &text)
 
 void JobMan::slotUpdateMessageBox()
 {
+    if (!_messageBox)
+        return;
+
     if (_jobs.isEmpty() && _autoCloseMessageBox) {
         _messageBox->done(QMessageBox::Abort);
         return;
