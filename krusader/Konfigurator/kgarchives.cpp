@@ -44,7 +44,7 @@
 #include "searchobject.h"
 #include "../defaults.h"
 #include "../krglobal.h"
-#include "../VFS/krarchandler.h"
+#include "../Archive/krarchandler.h"
 
 KgArchives::KgArchives(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)

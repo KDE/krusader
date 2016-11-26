@@ -60,7 +60,6 @@ public slots:
 //     void popErronousUrl();
     void immediateOpenUrl(const QUrl &url, bool disableLock = false);
     void rename(const QString &oldname, const QString &newname);
-    void calcSpace(KrViewItem *item);
 
     // actions
     void historyBackward();
@@ -77,14 +76,11 @@ public slots:
     void viewDlg();
     void edit();
     void editNew(); // create a new textfile and edit it
-    void copyFiles(bool enqueue = false);
-    void moveFiles(bool enqueue = false);
-    void copyFilesByQueue() {
-        copyFiles(true);
-    }
-    void moveFilesByQueue() {
-        moveFiles(true);
-    }
+    void moveFilesByQueue() { moveFiles(true); }
+    void copyFilesByQueue() { copyFiles(true); }
+    void moveFiles(bool enqueue = false) { copyFiles(enqueue, true); }
+    void copyFiles(bool enqueue = false, bool move = false);
+
     /*!
      * asks the user the new directory name
      */
@@ -97,7 +93,8 @@ public slots:
     void pack();
     void unpack();
     void testArchive();
-    void calcSpace(); // calculate the occupied space and show it in a dialog
+    // Calculate the occupied space of an item or the currently selected item and show it in a dialog
+    void calcSpace(KrViewItem *item = 0);
     void properties();
     void cut() {
         copyToClipboard(true);
@@ -113,10 +110,10 @@ public:
     vfs* files();  // return a pointer to the vfs
 
     inline vfile* getVFile(KrViewItem *item) {
-        return files()->vfs_search(item->name());
+        return files()->getVfile(item->name());
     }
     inline vfile* getVFile(const QString& name) {
-        return files()->vfs_search(name);
+        return files()->getVfile(name);
     }
 
     void refreshActions();
@@ -125,12 +122,9 @@ public:
     void displayOpenWithDialog(QList<QUrl> urls);
     QUrl browsableArchivePath(const QString &);
 
-    // calculate the occupied space. A dialog appears, if calculation lasts more than 3 seconds
-    // and disappears, if the calculation is done. Returns true, if the result is ok and false
-    // otherwise (Cancel was pressed).
-    bool calcSpace(const QStringList & items, KIO::filesize_t & totalSize, unsigned long & totalFiles, unsigned long & totalDirs);
     ListPanelFunc* otherFunc();
     bool atHome();
+    bool ignoreVFSErrors() { return _ignoreVFSErrors; }
 
 protected slots:
     // Load the current url from history and refresh vfs and panel to it. If this fails, try the
@@ -159,8 +153,8 @@ protected:
     static QPointer<ListPanelFunc> copyToClipboardOrigin;
 
 private:
-    QUrl getVirtualBaseURL();
     bool _refreshing; // ignore url changes while refreshing
+    bool _ignoreVFSErrors; // ignore (repeated) errors emitted by vfs;
 };
 
 #endif

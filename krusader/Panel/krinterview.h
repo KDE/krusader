@@ -61,7 +61,7 @@ public:
     virtual KrViewItem *findItemByVfile(vfile *vf) Q_DECL_OVERRIDE;
     virtual QString getCurrentItem() const Q_DECL_OVERRIDE;
     virtual KrViewItem* getKrViewItemAt(const QPoint &vp) Q_DECL_OVERRIDE;
-    virtual void setCurrentItem(const QString& name) Q_DECL_OVERRIDE;
+    virtual void setCurrentItem(const QString& name, const QModelIndex &fallbackToIndex=QModelIndex()) Q_DECL_OVERRIDE;
     virtual void setCurrentKrViewItem(KrViewItem *item) Q_DECL_OVERRIDE;
     virtual void makeItemVisible(const KrViewItem *item) Q_DECL_OVERRIDE;
     virtual bool isItemVisible(const KrViewItem *item) Q_DECL_OVERRIDE;

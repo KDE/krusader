@@ -23,6 +23,9 @@
 
 #include <KCoreAddons/KProcess>
 
+/**
+ * Used by ArcHandler.
+ */
 class Kr7zEncryptionChecker : public KProcess
 {
     Q_OBJECT

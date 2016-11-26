@@ -45,11 +45,21 @@
 #include "../defaults.h"
 
 
-QUrl KChooseDir::getFile(QString text, const QUrl& url, const QUrl& cwd)
+QUrl KChooseDir::getFile(const QString &text, const QUrl& url, const QUrl& cwd)
+{
+    return get(text, url, cwd, KFile::File);
+}
+
+QUrl KChooseDir::getDir(const QString &text, const QUrl& url, const QUrl& cwd)
+{
+    return get(text, url, cwd, KFile::Directory);
+}
+
+QUrl KChooseDir::get(const QString &text, const QUrl &url, const QUrl &cwd, KFile::Modes mode)
 {
     QScopedPointer<KUrlRequesterDialog> dlg(new KUrlRequesterDialog(vfs::ensureTrailingSlash(url), text, krMainWindow));
     dlg->urlRequester()->setStartDir(cwd);
-    dlg->urlRequester()->setMode(KFile::File);
+    dlg->urlRequester()->setMode(mode);
     dlg->exec();
     QUrl u = dlg->selectedUrl(); // empty if cancelled
     if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
@@ -60,27 +70,16 @@ QUrl KChooseDir::getFile(QString text, const QUrl& url, const QUrl& cwd)
     return u;
 }
 
-
-QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd)
+KChooseDir::ChooseResult KChooseDir::getCopyDir(const QString &text, const QUrl &url,
+                                                const QUrl &cwd, bool preserveAttrs,
+                                                const QUrl &baseURL)
 {
-    QScopedPointer<KUrlRequesterDialog> dlg(new KUrlRequesterDialog(vfs::ensureTrailingSlash(url), text, krMainWindow));
-    dlg->urlRequester()->setStartDir(cwd);
-    dlg->urlRequester()->setMode(KFile::Directory);
-    dlg->exec();
-    QUrl u = dlg->selectedUrl();
-    if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
-        if (QDir(u.path()).exists()) {
-            u.setScheme("file");
-        }
-    }
-    return u;
-}
+    QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(
+        vfs::ensureTrailingSlash(url), text, preserveAttrs, krMainWindow, true, baseURL));
 
-QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &queue)
-{
-    QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(vfs::ensureTrailingSlash(url),
-                                                                            text, false, krMainWindow));
-    dlg->hidePreserveAttrs();
+    if (!preserveAttrs)
+        dlg->hidePreserveAttrs();
+
     dlg->urlRequester()->setStartDir(cwd);
     dlg->urlRequester()->setMode(KFile::Directory);
     dlg->exec();
@@ -90,55 +89,19 @@ QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &qu
             u.setScheme("file");
         }
     }
-    queue = dlg->enqueue();
-    return u;
+
+    ChooseResult result;
+    result.url = u;
+    result.queue = dlg->enqueue();
+    result.preserveAttrs = dlg->preserveAttrs();
+    result.baseURL = dlg->copyDirStructure() ? dlg->baseURL() : QUrl();
+    return result;
 }
 
-QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &queue, bool &preserveAttrs)
-{
-    QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(vfs::ensureTrailingSlash(url),
-                                                                            text, preserveAttrs, krMainWindow));
-    dlg->urlRequester()->setStartDir(cwd);
-    dlg->urlRequester()->setMode(KFile::Directory);
-    dlg->exec();
-    QUrl u = dlg->selectedURL();
-    if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
-        if (QDir(u.path()).exists()) {
-            u.setScheme("file");
-        }
-    }
-    preserveAttrs = dlg->preserveAttrs();
-    queue = dlg->enqueue();
-    return u;
-}
-
-QUrl KChooseDir::getDir(QString text, const QUrl& url, const QUrl& cwd, bool &queue, bool &preserveAttrs, QUrl &baseURL)
-{
-    QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(vfs::ensureTrailingSlash(url),
-                                                                            text, preserveAttrs, krMainWindow,
-                                                                            true, baseURL));
-    dlg->urlRequester()->setStartDir(cwd);
-    dlg->urlRequester()->setMode(KFile::Directory);
-    dlg->exec();
-    QUrl u = dlg->selectedURL();
-    if (u.scheme() == "zip" || u.scheme() == "krarc" || u.scheme() == "tar" || u.scheme() == "iso") {
-        if (QDir(u.path()).exists()) {
-            u.setScheme("file");
-        }
-    }
-    if (dlg->copyDirStructure()) {
-        baseURL = dlg->baseURL();
-    } else {
-        baseURL = QUrl();
-    }
-    preserveAttrs = dlg->preserveAttrs();
-    queue = dlg->enqueue();
-    return u;
-}
-
-KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QString& _text, bool /*presAttrs*/, QWidget *parent,
-        bool modal, QUrl baseURL)
-        :   QDialog(parent), baseUrlCombo(0), copyDirStructureCB(0), queue(false)
+KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QString &_text,
+                                                 bool /*presAttrs*/, QWidget *parent, bool modal,
+                                                 QUrl baseURL)
+    : QDialog(parent), baseUrlCombo(0), copyDirStructureCB(0)
 {
     setWindowModality(modal ? Qt::WindowModal : Qt::NonModal);
 
@@ -185,35 +148,19 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QStr
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
-
     okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    QPushButton *queueButton = new QPushButton(i18n("F2 Queue"), this);
-    buttonBox->addButton(queueButton, QDialogButtonBox::ActionRole);
+    queueBox = new QCheckBox(i18n("Start &Paused"), this);
+    buttonBox->addButton(queueBox, QDialogButtonBox::ActionRole);
+
     connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
-    connect(queueButton, SIGNAL(clicked()), SLOT(slotQueue()));
     connect(urlRequester_, SIGNAL(textChanged(QString)), SLOT(slotTextChanged(QString)));
 
     urlRequester_->setFocus();
     bool state = !urlName.isEmpty();
     okButton->setEnabled(state);
-}
-
-KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy()
-{
-}
-
-void KUrlRequesterDlgForCopy::keyPressEvent(QKeyEvent *e)
-{
-    switch (e->key()) {
-    case Qt::Key_F2:
-        slotQueue();
-        return;
-    default:
-        QDialog::keyPressEvent(e);
-    }
 }
 
 bool KUrlRequesterDlgForCopy::preserveAttrs()
@@ -233,12 +180,6 @@ void KUrlRequesterDlgForCopy::slotTextChanged(const QString & text)
 {
     bool state = !text.trimmed().isEmpty();
     okButton->setEnabled(state);
-}
-
-void KUrlRequesterDlgForCopy::slotQueue()
-{
-    queue = true;
-    accept();
 }
 
 void KUrlRequesterDlgForCopy::slotDirStructCBChanged()

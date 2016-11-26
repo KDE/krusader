@@ -51,10 +51,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "UserAction/useraction.h"
 #include "MountMan/kmountman.h"
 #include "Dialogs/popularurls.h"
+#include "JobMan/jobman.h"
 
 QAction *KrActions::actCompare = 0;
 QAction *KrActions::actDiskUsage = 0;
-QAction *KrActions::actQueueManager = 0;
 QAction *KrActions::actHomeTerminal = 0;
 QAction *KrActions::actRemoteEncoding = 0;
 QAction *KrActions::actProfiles = 0;
@@ -110,6 +110,10 @@ KToggleAction *KrActions::actShowStatusBar = 0;
 KToggleAction *KrActions::actToggleHidden = 0;
 KToggleAction *KrActions::actCompareDirs = 0;
 
+QAction *KrActions::actJobProgress = 0;
+QAction *KrActions::actJobControl = 0;
+QAction *KrActions::actJobMode = 0;
+QAction *KrActions::actJobUndo = 0;
 
 #ifdef __KJSEMBED__
     static QAction *actShowJSConsole;
@@ -188,6 +192,9 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     KToggleToolBarAction *actShowToolBar = new KToggleToolBarAction(krusaderApp->toolBar(), i18n("Show Main Toolbar"), krusaderApp);
     krusaderApp->actionCollection()->addAction(KStandardAction::name(KStandardAction::ShowToolbar), actShowToolBar);
+
+    KToggleToolBarAction *actShowJobToolBar = new KToggleToolBarAction(krusaderApp->toolBar("jobToolBar"), i18n("Show Job Toolbar"), krusaderApp);
+    krusaderApp->actionCollection()->addAction("toggle show jobbar", actShowJobToolBar);
 
     KToggleToolBarAction *actShowActionsToolBar = new KToggleToolBarAction(krusaderApp->toolBar("actionsToolBar"), i18n("Show Actions Toolbar"), krusaderApp);
     krusaderApp->actionCollection()->addAction("toggle actions toolbar", actShowActionsToolBar);
@@ -276,7 +283,6 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actSyncDirs, i18n("Synchronize Fol&ders..."), "folder-sync", Qt::CTRL + Qt::Key_Y, SLOTS, SLOT(slotSynchronizeDirs()), "sync dirs");
 #endif
     NEW_KACTION(actDiskUsage, i18n("D&isk Usage..."), "kr_diskusage", Qt::ALT + Qt::SHIFT + Qt::Key_S, SLOTS, SLOT(slotDiskUsage()), "disk usage");
-    NEW_KACTION(actQueueManager, i18n("&Queue Manager..."), "document-multiple", Qt::ALT + Qt::SHIFT + Qt::Key_Q, SLOTS, SLOT(slotQueueManager()), "queue manager");
     NEW_KACTION(actKonfigurator, i18n("Configure &Krusader..."), "configure", 0, SLOTS, SLOT(startKonfigurator()), "konfigurator");
     NEW_KACTION(actSavePosition, i18n("Save &Position"), 0, 0, krusaderApp, SLOT(savePosition()), "save position");
     NEW_KACTION(actCompare, i18n("Compare b&y Content..."), "kr_comparedirs", 0, SLOTS, SLOT(compareContent()), "compare");
@@ -302,6 +308,18 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     NEW_KACTION(tmp, i18n("Move Focus Up"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Up, MAIN_VIEW, SLOT(focusUp()), "move_focus_up");
     NEW_KACTION(tmp, i18n("Move Focus Down"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Down, MAIN_VIEW, SLOT(focusDown()), "move_focus_down");
+
+    // job manager actions
+    actJobControl = krJobMan->controlAction();
+    krusaderApp->actionCollection()->addAction("job control", actJobControl);
+    krusaderApp->actionCollection()->setDefaultShortcut(actJobControl, Qt::CTRL + Qt::ALT + Qt::Key_P);
+    actJobProgress = krJobMan->progressAction();
+    krusaderApp->actionCollection()->addAction("job progress", actJobProgress);
+    actJobMode = krJobMan->modeAction();
+    krusaderApp->actionCollection()->addAction("job mode", actJobMode);
+    actJobUndo = krJobMan->undoAction();
+    krusaderApp->actionCollection()->addAction("job undo", actJobUndo);
+    krusaderApp->actionCollection()->setDefaultShortcut(actJobUndo, Qt::CTRL + Qt::ALT + Qt::Key_Z);
 
     // and at last we can set the tool-tips
     actKonfigurator->setToolTip(i18n("Setup Krusader the way you like it"));

@@ -61,7 +61,7 @@ void UserAction::removeKrAction(KrAction* action)
 
 void UserAction::setAvailability()
 {
-    setAvailability(ACTIVE_FUNC->files()->vfs_getFile(ACTIVE_PANEL->view->getCurrentItem()));
+    setAvailability(ACTIVE_FUNC->files()->getUrl(ACTIVE_PANEL->view->getCurrentItem()));
 }
 
 void UserAction::setAvailability(const QUrl &currentURL)

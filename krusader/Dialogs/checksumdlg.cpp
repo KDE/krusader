@@ -24,6 +24,8 @@
 #include "../GUI/krlistwidget.h"
 #include "../GUI/krtreewidget.h"
 
+#include <unistd.h>
+
 // QtCore
 #include <QFile>
 #include <QFileInfo>

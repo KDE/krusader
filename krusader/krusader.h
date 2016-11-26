@@ -57,8 +57,6 @@
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
 
-#include "VFS/kiojobwrapper.h"
-
 #ifdef __KJSEMBED__
 class KrJS;
 #endif
@@ -70,7 +68,6 @@ class KrusaderStatus;
 class KRPleaseWaitHandler;
 class UserMenu;
 class PopularUrls;
-class QueueManager;
 class ViewActions;
 class ListPanelActions;
 class TabActions;
@@ -154,7 +151,6 @@ public:
     static Krusader *App;       // a kApp style pointer
     static QString   AppName;   // the name of the application
     PopularUrls *_popularUrls; // holds a sorted list of the most popular urls visited
-    QueueManager *queueManager;
     // return a path to a temp dir or file we can use.
     QString getTempDir();
     QString getTempFile();
@@ -187,7 +183,6 @@ private:
     QSystemTrayIcon *sysTray;
     bool         isStarting;
     bool         isExiting;
-    KrJobStarter jobStarter;
     QTimer      _openUrlTimer;
     QString     _urlToOpen;
 };

@@ -23,67 +23,86 @@
 // QtCore
 #include <QHash>
 
-#include <KConfigCore/KConfig>
-
 #include "vfs.h"
 
+/**
+ * Custom virtual filesystem implementation: It holds arbitrary lists of files which are only
+ * virtual references to real files. The filename of a virtual file is the full path of the real
+ * file.
+ *
+ * Only two filesystem levels are supported: On root level only directories can be created; these
+ * virtual root directories can contain a set of virtual files and directories. Entering a directory
+ * on the sublevel is out of scope and the real directory will be opened.
+ *
+ * The filesystem content is saved in a separate config file and preserved between application runs.
+ *
+ * Used at least by bookmarks, locate, search and synchronizer dialog.
+ */
 class virt_vfs : public vfs
 {
     Q_OBJECT
 public:
-    virt_vfs(QObject* panel, bool quiet = false);
+    virt_vfs();
     ~virt_vfs();
 
-    /// Copy a file to the vfs (physical).
-    void vfs_addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "",  PreserveMode pmode = PM_DEFAULT) Q_DECL_OVERRIDE;
-    /// Handle file drop
-    virtual void vfs_drop(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
-    /// Remove a file from the vfs (physical)
-    void vfs_delFiles(const QStringList &fileNames, bool reallyDelete = true) Q_DECL_OVERRIDE;
-    /// Remove a file from the collection (only its link, not the file)
-    void vfs_removeFiles(QStringList *fileNames);
-    /// Return a list of URLs for multiple files
-    QList<QUrl> vfs_getFiles(const QStringList &names) Q_DECL_OVERRIDE;
-    /// Return a URL to a single file
-    QUrl vfs_getFile(const QString& name) Q_DECL_OVERRIDE;
-    /// Create a new directory
-    void vfs_mkdir(const QString& name) Q_DECL_OVERRIDE;
-    /// Rename file
-    void vfs_rename(const QString& fileName, const QString& newName) Q_DECL_OVERRIDE;
-    /// Calculate the amount of space occupied by a file or directory (recursive).
-    virtual void vfs_calcSpace(QString name , KIO::filesize_t *totalSize, unsigned long *totalFiles, unsigned long *totalDirs, bool * stop) Q_DECL_OVERRIDE;
+    /// Create virtual files in this VFS. Copy mode and showProgressInfo are ignored.
+    void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
+                   KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
+                   bool showProgressInfo = true, bool enqueue = false) Q_DECL_OVERRIDE;
+    /// Handle file dropping in this VFS: Always creates virtual files.
+    void dropFiles(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
 
-    /// Return the VFS working dir
-    QString vfs_workingDir() Q_DECL_OVERRIDE {
-        return QString();
-    }
+    /// Add virtual files to the current directory.
+    void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
+                  QString dir = "") Q_DECL_OVERRIDE;
+    /// Delete files from the current directory (real files, not virtual).
+    void deleteFiles(const QStringList &fileNames, bool reallyDelete = true) Q_DECL_OVERRIDE;
+    /// Remove files from the collection (only virtual, not the real file).
+    void vfs_removeFiles(QStringList *fileNames);
+    /// Create a virtual directory. Only possible in the root directory.
+    void mkDir(const QString &name) Q_DECL_OVERRIDE;
+    /// Rename a (real) file in the current directory.
+    void rename(const QString &fileName, const QString &newName) Q_DECL_OVERRIDE;
+    void calcSpace(const QString &name, KIO::filesize_t *totalSize, unsigned long *totalFiles,
+                   unsigned long *totalDirs, bool *stop) Q_DECL_OVERRIDE;
+    /// Returns the URL of the real file or an empty URL if file with name does not exist.
+    QUrl getUrl(const QString& name) Q_DECL_OVERRIDE;
 
     virtual QString metaInformation() Q_DECL_OVERRIDE {
-        return metaInfo;
+        return _metaInfo;
     }
     void setMetaInformation(QString info);
 
-protected slots:
+protected:
+    bool refreshInternal(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;
+
+private:
+    /// Return current dir: "/" or pure directory name
+    inline QString currentDir() {
+        const QString path = _currentDirectory.path().mid(1); // remove slash
+        return path.isEmpty() ? "/" : path;
+    }
+    void mkDirInternal(const QString& name);
+    /// Save the dictionary to file
+    void save();
+    /// Restore the dictionary from file
+    void restore();
+
+    /// Create local or KIO vfile. Returns 0 if file does not exist
+    vfile *createVFile(const QUrl &url);
+
+    /// Return the configuration file storing the urls of virtual files
+    KConfig &getVirtDB();
+
+private slots:
     void slotStatResult(KJob *job);
 
-protected:
-    /// Save the dictionary to file
-    bool save();
-    /// Restore the dictionary from file
-    bool restore();
-    /// return the URLs DB
-    KConfig*  getVirtDB();
+private:
+    static QHash<QString, QList<QUrl> *> _virtVfsDict; // map virtual directories to containing files
+    static QHash<QString, QString> _metaInfoDict; // map virtual directories to meta infos
 
-    bool populateVfsList(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;
-    vfile* stat(const QUrl &url);
-
-    static QHash<QString, QList<QUrl> *> virtVfsDict;
-    static QHash<QString, QString> metaInfoDict;
-    static KConfig* virt_vfs_db;
-    bool busy;
-    QString path;
-    QString metaInfo;
-    KIO::UDSEntry entry;
+    QString _metaInfo; // displayable string with information about the current virtual directory
+    KIO::UDSEntry _fileEntry; // for async call, save stat job result here
 };
 
 #endif

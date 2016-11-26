@@ -55,7 +55,6 @@ KgAdvanced::KgAdvanced(bool first, QWidget* parent) :
     KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
         //   cfg_class  cfg_name             default              text                                                        restart tooltip
     {
-//     {"Advanced", "PreserveAttributes", _PreserveAttributes, i18n("Preserve attributes for local copy/move (slower)"), false,  i18n("Krusader will try to preserve all attributes (time, owner, group) of the local files according to the source depending on your permissions:<ul><li>User preserving if you are root</li><li>Group preserving if you are root or member of the group</li><li>Preserving the timestamp</li></ul><b>Note</b>: This can slow down the copy process.") },
         {"Advanced", "AutoMount",          _AutoMount,          i18n("Automount filesystems"),                            false,  i18n("When stepping into a folder which is defined as a mount point in the <b>fstab</b>, try mounting it with the defined parameters.")}
     };
 

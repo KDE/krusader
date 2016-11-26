@@ -151,8 +151,8 @@ ListPanel* PanelManager::createPanel(KConfigGroup cfg)
 void PanelManager::connectPanel(ListPanel *p)
 {
     connect(p, SIGNAL(activate()), this, SLOT(activate()));
-    connect(p, SIGNAL(pathChanged(ListPanel*)), this, SIGNAL(pathChanged(ListPanel*)));
-    connect(p, SIGNAL(pathChanged(ListPanel*)), _tabbar, SLOT(updateTab(ListPanel*)));
+    connect(p, &ListPanel::pathChanged, [=]() { pathChanged(p); });
+    connect(p, &ListPanel::pathChanged, [=]() { _tabbar->updateTab(p); });
 }
 
 void PanelManager::disconnectPanel(ListPanel *p)
@@ -352,7 +352,7 @@ void PanelManager::slotPreviousTab()
     _tabbar->setCurrentIndex(nextInd);
 }
 
-void PanelManager::refreshAllTabs(bool invalidate)
+void PanelManager::refreshAllTabs()
 {
     int i = 0;
     while (i < _tabbar->count()) {
@@ -360,9 +360,7 @@ void PanelManager::refreshAllTabs(bool invalidate)
         if (panel && panel->func) {
             vfs * vfs = panel->func->files();
             if (vfs) {
-                if (invalidate)
-                    vfs->vfs_invalidate();
-                vfs->vfs_refresh();
+                vfs->refresh();
             }
         }
         ++i;
@@ -372,10 +370,8 @@ void PanelManager::refreshAllTabs(bool invalidate)
 void PanelManager::deletePanel(ListPanel * p)
 {
     disconnect(p);
-    if (p && p->func && p->func->files() && !p->func->files()->vfs_canDelete()) {
-        connect(p->func->files(), SIGNAL(deleteAllowed()), p, SLOT(deleteLater()));
-        p->func->files()->vfs_requestDelete();
-        return;
+    if (p && p->func && p->func->files()) {
+        p->func->files()->deleteLater();
     }
     delete p;
 }

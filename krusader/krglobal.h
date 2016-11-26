@@ -48,6 +48,7 @@ class KRslots;
 class KIconLoader;
 class KrusaderView;
 class UserAction;
+class JobMan;
 class QWidget;
 class KrPanel;
 
@@ -64,6 +65,7 @@ public:
     static KrusaderView *mainView;  // The GUI
     static QWidget *mainWindow;
     static UserAction *userAction;
+    static JobMan *jobMan;
 //     static ListPanel  *activePanel;
     static KrPanel *activePanel();
 
@@ -82,6 +84,7 @@ public:
 #define MAIN_VIEW    KrGlobal::mainView
 #define krMainWindow KrGlobal::mainWindow
 #define krUserAction KrGlobal::userAction
+#define krJobMan     KrGlobal::jobMan
 
 #define ACTIVE_PANEL (KrGlobal::activePanel())
 

@@ -84,8 +84,8 @@ class ListPanel : public QWidget, public KrPanel
     friend class ListPanelFunc;
     Q_OBJECT
 public:
-#define ITEM2VFILE(PANEL_PTR, KRVIEWITEM)  PANEL_PTR->func->files()->vfs_search(KRVIEWITEM->name())
-#define NAME2VFILE(PANEL_PTR, STRING_NAME) PANEL_PTR->func->files()->vfs_search(STRING_NAME)
+#define ITEM2VFILE(PANEL_PTR, KRVIEWITEM)  PANEL_PTR->func->files()->getVfile(KRVIEWITEM->name())
+#define NAME2VFILE(PANEL_PTR, STRING_NAME) PANEL_PTR->func->files()->getVfile(STRING_NAME)
     // constructor create the panel, but DOESN'T fill it with data, use start()
     ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg = KConfigGroup());
     ~ListPanel();
@@ -110,6 +110,7 @@ public:
     ListPanelActions *actions() {
         return _actions;
     }
+    /// The last shown local path.
     QString realPath() const;
     QString getCurrentName();
     void getSelectedNames(QStringList* fileNames) {
@@ -132,12 +133,11 @@ public slots:
     void compareDirs(bool otherPanelToo = true);
     void slotFocusOnMe(bool focus = true);
     void slotUpdateTotals();
-    void slotStartUpdate(); // react to file changes in vfs (path change or refresh)
-    void slotGetStats(const QUrl &url); // get the disk-free stats
+    // react to file changes in vfs (path change or refresh)
+    void slotStartUpdate(bool directoryChange);
     void togglePanelPopup();
     void panelActive(); // called when the panel becomes active
     void panelInactive(); // called when panel becomes inactive
-    void vfs_refresh(KJob *job);
     void refreshColors();
     void inlineRefreshCancel();
 
@@ -178,7 +178,6 @@ protected slots:
     void handleDrop(QDropEvent *event, bool onView = false); // handle drops on frame or view
     void handleDrop(const QUrl &destination, QDropEvent *event); // handle drops with destination
     void startDragging(QStringList, QPixmap);
-    void slotJobResult(KJob *job);
     void slotPreviewJobStarted(KJob *job);
     void slotPreviewJobPercent(KJob *job, unsigned long percent);
     void slotPreviewJobResult(KJob *job);
@@ -196,7 +195,6 @@ protected slots:
 
 signals:
     void signalStatus(QString msg); // emmited when we need to update the status bar
-    void pathChanged(ListPanel *panel); // directory changed or refreshed
     void pathChanged(const QUrl &url); // directory changed or refreshed
     void activate(); // emitted when the user changes panels
     void finishedDragging(); // NOTE: currently not used
@@ -239,6 +237,7 @@ protected:
     KrErrorDisplay *vfsError;
 
 private:
+    void updateFilesystemStats(const QUrl &url); // update disk-free and mount status
     bool handleDropInternal(QDropEvent *event, const QString &dir);
     int popupPosition() const; // 0: West, 1: North, 2: East, 3: South
     void setPopupPosition(int);

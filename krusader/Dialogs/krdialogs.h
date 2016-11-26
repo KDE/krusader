@@ -35,6 +35,7 @@
 #include <QPixmap>
 
 #include <KWidgetsAddons/KAnimatedButton>
+#include <KIOWidgets/KFile>
 #include <KIOWidgets/KUrlRequesterDialog>
 #include <KWidgetsAddons/KDatePicker>
 
@@ -53,17 +54,26 @@
 class KChooseDir
 {
 public:
+    struct ChooseResult {
+        QUrl url;
+        bool queue;
+        bool preserveAttrs; // NOTE: field never read
+        QUrl baseURL;       // NOTE: field never read
+    };
+
     /**
      * \param text - description of the info requested from the user
      * \param url - a suggested url to appear in the box as a default choice
      * \param cwd - a path which is the current working directory (usually ACTIVE_PANEL->virtualPath()).
      *              this is used for completion of partial urls
      */
-    static QUrl getFile(QString text, const QUrl& url, const QUrl& cwd);
-    static QUrl getDir(QString text, const QUrl& url, const QUrl& cwd);
-    static QUrl getDir(QString text, const QUrl& url, const QUrl& cwd, bool & queue);
-    static QUrl getDir(QString text, const QUrl& url, const QUrl& cwd, bool & queue, bool & preserveAttrs);
-    static QUrl getDir(QString text, const QUrl& url, const QUrl& cwd, bool & queue, bool & preserveAttrs, QUrl &baseURL);
+    static QUrl getFile(const QString &text, const QUrl &url, const QUrl &cwd);
+    static QUrl getDir(const QString &text, const QUrl &url, const QUrl &cwd);
+    static ChooseResult getCopyDir(const QString &text, const QUrl &url, const QUrl &cwd,
+                                   bool preserveAttrs = false, const QUrl &baseURL = QUrl());
+
+  private:
+    static QUrl get(const QString &text, const QUrl &url, const QUrl &cwd, KFile::Modes mode);
 };
 
 class KUrlRequesterDlgForCopy : public QDialog
@@ -72,14 +82,11 @@ class KUrlRequesterDlgForCopy : public QDialog
 public:
     KUrlRequesterDlgForCopy(const QUrl& url, const QString& text, bool presAttrs,
                             QWidget *parent, bool modal = true, QUrl baseURL = QUrl());
-    KUrlRequesterDlgForCopy();
 
     QUrl selectedURL() const;
     QUrl baseURL() const;
     bool preserveAttrs();
-    bool enqueue() {
-        return queue;
-    }
+    bool enqueue() { return queueBox->isChecked(); }
     bool copyDirStructure();
     void hidePreserveAttrs() {
 //         preserveAttrsCB->hide();
@@ -87,11 +94,7 @@ public:
 
     KUrlRequester *urlRequester();
 
-protected:
-    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-
 private slots:
-    void slotQueue();
     void slotTextChanged(const QString &);
     void slotDirStructCBChanged();
 private:
@@ -99,8 +102,8 @@ private:
     QComboBox *baseUrlCombo;
 //     QCheckBox *preserveAttrsCB;
     QCheckBox *copyDirStructureCB;
+    QCheckBox *queueBox;
     QPushButton *okButton;
-    bool queue;
 };
 
 class KRGetDate : public QDialog

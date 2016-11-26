@@ -241,9 +241,6 @@ DiskUsage::~DiskUsage()
 
 void DiskUsage::load(const QUrl &baseDir)
 {
-    if (searchVfs && !searchVfs->vfs_canDelete()) {
-        return;
-    }
 
     fileNum = dirNum = 0;
     currentSize = 0;
@@ -266,14 +263,14 @@ void DiskUsage::load(const QUrl &baseDir)
         delete searchVfs;
         searchVfs = 0;
     }
-    searchVfs = KrVfsHandler::getVfs(baseDir);
+    searchVfs = KrVfsHandler::instance().getVfs(baseDir);
     if (searchVfs == 0) {
+        krOut << "diskusage could not get VFS for directory " << baseDir;
         loading = abortLoading = clearAfterAbort = false;
         emit loadFinished(false);
         return;
     }
 
-    searchVfs->vfs_setQuiet(true);
     currentVfile = 0;
 
     if (!loading) {
@@ -293,11 +290,6 @@ void DiskUsage::load(const QUrl &baseDir)
 
 void DiskUsage::slotLoadDirectory()
 {
-    if (searchVfs && !searchVfs->vfs_canDelete()) {  // recursive call from slotLoadDirectory?
-        loadingTimer.setSingleShot(true);
-        loadingTimer.start(100);                       // as it can cause crash, ignore it and wait while
-        return;                                        // the recursion finishes
-    }
     if ((currentVfile == 0 && directoryStack.isEmpty()) || loaderView->wasCancelled() || abortLoading) {
         if (searchVfs)
             delete searchVfs;
@@ -345,17 +337,18 @@ void DiskUsage::slotLoadDirectory()
 
                 loaderView->setCurrentURL(url);
 
-                if (!searchVfs->vfs_refresh(url))
+                if (!searchVfs->refresh(url))
                     break;
+                vfiles = searchVfs->vfiles();
 
                 dirNum++;
 
-                currentVfile = searchVfs->vfs_getFirstFile();
+                currentVfile = vfiles.isEmpty() ? 0 : vfiles.takeFirst();
             } else {
                 fileNum++;
                 File *newItem = 0;
 
-                QString mime = currentVfile->vfile_getMime(true); // fast == not using mimetype magic
+                QString mime = currentVfile->vfile_getMime(); // fast == not using mimetype magic
 
                 if (currentVfile->vfile_isDir() && !currentVfile->vfile_isSymLink()) {
                     newItem = new Directory(currentParent, currentVfile->vfile_getName(), dirToCheck, currentVfile->vfile_getSize(),
@@ -373,7 +366,7 @@ void DiskUsage::slotLoadDirectory()
                 }
                 currentParent->append(newItem);
 
-                currentVfile = searchVfs->vfs_getNextFile();
+                currentVfile = vfiles.isEmpty() ? 0 : vfiles.takeFirst();
             }
         }
 

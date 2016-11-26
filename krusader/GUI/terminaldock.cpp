@@ -176,7 +176,7 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
             return true;
         }
         if (ke->modifiers() & Qt::ShiftModifier) {
-            QString path = vfs::ensureTrailingSlash(ACTIVE_FUNC->files()->vfs_getOrigin()).toDisplayString(QUrl::PreferLocalFile);
+            QString path = vfs::ensureTrailingSlash(ACTIVE_FUNC->files()->currentDirectory()).toDisplayString(QUrl::PreferLocalFile);
             filename = path + filename;
         }
 

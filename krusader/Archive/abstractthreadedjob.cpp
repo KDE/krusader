@@ -44,12 +44,11 @@
 #include <KIO/JobUiDelegate>
 #include <KWidgetsAddons/KMessageBox>
 
-#include "krvfshandler.h"
 #include "krarchandler.h"
-#include "vfs.h"
-#include "preservingcopyjob.h"
 #include "../krglobal.h"
 #include "../krservices.h"
+#include "../VFS/krvfshandler.h"
+#include "../VFS/vfs.h"
 
 extern KRarcHandler arcHandler;
 
@@ -135,7 +134,7 @@ bool AbstractThreadedJob::event(QEvent *e)
         case CMD_DOWNLOAD_FILES: {
             QList<QUrl> sources = KrServices::toUrlList(event->args()[ 0 ].value<QStringList>());
             QUrl dest = event->args()[ 1 ].value<QUrl>();
-            KIO::Job *job = PreservingCopyJob::createCopyJob(PM_PRESERVE_ATTR, sources, dest, KIO::CopyJob::Copy, false, false);
+            KIO::Job *job = KIO::copy(sources, dest, KIO::HideProgressInfo);
             addSubjob(job);
             job->setUiDelegate(new KIO::JobUiDelegate());
 
@@ -498,14 +497,11 @@ void AbstractJobThread::calcSpaceLocal(const QUrl &baseUrl, const QStringList & 
 {
     sendReset(i18n("Calculating space"));
 
-    vfs *calcSpaceVfs = KrVfsHandler::getVfs(baseUrl);
-    KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(_job->uiDelegate());
-    if(ui)
-        calcSpaceVfs->setParentWindow(ui->window());
-    calcSpaceVfs->vfs_refresh(baseUrl);
+    vfs *calcSpaceVfs = KrVfsHandler::instance().getVfs(baseUrl);
+    calcSpaceVfs->refresh(baseUrl);
 
     for (int i = 0; i != files.count(); i++) {
-        calcSpaceVfs->vfs_calcSpaceLocal(files[ i ], &totalSize, &totalFiles, &totalDirs, &_exited);
+        calcSpaceVfs->calcSpace(files[i], &totalSize, &totalFiles, &totalDirs, &_exited);
     }
     delete calcSpaceVfs;
 }

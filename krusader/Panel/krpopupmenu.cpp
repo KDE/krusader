@@ -48,7 +48,7 @@
 #include "../panelmanager.h"
 #include "../krtrashhandler.h"
 #include "../UserAction/useractionpopupmenu.h"
-#include "../VFS/krarchandler.h"
+#include "../Archive/krarchandler.h"
 
 void KrPopupMenu::run(const QPoint &pos, KrPanel *panel)
 {
@@ -89,7 +89,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     panel->view->getSelectedKrViewItems(&items);
 
     for (KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it) {
-        vfile *file = panel->func->files()->vfs_search(((*it)->name()));
+        vfile *file = panel->func->files()->getVfile(((*it)->name()));
         QUrl url = file->vfile_getUrl();
         _items.append(KFileItem(url, file->vfile_getMime(), file->vfile_getMode()));
     }
@@ -140,12 +140,12 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
         addSeparator();
     }
 
-    // ------------- Preview - normal vfs only ?
-    if (panel->func->files()->vfs_getType() == vfs::VFS_NORMAL) {
+    // ------------- Preview - local vfs only ?
+    if (panel->func->files()->isLocal()) {
         // create the preview popup
         QStringList names;
         panel->gui->getSelectedNames(&names);
-        preview.setUrls(panel->func->files() ->vfs_getFiles(names));
+        preview.setUrls(panel->func->files() ->getUrls(names));
         QAction *pAct = addMenu(&preview);
         pAct->setData(QVariant(PREVIEW_ID));
         pAct->setText(i18n("Preview"));
@@ -181,7 +181,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     }
 
     // --------------- user actions
-    QAction *uAct = new UserActionPopupMenu(panel->func->files()->vfs_getFile(item->name()));
+    QAction *uAct = new UserActionPopupMenu(panel->func->files()->getUrl(item->name()));
     addAction(uAct);
     uAct->setText(i18n("User Actions"));
 
@@ -202,29 +202,27 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
 
     // ---------- COPY
     addAction(i18n("Copy..."))->setData(QVariant(COPY_ID));
-    if (panel->func->files() ->vfs_isWritable()) {
-        // ------- MOVE
-        addAction(i18n("Move..."))->setData(QVariant(MOVE_ID));
-        // ------- RENAME - only one file
-        if (!multipleSelections && !inTrash)
-            addAction(i18n("Rename"))->setData(QVariant(RENAME_ID));
+    // ------- MOVE
+    addAction(i18n("Move..."))->setData(QVariant(MOVE_ID));
+    // ------- RENAME - only one file
+    if (!multipleSelections && !inTrash)
+        addAction(i18n("Rename"))->setData(QVariant(RENAME_ID));
 
-        // -------- MOVE TO TRASH
-        KConfigGroup saver(krConfig, "General");
-        bool trash = saver.readEntry("Move To Trash", _MoveToTrash);
-        if (trash && !inTrash)
-            addAction(i18n("Move to Trash"))->setData(QVariant(TRASH_ID));
-        // -------- DELETE
-        addAction(i18n("Delete"))->setData(QVariant(DELETE_ID));
-        // -------- SHRED - only one file
-        /*      if ( panel->func->files() ->vfs_getType() == vfs::VFS_NORMAL &&
-                    !vf->vfile_isDir() && !multipleSelections )
-                 addAction( i18n( "Shred" ) )->setData( QVariant( SHRED_ID ) );*/
-    }
+    // -------- MOVE TO TRASH
+    KConfigGroup saver(krConfig, "General");
+    bool trash = saver.readEntry("Move To Trash", _MoveToTrash);
+    if (trash && !inTrash)
+        addAction(i18n("Move to Trash"))->setData(QVariant(TRASH_ID));
+    // -------- DELETE
+    addAction(i18n("Delete"))->setData(QVariant(DELETE_ID));
+    // -------- SHRED - only one file
+    /*      if ( panel->func->files() ->vfs_getType() == vfs::VFS_NORMAL &&
+                !vf->vfile_isDir() && !multipleSelections )
+             addAction( i18n( "Shred" ) )->setData( QVariant( SHRED_ID ) );*/
 
     // ---------- link handling
     // create new shortcut or redirect links - only on local directories:
-    if (panel->func->files() ->vfs_getType() == vfs::VFS_NORMAL) {
+    if (panel->func->files()->isLocal()) {
         addSeparator();
         linkPopup.addAction(i18n("New Symlink..."))->setData(QVariant(NEW_SYMLINK_ID));
         linkPopup.addAction(i18n("New Hardlink..."))->setData(QVariant(NEW_LINK_ID));
@@ -237,16 +235,16 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     addSeparator();
 
     // ---------- calculate space
-    if (panel->func->files() ->vfs_getType() == vfs::VFS_NORMAL && (vf->vfile_isDir() || multipleSelections))
+    if (panel->func->files()->isLocal() && (vf->vfile_isDir() || multipleSelections))
         addAction(panel->gui->actions()->actCalculate);
 
     // ---------- mount/umount/eject
-    if (panel->func->files() ->vfs_getType() == vfs::VFS_NORMAL && vf->vfile_isDir() && !multipleSelections) {
-        if (krMtMan.getStatus(panel->func->files() ->vfs_getFile(item->name()).path()) == KMountMan::MOUNTED)
+    if (panel->func->files()->isLocal() && vf->vfile_isDir() && !multipleSelections) {
+        if (krMtMan.getStatus(panel->func->files()->getUrl(item->name()).path()) == KMountMan::MOUNTED)
             addAction(i18n("Unmount"))->setData(QVariant(UNMOUNT_ID));
-        else if (krMtMan.getStatus(panel->func->files() ->vfs_getFile(item->name()).path()) == KMountMan::NOT_MOUNTED)
+        else if (krMtMan.getStatus(panel->func->files()->getUrl(item->name()).path()) == KMountMan::NOT_MOUNTED)
             addAction(i18n("Mount"))->setData(QVariant(MOUNT_ID));
-        if (krMtMan.ejectable(panel->func->files() ->vfs_getFile(item->name()).path()))
+        if (krMtMan.ejectable(panel->func->files()->getUrl(item->name()).path()))
             addAction(i18n("Eject"))->setData(QVariant(EJECT_ID));
     }
 
@@ -271,10 +269,8 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     // --------- copy/paste
     addSeparator();
     addAction(i18n("Copy to Clipboard"))->setData(QVariant(COPY_CLIP_ID));
-    if (panel->func->files() ->vfs_isWritable()) {
-        addAction(i18n("Cut to Clipboard"))->setData(QVariant(MOVE_CLIP_ID));
-        addAction(i18n("Paste from Clipboard"))->setData(QVariant(PASTE_CLIP_ID));
-    }
+    addAction(i18n("Cut to Clipboard"))->setData(QVariant(MOVE_CLIP_ID));
+    addAction(i18n("Paste from Clipboard"))->setData(QVariant(PASTE_CLIP_ID));
     addSeparator();
 
     // --------- properties
@@ -418,7 +414,7 @@ void KrPopupMenu::performAction(int id)
         QStringList names;
         panel->gui->getSelectedNames(&names);
         panel->func->runService(*(offers[ id - SERVICE_LIST_ID ]),
-                                panel->func->files()->vfs_getFiles(names));
+                                panel->func->files()->getUrls(names));
     }
 }
 

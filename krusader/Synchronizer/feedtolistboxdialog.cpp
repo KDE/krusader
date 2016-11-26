@@ -45,6 +45,7 @@
 #include <QComboBox>
 #include <QVBoxLayout>
 
+#include <KConfigCore/KConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
@@ -98,8 +99,8 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
 
     // guessing the collection name
 
-    virt_vfs v(0, true);
-    if (!v.vfs_refresh(QUrl("virt:/")))
+    virt_vfs virtVfs;
+    if (!virtVfs.refresh(QUrl("virt:/")))
         return;
 
     KConfigGroup group(krConfig, "Synchronize");
@@ -107,7 +108,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
     QString queryName;
     do {
         queryName = i18n("Synchronize results") + QString(" %1").arg(listBoxNum++);
-    } while (v.vfs_search(queryName) != 0);
+    } while (virtVfs.getVfile(queryName) != 0);
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     // creating the widget
@@ -202,12 +203,12 @@ void FeedToListBoxDialog::slotOk()
     }
 
     QUrl url = QUrl(QString("virt:/") + name);
-    virt_vfs v(0, true);
-    if (!v.vfs_refresh(url)) {
+    virt_vfs virtVfs;
+    if (!virtVfs.refresh(url)) {
         KMessageBox::error(parentWidget(), i18n("Cannot open %1.", url.toDisplayString()));
         return;
     }
-    v.vfs_addFiles(urlList, KIO::CopyJob::Copy, 0);
+    virtVfs.addFiles(urlList);
     ACTIVE_MNG->slotNewTab(url);
     accepted = true;
     accept();

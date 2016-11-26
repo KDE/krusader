@@ -94,11 +94,6 @@ void KrViewOperator::fileAdded(vfile *vf)
     _view->addItem(vf);
 }
 
-void KrViewOperator::fileDeleted(const QString& name)
-{
-    _view->delItem(name);
-}
-
 void KrViewOperator::fileUpdated(vfile *vf)
 {
     _view->updateItem(vf);
@@ -192,7 +187,7 @@ const KrView::IconSizes KrView::iconSizes;
 
 KrView::KrView(KrViewInstance &instance, KConfig *cfg) :
     _instance(instance), _files(0), _config(cfg), _mainWindow(0), _widget(0),
-    _nameToMakeCurrent(QString()), _nameToMakeCurrentIfAdded(QString()),
+    _nameToMakeCurrent(QString()),
     _properties(0), _focused(false), _previews(0), _fileIconSize(0),
     _updateDefaultSettings(false), _count(0), _numDirs(0), _dummyVfile(0)
 {
@@ -583,11 +578,6 @@ void KrView::addItem(vfile *vf)
 
     if (item->name() == nameToMakeCurrent()) {
         setCurrentKrViewItem(item); // dictionary based - quick
-        makeItemVisible(item);
-    }
-    if (item->name() == nameToMakeCurrentIfAdded()) {
-        setCurrentKrViewItem(item);
-        setNameToMakeCurrentIfAdded(QString());
         makeItemVisible(item);
     }
 
@@ -1050,11 +1040,10 @@ void KrView::setFiles(VfileContainer *files)
         return;
 
     QObject::disconnect(_files, 0, op(), 0);
-    QObject::connect(_files, SIGNAL(startUpdate()), op(), SLOT(startUpdate()));
+    QObject::connect(_files, SIGNAL(refreshDone(bool)), op(), SLOT(startUpdate()));
     QObject::connect(_files, SIGNAL(cleared()), op(), SLOT(cleared()));
     QObject::connect(_files, SIGNAL(addedVfile(vfile*)), op(), SLOT(fileAdded(vfile*)));
     QObject::connect(_files, SIGNAL(updatedVfile(vfile*)), op(), SLOT(fileUpdated(vfile*)));
-    QObject::connect(_files, SIGNAL(deletedVfile(const QString&)), op(), SLOT(fileDeleted(const QString&)));
 }
 
 void KrView::setFilter(KrViewProperties::FilterSpec filter, FilterSettings customFilter, bool applyToDirs)
@@ -1117,8 +1106,9 @@ void KrView::customSelection(bool select)
 
 void KrView::refresh()
 {
-    QString current = getCurrentItem();
+    QString currentItem = getCurrentItem();
     QList<QUrl> selection = selectedUrls();
+    QModelIndex currentIndex = getCurrentIndex();
 
     clear();
 
@@ -1148,10 +1138,14 @@ void KrView::refresh()
     if(!selection.isEmpty())
         setSelectionUrls(selection);
 
-    if (!nameToMakeCurrent().isEmpty())
+    if (!nameToMakeCurrent().isEmpty()) {
         setCurrentItem(nameToMakeCurrent());
-    else if (!current.isEmpty())
-        setCurrentItem(current);
+        setNameToMakeCurrent("");
+    } else if (!currentItem.isEmpty()) {
+        setCurrentItem(currentItem, currentIndex);
+    } else {
+        setCurrentKrViewItem(getFirst());
+    }
 
     updatePreviews();
     redraw();

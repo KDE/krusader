@@ -42,7 +42,7 @@
 
 #include <KIO/Global>
 
-#include "../VFS/ftp_vfs.h"
+#include "../VFS/default_vfs.h"
 #include "../VFS/virt_vfs.h"
 
 
@@ -80,7 +80,7 @@ private:
     KRQuery *query;
     QStringList results;
 
-    ftp_vfs *remote_vfs;
+    default_vfs *remote_vfs;
     virt_vfs *virtual_vfs;
 
     QTime timer;

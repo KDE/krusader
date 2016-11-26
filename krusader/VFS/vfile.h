@@ -69,7 +69,8 @@ public:
           const QString& mime,
           const QString& symDest,
           const mode_t  mode,
-          const int rwx = -1);
+          const int rwx = -1,
+          const QUrl& url = QUrl());
 
     vfile(const QString& name,
           const KIO::filesize_t size,
@@ -85,7 +86,8 @@ public:
           const mode_t  mode,
           const int rwx = -1,
           const QString& aclString = QString(),
-          const QString& aclDfltString = QString());
+          const QString& aclDfltString = QString(),
+          const QUrl& url = QUrl());
 
     bool        operator==(const vfile& vf) const;
     vfile&      operator= (const vfile& vf);
@@ -131,7 +133,7 @@ public:
         return vfile_url;
     }
 
-    const QString&          vfile_getMime(bool fast = false);
+    const QString&          vfile_getMime();
     const QString&          vfile_getOwner();
     const QString&          vfile_getGroup();
     const QString&          vfile_getACL();
@@ -148,9 +150,6 @@ public:
     inline void             vfile_setSize(KIO::filesize_t size) {
         vfile_size = size;
     }
-    inline void             vfile_setUrl(const QUrl &url)       {
-        vfile_url = url;
-    }
 
     inline void             vfile_setIcon(const QString& icn)   {
         vfile_icon = icn;
@@ -161,9 +160,6 @@ public:
 
     inline static void      vfile_loadUserDefinedFolderIcons(bool load) {
         vfile_userDefinedFolderIcons = load;
-    }
-    inline static void      vfile_enableMimeTypeMagic(bool enable)      {
-        vfile_useMimeTypeMagic = enable;
     }
 
 private:
@@ -195,7 +191,6 @@ protected:
     QString          vfile_def_acl;  //< ACL default string
 
     static bool      vfile_userDefinedFolderIcons;
-    static bool      vfile_useMimeTypeMagic;
 };
 
 

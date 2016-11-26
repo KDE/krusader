@@ -38,10 +38,12 @@
 #include <KConfigCore/KDesktopFile>
 
 #include "krpermhandler.h"
-#include "normal_vfs.h"
+#include "krvfshandler.h"
 
 bool vfile::vfile_userDefinedFolderIcons = true;
-bool vfile::vfile_useMimeTypeMagic = true;
+
+// TODO set default vfile_size to '-1' to distinguish between empty directories and directories with
+// unknown size
 
 vfile::vfile(const QString& name,                   // useful construtor
              const KIO::filesize_t size,
@@ -54,7 +56,8 @@ vfile::vfile(const QString& name,                   // useful construtor
              const QString& mime,
              const QString& symDest,
              const mode_t mode,
-             const int rwx)
+             const int rwx,
+             const QUrl& url)
 {
     vfile_name = name;
     vfile_size = size;
@@ -74,6 +77,7 @@ vfile::vfile(const QString& name,                   // useful construtor
     if (vfile_isDir() && !vfile_symLink)
         vfile_size = 0;
     vfile_rwx = rwx;
+    vfile_url = url;
     vfile_acl_loaded = false;
 }
 
@@ -91,7 +95,8 @@ vfile::vfile(const QString& name,                   // useful construtor
              const mode_t mode,
              const int rwx,
              const QString& aclString,
-             const QString& aclDfltString)
+             const QString& aclDfltString,
+             const QUrl& url)
 {
     vfile_name = name;
     vfile_size = size;
@@ -115,6 +120,7 @@ vfile::vfile(const QString& name,                   // useful construtor
     vfile_has_acl = !aclString.isNull() || !aclDfltString.isNull();
     vfile_acl_loaded = true;
     vfile_rwx = rwx;
+    vfile_url = url;
 }
 
 char vfile::vfile_isReadable() const
@@ -150,9 +156,8 @@ char vfile::vfile_isExecutable() const
         return KRpermHandler::ftpExecutable(vfile_owner, vfile_userName, vfile_perm);
 }
 
-const QString& vfile::vfile_getMime(bool fast)
+const QString& vfile::vfile_getMime()
 {
-    Q_UNUSED(fast)
     if (vfile_mimeType.isEmpty()) {
         if(vfile_isdir)
             vfile_mimeType = "inode/directory";
@@ -189,7 +194,7 @@ const QString& vfile::vfile_getMime(bool fast)
 QString vfile::vfile_getIcon()
 {
     if (vfile_icon.isEmpty()) {
-        QString mime = vfile_getMime(!vfile_useMimeTypeMagic);
+        QString mime = vfile_getMime();
         if (vfile_isBrokenLink())
             vfile_icon = "file-broken";
         else if (vfile_icon.isEmpty()) {
@@ -232,7 +237,7 @@ const QString& vfile::vfile_getDefaultACL()
 void vfile::vfile_loadACL()
 {
     if (vfile_url.isLocalFile()) {
-        normal_vfs::getACL(this, vfile_acl, vfile_def_acl);
+        KrVfsHandler::getACL(this, vfile_acl, vfile_def_acl);
         vfile_has_acl = !vfile_acl.isNull() || !vfile_def_acl.isNull();
     }
     vfile_acl_loaded = true;

@@ -72,7 +72,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../krusaderview.h"
 #include "../krservices.h"
 #include "../VFS/krpermhandler.h"
-#include "../VFS/krarchandler.h"
+#include "../Archive/krarchandler.h"
 #include "../MountMan/kmountman.h"
 #include "../BookMan/krbookmarkbutton.h"
 #include "../Dialogs/krdialogs.h"
@@ -726,54 +726,60 @@ void ListPanel::start(QUrl url, bool immediate)
     setJumpBack(virt);
 }
 
-void ListPanel::slotStartUpdate()
+void ListPanel::slotStartUpdate(bool directoryChange)
 {
     if (inlineRefreshJob)
         inlineRefreshListResult(0);
 
-    if (this == ACTIVE_PANEL) {
-        slotFocusOnMe();
-    }
-
     setCursor(Qt::BusyCursor);
 
-    if (func->files()->vfs_getType() == vfs::VFS_NORMAL)
-        _realPath = virtualPath();
-    urlNavigator->setLocationUrl(virtualPath());
-    emit pathChanged(this);
-    emit pathChanged(virtualPath());
+    const QUrl currentUrl = virtualPath();
+    if (directoryChange) {
 
-    slotGetStats(virtualPath());
+        if (this == ACTIVE_PANEL) {
+            slotFocusOnMe();
+        }
+
+        if (func->files()->isLocal())
+            _realPath = currentUrl;
+
+        urlNavigator->setLocationUrl(currentUrl);
+
+        emit pathChanged(currentUrl);
+
+        krApp->popularUrls()->addUrl(currentUrl);
+
+        searchBar->hideBar();
+    }
+
+    updateFilesystemStats(currentUrl);
+
     if (compareMode)
         otherPanel()->view->refresh();
 
     // return cursor to normal arrow
     setCursor(Qt::ArrowCursor);
-    slotUpdateTotals();
-    krApp->popularUrls()->addUrl(virtualPath());
 
-    searchBar->hideBar();
+    slotUpdateTotals();
 }
 
-void ListPanel::slotGetStats(const QUrl &url)
+void ListPanel::updateFilesystemStats(const QUrl &url)
 {
     mediaButton->mountPointChanged(QString());
     freeSpace->setText(QString());
 
     if (!KConfigGroup(krConfig, "Look&Feel").readEntry("ShowSpaceInformation", true)) {
-        if(func->files()->metaInformation().isEmpty())
-            status->setText(i18n("Space information disabled"));
-        else
-            status->setText(func->files()->metaInformation());
-        return ;
+        status->setText(func->files()->metaInformation().isEmpty()
+                            ? i18n("Space information disabled")
+                            : func->files()->metaInformation());
+        return;
     }
 
     if (!url.isLocalFile()) {
-        if(func->files()->metaInformation().isEmpty())
-            status->setText(i18n("No space information on non-local filesystems"));
-        else
-            status->setText(func->files()->metaInformation());
-        return ;
+        status->setText(func->files()->metaInformation().isEmpty()
+                            ? i18n("No space information on non-local filesystems")
+                            : func->files()->metaInformation());
+        return;
     }
 
     // check for special filesystems;
@@ -783,12 +789,12 @@ void ListPanel::slotGetStats(const QUrl &url)
         return;
     }
 #ifdef BSD
-    if (path.left(5) == "/procfs") {     // /procfs is a special case - no volume information
+    if (path.left(5) == "/procfs") { // /procfs is a special case - no volume information
         status->setText(i18n("No space information on [procfs]"));
         return;
     }
 #else
-    if (path.left(5) == "/proc") {     // /proc is a special case - no volume information
+    if (path.left(5) == "/proc") { // /proc is a special case - no volume information
         status->setText(i18n("No space information on [proc]"));
         return;
     }
@@ -855,7 +861,7 @@ void ListPanel::handleDrop(QDropEvent *event, bool onView)
     QUrl destination = QUrl(virtualPath());
     destination.setPath(destination.path() + '/' + destinationDir);
 
-    func->files()->vfs_drop(destination, event);
+    func->files()->dropFiles(destination, event);
 
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation",
                                                      _UnselectBeforeOperation)) {
@@ -867,21 +873,7 @@ void ListPanel::handleDrop(QDropEvent *event, bool onView)
 
 void ListPanel::handleDrop(const QUrl &destination, QDropEvent *event)
 {
-    func->files()->vfs_drop(destination, event);
-}
-
-void ListPanel::slotJobResult(KJob *job)
-{
-    func->refresh(); // see new files if not on local filesystem
-    if (job->error()) {
-        slotVfsError(job->errorString());
-    }
-}
-
-void ListPanel::vfs_refresh(KJob* /*job*/)
-{
-    if (func)
-        func->refresh();
+    func->files()->dropFiles(destination, event);
 }
 
 void ListPanel::startDragging(QStringList names, QPixmap px)
@@ -890,7 +882,7 @@ void ListPanel::startDragging(QStringList names, QPixmap px)
         return;
     }
 
-    QList<QUrl> urls = func->files()->vfs_getFiles(names);
+    QList<QUrl> urls = func->files()->getUrls(names);
 
     QDrag *drag = new QDrag(this);
     QMimeData *mimeData = new QMimeData;
@@ -935,7 +927,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
     case Qt::Key_Return :
         if (e->modifiers() & Qt::ControlModifier) {
             if (e->modifiers() & Qt::AltModifier) {
-                vfile *vf = func->files()->vfs_search(view->getCurrentKrViewItem()->name());
+                vfile *vf = func->files()->getVfile(view->getCurrentKrViewItem()->name());
                 if (vf && vf->vfile_isDir())
                     newTab(vf->vfile_getUrl(), true);
             } else {
@@ -953,7 +945,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                 KrViewItem *it = view->getCurrentKrViewItem();
 
                 if (it->name() == "..") {
-                    newPath = KIO::upUrl(func->files()->vfs_getOrigin());
+                    newPath = KIO::upUrl(func->files()->currentDirectory());
                 } else {
                     vfile *v = func->getVFile(it);
                     // If it's a directory different from ".."
@@ -964,12 +956,14 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                         if (v && KRarcHandler::arcSupported(v->vfile_getMime()))   {
                             newPath = func->browsableArchivePath(v->vfile_getUrl().fileName());
                         } else {
-                            newPath = func->files()->vfs_getOrigin();
+                            newPath = func->files()->currentDirectory();
                         }
                     }
                 }
                 otherPanel()->func->openUrl(newPath);
-            } else func->openUrl(otherPanel()->func->files() ->vfs_getOrigin());
+            } else {
+                func->openUrl(otherPanel()->func->files()->currentDirectory());
+            }
             return ;
         } else
             e->ignore();
@@ -1023,17 +1017,15 @@ void ListPanel::hideEvent(QHideEvent *e)
 
 void ListPanel::panelActive()
 {
-    // don't refresh when not active (ie: hidden, application isn't focused ...)
-//     if (!
-         func->files()->vfs_enableRefresh(true)
-//        )
-//         func->popErronousUrl()
-                ;
+    //func->files()->vfs_enableRefresh(true)
 }
 
 void ListPanel::panelInactive()
 {
-    func->files()->vfs_enableRefresh(false);
+    // don't refresh when not active (ie: hidden, application isn't focused ...)
+    // TODO disabled so that the user sees changes in non-focused window; if the performance impact
+    // is too high we need another solution here
+    //func->files()->vfs_enableRefresh(false);
 }
 
 void ListPanel::slotPreviewJobStarted(KJob *job)
@@ -1151,6 +1143,9 @@ void ListPanel::setJumpBack(QUrl url)
 
 void ListPanel::slotVfsError(QString msg)
 {
+    if (func->ignoreVFSErrors())
+        return;
+
     refreshColors();
     vfsError->setText(i18n("Error: %1", msg));
     vfsError->show();
@@ -1241,8 +1236,6 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
     setProperties(cfg.readEntry("Properties", 0));
     view->restoreSettings(KConfigGroup(&cfg, "View"));
 
-    func->files()->vfs_enableRefresh(true);
-
     _realPath = QUrl::fromLocalFile(ROOT_DIR);
 
     if(func->history->restore(KConfigGroup(&cfg, "History")))
@@ -1276,7 +1269,7 @@ void ListPanel::updatePopupPanel(KrViewItem *item)
     else
         return;
 
-    p->update(item ? func->files()->vfs_search(item->name()) : 0);
+    p->update(item ? func->files()->getVfile(item->name()) : 0);
 }
 
 void ListPanel::otherPanelChanged()

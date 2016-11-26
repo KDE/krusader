@@ -227,9 +227,8 @@ protected slots:
     void saveDefaultSettings();
     void startUpdate();
     void cleared();
-    // for signals from vfs' dirwatch
+
     void fileAdded(vfile *vf);
-    void fileDeleted(const QString& name);
     void fileUpdated(vfile *vf);
 
 protected:
@@ -328,7 +327,7 @@ public:
     virtual KrViewItem *findItemByName(const QString &name) = 0;
     virtual KrViewItem *findItemByVfile(vfile *vf) = 0;
     virtual QString getCurrentItem() const = 0;
-    virtual void setCurrentItem(const QString& name) = 0;
+    virtual void setCurrentItem(const QString& name, const QModelIndex &fallbackToIndex=QModelIndex()) = 0;
     virtual void setCurrentKrViewItem(KrViewItem *item) = 0;
     virtual void makeItemVisible(const KrViewItem *item) = 0;
     virtual bool isItemVisible(const KrViewItem *item) = 0;
@@ -398,12 +397,6 @@ public:
     }
     virtual void setNameToMakeCurrent(const QString name) {
         _nameToMakeCurrent = name;
-    }
-    virtual QString nameToMakeCurrentIfAdded() const {
-        return _nameToMakeCurrentIfAdded;
-    }
-    virtual void setNameToMakeCurrentIfAdded(const QString name) {
-        _nameToMakeCurrentIfAdded = name;
     }
     virtual QString firstUnmarkedBelowCurrent();
     virtual QString statistics();
@@ -517,7 +510,6 @@ protected:
     QWidget *_widget;
     QList<QUrl> _savedSelection;
     QString _nameToMakeCurrent;
-    QString _nameToMakeCurrentIfAdded;
     KrViewProperties *_properties;
     KrViewOperator *_operator;
     bool _focused;

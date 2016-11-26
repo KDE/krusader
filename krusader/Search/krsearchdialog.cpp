@@ -49,6 +49,7 @@
 #include <QMenu>
 #include <QTabWidget>
 
+#include <KConfigCore/KConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
@@ -107,8 +108,7 @@ public:
                  uid_t uid, gid_t gid, QString foundText)
     {
         vfile *vf = new vfile(path, size, perm, mtime, false/*FIXME*/, false/*FIXME*/,
-                              uid, gid, QString(), QString(), 0);
-        vf->vfile_setUrl(QUrl::fromUserInput(path));
+                              uid, gid, QString(), QString(), 0, -1, QUrl::fromUserInput(path));
         _vfiles << vf;
         if(!foundText.isEmpty())
             _foundText[vf] = foundText;
@@ -602,8 +602,8 @@ void KrSearchDialog::contextMenu(const QPoint &pos)
 
 void KrSearchDialog::feedToListBox()
 {
-    virt_vfs v(0, true);
-    v.vfs_refresh(QUrl::fromLocalFile("/"));
+    virt_vfs virtVfs;
+    virtVfs.refresh(QUrl::fromLocalFile("/"));
 
     KConfigGroup group(krConfig, "Search");
     int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
@@ -618,7 +618,7 @@ void KrSearchDialog::feedToListBox()
     QString vfsName;
     do {
         vfsName = i18n("Search results") + QString(" %1").arg(listBoxNum++);
-    } while (v.vfs_search(vfsName) != 0);
+    } while (virtVfs.getVfile(vfsName) != 0);
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");
@@ -641,9 +641,9 @@ void KrSearchDialog::feedToListBox()
     isBusy = true;
 
     QUrl url = QUrl(QString("virt:/") + vfsName);
-    v.vfs_refresh(url);
-    v.vfs_addFiles(urlList, KIO::CopyJob::Copy, 0);
-    v.setMetaInformation(queryName);
+    virtVfs.refresh(url);
+    virtVfs.addFiles(urlList);
+    virtVfs.setMetaInformation(queryName);
     //ACTIVE_FUNC->openUrl(url);
     ACTIVE_MNG->slotNewTab(url);
 

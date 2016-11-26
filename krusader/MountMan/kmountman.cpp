@@ -288,6 +288,10 @@ void KMountMan::toggleMount(QString mntPoint)
 
 void KMountMan::autoMount(QString path)
 {
+    KConfigGroup group(krConfig, "Advanced");
+    if (!group.readEntry("AutoMount", _AutoMount))
+        return; // auto mount disabled
+
     if (getStatus(path) == NOT_MOUNTED)
         mount(path);
 }

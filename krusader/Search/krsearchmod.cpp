@@ -44,7 +44,7 @@
 #include "../VFS/krquery.h"
 #include "../VFS/vfile.h"
 #include "../VFS/krpermhandler.h"
-#include "../VFS/krarchandler.h"
+#include "../Archive/krarchandler.h"
 
 #define  EVENT_PROCESS_DELAY     250
 
@@ -151,8 +151,7 @@ void KRSearchMod::scanLocalDir(QUrl urlToScan)
         // creating a vfile object for matching with krquery
         vfile * vf = new vfile(name, (KIO::filesize_t)stat_p.st_size, KRpermHandler::mode2QString(stat_p.st_mode),
                                stat_p.st_mtime, S_ISLNK(stat_p.st_mode), false/*FIXME*/, stat_p.st_uid, stat_p.st_gid,
-                               mime, "", stat_p.st_mode);
-        vf->vfile_setUrl(url);
+                               mime, "", stat_p.st_mode, -1, url);
 
         if (query->isRecursive()) {
             if (S_ISLNK(stat_p.st_mode) && query->followLinks())
@@ -202,19 +201,18 @@ void KRSearchMod::scanRemoteDir(QUrl url)
 
     if (url.scheme() == QStringLiteral("virt")) {
         if (virtual_vfs == 0)
-            virtual_vfs = new virt_vfs(0);
+            virtual_vfs = new virt_vfs();
         vfs_ = virtual_vfs;
     } else {
         if (remote_vfs == 0)
-            remote_vfs = new ftp_vfs(0);
+            remote_vfs = new default_vfs();
         vfs_ = remote_vfs;
     }
 
-    if (!vfs_->vfs_refresh(url)) return ;
+    if (!vfs_->refresh(url)) return ;
 
-    for (vfile * vf = vfs_->vfs_getFirstFile(); vf != 0 ; vf = vfs_->vfs_getNextFile()) {
-        QString name = vf->vfile_getName();
-        QUrl fileURL = vfs_->vfs_getFile(name);
+    for (vfile *vf : vfs_->vfiles()) {
+        QUrl fileURL = vf->vfile_getUrl();
 
         if (query->isRecursive() && ((vf->vfile_isSymLink() && query->followLinks()) || vf->vfile_isDir()))
             unScannedUrls.push(fileURL);

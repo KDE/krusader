@@ -56,7 +56,7 @@ public:
     static QAction *actKonfigurator, *actToolsSetup, *actFind;
     static QAction *actRemoteEncoding;
     static QAction *actSelectColorMask, *actMultiRename, *actOpenLeftBm, *actOpenRightBm, *actAddBookmark;
-    static QAction *actSplit, *actQueueManager;
+    static QAction *actSplit;
     static QAction *actCombine;
     static QAction *actUserMenu;
     static QAction *actManageUseractions;
@@ -81,6 +81,11 @@ public:
     /** actions for setting the execution mode of commands from commanddline */
     static QAction **execTypeArray[];
 
+    /** JobMan toolbar actions */
+    static QAction *actJobProgress;
+    static QAction *actJobControl;
+    static QAction *actJobMode;
+    static QAction *actJobUndo;
 
 
 #ifdef __KJSEMBED__

@@ -3,6 +3,7 @@ include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
 configure_file(krusaderversion.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/krusaderversion.h)
 
 add_subdirectory(ActionMan)
+add_subdirectory(Archive)
 add_subdirectory(BookMan)
 add_subdirectory(Dialogs)
 add_subdirectory(DiskUsage)
@@ -10,9 +11,9 @@ add_subdirectory(Filter)
 add_subdirectory(GUI)
 add_subdirectory(Konfigurator)
 add_subdirectory(KViewer)
+add_subdirectory(JobMan)
 add_subdirectory(Locate)
 add_subdirectory(MountMan)
-add_subdirectory(Queue)
 add_subdirectory(Panel)
 add_subdirectory(Search)
 add_subdirectory(Splitter)
@@ -57,7 +58,6 @@ target_link_libraries(krusader
                       Konfigurator
                       KViewer
                       MountMan
-                      Queue
                       VFS
                       Search
                       Splitter
@@ -69,6 +69,8 @@ target_link_libraries(krusader
                       Filter
                       Dialogs
                       GUI
+                      Archive
+                      JobMan
                       KF5::Notifications
                       KF5::Parts
                       KF5::WindowSystem

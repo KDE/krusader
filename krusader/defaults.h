@@ -130,8 +130,6 @@
 #define _SingleInstanceMode false
 
 /////////////////////// [General]
-// Mimetype Magic /////
-#define _MimetypeMagic true
 // Move To Trash //////
 #define _MoveToTrash   true
 // Terminal ///////////

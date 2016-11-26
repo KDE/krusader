@@ -18,56 +18,151 @@
  *****************************************************************************/
 
 #include "krvfshandler.h"
-#include "normal_vfs.h"
-#include "ftp_vfs.h"
-#include "virt_vfs.h"
-#include "../krservices.h"
+
+#ifdef HAVE_POSIX_ACL
+#include <sys/acl.h>
+#ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
+#include <acl/libacl.h>
+#endif
+#endif
 
 // QtCore
 #include <QDir>
 
-KrVfsHandler::KrVfsHandler()
+#include "default_vfs.h"
+#include "virt_vfs.h"
+#include "../krservices.h"
+
+
+vfs* KrVfsHandler::getVfs(const QUrl &url, vfs* oldVfs)
 {
+    if (oldVfs && oldVfs->type() == getVfsType(url)) {
+        return oldVfs;
+    }
+
+    vfs *newVfs = createVfs(url);
+
+    QPointer<vfs> vfsPointer(newVfs);
+    _vfs_list.append(vfsPointer);
+    connect(newVfs, &vfs::filesystemChanged, this, &KrVfsHandler::refreshVfs);
+    return newVfs;
 }
-KrVfsHandler::~KrVfsHandler()
+
+void KrVfsHandler::startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,
+                                  KIO::CopyJob::CopyMode mode, bool showProgressInfo, bool enqueue)
 {
+    vfs *vfs = getVfs(destination); // implementation depends on filesystem of destination
+    vfs->copyFiles(urls, destination, mode, showProgressInfo, enqueue);
+}
+
+void KrVfsHandler::refreshVfs(const QUrl &directory)
+{
+    QMutableListIterator<QPointer<vfs>> it(_vfs_list);
+    while (it.hasNext()) {
+        if (it.next().isNull()) {
+            it.remove();
+        }
+    }
+
+    // refresh all vfs currently showing this directory
+    for(QPointer<vfs> vfsPointer: _vfs_list) {
+        // always refresh virtual vfs showing a virtual directory; it can contain files from various
+        // places, we don't know if they were (re)moved, refreshing is also fast enough
+        vfs *vfs = vfsPointer.data();
+        const QUrl vfsDir = vfs->currentDirectory();
+        if (vfsDir == vfs::cleanUrl(directory) || (vfsDir.scheme() == "virt" && !vfs->isRoot())) {
+            vfs->mayRefresh();
+        }
+    }
+}
+
+// ==== static ====
+
+KrVfsHandler &KrVfsHandler::instance()
+{
+    static KrVfsHandler instance;
+    return instance;
 }
 
 vfs::VFS_TYPE KrVfsHandler::getVfsType(const QUrl &url)
 {
-    QString protocol = url.scheme();
-
-    if ((protocol == "krarc" || protocol == "tar" || protocol == "zip") &&
-            QDir(KrServices::urlToLocalPath(url)).exists())
-        return vfs::VFS_NORMAL;
-
-    if (url.isLocalFile())
-        return vfs::VFS_NORMAL;
-
-    if (protocol == QStringLiteral("virt"))
-        return vfs::VFS_VIRT;
-
-    return vfs::VFS_FTP;
+    return url.scheme() == QStringLiteral("virt") ? vfs::VFS_VIRT : vfs::VFS_DEFAULT;
 }
 
-vfs* KrVfsHandler::getVfs(const QUrl &url, QObject* parent, vfs* oldVfs)
+vfs* KrVfsHandler::createVfs(const QUrl &url)
 {
-    vfs::VFS_TYPE newType, oldType = vfs::VFS_ERROR;
+    vfs::VFS_TYPE newType = getVfsType(url);
+    switch (newType) {
+    case (vfs::VFS_VIRT):
+        return new virt_vfs();
+    default:
+        return new default_vfs();
+    }
+}
 
-    if (oldVfs) oldType = oldVfs->vfs_getType();
-    newType = getVfsType(url);
+void KrVfsHandler::getACL(vfile *file, QString &acl, QString &defAcl)
+{
+    Q_UNUSED(file);
+    acl.clear();
+    defAcl.clear();
+#ifdef HAVE_POSIX_ACL
+    QString fileName = vfs::cleanUrl(file->vfile_getUrl()).path();
+#ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
+    if (acl_extended_file(fileName)) {
+#endif
+        acl = getACL(fileName, ACL_TYPE_ACCESS);
+        if (file->vfile_isDir())
+            defAcl = getACL(fileName, ACL_TYPE_DEFAULT);
+#ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
+    }
+#endif
+#endif
+}
 
+QString KrVfsHandler::getACL(const QString & path, int type)
+{
+    Q_UNUSED(path);
+    Q_UNUSED(type);
+#ifdef HAVE_POSIX_ACL
+    acl_t acl = 0;
+    // do we have an acl for the file, and/or a default acl for the dir, if it is one?
+    if ((acl = acl_get_file(path.toLocal8Bit(), type)) != 0) {
+        bool aclExtended = false;
 
-    vfs* newVfs = oldVfs;
+#ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
+        aclExtended = acl_equiv_mode(acl, 0);
+#else
+        acl_entry_t entry;
+        int ret = acl_get_entry(acl, ACL_FIRST_ENTRY, &entry);
+        while (ret == 1) {
+            acl_tag_t currentTag;
+            acl_get_tag_type(entry, &currentTag);
+            if (currentTag != ACL_USER_OBJ &&
+                    currentTag != ACL_GROUP_OBJ &&
+                    currentTag != ACL_OTHER) {
+                aclExtended = true;
+                break;
+            }
+            ret = acl_get_entry(acl, ACL_NEXT_ENTRY, &entry);
+        }
+#endif
 
-    if (oldType != newType) {
-        switch (newType) {
-        case(vfs::VFS_NORMAL) : newVfs = new normal_vfs(parent); break;
-        case(vfs::VFS_FTP) : newVfs = new ftp_vfs(parent)   ; break;
-        case(vfs::VFS_VIRT) : newVfs = new virt_vfs(parent)  ; break;
-        case(vfs::VFS_ERROR) : newVfs = 0                     ; break;
+        if (!aclExtended) {
+            acl_free(acl);
+            acl = 0;
         }
     }
 
-    return newVfs;
+    if (acl == 0)
+        return QString();
+
+    char *aclString = acl_to_text(acl, 0);
+    QString ret = QString::fromLatin1(aclString);
+    acl_free((void*)aclString);
+    acl_free(acl);
+
+    return ret;
+#else
+    return QString();
+#endif
 }

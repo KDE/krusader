@@ -42,8 +42,8 @@
 #include <KIOCore/KFileItem>
 
 #include "vfs.h"
-#include "krarchandler.h"
 #include "krpermhandler.h"
+#include "../Archive/krarchandler.h"
 
 #define  STATUS_SEND_DELAY     250
 #define  MAX_LINE_LEN          1000
@@ -291,7 +291,7 @@ bool KRQuery::match(vfile *vf) const
     // see if the name matches
     if (!match(vf->vfile_getName())) return false;
     // checking the mime
-    if (!type.isEmpty() && !checkType(vf->vfile_getMime(true))) return false;
+    if (!type.isEmpty() && !checkType(vf->vfile_getMime())) return false;
     // check that the size fit
     KIO::filesize_t size = vf->vfile_getSize();
     if (minSize && size < minSize) return false;
@@ -502,10 +502,8 @@ bool KRQuery::containsContent(QString file) const
 bool KRQuery::containsContent(QUrl url) const
 {
     KIO::TransferJob *contentReader = KIO::get(url, KIO::NoReload, KIO::HideProgressInfo);
-    connect(contentReader, SIGNAL(data(KIO::Job *, const QByteArray &)),
-            this, SLOT(containsContentData(KIO::Job *, const QByteArray &)));
-    connect(contentReader, SIGNAL(result(KJob*)),
-            this, SLOT(containsContentFinished(KJob*)));
+    connect(contentReader, &KIO::TransferJob::data, this, &KRQuery::containsContentData);
+    connect(contentReader, &KIO::Job::result, this, &KRQuery::containsContentFinished);
 
     busy = true;
     containsContentResult = false;

@@ -357,6 +357,7 @@ void KrusaderView::slotTerminalEmulator(bool show)
             if (statusBarShown) krApp->statusBar()->show();
             if (toolBarShown) {
                 krApp->toolBar()->show();
+                krApp->toolBar("jobToolBar")->show();
                 krApp->toolBar("actionsToolBar")->show();
             }
             if (menuBarShown) krApp->menuBar()->show();
@@ -388,6 +389,7 @@ void KrusaderView::slotTerminalEmulator(bool show)
             _cmdLine->hide();
             krApp->statusBar()->hide();
             krApp->toolBar()->hide();
+            krApp->toolBar("jobToolBar")->hide();
             krApp->toolBar("actionsToolBar")->hide();
             krApp->menuBar()->hide();
         }

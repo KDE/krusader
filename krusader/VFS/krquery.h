@@ -43,6 +43,11 @@ class QTextCodec;
 
 class vfile;
 
+/**
+ * @brief A search query for files
+ *
+ * Can be used for finding or selecting files and folders by multiple limiting search criteria
+ */
 class KRQuery : public QObject
 {
     Q_OBJECT

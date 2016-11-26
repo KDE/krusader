@@ -94,10 +94,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "VFS/vfile.h"
 #include "VFS/krpermhandler.h"
 #include "MountMan/kmountman.h"
-#include "Queue/queue_mgr.h"
 #include "Konfigurator/kgprotocols.h"
 #include "BookMan/krbookmarkhandler.h"
 #include "KViewer/krviewer.h"
+#include "JobMan/jobman.h"
 
 
 #ifdef __KJSEMBED__
@@ -159,9 +159,10 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     // create bookman
     krBookMan = new KrBookmarkHandler(this);
 
-    _popularUrls = new PopularUrls(this);
+    // create job manager
+    krJobMan = new JobMan(this);
 
-    queueManager = new QueueManager(this);
+    _popularUrls = new PopularUrls(this);
 
     // create the main view
     MAIN_VIEW = new KrusaderView(this);
@@ -179,9 +180,8 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     initChecksumModule();
 
     KConfigGroup gl(krConfig, "Look&Feel");
-    KConfigGroup glgen(krConfig, "General");
-    vfile::vfile_loadUserDefinedFolderIcons(gl.readEntry("Load User Defined Folder Icons", _UserDefinedFolderIcons));
-    vfile::vfile_enableMimeTypeMagic(glgen.readEntry("Mimetype Magic", _MimetypeMagic));
+    vfile::vfile_loadUserDefinedFolderIcons(gl.readEntry("Load User Defined Folder Icons",
+                                                         _UserDefinedFolderIcons));
 
     KConfigGroup gs(krConfig, "Startup");
     QString     startProfile = gs.readEntry("Starter Profile Name", QString());
@@ -258,11 +258,15 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
         const KConfigGroup cfgToolbar(krConfig, "Main Toolbar");
         toolBar()->applySettings(cfgToolbar);
 
+        const KConfigGroup cfgJobBar(krConfig, "Job Toolbar");
+        toolBar("jobToolBar")->applySettings(cfgJobBar);
+
         const KConfigGroup cfgActionsBar(krConfig, "Actions Toolbar");
         toolBar("actionsToolBar")->applySettings(cfgActionsBar);
 
         const KConfigGroup cfgStartup(krConfig->group("Startup"));
         toolBar()->setVisible(cfgStartup.readEntry("Show tool bar", _ShowToolBar));
+        toolBar("jobToolBar")->setVisible(cfgStartup.readEntry("Show job tool bar", true));
         toolBar("actionsToolBar")->setVisible(cfgStartup.readEntry("Show actions tool bar", _ShowActionsToolBar));
         statusBar()->setVisible(cfgStartup.readEntry("Show status bar", _ShowStatusBar));
 
@@ -463,11 +467,15 @@ void Krusader::saveSettings() {
     KConfigGroup cfg(krConfig, "Main Toolbar");
     toolBar()->saveSettings(cfg);
 
+    cfg = krConfig->group("Job Toolbar");
+    toolBar("jobToolBar")->saveSettings(cfg);
+
     cfg = krConfig->group("Actions Toolbar");
     toolBar("actionsToolBar")->saveSettings(cfg);
 
     cfg = krConfig->group("Startup");
     cfg.writeEntry("Show tool bar", !toolBar()->isHidden());
+    cfg.writeEntry("Show job tool bar", !toolBar("jobToolBar")->isHidden());
     cfg.writeEntry("Show actions tool bar", !toolBar("actionsToolBar")->isHidden());
     cfg.writeEntry("Show status bar", statusBar()->isVisible());
 
@@ -497,15 +505,13 @@ bool Krusader::queryClose() {
         return true;
     }
 
-    KConfigGroup cfg = krConfig->group("Look&Feel");
-    if (cfg.readEntry("Warn On Exit", _WarnOnExit)) {
-        // If user decides to cancel...
-        if (KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit?"))
-            != KMessageBox::Yes) {
-            // ... stop quit
-            return false;
-        }
-    }
+    const KConfigGroup cfg = krConfig->group("Look&Feel");
+    const bool confirmExit = cfg.readEntry("Warn On Exit", _WarnOnExit);
+
+    // ask user and wait until all KIO::job operations are terminated. Krusader won't exit before
+    // that anyway
+    if (!krJobMan->waitForJobs(confirmExit))
+        return false;
 
     /* First try to close the child windows, because it's the safer
        way to avoid crashes, then close the main window.

@@ -175,6 +175,7 @@ protected:
 
     vfs       * searchVfs;
     vfile     * currentVfile;
+    QList<vfile *> vfiles;
     Directory * currentParent;
     QString     dirToCheck;
 
