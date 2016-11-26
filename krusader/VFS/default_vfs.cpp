@@ -352,10 +352,10 @@ bool default_vfs::refreshLocal(const QUrl &directory) {
     // if the current dir is a link path the watcher needs to watch the real path - and signal
     // parameters will be the real path
     _watcher->addDir(realPath(), KDirWatch::WatchFiles);
-    connect(_watcher, &KDirWatch::dirty, this, &default_vfs::slotWatcherDirty);
+    connect(_watcher.data(), &KDirWatch::dirty, this, &default_vfs::slotWatcherDirty);
     // NOTE: not connecting 'created' signal. A 'dirty' is send after that anyway
     //connect(_watcher, SIGNAL(created(const QString&)), this, SLOT(slotWatcherCreated(const QString&)));
-    connect(_watcher, &KDirWatch::deleted, this, &default_vfs::slotWatcherDeleted);
+    connect(_watcher.data(), &KDirWatch::deleted, this, &default_vfs::slotWatcherDeleted);
     _watcher->startScan(false);
 
     return true;
