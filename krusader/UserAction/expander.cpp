@@ -270,7 +270,11 @@ QString separateAndQuote(QStringList list, const QString& separator, const bool 
 {
     if (quote)
         transform(list.begin(), list.end(), list.begin(), bashquote);
-    return list.join(separator);
+
+    // QLineEdit::text() always escapes special characters, revert this for newline and tab
+    QString decodedSeparator = separator;
+    decodedSeparator.replace("\\n", "\n").replace("\\t", "\t");
+    return list.join(decodedSeparator);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////// expander classes ////////////////////////////////////
