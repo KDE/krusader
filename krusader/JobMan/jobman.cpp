@@ -189,7 +189,7 @@ JobMan::JobMan(QObject *parent) : QObject(parent), _messageBox(0)
     KConfigGroup cfg(krConfig, "JobManager");
     _queueMode = cfg.readEntry("Queue Mode", false);
     _modeAction = new QAction(QIcon::fromTheme("media-playlist-repeat"), i18n("Job Queue Mode"),
-                              this);
+                              krMainWindow);
     _modeAction->setToolTip(i18n("Run only one job in parallel"));
     _modeAction->setCheckable(true);
     _modeAction->setChecked(_queueMode);
@@ -202,7 +202,7 @@ JobMan::JobMan(QObject *parent) : QObject(parent), _messageBox(0)
     KIO::FileUndoManager *undoManager = KIO::FileUndoManager::self();
     undoManager->uiInterface()->setParentWidget(krMainWindow);
 
-    _undoAction = new QAction(QIcon::fromTheme("edit-undo"), i18n("Undo Last Job"));
+    _undoAction = new QAction(QIcon::fromTheme("edit-undo"), i18n("Undo Last Job"), krMainWindow);
     _undoAction->setEnabled(false);
     connect(_undoAction, &QAction::triggered, undoManager, &KIO::FileUndoManager::undo);
     connect(undoManager, static_cast<void(KIO::FileUndoManager::*)(bool)>(&KIO::FileUndoManager::undoAvailable),
