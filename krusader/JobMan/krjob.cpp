@@ -51,9 +51,9 @@ KrJob *KrJob::createDeleteJob(const QList<QUrl> &urls, bool moveToTrash)
     const bool oneFile = urls.length() == 1;
     const QString description =
         moveToTrash ? (oneFile ? i18n("Move %1 to trash", urls.first().toDisplayString()) :
-                                 i18n("Move %1 files to trash", urls.length())) :
+                                 i18np("Move %1 file to trash", "Move %1 files to trash", urls.length())) :
                       (oneFile ? i18n("Delete %1", urls.first().toDisplayString()) :
-                                 i18n("Delete %1 files", urls.length()));
+                                 i18np("Delete %1 file", "Delete %1 files", urls.length()));
 
     return new KrJob(type, urls, QUrl(), KIO::DefaultFlags, description);
 }
