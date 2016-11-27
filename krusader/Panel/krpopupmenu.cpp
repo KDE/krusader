@@ -185,8 +185,10 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     addAction(uAct);
     uAct->setText(i18n("User Actions"));
 
-    // add compress and extract plugins (if available)
-    addCompressAndExtractPluginActions();
+    // workaround for Bug 372999: application freezes very long time if many files are selected
+    if (_items.length() < 1000)
+        // add compress and extract plugins (if available)
+        addCompressAndExtractPluginActions();
 
     // NOTE: design and usability problem here. Services disabled in kservicemenurc settings won't
     // be added to the menu. But Krusader does not provide a way do change these settings (only
