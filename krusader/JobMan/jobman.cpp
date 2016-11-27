@@ -379,7 +379,7 @@ void JobMan::updateUI()
     if (!hasJobs)
         _progressBar->setToolTip(i18n("No Jobs"));
     if (_jobs.length() > 1)
-        _progressBar->setToolTip(i18n("%1 Jobs", _jobs.length()));
+        _progressBar->setToolTip(i18np("%1 Job", "%1 Jobs", _jobs.length()));
 
     const bool running = jobsAreRunning();
     _controlAction->setIcon(QIcon::fromTheme(
