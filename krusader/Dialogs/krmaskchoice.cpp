@@ -37,7 +37,6 @@
 #include <QLabel>
 #include <QLayout>
 #include <QLineEdit>
-#include <QMessageBox>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QDialogButtonBox>

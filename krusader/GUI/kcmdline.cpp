@@ -42,7 +42,6 @@
 #include <QImage>
 // QtWidgets
 #include <QSizePolicy>
-#include <QMessageBox>
 #include <QGridLayout>
 #include <QFrame>
 #include <QLabel>

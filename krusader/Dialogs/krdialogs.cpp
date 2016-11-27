@@ -30,7 +30,6 @@
 #include <QDialogButtonBox>
 #include <QFrame>
 #include <QLabel>
-#include <QMessageBox>
 #include <QVBoxLayout>
 
 #include <KI18n/KLocalizedString>
