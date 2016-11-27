@@ -149,25 +149,21 @@ void KrSearchBar::onSearchChange()
     const QString text = _textBox->currentText();
 
     switch(_currentMode) {
-        case KrSearchBar::MODE_SEARCH: {
-            bool anyMatch = _view->op()->searchItem(text, caseSensitive());
+        case MODE_SEARCH: {
+            const bool anyMatch = _view->op()->searchItem(text, caseSensitive());
             indicateMatch(anyMatch);
-            if (!_textBox->currentText().isEmpty()) {
-                // needed to show where the cursor is now
-                _view->widget()->setFocus();
-            }
-            return;
+            break;
         }
-        case KrSearchBar::MODE_SELECT: {
+        case MODE_SELECT: {
             _view->unselectAll();
-            if (!_textBox->currentText().isEmpty()) {
-                bool anyMatch = _view->changeSelection(KRQuery(text, caseSensitive()), true);
+            if (!text.isEmpty()) {
+                const bool anyMatch = _view->changeSelection(KRQuery(text, caseSensitive()), true);
                 indicateMatch(anyMatch);
             }
             break;
         }
-        case KrSearchBar::MODE_FILTER: {
-            bool anyMatch =_view->op()->filterSearch(text, caseSensitive());
+        case MODE_FILTER: {
+            const bool anyMatch =_view->op()->filterSearch(text, caseSensitive());
             indicateMatch(anyMatch);
             break;
         }
@@ -175,7 +171,11 @@ void KrSearchBar::onSearchChange()
             krOut << "unexpected search mode: " << _currentMode;
     }
 
-    _textBox->setFocus();
+    if (!text.isEmpty())
+        // needed to show where the cursor is now
+        _view->widget()->setFocus();
+    else
+        _textBox->setFocus();
 }
 
 void KrSearchBar::saveSearchString()
