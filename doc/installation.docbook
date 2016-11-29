@@ -93,7 +93,7 @@
     <link linkend="konfig-dependencies">added/removed/changed</link>.</para>
     <para>A package of popular (un)packers, &krusader;
     itself and add-ons can be found on the
-    <ulink url="http://www.krusader.org/down.php">&krusader; downloadpage</ulink>.</para>
+    <ulink url="https://krusader.org/get-krusader/index.html">&krusader; download page</ulink>.</para>
     <para>For more requirements, see below. Have a look at the
     <link linkend="faq">FAQ</link> section as well.</para>
   </sect1>
@@ -111,7 +111,7 @@
       distribution and ask them to provide a &krusader;
       package</para>
       <para>The latest version, as well as the older versions, can
-      be found on the <ulink url="http://www.krusader.org/down.php">&krusader; downloadpage</ulink> and on the
+      be found on the <ulink url="https://krusader.org/get-krusader/index.html">&krusader; downloadpage</ulink> and on the
       <ulink url="http://sourceforge.net/project/showfiles.php?group_id=6488">Sourceforge mirrors</ulink>. It contains the source tarballs,
       RPM and DEB packages to whatever distro the
       &krusader;-Krew is using and packages build by
@@ -125,24 +125,21 @@
           <para><ulink url="https://admin.fedoraproject.org/pkgdb/packages/name/krusader"><trademark>Fedora</trademark></ulink> via
           <command># yum install krusader</command> will do the job,
           thanks to Marcin Garski. &RedHat; RPM packages
-          can usually found on the <ulink url="http://www.krusader.org/down.php">&krusader; downloadpage</ulink> or
-          at <ulink url="http://dag.wieers.com/packages/krusader/">dag.wieers.com</ulink> and
-          <ulink url="http://dries.ulyssis.org/rpm/packages/krusader/info.html">Dries Verachtert RPM Repository</ulink> .</para>
+          can usually found on the <ulink url="https://krusader.org/get-krusader/index.html">&krusader; downloadpage</ulink>.</para>
         </listitem>
         <listitem>
           <para><ulink url="http://packages.debian.org/krusader"><trademark class="registered">Debian</trademark></ulink>, on our
-          <ulink url="http://www.krusader.org/down.php">&krusader; downloadpage</ulink> you might find more recent
+          <ulink url="https://krusader.org/get-krusader/index.html">&krusader; download page</ulink> you might find more recent
           DEB packages. Note: usually <trademark class="registered">Debian</trademark> packages
           work also on distributions that are "based on
           <trademark class="registered">Debian</trademark>", and some of these provide their own
           (incompatible) packages.
           <ulink url="http://packages.ubuntu.com/krusader"><trademark class="registered">Ubuntu</trademark>/<trademark class="registered">Kubuntu</trademark></ulink>,
-          <ulink url="http://www.cnr.com/search.seam?conversationId=230925"><trademark class="registered">Linspire</trademark>/<trademark class="registered">Freespire</trademark></ulink>, <trademark class="registered">Knoppix</trademark>
-          4.x DVD, <trademark class="registered">Kanotix</trademark>, etc.</para>
+          <trademark class="registered">Knoppix</trademark>
+          4.x DVD, <trademark class="registered">Kanotix</trademark>, &etc;</para>
         </listitem>
         <listitem>
-          <para><ulink url="http://www.mandrivaclub.com/xwiki/bin/view/rpms/Application/krusader"><trademark class="registered">Mandriva</trademark></ulink> via the contrib
-          repository 
+          <para><ulink url="http://www.mageia.org/"><trademark class="registered">Mageia</trademark></ulink> via the contrib repository 
           <command># urpmi krusader</command> will do the job,
           <ulink url="http://packages.gentoo.org/package/kde-misc/krusader"><trademark class="registered">Gentoo</trademark></ulink>,
           <trademark>Yoper</trademark>.</para>
@@ -154,7 +151,7 @@
           <ulink url="www.altlinux.com/"><trademark class="registered">altlinux</trademark></ulink>.</para>
         </listitem>
         <listitem>
-          <para><ulink url="http://www.freebsd.org/cgi/ports.cgi?query=krusader&amp;stype=all"><trademark class="copyright">FreeBSD</trademark></ulink>, the port is
+          <para><ulink url="http://www.freebsd.org/cgi/ports.cgi?query=krusader&amp;stype=all"><trademark class="copyright">FreeBSD</trademark></ulink>, the port was
           maintained by 
           <link linkend="credits">Heiner Eichmann</link>.</para>
         </listitem>
@@ -181,7 +178,7 @@
       <itemizedlist>
         <listitem>
           <para><trademark class="registered">Slackware</trademark> tgz binaries can usually be
-          found on the <ulink url="http://www.krusader.org/down.php">&krusader; downloadpage</ulink>. You can also
+          found on the <ulink url="https://krusader.org/get-krusader/index.html">&krusader; download page</ulink>. You can also
           use <ulink url="http://portpkg.berlios.de/">Portpkg</ulink> that contains a
           <ulink url="http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports/kde/krusader/">&krusader; SlackBuild</ulink>, 
           <command># portpkg krusader</command> will do the
@@ -200,8 +197,7 @@
       <itemizedlist>
         <listitem>
           <para>You can also find packages on &Linux;
-          software archives such as <ulink url="http://freshmeat.net/projects/krusader/">freshmeat.net</ulink> or
-          <ulink url="http://www.kde-apps.org/content/show.php?content=10214">KDE-APPS.org</ulink> .</para>
+          software archives such as <ulink url="http://freshmeat.net/projects/krusader/">freshmeat.net</ulink>.</para>
         </listitem>
         <listitem>
           <para>If you can not find a package for your distribution,
@@ -294,134 +290,11 @@
       </listitem>
     </itemizedlist></para></sect2>
 
-<!-- OUTDATED CVS is DEACTIVATED 
-    <sect2 id="krusader_cvs">
-      <title>CVS Builds</title>
-      <para>
-        <filename>krusader-cvs-yyyymmdd.tar.gz</filename>
-      </para>
-      <warning>
-        <para>These builds are untested and come without any
-        warranty. They may contain bugfixes, new features, or even
-        new bugs.</para>
-      </warning>
-      <para>We provide daily snapshots of &krusader;'s
-      CVS version. For those who are interested, the 
-      <emphasis role="bold">nightly tarball</emphasis> can be found
-      on the <ulink url="http://www.krusader.org/cvs.php">&krusader;&apos;s Cutting Edge page</ulink>. Depending on the stage of
-      development, this version will either be stable or unstable.
-      Just before a stable release, the CVS version is almost
-      stable. After a stable release new features will be committed
-      into CVS, which might lead to the appearance of bugs. In some
-      rare cases, the build will not even compile if we make a
-      mistake. In that case we try to fix the error as soon as
-      possible.</para>
-      <para>&krusader; provides 2 nightly snapshots: 
-      <orderedlist numeration="arabic">
-        <listitem>
-          <para>
-          <filename>krusader-cvs-yyyymmdd.tar.gz</filename>: 
-          <command>make -f Makefile.cvs</command> must be run before
-          the 
-          <command>./configure</command> script is available.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <filename>krusader-cvs2-yyyymmdd.tar.gz</filename>: for
-          users who have problems with the 
-          <command>make -f Makefile.cvs</command> command, we have
-          already done this for you and the 
-          <command>./configure</command> script is included in the
-          tarball. This tarball is a bit bigger than the first
-          one.</para>
-        </listitem>
-      </orderedlist></para>
-      <para>
-      <emphasis role="bold">check out from CVS</emphasis>.
-      &krusader; can be checked out through anonymous
-      (pserver) CVS with the following instruction set. The module
-      you wish to check out must be specified as the module name.
-      When prompted for a password for anonymous, press the
-      &Enter; key.</para>
-      <para>Currently, there are two module options: 
-      <itemizedlist>
-        <listitem>
-          <para>krusader_kde2: the &kde;2 branch, stable
-          but it is basically v1.01 and there are no planned
-          changes</para>
-        </listitem>
-        <listitem>
-          <para>krusader_kde3: the &kde;3 branch that we
-          currently use</para>
-        </listitem>
-      </itemizedlist></para>
-      <para>To check out &krusader; from CVS: 
-      <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader login</option></userinput></screen>
-      <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co krusader_kde3</option></userinput></screen>
-      (note: updates from within the modules directory do
-      not need the -d parameter)</para>
-      <para>If you want to check out a specific version of
-      &krusader; from CVS (&eg;
-      &krusader;-1.60.0) : 
-      <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co -rversion_1_60_0 krusader_kde3</option></userinput></screen>
-      </para>
-      <para>If you want to check out a specific date of
-      &krusader; from CVS (&eg;
-      &krusader;-2006-10-29) : 
-      <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co -D2006-10-29 krusader_kde3</option></userinput></screen>
-      </para>
-      <para>Mostly being <trademark class="registered">Gentoo</trademark> users, we provide a
-      <ulink url="http://www.krusader.org/cvs.php"><trademark class="registered">Gentoo</trademark> Live Ebuild</ulink> for all those who want to
-      stay on the bleeding edge of file management and do not want
-      to miss the advantages of portage. Please take a look at our
-      <ulink url="http://www.krusader.org/cvs.php">&krusader;&apos;s Cutting Edge page</ulink> for more installation
-      details.</para>
-      <para>We also provide &viewcvs-url; to browse the
-      CVS repository.</para>
-    </sect2>
-
--->
-
-
     <sect2 id="krusader_git">
       <title>Git</title>
       
      <para><ulink url="https://commits.kde.org/krusader">Git</ulink> is used for our sourcecode repository.
       It is also possible to <ulink url="https://commits.kde.org/krusader?path=/">Browse the Git Repository</ulink>.</para>
-<!-- Outdated information
-      <para>Currently, there are four module options: 
-      <itemizedlist>
-        <listitem>
-          <para>krusader_kde2: the &kde;2 branch, stable
-          but it is basically v1.01 and there are no planned
-          changes</para>
-        </listitem>
-        <listitem>
-          <para>krusader_kde3: the &kde;3 branch, stable
-          but it is basically v1.90.0 and there are no planned
-          changes</para>
-        </listitem>
-        <listitem>
-          <para>krusader_kde4: the &kde;4 branch that we
-          currently use</para>
-        </listitem>
-        <listitem>
-          <para>trunk: the &kde;4 the development version</para>
-        </listitem>
-      </itemizedlist></para>
-
-
-      <para>
- 
-      To check out the latest &krusader; 1.x for
-      &kde; 3 from SVN:
-      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://krusader.svn.sourceforge.net/svnroot/krusader/branches/krusader_kde3/</option></userinput></screen>
-
-      To check out the latest &krusader; 2.x for
-      &kde; 4 from SVN:
-      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://krusader.svn.sourceforge.net/svnroot/krusader/branches/krusader_kde4/</option></userinput></screen>
--->
-
       <para>To check out the latest development &krusader; 2.x
       for &kde; 4 from Git:
       <screen><prompt>$</prompt> <userinput><command>git</command> <option>clone git://anongit.kde.org/krusader</option></userinput></screen>
@@ -434,9 +307,6 @@
       page.</para>
     </sect2>
   </sect1>
-
-<!-- <chapter id="krusader_kde4_install">
-<title>Installation on KDE4.x</title> -->
 
 <sect1 id="compilation">
    <title>Krusader installation instructions</title>
