@@ -54,6 +54,8 @@ public:
 
     /** Return true if job was started and is not suspended(). */
     bool isRunning() const { return _job && !_job->isSuspended(); }
+    /** Return true if job was started and then paused by user. */
+    bool isManuallyPaused() const { return _job && _job->isSuspended(); }
     /** Return percent progress of job. */
     int percent() const { return _job ? _job->percent() : 0; }
 

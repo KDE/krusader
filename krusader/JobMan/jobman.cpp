@@ -321,9 +321,14 @@ void JobMan::slotTerminated(KrJob *krJob)
 {
     _jobs.removeAll(krJob);
 
-    if (_queueMode && !_jobs.isEmpty() && !jobsAreRunning()) {
-        // start next job
-        _jobs.first()->start();
+    if (!_jobs.isEmpty() && !jobsAreRunning()) {
+        foreach (KrJob *job, _jobs) {
+            if (!job->isManuallyPaused()) {
+                // start next job
+                job->start();
+                break;
+            }
+        }
     }
 
     updateUI();
