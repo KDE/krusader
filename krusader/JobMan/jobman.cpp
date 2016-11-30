@@ -103,8 +103,12 @@ protected slots:
 
     void updatePauseResumeButton()
     {
-        _pauseResumeButton->setIcon(QIcon::fromTheme(_krJob->isRunning() ? "media-playback-pause" :
-                                                                           "media-playback-start"));
+        _pauseResumeButton->setIcon(QIcon::fromTheme(
+            _krJob->isRunning() ? "media-playback-pause" :
+            _krJob->isManuallyPaused() ? "media-playback-start" : "chronometer-start"));
+        _pauseResumeButton->setToolTip(_krJob->isRunning() ? i18n("Pause Job") :
+                                       _krJob->isManuallyPaused() ? i18n("Resume Job") :
+                                                                    i18n("Start Job"));
     }
 
     void slotResult(KJob *job)
