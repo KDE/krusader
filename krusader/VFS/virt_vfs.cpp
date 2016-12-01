@@ -56,7 +56,7 @@ virt_vfs::~virt_vfs() {}
 
 void virt_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                          KIO::CopyJob::CopyMode /*mode*/, bool /*showProgressInfo*/,
-                         bool /*enqueue*/)
+                         bool /*reverseQueueMode*/, bool /*startPaused*/)
 {
     const QString dir = QDir(destination.path()).absolutePath().remove('/');
 

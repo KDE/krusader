@@ -56,7 +56,8 @@ class KChooseDir
 public:
     struct ChooseResult {
         QUrl url;
-        bool queue;
+        bool reverseQueueMode;
+        bool startPaused;
         bool preserveAttrs; // NOTE: field never read
         QUrl baseURL;       // NOTE: field never read
     };
@@ -86,7 +87,8 @@ public:
     QUrl selectedURL() const;
     QUrl baseURL() const;
     bool preserveAttrs();
-    bool enqueue() { return queueBox->isChecked(); }
+    bool isReverseQueueMode() { return reverseQueueMode; };
+    bool isStartPaused() { return pauseBox->isChecked(); };
     bool copyDirStructure();
     void hidePreserveAttrs() {
 //         preserveAttrsCB->hide();
@@ -94,7 +96,12 @@ public:
 
     KUrlRequester *urlRequester();
 
+protected:
+    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+
+
 private slots:
+    void slotReverseQueueMode();
     void slotTextChanged(const QString &);
     void slotDirStructCBChanged();
 private:
@@ -102,8 +109,9 @@ private:
     QComboBox *baseUrlCombo;
 //     QCheckBox *preserveAttrsCB;
     QCheckBox *copyDirStructureCB;
-    QCheckBox *queueBox;
+    QCheckBox *pauseBox;
     QPushButton *okButton;
+    bool reverseQueueMode = false;
 };
 
 class KRGetDate : public QDialog

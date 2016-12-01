@@ -251,7 +251,7 @@ bool JobMan::waitForJobs(bool waitForUserInput)
     return false;
 }
 
-void JobMan::manageJob(KrJob *job, bool enqueue)
+void JobMan::manageJob(KrJob *job, bool reverseQueueMode, bool startPaused)
 {
 
     JobMenuAction *menuAction = new JobMenuAction(job, _controlAction);
@@ -262,7 +262,9 @@ void JobMan::manageJob(KrJob *job, bool enqueue)
     connect(job, &KrJob::started, this, &JobMan::slotKJobStarted);
     connect(job, &KrJob::terminated, this, &JobMan::slotTerminated);
 
-    if (!enqueue && !(_queueMode && jobsAreRunning())) {
+    bool isQueueMode = _queueMode != reverseQueueMode;
+
+    if (!startPaused && (!jobsAreRunning() || !isQueueMode)) {
         job->start();
     }
 

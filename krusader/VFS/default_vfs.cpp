@@ -56,20 +56,22 @@ default_vfs::default_vfs(): vfs(), _watcher()
 }
 
 void default_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
-                            KIO::CopyJob::CopyMode mode, bool showProgressInfo, bool enqueue)
+                            KIO::CopyJob::CopyMode mode, bool showProgressInfo, bool reverseQueueMode, bool startPaused)
 {
     // resolve relative path before resolving symlinks
     const QUrl dest = resolveRelativePath(destination);
 
     KIO::JobFlags flags = showProgressInfo ? KIO::DefaultFlags : KIO::HideProgressInfo;
 
-    KrJob *krJob = KrJob::createCopyJob(mode, urls, destination, flags);
+    // allow job to be started only manually when startPaused=true AND queueMode=false
+    bool queueMode = krJobMan->isQueueModeEnabled() != reverseQueueMode;
+    KrJob *krJob = KrJob::createCopyJob(mode, urls, destination, flags, startPaused && !queueMode);
     connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectJob(job, dest); });
     if (mode == KIO::CopyJob::Move) { // notify source about removed files
         connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectSourceVFS(job, urls); });
     }
 
-    krJobMan->manageJob(krJob, enqueue);
+    krJobMan->manageJob(krJob, reverseQueueMode, startPaused);
 }
 
 void default_vfs::dropFiles(const QUrl &destination, QDropEvent *event)

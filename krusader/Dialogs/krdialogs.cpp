@@ -42,6 +42,7 @@
 #include "../krglobal.h"
 #include "../VFS/vfs.h"
 #include "../defaults.h"
+#include "../JobMan/jobman.h"
 
 
 QUrl KChooseDir::getFile(const QString &text, const QUrl& url, const QUrl& cwd)
@@ -91,7 +92,8 @@ KChooseDir::ChooseResult KChooseDir::getCopyDir(const QString &text, const QUrl 
 
     ChooseResult result;
     result.url = u;
-    result.queue = dlg->enqueue();
+    result.reverseQueueMode = dlg->isReverseQueueMode();
+    result.startPaused = dlg->isStartPaused();
     result.preserveAttrs = dlg->preserveAttrs();
     result.baseURL = dlg->copyDirStructure() ? dlg->baseURL() : QUrl();
     return result;
@@ -150,17 +152,39 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QStr
     okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    queueBox = new QCheckBox(i18n("Start &Paused"), this);
-    buttonBox->addButton(queueBox, QDialogButtonBox::ActionRole);
+    pauseBox = new QCheckBox(i18n("Start &Paused"), this);
+    buttonBox->addButton(pauseBox, QDialogButtonBox::ActionRole);
+    QPushButton *reverseQueueModeButton = new QPushButton(krJobMan->isQueueModeEnabled() ? i18n("F2 Run Immediately") : i18n("F2 Queue"), this);
+    reverseQueueModeButton->setToolTip(krJobMan->isQueueModeEnabled() ? i18n("Immediately start job even if there are running jobs in queue.") : i18n("Enqueue the job if queue is not empty. Otherwise start the job immediately."));
+    buttonBox->addButton(reverseQueueModeButton, QDialogButtonBox::ActionRole);
 
     connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
+    connect(reverseQueueModeButton, SIGNAL(clicked()), SLOT(slotReverseQueueMode()));
     connect(urlRequester_, SIGNAL(textChanged(QString)), SLOT(slotTextChanged(QString)));
 
     urlRequester_->setFocus();
     bool state = !urlName.isEmpty();
     okButton->setEnabled(state);
 }
+
+void KUrlRequesterDlgForCopy::keyPressEvent(QKeyEvent *e)
+{
+    switch (e->key()) {
+    case Qt::Key_F2:
+        slotReverseQueueMode();
+        return;
+    default:
+        QDialog::keyPressEvent(e);
+    }
+}
+
+void KUrlRequesterDlgForCopy::slotReverseQueueMode()
+{
+    reverseQueueMode = true;
+    accept();
+}
+
 
 bool KUrlRequesterDlgForCopy::preserveAttrs()
 {

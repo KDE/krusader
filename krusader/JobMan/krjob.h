@@ -41,7 +41,7 @@ public:
 
     /** Create a new copy, move, or link job. */
     static KrJob *createCopyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &src,
-                         const QUrl &destination, KIO::JobFlags flags);
+                         const QUrl &destination, KIO::JobFlags flags, bool startManually);
     /** Create a new trash or delete job. */
     static KrJob *createDeleteJob(const QList<QUrl> &urls, bool moveToTrash);
 
@@ -55,7 +55,7 @@ public:
     /** Return true if job was started and is not suspended(). */
     bool isRunning() const { return _job && !_job->isSuspended(); }
     /** Return true if job was started and then paused by user. */
-    bool isManuallyPaused() const { return _job && _job->isSuspended(); }
+    bool isManuallyPaused() const { return _initiallyPaused || (_job && _job->isSuspended()); }
     /** Return percent progress of job. */
     int percent() const { return _job ? _job->percent() : 0; }
 
@@ -72,13 +72,14 @@ public:
 
 private:
     KrJob(Type type, const QList<QUrl> &urls, const QUrl &dest, KIO::JobFlags flags,
-          const QString &description);
+          const QString &description, bool startManually = false);
 
     const Type _type;
     const QList<QUrl> _urls;
     const QUrl _dest;
     const KIO::JobFlags _flags;
     const QString _description;
+    bool _initiallyPaused;
 
     KIO::Job *_job;
 };

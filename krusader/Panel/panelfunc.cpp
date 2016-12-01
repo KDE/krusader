@@ -87,6 +87,7 @@ A
 #include "../KViewer/krviewer.h"
 #include "../GUI/syncbrowsebutton.h"
 #include "../MountMan/kmountman.h"
+#include "../JobMan/jobman.h"
 
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
@@ -572,7 +573,17 @@ void ListPanelFunc::slotFileCreated(KJob *job)
     fileToCreate = QUrl();
 }
 
-void ListPanelFunc::copyFiles(bool enqueue, bool move)
+void ListPanelFunc::moveFilesByQueue()
+{
+    moveFiles(!krJobMan->isQueueModeEnabled());
+}
+
+void ListPanelFunc::copyFilesByQueue()
+{
+    copyFiles(!krJobMan->isQueueModeEnabled());
+}
+
+void ListPanelFunc::copyFiles(bool reverseQueueMode, bool move)
 {
     QStringList fileNames;
     panel->getSelectedNames(&fileNames);
@@ -580,6 +591,7 @@ void ListPanelFunc::copyFiles(bool enqueue, bool move)
         return ;  // safety
 
     QUrl destination = panel->otherPanel()->virtualPath();
+    bool startPaused = false;
 
     KConfigGroup group(krConfig, "Advanced");
 
@@ -603,7 +615,8 @@ void ListPanelFunc::copyFiles(bool enqueue, bool move)
         if (destination.isEmpty())
             return ; // the user canceled
 
-        enqueue = result.queue;
+        reverseQueueMode = result.reverseQueueMode;
+        startPaused = result.startPaused;
     }
 
     const QList<QUrl> fileUrls = files()->getUrls(fileNames);
@@ -619,7 +632,7 @@ void ListPanelFunc::copyFiles(bool enqueue, bool move)
     }
 
     KIO::CopyJob::CopyMode mode = move ? KIO::CopyJob::Move : KIO::CopyJob::Copy;
-    KrVfsHandler::instance().startCopyFiles(fileUrls, destination, mode, true, enqueue);
+    KrVfsHandler::instance().startCopyFiles(fileUrls, destination, mode, true, reverseQueueMode, startPaused);
 
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         panel->view->saveSelection();

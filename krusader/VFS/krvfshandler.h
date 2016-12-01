@@ -52,7 +52,7 @@ public:
      */
     void startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,
                         KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
-                        bool showProgressInfo = true, bool enqueue = false);
+                        bool showProgressInfo = true, bool reverseQueueMode = false, bool startPaused = false);
 
     static KrVfsHandler &instance();
     static vfs::VFS_TYPE getVfsType(const QUrl &url);

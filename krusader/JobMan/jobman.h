@@ -78,11 +78,20 @@ public:
      */
     bool waitForJobs(bool waitForUserInput);
 
+    /* Curent info about _queueMode state */
+    bool isQueueModeEnabled() { return _queueMode; };
+
 public slots:
     /** Display, monitor and give user ability to control a job.
-     *  If enqueued the job is not started. Otherwise this depends on the job manager mode.
+     *
+     * If reverseQueueMode is false, job is queued or run in parallel accordingly
+     * to job manager mode. When reverseQueueMode is true, opposite manager mode is chosen.
+     *
+     * When startPaused is true, job is never started immediately. Instead, it is waiting
+     * to be manually unpaused. Or in case of enabled queueMode it is started automatically
+     * when other jobs are finished.
      */
-    void manageJob(KrJob *krJob, bool enqueue = false);
+    void manageJob(KrJob *krJob, bool reverseQueueMode = false, bool startPaused = false);
 
 protected slots:
     void slotKJobStarted(KJob *krJob);
