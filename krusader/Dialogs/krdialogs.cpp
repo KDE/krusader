@@ -71,11 +71,11 @@ QUrl KChooseDir::get(const QString &text, const QUrl &url, const QUrl &cwd, KFil
 }
 
 KChooseDir::ChooseResult KChooseDir::getCopyDir(const QString &text, const QUrl &url,
-                                                const QUrl &cwd, bool preserveAttrs,
+                                                const QUrl &cwd, bool delay, bool preserveAttrs,
                                                 const QUrl &baseURL)
 {
     QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(
-        FileSystem::ensureTrailingSlash(url), text, preserveAttrs, krMainWindow, true, baseURL));
+        FileSystem::ensureTrailingSlash(url), text, delay, preserveAttrs, krMainWindow, true, baseURL));
 
     if (!preserveAttrs)
         dlg->hidePreserveAttrs();
@@ -93,15 +93,15 @@ KChooseDir::ChooseResult KChooseDir::getCopyDir(const QString &text, const QUrl 
     ChooseResult result;
     result.url = u;
     result.reverseQueueMode = dlg->isReverseQueueMode();
-    result.startPaused = dlg->isStartPaused();
+    result.delay = dlg->isDelayed();
     result.preserveAttrs = dlg->preserveAttrs();
     result.baseURL = dlg->copyDirStructure() ? dlg->baseURL() : QUrl();
     return result;
 }
 
 KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QString &_text,
-                                                 bool /*presAttrs*/, QWidget *parent, bool modal,
-                                                 QUrl baseURL)
+                                                 bool delay, bool /*presAttrs*/, QWidget *parent,
+                                                 bool modal, QUrl baseURL)
     : QDialog(parent), baseUrlCombo(0), copyDirStructureCB(0)
 {
     setWindowModality(modal ? Qt::WindowModal : Qt::NonModal);
@@ -151,11 +151,20 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QStr
     mainLayout->addWidget(buttonBox);
     okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
-    pauseBox = new QCheckBox(i18n("Start &Paused"), this);
-    buttonBox->addButton(pauseBox, QDialogButtonBox::ActionRole);
-    QPushButton *reverseQueueModeButton = new QPushButton(krJobMan->isQueueModeEnabled() ? i18n("F2 Run Immediately") : i18n("F2 Queue"), this);
-    reverseQueueModeButton->setToolTip(krJobMan->isQueueModeEnabled() ? i18n("Immediately start job even if there are running jobs in queue.") : i18n("Enqueue the job if queue is not empty. Otherwise start the job immediately."));
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    delayBox = new QCheckBox(i18n("&Delay Job Start"), this);
+
+    buttonBox->addButton(delayBox, QDialogButtonBox::ActionRole);
+    QPushButton *reverseQueueModeButton = new QPushButton(
+        krJobMan->isQueueModeEnabled() ? i18n("F2 Run Immediately") : i18n("F2 Queue"), this);
+    reverseQueueModeButton->setToolTip(
+        krJobMan->isQueueModeEnabled() ?
+            i18n("Immediately start job even if there are running jobs in queue.") :
+            i18n("Enqueue the job if queue is not empty. Otherwise start the job immediately."));
     buttonBox->addButton(reverseQueueModeButton, QDialogButtonBox::ActionRole);
+
+    connect(delayBox, &QCheckBox::toggled, reverseQueueModeButton, &QPushButton::setDisabled);
+    delayBox->setChecked(delay);
 
     connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
@@ -171,7 +180,8 @@ void KUrlRequesterDlgForCopy::keyPressEvent(QKeyEvent *e)
 {
     switch (e->key()) {
     case Qt::Key_F2:
-        slotReverseQueueMode();
+        if (!delayBox->isChecked())
+            slotReverseQueueMode();
         return;
     default:
         QDialog::keyPressEvent(e);

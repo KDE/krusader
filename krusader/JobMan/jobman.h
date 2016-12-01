@@ -59,6 +59,18 @@ class JobMan : public QObject
     Q_OBJECT
 
 public:
+    /** Job start mode for new jobs. */
+    enum StartMode {
+        /** Enqueue or start job - depending on QueueMode. */
+        Default,
+        /** Enqueue job. I.e. start if no other jobs are running. */
+        Enqueue,
+        /** Job is always started. */
+        Start,
+        /** Job is always not started. */
+        Delay
+    };
+
     explicit JobMan(QObject *parent = 0);
     /** Toolbar action icon for pausing/starting all jobs with drop down menu showing all jobs.*/
     QAction *controlAction() const { return _controlAction; }
@@ -78,20 +90,14 @@ public:
      */
     bool waitForJobs(bool waitForUserInput);
 
-    /* Curent info about _queueMode state */
-    bool isQueueModeEnabled() { return _queueMode; };
+    /** Return if queue mode is enabled or not. */
+    bool isQueueModeEnabled() const { return _queueMode; }
 
-public slots:
     /** Display, monitor and give user ability to control a job.
      *
-     * If reverseQueueMode is false, job is queued or run in parallel accordingly
-     * to job manager mode. When reverseQueueMode is true, opposite manager mode is chosen.
-     *
-     * When startPaused is true, job is never started immediately. Instead, it is waiting
-     * to be manually unpaused. Or in case of enabled queueMode it is started automatically
-     * when other jobs are finished.
+     * If job is started now or delayed depends on startMode.
      */
-    void manageJob(KrJob *krJob, bool reverseQueueMode = false, bool startPaused = false);
+    void manageJob(KrJob *krJob, StartMode startMode = Default);
 
 protected slots:
     void slotKJobStarted(KJob *krJob);

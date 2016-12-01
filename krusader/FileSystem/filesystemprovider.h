@@ -52,7 +52,8 @@ public:
      */
     void startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,
                         KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
-                        bool showProgressInfo = true, bool reverseQueueMode = false, bool startPaused = false);
+                        bool showProgressInfo = true,
+                        JobMan::StartMode startMode = JobMan::Default);
 
     static FileSystemProvider &instance();
     static FileSystem::FS_TYPE getFilesystemType(const QUrl &url);

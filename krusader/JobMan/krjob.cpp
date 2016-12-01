@@ -23,7 +23,7 @@
 #include <KIO/FileUndoManager>
 
 KrJob *KrJob::createCopyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &src,
-                            const QUrl &destination, KIO::JobFlags flags, bool startManually)
+                            const QUrl &destination, KIO::JobFlags flags)
 {
     Type type;
     QString description;
@@ -42,7 +42,7 @@ KrJob *KrJob::createCopyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &src,
         break;
     }
 
-    return new KrJob(type, src, destination, flags, description, startManually);
+    return new KrJob(type, src, destination, flags, description);
 }
 
 KrJob *KrJob::createDeleteJob(const QList<QUrl> &urls, bool moveToTrash)
@@ -59,8 +59,8 @@ KrJob *KrJob::createDeleteJob(const QList<QUrl> &urls, bool moveToTrash)
 }
 
 KrJob::KrJob(Type type, const QList<QUrl> &urls, const QUrl &dest, KIO::JobFlags flags,
-             const QString &description, bool startManually)
-    : _type(type), _urls(urls), _dest(dest), _flags(flags), _description(description), _initiallyPaused(startManually), _job(0)
+             const QString &description)
+    : _type(type), _urls(urls), _dest(dest), _flags(flags), _description(description), _job(0)
 {
 }
 
@@ -71,8 +71,6 @@ void KrJob::start()
         _job->resume();
         return;
     }
-
-    _initiallyPaused = false;
 
     switch (_type) {
     case Copy: {

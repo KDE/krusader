@@ -34,6 +34,7 @@
 #include "defaultfilesystem.h"
 #include "virtualfilesystem.h"
 #include "../krservices.h"
+#include "../JobMan/jobman.h"
 
 
 FileSystemProvider::FileSystemProvider() : _defaultFileSystem(0), _virtFileSystem(0) {}
@@ -45,7 +46,8 @@ FileSystem *FileSystemProvider::getFilesystem(const QUrl &url, FileSystem *oldFi
 }
 
 void FileSystemProvider::startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,
-                                  KIO::CopyJob::CopyMode mode, bool showProgressInfo, bool reverseQueueMode, bool startPaused)
+                                  KIO::CopyJob::CopyMode mode, bool showProgressInfo,
+                                  JobMan::StartMode startMode)
 {
     const FileSystem::FS_TYPE type = getFilesystemType(destination);
     FileSystem *fs;
@@ -61,7 +63,7 @@ void FileSystemProvider::startCopyFiles(const QList<QUrl> &urls, const QUrl &des
         fs = _defaultFileSystem;
     }
 
-    fs->copyFiles(urls, destination, mode, showProgressInfo, reverseQueueMode, startPaused);
+    fs->copyFiles(urls, destination, mode, showProgressInfo, startMode);
 }
 
 void FileSystemProvider::refreshFilesystem(const QUrl &directory)

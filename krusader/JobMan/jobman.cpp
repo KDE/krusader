@@ -105,9 +105,9 @@ protected slots:
     {
         _pauseResumeButton->setIcon(QIcon::fromTheme(
             _krJob->isRunning() ? "media-playback-pause" :
-            _krJob->isManuallyPaused() ? "media-playback-start" : "chronometer-start"));
+            _krJob->isPaused() ? "media-playback-start" : "chronometer-start"));
         _pauseResumeButton->setToolTip(_krJob->isRunning() ? i18n("Pause Job") :
-                                       _krJob->isManuallyPaused() ? i18n("Resume Job") :
+                                       _krJob->isPaused() ? i18n("Resume Job") :
                                                                     i18n("Start Job"));
     }
 
@@ -251,9 +251,8 @@ bool JobMan::waitForJobs(bool waitForUserInput)
     return false;
 }
 
-void JobMan::manageJob(KrJob *job, bool reverseQueueMode, bool startPaused)
+void JobMan::manageJob(KrJob *job, StartMode startMode)
 {
-
     JobMenuAction *menuAction = new JobMenuAction(job, _controlAction);
     connect(menuAction, &QObject::destroyed, this, &JobMan::slotUpdateControlAction);
     _controlAction->menu()->addAction(menuAction);
@@ -262,9 +261,9 @@ void JobMan::manageJob(KrJob *job, bool reverseQueueMode, bool startPaused)
     connect(job, &KrJob::started, this, &JobMan::slotKJobStarted);
     connect(job, &KrJob::terminated, this, &JobMan::slotTerminated);
 
-    bool isQueueMode = _queueMode != reverseQueueMode;
-
-    if (!startPaused && (!jobsAreRunning() || !isQueueMode)) {
+    const bool enqueue = startMode == Enqueue || (startMode == Default && _queueMode);
+    if (startMode == Start || (startMode == Default && !_queueMode) ||
+        (enqueue && !jobsAreRunning())) {
         job->start();
     }
 
@@ -327,9 +326,9 @@ void JobMan::slotTerminated(KrJob *krJob)
 {
     _jobs.removeAll(krJob);
 
-    if (!_jobs.isEmpty() && !jobsAreRunning()) {
+    if (_queueMode && !_jobs.isEmpty() && !jobsAreRunning()) {
         foreach (KrJob *job, _jobs) {
-            if (!job->isManuallyPaused()) {
+            if (!job->isPaused()) {
                 // start next job
                 job->start();
                 break;

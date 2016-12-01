@@ -57,7 +57,7 @@ public:
     struct ChooseResult {
         QUrl url;
         bool reverseQueueMode;
-        bool startPaused;
+        bool delay;
         bool preserveAttrs; // NOTE: field never read
         QUrl baseURL;       // NOTE: field never read
     };
@@ -71,7 +71,9 @@ public:
     static QUrl getFile(const QString &text, const QUrl &url, const QUrl &cwd);
     static QUrl getDir(const QString &text, const QUrl &url, const QUrl &cwd);
     static ChooseResult getCopyDir(const QString &text, const QUrl &url, const QUrl &cwd,
-                                   bool preserveAttrs = false, const QUrl &baseURL = QUrl());
+                                   bool delay, bool preserveAttrs = false,
+                                   const QUrl &baseURL = QUrl());
+
 
   private:
     static QUrl get(const QString &text, const QUrl &url, const QUrl &cwd, KFile::Modes mode);
@@ -81,14 +83,14 @@ class KUrlRequesterDlgForCopy : public QDialog
 {
     Q_OBJECT
 public:
-    KUrlRequesterDlgForCopy(const QUrl& url, const QString& text, bool presAttrs,
+    KUrlRequesterDlgForCopy(const QUrl& url, const QString& text, bool delay, bool presAttrs,
                             QWidget *parent, bool modal = true, QUrl baseURL = QUrl());
 
     QUrl selectedURL() const;
     QUrl baseURL() const;
     bool preserveAttrs();
     bool isReverseQueueMode() { return reverseQueueMode; };
-    bool isStartPaused() { return pauseBox->isChecked(); };
+    bool isDelayed() { return delayBox->isChecked(); };
     bool copyDirStructure();
     void hidePreserveAttrs() {
 //         preserveAttrsCB->hide();
@@ -109,7 +111,7 @@ private:
     QComboBox *baseUrlCombo;
 //     QCheckBox *preserveAttrsCB;
     QCheckBox *copyDirStructureCB;
-    QCheckBox *pauseBox;
+    QCheckBox *delayBox;
     QPushButton *okButton;
     bool reverseQueueMode = false;
 };
