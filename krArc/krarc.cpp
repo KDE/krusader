@@ -760,6 +760,37 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
     error(ERR_UNSUPPORTED_ACTION, unsupportedActionErrorString(mProtocol, 74));
 }
 
+void kio_krarcProtocol::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags)
+{
+    KRDEBUG("renaming from: " << src.path() << " to: " << dest.path());
+    KRDEBUG("command: " << arcPath);
+
+    if (!checkWriteSupport()) {
+        return;
+    }
+
+    if (renCmd.isEmpty()) {
+        error(KIO::ERR_CANNOT_RENAME, src.fileName());
+        return;
+    }
+
+    if (src.fileName() == dest.fileName()) {
+        return;
+    }
+
+    KrLinecountingProcess proc;
+    proc << renCmd << arcPath << src.path().replace(arcPath + "/", "") << dest.path().replace(arcPath + "/", "");
+    proc.start();
+    proc.waitForFinished();
+
+    if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
+        error(KIO::ERR_CANNOT_RENAME, src.fileName());
+        return;
+    }
+
+    finished();
+}
+
 void kio_krarcProtocol::listDir(const QUrl &url)
 {
     KRFUNC;
@@ -1479,6 +1510,7 @@ bool kio_krarcProtocol::initArcParameters()
     copyCmd = QStringList();
     delCmd  = QStringList();
     putCmd  = QStringList();
+    renCmd  = QStringList();
 
     if (arcType == "zip") {
         noencoding = true;
@@ -1493,6 +1525,10 @@ bool kio_krarcProtocol::initArcParameters()
         } else {
             delCmd  << fullPathName("zip") << "-d";
             putCmd  << fullPathName("zip") << "-ry";
+        }
+
+        if (!QStandardPaths::findExecutable(QStringLiteral("7za")).isEmpty()) {
+            renCmd  << fullPathName("7za") << "rn";
         }
 
         if (!getPassword().isEmpty()) {
@@ -1609,6 +1645,7 @@ bool kio_krarcProtocol::initArcParameters()
         copyCmd << cmd << "e" << "-y";
         delCmd  << cmd << "d" << "-y";
         putCmd  << cmd << "a" << "-y";
+        renCmd  << cmd << "rn";
         if (!getPassword().isEmpty()) {
             getCmd  << QString("-p%1").arg(password);
             listCmd << QString("-p%1").arg(password);

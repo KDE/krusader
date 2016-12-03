@@ -50,6 +50,7 @@ public:
     virtual void listDir(const QUrl &url) Q_DECL_OVERRIDE;
     virtual void del(QUrl const & url, bool isFile) Q_DECL_OVERRIDE;
     virtual void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) Q_DECL_OVERRIDE;
+    virtual void rename(const QUrl &src, const QUrl & dest, KIO::JobFlags flags) Q_DECL_OVERRIDE;
 
 public slots:
     void receivedData(KProcess *, QByteArray &);
@@ -76,6 +77,7 @@ protected:
     QStringList delCmd;  ///< delete files command.
     QStringList putCmd;  ///< add file command.
     QStringList copyCmd; ///< copy to file command.
+    QStringList renCmd;  ///< rename file command.
 
 private:
     void get(const QUrl &url, int tries);
