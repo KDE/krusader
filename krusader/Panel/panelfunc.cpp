@@ -719,36 +719,37 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
     // now ask the user if he want to delete:
     KConfigGroup group(krConfig, "Advanced");
     if (group.readEntry("Confirm Delete", _ConfirmDelete)) {
-        QString s, b;
+        QString s;
+        KGuiItem b;
 
         if (!reallyDelete && trash && files()->isLocal()) {
             s = i18np("Do you really want to move this item to the trash?",
                       "Do you really want to move these %1 items to the trash?", fileNames.count());
-            b = i18n("&Trash");
+            b = KGuiItem(i18n("&Trash"));
         } else if (files()->type() == vfs::VFS_VIRT && files()->isRoot()) {
             s = i18np(
                 "Do you really want to delete this virtual item (physical files stay untouched)?",
                 "Do you really want to delete these %1 virtual items (physical files stay "
                 "untouched)?",
                 fileNames.count());
-            b = i18n("&Delete");
+            b = KStandardGuiItem::del();
         } else if (files()->type() == vfs::VFS_VIRT) {
             s = i18np("<qt>Do you really want to delete this item <b>physically</b> (not just "
                       "removing it from the virtual items)?</qt>",
                       "<qt>Do you really want to delete these %1 items <b>physically</b> (not just "
                       "removing them from the virtual items)?</qt>",
                       fileNames.count());
-            b = i18n("&Delete");
+            b = KStandardGuiItem::del();
         } else {
             s = i18np("Do you really want to delete this item?",
                       "Do you really want to delete these %1 items?", fileNames.count());
-            b = i18n("&Delete");
+            b = KStandardGuiItem::del();
         }
 
         // show message
         // note: i'm using continue and not yes/no because the yes/no has cancel as default button
         if (KMessageBox::warningContinueCancelList(krMainWindow, s, fileNames,
-                i18n("Warning"), KGuiItem(b)) != KMessageBox::Continue)
+                i18n("Warning"), b) != KMessageBox::Continue)
             return ;
     }
     // we want to warn the user about non empty dir
@@ -884,7 +885,7 @@ void ListPanelFunc::pack()
         if (PackGUI::type == "zip") {
             msg = i18n("<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>Zip will replace identically named entries in the zip archive or add entries for new names.</p></qt>", PackGUI::filename, PackGUI::type);
         }
-        if (KMessageBox::warningContinueCancel(krMainWindow, msg, QString(), KGuiItem(i18n("&Overwrite")))
+        if (KMessageBox::warningContinueCancel(krMainWindow, msg, QString(), KStandardGuiItem::overwrite())
                 == KMessageBox::Cancel)
             return ; // stop operation
     } else if (destURL.scheme() == QStringLiteral("virt")) {

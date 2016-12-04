@@ -177,7 +177,7 @@ void KrActionProcDlg::slotSaveAs()
         answer = KMessageBox::warningYesNoCancel(this,  //parent
                  i18n("This file already exists.\nDo you want to overwrite it or append the output?"), //text
                  i18n("Overwrite or append?"), //caption
-                 KGuiItem(i18n("Overwrite")),   //label for Yes-Button
+                 KStandardGuiItem::overwrite(),   //label for Yes-Button
                  KGuiItem(i18n("Append"))   //label for No-Button
                                                 );
     if (answer == KMessageBox::Cancel)

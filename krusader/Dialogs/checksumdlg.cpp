@@ -713,7 +713,7 @@ bool ChecksumResultsDlg::saveChecksum(const QStringList& data, QString filename)
     if (QFile::exists(filename) &&
             KMessageBox::warningContinueCancel(this,
                                                i18n("File %1 already exists.\nAre you sure you want to overwrite it?", filename),
-                                               i18n("Warning"), KGuiItem(i18n("Overwrite"))) != KMessageBox::Continue) {
+                                               i18n("Warning"), KStandardGuiItem::overwrite()) != KMessageBox::Continue) {
         // find a better name to save to
         filename = QFileDialog::getSaveFileName(0, i18n("Select a file to save to"), QString(), QStringLiteral("*"));
         if (filename.simplified().isEmpty())

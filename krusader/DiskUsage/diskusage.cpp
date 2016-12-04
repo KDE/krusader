@@ -578,20 +578,21 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
         // now ask the user if he want to delete:
         KConfigGroup ga(krConfig, "Advanced");
         if (ga.readEntry("Confirm Delete", _ConfirmDelete)) {
-            QString s, b;
+            QString s;
+            KGuiItem b;
             if (trash && url.isLocalFile()) {
                 s = i18nc("singularOnly", "Do you really want to move this item to the trash?");
-                b = i18n("&Trash");
+                b = KGuiItem(i18n("&Trash"));
             } else {
                 s = i18nc("singularOnly", "Do you really want to delete this item?");
-                b = i18n("&Delete");
+                b = KStandardGuiItem::del();
             }
 
             QStringList name;
             name.append(file->fullPath());
             // show message
             // note: i'm using continue and not yes/no because the yes/no has cancel as default button
-            if (KMessageBox::warningContinueCancelList(krMainWindow, s, name, i18n("Warning"), KGuiItem(b)) != KMessageBox::Continue)
+            if (KMessageBox::warningContinueCancelList(krMainWindow, s, name, i18n("Warning"), b) != KMessageBox::Continue)
                 return 0;
         }
 

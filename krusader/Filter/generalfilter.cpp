@@ -185,8 +185,9 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         profileLoadBtn->setEnabled(false);
         profileLayout->addWidget(profileLoadBtn, 1, 1);
 
-        profileOverwriteBtn = new QPushButton(i18n("&Overwrite"), profileHandler);
+        profileOverwriteBtn = new QPushButton(profileHandler);
         profileOverwriteBtn->setEnabled(false);
+        KStandardGuiItem::assign(profileOverwriteBtn, KStandardGuiItem::Overwrite);
         profileLayout->addWidget(profileOverwriteBtn, 2, 1);
 
         profileRemoveBtn = new QPushButton(i18n("&Remove"), profileHandler);
