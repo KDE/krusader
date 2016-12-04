@@ -1779,6 +1779,19 @@
 	  </itemizedlist>
 	</listitem>
       </varlistentry>
+      <varlistentry id="job-queue-mode">
+        <term>
+          <menuchoice>
+            <guimenu>Settings</guimenu>
+            <guimenuitem>Job Queue Mode</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+              Toggles the <link linkend="queue">Queue Manager</link> mode. If checked then pressing <keycap>F2</keycap> or the corresponding button in the copy/move dialog immediately starts the job even if there are running jobs in queue. If unchecked then the job will be put into the queue if the queue is not empty. Otherwise the job will be started immediately.
+          </para>
+        </listitem>
+      </varlistentry>
       <varlistentry id="configure-shortcuts">
         <term>
           <menuchoice>

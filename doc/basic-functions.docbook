@@ -357,6 +357,17 @@
       The default destination is the other-panel browsed directory. If you enter
       a partial &URL;, &krusader; will use the current
       panel directory as the &URL; base.</para>
+      <figure id="screenshot-copyjob" float="1">
+        <title>Copy dialog</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="copyjob.png"></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase>Copy dialog</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
     </sect2>
     <sect2 id="queue">
       <title>Queue manager</title> 
@@ -372,6 +383,8 @@
       That is why enqueuing is important.
       If you pack/unpack 40 files in parallel, you overload your computer,
       but adding them to a queue, is much more useful.
+      </para>
+      <para>It is possible to switch the <link linkend="job-queue-mode">Queue Manager mode</link> by the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Job Queue Mode</guimenuitem></menuchoice> menu item.
       </para>
     </sect2>
     <sect2 id="deleting">

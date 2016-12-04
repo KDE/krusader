@@ -25,17 +25,6 @@
   </sect1>
   <sect1 id="mainwindow">
     <title>&krusader; Main Window</title>
-    <!-- OLD
-<screenshot>
-   <screeninfo>&krusader; Main Window</screeninfo>
-    <mediaobject>
-     <imageobject><imagedata fileref="mainwindow.png" format="PNG"/></imageobject>
-     <imageobject><imagedata fileref="mainwindow.png" format="EPS"/></imageobject>
-     <textobject><phrase>&krusader; Main Window</phrase></textobject>
-     <caption><para>&krusader; is main window with all the different parts named on the screen.</para></caption>
-    </mediaobject>
-</screenshot>
--->
     <figure id="screenshot-mainwindow" float="1">
       <title>&krusader; Main Window</title>
       <mediaobject>
@@ -80,16 +69,6 @@
         <primary>Toolbar</primary>
         <secondary>Main Toolbar</secondary>
       </indexterm>
-<!-- OLD
-<screenshot>
-    <screeninfo>Main Toolbar</screeninfo>
-    <mediaobject>
-     <imageobject><imagedata fileref="toolbar.png" format="PNG"/></imageobject>
-     <imageobject><imagedata fileref="toolbar.png" format="EPS"/></imageobject>
-     <textobject><phrase>Main Toolbar</phrase></textobject>
-    </mediaobject>
-</screenshot>
--->
       <figure id="screenshot-maintoolbar" float="1">
         <title>Main Toolbar</title>
         <mediaobject>
@@ -101,9 +80,11 @@
           </textobject>
         </mediaobject>
       </figure>
-      <para>The &krusader; Main Toolbar, is a standard
+      <para>The &krusader; Main Toolbar is a standard
       &kde; toolbar that can be dragged around the
-      application or configured via a
+      application (please unlock it first by unchecking the <guimenuitem>Lock
+      Toolbar Positions</guimenuitem> item in the right-click menu)
+      or configured via a
       <keycap>Right-Click</keycap> menu. You can decide whether or
       not you want to display it each time you start
       &krusader; in the <link linkend="konfigurator">Konfigurator Startup page</link>,
@@ -118,6 +99,13 @@
       (grayed-out) disabling its use. <link linkend="bookman">Bookmarks</link>
       can be placed into the Main Toolbar and the Actions Toolbar
       with the mouse using "drag and drop".</para>
+    </sect2>
+    <sect2 id="job_toolbar">
+      <title>Job Toolbar</title>
+      <para>By default, the &krusader; Job Toolbar (<link linkend="queue">Queue
+      Manager</link> or simply the JobMan) is located at the right part of the
+      Main Toolbar. This toolbar allows you to view the job progress, to pause
+      and resume the job list execution and to undo the last executed job.</para>
     </sect2>
     <sect2 id="actions_toolbar">
       <title>Actions Toolbar</title>
