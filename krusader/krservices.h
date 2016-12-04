@@ -32,9 +32,6 @@ class QFile;
 class KrServices
 {
 public:
-    KrServices() {}
-    ~KrServices() {}
-
     static bool         cmdExist(QString cmdName);
     static QString      chooseFullPathName(QStringList names, QString confName);
     static QString      fullPathName(QString name, QString confName = QString());
@@ -57,6 +54,9 @@ protected:
     static QString    escape(QString name);
 
 private:
+    KrServices() {}
+    ~KrServices() {}
+    static QSet<QString> generateKrarcArchiveMimetypes();
     static QMap<QString, QString>* slaveMap;
     static QSet<QString> krarcArchiveMimetypes;
     static QSet<QString> isoArchiveMimetypes;

@@ -30,13 +30,48 @@
 #include "defaults.h"
 
 QMap<QString, QString>* KrServices::slaveMap = 0;
+QSet<QString> KrServices::krarcArchiveMimetypes = KrServices::generateKrarcArchiveMimetypes();
 #ifdef KRARC_QUERY_ENABLED
-QSet<QString> KrServices::krarcArchiveMimetypes = QSet<QString>::fromList(KProtocolInfo::archiveMimetypes("krarc"));
 QSet<QString> KrServices::isoArchiveMimetypes = QSet<QString>::fromList(KProtocolInfo::archiveMimetypes("iso"));
 #else
-QSet<QString> KrServices::krarcArchiveMimetypes;
 QSet<QString> KrServices::isoArchiveMimetypes;
 #endif
+
+QSet<QString> KrServices::generateKrarcArchiveMimetypes()
+{
+    // Hard-code these proven mimetypes openable by krarc protocol.
+    // They cannot be listed in krarc.protocol itself
+    // because it would baffle other file managers (like Dolphin).
+    QSet<QString> mimes;
+    mimes += QString("application/x-deb");
+    mimes += QString("application/x-debian-package");
+    mimes += QString("application/vnd.debian.binary-package");
+    mimes += QString("application/x-java-archive");
+    mimes += QString("application/x-rpm");
+    mimes += QString("application/x-source-rpm");
+    mimes += QString("application/vnd.oasis.opendocument.chart");
+    mimes += QString("application/vnd.oasis.opendocument.database");
+    mimes += QString("application/vnd.oasis.opendocument.formula");
+    mimes += QString("application/vnd.oasis.opendocument.graphics");
+    mimes += QString("application/vnd.oasis.opendocument.presentation");
+    mimes += QString("application/vnd.oasis.opendocument.spreadsheet");
+    mimes += QString("application/vnd.oasis.opendocument.text");
+    mimes += QString("application/vnd.openxmlformats-officedocument.presentationml.presentation");
+    mimes += QString("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+    mimes += QString("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+    mimes += QString("application/x-cbz");
+    mimes += QString("application/x-cbr");
+    mimes += QString("application/epub+zip");
+    mimes += QString("application/x-webarchive");
+    mimes += QString("application/x-plasma");
+    mimes += QString("application/vnd.rar");
+
+    #ifdef KRARC_QUERY_ENABLED
+    mimes += QSet<QString>::fromList(KProtocolInfo::archiveMimetypes("krarc"));
+    #endif
+
+    return mimes;
+}
 
 bool KrServices::cmdExist(QString cmdName)
 {
