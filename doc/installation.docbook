@@ -27,8 +27,8 @@
     <title>Requirements</title>
     <para>In order to successfully use the most recent
     &krusader;, you need &kde;libs
-    &gt;= 4.x</para>
-    <para>Required &kde; version: 
+    &gt;= 54.x</para>
+<para>Required &kde; version:</para>
     <itemizedlist>
       <listitem>
         <para>&krusader; v1.01: &kde;
@@ -65,11 +65,12 @@
         &kde; 3.5</para>
       </listitem>
       <listitem>
-        <para>&krusader; v2.x.x: &kde; 4.x</para>
+        <para>&krusader; v2.4.x: &kde; 4.x</para>
+      </listitem>
+      <listitem>
+        <para>&krusader; v2.5.x: &kf5-full;</para>
       </listitem>
     </itemizedlist>
-    NOTE: for installation instructions for &krusader;-1.x for &kde; 2 visit 
-    the <ulink url="http://www.krusader.org">Krusader website</ulink>.</para>
     <para>Platforms: 
     <itemizedlist>
       <listitem>
@@ -111,21 +112,19 @@
       distribution and ask them to provide a &krusader;
       package</para>
       <para>The latest version, as well as the older versions, can
-      be found on the <ulink url="https://krusader.org/get-krusader/index.html">&krusader; downloadpage</ulink> and on the
-      <ulink url="http://sourceforge.net/project/showfiles.php?group_id=6488">Sourceforge mirrors</ulink>. It contains the source tarballs,
+      be found on the <ulink url="https://krusader.org/get-krusader/index.html">&krusader; download page</ulink> (current version) and on the
+      <ulink url="http://sourceforge.net/project/showfiles.php?group_id=6488">Sourceforge mirrors</ulink> (outdated versions). It contains the source tarballs,
       RPM and DEB packages to whatever distro the
       &krusader;-Krew is using and packages build by
       &krusader; users and third parties.</para>
       <para>Distributions who provide &krusader;:</para>
       <itemizedlist>
         <listitem>
-          <para><ulink url="http://www.novell.com/search/">&SuSE;</ulink></para>
+          <para><ulink url="https://www.suse.com/">&SuSE;</ulink></para>
         </listitem>
         <listitem>
-          <para><ulink url="https://admin.fedoraproject.org/pkgdb/packages/name/krusader"><trademark>Fedora</trademark></ulink> via
-          <command># yum install krusader</command> will do the job,
-          thanks to Marcin Garski. &RedHat; RPM packages
-          can usually found on the <ulink url="https://krusader.org/get-krusader/index.html">&krusader; downloadpage</ulink>.</para>
+          <para><ulink url="https://admin.fedoraproject.org/pkgdb/package/rpms/krusader/"><trademark>Fedora</trademark></ulink> via
+          <command># dnf install krusader</command> will do the job.</para>
         </listitem>
         <listitem>
           <para><ulink url="http://packages.debian.org/krusader"><trademark class="registered">Debian</trademark></ulink>, on our
@@ -139,16 +138,17 @@
           4.x DVD, <trademark class="registered">Kanotix</trademark>, &etc;</para>
         </listitem>
         <listitem>
-          <para><ulink url="http://www.mageia.org/"><trademark class="registered">Mageia</trademark></ulink> via the contrib repository 
-          <command># urpmi krusader</command> will do the job,
-          <ulink url="http://packages.gentoo.org/package/kde-misc/krusader"><trademark class="registered">Gentoo</trademark></ulink>,
-          <trademark>Yoper</trademark>.</para>
+          <para><ulink url="https://madb.mageia.org/package/show/name/krusader"><trademark class="registered">Mageia</trademark></ulink> via the contrib repository 
+              <command># urpmi krusader</command> will do the job.</para>
         </listitem>
         <listitem>
-          <para><ulink url="http://www.archlinux.org/packages/extra/i686/krusader/"><trademark class="registered">Arch Linux</trademark></ulink>,
+            <para><ulink url="http://packages.gentoo.org/package/kde-misc/krusader"><trademark class="registered">Gentoo</trademark></ulink>.</para>
+        </listitem>
+        <listitem>
+          <para><ulink url="https://www.archlinux.org/packages/community/x86_64/krusader/"><trademark class="registered">Arch Linux</trademark></ulink>,
           <ulink url="http://frugalware.org/packages.php?id=280"><trademark class="registered">Frugalware Linux</trademark></ulink>,
           <trademark class="registered">PCLinuxOS</trademark>,
-          <ulink url="www.altlinux.com/"><trademark class="registered">altlinux</trademark></ulink>.</para>
+          <ulink url="www.altlinux.com/"><trademark class="registered">ALT Linux</trademark></ulink>.</para>
         </listitem>
         <listitem>
           <para><ulink url="http://www.freebsd.org/cgi/ports.cgi?query=krusader&amp;stype=all"><trademark class="copyright">FreeBSD</trademark></ulink>, the port was
@@ -158,9 +158,7 @@
         <listitem>
           <para><ulink url="http://pkgsrc.se/sysutils/krusader"><trademark class="registered">NetBSD</trademark></ulink>,
           <ulink url="http://www.lunar-linux.org/"><trademark class="registered">Lunar Linux</trademark></ulink>
-          ,<trademark class="registered">Ark Linux</trademark>, <trademark>OpenLX</trademark>,
-          <trademark class="registered">Source Mage</trademark>,<ulink url="http://packages.ccux-linux.de/index.php?pdetail=6986"><trademark class="registered">CCux Linux</trademark></ulink>,
-	  <ulink url="http://www.rocklinux.net/packages/krusader.html"><trademark class="registered">ROCK Linux</trademark></ulink>.</para>
+          ,<trademark class="registered">Ark Linux</trademark>, <trademark>OpenLX</trademark>.</para>
         </listitem>
         <listitem>
           <para>More distributions can be found with
@@ -178,11 +176,7 @@
       <itemizedlist>
         <listitem>
           <para><trademark class="registered">Slackware</trademark> tgz binaries can usually be
-          found on the <ulink url="https://krusader.org/get-krusader/index.html">&krusader; download page</ulink>. You can also
-          use <ulink url="http://portpkg.berlios.de/">Portpkg</ulink> that contains a
-          <ulink url="http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports/kde/krusader/">&krusader; SlackBuild</ulink>, 
-          <command># portpkg krusader</command> will do the
-          job.</para>
+          found on the <ulink url="https://krusader.org/get-krusader/index.html">&krusader; download page</ulink>.</para>
         </listitem>
         <listitem>
           <para>There is a <link linkend="kde4_mac_install">&MacOS;-X port</link>.</para>
@@ -232,8 +226,8 @@
       </itemizedlist>In essence, releasing
       &krusader;-1.60.0 means that we believe that
       &krusader; is about 60% done with all the features
-      we had scheduled for the 1.x.x series. Series 2.x.x will be
-      &kde; 4.x releases. Hopefully, it is easy to
+      we had scheduled for the 1.x.x series. Series up to 2.4.x are
+      &kde; 4.x releases. 2.5.x series are the releases for &kf5-full;. Hopefully, it is easy to
       understand.</para>
     </sect2>
     <sect2 id="krusader_stable">
@@ -296,7 +290,7 @@
      <para><ulink url="https://commits.kde.org/krusader">Git</ulink> is used for our sourcecode repository.
       It is also possible to <ulink url="https://commits.kde.org/krusader?path=/">Browse the Git Repository</ulink>.</para>
       <para>To check out the latest development &krusader; 2.x
-      for &kde; 4 from Git:
+      for &kf5-full; from Git:
       <screen><prompt>$</prompt> <userinput><command>git</command> <option>clone git://anongit.kde.org/krusader</option></userinput></screen>
       </para>
     </sect2>
@@ -317,7 +311,7 @@
       </note>
 
       <note>
-        <para>From version &krusader;-2.0.0 and higher is &kde;-4 only.</para>
+        <para>From version &krusader;-2.5.0 and higher is &kf5-full; only.</para>
       </note>
  
       <para><filename>krusader_<replaceable>version</replaceable>.tar.gz</filename> is the supposed name of the krusader tarball (it will be probably a different one ;)</para>
@@ -334,7 +328,25 @@
         <para>c libraries</para>
       </listitem>
       <listitem>
-        <para>kdelibs5 (KDE4 core libraries and binaries for all KDE4 applications)</para>
+        <para>plasma-runtime and plasma-workspace libraries (&kde; Frameworks core libraries and binaries for &kf5-full; applications)</para>
+      </listitem>
+      <listitem>
+        <para>libqt5dbus5 (&Qt; 5 D-Bus module)</para>
+      </listitem>
+      <listitem>
+        <para>libqt5xml5 (&Qt;; 5 XML module)</para>
+      </listitem>
+      <listitem>
+        <para>libqt5core5 (&Qt; 5 core module)</para>
+      </listitem>
+      <listitem>
+        <para>libqt5gui5 (&Qt; 5 &GUI; module)</para>
+      </listitem>
+      <listitem>
+        <para>libgt5widgets5 (&Qt; 5 widgets module</para>
+      </listitem>
+      <listitem>
+        <para>libqt5printsupport5 (&Qt; 5 print support module)</para>
       </listitem>
 <!--      <listitem>
         <para>libkjsembed1  (Embedded JavaScript library)
@@ -346,7 +358,7 @@
 
 <sect2>
 <title>Suggested packages</title>
-<para>These packages are optional but they will make Krusader much more powerful and useful.</para>
+<para>These packages are optional but they will make &krusader; much more powerful and useful.</para>
 
 <para>The next packages are the names that Debian/Ubuntu uses, other Linux
 distros will probably use similar names.</para>
@@ -363,12 +375,6 @@ distros will probably use similar names.</para>
       </listitem>
       <listitem>
         <para>cpio: GNU cpio -- a program to manage archives of files</para>
-      </listitem>
-      <listitem>
-        <para>kdebase-bin: core binaries for the KDE base module</para>
-      </listitem>
-      <listitem>
-        <para>kdebase-bin: core binaries for the KDE base module</para>
       </listitem>
       <listitem>
         <para>kdiff3: compares and merges 2 or 3 files or directories</para>
@@ -451,10 +457,19 @@ if you only run a Krusader binary you do not need these packages.</para>
         <para>gettext (contains msgfmt)</para>
       </listitem>
       <listitem>
-        <para>kdelibs5-dev (installs many development libraries for KDE4)</para>
+        <para>plasma-framework-dev (installs many development libraries for &kf5;)</para>
       </listitem>
       <listitem>
-        <para>libphonon-dev (libphonon-dev cross-platform multimedia framework development)</para>
+        <para>libkf5parts-dev</para>
+      </listitem>
+      <listitem>
+        <para>libkf5wallet-dev</para>
+      </listitem>
+      <listitem>
+        <para>libkf5xmlgui-dev</para>
+      </listitem>
+      <listitem>
+        <para>kdoctools-dev</para>
       </listitem>
     </itemizedlist>
 </para>
@@ -474,7 +489,7 @@ if you only run a Krusader binary you do not need these packages.</para>
       </note>
 
 
-<para><command>-DQT_INCLUDES=/usr/share/qt4/include</command> is the location of the &Qt;4 includes</para>
+<para><command>-DQT_INCLUDES=/usr/share/qt5/include</command> is the location of the &Qt; 5 includes</para>
 
 <para><command>-DCMAKE_INSTALL_PREFIX=/usr/</command> is the location where Krusader will be 
       installed with the make command.</para>
@@ -485,9 +500,9 @@ if you only run a Krusader binary you do not need these packages.</para>
 
 <para>
     <screen>
-      <prompt>$</prompt> <userinput><command>tar -xzvf</command> <option>krusader_kde4.tar.gz</option></userinput>
+      <prompt>$</prompt> <userinput><command>tar -xzvf</command> <option>krusader-2.5.0.tar.gz</option></userinput>
       <prompt>$</prompt> <userinput><command>cd</command> <option>krusader_kde4</option></userinput>
-      <prompt>$</prompt> <userinput><command>cmake</command> <option>-DCMAKE_INSTALL_PREFIX=/usr/ -DQT_INCLUDES=/usr/share/qt4/include</option></userinput>
+      <prompt>$</prompt> <userinput><command>cmake</command> <option>-DCMAKE_INSTALL_PREFIX=/usr/ -DQT_INCLUDES=/usr/share/qt5/include</option></userinput>
       <prompt>$</prompt> <userinput><command>make</command></userinput>
       <prompt>$</prompt> <userinput><command>sudo</command> <option>make install</option></userinput>
      </screen>
@@ -501,7 +516,6 @@ if you only run a Krusader binary you do not need these packages.</para>
 </para>
 
 </sect1>
-
 <sect1 id="kde4_mac_install">
    <title>Installing on the &MacOS;-X platform</title>
 
@@ -514,7 +528,7 @@ if you only run a Krusader binary you do not need these packages.</para>
 <para>With &kde;-4 Krusader runs natively on &MacOS;-X, using its Aqua user interface (No more X11 needed!).</para>
 
 <para>With the help of <ulink url="http://www.macports.org/">macports.org</ulink> , &krusader; is ported to &MacOS;-X,
-      the port is maintained by <ulink url="http://www.krusader.org/developers.php">Jonas B&auml;hr</ulink>.
+      the port was maintained by <ulink url="http://www.krusader.org/developers.php">Jonas B&auml;hr</ulink>.
       A <ulink url="http://trac.macports.org/ticket/17731">portfile</ulink> is provided.</para>
 
 <para>
@@ -524,7 +538,6 @@ if you only run a Krusader binary you do not need these packages.</para>
 </para>      
       
 </sect1>
-
 <!--
 <sect1 id="kde4_win_install">
    <title>Installing on the &Windows; platform</title>
@@ -656,7 +669,7 @@ if you only run a Krusader binary you do not need these packages.</para>
     <screen><prompt>$</prompt> <userinput><command>krusader</command><replaceable>--profile &lt;panel-profile&gt;</replaceable></userinput></screen>
     <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--profile ftp-managment</replaceable></userinput></screen>
     </para>
-    <para>The standard &Qt; and &kde; command-line options are available.
+    <para>The standard &Qt; and &kf5; command-line options are available.
     </para>
     <variablelist>
       <title>Other command-line options:</title>
