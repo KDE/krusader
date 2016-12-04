@@ -178,7 +178,8 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         profileListBox = new KrListWidget(profileHandler);
         profileLayout->addWidget(profileListBox, 0, 0, 4, 1);
 
-        profileAddBtn = new QPushButton(i18n("&Add"), profileHandler);
+        profileAddBtn = new QPushButton(profileHandler);
+        KStandardGuiItem::assign(profileAddBtn, KStandardGuiItem::Add);
         profileLayout->addWidget(profileAddBtn, 0, 1);
 
         profileLoadBtn = new QPushButton(i18n("&Load"), profileHandler);
@@ -190,8 +191,9 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         KStandardGuiItem::assign(profileOverwriteBtn, KStandardGuiItem::Overwrite);
         profileLayout->addWidget(profileOverwriteBtn, 2, 1);
 
-        profileRemoveBtn = new QPushButton(i18n("&Remove"), profileHandler);
+        profileRemoveBtn = new QPushButton(profileHandler);
         profileRemoveBtn->setEnabled(false);
+        KStandardGuiItem::assign(profileRemoveBtn, KStandardGuiItem::Remove);
         profileLayout->addWidget(profileRemoveBtn, 3, 1);
 
         profileManager = new ProfileManager("SelectionProfile", this);
