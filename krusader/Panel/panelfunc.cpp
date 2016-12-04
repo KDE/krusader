@@ -130,7 +130,7 @@ bool ListPanelFunc::isSyncing(const QUrl &url)
     return false;
 }
 
-void ListPanelFunc::openFileNameInternal(const QString &name, bool theFileCanBeExecutedOrOpenedWithOtherSoftware)
+void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExecutable)
 {
     if (name == "..") {
         dirUp();
@@ -153,15 +153,16 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool theFileCanBeE
 
     QUrl arcPath = browsableArchivePath(name);
     if (!arcPath.isEmpty()) {
-        bool theArchiveMustBeBrowsedAsADirectory = (KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories) &&
-                                                    KRarcHandler::arcSupported(mime)) || !theFileCanBeExecutedOrOpenedWithOtherSoftware;
-        if (theArchiveMustBeBrowsedAsADirectory) {
+        bool browseAsDirectory = !externallyExecutable
+                || (KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories)
+                && (KRarcHandler::arcSupported(mime) || KrServices::isoSupported(mime)));
+        if (browseAsDirectory) {
             openUrl(arcPath);
             return;
         }
     }
 
-    if (theFileCanBeExecutedOrOpenedWithOtherSoftware) {
+    if (externallyExecutable) {
         if (KRun::isExecutableFile(url, mime)) {
             runCommand(KShell::quoteArg(url.path()));
             return;

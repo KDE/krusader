@@ -32,8 +32,10 @@
 QMap<QString, QString>* KrServices::slaveMap = 0;
 #ifdef KRARC_QUERY_ENABLED
 QSet<QString> KrServices::krarcArchiveMimetypes = QSet<QString>::fromList(KProtocolInfo::archiveMimetypes("krarc"));
+QSet<QString> KrServices::isoArchiveMimetypes = QSet<QString>::fromList(KProtocolInfo::archiveMimetypes("iso"));
 #else
 QSet<QString> KrServices::krarcArchiveMimetypes;
+QSet<QString> KrServices::isoArchiveMimetypes;
 #endif
 
 bool KrServices::cmdExist(QString cmdName)
@@ -96,6 +98,11 @@ QString KrServices::registeredProtocol(QString mimetype)
         protocol = KProtocolManager::protocolForArchiveMimetype(mimetype);
     }
     return protocol;
+}
+
+bool KrServices::isoSupported(QString mimetype)
+{
+    return isoArchiveMimetypes.contains(mimetype);
 }
 
 void KrServices::clearProtocolCache()

@@ -39,6 +39,7 @@ public:
     static QString      chooseFullPathName(QStringList names, QString confName);
     static QString      fullPathName(QString name, QString confName = QString());
     static QString      registeredProtocol(QString mimetype);
+    static bool         isoSupported(QString mimetype);
     static QString      urlToLocalPath(const QUrl &url);
     static void         clearProtocolCache();
     static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines = false);
@@ -58,6 +59,7 @@ protected:
 private:
     static QMap<QString, QString>* slaveMap;
     static QSet<QString> krarcArchiveMimetypes;
+    static QSet<QString> isoArchiveMimetypes;
 
 };
 
