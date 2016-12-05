@@ -102,6 +102,10 @@
     </sect2>
     <sect2 id="job_toolbar">
       <title>Job Toolbar</title>
+      <indexterm>
+        <primary>Toolbar</primary>
+        <secondary>Job Toolbar</secondary>
+      </indexterm>
       <para>By default, the &krusader; Job Toolbar (<link linkend="queue">Queue
       Manager</link> or simply the JobMan) is located at the right part of the
       Main Toolbar. This toolbar allows you to view the job progress, to pause
@@ -173,11 +177,10 @@
         <listitem>
           <para>
           <userinput>
-            <command>ipod:/</command>
-          </userinput>uses the <ulink url="http://sourceforge.net/projects/kpod">KIOipod-slave</ulink> to
-          access, upload and organize the music stored on
-          <trademark>Apple ipod</trademark>.</para>
-	  <!--FIXME last release is from 2007-12-11 so the kio ipodslave will not be usable in kde4-->
+            <command>mtp:/</command>
+          </userinput>uses the kio_mtp to
+          access, upload and organize the multimedia stored on
+          <trademark>Android</trademark>-based devices.</para>
         </listitem>
         <listitem>
           <para>And last but not least

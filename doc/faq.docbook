@@ -654,7 +654,7 @@
           <filename>kio_krarc.so</filename>, 
           <filename>kio_krarc.la</filename> files into 
           <filename class="directory">
-          $KDEDIR/lib/kde4</filename></para>
+          $KDEDIR/lib/qt5/plugins</filename></para>
           <para>Copy the 
           <filename>krarc.protocol</filename> file into 
           <filename class="directory">
@@ -835,7 +835,7 @@
           protocol, why?</para>
         </question>
         <answer>
-          <para>The media:/ protocol was removed from &kde; 4.</para>
+          <para>The media:/ protocol was removed since &kde; 4. Please use mtp:/ protocol instead.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1027,10 +1027,10 @@
                 <listitem>
                   <para>&kde; 3.3- &kde;
                   3.5 and even on GNOME with
-                  &kde;libs (for &krusader;-2.x &kde; 4) .</para>
+                  &kde;libs (for &krusader;-2.x) .</para>
                 </listitem>
                 <listitem>
-                  <para>GCC 2.95 - GCC 4.1</para>
+                  <para>GCC 2.95 - GCC 5.4</para>
                 </listitem>
               </itemizedlist>Architecture changes are made by the
               team only.</para>
