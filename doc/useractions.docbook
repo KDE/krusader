@@ -30,7 +30,7 @@
   UserActions you can perform actions on files in the panel or to
   access &krusader; internal functions with parameters
   directly using placeholders. The actions integrate seamlessly
-  into &kde;'s action system, which means that the
+  into &plasma; action system, which means that the
   standard Edit Toolbar and Edit Shortcut dialogs will show
   UserActions, too. The UserActions are stored in 
   <filename>
@@ -137,7 +137,7 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
       <guimenuitem>To import a UserAction</guimenuitem>: If you
       import some actions, they will be automatically added to your
       list. If there are name conflicts (the names have to be
-      unique because these are the ID for &kde;'s action
+      unique because these are the ID for &plasma; action
       system), you are asked to resolve them. For this, the list on
       the left will only show the actions where conflicts exist.
       You can now give them new names or remove them.</para>
@@ -152,7 +152,7 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
     </listitem>
   </itemizedlist>
   <para>All actions you have defined are now shown in the
-  user menu and in &kde; dialogs for changing shortcuts
+  user menu and in &plasma; dialogs for changing shortcuts
   and managing the toolbar. In addition, all actions available for
   the current item will also show up in the right click
   menu.</para>
@@ -167,7 +167,7 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
     <listitem>
       <para>
       <guimenuitem>Identifier</guimenuitem>: A unique name of
-      the UserAction, used to identify it for &kde;'s
+      the UserAction, used to identify it for &plasma;
       action system.</para>
     </listitem>
     <listitem>

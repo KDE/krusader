@@ -53,18 +53,18 @@
     <qandaset>
       <qandaentry>
         <question id="faqi_kdelibs">
-          <para>Does &krusader; need &kde; to
+          <para>Does &krusader; need &plasma; to
           run?</para>
         </question>
         <answer>
           <para>
           <emphasis>No, &krusader; does not need the
-          &kde; window manager</emphasis> to run on your
+          &plasma; window manager</emphasis> to run on your
           computer but &krusader;'s natural environment
-          is &kde;, because it relies on services
-          provided by the &kde; base libraries. Only
+          is &plasma;, because it relies on services
+          provided by the &kf5-full; base libraries. Only
           some shared libraries are needed &eg;
-          &kde; libraries, &Qt; libraries,
+          &kf5; libraries, &Qt; libraries,
           &etc; This means that &krusader;
           runs on <ulink url="http://www.gnome.org"><application>GNOME</application></ulink>,
           <ulink url="http://www.afterstep.org/"><application>AfterStep</application></ulink>, <ulink url="http://www.xfce.org/"><application>XFce</application></ulink> and
@@ -74,7 +74,7 @@
           instantly.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
-          <para>You do not need to switch to the &kde;
+          <para>You do not need to switch to the &plasma;
           window manager to use &krusader;; you can
           still use <ulink url="http://www.gnome.org"><application>GNOME</application></ulink>,
           <ulink url="http://www.afterstep.org/"><application>AfterStep</application></ulink>, <ulink url="http://www.xfce.org/"><application>XFce</application></ulink> or
@@ -86,25 +86,21 @@
           <!-- Empty line to make it more readable -->
           <para>A lot depends on what you want to do with
           &krusader;. You should know that
-          &krusader; uses the &kde;
+          &krusader; uses the &kf5;
           KIO Slaves to access remote file
           systems, and support for only a limited number of file
-          system types are shipped with &kde; libraries,
+          system types are shipped with &kf5; libraries,
           most of the KIO Slave are bundled with
-          &kde; base (including fish, sftp and tar).
-          However, if you want the property-dialog to show
-          EXIF-data for .jpeg's, you need &kde;graphics.
-          If you want ID3-infos, you need
-          &kde;multimedia, and so on.</para>
+          &kf5-full; (including fish, sftp and tar).</para>
           <para></para>
           <!-- Empty line to make it more readable -->
           <para>To summarize, if you want a working
-          &krusader; - install &kde;libs. If
+          &krusader; - install &kf5-full;. If
           you want a functional &krusader; then you need
-          &kde;libs + &kde;base. For maximum
-          functionality, &krusader; needs all of the
-          &kde; package libraries, but the
-          &kde; window manager is optional.</para>
+          &kf5-full; and some additional &plasma; packages. For maximum
+          functionality, &krusader; needs some &kde; Applications
+          (&ark;, &kdiff3;, <application>KRename</application>), but the
+          &plasma; window manager is optional.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -317,7 +313,7 @@
           <filename>
           $KDEDIR/share/kxmlgui5/krusader/krusaderui.rc</filename>.
           When you change the 
-          <guilabel>Toolbar</guilabel>, &kde; makes a
+          <guilabel>Toolbar</guilabel>, &plasma; makes a
           copy of that file in the home folder at 
           <filename>
           ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename>. If
@@ -331,13 +327,13 @@
           <para>The first line of 
           <filename>krusaderui.rc</filename> contains the version
           number. After installing a newer &krusader;
-          version, &kde; will automatically replace the
+          version, &plasma; will automatically replace the
           old 
           <filename>
           ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename> with
           the newer version when starting the new
           &krusader; for the first time
-          (&kde; will detect the newer version number in
+          (&plasma; will detect the newer version number in
           the first line).</para>
           <para>If you install a development or beta version and
           &krusader; was already installed on your
@@ -579,7 +575,7 @@
           using a multi-threaded design - this way if we get stuck,
           we do not hang the entire application event loop, but we
           do not think that the time is right for adding threads, we
-          are not sure that *all* the &kde; systems out
+          are not sure that *all* the &kf5; systems out
           there are using &Qt;-mt (the multi threaded
           version of the &Qt; library), and the &krusader;
           Krew may not be the right people to address this major
@@ -673,7 +669,7 @@
         </question>
         <answer>
           <para>The icons, kio_slaves and documentation must be
-          installed in the correct places in the &kde;
+          installed in the correct places in the &kf5;
           directory tree. The 
           <filename>kio_krarc.*</filename> files must be in the same
           directory with the other KIO slaves. Try this: locate 
@@ -720,17 +716,17 @@
   <answer>
   <para>Go to the <link linkend="konfig-protocols">Konfigurator Protocol page</link> and remove <guilabel>application/x-jar</guilabel> 
         from the krarc node, &krusader; should no longer enter the archive.
-        Global file associations are handled by &kde; and not by &krusader;.
+        Global file associations are handled by &plasma; and not by &krusader;.
         To associate the jar extension:
         <itemizedlist>
             <listitem>
-              <para>Open &kde;s &systemsettings;: <application>systemsettings</application>
+              <para>Open &plasma; &systemsettings;: <application>systemsettings</application>
               </para>
             </listitem>
             <listitem>
               <para>
                <menuchoice>
-                 <guimenu>Common Appearance and Behavior</guimenu>
+                 <guimenu>Personalization</guimenu>
                  <guimenuitem>File Associations</guimenuitem>
               </menuchoice>
               </para>
@@ -806,10 +802,10 @@
                 to remove the <literal role="extension">.part</literal> suffix.
                 This works great but sometimes some &FTP; servers do not allow a rename operation.
                 You can solve this by unchecking the checkbox 
-                <guilabel>Mark partially uploaded files</guilabel> in &kde;'s System Settings. 
+                <guilabel>Mark partially uploaded files</guilabel> in &plasma; &systemsettings;. 
                 The check box is located at 
                 <menuchoice>
-                 <guimenu>Network Settings</guimenu>
+                 <guimenu>Network</guimenu>
                  <guimenuitem>Connection Preferences</guimenuitem>
                 </menuchoice>.</para>
           <!-- Empty line to make it more readable -->
@@ -847,17 +843,17 @@
           &eg; when I do a delete action?</para>
         </question>
         <answer>
-          <para>Those are the default &kde; System
+          <para>Those are the default &plasma; System
           sounds, and not related to &krusader;. If you
-          want to disable them globally open your &kde;
+          want to disable them globally open your &plasma;
           &systemsettings; (
           <application>systemsettings</application>): 
             <menuchoice>
-              <guimenu>Application Appearance and Behavior</guimenu>
-              <guisubmenu>Application and System Notifications</guisubmenu>
+              <guimenu>Personalization</guimenu>
+              <guisubmenu>Notifications</guisubmenu>
               <guimenuitem>Manage Notifications</guimenuitem>
             </menuchoice>, 
-          <guilabel>Event Source: "KDE Workspace"
+          <guilabel>Event Source: "Plasma Workspace"
           </guilabel> and uncheck sound items you
           do not like.</para>
           <para></para>
@@ -903,13 +899,13 @@
 
       <qandaentry>
         <question id="faqu_konfigurator">
-          <para>Where is Konfigurator, do i need to install the &kde; Desktop Environment to use it?</para>
+          <para>Where is Konfigurator, do i need to install the &plasma; to use it?</para>
         </question>
         <answer>
           <para><link linkend="konfigurator">Konfigurator</link> is &krusader;s configuration module,
                 if you have installed &krusader; then you have also Konfigurator.
-                For some reason some people think it is an other &kde; application, but it is not, so
-                you do not need to install the &kde; Desktop Environment to use Konfigurator.
+                For some reason some people think it is an other &plasma; application, but it is not, so
+                you do not need to install the full fledged &plasma; to use Konfigurator.
                 When running &krusader;, use 
                 <menuchoice>
                  <guimenu>Settings</guimenu>
@@ -1089,9 +1085,9 @@
             &konqueror; or another &kde;
             application. If you encounter the same problem then it
             is possibly a KIO Slaves or
-            &kde; (kdelibs) bug, and not a
+            &kf5-full; bug, and not a
             &krusader; bug. &krusader; uses
-            the &kde; libraries and the
+            the &kf5; libraries and the
             KIO Slave for many operations. In
             some cases you can encounter problems if your
             distribution is incorrectly configured, please test it

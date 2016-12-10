@@ -332,7 +332,7 @@
       another application to open the file, 
       click with the &RMB; on the file and go to the <guisubmenu>Open
       with</guisubmenu> sub-menu which will offer more options.
-      &krusader; is compatible with the &kde;
+      &krusader; is compatible with the &plasma;
       default file manager for all file types except archives that
       are opened inside the &krusader; panel and not in
       an external application. See 
@@ -388,12 +388,12 @@
       </para>
     </sect2>
     <sect2 id="deleting">
-      <title>Deleting - move to &kde;'s Trash</title>
+      <title>Deleting - move to &plasma; Trash</title>
       <para>Deleting files/directories is done by selecting them and pressing <keycap>F8</keycap> or <keycap>Delete</keycap>.
-      By <link linkend="konfig-general">default</link> it will be moved to &kde;'s Trash.
-      You can open the &kde; Trash with the Trash icon in the <link linkend="main_toolbar">Main Toolbar</link> or with 
+      By <link linkend="konfig-general">default</link> it will be moved to &plasma; Trash.
+      You can open the &plasma; Trash with the Trash icon in the <link linkend="main_toolbar">Main Toolbar</link> or with 
       the <filename>trash:/</filename> KIO slave.
-      Physically &kde; Trash is located in <filename>~/.local/share/Trash/</filename> or <filename>Trash</filename> in the subdirectory in user home directory which can be determined using the <userinput>qtpaths --paths GenericDataLocation</userinput> command.
+      Physically &plasma; Trash is located in <filename>~/.local/share/Trash/</filename> or <filename>Trash</filename> in the subdirectory in user home directory which can be determined using the <userinput>qtpaths --paths GenericDataLocation</userinput> command.
       <keycombo action="simul">&Shift;
       <keycap>Delete</keycap></keycombo> will delete the file
       permanently. A dialog will ask for your confirmation and will

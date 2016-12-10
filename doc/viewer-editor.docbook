@@ -111,7 +111,7 @@
     same application).</para>
     <note>
       <para>The embedded viewer is not written by us, it is
-      supplied via &kde; (libs) and
+      supplied via &kf5; and
       KIO Slaves. We cannot and do not want to
       change it, using these libraries reduces the amount of
       written code. So we do not have to reinvent the wheel
@@ -276,7 +276,7 @@ action="simul">&Ctrl;<keycap>X</keycap></keycombo></shortcut>
 <listitem>
 <para>This command deletes the current selection and places it on the
 clipboard.
-The  clipboard is a feature of &kde; that works invisibly to provide a way to
+The  clipboard is a feature that works invisibly to provide a way to
 transfer data between applications.</para>
 </listitem>
 </varlistentry>
@@ -288,7 +288,7 @@ action="simul">&Ctrl;<keycap>C</keycap></keycombo></shortcut>
 <guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></menuchoice></term>
 <listitem>
 <para>This copies the currently selected text to the clipboard so that it may
-be pasted elsewhere.  The clipboard is a feature of &kde; that works invisibly
+be pasted elsewhere.  The clipboard is a feature that works invisibly
 to provide a way to transfer data between applications.</para>
 </listitem>
 </varlistentry>
@@ -299,7 +299,7 @@ action="simul">&Ctrl;<keycap>V</keycap></keycombo></shortcut>
 <guimenu>Edit</guimenu><guimenuitem>Paste</guimenuitem></menuchoice></term>
 <listitem>
 <para>This will insert the contents of the clipboard at the cursor position.
-The clipboard is feature of &kde; that works invisibly to provide a way to
+The clipboard is feature that works invisibly to provide a way to
 transfer data between applications.</para>
 </listitem>
 </varlistentry>
@@ -1547,7 +1547,7 @@ the dominant color on the editor area.</para></listitem>
 <varlistentry id="katepart-variable-pref-colors-selected-text">
 <term><guilabel>Selected text</guilabel></term>
 <listitem><para>This is the background for selected text. The default is
-the global selection color, as set in your &kde; color preferences.
+the global selection color, as set in your &plasma; color preferences.
 </para></listitem>
 </varlistentry>
 
@@ -2399,9 +2399,9 @@ as HTML to the system clipboard.</para></listitem>
 <term><guilabel>IconInserter</guilabel></term>
 <listitem><para>The icon inserter plugin is only of use for &kde; developers: It adds an item
 <guimenuitem>Insert KIcon-Code</guimenuitem> into the context menu of the editor.
-If activated, the &kde;'s icon chooser opens (showing application icons, action icons &etc;..).
+If activated, the &plasma;'s icon chooser opens (showing application icons, action icons &etc;..).
 If you click on it, the file name without file extension will be inserted as
-text. Useful only for setting icons via &kde;'s framework through the KIcon() class.
+text. Useful only for setting icons via &kf5; through the KIcon() class.
 </para></listitem>
 </varlistentry>
 <varlistentry>
