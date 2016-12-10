@@ -63,10 +63,15 @@ protected slots:
     void refreshVfs(const QUrl &directory);
 
 private:
-    KrVfsHandler() {}
+    vfs *createVfs(const vfs::VFS_TYPE type);
+    KrVfsHandler();
+
+    // vfs instances for directory independent file operations, lazy initialized
+    vfs *_defaultVFS;
+    vfs *_virtVFS;
+
     QList<QPointer<vfs>> _vfs_list;
 
-    static vfs *createVfs(const QUrl &url);
     static QString getACL(const QString & path, int type);
 };
 

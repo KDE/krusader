@@ -34,24 +34,31 @@
 #include "../krservices.h"
 
 
-vfs* KrVfsHandler::getVfs(const QUrl &url, vfs* oldVfs)
+KrVfsHandler::KrVfsHandler() : _defaultVFS(0), _virtVFS(0) {}
+
+vfs *KrVfsHandler::getVfs(const QUrl &url, vfs *oldVfs)
 {
-    if (oldVfs && oldVfs->type() == getVfsType(url)) {
-        return oldVfs;
-    }
-
-    vfs *newVfs = createVfs(url);
-
-    QPointer<vfs> vfsPointer(newVfs);
-    _vfs_list.append(vfsPointer);
-    connect(newVfs, &vfs::filesystemChanged, this, &KrVfsHandler::refreshVfs);
-    return newVfs;
+    const vfs::VFS_TYPE type = getVfsType(url);
+    return oldVfs && oldVfs->type() == type ? oldVfs : createVfs(type);
 }
 
 void KrVfsHandler::startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,
                                   KIO::CopyJob::CopyMode mode, bool showProgressInfo, bool reverseQueueMode, bool startPaused)
 {
-    vfs *vfs = getVfs(destination); // implementation depends on filesystem of destination
+    const vfs::VFS_TYPE type = getVfsType(destination);
+    vfs *vfs;
+    switch (type) {
+    case vfs::VFS_VIRT:
+        if (!_virtVFS)
+            _virtVFS = createVfs(type);
+        vfs = _virtVFS;
+        break;
+    default:
+        if (!_defaultVFS)
+            _defaultVFS = createVfs(type);
+        vfs = _defaultVFS;
+    }
+
     vfs->copyFiles(urls, destination, mode, showProgressInfo, reverseQueueMode, startPaused);
 }
 
@@ -76,6 +83,20 @@ void KrVfsHandler::refreshVfs(const QUrl &directory)
     }
 }
 
+vfs *KrVfsHandler::createVfs(vfs::VFS_TYPE type)
+{
+    vfs *newVfs;
+    switch (type) {
+    case (vfs::VFS_VIRT): newVfs = new virt_vfs(); break;
+    default: newVfs = new default_vfs();
+    }
+
+    QPointer<vfs> vfsPointer(newVfs);
+    _vfs_list.append(vfsPointer);
+    connect(newVfs, &vfs::filesystemChanged, this, &KrVfsHandler::refreshVfs);
+    return newVfs;
+}
+
 // ==== static ====
 
 KrVfsHandler &KrVfsHandler::instance()
@@ -87,17 +108,6 @@ KrVfsHandler &KrVfsHandler::instance()
 vfs::VFS_TYPE KrVfsHandler::getVfsType(const QUrl &url)
 {
     return url.scheme() == QStringLiteral("virt") ? vfs::VFS_VIRT : vfs::VFS_DEFAULT;
-}
-
-vfs* KrVfsHandler::createVfs(const QUrl &url)
-{
-    vfs::VFS_TYPE newType = getVfsType(url);
-    switch (newType) {
-    case (vfs::VFS_VIRT):
-        return new virt_vfs();
-    default:
-        return new default_vfs();
-    }
 }
 
 void KrVfsHandler::getACL(vfile *file, QString &acl, QString &defAcl)
