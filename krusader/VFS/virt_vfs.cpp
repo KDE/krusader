@@ -23,6 +23,8 @@
 #include <QDir>
 #include <QEventLoop>
 #include <QUrl>
+// QtWidgets
+#include <QApplication>
 
 #include <KConfigCore/KConfig>
 #include <KCoreAddons/KUrlMimeData>
@@ -32,6 +34,7 @@
 #include <KIO/DirectorySizeJob>
 #include <KIO/StatJob>
 #include <KIOCore/KFileItem>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "../defaults.h"
 #include "../krglobal.h"
@@ -61,8 +64,8 @@ void virt_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
     const QString dir = QDir(destination.path()).absolutePath().remove('/');
 
     if (dir.isEmpty()) {
-        emit error(i18n("You cannot copy files directly to the 'virt:/' folder.\n"
-                        "You can create a sub folder and copy your files into it."));
+        showError(i18n("You cannot copy files directly to the 'virt:/' folder.\n"
+                       "You can create a sub folder and copy your files into it."));
         return;
     }
 
@@ -155,7 +158,7 @@ QUrl virt_vfs::getUrl(const QString &name)
 void virt_vfs::mkDir(const QString &name)
 {
     if (currentDir() != "/") {
-        emit error(i18n("Creating new folders is allowed only in the 'virt:/' folder."));
+        showError(i18n("Creating new folders is allowed only in the 'virt:/' folder."));
         return;
     }
 
@@ -367,4 +370,10 @@ KConfig &virt_vfs::getVirtDB()
 void virt_vfs::slotStatResult(KJob *job)
 {
     _fileEntry = job->error() ? KIO::UDSEntry() : static_cast<KIO::StatJob *>(job)->statResult();
+}
+
+void virt_vfs::showError(const QString &error)
+{
+    QWidget *window = QApplication::activeWindow();
+    KMessageBox::sorry(window, error); // window can be null, is allowed
 }

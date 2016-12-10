@@ -161,8 +161,7 @@ public slots:
 signals:
     /// Emitted when this VFS is currently refreshing the VFS directory.
     void refreshJobStarted(KIO::Job *job);
-    /// Emitted when an error occured in this VFS.
-    /// The error can be caused by refresh or any filesystem operation
+    /// Emitted when an error occured in this VFS during refresh.
     void error(const QString &msg);
     /// Emitted when the content of a directory was changed by this VFS.
     void filesystemChanged(const QUrl &directory);

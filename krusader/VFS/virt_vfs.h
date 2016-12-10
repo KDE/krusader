@@ -98,6 +98,7 @@ private slots:
     void slotStatResult(KJob *job);
 
 private:
+    void showError(const QString &error);
     static QHash<QString, QList<QUrl> *> _virtVfsDict; // map virtual directories to containing files
     static QHash<QString, QString> _metaInfoDict; // map virtual directories to meta infos
 
