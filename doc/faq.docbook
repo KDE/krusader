@@ -311,7 +311,7 @@
           <para>The 
           <filename>krusaderui.rc</filename> file is stored in 
           <filename>
-          $KDEDIR/share/kxmlgui5/krusader/krusaderui.rc</filename>.
+          /usr/share/kxmlgui5/krusader/krusaderui.rc</filename>.
           When you change the 
           <guilabel>Toolbar</guilabel>, &plasma; makes a
           copy of that file in the home folder at 
@@ -650,11 +650,11 @@
           <filename>kio_krarc.so</filename>, 
           <filename>kio_krarc.la</filename> files into 
           <filename class="directory">
-          $KDEDIR/lib/qt5/plugins</filename></para>
+          /usr/{lib or lib64}/qt5/plugins</filename></para>
           <para>Copy the 
           <filename>krarc.protocol</filename> file into 
           <filename class="directory">
-          $KDEDIR/share/services</filename></para>
+          /usr/share/services</filename></para>
           <para>or the directory where the KIO slaves are placed in
           your &Linux; distribution.</para>
           <para></para>
