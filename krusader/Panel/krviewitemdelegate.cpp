@@ -136,7 +136,9 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
             emit closeEditor(editor, RevertModelCache);
         }
     } else if (event->type() == QEvent::ShortcutOverride) {
-        if (static_cast<QKeyEvent*>(event)->key() == Qt::Key_Escape) {
+        const QKeyEvent *ke = static_cast<QKeyEvent *>(event);
+        if (ke->key() == Qt::Key_Escape ||
+            (ke->key() == Qt::Key_Backspace && ke->modifiers() == Qt::ControlModifier)) {
             event->accept();
             return true;
         }
