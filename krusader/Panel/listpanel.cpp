@@ -890,7 +890,7 @@ void ListPanel::startDragging(QStringList names, QPixmap px)
     mimeData->setUrls(urls);
     drag->setMimeData(mimeData);
 
-    drag->start();
+    drag->start(Qt::MoveAction | Qt::CopyAction | Qt::LinkAction);
 }
 
 // pops a right-click menu for items
