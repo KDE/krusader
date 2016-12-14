@@ -34,10 +34,8 @@ Installation on Linux® and BSD platforms
 
 --- Krusader dependencies
 
-The next packages are needed when running the Krusader binary.
-
-The next packages are the names that KUbuntu uses, other Linux distros will
-probably use similar names.
+The following packages are needed when running the Krusader binary. Below are the names
+that KUbuntu uses. Other Linux distros will probably use similar names.
 
 - plasma-runtime        Plasma Runtime components
 - plasma-workspace      Plasma Workspace for KF5
@@ -56,8 +54,8 @@ probably use similar names.
 --- Suggested packages
 
 These packages are optional but they will make Krusader much more powerful and useful.
-The next packages are the names that Debian/Ubuntu uses, other Linux
-distros will probably use similar names.
+Below are the names that Debian/Ubuntu uses. Other Linux distros will probably use
+similar names.
 
 - arj                   archiver for .arj files
 - ark                   archive utility for KDE
@@ -94,8 +92,8 @@ or rar                  Archiver for .rar files
 
 --- Compilation requirements
 
-The next packages are needed for compiling the Krusader sourcecode, if you only
-run the Krusader binary you don't need to install these packages.
+The following packages are needed for compiling the Krusader source code. If you only
+run the Krusader binary, you don't need to install these packages.
 
 - build-essential        a group of packages needed to compile source code
 - cmake                  a cross-platform, open-source make system
@@ -104,7 +102,8 @@ run the Krusader binary you don't need to install these packages.
 - plasma-framework-dev   development files for plasma-framework
 
 The following packages should install (through dependencies) all the packages
-you need to compile a KDE 5 software
+you need to compile a KDE 5 software package:
+
 - libkf5parts-dev       
 - libkf5wallet-dev
 - libkf5xmlgui-dev
@@ -154,9 +153,7 @@ $ sudo make uninstall
 
 
 
-FYI - The output of cmake on Kubuntu 15.04
-
-This is the cmake output 
+Here is the output of cmake on Kubuntu 15.04:
 
 ubuntu@ubuntu-VirtualBox:~/src/krusader/build$ cmake -DCMAKE_INSTALL_PREFIX=/usr ..
 -- The C compiler identification is GNU 4.9.2
@@ -298,7 +295,7 @@ Note: Writing krusader.1
 [100%] Built target doc-krusader-1
 
 
---- To achieve that Krusader uses another translation
+--- To set a different language for Krusader
 
 There is a list of available language codes in the [10n.kde.org Krusader page](http://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/). In that list anyone can see which is his desired language code (e.g. for a German user normally his language code is: de), and consequently the XX that appears in the following commands must be replaced with his desired language code:
 
