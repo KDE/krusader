@@ -264,10 +264,10 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
         const KConfigGroup cfgActionsBar(krConfig, "Actions Toolbar");
         toolBar("actionsToolBar")->applySettings(cfgActionsBar);
 
+        // restore toolbars position and visibility
         const KConfigGroup cfgStartup(krConfig->group("Startup"));
-        toolBar()->setVisible(cfgStartup.readEntry("Show tool bar", _ShowToolBar));
-        toolBar("jobToolBar")->setVisible(cfgStartup.readEntry("Show job tool bar", true));
-        toolBar("actionsToolBar")->setVisible(cfgStartup.readEntry("Show actions tool bar", _ShowActionsToolBar));
+        restoreState(cfgStartup.readEntry("State", QByteArray()));
+
         statusBar()->setVisible(cfgStartup.readEntry("Show status bar", _ShowStatusBar));
 
         MAIN_VIEW->updateGUI(cfgStartup);
@@ -474,9 +474,8 @@ void Krusader::saveSettings() {
     toolBar("actionsToolBar")->saveSettings(cfg);
 
     cfg = krConfig->group("Startup");
-    cfg.writeEntry("Show tool bar", !toolBar()->isHidden());
-    cfg.writeEntry("Show job tool bar", !toolBar("jobToolBar")->isHidden());
-    cfg.writeEntry("Show actions tool bar", !toolBar("actionsToolBar")->isHidden());
+    // save toolbar visibility and position
+    cfg.writeEntry("State", saveState());
     cfg.writeEntry("Show status bar", statusBar()->isVisible());
 
     // save panel and window settings
