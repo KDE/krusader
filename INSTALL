@@ -9,22 +9,12 @@ Krusader-2.5.0 versions and higher are for KDE Plasma 5 only and will not work
 anymore on KDE Plasma 4 or 3.
 
 
---- Krusader development download
-
-Krusader is developed in KDE Extragear.
-Download the latest available Krusader-15.xx sourcecode with git.
-
-$ git clone http://anongit.kde.org/krusader.git
-$ cd krusader
-
-
 --- Supported Platforms
 
 * All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris™
 
 At the moment, there are no KDE Plasma 5 ports for Windows or Mac® OS X, which
 means these platforms are not supported.
-
 
 
 ========================================
@@ -36,18 +26,16 @@ Installation on Linux® and BSD platforms
 
 The next packages are needed when running the Krusader binary.
 
-The next packages are the names that KUbuntu uses, other Linux distros will
-probably use similar names.
+This is a list of the package names that Kubuntu/Ubuntu 16.04 use, other Linux distros will
+probably use similar names:
 
-- plasma-runtime        Plasma Runtime components
-- plasma-workspace      Plasma Workspace for KF5
+- plasma-framework      Plasma Runtime components
 - libc6                 GNU C Library: Shared libraries
 - libgcc1               GCC support library
 - libqt5dbus5           Qt 5 D-Bus module
 - libqt5xml5            Qt 5 XML module
 - libqt5core5           Qt 5 core module
 - libqt5gui5            Qt 5 GUI module
-- libgt5widgets5        Qt 5 widgets module
 - libqt5printsupport5   Qt 5 print support module
 - libstdc++6            The GNU Standard C++ Library v3 
 - zlib1g                compression library - runtime 
@@ -55,9 +43,10 @@ probably use similar names.
 
 --- Suggested packages
 
-These packages are optional but they will make Krusader much more powerful and useful.
-The next packages are the names that Debian/Ubuntu uses, other Linux
-distros will probably use similar names.
+The next packages are optional but they will make Krusader much more powerful and useful.
+
+This is a list of the package names that Debian/Ubuntu/Kubuntu 16.04 use, other Linux
+distros will probably use similar names:
 
 - arj                   archiver for .arj files
 - ark                   archive utility for KDE
@@ -105,13 +94,25 @@ run the Krusader binary you don't need to install these packages.
 
 The following packages should install (through dependencies) all the packages
 you need to compile a KDE 5 software
-- libkf5parts-dev       
-- libkf5wallet-dev
-- libkf5xmlgui-dev
-- kdoctools-dev
+- kio-dev                resource and network access abstraction
+- libkf5archive-dev      development files for karchive
+- libkf5parts-dev        development files for kparts
+- libkf5wallet-dev       development files for kwallet-framework
+- libkf5xmlgui-dev       user configurable main windows
+- kdoctools-dev          development files for kdoctools5
 
 
---- CMake options and execution
+--- Krusader development download
+
+Krusader is developed in KDE Extragear. If someone wants to download and use 
+the latest available Krusader sourcecode with git:
+$ git clone http://anongit.kde.org/krusader
+
+Otherwise, if someone wants to use a .tar.gz version:
+$ tar xvf krusader-xx.xx.tar.gz
+  
+  
+--- Some CMake options. Cmake execution
 
 -DCMAKE_INSTALL_PREFIX=/usr
   is the location where Krusader will be installed with the make command.
@@ -129,34 +130,54 @@ you need to compile a KDE 5 software
   disables building the Synchronizer module. This module caused data loss, now
   it is fixed, but we treat it as the thin ice.
 
-$ tar xvf krusader-xx.xx.tar.gz
-$ cd krusader-xx.xx
-$ mkdir build
-$ cd build
-$ cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+CMake may be executed this way:
+$ mkdir krusader-build
+$ cd krusader-build
+$ cmake ../krusader -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DCMAKE_CXX_FLAGS="-O2 -fPIC"
+
+Note: In this document there's an appendix 1 that may help.
 
 
 --- Compilation and installation
 
 Compilation will take about 5 to 10 minutes depending on your CPU speed.
 
+Execute:
 $ make
+
+# At the beginning of the following command: `sudo` must be added if Kubuntu, Ubuntu, Debian, or similar is being used
 $ su -c "make install"
-or 
-$ sudo make install
+
+Note: In this document there's an appendix 2 that may help.
+
+
+--- To achieve that Krusader uses another language
+
+There is a list of translation files in the [10n.kde.org Krusader page](https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/index.html). In that list anyone can look for his desired translation file, hover the mouse cursor over its link, see its tooltip to look up the appropriate LANGUAGE_CODE (which is shown between parentheses, e.g. if on the tooltip it's seen "German (de)" that means that LANGUAGE_CODE is: de), click on the link (in order to download the proper krusader.po file), and execute:
+
+    # Transform the downloaded file
+    msgfmt krusader.po -o krusader.mo
+
+    # At the beginning of the following command: `sudo` must be added if Kubuntu, Ubuntu, Debian, or similar is being used.
+    # In the following command, the text XXXXXXX must be replaced by the LANGUAGE_CODE that was previously found 
+    su -c "cp -a krusader.mo /usr/share/locale/XXXXXXX/LC_MESSAGES/"    
+
+
+--- Execution
+
+Finally, Krusader can be executed this way:
+$ krusader
 
 
 --- Uninstall
 
+# At the beginning of the following command: `sudo` must be added if Kubuntu, Ubuntu, Debian, or similar is being used
 $ su -c "make uninstall"
-or
-$ sudo make uninstall
 
+ 
+--- Appendix 1
 
-
-FYI - The output of cmake on Kubuntu 15.04
-
-This is the cmake output 
+If it can be useful, this is the output of cmake on Kubuntu 15.04:
 
 ubuntu@ubuntu-VirtualBox:~/src/krusader/build$ cmake -DCMAKE_INSTALL_PREFIX=/usr ..
 -- The C compiler identification is GNU 4.9.2
@@ -246,8 +267,9 @@ ubuntu@ubuntu-VirtualBox:~/src/krusader/build$ cmake -DCMAKE_INSTALL_PREFIX=/usr
 -- Build files have been written to: /home/ubuntu/src/krusader/build
 
 
+--- Appendix 2
 
-FYI - The (partial) output of make on Kubuntu 15.04
+If it can be useful, this is a (partial) output of make on Kubuntu 15.04:
 
 ubuntu@ubuntu-VirtualBox:~/src/krusader/build$ make
 [  1%] Automatic moc for target krusader
@@ -296,15 +318,3 @@ Scanning dependencies of target doc-krusader-1
 [100%] Generating krusader.1
 Note: Writing krusader.1
 [100%] Built target doc-krusader-1
-
-
---- To achieve that Krusader uses another translation
-
-There is a list of available language codes in the [10n.kde.org Krusader page](http://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/). In that list anyone can see which is his desired language code (e.g. for a German user normally his language code is: de), and consequently the XX that appears in the following commands must be replaced with his desired language code:
-
-    wget http://websvn.kde.org/*checkout*/trunk/l10n-kf5/XX/messages/extragear-utils/krusader.po
-    msgfmt krusader.po -o krusader.mo
-
-    # At the beginning of the following command: "sudo" must be added if Kubuntu, Ubuntu, Debian, or similar is being used
-    su -c "cp -a krusader.mo /usr/share/locale/XX/LC_MESSAGES/"
-
