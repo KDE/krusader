@@ -146,9 +146,19 @@ void KrInterBriefView::keyPressEvent(QKeyEvent *e)
 {
     if (!e || !_model->ready())
         return ; // subclass bug
-    if ((e->key() != Qt::Key_Left && e->key() != Qt::Key_Right) &&
-            (handleKeyEvent(e)))      // did the view class handled the event?
+
+    if (handleKeyEvent(e))
         return;
+
+    QAbstractItemView::keyPressEvent(e);
+}
+
+bool KrInterBriefView::handleKeyEvent(QKeyEvent *e)
+{
+    if ((e->key() != Qt::Key_Left && e->key() != Qt::Key_Right) &&
+            (KrView::handleKeyEvent(e)))      // did the view class handled the event?
+        return true;
+
     switch (e->key()) {
     case Qt::Key_Right : {
         if (e->modifiers() == Qt::ControlModifier) {   // let the panel handle it
@@ -178,7 +188,7 @@ void KrInterBriefView::keyPressEvent(QKeyEvent *e)
         }
         if (e->modifiers() & Qt::ShiftModifier)
             op()->emitSelectionChanged();
-        break;
+        return true;
     }
     case Qt::Key_Left : {
         if (e->modifiers() == Qt::ControlModifier) {   // let the panel handle it
@@ -208,11 +218,11 @@ void KrInterBriefView::keyPressEvent(QKeyEvent *e)
         }
         if (e->modifiers() & Qt::ShiftModifier)
             op()->emitSelectionChanged();
-        break;
+        return true;
     }
-    default:
-        QAbstractItemView::keyPressEvent(e);
     }
+
+    return false;
 }
 
 void KrInterBriefView::wheelEvent(QWheelEvent *ev)

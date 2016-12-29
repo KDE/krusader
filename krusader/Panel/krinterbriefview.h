@@ -77,6 +77,8 @@ protected slots:
     virtual void renameCurrentItem() Q_DECL_OVERRIDE;
 
 protected:
+    // ---- reimplemented from KrView ----
+    virtual bool handleKeyEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
     // ---- reimplemented from QAbstractItemView ----
     virtual bool eventFilter(QObject *object, QEvent *event) Q_DECL_OVERRIDE;
     virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
