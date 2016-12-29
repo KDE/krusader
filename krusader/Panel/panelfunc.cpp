@@ -560,7 +560,7 @@ void ListPanelFunc::slotFileCreated(KJob *job)
     fileToCreate = QUrl();
 }
 
-void ListPanelFunc::copyFiles(bool delayStart, bool move)
+void ListPanelFunc::copyFiles(bool enqueue, bool move)
 {
     const QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
@@ -572,7 +572,6 @@ void ListPanelFunc::copyFiles(bool delayStart, bool move)
     const bool showDialog = move ? group.readEntry("Confirm Move", _ConfirmMove) :
                                    group.readEntry("Confirm Copy", _ConfirmCopy);
 
-    bool reverseQueueMode = false;
     if (showDialog) {
         QString operationText;
         if (move) {
@@ -587,19 +586,17 @@ void ListPanelFunc::copyFiles(bool delayStart, bool move)
 
         // ask the user for the copy/move dest
         const KChooseDir::ChooseResult result =
-            KChooseDir::getCopyDir(operationText, destination, panel->virtualPath(), delayStart);
+            KChooseDir::getCopyDir(operationText, destination, panel->virtualPath());
         destination = result.url;
         if (destination.isEmpty())
             return ; // the user canceled
 
-        reverseQueueMode = result.reverseQueueMode;
-        delayStart = result.delay;
+        enqueue = result.enqueue;
     }
 
     const JobMan::StartMode startMode =
-        delayStart ? JobMan::Delay : reverseQueueMode == krJobMan->isQueueModeEnabled() ?
-                     JobMan::Start :
-                     JobMan::Enqueue;
+        enqueue && krJobMan->isQueueModeEnabled() ? JobMan::Delay :
+        !enqueue && !krJobMan->isQueueModeEnabled() ? JobMan::Start : JobMan::Enqueue;
 
     const QList<QUrl> fileUrls = files()->getUrls(fileNames);
 

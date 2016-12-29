@@ -76,8 +76,8 @@ public slots:
     void editNew(); // create a new textfile and edit it
     void moveFilesDelayed() { moveFiles(true); }
     void copyFilesDelayed() { copyFiles(true); }
-    void moveFiles(bool delayStart = false) { copyFiles(delayStart, true); }
-    void copyFiles(bool delayStart = false, bool move = false);
+    void moveFiles(bool enqueue = false) { copyFiles(enqueue, true); }
+    void copyFiles(bool enqueue = false, bool move = false);
 
     /*!
      * asks the user the new directory name

@@ -56,8 +56,7 @@ class KChooseDir
 public:
     struct ChooseResult {
         QUrl url;
-        bool reverseQueueMode;
-        bool delay;
+        bool enqueue;
         bool preserveAttrs; // NOTE: field never read
         QUrl baseURL;       // NOTE: field never read
     };
@@ -71,8 +70,7 @@ public:
     static QUrl getFile(const QString &text, const QUrl &url, const QUrl &cwd);
     static QUrl getDir(const QString &text, const QUrl &url, const QUrl &cwd);
     static ChooseResult getCopyDir(const QString &text, const QUrl &url, const QUrl &cwd,
-                                   bool delay, bool preserveAttrs = false,
-                                   const QUrl &baseURL = QUrl());
+                                   bool preserveAttrs = false, const QUrl &baseURL = QUrl());
 
 
   private:
@@ -83,14 +81,13 @@ class KUrlRequesterDlgForCopy : public QDialog
 {
     Q_OBJECT
 public:
-    KUrlRequesterDlgForCopy(const QUrl& url, const QString& text, bool delay, bool presAttrs,
-                            QWidget *parent, bool modal = true, QUrl baseURL = QUrl());
+    KUrlRequesterDlgForCopy(const QUrl& url, const QString& text, bool presAttrs, QWidget *parent,
+                            bool modal = true, const QUrl &baseURL = QUrl());
 
     QUrl selectedURL() const;
     QUrl baseURL() const;
     bool preserveAttrs();
-    bool isReverseQueueMode() { return reverseQueueMode; };
-    bool isDelayed() { return delayBox->isChecked(); };
+    bool isQueued() { return queueStart; }
     bool copyDirStructure();
     void hidePreserveAttrs() {
 //         preserveAttrsCB->hide();
@@ -103,7 +100,7 @@ protected:
 
 
 private slots:
-    void slotReverseQueueMode();
+    void slotQueueButtonClicked();
     void slotTextChanged(const QString &);
     void slotDirStructCBChanged();
 private:
@@ -111,9 +108,8 @@ private:
     QComboBox *baseUrlCombo;
 //     QCheckBox *preserveAttrsCB;
     QCheckBox *copyDirStructureCB;
-    QCheckBox *delayBox;
     QPushButton *okButton;
-    bool reverseQueueMode = false;
+    bool queueStart = false;
 };
 
 class KRGetDate : public QDialog
