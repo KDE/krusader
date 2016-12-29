@@ -23,6 +23,10 @@
 
 #include <KIO/Global>
 
+#include <time.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 // TODO these are pointlessly general purpose now, make them incredibly specific
 
 typedef KIO::filesize_t FileSize;

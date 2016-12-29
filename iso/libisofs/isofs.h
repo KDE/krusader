@@ -24,6 +24,7 @@ extern "C"
 {
 #endif
 
+#include <time.h>
 #include <stdlib.h>
 #include "iso_fs.h"
 #include "el_torito.h"

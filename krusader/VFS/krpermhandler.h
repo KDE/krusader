@@ -39,6 +39,10 @@
 
 #include <KIO/Global>
 
+#include <time.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 #define NO_PERM      0
 #define UNKNOWN_PERM 1
 #define ALLOWED_PERM 2

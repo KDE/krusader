@@ -37,6 +37,8 @@
 #include <KIO/Job>
 #include <KIOCore/KFileItem>
 
+#include <errno.h>
+
 #define MAX_IPC_SIZE           (1024*32)
 #define TRIES_WITH_PASSWORDS   3
 
