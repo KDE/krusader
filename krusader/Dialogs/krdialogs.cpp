@@ -151,7 +151,6 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QStr
     mainLayout->addWidget(buttonBox);
     okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
-    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     pauseBox = new QCheckBox(i18n("Start &Paused"), this);
     buttonBox->addButton(pauseBox, QDialogButtonBox::ActionRole);
     QPushButton *reverseQueueModeButton = new QPushButton(krJobMan->isQueueModeEnabled() ? i18n("F2 Run Immediately") : i18n("F2 Queue"), this);
