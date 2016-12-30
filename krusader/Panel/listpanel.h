@@ -174,7 +174,7 @@ protected:
     static bool isNavigatorEditModeSet(); // return the navigator edit mode setting
 
 protected slots:
-    void updatePopupPanel(KrViewItem *item);
+    void slotCurrentChanged(KrViewItem *item);
     void handleDrop(QDropEvent *event, bool onView = false); // handle drops on frame or view
     void handleDrop(const QUrl &destination, QDropEvent *event); // handle drops with destination
     void startDragging(QStringList, QPixmap);

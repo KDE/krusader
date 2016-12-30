@@ -302,11 +302,6 @@ void KrInterView::prepareForActive()
 {
     KrView::prepareForActive();
     _itemView->setFocus();
-    KrViewItem * current = getCurrentKrViewItem();
-    if (current != 0) {
-        QString desc = current->description();
-        op()->emitItemDescription(desc);
-    }
 }
 
 void KrInterView::prepareForPassive()

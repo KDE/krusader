@@ -630,20 +630,6 @@ void KrView::renameCurrentItem()
 
 bool KrView::handleKeyEvent(QKeyEvent *e)
 {
-    bool res = handleKeyEventInt(e);
-
-    // emit the new item description
-    KrViewItem * current = getCurrentKrViewItem();
-    if (current != 0) {
-        QString desc = current->description();
-        op()->emitItemDescription(desc);
-    }
-
-    return res;
-}
-
-bool KrView::handleKeyEventInt(QKeyEvent *e)
-{
     switch (e->key()) {
     case Qt::Key_Enter :
     case Qt::Key_Return : {

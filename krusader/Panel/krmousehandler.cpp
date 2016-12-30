@@ -269,7 +269,7 @@ bool KrMouseHandler::mouseMoveEvent(QMouseEvent *e)
     if (!item)
         return false;
 
-    QString desc = item->description();
+    const QString desc = item->description();
     _view->op()->emitItemDescription(desc);
 
     if (_dragStartPos != QPoint(-1, -1) &&

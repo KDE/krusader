@@ -420,14 +420,14 @@ void ListPanel::createView()
     connect(view->op(), SIGNAL(dirUp()), func, SLOT(dirUp()));
     connect(view->op(), SIGNAL(deleteFiles(bool)), func, SLOT(deleteFiles(bool)));
     connect(view->op(), SIGNAL(middleButtonClicked(KrViewItem *)), SLOT(newTab(KrViewItem *)));
-    connect(view->op(), SIGNAL(currentChanged(KrViewItem *)), SLOT(updatePopupPanel(KrViewItem*)));
+    connect(view->op(), SIGNAL(currentChanged(KrViewItem *)), SLOT(slotCurrentChanged(KrViewItem*)));
     connect(view->op(), SIGNAL(renameItem(const QString &, const QString &)),
             func, SLOT(rename(const QString &, const QString &)));
     connect(view->op(), SIGNAL(executed(const QString&)), func, SLOT(execute(const QString&)));
     connect(view->op(), SIGNAL(goInside(const QString&)), func, SLOT(goInside(const QString&)));
     connect(view->op(), SIGNAL(needFocus()), this, SLOT(slotFocusOnMe()));
     connect(view->op(), SIGNAL(selectionChanged()), this, SLOT(slotUpdateTotals()));
-    connect(view->op(), SIGNAL(itemDescription(QString&)), krApp, SLOT(statusBarUpdate(QString&)));
+    connect(view->op(), SIGNAL(itemDescription(const QString&)), krApp, SLOT(statusBarUpdate(const QString&)));
     connect(view->op(), SIGNAL(contextMenu(const QPoint &)), this, SLOT(popRightClickMenu(const QPoint &)));
     connect(view->op(), SIGNAL(emptyContextMenu(const QPoint &)),
             this, SLOT(popEmptyRightClickMenu(const QPoint &)));
@@ -688,7 +688,7 @@ void ListPanel::slotFocusOnMe(bool focus)
         emit activate();
         _actions->activePanelChanged();
         func->refreshActions();
-        updatePopupPanel(view->getCurrentKrViewItem());
+        slotCurrentChanged(view->getCurrentKrViewItem());
         view->prepareForActive();
         otherPanel()->gui->slotFocusOnMe(false);
     } else {
@@ -1258,9 +1258,13 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
     }
 }
 
-void ListPanel::updatePopupPanel(KrViewItem *item)
+void ListPanel::slotCurrentChanged(KrViewItem *item)
 {
-    // which panel to display on?
+    // update status bar
+    if (item)
+        krApp->statusBarUpdate(item->description());
+
+    // update popup panel; which panel to display on?
     PanelPopup *p;
     if(popup && !popup->isHidden())
         p = popup;

@@ -370,7 +370,7 @@ bool Krusader::versionControl()
     return retval;
 }
 
-void Krusader::statusBarUpdate(QString& mess)
+void Krusader::statusBarUpdate(const QString& mess)
 {
     // change the message on the statusbar for 5 seconds
     if (statusBar()->isVisible())

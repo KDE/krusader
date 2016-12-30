@@ -135,7 +135,7 @@ public:
     void emitLetsDrag(QStringList items, QPixmap icon) {
         emit letsDrag(items, icon);
     }
-    void emitItemDescription(QString &desc) {
+    void emitItemDescription(const QString &desc) {
         emit itemDescription(desc);
     }
     void emitContextMenu(const QPoint &point) {
@@ -205,7 +205,7 @@ signals:
     void selectionChanged();
     void gotDrop(QDropEvent *e);
     void letsDrag(QStringList items, QPixmap icon);
-    void itemDescription(QString &desc);
+    void itemDescription(const QString &desc);
     void contextMenu(const QPoint &point);
     void emptyContextMenu(const QPoint& point);
     void renameItem(const QString &oldName, const QString &newName);
@@ -495,7 +495,6 @@ protected:
     virtual void doRestoreSettings(KConfigGroup grp);
     virtual KIO::filesize_t calcSize() = 0;
     virtual KIO::filesize_t calcSelectedSize() = 0;
-    bool handleKeyEventInt(QKeyEvent *e);
     void sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool descending);
     void saveSortMode(KConfigGroup &group);
     void restoreSortMode(KConfigGroup &group);
