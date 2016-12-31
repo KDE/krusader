@@ -449,14 +449,14 @@ void AdvancedFilter::notModifiedAfterSetDate()
 void AdvancedFilter::changeDate(KLineEdit *p)
 {
     // check if the current date is valid
-    QDate d = QLocale().toDate(p->text());
+    QDate d = stringToDate(p->text());
     if (!d.isValid()) d = QDate::currentDate();
 
     KRGetDate *gd = new KRGetDate(d, this);
     d = gd->getDate();
     // if a user pressed ESC or closed the dialog, we'll return an invalid date
     if (d.isValid())
-        p->setText(QLocale().toString(d, QLocale::ShortFormat));
+        p->setText(dateToString(d));
     delete gd;
 }
 
@@ -504,8 +504,8 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
     }
 
     s.modifiedBetweenEnabled = modifiedBetweenEnabled->isChecked();
-    s.modifiedBetween1 = QLocale().toDate(modifiedBetweenData1->text());
-    s.modifiedBetween2 = QLocale().toDate(modifiedBetweenData2->text());
+    s.modifiedBetween1 = stringToDate(modifiedBetweenData1->text());
+    s.modifiedBetween2 = stringToDate(modifiedBetweenData2->text());
 
     if (s.modifiedBetweenEnabled) {
         // check if date is valid
@@ -526,7 +526,7 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
     }
 
     s.notModifiedAfterEnabled = notModifiedAfterEnabled->isChecked();
-    s.notModifiedAfter = QLocale().toDate(notModifiedAfterData->text());
+    s.notModifiedAfter = stringToDate(notModifiedAfterData->text());
 
     if(s.notModifiedAfterEnabled && !s.notModifiedAfter.isValid()) {
         invalidDateMessage(notModifiedAfterData);
@@ -586,13 +586,10 @@ void AdvancedFilter::applySettings(const FilterSettings &s)
     else
         anyDateEnabled->setChecked(true);
 
-    modifiedBetweenData1->setText(
-        QLocale().toString(s.modifiedBetween1, QLocale::ShortFormat));
-    modifiedBetweenData2->setText(
-        QLocale().toString(s.modifiedBetween2, QLocale::ShortFormat));
+    modifiedBetweenData1->setText(dateToString(s.modifiedBetween1));
+    modifiedBetweenData2->setText(dateToString(s.modifiedBetween2));
 
-    notModifiedAfterData->setText(
-        QLocale().toString(s.notModifiedAfter, QLocale::ShortFormat));
+    notModifiedAfterData->setText(dateToString(s.notModifiedAfter));
 
     modifiedInTheLastData->setValue(s.modifiedInTheLast.amount);
     modifiedInTheLastType->setCurrentIndex(s.modifiedInTheLast.unit);
