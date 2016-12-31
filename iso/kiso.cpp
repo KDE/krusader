@@ -58,7 +58,7 @@
 
 static int getTracks(const char *fname, int *tracks)
 {
-    KISOFUNC;
+    KRFUNC;
     int ret = 0;
     memset(tracks, 0, 200*sizeof(int));
 
@@ -106,8 +106,8 @@ public:
 KIso::KIso(const QString& filename, const QString & _mimetype)
         : KArchive(0L)
 {
-    KISOFUNC;
-    KISODEBUG("Starting KIso: " << filename << " - type: " << _mimetype);
+    KRFUNC;
+    KRDEBUG("Starting KIso: " << filename << " - type: " << _mimetype);
 
     m_startsec = -1;
     m_filename = filename;
@@ -160,8 +160,8 @@ KIso::KIso(const QString& filename, const QString & _mimetype)
 void KIso::prepareDevice(const QString & filename,
                          const QString & mimetype, bool forced)
 {
-    KISOFUNC;
-    KISODEBUG("Preparing: " << filename << " - type: " << mimetype << " - using the force: " << forced);
+    KRFUNC;
+    KRDEBUG("Preparing: " << filename << " - type: " << mimetype << " - using the force: " << forced);
     /* 'hack' for Qt's false assumption that only S_ISREG is seekable */
     if ("inode/blockdevice" == mimetype)
         setDevice(new QFileHack(filename));
@@ -205,7 +205,7 @@ KIso::~KIso()
 /* callback function for libisofs */
 static int readf(char *buf, unsigned int start, unsigned int len, void *udata)
 {
-    KISOFUNC;
+    KRFUNC;
 
     QIODevice* dev = (static_cast<KIso*>(udata))->device();
 
@@ -220,7 +220,7 @@ static int readf(char *buf, unsigned int start, unsigned int len, void *udata)
 /* callback function for libisofs */
 static int mycallb(struct iso_directory_record *idr, void *udata)
 {
-    KISOFUNC;
+    KRFUNC;
 
     KIso *iso = static_cast<KIso*>(udata);
     QString path, user, group, symlink;
@@ -308,7 +308,7 @@ static int mycallb(struct iso_directory_record *idr, void *udata)
 
 void KIso::addBoot(struct el_torito_boot_descriptor* bootdesc)
 {
-    KISOFUNC;
+    KRFUNC;
 
     int i;
     long long size;
@@ -346,7 +346,7 @@ void KIso::addBoot(struct el_torito_boot_descriptor* bootdesc)
 
 void KIso::readParams()
 {
-    KISOFUNC;
+    KRFUNC;
     KConfig *config;
 
     config = new KConfig("kio_isorc");
@@ -359,7 +359,7 @@ void KIso::readParams()
 
 bool KIso::openArchive(QIODevice::OpenMode mode)
 {
-    KISOFUNC;
+    KRFUNC;
     iso_vol_desc *desc;
     QString path, uid, gid;
     QT_STATBUF buf;
@@ -461,7 +461,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
 
 bool KIso::closeArchive()
 {
-    KISOFUNC;
+    KRFUNC;
     d->dirList.clear();
     return true;
 }

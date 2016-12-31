@@ -15,8 +15,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef KISODEBUG_H
-#define KISODEBUG_H
+#ifndef KRDEBUGLOGGER_H
+#define KRDEBUGLOGGER_H
 
 // QtCore
 #include <QFile>
@@ -25,8 +25,8 @@
 
 #include <unistd.h>
 
-//! A class to manage some aspects of the writing of messages into the kiso debug log file
-class KIsoDebug
+//! A class to manage some aspects of the writing of messages into the Krusader debug log file
+class KrDebugLogger
 {
 private:
     QString function; //! The name of a function which is going to be written about
@@ -35,28 +35,28 @@ private:
     static const QString logFile; //! The name of the log file
 
 public:
-    KIsoDebug(const QString& argFunction, int line);
-    ~KIsoDebug();
+    KrDebugLogger(const QString &, int);
+    ~KrDebugLogger();
     static void prepareWriting(QFile &, QTextStream &);
 };
 
 #ifdef QT_DEBUG
 
-//! Writes a function name in the kiso debug log, etc. when entering the function and automatically before exiting from it
-#define KISOFUNC \
-        KIsoDebug functionLogger(__FUNCTION__, __LINE__);
+//! Writes a function name, etc. in the Krusader debug log when entering the function and automatically before exiting from it
+#define KRFUNC \
+        KrDebugLogger functionLogger(__FUNCTION__, __LINE__);
 
-#define KISODEBUG(X...) do{   \
+#define KRDEBUG(X...) do{   \
         QFile file;     \
         QTextStream stream;     \
-        KIsoDebug::prepareWriting(file, stream);       \
+        KrDebugLogger::prepareWriting(file, stream);       \
         stream << __FUNCTION__ << "(" <<__LINE__<< "): "; \
         stream << X << endl;      \
     } while(0);
 #else
-#define KISOFUNC
-#define KISODEBUG(X...) qDebug() << X
+#define KRFUNC
+#define KRDEBUG(X...) qDebug() << X
 #endif
 
-#endif // KISODEBUG_H
+#endif // KRDEBUGLOGGER_H
 

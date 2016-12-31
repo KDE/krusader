@@ -40,7 +40,9 @@ set(krusader_SRCS
     krusader.cpp
     krslots.cpp
     kicons.cpp
-    krtrashhandler.cpp)
+    krtrashhandler.cpp
+    krdebuglogger.cpp
+)
 
 # TODO porting: missing kf5 equivalent
 #kde4_add_app_icon(krusader_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-krusader_user.png")
