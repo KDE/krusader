@@ -150,7 +150,8 @@ void default_vfs::rename(const QString &oldName, const QString &newName)
 void default_vfs::connectJob(KJob *job, const QUrl &destination)
 {
     // (additional) direct refresh if on local fs because watcher is too slow
-    connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, isLocal()); });
+    const bool refresh = cleanUrl(destination) == _currentDirectory && isLocal();
+    connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, refresh); });
     connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(destination); });
 }
 
