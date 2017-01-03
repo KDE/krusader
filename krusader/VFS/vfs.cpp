@@ -172,15 +172,9 @@ bool vfs::refresh(const QUrl &directory)
 
     clear(tempVfiles);
 
-    return true;
-}
+    updateFilesystemInfo();
 
-void vfs::mayRefresh()
-{
-    if (ignoreRefresh()) {
-        return;
-    }
-    refresh();
+    return true;
 }
 
 // ==== protected ====

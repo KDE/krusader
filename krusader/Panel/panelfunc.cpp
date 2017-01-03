@@ -313,6 +313,7 @@ void ListPanelFunc::doRefresh()
         // (re)connect vfs signals
         disconnect(files(), 0, panel, 0);
         connect(files(), SIGNAL(refreshDone(bool)), panel, SLOT(slotStartUpdate(bool)));
+        connect(files(), &vfs::filesystemInfoChanged, panel, &ListPanel::updateFilesystemStats);
         connect(files(), SIGNAL(refreshJobStarted(KIO::Job*)),
                 panel, SLOT(slotJobStarted(KIO::Job*)));
         connect(files(), SIGNAL(error(QString)),

@@ -68,9 +68,6 @@ public:
     /// Returns the URL of the real file or an empty URL if file with name does not exist.
     QUrl getUrl(const QString& name) Q_DECL_OVERRIDE;
 
-    virtual QString metaInformation() Q_DECL_OVERRIDE {
-        return _metaInfo;
-    }
     void setMetaInformation(QString info);
 
 protected:

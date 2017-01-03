@@ -218,9 +218,7 @@ void virt_vfs::calcSpace(const QString &name, KIO::filesize_t *totalSize, unsign
 
 void virt_vfs::setMetaInformation(QString info)
 {
-    _metaInfo = info;
-    _metaInfoDict[currentDir()] = _metaInfo;
-    refresh();
+    _metaInfoDict[currentDir()] = info;
 }
 
 // ==== protected ====
@@ -243,7 +241,9 @@ bool virt_vfs::refreshInternal(const QUrl &directory, bool /*showHidden*/)
     }
 
     QList<QUrl> *urlList = _virtVfsDict[currentDir()];
-    _metaInfo = _metaInfoDict[currentDir()];
+
+    const QString metaInfo = _metaInfoDict[currentDir()];
+    emit filesystemInfoChanged(metaInfo.isEmpty() ? i18n("Virtual filesystem") : metaInfo, 0, 0);
 
     QMutableListIterator<QUrl> it(*urlList);
     while (it.hasNext()) {

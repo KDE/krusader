@@ -71,9 +71,12 @@ public:
     /// Return URL for file name - even if file does not exist.
     virtual QUrl getUrl(const QString &name) Q_DECL_OVERRIDE;
 
+    QString mountPoint() { return _mountPoint; }
+    bool hasAutoUpdate() Q_DECL_OVERRIDE { return !_watcher.isNull(); }
+    void updateFilesystemInfo() Q_DECL_OVERRIDE;
+
 protected:
     virtual bool refreshInternal(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;
-    virtual bool ignoreRefresh() Q_DECL_OVERRIDE;
 
 protected slots:
     /// Handle result after dir listing job is finished
@@ -99,6 +102,7 @@ private:
 
     QPointer<KDirWatch> _watcher; // dir watcher used to detect changes in the current dir
     bool _listError;              // for async operation, return list job result
+    QString _mountPoint;          // the mount point of the current dir
 };
 
 #endif

@@ -41,6 +41,7 @@
 #include <KIO/FileUndoManager>
 #include <KIO/ListJob>
 #include <KIO/JobUiDelegate>
+#include <KIOCore/KDiskFreeSpaceInfo>
 #include <KIOCore/KFileItem>
 #include <KIOCore/KProtocolManager>
 
@@ -167,6 +168,31 @@ QUrl default_vfs::getUrl(const QString& name)
     return absoluteUrl;
 }
 
+void default_vfs::updateFilesystemInfo()
+{
+    if (!KConfigGroup(krConfig, "Look&Feel").readEntry("ShowSpaceInformation", true)) {
+        _mountPoint = "";
+        emit filesystemInfoChanged(i18n("Space information disabled"), 0, 0);
+        return;
+    }
+
+    if (!_currentDirectory.isLocalFile()) {
+        _mountPoint = "";
+        emit filesystemInfoChanged(i18n("No space information on non-local filesystems"), 0, 0);
+        return;
+    }
+
+    const KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo(_currentDirectory.path());
+    if (!info.isValid()) {
+        _mountPoint = "";
+        emit filesystemInfoChanged(i18n("Space information unavailable"), 0, 0);
+        return;
+    }
+
+    _mountPoint = info.mountPoint();
+    emit filesystemInfoChanged("", info.size(), info.available());
+}
+
 // ==== protected ====
 
 bool default_vfs::refreshInternal(const QUrl &directory, bool showHidden)
@@ -207,11 +233,6 @@ bool default_vfs::refreshInternal(const QUrl &directory, bool showHidden)
     eventLoop.exec(); // blocking until quit()
 
     return !_listError;
-}
-
-bool default_vfs::ignoreRefresh()
-{
-    return !_watcher.isNull();
 }
 
 // ==== protected slots ====

@@ -59,7 +59,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KIconThemes/KIconLoader>
 #include <KIO/DropJob>
 #include <KIOCore/KMountPoint>
-#include <KIOCore/KDiskFreeSpaceInfo>
 #include <KWidgetsAddons/KCursor>
 #include <KWidgetsAddons/KMessageBox>
 #include <KIOFileWidgets/KFilePlacesModel>
@@ -752,8 +751,6 @@ void ListPanel::slotStartUpdate(bool directoryChange)
         searchBar->hideBar();
     }
 
-    updateFilesystemStats(currentUrl);
-
     if (compareMode)
         otherPanel()->view->refresh();
 
@@ -763,73 +760,34 @@ void ListPanel::slotStartUpdate(bool directoryChange)
     slotUpdateTotals();
 }
 
-void ListPanel::updateFilesystemStats(const QUrl &url)
+void ListPanel::updateFilesystemStats(const QString &metaInfo,
+                                      KIO::filesize_t total, KIO::filesize_t free)
 {
-    mediaButton->mountPointChanged(QString());
-    freeSpace->setText(QString());
+    QString statusText, mountPointText, freeSpaceText;
 
-    if (!KConfigGroup(krConfig, "Look&Feel").readEntry("ShowSpaceInformation", true)) {
-        status->setText(func->files()->metaInformation().isEmpty()
-                            ? i18n("Space information disabled")
-                            : func->files()->metaInformation());
-        return;
-    }
+    if (!metaInfo.isEmpty()) {
+        statusText = metaInfo;
+        mountPointText = freeSpaceText = "";
+    } else {
+        const int perc = total == 0 ? 0 : (int)(((float)free / (float)total) * 100.0);
+        // get mount point
+        const QString path = func->files()->currentDirectory().path();
+        const KMountPoint::Ptr mountPoint = KMountPoint::currentMountPoints().findByPath(path);
+        mountPointText = mountPoint ? mountPoint->mountPoint() : "";
+        const QString fstype =
+            mountPoint ? mountPoint->mountType() : i18nc("Unknown file system type", "unknown");
 
-    if (!url.isLocalFile()) {
-        status->setText(func->files()->metaInformation().isEmpty()
-                            ? i18n("No space information on non-local filesystems")
-                            : func->files()->metaInformation());
-        return;
-    }
+        statusText = i18nc("%1=free space,%2=total space,%3=percentage of usage, "
+                           "%4=mountpoint,%5=filesystem type",
+                           "%1 free out of %2 (%3%) on %4 [(%5)]", KIO::convertSize(free),
+                           KIO::convertSize(total), perc, mountPointText, fstype);
 
-    // check for special filesystems;
-    QString path = url.path(); // must be local url
-    if (path.left(4) == "/dev") {
-        status->setText(i18n("No space information on [dev]"));
-        return;
-    }
-#ifdef BSD
-    if (path.left(5) == "/procfs") { // /procfs is a special case - no volume information
-        status->setText(i18n("No space information on [procfs]"));
-        return;
-    }
-#else
-    if (path.left(5) == "/proc") { // /proc is a special case - no volume information
-        status->setText(i18n("No space information on [proc]"));
-        return;
-    }
-#endif
-
-    KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo(path);
-    if(!info.isValid()) {
-        status->setText(i18n("Space information unavailable"));
-        return;
-    }
-    int perc = 0;
-    if (info.size() != 0) { // make sure that if totalsize==0, then perc=0
-        perc = (int)(((float)info.available() / (float)info.size()) * 100.0);
-    }
-    // mount point information - find it in the list first
-    KMountPoint::List lst = KMountPoint::currentMountPoints();
-    QString fstype = i18nc("Unknown file system type", "unknown");
-    for (KMountPoint::List::iterator it = lst.begin(); it != lst.end(); ++it) {
-        if ((*it)->mountPoint() == info.mountPoint()) {
-            fstype = (*it)->mountType();
-            break;
-        }
+        freeSpaceText = "    " + i18n("%1 free", KIO::convertSize(free));
     }
 
-    QString stats = i18nc("%1=free space,%2=total space,%3=percentage of usage, "
-                          "%4=mountpoint,%5=filesystem type",
-                          "%1 free out of %2 (%3%) on %4 [(%5)]",
-                          KIO::convertSize(info.available()),
-                          KIO::convertSize(info.size()), perc,
-                          info.mountPoint(), fstype);
-
-    status->setText(stats);
-
-    freeSpace->setText("    " + i18n("%1 free", KIO::convertSize(info.available())));
-    mediaButton->mountPointChanged(info.mountPoint());
+    status->setText(statusText);
+    freeSpace->setText(freeSpaceText);
+    mediaButton->mountPointChanged(mountPointText);
 }
 
 void ListPanel::handleDrop(QDropEvent *event, bool onView)

@@ -29,6 +29,8 @@
 // QtCore
 #include <QDir>
 
+#include <KIOCore/KMountPoint>
+
 #include "default_vfs.h"
 #include "virt_vfs.h"
 #include "../krservices.h"
@@ -71,14 +73,25 @@ void KrVfsHandler::refreshVfs(const QUrl &directory)
         }
     }
 
-    // refresh all vfs currently showing this directory
+    QString mountPoint = "";
+    if (directory.isLocalFile()) {
+        KMountPoint::Ptr kMountPoint = KMountPoint::currentMountPoints().findByPath(directory.path());
+        if (kMountPoint)
+            mountPoint = kMountPoint->mountPoint();
+    }
+
     for(QPointer<vfs> vfsPointer: _vfs_list) {
         // always refresh virtual vfs showing a virtual directory; it can contain files from various
         // places, we don't know if they were (re)moved, refreshing is also fast enough
         vfs *vfs = vfsPointer.data();
         const QUrl vfsDir = vfs->currentDirectory();
-        if (vfsDir == vfs::cleanUrl(directory) || (vfsDir.scheme() == "virt" && !vfs->isRoot())) {
-            vfs->mayRefresh();
+        if ((vfsDir == vfs::cleanUrl(directory) || (vfsDir.scheme() == "virt" && !vfs->isRoot()))
+            && !vfs->hasAutoUpdate()) {
+            // refresh all vfs currently showing this directory...
+            vfs->refresh();
+        } else if (!mountPoint.isEmpty() && mountPoint == vfs->mountPoint()) {
+            // ..or refresh filesystem info if mount point is the same (for free space update)
+            vfs->updateFilesystemInfo();
         }
     }
 }

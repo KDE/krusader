@@ -108,6 +108,14 @@ public:
     /// Return a list of URLs for multiple files/directories in the current directory.
     virtual QList<QUrl> getUrls(const QStringList &names);
 
+    /// Return the filesystem mount point of the current directory. Empty string by default.
+    virtual QString mountPoint() { return QString(); }
+    /// Returns true if this VFS implementation does not need to be notified about changes in the
+    /// current directory. Else false.
+    virtual bool hasAutoUpdate() { return false; }
+    /// Notify this VFS that the filesystem info of the current directory may have changed.
+    virtual void updateFilesystemInfo() {}
+
     /// Returns the current directory path of this VFS.
     inline QUrl currentDirectory() { return _currentDirectory; }
     /// Return the vfile for a file name in the current directory. Or 0 if not found.
@@ -129,9 +137,6 @@ public:
     }
     /// Returns true if this VFS is currently refreshing the current directory.
     inline bool isRefreshing() { return _isRefreshing; }
-    /// Return a displayable string containing special filesystem meta information. Or an empty
-    /// string by default.
-    virtual QString metaInformation() { return QString(); }
 
     /// Calculate the amount of space occupied by a file or directory in the current directory
     /// (recursive).
@@ -155,8 +160,6 @@ public slots:
     /// Returns true if directory was read. Returns false if failed or refresh job was killed.
     // optional TODO: add an async version of this
     bool refresh(const QUrl &directory = QUrl());
-    /// Notify this VFS that the current directory content may have changed.
-    void mayRefresh();
 
 signals:
     /// Emitted when this VFS is currently refreshing the VFS directory.
@@ -165,15 +168,17 @@ signals:
     void error(const QString &msg);
     /// Emitted when the content of a directory was changed by this VFS.
     void filesystemChanged(const QUrl &directory);
+    /// Emitted when the information for the filesystem of the current directory changed.
+    /// Information is either
+    /// * 'metaInfo': a displayable string about the fs, empty by default, OR
+    /// * 'total' and 'free': filesystem size and free space, both 0 by default
+    void filesystemInfoChanged(const QString &metaInfo, KIO::filesize_t total, KIO::filesize_t free);
     /// Emitted before a directory path is opened for reading. Used for automounting.
     void aboutToOpenDir(const QString &path);
 
 protected:
     /// Fill the vfs dictionary with vfiles, must be implemented for each VFS.
     virtual bool refreshInternal(const QUrl &origin, bool showHidden) = 0;
-    /// Returns true if this VFS implementation does not need to be notified about changes in the
-    /// current directory.
-    virtual bool ignoreRefresh() { return false; }
 
     /// Returns true if showing hidden files is set in config.
     bool showHiddenFiles();
