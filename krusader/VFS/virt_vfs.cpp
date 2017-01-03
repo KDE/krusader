@@ -55,8 +55,6 @@ virt_vfs::virt_vfs() : vfs()
     _type = VFS_VIRT;
 }
 
-virt_vfs::~virt_vfs() {}
-
 void virt_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                          KIO::CopyJob::CopyMode /*mode*/, bool /*showProgressInfo*/,
                          bool /*reverseQueueMode*/, bool /*startPaused*/)

@@ -43,7 +43,6 @@ class virt_vfs : public vfs
     Q_OBJECT
 public:
     virt_vfs();
-    ~virt_vfs();
 
     /// Create virtual files in this VFS. Copy mode and showProgressInfo are ignored.
     void copyFiles(const QList<QUrl> &urls, const QUrl &destination,

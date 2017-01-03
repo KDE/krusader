@@ -76,9 +76,9 @@ public:
     virtual ~vfs();
 
     // VfileContainer implementation
-    virtual inline QList<vfile *> vfiles() { return _vfiles.values(); }
-    virtual inline unsigned long numVfiles() { return _vfiles.count(); }
-    virtual inline bool isRoot() {
+    inline QList<vfile *> vfiles() { return _vfiles.values(); }
+    inline unsigned long numVfiles() { return _vfiles.count(); }
+    inline bool isRoot() {
         const QString path = _currentDirectory.path();
         return path.isEmpty() || path == "/";
     }
@@ -106,7 +106,7 @@ public:
     /// trailing slash.
     virtual QUrl getUrl(const QString &name) = 0;
     /// Return a list of URLs for multiple files/directories in the current directory.
-    virtual QList<QUrl> getUrls(const QStringList &names);
+    QList<QUrl> getUrls(const QStringList &names);
 
     /// Return the filesystem mount point of the current directory. Empty string by default.
     virtual QString mountPoint() { return QString(); }
