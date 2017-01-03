@@ -192,6 +192,8 @@ protected slots:
         _manager->newTab(url, nextToThis ? this : 0);
     }
     void resetNavigatorMode(); // set navigator mode after focus was lost
+    // update filesystem meta info, disk-free and mount status
+    void updateFilesystemStats(const QString &metaInfo, KIO::filesize_t total, KIO::filesize_t free);
 
 signals:
     void signalStatus(QString msg); // emmited when we need to update the status bar
@@ -237,7 +239,6 @@ protected:
     KrErrorDisplay *vfsError;
 
 private:
-    void updateFilesystemStats(const QUrl &url); // update disk-free and mount status
     bool handleDropInternal(QDropEvent *event, const QString &dir);
     int popupPosition() const; // 0: West, 1: North, 2: East, 3: South
     void setPopupPosition(int);

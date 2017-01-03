@@ -55,25 +55,27 @@ class default_vfs : public vfs {
     Q_OBJECT
 public:
     default_vfs();
-    ~default_vfs() {}
 
-    virtual void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
+    void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                            KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
                            bool showProgressInfo = true, bool reverseQueueMode = false, bool startPaused = false) Q_DECL_OVERRIDE;
-    virtual void dropFiles(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
+    void dropFiles(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
 
-    virtual void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
+    void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
                               QString dir = "") Q_DECL_OVERRIDE;
-    virtual void deleteFiles(const QStringList &fileNames,
+    void deleteFiles(const QStringList &fileNames,
                              bool forceDeletion = false) Q_DECL_OVERRIDE;
-    virtual void mkDir(const QString &name) Q_DECL_OVERRIDE;
-    virtual void rename(const QString &fileName, const QString &newName) Q_DECL_OVERRIDE;
+    void mkDir(const QString &name) Q_DECL_OVERRIDE;
+    void rename(const QString &fileName, const QString &newName) Q_DECL_OVERRIDE;
     /// Return URL for file name - even if file does not exist.
-    virtual QUrl getUrl(const QString &name) Q_DECL_OVERRIDE;
+    QUrl getUrl(const QString &name) Q_DECL_OVERRIDE;
+
+    QString mountPoint() { return _mountPoint; }
+    bool hasAutoUpdate() Q_DECL_OVERRIDE { return !_watcher.isNull(); }
+    void updateFilesystemInfo() Q_DECL_OVERRIDE;
 
 protected:
-    virtual bool refreshInternal(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;
-    virtual bool ignoreRefresh() Q_DECL_OVERRIDE;
+    bool refreshInternal(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;
 
 protected slots:
     /// Handle result after dir listing job is finished
@@ -99,6 +101,7 @@ private:
 
     QPointer<KDirWatch> _watcher; // dir watcher used to detect changes in the current dir
     bool _listError;              // for async operation, return list job result
+    QString _mountPoint;          // the mount point of the current dir
 };
 
 #endif

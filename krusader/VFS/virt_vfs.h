@@ -43,7 +43,6 @@ class virt_vfs : public vfs
     Q_OBJECT
 public:
     virt_vfs();
-    ~virt_vfs();
 
     /// Create virtual files in this VFS. Copy mode and showProgressInfo are ignored.
     void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
@@ -68,9 +67,6 @@ public:
     /// Returns the URL of the real file or an empty URL if file with name does not exist.
     QUrl getUrl(const QString& name) Q_DECL_OVERRIDE;
 
-    virtual QString metaInformation() Q_DECL_OVERRIDE {
-        return _metaInfo;
-    }
     void setMetaInformation(QString info);
 
 protected:
