@@ -44,6 +44,7 @@
 #include <QWidget>
 
 #include <KIO/CopyJob>
+#include <KIO/DirectorySizeJob>
 
 #include "fileitem.h"
 #include "krquery.h"
@@ -233,8 +234,8 @@ private:
     FileItemDict _fileItems;  // the list of files in the current dictionary
 
     // used in the calcSpace function
-    bool *_calcKdsBusy;
-    bool _calcStatBusy;
+    KIO::DirectorySizeJob *_dirSizeJob;
+    QTimer *_dirSizeUpdateTimer;
     KIO::UDSEntry _calcEntry;
     KIO::filesize_t *_calcKdsTotalSize;
     unsigned long *_calcKdsTotalFiles;

@@ -43,7 +43,6 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIO/DirectorySizeJob>
 #include <KIO/JobUiDelegate>
 
 #include "../defaults.h"
@@ -269,27 +268,22 @@ void FileSystem::calcSpaceLocal(const QString &path, KIO::filesize_t *totalSize,
     }
 }
 
-// TODO called from another thread, creating KIO jobs does not work here
 void FileSystem::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
                        unsigned long *totalDirs, bool *stop)
 {
-    return;
-
     if (stop && *stop)
         return;
 
-    _calcKdsBusy = stop;
     _calcKdsTotalSize = totalSize;
     _calcKdsTotalFiles = totalFiles;
     _calcKdsTotalDirs = totalDirs;
 
-    _calcStatBusy = true;
-    KIO::StatJob *statJob = KIO::stat(url, KIO::HideProgressInfo); // thread problem here
+    KIO::StatJob *statJob = KIO::stat(url, KIO::HideProgressInfo);
     connect(statJob, &KIO::Job::result, this, &FileSystem::slotCalcStatResult);
 
-    while (!(*stop) && _calcStatBusy) {
-        usleep(1000);
-    }
+    QEventLoop eventLoop;
+    connect(statJob, &KJob::finished, &eventLoop, &QEventLoop::quit);
+    eventLoop.exec(); // blocking until quit()
 
     if (_calcEntry.count() == 0)
         return; // statJob failed
@@ -301,13 +295,13 @@ void FileSystem::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsig
         return;
     }
 
+    // URL should be a directory
+
     KIO::DirectorySizeJob *directorySizeJob = KIO::directorySize(url);
     connect(directorySizeJob, &KIO::Job::result, this, &FileSystem::slotCalcKdsResult);
 
-    while (!(*stop)) {
-        // we are in a separate thread - so sleeping is OK
-        usleep(1000);
-    }
+    connect(directorySizeJob, &KJob::finished, &eventLoop, &QEventLoop::quit);
+    eventLoop.exec(); // blocking until quit()
 }
 
 FileItem *FileSystem::createLocalFileItem(const QString &name, const QString &directory, bool virt)
@@ -406,13 +400,11 @@ void FileSystem::slotCalcKdsResult(KJob *job)
         *_calcKdsTotalFiles += kds->totalFiles();
         *_calcKdsTotalDirs += kds->totalSubdirs();
     }
-    *_calcKdsBusy = true;
 }
 
 void FileSystem::slotCalcStatResult(KJob *job)
 {
     _calcEntry = job->error() ? KIO::UDSEntry() : static_cast<KIO::StatJob *>(job)->statResult();
-    _calcStatBusy = false;
 }
 
 // ==== private ====
