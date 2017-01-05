@@ -51,7 +51,7 @@ public slots:
     void slotDeviceRemoved(const QString&);
     void showMenu();
     void slotCheckMounts();
-    void mountPointChanged(QString mp);
+    void updateIcon(const QString &mountPoint);
 
 signals:
     void openUrl(const QUrl&);
@@ -85,6 +85,7 @@ private:
     bool    openInNewTab;
     QMap<QString, QString> udiNameMap;
     QTimer      mountCheckerTimer;
+    QString currentMountPoint; // for performance optimization
 };
 
 #endif /* MEDIABUTTON_H */

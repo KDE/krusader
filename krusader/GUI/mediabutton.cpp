@@ -78,13 +78,18 @@ MediaButton::~MediaButton()
 {
 }
 
-void MediaButton::mountPointChanged(QString mp)
+void MediaButton::updateIcon(const QString &mountPoint)
 {
+    if(!mountPoint.isEmpty() && mountPoint == currentMountPoint)
+        return;
+
+    currentMountPoint = mountPoint;
+
     QString icon("system-file-manager");
     QStringList overlays;
 
-    if(!mp.isEmpty()) {
-        Solid::Device device(krMtMan.findUdiForPath(mp, Solid::DeviceInterface::StorageAccess));
+    if(!mountPoint.isEmpty()) {
+        Solid::Device device(krMtMan.findUdiForPath(mountPoint, Solid::DeviceInterface::StorageAccess));;
         Solid::StorageVolume *vol = device.as<Solid::StorageVolume> ();
 
         if(device.isValid())
