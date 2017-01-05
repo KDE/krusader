@@ -762,24 +762,25 @@ void ListPanel::slotStartUpdate(bool directoryChange)
 void ListPanel::updateFilesystemStats(const QString &metaInfo, const QString &fsType,
                                       KIO::filesize_t total, KIO::filesize_t free)
 {
-    QString statusText, mountPointText, freeSpaceText;
+    QString statusText, mountPoint, freeSpaceText;
 
     if (!metaInfo.isEmpty()) {
         statusText = metaInfo;
-        mountPointText = freeSpaceText = "";
+        mountPoint = freeSpaceText = "";
     } else {
         const int perc = total == 0 ? 0 : (int)(((float)free / (float)total) * 100.0);
+        mountPoint = func->files()->mountPoint();
         statusText = i18nc("%1=free space,%2=total space,%3=percentage of usage, "
                            "%4=mountpoint,%5=filesystem type",
                            "%1 free out of %2 (%3%) on %4 [(%5)]", KIO::convertSize(free),
-                           KIO::convertSize(total), perc, mountPointText, fsType);
+                           KIO::convertSize(total), perc, mountPoint, fsType);
 
         freeSpaceText = "    " + i18n("%1 free", KIO::convertSize(free));
     }
 
     status->setText(statusText);
     freeSpace->setText(freeSpaceText);
-    mediaButton->mountPointChanged(mountPointText);
+    mediaButton->updateIcon(mountPoint);
 }
 
 void ListPanel::handleDrop(QDropEvent *event, bool onView)
