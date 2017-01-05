@@ -58,7 +58,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 #include <KIO/DropJob>
-#include <KIOCore/KMountPoint>
 #include <KWidgetsAddons/KCursor>
 #include <KWidgetsAddons/KMessageBox>
 #include <KIOFileWidgets/KFilePlacesModel>
@@ -760,7 +759,7 @@ void ListPanel::slotStartUpdate(bool directoryChange)
     slotUpdateTotals();
 }
 
-void ListPanel::updateFilesystemStats(const QString &metaInfo,
+void ListPanel::updateFilesystemStats(const QString &metaInfo, const QString &fsType,
                                       KIO::filesize_t total, KIO::filesize_t free)
 {
     QString statusText, mountPointText, freeSpaceText;
@@ -770,17 +769,10 @@ void ListPanel::updateFilesystemStats(const QString &metaInfo,
         mountPointText = freeSpaceText = "";
     } else {
         const int perc = total == 0 ? 0 : (int)(((float)free / (float)total) * 100.0);
-        // get mount point
-        const QString path = func->files()->currentDirectory().path();
-        const KMountPoint::Ptr mountPoint = KMountPoint::currentMountPoints().findByPath(path);
-        mountPointText = mountPoint ? mountPoint->mountPoint() : "";
-        const QString fstype =
-            mountPoint ? mountPoint->mountType() : i18nc("Unknown file system type", "unknown");
-
         statusText = i18nc("%1=free space,%2=total space,%3=percentage of usage, "
                            "%4=mountpoint,%5=filesystem type",
                            "%1 free out of %2 (%3%) on %4 [(%5)]", KIO::convertSize(free),
-                           KIO::convertSize(total), perc, mountPointText, fstype);
+                           KIO::convertSize(total), perc, mountPointText, fsType);
 
         freeSpaceText = "    " + i18n("%1 free", KIO::convertSize(free));
     }

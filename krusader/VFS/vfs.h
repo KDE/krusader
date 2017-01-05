@@ -171,8 +171,10 @@ signals:
     /// Emitted when the information for the filesystem of the current directory changed.
     /// Information is either
     /// * 'metaInfo': a displayable string about the fs, empty by default, OR
-    /// * 'total' and 'free': filesystem size and free space, both 0 by default
-    void filesystemInfoChanged(const QString &metaInfo, KIO::filesize_t total, KIO::filesize_t free);
+    /// * 'fsType', 'total' and 'free': filesystem type, size and free space,
+    ///   empty string or 0 by default
+    void filesystemInfoChanged(const QString &metaInfo,  const QString &fsType,
+                               KIO::filesize_t total, KIO::filesize_t free);
     /// Emitted before a directory path is opened for reading. Used for automounting.
     void aboutToOpenDir(const QString &path);
 

@@ -193,7 +193,8 @@ protected slots:
     }
     void resetNavigatorMode(); // set navigator mode after focus was lost
     // update filesystem meta info, disk-free and mount status
-    void updateFilesystemStats(const QString &metaInfo, KIO::filesize_t total, KIO::filesize_t free);
+    void updateFilesystemStats(const QString &metaInfo,  const QString &fsType,
+                               KIO::filesize_t total, KIO::filesize_t free);
 
 signals:
     void signalStatus(QString msg); // emmited when we need to update the status bar

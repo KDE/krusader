@@ -43,6 +43,7 @@
 #include <KIO/JobUiDelegate>
 #include <KIOCore/KDiskFreeSpaceInfo>
 #include <KIOCore/KFileItem>
+#include <KIOCore/KMountPoint>
 #include <KIOCore/KProtocolManager>
 
 #include "../defaults.h"
@@ -172,25 +173,29 @@ void default_vfs::updateFilesystemInfo()
 {
     if (!KConfigGroup(krConfig, "Look&Feel").readEntry("ShowSpaceInformation", true)) {
         _mountPoint = "";
-        emit filesystemInfoChanged(i18n("Space information disabled"), 0, 0);
+        emit filesystemInfoChanged(i18n("Space information disabled"), "", 0, 0);
         return;
     }
 
     if (!_currentDirectory.isLocalFile()) {
         _mountPoint = "";
-        emit filesystemInfoChanged(i18n("No space information on non-local filesystems"), 0, 0);
+        emit filesystemInfoChanged(i18n("No space information on non-local filesystems"), "", 0, 0);
         return;
     }
 
-    const KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo(_currentDirectory.path());
+    const QString path = _currentDirectory.path();
+    const KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo(path);
     if (!info.isValid()) {
         _mountPoint = "";
-        emit filesystemInfoChanged(i18n("Space information unavailable"), 0, 0);
+        emit filesystemInfoChanged(i18n("Space information unavailable"), "", 0, 0);
         return;
     }
-
     _mountPoint = info.mountPoint();
-    emit filesystemInfoChanged("", info.size(), info.available());
+
+    const KMountPoint::Ptr mountPoint = KMountPoint::currentMountPoints().findByPath(path);
+    const QString fsType = mountPoint ? mountPoint->mountType() : "";
+
+    emit filesystemInfoChanged("", fsType, info.size(), info.available());
 }
 
 // ==== protected ====

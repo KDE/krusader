@@ -241,7 +241,7 @@ bool virt_vfs::refreshInternal(const QUrl &directory, bool /*showHidden*/)
     QList<QUrl> *urlList = _virtVfsDict[currentDir()];
 
     const QString metaInfo = _metaInfoDict[currentDir()];
-    emit filesystemInfoChanged(metaInfo.isEmpty() ? i18n("Virtual filesystem") : metaInfo, 0, 0);
+    emit filesystemInfoChanged(metaInfo.isEmpty() ? i18n("Virtual filesystem") : metaInfo, "", 0, 0);
 
     QMutableListIterator<QUrl> it(*urlList);
     while (it.hasNext()) {
