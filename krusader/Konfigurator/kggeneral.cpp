@@ -278,7 +278,7 @@ void KgGeneral::createGeneralTab()
     QGroupBox *terminalGrp = createFrame(i18n("Terminal"), tab);
     QGridLayout *terminalGrid = createGridLayout(terminalGrp);
 
-    QLabel *label3 = new QLabel(i18n("Terminal:"), generalGrp);
+    QLabel *label3 = new QLabel(i18n("External Terminal:"), generalGrp);
     terminalGrid->addWidget(label3, 0, 0);
     KonfiguratorURLRequester *urlReq2 = createURLRequester("General", "Terminal", _Terminal,
                                         generalGrp, false, PAGE_GENERAL, false);
@@ -288,8 +288,8 @@ void KgGeneral::createGeneralTab()
     terminalGrid->addWidget(terminalLabel, 1, 1);
 
     KONFIGURATOR_CHECKBOX_PARAM terminal_settings[] = { //   cfg_class  cfg_name     default        text            restart tooltip
-        {"General", "Send CDs", _SendCDs, i18n("Terminal Emulator sends Chdir on panel change"), false, i18n("When checked, whenever the panel is changed (for example, by pressing Tab), Krusader changes the current folder in the terminal emulator.") },
-        {"Look&Feel", "Fullscreen Terminal Emulator", false, i18n("Fullscreen terminal (mc-style)"), false,  i18n("Terminal is shown instead of the Krusader window (full screen).") },
+        {"General", "Send CDs", _SendCDs, i18n("Embedded Terminal sends Chdir on panel change"), false, i18n("When checked, whenever the panel is changed (for example, by pressing Tab), Krusader changes the current folder in the embedded terminal.") },
+        {"Look&Feel", "Fullscreen Terminal Emulator", false, i18n("Fullscreen embedded terminal (mc-style)"), false,  i18n("Terminal is shown instead of the Krusader window (full screen).") },
     };
     cbs = createCheckBoxGroup(1, 0, terminal_settings, 2 /*count*/, terminalGrp, PAGE_GENERAL);
     terminalGrid->addWidget(cbs, 2, 0, 1, 2);

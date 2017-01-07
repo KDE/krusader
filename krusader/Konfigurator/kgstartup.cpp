@@ -112,8 +112,8 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
             i18n("Check the state of the user interface components and restore them to their condition when last shutdown.") },
         {"Startup", "Show FN Keys",  _ShowFNkeys, i18n("Show function keys"), false, i18n("Function keys will be visible after startup.") },
         {"Startup", "Show Cmd Line",  _ShowCmdline,  i18n("Show command line"), false, i18n("Command line will be visible after startup.") },
-        {"Startup", "Show Terminal Emulator", _ShowTerminalEmulator, i18n("Show terminal emulator"),  false,
-            i18n("Terminal emulator will be visible after startup.") },
+        {"Startup", "Show Terminal Emulator", _ShowTerminalEmulator, i18n("Show embedded terminal"),  false,
+            i18n("Embedded terminal will be visible after startup.") },
     };
 
     uiCbGroup = createCheckBoxGroup(1, 0, uiCheckBoxes, 4, uiGrp);

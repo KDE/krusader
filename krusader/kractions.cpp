@@ -209,7 +209,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     NEW_KTOGGLEACTION(actToggleCmdline, i18n("Show &Command Line"), 0, 0, SLOTS, SLOT(toggleCmdline()), "toggle command line");
 
-    NEW_KTOGGLEACTION(actToggleTerminal, i18n("Show Terminal &Emulator"), 0, Qt::ALT + Qt::CTRL + Qt::Key_T, SLOTS, SLOT(toggleTerminal()), "toggle terminal emulator");
+    NEW_KTOGGLEACTION(actToggleTerminal, i18n("Show &Embedded Terminal"), 0, Qt::ALT + Qt::CTRL + Qt::Key_T, SLOTS, SLOT(toggleTerminal()), "toggle terminal emulator");
 
 
     NEW_KTOGGLEACTION(actToggleHidden, i18n("Show &Hidden Files"), 0, Qt::ALT + Qt::Key_Period, SLOTS, SLOT(showHiddenFiles(bool)), "toggle hidden files");
@@ -303,7 +303,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     NEW_KACTION(actF10, i18n("Quit"), 0, Qt::Key_F10, krusaderApp, SLOT(close()) , "F10_Quit");
     NEW_KACTION(actPopularUrls, i18n("Popular URLs..."), 0, Qt::CTRL + Qt::Key_Z, krusaderApp->popularUrls(), SLOT(showDialog()), "Popular_Urls");
-    NEW_KACTION(actSwitchFullScreenTE, i18n("Toggle Fullscreen Terminal Emulator"), 0, Qt::CTRL + Qt::Key_F, MAIN_VIEW, SLOT(switchFullScreenTE()), "switch_fullscreen_te");
+    NEW_KACTION(actSwitchFullScreenTE, i18n("Toggle Fullscreen Embedded Terminal"), 0, Qt::CTRL + Qt::Key_F, MAIN_VIEW, SLOT(switchFullScreenTE()), "switch_fullscreen_te");
 
 
     NEW_KACTION(tmp, i18n("Move Focus Up"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Up, MAIN_VIEW, SLOT(focusUp()), "move_focus_up");
