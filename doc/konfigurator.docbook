@@ -158,7 +158,7 @@
             </listitem>
             <listitem>
               <para>
-              <guilabel>Show terminal emulator</guilabel>: If
+              <guilabel>Show embedded terminal</guilabel>: If
               checked, the <link linkend="termemu">Terminal emulator</link> is visible
               after start-up. Available only if the <guilabel>Save component settings on exit</guilabel> item is unchecked.</para>
             </listitem>
@@ -1013,19 +1013,19 @@
         making them available via &plasma;'s trash.
       </para>
       <para>
-        <guilabel>Terminal</guilabel>: choose which terminal
+        <guilabel>External Terminal</guilabel>: choose which terminal
         emulator will be used when &krusader; opens a
 	console window (via <keycap>F2</keycap>, or <menuchoice><guimenu>Tools</guimenu>
 	<guimenuitem>Start Terminal</guimenuitem></menuchoice>
         menu option).
       </para>
       <para>
-        <guilabel>Terminal Emulator sends Chdir on a panel
+        <guilabel>Embedded Terminal sends Chdir on a panel
         change</guilabel>: if unchecked, there will be no
         <command>cd</command> command sent to the Terminal Emulator
         if the panel folder changes.</para>
       <para>
-	<guilabel>Fullscreen terminal (mc-style)</guilabel>: if checked,
+	<guilabel>Fullscreen embedded terminal (mc-style)</guilabel>: if checked,
 	  &krusader; shows fullscreen terminal in
 	  <application>Midnight Commander</application> style (Terminal is shown
 	  instead of &krusader; window).
