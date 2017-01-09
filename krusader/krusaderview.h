@@ -98,13 +98,14 @@ public:
 public slots:
     void slotSetActiveManager(PanelManager *manager);
     void slotPathChanged(ListPanel *p);
-    void slotTerminalEmulator(bool);
     // Tab - switch focus
     void panelSwitch();
     void toggleVerticalMode();
 
+    void slotTerminalEmulator(bool show, bool fullscreen = false);
     void focusTerminalEmulator();
-    void switchFullScreenTE();
+    void toggleFullScreenTerminalEmulator();
+    void killTerminalEmulator();
 
     void focusUp();
     void focusDown();
@@ -113,8 +114,6 @@ public slots:
     void loadPanelProfiles(QString group);
     void savePanelProfiles(QString group);
 
-    void killTerminalEmulator();
-
     void draggingTab(PanelManager *from, QMouseEvent *e);
     void draggingTabFinished(PanelManager *from, QMouseEvent *e);
 
@@ -122,6 +121,7 @@ private:
     int getFocusCandidates(QVector<QWidget*> &widgets);
     bool cursorIsOnOtherSide(PanelManager *of, const QPoint &globalPos);
     PanelManager *createManager(bool left);
+    bool isTerminalEmulatorFullscreen();
     QList<int> getTerminalEmulatorSplitterSizes();
 
     KFnKeys   *_fnKeys;          // function keys

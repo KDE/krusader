@@ -272,8 +272,7 @@ void KRslots::updateStatusbarVisibility()
 
 void KRslots::toggleTerminal()
 {
-    if (MAIN_VIEW->terminalDock()->isVisible()) MAIN_VIEW->slotTerminalEmulator(false);
-    else MAIN_VIEW->slotTerminalEmulator(true);
+    MAIN_VIEW->slotTerminalEmulator(KrActions::actToggleTerminal->isChecked());
 }
 
 void KRslots::insertFileName(bool full_path)
