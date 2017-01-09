@@ -289,9 +289,8 @@ void KgGeneral::createGeneralTab()
 
     KONFIGURATOR_CHECKBOX_PARAM terminal_settings[] = { //   cfg_class  cfg_name     default        text            restart tooltip
         {"General", "Send CDs", _SendCDs, i18n("Embedded Terminal sends Chdir on panel change"), false, i18n("When checked, whenever the panel is changed (for example, by pressing Tab), Krusader changes the current folder in the embedded terminal.") },
-        {"Look&Feel", "Fullscreen Terminal Emulator", false, i18n("Fullscreen embedded terminal (mc-style)"), false,  i18n("Terminal is shown instead of the Krusader window (full screen).") },
     };
-    cbs = createCheckBoxGroup(1, 0, terminal_settings, 2 /*count*/, terminalGrp, PAGE_GENERAL);
+    cbs = createCheckBoxGroup(1, 0, terminal_settings, 1 /*count*/, terminalGrp, PAGE_GENERAL);
     terminalGrid->addWidget(cbs, 2, 0, 1, 2);
 
 
