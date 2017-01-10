@@ -457,22 +457,29 @@ void KRslots::multiRename()
 
     QStringList names;
     ACTIVE_PANEL->gui->getSelectedNames(&names);
-    QList<QUrl> urls = ACTIVE_FUNC->files()->getUrls(names);
 
-    if (urls.isEmpty()) {
+    if (names.isEmpty()) {
         return;
     }
 
     KProcess proc;
     proc << pathToRename;
 
-    foreach (const QUrl &url, urls) {
-        if (QFileInfo(url.path()).isDir()) proc << "-r";
-        proc << url.path();
+    for (const QString name: names) {
+        vfile *file = ACTIVE_FUNC->files()->getVfile(name);
+        if (!file)
+            continue;
+        const QUrl url = file->vfile_getUrl();
+        // KRename only supports the recursive option combined with a local directory path
+        if (file->vfile_isDir() && url.scheme() == "file") {
+            proc << "-r" << url.path();
+        } else {
+            proc << url.toString();
+        }
     }
 
     if (!proc.startDetached())
-        KMessageBox::error(0, i18n("Error executing %1.", pathToRename));
+        KMessageBox::error(0, i18n("Error executing '%1'.", proc.program().join(" ")));
 }
 
 void KRslots::rootKrusader()
