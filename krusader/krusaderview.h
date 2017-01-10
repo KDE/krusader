@@ -122,7 +122,6 @@ private:
     bool cursorIsOnOtherSide(PanelManager *of, const QPoint &globalPos);
     PanelManager *createManager(bool left);
     bool isTerminalEmulatorFullscreen();
-    QList<int> getTerminalEmulatorSplitterSizes();
 
     KFnKeys   *_fnKeys;          // function keys
     KCMDLine    *_cmdLine;                   // command line widget

@@ -119,13 +119,10 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, const QList<QU
     horiz_splitter->setSizes(lst);
 
     verticalSplitterSizes = cfg.readEntry("Terminal Emulator Splitter Sizes", QList<int> ());
-
-    if (verticalSplitterSizes.count() != 2) {
+    if (verticalSplitterSizes.count() != 2 ||
+        (verticalSplitterSizes[0] < 1 && verticalSplitterSizes[1] < 1)) {
         verticalSplitterSizes.clear();
         verticalSplitterSizes << 100 << 100;
-    }  else if (verticalSplitterSizes[0] < 1 && verticalSplitterSizes[1] < 1) {
-        verticalSplitterSizes[0] = 100;
-        verticalSplitterSizes[1] = 100;
     }
 
     if(leftTabs.isEmpty())
@@ -352,19 +349,23 @@ void KrusaderView::slotTerminalEmulator(bool show, bool fullscreen)
             terminalEmulatorShown = _terminalDock->isTerminalVisible();
         }
 
-        // show terminal
-        const bool isInitialized = _terminalDock->initialise();
-        if (!isInitialized) {
-            _terminalDock->hide();
-            KrActions::actToggleTerminal->setChecked(false);
-            return;
+        if(!_terminalDock->isTerminalVisible()) {
+            // show terminal
+            const bool isInitialized = _terminalDock->initialise();
+            if (!isInitialized) {
+                _terminalDock->hide();
+                KrActions::actToggleTerminal->setChecked(false);
+                return;
+            }
+
+            _terminalDock->show();
+            _terminalDock->setFocus();
+            slotPathChanged(ACTIVE_PANEL->gui);
+            KrActions::actToggleTerminal->setChecked(true);
+        } else if (fullscreen) {
+            // save current terminal size before going to fullscreen
+            verticalSplitterSizes = vert_splitter->sizes();
         }
-        if (!verticalSplitterSizes.empty())
-            vert_splitter->setSizes(getTerminalEmulatorSplitterSizes());
-        _terminalDock->show();
-        _terminalDock->setFocus();
-        slotPathChanged(ACTIVE_PANEL->gui);
-        KrActions::actToggleTerminal->setChecked(true);
 
         if (fullscreen) {
             // hide everything else
@@ -377,6 +378,10 @@ void KrusaderView::slotTerminalEmulator(bool show, bool fullscreen)
             krApp->toolBar("jobToolBar")->hide();
             krApp->toolBar("actionToolBar")->hide();
             krApp->menuBar()->hide();
+            // fix showing nothing if terminal is open but splitter widget size is zero
+            vert_splitter->setSizes(QList<int>() << 0 << vert_splitter->height());
+        } else {
+            vert_splitter->setSizes(verticalSplitterSizes);
         }
     } else { // hide
         const bool isFullscreen = isTerminalEmulatorFullscreen();
@@ -386,8 +391,10 @@ void KrusaderView::slotTerminalEmulator(bool show, bool fullscreen)
             if (_terminalDock->isTerminalVisible() && !isFullscreen)
                 verticalSplitterSizes = vert_splitter->sizes();
             _terminalDock->hide();
-            vert_splitter->setSizes(QList<int>() << vert_splitter->height() << 0);
             KrActions::actToggleTerminal->setChecked(false);
+        } else {
+            // not fullscreen anymore but terminal is still visible
+            vert_splitter->setSizes(verticalSplitterSizes);
         }
         if (isFullscreen) {
             // restore: unhide everything that was hidden before
@@ -417,11 +424,6 @@ void KrusaderView::toggleFullScreenTerminalEmulator()
 
 bool KrusaderView::isTerminalEmulatorFullscreen() {
     return leftMng->isHidden() && rightMng->isHidden();
-}
-
-QList<int> KrusaderView::getTerminalEmulatorSplitterSizes()
-{
-    return _terminalDock->isVisible() ? vert_splitter->sizes() : verticalSplitterSizes;
 }
 
 void KrusaderView::killTerminalEmulator()
@@ -480,8 +482,9 @@ void KrusaderView::saveSettings(KConfigGroup &cfg)
 {
     QList<int> lst = horiz_splitter->sizes();
     cfg.writeEntry("Splitter Sizes", lst);
-    if (!getTerminalEmulatorSplitterSizes().isEmpty())
-        cfg.writeEntry("Terminal Emulator Splitter Sizes", getTerminalEmulatorSplitterSizes());
+    QList<int> vertSplitterSizes = _terminalDock->isVisible() && !isTerminalEmulatorFullscreen() ?
+                                       vert_splitter->sizes() : verticalSplitterSizes;
+    cfg.writeEntry("Terminal Emulator Splitter Sizes", vertSplitterSizes);
     cfg.writeEntry("Vertical Mode", isVertical());
     cfg.writeEntry("Left Side Is Active", ACTIVE_PANEL->gui->isLeft());
     leftMng->saveSettings(KConfigGroup(&cfg, "Left Tab Bar"), true);
