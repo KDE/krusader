@@ -476,7 +476,9 @@ void KrusaderView::saveSettings(KConfigGroup &cfg)
 {
     QList<int> lst = horiz_splitter->sizes();
     cfg.writeEntry("Splitter Sizes", lst);
-    QList<int> vertSplitterSizes = _terminalDock->isVisible() && !isTerminalEmulatorFullscreen() ?
+    QList<int> vertSplitterSizes = _terminalDock->isVisible() && !isTerminalEmulatorFullscreen()
+                                   // fix sizes() not returning correct values on fullscreen+shutdown
+                                   && vert_splitter->sizes().first() != 0 ?
                                        vert_splitter->sizes() : verticalSplitterSizes;
     cfg.writeEntry("Terminal Emulator Splitter Sizes", vertSplitterSizes);
     cfg.writeEntry("Vertical Mode", isVertical());

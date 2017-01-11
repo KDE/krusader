@@ -463,6 +463,11 @@ void Krusader::savePosition() {
 }
 
 void Krusader::saveSettings() {
+    // workaround: revert terminal fullscreen mode before saving widget and toolbar visibility
+    if (MAIN_VIEW->isTerminalEmulatorFullscreen()) {
+        MAIN_VIEW->setTerminalEmulator(false, true);
+    }
+
     // save toolbar settings
     KConfigGroup cfg(krConfig, "Main Toolbar");
     toolBar()->saveSettings(cfg);
