@@ -117,7 +117,7 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     actSetJumpBack = action(i18n("Set Jump Back Point"), "go-jump-definition", Qt::CTRL + Qt::SHIFT + Qt::Key_J, _gui, SLOT(setJumpBack()), "set_jump_back");
     actSyncBrowse = action(i18n("S&ynchron Folder Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, _gui, SLOT(toggleSyncBrowse()), "sync browse");
     actLocationBar = action(i18n("Go to Location Bar"), 0, Qt::CTRL + Qt::Key_L, _gui, SLOT(editLocation()), "location_bar");
-    actSearchBar = action(i18n("Find in folder..."), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_F, _gui, SLOT(showSearchBar()), "search bar");
+    actSearchBar = action(i18n("Find in folder..."), 0, Qt::CTRL + Qt::Key_F, _gui, SLOT(showSearchBar()), "search bar");
     action(i18n("Open search filter"), 0, Qt::CTRL + Qt::Key_I, _gui, SLOT(showSearchFilter()), "search bar filter");
     toggleAction(i18n("Toggle Popup Panel"), 0, Qt::ALT + Qt::Key_Down, _gui, SLOT(togglePanelPopup()), "toggle popup panel");
     action(i18n("Bookmarks"), 0, Qt::CTRL + Qt::Key_D, _gui, SLOT(openBookmarks()), "bookmarks");

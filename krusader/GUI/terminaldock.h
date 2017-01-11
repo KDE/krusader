@@ -42,8 +42,6 @@ class KrMainWindow;
 class TerminalDock : public QWidget
 {
     Q_OBJECT
-public slots:
-    void killTerminalEmulator();
 public:
     TerminalDock(QWidget* parent, KrMainWindow *mainWindow);
     virtual ~TerminalDock();
@@ -58,6 +56,8 @@ public:
     inline KParts::Part* part() {
         return konsole_part;
     }
+private slots:
+    void killTerminalEmulator();
 private:
     KrMainWindow *_mainWindow;
     QString lastPath;                       // path of the last sendCd

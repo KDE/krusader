@@ -116,7 +116,7 @@ void TerminalDock::killTerminalEmulator()
     konsole_part = NULL;
     t = NULL;
     qApp->removeEventFilter(this);
-    MAIN_VIEW->killTerminalEmulator();
+    MAIN_VIEW->setTerminalEmulator(false);
 }
 
 void TerminalDock::sendInput(const QString& input)
@@ -148,8 +148,8 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
     int pressedKey = (ke->key() | ke->modifiers());
 
     // TODO KF5 removed
-    if (krToggleTerminal->shortcut().matches(pressedKey)) {
-        krToggleTerminal->activate(QAction::Trigger);
+    if (KrActions::actToggleTerminal->shortcut().matches(pressedKey)) {
+        KrActions::actToggleTerminal->activate(QAction::Trigger);
         return true;
     }
 
