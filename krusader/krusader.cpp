@@ -453,8 +453,8 @@ void Krusader::savePosition() {
     // We are not using this and saving everything manually because
     // - it does not save window position
     // - window size save/restore does sometimes not work (multi-monitor setup)
-    // - saving the statubar visibility should be independent from window position and restoring it
-    // it does not work properly.
+    // - saving the statusbar visibility should be independent from window position and restoring it
+    //   does not work properly.
     //KConfigGroup cfg = KConfigGroup(&cfg, "MainWindowSettings");
     //saveMainWindowSettings(cfg);
     //statusBar()->setVisible(cfg.readEntry("StatusBar", "Enabled") != "Disabled");
@@ -556,7 +556,6 @@ bool Krusader::queryClose() {
 
 void Krusader::acceptClose() {
     saveSettings();
-    krConfig->sync();
 
     emit shutdown();
 
@@ -568,8 +567,6 @@ void Krusader::acceptClose() {
     dbus.unregisterObject("/Instances/" + Krusader::AppName);
 
     isExiting = true; // this will also kill the pending jobs
-
-    return;
 }
 
 // the please wait dialog functions

@@ -116,7 +116,7 @@ void TerminalDock::killTerminalEmulator()
     konsole_part = NULL;
     t = NULL;
     qApp->removeEventFilter(this);
-    MAIN_VIEW->killTerminalEmulator();
+    MAIN_VIEW->setTerminalEmulator(false);
 }
 
 void TerminalDock::sendInput(const QString& input)

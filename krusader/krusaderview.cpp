@@ -182,7 +182,7 @@ void KrusaderView::updateGUI(const KConfigGroup &cfg)
         toggleVerticalMode();
     }
     if (cfg.readEntry("Show Terminal Emulator", _ShowTerminalEmulator)) {
-        slotTerminalEmulator(true);   // create konsole_part
+        setTerminalEmulator(true);   // create konsole_part
     };
 }
 
@@ -325,7 +325,7 @@ void KrusaderView::swapSides()
     rightPanel()->updateGeometry();
 }
 
-void KrusaderView::slotTerminalEmulator(bool show, bool fullscreen)
+void KrusaderView::setTerminalEmulator(bool show, bool fullscreen)
 {
     static bool fnKeysShown = true; // first time init. should be overridden
     static bool cmdLineShown = true;
@@ -419,17 +419,11 @@ void KrusaderView::focusTerminalEmulator()
 
 void KrusaderView::toggleFullScreenTerminalEmulator()
 {
-    slotTerminalEmulator(!isTerminalEmulatorFullscreen(), true);
+    setTerminalEmulator(!isTerminalEmulatorFullscreen(), true);
 }
 
 bool KrusaderView::isTerminalEmulatorFullscreen() {
     return leftMng->isHidden() && rightMng->isHidden();
-}
-
-void KrusaderView::killTerminalEmulator()
-{
-    slotTerminalEmulator(false);    // hide the docking widget
-    KrActions::actToggleTerminal->setChecked(false);
 }
 
 void KrusaderView::profiles(QString profileName)

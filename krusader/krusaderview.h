@@ -94,6 +94,7 @@ public:
     }
     void swapSides();
     void setPanelSize(bool leftPanel, int percent);
+    bool isTerminalEmulatorFullscreen();
 
 public slots:
     void slotSetActiveManager(PanelManager *manager);
@@ -102,10 +103,9 @@ public slots:
     void panelSwitch();
     void toggleVerticalMode();
 
-    void slotTerminalEmulator(bool show, bool fullscreen = false);
+    void setTerminalEmulator(bool show, bool fullscreen = false);
     void focusTerminalEmulator();
     void toggleFullScreenTerminalEmulator();
-    void killTerminalEmulator();
 
     void focusUp();
     void focusDown();
@@ -121,7 +121,6 @@ private:
     int getFocusCandidates(QVector<QWidget*> &widgets);
     bool cursorIsOnOtherSide(PanelManager *of, const QPoint &globalPos);
     PanelManager *createManager(bool left);
-    bool isTerminalEmulatorFullscreen();
 
     KFnKeys   *_fnKeys;          // function keys
     KCMDLine    *_cmdLine;                   // command line widget
