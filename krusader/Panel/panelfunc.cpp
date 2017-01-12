@@ -249,7 +249,6 @@ void ListPanelFunc::doRefresh()
     const QUrl url = history->currentUrl();
 
     if(!url.isValid()) {
-        //FIXME go back in history here ?
         panel->slotStartUpdate(true);  // refresh the panel
         urlManuallyEntered = false;
         return ;
@@ -258,21 +257,18 @@ void ListPanelFunc::doRefresh()
     panel->inlineRefreshCancel();
 
     // if we are not refreshing to current URL
-    bool isEqualUrl = files()->currentDirectory().matches(url, QUrl::StripTrailingSlash);
+    const bool isEqualUrl = files()->currentDirectory().matches(url, QUrl::StripTrailingSlash);
 
     if (!isEqualUrl) {
         panel->setCursor(Qt::WaitCursor);
         panel->view->clearSavedSelection();
     }
 
-    if(panel->fileSystemError)
+    if (panel->fileSystemError) {
         panel->fileSystemError->hide();
+    }
 
-    bool refreshFailed = false;
-    while (true) {
-        QUrl url = history->currentUrl();
-
-        isEqualUrl = files()->currentDirectory().matches(url, QUrl::StripTrailingSlash);
+    panel->setNavigatorUrl(url);
 
         // may get a new filesystem for this url
         FileSystem *fileSystem = FileSystemProvider::instance().getFilesystem(url, files());
@@ -318,30 +314,11 @@ void ListPanelFunc::doRefresh()
         // was deleted)
         const bool refreshed = fileSystemP->refresh(url);
         if (refreshed) {
-            // update the history as the actual url might differ from the one requested
-            history->setCurrentUrl(url);
-            break; // we have a valid refreshed URL now
+            // update the history and address bar, as the actual url might differ from the one requested
+            history->setCurrentUrl(fileSystemP->currentDirectory());
+            panel->setNavigatorUrl(fileSystemP->currentDirectory());
         }
-        if (!panel || !panel->view)
-            // this panel was deleted while refreshing
-            return;
 
-        refreshFailed = true;
-
-        panel->view->setNameToMakeCurrent(QString());
-
-        if(history->state() != savedHistoryState) // don't go back if the history was touched
-            break;
-        if(!history->goBack()) {
-            // put the root dir to the beginning of history, if it's not there yet
-            if (!url.matches(QUrl::fromLocalFile(ROOT_DIR), QUrl::StripTrailingSlash))
-                history->pushBackRoot();
-            else
-                break;
-        }
-        _ignoreFileSystemErrors = true;
-    }
-    _ignoreFileSystemErrors = false;
     panel->view->setNameToMakeCurrent(QString());
 
     panel->setCursor(Qt::ArrowCursor);
@@ -352,7 +329,7 @@ void ListPanelFunc::doRefresh()
 
     // see if the open url operation failed, and if so,
     // put the attempted url in the navigator bar and let the user change it
-    if (refreshFailed) {
+    if (!refreshed) {
         if(isSyncing(url))
             panel->otherPanel()->gui->syncBrowseButton->setChecked(false);
         else if(urlManuallyEntered) {
