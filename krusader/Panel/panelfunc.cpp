@@ -270,54 +270,54 @@ void ListPanelFunc::doRefresh()
 
     panel->setNavigatorUrl(url);
 
-        // may get a new filesystem for this url
-        FileSystem *fileSystem = FileSystemProvider::instance().getFilesystem(url, files());
-        fileSystem->setParentWindow(krMainWindow);
-        connect(fileSystem, &FileSystem::aboutToOpenDir, &krMtMan, &KMountMan::autoMount, Qt::DirectConnection);
-        if (fileSystem != fileSystemP) {
-            panel->view->setFiles(0);
+    // may get a new filesystem for this url
+    FileSystem *fileSystem = FileSystemProvider::instance().getFilesystem(url, files());
+    fileSystem->setParentWindow(krMainWindow);
+    connect(fileSystem, &FileSystem::aboutToOpenDir, &krMtMan, &KMountMan::autoMount, Qt::DirectConnection);
+    if (fileSystem != fileSystemP) {
+        panel->view->setFiles(0);
 
-            // disconnect older signals
-            disconnect(fileSystemP, 0, panel, 0);
+        // disconnect older signals
+        disconnect(fileSystemP, 0, panel, 0);
 
-            fileSystemP->deleteLater();
-            fileSystemP = fileSystem; // v != 0 so this is safe
-        } else {
-            if (fileSystemP->isRefreshing()) {
-                delayTimer.start(100); /* if filesystem is busy try refreshing later */
-                return;
-            }
+        fileSystemP->deleteLater();
+        fileSystemP = fileSystem; // v != 0 so this is safe
+    } else {
+        if (fileSystemP->isRefreshing()) {
+            delayTimer.start(100); /* if filesystem is busy try refreshing later */
+            return;
         }
-        // (re)connect filesystem signals
-        disconnect(files(), 0, panel, 0);
-        connect(files(), SIGNAL(refreshDone(bool)), panel, SLOT(slotStartUpdate(bool)));
-        connect(files(), &FileSystem::fileSystemInfoChanged, panel, &ListPanel::updateFilesystemStats);
-        connect(files(), SIGNAL(refreshJobStarted(KIO::Job*)),
-                panel, SLOT(slotJobStarted(KIO::Job*)));
-        connect(files(), SIGNAL(error(QString)),
-                panel, SLOT(slotFilesystemError(QString)));
+    }
+    // (re)connect filesystem signals
+    disconnect(files(), 0, panel, 0);
+    connect(files(), SIGNAL(refreshDone(bool)), panel, SLOT(slotStartUpdate(bool)));
+    connect(files(), &FileSystem::fileSystemInfoChanged, panel, &ListPanel::updateFilesystemStats);
+    connect(files(), SIGNAL(refreshJobStarted(KIO::Job*)),
+            panel, SLOT(slotJobStarted(KIO::Job*)));
+    connect(files(), SIGNAL(error(QString)),
+            panel, SLOT(slotFilesystemError(QString)));
 
-        panel->view->setFiles(files());
+    panel->view->setFiles(files());
 
-        if(!history->currentItem().isEmpty() && isEqualUrl) {
-            // if the url we're refreshing into is the current one, then the
-            // partial refresh will not generate the needed signals to actually allow the
-            // view to use nameToMakeCurrent. do it here instead (patch by Thomas Jarosch)
-            panel->view->setCurrentItem(history->currentItem());
-            panel->view->makeItemVisible(panel->view->getCurrentKrViewItem());
-        }
-        panel->view->setNameToMakeCurrent(history->currentItem());
+    if(!history->currentItem().isEmpty() && isEqualUrl) {
+        // if the url we're refreshing into is the current one, then the
+        // partial refresh will not generate the needed signals to actually allow the
+        // view to use nameToMakeCurrent. do it here instead (patch by Thomas Jarosch)
+        panel->view->setCurrentItem(history->currentItem());
+        panel->view->makeItemVisible(panel->view->getCurrentKrViewItem());
+    }
+    panel->view->setNameToMakeCurrent(history->currentItem());
 
-        int savedHistoryState = history->state();
+    int savedHistoryState = history->state();
 
-        // NOTE: this is blocking. Returns false on error or interruption (cancel requested or panel
-        // was deleted)
-        const bool refreshed = fileSystemP->refresh(url);
-        if (refreshed) {
-            // update the history and address bar, as the actual url might differ from the one requested
-            history->setCurrentUrl(fileSystemP->currentDirectory());
-            panel->setNavigatorUrl(fileSystemP->currentDirectory());
-        }
+    // NOTE: this is blocking. Returns false on error or interruption (cancel requested or panel
+    // was deleted)
+    const bool refreshed = fileSystemP->refresh(url);
+    if (refreshed) {
+        // update the history and address bar, as the actual url might differ from the one requested
+        history->setCurrentUrl(fileSystemP->currentDirectory());
+        panel->setNavigatorUrl(fileSystemP->currentDirectory());
+    }
 
     panel->view->setNameToMakeCurrent(QString());
 
