@@ -89,31 +89,4 @@ protected:
     void accept();
 };
 
-/////////////////////////// QuickNavLineEdit //////////////////////////
-// same as line edit, but hold ctrl while pointing to it... and see! //
-///////////////////////////////////////////////////////////////////////
-
-class QuickNavLineEdit: public KLineEdit
-{
-public:
-    QuickNavLineEdit(const QString &string, QWidget *parent);
-    QuickNavLineEdit(QWidget *parent = 0);
-    virtual ~QuickNavLineEdit() {}
-    static int findCharFromPos(const QString &, const QFontMetrics &, int pos);
-protected:
-    void mouseMoveEvent(QMouseEvent *m);
-    void leaveEvent(QEvent *);
-    void mousePressEvent(QMouseEvent *m);
-    inline void clearAll() {
-        _numOfSelectedChars = 0; if (_pop) _pop->deleteLater(); _pop = 0; _dummyDisplayed = false;
-    }
-    void init();
-
-private:
-    int charCount(const QMouseEvent * const , QString* const = 0) ;
-    int _numOfSelectedChars;
-    bool _dummyDisplayed;
-    QPointer<KPassivePopup> _pop;
-};
-
 #endif
