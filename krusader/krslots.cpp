@@ -721,7 +721,7 @@ void KRslots::emptyTrash()
 #define OPEN_ID        100001
 #define EMPTY_TRASH_ID 100002
 
-void KRslots::trashBin()
+void KRslots::trashPopupMenu()
 {
     QMenu trashMenu(krApp);
     QAction * act = trashMenu.addAction(krLoader->loadIcon("document-open", KIconLoader::Panel), i18n("Open trash bin"));

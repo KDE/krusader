@@ -89,7 +89,7 @@ public slots:
     void toggleTerminal();
     void compareSetup();
     void emptyTrash();
-    void trashBin();
+    void trashPopupMenu();
     /** called by actExec* actions to choose the built-in command line mode */
     void execTypeSetup();
     void refresh(const QUrl &u);
