@@ -37,11 +37,12 @@
 
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
-#include <KCoreAddons/KJobTrackerInterface>
-#include <KIO/Job>
-#include <KNotifications/KNotification>
-#include <KIO/JobUiDelegate>
 #include <KCoreAddons/KDirWatch>
+#include <KCoreAddons/KJobTrackerInterface>
+#include <KIO/EmptyTrashJob>
+#include <KIO/Job>
+#include <KIO/JobUiDelegate>
+#include <KJobWidgets/KJobWidgets>
 
 #include "kractions.h"
 #include "../krglobal.h"
@@ -64,14 +65,16 @@ QString KrTrashHandler::trashIcon()
 
 void KrTrashHandler::emptyTrash()
 {
-    QByteArray packedArgs;
-    QDataStream stream(&packedArgs, QIODevice::WriteOnly);
-    stream << (int)1;
-    KIO::Job *job = KIO::special(QUrl(QStringLiteral("trash:/")), packedArgs);
-    KNotification::event("Trash: emptied", QString() , QPixmap() , 0l, KNotification::DefaultEvent);
-    KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
-    ui->setWindow(krMainWindow);
-    QObject::connect(job, SIGNAL(result(KJob *)), ACTIVE_PANEL->func, SLOT(refresh()));
+    KIO::JobUiDelegate uiDelegate;
+    uiDelegate.setWindow(krMainWindow);
+    if (!uiDelegate.askDeleteConfirmation(QList<QUrl>(), KIO::JobUiDelegate::EmptyTrash,
+                                          KIO::JobUiDelegate::DefaultConfirmation))
+        return;
+
+    KIO::Job *job = KIO::emptyTrash();
+    KJobWidgets::setWindow(job, krMainWindow);
+    job->ui()->setAutoErrorHandlingEnabled(true);
+    QObject::connect(job, &KIO::Job::result, ACTIVE_PANEL->func, &ListPanelFunc::refresh);
 }
 
 void KrTrashHandler::restoreTrashedFiles(const QList<QUrl> &urls)
