@@ -93,7 +93,7 @@ QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
 ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
         panel(parent), fileSystemP(0), urlManuallyEntered(false),
-        _ignoreFileSystemErrors(false), _isPaused(true), _refreshAfterPaused(true)
+        _isPaused(true), _refreshAfterPaused(true)
 {
     history = new DirHistoryQueue(panel);
     delayTimer.setSingleShot(true);

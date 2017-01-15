@@ -126,11 +126,9 @@ public:
 
     ListPanelFunc* otherFunc();
     bool atHome();
-    bool ignoreFileSystemErrors() { return _ignoreFileSystemErrors; }
 
 protected slots:
-    // Load the current url from history and refresh filesystem and panel to it. If this fails, try the
-    // next url in history until success (last try is root)
+    // Load the current url from history and refresh filesystem and panel to it
     void doRefresh();
     void slotFileCreated(KJob *job); // a file has been created by editNewFile()
     void historyGotoPos(int pos);
@@ -159,7 +157,6 @@ protected:
     static QPointer<ListPanelFunc> copyToClipboardOrigin;
 
 private:
-    bool _ignoreFileSystemErrors; // ignore (repeated) errors emitted by filesystem;
     bool _isPaused; // do not refresh while panel is not visible
     bool _refreshAfterPaused; // refresh after not paused anymore
 };

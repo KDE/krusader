@@ -1093,9 +1093,6 @@ void ListPanel::setJumpBack(QUrl url)
 
 void ListPanel::slotFilesystemError(QString msg)
 {
-    if (func->ignoreFileSystemErrors())
-        return;
-
     refreshColors();
     fileSystemError->setText(i18n("Error: %1", msg));
     fileSystemError->show();
