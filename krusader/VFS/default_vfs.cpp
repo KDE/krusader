@@ -96,7 +96,6 @@ void default_vfs::connectSourceVFS(KJob *job, const QList<QUrl> urls)
     if (!urls.isEmpty()) {
         // NOTE: we assume that all files were in the same directory and only emit one signal for
         // the directory of the first file URL
-        // their current directory was deleted
         const QUrl url = urls.first().adjusted(QUrl::RemoveFilename);
         connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(url); });
     }
@@ -129,6 +128,13 @@ void default_vfs::deleteFiles(const QStringList &fileNames, bool forceDeletion)
                              && group.readEntry("Move To Trash", _MoveToTrash);
     KrJob *krJob = KrJob::createDeleteJob(fileUrls, moveToTrash);
     connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectJob(job, currentDirectory()); });
+    if (moveToTrash) {
+        // update destination: the trash bin (in case a panel/tab is showing it)
+        connect(krJob, &KrJob::started, [=](KIO::Job *job) {
+            // Note: the "trash" protocal should always have only one "/" after the "scheme:" part
+            connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(QUrl("trash:/")); });
+        });
+    }
 
     krJobMan->manageJob(krJob);
 }
