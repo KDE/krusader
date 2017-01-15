@@ -33,6 +33,7 @@
 // QtCore
 #include <QByteArray>
 #include <QDataStream>
+#include <QDir>
 #include <QStandardPaths>
 
 #include <KConfigCore/KConfig>
@@ -154,13 +155,12 @@ void KonqMultiRestoreJob::slotResult(KJob *job)
 
 KrTrashWatcher::KrTrashWatcher()
 {
-    QString trashrcFile = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) +
-                          QString::fromLatin1("trashrc");
     _watcher = new KDirWatch();
-    // connect the watcher
-    connect(_watcher, SIGNAL(dirty(const QString&)), this, SLOT(slotDirty(const QString&)));
-    connect(_watcher, SIGNAL(created(const QString&)), this, SLOT(slotCreated(const QString&)));
-    _watcher->addFile(trashrcFile);   //start trashrc watcher
+    connect(_watcher, &KDirWatch::created, this, &KrTrashWatcher::slotTrashChanged);
+    connect(_watcher, &KDirWatch::dirty, this, &KrTrashWatcher::slotTrashChanged);
+    const QString trashrcFile =
+        QDir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)).filePath("trashrc");
+    _watcher->addFile(trashrcFile);
     _watcher->startScan(true);
 }
 
@@ -170,12 +170,7 @@ KrTrashWatcher::~KrTrashWatcher()
     _watcher = 0;
 }
 
-void KrTrashWatcher::slotDirty(const QString&)
-{
-    KrActions::actTrashBin->setIcon(QIcon::fromTheme(KrTrashHandler::trashIcon()));
-}
-
-void KrTrashWatcher::slotCreated(const QString&)
+void KrTrashWatcher::slotTrashChanged()
 {
     KrActions::actTrashBin->setIcon(QIcon::fromTheme(KrTrashHandler::trashIcon()));
 }

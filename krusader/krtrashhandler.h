@@ -72,6 +72,7 @@ private:
     int m_progress;
 };
 
+/** Watches the trashrc config file for changes and updates the trash icon. */
 class KrTrashWatcher : public QObject
 {
     Q_OBJECT
@@ -81,9 +82,7 @@ public:
     virtual ~KrTrashWatcher();
 
 public slots:
-    void slotDirty(const QString&);
-    void slotCreated(const QString&);
-
+    void slotTrashChanged();
 
 private:
     KDirWatch * _watcher;
