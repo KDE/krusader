@@ -308,8 +308,6 @@ void ListPanelFunc::doRefresh()
     }
     panel->view->setNameToMakeCurrent(history->currentItem());
 
-    int savedHistoryState = history->state();
-
     // NOTE: this is blocking. Returns false on error or interruption (cancel requested or panel
     // was deleted)
     const bool refreshed = fileSystemP->refresh(url);
