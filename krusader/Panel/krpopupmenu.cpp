@@ -46,9 +46,9 @@
 #include "../krslots.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
-#include "../krtrashhandler.h"
 #include "../UserAction/useractionpopupmenu.h"
 #include "../Archive/krarchandler.h"
+#include "../VFS/krtrashhandler.h"
 
 void KrPopupMenu::run(const QPoint &pos, KrPanel *panel)
 {

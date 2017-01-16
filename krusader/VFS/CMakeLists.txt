@@ -9,6 +9,7 @@ set(VFS_SRCS
     default_vfs.cpp
     krpermhandler.cpp
     krquery.cpp
+    krtrashhandler.cpp
     ../../krArc/krlinecountingprocess.cpp
 )
 

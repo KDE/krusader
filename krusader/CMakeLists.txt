@@ -40,7 +40,6 @@ set(krusader_SRCS
     krusader.cpp
     krslots.cpp
     kicons.cpp
-    krtrashhandler.cpp
     krdebuglogger.cpp
 )
 

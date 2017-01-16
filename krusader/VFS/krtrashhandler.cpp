@@ -42,11 +42,10 @@
 #include <KIO/RestoreJob>
 #include <KJobWidgets/KJobWidgets>
 
-#include "kractions.h"
+#include "krvfshandler.h"
+#include "../kractions.h"
 #include "../krglobal.h"
-#include "Panel/krpanel.h"
-#include "Panel/panelfunc.h"
-#include "VFS/krvfshandler.h"
+
 
 KrTrashWatcher * KrTrashHandler::_trashWatcher = 0;
 
