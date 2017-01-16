@@ -99,14 +99,16 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
         addSeparator();
         addEmptyMenuEntries();
         return;
-    } else if (items.size() > 1) multipleSelections = true;
-
-    QList<QString> protocols;
-    for (int i = 0; i < items.size(); ++i) {
-        protocols.append(panel->func->getVFile(items[ i ]) ->vfile_getUrl().scheme());
+    } else if (items.size() > 1) {
+        multipleSelections = true;
     }
-    bool inTrash = protocols.contains("trash");
-    bool trashOnly = (protocols.count() == 1) && (protocols[ 0 ] == "trash");
+
+    QSet<QString> protocols;
+    for (int i = 0; i < items.size(); ++i) {
+        protocols.insert(panel->func->getVFile(items[i])->vfile_getUrl().scheme());
+    }
+    const bool inTrash = protocols.contains("trash");
+    const bool trashOnly = inTrash && protocols.count() == 1;
 
     KrViewItem *item = items.first();
     vfile *vf = panel->func->getVFile(item);
