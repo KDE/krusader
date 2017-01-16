@@ -132,6 +132,8 @@ int main(int argc, char *argv[])
     }*/
 // ============ end icon-stuff ===========
 
+    // prevent qt5-webengine crashing
+    QApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
     // create the application and set application domain so that calls to i18n get strings from right place.
     QApplication app(argc, argv);
