@@ -31,24 +31,22 @@
 #include "krtrashhandler.h"
 
 // QtCore
-#include <QByteArray>
-#include <QDataStream>
 #include <QDir>
 #include <QStandardPaths>
 
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
-#include <KCoreAddons/KDirWatch>
-#include <KCoreAddons/KJobTrackerInterface>
 #include <KIO/EmptyTrashJob>
 #include <KIO/Job>
 #include <KIO/JobUiDelegate>
+#include <KIO/RestoreJob>
 #include <KJobWidgets/KJobWidgets>
 
 #include "kractions.h"
 #include "../krglobal.h"
 #include "Panel/krpanel.h"
 #include "Panel/panelfunc.h"
+#include "VFS/krvfshandler.h"
 
 KrTrashWatcher * KrTrashHandler::_trashWatcher = 0;
 
@@ -80,11 +78,14 @@ void KrTrashHandler::emptyTrash()
 
 void KrTrashHandler::restoreTrashedFiles(const QList<QUrl> &urls)
 {
-    KonqMultiRestoreJob* job = new KonqMultiRestoreJob(urls);
-    KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
-    ui->setWindow(krMainWindow);
-    KIO::getJobTracker()->registerJob(job);
-    QObject::connect(job, SIGNAL(result(KJob *)), ACTIVE_PANEL->func, SLOT(refresh()));
+    if (urls.isEmpty())
+        return;
+
+    KIO::RestoreJob *job = KIO::restoreFromTrash(urls);
+    KJobWidgets::setWindow(job, krMainWindow);
+    job->uiDelegate()->setAutoErrorHandlingEnabled(true);
+    const QUrl url = urls.first().adjusted(QUrl::RemoveFilename);
+    QObject::connect(job, &KIO::Job::result, [=]() { KrVfsHandler::instance().refreshVfs(url); });
 }
 
 void KrTrashHandler::startWatcher()
@@ -97,59 +98,6 @@ void KrTrashHandler::stopWatcher()
 {
     delete _trashWatcher;
     _trashWatcher = 0;
-}
-
-KonqMultiRestoreJob::KonqMultiRestoreJob(const QList<QUrl>& urls)
-        : KIO::Job(),
-        m_urls(urls), m_urlsIterator(m_urls.begin()),
-        m_progress(0)
-{
-    QTimer::singleShot(0, this, SLOT(slotStart()));
-    setUiDelegate(new KIO::JobUiDelegate);
-}
-
-void KonqMultiRestoreJob::slotStart()
-{
-    if (m_urlsIterator == m_urls.begin())   // first time: emit total
-        setTotalAmount(KJob::Files, m_urls.count());
-
-    if (m_urlsIterator != m_urls.end()) {
-        const QUrl &url = *m_urlsIterator;
-
-        QUrl new_url = url;
-        if (new_url.scheme() == QStringLiteral("system") &&
-                new_url.path().startsWith(QLatin1String("/trash"))) {
-            QString path = new_url.path();
-            path.remove(0, 6);
-            new_url.setScheme(QStringLiteral("trash"));
-            new_url.setPath(path);
-        }
-
-        Q_ASSERT(new_url.scheme() == QStringLiteral("trash"));
-        QByteArray packedArgs;
-        QDataStream stream(&packedArgs, QIODevice::WriteOnly);
-        stream << (int)3 << new_url;
-        KIO::Job* job = KIO::special(new_url, packedArgs, KIO::HideProgressInfo);
-        addSubjob(job);
-        setProcessedAmount(KJob::Files, processedAmount(KJob::Files) + 1);
-    } else { // done!
-        emitResult();
-    }
-}
-
-void KonqMultiRestoreJob::slotResult(KJob *job)
-{
-    if (job->error()) {
-        KIO::Job::slotResult(job);   // will set the error and emit result(this)
-        return;
-    }
-    removeSubjob(job);
-    // Move on to next one
-    ++m_urlsIterator;
-    ++m_progress;
-    //emit processedSize( this, m_progress );
-    emitPercent(m_progress, m_urls.count());
-    slotStart();
 }
 
 

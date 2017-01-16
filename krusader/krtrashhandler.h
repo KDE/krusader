@@ -35,10 +35,9 @@
 #include <QString>
 #include <QUrl>
 
-#include <KIO/Job>
+#include <KCoreAddons/KDirWatch>
 
 class KrTrashWatcher;
-class KDirWatch;
 
 class KrTrashHandler
 {
@@ -54,23 +53,6 @@ private:
     static KrTrashWatcher * _trashWatcher;
 };
 
-/// Restore multiple trashed files
-class KonqMultiRestoreJob : public KIO::Job
-{
-    Q_OBJECT
-
-public:
-    KonqMultiRestoreJob(const QList<QUrl>& urls);
-
-protected Q_SLOTS:
-    virtual void slotStart();
-    virtual void slotResult(KJob *job);
-
-private:
-    const QList<QUrl> m_urls;
-    QList<QUrl>::const_iterator m_urlsIterator;
-    int m_progress;
-};
 
 /** Watches the trashrc config file for changes and updates the trash icon. */
 class KrTrashWatcher : public QObject

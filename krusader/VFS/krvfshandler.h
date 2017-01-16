@@ -59,7 +59,7 @@ public:
     /** Get ACL permissions for a file */
     static void getACL(vfile *file, QString &acl, QString &defAcl);
 
-protected slots:
+public slots:
     void refreshVfs(const QUrl &directory);
 
 private:
