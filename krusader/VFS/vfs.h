@@ -95,8 +95,8 @@ public:
     /// directory name relative to the current dir. May implemented async.
     virtual void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
                           QString dir = "") = 0;
-    /// Delete or move a file in the current directory to trash. May implemented async.
-    virtual void deleteFiles(const QStringList &fileNames, bool reallyDelete = false) = 0;
+    /// Delete or trash files in the current directory. May implemented async.
+    virtual void deleteFiles(const QStringList &fileNames, bool moveToTrash = true) = 0;
     /// Create a new directory in the current directory. May implemented async.
     virtual void mkDir(const QString &name) = 0;
     /// Rename file/directory in the current directory. May implemented async.

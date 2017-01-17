@@ -117,15 +117,11 @@ void default_vfs::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode m
     copyFiles(fileUrls, destination, mode);
 }
 
-void default_vfs::deleteFiles(const QStringList &fileNames, bool forceDeletion)
+void default_vfs::deleteFiles(const QStringList &fileNames, bool moveToTrash)
 {
     // get absolute URLs for file names
     const QList<QUrl> fileUrls = getUrls(fileNames);
 
-    // delete or move to trash?
-    const KConfigGroup group(krConfig, "General");
-    const bool moveToTrash = !forceDeletion && isLocal()
-                             && group.readEntry("Move To Trash", _MoveToTrash);
     KrJob *krJob = KrJob::createDeleteJob(fileUrls, moveToTrash);
     connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectJob(job, currentDirectory()); });
     if (moveToTrash) {

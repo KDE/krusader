@@ -63,8 +63,7 @@ public:
 
     void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
                               QString dir = "") Q_DECL_OVERRIDE;
-    void deleteFiles(const QStringList &fileNames,
-                             bool forceDeletion = false) Q_DECL_OVERRIDE;
+    void deleteFiles(const QStringList &fileNames, bool moveToTrash = true) Q_DECL_OVERRIDE;
     void mkDir(const QString &name) Q_DECL_OVERRIDE;
     void rename(const QString &fileName, const QString &newName) Q_DECL_OVERRIDE;
     /// Return URL for file name - even if file does not exist.

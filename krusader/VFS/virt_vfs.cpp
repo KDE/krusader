@@ -97,7 +97,7 @@ void virt_vfs::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mo
     copyFiles(fileUrls, destination);
 }
 
-void virt_vfs::deleteFiles(const QStringList &fileNames, bool reallyDelete)
+void virt_vfs::deleteFiles(const QStringList &fileNames, bool moveToTrash)
 {
     if (currentDir() == "/") { // remove virtual directory
         for (const QString &filename : fileNames) {
@@ -115,12 +115,10 @@ void virt_vfs::deleteFiles(const QStringList &fileNames, bool reallyDelete)
 
     // delete or move to trash?
     KIO::Job *job;
-    KConfigGroup group(krConfig, "General");
-    if (!reallyDelete && group.readEntry("Move To Trash", _MoveToTrash)) {
+    if (moveToTrash)
         job = KIO::trash(filesUrls);
-    } else {
+    else
         job = KIO::del(filesUrls);
-    }
 
     connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, false); });
     // refresh will remove the deleted files from the vfs dict...
