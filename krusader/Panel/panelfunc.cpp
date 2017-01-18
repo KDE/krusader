@@ -706,7 +706,6 @@ void ListPanelFunc::mkdir()
     } // for
 }
 
-// TODO it is not possible to move virtual local files to trash
 void ListPanelFunc::deleteFiles(bool reallyDelete)
 {
     // first get the selected file names list
@@ -715,8 +714,20 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
         return;
 
     const KConfigGroup generalGroup(krConfig, "General");
-    const bool moveToTrash = !reallyDelete && files()->isLocal()
-                             && generalGroup.readEntry("Move To Trash", _MoveToTrash);
+    bool moveToTrash = !reallyDelete && generalGroup.readEntry("Move To Trash", _MoveToTrash);
+    if (moveToTrash) {
+        // make sure this is possible
+        if (files()->type() == vfs::VFS_VIRT) {
+            for (const QString fileName : fileNames) {
+                if (!files()->getUrl(fileName).isLocalFile()) {
+                    moveToTrash = false;
+                    break;
+                }
+            }
+        } else if (!files()->isLocal()) {
+            moveToTrash = false;
+        }
+    }
 
     // now ask the user if he/she is sure:
     const KConfigGroup advancedGroup(krConfig, "Advanced");
