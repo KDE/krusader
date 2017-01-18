@@ -113,8 +113,10 @@ public:
     /// The last shown local path.
     QString realPath() const;
     QString getCurrentName();
-    void getSelectedNames(QStringList* fileNames) {
-        view->getSelectedItems(fileNames);
+    QStringList getSelectedNames() {
+        QStringList fileNames;
+        view->getSelectedItems(&fileNames);
+        return fileNames;
     }
     void setButtons();
     void setJumpBack(QUrl url);

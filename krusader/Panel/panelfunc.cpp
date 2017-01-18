@@ -587,8 +587,7 @@ void ListPanelFunc::copyFilesByQueue()
 
 void ListPanelFunc::copyFiles(bool reverseQueueMode, bool move)
 {
-    QStringList fileNames;
-    panel->getSelectedNames(&fileNames);
+    const QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
         return ;  // safety
 
@@ -711,8 +710,7 @@ void ListPanelFunc::mkdir()
 void ListPanelFunc::deleteFiles(bool reallyDelete)
 {
     // first get the selected file names list
-    QStringList fileNames;
-    panel->getSelectedNames(&fileNames);
+    QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
         return ;
 
@@ -849,8 +847,7 @@ void ListPanelFunc::execute(const QString& name)
 
 void ListPanelFunc::pack()
 {
-    QStringList fileNames;
-    panel->getSelectedNames(&fileNames);
+    const QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
         return ;  // safety
 
@@ -907,8 +904,7 @@ void ListPanelFunc::pack()
 
 void ListPanelFunc::testArchive()
 {
-    QStringList fileNames;
-    panel->getSelectedNames(&fileNames);
+    const QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
         return ;  // safety
 
@@ -920,8 +916,7 @@ void ListPanelFunc::testArchive()
 
 void ListPanelFunc::unpack()
 {
-    QStringList fileNames;
-    panel->getSelectedNames(&fileNames);
+    const QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
         return ;  // safety
 
@@ -1029,8 +1024,7 @@ void ListPanelFunc::newFTPconnection()
 
 void ListPanelFunc::properties()
 {
-    QStringList names;
-    panel->getSelectedNames(&names);
+    const QStringList names = panel->getSelectedNames();
     if (names.isEmpty())
         return ;  // no names...
     KFileItemList fi;
@@ -1109,9 +1103,7 @@ void ListPanelFunc::clipboardChanged(QClipboard::Mode mode)
 
 void ListPanelFunc::copyToClipboard(bool move)
 {
-    QStringList fileNames;
-
-    panel->getSelectedNames(&fileNames);
+    const QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
         return ;  // safety
 

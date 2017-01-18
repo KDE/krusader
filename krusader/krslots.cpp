@@ -163,22 +163,19 @@ void KRslots::sendFileByEmail(const QList<QUrl> &urls)
 
 void KRslots::compareContent()
 {
-    QStringList lstLeft, lstRight;
-    QStringList* lstActive;
+    const QStringList lstLeft = LEFT_PANEL->getSelectedNames();
+    const QStringList lstRight = RIGHT_PANEL->getSelectedNames();
+    const QStringList lstActive = ACTIVE_PANEL->gui->isLeft() ? lstLeft : lstRight;
     QUrl name1, name2;
-
-    LEFT_PANEL->getSelectedNames(&lstLeft);
-    RIGHT_PANEL->getSelectedNames(&lstRight);
-    lstActive = (ACTIVE_PANEL->gui->isLeft() ? &lstLeft : &lstRight);
 
     if (lstLeft.count() == 1 && lstRight.count() == 1) {
         // first, see if we've got exactly 1 selected file in each panel:
         name1 = LEFT_PANEL->func->files()->getUrl(lstLeft[0]);
         name2 = RIGHT_PANEL->func->files()->getUrl(lstRight[0]);
-    } else if (lstActive->count() == 2) {
+    } else if (lstActive.count() == 2) {
         // next try: are in the current panel exacty 2 files selected?
-        name1 = ACTIVE_PANEL->func->files()->getUrl((*lstActive)[0]);
-        name2 = ACTIVE_PANEL->func->files()->getUrl((*lstActive)[1]);
+        name1 = ACTIVE_PANEL->func->files()->getUrl(lstActive[0]);
+        name2 = ACTIVE_PANEL->func->files()->getUrl(lstActive[1]);
     } else if (ACTIVE_PANEL->otherPanel()->func->files()->getVfile(ACTIVE_VIEW->getCurrentItem())) {
         // next try: is in the other panel a file with the same name?
         name1 = ACTIVE_PANEL->func->files()->getUrl(ACTIVE_VIEW->getCurrentItem());
@@ -454,9 +451,7 @@ void KRslots::multiRename()
     }
     QString pathToRename = lst[i+1];
 
-    QStringList names;
-    ACTIVE_PANEL->gui->getSelectedNames(&names);
-
+    const QStringList names = ACTIVE_PANEL->gui->getSelectedNames();
     if (names.isEmpty()) {
         return;
     }
@@ -499,10 +494,8 @@ void KRslots::rootKrusader()
 
 void KRslots::slotSplit()
 {
-    QStringList list;
+    const QStringList list = ACTIVE_PANEL->gui->getSelectedNames();
     QString name;
-
-    ACTIVE_PANEL->gui->getSelectedNames(&list);
 
     // first, see if we've got exactly 1 selected file, if not, try the current one
     if (list.count() == 1) name = list[0];
@@ -540,21 +533,20 @@ void KRslots::slotSplit()
 
 void KRslots::slotCombine()
 {
-    QStringList   list;
+    const QStringList list = ACTIVE_PANEL->gui->getSelectedNames();
+    if (list.isEmpty()) {
+        KMessageBox::error(0, i18n("Do not know which files to combine."));
+        return;
+    }
+
     QUrl          baseURL;
     bool          unixStyle = false;
     bool          windowsStyle = false;
     QString       commonName;
     int           commonLength = 0;
 
-    ACTIVE_PANEL->gui->getSelectedNames(&list);
-    if (list.isEmpty()) {
-        KMessageBox::error(0, i18n("Do not know which files to combine."));
-        return;
-    }
-
     /* checking splitter names */
-    for (QStringList::Iterator it = list.begin(); it != list.end(); ++it) {
+    for (QStringList::ConstIterator it = list.begin(); it != list.end(); ++it) {
         QUrl url = ACTIVE_FUNC->files()->getUrl(*it);
         if (url.isEmpty())
             return;

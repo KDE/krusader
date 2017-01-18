@@ -86,8 +86,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
     : QMenu(parent), panel(thePanel), empty(false), multipleSelections(false)
 {
     // selected file names
-    QStringList fileNames;
-    panel->gui->getSelectedNames(&fileNames);
+    const QStringList fileNames = panel->gui->getSelectedNames();
 
     // vfiles
     QList<vfile*> files;
@@ -421,8 +420,7 @@ void KrPopupMenu::performAction(int id)
 
     // check if something from the open-with-offered-services was selected
     if (id >= SERVICE_LIST_ID) {
-        QStringList names;
-        panel->gui->getSelectedNames(&names);
+        const QStringList names = panel->gui->getSelectedNames();
         panel->func->runService(*(offers[ id - SERVICE_LIST_ID ]),
                                 panel->func->files()->getUrls(names));
     }
