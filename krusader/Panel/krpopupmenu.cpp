@@ -82,62 +82,71 @@ void KrPopupMenu::addCompressAndExtractPluginActions()
     }
 }
 
-KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), panel(thePanel), empty(false),
-        multipleSelections(false), actions(0), _item(0)
+KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
+    : QMenu(parent), panel(thePanel), empty(false), multipleSelections(false)
 {
-    KrViewItemList items;
-    panel->view->getSelectedKrViewItems(&items);
+    // selected file names
+    QStringList fileNames;
+    panel->gui->getSelectedNames(&fileNames);
 
-    for (KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it) {
-        vfile *file = panel->func->files()->getVfile(((*it)->name()));
-        QUrl url = file->vfile_getUrl();
-        _items.append(KFileItem(url, file->vfile_getMime(), file->vfile_getMode()));
+    // vfiles
+    QList<vfile*> files;
+    for (const QString fileName : fileNames) {
+        files.append(panel->func->files()->getVfile(fileName));
     }
 
-    if (items.empty()) {
+    // KFileItems
+    for (vfile *file : files) {
+        _items.append(KFileItem(file->vfile_getUrl(), file->vfile_getMime(),
+                                file->vfile_getMode()));
+    }
+
+    if (files.empty()) {
         addCreateNewMenu();
         addSeparator();
         addEmptyMenuEntries();
         return;
-    } else if (items.size() > 1) {
+    } else if (files.size() > 1) {
         multipleSelections = true;
     }
 
     QSet<QString> protocols;
-    for (int i = 0; i < items.size(); ++i) {
-        protocols.insert(panel->func->getVFile(items[i])->vfile_getUrl().scheme());
+    for (vfile *file : files) {
+        protocols.insert(file->vfile_getUrl().scheme());
     }
     const bool inTrash = protocols.contains("trash");
     const bool trashOnly = inTrash && protocols.count() == 1;
 
-    KrViewItem *item = items.first();
-    vfile *vf = panel->func->getVFile(item);
-    _item = &_items.first();
+    vfile *file = files.first();
 
     // ------------ the OPEN/BROWSE option - open preferred service
     QAction * openAct = addAction(i18n("Open/Run"));
     openAct->setData(QVariant(OPEN_ID));
-    if (!multipleSelections) {   // meaningful only if one file is selected
-        openAct->setIcon(item->icon());
-        openAct->setText(vf->vfile_isExecutable() && !vf->vfile_isDir() ? i18n("Run") : i18n("Open"));
+    if (!multipleSelections) { // meaningful only if one file is selected
+        KrViewItemList viewItems;
+        panel->view->getSelectedKrViewItems(&viewItems);
+        openAct->setIcon(viewItems.first()->icon());
+        openAct->setText(file->vfile_isExecutable() && !file->vfile_isDir() ?
+                             i18n("Run") : i18n("Open"));
         // open in a new tab (if folder)
-        if (vf->vfile_isDir()) {
+        if (file->vfile_isDir()) {
             QAction * openTab = addAction(i18n("Open in New Tab"));
             openTab->setData(QVariant(OPEN_TAB_ID));
             openTab->setIcon(krLoader->loadIcon("tab-new", KIconLoader::Panel));
             openTab->setText(i18n("Open in New Tab"));
         }
-        QUrl arcPath = panel->func->browsableArchivePath(vf->vfile_getName());
-        if (!arcPath.isEmpty()) {
-            bool theArchiveMustBeBrowsedAsADirectory = KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories) &&
-                                                       KRarcHandler::arcSupported(vf->vfile_getMime());
-            if (!theArchiveMustBeBrowsedAsADirectory) {
-                // Add an option to browse the archive
-                QAction *browseAct = addAction(i18n("Browse"));
-                browseAct->setData(QVariant(BROWSE_ID));
-                browseAct->setIcon(krLoader->loadIcon("", KIconLoader::Panel));
-                browseAct->setText(i18n("Browse Archive"));
-            }
+        // if the file can be browsed as archive...
+        if (!panel->func->browsableArchivePath(file->vfile_getName()).isEmpty()
+            // ...but user disabled archive browsing...
+            && (!KConfigGroup(krConfig, "Archives")
+                .readEntry("ArchivesAsDirectories", _ArchivesAsDirectories)
+             // ...or the file is not a standard archive (e.g. odt, docx, etc.)...
+             || !KRarcHandler::arcSupported(file->vfile_getMime()))) {
+            // ...it will not be browsed as a directory by default, but add an option for it
+            QAction *browseAct = addAction(i18n("Browse"));
+            browseAct->setData(QVariant(BROWSE_ID));
+            browseAct->setIcon(krLoader->loadIcon("", KIconLoader::Panel));
+            browseAct->setText(i18n("Browse Archive"));
         }
         addSeparator();
     }
@@ -145,9 +154,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     // ------------- Preview - local vfs only ?
     if (panel->func->files()->isLocal()) {
         // create the preview popup
-        QStringList names;
-        panel->gui->getSelectedNames(&names);
-        preview.setUrls(panel->func->files() ->getUrls(names));
+        preview.setUrls(panel->func->files()->getUrls(fileNames));
         QAction *pAct = addMenu(&preview);
         pAct->setData(QVariant(PREVIEW_ID));
         pAct->setText(i18n("Preview"));
@@ -156,10 +163,10 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     // -------------- Open with: try to find-out which apps can open the file
     // this too, is meaningful only if one file is selected or if all the files
     // have the same mimetype !
-    QString mime = panel->func->getVFile(item)->vfile_getMime();
-    // check if all the list have the same mimetype
-    for (int i = 1; i < items.size(); ++i) {
-        if (panel->func->getVFile(items[ i ]) ->vfile_getMime() != mime) {
+    QString mime = file->vfile_getMime();
+    // check if all files have the same mimetype
+    for (vfile *file : files) {
+        if (file->vfile_getMime() != mime) {
             mime.clear();
             break;
         }
@@ -169,12 +176,14 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
         for (int i = 0; i < offers.count(); ++i) {
             QExplicitlySharedDataPointer<KService> service = offers[i];
             if (service->isValid() && service->isApplication()) {
-                openWith.addAction(krLoader->loadIcon(service->icon(), KIconLoader::Small), service->name())->setData(QVariant(SERVICE_LIST_ID + i));
+                openWith.addAction(krLoader->loadIcon(service->icon(), KIconLoader::Small),
+                                   service->name())->setData(QVariant(SERVICE_LIST_ID + i));
             }
         }
         openWith.addSeparator();
-        if (vf->vfile_isDir())
-            openWith.addAction(krLoader->loadIcon("utilities-terminal", KIconLoader::Small), i18n("Terminal"))->setData(QVariant(OPEN_TERM_ID));
+        if (file->vfile_isDir())
+            openWith.addAction(krLoader->loadIcon("utilities-terminal", KIconLoader::Small),
+                               i18n("Terminal"))->setData(QVariant(OPEN_TERM_ID));
         openWith.addAction(i18n("Other..."))->setData(QVariant(CHOOSE_ID));
         QAction *owAct = addMenu(&openWith);
         owAct->setData(QVariant(OPEN_WITH_ID));
@@ -183,9 +192,9 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     }
 
     // --------------- user actions
-    QAction *uAct = new UserActionPopupMenu(panel->func->files()->getUrl(item->name()));
-    addAction(uAct);
-    uAct->setText(i18n("User Actions"));
+    QAction *userAction = new UserActionPopupMenu(file->vfile_getUrl());
+    userAction->setText(i18n("User Actions"));
+    addAction(userAction);
 
     // workaround for Bug 372999: application freezes very long time if many files are selected
     if (_items.length() < 1000)
@@ -230,7 +239,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
         addSeparator();
         linkPopup.addAction(i18n("New Symlink..."))->setData(QVariant(NEW_SYMLINK_ID));
         linkPopup.addAction(i18n("New Hardlink..."))->setData(QVariant(NEW_LINK_ID));
-        if (panel->func->getVFile(item)->vfile_isSymLink())
+        if (file->vfile_isSymLink())
             linkPopup.addAction(i18n("Redirect Link..."))->setData(QVariant(REDIRECT_LINK_ID));
         QAction *linkAct = addMenu(&linkPopup);
         linkAct->setData(QVariant(LINK_HANDLING_ID));
@@ -239,21 +248,22 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     addSeparator();
 
     // ---------- calculate space
-    if (panel->func->files()->isLocal() && (vf->vfile_isDir() || multipleSelections))
+    if (panel->func->files()->isLocal() && (file->vfile_isDir() || multipleSelections))
         addAction(panel->gui->actions()->actCalculate);
 
     // ---------- mount/umount/eject
-    if (panel->func->files()->isLocal() && vf->vfile_isDir() && !multipleSelections) {
-        if (krMtMan.getStatus(panel->func->files()->getUrl(item->name()).path()) == KMountMan::MOUNTED)
+    if (panel->func->files()->isLocal() && file->vfile_isDir() && !multipleSelections) {
+        const QString selectedDirectoryPath = file->vfile_getUrl().path();
+        if (krMtMan.getStatus(selectedDirectoryPath) == KMountMan::MOUNTED)
             addAction(i18n("Unmount"))->setData(QVariant(UNMOUNT_ID));
-        else if (krMtMan.getStatus(panel->func->files()->getUrl(item->name()).path()) == KMountMan::NOT_MOUNTED)
+        else if (krMtMan.getStatus(selectedDirectoryPath) == KMountMan::NOT_MOUNTED)
             addAction(i18n("Mount"))->setData(QVariant(MOUNT_ID));
-        if (krMtMan.ejectable(panel->func->files()->getUrl(item->name()).path()))
+        if (krMtMan.ejectable(selectedDirectoryPath))
             addAction(i18n("Eject"))->setData(QVariant(EJECT_ID));
     }
 
     // --------- send by mail
-    if (KrServices::supportedTools().contains("MAIL") && !vf->vfile_isDir()) {
+    if (KrServices::supportedTools().contains("MAIL") && !file->vfile_isDir()) {
         addAction(i18n("Send by Email"))->setData(QVariant(SEND_BY_EMAIL_ID));
     }
 
@@ -281,12 +291,6 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent) : QMenu(parent), pa
     addAction(panel->gui->actions()->actProperties);
 }
 
-KrPopupMenu::~KrPopupMenu()
-{
-    _items.clear();
-    if (actions) delete actions;
-}
-
 void KrPopupMenu::addEmptyMenuEntries()
 {
     addAction(i18n("Paste from Clipboard"))->setData(QVariant(PASTE_CLIP_ID));
@@ -305,19 +309,21 @@ void KrPopupMenu::addCreateNewMenu()
 
 void KrPopupMenu::performAction(int id)
 {
+    KFileItem *item = &_items.first();
+
     switch (id) {
     case - 1 : // the user clicked outside of the menu
         return ;
     case OPEN_TAB_ID :
         // assuming only 1 file is selected (otherwise we won't get here)
-        panel->manager()->newTab(_item->url(), panel);
+        panel->manager()->newTab(item->url(), panel);
         break;
     case OPEN_ID :
         foreach(KFileItem fi, _items)
             panel->func->execute(fi.name());
         break;
     case BROWSE_ID :
-        panel->func->goInside(_item->url().fileName());
+        panel->func->goInside(item->url().fileName());
         break;
     case COPY_ID :
         panel->func->copyFiles();
@@ -335,7 +341,7 @@ void KrPopupMenu::performAction(int id)
         panel->func->deleteFiles(true);
         break;
     case EJECT_ID :
-        krMtMan.eject(_item->url().adjusted(QUrl::StripTrailingSlash).path());
+        krMtMan.eject(item->url().adjusted(QUrl::StripTrailingSlash).path());
         break;
         /*         case SHRED_ID :
                     if ( KMessageBox::warningContinueCancel( krApp,
@@ -344,13 +350,13 @@ void KrPopupMenu::performAction(int id)
                        KShred::shred( panel->func->files() ->vfs_getFile( item->name() ).adjusted(QUrl::RemoveTrailingSlash).path() );
                   break;*/
     case OPEN_KONQ_ID :
-        KToolInvocation::startServiceByDesktopName("konqueror", _item->url().toDisplayString(QUrl::PreferLocalFile));
+        KToolInvocation::startServiceByDesktopName("konqueror", item->url().toDisplayString(QUrl::PreferLocalFile));
         break;
     case CHOOSE_ID : // open-with dialog
         panel->func->displayOpenWithDialog(_items.urlList());
         break;
     case MOUNT_ID :
-        krMtMan.mount(_item->url().adjusted(QUrl::StripTrailingSlash).path());
+        krMtMan.mount(item->url().adjusted(QUrl::StripTrailingSlash).path());
         break;
     case NEW_LINK_ID :
         panel->func->krlink(false);
@@ -368,7 +374,7 @@ void KrPopupMenu::performAction(int id)
         KrTrashHandler::restoreTrashedFiles(_items.urlList());
     break;
     case UNMOUNT_ID :
-        krMtMan.unmount(_item->url().adjusted(QUrl::StripTrailingSlash).path());
+        krMtMan.unmount(item->url().adjusted(QUrl::StripTrailingSlash).path());
         break;
     case COPY_CLIP_ID :
         panel->func->copyToClipboard();
@@ -409,7 +415,7 @@ void KrPopupMenu::performAction(int id)
     break;
 #endif
     case OPEN_TERM_ID :
-        SLOTS->runTerminal(_item->url().path());
+        SLOTS->runTerminal(item->url().path());
         break;
     }
 
