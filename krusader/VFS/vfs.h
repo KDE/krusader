@@ -107,6 +107,8 @@ public:
     virtual QUrl getUrl(const QString &name) = 0;
     /// Return a list of URLs for multiple files/directories in the current directory.
     QList<QUrl> getUrls(const QStringList &names);
+    /// Return true if all files can be moved to trash, else false.
+    virtual bool canMoveToTrash(const QStringList &fileNames) = 0;
 
     /// Return the filesystem mount point of the current directory. Empty string by default.
     virtual QString mountPoint() { return QString(); }

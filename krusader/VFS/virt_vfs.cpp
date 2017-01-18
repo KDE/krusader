@@ -212,6 +212,16 @@ void virt_vfs::calcSpace(const QString &name, KIO::filesize_t *totalSize, unsign
     vfs::calcSpace(name, totalSize, totalFiles, totalDirs, stop);
 }
 
+bool virt_vfs::canMoveToTrash(const QStringList &fileNames)
+{
+    for (const QString fileName : fileNames) {
+        if (!getUrl(fileName).isLocalFile()) {
+            return false;
+        }
+    }
+    return true;
+}
+
 void virt_vfs::setMetaInformation(QString info)
 {
     _metaInfoDict[currentDir()] = info;

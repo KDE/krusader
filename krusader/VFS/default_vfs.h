@@ -68,6 +68,7 @@ public:
     void rename(const QString &fileName, const QString &newName) Q_DECL_OVERRIDE;
     /// Return URL for file name - even if file does not exist.
     QUrl getUrl(const QString &name) Q_DECL_OVERRIDE;
+    bool canMoveToTrash(const QStringList &) Q_DECL_OVERRIDE { return isLocal(); }
 
     QString mountPoint() { return _mountPoint; }
     bool hasAutoUpdate() Q_DECL_OVERRIDE { return !_watcher.isNull(); }

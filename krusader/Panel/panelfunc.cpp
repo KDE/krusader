@@ -715,19 +715,8 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
 
     const KConfigGroup generalGroup(krConfig, "General");
     bool moveToTrash = !reallyDelete && generalGroup.readEntry("Move To Trash", _MoveToTrash);
-    if (moveToTrash) {
-        // make sure this is possible
-        if (files()->type() == vfs::VFS_VIRT) {
-            for (const QString fileName : fileNames) {
-                if (!files()->getUrl(fileName).isLocalFile()) {
-                    moveToTrash = false;
-                    break;
-                }
-            }
-        } else if (!files()->isLocal()) {
-            moveToTrash = false;
-        }
-    }
+    // make sure this is possible
+    moveToTrash = moveToTrash && files()->canMoveToTrash(fileNames);
 
     // now ask the user if he/she is sure:
     const KConfigGroup advancedGroup(krConfig, "Advanced");
