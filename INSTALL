@@ -144,6 +144,7 @@ Note: In this document there's an appendix 1 that may help.
 Compilation will take about 5 to 10 minutes depending on your CPU speed.
 
 Execute:
+# Note: On a multi cpu/core system you might want to speed up the compile process by increasing the number of jobs (e.g. `make -j4`)
 $ make
 
 # At the beginning of the following command: `sudo` must be added if Kubuntu, Ubuntu, Debian, or similar is being used
@@ -161,8 +162,12 @@ There is a list of translation files in the [10n.kde.org Krusader page](https://
 
     # At the beginning of the following command: `sudo` must be added if Kubuntu, Ubuntu, Debian, or similar is being used.
     # In the following command, the text XXXXXXX must be replaced by the LANGUAGE_CODE that was previously found 
-    su -c "cp -a krusader.mo /usr/share/locale/XXXXXXX/LC_MESSAGES/"    
+    su -c "cp -a krusader.mo /usr/share/locale/XXXXXXX/LC_MESSAGES/"
 
+Note: If, in the future, someone would need to automate the downloading of a krusader.po file, he could use:
+    # In the following command, the text XXXXXXX must be replaced by the LANGUAGE_CODE that was previously found
+    $ wget -U "Mozilla/5.0" https://websvn.kde.org/*checkout*/trunk/l10n-kf5/XXXXXXX/messages/extragear-utils/krusader.po
+    
 
 --- Execution
 
