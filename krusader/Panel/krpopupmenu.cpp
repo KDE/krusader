@@ -221,9 +221,8 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
         addAction(i18n("Rename"))->setData(QVariant(RENAME_ID));
 
     // -------- MOVE TO TRASH
-    KConfigGroup saver(krConfig, "General");
-    bool trash = saver.readEntry("Move To Trash", _MoveToTrash);
-    if (trash && !inTrash)
+    if (KConfigGroup(krConfig, "General").readEntry("Move To Trash", _MoveToTrash)
+        && panel->func->files()->canMoveToTrash(fileNames))
         addAction(i18n("Move to Trash"))->setData(QVariant(TRASH_ID));
     // -------- DELETE
     addAction(i18n("Delete"))->setData(QVariant(DELETE_ID));
