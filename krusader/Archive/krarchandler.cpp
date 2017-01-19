@@ -129,8 +129,8 @@ QStringList KRarcHandler::supportedPackers()
 bool KRarcHandler::arcSupported(QString type)
 {
     // lst will contain the supported unpacker list...
-    KConfigGroup group(krConfig, "Archives");
-    QStringList lst = group.readEntry("Supported Packers", QStringList());
+    const KConfigGroup group(krConfig, "Archives");
+    const QStringList lst = group.readEntry("Supported Packers", QStringList());
 
     // Let's notice that in some cases the QString `type` that arrives here
     // represents a mimetype, and in some other cases it represents
@@ -140,46 +140,25 @@ bool KRarcHandler::arcSupported(QString type)
         type = getShortTypeFromMime(type);
     }
 
-    if (type == "zip" && lst.contains("unzip"))
-        return true;
-    else if (type == "tar" && lst.contains("tar"))
-        return true;
-    else if (type == "tbz" && lst.contains("tar"))
-        return true;
-    else if (type == "tgz" && lst.contains("tar"))
-        return true;
-    else if (type == "tlz" && lst.contains("tar"))
-        return true;
-    else if (type == "txz" && lst.contains("tar"))
-        return true;
-    else if (type == "tarz" && lst.contains("tar"))
-        return true;
-    else if (type == "gzip" && lst.contains("gzip"))
-        return true;
-    else if (type == "bzip2" && lst.contains("bzip2"))
-        return true;
-    else if (type == "lzma" && lst.contains("lzma"))
-        return true;
-    else if (type == "xz" && lst.contains("xz"))
-        return true;
-    else if (type == "lha" && lst.contains("lha"))
-        return true;
-    else if (type == "ace" && lst.contains("unace"))
-        return true;
-    else if (type == "rpm" && lst.contains("cpio"))
-        return true;
-    else if (type == "cpio" && lst.contains("cpio"))
-        return true;
-    else if (type == "rar" && (lst.contains("unrar") || lst.contains("rar")))
-        return true;
-    else if (type == "arj" && (lst.contains("unarj") || lst.contains("arj")))
-        return true;
-    else if (type == "deb" && (lst.contains("dpkg") && lst.contains("tar")))
-        return true;
-    else if (type == "7z" && lst.contains("7z"))
-        return true;
-    // not supported
-    return false;
+    return (type == "zip" && lst.contains("unzip"))
+           || (type == "tar" && lst.contains("tar"))
+           || (type == "tbz" && lst.contains("tar"))
+           || (type == "tgz" && lst.contains("tar"))
+           || (type == "tlz" && lst.contains("tar"))
+           || (type == "txz" && lst.contains("tar"))
+           || (type == "tarz" && lst.contains("tar"))
+           || (type == "gzip" && lst.contains("gzip"))
+           || (type == "bzip2" && lst.contains("bzip2"))
+           || (type == "lzma" && lst.contains("lzma"))
+           || (type == "xz" && lst.contains("xz"))
+           || (type == "lha" && lst.contains("lha"))
+           || (type == "ace" && lst.contains("unace"))
+           || (type == "rpm" && lst.contains("cpio"))
+           || (type == "cpio" && lst.contains("cpio"))
+           || (type == "rar" && (lst.contains("unrar") || lst.contains("rar")))
+           || (type == "arj" && (lst.contains("unarj") || lst.contains("arj")))
+           || (type == "deb" && (lst.contains("dpkg") && lst.contains("tar")))
+           || (type == "7z" && lst.contains("7z"));
 }
 
 long KRarcHandler::arcFileCount(QString archive, QString type, QString password, KRarcObserver *observer)
