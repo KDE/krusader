@@ -55,6 +55,7 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
+#include <KWidgetsAddons/KStandardGuiItem>
 #include <KIO/Job>
 #include <KIO/DeleteJob>
 
@@ -166,7 +167,7 @@ LoaderWidget::LoaderWidget(QWidget *parent) : QScrollArea(parent), cancelled(fal
     QSpacerItem* spacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
     hbox->addItem(spacer);
     QPushButton *cancelButton = new QPushButton(hboxWidget);
-    cancelButton->setText(i18n("Cancel"));
+    KStandardGuiItem::assign(cancelButton, KStandardGuiItem::Cancel);
     hbox->addWidget(cancelButton);
 
     synchGrid->addWidget(hboxWidget, 6, 1);
