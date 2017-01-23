@@ -303,6 +303,9 @@ void default_vfs::slotWatcherDirty(const QString& path)
     vfile *vf = getVfile(name);
     if (!vf) {
         krOut << "dirty watcher file not found (unexpected): " << path;
+        // this happens at least for cifs mounted filesystems: when a new file is created, a dirty
+        // signal with its file path but no other signals are sent (buggy behaviour of KDirWatch)
+        refresh();
         return;
     }
 
