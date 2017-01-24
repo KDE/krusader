@@ -86,6 +86,8 @@ public slots:
      */
     void mkdir();
     void deleteFiles(bool reallyDelete = false);
+    // delete virtual files or directories in virtual filesystem
+    void removeVirtualFiles();
     void rename();
     void krlink(bool sym = true);
     void createChecksum();
