@@ -99,19 +99,8 @@ void virt_vfs::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mo
 
 void virt_vfs::deleteFiles(const QStringList &fileNames, bool moveToTrash)
 {
-    if (currentDir() == "/") { // remove virtual directory
-        for (const QString &filename : fileNames) {
-            _virtVfsDict["/"]->removeAll(QUrl(QStringLiteral("virt:/") + filename));
-            delete _virtVfsDict[filename];
-            _virtVfsDict.remove(filename);
-            _metaInfoDict.remove(filename);
-        }
-        emit filesystemChanged(currentDirectory()); // will call refresh()
-        return;
-    }
-
     // names -> urls
-    QList<QUrl> filesUrls = getUrls(fileNames);
+    const QList<QUrl> filesUrls = getUrls(fileNames);
 
     // delete or move to trash?
     KIO::Job *job;
@@ -125,16 +114,23 @@ void virt_vfs::deleteFiles(const QStringList &fileNames, bool moveToTrash)
     connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(currentDirectory()); });
 }
 
-void virt_vfs::vfs_removeFiles(QStringList *fileNames)
+void virt_vfs::remove(const QStringList &fileNames)
 {
-    if (currentDir() == "/")
-        return;
-
-    // removing the URLs from the collection
-    for (int i = 0; i < fileNames->count(); ++i) {
-        if (_virtVfsDict.find(currentDir()) != _virtVfsDict.end()) {
-            QList<QUrl> *urlList = _virtVfsDict[currentDir()];
-            urlList->removeAll(getUrl((*fileNames)[i]));
+    const QString parentDir = currentDir();
+    if (parentDir == "/") { // remove virtual directory
+        for (const QString &filename : fileNames) {
+            _virtVfsDict["/"]->removeAll(QUrl(QStringLiteral("virt:/") + filename));
+            delete _virtVfsDict[filename];
+            _virtVfsDict.remove(filename);
+            _metaInfoDict.remove(filename);
+        }
+    } else {
+        // remove the URLs from the collection
+        for (const QString name : fileNames) {
+            if (_virtVfsDict.find(parentDir) != _virtVfsDict.end()) {
+                QList<QUrl> *urlList = _virtVfsDict[parentDir];
+                urlList->removeAll(getUrl(name));
+            }
         }
     }
 
@@ -214,6 +210,9 @@ void virt_vfs::calcSpace(const QString &name, KIO::filesize_t *totalSize, unsign
 
 bool virt_vfs::canMoveToTrash(const QStringList &fileNames)
 {
+    if (isRoot())
+        return false;
+
     for (const QString fileName : fileNames) {
         if (!getUrl(fileName).isLocalFile()) {
             return false;
@@ -222,7 +221,7 @@ bool virt_vfs::canMoveToTrash(const QStringList &fileNames)
     return true;
 }
 
-void virt_vfs::setMetaInformation(QString info)
+void virt_vfs::setMetaInformation(const QString &info)
 {
     _metaInfoDict[currentDir()] = info;
 }

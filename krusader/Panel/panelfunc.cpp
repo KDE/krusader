@@ -713,6 +713,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
     if (fileNames.isEmpty())
         return;
 
+    const bool removeVirtual = files()->type() == vfs::VFS_VIRT && files()->isRoot();
     const KConfigGroup generalGroup(krConfig, "General");
     bool moveToTrash = !reallyDelete && generalGroup.readEntry("Move To Trash", _MoveToTrash);
     // make sure this is possible
@@ -728,13 +729,13 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
             s = i18np("Do you really want to move this item to the trash?",
                       "Do you really want to move these %1 items to the trash?", fileNames.count());
             b = KGuiItem(i18n("&Trash"));
-        } else if (files()->type() == vfs::VFS_VIRT && files()->isRoot()) {
+        } else if (removeVirtual) {
             s = i18np(
                 "Do you really want to delete this virtual item (physical files stay untouched)?",
                 "Do you really want to delete these %1 virtual items (physical files stay "
                 "untouched)?",
                 fileNames.count());
-            b = KStandardGuiItem::del();
+            b = KStandardGuiItem::remove();
         } else if (files()->type() == vfs::VFS_VIRT) {
             s = i18np("<qt>Do you really want to delete this item <b>physically</b> (not just "
                       "removing it from the virtual items)?</qt>",
@@ -794,7 +795,12 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
     panel->prepareToDelete();
 
     // let the vfs do the job...
-    files()->deleteFiles(fileNames, moveToTrash);
+    if (removeVirtual) {
+        virt_vfs *vfs = static_cast<virt_vfs*>(files());
+        vfs->remove(fileNames);
+    } else {
+        files()->deleteFiles(fileNames, moveToTrash);
+    }
 }
 
 void ListPanelFunc::goInside(const QString& name)
