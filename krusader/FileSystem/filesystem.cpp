@@ -217,60 +217,6 @@ bool FileSystem::showHiddenFiles()
 void FileSystem::calcSpace(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
                     unsigned long *totalDirs, bool *stop)
 {
-    if (url.isLocalFile()) {
-        calcSpaceLocal(cleanUrl(url).path(), totalSize, totalFiles, totalDirs, stop);
-    } else {
-        calcSpaceKIO(url, totalSize, totalFiles, totalDirs, stop);
-    }
-}
-
-void FileSystem::calcSpaceLocal(const QString &path, KIO::filesize_t *totalSize, unsigned long *totalFiles,
-                         unsigned long *totalDirs, bool *stop)
-{
-    if (stop && *stop)
-        return;
-
-    if (path == "/proc")
-        return;
-
-    QT_STATBUF stat_p; // KDE lstat is necessary as QFileInfo and KFileItem
-    // if the name is wrongly encoded, then we zero the size out
-    stat_p.st_size = 0;
-    stat_p.st_mode = 0;
-    QT_LSTAT(path.toLocal8Bit(), &stat_p); // reports wrong size for a symbolic link
-
-    if (S_ISLNK(stat_p.st_mode) || !S_ISDIR(stat_p.st_mode)) { // single files are easy : )
-        ++(*totalFiles);
-        (*totalSize) += stat_p.st_size;
-    } else { // handle directories avoid a nasty crash on un-readable dirs
-        bool readable = ::access(path.toLocal8Bit(), R_OK | X_OK) == 0;
-        if (!readable)
-            return;
-
-        QDir dir(path);
-        if (!dir.exists())
-            return;
-
-        ++(*totalDirs);
-        dir.setFilter(QDir::TypeMask | QDir::System | QDir::Hidden);
-        dir.setSorting(QDir::Name | QDir::DirsFirst);
-
-        // recurse on all the files in the directory
-        QFileInfoList fileList = dir.entryInfoList();
-        for (int k = 0; k != fileList.size(); k++) {
-            if (*stop)
-                return;
-            QFileInfo qfiP = fileList[k];
-            if (qfiP.fileName() != "." && qfiP.fileName() != "..")
-                calcSpaceLocal(path + '/' + qfiP.fileName(), totalSize, totalFiles, totalDirs,
-                               stop);
-        }
-    }
-}
-
-void FileSystem::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
-                       unsigned long *totalDirs, bool *stop)
-{
     if (stop && *stop)
         return;
 

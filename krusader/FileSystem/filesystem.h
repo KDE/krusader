@@ -200,15 +200,9 @@ protected:
     /// Add a new file item to the internal dictionary (while refreshing).
     inline void addFileItem(FileItem *item) { _fileItems.insert(item->getName(), item); }
 
-    /// Calculate the size of a file or directory (recursive).
+    /// Calculate the size of any KIO file or directory (recursive).
     void calcSpace(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
-                        unsigned long *totalDirs, bool *stop);
-    /// Calculate the size of a local file or directory (recursive).
-    void calcSpaceLocal(const QString &path, KIO::filesize_t *totalSize, unsigned long *totalFiles,
-                        unsigned long *totalDirs, bool *stop);
-    /// Calculate the size of any KIO file or directory.
-    void calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
-                      unsigned long *totalDirs, bool *stop);
+                   unsigned long *totalDirs, bool *stop);
 
     FS_TYPE _type;          // the filesystem type.
     QUrl _currentDirectory; // the path or file the filesystem originates from.
