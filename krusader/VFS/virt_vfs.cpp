@@ -97,23 +97,6 @@ void virt_vfs::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mo
     copyFiles(fileUrls, destination);
 }
 
-void virt_vfs::deleteFiles(const QStringList &fileNames, bool moveToTrash)
-{
-    // names -> urls
-    const QList<QUrl> filesUrls = getUrls(fileNames);
-
-    // delete or move to trash?
-    KIO::Job *job;
-    if (moveToTrash)
-        job = KIO::trash(filesUrls);
-    else
-        job = KIO::del(filesUrls);
-
-    connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, false); });
-    // refresh will remove the deleted files from the vfs dict...
-    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(currentDirectory()); });
-}
-
 void virt_vfs::remove(const QStringList &fileNames)
 {
     const QString parentDir = currentDir();

@@ -48,8 +48,9 @@
 
 #include "../defaults.h"
 #include "../krglobal.h"
+#include "../JobMan/jobman.h"
+#include "../JobMan/krjob.h"
 #include "krpermhandler.h"
-
 
 vfs::vfs() : VfileContainer(0), _isRefreshing(false) {}
 
@@ -177,7 +178,33 @@ bool vfs::refresh(const QUrl &directory)
     return true;
 }
 
+void vfs::deleteFiles(const QStringList &fileNames, bool moveToTrash)
+{
+    // get absolute URLs for file names
+    const QList<QUrl> fileUrls = getUrls(fileNames);
+
+    KrJob *krJob = KrJob::createDeleteJob(fileUrls, moveToTrash);
+    connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectJob(job, currentDirectory()); });
+    if (moveToTrash) {
+        // update destination: the trash bin (in case a panel/tab is showing it)
+        connect(krJob, &KrJob::started, [=](KIO::Job *job) {
+            // Note: the "trash" protocal should always have only one "/" after the "scheme:" part
+            connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(QUrl("trash:/")); });
+        });
+    }
+
+    krJobMan->manageJob(krJob);
+}
+
 // ==== protected ====
+
+void vfs::connectJob(KJob *job, const QUrl &destination)
+{
+    // (additional) direct refresh if on local fs because watcher is too slow
+    const bool refresh = cleanUrl(destination) == _currentDirectory && isLocal();
+    connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, refresh); });
+    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(destination); });
+}
 
 bool vfs::showHiddenFiles()
 {

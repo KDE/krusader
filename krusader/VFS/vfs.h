@@ -95,8 +95,6 @@ public:
     /// directory name relative to the current dir. May implemented async.
     virtual void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
                           QString dir = "") = 0;
-    /// Delete or trash files in the current directory. May implemented async.
-    virtual void deleteFiles(const QStringList &fileNames, bool moveToTrash = true) = 0;
     /// Create a new directory in the current directory. May implemented async.
     virtual void mkDir(const QString &name) = 0;
     /// Rename file/directory in the current directory. May implemented async.
@@ -139,6 +137,8 @@ public:
     }
     /// Returns true if this VFS is currently refreshing the current directory.
     inline bool isRefreshing() { return _isRefreshing; }
+    /// Delete or trash files in the current directory. Implemented async.
+    void deleteFiles(const QStringList &fileNames, bool moveToTrash = true);
 
     /// Calculate the amount of space occupied by a file or directory in the current directory
     /// (recursive).
@@ -184,6 +184,8 @@ protected:
     /// Fill the vfs dictionary with vfiles, must be implemented for each VFS.
     virtual bool refreshInternal(const QUrl &origin, bool showHidden) = 0;
 
+    /// Connect the result signal of a file operation job.
+    void connectJob(KJob *job, const QUrl &destination);
     /// Returns true if showing hidden files is set in config.
     bool showHiddenFiles();
     /// Add a new vfile to the internal dictionary (while refreshing).
