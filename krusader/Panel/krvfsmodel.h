@@ -104,11 +104,13 @@ protected:
     KrSort::Sorter createSorter();
     QString nameWithoutExtension(const vfile * vf, bool checkEnabled = true) const;
 
+private:
+    void updateIndices(vfile *file, int index);
 
     QList<vfile*>               _vfiles;
     QHash<vfile *, QModelIndex> _vfileNdx;
-    //TODO: use url index instead of name index
     QHash<QString, QModelIndex> _nameNdx;
+    QHash<QUrl, QModelIndex>    _urlNdx;
     bool                        _extensionEnabled;
     KrInterView                 * _view;
     vfile *                     _dummyVfile;

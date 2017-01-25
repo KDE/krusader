@@ -55,8 +55,7 @@ void KrVfsModel::populate(const QList<vfile*> &files, vfile *dummy)
     else {
         emit layoutAboutToBeChanged();
         for(int i = 0; i < _vfiles.count(); i++) {
-            _vfileNdx[_vfiles[i]] = index(i, 0);
-            _nameNdx[_vfiles[i]->vfile_getName()] = index(i, 0);
+            updateIndices(_vfiles[i], i);
         }
         emit layoutChanged();
     }
@@ -84,6 +83,7 @@ void KrVfsModel::clear()
     _vfiles.clear();
     _vfileNdx.clear();
     _nameNdx.clear();
+    _urlNdx.clear();
     _dummyVfile = 0;
 
     emit layoutChanged();
@@ -294,6 +294,7 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
     _vfiles.clear();
     _vfileNdx.clear();
     _nameNdx.clear();
+    _urlNdx.clear();
 
     bool sortOrderChanged = false;
     QHash<int, int> changeMap;
@@ -303,8 +304,7 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
         changeMap[ props->originalIndex() ] = i;
         if (i != props->originalIndex())
             sortOrderChanged = true;
-        _vfileNdx[ props->vf()] = index(i, 0);
-        _nameNdx[ props->vf()->vfile_getName()] = index(i, 0);
+        updateIndices(props->vf(), i);
     }
 
     QModelIndexList newPersistentList;
@@ -325,8 +325,7 @@ QModelIndex KrVfsModel::addItem(vfile * vf)
     if(lastSortOrder() == KrViewProperties::NoColumn) {
         int idx = _vfiles.count();
         _vfiles.append(vf);
-        _vfileNdx[vf] = index(idx, 0);
-        _nameNdx[vf->vfile_getName()] = index(idx, 0);
+        updateIndices(vf, idx);
         emit layoutChanged();
         return index(idx, 0);
     }
@@ -342,8 +341,7 @@ QModelIndex KrVfsModel::addItem(vfile * vf)
         _vfiles.append(vf);
 
     for (int i = insertIndex; i < _vfiles.count(); ++i) {
-        _vfileNdx[ _vfiles[ i ] ] = index(i, 0);
-        _nameNdx[ _vfiles[ i ]->vfile_getName()] = index(i, 0);
+        updateIndices(_vfiles[i], i);
     }
 
     QModelIndexList newPersistentList;
@@ -387,10 +385,10 @@ QModelIndex KrVfsModel::removeItem(vfile * vf)
 
     _vfileNdx.remove(vf);
     _nameNdx.remove(vf->vfile_getName());
-    // update model/name index for vfiles following vf
+    _urlNdx.remove(vf->vfile_getUrl());
+    // update indices for vfiles following vf
     for (int i = removeIdx; i < _vfiles.count(); i++) {
-        _vfileNdx[ _vfiles[i] ] = index(i, 0);
-        _nameNdx[ _vfiles[i]->vfile_getName() ] = index(i, 0);
+        updateIndices(_vfiles[i], i);
     }
 
     foreach(const QModelIndex &mndx, oldPersistentList) {
@@ -445,8 +443,7 @@ void KrVfsModel::updateItem(vfile * vf)
     if (oldIndex < i)
         i = oldIndex;
     for (; i < _vfiles.count(); ++i) {
-        _vfileNdx[ _vfiles[ i ] ] = index(i, 0);
-        _nameNdx[ _vfiles[ i ]->vfile_getName()] = index(i, 0);
+        updateIndices(_vfiles[i], i);
     }
 
     QModelIndexList newPersistentList;
@@ -545,11 +542,9 @@ QString KrVfsModel::nameWithoutExtension(const vfile * vf, bool checkEnabled) co
     return vfName.left(loc);
 }
 
-const QModelIndex & KrVfsModel::indexFromUrl(const QUrl &url)
+const QModelIndex &KrVfsModel::indexFromUrl(const QUrl &url)
 {
-    //TODO: use url index instead of name index
-    //HACK
-    return nameIndex(url.fileName());
+    return _urlNdx[url];
 }
 
 KrSort::Sorter KrVfsModel::createSorter()
@@ -558,4 +553,11 @@ KrSort::Sorter KrVfsModel::createSorter()
     for(int i = 0; i < _vfiles.count(); i++)
         sorter.addItem(_vfiles[i], _vfiles[i] == _dummyVfile, i, customSortData(_vfiles[i]));
     return sorter;
+}
+
+void KrVfsModel::updateIndices(vfile *file, int i)
+{
+    _vfileNdx[file] = index(i, 0);
+    _nameNdx[file->vfile_getName()] = index(i, 0);
+    _urlNdx[file->vfile_getUrl()] = index(i, 0);
 }

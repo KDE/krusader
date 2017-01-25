@@ -374,7 +374,7 @@ void KrInterView::setSelectionUrls(const QList<QUrl> urls)
     _selection.clear();
 
     foreach(const QUrl &url, urls) {
-        QModelIndex idx = _model->indexFromUrl(url);
+        const QModelIndex idx = _model->indexFromUrl(url);
         if(idx.isValid())
             setSelected(_model->vfileAt(idx), true);
     }
