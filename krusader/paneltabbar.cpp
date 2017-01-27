@@ -95,8 +95,6 @@ int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent, KrPanel *nextTo)
     if (setCurrent)
         setCurrentIndex(newId);
 
-    connect(panel, &ListPanel::pathChanged, [=]() { updateTab(panel); });
-
     return newId;
 }
 

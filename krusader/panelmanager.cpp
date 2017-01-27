@@ -150,16 +150,15 @@ ListPanel* PanelManager::createPanel(KConfigGroup cfg)
 
 void PanelManager::connectPanel(ListPanel *p)
 {
-    connect(p, SIGNAL(activate()), this, SLOT(activate()));
-    connect(p, &ListPanel::pathChanged, [=]() { pathChanged(p); });
-    connect(p, &ListPanel::pathChanged, [=]() { _tabbar->updateTab(p); });
+    connect(p, &ListPanel::activate, this, &PanelManager::activate);
+    connect(p, &ListPanel::pathChanged, this, [=]() { pathChanged(p); });
+    connect(p, &ListPanel::pathChanged, this, [=]() { _tabbar->updateTab(p); });
 }
 
 void PanelManager::disconnectPanel(ListPanel *p)
 {
-    disconnect(p, SIGNAL(activate()), this, 0);
-    disconnect(p, SIGNAL(pathChanged(ListPanel*)), this, 0);
-    disconnect(p, SIGNAL(pathChanged(ListPanel*)), _tabbar, 0);
+    disconnect(p, &ListPanel::activate, this, nullptr);
+    disconnect(p, &ListPanel::pathChanged, this, nullptr);
 }
 
 ListPanel* PanelManager::addPanel(bool setCurrent, KConfigGroup cfg, KrPanel *nextTo)
