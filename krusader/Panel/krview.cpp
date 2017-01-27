@@ -184,12 +184,10 @@ void KrViewOperator::saveDefaultSettings()
 
 const KrView::IconSizes KrView::iconSizes;
 
-
-KrView::KrView(KrViewInstance &instance, KConfig *cfg) :
-    _instance(instance), _files(0), _config(cfg), _mainWindow(0), _widget(0),
-    _nameToMakeCurrent(QString()),
-    _properties(0), _focused(false), _previews(0), _fileIconSize(0),
-    _updateDefaultSettings(false), _count(0), _numDirs(0), _dummyVfile(0)
+KrView::KrView(KrViewInstance &instance, KConfig *cfg)
+    : _config(cfg), _properties(0), _focused(false), _fileIconSize(0),
+      _instance(instance), _files(0), _mainWindow(0), _widget(0), _nameToMakeCurrent(QString()),
+      _previews(0), _updateDefaultSettings(false), _count(0), _numDirs(0), _dummyVfile(0)
 {
 }
 
@@ -605,27 +603,6 @@ void KrView::clear()
     delete _dummyVfile;
     _dummyVfile = 0;
     redraw();
-}
-
-// good old dialog box
-void KrView::renameCurrentItem()
-{
-    QString newName, fileName;
-
-    KrViewItem *it = getCurrentKrViewItem();
-    if (it) fileName = it->name();
-    else return ; // quit if no current item available
-
-    // don't allow anyone to rename ..
-    if (fileName == "..") return ;
-
-    bool ok = false;
-    newName = QInputDialog::getText(_mainWindow, i18n("Rename"), i18n("Rename %1 to:", fileName),
-                                    QLineEdit::Normal, fileName, &ok);
-    // if the user canceled - quit
-    if (!ok || newName == fileName)
-        return ;
-    op()->emitRenameItem(it->name(), newName);
 }
 
 bool KrView::handleKeyEvent(QKeyEvent *e)

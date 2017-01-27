@@ -300,13 +300,13 @@ void KrInterView::preUpdateItem(vfile *vf)
 
 void KrInterView::prepareForActive()
 {
-    KrView::prepareForActive();
+    _focused = true;
     _itemView->setFocus();
 }
 
 void KrInterView::prepareForPassive()
 {
-    KrView::prepareForPassive();
+    _focused = false;
     _mouseHandler->cancelTwoClickRename();
     //if ( renameLineEdit() ->isVisible() )
     //renameLineEdit() ->clearFocus();
