@@ -121,9 +121,18 @@ void TerminalDock::killTerminalEmulator()
 
 void TerminalDock::sendInput(const QString& input)
 {
-    if (t) {
-        t->sendInput(input);
+    if (!t)
+        return;
+
+    // send SIGINT before input command to avoid unwanted behaviour when current line is not empty
+    // and command is appended to current input (e.g. "rm -rf x " concatenated with 'cd /usr');
+    // code "borrowed" from Dolphin, Copyright (C) 2007-2010 by Peter Penz <peter.penz19@gmail.com>
+    const int processId = t->terminalProcessId();
+    if (processId > 0) {
+        kill(processId, SIGINT);
     }
+
+    t->sendInput(input);
 }
 
 /*! Sends a `cd` command to the embedded terminal emulator so as to synchronize the directory of the actual panel and
