@@ -264,7 +264,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 bool KrVfsModel::setData(const QModelIndex & index, const QVariant & value, int role)
 {
     if (role == Qt::EditRole && index.isValid()) {
-        if (index.row() < rowCount() && index.row() > 0) {
+        if (index.row() < rowCount() && index.row() >= 0) {
             vfile *vf = _vfiles.at(index.row());
             if (vf == 0)
                 return false;
