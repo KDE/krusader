@@ -155,7 +155,10 @@ Note: In this document there's an appendix 2 that may help.
 
 --- To achieve that Krusader uses another language
 
-There is a list of translation files in the [10n.kde.org Krusader page](https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/index.html). In that list anyone can look for his desired translation file, hover the mouse cursor over its link, see its tooltip to look up the appropriate LANGUAGE_CODE (which is shown between parentheses, e.g. if on the tooltip it's seen "German (de)" that means that LANGUAGE_CODE is: de), click on the link (in order to download the proper krusader.po file), and execute:
+There is a list of translation files in the [10n.kde.org Krusader page](https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/index.html).
+In that list anyone can look for his desired translation file, hover the mouse cursor over its link, see its tooltip to look up the 
+appropriate LANGUAGE_CODE (which is shown between parentheses, e.g. if on the tooltip it's seen "German (de)" that means that 
+LANGUAGE_CODE is: de), click on the link (in order to download the proper krusader.po file), and execute:
 
     # Transform the downloaded file
     msgfmt krusader.po -o krusader.mo
