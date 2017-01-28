@@ -54,10 +54,6 @@ public:
     /// Add virtual files to the current directory.
     void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
                   QString dir = "") Q_DECL_OVERRIDE;
-    /// Delete files from the current directory (real files, not virtual).
-    void deleteFiles(const QStringList &fileNames, bool reallyDelete = true) Q_DECL_OVERRIDE;
-    /// Remove files from the collection (only virtual, not the real file).
-    void vfs_removeFiles(QStringList *fileNames);
     /// Create a virtual directory. Only possible in the root directory.
     void mkDir(const QString &name) Q_DECL_OVERRIDE;
     /// Rename a (real) file in the current directory.
@@ -66,8 +62,12 @@ public:
                    unsigned long *totalDirs, bool *stop) Q_DECL_OVERRIDE;
     /// Returns the URL of the real file or an empty URL if file with name does not exist.
     QUrl getUrl(const QString& name) Q_DECL_OVERRIDE;
+    bool canMoveToTrash(const QStringList &fileNames) Q_DECL_OVERRIDE;
 
-    void setMetaInformation(QString info);
+    /// Remove virtual files or directories. Real files stay untouched.
+    void remove(const QStringList &fileNames);
+    /// Set meta information to be displayed in UI for the current directory
+    void setMetaInformation(const QString &info);
 
 protected:
     bool refreshInternal(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;

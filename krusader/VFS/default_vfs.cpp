@@ -117,28 +117,6 @@ void default_vfs::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode m
     copyFiles(fileUrls, destination, mode);
 }
 
-void default_vfs::deleteFiles(const QStringList &fileNames, bool forceDeletion)
-{
-    // get absolute URLs for file names
-    const QList<QUrl> fileUrls = getUrls(fileNames);
-
-    // delete or move to trash?
-    const KConfigGroup group(krConfig, "General");
-    const bool moveToTrash = !forceDeletion && isLocal()
-                             && group.readEntry("Move To Trash", _MoveToTrash);
-    KrJob *krJob = KrJob::createDeleteJob(fileUrls, moveToTrash);
-    connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectJob(job, currentDirectory()); });
-    if (moveToTrash) {
-        // update destination: the trash bin (in case a panel/tab is showing it)
-        connect(krJob, &KrJob::started, [=](KIO::Job *job) {
-            // Note: the "trash" protocal should always have only one "/" after the "scheme:" part
-            connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(QUrl("trash:/")); });
-        });
-    }
-
-    krJobMan->manageJob(krJob);
-}
-
 void default_vfs::mkDir(const QString &name)
 {
     KIO::SimpleJob* job = KIO::mkdir(getUrl(name));
@@ -153,14 +131,6 @@ void default_vfs::rename(const QString &oldName, const QString &newName)
     connectJob(job, currentDirectory());
 
     KIO::FileUndoManager::self()->recordJob(KIO::FileUndoManager::Rename, {oldUrl}, newUrl, job);
-}
-
-void default_vfs::connectJob(KJob *job, const QUrl &destination)
-{
-    // (additional) direct refresh if on local fs because watcher is too slow
-    const bool refresh = cleanUrl(destination) == _currentDirectory && isLocal();
-    connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, refresh); });
-    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(destination); });
 }
 
 QUrl default_vfs::getUrl(const QString& name)

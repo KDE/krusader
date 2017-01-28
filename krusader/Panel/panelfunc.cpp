@@ -706,33 +706,34 @@ void ListPanelFunc::mkdir()
     } // for
 }
 
-// TODO it is not possible to move virtual local files to trash
 void ListPanelFunc::deleteFiles(bool reallyDelete)
 {
+    if (files()->type() == vfs::VFS_VIRT && files()->isRoot()) {
+        // only virtual deletion possible
+        removeVirtualFiles();
+        return;
+    }
+
     // first get the selected file names list
     QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
-        return ;
+        return;
 
-    KConfigGroup gg(krConfig, "General");
-    bool trash = gg.readEntry("Move To Trash", _MoveToTrash);
-    // now ask the user if he want to delete:
-    KConfigGroup group(krConfig, "Advanced");
-    if (group.readEntry("Confirm Delete", _ConfirmDelete)) {
-        QString s;
-        KGuiItem b;
+    const KConfigGroup generalGroup(krConfig, "General");
+    bool moveToTrash = !reallyDelete && generalGroup.readEntry("Move To Trash", _MoveToTrash);
+    // make sure this is possible
+    moveToTrash = moveToTrash && files()->canMoveToTrash(fileNames);
 
-        if (!reallyDelete && trash && files()->isLocal()) {
+    // now ask the user if he/she is sure:
+    const KConfigGroup advancedGroup(krConfig, "Advanced");
+    if (advancedGroup.readEntry("Confirm Delete", _ConfirmDelete)) {
+        QString s; // text
+        KGuiItem b; // continue button
+
+        if (moveToTrash) {
             s = i18np("Do you really want to move this item to the trash?",
                       "Do you really want to move these %1 items to the trash?", fileNames.count());
             b = KGuiItem(i18n("&Trash"));
-        } else if (files()->type() == vfs::VFS_VIRT && files()->isRoot()) {
-            s = i18np(
-                "Do you really want to delete this virtual item (physical files stay untouched)?",
-                "Do you really want to delete these %1 virtual items (physical files stay "
-                "untouched)?",
-                fileNames.count());
-            b = KStandardGuiItem::del();
         } else if (files()->type() == vfs::VFS_VIRT) {
             s = i18np("<qt>Do you really want to delete this item <b>physically</b> (not just "
                       "removing it from the virtual items)?</qt>",
@@ -748,49 +749,75 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
 
         // show message
         // note: i'm using continue and not yes/no because the yes/no has cancel as default button
-        if (KMessageBox::warningContinueCancelList(krMainWindow, s, fileNames,
-                i18n("Warning"), b) != KMessageBox::Continue)
-            return ;
+        if (KMessageBox::warningContinueCancelList(krMainWindow, s, fileNames, i18n("Warning"),
+                                                   b) != KMessageBox::Continue)
+            return;
     }
+
     // we want to warn the user about non empty dir
-    // and files he don't have permission to delete
-    bool emptyDirVerify = group.readEntry("Confirm Unempty Dir", _ConfirmUnemptyDir);
-    emptyDirVerify = (emptyDirVerify && files()->isLocal());
+    bool emptyDirVerify = advancedGroup.readEntry("Confirm Unempty Dir", _ConfirmUnemptyDir);
+    // TODO only local fs supported
+    emptyDirVerify &= files()->isLocal();
 
-    QDir dir;
-    for (QStringList::Iterator name = fileNames.begin(); name != fileNames.end();) {
-        vfile * vf = files()->getVfile(*name);
-
-        // verify non-empty dirs delete... (only for local vfs)
-        if (vf && emptyDirVerify && vf->vfile_isDir() && !vf->vfile_isSymLink()) {
-            dir.setPath(panel->virtualPath().path() + '/' + (*name));
-            if (dir.entryList(QDir::TypeMask | QDir::System | QDir::Hidden).count() > 2) {
-                switch (KMessageBox::warningYesNoCancel(krMainWindow,
-                                                        i18n("<qt><p>Folder <b>%1</b> is not empty.</p><p>Skip this one or delete all?</p></qt>", *name),
-                                                        QString(), KGuiItem(i18n("&Skip")), KGuiItem(i18n("&Delete All")))) {
-                case KMessageBox::No :
-                    emptyDirVerify = false;
-                    break;
-                case KMessageBox::Yes :
-                    name = fileNames.erase(name);
-                    continue;
-                default :
-                    return ;
+    if (emptyDirVerify) {
+        for (const QString fileName: fileNames) {
+            vfile *vfile = files()->getVfile(fileName);
+            if (vfile && !vfile->vfile_isSymLink() && vfile->vfile_isDir()) {
+                // read local dir...
+                const QDir dir(vfile->vfile_getUrl().path());
+                if (dir.entryList(QDir::TypeMask | QDir::System | QDir::Hidden).count() > 2) {
+                    // ...is not empty, ask user
+                    const KMessageBox::ButtonCode result = KMessageBox::warningYesNoCancel(
+                        krMainWindow,
+                        i18n("<qt><p>Folder <b>%1</b> is not empty.</p><p>Skip this one "
+                             "or delete all?</p></qt>",
+                             fileName),
+                        QString(), KGuiItem(i18n("&Skip")), KGuiItem(i18n("&Delete All")));
+                    if (result == KMessageBox::Yes) {
+                        fileNames.removeAll(fileName); // skip
+                    } else if (result == KMessageBox::No) {
+                        break; // accept all remaining
+                    } else {
+                        return; // cancel
+                    }
                 }
             }
         }
-        ++name;
     }
 
     if (fileNames.count() == 0)
-        return ;  // nothing to delete
+        return; // nothing to delete
 
     // after the delete return the cursor to the first unmarked
     // file above the current item;
     panel->prepareToDelete();
 
     // let the vfs do the job...
-    files()->deleteFiles(fileNames, reallyDelete);
+    files()->deleteFiles(fileNames, moveToTrash);
+}
+
+void ListPanelFunc::removeVirtualFiles()
+{
+    if (files()->type() != vfs::VFS_VIRT) {
+        krOut << "filesystem not virtual";
+        return;
+    }
+
+    const QStringList fileNames = panel->getSelectedNames();
+    if (fileNames.isEmpty())
+        return;
+
+    const QString text =
+        i18np("Do you really want to delete this virtual item (physical files stay untouched)?",
+              "Do you really want to delete these %1 virtual items (physical files stay "
+              "untouched)?",
+              fileNames.count());
+    if (KMessageBox::warningContinueCancelList(krMainWindow, text, fileNames, i18n("Warning"),
+                                               KStandardGuiItem::remove()) != KMessageBox::Continue)
+        return;
+
+    virt_vfs *vfs = static_cast<virt_vfs*>(files());
+    vfs->remove(fileNames);
 }
 
 void ListPanelFunc::goInside(const QString& name)

@@ -63,12 +63,11 @@ public:
 
     void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
                               QString dir = "") Q_DECL_OVERRIDE;
-    void deleteFiles(const QStringList &fileNames,
-                             bool forceDeletion = false) Q_DECL_OVERRIDE;
     void mkDir(const QString &name) Q_DECL_OVERRIDE;
     void rename(const QString &fileName, const QString &newName) Q_DECL_OVERRIDE;
     /// Return URL for file name - even if file does not exist.
     QUrl getUrl(const QString &name) Q_DECL_OVERRIDE;
+    bool canMoveToTrash(const QStringList &) Q_DECL_OVERRIDE { return isLocal(); }
 
     QString mountPoint() { return _mountPoint; }
     bool hasAutoUpdate() Q_DECL_OVERRIDE { return !_watcher.isNull(); }
@@ -91,7 +90,6 @@ protected slots:
 
 private:
     void connectSourceVFS(KJob *job, const QList<QUrl> urls);
-    void connectJob(KJob *job, const QUrl &destination);
 
     bool refreshLocal(const QUrl &directory); // NOTE: this is very fast
     vfile *createLocalVFile(const QString &name);
