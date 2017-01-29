@@ -141,32 +141,36 @@ char vfile::vfile_isExecutable() const
 const QString &vfile::vfile_getMime()
 {
     if (vfile_mimeType.isEmpty()) {
-        if (vfile_isdir)
+        if (vfile_isdir) {
             vfile_mimeType = "inode/directory";
-        else if (vfile_isBrokenLink())
+            vfile_icon = "inode-directory";
+        } else if (vfile_isBrokenLink()) {
             vfile_mimeType = "unknown";
-        else {
-            QMimeDatabase db;
-            QMimeType mt = db.mimeTypeForUrl(vfile_getUrl());
+            vfile_icon = "file-broken";
+        } else {
+            const QMimeDatabase db;
+            const QMimeType mt = db.mimeTypeForUrl(vfile_getUrl());
             vfile_mimeType = mt.isValid() ? mt.name() : "unknown";
-            if (mt.isValid())
-                vfile_icon = mt.iconName();
+            vfile_icon = mt.isValid() ? mt.iconName() : "file-broken";
+
             if (vfile_mimeType == "inode/directory") {
+                // TODO view update needed?
                 vfile_perm[0] = 'd';
                 vfile_isdir = true;
             }
         }
 
         if (vfile_isdir && vfile_userDefinedFolderIcons) {
-            QUrl url = vfile_getUrl();
+            const QUrl url = vfile_getUrl();
             if (url.isLocalFile()) {
-                QString file = url.toLocalFile() + "/.directory";
-                KDesktopFile cfg(file);
-                QString icon = cfg.readIcon();
-                if (icon.startsWith(QLatin1String("./"))) // relative path
-                    icon = url.toLocalFile() + '/' + icon;
+                const QString file = url.toLocalFile() + "/.directory";
+                const KDesktopFile cfg(file);
+                const QString icon = cfg.readIcon();
                 if (!icon.isEmpty())
-                    vfile_icon = icon;
+                    vfile_icon = icon.startsWith(QLatin1String("./")) ?
+                                     // relative path
+                                     url.toLocalFile() + '/' + icon :
+                                     icon;
             }
         }
     }
@@ -176,14 +180,7 @@ const QString &vfile::vfile_getMime()
 QString vfile::vfile_getIcon()
 {
     if (vfile_icon.isEmpty()) {
-        QString mime = vfile_getMime();
-        if (vfile_isBrokenLink())
-            vfile_icon = "file-broken";
-        else if (vfile_icon.isEmpty()) {
-            QMimeDatabase db;
-            QMimeType mt = db.mimeTypeForName(mime);
-            vfile_icon = mt.isValid() ? mt.iconName() : "file-broken";
-        }
+        vfile_getMime(); // sets the icon
     }
     return vfile_icon;
 }
