@@ -61,7 +61,7 @@ public:
     void stop();
 
 private:
-    void scanLocalDir(QUrl url);
+    void scanLocalDir(const QUrl &url);
     void scanRemoteDir(QUrl url);
 
 signals:

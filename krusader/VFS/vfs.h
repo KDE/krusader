@@ -154,6 +154,10 @@ public:
     /// Add 'file' scheme to non-empty URL without scheme
     static QUrl preferLocalUrl(const QUrl &url);
 
+    /// Return a vfile for a local file inside a directory
+    static vfile *createLocalVFile(const QString &name, const QString &directory,
+                                   bool virt = false);
+
     // set the parent window to be used for dialogs
     void setParentWindow(QWidget *widget) { parentWindow = widget; }
 
@@ -201,9 +205,6 @@ protected:
     void calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
                       unsigned long *totalDirs, bool *stop);
 
-    /// Return a vfile for a local file inside a directory
-    static vfile *createLocalVFile(const QString &name, const QString &directory,
-                                   bool virt = false);
     /// Return a vfile for a KIO result. Returns 0 if entry is not needed
     static vfile *createVFileFromKIO(const KIO::UDSEntry &_calcEntry, const QUrl &directory,
                                      bool virt = false);

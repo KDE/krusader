@@ -120,53 +120,49 @@ void KRSearchMod::scanURL(QUrl url)
     }
 }
 
-void KRSearchMod::scanLocalDir(QUrl urlToScan)
+void KRSearchMod::scanLocalDir(const QUrl &url)
 {
-    QString dir = vfs::ensureTrailingSlash(urlToScan).path();
+    const QString dir = vfs::ensureTrailingSlash(url).path();
 
-    QT_DIR* d = QT_OPENDIR(dir.toLocal8Bit());
-    if (!d) return ;
+    QT_DIR *qdir = QT_OPENDIR(dir.toLocal8Bit());
+    if (!qdir)
+        return;
 
-    QT_DIRENT* dirEnt;
+    QT_DIRENT *dirEnt;
 
-    while ((dirEnt = QT_READDIR(d)) != NULL) {
-        QString name = QString::fromLocal8Bit(dirEnt->d_name);
+    while ((dirEnt = QT_READDIR(qdir)) != NULL) {
+        const QString name = QString::fromLocal8Bit(dirEnt->d_name);
 
         // we don't scan the ".",".." enteries
-        if (name == "." || name == "..") continue;
+        if (name == "." || name == "..")
+            continue;
+
+        const QString fullName = dir + name;
+        const QUrl fileUrl = QUrl::fromLocalFile(fullName);
 
         QT_STATBUF stat_p;
-        QT_LSTAT((dir + name).toLocal8Bit(), &stat_p);
-
-        QUrl url = QUrl::fromLocalFile(dir + name);
-
-        QString mime;
-        if (query->searchInArchives() || !query->hasMimeType()) {
-            QMimeDatabase db;
-            QMimeType mt = db.mimeTypeForUrl(url);
-            if (mt.isValid())
-                mime = mt.name();
-        }
-
-        // creating a vfile object for matching with krquery
-        vfile * vf = new vfile(name, (KIO::filesize_t)stat_p.st_size, KRpermHandler::mode2QString(stat_p.st_mode),
-                               stat_p.st_mtime, S_ISLNK(stat_p.st_mode), false/*FIXME*/, stat_p.st_uid, stat_p.st_gid,
-                               mime, "", stat_p.st_mode, -1, url);
+        QT_LSTAT(fullName.toLocal8Bit(), &stat_p);
 
         if (query->isRecursive()) {
             if (S_ISLNK(stat_p.st_mode) && query->followLinks())
-                unScannedUrls.push(QUrl::fromLocalFile(QDir(dir + name).canonicalPath()));
+                unScannedUrls.push(QUrl::fromLocalFile(QDir(fullName).canonicalPath()));
             else if (S_ISDIR(stat_p.st_mode))
-                unScannedUrls.push(url);
+                unScannedUrls.push(fileUrl);
         }
+
+        // creating a vfile object for matching with krquery
+        vfile *vf = vfs::createLocalVFile(name, dir);
+
         if (query->searchInArchives()) {
+            const QString mime = vf->vfile_getMime();
             if (KRarcHandler::arcSupported(mime)) {
-                QUrl archiveURL = url;
+                QUrl archiveURL = fileUrl;
                 bool encrypted;
-                QString realType = arcHandler.getType(encrypted, url.path(), mime);
+                const QString realType = arcHandler.getType(encrypted, fileUrl.path(), mime);
 
                 if (!encrypted) {
-                    if (realType == "tbz" || realType == "tgz" || realType == "tarz" || realType == "tar" || realType == "tlz")
+                    if (realType == "tbz" || realType == "tgz" || realType == "tarz" ||
+                        realType == "tar" || realType == "tlz")
                         archiveURL.setScheme("tar");
                     else
                         archiveURL.setScheme("krarc");
@@ -178,20 +174,22 @@ void KRSearchMod::scanLocalDir(QUrl urlToScan)
 
         if (query->match(vf)) {
             // if we got here - we got a winner
-            results.append(dir + name);
-            emit found(name, dir, (KIO::filesize_t) stat_p.st_size, stat_p.st_mtime,
-                       KRpermHandler::mode2QString(stat_p.st_mode), stat_p.st_uid, stat_p.st_gid, query->foundText());
+            results.append(fullName);
+            emit found(name, dir, (KIO::filesize_t)stat_p.st_size, stat_p.st_mtime,
+                       KRpermHandler::mode2QString(stat_p.st_mode), stat_p.st_uid, stat_p.st_gid,
+                       query->foundText());
         }
         delete vf;
 
         if (timer.elapsed() >= EVENT_PROCESS_DELAY) {
             qApp->processEvents();
             timer.start();
-            if (stopSearch) return;
+            if (stopSearch)
+                return;
         }
     }
     // clean up
-    QT_CLOSEDIR(d);
+    QT_CLOSEDIR(qdir);
 }
 
 void KRSearchMod::scanRemoteDir(QUrl url)

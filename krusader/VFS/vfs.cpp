@@ -196,8 +196,6 @@ void vfs::deleteFiles(const QStringList &fileNames, bool moveToTrash)
     krJobMan->manageJob(krJob);
 }
 
-// ==== protected ====
-
 void vfs::connectJob(KJob *job, const QUrl &destination)
 {
     // (additional) direct refresh if on local fs because watcher is too slow
