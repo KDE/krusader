@@ -169,36 +169,14 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
     }
 }
 
-void SynchronizerDirList::slotEntries(KIO::Job * job, const KIO::UDSEntryList& entries)
+void SynchronizerDirList::slotEntries(KIO::Job *job, const KIO::UDSEntryList& entries)
 {
-    KIO::UDSEntryList::const_iterator it = entries.begin();
-    KIO::UDSEntryList::const_iterator end = entries.end();
-
-    int rwx = -1;
-    QString prot = ((KIO::ListJob *)job)->url().scheme();
-
-    if (prot == "krarc" || prot == "tar" || prot == "zip")
-        rwx = PERM_ALL;
-
-    while (it != end) {
-        KFileItem kfi(*it, ((KIO::ListJob *)job)->url(), true, true);
-        QString key = kfi.text();
-        if (key != "." && key != ".." && (!ignoreHidden || !key.startsWith(QLatin1String(".")))) {
-            mode_t mode = kfi.mode() | kfi.permissions();
-            QString perm = KRpermHandler::mode2QString(mode);
-            if (kfi.isDir())
-                perm[ 0 ] = 'd';
-
-            vfile *item = new vfile(kfi.text(), kfi.size(), perm, kfi.time(KFileItem::ModificationTime).toTime_t(),
-                                    kfi.isLink(), false, kfi.user(), kfi.group(), kfi.user(),
-                                    kfi.mimetype(), kfi.linkDest(), mode, rwx
-#ifdef HAVE_POSIX_ACL
-                                    , kfi.ACL().asString()
-#endif
-                                   );
-            insert(key, item);
+    KIO::ListJob *listJob = static_cast<KIO::ListJob *>(job);
+    for (const KIO::UDSEntry entry : entries) {
+        vfile *item = vfs::createVFileFromKIO(entry, listJob->url());
+        if (item) {
+            insert(item->vfile_getName(), item);
         }
-        ++it;
     }
 }
 
