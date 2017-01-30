@@ -62,10 +62,6 @@ public:
     static char readable(QString perm, gid_t gid, uid_t uid, int rwx = -1);
     static char executable(QString perm, gid_t gid, uid_t uid, int rwx = -1);
 
-    static bool fileWriteable(QString localFile);
-    static bool fileReadable(QString localFile);
-    static bool fileExecutable(QString localFile);
-
     static char ftpWriteable(QString fileOwner, QString userName, QString perm);
     static char ftpReadable(QString fileOwner, QString userName, QString perm);
     static char ftpExecutable(QString fileOwner, QString userName, QString perm);

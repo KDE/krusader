@@ -96,33 +96,6 @@ char KRpermHandler::executable(QString perm, gid_t gid, uid_t uid, int rwx)
     return NO_PERM;
 }
 
-bool KRpermHandler::fileWriteable(QString localFile)
-{
-    QT_STATBUF stat_p;
-    if (QT_STAT(localFile.toLocal8Bit(), &stat_p) == -1) return false;
-    mode_t m = stat_p.st_mode;
-    QString perm = mode2QString(m);
-    return writeable(perm, stat_p.st_gid, stat_p.st_uid);
-}
-
-bool KRpermHandler::fileReadable(QString localFile)
-{
-    QT_STATBUF stat_p;
-    if (QT_STAT(localFile.toLocal8Bit(), &stat_p) == -1) return false;
-    mode_t m = stat_p.st_mode;
-    QString perm = mode2QString(m);
-    return readable(perm, stat_p.st_gid, stat_p.st_uid);
-}
-
-bool KRpermHandler::fileExecutable(QString localFile)
-{
-    QT_STATBUF stat_p;
-    if (QT_STAT(localFile.toLocal8Bit(), &stat_p) == -1) return false;
-    mode_t m = stat_p.st_mode;
-    QString perm = mode2QString(m);
-    return executable(perm, stat_p.st_gid, stat_p.st_uid);
-}
-
 QString KRpermHandler::mode2QString(mode_t m)
 {
     char perm[ 11 ];
