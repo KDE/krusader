@@ -210,38 +210,6 @@ char KRpermHandler::ftpExecutable(QString fileOwner, QString userName, QString p
     return NO_PERM;
 }
 
-bool KRpermHandler::dirExist(QString path)
-{
-    QT_DIR * dir = QT_OPENDIR(path.toLocal8Bit());
-    if (!dir) return false;
-    QT_CLOSEDIR(dir);   // bug fix Karai Csaba (ckarai)
-    return true;
-}
-
-bool KRpermHandler::fileExist(QString fullPath)
-{
-    if (fullPath.right(1) == "/") fullPath = fullPath.left(fullPath.length() - 1) ;
-    if (fullPath.left(1) != "/") return fileExist("/", fullPath);
-    return fileExist(fullPath.left(fullPath.lastIndexOf("/")) ,
-                     fullPath.mid(fullPath.lastIndexOf("/") + 1));
-}
-
-bool KRpermHandler::fileExist(QString path, QString name)
-{
-    if (QDir(path).exists(name)) return true;
-    QT_DIR* dir = QT_OPENDIR(path.toLocal8Bit());
-    if (!dir) return false;
-    QT_DIRENT* dirEnt;
-    while ((dirEnt = QT_READDIR(dir))) {
-        if (dirEnt->d_name == name) {
-            QT_CLOSEDIR(dir);
-            return true;
-        }
-    }
-    QT_CLOSEDIR(dir);
-    return false;
-}
-
 QString KRpermHandler::parseSize(KIO::filesize_t val)
 {
     return QLocale().toString(val);
@@ -260,35 +228,6 @@ QString KRpermHandler::parseSize(KIO::filesize_t val)
 
     return size;
 #endif
-}
-
-QString KRpermHandler::date2qstring(QString date)
-{
-    QString temp;
-    int year;
-
-    year = date[ 6 ].digitValue() * 10 + date[ 7 ].digitValue();
-    year > 80 ? year += 1900 : year += 2000;
-
-    temp.sprintf("%d", year);
-    temp = temp + date[ 3 ] + date[ 4 ] + date[ 0 ] + date[ 1 ] + date[ 9 ] + date[ 10 ] + date[ 12 ] + date[ 13 ];
-
-    return temp;
-}
-
-time_t KRpermHandler::QString2time(QString date)
-{
-    struct tm t;
-    t.tm_sec = 0;
-    t.tm_min = (QString(date[ 12 ]) + QString(date[ 13 ])).toInt();
-    t.tm_hour = (QString(date[ 9 ]) + QString(date[ 10 ])).toInt();
-    t.tm_mday = (QString(date[ 0 ]) + QString(date[ 1 ])).toInt();
-    t.tm_mon = (QString(date[ 3 ]) + QString(date[ 4 ])).toInt() - 1;
-    t.tm_year = (QString(date[ 6 ]) + QString(date[ 7 ])).toInt();
-    if (t.tm_year < 70) t.tm_year += 100;
-    t.tm_isdst = -1; // daylight saving time information isn't available
-
-    return mktime(&t);
 }
 
 gid_t KRpermHandler::group2gid(QString group)
