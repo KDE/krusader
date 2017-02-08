@@ -202,7 +202,7 @@ const KIO::UDSEntry vfile::vfile_getEntry()
             entry.insert(KIO::UDSEntry::UDS_ACL_STRING, m_acl);
 
         if (!m_defaulfAcl.isNull())
-            entry.insert(KIO::UDSEntry::UDS_DEFAULT_ACL_STRING, m_acl);
+            entry.insert(KIO::UDSEntry::UDS_DEFAULT_ACL_STRING, m_defaulfAcl);
     }
 
     return entry;
