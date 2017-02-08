@@ -202,21 +202,6 @@ char KRpermHandler::ftpExecutable(QString fileOwner, QString userName, QString p
 QString KRpermHandler::parseSize(KIO::filesize_t val)
 {
     return QLocale().toString(val);
-#if 0
-    QString temp;
-    temp.sprintf("%llu", val);
-    if (temp.length() <= 3) return temp;
-    unsigned int i = temp.length() % 3;
-    if (i == 0) i = 3;
-    QString size = temp.left(i) + ",";
-    while (i + 3 < temp.length()) {
-        size = size + temp.mid(i, 3) + ",";
-        i += 3;
-    }
-    size = size + temp.right(3);
-
-    return size;
-#endif
 }
 
 QString KRpermHandler::gid2group(gid_t groupId)
