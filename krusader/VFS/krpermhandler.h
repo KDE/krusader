@@ -33,9 +33,9 @@
 #define KRPERMHANDLER_H
 
 // QtCore
-#include <QString>
-#include <QFileInfo>
 #include <QHash>
+#include <QSet>
+#include <QString>
 
 #include <KIO/Global>
 
@@ -55,23 +55,27 @@ public:
     static QString gid2group(gid_t groupId);
     static QString uid2user(uid_t userId);
 
-    static char writeable(QString perm, gid_t gid, uid_t uid);
-    static char readable(QString perm, gid_t gid, uid_t uid);
-    static char executable(QString perm, gid_t gid, uid_t uid);
+    static char writeable(const QString &perm, gid_t gid, uid_t uid);
+    static char readable(const QString &perm, gid_t gid, uid_t uid);
+    static char executable(const QString &perm, gid_t gid, uid_t uid);
 
-    static char ftpWriteable(QString fileOwner, QString userName, QString perm);
-    static char ftpReadable(QString fileOwner, QString userName, QString perm);
-    static char ftpExecutable(QString fileOwner, QString userName, QString perm);
+    static char ftpWriteable(const QString &fileOwner, const QString & userName, const QString &perm);
+    static char ftpReadable(const QString &fileOwner, const QString &userName, const QString &perm);
+    static char ftpExecutable(const QString &fileOwner, const QString &userName, const QString &perm);
 
     static QString mode2QString(mode_t m);
     static QString parseSize(KIO::filesize_t val);
 
 private:
     KRpermHandler() {}
+    static char getLocalPermission(const QString &perm, gid_t gid, uid_t uid, int permOffset,
+                                   bool ignoreRoot = false);
+    static char getFtpPermission(const QString &fileOwner, const QString &userName,
+                                 const QString &perm, int permOffset);
 
-    static QHash<int, char>      *currentGroups;
-    static QHash<int, QString>   *uidCache;
-    static QHash<int, QString>   *gidCache;
+    static QSet<int> currentGroups;
+    static QHash<int, QString> uidCache;
+    static QHash<int, QString> gidCache;
 };
 
 #endif

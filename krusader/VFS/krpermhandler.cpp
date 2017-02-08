@@ -31,62 +31,15 @@
 #include "krpermhandler.h"
 
 // QtCore
-#include <QDateTime>
-#include <QDir>
 #include <QLocale>
-#include <qplatformdefs.h>
 
-QHash<int, char>    *KRpermHandler::currentGroups = 0L;
-QHash<int, QString> *KRpermHandler::uidCache = 0L;
-QHash<int, QString> *KRpermHandler::gidCache = 0L;
+#include <grp.h>
+#include <pwd.h>
+#include <sys/stat.h>
 
-char KRpermHandler::writeable(QString perm, gid_t gid, uid_t uid)
-{
-    // root override
-    if (getuid() == 0)
-        return ALLOWED_PERM;
-    // first check other permissions.
-    if (perm[ 8 ] != '-') return ALLOWED_PERM;
-    // now check group permission
-    if ((perm[ 5 ] != '-') && (currentGroups->find(gid) != currentGroups->end()))
-        return ALLOWED_PERM;
-    // the last chance - user permissions
-    if ((perm[ 2 ] != '-') && (uid == getuid()))
-        return ALLOWED_PERM;
-    // sorry !
-    return NO_PERM;
-}
-
-char KRpermHandler::readable(QString perm, gid_t gid, uid_t uid)
-{
-    // root override
-    if (getuid() == 0)
-        return ALLOWED_PERM;
-    // first check other permissions.
-    if (perm[ 7 ] != '-') return ALLOWED_PERM;
-    // now check group permission
-    if ((perm[ 4 ] != '-') && (currentGroups->find(gid) != currentGroups->end()))
-        return ALLOWED_PERM;
-    // the last chance - user permissions
-    if ((perm[ 1 ] != '-') && (uid == getuid()))
-        return ALLOWED_PERM;
-    // sorry !
-    return NO_PERM;
-}
-
-char KRpermHandler::executable(QString perm, gid_t gid, uid_t uid)
-{
-    // first check other permissions.
-    if (perm[ 9 ] != '-') return ALLOWED_PERM;
-    // now check group permission
-    if ((perm[ 6 ] != '-') && (currentGroups->find(gid) != currentGroups->end()))
-        return ALLOWED_PERM;
-    // the last chance - user permissions
-    if ((perm[ 3 ] != '-') && (uid == getuid()))
-        return ALLOWED_PERM;
-    // sorry !
-    return NO_PERM;
-}
+QSet<int> KRpermHandler::currentGroups;
+QHash<int, QString> KRpermHandler::uidCache;
+QHash<int, QString> KRpermHandler::gidCache;
 
 QString KRpermHandler::mode2QString(mode_t m)
 {
@@ -122,20 +75,16 @@ void KRpermHandler::init()
     // set the umask to 022
     //umask( 022 );
 
-    // 50 groups should be enough
-    gid_t groupList[ 50 ];
-    int groupNo = getgroups(50, groupList);
+    // 200 groups should be enough
+    gid_t groupList[200];
+    int groupNo = getgroups(200, groupList);
 
-    // init the groups and user caches
-    currentGroups = new QHash<int, char>();
-    uidCache = new QHash<int, QString>();
-    gidCache = new QHash<int, QString>();
 // In kdewin32 implementation as of 4.1.2, getpwent always returns the same struct
 #ifndef Q_WS_WIN
     // fill the UID cache
     struct passwd *pass;
     while ((pass = getpwent()) != 0L) {
-        uidCache->insert(pass->pw_uid, pass->pw_name);
+        uidCache.insert(pass->pw_uid, pass->pw_name);
     }
     delete pass;
     endpwent();
@@ -143,7 +92,7 @@ void KRpermHandler::init()
     // fill the GID cache
     struct group *gr;
     while ((gr = getgrent()) != 0L) {
-        gidCache->insert(gr->gr_gid, QString(gr->gr_name));
+        gidCache.insert(gr->gr_gid, QString(gr->gr_name));
     }
     delete gr;
     endgrent();
@@ -151,51 +100,75 @@ void KRpermHandler::init()
 
     // fill the groups for the current user
     for (int i = 0; i < groupNo; ++i) {
-        (*currentGroups)[ groupList[ i ] ] = char(1);
+        currentGroups.insert(groupList[i]);
     }
     // just to be sure add the effective gid...
-    (*currentGroups)[ getegid()] = char(1);
+    currentGroups.insert(getegid());
 }
 
-char KRpermHandler::ftpWriteable(QString fileOwner, QString userName, QString perm)
+char KRpermHandler::readable(const QString &perm, gid_t gid, uid_t uid)
 {
-    // first check other permissions.
-    if (perm[ 8 ] != '-') return ALLOWED_PERM;
-    // can't check group permission !
-    // so check the user permissions
-    if ((perm[ 2 ] != '-') && (fileOwner == userName))
+    return getLocalPermission(perm, gid, uid, 0);
+}
+
+char KRpermHandler::writeable(const QString &perm, gid_t gid, uid_t uid)
+{
+    return getLocalPermission(perm, gid, uid, 1);
+}
+
+char KRpermHandler::executable(const QString &perm, gid_t gid, uid_t uid)
+{
+    return getLocalPermission(perm, gid, uid, 2, true);
+}
+
+char KRpermHandler::getLocalPermission(const QString &perm, gid_t gid, uid_t uid, int permOffset,
+                                       bool ignoreRoot)
+{
+    // root override
+    if (!ignoreRoot && getuid() == 0)
         return ALLOWED_PERM;
-    if ((perm[ 2 ] != '-') && (userName.isEmpty()))
-        return UNKNOWN_PERM;
-    if (perm[ 5 ] != '-') return UNKNOWN_PERM;
+    // first check other permissions.
+    if (perm[7 + permOffset] != '-')
+        return ALLOWED_PERM;
+    // now check group permission
+    if ((perm[4 + permOffset] != '-') && currentGroups.contains(gid))
+        return ALLOWED_PERM;
+    // the last chance - user permissions
+    if ((perm[1 + permOffset] != '-') && (uid == getuid()))
+        return ALLOWED_PERM;
+    // sorry !
     return NO_PERM;
 }
 
-char KRpermHandler::ftpReadable(QString fileOwner, QString userName, QString perm)
+char KRpermHandler::ftpReadable(const QString &fileOwner, const QString &userName, const QString &perm)
 {
-    // first check other permissions.
-    if (perm[ 7 ] != '-') return ALLOWED_PERM;
-    // can't check group permission !
-    // so check the user permissions
-    if ((perm[ 1 ] != '-') && (fileOwner == userName))
-        return ALLOWED_PERM;
-    if ((perm[ 1 ] != '-') && (userName.isEmpty()))
-        return UNKNOWN_PERM;
-    if (perm[ 4 ] != '-') return UNKNOWN_PERM;
-    return NO_PERM;
+    return getFtpPermission(fileOwner, userName, perm, 0);
 }
 
-char KRpermHandler::ftpExecutable(QString fileOwner, QString userName, QString perm)
+char KRpermHandler::ftpWriteable(const QString &fileOwner, const QString &userName, const QString &perm)
+{
+    return getFtpPermission(fileOwner, userName, perm, 1);
+}
+
+char KRpermHandler::ftpExecutable(const QString &fileOwner, const QString &userName, const QString &perm)
+{
+    return getFtpPermission(fileOwner, userName, perm, 2);
+}
+
+char KRpermHandler::getFtpPermission(const QString &fileOwner, const QString &userName,
+                                     const QString &perm, int permOffset)
 {
     // first check other permissions.
-    if (perm[ 9 ] != '-') return ALLOWED_PERM;
+    if (perm[7 + permOffset] != '-')
+        return ALLOWED_PERM;
     // can't check group permission !
     // so check the user permissions
-    if ((perm[ 3 ] != '-') && (fileOwner == userName))
+    if ((perm[1 + permOffset] != '-') && (fileOwner == userName))
         return ALLOWED_PERM;
-    if ((perm[ 3 ] != '-') && (userName.isEmpty()))
+    if ((perm[1 + permOffset] != '-') && (userName.isEmpty()))
         return UNKNOWN_PERM;
-    if (perm[ 6 ] != '-') return UNKNOWN_PERM;
+    if (perm[4 + permOffset] != '-')
+        return UNKNOWN_PERM;
     return NO_PERM;
 }
 
@@ -206,14 +179,10 @@ QString KRpermHandler::parseSize(KIO::filesize_t val)
 
 QString KRpermHandler::gid2group(gid_t groupId)
 {
-    if (gidCache->find(groupId) == gidCache->end())
-        return QString("???");
-    return (*gidCache)[ groupId ];
+   return gidCache.value(groupId, QStringLiteral("???"));
 }
 
 QString KRpermHandler::uid2user(uid_t userId)
 {
-    if (uidCache->find(userId) == uidCache->end())
-        return QString("???");
-    return (*uidCache)[ userId ];
+    return uidCache.value(userId, QStringLiteral("???"));
 }
