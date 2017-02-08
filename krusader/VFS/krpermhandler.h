@@ -52,9 +52,6 @@ class KRpermHandler
 public:
     static void init();
 
-    static gid_t group2gid(QString group);
-    static uid_t user2uid(QString user);
-
     static QString gid2group(gid_t groupId);
     static QString uid2user(uid_t userId);
 
@@ -72,9 +69,6 @@ public:
 private:
     KRpermHandler() {}
 
-    // cache for passwd and group entries
-    static QHash<QString, uid_t> *passwdCache;
-    static QHash<QString, gid_t> *groupCache;
     static QHash<int, char>      *currentGroups;
     static QHash<int, QString>   *uidCache;
     static QHash<int, QString>   *gidCache;

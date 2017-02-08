@@ -36,8 +36,6 @@
 #include <QLocale>
 #include <qplatformdefs.h>
 
-QHash<QString, uid_t> *KRpermHandler::passwdCache = 0L;
-QHash<QString, gid_t> *KRpermHandler::groupCache = 0L;
 QHash<int, char>    *KRpermHandler::currentGroups = 0L;
 QHash<int, QString> *KRpermHandler::uidCache = 0L;
 QHash<int, QString> *KRpermHandler::gidCache = 0L;
@@ -129,8 +127,6 @@ void KRpermHandler::init()
     int groupNo = getgroups(50, groupList);
 
     // init the groups and user caches
-    passwdCache = new QHash<QString, uid_t>();
-    groupCache = new QHash<QString, gid_t>();
     currentGroups = new QHash<int, char>();
     uidCache = new QHash<int, QString>();
     gidCache = new QHash<int, QString>();
@@ -139,8 +135,7 @@ void KRpermHandler::init()
     // fill the UID cache
     struct passwd *pass;
     while ((pass = getpwent()) != 0L) {
-        passwdCache->insert(pass->pw_name, pass->pw_uid);
-        (*uidCache)[ pass->pw_uid ] = QString(pass->pw_name);
+        uidCache->insert(pass->pw_uid, pass->pw_name);
     }
     delete pass;
     endpwent();
@@ -148,12 +143,12 @@ void KRpermHandler::init()
     // fill the GID cache
     struct group *gr;
     while ((gr = getgrent()) != 0L) {
-        groupCache->insert(gr->gr_name, gr->gr_gid);
-        (*gidCache)[ gr->gr_gid ] = QString(gr->gr_name);
+        gidCache->insert(gr->gr_gid, QString(gr->gr_name));
     }
     delete gr;
     endgrent();
 #endif
+
     // fill the groups for the current user
     for (int i = 0; i < groupNo; ++i) {
         (*currentGroups)[ groupList[ i ] ] = char(1);
@@ -222,19 +217,6 @@ QString KRpermHandler::parseSize(KIO::filesize_t val)
 
     return size;
 #endif
-}
-
-gid_t KRpermHandler::group2gid(QString group)
-{
-    if (groupCache->find(group) == groupCache->end())
-        return getgid();
-    return (*groupCache)[ group ];
-}
-uid_t KRpermHandler::user2uid(QString user)
-{
-    if (passwdCache->find(user) == passwdCache->end())
-        return getuid();
-    return (*passwdCache)[ user ];
 }
 
 QString KRpermHandler::gid2group(gid_t groupId)
