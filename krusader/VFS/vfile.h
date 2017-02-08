@@ -32,59 +32,79 @@
 #include <sys/types.h>
 
 // QtCore
-#include <QObject>
 #include <QString>
 #include <QUrl>
 
 #include <KIO/Global>
 #include <KIO/UDSEntry>
 
-#define PERM_ALL -2
-
 /**
  * The Virtual File class handles all the details of maintaining a single
  * file component within the virtual file system (vfs). a vfile object
  * contains the necessary details about a file and member functions which
- *  allow the object to give out the needed details about the file.
+ * allow the object to give out the needed details about the file.
  */
 class vfile
 {
 
 public:
-    vfile() {}
-
     /**
-    * Use this constructor when you know the following files properties: \n
-    * file name, file size, file permissions,is the file a link,owner uid & group uid.
-    */
-    vfile(const QString &name, const KIO::filesize_t size, const QString &perm, const time_t mtime,
-          const bool symLink, const bool brokenLink, const uid_t owner, const gid_t group,
-          const QString &mime, const QString &symDest, const mode_t mode, const int rwx = -1,
-          const QUrl &url = QUrl());
+     * Create a new file item.
+     *
+     * Don't use this constructor outside of VFS! If you really need to, create a new static
+     * factory method below.
+     *
+     * NOTE: According to Unix standard uid and gid CAN have signed or unsigned type. We use (e.g.)
+     * "(uid_t) -1" as a special invalid user ID for non-local files.
+     * Note: ACLs are currently only used by Synchronizer.
+     *
+     * @param name the display name of this file. Don't have to be the real filename.
+     * @param url (real) absolute URL of this file
+     * @param isDir true if this file is a directory. Else false.
+     * @param size size of file
+     * @param mode mode of file (file type and permissions)
+     * @param mtime file modification time
+     * @param uid Unix user id of file owner. Use -1 here and provide an owner name for non-local files.
+     * @param gid Unix group id of file group. Use -1 here and provide a group name for non-local files.
+     * @param owner user name of file owner. Can be empty for local files
+     * @param group group name of file group. Cam be empty for local files.
+     * @param isLink true if file is a symbolic link. Else false.
+     * @param linkDest link destination path if file is a link. Relative or absolute. Empty by default.
+     * @param isBrokenLink true if file is a symbolic link and destination file does not exists. Else false.
+     * @param acl ACL string of file. Can be empty and is loaded on demand.
+     * @param defaultAcl default ACL string of file (only for directories). Can be empty and is loaded on demand.
+     */
+    vfile(const QString &name, const QUrl &url, bool isDir,
+          KIO::filesize_t size, mode_t mode, time_t mtime,
+          uid_t uid = -1, gid_t gid = -1,
+          const QString &owner = QString(), const QString &group = QString(),
+          bool isLink = false, const QString &linkDest = QString(), bool isBrokenLink = false,
+          const QString &acl = QString(), const QString &defaultAcl = QString());
 
-    vfile(const QString &name, const KIO::filesize_t size, const QString &perm, const time_t mtime,
-          const bool symLink, const bool brokenLink, const QString &owner, const QString &group,
-          const QString &userName, const QString &mime, const QString &symDest, const mode_t mode,
-          const int rwx = -1, const QString &aclString = QString(),
-          const QString &aclDfltString = QString(), const QUrl &url = QUrl());
+    /** Create a new ".." dummy file item. */
+    static vfile *createDummy();
+    /** Create a new virtual directory. */
+    static vfile *createVirtualDir(const QString &name, const QUrl &url);
+    /** Create a new file item copy with a different name. */
+    static vfile *createCopy(const vfile &file, const QString &newName);
 
     // following functions give-out file details
-    inline const QString &vfile_getName() const { return vfile_name; }
-    inline KIO::filesize_t vfile_getSize() const { return vfile_size; }
-    inline const QString &vfile_getPerm() const { return vfile_perm; }
-    inline bool vfile_isDir() const { return vfile_isdir; }
-    inline bool vfile_isSymLink() const { return vfile_symLink; }
-    inline bool vfile_isBrokenLink() const { return vfile_brokenLink; }
-    inline const QString &vfile_getSymDest() const { return vfile_symDest; }
-    inline mode_t vfile_getMode() const { return vfile_mode; }
-    inline uid_t vfile_getUid() const { return vfile_ownerId; }
-    inline gid_t vfile_getGid() const { return vfile_groupId; }
-    inline time_t vfile_getTime_t() const { return vfile_time_t; }
-    inline const QUrl &vfile_getUrl() const { return vfile_url; }
+    inline const QString &vfile_getName() const { return m_name; }
+    inline KIO::filesize_t vfile_getSize() const { return m_size; }
+    inline const QString &vfile_getPerm() const { return m_permissions; }
+    inline bool vfile_isDir() const { return m_isDir; }
+    inline bool vfile_isSymLink() const { return m_isLink; }
+    inline bool vfile_isBrokenLink() const { return m_isBrokenLink; }
+    inline const QString &vfile_getSymDest() const { return m_linkDest; }
+    inline mode_t vfile_getMode() const { return m_mode; }
+    inline time_t vfile_getTime_t() const { return m_mtime; }
+    inline const QUrl &vfile_getUrl() const { return m_url; }
+    inline const QString &vfile_getOwner() const { return m_owner; }
+    inline const QString &vfile_getGroup() const { return m_group; }
 
     const QString &vfile_getMime();
-    const QString &vfile_getOwner();
-    const QString &vfile_getGroup();
+    const QString &vfile_getIcon();
+
     const QString &vfile_getACL();
     const QString &vfile_getDefaultACL();
     const KIO::UDSEntry vfile_getEntry(); //< return the UDSEntry from the vfile
@@ -96,45 +116,41 @@ public:
      * used ONLY when calculating a directory's space, needs to change the
      * displayed size of the viewitem and thus the vfile. For INTERNAL USE !
      */
-    inline void vfile_setSize(KIO::filesize_t size) { vfile_size = size; }
-
-    inline void vfile_setIcon(const QString &icn) { vfile_icon = icn; }
-    QString vfile_getIcon();
-
-    virtual ~vfile() {}
+    void vfile_setSize(KIO::filesize_t size) { m_size = size; }
 
     inline static void vfile_loadUserDefinedFolderIcons(bool load) {
         vfile_userDefinedFolderIcons = load;
     }
 
 private:
-    //    bool operator==(const vfile &vf) const;
-    //    inline bool operator!=(const vfile &vf) { return !((*this) == vf); }
+    void vfile_setIcon(const QString &icon) { m_icon = icon; m_mimeType = "?"; }
     void vfile_loadACL();
 
-    // the file information list
-    QString vfile_name;         //< file name
-    KIO::filesize_t vfile_size; //< file size
-    mode_t vfile_mode;          //< file mode
-    uid_t vfile_ownerId;        //< file owner id
-    gid_t vfile_groupId;        //< file group id
-    QString vfile_owner;        //< file owner name
-    QString vfile_group;        //< file group name
-    QString vfile_userName;     //< the current username
-    QString vfile_perm;         //< file permissions string
-    time_t vfile_time_t;        //< file modification in time_t format
-    bool vfile_symLink;         //< true if the file is a symlink
-    bool vfile_brokenLink;
-    QString vfile_mimeType; //< file mimetype
-    QString vfile_symDest;  //< if it's a sym link - its detination
-    QUrl vfile_url;         //< file URL - empty by default
-    QString vfile_icon;     //< the name of the icon file
-    bool vfile_isdir;       //< flag, if it's a directory
-    int vfile_rwx;          //< flag, showing read, write, execute properties
-    bool vfile_acl_loaded;  //<flag, indicates that ACL permissions already loaded
-    bool vfile_has_acl;     //< flag, indicates ACL permissions
-    QString vfile_acl;      //< ACL permission string
-    QString vfile_def_acl;  //< ACL default string
+    QString m_name;             //< file name
+    QUrl m_url;                 //< file URL
+    bool m_isDir;               //< flag, true if it's a directory
+
+    KIO::filesize_t m_size;     //< file size
+    mode_t m_mode;              //< file mode (file type and permissions)
+    time_t m_mtime;             //< file modification time
+
+    uid_t m_uid;                //< file owner id
+    gid_t m_gid;                //< file group id
+    QString m_owner;            //< file owner name
+    QString m_group;            //< file group name
+
+    bool m_isLink;              //< true if the file is a symlink
+    QString m_linkDest;         //< if it's a sym link - its detination
+    bool m_isBrokenLink;        //< true if the link destianation does not exist
+
+    QString m_permissions;      //< file permissions string
+
+    QString m_acl;              //< ACL permission string, may lazy initialized
+    QString m_defaulfAcl;       //< ACL default string, may lazy initialized
+    bool m_AclLoaded;           //< flag, indicates that ACL permissions already loaded
+
+    QString m_mimeType;         //< file mimetype, lazy initialized
+    QString m_icon;             //< the name of the icon file, lazy initialized
 
     static bool vfile_userDefinedFolderIcons;
 };

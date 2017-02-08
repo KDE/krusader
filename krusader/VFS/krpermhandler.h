@@ -58,9 +58,9 @@ public:
     static QString gid2group(gid_t groupId);
     static QString uid2user(uid_t userId);
 
-    static char writeable(QString perm, gid_t gid, uid_t uid, int rwx = -1);
-    static char readable(QString perm, gid_t gid, uid_t uid, int rwx = -1);
-    static char executable(QString perm, gid_t gid, uid_t uid, int rwx = -1);
+    static char writeable(QString perm, gid_t gid, uid_t uid);
+    static char readable(QString perm, gid_t gid, uid_t uid);
+    static char executable(QString perm, gid_t gid, uid_t uid);
 
     static char ftpWriteable(QString fileOwner, QString userName, QString perm);
     static char ftpReadable(QString fileOwner, QString userName, QString perm);

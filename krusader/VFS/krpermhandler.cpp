@@ -42,10 +42,8 @@ QHash<int, char>    *KRpermHandler::currentGroups = 0L;
 QHash<int, QString> *KRpermHandler::uidCache = 0L;
 QHash<int, QString> *KRpermHandler::gidCache = 0L;
 
-char KRpermHandler::writeable(QString perm, gid_t gid, uid_t uid, int rwx)
+char KRpermHandler::writeable(QString perm, gid_t gid, uid_t uid)
 {
-    if (rwx != -1)
-        return (rwx & W_OK) ? ALLOWED_PERM : NO_PERM;
     // root override
     if (getuid() == 0)
         return ALLOWED_PERM;
@@ -61,10 +59,8 @@ char KRpermHandler::writeable(QString perm, gid_t gid, uid_t uid, int rwx)
     return NO_PERM;
 }
 
-char KRpermHandler::readable(QString perm, gid_t gid, uid_t uid, int rwx)
+char KRpermHandler::readable(QString perm, gid_t gid, uid_t uid)
 {
-    if (rwx != -1)
-        return (rwx & R_OK) ? ALLOWED_PERM : NO_PERM;
     // root override
     if (getuid() == 0)
         return ALLOWED_PERM;
@@ -80,10 +76,8 @@ char KRpermHandler::readable(QString perm, gid_t gid, uid_t uid, int rwx)
     return NO_PERM;
 }
 
-char KRpermHandler::executable(QString perm, gid_t gid, uid_t uid, int rwx)
+char KRpermHandler::executable(QString perm, gid_t gid, uid_t uid)
 {
-    if (rwx != -1)
-        return (rwx & X_OK) ? ALLOWED_PERM : NO_PERM;
     // first check other permissions.
     if (perm[ 9 ] != '-') return ALLOWED_PERM;
     // now check group permission

@@ -1080,10 +1080,9 @@ void KrView::refresh()
 
     QList<vfile*> vfiles;
 
-    // if we are not at the root add the ".." entery
+    // if we are not at the root add the ".." entry
     if(!_files->isRoot()) {
-        _dummyVfile = new vfile("..", 0, "drwxrwxrwx", 0, false, false, 0, 0, "", "", 0, -1);
-        _dummyVfile->vfile_setIcon("go-up");
+        _dummyVfile = vfile::createDummy();
         vfiles << _dummyVfile;
     }
 

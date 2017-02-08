@@ -45,181 +45,136 @@ bool vfile::vfile_userDefinedFolderIcons = true;
 // TODO set default vfile_size to '-1' to distinguish between empty directories and directories with
 // unknown size
 
-vfile::vfile(const QString &name, // useful construtor
-             const KIO::filesize_t size, const QString &perm, const time_t mtime,
-             const bool symLink, const bool brokenLink, const uid_t owner, const gid_t group,
-             const QString &mime, const QString &symDest, const mode_t mode, const int rwx,
-             const QUrl &url)
+vfile::vfile(const QString &name, const QUrl &url, bool isDir,
+             KIO::filesize_t size, mode_t mode, time_t mtime,
+             uid_t uid, gid_t gid, const QString &owner, const QString &group,
+             bool isLink, const QString &linkDest, bool isBrokenLink,
+             const QString &acl, const QString &defaultAcl)
+    : m_name(name), m_url(url), m_isDir(isDir),
+      m_size(size), m_mode(mode), m_mtime(mtime),
+      m_uid(uid), m_gid(gid), m_owner(owner), m_group(group),
+      m_isLink(isLink), m_linkDest(linkDest), m_isBrokenLink(isBrokenLink),
+      m_acl(acl), m_defaulfAcl(defaultAcl), m_AclLoaded(false),
+      m_mimeType(), m_icon()
 {
-    vfile_name = name;
-    vfile_size = size;
-    vfile_owner.clear();
-    vfile_ownerId = owner;
-    vfile_group.clear();
-    vfile_groupId = group;
-    vfile_userName.clear();
-    vfile_perm = perm;
-    vfile_time_t = mtime;
-    vfile_symLink = symLink;
-    vfile_brokenLink = brokenLink;
-    vfile_mimeType = mime;
-    vfile_symDest = symDest;
-    vfile_mode = mode;
-    vfile_isdir = (perm[0] == 'd');
-    if (vfile_isDir() && !vfile_symLink)
-        vfile_size = 0;
-    vfile_rwx = rwx;
-    vfile_url = url;
-    vfile_acl_loaded = false;
+    m_permissions = KRpermHandler::mode2QString(mode);
+
+    if (m_owner.isEmpty())
+        m_owner = KRpermHandler::uid2user(m_uid);
+
+    if (m_group.isEmpty())
+        m_group = KRpermHandler::gid2group(m_gid);
+
+    if (m_isDir && !m_isLink)
+        m_size = 0;
 }
 
-vfile::vfile(const QString &name, // useful construtor
-             const KIO::filesize_t size, const QString &perm, const time_t mtime,
-             const bool symLink, const bool brokenLink, const QString &owner, const QString &group,
-             const QString &userName, const QString &mime, const QString &symDest,
-             const mode_t mode, const int rwx, const QString &aclString,
-             const QString &aclDfltString, const QUrl &url)
+vfile *vfile::createDummy()
 {
-    vfile_name = name;
-    vfile_size = size;
-    vfile_owner = owner;
-    vfile_group = group;
-    vfile_userName = userName;
-    vfile_ownerId = KRpermHandler::user2uid(owner);
-    vfile_groupId = KRpermHandler::group2gid(group);
-    vfile_perm = perm;
-    vfile_time_t = mtime;
-    vfile_symLink = symLink;
-    vfile_brokenLink = brokenLink;
-    vfile_mimeType = mime;
-    vfile_symDest = symDest;
-    vfile_mode = mode;
-    vfile_isdir = (perm[0] == 'd');
-    if (vfile_isDir() && !vfile_symLink)
-        vfile_size = 0;
-    vfile_acl = aclString;
-    vfile_def_acl = aclDfltString;
-    vfile_has_acl = !aclString.isNull() || !aclDfltString.isNull();
-    vfile_acl_loaded = true;
-    vfile_rwx = rwx;
-    vfile_url = url;
+    vfile *file = new vfile("..", QUrl(), true,
+                            0, 0, 0);
+    file->vfile_setIcon("go-up");
+    return file;
+}
+
+vfile *vfile::createVirtualDir(const QString &name, const QUrl &url)
+{
+    return new vfile(name, url, true,
+                     0, 0700, time(0),
+                     getuid(), getgid());
+}
+
+vfile *vfile::createCopy(const vfile &file, const QString &newName)
+{
+    return new vfile(newName, file.vfile_getUrl(), file.vfile_isDir(),
+                     file.vfile_getSize(), file.vfile_getMode(), file.vfile_getTime_t(),
+                     file.m_uid, file.m_gid, file.vfile_getOwner(), file.vfile_getGroup(),
+                     file.vfile_isSymLink(), file.vfile_getSymDest(), file.vfile_isBrokenLink());
 }
 
 char vfile::vfile_isReadable() const
 {
-    if (vfile_rwx == PERM_ALL)
-        return ALLOWED_PERM;
-    else if (vfile_userName.isNull())
-        return KRpermHandler::readable(vfile_perm, vfile_groupId, vfile_ownerId, vfile_rwx);
+    if (m_uid != (uid_t)-1 && m_gid != (gid_t)-1)
+        return KRpermHandler::readable(m_permissions, m_gid, m_uid);
     else
-        return KRpermHandler::ftpReadable(vfile_owner, vfile_userName, vfile_perm);
+        return KRpermHandler::ftpReadable(m_owner, m_url.userName(), m_permissions);
 }
 
 char vfile::vfile_isWriteable() const
 {
-    if (vfile_rwx == PERM_ALL)
-        return ALLOWED_PERM;
-    else if (vfile_userName.isNull())
-        return KRpermHandler::writeable(vfile_perm, vfile_groupId, vfile_ownerId, vfile_rwx);
+    if (m_uid != (uid_t)-1 && m_gid != (gid_t)-1)
+        return KRpermHandler::writeable(m_permissions, m_gid, m_uid);
     else
-        return KRpermHandler::ftpWriteable(vfile_owner, vfile_userName, vfile_perm);
+        return KRpermHandler::ftpWriteable(m_owner, m_url.userName(), m_permissions);
 }
 
 char vfile::vfile_isExecutable() const
 {
-    if (vfile_rwx == PERM_ALL) {
-        if ((vfile_mode & 0111) || vfile_isdir)
-            return ALLOWED_PERM;
-        else
-            return NO_PERM;
-    } else if (vfile_userName.isNull())
-        return KRpermHandler::executable(vfile_perm, vfile_groupId, vfile_ownerId, vfile_rwx);
+    if (m_uid != (uid_t)-1 && m_gid != (gid_t)-1)
+        return KRpermHandler::executable(m_permissions, m_gid, m_uid);
     else
-        return KRpermHandler::ftpExecutable(vfile_owner, vfile_userName, vfile_perm);
+        return KRpermHandler::ftpExecutable(m_owner, m_url.userName(), m_permissions);
 }
 
 const QString &vfile::vfile_getMime()
 {
-    if (vfile_mimeType.isEmpty()) {
-        if (vfile_isdir) {
-            vfile_mimeType = "inode/directory";
-            vfile_icon = "inode-directory";
+    if (m_mimeType.isEmpty()) {
+        if (m_isDir) {
+            m_mimeType = "inode/directory";
+            m_icon = "inode-directory";
         } else if (vfile_isBrokenLink()) {
-            vfile_mimeType = "unknown";
-            vfile_icon = "file-broken";
+            m_mimeType = "unknown";
+            m_icon = "file-broken";
         } else {
             const QMimeDatabase db;
             const QMimeType mt = db.mimeTypeForUrl(vfile_getUrl());
-            vfile_mimeType = mt.isValid() ? mt.name() : "unknown";
-            vfile_icon = mt.isValid() ? mt.iconName() : "file-broken";
+            m_mimeType = mt.isValid() ? mt.name() : "unknown";
+            m_icon = mt.isValid() ? mt.iconName() : "file-broken";
 
-            if (vfile_mimeType == "inode/directory") {
-                // TODO view update needed?
-                vfile_perm[0] = 'd';
-                vfile_isdir = true;
+            if (m_mimeType == "inode/directory") {
+                // TODO view update needed? and does this ever happen?
+                m_isDir = true;
             }
         }
 
-        if (vfile_isdir && vfile_userDefinedFolderIcons) {
+        if (m_isDir && vfile_userDefinedFolderIcons) {
             const QUrl url = vfile_getUrl();
             if (url.isLocalFile()) {
                 const QString file = url.toLocalFile() + "/.directory";
                 const KDesktopFile cfg(file);
                 const QString icon = cfg.readIcon();
                 if (!icon.isEmpty())
-                    vfile_icon = icon.startsWith(QLatin1String("./")) ?
+                    m_icon = icon.startsWith(QLatin1String("./")) ?
                                      // relative path
                                      url.toLocalFile() + '/' + icon :
                                      icon;
             }
         }
     }
-    return vfile_mimeType;
+    return m_mimeType;
 }
 
-QString vfile::vfile_getIcon()
+const QString &vfile::vfile_getIcon()
 {
-    if (vfile_icon.isEmpty()) {
+    if (m_icon.isEmpty()) {
         vfile_getMime(); // sets the icon
     }
-    return vfile_icon;
-}
-
-const QString &vfile::vfile_getOwner()
-{
-    if (vfile_owner.isEmpty())
-        vfile_owner = KRpermHandler::uid2user(vfile_getUid());
-    return vfile_owner;
-}
-
-const QString &vfile::vfile_getGroup()
-{
-    if (vfile_group.isEmpty())
-        vfile_group = KRpermHandler::gid2group(vfile_getGid());
-    return vfile_group;
+    return m_icon;
 }
 
 const QString &vfile::vfile_getACL()
 {
-    if (!vfile_acl_loaded)
+    if (!m_AclLoaded)
         vfile_loadACL();
-    return vfile_acl;
-}
-
-const QString &vfile::vfile_getDefaultACL()
-{
-    if (!vfile_acl_loaded)
-        vfile_loadACL();
-    return vfile_def_acl;
+    return m_acl;
 }
 
 void vfile::vfile_loadACL()
 {
-    if (vfile_url.isLocalFile()) {
-        KrVfsHandler::getACL(this, vfile_acl, vfile_def_acl);
-        vfile_has_acl = !vfile_acl.isNull() || !vfile_def_acl.isNull();
+    if (m_url.isLocalFile()) {
+        KrVfsHandler::getACL(this, m_acl, m_defaulfAcl);
     }
-    vfile_acl_loaded = true;
+    m_AclLoaded = true;
 }
 
 const KIO::UDSEntry vfile::vfile_getEntry()
@@ -238,16 +193,16 @@ const KIO::UDSEntry vfile::vfile_getEntry()
     if (vfile_isSymLink())
         entry.insert(KIO::UDSEntry::UDS_LINK_DEST, vfile_getSymDest());
 
-    if (!vfile_acl_loaded)
+    if (!m_AclLoaded)
         vfile_loadACL();
-    if (vfile_has_acl) {
+    if (!m_acl.isNull() || !m_defaulfAcl.isNull()) {
         entry.insert(KIO::UDSEntry::UDS_EXTENDED_ACL, 1);
 
-        if (!vfile_acl.isNull())
-            entry.insert(KIO::UDSEntry::UDS_ACL_STRING, vfile_acl);
+        if (!m_acl.isNull())
+            entry.insert(KIO::UDSEntry::UDS_ACL_STRING, m_acl);
 
-        if (!vfile_def_acl.isNull())
-            entry.insert(KIO::UDSEntry::UDS_DEFAULT_ACL_STRING, vfile_acl);
+        if (!m_defaulfAcl.isNull())
+            entry.insert(KIO::UDSEntry::UDS_DEFAULT_ACL_STRING, m_acl);
     }
 
     return entry;
