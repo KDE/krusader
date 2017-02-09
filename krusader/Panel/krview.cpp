@@ -162,13 +162,14 @@ void KrViewOperator::setMassSelectionUpdate(bool upd)
 
 void KrViewOperator::settingsChanged(KrViewProperties::PropertyType properties)
 {
-    if(_view->_updateDefaultSettings) {
-        if(_changedView != _view)
-            saveDefaultSettings();
-        _changedView = _view;
-        _changedProperties = static_cast<KrViewProperties::PropertyType>(_changedProperties | properties);
-        _saveDefaultSettingsTimer.start(100);
-    }
+    if(!_view->_updateDefaultSettings || _view->_ignoreSettingsChange)
+        return;
+
+    if(_changedView != _view)
+        saveDefaultSettings();
+    _changedView = _view;
+    _changedProperties = static_cast<KrViewProperties::PropertyType>(_changedProperties | properties);
+    _saveDefaultSettingsTimer.start(100);
 }
 
 void KrViewOperator::saveDefaultSettings()
@@ -187,7 +188,8 @@ const KrView::IconSizes KrView::iconSizes;
 KrView::KrView(KrViewInstance &instance, KConfig *cfg)
     : _config(cfg), _properties(0), _focused(false), _fileIconSize(0),
       _instance(instance), _files(0), _mainWindow(0), _widget(0), _nameToMakeCurrent(QString()),
-      _previews(0), _updateDefaultSettings(false), _count(0), _numDirs(0), _dummyVfile(0)
+      _previews(0), _updateDefaultSettings(false), _ignoreSettingsChange(false), _count(0),
+      _numDirs(0), _dummyVfile(0)
 {
 }
 
@@ -204,7 +206,7 @@ KrView::~KrView()
         qFatal("A class inheriting KrView didn't delete _operator!");
 }
 
-void KrView::init()
+void KrView::init(bool enableUpdateDefaultSettings)
 {
     // sanity checks:
     if (!_widget)
@@ -214,8 +216,10 @@ void KrView::init()
     _operator = createOperator();
     setup();
     restoreDefaultSettings();
-    KConfigGroup grp(_config, _instance.name());
-    enableUpdateDefaultSettings(true);
+
+    _updateDefaultSettings = enableUpdateDefaultSettings &&
+        KConfigGroup(_config, "Startup").readEntry("Update Default Panel Settings", _RememberPos);
+
     _instance.m_objects.append(this);
 }
 
@@ -264,15 +268,6 @@ void KrView::initProperties()
         ++i;
     }
     _properties->atomicExtensions = atomicExtensions;
-}
-
-void KrView::enableUpdateDefaultSettings(bool enable)
-{
-    if(enable) {
-        const KConfigGroup grpStartup(_config, "Startup");
-        _updateDefaultSettings = grpStartup.readEntry("Update Default Panel Settings", _RememberPos);
-    } else
-        _updateDefaultSettings  = false;
 }
 
 void KrView::showPreviews(bool show)
@@ -878,10 +873,9 @@ void KrView::saveSettings(KConfigGroup group, KrViewProperties::PropertyType pro
 
 void KrView::restoreSettings(KConfigGroup group)
 {
-    bool tmp = _updateDefaultSettings;
-    _updateDefaultSettings = false;
+    _ignoreSettingsChange = true;
     doRestoreSettings(group);
-    _updateDefaultSettings = tmp;
+    _ignoreSettingsChange = false;
     refresh();
 }
 
@@ -902,10 +896,9 @@ void KrView::applySettingsToOthers()
     for(int i = 0; i < _instance.m_objects.length(); i++) {
         KrView *view = _instance.m_objects[i];
         if(this != view) {
-            bool tmp = view->_updateDefaultSettings;
-            view->_updateDefaultSettings = false;
+            view->_ignoreSettingsChange = true;
             view->copySettingsFrom(this);
-            view->_updateDefaultSettings = tmp;
+            view->_ignoreSettingsChange = false;
         }
     }
 }

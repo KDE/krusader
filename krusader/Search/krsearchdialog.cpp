@@ -227,9 +227,8 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     result = new SearchResultContainer(this);
     // the view
     resultView = KrViewFactory::createView(RESULTVIEW_TYPE, resultTab, krConfig);
-    resultView->init();
+    resultView->init(false);
     resultView->restoreSettings(KConfigGroup(&group, "ResultView"));
-    resultView->enableUpdateDefaultSettings(false);
     resultView->setMainWindow(this);
     resultView->prepareForActive();
     resultView->refreshColors();

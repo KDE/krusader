@@ -256,7 +256,7 @@ public:
     // 2. view->init()
     // notes: constructor does as little as possible, setup() does the rest. esp, note that
     // if you need something from operator or properties, move it into setup()
-    void init();
+    void init(bool enableUpdateDefaultSettings = true);
     KrViewInstance *instance() { return &_instance; }
     static const IconSizes iconSizes;
 
@@ -350,7 +350,6 @@ public:
     bool changeSelection(const KRQuery &filter, bool select, bool includeDirs,
                          bool makeVisible = false);
     bool isFiltered(vfile *vf);
-    void enableUpdateDefaultSettings(bool enable);
     void setSelected(const vfile *vf, bool select);
 
     /////////////////////////////////////////////////////////////
@@ -437,6 +436,7 @@ private:
     QString _nameToMakeCurrent;
     KrPreviews *_previews;
     bool _updateDefaultSettings;
+    bool _ignoreSettingsChange;
     QRegExp _quickFilterMask;
     uint _count, _numDirs;
     vfile *_dummyVfile;
