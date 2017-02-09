@@ -307,6 +307,9 @@ void KrPopupMenu::addCreateNewMenu()
 
 void KrPopupMenu::performAction(int id)
 {
+    if (_items.isEmpty())
+        return; // sanity check, empty file list
+
     KFileItem *item = &_items.first();
 
     switch (id) {

@@ -270,6 +270,7 @@ void ListPanelFunc::doRefresh()
         //FIXME go back in history here ?
         panel->slotStartUpdate(true);  // refresh the panel
         urlManuallyEntered = false;
+        _refreshing = false;
         return ;
     }
 
