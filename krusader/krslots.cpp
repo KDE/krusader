@@ -86,7 +86,6 @@
 #include "Splitter/splitter.h"
 #include "Splitter/combiner.h"
 #include "ActionMan/actionman.h"
-#include "UserMenu/usermenu.h"
 #include "Panel/panelpopup.h"
 #include "Dialogs/krspecialwidgets.h"
 #include "DiskUsage/diskusagegui.h"
@@ -432,15 +431,6 @@ void KRslots::homeTerminal()
     runTerminal(QDir::homePath());
 }
 
-void KRslots::sysInfo()
-{
-    KProcess proc;
-    proc << KrServices::fullPathName("kcmshell") << "System/ksysctrl";
-    if (!proc.startDetached()) {
-        KMessageBox::sorry(krApp, i18n("Cannot find \"KsysCtrl\". Please install KDE admin package"));
-    }
-}
-
 void KRslots::multiRename()
 {
     QStringList lst = KrServices::supportedTools();
@@ -639,13 +629,6 @@ void KRslots::slotCombine()
 
     if (combineToOtherPanel)
         ACTIVE_PANEL->otherPanel()->func->refresh();
-}
-
-void KRslots::userMenu()
-{
-    //UserMenu um;
-    //um.exec();
-    krApp->userMenu->exec();
 }
 
 void KRslots::manageUseractions()

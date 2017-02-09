@@ -290,13 +290,8 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     NEW_KACTION(actAddBookmark, i18n("Add Bookmark"), "bookmark-new", KStandardShortcut::addBookmark(), SLOTS, SLOT(addBookmark()), "add bookmark");
     NEW_KACTION(actVerticalMode, i18n("Vertical Mode"), "view-split-top-bottom", Qt::ALT + Qt::CTRL + Qt::Key_R, MAIN_VIEW, SLOT(toggleVerticalMode()), "toggle vertical mode");
-#if 0
-    actUserMenu = new QAction(i18n("User Menu"), ALT + Qt::Key_QuoteLeft, SLOTS,
-                              SLOT(userMenu()), actionCollection(), "user menu");
-#else
     actUserMenu = new KActionMenu(i18n("User&actions"), krusaderApp);
     krusaderApp->actionCollection()->addAction("useractionmenu", actUserMenu);
-#endif
     NEW_KACTION(actManageUseractions, i18n("Manage User Actions..."), 0, 0, SLOTS, SLOT(manageUseractions()), "manage useractions");
 
     actRemoteEncoding = new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "character-set", krusaderApp->actionCollection());

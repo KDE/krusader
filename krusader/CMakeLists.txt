@@ -18,7 +18,6 @@ add_subdirectory(Panel)
 add_subdirectory(Search)
 add_subdirectory(Splitter)
 add_subdirectory(UserAction)
-add_subdirectory(UserMenu)
 add_subdirectory(VFS)
 
 if(SYNCHRONIZER_ENABLED)
@@ -62,7 +61,6 @@ target_link_libraries(krusader
                       VFS
                       Search
                       Splitter
-                      UserMenu
                       Locate
                       UserAction
                       ActionMan

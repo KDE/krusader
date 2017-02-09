@@ -101,7 +101,6 @@ public slots:
     void locate();
     void runTerminal(const QString & dir);
     void homeTerminal();
-    void sysInfo();
     void addBookmark();
     void toggleFnkeys();
     void toggleCmdline();
@@ -109,7 +108,6 @@ public slots:
     void cmdlinePopup();
     void slotSplit();
     void slotCombine();
-    void userMenu();
     void manageUseractions();
 #ifdef SYNCHRONIZER_ENABLED
     void slotSynchronizeDirs(QStringList selected = QStringList());

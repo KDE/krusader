@@ -39,7 +39,6 @@
 
 #include "actionproperty.h"
 #include "useractionlistview.h"
-#include "../UserMenu/usermenu.h" //FIXME this should not be needed here!
 #include "../UserAction/useraction.h"
 #include "../UserAction/kraction.h"
 #include "../krusader.h"
@@ -199,7 +198,6 @@ void UserActionPage::slotUpdateAction()
         actionProperties->updateAction(action);
         UserActionListViewItem* item = actionTree->insertAction(action);
         actionTree->setCurrentItem(item);
-        krApp->userMenu->update();
     } else { // := edit an existing
         actionProperties->updateAction();
         actionTree->update(actionProperties->action());   // update the listviewitem as well...

@@ -82,7 +82,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "UserAction/kraction.h"
 #include "UserAction/expander.h"
 #include "UserAction/useraction.h"
-#include "UserMenu/usermenu.h"
 #include "Dialogs/popularurls.h"
 #include "Dialogs/checksumdlg.h"
 #include "Dialogs/krpleasewait.h"
@@ -108,7 +107,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 // define the static members
 Krusader *Krusader::App = 0;
 QString   Krusader::AppName;
-UserMenu *Krusader::userMenu = 0;
 // KrBookmarkHandler *Krusader::bookman = 0;
 //QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
 
@@ -207,10 +205,6 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     }
     // starting the panels
     MAIN_VIEW->start(gs, startProfile.isEmpty(), leftTabs, rightTabs);
-
-    // create the user menu
-    userMenu = new UserMenu(this);
-    userMenu->hide();
 
     // create a status bar
     KrusaderStatus *status = new KrusaderStatus(this);
@@ -596,60 +590,6 @@ void Krusader::updateUserActions() {
         userActionMenu->addSeparator();
         krUserAction->populateMenu(userActionMenu, NULL);
     }
-}
-
-QString Krusader::getTempDir() {
-    // try to make krusader temp dir
-    KConfigGroup group(krConfig, "General");
-    QString tmpDir = group.readEntry("Temp Directory", _TempDirectory);
-
-    if (! QDir(tmpDir).exists()) {
-        for (int i = 1 ; i != -1 ; i = tmpDir.indexOf('/', i + 1))
-            QDir().mkdir(tmpDir.left(i));
-        QDir().mkdir(tmpDir);
-        chmod(tmpDir.toLocal8Bit(), 0777);
-    }
-
-    // add a secure sub dir under the user UID
-    QString uid;
-    uid.sprintf("%d", getuid());
-    QDir(tmpDir).mkdir(uid);
-    tmpDir = tmpDir + '/' + uid + '/';
-    chmod(tmpDir.toLocal8Bit(), S_IRUSR | S_IWUSR | S_IXUSR);
-    // add a random sub dir to use
-    while (QDir().exists(tmpDir))
-        tmpDir = tmpDir + KRandom::randomString(8);
-    QDir().mkdir(tmpDir);
-
-    if (!QDir(tmpDir).isReadable()) {
-        KMessageBox::error(krApp, i18n("Could not create a temporary folder. Handling of Archives will not be possible until this is fixed."));
-        return QString();
-    }
-    return tmpDir;
-}
-
-QString Krusader::getTempFile() {
-    // try to make krusader temp dir
-    KConfigGroup group(krConfig, "General");
-    QString tmpDir = group.readEntry("Temp Directory", _TempDirectory);
-
-    if (! QDir(tmpDir).exists()) {
-        for (int i = 1 ; i != -1 ; i = tmpDir.indexOf('/', i + 1))
-            QDir().mkdir(tmpDir.left(i));
-        QDir().mkdir(tmpDir);
-        chmod(tmpDir.toLocal8Bit(), 0777);
-    }
-
-    // add a secure sub dir under the user UID
-    QString uid;
-    uid.sprintf("%d", getuid());
-    QDir(tmpDir).mkdir(uid);
-    tmpDir = tmpDir + '/' + uid + '/';
-    chmod(tmpDir.toLocal8Bit(), S_IRUSR | S_IWUSR | S_IXUSR);
-
-    while (QDir().exists(tmpDir))
-        tmpDir = tmpDir + KRandom::randomString(8);
-    return tmpDir;
 }
 
 const char* Krusader::privIcon() {
