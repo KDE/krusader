@@ -117,16 +117,6 @@ QString KrViewItem::description() const
     return text;
 }
 
-QString KrViewItem::dateTime() const
-{
-    // convert the time_t to struct tm
-    time_t time = _vf->vfile_getTime_t();
-    struct tm* t = localtime((time_t *) & time);
-
-    QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-    return QLocale().toString(tmp, QLocale::ShortFormat);
-}
-
 QPixmap KrViewItem::icon()
 {
 #if 0

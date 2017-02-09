@@ -176,11 +176,6 @@ inline KrPanel *ListPanelActions::rightPanel()
     return static_cast<KrMainWindow*>(_mainWindow)->rightPanel();
 }
 
-inline ListPanelFunc *ListPanelActions::activeFunc()
-{
-    return activePanel()->func;
-}
-
 // set view type
 
 void ListPanelActions::setView(int id)

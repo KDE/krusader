@@ -52,7 +52,6 @@ public:
     virtual inline const QString& extension() const {
         return _extension;
     }
-    virtual QString dateTime() const;
     virtual QString description() const;
 
     virtual QPixmap icon();

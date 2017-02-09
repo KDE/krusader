@@ -80,7 +80,6 @@ protected:
     KrPanel *activePanel();
     KrPanel *leftPanel();
     KrPanel *rightPanel();
-    ListPanelFunc *activeFunc();
 
     ActionGroup _gui, _func;
 };

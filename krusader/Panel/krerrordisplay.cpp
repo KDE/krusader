@@ -49,12 +49,6 @@ KrErrorDisplay::KrErrorDisplay(QWidget *parent) :
     connect(&_dimTimer, SIGNAL(timeout()), this, SLOT(slotTimeout()));
 }
 
-void KrErrorDisplay::setTargetColor(QColor &c)
-{
-    _targetColor = c;
-    dim();
-}
-
 void KrErrorDisplay::setText(QString text)
 {
     QLabel::setText(text);
