@@ -160,18 +160,16 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
     }
 
     // -------------- Open with: try to find-out which apps can open the file
-    // this too, is meaningful only if one file is selected or if all the files
-    // have the same mimetype !
-    QString mime = file->vfile_getMime();
-    // check if all files have the same mimetype
-    for (vfile *file : files) {
-        if (file->vfile_getMime() != mime) {
-            mime.clear();
-            break;
-        }
-    }
-    if (!mime.isEmpty()) {
-        offers = KMimeTypeTrader::self()->query(mime);
+    QSet<QString> uniqueMimeTypes;
+    for (vfile *file : files)
+        uniqueMimeTypes.insert(file->vfile_getMime());
+    const QStringList mimeTypes = uniqueMimeTypes.toList();
+
+    offers = mimeTypes.count() == 1 ?
+                 KMimeTypeTrader::self()->query(mimeTypes.first()) :
+                 KFileItemActions::associatedApplications(mimeTypes, QString());
+
+    if (!offers.isEmpty()) {
         for (int i = 0; i < offers.count(); ++i) {
             QExplicitlySharedDataPointer<KService> service = offers[i];
             if (service->isValid() && service->isApplication()) {
