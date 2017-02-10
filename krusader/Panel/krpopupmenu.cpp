@@ -178,7 +178,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
             }
         }
         openWith.addSeparator();
-        if (file->vfile_isDir())
+        if (!multipleSelections && file->vfile_isDir())
             openWith.addAction(krLoader->loadIcon("utilities-terminal", KIconLoader::Small),
                                i18n("Terminal"))->setData(QVariant(OPEN_TERM_ID));
         openWith.addAction(i18n("Other..."))->setData(QVariant(CHOOSE_ID));
