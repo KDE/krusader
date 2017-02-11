@@ -37,66 +37,78 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include <KI18n/KLocalizedString>
 
-KrViewInstance::KrViewInstance(int id, QString name, QString desc, QString icon, QKeySequence shortcut) :
-        m_id(id), m_name(name), m_description(desc), m_icon(icon), m_shortcut(shortcut)
-{
-    KrViewFactory::self().registerView(this);
-}
-
-
-KrViewFactory::KrViewFactory() : m_defaultViewId(-1)
+KrViewInstance::KrViewInstance(int id, const QString &name, const QString &desc,
+                               const QString &icon, const QKeySequence &shortcut)
+    : m_id(id), m_name(name), m_description(desc), m_icon(icon), m_shortcut(shortcut)
 {
 }
+
+template <typename T>
+class KrViewInstanceImpl : public KrViewInstance
+{
+  public:
+    KrViewInstanceImpl(int id, const QString &name, const QString &desc, const QString &icon,
+                       const QKeySequence &shortcut)
+        : KrViewInstance(id, name, desc, icon, shortcut) {}
+
+    virtual KrView *create(QWidget *w, KConfig *cfg) Q_DECL_OVERRIDE {
+        return new T(w, *this, cfg);
+    }
+};
+
+KrViewFactory::KrViewFactory() : m_defaultViewId(-1) {}
 
 // static initialization, on first use idiom
-KrViewFactory & KrViewFactory::self()
+KrViewFactory &KrViewFactory::self()
 {
-    static KrViewFactory * factory = 0;
-    if(!factory) {
+    static KrViewFactory *factory = 0;
+    if (!factory) {
         factory = new KrViewFactory();
-        init();
+        factory->init();
     }
     return *factory;
 }
 
 void KrViewFactory::init()
 {
-    new KrViewInstanceImpl<KrInterDetailedView> (0, "KrInterDetailedView",
-        i18n("&Detailed View"), "view-list-details", Qt::ALT + Qt::SHIFT + Qt::Key_D);
+    registerView(new KrViewInstanceImpl<KrInterDetailedView> (0, "KrInterDetailedView",
+        i18n("&Detailed View"), "view-list-details", Qt::ALT + Qt::SHIFT + Qt::Key_D));
 
-    new KrViewInstanceImpl<KrInterBriefView> (1, "KrInterBriefView",
-        i18n("&Brief View"), "view-list-icons", Qt::ALT + Qt::SHIFT + Qt::Key_B);
+    registerView(new KrViewInstanceImpl<KrInterBriefView> (1, "KrInterBriefView",
+        i18n("&Brief View"), "view-list-icons", Qt::ALT + Qt::SHIFT + Qt::Key_B));
 }
 
-KrView * KrViewFactory::createView(int id, QWidget *widget, KConfig *cfg)
+KrView *KrViewFactory::createView(int id, QWidget *widget, KConfig *cfg)
 {
-    return viewInstance(id)->create(widget, cfg);
+    return self().viewInstance(id)->create(widget, cfg);
 }
 
-void KrViewFactory::registerView(KrViewInstance * inst)
+void KrViewFactory::registerView(KrViewInstance *inst)
 {
     int position = 0;
 
-    while (position < self().m_registeredViews.count()) {
-        if (self().m_registeredViews[ position ]->id() > inst->id())
+    while (position < m_registeredViews.count()) {
+        if (m_registeredViews[position]->id() > inst->id())
             break;
         position++;
     }
 
-    self().m_registeredViews.insert(self().m_registeredViews.begin() + position, inst);
-    if (self().m_defaultViewId == -1 || inst->id() < self().m_defaultViewId)
-        self().m_defaultViewId = inst->id();
+    m_registeredViews.insert(m_registeredViews.begin() + position, inst);
+    if (m_defaultViewId == -1 || inst->id() < m_defaultViewId)
+        m_defaultViewId = inst->id();
 }
 
-KrViewInstance * KrViewFactory::viewInstance(int id)
+KrViewInstance *KrViewFactory::viewInstance(int id)
 {
-    foreach(KrViewInstance * inst, self().m_registeredViews)
-    if (inst->id() == id)
-        return inst;
+    foreach (KrViewInstance *inst, m_registeredViews) {
+        if (inst->id() == id)
+            return inst;
+    }
 
-    foreach(KrViewInstance * inst_dflt, self().m_registeredViews)
-    if (inst_dflt->id() == self().m_defaultViewId)
-        return inst_dflt;
+    foreach (KrViewInstance *inst_dflt, m_registeredViews) {
+        if (inst_dflt->id() == m_defaultViewId)
+            return inst_dflt;
+    }
 
     fprintf(stderr, "Internal Error: no views registered!\n");
     exit(-1);

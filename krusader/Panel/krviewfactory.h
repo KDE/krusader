@@ -42,76 +42,55 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 class KrView;
 class KConfig;
 
+/** Abstract container for KrView implementation classes. Created internally by KrViewFactory. */
 class KrViewInstance
 {
     friend class KrView;
+
 public:
-
-    KrViewInstance(int id, QString name, QString desc, QString icon, QKeySequence shortcut);
-    virtual ~KrViewInstance() {}
-
-    inline int                     id()                    {
-        return m_id;
-    }
-    inline QString                 name()                  {
-        return m_name;
-    }
-    inline QString                 description()           {
-        return m_description;
-    }
-    inline QString                 icon()                  {
-        return m_icon;
-    }
-    inline QKeySequence            shortcut()              {
-        return m_shortcut;
-    }
+    inline int id() const { return m_id; }
+    inline QString name() const { return m_name; }
+    inline QString description() const { return m_description; }
+    inline QString icon() const { return m_icon; }
+    inline QKeySequence shortcut() const { return m_shortcut; }
 
     virtual KrView *create(QWidget *w, KConfig *cfg) = 0;
 
 protected:
-    int                            m_id;
-    QString                        m_name;
-    QString                        m_description;
-    QString                        m_icon;
-    QKeySequence                   m_shortcut;
-    QList<KrView*>                 m_objects;
+    KrViewInstance(int id, const QString &name, const QString &desc, const QString &icon,
+                   const QKeySequence &shortcut);
+    virtual ~KrViewInstance() {}
+
+private:
+    const int m_id;
+    const QString m_name;
+    const QString m_description;
+    const QString m_icon;
+    const QKeySequence m_shortcut;
+
+    QList<KrView *> m_objects; // direct access in KrView
 };
 
-
-template< typename T >
-class KrViewInstanceImpl: public KrViewInstance
-{
-public:
-    KrViewInstanceImpl(int id, QString name, QString desc, QString icon, QKeySequence shortcut) :
-        KrViewInstance(id, name, desc, icon, shortcut) {}
-
-    virtual KrView *create(QWidget *w, KConfig *cfg) Q_DECL_OVERRIDE {
-        return new T(w, *this, cfg);
-    }
-};
-
+/** Factory for KrView implementations. This is a hidden singleton. */
 class KrViewFactory
 {
     friend class KrViewInstance;
+
 public:
-    static KrView *                createView(int id, QWidget * widget, KConfig *cfg);
-    static KrViewInstance *        viewInstance(int id);
-    static const QList<KrViewInstance*>& registeredViews() {
-        return self().m_registeredViews;
-    }
-    static int                     defaultViewId()         {
-        return self().m_defaultViewId;
-    }
+    static KrView *createView(int id, QWidget *widget, KConfig *cfg);
+    static const QList<KrViewInstance *> &registeredViews() { return self().m_registeredViews; }
+    static int defaultViewId() { return self().m_defaultViewId; }
 
 private:
     KrViewFactory();
+    void init();
+    void registerView(KrViewInstance *);
+    KrViewInstance *viewInstance(int id);
 
-    static KrViewFactory &         self();
-    static void                    init();
-    static void                    registerView(KrViewInstance *);
+    static KrViewFactory &self();
 
-    QList<KrViewInstance *>        m_registeredViews;
-    int                            m_defaultViewId;
+    QList<KrViewInstance *> m_registeredViews;
+    int m_defaultViewId;
 };
 
 #endif /* __KRVIEWFACTORY_H__ */
