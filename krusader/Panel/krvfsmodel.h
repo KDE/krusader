@@ -48,18 +48,18 @@ public:
     QModelIndex removeItem(vfile *);
     void updateItem(vfile *vf);
 
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    QVariant data(const QModelIndex &index, int role) const;
-    bool setData(const QModelIndex & index, const QVariant & value, int role = Qt::EditRole);
-    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const  Q_DECL_OVERRIDE;
+    QVariant data(const QModelIndex &index, int role) const  Q_DECL_OVERRIDE;
+    bool setData(const QModelIndex & index, const QVariant & value, int role = Qt::EditRole)  Q_DECL_OVERRIDE;
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const  Q_DECL_OVERRIDE;
     void setExtensionEnabled(bool exten) {
         _extensionEnabled = exten;
     }
     inline const KrViewProperties * properties() const {
         return _view->properties();
     }
-    virtual void sort() {
+    void sort() {
         sort(lastSortOrder(), lastSortDir());
     }
     void clear();
@@ -91,14 +91,13 @@ public slots:
     virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) Q_DECL_OVERRIDE;
 
 protected:
-    virtual KrSort::LessThanFunc lessThanFunc() const {
+    KrSort::LessThanFunc lessThanFunc() {
         return KrSort::itemLessThan;
     }
-    virtual KrSort::LessThanFunc greaterThanFunc() const {
+    KrSort::LessThanFunc greaterThanFunc() const {
         return KrSort::itemGreaterThan;
     }
-    virtual QVariant customSortData(vfile *vf) const {
-        Q_UNUSED(vf);
+    QVariant customSortData(vfile *) const {
         return QVariant();
     }
     KrSort::Sorter createSorter();

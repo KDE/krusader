@@ -45,16 +45,16 @@ public:
     KrViewItem(vfile *vf, KrInterView *parentView);
     virtual ~KrViewItem() {}
 
-    virtual const QString& name(bool withExtension = true) const;
-    virtual inline bool hasExtension() const {
+    const QString& name(bool withExtension = true) const;
+    inline bool hasExtension() const {
         return _hasExtension;
     }
-    virtual inline const QString& extension() const {
+    inline const QString& extension() const {
         return _extension;
     }
-    virtual QString description() const;
+    QString description() const;
 
-    virtual QPixmap icon();
+    QPixmap icon();
 
     bool isSelected() const;
     void setSelected(bool s);

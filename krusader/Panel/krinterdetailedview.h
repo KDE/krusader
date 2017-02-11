@@ -83,7 +83,7 @@ protected:
     virtual QRect itemRect(const vfile *vf) Q_DECL_OVERRIDE;
 
     virtual void showContextMenu(const QPoint & p) Q_DECL_OVERRIDE;
-    virtual void recalculateColumnSizes();
+    void recalculateColumnSizes();
 
 private:
     QFont _viewFont;

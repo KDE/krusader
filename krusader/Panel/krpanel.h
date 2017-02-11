@@ -57,7 +57,7 @@ public:
     bool isLeft() const {
         return _manager->isLeft();
     }
-    virtual void otherPanelChanged() {}
+    virtual void otherPanelChanged() = 0;
 
     ListPanel *gui;
     ListPanelFunc *func;
