@@ -446,15 +446,16 @@ void KrInterBriefView::paintEvent(QPaintEvent *e)
         option.rect = visualRect(mndx);
         painter.save();
 
-        bool focus = curr.isValid() && curr.row() == mndx.row() && hasFocus();
-
         itemDelegate()->paint(&painter, option, mndx);
 
-        if (focus) {
+        // (always) draw dashed line border around current item row
+        const bool isCurrent = curr.isValid() && curr.row() == mndx.row();
+        if (isCurrent) {
             QStyleOptionFocusRect o;
             o.QStyleOption::operator=(option);
             QPalette::ColorGroup cg = QPalette::Normal;
             o.backgroundColor = option.palette.color(cg, QPalette::Background);
+
             style()->drawPrimitive(QStyle::PE_FrameFocusRect, &o, &painter);
         }
 
