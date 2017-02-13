@@ -218,11 +218,12 @@ bool compareTextsKrusader(const QString &aS1, const QString &aS2, const KrViewPr
 bool compareTexts(QString aS1, QString aS2, const KrViewProperties * _viewProperties, bool asc, bool isName)
 {
     //check empty strings
-    if (aS1.length() == 0) {
+    if (aS1.length() == 0 && aS2.length() == 0) {
         return false;
-    } else {
-        if (aS2.length() == 0)
-            return true;
+    } else if (aS1.length() == 0) {
+        return true;
+    } else if (aS2.length() == 0) {
+        return false;
     }
 
     if (isName) {
