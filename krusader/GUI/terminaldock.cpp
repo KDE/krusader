@@ -119,17 +119,19 @@ void TerminalDock::killTerminalEmulator()
     MAIN_VIEW->setTerminalEmulator(false);
 }
 
-void TerminalDock::sendInput(const QString& input)
+void TerminalDock::sendInput(const QString& input, bool clearCommand)
 {
     if (!t)
         return;
 
-    // send SIGINT before input command to avoid unwanted behaviour when current line is not empty
-    // and command is appended to current input (e.g. "rm -rf x " concatenated with 'cd /usr');
-    // code "borrowed" from Dolphin, Copyright (C) 2007-2010 by Peter Penz <peter.penz19@gmail.com>
-    const int processId = t->terminalProcessId();
-    if (processId > 0) {
-        kill(processId, SIGINT);
+    if (clearCommand) {
+        // send SIGINT before input command to avoid unwanted behaviour when current line is not empty
+        // and command is appended to current input (e.g. "rm -rf x " concatenated with 'cd /usr');
+        // code "borrowed" from Dolphin, Copyright (C) 2007-2010 by Peter Penz <peter.penz19@gmail.com>
+        const int processId = t->terminalProcessId();
+        if (processId > 0) {
+            kill(processId, SIGINT);
+        }
     }
 
     t->sendInput(input);
@@ -171,7 +173,7 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
         QString text = QApplication::clipboard()->text();
         if (! text.isEmpty()) {
             text.replace('\n', '\r');
-            sendInput(text);
+            sendInput(text, false);
         }
         return true;
     }
@@ -191,7 +193,7 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
 
         filename = KrServices::quote(filename);
 
-        sendInput(QString(" ") + filename + QString(" "));
+        sendInput(QString(" ") + filename + QString(" "), false);
         return true;
     }
 

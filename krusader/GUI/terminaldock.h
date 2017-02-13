@@ -45,7 +45,7 @@ class TerminalDock : public QWidget
 public:
     TerminalDock(QWidget* parent, KrMainWindow *mainWindow);
     virtual ~TerminalDock();
-    void sendInput(const QString& input);
+    void sendInput(const QString& input, bool clearCommand=true);
     void sendCd(const QString& path);
     virtual bool eventFilter(QObject * watched, QEvent * e) Q_DECL_OVERRIDE;
     bool isTerminalVisible() const;

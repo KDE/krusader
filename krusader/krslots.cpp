@@ -293,7 +293,7 @@ void KRslots::insertFileName(bool full_path)
         MAIN_VIEW->cmdLine()->setFocus();
     } else if (MAIN_VIEW->terminalDock()->isTerminalVisible()) {
         filename = QChar(' ') + filename + QChar(' ');
-        MAIN_VIEW->terminalDock()->sendInput(filename);
+        MAIN_VIEW->terminalDock()->sendInput(filename, false);
         MAIN_VIEW->terminalDock()->setFocus();
     }
 }
