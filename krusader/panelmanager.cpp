@@ -248,7 +248,20 @@ void PanelManager::moveTabToOtherSide()
 void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, KrPanel *nextTo)
 {
     ListPanel *p = addPanel(setCurrent, KConfigGroup(), nextTo);
-    p->start(url);
+    if(nextTo && nextTo->gui) {
+        // We duplicate tab settings by writing original settings to a temporary
+        // group and making the new tab read settings from it. Duplicating
+        // settings directly would add too much complexity.
+        QString grpName = "PanelManager_" + QString::number(qApp->applicationPid());
+        krConfig->deleteGroup(grpName); // make sure the group is empty
+        KConfigGroup cfg(krConfig, grpName);
+
+        nextTo->gui->saveSettings(cfg, true);
+        p->restoreSettings(cfg);
+        krConfig->deleteGroup(grpName);
+    }
+    else
+        p->start(url);
 }
 
 void PanelManager::slotNewTab()
