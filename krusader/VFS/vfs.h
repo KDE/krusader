@@ -63,7 +63,6 @@ class vfs : public VfileContainer
 {
     Q_OBJECT
 public:
-    typedef QHash<QString, vfile *> vfileDict;
 
     enum VFS_TYPE {
         /// Virtual filesystem. Krusaders custom virt:/ protocol
@@ -119,7 +118,7 @@ public:
     /// Returns the current directory path of this VFS.
     inline QUrl currentDirectory() { return _currentDirectory; }
     /// Return the vfile for a file name in the current directory. Or 0 if not found.
-    inline vfile *getVfile(const QString &name) { return (_vfiles)[name]; }
+    vfile *getVfile(const QString &name);
     /// Return a list of vfiles for a search query. Or an empty list if nothing was found.
     QList<vfile *> searchVfiles(const KRQuery &filter);
     /// The total size of all files in the current directory (only valid after refresh).
@@ -224,6 +223,8 @@ private slots:
     void slotCalcStatResult(KJob *job);
 
 private:
+    typedef QHash<QString, vfile *> vfileDict;
+
     /// Delete and clear vfiles.
     void clear(vfileDict &vfiles);
 

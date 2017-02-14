@@ -69,6 +69,11 @@ QList<QUrl> vfs::getUrls(const QStringList &names)
     return urls;
 }
 
+vfile *vfs::getVfile(const QString &name)
+{
+    return _vfiles.contains(name) ? _vfiles.value(name) : 0;
+}
+
 QList<vfile *> vfs::searchVfiles(const KRQuery &filter)
 {
     QList<vfile *> result;
