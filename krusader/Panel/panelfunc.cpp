@@ -829,7 +829,7 @@ void ListPanelFunc::goInside(const QString& name)
 void ListPanelFunc::runCommand(QString cmd)
 {
     krOut << "Run command: " << cmd;
-    QString workdir = panel->virtualPath().isLocalFile() ?
+    const QString workdir = panel->virtualPath().isLocalFile() ?
             panel->virtualPath().path() : QDir::homePath();
     if(!KRun::runCommand(cmd, krMainWindow, workdir))
         KMessageBox::error(0, i18n("Could not start %1", cmd));
@@ -848,7 +848,16 @@ void ListPanelFunc::runService(const KService &service, QList<QUrl> urls)
 
 void ListPanelFunc::displayOpenWithDialog(QList<QUrl> urls)
 {
-    KRun::displayOpenWithDialog(urls, krMainWindow);
+    // NOTE: we are not using KRun::displayOpenWithDialog() because we want the commands working
+    // directory to be the panel directory
+    KOpenWithDialog dialog(urls, panel);
+    dialog.hideRunInTerminal();
+    if (dialog.exec()) {
+        KService::Ptr service = dialog.service();
+        if(!service)
+            service = KService::Ptr(new KService(dialog.text(), dialog.text(), QString()));
+        runService(*service, urls);
+    }
 }
 
 QUrl ListPanelFunc::browsableArchivePath(const QString &filename)
