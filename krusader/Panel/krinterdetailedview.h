@@ -79,6 +79,8 @@ protected:
     void dropEvent(QDropEvent *) Q_DECL_OVERRIDE;
     bool eventFilter(QObject *object, QEvent *event) Q_DECL_OVERRIDE;
     bool viewportEvent(QEvent * event) Q_DECL_OVERRIDE;
+    void drawRow(QPainter *painter, const QStyleOptionViewItem &options,
+                 const QModelIndex &index) const Q_DECL_OVERRIDE;
 
     QRect itemRect(const vfile *vf) Q_DECL_OVERRIDE;
 

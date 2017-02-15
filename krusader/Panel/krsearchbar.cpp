@@ -171,11 +171,7 @@ void KrSearchBar::onSearchChange()
             krOut << "unexpected search mode: " << _currentMode;
     }
 
-    if (!text.isEmpty())
-        // needed to show where the cursor is now
-        _view->widget()->setFocus();
-    else
-        _textBox->setFocus();
+    _textBox->setFocus();
 }
 
 void KrSearchBar::saveSearchString()
@@ -199,8 +195,8 @@ void KrSearchBar::saveSearchString()
 
 void KrSearchBar::keyPressEvent(QKeyEvent *event)
 {
-    bool handled = handleKeyPressEvent(static_cast<QKeyEvent*>(event));
-    if(handled) {
+    const bool handled = handleKeyPressEvent(static_cast<QKeyEvent*>(event));
+    if (handled) {
         return;
     }
 
@@ -209,8 +205,8 @@ void KrSearchBar::keyPressEvent(QKeyEvent *event)
 
 bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
 {
-    if(event->type() != QEvent::ShortcutOverride && watched == _view->widget()) {
-        QKeyEvent *ke = static_cast<QKeyEvent*>(event);
+    if (event->type() != QEvent::ShortcutOverride && watched == _view->widget()) {
+        QKeyEvent *ke = static_cast<QKeyEvent *>(event);
         // overwrite "escape" shortcut if bar is shown
         if ((ke->key() == Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier) && !isHidden()) {
             ke->accept();
@@ -219,34 +215,33 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
         }
     }
 
-    if(event->type() != QEvent::KeyPress) {
+    if (event->type() != QEvent::KeyPress) {
         return false;
     }
 
-    QKeyEvent *ke = static_cast<QKeyEvent*>(event);
+    QKeyEvent *ke = static_cast<QKeyEvent *>(event);
     if (watched == _view->widget()) {
         KConfigGroup grpSv(krConfig, "Look&Feel");
-        bool autoShow = grpSv.readEntry("New Style Quicksearch", _NewStyleQuicksearch);
+        const bool autoShow = grpSv.readEntry("New Style Quicksearch", _NewStyleQuicksearch);
 
         if (isHidden() && !autoShow) {
             return false;
         }
 
-        if(!isHidden()) {
-            bool handled = handleKeyPressEvent(ke);
+        if (!isHidden()) {
+            const bool handled = handleKeyPressEvent(ke);
             if (handled) {
                 return true;
             }
         }
 
         if (isHidden() ||
-            // handle by search bar if user wants to remove text or...
+            // view can handle its own event if user does not want to remove text or...
             !((ke->key() == Qt::Key_Backspace && !_textBox->currentText().isEmpty()) ||
-              // ... insert space in it (even if not focused)
-              (ke->key() == Qt::Key_Space && _currentMode == KrSearchBar::MODE_SEARCH))){
-            // give the view a chance to handle its own event
-            bool handled = _view->handleKeyEvent(ke);
-            if(handled) {
+              // ...insert space in search bar (even if not focused)
+              (ke->key() == Qt::Key_Space && _currentMode == KrSearchBar::MODE_SEARCH))) {
+            const bool handled = _view->handleKeyEvent(ke);
+            if (handled) {
                 return true;
             }
         }
@@ -257,7 +252,7 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
         }
 
         // start searching if bar is hidden?
-        if (isHidden()){
+        if (isHidden()) {
             if (autoShow) {
                 showBar();
             } else {
@@ -274,14 +269,14 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
         }
         return true;
     } else if (watched == _textBox) {
-        // allow the view to handle (some) key events from the text box
+        // allow the view to handle (most) key events from the text box
         if (ke->modifiers() == Qt::NoModifier &&
             ke->key() != Qt::Key_Space &&
             ke->key() != Qt::Key_Backspace &&
             ke->key() != Qt::Key_Left &&
             ke->key() != Qt::Key_Right) {
             bool handled = _view->handleKeyEvent(ke);
-            if(handled) {
+            if (handled) {
                 _view->widget()->setFocus();
                 return true;
             }
@@ -344,14 +339,14 @@ bool KrSearchBar::handleUpDownKeyPress(bool up)
         return false;
     }
 
-    bool updownCancel = KConfigGroup(krConfig, "Look&Feel")
+    const bool updownCancel = KConfigGroup(krConfig, "Look&Feel")
                         .readEntry("Up/Down Cancels Quicksearch", false);
-    if(updownCancel) {
+    if (updownCancel) {
         hideBar();
         return false;
     }
 
-    bool anyMatch = _view->op()->searchItem(_textBox->currentText(), caseSensitive(), up ? -1 : 1);
+    const bool anyMatch = _view->op()->searchItem(_textBox->currentText(), caseSensitive(), up ? -1 : 1);
     indicateMatch(anyMatch);
     return true;
 }

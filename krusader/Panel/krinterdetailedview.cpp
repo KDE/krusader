@@ -373,6 +373,23 @@ bool KrInterDetailedView::viewportEvent(QEvent * event)
     return QTreeView::viewportEvent(event);
 }
 
+void KrInterDetailedView::drawRow(QPainter *painter, const QStyleOptionViewItem &options,
+                                  const QModelIndex &index) const
+{
+    QTreeView::drawRow(painter, options, index);
+    // (always) draw dashed line border around current item row. This is done internally in
+    // QTreeView::drawRow() only when panel is focused, we have to repeat it here.
+    if (index == currentIndex()) {
+        QStyleOptionFocusRect o;
+        o.backgroundColor = options.palette.color(QPalette::Normal, QPalette::Background);
+
+        const QRect focusRect(0, options.rect.y(), header()->length(), options.rect.height());
+        o.rect = style()->visualRect(layoutDirection(), viewport()->rect(), focusRect);
+
+        style()->drawPrimitive(QStyle::PE_FrameFocusRect, &o, painter);
+    }
+}
+
 void KrInterDetailedView::setSortMode(KrViewProperties::ColumnType sortColumn, bool descending)
 {
     Qt::SortOrder sortDir = descending ? Qt::DescendingOrder : Qt::AscendingOrder;
