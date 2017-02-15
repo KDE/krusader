@@ -115,7 +115,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
         return false;
 
     currentUrl = urlIn;
-    QUrl url = QUrl::fromUserInput(urlIn, QString(), QUrl::AssumeLocalFile);
+    const QUrl url = QUrl::fromUserInput(urlIn, QString(), QUrl::AssumeLocalFile);
 
     QHashIterator< QString, vfile *> lit(*this);
     while (lit.hasNext())
@@ -127,63 +127,29 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
     }
 
     if (url.isLocalFile()) {
-        QString path = url.adjusted(QUrl::StripTrailingSlash).path();
-        QT_DIR* dir = QT_OPENDIR(path.toLocal8Bit());
-        if (!dir)  {
-            KMessageBox::error(parentWidget, i18n("Cannot open the folder %1.", path), i18n("Error"));
+        const QString dir = vfs::ensureTrailingSlash(url).path();
+
+        QT_DIR* qdir = QT_OPENDIR(dir.toLocal8Bit());
+        if (!qdir)  {
+            KMessageBox::error(parentWidget, i18n("Cannot open the folder %1.", dir), i18n("Error"));
             emit finished(result = false);
             return false;
         }
 
         QT_DIRENT* dirEnt;
-        QString name;
 
-        while ((dirEnt = QT_READDIR(dir)) != NULL) {
-            name = QString::fromLocal8Bit(dirEnt->d_name);
+        while ((dirEnt = QT_READDIR(qdir)) != NULL) {
+            const QString name = QString::fromLocal8Bit(dirEnt->d_name);
 
             if (name == "." || name == "..") continue;
             if (ignoreHidden && name.startsWith('.')) continue;
 
-            QString fullName = path + '/' + name;
-
-            QT_STATBUF stat_p;
-            QT_LSTAT(fullName.toLocal8Bit(), &stat_p);
-
-            QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
-
-            bool symLink = S_ISLNK(stat_p.st_mode);
-            QString symlinkDest;
-            bool brokenLink = false;
-
-            if (symLink) {  // who the link is pointing to ?
-                char symDest[256];
-                memset(symDest, 0, 256);
-                int endOfName = 0;
-                endOfName = readlink(fullName.toLocal8Bit(), symDest, 256);
-                if (endOfName != -1) {
-                    QString absSymDest = symlinkDest = QString::fromLocal8Bit(symDest);
-
-                    if (!absSymDest.startsWith('/'))
-                        absSymDest = QDir::cleanPath(path + '/' + absSymDest);
-
-                    if (QDir(absSymDest).exists())
-                        perm[0] = 'd';
-                    if (!QDir(path).exists(absSymDest))
-                        brokenLink = true;
-                }
-            }
-
-            QString mime;
-
-            QUrl fileURL = QUrl::fromLocalFile(fullName);
-
-            vfile* item = new vfile(name, stat_p.st_size, perm, stat_p.st_mtime, symLink, brokenLink, stat_p.st_uid,
-                                    stat_p.st_gid, mime, symlinkDest, stat_p.st_mode, -1, fileURL);
+            vfile *item = vfs::createLocalVFile(name, dir);
 
             insert(name, item);
         }
 
-        QT_CLOSEDIR(dir);
+        QT_CLOSEDIR(qdir);
         emit finished(result = true);
         return true;
     } else {
@@ -203,36 +169,14 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
     }
 }
 
-void SynchronizerDirList::slotEntries(KIO::Job * job, const KIO::UDSEntryList& entries)
+void SynchronizerDirList::slotEntries(KIO::Job *job, const KIO::UDSEntryList& entries)
 {
-    KIO::UDSEntryList::const_iterator it = entries.begin();
-    KIO::UDSEntryList::const_iterator end = entries.end();
-
-    int rwx = -1;
-    QString prot = ((KIO::ListJob *)job)->url().scheme();
-
-    if (prot == "krarc" || prot == "tar" || prot == "zip")
-        rwx = PERM_ALL;
-
-    while (it != end) {
-        KFileItem kfi(*it, ((KIO::ListJob *)job)->url(), true, true);
-        QString key = kfi.text();
-        if (key != "." && key != ".." && (!ignoreHidden || !key.startsWith(QLatin1String(".")))) {
-            mode_t mode = kfi.mode() | kfi.permissions();
-            QString perm = KRpermHandler::mode2QString(mode);
-            if (kfi.isDir())
-                perm[ 0 ] = 'd';
-
-            vfile *item = new vfile(kfi.text(), kfi.size(), perm, kfi.time(KFileItem::ModificationTime).toTime_t(),
-                                    kfi.isLink(), false, kfi.user(), kfi.group(), kfi.user(),
-                                    kfi.mimetype(), kfi.linkDest(), mode, rwx
-#ifdef HAVE_POSIX_ACL
-                                    , kfi.ACL().asString()
-#endif
-                                   );
-            insert(key, item);
+    KIO::ListJob *listJob = static_cast<KIO::ListJob *>(job);
+    for (const KIO::UDSEntry entry : entries) {
+        vfile *item = vfs::createVFileFromKIO(entry, listJob->url());
+        if (item) {
+            insert(item->vfile_getName(), item);
         }
-        ++it;
     }
 }
 

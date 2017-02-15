@@ -33,9 +33,9 @@
 #define KRPERMHANDLER_H
 
 // QtCore
-#include <QString>
-#include <QFileInfo>
 #include <QHash>
+#include <QSet>
+#include <QString>
 
 #include <KIO/Global>
 
@@ -52,42 +52,30 @@ class KRpermHandler
 public:
     static void init();
 
-    static gid_t group2gid(QString group);
-    static uid_t user2uid(QString user);
-
     static QString gid2group(gid_t groupId);
     static QString uid2user(uid_t userId);
 
-    static char writeable(QString perm, gid_t gid, uid_t uid, int rwx = -1);
-    static char readable(QString perm, gid_t gid, uid_t uid, int rwx = -1);
-    static char executable(QString perm, gid_t gid, uid_t uid, int rwx = -1);
+    static char writeable(const QString &perm, gid_t gid, uid_t uid);
+    static char readable(const QString &perm, gid_t gid, uid_t uid);
+    static char executable(const QString &perm, gid_t gid, uid_t uid);
 
-    static bool fileWriteable(QString localFile);
-    static bool fileReadable(QString localFile);
-    static bool fileExecutable(QString localFile);
-
-    static char ftpWriteable(QString fileOwner, QString userName, QString perm);
-    static char ftpReadable(QString fileOwner, QString userName, QString perm);
-    static char ftpExecutable(QString fileOwner, QString userName, QString perm);
-
-    static bool dirExist(QString path);
-    static bool fileExist(QString fullPath);
-    static bool fileExist(QString Path, QString name);
+    static char ftpWriteable(const QString &fileOwner, const QString & userName, const QString &perm);
+    static char ftpReadable(const QString &fileOwner, const QString &userName, const QString &perm);
+    static char ftpExecutable(const QString &fileOwner, const QString &userName, const QString &perm);
 
     static QString mode2QString(mode_t m);
     static QString parseSize(KIO::filesize_t val);
-    static QString date2qstring(QString date);
-    static time_t  QString2time(QString date);
 
 private:
     KRpermHandler() {}
+    static char getLocalPermission(const QString &perm, gid_t gid, uid_t uid, int permOffset,
+                                   bool ignoreRoot = false);
+    static char getFtpPermission(const QString &fileOwner, const QString &userName,
+                                 const QString &perm, int permOffset);
 
-    // cache for passwd and group entries
-    static QHash<QString, uid_t> *passwdCache;
-    static QHash<QString, gid_t> *groupCache;
-    static QHash<int, char>      *currentGroups;
-    static QHash<int, QString>   *uidCache;
-    static QHash<int, QString>   *gidCache;
+    static QSet<int> currentGroups;
+    static QHash<int, QString> uidCache;
+    static QHash<int, QString> gidCache;
 };
 
 #endif

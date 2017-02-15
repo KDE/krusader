@@ -333,20 +333,6 @@ bool KRQuery::match(vfile *vf) const
     return true;
 }
 
-bool KRQuery::match(KFileItem *kfi) const
-{
-    mode_t mode = kfi->mode() | kfi->permissions();
-    QString perm = KRpermHandler::mode2QString(mode);
-    if (kfi->isDir())
-        perm[ 0 ] = 'd';
-
-    vfile temp(kfi->text(), kfi->size(), perm, kfi->time(KFileItem::ModificationTime).toTime_t(),
-               kfi->isLink(), false, kfi->user(), kfi->group(), kfi->user(),
-               kfi->mimetype(), kfi->linkDest(), mode);
-
-    return match(&temp);
-}
-
 // takes the string and adds BOLD to it, so that when it is displayed,
 // the grepped text will be bold
 void fixFoundTextForDisplay(QString& haystack, int start, int length)

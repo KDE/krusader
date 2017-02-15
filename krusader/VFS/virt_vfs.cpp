@@ -39,7 +39,6 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "../krservices.h"
-#include "krpermhandler.h"
 
 #define VIRT_VFS_DB "virt_vfs.db"
 
@@ -317,8 +316,7 @@ vfile *virt_vfs::createVFile(const QUrl &url)
         QString path = url.path().mid(1);
         if (path.isEmpty())
             path = '/';
-        return new vfile(path, 0, "drwxr-xr-x", time(0), false, false, getuid(), getgid(),
-                         "inode/directory", "", 0, -1, url);
+        return vfile::createVirtualDir(path, url);
     }
 
     const QUrl directory = url.adjusted(QUrl::RemoveFilename);

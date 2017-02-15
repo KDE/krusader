@@ -201,8 +201,6 @@ void vfs::deleteFiles(const QStringList &fileNames, bool moveToTrash)
     krJobMan->manageJob(krJob);
 }
 
-// ==== protected ====
-
 void vfs::connectJob(KJob *job, const QUrl &destination)
 {
     // (additional) direct refresh if on local fs because watcher is too slow
@@ -314,8 +312,9 @@ void vfs::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned lon
 
 vfile *vfs::createLocalVFile(const QString &name, const QString &directory, bool virt)
 {
-    const QString path = QDir(directory).filePath(name);
-    const QByteArray fileName = path.toLocal8Bit();
+    const QDir dir = QDir(directory);
+    const QString path = dir.filePath(name);
+    const QByteArray filePath = path.toLocal8Bit();
 
     QT_STATBUF stat_p;
     stat_p.st_size = 0;
@@ -323,48 +322,36 @@ vfile *vfs::createLocalVFile(const QString &name, const QString &directory, bool
     stat_p.st_mtime = 0;
     stat_p.st_uid = 0;
     stat_p.st_gid = 0;
-    QT_LSTAT(fileName.data(), &stat_p);
+    QT_LSTAT(filePath.data(), &stat_p);
     const KIO::filesize_t size = stat_p.st_size;
-    QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
-    const bool symLink = S_ISLNK(stat_p.st_mode);
 
-    if (S_ISDIR(stat_p.st_mode))
-        perm[0] = 'd';
+    bool isDir = S_ISDIR(stat_p.st_mode);
+    const bool isLink = S_ISLNK(stat_p.st_mode);
 
-    const QString mime;
-
-    QString symDest;
+    QString linkDestination;
     bool brokenLink = false;
-    if (S_ISLNK(stat_p.st_mode)) { // find where the link is pointing to
+    if (isLink) {
+        // find where the link is pointing to
         // the path of the symlink target cannot be longer than the file size of the symlink
         char buffer[stat_p.st_size];
         memset(buffer, 0, sizeof(buffer));
-        int bytesRead = readlink(fileName.data(), buffer, sizeof(buffer));
+        int bytesRead = readlink(filePath.data(), buffer, sizeof(buffer));
         if (bytesRead != -1) {
-            symDest = QString::fromLocal8Bit(buffer, bytesRead);
-            if (QDir(symDest).exists())
-                perm[0] = 'd';
-            if (!QDir(directory).exists(symDest))
+            linkDestination = QString::fromLocal8Bit(buffer, bytesRead); // absolute or relative
+            const QFileInfo linkFile(dir, linkDestination);
+            if (!linkFile.exists())
                 brokenLink = true;
+            else if (linkFile.isDir())
+                isDir = true;
         } else {
-            krOut << "Failed to read link: " << path << endl;
+            krOut << "Failed to read link: " << path;
         }
     }
 
-    int rwx = 0;
-    if (::access(fileName.data(), R_OK) == 0)
-        rwx |= R_OK;
-    if (::access(fileName.data(), W_OK) == 0)
-        rwx |= W_OK;
-#ifndef Q_CC_MSVC
-    if (::access(fileName.data(), X_OK) == 0)
-        rwx |= X_OK;
-#endif
-
-    // create a new virtual file object
-    return new vfile(virt ? path : name, size, perm, stat_p.st_mtime, symLink, brokenLink,
-                     stat_p.st_uid, stat_p.st_gid, mime, symDest, stat_p.st_mode, rwx,
-                     QUrl::fromLocalFile(path));
+    return new vfile(virt ? path : name, QUrl::fromLocalFile(path), isDir,
+                     size, stat_p.st_mode, stat_p.st_mtime,
+                     stat_p.st_uid, stat_p.st_gid, QString(), QString(),
+                     isLink, linkDestination, brokenLink);
 }
 
 vfile *vfs::createVFileFromKIO(const KIO::UDSEntry &entry, const QUrl &directory, bool virt)
@@ -377,52 +364,23 @@ vfile *vfs::createVFileFromKIO(const KIO::UDSEntry &entry, const QUrl &directory
         return 0;
     }
 
+    const QString localPath = kfi.localPath();
+    const QUrl url = !localPath.isEmpty() ? QUrl::fromLocalFile(localPath) : kfi.url();
+    const QString fname = virt ? url.toDisplayString() : name;
+
     // get file statistics...
-    const KIO::filesize_t size = kfi.size();
     const time_t mtime = kfi.time(KFileItem::ModificationTime).toTime_t();
-    const bool symLink = kfi.isLink();
     const mode_t mode = kfi.mode() | kfi.permissions();
     // NOTE: we could get the mimetype (and file icon) from the kfileitem here but this is very
     // slow. Instead, the vfile class has it's own (faster) way to determine the file type.
-    const QString mime;
-    QString perm = KRpermHandler::mode2QString(mode);
-    QString symDest = "";
-    if (symLink) {
-        symDest = kfi.linkDest();
-        if (kfi.isDir())
-            perm[0] = 'd';
-    }
-    int rwx = -1;
-    const QString prot = directory.scheme();
-    if (prot == "krarc" || prot == "tar" || prot == "zip")
-        rwx = PERM_ALL;
-    const QUrl url = !kfi.localPath().isEmpty() ? QUrl::fromLocalFile(kfi.localPath()) : kfi.url();
-    const QString fname = virt ? url.toDisplayString() : name;
 
-    // create a new virtual file object
-    vfile *vf;
-    if (kfi.user().isEmpty()) {
-        vf = new vfile(fname, size, perm, mtime, symLink, false, getuid(), getgid(), mime, symDest,
-                       mode, rwx, url);
-    } else {
-        QString currentUser = directory.userName();
-        if (currentUser.contains("@")) // remove the FTP proxy tags from the username
-            currentUser.truncate(currentUser.indexOf('@'));
-        if (currentUser.isEmpty()) {
-            if (directory.host().isEmpty()) {
-                currentUser = KRpermHandler::uid2user(getuid());
-            } else {
-                currentUser = ""; // empty, but not QString()
-            }
-        }
-        // NOTE: "broken link" flag is always false, checking link destination existence is
-        // considered to be too expensive
-        vf = new vfile(fname, size, perm, mtime, symLink, false, kfi.user(), kfi.group(),
-                       currentUser, mime, symDest, mode, rwx, kfi.ACL().asString(),
-                       kfi.defaultACL().asString(), url);
-    }
-
-    return vf;
+    // NOTE: "broken link" flag is always false, checking link destination existence is
+    // considered to be too expensive
+    return new vfile(fname, url, kfi.isDir(),
+                     kfi.size(), mode, mtime,
+                     (uid_t) -1, (gid_t) -1, kfi.user(), kfi.group(),
+                     kfi.isLink(), kfi.linkDest(), false,
+                     kfi.ACL().asString(), kfi.defaultACL().asString());
 }
 
 // ==== protected slots ====

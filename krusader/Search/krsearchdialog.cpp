@@ -104,11 +104,10 @@ public:
         _foundText.clear();
     }
 
-    void addItem(QString path, KIO::filesize_t size, time_t mtime, QString perm,
-                 uid_t uid, gid_t gid, QString foundText)
+    void addItem(const vfile &file, const QString &foundText)
     {
-        vfile *vf = new vfile(path, size, perm, mtime, false/*FIXME*/, false/*FIXME*/,
-                              uid, gid, QString(), QString(), 0, -1, QUrl::fromUserInput(path));
+        const QString path = file.vfile_getUrl().toDisplayString(QUrl::PreferLocalFile);
+        vfile *vf = vfile::createCopy(file, path);
         _vfiles << vf;
         if(!foundText.isEmpty())
             _foundText[vf] = foundText;
@@ -382,14 +381,9 @@ void KrSearchDialog::resizeEvent(QResizeEvent *e)
     }
 }
 
-void KrSearchDialog::found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm,
-                           uid_t uid, gid_t gid, QString foundText)
+void KrSearchDialog::slotFound(const vfile &file, const QString &foundText)
 {
-    where = where.replace(QRegExp("\\\\"), "#"); //FIXME ? why is that done ?
-    QString path =  where.endsWith('/') ? (where + what) : (where + "/" + what);
-    if(perm[0] == 'd' && !path.endsWith('/')) // file is a directory
-        path += '/';
-    result->addItem(path, size, mtime, perm, uid, gid, foundText);
+    result->addItem(file, foundText);
     foundLabel->setText(i18np("Found %1 match.", "Found %1 matches.", result->numVfiles()));
 }
 
@@ -443,8 +437,7 @@ void KrSearchDialog::startSearch()
     searcher  = new KRSearchMod(query);
     connect(searcher, SIGNAL(searching(const QString&)),
             searchingLabel, SLOT(setText(const QString&)));
-    connect(searcher, SIGNAL(found(QString, QString, KIO::filesize_t, time_t, QString, uid_t, gid_t, QString)),
-            this, SLOT(found(QString, QString, KIO::filesize_t, time_t, QString, uid_t, gid_t, QString)));
+    connect(searcher, &KRSearchMod::found, this, &KrSearchDialog::slotFound);
     connect(searcher, SIGNAL(finished()), this, SLOT(stopSearch()));
 
     searcher->start();

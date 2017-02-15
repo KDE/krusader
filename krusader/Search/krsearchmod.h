@@ -61,14 +61,13 @@ public:
     void stop();
 
 private:
-    void scanLocalDir(QUrl url);
+    void scanLocalDir(const QUrl &url);
     void scanRemoteDir(QUrl url);
 
 signals:
     void finished();
     void searching(const QString&);
-    void found(QString what, QString where,KIO::filesize_t size, time_t mtime,
-               QString perm, uid_t owner, gid_t group, QString textFound);
+    void found(const vfile &file, const QString &foundText);
 
 private slots:
     void slotProcessEvents(bool & stopped);
