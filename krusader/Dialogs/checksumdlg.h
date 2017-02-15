@@ -22,58 +22,65 @@
 #define CHECKSUMDLG_H
 
 // QtWidgets
+#include <QCheckBox>
 #include <QDialog>
 
-class KUrlRequester;
-class QCheckBox;
+#include <KIOWidgets/KUrlRequester>
 
 extern void initChecksumModule();
 
-class CreateChecksumDlg: public QDialog
+class Checksum
 {
 public:
-    CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path);
-};
+    static void startCreation(const QStringList &files, bool containFolders, const QString &path);
 
-
-class MatchChecksumDlg: public QDialog
-{
-public:
-    MatchChecksumDlg(const QStringList& files, bool containFolders,
-                     const QString& path, const QString& checksumFile = QString());
+    static void startMatch(const QStringList &files, bool containFolders, const QString &path,
+                           const QString &checksumFile = QString());
 
     static QString checksumTypesFilter;
 
-protected:
-    bool verifyChecksumFile(QString path, QString& extension);
-};
-
-
-class ChecksumResultsDlg: public QDialog
-{
-public:
-    ChecksumResultsDlg(const QStringList &stdOut, const QStringList &stdErr,
-                       const QString& suggestedFilename, bool standardFormat);
-
-public slots:
-    virtual void accept() Q_DECL_OVERRIDE;
-
-protected:
-    bool saveChecksum(const QStringList& data, QString filename);
-    bool savePerFile();
-
 private:
-    QCheckBox *_onePerFile;
-    KUrlRequester *_checksumFileSelector;
-    QStringList _data;
-    QString _suggestedFilename;
-};
+    class CreateDialog : public QDialog
+    {
+      public:
+        CreateDialog(const QStringList &files, bool containFolders, const QString &path);
+    };
 
+    class MatchDialog : public QDialog
+    {
+      public:
+        MatchDialog(const QStringList &files, bool containFolders, const QString &path,
+                    const QString &checksumFile = QString());
 
-class VerifyResultDlg: public QDialog
-{
-public:
-    VerifyResultDlg(const QStringList& failed);
+      protected:
+        bool verifyChecksumFile(QString path, QString &extension);
+    };
+
+    class ResultsDialog : public QDialog
+    {
+      public:
+        ResultsDialog(const QStringList &stdOut, const QStringList &stdErr,
+                      const QString &suggestedFilename, bool standardFormat);
+
+      public slots:
+        virtual void accept() Q_DECL_OVERRIDE;
+
+      protected:
+        bool saveChecksum(const QStringList &data, QString filename);
+        bool savePerFile();
+
+      private:
+        QCheckBox *_onePerFile;
+        KUrlRequester *_checksumFileSelector;
+        QStringList _data;
+        QString _suggestedFilename;
+    };
+
+    class VerifyDialog : public QDialog
+    {
+      public:
+        VerifyDialog(const QStringList &failed);
+    };
 };
 
 #endif // CHECKSUMDLG_H

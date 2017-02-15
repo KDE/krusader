@@ -52,7 +52,6 @@
 #include <KWidgetsAddons/KMessageBox>
 #include <KIconThemes/KIconLoader>
 #include <KCompletion/KComboBox>
-#include <KIOWidgets/KUrlRequester>
 
 #include "../krservices.h"
 
@@ -167,7 +166,7 @@ QStringList cfvFailedFunc(const QStringList& /* stdOut */, const QStringList& st
 }
 
 // important: this table should be ordered like so that all md5 tools should be
-// one after another, and then all sha1 and so on and so forth. they tools must be grouped,
+// one after another, and then all sha1 and so on and so forth. The tools must be grouped,
 // since the code in getTools() counts on it!
 CS_Tool cs_tools[] = {
     // type              binary            recursive   stdFmt           create_func       verify_func      failed_func
@@ -219,7 +218,7 @@ void initChecksumModule()
     // build the checksumFilter (for usage in KRQuery)
     QMap<QString, CS_Tool::Type>::Iterator it;
     for (it = cs_textToType.begin(); it != cs_textToType.end(); ++it)
-        MatchChecksumDlg::checksumTypesFilter += ("*." + it.key() + ' ');
+        Checksum::checksumTypesFilter += ("*." + it.key() + ' ');
 }
 
 // --------------------------------------------------
@@ -242,7 +241,7 @@ static QList<CS_Tool *> getTools(bool folders)
 
 // ------------- CreateChecksumDlg
 
-CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path)
+Checksum::CreateDialog::CreateDialog(const QStringList& files, bool containFolders, const QString& path)
     : QDialog(krApp)
 {
     setWindowModality(Qt::WindowModal);
@@ -362,14 +361,14 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
         return;
     }
 
-    ChecksumResultsDlg dlg(stdOut, stdErr, suggestedFilename, mytool->standardFormat);
+    ResultsDialog dlg(stdOut, stdErr, suggestedFilename, mytool->standardFormat);
 }
+
+QString Checksum::checksumTypesFilter;
 
 // ------------- MatchChecksumDlg
 
-QString MatchChecksumDlg::checksumTypesFilter;
-
-MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders,
+Checksum::MatchDialog::MatchDialog(const QStringList& files, bool containFolders,
                                    const QString& path, const QString& checksumFile)
     : QDialog(krApp)
 {
@@ -501,10 +500,10 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
         KMessageBox::error(krApp, i18n("Error reading stdout or stderr"));
         return;
     }
-    VerifyResultDlg dlg(mytool->failed(stdOut, stdErr));
+    VerifyDialog dlg(mytool->failed(stdOut, stdErr));
 }
 
-bool MatchChecksumDlg::verifyChecksumFile(QString path,  QString& extension)
+bool Checksum::MatchDialog::verifyChecksumFile(QString path,  QString& extension)
 {
     QFileInfo f(path);
     if (!f.exists() || f.isDir()) return false;
@@ -518,7 +517,7 @@ bool MatchChecksumDlg::verifyChecksumFile(QString path,  QString& extension)
 }
 
 // ------------- VerifyResultDlg
-VerifyResultDlg::VerifyResultDlg(const QStringList& failed)
+Checksum::VerifyDialog::VerifyDialog(const QStringList& failed)
     : QDialog(krApp)
 {
     setWindowTitle(i18n("Verify Checksum"));
@@ -569,7 +568,7 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed)
 
 // ------------- ChecksumResultsDlg
 
-ChecksumResultsDlg::ChecksumResultsDlg(const QStringList &stdOut, const QStringList &stdErr,
+Checksum::ResultsDialog::ResultsDialog(const QStringList &stdOut, const QStringList &stdErr,
                                        const QString& suggestedFilename, bool standardFormat)
     : QDialog(krApp), _onePerFile(0), _checksumFileSelector(0), _data(stdOut), _suggestedFilename(suggestedFilename)
 {
@@ -696,7 +695,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList &stdOut, const QStringL
     exec();
 }
 
-void ChecksumResultsDlg::accept()
+void Checksum::ResultsDialog::accept()
 {
     if (_onePerFile && _onePerFile->isChecked()) {
         Q_ASSERT(_data.size() > 1);
@@ -708,7 +707,7 @@ void ChecksumResultsDlg::accept()
     }
 }
 
-bool ChecksumResultsDlg::saveChecksum(const QStringList& data, QString filename)
+bool Checksum::ResultsDialog::saveChecksum(const QStringList& data, QString filename)
 {
     if (QFile::exists(filename) &&
             KMessageBox::warningContinueCancel(this,
@@ -737,7 +736,7 @@ bool ChecksumResultsDlg::saveChecksum(const QStringList& data, QString filename)
 
 }
 
-bool ChecksumResultsDlg::savePerFile()
+bool Checksum::ResultsDialog::savePerFile()
 {
     QString type = _suggestedFilename.mid(_suggestedFilename.lastIndexOf('.'));
 
@@ -756,4 +755,15 @@ bool ChecksumResultsDlg::savePerFile()
     krApp->stopWait();
 
     return true;
+}
+
+void Checksum::startCreation(const QStringList &files, bool containFolders, const QString &path)
+{
+    Checksum::CreateDialog(files, containFolders, path);
+}
+
+void Checksum::startMatch(const QStringList &files, bool containFolders, const QString &path,
+                          const QString &checksumFile)
+{
+    Checksum::MatchDialog(files, containFolders, path, checksumFile);
 }

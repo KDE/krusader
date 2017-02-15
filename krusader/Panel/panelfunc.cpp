@@ -972,7 +972,7 @@ void ListPanelFunc::createChecksum()
     QStringList args;
     bool folders;
     checksum_wrapper(panel, args, folders);
-    CreateChecksumDlg dlg(args, folders, panel->lastLocalPath());
+    Checksum::startCreation(args, folders, panel->lastLocalPath());
 }
 
 void ListPanelFunc::matchChecksum()
@@ -982,10 +982,11 @@ void ListPanelFunc::matchChecksum()
     checksum_wrapper(panel, args, folders);
     QList<FileItem *> checksumFiles =
         files()->searchFileItems(KRQuery(MatchChecksumDlg::checksumTypesFilter));
-    MatchChecksumDlg dlg(args, folders, panel->lastLocalPath(),
-        (checksumFiles.size() == 1
-             ? checksumFiles[0]->getUrl().toDisplayString(QUrl::PreferLocalFile)
-             : QString()));
+    
+    Checksum::startMatch(args, folders, panel->lastLocalPath(),
+        (checksumFiles.size() == 1 ?
+             checksumFiles[0]->getUrl().toDisplayString(QUrl::PreferLocalFile) :
+             QString()));
 }
 
 void ListPanelFunc::calcSpace()
