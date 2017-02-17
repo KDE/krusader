@@ -107,11 +107,12 @@ QStringList sumFailedFunc(const QStringList& stdOut, const QStringList& stdErr)
     // md5sum and sha1sum print "...: FAILED" for failed files and display
     // the number of failures to stderr. so if stderr is empty, we'll assume all is ok
     QStringList result;
-    if (stdErr.size() == 0) return result;
+    if (stdErr.size() == 0)
+        return result;
     result += stdErr;
     // grep for the ":FAILED" substring
     const QString tmp = QString(": FAILED").toLocal8Bit();
-    for (int i = 0; i < stdOut.size();++i) {
+    for (int i = 0; i < stdOut.size(); ++i) {
         if (stdOut[i].indexOf(tmp) != -1)
             result += stdOut[i];
     }
@@ -124,7 +125,8 @@ void deepCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
                     const QString, bool recursive, const QString&)
 {
     proc << KrServices::fullPathName(self->binary);
-    if (recursive) proc << "-r";
+    if (recursive)
+        proc << "-r";
     proc << "-l" << files;
 }
 
@@ -132,7 +134,8 @@ void deepVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
                     const QString checksumFile, bool recursive, const QString&)
 {
     proc << KrServices::fullPathName(self->binary);
-    if (recursive) proc << "-r";
+    if (recursive)
+        proc << "-r";
     proc << "-x" << checksumFile << files;
 }
 
@@ -216,9 +219,8 @@ void initChecksumModule()
     cs_typeToText[CS_Tool::CRC] = "crc";
 
     // build the checksumFilter (for usage in KRQuery)
-    QMap<QString, CS_Tool::Type>::Iterator it;
-    for (it = cs_textToType.begin(); it != cs_textToType.end(); ++it)
-        Checksum::checksumTypesFilter += ("*." + it.key() + ' ');
+    for (const QString text: cs_textToType.keys())
+        Checksum::checksumTypesFilter += ("*." + text + ' ');
 }
 
 // --------------------------------------------------
@@ -230,10 +232,22 @@ static QList<CS_Tool *> getTools(bool folders)
     QList<CS_Tool *> result;
     uint i;
     for (i = 0; i < sizeof(cs_tools) / sizeof(CS_Tool); ++i) {
-        if (!result.isEmpty() && result.last()->type == cs_tools[i].type) continue; // 1 from each type please
-        if (folders && !cs_tools[i].recursive) continue;
+        if (!result.isEmpty() && result.last()->type == cs_tools[i].type)
+            continue; // 1 from each type please
+        if (folders && !cs_tools[i].recursive)
+            continue;
         if (KrServices::cmdExist(cs_tools[i].binary))
             result.append(&cs_tools[i]);
+    }
+
+    if (result.count() == 0) { // nothing was suggested?!
+        QString error = i18n("<qt>No supported checksum tool was found. Please check the "
+                             "<b>Dependencies</b> page in Krusader's settings.</qt>");
+        if (folders)
+            error += i18n("<qt><b>Note</b>: you have selected folders, and probably have no "
+                          "recursive checksum tool installed. Krusader currently supports "
+                          "<i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>");
+        KMessageBox::error(0, error);
     }
 
     return result;
@@ -244,25 +258,17 @@ static QList<CS_Tool *> getTools(bool folders)
 Checksum::CreateDialog::CreateDialog(const QStringList& files, bool containFolders, const QString& path)
     : QDialog(krApp)
 {
+    const QList<CS_Tool *> tools = getTools(containFolders);
+    if (tools.count() == 0)
+        return;
+
     setWindowModality(Qt::WindowModal);
     setWindowTitle(i18n("Create Checksum"));
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
-    QList<CS_Tool *> tools = getTools(containFolders);
-
-    if (tools.count() == 0) { // nothing was suggested?!
-        QString error = i18n("<qt>Cannot calculate checksum since no supported tool was found. "
-                             "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>");
-        if (containFolders)
-            error += i18n("<qt><b>Note</b>: you have selected folders, and probably have no recursive checksum tool installed."
-                          " Krusader currently supports <i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>");
-        KMessageBox::error(0, error);
-        return;
-    }
-
-    QWidget * widget = new QWidget(this);
+    QWidget *widget = new QWidget(this);
     QGridLayout *layout = new QGridLayout(widget);
 
     int row = 0;
@@ -274,10 +280,9 @@ Checksum::CreateDialog::CreateDialog(const QStringList& files, bool containFolde
     hlayout->addWidget(p);
     QLabel *l1 = new QLabel(widget);
 
-    if (containFolders)
-        l1->setText(i18n("About to calculate checksum for the following files and folders:"));
-    else
-        l1->setText(i18n("About to calculate checksum for the following files:"));
+    l1->setText(containFolders ?
+                    i18n("About to calculate checksum for the following files and folders:") :
+                    i18n("About to calculate checksum for the following files:"));
 
     hlayout->addWidget(l1);
     layout->addLayout(hlayout, row, 0, 1, 2, Qt::AlignLeft);
@@ -295,8 +300,7 @@ Checksum::CreateDialog::CreateDialog(const QStringList& files, bool containFolde
     hlayout2->addWidget(l2);
     KComboBox *method = new KComboBox(widget);
     // -- fill the combo with available methods
-    int i;
-    for (i = 0; i < tools.count(); ++i)
+    for (int i = 0; i < tools.count(); ++i)
         method->addItem(cs_typeToText[tools.at(i)->type], i);
     method->setFocus();
     hlayout2->addWidget(method);
@@ -304,7 +308,7 @@ Checksum::CreateDialog::CreateDialog(const QStringList& files, bool containFolde
     ++row;
     mainLayout->addWidget(widget);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
 
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
@@ -313,7 +317,8 @@ Checksum::CreateDialog::CreateDialog(const QStringList& files, bool containFolde
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
-    if (exec() != Accepted) return;
+    if (exec() != Accepted)
+        return;
     // else implied: run the process
     QTemporaryFile tmpOut(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.stdout"));
     tmpOut.open(); // necessary to create the filename
@@ -351,12 +356,14 @@ Checksum::CreateDialog::CreateDialog(const QStringList& files, bool containFolde
 
     // suggest a filename
     QString suggestedFilename = path + '/';
-    if (files.count() > 1) suggestedFilename += ("checksum." + cs_typeToText[mytool->type]);
-    else suggestedFilename += (files[0] + '.' + cs_typeToText[mytool->type]);
+    if (files.count() > 1)
+        suggestedFilename += ("checksum." + cs_typeToText[mytool->type]);
+    else
+        suggestedFilename += (files[0] + '.' + cs_typeToText[mytool->type]);
     // send both stdout and stderr
     QStringList stdOut, stdErr;
     if (!KrServices::fileToStringList(&tmpOut, stdOut) ||
-            !KrServices::fileToStringList(&tmpErr, stdErr)) {
+        !KrServices::fileToStringList(&tmpErr, stdErr)) {
         KMessageBox::error(krApp, i18n("Error reading stdout or stderr"));
         return;
     }
@@ -372,25 +379,17 @@ Checksum::MatchDialog::MatchDialog(const QStringList& files, bool containFolders
                                    const QString& path, const QString& checksumFile)
     : QDialog(krApp)
 {
+    const QList<CS_Tool *> tools = getTools(containFolders);
+    if (tools.count() == 0)
+        return;
+
     setWindowTitle(i18n("Verify Checksum"));
     setWindowModality(Qt::WindowModal);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
-    QList<CS_Tool *> tools = getTools(containFolders);
-
-    if (tools.count() == 0) { // nothing was suggested?!
-        QString error = i18n("<qt>Cannot verify checksum since no supported tool was found. "
-                             "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>");
-        if (containFolders)
-            error += i18n("<qt><b>Note</b>: you have selected folders, and probably have no recursive checksum tool installed."
-                          " Krusader currently supports <i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>");
-        KMessageBox::error(0, error);
-        return;
-    }
-
-    QWidget * widget = new QWidget(this);
+    QWidget *widget = new QWidget(this);
     QGridLayout *layout = new QGridLayout(widget);
 
     int row = 0;
@@ -402,10 +401,9 @@ Checksum::MatchDialog::MatchDialog(const QStringList& files, bool containFolders
     hlayout->addWidget(p);
     QLabel *l1 = new QLabel(widget);
 
-    if (containFolders)
-        l1->setText(i18n("About to verify checksum for the following files and folders:"));
-    else
-        l1->setText(i18n("About to verify checksum for the following files:"));
+    l1->setText(containFolders ?
+                    i18n("About to verify checksum for the following files and folders:") :
+                    i18n("About to verify checksum for the following files:"));
 
     hlayout->addWidget(l1);
     layout->addLayout(hlayout, row, 0, 1, 2, Qt::AlignLeft);
@@ -430,7 +428,7 @@ Checksum::MatchDialog::MatchDialog(const QStringList& files, bool containFolders
     layout->addLayout(hlayout2, row, 0, 1, 2, Qt::AlignLeft);
     mainLayout->addWidget(widget);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
 
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
@@ -439,24 +437,30 @@ Checksum::MatchDialog::MatchDialog(const QStringList& files, bool containFolders
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
-    if (exec() != Accepted) return;
+    if (exec() != Accepted)
+        return;
     QString file = checksumFileReq->url().toDisplayString(QUrl::PreferLocalFile);
     QString extension;
     if (!verifyChecksumFile(file, extension)) {
-        KMessageBox::error(0, i18n("<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid checksum file.</qt>", file));
+        KMessageBox::error(0, i18n("<qt>Error reading checksum file <i>%1</i>.<br />Please specify "
+                                   "a valid checksum file.</qt>",
+                                   file));
         return;
     }
 
     // do we have a tool for that extension?
-    int i;
     CS_Tool *mytool = 0;
-    for (i = 0; i < tools.count(); ++i)
-        if (cs_typeToText[tools.at(i)->type] == extension.toLower()) {
-            mytool = tools.at(i);
+    for (CS_Tool *tool : tools) {
+        if (cs_typeToText[tool->type] == extension.toLower()) {
+            mytool = tool;
             break;
         }
+    }
     if (!mytool) {
-        KMessageBox::error(0, i18n("<qt>Krusader cannot find a checksum tool that handles %1 on your system. Please check the <b>Dependencies</b> page in Krusader's settings.</qt>", extension));
+        KMessageBox::error(
+            0, i18n("<qt>Krusader cannot find a checksum tool that handles %1 on your system. "
+                    "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>",
+                    extension));
         return;
     }
 
@@ -496,22 +500,22 @@ Checksum::MatchDialog::MatchDialog(const QStringList& files, bool containFolders
     // send both stdout and stderr
     QStringList stdOut, stdErr;
     if (!KrServices::fileToStringList(&tmpOut, stdOut) ||
-            !KrServices::fileToStringList(&tmpErr, stdErr)) {
+        !KrServices::fileToStringList(&tmpErr, stdErr)) {
         KMessageBox::error(krApp, i18n("Error reading stdout or stderr"));
         return;
     }
     VerifyDialog dlg(mytool->failed(stdOut, stdErr));
 }
 
-bool Checksum::MatchDialog::verifyChecksumFile(QString path,  QString& extension)
+bool Checksum::MatchDialog::verifyChecksumFile(QString path, QString& extension)
 {
     QFileInfo f(path);
-    if (!f.exists() || f.isDir()) return false;
+    if (!f.exists() || f.isDir())
+        return false;
     // find the extension
     extension = path.mid(path.lastIndexOf(".") + 1);
 
     // TODO: do we know the extension? if not, ask the user for one
-
 
     return true;
 }
@@ -526,7 +530,7 @@ Checksum::VerifyDialog::VerifyDialog(const QStringList& failed)
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
-    QWidget * widget = new QWidget(this);
+    QWidget *widget = new QWidget(this);
     QGridLayout *layout = new QGridLayout(widget);
 
     bool errors = failed.size() > 0;
@@ -539,7 +543,7 @@ Checksum::VerifyDialog::VerifyDialog(const QStringList& failed)
     hlayout->addWidget(&p);
 
     QLabel *l1 = new QLabel((errors ? i18n("Errors were detected while verifying the checksums") :
-                             i18n("Checksums were verified successfully")), widget);
+                                      i18n("Checksums were verified successfully")), widget);
     hlayout->addWidget(l1);
     layout->addLayout(hlayout, row, 0, 1, 2, Qt::AlignLeft);
     ++row;
@@ -582,7 +586,7 @@ Checksum::ResultsDialog::ResultsDialog(const QStringList &stdOut, const QStringL
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
-    QWidget * widget = new QWidget(this);
+    QWidget *widget = new QWidget(this);
     QGridLayout *layout = new QGridLayout(widget);
 
     int row = 0;
@@ -590,8 +594,8 @@ Checksum::ResultsDialog::ResultsDialog(const QStringList &stdOut, const QStringL
     // create the icon and title
     QHBoxLayout *hlayout = new QHBoxLayout;
     QLabel p(widget);
-    p.setPixmap(krLoader->loadIcon(errors || !successes  ?
-                "dialog-error" : "dialog-information", KIconLoader::Desktop, 32));
+    p.setPixmap(krLoader->loadIcon(errors || !successes ? "dialog-error" : "dialog-information",
+                                   KIconLoader::Desktop, 32));
     hlayout->addWidget(&p);
 
     QLabel *l1 = new QLabel((errors || !successes ? i18n("Errors were detected while creating the checksums") :
@@ -618,15 +622,14 @@ Checksum::ResultsDialog::ResultsDialog(const QStringList &stdOut, const QStringL
         }
         lv->setHeaderLabels(columns);
 
-        for (QStringList::ConstIterator it = stdOut.begin(); it != stdOut.end(); ++it) {
-            QString line = (*it);
+        for (const QString line : stdOut) {
             if (standardFormat) {
                 int space = line.indexOf(' ');
-                QTreeWidgetItem * item = new QTreeWidgetItem(lv);
+                QTreeWidgetItem *item = new QTreeWidgetItem(lv);
                 item->setText(0, line.left(space));
                 item->setText(1, line.mid(space + 2));
             } else {
-                QTreeWidgetItem * item = new QTreeWidgetItem(lv);
+                QTreeWidgetItem *item = new QTreeWidgetItem(lv);
                 item->setText(0, line);
             }
         }
@@ -679,11 +682,11 @@ Checksum::ResultsDialog::ResultsDialog(const QStringList &stdOut, const QStringL
 
     QDialogButtonBox *buttonBox;
     if (successes) {
-        buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+        buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
         QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
         okButton->setDefault(true);
         okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    }  else {
+    } else {
         buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
         buttonBox->button(QDialogButtonBox::Close)->setDefault(true);
     }
@@ -710,11 +713,12 @@ void Checksum::ResultsDialog::accept()
 bool Checksum::ResultsDialog::saveChecksum(const QStringList& data, QString filename)
 {
     if (QFile::exists(filename) &&
-            KMessageBox::warningContinueCancel(this,
-                                               i18n("File %1 already exists.\nAre you sure you want to overwrite it?", filename),
-                                               i18n("Warning"), KStandardGuiItem::overwrite()) != KMessageBox::Continue) {
+        KMessageBox::warningContinueCancel(
+            this, i18n("File %1 already exists.\nAre you sure you want to overwrite it?", filename),
+            i18n("Warning"), KStandardGuiItem::overwrite()) != KMessageBox::Continue) {
         // find a better name to save to
-        filename = QFileDialog::getSaveFileName(0, i18n("Select a file to save to"), QString(), QStringLiteral("*"));
+        filename = QFileDialog::getSaveFileName(0, i18n("Select a file to save to"), QString(),
+                                                QStringLiteral("*"));
         if (filename.simplified().isEmpty())
             return false;
     }
@@ -722,31 +726,27 @@ bool Checksum::ResultsDialog::saveChecksum(const QStringList& data, QString file
     QFile file(filename);
     if (file.open(QIODevice::WriteOnly)) {
         QTextStream stream(&file);
-        for (QStringList::ConstIterator it = data.constBegin(); it != data.constEnd(); ++it)
-            stream << *it << "\n";
+        for (const QString line : data)
+            stream << line << "\n";
         file.close();
     }
 
     if (file.error() != QFile::NoError) {
-        KMessageBox::detailedError(this, i18n("Error saving file %1", filename),
-                                   file.errorString());
+        KMessageBox::detailedError(this, i18n("Error saving file %1", filename), file.errorString());
         return false;
-    } else
-        return true;
+    }
 
+    return true;
 }
 
 bool Checksum::ResultsDialog::savePerFile()
 {
-    QString type = _suggestedFilename.mid(_suggestedFilename.lastIndexOf('.'));
+    const QString type = _suggestedFilename.mid(_suggestedFilename.lastIndexOf('.'));
 
     krApp->startWaiting(i18n("Saving checksum files..."), 0);
-    for (QStringList::ConstIterator it = _data.constBegin(); it != _data.constEnd(); ++it) {
-        QString line = (*it);
-        QString filename = line.mid(line.indexOf(' ') + 2) + type;
-        QStringList l;
-        l << line;
-        if (!saveChecksum(l, filename)) {
+    for (const QString line : _data) {
+        const QString filename = line.mid(line.indexOf(' ') + 2) + type;
+        if (!saveChecksum(QStringList() << line, filename)) {
             KMessageBox::error(this, i18n("Errors occurred while saving multiple checksums. Stopping"));
             krApp->stopWait();
             return false;
