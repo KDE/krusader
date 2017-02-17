@@ -1097,7 +1097,7 @@ void KrView::refresh()
         setCurrentItem(nameToMakeCurrent());
         setNameToMakeCurrent("");
     } else if (!currentItem.isEmpty()) {
-        if (currentItem == ".." && _count > 1 &&
+        if (currentItem == ".." && _count > 0 &&
             !_quickFilterMask.isEmpty() && _quickFilterMask.isValid()) {
             // In a filtered view we should never select the dummy entry if
             // there are real matches.
