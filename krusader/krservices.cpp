@@ -244,7 +244,7 @@ QStringList KrServices::supportedTools() {
     // checksum utility
     supportedTool(tools, "MD5",
                   QStringList() << "md5deep" << "md5sum" << "sha1deep" << "sha256deep"
-                  << "tigerdeep" << "whirlpooldeep" << "cfv",
+                  << "tigerdeep" << "whirlpooldeep",
                   "checksum utility");
 
     return tools;

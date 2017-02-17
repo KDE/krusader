@@ -56,15 +56,17 @@
 #include "../krservices.h"
 
 class CS_Tool; // forward
-typedef void PREPARE_PROC_FUNC(KProcess& proc, CS_Tool *self, const QStringList& files,
-                               const QString checksumFile, bool recursive, const QString& type);
+typedef void CREATE_FUNC(KProcess& proc, CS_Tool *self, const QStringList& files, bool recursive);
+typedef void VERIFY_FUNC(KProcess& proc, CS_Tool *self, const QStringList& files,
+                         const QString checksumFile, bool recursive);
+
 typedef QStringList GET_FAILED_FUNC(const QStringList& stdOut, const QStringList& stdErr);
 
 class CS_Tool
 {
 public:
     enum Type {
-        MD5 = 0, SHA1, SHA256, TIGER, WHIRLPOOL, SFV, CRC,
+        MD5 = 0, SHA1, SHA256, TIGER, WHIRLPOOL,
         SHA224, SHA384, SHA512,
         NumOfTypes
     };
@@ -72,8 +74,8 @@ public:
     Type type;
     QString binary;
     bool recursive;
-    bool standardFormat;
-    PREPARE_PROC_FUNC *create, *verify;
+    CREATE_FUNC *create;
+    VERIFY_FUNC *verify;
     GET_FAILED_FUNC *failed;
 };
 
@@ -84,8 +86,7 @@ public:
 };
 
 // handles md5sum and sha1sum
-void sumCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
-                   const QString, bool recursive, const QString&)
+void sumCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files, bool recursive)
 {
     Q_UNUSED(recursive)
     proc << KrServices::fullPathName(self->binary);
@@ -94,8 +95,10 @@ void sumCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
 }
 
 void sumVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& /* files */,
-                   const QString checksumFile, bool recursive, const QString& /* type */)
+                   const QString checksumFile, bool recursive)
 {
+    // TODO there is a huge bug here: it is expected that all selected files are checked, but in
+    // fact we ignore the file list and only check what is in the checksum file.
     Q_UNUSED(recursive)
     proc << KrServices::fullPathName(self->binary);
     Q_ASSERT(!recursive);
@@ -121,8 +124,7 @@ QStringList sumFailedFunc(const QStringList& stdOut, const QStringList& stdErr)
 }
 
 // handles *deep binaries
-void deepCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
-                    const QString, bool recursive, const QString&)
+void deepCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files, bool recursive)
 {
     proc << KrServices::fullPathName(self->binary);
     if (recursive)
@@ -131,7 +133,7 @@ void deepCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
 }
 
 void deepVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
-                    const QString checksumFile, bool recursive, const QString&)
+                    const QString checksumFile, bool recursive)
 {
     proc << KrServices::fullPathName(self->binary);
     if (recursive)
@@ -145,49 +147,22 @@ QStringList deepFailedFunc(const QStringList& stdOut, const QStringList&/* stdEr
     return stdOut;
 }
 
-// handles cfv binary
-void cfvCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
-                   const QString, bool recursive, const QString& type)
-{
-    proc << KrServices::fullPathName(self->binary) << "-C" << "-VV";
-    if (recursive) proc << "-rr";
-    proc << "-t" << type << "-f-" << "-U" << files;
-}
-
-void cfvVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& /* files */,
-                   const QString checksumFile, bool recursive, const QString&type)
-{
-    proc << KrServices::fullPathName(self->binary) << "-M";
-    if (recursive) proc << "-rr";
-    proc << "-U" << "-VV" << "-t" << type << "-f" << checksumFile;// << files;
-}
-
-QStringList cfvFailedFunc(const QStringList& /* stdOut */, const QStringList& stdErr)
-{
-    // cfv dumps all failed hashes to stderr
-    return stdErr;
-}
-
 // important: this table should be ordered like so that all md5 tools should be
 // one after another, and then all sha1 and so on and so forth. The tools must be grouped,
 // since the code in getTools() counts on it!
 CS_Tool cs_tools[] = {
-    // type              binary            recursive   stdFmt           create_func       verify_func      failed_func
-    {CS_Tool::MD5,       "md5sum",         false,      true,            sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
-    {CS_Tool::MD5,       "md5deep",        true,       true,            deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
-    {CS_Tool::MD5,       "cfv",            true,       true,            cfvCreateFunc,    cfvVerifyFunc,   cfvFailedFunc},
-    {CS_Tool::SHA1,      "sha1sum",        false,      true,            sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
-    {CS_Tool::SHA1,      "sha1deep",       true,       true,            deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
-    {CS_Tool::SHA1,      "cfv",            true,       true,            cfvCreateFunc,    cfvVerifyFunc,   cfvFailedFunc},
-    {CS_Tool::SHA224,    "sha224sum",      false,      true,            sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
-    {CS_Tool::SHA256,    "sha256sum",      false,      true,            sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
-    {CS_Tool::SHA256,    "sha256deep",     true,       true,            deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
-    {CS_Tool::SHA384,    "sha384sum",      false,      true,            sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
-    {CS_Tool::SHA512,    "sha512sum",      false,      true,            sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
-    {CS_Tool::TIGER,     "tigerdeep",      true,       true,            deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
-    {CS_Tool::WHIRLPOOL, "whirlpooldeep",  true,       true,            deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
-    {CS_Tool::SFV,       "cfv",            true,       false,           cfvCreateFunc,    cfvVerifyFunc,   cfvFailedFunc},
-    {CS_Tool::CRC,       "cfv",            true,       false,           cfvCreateFunc,    cfvVerifyFunc,   cfvFailedFunc},
+    // type              binary            recursive    create_func       verify_func      failed_func
+    {CS_Tool::MD5,       "md5sum",         false,       sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
+    {CS_Tool::MD5,       "md5deep",        true,        deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
+    {CS_Tool::SHA1,      "sha1sum",        false,       sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
+    {CS_Tool::SHA1,      "sha1deep",       true,        deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
+    {CS_Tool::SHA224,    "sha224sum",      false,       sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
+    {CS_Tool::SHA256,    "sha256sum",      false,       sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
+    {CS_Tool::SHA256,    "sha256deep",     true,        deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
+    {CS_Tool::SHA384,    "sha384sum",      false,       sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
+    {CS_Tool::SHA512,    "sha512sum",      false,       sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
+    {CS_Tool::TIGER,     "tigerdeep",      true,        deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
+    {CS_Tool::WHIRLPOOL, "whirlpooldeep",  true,        deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
 };
 
 QMap<QString, CS_Tool::Type> cs_textToType;
@@ -204,8 +179,6 @@ void initChecksumModule()
     cs_textToType["sha512"] = CS_Tool::SHA512;
     cs_textToType["tiger"] = CS_Tool::TIGER;
     cs_textToType["whirlpool"] = CS_Tool::WHIRLPOOL;
-    cs_textToType["sfv"] = CS_Tool::SFV;
-    cs_textToType["crc"] = CS_Tool::CRC;
 
     cs_typeToText[CS_Tool::MD5] = "md5";
     cs_typeToText[CS_Tool::SHA1] = "sha1";
@@ -215,8 +188,6 @@ void initChecksumModule()
     cs_typeToText[CS_Tool::SHA512] = "sha512";
     cs_typeToText[CS_Tool::TIGER] = "tiger";
     cs_typeToText[CS_Tool::WHIRLPOOL] = "whirlpool";
-    cs_typeToText[CS_Tool::SFV] = "sfv";
-    cs_typeToText[CS_Tool::CRC] = "crc";
 
     // build the checksumFilter (for usage in KRQuery)
     for (const QString text: cs_textToType.keys())
@@ -246,7 +217,7 @@ static QList<CS_Tool *> getTools(bool folders)
         if (folders)
             error += i18n("<qt><b>Note</b>: you have selected folders, and probably have no "
                           "recursive checksum tool installed. Krusader currently supports "
-                          "<i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>");
+                          "<i>md5deep, sha1deep, sha256deep and tigerdeep</i></qt>");
         KMessageBox::error(0, error);
     }
 
@@ -326,7 +297,7 @@ Checksum::CreateDialog::CreateDialog(const QStringList& files, bool containFolde
     tmpErr.open(); // necessary to create the filename
     KProcess proc;
     CS_Tool *mytool = tools.at(method->currentIndex());
-    mytool->create(proc, mytool, files, QString(), containFolders, method->currentText());
+    mytool->create(proc, mytool, files, containFolders);
     proc.setOutputChannelMode(KProcess::SeparateChannels); // without this the next 2 lines have no effect!
     proc.setStandardOutputFile(tmpOut.fileName());
     proc.setStandardErrorFile(tmpErr.fileName());
@@ -368,7 +339,7 @@ Checksum::CreateDialog::CreateDialog(const QStringList& files, bool containFolde
         return;
     }
 
-    ResultsDialog dlg(stdOut, stdErr, suggestedFilename, mytool->standardFormat);
+    ResultsDialog dlg(stdOut, stdErr, suggestedFilename);
 }
 
 QString Checksum::checksumTypesFilter;
@@ -470,7 +441,7 @@ Checksum::MatchDialog::MatchDialog(const QStringList& files, bool containFolders
     QTemporaryFile tmpErr(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.stderr"));
     tmpErr.open(); // necessary to create the filename
     KProcess proc;
-    mytool->verify(proc, mytool, files, file, containFolders, extension);
+    mytool->verify(proc, mytool, files, file, containFolders);
     proc.setOutputChannelMode(KProcess::SeparateChannels); // without this the next 2 lines have no effect!
     proc.setStandardOutputFile(tmpOut.fileName());
     proc.setStandardErrorFile(tmpErr.fileName());
@@ -573,7 +544,7 @@ Checksum::VerifyDialog::VerifyDialog(const QStringList& failed)
 // ------------- ChecksumResultsDlg
 
 Checksum::ResultsDialog::ResultsDialog(const QStringList &stdOut, const QStringList &stdErr,
-                                       const QString& suggestedFilename, bool standardFormat)
+                                       const QString& suggestedFilename)
     : QDialog(krApp), _onePerFile(0), _checksumFileSelector(0), _data(stdOut), _suggestedFilename(suggestedFilename)
 {
     // md5 tools display errors into stderr, so we'll use that to determine the result of the job
@@ -613,27 +584,17 @@ Checksum::ResultsDialog::ResultsDialog(const QStringList &stdOut, const QStringL
         KrTreeWidget *lv = new KrTreeWidget(widget);
 
         QStringList columns;
-        if (standardFormat) {
-            columns << i18n("Hash");
-            columns << i18n("File");
-            lv->setAllColumnsShowFocus(true);
-        } else {
-            columns << i18n("File and hash");
-        }
+        columns << i18n("Hash") << i18n("File");
+        lv->setAllColumnsShowFocus(true);
         lv->setHeaderLabels(columns);
 
         for (const QString line : stdOut) {
-            if (standardFormat) {
-                int space = line.indexOf(' ');
-                QTreeWidgetItem *item = new QTreeWidgetItem(lv);
-                item->setText(0, line.left(space));
-                item->setText(1, line.mid(space + 2));
-            } else {
-                QTreeWidgetItem *item = new QTreeWidgetItem(lv);
-                item->setText(0, line);
-            }
+            const int space = line.indexOf(' ');
+            QTreeWidgetItem *item = new QTreeWidgetItem(lv);
+            item->setText(0, line.left(space));
+            item->setText(1, line.mid(space + 2));
         }
-        lv->sortItems(standardFormat ? 1 : 0, Qt::AscendingOrder);
+        lv->sortItems(1, Qt::AscendingOrder);
 
         layout->addWidget(lv, row, 0, 1, 2);
         ++row;
@@ -670,7 +631,7 @@ Checksum::ResultsDialog::ResultsDialog(const QStringList &stdOut, const QStringL
         _checksumFileSelector->setFocus();
     }
 
-    if (stdOut.size() > 1 && standardFormat) {
+    if (stdOut.size() > 1) {
         _onePerFile = new QCheckBox(i18n("Checksum file for each source file"), widget);
         _onePerFile->setChecked(false);
         connect(_onePerFile, SIGNAL(toggled(bool)), _checksumFileSelector, SLOT(setDisabled(bool)));

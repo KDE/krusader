@@ -283,7 +283,6 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
     Application* sha256deep     = new Application("sha256deep",    "http://md5deep.sourceforge.net/", KrServices::cmdExist("sha256deep"));
     Application* tigerdeep      = new Application("tigerdeep",     "http://md5deep.sourceforge.net/", KrServices::cmdExist("tigerdeep"));
     Application* whirlpooldeep  = new Application("whirlpooldeep", "http://md5deep.sourceforge.net/", KrServices::cmdExist("whirlpooldeep"));
-    Application* cfv            = new Application("cfv",           "http://cfv.sourceforge.net/", KrServices::cmdExist("cfv"));
 
     vecDiff.push_back(kdiff3);
     vecDiff.push_back(kompare);
@@ -297,7 +296,6 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
     vecChecksum.push_back(sha256deep);
     vecChecksum.push_back(tigerdeep);
     vecChecksum.push_back(whirlpooldeep);
-    vecChecksum.push_back(cfv);
 
     ApplicationGroup* diff     = new ApplicationGroup(i18n("diff utility"),     PS("DIFF"),   vecDiff);
     ApplicationGroup* mail     = new ApplicationGroup(i18n("email client"),     PS("MAIL"),   vecMail);
@@ -329,7 +327,6 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
     delete sha256deep;
     delete tigerdeep;
     delete whirlpooldeep;
-    delete cfv;
 
     delete diff;
     delete mail;

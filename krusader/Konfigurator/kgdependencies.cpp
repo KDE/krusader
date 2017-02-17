@@ -131,7 +131,6 @@ KgDependencies::KgDependencies(bool first, QWidget* parent) :
     addApplication("sha256deep",     archGrid2, 8, checksum_tab, PAGE_CHECKSUM);
     addApplication("tigerdeep",      archGrid2, 9, checksum_tab, PAGE_CHECKSUM);
     addApplication("whirlpooldeep",  archGrid2, 10, checksum_tab, PAGE_CHECKSUM);
-    addApplication("cfv",            archGrid2, 11, checksum_tab, PAGE_CHECKSUM);
 
     kgDependenciesLayout->addWidget(tabWidget, 0, 0);
 }

@@ -60,7 +60,7 @@ private:
     {
       public:
         ResultsDialog(const QStringList &stdOut, const QStringList &stdErr,
-                      const QString &suggestedFilename, bool standardFormat);
+                      const QString &suggestedFilename);
 
       public slots:
         virtual void accept() Q_DECL_OVERRIDE;
