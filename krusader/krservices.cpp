@@ -235,6 +235,11 @@ QStringList KrServices::supportedTools() {
                   QStringList() << "krename",
                   "krename");
 
+    // graphical sudo: kdesu or kdesudo
+    supportedTool(tools, "KDESU",
+                  QStringList() << "kdesu" << "kdesudo",
+                  "kdesu");
+
     // checksum utility
     supportedTool(tools, "MD5",
                   QStringList() << "md5deep" << "md5sum" << "sha1deep" << "sha256deep"

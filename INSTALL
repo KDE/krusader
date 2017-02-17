@@ -37,8 +37,8 @@ probably use similar names:
 - libqt5core5           Qt 5 core module
 - libqt5gui5            Qt 5 GUI module
 - libqt5printsupport5   Qt 5 print support module
-- libstdc++6            The GNU Standard C++ Library v3 
-- zlib1g                compression library - runtime 
+- libstdc++6            The GNU Standard C++ Library v3
+- zlib1g                compression library - runtime
 
 
 --- Suggested packages
@@ -54,6 +54,11 @@ distros will probably use similar names:
 - cpio                  GNU cpio -- a program to manage archives of files
 
 - kate                  Powerful Text Editor
+
+- kde-cli-tools         allows editing file types from Properties dialog
+
+- kdesu                 graphical sudo tool, required to run Krusader in root
+or kdesudo              mode
 
 - kio-extras            Enables transparent handling of various archive types
                         such as .tar and network protocols like SFTP
@@ -109,14 +114,14 @@ you need to compile a KDE 5 software
 
 --- Krusader development download
 
-Krusader is developed in KDE Extragear. If someone wants to download and use 
+Krusader is developed in KDE Extragear. If someone wants to download and use
 the latest available Krusader sourcecode with git:
 $ git clone http://anongit.kde.org/krusader
 
 Otherwise, if someone wants to use a .tar.gz version:
 $ tar xvf krusader-xx.xx.tar.gz
-  
-  
+
+
 --- Some CMake options. Cmake execution
 
 -DCMAKE_INSTALL_PREFIX=/usr
@@ -160,21 +165,21 @@ Note: In this document there's an appendix 2 that may help.
 --- To achieve that Krusader uses another language
 
 There is a list of translation files in the [10n.kde.org Krusader page](https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/index.html).
-In that list anyone can look for his desired translation file, hover the mouse cursor over its link, see its tooltip to look up the 
-appropriate LANGUAGE_CODE (which is shown between parentheses, e.g. if on the tooltip it's seen "German (de)" that means that 
+In that list anyone can look for his desired translation file, hover the mouse cursor over its link, see its tooltip to look up the
+appropriate LANGUAGE_CODE (which is shown between parentheses, e.g. if on the tooltip it's seen "German (de)" that means that
 LANGUAGE_CODE is: de), click on the link (in order to download the proper krusader.po file), and execute:
 
     # Transform the downloaded file
     msgfmt krusader.po -o krusader.mo
 
     # At the beginning of the following command: `sudo` must be added if Kubuntu, Ubuntu, Debian, or similar is being used.
-    # In the following command, the text XXXXXXX must be replaced by the LANGUAGE_CODE that was previously found 
+    # In the following command, the text XXXXXXX must be replaced by the LANGUAGE_CODE that was previously found
     su -c "cp -a krusader.mo /usr/share/locale/XXXXXXX/LC_MESSAGES/"
 
 Note: If, in the future, someone would need to automate the downloading of a krusader.po file, he could use:
     # In the following command, the text XXXXXXX must be replaced by the LANGUAGE_CODE that was previously found
     $ wget -U "Mozilla/5.0" https://websvn.kde.org/*checkout*/trunk/l10n-kf5/XXXXXXX/messages/extragear-utils/krusader.po
-    
+
 
 --- Execution
 
@@ -187,7 +192,7 @@ $ krusader
 # At the beginning of the following command: `sudo` must be added if Kubuntu, Ubuntu, Debian, or similar is being used
 $ su -c "make uninstall"
 
- 
+
 --- Appendix 1
 
 If it can be useful, this is the output of cmake on Kubuntu 15.04:
