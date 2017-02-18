@@ -545,7 +545,7 @@ Checksum::VerifyDialog::VerifyDialog(const QStringList& failed)
 
 Checksum::ResultsDialog::ResultsDialog(const QStringList &stdOut, const QStringList &stdErr,
                                        const QString& suggestedFilename)
-    : QDialog(krApp), _onePerFile(0), _checksumFileSelector(0), _data(stdOut), _suggestedFilename(suggestedFilename)
+    : QDialog(krApp), _data(stdOut), _suggestedFilename(suggestedFilename)
 {
     // md5 tools display errors into stderr, so we'll use that to determine the result of the job
     bool errors = stdErr.size() > 0;
@@ -617,40 +617,19 @@ Checksum::ResultsDialog::ResultsDialog(const QStringList &stdOut, const QStringL
         ++row;
     }
 
-    // save checksum to disk, if any hashes are found
-
-    if (successes) {
-        QHBoxLayout *hlayout2 = new QHBoxLayout;
-        QLabel *label = new QLabel(i18n("Save checksum to file:"), widget);
-        hlayout2->addWidget(label);
-
-        _checksumFileSelector = new KUrlRequester(QUrl::fromLocalFile(suggestedFilename), widget);
-        hlayout2->addWidget(_checksumFileSelector, Qt::AlignLeft);
-        layout->addLayout(hlayout2, row, 0, 1, 2, Qt::AlignLeft);
-        ++row;
-        _checksumFileSelector->setFocus();
-    }
-
-    if (stdOut.size() > 1) {
-        _onePerFile = new QCheckBox(i18n("Checksum file for each source file"), widget);
-        _onePerFile->setChecked(false);
-        connect(_onePerFile, SIGNAL(toggled(bool)), _checksumFileSelector, SLOT(setDisabled(bool)));
-        layout->addWidget(_onePerFile, row, 0, 1, 2, Qt::AlignLeft);
-        ++row;
-    }
+    _onePerFile = new QCheckBox(i18n("Checksum file for each source file"), widget);
+    _onePerFile->setEnabled(stdOut.size() > 1);
+    _onePerFile->setChecked(false);
+    layout->addWidget(_onePerFile, row, 0, 1, 2, Qt::AlignLeft);
+    ++row;
 
     mainLayout->addWidget(widget);
 
-    QDialogButtonBox *buttonBox;
-    if (successes) {
-        buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-        QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
-        okButton->setDefault(true);
-        okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    } else {
-        buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
-        buttonBox->button(QDialogButtonBox::Close)->setDefault(true);
-    }
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Cancel);
+    QPushButton *saveButton = buttonBox->button(QDialogButtonBox::Save);
+    saveButton->setEnabled(successes);
+    saveButton->setDefault(successes);
+    saveButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     mainLayout->addWidget(buttonBox);
 
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
@@ -661,30 +640,21 @@ Checksum::ResultsDialog::ResultsDialog(const QStringList &stdOut, const QStringL
 
 void Checksum::ResultsDialog::accept()
 {
-    if (_onePerFile && _onePerFile->isChecked()) {
-        Q_ASSERT(_data.size() > 1);
-        if (savePerFile())
-            QDialog::accept();
-    } else if (!_checksumFileSelector->url().isEmpty()) {
-        if (saveChecksum(_data, _checksumFileSelector->url().toDisplayString(QUrl::PreferLocalFile)))
-            QDialog::accept();
-    }
+    const bool saved = _onePerFile->isChecked() ? savePerFile() : saveChecksumFile(_data);
+    if (saved)
+        QDialog::accept();
 }
 
-bool Checksum::ResultsDialog::saveChecksum(const QStringList& data, QString filename)
+bool Checksum::ResultsDialog::saveChecksumFile(const QStringList &data, const QString &filename)
 {
-    if (QFile::exists(filename) &&
-        KMessageBox::warningContinueCancel(
-            this, i18n("File %1 already exists.\nAre you sure you want to overwrite it?", filename),
-            i18n("Warning"), KStandardGuiItem::overwrite()) != KMessageBox::Continue) {
-        // find a better name to save to
-        filename = QFileDialog::getSaveFileName(0, i18n("Select a file to save to"), QString(),
-                                                QStringLiteral("*"));
-        if (filename.simplified().isEmpty())
-            return false;
+    QString filePath = filename.isEmpty() ? _suggestedFilename : filename;
+    if (filename.isEmpty() || QFile::exists(filePath)) {
+        filePath = QFileDialog::getSaveFileName(this, QString(), filePath);
+        if (filePath.isEmpty())
+            return false; // user pressed cancel
     }
 
-    QFile file(filename);
+    QFile file(filePath);
     if (file.open(QIODevice::WriteOnly)) {
         QTextStream stream(&file);
         for (const QString line : data)
@@ -693,7 +663,7 @@ bool Checksum::ResultsDialog::saveChecksum(const QStringList& data, QString file
     }
 
     if (file.error() != QFile::NoError) {
-        KMessageBox::detailedError(this, i18n("Error saving file %1", filename), file.errorString());
+        KMessageBox::detailedError(this, i18n("Error saving file %1", filePath), file.errorString());
         return false;
     }
 
@@ -707,7 +677,7 @@ bool Checksum::ResultsDialog::savePerFile()
     krApp->startWaiting(i18n("Saving checksum files..."), 0);
     for (const QString line : _data) {
         const QString filename = line.mid(line.indexOf(' ') + 2) + type;
-        if (!saveChecksum(QStringList() << line, filename)) {
+        if (!saveChecksumFile(QStringList() << line, filename)) {
             KMessageBox::error(this, i18n("Errors occurred while saving multiple checksums. Stopping"));
             krApp->stopWait();
             return false;

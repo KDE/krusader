@@ -66,7 +66,7 @@ private:
         virtual void accept() Q_DECL_OVERRIDE;
 
       protected:
-        bool saveChecksum(const QStringList &data, QString filename);
+        bool saveChecksumFile(const QStringList &data, const QString &filename = QString());
         bool savePerFile();
 
       private:
