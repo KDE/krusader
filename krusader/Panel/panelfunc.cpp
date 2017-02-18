@@ -972,6 +972,9 @@ void ListPanelFunc::createChecksum()
     QStringList args;
     bool folders;
     checksum_wrapper(panel, args, folders);
+    if (args.isEmpty())
+        return;
+
     Checksum::startCreation(args, folders, panel->lastLocalPath());
 }
 

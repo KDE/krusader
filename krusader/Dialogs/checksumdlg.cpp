@@ -720,6 +720,9 @@ bool Checksum::ResultsDialog::savePerFile()
 
 void Checksum::startCreation(const QStringList &files, bool containFolders, const QString &path)
 {
+    if (files.isEmpty())
+        return;
+
     Checksum::CreateDialog(files, containFolders, path);
 }
 
