@@ -197,7 +197,7 @@ void KRSearchMod::scanRemoteDir(QUrl url)
 
     if (url.scheme() == QStringLiteral("virt")) {
         if (virtual_vfs == 0)
-            virtual_vfs = new virt_vfs();
+            virtual_vfs = new VirtualFileSystem();
         vfs_ = virtual_vfs;
     } else {
         if (remote_vfs == 0)

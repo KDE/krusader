@@ -4,7 +4,7 @@ set(FileSystem_SRCS
     defaultfilesystem.cpp
     dirlisterinterface.cpp
     filesystemprovider.cpp
-    virt_vfs.cpp
+    virtualfilesystem.cpp
     vfs.cpp
     vfile.cpp
     krpermhandler.cpp

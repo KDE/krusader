@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef VIRT_VFS_H
-#define VIRT_VFS_H
+#ifndef VIRTUALFILESYSTEM_H
+#define VIRTUALFILESYSTEM_H
 
 // QtCore
 #include <QHash>
@@ -38,11 +38,11 @@
  *
  * Used at least by bookmarks, locate, search and synchronizer dialog.
  */
-class virt_vfs : public vfs
+class VirtualFileSystem : public vfs
 {
     Q_OBJECT
 public:
-    virt_vfs();
+    VirtualFileSystem();
 
     /// Create virtual files in this VFS. Copy mode and showProgressInfo are ignored.
     void copyFiles(const QList<QUrl> &urls, const QUrl &destination,

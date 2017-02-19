@@ -64,7 +64,7 @@
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
-#include "../FileSystem/virt_vfs.h"
+#include "../FileSystem/virtualfilesystem.h"
 #include "../FileSystem/krquery.h"
 #include "../KViewer/krviewer.h"
 #include "../Panel/krsearchbar.h"
@@ -594,7 +594,7 @@ void KrSearchDialog::contextMenu(const QPoint &pos)
 
 void KrSearchDialog::feedToListBox()
 {
-    virt_vfs virtVfs;
+    VirtualFileSystem virtVfs;
     virtVfs.refresh(QUrl::fromLocalFile("/"));
 
     KConfigGroup group(krConfig, "Search");

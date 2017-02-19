@@ -17,7 +17,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include "virt_vfs.h"
+#include "virtualfilesystem.h"
 
 // QtCore
 #include <QDir>
@@ -40,12 +40,12 @@
 #include "../krglobal.h"
 #include "../krservices.h"
 
-#define VIRT_VFS_DB "virt_vfs.db"
+#define VIRTUALFILESYSTEM_DB "virtualfilesystem.db"
 
-QHash<QString, QList<QUrl> *> virt_vfs::_virtVfsDict;
-QHash<QString, QString> virt_vfs::_metaInfoDict;
+QHash<QString, QList<QUrl> *> VirtualFileSystem::_virtVfsDict;
+QHash<QString, QString> VirtualFileSystem::_metaInfoDict;
 
-virt_vfs::virt_vfs() : vfs()
+VirtualFileSystem::VirtualFileSystem() : vfs()
 {
     if (_virtVfsDict.isEmpty()) {
         restore();
@@ -54,7 +54,7 @@ virt_vfs::virt_vfs() : vfs()
     _type = VFS_VIRT;
 }
 
-void virt_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
+void VirtualFileSystem::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                          KIO::CopyJob::CopyMode /*mode*/, bool /*showProgressInfo*/,
                          bool /*reverseQueueMode*/, bool /*startPaused*/)
 {
@@ -80,14 +80,14 @@ void virt_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
     emit filesystemChanged(QUrl("virt:///" + dir)); // may call refresh()
 }
 
-void virt_vfs::dropFiles(const QUrl &destination, QDropEvent *event)
+void VirtualFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
 {
     const QList<QUrl> &urls = KUrlMimeData::urlsFromMimeData(event->mimeData());
     // dropping on virtual vfs (sic!) is always copy operation
     copyFiles(urls, destination);
 }
 
-void virt_vfs::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mode*/, QString dir)
+void VirtualFileSystem::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mode*/, QString dir)
 {
     QUrl destination(_currentDirectory);
     if (!dir.isEmpty()) {
@@ -96,7 +96,7 @@ void virt_vfs::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mo
     copyFiles(fileUrls, destination);
 }
 
-void virt_vfs::remove(const QStringList &fileNames)
+void VirtualFileSystem::remove(const QStringList &fileNames)
 {
     const QString parentDir = currentDir();
     if (parentDir == "/") { // remove virtual directory
@@ -119,7 +119,7 @@ void virt_vfs::remove(const QStringList &fileNames)
     emit filesystemChanged(currentDirectory()); // will call refresh()
 }
 
-QUrl virt_vfs::getUrl(const QString &name)
+QUrl VirtualFileSystem::getUrl(const QString &name)
 {
     vfile *vf = getVfile(name);
     if (!vf) {
@@ -129,7 +129,7 @@ QUrl virt_vfs::getUrl(const QString &name)
     return vf->vfile_getUrl();
 }
 
-void virt_vfs::mkDir(const QString &name)
+void VirtualFileSystem::mkDir(const QString &name)
 {
     if (currentDir() != "/") {
         showError(i18n("Creating new folders is allowed only in the 'virt:/' folder."));
@@ -141,7 +141,7 @@ void virt_vfs::mkDir(const QString &name)
     emit filesystemChanged(currentDirectory()); // will call refresh()
 }
 
-void virt_vfs::rename(const QString &fileName, const QString &newName)
+void VirtualFileSystem::rename(const QString &fileName, const QString &newName)
 {
     vfile *vf = getVfile(fileName);
     if (!vf)
@@ -170,7 +170,7 @@ void virt_vfs::rename(const QString &fileName, const QString &newName)
     connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(currentDirectory()); });
 }
 
-void virt_vfs::calcSpace(const QString &name, KIO::filesize_t *totalSize, unsigned long *totalFiles,
+void VirtualFileSystem::calcSpace(const QString &name, KIO::filesize_t *totalSize, unsigned long *totalFiles,
                          unsigned long *totalDirs, bool *stop)
 {
     if (currentDir() == "/") {
@@ -190,7 +190,7 @@ void virt_vfs::calcSpace(const QString &name, KIO::filesize_t *totalSize, unsign
     vfs::calcSpace(name, totalSize, totalFiles, totalDirs, stop);
 }
 
-bool virt_vfs::canMoveToTrash(const QStringList &fileNames)
+bool VirtualFileSystem::canMoveToTrash(const QStringList &fileNames)
 {
     if (isRoot())
         return false;
@@ -203,14 +203,14 @@ bool virt_vfs::canMoveToTrash(const QStringList &fileNames)
     return true;
 }
 
-void virt_vfs::setMetaInformation(const QString &info)
+void VirtualFileSystem::setMetaInformation(const QString &info)
 {
     _metaInfoDict[currentDir()] = info;
 }
 
 // ==== protected ====
 
-bool virt_vfs::refreshInternal(const QUrl &directory, bool /*showHidden*/)
+bool VirtualFileSystem::refreshInternal(const QUrl &directory, bool /*showHidden*/)
 {
     _currentDirectory = cleanUrl(directory);
     _currentDirectory.setHost("");
@@ -249,7 +249,7 @@ bool virt_vfs::refreshInternal(const QUrl &directory, bool /*showHidden*/)
 
 // ==== private ====
 
-void virt_vfs::mkDirInternal(const QString &name)
+void VirtualFileSystem::mkDirInternal(const QString &name)
 {
     // clean path, consistent with currentDir()
     QString dirName = name;
@@ -261,9 +261,9 @@ void virt_vfs::mkDirInternal(const QString &name)
     _virtVfsDict["/"]->append(QUrl(QStringLiteral("virt:/") + dirName));
 }
 
-void virt_vfs::save()
+void VirtualFileSystem::save()
 {
-    KConfig *db = &virt_vfs::getVirtDB();
+    KConfig *db = &VirtualFileSystem::getVirtDB();
     db->deleteGroup("virt_db");
     KConfigGroup group(db, "virt_db");
 
@@ -285,9 +285,9 @@ void virt_vfs::save()
     db->sync();
 }
 
-void virt_vfs::restore()
+void VirtualFileSystem::restore()
 {
-    KConfig *db = &virt_vfs::getVirtDB();
+    KConfig *db = &VirtualFileSystem::getVirtDB();
     const KConfigGroup dbGrp(db, "virt_db");
 
     const QMap<QString, QString> map = db->entryMap("virt_db");
@@ -310,7 +310,7 @@ void virt_vfs::restore()
     }
 }
 
-vfile *virt_vfs::createVFile(const QUrl &url)
+vfile *VirtualFileSystem::createVFile(const QUrl &url)
 {
     if (url.scheme() == "virt") { // return a virtual directory in root
         QString path = url.path().mid(1);
@@ -327,7 +327,7 @@ vfile *virt_vfs::createVFile(const QUrl &url)
     }
 
     KIO::StatJob *statJob = KIO::stat(url, KIO::HideProgressInfo);
-    connect(statJob, &KIO::Job::result, this, &virt_vfs::slotStatResult);
+    connect(statJob, &KIO::Job::result, this, &VirtualFileSystem::slotStatResult);
 
     // ugly: we have to wait here until the stat job is finished
     QEventLoop eventLoop;
@@ -346,19 +346,19 @@ vfile *virt_vfs::createVFile(const QUrl &url)
     return vfs::createVFileFromKIO(_fileEntry, directory, true);
 }
 
-KConfig &virt_vfs::getVirtDB()
+KConfig &VirtualFileSystem::getVirtDB()
 {
-    //virt_vfs_db = new KConfig("data",VIRT_VFS_DB,KConfig::NoGlobals);
-    static KConfig db(VIRT_VFS_DB, KConfig::CascadeConfig, QStandardPaths::AppDataLocation);
+    //virtualfilesystem_db = new KConfig("data",VIRTUALFILESYSTEM_DB,KConfig::NoGlobals);
+    static KConfig db(VIRTUALFILESYSTEM_DB, KConfig::CascadeConfig, QStandardPaths::AppDataLocation);
     return db;
 }
 
-void virt_vfs::slotStatResult(KJob *job)
+void VirtualFileSystem::slotStatResult(KJob *job)
 {
     _fileEntry = job->error() ? KIO::UDSEntry() : static_cast<KIO::StatJob *>(job)->statResult();
 }
 
-void virt_vfs::showError(const QString &error)
+void VirtualFileSystem::showError(const QString &error)
 {
     QWidget *window = QApplication::activeWindow();
     KMessageBox::sorry(window, error); // window can be null, is allowed

@@ -32,7 +32,7 @@
 #include <KIOCore/KMountPoint>
 
 #include "defaultfilesystem.h"
-#include "virt_vfs.h"
+#include "virtualfilesystem.h"
 #include "../krservices.h"
 
 
@@ -100,7 +100,7 @@ vfs *FileSystemProvider::createVfs(vfs::VFS_TYPE type)
 {
     vfs *newVfs;
     switch (type) {
-    case (vfs::VFS_VIRT): newVfs = new virt_vfs(); break;
+    case (vfs::VFS_VIRT): newVfs = new VirtualFileSystem(); break;
     default: newVfs = new DefaultFileSystem();
     }
 

@@ -76,7 +76,7 @@ A
 #include "../Archive/krarchandler.h"
 #include "../Archive/packjob.h"
 #include "../FileSystem/vfile.h"
-#include "../FileSystem/virt_vfs.h"
+#include "../FileSystem/virtualfilesystem.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../FileSystem/filesystemprovider.h"
 #include "../Dialogs/packgui.h"
@@ -817,7 +817,7 @@ void ListPanelFunc::removeVirtualFiles()
                                                KStandardGuiItem::remove()) != KMessageBox::Continue)
         return;
 
-    virt_vfs *vfs = static_cast<virt_vfs*>(files());
+    VirtualFileSystem *vfs = static_cast<VirtualFileSystem*>(files());
     vfs->remove(fileNames);
 }
 

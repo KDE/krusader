@@ -39,7 +39,7 @@
 #include "../defaults.h"
 #include "../krservices.h"
 #include "../FileSystem/vfs.h"
-#include "../FileSystem/virt_vfs.h"
+#include "../FileSystem/virtualfilesystem.h"
 #include "../KViewer/krviewer.h"
 #include "../panelmanager.h"
 #include "../kicons.h"
@@ -638,7 +638,7 @@ bool LocateDlg::find()
 
 void LocateDlg::feedToListBox()
 {
-    virt_vfs virtVfs;
+    VirtualFileSystem virtVfs;
     virtVfs.refresh(QUrl::fromLocalFile(QStringLiteral("/")));
 
     KConfigGroup group(krConfig, "Locate");

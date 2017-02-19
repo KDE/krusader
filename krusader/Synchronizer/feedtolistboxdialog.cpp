@@ -32,7 +32,7 @@
 #include "synchronizer.h"
 #include "synchronizergui.h"
 #include "../FileSystem/vfs.h"
-#include "../FileSystem/virt_vfs.h"
+#include "../FileSystem/virtualfilesystem.h"
 #include "../krglobal.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
@@ -99,7 +99,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
 
     // guessing the collection name
 
-    virt_vfs virtVfs;
+    VirtualFileSystem virtVfs;
     if (!virtVfs.refresh(QUrl("virt:/")))
         return;
 
@@ -203,7 +203,7 @@ void FeedToListBoxDialog::slotOk()
     }
 
     QUrl url = QUrl(QString("virt:/") + name);
-    virt_vfs virtVfs;
+    VirtualFileSystem virtVfs;
     if (!virtVfs.refresh(url)) {
         KMessageBox::error(parentWidget(), i18n("Cannot open %1.", url.toDisplayString()));
         return;
