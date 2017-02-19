@@ -39,8 +39,8 @@
 #include "../kicons.h"
 #include "../krglobal.h"
 #include "../defaults.h"
-#include "../VFS/krpermhandler.h"
-#include "../VFS/vfilecontainer.h"
+#include "../FileSystem/krpermhandler.h"
+#include "../FileSystem/dirlisterinterface.h"
 #include "../Filter/filterdialog.h"
 
 // QtCore
@@ -59,7 +59,7 @@
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 
-#define VF getVfile()
+#define FILEITEM getFileItem()
 
 KrView *KrViewOperator::_changedView = 0;
 KrViewProperties::PropertyType KrViewOperator::_changedProperties = KrViewProperties::NoProperty;
@@ -89,14 +89,14 @@ void KrViewOperator::cleared()
     _view->clear();
 }
 
-void KrViewOperator::fileAdded(vfile *vf)
+void KrViewOperator::fileAdded(FileItem *fileitem)
 {
-    _view->addItem(vf);
+    _view->addItem(fileitem);
 }
 
-void KrViewOperator::fileUpdated(vfile *vf)
+void KrViewOperator::fileUpdated(FileItem *fileitem)
 {
-    _view->updateItem(vf);
+    _view->updateItem(fileitem);
 }
 
 void KrViewOperator::startDrag()
@@ -148,7 +148,7 @@ bool KrViewOperator::filterSearch(const QString &text, bool caseSensitive)
                                       caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive,
                                       QRegExp::Wildcard);
     _view->refresh();
-    return _view->_count || !_view->_files->numVfiles();
+    return _view->_count || !_view->_files->numFileItems();
 }
 
 void KrViewOperator::setMassSelectionUpdate(bool upd)
@@ -189,7 +189,7 @@ KrView::KrView(KrViewInstance &instance, KConfig *cfg)
     : _config(cfg), _properties(0), _focused(false), _fileIconSize(0),
       _instance(instance), _files(0), _mainWindow(0), _widget(0), _nameToMakeCurrent(QString()),
       _previews(0), _updateDefaultSettings(false), _ignoreSettingsChange(false), _count(0),
-      _numDirs(0), _dummyVfile(0)
+      _numDirs(0), _dummyFileItem(0)
 {
 }
 
@@ -198,8 +198,8 @@ KrView::~KrView()
     _instance.m_objects.removeOne(this);
     delete _previews;
     _previews = 0;
-    delete _dummyVfile;
-    _dummyVfile = 0;
+    delete _dummyFileItem;
+    _dummyFileItem = 0;
     if (_properties)
         qFatal("A class inheriting KrView didn't delete _properties!");
     if (_operator)
@@ -317,12 +317,12 @@ QPixmap KrView::processIcon(const QPixmap &icon, bool dim, const QColor & dimCol
                                 Qt::ThresholdAlphaDither | Qt::NoOpaqueDetection );
 }
 
-QPixmap KrView::getIcon(vfile *vf, bool active, int size/*, KRListItem::cmpColor color*/)
+QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size/*, KRListItem::cmpColor color*/)
 {
     // KConfigGroup ag( krConfig, "Advanced");
     //////////////////////////////
     QPixmap icon;
-    QString icon_name = vf->vfile_getIcon();
+    QString icon_name = fileitem->getIcon();
     QString cacheName;
 
     if(!size)
@@ -336,7 +336,7 @@ QPixmap KrView::getIcon(vfile *vf, bool active, int size/*, KRListItem::cmpColor
         icon_name = "";
 
     cacheName.append(QString::number(size));
-    if(vf->vfile_isSymLink())
+    if(fileitem->isSymLink())
         cacheName.append("LINK_");
     if(dim)
         cacheName.append("DIM_");
@@ -347,7 +347,7 @@ QPixmap KrView::getIcon(vfile *vf, bool active, int size/*, KRListItem::cmpColor
     // first try the cache
     if (!QPixmapCache::find(cacheName, icon)) {
         icon = processIcon(krLoader->loadIcon(icon_name, KIconLoader::Desktop, size),
-                           dim, dimColor, dimFactor, vf->vfile_isSymLink());
+                           dim, dimColor, dimFactor, fileitem->isSymLink());
         // insert it into the cache
         QPixmapCache::insert(cacheName, icon);
     }
@@ -355,14 +355,14 @@ QPixmap KrView::getIcon(vfile *vf, bool active, int size/*, KRListItem::cmpColor
     return icon;
 }
 
-QPixmap KrView::getIcon(vfile *vf)
+QPixmap KrView::getIcon(FileItem *fileitem)
 {
     if(_previews) {
         QPixmap icon;
-        if(_previews->getPreview(vf, icon, _focused))
+        if(_previews->getPreview(fileitem, icon, _focused))
             return icon;
     }
-    return getIcon(vf, _focused, _fileIconSize);
+    return getIcon(fileitem, _focused, _fileIconSize);
 }
 
 /**
@@ -374,8 +374,8 @@ void KrView::getItemsByMask(QString mask, QStringList* names, bool dirs, bool fi
     for (KrViewItem * it = getFirst(); it != 0; it = getNext(it)) {
         if ((it->name() == "..") || !QDir::match(mask, it->name())) continue;
         // if we got here, than the item fits the mask
-        if (it->getVfile()->vfile_isDir() && !dirs) continue;   // do we need to skip folders?
-        if (!it->getVfile()->vfile_isDir() && !files) continue;   // do we need to skip files
+        if (it->getFileItem()->isDir() && !dirs) continue;   // do we need to skip folders?
+        if (!it->getFileItem()->isDir() && !files) continue;   // do we need to skip files
         names->append(it->name());
     }
 }
@@ -457,10 +457,10 @@ bool KrView::changeSelection(const KRQuery& filter, bool select, bool includeDir
     for (KrViewItem * it = getFirst(); it != 0; it = getNext(it)) {
         if (it->name() == "..")
             continue;
-        if (it->getVfile()->vfile_isDir() && !includeDirs)
+        if (it->getFileItem()->isDir() && !includeDirs)
             continue;
 
-        vfile * file = it->getMutableVfile(); // filter::match calls getMimetype which isn't const
+        FileItem * file = it->getMutableFileItem(); // filter::match calls getMimetype which isn't const
         if (file == 0)
             continue;
 
@@ -505,7 +505,7 @@ void KrView::invertSelection()
     for (KrViewItem * it = getFirst(); it != 0; it = getNext(it)) {
         if (it->name() == "..")
             continue;
-        if (it->getVfile()->vfile_isDir() && !markDirs && !it->isSelected())
+        if (it->getFileItem()->isDir() && !markDirs && !it->isSelected())
             continue;
         it->setSelected(!it->isSelected());
     }
@@ -543,7 +543,7 @@ void KrView::delItem(const QString &name)
 
     preDelItem(it);
 
-    if (it->VF->vfile_isDir()) {
+    if (it->FILEITEM->isDir()) {
         --_numDirs;
     }
 
@@ -553,18 +553,18 @@ void KrView::delItem(const QString &name)
     op()->emitSelectionChanged();
 }
 
-void KrView::addItem(vfile *vf)
+void KrView::addItem(FileItem *fileitem)
 {
-    if (isFiltered(vf))
+    if (isFiltered(fileitem))
         return;
-    KrViewItem *item = preAddItem(vf);
+    KrViewItem *item = preAddItem(fileitem);
     if (!item)
         return; // don't add it after all
 
     if(_previews)
         _previews->updatePreview(item);
 
-    if (vf->vfile_isDir())
+    if (fileitem->isDir())
         ++_numDirs;
 
     ++_count;
@@ -577,14 +577,14 @@ void KrView::addItem(vfile *vf)
     op()->emitSelectionChanged();
 }
 
-void KrView::updateItem(vfile *vf)
+void KrView::updateItem(FileItem *fileitem)
 {
-    if (isFiltered(vf))
-        delItem(vf->vfile_getName());
+    if (isFiltered(fileitem))
+        delItem(fileitem->getName());
     else {
-        preUpdateItem(vf);
+        preUpdateItem(fileitem);
         if(_previews)
-            _previews->updatePreview(findItemByVfile(vf));
+            _previews->updatePreview(findItemByFileItem(fileitem));
     }
 
     op()->emitSelectionChanged();
@@ -595,8 +595,8 @@ void KrView::clear()
     if(_previews)
         _previews->clear();
     _count = _numDirs = 0;
-    delete _dummyVfile;
-    _dummyVfile = 0;
+    delete _dummyFileItem;
+    _dummyFileItem = 0;
     redraw();
 }
 
@@ -646,7 +646,7 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         if (viewItem != 0) {
             viewItem->setSelected(!viewItem->isSelected());
 
-            if (viewItem->name() != ".." && viewItem->getVfile()->vfile_isDir() && viewItem->getVfile()->vfile_getSize() <= 0 &&
+            if (viewItem->name() != ".." && viewItem->getFileItem()->isDir() && viewItem->getFileItem()->getSize() <= 0 &&
                     KrSelectionMode::getSelectionHandler()->spaceCalculatesDiskSpace()) {
                 op()->emitCalcSpace(viewItem);
             }
@@ -932,20 +932,20 @@ void KrView::restoreSortMode(KConfigGroup &group)
     setSortMode(static_cast<KrViewProperties::ColumnType>(column), isDescending);
 }
 
-QString KrView::krPermissionString(const vfile * vf)
+QString KrView::krPermissionString(const FileItem * fileitem)
 {
     QString tmp;
-    switch (vf->vfile_isReadable()) {
+    switch (fileitem->isReadable()) {
     case ALLOWED_PERM: tmp+='r'; break;
     case UNKNOWN_PERM: tmp+='?'; break;
     case NO_PERM:      tmp+='-'; break;
     }
-    switch (vf->vfile_isWriteable()) {
+    switch (fileitem->isWriteable()) {
     case ALLOWED_PERM: tmp+='w'; break;
     case UNKNOWN_PERM: tmp+='?'; break;
     case NO_PERM:      tmp+='-'; break;
     }
-    switch (vf->vfile_isExecutable()) {
+    switch (fileitem->isExecutable()) {
     case ALLOWED_PERM: tmp+='x'; break;
     case UNKNOWN_PERM: tmp+='?'; break;
     case NO_PERM:      tmp+='-'; break;
@@ -953,19 +953,19 @@ QString KrView::krPermissionString(const vfile * vf)
     return tmp;
 }
 
-bool KrView::isFiltered(vfile *vf)
+bool KrView::isFiltered(FileItem *fileitem)
 {
-    if (_quickFilterMask.isValid() && _quickFilterMask.indexIn(vf->vfile_getName()) == -1)
+    if (_quickFilterMask.isValid() && _quickFilterMask.indexIn(fileitem->getName()) == -1)
         return true;
 
     bool filteredOut = false;
-    bool isDir = vf->vfile_isDir();
+    bool isDir = fileitem->isDir();
     if (!isDir || (isDir && properties()->filterApplysToDirs)) {
         switch (properties()->filter) {
         case KrViewProperties::All :
             break;
         case KrViewProperties::Custom :
-            if (!properties()->filterMask.match(vf))
+            if (!properties()->filterMask.match(fileitem))
                 filteredOut = true;
             break;
         case KrViewProperties::Dirs:
@@ -983,7 +983,7 @@ bool KrView::isFiltered(vfile *vf)
     return filteredOut;
 }
 
-void KrView::setFiles(VfileContainer *files)
+void KrView::setFiles(DirListerInterface *files)
 {
     if(files != _files) {
         clear();
@@ -998,8 +998,8 @@ void KrView::setFiles(VfileContainer *files)
     QObject::disconnect(_files, 0, op(), 0);
     QObject::connect(_files, SIGNAL(refreshDone(bool)), op(), SLOT(startUpdate()));
     QObject::connect(_files, SIGNAL(cleared()), op(), SLOT(cleared()));
-    QObject::connect(_files, SIGNAL(addedVfile(vfile*)), op(), SLOT(fileAdded(vfile*)));
-    QObject::connect(_files, SIGNAL(updatedVfile(vfile*)), op(), SLOT(fileUpdated(vfile*)));
+    QObject::connect(_files, SIGNAL(addedFileItem(FileItem*)), op(), SLOT(fileAdded(FileItem*)));
+    QObject::connect(_files, SIGNAL(updatedFileItem(FileItem*)), op(), SLOT(fileUpdated(FileItem*)));
 }
 
 void KrView::setFilter(KrViewProperties::FilterSpec filter, FilterSettings customFilter, bool applyToDirs)
@@ -1071,24 +1071,24 @@ void KrView::refresh()
     if(!_files)
         return;
 
-    QList<vfile*> vfiles;
+    QList<FileItem*> fileItems;
 
     // if we are not at the root add the ".." entry
     if(!_files->isRoot()) {
-        _dummyVfile = vfile::createDummy();
-        vfiles << _dummyVfile;
+        _dummyFileItem = FileItem::createDummy();
+        fileItems << _dummyFileItem;
     }
 
-    foreach(vfile *vf, _files->vfiles()) {
-        if(!vf || isFiltered(vf))
+    foreach(FileItem *fileitem, _files->fileItems()) {
+        if(!fileitem || isFiltered(fileitem))
             continue;
-        if(vf->vfile_isDir())
+        if(fileitem->isDir())
             _numDirs++;
         _count++;
-        vfiles << vf;
+        fileItems << fileitem;
     }
 
-    populate(vfiles, _dummyVfile);
+    populate(fileItems, _dummyFileItem);
 
     if(!selection.isEmpty())
         setSelectionUrls(selection);
@@ -1115,14 +1115,14 @@ void KrView::refresh()
     op()->emitSelectionChanged();
 }
 
-void KrView::setSelected(const vfile* vf, bool select)
+void KrView::setSelected(const FileItem* fileitem, bool select)
 {
-    if(vf == _dummyVfile)
+    if(fileitem == _dummyFileItem)
         return;
 
     if(select)
         clearSavedSelection();
-    intSetSelected(vf, select);
+    intSetSelected(fileitem, select);
 }
 
 void KrView::saveSelection()

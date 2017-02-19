@@ -41,9 +41,9 @@
 
 #include <KIO/Global>
 
-#include "../VFS/krquery.h"
-#include "../VFS/vfile.h"
-#include "../VFS/krpermhandler.h"
+#include "../FileSystem/krquery.h"
+#include "../FileSystem/fileitem.h"
+#include "../FileSystem/krpermhandler.h"
 #include "../Archive/krarchandler.h"
 
 #define  EVENT_PROCESS_DELAY     250
@@ -59,17 +59,17 @@ KRSearchMod::KRSearchMod(const KRQuery* q)
     connect(query, SIGNAL(processEvents(bool &)),
             this,  SLOT(slotProcessEvents(bool &)));
 
-    remote_vfs = 0;
-    virtual_vfs = 0;
+    remote_fileSystem = 0;
+    virtual_fileSystem = 0;
 }
 
 KRSearchMod::~KRSearchMod()
 {
     delete query;
-    if (remote_vfs)
-        delete remote_vfs;
-    if (virtual_vfs)
-        delete virtual_vfs;
+    if (remote_fileSystem)
+        delete remote_fileSystem;
+    if (virtual_fileSystem)
+        delete virtual_fileSystem;
 }
 
 void KRSearchMod::start()
@@ -122,7 +122,7 @@ void KRSearchMod::scanURL(QUrl url)
 
 void KRSearchMod::scanLocalDir(const QUrl &url)
 {
-    const QString dir = vfs::ensureTrailingSlash(url).path();
+    const QString dir = FileSystem::ensureTrailingSlash(url).path();
 
     QT_DIR *qdir = QT_OPENDIR(dir.toLocal8Bit());
     if (!qdir)
@@ -150,11 +150,11 @@ void KRSearchMod::scanLocalDir(const QUrl &url)
                 unScannedUrls.push(fileUrl);
         }
 
-        // creating a vfile object for matching with krquery
-        vfile *vf = vfs::createLocalVFile(name, dir);
+        // creating a file item object for matching with krquery
+        FileItem *fileitem = FileSystem::createLocalFileItem(name, dir);
 
         if (query->searchInArchives()) {
-            const QString mime = vf->vfile_getMime();
+            const QString mime = fileitem->getMime();
             if (KRarcHandler::arcSupported(mime)) {
                 QUrl archiveURL = fileUrl;
                 bool encrypted;
@@ -172,13 +172,13 @@ void KRSearchMod::scanLocalDir(const QUrl &url)
             }
         }
 
-        if (query->match(vf)) {
+        if (query->match(fileitem)) {
             // if we got here - we got a winner
             results.append(fullName);
 
-            emit found(*vf, query->foundText()); // emitting copy of vfile
+            emit found(*fileitem, query->foundText()); // emitting copy of file item
         }
-        delete vf;
+        delete fileitem;
 
         if (timer.elapsed() >= EVENT_PROCESS_DELAY) {
             qApp->processEvents();
@@ -193,31 +193,31 @@ void KRSearchMod::scanLocalDir(const QUrl &url)
 
 void KRSearchMod::scanRemoteDir(QUrl url)
 {
-    vfs * vfs_;
+    FileSystem * fileSystem_;
 
     if (url.scheme() == QStringLiteral("virt")) {
-        if (virtual_vfs == 0)
-            virtual_vfs = new virt_vfs();
-        vfs_ = virtual_vfs;
+        if (virtual_fileSystem == 0)
+            virtual_fileSystem = new VirtualFileSystem();
+        fileSystem_ = virtual_fileSystem;
     } else {
-        if (remote_vfs == 0)
-            remote_vfs = new default_vfs();
-        vfs_ = remote_vfs;
+        if (remote_fileSystem == 0)
+            remote_fileSystem = new DefaultFileSystem();
+        fileSystem_ = remote_fileSystem;
     }
 
-    if (!vfs_->refresh(url)) return ;
+    if (!fileSystem_->refresh(url)) return ;
 
-    for (vfile *vf : vfs_->vfiles()) {
-        QUrl fileURL = vf->vfile_getUrl();
+    for (FileItem *fileitem : fileSystem_->fileItems()) {
+        QUrl fileURL = fileitem->getUrl();
 
-        if (query->isRecursive() && ((vf->vfile_isSymLink() && query->followLinks()) || vf->vfile_isDir()))
+        if (query->isRecursive() && ((fileitem->isSymLink() && query->followLinks()) || fileitem->isDir()))
             unScannedUrls.push(fileURL);
 
-        if (query->match(vf)) {
+        if (query->match(fileitem)) {
             // if we got here - we got a winner
             results.append(fileURL.toDisplayString(QUrl::PreferLocalFile));
 
-            emit found(*vf, query->foundText()); // emitting copy of vfile
+            emit found(*fileitem, query->foundText()); // emitting copy of file item
         }
 
         if (timer.elapsed() >= EVENT_PROCESS_DELAY) {

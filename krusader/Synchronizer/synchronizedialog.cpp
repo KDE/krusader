@@ -29,7 +29,7 @@
  ***************************************************************************/
 
 #include "synchronizedialog.h"
-#include "../VFS/krpermhandler.h"
+#include "../FileSystem/krpermhandler.h"
 #include "../krglobal.h"
 #include "../defaults.h"
 

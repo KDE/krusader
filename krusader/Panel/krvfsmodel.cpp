@@ -18,8 +18,8 @@
  *****************************************************************************/
 
 #include "krvfsmodel.h"
-#include "../VFS/vfile.h"
-#include "../VFS/krpermhandler.h"
+#include "../FileSystem/fileitem.h"
+#include "../FileSystem/krpermhandler.h"
 #include "../defaults.h"
 #include "../krglobal.h"
 
@@ -37,25 +37,25 @@
 
 
 KrVfsModel::KrVfsModel(KrInterView * view): QAbstractListModel(0), _extensionEnabled(true), _view(view),
-        _dummyVfile(0), _ready(false), _justForSizeHint(false),
+        _dummyFileItem(0), _ready(false), _justForSizeHint(false),
         _alternatingTable(false)
 {
     KConfigGroup grpSvr(krConfig, "Look&Feel");
     _defaultFont = grpSvr.readEntry("Filelist Font", _FilelistFont);
 }
 
-void KrVfsModel::populate(const QList<vfile*> &files, vfile *dummy)
+void KrVfsModel::populate(const QList<FileItem *> &files, FileItem *dummy)
 {
-    _vfiles = files;
-    _dummyVfile = dummy;
+    _fileItems = files;
+    _dummyFileItem = dummy;
     _ready = true;
 
     if(lastSortOrder() != KrViewProperties::NoColumn)
         sort();
     else {
         emit layoutAboutToBeChanged();
-        for(int i = 0; i < _vfiles.count(); i++) {
-            updateIndices(_vfiles[i], i);
+        for(int i = 0; i < _fileItems.count(); i++) {
+            updateIndices(_fileItems[i], i);
         }
         emit layoutChanged();
     }
@@ -67,7 +67,7 @@ KrVfsModel::~KrVfsModel()
 
 void KrVfsModel::clear()
 {
-    if(!_vfiles.count())
+    if(!_fileItems.count())
         return;
     emit layoutAboutToBeChanged();
     // clear persistent indexes
@@ -80,18 +80,18 @@ void KrVfsModel::clear()
         newPersistentList.append(QModelIndex());
     changePersistentIndexList(oldPersistentList, newPersistentList);
 
-    _vfiles.clear();
-    _vfileNdx.clear();
+    _fileItems.clear();
+    _fileItemNdx.clear();
     _nameNdx.clear();
     _urlNdx.clear();
-    _dummyVfile = 0;
+    _dummyFileItem = 0;
 
     emit layoutChanged();
 }
 
 int KrVfsModel::rowCount(const QModelIndex& /*parent*/) const
 {
-    return _vfiles.count();
+    return _fileItems.count();
 }
 
 
@@ -104,8 +104,8 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid() || index.row() >= rowCount())
         return QVariant();
-    vfile *vf = _vfiles.at(index.row());
-    if (vf == 0)
+    FileItem *fileitem = _fileItems.at(index.row());
+    if (fileitem == 0)
         return QVariant();
 
     switch (role) {
@@ -113,13 +113,13 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
         return _defaultFont;
     case Qt::EditRole: {
         if (index.column() == 0) {
-            return vf->vfile_getName();
+            return fileitem->getName();
         }
         return QVariant();
     }
     case Qt::UserRole: {
         if (index.column() == 0) {
-            return nameWithoutExtension(vf, false);
+            return nameWithoutExtension(fileitem, false);
         }
         return QVariant();
     }
@@ -127,65 +127,65 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
     case Qt::DisplayRole: {
         switch (index.column()) {
         case KrViewProperties::Name: {
-            return nameWithoutExtension(vf);
+            return nameWithoutExtension(fileitem);
         }
         case KrViewProperties::Ext: {
-            QString nameOnly = nameWithoutExtension(vf);
-            const QString& vfName = vf->vfile_getName();
-            return vfName.mid(nameOnly.length() + 1);
+            QString nameOnly = nameWithoutExtension(fileitem);
+            const QString& fileitemName = fileitem->getName();
+            return fileitemName.mid(nameOnly.length() + 1);
         }
         case KrViewProperties::Size: {
-            if (vf->vfile_isDir() && vf->vfile_getSize() <= 0) {
+            if (fileitem->isDir() && fileitem->getSize() <= 0) {
                 //HACK add <> brackets AFTER translating - otherwise KUIT thinks it's a tag
                 static QString label = QString("<") +
                     i18nc("Show the string 'DIR' instead of file size in detailed view (for folders)", "DIR") + ">";
                 return label;
             } else
                 return (properties()->humanReadableSize) ?
-                       KIO::convertSize(vf->vfile_getSize()) + "  " :
-                       KRpermHandler::parseSize(vf->vfile_getSize()) + ' ';
+                       KIO::convertSize(fileitem->getSize()) + "  " :
+                       KRpermHandler::parseSize(fileitem->getSize()) + ' ';
         }
         case KrViewProperties::Type: {
-            if (vf == _dummyVfile)
+            if (fileitem == _dummyFileItem)
                 return QVariant();
             QMimeDatabase db;
-            QMimeType mt = db.mimeTypeForName(vf->vfile_getMime());
+            QMimeType mt = db.mimeTypeForName(fileitem->getMime());
             if (mt.isValid())
                 return mt.comment();
             return QVariant();
         }
         case KrViewProperties::Modified: {
-            if (vf == _dummyVfile)
+            if (fileitem == _dummyFileItem)
                 return QVariant();
-            time_t time = vf->vfile_getTime_t();
+            time_t time = fileitem->getTime_t();
             struct tm* t = localtime((time_t *) & time);
 
             QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
             return QLocale().toString(tmp, QLocale::ShortFormat);
         }
         case KrViewProperties::Permissions: {
-            if (vf == _dummyVfile)
+            if (fileitem == _dummyFileItem)
                 return QVariant();
             if (properties()->numericPermissions) {
                 QString perm;
-                return perm.sprintf("%.4o", vf->vfile_getMode() & PERM_BITMASK);
+                return perm.sprintf("%.4o", fileitem->getMode() & PERM_BITMASK);
             }
-            return vf->vfile_getPerm();
+            return fileitem->getPerm();
         }
         case KrViewProperties::KrPermissions: {
-            if (vf == _dummyVfile)
+            if (fileitem == _dummyFileItem)
                 return QVariant();
-            return KrView::krPermissionString(vf);
+            return KrView::krPermissionString(fileitem);
         }
         case KrViewProperties::Owner: {
-            if (vf == _dummyVfile)
+            if (fileitem == _dummyFileItem)
                 return QVariant();
-            return vf->vfile_getOwner();
+            return fileitem->getOwner();
         }
         case KrViewProperties::Group: {
-            if (vf == _dummyVfile)
+            if (fileitem == _dummyFileItem)
                 return QVariant();
-            return vf->vfile_getGroup();
+            return fileitem->getGroup();
         }
         default: return QString();
         }
@@ -197,7 +197,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
             if (properties()->displayIcons) {
                 if (_justForSizeHint)
                     return QPixmap(_view->fileIconSize(), _view->fileIconSize());
-                return _view->getIcon(vf);
+                return _view->getIcon(fileitem);
             }
             break;
         }
@@ -230,14 +230,14 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
         colorItemType.m_alternateBackgroundColor = (actRow & 1);
         colorItemType.m_currentItem = _view->getCurrentIndex().row() == index.row();
         colorItemType.m_selectedItem = _view->isSelected(index);
-        if (vf->vfile_isSymLink()) {
-            if (vf->vfile_isBrokenLink())
+        if (fileitem->isSymLink()) {
+            if (fileitem->isBrokenLink())
                 colorItemType.m_fileType = KrColorItemType::InvalidSymlink;
             else
                 colorItemType.m_fileType = KrColorItemType::Symlink;
-        } else if (vf->vfile_isDir())
+        } else if (fileitem->isDir())
             colorItemType.m_fileType = KrColorItemType::Directory;
-        else if (vf->vfile_isExecutable())
+        else if (fileitem->isExecutable())
             colorItemType.m_fileType = KrColorItemType::Executable;
         else
             colorItemType.m_fileType = KrColorItemType::File;
@@ -265,10 +265,10 @@ bool KrVfsModel::setData(const QModelIndex & index, const QVariant & value, int 
 {
     if (role == Qt::EditRole && index.isValid()) {
         if (index.row() < rowCount() && index.row() >= 0) {
-            vfile *vf = _vfiles.at(index.row());
-            if (vf == 0)
+            FileItem *fileitem = _fileItems.at(index.row());
+            if (fileitem == 0)
                 return false;
-            _view->op()->emitRenameItem(vf->vfile_getName(), value.toString());
+            _view->op()->emitRenameItem(fileitem->getName(), value.toString());
         }
     }
     if (role == Qt::UserRole && index.isValid()) {
@@ -291,8 +291,8 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
     KrSort::Sorter sorter(createSorter());
     sorter.sort();
 
-    _vfiles.clear();
-    _vfileNdx.clear();
+    _fileItems.clear();
+    _fileItemNdx.clear();
     _nameNdx.clear();
     _urlNdx.clear();
 
@@ -300,11 +300,11 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
     QHash<int, int> changeMap;
     for (int i = 0; i < sorter.items().count(); ++i) {
         const KrSort::SortProps *props = sorter.items()[i];
-        _vfiles.append(props->vf());
+        _fileItems.append(props->fileitem());
         changeMap[ props->originalIndex() ] = i;
         if (i != props->originalIndex())
             sortOrderChanged = true;
-        updateIndices(props->vf(), i);
+        updateIndices(props->fileitem(), i);
     }
 
     QModelIndexList newPersistentList;
@@ -318,14 +318,14 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
         _view->makeItemVisible(_view->getCurrentKrViewItem());
 }
 
-QModelIndex KrVfsModel::addItem(vfile * vf)
+QModelIndex KrVfsModel::addItem(FileItem *fileitem)
 {
     emit layoutAboutToBeChanged();
 
     if(lastSortOrder() == KrViewProperties::NoColumn) {
-        int idx = _vfiles.count();
-        _vfiles.append(vf);
-        updateIndices(vf, idx);
+        int idx = _fileItems.count();
+        _fileItems.append(fileitem);
+        updateIndices(fileitem, idx);
         emit layoutChanged();
         return index(idx, 0);
     }
@@ -334,14 +334,14 @@ QModelIndex KrVfsModel::addItem(vfile * vf)
 
     KrSort::Sorter sorter(createSorter());
 
-    int insertIndex = sorter.insertIndex(vf, vf == _dummyVfile, customSortData(vf));
-    if (insertIndex != _vfiles.count())
-        _vfiles.insert(insertIndex, vf);
+    int insertIndex = sorter.insertIndex(fileitem, fileitem == _dummyFileItem, customSortData(fileitem));
+    if (insertIndex != _fileItems.count())
+        _fileItems.insert(insertIndex, fileitem);
     else
-        _vfiles.append(vf);
+        _fileItems.append(fileitem);
 
-    for (int i = insertIndex; i < _vfiles.count(); ++i) {
-        updateIndices(_vfiles[i], i);
+    for (int i = insertIndex; i < _fileItems.count(); ++i) {
+        updateIndices(_fileItems[i], i);
     }
 
     QModelIndexList newPersistentList;
@@ -359,10 +359,10 @@ QModelIndex KrVfsModel::addItem(vfile * vf)
     return index(insertIndex, 0);
 }
 
-QModelIndex KrVfsModel::removeItem(vfile * vf)
+QModelIndex KrVfsModel::removeItem(FileItem *fileitem)
 {
     QModelIndex currIndex = _view->getCurrentIndex();
-    int removeIdx = _vfiles.indexOf(vf);
+    int removeIdx = _fileItems.indexOf(fileitem);
     if(removeIdx < 0)
         return currIndex;
 
@@ -370,25 +370,25 @@ QModelIndex KrVfsModel::removeItem(vfile * vf)
     QModelIndexList oldPersistentList = persistentIndexList();
     QModelIndexList newPersistentList;
 
-    _vfiles.removeAt(removeIdx);
+    _fileItems.removeAt(removeIdx);
 
     if (currIndex.row() == removeIdx) {
-        if (_vfiles.count() == 0)
+        if (_fileItems.count() == 0)
             currIndex = QModelIndex();
-        else if (removeIdx >= _vfiles.count())
-            currIndex = index(_vfiles.count() - 1, 0);
+        else if (removeIdx >= _fileItems.count())
+            currIndex = index(_fileItems.count() - 1, 0);
         else
             currIndex = index(removeIdx, 0);
     } else if (currIndex.row() > removeIdx) {
         currIndex = index(currIndex.row() - 1, 0);
     }
 
-    _vfileNdx.remove(vf);
-    _nameNdx.remove(vf->vfile_getName());
-    _urlNdx.remove(vf->vfile_getUrl());
-    // update indices for vfiles following vf
-    for (int i = removeIdx; i < _vfiles.count(); i++) {
-        updateIndices(_vfiles[i], i);
+    _fileItemNdx.remove(fileitem);
+    _nameNdx.remove(fileitem->getName());
+    _urlNdx.remove(fileitem->getUrl());
+    // update indices for fileItems following fileitem
+    for (int i = removeIdx; i < _fileItems.count(); i++) {
+        updateIndices(_fileItems[i], i);
     }
 
     foreach(const QModelIndex &mndx, oldPersistentList) {
@@ -407,16 +407,16 @@ QModelIndex KrVfsModel::removeItem(vfile * vf)
     return currIndex;
 }
 
-void KrVfsModel::updateItem(vfile * vf)
+void KrVfsModel::updateItem(FileItem *fileitem)
 {
-    QModelIndex oldModelIndex = vfileIndex(vf);
+    QModelIndex oldModelIndex = fileItemIndex(fileitem);
 
     if (!oldModelIndex.isValid()) {
-        addItem(vf);
+        addItem(fileitem);
         return;
     }
     if(lastSortOrder() == KrViewProperties::NoColumn) {
-        _view->redrawItem(vf);
+        _view->redrawItem(fileitem);
         return;
     }
 
@@ -424,26 +424,26 @@ void KrVfsModel::updateItem(vfile * vf)
 
     emit layoutAboutToBeChanged();
 
-    _vfiles.removeAt(oldIndex);
+    _fileItems.removeAt(oldIndex);
 
     KrSort::Sorter sorter(createSorter());
 
     QModelIndexList oldPersistentList = persistentIndexList();
 
-    int newIndex = sorter.insertIndex(vf, vf == _dummyVfile, customSortData(vf));
-    if (newIndex != _vfiles.count()) {
+    int newIndex = sorter.insertIndex(fileitem, fileitem == _dummyFileItem, customSortData(fileitem));
+    if (newIndex != _fileItems.count()) {
         if (newIndex > oldIndex)
             newIndex--;
-        _vfiles.insert(newIndex, vf);
+        _fileItems.insert(newIndex, fileitem);
     } else
-        _vfiles.append(vf);
+        _fileItems.append(fileitem);
 
 
     int i = newIndex;
     if (oldIndex < i)
         i = oldIndex;
-    for (; i < _vfiles.count(); ++i) {
-        updateIndices(_vfiles[i], i);
+    for (; i < _fileItems.count(); ++i) {
+        updateIndices(_fileItems[i], i);
     }
 
     QModelIndexList newPersistentList;
@@ -486,16 +486,16 @@ QVariant KrVfsModel::headerData(int section, Qt::Orientation orientation, int ro
     return QString();
 }
 
-vfile * KrVfsModel::vfileAt(const QModelIndex &index)
+FileItem *KrVfsModel::fileItemAt(const QModelIndex &index)
 {
-    if (!index.isValid() || index.row() < 0 || index.row() >= _vfiles.count())
+    if (!index.isValid() || index.row() < 0 || index.row() >= _fileItems.count())
         return 0;
-    return _vfiles[ index.row()];
+    return _fileItems[ index.row()];
 }
 
-const QModelIndex & KrVfsModel::vfileIndex(const vfile * vf)
+const QModelIndex & KrVfsModel::fileItemIndex(const FileItem *fileitem)
 {
-    return _vfileNdx[ (vfile*) vf ];
+    return _fileItemNdx[ (FileItem *) fileitem ];
 }
 
 const QModelIndex & KrVfsModel::nameIndex(const QString & st)
@@ -512,34 +512,34 @@ Qt::ItemFlags KrVfsModel::flags(const QModelIndex & index) const
 
     if (index.row() >= rowCount())
         return flags;
-    vfile *vf = _vfiles.at(index.row());
-    if (vf == _dummyVfile) {
+    FileItem *fileitem = _fileItems.at(index.row());
+    if (fileitem == _dummyFileItem) {
         flags = (flags & (~Qt::ItemIsSelectable)) | Qt::ItemIsDropEnabled;
     } else
         flags = flags | Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
     return flags;
 }
 
-QString KrVfsModel::nameWithoutExtension(const vfile * vf, bool checkEnabled) const
+QString KrVfsModel::nameWithoutExtension(const FileItem *fileItem, bool checkEnabled) const
 {
-    if ((checkEnabled && !_extensionEnabled) || vf->vfile_isDir())
-        return vf->vfile_getName();
+    if ((checkEnabled && !_extensionEnabled) || fileItem->isDir())
+        return fileItem->getName();
     // check if the file has an extension
-    const QString& vfName = vf->vfile_getName();
-    int loc = vfName.lastIndexOf('.');
+    const QString& fileItemName = fileItem->getName();
+    int loc = fileItemName.lastIndexOf('.');
     // avoid mishandling of .bashrc and friend
     // and virtfs / search result names like "/dir/.file" which whould become "/dir/"
-    if (loc > 0 && vfName.lastIndexOf('/') < loc) {
+    if (loc > 0 && fileItemName.lastIndexOf('/') < loc) {
         // check if it has one of the predefined 'atomic extensions'
         for (QStringList::const_iterator i = properties()->atomicExtensions.begin(); i != properties()->atomicExtensions.end(); ++i) {
-            if (vfName.endsWith(*i) && vfName != *i) {
-                loc = vfName.length() - (*i).length();
+            if (fileItemName.endsWith(*i) && fileItemName != *i) {
+                loc = fileItemName.length() - (*i).length();
                 break;
             }
         }
     } else
-        return vfName;
-    return vfName.left(loc);
+        return fileItemName;
+    return fileItemName.left(loc);
 }
 
 const QModelIndex &KrVfsModel::indexFromUrl(const QUrl &url)
@@ -549,15 +549,15 @@ const QModelIndex &KrVfsModel::indexFromUrl(const QUrl &url)
 
 KrSort::Sorter KrVfsModel::createSorter()
 {
-    KrSort::Sorter sorter(_vfiles.count(), properties(), lessThanFunc(), greaterThanFunc());
-    for(int i = 0; i < _vfiles.count(); i++)
-        sorter.addItem(_vfiles[i], _vfiles[i] == _dummyVfile, i, customSortData(_vfiles[i]));
+    KrSort::Sorter sorter(_fileItems.count(), properties(), lessThanFunc(), greaterThanFunc());
+    for(int i = 0; i < _fileItems.count(); i++)
+        sorter.addItem(_fileItems[i], _fileItems[i] == _dummyFileItem, i, customSortData(_fileItems[i]));
     return sorter;
 }
 
-void KrVfsModel::updateIndices(vfile *file, int i)
+void KrVfsModel::updateIndices(FileItem *file, int i)
 {
-    _vfileNdx[file] = index(i, 0);
-    _nameNdx[file->vfile_getName()] = index(i, 0);
-    _urlNdx[file->vfile_getUrl()] = index(i, 0);
+    _fileItemNdx[file] = index(i, 0);
+    _nameNdx[file->getName()] = index(i, 0);
+    _urlNdx[file->getUrl()] = index(i, 0);
 }

@@ -103,7 +103,7 @@ protected:
     void doRestoreSettings(KConfigGroup group) Q_DECL_OVERRIDE;
     void saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties) Q_DECL_OVERRIDE;
     void copySettingsFrom(KrView *other) Q_DECL_OVERRIDE;
-    QRect itemRect(const vfile *vf) Q_DECL_OVERRIDE;
+    QRect itemRect(const FileItem *fileitem) Q_DECL_OVERRIDE;
     void showContextMenu(const QPoint & p) Q_DECL_OVERRIDE;
     QRect mapToViewport(const QRect &rect) const;
 

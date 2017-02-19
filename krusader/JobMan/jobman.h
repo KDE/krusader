@@ -49,7 +49,7 @@ class KrJob;
  * If a job still exists Krusader does not exit on quit() until the job is finished. If the job is
  * paused this takes forever. Call waitForJobs() before exit to prevent this.
  *
- * About undoing jobs: If jobs are recorded (all KrJobs are, some in VFS) we can undo them with
+ * About undoing jobs: If jobs are recorded (all KrJobs are, some in FileSystem) we can undo them with
  * FileUndoManager (which is a singleton) here.
  * It would be great if each job in the job list could be undone invividually but FileUndoManager
  * is currently (KF5.27) only able to undo the last recorded job.

@@ -31,7 +31,7 @@
 #include "dulistview.h"
 #include "../krglobal.h"
 #include "../kicons.h"
-#include "../VFS/krpermhandler.h"
+#include "../FileSystem/krpermhandler.h"
 
 // QtCore
 #include <QMimeDatabase>

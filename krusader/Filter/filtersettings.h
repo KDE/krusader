@@ -31,7 +31,7 @@
 #ifndef FILTERSETTINGS_H
 #define FILTERSETTINGS_H
 
-#include "../VFS/krquery.h"
+#include "../FileSystem/krquery.h"
 
 #include <KConfigCore/KConfigGroup>
 

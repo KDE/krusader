@@ -31,7 +31,7 @@
 #include "dulines.h"
 #include "../kicons.h"
 #include "../krglobal.h"
-#include "../VFS/krpermhandler.h"
+#include "../FileSystem/krpermhandler.h"
 
 // QtCore
 #include <QTimer>

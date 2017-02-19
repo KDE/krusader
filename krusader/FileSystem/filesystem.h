@@ -1,5 +1,5 @@
 /***************************************************************************
-                            vfs.h
+                            filesystem.h
                        -------------------
     begin                : Thu May 4 2000
     copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
@@ -27,10 +27,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef VFS_H
-#define VFS_H
+#ifndef FILESYSTEM_H
+#define FILESYSTEM_H
 
-#include "vfilecontainer.h"
+#include "dirlisterinterface.h"
 
 // QtCore
 #include <QHash>
@@ -45,12 +45,12 @@
 
 #include <KIO/CopyJob>
 
-#include "vfile.h"
+#include "fileitem.h"
 #include "krquery.h"
 
 
 /**
- * An abstract virtual filesystem. Use the implementations of this class for all file operations.
+ * An abstract filesystem. Use the implementations of this class for all file operations.
  *
  * It represents a directory and gives access to its files. All common file operations
  * are supported. Methods with absolute URL as argument can be used independently from the current
@@ -59,38 +59,38 @@
  *
  * Notification signals are emitted if the directory content may have been changed.
  */
-class vfs : public VfileContainer
+class FileSystem : public DirListerInterface
 {
     Q_OBJECT
 public:
 
-    enum VFS_TYPE {
+    enum FS_TYPE {
         /// Virtual filesystem. Krusaders custom virt:/ protocol
-        VFS_VIRT,
+        FS_VIRTUAL,
         /// Filesystem supporting all KIO protocols (file:/, ftp:/, smb:/, etc.)
-        VFS_DEFAULT
+        FS_DEFAULT
     };
 
-    vfs();
-    virtual ~vfs();
+    FileSystem();
+    virtual ~FileSystem();
 
-    // VfileContainer implementation
-    inline QList<vfile *> vfiles() { return _vfiles.values(); }
-    inline unsigned long numVfiles() { return _vfiles.count(); }
+    // DirListerInterface implementation
+    inline QList<FileItem *> fileItems() { return _fileItems.values(); }
+    inline unsigned long numFileItems() { return _fileItems.count(); }
     inline bool isRoot() {
         const QString path = _currentDirectory.path();
         return path.isEmpty() || path == "/";
     }
 
-    /// Copy (copy, move or link) files in this VFS.
+    /// Copy (copy, move or link) files in this FILESYSTEM.
     /// Destination is absolute URL. May implemented async.
     virtual void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                            KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
                            bool showProgressInfo = true, bool reverseQueueMode = false, bool startPaused = false) = 0;
-    /// Handle file dropping in this VFS. Destination is absolute URL. May implemented async.
+    /// Handle file dropping in this FILESYSTEM. Destination is absolute URL. May implemented async.
     virtual void dropFiles(const QUrl &destination, QDropEvent *event) = 0;
 
-    /// Copy (copy, move or link) files to the current VFS directory or to "dir", the
+    /// Copy (copy, move or link) files to the current FILESYSTEM directory or to "dir", the
     /// directory name relative to the current dir. May implemented async.
     virtual void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
                           QString dir = "") = 0;
@@ -109,23 +109,23 @@ public:
 
     /// Return the filesystem mount point of the current directory. Empty string by default.
     virtual QString mountPoint() { return QString(); }
-    /// Returns true if this VFS implementation does not need to be notified about changes in the
+    /// Returns true if this FILESYSTEM implementation does not need to be notified about changes in the
     /// current directory. Else false.
     virtual bool hasAutoUpdate() { return false; }
-    /// Notify this VFS that the filesystem info of the current directory may have changed.
+    /// Notify this FILESYSTEM that the filesystem info of the current directory may have changed.
     virtual void updateFilesystemInfo() {}
 
-    /// Returns the current directory path of this VFS.
+    /// Returns the current directory path of this FILESYSTEM.
     inline QUrl currentDirectory() { return _currentDirectory; }
-    /// Return the vfile for a file name in the current directory. Or 0 if not found.
-    vfile *getVfile(const QString &name);
-    /// Return a list of vfiles for a search query. Or an empty list if nothing was found.
-    QList<vfile *> searchVfiles(const KRQuery &filter);
+    /// Return the file item for a file name in the current directory. Or 0 if not found.
+    FileItem *getFileItem(const QString &name);
+    /// Return a list of file items for a search query. Or an empty list if nothing was found.
+    QList<FileItem *> searchFileItems(const KRQuery &filter);
     /// The total size of all files in the current directory (only valid after refresh).
     // TODO unused
-    KIO::filesize_t vfs_totalSize();
-    /// Return the VFS type.
-    inline VFS_TYPE type() { return _type; }
+    KIO::filesize_t totalSize();
+    /// Return the FILESYSTEM type.
+    inline FS_TYPE type() { return _type; }
     /// Return true if the current directory is local (without recognizing mount points).
     inline bool isLocal() { return _currentDirectory.isLocalFile(); }
     /// Return true if the current directory is a remote (network) location.
@@ -134,7 +134,7 @@ public:
         return (sc == "fish" || sc == "ftp" || sc == "sftp" || sc == "nfs" || sc == "smb"
                 || sc == "webdav");
     }
-    /// Returns true if this VFS is currently refreshing the current directory.
+    /// Returns true if this FILESYSTEM is currently refreshing the current directory.
     inline bool isRefreshing() { return _isRefreshing; }
     /// Delete or trash files in the current directory. Implemented async.
     void deleteFiles(const QStringList &fileNames, bool moveToTrash = true);
@@ -153,11 +153,11 @@ public:
     /// Add 'file' scheme to non-empty URL without scheme
     static QUrl preferLocalUrl(const QUrl &url);
 
-    /// Return a vfile for a local file inside a directory
-    static vfile *createLocalVFile(const QString &name, const QString &directory,
+    /// Return a file item for a local file inside a directory
+    static FileItem *createLocalFileItem(const QString &name, const QString &directory,
                                    bool virt = false);
-    /// Return a vfile for a KIO result. Returns 0 if entry is not needed
-    static vfile *createVFileFromKIO(const KIO::UDSEntry &_calcEntry, const QUrl &directory,
+    /// Return a file item for a KIO result. Returns 0 if entry is not needed
+    static FileItem *createFileItemFromKIO(const KIO::UDSEntry &_calcEntry, const QUrl &directory,
                                      bool virt = false);
 
     // set the parent window to be used for dialogs
@@ -170,32 +170,32 @@ public slots:
     bool refresh(const QUrl &directory = QUrl());
 
 signals:
-    /// Emitted when this VFS is currently refreshing the VFS directory.
+    /// Emitted when this FILESYSTEM is currently refreshing the FILESYSTEM directory.
     void refreshJobStarted(KIO::Job *job);
-    /// Emitted when an error occured in this VFS during refresh.
+    /// Emitted when an error occured in this FILESYSTEM during refresh.
     void error(const QString &msg);
-    /// Emitted when the content of a directory was changed by this VFS.
-    void filesystemChanged(const QUrl &directory);
+    /// Emitted when the content of a directory was changed by this FILESYSTEM.
+    void fileSystemChanged(const QUrl &directory);
     /// Emitted when the information for the filesystem of the current directory changed.
     /// Information is either
     /// * 'metaInfo': a displayable string about the fs, empty by default, OR
     /// * 'fsType', 'total' and 'free': filesystem type, size and free space,
     ///   empty string or 0 by default
-    void filesystemInfoChanged(const QString &metaInfo,  const QString &fsType,
+    void fileSystemInfoChanged(const QString &metaInfo,  const QString &fsType,
                                KIO::filesize_t total, KIO::filesize_t free);
     /// Emitted before a directory path is opened for reading. Used for automounting.
     void aboutToOpenDir(const QString &path);
 
 protected:
-    /// Fill the vfs dictionary with vfiles, must be implemented for each VFS.
+    /// Fill the filesystem dictionary with file items, must be implemented for each FILESYSTEM.
     virtual bool refreshInternal(const QUrl &origin, bool showHidden) = 0;
 
     /// Connect the result signal of a file operation job.
     void connectJob(KJob *job, const QUrl &destination);
     /// Returns true if showing hidden files is set in config.
     bool showHiddenFiles();
-    /// Add a new vfile to the internal dictionary (while refreshing).
-    inline void addVfile(vfile *vf) { _vfiles.insert(vf->vfile_getName(), vf); }
+    /// Add a new file item to the internal dictionary (while refreshing).
+    inline void addFileItem(FileItem *item) { _fileItems.insert(item->getName(), item); }
 
     /// Calculate the size of a file or directory (recursive).
     void calcSpace(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
@@ -207,9 +207,9 @@ protected:
     void calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
                       unsigned long *totalDirs, bool *stop);
 
-    VFS_TYPE _type;         // the vfs type.
-    QUrl _currentDirectory; // the path or file the VFS originates from.
-    bool _isRefreshing; // true if vfs is busy with refreshing
+    FS_TYPE _type;         // the filesystem type.
+    QUrl _currentDirectory; // the path or file the FILESYSTEM originates from.
+    bool _isRefreshing; // true if filesystem is busy with refreshing
     QPointer<QWidget> parentWindow;
 
 protected slots:
@@ -223,12 +223,12 @@ private slots:
     void slotCalcStatResult(KJob *job);
 
 private:
-    typedef QHash<QString, vfile *> vfileDict;
+    typedef QHash<QString, FileItem *> FileItemDict;
 
-    /// Delete and clear vfiles.
-    void clear(vfileDict &vfiles);
+    /// Delete and clear file items.
+    void clear(FileItemDict &fileItems);
 
-    vfileDict _vfiles;  // The list of files in the current dictionary
+    FileItemDict _fileItems;  // The list of files in the current dictionary
 
     // used in the calcSpace function
     bool *_calcKdsBusy;

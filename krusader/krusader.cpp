@@ -90,8 +90,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "GUI/kcmdline.h"
 #include "GUI/terminaldock.h"
 #include "GUI/krusaderstatus.h"
-#include "VFS/vfile.h"
-#include "VFS/krpermhandler.h"
+#include "FileSystem/fileitem.h"
+#include "FileSystem/krpermhandler.h"
 #include "MountMan/kmountman.h"
 #include "Konfigurator/kgprotocols.h"
 #include "BookMan/krbookmarkhandler.h"
@@ -178,7 +178,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     initChecksumModule();
 
     KConfigGroup gl(krConfig, "Look&Feel");
-    vfile::vfile_loadUserDefinedFolderIcons(gl.readEntry("Load User Defined Folder Icons",
+    FileItem::loadUserDefinedFolderIcons(gl.readEntry("Load User Defined Folder Icons",
                                                          _UserDefinedFolderIcons));
 
     KConfigGroup gs(krConfig, "Startup");

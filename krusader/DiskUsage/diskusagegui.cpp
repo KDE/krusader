@@ -46,7 +46,7 @@
 
 #include "../kicons.h"
 #include "../krglobal.h"
-#include "../VFS/vfs.h"
+#include "../FileSystem/filesystem.h"
 #include "../Dialogs/krdialogs.h"
 
 DiskUsageGUI::DiskUsageGUI(QUrl openDir, QWidget* parent)

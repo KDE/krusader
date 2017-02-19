@@ -80,8 +80,8 @@ void DiskUsageViewer::openUrl(QUrl url)
     QUrl baseURL = diskUsage->getBaseURL();
     if (!diskUsage->isLoading() && !baseURL.isEmpty()) {
         if (url.scheme() == baseURL.scheme() && (url.host().isEmpty() || url.host() == baseURL.host())) {
-            QString baseStr = vfs::ensureTrailingSlash(baseURL).path();
-            QString urlStr = vfs::ensureTrailingSlash(url).path();
+            QString baseStr = FileSystem::ensureTrailingSlash(baseURL).path();
+            QString urlStr = FileSystem::ensureTrailingSlash(url).path();
 
             if (urlStr.startsWith(baseStr)) {
                 QString relURL = urlStr.mid(baseStr.length());

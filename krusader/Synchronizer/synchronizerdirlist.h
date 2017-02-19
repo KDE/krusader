@@ -37,9 +37,9 @@
 
 #include <KIO/Job>
 
-#include "../VFS/vfile.h"
+#include "../FileSystem/fileitem.h"
 
-class SynchronizerDirList : public QObject, public QHash<QString, vfile *>
+class SynchronizerDirList : public QObject, public QHash<QString, FileItem *>
 {
     Q_OBJECT
 
@@ -47,9 +47,9 @@ public:
     SynchronizerDirList(QWidget *w, bool ignoreHidden);
     ~SynchronizerDirList();
 
-    vfile * search(const QString &name, bool ignoreCase = false);
-    vfile * first();
-    vfile * next();
+    FileItem *search(const QString &name, bool ignoreCase = false);
+    FileItem *first();
+    FileItem *next();
 
     inline const QString & url() {
         return currentUrl;
@@ -65,7 +65,7 @@ signals:
     void finished(bool err);
 
 private:
-    QHashIterator<QString, vfile *> *fileIterator; //< Point to a dictionary of virtual files (vfile).
+    QHashIterator<QString, FileItem *> *fileIterator; //< Point to a dictionary of file items
     QWidget *parentWidget;
     bool     busy;
     bool     result;

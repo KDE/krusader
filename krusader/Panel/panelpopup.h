@@ -39,7 +39,7 @@ class KrSqueezedTextLabel;
 class PanelViewer;
 class DiskUsageViewer;
 class KrFileTreeView;
-class vfile;
+class FileItem;
 class KrMainWindow;
 
 class PanelPopup: public QWidget
@@ -58,7 +58,7 @@ public:
     void setCurrentPage(int);
 
 public slots:
-    void update(const vfile *vf);
+    void update(const FileItem *fileitem);
     void onPanelPathChange(const QUrl &url);
     void show();
     void hide();

@@ -1,5 +1,5 @@
 /***************************************************************************
-                          vfile.h
+                          fileitem.h
                       -------------------
     begin                : Thu May 4 2000
     copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
@@ -26,8 +26,8 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#ifndef VFILE_H
-#define VFILE_H
+#ifndef FILEITEM_H
+#define FILEITEM_H
 
 #include <sys/types.h>
 
@@ -39,24 +39,24 @@
 #include <KIO/UDSEntry>
 
 /**
- * The Virtual File class handles all the details of maintaining a single
- * file component within the virtual file system (vfs). a vfile object
- * contains the necessary details about a file and member functions which
- * allow the object to give out the needed details about the file.
+ * A file item gives access all meta information of a (virtual, dummy or real) file or directory in
+ * the filesystem.
+ *
+ * NOTE: The name of a file item is supposed to be unique within a directory.
  */
-class vfile
+class FileItem
 {
 
 public:
     /**
      * Create a new file item.
      *
-     * Don't use this constructor outside of VFS! If you really need to, create a new static
+     * Don't use this constructor outside of FileSystem! If you really need to, create a new static
      * factory method below.
      *
      * NOTE: According to Unix standard uid and gid CAN have signed or unsigned type. We use (e.g.)
      * "(uid_t) -1" as a special invalid user ID for non-local files.
-     * Note: ACLs are currently only used by Synchronizer.
+     * NOTE: ACLs are currently only used by Synchronizer.
      *
      * @param name the display name of this file. Don't have to be the real filename.
      * @param url (real) absolute URL of this file
@@ -74,7 +74,7 @@ public:
      * @param acl ACL string of file. Can be empty and is loaded on demand.
      * @param defaultAcl default ACL string of file (only for directories). Can be empty and is loaded on demand.
      */
-    vfile(const QString &name, const QUrl &url, bool isDir,
+    FileItem(const QString &name, const QUrl &url, bool isDir,
           KIO::filesize_t size, mode_t mode, time_t mtime,
           uid_t uid = -1, gid_t gid = -1,
           const QString &owner = QString(), const QString &group = QString(),
@@ -82,49 +82,49 @@ public:
           const QString &acl = QString(), const QString &defaultAcl = QString());
 
     /** Create a new ".." dummy file item. */
-    static vfile *createDummy();
+    static FileItem *createDummy();
     /** Create a new virtual directory. */
-    static vfile *createVirtualDir(const QString &name, const QUrl &url);
+    static FileItem *createVirtualDir(const QString &name, const QUrl &url);
     /** Create a new file item copy with a different name. */
-    static vfile *createCopy(const vfile &file, const QString &newName);
+    static FileItem *createCopy(const FileItem &file, const QString &newName);
 
     // following functions give-out file details
-    inline const QString &vfile_getName() const { return m_name; }
-    inline KIO::filesize_t vfile_getSize() const { return m_size; }
-    inline const QString &vfile_getPerm() const { return m_permissions; }
-    inline bool vfile_isDir() const { return m_isDir; }
-    inline bool vfile_isSymLink() const { return m_isLink; }
-    inline bool vfile_isBrokenLink() const { return m_isBrokenLink; }
-    inline const QString &vfile_getSymDest() const { return m_linkDest; }
-    inline mode_t vfile_getMode() const { return m_mode; }
-    inline time_t vfile_getTime_t() const { return m_mtime; }
-    inline const QUrl &vfile_getUrl() const { return m_url; }
-    inline const QString &vfile_getOwner() const { return m_owner; }
-    inline const QString &vfile_getGroup() const { return m_group; }
+    inline const QString &getName() const { return m_name; }
+    inline KIO::filesize_t getSize() const { return m_size; }
+    inline const QString &getPerm() const { return m_permissions; }
+    inline bool isDir() const { return m_isDir; }
+    inline bool isSymLink() const { return m_isLink; }
+    inline bool isBrokenLink() const { return m_isBrokenLink; }
+    inline const QString &getSymDest() const { return m_linkDest; }
+    inline mode_t getMode() const { return m_mode; }
+    inline time_t getTime_t() const { return m_mtime; }
+    inline const QUrl &getUrl() const { return m_url; }
+    inline const QString &getOwner() const { return m_owner; }
+    inline const QString &getGroup() const { return m_group; }
 
-    const QString &vfile_getMime();
-    const QString &vfile_getIcon();
+    const QString &getMime();
+    const QString &getIcon();
 
-    const QString &vfile_getACL();
-    const QString &vfile_getDefaultACL();
-    const KIO::UDSEntry vfile_getEntry(); //< return the UDSEntry from the vfile
-    char vfile_isReadable() const;
-    char vfile_isWriteable() const;
-    char vfile_isExecutable() const;
+    const QString &getACL();
+    const QString &getDefaultACL();
+    const KIO::UDSEntry getEntry(); //< return the UDSEntry from the file item
+    char isReadable() const;
+    char isWriteable() const;
+    char isExecutable() const;
     /**
      * Set the file size.
      * used ONLY when calculating a directory's space, needs to change the
-     * displayed size of the viewitem and thus the vfile. For INTERNAL USE !
+     * displayed size of the viewitem and thus the file item. For INTERNAL USE !
      */
-    void vfile_setSize(KIO::filesize_t size) { m_size = size; }
+    void setSize(KIO::filesize_t size) { m_size = size; }
 
-    inline static void vfile_loadUserDefinedFolderIcons(bool load) {
-        vfile_userDefinedFolderIcons = load;
+    inline static void loadUserDefinedFolderIcons(bool load) {
+        userDefinedFolderIcons = load;
     }
 
 private:
-    void vfile_setIcon(const QString &icon) { m_icon = icon; m_mimeType = "?"; }
-    void vfile_loadACL();
+    void setIcon(const QString &icon) { m_icon = icon; m_mimeType = "?"; }
+    void loadACL();
 
     QString m_name;             //< file name
     QUrl m_url;                 //< file URL
@@ -152,7 +152,7 @@ private:
     QString m_mimeType;         //< file mimetype, lazy initialized
     QString m_icon;             //< the name of the icon file, lazy initialized
 
-    static bool vfile_userDefinedFolderIcons;
+    static bool userDefinedFolderIcons;
 };
 
 #endif

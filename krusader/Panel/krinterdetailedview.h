@@ -82,7 +82,7 @@ protected:
     void drawRow(QPainter *painter, const QStyleOptionViewItem &options,
                  const QModelIndex &index) const Q_DECL_OVERRIDE;
 
-    QRect itemRect(const vfile *vf) Q_DECL_OVERRIDE;
+    QRect itemRect(const FileItem *fileitem) Q_DECL_OVERRIDE;
 
     void showContextMenu(const QPoint & p) Q_DECL_OVERRIDE;
     void recalculateColumnSizes();

@@ -45,7 +45,7 @@
 #include <KParts/Part>
 #include <KTextWidgets/KTextEdit>
 
-#include "../VFS/krquery.h"
+#include "../FileSystem/krquery.h"
 
 #define  SLIDER_MAX          10000
 #define  MAX_CHAR_LENGTH     4

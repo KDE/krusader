@@ -41,7 +41,7 @@
 class KFileItem;
 class QTextCodec;
 
-class vfile;
+class FileItem;
 
 /**
  * @brief A search query for files
@@ -70,7 +70,7 @@ public:
     void save(KConfigGroup cfg);
 
     // matching a file with the query
-    bool match(vfile *file) const;  // checks if the given vfile object matches the conditions
+    bool match(FileItem *file) const;  // checks if the given fileItem object matches the conditions
     // matching a name with the query
     bool match(const QString &name) const;  // matching the filename only
     // matching the name of the directory

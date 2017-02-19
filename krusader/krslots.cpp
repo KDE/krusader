@@ -75,12 +75,12 @@
 #include "GUI/syncbrowsebutton.h"
 #include "GUI/mediabutton.h"
 #include "GUI/dirhistorybutton.h"
-#include "VFS/krquery.h"
+#include "FileSystem/krquery.h"
 #include "Search/krsearchmod.h"
 #include "Search/krsearchdialog.h"
 #include "Locate/locate.h"
-#include "VFS/vfs.h"
-#include "VFS/vfile.h"
+#include "FileSystem/filesystem.h"
+#include "FileSystem/fileitem.h"
 #include "panelmanager.h"
 #include "Splitter/splittergui.h"
 #include "Splitter/splitter.h"
@@ -175,7 +175,7 @@ void KRslots::compareContent()
         // next try: are in the current panel exacty 2 files selected?
         name1 = ACTIVE_PANEL->func->files()->getUrl(lstActive[0]);
         name2 = ACTIVE_PANEL->func->files()->getUrl(lstActive[1]);
-    } else if (ACTIVE_PANEL->otherPanel()->func->files()->getVfile(ACTIVE_VIEW->getCurrentItem())) {
+    } else if (ACTIVE_PANEL->otherPanel()->func->files()->getFileItem(ACTIVE_VIEW->getCurrentItem())) {
         // next try: is in the other panel a file with the same name?
         name1 = ACTIVE_PANEL->func->files()->getUrl(ACTIVE_VIEW->getCurrentItem());
         name2 = ACTIVE_PANEL->otherPanel()->func->files()->getUrl(ACTIVE_VIEW->getCurrentItem());
@@ -279,7 +279,7 @@ void KRslots::insertFileName(bool full_path)
     }
 
     if (full_path) {
-        QString path = vfs::ensureTrailingSlash(ACTIVE_FUNC->files()->currentDirectory()).toDisplayString(QUrl::PreferLocalFile);
+        QString path = FileSystem::ensureTrailingSlash(ACTIVE_FUNC->files()->currentDirectory()).toDisplayString(QUrl::PreferLocalFile);
         filename = path + filename;
     }
 
@@ -321,7 +321,7 @@ void KRslots::configChanged(bool isGUIRestartNeeded)
     if (isGUIRestartNeeded) {
         krApp->setUpdatesEnabled(false);
         KConfigGroup group(krConfig, "Look&Feel");
-        vfile::vfile_loadUserDefinedFolderIcons(group.readEntry("Load User Defined Folder Icons", _UserDefinedFolderIcons));
+        FileItem::loadUserDefinedFolderIcons(group.readEntry("Load User Defined Folder Icons", _UserDefinedFolderIcons));
 
         bool leftActive = ACTIVE_PANEL->gui->isLeft();
         MAIN_VIEW->leftManager()->slotRecreatePanels();
@@ -450,12 +450,12 @@ void KRslots::multiRename()
     proc << pathToRename;
 
     for (const QString name: names) {
-        vfile *file = ACTIVE_FUNC->files()->getVfile(name);
+        FileItem *file = ACTIVE_FUNC->files()->getFileItem(name);
         if (!file)
             continue;
-        const QUrl url = file->vfile_getUrl();
+        const QUrl url = file->getUrl();
         // KRename only supports the recursive option combined with a local directory path
-        if (file->vfile_isDir() && url.scheme() == "file") {
+        if (file->isDir() && url.scheme() == "file") {
             proc << "-r" << url.path();
         } else {
             proc << url.toString();
@@ -500,7 +500,7 @@ void KRslots::slotSplit()
     if (fileURL.isEmpty())
         return;
 
-    if (ACTIVE_FUNC->files()->getVfile(name)->vfile_isDir()) {
+    if (ACTIVE_FUNC->files()->getFileItem(name)->isDir()) {
         KMessageBox::sorry(krApp, i18n("You cannot split a folder."));
         return ;
     }
@@ -541,7 +541,7 @@ void KRslots::slotCombine()
         if (url.isEmpty())
             return;
 
-        if (ACTIVE_FUNC->files()->getVfile(*it)->vfile_isDir()) {
+        if (ACTIVE_FUNC->files()->getFileItem(*it)->isDir()) {
             KMessageBox::sorry(krApp, i18n("You cannot combine a folder."));
             return ;
         }
@@ -595,7 +595,7 @@ void KRslots::slotCombine()
                             QString shorter  = commonName.left(commonName.length() - 1);
                             QString testFile = shorter.leftJustified(commonLength, fillLetter);
 
-                            if (ACTIVE_FUNC->files()->getVfile(testFile) == 0)
+                            if (ACTIVE_FUNC->files()->getFileItem(testFile) == 0)
                                 break;
                             else {
                                 commonName = shorter;

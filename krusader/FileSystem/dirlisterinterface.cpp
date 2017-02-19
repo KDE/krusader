@@ -18,4 +18,4 @@
 
 // dummy file to force generation of metaobject code
 
-#include "vfilecontainer.h"
+#include "dirlisterinterface.h"

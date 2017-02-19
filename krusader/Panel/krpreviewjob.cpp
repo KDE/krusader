@@ -32,7 +32,7 @@ A
 
 #include "krview.h"
 #include "krviewitem.h"
-#include "../VFS/vfile.h"
+#include "../FileSystem/fileitem.h"
 #include "../defaults.h"
 
 #include <stdio.h>
@@ -93,7 +93,7 @@ void KrPreviewJob::slotGotPreview(const KFileItem & item, const QPixmap & previe
 
     _scheduled.removeOne(vi);
 
-    const vfile *file = vi->getVfile();
+    const FileItem *file = vi->getFileItem();
     _parent->addPreview(file, preview);
     vi->redraw();
 
@@ -113,7 +113,7 @@ void KrPreviewJob::slotStartJob()
 
     KFileItemList list;
     for(int i = 0; i < _scheduled.count() && i < MAX_CHUNK_SIZE; i++) {
-        KFileItem fi(_scheduled[i]->getVfile()->vfile_getUrl(), 0, 0);
+        KFileItem fi(_scheduled[i]->getFileItem()->getUrl(), 0, 0);
         list.append(fi);
         _hash.insert(fi, _scheduled[i]);
     }

@@ -21,7 +21,7 @@
 
 #include "krinterview.h"
 #include "krvfsmodel.h"
-#include "../VFS/krpermhandler.h"
+#include "../FileSystem/krpermhandler.h"
 
 // QtCore
 #include <QLocale>
@@ -34,30 +34,30 @@
 
 #define PROPS static_cast<const KrViewProperties*>(_viewProperties)
 
-KrViewItem::KrViewItem(vfile *vf, KrInterView *parentView):
-        _vf(vf), _view(parentView), _viewProperties(parentView->properties()), _hasExtension(false),
+KrViewItem::KrViewItem(FileItem *fileitem, KrInterView *parentView):
+        _fileitem(fileitem), _view(parentView), _viewProperties(parentView->properties()), _hasExtension(false),
         _hidden(false), _extension("")
 {
-    dummyVfile = parentView->_model->dummyVfile() == vf;
+    dummyFileItem = parentView->_model->dummyFileItem() == fileitem;
 
-    if (vf) {
+    if (fileitem) {
         // check if the file has an extension
-        const QString& vfName = vf->vfile_getName();
-        int loc = vfName.lastIndexOf('.');
+        const QString& fileitemName = fileitem->getName();
+        int loc = fileitemName.lastIndexOf('.');
         if (loc > 0) { // avoid mishandling of .bashrc and friend
             // check if it has one of the predefined 'atomic extensions'
             for (QStringList::const_iterator i = PROPS->atomicExtensions.begin(); i != PROPS->atomicExtensions.end(); ++i) {
-                if (vfName.endsWith(*i)) {
-                    loc = vfName.length() - (*i).length();
+                if (fileitemName.endsWith(*i)) {
+                    loc = fileitemName.length() - (*i).length();
                     break;
                 }
             }
-            _name = vfName.left(loc);
-            _extension = vfName.mid(loc + 1);
+            _name = fileitemName.left(loc);
+            _extension = fileitemName.mid(loc + 1);
             _hasExtension = true;
         }
 
-        if (vfName.startsWith('.'))
+        if (fileitemName.startsWith('.'))
             _hidden = true;
     }
 }
@@ -65,29 +65,29 @@ KrViewItem::KrViewItem(vfile *vf, KrInterView *parentView):
 const QString& KrViewItem::name(bool withExtension) const
 {
     if (!withExtension && _hasExtension) return _name;
-    else return _vf->vfile_getName();
+    else return _fileitem->getName();
 }
 
 QString KrViewItem::description() const
 {
-    if (dummyVfile)
+    if (dummyFileItem)
         return i18n("Climb up the folder tree");
     // else is implied
-    QString text = _vf->vfile_getName();
+    QString text = _fileitem->getName();
     QString comment;
     QMimeDatabase db;
-    QMimeType mt = db.mimeTypeForName(_vf->vfile_getMime());
+    QMimeType mt = db.mimeTypeForName(_fileitem->getMime());
     if (mt.isValid())
         comment = mt.comment();
-    QString myLinkDest = _vf->vfile_getSymDest();
-    KIO::filesize_t mySize = _vf->vfile_getSize();
+    QString myLinkDest = _fileitem->getSymDest();
+    KIO::filesize_t mySize = _fileitem->getSize();
 
     QString text2 = text;
-    mode_t m_fileMode = _vf->vfile_getMode();
+    mode_t m_fileMode = _fileitem->getMode();
 
-    if (_vf->vfile_isSymLink()) {
+    if (_fileitem->isSymLink()) {
         QString tmp;
-        if (_vf->vfile_isBrokenLink())
+        if (_fileitem->isBrokenLink())
             tmp = i18n("(Broken Link)");
         else if (comment.isEmpty())
             tmp = i18n("Symbolic Link") ;
@@ -100,14 +100,14 @@ QString KrViewItem::description() const
         text += tmp;
     } else if (S_ISREG(m_fileMode)) {
         text = QString("%1").arg(text2) + QString(" (%1)").arg(PROPS->humanReadableSize ?
-                KRpermHandler::parseSize(_vf->vfile_getSize()) : KIO::convertSize(mySize));
+                KRpermHandler::parseSize(_fileitem->getSize()) : KIO::convertSize(mySize));
         text += "  ";
         text += comment;
     } else if (S_ISDIR(m_fileMode)) {
         text += "/  ";
-        if (_vf->vfile_getSize() != 0) {
+        if (_fileitem->getSize() != 0) {
             text += '(' +
-                    (PROPS->humanReadableSize ? KRpermHandler::parseSize(_vf->vfile_getSize()) : KIO::convertSize(mySize)) + ") ";
+                    (PROPS->humanReadableSize ? KRpermHandler::parseSize(_fileitem->getSize()) : KIO::convertSize(mySize)) + ") ";
         }
         text += comment;
     } else {
@@ -129,17 +129,17 @@ QPixmap KrViewItem::icon()
     // shie answers: why? what's the difference? if we return an empty pixmap, others can use it as it
     // is, without worrying or needing to do error checking. empty pixmap displays nothing
 #endif
-    if (dummyVfile || !_viewProperties->displayIcons)
+    if (dummyFileItem || !_viewProperties->displayIcons)
         return QPixmap();
-    else return KrView::getIcon(_vf, true);
+    else return KrView::getIcon(_fileitem, true);
 }
 
 bool KrViewItem::isSelected() const {
-    return _view->isSelected(_vf);
+    return _view->isSelected(_fileitem);
 }
 
 void KrViewItem::setSelected(bool s) {
-    _view->setSelected(_vf, s);
+    _view->setSelected(_fileitem, s);
     if(!_view->op()->isMassSelectionUpdate()) {
         redraw();
         _view->op()->emitSelectionChanged();
@@ -147,7 +147,7 @@ void KrViewItem::setSelected(bool s) {
 }
 
 QRect KrViewItem::itemRect() const {
-    return _view->itemRect(_vf);
+    return _view->itemRect(_fileitem);
 }
 
 void KrViewItem::redraw() {

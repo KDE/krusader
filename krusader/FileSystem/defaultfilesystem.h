@@ -1,5 +1,5 @@
 /***************************************************************************
-                          default_vfs.h
+                          defaultfilesystem.h
                       -------------------
     begin                : Thu May 4 2000
     copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
@@ -28,10 +28,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef DEFAULT_VFS_H
-#define DEFAULT_VFS_H
+#ifndef DEFAULTFILESYSTEM_H
+#define DEFAULTFILESYSTEM_H
 
-#include "vfs.h"
+#include "filesystem.h"
 
 #include <QFileSystemWatcher>
 
@@ -41,7 +41,7 @@
 /**
  * @brief Default filesystem implementation supporting all KIO protocols
  *
- * This vfs implementation allows file operations and listing for all supported KIO protocols (local
+ * This filesystem implementation allows file operations and listing for all supported KIO protocols (local
  * and remote/network).
  *
  * Refreshing local directories is optimized for performance.
@@ -51,10 +51,10 @@
  * (~500ms delay between operation finished and watcher emits signals).
  *
  */
-class default_vfs : public vfs {
+class DefaultFileSystem : public FileSystem {
     Q_OBJECT
 public:
-    default_vfs();
+    DefaultFileSystem();
 
     void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                            KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
@@ -89,10 +89,10 @@ protected slots:
     void slotWatcherDeleted(const QString &path);
 
 private:
-    void connectSourceVFS(KJob *job, const QList<QUrl> urls);
+    void connectSourceFileSystem(KJob *job, const QList<QUrl> urls);
 
     bool refreshLocal(const QUrl &directory); // NOTE: this is very fast
-    vfile *createLocalVFile(const QString &name);
+    FileItem *createLocalFileItem(const QString &name);
     /// Returns the current path with symbolic links resolved
     QString realPath();
     static QUrl resolveRelativePath(const QUrl &url);

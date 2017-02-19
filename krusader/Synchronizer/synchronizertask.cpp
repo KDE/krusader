@@ -40,7 +40,7 @@
 #include "synchronizer.h"
 #include "synchronizerfileitem.h"
 #include "synchronizerdirlist.h"
-#include "../VFS/vfs.h"
+#include "../FileSystem/filesystem.h"
 
 CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QString &leftURL,
                          const QString &rightURL, const QString &leftDir,

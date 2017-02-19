@@ -41,7 +41,7 @@
 #include <KIO/Job>
 #include <KIOCore/KFileItem>
 
-#include "vfs.h"
+#include "filesystem.h"
 #include "krpermhandler.h"
 #include "../Archive/krarchandler.h"
 
@@ -285,49 +285,49 @@ bool KRQuery::matchCommon(const QString &nameIn, const QStringList &matchList, c
     return false;
 }
 
-bool KRQuery::match(vfile *vf) const
+bool KRQuery::match(FileItem *item) const
 {
-    if (vf->vfile_isDir() && !matchDirName(vf->vfile_getName())) return false;
+    if (item->isDir() && !matchDirName(item->getName())) return false;
     // see if the name matches
-    if (!match(vf->vfile_getName())) return false;
+    if (!match(item->getName())) return false;
     // checking the mime
-    if (!type.isEmpty() && !checkType(vf->vfile_getMime())) return false;
+    if (!type.isEmpty() && !checkType(item->getMime())) return false;
     // check that the size fit
-    KIO::filesize_t size = vf->vfile_getSize();
+    KIO::filesize_t size = item->getSize();
     if (minSize && size < minSize) return false;
     if (maxSize && size > maxSize) return false;
     // check the time frame
-    time_t mtime = vf->vfile_getTime_t();
+    time_t mtime = item->getTime_t();
     if (olderThen && mtime > olderThen) return false;
     if (newerThen && mtime < newerThen) return false;
     // check owner name
-    if (!owner.isEmpty() && vf->vfile_getOwner() != owner) return false;
+    if (!owner.isEmpty() && item->getOwner() != owner) return false;
     // check group name
-    if (!group.isEmpty() && vf->vfile_getGroup() != group) return false;
+    if (!group.isEmpty() && item->getGroup() != group) return false;
     //check permission
-    if (!perm.isEmpty() && !checkPerm(vf->vfile_getPerm())) return false;
+    if (!perm.isEmpty() && !checkPerm(item->getPerm())) return false;
 
     if (!contain.isEmpty()) {
-        if ((totalBytes = vf->vfile_getSize()) == 0)
+        if ((totalBytes = item->getSize()) == 0)
             totalBytes++; // sanity
         receivedBytes = 0;
         if (receivedBuffer)
             delete receivedBuffer;
         receivedBuffer = 0;
         receivedBufferLen = 0;
-        fileName = vf->vfile_getName();
+        fileName = item->getName();
         timer.start();
 
         // search locally
-        if (vf->vfile_getUrl().isLocalFile()) {
-            return containsContent(vf->vfile_getUrl().path());
+        if (item->getUrl().isLocalFile()) {
+            return containsContent(item->getUrl().path());
         }
 
         // search remotely
         if (processEventsConnected == 0) {
             return false;
         }
-        return containsContent(vf->vfile_getUrl());
+        return containsContent(item->getUrl());
     }
 
     return true;

@@ -48,11 +48,11 @@
 #include <KIO/JobUiDelegate>
 #include <KWidgetsAddons/KMessageBox>
 
-#include "../VFS/vfs.h"
-#include "../VFS/krpermhandler.h"
+#include "../FileSystem/filesystem.h"
+#include "../FileSystem/krpermhandler.h"
 #include "../krservices.h"
 
-SynchronizerDirList::SynchronizerDirList(QWidget *w, bool hidden) : QObject(), QHash<QString, vfile *>(), fileIterator(0),
+SynchronizerDirList::SynchronizerDirList(QWidget *w, bool hidden) : QObject(), QHash<QString, FileItem *>(), fileIterator(0),
         parentWidget(w), busy(false), result(false), ignoreHidden(hidden), currentUrl()
 {
 }
@@ -62,12 +62,12 @@ SynchronizerDirList::~SynchronizerDirList()
     if (fileIterator)
         delete fileIterator;
 
-    QHashIterator< QString, vfile *> lit(*this);
+    QHashIterator< QString, FileItem *> lit(*this);
     while (lit.hasNext())
         delete lit.next().value();
 }
 
-vfile * SynchronizerDirList::search(const QString &name, bool ignoreCase)
+FileItem *SynchronizerDirList::search(const QString &name, bool ignoreCase)
 {
     if (!ignoreCase) {
         if (!contains(name))
@@ -75,23 +75,23 @@ vfile * SynchronizerDirList::search(const QString &name, bool ignoreCase)
         return (*this)[ name ];
     }
 
-    QHashIterator<QString, vfile *> iter(*this);
+    QHashIterator<QString, FileItem *> iter(*this);
     iter.toFront();
 
     QString file = name.toLower();
 
     while (iter.hasNext()) {
-        vfile * item = iter.next().value();
-        if (file == item->vfile_getName().toLower())
+        FileItem *item = iter.next().value();
+        if (file == item->getName().toLower())
             return item;
     }
     return 0;
 }
 
-vfile * SynchronizerDirList::first()
+FileItem *SynchronizerDirList::first()
 {
     if (fileIterator == 0)
-        fileIterator = new QHashIterator<QString, vfile *> (*this);
+        fileIterator = new QHashIterator<QString, FileItem *> (*this);
 
     fileIterator->toFront();
     if (fileIterator->hasNext())
@@ -99,10 +99,10 @@ vfile * SynchronizerDirList::first()
     return 0;
 }
 
-vfile * SynchronizerDirList::next()
+FileItem *SynchronizerDirList::next()
 {
     if (fileIterator == 0)
-        fileIterator = new QHashIterator<QString, vfile *> (*this);
+        fileIterator = new QHashIterator<QString, FileItem *> (*this);
 
     if (fileIterator->hasNext())
         return fileIterator->next().value();
@@ -117,7 +117,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
     currentUrl = urlIn;
     const QUrl url = QUrl::fromUserInput(urlIn, QString(), QUrl::AssumeLocalFile);
 
-    QHashIterator< QString, vfile *> lit(*this);
+    QHashIterator< QString, FileItem *> lit(*this);
     while (lit.hasNext())
         delete lit.next().value();
     clear();
@@ -127,7 +127,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
     }
 
     if (url.isLocalFile()) {
-        const QString dir = vfs::ensureTrailingSlash(url).path();
+        const QString dir = FileSystem::ensureTrailingSlash(url).path();
 
         QT_DIR* qdir = QT_OPENDIR(dir.toLocal8Bit());
         if (!qdir)  {
@@ -144,7 +144,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
             if (name == "." || name == "..") continue;
             if (ignoreHidden && name.startsWith('.')) continue;
 
-            vfile *item = vfs::createLocalVFile(name, dir);
+            FileItem *item = FileSystem::createLocalFileItem(name, dir);
 
             insert(name, item);
         }
@@ -173,9 +173,9 @@ void SynchronizerDirList::slotEntries(KIO::Job *job, const KIO::UDSEntryList& en
 {
     KIO::ListJob *listJob = static_cast<KIO::ListJob *>(job);
     for (const KIO::UDSEntry entry : entries) {
-        vfile *item = vfs::createVFileFromKIO(entry, listJob->url());
+        FileItem *item = FileSystem::createFileItemFromKIO(entry, listJob->url());
         if (item) {
-            insert(item->vfile_getName(), item);
+            insert(item->getName(), item);
         }
     }
 }

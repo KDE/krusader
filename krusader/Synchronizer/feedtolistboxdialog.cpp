@@ -31,8 +31,8 @@
 #include "feedtolistboxdialog.h"
 #include "synchronizer.h"
 #include "synchronizergui.h"
-#include "../VFS/vfs.h"
-#include "../VFS/virt_vfs.h"
+#include "../FileSystem/filesystem.h"
+#include "../FileSystem/virtualfilesystem.h"
 #include "../krglobal.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
@@ -99,8 +99,8 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
 
     // guessing the collection name
 
-    virt_vfs virtVfs;
-    if (!virtVfs.refresh(QUrl("virt:/")))
+    VirtualFileSystem virtFilesystem;
+    if (!virtFilesystem.refresh(QUrl("virt:/")))
         return;
 
     KConfigGroup group(krConfig, "Synchronize");
@@ -108,7 +108,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
     QString queryName;
     do {
         queryName = i18n("Synchronize results") + QString(" %1").arg(listBoxNum++);
-    } while (virtVfs.getVfile(queryName) != 0);
+    } while (virtFilesystem.getFileItem(queryName) != 0);
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     // creating the widget
@@ -203,12 +203,12 @@ void FeedToListBoxDialog::slotOk()
     }
 
     QUrl url = QUrl(QString("virt:/") + name);
-    virt_vfs virtVfs;
-    if (!virtVfs.refresh(url)) {
+    VirtualFileSystem virtFilesystem;
+    if (!virtFilesystem.refresh(url)) {
         KMessageBox::error(parentWidget(), i18n("Cannot open %1.", url.toDisplayString()));
         return;
     }
-    virtVfs.addFiles(urlList);
+    virtFilesystem.addFiles(urlList);
     ACTIVE_MNG->slotNewTab(url);
     accepted = true;
     accept();

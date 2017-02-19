@@ -7,6 +7,7 @@ add_subdirectory(Archive)
 add_subdirectory(BookMan)
 add_subdirectory(Dialogs)
 add_subdirectory(DiskUsage)
+add_subdirectory(FileSystem)
 add_subdirectory(Filter)
 add_subdirectory(GUI)
 add_subdirectory(Konfigurator)
@@ -18,7 +19,6 @@ add_subdirectory(Panel)
 add_subdirectory(Search)
 add_subdirectory(Splitter)
 add_subdirectory(UserAction)
-add_subdirectory(VFS)
 
 if(SYNCHRONIZER_ENABLED)
     add_subdirectory(Synchronizer)
@@ -58,7 +58,7 @@ target_link_libraries(krusader
                       Konfigurator
                       KViewer
                       MountMan
-                      VFS
+                      FileSystem
                       Search
                       Splitter
                       Locate

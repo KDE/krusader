@@ -44,7 +44,7 @@
 #include "../krusaderview.h"
 #include "../krmainwindow.h"
 #include "kcmdline.h"
-#include "../VFS/vfs.h"
+#include "../FileSystem/filesystem.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../Panel/listpanelactions.h"
@@ -187,7 +187,7 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
             return true;
         }
         if (ke->modifiers() & Qt::ShiftModifier) {
-            QString path = vfs::ensureTrailingSlash(ACTIVE_FUNC->files()->currentDirectory()).toDisplayString(QUrl::PreferLocalFile);
+            QString path = FileSystem::ensureTrailingSlash(ACTIVE_FUNC->files()->currentDirectory()).toDisplayString(QUrl::PreferLocalFile);
             filename = path + filename;
         }
 

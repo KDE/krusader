@@ -49,7 +49,7 @@
 
 #include <KWidgetsAddons/KSqueezedTextLabel>
 
-#include "../VFS/vfs.h"
+#include "../FileSystem/filesystem.h"
 #include "filelightParts/fileTree.h"
 
 #define VIEW_LINES      0
@@ -173,9 +173,9 @@ protected:
     QStack<QString> directoryStack;
     QStack<Directory *> parentStack;
 
-    vfs       * searchVfs;
-    vfile     * currentVfile;
-    QList<vfile *> vfiles;
+    FileSystem       * searchFileSystem;
+    FileItem     * currentFileItem;
+    QList<FileItem *> fileItems;
     Directory * currentParent;
     QString     dirToCheck;
 

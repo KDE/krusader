@@ -47,8 +47,8 @@
 #include "krarchandler.h"
 #include "../krglobal.h"
 #include "../krservices.h"
-#include "../VFS/krvfshandler.h"
-#include "../VFS/vfs.h"
+#include "../FileSystem/filesystemprovider.h"
+#include "../FileSystem/filesystem.h"
 
 extern KRarcHandler arcHandler;
 
@@ -497,13 +497,13 @@ void AbstractJobThread::calcSpaceLocal(const QUrl &baseUrl, const QStringList & 
 {
     sendReset(i18n("Calculating space"));
 
-    vfs *calcSpaceVfs = KrVfsHandler::instance().getVfs(baseUrl);
-    calcSpaceVfs->refresh(baseUrl);
+    FileSystem *calcSpaceFileSystem = FileSystemProvider::instance().getFilesystem(baseUrl);
+    calcSpaceFileSystem->refresh(baseUrl);
 
     for (int i = 0; i != files.count(); i++) {
-        calcSpaceVfs->calcSpace(files[i], &totalSize, &totalFiles, &totalDirs, &_exited);
+        calcSpaceFileSystem->calcSpace(files[i], &totalSize, &totalFiles, &totalDirs, &_exited);
     }
-    delete calcSpaceVfs;
+    delete calcSpaceFileSystem;
 }
 
 KRarcObserver * AbstractJobThread::observer()

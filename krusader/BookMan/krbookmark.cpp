@@ -20,7 +20,7 @@
 #include "krbookmark.h"
 #include "../krglobal.h"
 #include "../Archive/krarchandler.h"
-#include "../VFS/krtrashhandler.h"
+#include "../FileSystem/krtrashhandler.h"
 
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>

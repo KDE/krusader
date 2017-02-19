@@ -36,7 +36,7 @@
 #include "krviewitemdelegate.h"
 #include "krviewitem.h"
 #include "krvfsmodel.h"
-#include "../VFS/krpermhandler.h"
+#include "../FileSystem/krpermhandler.h"
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "krmousehandler.h"
@@ -402,9 +402,9 @@ void KrInterDetailedView::setFileIconSize(int size)
     setIconSize(QSize(fileIconSize(), fileIconSize()));
 }
 
-QRect KrInterDetailedView::itemRect(const vfile *vf)
+QRect KrInterDetailedView::itemRect(const FileItem *item)
 {
-    QRect r = visualRect(_model->vfileIndex(vf));
+    QRect r = visualRect(_model->fileItemIndex(item));
     r.setLeft(0);
     r.setWidth(header()->length());
     return r;

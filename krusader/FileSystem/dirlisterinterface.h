@@ -16,38 +16,38 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef VFILECONTAINER_H
-#define VFILECONTAINER_H
+#ifndef DIRLISTERINTERFACE_H
+#define DIRLISTERINTERFACE_H
 
 // QtCore
 #include <QObject>
 
-class vfile;
+class FileItem;
 
 /**
  * A minimal interface for access to the files inside a filesystem directory.
  */
-class VfileContainer : public QObject
+class DirListerInterface : public QObject
 {
     Q_OBJECT
 public:
-    VfileContainer(QObject *parent) : QObject(parent) {}
-    virtual ~VfileContainer() {}
+    DirListerInterface(QObject *parent) : QObject(parent) {}
+    virtual ~DirListerInterface() {}
 
-    virtual QList<vfile *> vfiles() = 0;
-    virtual unsigned long numVfiles() = 0;
+    virtual QList<FileItem *> fileItems() = 0;
+    virtual unsigned long numFileItems() = 0;
     virtual bool isRoot() = 0;
 
 signals:
-    /// Emitted when refreshing finished. The list of vfiles should now be updated by the view.
+    /// Emitted when refreshing finished. The list of file items should now be updated by the view.
     /// dirChange is true if refresh was a change to another directory. Else it was only an update
     /// of the file list in the current directory.
     void refreshDone(bool dirChange);
-    /// Emitted when all vfiles in the VFS were removed
+    /// Emitted when all file items in the filesystem were removed
     void cleared();
 
-    void addedVfile(vfile *vf);
-    void updatedVfile(vfile *vf);
+    void addedFileItem(FileItem *fileItem);
+    void updatedFileItem(FileItem *fileItem);
 };
 
-#endif // VFILECONTAINER_H
+#endif // DIRLISTERINTERFACE_H

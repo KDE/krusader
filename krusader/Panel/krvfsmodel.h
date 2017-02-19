@@ -29,7 +29,7 @@
 #include "krsort.h"
 
 
-class vfile;
+class FileItem;
 class KrViewProperties;
 
 class KrVfsModel: public QAbstractListModel
@@ -43,10 +43,10 @@ public:
     inline bool ready() const {
         return _ready;
     }
-    void populate(const QList<vfile*> &files, vfile *dummy);
-    QModelIndex addItem(vfile *);
-    QModelIndex removeItem(vfile *);
-    void updateItem(vfile *vf);
+    void populate(const QList<FileItem*> &files, FileItem *dummy);
+    QModelIndex addItem(FileItem *);
+    QModelIndex removeItem(FileItem *);
+    void updateItem(FileItem *fileitem);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
     int columnCount(const QModelIndex &parent = QModelIndex()) const  Q_DECL_OVERRIDE;
@@ -63,14 +63,14 @@ public:
         sort(lastSortOrder(), lastSortDir());
     }
     void clear();
-    QList<vfile*> vfiles() {
-        return _vfiles;
+    QList<FileItem*> fileItems() {
+        return _fileItems;
     }
-    vfile * vfileAt(const QModelIndex &index);
-    vfile *dummyVfile() const {
-        return _dummyVfile;
+    FileItem * fileItemAt(const QModelIndex &index);
+    FileItem *dummyFileItem() const {
+        return _dummyFileItem;
     }
-    const QModelIndex & vfileIndex(const vfile *);
+    const QModelIndex & fileItemIndex(const FileItem *);
     const QModelIndex & nameIndex(const QString &);
     const QModelIndex & indexFromUrl(const QUrl &url);
     virtual Qt::ItemFlags flags(const QModelIndex & index) const Q_DECL_OVERRIDE;
@@ -97,22 +97,22 @@ protected:
     KrSort::LessThanFunc greaterThanFunc() const {
         return KrSort::itemGreaterThan;
     }
-    QVariant customSortData(vfile *) const {
+    QVariant customSortData(FileItem *) const {
         return QVariant();
     }
     KrSort::Sorter createSorter();
-    QString nameWithoutExtension(const vfile * vf, bool checkEnabled = true) const;
+    QString nameWithoutExtension(const FileItem * fileitem, bool checkEnabled = true) const;
 
 private:
-    void updateIndices(vfile *file, int index);
+    void updateIndices(FileItem *file, int index);
 
-    QList<vfile*>               _vfiles;
-    QHash<vfile *, QModelIndex> _vfileNdx;
+    QList<FileItem*>               _fileItems;
+    QHash<FileItem *, QModelIndex> _fileItemNdx;
     QHash<QString, QModelIndex> _nameNdx;
     QHash<QUrl, QModelIndex>    _urlNdx;
     bool                        _extensionEnabled;
     KrInterView                 * _view;
-    vfile *                     _dummyVfile;
+    FileItem *                     _dummyFileItem;
     bool                        _ready;
     QFont                       _defaultFont;
     bool                        _justForSizeHint;

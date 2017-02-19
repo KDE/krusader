@@ -370,9 +370,9 @@ void PanelManager::refreshAllTabs()
     while (i < _tabbar->count()) {
         ListPanel *panel = _tabbar->getPanel(i);
         if (panel && panel->func) {
-            vfs * vfs = panel->func->files();
-            if (vfs) {
-                vfs->refresh();
+            FileSystem *fileSystem = panel->func->files();
+            if (fileSystem) {
+                fileSystem->refresh();
             }
         }
         ++i;

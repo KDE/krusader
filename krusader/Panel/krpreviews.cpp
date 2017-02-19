@@ -34,7 +34,7 @@ A
 #include "krcolorcache.h"
 #include "krview.h"
 #include "krviewitem.h"
-#include "../VFS/vfile.h"
+#include "../FileSystem/fileitem.h"
 #include "../defaults.h"
 
 #include <stdio.h>
@@ -68,7 +68,7 @@ void KrPreviews::update()
     if(_job)
         return;
     for (KrViewItem *it = _view->getFirst(); it != 0; it = _view->getNext(it)) {
-        if(!_previews.contains(it->getVfile()))
+        if(!_previews.contains(it->getFileItem()))
             updatePreview(it);
     }
 }
@@ -78,7 +78,7 @@ void KrPreviews::deletePreview(KrViewItem *item)
     if(_job) {
         _job->removeItem(item);
     }
-    removePreview(item->getVfile());
+    removePreview(item->getFileItem());
 }
 
 void KrPreviews::updatePreview(KrViewItem *item)
@@ -91,7 +91,7 @@ void KrPreviews::updatePreview(KrViewItem *item)
     _job->scheduleItem(item);
 }
 
-bool KrPreviews::getPreview(const vfile* file, QPixmap &pixmap, bool active)
+bool KrPreviews::getPreview(const FileItem *file, QPixmap &pixmap, bool active)
 {
     if(active || !_dim)
         pixmap = _previews.value(file);
@@ -114,18 +114,18 @@ void KrPreviews::slotRefreshColors()
     update();
 }
 
-void KrPreviews::addPreview(const vfile *file, const QPixmap &preview)
+void KrPreviews::addPreview(const FileItem *file, const QPixmap &preview)
 {
     QPixmap active, inactive;
 
     if(preview.isNull()) {
-        active = KrView::getIcon((vfile*)file, true, _view->fileIconSize());
+        active = KrView::getIcon((FileItem *)file, true, _view->fileIconSize());
         if(_dim)
-            inactive = KrView::getIcon((vfile*)file, false, _view->fileIconSize());
+            inactive = KrView::getIcon((FileItem *)file, false, _view->fileIconSize());
     } else {
-        active = KrView::processIcon(preview, false, _dimColor, _dimFactor, file->vfile_isSymLink());
+        active = KrView::processIcon(preview, false, _dimColor, _dimFactor, file->isSymLink());
         if(_dim)
-            inactive = KrView::processIcon(preview, true, _dimColor, _dimFactor, file->vfile_isSymLink());
+            inactive = KrView::processIcon(preview, true, _dimColor, _dimFactor, file->isSymLink());
     }
 
     _previews.insert(file, active);
@@ -133,7 +133,7 @@ void KrPreviews::addPreview(const vfile *file, const QPixmap &preview)
         _previewsInactive.insert(file, inactive);
 }
 
-void KrPreviews::removePreview(const vfile* file)
+void KrPreviews::removePreview(const FileItem *file)
 {
     _previews.remove(file);
     _previewsInactive.remove(file);
