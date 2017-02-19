@@ -60,7 +60,7 @@
 #include <KIO/DeleteJob>
 
 #include "../FileSystem/krpermhandler.h"
-#include "../FileSystem/krvfshandler.h"
+#include "../FileSystem/filesystemprovider.h"
 #include "../kicons.h"
 #include "../defaults.h"
 #include "../krglobal.h"
@@ -264,7 +264,7 @@ void DiskUsage::load(const QUrl &baseDir)
         delete searchVfs;
         searchVfs = 0;
     }
-    searchVfs = KrVfsHandler::instance().getVfs(baseDir);
+    searchVfs = FileSystemProvider::instance().getVfs(baseDir);
     if (searchVfs == 0) {
         krOut << "diskusage could not get VFS for directory " << baseDir;
         loading = abortLoading = clearAfterAbort = false;

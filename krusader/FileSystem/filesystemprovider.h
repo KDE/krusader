@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef KRVFSHANDLER_H
-#define KRVFSHANDLER_H
+#ifndef FILESYSTEMPROVIDER_H
+#define FILESYSTEMPROVIDER_H
 
 // QtCore
 #include <QObject>
@@ -33,7 +33,7 @@
  *
  * This is a singleton.
  */
-class KrVfsHandler : public QObject {
+class FileSystemProvider : public QObject {
     Q_OBJECT
 
 public:
@@ -54,7 +54,7 @@ public:
                         KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
                         bool showProgressInfo = true, bool reverseQueueMode = false, bool startPaused = false);
 
-    static KrVfsHandler &instance();
+    static FileSystemProvider &instance();
     static vfs::VFS_TYPE getVfsType(const QUrl &url);
     /** Get ACL permissions for a file */
     static void getACL(vfile *file, QString &acl, QString &defAcl);
@@ -64,7 +64,7 @@ public slots:
 
 private:
     vfs *createVfs(const vfs::VFS_TYPE type);
-    KrVfsHandler();
+    FileSystemProvider();
 
     // vfs instances for directory independent file operations, lazy initialized
     vfs *_defaultVFS;

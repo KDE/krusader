@@ -78,7 +78,7 @@ A
 #include "../FileSystem/vfile.h"
 #include "../FileSystem/virt_vfs.h"
 #include "../FileSystem/krpermhandler.h"
-#include "../FileSystem/krvfshandler.h"
+#include "../FileSystem/filesystemprovider.h"
 #include "../Dialogs/packgui.h"
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krpleasewait.h"
@@ -294,7 +294,7 @@ void ListPanelFunc::doRefresh()
         isEqualUrl = files()->currentDirectory().matches(url, QUrl::StripTrailingSlash);
 
         // may get a new vfs for this url
-        vfs* vfs = KrVfsHandler::instance().getVfs(url, files());
+        vfs* vfs = FileSystemProvider::instance().getVfs(url, files());
         vfs->setParentWindow(krMainWindow);
         connect(vfs, &vfs::aboutToOpenDir, &krMtMan, &KMountMan::autoMount, Qt::DirectConnection);
         if (vfs != vfsP) {
@@ -634,7 +634,7 @@ void ListPanelFunc::copyFiles(bool reverseQueueMode, bool move)
     }
 
     KIO::CopyJob::CopyMode mode = move ? KIO::CopyJob::Move : KIO::CopyJob::Copy;
-    KrVfsHandler::instance().startCopyFiles(fileUrls, destination, mode, true, reverseQueueMode, startPaused);
+    FileSystemProvider::instance().startCopyFiles(fileUrls, destination, mode, true, reverseQueueMode, startPaused);
 
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         panel->view->saveSelection();
@@ -1126,7 +1126,7 @@ void ListPanelFunc::refreshActions()
 vfs* ListPanelFunc::files()
 {
     if (!vfsP)
-        vfsP = KrVfsHandler::instance().getVfs(QUrl::fromLocalFile("/"));
+        vfsP = FileSystemProvider::instance().getVfs(QUrl::fromLocalFile("/"));
     return vfsP;
 }
 

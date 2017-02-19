@@ -17,7 +17,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include "krvfshandler.h"
+#include "filesystemprovider.h"
 
 #ifdef HAVE_POSIX_ACL
 #include <sys/acl.h>
@@ -36,15 +36,15 @@
 #include "../krservices.h"
 
 
-KrVfsHandler::KrVfsHandler() : _defaultVFS(0), _virtVFS(0) {}
+FileSystemProvider::FileSystemProvider() : _defaultVFS(0), _virtVFS(0) {}
 
-vfs *KrVfsHandler::getVfs(const QUrl &url, vfs *oldVfs)
+vfs *FileSystemProvider::getVfs(const QUrl &url, vfs *oldVfs)
 {
     const vfs::VFS_TYPE type = getVfsType(url);
     return oldVfs && oldVfs->type() == type ? oldVfs : createVfs(type);
 }
 
-void KrVfsHandler::startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,
+void FileSystemProvider::startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,
                                   KIO::CopyJob::CopyMode mode, bool showProgressInfo, bool reverseQueueMode, bool startPaused)
 {
     const vfs::VFS_TYPE type = getVfsType(destination);
@@ -64,7 +64,7 @@ void KrVfsHandler::startCopyFiles(const QList<QUrl> &urls, const QUrl &destinati
     vfs->copyFiles(urls, destination, mode, showProgressInfo, reverseQueueMode, startPaused);
 }
 
-void KrVfsHandler::refreshVfs(const QUrl &directory)
+void FileSystemProvider::refreshVfs(const QUrl &directory)
 {
     QMutableListIterator<QPointer<vfs>> it(_vfs_list);
     while (it.hasNext()) {
@@ -96,7 +96,7 @@ void KrVfsHandler::refreshVfs(const QUrl &directory)
     }
 }
 
-vfs *KrVfsHandler::createVfs(vfs::VFS_TYPE type)
+vfs *FileSystemProvider::createVfs(vfs::VFS_TYPE type)
 {
     vfs *newVfs;
     switch (type) {
@@ -106,24 +106,24 @@ vfs *KrVfsHandler::createVfs(vfs::VFS_TYPE type)
 
     QPointer<vfs> vfsPointer(newVfs);
     _vfs_list.append(vfsPointer);
-    connect(newVfs, &vfs::filesystemChanged, this, &KrVfsHandler::refreshVfs);
+    connect(newVfs, &vfs::filesystemChanged, this, &FileSystemProvider::refreshVfs);
     return newVfs;
 }
 
 // ==== static ====
 
-KrVfsHandler &KrVfsHandler::instance()
+FileSystemProvider &FileSystemProvider::instance()
 {
-    static KrVfsHandler instance;
+    static FileSystemProvider instance;
     return instance;
 }
 
-vfs::VFS_TYPE KrVfsHandler::getVfsType(const QUrl &url)
+vfs::VFS_TYPE FileSystemProvider::getVfsType(const QUrl &url)
 {
     return url.scheme() == QStringLiteral("virt") ? vfs::VFS_VIRT : vfs::VFS_DEFAULT;
 }
 
-void KrVfsHandler::getACL(vfile *file, QString &acl, QString &defAcl)
+void FileSystemProvider::getACL(vfile *file, QString &acl, QString &defAcl)
 {
     Q_UNUSED(file);
     acl.clear();
@@ -142,7 +142,7 @@ void KrVfsHandler::getACL(vfile *file, QString &acl, QString &defAcl)
 #endif
 }
 
-QString KrVfsHandler::getACL(const QString & path, int type)
+QString FileSystemProvider::getACL(const QString & path, int type)
 {
     Q_UNUSED(path);
     Q_UNUSED(type);

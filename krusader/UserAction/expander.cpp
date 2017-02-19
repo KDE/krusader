@@ -27,7 +27,7 @@
 #include "../Panel/krview.h"
 #include "../Search/krsearchdialog.h"
 #include "../GUI/profilemanager.h"
-#include "../FileSystem/krvfshandler.h"
+#include "../FileSystem/filesystemprovider.h"
 #include "../KViewer/krviewer.h"
 #include "../krservices.h"
 
@@ -640,7 +640,7 @@ TagString exp_Copy::expFunc(const KrPanel*, const TagStringList& parameter, cons
         return QString();
     }
 
-    KrVfsHandler::instance().startCopyFiles(src, dest);
+    FileSystemProvider::instance().startCopyFiles(src, dest);
 
     return QString();  // this doesn't return everything, that's normal!
 }
@@ -678,7 +678,7 @@ TagString exp_Move::expFunc(const KrPanel*, const TagStringList& parameter, cons
         return QString();
     }
 
-    KrVfsHandler::instance().startCopyFiles(src, dest, KIO::CopyJob::Move);
+    FileSystemProvider::instance().startCopyFiles(src, dest, KIO::CopyJob::Move);
 
     return QString();  // this doesn't return anything, that's normal!
 }

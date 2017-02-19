@@ -38,7 +38,7 @@
 #include <KConfigCore/KDesktopFile>
 
 #include "krpermhandler.h"
-#include "krvfshandler.h"
+#include "filesystemprovider.h"
 
 bool vfile::vfile_userDefinedFolderIcons = true;
 
@@ -172,7 +172,7 @@ const QString &vfile::vfile_getACL()
 void vfile::vfile_loadACL()
 {
     if (m_url.isLocalFile()) {
-        KrVfsHandler::getACL(this, m_acl, m_defaulfAcl);
+        FileSystemProvider::getACL(this, m_acl, m_defaulfAcl);
     }
     m_AclLoaded = true;
 }

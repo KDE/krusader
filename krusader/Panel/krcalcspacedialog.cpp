@@ -47,7 +47,7 @@ A
 #include "panelfunc.h"
 #include "../krglobal.h"
 #include "../FileSystem/krpermhandler.h"
-#include "../FileSystem/krvfshandler.h"
+#include "../FileSystem/filesystemprovider.h"
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
 KrCalcSpaceDialog::CalcThread::CalcThread(QUrl url, const QStringList & items)
@@ -80,7 +80,7 @@ void KrCalcSpaceDialog::CalcThread::updateItems(KrView *view) const
 void KrCalcSpaceDialog::CalcThread::run()
 {
     if (!m_items.isEmpty()) { // if something to do: do the calculation
-        vfs *files = KrVfsHandler::instance().getVfs(m_url);
+        vfs *files = FileSystemProvider::instance().getVfs(m_url);
         if(!files->refresh(m_url))
             return;
 
