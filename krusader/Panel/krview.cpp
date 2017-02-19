@@ -40,7 +40,7 @@
 #include "../krglobal.h"
 #include "../defaults.h"
 #include "../FileSystem/krpermhandler.h"
-#include "../FileSystem/vfilecontainer.h"
+#include "../FileSystem/dirlisterinterface.h"
 #include "../Filter/filterdialog.h"
 
 // QtCore
@@ -983,7 +983,7 @@ bool KrView::isFiltered(vfile *vf)
     return filteredOut;
 }
 
-void KrView::setFiles(VfileContainer *files)
+void KrView::setFiles(DirListerInterface *files)
 {
     if(files != _files) {
         clear();

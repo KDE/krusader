@@ -16,8 +16,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef VFILECONTAINER_H
-#define VFILECONTAINER_H
+#ifndef DIRLISTERINTERFACE_H
+#define DIRLISTERINTERFACE_H
 
 // QtCore
 #include <QObject>
@@ -27,12 +27,12 @@ class vfile;
 /**
  * A minimal interface for access to the files inside a filesystem directory.
  */
-class VfileContainer : public QObject
+class DirListerInterface : public QObject
 {
     Q_OBJECT
 public:
-    VfileContainer(QObject *parent) : QObject(parent) {}
-    virtual ~VfileContainer() {}
+    DirListerInterface(QObject *parent) : QObject(parent) {}
+    virtual ~DirListerInterface() {}
 
     virtual QList<vfile *> vfiles() = 0;
     virtual unsigned long numVfiles() = 0;
@@ -50,4 +50,4 @@ signals:
     void updatedVfile(vfile *vf);
 };
 
-#endif // VFILECONTAINER_H
+#endif // DIRLISTERINTERFACE_H

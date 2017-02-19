@@ -50,7 +50,7 @@ class KrView;
 class KrViewItem;
 class KrPreviews;
 class KrViewInstance;
-class VfileContainer;
+class DirListerInterface;
 
 typedef QList<KrViewItem *> KrViewItemList;
 
@@ -343,7 +343,7 @@ public:
     bool previewsShown() { return _previews != 0; }
     void applySettingsToOthers();
 
-    void setFiles(VfileContainer *files);
+    void setFiles(DirListerInterface *files);
     void refresh();
 
     bool changeSelection(const KRQuery &filter, bool select);
@@ -429,7 +429,7 @@ private:
     void restoreSortMode(KConfigGroup &group);
 
     KrViewInstance &_instance;
-    VfileContainer *_files;
+    DirListerInterface *_files;
     QWidget *_mainWindow;
     QWidget *_widget;
     QList<QUrl> _savedSelection;

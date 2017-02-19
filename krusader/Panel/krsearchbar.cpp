@@ -20,7 +20,7 @@
 
 #include "../defaults.h"
 #include "../krglobal.h"
-#include "../FileSystem/vfilecontainer.h"
+#include "../FileSystem/dirlisterinterface.h"
 #include "krview.h"
 #include "krviewitem.h"
 

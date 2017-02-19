@@ -52,7 +52,7 @@
 #include "../JobMan/krjob.h"
 #include "krpermhandler.h"
 
-vfs::vfs() : VfileContainer(0), _isRefreshing(false) {}
+vfs::vfs() : DirListerInterface(0), _isRefreshing(false) {}
 
 vfs::~vfs()
 {

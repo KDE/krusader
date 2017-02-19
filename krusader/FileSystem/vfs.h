@@ -30,7 +30,7 @@
 #ifndef VFS_H
 #define VFS_H
 
-#include "vfilecontainer.h"
+#include "dirlisterinterface.h"
 
 // QtCore
 #include <QHash>
@@ -59,7 +59,7 @@
  *
  * Notification signals are emitted if the directory content may have been changed.
  */
-class vfs : public VfileContainer
+class vfs : public DirListerInterface
 {
     Q_OBJECT
 public:
@@ -74,7 +74,7 @@ public:
     vfs();
     virtual ~vfs();
 
-    // VfileContainer implementation
+    // DirListerInterface implementation
     inline QList<vfile *> vfiles() { return _vfiles.values(); }
     inline unsigned long numVfiles() { return _vfiles.count(); }
     inline bool isRoot() {

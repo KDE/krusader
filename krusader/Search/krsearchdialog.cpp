@@ -78,10 +78,10 @@
 
 #define RESULTVIEW_TYPE 0
 
-class SearchResultContainer : public VfileContainer
+class SearchResultContainer : public DirListerInterface
 {
 public:
-    SearchResultContainer(QObject *parent) : VfileContainer(parent) {}
+    SearchResultContainer(QObject *parent) : DirListerInterface(parent) {}
     virtual ~SearchResultContainer() {
         clear();
     }
