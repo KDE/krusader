@@ -32,7 +32,7 @@
 #include "filtertabs.h"
 #include "../krglobal.h"
 #include "../krservices.h"
-#include "../VFS/vfs.h"
+#include "../FileSystem/vfs.h"
 
 // QtWidgets
 #include <QPushButton>

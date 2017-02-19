@@ -46,8 +46,8 @@ A
 #include "krpanel.h"
 #include "panelfunc.h"
 #include "../krglobal.h"
-#include "../VFS/krpermhandler.h"
-#include "../VFS/krvfshandler.h"
+#include "../FileSystem/krpermhandler.h"
+#include "../FileSystem/krvfshandler.h"
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
 KrCalcSpaceDialog::CalcThread::CalcThread(QUrl url, const QStringList & items)

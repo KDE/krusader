@@ -34,7 +34,7 @@ A
 #include "krcolorcache.h"
 #include "krview.h"
 #include "krviewitem.h"
-#include "../VFS/vfile.h"
+#include "../FileSystem/vfile.h"
 #include "../defaults.h"
 
 #include <stdio.h>

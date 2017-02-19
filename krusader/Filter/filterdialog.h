@@ -32,7 +32,7 @@
 #define FILTERDIALOG_H
 
 #include "filtersettings.h"
-#include "../VFS/krquery.h"
+#include "../FileSystem/krquery.h"
 
 // QtWidgets
 #include <QDialog>

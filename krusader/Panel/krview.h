@@ -42,7 +42,7 @@
 #include <QPixmap>
 
 #include "../Filter/filtersettings.h"
-#include "../VFS/krquery.h"
+#include "../FileSystem/krquery.h"
 
 #define MAX_BRIEF_COLS 5
 

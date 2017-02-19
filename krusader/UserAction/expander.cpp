@@ -27,7 +27,7 @@
 #include "../Panel/krview.h"
 #include "../Search/krsearchdialog.h"
 #include "../GUI/profilemanager.h"
-#include "../VFS/krvfshandler.h"
+#include "../FileSystem/krvfshandler.h"
 #include "../KViewer/krviewer.h"
 #include "../krservices.h"
 

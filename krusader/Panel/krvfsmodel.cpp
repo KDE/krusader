@@ -18,8 +18,8 @@
  *****************************************************************************/
 
 #include "krvfsmodel.h"
-#include "../VFS/vfile.h"
-#include "../VFS/krpermhandler.h"
+#include "../FileSystem/vfile.h"
+#include "../FileSystem/krpermhandler.h"
 #include "../defaults.h"
 #include "../krglobal.h"
 

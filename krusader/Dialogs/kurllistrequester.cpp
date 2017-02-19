@@ -29,7 +29,7 @@
  ***************************************************************************/
 
 #include "kurllistrequester.h"
-#include "../VFS/vfs.h"
+#include "../FileSystem/vfs.h"
 
 // QtGui
 #include <QPixmap>

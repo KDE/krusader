@@ -34,7 +34,7 @@
 #define PANELFUNC_H
 
 #include "krviewitem.h"
-#include "../VFS/vfs.h"
+#include "../FileSystem/vfs.h"
 
 // QtCore
 #include <QObject>

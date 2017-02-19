@@ -30,7 +30,7 @@
 
 #include "splittergui.h"
 
-#include "../VFS/vfs.h"
+#include "../FileSystem/vfs.h"
 
 // QtCore
 #include <QDebug>

@@ -20,7 +20,7 @@
 #include "dirhistorybutton.h"
 #include "../Panel/dirhistoryqueue.h"
 
-#include "../VFS/vfs.h"
+#include "../FileSystem/vfs.h"
 
 // QtCore
 #include <QDebug>

@@ -21,7 +21,7 @@
 
 #include "krinterview.h"
 #include "krvfsmodel.h"
-#include "../VFS/krpermhandler.h"
+#include "../FileSystem/krpermhandler.h"
 
 // QtCore
 #include <QLocale>

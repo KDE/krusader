@@ -47,8 +47,8 @@
 #include "krarchandler.h"
 #include "../krglobal.h"
 #include "../krservices.h"
-#include "../VFS/krvfshandler.h"
-#include "../VFS/vfs.h"
+#include "../FileSystem/krvfshandler.h"
+#include "../FileSystem/vfs.h"
 
 extern KRarcHandler arcHandler;
 

@@ -32,8 +32,8 @@
 #include "synchronizerdirlist.h"
 #include "../krglobal.h"
 #include "../krservices.h"
-#include "../VFS/vfs.h"
-#include "../VFS/krquery.h"
+#include "../FileSystem/vfs.h"
+#include "../FileSystem/krquery.h"
 
 #include <utime.h>
 

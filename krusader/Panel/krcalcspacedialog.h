@@ -41,7 +41,7 @@
 #include <QDialog>
 #include <QLabel>
 
-#include "../VFS/vfs.h"
+#include "../FileSystem/vfs.h"
 class KrPanel;
 class KrView;
 

@@ -42,8 +42,8 @@
 
 #include <KIO/Global>
 
-#include "../VFS/default_vfs.h"
-#include "../VFS/virt_vfs.h"
+#include "../FileSystem/default_vfs.h"
+#include "../FileSystem/virt_vfs.h"
 
 
 class KRQuery;

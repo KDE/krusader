@@ -37,7 +37,7 @@
 
 #include <KIO/Job>
 
-#include "../VFS/vfile.h"
+#include "../FileSystem/vfile.h"
 
 class SynchronizerDirList : public QObject, public QHash<QString, vfile *>
 {

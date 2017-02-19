@@ -41,9 +41,9 @@
 
 #include <KIO/Global>
 
-#include "../VFS/krquery.h"
-#include "../VFS/vfile.h"
-#include "../VFS/krpermhandler.h"
+#include "../FileSystem/krquery.h"
+#include "../FileSystem/vfile.h"
+#include "../FileSystem/krpermhandler.h"
 #include "../Archive/krarchandler.h"
 
 #define  EVENT_PROCESS_DELAY     250

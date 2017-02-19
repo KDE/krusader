@@ -59,8 +59,8 @@
 #include <KIO/Job>
 #include <KIO/DeleteJob>
 
-#include "../VFS/krpermhandler.h"
-#include "../VFS/krvfshandler.h"
+#include "../FileSystem/krpermhandler.h"
+#include "../FileSystem/krvfshandler.h"
 #include "../kicons.h"
 #include "../defaults.h"
 #include "../krglobal.h"

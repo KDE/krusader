@@ -40,7 +40,7 @@
 
 #include "krmaskchoice.h"
 #include "newftpgui.h"
-#include "../VFS/krquery.h"
+#include "../FileSystem/krquery.h"
 
 class KRMaskChoiceSub;
 

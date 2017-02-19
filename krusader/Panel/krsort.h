@@ -21,7 +21,7 @@
 #define KRSORT_H
 
 #include "krview.h"
-#include "../VFS/vfile.h"
+#include "../FileSystem/vfile.h"
 
 // QtCore
 #include <QString>

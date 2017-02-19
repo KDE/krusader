@@ -49,7 +49,7 @@
 
 #include <KWidgetsAddons/KSqueezedTextLabel>
 
-#include "../VFS/vfs.h"
+#include "../FileSystem/vfs.h"
 #include "filelightParts/fileTree.h"
 
 #define VIEW_LINES      0

@@ -69,7 +69,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../kicons.h"
 #include "../krusaderview.h"
 #include "../krservices.h"
-#include "../VFS/krpermhandler.h"
+#include "../FileSystem/krpermhandler.h"
 #include "../Archive/krarchandler.h"
 #include "../MountMan/kmountman.h"
 #include "../BookMan/krbookmarkbutton.h"

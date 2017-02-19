@@ -36,7 +36,7 @@
 #include "krviewitemdelegate.h"
 #include "krviewitem.h"
 #include "krvfsmodel.h"
-#include "../VFS/krpermhandler.h"
+#include "../FileSystem/krpermhandler.h"
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "krmousehandler.h"

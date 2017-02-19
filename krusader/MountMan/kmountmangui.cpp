@@ -34,7 +34,7 @@ A
 #include "../Dialogs/krspecialwidgets.h"
 #include "../kicons.h"
 #include "../defaults.h"
-#include "../VFS/vfs.h"
+#include "../FileSystem/vfs.h"
 
 // QtCore
 #include <QCryptographicHash>

@@ -25,7 +25,7 @@
 #include "krpreviews.h"
 #include "krvfsmodel.h"
 #include "krviewitem.h"
-#include "../VFS/vfilecontainer.h"
+#include "../FileSystem/vfilecontainer.h"
 
 KrInterView::KrInterView(KrViewInstance &instance, KConfig *cfg,
                          QAbstractItemView *itemView) :

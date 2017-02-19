@@ -39,8 +39,8 @@
 #include "../kicons.h"
 #include "../krglobal.h"
 #include "../defaults.h"
-#include "../VFS/krpermhandler.h"
-#include "../VFS/vfilecontainer.h"
+#include "../FileSystem/krpermhandler.h"
+#include "../FileSystem/vfilecontainer.h"
 #include "../Filter/filterdialog.h"
 
 // QtCore

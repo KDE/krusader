@@ -40,7 +40,7 @@
 #include <KWidgetsAddons/KGuiItem>
 
 #include "../krglobal.h"
-#include "../VFS/vfs.h"
+#include "../FileSystem/vfs.h"
 #include "../defaults.h"
 #include "../JobMan/jobman.h"
 

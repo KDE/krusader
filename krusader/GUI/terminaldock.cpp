@@ -44,7 +44,7 @@
 #include "../krusaderview.h"
 #include "../krmainwindow.h"
 #include "kcmdline.h"
-#include "../VFS/vfs.h"
+#include "../FileSystem/vfs.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../Panel/listpanelactions.h"

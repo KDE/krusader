@@ -20,7 +20,7 @@
 #ifndef KRVIEWITEM_H
 #define KRVIEWITEM_H
 
-#include "../VFS/vfile.h"
+#include "../FileSystem/vfile.h"
 #include "krview.h"
 
 // QtCore

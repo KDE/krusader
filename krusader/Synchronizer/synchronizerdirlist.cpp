@@ -48,8 +48,8 @@
 #include <KIO/JobUiDelegate>
 #include <KWidgetsAddons/KMessageBox>
 
-#include "../VFS/vfs.h"
-#include "../VFS/krpermhandler.h"
+#include "../FileSystem/vfs.h"
+#include "../FileSystem/krpermhandler.h"
 #include "../krservices.h"
 
 SynchronizerDirList::SynchronizerDirList(QWidget *w, bool hidden) : QObject(), QHash<QString, vfile *>(), fileIterator(0),
