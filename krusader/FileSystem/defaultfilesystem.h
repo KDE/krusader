@@ -1,5 +1,5 @@
 /***************************************************************************
-                          default_vfs.h
+                          defaultfilesystem.h
                       -------------------
     begin                : Thu May 4 2000
     copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef DEFAULT_VFS_H
-#define DEFAULT_VFS_H
+#ifndef DEFAULTFILESYSTEM_H
+#define DEFAULTFILESYSTEM_H
 
 #include "vfs.h"
 
@@ -51,10 +51,10 @@
  * (~500ms delay between operation finished and watcher emits signals).
  *
  */
-class default_vfs : public vfs {
+class DefaultFileSystem : public vfs {
     Q_OBJECT
 public:
-    default_vfs();
+    DefaultFileSystem();
 
     void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                            KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,

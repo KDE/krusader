@@ -1,12 +1,12 @@
 include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
 
 set(FileSystem_SRCS
+    defaultfilesystem.cpp
     dirlisterinterface.cpp
     filesystemprovider.cpp
     virt_vfs.cpp
     vfs.cpp
     vfile.cpp
-    default_vfs.cpp
     krpermhandler.cpp
     krquery.cpp
     krtrashhandler.cpp

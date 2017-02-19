@@ -201,7 +201,7 @@ void KRSearchMod::scanRemoteDir(QUrl url)
         vfs_ = virtual_vfs;
     } else {
         if (remote_vfs == 0)
-            remote_vfs = new default_vfs();
+            remote_vfs = new DefaultFileSystem();
         vfs_ = remote_vfs;
     }
 

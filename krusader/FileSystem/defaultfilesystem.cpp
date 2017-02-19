@@ -1,5 +1,5 @@
 /***************************************************************************
-                       default_vfs.cpp
+                       defaultfilesystem.cpp
                    -------------------
     copyright            : (C) 2000 by Rafi Yanai
     e-mail               : krusader@users.sourceforge.net
@@ -28,7 +28,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "default_vfs.h"
+#include "defaultfilesystem.h"
 
 // QtCore
 #include <QEventLoop>
@@ -52,12 +52,12 @@
 #include "../JobMan/jobman.h"
 #include "../JobMan/krjob.h"
 
-default_vfs::default_vfs(): vfs(), _watcher()
+DefaultFileSystem::DefaultFileSystem(): vfs(), _watcher()
 {
     _type = VFS_DEFAULT;
 }
 
-void default_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
+void DefaultFileSystem::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                             KIO::CopyJob::CopyMode mode, bool showProgressInfo, bool reverseQueueMode, bool startPaused)
 {
     // resolve relative path before resolving symlinks
@@ -76,7 +76,7 @@ void default_vfs::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
     krJobMan->manageJob(krJob, reverseQueueMode, startPaused);
 }
 
-void default_vfs::dropFiles(const QUrl &destination, QDropEvent *event)
+void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
 {
     // resolve relative path before resolving symlinks
     const QUrl dest = resolveRelativePath(destination);
@@ -91,7 +91,7 @@ void default_vfs::dropFiles(const QUrl &destination, QDropEvent *event)
     //recordJobUndo(job, type, dst, src);
 }
 
-void default_vfs::connectSourceVFS(KJob *job, const QList<QUrl> urls)
+void DefaultFileSystem::connectSourceVFS(KJob *job, const QList<QUrl> urls)
 {
     if (!urls.isEmpty()) {
         // NOTE: we assume that all files were in the same directory and only emit one signal for
@@ -101,7 +101,7 @@ void default_vfs::connectSourceVFS(KJob *job, const QList<QUrl> urls)
     }
 }
 
-void default_vfs::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QString dir)
+void DefaultFileSystem::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QString dir)
 {
     QUrl destination(_currentDirectory);
     if (!dir.isEmpty()) {
@@ -117,13 +117,13 @@ void default_vfs::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode m
     copyFiles(fileUrls, destination, mode);
 }
 
-void default_vfs::mkDir(const QString &name)
+void DefaultFileSystem::mkDir(const QString &name)
 {
     KIO::SimpleJob* job = KIO::mkdir(getUrl(name));
     connectJob(job, currentDirectory());
 }
 
-void default_vfs::rename(const QString &oldName, const QString &newName)
+void DefaultFileSystem::rename(const QString &oldName, const QString &newName)
 {
     const QUrl oldUrl = getUrl(oldName);
     const QUrl newUrl = getUrl(newName);
@@ -133,7 +133,7 @@ void default_vfs::rename(const QString &oldName, const QString &newName)
     KIO::FileUndoManager::self()->recordJob(KIO::FileUndoManager::Rename, {oldUrl}, newUrl, job);
 }
 
-QUrl default_vfs::getUrl(const QString& name)
+QUrl DefaultFileSystem::getUrl(const QString& name)
 {
     // NOTE: on non-local fs file URL does not have to be path + name!
     vfile *vf = getVfile(name);
@@ -145,7 +145,7 @@ QUrl default_vfs::getUrl(const QString& name)
     return absoluteUrl;
 }
 
-void default_vfs::updateFilesystemInfo()
+void DefaultFileSystem::updateFilesystemInfo()
 {
     if (!KConfigGroup(krConfig, "Look&Feel").readEntry("ShowSpaceInformation", true)) {
         _mountPoint = "";
@@ -176,7 +176,7 @@ void default_vfs::updateFilesystemInfo()
 
 // ==== protected ====
 
-bool default_vfs::refreshInternal(const QUrl &directory, bool showHidden)
+bool DefaultFileSystem::refreshInternal(const QUrl &directory, bool showHidden)
 {
     if (!KProtocolManager::supportsListing(directory)) {
         emit error(i18n("Protocol not supported by Krusader:\n%1", directory.url()));
@@ -194,10 +194,10 @@ bool default_vfs::refreshInternal(const QUrl &directory, bool showHidden)
 
     // start the listing job
     KIO::ListJob *job = KIO::listDir(_currentDirectory, KIO::HideProgressInfo, showHidden);
-    connect(job, &KIO::ListJob::entries, this, &default_vfs::slotAddFiles);
-    connect(job, &KIO::ListJob::redirection, this, &default_vfs::slotRedirection);
-    connect(job, &KIO::ListJob::permanentRedirection, this, &default_vfs::slotRedirection);
-    connect(job, &KIO::Job::result, this, &default_vfs::slotListResult);
+    connect(job, &KIO::ListJob::entries, this, &DefaultFileSystem::slotAddFiles);
+    connect(job, &KIO::ListJob::redirection, this, &DefaultFileSystem::slotRedirection);
+    connect(job, &KIO::ListJob::permanentRedirection, this, &DefaultFileSystem::slotRedirection);
+    connect(job, &KIO::Job::result, this, &DefaultFileSystem::slotListResult);
 
     // ensure connection credentials are asked only once
     if(!parentWindow.isNull()) {
@@ -218,7 +218,7 @@ bool default_vfs::refreshInternal(const QUrl &directory, bool showHidden)
 
 // ==== protected slots ====
 
-void default_vfs::slotListResult(KJob *job)
+void DefaultFileSystem::slotListResult(KJob *job)
 {
     if (job && job->error()) {
         // we failed to refresh
@@ -227,7 +227,7 @@ void default_vfs::slotListResult(KJob *job)
     }
 }
 
-void default_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries)
+void DefaultFileSystem::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries)
 {
     for (const KIO::UDSEntry entry : entries) {
         vfile *vfile = vfs::createVFileFromKIO(entry, _currentDirectory);
@@ -237,9 +237,9 @@ void default_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries)
     }
 }
 
-void default_vfs::slotRedirection(KIO::Job *job, const QUrl &url)
+void DefaultFileSystem::slotRedirection(KIO::Job *job, const QUrl &url)
 {
-   krOut << "default_vfs; redirection to " << url;
+   krOut << "redirection to " << url;
 
    // some protocols (zip, tar) send redirect to local URL without scheme
    const QUrl newUrl = preferLocalUrl(url);
@@ -256,7 +256,7 @@ void default_vfs::slotRedirection(KIO::Job *job, const QUrl &url)
     _currentDirectory = cleanUrl(newUrl);
 }
 
-void default_vfs::slotWatcherDirty(const QString& path)
+void DefaultFileSystem::slotWatcherDirty(const QString& path)
 {
     if (path == realPath()) {
         // this happens
@@ -286,7 +286,7 @@ void default_vfs::slotWatcherDirty(const QString& path)
     emit updatedVfile(vf);
 }
 
-void default_vfs::slotWatcherDeleted(const QString& path)
+void DefaultFileSystem::slotWatcherDeleted(const QString& path)
 {
     if (path != realPath()) {
         // ignore deletion of files here, a 'dirty' signal will be send anyway
@@ -298,7 +298,7 @@ void default_vfs::slotWatcherDeleted(const QString& path)
     refresh();
 }
 
-bool default_vfs::refreshLocal(const QUrl &directory) {
+bool DefaultFileSystem::refreshLocal(const QUrl &directory) {
     const QString path = KrServices::urlToLocalPath(directory);
 
 #ifdef Q_WS_WIN
@@ -360,26 +360,26 @@ bool default_vfs::refreshLocal(const QUrl &directory) {
     // if the current dir is a link path the watcher needs to watch the real path - and signal
     // parameters will be the real path
     _watcher->addDir(realPath(), KDirWatch::WatchFiles);
-    connect(_watcher.data(), &KDirWatch::dirty, this, &default_vfs::slotWatcherDirty);
+    connect(_watcher.data(), &KDirWatch::dirty, this, &DefaultFileSystem::slotWatcherDirty);
     // NOTE: not connecting 'created' signal. A 'dirty' is send after that anyway
     //connect(_watcher, SIGNAL(created(const QString&)), this, SLOT(slotWatcherCreated(const QString&)));
-    connect(_watcher.data(), &KDirWatch::deleted, this, &default_vfs::slotWatcherDeleted);
+    connect(_watcher.data(), &KDirWatch::deleted, this, &DefaultFileSystem::slotWatcherDeleted);
     _watcher->startScan(false);
 
     return true;
 }
 
-vfile *default_vfs::createLocalVFile(const QString &name)
+vfile *DefaultFileSystem::createLocalVFile(const QString &name)
 {
     return vfs::createLocalVFile(name, _currentDirectory.path());
 }
 
-QString default_vfs::default_vfs::realPath()
+QString DefaultFileSystem::DefaultFileSystem::realPath()
 {
     return QDir(_currentDirectory.toLocalFile()).canonicalPath();
 }
 
-QUrl default_vfs::resolveRelativePath(const QUrl &url)
+QUrl DefaultFileSystem::resolveRelativePath(const QUrl &url)
 {
     // if e.g. "/tmp/bin" is a link to "/bin",
     // resolve "/tmp/bin/.." to "/tmp" and not "/"
