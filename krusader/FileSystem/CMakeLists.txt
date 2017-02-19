@@ -3,9 +3,9 @@ include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
 set(FileSystem_SRCS
     defaultfilesystem.cpp
     dirlisterinterface.cpp
+    filesystem.cpp
     filesystemprovider.cpp
     virtualfilesystem.cpp
-    vfs.cpp
     vfile.cpp
     krpermhandler.cpp
     krquery.cpp

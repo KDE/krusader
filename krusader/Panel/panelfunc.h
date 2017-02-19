@@ -34,7 +34,7 @@
 #define PANELFUNC_H
 
 #include "krviewitem.h"
-#include "../FileSystem/vfs.h"
+#include "../FileSystem/filesystem.h"
 
 // QtCore
 #include <QObject>
@@ -109,7 +109,7 @@ public:
     ListPanelFunc(ListPanel *parent);
     ~ListPanelFunc();
 
-    vfs* files();  // return a pointer to the vfs
+    FileSystem* files();  // return a pointer to the filesystem
 
     inline vfile* getVFile(KrViewItem *item) {
         return files()->getVfile(item->name());
@@ -126,10 +126,10 @@ public:
 
     ListPanelFunc* otherFunc();
     bool atHome();
-    bool ignoreVFSErrors() { return _ignoreVFSErrors; }
+    bool ignoreFileSystemErrors() { return _ignoreFileSystemErrors; }
 
 protected slots:
-    // Load the current url from history and refresh vfs and panel to it. If this fails, try the
+    // Load the current url from history and refresh filesystem and panel to it. If this fails, try the
     // next url in history until success (last try is root)
     void doRefresh();
     void slotFileCreated(KJob *job); // a file has been created by editNewFile()
@@ -147,7 +147,7 @@ protected:
 
     ListPanel*           panel;     // our ListPanel
     DirHistoryQueue*     history;
-    vfs*                 vfsP;      // pointer to vfs.
+    FileSystem*                 fileSystemP;      // pointer to fileSystem.
     QTimer               delayTimer;
     QUrl                 syncURL;
     QUrl                 fileToCreate; // file that's to be created by editNewFile()
@@ -157,7 +157,7 @@ protected:
 
 private:
     bool _refreshing; // ignore url changes while refreshing
-    bool _ignoreVFSErrors; // ignore (repeated) errors emitted by vfs;
+    bool _ignoreFileSystemErrors; // ignore (repeated) errors emitted by filesystem;
 };
 
 #endif

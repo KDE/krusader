@@ -38,7 +38,7 @@
 #include "../GUI/krtreewidget.h"
 #include "../defaults.h"
 #include "../krservices.h"
-#include "../FileSystem/vfs.h"
+#include "../FileSystem/filesystem.h"
 #include "../FileSystem/virtualfilesystem.h"
 #include "../KViewer/krviewer.h"
 #include "../panelmanager.h"
@@ -638,15 +638,15 @@ bool LocateDlg::find()
 
 void LocateDlg::feedToListBox()
 {
-    VirtualFileSystem virtVfs;
-    virtVfs.refresh(QUrl::fromLocalFile(QStringLiteral("/")));
+    VirtualFileSystem virtFilesystem;
+    virtFilesystem.refresh(QUrl::fromLocalFile(QStringLiteral("/")));
 
     KConfigGroup group(krConfig, "Locate");
     int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
     QString queryName;
     do {
         queryName = i18n("Locate results") + QString(" %1").arg(listBoxNum++);
-    } while (virtVfs.getVfile(queryName) != 0);
+    } while (virtFilesystem.getVfile(queryName) != 0);
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");
@@ -666,8 +666,8 @@ void LocateDlg::feedToListBox()
         it++;
     }
     QUrl url = QUrl(QStringLiteral("virt:/") + queryName);
-    virtVfs.refresh(url);
-    virtVfs.addFiles(urlList);
+    virtFilesystem.refresh(url);
+    virtFilesystem.addFiles(urlList);
     //ACTIVE_FUNC->openUrl(url);
     ACTIVE_MNG->slotNewTab(url);
     accept();

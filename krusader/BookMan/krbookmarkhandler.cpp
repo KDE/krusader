@@ -25,7 +25,7 @@
 #include "../kractions.h"
 #include "../krmainwindow.h"
 #include "../Dialogs/popularurls.h"
-#include "../FileSystem/vfs.h"
+#include "../FileSystem/filesystem.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/listpanelactions.h"
 

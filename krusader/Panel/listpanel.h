@@ -135,7 +135,7 @@ public slots:
     void compareDirs(bool otherPanelToo = true);
     void slotFocusOnMe(bool focus = true);
     void slotUpdateTotals();
-    // react to file changes in vfs (path change or refresh)
+    // react to file changes in filesystem (path change or refresh)
     void slotStartUpdate(bool directoryChange);
     void togglePanelPopup();
     void panelActive(); // called when the panel becomes active
@@ -188,7 +188,7 @@ protected slots:
     void inlineRefreshInfoMessage(KJob* job, const QString &msg);
     void inlineRefreshListResult(KJob* job);
     void inlineRefreshPercent(KJob*, unsigned long);
-    void slotVfsError(QString msg);
+    void slotFilesystemError(QString msg);
     void newTab(KrViewItem *item);
     void newTab(const QUrl &url, bool nextToThis = false) {
         _manager->newTab(url, nextToThis ? this : 0);
@@ -239,7 +239,7 @@ protected:
     MediaButton *mediaButton;
     SyncBrowseButton *syncBrowseButton;
     QToolButton *inlineRefreshCancelButton;
-    KrErrorDisplay *vfsError;
+    KrErrorDisplay *fileSystemError;
 
 private:
     bool handleDropInternal(QDropEvent *event, const QString &dir);

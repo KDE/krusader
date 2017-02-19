@@ -32,7 +32,7 @@
 #include "synchronizerdirlist.h"
 #include "../krglobal.h"
 #include "../krservices.h"
-#include "../FileSystem/vfs.h"
+#include "../FileSystem/filesystem.h"
 #include "../FileSystem/krquery.h"
 
 #include <utime.h>

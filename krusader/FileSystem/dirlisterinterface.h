@@ -43,7 +43,7 @@ signals:
     /// dirChange is true if refresh was a change to another directory. Else it was only an update
     /// of the file list in the current directory.
     void refreshDone(bool dirChange);
-    /// Emitted when all vfiles in the VFS were removed
+    /// Emitted when all vfiles in the filesystem were removed
     void cleared();
 
     void addedVfile(vfile *vf);

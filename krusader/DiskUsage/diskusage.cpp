@@ -187,7 +187,7 @@ void LoaderWidget::init()
 
 void LoaderWidget::setCurrentURL(const QUrl &url)
 {
-    searchedDirectory->setText(vfs::ensureTrailingSlash(url).toDisplayString(QUrl::PreferLocalFile));
+    searchedDirectory->setText(FileSystem::ensureTrailingSlash(url).toDisplayString(QUrl::PreferLocalFile));
 }
 
 void LoaderWidget::setValues(int fileNum, int dirNum, KIO::filesize_t total)
@@ -204,7 +204,7 @@ void LoaderWidget::slotCancelled()
 
 DiskUsage::DiskUsage(QString confGroup, QWidget *parent) : QStackedWidget(parent),
         currentDirectory(0), root(0), configGroup(confGroup), loading(false),
-        abortLoading(false), clearAfterAbort(false), deleting(false), searchVfs(0)
+        abortLoading(false), clearAfterAbort(false), deleting(false), searchFileSystem(0)
 {
     listView = new DUListView(this);
     lineView = new DULines(this);
@@ -260,13 +260,13 @@ void DiskUsage::load(const QUrl &baseDir)
     directoryStack.push("");
     parentStack.push(root);
 
-    if (searchVfs) {
-        delete searchVfs;
-        searchVfs = 0;
+    if (searchFileSystem) {
+        delete searchFileSystem;
+        searchFileSystem = 0;
     }
-    searchVfs = FileSystemProvider::instance().getVfs(baseDir);
-    if (searchVfs == 0) {
-        krOut << "diskusage could not get VFS for directory " << baseDir;
+    searchFileSystem = FileSystemProvider::instance().getFilesystem(baseDir);
+    if (searchFileSystem == 0) {
+        krOut << "diskusage could not get filesystem for directory " << baseDir;
         loading = abortLoading = clearAfterAbort = false;
         emit loadFinished(false);
         return;
@@ -292,10 +292,10 @@ void DiskUsage::load(const QUrl &baseDir)
 void DiskUsage::slotLoadDirectory()
 {
     if ((currentVfile == 0 && directoryStack.isEmpty()) || loaderView->wasCancelled() || abortLoading) {
-        if (searchVfs)
-            delete searchVfs;
+        if (searchFileSystem)
+            delete searchFileSystem;
 
-        searchVfs = 0;
+        searchFileSystem = 0;
         currentVfile = 0;
 
         setView(viewBeforeLoad);
@@ -338,9 +338,9 @@ void DiskUsage::slotLoadDirectory()
 
                 loaderView->setCurrentURL(url);
 
-                if (!searchVfs->refresh(url))
+                if (!searchFileSystem->refresh(url))
                     break;
-                vfiles = searchVfs->vfiles();
+                vfiles = searchFileSystem->vfiles();
 
                 dirNum++;
 

@@ -41,7 +41,7 @@
 #include <QDialog>
 #include <QLabel>
 
-#include "../FileSystem/vfs.h"
+#include "../FileSystem/filesystem.h"
 class KrPanel;
 class KrView;
 
@@ -80,7 +80,7 @@ class KrCalcSpaceDialog : public QDialog
                       unsigned long &totalFiles,
                       unsigned long &totalDirs) const;
         void run(); // start calculation
-        void stop(); // stop it. Thread continues until vfs_calcSpace returns
+        void stop(); // stop it. Thread continues until filesystem_calcSpace returns
     } * m_thread;
 
     QLabel *m_label;

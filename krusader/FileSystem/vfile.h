@@ -40,7 +40,7 @@
 
 /**
  * The Virtual File class handles all the details of maintaining a single
- * file component within the virtual file system (vfs). a vfile object
+ * file component within the virtual file system (filesystem). a vfile object
  * contains the necessary details about a file and member functions which
  * allow the object to give out the needed details about the file.
  */
@@ -51,7 +51,7 @@ public:
     /**
      * Create a new file item.
      *
-     * Don't use this constructor outside of VFS! If you really need to, create a new static
+     * Don't use this constructor outside of FileSystem! If you really need to, create a new static
      * factory method below.
      *
      * NOTE: According to Unix standard uid and gid CAN have signed or unsigned type. We use (e.g.)

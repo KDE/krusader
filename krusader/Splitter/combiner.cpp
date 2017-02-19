@@ -29,7 +29,7 @@
  ***************************************************************************/
 
 #include "combiner.h"
-#include "../FileSystem/vfs.h"
+#include "../FileSystem/filesystem.h"
 
 // QtCore
 #include <QFileInfo>
@@ -164,7 +164,7 @@ void Combiner::combineSplitFileFinished(KJob *job)
 void Combiner::statDest()
 {
     if (writeURL.isEmpty()) {
-        writeURL = vfs::ensureTrailingSlash(destinationURL);
+        writeURL = FileSystem::ensureTrailingSlash(destinationURL);
         if (hasValidSplitFile)
             writeURL.setPath(writeURL.path() + expectedFileName);
         else if (unixNaming)

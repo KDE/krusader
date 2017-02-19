@@ -67,7 +67,7 @@ QString DirHistoryQueue::currentItem()
 
 void DirHistoryQueue::saveCurrentItem()
 {
-    // if the vfs-url hasn't been refreshed yet,
+    // if the filesystem-url hasn't been refreshed yet,
     // avoid saving current item for the wrong url
     if(count() &&  _panel->virtualPath().matches(_urlQueue[_currentPos], QUrl::StripTrailingSlash))
         _currentItems[_currentPos] = _panel->view->getCurrentItem();

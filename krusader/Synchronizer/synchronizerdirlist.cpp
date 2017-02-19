@@ -48,7 +48,7 @@
 #include <KIO/JobUiDelegate>
 #include <KWidgetsAddons/KMessageBox>
 
-#include "../FileSystem/vfs.h"
+#include "../FileSystem/filesystem.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../krservices.h"
 
@@ -127,7 +127,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
     }
 
     if (url.isLocalFile()) {
-        const QString dir = vfs::ensureTrailingSlash(url).path();
+        const QString dir = FileSystem::ensureTrailingSlash(url).path();
 
         QT_DIR* qdir = QT_OPENDIR(dir.toLocal8Bit());
         if (!qdir)  {
@@ -144,7 +144,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
             if (name == "." || name == "..") continue;
             if (ignoreHidden && name.startsWith('.')) continue;
 
-            vfile *item = vfs::createLocalVFile(name, dir);
+            vfile *item = FileSystem::createLocalVFile(name, dir);
 
             insert(name, item);
         }
@@ -173,7 +173,7 @@ void SynchronizerDirList::slotEntries(KIO::Job *job, const KIO::UDSEntryList& en
 {
     KIO::ListJob *listJob = static_cast<KIO::ListJob *>(job);
     for (const KIO::UDSEntry entry : entries) {
-        vfile *item = vfs::createVFileFromKIO(entry, listJob->url());
+        vfile *item = FileSystem::createVFileFromKIO(entry, listJob->url());
         if (item) {
             insert(item->vfile_getName(), item);
         }

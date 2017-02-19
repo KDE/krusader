@@ -47,7 +47,7 @@
 
 
 class KRQuery;
-class ftp_vfs;
+class ftp_fileSystem;
 
 class KRSearchMod : public QObject
 {
@@ -79,8 +79,8 @@ private:
     KRQuery *query;
     QStringList results;
 
-    DefaultFileSystem *remote_vfs;
-    VirtualFileSystem *virtual_vfs;
+    DefaultFileSystem *remote_fileSystem;
+    VirtualFileSystem *virtual_fileSystem;
 
     QTime timer;
 };

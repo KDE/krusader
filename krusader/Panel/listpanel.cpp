@@ -127,7 +127,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
         QWidget(parent), KrPanel(manager),
         panelType(-1), colorMask(255), compareMode(false),
         previewJob(0), inlineRefreshJob(0), searchBar(0), cdRootButton(0), cdUpButton(0),
-        popupBtn(0), popup(0), vfsError(0), _locked(false)
+        popupBtn(0), popup(0), fileSystemError(0), _locked(false)
 {
     if(cfg.isValid())
         panelType = cfg.readEntry("Type", -1);
@@ -208,10 +208,10 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     toolbarLayout->setSpacing(0);
     ADD_WIDGET(toolbar);
 
-    vfsError = new KrErrorDisplay(this);
-    vfsError->setWordWrap(true);
-    vfsError->hide();
-    ADD_WIDGET(vfsError);
+    fileSystemError = new KrErrorDisplay(this);
+    fileSystemError->setWordWrap(true);
+    fileSystemError->hide();
+    ADD_WIDGET(fileSystemError);
 
     // client area
     clientArea = new QWidget(this);
@@ -336,7 +336,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
         h->addWidget(bookmarksButton);
         v->addLayout(h);
 
-        v->addWidget(vfsError);
+        v->addWidget(fileSystemError);
         v->addWidget(clientArea);
 
         h = new QHBoxLayout;
@@ -968,7 +968,7 @@ void ListPanel::hideEvent(QHideEvent *e)
 
 void ListPanel::panelActive()
 {
-    //func->files()->vfs_enableRefresh(true)
+    //func->files()->enableRefresh(true)
 }
 
 void ListPanel::panelInactive()
@@ -976,7 +976,7 @@ void ListPanel::panelInactive()
     // don't refresh when not active (ie: hidden, application isn't focused ...)
     // TODO disabled so that the user sees changes in non-focused window; if the performance impact
     // is too high we need another solution here
-    //func->files()->vfs_enableRefresh(false);
+    //func->files()->enableRefresh(false);
 }
 
 void ListPanel::slotPreviewJobStarted(KJob *job)
@@ -1092,14 +1092,14 @@ void ListPanel::setJumpBack(QUrl url)
     _jumpBackURL = url;
 }
 
-void ListPanel::slotVfsError(QString msg)
+void ListPanel::slotFilesystemError(QString msg)
 {
-    if (func->ignoreVFSErrors())
+    if (func->ignoreFileSystemErrors())
         return;
 
     refreshColors();
-    vfsError->setText(i18n("Error: %1", msg));
-    vfsError->show();
+    fileSystemError->setText(i18n("Error: %1", msg));
+    fileSystemError->show();
 }
 
 void ListPanel::showButtonMenu(QToolButton *b)

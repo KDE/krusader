@@ -94,7 +94,7 @@ QStringList exp_placeholder::fileList(const KrPanel* const panel, const QString&
         return QStringList();
     }
     if (!omitPath) {    // add the current path
-        // translate to urls using vfs
+        // translate to urls using filesystem
         QList<QUrl> list = panel->func->files()->getUrls(items);
         items.clear();
         // parse everything to a single qstring
@@ -534,7 +534,7 @@ exp_Search::exp_Search() {
    _needPanel = true;
 
    addParameter( new exp_parameter( i18n("please choose the setting"), "__searchprofile", true ) );
-   addParameter( new exp_parameter( i18n("open the search in a new tab"), "__yes", false ) );  //TODO: add this also to panel-dependent as soon as vfs support the display of search-results
+   addParameter( new exp_parameter( i18n("open the search in a new tab"), "__yes", false ) );  //TODO: add this also to panel-dependent as soon as filesystem support the display of search-results
 }
 */
 

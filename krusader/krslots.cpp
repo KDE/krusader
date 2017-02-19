@@ -79,7 +79,7 @@
 #include "Search/krsearchmod.h"
 #include "Search/krsearchdialog.h"
 #include "Locate/locate.h"
-#include "FileSystem/vfs.h"
+#include "FileSystem/filesystem.h"
 #include "FileSystem/vfile.h"
 #include "panelmanager.h"
 #include "Splitter/splittergui.h"
@@ -279,7 +279,7 @@ void KRslots::insertFileName(bool full_path)
     }
 
     if (full_path) {
-        QString path = vfs::ensureTrailingSlash(ACTIVE_FUNC->files()->currentDirectory()).toDisplayString(QUrl::PreferLocalFile);
+        QString path = FileSystem::ensureTrailingSlash(ACTIVE_FUNC->files()->currentDirectory()).toDisplayString(QUrl::PreferLocalFile);
         filename = path + filename;
     }
 

@@ -36,37 +36,37 @@
 #include "../krservices.h"
 
 
-FileSystemProvider::FileSystemProvider() : _defaultVFS(0), _virtVFS(0) {}
+FileSystemProvider::FileSystemProvider() : _defaultFileSystem(0), _virtFileSystem(0) {}
 
-vfs *FileSystemProvider::getVfs(const QUrl &url, vfs *oldVfs)
+FileSystem *FileSystemProvider::getFilesystem(const QUrl &url, FileSystem *oldFilesystem)
 {
-    const vfs::VFS_TYPE type = getVfsType(url);
-    return oldVfs && oldVfs->type() == type ? oldVfs : createVfs(type);
+    const FileSystem::FS_TYPE type = getFilesystemType(url);
+    return oldFilesystem && oldFilesystem->type() == type ? oldFilesystem : createFilesystem(type);
 }
 
 void FileSystemProvider::startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,
                                   KIO::CopyJob::CopyMode mode, bool showProgressInfo, bool reverseQueueMode, bool startPaused)
 {
-    const vfs::VFS_TYPE type = getVfsType(destination);
-    vfs *vfs;
+    const FileSystem::FS_TYPE type = getFilesystemType(destination);
+    FileSystem *fs;
     switch (type) {
-    case vfs::VFS_VIRT:
-        if (!_virtVFS)
-            _virtVFS = createVfs(type);
-        vfs = _virtVFS;
+    case FileSystem::FS_VIRTUAL:
+        if (!_virtFileSystem)
+            _virtFileSystem = createFilesystem(type);
+        fs = _virtFileSystem;
         break;
     default:
-        if (!_defaultVFS)
-            _defaultVFS = createVfs(type);
-        vfs = _defaultVFS;
+        if (!_defaultFileSystem)
+            _defaultFileSystem = createFilesystem(type);
+        fs = _defaultFileSystem;
     }
 
-    vfs->copyFiles(urls, destination, mode, showProgressInfo, reverseQueueMode, startPaused);
+    fs->copyFiles(urls, destination, mode, showProgressInfo, reverseQueueMode, startPaused);
 }
 
-void FileSystemProvider::refreshVfs(const QUrl &directory)
+void FileSystemProvider::refreshFilesystem(const QUrl &directory)
 {
-    QMutableListIterator<QPointer<vfs>> it(_vfs_list);
+    QMutableListIterator<QPointer<FileSystem>> it(_fileSystems);
     while (it.hasNext()) {
         if (it.next().isNull()) {
             it.remove();
@@ -80,34 +80,34 @@ void FileSystemProvider::refreshVfs(const QUrl &directory)
             mountPoint = kMountPoint->mountPoint();
     }
 
-    for(QPointer<vfs> vfsPointer: _vfs_list) {
-        // always refresh virtual vfs showing a virtual directory; it can contain files from various
+    for(QPointer<FileSystem> fileSystemPointer: _fileSystems) {
+        // always refresh virtual filesystem showing a virtual directory; it can contain files from various
         // places, we don't know if they were (re)moved, refreshing is also fast enough
-        vfs *vfs = vfsPointer.data();
-        const QUrl vfsDir = vfs->currentDirectory();
-        if ((vfsDir == vfs::cleanUrl(directory) || (vfsDir.scheme() == "virt" && !vfs->isRoot()))
-            && !vfs->hasAutoUpdate()) {
-            // refresh all vfs currently showing this directory...
-            vfs->refresh();
-        } else if (!mountPoint.isEmpty() && mountPoint == vfs->mountPoint()) {
+        FileSystem *fs = fileSystemPointer.data();
+        const QUrl fileSystemDir = fs->currentDirectory();
+        if ((fileSystemDir == FileSystem::cleanUrl(directory) || (fileSystemDir.scheme() == "virt" && !fs->isRoot()))
+            && !fs->hasAutoUpdate()) {
+            // refresh all filesystem currently showing this directory...
+            fs->refresh();
+        } else if (!mountPoint.isEmpty() && mountPoint == fs->mountPoint()) {
             // ..or refresh filesystem info if mount point is the same (for free space update)
-            vfs->updateFilesystemInfo();
+            fs->updateFilesystemInfo();
         }
     }
 }
 
-vfs *FileSystemProvider::createVfs(vfs::VFS_TYPE type)
+FileSystem *FileSystemProvider::createFilesystem(FileSystem::FS_TYPE type)
 {
-    vfs *newVfs;
+    FileSystem *newFilesystem;
     switch (type) {
-    case (vfs::VFS_VIRT): newVfs = new VirtualFileSystem(); break;
-    default: newVfs = new DefaultFileSystem();
+    case (FileSystem::FS_VIRTUAL): newFilesystem = new VirtualFileSystem(); break;
+    default: newFilesystem = new DefaultFileSystem();
     }
 
-    QPointer<vfs> vfsPointer(newVfs);
-    _vfs_list.append(vfsPointer);
-    connect(newVfs, &vfs::filesystemChanged, this, &FileSystemProvider::refreshVfs);
-    return newVfs;
+    QPointer<FileSystem> fileSystemPointer(newFilesystem);
+    _fileSystems.append(fileSystemPointer);
+    connect(newFilesystem, &FileSystem::fileSystemChanged, this, &FileSystemProvider::refreshFilesystem);
+    return newFilesystem;
 }
 
 // ==== static ====
@@ -118,9 +118,9 @@ FileSystemProvider &FileSystemProvider::instance()
     return instance;
 }
 
-vfs::VFS_TYPE FileSystemProvider::getVfsType(const QUrl &url)
+FileSystem::FS_TYPE FileSystemProvider::getFilesystemType(const QUrl &url)
 {
-    return url.scheme() == QStringLiteral("virt") ? vfs::VFS_VIRT : vfs::VFS_DEFAULT;
+    return url.scheme() == QStringLiteral("virt") ? FileSystem::FS_VIRTUAL : FileSystem::FS_DEFAULT;
 }
 
 void FileSystemProvider::getACL(vfile *file, QString &acl, QString &defAcl)
@@ -129,7 +129,7 @@ void FileSystemProvider::getACL(vfile *file, QString &acl, QString &defAcl)
     acl.clear();
     defAcl.clear();
 #ifdef HAVE_POSIX_ACL
-    QString fileName = vfs::cleanUrl(file->vfile_getUrl()).path();
+    QString fileName = FileSystem::cleanUrl(file->vfile_getUrl()).path();
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
     if (acl_extended_file(fileName)) {
 #endif

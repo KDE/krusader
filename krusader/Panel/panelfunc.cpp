@@ -92,7 +92,7 @@ A
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
 ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
-        panel(parent), vfsP(0), urlManuallyEntered(false), _refreshing(false), _ignoreVFSErrors(false)
+        panel(parent), fileSystemP(0), urlManuallyEntered(false), _refreshing(false), _ignoreFileSystemErrors(false)
 {
     history = new DirHistoryQueue(panel);
     delayTimer.setSingleShot(true);
@@ -101,8 +101,8 @@ ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
 
 ListPanelFunc::~ListPanelFunc()
 {
-    if (vfsP) {
-        vfsP->deleteLater();
+    if (fileSystemP) {
+        fileSystemP->deleteLater();
     }
     delete history;
 }
@@ -284,8 +284,8 @@ void ListPanelFunc::doRefresh()
         panel->view->clearSavedSelection();
     }
 
-    if(panel->vfsError)
-        panel->vfsError->hide();
+    if(panel->fileSystemError)
+        panel->fileSystemError->hide();
 
     bool refreshFailed = false;
     while (true) {
@@ -293,32 +293,32 @@ void ListPanelFunc::doRefresh()
 
         isEqualUrl = files()->currentDirectory().matches(url, QUrl::StripTrailingSlash);
 
-        // may get a new vfs for this url
-        vfs* vfs = FileSystemProvider::instance().getVfs(url, files());
-        vfs->setParentWindow(krMainWindow);
-        connect(vfs, &vfs::aboutToOpenDir, &krMtMan, &KMountMan::autoMount, Qt::DirectConnection);
-        if (vfs != vfsP) {
+        // may get a new filesystem for this url
+        FileSystem *fileSystem = FileSystemProvider::instance().getFilesystem(url, files());
+        fileSystem->setParentWindow(krMainWindow);
+        connect(fileSystem, &FileSystem::aboutToOpenDir, &krMtMan, &KMountMan::autoMount, Qt::DirectConnection);
+        if (fileSystem != fileSystemP) {
             panel->view->setFiles(0);
 
             // disconnect older signals
-            disconnect(vfsP, 0, panel, 0);
+            disconnect(fileSystemP, 0, panel, 0);
 
-            vfsP->deleteLater();
-            vfsP = vfs; // v != 0 so this is safe
+            fileSystemP->deleteLater();
+            fileSystemP = fileSystem; // v != 0 so this is safe
         } else {
-            if (vfsP->isRefreshing()) {
-                delayTimer.start(100); /* if vfs is busy try refreshing later */
+            if (fileSystemP->isRefreshing()) {
+                delayTimer.start(100); /* if filesystem is busy try refreshing later */
                 return;
             }
         }
-        // (re)connect vfs signals
+        // (re)connect filesystem signals
         disconnect(files(), 0, panel, 0);
         connect(files(), SIGNAL(refreshDone(bool)), panel, SLOT(slotStartUpdate(bool)));
-        connect(files(), &vfs::filesystemInfoChanged, panel, &ListPanel::updateFilesystemStats);
+        connect(files(), &FileSystem::fileSystemInfoChanged, panel, &ListPanel::updateFilesystemStats);
         connect(files(), SIGNAL(refreshJobStarted(KIO::Job*)),
                 panel, SLOT(slotJobStarted(KIO::Job*)));
         connect(files(), SIGNAL(error(QString)),
-                panel, SLOT(slotVfsError(QString)));
+                panel, SLOT(slotFilesystemError(QString)));
 
         panel->view->setFiles(files());
 
@@ -335,11 +335,11 @@ void ListPanelFunc::doRefresh()
 
         // NOTE: this is blocking. Returns false on error or interruption (cancel requested or panel
         // was deleted)
-        const bool refreshed = vfsP->refresh(url);
+        const bool refreshed = fileSystemP->refresh(url);
         if (refreshed) {
             // update the history and address bar, as the actual url might differ from the one requested
-            history->setCurrentUrl(vfsP->currentDirectory());
-            panel->urlNavigator->setLocationUrl(vfsP->currentDirectory());
+            history->setCurrentUrl(fileSystemP->currentDirectory());
+            panel->urlNavigator->setLocationUrl(fileSystemP->currentDirectory());
             break; // we have a valid refreshed URL now
         }
         if (!panel || !panel->view)
@@ -359,9 +359,9 @@ void ListPanelFunc::doRefresh()
             else
                 break;
         }
-        _ignoreVFSErrors = true;
+        _ignoreFileSystemErrors = true;
     }
-    _ignoreVFSErrors = false;
+    _ignoreFileSystemErrors = false;
     panel->view->setNameToMakeCurrent(QString());
 
     panel->setCursor(Qt::ArrowCursor);
@@ -630,7 +630,7 @@ void ListPanelFunc::copyFiles(bool reverseQueueMode, bool move)
 
     // make sure the user does not overwrite multiple files by mistake
     if (fileNames.count() > 1) {
-        destination = vfs::ensureTrailingSlash(destination);
+        destination = FileSystem::ensureTrailingSlash(destination);
     }
 
     KIO::CopyJob::CopyMode mode = move ? KIO::CopyJob::Move : KIO::CopyJob::Copy;
@@ -657,7 +657,7 @@ void ListPanelFunc::rename(const QString &oldname, const QString &newname)
     // set current after rename
     panel->view->setNameToMakeCurrent(newname);
 
-    // as always - the vfs do the job
+    // as always - the filesystem do the job
     files()->rename(oldname, newname);
 }
 
@@ -700,7 +700,7 @@ void ListPanelFunc::mkdir()
         }
 
         panel->view->setNameToMakeCurrent(*it);
-        // as always - the vfs does the job
+        // as always - the filesystem does the job
         files()->mkDir(*it);
         if (dirTree.count() > 1)
             immediateOpenUrl(QUrl::fromUserInput(*it, QString(), QUrl::AssumeLocalFile));
@@ -709,7 +709,7 @@ void ListPanelFunc::mkdir()
 
 void ListPanelFunc::deleteFiles(bool reallyDelete)
 {
-    if (files()->type() == vfs::VFS_VIRT && files()->isRoot()) {
+    if (files()->type() == FileSystem::FS_VIRTUAL && files()->isRoot()) {
         // only virtual deletion possible
         removeVirtualFiles();
         return;
@@ -735,7 +735,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
             s = i18np("Do you really want to move this item to the trash?",
                       "Do you really want to move these %1 items to the trash?", fileNames.count());
             b = KGuiItem(i18n("&Trash"));
-        } else if (files()->type() == vfs::VFS_VIRT) {
+        } else if (files()->type() == FileSystem::FS_VIRTUAL) {
             s = i18np("<qt>Do you really want to delete this item <b>physically</b> (not just "
                       "removing it from the virtual items)?</qt>",
                       "<qt>Do you really want to delete these %1 items <b>physically</b> (not just "
@@ -793,13 +793,13 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
     // file above the current item;
     panel->prepareToDelete();
 
-    // let the vfs do the job...
+    // let the filesystem do the job...
     files()->deleteFiles(fileNames, moveToTrash);
 }
 
 void ListPanelFunc::removeVirtualFiles()
 {
-    if (files()->type() != vfs::VFS_VIRT) {
+    if (files()->type() != FileSystem::FS_VIRTUAL) {
         krOut << "filesystem not virtual";
         return;
     }
@@ -817,8 +817,8 @@ void ListPanelFunc::removeVirtualFiles()
                                                KStandardGuiItem::remove()) != KMessageBox::Continue)
         return;
 
-    VirtualFileSystem *vfs = static_cast<VirtualFileSystem*>(files());
-    vfs->remove(fileNames);
+    VirtualFileSystem *fileSystem = static_cast<VirtualFileSystem*>(files());
+    fileSystem->remove(fileNames);
 }
 
 void ListPanelFunc::goInside(const QString& name)
@@ -913,7 +913,7 @@ void ListPanelFunc::pack()
     if (!destDir.endsWith('/'))
         destDir += '/';
 
-    bool packToOtherPanel = (destDir == vfs::ensureTrailingSlash(panel->otherPanel()->virtualPath()).toDisplayString(QUrl::PreferLocalFile));
+    bool packToOtherPanel = (destDir == FileSystem::ensureTrailingSlash(panel->otherPanel()->virtualPath()).toDisplayString(QUrl::PreferLocalFile));
 
     QUrl destURL = QUrl::fromUserInput(destDir + PackGUI::filename + '.' + PackGUI::type, QString(), QUrl::AssumeLocalFile);
     if (destURL.isLocalFile() && QFile::exists(destURL.path())) {
@@ -1092,8 +1092,8 @@ void ListPanelFunc::refreshActions()
 
     QString protocol = files()->currentDirectory().scheme();
     krRemoteEncoding->setEnabled(protocol == "ftp" || protocol == "sftp" || protocol == "fish" || protocol == "krarc");
-    //krMultiRename->setEnabled( vfsType == vfs::VFS_NORMAL );  // batch rename
-    //krProperties ->setEnabled( vfsType == vfs::VFS_NORMAL || vfsType == vfs::VFS_FTP ); // file properties
+    //krMultiRename->setEnabled( fileSystemType == FileSystem::FS_NORMAL );  // batch rename
+    //krProperties ->setEnabled( fileSystemType == FileSystem::FS_NORMAL || fileSystemType == FileSystem::FS_FTP ); // file properties
 
     /*
       krUnpack->setEnabled(true);                            // unpack archive
@@ -1123,11 +1123,11 @@ void ListPanelFunc::refreshActions()
     panel->view->op()->emitRefreshActions();
 }
 
-vfs* ListPanelFunc::files()
+FileSystem* ListPanelFunc::files()
 {
-    if (!vfsP)
-        vfsP = FileSystemProvider::instance().getVfs(QUrl::fromLocalFile("/"));
-    return vfsP;
+    if (!fileSystemP)
+        fileSystemP = FileSystemProvider::instance().getFilesystem(QUrl::fromLocalFile("/"));
+    return fileSystemP;
 }
 
 void ListPanelFunc::clipboardChanged(QClipboard::Mode mode)

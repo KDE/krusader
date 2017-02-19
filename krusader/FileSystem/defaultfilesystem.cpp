@@ -52,9 +52,9 @@
 #include "../JobMan/jobman.h"
 #include "../JobMan/krjob.h"
 
-DefaultFileSystem::DefaultFileSystem(): vfs(), _watcher()
+DefaultFileSystem::DefaultFileSystem(): FileSystem(), _watcher()
 {
-    _type = VFS_DEFAULT;
+    _type = FS_DEFAULT;
 }
 
 void DefaultFileSystem::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
@@ -70,7 +70,7 @@ void DefaultFileSystem::copyFiles(const QList<QUrl> &urls, const QUrl &destinati
     KrJob *krJob = KrJob::createCopyJob(mode, urls, destination, flags, startPaused && !queueMode);
     connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectJob(job, dest); });
     if (mode == KIO::CopyJob::Move) { // notify source about removed files
-        connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectSourceVFS(job, urls); });
+        connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectSourceFileSystem(job, urls); });
     }
 
     krJobMan->manageJob(krJob, reverseQueueMode, startPaused);
@@ -85,19 +85,19 @@ void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
     // NOTE: DropJob does not provide information about the actual user choice
     // (move/copy/link/abort). We have to assume the worst (move)
     connectJob(job, dest);
-    connectSourceVFS(job, KUrlMimeData::urlsFromMimeData(event->mimeData()));
+    connectSourceFileSystem(job, KUrlMimeData::urlsFromMimeData(event->mimeData()));
 
     // NOTE: DrobJobs are internally recorded
     //recordJobUndo(job, type, dst, src);
 }
 
-void DefaultFileSystem::connectSourceVFS(KJob *job, const QList<QUrl> urls)
+void DefaultFileSystem::connectSourceFileSystem(KJob *job, const QList<QUrl> urls)
 {
     if (!urls.isEmpty()) {
         // NOTE: we assume that all files were in the same directory and only emit one signal for
         // the directory of the first file URL
         const QUrl url = urls.first().adjusted(QUrl::RemoveFilename);
-        connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(url); });
+        connect(job, &KIO::Job::result, [=]() { emit fileSystemChanged(url); });
     }
 }
 
@@ -149,13 +149,13 @@ void DefaultFileSystem::updateFilesystemInfo()
 {
     if (!KConfigGroup(krConfig, "Look&Feel").readEntry("ShowSpaceInformation", true)) {
         _mountPoint = "";
-        emit filesystemInfoChanged(i18n("Space information disabled"), "", 0, 0);
+        emit fileSystemInfoChanged(i18n("Space information disabled"), "", 0, 0);
         return;
     }
 
     if (!_currentDirectory.isLocalFile()) {
         _mountPoint = "";
-        emit filesystemInfoChanged(i18n("No space information on non-local filesystems"), "", 0, 0);
+        emit fileSystemInfoChanged(i18n("No space information on non-local filesystems"), "", 0, 0);
         return;
     }
 
@@ -163,7 +163,7 @@ void DefaultFileSystem::updateFilesystemInfo()
     const KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo(path);
     if (!info.isValid()) {
         _mountPoint = "";
-        emit filesystemInfoChanged(i18n("Space information unavailable"), "", 0, 0);
+        emit fileSystemInfoChanged(i18n("Space information unavailable"), "", 0, 0);
         return;
     }
     _mountPoint = info.mountPoint();
@@ -171,7 +171,7 @@ void DefaultFileSystem::updateFilesystemInfo()
     const KMountPoint::Ptr mountPoint = KMountPoint::currentMountPoints().findByPath(path);
     const QString fsType = mountPoint ? mountPoint->mountType() : "";
 
-    emit filesystemInfoChanged("", fsType, info.size(), info.available());
+    emit fileSystemInfoChanged("", fsType, info.size(), info.available());
 }
 
 // ==== protected ====
@@ -230,7 +230,7 @@ void DefaultFileSystem::slotListResult(KJob *job)
 void DefaultFileSystem::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries)
 {
     for (const KIO::UDSEntry entry : entries) {
-        vfile *vfile = vfs::createVFileFromKIO(entry, _currentDirectory);
+        vfile *vfile = FileSystem::createVFileFromKIO(entry, _currentDirectory);
         if (vfile) {
             addVfile(vfile);
         }
@@ -371,7 +371,7 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory) {
 
 vfile *DefaultFileSystem::createLocalVFile(const QString &name)
 {
-    return vfs::createLocalVFile(name, _currentDirectory.path());
+    return FileSystem::createLocalVFile(name, _currentDirectory.path());
 }
 
 QString DefaultFileSystem::DefaultFileSystem::realPath()

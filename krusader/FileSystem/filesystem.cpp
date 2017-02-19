@@ -1,13 +1,13 @@
 /***************************************************************************
-                            vfs.cpp
+                            filesystem.cpp
                        -------------------
     copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
   ------------------------------------------------------------------------
-   the vfs class is an extendable class which by itself does (almost)
-   nothing. other VFSs like the normal_vfs inherits from this class and
-   make it possible to use a consistent API for all types of VFSs.
+   the filesystem class is an extendable class which by itself does (almost)
+   nothing. other filesystems like the normal_filesystem inherits from this class and
+   make it possible to use a consistent API for all types of filesystems.
 
  ***************************************************************************
 
@@ -31,7 +31,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "vfs.h"
+#include "filesystem.h"
 
 // QtCore
 #include <QDir>
@@ -52,15 +52,15 @@
 #include "../JobMan/krjob.h"
 #include "krpermhandler.h"
 
-vfs::vfs() : DirListerInterface(0), _isRefreshing(false) {}
+FileSystem::FileSystem() : DirListerInterface(0), _isRefreshing(false) {}
 
-vfs::~vfs()
+FileSystem::~FileSystem()
 {
     clear(_vfiles);
     emit cleared(); // please don't remove this line. This informs the view about deleting the references
 }
 
-QList<QUrl> vfs::getUrls(const QStringList &names)
+QList<QUrl> FileSystem::getUrls(const QStringList &names)
 {
     QList<QUrl> urls;
     for (const QString name : names) {
@@ -69,12 +69,12 @@ QList<QUrl> vfs::getUrls(const QStringList &names)
     return urls;
 }
 
-vfile *vfs::getVfile(const QString &name)
+vfile *FileSystem::getVfile(const QString &name)
 {
     return _vfiles.contains(name) ? _vfiles.value(name) : 0;
 }
 
-QList<vfile *> vfs::searchVfiles(const KRQuery &filter)
+QList<vfile *> FileSystem::searchVfiles(const KRQuery &filter)
 {
     QList<vfile *> result;
     for (vfile *vf : _vfiles.values()) {
@@ -86,7 +86,7 @@ QList<vfile *> vfs::searchVfiles(const KRQuery &filter)
     return result;
 }
 
-KIO::filesize_t vfs::vfs_totalSize()
+KIO::filesize_t FileSystem::totalSize()
 {
     KIO::filesize_t temp = 0;
     for (vfile *vf : _vfiles.values()) {
@@ -98,7 +98,7 @@ KIO::filesize_t vfs::vfs_totalSize()
     return temp;
 }
 
-void vfs::calcSpace(const QString &name, KIO::filesize_t *totalSize,
+void FileSystem::calcSpace(const QString &name, KIO::filesize_t *totalSize,
                             unsigned long *totalFiles, unsigned long *totalDirs, bool *stop)
 {
     const QUrl url = getUrl(name);
@@ -111,7 +111,7 @@ void vfs::calcSpace(const QString &name, KIO::filesize_t *totalSize,
 }
 
 
-QUrl vfs::ensureTrailingSlash(const QUrl &url)
+QUrl FileSystem::ensureTrailingSlash(const QUrl &url)
 {
     if (url.path().endsWith('/')) {
         return url;
@@ -122,7 +122,7 @@ QUrl vfs::ensureTrailingSlash(const QUrl &url)
     return adjustedUrl;
 }
 
-QUrl vfs::preferLocalUrl(const QUrl &url){
+QUrl FileSystem::preferLocalUrl(const QUrl &url){
     if (url.isEmpty() || !url.scheme().isEmpty())
         return url;
 
@@ -131,7 +131,7 @@ QUrl vfs::preferLocalUrl(const QUrl &url){
     return adjustedUrl;
 }
 
-bool vfs::refresh(const QUrl &directory)
+bool FileSystem::refresh(const QUrl &directory)
 {
 
     if (_isRefreshing) {
@@ -183,7 +183,7 @@ bool vfs::refresh(const QUrl &directory)
     return true;
 }
 
-void vfs::deleteFiles(const QStringList &fileNames, bool moveToTrash)
+void FileSystem::deleteFiles(const QStringList &fileNames, bool moveToTrash)
 {
     // get absolute URLs for file names
     const QList<QUrl> fileUrls = getUrls(fileNames);
@@ -194,28 +194,28 @@ void vfs::deleteFiles(const QStringList &fileNames, bool moveToTrash)
         // update destination: the trash bin (in case a panel/tab is showing it)
         connect(krJob, &KrJob::started, [=](KIO::Job *job) {
             // Note: the "trash" protocal should always have only one "/" after the "scheme:" part
-            connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(QUrl("trash:/")); });
+            connect(job, &KIO::Job::result, [=]() { emit fileSystemChanged(QUrl("trash:/")); });
         });
     }
 
     krJobMan->manageJob(krJob);
 }
 
-void vfs::connectJob(KJob *job, const QUrl &destination)
+void FileSystem::connectJob(KJob *job, const QUrl &destination)
 {
     // (additional) direct refresh if on local fs because watcher is too slow
     const bool refresh = cleanUrl(destination) == _currentDirectory && isLocal();
     connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, refresh); });
-    connect(job, &KIO::Job::result, [=]() { emit filesystemChanged(destination); });
+    connect(job, &KIO::Job::result, [=]() { emit fileSystemChanged(destination); });
 }
 
-bool vfs::showHiddenFiles()
+bool FileSystem::showHiddenFiles()
 {
     const KConfigGroup gl(krConfig, "Look&Feel");
     return gl.readEntry("Show Hidden", _ShowHidden);
 }
 
-void vfs::calcSpace(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
+void FileSystem::calcSpace(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
                     unsigned long *totalDirs, bool *stop)
 {
     if (url.isLocalFile()) {
@@ -225,7 +225,7 @@ void vfs::calcSpace(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *
     }
 }
 
-void vfs::calcSpaceLocal(const QString &path, KIO::filesize_t *totalSize, unsigned long *totalFiles,
+void FileSystem::calcSpaceLocal(const QString &path, KIO::filesize_t *totalSize, unsigned long *totalFiles,
                          unsigned long *totalDirs, bool *stop)
 {
     if (stop && *stop)
@@ -270,7 +270,7 @@ void vfs::calcSpaceLocal(const QString &path, KIO::filesize_t *totalSize, unsign
 }
 
 // TODO called from another thread, creating KIO jobs does not work here
-void vfs::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
+void FileSystem::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
                        unsigned long *totalDirs, bool *stop)
 {
     return;
@@ -285,7 +285,7 @@ void vfs::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned lon
 
     _calcStatBusy = true;
     KIO::StatJob *statJob = KIO::stat(url, KIO::HideProgressInfo); // thread problem here
-    connect(statJob, &KIO::Job::result, this, &vfs::slotCalcStatResult);
+    connect(statJob, &KIO::Job::result, this, &FileSystem::slotCalcStatResult);
 
     while (!(*stop) && _calcStatBusy) {
         usleep(1000);
@@ -302,7 +302,7 @@ void vfs::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned lon
     }
 
     KIO::DirectorySizeJob *directorySizeJob = KIO::directorySize(url);
-    connect(directorySizeJob, &KIO::Job::result, this, &vfs::slotCalcKdsResult);
+    connect(directorySizeJob, &KIO::Job::result, this, &FileSystem::slotCalcKdsResult);
 
     while (!(*stop)) {
         // we are in a separate thread - so sleeping is OK
@@ -310,7 +310,7 @@ void vfs::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned lon
     }
 }
 
-vfile *vfs::createLocalVFile(const QString &name, const QString &directory, bool virt)
+vfile *FileSystem::createLocalVFile(const QString &name, const QString &directory, bool virt)
 {
     const QDir dir = QDir(directory);
     const QString path = dir.filePath(name);
@@ -354,7 +354,7 @@ vfile *vfs::createLocalVFile(const QString &name, const QString &directory, bool
                      isLink, linkDestination, brokenLink);
 }
 
-vfile *vfs::createVFileFromKIO(const KIO::UDSEntry &entry, const QUrl &directory, bool virt)
+vfile *FileSystem::createVFileFromKIO(const KIO::UDSEntry &entry, const QUrl &directory, bool virt)
 {
     const KFileItem kfi(entry, directory, true, true);
 
@@ -385,7 +385,7 @@ vfile *vfs::createVFileFromKIO(const KIO::UDSEntry &entry, const QUrl &directory
 
 // ==== protected slots ====
 
-void vfs::slotJobResult(KJob *job, bool refresh)
+void FileSystem::slotJobResult(KJob *job, bool refresh)
 {
     if (job->error() && job->uiDelegate()) {
         // show errors for modifying operations as popup (works always)
@@ -393,12 +393,12 @@ void vfs::slotJobResult(KJob *job, bool refresh)
     }
 
     if (refresh) {
-        vfs::refresh();
+        FileSystem::refresh();
     }
 }
 
 /// to be implemented
-void vfs::slotCalcKdsResult(KJob *job)
+void FileSystem::slotCalcKdsResult(KJob *job)
 {
     if (!job->error()) {
         KIO::DirectorySizeJob *kds = static_cast<KIO::DirectorySizeJob *>(job);
@@ -409,7 +409,7 @@ void vfs::slotCalcKdsResult(KJob *job)
     *_calcKdsBusy = true;
 }
 
-void vfs::slotCalcStatResult(KJob *job)
+void FileSystem::slotCalcStatResult(KJob *job)
 {
     _calcEntry = job->error() ? KIO::UDSEntry() : static_cast<KIO::StatJob *>(job)->statResult();
     _calcStatBusy = false;
@@ -417,7 +417,7 @@ void vfs::slotCalcStatResult(KJob *job)
 
 // ==== private ====
 
-void vfs::clear(vfileDict &vfiles)
+void FileSystem::clear(vfileDict &vfiles)
 {
     QHashIterator<QString, vfile *> lit(vfiles);
     while (lit.hasNext()) {

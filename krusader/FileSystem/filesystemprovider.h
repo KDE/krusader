@@ -26,7 +26,7 @@
 
 #include <KIO/Job>
 
-#include "vfs.h"
+#include "filesystem.h"
 
 /**
  * @brief Provider for virtual file systems.
@@ -38,13 +38,13 @@ class FileSystemProvider : public QObject {
 
 public:
     /**
-     * Get a VFS implementation for the filesystem target specified by URL. oldVfs is returned if
+     * Get a filesystem implementation for the filesystem target specified by URL. oldFilesystem is returned if
      * the filesystem did not change.
      *
-     * The VFS instances returned by this method are already connected with this handler and will
+     * The filesystem instances returned by this method are already connected with this handler and will
      * notify each other about filesystem changes.
      */
-    vfs *getVfs(const QUrl &url, vfs *oldVfs = 0);
+    FileSystem *getFilesystem(const QUrl &url, FileSystem *oldFilesystem = 0);
 
     /**
      * Start a copy job for copying, moving or linking files to a destination directory.
@@ -55,22 +55,22 @@ public:
                         bool showProgressInfo = true, bool reverseQueueMode = false, bool startPaused = false);
 
     static FileSystemProvider &instance();
-    static vfs::VFS_TYPE getVfsType(const QUrl &url);
+    static FileSystem::FS_TYPE getFilesystemType(const QUrl &url);
     /** Get ACL permissions for a file */
     static void getACL(vfile *file, QString &acl, QString &defAcl);
 
 public slots:
-    void refreshVfs(const QUrl &directory);
+    void refreshFilesystem(const QUrl &directory);
 
 private:
-    vfs *createVfs(const vfs::VFS_TYPE type);
+    FileSystem *createFilesystem(const FileSystem::FS_TYPE type);
     FileSystemProvider();
 
-    // vfs instances for directory independent file operations, lazy initialized
-    vfs *_defaultVFS;
-    vfs *_virtVFS;
+    // filesystem instances for directory independent file operations, lazy initialized
+    FileSystem *_defaultFileSystem;
+    FileSystem *_virtFileSystem;
 
-    QList<QPointer<vfs>> _vfs_list;
+    QList<QPointer<FileSystem>> _fileSystems;
 
     static QString getACL(const QString & path, int type);
 };

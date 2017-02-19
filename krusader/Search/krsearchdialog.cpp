@@ -594,8 +594,8 @@ void KrSearchDialog::contextMenu(const QPoint &pos)
 
 void KrSearchDialog::feedToListBox()
 {
-    VirtualFileSystem virtVfs;
-    virtVfs.refresh(QUrl::fromLocalFile("/"));
+    VirtualFileSystem virtFilesystem;
+    virtFilesystem.refresh(QUrl::fromLocalFile("/"));
 
     KConfigGroup group(krConfig, "Search");
     int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
@@ -607,17 +607,17 @@ void KrSearchDialog::feedToListBox()
         else
             queryName = i18n("Search results for \"%1\" containing \"%2\" in %3", query->nameFilter(), query->content(), where);
     }
-    QString vfsName;
+    QString fileSystemName;
     do {
-        vfsName = i18n("Search results") + QString(" %1").arg(listBoxNum++);
-    } while (virtVfs.getVfile(vfsName) != 0);
+        fileSystemName = i18n("Search results") + QString(" %1").arg(listBoxNum++);
+    } while (virtFilesystem.getVfile(fileSystemName) != 0);
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");
     if (ga.readEntry("Confirm Feed to Listbox",  _ConfirmFeedToListbox)) {
         bool ok;
-        vfsName = QInputDialog::getText(this, i18n("Query name"), i18n("Here you can name the file collection"),
-                                        QLineEdit::Normal, vfsName, &ok);
+        fileSystemName = QInputDialog::getText(this, i18n("Query name"), i18n("Here you can name the file collection"),
+                                        QLineEdit::Normal, fileSystemName, &ok);
         if (! ok)
             return;
     }
@@ -632,10 +632,10 @@ void KrSearchDialog::feedToListBox()
 
     isBusy = true;
 
-    QUrl url = QUrl(QString("virt:/") + vfsName);
-    virtVfs.refresh(url);
-    virtVfs.addFiles(urlList);
-    virtVfs.setMetaInformation(queryName);
+    QUrl url = QUrl(QString("virt:/") + fileSystemName);
+    virtFilesystem.refresh(url);
+    virtFilesystem.addFiles(urlList);
+    virtFilesystem.setMetaInformation(queryName);
     //ACTIVE_FUNC->openUrl(url);
     ACTIVE_MNG->slotNewTab(url);
 

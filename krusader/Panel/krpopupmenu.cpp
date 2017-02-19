@@ -150,7 +150,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
         addSeparator();
     }
 
-    // ------------- Preview - local vfs only ?
+    // ------------- Preview - local filesystem only ?
     if (panel->func->files()->isLocal()) {
         // create the preview popup
         preview.setUrls(panel->func->files()->getUrls(fileNames));
@@ -225,7 +225,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
     // -------- DELETE
     addAction(i18n("Delete"))->setData(QVariant(DELETE_ID));
     // -------- SHRED - only one file
-    /*      if ( panel->func->files() ->vfs_getType() == vfs::VFS_NORMAL &&
+    /*      if ( panel->func->files() ->getType() == filesystem:fileSystemM_NORMAL &&
                 !vf->vfile_isDir() && !multipleSelections )
              addAction( i18n( "Shred" ) )->setData( QVariant( SHRED_ID ) );*/
 
@@ -346,7 +346,7 @@ void KrPopupMenu::performAction(int id)
                     if ( KMessageBox::warningContinueCancel( krApp,
                          i18n("<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone forever.</qt>", item->name()),
                          QString(), KStandardGuiItem::cont(), KStandardGuiItem::cancel(), "Shred" ) == KMessageBox::Continue )
-                       KShred::shred( panel->func->files() ->vfs_getFile( item->name() ).adjusted(QUrl::RemoveTrailingSlash).path() );
+                       KShred::shred( panel->func->files() ->getFile( item->name() ).adjusted(QUrl::RemoveTrailingSlash).path() );
                   break;*/
     case OPEN_KONQ_ID :
         KToolInvocation::startServiceByDesktopName("konqueror", item->url().toDisplayString(QUrl::PreferLocalFile));

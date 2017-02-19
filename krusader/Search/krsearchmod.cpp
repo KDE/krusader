@@ -59,17 +59,17 @@ KRSearchMod::KRSearchMod(const KRQuery* q)
     connect(query, SIGNAL(processEvents(bool &)),
             this,  SLOT(slotProcessEvents(bool &)));
 
-    remote_vfs = 0;
-    virtual_vfs = 0;
+    remote_fileSystem = 0;
+    virtual_fileSystem = 0;
 }
 
 KRSearchMod::~KRSearchMod()
 {
     delete query;
-    if (remote_vfs)
-        delete remote_vfs;
-    if (virtual_vfs)
-        delete virtual_vfs;
+    if (remote_fileSystem)
+        delete remote_fileSystem;
+    if (virtual_fileSystem)
+        delete virtual_fileSystem;
 }
 
 void KRSearchMod::start()
@@ -122,7 +122,7 @@ void KRSearchMod::scanURL(QUrl url)
 
 void KRSearchMod::scanLocalDir(const QUrl &url)
 {
-    const QString dir = vfs::ensureTrailingSlash(url).path();
+    const QString dir = FileSystem::ensureTrailingSlash(url).path();
 
     QT_DIR *qdir = QT_OPENDIR(dir.toLocal8Bit());
     if (!qdir)
@@ -151,7 +151,7 @@ void KRSearchMod::scanLocalDir(const QUrl &url)
         }
 
         // creating a vfile object for matching with krquery
-        vfile *vf = vfs::createLocalVFile(name, dir);
+        vfile *vf = FileSystem::createLocalVFile(name, dir);
 
         if (query->searchInArchives()) {
             const QString mime = vf->vfile_getMime();
@@ -193,21 +193,21 @@ void KRSearchMod::scanLocalDir(const QUrl &url)
 
 void KRSearchMod::scanRemoteDir(QUrl url)
 {
-    vfs * vfs_;
+    FileSystem * fileSystem_;
 
     if (url.scheme() == QStringLiteral("virt")) {
-        if (virtual_vfs == 0)
-            virtual_vfs = new VirtualFileSystem();
-        vfs_ = virtual_vfs;
+        if (virtual_fileSystem == 0)
+            virtual_fileSystem = new VirtualFileSystem();
+        fileSystem_ = virtual_fileSystem;
     } else {
-        if (remote_vfs == 0)
-            remote_vfs = new DefaultFileSystem();
-        vfs_ = remote_vfs;
+        if (remote_fileSystem == 0)
+            remote_fileSystem = new DefaultFileSystem();
+        fileSystem_ = remote_fileSystem;
     }
 
-    if (!vfs_->refresh(url)) return ;
+    if (!fileSystem_->refresh(url)) return ;
 
-    for (vfile *vf : vfs_->vfiles()) {
+    for (vfile *vf : fileSystem_->vfiles()) {
         QUrl fileURL = vf->vfile_getUrl();
 
         if (query->isRecursive() && ((vf->vfile_isSymLink() && query->followLinks()) || vf->vfile_isDir()))

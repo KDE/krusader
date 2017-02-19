@@ -23,7 +23,7 @@
 // QtCore
 #include <QHash>
 
-#include "vfs.h"
+#include "filesystem.h"
 
 /**
  * Custom virtual filesystem implementation: It holds arbitrary lists of files which are only
@@ -38,17 +38,17 @@
  *
  * Used at least by bookmarks, locate, search and synchronizer dialog.
  */
-class VirtualFileSystem : public vfs
+class VirtualFileSystem : public FileSystem
 {
     Q_OBJECT
 public:
     VirtualFileSystem();
 
-    /// Create virtual files in this VFS. Copy mode and showProgressInfo are ignored.
+    /// Create virtual files in this filesystem. Copy mode and showProgressInfo are ignored.
     void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                    KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
                    bool showProgressInfo = true, bool reverseQueueMode = false, bool startPaused = false) Q_DECL_OVERRIDE;
-    /// Handle file dropping in this VFS: Always creates virtual files.
+    /// Handle file dropping in this filesystem: Always creates virtual files.
     void dropFiles(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
 
     /// Add virtual files to the current directory.
@@ -95,7 +95,7 @@ private slots:
 
 private:
     void showError(const QString &error);
-    static QHash<QString, QList<QUrl> *> _virtVfsDict; // map virtual directories to containing files
+    static QHash<QString, QList<QUrl> *> _virtFilesystemDict; // map virtual directories to containing files
     static QHash<QString, QString> _metaInfoDict; // map virtual directories to meta infos
 
     QString _metaInfo; // displayable string with information about the current virtual directory

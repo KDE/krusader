@@ -80,7 +80,7 @@ void KrCalcSpaceDialog::CalcThread::updateItems(KrView *view) const
 void KrCalcSpaceDialog::CalcThread::run()
 {
     if (!m_items.isEmpty()) { // if something to do: do the calculation
-        vfs *files = FileSystemProvider::instance().getVfs(m_url);
+        FileSystem *files = FileSystemProvider::instance().getFilesystem(m_url);
         if(!files->refresh(m_url))
             return;
 

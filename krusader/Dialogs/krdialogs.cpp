@@ -40,7 +40,7 @@
 #include <KWidgetsAddons/KGuiItem>
 
 #include "../krglobal.h"
-#include "../FileSystem/vfs.h"
+#include "../FileSystem/filesystem.h"
 #include "../defaults.h"
 #include "../JobMan/jobman.h"
 
@@ -57,7 +57,7 @@ QUrl KChooseDir::getDir(const QString &text, const QUrl& url, const QUrl& cwd)
 
 QUrl KChooseDir::get(const QString &text, const QUrl &url, const QUrl &cwd, KFile::Modes mode)
 {
-    QScopedPointer<KUrlRequesterDialog> dlg(new KUrlRequesterDialog(vfs::ensureTrailingSlash(url), text, krMainWindow));
+    QScopedPointer<KUrlRequesterDialog> dlg(new KUrlRequesterDialog(FileSystem::ensureTrailingSlash(url), text, krMainWindow));
     dlg->urlRequester()->setStartDir(cwd);
     dlg->urlRequester()->setMode(mode);
     dlg->exec();
@@ -75,7 +75,7 @@ KChooseDir::ChooseResult KChooseDir::getCopyDir(const QString &text, const QUrl 
                                                 const QUrl &baseURL)
 {
     QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(
-        vfs::ensureTrailingSlash(url), text, preserveAttrs, krMainWindow, true, baseURL));
+        FileSystem::ensureTrailingSlash(url), text, preserveAttrs, krMainWindow, true, baseURL));
 
     if (!preserveAttrs)
         dlg->hidePreserveAttrs();
