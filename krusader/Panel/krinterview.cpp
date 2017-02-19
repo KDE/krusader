@@ -49,7 +49,7 @@ KrInterView::~KrInterView()
     _model = 0;
     delete _mouseHandler;
     _mouseHandler = 0;
-    QHashIterator< vfile *, KrViewItem *> it(_itemHash);
+    QHashIterator< FileItem *, KrViewItem *> it(_itemHash);
     while (it.hasNext())
         delete it.next().value();
     _itemHash.clear();
@@ -57,10 +57,10 @@ KrInterView::~KrInterView()
 
 void KrInterView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
 {
-    vfile* vf1 = (vfile *)i1->getVfile();
-    QModelIndex mi1 = _model->vfileIndex(vf1);
-    vfile* vf2 = (vfile *)i2->getVfile();
-    QModelIndex mi2 = _model->vfileIndex(vf2);
+    FileItem* file1 = (FileItem *)i1->getFileItem();
+    QModelIndex mi1 = _model->fileItemIndex(file1);
+    FileItem* file2 = (FileItem *)i2->getFileItem();
+    QModelIndex mi2 = _model->fileItemIndex(file2);
 
     if (mi1.isValid() && mi2.isValid()) {
         int r1 = mi1.row();
@@ -74,7 +74,7 @@ void KrInterView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
 
         op()->setMassSelectionUpdate(true);
         for (int row = r1; row <= r2; row++)
-            setSelected(_model->vfileAt(_model->index(row, 0)), select);
+            setSelected(_model->fileItemAt(_model->index(row, 0)), select);
         op()->setMassSelectionUpdate(false);
 
         redraw();
@@ -85,17 +85,17 @@ void KrInterView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
         i2->setSelected(select);
 }
 
-void KrInterView::intSetSelected(const vfile* vf, bool select)
+void KrInterView::intSetSelected(const FileItem* item, bool select)
 {
     if(select)
-        _selection.insert(vf);
+        _selection.insert(item);
     else
-        _selection.remove(vf);
+        _selection.remove(item);
 }
 
 bool KrInterView::isSelected(const QModelIndex &ndx)
 {
-    return isSelected(_model->vfileAt(ndx));
+    return isSelected(_model->fileItemAt(ndx));
 }
 
 KrViewItem* KrInterView::findItemByName(const QString &name)
@@ -114,10 +114,10 @@ QString KrInterView::getCurrentItem() const
     if (!_model->ready())
         return QString();
 
-    vfile *vf = _model->vfileAt(_itemView->currentIndex());
-    if (vf == 0)
+    FileItem *fileitem = _model->fileItemAt(_itemView->currentIndex());
+    if (fileitem == 0)
         return QString();
-    return vf->vfile_getName();
+    return fileitem->getName();
 }
 
 KrViewItem* KrInterView::getCurrentKrViewItem()
@@ -146,8 +146,8 @@ KrViewItem* KrInterView::getLast()
 
 KrViewItem* KrInterView::getNext(KrViewItem *current)
 {
-    vfile* vf = (vfile *)current->getVfile();
-    QModelIndex ndx = _model->vfileIndex(vf);
+    FileItem* fileItem = (FileItem *)current->getFileItem();
+    QModelIndex ndx = _model->fileItemIndex(fileItem);
     if (ndx.row() >= _model->rowCount() - 1)
         return 0;
     return getKrViewItem(_model->index(ndx.row() + 1, 0, QModelIndex()));
@@ -155,8 +155,8 @@ KrViewItem* KrInterView::getNext(KrViewItem *current)
 
 KrViewItem* KrInterView::getPrev(KrViewItem *current)
 {
-    vfile* vf = (vfile *)current->getVfile();
-    QModelIndex ndx = _model->vfileIndex(vf);
+    FileItem* fileItem = (FileItem *)current->getFileItem();
+    QModelIndex ndx = _model->fileItemIndex(fileItem);
     if (ndx.row() <= 0)
         return 0;
     return getKrViewItem(_model->index(ndx.row() - 1, 0, QModelIndex()));
@@ -170,16 +170,16 @@ KrViewItem* KrInterView::getKrViewItemAt(const QPoint &vp)
     return getKrViewItem(_itemView->indexAt(vp));
 }
 
-KrViewItem *KrInterView::findItemByVfile(vfile *vf) {
-    return getKrViewItem(vf);
+KrViewItem *KrInterView::findItemByFileItem(FileItem *fileItem) {
+    return getKrViewItem(fileItem);
 }
 
-KrViewItem * KrInterView::getKrViewItem(vfile *vf)
+KrViewItem * KrInterView::getKrViewItem(FileItem *fileItem)
 {
-    QHash<vfile *, KrViewItem*>::iterator it = _itemHash.find(vf);
+    QHash<FileItem *, KrViewItem*>::iterator it = _itemHash.find(fileItem);
     if (it == _itemHash.end()) {
-        KrViewItem * newItem =  new KrViewItem(vf, this);
-        _itemHash[ vf ] = newItem;
+        KrViewItem * newItem =  new KrViewItem(fileItem, this);
+        _itemHash[ fileItem ] = newItem;
         return newItem;
     }
     return *it;
@@ -189,11 +189,11 @@ KrViewItem * KrInterView::getKrViewItem(const QModelIndex & ndx)
 {
     if (!ndx.isValid())
         return 0;
-    vfile * vf = _model->vfileAt(ndx);
-    if (vf == 0)
+    FileItem * fileitem = _model->fileItemAt(ndx);
+    if (fileitem == 0)
         return 0;
     else
-        return getKrViewItem(vf);
+        return getKrViewItem(fileitem);
 }
 
 void KrInterView::makeCurrentVisible()
@@ -206,8 +206,8 @@ void KrInterView::makeItemVisible(const KrViewItem *item)
     if (item == 0)
         return;
 
-    vfile* vf = (vfile *)item->getVfile();
-    QModelIndex ndx = _model->vfileIndex(vf);
+    FileItem* fileitem = (FileItem *)item->getFileItem();
+    QModelIndex ndx = _model->fileItemIndex(fileitem);
     if (ndx.isValid())
         _itemView->scrollTo(ndx);
 }
@@ -244,8 +244,8 @@ void KrInterView::setCurrentKrViewItem(KrViewItem *item)
         _itemView->setCurrentIndex(QModelIndex());
         return;
     }
-    vfile* vf = (vfile *)item->getVfile();
-    QModelIndex ndx = _model->vfileIndex(vf);
+    FileItem* fileitem = (FileItem *)item->getFileItem();
+    QModelIndex ndx = _model->fileItemIndex(fileitem);
     if (ndx.isValid() && ndx.row() != _itemView->currentIndex().row()) {
         _mouseHandler->cancelTwoClickRename();
         _itemView->setCurrentIndex(ndx);
@@ -263,7 +263,7 @@ void KrInterView::clear()
     _itemView->clearSelection();
     _itemView->setCurrentIndex(QModelIndex());
     _model->clear();
-    QHashIterator< vfile *, KrViewItem *> it(_itemHash);
+    QHashIterator< FileItem *, KrViewItem *> it(_itemHash);
     while (it.hasNext())
         delete it.next().value();
     _itemHash.clear();
@@ -271,14 +271,14 @@ void KrInterView::clear()
     KrView::clear();
 }
 
-void KrInterView::populate(const QList<vfile*> &vfiles, vfile *dummy)
+void KrInterView::populate(const QList<FileItem*> &fileItems, FileItem *dummy)
 {
-    _model->populate(vfiles, dummy);
+    _model->populate(fileItems, dummy);
 }
 
-KrViewItem* KrInterView::preAddItem(vfile *vf)
+KrViewItem* KrInterView::preAddItem(FileItem *fileitem)
 {
-    QModelIndex idx = _model->addItem(vf);
+    QModelIndex idx = _model->addItem(fileitem);
     if(_model->rowCount() == 1) // if this is the fist item to be added, make it current
         _itemView->setCurrentIndex(idx);
     return getKrViewItem(idx);
@@ -286,16 +286,16 @@ KrViewItem* KrInterView::preAddItem(vfile *vf)
 
 void KrInterView::preDelItem(KrViewItem *item)
 {
-    setSelected(item->getVfile(), false);
-    QModelIndex ndx = _model->removeItem((vfile *)item->getVfile());
+    setSelected(item->getFileItem(), false);
+    QModelIndex ndx = _model->removeItem((FileItem *)item->getFileItem());
     if (ndx.isValid())
         _itemView->setCurrentIndex(ndx);
-    _itemHash.remove((vfile *)item->getVfile());
+    _itemHash.remove((FileItem *)item->getFileItem());
 }
 
-void KrInterView::preUpdateItem(vfile *vf)
+void KrInterView::preUpdateItem(FileItem *fileitem)
 {
-    _model->updateItem(vf);
+    _model->updateItem(fileitem);
 }
 
 void KrInterView::prepareForActive()
@@ -343,8 +343,8 @@ void KrInterView::sortModeUpdated(int column, Qt::SortOrder order)
 KIO::filesize_t KrInterView::calcSize()
 {
     KIO::filesize_t size = 0;
-    foreach(vfile *vf, _model->vfiles()) {
-        size += vf->vfile_getSize();
+    foreach(FileItem *fileitem, _model->fileItems()) {
+        size += fileitem->getSize();
     }
     return size;
 }
@@ -352,8 +352,8 @@ KIO::filesize_t KrInterView::calcSize()
 KIO::filesize_t KrInterView::calcSelectedSize()
 {
     KIO::filesize_t size = 0;
-    foreach(const vfile *vf, _selection) {
-        size += vf->vfile_getSize();
+    foreach(const FileItem *fileitem, _selection) {
+        size += fileitem->getSize();
     }
     return size;
 }
@@ -361,8 +361,8 @@ KIO::filesize_t KrInterView::calcSelectedSize()
 QList<QUrl> KrInterView::selectedUrls()
 {
     QList<QUrl> list;
-    foreach(const vfile *vf, _selection) {
-        list << vf->vfile_getUrl();
+    foreach(const FileItem *fileitem, _selection) {
+        list << fileitem->getUrl();
     }
     return list;
 }
@@ -376,7 +376,7 @@ void KrInterView::setSelectionUrls(const QList<QUrl> urls)
     foreach(const QUrl &url, urls) {
         const QModelIndex idx = _model->indexFromUrl(url);
         if(idx.isValid())
-            setSelected(_model->vfileAt(idx), true);
+            setSelected(_model->fileItemAt(idx), true);
     }
 
     op()->setMassSelectionUpdate(false);

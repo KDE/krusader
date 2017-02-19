@@ -81,7 +81,7 @@ void FileSystemProvider::refreshFilesystem(const QUrl &directory)
     }
 
     for(QPointer<FileSystem> fileSystemPointer: _fileSystems) {
-        // always refresh virtual filesystem showing a virtual directory; it can contain files from various
+        // always refresh filesystems showing a virtual directory; it can contain files from various
         // places, we don't know if they were (re)moved, refreshing is also fast enough
         FileSystem *fs = fileSystemPointer.data();
         const QUrl fileSystemDir = fs->currentDirectory();
@@ -123,18 +123,18 @@ FileSystem::FS_TYPE FileSystemProvider::getFilesystemType(const QUrl &url)
     return url.scheme() == QStringLiteral("virt") ? FileSystem::FS_VIRTUAL : FileSystem::FS_DEFAULT;
 }
 
-void FileSystemProvider::getACL(vfile *file, QString &acl, QString &defAcl)
+void FileSystemProvider::getACL(FileItem *file, QString &acl, QString &defAcl)
 {
     Q_UNUSED(file);
     acl.clear();
     defAcl.clear();
 #ifdef HAVE_POSIX_ACL
-    QString fileName = FileSystem::cleanUrl(file->vfile_getUrl()).path();
+    QString fileName = FileSystem::cleanUrl(file->getUrl()).path();
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
     if (acl_extended_file(fileName)) {
 #endif
         acl = getACL(fileName, ACL_TYPE_ACCESS);
-        if (file->vfile_isDir())
+        if (file->isDir())
             defAcl = getACL(fileName, ACL_TYPE_DEFAULT);
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
     }

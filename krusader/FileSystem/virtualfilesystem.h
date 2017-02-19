@@ -84,8 +84,8 @@ private:
     /// Restore the dictionary from file
     void restore();
 
-    /// Create local or KIO vfile. Returns 0 if file does not exist
-    vfile *createVFile(const QUrl &url);
+    /// Create local or KIO fileItem. Returns 0 if file does not exist
+    FileItem *createFileItem(const QUrl &url);
 
     /// Return the configuration file storing the urls of virtual files
     KConfig &getVirtDB();

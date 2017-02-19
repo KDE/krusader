@@ -58,7 +58,7 @@ public:
     KrViewItem* getPrev(KrViewItem *current) Q_DECL_OVERRIDE;
     KrViewItem* getCurrentKrViewItem() Q_DECL_OVERRIDE;
     KrViewItem* findItemByName(const QString &name) Q_DECL_OVERRIDE;
-    KrViewItem *findItemByVfile(vfile *vf) Q_DECL_OVERRIDE;
+    KrViewItem *findItemByFileItem(FileItem *fileitem) Q_DECL_OVERRIDE;
     QString getCurrentItem() const Q_DECL_OVERRIDE;
     KrViewItem* getKrViewItemAt(const QPoint &vp) Q_DECL_OVERRIDE;
     void setCurrentItem(const QString& name, const QModelIndex &fallbackToIndex=QModelIndex()) Q_DECL_OVERRIDE;
@@ -76,8 +76,8 @@ public:
 
     void sortModeUpdated(int column, Qt::SortOrder order);
 
-    void redrawItem(vfile *vf) {
-        _itemView->viewport()->update(itemRect(vf));
+    void redrawItem(FileItem *fileitem) {
+        _itemView->viewport()->update(itemRect(fileitem));
     }
 
 protected:
@@ -93,26 +93,26 @@ protected:
 
     KIO::filesize_t calcSize() Q_DECL_OVERRIDE;
     KIO::filesize_t calcSelectedSize() Q_DECL_OVERRIDE;
-    void populate(const QList<vfile*> &vfiles, vfile *dummy) Q_DECL_OVERRIDE;
-    KrViewItem* preAddItem(vfile *vf) Q_DECL_OVERRIDE;
+    void populate(const QList<FileItem*> &fileItems, FileItem *dummy) Q_DECL_OVERRIDE;
+    KrViewItem* preAddItem(FileItem *fileitem) Q_DECL_OVERRIDE;
     void preDelItem(KrViewItem *item) Q_DECL_OVERRIDE;
-    void preUpdateItem(vfile *vf) Q_DECL_OVERRIDE;
-    void intSetSelected(const vfile* vf, bool select) Q_DECL_OVERRIDE;
+    void preUpdateItem(FileItem *fileitem) Q_DECL_OVERRIDE;
+    void intSetSelected(const FileItem* fileitem, bool select) Q_DECL_OVERRIDE;
 
-    virtual QRect itemRect(const vfile *vf) = 0;
+    virtual QRect itemRect(const FileItem *fileitem) = 0;
 
-    KrViewItem * getKrViewItem(vfile *vf);
+    KrViewItem * getKrViewItem(FileItem *fileitem);
     KrViewItem * getKrViewItem(const QModelIndex &);
-    bool isSelected(const vfile *vf) const {
-        return _selection.contains(vf);
+    bool isSelected(const FileItem *fileitem) const {
+        return _selection.contains(fileitem);
     }
     void makeCurrentVisible();
 
     KrVfsModel *_model;
     QAbstractItemView *_itemView;
     KrMouseHandler *_mouseHandler;
-    QHash<vfile *, KrViewItem*> _itemHash;
-    QSet<const vfile*> _selection;
+    QHash<FileItem *, KrViewItem*> _itemHash;
+    QSet<const FileItem*> _selection;
 };
 
 #endif

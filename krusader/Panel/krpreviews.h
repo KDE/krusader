@@ -42,7 +42,7 @@ class KJob;
 class KrView;
 class KrViewItem;
 class KrPreviewJob;
-class vfile;
+class FileItem;
 
 class KrPreviews: public QObject
 {
@@ -52,7 +52,7 @@ public:
     KrPreviews(KrView *view);
     ~KrPreviews();
 
-    bool getPreview(const vfile* file, QPixmap &pixmap, bool active);
+    bool getPreview(const FileItem* file, QPixmap &pixmap, bool active);
     void updatePreview(KrViewItem *item);
     void deletePreview(KrViewItem *item);
     //updates all items for which no preview has been loaded yet
@@ -64,15 +64,15 @@ protected slots:
     void slotJobResult(KJob *job);
 
 protected:
-    void addPreview(const vfile *file, const QPixmap &preview);
-    void removePreview(const vfile* file);
+    void addPreview(const FileItem *file, const QPixmap &preview);
+    void removePreview(const FileItem* file);
 
     KrPreviewJob *_job;
     bool _dim;
     QColor _dimColor;
     int _dimFactor;
-    QHash<const vfile*, QPixmap> _previews;
-    QHash<const vfile*, QPixmap> _previewsInactive;
+    QHash<const FileItem*, QPixmap> _previews;
+    QHash<const FileItem*, QPixmap> _previewsInactive;
     KrView *_view;
 };
 

@@ -42,7 +42,7 @@
 #include <KIO/Global>
 
 #include "../FileSystem/krquery.h"
-#include "../FileSystem/vfile.h"
+#include "../FileSystem/fileitem.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../Archive/krarchandler.h"
 
@@ -150,11 +150,11 @@ void KRSearchMod::scanLocalDir(const QUrl &url)
                 unScannedUrls.push(fileUrl);
         }
 
-        // creating a vfile object for matching with krquery
-        vfile *vf = FileSystem::createLocalVFile(name, dir);
+        // creating a file item object for matching with krquery
+        FileItem *fileitem = FileSystem::createLocalFileItem(name, dir);
 
         if (query->searchInArchives()) {
-            const QString mime = vf->vfile_getMime();
+            const QString mime = fileitem->getMime();
             if (KRarcHandler::arcSupported(mime)) {
                 QUrl archiveURL = fileUrl;
                 bool encrypted;
@@ -172,13 +172,13 @@ void KRSearchMod::scanLocalDir(const QUrl &url)
             }
         }
 
-        if (query->match(vf)) {
+        if (query->match(fileitem)) {
             // if we got here - we got a winner
             results.append(fullName);
 
-            emit found(*vf, query->foundText()); // emitting copy of vfile
+            emit found(*fileitem, query->foundText()); // emitting copy of file item
         }
-        delete vf;
+        delete fileitem;
 
         if (timer.elapsed() >= EVENT_PROCESS_DELAY) {
             qApp->processEvents();
@@ -207,17 +207,17 @@ void KRSearchMod::scanRemoteDir(QUrl url)
 
     if (!fileSystem_->refresh(url)) return ;
 
-    for (vfile *vf : fileSystem_->vfiles()) {
-        QUrl fileURL = vf->vfile_getUrl();
+    for (FileItem *fileitem : fileSystem_->fileItems()) {
+        QUrl fileURL = fileitem->getUrl();
 
-        if (query->isRecursive() && ((vf->vfile_isSymLink() && query->followLinks()) || vf->vfile_isDir()))
+        if (query->isRecursive() && ((fileitem->isSymLink() && query->followLinks()) || fileitem->isDir()))
             unScannedUrls.push(fileURL);
 
-        if (query->match(vf)) {
+        if (query->match(fileitem)) {
             // if we got here - we got a winner
             results.append(fileURL.toDisplayString(QUrl::PreferLocalFile));
 
-            emit found(*vf, query->foundText()); // emitting copy of vfile
+            emit found(*fileitem, query->foundText()); // emitting copy of file item
         }
 
         if (timer.elapsed() >= EVENT_PROCESS_DELAY) {

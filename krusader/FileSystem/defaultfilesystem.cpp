@@ -136,9 +136,9 @@ void DefaultFileSystem::rename(const QString &oldName, const QString &newName)
 QUrl DefaultFileSystem::getUrl(const QString& name)
 {
     // NOTE: on non-local fs file URL does not have to be path + name!
-    vfile *vf = getVfile(name);
-    if (vf)
-        return vf->vfile_getUrl();
+    FileItem *fileItem = getFileItem(name);
+    if (fileItem)
+        return fileItem->getUrl();
 
     QUrl absoluteUrl(_currentDirectory);
     absoluteUrl.setPath(absoluteUrl.path() + "/" + name);
@@ -230,9 +230,9 @@ void DefaultFileSystem::slotListResult(KJob *job)
 void DefaultFileSystem::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries)
 {
     for (const KIO::UDSEntry entry : entries) {
-        vfile *vfile = FileSystem::createVFileFromKIO(entry, _currentDirectory);
-        if (vfile) {
-            addVfile(vfile);
+        FileItem *fileItem = FileSystem::createFileItemFromKIO(entry, _currentDirectory);
+        if (fileItem) {
+            addFileItem(fileItem);
         }
     }
 }
@@ -270,8 +270,8 @@ void DefaultFileSystem::slotWatcherDirty(const QString& path)
 
     const QString name = QUrl::fromLocalFile(path).fileName();
 
-    vfile *vf = getVfile(name);
-    if (!vf) {
+    FileItem *fileItem = getFileItem(name);
+    if (!fileItem) {
         krOut << "dirty watcher file not found (unexpected): " << path;
         // this happens at least for cifs mounted filesystems: when a new file is created, a dirty
         // signal with its file path but no other signals are sent (buggy behaviour of KDirWatch)
@@ -280,10 +280,10 @@ void DefaultFileSystem::slotWatcherDirty(const QString& path)
     }
 
     // we have an updated file..
-    vfile *newVf = createLocalVFile(name);
-    *vf = *newVf;
-    delete newVf;
-    emit updatedVfile(vf);
+    FileItem *newFileItem = createLocalFileItem(name);
+    *fileItem = *newFileItem;
+    delete newFileItem;
+    emit updatedFileItem(fileItem);
 }
 
 void DefaultFileSystem::slotWatcherDeleted(const QString& path)
@@ -348,8 +348,8 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory) {
         // we don't need the "." and ".." entries
         if (name == "." || name == "..") continue;
 
-        vfile* temp = createLocalVFile(name);
-        addVfile(temp);
+        FileItem* temp = createLocalFileItem(name);
+        addFileItem(temp);
     }
     // clean up
     QT_CLOSEDIR(dir);
@@ -369,9 +369,9 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory) {
     return true;
 }
 
-vfile *DefaultFileSystem::createLocalVFile(const QString &name)
+FileItem *DefaultFileSystem::createLocalFileItem(const QString &name)
 {
-    return FileSystem::createLocalVFile(name, _currentDirectory.path());
+    return FileSystem::createLocalFileItem(name, _currentDirectory.path());
 }
 
 QString DefaultFileSystem::DefaultFileSystem::realPath()

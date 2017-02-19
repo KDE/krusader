@@ -111,11 +111,11 @@ public:
 
     FileSystem* files();  // return a pointer to the filesystem
 
-    inline vfile* getVFile(KrViewItem *item) {
-        return files()->getVfile(item->name());
+    inline FileItem* getFileItem(KrViewItem *item) {
+        return files()->getFileItem(item->name());
     }
-    inline vfile* getVFile(const QString& name) {
-        return files()->getVfile(name);
+    inline FileItem* getFileItem(const QString& name) {
+        return files()->getFileItem(name);
     }
 
     void refreshActions();

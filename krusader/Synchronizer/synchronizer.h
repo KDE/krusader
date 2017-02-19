@@ -46,7 +46,7 @@
 #include "synchronizerfileitem.h"
 
 class KRQuery;
-class vfile;
+class FileItem;
 
 class Synchronizer : public QObject
 {
@@ -109,8 +109,8 @@ public slots:
     void    slotProcessedSize(KJob * , qulonglong);
 
 private:
-    bool                  isDir(const vfile * file);
-    QString               readLink(const vfile * file);
+    bool                  isDir(const FileItem * file);
+    QString               readLink(const FileItem * file);
 
     void    compareDirectory(SynchronizerFileItem *, SynchronizerDirList *, SynchronizerDirList *,
                              const QString &leftDir, const QString &rightDir);

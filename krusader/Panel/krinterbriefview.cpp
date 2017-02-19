@@ -584,9 +584,9 @@ void KrInterBriefView::intersectionSet(const QRect &rect, QVector<QModelIndex> &
         }
 }
 
-QRect KrInterBriefView::itemRect(const vfile *vf)
+QRect KrInterBriefView::itemRect(const FileItem *item)
 {
-    return visualRect(_model->vfileIndex(vf));
+    return visualRect(_model->fileItemIndex(item));
 }
 
 void KrInterBriefView::copySettingsFrom(KrView *other)

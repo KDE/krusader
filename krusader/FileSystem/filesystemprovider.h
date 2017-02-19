@@ -57,7 +57,7 @@ public:
     static FileSystemProvider &instance();
     static FileSystem::FS_TYPE getFilesystemType(const QUrl &url);
     /** Get ACL permissions for a file */
-    static void getACL(vfile *file, QString &acl, QString &defAcl);
+    static void getACL(FileItem *file, QString &acl, QString &defAcl);
 
 public slots:
     void refreshFilesystem(const QUrl &directory);

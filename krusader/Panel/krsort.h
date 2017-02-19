@@ -21,7 +21,7 @@
 #define KRSORT_H
 
 #include "krview.h"
-#include "../FileSystem/vfile.h"
+#include "../FileSystem/fileitem.h"
 
 // QtCore
 #include <QString>
@@ -37,11 +37,11 @@ class SortProps
 public:
     SortProps() {}
     SortProps(const SortProps& other) {
-        init(other.vf(), other.column(), other.properties(), other.isDummy(),
+        init(other.fileitem(), other.column(), other.properties(), other.isDummy(),
              other.isAscending(), other.originalIndex(), other.customData());
     }
-    SortProps(vfile *vf, int col, const KrViewProperties * props, bool isDummy, bool asc, int origNdx, QVariant customData) {
-        init(vf, col, props, isDummy, asc, origNdx, customData);
+    SortProps(FileItem *fileitem, int col, const KrViewProperties * props, bool isDummy, bool asc, int origNdx, QVariant customData) {
+        init(fileitem, col, props, isDummy, asc, origNdx, customData);
     }
 
     inline int column() const {
@@ -62,8 +62,8 @@ public:
     inline QString extension() const {
         return _ext;
     }
-    inline vfile * vf() const {
-        return _vfile;
+    inline FileItem * fileitem() const {
+        return _fileItem;
     }
     inline int originalIndex() const {
         return _index;
@@ -76,12 +76,12 @@ public:
     }
 
 private:
-    void init(vfile *vf, int col, const KrViewProperties * props, bool isDummy, bool asc, int origNdx, QVariant customData);
+    void init(FileItem *fileitem, int col, const KrViewProperties * props, bool isDummy, bool asc, int origNdx, QVariant customData);
 
     int _col;
     const KrViewProperties * _prop;
     bool _isdummy;
-    vfile * _vfile;
+    FileItem * _fileItem;
     bool _ascending;
     QString _name;
     QString _ext;
@@ -107,8 +107,8 @@ public:
         return _items;
     }
     void sort();
-    void addItem(vfile *vf, bool isDummy, int idx, QVariant customData);
-    int insertIndex(vfile *vf, bool isDummy, QVariant customData);
+    void addItem(FileItem *fileitem, bool isDummy, int idx, QVariant customData);
+    int insertIndex(FileItem *fileitem, bool isDummy, QVariant customData);
 
 private:
     bool descending() const {

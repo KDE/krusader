@@ -272,7 +272,7 @@ void DiskUsage::load(const QUrl &baseDir)
         return;
     }
 
-    currentVfile = 0;
+    currentFileItem = 0;
 
     if (!loading) {
         viewBeforeLoad = activeView;
@@ -291,12 +291,12 @@ void DiskUsage::load(const QUrl &baseDir)
 
 void DiskUsage::slotLoadDirectory()
 {
-    if ((currentVfile == 0 && directoryStack.isEmpty()) || loaderView->wasCancelled() || abortLoading) {
+    if ((currentFileItem == 0 && directoryStack.isEmpty()) || loaderView->wasCancelled() || abortLoading) {
         if (searchFileSystem)
             delete searchFileSystem;
 
         searchFileSystem = 0;
-        currentVfile = 0;
+        currentFileItem = 0;
 
         setView(viewBeforeLoad);
 
@@ -312,7 +312,7 @@ void DiskUsage::slotLoadDirectory()
         loading = abortLoading = clearAfterAbort = false;
     } else if (loading) {
         for (int counter = 0; counter != MAX_FILENUM; counter ++) {
-            if (currentVfile == 0) {
+            if (currentFileItem == 0) {
                 if (directoryStack.isEmpty())
                     break;
 
@@ -340,34 +340,34 @@ void DiskUsage::slotLoadDirectory()
 
                 if (!searchFileSystem->refresh(url))
                     break;
-                vfiles = searchFileSystem->vfiles();
+                fileItems = searchFileSystem->fileItems();
 
                 dirNum++;
 
-                currentVfile = vfiles.isEmpty() ? 0 : vfiles.takeFirst();
+                currentFileItem = fileItems.isEmpty() ? 0 : fileItems.takeFirst();
             } else {
                 fileNum++;
                 File *newItem = 0;
 
-                QString mime = currentVfile->vfile_getMime(); // fast == not using mimetype magic
+                QString mime = currentFileItem->getMime(); // fast == not using mimetype magic
 
-                if (currentVfile->vfile_isDir() && !currentVfile->vfile_isSymLink()) {
-                    newItem = new Directory(currentParent, currentVfile->vfile_getName(), dirToCheck, currentVfile->vfile_getSize(),
-                                            currentVfile->vfile_getMode(), currentVfile->vfile_getOwner(), currentVfile->vfile_getGroup(),
-                                            currentVfile->vfile_getPerm(), currentVfile->vfile_getTime_t(), currentVfile->vfile_isSymLink(),
+                if (currentFileItem->isDir() && !currentFileItem->isSymLink()) {
+                    newItem = new Directory(currentParent, currentFileItem->getName(), dirToCheck, currentFileItem->getSize(),
+                                            currentFileItem->getMode(), currentFileItem->getOwner(), currentFileItem->getGroup(),
+                                            currentFileItem->getPerm(), currentFileItem->getTime_t(), currentFileItem->isSymLink(),
                                             mime);
-                    directoryStack.push((dirToCheck.isEmpty() ? "" : dirToCheck + '/') + currentVfile->vfile_getName());
+                    directoryStack.push((dirToCheck.isEmpty() ? "" : dirToCheck + '/') + currentFileItem->getName());
                     parentStack.push(dynamic_cast<Directory *>(newItem));
                 } else {
-                    newItem = new File(currentParent, currentVfile->vfile_getName(), dirToCheck, currentVfile->vfile_getSize(),
-                                       currentVfile->vfile_getMode(), currentVfile->vfile_getOwner(), currentVfile->vfile_getGroup(),
-                                       currentVfile->vfile_getPerm(), currentVfile->vfile_getTime_t(), currentVfile->vfile_isSymLink(),
+                    newItem = new File(currentParent, currentFileItem->getName(), dirToCheck, currentFileItem->getSize(),
+                                       currentFileItem->getMode(), currentFileItem->getOwner(), currentFileItem->getGroup(),
+                                       currentFileItem->getPerm(), currentFileItem->getTime_t(), currentFileItem->isSymLink(),
                                        mime);
-                    currentSize += currentVfile->vfile_getSize();
+                    currentSize += currentFileItem->getSize();
                 }
                 currentParent->append(newItem);
 
-                currentVfile = vfiles.isEmpty() ? 0 : vfiles.takeFirst();
+                currentFileItem = fileItems.isEmpty() ? 0 : fileItems.takeFirst();
             }
         }
 

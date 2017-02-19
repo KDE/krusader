@@ -218,11 +218,11 @@ void PanelPopup::handleOpenUrlRequest(const QUrl &url)
 void PanelPopup::tabSelected(int id)
 {
     QUrl url;
-    const vfile *vf = 0;
+    const FileItem *fileitem = 0;
     if (ACTIVE_PANEL && ACTIVE_PANEL->func->files() && ACTIVE_PANEL->view)
-        vf = ACTIVE_PANEL->func->files()->getVfile(ACTIVE_PANEL->view->getCurrentItem());
-    if(vf)
-        url = vf->vfile_getUrl();
+        fileitem = ACTIVE_PANEL->func->files()->getFileItem(ACTIVE_PANEL->view->getCurrentItem());
+    if(fileitem)
+        url = fileitem->getUrl();
 
     // if tab is tree, set something logical in the data line
     switch (id) {
@@ -237,19 +237,19 @@ void PanelPopup::tabSelected(int id)
     case Preview:
         stack->setCurrentWidget(viewer);
         dataLine->setText(i18n("Preview:"));
-        update(vf);
+        update(fileitem);
         break;
     case View:
         stack->setCurrentWidget(panelviewer);
         dataLine->setText(i18n("View:"));
-        update(vf);
+        update(fileitem);
         if (!isHidden() && panelviewer->part() && panelviewer->part()->widget())
             panelviewer->part()->widget()->setFocus();
         break;
     case DskUsage:
         stack->setCurrentWidget(diskusage);
         dataLine->setText(i18n("Disk Usage:"));
-        update(vf);
+        update(fileitem);
         if (!isHidden() && diskusage->getWidget() && diskusage->getWidget()->currentWidget())
             diskusage->getWidget()->currentWidget()->setFocus();
         break;
@@ -258,14 +258,14 @@ void PanelPopup::tabSelected(int id)
 }
 
 // decide which part to update, if at all
-void PanelPopup::update(const vfile *vf)
+void PanelPopup::update(const FileItem *fileitem)
 {
     if (isHidden())
         return;
 
     QUrl url;
-    if(vf)
-       url = vf->vfile_getUrl();
+    if(fileitem)
+       url = fileitem->getUrl();
 
     switch (currentPage()) {
     case Preview:
@@ -273,14 +273,14 @@ void PanelPopup::update(const vfile *vf)
         dataLine->setText(i18n("Preview: %1", url.fileName()));
         break;
     case View:
-        if(vf && !vf->vfile_isDir() && vf->vfile_isReadable())
-            panelviewer->openUrl(vf->vfile_getUrl());
+        if(fileitem && !fileitem->isDir() && fileitem->isReadable())
+            panelviewer->openUrl(fileitem->getUrl());
         else
             panelviewer->closeUrl();
         dataLine->setText(i18n("View: %1", url.fileName()));
         break;
     case DskUsage: {
-        if(vf && !vf->vfile_isDir())
+        if(fileitem && !fileitem->isDir())
             url = KIO::upUrl(url);
         dataLine->setText(i18n("Disk Usage: %1", url.fileName()));
         diskusage->openUrl(url);

@@ -20,7 +20,7 @@
 #ifndef KRVIEWITEM_H
 #define KRVIEWITEM_H
 
-#include "../FileSystem/vfile.h"
+#include "../FileSystem/fileitem.h"
 #include "krview.h"
 
 // QtCore
@@ -42,7 +42,7 @@ class KrViewItem
     friend class KrCalcSpaceDialog;
 
 public:
-    KrViewItem(vfile *vf, KrInterView *parentView);
+    KrViewItem(FileItem *fileitem, KrInterView *parentView);
     virtual ~KrViewItem() {}
 
     const QString& name(bool withExtension = true) const;
@@ -62,17 +62,17 @@ public:
     void redraw();
 
     // DON'T USE THOSE OUTSIDE THE VIEWS!!!
-    inline const vfile* getVfile() const {
-        return _vf;
+    inline const FileItem* getFileItem() const {
+        return _fileitem;
     }
-    inline void setVfile(vfile *vf) {
-        _vf = vf;
+    inline void setFileItem(FileItem *fileitem) {
+        _fileitem = fileitem;
     }
-    inline vfile* getMutableVfile() {
-        return _vf;
+    inline FileItem* getMutableFileItem() {
+        return _fileitem;
     }
     inline bool isDummy() const {
-        return dummyVfile;
+        return dummyFileItem;
     }
     inline bool isHidden() const {
         return _hidden;
@@ -80,13 +80,13 @@ public:
 
     // used INTERNALLY when calculation of dir size changes the displayed size of the item
     inline void setSize(KIO::filesize_t size) {
-        _vf->vfile_setSize(size);
+        _fileitem->setSize(size);
     }
 
 protected:
-    vfile* _vf;   // each view item holds a pointer to a corresponding vfile for fast access
+    FileItem* _fileitem;   // each view item holds a pointer to a corresponding file item for fast access
     KrInterView * _view; // the parent view this item belongs to
-    bool dummyVfile; // used in case our item represents the ".." (updir) item
+    bool dummyFileItem; // used in case our item represents the ".." (updir) item
     const KrViewProperties* _viewProperties;
     bool _hasExtension;
     bool _hidden;

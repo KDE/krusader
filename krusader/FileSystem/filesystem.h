@@ -45,12 +45,12 @@
 
 #include <KIO/CopyJob>
 
-#include "vfile.h"
+#include "fileitem.h"
 #include "krquery.h"
 
 
 /**
- * An abstract virtual filesystem. Use the implementations of this class for all file operations.
+ * An abstract filesystem. Use the implementations of this class for all file operations.
  *
  * It represents a directory and gives access to its files. All common file operations
  * are supported. Methods with absolute URL as argument can be used independently from the current
@@ -75,8 +75,8 @@ public:
     virtual ~FileSystem();
 
     // DirListerInterface implementation
-    inline QList<vfile *> vfiles() { return _vfiles.values(); }
-    inline unsigned long numVfiles() { return _vfiles.count(); }
+    inline QList<FileItem *> fileItems() { return _fileItems.values(); }
+    inline unsigned long numFileItems() { return _fileItems.count(); }
     inline bool isRoot() {
         const QString path = _currentDirectory.path();
         return path.isEmpty() || path == "/";
@@ -117,10 +117,10 @@ public:
 
     /// Returns the current directory path of this FILESYSTEM.
     inline QUrl currentDirectory() { return _currentDirectory; }
-    /// Return the vfile for a file name in the current directory. Or 0 if not found.
-    vfile *getVfile(const QString &name);
-    /// Return a list of vfiles for a search query. Or an empty list if nothing was found.
-    QList<vfile *> searchVfiles(const KRQuery &filter);
+    /// Return the file item for a file name in the current directory. Or 0 if not found.
+    FileItem *getFileItem(const QString &name);
+    /// Return a list of file items for a search query. Or an empty list if nothing was found.
+    QList<FileItem *> searchFileItems(const KRQuery &filter);
     /// The total size of all files in the current directory (only valid after refresh).
     // TODO unused
     KIO::filesize_t totalSize();
@@ -153,11 +153,11 @@ public:
     /// Add 'file' scheme to non-empty URL without scheme
     static QUrl preferLocalUrl(const QUrl &url);
 
-    /// Return a vfile for a local file inside a directory
-    static vfile *createLocalVFile(const QString &name, const QString &directory,
+    /// Return a file item for a local file inside a directory
+    static FileItem *createLocalFileItem(const QString &name, const QString &directory,
                                    bool virt = false);
-    /// Return a vfile for a KIO result. Returns 0 if entry is not needed
-    static vfile *createVFileFromKIO(const KIO::UDSEntry &_calcEntry, const QUrl &directory,
+    /// Return a file item for a KIO result. Returns 0 if entry is not needed
+    static FileItem *createFileItemFromKIO(const KIO::UDSEntry &_calcEntry, const QUrl &directory,
                                      bool virt = false);
 
     // set the parent window to be used for dialogs
@@ -187,15 +187,15 @@ signals:
     void aboutToOpenDir(const QString &path);
 
 protected:
-    /// Fill the filesystem dictionary with vfiles, must be implemented for each FILESYSTEM.
+    /// Fill the filesystem dictionary with file items, must be implemented for each FILESYSTEM.
     virtual bool refreshInternal(const QUrl &origin, bool showHidden) = 0;
 
     /// Connect the result signal of a file operation job.
     void connectJob(KJob *job, const QUrl &destination);
     /// Returns true if showing hidden files is set in config.
     bool showHiddenFiles();
-    /// Add a new vfile to the internal dictionary (while refreshing).
-    inline void addVfile(vfile *vf) { _vfiles.insert(vf->vfile_getName(), vf); }
+    /// Add a new file item to the internal dictionary (while refreshing).
+    inline void addFileItem(FileItem *item) { _fileItems.insert(item->getName(), item); }
 
     /// Calculate the size of a file or directory (recursive).
     void calcSpace(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
@@ -223,12 +223,12 @@ private slots:
     void slotCalcStatResult(KJob *job);
 
 private:
-    typedef QHash<QString, vfile *> vfileDict;
+    typedef QHash<QString, FileItem *> FileItemDict;
 
-    /// Delete and clear vfiles.
-    void clear(vfileDict &vfiles);
+    /// Delete and clear file items.
+    void clear(FileItemDict &fileItems);
 
-    vfileDict _vfiles;  // The list of files in the current dictionary
+    FileItemDict _fileItems;  // The list of files in the current dictionary
 
     // used in the calcSpace function
     bool *_calcKdsBusy;

@@ -631,15 +631,15 @@ void ListPanel::compareDirs(bool otherPanelToo)
 
         bool isSingle = (otherItem == 0), isDifferent = false, isNewer = false;
 
-        if (func->getVFile(item)->vfile_isDir() && !selectDirs) {
+        if (func->getFileItem(item)->isDir() && !selectDirs) {
             item->setSelected(false);
             continue;
         }
 
         if (otherItem) {
-            if (!func->getVFile(item)->vfile_isDir())
-                isDifferent = ITEM2VFILE(otherPanel(), otherItem)->vfile_getSize() != func->getVFile(item)->vfile_getSize();
-            isNewer = func->getVFile(item)->vfile_getTime_t() > ITEM2VFILE(otherPanel(), otherItem)->vfile_getTime_t();
+            if (!func->getFileItem(item)->isDir())
+                isDifferent = ITEM2FILEITEM(otherPanel(), otherItem)->getSize() != func->getFileItem(item)->getSize();
+            isNewer = func->getFileItem(item)->getTime_t() > ITEM2FILEITEM(otherPanel(), otherItem)->getTime_t();
         }
 
         switch (compareMode) {
@@ -797,11 +797,11 @@ void ListPanel::handleDrop(QDropEvent *event, bool onView)
     const bool dragFromThisPanel = event->source() == this;
     const KrViewItem *item = onView ? view->getKrViewItemAt(event->pos()) : 0;
     if (item) {
-        const vfile *file = item->getVfile();
-        if (file && !file->vfile_isDir() && dragFromThisPanel) {
+        const FileItem *file = item->getFileItem();
+        if (file && !file->isDir() && dragFromThisPanel) {
             event->ignore(); // dragging on files in same panel, ignore
             return ;
-        } else if (!file || file->vfile_isDir()) { // item is ".." dummy or a directory
+        } else if (!file || file->isDir()) { // item is ".." dummy or a directory
             destinationDir = item->name();
         }
     } else if (dragFromThisPanel) {
@@ -878,9 +878,9 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
     case Qt::Key_Return :
         if (e->modifiers() & Qt::ControlModifier) {
             if (e->modifiers() & Qt::AltModifier) {
-                vfile *vf = func->files()->getVfile(view->getCurrentKrViewItem()->name());
-                if (vf && vf->vfile_isDir())
-                    newTab(vf->vfile_getUrl(), true);
+                FileItem *fileitem = func->files()->getFileItem(view->getCurrentKrViewItem()->name());
+                if (fileitem && fileitem->isDir())
+                    newTab(fileitem->getUrl(), true);
             } else {
                 SLOTS->insertFileName((e->modifiers() & Qt::ShiftModifier) != 0);
             }
@@ -898,14 +898,14 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                 if (it->name() == "..") {
                     newPath = KIO::upUrl(func->files()->currentDirectory());
                 } else {
-                    vfile *v = func->getVFile(it);
+                    FileItem *v = func->getFileItem(it);
                     // If it's a directory different from ".."
-                    if (v && v->vfile_isDir() && v->vfile_getName() != "..") {
-                        newPath = v->vfile_getUrl();
+                    if (v && v->isDir() && v->getName() != "..") {
+                        newPath = v->getUrl();
                     } else {
                         // If it's a supported compressed file
-                        if (v && KRarcHandler::arcSupported(v->vfile_getMime()))   {
-                            newPath = func->browsableArchivePath(v->vfile_getUrl().fileName());
+                        if (v && KRarcHandler::arcSupported(v->getMime()))   {
+                            newPath = func->browsableArchivePath(v->getUrl().fileName());
                         } else {
                             newPath = func->files()->currentDirectory();
                         }
@@ -1224,7 +1224,7 @@ void ListPanel::slotCurrentChanged(KrViewItem *item)
     else
         return;
 
-    p->update(item ? func->files()->getVfile(item->name()) : 0);
+    p->update(item ? func->files()->getFileItem(item->name()) : 0);
 }
 
 void ListPanel::otherPanelChanged()
@@ -1259,7 +1259,7 @@ void ListPanel::newTab(KrViewItem *it)
         return;
     else if (it->name() == "..") {
         newTab(KIO::upUrl(virtualPath()), true);
-    } else if (ITEM2VFILE(this, it)->vfile_isDir()) {
+    } else if (ITEM2FILEITEM(this, it)->isDir()) {
         QUrl url = virtualPath();
         url = url.adjusted(QUrl::StripTrailingSlash);
         url.setPath(url.path() + '/' + (it->name()));

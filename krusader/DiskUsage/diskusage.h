@@ -174,8 +174,8 @@ protected:
     QStack<Directory *> parentStack;
 
     FileSystem       * searchFileSystem;
-    vfile     * currentVfile;
-    QList<vfile *> vfiles;
+    FileItem     * currentFileItem;
+    QList<FileItem *> fileItems;
     Directory * currentParent;
     QString     dirToCheck;
 

@@ -75,7 +75,7 @@ A
 #include "../krservices.h"
 #include "../Archive/krarchandler.h"
 #include "../Archive/packjob.h"
-#include "../FileSystem/vfile.h"
+#include "../FileSystem/fileitem.h"
 #include "../FileSystem/virtualfilesystem.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../FileSystem/filesystemprovider.h"
@@ -137,19 +137,19 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExe
         return ;
     }
 
-    vfile *vf = files()->getVfile(name);
-    if (vf == 0)
+    FileItem *fileitem = files()->getFileItem(name);
+    if (fileitem == 0)
         return ;
 
     QUrl url = files()->getUrl(name);
 
-    if (vf->vfile_isDir()) {
+    if (fileitem->isDir()) {
         panel->view->setNameToMakeCurrent(QString());
         openUrl(url);
         return;
     }
 
-    QString mime = vf->vfile_getMime();
+    QString mime = fileitem->getMime();
 
     QUrl arcPath = browsableArchivePath(name);
     if (!arcPath.isEmpty()) {
@@ -398,12 +398,12 @@ void ListPanelFunc::redirectLink()
         return ;
     }
 
-    vfile *vf = files()->getVfile(panel->getCurrentName());
-    if (!vf)
+    FileItem *fileitem = files()->getFileItem(panel->getCurrentName());
+    if (!fileitem)
         return ;
 
-    QString file = vf->vfile_getUrl().path();
-    QString currentLink = vf->vfile_getSymDest();
+    QString file = fileitem->getUrl().path();
+    QString currentLink = fileitem->getSymDest();
     if (currentLink.isEmpty()) {
         KMessageBox::sorry(krMainWindow, i18n("The current file is not a link, so it cannot be redirected."));
         return ;
@@ -449,7 +449,7 @@ void ListPanelFunc::krlink(bool sym)
         return;
 
     // if the name is already taken - quit
-    if (files()->getVfile(linkName) != 0) {
+    if (files()->getFileItem(linkName) != 0) {
         KMessageBox::sorry(krMainWindow, i18n("A folder or a file with this name already exists."));
         return;
     }
@@ -477,10 +477,10 @@ void ListPanelFunc::view()
         return ;
 
     // if we're trying to view a directory, just exit
-    vfile * vf = files()->getVfile(fileName);
-    if (!vf || vf->vfile_isDir())
+    FileItem *fileitem = files()->getFileItem(fileName);
+    if (!fileitem || fileitem->isDir())
         return ;
-    if (!vf->vfile_isReadable()) {
+    if (!fileitem->isReadable()) {
         KMessageBox::sorry(0, i18n("No permissions to view this file."));
         return ;
     }
@@ -667,7 +667,7 @@ void ListPanelFunc::mkdir()
     // suggested name is the complete name for the directories
     // while filenames are suggested without their extension
     QString suggestedName = panel->getCurrentName();
-    if (!suggestedName.isEmpty() && !files()->getVfile(suggestedName)->vfile_isDir())
+    if (!suggestedName.isEmpty() && !files()->getFileItem(suggestedName)->isDir())
         suggestedName = QFileInfo(suggestedName).completeBaseName();
 
     QString dirName = QInputDialog::getText(krMainWindow, i18n("New folder"), i18n("Folder's name:"), QLineEdit::Normal, suggestedName);
@@ -686,7 +686,7 @@ void ListPanelFunc::mkdir()
             continue;
         }
         // check if the name is already taken
-        if (files()->getVfile(*it)) {
+        if (files()->getFileItem(*it)) {
             // if it is the last dir to be created - quit
             if (*it == dirTree.last()) {
                 KMessageBox::sorry(krMainWindow, i18n("A folder or a file with this name already exists."));
@@ -762,10 +762,10 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
 
     if (emptyDirVerify) {
         for (const QString fileName: fileNames) {
-            vfile *vfile = files()->getVfile(fileName);
-            if (vfile && !vfile->vfile_isSymLink() && vfile->vfile_isDir()) {
+            FileItem *fileItem = files()->getFileItem(fileName);
+            if (fileItem && !fileItem->isSymLink() && fileItem->isDir()) {
                 // read local dir...
-                const QDir dir(vfile->vfile_getUrl().path());
+                const QDir dir(fileItem->getUrl().path());
                 if (dir.entryList(QDir::TypeMask | QDir::System | QDir::Hidden).count() > 2) {
                     // ...is not empty, ask user
                     const KMessageBox::ButtonCode result = KMessageBox::warningYesNoCancel(
@@ -862,9 +862,9 @@ void ListPanelFunc::displayOpenWithDialog(QList<QUrl> urls)
 
 QUrl ListPanelFunc::browsableArchivePath(const QString &filename)
 {
-    vfile *vf = files()->getVfile(filename);
+    FileItem *fileitem = files()->getFileItem(filename);
     QUrl url = files()->getUrl(filename);
-    QString mime = vf->vfile_getMime();
+    QString mime = fileitem->getMime();
 
     if(url.isLocalFile()) {
         QString protocol = KrServices::registeredProtocol(mime);
@@ -989,7 +989,7 @@ static void checksum_wrapper(ListPanel *panel, QStringList& args, bool &folders)
     // determine if we need recursive mode (md5deep)
     folders = false;
     for (KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it) {
-        if (panel->func->getVFile(*it)->vfile_isDir()) {
+        if (panel->func->getFileItem(*it)->isDir()) {
             folders = true;
             args << (*it)->name();
         } else args << (*it)->name();
@@ -1009,11 +1009,11 @@ void ListPanelFunc::matchChecksum()
     QStringList args;
     bool folders;
     checksum_wrapper(panel, args, folders);
-    QList<vfile *> checksumFiles =
-        files()->searchVfiles(KRQuery(MatchChecksumDlg::checksumTypesFilter));
+    QList<FileItem *> checksumFiles =
+        files()->searchFileItems(KRQuery(MatchChecksumDlg::checksumTypesFilter));
     MatchChecksumDlg dlg(args, folders, panel->realPath(),
         (checksumFiles.size() == 1
-             ? checksumFiles[0]->vfile_getUrl().toDisplayString(QUrl::PreferLocalFile)
+             ? checksumFiles[0]->getUrl().toDisplayString(QUrl::PreferLocalFile)
              : QString()));
 }
 
@@ -1067,11 +1067,11 @@ void ListPanelFunc::properties()
     KFileItemList fi;
 
     for (int i = 0 ; i < names.count() ; ++i) {
-        vfile* vf = files()->getVfile(names[i]);
-        if (!vf)
+        FileItem *fileitem = files()->getFileItem(names[i]);
+        if (!fileitem)
             continue;
         QUrl url = files()->getUrl(names[i]);
-        fi.push_back(KFileItem(vf->vfile_getEntry(), url));
+        fi.push_back(KFileItem(fileitem->getEntry(), url));
     }
 
     if (fi.isEmpty())
@@ -1185,7 +1185,7 @@ void ListPanelFunc::pasteFromClipboard()
     if(origin && KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         origin->panel->view->saveSelection();
         for(KrViewItem *item = origin->panel->view->getFirst(); item != 0; item = origin->panel->view->getNext(item)) {
-            if (urls.contains(item->getVfile()->vfile_getUrl()))
+            if (urls.contains(item->getFileItem()->getUrl()))
                 item->setSelected(false);
         }
     }

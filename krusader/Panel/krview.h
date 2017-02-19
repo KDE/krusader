@@ -204,8 +204,8 @@ protected slots:
     void startUpdate();
     void cleared();
 
-    void fileAdded(vfile *vf);
-    void fileUpdated(vfile *vf);
+    void fileAdded(FileItem *fileitem);
+    void fileUpdated(FileItem *fileitem);
 
 protected:
     // never delete those
@@ -286,7 +286,7 @@ public:
     virtual KrViewItem *getCurrentKrViewItem() = 0;
     virtual KrViewItem *getKrViewItemAt(const QPoint &vp) = 0;
     virtual KrViewItem *findItemByName(const QString &name) = 0;
-    virtual KrViewItem *findItemByVfile(vfile *vf) = 0;
+    virtual KrViewItem *findItemByFileItem(FileItem *vf) = 0;
     virtual QString getCurrentItem() const = 0;
     virtual void setCurrentItem(const QString &name,
                                 const QModelIndex &fallbackToIndex = QModelIndex()) = 0;
@@ -305,16 +305,16 @@ public:
     virtual void showContextMenu(const QPoint &point = QPoint(0, 0)) = 0;
 
 protected:
-    virtual KrViewItem *preAddItem(vfile *vf) = 0;
+    virtual KrViewItem *preAddItem(FileItem *fileitem) = 0;
     virtual void preDelItem(KrViewItem *item) = 0;
-    virtual void preUpdateItem(vfile *vf) = 0;
+    virtual void preUpdateItem(FileItem *fileitem) = 0;
     virtual void copySettingsFrom(KrView *other) = 0;
-    virtual void populate(const QList<vfile *> &vfiles, vfile *dummy) = 0;
-    virtual void intSetSelected(const vfile *vf, bool select) = 0;
+    virtual void populate(const QList<FileItem *> &fileItems, FileItem *dummy) = 0;
+    virtual void intSetSelected(const FileItem *fileitem, bool select) = 0;
     virtual void clear();
 
-    void addItem(vfile *vf);
-    void updateItem(vfile *vf);
+    void addItem(FileItem *fileitem);
+    void updateItem(FileItem *fileitem);
     void delItem(const QString &name);
 
 public:
@@ -349,8 +349,8 @@ public:
     bool changeSelection(const KRQuery &filter, bool select);
     bool changeSelection(const KRQuery &filter, bool select, bool includeDirs,
                          bool makeVisible = false);
-    bool isFiltered(vfile *vf);
-    void setSelected(const vfile *vf, bool select);
+    bool isFiltered(FileItem *fileitem);
+    void setSelected(const FileItem *fileitem, bool select);
 
     /////////////////////////////////////////////////////////////
     // the following functions have a default and minimalistic //
@@ -380,7 +380,7 @@ public:
     inline int fileIconSize() const { return _fileIconSize; }
     inline bool isFocused() const { return _focused; }
 
-    QPixmap getIcon(vfile *vf);
+    QPixmap getIcon(FileItem *fileitem);
 
     void setMainWindow(QWidget *mainWindow) { _mainWindow = mainWindow; }
 
@@ -403,10 +403,10 @@ public:
     // todo: what about selection modes ???
     virtual ~KrView();
 
-    static QPixmap getIcon(vfile *vf, bool active, int size = 0);
+    static QPixmap getIcon(FileItem *fileitem, bool active, int size = 0);
     static QPixmap processIcon(const QPixmap &icon, bool dim, const QColor &dimColor, int dimFactor,
                                bool symlink);
-    static QString krPermissionString(const vfile *vf);
+    static QString krPermissionString(const FileItem *fileitem);
 
 protected:
     KrView(KrViewInstance &instance, KConfig *cfg);
@@ -439,7 +439,7 @@ private:
     bool _ignoreSettingsChange;
     QRegExp _quickFilterMask;
     uint _count, _numDirs;
-    vfile *_dummyVfile;
+    FileItem *_dummyFileItem;
 };
 
 #endif /* KRVIEW_H */

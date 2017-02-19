@@ -83,7 +83,7 @@ void VirtualFileSystem::copyFiles(const QList<QUrl> &urls, const QUrl &destinati
 void VirtualFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
 {
     const QList<QUrl> &urls = KUrlMimeData::urlsFromMimeData(event->mimeData());
-    // dropping on virtual filesystem (sic!) is always copy operation
+    // dropping on virtual filesystem is always copy operation
     copyFiles(urls, destination);
 }
 
@@ -121,12 +121,12 @@ void VirtualFileSystem::remove(const QStringList &fileNames)
 
 QUrl VirtualFileSystem::getUrl(const QString &name)
 {
-    vfile *vf = getVfile(name);
-    if (!vf) {
+    FileItem *item = getFileItem(name);
+    if (!item) {
         return QUrl(); // not found
     }
 
-    return vf->vfile_getUrl();
+    return item->getUrl();
 }
 
 void VirtualFileSystem::mkDir(const QString &name)
@@ -143,8 +143,8 @@ void VirtualFileSystem::mkDir(const QString &name)
 
 void VirtualFileSystem::rename(const QString &fileName, const QString &newName)
 {
-    vfile *vf = getVfile(fileName);
-    if (!vf)
+    FileItem *item = getFileItem(fileName);
+    if (!item)
         return; // not found
 
     if (currentDir() == "/") { // rename virtual directory
@@ -165,7 +165,7 @@ void VirtualFileSystem::rename(const QString &fileName, const QString &newName)
     // so we don't have to worry if the job was successful
     _virtFilesystemDict[currentDir()]->append(dest);
 
-    KIO::Job *job = KIO::moveAs(vf->vfile_getUrl(), dest, KIO::HideProgressInfo);
+    KIO::Job *job = KIO::moveAs(item->getUrl(), dest, KIO::HideProgressInfo);
     connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, false); });
     connect(job, &KIO::Job::result, [=]() { emit fileSystemChanged(currentDirectory()); });
 }
@@ -235,11 +235,11 @@ bool VirtualFileSystem::refreshInternal(const QUrl &directory, bool /*showHidden
     QMutableListIterator<QUrl> it(*urlList);
     while (it.hasNext()) {
         const QUrl url = it.next();
-        vfile *vf = createVFile(url);
-        if (!vf) { // remove URL from the list for a file that no longer exists
+        FileItem *item = createFileItem(url);
+        if (!item) { // remove URL from the list for a file that no longer exists
             it.remove();
         } else {
-            addVfile(vf);
+            addFileItem(item);
         }
     }
 
@@ -310,20 +310,20 @@ void VirtualFileSystem::restore()
     }
 }
 
-vfile *VirtualFileSystem::createVFile(const QUrl &url)
+FileItem *VirtualFileSystem::createFileItem(const QUrl &url)
 {
     if (url.scheme() == "virt") { // return a virtual directory in root
         QString path = url.path().mid(1);
         if (path.isEmpty())
             path = '/';
-        return vfile::createVirtualDir(path, url);
+        return FileItem::createVirtualDir(path, url);
     }
 
     const QUrl directory = url.adjusted(QUrl::RemoveFilename);
 
     if (url.isLocalFile()) {
         QFileInfo file(url.path());
-        return file.exists() ? FileSystem::createLocalVFile(url.fileName(), directory.path(), true) : 0;
+        return file.exists() ? FileSystem::createLocalFileItem(url.fileName(), directory.path(), true) : 0;
     }
 
     KIO::StatJob *statJob = KIO::stat(url, KIO::HideProgressInfo);
@@ -343,7 +343,7 @@ vfile *VirtualFileSystem::createVFile(const QUrl &url)
         return 0; // file not found
     }
 
-    return FileSystem::createVFileFromKIO(_fileEntry, directory, true);
+    return FileSystem::createFileItemFromKIO(_fileEntry, directory, true);
 }
 
 KConfig &VirtualFileSystem::getVirtDB()

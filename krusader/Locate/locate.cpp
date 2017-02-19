@@ -646,7 +646,7 @@ void LocateDlg::feedToListBox()
     QString queryName;
     do {
         queryName = i18n("Locate results") + QString(" %1").arg(listBoxNum++);
-    } while (virtFilesystem.getVfile(queryName) != 0);
+    } while (virtFilesystem.getFileItem(queryName) != 0);
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");

@@ -56,7 +56,7 @@ FileSystem::FileSystem() : DirListerInterface(0), _isRefreshing(false) {}
 
 FileSystem::~FileSystem()
 {
-    clear(_vfiles);
+    clear(_fileItems);
     emit cleared(); // please don't remove this line. This informs the view about deleting the references
 }
 
@@ -69,17 +69,17 @@ QList<QUrl> FileSystem::getUrls(const QStringList &names)
     return urls;
 }
 
-vfile *FileSystem::getVfile(const QString &name)
+FileItem *FileSystem::getFileItem(const QString &name)
 {
-    return _vfiles.contains(name) ? _vfiles.value(name) : 0;
+    return _fileItems.contains(name) ? _fileItems.value(name) : 0;
 }
 
-QList<vfile *> FileSystem::searchVfiles(const KRQuery &filter)
+QList<FileItem *> FileSystem::searchFileItems(const KRQuery &filter)
 {
-    QList<vfile *> result;
-    for (vfile *vf : _vfiles.values()) {
-        if (filter.match(vf)) {
-            result.append(vf);
+    QList<FileItem *> result;
+    for (FileItem *item : _fileItems.values()) {
+        if (filter.match(item)) {
+            result.append(item);
         }
     }
 
@@ -89,9 +89,9 @@ QList<vfile *> FileSystem::searchVfiles(const KRQuery &filter)
 KIO::filesize_t FileSystem::totalSize()
 {
     KIO::filesize_t temp = 0;
-    for (vfile *vf : _vfiles.values()) {
-        if (!vf->vfile_isDir() && vf->vfile_getName() != "." && vf->vfile_getName() != "..") {
-            temp += vf->vfile_getSize();
+    for (FileItem *item : _fileItems.values()) {
+        if (!item->isDir() && item->getName() != "." && item->getName() != "..") {
+            temp += item->getSize();
         }
     }
 
@@ -157,8 +157,8 @@ bool FileSystem::refresh(const QUrl &directory)
 
     _isRefreshing = true;
 
-    vfileDict tempVfiles(_vfiles); // old vfiles are still used during refresh
-    _vfiles.clear();
+    FileItemDict tempFileItems(_fileItems); // old file items are still used during refresh
+    _fileItems.clear();
     if (dirChange)
         // show an empty directory while loading the new one and clear selection
         emit cleared();
@@ -170,13 +170,13 @@ bool FileSystem::refresh(const QUrl &directory)
         // cleanup and abort
         if (!dirChange)
             emit cleared();
-        clear(tempVfiles);
+        clear(tempFileItems);
         return false;
     }
 
     emit refreshDone(dirChange);
 
-    clear(tempVfiles);
+    clear(tempFileItems);
 
     updateFilesystemInfo();
 
@@ -310,7 +310,7 @@ void FileSystem::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsig
     }
 }
 
-vfile *FileSystem::createLocalVFile(const QString &name, const QString &directory, bool virt)
+FileItem *FileSystem::createLocalFileItem(const QString &name, const QString &directory, bool virt)
 {
     const QDir dir = QDir(directory);
     const QString path = dir.filePath(name);
@@ -348,13 +348,13 @@ vfile *FileSystem::createLocalVFile(const QString &name, const QString &director
         }
     }
 
-    return new vfile(virt ? path : name, QUrl::fromLocalFile(path), isDir,
+    return new FileItem(virt ? path : name, QUrl::fromLocalFile(path), isDir,
                      size, stat_p.st_mode, stat_p.st_mtime,
                      stat_p.st_uid, stat_p.st_gid, QString(), QString(),
                      isLink, linkDestination, brokenLink);
 }
 
-vfile *FileSystem::createVFileFromKIO(const KIO::UDSEntry &entry, const QUrl &directory, bool virt)
+FileItem *FileSystem::createFileItemFromKIO(const KIO::UDSEntry &entry, const QUrl &directory, bool virt)
 {
     const KFileItem kfi(entry, directory, true, true);
 
@@ -372,11 +372,11 @@ vfile *FileSystem::createVFileFromKIO(const KIO::UDSEntry &entry, const QUrl &di
     const time_t mtime = kfi.time(KFileItem::ModificationTime).toTime_t();
     const mode_t mode = kfi.mode() | kfi.permissions();
     // NOTE: we could get the mimetype (and file icon) from the kfileitem here but this is very
-    // slow. Instead, the vfile class has it's own (faster) way to determine the file type.
+    // slow. Instead, the file item class has it's own (faster) way to determine the file type.
 
     // NOTE: "broken link" flag is always false, checking link destination existence is
     // considered to be too expensive
-    return new vfile(fname, url, kfi.isDir(),
+    return new FileItem(fname, url, kfi.isDir(),
                      kfi.size(), mode, mtime,
                      (uid_t) -1, (gid_t) -1, kfi.user(), kfi.group(),
                      kfi.isLink(), kfi.linkDest(), false,
@@ -417,11 +417,11 @@ void FileSystem::slotCalcStatResult(KJob *job)
 
 // ==== private ====
 
-void FileSystem::clear(vfileDict &vfiles)
+void FileSystem::clear(FileItemDict &fileItems)
 {
-    QHashIterator<QString, vfile *> lit(vfiles);
+    QHashIterator<QString, FileItem *> lit(fileItems);
     while (lit.hasNext()) {
         delete lit.next().value();
     }
-    vfiles.clear();
+    fileItems.clear();
 }

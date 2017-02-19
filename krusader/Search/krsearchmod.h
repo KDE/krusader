@@ -67,7 +67,7 @@ private:
 signals:
     void finished();
     void searching(const QString&);
-    void found(const vfile &file, const QString &foundText);
+    void found(const FileItem &file, const QString &foundText);
 
 private slots:
     void slotProcessEvents(bool & stopped);

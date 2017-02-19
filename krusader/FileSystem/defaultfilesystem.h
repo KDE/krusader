@@ -92,7 +92,7 @@ private:
     void connectSourceFileSystem(KJob *job, const QList<QUrl> urls);
 
     bool refreshLocal(const QUrl &directory); // NOTE: this is very fast
-    vfile *createLocalVFile(const QString &name);
+    FileItem *createLocalFileItem(const QString &name);
     /// Returns the current path with symbolic links resolved
     QString realPath();
     static QUrl resolveRelativePath(const QUrl &url);
