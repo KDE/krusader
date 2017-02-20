@@ -325,7 +325,9 @@ void JobMan::slotTerminated(KrJob *krJob)
 {
     m_jobs.removeAll(krJob);
 
-    if (m_queueMode && !m_jobs.isEmpty() && !jobsAreRunning()) {
+    // NOTE: ignoring queue mode here. We assume that if queue mode is turned off, the user created
+    // jobs which were not already started with a "queue" option and still wants queue behaviour.
+    if (!m_jobs.isEmpty() && !jobsAreRunning()) {
         foreach (KrJob *job, m_jobs) {
             if (!job->isPaused()) {
                 // start next job
