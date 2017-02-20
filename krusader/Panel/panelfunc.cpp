@@ -178,21 +178,6 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExe
     }
 }
 
-#if 0
-//FIXME: see if this is still needed
-void ListPanelFunc::popErronousUrl()
-{
-    QUrl current = urlStack.last();
-    while (urlStack.count() != 0) {
-        QUrl url = urlStack.takeLast();
-        if (!current.equals(url)) {
-            immediateOpenUrl(url, true);
-            return;
-        }
-    }
-    immediateOpenUrl(QUrl::fromLocalFile(ROOT_DIR), true);
-}
-#endif
 QUrl ListPanelFunc::cleanPath(const QUrl &urlIn)
 {
     QUrl url = urlIn;
@@ -221,22 +206,22 @@ void ListPanelFunc::openUrl(const QUrl &url, const QString& nameToMakeCurrent,
         QString relative = QDir(panel->virtualPath().path() + '/').relativeFilePath(url.path());
         syncURL.setPath(QDir::cleanPath(syncURL.path() + '/' + relative));
         panel->otherPanel()->gui->setLocked(false);
-        otherFunc()->openUrlInternal(syncURL, nameToMakeCurrent, false, false, false);
+        otherFunc()->openUrlInternal(syncURL, nameToMakeCurrent, false, false);
     }
-    openUrlInternal(url, nameToMakeCurrent, false, false, manuallyEntered);
+    openUrlInternal(url, nameToMakeCurrent, false, manuallyEntered);
 }
 
-void ListPanelFunc::immediateOpenUrl(const QUrl &url, bool disableLock)
+void ListPanelFunc::immediateOpenUrl(const QUrl &url)
 {
-    openUrlInternal(url, QString(), true, disableLock, false);
+    openUrlInternal(url, QString(), true, false);
 }
 
 void ListPanelFunc::openUrlInternal(const QUrl &url, const QString& nameToMakeCurrent,
-                                    bool immediately, bool disableLock, bool manuallyEntered)
+                                    bool immediately, bool manuallyEntered)
 {
-    QUrl cleanUrl = cleanPath(url);
+    const QUrl cleanUrl = cleanPath(url);
 
-    if (!disableLock && panel->isLocked() &&
+    if (panel->isLocked() &&
             !files()->currentDirectory().matches(cleanUrl, QUrl::StripTrailingSlash)) {
         panel->_manager->newTab(url);
         urlManuallyEntered = false;

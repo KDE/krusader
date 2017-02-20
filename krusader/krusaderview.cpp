@@ -125,15 +125,8 @@ void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, const QList<QU
         verticalSplitterSizes << 100 << 100;
     }
 
-    if(leftTabs.isEmpty())
-        leftPanel()->start(QUrl::fromLocalFile(QDir::homePath()));
-    else
-        leftPanel()->start(leftTabs.at(0));
-
-    if(rightTabs.isEmpty())
-        rightPanel()->start(QUrl::fromLocalFile(QDir::homePath()));
-    else
-        rightPanel()->start(rightTabs.at(0));
+    leftPanel()->start(leftTabs.isEmpty() ? QUrl::fromLocalFile(QDir::homePath()) : leftTabs.at(0));
+    rightPanel()->start(rightTabs.isEmpty() ? QUrl::fromLocalFile(QDir::homePath()) : rightTabs.at(0));
 
     ACTIVE_PANEL->gui->slotFocusOnMe();  // left starts out active
 

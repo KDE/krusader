@@ -92,7 +92,7 @@ public:
 
     virtual void otherPanelChanged() Q_DECL_OVERRIDE;
 
-    void start(QUrl url = QUrl(), bool immediate = false);
+    void start(const QUrl &url = QUrl());
 
     void reparent(QWidget *parent, AbstractPanelManager *manager);
 

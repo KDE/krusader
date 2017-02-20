@@ -57,8 +57,6 @@ public slots:
     void navigatorUrlChanged(const QUrl &url);
     void openUrl(const QUrl &path, const QString& nameToMakeCurrent = QString(),
                  bool manuallyEntered = false);
-//     void popErronousUrl();
-    void immediateOpenUrl(const QUrl &url, bool disableLock = false);
     void rename(const QString &oldname, const QString &newname);
 
     // actions
@@ -141,8 +139,9 @@ protected:
     bool isSyncing(const QUrl &url);
     // when externallyExecutable == true, the file can be executed or opened with other software
     void openFileNameInternal(const QString &name, bool externallyExecutable);
+    void immediateOpenUrl(const QUrl &url);
     void openUrlInternal(const QUrl &url, const QString& makeCurrent,
-                         bool immediately, bool disableLock, bool manuallyEntered);
+                         bool immediately, bool manuallyEntered);
     void runCommand(QString cmd);
 
     ListPanel*           panel;     // our ListPanel

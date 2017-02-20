@@ -705,23 +705,18 @@ void ListPanel::slotFocusOnMe(bool focus)
 
 // this is used to start the panel
 //////////////////////////////////////////////////////////////////
-void ListPanel::start(QUrl url, bool immediate)
+void ListPanel::start(const QUrl &url)
 {
-    QUrl virt(url);
+    QUrl startUrl(url);
 
-    if (!virt.isValid())
-        virt = QUrl::fromLocalFile(ROOT_DIR);
-    if (virt.isLocalFile())
-        _realPath = virt;
-    else
-        _realPath = QUrl::fromLocalFile(ROOT_DIR);
+    if (!startUrl.isValid())
+        startUrl = QUrl::fromLocalFile(ROOT_DIR);
 
-    if (immediate)
-        func->immediateOpenUrl(virt, true);
-    else
-        func->openUrl(virt);
+    _realPath = startUrl.isLocalFile() ? startUrl : QUrl::fromLocalFile(ROOT_DIR);
 
-    setJumpBack(virt);
+    func->openUrl(startUrl);
+
+    setJumpBack(startUrl);
 }
 
 void ListPanel::slotStartUpdate(bool directoryChange)
