@@ -54,7 +54,6 @@ class ListPanelFunc : public QObject
 public slots:
     void execute(const QString&);
     void goInside(const QString&);
-    void navigatorUrlChanged(const QUrl &url);
     void openUrl(const QUrl &path, const QString& nameToMakeCurrent = QString(),
                  bool manuallyEntered = false);
     void rename(const QString &oldname, const QString &newname);
@@ -102,12 +101,15 @@ public slots:
     void copyToClipboard(bool move = false);
     void pasteFromClipboard();
     void syncOtherPanel();
+    /** Disable refresh if panel is not visible. */
+    void setPaused(bool paused);
 
 public:
     ListPanelFunc(ListPanel *parent);
     ~ListPanelFunc();
 
     FileSystem* files();  // return a pointer to the filesystem
+    QUrl virtualDirectory(); // return the current URL (simulated when panel is paused)
 
     inline FileItem* getFileItem(KrViewItem *item) {
         return files()->getFileItem(item->name());
@@ -155,8 +157,9 @@ protected:
     static QPointer<ListPanelFunc> copyToClipboardOrigin;
 
 private:
-    bool _refreshing; // ignore url changes while refreshing
     bool _ignoreFileSystemErrors; // ignore (repeated) errors emitted by filesystem;
+    bool _isPaused; // do not refresh while panel is not visible
+    bool _refreshAfterPaused; // refresh after not paused anymore
 };
 
 #endif

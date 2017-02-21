@@ -137,10 +137,11 @@ public slots:
     // react to file changes in filesystem (path change or refresh)
     void slotStartUpdate(bool directoryChange);
     void togglePanelPopup();
-    void panelActive(); // called when the panel becomes active
-    void panelInactive(); // called when panel becomes inactive
+    void panelVisible(); // called when the panel becomes active
+    void panelHidden(); // called when panel becomes inactive
     void refreshColors();
     void inlineRefreshCancel();
+    void setNavigatorUrl(const QUrl &url);
 
     void openMedia();
     void openHistory();
@@ -192,6 +193,7 @@ protected slots:
     void newTab(const QUrl &url, bool nextToThis = false) {
         _manager->newTab(url, nextToThis ? this : 0);
     }
+    void slotNavigatorUrlChanged(const QUrl &url);
     void resetNavigatorMode(); // set navigator mode after focus was lost
     // update filesystem meta info, disk-free and mount status
     void updateFilesystemStats(const QString &metaInfo,  const QString &fsType,
@@ -246,6 +248,7 @@ private:
     void setPopupPosition(int);
 
 private:
+    QUrl _navigatorUrl; // distinguish between new user set URL and new custom set URL
     bool _locked;
     QList<int> popupSizes;
 };

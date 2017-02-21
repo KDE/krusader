@@ -679,12 +679,13 @@ void KRslots::applicationStateChanged()
     if (MAIN_VIEW == 0) {  /* CRASH FIX: it's possible that the method is called after destroying the main view */
         return;
     }
-    if(qApp->applicationState() == Qt::ApplicationActive) {
-        LEFT_PANEL->panelActive();
-        RIGHT_PANEL->panelActive();
+    if(qApp->applicationState() == Qt::ApplicationActive ||
+       qApp->applicationState() == Qt::ApplicationInactive) {
+        LEFT_PANEL->panelVisible();
+        RIGHT_PANEL->panelVisible();
     } else {
-        LEFT_PANEL->panelInactive();
-        RIGHT_PANEL->panelInactive();
+        LEFT_PANEL->panelHidden();
+        RIGHT_PANEL->panelHidden();
     }
 }
 

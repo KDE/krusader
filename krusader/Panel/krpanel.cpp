@@ -30,10 +30,10 @@ A
 
 
 #include "krpanel.h"
+
 #include "panelfunc.h"
-#include "../krusaderview.h"
 
 QUrl KrPanel::virtualPath() const
 {
-    return func->files()->currentDirectory();
+    return func->virtualDirectory();
 }

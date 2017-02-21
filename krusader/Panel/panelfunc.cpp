@@ -91,7 +91,8 @@ A
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
 ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
-        panel(parent), fileSystemP(0), urlManuallyEntered(false), _refreshing(false), _ignoreFileSystemErrors(false)
+        panel(parent), fileSystemP(0), urlManuallyEntered(false),
+        _ignoreFileSystemErrors(false), _isPaused(true), _refreshAfterPaused(true)
 {
     history = new DirHistoryQueue(panel);
     delayTimer.setSingleShot(true);
@@ -104,18 +105,6 @@ ListPanelFunc::~ListPanelFunc()
         fileSystemP->deleteLater();
     }
     delete history;
-}
-
-void ListPanelFunc::navigatorUrlChanged(const QUrl &url)
-{
-    if (_refreshing)
-        return;
-
-    if (!ListPanel::isNavigatorEditModeSet()) {
-        panel->urlNavigator->setUrlEditable(false);
-    }
-
-    openUrl(KrServices::escapeFileUrl(url), QString(), true);
 }
 
 bool ListPanelFunc::isSyncing(const QUrl &url)
@@ -245,16 +234,23 @@ void ListPanelFunc::refresh()
 
 void ListPanelFunc::doRefresh()
 {
-    _refreshing = true;
     delayTimer.stop();
 
-    QUrl url = history->currentUrl();
+    if (_isPaused) {
+        _refreshAfterPaused = true;
+        // simulate refresh
+        panel->slotStartUpdate(true);
+        return;
+    } else {
+        _refreshAfterPaused = false;
+    }
+
+    const QUrl url = history->currentUrl();
 
     if(!url.isValid()) {
         //FIXME go back in history here ?
         panel->slotStartUpdate(true);  // refresh the panel
         urlManuallyEntered = false;
-        _refreshing = false;
         return ;
     }
 
@@ -321,9 +317,8 @@ void ListPanelFunc::doRefresh()
         // was deleted)
         const bool refreshed = fileSystemP->refresh(url);
         if (refreshed) {
-            // update the history and address bar, as the actual url might differ from the one requested
-            history->setCurrentUrl(fileSystemP->currentDirectory());
-            panel->urlNavigator->setLocationUrl(fileSystemP->currentDirectory());
+            // update the history as the actual url might differ from the one requested
+            history->setCurrentUrl(url);
             break; // we have a valid refreshed URL now
         }
         if (!panel || !panel->view)
@@ -360,7 +355,7 @@ void ListPanelFunc::doRefresh()
         if(isSyncing(url))
             panel->otherPanel()->gui->syncBrowseButton->setChecked(false);
         else if(urlManuallyEntered) {
-            panel->urlNavigator->setLocationUrl(url);
+            panel->setNavigatorUrl(url);
             if(panel == ACTIVE_PANEL)
                 panel->editLocation();
         }
@@ -372,7 +367,17 @@ void ListPanelFunc::doRefresh()
     urlManuallyEntered = false;
 
     refreshActions();
-    _refreshing = false;
+}
+
+void ListPanelFunc::setPaused(bool paused) {
+    if (paused == _isPaused)
+        return;
+    _isPaused = paused;
+
+    // TODO: disable refresh() in local file system when paused
+
+    if (!_isPaused && _refreshAfterPaused)
+        refresh();
 }
 
 void ListPanelFunc::redirectLink()
@@ -1109,8 +1114,13 @@ void ListPanelFunc::refreshActions()
 FileSystem* ListPanelFunc::files()
 {
     if (!fileSystemP)
-        fileSystemP = FileSystemProvider::instance().getFilesystem(QUrl::fromLocalFile("/"));
+        fileSystemP = FileSystemProvider::instance().getFilesystem(QUrl::fromLocalFile(ROOT_DIR));
     return fileSystemP;
+}
+
+QUrl ListPanelFunc::virtualDirectory()
+{
+    return _isPaused ? history->currentUrl() : files()->currentDirectory();
 }
 
 void ListPanelFunc::clipboardChanged(QClipboard::Mode mode)
