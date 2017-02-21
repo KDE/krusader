@@ -232,7 +232,7 @@ void PanelPopup::tabSelected(int id)
         if (!isHidden())
             tree->setFocus();
         if (ACTIVE_PANEL)
-            tree->setCurrentUrl(ACTIVE_PANEL->func->files()->currentDirectory());
+            tree->setCurrentUrl(ACTIVE_PANEL->virtualPath());
         break;
     case Preview:
         stack->setCurrentWidget(viewer);

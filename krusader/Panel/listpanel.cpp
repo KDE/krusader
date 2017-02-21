@@ -733,7 +733,7 @@ void ListPanel::slotStartUpdate(bool directoryChange)
             slotFocusOnMe();
         }
 
-        if (func->files()->isLocal())
+        if (currentUrl.isLocalFile())
             _realPath = currentUrl;
 
         urlNavigator->setLocationUrl(currentUrl);
@@ -891,7 +891,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                 KrViewItem *it = view->getCurrentKrViewItem();
 
                 if (it->name() == "..") {
-                    newPath = KIO::upUrl(func->files()->currentDirectory());
+                    newPath = KIO::upUrl(virtualPath());
                 } else {
                     FileItem *v = func->getFileItem(it);
                     // If it's a directory different from ".."
@@ -902,13 +902,13 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                         if (v && KRarcHandler::arcSupported(v->getMime()))   {
                             newPath = func->browsableArchivePath(v->getUrl().fileName());
                         } else {
-                            newPath = func->files()->currentDirectory();
+                            newPath = virtualPath();
                         }
                     }
                 }
                 otherPanel()->func->openUrl(newPath);
             } else {
-                func->openUrl(otherPanel()->func->files()->currentDirectory());
+                func->openUrl(otherPanel()->virtualPath());
             }
             return ;
         } else
