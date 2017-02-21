@@ -44,6 +44,7 @@ A
 #include <KWidgetsAddons/KCursor>
 
 #include "krpanel.h"
+#include "krviewitem.h"
 #include "panelfunc.h"
 #include "../krglobal.h"
 #include "../FileSystem/krpermhandler.h"

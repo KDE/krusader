@@ -1123,6 +1123,16 @@ QUrl ListPanelFunc::virtualDirectory()
     return _isPaused ? history->currentUrl() : files()->currentDirectory();
 }
 
+FileItem *ListPanelFunc::getFileItem(const QString &name)
+{
+    return files()->getFileItem(name);
+}
+
+FileItem *ListPanelFunc::getFileItem(KrViewItem *item)
+{
+    return files()->getFileItem(item->name());
+}
+
 void ListPanelFunc::clipboardChanged(QClipboard::Mode mode)
 {
     if (mode == QClipboard::Clipboard && this == copyToClipboardOrigin) {

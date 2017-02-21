@@ -84,8 +84,6 @@ class ListPanel : public QWidget, public KrPanel
     friend class ListPanelFunc;
     Q_OBJECT
 public:
-#define ITEM2FILEITEM(PANEL_PTR, KRVIEWITEM)  PANEL_PTR->func->files()->getFileItem(KRVIEWITEM->name())
-#define NAME2FILEITEM(PANEL_PTR, STRING_NAME) PANEL_PTR->func->files()->getFileItem(STRING_NAME)
     // constructor create the panel, but DOESN'T fill it with data, use start()
     ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg = KConfigGroup());
     ~ListPanel();

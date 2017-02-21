@@ -33,18 +33,20 @@
 #ifndef PANELFUNC_H
 #define PANELFUNC_H
 
-#include "krviewitem.h"
-#include "../FileSystem/filesystem.h"
-
 // QtCore
 #include <QObject>
 #include <QTimer>
+#include <QUrl>
 // QtGui
 #include <QClipboard>
 
+#include <KCoreAddons/KJob>
 #include <KService/KService>
 
 class DirHistoryQueue;
+class FileItem;
+class FileSystem;
+class KrViewItem;
 class ListPanel;
 
 class ListPanelFunc : public QObject
@@ -111,12 +113,8 @@ public:
     FileSystem* files();  // return a pointer to the filesystem
     QUrl virtualDirectory(); // return the current URL (simulated when panel is paused)
 
-    inline FileItem* getFileItem(KrViewItem *item) {
-        return files()->getFileItem(item->name());
-    }
-    inline FileItem* getFileItem(const QString& name) {
-        return files()->getFileItem(name);
-    }
+    FileItem* getFileItem(KrViewItem *item);
+    FileItem* getFileItem(const QString& name);
 
     void refreshActions();
     void redirectLink();
@@ -148,7 +146,7 @@ protected:
 
     ListPanel*           panel;     // our ListPanel
     DirHistoryQueue*     history;
-    FileSystem*                 fileSystemP;      // pointer to fileSystem.
+    FileSystem*          fileSystemP;      // pointer to fileSystem.
     QTimer               delayTimer;
     QUrl                 syncURL;
     QUrl                 fileToCreate; // file that's to be created by editNewFile()

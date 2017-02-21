@@ -70,6 +70,7 @@
 #include "../Panel/krsearchbar.h"
 #include "../Panel/krview.h"
 #include "../Panel/krviewfactory.h"
+#include "../Panel/krviewitem.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../Filter/filtertabs.h"

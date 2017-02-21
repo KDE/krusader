@@ -69,6 +69,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../kicons.h"
 #include "../krusaderview.h"
 #include "../krservices.h"
+#include "../FileSystem/filesystem.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../Archive/krarchandler.h"
 #include "../MountMan/kmountman.h"
@@ -637,8 +638,8 @@ void ListPanel::compareDirs(bool otherPanelToo)
 
         if (otherItem) {
             if (!func->getFileItem(item)->isDir())
-                isDifferent = ITEM2FILEITEM(otherPanel(), otherItem)->getSize() != func->getFileItem(item)->getSize();
-            isNewer = func->getFileItem(item)->getTime_t() > ITEM2FILEITEM(otherPanel(), otherItem)->getTime_t();
+                isDifferent = otherPanel()->func->getFileItem(otherItem)->getSize() != func->getFileItem(item)->getSize();
+            isNewer = func->getFileItem(item)->getTime_t() > otherPanel()->func->getFileItem(otherItem)->getTime_t();
         }
 
         switch (compareMode) {
@@ -1257,7 +1258,7 @@ void ListPanel::newTab(KrViewItem *it)
         return;
     else if (it->name() == "..") {
         newTab(KIO::upUrl(virtualPath()), true);
-    } else if (ITEM2FILEITEM(this, it)->isDir()) {
+    } else if (func->getFileItem(it)->isDir()) {
         QUrl url = virtualPath();
         url = url.adjusted(QUrl::StripTrailingSlash);
         url.setPath(url.path() + '/' + (it->name()));
