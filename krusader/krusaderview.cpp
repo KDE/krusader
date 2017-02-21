@@ -224,10 +224,10 @@ ListPanel* KrusaderView::rightPanel()
 void KrusaderView::slotPathChanged(ListPanel *p)
 {
     if(p == ACTIVE_PANEL) {
-        _cmdLine->setCurrent(p->realPath());
+        _cmdLine->setCurrent(p->lastLocalPath());
         KConfigGroup cfg = krConfig->group("General");
         if (cfg.readEntry("Send CDs", _SendCDs)) { // hopefully, this is cached in kconfig
-            _terminalDock->sendCd(p->realPath());
+            _terminalDock->sendCd(p->lastLocalPath());
         }
     }
 }

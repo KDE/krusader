@@ -566,9 +566,9 @@ void ListPanel::togglePanelPopup()
     }
 }
 
-QString ListPanel::realPath() const
+QString ListPanel::lastLocalPath() const
 {
-    return _realPath.path();
+    return _lastLocalPath;
 }
 
 void ListPanel::setButtons()
@@ -711,7 +711,8 @@ void ListPanel::start(const QUrl &url)
     if (!startUrl.isValid())
         startUrl = QUrl::fromLocalFile(ROOT_DIR);
 
-    _realPath = startUrl.isLocalFile() ? startUrl : QUrl::fromLocalFile(ROOT_DIR);
+    _lastLocalPath = startUrl.isLocalFile() ? startUrl.path() : ROOT_DIR;
+
 
     func->openUrl(startUrl);
 
@@ -733,7 +734,7 @@ void ListPanel::slotStartUpdate(bool directoryChange)
         }
 
         if (currentUrl.isLocalFile())
-            _realPath = currentUrl;
+            _lastLocalPath = currentUrl.path();
 
         urlNavigator->setLocationUrl(currentUrl);
 
@@ -1181,7 +1182,7 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
     setProperties(cfg.readEntry("Properties", 0));
     view->restoreSettings(KConfigGroup(&cfg, "View"));
 
-    _realPath = QUrl::fromLocalFile(ROOT_DIR);
+    _lastLocalPath = ROOT_DIR;
 
     if(func->history->restore(KConfigGroup(&cfg, "History")))
         func->refresh();

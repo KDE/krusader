@@ -110,8 +110,7 @@ public:
     ListPanelActions *actions() {
         return _actions;
     }
-    /// The last shown local path.
-    QString realPath() const;
+    QString lastLocalPath() const;
     QString getCurrentName();
     QStringList getSelectedNames() {
         QStringList fileNames;
@@ -209,7 +208,7 @@ signals:
 
 protected:
     int panelType;
-    QUrl _realPath; // named with _ to keep realPath() compatibility
+    QString _lastLocalPath;
     QUrl _jumpBackURL;
     int colorMask;
     bool compareMode;

@@ -485,7 +485,7 @@ void ListPanelFunc::viewDlg()
 
 void ListPanelFunc::terminal()
 {
-    SLOTS->runTerminal(panel->realPath());
+    SLOTS->runTerminal(panel->lastLocalPath());
 }
 
 void ListPanelFunc::edit()
@@ -958,13 +958,19 @@ void ListPanelFunc::unpack()
 
 // a small ugly function, used to prevent duplication of EVERY line of
 // code (maybe except 3) from createChecksum and matchChecksum
-static void checksum_wrapper(ListPanel *panel, QStringList& args, bool &folders)
+void checksum_wrapper(ListPanel *panel, QStringList& args, bool &folders)
 {
+    // determine if we need recursive mode (md5deep)
+    folders = false;
+
+    if (!panel->func->files()->isLocal()) {
+        // avoid checksum operations with wrong files
+        return;
+    }
+
     KrViewItemList items;
     panel->view->getSelectedKrViewItems(&items);
     if (items.isEmpty()) return ;   // nothing to do
-    // determine if we need recursive mode (md5deep)
-    folders = false;
     for (KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it) {
         if (panel->func->getFileItem(*it)->isDir()) {
             folders = true;
@@ -978,7 +984,7 @@ void ListPanelFunc::createChecksum()
     QStringList args;
     bool folders;
     checksum_wrapper(panel, args, folders);
-    CreateChecksumDlg dlg(args, folders, panel->realPath());
+    CreateChecksumDlg dlg(args, folders, panel->lastLocalPath());
 }
 
 void ListPanelFunc::matchChecksum()
@@ -988,7 +994,7 @@ void ListPanelFunc::matchChecksum()
     checksum_wrapper(panel, args, folders);
     QList<FileItem *> checksumFiles =
         files()->searchFileItems(KRQuery(MatchChecksumDlg::checksumTypesFilter));
-    MatchChecksumDlg dlg(args, folders, panel->realPath(),
+    MatchChecksumDlg dlg(args, folders, panel->lastLocalPath(),
         (checksumFiles.size() == 1
              ? checksumFiles[0]->getUrl().toDisplayString(QUrl::PreferLocalFile)
              : QString()));
@@ -1021,7 +1027,7 @@ void ListPanelFunc::FTPDisconnect()
     if (files()->isRemote()) {
         panel->_actions->actFTPDisconnect->setEnabled(false);
         panel->view->setNameToMakeCurrent(QString());
-        openUrl(QUrl::fromLocalFile(panel->realPath())); // open the last local URL
+        openUrl(QUrl::fromLocalFile(panel->lastLocalPath()));
     }
 }
 
