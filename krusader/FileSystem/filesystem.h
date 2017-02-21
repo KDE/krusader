@@ -82,15 +82,15 @@ public:
         return path.isEmpty() || path == "/";
     }
 
-    /// Copy (copy, move or link) files in this FILESYSTEM.
+    /// Copy (copy, move or link) files in this filesystem.
     /// Destination is absolute URL. May implemented async.
     virtual void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                            KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
                            bool showProgressInfo = true, bool reverseQueueMode = false, bool startPaused = false) = 0;
-    /// Handle file dropping in this FILESYSTEM. Destination is absolute URL. May implemented async.
+    /// Handle file dropping in this filesystem. Destination is absolute URL. May implemented async.
     virtual void dropFiles(const QUrl &destination, QDropEvent *event) = 0;
 
-    /// Copy (copy, move or link) files to the current FILESYSTEM directory or to "dir", the
+    /// Copy (copy, move or link) files to the current filesystem directory or to "dir", the
     /// directory name relative to the current dir. May implemented async.
     virtual void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
                           QString dir = "") = 0;
@@ -109,13 +109,13 @@ public:
 
     /// Return the filesystem mount point of the current directory. Empty string by default.
     virtual QString mountPoint() { return QString(); }
-    /// Returns true if this FILESYSTEM implementation does not need to be notified about changes in the
+    /// Returns true if this filesystem implementation does not need to be notified about changes in the
     /// current directory. Else false.
     virtual bool hasAutoUpdate() { return false; }
-    /// Notify this FILESYSTEM that the filesystem info of the current directory may have changed.
+    /// Notify this filesystem that the filesystem info of the current directory may have changed.
     virtual void updateFilesystemInfo() {}
 
-    /// Returns the current directory path of this FILESYSTEM.
+    /// Returns the current directory path of this filesystem.
     inline QUrl currentDirectory() { return _currentDirectory; }
     /// Return the file item for a file name in the current directory. Or 0 if not found.
     FileItem *getFileItem(const QString &name);
@@ -124,7 +124,7 @@ public:
     /// The total size of all files in the current directory (only valid after refresh).
     // TODO unused
     KIO::filesize_t totalSize();
-    /// Return the FILESYSTEM type.
+    /// Return the filesystem type.
     inline FS_TYPE type() { return _type; }
     /// Return true if the current directory is local (without recognizing mount points).
     inline bool isLocal() { return _currentDirectory.isLocalFile(); }
@@ -134,7 +134,7 @@ public:
         return (sc == "fish" || sc == "ftp" || sc == "sftp" || sc == "nfs" || sc == "smb"
                 || sc == "webdav");
     }
-    /// Returns true if this FILESYSTEM is currently refreshing the current directory.
+    /// Returns true if this filesystem is currently refreshing the current directory.
     inline bool isRefreshing() { return _isRefreshing; }
     /// Delete or trash files in the current directory. Implemented async.
     void deleteFiles(const QStringList &fileNames, bool moveToTrash = true);
@@ -170,11 +170,11 @@ public slots:
     bool refresh(const QUrl &directory = QUrl());
 
 signals:
-    /// Emitted when this FILESYSTEM is currently refreshing the FILESYSTEM directory.
+    /// Emitted when this filesystem is currently refreshing the filesystem directory.
     void refreshJobStarted(KIO::Job *job);
-    /// Emitted when an error occured in this FILESYSTEM during refresh.
+    /// Emitted when an error occured in this filesystem during refresh.
     void error(const QString &msg);
-    /// Emitted when the content of a directory was changed by this FILESYSTEM.
+    /// Emitted when the content of a directory was changed by this filesystem.
     void fileSystemChanged(const QUrl &directory);
     /// Emitted when the information for the filesystem of the current directory changed.
     /// Information is either
@@ -187,7 +187,7 @@ signals:
     void aboutToOpenDir(const QString &path);
 
 protected:
-    /// Fill the filesystem dictionary with file items, must be implemented for each FILESYSTEM.
+    /// Fill the filesystem dictionary with file items, must be implemented for each filesystem.
     virtual bool refreshInternal(const QUrl &origin, bool showHidden) = 0;
 
     /// Connect the result signal of a file operation job.
@@ -207,9 +207,9 @@ protected:
     void calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
                       unsigned long *totalDirs, bool *stop);
 
-    FS_TYPE _type;         // the filesystem type.
-    QUrl _currentDirectory; // the path or file the FILESYSTEM originates from.
-    bool _isRefreshing; // true if filesystem is busy with refreshing
+    FS_TYPE _type;          // the filesystem type.
+    QUrl _currentDirectory; // the path or file the filesystem originates from.
+    bool _isRefreshing;     // true if filesystem is busy with refreshing
     QPointer<QWidget> parentWindow;
 
 protected slots:
@@ -228,7 +228,7 @@ private:
     /// Delete and clear file items.
     void clear(FileItemDict &fileItems);
 
-    FileItemDict _fileItems;  // The list of files in the current dictionary
+    FileItemDict _fileItems;  // the list of files in the current dictionary
 
     // used in the calcSpace function
     bool *_calcKdsBusy;
