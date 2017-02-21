@@ -119,7 +119,7 @@ void VirtualFileSystem::remove(const QStringList &fileNames)
     emit fileSystemChanged(currentDirectory()); // will call refresh()
 }
 
-QUrl VirtualFileSystem::getUrl(const QString &name)
+QUrl VirtualFileSystem::getUrl(const QString &name) const
 {
     FileItem *item = getFileItem(name);
     if (!item) {
@@ -190,7 +190,7 @@ void VirtualFileSystem::calcSpace(const QString &name, KIO::filesize_t *totalSiz
     FileSystem::calcSpace(name, totalSize, totalFiles, totalDirs, stop);
 }
 
-bool VirtualFileSystem::canMoveToTrash(const QStringList &fileNames)
+bool VirtualFileSystem::canMoveToTrash(const QStringList &fileNames) const
 {
     if (isRoot())
         return false;

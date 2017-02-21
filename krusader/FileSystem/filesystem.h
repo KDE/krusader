@@ -75,9 +75,9 @@ public:
     virtual ~FileSystem();
 
     // DirListerInterface implementation
-    inline QList<FileItem *> fileItems() { return _fileItems.values(); }
-    inline unsigned long numFileItems() { return _fileItems.count(); }
-    inline bool isRoot() {
+    inline QList<FileItem *> fileItems() const { return _fileItems.values(); }
+    inline unsigned long numFileItems() const { return _fileItems.count(); }
+    inline bool isRoot() const {
         const QString path = _currentDirectory.path();
         return path.isEmpty() || path == "/";
     }
@@ -101,41 +101,41 @@ public:
 
     /// Return an absolute URL for a single file/directory name in the current directory - with no
     /// trailing slash.
-    virtual QUrl getUrl(const QString &name) = 0;
+    virtual QUrl getUrl(const QString &name) const = 0;
     /// Return a list of URLs for multiple files/directories in the current directory.
-    QList<QUrl> getUrls(const QStringList &names);
+    QList<QUrl> getUrls(const QStringList &names) const;
     /// Return true if all files can be moved to trash, else false.
-    virtual bool canMoveToTrash(const QStringList &fileNames) = 0;
+    virtual bool canMoveToTrash(const QStringList &fileNames) const = 0;
 
     /// Return the filesystem mount point of the current directory. Empty string by default.
-    virtual QString mountPoint() { return QString(); }
+    virtual QString mountPoint() const { return QString(); }
     /// Returns true if this filesystem implementation does not need to be notified about changes in the
     /// current directory. Else false.
-    virtual bool hasAutoUpdate() { return false; }
+    virtual bool hasAutoUpdate() const { return false; }
     /// Notify this filesystem that the filesystem info of the current directory may have changed.
     virtual void updateFilesystemInfo() {}
 
     /// Returns the current directory path of this filesystem.
-    inline QUrl currentDirectory() { return _currentDirectory; }
+    inline QUrl currentDirectory() const { return _currentDirectory; }
     /// Return the file item for a file name in the current directory. Or 0 if not found.
-    FileItem *getFileItem(const QString &name);
+    FileItem *getFileItem(const QString &name) const;
     /// Return a list of file items for a search query. Or an empty list if nothing was found.
     QList<FileItem *> searchFileItems(const KRQuery &filter);
     /// The total size of all files in the current directory (only valid after refresh).
     // TODO unused
-    KIO::filesize_t totalSize();
+    KIO::filesize_t totalSize() const;
     /// Return the filesystem type.
-    inline FS_TYPE type() { return _type; }
+    inline FS_TYPE type() const { return _type; }
     /// Return true if the current directory is local (without recognizing mount points).
-    inline bool isLocal() { return _currentDirectory.isLocalFile(); }
+    inline bool isLocal() const { return _currentDirectory.isLocalFile(); }
     /// Return true if the current directory is a remote (network) location.
-    inline bool isRemote() {
+    inline bool isRemote() const {
         const QString sc = _currentDirectory.scheme();
         return (sc == "fish" || sc == "ftp" || sc == "sftp" || sc == "nfs" || sc == "smb"
                 || sc == "webdav");
     }
     /// Returns true if this filesystem is currently refreshing the current directory.
-    inline bool isRefreshing() { return _isRefreshing; }
+    inline bool isRefreshing() const { return _isRefreshing; }
     /// Delete or trash files in the current directory. Implemented async.
     void deleteFiles(const QStringList &fileNames, bool moveToTrash = true);
 

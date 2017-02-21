@@ -86,13 +86,13 @@ public:
         clear();
     }
 
-    virtual QList<FileItem *> fileItems() Q_DECL_OVERRIDE {
+    virtual QList<FileItem *> fileItems() const Q_DECL_OVERRIDE {
         return _fileItems;
     }
-    virtual unsigned long numFileItems() Q_DECL_OVERRIDE {
+    virtual unsigned long numFileItems() const Q_DECL_OVERRIDE {
         return _fileItems.count();
     }
-    virtual bool isRoot() Q_DECL_OVERRIDE {
+    virtual bool isRoot() const Q_DECL_OVERRIDE {
         return true;
     }
 

@@ -34,9 +34,9 @@ public:
     DirListerInterface(QObject *parent) : QObject(parent) {}
     virtual ~DirListerInterface() {}
 
-    virtual QList<FileItem *> fileItems() = 0;
-    virtual unsigned long numFileItems() = 0;
-    virtual bool isRoot() = 0;
+    virtual QList<FileItem *> fileItems() const = 0;
+    virtual unsigned long numFileItems() const = 0;
+    virtual bool isRoot() const = 0;
 
 signals:
     /// Emitted when refreshing finished. The list of file items should now be updated by the view.

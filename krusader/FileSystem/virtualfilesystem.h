@@ -61,8 +61,8 @@ public:
     void calcSpace(const QString &name, KIO::filesize_t *totalSize, unsigned long *totalFiles,
                    unsigned long *totalDirs, bool *stop) Q_DECL_OVERRIDE;
     /// Returns the URL of the real file or an empty URL if file with name does not exist.
-    QUrl getUrl(const QString& name) Q_DECL_OVERRIDE;
-    bool canMoveToTrash(const QStringList &fileNames) Q_DECL_OVERRIDE;
+    QUrl getUrl(const QString& name) const Q_DECL_OVERRIDE;
+    bool canMoveToTrash(const QStringList &fileNames) const Q_DECL_OVERRIDE;
 
     /// Remove virtual files or directories. Real files stay untouched.
     void remove(const QStringList &fileNames);

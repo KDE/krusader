@@ -133,7 +133,7 @@ void DefaultFileSystem::rename(const QString &oldName, const QString &newName)
     KIO::FileUndoManager::self()->recordJob(KIO::FileUndoManager::Rename, {oldUrl}, newUrl, job);
 }
 
-QUrl DefaultFileSystem::getUrl(const QString& name)
+QUrl DefaultFileSystem::getUrl(const QString& name) const
 {
     // NOTE: on non-local fs file URL does not have to be path + name!
     FileItem *fileItem = getFileItem(name);

@@ -66,11 +66,11 @@ public:
     void mkDir(const QString &name) Q_DECL_OVERRIDE;
     void rename(const QString &fileName, const QString &newName) Q_DECL_OVERRIDE;
     /// Return URL for file name - even if file does not exist.
-    QUrl getUrl(const QString &name) Q_DECL_OVERRIDE;
-    bool canMoveToTrash(const QStringList &) Q_DECL_OVERRIDE { return isLocal(); }
+    QUrl getUrl(const QString &name) const Q_DECL_OVERRIDE;
+    bool canMoveToTrash(const QStringList &) const Q_DECL_OVERRIDE { return isLocal(); }
 
-    QString mountPoint() { return _mountPoint; }
-    bool hasAutoUpdate() Q_DECL_OVERRIDE { return !_watcher.isNull(); }
+    QString mountPoint() const { return _mountPoint; }
+    bool hasAutoUpdate() const Q_DECL_OVERRIDE { return !_watcher.isNull(); }
     void updateFilesystemInfo() Q_DECL_OVERRIDE;
 
 protected:

@@ -60,7 +60,7 @@ FileSystem::~FileSystem()
     emit cleared(); // please don't remove this line. This informs the view about deleting the references
 }
 
-QList<QUrl> FileSystem::getUrls(const QStringList &names)
+QList<QUrl> FileSystem::getUrls(const QStringList &names) const
 {
     QList<QUrl> urls;
     for (const QString name : names) {
@@ -69,7 +69,7 @@ QList<QUrl> FileSystem::getUrls(const QStringList &names)
     return urls;
 }
 
-FileItem *FileSystem::getFileItem(const QString &name)
+FileItem *FileSystem::getFileItem(const QString &name) const
 {
     return _fileItems.contains(name) ? _fileItems.value(name) : 0;
 }
@@ -86,7 +86,7 @@ QList<FileItem *> FileSystem::searchFileItems(const KRQuery &filter)
     return result;
 }
 
-KIO::filesize_t FileSystem::totalSize()
+KIO::filesize_t FileSystem::totalSize() const
 {
     KIO::filesize_t temp = 0;
     for (FileItem *item : _fileItems.values()) {
