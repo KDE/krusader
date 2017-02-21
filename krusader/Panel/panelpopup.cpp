@@ -219,7 +219,7 @@ void PanelPopup::tabSelected(int id)
 {
     QUrl url;
     const FileItem *fileitem = 0;
-    if (ACTIVE_PANEL && ACTIVE_PANEL->func->files() && ACTIVE_PANEL->view)
+    if (ACTIVE_PANEL && ACTIVE_PANEL->view)
         fileitem = ACTIVE_PANEL->func->files()->getFileItem(ACTIVE_PANEL->view->getCurrentItem());
     if(fileitem)
         url = fileitem->getUrl();

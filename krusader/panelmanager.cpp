@@ -369,11 +369,8 @@ void PanelManager::refreshAllTabs()
     int i = 0;
     while (i < _tabbar->count()) {
         ListPanel *panel = _tabbar->getPanel(i);
-        if (panel && panel->func) {
-            FileSystem *fileSystem = panel->func->files();
-            if (fileSystem) {
-                fileSystem->refresh();
-            }
+        if (panel) {
+            panel->func->refresh();
         }
         ++i;
     }
@@ -382,9 +379,6 @@ void PanelManager::refreshAllTabs()
 void PanelManager::deletePanel(ListPanel * p)
 {
     disconnect(p);
-    if (p && p->func && p->func->files()) {
-        p->func->files()->deleteLater();
-    }
     delete p;
 }
 

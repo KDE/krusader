@@ -124,7 +124,7 @@ protected:
 //      The list panel constructor       //
 /////////////////////////////////////////////////////
 ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg) :
-        QWidget(parent), KrPanel(manager),
+        QWidget(parent), KrPanel(manager, this, new ListPanelFunc(this)),
         panelType(-1), colorMask(255), compareMode(false),
         previewJob(0), inlineRefreshJob(0), searchBar(0), cdRootButton(0), cdUpButton(0),
         popupBtn(0), popup(0), fileSystemError(0), _locked(false)
@@ -133,8 +133,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
         panelType = cfg.readEntry("Type", -1);
     if (panelType == -1)
         panelType = defaultPanelType();
-    gui = this;
-    func = new ListPanelFunc(this);
+
     _actions = krApp->listPanelActions();
 
     setAcceptDrops(true);
