@@ -56,8 +56,7 @@ class KChooseDir
 public:
     struct ChooseResult {
         QUrl url;
-        bool reverseQueueMode;
-        bool startPaused;
+        bool enqueue;
         bool preserveAttrs; // NOTE: field never read
         QUrl baseURL;       // NOTE: field never read
     };
@@ -73,6 +72,7 @@ public:
     static ChooseResult getCopyDir(const QString &text, const QUrl &url, const QUrl &cwd,
                                    bool preserveAttrs = false, const QUrl &baseURL = QUrl());
 
+
   private:
     static QUrl get(const QString &text, const QUrl &url, const QUrl &cwd, KFile::Modes mode);
 };
@@ -81,14 +81,13 @@ class KUrlRequesterDlgForCopy : public QDialog
 {
     Q_OBJECT
 public:
-    KUrlRequesterDlgForCopy(const QUrl& url, const QString& text, bool presAttrs,
-                            QWidget *parent, bool modal = true, QUrl baseURL = QUrl());
+    KUrlRequesterDlgForCopy(const QUrl& url, const QString& text, bool presAttrs, QWidget *parent,
+                            bool modal = true, const QUrl &baseURL = QUrl());
 
     QUrl selectedURL() const;
     QUrl baseURL() const;
     bool preserveAttrs();
-    bool isReverseQueueMode() { return reverseQueueMode; };
-    bool isStartPaused() { return pauseBox->isChecked(); };
+    bool isQueued() { return queueStart; }
     bool copyDirStructure();
     void hidePreserveAttrs() {
 //         preserveAttrsCB->hide();
@@ -101,7 +100,7 @@ protected:
 
 
 private slots:
-    void slotReverseQueueMode();
+    void slotQueueButtonClicked();
     void slotTextChanged(const QString &);
     void slotDirStructCBChanged();
 private:
@@ -109,9 +108,8 @@ private:
     QComboBox *baseUrlCombo;
 //     QCheckBox *preserveAttrsCB;
     QCheckBox *copyDirStructureCB;
-    QCheckBox *pauseBox;
     QPushButton *okButton;
-    bool reverseQueueMode = false;
+    bool queueStart = false;
 };
 
 class KRGetDate : public QDialog

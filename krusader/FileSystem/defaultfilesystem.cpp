@@ -49,7 +49,6 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "../krservices.h"
-#include "../JobMan/jobman.h"
 #include "../JobMan/krjob.h"
 
 DefaultFileSystem::DefaultFileSystem(): FileSystem(), _watcher()
@@ -58,22 +57,21 @@ DefaultFileSystem::DefaultFileSystem(): FileSystem(), _watcher()
 }
 
 void DefaultFileSystem::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
-                            KIO::CopyJob::CopyMode mode, bool showProgressInfo, bool reverseQueueMode, bool startPaused)
+                            KIO::CopyJob::CopyMode mode, bool showProgressInfo,
+                            JobMan::StartMode startMode)
 {
     // resolve relative path before resolving symlinks
     const QUrl dest = resolveRelativePath(destination);
 
     KIO::JobFlags flags = showProgressInfo ? KIO::DefaultFlags : KIO::HideProgressInfo;
 
-    // allow job to be started only manually when startPaused=true AND queueMode=false
-    bool queueMode = krJobMan->isQueueModeEnabled() != reverseQueueMode;
-    KrJob *krJob = KrJob::createCopyJob(mode, urls, destination, flags, startPaused && !queueMode);
+    KrJob *krJob = KrJob::createCopyJob(mode, urls, destination, flags);
     connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectJob(job, dest); });
     if (mode == KIO::CopyJob::Move) { // notify source about removed files
         connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectSourceFileSystem(job, urls); });
     }
 
-    krJobMan->manageJob(krJob, reverseQueueMode, startPaused);
+    krJobMan->manageJob(krJob, startMode);
 }
 
 void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)

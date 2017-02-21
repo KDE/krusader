@@ -87,7 +87,6 @@ A
 #include "../KViewer/krviewer.h"
 #include "../GUI/syncbrowsebutton.h"
 #include "../MountMan/kmountman.h"
-#include "../JobMan/jobman.h"
 
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
@@ -561,29 +560,18 @@ void ListPanelFunc::slotFileCreated(KJob *job)
     fileToCreate = QUrl();
 }
 
-void ListPanelFunc::moveFilesByQueue()
-{
-    moveFiles(!krJobMan->isQueueModeEnabled());
-}
-
-void ListPanelFunc::copyFilesByQueue()
-{
-    copyFiles(!krJobMan->isQueueModeEnabled());
-}
-
-void ListPanelFunc::copyFiles(bool reverseQueueMode, bool move)
+void ListPanelFunc::copyFiles(bool enqueue, bool move)
 {
     const QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
         return ;  // safety
 
     QUrl destination = panel->otherPanel()->virtualPath();
-    bool startPaused = false;
 
-    KConfigGroup group(krConfig, "Advanced");
+    const KConfigGroup group(krConfig, "Advanced");
+    const bool showDialog = move ? group.readEntry("Confirm Move", _ConfirmMove) :
+                                   group.readEntry("Confirm Copy", _ConfirmCopy);
 
-    bool showDialog = move ? group.readEntry("Confirm Move", _ConfirmMove) :
-                             group.readEntry("Confirm Copy", _ConfirmCopy);
     if (showDialog) {
         QString operationText;
         if (move) {
@@ -597,14 +585,18 @@ void ListPanelFunc::copyFiles(bool reverseQueueMode, bool move)
         }
 
         // ask the user for the copy/move dest
-        KChooseDir::ChooseResult result = KChooseDir::getCopyDir(operationText, destination, panel->virtualPath());
+        const KChooseDir::ChooseResult result =
+            KChooseDir::getCopyDir(operationText, destination, panel->virtualPath());
         destination = result.url;
         if (destination.isEmpty())
             return ; // the user canceled
 
-        reverseQueueMode = result.reverseQueueMode;
-        startPaused = result.startPaused;
+        enqueue = result.enqueue;
     }
+
+    const JobMan::StartMode startMode =
+        enqueue && krJobMan->isQueueModeEnabled() ? JobMan::Delay :
+        !enqueue && !krJobMan->isQueueModeEnabled() ? JobMan::Start : JobMan::Enqueue;
 
     const QList<QUrl> fileUrls = files()->getUrls(fileNames);
 
@@ -619,7 +611,7 @@ void ListPanelFunc::copyFiles(bool reverseQueueMode, bool move)
     }
 
     KIO::CopyJob::CopyMode mode = move ? KIO::CopyJob::Move : KIO::CopyJob::Copy;
-    FileSystemProvider::instance().startCopyFiles(fileUrls, destination, mode, true, reverseQueueMode, startPaused);
+    FileSystemProvider::instance().startCopyFiles(fileUrls, destination, mode, true, startMode);
 
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         panel->view->saveSelection();

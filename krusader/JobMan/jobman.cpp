@@ -39,29 +39,28 @@
 class JobMenuAction : public QWidgetAction
 {
     Q_OBJECT
-
 public:
-    JobMenuAction(KrJob *krJob, QObject *parent) : QWidgetAction(parent), _krJob(krJob)
+    JobMenuAction(KrJob *krJob, QObject *parent) : QWidgetAction(parent), m_krJob(krJob)
     {
         QWidget *container = new QWidget();
         QGridLayout *layout = new QGridLayout(container);
-        _description = new QLabel(krJob->description());
-        _progressBar = new QProgressBar();
-        layout->addWidget(_description, 0, 0, 1, 3);
-        layout->addWidget(_progressBar, 1, 0);
+        m_description = new QLabel(krJob->description());
+        m_progressBar = new QProgressBar();
+        layout->addWidget(m_description, 0, 0, 1, 3);
+        layout->addWidget(m_progressBar, 1, 0);
 
-        _pauseResumeButton = new QPushButton();
+        m_pauseResumeButton = new QPushButton();
         updatePauseResumeButton();
-        connect(_pauseResumeButton, &QPushButton::clicked, this,
+        connect(m_pauseResumeButton, &QPushButton::clicked, this,
               &JobMenuAction::slotPauseResumeButtonClicked);
-        layout->addWidget(_pauseResumeButton, 1, 1);
+        layout->addWidget(m_pauseResumeButton, 1, 1);
 
-        _cancelButton = new QPushButton();
-        _cancelButton->setIcon(QIcon::fromTheme("remove"));
-        _cancelButton->setToolTip(i18n("Cancel Job"));
-        connect(_cancelButton, &QPushButton::clicked,
+        m_cancelButton = new QPushButton();
+        m_cancelButton->setIcon(QIcon::fromTheme("remove"));
+        m_cancelButton->setToolTip(i18n("Cancel Job"));
+        connect(m_cancelButton, &QPushButton::clicked,
                 this, &JobMenuAction::slotCancelButtonClicked);
-        layout->addWidget(_cancelButton, 1, 2);
+        layout->addWidget(m_cancelButton, 1, 2);
 
         setDefaultWidget(container);
 
@@ -91,71 +90,71 @@ protected slots:
         if (!textField.first.isEmpty()) {
             text += QString(" - %1: %2").arg(textField.first, textField.second);
         }
-        _description->setText(text);
+        m_description->setText(text);
 
         if (!field2.first.isEmpty() && !field1.first.isEmpty()) {
             // NOTE: tooltips for QAction items in menu are not shown
-            _progressBar->setToolTip(QString("%1: %2").arg(field1.first, field1.second));
+            m_progressBar->setToolTip(QString("%1: %2").arg(field1.first, field1.second));
         }
     }
 
-    void slotPercent(KJob *, unsigned long percent) { _progressBar->setValue(percent); }
+    void slotPercent(KJob *, unsigned long percent) { m_progressBar->setValue(percent); }
 
     void updatePauseResumeButton()
     {
-        _pauseResumeButton->setIcon(QIcon::fromTheme(
-            _krJob->isRunning() ? "media-playback-pause" :
-            _krJob->isManuallyPaused() ? "media-playback-start" : "chronometer-start"));
-        _pauseResumeButton->setToolTip(_krJob->isRunning() ? i18n("Pause Job") :
-                                       _krJob->isManuallyPaused() ? i18n("Resume Job") :
+        m_pauseResumeButton->setIcon(QIcon::fromTheme(
+            m_krJob->isRunning() ? "media-playback-pause" :
+            m_krJob->isPaused() ? "media-playback-start" : "chronometer-start"));
+        m_pauseResumeButton->setToolTip(m_krJob->isRunning() ? i18n("Pause Job") :
+                                       m_krJob->isPaused() ? i18n("Resume Job") :
                                                                     i18n("Start Job"));
     }
 
     void slotResult(KJob *job)
     {
-        // NOTE: _job may already set to 0 now
+        // NOTE: m_job may already set to NULL now
         if(!job->error()) {
             // percent signal is not reliable, set manually
-            _progressBar->setValue(100);
+            m_progressBar->setValue(100);
         }
     }
 
     void slotTerminated()
     {
-        _pauseResumeButton->setEnabled(false);
-        _cancelButton->setIcon(QIcon::fromTheme("edit-clear"));
-        _cancelButton->setToolTip(i18n("Clear"));
+        m_pauseResumeButton->setEnabled(false);
+        m_cancelButton->setIcon(QIcon::fromTheme("edit-clear"));
+        m_cancelButton->setToolTip(i18n("Clear"));
 
-        _krJob = 0;
+        m_krJob = 0;
     }
 
     void slotPauseResumeButtonClicked()
     {
-        if (!_krJob)
+        if (!m_krJob)
           return;
 
-        if (_krJob->isRunning())
-            _krJob->pause();
+        if (m_krJob->isRunning())
+            m_krJob->pause();
         else
-            _krJob->start();
+            m_krJob->start();
     }
 
     void slotCancelButtonClicked()
     {
-        if (_krJob) {
-          _krJob->cancel();
+        if (m_krJob) {
+          m_krJob->cancel();
         } else {
           deleteLater();
         }
     }
 
 private:
-    KrJob *_krJob;
+    KrJob *m_krJob;
 
-    QLabel *_description;
-    QProgressBar *_progressBar;
-    QPushButton *_pauseResumeButton;
-    QPushButton *_cancelButton;
+    QLabel *m_description;
+    QProgressBar *m_progressBar;
+    QPushButton *m_pauseResumeButton;
+    QPushButton *m_cancelButton;
 };
 
 #include "jobman.moc" // required for class definitions with Q_OBJECT macro in implementation files
@@ -163,86 +162,86 @@ private:
 
 const QString JobMan::sDefaultToolTip = i18n("No jobs");
 
-JobMan::JobMan(QObject *parent) : QObject(parent), _messageBox(0)
+JobMan::JobMan(QObject *parent) : QObject(parent), m_messageBox(0)
 {
     // job control action
-    _controlAction = new KToolBarPopupAction(QIcon::fromTheme("media-playback-pause"),
+    m_controlAction = new KToolBarPopupAction(QIcon::fromTheme("media-playback-pause"),
                                           i18n("Play/Pause &Job"), this);
-    _controlAction->setEnabled(false);
-    connect(_controlAction, &QAction::triggered, this, &JobMan::slotControlActionTriggered);
+    m_controlAction->setEnabled(false);
+    connect(m_controlAction, &QAction::triggered, this, &JobMan::slotControlActionTriggered);
 
     QMenu *menu = new QMenu(krMainWindow);
     menu->setMinimumWidth(300);
     // make scrollable if menu is too long
     menu->setStyleSheet("QMenu { menu-scrollable: 1; }");
-    _controlAction->setMenu(menu);
+    m_controlAction->setMenu(menu);
 
     // progress bar action
-    _progressBar = new QProgressBar();
-    _progressBar->setToolTip(sDefaultToolTip);
-    _progressBar->setEnabled(false);
+    m_progressBar = new QProgressBar();
+    m_progressBar->setToolTip(sDefaultToolTip);
+    m_progressBar->setEnabled(false);
     // listen to clicks on progress bar
-    _progressBar->installEventFilter(this);
+    m_progressBar->installEventFilter(this);
 
     QWidgetAction *progressAction = new QWidgetAction(krMainWindow);
     progressAction->setText(i18n("Job Progress Bar"));
-    progressAction->setDefaultWidget(_progressBar);
-    _progressAction = progressAction;
+    progressAction->setDefaultWidget(m_progressBar);
+    m_progressAction = progressAction;
 
     // job queue mode action
     KConfigGroup cfg(krConfig, "JobManager");
-    _queueMode = cfg.readEntry("Queue Mode", false);
-    _modeAction = new QAction(QIcon::fromTheme("media-playlist-repeat"), i18n("Job Queue Mode"),
+    m_queueMode = cfg.readEntry("Queue Mode", false);
+    m_modeAction = new QAction(QIcon::fromTheme("media-playlist-repeat"), i18n("Job Queue Mode"),
                               krMainWindow);
-    _modeAction->setToolTip(i18n("Run only one job in parallel"));
-    _modeAction->setCheckable(true);
-    _modeAction->setChecked(_queueMode);
-    connect(_modeAction, &QAction::toggled, [=](bool checked) mutable {
-        _queueMode = checked;
-        cfg.writeEntry("Queue Mode", _queueMode);
+    m_modeAction->setToolTip(i18n("Run only one job in parallel"));
+    m_modeAction->setCheckable(true);
+    m_modeAction->setChecked(m_queueMode);
+    connect(m_modeAction, &QAction::toggled, [=](bool checked) mutable {
+        m_queueMode = checked;
+        cfg.writeEntry("Queue Mode", m_queueMode);
     });
 
     // undo action
     KIO::FileUndoManager *undoManager = KIO::FileUndoManager::self();
     undoManager->uiInterface()->setParentWidget(krMainWindow);
 
-    _undoAction = new QAction(QIcon::fromTheme("edit-undo"), i18n("Undo Last Job"), krMainWindow);
-    _undoAction->setEnabled(false);
-    connect(_undoAction, &QAction::triggered, undoManager, &KIO::FileUndoManager::undo);
+    m_undoAction = new QAction(QIcon::fromTheme("edit-undo"), i18n("Undo Last Job"), krMainWindow);
+    m_undoAction->setEnabled(false);
+    connect(m_undoAction, &QAction::triggered, undoManager, &KIO::FileUndoManager::undo);
     connect(undoManager, static_cast<void(KIO::FileUndoManager::*)(bool)>(&KIO::FileUndoManager::undoAvailable),
-            _undoAction, &QAction::setEnabled);
+            m_undoAction, &QAction::setEnabled);
     connect(undoManager, &KIO::FileUndoManager::undoTextChanged, this, &JobMan::slotUndoTextChange);
 }
 
 bool JobMan::waitForJobs(bool waitForUserInput)
 {
-    if (_jobs.isEmpty() && !waitForUserInput)
+    if (m_jobs.isEmpty() && !waitForUserInput)
         return true;
 
     // attempt to get all job threads does not work
     //QList<QThread *> threads = krMainWindow->findChildren<QThread *>();
 
-    _autoCloseMessageBox = !waitForUserInput;
+    m_autoCloseMessageBox = !waitForUserInput;
 
-    _messageBox = new QMessageBox(krMainWindow);
-    _messageBox->setWindowTitle(i18n("Warning"));
-    _messageBox->setIconPixmap(QIcon::fromTheme("dialog-warning")
+    m_messageBox = new QMessageBox(krMainWindow);
+    m_messageBox->setWindowTitle(i18n("Warning"));
+    m_messageBox->setIconPixmap(QIcon::fromTheme("dialog-warning")
                              .pixmap(QMessageBox::standardIcon(QMessageBox::Information).size()));
-    _messageBox->setText(i18n("Are you sure you want to quit?"));
-    _messageBox->addButton(QMessageBox::Abort);
-    _messageBox->addButton(QMessageBox::Cancel);
-    _messageBox->setDefaultButton(QMessageBox::Cancel);
-    for (KrJob *job: _jobs)
+    m_messageBox->setText(i18n("Are you sure you want to quit?"));
+    m_messageBox->addButton(QMessageBox::Abort);
+    m_messageBox->addButton(QMessageBox::Cancel);
+    m_messageBox->setDefaultButton(QMessageBox::Cancel);
+    for (KrJob *job: m_jobs)
         connect(job, &KrJob::terminated, this, &JobMan::slotUpdateMessageBox);
     slotUpdateMessageBox();
 
-    int result = _messageBox->exec(); // blocking
-    _messageBox->deleteLater();
-    _messageBox = 0;
+    int result = m_messageBox->exec(); // blocking
+    m_messageBox->deleteLater();
+    m_messageBox = 0;
 
     // accepted -> cancel all jobs
     if (result == QMessageBox::Abort) {
-        for (KrJob *job: _jobs) {
+        for (KrJob *job: m_jobs) {
             job->cancel();
         }
         return true;
@@ -251,24 +250,23 @@ bool JobMan::waitForJobs(bool waitForUserInput)
     return false;
 }
 
-void JobMan::manageJob(KrJob *job, bool reverseQueueMode, bool startPaused)
+void JobMan::manageJob(KrJob *job, StartMode startMode)
 {
-
-    JobMenuAction *menuAction = new JobMenuAction(job, _controlAction);
+    JobMenuAction *menuAction = new JobMenuAction(job, m_controlAction);
     connect(menuAction, &QObject::destroyed, this, &JobMan::slotUpdateControlAction);
-    _controlAction->menu()->addAction(menuAction);
+    m_controlAction->menu()->addAction(menuAction);
     slotUpdateControlAction();
 
     connect(job, &KrJob::started, this, &JobMan::slotKJobStarted);
     connect(job, &KrJob::terminated, this, &JobMan::slotTerminated);
 
-    bool isQueueMode = _queueMode != reverseQueueMode;
-
-    if (!startPaused && (!jobsAreRunning() || !isQueueMode)) {
+    const bool enqueue = startMode == Enqueue || (startMode == Default && m_queueMode);
+    if (startMode == Start || (startMode == Default && !m_queueMode) ||
+        (enqueue && !jobsAreRunning())) {
         job->start();
     }
 
-    _jobs.append(job);
+    m_jobs.append(job);
 
     updateUI();
 }
@@ -287,17 +285,17 @@ void JobMan::slotKJobStarted(KJob *job)
 
 void JobMan::slotControlActionTriggered()
 {
-    if (_jobs.isEmpty()) {
-        _controlAction->menu()->clear();
-        _controlAction->setEnabled(false);
+    if (m_jobs.isEmpty()) {
+        m_controlAction->menu()->clear();
+        m_controlAction->setEnabled(false);
         return;
     }
 
     const bool anyRunning = jobsAreRunning();
-    if (!anyRunning && _queueMode) {
-        _jobs.first()->start();
+    if (!anyRunning && m_queueMode) {
+        m_jobs.first()->start();
     } else {
-        for (KrJob *job : _jobs) {
+        for (KrJob *job : m_jobs) {
             if (anyRunning)
                 job->pause();
             else
@@ -315,21 +313,23 @@ void JobMan::slotDescription(KJob*,const QString &description, const QPair<QStri
                      const QPair<QString,QString> &field2)
 {
     // TODO cache all descriptions
-    if (_jobs.length() > 1)
+    if (m_jobs.length() > 1)
         return;
 
-    _progressBar->setToolTip(
+    m_progressBar->setToolTip(
         QString("%1\n%2: %3\n%4: %5")
             .arg(description, field1.first, field1.second, field2.first, field2.second));
 }
 
 void JobMan::slotTerminated(KrJob *krJob)
 {
-    _jobs.removeAll(krJob);
+    m_jobs.removeAll(krJob);
 
-    if (!_jobs.isEmpty() && !jobsAreRunning()) {
-        foreach (KrJob *job, _jobs) {
-            if (!job->isManuallyPaused()) {
+    // NOTE: ignoring queue mode here. We assume that if queue mode is turned off, the user created
+    // jobs which were not already started with a "queue" option and still wants queue behaviour.
+    if (!m_jobs.isEmpty() && !jobsAreRunning()) {
+        foreach (KrJob *job, m_jobs) {
+            if (!job->isPaused()) {
                 // start next job
                 job->start();
                 break;
@@ -342,34 +342,34 @@ void JobMan::slotTerminated(KrJob *krJob)
 
 void JobMan::slotUpdateControlAction()
 {
-    _controlAction->setEnabled(!_controlAction->menu()->isEmpty());
+    m_controlAction->setEnabled(!m_controlAction->menu()->isEmpty());
 }
 
 void JobMan::slotUndoTextChange(const QString &text)
 {
-    _undoAction->setToolTip(KIO::FileUndoManager::self()->undoAvailable() ? text :
+    m_undoAction->setToolTip(KIO::FileUndoManager::self()->undoAvailable() ? text :
                                                                             i18n("Undo Last Job"));
 }
 
 void JobMan::slotUpdateMessageBox()
 {
-    if (!_messageBox)
+    if (!m_messageBox)
         return;
 
-    if (_jobs.isEmpty() && _autoCloseMessageBox) {
-        _messageBox->done(QMessageBox::Abort);
-        return;
-    }
-
-    if (_jobs.isEmpty()) {
-        _messageBox->setInformativeText("");
-        _messageBox->setButtonText(QMessageBox::Abort, "Quit");
+    if (m_jobs.isEmpty() && m_autoCloseMessageBox) {
+        m_messageBox->done(QMessageBox::Abort);
         return;
     }
 
-    _messageBox->setInformativeText(i18np("There is one job operation left.",
-                                          "There are %1 job operations left.", _jobs.length()));
-    _messageBox->setButtonText(QMessageBox::Abort, "Abort Jobs and Quit");
+    if (m_jobs.isEmpty()) {
+        m_messageBox->setInformativeText("");
+        m_messageBox->setButtonText(QMessageBox::Abort, "Quit");
+        return;
+    }
+
+    m_messageBox->setInformativeText(i18np("There is one job operation left.",
+                                          "There are %1 job operations left.", m_jobs.length()));
+    m_messageBox->setButtonText(QMessageBox::Abort, "Abort Jobs and Quit");
 }
 
 // #### private
@@ -377,32 +377,32 @@ void JobMan::slotUpdateMessageBox()
 void JobMan::updateUI()
 {
     int totalPercent = 0;
-    for (KrJob *job: _jobs) {
+    for (KrJob *job: m_jobs) {
         totalPercent += job->percent();
     }
-    const bool hasJobs = !_jobs.isEmpty();
-    _progressBar->setEnabled(hasJobs);
+    const bool hasJobs = !m_jobs.isEmpty();
+    m_progressBar->setEnabled(hasJobs);
     if (hasJobs) {
-        _progressBar->setValue(totalPercent / _jobs.length());
+        m_progressBar->setValue(totalPercent / m_jobs.length());
     } else {
-        _progressBar->reset();
+        m_progressBar->reset();
     }
     if (!hasJobs)
-        _progressBar->setToolTip(i18n("No Jobs"));
-    if (_jobs.length() > 1)
-        _progressBar->setToolTip(i18np("%1 Job", "%1 Jobs", _jobs.length()));
+        m_progressBar->setToolTip(i18n("No Jobs"));
+    if (m_jobs.length() > 1)
+        m_progressBar->setToolTip(i18np("%1 Job", "%1 Jobs", m_jobs.length()));
 
     const bool running = jobsAreRunning();
-    _controlAction->setIcon(QIcon::fromTheme(
+    m_controlAction->setIcon(QIcon::fromTheme(
         !hasJobs ? "edit-clear" : running ? "media-playback-pause" : "media-playback-start"));
-    _controlAction->setToolTip(!hasJobs ? i18n("Clear Job List") : running ?
+    m_controlAction->setToolTip(!hasJobs ? i18n("Clear Job List") : running ?
                                           i18n("Pause All Jobs") :
                                           i18n("Resume Job List"));
 }
 
 bool JobMan::jobsAreRunning()
 {
-    for (KrJob *job: _jobs)
+    for (KrJob *job: m_jobs)
         if (job->isRunning())
             return true;
 

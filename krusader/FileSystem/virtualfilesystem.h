@@ -46,8 +46,8 @@ public:
 
     /// Create virtual files in this filesystem. Copy mode and showProgressInfo are ignored.
     void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
-                   KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
-                   bool showProgressInfo = true, bool reverseQueueMode = false, bool startPaused = false) Q_DECL_OVERRIDE;
+                   KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy, bool showProgressInfo = false,
+                   JobMan::StartMode startMode = JobMan::Start) Q_DECL_OVERRIDE;
     /// Handle file dropping in this filesystem: Always creates virtual files.
     void dropFiles(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
 

@@ -31,27 +31,26 @@
 
 class KrJob;
 
-
 /**
  * @brief The job manager provides a progress dialog and control over (KIO) file operation jobs.
  *
  * Job manager does not have a window (or dialog). All functions are provided via toolbar actions.
- * Icon, text and tooltip are already set, shortcuts are missing.
+ * Icon, text and tooltip are already set but shortcuts are not set here.
  *
- * If Job manager queue mode is activated only the first job is started. If more jobs are incoming
- * via manageJob() they are not started. If the running job finishes the next job in line is
+ * If job managers queue mode is activated, only the first job (incoming via manageJob()) is started
+ * and more incoming jobs are delayed: If the running job finishes, the next job in line is
  * started.
  *
- * Note that the desktop system (e.g. KDE Plasma Shell) may also has control over the jobs.
- *
+ * NOTE: The desktop system (e.g. KDE Plasma Shell) may also can control the jobs.
  * Reference: plasma-workspace/kuiserver/progresslistdelegate.h
  *
- * If a job still exists Krusader does not exit on quit() until the job is finished. If the job is
- * paused this takes forever. Call waitForJobs() before exit to prevent this.
+ * NOTE: If a job still exists, Krusader does not exit on quit() and waits until the job is
+ * finished. If the job is paused, this takes forever. Call waitForJobs() before exit to prevent
+ * this.
  *
- * About undoing jobs: If jobs are recorded (all KrJobs are, some in FileSystem) we can undo them with
- * FileUndoManager (which is a singleton) here.
- * It would be great if each job in the job list could be undone invividually but FileUndoManager
+ * About undoing jobs: If jobs are recorded (all KrJobs are, some in FileSystem) we can undo them
+ * with FileUndoManager (which is a singleton) here.
+ * It would be great if each job in the job list could be undone individually but FileUndoManager
  * is currently (KF5.27) only able to undo the last recorded job.
  */
 class JobMan : public QObject
@@ -59,14 +58,26 @@ class JobMan : public QObject
     Q_OBJECT
 
 public:
+    /** Job start mode for new jobs. */
+    enum StartMode {
+        /** Enqueue or start job - depending on QueueMode. */
+        Default,
+        /** Enqueue job. I.e. start if no other jobs are running. */
+        Enqueue,
+        /** Job is always started. */
+        Start,
+        /** Job is always not started now. */
+        Delay
+    };
+
     explicit JobMan(QObject *parent = 0);
     /** Toolbar action icon for pausing/starting all jobs with drop down menu showing all jobs.*/
-    QAction *controlAction() const { return _controlAction; }
+    QAction *controlAction() const { return m_controlAction; }
     /** Toolbar action progress bar showing the average job progress percentage of all jobs.*/
-    QAction *progressAction() const { return _progressAction; }
+    QAction *progressAction() const { return m_progressAction; }
     /** Toolbar action combo box for changing the .*/
-    QAction *modeAction() const { return _modeAction; }
-    QAction *undoAction() const { return _undoAction; }
+    QAction *modeAction() const { return m_modeAction; }
+    QAction *undoAction() const { return m_undoAction; }
 
     /** Wait for all jobs to terminate (blocking!).
      *
@@ -78,20 +89,14 @@ public:
      */
     bool waitForJobs(bool waitForUserInput);
 
-    /* Curent info about _queueMode state */
-    bool isQueueModeEnabled() { return _queueMode; };
+    /** Return if queue mode is enabled or not. */
+    bool isQueueModeEnabled() const { return m_queueMode; }
 
-public slots:
     /** Display, monitor and give user ability to control a job.
      *
-     * If reverseQueueMode is false, job is queued or run in parallel accordingly
-     * to job manager mode. When reverseQueueMode is true, opposite manager mode is chosen.
-     *
-     * When startPaused is true, job is never started immediately. Instead, it is waiting
-     * to be manually unpaused. Or in case of enabled queueMode it is started automatically
-     * when other jobs are finished.
+     * Whether the job is started now or delayed depends on startMode (and current queue mode flag).
      */
-    void manageJob(KrJob *krJob, bool reverseQueueMode = false, bool startPaused = false);
+    void manageJob(KrJob *krJob, StartMode startMode = Default);
 
 protected slots:
     void slotKJobStarted(KJob *krJob);
@@ -108,17 +113,17 @@ private:
     void updateUI();
     bool jobsAreRunning();
 
-    QList<KrJob *> _jobs; // all jobs not terminated (finished or canceled) yet
-    bool _queueMode;
+    QList<KrJob *> m_jobs; // all jobs not terminated (finished or canceled) yet
+    bool m_queueMode;
 
-    KToolBarPopupAction *_controlAction;
-    QProgressBar *_progressBar;
-    QAction *_progressAction;
-    QAction *_modeAction;
-    QAction *_undoAction;
+    KToolBarPopupAction *m_controlAction;
+    QProgressBar *m_progressBar;
+    QAction *m_progressAction;
+    QAction *m_modeAction;
+    QAction *m_undoAction;
 
-    QMessageBox *_messageBox;
-    bool _autoCloseMessageBox;
+    QMessageBox *m_messageBox;
+    bool m_autoCloseMessageBox;
 
     static const QString sDefaultToolTip;
 };

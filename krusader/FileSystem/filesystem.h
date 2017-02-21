@@ -47,6 +47,7 @@
 
 #include "fileitem.h"
 #include "krquery.h"
+#include "../JobMan/jobman.h"
 
 
 /**
@@ -86,7 +87,8 @@ public:
     /// Destination is absolute URL. May implemented async.
     virtual void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                            KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
-                           bool showProgressInfo = true, bool reverseQueueMode = false, bool startPaused = false) = 0;
+                           bool showProgressInfo = true,
+                           JobMan::StartMode startMode = JobMan::Default) = 0;
     /// Handle file dropping in this filesystem. Destination is absolute URL. May implemented async.
     virtual void dropFiles(const QUrl &destination, QDropEvent *event) = 0;
 

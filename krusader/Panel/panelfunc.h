@@ -74,10 +74,10 @@ public slots:
     void viewDlg();
     void edit();
     void editNew(); // create a new textfile and edit it
-    void moveFilesByQueue(); // start in queue regardless of _queueMode state
-    void copyFilesByQueue(); // start in queue regardless of _queueMode state
-    void moveFiles(bool reverseQueueMode = false) { copyFiles(reverseQueueMode, true); }
-    void copyFiles(bool reverseQueueMode = false, bool move = false);
+    void moveFilesDelayed() { moveFiles(true); }
+    void copyFilesDelayed() { copyFiles(true); }
+    void moveFiles(bool enqueue = false) { copyFiles(enqueue, true); }
+    void copyFiles(bool enqueue = false, bool move = false);
 
     /*!
      * asks the user the new directory name

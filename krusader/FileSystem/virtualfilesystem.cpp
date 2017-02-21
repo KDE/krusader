@@ -56,7 +56,7 @@ VirtualFileSystem::VirtualFileSystem() : FileSystem()
 
 void VirtualFileSystem::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                          KIO::CopyJob::CopyMode /*mode*/, bool /*showProgressInfo*/,
-                         bool /*reverseQueueMode*/, bool /*startPaused*/)
+                         JobMan::StartMode /*startMode*/)
 {
     const QString dir = QDir(destination.path()).absolutePath().remove('/');
 
