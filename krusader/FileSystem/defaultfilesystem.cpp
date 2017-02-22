@@ -31,8 +31,8 @@
 #include "defaultfilesystem.h"
 
 // QtCore
-#include <QEventLoop>
 #include <QDir>
+#include <QEventLoop>
 
 #include <KConfigCore/KSharedConfig>
 #include <KCoreAddons/KUrlMimeData>

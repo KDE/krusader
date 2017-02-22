@@ -35,10 +35,8 @@
 
 // QtCore
 #include <QDir>
-#include <QEventLoop>
 #include <QList>
 // QtWidgets
-#include <QApplication>
 #include <qplatformdefs.h>
 
 #include <KConfigCore/KSharedConfig>
@@ -96,19 +94,6 @@ KIO::filesize_t FileSystem::totalSize() const
 
     return temp;
 }
-
-void FileSystem::calcSpace(const QString &name, KIO::filesize_t *totalSize,
-                            unsigned long *totalFiles, unsigned long *totalDirs, bool *stop)
-{
-    const QUrl url = getUrl(name);
-    if (url.isEmpty()) {
-        krOut << "item for calculating space not found: " << name;
-        return;
-    }
-
-    calcSpace(url, totalSize, totalFiles, totalDirs, stop);
-}
-
 
 QUrl FileSystem::ensureTrailingSlash(const QUrl &url)
 {
@@ -214,42 +199,6 @@ bool FileSystem::showHiddenFiles()
     return gl.readEntry("Show Hidden", _ShowHidden);
 }
 
-void FileSystem::calcSpace(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
-                    unsigned long *totalDirs, bool *stop)
-{
-    if (stop && *stop)
-        return;
-
-    _calcKdsTotalSize = totalSize;
-    _calcKdsTotalFiles = totalFiles;
-    _calcKdsTotalDirs = totalDirs;
-
-    KIO::StatJob *statJob = KIO::stat(url, KIO::HideProgressInfo);
-    connect(statJob, &KIO::Job::result, this, &FileSystem::slotCalcStatResult);
-
-    QEventLoop eventLoop;
-    connect(statJob, &KJob::finished, &eventLoop, &QEventLoop::quit);
-    eventLoop.exec(); // blocking until quit()
-
-    if (_calcEntry.count() == 0)
-        return; // statJob failed
-
-    const KFileItem kfi(_calcEntry, url, true);
-    if (kfi.isFile() || kfi.isLink()) {
-        (*totalFiles)++;
-        *totalSize += kfi.size();
-        return;
-    }
-
-    // URL should be a directory
-
-    KIO::DirectorySizeJob *directorySizeJob = KIO::directorySize(url);
-    connect(directorySizeJob, &KIO::Job::result, this, &FileSystem::slotCalcKdsResult);
-
-    connect(directorySizeJob, &KJob::finished, &eventLoop, &QEventLoop::quit);
-    eventLoop.exec(); // blocking until quit()
-}
-
 FileItem *FileSystem::createLocalFileItem(const QString &name, const QString &directory, bool virt)
 {
     const QDir dir = QDir(directory);
@@ -335,22 +284,6 @@ void FileSystem::slotJobResult(KJob *job, bool refresh)
     if (refresh) {
         FileSystem::refresh();
     }
-}
-
-/// to be implemented
-void FileSystem::slotCalcKdsResult(KJob *job)
-{
-    if (!job->error()) {
-        KIO::DirectorySizeJob *kds = static_cast<KIO::DirectorySizeJob *>(job);
-        *_calcKdsTotalSize += kds->totalSize();
-        *_calcKdsTotalFiles += kds->totalFiles();
-        *_calcKdsTotalDirs += kds->totalSubdirs();
-    }
-}
-
-void FileSystem::slotCalcStatResult(KJob *job)
-{
-    _calcEntry = job->error() ? KIO::UDSEntry() : static_cast<KIO::StatJob *>(job)->statResult();
 }
 
 // ==== private ====

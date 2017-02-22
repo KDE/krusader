@@ -142,11 +142,6 @@ public:
     /// Delete or trash files in the current directory. Implemented async.
     void deleteFiles(const QStringList &fileNames, bool moveToTrash = true);
 
-    /// Calculate the amount of space occupied by a file or directory in the current directory
-    /// (recursive).
-    virtual void calcSpace(const QString &name, KIO::filesize_t *totalSize,
-                           unsigned long *totalFiles, unsigned long *totalDirs, bool *stop);
-
     /// Return the input URL with a trailing slash if absent.
     static QUrl ensureTrailingSlash(const QUrl &url);
     /// Return the input URL without trailing slash.
@@ -160,7 +155,7 @@ public:
     static FileItem *createLocalFileItem(const QString &name, const QString &directory,
                                    bool virt = false);
     /// Return a file item for a KIO result. Returns 0 if entry is not needed
-    static FileItem *createFileItemFromKIO(const KIO::UDSEntry &_calcEntry, const QUrl &directory,
+    static FileItem *createFileItemFromKIO(const KIO::UDSEntry &entry, const QUrl &directory,
                                      bool virt = false);
 
     // set the parent window to be used for dialogs
@@ -200,10 +195,6 @@ protected:
     /// Add a new file item to the internal dictionary (while refreshing).
     inline void addFileItem(FileItem *item) { _fileItems.insert(item->getName(), item); }
 
-    /// Calculate the size of any KIO file or directory (recursive).
-    void calcSpace(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
-                   unsigned long *totalDirs, bool *stop);
-
     FS_TYPE _type;          // the filesystem type.
     QUrl _currentDirectory; // the path or file the filesystem originates from.
     bool _isRefreshing;     // true if filesystem is busy with refreshing
@@ -213,12 +204,6 @@ protected slots:
     /// Handle result after job (except when refreshing!) finished
     void slotJobResult(KJob *job, bool refresh);
 
-private slots:
-    /// Handle result of KIO::DirectorySizeJob when calculating URL size
-    void slotCalcKdsResult(KJob *job);
-    /// Handle result of KIO::StatJob when calculating URL size
-    void slotCalcStatResult(KJob *job);
-
 private:
     typedef QHash<QString, FileItem *> FileItemDict;
 
@@ -226,15 +211,6 @@ private:
     void clear(FileItemDict &fileItems);
 
     FileItemDict _fileItems;  // the list of files in the current dictionary
-
-    // used in the calcSpace function
-    KIO::DirectorySizeJob *_dirSizeJob;
-    QTimer *_dirSizeUpdateTimer;
-    KIO::UDSEntry _calcEntry;
-    KIO::filesize_t *_calcKdsTotalSize;
-    unsigned long *_calcKdsTotalFiles;
-    unsigned long *_calcKdsTotalDirs;
-
 };
 
 #endif

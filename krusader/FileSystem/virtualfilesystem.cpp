@@ -170,26 +170,6 @@ void VirtualFileSystem::rename(const QString &fileName, const QString &newName)
     connect(job, &KIO::Job::result, [=]() { emit fileSystemChanged(currentDirectory()); });
 }
 
-void VirtualFileSystem::calcSpace(const QString &name, KIO::filesize_t *totalSize, unsigned long *totalFiles,
-                         unsigned long *totalDirs, bool *stop)
-{
-    if (currentDir() == "/") {
-        if (!_virtFilesystemDict.contains(name)) {
-            return; // virtual folder not found
-        }
-
-        const QList<QUrl> *urlList = _virtFilesystemDict[name];
-        if (urlList) {
-            for (int i = 0; (i != urlList->size()) && !(*stop); i++) {
-                FileSystem::calcSpace((*urlList)[i], totalSize, totalFiles, totalDirs, stop);
-            }
-        }
-        return;
-    }
-
-    FileSystem::calcSpace(name, totalSize, totalFiles, totalDirs, stop);
-}
-
 bool VirtualFileSystem::canMoveToTrash(const QStringList &fileNames) const
 {
     if (isRoot())
