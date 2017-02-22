@@ -9,6 +9,7 @@ set(FileSystem_SRCS
     krpermhandler.cpp
     krquery.cpp
     krtrashhandler.cpp
+    sizecalculator.cpp
     virtualfilesystem.cpp
     ../../krArc/krlinecountingprocess.cpp
 )
