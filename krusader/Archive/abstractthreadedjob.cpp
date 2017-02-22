@@ -492,17 +492,43 @@ void AbstractJobThread::sendAddProgress(qulonglong value, const QString &progres
     _job->sendEvent(infoEvent);
 }
 
-void AbstractJobThread::calcSpaceLocal(const QUrl &baseUrl, const QStringList & files, KIO::filesize_t &totalSize,
-                                       unsigned long &totalDirs, unsigned long &totalFiles)
+void countFiles(const QString &path, unsigned long &totalFiles, bool &stop)
 {
-    sendReset(i18n("Calculating space"));
+    const QDir dir(path);
+    if (!dir.exists()) {
+        totalFiles++; // assume its a file
+        return;
+    }
+
+    for (const QString name : dir.entryList()) {
+        if (stop)
+            return;
+
+        if (name == QStringLiteral(".") || name == QStringLiteral(".."))
+            continue;
+
+        countFiles(dir.absoluteFilePath(name), totalFiles, stop);
+    }
+}
+
+void AbstractJobThread::countLocalFiles(const QUrl &baseUrl, const QStringList &files,
+                                       unsigned long &totalFiles)
+{
+    sendReset(i18n("Counting files"));
 
     FileSystem *calcSpaceFileSystem = FileSystemProvider::instance().getFilesystem(baseUrl);
     calcSpaceFileSystem->refresh(baseUrl);
+    for (const QString name : files) {
+        if (_exited)
+            return;
 
-    for (int i = 0; i != files.count(); i++) {
-        calcSpaceFileSystem->calcSpace(files[i], &totalSize, &totalFiles, &totalDirs, &_exited);
+        const QString path = calcSpaceFileSystem->getUrl(name).toLocalFile();
+        if (!QFileInfo(path).exists())
+            return;
+
+        countFiles(path, totalFiles, _exited);
     }
+
     delete calcSpaceFileSystem;
 }
 
