@@ -79,6 +79,7 @@ A
 #include "../FileSystem/virtualfilesystem.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../FileSystem/filesystemprovider.h"
+#include "../FileSystem/sizecalculator.h"
 #include "../Dialogs/packgui.h"
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krpleasewait.h"
@@ -994,25 +995,31 @@ void ListPanelFunc::matchChecksum()
              : QString()));
 }
 
-void ListPanelFunc::calcSpace(KrViewItem *item)
+void ListPanelFunc::calcSpace()
 {
-    QStringList items;
-    if (item) {
-        items << item->name();
-    } else {
-        panel->view->getSelectedItems(&items);
-        if (items.isEmpty()) {
-            panel->view->selectAllIncludingDirs();
-            panel->view->getSelectedItems(&items);
-            if (items.isEmpty())
-                return ; // nothing to do
-        }
+    QStringList fileNames;
+    panel->view->getSelectedItems(&fileNames);
+    if (fileNames.isEmpty()) {
+        // current file is ".." dummy file
+        panel->view->selectAllIncludingDirs();
+        panel->view->getSelectedItems(&fileNames);
     }
-    QPointer<KrCalcSpaceDialog> calc = new KrCalcSpaceDialog(krMainWindow, panel, items, item != 0);
-    calc->exec();
-    panel->slotUpdateTotals();
 
-    delete calc;
+    SizeCalculator *sizeCalculator = new SizeCalculator(files()->getUrls(fileNames));
+    connect(sizeCalculator, &SizeCalculator::calculated, this, &ListPanelFunc::slotSizeCalculated);
+    connect(sizeCalculator, &SizeCalculator::finished, panel, &ListPanel::slotUpdateTotals);
+    connect(this, &ListPanelFunc::destroyed, sizeCalculator, &SizeCalculator::deleteLater);
+    KrCalcSpaceDialog::showDialog(panel, sizeCalculator);
+}
+
+void ListPanelFunc::slotSizeCalculated(const QUrl &url, KIO::filesize_t size)
+{
+    KrViewItem *item = panel->view->findItemByUrl(url);
+    if (!item)
+        return;
+
+    item->setSize(size);
+    item->redraw();
 }
 
 void ListPanelFunc::FTPDisconnect()

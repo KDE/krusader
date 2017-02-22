@@ -313,8 +313,6 @@
 #define _ShiftCtrlRight  false
 // Space Moves Down
 #define _SpaceMovesDown  true
-// Space Calc Space
-#define _SpaceCalcSpace  true
 // Insert Moves Down
 #define _InsertMovesDown true
 // Immediate Context Menu

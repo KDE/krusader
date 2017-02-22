@@ -59,6 +59,7 @@ public:
     KrViewItem* getCurrentKrViewItem() Q_DECL_OVERRIDE;
     KrViewItem* findItemByName(const QString &name) Q_DECL_OVERRIDE;
     KrViewItem *findItemByFileItem(FileItem *fileitem) Q_DECL_OVERRIDE;
+    KrViewItem *findItemByUrl(const QUrl &url) Q_DECL_OVERRIDE;
     QString getCurrentItem() const Q_DECL_OVERRIDE;
     KrViewItem* getKrViewItemAt(const QPoint &vp) Q_DECL_OVERRIDE;
     void setCurrentItem(const QString& name, const QModelIndex &fallbackToIndex=QModelIndex()) Q_DECL_OVERRIDE;

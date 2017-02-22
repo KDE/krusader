@@ -93,8 +93,8 @@ public slots:
     void pack();
     void unpack();
     void testArchive();
-    // Calculate the occupied space of an item or the currently selected item and show it in a dialog
-    void calcSpace(KrViewItem *item = 0);
+    /** Calculate the occupied space of the currently selected items and show a dialog. */
+    void calcSpace();
     void properties();
     void cut() {
         copyToClipboard(true);
@@ -133,6 +133,8 @@ protected slots:
     void slotFileCreated(KJob *job); // a file has been created by editNewFile()
     void historyGotoPos(int pos);
     void clipboardChanged(QClipboard::Mode mode);
+    // Update the directory size in view
+    void slotSizeCalculated(const QUrl &url, KIO::filesize_t size);
 
 protected:
     QUrl cleanPath(const QUrl &url);

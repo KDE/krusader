@@ -39,7 +39,6 @@ class KrInterView;
 class KrViewItem
 {
     friend class KrView;
-    friend class KrCalcSpaceDialog;
 
 public:
     KrViewItem(FileItem *fileitem, KrInterView *parentView);
