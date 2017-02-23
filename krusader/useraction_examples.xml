@@ -12,10 +12,10 @@
  <action name="sample_edit_as_root" >
   <title>Edit as root</title>
   <tooltip>Edit a file as root</tooltip>
-  <icon>kwrite</icon>
+  <icon>kate</icon>
   <category>Samples</category>
   <description>Edit a file with root permissions</description>
-  <command run_as="root" >kwrite %aCurrent%</command>
+  <command>EDITOR='kate -b' SUDO_ASKPASS=/usr/bin/ssh-askpass sudoedit -A %aCurrent%</command>
   <defaultshortcut>Ctrl+E</defaultshortcut>
  </action>
  <action name="sample_newmount" >
