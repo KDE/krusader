@@ -977,13 +977,14 @@ void ListPanel::panelInactive()
 void ListPanel::slotPreviewJobStarted(KJob *job)
 {
     previewJob = job;
+    connect(job, SIGNAL(percent(KJob*, unsigned long)), SLOT(slotPreviewJobPercent(KJob*, unsigned long)));
+    connect(job, &KJob::result, this, &ListPanel::slotPreviewJobResult);
+    inlineRefreshCancelButton->setMaximumHeight(popupBtn->height());
+    inlineRefreshCancelButton->show();
     previewProgress->setValue(0);
     previewProgress->setFormat(i18n("loading previews: %p%"));
-    previewProgress->show();
-    inlineRefreshCancelButton->show();
     previewProgress->setMaximumHeight(inlineRefreshCancelButton->height());
-    connect(job, SIGNAL(percent(KJob*, unsigned long)), SLOT(slotPreviewJobPercent(KJob*, unsigned long)));
-    connect(job, SIGNAL(result(KJob*)), SLOT(slotPreviewJobResult(KJob*)));
+    previewProgress->show();
 }
 
 void ListPanel::slotPreviewJobPercent(KJob* /*job*/, unsigned long percent)
