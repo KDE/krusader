@@ -95,7 +95,7 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
 
     // file operations
     action(i18n("Right-click Menu"), 0, Qt::Key_Menu, _gui, SLOT(rightclickMenu()), "rightclick menu");
-    actProperties = action(i18n("&Properties..."), 0, Qt::ALT + Qt::Key_Return, _func, SLOT(properties()), "properties");
+    actProperties = action(i18n("&Properties..."), "document-properties", Qt::ALT + Qt::Key_Return, _func, SLOT(properties()), "properties");
     actCompDirs = action(i18n("&Compare Folders"), "kr_comparedirs", Qt::ALT + Qt::SHIFT + Qt::Key_C, _gui, SLOT(compareDirs()), "compare dirs");
     actCalculate = action(i18n("Calculate &Occupied Space"), "accessories-calculator", 0, _func, SLOT(calcSpace()), "calculate");
     actPack = action(i18n("Pac&k..."), "archive-insert", Qt::ALT + Qt::SHIFT + Qt::Key_P, _func, SLOT(pack()), "pack");

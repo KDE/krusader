@@ -154,9 +154,10 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
     if (panel->func->files()->isLocal()) {
         // create the preview popup
         preview.setUrls(panel->func->files()->getUrls(fileNames));
-        QAction *pAct = addMenu(&preview);
-        pAct->setData(QVariant(PREVIEW_ID));
-        pAct->setText(i18n("Preview"));
+        QAction *previewAction = addMenu(&preview);
+        previewAction->setData(QVariant(PREVIEW_ID));
+        previewAction->setText(i18n("Preview"));
+        previewAction->setIcon(krLoader->loadIcon("document-print-preview", KIconLoader::Small));
     }
 
     // -------------- Open with: try to find-out which apps can open the file
@@ -182,9 +183,10 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
             openWith.addAction(krLoader->loadIcon("utilities-terminal", KIconLoader::Small),
                                i18n("Terminal"))->setData(QVariant(OPEN_TERM_ID));
         openWith.addAction(i18n("Other..."))->setData(QVariant(CHOOSE_ID));
-        QAction *owAct = addMenu(&openWith);
-        owAct->setData(QVariant(OPEN_WITH_ID));
-        owAct->setText(i18n("Open With"));
+        QAction *openWithAction = addMenu(&openWith);
+        openWithAction->setData(QVariant(OPEN_WITH_ID));
+        openWithAction->setText(i18n("Open With"));
+        openWithAction->setIcon(krLoader->loadIcon("document-open", KIconLoader::Small));
         addSeparator();
     }
 
@@ -215,15 +217,20 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
     // ------- MOVE
     addAction(i18n("Move..."))->setData(QVariant(MOVE_ID));
     // ------- RENAME - only one file
-    if (!multipleSelections && !inTrash)
-        addAction(i18n("Rename"))->setData(QVariant(RENAME_ID));
+    if (!multipleSelections && !inTrash) {
+        addAction(krLoader->loadIcon("edit-rename", KIconLoader::Small),
+                  i18n("Rename"))->setData(QVariant(RENAME_ID));
+    }
 
     // -------- MOVE TO TRASH
     if (KConfigGroup(krConfig, "General").readEntry("Move To Trash", _MoveToTrash)
-        && panel->func->files()->canMoveToTrash(fileNames))
-        addAction(i18n("Move to Trash"))->setData(QVariant(TRASH_ID));
+        && panel->func->files()->canMoveToTrash(fileNames)) {
+        addAction(krLoader->loadIcon("user-trash", KIconLoader::Small),
+                  i18n("Move to Trash"))->setData(QVariant(TRASH_ID));
+    }
     // -------- DELETE
-    addAction(i18n("Delete"))->setData(QVariant(DELETE_ID));
+    addAction(krLoader->loadIcon("edit-delete", KIconLoader::Small),
+              i18n("Delete"))->setData(QVariant(DELETE_ID));
     // -------- SHRED - only one file
     /*      if ( panel->func->files() ->getType() == filesystem:fileSystemM_NORMAL &&
                 !fileitem->isDir() && !multipleSelections )
@@ -237,9 +244,10 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
         linkPopup.addAction(i18n("New Hardlink..."))->setData(QVariant(NEW_LINK_ID));
         if (file->isSymLink())
             linkPopup.addAction(i18n("Redirect Link..."))->setData(QVariant(REDIRECT_LINK_ID));
-        QAction *linkAct = addMenu(&linkPopup);
-        linkAct->setData(QVariant(LINK_HANDLING_ID));
-        linkAct->setText(i18n("Link Handling"));
+        QAction *linkAction = addMenu(&linkPopup);
+        linkAction->setData(QVariant(LINK_HANDLING_ID));
+        linkAction->setText(i18n("Link Handling"));
+        linkAction->setIcon(krLoader->loadIcon("insert-link", KIconLoader::Small));
     }
     addSeparator();
 
@@ -260,7 +268,8 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
 
     // --------- send by mail
     if (KrServices::supportedTools().contains("MAIL") && !file->isDir()) {
-        addAction(i18n("Send by Email"))->setData(QVariant(SEND_BY_EMAIL_ID));
+        addAction(krLoader->loadIcon("mail-send", KIconLoader::Small),
+                  i18n("Send by Email"))->setData(QVariant(SEND_BY_EMAIL_ID));
     }
 
     // --------- empty trash
@@ -278,9 +287,12 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
 
     // --------- copy/paste
     addSeparator();
-    addAction(i18n("Copy to Clipboard"))->setData(QVariant(COPY_CLIP_ID));
-    addAction(i18n("Cut to Clipboard"))->setData(QVariant(MOVE_CLIP_ID));
-    addAction(i18n("Paste from Clipboard"))->setData(QVariant(PASTE_CLIP_ID));
+    addAction(krLoader->loadIcon("edit-copy", KIconLoader::Small),
+              i18n("Copy to Clipboard"))->setData(QVariant(COPY_CLIP_ID));
+    addAction(krLoader->loadIcon("edit-cut", KIconLoader::Small),
+              i18n("Cut to Clipboard"))->setData(QVariant(MOVE_CLIP_ID));
+    addAction(krLoader->loadIcon("edit-paste", KIconLoader::Small),
+              i18n("Paste from Clipboard"))->setData(QVariant(PASTE_CLIP_ID));
     addSeparator();
 
     // --------- properties
@@ -294,13 +306,15 @@ void KrPopupMenu::addEmptyMenuEntries()
 
 void KrPopupMenu::addCreateNewMenu()
 {
-    createNewPopup.addAction(krLoader->loadIcon("folder", KIconLoader::Small), i18n("Folder..."))->setData(QVariant(MKDIR_ID));
-    createNewPopup.addAction(krLoader->loadIcon("text-plain", KIconLoader::Small), i18n("Text File..."))->setData(QVariant(NEW_TEXT_FILE_ID));
+    createNewPopup.addAction(krLoader->loadIcon("folder", KIconLoader::Small),
+                             i18n("Folder..."))->setData(QVariant(MKDIR_ID));
+    createNewPopup.addAction(krLoader->loadIcon("text-plain", KIconLoader::Small),
+                             i18n("Text File..."))->setData(QVariant(NEW_TEXT_FILE_ID));
 
-    QAction *newAct = addMenu(&createNewPopup);
-    newAct->setData(QVariant(CREATE_NEW_ID));
-    newAct->setText(i18n("Create New"));
-
+    QAction *newAction = addMenu(&createNewPopup);
+    newAction->setData(QVariant(CREATE_NEW_ID));
+    newAction->setText(i18n("Create New"));
+    newAction->setIcon(krLoader->loadIcon("document-new", KIconLoader::Small));
 }
 
 void KrPopupMenu::performAction(int id)
