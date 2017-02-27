@@ -55,10 +55,8 @@ distros will probably use similar names:
 
 - kate                  Powerful Text Editor
 
-- kde-cli-tools         allows editing file types from Properties dialog
-
-- kdesu                 graphical sudo tool, required to run Krusader in root
-or kdesudo              mode
+- kde-cli-tools         tools required to edit file types from Properties dialog
+                        or run Krusader in root mode
 
 - kio-extras            Enables transparent handling of various archive types
                         such as .tar and network protocols like SFTP
@@ -135,6 +133,10 @@ $ tar xvf krusader-xx.xx.tar.gz
 
 -DQT_PLUGIN_INSTALL_DIR=
   many system force this path to keep kde4 plugins separated from the kde5 ones
+
+-DKDESU_PATH=/foo/bar/kdesu
+  this needs to be set on distributions that override default kdesu installation
+  path (libexec/kf5/kdesu) or if your install prefix doesn't match KDE's.
 
 -DENABLE_SYNCHRONIZER=OFF
   disables building the Synchronizer module. This module caused data loss, now

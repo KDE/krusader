@@ -270,14 +270,13 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
 {
     _supported = KrServices::supportedTools(); // get list of available tools
 
-    QList<Application*> vecDiff, vecMail, vecRename, vecSudo, vecChecksum;
+    QList<Application*> vecDiff, vecMail, vecRename, vecChecksum;
     Application* kdiff3         = new Application("kdiff3",        "http://kdiff3.sourceforge.net/", KrServices::cmdExist("kdiff3"));
     Application* kompare        = new Application("kompare",       "http://www.caffeinated.me.uk/kompare/", KrServices::cmdExist("kompare"));
     Application* xxdiff         = new Application("xxdiff",        "http://xxdiff.sourceforge.net/", KrServices::cmdExist("xxdiff"));
     Application* thunderbird    = new Application("thunderbird",   "http://www.mozilla.org/", KrServices::cmdExist("thunderbird"));
     Application* kmail          = new Application("kmail",         "http://kmail.kde.org/", KrServices::cmdExist("kmail"));
     Application* krename        = new Application("krename",       "http://www.krename.net/", KrServices::cmdExist("krename"));
-    Application* kdesu          = new Application("kdesu",         "https://docs.kde.org/stable5/en/kde-workspace/kdesu/", KrServices::cmdExist("kdesu"));
     Application* md5sum         = new Application("md5sum",        "http://www.gnu.org/software/textutils/textutils.html", KrServices::cmdExist("md5sum"));
     Application* md5deep        = new Application("md5deep",       "http://md5deep.sourceforge.net/", KrServices::cmdExist("md5deep"));
     Application* sha1deep       = new Application("sha1deep",      "http://md5deep.sourceforge.net/", KrServices::cmdExist("sha1deep"));
@@ -292,7 +291,6 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
     vecMail.push_back(thunderbird);
     vecMail.push_back(kmail);
     vecRename.push_back(krename);
-    vecSudo.push_back(kdesu);
     vecChecksum.push_back(md5sum);
     vecChecksum.push_back(md5deep);
     vecChecksum.push_back(sha1deep);
@@ -304,7 +302,6 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
     ApplicationGroup* diff     = new ApplicationGroup(i18n("diff utility"),     PS("DIFF"),   vecDiff);
     ApplicationGroup* mail     = new ApplicationGroup(i18n("email client"),     PS("MAIL"),   vecMail);
     ApplicationGroup* rename   = new ApplicationGroup(i18n("batch renamer"),    PS("RENAME"), vecRename);
-    ApplicationGroup* sudo     = new ApplicationGroup(i18n("graphical sudo"),   PS("KDESU"),  vecSudo);
     ApplicationGroup* checksum = new ApplicationGroup(i18n("checksum utility"), PS("MD5"),    vecChecksum);
 
     _tableHeaders.append(i18n("Group"));
@@ -318,7 +315,6 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
     addRow(diff, _grid);
     addRow(mail, _grid);
     addRow(rename, _grid);
-    addRow(sudo, _grid);
     addRow(checksum, _grid);
 
     delete thunderbird;
@@ -327,7 +323,6 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
     delete kdiff3;
     delete xxdiff;
     delete krename;
-    delete kdesu;
     delete md5sum;
     delete md5deep;
     delete sha1deep;
@@ -339,7 +334,6 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
     delete diff;
     delete mail;
     delete rename;
-    delete sudo;
     delete checksum;
 }
 

@@ -112,6 +112,12 @@ QString KrServices::chooseFullPathName(QStringList names, QString confName)
     return "";
 }
 
+bool KrServices::isExecutable(const QString &path)
+{
+    QFileInfo info(path);
+    return info.isFile() && info.isExecutable();
+}
+
 QString KrServices::registeredProtocol(QString mimetype)
 {
     if (slaveMap == 0) {
@@ -234,11 +240,6 @@ QStringList KrServices::supportedTools() {
     supportedTool(tools, "RENAME",
                   QStringList() << "krename",
                   "krename");
-
-    // graphical sudo: kdesu or kdesudo
-    supportedTool(tools, "KDESU",
-                  QStringList() << "kdesu" << "kdesudo",
-                  "kdesu");
 
     // checksum utility
     supportedTool(tools, "MD5",

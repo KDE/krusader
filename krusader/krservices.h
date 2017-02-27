@@ -35,6 +35,7 @@ public:
     static bool         cmdExist(QString cmdName);
     static QString      chooseFullPathName(QStringList names, QString confName);
     static QString      fullPathName(QString name, QString confName = QString());
+    static bool         isExecutable(const QString &path);
     static QString      registeredProtocol(QString mimetype);
     static bool         isoSupported(QString mimetype);
     static QString      urlToLocalPath(const QUrl &url);

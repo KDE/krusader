@@ -86,6 +86,13 @@ else()
     set(SYNCHRONIZER_ENABLED FALSE)
 endif()
 
+# For security reasons, absolute kdesu path is set at build time and is not
+# configurable.
+if(NOT KDESU_PATH)
+    set(KDESU_PATH "${KDE_INSTALL_FULL_LIBEXECDIR_KF5}/kdesu")
+endif()
+add_definitions( -DKDESU_PATH="${KDESU_PATH}" )
+
 add_definitions(${QT_DEFINITIONS} ${KF5_DEFINITIONS})
 add_definitions( "-DKRARC_ENABLED" )
 add_definitions( "-DQT_NO_URL_CAST_FROM_STRING" )
