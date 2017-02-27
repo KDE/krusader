@@ -88,7 +88,7 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     actShiftF5 = action(i18n("Copy delayed..."), 0, Qt::SHIFT + Qt::Key_F5, _func, SLOT(copyFilesDelayed()) , "F5_Copy_Queue");
     actShiftF6 = action(i18n("Move delayed..."), 0, Qt::SHIFT + Qt::Key_F6, _func, SLOT(moveFilesDelayed()) , "F6_Move_Queue");
     actF7 = action(i18n("New Folder..."), "folder-new", Qt::Key_F7, _func, SLOT(mkdir()) , "F7_Mkdir");
-    actF8 = action(i18n("Delete"), "edit-delete", Qt::Key_F8, _func, SLOT(deleteFiles()) , "F8_Delete");
+    actF8 = action(i18n("Delete"), "edit-delete", Qt::Key_F8, _func, SLOT(defaultDeleteFiles()) , "F8_Delete");
     actF9 = action(i18n("Start Terminal Here"), "utilities-terminal", Qt::Key_F9, _func, SLOT(terminal()) , "F9_Terminal");
     action(i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, _func, SLOT(editNew()), "edit_new_file");
     action(i18n("F3 View Dialog"), 0, Qt::SHIFT + Qt::Key_F3, _func, SLOT(viewDlg()), "F3_ViewDlg");

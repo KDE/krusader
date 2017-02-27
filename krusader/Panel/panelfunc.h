@@ -83,7 +83,7 @@ public slots:
      * asks the user the new directory name
      */
     void mkdir();
-    void deleteFiles(bool reallyDelete = false);
+    void defaultDeleteFiles(bool invert = false);
     // delete virtual files or directories in virtual filesystem
     void removeVirtualFiles();
     void rename();
@@ -121,6 +121,7 @@ public:
     void runService(const KService &service, QList<QUrl> urls);
     void displayOpenWithDialog(QList<QUrl> urls);
     QUrl browsableArchivePath(const QString &);
+    void deleteFiles(bool moveToTrash);
 
     ListPanelFunc* otherFunc();
     bool atHome();

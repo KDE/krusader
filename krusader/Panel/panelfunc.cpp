@@ -685,7 +685,13 @@ void ListPanelFunc::mkdir()
     } // for
 }
 
-void ListPanelFunc::deleteFiles(bool reallyDelete)
+void ListPanelFunc::defaultDeleteFiles(bool invert)
+{
+    const bool trash = KConfigGroup(krConfig, "General").readEntry("Move To Trash", _MoveToTrash);
+    deleteFiles(trash != invert);
+}
+
+void ListPanelFunc::deleteFiles(bool moveToTrash)
 {
     if (files()->type() == FileSystem::FS_VIRTUAL && files()->isRoot()) {
         // only virtual deletion possible
@@ -698,9 +704,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
     if (fileNames.isEmpty())
         return;
 
-    const KConfigGroup generalGroup(krConfig, "General");
-    bool moveToTrash = !reallyDelete && generalGroup.readEntry("Move To Trash", _MoveToTrash);
-    // make sure this is possible
+    // move to trash: only if possible
     moveToTrash = moveToTrash && files()->canMoveToTrash(fileNames);
 
     // now ask the user if he/she is sure:

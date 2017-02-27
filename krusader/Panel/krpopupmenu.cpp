@@ -348,10 +348,10 @@ void KrPopupMenu::performAction(int id)
         panel->func->rename();
         break;
     case TRASH_ID :
-        panel->func->deleteFiles(false);
+        panel->func->deleteFiles(true);
         break;
     case DELETE_ID :
-        panel->func->deleteFiles(true);
+        panel->func->deleteFiles(false);
         break;
     case EJECT_ID :
         krMtMan.eject(item->url().adjusted(QUrl::StripTrailingSlash).path());
