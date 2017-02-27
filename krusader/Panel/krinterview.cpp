@@ -109,6 +109,18 @@ KrViewItem* KrInterView::findItemByName(const QString &name)
     return getKrViewItem(ndx);
 }
 
+KrViewItem *KrInterView::findItemByUrl(const QUrl &url)
+{
+    if (!_model->ready())
+        return 0;
+
+    const QModelIndex ndx = _model->indexFromUrl(url);
+    if (!ndx.isValid())
+        return 0;
+
+    return getKrViewItem(ndx);
+}
+
 QString KrInterView::getCurrentItem() const
 {
     if (!_model->ready())

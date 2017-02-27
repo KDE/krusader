@@ -33,202 +33,85 @@ A
 
 // QtCore
 #include <QTimer>
-#include <QMutexLocker>
 // QtWidgets
-#include <QDialogButtonBox>
+#include <QApplication>
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
 
 #include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KCursor>
 
-#include "krpanel.h"
-#include "panelfunc.h"
 #include "../krglobal.h"
-#include "../FileSystem/krpermhandler.h"
-#include "../FileSystem/filesystemprovider.h"
+#include "../FileSystem/sizecalculator.h"
 
-/* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
-KrCalcSpaceDialog::CalcThread::CalcThread(QUrl url, const QStringList & items)
-        : m_totalSize(0), m_currentSize(0), m_totalFiles(0), m_totalDirs(0), m_items(items), m_url(url),
-        m_stop(false) {}
-
-
-void KrCalcSpaceDialog::CalcThread::getStats(KIO::filesize_t  &totalSize,
-                                             unsigned long &totalFiles,
-                                             unsigned long &totalDirs) const
-{
-    QMutexLocker locker(&m_mutex);
-    totalSize = m_totalSize + m_currentSize;
-    totalFiles = m_totalFiles;
-    totalDirs = m_totalDirs;
-}
-
-void KrCalcSpaceDialog::CalcThread::updateItems(KrView *view) const
-{
-    QMutexLocker locker(&m_mutex);
-    for (QStringList::const_iterator it = m_items.constBegin(); it != m_items.constEnd(); ++it) {
-        KrViewItem *viewItem = view->findItemByName(*it);
-        if (viewItem) {
-            viewItem->setSize(m_sizes[*it]);
-            viewItem->redraw();
-        }
-    }
-}
-
-void KrCalcSpaceDialog::CalcThread::run()
-{
-    if (!m_items.isEmpty()) { // if something to do: do the calculation
-        FileSystem *files = FileSystemProvider::instance().getFilesystem(m_url);
-        if(!files->refresh(m_url))
-            return;
-
-        for (QStringList::ConstIterator it = m_items.begin(); it != m_items.end(); ++it) {
-            files->calcSpace(*it, &m_currentSize, &m_totalFiles, &m_totalDirs , & m_stop);
-
-            if (m_stop)
-                break;
-
-            m_mutex.lock();
-            m_sizes[*it] = m_currentSize;
-            m_totalSize += m_currentSize;
-            m_currentSize = 0;
-            m_mutex.unlock();
-        }
-        delete files;
-    }
-}
-
-void KrCalcSpaceDialog::CalcThread::stop()
-{
-    // cancel was pressed
-    m_stop = true;
-}
-
-
-KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, KrPanel * panel, const QStringList & items, bool autoclose) :
-        QDialog(parent), m_autoClose(autoclose), m_canceled(false),
-                m_timerCounter(0), m_items(items), m_view(panel->view)
+KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, SizeCalculator *calculator)
+    : QDialog(parent), m_calculator(calculator)
 {
     setWindowTitle(i18n("Calculate Occupied Space"));
-    setWindowModality(Qt::WindowModal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout(mainLayout);
+    QVBoxLayout *layout = new QVBoxLayout;
+    setLayout(layout);
+    layout->setSizeConstraint(QLayout::SetFixedSize);
 
-    m_thread = new CalcThread(panel->virtualPath(), items);
-    m_pollTimer = new QTimer(this);
-    m_label = new QLabel("", this);
-    mainLayout->addWidget(m_label);
-    showResult(); // fill m_label with something useful
-    mainLayout->addStretch(10);
+    m_label = new QLabel(this);
+    layout->addWidget(m_label);
+    layout->addStretch(10);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
-    mainLayout->addWidget(buttonBox);
+    // buttons: Cancel is replaced with Ok when calculator is finished
+    m_buttonBox = new QDialogButtonBox(QDialogButtonBox::Cancel);
+    layout->addWidget(m_buttonBox);
+    connect(m_buttonBox, &QDialogButtonBox::rejected, this, &KrCalcSpaceDialog::slotCancel);
+    connect(m_buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
 
-    okButton = buttonBox->button(QDialogButtonBox::Ok);
+    connect(m_calculator, &SizeCalculator::finished, this, &KrCalcSpaceDialog::slotCalculatorFinished);
+
+    m_updateTimer = new QTimer(this);
+    connect(m_updateTimer, &QTimer::timeout, this, &KrCalcSpaceDialog::updateResult);
+    m_updateTimer->start(1000);
+
+    updateResult();
+}
+
+void KrCalcSpaceDialog::showDialog(QWidget *parent, SizeCalculator *calculator)
+{
+    KrCalcSpaceDialog *dialog = new KrCalcSpaceDialog(parent, calculator);
+    dialog->show();
+}
+
+void KrCalcSpaceDialog::slotCancel()
+{
+    m_updateTimer->stop();
+    m_calculator->cancel();
+
+    reject(); // close and delete this dialog
+}
+
+void KrCalcSpaceDialog::slotCalculatorFinished()
+{
+    m_buttonBox->clear();
+    QPushButton *okButton = m_buttonBox->addButton(QDialogButtonBox::Ok);
     okButton->setDefault(true);
-    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    // the dialog: The Ok button is hidden until it is needed
-    okButton->setVisible(false);
-    cancelButton = buttonBox->button(QDialogButtonBox::Cancel);
 
-    connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), SLOT(slotCancel()));
+    m_updateTimer->stop();
+    updateResult();
 }
 
-void KrCalcSpaceDialog::calculationFinished()
+void KrCalcSpaceDialog::updateResult()
 {
-    m_thread->updateItems(m_view);
-    // close dialog if auto close is true
-    if (m_autoClose) {
-        done(0);
-        return;
-    }
-    // otherwise hide cancel and show ok button
-    cancelButton->setVisible(false);
-    okButton->setVisible(true);
-    showResult(); // and show final result
-}
+    const KIO::filesize_t totalSize = m_calculator->totalSize();
+    const unsigned long totalFiles = m_calculator->totalFiles();
+    const unsigned long totalDirs = m_calculator->totalDirs();
 
-/* This timer has two jobs: it polls the thread if it is finished. Polling is
-  better here as it might finish while the dialog builds up. Secondly it refreshes
-  the displayed result.
- */
-void KrCalcSpaceDialog::timer()
-{
-    // thread finished?
-    if (m_thread->isFinished()) {
-        // close dialog or switch buttons
-        calculationFinished();
-        m_pollTimer->stop(); // stop the polling. No longer needed
-        return;
-    }
+    const QList<QUrl> urls = m_calculator->urls();
+    const QString fileName =
+        urls.count() == 1 ? i18n("Name: %1\n", urls.first().fileName()) : QString("");
 
-    // Every 10 pollings (1 second) refresh the displayed result
-    if (++m_timerCounter > 10) {
-        m_timerCounter = 0;
-        showResult();
-        m_thread->updateItems(m_view);
-    }
-}
-
-void KrCalcSpaceDialog::showResult()
-{
-    if (!m_thread)
-        return;
-    KIO::filesize_t totalSize;
-    unsigned long totalFiles, totalDirs;
-
-    m_thread->getStats(totalSize, totalFiles, totalDirs);
-
-    QString msg;
-    QString fileName = (m_items.count() == 1) ? i18n("Name: %1\n", m_items.first()) : QString("");
-    msg = fileName + i18n("Total occupied space: %1", KIO::convertSize(totalSize));
+    QString msg = fileName + i18n("Total occupied space: %1", KIO::convertSize(totalSize));
     if (totalSize >= 1024)
-        msg += i18np(" (%1 byte)", " (%1 bytes)", KRpermHandler::parseSize(totalSize));
+        msg += i18np(" (%2 byte)", " (%2 bytes)", totalSize, QLocale().toString(totalSize));
     msg += '\n';
     msg += i18np("in %1 folder", "in %1 folders", totalDirs);
     msg += ' ';
     msg += i18np("and %1 file", "and %1 files", totalFiles);
     m_label->setText(msg);
 }
-
-void KrCalcSpaceDialog::slotCancel()
-{
-    m_thread->stop(); // notify the thread to stop
-    m_canceled = true; // set the cancel flag
-    reject(); // close the dialog
-}
-
-KrCalcSpaceDialog::~KrCalcSpaceDialog()
-{
-    if(m_thread->isFinished())
-        delete m_thread;
-    else {
-        m_thread->stop();
-        connect(m_thread, SIGNAL(finished()), m_thread, SLOT(deleteLater()));
-    }
-}
-
-int KrCalcSpaceDialog::exec()
-{
-    m_thread->start(); // start the thread
-    if (m_autoClose) { // autoclose
-        // set the cursor to busy mode and wait 1 second or until the thread finishes
-        krMainWindow->setCursor(Qt::WaitCursor);
-        m_thread->wait(1000);
-        krMainWindow->setCursor(Qt::ArrowCursor);    // return the cursor to normal mode
-        m_thread->updateItems(m_view);
-        if(m_thread->isFinished())
-            return -1;                                        // thread finished: do not show the dialog
-        showResult(); // fill the invisible dialog with useful data
-    }
-    // prepare and start the poll timer
-    connect(m_pollTimer, SIGNAL(timeout()), this, SLOT(timer()));
-    m_pollTimer->start(100);
-    return QDialog::exec();                                 // show the dialog
-}
-/* --=={ End of patch by Heiner <h.eichmann@gmx.de> }==-- */
-

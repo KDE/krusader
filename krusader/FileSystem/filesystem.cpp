@@ -35,15 +35,12 @@
 
 // QtCore
 #include <QDir>
-#include <QEventLoop>
 #include <QList>
 // QtWidgets
-#include <QApplication>
 #include <qplatformdefs.h>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIO/DirectorySizeJob>
 #include <KIO/JobUiDelegate>
 
 #include "../defaults.h"
@@ -97,19 +94,6 @@ KIO::filesize_t FileSystem::totalSize() const
 
     return temp;
 }
-
-void FileSystem::calcSpace(const QString &name, KIO::filesize_t *totalSize,
-                            unsigned long *totalFiles, unsigned long *totalDirs, bool *stop)
-{
-    const QUrl url = getUrl(name);
-    if (url.isEmpty()) {
-        krOut << "item for calculating space not found: " << name;
-        return;
-    }
-
-    calcSpace(url, totalSize, totalFiles, totalDirs, stop);
-}
-
 
 QUrl FileSystem::ensureTrailingSlash(const QUrl &url)
 {
@@ -215,101 +199,6 @@ bool FileSystem::showHiddenFiles()
     return gl.readEntry("Show Hidden", _ShowHidden);
 }
 
-void FileSystem::calcSpace(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
-                    unsigned long *totalDirs, bool *stop)
-{
-    if (url.isLocalFile()) {
-        calcSpaceLocal(cleanUrl(url).path(), totalSize, totalFiles, totalDirs, stop);
-    } else {
-        calcSpaceKIO(url, totalSize, totalFiles, totalDirs, stop);
-    }
-}
-
-void FileSystem::calcSpaceLocal(const QString &path, KIO::filesize_t *totalSize, unsigned long *totalFiles,
-                         unsigned long *totalDirs, bool *stop)
-{
-    if (stop && *stop)
-        return;
-
-    if (path == "/proc")
-        return;
-
-    QT_STATBUF stat_p; // KDE lstat is necessary as QFileInfo and KFileItem
-    // if the name is wrongly encoded, then we zero the size out
-    stat_p.st_size = 0;
-    stat_p.st_mode = 0;
-    QT_LSTAT(path.toLocal8Bit(), &stat_p); // reports wrong size for a symbolic link
-
-    if (S_ISLNK(stat_p.st_mode) || !S_ISDIR(stat_p.st_mode)) { // single files are easy : )
-        ++(*totalFiles);
-        (*totalSize) += stat_p.st_size;
-    } else { // handle directories avoid a nasty crash on un-readable dirs
-        bool readable = ::access(path.toLocal8Bit(), R_OK | X_OK) == 0;
-        if (!readable)
-            return;
-
-        QDir dir(path);
-        if (!dir.exists())
-            return;
-
-        ++(*totalDirs);
-        dir.setFilter(QDir::TypeMask | QDir::System | QDir::Hidden);
-        dir.setSorting(QDir::Name | QDir::DirsFirst);
-
-        // recurse on all the files in the directory
-        QFileInfoList fileList = dir.entryInfoList();
-        for (int k = 0; k != fileList.size(); k++) {
-            if (*stop)
-                return;
-            QFileInfo qfiP = fileList[k];
-            if (qfiP.fileName() != "." && qfiP.fileName() != "..")
-                calcSpaceLocal(path + '/' + qfiP.fileName(), totalSize, totalFiles, totalDirs,
-                               stop);
-        }
-    }
-}
-
-// TODO called from another thread, creating KIO jobs does not work here
-void FileSystem::calcSpaceKIO(const QUrl &url, KIO::filesize_t *totalSize, unsigned long *totalFiles,
-                       unsigned long *totalDirs, bool *stop)
-{
-    return;
-
-    if (stop && *stop)
-        return;
-
-    _calcKdsBusy = stop;
-    _calcKdsTotalSize = totalSize;
-    _calcKdsTotalFiles = totalFiles;
-    _calcKdsTotalDirs = totalDirs;
-
-    _calcStatBusy = true;
-    KIO::StatJob *statJob = KIO::stat(url, KIO::HideProgressInfo); // thread problem here
-    connect(statJob, &KIO::Job::result, this, &FileSystem::slotCalcStatResult);
-
-    while (!(*stop) && _calcStatBusy) {
-        usleep(1000);
-    }
-
-    if (_calcEntry.count() == 0)
-        return; // statJob failed
-
-    const KFileItem kfi(_calcEntry, url, true);
-    if (kfi.isFile() || kfi.isLink()) {
-        (*totalFiles)++;
-        *totalSize += kfi.size();
-        return;
-    }
-
-    KIO::DirectorySizeJob *directorySizeJob = KIO::directorySize(url);
-    connect(directorySizeJob, &KIO::Job::result, this, &FileSystem::slotCalcKdsResult);
-
-    while (!(*stop)) {
-        // we are in a separate thread - so sleeping is OK
-        usleep(1000);
-    }
-}
-
 FileItem *FileSystem::createLocalFileItem(const QString &name, const QString &directory, bool virt)
 {
     const QDir dir = QDir(directory);
@@ -395,24 +284,6 @@ void FileSystem::slotJobResult(KJob *job, bool refresh)
     if (refresh) {
         FileSystem::refresh();
     }
-}
-
-/// to be implemented
-void FileSystem::slotCalcKdsResult(KJob *job)
-{
-    if (!job->error()) {
-        KIO::DirectorySizeJob *kds = static_cast<KIO::DirectorySizeJob *>(job);
-        *_calcKdsTotalSize += kds->totalSize();
-        *_calcKdsTotalFiles += kds->totalFiles();
-        *_calcKdsTotalDirs += kds->totalSubdirs();
-    }
-    *_calcKdsBusy = true;
-}
-
-void FileSystem::slotCalcStatResult(KJob *job)
-{
-    _calcEntry = job->error() ? KIO::UDSEntry() : static_cast<KIO::StatJob *>(job)->statResult();
-    _calcStatBusy = false;
 }
 
 // ==== private ====

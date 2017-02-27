@@ -160,7 +160,6 @@ public:
     void emitGoHome() { emit goHome(); }
     void emitDirUp() { emit dirUp(); }
     void emitDeleteFiles(bool reallyDelete) { emit deleteFiles(reallyDelete); }
-    void emitCalcSpace(KrViewItem *item) { emit calcSpace(item); }
     void emitRefreshActions() { emit refreshActions(); }
     void emitGoBack() { emit goBack(); }
     void emitGoForward() { emit goForward(); }
@@ -194,7 +193,6 @@ signals:
     void goHome();
     void deleteFiles(bool reallyDelete);
     void dirUp();
-    void calcSpace(KrViewItem *item);
     void refreshActions();
     void goBack();
     void goForward();
@@ -287,6 +285,7 @@ public:
     virtual KrViewItem *getKrViewItemAt(const QPoint &vp) = 0;
     virtual KrViewItem *findItemByName(const QString &name) = 0;
     virtual KrViewItem *findItemByFileItem(FileItem *vf) = 0;
+    virtual KrViewItem *findItemByUrl(const QUrl &url) = 0;
     virtual QString getCurrentItem() const = 0;
     virtual void setCurrentItem(const QString &name,
                                 const QModelIndex &fallbackToIndex = QModelIndex()) = 0;

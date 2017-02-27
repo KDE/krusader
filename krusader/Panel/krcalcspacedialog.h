@@ -32,90 +32,43 @@
 #ifndef KRCALCSPACEDIALOG_H
 #define KRCALCSPACEDIALOG_H
 
-/* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
-
 // QtCore
 #include <QMutex>
 #include <QThread>
 // QtWidgets
 #include <QDialog>
+#include <QDialogButtonBox>
 #include <QLabel>
 
-#include "../FileSystem/filesystem.h"
-class KrPanel;
-class KrView;
-
+class SizeCalculator;
 
 /**
- * Dialog calculating showing the number of files and directories and its total
- * size in a dialog. If wanted, the dialog appears after 3 seconds of
- * calculation, to avoid a short appearance if the result was found quickly.
- * Computes the result in a different thread.
+ * Dialog showing the number of files and directories and its total size for a calculation.
+ *
  */
 class KrCalcSpaceDialog : public QDialog
 {
     Q_OBJECT
+public:
+    /**
+     * Create and show a dialog. If delayed is true the dialog is shown with a delay of 2 seconds
+     * to avoid a short appearance and is autoclosed when the calculation finished.
+     */
+    static void showDialog(QWidget *parent, SizeCalculator *calculator);
 
-    friend class CalcThread;
-    class QTimer * m_pollTimer;
+private slots:
+    void slotCancel(); // cancel was pressed
+    void slotCalculatorFinished();
+    void updateResult(); // show the current result in the dialog
 
-    class CalcThread : public QThread
-    {
-        KIO::filesize_t m_totalSize;
-        KIO::filesize_t  m_currentSize;
-        unsigned long m_totalFiles;
-        unsigned long m_totalDirs;
-        const QStringList m_items;
-        QHash <QString, KIO::filesize_t> m_sizes;
-        QUrl m_url;
-        mutable QMutex m_mutex;
-        bool m_stop;
-
-    public:
-        CalcThread(QUrl url, const QStringList & items);
-
-        KIO::filesize_t getItemSize(QString item) const;
-        void updateItems(KrView *view) const;
-        void getStats(KIO::filesize_t  &totalSize,
-                      unsigned long &totalFiles,
-                      unsigned long &totalDirs) const;
-        void run(); // start calculation
-        void stop(); // stop it. Thread continues until filesystem_calcSpace returns
-    } * m_thread;
+private:
+    KrCalcSpaceDialog(QWidget *parent, SizeCalculator *calculator);
+    SizeCalculator *const m_calculator;
 
     QLabel *m_label;
-    QPushButton *okButton;
-    QPushButton *cancelButton;
-    bool m_autoClose; // true: wait 3 sec. before showing the dialog. Close it, when done
-    bool m_canceled; // true: cancel was pressed
-    int m_timerCounter; // internal counter. The timer runs faster as the rehresh (see comment there)
-    const QStringList m_items;
-    KrView *m_view;
+    QDialogButtonBox *m_buttonBox;
 
-    void calculationFinished(); // called if the calculation is done
-    void showResult(); // show the current result in teh dialog
-
-protected slots:
-    void timer(); // poll timer was fired
-    void slotCancel(); // cancel was pressed
-
-public:
-    // autoclose: wait 3 sec. before showing the dialog. Close it, when done
-    KrCalcSpaceDialog(QWidget *parent, KrPanel * panel, const QStringList & items, bool autoclose);
-    ~KrCalcSpaceDialog();
-
-    void getStats(KIO::filesize_t  &totalSize,
-                  unsigned long &totalFiles,
-                  unsigned long &totalDirs) const {
-        m_thread->getStats(totalSize, totalFiles, totalDirs);
-    }
-    bool wasCanceled() const {
-        return m_canceled;
-    } // cancel was pressed; result is probably wrong
-
-public slots:
-    int exec() Q_DECL_OVERRIDE; // start calculation
+    QTimer *m_updateTimer;
 };
-/* End of patch by Heiner <h.eichmann@gmx.de> */
 
 #endif

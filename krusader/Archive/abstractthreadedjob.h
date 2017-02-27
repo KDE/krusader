@@ -120,8 +120,7 @@ protected:
 
     QList<QUrl> remoteUrls(const QUrl &baseUrl, const QStringList & files);
     QUrl downloadIfRemote(const QUrl &baseUrl, const QStringList & files);
-    void calcSpaceLocal(const QUrl &baseUrl, const QStringList & files, KIO::filesize_t &totalSize,
-                        unsigned long &totalDirs, unsigned long &totalFiles);
+    void countLocalFiles(const QUrl &baseUrl, const QStringList &files, unsigned long &totalFiles);
 
     void sendError(int errorCode, QString message);
     void sendInfo(QString message, QString a1 = QString(), QString a2 = QString(), QString a3 = QString(), QString a4 = QString());
