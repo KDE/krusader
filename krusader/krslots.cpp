@@ -468,13 +468,15 @@ void KRslots::multiRename()
 
 void KRslots::rootKrusader()
 {
-    if (!KrServices::cmdExist("krusader") || !KrServices::isExecutable(KDESU_PATH)) {
-        KMessageBox::sorry(krApp, i18n("Cannot start root mode Krusader, because Krusader or kdesu is missing from the path. Please configure the dependencies in Konfigurator."));
+    if (!KrServices::isExecutable(KDESU_PATH)) {
+        KMessageBox::sorry(krApp,
+            i18n("Cannot start root mode Krusader, %1 not found or not executable. "
+                 "Please verify that kde-cli-tools are installed.", QString(KDESU_PATH)));
         return;
     }
 
     KProcess proc;
-    proc << KDESU_PATH << "-c" << KrServices::fullPathName("krusader")
+    proc << KDESU_PATH << "-c" << QApplication::instance()->applicationFilePath()
     + " --left=" + KrServices::quote(LEFT_PANEL->func->files()->currentDirectory().toDisplayString(QUrl::PreferLocalFile))
     + " --right=" + KrServices::quote(RIGHT_PANEL->func->files()->currentDirectory().toDisplayString(QUrl::PreferLocalFile));
 
