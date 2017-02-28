@@ -110,6 +110,7 @@ protected slots:
     void slotUpdateMessageBox();
 
 private:
+    void cleanupMenu(); // remove old entries if menu is too long
     void updateUI();
     bool jobsAreRunning();
 

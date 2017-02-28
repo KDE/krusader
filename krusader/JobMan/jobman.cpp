@@ -35,6 +35,8 @@
 #include "krjob.h"
 #include "../krglobal.h"
 
+const int MAX_OLD_MENU_ACTIONS = 10;
+
 /** The menu action entry for a job in the popup menu.*/
 class JobMenuAction : public QWidgetAction
 {
@@ -79,6 +81,8 @@ public:
         });
         connect(krJob, &KrJob::terminated, this, &JobMenuAction::slotTerminated);
     }
+
+    bool isDone() { return !m_krJob; }
 
 protected slots:
     void slotDescription(KJob *, const QString &description,
@@ -125,7 +129,7 @@ protected slots:
         m_cancelButton->setIcon(QIcon::fromTheme("edit-clear"));
         m_cancelButton->setToolTip(i18n("Clear"));
 
-        m_krJob = 0;
+        m_krJob = nullptr;
     }
 
     void slotPauseResumeButtonClicked()
@@ -142,9 +146,9 @@ protected slots:
     void slotCancelButtonClicked()
     {
         if (m_krJob) {
-          m_krJob->cancel();
+            m_krJob->cancel();
         } else {
-          deleteLater();
+            deleteLater();
         }
     }
 
@@ -255,6 +259,8 @@ void JobMan::manageJob(KrJob *job, StartMode startMode)
     JobMenuAction *menuAction = new JobMenuAction(job, m_controlAction);
     connect(menuAction, &QObject::destroyed, this, &JobMan::slotUpdateControlAction);
     m_controlAction->menu()->addAction(menuAction);
+    cleanupMenu();
+
     slotUpdateControlAction();
 
     connect(job, &KrJob::started, this, &JobMan::slotKJobStarted);
@@ -338,6 +344,7 @@ void JobMan::slotTerminated(KrJob *krJob)
     }
 
     updateUI();
+    cleanupMenu();
 }
 
 void JobMan::slotUpdateControlAction()
@@ -373,6 +380,19 @@ void JobMan::slotUpdateMessageBox()
 }
 
 // #### private
+
+void JobMan::cleanupMenu() {
+    const QList<QAction *> actions = m_controlAction->menu()->actions();
+    for (QAction *action : actions) {
+        if (m_controlAction->menu()->actions().count() <= MAX_OLD_MENU_ACTIONS)
+            break;
+        JobMenuAction *jobAction = static_cast<JobMenuAction *>(action);
+        if (jobAction->isDone()) {
+            m_controlAction->menu()->removeAction(action);
+            action->deleteLater();
+        }
+    }
+}
 
 void JobMan::updateUI()
 {
