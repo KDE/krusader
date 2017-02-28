@@ -739,21 +739,25 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
     emptyDirVerify &= files()->isLocal();
 
     if (emptyDirVerify) {
-        for (const QString fileName: fileNames) {
+        QMutableStringListIterator it(fileNames);
+        while (it.hasNext()) {
+            const QString fileName = it.next();
             FileItem *fileItem = files()->getFileItem(fileName);
             if (fileItem && !fileItem->isSymLink() && fileItem->isDir()) {
                 // read local dir...
-                const QDir dir(fileItem->getUrl().path());
-                if (dir.entryList(QDir::TypeMask | QDir::System | QDir::Hidden).count() > 2) {
+                const QDir dir(fileItem->getUrl().toLocalFile());
+                if (!dir.entryList(QDir::AllEntries | QDir::System | QDir::Hidden |
+                                   QDir::NoDotAndDotDot).isEmpty()) {
                     // ...is not empty, ask user
                     const KMessageBox::ButtonCode result = KMessageBox::warningYesNoCancel(
                         krMainWindow,
-                        i18n("<qt><p>Folder <b>%1</b> is not empty.</p><p>Skip this one "
-                             "or delete all?</p></qt>",
-                             fileName),
-                        QString(), KGuiItem(i18n("&Skip")), KGuiItem(i18n("&Delete All")));
+                        i18n("<qt><p>Folder <b>%1</b> is not empty.</p>", fileName) +
+                            (moveToTrash ? i18n("<p>Skip this one or trash all?</p></qt>") :
+                                           i18n("<p>Skip this one or delete all?</p></qt>")),
+                        QString(), KGuiItem(i18n("&Skip")),
+                        KGuiItem(moveToTrash ? i18n("&Trash All") : i18n("&Delete All")));
                     if (result == KMessageBox::Yes) {
-                        fileNames.removeAll(fileName); // skip
+                        it.remove(); // skip
                     } else if (result == KMessageBox::No) {
                         break; // accept all remaining
                     } else {
@@ -762,10 +766,9 @@ void ListPanelFunc::deleteFiles(bool reallyDelete)
                 }
             }
         }
+        if (fileNames.isEmpty())
+            return; // nothing to delete
     }
-
-    if (fileNames.count() == 0)
-        return; // nothing to delete
 
     // after the delete return the cursor to the first unmarked
     // file above the current item;
