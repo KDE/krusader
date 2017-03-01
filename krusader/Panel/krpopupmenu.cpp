@@ -48,6 +48,7 @@
 #include "../panelmanager.h"
 #include "../UserAction/useractionpopupmenu.h"
 #include "../Archive/krarchandler.h"
+#include "../FileSystem/filesystem.h"
 #include "../FileSystem/krtrashhandler.h"
 
 void KrPopupMenu::run(const QPoint &pos, KrPanel *panel)

@@ -33,18 +33,21 @@
 #ifndef PANELFUNC_H
 #define PANELFUNC_H
 
-#include "krviewitem.h"
-#include "../FileSystem/filesystem.h"
-
 // QtCore
 #include <QObject>
 #include <QTimer>
+#include <QUrl>
 // QtGui
 #include <QClipboard>
 
+#include <KCoreAddons/KJob>
+#include <KIO/Global>
 #include <KService/KService>
 
 class DirHistoryQueue;
+class FileItem;
+class FileSystem;
+class KrViewItem;
 class ListPanel;
 
 class ListPanelFunc : public QObject
@@ -54,7 +57,6 @@ class ListPanelFunc : public QObject
 public slots:
     void execute(const QString&);
     void goInside(const QString&);
-    void navigatorUrlChanged(const QUrl &url);
     void openUrl(const QUrl &path, const QString& nameToMakeCurrent = QString(),
                  bool manuallyEntered = false);
     void rename(const QString &oldname, const QString &newname);
@@ -102,19 +104,18 @@ public slots:
     void copyToClipboard(bool move = false);
     void pasteFromClipboard();
     void syncOtherPanel();
+    /** Disable refresh if panel is not visible. */
+    void setPaused(bool paused);
 
 public:
     ListPanelFunc(ListPanel *parent);
     ~ListPanelFunc();
 
     FileSystem* files();  // return a pointer to the filesystem
+    QUrl virtualDirectory(); // return the current URL (simulated when panel is paused)
 
-    inline FileItem* getFileItem(KrViewItem *item) {
-        return files()->getFileItem(item->name());
-    }
-    inline FileItem* getFileItem(const QString& name) {
-        return files()->getFileItem(name);
-    }
+    FileItem* getFileItem(KrViewItem *item);
+    FileItem* getFileItem(const QString& name);
 
     void refreshActions();
     void redirectLink();
@@ -149,7 +150,7 @@ protected:
 
     ListPanel*           panel;     // our ListPanel
     DirHistoryQueue*     history;
-    FileSystem*                 fileSystemP;      // pointer to fileSystem.
+    FileSystem*          fileSystemP;      // pointer to fileSystem.
     QTimer               delayTimer;
     QUrl                 syncURL;
     QUrl                 fileToCreate; // file that's to be created by editNewFile()
@@ -158,8 +159,9 @@ protected:
     static QPointer<ListPanelFunc> copyToClipboardOrigin;
 
 private:
-    bool _refreshing; // ignore url changes while refreshing
     bool _ignoreFileSystemErrors; // ignore (repeated) errors emitted by filesystem;
+    bool _isPaused; // do not refresh while panel is not visible
+    bool _refreshAfterPaused; // refresh after not paused anymore
 };
 
 #endif

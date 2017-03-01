@@ -279,7 +279,8 @@ void KRslots::insertFileName(bool full_path)
     }
 
     if (full_path) {
-        QString path = FileSystem::ensureTrailingSlash(ACTIVE_FUNC->files()->currentDirectory()).toDisplayString(QUrl::PreferLocalFile);
+        const QString path = FileSystem::ensureTrailingSlash(ACTIVE_PANEL->virtualPath())
+                                 .toDisplayString(QUrl::PreferLocalFile);
         filename = path + filename;
     }
 
@@ -358,8 +359,8 @@ void KRslots::showHiddenFiles(bool show)
 
 void KRslots::swapPanels()
 {
-    QUrl leftURL = LEFT_PANEL->func->files()->currentDirectory();
-    QUrl rightURL = RIGHT_PANEL->func->files()->currentDirectory();
+    QUrl leftURL = LEFT_PANEL->virtualPath();
+    QUrl rightURL = RIGHT_PANEL->virtualPath();
 
     LEFT_PANEL->func->openUrl(rightURL);
     RIGHT_PANEL->func->openUrl(leftURL);
@@ -477,8 +478,8 @@ void KRslots::rootKrusader()
 
     KProcess proc;
     proc << KDESU_PATH << "-c" << QApplication::instance()->applicationFilePath()
-    + " --left=" + KrServices::quote(LEFT_PANEL->func->files()->currentDirectory().toDisplayString(QUrl::PreferLocalFile))
-    + " --right=" + KrServices::quote(RIGHT_PANEL->func->files()->currentDirectory().toDisplayString(QUrl::PreferLocalFile));
+    + " --left=" + KrServices::quote(LEFT_PANEL->virtualPath().toDisplayString(QUrl::PreferLocalFile))
+    + " --right=" + KrServices::quote(RIGHT_PANEL->virtualPath().toDisplayString(QUrl::PreferLocalFile));
 
     if (!proc.startDetached())
         KMessageBox::error(0, i18n("Error executing %1.", proc.program()[0]));
@@ -507,7 +508,7 @@ void KRslots::slotSplit()
         return ;
     }
 
-    QUrl destDir = ACTIVE_PANEL->otherPanel()->func->files()->currentDirectory();
+    const QUrl destDir = ACTIVE_PANEL->otherPanel()->virtualPath();
 
     SplitterGUI splitterGUI(MAIN_VIEW, fileURL, destDir);
 
@@ -601,7 +602,7 @@ void KRslots::slotCombine()
                                 break;
                             else {
                                 commonName = shorter;
-                                baseURL = ACTIVE_FUNC->files()->currentDirectory().adjusted(QUrl::StripTrailingSlash);
+                                baseURL = ACTIVE_PANEL->virtualPath().adjusted(QUrl::StripTrailingSlash);
                                 baseURL.setPath(baseURL.path() + '/' + (testFile));
                             }
                         }
@@ -641,8 +642,7 @@ void KRslots::manageUseractions()
 #ifdef SYNCHRONIZER_ENABLED
 void KRslots::slotSynchronizeDirs(QStringList selected)
 {
-    new SynchronizerGUI(0, LEFT_PANEL->func->files()->currentDirectory(),
-                        RIGHT_PANEL->func->files()->currentDirectory(), selected);
+    new SynchronizerGUI(0, LEFT_PANEL->virtualPath(), RIGHT_PANEL->virtualPath(), selected);
 }
 #endif
 
@@ -673,7 +673,7 @@ void KRslots::execTypeSetup()
 
 void KRslots::slotDiskUsage()
 {
-    DiskUsageGUI du(ACTIVE_FUNC->files()->currentDirectory(), MAIN_VIEW);
+    DiskUsageGUI du(ACTIVE_PANEL->virtualPath(), MAIN_VIEW);
 }
 
 void KRslots::applicationStateChanged()
@@ -681,12 +681,13 @@ void KRslots::applicationStateChanged()
     if (MAIN_VIEW == 0) {  /* CRASH FIX: it's possible that the method is called after destroying the main view */
         return;
     }
-    if(qApp->applicationState() == Qt::ApplicationActive) {
-        LEFT_PANEL->panelActive();
-        RIGHT_PANEL->panelActive();
+    if(qApp->applicationState() == Qt::ApplicationActive ||
+       qApp->applicationState() == Qt::ApplicationInactive) {
+        LEFT_PANEL->panelVisible();
+        RIGHT_PANEL->panelVisible();
     } else {
-        LEFT_PANEL->panelInactive();
-        RIGHT_PANEL->panelInactive();
+        LEFT_PANEL->panelHidden();
+        RIGHT_PANEL->panelHidden();
     }
 }
 
@@ -737,3 +738,4 @@ void KRslots::cmdlinePopup()
 {
     MAIN_VIEW->cmdLine()->popup();
 }
+

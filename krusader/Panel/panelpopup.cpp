@@ -219,7 +219,7 @@ void PanelPopup::tabSelected(int id)
 {
     QUrl url;
     const FileItem *fileitem = 0;
-    if (ACTIVE_PANEL && ACTIVE_PANEL->func->files() && ACTIVE_PANEL->view)
+    if (ACTIVE_PANEL && ACTIVE_PANEL->view)
         fileitem = ACTIVE_PANEL->func->files()->getFileItem(ACTIVE_PANEL->view->getCurrentItem());
     if(fileitem)
         url = fileitem->getUrl();
@@ -232,7 +232,7 @@ void PanelPopup::tabSelected(int id)
         if (!isHidden())
             tree->setFocus();
         if (ACTIVE_PANEL)
-            tree->setCurrentUrl(ACTIVE_PANEL->func->files()->currentDirectory());
+            tree->setCurrentUrl(ACTIVE_PANEL->virtualPath());
         break;
     case Preview:
         stack->setCurrentWidget(viewer);

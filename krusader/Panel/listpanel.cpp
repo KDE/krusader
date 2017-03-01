@@ -69,6 +69,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../kicons.h"
 #include "../krusaderview.h"
 #include "../krservices.h"
+#include "../FileSystem/filesystem.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../Archive/krarchandler.h"
 #include "../MountMan/kmountman.h"
@@ -124,17 +125,16 @@ protected:
 //      The list panel constructor       //
 /////////////////////////////////////////////////////
 ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg) :
-        QWidget(parent), KrPanel(manager),
+        QWidget(parent), KrPanel(manager, this, new ListPanelFunc(this)),
         panelType(-1), colorMask(255), compareMode(false),
         previewJob(0), inlineRefreshJob(0), searchBar(0), cdRootButton(0), cdUpButton(0),
-        popupBtn(0), popup(0), fileSystemError(0), _locked(false)
+        popupBtn(0), popup(0), fileSystemError(0), _navigatorUrl(), _locked(false)
 {
     if(cfg.isValid())
         panelType = cfg.readEntry("Type", -1);
     if (panelType == -1)
         panelType = defaultPanelType();
-    gui = this;
-    func = new ListPanelFunc(this);
+
     _actions = krApp->listPanelActions();
 
     setAcceptDrops(true);
@@ -195,8 +195,8 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     urlNavigator->setUrlEditable(isNavigatorEditModeSet());
     urlNavigator->setShowFullPath(group.readEntry("Navigator Full Path", false));
     connect(urlNavigator, SIGNAL(returnPressed()), this, SLOT(slotFocusOnMe()));
-    connect(urlNavigator, SIGNAL(urlChanged(QUrl)), func, SLOT(navigatorUrlChanged(QUrl)));
-    connect(urlNavigator->editor()->lineEdit(), SIGNAL(editingFinished()), this, SLOT(resetNavigatorMode()));
+    connect(urlNavigator, &KUrlNavigator::urlChanged, this, &ListPanel::slotNavigatorUrlChanged);
+    connect(urlNavigator->editor()->lineEdit(), &QLineEdit::editingFinished, this, &ListPanel::resetNavigatorMode);
     connect(urlNavigator, SIGNAL(tabRequested(QUrl)), this, SLOT(newTab(QUrl)));
     connect(urlNavigator, SIGNAL(urlsDropped(QUrl, QDropEvent*)), this, SLOT(handleDrop(QUrl, QDropEvent*)));
     ADD_WIDGET(urlNavigator);
@@ -566,9 +566,9 @@ void ListPanel::togglePanelPopup()
     }
 }
 
-QString ListPanel::realPath() const
+QString ListPanel::lastLocalPath() const
 {
-    return _realPath.path();
+    return _lastLocalPath;
 }
 
 void ListPanel::setButtons()
@@ -637,8 +637,8 @@ void ListPanel::compareDirs(bool otherPanelToo)
 
         if (otherItem) {
             if (!func->getFileItem(item)->isDir())
-                isDifferent = ITEM2FILEITEM(otherPanel(), otherItem)->getSize() != func->getFileItem(item)->getSize();
-            isNewer = func->getFileItem(item)->getTime_t() > ITEM2FILEITEM(otherPanel(), otherItem)->getTime_t();
+                isDifferent = otherPanel()->func->getFileItem(otherItem)->getSize() != func->getFileItem(item)->getSize();
+            isNewer = func->getFileItem(item)->getTime_t() > otherPanel()->func->getFileItem(otherItem)->getTime_t();
         }
 
         switch (compareMode) {
@@ -691,7 +691,7 @@ void ListPanel::slotFocusOnMe(bool focus)
     } else {
         // in case a new url was entered but not refreshed to,
         // reset url navigator to the current url
-        urlNavigator->setLocationUrl(virtualPath());
+        setNavigatorUrl(virtualPath());
         view->prepareForPassive();
     }
 
@@ -711,7 +711,8 @@ void ListPanel::start(const QUrl &url)
     if (!startUrl.isValid())
         startUrl = QUrl::fromLocalFile(ROOT_DIR);
 
-    _realPath = startUrl.isLocalFile() ? startUrl : QUrl::fromLocalFile(ROOT_DIR);
+    _lastLocalPath = startUrl.isLocalFile() ? startUrl.path() : ROOT_DIR;
+
 
     func->openUrl(startUrl);
 
@@ -732,10 +733,10 @@ void ListPanel::slotStartUpdate(bool directoryChange)
             slotFocusOnMe();
         }
 
-        if (func->files()->isLocal())
-            _realPath = currentUrl;
+        if (currentUrl.isLocalFile())
+            _lastLocalPath = currentUrl.path();
 
-        urlNavigator->setLocationUrl(currentUrl);
+        setNavigatorUrl(currentUrl);
 
         emit pathChanged(currentUrl);
 
@@ -890,7 +891,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                 KrViewItem *it = view->getCurrentKrViewItem();
 
                 if (it->name() == "..") {
-                    newPath = KIO::upUrl(func->files()->currentDirectory());
+                    newPath = KIO::upUrl(virtualPath());
                 } else {
                     FileItem *v = func->getFileItem(it);
                     // If it's a directory different from ".."
@@ -901,13 +902,13 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                         if (v && KRarcHandler::arcSupported(v->getMime()))   {
                             newPath = func->browsableArchivePath(v->getUrl().fileName());
                         } else {
-                            newPath = func->files()->currentDirectory();
+                            newPath = virtualPath();
                         }
                     }
                 }
                 otherPanel()->func->openUrl(newPath);
             } else {
-                func->openUrl(otherPanel()->func->files()->currentDirectory());
+                func->openUrl(otherPanel()->virtualPath());
             }
             return ;
         } else
@@ -950,27 +951,24 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
 
 void ListPanel::showEvent(QShowEvent *e)
 {
-    panelActive();
+    panelVisible();
     QWidget::showEvent(e);
 }
 
 void ListPanel::hideEvent(QHideEvent *e)
 {
-    panelInactive();
+    panelHidden();
     QWidget::hideEvent(e);
 }
 
-void ListPanel::panelActive()
+void ListPanel::panelVisible()
 {
-    //func->files()->enableRefresh(true)
+    func->setPaused(false);
 }
 
-void ListPanel::panelInactive()
+void ListPanel::panelHidden()
 {
-    // don't refresh when not active (ie: hidden, application isn't focused ...)
-    // TODO disabled so that the user sees changes in non-focused window; if the performance impact
-    // is too high we need another solution here
-    //func->files()->enableRefresh(false);
+    func->setPaused(true);
 }
 
 void ListPanel::slotPreviewJobStarted(KJob *job)
@@ -1041,6 +1039,12 @@ void ListPanel::inlineRefreshCancel()
         previewJob->kill(KJob::EmitResult);
         slotPreviewJobResult(0);
     }
+}
+
+void ListPanel::setNavigatorUrl(const QUrl &url)
+{
+    _navigatorUrl = url;
+   urlNavigator->setLocationUrl(url);
 }
 
 void ListPanel::inlineRefreshPercent(KJob*, unsigned long perc)
@@ -1182,12 +1186,12 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
     setProperties(cfg.readEntry("Properties", 0));
     view->restoreSettings(KConfigGroup(&cfg, "View"));
 
-    _realPath = QUrl::fromLocalFile(ROOT_DIR);
+    _lastLocalPath = ROOT_DIR;
 
-    if(func->history->restore(KConfigGroup(&cfg, "History")))
+    if(func->history->restore(KConfigGroup(&cfg, "History"))) {
         func->refresh();
-    else {
-        QUrl url(cfg.readEntry("Url", ROOT_DIR));
+    } else {
+        QUrl url(cfg.readEntry("Url", "invalid"));
         if (!url.isValid())
             url = QUrl::fromLocalFile(ROOT_DIR);
         func->openUrl(url);
@@ -1254,12 +1258,24 @@ void ListPanel::newTab(KrViewItem *it)
         return;
     else if (it->name() == "..") {
         newTab(KIO::upUrl(virtualPath()), true);
-    } else if (ITEM2FILEITEM(this, it)->isDir()) {
+    } else if (func->getFileItem(it)->isDir()) {
         QUrl url = virtualPath();
         url = url.adjusted(QUrl::StripTrailingSlash);
         url.setPath(url.path() + '/' + (it->name()));
         newTab(url, true);
     }
+}
+
+void ListPanel::slotNavigatorUrlChanged(const QUrl &url)
+{
+    if (url == _navigatorUrl)
+        return; // this is the URL we just set ourself
+
+    if (!isNavigatorEditModeSet()) {
+        urlNavigator->setUrlEditable(false);
+    }
+
+    func->openUrl(KrServices::escapeFileUrl(url), QString(), true);
 }
 
 void ListPanel::resetNavigatorMode()

@@ -22,6 +22,7 @@
 #include <QAction>
 #include <QCursor>
 #include <QDir>
+#include <QDropEvent>
 #include <QHeaderView>
 #include <QMenu>
 #include <QMimeData>
