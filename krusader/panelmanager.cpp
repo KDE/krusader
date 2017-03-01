@@ -259,6 +259,9 @@ void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, KrPanel *nextTo)
         nextTo->gui->saveSettings(cfg, true);
         p->restoreSettings(cfg);
         krConfig->deleteGroup(grpName);
+
+        // reset undesired duplicated settings
+        p->setLocked(false);
     }
     else
         p->start(url);
