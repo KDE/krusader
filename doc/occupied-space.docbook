@@ -9,11 +9,8 @@
   <itemizedlist>
     <listitem>
       <para>Pressing the 
-      <keycap>Space</keycap> on a directory under the cursor
-      instantly calculates the occupied size. Pressing 
-      <keycap>Space</keycap> a second time will toggle the selection
-      of the directory without affecting the selection status of
-      other files/directories.</para>
+      configurable shortcut for the <guilabel>Calculate occupied space</guilabel> on a directory under the cursor
+      instantly calculates the occupied size.</para>
     </listitem>
     <listitem>
       <para>To calculate how much disk space is occupied by the
@@ -26,7 +23,7 @@
       displayed with total occupied space and the number of files
       and directories you selected. The space occupied by every
       selected directory will be shown as if the user just pressed 
-      <keycap>Space</keycap> on those directories. If the active
+      configurable shortcut on those directories. If the active
       panel is browsing an archive, the numbers will apply to the
       unpacked size of the selected files and directories, not
       their compressed size. After the calculation the selection
@@ -35,7 +32,7 @@
     </listitem>
   </itemizedlist>
   <para>Calculating the occupied space on remote
-  file systems is supported. 
+  file systems is supported.
   <note>
     <para>Performing this operation on a very large file system
     (thousands of files) may be time-consuming. You can cancel the
