@@ -91,6 +91,7 @@ void KrCalcSpaceDialog::slotCalculatorFinished()
     m_buttonBox->clear();
     QPushButton *okButton = m_buttonBox->addButton(QDialogButtonBox::Ok);
     okButton->setDefault(true);
+    okButton->setFocus();
 
     m_updateTimer->stop();
     updateResult();
