@@ -50,7 +50,6 @@ public:
         return _urlQueue[pos];
     }
     void add(QUrl url, QString currentItem);
-    void pushBackRoot(); // add root dir to beginning of history
     bool gotoPos(int pos);
     bool goBack();
     bool goForward();
