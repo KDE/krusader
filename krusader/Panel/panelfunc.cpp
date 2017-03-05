@@ -93,7 +93,7 @@ QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
 ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
         panel(parent), fileSystemP(0), urlManuallyEntered(false),
-        _ignoreFileSystemErrors(false), _isPaused(true), _refreshAfterPaused(true)
+        _isPaused(true), _refreshAfterPaused(true)
 {
     history = new DirHistoryQueue(panel);
     delayTimer.setSingleShot(true);
@@ -249,7 +249,6 @@ void ListPanelFunc::doRefresh()
     const QUrl url = history->currentUrl();
 
     if(!url.isValid()) {
-        //FIXME go back in history here ?
         panel->slotStartUpdate(true);  // refresh the panel
         urlManuallyEntered = false;
         return ;
@@ -258,90 +257,66 @@ void ListPanelFunc::doRefresh()
     panel->inlineRefreshCancel();
 
     // if we are not refreshing to current URL
-    bool isEqualUrl = files()->currentDirectory().matches(url, QUrl::StripTrailingSlash);
+    const bool isEqualUrl = files()->currentDirectory().matches(url, QUrl::StripTrailingSlash);
 
     if (!isEqualUrl) {
         panel->setCursor(Qt::WaitCursor);
         panel->view->clearSavedSelection();
     }
 
-    if(panel->fileSystemError)
+    if (panel->fileSystemError) {
         panel->fileSystemError->hide();
-
-    bool refreshFailed = false;
-    while (true) {
-        QUrl url = history->currentUrl();
-
-        isEqualUrl = files()->currentDirectory().matches(url, QUrl::StripTrailingSlash);
-
-        // may get a new filesystem for this url
-        FileSystem *fileSystem = FileSystemProvider::instance().getFilesystem(url, files());
-        fileSystem->setParentWindow(krMainWindow);
-        connect(fileSystem, &FileSystem::aboutToOpenDir, &krMtMan, &KMountMan::autoMount, Qt::DirectConnection);
-        if (fileSystem != fileSystemP) {
-            panel->view->setFiles(0);
-
-            // disconnect older signals
-            disconnect(fileSystemP, 0, panel, 0);
-
-            fileSystemP->deleteLater();
-            fileSystemP = fileSystem; // v != 0 so this is safe
-        } else {
-            if (fileSystemP->isRefreshing()) {
-                delayTimer.start(100); /* if filesystem is busy try refreshing later */
-                return;
-            }
-        }
-        // (re)connect filesystem signals
-        disconnect(files(), 0, panel, 0);
-        connect(files(), SIGNAL(refreshDone(bool)), panel, SLOT(slotStartUpdate(bool)));
-        connect(files(), &FileSystem::fileSystemInfoChanged, panel, &ListPanel::updateFilesystemStats);
-        connect(files(), SIGNAL(refreshJobStarted(KIO::Job*)),
-                panel, SLOT(slotJobStarted(KIO::Job*)));
-        connect(files(), SIGNAL(error(QString)),
-                panel, SLOT(slotFilesystemError(QString)));
-
-        panel->view->setFiles(files());
-
-        if(!history->currentItem().isEmpty() && isEqualUrl) {
-            // if the url we're refreshing into is the current one, then the
-            // partial refresh will not generate the needed signals to actually allow the
-            // view to use nameToMakeCurrent. do it here instead (patch by Thomas Jarosch)
-            panel->view->setCurrentItem(history->currentItem());
-            panel->view->makeItemVisible(panel->view->getCurrentKrViewItem());
-        }
-        panel->view->setNameToMakeCurrent(history->currentItem());
-
-        int savedHistoryState = history->state();
-
-        // NOTE: this is blocking. Returns false on error or interruption (cancel requested or panel
-        // was deleted)
-        const bool refreshed = fileSystemP->refresh(url);
-        if (refreshed) {
-            // update the history as the actual url might differ from the one requested
-            history->setCurrentUrl(url);
-            break; // we have a valid refreshed URL now
-        }
-        if (!panel || !panel->view)
-            // this panel was deleted while refreshing
-            return;
-
-        refreshFailed = true;
-
-        panel->view->setNameToMakeCurrent(QString());
-
-        if(history->state() != savedHistoryState) // don't go back if the history was touched
-            break;
-        if(!history->goBack()) {
-            // put the root dir to the beginning of history, if it's not there yet
-            if (!url.matches(QUrl::fromLocalFile(ROOT_DIR), QUrl::StripTrailingSlash))
-                history->pushBackRoot();
-            else
-                break;
-        }
-        _ignoreFileSystemErrors = true;
     }
-    _ignoreFileSystemErrors = false;
+
+    panel->setNavigatorUrl(url);
+
+    // may get a new filesystem for this url
+    FileSystem *fileSystem = FileSystemProvider::instance().getFilesystem(url, files());
+    fileSystem->setParentWindow(krMainWindow);
+    connect(fileSystem, &FileSystem::aboutToOpenDir, &krMtMan, &KMountMan::autoMount, Qt::DirectConnection);
+    if (fileSystem != fileSystemP) {
+        panel->view->setFiles(0);
+
+        // disconnect older signals
+        disconnect(fileSystemP, 0, panel, 0);
+
+        fileSystemP->deleteLater();
+        fileSystemP = fileSystem; // v != 0 so this is safe
+    } else {
+        if (fileSystemP->isRefreshing()) {
+            delayTimer.start(100); /* if filesystem is busy try refreshing later */
+            return;
+        }
+    }
+    // (re)connect filesystem signals
+    disconnect(files(), 0, panel, 0);
+    connect(files(), SIGNAL(refreshDone(bool)), panel, SLOT(slotStartUpdate(bool)));
+    connect(files(), &FileSystem::fileSystemInfoChanged, panel, &ListPanel::updateFilesystemStats);
+    connect(files(), SIGNAL(refreshJobStarted(KIO::Job*)),
+            panel, SLOT(slotJobStarted(KIO::Job*)));
+    connect(files(), SIGNAL(error(QString)),
+            panel, SLOT(slotFilesystemError(QString)));
+
+    panel->view->setFiles(files());
+
+    if(!history->currentItem().isEmpty() && isEqualUrl) {
+        // if the url we're refreshing into is the current one, then the
+        // partial refresh will not generate the needed signals to actually allow the
+        // view to use nameToMakeCurrent. do it here instead (patch by Thomas Jarosch)
+        panel->view->setCurrentItem(history->currentItem());
+        panel->view->makeItemVisible(panel->view->getCurrentKrViewItem());
+    }
+    panel->view->setNameToMakeCurrent(history->currentItem());
+
+    // NOTE: this is blocking. Returns false on error or interruption (cancel requested or panel
+    // was deleted)
+    const bool refreshed = fileSystemP->refresh(url);
+    if (refreshed) {
+        // update the history and address bar, as the actual url might differ from the one requested
+        history->setCurrentUrl(fileSystemP->currentDirectory());
+        panel->setNavigatorUrl(fileSystemP->currentDirectory());
+    }
+
     panel->view->setNameToMakeCurrent(QString());
 
     panel->setCursor(Qt::ArrowCursor);
@@ -352,7 +327,7 @@ void ListPanelFunc::doRefresh()
 
     // see if the open url operation failed, and if so,
     // put the attempted url in the navigator bar and let the user change it
-    if (refreshFailed) {
+    if (!refreshed) {
         if(isSyncing(url))
             panel->otherPanel()->gui->syncBrowseButton->setChecked(false);
         else if(urlManuallyEntered) {

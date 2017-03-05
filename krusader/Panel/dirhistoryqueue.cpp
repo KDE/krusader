@@ -29,7 +29,7 @@
 #include <QDir>
 
 DirHistoryQueue::DirHistoryQueue(KrPanel *panel) :
-    _panel(panel), _state(0), _currentPos(0)
+    _panel(panel), _currentPos(0)
 {
 }
 
@@ -40,7 +40,6 @@ void DirHistoryQueue::clear()
     _urlQueue.clear();
     _currentItems.clear();
     _currentPos = 0;
-    _state++;
 }
 
 QUrl DirHistoryQueue::currentUrl()
@@ -80,7 +79,6 @@ void DirHistoryQueue::add(QUrl url, QString currentItem)
     if(_urlQueue.isEmpty()) {
         _urlQueue.push_front(url);
         _currentItems.push_front(currentItem);
-        _state++;
         return;
     }
 
@@ -106,8 +104,6 @@ void DirHistoryQueue::add(QUrl url, QString currentItem)
     saveCurrentItem();
     _urlQueue.push_front(url);
     _currentItems.push_front(currentItem);
-
-    _state++;
 }
 
 void DirHistoryQueue::pushBackRoot()
@@ -121,7 +117,6 @@ bool DirHistoryQueue::gotoPos(int pos)
     if(pos >= 0 && pos < _urlQueue.count()) {
         saveCurrentItem();
         _currentPos = pos;
-        _state++;
         return true;
     }
     return false;
@@ -166,6 +161,5 @@ bool DirHistoryQueue::restore(KConfigGroup cfg)
     if(_currentPos >= _urlQueue.count() || _currentPos < 0)
         _currentPos  = 0;
 
-    _state++;
     return true;
 }
