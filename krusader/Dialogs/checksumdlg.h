@@ -21,66 +21,158 @@
 #ifndef CHECKSUMDLG_H
 #define CHECKSUMDLG_H
 
+// QtCore
+#include <QFutureWatcher>
+#include <QString>
+#include <QTemporaryFile>
 // QtWidgets
 #include <QCheckBox>
-#include <QDialog>
+#include <QLabel>
+#include <QWizard>
 
-#include <KIOWidgets/KUrlRequester>
+#include <KCompletion/KComboBox>
+#include <KCoreAddons/KProcess>
 
-extern void initChecksumModule();
+class KrListWidget;
+class KrTreeWidget;
 
+/**
+ * Perform checksum operations: Creation of checksums or verifying files with a checksum file.
+ *
+ * The dialogs are not modal. The used checksum tools only support local files which are expected to
+ * be in one directory (specified by 'path').
+ */
 class Checksum
 {
+  public:
+    static void startCreationWizard(const QString &path, const QStringList &fileNames);
+    static void startVerifyWizard(const QString &path, const QString &checksumFile = QString());
+};
+
+namespace  CHECKSUM_ { // private namespace
+
+/** Wrapper for KProcess to handle errors and output. */
+class ChecksumProcess : public KProcess
+{
+Q_OBJECT
+  public:
+    ChecksumProcess(QObject *parent, const QString &path);
+    ~ChecksumProcess();
+
+    QStringList stdOutput() const { return m_outputLines; }
+    QStringList errOutput() const { return m_errorLines; }
+
+  signals:
+    void resultReady();
+
+  private slots:
+    void slotError(QProcess::ProcessError error);
+    void slotFinished(int, QProcess::ExitStatus exitStatus);
+
+  private:
+    QStringList m_outputLines;
+    QStringList m_errorLines;
+    QTemporaryFile m_tmpOutFile;
+    QTemporaryFile m_tmpErrFile;
+};
+
+/** Base class for common code in creation and verify wizard. */
+class ChecksumWizard : public QWizard
+{
+    Q_OBJECT
 public:
-    static void startCreation(const QStringList &files, bool containFolders, const QString &path);
+    ChecksumWizard(const QString &path);
+    virtual ~ChecksumWizard();
 
-    static void startMatch(const QStringList &files, bool containFolders, const QString &path,
-                           const QString &checksumFile = QString());
+private slots:
+    void slotCurrentIdChanged(int id);
 
-    static QString checksumTypesFilter;
+protected:
+    virtual QWizardPage *createIntroPage() = 0;
+    virtual QWizardPage *createResultPage() = 0;
+
+    virtual void onIntroPage() = 0;
+    virtual void onProgressPage() = 0;
+    virtual void onResultPage() = 0;
+
+    QWizardPage *createProgressPage(const QString &title);
+
+    bool checkExists(const QString type);
+    void runProcess(const QString &type, const QStringList &args);
+    void addChecksumLine(KrTreeWidget *tree, const QString &line);
+
+    const QString m_path;
+    ChecksumProcess *m_process;
+
+    QMap<QString, QString> m_checksumTools; // extension/typ-name -> binary name
+
+    int m_introId, m_progressId, m_resultId;
+};
+
+class CreateWizard : public ChecksumWizard
+{
+Q_OBJECT
+public:
+    CreateWizard(const QString &path, const QStringList &_files);
+
+public slots:
+    void accept() Q_DECL_OVERRIDE;
 
 private:
-    class CreateDialog : public QDialog
-    {
-      public:
-        CreateDialog(const QStringList &files, bool containFolders, const QString &path);
-    };
+    QWizardPage *createIntroPage() Q_DECL_OVERRIDE;
+    QWizardPage *createResultPage() Q_DECL_OVERRIDE;
 
-    class MatchDialog : public QDialog
-    {
-      public:
-        MatchDialog(const QStringList &files, bool containFolders, const QString &path,
-                    const QString &checksumFile = QString());
+    void onIntroPage() Q_DECL_OVERRIDE;
+    void onProgressPage() Q_DECL_OVERRIDE;
+    void onResultPage() Q_DECL_OVERRIDE;
 
-      protected:
-        bool verifyChecksumFile(QString path, QString &extension);
-    };
+    void createChecksums();
+    bool savePerFile();
+    bool saveChecksumFile(const QStringList &data, const QString &filename = QString());
 
-    class ResultsDialog : public QDialog
-    {
-      public:
-        ResultsDialog(const QStringList &stdOut, const QStringList &stdErr,
-                      const QString &suggestedFilename);
+    const QStringList m_fileNames;
 
-      public slots:
-        virtual void accept() Q_DECL_OVERRIDE;
+    QFutureWatcher<QStringList> m_listFilesWatcher;
 
-      protected:
-        bool saveChecksumFile(const QStringList &data, const QString &filename = QString());
-        bool savePerFile();
+    QString m_suggestedFilePath;
 
-      private:
-        QCheckBox *_onePerFile;
-        KUrlRequester *_checksumFileSelector;
-        QStringList _data;
-        QString _suggestedFilename;
-    };
-
-    class VerifyDialog : public QDialog
-    {
-      public:
-        VerifyDialog(const QStringList &failed);
-    };
+    // intro page
+    KComboBox *m_methodBox;
+    // result page
+    KrTreeWidget *m_hashesTreeWidget;
+    QLabel *m_errorLabel;
+    KrListWidget *m_errorListWidget;
+    QCheckBox *m_onePerFileBox;
 };
+
+class VerifyWizard : public ChecksumWizard
+{
+Q_OBJECT
+public:
+  VerifyWizard(const QString &path, const QString &inputFile);
+
+private slots:
+    void slotChecksumPathChanged(const QString &path);
+
+private:
+    QWizardPage *createIntroPage() Q_DECL_OVERRIDE;
+    QWizardPage *createResultPage() Q_DECL_OVERRIDE;
+
+    void onIntroPage() Q_DECL_OVERRIDE;
+    void onProgressPage() Q_DECL_OVERRIDE;
+    void onResultPage() Q_DECL_OVERRIDE;
+
+    bool isSupported(const QString &path);
+
+    QString m_checksumFile;
+
+    // intro page
+    KrTreeWidget *m_hashesTreeWidget;
+    // result page
+    QLabel *m_outputLabel;
+    KrListWidget *m_outputListWidget;
+};
+
+} // NAMESPACE CHECKSUM_
 
 #endif // CHECKSUMDLG_H

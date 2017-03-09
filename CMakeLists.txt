@@ -31,6 +31,7 @@ include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 
 find_package(Qt5 CONFIG REQUIRED
+  Concurrent
   Core
   Gui
   DBus
