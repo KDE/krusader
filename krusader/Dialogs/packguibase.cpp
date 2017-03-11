@@ -96,8 +96,8 @@ PackGUIBase::PackGUIBase(QWidget* parent)
 
     typeData = new QComboBox(this);
     typeData->setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
-    connect(typeData, SIGNAL(activated(const QString &)), this,  SLOT(checkConsistency()));
-    connect(typeData, SIGNAL(highlighted(const QString &)), this,  SLOT(checkConsistency()));
+    connect(typeData, SIGNAL(activated(QString)), this,  SLOT(checkConsistency()));
+    connect(typeData, SIGNAL(highlighted(QString)), this,  SLOT(checkConsistency()));
     hbox->addWidget(typeData);
 
     grid->addLayout(hbox, 1, 0);
@@ -242,7 +242,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
 
     password = new QLineEdit(advancedWidget);
     password->setEchoMode(QLineEdit::Password);
-    connect(password, SIGNAL(textChanged(const QString &)), this, SLOT(checkConsistency()));
+    connect(password, SIGNAL(textChanged(QString)), this, SLOT(checkConsistency()));
 
     passwordGrid->addWidget(password, 0, 1);
 
@@ -252,7 +252,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
 
     passwordAgain = new QLineEdit(advancedWidget);
     passwordAgain->setEchoMode(QLineEdit::Password);
-    connect(passwordAgain, SIGNAL(textChanged(const QString &)), this, SLOT(checkConsistency()));
+    connect(passwordAgain, SIGNAL(textChanged(QString)), this, SLOT(checkConsistency()));
 
     passwordGrid->addWidget(passwordAgain, 1, 1);
 

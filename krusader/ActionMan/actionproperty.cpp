@@ -67,16 +67,16 @@ ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
     connect(ButtonNewFile, SIGNAL(clicked()), this, SLOT(newFile()));
     connect(ButtonEditFile, SIGNAL(clicked()), this, SLOT(editFile()));
     connect(ButtonRemoveFile, SIGNAL(clicked()), this, SLOT(removeFile()));
-    connect(KeyButtonShortcut, SIGNAL(keySequenceChanged(const QKeySequence&)), this, SLOT(changedShortcut(const QKeySequence &)));
+    connect(KeyButtonShortcut, SIGNAL(keySequenceChanged(QKeySequence)), this, SLOT(changedShortcut(QKeySequence)));
     // track modifications:
-    connect(leDistinctName, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
-    connect(leTitle, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
+    connect(leDistinctName, SIGNAL(textChanged(QString)), SLOT(setModified()));
+    connect(leTitle, SIGNAL(textChanged(QString)), SLOT(setModified()));
     connect(ButtonIcon, SIGNAL(iconChanged(QString)), SLOT(setModified()));
     connect(cbCategory, SIGNAL(currentTextChanged(QString)), SLOT(setModified()));
-    connect(leTooltip, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
+    connect(leTooltip, SIGNAL(textChanged(QString)), SLOT(setModified()));
     connect(textDescription, SIGNAL(textChanged()), SLOT(setModified()));
-    connect(leCommandline, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
-    connect(leStartpath, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
+    connect(leCommandline, SIGNAL(textChanged(QString)), SLOT(setModified()));
+    connect(leStartpath, SIGNAL(textChanged(QString)), SLOT(setModified()));
     connect(chkSeparateStdError, SIGNAL(clicked()), SLOT(setModified()));
     connect(radioCollectOutput, SIGNAL(clicked()), SLOT(setModified()));
     connect(radioNormal, SIGNAL(clicked()), SLOT(setModified()));
@@ -84,9 +84,9 @@ ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
     connect(radioTerminal, SIGNAL(clicked()), SLOT(setModified()));
     connect(radioLocal, SIGNAL(clicked()), SLOT(setModified()));
     connect(radioUrl, SIGNAL(clicked()), SLOT(setModified()));
-    connect(KeyButtonShortcut, SIGNAL(keySequenceChanged(const QKeySequence&)), SLOT(setModified()));
+    connect(KeyButtonShortcut, SIGNAL(keySequenceChanged(QKeySequence)), SLOT(setModified()));
     connect(chkEnabled, SIGNAL(clicked()), SLOT(setModified()));
-    connect(leDifferentUser, SIGNAL(textChanged(const QString&)), SLOT(setModified()));
+    connect(leDifferentUser, SIGNAL(textChanged(QString)), SLOT(setModified()));
     connect(chkDifferentUser, SIGNAL(clicked()), SLOT(setModified()));
     connect(chkConfirmExecution, SIGNAL(clicked()), SLOT(setModified()));
     connect(chkSeparateStdError, SIGNAL(clicked()), SLOT(setModified()));

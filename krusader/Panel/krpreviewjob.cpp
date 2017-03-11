@@ -122,8 +122,8 @@ void KrPreviewJob::slotStartJob()
     _job->setOverlayIconAlpha(0);
     _job->setOverlayIconSize(0);
     _job->setScaleType(KIO::PreviewJob::ScaledAndCached);
-    connect(_job, SIGNAL(gotPreview(const KFileItem&, const QPixmap&)), SLOT(slotGotPreview(const KFileItem&, const QPixmap&)));
-    connect(_job, SIGNAL(failed(const KFileItem&)), SLOT(slotFailed(const KFileItem&)));
+    connect(_job, SIGNAL(gotPreview(KFileItem,QPixmap)), SLOT(slotGotPreview(KFileItem,QPixmap)));
+    connect(_job, SIGNAL(failed(KFileItem)), SLOT(slotFailed(KFileItem)));
     connect(_job, SIGNAL(result(KJob*)), SLOT(slotJobResult(KJob*)));
 }
 

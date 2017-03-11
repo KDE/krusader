@@ -153,8 +153,8 @@ void SynchronizeDialog::startSynchronization()
     btnStart->setEnabled(false);
     btnPause->setEnabled(syncStarted = true);
     connect(synchronizer,  SIGNAL(synchronizationFinished()), this, SLOT(synchronizationFinished()));
-    connect(synchronizer,  SIGNAL(processedSizes(int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t)),
-            this, SLOT(processedSizes(int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t)));
+    connect(synchronizer,  SIGNAL(processedSizes(int,KIO::filesize_t,int,KIO::filesize_t,int,KIO::filesize_t)),
+            this, SLOT(processedSizes(int,KIO::filesize_t,int,KIO::filesize_t,int,KIO::filesize_t)));
     connect(synchronizer,  SIGNAL(pauseAccepted()), this, SLOT(pauseAccepted()));
 
     if (!cbRightToLeft->isChecked()) leftCopySize = 0;

@@ -64,11 +64,11 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
 
     mSourceModel->dirLister()->openUrl(QUrl::fromLocalFile(QDir::root().absolutePath()), KDirLister::Keep);
 
-    connect(this, SIGNAL(activated(const QModelIndex&)),
-            this, SLOT(slotActivated(const QModelIndex&)));
+    connect(this, SIGNAL(activated(QModelIndex)),
+            this, SLOT(slotActivated(QModelIndex)));
 
-    connect(mSourceModel, SIGNAL(expand(const QModelIndex&)),
-            this, SLOT(slotExpanded(const QModelIndex&)));
+    connect(mSourceModel, SIGNAL(expand(QModelIndex)),
+            this, SLOT(slotExpanded(QModelIndex)));
 
     QFontMetrics fontMetrics(viewport()->font());
     header()->resizeSection(KDirModel::Name, fontMetrics.width("WWWWWWWWWWWWWWW"));

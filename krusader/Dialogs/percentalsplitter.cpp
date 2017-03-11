@@ -43,7 +43,7 @@
 
 PercentalSplitter::PercentalSplitter(QWidget * parent) : QSplitter(parent), label(0), opaqueOldPos(-1)
 {
-    connect(this, SIGNAL(splitterMoved(int, int)), SLOT(slotSplitterMoved(int, int)));
+    connect(this, SIGNAL(splitterMoved(int,int)), SLOT(slotSplitterMoved(int,int)));
 }
 
 PercentalSplitter::~PercentalSplitter()

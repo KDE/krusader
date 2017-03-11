@@ -106,8 +106,8 @@ void KrRemoteEncodingMenu::loadSettings()
     encodingNames = KCharsets::charsets()->descriptiveEncodingNames();
 
     QMenu *qmenu = menu();
-    disconnect(qmenu, SIGNAL(triggered(QAction *)), this, SLOT(slotTriggered(QAction *)));
-    connect(qmenu, SIGNAL(triggered(QAction *)), this, SLOT(slotTriggered(QAction *)));
+    disconnect(qmenu, SIGNAL(triggered(QAction*)), this, SLOT(slotTriggered(QAction*)));
+    connect(qmenu, SIGNAL(triggered(QAction*)), this, SLOT(slotTriggered(QAction*)));
     qmenu->clear();
 
     QStringList::ConstIterator it;

@@ -360,7 +360,7 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory) {
     _watcher->addDir(realPath(), KDirWatch::WatchFiles);
     connect(_watcher.data(), &KDirWatch::dirty, this, &DefaultFileSystem::slotWatcherDirty);
     // NOTE: not connecting 'created' signal. A 'dirty' is send after that anyway
-    //connect(_watcher, SIGNAL(created(const QString&)), this, SLOT(slotWatcherCreated(const QString&)));
+    //connect(_watcher, SIGNAL(created(QString)), this, SLOT(slotWatcherCreated(QString)));
     connect(_watcher.data(), &KDirWatch::deleted, this, &DefaultFileSystem::slotWatcherDeleted);
     _watcher->startScan(false);
 

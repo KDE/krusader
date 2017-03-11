@@ -129,7 +129,7 @@ KgProtocols::KgProtocols(bool first, QWidget* parent) :
     connect(protocolList,      SIGNAL(itemSelectionChanged()), this, SLOT(slotDisableButtons()));
     connect(linkList,          SIGNAL(itemSelectionChanged()), this, SLOT(slotDisableButtons()));
     connect(mimeList,          SIGNAL(itemSelectionChanged()), this, SLOT(slotDisableButtons()));
-    connect(linkList,          SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)), this, SLOT(slotDisableButtons()));
+    connect(linkList,          SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(slotDisableButtons()));
     connect(btnAddProtocol,    SIGNAL(clicked())         , this, SLOT(slotAddProtocol()));
     connect(btnRemoveProtocol, SIGNAL(clicked())         , this, SLOT(slotRemoveProtocol()));
     connect(btnAddMime,        SIGNAL(clicked())         , this, SLOT(slotAddMime()));

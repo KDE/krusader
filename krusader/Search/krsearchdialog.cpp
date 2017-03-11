@@ -275,8 +275,8 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     connect(profileManager, SIGNAL(saveToProfile(QString)), filterTabs, SLOT(saveToProfile(QString)));
 
     connect(resultView->op(), SIGNAL(currentChanged(KrViewItem*)), SLOT(currentChanged(KrViewItem*)));
-    connect(resultView->op(), SIGNAL(executed(const QString&)), SLOT(executed(const QString&)));
-    connect(resultView->op(), SIGNAL(contextMenu(const QPoint&)), SLOT(contextMenu(const QPoint &)));
+    connect(resultView->op(), SIGNAL(executed(QString)), SLOT(executed(QString)));
+    connect(resultView->op(), SIGNAL(contextMenu(QPoint)), SLOT(contextMenu(QPoint)));
 
     // tab order
 
@@ -436,8 +436,8 @@ void KrSearchDialog::startSearch()
     if (searcher != 0)
         abort();
     searcher  = new KRSearchMod(query);
-    connect(searcher, SIGNAL(searching(const QString&)),
-            searchingLabel, SLOT(setText(const QString&)));
+    connect(searcher, SIGNAL(searching(QString)),
+            searchingLabel, SLOT(setText(QString)));
     connect(searcher, &KRSearchMod::found, this, &KrSearchDialog::slotFound);
     connect(searcher, SIGNAL(finished()), this, SLOT(stopSearch()));
 
@@ -564,7 +564,7 @@ void KrSearchDialog::compareByContent()
     if (list.count() != 2)
         return;
 
-    SLOTS->compareContent(list[0]->getFileItem()->getUrl(), list[1]->getFileItem()->getUrl());
+    SLOTS->compareContent(list[0]->getFileItem()->getUrl(),list[1]->getFileItem()->getUrl());
 }
 
 void KrSearchDialog::contextMenu(const QPoint &pos)

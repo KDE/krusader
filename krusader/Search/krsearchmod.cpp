@@ -54,10 +54,10 @@ KRSearchMod::KRSearchMod(const KRQuery* q)
 {
     stopSearch = false; /// ===> added
     query = new KRQuery(*q);
-    connect(query, SIGNAL(status(const QString &)),
-            this,  SIGNAL(searching(const QString&)));
-    connect(query, SIGNAL(processEvents(bool &)),
-            this,  SLOT(slotProcessEvents(bool &)));
+    connect(query, SIGNAL(status(QString)),
+            this,  SIGNAL(searching(QString)));
+    connect(query, SIGNAL(processEvents(bool&)),
+            this,  SLOT(slotProcessEvents(bool&)));
 
     remote_fileSystem = 0;
     virtual_fileSystem = 0;

@@ -49,7 +49,7 @@
 
 // ------------------------ for internal use
 #define BOOKMARKS_FILE "krusader/krbookmarks.xml"
-#define CONNECT_BM(X) { disconnect(X, SIGNAL(activated(const QUrl&)), 0, 0); connect(X, SIGNAL(activated(const QUrl&)), this, SLOT(slotActivated(const QUrl&))); }
+#define CONNECT_BM(X) { disconnect(X, SIGNAL(activated(QUrl)), 0, 0); connect(X, SIGNAL(activated(QUrl)), this, SLOT(slotActivated(QUrl))); }
 
 KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) : QObject(mainWindow->widget()),
         _mainWindow(mainWindow), _middleClick(false), _mainBookmarkPopup(0), _specialBookmarks()
@@ -68,7 +68,7 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) : QObject(mainWin
     // hack
     QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
     manager = KBookmarkManager::managerForFile(filename, QStringLiteral("krusader"));
-    connect(manager, SIGNAL(changed(const QString&, const QString&)), this, SLOT(bookmarksChanged(const QString&, const QString&)));
+    connect(manager, SIGNAL(changed(QString,QString)), this, SLOT(bookmarksChanged(QString,QString)));
 }
 
 KrBookmarkHandler::~KrBookmarkHandler()
@@ -440,7 +440,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu)
         _specialBookmarks.append(bmAct);
 
         // make sure the menu is connected to us
-        disconnect(menu, SIGNAL(triggered(QAction *)), 0, 0);
+        disconnect(menu, SIGNAL(triggered(QAction*)), 0, 0);
     }
 
     menu->installEventFilter(this);

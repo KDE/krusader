@@ -286,8 +286,8 @@ KParts::ReadOnlyPart* PanelViewer::createPart(QString mimetype)
     if (part) {
         KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(part);
         if (ext) {
-            connect(ext, SIGNAL(openUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SLOT(openUrl(const QUrl &)));
-            connect(ext, SIGNAL(openUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SIGNAL(openUrlRequest(const QUrl &)));
+            connect(ext, SIGNAL(openUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)), this, SLOT(openUrl(QUrl)));
+            connect(ext, SIGNAL(openUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)), this, SIGNAL(openUrlRequest(QUrl)));
         }
     }
     return part;
@@ -405,8 +405,8 @@ KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
     if (part) {
         KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(part);
         if (ext) {
-            connect(ext, SIGNAL(openUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SLOT(openUrl(const QUrl &)));
-            connect(ext, SIGNAL(openUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)), this, SIGNAL(openUrlRequest(const QUrl &)));
+            connect(ext, SIGNAL(openUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)), this, SLOT(openUrl(QUrl)));
+            connect(ext, SIGNAL(openUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)), this, SIGNAL(openUrlRequest(QUrl)));
         }
     }
     return part;

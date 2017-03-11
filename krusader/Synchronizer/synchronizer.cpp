@@ -953,8 +953,8 @@ void Synchronizer::executeTask(SynchronizerFileItem * task)
             if (task->rightLink().isNull()) {
                 KIO::FileCopyJob *job = KIO::file_copy(rightURL, destURL, -1,
                                                        ((overWrite || task->overWrite()) ? KIO::Overwrite : KIO::DefaultFlags) | KIO::HideProgressInfo);
-                connect(job, SIGNAL(processedSize(KJob *, qulonglong)), this,
-                        SLOT(slotProcessedSize(KJob *, qulonglong)));
+                connect(job, SIGNAL(processedSize(KJob*,qulonglong)), this,
+                        SLOT(slotProcessedSize(KJob*,qulonglong)));
                 connect(job, SIGNAL(result(KJob*)), this, SLOT(slotTaskFinished(KJob*)));
                 jobMap[ job ] = task;
             } else {
@@ -979,8 +979,8 @@ void Synchronizer::executeTask(SynchronizerFileItem * task)
             if (task->leftLink().isNull()) {
                 KIO::FileCopyJob *job = KIO::file_copy(leftURL, destURL, -1,
                                                        ((overWrite || task->overWrite()) ? KIO::Overwrite : KIO::DefaultFlags) | KIO::HideProgressInfo);
-                connect(job, SIGNAL(processedSize(KJob *, qulonglong)), this,
-                        SLOT(slotProcessedSize(KJob *, qulonglong)));
+                connect(job, SIGNAL(processedSize(KJob*,qulonglong)), this,
+                        SLOT(slotProcessedSize(KJob*,qulonglong)));
                 connect(job, SIGNAL(result(KJob*)), this, SLOT(slotTaskFinished(KJob*)));
                 jobMap[ job ] = task;
             } else {

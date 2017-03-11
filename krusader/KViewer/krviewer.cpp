@@ -347,11 +347,11 @@ void KrViewer::addTab(PanelViewerBase *pvb)
 
     tabBar.show();
 
-    connect(pvb, SIGNAL(openUrlFinished(PanelViewerBase*, bool)),
-                 SLOT(openUrlFinished(PanelViewerBase*, bool)));
+    connect(pvb, SIGNAL(openUrlFinished(PanelViewerBase*,bool)),
+                 SLOT(openUrlFinished(PanelViewerBase*,bool)));
 
-    connect(pvb, SIGNAL(urlChanged(PanelViewerBase *, const QUrl &)),
-            this,  SLOT(tabURLChanged(PanelViewerBase *, const QUrl &)));
+    connect(pvb, SIGNAL(urlChanged(PanelViewerBase*,QUrl)),
+            this,  SLOT(tabURLChanged(PanelViewerBase*,QUrl)));
 }
 
 void KrViewer::tabURLChanged(PanelViewerBase *pvb, const QUrl &url)
@@ -669,8 +669,8 @@ void KrViewer::addPart(KParts::ReadOnlyPart *part)
         return;
     }
 
-    connect(part, SIGNAL(setStatusBarText(const QString&)),
-            this, SLOT(slotSetStatusBarText(const QString&)));
+    connect(part, SIGNAL(setStatusBarText(QString)),
+            this, SLOT(slotSetStatusBarText(QString)));
     // filtering out the key events
     part->installEventFilter(this);
 

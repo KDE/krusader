@@ -47,7 +47,7 @@ ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
     // filter
     action(i18n("&All Files"), 0, Qt::SHIFT + Qt::Key_F10, SLOT(allFilter()), "all files");
     //actExecFilter = new QAction( i18n( "&Executables" ), SHIFT + Qt::Key_F11,
-    //                             SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );
+    //                             SLOTS, SLOT(execFilter()), actionCollection(), "exec files" );
     action(i18n("&Custom"), 0, Qt::SHIFT + Qt::Key_F12, SLOT(customFilter()), "custom files");
 
     // selection

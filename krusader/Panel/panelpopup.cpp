@@ -115,8 +115,8 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, KrMainWindow *mainWindow) :
     tree->setDirOnlyMode(true);
     // NOTE: the F2 key press event is catched before it gets to the tree
     tree->setEditTriggers(QAbstractItemView::EditKeyPressed);
-    connect(tree, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(treeSelection()));
-    connect(tree, SIGNAL(activated(const QUrl &)), this, SLOT(treeSelection()));
+    connect(tree, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(treeSelection()));
+    connect(tree, SIGNAL(activated(QUrl)), this, SLOT(treeSelection()));
 
     // create the quickview part ------
     viewer = new KImageFilePreview(stack);
@@ -128,7 +128,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, KrMainWindow *mainWindow) :
     panelviewer = new PanelViewer(stack);
     panelviewer->setProperty("KrusaderWidgetId", QVariant(View));
     stack->addWidget(panelviewer);
-    connect(panelviewer, SIGNAL(openUrlRequest(const QUrl &)), this, SLOT(handleOpenUrlRequest(const QUrl &)));
+    connect(panelviewer, SIGNAL(openUrlRequest(QUrl)), this, SLOT(handleOpenUrlRequest(QUrl)));
 
     // create the disk usage view
 
@@ -136,7 +136,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, KrMainWindow *mainWindow) :
     diskusage->setStatusLabel(dataLine, i18n("Disk Usage:"));
     diskusage->setProperty("KrusaderWidgetId", QVariant(DskUsage));
     stack->addWidget(diskusage);
-    connect(diskusage, SIGNAL(openUrlRequest(const QUrl &)), this, SLOT(handleOpenUrlRequest(const QUrl &)));
+    connect(diskusage, SIGNAL(openUrlRequest(QUrl)), this, SLOT(handleOpenUrlRequest(QUrl)));
 
     // -------- finish the layout (General one)
     layout->addWidget(stack, 1, 0, 1, 5);

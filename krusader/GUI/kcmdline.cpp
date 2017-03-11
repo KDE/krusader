@@ -133,7 +133,7 @@ void CmdLineCombo::keyPressEvent(QKeyEvent *e)
     case Qt::Key_Enter:
     case Qt::Key_Return:
         if (e->modifiers() & Qt::ControlModifier) {
-            SLOTS->insertFileName((e->modifiers() & Qt::ShiftModifier) != 0);
+            SLOTS->insertFileName((e->modifiers()&Qt::ShiftModifier)!=0);
             break;
         }
         KHistoryComboBox::keyPressEvent(e);
@@ -188,8 +188,8 @@ KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
     QStringList list = grpSvr.readEntry("cmdline history", QStringList());
     cmdLine->setHistoryItems(list);
 
-    connect(cmdLine, SIGNAL(returnPressed(const QString &)), this, SLOT(slotRun()));
-    connect(cmdLine, SIGNAL(returnPressed(const QString &)), cmdLine->lineEdit(), SLOT(clear()));
+    connect(cmdLine, SIGNAL(returnPressed(QString)), this, SLOT(slotRun()));
+    connect(cmdLine, SIGNAL(returnPressed(QString)), cmdLine->lineEdit(), SLOT(clear()));
     connect(cmdLine, SIGNAL(returnToPanel()), this, SLOT(slotReturnFocus()));
 
     cmdLine->setWhatsThis(i18n("<qt><p>Well, it is actually quite simple: you type your command here and Krusader obeys.</p><p><b>Tip</b>: move within command line history with &lt;Up&gt; and &lt;Down&gt; arrows.</p></qt>"));
@@ -255,7 +255,7 @@ void KCMDLine::slotRun()
             dir = QDir::homePath();
         else if (dir.left(1) != "/" && !dir.contains(":/"))
             dir = cmdLine->path() + (cmdLine->path() == "/" ? "" : "/") + dir;
-        SLOTS->refresh(QUrl::fromUserInput(dir, QDir::currentPath(), QUrl::AssumeLocalFile));
+        SLOTS->refresh(QUrl::fromUserInput(dir,QDir::currentPath(),QUrl::AssumeLocalFile));
     } else {
         exec();
         cmdLine->clearEditText();

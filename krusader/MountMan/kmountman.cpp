@@ -168,8 +168,8 @@ void KMountMan::mount(QString mntPoint, bool blocking)
         Solid::Device device(udi);
         Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
         if (access && !access->isAccessible()) {
-            connect(access, SIGNAL(setupDone(Solid::ErrorType, QVariant, const QString &)),
-                    this, SLOT(slotSetupDone(Solid::ErrorType, QVariant, const QString &)));
+            connect(access, SIGNAL(setupDone(Solid::ErrorType,QVariant,QString)),
+                    this, SLOT(slotSetupDone(Solid::ErrorType,QVariant,QString)));
             if (blocking)
                 waiting = true; // prepare to block
             access->setup();
@@ -216,8 +216,8 @@ void KMountMan::unmount(QString mntPoint, bool blocking)
         Solid::Device device(udi);
         Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
         if (access && access->isAccessible()) {
-            connect(access, SIGNAL(teardownDone(Solid::ErrorType, QVariant, const QString &)),
-                    this, SLOT(slotTeardownDone(Solid::ErrorType, QVariant, const QString &)));
+            connect(access, SIGNAL(teardownDone(Solid::ErrorType,QVariant,QString)),
+                    this, SLOT(slotTeardownDone(Solid::ErrorType,QVariant,QString)));
             access->teardown();
         }
     } else {
@@ -312,8 +312,8 @@ void KMountMan::eject(QString mntPoint)
         QDir::setCurrent(QDir::homePath());
 
 
-    connect(drive, SIGNAL(ejectDone(Solid::ErrorType, QVariant, const QString &)),
-            this, SLOT(slotTeardownDone(Solid::ErrorType, QVariant, const QString &)));
+    connect(drive, SIGNAL(ejectDone(Solid::ErrorType,QVariant,QString)),
+            this, SLOT(slotTeardownDone(Solid::ErrorType,QVariant,QString)));
 
     drive->eject();
 }
@@ -433,8 +433,8 @@ void KMountMan::quickList()
         QAction * act = _action->menu() ->addAction(text);
         act->setData(QVariant(idx));
     }
-    connect(_action->menu(), SIGNAL(triggered(QAction *)),
-            this, SLOT(delayedPerformAction(QAction *)));
+    connect(_action->menu(), SIGNAL(triggered(QAction*)),
+            this, SLOT(delayedPerformAction(QAction*)));
 
 }
 
@@ -471,7 +471,7 @@ void KMountMan::performAction()
     // free memory
     delete[] _actions;
     _actions = 0L;
-    disconnect(_action->menu(), SIGNAL(triggered(QAction *)), 0, 0);
+    disconnect(_action->menu(), SIGNAL(triggered(QAction*)), 0, 0);
 }
 
 QString KMountMan::findUdiForPath(QString path, const Solid::DeviceInterface::Type &expType)

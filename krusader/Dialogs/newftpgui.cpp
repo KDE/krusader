@@ -146,10 +146,10 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
-    connect(prefix, SIGNAL(activated(const QString &)),
-            this, SLOT(slotTextChanged(const QString &)));
-    connect(url, SIGNAL(activated(const QString &)),
-            url, SLOT(addToHistory(const QString &)));
+    connect(prefix, SIGNAL(activated(QString)),
+            this, SLOT(slotTextChanged(QString)));
+    connect(url, SIGNAL(activated(QString)),
+            url, SLOT(addToHistory(QString)));
 
     if(!lastUsedProtocol.isEmpty()) {
         // update the port field

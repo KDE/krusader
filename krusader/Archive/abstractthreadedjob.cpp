@@ -139,14 +139,14 @@ bool AbstractThreadedJob::event(QEvent *e)
             job->setUiDelegate(new KIO::JobUiDelegate());
 
             connect(job, SIGNAL(result(KJob*)), this, SLOT(slotDownloadResult(KJob*)));
-            connect(job, SIGNAL(processedAmount(KJob *, KJob::Unit, qulonglong)),
-                    this, SLOT(slotProcessedAmount(KJob *, KJob::Unit, qulonglong)));
-            connect(job, SIGNAL(totalAmount(KJob *, KJob::Unit, qulonglong)),
-                    this, SLOT(slotTotalAmount(KJob *, KJob::Unit, qulonglong)));
-            connect(job, SIGNAL(speed(KJob *, unsigned long)),
-                    this, SLOT(slotSpeed(KJob *, unsigned long)));
-            connect(job, SIGNAL(description(KJob *, const QString &, const QPair<QString, QString> &, const QPair<QString, QString> &)),
-                    this, SLOT(slotDescription(KJob *, const QString &, const QPair<QString, QString> &, const QPair<QString, QString> &)));
+            connect(job, SIGNAL(processedAmount(KJob*,KJob::Unit,qulonglong)),
+                    this, SLOT(slotProcessedAmount(KJob*,KJob::Unit,qulonglong)));
+            connect(job, SIGNAL(totalAmount(KJob*,KJob::Unit,qulonglong)),
+                    this, SLOT(slotTotalAmount(KJob*,KJob::Unit,qulonglong)));
+            connect(job, SIGNAL(speed(KJob*,ulong)),
+                    this, SLOT(slotSpeed(KJob*,ulong)));
+            connect(job, SIGNAL(description(KJob*,QString,QPair<QString,QString>,QPair<QString,QString>)),
+                    this, SLOT(slotDescription(KJob*,QString,QPair<QString,QString>,QPair<QString,QString>)));
         }
         break;
         case CMD_MAXPROGRESSVALUE: {

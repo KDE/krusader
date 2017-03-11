@@ -104,12 +104,12 @@ KMountManGUI::KMountManGUI(KMountMan *mntMan) : QDialog(mntMan->parentWindow),
     connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
     connect(ejectButton, SIGNAL(clicked()), SLOT(slotEject()));
     connect(mountButton, SIGNAL(clicked()), SLOT(slotToggleMount()));
-    connect(mountList, SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)), this,
-            SLOT(doubleClicked(QTreeWidgetItem *)));
-    connect(mountList, SIGNAL(itemRightClicked(QTreeWidgetItem *, const QPoint &, int)),
-            this, SLOT(clicked(QTreeWidgetItem*, const QPoint &)));
-    connect(mountList, SIGNAL(itemClicked(QTreeWidgetItem *, int)), this,
-            SLOT(changeActive(QTreeWidgetItem *)));
+    connect(mountList, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this,
+            SLOT(doubleClicked(QTreeWidgetItem*)));
+    connect(mountList, SIGNAL(itemRightClicked(QTreeWidgetItem*,QPoint,int)),
+            this, SLOT(clicked(QTreeWidgetItem*,QPoint)));
+    connect(mountList, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this,
+            SLOT(changeActive(QTreeWidgetItem*)));
     connect(mountList, SIGNAL(itemSelectionChanged()), this,
             SLOT(changeActive()));
 

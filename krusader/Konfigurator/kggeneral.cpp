@@ -243,8 +243,8 @@ void KgGeneral::createGeneralTab()
     KonfiguratorURLRequester *urlReq3 = createURLRequester("General", "Temp Directory", _TempDirectory,
                                         generalGrp, false, PAGE_GENERAL);
     urlReq3->setMode(KFile::Directory);
-    connect(urlReq3->extension(), SIGNAL(applyManually(QObject *, QString, QString)),
-            this, SLOT(applyTempDir(QObject *, QString, QString)));
+    connect(urlReq3->extension(), SIGNAL(applyManually(QObject*,QString,QString)),
+            this, SLOT(applyTempDir(QObject*,QString,QString)));
     hbox->addWidget(urlReq3);
     generalGrid->addLayout(hbox, 13, 0, 1, 1);
 

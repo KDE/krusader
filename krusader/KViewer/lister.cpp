@@ -1261,7 +1261,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     _originalForeground = _searchLineEdit->palette().color(QPalette::Text);
 
     connect(_searchLineEdit, SIGNAL(returnPressed()), this, SLOT(searchNext()));
-    connect(_searchLineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(searchTextChanged()));
+    connect(_searchLineEdit, SIGNAL(textChanged(QString)), this, SLOT(searchTextChanged()));
 
     hbox->addWidget(_searchLineEdit);
     _searchNextButton = new QPushButton(QIcon::fromTheme("go-down"), i18n("Next"), statusWidget);
@@ -1344,10 +1344,10 @@ bool Lister::openUrl(const QUrl &listerUrl)
 
         KIO::Job * downloadJob = KIO::get(listerUrl, KIO::NoReload, KIO::HideProgressInfo);
 
-        connect(downloadJob, SIGNAL(data(KIO::Job *, const QByteArray &)),
-                this, SLOT(slotFileDataReceived(KIO::Job *, const QByteArray &)));
+        connect(downloadJob, SIGNAL(data(KIO::Job*,QByteArray)),
+                this, SLOT(slotFileDataReceived(KIO::Job*,QByteArray)));
         connect(downloadJob, SIGNAL(result(KJob*)),
-                this, SLOT(slotFileFinished(KJob *)));
+                this, SLOT(slotFileFinished(KJob*)));
         _downloading = false;
     }
     if (_cache) {
@@ -1928,10 +1928,10 @@ void Lister::saveSelected()
         return;
 
     KIO::Job *saveJob = KIO::put(url, -1, KIO::Overwrite);
-    connect(saveJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
-            this, SLOT(slotDataSend(KIO::Job *, QByteArray &)));
+    connect(saveJob, SIGNAL(dataReq(KIO::Job*,QByteArray&)),
+            this, SLOT(slotDataSend(KIO::Job*,QByteArray&)));
     connect(saveJob, SIGNAL(result(KJob*)),
-            this, SLOT(slotSendFinished(KJob *)));
+            this, SLOT(slotSendFinished(KJob*)));
 
     saveJob->setUiDelegate(new KIO::JobUiDelegate());
     KIO::getJobTracker()->registerJob(saveJob);

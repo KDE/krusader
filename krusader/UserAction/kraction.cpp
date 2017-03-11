@@ -281,8 +281,8 @@ void KrActionProc::start(QStringList cmdLineList)
         _proc = new KProcess(this);
         _proc->clearProgram(); // this clears the arglist too
         _proc->setWorkingDirectory(workingDir);
-        connect(_proc, SIGNAL(finished(int, QProcess::ExitStatus)),
-                this, SLOT(processExited(int, QProcess::ExitStatus)));
+        connect(_proc, SIGNAL(finished(int,QProcess::ExitStatus)),
+                this, SLOT(processExited(int,QProcess::ExitStatus)));
 
         if (_action->execType() == KrAction::Normal || _action->execType() == KrAction::Terminal) { // not collect output
             if (_action->execType() == KrAction::Terminal) { // run in terminal

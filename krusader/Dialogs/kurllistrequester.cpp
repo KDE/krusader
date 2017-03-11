@@ -82,10 +82,10 @@ KURLListRequester::KURLListRequester(Mode requestMode, QWidget *parent)
 
     connect(urlAddBtn, SIGNAL(clicked()), this, SLOT(slotAdd()));
     connect(urlBrowseBtn, SIGNAL(clicked()), this, SLOT(slotBrowse()));
-    connect(urlLineEdit, SIGNAL(returnPressed(const QString&)), this, SLOT(slotAdd()));
-    connect(urlListBox, SIGNAL(itemRightClicked(QListWidgetItem *, const QPoint &)), this,
-            SLOT(slotRightClicked(QListWidgetItem *, const QPoint &)));
-    connect(urlLineEdit, SIGNAL(textChanged(const QString &)), this, SIGNAL(changed()));
+    connect(urlLineEdit, SIGNAL(returnPressed(QString)), this, SLOT(slotAdd()));
+    connect(urlListBox, SIGNAL(itemRightClicked(QListWidgetItem*,QPoint)), this,
+            SLOT(slotRightClicked(QListWidgetItem*,QPoint)));
+    connect(urlLineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(changed()));
 }
 
 void KURLListRequester::slotAdd()

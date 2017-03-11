@@ -75,7 +75,7 @@ Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)0),
     connect(button(QDialogButtonBox::RestoreDefaults), SIGNAL(clicked()), SLOT(slotRestoreDefaults()));
     connect(button(QDialogButtonBox::Reset), SIGNAL(clicked()), SLOT(slotReset()));
     connect(button(QDialogButtonBox::Apply), SIGNAL(clicked()), SLOT(slotApply()));
-    connect(this, SIGNAL(currentPageChanged(KPageWidgetItem *, KPageWidgetItem *)), this, SLOT(slotPageSwitch(KPageWidgetItem *, KPageWidgetItem *)));
+    connect(this, SIGNAL(currentPageChanged(KPageWidgetItem*,KPageWidgetItem*)), this, SLOT(slotPageSwitch(KPageWidgetItem*,KPageWidgetItem*)));
     connect(&restoreTimer, SIGNAL(timeout()), this, SLOT(slotRestorePage()));
 
     createLayout(startPage);

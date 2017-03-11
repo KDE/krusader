@@ -133,8 +133,8 @@ void KrInterBriefView::setup()
     _header->setSectionResizeMode(QHeaderView::Fixed);
     _header->setSectionsClickable(true);
     _header->setSortIndicatorShown(true);
-    connect(_header, SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)),
-            _model, SLOT(sort(int, Qt::SortOrder)));
+    connect(_header, SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)),
+            _model, SLOT(sort(int,Qt::SortOrder)));
     _header->installEventFilter(this);
 
     _numOfColumns = _properties->numberOfColumns;

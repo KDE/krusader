@@ -179,7 +179,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     //actNewTool =    0;//new QAction(i18n("&Add a new tool"),                          0, krusaderApp, 0, actionCollection(), "add tool");
     //actToolsSetup = 0;//new QAction(i18n("&Tools Menu Setup"),                        0, 0, krusaderApp, 0, actionCollection(), "tools setup");
     //KStandardAction::print(SLOTS, 0,actionCollection(),"std_print");
-    //KStandardAction::showMenubar( SLOTS, SLOT( showMenubar() ), actionCollection(), "std_menubar" );
+    //KStandardAction::showMenubar( SLOTS, SLOT(showMenubar()), actionCollection(), "std_menubar" );
 
     /* Shortcut disabled because of the Terminal Emulator bug. */
     KConfigGroup group(krConfig, "Private");

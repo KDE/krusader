@@ -99,12 +99,12 @@ void Splitter::split(KIO::filesize_t splitSizeIn)
 
     splitReadJob = KIO::get(fileName, KIO::NoReload, KIO::HideProgressInfo);
 
-    connect(splitReadJob, SIGNAL(data(KIO::Job *, const QByteArray &)),
-            this, SLOT(splitDataReceived(KIO::Job *, const QByteArray &)));
+    connect(splitReadJob, SIGNAL(data(KIO::Job*,QByteArray)),
+            this, SLOT(splitDataReceived(KIO::Job*,QByteArray)));
     connect(splitReadJob, SIGNAL(result(KJob*)),
-            this, SLOT(splitReceiveFinished(KJob *)));
-    connect(splitReadJob, SIGNAL(percent(KJob *, unsigned long)),
-            this, SLOT(splitReceivePercent(KJob *, unsigned long)));
+            this, SLOT(splitReceiveFinished(KJob*)));
+    connect(splitReadJob, SIGNAL(percent(KJob*,ulong)),
+            this, SLOT(splitReceivePercent(KJob*,ulong)));
 
     exec();
 }
@@ -215,10 +215,10 @@ void Splitter::openOutputFile()
 {
     // create write job
     splitWriteJob = KIO::put(writeURL, permissions, KIO::HideProgressInfo | KIO::Overwrite);
-    connect(splitWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
-            this, SLOT(splitDataSend(KIO::Job *, QByteArray &)));
+    connect(splitWriteJob, SIGNAL(dataReq(KIO::Job*,QByteArray&)),
+            this, SLOT(splitDataSend(KIO::Job*,QByteArray&)));
     connect(splitWriteJob, SIGNAL(result(KJob*)),
-            this, SLOT(splitSendFinished(KJob *)));
+            this, SLOT(splitSendFinished(KJob*)));
 
 }
 
@@ -269,10 +269,10 @@ void Splitter::splitSendFinished(KJob *job)
         writeURL = writeURL.adjusted(QUrl::StripTrailingSlash);
         writeURL.setPath(writeURL.path() + '/' + (fileName.fileName() + ".crc"));
         splitWriteJob = KIO::put(writeURL, permissions, KIO::HideProgressInfo | KIO::Overwrite);
-        connect(splitWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
-                this, SLOT(splitFileSend(KIO::Job *, QByteArray &)));
+        connect(splitWriteJob, SIGNAL(dataReq(KIO::Job*,QByteArray&)),
+                this, SLOT(splitFileSend(KIO::Job*,QByteArray&)));
         connect(splitWriteJob, SIGNAL(result(KJob*)),
-                this, SLOT(splitFileFinished(KJob *)));
+                this, SLOT(splitFileFinished(KJob*)));
     }
 }
 

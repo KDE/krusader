@@ -1526,10 +1526,10 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
 
     /* =============================== Connect table ================================ */
 
-    connect(syncList, SIGNAL(itemRightClicked(QTreeWidgetItem *, const QPoint &, int)),
-            this, SLOT(rightMouseClicked(QTreeWidgetItem *, const QPoint &)));
-    connect(syncList, SIGNAL(itemActivated(QTreeWidgetItem *, int)),
-            this, SLOT(doubleClicked(QTreeWidgetItem *)));
+    connect(syncList, SIGNAL(itemRightClicked(QTreeWidgetItem*,QPoint,int)),
+            this, SLOT(rightMouseClicked(QTreeWidgetItem*,QPoint)));
+    connect(syncList, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
+            this, SLOT(doubleClicked(QTreeWidgetItem*)));
 
     connect(profileManager, SIGNAL(loadFromProfile(QString)), this, SLOT(loadFromProfile(QString)));
     connect(profileManager, SIGNAL(saveToProfile(QString)), this, SLOT(saveToProfile(QString)));
@@ -1545,10 +1545,10 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
     connect(cbSubdirs,         SIGNAL(toggled(bool)), this, SLOT(subdirsChecked(bool)));
     connect(cbAsymmetric,      SIGNAL(toggled(bool)), this, SLOT(setPanelLabels()));
 
-    connect(&synchronizer,     SIGNAL(comparedFileData(SynchronizerFileItem *)), this,
-            SLOT(addFile(SynchronizerFileItem *)));
-    connect(&synchronizer,     SIGNAL(markChanged(SynchronizerFileItem *, bool)), this,
-            SLOT(markChanged(SynchronizerFileItem *, bool)));
+    connect(&synchronizer,     SIGNAL(comparedFileData(SynchronizerFileItem*)), this,
+            SLOT(addFile(SynchronizerFileItem*)));
+    connect(&synchronizer,     SIGNAL(markChanged(SynchronizerFileItem*,bool)), this,
+            SLOT(markChanged(SynchronizerFileItem*,bool)));
     connect(&synchronizer,     SIGNAL(statusInfo(QString)), this, SLOT(statusInfo(QString)));
 
     connect(btnLeftToRight,    SIGNAL(toggled(bool)), this, SLOT(refresh()));
@@ -1562,8 +1562,8 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
     connect(fileFilter,        SIGNAL(currentTextChanged(QString)), this, SLOT(connectFilters(QString)));
     connect(generalFilter->searchFor, SIGNAL(currentTextChanged(QString)), this, SLOT(connectFilters(QString)));
     connect(generalFilter->searchFor, SIGNAL(currentTextChanged(QString)), this, SLOT(setCompletion()));
-    connect(generalFilter->dontSearchIn, SIGNAL(checkValidity(QString &, QString &)),
-            this, SLOT(checkExcludeURLValidity(QString &, QString &)));
+    connect(generalFilter->dontSearchIn, SIGNAL(checkValidity(QString&,QString&)),
+            this, SLOT(checkExcludeURLValidity(QString&,QString&)));
 
     connect(profileManager, SIGNAL(loadFromProfile(QString)), filterTabs, SLOT(loadFromProfile(QString)));
     connect(profileManager, SIGNAL(saveToProfile(QString)), filterTabs, SLOT(saveToProfile(QString)));
@@ -1704,7 +1704,7 @@ void SynchronizerGUI::doubleClicked(QTreeWidgetItem *itemIn)
         QUrl leftURL = Synchronizer::fsUrl(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName());
         QUrl rightURL = Synchronizer::fsUrl(synchronizer.rightBaseDirectory() + rightDirName + item->rightName());
 
-        SLOTS->compareContent(leftURL, rightURL);
+        SLOTS->compareContent(leftURL,rightURL);
     } else if (item && item->isDir()) {
         itemIn->setExpanded(!itemIn->isExpanded());
     }
@@ -1867,7 +1867,7 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
         KrViewer::view(rightURL, this);   // view the file
         break;
     case COMPARE_FILES_ID:
-        SLOTS->compareContent(leftURL, rightURL);
+        SLOTS->compareContent(leftURL,rightURL);
         break;
     case SELECT_ITEMS_ID:
     case DESELECT_ITEMS_ID: {

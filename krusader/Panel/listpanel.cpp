@@ -146,8 +146,8 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     // media button
     mediaButton = new MediaButton(this);
     connect(mediaButton, SIGNAL(aboutToShow()), this, SLOT(slotFocusOnMe()));
-    connect(mediaButton, SIGNAL(openUrl(const QUrl&)), func, SLOT(openUrl(const QUrl&)));
-    connect(mediaButton, SIGNAL(newTab(const QUrl&)), SLOT(newTab(const QUrl&)));
+    connect(mediaButton, SIGNAL(openUrl(QUrl)), func, SLOT(openUrl(QUrl)));
+    connect(mediaButton, SIGNAL(newTab(QUrl)), SLOT(newTab(QUrl)));
     ADD_WIDGET(mediaButton);
 
     // status bar
@@ -179,7 +179,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     // bookmarks button
     bookmarksButton = new KrBookmarkButton(this);
     connect(bookmarksButton, SIGNAL(aboutToShow()), this, SLOT(slotFocusOnMe()));
-    connect(bookmarksButton, SIGNAL(openUrl(const QUrl&)), func, SLOT(openUrl(const QUrl&)));
+    connect(bookmarksButton, SIGNAL(openUrl(QUrl)), func, SLOT(openUrl(QUrl)));
     bookmarksButton->setWhatsThis(i18n("Open menu with bookmarks. You can also add "
                                        "current location to the list, edit bookmarks "
                                        "or add subfolder to the list."));
@@ -198,7 +198,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     connect(urlNavigator, &KUrlNavigator::urlChanged, this, &ListPanel::slotNavigatorUrlChanged);
     connect(urlNavigator->editor()->lineEdit(), &QLineEdit::editingFinished, this, &ListPanel::resetNavigatorMode);
     connect(urlNavigator, SIGNAL(tabRequested(QUrl)), this, SLOT(newTab(QUrl)));
-    connect(urlNavigator, SIGNAL(urlsDropped(QUrl, QDropEvent*)), this, SLOT(handleDrop(QUrl, QDropEvent*)));
+    connect(urlNavigator, SIGNAL(urlsDropped(QUrl,QDropEvent*)), this, SLOT(handleDrop(QUrl,QDropEvent*)));
     ADD_WIDGET(urlNavigator);
 
     // toolbar
@@ -416,19 +416,19 @@ void ListPanel::createView()
     connect(view->op(), SIGNAL(goHome()), func, SLOT(home()));
     connect(view->op(), SIGNAL(dirUp()), func, SLOT(dirUp()));
     connect(view->op(), &KrViewOperator::defaultDeleteFiles, func, &ListPanelFunc::defaultDeleteFiles);
-    connect(view->op(), SIGNAL(middleButtonClicked(KrViewItem *)), SLOT(newTab(KrViewItem *)));
-    connect(view->op(), SIGNAL(currentChanged(KrViewItem *)), SLOT(slotCurrentChanged(KrViewItem*)));
-    connect(view->op(), SIGNAL(renameItem(const QString &, const QString &)),
-            func, SLOT(rename(const QString &, const QString &)));
-    connect(view->op(), SIGNAL(executed(const QString&)), func, SLOT(execute(const QString&)));
-    connect(view->op(), SIGNAL(goInside(const QString&)), func, SLOT(goInside(const QString&)));
+    connect(view->op(), SIGNAL(middleButtonClicked(KrViewItem*)), SLOT(newTab(KrViewItem*)));
+    connect(view->op(), SIGNAL(currentChanged(KrViewItem*)), SLOT(slotCurrentChanged(KrViewItem*)));
+    connect(view->op(), SIGNAL(renameItem(QString,QString)),
+            func, SLOT(rename(QString,QString)));
+    connect(view->op(), SIGNAL(executed(QString)), func, SLOT(execute(QString)));
+    connect(view->op(), SIGNAL(goInside(QString)), func, SLOT(goInside(QString)));
     connect(view->op(), SIGNAL(needFocus()), this, SLOT(slotFocusOnMe()));
     connect(view->op(), SIGNAL(selectionChanged()), this, SLOT(slotUpdateTotals()));
-    connect(view->op(), SIGNAL(itemDescription(const QString&)), krApp, SLOT(statusBarUpdate(const QString&)));
-    connect(view->op(), SIGNAL(contextMenu(const QPoint &)), this, SLOT(popRightClickMenu(const QPoint &)));
-    connect(view->op(), SIGNAL(emptyContextMenu(const QPoint &)),
-            this, SLOT(popEmptyRightClickMenu(const QPoint &)));
-    connect(view->op(), SIGNAL(letsDrag(QStringList, QPixmap)), this, SLOT(startDragging(QStringList, QPixmap)));
+    connect(view->op(), SIGNAL(itemDescription(QString)), krApp, SLOT(statusBarUpdate(QString)));
+    connect(view->op(), SIGNAL(contextMenu(QPoint)), this, SLOT(popRightClickMenu(QPoint)));
+    connect(view->op(), SIGNAL(emptyContextMenu(QPoint)),
+            this, SLOT(popEmptyRightClickMenu(QPoint)));
+    connect(view->op(), SIGNAL(letsDrag(QStringList,QPixmap)), this, SLOT(startDragging(QStringList,QPixmap)));
     connect(view->op(), &KrViewOperator::gotDrop,
             this, [this](QDropEvent *event) {handleDrop(event, true); });
     connect(view->op(), SIGNAL(previewJobStarted(KJob*)), this, SLOT(slotPreviewJobStarted(KJob*)));
@@ -532,8 +532,8 @@ void ListPanel::togglePanelPopup()
         QSizePolicy sizePolicy = popup->sizePolicy();
         sizePolicy.setVerticalPolicy(QSizePolicy::Ignored);
         popup->setSizePolicy(sizePolicy);
-        connect(this, SIGNAL(pathChanged(const QUrl&)), popup, SLOT(onPanelPathChange(const QUrl&)));
-        connect(popup, SIGNAL(selection(const QUrl&)), SLOTS, SLOT(refresh(const QUrl&)));
+        connect(this, SIGNAL(pathChanged(QUrl)), popup, SLOT(onPanelPathChange(QUrl)));
+        connect(popup, SIGNAL(selection(QUrl)), SLOTS, SLOT(refresh(QUrl)));
         connect(popup, SIGNAL(hideMe()), this, SLOT(togglePanelPopup()));
     }
 
@@ -877,7 +877,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                 if (fileitem && fileitem->isDir())
                     newTab(fileitem->getUrl(), true);
             } else {
-                SLOTS->insertFileName((e->modifiers() & Qt::ShiftModifier) != 0);
+                SLOTS->insertFileName((e->modifiers()&Qt::ShiftModifier)!=0);
             }
         } else e->ignore();
         break;
@@ -974,7 +974,7 @@ void ListPanel::panelHidden()
 void ListPanel::slotPreviewJobStarted(KJob *job)
 {
     previewJob = job;
-    connect(job, SIGNAL(percent(KJob*, unsigned long)), SLOT(slotPreviewJobPercent(KJob*, unsigned long)));
+    connect(job, SIGNAL(percent(KJob*,ulong)), SLOT(slotPreviewJobPercent(KJob*,ulong)));
     connect(job, &KJob::result, this, &ListPanel::slotPreviewJobResult);
     inlineRefreshCancelButton->setMaximumHeight(popupBtn->height());
     inlineRefreshCancelButton->show();
@@ -1014,10 +1014,10 @@ void ListPanel::slotJobStarted(KIO::Job* job)
     syncBrowseButton->setEnabled(false);
 
     // connect to the job interface to provide in-panel refresh notification
-    connect(job, SIGNAL(infoMessage(KJob*, const QString &)),
-            SLOT(inlineRefreshInfoMessage(KJob*, const QString &)));
-    connect(job, SIGNAL(percent(KJob*, unsigned long)),
-            SLOT(inlineRefreshPercent(KJob*, unsigned long)));
+    connect(job, SIGNAL(infoMessage(KJob*,QString)),
+            SLOT(inlineRefreshInfoMessage(KJob*,QString)));
+    connect(job, SIGNAL(percent(KJob*,ulong)),
+            SLOT(inlineRefreshPercent(KJob*,ulong)));
     connect(job, SIGNAL(result(KJob*)),
             this, SLOT(inlineRefreshListResult(KJob*)));
 

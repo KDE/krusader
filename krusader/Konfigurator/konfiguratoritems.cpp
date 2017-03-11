@@ -103,9 +103,9 @@ KonfiguratorCheckBox::KonfiguratorCheckBox(QString cls, QString name, bool dflt,
         defaultValue(dflt)
 {
     ext = new KonfiguratorExtension(this, cls, name, rst, pg);
-    connect(ext, SIGNAL(applyAuto(QObject *, QString, QString)), this, SLOT(slotApply(QObject *, QString, QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject *)), this, SLOT(slotSetDefaults(QObject *)));
-    connect(ext, SIGNAL(setInitialValue(QObject *)), this, SLOT(loadInitialValue()));
+    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
+    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
+    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
 
     connect(this, SIGNAL(stateChanged(int)), ext, SLOT(setChanged()));
     loadInitialValue();
@@ -167,9 +167,9 @@ KonfiguratorSpinBox::KonfiguratorSpinBox(QString cls, QString name, int dflt, in
         defaultValue(dflt)
 {
     ext = new KonfiguratorExtension(this, cls, name, rst, pg);
-    connect(ext, SIGNAL(applyAuto(QObject *, QString, QString)), this, SLOT(slotApply(QObject *, QString, QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject *)), this, SLOT(slotSetDefaults(QObject *)));
-    connect(ext, SIGNAL(setInitialValue(QObject *)), this, SLOT(loadInitialValue()));
+    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
+    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
+    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
 
     connect(this, SIGNAL(valueChanged(int)), ext, SLOT(setChanged()));
 
@@ -239,9 +239,9 @@ KonfiguratorRadioButtons::KonfiguratorRadioButtons(QString cls, QString name,
         QWidget(parent), defaultValue(dflt)
 {
     ext = new KonfiguratorExtension(this, cls, name, rst, pg);
-    connect(ext, SIGNAL(applyAuto(QObject *, QString, QString)), this, SLOT(slotApply(QObject *, QString, QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject *)), this, SLOT(slotSetDefaults(QObject *)));
-    connect(ext, SIGNAL(setInitialValue(QObject *)), this, SLOT(loadInitialValue()));
+    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
+    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
+    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
 }
 
 KonfiguratorRadioButtons::~KonfiguratorRadioButtons()
@@ -342,11 +342,11 @@ KonfiguratorEditBox::KonfiguratorEditBox(QString cls, QString name, QString dflt
         defaultValue(dflt)
 {
     ext = new KonfiguratorExtension(this, cls, name, rst, pg);
-    connect(ext, SIGNAL(applyAuto(QObject *, QString, QString)), this, SLOT(slotApply(QObject *, QString, QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject *)), this, SLOT(slotSetDefaults(QObject *)));
-    connect(ext, SIGNAL(setInitialValue(QObject *)), this, SLOT(loadInitialValue()));
+    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
+    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
+    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
 
-    connect(this, SIGNAL(textChanged(const QString &)), ext, SLOT(setChanged()));
+    connect(this, SIGNAL(textChanged(QString)), ext, SLOT(setChanged()));
 
     loadInitialValue();
 }
@@ -384,11 +384,11 @@ KonfiguratorURLRequester::KonfiguratorURLRequester(QString cls, QString name, QS
         expansion(expansion)
 {
     ext = new KonfiguratorExtension(this, cls, name, rst, pg);
-    connect(ext, SIGNAL(applyAuto(QObject *, QString, QString)), this, SLOT(slotApply(QObject *, QString, QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject *)), this, SLOT(slotSetDefaults(QObject *)));
-    connect(ext, SIGNAL(setInitialValue(QObject *)), this, SLOT(loadInitialValue()));
+    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
+    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
+    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
 
-    connect(this, SIGNAL(textChanged(const QString &)), ext, SLOT(setChanged()));
+    connect(this, SIGNAL(textChanged(QString)), ext, SLOT(setChanged()));
 
     loadInitialValue();
 }
@@ -426,9 +426,9 @@ KonfiguratorFontChooser::KonfiguratorFontChooser(QString cls, QString name, QFon
     QHBoxLayout *layout = new QHBoxLayout(this);
 
     ext = new KonfiguratorExtension(this, cls, name, rst, pg);
-    connect(ext, SIGNAL(applyAuto(QObject *, QString, QString)), this, SLOT(slotApply(QObject *, QString, QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject *)), this, SLOT(slotSetDefaults(QObject *)));
-    connect(ext, SIGNAL(setInitialValue(QObject *)), this, SLOT(loadInitialValue()));
+    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
+    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
+    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
 
     pLabel = new QLabel(this);
     pLabel->setMinimumWidth(150);
@@ -500,11 +500,11 @@ KonfiguratorComboBox::KonfiguratorComboBox(QString cls, QString name, QString df
     }
 
     ext = new KonfiguratorExtension(this, cls, name, rst, pg);
-    connect(ext, SIGNAL(applyAuto(QObject *, QString, QString)), this, SLOT(slotApply(QObject *, QString, QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject *)), this, SLOT(slotSetDefaults(QObject *)));
-    connect(ext, SIGNAL(setInitialValue(QObject *)), this, SLOT(loadInitialValue()));
+    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
+    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
+    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
 
-//  connect( this, SIGNAL( highlighted(int) ), ext, SLOT( setChanged() ) ); /* Removed because of startup combo failure */
+//  connect( this, SIGNAL(highlighted(int)), ext, SLOT(setChanged()) ); /* Removed because of startup combo failure */
     connect(this, SIGNAL(activated(int)), ext, SLOT(setChanged()));
     connect(this, SIGNAL(currentTextChanged(QString)), ext, SLOT(setChanged()));
 
@@ -570,9 +570,9 @@ KonfiguratorColorChooser::KonfiguratorColorChooser(QString cls, QString name, QC
 {
     ext = new KonfiguratorExtension(this, cls, name, rst, pg);
 
-    connect(ext, SIGNAL(applyAuto(QObject *, QString, QString)), this, SLOT(slotApply(QObject *, QString, QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject *)), this, SLOT(slotSetDefaults(QObject *)));
-    connect(ext, SIGNAL(setInitialValue(QObject *)), this, SLOT(loadInitialValue()));
+    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
+    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
+    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
 
     addColor(i18n("Custom color"),  QColor(255, 255, 255));
     addColor(i18nc("Default color", "Default"), defaultValue);
@@ -772,9 +772,9 @@ KonfiguratorListBox::KonfiguratorListBox(QString cls, QString name, QStringList 
         defaultValue(dflt)
 {
     ext = new KonfiguratorExtension(this, cls, name, rst, pg);
-    connect(ext, SIGNAL(applyAuto(QObject *, QString, QString)), this, SLOT(slotApply(QObject *, QString, QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject *)), this, SLOT(slotSetDefaults(QObject *)));
-    connect(ext, SIGNAL(setInitialValue(QObject *)), this, SLOT(loadInitialValue()));
+    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
+    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
+    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
 
     loadInitialValue();
 }

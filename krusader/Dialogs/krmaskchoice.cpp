@@ -119,10 +119,10 @@ KRMaskChoice::KRMaskChoice(QWidget* parent)
     connect(PushButton7, SIGNAL(clicked()), this, SLOT(addSelection()));
     connect(PushButton7_2, SIGNAL(clicked()), this, SLOT(deleteSelection()));
     connect(PushButton7_3, SIGNAL(clicked()), this, SLOT(clearSelections()));
-    connect(selection, SIGNAL(activated(const QString&)), selection, SLOT(setEditText(const QString &)));
+    connect(selection, SIGNAL(activated(QString)), selection, SLOT(setEditText(QString)));
     connect(selection->lineEdit(), SIGNAL(returnPressed()), this, SLOT(accept()));
-    connect(preSelections, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(currentItemChanged(QListWidgetItem *)));
-    connect(preSelections, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(acceptFromList(QListWidgetItem *)));
+    connect(preSelections, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), this, SLOT(currentItemChanged(QListWidgetItem*)));
+    connect(preSelections, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(acceptFromList(QListWidgetItem*)));
 }
 
 /*

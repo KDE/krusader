@@ -78,8 +78,8 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
     header()->setSectionResizeMode(QHeaderView::Interactive);
     header()->setStretchLastSection(false);
 
-    connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(sectionResized(int, int, int)));
-    connect(header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(sectionMoved(int, int, int)));
+    connect(header(), SIGNAL(sectionResized(int,int,int)), this, SLOT(sectionResized(int,int,int)));
+    connect(header(), SIGNAL(sectionMoved(int,int,int)), this, SLOT(sectionMoved(int,int,int)));
 }
 
 KrInterDetailedView::~KrInterDetailedView()

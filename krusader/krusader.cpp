@@ -152,7 +152,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
 
     // create MountMan
     KrGlobal::mountMan = new KMountMan(this);
-    connect(KrGlobal::mountMan, SIGNAL(refreshPanel(const QUrl &)), SLOTS, SLOT(refresh(const QUrl &)));
+    connect(KrGlobal::mountMan, SIGNAL(refreshPanel(QUrl)), SLOTS, SLOT(refresh(QUrl)));
 
     // create bookman
     krBookMan = new KrBookmarkHandler(this);

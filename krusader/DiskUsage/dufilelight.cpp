@@ -47,10 +47,10 @@ DUFilelight::DUFilelight(DiskUsage *usage)
 {
 //     setFocusPolicy(Qt::StrongFocus);
 
-    connect(diskUsage, SIGNAL(enteringDirectory(Directory *)), this, SLOT(slotDirChanged(Directory *)));
+    connect(diskUsage, SIGNAL(enteringDirectory(Directory*)), this, SLOT(slotDirChanged(Directory*)));
     connect(diskUsage, SIGNAL(clearing()), this, SLOT(clear()));
-    connect(diskUsage, SIGNAL(changed(File *)), this, SLOT(slotChanged(File *)));
-    connect(diskUsage, SIGNAL(deleted(File *)), this, SLOT(slotChanged(File *)));
+    connect(diskUsage, SIGNAL(changed(File*)), this, SLOT(slotChanged(File*)));
+    connect(diskUsage, SIGNAL(deleted(File*)), this, SLOT(slotChanged(File*)));
     connect(diskUsage, SIGNAL(changeFinished()), this, SLOT(slotRefresh()));
     connect(diskUsage, SIGNAL(deleteFinished()), this, SLOT(slotRefresh()));
     connect(diskUsage, SIGNAL(currentChanged(int)), this, SLOT(slotAboutToShow(int)));

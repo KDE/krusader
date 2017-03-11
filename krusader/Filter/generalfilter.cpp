@@ -280,7 +280,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
                                              items[i].regExp, items[i].cursorAdjustment));
     }
     connect(containsRegExp, SIGNAL(toggled(bool)), this, SLOT(slotDisable()));
-    connect(containsRegExp, SIGNAL(triggered(QAction *)), this, SLOT(slotRegExpTriggered(QAction *)));
+    connect(containsRegExp, SIGNAL(triggered(QAction*)), this, SLOT(slotRegExpTriggered(QAction*)));
     containsRegExp->setMenu(patterns);
     patterns->setEnabled(false);
 
@@ -361,13 +361,13 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         connect(profileLoadBtn,      SIGNAL(clicked()) , this, SLOT(slotLoadBtnClicked()));
         connect(profileOverwriteBtn, SIGNAL(clicked()) , this, SLOT(slotOverwriteBtnClicked()));
         connect(profileRemoveBtn,    SIGNAL(clicked()) , this, SLOT(slotRemoveBtnClicked()));
-        connect(profileListBox,      SIGNAL(itemDoubleClicked(QListWidgetItem *)) , this, SLOT(slotProfileDoubleClicked(QListWidgetItem *)));
+        connect(profileListBox,      SIGNAL(itemDoubleClicked(QListWidgetItem*)) , this, SLOT(slotProfileDoubleClicked(QListWidgetItem*)));
         connect(profileManager,      SIGNAL(loadFromProfile(QString)), fltTabs, SLOT(loadFromProfile(QString)));
         connect(profileManager,      SIGNAL(saveToProfile(QString)), fltTabs, SLOT(saveToProfile(QString)));
     }
 
-    connect(searchFor, SIGNAL(activated(const QString&)), searchFor, SLOT(addToHistory(const QString&)));
-    connect(containsText, SIGNAL(activated(const QString&)), containsText, SLOT(addToHistory(const QString&)));
+    connect(searchFor, SIGNAL(activated(QString)), searchFor, SLOT(addToHistory(QString)));
+    connect(containsText, SIGNAL(activated(QString)), containsText, SLOT(addToHistory(QString)));
 
     // load the completion and history lists
     // ==> search for

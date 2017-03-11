@@ -152,8 +152,8 @@ void KgDependencies::addApplication(QString name, QGridLayout *grid, int row, QW
     addLabel(grid, row, 0, name, parent);
 
     KonfiguratorURLRequester *fullPath = createURLRequester("Dependencies", name, dflt, parent, false, page);
-    connect(fullPath->extension(), SIGNAL(applyManually(QObject *, QString, QString)),
-            this, SLOT(slotApply(QObject *, QString, QString)));
+    connect(fullPath->extension(), SIGNAL(applyManually(QObject*,QString,QString)),
+            this, SLOT(slotApply(QObject*,QString,QString)));
     grid->addWidget(fullPath, row, 1);
 }
 

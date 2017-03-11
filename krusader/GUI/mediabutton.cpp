@@ -63,13 +63,13 @@ MediaButton::MediaButton(QWidget *parent) : QToolButton(parent),
 
     connect(popupMenu, SIGNAL(aboutToShow()), this, SLOT(slotAboutToShow()));
     connect(popupMenu, SIGNAL(aboutToHide()), this, SLOT(slotAboutToHide()));
-    connect(popupMenu, SIGNAL(triggered(QAction *)), this, SLOT(slotPopupActivated(QAction *)));
+    connect(popupMenu, SIGNAL(triggered(QAction*)), this, SLOT(slotPopupActivated(QAction*)));
 
     Solid::DeviceNotifier *notifier = Solid::DeviceNotifier::instance();
-    connect(notifier, SIGNAL(deviceAdded(const QString&)),
-            this, SLOT(slotDeviceAdded(const QString&)));
-    connect(notifier, SIGNAL(deviceRemoved(const QString&)),
-            this, SLOT(slotDeviceRemoved(const QString&)));
+    connect(notifier, SIGNAL(deviceAdded(QString)),
+            this, SLOT(slotDeviceAdded(QString)));
+    connect(notifier, SIGNAL(deviceRemoved(QString)),
+            this, SLOT(slotDeviceRemoved(QString)));
 
     connect(&mountCheckerTimer, SIGNAL(timeout()), this, SLOT(slotCheckMounts()));
 }
@@ -135,8 +135,8 @@ void MediaButton::createMediaList()
         act->setData(QVariant(udi));
         udiNameMap[ udi ] = name;
 
-        connect(device.as<Solid::StorageAccess>(), SIGNAL(accessibilityChanged(bool, const QString &)),
-                this, SLOT(slotAccessibilityChanged(bool, const QString &)));
+        connect(device.as<Solid::StorageAccess>(), SIGNAL(accessibilityChanged(bool,QString)),
+                this, SLOT(slotAccessibilityChanged(bool,QString)));
     }
 
     KMountPoint::List possibleMountList = KMountPoint::possibleMountPoints();
@@ -452,8 +452,8 @@ void MediaButton::mount(QString udi, bool open, bool newtab)
     if (access && !access->isAccessible()) {
         if (open)
             udiToOpen = device.udi(), openInNewTab = newtab;
-        connect(access, SIGNAL(setupDone(Solid::ErrorType, QVariant, const QString &)),
-                this, SLOT(slotSetupDone(Solid::ErrorType, QVariant, const QString &)));
+        connect(access, SIGNAL(setupDone(Solid::ErrorType,QVariant,QString)),
+                this, SLOT(slotSetupDone(Solid::ErrorType,QVariant,QString)));
         access->setup();
     }
 }
@@ -538,8 +538,8 @@ void MediaButton::slotDeviceAdded(const QString& udi)
     act->setData(QVariant(udi));
     udiNameMap[ udi ] = name;
 
-    connect(device.as<Solid::StorageAccess>(), SIGNAL(accessibilityChanged(bool, const QString &)),
-            this, SLOT(slotAccessibilityChanged(bool, const QString &)));
+    connect(device.as<Solid::StorageAccess>(), SIGNAL(accessibilityChanged(bool,QString)),
+            this, SLOT(slotAccessibilityChanged(bool,QString)));
 }
 
 void MediaButton::slotDeviceRemoved(const QString& udi)

@@ -198,10 +198,10 @@ void KrusaderView::setPanelSize(bool leftPanel, int percent)
 PanelManager *KrusaderView::createManager(bool left)
 {
     PanelManager *p = new PanelManager(horiz_splitter, krApp, left);
-    connect(p, SIGNAL(draggingTab(PanelManager*, QMouseEvent*)),
-                     SLOT(draggingTab(PanelManager*, QMouseEvent*)));
-    connect(p, SIGNAL(draggingTabFinished(PanelManager*, QMouseEvent*)),
-                     SLOT(draggingTabFinished(PanelManager*, QMouseEvent*)));
+    connect(p, SIGNAL(draggingTab(PanelManager*,QMouseEvent*)),
+                     SLOT(draggingTab(PanelManager*,QMouseEvent*)));
+    connect(p, SIGNAL(draggingTabFinished(PanelManager*,QMouseEvent*)),
+                     SLOT(draggingTabFinished(PanelManager*,QMouseEvent*)));
     connect(p, SIGNAL(pathChanged(ListPanel*)), SLOT(slotPathChanged(ListPanel*)));
     connect(p, SIGNAL(setActiveManager(PanelManager*)),
                      SLOT(slotSetActiveManager(PanelManager*)));

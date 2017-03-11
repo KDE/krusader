@@ -71,7 +71,7 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     actHistoryBackward = stdAction(KStandardAction::Back, _func, SLOT(historyBackward()));
     actHistoryForward = stdAction(KStandardAction::Forward, _func, SLOT(historyForward()));
     //FIXME: second shortcut for up: see actDirUp
-    //   KStandardAction::up( this, SLOT( dirUp() ), actionCollection )->setShortcut(Qt::Key_Backspace);
+    //   KStandardAction::up( this, SLOT(dirUp()), actionCollection )->setShortcut(Qt::Key_Backspace);
     /* Shortcut disabled because of the Terminal Emulator bug. */
     actDirUp = stdAction(KStandardAction::Up, _func, SLOT(dirUp()));
     actHome = stdAction(KStandardAction::Home, _func, SLOT(home()));

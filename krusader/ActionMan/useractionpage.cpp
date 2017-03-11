@@ -120,7 +120,7 @@ UserActionPage::UserActionPage(QWidget* parent)
     actionProperties = new ActionProperty(split);
     actionProperties->setEnabled(false);   // if there are any actions in the list, the first is displayed and this widget is enabled
 
-    connect(actionTree, SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)), SLOT(slotChangeCurrent()));
+    connect(actionTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), SLOT(slotChangeCurrent()));
     connect(newButton, SIGNAL(clicked()), SLOT(slotNewAction()));
     connect(removeButton, SIGNAL(clicked()), SLOT(slotRemoveAction()));
     connect(importButton, SIGNAL(clicked()), SLOT(slotImport()));
@@ -148,16 +148,16 @@ bool UserActionPage::continueInSpiteOfChanges()
                  i18n("The current action has been modified. Do you want to apply these changes?")
                                                  );
     if (answer == KMessageBox::Cancel) {
-        disconnect(actionTree, SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)), this, SLOT(slotChangeCurrent()));
+        disconnect(actionTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(slotChangeCurrent()));
         actionTree->setCurrentAction(actionProperties->action());
-        connect(actionTree, SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)), SLOT(slotChangeCurrent()));
+        connect(actionTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), SLOT(slotChangeCurrent()));
         return false;
     }
     if (answer == KMessageBox::Yes) {
         if (! actionProperties->validProperties()) {
-            disconnect(actionTree, SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)), this, SLOT(slotChangeCurrent()));
+            disconnect(actionTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(slotChangeCurrent()));
             actionTree->setCurrentAction(actionProperties->action());
-            connect(actionTree, SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)), SLOT(slotChangeCurrent()));
+            connect(actionTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), SLOT(slotChangeCurrent()));
             return false;
         }
         slotUpdateAction();
