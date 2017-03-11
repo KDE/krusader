@@ -34,7 +34,7 @@ namespace RadialMap
 class SegmentTip : public QWidget
 {
 public:
-    SegmentTip(uint);
+    explicit SegmentTip(uint);
 
     void updateTip(const File*, const Directory*);
     void moveto(QPoint, QWidget&, bool);

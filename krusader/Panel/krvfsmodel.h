@@ -37,7 +37,7 @@ class KrVfsModel: public QAbstractListModel
     Q_OBJECT
 
 public:
-    KrVfsModel(KrInterView *);
+    explicit KrVfsModel(KrInterView *);
     virtual ~KrVfsModel();
 
     inline bool ready() const {

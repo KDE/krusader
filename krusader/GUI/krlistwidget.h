@@ -39,7 +39,7 @@ class KrListWidget : public QListWidget
     Q_OBJECT
 
 public:
-    KrListWidget(QWidget * parent = 0);
+    explicit KrListWidget(QWidget * parent = 0);
 
 signals:
     void itemRightClicked(QListWidgetItem * it, const QPoint & pos);

@@ -77,7 +77,7 @@ class Widget : public QWidget
     Q_OBJECT
 
 public:
-    Widget(QWidget* = 0);
+    explicit Widget(QWidget* = 0);
 
     QString path() const;
     QUrl url(File const * const = 0) const;

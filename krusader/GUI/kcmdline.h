@@ -53,7 +53,7 @@ class CmdLineCombo : public KHistoryComboBox
 {
     Q_OBJECT
 public:
-    CmdLineCombo(QWidget *parent);
+    explicit CmdLineCombo(QWidget *parent);
 
     virtual bool eventFilter(QObject *watched, QEvent *e) Q_DECL_OVERRIDE;
 
@@ -84,7 +84,7 @@ class KCMDLine : public QWidget, KrActionBase
 {
     Q_OBJECT
 public:
-    KCMDLine(QWidget *parent = 0);
+    explicit KCMDLine(QWidget *parent = 0);
     ~KCMDLine();
     void setCurrent(const QString &path);
     //virtual methods from KrActionBase

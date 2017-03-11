@@ -38,7 +38,7 @@ class KgArchives : public KonfiguratorPage
     Q_OBJECT
 
 public:
-    KgArchives(bool first, QWidget* parent = 0);
+    explicit KgArchives(bool first, QWidget* parent = 0);
 
 public slots:
     void slotAutoConfigure();

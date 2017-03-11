@@ -81,7 +81,7 @@ class Krusader : public KParts::MainWindow, public KrMainWindow
     Q_CLASSINFO("D-Bus Interface", "org.krusader.Instance")
 
 public:
-    Krusader(const QCommandLineParser &parser);
+    explicit Krusader(const QCommandLineParser &parser);
     virtual ~Krusader();
 
     // KrMainWindow implementation

@@ -49,7 +49,7 @@ class KrPreviews: public QObject
 friend class KrPreviewJob;
     Q_OBJECT
 public:
-    KrPreviews(KrView *view);
+    explicit KrPreviews(KrView *view);
     ~KrPreviews();
 
     bool getPreview(const FileItem* file, QPixmap &pixmap, bool active);

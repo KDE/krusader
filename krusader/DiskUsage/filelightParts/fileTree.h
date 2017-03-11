@@ -39,7 +39,7 @@ template <class T>
 class Link
 {
 public:
-    Link(T* const t) : prev(this), next(this), data(t) {}
+    explicit Link(T* const t) : prev(this), next(this), data(t) {}
     Link() : prev(this), next(this), data(0) {}
 
     //TODO unlinking is slow and you don't use it very much in this context.
@@ -70,7 +70,7 @@ class Iterator
 {
 public:
     Iterator() : link(0) { }   //**** remove this, remove this REMOVE THIS!!! dangerous as your implementation doesn't test for null links, always assumes they can be derefenced
-    Iterator(Link<T> *p) : link(p) { }
+    explicit Iterator(Link<T> *p) : link(p) { }
 
     bool operator==(const Iterator<T>& it) const {
         return link == it.link;
@@ -122,7 +122,7 @@ template <class T>
 class ConstIterator
 {
 public:
-    ConstIterator(Link<T> *p) : link(p) { }
+    explicit ConstIterator(Link<T> *p) : link(p) { }
 
     bool operator==(const Iterator<T>& it) const {
         return link == it.link;

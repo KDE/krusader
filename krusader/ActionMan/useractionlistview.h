@@ -31,7 +31,7 @@ class UserActionListView : public KrTreeWidget
     Q_OBJECT
 
 public:
-    UserActionListView(QWidget* parent = 0);
+    explicit UserActionListView(QWidget* parent = 0);
     ~UserActionListView();
     virtual QSize sizeHint() const Q_DECL_OVERRIDE;
 

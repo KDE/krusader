@@ -108,7 +108,7 @@ public slots:
     void setPaused(bool paused);
 
 public:
-    ListPanelFunc(ListPanel *parent);
+    explicit ListPanelFunc(ListPanel *parent);
     ~ListPanelFunc();
 
     FileSystem* files();  // return a pointer to the filesystem

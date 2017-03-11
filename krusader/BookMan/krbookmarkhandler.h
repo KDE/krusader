@@ -43,7 +43,7 @@ class KrBookmarkHandler: public QObject
     friend class KrAddBookmarkDlg;
     enum Actions { BookmarkCurrent = 0, ManageBookmarks };
 public:
-    KrBookmarkHandler(KrMainWindow *mainWindow);
+    explicit KrBookmarkHandler(KrMainWindow *mainWindow);
     ~KrBookmarkHandler();
     void populate(QMenu *menu);
     void addBookmark(KrBookmark *bm, KrBookmark *parent = 0);

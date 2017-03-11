@@ -48,7 +48,7 @@ class KRPleaseWaitHandler : public QObject
     Q_OBJECT
 
 public:
-    KRPleaseWaitHandler(QWidget *parentWindow);
+    explicit KRPleaseWaitHandler(QWidget *parentWindow);
 
 public slots:
 

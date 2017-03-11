@@ -90,7 +90,7 @@
 class LocateListView : public KrTreeWidget
 {
 public:
-    LocateListView(QWidget * parent) : KrTreeWidget(parent) {
+    explicit LocateListView(QWidget * parent) : KrTreeWidget(parent) {
         setAlternatingRowColors(true);
     }
 

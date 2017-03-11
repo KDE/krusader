@@ -38,7 +38,7 @@ class KgGeneral : public KonfiguratorPage
     Q_OBJECT
 
 public:
-    KgGeneral(bool first, QWidget* parent = 0);
+    explicit KgGeneral(bool first, QWidget* parent = 0);
 
 public slots:
     void  applyTempDir(QObject *, QString, QString);

@@ -63,7 +63,7 @@ class KMountManGUI : public QDialog
     };
 
 public:
-    KMountManGUI(KMountMan *mntMan);
+    explicit KMountManGUI(KMountMan *mntMan);
     ~KMountManGUI();
 
 protected:

@@ -25,7 +25,7 @@
 class KrViewItemDelegate : public QItemDelegate
 {
 public:
-    KrViewItemDelegate(QObject *parent = 0);
+    explicit KrViewItemDelegate(QObject *parent = 0);
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option,
                const QModelIndex &index) const Q_DECL_OVERRIDE;

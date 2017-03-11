@@ -70,7 +70,7 @@ class DiskUsage : public QStackedWidget
     Q_OBJECT
 
 public:
-    DiskUsage(QString confGroup, QWidget *parent = 0);
+    explicit DiskUsage(QString confGroup, QWidget *parent = 0);
     ~DiskUsage();
 
     void       load(const QUrl &dirName);
@@ -192,7 +192,7 @@ class LoaderWidget : public QScrollArea
     Q_OBJECT
 
 public:
-    LoaderWidget(QWidget *parent = 0);
+    explicit LoaderWidget(QWidget *parent = 0);
 
     void init();
     void setCurrentURL(const QUrl &url);

@@ -46,7 +46,7 @@ public:
      * Do not use application/x-tgz or so. Only the compression layer !
      * If the mimetype is omitted, it will be determined from the filename.
      */
-    KIso(const QString& filename, const QString & mimetype = QString());
+    explicit KIso(const QString& filename, const QString & mimetype = QString());
 
     /**
      * Creates an instance that operates on the given device.
@@ -54,7 +54,7 @@ public:
      * WARNING: don't assume that giving a QFile here will decompress the file,
      * in case it's compressed!
      */
-    KIso(QIODevice * dev);
+    explicit KIso(QIODevice * dev);
 
     /**
      * If the .iso is still opened, then it will be

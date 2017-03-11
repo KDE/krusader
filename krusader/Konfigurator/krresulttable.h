@@ -37,7 +37,7 @@
 class KrResultTable : public QWidget
 {
 public:
-    KrResultTable(QWidget* parent);
+    explicit KrResultTable(QWidget* parent);
     virtual ~KrResultTable();
 
     /**
@@ -83,7 +83,7 @@ class KrArchiverResultTable : public KrResultTable
 {
     Q_OBJECT
 public:
-    KrArchiverResultTable(QWidget* parent);
+    explicit KrArchiverResultTable(QWidget* parent);
     virtual ~KrArchiverResultTable();
 
     bool addRow(SearchObject* search, QGridLayout* grid);
@@ -102,7 +102,7 @@ class KrToolResultTable : public KrResultTable
 {
     Q_OBJECT
 public:
-    KrToolResultTable(QWidget* parent);
+    explicit KrToolResultTable(QWidget* parent);
     virtual ~KrToolResultTable();
 
     bool addRow(SearchObject* search, QGridLayout* grid);

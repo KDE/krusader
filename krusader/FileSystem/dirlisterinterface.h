@@ -31,7 +31,7 @@ class DirListerInterface : public QObject
 {
     Q_OBJECT
 public:
-    DirListerInterface(QObject *parent) : QObject(parent) {}
+    explicit DirListerInterface(QObject *parent) : QObject(parent) {}
     virtual ~DirListerInterface() {}
 
     virtual QList<FileItem *> fileItems() const = 0;

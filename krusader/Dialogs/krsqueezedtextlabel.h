@@ -42,7 +42,7 @@ class KrSqueezedTextLabel : public KSqueezedTextLabel
 {
     Q_OBJECT
 public:
-    KrSqueezedTextLabel(QWidget *parent = 0);
+    explicit KrSqueezedTextLabel(QWidget *parent = 0);
     ~KrSqueezedTextLabel();
 
 public slots:

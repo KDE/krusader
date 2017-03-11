@@ -37,7 +37,7 @@ class KrFileTreeView : public QTreeView
     Q_OBJECT
 
 public:
-    KrFileTreeView(QWidget *parent = 0);
+    explicit KrFileTreeView(QWidget *parent = 0);
     virtual ~KrFileTreeView() {}
 
     QUrl currentUrl() const;

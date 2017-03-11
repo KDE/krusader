@@ -39,7 +39,7 @@ class newFTPGUI : public QDialog
     Q_OBJECT
 
 public:
-    newFTPGUI(QWidget *parent = 0);
+    explicit newFTPGUI(QWidget *parent = 0);
     ~newFTPGUI();
 
     QLabel* iconLabel;

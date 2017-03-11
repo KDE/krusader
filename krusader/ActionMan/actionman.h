@@ -31,7 +31,7 @@ class ActionMan : public QDialog
 {
     Q_OBJECT
 public:
-    ActionMan(QWidget* parent = 0);
+    explicit ActionMan(QWidget* parent = 0);
     ~ActionMan();
 
 protected slots:

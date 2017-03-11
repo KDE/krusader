@@ -38,7 +38,7 @@ class PanelViewerBase: public QStackedWidget
     Q_OBJECT
 
 public:
-    PanelViewerBase(QWidget *parent, KrViewer::Mode mode = KrViewer::Default);
+    explicit PanelViewerBase(QWidget *parent, KrViewer::Mode mode = KrViewer::Default);
     virtual ~PanelViewerBase();
     inline QUrl url() const {
         return curl;
@@ -94,7 +94,7 @@ public slots:
     virtual bool closeUrl();
 
 public:
-    PanelViewer(QWidget *parent, KrViewer::Mode mode = KrViewer::Default);
+    explicit PanelViewer(QWidget *parent, KrViewer::Mode mode = KrViewer::Default);
     ~PanelViewer();
 
     virtual bool isEditor() {
@@ -126,7 +126,7 @@ public slots:
     virtual bool queryClose();
 
 public:
-    PanelEditor(QWidget *parent, KrViewer::Mode mode = KrViewer::Default);
+    explicit PanelEditor(QWidget *parent, KrViewer::Mode mode = KrViewer::Default);
     ~PanelEditor();
 
 protected:

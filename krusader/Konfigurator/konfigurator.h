@@ -52,7 +52,7 @@ signals:
     void configChanged(bool isGUIRestartNeeded);
 
 public:
-    Konfigurator(bool f = false, int startPage = 0); // true if Konfigurator is run for the first time
+    explicit Konfigurator(bool f = false, int startPage = 0); // true if Konfigurator is run for the first time
 
     void reject() Q_DECL_OVERRIDE;
 

@@ -56,7 +56,7 @@ public:
     // null query
     KRQuery();
     // query only with name filter
-    KRQuery(const QString &name, bool matchCase = true);
+    explicit KRQuery(const QString &name, bool matchCase = true);
     // copy constructor
     KRQuery(const KRQuery &);
     // let operator

@@ -39,7 +39,7 @@ class MediaButton : public QToolButton
 {
     Q_OBJECT
 public:
-    MediaButton(QWidget *parent = 0);
+    explicit MediaButton(QWidget *parent = 0);
     ~MediaButton();
 
 public slots:

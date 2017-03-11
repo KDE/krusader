@@ -29,7 +29,7 @@ class KrBookmarkButton: public QToolButton
 {
     Q_OBJECT
 public:
-    KrBookmarkButton(QWidget *parent);
+    explicit KrBookmarkButton(QWidget *parent);
     void showMenu();
 
 signals:

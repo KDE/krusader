@@ -53,7 +53,7 @@ class SyncBrowseButton : public QToolButton
 {
     Q_OBJECT
 public:
-    SyncBrowseButton(QWidget *parent = 0);
+    explicit SyncBrowseButton(QWidget *parent = 0);
     ~SyncBrowseButton();
 
     int state();

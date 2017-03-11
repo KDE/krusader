@@ -48,7 +48,7 @@ class KrAction: public QAction, public KrActionBase
 {
     Q_OBJECT
 public:
-    KrAction(KActionCollection *parent, QString name = QString());
+    explicit KrAction(KActionCollection *parent, QString name = QString());
     ~KrAction();
 
     /**
@@ -188,7 +188,7 @@ class KrActionProcDlg: public QDialog
 {
     Q_OBJECT
 public:
-    KrActionProcDlg(QString caption, bool enableStderr = false, QWidget *parent = 0);
+    explicit KrActionProcDlg(QString caption, bool enableStderr = false, QWidget *parent = 0);
 
 public slots:
     void addStderr(const QString& str);
@@ -224,7 +224,7 @@ class KrActionProc: public QObject
     Q_OBJECT
 public:
 
-    KrActionProc(KrActionBase* action);
+    explicit KrActionProc(KrActionBase* action);
     virtual ~KrActionProc();
     void start(QString cmdLine);
     void start(QStringList cmdLineList);

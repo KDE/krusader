@@ -75,7 +75,7 @@ protected:
 class KRMaskChoiceSub : public KRMaskChoice
 {
 public:
-    KRMaskChoiceSub(QWidget * parent = 0);
+    explicit KRMaskChoiceSub(QWidget * parent = 0);
 
 public slots:
     void addSelection();

@@ -38,7 +38,7 @@ class KgStartup : public KonfiguratorPage
     Q_OBJECT
 
 public:
-    KgStartup(bool first, QWidget* parent = 0);
+    explicit KgStartup(bool first, QWidget* parent = 0);
 
 public slots:
     void slotDisable();

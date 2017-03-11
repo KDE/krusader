@@ -45,7 +45,7 @@ class AddPlaceholderPopup : public QMenu
 {
 
 public:
-    AddPlaceholderPopup(QWidget *parent);
+    explicit AddPlaceholderPopup(QWidget *parent);
 
     /**
      * Use this to exec the popup.

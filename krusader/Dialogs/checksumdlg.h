@@ -73,7 +73,7 @@ private:
 class VerifyResultDlg: public QDialog
 {
 public:
-    VerifyResultDlg(const QStringList& failed);
+    explicit VerifyResultDlg(const QStringList& failed);
 };
 
 #endif // CHECKSUMDLG_H

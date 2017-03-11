@@ -51,7 +51,7 @@ class KRPie : public QWidget
 {
     Q_OBJECT
 public:
-    KRPie(KIO::filesize_t _totalSize, QWidget *parent = 0);
+    explicit KRPie(KIO::filesize_t _totalSize, QWidget *parent = 0);
     void addSlice(KIO::filesize_t size, QString label);
 
 protected:
@@ -73,7 +73,7 @@ public:
     // this one is for an unmounted/supermount file system
     KRFSDisplay(QWidget *parent, QString _alias, QString _realName, bool sm = false);
     // the last one is used inside MountMan(R), when no filesystem is selected
-    KRFSDisplay(QWidget *parent);
+    explicit KRFSDisplay(QWidget *parent);
     inline void setTotalSpace(KIO::filesize_t t) {
         totalSpace = t;
     }

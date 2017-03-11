@@ -43,7 +43,7 @@ class KrErrorDisplay: public QLabel
 {
     Q_OBJECT
 public:
-    KrErrorDisplay(QWidget *parent);
+    explicit KrErrorDisplay(QWidget *parent);
 
     void setText(QString text);
 

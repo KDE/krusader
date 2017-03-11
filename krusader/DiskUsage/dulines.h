@@ -48,7 +48,7 @@ class DULines : public KrTreeWidget
     Q_OBJECT
 
 public:
-    DULines(DiskUsage *usage);
+    explicit DULines(DiskUsage *usage);
     ~DULines();
 
     File * getCurrentFile();

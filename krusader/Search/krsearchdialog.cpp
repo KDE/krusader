@@ -82,7 +82,7 @@
 class SearchResultContainer : public DirListerInterface
 {
 public:
-    SearchResultContainer(QObject *parent) : DirListerInterface(parent) {}
+    explicit SearchResultContainer(QObject *parent) : DirListerInterface(parent) {}
     virtual ~SearchResultContainer() {
         clear();
     }

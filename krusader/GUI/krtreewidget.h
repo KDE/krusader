@@ -40,7 +40,7 @@ class KrTreeWidget : public QTreeWidget
     Q_OBJECT
 
 public:
-    KrTreeWidget(QWidget * parent);
+    explicit KrTreeWidget(QWidget * parent);
     void setStretchingColumn(int col)                {
         _stretchingColumn = col;
     }

@@ -39,7 +39,7 @@ public:
     static void run(const QPoint &pos, KrPanel *panel);
 
 protected:
-    KrPopupMenu(KrPanel *thePanel, QWidget *parent = 0);
+    explicit KrPopupMenu(KrPanel *thePanel, QWidget *parent = 0);
     void performAction(int id);
     void addEmptyMenuEntries(); // adds the choices for a menu without selected items
     void addCreateNewMenu(); // adds a "create new" submenu

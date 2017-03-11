@@ -31,7 +31,7 @@ class UserActionPage : public QWidget
 {
     Q_OBJECT
 public:
-    UserActionPage(QWidget* parent);
+    explicit UserActionPage(QWidget* parent);
     ~UserActionPage();
 
     /**

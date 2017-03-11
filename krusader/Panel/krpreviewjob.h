@@ -66,7 +66,7 @@ protected:
     QTimer _timer;
     KrPreviews *_parent;
 
-    KrPreviewJob(KrPreviews *parent);
+    explicit KrPreviewJob(KrPreviews *parent);
     ~KrPreviewJob();
     void scheduleItem(KrViewItem *item);
     void removeItem(KrViewItem *item);

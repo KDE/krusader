@@ -53,7 +53,7 @@ class KRSearchMod : public QObject
 {
     Q_OBJECT
 public:
-    KRSearchMod(const KRQuery *q);
+    explicit KRSearchMod(const KRQuery *q);
     ~KRSearchMod();
 
     void scanURL(QUrl url);

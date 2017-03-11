@@ -116,7 +116,7 @@ class KRGetDate : public QDialog
 {
     Q_OBJECT
 public:
-    KRGetDate(QDate date = QDate::currentDate(), QWidget *parent = 0);
+    explicit KRGetDate(QDate date = QDate::currentDate(), QWidget *parent = 0);
     QDate getDate();
 
 private slots:

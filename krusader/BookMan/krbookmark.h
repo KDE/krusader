@@ -34,7 +34,7 @@ class KrBookmark: public QAction
     Q_OBJECT
 public:
     KrBookmark(QString name, QUrl url, KActionCollection *parent, QString icon = "", QString actionName = QString());
-    KrBookmark(QString name, QString icon = ""); // creates a folder
+    explicit KrBookmark(QString name, QString icon = ""); // creates a folder
     ~KrBookmark();
     // text() and setText() to change the name of the bookmark
     // icon() and setIcon() to change icons

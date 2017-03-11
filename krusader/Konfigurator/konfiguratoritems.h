@@ -183,7 +183,7 @@ protected:
 class KonfiguratorCheckBoxGroup : public QWidget
 {
 public:
-    KonfiguratorCheckBoxGroup(QWidget * parent = 0) :
+    explicit KonfiguratorCheckBoxGroup(QWidget * parent = 0) :
             QWidget(parent) {};
 
     void                    add(KonfiguratorCheckBox *);

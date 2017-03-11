@@ -45,7 +45,7 @@ class KrActions : public QObject
 {
     Q_OBJECT
 public:
-    KrActions(QObject *parent) : QObject(parent) {}
+    explicit KrActions(QObject *parent) : QObject(parent) {}
 
     // Actions
     static QAction *actCompare;

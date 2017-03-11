@@ -56,7 +56,7 @@ class KrusaderView : public QWidget
     Q_OBJECT
 
 public:
-    KrusaderView(QWidget *parent = 0);
+    explicit KrusaderView(QWidget *parent = 0);
     virtual ~KrusaderView() {}
     void start(KConfigGroup &cfg, bool restoreSettings, const QList<QUrl> &leftTabs, const QList<QUrl> &rightTabs);
     void updateGUI(const KConfigGroup &cfg);

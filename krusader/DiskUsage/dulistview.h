@@ -167,7 +167,7 @@ class DUListView : public KrTreeWidget
     Q_OBJECT
 
 public:
-    DUListView(DiskUsage *usage);
+    explicit DUListView(DiskUsage *usage);
     ~DUListView();
 
     File * getCurrentFile();

@@ -30,7 +30,7 @@ class ActionProperty : public QWidget, public Ui::ActionProperty
 {
     Q_OBJECT
 public:
-    ActionProperty(QWidget *parent = 0, KrAction *action = 0);
+    explicit ActionProperty(QWidget *parent = 0, KrAction *action = 0);
     ~ActionProperty();
 
     /**

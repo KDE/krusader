@@ -266,7 +266,7 @@ class AbstractJobObserver : public KRarcObserver
 protected:
     AbstractJobThread * _jobThread;
 public:
-    AbstractJobObserver(AbstractJobThread * thread): _jobThread(thread) {}
+    explicit AbstractJobObserver(AbstractJobThread * thread): _jobThread(thread) {}
     virtual ~AbstractJobObserver() {}
 
     virtual void processEvents() Q_DECL_OVERRIDE {

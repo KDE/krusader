@@ -57,7 +57,7 @@ class DULinesItemDelegate : public QItemDelegate
 {
 public:
 
-    DULinesItemDelegate(QObject *parent = 0) : QItemDelegate(parent) {}
+    explicit DULinesItemDelegate(QObject *parent = 0) : QItemDelegate(parent) {}
 
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const Q_DECL_OVERRIDE {
         QItemDelegate::paint(painter, option, index);

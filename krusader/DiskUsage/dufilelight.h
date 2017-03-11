@@ -43,7 +43,7 @@ class DUFilelight : public RadialMap::Widget
     Q_OBJECT
 
 public:
-    DUFilelight(DiskUsage *usage);
+    explicit DUFilelight(DiskUsage *usage);
 
     File * getCurrentFile();
 
