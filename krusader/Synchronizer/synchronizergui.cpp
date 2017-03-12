@@ -1931,7 +1931,7 @@ void SynchronizerGUI::closeDialog()
 
     QStringList list;
 
-    foreach(QString item, leftLocation->historyItems()) {
+    foreach(const QString &item, leftLocation->historyItems()) {
         QUrl url(item);
         // make sure no passwords are saved in config
         url.setPassword(QString());
@@ -1939,7 +1939,7 @@ void SynchronizerGUI::closeDialog()
     }
     group.writeEntry("Left Folder History", list);
     list.clear();
-    foreach(QString item, rightLocation->historyItems()) {
+    foreach(const QString &item, rightLocation->historyItems()) {
         QUrl url(item);
         // make sure no passwords are saved in config
         url.setPassword(QString());

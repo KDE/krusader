@@ -139,7 +139,7 @@ QUrl DefaultFileSystem::getUrl(const QString& name) const
         return fileItem->getUrl();
 
     QUrl absoluteUrl(_currentDirectory);
-    absoluteUrl.setPath(absoluteUrl.path() + "/" + name);
+    absoluteUrl.setPath(absoluteUrl.path() + '/' + name);
     return absoluteUrl;
 }
 

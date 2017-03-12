@@ -93,7 +93,7 @@ bool KrLayoutFactory::parseFiles()
 
     QStringList extraFilePaths = QStandardPaths::locateAll(QStandardPaths::DataLocation, EXTRA_FILE_MASK);
 
-    foreach(QString path, extraFilePaths) {
+    foreach(const QString &path, extraFilePaths) {
         krOut << "extra file: " << path << endl;
         QDomDocument doc;
         if (parseFile(path, doc))
@@ -175,7 +175,7 @@ QStringList KrLayoutFactory::layoutNames()
     if (parseFiles()) {
         getLayoutNames(_mainDoc, names);
 
-        foreach(QDomDocument doc, _extraDocs)
+        foreach(const QDomDocument &doc, _extraDocs)
             getLayoutNames(doc, names);
     }
 
@@ -207,7 +207,7 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName)
 
         layoutRoot = findLayout(_mainDoc, layoutName);
         if (layoutRoot.isNull()) {
-            foreach(QDomDocument doc, _extraDocs) {
+            foreach(const QDomDocument &doc, _extraDocs) {
                 layoutRoot = findLayout(doc, layoutName);
                 if(!layoutRoot.isNull())
                     break;
@@ -223,7 +223,7 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName)
     }
 
     if(layout) {
-        foreach(QString name, widgets.keys()) {
+        foreach(const QString &name, widgets.keys()) {
             krOut << "widget" << name << "was not added to the layout\n";
             widgets[name]->hide();
         }

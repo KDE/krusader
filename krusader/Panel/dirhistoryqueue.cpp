@@ -131,10 +131,11 @@ void DirHistoryQueue::save(KConfigGroup cfg)
     saveCurrentItem();
 
     QList<QUrl> urls;
-    foreach(QUrl url, _urlQueue) {
+    foreach(const QUrl &url, _urlQueue) {
         // make sure no passwords are permanently stored
-        url.setPassword(QString());
-        urls << url;
+        QUrl safeUrl(url);
+        safeUrl.setPassword(QString());
+        urls << safeUrl;
     }
 
     cfg.writeEntry("Entrys", KrServices::toStringList(urls));

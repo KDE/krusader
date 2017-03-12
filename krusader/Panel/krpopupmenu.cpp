@@ -333,7 +333,7 @@ void KrPopupMenu::performAction(int id)
         panel->manager()->newTab(item->url(), panel);
         break;
     case OPEN_ID :
-        foreach(KFileItem fi, _items)
+        foreach(const KFileItem &fi, _items)
             panel->func->execute(fi.name());
         break;
     case BROWSE_ID :
@@ -412,7 +412,7 @@ void KrPopupMenu::performAction(int id)
 #ifdef SYNCHRONIZER_ENABLED
     case SYNC_SELECTED_ID : {
         QStringList selectedNames;
-        foreach(KFileItem item, _items)
+        foreach(const KFileItem &item, _items)
             selectedNames << item.name();
         if (panel->otherPanel()->view->numSelected()) {
             KrViewItemList otherItems;
