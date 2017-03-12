@@ -113,7 +113,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, KrMainWindow *mainWindow) :
     tree->setProperty("KrusaderWidgetId", QVariant(Tree));
     stack->addWidget(tree);
     tree->setDirOnlyMode(true);
-    // NOTE: the F2 key press event is catched before it gets to the tree
+    // NOTE: the F2 key press event is caught before it gets to the tree
     tree->setEditTriggers(QAbstractItemView::EditKeyPressed);
     connect(tree, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(treeSelection()));
     connect(tree, SIGNAL(activated(QUrl)), this, SLOT(treeSelection()));

@@ -94,7 +94,7 @@ private slots:
 private:
     void showError(const QString &error);
     static QHash<QString, QList<QUrl> *> _virtFilesystemDict; // map virtual directories to containing files
-    static QHash<QString, QString> _metaInfoDict; // map virtual directories to meta infos
+    static QHash<QString, QString> _metaInfoDict; // map virtual directories to meta info
 
     QString _metaInfo; // displayable string with information about the current virtual directory
     KIO::UDSEntry _fileEntry; // for async call, save stat job result here

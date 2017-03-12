@@ -170,7 +170,7 @@ public slots:
 signals:
     /// Emitted when this filesystem is currently refreshing the filesystem directory.
     void refreshJobStarted(KIO::Job *job);
-    /// Emitted when an error occured in this filesystem during refresh.
+    /// Emitted when an error occurred in this filesystem during refresh.
     void error(const QString &msg);
     /// Emitted when the content of a directory was changed by this filesystem.
     void fileSystemChanged(const QUrl &directory);
