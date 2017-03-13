@@ -232,7 +232,7 @@ QString ParameterDialog::getParameter()
     for (int i = 0; i <= lastParameter; ++i) {
         if (i > 0)
             parameter += ", ";
-        parameter += "\"" + _parameter[ i ]->text().replace("\"", "\\\"") + "\"";
+        parameter += '\"' + _parameter[ i ]->text().replace('\"', "\\\"") + '\"';
     }
     return '(' + parameter + ')';
 }

@@ -175,7 +175,7 @@ QString KrServices::quote(QString name)
     if (!name.contains('\''))
         return '\'' + name + '\'';
     if (!name.contains('"') && !name.contains('$'))
-        return "\"" + name + "\"";
+        return '\"' + name + '\'';
     return escape(name);
 }
 
@@ -265,7 +265,7 @@ QString KrServices::escapeFileUrl(QString urlString)
 {
     // Avoid that if a path contains a '#' then what follows the '#' be interpreted as the fragment identifier of
     // the URL and not a part of the file path; for more information https://bugs.kde.org/show_bug.cgi?id=270150 can be seen
-    return urlString.replace("#", "%23").replace("?", "%3F");
+    return urlString.replace('#', "%23").replace('?', "%3F");
 }
 
 QUrl KrServices::escapeFileUrl(const QUrl &url)

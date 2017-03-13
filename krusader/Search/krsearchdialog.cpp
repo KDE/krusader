@@ -127,7 +127,7 @@ private:
 
 KrSearchDialog *KrSearchDialog::SearchDialog = 0;
 
-QString KrSearchDialog::lastSearchText = "*";
+QString KrSearchDialog::lastSearchText = QString('*');
 int KrSearchDialog::lastSearchType = 0;
 bool KrSearchDialog::lastSearchForCase = false;
 bool KrSearchDialog::lastContainsWholeWord = false;

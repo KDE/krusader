@@ -455,7 +455,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
 
         QString escapedFilename = file;
         if(arcType == "zip") // left bracket needs to be escaped
-            escapedFilename.replace("[", "[[]");
+            escapedFilename.replace('[', "[[]");
         proc << getCmd << getPath(arcFile->url());
         if (arcType != "gzip" && arcType != "bzip2" && arcType != "lzma" && arcType != "xz") proc << localeEncodedString(escapedFilename);
         connect(&proc, SIGNAL(newOutputData(KProcess *, QByteArray &)),
@@ -726,7 +726,7 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
             QString escapedFilename = file;
             if(arcType == "zip") {
                 // left bracket needs to be escaped
-                escapedFilename.replace("[", "[[]");
+                escapedFilename.replace('[', "[[]");
             }
 
             KrLinecountingProcess proc;
@@ -781,7 +781,7 @@ void kio_krarcProtocol::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags 
     }
 
     KrLinecountingProcess proc;
-    proc << renCmd << arcPath << src.path().replace(arcPath + "/", "") << dest.path().replace(arcPath + "/", "");
+    proc << renCmd << arcPath << src.path().replace(arcPath + '/', "") << dest.path().replace(arcPath + '/', "");
     proc.start();
     proc.waitForFinished();
 

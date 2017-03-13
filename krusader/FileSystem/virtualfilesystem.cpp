@@ -195,7 +195,7 @@ bool VirtualFileSystem::refreshInternal(const QUrl &directory, bool /*showHidden
     _currentDirectory = cleanUrl(directory);
     _currentDirectory.setHost("");
     // remove invalid subdirectories
-    _currentDirectory.setPath("/" + _currentDirectory.path().remove('/'));
+    _currentDirectory.setPath('/' + _currentDirectory.path().remove('/'));
 
     if (!_virtFilesystemDict.contains(currentDir())) {
         // NOTE: silently creating non-existing directories here. The search and locate tools expect
@@ -235,7 +235,7 @@ void VirtualFileSystem::mkDirInternal(const QString &name)
     QString dirName = name;
     dirName = dirName.remove('/');
     if (dirName.isEmpty())
-        dirName = "/";
+        dirName = '/';
 
     _virtFilesystemDict.insert(dirName, new QList<QUrl>());
     _virtFilesystemDict["/"]->append(QUrl(QStringLiteral("virt:/") + dirName));
