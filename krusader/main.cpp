@@ -63,7 +63,7 @@
 #include "defaults.h"
 #include "Panel/krviewfactory.h"
 
-static const char *description = I18N_NOOP("Krusader\nTwin-Panel File Manager for KDE");
+static const char *description = I18N_NOOP("Krusader\nTwin-Panel File Manager by KDE");
 
 static void sigterm_handler(int i)
 {
