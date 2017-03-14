@@ -469,6 +469,14 @@ void KRslots::multiRename()
 
 void KRslots::rootKrusader()
 {
+    if (KMessageBox::warningContinueCancel(
+            krApp, i18n("Improper operations in root mode can damage your operating system. "
+                        "<p>Furthermore, running UI applications as root is insecure and can "
+                        "allow attackers to gain root access."),
+            QString(), KStandardGuiItem::cont(), KStandardGuiItem::cancel(), "Confirm Root Mode",
+            KMessageBox::Notify | KMessageBox::Dangerous) != KMessageBox::Continue)
+        return;
+
     if (!KrServices::isExecutable(KDESU_PATH)) {
         KMessageBox::sorry(krApp,
             i18n("Cannot start root mode Krusader, %1 not found or not executable. "
