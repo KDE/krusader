@@ -278,12 +278,6 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
     Application* kmail          = new Application("kmail",         "http://kmail.kde.org/", KrServices::cmdExist("kmail"));
     Application* krename        = new Application("krename",       "http://www.krename.net/", KrServices::cmdExist("krename"));
     Application* md5sum         = new Application("md5sum",        "http://www.gnu.org/software/textutils/textutils.html", KrServices::cmdExist("md5sum"));
-    Application* md5deep        = new Application("md5deep",       "http://md5deep.sourceforge.net/", KrServices::cmdExist("md5deep"));
-    Application* sha1deep       = new Application("sha1deep",      "http://md5deep.sourceforge.net/", KrServices::cmdExist("sha1deep"));
-    Application* sha256deep     = new Application("sha256deep",    "http://md5deep.sourceforge.net/", KrServices::cmdExist("sha256deep"));
-    Application* tigerdeep      = new Application("tigerdeep",     "http://md5deep.sourceforge.net/", KrServices::cmdExist("tigerdeep"));
-    Application* whirlpooldeep  = new Application("whirlpooldeep", "http://md5deep.sourceforge.net/", KrServices::cmdExist("whirlpooldeep"));
-    Application* cfv            = new Application("cfv",           "http://cfv.sourceforge.net/", KrServices::cmdExist("cfv"));
 
     vecDiff.push_back(kdiff3);
     vecDiff.push_back(kompare);
@@ -292,12 +286,6 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
     vecMail.push_back(kmail);
     vecRename.push_back(krename);
     vecChecksum.push_back(md5sum);
-    vecChecksum.push_back(md5deep);
-    vecChecksum.push_back(sha1deep);
-    vecChecksum.push_back(sha256deep);
-    vecChecksum.push_back(tigerdeep);
-    vecChecksum.push_back(whirlpooldeep);
-    vecChecksum.push_back(cfv);
 
     ApplicationGroup* diff     = new ApplicationGroup(i18n("diff utility"),     PS("DIFF"),   vecDiff);
     ApplicationGroup* mail     = new ApplicationGroup(i18n("email client"),     PS("MAIL"),   vecMail);
@@ -324,12 +312,6 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
     delete xxdiff;
     delete krename;
     delete md5sum;
-    delete md5deep;
-    delete sha1deep;
-    delete sha256deep;
-    delete tigerdeep;
-    delete whirlpooldeep;
-    delete cfv;
 
     delete diff;
     delete mail;

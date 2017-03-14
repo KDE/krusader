@@ -944,48 +944,35 @@ void ListPanelFunc::unpack()
 
 }
 
-// a small ugly function, used to prevent duplication of EVERY line of
-// code (maybe except 3) from createChecksum and matchChecksum
-void checksum_wrapper(ListPanel *panel, QStringList& args, bool &folders)
+void ListPanelFunc::createChecksum()
 {
-    // determine if we need recursive mode (md5deep)
-    folders = false;
-
-    if (!panel->func->files()->isLocal()) {
-        // avoid checksum operations with wrong files
-        return;
-    }
+    if (!panel->func->files()->isLocal())
+        return; // only local, non-virtual files are supported
 
     KrViewItemList items;
     panel->view->getSelectedKrViewItems(&items);
-    if (items.isEmpty()) return ;   // nothing to do
-    for (KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it) {
-        if (panel->func->getFileItem(*it)->isDir()) {
-            folders = true;
-            args << (*it)->name();
-        } else args << (*it)->name();
-    }
-}
 
-void ListPanelFunc::createChecksum()
-{
-    QStringList args;
-    bool folders;
-    checksum_wrapper(panel, args, folders);
-    CreateChecksumDlg dlg(args, folders, panel->lastLocalPath());
+    QStringList fileNames;
+    for (KrViewItem *item : items) {
+        FileItem *file = panel->func->getFileItem(item);
+        fileNames.append(file->getUrl().fileName());
+    }
+
+    if (fileNames.isEmpty())
+        return; // nothing selected and no valid current file
+
+    Checksum::startCreationWizard(panel->virtualPath().toLocalFile(), fileNames);
 }
 
 void ListPanelFunc::matchChecksum()
 {
-    QStringList args;
-    bool folders;
-    checksum_wrapper(panel, args, folders);
-    QList<FileItem *> checksumFiles =
-        files()->searchFileItems(KRQuery(MatchChecksumDlg::checksumTypesFilter));
-    MatchChecksumDlg dlg(args, folders, panel->lastLocalPath(),
-        (checksumFiles.size() == 1
-             ? checksumFiles[0]->getUrl().toDisplayString(QUrl::PreferLocalFile)
-             : QString()));
+    if (!panel->func->files()->isLocal())
+        return; // only local, non-virtual files are supported
+
+    FileItem *currentItem = files()->getFileItem(panel->getCurrentName());
+    const QString checksumFilePath = currentItem ? currentItem->getUrl().toLocalFile() : QString();
+
+    Checksum::startVerifyWizard(panel->virtualPath().toLocalFile(), checksumFilePath);
 }
 
 void ListPanelFunc::calcSpace()

@@ -157,6 +157,7 @@ protected:
     static QPointer<ListPanelFunc> copyToClipboardOrigin;
 
 private:
+    bool getSelectedFiles(QStringList& args);
     bool _isPaused; // do not refresh while panel is not visible
     bool _refreshAfterPaused; // refresh after not paused anymore
 };

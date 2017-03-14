@@ -174,9 +174,6 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     // init the protocol handler
     KgProtocols::init();
 
-    // init the checksum tools
-    initChecksumModule();
-
     KConfigGroup gl(krConfig, "Look&Feel");
     FileItem::loadUserDefinedFolderIcons(gl.readEntry("Load User Defined Folder Icons",
                                                          _UserDefinedFolderIcons));

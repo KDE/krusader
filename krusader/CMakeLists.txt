@@ -74,6 +74,7 @@ target_link_libraries(krusader
                       KF5::Parts
                       KF5::WindowSystem
                       Qt5::PrintSupport
+                      Qt5::Concurrent
 )
 
 if(SYNCHRONIZER_ENABLED)
