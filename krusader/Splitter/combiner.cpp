@@ -185,7 +185,7 @@ void Combiner::statDestResult(KJob* job)
         if (job->error() == KIO::ERR_DOES_NOT_EXIST) {
             openNextFile();
         } else {
-            static_cast<KIO::Job*>(job)->ui()->showErrorMessage();
+            static_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
             emit reject();
         }
     } else { // destination already exists
@@ -303,7 +303,7 @@ void Combiner::combineReceiveFinished(KJob *job)
             }
         } else {
             combineAbortJobs();
-            static_cast<KIO::Job*>(job)->ui()->showErrorMessage();
+            static_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
             emit reject();
         }
     } else
@@ -328,7 +328,7 @@ void Combiner::combineSendFinished(KJob *job)
 
     if (job->error()) {   /* any error occurred? */
         combineAbortJobs();
-        static_cast<KIO::Job*>(job)->ui()->showErrorMessage();
+        static_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
         emit reject();
     } else if (!error.isEmpty()) {  /* was any error message at reading ? */
         combineAbortJobs();             /* we cannot write out it in combineReceiveFinished */

@@ -1903,7 +1903,7 @@ void Lister::saveAs()
     KIO::Job *job = KIO::copy(urlList, url);
     job->setUiDelegate(new KIO::JobUiDelegate());
     KIO::getJobTracker()->registerJob(job);
-    job->ui()->setAutoErrorHandlingEnabled(true);
+    job->uiDelegate()->setAutoErrorHandlingEnabled(true);
 }
 
 void Lister::saveSelected()
@@ -1935,7 +1935,7 @@ void Lister::saveSelected()
 
     saveJob->setUiDelegate(new KIO::JobUiDelegate());
     KIO::getJobTracker()->registerJob(saveJob);
-    saveJob->ui()->setAutoErrorHandlingEnabled(true);
+    saveJob->uiDelegate()->setAutoErrorHandlingEnabled(true);
 
     _actionSaveSelected->setEnabled(false);
 }

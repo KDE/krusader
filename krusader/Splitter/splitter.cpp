@@ -191,12 +191,12 @@ void Splitter::statOutputFileResult(KJob* job)
         if (job->error() == KIO::ERR_DOES_NOT_EXIST)
             openOutputFile();
         else {
-            static_cast<KIO::Job*>(job)->ui()->showErrorMessage();
+            static_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
             emit reject();
         }
     } else { // destination already exists
         KIO::RenameDialog dlg(this, i18n("File Already Exists"), QUrl(), writeURL,
-                static_cast<KIO::RenameDialog_Mode>(KIO::M_MULTI | KIO::M_OVERWRITE | KIO::M_NORENAME));
+                static_cast<KIO::RenameDialog_Options>(KIO::M_MULTI | KIO::M_OVERWRITE | KIO::M_NORENAME));
         switch (dlg.exec()) {
         case KIO::R_OVERWRITE:
             openOutputFile();

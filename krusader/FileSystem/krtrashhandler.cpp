@@ -71,7 +71,7 @@ void KrTrashHandler::emptyTrash()
 
     KIO::Job *job = KIO::emptyTrash();
     KJobWidgets::setWindow(job, krMainWindow);
-    job->ui()->setAutoErrorHandlingEnabled(true);
+    job->uiDelegate()->setAutoErrorHandlingEnabled(true);
     const QUrl url = QUrl("trash:/");
     QObject::connect(job, &KIO::Job::result, [=]() { FileSystemProvider::instance().refreshFilesystem(url); });
 }

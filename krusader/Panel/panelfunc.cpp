@@ -897,7 +897,7 @@ void ListPanelFunc::pack()
     PackJob * job = PackJob::createPacker(files()->currentDirectory(), destURL, fileNames, PackGUI::type, PackGUI::extraProps);
     job->setUiDelegate(new KIO::JobUiDelegate());
     KIO::getJobTracker()->registerJob(job);
-    job->ui()->setAutoErrorHandlingEnabled(true);
+    job->uiDelegate()->setAutoErrorHandlingEnabled(true);
 
     if (packToOtherPanel)
         connect(job, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
@@ -913,7 +913,7 @@ void ListPanelFunc::testArchive()
     TestArchiveJob * job = TestArchiveJob::testArchives(files()->currentDirectory(), fileNames);
     job->setUiDelegate(new KIO::JobUiDelegate());
     KIO::getJobTracker()->registerJob(job);
-    job->ui()->setAutoErrorHandlingEnabled(true);
+    job->uiDelegate()->setAutoErrorHandlingEnabled(true);
 }
 
 void ListPanelFunc::unpack()
@@ -937,7 +937,7 @@ void ListPanelFunc::unpack()
     UnpackJob * job = UnpackJob::createUnpacker(files()->currentDirectory(), dest, fileNames);
     job->setUiDelegate(new KIO::JobUiDelegate());
     KIO::getJobTracker()->registerJob(job);
-    job->ui()->setAutoErrorHandlingEnabled(true);
+    job->uiDelegate()->setAutoErrorHandlingEnabled(true);
 
     if (packToOtherPanel)
         connect(job, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
