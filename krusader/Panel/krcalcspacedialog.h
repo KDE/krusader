@@ -32,9 +32,6 @@
 #ifndef KRCALCSPACEDIALOG_H
 #define KRCALCSPACEDIALOG_H
 
-// QtCore
-#include <QMutex>
-#include <QThread>
 // QtWidgets
 #include <QDialog>
 #include <QDialogButtonBox>
@@ -42,10 +39,7 @@
 
 class SizeCalculator;
 
-/**
- * Dialog showing the number of files and directories and its total size for a calculation.
- *
- */
+/** Dialog showing the number of files and directories and its total size for a calculation. */
 class KrCalcSpaceDialog : public QDialog
 {
     Q_OBJECT
