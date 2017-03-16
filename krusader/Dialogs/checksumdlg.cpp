@@ -105,7 +105,9 @@ ChecksumProcess::ChecksumProcess(QObject *parent, const QString &path) : KProces
     setStandardOutputFile(m_tmpOutFile.fileName());
     setStandardErrorFile(m_tmpErrFile.fileName());
     setWorkingDirectory(path);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
     connect(this, &ChecksumProcess::errorOccurred, this, &ChecksumProcess::slotError);
+#endif
     connect(this, static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
             this, &ChecksumProcess::slotFinished);
 }
