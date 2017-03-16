@@ -30,7 +30,7 @@ include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 
-find_package(Qt5 CONFIG REQUIRED
+find_package(Qt5 5.5 CONFIG REQUIRED
   Concurrent
   Core
   Gui
