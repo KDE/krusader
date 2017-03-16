@@ -66,9 +66,9 @@ void DefaultFileSystem::copyFiles(const QList<QUrl> &urls, const QUrl &destinati
     KIO::JobFlags flags = showProgressInfo ? KIO::DefaultFlags : KIO::HideProgressInfo;
 
     KrJob *krJob = KrJob::createCopyJob(mode, urls, destination, flags);
-    connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectJob(job, dest); });
+    connect(krJob, &KrJob::started, this, [=](KIO::Job *job) { connectJob(job, dest); });
     if (mode == KIO::CopyJob::Move) { // notify source about removed files
-        connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectSourceFileSystem(job, urls); });
+        connect(krJob, &KrJob::started, this, [=](KIO::Job *job) { connectSourceFileSystem(job, urls); });
     }
 
     krJobMan->manageJob(krJob, startMode);
@@ -95,7 +95,7 @@ void DefaultFileSystem::connectSourceFileSystem(KJob *job, const QList<QUrl> url
         // NOTE: we assume that all files were in the same directory and only emit one signal for
         // the directory of the first file URL
         const QUrl url = urls.first().adjusted(QUrl::RemoveFilename);
-        connect(job, &KIO::Job::result, [=]() { emit fileSystemChanged(url); });
+        connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(url); });
     }
 }
 

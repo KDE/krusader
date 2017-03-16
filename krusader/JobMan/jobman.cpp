@@ -200,7 +200,7 @@ JobMan::JobMan(QObject *parent) : QObject(parent), m_messageBox(0)
     m_modeAction->setToolTip(i18n("Run only one job in parallel"));
     m_modeAction->setCheckable(true);
     m_modeAction->setChecked(m_queueMode);
-    connect(m_modeAction, &QAction::toggled, [=](bool checked) mutable {
+    connect(m_modeAction, &QAction::toggled, this, [=](bool checked) mutable {
         m_queueMode = checked;
         cfg.writeEntry("Queue Mode", m_queueMode);
     });

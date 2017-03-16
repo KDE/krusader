@@ -167,7 +167,7 @@ void VirtualFileSystem::rename(const QString &fileName, const QString &newName)
 
     KIO::Job *job = KIO::moveAs(item->getUrl(), dest, KIO::HideProgressInfo);
     connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, false); });
-    connect(job, &KIO::Job::result, [=]() { emit fileSystemChanged(currentDirectory()); });
+    connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(currentDirectory()); });
 }
 
 bool VirtualFileSystem::canMoveToTrash(const QStringList &fileNames) const

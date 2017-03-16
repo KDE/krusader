@@ -173,12 +173,12 @@ void FileSystem::deleteFiles(const QStringList &fileNames, bool moveToTrash)
     const QList<QUrl> fileUrls = getUrls(fileNames);
 
     KrJob *krJob = KrJob::createDeleteJob(fileUrls, moveToTrash);
-    connect(krJob, &KrJob::started, [=](KIO::Job *job) { connectJob(job, currentDirectory()); });
+    connect(krJob, &KrJob::started, this, [=](KIO::Job *job) { connectJob(job, currentDirectory()); });
     if (moveToTrash) {
         // update destination: the trash bin (in case a panel/tab is showing it)
-        connect(krJob, &KrJob::started, [=](KIO::Job *job) {
+        connect(krJob, &KrJob::started, this, [=](KIO::Job *job) {
             // Note: the "trash" protocal should always have only one "/" after the "scheme:" part
-            connect(job, &KIO::Job::result, [=]() { emit fileSystemChanged(QUrl("trash:/")); });
+            connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(QUrl("trash:/")); });
         });
     }
 
@@ -190,7 +190,7 @@ void FileSystem::connectJob(KJob *job, const QUrl &destination)
     // (additional) direct refresh if on local fs because watcher is too slow
     const bool refresh = cleanUrl(destination) == _currentDirectory && isLocal();
     connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, refresh); });
-    connect(job, &KIO::Job::result, [=]() { emit fileSystemChanged(destination); });
+    connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(destination); });
 }
 
 bool FileSystem::showHiddenFiles()

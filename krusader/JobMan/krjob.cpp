@@ -101,7 +101,7 @@ void KrJob::start()
         m_job = KIO::del(m_urls);
     }
 
-    connect(m_job, &KIO::Job::finished, [=]() {
+    connect(m_job, &KIO::Job::finished, this, [=]() {
         emit terminated(this);
         deleteLater();
     });

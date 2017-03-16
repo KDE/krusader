@@ -325,7 +325,7 @@ void CreateWizard::onProgressPage()
 {
     // first, get all files (recurse in directories) - async
     stopListFiles = false; // QFuture cannot cancel QtConcurrent::run
-    connect(this, &CreateWizard::finished, [=]() { stopListFiles = true; });
+    connect(this, &CreateWizard::finished, this, [=]() { stopListFiles = true; });
     QFuture<QStringList> listFuture = QtConcurrent::run(listFiles, m_path, m_fileNames);
     m_listFilesWatcher.setFuture(listFuture);
 }
