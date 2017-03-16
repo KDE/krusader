@@ -1116,19 +1116,21 @@ void Synchronizer::slotTaskFinished(KJob *job)
                 ui->setWindow(syncDlgWidget);
 
                 if (item->task() == TT_COPY_TO_LEFT) {
-                    result = ui->askFileRename(job, i18n("File Already Exists"),
-                             rightURL, leftURL,
-                             (KIO::RenameDialog_Mode)(KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI), newDest,
-                             item->rightSize(), item->leftSize(), QDateTime(), QDateTime(),
-                             QDateTime::fromTime_t(item->rightDate()),
-                             QDateTime::fromTime_t(item->leftDate()));
+                    result =
+                        ui->askFileRename(job, i18n("File Already Exists"), rightURL, leftURL,
+                                          KIO::RenameDialog_Overwrite | KIO::RenameDialog_Skip |
+                                              KIO::RenameDialog_MultipleItems,
+                                          newDest, item->rightSize(), item->leftSize(), QDateTime(),
+                                          QDateTime(), QDateTime::fromTime_t(item->rightDate()),
+                                          QDateTime::fromTime_t(item->leftDate()));
                 } else {
-                    result = ui->askFileRename(job, i18n("File Already Exists"),
-                             leftURL, rightURL,
-                             (KIO::RenameDialog_Mode)(KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI), newDest,
-                             item->leftSize(), item->rightSize(), QDateTime(), QDateTime(),
-                             QDateTime::fromTime_t(item->leftDate()),
-                             QDateTime::fromTime_t(item->rightDate()));
+                    result =
+                        ui->askFileRename(job, i18n("File Already Exists"), leftURL, rightURL,
+                                          KIO::RenameDialog_Overwrite | KIO::RenameDialog_Skip |
+                                              KIO::RenameDialog_MultipleItems,
+                                          newDest, item->leftSize(), item->rightSize(), QDateTime(),
+                                          QDateTime(), QDateTime::fromTime_t(item->leftDate()),
+                                          QDateTime::fromTime_t(item->rightDate()));
                 }
 
                 switch (result) {
