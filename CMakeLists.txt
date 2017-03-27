@@ -10,7 +10,7 @@ set(RELEASE_NAME "Clear Skies")
 # https://github.com/KDE/partitionmanager/blob/master/CMakeLists.txt http://commits.kde.org/kimtoy/1e62777affb0e072f3462e80bc271f3cba661104
 set(KDE_INSTALL_USE_QT_SYS_PATHS ON CACHE BOOL "Install mkspecs files, Plugins and Imports to the Qt 5 install dir" FORCE)
 
-find_package(ECM 1.1.0 REQUIRED NO_MODULE)
+find_package(ECM 1.7.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include(ECMOptionalAddSubdirectory)
@@ -29,6 +29,7 @@ include(CheckIncludeFiles)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
+include(ECMAddAppIcon)
 
 find_package(Qt5 5.5 CONFIG REQUIRED
   Concurrent

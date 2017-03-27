@@ -42,8 +42,8 @@ set(krusader_SRCS
     krdebuglogger.cpp
 )
 
-# TODO porting: missing kf5 equivalent
-#kde4_add_app_icon(krusader_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-krusader_user.png")
+file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-krusader_user.png")
+ecm_add_app_icon(krusader_SRCS ICONS ${ICONS_SRCS})
 
 qt5_add_resources(krusader_RC_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc" )
 

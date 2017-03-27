@@ -5,8 +5,7 @@
 
 1 - rewrite CMakeLists rules / variables
 
-all rules were rewritten in a Qt5/KF5 way, still'kde4_add_app_icon' is missing,
-I think we should find another way; I didn't changed yet the variables in
+all rules were rewritten in a Qt5/KF5 way; I didn't changed yet the variables in
 'target_link_libraries', just commented out; btw, with a fast 'cmake', all flags
 should be generated (flags.make files)
 
