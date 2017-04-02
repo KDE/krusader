@@ -335,13 +335,13 @@ copying the entire file to another application.</para>
 <para>Deselects the selected text in the editor if any.</para>
 </listitem>
 </varlistentry>
-<varlistentry><!-- only in power mode -->
+<varlistentry>
 <term><anchor id="katepart-menu-block-selection-mode"/><menuchoice>
 <shortcut>
 <keycombo action="simul">&Ctrl;&Shift;<keycap>B</keycap></keycombo>
 </shortcut>
 <guimenu>Edit</guimenu><guimenuitem>Block
-Selection Mode</guimenuitem></menuchoice> (Power user mode)</term>
+Selection Mode</guimenuitem></menuchoice></term>
 <listitem>
 <para>Toggles Selection Mode. When the Selection Mode is <guilabel>BLOCK</guilabel>,
 you can make vertical selections, &eg; select column 5 to 10 in lines 9 to 15.
@@ -349,13 +349,13 @@ The status bar shows the current state of the Selection Mode, either <guilabel>B
 <guilabel>LINE</guilabel>.</para>
 </listitem>
 </varlistentry>
-<varlistentry><!-- only in power mode -->
+<varlistentry>
 <term><anchor id="katepart-menu-vi-input-mode"/><menuchoice>
 <shortcut>
 <keycombo action="simul"><keysym>Meta</keysym>&Ctrl;<keycap>V</keycap></keycombo>
 </shortcut>
 <guimenu>Edit</guimenu><guimenuitem>VI input
-Mode</guimenuitem></menuchoice> (Power user mode)</term>
+Mode</guimenuitem></menuchoice></term>
 <listitem>
 <para>Switch to a vi-like, modal editing mode. This mode supports the most used commands
 and motions from vim's normal and visual mode and has an optional vi mode statusbar.
@@ -548,13 +548,13 @@ document in one window are reflected in the other window and vice versa.</para>
 
 <varlistentry>
 <term>
-<anchor id="katepart-menu-view-command-line"/><!-- only in power mode -->
+<anchor id="katepart-menu-view-command-line"/>
 <menuchoice>
 <shortcut><keycombo
 action="simul"><keycap>F7</keycap></keycombo></shortcut>
 <guimenu>View</guimenu>
 <guimenuitem>Switch to Command Line</guimenuitem>
-</menuchoice> (Power user mode)
+</menuchoice>
 </term>
 <listitem>
 <para>Displays the Katepart command line at the bottom of the window.
@@ -563,23 +563,23 @@ to get a list of commands.</para>
 </listitem>
 </varlistentry>
 
-<varlistentry><!-- only in power mode -->
+<varlistentry>
 <term><menuchoice>
 <guimenu>View</guimenu><guimenuitem>Show the Javascript Console</guimenuitem>
-</menuchoice> (Power user mode)</term>
+</menuchoice></term>
 <listitem><para>This opens a tool view that allows you to run Javascript code
 interactively. For more information, see
 <ulink url="help:/katepart/advanced-editing-tools-scripting.html">Extending &kate; with Scripts</ulink>
 </para></listitem>
 </varlistentry>
 
-<varlistentry><!-- only in power mode -->
+<varlistentry>
 <term>
 <anchor id="katepart-menu-view-schema"/>
 <menuchoice>
 <guimenu>View</guimenu>
 <guisubmenu>Schema</guisubmenu>
-</menuchoice> (Power user mode)
+</menuchoice>
 </term>
 <listitem>
 <para>Select a font schema.</para>
@@ -601,13 +601,13 @@ border on the screen.</para>
 </listitem>
 </varlistentry>
 
-<varlistentry><!-- only in power mode -->
+<varlistentry>
 <term>
 <anchor id="katepart-menu-view-dynamic-word-wrap-indicators"/>
 <menuchoice>
 <guimenu>View</guimenu>
 <guisubmenu>Dynamic Word Wrap Indicators</guisubmenu>
-</menuchoice> (Power user mode)
+</menuchoice>
 </term>
 <listitem>
  <para>Choose when and how the dynamic word wrap indicators should be
@@ -616,13 +616,13 @@ Wrap</guilabel> option is checked.</para>
 </listitem>
 </varlistentry>
 
-<varlistentry><!-- only in power mode -->
+<varlistentry>
 <term>
 <anchor id="katepart-menu-view-show-static-word-wrap"/>
 <menuchoice>
 <guimenu>View</guimenu>
 <guimenuitem>Show Static Word Wrap Marker</guimenuitem>
-</menuchoice> (Power user mode)
+</menuchoice>
 </term>
 <listitem>
 <para>If this option is checked, a vertical line will be drawn at the
@@ -634,14 +634,14 @@ use a fixed pitch font.</para>
 </listitem>
 </varlistentry>
 
-<varlistentry><!-- only in power mode -->
+<varlistentry>
 <term>
 <anchor id="katepart-menu-view-show-icon-border"/>
 <menuchoice>
 <shortcut><keycombo action="simul"><keycap>F6</keycap></keycombo></shortcut>
 <guimenu>View</guimenu>
 <guimenuitem>Show Icon Border</guimenuitem>
-</menuchoice> (Power user mode)
+</menuchoice>
 </term>
 <listitem>
 <para>This is a toggle item. Setting it on checked will make the Icon Border
@@ -666,13 +666,13 @@ editor, and vice versa.</para>
 </listitem>
 </varlistentry>
 
-<varlistentry><!-- only in power mode -->
+<varlistentry>
 <term>
 <anchor id="katepart-menu-view-scrollbar-marks"/>
 <menuchoice>
 <guimenu>View</guimenu>
 <guisubmenu>Show Scrollbar Marks</guisubmenu>
-</menuchoice> (Power user mode)
+</menuchoice>
 </term>
 <listitem>
 <para>If this option is checked, the view will show marks on the vertical
@@ -681,13 +681,13 @@ linkend="katepart-menu-view-show-icon-border">Icon Border</link>.</para>
 </listitem>
 </varlistentry>
 
-<varlistentry><!-- only in power mode -->
+<varlistentry>
 <term>
 <anchor id="katepart-menu-view-hide-folding-markers"/>
 <menuchoice>
 <shortcut><keycombo action="simul"><keycap>F9</keycap></keycombo></shortcut>
 <guimenu>View</guimenu> <guimenuitem>Show Folding Markers</guimenuitem>
-</menuchoice> (Power user mode)
+</menuchoice>
 </term>
 <listitem>
 <para>If this option is checked, the marks for code folding will be
@@ -695,42 +695,53 @@ shown.</para>
 </listitem>
 </varlistentry>
 
-<varlistentry><!-- only in power mode -->
+<varlistentry>
 <term>
 <anchor id="katepart-menu-view-code-folding"/>
 <menuchoice>
 <guimenu>View</guimenu> <guisubmenu>Code Folding</guisubmenu>
-</menuchoice> (Power user mode)
+</menuchoice>
 </term>
 <listitem>
+<para>These options pertain to
+<ulink url="help:/katepart/advanced-editing-tools-code-folding.html">code
+folding</ulink>:</para>
 <variablelist>
-<varlistentry>
-<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;
-&Shift;<keycap>-</keycap></keycombo></shortcut>
-<guimenuitem>Collapse Toplevel</guimenuitem></menuchoice>
-</term>
-<listitem><para>Collapse all toplevel regions in the document.</para></listitem>
+
+<varlistentry id="view-show-folding-markers">
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul"><keycap>F9</keycap></keycombo>
+</shortcut>
+<guimenuitem>Show Folding Markers</guimenuitem>
+</menuchoice></term>
+<listitem><para>Toggles the display of the folding marker pane in the left
+side of the view.</para></listitem>
 </varlistentry>
-<varlistentry>
-<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;
-&Shift;<keycap>+</keycap></keycombo></shortcut>
-<guimenuitem>Expand Toplevel</guimenuitem></menuchoice>
-</term>
-<listitem><para>Expand all toplevel regions in the document.</para></listitem>
+
+<varlistentry id="view-fold-current-node">
+<term><menuchoice>
+<guimenuitem>Fold Current Node</guimenuitem>
+</menuchoice></term>
+<listitem><para>Collapse the region that contains the cursor.</para></listitem>
 </varlistentry>
-<varlistentry>
-<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;
-<keycap>-</keycap></keycombo></shortcut>
-<guimenuitem>Collapse One Local Level</guimenuitem></menuchoice>
-</term>
-<listitem><para>Collapse the region closest to the cursor.</para></listitem>
+
+<varlistentry id="view-unfold-current-node">
+<term><menuchoice>
+<guimenuitem>Unfold Current Node</guimenuitem>
+</menuchoice></term>
+<listitem><para>Expand the region that contains the cursor.</para></listitem>
 </varlistentry>
-<varlistentry>
-<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;
-<keycap>+</keycap></keycombo></shortcut>
-<guimenuitem>Expand One Local Level</guimenuitem></menuchoice>
-</term>
-<listitem><para>Expand the region closest to the cursor.</para></listitem>
+
+<varlistentry id="view-fold-toplevel-nodes">
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;&Shift;<keycap>-</keycap></keycombo>
+</shortcut>
+<guimenuitem>Fold Toplevel Nodes</guimenuitem>
+</menuchoice></term>
+<listitem><para>Collapse all toplevel regions in the document.
+Click on the right pointing triangle to expand all toplevel regions.</para></listitem>
 </varlistentry>
 </variablelist>
 </listitem>
