@@ -83,7 +83,6 @@ endif(SYNCHRONIZER_ENABLED)
 
 install(TARGETS krusader ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS org.kde.krusader.desktop
-              org.kde.krusader.root-mode.desktop
         DESTINATION ${XDG_APPS_INSTALL_DIR} )
 install(FILES krusaderui.rc
               krusaderlisterui.rc
