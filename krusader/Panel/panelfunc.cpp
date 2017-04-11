@@ -308,6 +308,8 @@ void ListPanelFunc::doRefresh()
     }
     panel->view->setNameToMakeCurrent(history->currentItem());
 
+    // workaround for detecting panel deletion while filesystem is refreshing
+    QPointer<ListPanel> panelSave = panel;
     // NOTE: this is blocking. Returns false on error or interruption (cancel requested or panel
     // was deleted)
     const bool refreshed = fileSystemP->refresh(url);
@@ -315,6 +317,8 @@ void ListPanelFunc::doRefresh()
         // update the history and address bar, as the actual url might differ from the one requested
         history->setCurrentUrl(fileSystemP->currentDirectory());
         panel->setNavigatorUrl(fileSystemP->currentDirectory());
+    } else if (!panelSave) {
+        return;
     }
 
     panel->view->setNameToMakeCurrent(QString());
