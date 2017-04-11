@@ -154,6 +154,8 @@ int main(int argc, char *argv[])
              "irc.freenode.net, channel: #krusader"),
         QStringLiteral("https://krusader.org"));
 
+    aboutData.setOrganizationDomain(QByteArray("kde.org"));
+
     aboutData.addAuthor(i18n("Rafi Yanai"), i18n("Author (retired)"), QStringLiteral("yanai@users.sourceforge.net"));
     aboutData.addAuthor(i18n("Shie Erlich"), i18n("Author (retired)"), QStringLiteral("erlich@users.sourceforge.net"));
     aboutData.addAuthor(i18n("Jan Lepper"), i18n("Developer"), QStringLiteral("jan_lepper@gmx.de"), 0);
