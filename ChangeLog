@@ -1,3 +1,48 @@
+
+2.6.0 "Stiff Challenges"
+=========================
+
+    FIXED: [ 335993 ] save checksum does not work as expected
+    FIXED: [ 375639 ] Allow typing special characters (e.g. with accent or acute) in search bar
+    FIXED: [ 328068 ] Send SIGINT before own input command to embedded terminal
+    FIXED: [ 375135 ] segfault on viewing html files with Generic viewer
+    FIXED: [ 269820 ] Fullscreen terminal emulator shows empty window when terminal emulator was minimized
+    FIXED: [ 374813 ] Multi rename with KRename does not work when selecting non-local files/folders (ftp, smb, virt, ...)
+    FIXED: [ 309300 ] Esc as the default shortcut of "Set Focus to The Panel" is problematic for the embedded terminal
+    FIXED: [ 374175 ] wrong date format parsing using date filter in search dialog
+    FIXED: [ 293370 ] After a file deletion old file name is still shown in the status bar
+    FIXED: [ 374322 ] Visually indicated shortcut ALT+o not working in copy/F5 and move/F6 KrDialog
+    FIXED: [ 374238 ] Handle left/right arrow key press in brief view (previously filtered by search bar).
+    FIXED: when dragged from list panel use correct drop action if invoked with modifier keys
+    FIXED: added save/restore or toolbar positions in mainwindow
+    FIXED: [ 372231 ] Added KDE's service actions again to right-click popup menu
+    ADDED: new undo action to job manager for undoing KIO job operations
+    FIXED: [ 372067 ] Wrong path when showing non local files and folders from search dialog in panel
+    ADDED: job manager as replacement for queue manager. Part of cleaning VFS
+    FIXED: [ 365105 ] Workaround for bug in KF5+QSystemTrayIcon
+    ADDED: Reimplementation of "minimize to system tray" feature.
+    FIXED: Krusader does not show the new file in a directory that is a symbolic link until is not refresh directory
+    FIXED: Wrong window position after restart in fluxbox
+    FIXED: Error on opening file folder after clicking on any file result of a remote search (FTP / smb)
+    FIXED: Terminal opens in full window
+    FIXED: copy location/path bar (feature request)
+    FIXED: krusader cannot calculate size of remote directory (ftp or sftp)
+    FIXED: Some files with weird characters (non UTF) cause krusader to miscalculate folder size
+    FIXED: No way to focus fullscreen embedded terminal emulator.
+    FIXED: Don't delete first letter in "new folder" dialog (F7)
+    FIXED: Use Shift+Delete for delete or move selected files to trash
+    FIXED: Dialog "File" -> "Verify checksum" improvement
+    FIXED: Option for show copy/move progress in dialog (not in notifications)
+    FIXED: Documents suddenly open as archives
+    CHANGED: Avoiding root mode
+    CHANGED: Duplicated tab should not be locked
+    CHANGED: New PagePanel: do not refresh until panel becomes visible
+    CHANGED: Change suggested command for "edit as root" user action to a more secure alternative
+    CHANGED: Do not configure kdesu path and remove kdesudo support again
+    CHANGED: Panel: Do not select .. in a filtered view if there are other entries
+    CHANGED: Duplicate tab settings when duplicating tabs
+    CHANGED: Some fixes and simpifying startup settings.
+
 2.5.0 "Clear Skies"
 =========================
 
