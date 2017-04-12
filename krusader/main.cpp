@@ -155,6 +155,7 @@ int main(int argc, char *argv[])
         QStringLiteral("https://krusader.org"));
 
     aboutData.setOrganizationDomain(QByteArray("kde.org"));
+    aboutData.setDesktopFileName(QStringLiteral("org.kde.krusader"));
 
     aboutData.addAuthor(i18n("Rafi Yanai"), i18n("Author (retired)"), QStringLiteral("yanai@users.sourceforge.net"));
     aboutData.addAuthor(i18n("Shie Erlich"), i18n("Author (retired)"), QStringLiteral("erlich@users.sourceforge.net"));
