@@ -3,7 +3,7 @@ project(krusader)
 cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 set (QT_MIN_VERSION "5.2.0")
 
-set(VERSION "2.6.0" )
+set(VERSION "2.6.1-beta" )
 set(RELEASE_NAME "Stiff Challenges")
 
 # Manages plugin loading. For more details it can be seen https://www.kde.org/announcements/kde-frameworks-5.5.0.php
