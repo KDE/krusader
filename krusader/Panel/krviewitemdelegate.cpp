@@ -19,6 +19,7 @@
 #include "krviewitemdelegate.h"
 
 #include "krvfsmodel.h"
+#include "krview.h"
 #include "../krglobal.h"
 
 // QtGui

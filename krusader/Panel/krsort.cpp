@@ -23,6 +23,8 @@
 #include <QMimeDatabase>
 #include <QMimeType>
 
+#include "krview.h"
+#include "../FileSystem/fileitem.h"
 #include "../FileSystem/krpermhandler.h"
 
 namespace KrSort {
@@ -344,6 +346,11 @@ int Sorter::insertIndex(FileItem *fileitem, bool isDummy, QVariant customData)
          return _items.indexOf((*it));
     else
         return _items.count();
+}
+
+bool Sorter::descending() const
+{
+    return _viewProperties->sortOptions & KrViewProperties::Descending;
 }
 
 } // namespace KrSort

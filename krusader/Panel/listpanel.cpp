@@ -63,40 +63,43 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <KIOFileWidgets/KFilePlacesModel>
 #include <KIOWidgets/KUrlComboBox>
 
-#include "../defaults.h"
-#include "../krusader.h"
-#include "../krslots.h"
-#include "../kicons.h"
-#include "../krusaderview.h"
-#include "../krservices.h"
-#include "../FileSystem/filesystem.h"
-#include "../FileSystem/krpermhandler.h"
-#include "../Archive/krarchandler.h"
-#include "../MountMan/kmountman.h"
-#include "../BookMan/krbookmarkbutton.h"
-#include "../Dialogs/krdialogs.h"
-#include "../Dialogs/krspwidgets.h"
-#include "../Dialogs/percentalsplitter.h"
-#include "../Dialogs/popularurls.h"
-#include "../GUI/kcmdline.h"
-#include "../GUI/dirhistorybutton.h"
-#include "../GUI/mediabutton.h"
-#include "../GUI/syncbrowsebutton.h"
-#include "../UserAction/useractionpopupmenu.h"
-
-#include "listpanelactions.h"
-#include "viewactions.h"
-#include "krpreviewpopup.h"
-#include "panelpopup.h"
-#include "panelfunc.h"
-#include "krpopupmenu.h"
-#include "krviewfactory.h"
+#include "dirhistoryqueue.h"
 #include "krcolorcache.h"
 #include "krerrordisplay.h"
 #include "krlayoutfactory.h"
+#include "krpopupmenu.h"
+#include "krpreviewpopup.h"
 #include "krsearchbar.h"
-#include "dirhistoryqueue.h"
+#include "krview.h"
+#include "krviewfactory.h"
+#include "krviewitem.h"
+#include "listpanelactions.h"
+#include "panelfunc.h"
+#include "panelpopup.h"
+#include "viewactions.h"
 
+#include "../defaults.h"
+#include "../kicons.h"
+#include "../krservices.h"
+#include "../krslots.h"
+#include "../krusader.h"
+#include "../krusaderview.h"
+
+#include "../Archive/krarchandler.h"
+#include "../BookMan/krbookmarkbutton.h"
+#include "../FileSystem/filesystem.h"
+#include "../FileSystem/krpermhandler.h"
+#include "../Dialogs/krdialogs.h"
+#include "../Dialogs/krspwidgets.h"
+#include "../Dialogs/krsqueezedtextlabel.h"
+#include "../Dialogs/percentalsplitter.h"
+#include "../Dialogs/popularurls.h"
+#include "../GUI/dirhistorybutton.h"
+#include "../GUI/kcmdline.h"
+#include "../GUI/mediabutton.h"
+#include "../GUI/syncbrowsebutton.h"
+#include "../MountMan/kmountman.h"
+#include "../UserAction/useractionpopupmenu.h"
 
 class ActionButton : public QToolButton
 {
@@ -861,6 +864,13 @@ QString ListPanel::getCurrentName()
         return QString();
 }
 
+QStringList ListPanel::getSelectedNames()
+{
+    QStringList fileNames;
+    view->getSelectedItems(&fileNames);
+    return fileNames;
+}
+
 void ListPanel::prepareToDelete()
 {
     view->setNameToMakeCurrent(view->firstUnmarkedBelowCurrent());
@@ -1261,6 +1271,11 @@ void ListPanel::newTab(KrViewItem *it)
         url.setPath(url.path() + '/' + (it->name()));
         newTab(url, true);
     }
+}
+
+void ListPanel::newTab(const QUrl &url, bool nextToThis)
+{
+    _manager->newTab(url, nextToThis ? this : 0);
 }
 
 void ListPanel::slotNavigatorUrlChanged(const QUrl &url)

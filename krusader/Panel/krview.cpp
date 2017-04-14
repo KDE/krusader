@@ -40,6 +40,7 @@
 #include "../krglobal.h"
 #include "../defaults.h"
 #include "../FileSystem/dirlisterinterface.h"
+#include "../FileSystem/fileitem.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../Filter/filterdialog.h"
 

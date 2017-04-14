@@ -21,6 +21,7 @@
 
 #include "krinterview.h"
 #include "krvfsmodel.h"
+#include "../FileSystem/fileitem.h"
 #include "../FileSystem/krpermhandler.h"
 
 // QtCore
@@ -139,4 +140,9 @@ QRect KrViewItem::itemRect() const {
 
 void KrViewItem::redraw() {
     _view->_itemView->viewport()->update(itemRect());
+}
+
+void KrViewItem::setSize(KIO::filesize_t size)
+{
+    _fileitem->setSize(size);
 }

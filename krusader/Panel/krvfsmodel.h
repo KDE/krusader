@@ -25,11 +25,11 @@
 // QtGui
 #include <QFont>
 
-#include "krinterview.h"
 #include "krsort.h"
 
 
 class FileItem;
+class KrInterView;
 class KrViewProperties;
 
 class KrVfsModel: public QAbstractListModel
@@ -56,9 +56,7 @@ public:
     void setExtensionEnabled(bool exten) {
         _extensionEnabled = exten;
     }
-    inline const KrViewProperties * properties() const {
-        return _view->properties();
-    }
+    const KrViewProperties * properties() const;
     void sort() {
         sort(lastSortOrder(), lastSortDir());
     }
@@ -77,12 +75,8 @@ public:
     void emitChanged() {
         emit layoutChanged();
     }
-    Qt::SortOrder lastSortDir() const {
-        return (properties()->sortOptions & KrViewProperties::Descending) ? Qt::DescendingOrder : Qt::AscendingOrder;
-    }
-    int lastSortOrder() const {
-        return properties()->sortColumn;
-    }
+    Qt::SortOrder lastSortDir() const;
+    int lastSortOrder() const;
     void setAlternatingTable(bool altTable) {
         _alternatingTable = altTable;
     }

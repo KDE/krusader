@@ -40,15 +40,16 @@
 #include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KMessageBox>
 
-#include "../kractions.h"
-#include "../krusaderview.h"
-#include "../krmainwindow.h"
 #include "kcmdline.h"
-#include "../FileSystem/filesystem.h"
-#include "../Panel/listpanel.h"
-#include "../Panel/panelfunc.h"
-#include "../Panel/listpanelactions.h"
+#include "../kractions.h"
+#include "../krmainwindow.h"
 #include "../krservices.h"
+#include "../krusaderview.h"
+#include "../FileSystem/filesystem.h"
+#include "../Panel/krview.h"
+#include "../Panel/listpanel.h"
+#include "../Panel/listpanelactions.h"
+#include "../Panel/panelfunc.h"
 
 /**
  * A widget containing the konsolepart for the Embedded terminal emulator

@@ -26,6 +26,7 @@
 #include "krvfsmodel.h"
 #include "krviewitem.h"
 #include "../FileSystem/dirlisterinterface.h"
+#include "../FileSystem/fileitem.h"
 
 KrInterView::KrInterView(KrViewInstance &instance, KConfig *cfg,
                          QAbstractItemView *itemView) :

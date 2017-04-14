@@ -18,10 +18,16 @@
  *****************************************************************************/
 
 #include "krvfsmodel.h"
-#include "../FileSystem/fileitem.h"
-#include "../FileSystem/krpermhandler.h"
+
+#include "krcolorcache.h"
+#include "krinterview.h"
+#include "krpanel.h"
+#include "krview.h"
+
 #include "../defaults.h"
 #include "../krglobal.h"
+#include "../FileSystem/fileitem.h"
+#include "../FileSystem/krpermhandler.h"
 
 // QtCore
 #include <QtAlgorithms>
@@ -31,10 +37,6 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-
-#include "krpanel.h"
-#include "krcolorcache.h"
-
 
 KrVfsModel::KrVfsModel(KrInterView * view): QAbstractListModel(0), _extensionEnabled(true), _view(view),
         _dummyFileItem(0), _ready(false), _justForSizeHint(false),
@@ -482,6 +484,11 @@ QVariant KrVfsModel::headerData(int section, Qt::Orientation orientation, int ro
     return QString();
 }
 
+const KrViewProperties *KrVfsModel::properties() const
+{
+    return _view->properties();
+}
+
 FileItem *KrVfsModel::fileItemAt(const QModelIndex &index)
 {
     if (!index.isValid() || index.row() < 0 || index.row() >= _fileItems.count())
@@ -514,6 +521,17 @@ Qt::ItemFlags KrVfsModel::flags(const QModelIndex & index) const
     } else
         flags = flags | Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
     return flags;
+}
+
+Qt::SortOrder KrVfsModel::lastSortDir() const
+{
+    return (properties()->sortOptions & KrViewProperties::Descending) ?
+                Qt::DescendingOrder : Qt::AscendingOrder;
+}
+
+int KrVfsModel::lastSortOrder() const
+{
+    return properties()->sortColumn;
 }
 
 QString KrVfsModel::nameWithoutExtension(const FileItem *fileItem, bool checkEnabled) const

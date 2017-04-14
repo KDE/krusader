@@ -64,8 +64,10 @@ A
 
 #include "dirhistoryqueue.h"
 #include "krcalcspacedialog.h"
-#include "listpanel.h"
 #include "krerrordisplay.h"
+#include "krview.h"
+#include "krviewitem.h"
+#include "listpanel.h"
 #include "listpanelactions.h"
 #include "../krglobal.h"
 #include "../krslots.h"

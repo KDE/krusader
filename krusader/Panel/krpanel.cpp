@@ -32,8 +32,19 @@ A
 #include "krpanel.h"
 
 #include "panelfunc.h"
+#include "../abstractpanelmanager.h"
 
 QUrl KrPanel::virtualPath() const
 {
     return func->virtualDirectory();
+}
+
+KrPanel *KrPanel::otherPanel()
+{
+    return _manager->otherManager()->currentPanel();
+}
+
+bool KrPanel::isLeft() const
+{
+    return _manager->isLeft();
 }

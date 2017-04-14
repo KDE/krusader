@@ -32,11 +32,10 @@
 #ifndef KRPANEL_H
 #define KRPANEL_H
 
-#include "../abstractpanelmanager.h"
-
 // QtCore
 #include <QUrl>
 
+class AbstractPanelManager;
 class ListPanelFunc;
 class ListPanel;
 class KrView;
@@ -51,12 +50,8 @@ public:
     AbstractPanelManager *manager() {
         return _manager;
     }
-    KrPanel *otherPanel() {
-        return _manager->otherManager()->currentPanel();
-    }
-    bool isLeft() const {
-        return _manager->isLeft();
-    }
+    KrPanel *otherPanel();
+    bool isLeft() const;
     virtual void otherPanelChanged() = 0;
 
     ListPanel *gui;

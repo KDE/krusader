@@ -20,9 +20,6 @@
 #ifndef KRVIEWITEM_H
 #define KRVIEWITEM_H
 
-#include "../FileSystem/fileitem.h"
-#include "krview.h"
-
 // QtCore
 #include <QRect>
 #include <QString>
@@ -31,7 +28,9 @@
 
 #include <KIO/Global>
 
+class FileItem;
 class KrInterView;
+class KrViewProperties;
 
 /**
  * @brief A view item representing a file inside a KrView
@@ -79,9 +78,7 @@ public:
     }
 
     // used INTERNALLY when calculation of dir size changes the displayed size of the item
-    inline void setSize(KIO::filesize_t size) {
-        _fileitem->setSize(size);
-    }
+    void setSize(KIO::filesize_t size);
 
 protected:
     FileItem* _fileitem;   // each view item holds a pointer to a corresponding file item for fast access

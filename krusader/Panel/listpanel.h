@@ -53,31 +53,33 @@
 #include <QWidget>
 #include <QLabel>
 #include <QLayout>
+#include <QSplitter>
 #include <QToolButton>
 #include <QGridLayout>
 
-#include <KIOCore/KFileItem>
 #include <KCompletion/KLineEdit>
+#include <KConfigCore/KConfigGroup>
+#include <KIO/Job>
+#include <KIOCore/KFileItem>
 #include <KIOFileWidgets/KUrlNavigator>
 
 #include "krpanel.h"
-#include "krviewitem.h"
-#include "../Dialogs/krsqueezedtextlabel.h"
 
 #define PROP_SYNC_BUTTON_ON               1
 #define PROP_LOCKED                       2
 
-class KrView;
-class KrSearchBar;
 class DirHistoryButton;
+class KrBookmarkButton;
+class KrErrorDisplay;
+class KrSqueezedTextLabel;
+class KrSearchBar;
+class KrView;
+class KrViewItem;
+class ListPanelActions;
+class ListPanelFunc;
 class MediaButton;
 class PanelPopup;
 class SyncBrowseButton;
-class KrBookmarkButton;
-class ListPanelFunc;
-class QSplitter;
-class KrErrorDisplay;
-class ListPanelActions;
 
 class ListPanel : public QWidget, public KrPanel
 {
@@ -110,11 +112,7 @@ public:
     }
     QString lastLocalPath() const;
     QString getCurrentName();
-    QStringList getSelectedNames() {
-        QStringList fileNames;
-        view->getSelectedItems(&fileNames);
-        return fileNames;
-    }
+    QStringList getSelectedNames();
     void setButtons();
     void setJumpBack(QUrl url);
 
@@ -188,9 +186,7 @@ protected slots:
     void inlineRefreshPercent(KJob*, unsigned long);
     void slotFilesystemError(QString msg);
     void newTab(KrViewItem *item);
-    void newTab(const QUrl &url, bool nextToThis = false) {
-        _manager->newTab(url, nextToThis ? this : 0);
-    }
+    void newTab(const QUrl &url, bool nextToThis = false);
     void slotNavigatorUrlChanged(const QUrl &url);
     void resetNavigatorMode(); // set navigator mode after focus was lost
     // update filesystem meta info, disk-free and mount status

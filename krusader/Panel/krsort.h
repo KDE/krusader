@@ -20,15 +20,15 @@
 #ifndef KRSORT_H
 #define KRSORT_H
 
-#include "krview.h"
-#include "../FileSystem/fileitem.h"
-
 // QtCore
 #include <QString>
 #include <QVector>
 #include <QVariant>
 
 #define PERM_BITMASK (S_ISUID|S_ISGID|S_ISVTX|S_IRWXU|S_IRWXG|S_IRWXO)
+
+class FileItem;
+class KrViewProperties;
 
 namespace KrSort {
 
@@ -111,9 +111,7 @@ public:
     int insertIndex(FileItem *fileitem, bool isDummy, QVariant customData);
 
 private:
-    bool descending() const {
-        return _viewProperties->sortOptions & KrViewProperties::Descending;
-    }
+    bool descending() const;
 
     const KrViewProperties *_viewProperties;
     QVector<SortProps*> _items;
