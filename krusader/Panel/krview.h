@@ -406,6 +406,7 @@ public:
     static QPixmap processIcon(const QPixmap &icon, bool dim, const QColor &dimColor, int dimFactor,
                                bool symlink);
     static QString krPermissionString(const FileItem *fileitem);
+    static QString sizeToString(const KrViewProperties *properties, KIO::filesize_t size);
 
 protected:
     KrView(KrViewInstance &instance, KConfig *cfg);

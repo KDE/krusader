@@ -32,8 +32,6 @@
 
 #include <KI18n/KLocalizedString>
 
-#define PROPS static_cast<const KrViewProperties*>(_viewProperties)
-
 KrViewItem::KrViewItem(FileItem *fileitem, KrInterView *parentView):
         _fileitem(fileitem), _view(parentView), _viewProperties(parentView->properties()), _hasExtension(false),
         _hidden(false), _extension("")
@@ -46,7 +44,9 @@ KrViewItem::KrViewItem(FileItem *fileitem, KrInterView *parentView):
         int loc = fileitemName.lastIndexOf('.');
         if (loc > 0) { // avoid mishandling of .bashrc and friend
             // check if it has one of the predefined 'atomic extensions'
-            for (QStringList::const_iterator i = PROPS->atomicExtensions.begin(); i != PROPS->atomicExtensions.end(); ++i) {
+            for (QStringList::const_iterator i = _viewProperties->atomicExtensions.begin();
+                 i != _viewProperties->atomicExtensions.end();
+                 ++i) {
                 if (fileitemName.endsWith(*i)) {
                     loc = fileitemName.length() - (*i).length();
                     break;
@@ -72,47 +72,34 @@ QString KrViewItem::description() const
 {
     if (dummyFileItem)
         return i18n("Climb up the folder tree");
+
     // else is implied
-    QString text = _fileitem->getName();
-    QString comment;
-    QMimeDatabase db;
-    QMimeType mt = db.mimeTypeForName(_fileitem->getMime());
+
+    QString mimeTypeComment;
+    QMimeType mt = QMimeDatabase().mimeTypeForName(_fileitem->getMime());
     if (mt.isValid())
-        comment = mt.comment();
-    QString myLinkDest = _fileitem->getSymDest();
-    KIO::filesize_t mySize = _fileitem->getSize();
+        mimeTypeComment = mt.comment();
 
-    QString text2 = text;
-    mode_t m_fileMode = _fileitem->getMode();
+    const QString size = KrView::sizeToString(_viewProperties, _fileitem->getSize());
 
+    QString text = _fileitem->getName();
     if (_fileitem->isSymLink()) {
-        QString tmp;
+        text += " -> " + _fileitem->getSymDest() + "  ";
         if (_fileitem->isBrokenLink())
-            tmp = i18n("(Broken Link)");
-        else if (comment.isEmpty())
-            tmp = i18n("Symbolic Link") ;
+            text += i18n("(Broken Link)");
+        else if (mimeTypeComment.isEmpty())
+            text += i18n("Symbolic Link") ;
         else
-            tmp = i18n("%1 (Link)", comment);
+            text += i18n("%1 (Link)", mimeTypeComment);
 
-        text += "->";
-        text += myLinkDest;
-        text += "  ";
-        text += tmp;
-    } else if (S_ISREG(m_fileMode)) {
-        text = QString("%1").arg(text2) + QString(" (%1)").arg(PROPS->humanReadableSize ?
-                KRpermHandler::parseSize(_fileitem->getSize()) : KIO::convertSize(mySize));
-        text += "  ";
-        text += comment;
-    } else if (S_ISDIR(m_fileMode)) {
-        text += "/  ";
-        if (_fileitem->getSize() != 0) {
-            text += '(' +
-                    (PROPS->humanReadableSize ? KRpermHandler::parseSize(_fileitem->getSize()) : KIO::convertSize(mySize)) + ") ";
-        }
-        text += comment;
     } else {
-        text += "  ";
-        text += comment;
+        if (_fileitem->isDir())
+            text += "/";
+
+        if (S_ISREG(_fileitem->getMode()) || (_fileitem->isDir() && _fileitem->getSize() != 0))
+            text += QString("  (%1)").arg(size);
+
+        text += "  " + mimeTypeComment;
     }
     return text;
 }

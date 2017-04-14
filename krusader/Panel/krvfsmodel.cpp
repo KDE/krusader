@@ -139,9 +139,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
                     i18nc("Show the string 'DIR' instead of file size in detailed view (for folders)", "DIR") + '>';
                 return label;
             } else
-                return (properties()->humanReadableSize) ?
-                       KIO::convertSize(fileitem->getSize()) + "  " :
-                       KRpermHandler::parseSize(fileitem->getSize()) + ' ';
+                return KrView::sizeToString(properties(), fileitem->getSize());
         }
         case KrViewProperties::Type: {
             if (fileitem == _dummyFileItem)

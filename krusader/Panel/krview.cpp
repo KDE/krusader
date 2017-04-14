@@ -39,8 +39,8 @@
 #include "../kicons.h"
 #include "../krglobal.h"
 #include "../defaults.h"
-#include "../FileSystem/krpermhandler.h"
 #include "../FileSystem/dirlisterinterface.h"
+#include "../FileSystem/krpermhandler.h"
 #include "../Filter/filterdialog.h"
 
 // QtCore
@@ -947,6 +947,11 @@ QString KrView::krPermissionString(const FileItem * fileitem)
     case NO_PERM:      tmp+='-'; break;
     }
     return tmp;
+}
+
+QString KrView::sizeToString(const KrViewProperties *properties, KIO::filesize_t size)
+{
+    return properties->humanReadableSize ? KIO::convertSize(size) : KRpermHandler::parseSize(size);
 }
 
 bool KrView::isFiltered(FileItem *fileitem)

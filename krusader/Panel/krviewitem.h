@@ -51,6 +51,7 @@ public:
     inline const QString& extension() const {
         return _extension;
     }
+    /** Return description text for status bar. */
     QString description() const;
 
     QPixmap icon();
