@@ -45,7 +45,7 @@ KrInterView::~KrInterView()
     // but sometimes for some reason it is still referenced by
     // QPersistentModelIndex instances held by QAbstractItemView and/or QItemSelectionModel(child object) -
     // so schedule _model for later deletion
-    _model->clear();
+    _model->clear(false);
     _model->deleteLater();
     _model = 0;
     delete _mouseHandler;

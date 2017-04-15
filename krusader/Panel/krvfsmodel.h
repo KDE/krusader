@@ -32,6 +32,9 @@ class FileItem;
 class KrInterView;
 class KrViewProperties;
 
+/**
+ * @brief The list model for all panel views.
+ */
 class KrVfsModel: public QAbstractListModel
 {
     Q_OBJECT
@@ -60,7 +63,7 @@ public:
     void sort() {
         sort(lastSortOrder(), lastSortDir());
     }
-    void clear();
+    void clear(bool emitLayoutChanged = true);
     QList<FileItem*> fileItems() {
         return _fileItems;
     }

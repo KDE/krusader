@@ -67,10 +67,11 @@ KrVfsModel::~KrVfsModel()
 {
 }
 
-void KrVfsModel::clear()
+void KrVfsModel::clear(bool emitLayoutChanged)
 {
     if(!_fileItems.count())
         return;
+
     emit layoutAboutToBeChanged();
     // clear persistent indexes
     QModelIndexList oldPersistentList = persistentIndexList();
@@ -86,7 +87,8 @@ void KrVfsModel::clear()
     _urlNdx.clear();
     _dummyFileItem = 0;
 
-    emit layoutChanged();
+    if (emitLayoutChanged)
+        emit layoutChanged();
 }
 
 int KrVfsModel::rowCount(const QModelIndex& /*parent*/) const
