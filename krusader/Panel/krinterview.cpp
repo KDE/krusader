@@ -342,11 +342,6 @@ void KrInterView::refreshColors()
     redraw();
 }
 
-void KrInterView::showContextMenu(const QPoint &point)
-{
-    showContextMenu(_itemView->viewport()->mapToGlobal(point));
-}
-
 void KrInterView::sortModeUpdated(int column, Qt::SortOrder order)
 {
     KrView::sortModeUpdated(static_cast<KrViewProperties::ColumnType>(column),

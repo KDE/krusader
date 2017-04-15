@@ -72,7 +72,6 @@ public:
     void redraw() Q_DECL_OVERRIDE;
     void prepareForActive() Q_DECL_OVERRIDE;
     void prepareForPassive() Q_DECL_OVERRIDE;
-    void showContextMenu(const QPoint & point = QPoint(0,0)) Q_DECL_OVERRIDE;
     void selectRegion(KrViewItem *i1, KrViewItem *i2, bool select) Q_DECL_OVERRIDE;
 
     void sortModeUpdated(int column, Qt::SortOrder order);
