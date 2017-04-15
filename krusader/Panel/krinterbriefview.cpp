@@ -62,7 +62,9 @@ KrInterBriefView::KrInterBriefView(QWidget *parent, KrViewInstance &instance, KC
     KConfigGroup grpSvr(_config, "Look&Feel");
     _viewFont = grpSvr.readEntry("Filelist Font", _FilelistFont);
 
-    setStyle(new KrStyleProxy());
+    KrStyleProxy *style = new KrStyleProxy();
+    style->setParent(this);
+    setStyle(style);
     setItemDelegate(new KrViewItemDelegate());
     setMouseTracking(true);
     setAcceptDrops(true);
