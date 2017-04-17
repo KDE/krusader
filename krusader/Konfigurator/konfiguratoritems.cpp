@@ -47,9 +47,10 @@
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 
-KonfiguratorExtension::KonfiguratorExtension(QObject *obj, QString cfgClass, QString cfgName, bool rst, int pg) :
-        QObject(), objectPtr(obj), applyConnected(false), setDefaultsConnected(false),
-        changed(false), restartNeeded(rst), subpage(pg), configClass(cfgClass), configName(cfgName)
+KonfiguratorExtension::KonfiguratorExtension(QObject *obj, QString cfgGroup, QString cfgName,
+                                             bool restartNeeded, int page)
+    : QObject(), objectPtr(obj), applyConnected(false), setDefaultsConnected(false), changed(false),
+      restartNeeded(restartNeeded), subpage(page), configGroup(cfgGroup), configName(cfgName)
 {
 }
 
@@ -69,9 +70,9 @@ bool KonfiguratorExtension::apply()
         return false;
 
     if (applyConnected)
-        emit applyManually(objectPtr, configClass, configName);
+        emit applyManually(objectPtr, configGroup, configName);
     else
-        emit applyAuto(objectPtr, configClass, configName);
+        emit applyAuto(objectPtr, configGroup, configName);
 
     setChanged(false);
     return restartNeeded;
@@ -98,11 +99,11 @@ bool KonfiguratorExtension::isChanged()
 // KonfiguratorCheckBox class
 ///////////////////////////////
 
-KonfiguratorCheckBox::KonfiguratorCheckBox(QString cls, QString name, bool dflt, QString text,
-        QWidget *parent, bool rst, int pg) : QCheckBox(text, parent),
-        defaultValue(dflt)
+KonfiguratorCheckBox::KonfiguratorCheckBox(QString configGroup, QString name, bool defaultValue, QString text,
+        QWidget *parent, bool restart, int page) : QCheckBox(text, parent),
+        defaultValue(defaultValue)
 {
-    ext = new KonfiguratorExtension(this, cls, name, rst, pg);
+    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
     connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
     connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
     connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
@@ -118,8 +119,8 @@ KonfiguratorCheckBox::~KonfiguratorCheckBox()
 
 void KonfiguratorCheckBox::loadInitialValue()
 {
-    KConfigGroup group(krConfig, ext->getCfgClass());
-    setChecked(group.readEntry(ext->getCfgName(), defaultValue));
+    KConfigGroup group(krConfig, ext->getConfigGroup());
+    setChecked(group.readEntry(ext->getConfigName(), defaultValue));
     ext->setChanged(false);
 }
 
@@ -147,9 +148,9 @@ void KonfiguratorCheckBox::updateDeps()
         dep->setEnabled(isChecked());
 }
 
-void KonfiguratorCheckBox::slotApply(QObject *, QString cls, QString name)
+void KonfiguratorCheckBox::slotApply(QObject *, QString configGroup, QString name)
 {
-    KConfigGroup(krConfig, cls).writeEntry(name, isChecked());
+    KConfigGroup(krConfig, configGroup).writeEntry(name, isChecked());
 }
 
 void KonfiguratorCheckBox::slotSetDefaults(QObject *)
@@ -162,11 +163,12 @@ void KonfiguratorCheckBox::slotSetDefaults(QObject *)
 // KonfiguratorSpinBox class
 ///////////////////////////////
 
-KonfiguratorSpinBox::KonfiguratorSpinBox(QString cls, QString name, int dflt, int min, int max,
-        QWidget *parent, bool rst, int pg) : QSpinBox(parent),
-        defaultValue(dflt)
+KonfiguratorSpinBox::KonfiguratorSpinBox(QString configGroup, QString configName, int defaultValue,
+                                         int min, int max, QWidget *parent, bool restartNeeded,
+                                         int page)
+    : QSpinBox(parent), defaultValue(defaultValue)
 {
-    ext = new KonfiguratorExtension(this, cls, name, rst, pg);
+    ext = new KonfiguratorExtension(this, configGroup, configName, restartNeeded, page);
     connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
     connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
     connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
@@ -186,14 +188,14 @@ KonfiguratorSpinBox::~KonfiguratorSpinBox()
 
 void KonfiguratorSpinBox::loadInitialValue()
 {
-    KConfigGroup group(krConfig, ext->getCfgClass());
-    setValue(group.readEntry(ext->getCfgName(), defaultValue));
+    KConfigGroup group(krConfig, ext->getConfigGroup());
+    setValue(group.readEntry(ext->getConfigName(), defaultValue));
     ext->setChanged(false);
 }
 
-void KonfiguratorSpinBox::slotApply(QObject *, QString cls, QString name)
+void KonfiguratorSpinBox::slotApply(QObject *, QString configGroup, QString name)
 {
-    KConfigGroup(krConfig, cls).writeEntry(name, value());
+    KConfigGroup(krConfig, configGroup).writeEntry(name, value());
 }
 
 void KonfiguratorSpinBox::slotSetDefaults(QObject *)
@@ -223,7 +225,7 @@ KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find(QString name)
     while (it.hasNext()) {
         KonfiguratorCheckBox * checkBox = it.next();
 
-        if (checkBox->extension()->getCfgName() == name)
+        if (checkBox->extension()->getConfigName() == name)
             return checkBox;
     }
 
@@ -234,11 +236,11 @@ KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find(QString name)
 // KonfiguratorRadioButtons class
 ///////////////////////////////
 
-KonfiguratorRadioButtons::KonfiguratorRadioButtons(QString cls, QString name,
-        QString dflt, QWidget *parent, bool rst, int pg) :
-        QWidget(parent), defaultValue(dflt)
+KonfiguratorRadioButtons::KonfiguratorRadioButtons(QString configGroup, QString name,
+        QString defaultValue, QWidget *parent, bool restart, int page) :
+        QWidget(parent), defaultValue(defaultValue)
 {
-    ext = new KonfiguratorExtension(this, cls, name, rst, pg);
+    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
     connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
     connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
     connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
@@ -297,8 +299,8 @@ void KonfiguratorRadioButtons::selectButton(QString value)
 
 void KonfiguratorRadioButtons::loadInitialValue()
 {
-    KConfigGroup group(krConfig, ext->getCfgClass());
-    QString initValue = group.readEntry(ext->getCfgName(), defaultValue);
+    KConfigGroup group(krConfig, ext->getConfigGroup());
+    QString initValue = group.readEntry(ext->getConfigName(), defaultValue);
 
     selectButton(initValue);
     ext->setChanged(false);
@@ -321,12 +323,12 @@ QString KonfiguratorRadioButtons::selectedValue()
     return QString();
 }
 
-void KonfiguratorRadioButtons::slotApply(QObject *, QString cls, QString name)
+void KonfiguratorRadioButtons::slotApply(QObject *, QString configGroup, QString name)
 {
     QString value = selectedValue();
 
     if (!value.isEmpty())
-        KConfigGroup(krConfig, cls).writeEntry(name, value);
+        KConfigGroup(krConfig, configGroup).writeEntry(name, value);
 }
 
 void KonfiguratorRadioButtons::slotSetDefaults(QObject *)
@@ -337,12 +339,13 @@ void KonfiguratorRadioButtons::slotSetDefaults(QObject *)
 // KonfiguratorEditBox class
 ///////////////////////////////
 
-KonfiguratorEditBox::KonfiguratorEditBox(QString cls, QString name, QString dflt,
-        QWidget *parent, bool rst, int pg) : QLineEdit(parent),
-        defaultValue(dflt)
+KonfiguratorEditBox::KonfiguratorEditBox(QString configGroup, QString name, QString defaultValue,
+        QWidget *parent, bool restart, int page) : QLineEdit(parent),
+        defaultValue(defaultValue)
 {
-    ext = new KonfiguratorExtension(this, cls, name, rst, pg);
-    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
+    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
+    connect(ext, SIGNAL(applyAuto(QObject *, QString, QString)), this,
+            SLOT(slotApply(QObject *, QString, QString)));
     connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
     connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
 
@@ -358,14 +361,14 @@ KonfiguratorEditBox::~KonfiguratorEditBox()
 
 void KonfiguratorEditBox::loadInitialValue()
 {
-    KConfigGroup group(krConfig, ext->getCfgClass());
-    setText(group.readEntry(ext->getCfgName(), defaultValue));
+    KConfigGroup group(krConfig, ext->getConfigGroup());
+    setText(group.readEntry(ext->getConfigName(), defaultValue));
     ext->setChanged(false);
 }
 
-void KonfiguratorEditBox::slotApply(QObject *, QString cls, QString name)
+void KonfiguratorEditBox::slotApply(QObject *, QString configGroup, QString name)
 {
-    KConfigGroup(krConfig, cls).writeEntry(name, text());
+    KConfigGroup(krConfig, configGroup).writeEntry(name, text());
 }
 
 void KonfiguratorEditBox::slotSetDefaults(QObject *)
@@ -378,13 +381,14 @@ void KonfiguratorEditBox::slotSetDefaults(QObject *)
 // KonfiguratorURLRequester class
 ///////////////////////////////
 
-KonfiguratorURLRequester::KonfiguratorURLRequester(QString cls, QString name, QString dflt,
-        QWidget *parent, bool rst, int pg, bool expansion) : KUrlRequester(parent),
-        defaultValue(dflt),
-        expansion(expansion)
+KonfiguratorURLRequester::KonfiguratorURLRequester(QString configGroup, QString name,
+                                                   QString defaultValue, QWidget *parent,
+                                                   bool restart, int page, bool expansion)
+    : KUrlRequester(parent), defaultValue(defaultValue), expansion(expansion)
 {
-    ext = new KonfiguratorExtension(this, cls, name, rst, pg);
-    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
+    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
+    connect(ext, SIGNAL(applyAuto(QObject *, QString, QString)), this,
+            SLOT(slotApply(QObject *, QString, QString)));
     connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
     connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
 
@@ -400,14 +404,15 @@ KonfiguratorURLRequester::~KonfiguratorURLRequester()
 
 void KonfiguratorURLRequester::loadInitialValue()
 {
-    KConfigGroup group(krConfig, ext->getCfgClass());
-    lineEdit()->setText(group.readEntry(ext->getCfgName(), defaultValue));
+    KConfigGroup group(krConfig, ext->getConfigGroup());
+    lineEdit()->setText(group.readEntry(ext->getConfigName(), defaultValue));
     ext->setChanged(false);
 }
 
-void KonfiguratorURLRequester::slotApply(QObject *, QString cls, QString name)
+void KonfiguratorURLRequester::slotApply(QObject *, QString configGroup, QString name)
 {
-    KConfigGroup(krConfig, cls).writeEntry(name, expansion ? url().toDisplayString(QUrl::PreferLocalFile) : text());
+    KConfigGroup(krConfig, configGroup)
+        .writeEntry(name, expansion ? url().toDisplayString(QUrl::PreferLocalFile) : text());
 }
 
 void KonfiguratorURLRequester::slotSetDefaults(QObject *)
@@ -419,13 +424,13 @@ void KonfiguratorURLRequester::slotSetDefaults(QObject *)
 // KonfiguratorFontChooser class
 ///////////////////////////////
 
-KonfiguratorFontChooser::KonfiguratorFontChooser(QString cls, QString name, QFont dflt,
-        QWidget *parent, bool rst, int pg) : QWidget(parent),
-        defaultValue(dflt)
+KonfiguratorFontChooser::KonfiguratorFontChooser(QString configGroup, QString name, QFont defaultValue,
+        QWidget *parent, bool restart, int page) : QWidget(parent),
+        defaultValue(defaultValue)
 {
     QHBoxLayout *layout = new QHBoxLayout(this);
 
-    ext = new KonfiguratorExtension(this, cls, name, rst, pg);
+    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
     connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
     connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
     connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
@@ -451,8 +456,8 @@ KonfiguratorFontChooser::~KonfiguratorFontChooser()
 
 void KonfiguratorFontChooser::loadInitialValue()
 {
-    KConfigGroup group(krConfig, ext->getCfgClass());
-    font = group.readEntry(ext->getCfgName(), defaultValue);
+    KConfigGroup group(krConfig, ext->getConfigGroup());
+    font = group.readEntry(ext->getConfigName(), defaultValue);
     ext->setChanged(false);
     setFont();
 }
@@ -463,9 +468,9 @@ void KonfiguratorFontChooser::setFont()
     pLabel->setText(font.family() + QString(", %1").arg(font.pointSize()));
 }
 
-void KonfiguratorFontChooser::slotApply(QObject *, QString cls, QString name)
+void KonfiguratorFontChooser::slotApply(QObject *, QString configGroup, QString name)
 {
-    KConfigGroup(krConfig, cls).writeEntry(name, font);
+    KConfigGroup(krConfig, configGroup).writeEntry(name, font);
 }
 
 void KonfiguratorFontChooser::slotSetDefaults(QObject *)
@@ -487,10 +492,10 @@ void KonfiguratorFontChooser::slotBrowseFont()
 // KonfiguratorComboBox class
 ///////////////////////////////
 
-KonfiguratorComboBox::KonfiguratorComboBox(QString cls, QString name, QString dflt,
+KonfiguratorComboBox::KonfiguratorComboBox(QString configGroup, QString name, QString defaultValue,
         KONFIGURATOR_NAME_VALUE_PAIR *listIn, int listInLen, QWidget *parent,
-        bool rst, bool editable, int pg) : QComboBox(parent),
-        defaultValue(dflt), listLen(listInLen)
+        bool restart, bool editable, int page) : QComboBox(parent),
+        defaultValue(defaultValue), listLen(listInLen)
 {
     list = new KONFIGURATOR_NAME_VALUE_PAIR[ listInLen ];
 
@@ -499,7 +504,7 @@ KonfiguratorComboBox::KonfiguratorComboBox(QString cls, QString name, QString df
         addItem(list[i].text);
     }
 
-    ext = new KonfiguratorExtension(this, cls, name, rst, pg);
+    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
     connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
     connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
     connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
@@ -520,13 +525,13 @@ KonfiguratorComboBox::~KonfiguratorComboBox()
 
 void KonfiguratorComboBox::loadInitialValue()
 {
-    KConfigGroup group(krConfig, ext->getCfgClass());
-    QString select = group.readEntry(ext->getCfgName(), defaultValue);
+    KConfigGroup group(krConfig, ext->getConfigGroup());
+    QString select = group.readEntry(ext->getConfigName(), defaultValue);
     selectEntry(select);
     ext->setChanged(false);
 }
 
-void KonfiguratorComboBox::slotApply(QObject *, QString cls, QString name)
+void KonfiguratorComboBox::slotApply(QObject *, QString configGroup, QString name)
 {
     QString text = isEditable() ? lineEdit()->text() : currentText();
     QString value = text;
@@ -537,7 +542,7 @@ void KonfiguratorComboBox::slotApply(QObject *, QString cls, QString name)
             break;
         }
 
-    KConfigGroup(krConfig, cls).writeEntry(name, value);
+    KConfigGroup(krConfig, configGroup).writeEntry(name, value);
 }
 
 void KonfiguratorComboBox::selectEntry(QString entry)
@@ -563,12 +568,13 @@ void KonfiguratorComboBox::slotSetDefaults(QObject *)
 // KonfiguratorColorChooser class
 ///////////////////////////////
 
-KonfiguratorColorChooser::KonfiguratorColorChooser(QString cls, QString name, QColor dflt,
-        QWidget *parent, bool rst, ADDITIONAL_COLOR *addColPtr,
-        int addColNum, int pg) : QComboBox(parent),
-        defaultValue(dflt), disableColorChooser(true)
+KonfiguratorColorChooser::KonfiguratorColorChooser(QString configGroup, QString name,
+                                                   QColor defaultValue, QWidget *parent,
+                                                   bool restart, ADDITIONAL_COLOR *addColPtr,
+                                                   int addColNum, int page)
+    : QComboBox(parent), defaultValue(defaultValue), disableColorChooser(true)
 {
-    ext = new KonfiguratorExtension(this, cls, name, rst, pg);
+    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
 
     connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
     connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
@@ -639,8 +645,8 @@ void KonfiguratorColorChooser::addColor(QString text, QColor color)
 
 void KonfiguratorColorChooser::loadInitialValue()
 {
-    KConfigGroup group(krConfig, ext->getCfgClass());
-    QString selected = group.readEntry(ext->getCfgName(), QString(""));
+    KConfigGroup group(krConfig, ext->getConfigGroup());
+    QString selected = group.readEntry(ext->getConfigName(), QString(""));
     setValue(selected);
     ext->setChanged(false);
 }
@@ -673,9 +679,9 @@ void KonfiguratorColorChooser::setDefaultText(QString text)
     setItemText(1, text);
 }
 
-void KonfiguratorColorChooser::slotApply(QObject *, QString cls, QString name)
+void KonfiguratorColorChooser::slotApply(QObject *, QString configGroup, QString name)
 {
-    KConfigGroup(krConfig, cls).writeEntry(name, getValue());
+    KConfigGroup(krConfig, configGroup).writeEntry(name, getValue());
 }
 
 void KonfiguratorColorChooser::setValue(QString value)
@@ -696,7 +702,7 @@ void KonfiguratorColorChooser::setValue(QString value)
             }
 
         if (! found) {
-            KConfigGroup colGroup(krConfig, ext->getCfgClass());
+            KConfigGroup colGroup(krConfig, ext->getConfigGroup());
             colGroup.writeEntry("TmpColor", value);
             QColor color = colGroup.readEntry("TmpColor", defaultValue);
             customValue = color;
@@ -767,11 +773,11 @@ QColor KonfiguratorColorChooser::getColor()
 // KonfiguratorListBox class
 ///////////////////////////////
 
-KonfiguratorListBox::KonfiguratorListBox(QString cls, QString name, QStringList dflt,
-        QWidget *parent, bool rst, int pg) : KrListWidget(parent),
-        defaultValue(dflt)
+KonfiguratorListBox::KonfiguratorListBox(QString configGroup, QString name, QStringList defaultValue,
+        QWidget *parent, bool restart, int page) : KrListWidget(parent),
+        defaultValue(defaultValue)
 {
-    ext = new KonfiguratorExtension(this, cls, name, rst, pg);
+    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
     connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
     connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
     connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
@@ -786,14 +792,14 @@ KonfiguratorListBox::~KonfiguratorListBox()
 
 void KonfiguratorListBox::loadInitialValue()
 {
-    KConfigGroup group(krConfig, ext->getCfgClass());
-    setList(group.readEntry(ext->getCfgName(), defaultValue));
+    KConfigGroup group(krConfig, ext->getConfigGroup());
+    setList(group.readEntry(ext->getConfigName(), defaultValue));
     ext->setChanged(false);
 }
 
-void KonfiguratorListBox::slotApply(QObject *, QString cls, QString name)
+void KonfiguratorListBox::slotApply(QObject *, QString configGroup, QString name)
 {
-    KConfigGroup(krConfig, cls).writeEntry(name, list());
+    KConfigGroup(krConfig, configGroup).writeEntry(name, list());
 }
 
 void KonfiguratorListBox::slotSetDefaults(QObject *)

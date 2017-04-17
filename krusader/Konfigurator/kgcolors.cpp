@@ -289,13 +289,13 @@ KgColors::KgColors(bool first, QWidget* parent) :
     slotDisable();
 }
 
-int KgColors::addColorSelector(QString cfgName, QString name, QColor dflt, QString dfltName,
+int KgColors::addColorSelector(QString cfgName, QString name, QColor defaultValue, QString dfltName,
                                ADDITIONAL_COLOR *addColor, int addColNum)
 {
     int index = itemList.count() - offset;
 
     labelList.append(addLabel(colorsGrid, index, 0, name, colorsGrp));
-    KonfiguratorColorChooser *chooser = createColorChooser("Colors", cfgName, dflt, colorsGrp, false, addColor, addColNum);
+    KonfiguratorColorChooser *chooser = createColorChooser("Colors", cfgName, defaultValue, colorsGrp, false, addColor, addColNum);
     chooser->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     if (!dfltName.isEmpty())

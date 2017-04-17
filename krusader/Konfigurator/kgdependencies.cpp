@@ -130,32 +130,35 @@ KgDependencies::KgDependencies(bool first, QWidget* parent) :
     kgDependenciesLayout->addWidget(tabWidget, 0, 0);
 }
 
-void KgDependencies::addApplication(QString name, QGridLayout *grid, int row, QWidget *parent, int page, QString additionalList)
+void KgDependencies::addApplication(QString name, QGridLayout *grid, int row, QWidget *parent,
+                                    int page, QString additionalList)
 {
-    QString dflt = KrServices::fullPathName(name);   /* try to autodetect the full path name */
+    // try to autodetect the full path name
+    QString defaultValue = KrServices::fullPathName(name);
 
-    if (dflt.isEmpty()) {
+    if (defaultValue.isEmpty()) {
         QStringList list = additionalList.split(',', QString::SkipEmptyParts);
         for (int i = 0; i != list.count(); i++)
             if (!KrServices::fullPathName(list[ i ]).isEmpty()) {
-                dflt = KrServices::fullPathName(list[ i ]);
+                defaultValue = KrServices::fullPathName(list[ i ]);
                 break;
             }
     }
 
     addLabel(grid, row, 0, name, parent);
 
-    KonfiguratorURLRequester *fullPath = createURLRequester("Dependencies", name, dflt, parent, false, page);
+    KonfiguratorURLRequester *fullPath =
+        createURLRequester("Dependencies", name, defaultValue, parent, false, page);
     connect(fullPath->extension(), SIGNAL(applyManually(QObject*,QString,QString)),
             this, SLOT(slotApply(QObject*,QString,QString)));
     grid->addWidget(fullPath, row, 1);
 }
 
-void KgDependencies::slotApply(QObject *obj, QString cls, QString name)
+void KgDependencies::slotApply(QObject *obj, QString configGroup, QString name)
 {
     KonfiguratorURLRequester *urlRequester = (KonfiguratorURLRequester *) obj;
 
-    KConfigGroup group(krConfig, cls);
+    KConfigGroup group(krConfig, configGroup);
     group.writeEntry(name, urlRequester->url().toDisplayString(QUrl::PreferLocalFile));
 
     QString usedPath = KrServices::fullPathName(name);
@@ -163,11 +166,13 @@ void KgDependencies::slotApply(QObject *obj, QString cls, QString name)
     if (urlRequester->url().toDisplayString(QUrl::PreferLocalFile) != usedPath) {
         group.writeEntry(name, usedPath);
         if (usedPath.isEmpty())
-            KMessageBox::error(this, i18n("The %1 path is incorrect, no valid path found.",
-                                          urlRequester->url().toDisplayString(QUrl::PreferLocalFile)));
+            KMessageBox::error(this,
+                               i18n("The %1 path is incorrect, no valid path found.",
+                                    urlRequester->url().toDisplayString(QUrl::PreferLocalFile)));
         else
-            KMessageBox::error(this, i18n("The %1 path is incorrect, %2 used instead.",
-                                          urlRequester->url().toDisplayString(QUrl::PreferLocalFile), usedPath));
+            KMessageBox::error(
+                this, i18n("The %1 path is incorrect, %2 used instead.",
+                           urlRequester->url().toDisplayString(QUrl::PreferLocalFile), usedPath));
         urlRequester->setUrl(QUrl::fromLocalFile(usedPath));
     }
 }

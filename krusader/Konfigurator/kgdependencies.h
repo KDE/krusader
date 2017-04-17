@@ -52,7 +52,7 @@ private:
     void addApplication(QString name, QGridLayout *grid, int row, QWidget *parent, int page, QString additionalList = QString());
 
 public slots:
-    void slotApply(QObject *obj, QString cls, QString name);
+    void slotApply(QObject *obj, QString configGroup, QString name);
 
 private:
     QTabWidget *tabWidget;

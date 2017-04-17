@@ -297,12 +297,12 @@ void KgGeneral::createGeneralTab()
     kgGeneralLayout->addWidget(terminalGrp, 2 , 0);
 }
 
-void KgGeneral::applyTempDir(QObject *obj, QString cls, QString name)
+void KgGeneral::applyTempDir(QObject *obj, QString configGroup, QString name)
 {
     KonfiguratorURLRequester *urlReq = (KonfiguratorURLRequester *)obj;
     QString value = urlReq->url().toDisplayString(QUrl::PreferLocalFile);
 
-    KConfigGroup(krConfig, cls).writeEntry(name, value);
+    KConfigGroup(krConfig, configGroup).writeEntry(name, value);
 }
 
 void KgGeneral::slotFindTools()
