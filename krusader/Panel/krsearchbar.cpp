@@ -247,7 +247,8 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
         }
 
         if (ke->text().isEmpty() || (ke->modifiers() != Qt::NoModifier &&
-                                     ke->modifiers() != Qt::ShiftModifier)) {
+                                     ke->modifiers() != Qt::ShiftModifier &&
+                                     ke->modifiers() != Qt::KeypadModifier)) {
             return false;
         }
 
