@@ -51,19 +51,12 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
 {
     connect(_mouseHandler, SIGNAL(renameCurrentItem()), this, SLOT(renameCurrentItem()));
     setWidget(this);
-    KConfigGroup group(krConfig, "Private");
 
     KConfigGroup grpSvr(_config, "Look&Feel");
     _viewFont = grpSvr.readEntry("Filelist Font", _FilelistFont);
 
-    this->setModel(_model);
-    this->setRootIsDecorated(false);
-
-    setSelectionModel(new DummySelectionModel(_model, this));
-
-    header()->installEventFilter(this);
-
-    setSelectionMode(QAbstractItemView::NoSelection);
+    setModel(_model);
+    setRootIsDecorated(false);
     setItemsExpandable(false);
     setAllColumnsShowFocus(true);
     setUniformRowHeights(true);
@@ -76,6 +69,10 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
     setAcceptDrops(true);
     setDropIndicatorShown(true);
 
+    setSelectionMode(QAbstractItemView::NoSelection);
+    setSelectionModel(new DummySelectionModel(_model, this));
+
+    header()->installEventFilter(this);
     header()->setSectionResizeMode(QHeaderView::Interactive);
     header()->setStretchLastSection(false);
 
