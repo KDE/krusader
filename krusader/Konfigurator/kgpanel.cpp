@@ -355,12 +355,26 @@ void KgPanel::setupPanelTab()
     // -------------------- Panel Font ----------------------------------
     QHBoxLayout *hbox = new QHBoxLayout();
 
-    hbox->addWidget(new QLabel(i18n("View font:"), panelGrp));
+    QHBoxLayout *fontLayout = new QHBoxLayout();
+    fontLayout->addWidget(new QLabel(i18n("View font:"), panelGrp));
+    KonfiguratorFontChooser *chsr =
+        createFontChooser("Look&Feel", "Filelist Font", _FilelistFont, panelGrp, true, PAGE_VIEW);
+    fontLayout->addWidget(chsr);
+    fontLayout->addStretch(1);
+    hbox->addLayout(fontLayout, 1);
 
-    KonfiguratorFontChooser * chsr = createFontChooser("Look&Feel", "Filelist Font", _FilelistFont, panelGrp, true, PAGE_VIEW);
-    hbox->addWidget(chsr);
-
-    hbox->addWidget(createSpacer(panelGrp));
+    // -------------------- Panel Tooltip ----------------------------------
+    QHBoxLayout *tooltipLayout = new QHBoxLayout();
+    QLabel *tooltipLabel = new QLabel(i18n("Tooltip delay (msec):"));
+    tooltipLabel->setWhatsThis(i18n("The duration after a tooltip is shown for a file item, in "
+                                    "milliseconds. Set a negative value to disable tooltips."));
+    tooltipLayout->addWidget(tooltipLabel);
+    KonfiguratorSpinBox *tooltipSpinBox = createSpinBox("Look&Feel", "Panel Tooltip Delay", 1000,
+                                                        -100, 5000, panelGrp, false, PAGE_VIEW);
+    tooltipSpinBox->setSingleStep(100);
+    tooltipLayout->addWidget(tooltipSpinBox);
+    tooltipLayout->addStretch(1);
+    hbox->addLayout(tooltipLayout, 1);
 
     panelGrid->addLayout(hbox, 1, 0);
 
