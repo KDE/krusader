@@ -54,6 +54,8 @@
 // QtWidgets
 #include <QAction>
 #include <QInputDialog>
+#include <QMimeDatabase>
+#include <QMimeType>
 #include <qnamespace.h>
 
 #include <KConfigCore/KSharedConfig>
@@ -929,7 +931,7 @@ void KrView::restoreSortMode(KConfigGroup &group)
     setSortMode(static_cast<KrViewProperties::ColumnType>(column), isDescending);
 }
 
-QString KrView::krPermissionString(const FileItem * fileitem)
+QString KrView::krPermissionText(const FileItem * fileitem)
 {
     QString tmp;
     switch (fileitem->isReadable()) {
@@ -950,9 +952,23 @@ QString KrView::krPermissionString(const FileItem * fileitem)
     return tmp;
 }
 
-QString KrView::sizeToString(const KrViewProperties *properties, KIO::filesize_t size)
+QString KrView::permissionsText(const KrViewProperties *properties, const FileItem *fileItem)
+{
+    return properties->numericPermissions ?
+               QString().asprintf("%.4o", fileItem->getMode() & (S_ISUID | S_ISGID | S_ISVTX |
+                                                                 S_IRWXU | S_IRWXG | S_IRWXO)) :
+               fileItem->getPerm();
+}
+
+QString KrView::sizeText(const KrViewProperties *properties, KIO::filesize_t size)
 {
     return properties->humanReadableSize ? KIO::convertSize(size) : KRpermHandler::parseSize(size);
+}
+
+QString KrView::mimeTypeText(FileItem *fileItem)
+{
+    QMimeType mt = QMimeDatabase().mimeTypeForName(fileItem->getMime());
+    return mt.isValid() ? mt.comment() : QString();
 }
 
 bool KrView::isFiltered(FileItem *fileitem)

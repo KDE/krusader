@@ -36,6 +36,10 @@
 // QtWidgets
 #include <QStyleOptionViewItem>
 
+#include <KConfigCore/KSharedConfig>
+
+#include "../krglobal.h"
+
 void KrStyleProxy::drawPrimitive(PrimitiveElement element, const QStyleOption *option,
                                  QPainter *painter, const QWidget *widget) const
 {
@@ -63,4 +67,21 @@ void KrStyleProxy::drawPrimitive(PrimitiveElement element, const QStyleOption *o
         }
     } else
         QProxyStyle::drawPrimitive(element, option, painter, widget);
+}
+
+int KrStyleProxy::styleHint(QStyle::StyleHint hint, const QStyleOption *option,
+                            const QWidget *widget, QStyleHintReturn *returnData) const
+{
+    if (hint == QStyle::SH_ToolTip_WakeUpDelay) {
+        KConfigGroup group(krConfig, "Look&Feel");
+        const int delay = group.readEntry("Panel Tooltip Delay", 1000);
+        return delay < 0 ? INT_MAX : delay;
+    }
+
+    // disable instant consecutive tooltips
+    if (hint == QStyle::SH_ToolTip_FallAsleepDelay) {
+        return 0;
+    }
+
+    return QProxyStyle::styleHint(hint, option, widget, returnData);
 }

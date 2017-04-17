@@ -405,8 +405,12 @@ public:
     static QPixmap getIcon(FileItem *fileitem, bool active, int size = 0);
     static QPixmap processIcon(const QPixmap &icon, bool dim, const QColor &dimColor, int dimFactor,
                                bool symlink);
-    static QString krPermissionString(const FileItem *fileitem);
-    static QString sizeToString(const KrViewProperties *properties, KIO::filesize_t size);
+
+    // Get GUI strings for file item properties
+    static QString krPermissionText(const FileItem *fileitem);
+    static QString permissionsText(const KrViewProperties *properties, const FileItem *fileItem);
+    static QString sizeText(const KrViewProperties *properties, KIO::filesize_t size);
+    static QString mimeTypeText(FileItem *fileItem);
 
 protected:
     KrView(KrViewInstance &instance, KConfig *cfg);

@@ -102,6 +102,8 @@ protected:
 
 private:
     void updateIndices(FileItem *file, int index);
+    QString toolTipText(FileItem *fileItem) const;
+    static QString dateText(time_t time);
 
     QList<FileItem*>               _fileItems;
     QHash<FileItem *, QModelIndex> _fileItemNdx;

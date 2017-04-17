@@ -96,7 +96,6 @@ protected:
     void dragMoveEvent(QDragMoveEvent *e) Q_DECL_OVERRIDE;
     void dragLeaveEvent(QDragLeaveEvent *e) Q_DECL_OVERRIDE;
     void dropEvent(QDropEvent *) Q_DECL_OVERRIDE;
-    bool viewportEvent(QEvent * event) Q_DECL_OVERRIDE;
 
     // ---- reimplemented from KrView ----
     void setup() Q_DECL_OVERRIDE;
