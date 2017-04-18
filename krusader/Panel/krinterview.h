@@ -28,7 +28,7 @@
 
 #include "krview.h"
 
-class KrVfsModel;
+class ListModel;
 class KrMouseHandler;
 class KrViewItem;
 
@@ -108,7 +108,7 @@ protected:
     }
     void makeCurrentVisible();
 
-    KrVfsModel *_model;
+    ListModel *_model;
     QAbstractItemView *_itemView;
     KrMouseHandler *_mouseHandler;
     QHash<FileItem *, KrViewItem*> _itemHash;

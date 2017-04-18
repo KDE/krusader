@@ -36,7 +36,7 @@
 #include "krviewfactory.h"
 #include "krviewitemdelegate.h"
 #include "krviewitem.h"
-#include "krvfsmodel.h"
+#include "listmodel.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../defaults.h"
 #include "../krglobal.h"
@@ -349,7 +349,7 @@ bool KrInterDetailedView::viewportEvent(QEvent * event)
 {
     if (event->type() == QEvent::ToolTip) {
         // only show tooltip if column is not wide enough to show all text. In this case the column
-        // data text is abbreviated and the full text is shown as tooltip, see KrVfsModel::data().
+        // data text is abbreviated and the full text is shown as tooltip, see ListModel::data().
 
         QHelpEvent *he = static_cast<QHelpEvent*>(event);
         const QModelIndex index = indexAt(he->pos());

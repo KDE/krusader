@@ -17,7 +17,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include "krvfsmodel.h"
+#include "listmodel.h"
 
 #include "krcolorcache.h"
 #include "krinterview.h"
@@ -31,15 +31,15 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 
-KrVfsModel::KrVfsModel(KrInterView * view): QAbstractListModel(0), _extensionEnabled(true), _view(view),
-        _dummyFileItem(0), _ready(false), _justForSizeHint(false),
-        _alternatingTable(false)
+ListModel::ListModel(KrInterView *view)
+    : QAbstractListModel(0), _extensionEnabled(true), _view(view), _dummyFileItem(0), _ready(false),
+      _justForSizeHint(false), _alternatingTable(false)
 {
     KConfigGroup grpSvr(krConfig, "Look&Feel");
     _defaultFont = grpSvr.readEntry("Filelist Font", _FilelistFont);
 }
 
-void KrVfsModel::populate(const QList<FileItem *> &files, FileItem *dummy)
+void ListModel::populate(const QList<FileItem *> &files, FileItem *dummy)
 {
     _fileItems = files;
     _dummyFileItem = dummy;
@@ -56,11 +56,11 @@ void KrVfsModel::populate(const QList<FileItem *> &files, FileItem *dummy)
     }
 }
 
-KrVfsModel::~KrVfsModel()
+ListModel::~ListModel()
 {
 }
 
-void KrVfsModel::clear(bool emitLayoutChanged)
+void ListModel::clear(bool emitLayoutChanged)
 {
     if(!_fileItems.count())
         return;
@@ -84,18 +84,18 @@ void KrVfsModel::clear(bool emitLayoutChanged)
         emit layoutChanged();
 }
 
-int KrVfsModel::rowCount(const QModelIndex& /*parent*/) const
+int ListModel::rowCount(const QModelIndex& /*parent*/) const
 {
     return _fileItems.count();
 }
 
 
-int KrVfsModel::columnCount(const QModelIndex& /*parent*/) const
+int ListModel::columnCount(const QModelIndex& /*parent*/) const
 {
     return KrViewProperties::MAX_COLUMNS;
 }
 
-QVariant KrVfsModel::data(const QModelIndex& index, int role) const
+QVariant ListModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid() || index.row() >= rowCount())
         return QVariant();
@@ -248,7 +248,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
     }
 }
 
-bool KrVfsModel::setData(const QModelIndex & index, const QVariant & value, int role)
+bool ListModel::setData(const QModelIndex & index, const QVariant & value, int role)
 {
     if (role == Qt::EditRole && index.isValid()) {
         if (index.row() < rowCount() && index.row() >= 0) {
@@ -264,7 +264,7 @@ bool KrVfsModel::setData(const QModelIndex & index, const QVariant & value, int 
     return QAbstractListModel::setData(index, value, role);
 }
 
-void KrVfsModel::sort(int column, Qt::SortOrder order)
+void ListModel::sort(int column, Qt::SortOrder order)
 {
     _view->sortModeUpdated(column, order);
 
@@ -305,7 +305,7 @@ void KrVfsModel::sort(int column, Qt::SortOrder order)
         _view->makeItemVisible(_view->getCurrentKrViewItem());
 }
 
-QModelIndex KrVfsModel::addItem(FileItem *fileitem)
+QModelIndex ListModel::addItem(FileItem *fileitem)
 {
     emit layoutAboutToBeChanged();
 
@@ -346,7 +346,7 @@ QModelIndex KrVfsModel::addItem(FileItem *fileitem)
     return index(insertIndex, 0);
 }
 
-QModelIndex KrVfsModel::removeItem(FileItem *fileitem)
+QModelIndex ListModel::removeItem(FileItem *fileitem)
 {
     QModelIndex currIndex = _view->getCurrentIndex();
     int removeIdx = _fileItems.indexOf(fileitem);
@@ -394,7 +394,7 @@ QModelIndex KrVfsModel::removeItem(FileItem *fileitem)
     return currIndex;
 }
 
-void KrVfsModel::updateItem(FileItem *fileitem)
+void ListModel::updateItem(FileItem *fileitem)
 {
     QModelIndex oldModelIndex = fileItemIndex(fileitem);
 
@@ -453,7 +453,7 @@ void KrVfsModel::updateItem(FileItem *fileitem)
         _view->makeItemVisible(_view->getCurrentKrViewItem());
 }
 
-QVariant KrVfsModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant ListModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     // ignore anything that's not display, and not horizontal
     if (role != Qt::DisplayRole || orientation != Qt::Horizontal)
@@ -473,29 +473,29 @@ QVariant KrVfsModel::headerData(int section, Qt::Orientation orientation, int ro
     return QString();
 }
 
-const KrViewProperties *KrVfsModel::properties() const
+const KrViewProperties *ListModel::properties() const
 {
     return _view->properties();
 }
 
-FileItem *KrVfsModel::fileItemAt(const QModelIndex &index)
+FileItem *ListModel::fileItemAt(const QModelIndex &index)
 {
     if (!index.isValid() || index.row() < 0 || index.row() >= _fileItems.count())
         return 0;
     return _fileItems[ index.row()];
 }
 
-const QModelIndex & KrVfsModel::fileItemIndex(const FileItem *fileitem)
+const QModelIndex & ListModel::fileItemIndex(const FileItem *fileitem)
 {
     return _fileItemNdx[ (FileItem *) fileitem ];
 }
 
-const QModelIndex & KrVfsModel::nameIndex(const QString & st)
+const QModelIndex & ListModel::nameIndex(const QString & st)
 {
     return _nameNdx[ st ];
 }
 
-Qt::ItemFlags KrVfsModel::flags(const QModelIndex & index) const
+Qt::ItemFlags ListModel::flags(const QModelIndex & index) const
 {
     Qt::ItemFlags flags = QAbstractListModel::flags(index);
 
@@ -512,18 +512,18 @@ Qt::ItemFlags KrVfsModel::flags(const QModelIndex & index) const
     return flags;
 }
 
-Qt::SortOrder KrVfsModel::lastSortDir() const
+Qt::SortOrder ListModel::lastSortDir() const
 {
     return (properties()->sortOptions & KrViewProperties::Descending) ?
                 Qt::DescendingOrder : Qt::AscendingOrder;
 }
 
-int KrVfsModel::lastSortOrder() const
+int ListModel::lastSortOrder() const
 {
     return properties()->sortColumn;
 }
 
-QString KrVfsModel::nameWithoutExtension(const FileItem *fileItem, bool checkEnabled) const
+QString ListModel::nameWithoutExtension(const FileItem *fileItem, bool checkEnabled) const
 {
     if ((checkEnabled && !_extensionEnabled) || fileItem->isDir())
         return fileItem->getName();
@@ -545,12 +545,12 @@ QString KrVfsModel::nameWithoutExtension(const FileItem *fileItem, bool checkEna
     return fileItemName.left(loc);
 }
 
-const QModelIndex &KrVfsModel::indexFromUrl(const QUrl &url)
+const QModelIndex &ListModel::indexFromUrl(const QUrl &url)
 {
     return _urlNdx[url];
 }
 
-KrSort::Sorter KrVfsModel::createSorter()
+KrSort::Sorter ListModel::createSorter()
 {
     KrSort::Sorter sorter(_fileItems.count(), properties(), lessThanFunc(), greaterThanFunc());
     for(int i = 0; i < _fileItems.count(); i++)
@@ -558,14 +558,14 @@ KrSort::Sorter KrVfsModel::createSorter()
     return sorter;
 }
 
-void KrVfsModel::updateIndices(FileItem *file, int i)
+void ListModel::updateIndices(FileItem *file, int i)
 {
     _fileItemNdx[file] = index(i, 0);
     _nameNdx[file->getName()] = index(i, 0);
     _urlNdx[file->getUrl()] = index(i, 0);
 }
 
-QString KrVfsModel::toolTipText(FileItem *fileItem) const
+QString ListModel::toolTipText(FileItem *fileItem) const
 {
     //"<p style='white-space:pre'>"; // disable automatic word-wrap
     QString text = "<b>" + fileItem->getName() + "</b><hr>";
@@ -590,7 +590,7 @@ QString KrVfsModel::toolTipText(FileItem *fileItem) const
     return text;
 }
 
-QString KrVfsModel::dateText(time_t time)
+QString ListModel::dateText(time_t time)
 {
     struct tm* t = localtime((time_t *) & time);
 

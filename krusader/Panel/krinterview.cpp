@@ -23,7 +23,7 @@
 #include "krcolorcache.h"
 #include "krmousehandler.h"
 #include "krpreviews.h"
-#include "krvfsmodel.h"
+#include "listmodel.h"
 #include "krviewitem.h"
 #include "../FileSystem/dirlisterinterface.h"
 #include "../FileSystem/fileitem.h"
@@ -32,7 +32,7 @@ KrInterView::KrInterView(KrViewInstance &instance, KConfig *cfg,
                          QAbstractItemView *itemView) :
         KrView(instance, cfg), _itemView(itemView), _mouseHandler(0)
 {
-    _model = new KrVfsModel(this);
+    _model = new ListModel(this);
 
     // fix the context menu problem
     int j = QFontMetrics(_itemView->font()).height() * 2;

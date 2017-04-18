@@ -20,7 +20,7 @@
 #include "krviewitem.h"
 
 #include "krinterview.h"
-#include "krvfsmodel.h"
+#include "listmodel.h"
 #include "../FileSystem/fileitem.h"
 #include "../FileSystem/krpermhandler.h"
 

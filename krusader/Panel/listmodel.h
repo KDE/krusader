@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef KRVFSMODEL_H
-#define KRVFSMODEL_H
+#ifndef LISTMODEL_H
+#define LISTMODEL_H
 
 // QtCore
 #include <QAbstractListModel>
@@ -35,13 +35,13 @@ class KrViewProperties;
 /**
  * @brief The list model for all panel views.
  */
-class KrVfsModel: public QAbstractListModel
+class ListModel: public QAbstractListModel
 {
     Q_OBJECT
 
 public:
-    explicit KrVfsModel(KrInterView *);
-    virtual ~KrVfsModel();
+    explicit ListModel(KrInterView *);
+    virtual ~ListModel();
 
     inline bool ready() const {
         return _ready;
@@ -118,4 +118,4 @@ private:
     bool                        _alternatingTable;
 };
 
-#endif // __krvfsmodel__
+#endif // __listmodel__

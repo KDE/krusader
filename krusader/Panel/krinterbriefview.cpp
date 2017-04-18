@@ -40,7 +40,7 @@
 #include "krviewfactory.h"
 #include "krviewitemdelegate.h"
 #include "krviewitem.h"
-#include "krvfsmodel.h"
+#include "listmodel.h"
 #include "krmousehandler.h"
 #include "krcolorcache.h"
 #include "../FileSystem/krpermhandler.h"
