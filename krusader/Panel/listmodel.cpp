@@ -22,7 +22,7 @@
 #include "krcolorcache.h"
 #include "krinterview.h"
 #include "krpanel.h"
-#include "krview.h"
+#include "krviewproperties.h"
 
 #include "../defaults.h"
 #include "../krglobal.h"

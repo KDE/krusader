@@ -18,10 +18,11 @@
 
 #include "krviewitemdelegate.h"
 
-#include "krview.h"
+#include "krviewproperties.h"
 #include "../krglobal.h"
 
 // QtGui
+#include <QKeyEvent>
 #include <QPainter>
 // QtWidgets
 #include <QDialog>

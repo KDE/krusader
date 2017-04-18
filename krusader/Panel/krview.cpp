@@ -228,30 +228,30 @@ void KrView::init(bool enableUpdateDefaultSettings)
 
 void KrView::initProperties()
 {
-    _properties = createViewProperties();
+    const KConfigGroup grpInstance(_config, _instance.name());
+    const bool displayIcons = grpInstance.readEntry("With Icons", _WithIcons);
 
-    KConfigGroup grpSvr(_config, "Look&Feel");
-    KConfigGroup grpInstance(_config, _instance.name());
+    const KConfigGroup grpSvr(_config, "Look&Feel");
+    const bool numericPermissions = grpSvr.readEntry("Numeric permissions", _NumericPermissions);
 
-    _properties->displayIcons = grpInstance.readEntry("With Icons", _WithIcons);
-    _properties->numericPermissions = grpSvr.readEntry("Numeric permissions", _NumericPermissions);
-
-    int sortOptions = _properties->sortOptions;
+    int sortOps = 0;
     if (grpSvr.readEntry("Show Directories First", true))
-        sortOptions |= KrViewProperties::DirsFirst;
+        sortOps |= KrViewProperties::DirsFirst;
     if(grpSvr.readEntry("Always sort dirs by name", false))
-        sortOptions |=  KrViewProperties::AlwaysSortDirsByName;
+        sortOps |=  KrViewProperties::AlwaysSortDirsByName;
     if (!grpSvr.readEntry("Case Sensative Sort", _CaseSensativeSort))
-        sortOptions |= KrViewProperties::IgnoreCase;
+        sortOps |= KrViewProperties::IgnoreCase;
     if (grpSvr.readEntry("Locale Aware Sort", true))
-        sortOptions |= KrViewProperties::LocaleAwareSort;
-    _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(sortOptions);
+        sortOps |= KrViewProperties::LocaleAwareSort;
+    KrViewProperties::SortOptions sortOptions = static_cast<KrViewProperties::SortOptions>(sortOps);
 
-    _properties->sortMethod = static_cast<KrViewProperties::SortMethod>(
-                                  grpSvr.readEntry("Sort method", (int) _DefaultSortMethod));
-    _properties->humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
+    KrViewProperties::SortMethod sortMethod = static_cast<KrViewProperties::SortMethod>(
+        grpSvr.readEntry("Sort method", (int)_DefaultSortMethod));
+    const bool humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
 
-    _properties->localeAwareCompareIsCaseSensitive = QString("a").localeAwareCompare("B") > 0;     // see KDE bug #40131
+    // see KDE bug #40131
+    const bool localeAwareCompareIsCaseSensitive = QString("a").localeAwareCompare("B") > 0;
+
     QStringList defaultAtomicExtensions;
     defaultAtomicExtensions += ".tar.gz";
     defaultAtomicExtensions += ".tar.bz2";
@@ -270,7 +270,10 @@ void KrView::initProperties()
             ext.insert(0, '.');
         ++i;
     }
-    _properties->atomicExtensions = atomicExtensions;
+
+    _properties = new KrViewProperties(displayIcons, numericPermissions, sortOptions, sortMethod,
+                                       humanReadableSize, localeAwareCompareIsCaseSensitive,
+                                       atomicExtensions);
 }
 
 void KrView::showPreviews(bool show)
