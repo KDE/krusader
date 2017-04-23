@@ -81,7 +81,7 @@ QString KrViewItem::description() const
     if (mt.isValid())
         mimeTypeComment = mt.comment();
 
-    const QString size = KrView::sizeToString(_viewProperties, _fileitem->getSize());
+    const QString size = KrView::sizeText(_viewProperties, _fileitem->getSize());
 
     QString text = _fileitem->getName();
     if (_fileitem->isSymLink()) {

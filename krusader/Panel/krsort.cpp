@@ -19,13 +19,8 @@
 
 #include "krsort.h"
 
-// QtCore
-#include <QMimeDatabase>
-#include <QMimeType>
-
 #include "krview.h"
 #include "../FileSystem/fileitem.h"
-#include "../FileSystem/krpermhandler.h"
 
 namespace KrSort {
 
@@ -68,10 +63,7 @@ void SortProps::init(FileItem *fileitem, int col, const KrViewProperties * props
         if (isDummy)
             _data = "";
         else {
-            QMimeDatabase db;
-            QMimeType mt = db.mimeTypeForName(fileitem->getMime());
-            if (mt.isValid())
-                _data = mt.comment();
+            _data = KrView::mimeTypeText(fileitem);
         }
         break;
     }
@@ -79,11 +71,7 @@ void SortProps::init(FileItem *fileitem, int col, const KrViewProperties * props
         if (isDummy)
             _data = "";
         else {
-            if (properties()->numericPermissions) {
-                QString perm;
-                _data = perm.sprintf("%.4o", fileitem->getMode() & PERM_BITMASK);
-            } else
-                _data = fileitem->getPerm();
+            _data = KrView::permissionsText(properties(), fileitem);
         }
         break;
     }
@@ -91,7 +79,7 @@ void SortProps::init(FileItem *fileitem, int col, const KrViewProperties * props
         if (isDummy)
             _data = "";
         else {
-            _data = KrView::krPermissionString(fileitem);
+            _data = KrView::krPermissionText(fileitem);
         }
         break;
     }

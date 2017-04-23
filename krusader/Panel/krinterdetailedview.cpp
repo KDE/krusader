@@ -23,10 +23,11 @@
 #include <QDir>
 #include <QHashIterator>
 // QtWidgets
+#include <QApplication>
 #include <QDirModel>
 #include <QHeaderView>
 #include <QMenu>
-#include <QApplication>
+#include <QToolTip>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
@@ -61,10 +62,6 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
     setAllColumnsShowFocus(true);
     setUniformRowHeights(true);
 
-    KrStyleProxy *krstyle = new KrStyleProxy();
-    krstyle->setParent(this);
-    setStyle(krstyle);
-    setItemDelegate(new KrViewItemDelegate(this));
     setMouseTracking(true);
     setAcceptDrops(true);
     setDropIndicatorShown(true);
@@ -75,6 +72,13 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
     header()->installEventFilter(this);
     header()->setSectionResizeMode(QHeaderView::Interactive);
     header()->setStretchLastSection(false);
+
+    KrStyleProxy *style = new KrStyleProxy();
+    style->setParent(this);
+    setStyle(style);
+    viewport()->setStyle(style); // for custom tooltip delay
+
+    setItemDelegate(new KrViewItemDelegate(this));
 
     connect(header(), SIGNAL(sectionResized(int,int,int)), this, SLOT(sectionResized(int,int,int)));
     connect(header(), SIGNAL(sectionMoved(int,int,int)), this, SLOT(sectionMoved(int,int,int)));
@@ -344,10 +348,13 @@ void KrInterDetailedView::recalculateColumnSizes()
 bool KrInterDetailedView::viewportEvent(QEvent * event)
 {
     if (event->type() == QEvent::ToolTip) {
+        // only show tooltip if column is not wide enough to show all text. In this case the column
+        // data text is abbreviated and the full text is shown as tooltip, see KrVfsModel::data().
+
         QHelpEvent *he = static_cast<QHelpEvent*>(event);
         const QModelIndex index = indexAt(he->pos());
-
-        if (index.isValid()) {
+        // name column has a detailed tooltip
+        if (index.isValid() && index.column() != KrViewProperties::Name) {
             int width = header()->sectionSize(index.column());
             QString text = index.data(Qt::DisplayRole).toString();
 
@@ -363,6 +370,7 @@ bool KrInterDetailedView::viewportEvent(QEvent * event)
             }
 
             if (textWidth <= width) {
+                QToolTip::hideText();
                 event->accept();
                 return true;
             }

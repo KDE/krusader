@@ -27,13 +27,6 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "../FileSystem/fileitem.h"
-#include "../FileSystem/krpermhandler.h"
-
-// QtCore
-#include <QtAlgorithms>
-#include <QtDebug>
-#include <QMimeDatabase>
-#include <QMimeType>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
@@ -125,7 +118,12 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
         }
         return QVariant();
     }
-    case Qt::ToolTipRole:
+    case Qt::ToolTipRole: {
+        if (index.column() == KrViewProperties::Name) {
+            return fileitem == _dummyFileItem ? QVariant() : toolTipText(fileitem);
+        }
+        // breaktrough
+    }
     case Qt::DisplayRole: {
         switch (index.column()) {
         case KrViewProperties::Name: {
@@ -143,39 +141,28 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
                     i18nc("Show the string 'DIR' instead of file size in detailed view (for folders)", "DIR") + '>';
                 return label;
             } else
-                return KrView::sizeToString(properties(), fileitem->getSize());
+                return KrView::sizeText(properties(), fileitem->getSize());
         }
         case KrViewProperties::Type: {
             if (fileitem == _dummyFileItem)
                 return QVariant();
-            QMimeDatabase db;
-            QMimeType mt = db.mimeTypeForName(fileitem->getMime());
-            if (mt.isValid())
-                return mt.comment();
-            return QVariant();
+            const QString mimeType = KrView::mimeTypeText(fileitem);
+            return mimeType.isEmpty() ? QVariant() : mimeType;
         }
         case KrViewProperties::Modified: {
             if (fileitem == _dummyFileItem)
                 return QVariant();
-            time_t time = fileitem->getTime_t();
-            struct tm* t = localtime((time_t *) & time);
-
-            QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-            return QLocale().toString(tmp, QLocale::ShortFormat);
+            return dateText(fileitem->getTime_t());
         }
         case KrViewProperties::Permissions: {
             if (fileitem == _dummyFileItem)
                 return QVariant();
-            if (properties()->numericPermissions) {
-                QString perm;
-                return perm.sprintf("%.4o", fileitem->getMode() & PERM_BITMASK);
-            }
-            return fileitem->getPerm();
+            return KrView::permissionsText(properties(), fileitem);
         }
         case KrViewProperties::KrPermissions: {
             if (fileitem == _dummyFileItem)
                 return QVariant();
-            return KrView::krPermissionString(fileitem);
+            return KrView::krPermissionText(fileitem);
         }
         case KrViewProperties::Owner: {
             if (fileitem == _dummyFileItem)
@@ -576,4 +563,35 @@ void KrVfsModel::updateIndices(FileItem *file, int i)
     _fileItemNdx[file] = index(i, 0);
     _nameNdx[file->getName()] = index(i, 0);
     _urlNdx[file->getUrl()] = index(i, 0);
+}
+
+QString KrVfsModel::toolTipText(FileItem *fileItem) const
+{
+    //"<p style='white-space:pre'>"; // disable automatic word-wrap
+    QString text = "<b>" + fileItem->getName() + "</b><hr>";
+    if (!fileItem->isDir() || fileItem->getSize() != 0) {
+        const QString size = KrView::sizeText(properties(), fileItem->getSize());
+        text += i18n("Size:") + " " + size + "<br>";
+    }
+    text += i18nc("File property", "Type:") + " " + KrView::mimeTypeText(fileItem);
+    text += "<br>" + i18nc("File property", "Modified:") + " " + dateText(fileItem->getTime_t());
+    text += "<br>" + i18nc("File property", "Permissions:") + " " +
+            KrView::permissionsText(properties(), fileItem);
+    text += "<br>" + i18nc("File property", "Owner:") + " " + fileItem->getOwner();
+    text += "<br>" + i18nc("File property", "Group:") + " " + fileItem->getGroup();
+    if (fileItem->isSymLink()) {
+        text += "<br>" + i18nc("File property", "Link to:") + " " + fileItem->getSymDest();
+        if (fileItem->isBrokenLink())
+            text += " - " + i18nc("File property; broken symbolic link", "(broken)");
+    }
+    return text;
+}
+
+QString KrVfsModel::dateText(time_t time)
+{
+    struct tm* t = localtime((time_t *) & time);
+
+    const QDateTime dateTime(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday),
+                             QTime(t->tm_hour, t->tm_min));
+    return QLocale().toString(dateTime, QLocale::ShortFormat);
 }
