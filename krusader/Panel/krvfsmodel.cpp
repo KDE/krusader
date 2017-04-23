@@ -571,18 +571,21 @@ QString KrVfsModel::toolTipText(FileItem *fileItem) const
     QString text = "<b>" + fileItem->getName() + "</b><hr>";
     if (!fileItem->isDir() || fileItem->getSize() != 0) {
         const QString size = KrView::sizeText(properties(), fileItem->getSize());
-        text += i18n("Size:") + " " + size + "<br>";
+        text += i18n("Size: %1", size) + "<br>";
     }
-    text += i18nc("File property", "Type:") + " " + KrView::mimeTypeText(fileItem);
-    text += "<br>" + i18nc("File property", "Modified:") + " " + dateText(fileItem->getTime_t());
-    text += "<br>" + i18nc("File property", "Permissions:") + " " +
-            KrView::permissionsText(properties(), fileItem);
-    text += "<br>" + i18nc("File property", "Owner:") + " " + fileItem->getOwner();
-    text += "<br>" + i18nc("File property", "Group:") + " " + fileItem->getGroup();
+    text += i18nc("File property", "Type: %1", KrView::mimeTypeText(fileItem));
+    text += "<br>" + i18nc("File property", "Modified: %1", dateText(fileItem->getTime_t()));
+    text += "<br>" + i18nc("File property", "Permissions: %1",
+            KrView::permissionsText(properties(), fileItem));
+    text += "<br>" + i18nc("File property", "Owner: %1", fileItem->getOwner());
+    text += "<br>" + i18nc("File property", "Group: %1", fileItem->getGroup());
     if (fileItem->isSymLink()) {
-        text += "<br>" + i18nc("File property", "Link to:") + " " + fileItem->getSymDest();
+        KLocalizedString ls;
         if (fileItem->isBrokenLink())
-            text += " - " + i18nc("File property; broken symbolic link", "(broken)");
+            ls = ki18nc("File property; broken symbolic link", "Link to: %1 - (broken)");
+        else
+            ls = ki18nc("File property", "Link to: %1");
+        text += "<br>" + ls.subs(fileItem->getSymDest()).toString();
     }
     return text;
 }
