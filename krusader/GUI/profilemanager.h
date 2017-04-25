@@ -36,6 +36,22 @@
 // QtWidgets
 #include <QPushButton>
 
+/**
+ * A generic profile manager: Profiles are arbitray configurations groups and the manager handles
+ * saving/loading multiple groups to/from the configuration.
+ *
+ * A manager instance is responsible for a profile type specified by a type name:
+ * "Panel", "SelectionProfile", "SearcherProfile", "SynchronizerProfile", ...
+ *
+ * Profiles are numbered in the configuration group name and have an additional name property. E.g.
+ *
+ * [Panel - 2]
+ * Name=Media Profile
+ * ...
+ *
+ * This class is view and model at the same time :/
+ * The GUI button opens a popup menu for selecting, creating, overwriting and removing profiles.
+ */
 class ProfileManager : public QPushButton
 {
     Q_OBJECT
