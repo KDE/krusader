@@ -175,7 +175,7 @@ QString KrServices::quote(QString name)
     if (!name.contains('\''))
         return '\'' + name + '\'';
     if (!name.contains('"') && !name.contains('$'))
-        return '\"' + name + '\'';
+        return '\"' + name + '\"';
     return escape(name);
 }
 
