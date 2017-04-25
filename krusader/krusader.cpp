@@ -178,8 +178,8 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     FileItem::loadUserDefinedFolderIcons(gl.readEntry("Load User Defined Folder Icons",
                                                          _UserDefinedFolderIcons));
 
-    KConfigGroup gs(krConfig, "Startup");
-    QString     startProfile = gs.readEntry("Starter Profile Name", QString());
+    const KConfigGroup startupGroup(krConfig, "Startup");
+    QString startProfile = startupGroup.readEntry("Starter Profile Name", QString());
 
     QList<QUrl> leftTabs;
     QList<QUrl> rightTabs;
@@ -201,7 +201,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
         rightTabs.clear();
     }
     // starting the panels
-    MAIN_VIEW->start(gs, startProfile.isEmpty(), leftTabs, rightTabs);
+    MAIN_VIEW->start(startupGroup, startProfile.isEmpty(), leftTabs, rightTabs);
 
     // create a status bar
     KrusaderStatus *status = new KrusaderStatus(this);
@@ -256,12 +256,11 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
         toolBar("actionsToolBar")->applySettings(cfgActionsBar);
 
         // restore toolbars position and visibility
-        const KConfigGroup cfgStartup(krConfig->group("Startup"));
-        restoreState(cfgStartup.readEntry("State", QByteArray()));
+        restoreState(startupGroup.readEntry("State", QByteArray()));
 
-        statusBar()->setVisible(cfgStartup.readEntry("Show status bar", _ShowStatusBar));
+        statusBar()->setVisible(startupGroup.readEntry("Show status bar", _ShowStatusBar));
 
-        MAIN_VIEW->updateGUI(cfgStartup);
+        MAIN_VIEW->updateGUI(startupGroup);
 
         // popular urls
         _popularUrls->load();
@@ -283,7 +282,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     }
 
     // view initialized; show window or tray
-    if (gs.readEntry("Start To Tray", _StartToTray)) {
+    if (startupGroup.readEntry("Start To Tray", _StartToTray)) {
         sysTray->show();
     } else {
         show();

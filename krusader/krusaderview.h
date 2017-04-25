@@ -58,7 +58,7 @@ class KrusaderView : public QWidget
 public:
     explicit KrusaderView(QWidget *parent = 0);
     virtual ~KrusaderView() {}
-    void start(KConfigGroup &cfg, bool restoreSettings, const QList<QUrl> &leftTabs, const QList<QUrl> &rightTabs);
+    void start(const KConfigGroup &cfg, bool restoreSettings, const QList<QUrl> &leftTabs, const QList<QUrl> &rightTabs);
     void updateGUI(const KConfigGroup &cfg);
     void saveSettings(KConfigGroup &cfg);
     void cmdLineFocus();  // command line receive's keyboard focus

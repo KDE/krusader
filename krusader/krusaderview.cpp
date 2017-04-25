@@ -66,7 +66,8 @@ KrusaderView::KrusaderView(QWidget *parent) : QWidget(parent),
 {
 }
 
-void KrusaderView::start(KConfigGroup &cfg, bool restoreSettings, const QList<QUrl> &leftTabs, const QList<QUrl> &rightTabs)
+void KrusaderView::start(const KConfigGroup &cfg, bool restoreSettings,
+                         const QList<QUrl> &leftTabs, const QList<QUrl> &rightTabs)
 {
     ////////////////////////////////
     // make a 1x1 mainLayout, it will auto-expand:
