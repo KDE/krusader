@@ -44,6 +44,7 @@
 #include "../kractions.h"
 #include "../krmainwindow.h"
 #include "../krservices.h"
+#include "../krslots.h"
 #include "../krusaderview.h"
 #include "../FileSystem/filesystem.h"
 #include "../Panel/krview.h"
@@ -180,21 +181,9 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
     }
 
     //insert current to the terminal
-    if ((ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return)
-            && ((ke->modifiers() & ~Qt::ShiftModifier) == Qt::ControlModifier)) {
-
-        QString filename = ACTIVE_PANEL->view->getCurrentItem();
-        if (filename.isEmpty()) {
-            return true;
-        }
-        if (ke->modifiers() & Qt::ShiftModifier) {
-            QString path = FileSystem::ensureTrailingSlash(ACTIVE_PANEL->virtualPath()).toDisplayString(QUrl::PreferLocalFile);
-            filename = path + filename;
-        }
-
-        filename = KrServices::quote(filename);
-
-        sendInput(QString(" ") + filename + QString(" "), false);
+    if ((ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return) &&
+        (ke->modifiers() & Qt::ControlModifier)) {
+        SLOTS->insertFileName((ke->modifiers() & Qt::ShiftModifier) != 0);
         return true;
     }
 

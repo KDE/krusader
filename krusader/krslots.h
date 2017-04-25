@@ -80,7 +80,7 @@ public slots:
     void sendFileByEmail(const QList<QUrl> &filename);
     void compareContent();
     void compareContent(QUrl, QUrl);
-    void insertFileName(bool full_path);
+    void insertFileName(bool fullPath);
     void rootKrusader();
     void swapPanels();
     void showHiddenFiles(bool show);

@@ -883,13 +883,16 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
     case Qt::Key_Return :
         if (e->modifiers() & Qt::ControlModifier) {
             if (e->modifiers() & Qt::AltModifier) {
-                FileItem *fileitem = func->files()->getFileItem(view->getCurrentKrViewItem()->name());
+                FileItem *fileitem =
+                    func->files()->getFileItem(view->getCurrentKrViewItem()->name());
                 if (fileitem && fileitem->isDir())
                     newTab(fileitem->getUrl(), true);
             } else {
-                SLOTS->insertFileName((e->modifiers()&Qt::ShiftModifier)!=0);
+                SLOTS->insertFileName((e->modifiers() & Qt::ShiftModifier) != 0);
             }
-        } else e->ignore();
+        } else {
+            e->ignore();
+        }
         break;
     case Qt::Key_Right :
     case Qt::Key_Left :
