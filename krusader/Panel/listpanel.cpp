@@ -1189,12 +1189,9 @@ void ListPanel::saveSettings(KConfigGroup cfg, bool saveHistory)
 void ListPanel::restoreSettings(KConfigGroup cfg)
 {
     changeType(cfg.readEntry("Type", defaultPanelType()));
-
-    setProperties(cfg.readEntry("Properties", 0));
     view->restoreSettings(KConfigGroup(&cfg, "View"));
 
     _lastLocalPath = ROOT_DIR;
-
     if(func->history->restore(KConfigGroup(&cfg, "History"))) {
         func->refresh();
     } else {
@@ -1205,6 +1202,9 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
     }
 
     setJumpBack(func->history->currentUrl());
+
+    // "locked" property must be set after URL path is restored!
+    setProperties(cfg.readEntry("Properties", 0));
 
     if (cfg.hasKey("PopupPosition")) { // popup was visible, restore
         togglePanelPopup(); // create and show
