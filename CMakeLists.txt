@@ -90,8 +90,14 @@ endif()
 # For security reasons, absolute kdesu path is set at build time and is not
 # configurable.
 if(NOT KDESU_PATH)
-    set(KDESU_PATH "${KDE_INSTALL_FULL_LIBEXECDIR_KF5}/kdesu")
+    if(EXISTS "${KDE_INSTALL_FULL_LIBDIR}/kf5/kdesu")
+      # Used by Arch distribution
+      set(KDESU_PATH "${KDE_INSTALL_FULL_LIBDIR}/kf5/kdesu")
+    else()
+      set(KDESU_PATH "${KDE_INSTALL_FULL_LIBEXECDIR_KF5}/kdesu")
+    endif()
 endif()
+message("kdesu path set: ${KDESU_PATH}")
 add_definitions( -DKDESU_PATH="${KDESU_PATH}" )
 
 add_definitions(${QT_DEFINITIONS} ${KF5_DEFINITIONS})
