@@ -44,8 +44,10 @@ public:
     explicit SizeCalculator(const QList<QUrl> &urls);
     ~SizeCalculator();
 
-    /** Return the URLs this calculator was created with. */
+    /** Return all URLs (queued and progressed). */
     QList<QUrl> urls() const { return m_urls; }
+    /** Add a URL to the running calculation. */
+    void add(const QUrl &url);
     /** Return the current total size calculation result. */
     KIO::filesize_t totalSize() const;
     /** Return the current total number of files counted. */
@@ -58,24 +60,30 @@ public slots:
     void cancel();
 
 signals:
+    /** Emitted when the calculation starts. */
+    void started();
     /** Emitted when an intermediate size for one of the URLs was calculated. */
     void calculated(const QUrl &url, KIO::filesize_t size);
     /** Emitted when calculation is finished or was canceled. Calculator will be deleted afterwards. */
     void finished(bool canceled);
+    /** Emitted when the progress changes. */
+    void progressChanged(int percentage);
 
 private:
     void nextSubUrl();
     void done();
+    void emitProgress();
 
 private slots:
+    void start();
     void nextUrl();
     void slotStatResult(KJob *job);
     void slotDirectorySizeResult(KJob *job);
 
 private:
-    const QList<QUrl> m_urls;
+    QList<QUrl> m_urls; // all URLs
 
-    QList<QUrl> m_nextUrls;
+    QList<QUrl> m_nextUrls; // URLs not calculated yet
     QUrl m_currentUrl;
     QList<QUrl> m_nextSubUrls;
 

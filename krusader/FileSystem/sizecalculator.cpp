@@ -28,13 +28,26 @@ SizeCalculator::SizeCalculator(const QList<QUrl> &urls)
     : QObject(nullptr), m_urls(urls), m_nextUrls(urls), m_totalSize(0), m_totalFiles(0),
       m_totalDirs(0), m_canceled(false), m_directorySizeJob(nullptr)
 {
-    QTimer::singleShot(0, this, SLOT(nextUrl()));
+    QTimer::singleShot(0, this, SLOT(start()));
 }
 
 SizeCalculator::~SizeCalculator()
 {
     if (m_directorySizeJob)
         m_directorySizeJob->kill();
+}
+
+void SizeCalculator::start()
+{
+    emit started();
+    nextUrl();
+}
+
+void SizeCalculator::add(const QUrl &url)
+{
+    m_urls.append(url);
+    m_nextUrls.append(url);
+    emitProgress();
 }
 
 KIO::filesize_t SizeCalculator::totalSize() const
@@ -65,6 +78,8 @@ void SizeCalculator::nextUrl()
 {
     if (m_canceled)
         return;
+
+    emitProgress();
 
     if (!m_currentUrl.isEmpty())
         emit calculated(m_currentUrl, m_currentUrlSize);
@@ -155,4 +170,9 @@ void SizeCalculator::done()
 {
     emit finished(m_canceled);
     deleteLater();
+}
+
+void SizeCalculator::emitProgress()
+{
+    emit progressChanged((m_urls.length() - (float)m_nextUrls.length()) / m_urls.length() * 100);
 }
