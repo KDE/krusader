@@ -85,6 +85,7 @@ public:
     void emitPreviewJobStarted(KJob *job) { emit previewJobStarted(job); }
     void emitGoHome() { emit goHome(); }
     void emitDirUp() { emit dirUp(); }
+    void emitQuickCalcSpace(KrViewItem *item) { emit quickCalcSpace(item); }
     void emitDefaultDeleteFiles(bool invertMode) { emit defaultDeleteFiles(invertMode); }
     void emitRefreshActions() { emit refreshActions(); }
     void emitGoBack() { emit goBack(); }
@@ -119,6 +120,7 @@ signals:
     void goHome();
     void defaultDeleteFiles(bool invertMode);
     void dirUp();
+    void quickCalcSpace(KrViewItem *item);
     void refreshActions();
     void goBack();
     void goForward();

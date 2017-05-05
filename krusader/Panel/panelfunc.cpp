@@ -95,7 +95,7 @@ QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
 ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
         panel(parent), fileSystemP(0), urlManuallyEntered(false),
-        _isPaused(true), _refreshAfterPaused(true)
+        _isPaused(true), _refreshAfterPaused(true), _quickSizeCalculator(0)
 {
     history = new DirHistoryQueue(panel);
     delayTimer.setSingleShot(true);
@@ -108,6 +108,8 @@ ListPanelFunc::~ListPanelFunc()
         fileSystemP->deleteLater();
     }
     delete history;
+    if (_quickSizeCalculator)
+        _quickSizeCalculator->deleteLater();
 }
 
 bool ListPanelFunc::isSyncing(const QUrl &url)
@@ -231,7 +233,7 @@ void ListPanelFunc::openUrlInternal(const QUrl &url, const QString& nameToMakeCu
 
 void ListPanelFunc::refresh()
 {
-    panel->inlineRefreshCancel();
+    panel->cancelProgress();
     delayTimer.start(0); // to avoid qApp->processEvents() deadlock situaltion
 }
 
@@ -256,7 +258,7 @@ void ListPanelFunc::doRefresh()
         return ;
     }
 
-    panel->inlineRefreshCancel();
+    panel->cancelProgress();
 
     // if we are not refreshing to current URL
     const bool isEqualUrl = files()->currentDirectory().matches(url, QUrl::StripTrailingSlash);
@@ -294,8 +296,7 @@ void ListPanelFunc::doRefresh()
     disconnect(files(), 0, panel, 0);
     connect(files(), SIGNAL(refreshDone(bool)), panel, SLOT(slotStartUpdate(bool)));
     connect(files(), &FileSystem::fileSystemInfoChanged, panel, &ListPanel::updateFilesystemStats);
-    connect(files(), SIGNAL(refreshJobStarted(KIO::Job*)),
-            panel, SLOT(slotJobStarted(KIO::Job*)));
+    connect(files(), &FileSystem::refreshJobStarted, panel, &ListPanel::slotRefreshJobStarted);
     connect(files(), SIGNAL(error(QString)),
             panel, SLOT(slotFilesystemError(QString)));
 
@@ -991,11 +992,35 @@ void ListPanelFunc::calcSpace()
         panel->view->getSelectedItems(&fileNames);
     }
 
-    SizeCalculator *sizeCalculator = new SizeCalculator(files()->getUrls(fileNames));
+    SizeCalculator *sizeCalculator = createAndConnectSizeCalculator(files()->getUrls(fileNames));
+    KrCalcSpaceDialog::showDialog(panel, sizeCalculator);
+}
+
+void ListPanelFunc::quickCalcSpace()
+{
+    const QString currentName = panel->getCurrentName();
+    if (currentName.isEmpty()) {
+        // current file is ".." dummy, do a verbose calcSpace
+        calcSpace();
+        return;
+    }
+
+    if (!_quickSizeCalculator) {
+        _quickSizeCalculator = createAndConnectSizeCalculator(QList<QUrl>());
+        panel->connectQuickSizeCalculator(_quickSizeCalculator);
+    }
+
+    _quickSizeCalculator->add(files()->getUrl(currentName));
+}
+
+
+SizeCalculator *ListPanelFunc::createAndConnectSizeCalculator(const QList<QUrl> &urls)
+{
+    SizeCalculator *sizeCalculator = new SizeCalculator(urls);
     connect(sizeCalculator, &SizeCalculator::calculated, this, &ListPanelFunc::slotSizeCalculated);
     connect(sizeCalculator, &SizeCalculator::finished, panel, &ListPanel::slotUpdateTotals);
     connect(this, &ListPanelFunc::destroyed, sizeCalculator, &SizeCalculator::deleteLater);
-    KrCalcSpaceDialog::showDialog(panel, sizeCalculator);
+    return sizeCalculator;
 }
 
 void ListPanelFunc::slotSizeCalculated(const QUrl &url, KIO::filesize_t size)

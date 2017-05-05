@@ -79,6 +79,7 @@ class ListPanelActions;
 class ListPanelFunc;
 class MediaButton;
 class PanelPopup;
+class SizeCalculator;
 class SyncBrowseButton;
 
 class ListPanel : public QWidget, public KrPanel
@@ -136,7 +137,7 @@ public slots:
     void panelVisible(); // called when the panel becomes active
     void panelHidden(); // called when panel becomes inactive
     void refreshColors();
-    void inlineRefreshCancel();
+    void cancelProgress(); // cancel filesystem refresh and/or preview (if running)
     void setNavigatorUrl(const QUrl &url);
 
     void openMedia();
@@ -180,7 +181,7 @@ protected slots:
     void slotPreviewJobPercent(KJob *job, unsigned long percent);
     void slotPreviewJobResult(KJob *job);
     // those handle the in-panel refresh notifications
-    void slotJobStarted(KIO::Job* job);
+    void slotRefreshJobStarted(KIO::Job* job);
     void inlineRefreshInfoMessage(KJob* job, const QString &msg);
     void inlineRefreshListResult(KJob* job);
     void inlineRefreshPercent(KJob*, unsigned long);
@@ -229,17 +230,20 @@ protected:
     KrBookmarkButton *bookmarksButton;
     KrSqueezedTextLabel *status, *totals, *freeSpace;
 
+    QProgressBar *quickSizeCalcProgress;
+    QToolButton *cancelQuickSizeCalcButton;
     QProgressBar *previewProgress;
     DirHistoryButton* historyButton;
     MediaButton *mediaButton;
     SyncBrowseButton *syncBrowseButton;
-    QToolButton *inlineRefreshCancelButton;
+    QToolButton *cancelProgressButton; // for thumbnail previews and filesystem refresh
     KrErrorDisplay *fileSystemError;
 
 private:
     bool handleDropInternal(QDropEvent *event, const QString &dir);
     int popupPosition() const; // 0: West, 1: North, 2: East, 3: South
     void setPopupPosition(int);
+    void connectQuickSizeCalculator(SizeCalculator *sizeCalculator);
 
 private:
     QUrl _navigatorUrl; // distinguish between new user set URL and new custom set URL

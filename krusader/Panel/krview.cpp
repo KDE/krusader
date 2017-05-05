@@ -652,6 +652,10 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         if (viewItem != 0) {
             viewItem->setSelected(!viewItem->isSelected());
 
+            if (viewItem->getFileItem()->isDir() &&
+                KrSelectionMode::getSelectionHandler()->spaceCalculatesDiskSpace()) {
+                op()->emitQuickCalcSpace(viewItem);
+            }
             if (KrSelectionMode::getSelectionHandler()->spaceMovesDown()) {
                 KrViewItem * next = getNext(viewItem);
                 if (next) {

@@ -92,6 +92,7 @@ void UserSelectionMode::init()
     _rightButtonPreservesSelection = group.readEntry("Right Preserves", _RightPreserves);
     _shiftCtrlRightButtonSelects = group.readEntry("ShiftCtrl Right Selects", _ShiftCtrlRight);
     _spaceMovesDown = group.readEntry("Space Moves Down", _SpaceMovesDown);
+    _spaceCalculatesDiskSpace = group.readEntry("Space Calc Space", _SpaceCalcSpace);
     _insertMovesDown = group.readEntry("Insert Moves Down", _InsertMovesDown);
     _showContextMenu = (group.readEntry("Immediate Context Menu", _ImmediateContextMenu) ? -1 : 500);
 }

@@ -49,6 +49,7 @@ class FileItem;
 class FileSystem;
 class KrViewItem;
 class ListPanel;
+class SizeCalculator;
 
 class ListPanelFunc : public QObject
 {
@@ -97,6 +98,8 @@ public slots:
     void testArchive();
     /** Calculate the occupied space of the currently selected items and show a dialog. */
     void calcSpace();
+    /** Calculate the occupied space of the current item without dialog. */
+    void quickCalcSpace();
     void properties();
     void cut() {
         copyToClipboard(true);
@@ -146,20 +149,22 @@ protected:
                          bool immediately, bool manuallyEntered);
     void runCommand(QString cmd);
 
-    ListPanel*           panel;     // our ListPanel
-    DirHistoryQueue*     history;
-    FileSystem*          fileSystemP;      // pointer to fileSystem.
-    QTimer               delayTimer;
-    QUrl                 syncURL;
-    QUrl                 fileToCreate; // file that's to be created by editNewFile()
-    bool                 urlManuallyEntered;
+    ListPanel*               panel;     // our ListPanel
+    DirHistoryQueue*         history;
+    FileSystem*              fileSystemP;      // pointer to fileSystem.
+    QTimer                   delayTimer;
+    QUrl                     syncURL;
+    QUrl                     fileToCreate; // file that's to be created by editNewFile()
+    bool                     urlManuallyEntered;
 
     static QPointer<ListPanelFunc> copyToClipboardOrigin;
 
 private:
     bool getSelectedFiles(QStringList& args);
+    SizeCalculator *createAndConnectSizeCalculator(const QList<QUrl> &urls);
     bool _isPaused; // do not refresh while panel is not visible
     bool _refreshAfterPaused; // refresh after not paused anymore
+    QPointer<SizeCalculator> _quickSizeCalculator;
 };
 
 #endif
