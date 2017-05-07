@@ -101,7 +101,7 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
         {"Startup", "Update Default Panel Settings", _RememberPos, i18n("Update default panel settings"), true,
             i18n("When settings of a panel are changed, save them as the default for new panels of the same type.") },
         {"Startup", "Start To Tray", _StartToTray, i18n("Start to tray"), false,
-            i18n("Krusader starts to tray (if minimize to tray is set), without showing the main window") },
+            i18n("Krusader starts to tray, without showing the main window") },
     };
 
     KonfiguratorCheckBoxGroup *uiSettingsGroup = createCheckBoxGroup(1, 0, uiSettings, 3, uiGrp);

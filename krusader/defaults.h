@@ -67,7 +67,7 @@
 // Warn On Exit ////////
 #define _WarnOnExit     false
 // Minimize To Tray ////
-#define _MinimizeToTray false
+#define _ShowTrayIcon false
 // Mark Dirs ///////////
 #define _MarkDirs       false
 // Show Hidden /////////

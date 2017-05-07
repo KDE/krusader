@@ -14,6 +14,7 @@ target_link_libraries(UserAction
     KF5::CoreAddons
     KF5::I18n
     KF5::IconThemes
+    KF5::Notifications
     KF5::Parts
     KF5::WidgetsAddons
     KF5::XmlGui

@@ -118,7 +118,7 @@ QAction *Krusader::actShowJSConsole = 0;
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
                 Qt::Window | Qt::WindowTitleHint | Qt::WindowContextHelpButtonHint),
-        _listPanelActions(0), isStarting(true), isExiting(false)
+        _listPanelActions(0), isStarting(true), isExiting(false), _quit(false)
 {
     // create the "krusader"
     App = this;
@@ -174,9 +174,9 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     // init the protocol handler
     KgProtocols::init();
 
-    KConfigGroup gl(krConfig, "Look&Feel");
-    FileItem::loadUserDefinedFolderIcons(gl.readEntry("Load User Defined Folder Icons",
-                                                         _UserDefinedFolderIcons));
+    const KConfigGroup lookFeelGroup(krConfig, "Look&Feel");
+    FileItem::loadUserDefinedFolderIcons(lookFeelGroup.readEntry("Load User Defined Folder Icons",
+                                                                 _UserDefinedFolderIcons));
 
     const KConfigGroup startupGroup(krConfig, "Startup");
     QString startProfile = startupGroup.readEntry("Starter Profile Name", QString());
@@ -209,19 +209,9 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     status->setWhatsThis(i18n("Statusbar will show basic information "
                               "about file below mouse pointer."));
 
-    // create tray icon (even if not shown)
-    sysTray = new QSystemTrayIcon(this);
-    sysTray->setIcon(krLoader->loadIcon(privIcon(), KIconLoader::Panel, 22));
-    QMenu *trayMenu = new QMenu(this);
-    trayMenu->addSection(QGuiApplication::applicationDisplayName()); // show "title"
-    QAction *restoreAction = new QAction(i18n("Restore"), this);
-    connect(restoreAction, SIGNAL(triggered()), SLOT(showFromTray()));
-    trayMenu->addAction(restoreAction);
-    trayMenu->addSeparator();
-    trayMenu->addAction(actionCollection()->action(KStandardAction::name(KStandardAction::Quit)));
-    sysTray->setContextMenu(trayMenu);
-    // tray is only visible if main window is hidden, so action is always "show"
-    connect(sysTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), SLOT(showFromTray()));
+    // create tray icon (if needed)
+    const bool startToTray = startupGroup.readEntry("Start To Tray", _StartToTray);
+    setTray(startToTray);
 
     setCentralWidget(MAIN_VIEW);
 
@@ -281,10 +271,8 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
         resize(cfg.readEntry("Start Size", _StartSize));
     }
 
-    // view initialized; show window or tray
-    if (startupGroup.readEntry("Start To Tray", _StartToTray)) {
-        sysTray->show();
-    } else {
+    // view initialized; show window or only tray
+    if (!startToTray) {
         show();
     }
 
@@ -312,12 +300,31 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
 Krusader::~Krusader()
 {
     KrTrashHandler::stopWatcher();
-    if (!isExiting)    // save the settings if it was not saved (SIGTERM)
+    if (!isExiting) // save the settings if it was not saved (SIGTERM received)
         saveSettings();
 
     delete MAIN_VIEW;
     MAIN_VIEW = 0;
     App = 0;
+}
+
+void Krusader::setTray(bool forceCreation)
+{
+    const bool trayIsNeeded = forceCreation || KConfigGroup(krConfig, "Look&Feel")
+                                               .readEntry("Minimize To Tray", _ShowTrayIcon);
+    if (!sysTray && trayIsNeeded) {
+        sysTray = new KStatusNotifierItem(this);
+        sysTray->setIconByName(privIcon());
+        // we have our own "quit" method, re-connect
+        QAction *quitAction = sysTray->action(QStringLiteral("quit"));
+        if (quitAction) {
+            disconnect(quitAction, &QAction::triggered, nullptr, nullptr);
+            connect(quitAction, &QAction::triggered, this, &Krusader::quit);
+        }
+    } else if (sysTray && !trayIsNeeded) {
+        // user does not want tray anymore :(
+        sysTray->deleteLater();
+    }
 }
 
 bool Krusader::versionControl()
@@ -365,46 +372,6 @@ void Krusader::statusBarUpdate(const QString& mess)
     // change the message on the statusbar for 5 seconds
     if (statusBar()->isVisible())
         statusBar()->showMessage(mess, 5000);
-}
-
-void Krusader::showFromTray() {
-    setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
-    show();
-    sysTray->hide();
-}
-
-void Krusader::changeEvent(QEvent *event) {
-    QMainWindow::changeEvent(event);
-    if (isExiting)
-        return;
-
-    // toggle tray when minimizing (if enabled)
-    if(event->type() == QEvent::WindowStateChange) {
-        if(isMinimized()) {
-            KConfigGroup group(krConfig, "Look&Feel");
-            if (group.readEntry("Minimize To Tray", _MinimizeToTray)) {
-                // TODO tray created again to prevent bug in kf5,
-                // remove this if bug 365105 is resolved
-                sysTray->deleteLater();
-                sysTray = new QSystemTrayIcon(this);
-                sysTray->setIcon(krLoader->loadIcon(privIcon(), KIconLoader::Panel, 22));
-                QMenu *trayMenu = new QMenu(this);
-                trayMenu->addSection(QGuiApplication::applicationDisplayName()); // show "title"
-                QAction *restoreAction = new QAction(i18n("Restore"), this);
-                connect(restoreAction, SIGNAL(triggered()), SLOT(showFromTray()));
-                trayMenu->addAction(restoreAction);
-                trayMenu->addSeparator();
-                trayMenu->addAction(actionCollection()->action(KStandardAction::name(KStandardAction::Quit)));
-                sysTray->setContextMenu(trayMenu);
-                connect(sysTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), SLOT(showFromTray()));
-
-                sysTray->show();
-                hide();
-            }
-        } else if(isVisible()) {
-            sysTray->hide();
-        }
-    }
 }
 
 bool Krusader::event(QEvent *e) {
@@ -490,6 +457,29 @@ void Krusader::saveSettings() {
     krConfig->sync();
 }
 
+void Krusader::closeEvent(QCloseEvent *event)
+{
+    if (!sysTray || _quit) {
+        _quit = false; // in case quit will be aborted
+        KParts::MainWindow::closeEvent(event); // (may) quit, continues with queryClose()...
+    } else {
+        // close window to tray
+        event->ignore();
+        hide();
+    }
+}
+
+void Krusader::showEvent(QShowEvent *event)
+{
+    const KConfigGroup lookFeelGroup(krConfig, "Look&Feel");
+    if (sysTray && !lookFeelGroup.readEntry("Minimize To Tray", _ShowTrayIcon)) {
+        // restoring from "start to tray", tray icon is not needed anymore
+        sysTray->deleteLater();
+    }
+
+    KParts::MainWindow::showEvent(event);
+}
+
 bool Krusader::queryClose() {
     if (isStarting || isExiting)
         return false;
@@ -561,7 +551,7 @@ void Krusader::acceptClose() {
     QDBusConnection dbus = QDBusConnection::sessionBus();
     dbus.unregisterObject("/Instances/" + Krusader::AppName);
 
-    isExiting = true; // this will also kill the pending jobs
+    isExiting = true;
 }
 
 // the please wait dialog functions
@@ -593,6 +583,12 @@ const char* Krusader::privIcon() {
         return "krusader_user";
     else
         return "krusader_root";
+}
+
+void Krusader::quit()
+{
+    _quit = true; // remember that we want to quit and not close to tray
+    close(); // continues with closeEvent()...
 }
 
 void Krusader::moveToTop() {

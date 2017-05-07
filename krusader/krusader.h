@@ -41,21 +41,22 @@
 // QtCore
 #include <QCommandLineParser>
 #include <QEvent>
+#include <QPointer>
 #include <QStringList>
 #include <QTimer>
 // QtGui
-#include <QShowEvent>
-#include <QResizeEvent>
 #include <QHideEvent>
 #include <QMoveEvent>
+#include <QResizeEvent>
+#include <QShowEvent>
 // QtWidgets
 #include <QAction>
-#include <QSystemTrayIcon>
 
-#include <KParts/MainWindow>
-#include <KConfigWidgets/KStandardAction>
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
+#include <KConfigWidgets/KStandardAction>
+#include <KNotifications/KStatusNotifierItem>
+#include <KParts/MainWindow>
 
 #ifdef __KJSEMBED__
 class KrJS;
@@ -83,6 +84,8 @@ class Krusader : public KParts::MainWindow, public KrMainWindow
 public:
     explicit Krusader(const QCommandLineParser &parser);
     virtual ~Krusader();
+
+    void setTray(bool forceCreation = false);
 
     // KrMainWindow implementation
     virtual QWidget *widget() Q_DECL_OVERRIDE {
@@ -119,8 +122,8 @@ public:
      */
     static const char* privIcon();
 
-
 public slots:
+    void quit();
     void moveToTop();
     void statusBarUpdate(const QString& mess);
     // in use by Krusader only
@@ -132,13 +135,13 @@ protected slots:
     void doOpenUrl();
     void slotGotNewStartup(const KStartupInfoId &id, const KStartupInfoData &data);
     void slotGotRemoveStartup(const KStartupInfoId &id, const KStartupInfoData &data);
-    void showFromTray();
 
 protected:
+    void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
+    void showEvent(QShowEvent *event) Q_DECL_OVERRIDE;
     bool queryClose() Q_DECL_OVERRIDE;
     void setupActions();
     bool versionControl();  // handle version differences in krusaderrc
-    void changeEvent(QEvent *even) Q_DECL_OVERRIDE;
     bool event(QEvent *) Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
@@ -174,11 +177,12 @@ private:
     ViewActions *_viewActions;
     ListPanelActions *_listPanelActions;
     TabActions *_tabActions;
-    QSystemTrayIcon *sysTray;
+    QPointer<KStatusNotifierItem> sysTray;
     bool         isStarting;
     bool         isExiting;
     QTimer      _openUrlTimer;
     QString     _urlToOpen;
+    bool        _quit;
 };
 
 

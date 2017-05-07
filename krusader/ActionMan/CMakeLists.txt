@@ -18,6 +18,7 @@ target_link_libraries(ActionMan
     KF5::IconThemes
     KF5::KIOCore
     KF5::KIOWidgets
+    KF5::Notifications
     KF5::Parts
     KF5::WidgetsAddons
 )
