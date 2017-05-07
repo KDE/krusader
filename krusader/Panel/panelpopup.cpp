@@ -45,7 +45,7 @@
 
 
 PanelPopup::PanelPopup(QSplitter *parent, bool left, KrMainWindow *mainWindow) : QWidget(parent),
-        _left(left), _hidden(true), _mainWindow(mainWindow), stack(0), viewer(0), pjob(0), splitterSizes()
+        _left(left), _hidden(true), _mainWindow(mainWindow), stack(0), imageFilePreview(0), pjob(0), splitterSizes()
 {
     splitter = parent;
     QGridLayout * layout = new QGridLayout(this);
@@ -119,16 +119,16 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, KrMainWindow *mainWindow) :
     connect(tree, SIGNAL(activated(QUrl)), this, SLOT(treeSelection()));
 
     // create the quickview part ------
-    viewer = new KImageFilePreview(stack);
-    viewer->setProperty("KrusaderWidgetId", QVariant(Preview));
-    stack->addWidget(viewer);
+    imageFilePreview = new KImageFilePreview(stack);
+    imageFilePreview->setProperty("KrusaderWidgetId", QVariant(Preview));
+    stack->addWidget(imageFilePreview);
 
     // create the panelview
 
-    panelviewer = new PanelViewer(stack);
-    panelviewer->setProperty("KrusaderWidgetId", QVariant(View));
-    stack->addWidget(panelviewer);
-    connect(panelviewer, SIGNAL(openUrlRequest(QUrl)), this, SLOT(handleOpenUrlRequest(QUrl)));
+    fileViewer = new PanelViewer(stack);
+    fileViewer->setProperty("KrusaderWidgetId", QVariant(View));
+    stack->addWidget(fileViewer);
+    connect(fileViewer, SIGNAL(openUrlRequest(QUrl)), this, SLOT(handleOpenUrlRequest(QUrl)));
 
     // create the disk usage view
 
@@ -182,7 +182,7 @@ void PanelPopup::hide()
         splitterSizes = splitter->sizes();
     QWidget::hide();
     _hidden = true;
-    if (currentPage() == View) panelviewer->closeUrl();
+    if (currentPage() == View) fileViewer->closeUrl();
     if (currentPage() == DskUsage) diskusage->closeUrl();
 }
 
@@ -191,11 +191,11 @@ void PanelPopup::focusInEvent(QFocusEvent*)
     switch (currentPage()) {
     case Preview:
         if (!isHidden())
-            viewer->setFocus();
+            imageFilePreview->setFocus();
         break;
     case View:
-        if (!isHidden() && panelviewer->part() && panelviewer->part()->widget())
-            panelviewer->part()->widget()->setFocus();
+        if (!isHidden() && fileViewer->part() && fileViewer->part()->widget())
+            fileViewer->part()->widget()->setFocus();
         break;
     case DskUsage:
         if (!isHidden() && diskusage->getWidget() && diskusage->getWidget()->currentWidget())
@@ -235,16 +235,16 @@ void PanelPopup::tabSelected(int id)
             tree->setCurrentUrl(ACTIVE_PANEL->virtualPath());
         break;
     case Preview:
-        stack->setCurrentWidget(viewer);
+        stack->setCurrentWidget(imageFilePreview);
         dataLine->setText(i18n("Preview:"));
         update(fileitem);
         break;
     case View:
-        stack->setCurrentWidget(panelviewer);
+        stack->setCurrentWidget(fileViewer);
         dataLine->setText(i18n("View:"));
         update(fileitem);
-        if (!isHidden() && panelviewer->part() && panelviewer->part()->widget())
-            panelviewer->part()->widget()->setFocus();
+        if (!isHidden() && fileViewer->part() && fileViewer->part()->widget())
+            fileViewer->part()->widget()->setFocus();
         break;
     case DskUsage:
         stack->setCurrentWidget(diskusage);
@@ -254,7 +254,7 @@ void PanelPopup::tabSelected(int id)
             diskusage->getWidget()->currentWidget()->setFocus();
         break;
     }
-    if (id != View) panelviewer->closeUrl();
+    if (id != View) fileViewer->closeUrl();
 }
 
 // decide which part to update, if at all
@@ -269,14 +269,14 @@ void PanelPopup::update(const FileItem *fileitem)
 
     switch (currentPage()) {
     case Preview:
-        viewer->showPreview(url);
+        imageFilePreview->showPreview(url);
         dataLine->setText(i18n("Preview: %1", url.fileName()));
         break;
     case View:
         if(fileitem && !fileitem->isDir() && fileitem->isReadable())
-            panelviewer->openUrl(fileitem->getUrl());
+            fileViewer->openUrl(fileitem->getUrl());
         else
-            panelviewer->closeUrl();
+            fileViewer->closeUrl();
         dataLine->setText(i18n("View: %1", url.fileName()));
         break;
     case DskUsage: {

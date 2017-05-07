@@ -42,11 +42,26 @@ class KrFileTreeView;
 class FileItem;
 class KrMainWindow;
 
+/**
+ * Additional side widget showing various meta information for the current file/directories.
+ */
 class PanelPopup: public QWidget
 {
     Q_OBJECT
 
-    enum Parts { Tree, Preview, View, DskUsage, Last = 0xFF };
+    enum Parts {
+        /** Folder tree view */
+        Tree,
+        /** Preview image for current file/directory */
+        Preview,
+        /** File view: show file in most appropriate, read-only editor */
+        View,
+        /** Disk usage for current directory structure */
+        DskUsage,
+        /** Dummy */
+        Last = 0xFF
+    };
+
 public:
     PanelPopup(QSplitter *splitter, bool left, KrMainWindow *mainWindow);
     ~PanelPopup();
@@ -79,14 +94,14 @@ protected:
     bool _hidden;
     KrMainWindow *_mainWindow;
     QStackedWidget *stack;
-    KImageFilePreview *viewer;
+    KImageFilePreview *imageFilePreview;
     KrSqueezedTextLabel *dataLine;
     QPointer<KIO::PreviewJob> pjob;
     KrFileTreeView *tree;
     QToolButton *treeBtn, *previewBtn, *viewerBtn, *duBtn;
     QButtonGroup *btns;
     KComboBox *quickSelectCombo;
-    PanelViewer *panelviewer;
+    PanelViewer *fileViewer;
     DiskUsageViewer *diskusage;
     QList<int> splitterSizes;
     QSplitter *splitter;
