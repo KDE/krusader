@@ -151,7 +151,7 @@ void SizeCalculator::slotStatResult(KJob *job)
     m_totalDirs++;
 
     m_directorySizeJob = KIO::directorySize(url);
-    connect(m_directorySizeJob, &KIO::Job::result, this, &SizeCalculator::slotDirectorySizeResult);
+    connect(m_directorySizeJob.data(), &KIO::Job::result, this, &SizeCalculator::slotDirectorySizeResult);
 }
 
 void SizeCalculator::slotDirectorySizeResult(KJob *)
