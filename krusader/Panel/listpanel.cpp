@@ -1208,6 +1208,11 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
     changeType(cfg.readEntry("Type", defaultPanelType()));
     view->restoreSettings(KConfigGroup(&cfg, "View"));
 
+    // "locked" property must be set after URL path is restored!
+    // This panel can be reused when loading a profile,
+    // so we reset its properties before calling openUrl().
+    setProperties(0);
+
     _lastLocalPath = ROOT_DIR;
     if(func->history->restore(KConfigGroup(&cfg, "History"))) {
         func->refresh();
@@ -1220,7 +1225,6 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
 
     setJumpBack(func->history->currentUrl());
 
-    // "locked" property must be set after URL path is restored!
     setProperties(cfg.readEntry("Properties", 0));
 
     if (cfg.hasKey("PopupPosition")) { // popup was visible, restore

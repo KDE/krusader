@@ -422,7 +422,7 @@ bool KrusaderView::isTerminalEmulatorFullscreen() {
 
 void KrusaderView::profiles(QString profileName)
 {
-    ProfileManager profileManager("Panel");
+    ProfileManager profileManager("Panel", this);
     profileManager.hide();
     connect(&profileManager, SIGNAL(saveToProfile(QString)), this, SLOT(savePanelProfiles(QString)));
     connect(&profileManager, SIGNAL(loadFromProfile(QString)), this, SLOT(loadPanelProfiles(QString)));
