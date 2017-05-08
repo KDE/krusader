@@ -714,7 +714,6 @@ void ListPanel::slotFocusOnMe(bool focus)
 
     urlNavigator->setActive(focus);
     refreshColors();
-    emit refreshPathLabel();
 
     krApp->setUpdatesEnabled(true);
 }

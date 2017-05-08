@@ -200,8 +200,6 @@ signals:
     void activate(); // emitted when the user changes panels
     void finishedDragging(); // NOTE: currently not used
     void refreshColors(bool active);
-    // emitted when we have to update the path label width
-    void refreshPathLabel();
 
 protected:
     int panelType;
