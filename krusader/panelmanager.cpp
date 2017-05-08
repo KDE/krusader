@@ -206,6 +206,7 @@ void PanelManager::loadSettings(KConfigGroup config)
 
         ListPanel *panel = i < numTabsOld ? _tabbar->getPanel(i) : addPanel(false, grpTab);
         panel->restoreSettings(grpTab);
+        _tabbar->updateTab(panel);
     }
 
     for(int i = numTabsOld - 1; i >= numTabsNew && i > 0; i--)
@@ -436,8 +437,10 @@ int PanelManager::findTab(QUrl url)
 
 void PanelManager::slotLockTab()
 {
-    currentPanel()->gui->setLocked(!currentPanel()->gui->isLocked());
+    ListPanel *panel = _self;
+    panel->gui->setLocked(!panel->gui->isLocked());
     _actions->refreshActions();
+    _tabbar->updateTab(panel);
 }
 
 void PanelManager::newTabs(const QStringList& urls) {
