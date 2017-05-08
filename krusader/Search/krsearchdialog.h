@@ -87,8 +87,16 @@ private:
     void viewCurrent();
     void compareByContent();
 
+    /**
+     * Placing search query to clipboard is optional (opt-in).
+     * So user has clipboard untact by default when opening found documents,
+     * but can enable it persistently by checking "Query to clipboard" checkbox.
+     */
+    void tryPlaceSearchQueryToClipboard();
+
 private:
     ProfileManager *profileManager;
+    QCheckBox *searchTextToClipboard;
 
     FilterTabs * filterTabs;
     GeneralFilter * generalFilter;

@@ -160,6 +160,16 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     profileManager = new ProfileManager("SearcherProfile", this);
     buttonsLayout->addWidget(profileManager);
 
+    searchTextToClipboard = new QCheckBox(this);
+    searchTextToClipboard->setText(i18n("Query to clipboard"));
+    searchTextToClipboard->setToolTip(i18n("Place search text to clipboard when a found file is opened."));
+    searchTextToClipboard->setCheckState(static_cast<Qt::CheckState>(group.readEntry("QueryToClipboard", 0)));
+    connect(searchTextToClipboard, &QCheckBox::stateChanged, this, [=](int state) {
+        KConfigGroup group(krConfig, "Search");
+        group.writeEntry("QueryToClipboard", state);
+    });
+    buttonsLayout->addWidget(searchTextToClipboard);
+
     QSpacerItem* spacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     buttonsLayout->addItem(spacer);
 
@@ -523,13 +533,11 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
         if ((e->key() | e->modifiers()) == (Qt::CTRL | Qt::Key_I)) {
             searchBar->showBar(KrSearchBar::MODE_FILTER);
         } else if (e->key() == Qt::Key_F4) {
-            if (!generalFilter->containsText->currentText().isEmpty() && QApplication::clipboard()->text() != generalFilter->containsText->currentText())
-                QApplication::clipboard()->setText(generalFilter->containsText->currentText());
+            tryPlaceSearchQueryToClipboard();
             editCurrent();
             return;
         } else if (e->key() == Qt::Key_F3) {
-            if (!generalFilter->containsText->currentText().isEmpty() && QApplication::clipboard()->text() != generalFilter->containsText->currentText())
-                QApplication::clipboard()->setText(generalFilter->containsText->currentText());
+            tryPlaceSearchQueryToClipboard();
             viewCurrent();
             return;
         } else if (e->key() == Qt::Key_F10) {
@@ -661,3 +669,11 @@ void KrSearchDialog::copyToClipBoard()
     QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);
 }
 
+void KrSearchDialog::tryPlaceSearchQueryToClipboard()
+{
+    if (searchTextToClipboard->isChecked()
+            && !generalFilter->containsText->currentText().isEmpty()
+            && QApplication::clipboard()->text() != generalFilter->containsText->currentText()) {
+        QApplication::clipboard()->setText(generalFilter->containsText->currentText());
+    }
+}
