@@ -183,6 +183,10 @@ private:
     int     convertToSeconds(int time, int unit);
     void    convertFromSeconds(int &time, int &unit, int second);
 
+    static QPushButton *createButton(QWidget *parent, const QString &iconName, bool checked,
+                                     const QKeySequence &shortCut, const QString &description,
+                                     const QString &text = QString(), bool textAndIcon = false);
+
 protected:
     virtual void keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
     virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
@@ -241,8 +245,6 @@ protected:
 private:
     static QString dirLabel(); // returns translated '<DIR>'
 
-    QPixmap        fileIcon;
-    QPixmap        folderIcon;
     bool           isComparing;
     bool           wasClosed;
     bool           wasSync;
