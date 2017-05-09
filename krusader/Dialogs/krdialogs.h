@@ -57,8 +57,6 @@ public:
     struct ChooseResult {
         QUrl url;
         bool enqueue;
-        bool preserveAttrs; // NOTE: field never read
-        QUrl baseURL;       // NOTE: field never read
     };
 
     /**
@@ -69,8 +67,7 @@ public:
      */
     static QUrl getFile(const QString &text, const QUrl &url, const QUrl &cwd);
     static QUrl getDir(const QString &text, const QUrl &url, const QUrl &cwd);
-    static ChooseResult getCopyDir(const QString &text, const QUrl &url, const QUrl &cwd,
-                                   bool preserveAttrs = false, const QUrl &baseURL = QUrl());
+    static ChooseResult getCopyDir(const QString &text, const QUrl &url, const QUrl &cwd);
 
 
   private:
@@ -81,33 +78,23 @@ class KUrlRequesterDlgForCopy : public QDialog
 {
     Q_OBJECT
 public:
-    KUrlRequesterDlgForCopy(const QUrl& url, const QString& text, bool presAttrs, QWidget *parent,
-                            bool modal = true, const QUrl &baseURL = QUrl());
+    KUrlRequesterDlgForCopy(const QUrl& url, const QString& text, QWidget *parent,
+                            bool modal = true);
 
     QUrl selectedURL() const;
-    QUrl baseURL() const;
-    bool preserveAttrs();
     bool isQueued() { return queueStart; }
-    bool copyDirStructure();
-    void hidePreserveAttrs() {
-//         preserveAttrsCB->hide();
-    }
 
     KUrlRequester *urlRequester();
 
 protected:
     virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 
-
 private slots:
     void slotQueueButtonClicked();
     void slotTextChanged(const QString &);
-    void slotDirStructCBChanged();
+
 private:
     KUrlRequester *urlRequester_;
-    QComboBox *baseUrlCombo;
-//     QCheckBox *preserveAttrsCB;
-    QCheckBox *copyDirStructureCB;
     QPushButton *okButton;
     bool queueStart = false;
 };
