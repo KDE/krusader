@@ -24,9 +24,9 @@
 // QtCore
 #include <QMap>
 // QtGui
-#include <QResizeEvent>
 #include <QKeyEvent>
 #include <QPixmap>
+#include <QResizeEvent>
 // QtWidgets
 #include <QCheckBox>
 #include <QDialog>
@@ -36,10 +36,10 @@
 #include <KCompletion/KComboBox>
 
 #include "synchronizer.h"
-#include "../GUI/profilemanager.h"
-#include "../GUI/krtreewidget.h"
 #include "../Filter/filtertabs.h"
 #include "../Filter/generalfilter.h"
+#include "../GUI/krtreewidget.h"
+#include "../GUI/profilemanager.h"
 
 class QSpinBox;
 
@@ -52,14 +52,16 @@ public:
     {
     private:
         SynchronizerFileItem *syncItemRef;
-        SyncViewItem         *lastItemRef;
+        SyncViewItem *lastItemRef;
 
     public:
-        SyncViewItem(SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidget * parent, QTreeWidgetItem *after, QString label1,
-                     QString label2 = QString(), QString label3 = QString(), QString label4 = QString(),
+        SyncViewItem(SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidget *parent,
+                     QTreeWidgetItem *after, QString label1, QString label2 = QString(),
+                     QString label3 = QString(), QString label4 = QString(),
                      QString label5 = QString(), QString label6 = QString(),
-                     QString label7 = QString(), QString label8 = QString()) :
-                QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(0) {
+                     QString label7 = QString(), QString label8 = QString())
+            : QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(0)
+        {
             setText(0, label1);
             setText(1, label2);
             setText(2, label3);
@@ -77,11 +79,13 @@ public:
             setColors(txt, base);
         }
 
-        SyncViewItem(SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidgetItem * parent, QTreeWidgetItem *after, QString label1,
-                     QString label2 = QString(), QString label3 = QString(), QString label4 = QString(),
+        SyncViewItem(SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidgetItem *parent,
+                     QTreeWidgetItem *after, QString label1, QString label2 = QString(),
+                     QString label3 = QString(), QString label4 = QString(),
                      QString label5 = QString(), QString label6 = QString(),
-                     QString label7 = QString(), QString label8 = QString()) :
-                QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(0) {
+                     QString label7 = QString(), QString label8 = QString())
+            : QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(0)
+        {
             setText(0, label1);
             setText(1, label2);
             setText(2, label3);
@@ -99,21 +103,14 @@ public:
             setColors(txt, base);
         }
 
-        ~SyncViewItem() {
-            syncItemRef->setUserData(0);
-        }
+        ~SyncViewItem() { syncItemRef->setUserData(0); }
 
-        inline SynchronizerFileItem * synchronizerItemRef()       {
-            return syncItemRef;
-        }
-        inline SyncViewItem         * lastItem()                  {
-            return lastItemRef;
-        }
-        inline void                   setLastItem(SyncViewItem*s) {
-            lastItemRef = s;
-        }
+        inline SynchronizerFileItem *synchronizerItemRef() { return syncItemRef; }
+        inline SyncViewItem *lastItem() { return lastItemRef; }
+        inline void setLastItem(SyncViewItem *s) { lastItemRef = s; }
 
-        void setColors(QColor fore, QColor back) {
+        void setColors(QColor fore, QColor back)
+        {
             QBrush textColor(fore);
             QBrush baseColor(back);
 
@@ -128,13 +125,12 @@ public:
 
 public:
     // if rightDirectory is null, leftDirectory is actually the profile name to load
-    SynchronizerGUI(QWidget* parent,  QUrl leftDirectory, QUrl rightDirectory = QUrl(), QStringList selList = QStringList());
-    SynchronizerGUI(QWidget* parent,  QString profile);
+    SynchronizerGUI(QWidget *parent, QUrl leftDirectory, QUrl rightDirectory = QUrl(),
+                    QStringList selList = QStringList());
+    SynchronizerGUI(QWidget *parent, QString profile);
     ~SynchronizerGUI();
 
-    inline bool wasSynchronization()    {
-        return wasSync;
-    }
+    inline bool wasSynchronization() { return wasSync; }
 
 public slots:
     void rightMouseClicked(QTreeWidgetItem *, const QPoint &);
@@ -165,13 +161,13 @@ private:
     void initGUI(QString profile, QUrl leftURL, QUrl rightURL, QStringList selList);
 
     QString convertTime(time_t time) const;
-    void    setMarkFlags();
-    void    disableMarkButtons();
-    void    enableMarkButtons();
-    void    copyToClipboard(bool isLeft);
+    void setMarkFlags();
+    void disableMarkButtons();
+    void enableMarkButtons();
+    void copyToClipboard(bool isLeft);
 
-    int     convertToSeconds(int time, int unit);
-    void    convertFromSeconds(int &time, int &unit, int second);
+    int convertToSeconds(int time, int unit);
+    void convertFromSeconds(int &time, int &unit, int second);
 
     static QPushButton *createButton(QWidget *parent, const QString &iconName, bool checked,
                                      const QKeySequence &shortCut, const QString &description,

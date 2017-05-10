@@ -22,8 +22,8 @@
 #define SYNCHRONIZERDIRLIST_H
 
 // QtCore
-#include <QObject>
 #include <QHash>
+#include <QObject>
 
 #include <KIO/Job>
 
@@ -41,14 +41,12 @@ public:
     FileItem *first();
     FileItem *next();
 
-    inline const QString & url() {
-        return currentUrl;
-    }
+    inline const QString &url() { return currentUrl; }
     bool load(const QString &urlIn, bool wait = false);
 
 public slots:
 
-    void slotEntries(KIO::Job * job, const KIO::UDSEntryList& entries);
+    void slotEntries(KIO::Job *job, const KIO::UDSEntryList &entries);
     void slotListResult(KJob *job);
 
 signals:

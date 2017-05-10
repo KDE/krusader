@@ -35,7 +35,7 @@ class FeedToListBoxDialog : public QDialog
     Q_OBJECT
 
 public:
-    FeedToListBoxDialog(QWidget*, Synchronizer *, QTreeWidget *, bool);
+    FeedToListBoxDialog(QWidget *, Synchronizer *, QTreeWidget *, bool);
     virtual ~FeedToListBoxDialog() {}
 
     bool isAccepted() {
@@ -46,13 +46,13 @@ protected slots:
     void slotOk();
 
 private:
-    Synchronizer * synchronizer;
-    QTreeWidget  * syncList;
-    QCheckBox    * cbSelected;
-    QLineEdit    * lineEdit;
-    QComboBox    * sideCombo;
-    bool           equalAllowed;
-    bool           accepted;
+    Synchronizer *synchronizer;
+    QTreeWidget  *syncList;
+    QCheckBox    *cbSelected;
+    QLineEdit    *lineEdit;
+    QComboBox    *sideCombo;
+    bool          equalAllowed;
+    bool          accepted;
 };
 
 #endif /* __FEED_TO_LISTBOX_DIALOG__ */

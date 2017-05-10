@@ -19,6 +19,10 @@
  *****************************************************************************/
 
 #include "synchronizergui.h"
+
+#include "synchronizedialog.h"
+#include "feedtolistboxdialog.h"
+#include "synchronizercolors.h"
 #include "../krglobal.h"
 #include "../filelisticon.h"
 #include "../defaults.h"
@@ -31,9 +35,6 @@
 #include "../FileSystem/krquery.h"
 #include "../krservices.h"
 #include "../krslots.h"
-#include "synchronizedialog.h"
-#include "feedtolistboxdialog.h"
-#include "synchronizercolors.h"
 
 // QtCore
 #include <QEventLoop>

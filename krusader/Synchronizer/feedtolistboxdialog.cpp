@@ -19,6 +19,7 @@
  *****************************************************************************/
 
 #include "feedtolistboxdialog.h"
+
 #include "synchronizer.h"
 #include "synchronizergui.h"
 #include "../FileSystem/filesystem.h"
@@ -29,23 +30,23 @@
 
 // QtWidgets
 #include <QCheckBox>
-#include <QDialogButtonBox>
-#include <QLineEdit>
-#include <QLabel>
 #include <QComboBox>
+#include <QDialogButtonBox>
+#include <QLabel>
+#include <QLineEdit>
 #include <QVBoxLayout>
 
 #include <KConfigCore/KConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
-#define  S_LEFT        0
-#define  S_RIGHT       1
-#define  S_BOTH        2
+#define S_LEFT  0
+#define S_RIGHT 1
+#define S_BOTH  2
 
-FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
-        QTreeWidget *syncL, bool equOK) : QDialog(parent),
-        synchronizer(sync), syncList(syncL), equalAllowed(equOK), accepted(false)
+FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync, QTreeWidget *syncL,
+                                         bool equOK)
+    : QDialog(parent), synchronizer(sync), syncList(syncL), equalAllowed(equOK), accepted(false)
 {
 
     setWindowTitle(i18n("Krusader::Feed to listbox"));
@@ -63,7 +64,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
 
     QTreeWidgetItemIterator it(syncList);
     while (*it) {
-        SynchronizerGUI::SyncViewItem *item = (SynchronizerGUI::SyncViewItem *) * it;
+        SynchronizerGUI::SyncViewItem *item = (SynchronizerGUI::SyncViewItem *)*it;
         SynchronizerFileItem *syncItem = item->synchronizerItemRef();
 
         if (syncItem && syncItem->isMarked()) {
@@ -112,7 +113,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
     lineEdit->selectAll();
     mainLayout->addWidget(lineEdit);
 
-    QHBoxLayout * hbox = new QHBoxLayout;
+    QHBoxLayout *hbox = new QHBoxLayout;
 
     QLabel *label2 = new QLabel(i18n("Side to feed:"), this);
     label2->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -147,7 +148,8 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
 
     mainLayout->addLayout(hbox);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    QDialogButtonBox *buttonBox =
+        new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
 
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
@@ -168,8 +170,8 @@ void FeedToListBoxDialog::slotOk()
     QList<QUrl> urlList;
 
     QTreeWidgetItemIterator it(syncList);
-    for (;*it; it++) {
-        SynchronizerGUI::SyncViewItem *item = (SynchronizerGUI::SyncViewItem *) * it;
+    for (; *it; it++) {
+        SynchronizerGUI::SyncViewItem *item = (SynchronizerGUI::SyncViewItem *)*it;
         SynchronizerFileItem *syncItem = item->synchronizerItemRef();
 
         if (!syncItem || !syncItem->isMarked())
@@ -180,14 +182,18 @@ void FeedToListBoxDialog::slotOk()
             continue;
 
         if ((side == S_BOTH || side == S_LEFT) && syncItem->existsInLeft()) {
-            QString leftDirName = syncItem->leftDirectory().isEmpty() ? "" : syncItem->leftDirectory() + '/';
-            QUrl leftURL = Synchronizer::fsUrl(synchronizer->leftBaseDirectory() + leftDirName + syncItem->leftName());
+            QString leftDirName =
+                syncItem->leftDirectory().isEmpty() ? "" : syncItem->leftDirectory() + '/';
+            QUrl leftURL = Synchronizer::fsUrl(synchronizer->leftBaseDirectory() + leftDirName +
+                                               syncItem->leftName());
             urlList.push_back(leftURL);
         }
 
         if ((side == S_BOTH || side == S_RIGHT) && syncItem->existsInRight()) {
-            QString rightDirName = syncItem->rightDirectory().isEmpty() ? "" : syncItem->rightDirectory() + '/';
-            QUrl leftURL = Synchronizer::fsUrl(synchronizer->rightBaseDirectory() + rightDirName + syncItem->rightName());
+            QString rightDirName =
+                syncItem->rightDirectory().isEmpty() ? "" : syncItem->rightDirectory() + '/';
+            QUrl leftURL = Synchronizer::fsUrl(synchronizer->rightBaseDirectory() + rightDirName +
+                                               syncItem->rightName());
             urlList.push_back(leftURL);
         }
     }
@@ -203,4 +209,3 @@ void FeedToListBoxDialog::slotOk()
     accepted = true;
     accept();
 }
-
