@@ -37,6 +37,7 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
+#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KActionMenu>
 
 #define DISPLAY(X) (X.isLocalFile() ? X.path() : X.toDisplayString())
@@ -70,32 +71,31 @@ int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent, KrPanel *nextTo)
 {
     int insertIndex = -1;
 
-    if(nextTo) {
-        for(int i = 0; i < count(); i++) {
-            if(getPanel(i) == nextTo) {
+    if (nextTo) {
+        for (int i = 0; i < count(); i++) {
+            if (getPanel(i) == nextTo) {
                 insertIndex = i + 1;
                 break;
             }
         }
     }
 
-    int newId;
-    if(insertIndex != -1) {
-        newId = insertTab(insertIndex, squeeze(DISPLAY(panel->virtualPath())));
-    } else
-        newId = addTab(squeeze(DISPLAY(panel->virtualPath())));
+    const QString text = squeeze(DISPLAY(panel->virtualPath()));
+    const int index = insertIndex != -1 ? insertTab(insertIndex, text) : addTab(text);
 
     QVariant v;
     v.setValue((long long)panel);
-    setTabData(newId, v);
+    setTabData(index, v);
+
+    setIcon(index, panel);
 
     // make sure all tabs lengths are correct
     layoutTabs();
 
     if (setCurrent)
-        setCurrentIndex(newId);
+        setCurrentIndex(index);
 
-    return newId;
+    return index;
 }
 
 ListPanel* PanelTabBar::getPanel(int tabIdx)
@@ -134,6 +134,7 @@ void PanelTabBar::updateTab(ListPanel *panel)
     for (int i = 0; i < count(); i++) {
         if ((ListPanel*)tabData(i).toLongLong() == panel) {
             setTabText(i, squeeze(DISPLAY(panel->virtualPath()), i));
+            setIcon(i, panel);
             break;
         }
     }
@@ -145,9 +146,10 @@ void PanelTabBar::duplicateTab()
     emit newTab(((ListPanel*)tabData(id).toLongLong())->virtualPath());
 }
 
-void PanelTabBar::closeTab()
+void PanelTabBar::setIcon(int index, ListPanel *panel)
 {
-    emit closeCurrentTab();
+    setTabIcon(index,
+               panel->isLocked() ? krLoader->loadIcon("lock", KIconLoader::Toolbar, 16) : QIcon());
 }
 
 QString PanelTabBar::squeeze(QString text, int index)
@@ -265,8 +267,8 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
 
     setCurrentIndex(clickedTab);
 
-    ListPanel *p =  getPanel(clickedTab);
-    if(p)
+    ListPanel *p = getPanel(clickedTab);
+    if (p)
         p->slotFocusOnMe();
 
     if (e->button() == Qt::RightButton) {
