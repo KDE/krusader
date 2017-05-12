@@ -20,6 +20,7 @@
 
 #include "krviewproperties.h"
 #include "../krglobal.h"
+#include "listpanel.h"
 
 // QtGui
 #include <QKeyEvent>
@@ -134,6 +135,8 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
                     && qobject_cast<QDialog*>(QApplication::activeModalWidget()))
                 return false;
             _currentlyEdited = -1;
+            // manually set focus back to panel after rename canceled by focusing another window
+            ACTIVE_PANEL->gui->slotFocusOnMe();
             emit closeEditor(editor, RevertModelCache);
         }
     } else if (event->type() == QEvent::ShortcutOverride) {
