@@ -20,44 +20,45 @@
 
 #include "synchronizergui.h"
 
-#include "synchronizedialog.h"
 #include "feedtolistboxdialog.h"
+#include "synchronizedialog.h"
 #include "synchronizercolors.h"
-#include "../krglobal.h"
-#include "../filelisticon.h"
-#include "../defaults.h"
-#include "../krusaderview.h"
+#include "../Dialogs/krspwidgets.h"
+#include "../FileSystem/krpermhandler.h"
+#include "../FileSystem/krquery.h"
+#include "../KViewer/krviewer.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
-#include "../FileSystem/krpermhandler.h"
-#include "../KViewer/krviewer.h"
-#include "../Dialogs/krspwidgets.h"
-#include "../FileSystem/krquery.h"
+#include "../defaults.h"
+#include "../filelisticon.h"
+#include "../icon.h"
+#include "../krglobal.h"
 #include "../krservices.h"
 #include "../krslots.h"
+#include "../krusaderview.h"
 
 // QtCore
 #include <QEventLoop>
-#include <QRegExp>
-#include <QMimeData>
 #include <QHash>
+#include <QMimeData>
+#include <QRegExp>
 // QtGui
-#include <QResizeEvent>
+#include <QClipboard>
+#include <QCursor>
+#include <QDrag>
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QPixmap>
-#include <QCursor>
-#include <QDrag>
-#include <QClipboard>
+#include <QResizeEvent>
 // QtWidgets
 #include <QApplication>
-#include <QLabel>
+#include <QFrame>
 #include <QGridLayout>
-#include <QLayout>
 #include <QGroupBox>
 #include <QHBoxLayout>
-#include <QFrame>
 #include <QHeaderView>
+#include <QLabel>
+#include <QLayout>
 #include <QMenu>
 #include <QSpinBox>
 
@@ -166,80 +167,83 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     synchronizerGrid->setSpacing(6);
     synchronizerGrid->setContentsMargins(11, 11, 11, 11);
 
-    QGroupBox *compareDirs = new QGroupBox(synchronizerTab);
-    compareDirs->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-    compareDirs->setTitle(i18n("Folder Comparison"));
+    QGroupBox *compareGroupBox = new QGroupBox(synchronizerTab);
+    compareGroupBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    compareGroupBox->setTitle(i18n("Folder Comparison"));
 
-    QGridLayout *grid = new QGridLayout(compareDirs);
+    QGridLayout *grid = new QGridLayout(compareGroupBox);
     grid->setSpacing(6);
     grid->setContentsMargins(11, 11, 11, 11);
 
-    leftDirLabel = new QLabel(compareDirs);
+    leftDirLabel = new QLabel(compareGroupBox);
     leftDirLabel->setAlignment(Qt::AlignHCenter);
     grid->addWidget(leftDirLabel, 0 , 0);
 
-    QLabel *filterLabel = new QLabel(compareDirs);
+    QLabel *filterLabel = new QLabel(compareGroupBox);
     filterLabel->setText(i18n("File &Filter:"));
     filterLabel->setAlignment(Qt::AlignHCenter);
     grid->addWidget(filterLabel, 0 , 1);
 
-    rightDirLabel = new QLabel(compareDirs);
+    rightDirLabel = new QLabel(compareGroupBox);
     rightDirLabel->setAlignment(Qt::AlignHCenter);
     grid->addWidget(rightDirLabel, 0 , 2);
 
     KConfigGroup group(krConfig, "Synchronize");
 
-    leftLocation = new KHistoryComboBox(false, compareDirs);
-    leftLocation->setMaxCount(25);  // remember 25 items
-    leftLocation->setDuplicatesEnabled(false);
-    leftLocation->setEditable(true);
-    leftLocation->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
-    QStringList list = group.readEntry("Left Folder History", QStringList());
-    leftLocation->setHistoryItems(list);
-    KUrlRequester *leftUrlReq = new KUrlRequester(leftLocation, compareDirs);
+    leftLocation = createHistoryComboBox(compareGroupBox, !hasSelectedFiles);
+    leftLocation->setHistoryItems(group.readEntry("Left Folder History", QStringList()));
+    leftLocation->setWhatsThis(i18n("The left base folder used during the synchronization process."));
+    leftDirLabel->setBuddy(leftLocation);
+    KUrlRequester *leftUrlReq = new KUrlRequester(leftLocation, compareGroupBox);
     leftUrlReq->setUrl(leftURL);
     leftUrlReq->setMode(KFile::Directory);
     leftUrlReq->setMinimumWidth(250);
-    grid->addWidget(leftUrlReq, 1 , 0);
-    leftLocation->setWhatsThis(i18n("The left base folder used during the synchronization process."));
     leftUrlReq->setEnabled(!hasSelectedFiles);
-    leftLocation->setEnabled(!hasSelectedFiles);
-    leftDirLabel->setBuddy(leftLocation);
+    grid->addWidget(leftUrlReq, 1 , 0);
 
-    fileFilter = new KHistoryComboBox(false, compareDirs);
+    fileFilter = new KHistoryComboBox(false, compareGroupBox);
     fileFilter->setMaxCount(25);  // remember 25 items
     fileFilter->setDuplicatesEnabled(false);
     fileFilter->setMinimumWidth(100);
     fileFilter->setMaximumWidth(100);
     fileFilter->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    list = group.readEntry("File Filter", QStringList());
-    fileFilter->setHistoryItems(list);
+    fileFilter->setHistoryItems(group.readEntry("File Filter", QStringList()));
     fileFilter->setEditText("*");
     grid->addWidget(fileFilter, 1 , 1);
     filterLabel->setBuddy(fileFilter);
 
-    QString wtFilter = "<p><img src='toolbar|find'></p>" + i18n("<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space (means logical OR) and patterns are excluded from the search using the pipe symbol.</p><p>If the pattern is ended with a slash (<code>*pattern*/</code>), that means that pattern relates to recursive search of folders.<ul><li><code>pattern</code> - means to search those files/folders that name is <code>pattern</code>, recursive search goes through all subfolders independently of the value of <code>pattern</code></li><li><code>pattern/</code> - means to search all files/folders, but recursive search goes through/excludes the folders that name is <code>pattern</code></li></ul></p><p>It is allowed to use quotation marks for names that contain space. Filter <code>\"Program&nbsp;Files\"</code> searches out those files/folders that name is <code>Program&nbsp;Files</code>.</p><p>Examples:</p><ul><li><code>*.o</code></li><li><code>*.h *.c\?\?</code></li><li><code>*.cpp *.h | *.moc.cpp</code></li><li><code>* | .svn/ .git/</code></li></ul><p><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>");
+    const QString wtFilter =
+        "<p><img src='toolbar|find'></p>" +
+        i18n("<p>The filename filtering criteria is defined here.</p><p>You can make use of "
+             "wildcards. Multiple patterns are separated by space (means logical OR) and patterns "
+             "are excluded from the search using the pipe symbol.</p><p>If the pattern is ended "
+             "with a slash (<code>*pattern*/</code>), that means that pattern relates to recursive "
+             "search of folders.<ul><li><code>pattern</code> - means to search those files/folders "
+             "that name is <code>pattern</code>, recursive search goes through all subfolders "
+             "independently of the value of <code>pattern</code></li><li><code>pattern/</code> - "
+             "means to search all files/folders, but recursive search goes through/excludes the "
+             "folders that name is <code>pattern</code></li></ul></p><p>It is allowed to use "
+             "quotation marks for names that contain space. Filter "
+             "<code>\"Program&nbsp;Files\"</code> searches out those files/folders that name is "
+             "<code>Program&nbsp;Files</code>.</p><p>Examples:</p><ul><li><code>*.o</code></"
+             "li><li><code>*.h *.c\?\?</code></li><li><code>*.cpp *.h | "
+             "*.moc.cpp</code></li><li><code>* | .svn/ .git/</code></li></ul><p><b>Note</b>: the "
+             "search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>");
     fileFilter->setWhatsThis(wtFilter);
     filterLabel->setWhatsThis(wtFilter);
 
-    rightLocation = new KHistoryComboBox(compareDirs);
-    rightLocation->setMaxCount(25);  // remember 25 items
-    rightLocation->setDuplicatesEnabled(false);
-    rightLocation->setEditable(true);
-    rightLocation->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
-    list = group.readEntry("Right Folder History", QStringList());
-    rightLocation->setHistoryItems(list);
-    KUrlRequester *rightUrlReq = new KUrlRequester(rightLocation, compareDirs);
+    rightLocation = createHistoryComboBox(compareGroupBox, !hasSelectedFiles);
+    rightLocation->setHistoryItems(group.readEntry("Right Folder History", QStringList()));
+    rightLocation->setWhatsThis(i18n("The right base folder used during the synchronization process."));
+    rightDirLabel->setBuddy(rightLocation);
+    KUrlRequester *rightUrlReq = new KUrlRequester(rightLocation, compareGroupBox);
     rightUrlReq->setUrl(rightURL);
     rightUrlReq->setMode(KFile::Directory);
     rightUrlReq->setMinimumWidth(250);
-    grid->addWidget(rightUrlReq, 1 , 2);
-    rightLocation->setWhatsThis(i18n("The right base folder used during the synchronization process."));
     rightUrlReq->setEnabled(!hasSelectedFiles);
-    rightLocation->setEnabled(!hasSelectedFiles);
-    rightDirLabel->setBuddy(rightLocation);
+    grid->addWidget(rightUrlReq, 1 , 2);
 
-    QWidget *optionWidget  = new QWidget(compareDirs);
+    QWidget *optionWidget  = new QWidget(compareGroupBox);
     QHBoxLayout *optionBox = new QHBoxLayout(optionWidget);
     optionBox->setContentsMargins(0, 0, 0, 0);
 
@@ -264,15 +268,22 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     cbIgnoreDate      = new QCheckBox(i18n("Ignore Date"), optionGridWidget);
     cbIgnoreDate->setChecked(group.readEntry("Ignore Date", _IgnoreDate));
     optionGrid->addWidget(cbIgnoreDate, 1, 0);
-    cbIgnoreDate->setWhatsThis(i18n("<p>Ignore date information during the compare process.</p><p><b>Note</b>: useful if the files are located on network filesystems or in archives.</p>"));
+    cbIgnoreDate->setWhatsThis(
+        i18n("<p>Ignore date information during the compare process.</p><p><b>Note</b>: useful if "
+             "the files are located on network filesystems or in archives.</p>"));
     cbAsymmetric      = new QCheckBox(i18n("Asymmetric"), optionGridWidget);
     cbAsymmetric->setChecked(group.readEntry("Asymmetric", _Asymmetric));
     optionGrid->addWidget(cbAsymmetric, 1, 1);
-    cbAsymmetric->setWhatsThis(i18n("<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right is the source folder. Files existing only in the left folder will be deleted, the other differing ones will be copied from right to left.</p><p><b>Note</b>: useful when updating a folder from a file server.</p>"));
+    cbAsymmetric->setWhatsThis(
+        i18n("<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right is the "
+             "source folder. Files existing only in the left folder will be deleted, the other "
+             "differing ones will be copied from right to left.</p><p><b>Note</b>: useful when "
+             "updating a folder from a file server.</p>"));
     cbIgnoreCase      = new QCheckBox(i18n("Ignore Case"), optionGridWidget);
     cbIgnoreCase->setChecked(group.readEntry("Ignore Case", _IgnoreCase));
     optionGrid->addWidget(cbIgnoreCase, 1, 2);
-    cbIgnoreCase->setWhatsThis(i18n("<p>Case insensitive filename compare.</p><p><b>Note</b>: useful when synchronizing Windows filesystems.</p>"));
+    cbIgnoreCase->setWhatsThis(i18n("<p>Case insensitive filename compare.</p><p><b>Note</b>: "
+                                    "useful when synchronizing Windows filesystems.</p>"));
 
     /* =========================== Show options groupbox ============================= */
 
@@ -333,7 +344,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
 
     grid->addWidget(optionWidget, 2, 0, 1, 3);
 
-    synchronizerGrid->addWidget(compareDirs, 0, 0);
+    synchronizerGrid->addWidget(compareGroupBox, 0, 0);
 
     /* ========================= Synchronization list view ========================== */
     syncList = new SynchronizerListView(&synchronizer, synchronizerTab);  // create the main container
@@ -581,12 +592,16 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     DECLARE_SYNCHRONIZER_FOREGROUND_DEFAULTS;
 
     for (int clr = 0; clr != TT_MAX; clr ++) {
-        QString colorName = clr > 4 ? "Equals" : COLOR_NAMES[ clr ];
-        QColor backgroundDefault = clr > 4 ? defaultPalette.color(QPalette::Active, QPalette::Base) : SYNCHRONIZER_BACKGROUND_DEFAULTS[ clr ];
-        QColor foregroundDefault = clr > 4 ? defaultPalette.color(QPalette::Active, QPalette::Text) : SYNCHRONIZER_FOREGROUND_DEFAULTS[ clr ];
+        const QString colorName = clr > 4 ? "Equals" : COLOR_NAMES[clr];
+        const QColor backgroundDefault =
+            clr > 4 ? defaultPalette.color(QPalette::Active, QPalette::Base) :
+                      SYNCHRONIZER_BACKGROUND_DEFAULTS[clr];
+        const QColor foregroundDefault =
+            clr > 4 ? defaultPalette.color(QPalette::Active, QPalette::Text) :
+                      SYNCHRONIZER_FOREGROUND_DEFAULTS[clr];
 
-        QString foreEntry = QString("Synchronizer ") + colorName + QString(" Foreground");
-        QString bckgEntry = QString("Synchronizer ") + colorName + QString(" Background");
+        const QString foreEntry = QString("Synchronizer ") + colorName + QString(" Foreground");
+        const QString bckgEntry = QString("Synchronizer ") + colorName + QString(" Background");
 
         if (gc.readEntry(foreEntry, QString()) == "KDE default")
             foreGrounds[ clr ] = QColor();
@@ -597,7 +612,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
 
         if (gc.readEntry(bckgEntry, QString()) == "KDE default")
             backGrounds[ clr ] = QColor();
-        else if (gc.readEntry(foreEntry, QString()).isEmpty())    // KDE4 workaround, default color doesn't work
+        else if (gc.readEntry(foreEntry, QString()).isEmpty()) // KDE4 workaround, default color doesn't work
             backGrounds[ clr ] = backgroundDefault;
         else
             backGrounds[ clr ] = gc.readEntry(bckgEntry, backgroundDefault);
@@ -1347,9 +1362,11 @@ void SynchronizerGUI::keyPressEvent(QKeyEvent *e)
         } else {
             e->accept();
             if (syncList->topLevelItemCount() != 0) {
-                int result = KMessageBox::warningYesNo(this, i18n("The synchronizer window contains data from a previous compare. If you exit, this data will be lost. Do you really want to exit?"),
-                                                       i18n("Krusader::Synchronize Folders"),
-                                                       KStandardGuiItem::yes(), KStandardGuiItem::no(), "syncGUIexit");
+                int result = KMessageBox::warningYesNo(
+                    this, i18n("The synchronizer window contains data from a previous compare. If "
+                               "you exit, this data will be lost. Do you really want to exit?"),
+                    i18n("Krusader::Synchronize Folders"), KStandardGuiItem::yes(),
+                    KStandardGuiItem::no(), "syncGUIexit");
                 if (result != KMessageBox::Yes)
                     return;
             }
@@ -1625,5 +1642,16 @@ QString SynchronizerGUI::dirLabel()
     static QString label = QString("<") +
         i18nc("Show the string 'DIR' instead of file size in detailed view (for folders)", "DIR") + '>';
     return label;
+}
+
+KHistoryComboBox *SynchronizerGUI::createHistoryComboBox(QWidget *parent, bool enabled)
+{
+    KHistoryComboBox *location = new KHistoryComboBox(false, parent);
+    location->setMaxCount(25); // remember 25 items
+    location->setDuplicatesEnabled(false);
+    location->setEditable(true);
+    location->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
+    location->setEnabled(enabled);
+    return location;
 }
 
