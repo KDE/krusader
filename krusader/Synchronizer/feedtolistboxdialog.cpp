@@ -184,21 +184,21 @@ void FeedToListBoxDialog::slotOk()
         if ((side == S_BOTH || side == S_LEFT) && syncItem->existsInLeft()) {
             QString leftDirName =
                 syncItem->leftDirectory().isEmpty() ? "" : syncItem->leftDirectory() + '/';
-            QUrl leftURL = Synchronizer::fsUrl(synchronizer->leftBaseDirectory() + leftDirName +
-                                               syncItem->leftName());
-            urlList.push_back(leftURL);
+            const QUrl left = Synchronizer::pathAppend(synchronizer->leftBaseDirectory(),
+                                                       leftDirName, syncItem->leftName());
+            urlList.push_back(left);
         }
 
         if ((side == S_BOTH || side == S_RIGHT) && syncItem->existsInRight()) {
             QString rightDirName =
                 syncItem->rightDirectory().isEmpty() ? "" : syncItem->rightDirectory() + '/';
-            QUrl leftURL = Synchronizer::fsUrl(synchronizer->rightBaseDirectory() + rightDirName +
-                                               syncItem->rightName());
-            urlList.push_back(leftURL);
+            const QUrl right = Synchronizer::pathAppend(synchronizer->rightBaseDirectory(),
+                                                        rightDirName, syncItem->rightName());
+            urlList.push_back(right);
         }
     }
 
-    QUrl url = QUrl(QString("virt:/") + name);
+    const QUrl url = Synchronizer::pathAppend(QUrl("virt:/"), name);
     VirtualFileSystem virtFilesystem;
     if (!virtFilesystem.refresh(url)) { // create directory if it does not exist
         KMessageBox::error(parentWidget(), i18n("Cannot open %1.", url.toDisplayString()));

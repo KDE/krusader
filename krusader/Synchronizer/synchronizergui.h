@@ -231,6 +231,7 @@ protected:
 private:
     static QString dirLabel(); // returns translated '<DIR>'
     static KHistoryComboBox *createHistoryComboBox(QWidget *parent, bool enabled);
+    static QUrl getUrl(KHistoryComboBox *location);
 
     bool           isComparing;
     bool           wasClosed;

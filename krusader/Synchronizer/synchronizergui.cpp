@@ -99,12 +99,12 @@ public:
             SynchronizerFileItem *item = viewItem->synchronizerItemRef();
             if (item) {
                 if (isLeft && item->existsInLeft()) {
-                    QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-                    QUrl leftURL = Synchronizer::fsUrl(synchronizer->leftBaseDirectory()  + leftDirName + item->leftName());
+                    const QUrl leftURL = Synchronizer::pathAppend(
+                        synchronizer->leftBaseDirectory(), item->leftDirectory(), item->leftName());
                     urls.push_back(leftURL);
                 } else if (!isLeft && item->existsInRight()) {
-                    QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
-                    QUrl rightURL = Synchronizer::fsUrl(synchronizer->rightBaseDirectory()  + rightDirName + item->rightName());
+                    const QUrl rightURL = Synchronizer::pathAppend(
+                        synchronizer->rightBaseDirectory(), item->rightDirectory(), item->rightName());
                     urls.push_back(rightURL);
                 }
             }
@@ -674,28 +674,22 @@ void SynchronizerGUI::setPanelLabels()
 
 void SynchronizerGUI::setCompletion()
 {
-    generalFilter->dontSearchIn->setCompletionDir(Synchronizer::fsUrl(rightLocation->currentText()));
+    generalFilter->dontSearchIn->setCompletionDir(getUrl(rightLocation));
 }
 
 void SynchronizerGUI::checkExcludeURLValidity(QString &text, QString &error)
 {
-    QUrl url = Synchronizer::fsUrl(text);
+    const QUrl url(text);
     if (url.isRelative())
         return;
 
-    QString leftBase = leftLocation->currentText();
-    if (!leftBase.endsWith('/'))
-        leftBase += '/';
-    QUrl leftBaseURL = Synchronizer::fsUrl(leftBase);
+    const QUrl leftBaseURL = getUrl(leftLocation);
     if (leftBaseURL.isParentOf(url) && !url.isParentOf(leftBaseURL)) {
         text = QDir(leftBaseURL.path()).relativeFilePath(url.path());
         return;
     }
 
-    QString rightBase = rightLocation->currentText();
-    if (!rightBase.endsWith('/'))
-        rightBase += '/';
-    QUrl rightBaseURL = Synchronizer::fsUrl(rightBase);
+    const QUrl rightBaseURL = getUrl(rightLocation);
     if (rightBaseURL.isParentOf(url) && !url.isParentOf(rightBaseURL)) {
         text = QDir(rightBaseURL.path()).relativeFilePath(url.path());
         return;
@@ -712,10 +706,10 @@ void SynchronizerGUI::doubleClicked(QTreeWidgetItem *itemIn)
     SyncViewItem *syncItem = (SyncViewItem *)itemIn;
     SynchronizerFileItem *item = syncItem->synchronizerItemRef();
     if (item && item->existsInLeft() && item->existsInRight() && !item->isDir()) {
-        QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-        QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
-        QUrl leftURL = Synchronizer::fsUrl(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName());
-        QUrl rightURL = Synchronizer::fsUrl(synchronizer.rightBaseDirectory() + rightDirName + item->rightName());
+        const QUrl leftURL = Synchronizer::pathAppend(synchronizer.leftBaseDirectory(),
+                                                      item->leftDirectory(), item->leftName());
+        const QUrl rightURL = Synchronizer::pathAppend(synchronizer.rightBaseDirectory(),
+                                                       item->rightDirectory(), item->rightName());
 
         SLOTS->compareContent(leftURL,rightURL);
     } else if (item && item->isDir()) {
@@ -802,8 +796,8 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
     myact = popup.addAction(i18n("I&nvert selection"));
     actHash[ myact ] = INVERT_SELECTION_ID;
 
-    QUrl leftBDir = Synchronizer::fsUrl(synchronizer.leftBaseDirectory());
-    QUrl rightBDir = Synchronizer::fsUrl(synchronizer.rightBaseDirectory());
+    const QUrl leftBDir = synchronizer.leftBaseDirectory();
+    const QUrl rightBDir = synchronizer.rightBaseDirectory();
 
     if (KrServices::cmdExist("kget") &&
             ((!leftBDir.isLocalFile() && rightBDir.isLocalFile() && btnLeftToRight->isChecked()) ||
@@ -826,11 +820,11 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
 void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
 {
     // check out the user's option
-    QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-    QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
 
-    QUrl leftURL = Synchronizer::fsUrl(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName());
-    QUrl rightURL = Synchronizer::fsUrl(synchronizer.rightBaseDirectory() + rightDirName + item->rightName());
+    const QUrl leftURL = Synchronizer::pathAppend(synchronizer.leftBaseDirectory(),
+                                                  item->leftDirectory(), item->leftName());
+    const QUrl rightURL = Synchronizer::pathAppend(synchronizer.rightBaseDirectory(),
+                                                   item->rightDirectory(), item->rightName());
 
     switch (op) {
     case EXCLUDE_ID:
@@ -1050,7 +1044,7 @@ void SynchronizerGUI::compare()
     btnScrollResults->show();
     disableMarkButtons();
 
-    int fileCount = synchronizer.compare(leftLocation->currentText(), rightLocation->currentText(),
+    int fileCount = synchronizer.compare(getUrl(leftLocation), getUrl(rightLocation),
                                          &query, cbSubdirs->isChecked(), cbSymlinks->isChecked(),
                                          cbIgnoreDate->isChecked(), cbAsymmetric->isChecked(), cbByContent->isChecked(),
                                          cbIgnoreCase->isChecked(), btnScrollResults->isChecked(), selectedFiles,
@@ -1323,24 +1317,25 @@ void SynchronizerGUI::keyPressEvent(QKeyEvent *e)
         if (listItem == 0)
             break;
 
-        bool isedit = e->key() == Qt::Key_F4;
+        const bool isedit = e->key() == Qt::Key_F4;
 
         SynchronizerFileItem *item = ((SyncViewItem *)listItem)->synchronizerItemRef();
-        QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-        QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
-
         if (item->isDir())
             return;
 
         if (e->modifiers() == Qt::ShiftModifier && item->existsInRight()) {
-            QUrl rightURL = Synchronizer::fsUrl(synchronizer.rightBaseDirectory() + rightDirName + item->rightName());
+            const QUrl rightURL = Synchronizer::pathAppend(
+                synchronizer.rightBaseDirectory(), item->rightDirectory(), item->rightName());
+
             if (isedit)
                 KrViewer::edit(rightURL, this);   // view the file
             else
                 KrViewer::view(rightURL, this);   // view the file
             return;
         } else if (e->modifiers() == 0 && item->existsInLeft()) {
-            QUrl leftURL = Synchronizer::fsUrl(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName());
+            const QUrl leftURL = Synchronizer::pathAppend(
+                synchronizer.leftBaseDirectory(), item->leftDirectory(), item->leftName());
+
             if (isedit)
                 KrViewer::edit(leftURL, this);   // view the file
             else
@@ -1615,12 +1610,12 @@ void SynchronizerGUI::copyToClipboard(bool isLeft)
         SynchronizerFileItem *item = viewItem->synchronizerItemRef();
         if (item) {
             if (isLeft && item->existsInLeft()) {
-                QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-                QUrl leftURL = Synchronizer::fsUrl(synchronizer.leftBaseDirectory()  + leftDirName + item->leftName());
+                const QUrl leftURL = Synchronizer::pathAppend(
+                    synchronizer.leftBaseDirectory(), item->leftDirectory(), item->leftName());
                 urls.push_back(leftURL);
             } else if (!isLeft && item->existsInRight()) {
-                QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
-                QUrl rightURL = Synchronizer::fsUrl(synchronizer.rightBaseDirectory()  + rightDirName + item->rightName());
+                const QUrl rightURL = Synchronizer::pathAppend(
+                    synchronizer.rightBaseDirectory(), item->rightDirectory(), item->rightName());
                 urls.push_back(rightURL);
             }
         }
@@ -1653,5 +1648,10 @@ KHistoryComboBox *SynchronizerGUI::createHistoryComboBox(QWidget *parent, bool e
     location->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
     location->setEnabled(enabled);
     return location;
+}
+
+QUrl SynchronizerGUI::getUrl(KHistoryComboBox *location)
+{
+    return QUrl::fromUserInput(location->currentText());
 }
 

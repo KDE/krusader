@@ -23,6 +23,7 @@
 
 // QtCore
 #include <QString>
+#include <QUrl>
 
 #include <KIO/Global>
 
@@ -88,7 +89,7 @@ private:
     SynchronizerFileItem *m_parent; // pointer to the parent directory item or 0
     void *m_userData;               // user data
     bool m_overWrite;               // overwrite flag
-    QString m_destination;          // the destination URL at rename
+    QUrl m_destination;          // the destination URL at rename
     bool m_temporary;               // flag indicates temporary directory
     TaskType m_originalTask;        // the original task type
 
@@ -108,7 +109,7 @@ public:
           m_leftOwner(leftOwner), m_rightOwner(rightOwner), m_leftGroup(leftGroup),
           m_rightGroup(rightGroup), m_leftMode(leftMode), m_rightMode(rightMode),
           m_leftACL(leftACL), m_rightACL(rightACL), m_task(tsk), m_isDir(isDir), m_parent(parent),
-          m_userData(0), m_overWrite(false), m_destination(QString()), m_temporary(tmp),
+          m_userData(0), m_overWrite(false), m_destination(QUrl()), m_temporary(tmp),
           m_originalTask(tsk)
     {
     }
@@ -149,8 +150,8 @@ public:
     inline void *userData() { return m_userData; }
     inline void setUserData(void *ud) { m_userData = ud; }
     inline void setOverWrite() { m_overWrite = true; }
-    inline const QString &destination() { return m_destination; }
-    inline void setDestination(QString d) { m_destination = d; }
+    inline const QUrl &destination() { return m_destination; }
+    inline void setDestination(QUrl d) { m_destination = d; }
     inline bool isTemporary() { return m_temporary; }
     inline void setPermanent() { m_temporary = false; }
     inline TaskType originalTask() { return m_originalTask; }

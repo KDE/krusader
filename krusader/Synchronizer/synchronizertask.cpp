@@ -32,18 +32,17 @@
 #include "synchronizerfileitem.h"
 #include "../FileSystem/filesystem.h"
 
-CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QString &leftURL,
-                         const QString &rightURL, const QString &leftDir, const QString &rightDir,
-                         bool hidden)
-    : SynchronizerTask(), m_parent(parentIn), m_url(leftURL), m_dir(leftDir), m_otherUrl(rightURL),
+CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QUrl &left, const QUrl &right,
+                         const QString &leftDir, const QString &rightDir, bool hidden)
+    : SynchronizerTask(), m_parent(parentIn), m_url(left), m_dir(leftDir), m_otherUrl(right),
       m_otherDir(rightDir), m_duplicate(true), m_dirList(0), m_otherDirList(0)
 {
     ignoreHidden = hidden;
 }
 
-CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QString &urlIn, const QString &dirIn,
+CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QUrl &url, const QString &dir,
                          bool isLeftIn, bool hidden)
-    : SynchronizerTask(), m_parent(parentIn), m_url(urlIn), m_dir(dirIn), m_isLeft(isLeftIn),
+    : SynchronizerTask(), m_parent(parentIn), m_url(url), m_dir(dir), m_isLeft(isLeftIn),
       m_duplicate(false), m_dirList(0), m_otherDirList(0)
 {
     ignoreHidden = hidden;
@@ -68,12 +67,12 @@ void CompareTask::start()
         m_loadFinished = m_otherLoadFinished = false;
 
         m_dirList = new SynchronizerDirList(parentWidget, ignoreHidden);
-        connect(m_dirList, SIGNAL(finished(bool)), this, SLOT(slotFinished(bool)));
+        connect(m_dirList, &SynchronizerDirList::finished, this, &CompareTask::slotFinished);
         m_dirList->load(m_url, false);
 
         if (m_duplicate) {
             m_otherDirList = new SynchronizerDirList(parentWidget, ignoreHidden);
-            connect(m_otherDirList, SIGNAL(finished(bool)), this, SLOT(slotOtherFinished(bool)));
+            connect(m_otherDirList, &SynchronizerDirList::finished, this, &CompareTask::slotOtherFinished);
             m_otherDirList->load(m_otherUrl, false);
         }
     }
@@ -104,9 +103,8 @@ void CompareTask::slotOtherFinished(bool result)
 }
 
 CompareContentTask::CompareContentTask(Synchronizer *syn, SynchronizerFileItem *itemIn,
-                                       const QUrl &leftURLIn, const QUrl &rightURLIn,
-                                       KIO::filesize_t sizeIn)
-    : SynchronizerTask(), leftURL(leftURLIn), rightURL(rightURLIn), size(sizeIn),
+                                       const QUrl &left, const QUrl &right, KIO::filesize_t sizeIn)
+    : SynchronizerTask(), left(left), right(right), size(sizeIn),
       errorPrinted(false), leftReadJob(0), rightReadJob(0), compareArray(), owner(-1), item(itemIn),
       timer(0), leftFile(0), rightFile(0), received(0), sync(syn)
 {
@@ -128,17 +126,17 @@ void CompareContentTask::start()
 {
     m_state = ST_STATE_PENDING;
 
-    if (leftURL.isLocalFile() && rightURL.isLocalFile()) {
-        leftFile = new QFile(leftURL.path());
+    if (left.isLocalFile() && right.isLocalFile()) {
+        leftFile = new QFile(left.path());
         if (!leftFile->open(QIODevice::ReadOnly)) {
-            KMessageBox::error(parentWidget, i18n("Error at opening %1.", leftURL.path()));
+            KMessageBox::error(parentWidget, i18n("Error at opening %1.", left.path()));
             m_state = ST_STATE_ERROR;
             return;
         }
 
-        rightFile = new QFile(rightURL.path());
+        rightFile = new QFile(right.path());
         if (!rightFile->open(QIODevice::ReadOnly)) {
-            KMessageBox::error(parentWidget, i18n("Error at opening %1.", rightURL.path()));
+            KMessageBox::error(parentWidget, i18n("Error at opening %1.", right.path()));
             m_state = ST_STATE_ERROR;
             return;
         }
@@ -150,8 +148,8 @@ void CompareContentTask::start()
 
         localFileCompareCycle();
     } else {
-        leftReadJob = KIO::get(leftURL, KIO::NoReload, KIO::HideProgressInfo);
-        rightReadJob = KIO::get(rightURL, KIO::NoReload, KIO::HideProgressInfo);
+        leftReadJob = KIO::get(left, KIO::NoReload, KIO::HideProgressInfo);
+        rightReadJob = KIO::get(right, KIO::NoReload, KIO::HideProgressInfo);
 
         connect(leftReadJob, SIGNAL(data(KIO::Job *, QByteArray)), this,
                 SLOT(slotDataReceived(KIO::Job *, QByteArray)));
@@ -296,9 +294,10 @@ void CompareContentTask::slotFinished(KJob *job)
 
     if (job->error() && job->error() != KIO::ERR_USER_CANCELED && !errorPrinted) {
         errorPrinted = true;
-        KMessageBox::error(parentWidget, i18n("I/O error while comparing file %1 with %2.",
-                                              leftURL.toDisplayString(QUrl::PreferLocalFile),
-                                              rightURL.toDisplayString(QUrl::PreferLocalFile)));
+        KMessageBox::detailedError(parentWidget, i18n("I/O error while comparing file %1 with %2.",
+                                                      left.toDisplayString(QUrl::PreferLocalFile),
+                                                      right.toDisplayString(QUrl::PreferLocalFile)),
+                                   job->errorString());
     }
 
     if (leftReadJob == 0 && rightReadJob == 0) {
@@ -333,7 +332,7 @@ void CompareContentTask::sendStatusMessage()
     int percent = (int)(perc * 10000. + 0.5);
     QString statstr =
         QString("%1.%2%3").arg(percent / 100).arg((percent / 10) % 10).arg(percent % 10) + '%';
-    setStatusMessage(i18n("Comparing file %1 (%2)...", leftURL.fileName(), statstr));
+    setStatusMessage(i18n("Comparing file %1 (%2)...", left.fileName(), statstr));
     timer->setSingleShot(true);
     timer->start(500);
 }

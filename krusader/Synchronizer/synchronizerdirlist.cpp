@@ -71,6 +71,7 @@ FileItem *SynchronizerDirList::search(const QString &name, bool ignoreCase)
 
     QString file = name.toLower();
 
+    // TODO use a map
     while (iter.hasNext()) {
         FileItem *item = iter.next().value();
         if (file == item->getName().toLower())
@@ -100,13 +101,12 @@ FileItem *SynchronizerDirList::next()
     return 0;
 }
 
-bool SynchronizerDirList::load(const QString &urlIn, bool wait)
+bool SynchronizerDirList::load(const QUrl &url, bool wait)
 {
     if (busy)
         return false;
 
-    currentUrl = urlIn;
-    const QUrl url = QUrl::fromUserInput(urlIn, QString(), QUrl::AssumeLocalFile);
+    currentUrl = url;
 
     QHashIterator<QString, FileItem *> lit(*this);
     while (lit.hasNext())

@@ -83,19 +83,17 @@ class CompareTask : public SynchronizerTask
     Q_OBJECT
 
 public:
-    CompareTask(SynchronizerFileItem *parentIn, const QString &leftURL, const QString &rightURL,
-                const QString &leftDir, const QString &rightDir, bool ignoreHidden);
-    CompareTask(SynchronizerFileItem *parentIn, const QString &urlIn, const QString &dirIn,
+    CompareTask(SynchronizerFileItem *parentIn, const QUrl &left, const QUrl &right,
+                const QString &leftDir, const QString &rightDir, bool hidden);
+
+    CompareTask(SynchronizerFileItem *parentIn, const QUrl &url, const QString &dir,
                 bool isLeftIn, bool ignoreHidden);
     virtual ~CompareTask();
 
     inline bool isDuplicate() { return m_duplicate; }
     inline bool isLeft() { return !m_duplicate && m_isLeft; }
-    inline const QString &leftURL() { return m_url; }
-    inline const QString &rightURL() { return m_otherUrl; }
     inline const QString &leftDir() { return m_dir; }
     inline const QString &rightDir() { return m_otherDir; }
-    inline const QString &url() { return m_url; }
     inline const QString &dir() { return m_dir; }
     inline SynchronizerFileItem *parent() { return m_parent; }
     inline SynchronizerDirList *leftDirList() { return m_dirList; }
@@ -109,10 +107,10 @@ protected slots:
 
 private:
     SynchronizerFileItem *m_parent;
-    QString m_url;
-    QString m_dir;
-    QString m_otherUrl;
-    QString m_otherDir;
+    const QUrl m_url;
+    const QString m_dir;
+    const QUrl m_otherUrl;
+    const QString m_otherDir;
     bool m_isLeft;
     bool m_duplicate;
     SynchronizerDirList *m_dirList;
@@ -145,8 +143,8 @@ protected slots:
 private:
     void abortContentComparing();
 
-    QUrl                   leftURL;        // the currently processed URL (left)
-    QUrl                   rightURL;       // the currently processed URL (right)
+    const QUrl             left;           // the currently processed URL (left)
+    const QUrl             right;          // the currently processed URL (right)
     KIO::filesize_t        size;           // the size of the compared files
 
     bool                   errorPrinted;   // flag indicates error

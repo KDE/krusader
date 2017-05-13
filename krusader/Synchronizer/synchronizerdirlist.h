@@ -41,8 +41,8 @@ public:
     FileItem *first();
     FileItem *next();
 
-    inline const QString &url() { return currentUrl; }
-    bool load(const QString &urlIn, bool wait = false);
+    inline const QUrl &url() { return currentUrl; }
+    bool load(const QUrl &url, bool wait = false);
 
 public slots:
 
@@ -58,7 +58,7 @@ private:
     bool     busy;
     bool     result;
     bool     ignoreHidden;
-    QString  currentUrl;
+    QUrl     currentUrl;
 };
 
 #endif /* __SYNCHRONIZER_DIR_LIST_H__ */

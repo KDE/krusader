@@ -48,7 +48,8 @@ private:
 public:
     Synchronizer();
     ~Synchronizer();
-    int compare(QString leftURL, QString rightURL, KRQuery *query, bool subDirs, bool symLinks,
+
+    int compare(const QUrl &left, const QUrl &right, KRQuery *query, bool subDirs, bool symLinks,
                 bool igDate, bool asymm, bool cmpByCnt, bool igCase, bool autoSc,
                 QStringList &selFiles, int equThres, int timeOffs, int parThreads,
                 bool hiddenFiles);
@@ -57,9 +58,17 @@ public:
                       bool del);
     int refresh(bool nostatus = false);
     bool totalSizes(int *, KIO::filesize_t *, int *, KIO::filesize_t *, int *, KIO::filesize_t *);
-    void synchronize(QWidget *, bool leftCopyEnabled, bool rightCopyEnabled, bool deleteEnabled,
-                     bool overWrite, int parThreads);
+
+    void synchronize(QWidget *syncDialog, bool leftCopyEnabled, bool rightCopyEnabled,
+                     bool deleteEnabled, bool overWrite, int parThreads);
+    /**
+     * Execute sync with KGet.
+     *
+     * This is only supported for downloading files from one remote side other local side.
+     * Local destination files (if exist) are removed before downloading!
+     */
     void synchronizeWithKGet();
+
     void setScrolling(bool scroll);
     void pause();
     void resume();
@@ -74,10 +83,14 @@ public:
     void copyToRight(SynchronizerFileItem *);
     void deleteLeft(SynchronizerFileItem *);
 
-    QString leftBaseDirectory();
-    QString rightBaseDirectory();
+    const QUrl leftBaseDirectory() { return leftBaseDir; }
+    const QUrl rightBaseDirectory() { return rightBaseDir; }
+
+    static QUrl pathAppend(const QUrl &url, const QString &fileName);
+    static QUrl pathAppend(const QUrl &url, const QString &dirName, const QString &fileName);
+
     static QString getTaskTypeName(TaskType taskType);
-    static QUrl fsUrl(QString strUrl);
+
 
     SynchronizerFileItem *getItemAt(unsigned ndx);
 
@@ -151,8 +164,8 @@ protected:
     bool autoScroll;                             // automatic update of the directory
     QList<SynchronizerFileItem *> resultList;    // the found files
     QList<SynchronizerFileItem *> temporaryList; // temporary files
-    QString leftBaseDir;                         // the left-side base directory
-    QString rightBaseDir;                        // the right-side base directory
+    QUrl leftBaseDir;                            // the left-side base directory
+    QUrl rightBaseDir;                           // the right-side base directory
     QStringList excludedPaths;                   // list of the excluded paths
     KRQuery *query;                              // the filter used for the query
     bool stopped;                                // 'Stop' button was pressed
