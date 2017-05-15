@@ -71,6 +71,17 @@ FileItem::FileItem(const QString &name, const QUrl &url, bool isDir,
     }
 }
 
+FileItem::FileItem()
+    : m_name(), m_url(), m_isDir(false),
+      m_size(0), m_mode(0), m_mtime(0),
+      m_uid(), m_gid(), m_owner(), m_group(),
+      m_isLink(false), m_linkDest(), m_isBrokenLink(false),
+      m_permissions(),
+      m_acl(), m_defaulfAcl(), m_AclLoaded(false),
+      m_mimeType(), m_icon()
+{
+}
+
 FileItem *FileItem::createDummy()
 {
     FileItem *file = new FileItem("..", QUrl(), true,

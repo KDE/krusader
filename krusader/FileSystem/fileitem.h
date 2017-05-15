@@ -76,6 +76,11 @@ public:
           bool isLink = false, const QString &linkDest = QString(), bool isBrokenLink = false,
           const QString &acl = QString(), const QString &defaultAcl = QString());
 
+    /**
+     * Create a dummy file item for a non-existing file.
+     */
+    FileItem();
+
     /** Create a new ".." dummy file item. */
     static FileItem *createDummy();
     /** Create a file item for a broken file which metadata could not be read. */

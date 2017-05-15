@@ -71,7 +71,7 @@ public:
         setTextAlignment(1, Qt::AlignRight);
         setTextAlignment(3, Qt::AlignHCenter);
         setTextAlignment(5, Qt::AlignRight);
-        item->setUserData((void *)this);
+        item->setViewItem(this);
 
         setColors(txt, base);
     }
@@ -95,12 +95,12 @@ public:
         setTextAlignment(1, Qt::AlignRight);
         setTextAlignment(3, Qt::AlignHCenter);
         setTextAlignment(5, Qt::AlignRight);
-        item->setUserData((void *)this);
+        item->setViewItem(this);
 
         setColors(txt, base);
     }
 
-    ~SyncViewItem() { syncItemRef->setUserData(nullptr); }
+    ~SyncViewItem() { syncItemRef->setViewItem(nullptr); }
 
     inline SynchronizerFileItem *synchronizerItemRef() { return syncItemRef; }
     inline SyncViewItem *lastItem() { return lastItemRef; }

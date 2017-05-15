@@ -27,6 +27,10 @@
 
 #include <KIO/Global>
 
+#include "../FileSystem/fileitem.h"
+
+class SyncViewItem;
+
 typedef enum {
     TT_EQUALS = 0,        // the files are equals     -> do nothing
     TT_DIFFERS = 1,       // the files are differents -> don't know what to do
@@ -40,41 +44,47 @@ typedef enum {
 class SynchronizerFileItem
 {
 public:
-    SynchronizerFileItem(const QString &leftNam, const QString &rightNam, const QString &leftDir,
-                         const QString &rightDir, bool mark, bool exL, bool exR,
-                         KIO::filesize_t leftSize, KIO::filesize_t rightSize, time_t leftDate,
-                         time_t rightDate, const QString &leftLink, const QString &rightLink,
-                         const QString &leftOwner, const QString &rightOwner,
-                         const QString &leftGroup, const QString &rightGroup, mode_t leftMode,
-                         mode_t rightMode, const QString &leftACL, const QString &rightACL,
-                         TaskType tsk, bool isDir, bool tmp, SynchronizerFileItem *parent);
+    SynchronizerFileItem(const FileItem &leftFile, const FileItem &rightFile,
+                         const QString &leftDir, const QString &rightDir,
+                         bool mark, TaskType tsk, bool tmp, SynchronizerFileItem *parent);
+
+    inline bool existsInLeft() const { return !m_leftFile.getName().isNull(); }
+    inline bool existsInRight() const { return !m_rightFile.getName().isNull(); }
+    inline bool isDir() const
+    {
+        return !m_leftFile.getName().isNull() ? m_leftFile.isDir() : m_rightFile.isDir();
+    }
+
+    inline const QString &leftName() const
+    {
+        return existsInLeft() ? m_leftFile.getName() : m_rightFile.getName();
+    }
+    inline const QString &rightName() const
+    {
+        return existsInRight() ? m_rightFile.getName() : m_leftFile.getName();
+    }
+    inline KIO::filesize_t leftSize() const { return m_leftFile.getSize(); }
+    inline KIO::filesize_t rightSize() const { return m_rightFile.getSize(); }
+    inline time_t leftDate() const { return m_leftFile.getTime_t(); }
+    inline time_t rightDate() const { return m_rightFile.getTime_t(); }
+    inline const QString &leftLink() const { return m_leftFile.getSymDest(); }
+    inline const QString &rightLink() const { return m_rightFile.getSymDest(); }
+    inline const QString &leftOwner() const { return m_leftFile.getOwner(); }
+    inline const QString &rightOwner() const { return m_rightFile.getOwner(); }
+    inline const QString &leftGroup() const { return m_leftFile.getGroup(); }
+    inline const QString &rightGroup() const { return m_rightFile.getGroup(); }
+    inline mode_t leftMode() const { return m_leftFile.getMode(); }
+    inline mode_t rightMode() const { return m_rightFile.getMode(); }
+    inline const QString &leftACL() { return m_leftFile.getACL(); }
+    inline const QString &rightACL() { return m_rightFile.getACL(); }
 
     inline bool isMarked() const { return m_marked; }
-    inline const QString &leftName() const { return m_leftName; }
-    inline const QString &rightName() const { return m_rightName; }
     inline const QString &leftDirectory() const { return m_leftDirectory; }
     inline const QString &rightDirectory() const { return m_rightDirectory; }
-    inline bool existsInLeft() const { return m_existsLeft; }
-    inline bool existsInRight() const { return m_existsRight; }
     inline bool overWrite() const { return m_overWrite; }
-    inline KIO::filesize_t leftSize() const { return m_leftSize; }
-    inline KIO::filesize_t rightSize() const { return m_rightSize; }
-    inline time_t leftDate() const { return m_leftDate; }
-    inline time_t rightDate() const { return m_rightDate; }
-    inline const QString &leftLink() const { return m_leftLink; }
-    inline const QString &rightLink() const { return m_rightLink; }
-    inline const QString &leftOwner() const { return m_leftOwner; }
-    inline const QString &rightOwner() const { return m_rightOwner; }
-    inline const QString &leftGroup() const { return m_leftGroup; }
-    inline const QString &rightGroup() const { return m_rightGroup; }
-    inline mode_t leftMode() const { return m_leftMode; }
-    inline mode_t rightMode() const { return m_rightMode; }
-    inline const QString &leftACL() const { return m_leftACL; }
-    inline const QString &rightACL() const { return m_rightACL; }
     inline TaskType task() const { return m_task; }
-    inline bool isDir() const { return m_isDir; }
     inline SynchronizerFileItem *parent() const { return m_parent; }
-    inline void *userData() const { return m_userData; }
+    inline SyncViewItem *viewItem() const { return m_viewItem; }
     inline const QUrl &destination() const { return m_destination; }
     inline bool isTemporary() const { return m_temporary; }
     inline TaskType originalTask() const { return m_originalTask; }
@@ -82,7 +92,7 @@ public:
     inline void setMarked(bool flag) { m_marked = flag; }
     inline void setPermanent() { m_temporary = false; }
     inline void restoreOriginalTask() { m_task = m_originalTask; }
-    inline void setUserData(void *ud) { m_userData = ud; }
+    inline void setViewItem(SyncViewItem *viewItem) { m_viewItem = viewItem; }
     inline void setOverWrite() { m_overWrite = true; }
     inline void setDestination(QUrl d) { m_destination = d; }
     inline void setTask(TaskType t) { m_task = t; }
@@ -91,31 +101,17 @@ public:
     void swap(bool asym = false);
 
 private:
-    QString m_leftName;             // the left file name
-    QString m_rightName;            // the right file name
-    QString m_leftDirectory;        // the left relative directory path from the base
-    QString m_rightDirectory;       // the left relative directory path from the base
+    void reverseTask(TaskType &taskType, bool asym);
+
+    FileItem m_leftFile;
+    FileItem m_rightFile;
+    QString m_leftDirectory;  // the left relative directory path from the base
+    QString m_rightDirectory; // the left relative directory path from the base
+
     bool m_marked;                  // flag, indicates to show the file
-    bool m_existsLeft;              // flag, the file exists in the left directory
-    bool m_existsRight;             // flag, the file exists in the right directory
-    KIO::filesize_t m_leftSize;     // the file size at the left directory
-    KIO::filesize_t m_rightSize;    // the file size at the right directory
-    time_t m_leftDate;              // the file date at the left directory
-    time_t m_rightDate;             // the file date at the left directory
-    QString m_leftLink;             // the left file's symbolic link destination
-    QString m_rightLink;            // the right file's symbolic link destination
-    QString m_leftOwner;            // the left file's owner
-    QString m_rightOwner;           // the right file's owner
-    QString m_leftGroup;            // the left file's group
-    QString m_rightGroup;           // the right file's group
-    mode_t m_leftMode;              // mode for left
-    mode_t m_rightMode;             // mode for right
-    QString m_leftACL;              // ACL of the left file
-    QString m_rightACL;             // ACL of the right file
     TaskType m_task;                // the task with the file
-    bool m_isDir;                   // flag, indicates that the file is a directory
     SynchronizerFileItem *m_parent; // pointer to the parent directory item or 0
-    void *m_userData;               // user data
+    SyncViewItem *m_viewItem;       // user data
     bool m_overWrite;               // overwrite flag
     QUrl m_destination;             // the destination URL at rename
     bool m_temporary;               // flag indicates temporary directory

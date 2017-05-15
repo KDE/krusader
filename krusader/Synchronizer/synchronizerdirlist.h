@@ -27,7 +27,7 @@
 
 #include <KIO/Job>
 
-#include "../FileSystem/fileitem.h"
+class FileItem;
 
 class SynchronizerDirList : public QObject, public QHash<QString, FileItem *>
 {

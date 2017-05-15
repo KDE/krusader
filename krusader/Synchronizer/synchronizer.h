@@ -35,8 +35,8 @@
 #include "synchronizerfileitem.h"
 #include "synchronizertask.h"
 
-class KRQuery;
 class FileItem;
+class KRQuery;
 
 class Synchronizer : public QObject
 {
@@ -111,33 +111,24 @@ public slots:
 
 private:
     bool isDir(const FileItem *file);
-    QString readLink(const FileItem *file);
 
     void compareDirectory(SynchronizerFileItem *, SynchronizerDirList *, SynchronizerDirList *,
                           const QString &leftDir, const QString &rightDir);
+
+    SynchronizerFileItem *addItem(FileItem *leftFile, FileItem *rightFile,
+                                  SynchronizerFileItem *parent, const QString &leftDir,
+                                  const QString &rightDir, TaskType tsk, bool isTemp);
+
+    SynchronizerFileItem *addLeftOnlyItem(FileItem *leftFile, SynchronizerFileItem *parent,
+                                          const QString &dir, bool isTemp = false);
+    SynchronizerFileItem *addRightOnlyItem(FileItem *rightFile, SynchronizerFileItem *parent,
+                                           const QString &dir, bool isTemp = false);
+    SynchronizerFileItem *addDuplicateItem(FileItem *leftFile, FileItem *rightFile,
+                                           SynchronizerFileItem *parent,
+                                           const QString &leftDir, const QString &rightDir,
+                                           bool isTemp = false);
     void addSingleDirectory(SynchronizerFileItem *, SynchronizerDirList *, const QString &, bool);
-    SynchronizerFileItem *addItem(SynchronizerFileItem *, const QString &, const QString &,
-                                  const QString &, const QString &, bool, bool, KIO::filesize_t,
-                                  KIO::filesize_t, time_t, time_t, const QString &, const QString &,
-                                  const QString &, const QString &, const QString &,
-                                  const QString &, mode_t, mode_t, const QString &, const QString &,
-                                  TaskType, bool, bool);
-    SynchronizerFileItem *addLeftOnlyItem(SynchronizerFileItem *, const QString &, const QString &,
-                                          KIO::filesize_t, time_t, const QString &, const QString &,
-                                          const QString &, mode_t, const QString &,
-                                          bool isDir = false, bool isTemp = false);
-    SynchronizerFileItem *addRightOnlyItem(SynchronizerFileItem *, const QString &, const QString &,
-                                           KIO::filesize_t, time_t, const QString &,
-                                           const QString &, const QString &, mode_t,
-                                           const QString &, bool isDir = false,
-                                           bool isTemp = false);
-    SynchronizerFileItem *addDuplicateItem(SynchronizerFileItem *, const QString &, const QString &,
-                                           const QString &, const QString &, KIO::filesize_t,
-                                           KIO::filesize_t, time_t, time_t, const QString &,
-                                           const QString &, const QString &, const QString &,
-                                           const QString &, const QString &, mode_t, mode_t,
-                                           const QString &, const QString &, bool isDir = false,
-                                           bool isTemp = false);
+
     bool isMarked(TaskType task, bool dupl);
     bool markParentDirectories(SynchronizerFileItem *);
     void synchronizeLoop();

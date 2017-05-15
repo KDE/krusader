@@ -95,7 +95,7 @@ public:
         SynchronizerFileItem  *currentItem;
 
         while ((currentItem = synchronizer->getItemAt(ndx++)) != 0) {
-            SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
+            SyncViewItem *viewItem = (SyncViewItem *)currentItem->viewItem();
 
             if (!viewItem || !viewItem->isSelected() || viewItem->isHidden())
                 continue;
@@ -841,7 +841,7 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
         SynchronizerFileItem  *currentItem;
 
         while ((currentItem = synchronizer.getItemAt(ndx++)) != 0) {
-            SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
+            SyncViewItem *viewItem = (SyncViewItem *)currentItem->viewItem();
 
             if (!viewItem || !viewItem->isSelected() || viewItem->isHidden())
                 continue;
@@ -891,7 +891,7 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
         SynchronizerFileItem  *currentItem;
 
         while ((currentItem = synchronizer.getItemAt(ndx++)) != 0) {
-            SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
+            SyncViewItem *viewItem = (SyncViewItem *)currentItem->viewItem();
 
             if (!viewItem || viewItem->isHidden())
                 continue;
@@ -907,7 +907,7 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
         SynchronizerFileItem  *currentItem;
 
         while ((currentItem = synchronizer.getItemAt(ndx++)) != 0) {
-            SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
+            SyncViewItem *viewItem = (SyncViewItem *)currentItem->viewItem();
 
             if (!viewItem || viewItem->isHidden())
                 continue;
@@ -1121,7 +1121,7 @@ void SynchronizerGUI::addFile(SynchronizerFileItem *item)
                                     rightSize, rightName);
         lastItem = listItem;
     } else {
-        dirItem = (SyncViewItem *)item->parent()->userData();
+        dirItem = (SyncViewItem *)item->parent()->viewItem();
         if (dirItem) {
             dirItem->setExpanded(true);
             listItem = new SyncViewItem(item, textColor, baseColor, dirItem, dirItem->lastItem(), leftName,
@@ -1143,7 +1143,7 @@ void SynchronizerGUI::addFile(SynchronizerFileItem *item)
 
 void SynchronizerGUI::markChanged(SynchronizerFileItem *item, bool ensureVisible)
 {
-    SyncViewItem *listItem = (SyncViewItem *)item->userData();
+    SyncViewItem *listItem = (SyncViewItem *)item->viewItem();
     if (listItem) {
         if (!item->isMarked()) {
             listItem->setHidden(true);
@@ -1606,7 +1606,7 @@ void SynchronizerGUI::copyToClipboard(bool isLeft)
     SynchronizerFileItem  *currentItem;
 
     while ((currentItem = synchronizer.getItemAt(ndx++)) != 0) {
-        SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
+        SyncViewItem *viewItem = (SyncViewItem *)currentItem->viewItem();
 
         if (!viewItem || !viewItem->isSelected() || viewItem->isHidden())
             continue;

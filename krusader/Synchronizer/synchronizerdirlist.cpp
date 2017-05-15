@@ -38,9 +38,10 @@
 #include <KIOCore/KFileItem>
 #include <KWidgetsAddons/KMessageBox>
 
+#include "../krservices.h"
+#include "../FileSystem/fileitem.h"
 #include "../FileSystem/filesystem.h"
 #include "../FileSystem/krpermhandler.h"
-#include "../krservices.h"
 
 SynchronizerDirList::SynchronizerDirList(QWidget *w, bool hidden)
     : QObject(), QHash<QString, FileItem *>(), fileIterator(0), parentWidget(w), busy(false),
