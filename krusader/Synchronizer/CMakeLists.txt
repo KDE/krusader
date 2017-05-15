@@ -6,7 +6,9 @@ set(Synchronizer_SRCS
     synchronizergui.cpp
     feedtolistboxdialog.cpp
     synchronizertask.cpp
-    synchronizerdirlist.cpp)
+    synchronizerdirlist.cpp
+    synchronizerfileitem.cpp
+)
 
 add_library(Synchronizer STATIC ${Synchronizer_SRCS})
 
