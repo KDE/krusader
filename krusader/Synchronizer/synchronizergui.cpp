@@ -26,6 +26,10 @@
 #include "../Dialogs/krspwidgets.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../FileSystem/krquery.h"
+#include "../Filter/filtertabs.h"
+#include "../Filter/generalfilter.h"
+#include "../GUI/krtreewidget.h"
+#include "../GUI/profilemanager.h"
 #include "../KViewer/krviewer.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
@@ -91,7 +95,7 @@ public:
         SynchronizerFileItem  *currentItem;
 
         while ((currentItem = synchronizer->getItemAt(ndx++)) != 0) {
-            SynchronizerGUI::SyncViewItem *viewItem = (SynchronizerGUI::SyncViewItem *)currentItem->userData();
+            SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
 
             if (!viewItem || !viewItem->isSelected() || viewItem->isHidden())
                 continue;
@@ -1602,7 +1606,7 @@ void SynchronizerGUI::copyToClipboard(bool isLeft)
     SynchronizerFileItem  *currentItem;
 
     while ((currentItem = synchronizer.getItemAt(ndx++)) != 0) {
-        SynchronizerGUI::SyncViewItem *viewItem = (SynchronizerGUI::SyncViewItem *)currentItem->userData();
+        SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
 
         if (!viewItem || !viewItem->isSelected() || viewItem->isHidden())
             continue;

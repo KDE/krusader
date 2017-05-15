@@ -31,97 +31,98 @@
 #include <QCheckBox>
 #include <QDialog>
 #include <QLabel>
+#include <QSpinBox>
 #include <QTabWidget>
+#include <QTreeWidget>
 
 #include <KCompletion/KComboBox>
+#include <KCompletion/KHistoryComboBox>
 
 #include "synchronizer.h"
-#include "../Filter/filtertabs.h"
-#include "../Filter/generalfilter.h"
-#include "../GUI/krtreewidget.h"
-#include "../GUI/profilemanager.h"
 
-class QSpinBox;
+class FilterTabs;
+class GeneralFilter;
+class KrTreeWidget;
+class ProfileManager;
+
+class SyncViewItem : public QTreeWidgetItem
+{
+private:
+    SynchronizerFileItem *syncItemRef;
+    SyncViewItem *lastItemRef;
+
+public:
+    SyncViewItem(SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidget *parent,
+                 QTreeWidgetItem *after, QString label1, QString label2 = QString(),
+                 QString label3 = QString(), QString label4 = QString(),
+                 QString label5 = QString(), QString label6 = QString(),
+                 QString label7 = QString(), QString label8 = QString())
+        : QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(0)
+    {
+        setText(0, label1);
+        setText(1, label2);
+        setText(2, label3);
+        setText(3, label4);
+        setText(4, label5);
+        setText(5, label6);
+        setText(6, label7);
+        setText(7, label8);
+
+        setTextAlignment(1, Qt::AlignRight);
+        setTextAlignment(3, Qt::AlignHCenter);
+        setTextAlignment(5, Qt::AlignRight);
+        item->setUserData((void *)this);
+
+        setColors(txt, base);
+    }
+
+    SyncViewItem(SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidgetItem *parent,
+                 QTreeWidgetItem *after, QString label1, QString label2 = QString(),
+                 QString label3 = QString(), QString label4 = QString(),
+                 QString label5 = QString(), QString label6 = QString(),
+                 QString label7 = QString(), QString label8 = QString())
+        : QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(0)
+    {
+        setText(0, label1);
+        setText(1, label2);
+        setText(2, label3);
+        setText(3, label4);
+        setText(4, label5);
+        setText(5, label6);
+        setText(6, label7);
+        setText(7, label8);
+
+        setTextAlignment(1, Qt::AlignRight);
+        setTextAlignment(3, Qt::AlignHCenter);
+        setTextAlignment(5, Qt::AlignRight);
+        item->setUserData((void *)this);
+
+        setColors(txt, base);
+    }
+
+    ~SyncViewItem() { syncItemRef->setUserData(nullptr); }
+
+    inline SynchronizerFileItem *synchronizerItemRef() { return syncItemRef; }
+    inline SyncViewItem *lastItem() { return lastItemRef; }
+    inline void setLastItem(SyncViewItem *s) { lastItemRef = s; }
+
+    void setColors(QColor fore, QColor back)
+    {
+        QBrush textColor(fore);
+        QBrush baseColor(back);
+
+        for (int i = 0; i != columnCount(); i++) {
+            if (back.isValid())
+                setBackground(i, baseColor);
+            if (fore.isValid())
+                setForeground(i, textColor);
+        }
+    }
+};
 
 class SynchronizerGUI : public QDialog
 {
     Q_OBJECT
-
-public:
-    class SyncViewItem : public QTreeWidgetItem
-    {
-    private:
-        SynchronizerFileItem *syncItemRef;
-        SyncViewItem *lastItemRef;
-
-    public:
-        SyncViewItem(SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidget *parent,
-                     QTreeWidgetItem *after, QString label1, QString label2 = QString(),
-                     QString label3 = QString(), QString label4 = QString(),
-                     QString label5 = QString(), QString label6 = QString(),
-                     QString label7 = QString(), QString label8 = QString())
-            : QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(0)
-        {
-            setText(0, label1);
-            setText(1, label2);
-            setText(2, label3);
-            setText(3, label4);
-            setText(4, label5);
-            setText(5, label6);
-            setText(6, label7);
-            setText(7, label8);
-
-            setTextAlignment(1, Qt::AlignRight);
-            setTextAlignment(3, Qt::AlignHCenter);
-            setTextAlignment(5, Qt::AlignRight);
-            item->setUserData((void *)this);
-
-            setColors(txt, base);
-        }
-
-        SyncViewItem(SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidgetItem *parent,
-                     QTreeWidgetItem *after, QString label1, QString label2 = QString(),
-                     QString label3 = QString(), QString label4 = QString(),
-                     QString label5 = QString(), QString label6 = QString(),
-                     QString label7 = QString(), QString label8 = QString())
-            : QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(0)
-        {
-            setText(0, label1);
-            setText(1, label2);
-            setText(2, label3);
-            setText(3, label4);
-            setText(4, label5);
-            setText(5, label6);
-            setText(6, label7);
-            setText(7, label8);
-
-            setTextAlignment(1, Qt::AlignRight);
-            setTextAlignment(3, Qt::AlignHCenter);
-            setTextAlignment(5, Qt::AlignRight);
-            item->setUserData((void *)this);
-
-            setColors(txt, base);
-        }
-
-        ~SyncViewItem() { syncItemRef->setUserData(0); }
-
-        inline SynchronizerFileItem *synchronizerItemRef() { return syncItemRef; }
-        inline SyncViewItem *lastItem() { return lastItemRef; }
-        inline void setLastItem(SyncViewItem *s) { lastItemRef = s; }
-
-        void setColors(QColor fore, QColor back)
-        {
-            QBrush textColor(fore);
-            QBrush baseColor(back);
-
-            for (int i = 0; i != columnCount(); i++) {
-                if (back.isValid())
-                    setBackground(i, baseColor);
-                if (fore.isValid())
-                    setForeground(i, textColor);
-            }
-        }
-    };
 
 public:
     // if rightDirectory is null, leftDirectory is actually the profile name to load
