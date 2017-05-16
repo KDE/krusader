@@ -31,32 +31,30 @@
 #include "krquery.h"
 
 // QtCore
-#include <QMetaMethod>
-#include <QTextCodec>
-#include <QRegExp>
 #include <QFile>
+#include <QMetaMethod>
+#include <QRegExp>
+#include <QTextCodec>
 
 #include <KI18n/KLocalizedString>
-#include <KIOWidgets/KUrlCompletion>
 #include <KIO/Job>
 #include <KIOCore/KFileItem>
+#include <KIOWidgets/KUrlCompletion>
 
+#include "../Archive/krarchandler.h"
 #include "filesystem.h"
 #include "krpermhandler.h"
-#include "../Archive/krarchandler.h"
 
-#define  STATUS_SEND_DELAY     250
-#define  MAX_LINE_LEN          1000
+#define STATUS_SEND_DELAY 250
+#define MAX_LINE_LEN 1000
 
 // set the defaults
-KRQuery::KRQuery(): QObject(), matchesCaseSensitive(true), bNull(true),
-        contain(QString()), containCaseSensetive(true),
-        containWholeWord(false), containRegExp(false),
-        minSize(0), maxSize(0), newerThen(0), olderThen(0),
-        owner(QString()), group(QString()), perm(QString()),
-        type(QString()), inArchive(false), recurse(true),
-        followLinksP(true), receivedBuffer(0), receivedBufferLen(0), processEventsConnected(0),
-        codec(QTextCodec::codecForLocale())
+KRQuery::KRQuery()
+    : QObject(), matchesCaseSensitive(true), bNull(true), contain(QString()),
+      containCaseSensetive(true), containWholeWord(false), containRegExp(false), minSize(0),
+      maxSize(0), newerThen(0), olderThen(0), owner(QString()), group(QString()), perm(QString()),
+      type(QString()), inArchive(false), recurse(true), followLinksP(true), receivedBuffer(0),
+      receivedBufferLen(0), processEventsConnected(0), codec(QTextCodec::codecForLocale())
 {
     QChar ch = '\n';
     QTextCodec::ConverterState state(QTextCodec::IgnoreHeader);
@@ -66,14 +64,12 @@ KRQuery::KRQuery(): QObject(), matchesCaseSensitive(true), bNull(true),
 }
 
 // set the defaults
-KRQuery::KRQuery(const QString &name, bool matchCase) : QObject(),
-        bNull(true), contain(QString()), containCaseSensetive(true),
-        containWholeWord(false), containRegExp(false),
-        minSize(0), maxSize(0), newerThen(0), olderThen(0),
-        owner(QString()), group(QString()), perm(QString()),
-        type(QString()), inArchive(false), recurse(true),
-        followLinksP(true), receivedBuffer(0), receivedBufferLen(0), processEventsConnected(0),
-        codec(QTextCodec::codecForLocale())
+KRQuery::KRQuery(const QString &name, bool matchCase)
+    : QObject(), bNull(true), contain(QString()), containCaseSensetive(true),
+      containWholeWord(false), containRegExp(false), minSize(0), maxSize(0), newerThen(0),
+      olderThen(0), owner(QString()), group(QString()), perm(QString()), type(QString()),
+      inArchive(false), recurse(true), followLinksP(true), receivedBuffer(0), receivedBufferLen(0),
+      processEventsConnected(0), codec(QTextCodec::codecForLocale())
 {
     QChar ch = '\n';
     QTextCodec::ConverterState state(QTextCodec::IgnoreHeader);
@@ -84,7 +80,8 @@ KRQuery::KRQuery(const QString &name, bool matchCase) : QObject(),
     setNameFilter(name, matchCase);
 }
 
-KRQuery::KRQuery(const KRQuery & that) : QObject(), receivedBuffer(0), receivedBufferLen(0), processEventsConnected(0)
+KRQuery::KRQuery(const KRQuery &that)
+    : QObject(), receivedBuffer(0), receivedBufferLen(0), processEventsConnected(0)
 {
     *this = that;
 }
@@ -92,11 +89,11 @@ KRQuery::KRQuery(const KRQuery & that) : QObject(), receivedBuffer(0), receivedB
 KRQuery::~KRQuery()
 {
     if (receivedBuffer)
-        delete []receivedBuffer;
+        delete[] receivedBuffer;
     receivedBuffer = 0;
 }
 
-KRQuery& KRQuery::operator=(const KRQuery & old)
+KRQuery &KRQuery::operator=(const KRQuery &old)
 {
     matches = old.matches;
     excludes = old.excludes;
@@ -137,7 +134,7 @@ void KRQuery::load(KConfigGroup cfg)
 {
     *this = KRQuery(); // reset parameters first
 
-    if(cfg.readEntry("IsNull", true))
+    if (cfg.readEntry("IsNull", true))
         return;
 
 #define LOAD(key, var) (var = cfg.readEntry(key, var))
@@ -152,8 +149,12 @@ void KRQuery::load(KConfigGroup cfg)
     LOAD("ContainRegExp", containRegExp);
     LOAD("MinSize", minSize);
     LOAD("MaxSize", maxSize);
-    newerThen = QDateTime::fromString(cfg.readEntry("NewerThan", QDateTime::fromTime_t(newerThen).toString())).toTime_t();
-    olderThen = QDateTime::fromString(cfg.readEntry("OlderThan", QDateTime::fromTime_t(olderThen).toString())).toTime_t();
+    newerThen = QDateTime::fromString(
+                    cfg.readEntry("NewerThan", QDateTime::fromTime_t(newerThen).toString()))
+                    .toTime_t();
+    olderThen = QDateTime::fromString(
+                    cfg.readEntry("OlderThan", QDateTime::fromTime_t(olderThen).toString()))
+                    .toTime_t();
     LOAD("Owner", owner);
     LOAD("Group", group);
     LOAD("Perm", perm);
@@ -163,12 +164,12 @@ void KRQuery::load(KConfigGroup cfg)
     LOAD("Recurse", recurse);
     LOAD("FollowLinks", followLinksP);
     // KF5 TODO?
-    //LOAD("WhereToSearch", whereToSearch);
-    //LOAD("WhereNotToSearch", whereNotToSearch);
+    // LOAD("WhereToSearch", whereToSearch);
+    // LOAD("WhereNotToSearch", whereNotToSearch);
     LOAD("OrigFilter", origFilter);
 
     codec = QTextCodec::codecForName(cfg.readEntry("Codec", codec->name()));
-    if(!codec)
+    if (!codec)
         codec = QTextCodec::codecForLocale();
 
     LOAD("EncodedEnterArray", encodedEnterArray);
@@ -183,7 +184,7 @@ void KRQuery::save(KConfigGroup cfg)
 {
     cfg.writeEntry("IsNull", bNull);
 
-    if(bNull)
+    if (bNull)
         return;
 
     cfg.writeEntry("Matches", matches);
@@ -208,8 +209,8 @@ void KRQuery::save(KConfigGroup cfg)
     cfg.writeEntry("Recurse", recurse);
     cfg.writeEntry("FollowLinks", followLinksP);
     // KF5 TODO?
-    //cfg.writeEntry("WhereToSearch", whereToSearch);
-    //cfg.writeEntry("WhereNotToSearch", whereNotToSearch);
+    // cfg.writeEntry("WhereToSearch", whereToSearch);
+    // cfg.writeEntry("WhereNotToSearch", whereNotToSearch);
     cfg.writeEntry("OrigFilter", origFilter);
 
     cfg.writeEntry("Codec", codec->name());
@@ -233,45 +234,54 @@ void KRQuery::disconnectNotify(const QMetaMethod &signal)
 bool KRQuery::checkPerm(QString filePerm) const
 {
     for (int i = 0; i < 9; ++i)
-        if (perm[ i ] != '?' && perm[ i ] != filePerm[ i + 1 ]) return false;
+        if (perm[i] != '?' && perm[i] != filePerm[i + 1])
+            return false;
     return true;
 }
 
 bool KRQuery::checkType(QString mime) const
 {
-    if (type == mime) return true;
-    if (type == i18n("Archives")) return KRarcHandler::arcSupported(mime);
-    if (type == i18n("Folders")) return mime.contains("directory");
-    if (type == i18n("Image Files")) return mime.contains("image/");
-    if (type == i18n("Text Files")) return mime.contains("text/");
-    if (type == i18n("Video Files")) return mime.contains("video/");
-    if (type == i18n("Audio Files")) return mime.contains("audio/");
-    if (type == i18n("Custom")) return customType.contains(mime);
+    if (type == mime)
+        return true;
+    if (type == i18n("Archives"))
+        return KRarcHandler::arcSupported(mime);
+    if (type == i18n("Folders"))
+        return mime.contains("directory");
+    if (type == i18n("Image Files"))
+        return mime.contains("image/");
+    if (type == i18n("Text Files"))
+        return mime.contains("text/");
+    if (type == i18n("Video Files"))
+        return mime.contains("video/");
+    if (type == i18n("Audio Files"))
+        return mime.contains("audio/");
+    if (type == i18n("Custom"))
+        return customType.contains(mime);
     return false;
 }
 
-bool KRQuery::match(const QString & name) const
-{
-    return matchCommon(name, matches, excludes);
-}
+bool KRQuery::match(const QString &name) const { return matchCommon(name, matches, excludes); }
 
-bool KRQuery::matchDirName(const QString & name) const
+bool KRQuery::matchDirName(const QString &name) const
 {
     return matchCommon(name, includedDirs, excludedDirs);
 }
 
-bool KRQuery::matchCommon(const QString &nameIn, const QStringList &matchList, const QStringList &excludeList) const
+bool KRQuery::matchCommon(const QString &nameIn, const QStringList &matchList,
+                          const QStringList &excludeList) const
 {
-    if (excludeList.count() == 0 && matchList.count() == 0)  /* true if there's no match condition */
+    if (excludeList.count() == 0 && matchList.count() == 0) /* true if there's no match condition */
         return true;
 
     QString name(nameIn);
-    int ndx = nameIn.lastIndexOf('/');   // virtual filenames may contain '/'
-    if (ndx != -1)                   // but the end of the filename is OK
+    int ndx = nameIn.lastIndexOf('/'); // virtual filenames may contain '/'
+    if (ndx != -1)                     // but the end of the filename is OK
         name = nameIn.mid(ndx + 1);
 
     for (int i = 0; i < excludeList.count(); ++i) {
-        if (QRegExp(excludeList[ i ], matchesCaseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard).exactMatch(name))
+        if (QRegExp(excludeList[i], matchesCaseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive,
+                    QRegExp::Wildcard)
+                .exactMatch(name))
             return false;
     }
 
@@ -279,7 +289,9 @@ bool KRQuery::matchCommon(const QString &nameIn, const QStringList &matchList, c
         return true;
 
     for (int i = 0; i < matchList.count(); ++i) {
-        if (QRegExp(matchList[ i ], matchesCaseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard).exactMatch(name))
+        if (QRegExp(matchList[i], matchesCaseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive,
+                    QRegExp::Wildcard)
+                .exactMatch(name))
             return true;
     }
     return false;
@@ -287,25 +299,35 @@ bool KRQuery::matchCommon(const QString &nameIn, const QStringList &matchList, c
 
 bool KRQuery::match(FileItem *item) const
 {
-    if (item->isDir() && !matchDirName(item->getName())) return false;
+    if (item->isDir() && !matchDirName(item->getName()))
+        return false;
     // see if the name matches
-    if (!match(item->getName())) return false;
+    if (!match(item->getName()))
+        return false;
     // checking the mime
-    if (!type.isEmpty() && !checkType(item->getMime())) return false;
+    if (!type.isEmpty() && !checkType(item->getMime()))
+        return false;
     // check that the size fit
     KIO::filesize_t size = item->getSize();
-    if (minSize && size < minSize) return false;
-    if (maxSize && size > maxSize) return false;
+    if (minSize && size < minSize)
+        return false;
+    if (maxSize && size > maxSize)
+        return false;
     // check the time frame
     time_t mtime = item->getTime_t();
-    if (olderThen && mtime > olderThen) return false;
-    if (newerThen && mtime < newerThen) return false;
+    if (olderThen && mtime > olderThen)
+        return false;
+    if (newerThen && mtime < newerThen)
+        return false;
     // check owner name
-    if (!owner.isEmpty() && item->getOwner() != owner) return false;
+    if (!owner.isEmpty() && item->getOwner() != owner)
+        return false;
     // check group name
-    if (!group.isEmpty() && item->getGroup() != group) return false;
-    //check permission
-    if (!perm.isEmpty() && !checkPerm(item->getPerm())) return false;
+    if (!group.isEmpty() && item->getGroup() != group)
+        return false;
+    // check permission
+    if (!perm.isEmpty() && !checkPerm(item->getPerm()))
+        return false;
 
     if (!contain.isEmpty()) {
         if ((totalBytes = item->getSize()) == 0)
@@ -335,7 +357,7 @@ bool KRQuery::match(FileItem *item) const
 
 // takes the string and adds BOLD to it, so that when it is displayed,
 // the grepped text will be bold
-void fixFoundTextForDisplay(QString& haystack, int start, int length)
+void fixFoundTextForDisplay(QString &haystack, int start, int length)
 {
     QString before = haystack.left(start);
     QString text = haystack.mid(start, length);
@@ -356,11 +378,11 @@ void fixFoundTextForDisplay(QString& haystack, int start, int length)
     haystack = ("<qt>" + before + "<b>" + text + "</b>" + after + "</qt>");
 }
 
-bool KRQuery::checkBuffer(const char * data, int len) const
+bool KRQuery::checkBuffer(const char *data, int len) const
 {
     bool result = false;
 
-    char * mergedBuffer = new char [ len + receivedBufferLen ];
+    char *mergedBuffer = new char[len + receivedBufferLen];
     if (receivedBufferLen)
         memcpy(mergedBuffer, receivedBuffer, receivedBufferLen);
     if (len)
@@ -372,7 +394,8 @@ bool KRQuery::checkBuffer(const char * data, int len) const
 
     for (int enterIndex = 0; enterIndex < maxBuffer; enterIndex++) {
         if (memcmp(mergedBuffer + enterIndex, encodedEnter, encodedEnterLen) == 0) {
-            QString str = codec->toUnicode(mergedBuffer + lastLinePosition, enterIndex + encodedEnterLen - lastLinePosition);
+            QString str = codec->toUnicode(mergedBuffer + lastLinePosition,
+                                           enterIndex + encodedEnterLen - lastLinePosition);
             if (str.endsWith('\n')) {
                 str.chop(1);
                 result = result || checkLine(str);
@@ -389,38 +412,44 @@ bool KRQuery::checkBuffer(const char * data, int len) const
         lastLinePosition = maxLen;
     }
 
-    delete []receivedBuffer;
+    delete[] receivedBuffer;
     receivedBuffer = 0;
     receivedBufferLen = maxLen - lastLinePosition;
 
     if (receivedBufferLen) {
-        receivedBuffer = new char [ receivedBufferLen ];
+        receivedBuffer = new char[receivedBufferLen];
         memcpy(receivedBuffer, mergedBuffer + lastLinePosition, receivedBufferLen);
     }
 
-    delete []mergedBuffer;
+    delete[] mergedBuffer;
     return result;
 }
 
-bool KRQuery::checkLine(const QString & line, bool backwards) const
+bool KRQuery::checkLine(const QString &line, bool backwards) const
 {
     if (containRegExp) {
-        QRegExp rexp(contain, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::RegExp);
+        QRegExp rexp(contain, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive,
+                     QRegExp::RegExp);
         int ndx = backwards ? rexp.lastIndexIn(line) : rexp.indexIn(line);
         bool result = ndx >= 0;
         if (result)
-            fixFoundTextForDisplay(lastSuccessfulGrep = line, lastSuccessfulGrepMatchIndex = ndx, lastSuccessfulGrepMatchLength = rexp.matchedLength());
+            fixFoundTextForDisplay(lastSuccessfulGrep = line, lastSuccessfulGrepMatchIndex = ndx,
+                                   lastSuccessfulGrepMatchLength = rexp.matchedLength());
         return result;
     }
 
     int ndx = backwards ? -1 : 0;
 
-    if (line.isNull()) return false;
+    if (line.isNull())
+        return false;
     if (containWholeWord) {
         while ((ndx = (backwards) ?
-                      line.lastIndexOf(contain, ndx, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive) :
-                              line.indexOf(contain, ndx, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive)
-                       ) != -1) {
+                          line.lastIndexOf(contain, ndx,
+                                           containCaseSensetive ? Qt::CaseSensitive :
+                                                                  Qt::CaseInsensitive) :
+                          line.indexOf(contain, ndx,
+                                       containCaseSensetive ? Qt::CaseSensitive :
+                                                              Qt::CaseInsensitive)) != -1) {
             QChar before = '\n';
             QChar after = '\n';
 
@@ -429,10 +458,11 @@ bool KRQuery::checkLine(const QString & line, bool backwards) const
             if (ndx + contain.length() < line.length())
                 after = line.at(ndx + contain.length());
 
-            if (!before.isLetterOrNumber() && !after.isLetterOrNumber() &&
-                    after != '_' && before != '_') {
+            if (!before.isLetterOrNumber() && !after.isLetterOrNumber() && after != '_' &&
+                before != '_') {
                 lastSuccessfulGrep = line;
-                fixFoundTextForDisplay(lastSuccessfulGrep, lastSuccessfulGrepMatchIndex = ndx, lastSuccessfulGrepMatchLength = contain.length());
+                fixFoundTextForDisplay(lastSuccessfulGrep, lastSuccessfulGrepMatchIndex = ndx,
+                                       lastSuccessfulGrepMatchLength = contain.length());
                 return true;
             }
 
@@ -442,10 +472,15 @@ bool KRQuery::checkLine(const QString & line, bool backwards) const
                 ndx++;
         }
     } else if ((ndx = (backwards) ?
-                      line.lastIndexOf(contain, -1, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive) :
-                              line.indexOf(contain, 0, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive)) != -1) {
+                          line.lastIndexOf(contain, -1,
+                                           containCaseSensetive ? Qt::CaseSensitive :
+                                                                  Qt::CaseInsensitive) :
+                          line.indexOf(contain, 0,
+                                       containCaseSensetive ? Qt::CaseSensitive :
+                                                              Qt::CaseInsensitive)) != -1) {
         lastSuccessfulGrep = line;
-        fixFoundTextForDisplay(lastSuccessfulGrep, lastSuccessfulGrepMatchIndex = ndx, lastSuccessfulGrepMatchLength = contain.length());
+        fixFoundTextForDisplay(lastSuccessfulGrep, lastSuccessfulGrepMatchIndex = ndx,
+                               lastSuccessfulGrepMatchLength = contain.length());
         return true;
     }
     return false;
@@ -457,7 +492,7 @@ bool KRQuery::containsContent(QString file) const
     if (!qf.open(QIODevice::ReadOnly))
         return false;
 
-    char buffer[ 1440 ]; // 2k buffer
+    char buffer[1440]; // 2k buffer
 
     while (!qf.atEnd()) {
         int bytes = qf.read(buffer, sizeof(buffer));
@@ -482,8 +517,6 @@ bool KRQuery::containsContent(QString file) const
     lastSuccessfulGrep.clear(); // nothing was found
     return false;
 }
-
-
 
 bool KRQuery::containsContent(QUrl url) const
 {
@@ -510,7 +543,7 @@ bool KRQuery::containsContent(QUrl url) const
 
 void KRQuery::containsContentData(KIO::Job *job, const QByteArray &array)
 {
-    receivedBytes  += array.size();
+    receivedBytes += array.size();
     if (checkBuffer(array.data(), array.size())) {
         containsContentResult = true;
         containsContentFinished(job);
@@ -520,16 +553,14 @@ void KRQuery::containsContentData(KIO::Job *job, const QByteArray &array)
     checkTimer();
 }
 
-void KRQuery::containsContentFinished(KJob *)
-{
-    busy = false;
-}
+void KRQuery::containsContentFinished(KJob *) { busy = false; }
 
 bool KRQuery::checkTimer() const
 {
     if (timer.elapsed() >= STATUS_SEND_DELAY) {
-        int pcnt = (int)(100.*(double)receivedBytes / (double)totalBytes + .5);
-        QString message = i18nc("%1=filename, %2=percentage", "Searching content of '%1' (%2%)", fileName, pcnt);
+        int pcnt = (int)(100. * (double)receivedBytes / (double)totalBytes + .5);
+        QString message =
+            i18nc("%1=filename, %2=percentage", "Searching content of '%1' (%2%)", fileName, pcnt);
         timer.start();
         emit((KRQuery *)this)->status(message);
         return true;
@@ -545,10 +576,10 @@ QStringList KRQuery::split(QString str)
     bool quotation = false;
 
     while (splitNdx < str.length()) {
-        if (str[ splitNdx ] == '"')
+        if (str[splitNdx] == '"')
             quotation = !quotation;
 
-        if (!quotation && str[ splitNdx ] == ' ') {
+        if (!quotation && str[splitNdx] == ' ') {
             QString section = str.mid(startNdx, splitNdx - startNdx);
             startNdx = splitNdx + 1;
             if (section.startsWith('\"') && section.endsWith('\"') && section.length() >= 2)
@@ -582,10 +613,10 @@ void KRQuery::setNameFilter(const QString &text, bool cs)
     int excludeNdx = 0;
     bool quotationMark = 0;
     while (excludeNdx < matchText.length()) {
-        if (matchText[ excludeNdx ] == '"')
+        if (matchText[excludeNdx] == '"')
             quotationMark = !quotationMark;
         if (!quotationMark) {
-            if (matchText[ excludeNdx ] == '|')
+            if (matchText[excludeNdx] == '|')
                 break;
         }
         excludeNdx++;
@@ -601,18 +632,18 @@ void KRQuery::setNameFilter(const QString &text, bool cs)
 
     int i;
 
-    matches  = split(matchText);
+    matches = split(matchText);
     includedDirs.clear();
 
     for (i = 0; i < matches.count();) {
-        if (matches[ i ].endsWith('/')) {
-            includedDirs.push_back(matches[ i ].left(matches[ i ].length() - 1));
+        if (matches[i].endsWith('/')) {
+            includedDirs.push_back(matches[i].left(matches[i].length() - 1));
             matches.removeAll(matches.at(i));
             continue;
         }
 
-        if (!matches[ i ].contains("*") && !matches[ i ].contains("?"))
-            matches[ i ] = '*' + matches[ i ] + '*';
+        if (!matches[i].contains("*") && !matches[i].contains("?"))
+            matches[i] = '*' + matches[i] + '*';
 
         i++;
     }
@@ -621,20 +652,21 @@ void KRQuery::setNameFilter(const QString &text, bool cs)
     excludedDirs.clear();
 
     for (i = 0; i < excludes.count();) {
-        if (excludes[ i ].endsWith('/')) {
-            excludedDirs.push_back(excludes[ i ].left(excludes[ i ].length() - 1));
+        if (excludes[i].endsWith('/')) {
+            excludedDirs.push_back(excludes[i].left(excludes[i].length() - 1));
             excludes.removeAll(excludes.at(i));
             continue;
         }
 
-        if (!excludes[ i ].contains("*") && !excludes[ i ].contains("?"))
-            excludes[ i ] = '*' + excludes[ i ] + '*';
+        if (!excludes[i].contains("*") && !excludes[i].contains("?"))
+            excludes[i] = '*' + excludes[i] + '*';
 
         i++;
     }
 }
 
-void KRQuery::setContent(const QString &content, bool cs, bool wholeWord, QString encoding, bool regExp)
+void KRQuery::setContent(const QString &content, bool cs, bool wholeWord, QString encoding,
+                         bool regExp)
 {
     bNull = false;
     contain = content;
@@ -709,7 +741,8 @@ void KRQuery::setMimeType(const QString &typeIn, QStringList customList)
 bool KRQuery::isExcluded(const QUrl &url)
 {
     for (int i = 0; i < whereNotToSearch.count(); ++i)
-        if (whereNotToSearch [ i ].isParentOf(url) || url.matches(whereNotToSearch [ i ], QUrl::StripTrailingSlash))
+        if (whereNotToSearch[i].isParentOf(url) ||
+            url.matches(whereNotToSearch[i], QUrl::StripTrailingSlash))
             return true;
 
     if (!matchDirName(url.fileName()))
@@ -722,8 +755,9 @@ void KRQuery::setSearchInDirs(const QList<QUrl> &urls)
 {
     whereToSearch.clear();
     for (int i = 0; i < urls.count(); ++i) {
-        QString url = urls[ i ].url();
-        QUrl completed = QUrl::fromUserInput(KUrlCompletion::replacedPath(url, true, true), QString(), QUrl::AssumeLocalFile);
+        QString url = urls[i].url();
+        QUrl completed = QUrl::fromUserInput(KUrlCompletion::replacedPath(url, true, true),
+                                             QString(), QUrl::AssumeLocalFile);
         whereToSearch.append(completed);
     }
 }
@@ -732,9 +766,9 @@ void KRQuery::setDontSearchInDirs(const QList<QUrl> &urls)
 {
     whereNotToSearch.clear();
     for (int i = 0; i < urls.count(); ++i) {
-        QString url = urls[ i ].url();
-        QUrl completed = QUrl::fromUserInput(KUrlCompletion::replacedPath(url, true, true), QString(), QUrl::AssumeLocalFile);
+        QString url = urls[i].url();
+        QUrl completed = QUrl::fromUserInput(KUrlCompletion::replacedPath(url, true, true),
+                                             QString(), QUrl::AssumeLocalFile);
         whereNotToSearch.append(completed);
     }
 }
-
