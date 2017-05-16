@@ -28,61 +28,61 @@
  *                                                                         *
  ***************************************************************************/
 
-
-
 #ifndef KRSEARCHMOD_H
 #define KRSEARCHMOD_H
 
 // QtCore
-#include <QObject>
-#include <QStringList>
 #include <QDateTime>
+#include <QObject>
 #include <QStack>
+#include <QStringList>
 #include <QUrl>
 
 #include <KIO/Global>
 
-#include "../FileSystem/defaultfilesystem.h"
-#include "../FileSystem/virtualfilesystem.h"
-
-
+class FileItem;
 class KRQuery;
-class ftp_fileSystem;
+class DefaultFileSystem;
+class VirtualFileSystem;
 
+/**
+ * Search for files based on a search query.
+ */
 class KRSearchMod : public QObject
 {
     Q_OBJECT
 public:
-    explicit KRSearchMod(const KRQuery *q);
+    explicit KRSearchMod(const KRQuery *query);
     ~KRSearchMod();
 
-    void scanURL(QUrl url);
     void start();
     void stop();
 
 private:
+    void scanURL(const QUrl &url);
     void scanLocalDir(const QUrl &url);
-    void scanRemoteDir(QUrl url);
+    void scanRemoteDir(const QUrl &url);
 
 signals:
     void finished();
-    void searching(const QString&);
+    void searching(const QString &url);
     void found(const FileItem &file, const QString &foundText);
 
 private slots:
-    void slotProcessEvents(bool & stopped);
+    void slotProcessEvents(bool &stopped);
 
 private:
-    bool stopSearch;
-    QStack<QUrl> scannedUrls;
-    QStack<QUrl> unScannedUrls;
-    KRQuery *query;
-    QStringList results;
+    KRQuery *m_query;
+    DefaultFileSystem *m_defaultFileSystem;
+    VirtualFileSystem *m_virtualFileSystem;
 
-    DefaultFileSystem *remote_fileSystem;
-    VirtualFileSystem *virtual_fileSystem;
+    bool m_stopSearch;
 
-    QTime timer;
+    QStack<QUrl> m_scannedUrls;
+    QStack<QUrl> m_unScannedUrls;
+
+    QStringList m_results;
+    QTime m_timer;
 };
 
 #endif

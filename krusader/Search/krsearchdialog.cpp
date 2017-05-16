@@ -45,37 +45,35 @@
 #include <QGridLayout>
 #include <QInputDialog>
 #include <QHBoxLayout>
-#include <QLabel>
 #include <QMenu>
-#include <QTabWidget>
 
 #include <KConfigCore/KConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
-#include "../krglobal.h"
-#include "../kractions.h"
-#include "../krservices.h"
-#include "../krslots.h"
-#include "../defaults.h"
-#include "../panelmanager.h"
-#include "../kicons.h"
-#include "../krusaderview.h"
+#include "krsearchmod.h"
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
-#include "../FileSystem/virtualfilesystem.h"
 #include "../FileSystem/krquery.h"
+#include "../FileSystem/virtualfilesystem.h"
+#include "../Filter/filtertabs.h"
+#include "../Filter/generalfilter.h"
 #include "../KViewer/krviewer.h"
+#include "../Panel/krpanel.h"
 #include "../Panel/krsearchbar.h"
 #include "../Panel/krview.h"
 #include "../Panel/krviewfactory.h"
 #include "../Panel/krviewitem.h"
-#include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
-#include "../Filter/filtertabs.h"
-#include "../Filter/generalfilter.h"
-
+#include "../defaults.h"
+#include "../kicons.h"
+#include "../kractions.h"
+#include "../krglobal.h"
+#include "../krservices.h"
+#include "../krslots.h"
+#include "../krusaderview.h"
+#include "../panelmanager.h"
 
 #define RESULTVIEW_TYPE 0
 
