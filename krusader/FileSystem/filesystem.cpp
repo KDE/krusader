@@ -117,7 +117,6 @@ QUrl FileSystem::preferLocalUrl(const QUrl &url){
 
 bool FileSystem::refresh(const QUrl &directory)
 {
-
     if (_isRefreshing) {
         // NOTE: this does not happen (unless async)";
         return false;

@@ -48,7 +48,9 @@
 #include "../FileSystem/krquery.h"
 #include "../FileSystem/virtualfilesystem.h"
 
-#define  EVENT_PROCESS_DELAY     250
+#define EVENT_PROCESS_DELAY 250 // milliseconds
+
+static const QStringList TAR_TYPES = QStringList() << "tbz" << "tgz" << "tarz" << "tar" << "tlz";
 
 extern KRarcHandler arcHandler;
 
@@ -79,103 +81,79 @@ void KRSearchMod::start()
 
     // search every dir that needs to be searched
     for (int i = 0; i < whereToSearch.count(); ++i)
-        scanURL(whereToSearch [ i ]);
+        scanUrl(whereToSearch[i]);
 
     emit finished();
 }
 
-void KRSearchMod::stop()
-{
-    m_stopSearch = true;
-}
+void KRSearchMod::stop() { m_stopSearch = true; }
 
-void KRSearchMod::scanURL(const QUrl &url)
+void KRSearchMod::scanUrl(const QUrl &url)
 {
-    if (m_stopSearch) return;
+    if (m_stopSearch)
+        return;
 
     m_unScannedUrls.push(url);
     while (!m_unScannedUrls.isEmpty()) {
-        const QUrl urlToCheck = m_unScannedUrls.pop();
+        const QUrl url = m_unScannedUrls.pop();
 
-        if (m_stopSearch) return;
+        if (m_stopSearch)
+            return;
 
-        if (m_query->isExcluded(urlToCheck)) {
-            if (!m_query->searchInDirs().contains(urlToCheck))
+        if (m_query->isExcluded(url)) {
+            if (!m_query->searchInDirs().contains(url))
                 continue;
         }
 
-        if (m_scannedUrls.contains(urlToCheck))
+        if (m_scannedUrls.contains(url))
+            // avoid endless loop
             continue;
-        m_scannedUrls.push(urlToCheck);
 
-        emit searching(urlToCheck.toDisplayString(QUrl::PreferLocalFile));
+        m_scannedUrls.push(url);
 
-        if (urlToCheck.isLocalFile())
-            scanLocalDir(urlToCheck);
-        else
-            scanRemoteDir(urlToCheck);
+        emit searching(url.toDisplayString(QUrl::PreferLocalFile));
+
+        scanDirectory(url);
     }
 }
 
-void KRSearchMod::scanLocalDir(const QUrl &url)
+void KRSearchMod::scanDirectory(const QUrl &url)
 {
-    const QString dir = FileSystem::ensureTrailingSlash(url).path();
+    FileSystem *fileSystem = getFileSystem(url);
 
-    QT_DIR *qdir = QT_OPENDIR(dir.toLocal8Bit());
-    if (!qdir)
+    // create file items
+    const bool refreshed = fileSystem->refresh(url);
+    if (!refreshed) {
+        emit error(url);
         return;
+    }
 
-    QT_DIRENT *dirEnt;
+    for (FileItem *fileItem : fileSystem->fileItems()) {
+        const QUrl fileUrl = fileItem->getUrl();
 
-    while ((dirEnt = QT_READDIR(qdir)) != NULL) {
-        const QString name = QString::fromLocal8Bit(dirEnt->d_name);
-
-        // we don't scan the ".",".." enteries
-        if (name == "." || name == "..")
-            continue;
-
-        const QString fullName = dir + name;
-        const QUrl fileUrl = QUrl::fromLocalFile(fullName);
-
-        QT_STATBUF stat_p;
-        QT_LSTAT(fullName.toLocal8Bit(), &stat_p);
-
-        if (m_query->isRecursive()) {
-            if (S_ISLNK(stat_p.st_mode) && m_query->followLinks())
-                m_unScannedUrls.push(QUrl::fromLocalFile(QDir(fullName).canonicalPath()));
-            else if (S_ISDIR(stat_p.st_mode))
-                m_unScannedUrls.push(fileUrl);
+        if (m_query->isRecursive() &&
+            (fileItem->isDir() || (fileItem->isSymLink() && m_query->followLinks()))) {
+            // query search in subdirectory
+            m_unScannedUrls.push(fileUrl);
         }
 
-        // creating a file item object for matching with krquery
-        FileItem *fileitem = FileSystem::createLocalFileItem(name, dir);
+        if (m_query->searchInArchives() && fileUrl.isLocalFile() &&
+            KRarcHandler::arcSupported(fileItem->getMime())) {
+            // query search in archive; NOTE: only supported for local files
+            QUrl archiveURL = fileUrl;
+            bool encrypted;
+            const QString type = arcHandler.getType(encrypted, fileUrl.path(), fileItem->getMime());
 
-        if (m_query->searchInArchives()) {
-            const QString mime = fileitem->getMime();
-            if (KRarcHandler::arcSupported(mime)) {
-                QUrl archiveURL = fileUrl;
-                bool encrypted;
-                const QString realType = arcHandler.getType(encrypted, fileUrl.path(), mime);
-
-                if (!encrypted) {
-                    if (realType == "tbz" || realType == "tgz" || realType == "tarz" ||
-                        realType == "tar" || realType == "tlz")
-                        archiveURL.setScheme("tar");
-                    else
-                        archiveURL.setScheme("krarc");
-
-                    m_unScannedUrls.push(archiveURL);
-                }
+            if (!encrypted) {
+                archiveURL.setScheme(TAR_TYPES.contains(type) ? "tar" : "krarc");
+                m_unScannedUrls.push(archiveURL);
             }
         }
 
-        if (m_query->match(fileitem)) {
-            // if we got here - we got a winner
-            m_results.append(fullName);
-
-            emit found(*fileitem, m_query->foundText()); // emitting copy of file item
+        if (m_query->match(fileItem)) {
+            // found!
+            emit found(*fileItem, m_query->foundText()); // emitting copy of file item
         }
-        delete fileitem;
 
         if (m_timer.elapsed() >= EVENT_PROCESS_DELAY) {
             qApp->processEvents();
@@ -184,50 +162,25 @@ void KRSearchMod::scanLocalDir(const QUrl &url)
                 return;
         }
     }
-    // clean up
-    QT_CLOSEDIR(qdir);
 }
 
-void KRSearchMod::scanRemoteDir(const QUrl &url)
+FileSystem *KRSearchMod::getFileSystem(const QUrl &url)
 {
-    FileSystem * fileSystem_;
-
+    FileSystem *fileSystem;
     if (url.scheme() == QStringLiteral("virt")) {
-        if (m_virtualFileSystem == 0)
+        if (!m_virtualFileSystem)
             m_virtualFileSystem = new VirtualFileSystem();
-        fileSystem_ = m_virtualFileSystem;
+        fileSystem = m_virtualFileSystem;
     } else {
-        if (m_defaultFileSystem == 0)
+        if (!m_defaultFileSystem)
             m_defaultFileSystem = new DefaultFileSystem();
-        fileSystem_ = m_defaultFileSystem;
+        fileSystem = m_defaultFileSystem;
     }
-
-    if (!fileSystem_->refresh(url)) return ;
-
-    for (FileItem *fileitem : fileSystem_->fileItems()) {
-        QUrl fileURL = fileitem->getUrl();
-
-        if (m_query->isRecursive() && ((fileitem->isSymLink() && m_query->followLinks()) || fileitem->isDir()))
-            m_unScannedUrls.push(fileURL);
-
-        if (m_query->match(fileitem)) {
-            // if we got here - we got a winner
-            m_results.append(fileURL.toDisplayString(QUrl::PreferLocalFile));
-
-            emit found(*fileitem, m_query->foundText()); // emitting copy of file item
-        }
-
-        if (m_timer.elapsed() >= EVENT_PROCESS_DELAY) {
-            qApp->processEvents();
-            m_timer.start();
-            if (m_stopSearch) return;
-        }
-    }
+    return fileSystem;
 }
 
-void KRSearchMod::slotProcessEvents(bool & stopped)
+void KRSearchMod::slotProcessEvents(bool &stopped)
 {
     qApp->processEvents();
     stopped = m_stopSearch;
 }
-

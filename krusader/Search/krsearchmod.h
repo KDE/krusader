@@ -40,13 +40,16 @@
 
 #include <KIO/Global>
 
-class FileItem;
 class KRQuery;
+class FileSystem;
+class FileItem;
 class DefaultFileSystem;
 class VirtualFileSystem;
 
 /**
  * Search for files based on a search query.
+ *
+ * Subdirectories are included if query->isRecursive() is true.
  */
 class KRSearchMod : public QObject
 {
@@ -59,14 +62,16 @@ public:
     void stop();
 
 private:
-    void scanURL(const QUrl &url);
-    void scanLocalDir(const QUrl &url);
-    void scanRemoteDir(const QUrl &url);
+    void scanUrl(const QUrl &url);
+    void scanDirectory(const QUrl &url);
+    FileSystem *getFileSystem(const QUrl &url);
 
 signals:
-    void finished();
     void searching(const QString &url);
     void found(const FileItem &file, const QString &foundText);
+    // NOTE: unused
+    void error(const QUrl &url);
+    void finished();
 
 private slots:
     void slotProcessEvents(bool &stopped);
@@ -80,8 +85,6 @@ private:
 
     QStack<QUrl> m_scannedUrls;
     QStack<QUrl> m_unScannedUrls;
-
-    QStringList m_results;
     QTime m_timer;
 };
 
