@@ -19,8 +19,8 @@
  * along with Krusader.  If not, see [http://www.gnu.org/licenses/].         *
  *****************************************************************************/
 
-#ifndef KRSEARCHMOD_H
-#define KRSEARCHMOD_H
+#ifndef FILESEARCHER_H
+#define FILESEARCHER_H
 
 // QtCore
 #include <QDateTime>
@@ -42,12 +42,12 @@ class VirtualFileSystem;
  *
  * Subdirectories are included if query->isRecursive() is true.
  */
-class KRSearchMod : public QObject
+class FileSearcher: public QObject
 {
     Q_OBJECT
 public:
-    explicit KRSearchMod(const KRQuery *query);
-    ~KRSearchMod();
+    explicit FileSearcher(const KRQuery *query);
+    ~FileSearcher();
 
     void start();
     void stop();

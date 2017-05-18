@@ -4,6 +4,7 @@ set(FileSystem_SRCS
     defaultfilesystem.cpp
     dirlisterinterface.cpp
     fileitem.cpp
+    filesearcher.cpp
     filesystem.cpp
     filesystemprovider.cpp
     krpermhandler.cpp

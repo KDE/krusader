@@ -32,6 +32,7 @@
 #include <QTabWidget>
 
 class FileItem;
+class FileSearcher;
 class FilterTabs;
 class GeneralFilter;
 class KrSearchBar;
@@ -39,7 +40,6 @@ class KrSqueezedTextLabel;
 class KrView;
 class KrViewItem;
 class KRQuery;
-class KRSearchMod;
 class KSqueezedTextLabel;
 class ProfileManager;
 class SearchResultContainer;
@@ -108,7 +108,7 @@ private:
     KrSearchBar *searchBar;
 
     KRQuery *query;
-    KRSearchMod *searcher;
+    FileSearcher *searcher;
     bool isBusy;
     bool closed;
 

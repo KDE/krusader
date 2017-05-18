@@ -30,6 +30,7 @@
 
 // QtCore
 #include <QDateTime>
+#include <QDebug>
 #include <QDir>
 #include <QEventLoop>
 #include <QRegExp>
@@ -1282,7 +1283,7 @@ void Synchronizer::synchronizeWithKGet()
     const bool isLeftLocal = leftBaseDirectory().isLocalFile();
 
     if (isLeftLocal == rightBaseDirectory().isLocalFile()) {
-        krOut << "one side must be local, the other remote";
+        qDebug() << "one side must be local, the other remote";
         return;
     }
 
@@ -1327,7 +1328,7 @@ void Synchronizer::synchronizeWithKGet()
                 if (item->isDir())
                     destDir = pathAppend(destDir, item->rightName());
             } else {
-                krOut << "KGet can only download from remote to local";
+                qDebug() << "KGet can only download from remote to local";
                 continue;
             }
 

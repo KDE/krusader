@@ -19,7 +19,7 @@
  * along with Krusader.  If not, see [http://www.gnu.org/licenses/].         *
  *****************************************************************************/
 
-#include "krsearchmod.h"
+#include "filesearcher.h"
 
 // QtCore
 #include <QDir>
@@ -45,15 +45,15 @@ static const QStringList TAR_TYPES = QStringList() << "tbz" << "tgz" << "tarz" <
 
 extern KRarcHandler arcHandler;
 
-KRSearchMod::KRSearchMod(const KRQuery *query)
+FileSearcher::FileSearcher(const KRQuery *query)
     : m_defaultFileSystem(nullptr), m_virtualFileSystem(nullptr), m_stopSearch(false)
 {
     m_query = new KRQuery(*query);
-    connect(m_query, &KRQuery::status, this, &KRSearchMod::searching);
-    connect(m_query, &KRQuery::processEvents, this, &KRSearchMod::slotProcessEvents);
+    connect(m_query, &KRQuery::status, this, &FileSearcher::searching);
+    connect(m_query, &KRQuery::processEvents, this, &FileSearcher::slotProcessEvents);
 }
 
-KRSearchMod::~KRSearchMod()
+FileSearcher::~FileSearcher()
 {
     delete m_query;
     if (m_defaultFileSystem)
@@ -62,7 +62,7 @@ KRSearchMod::~KRSearchMod()
         delete m_virtualFileSystem;
 }
 
-void KRSearchMod::start()
+void FileSearcher::start()
 {
     m_unScannedUrls.clear();
     m_scannedUrls.clear();
@@ -77,9 +77,9 @@ void KRSearchMod::start()
     emit finished();
 }
 
-void KRSearchMod::stop() { m_stopSearch = true; }
+void FileSearcher::stop() { m_stopSearch = true; }
 
-void KRSearchMod::scanUrl(const QUrl &url)
+void FileSearcher::scanUrl(const QUrl &url)
 {
     if (m_stopSearch)
         return;
@@ -108,7 +108,7 @@ void KRSearchMod::scanUrl(const QUrl &url)
     }
 }
 
-void KRSearchMod::scanDirectory(const QUrl &url)
+void FileSearcher::scanDirectory(const QUrl &url)
 {
     FileSystem *fileSystem = getFileSystem(url);
 
@@ -155,7 +155,7 @@ void KRSearchMod::scanDirectory(const QUrl &url)
     }
 }
 
-FileSystem *KRSearchMod::getFileSystem(const QUrl &url)
+FileSystem *FileSearcher::getFileSystem(const QUrl &url)
 {
     FileSystem *fileSystem;
     if (url.scheme() == QStringLiteral("virt")) {
@@ -170,7 +170,7 @@ FileSystem *KRSearchMod::getFileSystem(const QUrl &url)
     return fileSystem;
 }
 
-void KRSearchMod::slotProcessEvents(bool &stopped)
+void FileSearcher::slotProcessEvents(bool &stopped)
 {
     qApp->processEvents();
     stopped = m_stopSearch;

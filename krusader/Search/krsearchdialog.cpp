@@ -42,11 +42,11 @@
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
-#include "krsearchmod.h"
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 #include "../FileSystem/fileitem.h"
+#include "../FileSystem/filesearcher.h"
 #include "../FileSystem/krquery.h"
 #include "../FileSystem/virtualfilesystem.h"
 #include "../Filter/filtertabs.h"
@@ -435,10 +435,10 @@ void KrSearchDialog::startSearch()
     // start the search.
     if (searcher != 0)
         abort();
-    searcher  = new KRSearchMod(query);
+    searcher  = new FileSearcher(query);
     connect(searcher, SIGNAL(searching(QString)),
             searchingLabel, SLOT(setText(QString)));
-    connect(searcher, &KRSearchMod::found, this, &KrSearchDialog::slotFound);
+    connect(searcher, &FileSearcher::found, this, &KrSearchDialog::slotFound);
     connect(searcher, SIGNAL(finished()), this, SLOT(stopSearch()));
 
     searcher->start();

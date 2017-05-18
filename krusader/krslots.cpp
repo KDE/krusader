@@ -82,7 +82,6 @@
 #include "Panel/panelfunc.h"
 #include "Panel/sidebar.h"
 #include "Search/krsearchdialog.h"
-#include "Search/krsearchmod.h"
 #include "Splitter/combiner.h"
 #include "Splitter/splitter.h"
 #include "Splitter/splittergui.h"

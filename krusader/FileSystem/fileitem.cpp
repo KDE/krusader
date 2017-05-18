@@ -78,7 +78,7 @@ FileItem::FileItem()
       m_isLink(false), m_linkDest(), m_isBrokenLink(false),
       m_permissions(),
       m_acl(), m_defaulfAcl(), m_AclLoaded(false),
-      m_mimeType(), m_icon()
+      m_mimeType(), m_iconName()
 {
 }
 
