@@ -21,6 +21,8 @@
 // QtCore
 #include <QTimer>
 
+#include <KIO/StatJob>
+
 #include "virtualfilesystem.h"
 #include "../krglobal.h"
 

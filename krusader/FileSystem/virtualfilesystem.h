@@ -23,6 +23,8 @@
 // QtCore
 #include <QHash>
 
+#include <KConfigCore/KConfig>
+
 #include "filesystem.h"
 
 /**

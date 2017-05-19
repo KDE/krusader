@@ -26,7 +26,6 @@
 // QtWidgets
 #include <QApplication>
 
-#include <KConfigCore/KConfig>
 #include <KCoreAddons/KUrlMimeData>
 #include <KI18n/KLocalizedString>
 #include <KIO/CopyJob>

@@ -47,7 +47,6 @@
 #include <KIO/DirectorySizeJob>
 
 #include "fileitem.h"
-#include "krquery.h"
 #include "../JobMan/jobman.h"
 
 
@@ -122,8 +121,6 @@ public:
     inline QUrl currentDirectory() const { return _currentDirectory; }
     /// Return the file item for a file name in the current directory. Or 0 if not found.
     FileItem *getFileItem(const QString &name) const;
-    /// Return a list of file items for a search query. Or an empty list if nothing was found.
-    QList<FileItem *> searchFileItems(const KRQuery &filter);
     /// The total size of all files in the current directory (only valid after refresh).
     // TODO unused
     KIO::filesize_t totalSize() const;
