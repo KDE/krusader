@@ -22,15 +22,18 @@
 #define SYNCHRONIZERTASK_H
 
 // QtCore
+#include <QFile>
 #include <QObject>
+#include <QTimer>
 
 #include <KIO/Job>
 
+#include "../FileSystem/krquery.h"
+
 class Synchronizer;
-class SynchronizerDirList;
+class FileSearcher;
+class FileItem;
 class SynchronizerFileItem;
-class QTimer;
-class QFile;
 
 #define ST_STATE_NEW 0
 #define ST_STATE_PENDING 1
@@ -83,41 +86,47 @@ class CompareTask : public SynchronizerTask
     Q_OBJECT
 
 public:
-    CompareTask(SynchronizerFileItem *parentIn, const QUrl &left, const QUrl &right,
-                const QString &leftDir, const QString &rightDir, bool hidden);
+    CompareTask(SynchronizerFileItem *parentIn, const KRQuery &query,
+                const QUrl &url, const QString &dir, bool isLeft);
 
-    CompareTask(SynchronizerFileItem *parentIn, const QUrl &url, const QString &dir,
-                bool isLeftIn, bool ignoreHidden);
+    CompareTask(SynchronizerFileItem *parentIn, const KRQuery &query, const QUrl &left,
+                const QString &leftDir, const QUrl &right, const QString &rightDir);
+
     virtual ~CompareTask();
 
-    inline bool isDuplicate() { return m_duplicate; }
-    inline bool isLeft() { return !m_duplicate && m_isLeft; }
-    inline const QString &leftDir() { return m_dir; }
-    inline const QString &rightDir() { return m_otherDir; }
-    inline const QString &dir() { return m_dir; }
-    inline SynchronizerFileItem *parent() { return m_parent; }
-    inline SynchronizerDirList *leftDirList() { return m_dirList; }
-    inline SynchronizerDirList *rightDirList() { return m_otherDirList; }
-    inline SynchronizerDirList *dirList() { return m_dirList; }
+    inline bool hasBothSides() const { return m_bothSides; }
+    inline bool hasOnlyLeftSide() const { return !m_bothSides && m_isLeft; }
+    inline const QUrl &firstUrl() const { return m_url; }
+    inline const QUrl &secondUrl() const { return m_otherUrl; }
+    inline const QList<FileItem *> &firstFiles() const { return m_fileList; }
+    inline const QList<FileItem *> &secondFiles() const { return m_otherFileList; }
+    inline const QString &firstDir() const { return m_dir; }
+    inline const QString &secondDir() const { return m_otherDir; }
+    inline SynchronizerFileItem *parent() const { return m_parent; }
 
 protected slots:
-    virtual void start();
-    void slotFinished(bool result);
-    void slotOtherFinished(bool result);
+    virtual void start() Q_DECL_OVERRIDE;
+    void slotError(const QUrl &url);
+    void slotFinished();
+    void slotOtherFinished();
 
 private:
     SynchronizerFileItem *m_parent;
+    const KRQuery m_query;
     const QUrl m_url;
-    const QString m_dir;
     const QUrl m_otherUrl;
+    const QString m_dir;
     const QString m_otherDir;
-    bool m_isLeft;
-    bool m_duplicate;
-    SynchronizerDirList *m_dirList;
-    SynchronizerDirList *m_otherDirList;
+    const bool m_isLeft;
+    const bool m_bothSides;
+
+    FileSearcher *m_fileSearcher;
+    FileSearcher *m_otherFileSearcher;
+    QList<FileItem *> m_fileList;
+    QList<FileItem *> m_otherFileList;
+
     bool m_loadFinished;
     bool m_otherLoadFinished;
-    bool ignoreHidden;
 };
 
 class CompareContentTask : public SynchronizerTask

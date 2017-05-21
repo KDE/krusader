@@ -94,7 +94,7 @@ public:
     inline void restoreOriginalTask() { m_task = m_originalTask; }
     inline void setViewItem(SyncViewItem *viewItem) { m_viewItem = viewItem; }
     inline void setOverWrite() { m_overWrite = true; }
-    inline void setDestination(QUrl d) { m_destination = d; }
+    inline void setDestination(const QUrl &destination) { m_destination = destination; }
     inline void setTask(TaskType t) { m_task = t; }
 
     void compareContentResult(bool res);

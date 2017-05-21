@@ -21,6 +21,8 @@
 #include "synchronizer.h"
 
 #include "synchronizerdirlist.h"
+#include "synchronizertask.h"
+#include "../FileSystem/filesearcher.h"
 #include "../FileSystem/filesystem.h"
 #include "../FileSystem/krquery.h"
 #include "../krglobal.h"
@@ -33,6 +35,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QEventLoop>
+#include <QHash>
 #include <QRegExp>
 #include <QTime>
 #include <QTimer>
@@ -106,10 +109,10 @@ void Synchronizer::reset()
     clearLists();
 }
 
-int Synchronizer::compare(const QUrl &left, const QUrl &right, KRQuery *query, bool subDirs,
+int Synchronizer::compare(const QUrl &left, const QUrl &right, const KRQuery &query, bool subDirs,
                           bool symLinks, bool igDate, bool asymm, bool cmpByCnt, bool igCase,
                           bool autoSc, QStringList &selFiles, int equThres, int timeOffs,
-                          int parThreads, bool hiddenFiles)
+                          int parThreads)
 {
     clearLists();
 
@@ -124,21 +127,20 @@ int Synchronizer::compare(const QUrl &left, const QUrl &right, KRQuery *query, b
     equalsThreshold = equThres;
     timeOffset = timeOffs;
     parallelThreads = parThreads;
-    ignoreHidden = hiddenFiles;
 
     stopped = false;
 
     this->query = query;
 
-    excludedPaths = KrServices::toStringList(query->dontSearchInDirs());
+    excludedPaths = KrServices::toStringList(query.dontSearchInDirs());
     for (int i = 0; i != excludedPaths.count(); i++)
         if (excludedPaths[i].endsWith('/'))
             excludedPaths[i].truncate(excludedPaths[i].length() - 1);
 
     comparedDirs = fileCount = 0;
 
-    stack.append(new CompareTask(0, leftBaseDir = left, rightBaseDir = right, QString(), QString(),
-                                 ignoreHidden));
+    stack.append(new CompareTask(nullptr, query, leftBaseDir = left, QString(),
+                                 rightBaseDir = right, QString()));
     compareLoop();
 
     QListIterator<SynchronizerFileItem *> it(temporaryList);
@@ -161,34 +163,36 @@ void Synchronizer::compareLoop()
 {
     while (!stopped && !stack.isEmpty()) {
         for (int thread = 0; thread < (int)stack.count() && thread < parallelThreads; thread++) {
-            SynchronizerTask *entry = stack.at(thread);
+            SynchronizerTask *task = stack.at(thread);
 
-            if (entry->state() == ST_STATE_NEW)
-                entry->start(parentWidget);
+            if (task->state() == ST_STATE_NEW)
+                task->start(parentWidget);
 
-            if (entry->inherits("CompareTask")) {
-                if (entry->state() == ST_STATE_READY) {
-                    CompareTask *ctentry = (CompareTask *)entry;
-                    if (ctentry->isDuplicate())
-                        compareDirectory(ctentry->parent(), ctentry->leftDirList(),
-                                         ctentry->rightDirList(), ctentry->leftDir(),
-                                         ctentry->rightDir());
+            if (task->inherits("CompareTask")) {
+                if (task->state() == ST_STATE_READY) {
+                    CompareTask *compareTask = (CompareTask *)task;
+                    if (compareTask->hasBothSides())
+                        compareDirectory(compareTask->parent(), compareTask->firstUrl(),
+                                         compareTask->secondUrl(), compareTask->firstFiles(),
+                                         compareTask->secondFiles(), compareTask->firstDir(),
+                                         compareTask->secondDir());
                     else
-                        addSingleDirectory(ctentry->parent(), ctentry->dirList(), ctentry->dir(),
-                                           ctentry->isLeft());
+                        addSingleDirectory(compareTask->parent(), compareTask->firstUrl(),
+                                           compareTask->firstFiles(), compareTask->firstDir(),
+                                           compareTask->hasOnlyLeftSide());
                 }
-                if (entry->state() == ST_STATE_READY || entry->state() == ST_STATE_ERROR)
+                if (task->state() == ST_STATE_READY || task->state() == ST_STATE_ERROR)
                     comparedDirs++;
             }
-            switch (entry->state()) {
+            switch (task->state()) {
             case ST_STATE_STATUS:
-                emit statusInfo(entry->status());
+                emit statusInfo(task->status());
                 break;
             case ST_STATE_READY:
             case ST_STATE_ERROR:
                 emit statusInfo(i18n("Number of compared folders: %1", comparedDirs));
-                stack.removeAll(entry);
-                delete entry;
+                stack.removeAll(task);
+                delete task;
                 continue;
             default:
                 break;
@@ -204,35 +208,30 @@ void Synchronizer::compareLoop()
     stack.clear();
 }
 
-void Synchronizer::compareDirectory(SynchronizerFileItem *parent,
-                                    SynchronizerDirList *left_directory,
-                                    SynchronizerDirList *right_directory,
+void Synchronizer::compareDirectory(SynchronizerFileItem *parent, const QUrl &leftUrl,
+                                    const QUrl &rightUrl, const QList<FileItem *> &leftFiles,
+                                    const QList<FileItem *> &rightFiles,
                                     const QString &leftDir, const QString &rightDir)
 {
-    const QUrl leftDirectoryPath = left_directory->url();
-    const QUrl rightDirectoryPath = right_directory->url();
     const bool checkIfSelected = leftDir.isEmpty() && rightDir.isEmpty() && selectedFiles.count();
-
-    FileItem *left_file;
-    FileItem *right_file;
-    QString file_name;
+    const QHash<QString, FileItem *> leftFileSet = createFileSet(leftFiles, ignoreCase);
+    const QHash<QString, FileItem *> rightFileSet = createFileSet(rightFiles, ignoreCase);
 
     /* walking through in the left directory */
-    for (left_file = left_directory->first(); left_file != 0 && !stopped;
-         left_file = left_directory->next()) {
+    for (FileItem *left_file : leftFiles) {
+        if (stopped)
+            break;
 
         if (isDir(left_file))
             continue;
 
-        file_name = left_file->getName();
+        const QString file_name = left_file->getName();
 
         if (checkIfSelected && !selectedFiles.contains(file_name))
             continue;
 
-        if (!query->match(left_file))
-            continue;
-
-        if ((right_file = right_directory->search(file_name, ignoreCase)) == 0)
+        FileItem *right_file;
+        if ((right_file = rightFileSet.value(ignoreCase ? file_name.toLower() : file_name)) == 0)
             addLeftOnlyItem(left_file, parent, leftDir);
         else {
             if (isDir(right_file))
@@ -243,28 +242,28 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent,
     }
 
     /* walking through in the right directory */
-    for (right_file = right_directory->first(); right_file != 0 && !stopped;
-         right_file = right_directory->next()) {
+    for (FileItem *right_file : rightFiles) {
+        if (stopped)
+            break;
+
         if (isDir(right_file))
             continue;
 
-        file_name = right_file->getName();
+        const QString file_name = right_file->getName();
 
         if (checkIfSelected && !selectedFiles.contains(file_name))
             continue;
 
-        if (!query->match(right_file))
-            continue;
-
-        if (left_directory->search(file_name, ignoreCase) == 0)
+        if ((leftFileSet.value(ignoreCase ? file_name.toLower() : file_name)) == 0)
             addRightOnlyItem(right_file, parent, rightDir);
     }
 
     if (recurseSubDirs) {
 
         /* walking through the left side subdirectories */
-        for (left_file = left_directory->first(); left_file != 0 && !stopped;
-             left_file = left_directory->next()) {
+        for (FileItem *left_file : leftFiles) {
+            if (stopped)
+                break;
 
             if (!left_file->isDir() || !(followSymLinks || !left_file->isSymLink()))
                 continue;
@@ -278,42 +277,41 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent,
                                                            leftDir + '/' + left_file_name))
                 continue;
 
-            if (!query->matchDirName(left_file_name))
-                continue;
-
-            const QUrl leftFilePath = pathAppend(leftDirectoryPath, left_file_name);
+            const QUrl leftFilePath = pathAppend(leftUrl, left_file_name);
             const QString leftRelativeDir =
                 leftDir.isEmpty() ? left_file_name : leftDir + '/' + left_file_name;
 
-            if ((right_file = right_directory->search(left_file_name, ignoreCase)) == 0) {
+            FileItem *right_file;
+            if ((right_file = rightFileSet.value(ignoreCase ? left_file_name.toLower() : left_file_name)) == 0) {
                 // no right file dir
                 SynchronizerFileItem *me =
-                    addLeftOnlyItem(left_file, parent, leftDir, !query->match(left_file));
+                    addLeftOnlyItem(left_file, parent, leftDir, !query.match(left_file));
                 stack.append(
-                    new CompareTask(me, leftFilePath, leftRelativeDir, true, ignoreHidden));
+                    new CompareTask(me, query, leftFilePath, leftRelativeDir, true));
             } else {
                 // compare left file dir with right file
                 const QString right_file_name = right_file->getName();
-                const QUrl rightFilePath = pathAppend(rightDirectoryPath, right_file_name);
+                const QUrl rightFilePath = pathAppend(rightUrl, right_file_name);
                 const QString rightRelativeDir =
                     rightDir.isEmpty() ? right_file_name : rightDir + '/' + right_file_name;
 
                 SynchronizerFileItem *me = addDuplicateItem(left_file, right_file, parent, leftDir,
-                                                            rightDir, !query->match(left_file));
+                                                            rightDir, !query.match(left_file));
 
-                stack.append(new CompareTask(me, leftFilePath, rightFilePath, leftRelativeDir,
-                                             rightRelativeDir, ignoreHidden));
+                stack.append(new CompareTask(me, query, leftFilePath, leftRelativeDir,
+                                             rightFilePath, rightRelativeDir));
             }
         }
 
         /* walking through the right side subdirectories */
-        for (right_file = right_directory->first(); right_file != 0 && !stopped;
-             right_file = right_directory->next()) {
+        for (FileItem *right_file : rightFiles) {
+            if (stopped)
+                break;
 
             if (!right_file->isDir() || !(followSymLinks || !right_file->isSymLink()))
                 continue;
 
-            file_name = right_file->getName();
+            const QString file_name = right_file->getName();
 
             if (checkIfSelected && !selectedFiles.contains(file_name))
                 continue;
@@ -323,15 +321,12 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent,
             if (excludedPaths.contains(rightRelativePath))
                 continue;
 
-            if (!query->matchDirName(file_name))
-                continue;
-
-            if (left_directory->search(file_name, ignoreCase) == 0) {
+            if ((leftFileSet.value(ignoreCase ? file_name.toLower() : file_name)) == 0) {
                 // no left exists
                 SynchronizerFileItem *me =
-                    addRightOnlyItem(right_file, parent, rightDir, !query->match(right_file));
-                stack.append(new CompareTask(me, pathAppend(rightDirectoryPath, file_name),
-                                             rightRelativePath, false, ignoreHidden));
+                    addRightOnlyItem(right_file, parent, rightDir, !query.match(right_file));
+                stack.append(new CompareTask(me, query, pathAppend(rightUrl, file_name),
+                                             rightRelativePath, false));
             }
         }
 
@@ -352,7 +347,7 @@ SynchronizerFileItem *Synchronizer::addItem(FileItem *leftFile, FileItem *rightF
 {
     const bool existsLeft = leftFile != nullptr;
     const bool existsRight = rightFile != nullptr;
-    const bool marked = autoScroll ? !isTemp && isMarked(tsk, existsLeft && existsRight) : false;
+    const bool marked = autoScroll && !isTemp && isMarked(tsk, existsLeft && existsRight);
     const FileItem left = existsLeft ? FileItem(*leftFile) : FileItem();
     const FileItem right = existsRight ? FileItem(*rightFile) : FileItem();
     SynchronizerFileItem *item = new SynchronizerFileItem(left, right, leftDir, rightDir,
@@ -460,21 +455,16 @@ SynchronizerFileItem *Synchronizer::addDuplicateItem(FileItem *leftFile, FileIte
     return item;
 }
 
-void Synchronizer::addSingleDirectory(SynchronizerFileItem *parent, SynchronizerDirList *directory,
-                                      const QString &dirName, bool isLeft)
+void Synchronizer::addSingleDirectory(SynchronizerFileItem *parent, const QUrl &url,
+                                      const QList<FileItem *> &files, const QString &dirName,
+                                      bool isLeft)
 {
-    const QUrl &url = directory->url();
-    FileItem *file;
-    QString file_name;
-
     /* walking through the directory files */
-    for (file = directory->first(); file != 0 && !stopped; file = directory->next()) {
+    for (FileItem *file : files) {
+        if (stopped)
+            break;
+
         if (isDir(file))
-            continue;
-
-        file_name = file->getName();
-
-        if (!query->match(file))
             continue;
 
         if (isLeft)
@@ -484,23 +474,23 @@ void Synchronizer::addSingleDirectory(SynchronizerFileItem *parent, Synchronizer
     }
 
     /* walking through the subdirectories */
-    for (file = directory->first(); file != 0 && !stopped; file = directory->next()) {
+    for (FileItem *file : files) {
+        if (stopped)
+            break;
+
         if (file->isDir() && (followSymLinks || !file->isSymLink())) {
-            file_name = file->getName();
+            const QString file_name = file->getName();
 
             if (excludedPaths.contains(dirName.isEmpty() ? file_name : dirName + '/' + file_name))
                 continue;
 
-            if (!query->matchDirName(file_name))
-                continue;
-
             SynchronizerFileItem *me =
-                isLeft ? addLeftOnlyItem(file, parent, dirName, !query->match(file)) :
-                         addRightOnlyItem(file, parent, dirName, !query->match(file));
+                isLeft ? addLeftOnlyItem(file, parent, dirName, !query.match(file)) :
+                         addRightOnlyItem(file, parent, dirName, !query.match(file));
 
-            stack.append(new CompareTask(me, pathAppend(url, file_name),
+            stack.append(new CompareTask(me, query, pathAppend(url, file_name),
                                          dirName.isEmpty() ? file_name : dirName + '/' + file_name,
-                                         isLeft, ignoreHidden));
+                                         isLeft));
         }
     }
 }
@@ -675,6 +665,18 @@ void Synchronizer::deleteLeftOperation(SynchronizerFileItem *item)
 {
     if (!item->existsRight() && item->existsLeft())
         item->setTask(TT_DELETE);
+}
+
+const QHash<QString, FileItem *> Synchronizer::createFileSet(const QList<FileItem *> &files,
+                                                              bool ignoreCase)
+{
+    QHash<QString, FileItem *> hashSet;
+    for (FileItem *file : files) {
+        const QString name = file->getName();
+        hashSet.insert(ignoreCase ? name.toLower() : name, file);
+    }
+
+    return hashSet;
 }
 
 QUrl Synchronizer::pathAppend(const QUrl &url, const QString &fileName)
@@ -1246,8 +1248,8 @@ KgetProgressDialog::KgetProgressDialog(QWidget *parent, const QString &caption, 
     buttonBox->addButton(mPauseButton, QDialogButtonBox::ActionRole);
     buttonBox->button(QDialogButtonBox::Cancel)->setDefault(true);
 
-    connect(mPauseButton, SIGNAL(clicked()), SLOT(slotPause()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(slotCancel()));
+    connect(mPauseButton, &QPushButton::clicked, this, &KgetProgressDialog::slotPause);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &KgetProgressDialog::slotCancel);
 
     mCancelled = mPaused = false;
 }

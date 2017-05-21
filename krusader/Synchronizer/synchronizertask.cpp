@@ -30,73 +30,83 @@
 #include "synchronizer.h"
 #include "synchronizerdirlist.h"
 #include "synchronizerfileitem.h"
+#include "../FileSystem/filesearcher.h"
 #include "../FileSystem/filesystem.h"
 
-CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QUrl &left, const QUrl &right,
-                         const QString &leftDir, const QString &rightDir, bool hidden)
-    : SynchronizerTask(), m_parent(parentIn), m_url(left), m_dir(leftDir), m_otherUrl(right),
-      m_otherDir(rightDir), m_duplicate(true), m_dirList(0), m_otherDirList(0)
+CompareTask::CompareTask(SynchronizerFileItem *parentIn, const KRQuery &query, const QUrl &url,
+                         const QString &dir, bool isLeft)
+    : SynchronizerTask(), m_parent(parentIn), m_query(query), m_url(url), m_dir(dir),
+      m_isLeft(isLeft), m_bothSides(false), m_fileSearcher(0), m_otherFileSearcher(0)
 {
-    ignoreHidden = hidden;
 }
 
-CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QUrl &url, const QString &dir,
-                         bool isLeftIn, bool hidden)
-    : SynchronizerTask(), m_parent(parentIn), m_url(url), m_dir(dir), m_isLeft(isLeftIn),
-      m_duplicate(false), m_dirList(0), m_otherDirList(0)
+CompareTask::CompareTask(SynchronizerFileItem *parentIn, const KRQuery &query, const QUrl &url,
+                         const QString &dir, const QUrl &otherUrl, const QString &otherDir)
+    : SynchronizerTask(), m_parent(parentIn), m_query(query), m_url(url), m_otherUrl(otherUrl),
+      m_dir(dir), m_otherDir(otherDir), m_isLeft(false), m_bothSides(true), m_fileSearcher(0),
+      m_otherFileSearcher(0)
 {
-    ignoreHidden = hidden;
 }
 
 CompareTask::~CompareTask()
 {
-    if (m_dirList) {
-        delete m_dirList;
-        m_dirList = 0;
+    if (m_fileSearcher) {
+        delete m_fileSearcher;
+        m_fileSearcher = 0;
     }
-    if (m_otherDirList) {
-        delete m_otherDirList;
-        m_otherDirList = 0;
+    if (m_otherFileSearcher) {
+        delete m_otherFileSearcher;
+        m_otherFileSearcher = 0;
     }
 }
 
 void CompareTask::start()
 {
-    if (m_state == ST_STATE_NEW) {
-        m_state = ST_STATE_PENDING;
-        m_loadFinished = m_otherLoadFinished = false;
+    if (m_state != ST_STATE_NEW)
+        return;
 
-        m_dirList = new SynchronizerDirList(parentWidget, ignoreHidden);
-        connect(m_dirList, &SynchronizerDirList::finished, this, &CompareTask::slotFinished);
-        m_dirList->load(m_url, false);
+    m_state = ST_STATE_PENDING;
+    m_loadFinished = m_otherLoadFinished = false;
 
-        if (m_duplicate) {
-            m_otherDirList = new SynchronizerDirList(parentWidget, ignoreHidden);
-            connect(m_otherDirList, &SynchronizerDirList::finished, this, &CompareTask::slotOtherFinished);
-            m_otherDirList->load(m_otherUrl, false);
-        }
+    m_fileSearcher = new FileSearcher(m_query);
+    connect(m_fileSearcher, &FileSearcher::finished, this, &CompareTask::slotFinished);
+    connect(m_fileSearcher, &FileSearcher::error, this, &CompareTask::slotError);
+    m_fileSearcher->start(m_url);
+
+    if (m_bothSides) {
+        m_otherFileSearcher = new FileSearcher(m_query);
+        connect(m_otherFileSearcher, &FileSearcher::finished, this, &CompareTask::slotOtherFinished);
+        connect(m_otherFileSearcher, &FileSearcher::error, this, &CompareTask::slotError);
+        m_otherFileSearcher->start(m_otherUrl);
     }
 }
 
-void CompareTask::slotFinished(bool result)
+void CompareTask::slotError(const QUrl &url)
 {
-    if (!result) {
-        m_state = ST_STATE_ERROR;
-        return;
-    }
-    m_loadFinished = true;
+    m_state = ST_STATE_ERROR;
+    KMessageBox::error(parentWidget,
+                       i18n("Error opening %1.", url.toDisplayString(QUrl::PreferLocalFile)));
+}
 
-    if (m_otherLoadFinished || !m_duplicate)
+void CompareTask::slotFinished()
+{
+    if (m_state == ST_STATE_ERROR)
+        return;
+
+    m_loadFinished = true;
+    m_fileList = m_fileSearcher->files();
+
+    if (m_otherLoadFinished || !m_bothSides)
         m_state = ST_STATE_READY;
 }
 
-void CompareTask::slotOtherFinished(bool result)
+void CompareTask::slotOtherFinished()
 {
-    if (!result) {
-        m_state = ST_STATE_ERROR;
+    if (m_state == ST_STATE_ERROR)
         return;
-    }
+
     m_otherLoadFinished = true;
+    m_otherFileList = m_otherFileSearcher->files();
 
     if (m_loadFinished)
         m_state = ST_STATE_READY;

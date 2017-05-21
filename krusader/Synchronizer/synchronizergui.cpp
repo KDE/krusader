@@ -1054,6 +1054,8 @@ void SynchronizerGUI::compare()
     if (query.isNull())
         return;
 
+    query.setIgnoreHidden(ignoreHiddenFilesCB->isChecked());
+
     // perform some previous tests
     QString leftLocationTrimmed = leftLocation->currentText().trimmed();
     QString rightLocationTrimmed = rightLocation->currentText().trimmed();
@@ -1069,8 +1071,9 @@ void SynchronizerGUI::compare()
     }
 
     if (leftLocationTrimmed == rightLocationTrimmed) {
-        if (KMessageBox::warningContinueCancel(this, i18n("Warning: The left and the right side are showing the same folder."))
-            != KMessageBox::Continue) {
+        if (KMessageBox::warningContinueCancel(
+                this, i18n("Warning: The left and the right side are showing the same folder.")) !=
+            KMessageBox::Continue) {
             return;
         }
     }
@@ -1099,13 +1102,15 @@ void SynchronizerGUI::compare()
     btnScrollResults->show();
     disableMarkButtons();
 
-    int fileCount = synchronizer.compare(getUrl(leftLocation), getUrl(rightLocation),
-                                         &query, cbSubdirs->isChecked(), cbSymlinks->isChecked(),
-                                         cbIgnoreDate->isChecked(), cbAsymmetric->isChecked(), cbByContent->isChecked(),
-                                         cbIgnoreCase->isChecked(), btnScrollResults->isChecked(), selectedFiles,
-                                         convertToSeconds(equalitySpinBox->value(), equalityUnitCombo->currentIndex()),
-                                         convertToSeconds(timeShiftSpinBox->value(), timeShiftUnitCombo->currentIndex()),
-                                         parallelThreadsSpinBox->value(), ignoreHiddenFilesCB->isChecked());
+    int fileCount = synchronizer.compare(
+        getUrl(leftLocation), getUrl(rightLocation), query, cbSubdirs->isChecked(),
+        cbSymlinks->isChecked(), cbIgnoreDate->isChecked(), cbAsymmetric->isChecked(),
+        cbByContent->isChecked(), cbIgnoreCase->isChecked(), btnScrollResults->isChecked(),
+        selectedFiles,
+        convertToSeconds(equalitySpinBox->value(), equalityUnitCombo->currentIndex()),
+        convertToSeconds(timeShiftSpinBox->value(), timeShiftUnitCombo->currentIndex()),
+        parallelThreadsSpinBox->value());
+
     enableMarkButtons();
     btnStopComparing->setEnabled(isComparing = false);
     btnStopComparing->hide();

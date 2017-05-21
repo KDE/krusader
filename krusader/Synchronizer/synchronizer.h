@@ -33,10 +33,12 @@
 #include <KIO/Job>
 
 #include "synchronizerfileitem.h"
-#include "synchronizertask.h"
+#include "../FileSystem/krquery.h"
 
+class CompareTask;
 class FileItem;
-class KRQuery;
+class FileSearcher;
+class SynchronizerTask;
 
 class Synchronizer : public QObject
 {
@@ -49,10 +51,9 @@ public:
     Synchronizer();
     ~Synchronizer();
 
-    int compare(const QUrl &left, const QUrl &right, KRQuery *query, bool subDirs, bool symLinks,
+    int compare(const QUrl &left, const QUrl &right, const KRQuery &query, bool subDirs, bool symLinks,
                 bool igDate, bool asymm, bool cmpByCnt, bool igCase, bool autoSc,
-                QStringList &selFiles, int equThres, int timeOffs, int parThreads,
-                bool hiddenFiles);
+                QStringList &selFiles, int equThres, int timeOffs, int parThreads);
     void stop() { stopped = true; }
     void setMarkFlags(bool left, bool equal, bool differs, bool right, bool dup, bool sing,
                       bool del);
@@ -112,7 +113,9 @@ public slots:
 private:
     bool isDir(const FileItem *file);
 
-    void compareDirectory(SynchronizerFileItem *, SynchronizerDirList *, SynchronizerDirList *,
+    /** Evaluate the result directories of a finished(ready) compare task with both sides.*/
+    void compareDirectory(SynchronizerFileItem *parent, const QUrl &leftUrl, const QUrl &rightUrl,
+                          const QList<FileItem *> &leftFiles, const QList<FileItem *> &rightFiles,
                           const QString &leftDir, const QString &rightDir);
 
     SynchronizerFileItem *addItem(FileItem *leftFile, FileItem *rightFile,
@@ -127,7 +130,8 @@ private:
                                            SynchronizerFileItem *parent,
                                            const QString &leftDir, const QString &rightDir,
                                            bool isTemp = false);
-    void addSingleDirectory(SynchronizerFileItem *, SynchronizerDirList *, const QString &, bool);
+    void addSingleDirectory(SynchronizerFileItem *parent, const QUrl &url, const QList<FileItem *> &files,
+                            const QString &dirName, bool isLeft);
 
     bool isMarked(TaskType task, bool dupl);
     bool markParentDirectories(SynchronizerFileItem *);
@@ -146,6 +150,8 @@ private:
     static void copyToRightOperation(SynchronizerFileItem *item);
     static void deleteLeftOperation(SynchronizerFileItem *item);
 
+    static const QHash<QString, FileItem *> createFileSet(const QList<FileItem *> &files, bool ignoreCase);
+
 protected:
     bool recurseSubDirs;                         // walk through subdirectories also
     bool followSymLinks;                         // follow the symbolic links
@@ -159,12 +165,11 @@ protected:
     QUrl leftBaseDir;                            // the left-side base directory
     QUrl rightBaseDir;                           // the right-side base directory
     QStringList excludedPaths;                   // list of the excluded paths
-    KRQuery *query;                              // the filter used for the query
+    KRQuery query;                              // the filter used for the query
     bool stopped;                                // 'Stop' button was pressed
 
     int equalsThreshold; // threshold to treat files equal
     int timeOffset;      // time offset between the left and right sides
-    bool ignoreHidden;   // ignores the hidden files
 
     bool markEquals;      // show the equal files
     bool markDiffers;     // show the different files
