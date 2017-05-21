@@ -45,8 +45,9 @@ KRQuery::KRQuery()
     : QObject(), matchesCaseSensitive(true), bNull(true), contain(QString()),
       containCaseSensetive(true), containWholeWord(false), containRegExp(false), minSize(0),
       maxSize(0), newerThen(0), olderThen(0), owner(QString()), group(QString()), perm(QString()),
-      type(QString()), inArchive(false), recurse(true), followLinksP(true), receivedBuffer(0),
-      receivedBufferLen(0), processEventsConnected(0), codec(QTextCodec::codecForLocale())
+      type(QString()), m_inArchive(false), m_recurse(true), m_followLinks(true),
+      m_ignoreHidden(false), receivedBuffer(0), receivedBufferLen(0), processEventsConnected(0),
+      codec(QTextCodec::codecForLocale())
 {
     QChar ch = '\n';
     QTextCodec::ConverterState state(QTextCodec::IgnoreHeader);
@@ -60,8 +61,9 @@ KRQuery::KRQuery(const QString &name, bool matchCase)
     : QObject(), bNull(true), contain(QString()), containCaseSensetive(true),
       containWholeWord(false), containRegExp(false), minSize(0), maxSize(0), newerThen(0),
       olderThen(0), owner(QString()), group(QString()), perm(QString()), type(QString()),
-      inArchive(false), recurse(true), followLinksP(true), receivedBuffer(0), receivedBufferLen(0),
-      processEventsConnected(0), codec(QTextCodec::codecForLocale())
+      m_inArchive(false), m_recurse(true), m_followLinks(true), m_ignoreHidden(false),
+      receivedBuffer(0), receivedBufferLen(0), processEventsConnected(0),
+      codec(QTextCodec::codecForLocale())
 {
     QChar ch = '\n';
     QTextCodec::ConverterState state(QTextCodec::IgnoreHeader);
@@ -106,12 +108,12 @@ KRQuery &KRQuery::operator=(const KRQuery &old)
     perm = old.perm;
     type = old.type;
     customType = old.customType;
-    inArchive = old.inArchive;
-    recurse = old.recurse;
-    followLinksP = old.followLinksP;
-    whereToSearch = old.whereToSearch;
-    excludedFolderNames = old.excludedFolderNames;
-    whereNotToSearch = old.whereNotToSearch;
+    m_inArchive = old.m_inArchive;
+    m_recurse = old.m_recurse;
+    m_followLinks = old.m_followLinks;
+    m_ignoreHidden = old.m_ignoreHidden;
+    m_whereToSearch = old.m_whereToSearch;
+    m_whereNotToSearch = old.m_whereNotToSearch;
     origFilter = old.origFilter;
 
     codec = old.codec;
@@ -153,9 +155,10 @@ void KRQuery::load(KConfigGroup cfg)
     LOAD("Perm", perm);
     LOAD("Type", type);
     LOAD("CustomType", customType);
-    LOAD("InArchive", inArchive);
-    LOAD("Recurse", recurse);
-    LOAD("FollowLinks", followLinksP);
+    LOAD("InArchive", m_inArchive);
+    LOAD("Recurse", m_recurse);
+    LOAD("FollowLinks", m_followLinks);
+    LOAD("IgnoreHidden", m_ignoreHidden);
     // KF5 TODO?
     // LOAD("WhereToSearch", whereToSearch);
     // LOAD("WhereNotToSearch", whereNotToSearch);
@@ -198,9 +201,10 @@ void KRQuery::save(KConfigGroup cfg)
     cfg.writeEntry("Perm", perm);
     cfg.writeEntry("Type", type);
     cfg.writeEntry("CustomType", customType);
-    cfg.writeEntry("InArchive", inArchive);
-    cfg.writeEntry("Recurse", recurse);
-    cfg.writeEntry("FollowLinks", followLinksP);
+    cfg.writeEntry("InArchive", m_inArchive);
+    cfg.writeEntry("Recurse", m_recurse);
+    cfg.writeEntry("FollowLinks", m_followLinks);
+    cfg.writeEntry("IgnoreHidden", m_ignoreHidden);
     // KF5 TODO?
     // cfg.writeEntry("WhereToSearch", whereToSearch);
     // cfg.writeEntry("WhereNotToSearch", whereNotToSearch);
@@ -320,6 +324,9 @@ bool KRQuery::match(FileItem *item) const
         return false;
     // check permission
     if (!perm.isEmpty() && !checkPerm(item->getPerm()))
+        return false;
+    // check hidden
+    if (m_ignoreHidden && item->getUrl().fileName().startsWith('.'))
         return false;
 
     if (!contain.isEmpty()) {
@@ -731,15 +738,15 @@ void KRQuery::setMimeType(const QString &typeIn, QStringList customList)
     customType = customList;
 }
 
-bool KRQuery::isExcluded(const QUrl &url)
+bool KRQuery::isExcluded(const QUrl &url) const
 {
-    for (QUrl &item : whereNotToSearch)
-        if (item.isParentOf(url) || url.matches(item, QUrl::StripTrailingSlash))
+    for (const QUrl excludedUrl: m_whereNotToSearch)
+        if (excludedUrl.isParentOf(url) || url.matches(excludedUrl, QUrl::StripTrailingSlash))
             return true;
 
     // Exclude folder names that are configured in settings
-    QString filename = url.fileName();
-    for (QString &item : excludedFolderNames)
+    const QString filename = url.fileName();
+    for (const QString &item : excludedFolderNames)
         if (filename == item)
             return true;
 
@@ -751,23 +758,23 @@ bool KRQuery::isExcluded(const QUrl &url)
 
 void KRQuery::setSearchInDirs(const QList<QUrl> &urls)
 {
-    whereToSearch.clear();
+    m_whereToSearch.clear();
     for (int i = 0; i < urls.count(); ++i) {
         QString url = urls[i].url();
         QUrl completed = QUrl::fromUserInput(KUrlCompletion::replacedPath(url, true, true),
                                              QString(), QUrl::AssumeLocalFile);
-        whereToSearch.append(completed);
+        m_whereToSearch.append(completed);
     }
 }
 
 void KRQuery::setDontSearchInDirs(const QList<QUrl> &urls)
 {
-    whereNotToSearch.clear();
+    m_whereNotToSearch.clear();
     for (int i = 0; i < urls.count(); ++i) {
         QString url = urls[i].url();
         QUrl completed = QUrl::fromUserInput(KUrlCompletion::replacedPath(url, true, true),
                                              QString(), QUrl::AssumeLocalFile);
-        whereNotToSearch.append(completed);
+        m_whereNotToSearch.append(completed);
     }
 }
 void KRQuery::setExcludeFolderNames(const QStringList &paths)

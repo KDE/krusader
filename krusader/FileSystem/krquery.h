@@ -74,12 +74,12 @@ public:
     bool isCaseSensitive() { return matchesCaseSensitive; }
 
     // returns if the filter is null (was cancelled)
-    bool isNull() { return bNull; }
+    bool isNull() const { return bNull; }
 
     // sets the content part of the query
     void setContent(const QString &content, bool cs = true, bool wholeWord = false,
                     QString encoding = QString(), bool regExp = false);
-    const QString content() { return contain; }
+    const QString content() const { return contain; }
 
     // sets the minimum file size limit
     void setMinimumFileSize(KIO::filesize_t);
@@ -107,20 +107,24 @@ public:
     //    in the member QStringList customType
     void setMimeType(const QString &typeIn, QStringList customList = QStringList());
     // true if setMimeType was called
-    bool hasMimeType() { return type.isEmpty(); }
+    bool hasMimeType() const { return type.isEmpty(); }
 
     // sets the search in archive flag
-    void setSearchInArchives(bool flag) { inArchive = flag; }
+    void setSearchInArchives(bool flag) { m_inArchive = flag; }
     // gets the search in archive flag
-    bool searchInArchives() { return inArchive; }
+    bool searchInArchives()  const { return m_inArchive; }
     // sets the recursive flag
-    void setRecursive(bool flag) { recurse = flag; }
+    void setRecursive(bool flag) { m_recurse = flag; }
     // gets the recursive flag
-    bool isRecursive() { return recurse; }
+    bool isRecursive() const { return m_recurse; }
     // sets whether to follow symbolic links
-    void setFollowLinks(bool flag) { followLinksP = flag; }
+    void setFollowLinks(bool flag) { m_followLinks = flag; }
     // gets whether to follow symbolic links
-    bool followLinks() { return followLinksP; }
+    bool followLinks() const { return m_followLinks; }
+    // sets whether to ignore hidden files/folders
+    void setIgnoreHidden(bool flag) { m_ignoreHidden = flag; }
+    // gets whether to ignore hidden files/folders
+    bool ignoreHidden() const { return m_ignoreHidden; }
 
     // sets the folder names which the searcher will exclude from traversing
     void setExcludeFolderNames(const QStringList &urls);
@@ -129,13 +133,13 @@ public:
     // sets the folders where the searcher will search
     void setSearchInDirs(const QList<QUrl> &urls);
     // gets the folders where the searcher searches
-    const QList<QUrl> &searchInDirs() { return whereToSearch; }
+    const QList<QUrl> &searchInDirs() const { return m_whereToSearch; }
     // sets the folders where search is not permitted
     void setDontSearchInDirs(const QList<QUrl> &urls);
     // gets the folders where search is not permitted
-    const QList<QUrl> &dontSearchInDirs() { return whereNotToSearch; }
+    const QList<QUrl> &dontSearchInDirs() const { return m_whereNotToSearch; }
     // checks if a URL is excluded
-    bool isExcluded(const QUrl &url);
+    bool isExcluded(const QUrl &url) const ;
     // gives whether we search for content
     bool isContentSearched() const { return !contain.isEmpty(); }
 
@@ -177,13 +181,14 @@ protected:
     QString type;
     QStringList customType;
 
-    bool inArchive; // if true- search in archive.
-    bool recurse;   // if true recurse ob sub-dirs...
-    bool followLinksP;
+    bool m_inArchive; // if true- search in archive.
+    bool m_recurse;   // if true recurse ob sub-dirs...
+    bool m_followLinks;
+    bool m_ignoreHidden;
 
     QStringList excludedFolderNames;      // substrings of paths where not to search
-    QList<QUrl> whereToSearch;    // directories to search
-    QList<QUrl> whereNotToSearch; // directories NOT to search
+    QList<QUrl> m_whereToSearch;    // directories to search
+    QList<QUrl> m_whereNotToSearch; // directories NOT to search
 
 signals:
     void status(const QString &name);
@@ -198,6 +203,7 @@ private:
     bool checkBuffer(const char *data, int len) const;
     bool checkTimer() const;
     QStringList split(QString);
+    static QString getFileName(const QString &name);
 
 private slots:
     void containsContentData(KIO::Job *, const QByteArray &);
