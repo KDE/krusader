@@ -134,6 +134,7 @@ private:
     void synchronizeLoop();
     SynchronizerFileItem *getNextTask();
     void executeTask(SynchronizerFileItem *task);
+    KJob *createJob(SynchronizerFileItem *task, const QUrl &src, const QUrl &url, const QString &link);
     void setPermanent(SynchronizerFileItem *);
     void operate(SynchronizerFileItem *item, void (*)(SynchronizerFileItem *));
     void compareLoop();

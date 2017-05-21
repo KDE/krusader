@@ -260,74 +260,78 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent,
             addRightOnlyItem(right_file, parent, rightDir);
     }
 
-    /* walking through the subdirectories */
     if (recurseSubDirs) {
 
+        /* walking through the left side subdirectories */
         for (left_file = left_directory->first(); left_file != 0 && !stopped;
              left_file = left_directory->next()) {
-            if (left_file->isDir() && (followSymLinks || !left_file->isSymLink())) {
-                const QString left_file_name = left_file->getName();
 
-                if (checkIfSelected && !selectedFiles.contains(left_file_name))
-                    continue;
+            if (!left_file->isDir() || !(followSymLinks || !left_file->isSymLink()))
+                continue;
 
-                if (excludedPaths.contains(leftDir.isEmpty() ? left_file_name :
-                                                               leftDir + '/' + left_file_name))
-                    continue;
+            const QString left_file_name = left_file->getName();
 
-                if (!query->matchDirName(left_file_name))
-                    continue;
+            if (checkIfSelected && !selectedFiles.contains(left_file_name))
+                continue;
 
-                const QUrl leftFilePath = pathAppend(leftDirectoryPath, left_file_name);
-                const QString leftRelativeDir =
-                    leftDir.isEmpty() ? left_file_name : leftDir + '/' + left_file_name;
+            if (excludedPaths.contains(leftDir.isEmpty() ? left_file_name :
+                                                           leftDir + '/' + left_file_name))
+                continue;
 
-                if ((right_file = right_directory->search(left_file_name, ignoreCase)) == 0) {
-                    // no right file dir
-                    SynchronizerFileItem *me =
-                        addLeftOnlyItem(left_file, parent, leftDir, !query->match(left_file));
-                    stack.append(new CompareTask(me, leftFilePath, leftRelativeDir, true,
-                                                 ignoreHidden));
-                } else {
-                    // compare left file dir with right file
-                    const QString right_file_name = right_file->getName();
-                    const QUrl rightFilePath = pathAppend(rightDirectoryPath, right_file_name);
-                    const QString rightRelativeDir =
-                        rightDir.isEmpty() ? right_file_name : rightDir + '/' + right_file_name;
+            if (!query->matchDirName(left_file_name))
+                continue;
 
-                    SynchronizerFileItem *me = addDuplicateItem(
-                        left_file, right_file, parent, leftDir, rightDir, !query->match(left_file));
+            const QUrl leftFilePath = pathAppend(leftDirectoryPath, left_file_name);
+            const QString leftRelativeDir =
+                leftDir.isEmpty() ? left_file_name : leftDir + '/' + left_file_name;
 
-                    stack.append(new CompareTask(me, leftFilePath, rightFilePath,
-                        leftRelativeDir, rightRelativeDir, ignoreHidden));
-                }
+            if ((right_file = right_directory->search(left_file_name, ignoreCase)) == 0) {
+                // no right file dir
+                SynchronizerFileItem *me =
+                    addLeftOnlyItem(left_file, parent, leftDir, !query->match(left_file));
+                stack.append(
+                    new CompareTask(me, leftFilePath, leftRelativeDir, true, ignoreHidden));
+            } else {
+                // compare left file dir with right file
+                const QString right_file_name = right_file->getName();
+                const QUrl rightFilePath = pathAppend(rightDirectoryPath, right_file_name);
+                const QString rightRelativeDir =
+                    rightDir.isEmpty() ? right_file_name : rightDir + '/' + right_file_name;
+
+                SynchronizerFileItem *me = addDuplicateItem(left_file, right_file, parent, leftDir,
+                                                            rightDir, !query->match(left_file));
+
+                stack.append(new CompareTask(me, leftFilePath, rightFilePath, leftRelativeDir,
+                                             rightRelativeDir, ignoreHidden));
             }
         }
 
         /* walking through the right side subdirectories */
         for (right_file = right_directory->first(); right_file != 0 && !stopped;
              right_file = right_directory->next()) {
-            if (right_file->isDir() && (followSymLinks || !right_file->isSymLink())) {
-                file_name = right_file->getName();
 
-                if (checkIfSelected && !selectedFiles.contains(file_name))
-                    continue;
+            if (!right_file->isDir() || !(followSymLinks || !right_file->isSymLink()))
+                continue;
 
-                const QString rightRelativePath =
-                    rightDir.isEmpty() ? file_name : rightDir + '/' + file_name;
-                if (excludedPaths.contains(rightRelativePath))
-                    continue;
+            file_name = right_file->getName();
 
-                if (!query->matchDirName(file_name))
-                    continue;
+            if (checkIfSelected && !selectedFiles.contains(file_name))
+                continue;
 
-                if (left_directory->search(file_name, ignoreCase) == 0) {
-                    // no left exists
-                    SynchronizerFileItem *me =
-                        addRightOnlyItem(right_file, parent, rightDir, !query->match(right_file));
-                    stack.append(new CompareTask(me, pathAppend(rightDirectoryPath, file_name),
-                                                 rightRelativePath, false, ignoreHidden));
-                }
+            const QString rightRelativePath =
+                rightDir.isEmpty() ? file_name : rightDir + '/' + file_name;
+            if (excludedPaths.contains(rightRelativePath))
+                continue;
+
+            if (!query->matchDirName(file_name))
+                continue;
+
+            if (left_directory->search(file_name, ignoreCase) == 0) {
+                // no left exists
+                SynchronizerFileItem *me =
+                    addRightOnlyItem(right_file, parent, rightDir, !query->match(right_file));
+                stack.append(new CompareTask(me, pathAppend(rightDirectoryPath, file_name),
+                                             rightRelativePath, false, ignoreHidden));
             }
         }
 
@@ -887,71 +891,51 @@ void Synchronizer::executeTask(SynchronizerFileItem *task)
     const QUrl leftURL = pathAppend(leftBaseDir, task->leftDirectory(), task->leftName());
     const QUrl rightURL = pathAppend(rightBaseDir, task->rightDirectory(), task->rightName());
 
+    KJob *job = nullptr;
+
     switch (task->task()) {
     case TT_COPY_TO_LEFT:
-        if (task->isDir()) {
-            KIO::SimpleJob *job = KIO::mkdir(leftURL);
-            connect(job, SIGNAL(result(KJob *)), this, SLOT(slotTaskFinished(KJob *)));
-            jobMap[job] = task;
-            disableNewTasks = true;
-        } else {
-            const QUrl dest = task->destination().isEmpty() ? leftURL : task->destination();
-
-            if (task->rightLink().isNull()) {
-                KIO::FileCopyJob *job = KIO::file_copy(
-                    rightURL, dest, -1,
-                    ((overWrite || task->overWrite()) ? KIO::Overwrite : KIO::DefaultFlags) |
-                        KIO::HideProgressInfo);
-                connect(job, SIGNAL(processedSize(KJob *, qulonglong)), this,
-                        SLOT(slotProcessedSize(KJob *, qulonglong)));
-                connect(job, SIGNAL(result(KJob *)), this, SLOT(slotTaskFinished(KJob *)));
-                jobMap[job] = task;
-            } else {
-                KIO::SimpleJob *job = KIO::symlink(
-                    task->rightLink(), dest,
-                    ((overWrite || task->overWrite()) ? KIO::Overwrite : KIO::DefaultFlags) |
-                        KIO::HideProgressInfo);
-                connect(job, SIGNAL(result(KJob *)), this, SLOT(slotTaskFinished(KJob *)));
-                jobMap[job] = task;
-            }
-        }
+        job = createJob(task, rightURL, leftURL, task->rightLink());
         break;
     case TT_COPY_TO_RIGHT:
-        if (task->isDir()) {
-            KIO::SimpleJob *job = KIO::mkdir(rightURL);
-            connect(job, SIGNAL(result(KJob *)), this, SLOT(slotTaskFinished(KJob *)));
-            jobMap[job] = task;
-            disableNewTasks = true;
-        } else {
-            const QUrl dest = task->destination().isEmpty() ? rightURL : task->destination();
-
-            if (task->leftLink().isNull()) {
-                KIO::FileCopyJob *job = KIO::file_copy(
-                    leftURL, dest, -1,
-                    ((overWrite || task->overWrite()) ? KIO::Overwrite : KIO::DefaultFlags) |
-                        KIO::HideProgressInfo);
-                connect(job, SIGNAL(processedSize(KJob *, qulonglong)), this,
-                        SLOT(slotProcessedSize(KJob *, qulonglong)));
-                connect(job, SIGNAL(result(KJob *)), this, SLOT(slotTaskFinished(KJob *)));
-                jobMap[job] = task;
-            } else {
-                KIO::SimpleJob *job = KIO::symlink(
-                    task->leftLink(), dest,
-                    ((overWrite || task->overWrite()) ? KIO::Overwrite : KIO::DefaultFlags) |
-                        KIO::HideProgressInfo);
-                connect(job, SIGNAL(result(KJob *)), this, SLOT(slotTaskFinished(KJob *)));
-                jobMap[job] = task;
-            }
-        }
+        job = createJob(task, leftURL, rightURL, task->leftLink());
         break;
-    case TT_DELETE: {
-        KIO::DeleteJob *job = KIO::del(leftURL, KIO::DefaultFlags);
-        connect(job, SIGNAL(result(KJob *)), this, SLOT(slotTaskFinished(KJob *)));
-        jobMap[job] = task;
-    } break;
+    case TT_DELETE:
+        job = KIO::del(leftURL, KIO::DefaultFlags);
+        break;
     default:
-        break;
+        return;
     }
+
+    if (job) {
+        connect(job, &KIO::FileCopyJob::result, this, &Synchronizer::slotTaskFinished);
+        jobMap[job] = task;
+    }
+}
+
+KJob *Synchronizer::createJob(SynchronizerFileItem *task, const QUrl &src, const QUrl &dest,
+                                  const QString &link)
+{
+    KJob *job;
+    if (task->isDir()) {
+        job = KIO::mkdir(dest);
+        disableNewTasks = true;
+    } else {
+        const QUrl destURL = task->destination().isEmpty() ? dest : task->destination();
+        const KIO::JobFlags flags =
+            ((overWrite || task->overWrite()) ? KIO::Overwrite : KIO::DefaultFlags) |
+            KIO::HideProgressInfo;
+
+        if (link.isNull()) {
+            job = KIO::file_copy(src, destURL, -1, flags);
+            connect(job, SIGNAL(processedSize(KJob *, qulonglong)), this,
+                    SLOT(slotProcessedSize(KJob *, qulonglong)));
+        } else {
+            job = KIO::symlink(link, destURL, flags);
+        }
+    }
+
+    return job;
 }
 
 void Synchronizer::slotTaskFinished(KJob *job)
