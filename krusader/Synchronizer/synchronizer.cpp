@@ -1119,18 +1119,21 @@ void Synchronizer::slotTaskFinished(KJob *job)
 
                 switch (item->task()) {
                 case TT_COPY_TO_LEFT:
-                    error = i18n("Error at copying file %1 to %2.",
+                    error = i18n("Error at copying file %1 to %2:\n%3",
                                  rightURL.toDisplayString(QUrl::PreferLocalFile),
-                                 leftURL.toDisplayString(QUrl::PreferLocalFile));
+                                 leftURL.toDisplayString(QUrl::PreferLocalFile),
+                                 job->errorString());
                     break;
                 case TT_COPY_TO_RIGHT:
-                    error = i18n("Error at copying file %1 to %2.",
+                    error = i18n("Error at copying file %1 to %2:\n%3",
                                  leftURL.toDisplayString(QUrl::PreferLocalFile),
-                                 rightURL.toDisplayString(QUrl::PreferLocalFile));
+                                 rightURL.toDisplayString(QUrl::PreferLocalFile),
+                                 job->errorString());
                     break;
                 case TT_DELETE:
-                    error = i18n("Error at deleting file %1.",
-                                 leftURL.toDisplayString(QUrl::PreferLocalFile));
+                    error = i18n("Error at deleting file %1:\n%2",
+                                 leftURL.toDisplayString(QUrl::PreferLocalFile),
+                                 job->errorString());
                     break;
                 default:
                     break;
