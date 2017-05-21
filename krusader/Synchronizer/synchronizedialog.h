@@ -30,20 +30,19 @@
 
 #include "synchronizer.h"
 
-class SynchronizeDialog : QDialog
+class SynchronizeDialog : public QDialog
 {
     Q_OBJECT
 
 public:
     SynchronizeDialog(QWidget *, Synchronizer *sync, int, KIO::filesize_t, int, KIO::filesize_t,
-                      int, KIO::filesize_t, int);
+                      int, KIO::filesize_t);
     ~SynchronizeDialog();
 
-    inline bool wasSyncronizationStarted() { return syncStarted; }
+    bool wasSyncronizationStarted() { return syncStarted; }
 
-public slots:
+private slots:
     void startSynchronization();
-    void synchronizationFinished();
     void processedSizes(int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t);
     void pauseOrResume();
     void pauseAccepted();
@@ -72,8 +71,6 @@ private:
     KIO::filesize_t rightCopySize;
     int deleteNr;
     KIO::filesize_t deleteSize;
-
-    int parallelThreads;
 
     bool isPause;
     bool syncStarted;

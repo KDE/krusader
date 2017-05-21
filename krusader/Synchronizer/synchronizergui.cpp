@@ -1312,10 +1312,11 @@ void SynchronizerGUI::synchronize()
         return;
     }
 
+    synchronizer.setThreads(parallelThreadsSpinBox->value());
+
     SynchronizeDialog *sd = new SynchronizeDialog(this, &synchronizer,
             copyToLeftNr, copyToLeftSize, copyToRightNr,
-            copyToRightSize, deleteNr, deleteSize,
-            parallelThreadsSpinBox->value());
+            copyToRightSize, deleteNr, deleteSize);
 
     wasSync = sd->wasSyncronizationStarted();
     delete sd;

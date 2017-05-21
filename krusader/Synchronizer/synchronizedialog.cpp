@@ -36,10 +36,10 @@
 SynchronizeDialog::SynchronizeDialog(QWidget *parent, Synchronizer *sync, int pleftCopyNr,
                                      KIO::filesize_t pleftCopySize, int prightCopyNr,
                                      KIO::filesize_t prightCopySize, int pdeleteNr,
-                                     KIO::filesize_t pdeleteSize, int parThreads)
+                                     KIO::filesize_t pdeleteSize)
     : QDialog(parent), synchronizer(sync), leftCopyNr(pleftCopyNr), leftCopySize(pleftCopySize),
       rightCopyNr(prightCopyNr), rightCopySize(prightCopySize), deleteNr(pdeleteNr),
-      deleteSize(pdeleteSize), parallelThreads(parThreads), isPause(true), syncStarted(false)
+      deleteSize(pdeleteSize), isPause(true), syncStarted(false)
 {
     setWindowTitle(i18n("Krusader::Synchronize"));
     setModal(true);
@@ -53,15 +53,15 @@ SynchronizeDialog::SynchronizeDialog(QWidget *parent, Synchronizer *sync, int pl
             i18np("(1 byte)", "(%1 bytes)",
                   KRpermHandler::parseSize(leftCopySize).trimmed().toInt()),
         this);
-    cbRightToLeft->setChecked(leftCopyNr != 0);
-    cbRightToLeft->setEnabled(leftCopyNr != 0);
+    cbRightToLeft->setChecked(leftCopyNr > 0);
+    cbRightToLeft->setEnabled(leftCopyNr > 0);
     layout->addWidget(cbRightToLeft);
 
     lbRightToLeft =
         new QLabel(i18np("\tReady: %2/1 file, %3/%4", "\tReady: %2/%1 files, %3/%4", leftCopyNr, 0,
                          0, KRpermHandler::parseSize(leftCopySize).trimmed()),
                    this);
-    lbRightToLeft->setEnabled(leftCopyNr != 0);
+    lbRightToLeft->setEnabled(leftCopyNr > 0);
     layout->addWidget(lbRightToLeft);
 
     cbLeftToRight = new QCheckBox(
@@ -69,29 +69,29 @@ SynchronizeDialog::SynchronizeDialog(QWidget *parent, Synchronizer *sync, int pl
             i18np("(1 byte)", "(%1 bytes)",
                   KRpermHandler::parseSize(rightCopySize).trimmed().toInt()),
         this);
-    cbLeftToRight->setChecked(rightCopyNr != 0);
-    cbLeftToRight->setEnabled(rightCopyNr != 0);
+    cbLeftToRight->setChecked(rightCopyNr > 0);
+    cbLeftToRight->setEnabled(rightCopyNr > 0);
     layout->addWidget(cbLeftToRight);
 
     lbLeftToRight =
         new QLabel(i18np("\tReady: %2/1 file, %3/%4", "\tReady: %2/%1 files, %3/%4", rightCopyNr, 0,
                          0, KRpermHandler::parseSize(rightCopySize).trimmed()),
                    this);
-    lbLeftToRight->setEnabled(rightCopyNr != 0);
+    lbLeftToRight->setEnabled(rightCopyNr > 0);
     layout->addWidget(lbLeftToRight);
 
     cbDeletable = new QCheckBox(
         i18np("Left: Delete 1 file", "Left: Delete %1 files", deleteNr) + ' ' +
             i18np("(1 byte)", "(%1 bytes)", KRpermHandler::parseSize(deleteSize).trimmed().toInt()),
         this);
-    cbDeletable->setChecked(deleteNr != 0);
-    cbDeletable->setEnabled(deleteNr != 0);
+    cbDeletable->setChecked(deleteNr > 0);
+    cbDeletable->setEnabled(deleteNr > 0);
     layout->addWidget(cbDeletable);
 
     lbDeletable = new QLabel(i18np("\tReady: %2/1 file, %3/%4", "\tReady: %2/%1 files, %3/%4",
                                    deleteNr, 0, 0, KRpermHandler::parseSize(deleteSize).trimmed()),
                              this);
-    lbDeletable->setEnabled(deleteNr != 0);
+    lbDeletable->setEnabled(deleteNr > 0);
     layout->addWidget(lbDeletable);
 
     progress = new QProgressBar(this);
@@ -132,9 +132,9 @@ SynchronizeDialog::SynchronizeDialog(QWidget *parent, Synchronizer *sync, int pl
 
     layout->addWidget(hboxWidget);
 
-    connect(btnStart, SIGNAL(clicked()), this, SLOT(startSynchronization()));
-    connect(btnPause, SIGNAL(clicked()), this, SLOT(pauseOrResume()));
-    connect(btnClose, SIGNAL(clicked()), this, SLOT(reject()));
+    connect(btnStart, &QPushButton::clicked, this, &SynchronizeDialog::startSynchronization);
+    connect(btnPause, &QPushButton::clicked, this, &SynchronizeDialog::pauseOrResume);
+    connect(btnClose, &QPushButton::clicked, this, &SynchronizeDialog::reject);
 
     exec();
 }
@@ -149,12 +149,10 @@ void SynchronizeDialog::startSynchronization()
 {
     btnStart->setEnabled(false);
     btnPause->setEnabled(syncStarted = true);
-    connect(synchronizer, SIGNAL(synchronizationFinished()), this, SLOT(synchronizationFinished()));
-    connect(synchronizer, SIGNAL(processedSizes(int, KIO::filesize_t, int, KIO::filesize_t, int,
-                                                KIO::filesize_t)),
-            this,
-            SLOT(processedSizes(int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t)));
-    connect(synchronizer, SIGNAL(pauseAccepted()), this, SLOT(pauseAccepted()));
+
+    connect(synchronizer, &Synchronizer::synchronizationFinished, this, &SynchronizeDialog::reject);
+    connect(synchronizer, &Synchronizer::processedSizes, this, &SynchronizeDialog::processedSizes);
+    connect(synchronizer, &Synchronizer::pauseAccepted, this, &SynchronizeDialog::pauseAccepted);
 
     if (!cbRightToLeft->isChecked())
         leftCopySize = 0;
@@ -164,10 +162,8 @@ void SynchronizeDialog::startSynchronization()
         deleteSize = 0;
 
     synchronizer->synchronize(this, cbRightToLeft->isChecked(), cbLeftToRight->isChecked(),
-                              cbDeletable->isChecked(), !cbOverwrite->isChecked(), parallelThreads);
+                              cbDeletable->isChecked(), !cbOverwrite->isChecked());
 }
-
-void SynchronizeDialog::synchronizationFinished() { QDialog::reject(); }
 
 void SynchronizeDialog::processedSizes(int leftNr, KIO::filesize_t leftSize, int rightNr,
                                        KIO::filesize_t rightSize, int delNr,

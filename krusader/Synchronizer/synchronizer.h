@@ -29,6 +29,7 @@
 #include <QColor>
 // QtWidgets
 #include <QDialog>
+#include <QProgressBar>
 
 #include <KIO/Job>
 
@@ -60,8 +61,11 @@ public:
     int refresh(bool nostatus = false);
     bool totalSizes(int *, KIO::filesize_t *, int *, KIO::filesize_t *, int *, KIO::filesize_t *);
 
+    void setThreads(int numThreads) { parallelThreads = numThreads; }
+
     void synchronize(QWidget *syncDialog, bool leftCopyEnabled, bool rightCopyEnabled,
-                     bool deleteEnabled, bool overWrite, int parThreads);
+                     bool deleteEnabled, bool overWrite);
+
     /**
      * Execute sync with KGet.
      *
@@ -210,8 +214,6 @@ private:
     QWidget *syncDlgWidget;                             // the synchronizer dialog widget
     QListIterator<SynchronizerFileItem *> resultListIt; // iterator for result list
 };
-
-class QProgressBar;
 
 class KgetProgressDialog : public QDialog
 {

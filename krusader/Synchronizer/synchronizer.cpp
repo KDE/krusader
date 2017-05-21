@@ -46,7 +46,6 @@
 #include <QFrame>
 #include <QLabel>
 #include <QLayout>
-#include <QProgressBar>
 #include <QPushButton>
 #include <QVBoxLayout>
 
@@ -265,7 +264,7 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent, const QUrl &le
             if (stopped)
                 break;
 
-            if (!left_file->isDir() || !(followSymLinks || !left_file->isSymLink()))
+            if (!left_file->isDir() || (left_file->isSymLink() && !followSymLinks))
                 continue;
 
             const QString left_file_name = left_file->getName();
@@ -308,7 +307,7 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent, const QUrl &le
             if (stopped)
                 break;
 
-            if (!right_file->isDir() || !(followSymLinks || !right_file->isSymLink()))
+            if (!right_file->isDir() || (right_file->isSymLink() && !followSymLinks))
                 continue;
 
             const QString file_name = right_file->getName();
@@ -817,13 +816,12 @@ void Synchronizer::setScrolling(bool scroll)
 }
 
 void Synchronizer::synchronize(QWidget *syncDialog, bool leftCopyEnabled, bool rightCopyEnabled,
-                               bool deleteEnabled, bool overWrite, int parThreads)
+                               bool deleteEnabled, bool overWrite)
 {
     this->leftCopyEnabled = leftCopyEnabled;
     this->rightCopyEnabled = rightCopyEnabled;
     this->deleteEnabled = deleteEnabled;
     this->overWrite = overWrite;
-    this->parallelThreads = parThreads;
     this->syncDlgWidget = syncDialog;
 
     autoSkip = paused = disableNewTasks = false;
@@ -864,7 +862,6 @@ void Synchronizer::synchronizeLoop()
 
 SynchronizerFileItem *Synchronizer::getNextTask()
 {
-    TaskType task;
     SynchronizerFileItem *currentTask;
 
     do {
@@ -874,13 +871,11 @@ SynchronizerFileItem *Synchronizer::getNextTask()
         currentTask = resultListIt.next();
 
         if (currentTask->isMarked()) {
-            task = currentTask->task();
+            const TaskType task = currentTask->task();
 
-            if (leftCopyEnabled && task == TT_COPY_TO_LEFT)
-                break;
-            else if (rightCopyEnabled && task == TT_COPY_TO_RIGHT)
-                break;
-            else if (deleteEnabled && task == TT_DELETE)
+            if ((leftCopyEnabled && task == TT_COPY_TO_LEFT) ||
+                (rightCopyEnabled && task == TT_COPY_TO_RIGHT) ||
+                (deleteEnabled && task == TT_DELETE))
                 break;
         }
     } while (true);
@@ -1390,8 +1385,5 @@ bool Synchronizer::isDir(const FileItem *file)
 
 SynchronizerFileItem *Synchronizer::getItemAt(unsigned ndx)
 {
-    if (ndx < (unsigned)resultList.count())
-        return resultList.at(ndx);
-    else
-        return 0;
+    return ndx < (unsigned)resultList.count() ? resultList.at(ndx) : 0;
 }
