@@ -505,7 +505,7 @@ void Synchronizer::compareContentResult(SynchronizerFileItem *item, bool res)
 {
     item->compareContentResult(res);
     bool marked =
-        autoScroll ? isMarked(item->task(), item->existsInLeft() && item->existsInRight()) : false;
+        autoScroll ? isMarked(item->task(), item->existsLeft() && item->existsRight()) : false;
     item->setMarked(marked);
     if (marked) {
         markParentDirectories(item);
@@ -579,7 +579,7 @@ int Synchronizer::refresh(bool nostatus)
     while (it.hasNext()) {
         SynchronizerFileItem *item = it.next();
 
-        bool marked = isMarked(item->task(), item->existsInLeft() && item->existsInRight());
+        bool marked = isMarked(item->task(), item->existsLeft() && item->existsRight());
         item->setMarked(marked);
 
         if (marked) {
@@ -654,7 +654,7 @@ void Synchronizer::restore(SynchronizerFileItem *item)
 
 void Synchronizer::reverseDirectionOperation(SynchronizerFileItem *item)
 {
-    if (item->existsInRight() && item->existsInLeft()) {
+    if (item->existsRight() && item->existsLeft()) {
         if (item->task() == TT_COPY_TO_LEFT)
             item->setTask(TT_COPY_TO_RIGHT);
         else if (item->task() == TT_COPY_TO_RIGHT)
@@ -669,7 +669,7 @@ void Synchronizer::reverseDirection(SynchronizerFileItem *item)
 
 void Synchronizer::deleteLeftOperation(SynchronizerFileItem *item)
 {
-    if (!item->existsInRight() && item->existsInLeft())
+    if (!item->existsRight() && item->existsLeft())
         item->setTask(TT_DELETE);
 }
 
@@ -691,13 +691,13 @@ void Synchronizer::deleteLeft(SynchronizerFileItem *item) { operate(item, delete
 
 void Synchronizer::copyToLeftOperation(SynchronizerFileItem *item)
 {
-    if (item->existsInRight()) {
+    if (item->existsRight()) {
         if (!item->isDir())
             item->setTask(TT_COPY_TO_LEFT);
         else {
-            if (item->existsInLeft() && item->existsInRight())
+            if (item->existsLeft() && item->existsRight())
                 item->setTask(TT_EQUALS);
-            else if (!item->existsInLeft() && item->existsInRight())
+            else if (!item->existsLeft() && item->existsRight())
                 item->setTask(TT_COPY_TO_LEFT);
         }
     }
@@ -711,22 +711,22 @@ void Synchronizer::copyToLeft(SynchronizerFileItem *item)
         if (item->task() != TT_DIFFERS)
             break;
 
-        if (item->existsInLeft() && item->existsInRight())
+        if (item->existsLeft() && item->existsRight())
             item->setTask(TT_EQUALS);
-        else if (!item->existsInLeft() && item->existsInRight())
+        else if (!item->existsLeft() && item->existsRight())
             item->setTask(TT_COPY_TO_LEFT);
     }
 }
 
 void Synchronizer::copyToRightOperation(SynchronizerFileItem *item)
 {
-    if (item->existsInLeft()) {
+    if (item->existsLeft()) {
         if (!item->isDir())
             item->setTask(TT_COPY_TO_RIGHT);
         else {
-            if (item->existsInLeft() && item->existsInRight())
+            if (item->existsLeft() && item->existsRight())
                 item->setTask(TT_EQUALS);
-            else if (item->existsInLeft() && !item->existsInRight())
+            else if (item->existsLeft() && !item->existsRight())
                 item->setTask(TT_COPY_TO_RIGHT);
         }
     }
@@ -740,9 +740,9 @@ void Synchronizer::copyToRight(SynchronizerFileItem *item)
         if (item->task() != TT_DIFFERS && item->task() != TT_DELETE)
             break;
 
-        if (item->existsInLeft() && item->existsInRight())
+        if (item->existsLeft() && item->existsRight())
             item->setTask(TT_EQUALS);
-        else if (item->existsInLeft() && !item->existsInRight())
+        else if (item->existsLeft() && !item->existsRight())
             item->setTask(TT_COPY_TO_RIGHT);
     }
 }
@@ -1075,6 +1075,7 @@ void Synchronizer::slotTaskFinished(KJob *job)
                 break;
             }
         } else {
+
             if (job->error() == KIO::ERR_FILE_ALREADY_EXIST && item->task() != TT_DELETE) {
                 if (autoSkip)
                     break;

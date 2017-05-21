@@ -73,9 +73,9 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync, QT
                 if (item->isSelected())
                     selectedNum++;
 
-                if (syncItem->existsInLeft())
+                if (syncItem->existsLeft())
                     leftExistingNum++;
-                if (syncItem->existsInRight())
+                if (syncItem->existsRight())
                     rightExistingNum++;
             }
         }
@@ -181,7 +181,7 @@ void FeedToListBoxDialog::slotOk()
         if (!equalAllowed && syncItem->task() == TT_EQUALS && (!selected || !item->isSelected()))
             continue;
 
-        if ((side == S_BOTH || side == S_LEFT) && syncItem->existsInLeft()) {
+        if ((side == S_BOTH || side == S_LEFT) && syncItem->existsLeft()) {
             QString leftDirName =
                 syncItem->leftDirectory().isEmpty() ? "" : syncItem->leftDirectory() + '/';
             const QUrl left = Synchronizer::pathAppend(synchronizer->leftBaseDirectory(),
@@ -189,7 +189,7 @@ void FeedToListBoxDialog::slotOk()
             urlList.push_back(left);
         }
 
-        if ((side == S_BOTH || side == S_RIGHT) && syncItem->existsInRight()) {
+        if ((side == S_BOTH || side == S_RIGHT) && syncItem->existsRight()) {
             QString rightDirName =
                 syncItem->rightDirectory().isEmpty() ? "" : syncItem->rightDirectory() + '/';
             const QUrl right = Synchronizer::pathAppend(synchronizer->rightBaseDirectory(),

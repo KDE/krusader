@@ -154,11 +154,11 @@ public:
 
             SynchronizerFileItem *item = viewItem->synchronizerItemRef();
             if (item) {
-                if (isLeft && item->existsInLeft()) {
+                if (isLeft && item->existsLeft()) {
                     const QUrl leftURL = Synchronizer::pathAppend(
                         synchronizer->leftBaseDirectory(), item->leftDirectory(), item->leftName());
                     urls.push_back(leftURL);
-                } else if (!isLeft && item->existsInRight()) {
+                } else if (!isLeft && item->existsRight()) {
                     const QUrl rightURL = Synchronizer::pathAppend(
                         synchronizer->rightBaseDirectory(), item->rightDirectory(), item->rightName());
                     urls.push_back(rightURL);
@@ -761,7 +761,7 @@ void SynchronizerGUI::doubleClicked(QTreeWidgetItem *itemIn)
 
     SyncViewItem *syncItem = (SyncViewItem *)itemIn;
     SynchronizerFileItem *item = syncItem->synchronizerItemRef();
-    if (item && item->existsInLeft() && item->existsInRight() && !item->isDir()) {
+    if (item && item->existsLeft() && item->existsRight() && !item->isDir()) {
         const QUrl leftURL = Synchronizer::pathAppend(synchronizer.leftBaseDirectory(),
                                                       item->leftDirectory(), item->leftName());
         const QUrl rightURL = Synchronizer::pathAppend(synchronizer.rightBaseDirectory(),
@@ -801,7 +801,7 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
 
     SynchronizerFileItem *item = syncItem->synchronizerItemRef();
 
-    bool    isDuplicate = item->existsInLeft() && item->existsInRight();
+    bool    isDuplicate = item->existsLeft() && item->existsRight();
     bool    isDir       = item->isDir();
 
     // create the menu
@@ -827,10 +827,10 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
     popup.addSeparator();
 
     myact = popup.addAction(i18n("V&iew left file"));
-    myact->setEnabled(!isDir && item->existsInLeft());
+    myact->setEnabled(!isDir && item->existsLeft());
     actHash[ myact ] = VIEW_LEFT_FILE_ID;
     myact = popup.addAction(i18n("Vi&ew right file"));
-    myact->setEnabled(!isDir && item->existsInRight());
+    myact->setEnabled(!isDir && item->existsRight());
     actHash[ myact ] = VIEW_RIGHT_FILE_ID;
     myact = popup.addAction(i18n("&Compare Files"));
     myact->setEnabled(!isDir && isDuplicate);
@@ -1151,13 +1151,13 @@ void SynchronizerGUI::addFile(SynchronizerFileItem *item)
     QColor textColor = foreGrounds[ item->task()];
     QColor baseColor = backGrounds[ item->task()];
 
-    if (item->existsInLeft()) {
+    if (item->existsLeft()) {
         leftName = item->leftName();
         leftSize = isDir ? dirLabel() + ' ' : KRpermHandler::parseSize(item->leftSize());
         leftDate = SynchronizerGUI::convertTime(item->leftDate());
     }
 
-    if (item->existsInRight()) {
+    if (item->existsRight()) {
         rightName = item->rightName();
         rightSize = isDir ? dirLabel() + ' ' : KRpermHandler::parseSize(item->rightSize());
         rightDate = SynchronizerGUI::convertTime(item->rightDate());
@@ -1202,13 +1202,13 @@ void SynchronizerGUI::markChanged(SynchronizerFileItem *item, bool ensureVisible
             QString leftName = "", rightName = "", leftDate = "", rightDate = "", leftSize = "", rightSize = "";
             bool    isDir = item->isDir();
 
-            if (item->existsInLeft()) {
+            if (item->existsLeft()) {
                 leftName = item->leftName();
                 leftSize = isDir ? dirLabel() + ' ' : KRpermHandler::parseSize(item->leftSize());
                 leftDate = SynchronizerGUI::convertTime(item->leftDate());
             }
 
-            if (item->existsInRight()) {
+            if (item->existsRight()) {
                 rightName = item->rightName();
                 rightSize = isDir ? dirLabel() + ' ' : KRpermHandler::parseSize(item->rightSize());
                 rightDate = SynchronizerGUI::convertTime(item->rightDate());
@@ -1378,7 +1378,7 @@ void SynchronizerGUI::keyPressEvent(QKeyEvent *e)
         if (item->isDir())
             return;
 
-        if (e->modifiers() == Qt::ShiftModifier && item->existsInRight()) {
+        if (e->modifiers() == Qt::ShiftModifier && item->existsRight()) {
             const QUrl rightURL = Synchronizer::pathAppend(
                 synchronizer.rightBaseDirectory(), item->rightDirectory(), item->rightName());
 
@@ -1387,7 +1387,7 @@ void SynchronizerGUI::keyPressEvent(QKeyEvent *e)
             else
                 KrViewer::view(rightURL, this);   // view the file
             return;
-        } else if (e->modifiers() == 0 && item->existsInLeft()) {
+        } else if (e->modifiers() == 0 && item->existsLeft()) {
             const QUrl leftURL = Synchronizer::pathAppend(
                 synchronizer.leftBaseDirectory(), item->leftDirectory(), item->leftName());
 
@@ -1664,11 +1664,11 @@ void SynchronizerGUI::copyToClipboard(bool isLeft)
 
         SynchronizerFileItem *item = viewItem->synchronizerItemRef();
         if (item) {
-            if (isLeft && item->existsInLeft()) {
+            if (isLeft && item->existsLeft()) {
                 const QUrl leftURL = Synchronizer::pathAppend(
                     synchronizer.leftBaseDirectory(), item->leftDirectory(), item->leftName());
                 urls.push_back(leftURL);
-            } else if (!isLeft && item->existsInRight()) {
+            } else if (!isLeft && item->existsRight()) {
                 const QUrl rightURL = Synchronizer::pathAppend(
                     synchronizer.rightBaseDirectory(), item->rightDirectory(), item->rightName());
                 urls.push_back(rightURL);
@@ -1709,4 +1709,3 @@ QUrl SynchronizerGUI::getUrl(KHistoryComboBox *location)
 {
     return QUrl::fromUserInput(location->currentText());
 }
-

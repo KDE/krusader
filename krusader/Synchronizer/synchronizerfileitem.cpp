@@ -56,7 +56,7 @@ void SynchronizerFileItem::reverseTask(TaskType &taskType, bool asym)
     switch (taskType) {
     case TT_COPY_TO_LEFT:
         if (asym)
-            taskType = !existsInRight() ? TT_DELETE : TT_COPY_TO_LEFT;
+            taskType = !existsRight() ? TT_DELETE : TT_COPY_TO_LEFT;
         else
             taskType = TT_COPY_TO_RIGHT;
         break;

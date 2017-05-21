@@ -48,8 +48,8 @@ public:
                          const QString &leftDir, const QString &rightDir,
                          bool mark, TaskType tsk, bool tmp, SynchronizerFileItem *parent);
 
-    inline bool existsInLeft() const { return !m_leftFile.getName().isNull(); }
-    inline bool existsInRight() const { return !m_rightFile.getName().isNull(); }
+    inline bool existsLeft() const { return !m_leftFile.getName().isNull(); }
+    inline bool existsRight() const { return !m_rightFile.getName().isNull(); }
     inline bool isDir() const
     {
         return !m_leftFile.getName().isNull() ? m_leftFile.isDir() : m_rightFile.isDir();
@@ -57,11 +57,11 @@ public:
 
     inline const QString &leftName() const
     {
-        return existsInLeft() ? m_leftFile.getName() : m_rightFile.getName();
+        return existsLeft() ? m_leftFile.getName() : m_rightFile.getName();
     }
     inline const QString &rightName() const
     {
-        return existsInRight() ? m_rightFile.getName() : m_leftFile.getName();
+        return existsRight() ? m_rightFile.getName() : m_leftFile.getName();
     }
     inline KIO::filesize_t leftSize() const { return m_leftFile.getSize(); }
     inline KIO::filesize_t rightSize() const { return m_rightFile.getSize(); }
