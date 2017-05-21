@@ -28,7 +28,6 @@
 #include <KWidgetsAddons/KMessageBox>
 
 #include "synchronizer.h"
-#include "synchronizerdirlist.h"
 #include "synchronizerfileitem.h"
 #include "../FileSystem/filesearcher.h"
 #include "../FileSystem/filesystem.h"

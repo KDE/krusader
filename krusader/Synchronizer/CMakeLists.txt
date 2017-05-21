@@ -6,7 +6,6 @@ set(Synchronizer_SRCS
     synchronizergui.cpp
     feedtolistboxdialog.cpp
     synchronizertask.cpp
-    synchronizerdirlist.cpp
     synchronizerfileitem.cpp
 )
 

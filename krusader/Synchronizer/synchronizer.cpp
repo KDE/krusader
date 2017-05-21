@@ -20,7 +20,6 @@
 
 #include "synchronizer.h"
 
-#include "synchronizerdirlist.h"
 #include "synchronizertask.h"
 #include "../FileSystem/filesearcher.h"
 #include "../FileSystem/filesystem.h"
