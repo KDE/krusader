@@ -72,6 +72,58 @@
 #include <KIOWidgets/KUrlRequester>
 #include <KGuiAddons/KColorUtils>
 
+SyncViewItem::SyncViewItem(SynchronizerFileItem *item, const QColor &txt, const QColor &base,
+                           QTreeWidget *parent, QTreeWidgetItem *after, const QString &label1,
+                           const QString &label2, const QString &label3, const QString &label4,
+                           const QString &label5, const QString &label6, const QString &label7)
+    : QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(0)
+{
+    setColumns(label1, label2, label3, label4, label5, label6, label7, item, txt, base);
+}
+
+SyncViewItem::SyncViewItem(SynchronizerFileItem *item, const QColor &txt, const QColor &base,
+                           QTreeWidgetItem *parent, QTreeWidgetItem *after, const QString &label1,
+                           const QString &label2, const QString &label3, const QString &label4,
+                           const QString &label5, const QString &label6, const QString &label7)
+    : QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(0)
+{
+    setColumns(label1, label2, label3, label4, label5, label6, label7, item, txt, base);
+}
+
+void SyncViewItem::setColumns(const QString &label1, const QString &label2, const QString &label3,
+                              const QString &label4, const QString &label5, const QString &label6,
+                              const QString &label7, SynchronizerFileItem *item, const QColor &txt,
+                              const QColor &base)
+{
+    setText(0, label1);
+    setText(1, label2);
+    setText(2, label3);
+    setText(3, label4);
+    setText(4, label5);
+    setText(5, label6);
+    setText(6, label7);
+
+    setTextAlignment(1, Qt::AlignRight);
+    setTextAlignment(3, Qt::AlignHCenter);
+    setTextAlignment(5, Qt::AlignRight);
+    item->setViewItem(this);
+
+    setColors(txt, base);
+}
+
+void SyncViewItem::setColors(const QColor &fore, const QColor &back)
+{
+    QBrush textColor(fore);
+    QBrush baseColor(back);
+
+    for (int i = 0; i != columnCount(); i++) {
+        if (back.isValid())
+            setBackground(i, baseColor);
+        if (fore.isValid())
+            setForeground(i, textColor);
+    }
+}
+
 
 class SynchronizerListView : public KrTreeWidget
 {

@@ -52,53 +52,15 @@ private:
     SyncViewItem *lastItemRef;
 
 public:
-    SyncViewItem(SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidget *parent,
-                 QTreeWidgetItem *after, QString label1, QString label2 = QString(),
-                 QString label3 = QString(), QString label4 = QString(),
-                 QString label5 = QString(), QString label6 = QString(),
-                 QString label7 = QString(), QString label8 = QString())
-        : QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(0)
-    {
-        setText(0, label1);
-        setText(1, label2);
-        setText(2, label3);
-        setText(3, label4);
-        setText(4, label5);
-        setText(5, label6);
-        setText(6, label7);
-        setText(7, label8);
+    SyncViewItem(SynchronizerFileItem *item, const QColor &txt, const QColor &base,
+                 QTreeWidget *parent, QTreeWidgetItem *after, const QString &label1,
+                 const QString &label2, const QString &label3, const QString &label4,
+                 const QString &label5, const QString &label6, const QString &label7);
 
-        setTextAlignment(1, Qt::AlignRight);
-        setTextAlignment(3, Qt::AlignHCenter);
-        setTextAlignment(5, Qt::AlignRight);
-        item->setViewItem(this);
-
-        setColors(txt, base);
-    }
-
-    SyncViewItem(SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidgetItem *parent,
-                 QTreeWidgetItem *after, QString label1, QString label2 = QString(),
-                 QString label3 = QString(), QString label4 = QString(),
-                 QString label5 = QString(), QString label6 = QString(),
-                 QString label7 = QString(), QString label8 = QString())
-        : QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(0)
-    {
-        setText(0, label1);
-        setText(1, label2);
-        setText(2, label3);
-        setText(3, label4);
-        setText(4, label5);
-        setText(5, label6);
-        setText(6, label7);
-        setText(7, label8);
-
-        setTextAlignment(1, Qt::AlignRight);
-        setTextAlignment(3, Qt::AlignHCenter);
-        setTextAlignment(5, Qt::AlignRight);
-        item->setViewItem(this);
-
-        setColors(txt, base);
-    }
+    SyncViewItem(SynchronizerFileItem *item, const QColor &txt, const QColor &base,
+                 QTreeWidgetItem *parent, QTreeWidgetItem *after, const QString &label1,
+                 const QString &label2, const QString &label3, const QString &label4,
+                 const QString &label5, const QString &label6, const QString &label7);
 
     ~SyncViewItem() { syncItemRef->setViewItem(nullptr); }
 
@@ -106,18 +68,13 @@ public:
     inline SyncViewItem *lastItem() { return lastItemRef; }
     inline void setLastItem(SyncViewItem *s) { lastItemRef = s; }
 
-    void setColors(QColor fore, QColor back)
-    {
-        QBrush textColor(fore);
-        QBrush baseColor(back);
+    void setColors(const QColor &fore, const QColor &back);
 
-        for (int i = 0; i != columnCount(); i++) {
-            if (back.isValid())
-                setBackground(i, baseColor);
-            if (fore.isValid())
-                setForeground(i, textColor);
-        }
-    }
+private:
+    void setColumns(const QString &label1, const QString &label2, const QString &label3,
+                    const QString &label4, const QString &label5, const QString &label6,
+                    const QString &label7, SynchronizerFileItem *item, const QColor &txt,
+                    const QColor &base);
 };
 
 class SynchronizerGUI : public QDialog
