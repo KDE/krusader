@@ -53,11 +53,11 @@ public:
     FilterSettings getSettings();
     void applySettings(const FilterSettings &s);
     void reset();
+    KRQuery query();
 
 public slots:
     void  loadFromProfile(QString);
     void  saveToProfile(QString);
-    bool  fillQuery(KRQuery *query);
     void  close(bool accept = true) {
         emit closeRequest(accept);
     }

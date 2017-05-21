@@ -31,6 +31,8 @@
 #include <QLabel>
 #include <QTabWidget>
 
+#include "../FileSystem/krquery.h"
+
 class FileItem;
 class FileSearcher;
 class FilterTabs;
@@ -39,7 +41,6 @@ class KrSearchBar;
 class KrSqueezedTextLabel;
 class KrView;
 class KrViewItem;
-class KRQuery;
 class KSqueezedTextLabel;
 class ProfileManager;
 class SearchResultContainer;
@@ -107,7 +108,7 @@ private:
     KrView *resultView;
     KrSearchBar *searchBar;
 
-    KRQuery *query;
+    KRQuery query;
     FileSearcher *searcher;
     bool isBusy;
     bool closed;

@@ -45,34 +45,37 @@ static const QStringList TAR_TYPES = QStringList() << "tbz" << "tgz" << "tarz" <
 
 extern KRarcHandler arcHandler;
 
-FileSearcher::FileSearcher(const KRQuery *query)
-    : m_defaultFileSystem(nullptr), m_virtualFileSystem(nullptr), m_stopSearch(false)
+FileSearcher::FileSearcher(const KRQuery &query)
+    : m_query(query), m_defaultFileSystem(nullptr), m_virtualFileSystem(nullptr)
 {
-    m_query = new KRQuery(*query);
-    connect(m_query, &KRQuery::status, this, &FileSearcher::searching);
-    connect(m_query, &KRQuery::processEvents, this, &FileSearcher::slotProcessEvents);
+    connect(&m_query, &KRQuery::status, this, &FileSearcher::searching);
+    connect(&m_query, &KRQuery::processEvents, this, &FileSearcher::slotProcessEvents);
 }
 
 FileSearcher::~FileSearcher()
 {
-    delete m_query;
     if (m_defaultFileSystem)
         delete m_defaultFileSystem;
     if (m_virtualFileSystem)
         delete m_virtualFileSystem;
 }
 
-void FileSearcher::start()
+void FileSearcher::start(const QUrl &url)
 {
+    m_foundFiles.clear();
     m_unScannedUrls.clear();
     m_scannedUrls.clear();
     m_timer.start();
-
-    const QList<QUrl> whereToSearch = m_query->searchInDirs();
+    m_stopSearch = false;
 
     // search every dir that needs to be searched
-    for (int i = 0; i < whereToSearch.count(); ++i)
-        scanUrl(whereToSearch[i]);
+    const QList<QUrl> urls = url.isEmpty() ? m_query.searchInDirs() : QList<QUrl>() << url;
+    for (const QUrl url : urls) {
+        if (m_stopSearch)
+            break;
+
+        scanUrl(url);
+    }
 
     emit finished();
 }
@@ -81,18 +84,16 @@ void FileSearcher::stop() { m_stopSearch = true; }
 
 void FileSearcher::scanUrl(const QUrl &url)
 {
-    if (m_stopSearch)
-        return;
 
     m_unScannedUrls.push(url);
     while (!m_unScannedUrls.isEmpty()) {
-        const QUrl url = m_unScannedUrls.pop();
-
         if (m_stopSearch)
             return;
 
-        if (m_query->isExcluded(url)) {
-            if (!m_query->searchInDirs().contains(url))
+        const QUrl url = m_unScannedUrls.pop();
+
+        if (m_query.isExcluded(url)) {
+            if (!m_query.searchInDirs().contains(url))
                 continue;
         }
 
@@ -112,7 +113,7 @@ void FileSearcher::scanDirectory(const QUrl &url)
 {
     FileSystem *fileSystem = getFileSystem(url);
 
-    // create file items
+    // create file items, deletes old ones
     const bool refreshed = fileSystem->scanDir(url);
     if (!refreshed) {
         emit error(url);
@@ -122,13 +123,17 @@ void FileSearcher::scanDirectory(const QUrl &url)
     for (FileItem *fileItem : fileSystem->fileItems()) {
         const QUrl fileUrl = fileItem->getUrl();
 
-        if (m_query->isRecursive() &&
-            (fileItem->isDir() || (fileItem->isSymLink() && m_query->followLinks()))) {
+        if (m_query.ignoreHidden() && fileUrl.fileName().startsWith('.'))
+            // ignore hidden files and directories
+            continue;
+
+        if (m_query.isRecursive() &&
+            (fileItem->isDir() || (fileItem->isSymLink() && m_query.followLinks()))) {
             // query search in subdirectory
             m_unScannedUrls.push(fileUrl);
         }
 
-        if (m_query->searchInArchives() && fileUrl.isLocalFile() &&
+        if (m_query.searchInArchives() && fileUrl.isLocalFile() &&
             KRarcHandler::arcSupported(fileItem->getMime())) {
             // query search in archive; NOTE: only supported for local files
             QUrl archiveURL = fileUrl;
@@ -141,9 +146,10 @@ void FileSearcher::scanDirectory(const QUrl &url)
             }
         }
 
-        if (m_query->match(fileItem)) {
+        if (m_query.match(fileItem)) {
             // found!
-            emit found(*fileItem, m_query->foundText()); // emitting copy of file item
+            m_foundFiles.append(fileItem);
+            emit found(*fileItem, m_query.foundText()); // emitting copy of file item
         }
 
         if (m_timer.elapsed() >= EVENT_PROCESS_DELAY) {

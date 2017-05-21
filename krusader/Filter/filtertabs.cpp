@@ -127,11 +127,9 @@ void FilterTabs::acceptQuery()
     }
 }
 
-bool FilterTabs::fillQuery(KRQuery *query)
+KRQuery FilterTabs::query()
 {
-    *query = getSettings().toQuery();
-
-    return !query->isNull();
+    return getSettings().toQuery();
 }
 
 FilterBase * FilterTabs::get(QString name)

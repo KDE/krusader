@@ -130,7 +130,7 @@ bool KrSearchDialog::lastContainsRegExp = false;
 
 // class starts here /////////////////////////////////////////
 KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
-        : QDialog(parent), query(0), searcher(0), isBusy(false), closed(false)
+        : QDialog(parent), searcher(0), isBusy(false), closed(false)
 {
     KConfigGroup group(krConfig, "Search");
 
@@ -320,8 +320,6 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 
 KrSearchDialog::~KrSearchDialog()
 {
-    delete query;
-    query = 0;
     delete resultView;
     resultView = 0;
 }
@@ -390,14 +388,9 @@ void KrSearchDialog::slotFound(const FileItem &file, const QString &foundText)
 
 bool KrSearchDialog::gui2query()
 {
-    // prepare the query ...
-    /////////////////// names, locations and greps
-    if (query != 0) {
-        delete query; query = 0;
-    }
-    query = new KRQuery();
+    query = filterTabs->query();
 
-    return filterTabs->fillQuery(query);
+    return !query.isNull();
 }
 
 void KrSearchDialog::startSearch()
@@ -409,7 +402,7 @@ void KrSearchDialog::startSearch()
     if (!gui2query()) return;
 
     // first, informative messages
-    if (query->searchInArchives()) {
+    if (query.searchInArchives()) {
         KMessageBox::information(this, i18n("Since you chose to also search in archives, "
                                             "note the following limitations:\n"
                                             "You cannot search for text (grep) while doing"
@@ -435,7 +428,7 @@ void KrSearchDialog::startSearch()
     // start the search.
     if (searcher != 0)
         abort();
-    searcher  = new FileSearcher(query);
+    searcher = new FileSearcher(query);
     connect(searcher, SIGNAL(searching(QString)),
             searchingLabel, SLOT(setText(QString)));
     connect(searcher, &FileSearcher::found, this, &KrSearchDialog::slotFound);
@@ -600,12 +593,13 @@ void KrSearchDialog::feedToListBox()
     KConfigGroup group(krConfig, "Search");
     int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
     QString queryName;
-    if(query) {
-        QString where = KrServices::toStringList(query->searchInDirs()).join(", ");
-        if(query->content().isEmpty())
-            queryName = i18n("Search results for \"%1\" in %2", query->nameFilter(), where);
+    if (!query.isNull()) {
+        QString where = KrServices::toStringList(query.searchInDirs()).join(", ");
+        if (query.content().isEmpty())
+            queryName = i18n("Search results for \"%1\" in %2", query.nameFilter(), where);
         else
-            queryName = i18n("Search results for \"%1\" containing \"%2\" in %3", query->nameFilter(), query->content(), where);
+            queryName = i18n("Search results for \"%1\" containing \"%2\" in %3",
+                             query.nameFilter(), query.content(), where);
     }
     QString fileSystemName;
     do {

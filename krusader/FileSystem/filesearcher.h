@@ -31,7 +31,8 @@
 
 #include <KIO/Global>
 
-class KRQuery;
+#include "krquery.h"
+
 class FileItem;
 class FileSystem;
 class DefaultFileSystem;
@@ -46,11 +47,22 @@ class FileSearcher: public QObject
 {
     Q_OBJECT
 public:
-    explicit FileSearcher(const KRQuery *query);
+    explicit FileSearcher(const KRQuery &query);
     ~FileSearcher();
 
-    void start();
+    /**
+     * Start the search.
+     *
+     * @param url if given, this single URL is searched - ignoring query->searchInDirs()
+     */
+    void start(const QUrl &url = QUrl());
+    /** Stop the ongoing search. */
     void stop();
+    /**
+     * Return the found files.
+     * Owner is this file searcher, they are deleted when re-starting the search.
+     */
+    QList<FileItem *> files() const { return m_foundFiles; }
 
 private:
     void scanUrl(const QUrl &url);
@@ -60,7 +72,6 @@ private:
 signals:
     void searching(const QString &url);
     void found(const FileItem &file, const QString &foundText);
-    // NOTE: unused
     void error(const QUrl &url);
     void finished();
 
@@ -68,12 +79,14 @@ private slots:
     void slotProcessEvents(bool &stopped);
 
 private:
-    KRQuery *m_query;
+    const KRQuery m_query;
+
     DefaultFileSystem *m_defaultFileSystem;
     VirtualFileSystem *m_virtualFileSystem;
 
     bool m_stopSearch;
 
+    QList<FileItem *> m_foundFiles;
     QStack<QUrl> m_scannedUrls;
     QStack<QUrl> m_unScannedUrls;
     QTime m_timer;

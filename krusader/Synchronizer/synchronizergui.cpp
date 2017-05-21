@@ -998,9 +998,8 @@ void SynchronizerGUI::closeDialog()
 
 void SynchronizerGUI::compare()
 {
-    KRQuery query;
-
-    if (!filterTabs->fillQuery(&query))
+    KRQuery query = filterTabs->query();
+    if (query.isNull())
         return;
 
     // perform some previous tests
