@@ -347,6 +347,7 @@ protected:
     virtual KIO::filesize_t calcSelectedSize() = 0;
     void sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool descending);
     inline void setWidget(QWidget *w) { _widget = w; }
+    bool drawCurrent() const;
 
     KConfig *_config;
     KrViewProperties *_properties;

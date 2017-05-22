@@ -387,9 +387,10 @@ void KgPanel::setupPanelTab()
         {"Look&Feel", "Show Hidden",                    _ShowHidden,             i18n("Show hidden files"),      false,  i18n("Display files beginning with a dot.") },
         {"Look&Feel", "Numeric permissions",            _NumericPermissions,     i18n("Numeric Permissions"), true,  i18n("Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.") },
         {"Look&Feel", "Load User Defined Folder Icons", _UserDefinedFolderIcons, i18n("Load the user defined folder icons"), true ,  i18n("Load the user defined folder icons (can cause decrease in performance).") },
+        {"Look&Feel", "Always Show Current Item",       _AlwaysShowCurrentItem,  i18n("Always show current item"), false,  i18n("Show current item border decoration in inactive panel.") },
     };
 
-    KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup(2, 0, panelSettings, 4 /*count*/, panelGrp, PAGE_VIEW);
+    KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup(2, 0, panelSettings, 5 /*count*/, panelGrp, PAGE_VIEW);
 
     panelGrid->addWidget(panelSett, 3, 0, 1, 2);
 

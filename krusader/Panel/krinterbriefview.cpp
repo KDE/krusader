@@ -453,7 +453,7 @@ void KrInterBriefView::paintEvent(QPaintEvent *e)
 
         // (always) draw dashed line border around current item row
         const bool isCurrent = curr.isValid() && curr.row() == mndx.row();
-        if (isCurrent) {
+        if (isCurrent && drawCurrent()) {
             QStyleOptionFocusRect o;
             o.QStyleOption::operator=(option);
             QPalette::ColorGroup cg = QPalette::Normal;

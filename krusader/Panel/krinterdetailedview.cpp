@@ -383,9 +383,9 @@ void KrInterDetailedView::drawRow(QPainter *painter, const QStyleOptionViewItem 
                                   const QModelIndex &index) const
 {
     QTreeView::drawRow(painter, options, index);
-    // (always) draw dashed line border around current item row. This is done internally in
+    // (may) draw dashed line border around current item row. This is done internally in
     // QTreeView::drawRow() only when panel is focused, we have to repeat it here.
-    if (index == currentIndex()) {
+    if (index == currentIndex() && drawCurrent()) {
         QStyleOptionFocusRect o;
         o.backgroundColor = options.palette.color(QPalette::Normal, QPalette::Background);
 

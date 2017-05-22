@@ -86,6 +86,8 @@
 #define _FullPathTabNames false
 // User defined folder icons
 #define _UserDefinedFolderIcons true
+// Always show current item decoration in panel
+#define _AlwaysShowCurrentItem true
 // Unslect files before copy/move
 #define _UnselectBeforeOperation true
 // Filter dialog remembers settings
