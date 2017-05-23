@@ -90,7 +90,10 @@ public:
 
     // following functions give-out file details
     inline const QString &getName() const { return m_name; }
-    inline KIO::filesize_t getSize() const { return m_size; }
+    /** Return the file size. Returns 0 for directories with unknown size. */
+    inline KIO::filesize_t getSize() const { return m_size == (KIO::filesize_t)-1 ? 0 : m_size; }
+    /** Return the file size. Returns (KIO::filesize_t)-1 for directories with unknown size. */
+    inline KIO::filesize_t getUISize() const { return m_size; }
     inline const QString &getPerm() const { return m_permissions; }
     inline bool isDir() const { return m_isDir; }
     inline bool isSymLink() const { return m_isLink; }

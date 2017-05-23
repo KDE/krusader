@@ -135,13 +135,13 @@ QVariant ListModel::data(const QModelIndex& index, int role) const
             return fileitemName.mid(nameOnly.length() + 1);
         }
         case KrViewProperties::Size: {
-            if (fileitem->isDir() && fileitem->getSize() <= 0) {
+            if (fileitem->getUISize() == (KIO::filesize_t)-1) {
                 //HACK add <> brackets AFTER translating - otherwise KUIT thinks it's a tag
                 static QString label = QString("<") +
                     i18nc("Show the string 'DIR' instead of file size in detailed view (for folders)", "DIR") + '>';
                 return label;
             } else
-                return KrView::sizeText(properties(), fileitem->getSize());
+                return KrView::sizeText(properties(), fileitem->getUISize());
         }
         case KrViewProperties::Type: {
             if (fileitem == _dummyFileItem)
@@ -510,8 +510,8 @@ QString ListModel::toolTipText(FileItem *fileItem) const
 {
     //"<p style='white-space:pre'>"; // disable automatic word-wrap
     QString text = "<b>" + fileItem->getName() + "</b><hr>";
-    if (!fileItem->isDir() || fileItem->getSize() != 0) {
-        const QString size = KrView::sizeText(properties(), fileItem->getSize());
+    if (fileItem->getUISize() != (KIO::filesize_t)-1) {
+        const QString size = KrView::sizeText(properties(), fileItem->getUISize());
         text += i18n("Size: %1", size) + "<br>";
     }
     text += i18nc("File property", "Type: %1", KrView::mimeTypeText(fileItem));

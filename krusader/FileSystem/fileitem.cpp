@@ -43,9 +43,6 @@
 
 bool FileItem::userDefinedFolderIcons = true;
 
-// TODO set default size to '-1' to distinguish between empty directories and directories with
-// unknown size
-
 // wrapper class; QCache needs objects
 class FileSize
 {
@@ -54,7 +51,7 @@ public:
     FileSize(KIO::filesize_t size) : m_size(size) {}
 };
 
-// cache for directory file sizes
+// cache for calculated directory sizes;
 static QCache<const QUrl, FileSize> s_fileSizeCache(1000);
 
 FileItem::FileItem(const QString &name, const QUrl &url, bool isDir,
@@ -78,7 +75,7 @@ FileItem::FileItem(const QString &name, const QUrl &url, bool isDir,
         m_group = KRpermHandler::gid2group(m_gid);
 
     if (m_isDir && !m_isLink) {
-        m_size = s_fileSizeCache.contains(m_url) ? s_fileSizeCache[m_url]->m_size : 0;
+        m_size = s_fileSizeCache.contains(m_url) ? s_fileSizeCache[m_url]->m_size : -1;
     }
 }
 

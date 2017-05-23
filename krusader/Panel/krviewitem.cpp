@@ -81,8 +81,6 @@ QString KrViewItem::description() const
     if (mt.isValid())
         mimeTypeComment = mt.comment();
 
-    const QString size = KrView::sizeText(_viewProperties, _fileitem->getSize());
-
     QString text = _fileitem->getName();
     if (_fileitem->isSymLink()) {
         text += " -> " + _fileitem->getSymDest() + "  ";
@@ -97,8 +95,10 @@ QString KrViewItem::description() const
         if (_fileitem->isDir())
             text += "/";
 
-        if (S_ISREG(_fileitem->getMode()) || (_fileitem->isDir() && _fileitem->getSize() != 0))
+        if (_fileitem->getUISize() != (KIO::filesize_t)-1) {
+            const QString size = KrView::sizeText(_viewProperties, _fileitem->getUISize());
             text += QString("  (%1)").arg(size);
+        }
 
         text += "  " + mimeTypeComment;
     }
