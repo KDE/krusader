@@ -160,7 +160,9 @@ void SizeCalculator::slotDirectorySizeResult(KJob *)
 {
     if (!m_directorySizeJob->error()) {
         m_totalSize += m_directorySizeJob->totalSize();
-        m_currentUrlSize += m_directorySizeJob->totalSize();
+        // do not count filesystem size of empty directories for this current directory
+        m_currentUrlSize +=
+            m_directorySizeJob->totalFiles() == 0 ? 0 : m_directorySizeJob->totalSize();
         m_totalFiles += m_directorySizeJob->totalFiles();
         m_totalDirs += m_directorySizeJob->totalSubdirs();
     }
