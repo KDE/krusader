@@ -116,7 +116,7 @@ public:
      * used ONLY when calculating a directory's space, needs to change the
      * displayed size of the viewitem and thus the file item. For INTERNAL USE !
      */
-    void setSize(KIO::filesize_t size) { m_size = size; }
+    void setSize(KIO::filesize_t size);
 
     inline static void loadUserDefinedFolderIcons(bool load) {
         userDefinedFolderIcons = load;

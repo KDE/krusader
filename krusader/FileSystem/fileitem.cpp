@@ -31,6 +31,7 @@
 #include "fileitem.h"
 
 // QtCore
+#include <QCache>
 #include <QDateTime>
 #include <QMimeDatabase>
 #include <QMimeType>
@@ -44,6 +45,17 @@ bool FileItem::userDefinedFolderIcons = true;
 
 // TODO set default size to '-1' to distinguish between empty directories and directories with
 // unknown size
+
+// wrapper class; QCache needs objects
+class FileSize
+{
+public:
+    const KIO::filesize_t m_size;
+    FileSize(KIO::filesize_t size) : m_size(size) {}
+};
+
+// cache for directory file sizes
+static QCache<const QUrl, FileSize> s_fileSizeCache(1000);
 
 FileItem::FileItem(const QString &name, const QUrl &url, bool isDir,
              KIO::filesize_t size, mode_t mode, time_t mtime,
@@ -65,8 +77,9 @@ FileItem::FileItem(const QString &name, const QUrl &url, bool isDir,
     if (m_group.isEmpty())
         m_group = KRpermHandler::gid2group(m_gid);
 
-    if (m_isDir && !m_isLink)
-        m_size = 0;
+    if (m_isDir && !m_isLink) {
+        m_size = s_fileSizeCache.contains(m_url) ? s_fileSizeCache[m_url]->m_size : 0;
+    }
 }
 
 FileItem *FileItem::createDummy()
@@ -114,6 +127,12 @@ char FileItem::isExecutable() const
         return KRpermHandler::executable(m_permissions, m_gid, m_uid);
     else
         return KRpermHandler::ftpExecutable(m_owner, m_url.userName(), m_permissions);
+}
+
+void FileItem::setSize(KIO::filesize_t size)
+{
+    m_size = size;
+    s_fileSizeCache.insert(m_url, new FileSize(size));
 }
 
 const QString &FileItem::getMime()
