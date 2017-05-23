@@ -88,7 +88,7 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
 
                 // get current selected item names
                 _selectedItemNames.clear();
-                _view->getSelectedItems(&_selectedItemNames, true);
+                _view->getSelectedItems(&_selectedItemNames, false);
 
                 item->setSelected(!item->isSelected());
 

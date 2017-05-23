@@ -258,7 +258,7 @@ void DefaultFileSystem::slotWatcherDirty(const QString& path)
 {
     if (path == realPath()) {
         // this happens
-        //   1. if a directory was created/deleted/renamed inside this directory. No deleted
+        //   1. if a directory was created/deleted/renamed inside this directory.
         //   2. during and after a file operation (create/delete/rename/touch) inside this directory
         // KDirWatcher doesn't reveal the name of changed directories and we have to refresh.
         // (QFileSystemWatcher in Qt5.7 can't help here either)
@@ -279,9 +279,10 @@ void DefaultFileSystem::slotWatcherDirty(const QString& path)
 
     // we have an updated file..
     FileItem *newFileItem = createLocalFileItem(name);
-    *fileItem = *newFileItem;
-    delete newFileItem;
-    emit updatedFileItem(fileItem);
+    addFileItem(newFileItem);
+    emit updatedFileItem(newFileItem);
+
+    delete fileItem;
 }
 
 void DefaultFileSystem::slotWatcherDeleted(const QString& path)
@@ -291,7 +292,7 @@ void DefaultFileSystem::slotWatcherDeleted(const QString& path)
         return;
     }
 
-    // the current directory was deleted, try a refresh, which will fail. An error message will
+    // the current directory was deleted. Try a refresh, which will fail. An error message will
     // be emitted and the empty (non-existing) directory remains.
     refresh();
 }

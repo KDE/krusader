@@ -47,7 +47,11 @@ signals:
     void cleared();
 
     void addedFileItem(FileItem *fileItem);
-    void updatedFileItem(FileItem *fileItem);
+    /**
+     * Emitted when a file item (with the same name) was replaced.
+     * The old file item will be deleted after this signal.
+     */
+    void updatedFileItem(FileItem *newFileItem);
 };
 
 #endif // DIRLISTERINTERFACE_H

@@ -394,65 +394,6 @@ QModelIndex ListModel::removeItem(FileItem *fileitem)
     return currIndex;
 }
 
-void ListModel::updateItem(FileItem *fileitem)
-{
-    QModelIndex oldModelIndex = fileItemIndex(fileitem);
-
-    if (!oldModelIndex.isValid()) {
-        addItem(fileitem);
-        return;
-    }
-    if(lastSortOrder() == KrViewProperties::NoColumn) {
-        _view->redrawItem(fileitem);
-        return;
-    }
-
-    int oldIndex = oldModelIndex.row();
-
-    emit layoutAboutToBeChanged();
-
-    _fileItems.removeAt(oldIndex);
-
-    KrSort::Sorter sorter(createSorter());
-
-    QModelIndexList oldPersistentList = persistentIndexList();
-
-    int newIndex = sorter.insertIndex(fileitem, fileitem == _dummyFileItem, customSortData(fileitem));
-    if (newIndex != _fileItems.count()) {
-        if (newIndex > oldIndex)
-            newIndex--;
-        _fileItems.insert(newIndex, fileitem);
-    } else
-        _fileItems.append(fileitem);
-
-
-    int i = newIndex;
-    if (oldIndex < i)
-        i = oldIndex;
-    for (; i < _fileItems.count(); ++i) {
-        updateIndices(_fileItems[i], i);
-    }
-
-    QModelIndexList newPersistentList;
-    foreach(const QModelIndex &mndx, oldPersistentList) {
-        int newRow = mndx.row();
-        if (newRow == oldIndex)
-            newRow = newIndex;
-        else {
-            if (newRow >= oldIndex)
-                newRow--;
-            if (mndx.row() > newIndex)
-                newRow++;
-        }
-        newPersistentList << index(newRow, mndx.column());
-    }
-
-    changePersistentIndexList(oldPersistentList, newPersistentList);
-    emit layoutChanged();
-    if (newIndex != oldIndex)
-        _view->makeItemVisible(_view->getCurrentKrViewItem());
-}
-
 QVariant ListModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     // ignore anything that's not display, and not horizontal

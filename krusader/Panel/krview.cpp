@@ -97,9 +97,9 @@ void KrViewOperator::fileAdded(FileItem *fileitem)
     _view->addItem(fileitem);
 }
 
-void KrViewOperator::fileUpdated(FileItem *fileitem)
+void KrViewOperator::fileUpdated(FileItem *newFileitem)
 {
-    _view->updateItem(fileitem);
+    _view->updateItem(newFileitem);
 }
 
 void KrViewOperator::startDrag()
@@ -390,14 +390,15 @@ void KrView::getItemsByMask(QString mask, QStringList* names, bool dirs, bool fi
  * this function ADDs a list of selected item names into 'names'.
  * it assumes the list is ready and doesn't initialize it, or clears it
  */
-void KrView::getSelectedItems(QStringList *names, bool ignoreJustFocused)
+void KrView::getSelectedItems(QStringList *names, bool fallbackToFocused)
 {
-    for (KrViewItem * it = getFirst(); it != 0; it = getNext(it))
-        if (it->isSelected() && (it->name() != "..")) names->append(it->name());
+    for (KrViewItem *it = getFirst(); it != 0; it = getNext(it))
+        if (it->isSelected() && (it->name() != ".."))
+            names->append(it->name());
 
-    // if all else fails, take the current item
-    if (!ignoreJustFocused) {
-        QString item = getCurrentItem();
+    if (fallbackToFocused) {
+        // if all else fails, take the current item
+        const QString item = getCurrentItem();
         if (names->empty() && !item.isEmpty() && item != "..") {
             names->append(item);
         }
@@ -583,15 +584,30 @@ void KrView::addItem(FileItem *fileitem)
     op()->emitSelectionChanged();
 }
 
-void KrView::updateItem(FileItem *fileitem)
+void KrView::updateItem(FileItem *newFileItem)
 {
-    if (isFiltered(fileitem))
-        delItem(fileitem->getName());
-    else {
-        preUpdateItem(fileitem);
+    // file name did not change
+    const QString name = newFileItem->getName();
+
+    // preserve 'current' and 'selection'
+    const bool isCurrent = getCurrentItem() == name;
+    QStringList selectedNames;
+    getSelectedItems(&selectedNames, false);
+    const bool isSelected = selectedNames.contains(name);
+
+    // delete old file item
+    delItem(name);
+
+    if (!isFiltered(newFileItem)) {
+        addItem(newFileItem);
         if(_previews)
-            _previews->updatePreview(findItemByFileItem(fileitem));
+            _previews->updatePreview(findItemByFileItem(newFileItem));
     }
+
+    if (isCurrent)
+        setCurrentItem(name);
+    if (isSelected)
+        setSelected(newFileItem, true);
 
     op()->emitSelectionChanged();
 }
@@ -1030,8 +1046,8 @@ void KrView::setFiles(DirListerInterface *files)
     QObject::disconnect(_files, 0, op(), 0);
     QObject::connect(_files, SIGNAL(refreshDone(bool)), op(), SLOT(startUpdate()));
     QObject::connect(_files, SIGNAL(cleared()), op(), SLOT(cleared()));
-    QObject::connect(_files, SIGNAL(addedFileItem(FileItem*)), op(), SLOT(fileAdded(FileItem*)));
-    QObject::connect(_files, SIGNAL(updatedFileItem(FileItem*)), op(), SLOT(fileUpdated(FileItem*)));
+    QObject::connect(_files, &DirListerInterface::addedFileItem, op(), &KrViewOperator::fileAdded);
+    QObject::connect(_files, &DirListerInterface::updatedFileItem, op(), &KrViewOperator::fileUpdated);
 }
 
 void KrView::setFilter(KrViewProperties::FilterSpec filter, FilterSettings customFilter, bool applyToDirs)
@@ -1149,10 +1165,10 @@ void KrView::refresh()
 
 void KrView::setSelected(const FileItem* fileitem, bool select)
 {
-    if(fileitem == _dummyFileItem)
+    if (fileitem == _dummyFileItem)
         return;
 
-    if(select)
+    if (select)
         clearSavedSelection();
     intSetSelected(fileitem, select);
 }

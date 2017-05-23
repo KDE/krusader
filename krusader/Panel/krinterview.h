@@ -96,7 +96,6 @@ protected:
     void populate(const QList<FileItem*> &fileItems, FileItem *dummy) Q_DECL_OVERRIDE;
     KrViewItem* preAddItem(FileItem *fileitem) Q_DECL_OVERRIDE;
     void preDelItem(KrViewItem *item) Q_DECL_OVERRIDE;
-    void preUpdateItem(FileItem *fileitem) Q_DECL_OVERRIDE;
     void intSetSelected(const FileItem* fileitem, bool select) Q_DECL_OVERRIDE;
 
     virtual QRect itemRect(const FileItem *fileitem) = 0;

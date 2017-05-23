@@ -306,11 +306,6 @@ void KrInterView::preDelItem(KrViewItem *item)
     _itemHash.remove((FileItem *)item->getFileItem());
 }
 
-void KrInterView::preUpdateItem(FileItem *fileitem)
-{
-    _model->updateItem(fileitem);
-}
-
 void KrInterView::prepareForActive()
 {
     _focused = true;
