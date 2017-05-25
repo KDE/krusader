@@ -41,8 +41,8 @@
 /**
  * @brief Default filesystem implementation supporting all KIO protocols
  *
- * This filesystem implementation allows file operations and listing for all supported KIO protocols (local
- * and remote/network).
+ * This filesystem implementation allows file operations and listing for all supported KIO protocols
+ *  (local and remote/network).
  *
  * Refreshing local directories is optimized for performance.
  *
@@ -75,7 +75,7 @@ public:
     void updateFilesystemInfo() Q_DECL_OVERRIDE;
 
 protected:
-    bool refreshInternal(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;
+    bool refreshInternal(const QUrl &origin, bool onlyScan) Q_DECL_OVERRIDE;
 
 protected slots:
     /// Handle result after dir listing job is finished
@@ -92,7 +92,7 @@ protected slots:
 private:
     void connectSourceFileSystem(KJob *job, const QList<QUrl> urls);
 
-    bool refreshLocal(const QUrl &directory); // NOTE: this is very fast
+    bool refreshLocal(const QUrl &directory, bool onlyScan); // NOTE: this is very fast
     FileItem *createLocalFileItem(const QString &name);
     /// Returns the current path with symbolic links resolved
     QString realPath();

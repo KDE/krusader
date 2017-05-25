@@ -97,8 +97,8 @@ void SizeCalculator::nextUrl()
     if (m_currentUrl.scheme() == "virt") {
         // calculate size of all files/directories in this virtual directory
         VirtualFileSystem *fs = new VirtualFileSystem();
-        if (!fs->refresh(m_currentUrl)) {
-            krOut << "cannot refresh virtual fs, url=" << m_currentUrl;
+        if (!fs->scanDir(m_currentUrl)) {
+            krOut << "cannot scan virtual fs, url=" << m_currentUrl;
             nextUrl();
             return;
         }

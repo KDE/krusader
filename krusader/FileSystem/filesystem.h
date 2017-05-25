@@ -124,14 +124,17 @@ public:
      * @return true if scan was successful, else (not implemented, scan failed or refresh job
      * was killed) false.
      */
-    // optional TODO: add an async version of this
-    bool refresh(const QUrl &directory = QUrl());
+    bool scanDir(const QUrl &directory = QUrl()) { return scanOrRefresh(directory, false); }
+
+    /// Change or refresh the current directory and scan it. Blocking.
+    /// Returns true if directory was scanned. Returns false if failed or scan job was killed.
+    bool refresh(const QUrl &directory = QUrl()) { return scanOrRefresh(directory, false); }
 
     /// Returns the current directory path of this filesystem.
     inline QUrl currentDirectory() const { return _currentDirectory; }
     /// Return the file item for a file name in the current directory. Or 0 if not found.
     FileItem *getFileItem(const QString &name) const;
-    /// The total size of all files in the current directory (only valid after refresh).
+    /// The total size of all files in the current directory (only valid after scan).
     // TODO unused
     KIO::filesize_t totalSize() const;
     /// Return the filesystem type.
@@ -187,7 +190,7 @@ signals:
 
 protected:
     /// Fill the filesystem dictionary with file items, must be implemented for each filesystem.
-    virtual bool refreshInternal(const QUrl &origin, bool showHidden) = 0;
+    virtual bool refreshInternal(const QUrl &origin, bool stayInDir) = 0;
 
     /// Connect the result signal of a file operation job.
     void connectJob(KJob *job, const QUrl &destination);
@@ -207,6 +210,9 @@ protected slots:
 
 private:
     typedef QHash<QString, FileItem *> FileItemDict;
+
+    // optional TODO: add an async version of this
+    bool scanOrRefresh(const QUrl &directory, bool onlyScan);
 
     /// Delete and clear file items.
     void clear(FileItemDict &fileItems);

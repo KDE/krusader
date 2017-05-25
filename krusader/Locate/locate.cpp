@@ -639,7 +639,7 @@ bool LocateDlg::find()
 void LocateDlg::feedToListBox()
 {
     VirtualFileSystem virtFilesystem;
-    virtFilesystem.refresh(QUrl::fromLocalFile(QStringLiteral("/")));
+    virtFilesystem.scanDir(QUrl::fromLocalFile(QStringLiteral("/")));
 
     KConfigGroup group(krConfig, "Locate");
     int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
@@ -666,7 +666,7 @@ void LocateDlg::feedToListBox()
         it++;
     }
     QUrl url = QUrl(QStringLiteral("virt:/") + queryName);
-    virtFilesystem.refresh(url);
+    virtFilesystem.refresh(url); // create directory if it does not exist
     virtFilesystem.addFiles(urlList);
     //ACTIVE_FUNC->openUrl(url);
     ACTIVE_MNG->slotNewTab(url);

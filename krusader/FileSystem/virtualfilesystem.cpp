@@ -190,7 +190,7 @@ void VirtualFileSystem::setMetaInformation(const QString &info)
 
 // ==== protected ====
 
-bool VirtualFileSystem::refreshInternal(const QUrl &directory, bool /*showHidden*/)
+bool VirtualFileSystem::refreshInternal(const QUrl &directory, bool onlyScan)
 {
     _currentDirectory = cleanUrl(directory);
     _currentDirectory.setHost("");
@@ -198,19 +198,26 @@ bool VirtualFileSystem::refreshInternal(const QUrl &directory, bool /*showHidden
     _currentDirectory.setPath('/' + _currentDirectory.path().remove('/'));
 
     if (!_virtFilesystemDict.contains(currentDir())) {
-        // NOTE: silently creating non-existing directories here. The search and locate tools expect
-        // this. (And user can enter some directory and it will be created).
-        mkDirInternal(currentDir());
-        save();
-        // infinite loop possible
-        //emit fileSystemChanged(currentDirectory());
-        return true;
+        if (onlyScan) {
+            return false; // virtual dir does not exist
+        } else {
+            // Silently creating non-existing directories here. The search and locate tools
+            // expect this. And the user can enter some directory and it will be created.
+            mkDirInternal(currentDir());
+            save();
+            // infinite loop possible
+            // emit fileSystemChanged(currentDirectory());
+            return true;
+        }
     }
 
     QList<QUrl> *urlList = _virtFilesystemDict[currentDir()];
 
-    const QString metaInfo = _metaInfoDict[currentDir()];
-    emit fileSystemInfoChanged(metaInfo.isEmpty() ? i18n("Virtual filesystem") : metaInfo, "", 0, 0);
+    if (!onlyScan) {
+        const QString metaInfo = _metaInfoDict[currentDir()];
+        emit fileSystemInfoChanged(metaInfo.isEmpty() ? i18n("Virtual filesystem") : metaInfo,
+                                   "", 0, 0);
+    }
 
     QMutableListIterator<QUrl> it(*urlList);
     while (it.hasNext()) {

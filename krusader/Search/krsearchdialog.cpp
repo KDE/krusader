@@ -603,7 +603,7 @@ void KrSearchDialog::contextMenu(const QPoint &pos)
 void KrSearchDialog::feedToListBox()
 {
     VirtualFileSystem virtFilesystem;
-    virtFilesystem.refresh(QUrl::fromLocalFile("/"));
+    virtFilesystem.scanDir(QUrl::fromLocalFile("/"));
 
     KConfigGroup group(krConfig, "Search");
     int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
@@ -640,8 +640,8 @@ void KrSearchDialog::feedToListBox()
 
     isBusy = true;
 
-    QUrl url = QUrl(QString("virt:/") + fileSystemName);
-    virtFilesystem.refresh(url);
+    const QUrl url = QUrl(QString("virt:/") + fileSystemName);
+    virtFilesystem.scanDir(url);
     virtFilesystem.addFiles(urlList);
     virtFilesystem.setMetaInformation(queryName);
     //ACTIVE_FUNC->openUrl(url);

@@ -70,7 +70,7 @@ public:
     void setMetaInformation(const QString &info);
 
 protected:
-    bool refreshInternal(const QUrl &origin, bool showHidden) Q_DECL_OVERRIDE;
+    bool refreshInternal(const QUrl &origin, bool onlyScan) Q_DECL_OVERRIDE;
 
 private:
     /// Return current dir: "/" or pure directory name

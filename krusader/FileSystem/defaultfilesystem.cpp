@@ -176,7 +176,7 @@ void DefaultFileSystem::updateFilesystemInfo()
 
 // ==== protected ====
 
-bool DefaultFileSystem::refreshInternal(const QUrl &directory, bool showHidden)
+bool DefaultFileSystem::refreshInternal(const QUrl &directory, bool onlyScan)
 {
     if (!KProtocolManager::supportsListing(directory)) {
         emit error(i18n("Protocol not supported by Krusader:\n%1", directory.url()));
@@ -187,13 +187,13 @@ bool DefaultFileSystem::refreshInternal(const QUrl &directory, bool showHidden)
 
     if (directory.isLocalFile()) {
         // we could read local directories with KIO but using Qt is a lot faster!
-        return refreshLocal(directory);
+        return refreshLocal(directory, onlyScan);
     }
 
     _currentDirectory = cleanUrl(directory);
 
     // start the listing job
-    KIO::ListJob *job = KIO::listDir(_currentDirectory, KIO::HideProgressInfo, showHidden);
+    KIO::ListJob *job = KIO::listDir(_currentDirectory, KIO::HideProgressInfo, showHiddenFiles());
     connect(job, &KIO::ListJob::entries, this, &DefaultFileSystem::slotAddFiles);
     connect(job, &KIO::ListJob::redirection, this, &DefaultFileSystem::slotRedirection);
     connect(job, &KIO::ListJob::permanentRedirection, this, &DefaultFileSystem::slotRedirection);
@@ -299,7 +299,7 @@ void DefaultFileSystem::slotWatcherDeleted(const QString& path)
     refresh();
 }
 
-bool DefaultFileSystem::refreshLocal(const QUrl &directory) {
+bool DefaultFileSystem::refreshLocal(const QUrl &directory, bool onlyScan) {
     const QString path = KrServices::urlToLocalPath(directory);
 
 #ifdef Q_WS_WIN
@@ -356,16 +356,18 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory) {
     QT_CLOSEDIR(dir);
     QDir::setCurrent(savedDir);
 
-    // start watching the new dir for file changes
-    _watcher = new KDirWatch(this);
-    // if the current dir is a link path the watcher needs to watch the real path - and signal
-    // parameters will be the real path
-    _watcher->addDir(realPath(), KDirWatch::WatchFiles);
-    connect(_watcher.data(), &KDirWatch::dirty, this, &DefaultFileSystem::slotWatcherDirty);
-    // NOTE: not connecting 'created' signal. A 'dirty' is send after that anyway
-    //connect(_watcher, SIGNAL(created(QString)), this, SLOT(slotWatcherCreated(QString)));
-    connect(_watcher.data(), &KDirWatch::deleted, this, &DefaultFileSystem::slotWatcherDeleted);
-    _watcher->startScan(false);
+    if (!onlyScan) {
+        // start watching the new dir for file changes
+        _watcher = new KDirWatch(this);
+        // if the current dir is a link path the watcher needs to watch the real path - and signal
+        // parameters will be the real path
+        _watcher->addDir(realPath(), KDirWatch::WatchFiles);
+        connect(_watcher.data(), &KDirWatch::dirty, this, &DefaultFileSystem::slotWatcherDirty);
+        // NOTE: not connecting 'created' signal. A 'dirty' is send after that anyway
+        //connect(_watcher, SIGNAL(created(QString)), this, SLOT(slotWatcherCreated(QString)));
+        connect(_watcher.data(), &KDirWatch::deleted, this, &DefaultFileSystem::slotWatcherDeleted);
+        _watcher->startScan(false);
+    }
 
     return true;
 }

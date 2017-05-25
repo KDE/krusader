@@ -55,7 +55,7 @@ signals:
      * now be updated by the view.
      * @param dirChange true if changed to another directory.
      */
-    void refreshDone(bool dirChange);
+    void scanDone(bool dirChange);
     /**
      * Emitted when all file items were removed. The file items may be deleted after this signal and
      * should not be used anymore.

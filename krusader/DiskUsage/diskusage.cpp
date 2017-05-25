@@ -339,7 +339,7 @@ void DiskUsage::slotLoadDirectory()
 
                 loaderView->setCurrentURL(url);
 
-                if (!searchFileSystem->refresh(url))
+                if (!searchFileSystem->scanDir(url))
                     break;
                 fileItems = searchFileSystem->fileItems();
 

@@ -122,7 +122,7 @@ void KRSearchMod::scanDirectory(const QUrl &url)
     FileSystem *fileSystem = getFileSystem(url);
 
     // create file items
-    const bool refreshed = fileSystem->refresh(url);
+    const bool refreshed = fileSystem->scanDir(url);
     if (!refreshed) {
         emit error(url);
         return;

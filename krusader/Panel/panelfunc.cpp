@@ -294,7 +294,7 @@ void ListPanelFunc::doRefresh()
     }
     // (re)connect filesystem signals
     disconnect(files(), 0, panel, 0);
-    connect(files(), &DirListerInterface::refreshDone, panel, &ListPanel::slotStartUpdate);
+    connect(files(), &DirListerInterface::scanDone, panel, &ListPanel::slotStartUpdate);
     connect(files(), &FileSystem::fileSystemInfoChanged, panel, &ListPanel::updateFilesystemStats);
     connect(files(), &FileSystem::refreshJobStarted, panel, &ListPanel::slotRefreshJobStarted);
     connect(files(), SIGNAL(error(QString)),
@@ -315,8 +315,8 @@ void ListPanelFunc::doRefresh()
     QPointer<ListPanel> panelSave = panel;
     // NOTE: this is blocking. Returns false on error or interruption (cancel requested or panel
     // was deleted)
-    const bool refreshed = fileSystemP->refresh(url);
-    if (refreshed) {
+    const bool scanned = fileSystemP->refresh(url);
+    if (scanned) {
         // update the history and address bar, as the actual url might differ from the one requested
         history->setCurrentUrl(fileSystemP->currentDirectory());
         panel->setNavigatorUrl(fileSystemP->currentDirectory());
@@ -334,7 +334,7 @@ void ListPanelFunc::doRefresh()
 
     // see if the open url operation failed, and if so,
     // put the attempted url in the navigator bar and let the user change it
-    if (!refreshed) {
+    if (!scanned) {
         if(isSyncing(url))
             panel->otherPanel()->gui->syncBrowseButton->setChecked(false);
         else if(urlManuallyEntered) {

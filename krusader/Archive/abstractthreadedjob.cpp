@@ -517,7 +517,7 @@ void AbstractJobThread::countLocalFiles(const QUrl &baseUrl, const QStringList &
     sendReset(i18n("Counting files"));
 
     FileSystem *calcSpaceFileSystem = FileSystemProvider::instance().getFilesystem(baseUrl);
-    calcSpaceFileSystem->refresh(baseUrl);
+    calcSpaceFileSystem->scanDir(baseUrl);
     for (const QString name : files) {
         if (_exited)
             return;

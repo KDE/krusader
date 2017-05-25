@@ -100,7 +100,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
     // guessing the collection name
 
     VirtualFileSystem virtFilesystem;
-    if (!virtFilesystem.refresh(QUrl("virt:/")))
+    if (!virtFilesystem.scanDir(QUrl("virt:/")))
         return;
 
     KConfigGroup group(krConfig, "Synchronize");
@@ -204,7 +204,7 @@ void FeedToListBoxDialog::slotOk()
 
     QUrl url = QUrl(QString("virt:/") + name);
     VirtualFileSystem virtFilesystem;
-    if (!virtFilesystem.refresh(url)) {
+    if (!virtFilesystem.refresh(url)) { // create directory if it does not exist
         KMessageBox::error(parentWidget(), i18n("Cannot open %1.", url.toDisplayString()));
         return;
     }

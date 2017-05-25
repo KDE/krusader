@@ -88,9 +88,10 @@ void FileSystemProvider::refreshFilesystem(const QUrl &directory)
         // places, we don't know if they were (re)moved, refreshing is also fast enough
         FileSystem *fs = fileSystemPointer.data();
         const QUrl fileSystemDir = fs->currentDirectory();
-        if ((fileSystemDir == FileSystem::cleanUrl(directory) || (fileSystemDir.scheme() == "virt" && !fs->isRoot()))
-            && !fs->hasAutoUpdate()) {
-            // refresh all filesystem currently showing this directory...
+        if ((fileSystemDir == FileSystem::cleanUrl(directory) ||
+             (fileSystemDir.scheme() == "virt" && !fs->isRoot())) &&
+            !fs->hasAutoUpdate()) {
+            // refresh all filesystems currently showing this directory...
             fs->refresh();
         } else if (!mountPoint.isEmpty() && mountPoint == fs->mountPoint()) {
             // ..or refresh filesystem info if mount point is the same (for free space update)

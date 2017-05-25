@@ -105,7 +105,7 @@ QUrl FileSystem::preferLocalUrl(const QUrl &url){
     return adjustedUrl;
 }
 
-bool FileSystem::refresh(const QUrl &directory)
+bool FileSystem::scanOrRefresh(const QUrl &directory, bool onlyScan)
 {
     if (_isRefreshing) {
         // NOTE: this does not happen (unless async)";
@@ -136,10 +136,10 @@ bool FileSystem::refresh(const QUrl &directory)
         // show an empty directory while loading the new one and clear selection
         emit cleared();
 
-    const bool res = refreshInternal(toRefresh, showHiddenFiles());
+    const bool refreshed = refreshInternal(toRefresh, onlyScan);
     _isRefreshing = false;
 
-    if (!res) {
+    if (!refreshed) {
         // cleanup and abort
         if (!dirChange)
             emit cleared();
@@ -147,7 +147,7 @@ bool FileSystem::refresh(const QUrl &directory)
         return false;
     }
 
-    emit refreshDone(dirChange);
+    emit scanDone(dirChange);
 
     clear(tempFileItems);
 
@@ -266,8 +266,6 @@ FileItem *FileSystem::createFileItemFromKIO(const KIO::UDSEntry &entry, const QU
                      kfi.ACL().asString(), kfi.defaultACL().asString());
 }
 
-// ==== protected slots ====
-
 void FileSystem::slotJobResult(KJob *job, bool refresh)
 {
     if (job->error() && job->uiDelegate()) {
@@ -279,8 +277,6 @@ void FileSystem::slotJobResult(KJob *job, bool refresh)
         FileSystem::refresh();
     }
 }
-
-// ==== private ====
 
 void FileSystem::clear(FileItemDict &fileItems)
 {
