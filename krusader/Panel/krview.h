@@ -103,6 +103,8 @@ public slots:
             emit selectionChanged();
     }
 
+    void startUpdate();
+    void cleared();
     void fileAdded(FileItem *fileitem);
     void fileUpdated(FileItem *newFileitem);
 
@@ -130,8 +132,6 @@ signals:
 
 protected slots:
     void saveDefaultSettings();
-    void startUpdate();
-    void cleared();
 
 protected:
     // never delete those

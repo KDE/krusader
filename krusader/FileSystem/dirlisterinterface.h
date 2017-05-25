@@ -21,11 +21,12 @@
 
 // QtCore
 #include <QObject>
+#include <QUrl>
 
 class FileItem;
 
 /**
- * A minimal interface for access to the files inside a filesystem directory.
+ * A minimal interface representing a list of files in a directory.
  */
 class DirListerInterface : public QObject
 {
@@ -34,18 +35,35 @@ public:
     explicit DirListerInterface(QObject *parent) : QObject(parent) {}
     virtual ~DirListerInterface() {}
 
+    /**
+     * Return the file items of all files and directorys. Without current (".") and parent ("..")
+     * directory.
+     */
     virtual QList<FileItem *> fileItems() const = 0;
+    /**
+     * Return the number of all file items.
+     */
     virtual unsigned long numFileItems() const = 0;
+    /**
+     * Return true if the directory does not have a parent, else false.
+     */
     virtual bool isRoot() const = 0;
 
 signals:
-    /// Emitted when refreshing finished. The list of file items should now be updated by the view.
-    /// dirChange is true if refresh was a change to another directory. Else it was only an update
-    /// of the file list in the current directory.
+    /**
+     * Emitted when scanning the directory for file items finished. The list of file items should
+     * now be updated by the view.
+     * @param dirChange true if changed to another directory.
+     */
     void refreshDone(bool dirChange);
-    /// Emitted when all file items in the filesystem were removed
+    /**
+     * Emitted when all file items were removed. The file items may be deleted after this signal and
+     * should not be used anymore.
+     */
     void cleared();
-
+    /**
+     * Emitted when a file was added to the list of file items (not by scan).
+     */
     void addedFileItem(FileItem *fileItem);
     /**
      * Emitted when a file item (with the same name) was replaced.

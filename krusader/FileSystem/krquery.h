@@ -38,7 +38,6 @@
 #include <KConfigCore/KConfigGroup>
 #include <KIO/Job>
 
-class KFileItem;
 class QTextCodec;
 
 class FileItem;

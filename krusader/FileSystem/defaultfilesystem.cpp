@@ -152,6 +152,7 @@ void DefaultFileSystem::updateFilesystemInfo()
         return;
     }
 
+    // TODO get space info for trash:/ with KIO spaceInfo job
     if (!_currentDirectory.isLocalFile()) {
         _mountPoint = "";
         emit fileSystemInfoChanged(i18n("No space information on non-local filesystems"), "", 0, 0);

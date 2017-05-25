@@ -6,6 +6,7 @@ set(Archive_SRCS
     kr7zencryptionchecker.cpp
     packjob.cpp
     ../../krArc/krarcbasemanager.cpp
+    ../../krArc/krlinecountingprocess.cpp
 )
 
 add_library(Archive STATIC ${Archive_SRCS})

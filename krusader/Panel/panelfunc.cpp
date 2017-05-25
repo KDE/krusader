@@ -294,7 +294,7 @@ void ListPanelFunc::doRefresh()
     }
     // (re)connect filesystem signals
     disconnect(files(), 0, panel, 0);
-    connect(files(), SIGNAL(refreshDone(bool)), panel, SLOT(slotStartUpdate(bool)));
+    connect(files(), &DirListerInterface::refreshDone, panel, &ListPanel::slotStartUpdate);
     connect(files(), &FileSystem::fileSystemInfoChanged, panel, &ListPanel::updateFilesystemStats);
     connect(files(), &FileSystem::refreshJobStarted, panel, &ListPanel::slotRefreshJobStarted);
     connect(files(), SIGNAL(error(QString)),

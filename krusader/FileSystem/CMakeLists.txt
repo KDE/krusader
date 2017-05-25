@@ -11,7 +11,6 @@ set(FileSystem_SRCS
     krtrashhandler.cpp
     sizecalculator.cpp
     virtualfilesystem.cpp
-    ../../krArc/krlinecountingprocess.cpp
 )
 
 add_library(FileSystem STATIC ${FileSystem_SRCS})

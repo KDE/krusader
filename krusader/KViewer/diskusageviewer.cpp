@@ -36,9 +36,10 @@
 
 #include <KConfigCore/KSharedConfig>
 
-#include "../krglobal.h"
+#include "../FileSystem/filesystem.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
+#include "../krglobal.h"
 
 DiskUsageViewer::DiskUsageViewer(QWidget *parent)
         : QWidget(parent), diskUsage(0), statusLabel(0)

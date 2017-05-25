@@ -49,7 +49,6 @@
 
 #include <KWidgetsAddons/KSqueezedTextLabel>
 
-#include "../FileSystem/filesystem.h"
 #include "filelightParts/fileTree.h"
 
 #define VIEW_LINES      0
@@ -64,6 +63,8 @@ class DULines;
 class DUFilelight;
 class QMenu;
 class LoaderWidget;
+class FileItem;
+class FileSystem;
 
 class DiskUsage : public QStackedWidget
 {
@@ -173,11 +174,11 @@ protected:
     QStack<QString> directoryStack;
     QStack<Directory *> parentStack;
 
-    FileSystem       * searchFileSystem;
-    FileItem     * currentFileItem;
+    FileSystem *searchFileSystem;
+    FileItem *currentFileItem;
     QList<FileItem *> fileItems;
-    Directory * currentParent;
-    QString     dirToCheck;
+    Directory *currentParent;
+    QString dirToCheck;
 
     int   fileNum;
     int   dirNum;

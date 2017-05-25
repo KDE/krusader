@@ -41,8 +41,8 @@
 #include <KIO/Global>
 
 class KRQuery;
-class FileSystem;
 class FileItem;
+class FileSystem;
 class DefaultFileSystem;
 class VirtualFileSystem;
 

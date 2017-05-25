@@ -43,19 +43,20 @@
 #include <KI18n/KLocalizedString>
 #include <KIO/JobUiDelegate>
 
-#include "krpermhandler.h"
 #include "fileitem.h"
-#include "../JobMan/jobman.h"
-#include "../JobMan/krjob.h"
+#include "krpermhandler.h"
 #include "../defaults.h"
 #include "../krglobal.h"
+#include "../JobMan/jobman.h"
+#include "../JobMan/krjob.h"
 
 FileSystem::FileSystem() : DirListerInterface(0), _isRefreshing(false) {}
 
 FileSystem::~FileSystem()
 {
     clear(_fileItems);
-    emit cleared(); // please don't remove this line. This informs the view about deleting the references
+    // please don't remove this line. This informs the view about deleting the file items.
+    emit cleared();
 }
 
 QList<QUrl> FileSystem::getUrls(const QStringList &names) const

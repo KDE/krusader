@@ -36,7 +36,6 @@
 #include <QHash>
 #include <QList>
 #include <QString>
-#include <QUrl>
 #include <QPointer>
 // QtGui
 #include <QDropEvent>
@@ -117,6 +116,17 @@ public:
     /// Notify this filesystem that the filesystem info of the current directory may have changed.
     virtual void updateFilesystemInfo() {}
 
+    /**
+     * Scan all files and directories in a directory and create the file items for them. Blocking.
+     *
+     * @param directory if given, the lister tries to change to this directory, else the old
+     * directory is refreshed
+     * @return true if scan was successful, else (not implemented, scan failed or refresh job
+     * was killed) false.
+     */
+    // optional TODO: add an async version of this
+    bool refresh(const QUrl &directory = QUrl());
+
     /// Returns the current directory path of this filesystem.
     inline QUrl currentDirectory() const { return _currentDirectory; }
     /// Return the file item for a file name in the current directory. Or 0 if not found.
@@ -157,12 +167,6 @@ public:
 
     // set the parent window to be used for dialogs
     void setParentWindow(QWidget *widget) { parentWindow = widget; }
-
-public:
-    /// Re-read the current directory files or change to another directory. Blocking.
-    /// Returns true if directory was read. Returns false if failed or refresh job was killed.
-    // optional TODO: add an async version of this
-    bool refresh(const QUrl &directory = QUrl());
 
 signals:
     /// Emitted when this filesystem is currently refreshing the filesystem directory.

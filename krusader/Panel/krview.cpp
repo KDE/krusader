@@ -1044,8 +1044,8 @@ void KrView::setFiles(DirListerInterface *files)
         return;
 
     QObject::disconnect(_files, 0, op(), 0);
-    QObject::connect(_files, SIGNAL(refreshDone(bool)), op(), SLOT(startUpdate()));
-    QObject::connect(_files, SIGNAL(cleared()), op(), SLOT(cleared()));
+    QObject::connect(_files, &DirListerInterface::refreshDone, op(), &KrViewOperator::startUpdate);
+    QObject::connect(_files, &DirListerInterface::cleared, op(), &KrViewOperator::cleared);
     QObject::connect(_files, &DirListerInterface::addedFileItem, op(), &KrViewOperator::fileAdded);
     QObject::connect(_files, &DirListerInterface::updatedFileItem, op(), &KrViewOperator::fileUpdated);
 }
