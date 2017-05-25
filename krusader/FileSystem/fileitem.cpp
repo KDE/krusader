@@ -107,13 +107,13 @@ FileItem *FileItem::createVirtualDir(const QString &name, const QUrl &url)
                      getuid(), getgid());
 }
 
-FileItem *FileItem::createCopy(const FileItem &file, const QString &newName)
+FileItem *FileItem::createCopy(FileItem *file, const QString &newName)
 {
-    return new FileItem(newName, file.getUrl(), file.isDir(),
-                     file.getSize(), file.getMode(),
-                     file.getTime_t(), file.getChangedTime(), file.getAccessTime(),
-                     file.m_uid, file.m_gid, file.getOwner(), file.getGroup(),
-                     file.isSymLink(), file.getSymDest(), file.isBrokenLink());
+    return new FileItem(newName, file->getUrl(), file->isDir(),
+                     file->getSize(), file->getMode(),
+                     file->getTime_t(), file->getChangedTime(), file->getAccessTime(),
+                     file->m_uid, file->m_gid, file->getOwner(), file->getGroup(),
+                     file->isSymLink(), file->getSymDest(), file->isBrokenLink());
 }
 
 char FileItem::isReadable() const

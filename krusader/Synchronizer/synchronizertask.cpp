@@ -70,13 +70,13 @@ void CompareTask::start()
     m_fileSearcher = new FileSearcher(m_query);
     connect(m_fileSearcher, &FileSearcher::finished, this, &CompareTask::slotFinished);
     connect(m_fileSearcher, &FileSearcher::error, this, &CompareTask::slotError);
-    m_fileSearcher->start(m_url);
+    m_fileSearcher->search(m_url);
 
     if (m_bothSides) {
         m_otherFileSearcher = new FileSearcher(m_query);
         connect(m_otherFileSearcher, &FileSearcher::finished, this, &CompareTask::slotOtherFinished);
         connect(m_otherFileSearcher, &FileSearcher::error, this, &CompareTask::slotError);
-        m_otherFileSearcher->start(m_otherUrl);
+        m_otherFileSearcher->search(m_otherUrl);
     }
 }
 

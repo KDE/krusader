@@ -51,11 +51,11 @@ public:
     ~FileSearcher();
 
     /**
-     * Start the search.
+     * Search for files. Blocking.
      *
      * @param url if given, this single URL is searched - ignoring query->searchInDirs()
      */
-    void start(const QUrl &url = QUrl());
+    void search(const QUrl &url = QUrl());
     /** Stop the ongoing search. */
     void stop();
     /**
@@ -68,10 +68,11 @@ private:
     void scanUrl(const QUrl &url);
     void scanDirectory(const QUrl &url);
     FileSystem *getFileSystem(const QUrl &url);
+    void clearFiles();
 
 signals:
     void searching(const QString &url);
-    void found(const FileItem &file, const QString &foundText);
+    void found(FileItem *file, const QString &foundText);
     void error(const QUrl &url);
     void finished();
 

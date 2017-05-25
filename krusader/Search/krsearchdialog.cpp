@@ -95,9 +95,9 @@ public:
         _foundText.clear();
     }
 
-    void addItem(const FileItem &file, const QString &foundText)
+    void addItem(FileItem *file, const QString &foundText)
     {
-        const QString path = file.getUrl().toDisplayString(QUrl::PreferLocalFile);
+        const QString path = file->getUrl().toDisplayString(QUrl::PreferLocalFile);
         FileItem *fileitem = FileItem::createCopy(file, path);
         _fileItems << fileitem;
         if(!foundText.isEmpty())
@@ -130,7 +130,7 @@ bool KrSearchDialog::lastContainsRegExp = false;
 
 // class starts here /////////////////////////////////////////
 KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
-        : QDialog(parent), searcher(0), isBusy(false), closed(false)
+        : QDialog(parent), searcher(nullptr), isBusy(false), closed(false)
 {
     KConfigGroup group(krConfig, "Search");
 
@@ -332,9 +332,9 @@ void KrSearchDialog::closeDialog(bool isAccept)
     }
 
     // stop the search if it's on-going
-    if (searcher != 0) {
+    if (searcher) {
         delete searcher;
-        searcher = 0;
+        searcher = nullptr;
     }
 
     // saving the searcher state
@@ -380,7 +380,7 @@ void KrSearchDialog::resizeEvent(QResizeEvent *e)
     }
 }
 
-void KrSearchDialog::slotFound(const FileItem &file, const QString &foundText)
+void KrSearchDialog::slotFound(FileItem *file, const QString &foundText)
 {
     result->addItem(file, foundText);
     foundLabel->setText(i18np("Found %1 match.", "Found %1 matches.", result->numFileItems()));
@@ -410,11 +410,11 @@ void KrSearchDialog::startSearch()
     }
 
     // prepare the gui ///////////////////////////////////////////////
+    result->clear();
     mainSearchBtn->setEnabled(false);
     mainCloseBtn->setEnabled(false);
     mainStopBtn->setEnabled(true);
     mainFeedToListBoxBtn->setEnabled(false);
-    result->clear();
     resultView->setSortMode(KrViewProperties::NoColumn, 0);
     searchingLabel->setText("");
     foundLabel->setText(i18n("Found 0 matches."));
@@ -425,21 +425,19 @@ void KrSearchDialog::startSearch()
 
     qApp->processEvents();
 
-    // start the search.
-    if (searcher != 0)
-        abort();
-    searcher = new FileSearcher(query);
-    connect(searcher, SIGNAL(searching(QString)),
-            searchingLabel, SLOT(setText(QString)));
-    connect(searcher, &FileSearcher::found, this, &KrSearchDialog::slotFound);
-    connect(searcher, SIGNAL(finished()), this, SLOT(stopSearch()));
+    if (searcher) {
+        delete searcher;
+    }
 
-    searcher->start();
+    // start the search.
+    searcher = new FileSearcher(query);
+    connect(searcher, &FileSearcher::searching, searchingLabel, &KSqueezedTextLabel::setText);
+    connect(searcher, &FileSearcher::found, this, &KrSearchDialog::slotFound);
+    connect(searcher, &FileSearcher::finished, this, &KrSearchDialog::stopSearch);
+
+    searcher->search();
 
     isBusy = false;
-
-    delete searcher;
-    searcher = 0;
 
     // gui stuff
     mainSearchBtn->setEnabled(true);
@@ -455,7 +453,7 @@ void KrSearchDialog::startSearch()
 
 void KrSearchDialog::stopSearch()
 {
-    if (searcher != 0) {
+    if (searcher) {
         searcher->stop();
         disconnect(searcher, 0, 0, 0);
     }

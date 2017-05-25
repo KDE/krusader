@@ -59,6 +59,14 @@ QList<QUrl> FileSystem::getUrls(const QStringList &names) const
     return urls;
 }
 
+QList<FileItem *> FileSystem::transferFileItems()
+{
+    QList<FileItem *> items(_fileItems.values());
+    _fileItems.clear();
+    emit cleared();
+    return items;
+}
+
 FileItem *FileSystem::getFileItem(const QString &name) const
 {
     return _fileItems.contains(name) ? _fileItems.value(name) : 0;

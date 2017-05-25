@@ -61,7 +61,7 @@ public slots:
     void stopSearch();
     void feedToListBox();
     void copyToClipBoard();
-    void slotFound(const FileItem &file, const QString &foundText);
+    void slotFound(FileItem *file, const QString &foundText);
     void closeDialog(bool isAccept = true);
     void executed(const QString &name);
     void currentChanged(KrViewItem *item);

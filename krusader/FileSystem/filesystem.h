@@ -122,6 +122,12 @@ public:
     /// Returns true if directory was scanned. Returns false if failed or scan job was killed.
     bool refresh(const QUrl &directory = QUrl()) { return scanOrRefresh(directory, false); }
 
+    /**
+     * Return the list of all scanned file items in the current directory. Like fileItems() but
+     * the file items are internally removed and the caller takes the ownership.
+     */
+    QList<FileItem *> transferFileItems();
+
     /// Returns the current directory path of this filesystem.
     inline QUrl currentDirectory() const { return _currentDirectory; }
     /// Return the file item for a file name in the current directory. Or 0 if not found.

@@ -88,7 +88,7 @@ public:
     /** Create a new virtual directory. */
     static FileItem *createVirtualDir(const QString &name, const QUrl &url);
     /** Create a new file item copy with a different name. */
-    static FileItem *createCopy(const FileItem &file, const QString &newName);
+    static FileItem *createCopy(FileItem *file, const QString &newName);
 
     // following functions give-out file details
     inline const QString &getName() const { return m_name; }

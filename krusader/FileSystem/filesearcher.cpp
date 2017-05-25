@@ -54,15 +54,17 @@ FileSearcher::FileSearcher(const KRQuery &query)
 
 FileSearcher::~FileSearcher()
 {
+    clearFiles();
+
     if (m_defaultFileSystem)
         delete m_defaultFileSystem;
     if (m_virtualFileSystem)
         delete m_virtualFileSystem;
 }
 
-void FileSearcher::start(const QUrl &url)
+void FileSearcher::search(const QUrl &url)
 {
-    m_foundFiles.clear();
+    clearFiles();
     m_unScannedUrls.clear();
     m_scannedUrls.clear();
     m_timer.start();
@@ -120,7 +122,7 @@ void FileSearcher::scanDirectory(const QUrl &url)
         return;
     }
 
-    for (FileItem *fileItem : fileSystem->fileItems()) {
+    for (FileItem *fileItem : fileSystem->transferFileItems()) {
         const QUrl fileUrl = fileItem->getUrl();
 
         if (m_query.ignoreHidden() && fileUrl.fileName().startsWith('.'))
@@ -149,7 +151,7 @@ void FileSearcher::scanDirectory(const QUrl &url)
         if (m_query.match(fileItem)) {
             // found!
             m_foundFiles.append(fileItem);
-            emit found(*fileItem, m_query.foundText()); // emitting copy of file item
+            emit found(fileItem, m_query.foundText());
         }
 
         if (m_timer.elapsed() >= EVENT_PROCESS_DELAY) {
@@ -174,6 +176,13 @@ FileSystem *FileSearcher::getFileSystem(const QUrl &url)
         fileSystem = m_defaultFileSystem;
     }
     return fileSystem;
+}
+
+void FileSearcher::clearFiles()
+{
+    for (FileItem *item : m_foundFiles)
+        delete item;
+    m_foundFiles.clear();
 }
 
 void FileSearcher::slotProcessEvents(bool &stopped)
