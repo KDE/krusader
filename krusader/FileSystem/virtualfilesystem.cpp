@@ -35,6 +35,7 @@
 #include <KIOCore/KFileItem>
 #include <KWidgetsAddons/KMessageBox>
 
+#include "fileitem.h"
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "../krservices.h"

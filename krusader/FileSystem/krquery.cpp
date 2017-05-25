@@ -42,6 +42,7 @@
 #include <KIOWidgets/KUrlCompletion>
 
 #include "../Archive/krarchandler.h"
+#include "fileitem.h"
 #include "filesystem.h"
 #include "krpermhandler.h"
 

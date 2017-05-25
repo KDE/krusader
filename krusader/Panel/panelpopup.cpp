@@ -25,12 +25,14 @@
 #include "krviewitem.h"
 #include "panelfunc.h"
 #include "viewactions.h"
+#include "../defaults.h"
 #include "../kicons.h"
 #include "../krmainwindow.h"
-#include "../defaults.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
-#include "../KViewer/panelviewer.h"
+#include "../FileSystem/fileitem.h"
+#include "../FileSystem/filesystem.h"
 #include "../KViewer/diskusageviewer.h"
+#include "../KViewer/panelviewer.h"
 
 // QtCore
 #include <QMimeDatabase>

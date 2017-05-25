@@ -23,6 +23,7 @@
 
 #include <KIO/StatJob>
 
+#include "fileitem.h"
 #include "virtualfilesystem.h"
 #include "../krglobal.h"
 

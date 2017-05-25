@@ -59,17 +59,18 @@
 #include <KIO/Job>
 #include <KIO/DeleteJob>
 
-#include "../FileSystem/krpermhandler.h"
-#include "../FileSystem/filesystemprovider.h"
-#include "../kicons.h"
-#include "../defaults.h"
-#include "../krglobal.h"
-#include "../Panel/krpanel.h"
-#include "../Panel/panelfunc.h"
-#include "filelightParts/Config.h"
+#include "dufilelight.h"
 #include "dulines.h"
 #include "dulistview.h"
-#include "dufilelight.h"
+#include "filelightParts/Config.h"
+#include "../FileSystem/fileitem.h"
+#include "../FileSystem/filesystemprovider.h"
+#include "../FileSystem/krpermhandler.h"
+#include "../Panel/krpanel.h"
+#include "../Panel/panelfunc.h"
+#include "../defaults.h"
+#include "../kicons.h"
+#include "../krglobal.h"
 
 // these are the values that will exist in the menu
 #define DELETE_ID            90

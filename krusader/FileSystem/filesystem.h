@@ -46,9 +46,9 @@
 #include <KIO/CopyJob>
 #include <KIO/DirectorySizeJob>
 
-#include "fileitem.h"
 #include "../JobMan/jobman.h"
 
+class FileItem;
 
 /**
  * An abstract filesystem. Use the implementations of this class for all file operations.
@@ -158,7 +158,7 @@ public:
     // set the parent window to be used for dialogs
     void setParentWindow(QWidget *widget) { parentWindow = widget; }
 
-public slots:
+public:
     /// Re-read the current directory files or change to another directory. Blocking.
     /// Returns true if directory was read. Returns false if failed or refresh job was killed.
     // optional TODO: add an async version of this
@@ -190,7 +190,7 @@ protected:
     /// Returns true if showing hidden files is set in config.
     bool showHiddenFiles();
     /// Add a new file item to the internal dictionary (while refreshing).
-    inline void addFileItem(FileItem *item) { _fileItems.insert(item->getName(), item); }
+    void addFileItem(FileItem *item);
 
     FS_TYPE _type;          // the filesystem type.
     QUrl _currentDirectory; // the path or file the filesystem originates from.

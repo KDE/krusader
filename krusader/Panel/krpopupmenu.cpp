@@ -34,22 +34,23 @@
 #include <KIOWidgets/KAbstractFileItemActionPlugin>
 #include <KCoreAddons/KPluginMetaData>
 
-#include "listpanel.h"
 #include "krview.h"
 #include "krviewitem.h"
-#include "panelfunc.h"
+#include "listpanel.h"
 #include "listpanelactions.h"
-#include "../krservices.h"
+#include "panelfunc.h"
 #include "../defaults.h"
-#include "../MountMan/kmountman.h"
-#include "../krusader.h"
+#include "../krservices.h"
 #include "../krslots.h"
+#include "../krusader.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
-#include "../UserAction/useractionpopupmenu.h"
 #include "../Archive/krarchandler.h"
+#include "../FileSystem/fileitem.h"
 #include "../FileSystem/filesystem.h"
 #include "../FileSystem/krtrashhandler.h"
+#include "../MountMan/kmountman.h"
+#include "../UserAction/useractionpopupmenu.h"
 
 void KrPopupMenu::run(const QPoint &pos, KrPanel *panel)
 {

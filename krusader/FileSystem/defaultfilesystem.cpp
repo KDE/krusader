@@ -46,6 +46,7 @@
 #include <KIOCore/KMountPoint>
 #include <KIOCore/KProtocolManager>
 
+#include "fileitem.h"
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "../krservices.h"

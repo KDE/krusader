@@ -32,6 +32,7 @@
 #include <KIOCore/KMountPoint>
 
 #include "defaultfilesystem.h"
+#include "fileitem.h"
 #include "virtualfilesystem.h"
 #include "../krservices.h"
 #include "../JobMan/jobman.h"

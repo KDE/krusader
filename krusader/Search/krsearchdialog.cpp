@@ -55,6 +55,7 @@
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
+#include "../FileSystem/fileitem.h"
 #include "../FileSystem/krquery.h"
 #include "../FileSystem/virtualfilesystem.h"
 #include "../Filter/filtertabs.h"

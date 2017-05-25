@@ -87,6 +87,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include "../Archive/krarchandler.h"
 #include "../BookMan/krbookmarkbutton.h"
+#include "../FileSystem/fileitem.h"
 #include "../FileSystem/filesystem.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../FileSystem/sizecalculator.h"

@@ -43,11 +43,12 @@
 #include <KI18n/KLocalizedString>
 #include <KIO/JobUiDelegate>
 
-#include "../defaults.h"
-#include "../krglobal.h"
+#include "krpermhandler.h"
+#include "fileitem.h"
 #include "../JobMan/jobman.h"
 #include "../JobMan/krjob.h"
-#include "krpermhandler.h"
+#include "../defaults.h"
+#include "../krglobal.h"
 
 FileSystem::FileSystem() : DirListerInterface(0), _isRefreshing(false) {}
 
@@ -184,6 +185,11 @@ bool FileSystem::showHiddenFiles()
 {
     const KConfigGroup gl(krConfig, "Look&Feel");
     return gl.readEntry("Show Hidden", _ShowHidden);
+}
+
+void FileSystem::addFileItem(FileItem *item)
+{
+    _fileItems.insert(item->getName(), item);
 }
 
 FileItem *FileSystem::createLocalFileItem(const QString &name, const QString &directory, bool virt)
