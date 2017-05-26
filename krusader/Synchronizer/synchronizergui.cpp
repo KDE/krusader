@@ -1055,6 +1055,7 @@ void SynchronizerGUI::compare()
         return;
 
     query.setIgnoreHidden(ignoreHiddenFilesCB->isChecked());
+    query.setRecursive(cbSubdirs->isChecked());
 
     // perform some previous tests
     QString leftLocationTrimmed = leftLocation->currentText().trimmed();

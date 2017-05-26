@@ -118,7 +118,7 @@ private:
     bool isDir(const FileItem *file);
 
     /** Evaluate the result directories of a finished(ready) compare task with both sides.*/
-    void compareDirectory(SynchronizerFileItem *parent, const QUrl &leftUrl, const QUrl &rightUrl,
+    void compareDirectories(SynchronizerFileItem *parent, const QUrl &leftUrl, const QUrl &rightUrl,
                           const QList<FileItem *> &leftFiles, const QList<FileItem *> &rightFiles,
                           const QString &leftDir, const QString &rightDir);
 
@@ -134,8 +134,6 @@ private:
                                            SynchronizerFileItem *parent,
                                            const QString &leftDir, const QString &rightDir,
                                            bool isTemp = false);
-    void addSingleDirectory(SynchronizerFileItem *parent, const QUrl &url, const QList<FileItem *> &files,
-                            const QString &dirName, bool isLeft);
 
     bool isMarked(TaskType task, bool dupl);
     bool markParentDirectories(SynchronizerFileItem *);
