@@ -134,10 +134,10 @@ void KgPanel::setupGeneralTab()
 
     KONFIGURATOR_CHECKBOX_PARAM tabbar_settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
         {"Look&Feel", "Fullpath Tab Names",   _FullPathTabNames,  i18n("Use full path tab names"), true ,  i18n("Display the full path in the folder tabs. By default only the last part of the path is displayed.") },
-        {"Look&Feel", "Show Tab Buttons",   true,  i18n("Show new/close tab buttons"), true ,  i18n("Show the new/close tab buttons") },
+        {"Look&Feel", "Show Tab Buttons",   true,  i18n("Show new/close tab buttons"), true ,  i18n("Show the new/close tab buttons.") },
     };
     KonfiguratorCheckBoxGroup *cbs = createCheckBoxGroup(2, 0, tabbar_settings, 2 /*count*/, groupBox, PAGE_GENERAL);
-    gridLayout->addWidget(cbs, 0, 0);
+    gridLayout->addWidget(cbs, 0, 0, 1, 2);
 
 // -----------------  Tab Bar position ----------------------------------
     QHBoxLayout *hbox = new QHBoxLayout();
@@ -153,9 +153,13 @@ void KgPanel::setupGeneralTab()
                                 "bottom", positions, 2, groupBox, true, false, PAGE_GENERAL);
 
     hbox->addWidget(cmb);
-    hbox->addWidget(createSpacer(groupBox));
+    gridLayout->addLayout(hbox, 1, 0, Qt::AlignLeft);
 
-    gridLayout->addLayout(hbox, 1, 0);
+// -----------------  Show Tab bar ----------------------------------
+    KonfiguratorCheckBox *checkBox = createCheckBox("Look&Feel", "Show Tab Bar On Single Tab", true,
+                                                    i18n("Show Tab Bar on single tab"), groupBox,
+                                                    true, i18n("Show the tab bar with only one tab."));
+    gridLayout->addWidget(checkBox, 1, 1, Qt::AlignLeft);
 
     layout->addWidget(groupBox);
 

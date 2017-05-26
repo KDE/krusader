@@ -41,8 +41,6 @@
 #include <KIconThemes/KIconLoader>
 
 
-#define HIDE_ON_SINGLE_TAB  false
-
 PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left) :
         QWidget(parent),
         _otherManager(0),
@@ -95,15 +93,12 @@ PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left)
 
 void PanelManager::tabsCountChanged()
 {
-    bool showTabbar = true;
-    if (_tabbar->count() <= 1 && HIDE_ON_SINGLE_TAB)
-        showTabbar = false;
+    const KConfigGroup cfg(krConfig, "Look&Feel");
+    const bool showTabbar = _tabbar->count() > 1 || cfg.readEntry("Show Tab Bar On Single Tab", true);
+    const bool showButtons = showTabbar && cfg.readEntry("Show Tab Buttons", true);
 
-    KConfigGroup cfg(krConfig, "Look&Feel");
-    bool showButtons = showTabbar && cfg.readEntry("Show Tab Buttons", true);
-
-    _newTab->setVisible(showButtons);
     _tabbar->setVisible(showTabbar);
+    _newTab->setVisible(showButtons);
 
     // disable close button if only 1 tab is left
     _tabbar->setTabsClosable(showButtons && _tabbar->count() > 1);
