@@ -42,6 +42,15 @@
 
 #define SIZE_MINIMUM QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed)
 
+const QStringList sProtocols = QStringList()
+                               << QStringLiteral("ftp") << QStringLiteral("ftps")
+                               << QStringLiteral("sftp")
+                               << QStringLiteral("fish") << QStringLiteral("nfs")
+                               << QStringLiteral("smb") << QStringLiteral("webdav")
+                               << QStringLiteral("svn") << QStringLiteral("svn+file")
+                               << QStringLiteral("svn+http") << QStringLiteral("svn+https")
+                               << QStringLiteral("svn+ssh");
+
 /**
  * Constructs a newFTPGUI which is a child of 'parent',
  * with the name 'name' and widget flags set to 'f'
@@ -50,7 +59,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
 {
     setModal(true);
     setWindowTitle(i18n("New Network Connection"));
-    resize(400, 240);
+    resize(500, 240);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
@@ -80,15 +89,11 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
     url->setMaxCount(50);
     url->setMinimumContentsLength(10);
 
-    QStringList protocols = KProtocolInfo::protocols();
-    if (protocols.contains("ftp"))
-        prefix->addItem(i18n("ftp://"));
-    if (protocols.contains("smb"))
-        prefix->addItem(i18n("smb://"));
-    if (protocols.contains("fish"))
-        prefix->addItem(i18n("fish://"));
-    if (protocols.contains("sftp"))
-        prefix->addItem(i18n("sftp://"));
+    const QStringList availableProtocols = KProtocolInfo::protocols();
+    for (const QString protocol : sProtocols) {
+        if (availableProtocols.contains(protocol))
+            prefix->addItem(protocol + QStringLiteral("://"));
+    }
 
     // load the history and completion list after creating the history combo
     KConfigGroup group(krConfig, "Private");
@@ -98,11 +103,10 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
     url->setHistoryItems(list);
 
     // Select last used protocol
-    QString lastUsedProtocol = group.readEntry("newFTP Protocol", QString());
+    const QString lastUsedProtocol = group.readEntry("newFTP Protocol", QString());
     if(!lastUsedProtocol.isEmpty()) {
         prefix->setCurrentItem(lastUsedProtocol);
     }
-
 
     port = new QSpinBox(this);
     port->setMaximum(65535);

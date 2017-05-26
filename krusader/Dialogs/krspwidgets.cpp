@@ -148,7 +148,8 @@ QUrl KRSpWidgets::newFTP()
 newFTPSub::newFTPSub() : newFTPGUI(0)
 {
     url->setFocus();
-    setGeometry(krMainWindow->x() + krMainWindow->width() / 2 - width() / 2, krMainWindow->y() + krMainWindow->height() / 2 - height() / 2, width(), height());
+    setGeometry(krMainWindow->x() + krMainWindow->width() / 2 - width() / 2,
+                krMainWindow->y() + krMainWindow->height() / 2 - height() / 2, width(), height());
 }
 
 void newFTPSub::accept()
