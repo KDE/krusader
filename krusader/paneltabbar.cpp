@@ -40,8 +40,6 @@
 #include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KActionMenu>
 
-#define DISPLAY(X) (X.isLocalFile() ? X.path() : X.toDisplayString())
-
 static const int sDragEnterDelay = 500; // msec
 
 PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
@@ -91,7 +89,7 @@ int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent, KrPanel *nextTo)
         }
     }
 
-    const QString text = squeeze(DISPLAY(panel->virtualPath()));
+    const QString text = squeeze(panel->virtualPath());
     const int index = insertIndex != -1 ? insertTab(insertIndex, text) : addTab(text);
 
     QVariant v;
@@ -144,7 +142,7 @@ void PanelTabBar::updateTab(ListPanel *panel)
     // find which is the correct tab
     for (int i = 0; i < count(); i++) {
         if ((ListPanel*)tabData(i).toLongLong() == panel) {
-            setTabText(i, squeeze(DISPLAY(panel->virtualPath()), i));
+            setTabText(i, squeeze(panel->virtualPath(), i));
             setIcon(i, panel);
             break;
         }
@@ -163,90 +161,70 @@ void PanelTabBar::setIcon(int index, ListPanel *panel)
                panel->isLocked() ? krLoader->loadIcon("lock", KIconLoader::Toolbar, 16) : QIcon());
 }
 
-QString PanelTabBar::squeeze(QString text, int index)
+QString PanelTabBar::squeeze(const QUrl &url, int tabIndex)
 {
-    QString originalText = text;
+    const QString longText = url.isEmpty() ? i18n("[invalid]") :
+                                             url.isLocalFile() ? url.path() : url.toDisplayString();
+    if (tabIndex >= 0)
+        setTabToolTip(tabIndex, longText);
 
-    KConfigGroup group(krConfig, "Look&Feel");
-    bool longNames = group.readEntry("Fullpath Tab Names", _FullPathTabNames);
+    const KConfigGroup group(krConfig, "Look&Feel");
+    const bool showLongNames = group.readEntry("Fullpath Tab Names", _FullPathTabNames);
 
-    if (!longNames) {
-        while (text.endsWith('/'))
-            text.truncate(text.length() - 1);
-        if (text.isEmpty() || text.endsWith(':'))
-            text += '/';
-        else {
-            QString shortName;
-
-            if (text.contains(":/"))
-                shortName = text.left(text.indexOf(":/")) + ':';
-
-            shortName += text.mid(text.lastIndexOf("/") + 1);
-            text = shortName;
-        }
-
-        if (index >= 0)
-            setTabToolTip(index, originalText);
-
-        index = -1;
+    QString text;
+    if (!showLongNames) {
+        const QString scheme = url.scheme().isEmpty() || url.isLocalFile() ? "" : (url.scheme() + ":");
+        const QString host = url.host().isEmpty() ? "" : (url.host() + ":");
+        const QString name = url.isLocalFile() && url.fileName().isEmpty() ? "/" : url.fileName();
+        text = scheme + host + name;
+    } else {
+        text = longText;
     }
 
-    QFontMetrics fm(fontMetrics());
+    if (text.isEmpty())
+        text = i18nc("invalid URL path", "?");
 
     // set the real max length
+    QFontMetrics fm(fontMetrics());
     _maxTabLength = (static_cast<QWidget*>(parent())->width() - (6 * fm.width("W"))) / fm.width("W");
     // each tab gets a fair share of the max tab length
-    int _effectiveTabLength = _maxTabLength / (count() == 0 ? 1 : count());
+    const int effectiveTabLength = _maxTabLength / (count() == 0 ? 1 : count());
+    const int labelWidth = fm.width("W") * effectiveTabLength;
+    const int textWidth = fm.width(text);
+    if (textWidth <= labelWidth)
+        return text;
 
-    int labelWidth = fm.width("W") * _effectiveTabLength;
-    int textWidth = fm.width(text);
-    if (textWidth > labelWidth) {
-        // start with the dots only
-        QString squeezedText = "...";
-        int squeezedWidth = fm.width(squeezedText);
+    // squeeze text - start with the dots only
+    QString squeezedText = "...";
+    int squeezedWidth = fm.width(squeezedText);
 
-        // estimate how many letters we can add to the dots on both sides
-        int letters = text.length() * (labelWidth - squeezedWidth) / textWidth / 2;
-        if (labelWidth < squeezedWidth) letters = 1;
+    int letters = text.length() * (labelWidth - squeezedWidth) / textWidth / 2;
+    if (labelWidth < squeezedWidth)
+        letters = 1;
+    squeezedText = text.left(letters) + "..." + text.right(letters);
+    squeezedWidth = fm.width(squeezedText);
+
+    if (squeezedWidth < labelWidth) {
+        // we estimated too short
+        // add letters while text < label
+        do {
+            letters++;
+            squeezedText = text.left(letters) + "..." + text.right(letters);
+            squeezedWidth = fm.width(squeezedText);
+        } while (squeezedWidth < labelWidth);
+        letters--;
         squeezedText = text.left(letters) + "..." + text.right(letters);
-        squeezedWidth = fm.width(squeezedText);
-
-        if (squeezedWidth < labelWidth) {
-            // we estimated too short
-            // add letters while text < label
-            do {
-                letters++;
-                squeezedText = text.left(letters) + "..." + text.right(letters);
-                squeezedWidth = fm.width(squeezedText);
-            } while (squeezedWidth < labelWidth);
+    } else if (squeezedWidth > labelWidth) {
+        // we estimated too long
+        // remove letters while text > label
+        do {
             letters--;
             squeezedText = text.left(letters) + "..." + text.right(letters);
-        } else if (squeezedWidth > labelWidth) {
-            // we estimated too long
-            // remove letters while text > label
-            do {
-                letters--;
-                squeezedText = text.left(letters) + "..." + text.right(letters);
-                squeezedWidth = fm.width(squeezedText);
-            } while (letters && squeezedWidth > labelWidth);
-        }
+            squeezedWidth = fm.width(squeezedText);
+        } while (letters && squeezedWidth > labelWidth);
+    }
 
-        if (index >= 0)
-            setTabToolTip(index, originalText);
-
-        if (letters < 5) {
-            // too few letters added -> we give up squeezing
-            //return text;
-            return squeezedText;
-        } else {
-            return squeezedText;
-        }
-    } else {
-        //if( index >= 0 )
-        //  removeTabToolTip( index );
-
-        return text;
-    };
+    return squeezedText;
 }
 
 void PanelTabBar::resizeEvent(QResizeEvent *e)
@@ -337,7 +315,7 @@ void PanelTabBar::handleDragEvent(int tabIndex)
 void PanelTabBar::layoutTabs()
 {
    for (int i = 0; i < count(); i++) {
-        setTabText(i, squeeze(DISPLAY(((ListPanel*)tabData(i).toLongLong())->virtualPath()), i));
+        setTabText(i, squeeze(((ListPanel*)tabData(i).toLongLong())->virtualPath(), i));
    }
 }
 
