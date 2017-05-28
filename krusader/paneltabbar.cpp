@@ -42,8 +42,10 @@
 
 #define DISPLAY(X) (X.isLocalFile() ? X.path() : X.toDisplayString())
 
+static const int sDragEnterDelay = 500; // msec
+
 PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
-    _maxTabLength(0), _tabClicked(false), _draggingTab(false)
+    _maxTabLength(0), _tabClicked(false), _draggingTab(false), _dragTabIndex(-1)
 {
     _panelActionMenu = new KActionMenu(i18n("Panel"), this);
 
@@ -58,6 +60,15 @@ PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
     insertAction(actions->actCloseDuplicatedTabs);
 
     setMovable(true); // enable drag'n'drop
+    _dragTimer = new QTimer(this);
+    _dragTimer->setSingleShot(true);
+    _dragTimer->setInterval(sDragEnterDelay);
+    connect(_dragTimer, &QTimer::timeout, this, [=]() {
+        if (_dragTabIndex != -1 && _dragTabIndex != currentIndex()) {
+            setCurrentIndex(_dragTabIndex);
+        }
+        _dragTabIndex = -1;
+    });
 
     setShape(QTabBar::TriangularSouth);
 }
@@ -294,22 +305,33 @@ void PanelTabBar::mouseReleaseEvent(QMouseEvent* e)
 void PanelTabBar::dragEnterEvent(QDragEnterEvent *e)
 {
     e->accept();
-    int t = tabAt(e->pos());
-    if (t == -1)
-        return;
-    if (currentIndex() != t)
-        setCurrentIndex(t);
+    handleDragEvent(tabAt(e->pos()));
     QTabBar::dragEnterEvent(e);
+}
+
+void PanelTabBar::dragLeaveEvent(QDragLeaveEvent *)
+{
+    handleDragEvent(-1);
 }
 
 void PanelTabBar::dragMoveEvent(QDragMoveEvent *e)
 {
     e->ignore();
-    int t = tabAt(e->pos());
-    if (t == -1) return;
-    if (currentIndex() != t)
-        setCurrentIndex(t);
+    handleDragEvent(tabAt(e->pos()));
     QTabBar::dragMoveEvent(e);
+}
+
+void PanelTabBar::handleDragEvent(int tabIndex)
+{
+    if (_dragTabIndex == tabIndex)
+        return;
+
+    _dragTabIndex = tabIndex;
+    if (_dragTabIndex == -1) {
+        _dragTimer->stop();
+    } else {
+        _dragTimer->start();
+    }
 }
 
 void PanelTabBar::layoutTabs()

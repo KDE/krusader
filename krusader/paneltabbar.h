@@ -22,6 +22,7 @@
 #define PANELTABBAR_H
 
 // QtCore
+#include <QTimer>
 #include <QUrl>
 // QtGui
 #include <QDragMoveEvent>
@@ -90,6 +91,7 @@ protected:
     void insertAction(QAction*);
     QString squeeze(QString text, int index = -1);
     virtual void dragEnterEvent(QDragEnterEvent *) Q_DECL_OVERRIDE;
+    virtual void dragLeaveEvent(QDragLeaveEvent *) Q_DECL_OVERRIDE;
     virtual void dragMoveEvent(QDragMoveEvent *) Q_DECL_OVERRIDE;
     virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
 
@@ -98,10 +100,14 @@ protected slots:
 
 private:
     void setIcon(int index, ListPanel *panel);
+    void handleDragEvent(int tabIndex);
     KActionMenu *_panelActionMenu;
     bool _left;
     int _maxTabLength;
     bool _tabClicked, _draggingTab;
+
+    QTimer *_dragTimer;
+    int _dragTabIndex;
 };
 
 #endif
