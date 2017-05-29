@@ -73,8 +73,7 @@ QUrl KChooseDir::get(const QString &text, const QUrl &url, const QUrl &cwd, KFil
 KChooseDir::ChooseResult KChooseDir::getCopyDir(const QString &text, const QUrl &url,
                                                 const QUrl &cwd)
 {
-    QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(
-        FileSystem::ensureTrailingSlash(url), text, krMainWindow, true));
+    QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(url, text, krMainWindow, true));
 
     dlg->urlRequester()->setStartDir(cwd);
     dlg->urlRequester()->setMode(KFile::Directory);

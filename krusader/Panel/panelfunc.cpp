@@ -556,6 +556,19 @@ void ListPanelFunc::copyFiles(bool enqueue, bool move)
 
     QUrl destination = panel->otherPanel()->virtualPath();
 
+    bool fullDestPath = false;
+    if (fileNames.count() == 1 && otherFunc()->files()->type() != FileSystem::FS_VIRTUAL) {
+        FileItem *item = files()->getFileItem(fileNames[0]);
+        if (item && !item->isDir()) {
+            fullDestPath = true;
+            // add original filename to destination
+            destination.setPath(QDir(destination.path()).filePath(item->getUrl().fileName()));
+        }
+    }
+    if (!fullDestPath) {
+        destination = FileSystem::ensureTrailingSlash(destination);
+    }
+
     const KConfigGroup group(krConfig, "Advanced");
     const bool showDialog = move ? group.readEntry("Confirm Move", _ConfirmMove) :
                                    group.readEntry("Confirm Copy", _ConfirmCopy);
@@ -598,7 +611,7 @@ void ListPanelFunc::copyFiles(bool enqueue, bool move)
         destination = FileSystem::ensureTrailingSlash(destination);
     }
 
-    KIO::CopyJob::CopyMode mode = move ? KIO::CopyJob::Move : KIO::CopyJob::Copy;
+    const KIO::CopyJob::CopyMode mode = move ? KIO::CopyJob::Move : KIO::CopyJob::Copy;
     FileSystemProvider::instance().startCopyFiles(fileUrls, destination, mode, true, startMode);
 
     if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
