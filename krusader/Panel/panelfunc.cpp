@@ -88,7 +88,6 @@ A
 #include "../Dialogs/krspwidgets.h"
 #include "../Dialogs/checksumdlg.h"
 #include "../KViewer/krviewer.h"
-#include "../GUI/syncbrowsebutton.h"
 #include "../MountMan/kmountman.h"
 
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
@@ -115,7 +114,7 @@ ListPanelFunc::~ListPanelFunc()
 bool ListPanelFunc::isSyncing(const QUrl &url)
 {
     if(otherFunc()->otherFunc() == this &&
-       panel->otherPanel()->gui->syncBrowseButton->state() == SYNCBROWSE_CD &&
+       panel->otherPanel()->gui->syncBrowseButton->isChecked() &&
        !otherFunc()->syncURL.isEmpty() &&
        otherFunc()->syncURL == url)
         return true;
@@ -191,7 +190,7 @@ QUrl ListPanelFunc::cleanPath(const QUrl &urlIn)
 void ListPanelFunc::openUrl(const QUrl &url, const QString& nameToMakeCurrent,
                             bool manuallyEntered)
 {
-    if (panel->syncBrowseButton->state() == SYNCBROWSE_CD) {
+    if (panel->syncBrowseButton->isChecked()) {
         //do sync-browse stuff....
         if(syncURL.isEmpty())
             syncURL = panel->otherPanel()->virtualPath();

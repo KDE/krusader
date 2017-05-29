@@ -99,7 +99,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../GUI/dirhistorybutton.h"
 #include "../GUI/kcmdline.h"
 #include "../GUI/mediabutton.h"
-#include "../GUI/syncbrowsebutton.h"
 #include "../MountMan/kmountman.h"
 #include "../UserAction/useractionpopupmenu.h"
 
@@ -297,8 +296,20 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     cdRootButton = new ActionButton(toolbar, this, _actions->actRoot, "/");
     toolbarLayout->addWidget(cdRootButton);
 
-    // ... creates the button for sync-browsing
-    syncBrowseButton = new SyncBrowseButton(toolbar);
+    // create the button for sync-browsing
+    syncBrowseButton = new QToolButton(toolbar);
+    syncBrowseButton->setIcon(QIcon::fromTheme("kr_syncbrowse_off"));
+    syncBrowseButton->setCheckable(true);
+
+    const QString syncBrowseText = i18n("This button toggles the sync-browse mode.\n"
+                                        "When active, each folder change is performed in the\n"
+                                        "active and inactive panel - if possible.");
+    syncBrowseButton->setText(syncBrowseText);
+    syncBrowseButton->setToolTip(syncBrowseText);
+    connect(syncBrowseButton, &QToolButton::toggled, [=](bool checked) {
+        syncBrowseButton->setIcon(
+            QIcon::fromTheme(checked ? "kr_syncbrowse_on" : "kr_syncbrowse_off"));
+    });
     syncBrowseButton->setAutoRaise(true);
     toolbarLayout->addWidget(syncBrowseButton);
 
@@ -486,7 +497,7 @@ void ListPanel::changeType(int type)
 int ListPanel::getProperties()
 {
     int props = 0;
-    if (syncBrowseButton->state() == SYNCBROWSE_CD)
+    if (syncBrowseButton->isChecked())
         props |= PROP_SYNC_BUTTON_ON;
     if (_locked)
         props |= PROP_LOCKED;

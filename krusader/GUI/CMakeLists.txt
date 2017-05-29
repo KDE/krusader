@@ -5,7 +5,6 @@ set(GUI_SRCS
     krusaderstatus.cpp
     kfnkeys.cpp
     kcmdline.cpp
-    syncbrowsebutton.cpp
     profilemanager.cpp
     krremoteencodingmenu.cpp
     krtreewidget.cpp

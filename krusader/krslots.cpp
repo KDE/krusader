@@ -79,7 +79,6 @@
 #include "GUI/kfnkeys.h"
 #include "GUI/krusaderstatus.h"
 #include "GUI/mediabutton.h"
-#include "GUI/syncbrowsebutton.h"
 #include "GUI/terminaldock.h"
 #include "Konfigurator/konfigurator.h"
 #include "KViewer/krviewer.h"

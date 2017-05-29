@@ -80,7 +80,6 @@ class ListPanelFunc;
 class MediaButton;
 class PanelPopup;
 class SizeCalculator;
-class SyncBrowseButton;
 
 class ListPanel : public QWidget, public KrPanel
 {
@@ -233,7 +232,7 @@ protected:
     QProgressBar *previewProgress;
     DirHistoryButton* historyButton;
     MediaButton *mediaButton;
-    SyncBrowseButton *syncBrowseButton;
+    QToolButton *syncBrowseButton;
     QToolButton *cancelProgressButton; // for thumbnail previews and filesystem refresh
     KrErrorDisplay *fileSystemError;
 
