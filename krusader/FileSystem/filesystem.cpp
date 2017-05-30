@@ -235,7 +235,8 @@ FileItem *FileSystem::createLocalFileItem(const QString &name, const QString &di
     }
 
     return new FileItem(virt ? path : name, QUrl::fromLocalFile(path), isDir,
-                     size, stat_p.st_mode, stat_p.st_mtime,
+                     size, stat_p.st_mode,
+                     stat_p.st_mtime, stat_p.st_ctime, stat_p.st_atime,
                      stat_p.st_uid, stat_p.st_gid, QString(), QString(),
                      isLink, linkDestination, brokenLink);
 }
@@ -256,6 +257,8 @@ FileItem *FileSystem::createFileItemFromKIO(const KIO::UDSEntry &entry, const QU
 
     // get file statistics...
     const time_t mtime = kfi.time(KFileItem::ModificationTime).toTime_t();
+    const time_t ctime = kfi.time(KFileItem::CreationTime).toTime_t(); // "Creation"? its "Changed"
+    const time_t atime = kfi.time(KFileItem::AccessTime).toTime_t();
     const mode_t mode = kfi.mode() | kfi.permissions();
     // NOTE: we could get the mimetype (and file icon) from the kfileitem here but this is very
     // slow. Instead, the file item class has it's own (faster) way to determine the file type.
@@ -263,7 +266,8 @@ FileItem *FileSystem::createFileItemFromKIO(const KIO::UDSEntry &entry, const QU
     // NOTE: "broken link" flag is always false, checking link destination existence is
     // considered to be too expensive
     return new FileItem(fname, url, kfi.isDir(),
-                     kfi.size(), mode, mtime,
+                     kfi.size(), mode,
+                     mtime, ctime, atime,
                      (uid_t) -1, (gid_t) -1, kfi.user(), kfi.group(),
                      kfi.isLink(), kfi.linkDest(), false,
                      kfi.ACL().asString(), kfi.defaultACL().asString());

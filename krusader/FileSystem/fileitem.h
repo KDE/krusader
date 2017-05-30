@@ -64,6 +64,8 @@ public:
      * @param size size of file
      * @param mode mode of file (file type and permissions)
      * @param mtime file modification time
+     * @param ctime file changed time
+     * @param atime file access time
      * @param uid Unix user id of file owner. Use -1 here and provide an owner name for non-local files.
      * @param gid Unix group id of file group. Use -1 here and provide a group name for non-local files.
      * @param owner user name of file owner. Can be empty for local files
@@ -75,7 +77,8 @@ public:
      * @param defaultAcl default ACL string of file (only for directories). Can be empty and is loaded on demand.
      */
     FileItem(const QString &name, const QUrl &url, bool isDir,
-          KIO::filesize_t size, mode_t mode, time_t mtime,
+          KIO::filesize_t size, mode_t mode,
+          time_t mtime, time_t ctime, time_t atime,
           uid_t uid = -1, gid_t gid = -1,
           const QString &owner = QString(), const QString &group = QString(),
           bool isLink = false, const QString &linkDest = QString(), bool isBrokenLink = false,
@@ -101,6 +104,8 @@ public:
     inline const QString &getSymDest() const { return m_linkDest; }
     inline mode_t getMode() const { return m_mode; }
     inline time_t getTime_t() const { return m_mtime; }
+    inline time_t getChangedTime() const { return m_ctime; }
+    inline time_t getAccessTime() const { return m_atime; }
     inline const QUrl &getUrl() const { return m_url; }
     inline const QString &getOwner() const { return m_owner; }
     inline const QString &getGroup() const { return m_group; }
@@ -135,7 +140,10 @@ private:
 
     KIO::filesize_t m_size;     //< file size
     mode_t m_mode;              //< file mode (file type and permissions)
+
     time_t m_mtime;             //< file modification time
+    time_t m_ctime;             //< file changed time
+    time_t m_atime;             //< file access time
 
     uid_t m_uid;                //< file owner id
     gid_t m_gid;                //< file group id

@@ -55,12 +55,14 @@ public:
 static QCache<const QUrl, FileSize> s_fileSizeCache(1000);
 
 FileItem::FileItem(const QString &name, const QUrl &url, bool isDir,
-             KIO::filesize_t size, mode_t mode, time_t mtime,
+             KIO::filesize_t size, mode_t mode,
+             time_t mtime, time_t ctime, time_t atime,
              uid_t uid, gid_t gid, const QString &owner, const QString &group,
              bool isLink, const QString &linkDest, bool isBrokenLink,
              const QString &acl, const QString &defaultAcl)
     : m_name(name), m_url(url), m_isDir(isDir),
-      m_size(size), m_mode(mode), m_mtime(mtime),
+      m_size(size), m_mode(mode),
+      m_mtime(mtime), m_ctime(ctime), m_atime(atime),
       m_uid(uid), m_gid(gid), m_owner(owner), m_group(group),
       m_isLink(isLink), m_linkDest(linkDest), m_isBrokenLink(isBrokenLink),
       m_acl(acl), m_defaulfAcl(defaultAcl), m_AclLoaded(false),
@@ -82,6 +84,7 @@ FileItem::FileItem(const QString &name, const QUrl &url, bool isDir,
 FileItem *FileItem::createDummy()
 {
     FileItem *file = new FileItem("..", QUrl(), true,
+                            0, 0,
                             0, 0, 0);
     file->setIcon("go-up");
     return file;
@@ -90,14 +93,16 @@ FileItem *FileItem::createDummy()
 FileItem *FileItem::createVirtualDir(const QString &name, const QUrl &url)
 {
     return new FileItem(name, url, true,
-                     0, 0700, time(0),
+                     0, 0700,
+                     time(0), time(0), time(0),
                      getuid(), getgid());
 }
 
 FileItem *FileItem::createCopy(const FileItem &file, const QString &newName)
 {
     return new FileItem(newName, file.getUrl(), file.isDir(),
-                     file.getSize(), file.getMode(), file.getTime_t(),
+                     file.getSize(), file.getMode(),
+                     file.getTime_t(), file.getChangedTime(), file.getAccessTime(),
                      file.m_uid, file.m_gid, file.getOwner(), file.getGroup(),
                      file.isSymLink(), file.getSymDest(), file.isBrokenLink());
 }
@@ -200,6 +205,8 @@ const KIO::UDSEntry FileItem::getEntry()
     entry.insert(KIO::UDSEntry::UDS_NAME, getName());
     entry.insert(KIO::UDSEntry::UDS_SIZE, getSize());
     entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, getTime_t());
+    entry.insert(KIO::UDSEntry::UDS_CREATION_TIME, getChangedTime());
+    entry.insert(KIO::UDSEntry::UDS_ACCESS_TIME, getAccessTime());
     entry.insert(KIO::UDSEntry::UDS_USER, getOwner());
     entry.insert(KIO::UDSEntry::UDS_GROUP, getGroup());
     entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, getMime());
