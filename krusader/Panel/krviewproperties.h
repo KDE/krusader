@@ -61,7 +61,9 @@ public:
         KrPermissions = 0x6,
         Owner = 0x7,
         Group = 0x8,
-        MAX_COLUMNS = 0x09
+        Changed = 0x9,
+        Accessed = 0xa,
+        MAX_COLUMNS = 0x0b
     };
     enum SortOptions {
         Descending = 0x200,

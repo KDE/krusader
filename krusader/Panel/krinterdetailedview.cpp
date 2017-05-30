@@ -112,6 +112,8 @@ void KrInterDetailedView::doRestoreSettings(KConfigGroup grp)
         hideColumn(KrViewProperties::Permissions);
         hideColumn(KrViewProperties::Owner);
         hideColumn(KrViewProperties::Group);
+        hideColumn(KrViewProperties::Changed);
+        hideColumn(KrViewProperties::Accessed);
         header()->resizeSection(KrViewProperties::Ext, QFontMetrics(_viewFont).width("tar.bz2  "));
         header()->resizeSection(KrViewProperties::KrPermissions, QFontMetrics(_viewFont).width("rwx  "));
         header()->resizeSection(KrViewProperties::Size, QFontMetrics(_viewFont).width("9") * 10);
@@ -122,6 +124,13 @@ void KrInterDetailedView::doRestoreSettings(KConfigGroup grp)
         header()->resizeSection(KrViewProperties::Modified, QFontMetrics(_viewFont).width(desc));
     } else {
         header()->restoreState(savedState);
+
+        // do not show new columns by default; restoreState() shows columns not saved
+        if (KrGlobal::sCurrentConfigVersion < KrGlobal::sConfigVersion) {
+            hideColumn(KrViewProperties::Changed);
+            hideColumn(KrViewProperties::Accessed);
+        }
+
         _model->setExtensionEnabled(!isColumnHidden(KrViewProperties::Ext));
     }
 

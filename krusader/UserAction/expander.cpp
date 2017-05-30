@@ -802,34 +802,32 @@ TagString exp_ColSort::expFunc(const KrPanel* panel, const QStringList& paramete
 
     if (parameter[0].toLower() == "name") {
         column = KrViewProperties::Name;
-    } else
-        if (parameter[0].toLower() == "ext") {
-            column = KrViewProperties::Ext;
-        } else
-            if (parameter[0].toLower() == "type") {
-                column = KrViewProperties::Type;
-            } else
-                if (parameter[0].toLower() == "size") {
-                    column = KrViewProperties::Size;
-                } else
-                    if (parameter[0].toLower() == "modified") {
-                        column = KrViewProperties::Modified;
-                    } else
-                        if (parameter[0].toLower() == "perms") {
-                            column = KrViewProperties::Permissions;
-                        } else
-                            if (parameter[0].toLower() == "rwx") {
-                                column = KrViewProperties::KrPermissions;
-                            } else
-                                if (parameter[0].toLower() == "owner") {
-                                    column = KrViewProperties::Owner;
-                                } else
-                                    if (parameter[0].toLower() == "group") {
-                                        column = KrViewProperties::Group;
-                                    } else {
-                                        setError(exp, Error(Error::exp_S_WARNING, Error::exp_C_ARGUMENT, i18n("Expander: unknown column specified for %_ColSort(%1)%", parameter[0])));
-                                        return QString();
-                                    }
+    } else if (parameter[0].toLower() == "ext") {
+        column = KrViewProperties::Ext;
+    } else if (parameter[0].toLower() == "type") {
+        column = KrViewProperties::Type;
+    } else if (parameter[0].toLower() == "size") {
+        column = KrViewProperties::Size;
+    } else if (parameter[0].toLower() == "modified") {
+        column = KrViewProperties::Modified;
+    } else if (parameter[0].toLower() == "changed") {
+        column = KrViewProperties::Changed;
+    } else if (parameter[0].toLower() == "accessed") {
+        column = KrViewProperties::Accessed;
+    } else if (parameter[0].toLower() == "perms") {
+        column = KrViewProperties::Permissions;
+    } else if (parameter[0].toLower() == "rwx") {
+        column = KrViewProperties::KrPermissions;
+    } else if (parameter[0].toLower() == "owner") {
+        column = KrViewProperties::Owner;
+    } else if (parameter[0].toLower() == "group") {
+        column = KrViewProperties::Group;
+    } else {
+        setError(exp, Error(Error::exp_S_WARNING, Error::exp_C_ARGUMENT,
+                            i18n("Expander: unknown column specified for %_ColSort(%1)%",
+                                 parameter[0])));
+        return QString();
+    }
 
     bool descending = panel->view->properties()->sortOptions & KrViewProperties::Descending;
 

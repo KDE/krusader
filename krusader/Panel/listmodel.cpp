@@ -150,9 +150,13 @@ QVariant ListModel::data(const QModelIndex& index, int role) const
             return mimeType.isEmpty() ? QVariant() : mimeType;
         }
         case KrViewProperties::Modified: {
-            if (fileitem == _dummyFileItem)
-                return QVariant();
-            return dateText(fileitem->getTime_t());
+            return fileitem == _dummyFileItem ? QVariant() : dateText(fileitem->getTime_t());
+        }
+        case KrViewProperties::Changed: {
+            return fileitem == _dummyFileItem ? QVariant() : dateText(fileitem->getChangedTime());
+        }
+        case KrViewProperties::Accessed: {
+            return fileitem == _dummyFileItem ? QVariant() : dateText(fileitem->getAccessTime());
         }
         case KrViewProperties::Permissions: {
             if (fileitem == _dummyFileItem)
@@ -406,6 +410,8 @@ QVariant ListModel::headerData(int section, Qt::Orientation orientation, int rol
     case KrViewProperties::Size: return i18nc("File property", "Size");
     case KrViewProperties::Type: return i18nc("File property", "Type");
     case KrViewProperties::Modified: return i18nc("File property", "Modified");
+    case KrViewProperties::Changed: return i18nc("File property", "Changed");
+    case KrViewProperties::Accessed: return i18nc("File property", "Accessed");
     case KrViewProperties::Permissions: return i18nc("File property", "Perms");
     case KrViewProperties::KrPermissions: return i18nc("File property", "rwx");
     case KrViewProperties::Owner: return i18nc("File property", "Owner");
@@ -516,6 +522,8 @@ QString ListModel::toolTipText(FileItem *fileItem) const
     }
     text += i18nc("File property", "Type: %1", KrView::mimeTypeText(fileItem));
     text += "<br>" + i18nc("File property", "Modified: %1", dateText(fileItem->getTime_t()));
+    text += "<br>" + i18nc("File property", "Changed: %1", dateText(fileItem->getChangedTime()));
+    text += "<br>" + i18nc("File property", "Last Access: %1", dateText(fileItem->getAccessTime()));
     text += "<br>" + i18nc("File property", "Permissions: %1",
             KrView::permissionsText(properties(), fileItem));
     text += "<br>" + i18nc("File property", "Owner: %1", fileItem->getOwner());

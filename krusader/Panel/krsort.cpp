@@ -280,9 +280,11 @@ bool itemLessThan(SortProps *sp, SortProps *sp2)
             return compareTexts(sp->name(), sp2->name(), sp->properties(), sp->isAscending(), true);
         return file1->getSize() < file2->getSize();
     case KrViewProperties::Modified:
-        if (file1->getTime_t() == file2->getTime_t())
-            return compareTexts(sp->name(), sp2->name(), sp->properties(), sp->isAscending(), true);
-        return file1->getTime_t() < file2->getTime_t();
+            return compareTime(file1->getTime_t(), file2->getTime_t(), sp, sp2);
+    case KrViewProperties::Changed:
+            return compareTime(file1->getChangedTime(), file2->getChangedTime(), sp, sp2);
+    case KrViewProperties::Accessed:
+            return compareTime(file1->getAccessTime(), file2->getAccessTime(), sp, sp2);
     case KrViewProperties::Type:
     case KrViewProperties::Permissions:
     case KrViewProperties::KrPermissions:
@@ -293,6 +295,12 @@ bool itemLessThan(SortProps *sp, SortProps *sp2)
         return compareTexts(sp->data(), sp2->data(), sp->properties(), sp->isAscending(), true);
     }
     return sp->name() < sp2->name();
+}
+
+bool compareTime(time_t time1, time_t time2, SortProps *sp, SortProps *sp2)
+{
+    return time1 != time2 ? time1 < time2 :
+           compareTexts(sp->name(), sp2->name(), sp->properties(), sp->isAscending(), true);
 }
 
 bool itemGreaterThan(SortProps *sp, SortProps *sp2)

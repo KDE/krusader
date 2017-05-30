@@ -51,6 +51,8 @@ JobMan *KrGlobal::jobMan = 0;
 // ListPanel *KrGlobal::activePanel = 0;
 QKeySequence KrGlobal::copyShortcut;
 
+const int KrGlobal::sConfigVersion;
+int KrGlobal::sCurrentConfigVersion;
 
 KrPanel *KrGlobal::activePanel()
 {

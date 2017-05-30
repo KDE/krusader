@@ -92,6 +92,7 @@ private:
 bool compareTexts(QString aS1, QString aS2, const KrViewProperties * _viewProperties, bool asc, bool isName);
 bool itemLessThan(SortProps *sp, SortProps *sp2);
 bool itemGreaterThan(SortProps *sp, SortProps *sp2);
+bool compareTime(time_t time1, time_t time2, SortProps *sp, SortProps *sp2);
 
 typedef bool(*LessThanFunc)(SortProps*, SortProps*);
 

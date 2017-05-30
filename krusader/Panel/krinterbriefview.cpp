@@ -132,6 +132,8 @@ void KrInterBriefView::setup()
     _header->hideSection(KrViewProperties::KrPermissions);
     _header->hideSection(KrViewProperties::Owner);
     _header->hideSection(KrViewProperties::Group);
+    _header->hideSection(KrViewProperties::Changed);
+    _header->hideSection(KrViewProperties::Accessed);
     _header->setStretchLastSection(true);
     _header->setSectionResizeMode(QHeaderView::Fixed);
     _header->setSectionsClickable(true);

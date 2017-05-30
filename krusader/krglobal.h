@@ -74,6 +74,10 @@ public:
 
 //     static void enableAction(const char *name, bool enable);
 //     static QAction *getAction(const char *name);
+
+    /** Version of saved configuration. Use this to detect configuration updates. */
+    static const int sConfigVersion = 1;
+    static int sCurrentConfigVersion;
 };
 
 #define krConfig     KrGlobal::config
