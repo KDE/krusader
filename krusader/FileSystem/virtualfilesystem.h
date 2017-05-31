@@ -55,7 +55,7 @@ public:
 
     /// Add virtual files to the current directory.
     void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
-                  QString dir = "") Q_DECL_OVERRIDE;
+                  const QString &dir = "") Q_DECL_OVERRIDE;
     /// Create a virtual directory. Only possible in the root directory.
     void mkDir(const QString &name) Q_DECL_OVERRIDE;
     /// Rename a (real) file in the current directory.

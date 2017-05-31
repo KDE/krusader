@@ -176,12 +176,9 @@ void FileSystem::deleteFiles(const QStringList &fileNames, bool moveToTrash)
 
 void FileSystem::connectJob(KJob *job, const QUrl &destination)
 {
-    // destination can be a full path with filename when copying/moving a single file
-    const QUrl destDir = destination.adjusted(QUrl::RemoveFilename);
-
-    connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(destDir); });
+    connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(destination); });
     // (additional) direct refresh if on local fs because watcher is too slow
-    const bool refresh = cleanUrl(destDir) == _currentDirectory && isLocal();
+    const bool refresh = cleanUrl(destination) == _currentDirectory && isLocal();
     connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, refresh); });
 }
 

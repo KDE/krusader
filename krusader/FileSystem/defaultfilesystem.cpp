@@ -66,8 +66,10 @@ void DefaultFileSystem::copyFiles(const QList<QUrl> &urls, const QUrl &destinati
 
     KIO::JobFlags flags = showProgressInfo ? KIO::DefaultFlags : KIO::HideProgressInfo;
 
-    KrJob *krJob = KrJob::createCopyJob(mode, urls, destination, flags);
-    connect(krJob, &KrJob::started, this, [=](KIO::Job *job) { connectJob(job, dest); });
+    KrJob *krJob = KrJob::createCopyJob(mode, urls, dest, flags);
+    // destination can be a full path with filename when copying/moving a single file
+    const QUrl destDir = dest.adjusted(QUrl::RemoveFilename);
+    connect(krJob, &KrJob::started, this, [=](KIO::Job *job) { connectJob(job, destDir); });
     if (mode == KIO::CopyJob::Move) { // notify source about removed files
         connect(krJob, &KrJob::started, this, [=](KIO::Job *job) { connectSourceFileSystem(job, urls); });
     }
@@ -100,19 +102,21 @@ void DefaultFileSystem::connectSourceFileSystem(KJob *job, const QList<QUrl> url
     }
 }
 
-void DefaultFileSystem::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, QString dir)
+void DefaultFileSystem::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
+                                 const QString &dir)
 {
     QUrl destination(_currentDirectory);
     if (!dir.isEmpty()) {
         destination.setPath(QDir::cleanPath(destination.path() + '/' + dir));
         const QString scheme = destination.scheme();
         if (scheme == "tar" || scheme == "zip" || scheme == "krarc") {
-            if (QDir(cleanUrl(destination).path()).exists())
+            if (QDir(destination.path()).exists())
                 // if we get out from the archive change the protocol
                 destination.setScheme("file");
         }
     }
 
+    destination = ensureTrailingSlash(destination); // destination is always a directory
     copyFiles(fileUrls, destination, mode);
 }
 

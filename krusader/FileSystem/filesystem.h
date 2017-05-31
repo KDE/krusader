@@ -94,7 +94,7 @@ public:
     /// Copy (copy, move or link) files to the current filesystem directory or to "dir", the
     /// directory name relative to the current dir. May implemented async.
     virtual void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
-                          QString dir = "") = 0;
+                          const QString &dir = "") = 0;
     /// Create a new directory in the current directory. May implemented async.
     virtual void mkDir(const QString &name) = 0;
     /// Rename file/directory in the current directory. May implemented async.

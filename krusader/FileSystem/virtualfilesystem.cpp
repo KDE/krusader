@@ -87,7 +87,8 @@ void VirtualFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
     copyFiles(urls, destination);
 }
 
-void VirtualFileSystem::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mode*/, QString dir)
+void VirtualFileSystem::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mode*/,
+                                 const QString &dir)
 {
     QUrl destination(_currentDirectory);
     if (!dir.isEmpty()) {
