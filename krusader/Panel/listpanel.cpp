@@ -277,7 +277,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     popupBtn = new QToolButton(this);
     popupBtn->setAutoRaise(true);
     popupBtn->setIcon(krLoader->loadIcon("arrow-up", KIconLoader::Toolbar, 16));
-    connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
+    connect(popupBtn, &QToolButton::clicked, this, &ListPanel::togglePanelPopup);
     popupBtn->setToolTip(i18n("Open the popup panel"));
     ADD_WIDGET(popupBtn);
 
@@ -318,7 +318,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     // create a splitter to hold the view and the popup
     splt = new PercentalSplitter(clientArea);
     splt->setChildrenCollapsible(true);
-    splt->setOrientation(Qt::Vertical);
+    splt->setOrientation(Qt::Horizontal);
     // expand vertical if splitter orientation is horizontal
     QSizePolicy sizePolicy = splt->sizePolicy();
     sizePolicy.setVerticalPolicy(QSizePolicy::Expanding);
@@ -555,15 +555,16 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
 void ListPanel::togglePanelPopup()
 {
     if(!popup) {
-        popup = new PanelPopup(splt, isLeft(), krApp);
+        popup = new PanelPopup(splt);
         // fix vertical grow of splitter (and entire window) if its content
         // demands more space
         QSizePolicy sizePolicy = popup->sizePolicy();
         sizePolicy.setVerticalPolicy(QSizePolicy::Ignored);
         popup->setSizePolicy(sizePolicy);
-        connect(this, SIGNAL(pathChanged(QUrl)), popup, SLOT(onPanelPathChange(QUrl)));
-        connect(popup, SIGNAL(selection(QUrl)), SLOTS, SLOT(refresh(QUrl)));
-        connect(popup, SIGNAL(hideMe()), this, SLOT(togglePanelPopup()));
+        connect(this, &ListPanel::pathChanged, popup, &PanelPopup::onPanelPathChange);
+        connect(popup, &PanelPopup::selection, SLOTS, &KRslots::refresh);
+        connect(popup, &PanelPopup::hideMe, this, &ListPanel::togglePanelPopup);
+        splt->insertWidget(0, popup);
     }
 
     if (popup->isHidden()) {

@@ -22,15 +22,12 @@
 
 // QtCore
 #include <QPointer>
-// QtGui
 // QtWidgets
 #include <QButtonGroup>
-#include <QSplitter>
 #include <QStackedWidget>
 #include <QToolButton>
 #include <QWidget>
 
-#include <KCompletion/KComboBox>
 #include <KConfigCore/KConfigGroup>
 #include <KIO/PreviewJob>
 #include <KIOFileWidgets/KImageFilePreview>
@@ -40,7 +37,6 @@ class PanelViewer;
 class DiskUsageViewer;
 class KrFileTreeView;
 class FileItem;
-class KrMainWindow;
 
 /**
  * Additional side widget showing various meta information for the current file/directories.
@@ -63,7 +59,7 @@ class PanelPopup: public QWidget
     };
 
 public:
-    PanelPopup(QSplitter *splitter, bool left, KrMainWindow *mainWindow);
+    explicit PanelPopup(QWidget *parent);
     ~PanelPopup();
     inline int currentPage() const {
         return stack->currentWidget()->property("KrusaderWidgetId").toInt();
@@ -90,9 +86,7 @@ protected slots:
 protected:
     virtual void focusInEvent(QFocusEvent*) Q_DECL_OVERRIDE;
 
-    bool _left;
     bool _hidden;
-    KrMainWindow *_mainWindow;
     QStackedWidget *stack;
     KImageFilePreview *imageFilePreview;
     KrSqueezedTextLabel *dataLine;
@@ -100,11 +94,8 @@ protected:
     KrFileTreeView *tree;
     QToolButton *treeBtn, *previewBtn, *viewerBtn, *duBtn;
     QButtonGroup *btns;
-    KComboBox *quickSelectCombo;
     PanelViewer *fileViewer;
     DiskUsageViewer *diskusage;
-    QList<int> splitterSizes;
-    QSplitter *splitter;
 };
 
 #endif

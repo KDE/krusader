@@ -27,7 +27,6 @@
 #include "viewactions.h"
 #include "../defaults.h"
 #include "../kicons.h"
-#include "../krmainwindow.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 #include "../FileSystem/fileitem.h"
 #include "../FileSystem/filesystem.h"
@@ -45,15 +44,10 @@
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 
-
-PanelPopup::PanelPopup(QSplitter *parent, bool left, KrMainWindow *mainWindow) : QWidget(parent),
-        _left(left), _hidden(true), _mainWindow(mainWindow), stack(0), imageFilePreview(0), pjob(0), splitterSizes()
+PanelPopup::PanelPopup(QWidget *parent) : QWidget(parent), stack(0), imageFilePreview(0), pjob(0)
 {
-    splitter = parent;
     QGridLayout * layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
-
-    splitterSizes << 100 << 100;
 
     // create the label+buttons setup
     dataLine = new KrSqueezedTextLabel(this);
@@ -117,8 +111,8 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, KrMainWindow *mainWindow) :
     tree->setDirOnlyMode(true);
     // NOTE: the F2 key press event is caught before it gets to the tree
     tree->setEditTriggers(QAbstractItemView::EditKeyPressed);
-    connect(tree, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(treeSelection()));
-    connect(tree, SIGNAL(activated(QUrl)), this, SLOT(treeSelection()));
+    connect(tree, &KrFileTreeView::doubleClicked, this, &PanelPopup::treeSelection);
+    connect(tree, &KrFileTreeView::activated, this, &PanelPopup::treeSelection);
 
     // create the quickview part ------
     imageFilePreview = new KImageFilePreview(stack);
@@ -130,7 +124,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, KrMainWindow *mainWindow) :
     fileViewer = new PanelViewer(stack);
     fileViewer->setProperty("KrusaderWidgetId", QVariant(View));
     stack->addWidget(fileViewer);
-    connect(fileViewer, SIGNAL(openUrlRequest(QUrl)), this, SLOT(handleOpenUrlRequest(QUrl)));
+    connect(fileViewer, &PanelViewer::openUrlRequest, this, &PanelPopup::handleOpenUrlRequest);
 
     // create the disk usage view
 
@@ -138,7 +132,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left, KrMainWindow *mainWindow) :
     diskusage->setStatusLabel(dataLine, i18n("Disk Usage:"));
     diskusage->setProperty("KrusaderWidgetId", QVariant(DskUsage));
     stack->addWidget(diskusage);
-    connect(diskusage, SIGNAL(openUrlRequest(QUrl)), this, SLOT(handleOpenUrlRequest(QUrl)));
+    connect(diskusage, &DiskUsageViewer::openUrlRequest, this, &PanelPopup::handleOpenUrlRequest);
 
     // -------- finish the layout (General one)
     layout->addWidget(stack, 1, 0, 1, 5);
@@ -172,18 +166,12 @@ void PanelPopup::setCurrentPage(int id)
 void PanelPopup::show()
 {
     QWidget::show();
-    if (_hidden)
-        splitter->setSizes(splitterSizes);
-    _hidden = false;
     tabSelected(currentPage());
 }
 
 void PanelPopup::hide()
 {
-    if (!_hidden)
-        splitterSizes = splitter->sizes();
     QWidget::hide();
-    _hidden = true;
     if (currentPage() == View) fileViewer->closeUrl();
     if (currentPage() == DskUsage) diskusage->closeUrl();
 }
