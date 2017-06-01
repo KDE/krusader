@@ -120,14 +120,16 @@ PanelPopup::PanelPopup(QWidget *parent) : QWidget(parent), stack(0), imageFilePr
     stack->addWidget(imageFilePreview);
 
     // create the panelview
-
     fileViewer = new PanelViewer(stack);
     fileViewer->setProperty("KrusaderWidgetId", QVariant(View));
+    // kparts demand too much width
+    QSizePolicy sizePolicy = fileViewer->sizePolicy();
+    sizePolicy.setHorizontalPolicy(QSizePolicy::Ignored);
+    fileViewer->setSizePolicy(sizePolicy);
     stack->addWidget(fileViewer);
     connect(fileViewer, &PanelViewer::openUrlRequest, this, &PanelPopup::handleOpenUrlRequest);
 
     // create the disk usage view
-
     diskusage = new DiskUsageViewer(stack);
     diskusage->setStatusLabel(dataLine, i18n("Disk Usage:"));
     diskusage->setProperty("KrusaderWidgetId", QVariant(DskUsage));
