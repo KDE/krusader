@@ -89,7 +89,7 @@ protected:
     virtual void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE;
     virtual void mouseReleaseEvent(QMouseEvent*) Q_DECL_OVERRIDE;
     void insertAction(QAction*);
-    QString squeeze(QString text, int index = -1);
+    QString squeeze(const QUrl &url, int tabIndex = -1);
     virtual void dragEnterEvent(QDragEnterEvent *) Q_DECL_OVERRIDE;
     virtual void dragLeaveEvent(QDragLeaveEvent *) Q_DECL_OVERRIDE;
     virtual void dragMoveEvent(QDragMoveEvent *) Q_DECL_OVERRIDE;
