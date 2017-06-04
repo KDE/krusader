@@ -20,11 +20,11 @@
 
 #include "krinterview.h"
 
-#include "krcolorcache.h"
 #include "krmousehandler.h"
-#include "krpreviews.h"
 #include "listmodel.h"
 #include "krviewitem.h"
+#include "../krpreviews.h"
+#include "../krcolorcache.h"
 #include "../FileSystem/dirlisterinterface.h"
 #include "../FileSystem/fileitem.h"
 

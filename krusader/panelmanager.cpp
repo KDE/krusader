@@ -25,7 +25,7 @@
 #include "krmainwindow.h"
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
-#include "Panel/krviewfactory.h"
+#include "Panel/PanelView/krviewfactory.h"
 
 #include <assert.h>
 

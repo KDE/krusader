@@ -51,6 +51,7 @@ add_executable(krusader ${krusader_SRCS} ${krusader_RC_SRCS})
 
 target_link_libraries(krusader
                       Panel
+                      PanelView
                       BookMan
                       Dialogs
                       DiskUsage

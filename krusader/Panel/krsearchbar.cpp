@@ -18,11 +18,11 @@
 
 #include "krsearchbar.h"
 
+#include "PanelView/krview.h"
+#include "PanelView/krviewitem.h"
+#include "../FileSystem/dirlisterinterface.h"
 #include "../defaults.h"
 #include "../krglobal.h"
-#include "../FileSystem/dirlisterinterface.h"
-#include "krview.h"
-#include "krviewitem.h"
 
 #include <QGuiApplication>
 #include <QHBoxLayout>

@@ -20,7 +20,7 @@
 
 #include "krviewproperties.h"
 #include "../krglobal.h"
-#include "listpanel.h"
+#include "../listpanel.h"
 
 // QtGui
 #include <QKeyEvent>

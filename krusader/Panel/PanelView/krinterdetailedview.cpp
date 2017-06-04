@@ -41,7 +41,7 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "krmousehandler.h"
-#include "krcolorcache.h"
+#include "../krcolorcache.h"
 #include "../GUI/krstyleproxy.h"
 
 

@@ -31,8 +31,8 @@ A
 #include "krpreviewjob.h"
 
 #include "krpreviews.h"
-#include "krview.h"
-#include "krviewitem.h"
+#include "PanelView/krview.h"
+#include "PanelView/krviewitem.h"
 #include "../FileSystem/fileitem.h"
 #include "../defaults.h"
 

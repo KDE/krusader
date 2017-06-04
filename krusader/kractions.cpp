@@ -46,12 +46,12 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krusaderview.h"
 #include "krslots.h"
 #include "krtrashhandler.h"
-#include "Panel/krviewfactory.h"
-#include "GUI/krremoteencodingmenu.h"
-#include "UserAction/useraction.h"
-#include "MountMan/kmountman.h"
 #include "Dialogs/popularurls.h"
+#include "GUI/krremoteencodingmenu.h"
 #include "JobMan/jobman.h"
+#include "MountMan/kmountman.h"
+#include "Panel/PanelView/krviewfactory.h"
+#include "UserAction/useraction.h"
 
 QAction *KrActions::actCompare = 0;
 QAction *KrActions::actDiskUsage = 0;

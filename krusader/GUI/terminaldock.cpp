@@ -47,7 +47,7 @@
 #include "../krslots.h"
 #include "../krusaderview.h"
 #include "../FileSystem/filesystem.h"
-#include "../Panel/krview.h"
+#include "../Panel/PanelView/krview.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/listpanelactions.h"
 #include "../Panel/panelfunc.h"

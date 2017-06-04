@@ -30,19 +30,19 @@
 
 #include "krview.h"
 
-#include "viewactions.h"
+#include "krselectionmode.h"
 #include "krviewfactory.h"
 #include "krviewitem.h"
-#include "krselectionmode.h"
-#include "krcolorcache.h"
-#include "krpreviews.h"
-#include "../kicons.h"
-#include "../krglobal.h"
-#include "../defaults.h"
 #include "../FileSystem/dirlisterinterface.h"
 #include "../FileSystem/fileitem.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../Filter/filterdialog.h"
+#include "../defaults.h"
+#include "../kicons.h"
+#include "../krcolorcache.h"
+#include "../krglobal.h"
+#include "../krpreviews.h"
+#include "../viewactions.h"
 
 // QtCore
 #include <QDir>

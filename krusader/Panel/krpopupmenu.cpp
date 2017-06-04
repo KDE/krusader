@@ -34,11 +34,11 @@
 #include <KIOWidgets/KAbstractFileItemActionPlugin>
 #include <KCoreAddons/KPluginMetaData>
 
-#include "krview.h"
-#include "krviewitem.h"
 #include "listpanel.h"
 #include "listpanelactions.h"
 #include "panelfunc.h"
+#include "PanelView/krview.h"
+#include "PanelView/krviewitem.h"
 #include "../defaults.h"
 #include "../krservices.h"
 #include "../krslots.h"

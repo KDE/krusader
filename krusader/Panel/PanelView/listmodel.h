@@ -27,7 +27,6 @@
 
 #include "krsort.h"
 
-
 class FileItem;
 class KrInterView;
 class KrViewProperties;

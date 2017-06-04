@@ -19,14 +19,13 @@
 
 #include "listmodel.h"
 
-#include "krcolorcache.h"
 #include "krinterview.h"
-#include "krpanel.h"
 #include "krviewproperties.h"
-
-#include "../defaults.h"
-#include "../krglobal.h"
 #include "../FileSystem/fileitem.h"
+#include "../defaults.h"
+#include "../krcolorcache.h"
+#include "../krglobal.h"
+#include "../krpanel.h"
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>

@@ -1,36 +1,27 @@
 include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
 
+add_subdirectory(PanelView)
+
 set(Panel_SRCS
-    viewactions.cpp
-    listpanelactions.cpp
     dirhistoryqueue.cpp
-    krsort.cpp
-    krlayoutfactory.cpp
-    krerrordisplay.cpp
-    krpreviews.cpp
-    krpreviewjob.cpp
-    krcolorcache.cpp
     krcalcspacedialog.cpp
-    krpopupmenu.cpp
-    krpreviewpopup.cpp
-    krview.cpp
-    krviewproperties.cpp
-    krviewitem.cpp
-    panelfunc.cpp
+    krcolorcache.cpp
+    krerrordisplay.cpp
+    krfiletreeview.cpp
+    krlayoutfactory.cpp
     krpanel.cpp
-    listpanel.cpp
-    listpanelframe.cpp
-    panelpopup.cpp
-    krselectionmode.cpp
-    listmodel.cpp
-    krinterview.cpp
-    krinterbriefview.cpp
-    krinterdetailedview.cpp
-    krviewfactory.cpp
-    krviewitemdelegate.cpp
-    krmousehandler.cpp
+    krpopupmenu.cpp
+    krpreviewjob.cpp
+    krpreviewpopup.cpp
+    krpreviews.cpp
     krsearchbar.cpp
-    krfiletreeview.cpp)
+    listpanel.cpp
+    listpanelactions.cpp
+    listpanelframe.cpp
+    panelfunc.cpp
+    panelpopup.cpp
+    viewactions.cpp
+)
 
 add_library(Panel STATIC ${Panel_SRCS})
 

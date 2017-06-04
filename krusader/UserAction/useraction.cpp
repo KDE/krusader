@@ -37,12 +37,12 @@
 #include <KWidgetsAddons/KMessageBox>
 
 #include "kraction.h"
+#include "../FileSystem/filesystem.h"
+#include "../Panel/PanelView/krview.h"
+#include "../Panel/krpanel.h"
+#include "../Panel/panelfunc.h"
 #include "../krusader.h"
 #include "../krusaderview.h"
-#include "../FileSystem/filesystem.h"
-#include "../Panel/krpanel.h"
-#include "../Panel/krview.h"
-#include "../Panel/panelfunc.h"
 
 UserAction::UserAction()
 {

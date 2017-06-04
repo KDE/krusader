@@ -21,8 +21,6 @@
 
 #include "krfiletreeview.h"
 #include "krpanel.h"
-#include "krview.h"
-#include "krviewitem.h"
 #include "panelfunc.h"
 #include "viewactions.h"
 #include "../defaults.h"
@@ -32,6 +30,8 @@
 #include "../FileSystem/filesystem.h"
 #include "../KViewer/diskusageviewer.h"
 #include "../KViewer/panelviewer.h"
+#include "PanelView/krview.h"
+#include "PanelView/krviewitem.h"
 
 // QtCore
 #include <QMimeDatabase>

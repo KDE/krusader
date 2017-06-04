@@ -28,6 +28,7 @@
 class FileItem;
 class KrViewProperties;
 
+/** Implements sorting for the panel list model. */
 namespace KrSort {
 
 class SortProps

@@ -61,7 +61,6 @@
 #include "krusaderversion.h"
 #include "krslots.h"
 #include "defaults.h"
-#include "Panel/krviewfactory.h"
 
 static const char *description = I18N_NOOP("Krusader\nTwin-Panel File Manager by KDE");
 

@@ -17,11 +17,11 @@
  *****************************************************************************/
 
 #include "krmousehandler.h"
+#include "krselectionmode.h"
 #include "krview.h"
 #include "krviewitem.h"
-#include "krselectionmode.h"
-#include "../krglobal.h"
 #include "../defaults.h"
+#include "../krglobal.h"
 
 // QtCore
 #include <QStandardPaths>

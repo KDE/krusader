@@ -24,7 +24,7 @@
 #include "../panelmanager.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
-#include "../Panel/krview.h"
+#include "../Panel/PanelView/krview.h"
 #include "../Search/krsearchdialog.h"
 #include "../GUI/profilemanager.h"
 #include "../FileSystem/filesystemprovider.h"

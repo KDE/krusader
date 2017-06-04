@@ -47,9 +47,9 @@
 
 #include "../GUI/krtreewidget.h"
 #include "../Panel/krsearchbar.h"
-#include "../Panel/krselectionmode.h"
-#include "../Panel/krview.h"
-#include "../Panel/krviewfactory.h"
+#include "../Panel/PanelView/krselectionmode.h"
+#include "../Panel/PanelView/krview.h"
+#include "../Panel/PanelView/krviewfactory.h"
 #include "../Panel/krlayoutfactory.h"
 
 enum {

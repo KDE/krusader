@@ -37,12 +37,12 @@
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KDirLister>
 
+#include "krmousehandler.h"
 #include "krviewfactory.h"
 #include "krviewitemdelegate.h"
 #include "krviewitem.h"
 #include "listmodel.h"
-#include "krmousehandler.h"
-#include "krcolorcache.h"
+#include "../krcolorcache.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../defaults.h"
 #include "../GUI/krstyleproxy.h"
