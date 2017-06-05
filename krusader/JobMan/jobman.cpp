@@ -42,7 +42,8 @@ class JobMenuAction : public QWidgetAction
 {
     Q_OBJECT
 public:
-    JobMenuAction(KrJob *krJob, QObject *parent) : QWidgetAction(parent), m_krJob(krJob)
+    JobMenuAction(KrJob *krJob, QObject *parent, KJob *kJob = nullptr)
+        : QWidgetAction(parent), m_krJob(krJob)
     {
         QWidget *container = new QWidget();
         QGridLayout *layout = new QGridLayout(container);
@@ -66,19 +67,12 @@ public:
 
         setDefaultWidget(container);
 
-        connect(krJob, &KrJob::started, this, [=](KJob *job) {
-            connect(job, &KJob::description, this, &JobMenuAction::slotDescription);
-            connect(job, SIGNAL(percent(KJob*,ulong)), this,
-                    SLOT(slotPercent(KJob*,ulong)));
-            connect(job, &KJob::suspended, this, &JobMenuAction::updatePauseResumeButton);
-            connect(job, &KJob::resumed, this, &JobMenuAction::updatePauseResumeButton);
-            connect(job, &KJob::result, this, &JobMenuAction::slotResult);
-            connect(job, &KJob::warning, this, [](KJob *, const QString &plain, const QString &) {
-                krOut << "unexpected job warning: " << plain;
-            });
+        if (kJob) {
+            slotStarted(kJob);
+        } else {
+            connect(krJob, &KrJob::started, this, &JobMenuAction::slotStarted);
+        }
 
-            updatePauseResumeButton();
-        });
         connect(krJob, &KrJob::terminated, this, &JobMenuAction::slotTerminated);
     }
 
@@ -150,6 +144,21 @@ protected slots:
         } else {
             deleteLater();
         }
+    }
+
+private slots:
+    void slotStarted(KJob *job)
+    {
+        connect(job, &KJob::description, this, &JobMenuAction::slotDescription);
+        connect(job, SIGNAL(percent(KJob *, ulong)), this, SLOT(slotPercent(KJob *, ulong)));
+        connect(job, &KJob::suspended, this, &JobMenuAction::updatePauseResumeButton);
+        connect(job, &KJob::resumed, this, &JobMenuAction::updatePauseResumeButton);
+        connect(job, &KJob::result, this, &JobMenuAction::slotResult);
+        connect(job, &KJob::warning, this, [](KJob *, const QString &plain, const QString &) {
+            krOut << "unexpected job warning: " << plain;
+        });
+
+        updatePauseResumeButton();
     }
 
 private:
@@ -256,15 +265,9 @@ bool JobMan::waitForJobs(bool waitForUserInput)
 
 void JobMan::manageJob(KrJob *job, StartMode startMode)
 {
-    JobMenuAction *menuAction = new JobMenuAction(job, m_controlAction);
-    connect(menuAction, &QObject::destroyed, this, &JobMan::slotUpdateControlAction);
-    m_controlAction->menu()->addAction(menuAction);
-    cleanupMenu();
-
-    slotUpdateControlAction();
+    managePrivate(job);
 
     connect(job, &KrJob::started, this, &JobMan::slotKJobStarted);
-    connect(job, &KrJob::terminated, this, &JobMan::slotTerminated);
 
     const bool enqueue = startMode == Enqueue || (startMode == Default && m_queueMode);
     if (startMode == Start || (startMode == Default && !m_queueMode) ||
@@ -272,8 +275,13 @@ void JobMan::manageJob(KrJob *job, StartMode startMode)
         job->start();
     }
 
-    m_jobs.append(job);
+    updateUI();
+}
 
+void JobMan::manageStartedJob(KrJob *krJob, KJob *kJob)
+{
+    managePrivate(krJob, kJob);
+    slotKJobStarted(kJob);
     updateUI();
 }
 
@@ -380,6 +388,20 @@ void JobMan::slotUpdateMessageBox()
 }
 
 // #### private
+
+void JobMan::managePrivate(KrJob *job, KJob *kJob)
+{
+    JobMenuAction *menuAction = new JobMenuAction(job, m_controlAction, kJob);
+    connect(menuAction, &QObject::destroyed, this, &JobMan::slotUpdateControlAction);
+    m_controlAction->menu()->addAction(menuAction);
+    cleanupMenu();
+
+    slotUpdateControlAction();
+
+    connect(job, &KrJob::terminated, this, &JobMan::slotTerminated);
+
+    m_jobs.append(job);
+}
 
 void JobMan::cleanupMenu() {
     const QList<QAction *> actions = m_controlAction->menu()->actions();

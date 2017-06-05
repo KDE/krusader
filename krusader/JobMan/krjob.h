@@ -20,9 +20,10 @@
 
 #include <KIO/Job>
 #include <KIO/CopyJob>
+#include <KIO/DropJob>
 
-
-/** Wrapper for KIO::Job cause it has limitations.
+/**
+ * Wrapper for KIO::Job cause it has limitations.
  *
  * KIO::Jobs cannot be started in pause mode (and pausing directly after creation is buggy).
  * Instead, a KrJob can be created which creates the KIO::Job on first start() call.
@@ -44,6 +45,8 @@ public:
                          const QUrl &destination, KIO::JobFlags flags);
     /** Create a new trash or delete job. */
     static KrJob *createDeleteJob(const QList<QUrl> &urls, bool moveToTrash);
+    /** Create a drop job - the copy job is already started.*/
+    static KrJob *createDropJob(KIO::DropJob *dropJob, KIO::CopyJob *job);
 
     /** Start or resume this job. If job was started started() is emitted. */
     void start();
@@ -72,7 +75,12 @@ signals:
 
 private:
     KrJob(Type type, const QList<QUrl> &urls, const QUrl &dest, KIO::JobFlags flags,
-          const QString &description);
+          const QString &description, KIO::CopyJob *copyJob = nullptr,
+          KIO::DropJob *dropJob = nullptr);
+    static KrJob *createKrCopyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &src,
+                              const QUrl &destination, KIO::JobFlags flags,
+                              KIO::CopyJob *job = nullptr, KIO::DropJob *dropJob = nullptr);
+    void connectStartedJob();
 
     const Type m_type;
     const QList<QUrl> m_urls;
@@ -81,6 +89,7 @@ private:
     const QString m_description;
 
     KIO::Job *m_job;
+    KIO::DropJob *m_dropJob;
 };
 
 #endif // KRJOB_H

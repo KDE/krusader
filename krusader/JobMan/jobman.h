@@ -51,7 +51,7 @@ class KrJob;
  * About undoing jobs: If jobs are recorded (all KrJobs are, some in FileSystem) we can undo them
  * with FileUndoManager (which is a singleton) here.
  * It would be great if each job in the job list could be undone individually but FileUndoManager
- * is currently (KF5.27) only able to undo the last recorded job.
+ * is currently (Frameworks 5.27) only able to undo the last recorded job.
  */
 class JobMan : public QObject
 {
@@ -97,6 +97,10 @@ public:
      * Whether the job is started now or delayed depends on startMode (and current queue mode flag).
      */
     void manageJob(KrJob *krJob, StartMode startMode = Default);
+    /**
+     * Like manageJob(), but for already started jobs.
+     */
+    void manageStartedJob(KrJob *krJob, KJob *job);
 
 protected slots:
     void slotKJobStarted(KJob *krJob);
@@ -110,6 +114,7 @@ protected slots:
     void slotUpdateMessageBox();
 
 private:
+    void managePrivate(KrJob *job, KJob *kJob = nullptr);
     void cleanupMenu(); // remove old entries if menu is too long
     void updateUI();
     bool jobsAreRunning();
