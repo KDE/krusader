@@ -84,22 +84,25 @@ void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
     const QUrl dest = resolveRelativePath(destination);
 
     KIO::DropJob *job = KIO::drop(event, dest);
-
 #if KIO_VERSION >= QT_VERSION_CHECK(5, 30, 0)
     // NOTE: a DropJob "starts" with showing a menu. If the operation is choosen (copy/move/link)
     // the actual CopyJob starts automatically - we cannot manage the start of the CopyJob (see
     // documentation for KrJob)
     connect(job, &KIO::DropJob::copyJobStarted, this, [=](KIO::CopyJob *kJob) {
+        connectJob(job, dest); // now we now we have to refresh the destination
+
         KrJob *krJob = KrJob::createDropJob(job, kJob);
         krJobMan->manageStartedJob(krJob, kJob);
+        if (kJob->operationMode() == KIO::CopyJob::Move) { // notify source about removed files
+            connectSourceFileSystem(kJob, kJob->srcUrls());
+        }
     });
-#endif
-
+#else
     // NOTE: DropJob does not provide information about the actual user choice
     // (move/copy/link/abort). We have to assume the worst (move)
     connectJob(job, dest);
     connectSourceFileSystem(job, KUrlMimeData::urlsFromMimeData(event->mimeData()));
-
+#endif
 }
 
 void DefaultFileSystem::connectSourceFileSystem(KJob *job, const QList<QUrl> urls)
