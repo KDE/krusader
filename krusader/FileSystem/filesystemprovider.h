@@ -54,6 +54,13 @@ public:
                         KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
                         bool showProgressInfo = true,
                         JobMan::StartMode startMode = JobMan::Default);
+    /**
+     * Handle file dropping. Starts a copy job for copying, moving or linking files to a destination
+     * directory after use choose the action in a context menu.
+     *
+     * May implemented async depending on destination filesystem.
+     */
+    void startDropFiles(QDropEvent *event, const QUrl &destination);
 
     static FileSystemProvider &instance();
     static FileSystem::FS_TYPE getFilesystemType(const QUrl &url);
@@ -64,6 +71,7 @@ public slots:
     void refreshFilesystem(const QUrl &directory);
 
 private:
+    FileSystem *getFilesystemInstance(const QUrl &directory);
     FileSystem *createFilesystem(const FileSystem::FS_TYPE type);
     FileSystemProvider();
 

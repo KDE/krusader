@@ -19,6 +19,8 @@
 
 #include "panelfunc.h"
 
+#include "../FileSystem/filesystemprovider.h"
+
 #include <QAction>
 #include <QCursor>
 #include <QDir>
@@ -98,8 +100,7 @@ void KrFileTreeView::dropEvent(QDropEvent *event)
         return;
     }
 
-    KIO::drop(event, destination);
-    // TODO show error message job result and refresh event source
+    FileSystemProvider::instance().startDropFiles(event, destination);
 }
 
 void KrFileTreeView::slotExpanded(const QModelIndex &baseIndex)

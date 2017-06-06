@@ -50,21 +50,14 @@ void FileSystemProvider::startCopyFiles(const QList<QUrl> &urls, const QUrl &des
                                   KIO::CopyJob::CopyMode mode, bool showProgressInfo,
                                   JobMan::StartMode startMode)
 {
-    const FileSystem::FS_TYPE type = getFilesystemType(destination);
-    FileSystem *fs;
-    switch (type) {
-    case FileSystem::FS_VIRTUAL:
-        if (!_virtFileSystem)
-            _virtFileSystem = createFilesystem(type);
-        fs = _virtFileSystem;
-        break;
-    default:
-        if (!_defaultFileSystem)
-            _defaultFileSystem = createFilesystem(type);
-        fs = _defaultFileSystem;
-    }
-
+    FileSystem *fs = getFilesystemInstance(destination);
     fs->copyFiles(urls, destination, mode, showProgressInfo, startMode);
+}
+
+void FileSystemProvider::startDropFiles(QDropEvent *event, const QUrl &destination)
+{
+    FileSystem *fs = getFilesystemInstance(destination);
+    fs->dropFiles(destination, event);
 }
 
 void FileSystemProvider::refreshFilesystem(const QUrl &directory)
@@ -97,6 +90,22 @@ void FileSystemProvider::refreshFilesystem(const QUrl &directory)
             // ..or refresh filesystem info if mount point is the same (for free space update)
             fs->updateFilesystemInfo();
         }
+    }
+}
+
+FileSystem *FileSystemProvider::getFilesystemInstance(const QUrl &directory)
+{
+    const FileSystem::FS_TYPE type = getFilesystemType(directory);
+    switch (type) {
+    case FileSystem::FS_VIRTUAL:
+        if (!_virtFileSystem)
+            _virtFileSystem = createFilesystem(type);
+        return _virtFileSystem;
+        break;
+    default:
+        if (!_defaultFileSystem)
+            _defaultFileSystem = createFilesystem(type);
+        return _defaultFileSystem;
     }
 }
 
