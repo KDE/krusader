@@ -75,12 +75,11 @@ public slots:
     void hide();
 
 signals:
-    void selection(const QUrl &url);
+    void urlActivated(const QUrl &url);
     void hideMe();
 
 protected slots:
     void tabSelected(int id);
-    void treeSelection();
     void handleOpenUrlRequest(const QUrl &url);
 
 protected:

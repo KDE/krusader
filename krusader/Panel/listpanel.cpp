@@ -562,8 +562,7 @@ void ListPanel::togglePanelPopup()
         sizePolicy.setVerticalPolicy(QSizePolicy::Ignored);
         popup->setSizePolicy(sizePolicy);
         connect(this, &ListPanel::pathChanged, popup, &PanelPopup::onPanelPathChange);
-        connect(popup, &PanelPopup::selection, SLOTS, &KRslots::refresh);
-        connect(popup, &PanelPopup::hideMe, this, &ListPanel::togglePanelPopup);
+        connect(popup, &PanelPopup::urlActivated, SLOTS, &KRslots::refresh);
         splt->insertWidget(0, popup);
     }
 

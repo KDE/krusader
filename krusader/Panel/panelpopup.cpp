@@ -111,8 +111,8 @@ PanelPopup::PanelPopup(QWidget *parent) : QWidget(parent), stack(0), imageFilePr
     tree->setDirOnlyMode(true);
     // NOTE: the F2 key press event is caught before it gets to the tree
     tree->setEditTriggers(QAbstractItemView::EditKeyPressed);
-    connect(tree, &KrFileTreeView::doubleClicked, this, &PanelPopup::treeSelection);
-    connect(tree, &KrFileTreeView::activated, this, &PanelPopup::treeSelection);
+    // connecting signal to signal
+    connect(tree, &KrFileTreeView::urlActivated, this, &PanelPopup::urlActivated);
 
     // create the quickview part ------
     imageFilePreview = new KImageFilePreview(stack);
@@ -292,12 +292,4 @@ void PanelPopup::onPanelPathChange(const QUrl &url)
         }
         break;
     }
-}
-
-// ------------------- tree
-
-void PanelPopup::treeSelection()
-{
-    emit selection(tree->currentUrl());
-    //emit hideMe();
 }

@@ -28,6 +28,7 @@
 #include <QHeaderView>
 #include <QMenu>
 #include <QMimeData>
+#include <QProxyStyle>
 
 #include <KIO/DropJob>
 #include <KIOCore/KFileItem>
@@ -51,6 +52,21 @@ private:
     KrFileTreeView * fileTreeView;
 };
 
+class TreeStyle : public QProxyStyle
+{
+public:
+    explicit TreeStyle(QStyle *style) : QProxyStyle(style) {}
+
+    int styleHint(StyleHint hint, const QStyleOption *option, const QWidget *widget,
+                  QStyleHintReturn *returnData) const Q_DECL_OVERRIDE {
+        if (hint == QStyle::SH_ItemView_ActivateItemOnSingleClick) {
+            return true;
+        }
+
+        return QProxyStyle::styleHint(hint, option, widget, returnData);
+    }
+};
+
 KrFileTreeView::KrFileTreeView(QWidget *parent)
         : QTreeView(parent)
 {
@@ -66,8 +82,8 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
 
     mSourceModel->dirLister()->openUrl(QUrl::fromLocalFile(QDir::root().absolutePath()), KDirLister::Keep);
 
-    connect(this, SIGNAL(activated(QModelIndex)),
-            this, SLOT(slotActivated(QModelIndex)));
+    setStyle(new TreeStyle(style()));
+    connect(this, &KrFileTreeView::activated, this, &KrFileTreeView::slotActivated);
 
     connect(mSourceModel, SIGNAL(expand(QModelIndex)),
             this, SLOT(slotExpanded(QModelIndex)));
@@ -90,7 +106,7 @@ void KrFileTreeView::slotActivated(const QModelIndex &index)
 {
     const QUrl url = urlForProxyIndex(index);
     if (url.isValid())
-        emit activated(url);
+        emit urlActivated(url);
 }
 
 void KrFileTreeView::dropEvent(QDropEvent *event)
@@ -111,11 +127,6 @@ void KrFileTreeView::slotExpanded(const QModelIndex &baseIndex)
     selectionModel()->clearSelection();
     selectionModel()->setCurrentIndex(index, QItemSelectionModel::SelectCurrent);
     scrollTo(index);
-}
-
-QUrl KrFileTreeView::currentUrl() const
-{
-    return urlForProxyIndex(currentIndex());
 }
 
 void KrFileTreeView::setDirOnlyMode(bool enabled)

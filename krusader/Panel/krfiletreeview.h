@@ -19,10 +19,10 @@
 #ifndef KRFILETREEVIEW_H
 #define KRFILETREEVIEW_H
 
-#include <QModelIndex>
 #include <QList>
-#include <QUrl>
+#include <QModelIndex>
 #include <QTreeView>
+#include <QUrl>
 #include <QWidget>
 
 #include <KIOWidgets/KDirModel>
@@ -40,7 +40,6 @@ public:
     explicit KrFileTreeView(QWidget *parent = 0);
     virtual ~KrFileTreeView() {}
 
-    QUrl currentUrl() const;
     bool briefMode() const;
     void setBriefMode(bool brief); // show only column with directory names
 
@@ -50,10 +49,10 @@ public slots:
     void setCurrentUrl(const QUrl &url);
 
 signals:
-    void activated(const QUrl &url);
+    void urlActivated(const QUrl &url);
 
 private slots:
-    void slotActivated(const QModelIndex&);
+    void slotActivated(const QModelIndex &index);
     void slotExpanded(const QModelIndex&);
     void showHeaderContextMenu();
 
