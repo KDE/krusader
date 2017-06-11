@@ -25,6 +25,7 @@
 #include <QUrl>
 #include <QWidget>
 
+#include <KConfigCore/KSharedConfig>
 #include <KIOWidgets/KDirModel>
 #include <KIOFileWidgets/KDirSortFilterProxyModel>
 
@@ -40,8 +41,8 @@ public:
     explicit KrFileTreeView(QWidget *parent = 0);
     virtual ~KrFileTreeView() {}
 
-    bool briefMode() const;
-    void setBriefMode(bool brief); // show only column with directory names
+    void saveSettings(KConfigGroup cfg) const;
+    void restoreSettings(const KConfigGroup &cfg);
 
 public slots:
     void setCurrentUrl(const QUrl &url);
@@ -60,6 +61,9 @@ protected:
 private:
     QUrl urlForProxyIndex(const QModelIndex &index) const;
     void dropMimeData(const QList<QUrl> & lst, const QUrl &url);
+    bool briefMode() const;
+    void setBriefMode(bool brief); // show only column with directory names
+    void setTreeRoot(bool startFromCurrent);
 
     KDirModel *mSourceModel;
     KDirSortFilterProxyModel *mProxyModel;

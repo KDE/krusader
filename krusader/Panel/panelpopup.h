@@ -65,7 +65,7 @@ public:
         return stack->currentWidget()->property("KrusaderWidgetId").toInt();
     }
     void saveSettings(KConfigGroup cfg) const;
-    void restoreSettings(KConfigGroup cfg);
+    void restoreSettings(const KConfigGroup &cfg);
     void setCurrentPage(int);
 
 public slots:

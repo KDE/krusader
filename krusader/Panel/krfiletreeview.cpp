@@ -176,12 +176,7 @@ void KrFileTreeView::showHeaderContextMenu()
         dirLister->setShowingDotFiles(showHiddenAction->isChecked());
         dirLister->emitChanges();
     } else if (triggeredAction == startFromCurrentAction) {
-        mStartTreeFromCurrent = startFromCurrentAction->isChecked();
-        if (!mStartTreeFromCurrent) {
-            // reset tree base to root
-            mSourceModel->dirLister()->openUrl(QUrl::fromLocalFile(QDir::root().path()));
-        }
-        setCurrentUrl(mCurrentUrl); // refresh
+        setTreeRoot(startFromCurrentAction->isChecked());
     }
 }
 
@@ -195,4 +190,30 @@ void KrFileTreeView::setBriefMode(bool brief)
     for (int i=1; i < mProxyModel->columnCount(); i++) { // show only first column
         setColumnHidden(i, brief);
     }
+}
+
+void KrFileTreeView::setTreeRoot(bool startFromCurrent)
+{
+    mStartTreeFromCurrent = startFromCurrent;
+    if (!mStartTreeFromCurrent) {
+        // reset tree base to root
+        mSourceModel->dirLister()->openUrl(QUrl::fromLocalFile(QDir::root().path()));
+    }
+    setCurrentUrl(mCurrentUrl); // refresh
+}
+
+void KrFileTreeView::saveSettings(KConfigGroup cfg) const
+{
+    KConfigGroup group = KConfigGroup(&cfg, "TreeView");
+    group.writeEntry("BriefMode", briefMode());
+    group.writeEntry("ShowHiddenFolders", mSourceModel->dirLister()->showingDotFiles());
+    group.writeEntry("StartFromCurrent", mStartTreeFromCurrent);
+}
+
+void KrFileTreeView::restoreSettings(const KConfigGroup &cfg)
+{
+    const KConfigGroup group = KConfigGroup(&cfg, "TreeView");
+    setBriefMode(group.readEntry("BriefMode", true));
+    mSourceModel->dirLister()->setShowingDotFiles(group.readEntry("ShowHiddenFolders", false));
+    setTreeRoot(group.readEntry("StartFromCurrent", false));
 }

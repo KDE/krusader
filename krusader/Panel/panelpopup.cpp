@@ -141,14 +141,12 @@ PanelPopup::~PanelPopup() {}
 
 void PanelPopup::saveSettings(KConfigGroup cfg) const
 {
-    if (currentPage() == Tree) {
-        cfg.writeEntry("TreeBriefMode", tree->briefMode());
-    }
+    tree->saveSettings(cfg);
 }
 
-void PanelPopup::restoreSettings(KConfigGroup cfg)
+void PanelPopup::restoreSettings(const KConfigGroup &cfg)
 {
-    tree->setBriefMode(cfg.readEntry("TreeBriefMode", true));
+    tree->restoreSettings(cfg);
 }
 
 void PanelPopup::setCurrentPage(int id)
