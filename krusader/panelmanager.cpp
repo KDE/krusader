@@ -369,7 +369,6 @@ void PanelManager::reloadConfig()
         ListPanel *panel = _tabbar->getPanel(i);
         if (panel) {
             panel->func->refresh();
-            panel->reloadConfig();
         }
     }
 }

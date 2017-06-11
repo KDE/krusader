@@ -123,8 +123,6 @@ public:
 
     void saveSettings(KConfigGroup cfg, bool saveHistory);
     void restoreSettings(KConfigGroup cfg);
-    /** Apply (some) config changes. */
-    void reloadConfig();
 
 public slots:
     void popRightClickMenu(const QPoint&);

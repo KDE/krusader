@@ -32,7 +32,6 @@
 #include <QMimeData>
 #include <QProxyStyle>
 
-#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIO/DropJob>
 #include <KIOCore/KFileItem>
@@ -97,7 +96,6 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
             &KrFileTreeView::showHeaderContextMenu);
 
     mSourceModel->dirLister()->openUrl(mCurrentUrl);
-    reloadConfig();
 }
 
 QUrl KrFileTreeView::urlForProxyIndex(const QModelIndex &index) const
@@ -165,7 +163,11 @@ void KrFileTreeView::showHeaderContextMenu()
     detailAction->setCheckable(true);
     detailAction->setChecked(!briefMode());
     detailAction->setToolTip(i18n("Show columns with details."));
-    QAction *startFromCurrentAction = popup.addAction(i18n("Start from current"));
+    QAction *showHiddenAction = popup.addAction(i18n("Show Hidden Folders"));
+    showHiddenAction->setCheckable(true);
+    showHiddenAction->setChecked(mSourceModel->dirLister()->showingDotFiles());
+    showHiddenAction->setToolTip(i18n("Show folders starting with a dot."));
+    QAction *startFromCurrentAction = popup.addAction(i18n("Start From Current"));
     startFromCurrentAction->setCheckable(true);
     startFromCurrentAction->setChecked(mStartTreeFromCurrent);
     startFromCurrentAction->setToolTip(i18n("Set the root of the tree to the current folder."));
@@ -173,6 +175,10 @@ void KrFileTreeView::showHeaderContextMenu()
     QAction *triggeredAction = popup.exec(QCursor::pos());
     if (triggeredAction == detailAction) {
         setBriefMode(!detailAction->isChecked());
+    } else if (triggeredAction == showHiddenAction) {
+        KDirLister *dirLister = mSourceModel->dirLister();
+        dirLister->setShowingDotFiles(showHiddenAction->isChecked());
+        dirLister->emitChanges();
     } else if (triggeredAction == startFromCurrentAction) {
         mStartTreeFromCurrent = startFromCurrentAction->isChecked();
         if (!mStartTreeFromCurrent) {
@@ -193,13 +199,4 @@ void KrFileTreeView::setBriefMode(bool brief)
     for (int i=1; i < mProxyModel->columnCount(); i++) { // show only first column
         setColumnHidden(i, brief);
     }
-}
-
-void KrFileTreeView::reloadConfig()
-{
-    const KConfigGroup group(krConfig, "Look&Feel");
-    const bool showHidden = group.readEntry("Show Hidden", _ShowHidden);
-    KDirLister *dirLister = mSourceModel->dirLister();
-    dirLister->setShowingDotFiles(showHidden);
-    dirLister->emitChanges();
 }

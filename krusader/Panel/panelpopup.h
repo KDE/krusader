@@ -66,7 +66,6 @@ public:
     }
     void saveSettings(KConfigGroup cfg) const;
     void restoreSettings(KConfigGroup cfg);
-    void reloadConfig();
     void setCurrentPage(int);
 
 public slots:
