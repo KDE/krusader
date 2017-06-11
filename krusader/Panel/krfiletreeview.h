@@ -26,8 +26,9 @@
 #include <QWidget>
 
 #include <KConfigCore/KSharedConfig>
-#include <KIOWidgets/KDirModel>
 #include <KIOFileWidgets/KDirSortFilterProxyModel>
+#include <KIOFileWidgets/KFilePlacesModel>
+#include <KIOWidgets/KDirModel>
 
 /**
  * @brief Shows a generic file tree
@@ -63,12 +64,16 @@ private:
     void dropMimeData(const QList<QUrl> & lst, const QUrl &url);
     bool briefMode() const;
     void setBriefMode(bool brief); // show only column with directory names
-    void setTreeRoot(bool startFromCurrent);
+    void setTreeRoot(bool startFromCurrent, bool startFromPlace);
 
     KDirModel *mSourceModel;
     KDirSortFilterProxyModel *mProxyModel;
+    KFilePlacesModel *mFilePlacesModel;
     QUrl mCurrentUrl;
-    bool mStartTreeFromCurrent;
+    QUrl mCurrentTreeBase;
+
+    bool mStartTreeFromCurrent; // NAND...
+    bool mStartTreeFromPlace;
 };
 
 #endif // KRFILETREEVIEW_H
