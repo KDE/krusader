@@ -67,6 +67,8 @@ private:
 
     KDirModel *mSourceModel;
     KDirSortFilterProxyModel *mProxyModel;
+    QUrl mCurrentUrl;
+    bool mStartTreeFromCurrent;
 };
 
 #endif // KRFILETREEVIEW_H

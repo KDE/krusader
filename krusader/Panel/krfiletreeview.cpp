@@ -71,7 +71,8 @@ public:
 };
 
 KrFileTreeView::KrFileTreeView(QWidget *parent)
-        : QTreeView(parent)
+    : QTreeView(parent), mCurrentUrl(QUrl::fromLocalFile(QDir::root().path())),
+      mStartTreeFromCurrent(false)
 {
     mSourceModel = new KrDirModel(this, this);
     mProxyModel = new KDirSortFilterProxyModel(this);
@@ -82,8 +83,6 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
     setModel(mProxyModel);
     setItemDelegate(new KFileItemDelegate(this));
     setUniformRowHeights(true);
-
-    mSourceModel->dirLister()->openUrl(QUrl::fromLocalFile(QDir::root().path()), KDirLister::Keep);
 
     setStyle(new TreeStyle(style()));
     connect(this, &KrFileTreeView::activated, this, &KrFileTreeView::slotActivated);
@@ -97,6 +96,7 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
     connect(header(), &QHeaderView::customContextMenuRequested, this,
             &KrFileTreeView::showHeaderContextMenu);
 
+    mSourceModel->dirLister()->openUrl(mCurrentUrl);
     reloadConfig();
 }
 
@@ -148,19 +148,38 @@ void KrFileTreeView::setShowHiddenFiles(bool enabled)
 
 void KrFileTreeView::setCurrentUrl(const QUrl &url)
 {
-    mSourceModel->expandToUrl(url);
+    mCurrentUrl = url;
+    if (mStartTreeFromCurrent) {
+        mSourceModel->dirLister()->openUrl(url);
+    } else {
+        mSourceModel->expandToUrl(url);
+    }
 }
 
 void KrFileTreeView::showHeaderContextMenu()
 {
     QMenu popup(this);
+    popup.setToolTipsVisible(true);
 
-    QAction *action = popup.addAction(i18n("Show Details"));
-    action->setCheckable(true);
-    action->setChecked(!briefMode());
+    QAction *detailAction = popup.addAction(i18n("Show Details"));
+    detailAction->setCheckable(true);
+    detailAction->setChecked(!briefMode());
+    detailAction->setToolTip(i18n("Show columns with details."));
+    QAction *startFromCurrentAction = popup.addAction(i18n("Start from current"));
+    startFromCurrentAction->setCheckable(true);
+    startFromCurrentAction->setChecked(mStartTreeFromCurrent);
+    startFromCurrentAction->setToolTip(i18n("Set the root of the tree to the current folder."));
 
-    if (popup.exec(QCursor::pos())) { // if action was clicked
-        setBriefMode(!action->isChecked());
+    QAction *triggeredAction = popup.exec(QCursor::pos());
+    if (triggeredAction == detailAction) {
+        setBriefMode(!detailAction->isChecked());
+    } else if (triggeredAction == startFromCurrentAction) {
+        mStartTreeFromCurrent = startFromCurrentAction->isChecked();
+        if (!mStartTreeFromCurrent) {
+            // reset tree base to root
+            mSourceModel->dirLister()->openUrl(QUrl::fromLocalFile(QDir::root().path()));
+        }
+        setCurrentUrl(mCurrentUrl); // refresh
     }
 }
 
