@@ -347,8 +347,8 @@ void KRslots::configChanged(bool isGUIRestartNeeded)
 
     if (showHidden != KrActions::actToggleHidden->isChecked()) {
         KrActions::actToggleHidden->setChecked(showHidden);
-        MAIN_VIEW->leftManager()->refreshAllTabs();
-        MAIN_VIEW->rightManager()->refreshAllTabs();
+        MAIN_VIEW->leftManager()->reloadConfig();
+        MAIN_VIEW->rightManager()->reloadConfig();
     }
 }
 
@@ -357,8 +357,8 @@ void KRslots::showHiddenFiles(bool show)
     KConfigGroup group(krConfig, "Look&Feel");
     group.writeEntry("Show Hidden", show);
 
-    MAIN_VIEW->leftManager()->refreshAllTabs();
-    MAIN_VIEW->rightManager()->refreshAllTabs();
+    MAIN_VIEW->leftManager()->reloadConfig();
+    MAIN_VIEW->rightManager()->reloadConfig();
 }
 
 void KRslots::swapPanels()

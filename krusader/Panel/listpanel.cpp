@@ -1247,6 +1247,12 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
     }
 }
 
+void ListPanel::reloadConfig()
+{
+    if (popup)
+        popup->reloadConfig();
+}
+
 void ListPanel::slotCurrentChanged(KrViewItem *item)
 {
     // update status bar

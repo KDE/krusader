@@ -19,6 +19,8 @@
 
 #include "panelfunc.h"
 
+#include "../defaults.h"
+#include "../krglobal.h"
 #include "../FileSystem/filesystemprovider.h"
 
 #include <QAction>
@@ -30,11 +32,12 @@
 #include <QMimeData>
 #include <QProxyStyle>
 
+#include <KConfigCore/KSharedConfig>
+#include <KI18n/KLocalizedString>
 #include <KIO/DropJob>
 #include <KIOCore/KFileItem>
 #include <KIOWidgets/KDirLister>
 #include <KIOWidgets/KFileItemDelegate>
-#include <KI18n/KLocalizedString>
 
 class KrDirModel : public KDirModel
 {
@@ -80,19 +83,21 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
     setItemDelegate(new KFileItemDelegate(this));
     setUniformRowHeights(true);
 
-    mSourceModel->dirLister()->openUrl(QUrl::fromLocalFile(QDir::root().absolutePath()), KDirLister::Keep);
+    mSourceModel->dirLister()->openUrl(QUrl::fromLocalFile(QDir::root().path()), KDirLister::Keep);
 
     setStyle(new TreeStyle(style()));
     connect(this, &KrFileTreeView::activated, this, &KrFileTreeView::slotActivated);
 
-    connect(mSourceModel, SIGNAL(expand(QModelIndex)),
-            this, SLOT(slotExpanded(QModelIndex)));
+    connect(mSourceModel, &KDirModel::expand, this, &KrFileTreeView::slotExpanded);
 
     QFontMetrics fontMetrics(viewport()->font());
     header()->resizeSection(KDirModel::Name, fontMetrics.width("WWWWWWWWWWWWWWW"));
 
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showHeaderContextMenu()));
+    connect(header(), &QHeaderView::customContextMenuRequested, this,
+            &KrFileTreeView::showHeaderContextMenu);
+
+    reloadConfig();
 }
 
 QUrl KrFileTreeView::urlForProxyIndex(const QModelIndex &index) const
@@ -169,4 +174,13 @@ void KrFileTreeView::setBriefMode(bool brief)
     for (int i=1; i < mProxyModel->columnCount(); i++) { // show only first column
         setColumnHidden(i, brief);
     }
+}
+
+void KrFileTreeView::reloadConfig()
+{
+    const KConfigGroup group(krConfig, "Look&Feel");
+    const bool showHidden = group.readEntry("Show Hidden", _ShowHidden);
+    KDirLister *dirLister = mSourceModel->dirLister();
+    dirLister->setShowingDotFiles(showHidden);
+    dirLister->emitChanges();
 }

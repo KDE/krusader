@@ -363,15 +363,14 @@ void PanelManager::slotPreviousTab()
     _tabbar->setCurrentIndex(nextInd);
 }
 
-void PanelManager::refreshAllTabs()
+void PanelManager::reloadConfig()
 {
-    int i = 0;
-    while (i < _tabbar->count()) {
+    for (int i = 0; i < _tabbar->count(); i++) {
         ListPanel *panel = _tabbar->getPanel(i);
         if (panel) {
             panel->func->refresh();
+            panel->reloadConfig();
         }
-        ++i;
     }
 }
 

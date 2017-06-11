@@ -42,6 +42,8 @@ public:
 
     bool briefMode() const;
     void setBriefMode(bool brief); // show only column with directory names
+    /** Reload global config settings and refresh files. */
+    void reloadConfig();
 
 public slots:
     void setDirOnlyMode(bool enabled);

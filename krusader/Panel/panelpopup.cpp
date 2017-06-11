@@ -157,6 +157,12 @@ void PanelPopup::restoreSettings(KConfigGroup cfg)
     tree->setBriefMode(cfg.readEntry("TreeBriefMode", true));
 }
 
+void PanelPopup::reloadConfig()
+{
+    // only for tree view needed right now
+    tree->reloadConfig();
+}
+
 void PanelPopup::setCurrentPage(int id)
 {
     QAbstractButton * curr = btns->button(id);
