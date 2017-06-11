@@ -87,7 +87,7 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
 
     // drag&drop
     setAcceptDrops(true);
-    setDragDropMode(QTreeView::DropOnly);
+    setDragEnabled(true);
     setDropIndicatorShown(true);
     mSourceModel->setDropsAllowed(KDirModel::DropOnDirectory);
 
