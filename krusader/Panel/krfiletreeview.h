@@ -44,8 +44,6 @@ public:
     void setBriefMode(bool brief); // show only column with directory names
 
 public slots:
-    void setDirOnlyMode(bool enabled);
-    void setShowHiddenFiles(bool enabled);
     void setCurrentUrl(const QUrl &url);
 
 signals:

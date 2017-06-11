@@ -74,14 +74,20 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
       mStartTreeFromCurrent(false)
 {
     mSourceModel = new KrDirModel(this, this);
+    mSourceModel->dirLister()->setDirOnlyMode(true);
+
     mProxyModel = new KDirSortFilterProxyModel(this);
     mProxyModel->setSourceModel(mSourceModel);
-
-    mSourceModel->setDropsAllowed(KDirModel::DropOnDirectory);
-
     setModel(mProxyModel);
+
     setItemDelegate(new KFileItemDelegate(this));
     setUniformRowHeights(true);
+
+    // drag&drop
+    setAcceptDrops(true);
+    setDragDropMode(QTreeView::DropOnly);
+    setDropIndicatorShown(true);
+    mSourceModel->setDropsAllowed(KDirModel::DropOnDirectory);
 
     setStyle(new TreeStyle(style()));
     connect(this, &KrFileTreeView::activated, this, &KrFileTreeView::slotActivated);
@@ -94,6 +100,8 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(header(), &QHeaderView::customContextMenuRequested, this,
             &KrFileTreeView::showHeaderContextMenu);
+
+    setBriefMode(true);
 
     mSourceModel->dirLister()->openUrl(mCurrentUrl);
 }
@@ -130,18 +138,6 @@ void KrFileTreeView::slotExpanded(const QModelIndex &baseIndex)
     selectionModel()->clearSelection();
     selectionModel()->setCurrentIndex(index, QItemSelectionModel::SelectCurrent);
     scrollTo(index);
-}
-
-void KrFileTreeView::setDirOnlyMode(bool enabled)
-{
-    mSourceModel->dirLister()->setDirOnlyMode(enabled);
-    mSourceModel->dirLister()->openUrl(mSourceModel->dirLister()->url());
-}
-
-void KrFileTreeView::setShowHiddenFiles(bool enabled)
-{
-    mSourceModel->dirLister()->setShowingDotFiles(enabled);
-    mSourceModel->dirLister()->openUrl(mSourceModel->dirLister()->url());
 }
 
 void KrFileTreeView::setCurrentUrl(const QUrl &url)

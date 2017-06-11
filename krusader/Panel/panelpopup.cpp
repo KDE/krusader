@@ -101,14 +101,8 @@ PanelPopup::PanelPopup(QWidget *parent) : QWidget(parent), stack(0), imageFilePr
 
     // create the tree part ----------
     tree = new KrFileTreeView(stack);
-    tree->setAcceptDrops(true);
-    tree->setDragDropMode(QTreeView::DropOnly);
-    tree->setDropIndicatorShown(true);
-    tree->setBriefMode(true);
-
     tree->setProperty("KrusaderWidgetId", QVariant(Tree));
     stack->addWidget(tree);
-    tree->setDirOnlyMode(true);
     // NOTE: the F2 key press event is caught before it gets to the tree
     tree->setEditTriggers(QAbstractItemView::EditKeyPressed);
     // connecting signal to signal
