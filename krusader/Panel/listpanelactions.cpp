@@ -75,7 +75,12 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     /* Shortcut disabled because of the Terminal Emulator bug. */
     actDirUp = stdAction(KStandardAction::Up, _func, SLOT(dirUp()));
     actHome = stdAction(KStandardAction::Home, _func, SLOT(home()));
-    stdAction(KStandardAction::Cut, _func, SLOT(cut()));
+    // removing alternative shift+del shortcut, it is used for the alternative delete files action
+    QAction *cutAction = stdAction(KStandardAction::Cut, _func, SLOT(cut()));
+    QList<QKeySequence> cutShortcuts = cutAction->shortcuts();
+    cutShortcuts.removeAll(QKeySequence(Qt::SHIFT | Qt::Key_Delete));
+    _mainWindow->actions()->setDefaultShortcuts(cutAction, cutShortcuts);
+
     actCopy = stdAction(KStandardAction::Copy, _func, SLOT(copyToClipboard()));
     actPaste = stdAction(KStandardAction::Paste, _func, SLOT(pasteFromClipboard()));
 
