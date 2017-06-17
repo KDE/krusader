@@ -645,8 +645,8 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
             op()->emitGoHome(); // ask krusader to move to the home directory
         }
         return true;
-    case Qt::Key_Delete : // delete/trash the file
-        op()->emitDefaultDeleteFiles(e->modifiers() == Qt::ShiftModifier || e->modifiers() == Qt::ControlModifier);
+    case Qt::Key_Delete : // delete/trash the file (delete with alternative mode is a panel action)
+        op()->emitDefaultDeleteFiles();
         return true;
     case Qt::Key_Insert: {
         KrViewItem * i = getCurrentKrViewItem();

@@ -86,8 +86,11 @@ public slots:
      * asks the user the new directory name
      */
     void mkdir();
-    void defaultDeleteFiles(bool invert = false);
-    // delete virtual files or directories in virtual filesystem
+    /** Delete or move selected files to trash - depending on user setting. */
+    void defaultDeleteFiles() { defaultOrAlternativeDeleteFiles(false); }
+    /** Delete or move selected files to trash - inverting the user setting. */
+    void alternativeDeleteFiles() { defaultOrAlternativeDeleteFiles(true); }
+    /** Delete virtual files or directories in virtual filesystem. */
     void removeVirtualFiles();
     void rename();
     void krlink(bool sym = true);
@@ -160,6 +163,7 @@ protected:
     static QPointer<ListPanelFunc> copyToClipboardOrigin;
 
 private:
+    void defaultOrAlternativeDeleteFiles(bool invert);
     bool getSelectedFiles(QStringList& args);
     SizeCalculator *createAndConnectSizeCalculator(const QList<QUrl> &urls);
     bool _isPaused; // do not refresh while panel is not visible

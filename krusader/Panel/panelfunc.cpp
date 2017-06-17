@@ -684,7 +684,7 @@ void ListPanelFunc::mkdir()
     } // for
 }
 
-void ListPanelFunc::defaultDeleteFiles(bool invert)
+void ListPanelFunc::defaultOrAlternativeDeleteFiles(bool invert)
 {
     const bool trash = KConfigGroup(krConfig, "General").readEntry("Move To Trash", _MoveToTrash);
     deleteFiles(trash != invert);
