@@ -64,7 +64,8 @@ private:
     void dropMimeData(const QList<QUrl> & lst, const QUrl &url);
     bool briefMode() const;
     void setBriefMode(bool brief); // show only column with directory names
-    void setTreeRoot(bool startFromCurrent, bool startFromPlace);
+    void setTree(bool startFromCurrent, bool startFromPlace);
+    void setTreeRoot(const QUrl &rootBase);
 
     KDirModel *mSourceModel;
     KDirSortFilterProxyModel *mProxyModel;

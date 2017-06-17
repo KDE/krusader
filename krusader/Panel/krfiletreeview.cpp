@@ -70,8 +70,8 @@ public:
 };
 
 KrFileTreeView::KrFileTreeView(QWidget *parent)
-    : QTreeView(parent), mCurrentUrl(QUrl::fromLocalFile(QDir::root().path())),
-      mCurrentTreeBase(mCurrentUrl), mStartTreeFromCurrent(false), mStartTreeFromPlace(false)
+    : QTreeView(parent), mCurrentUrl(),
+      mCurrentTreeBase(), mStartTreeFromCurrent(false), mStartTreeFromPlace(false)
 {
     mSourceModel = new KrDirModel(this, this);
     mSourceModel->dirLister()->setDirOnlyMode(true);
@@ -104,8 +104,6 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
             &KrFileTreeView::showHeaderContextMenu);
 
     setBriefMode(true);
-
-    mSourceModel->dirLister()->openUrl(mCurrentUrl);
 }
 
 QUrl KrFileTreeView::urlForProxyIndex(const QModelIndex &index) const
@@ -146,16 +144,13 @@ void KrFileTreeView::setCurrentUrl(const QUrl &url)
 {
     mCurrentUrl = url;
     if (mStartTreeFromCurrent) {
-        mSourceModel->dirLister()->openUrl(url);
+        setTreeRoot(url);
     } else {
         if (mStartTreeFromPlace) {
             const QModelIndex index = mFilePlacesModel->closestItem(url); // magic here
             const QUrl rootBase = index.isValid() ? mFilePlacesModel->url(index) :
                                                     QUrl::fromLocalFile(QDir::root().path());
-            if (rootBase != mCurrentTreeBase) { // NOTE: openUrl() collapses the subdirs in tree
-                mCurrentTreeBase = rootBase;
-                mSourceModel->dirLister()->openUrl(mCurrentTreeBase);
-            }
+            setTreeRoot(rootBase);
         }
         mSourceModel->expandToUrl(url);
     }
@@ -205,7 +200,7 @@ void KrFileTreeView::showHeaderContextMenu()
         dirLister->setShowingDotFiles(showHiddenAction->isChecked());
         dirLister->emitChanges();
     } else if (triggeredAction && triggeredAction->actionGroup() == rootActionGroup) {
-        setTreeRoot(startFromCurrentAction->isChecked(), startFromPlaceAction->isChecked());
+        setTree(startFromCurrentAction->isChecked(), startFromPlaceAction->isChecked());
     }
 }
 
@@ -221,16 +216,24 @@ void KrFileTreeView::setBriefMode(bool brief)
     }
 }
 
-void KrFileTreeView::setTreeRoot(bool startFromCurrent, bool startFromPlace)
+void KrFileTreeView::setTree(bool startFromCurrent, bool startFromPlace)
 {
     mStartTreeFromCurrent = startFromCurrent;
     mStartTreeFromPlace = startFromPlace;
 
     if (!mStartTreeFromCurrent && !mStartTreeFromPlace) {
-        // reset tree base to root
-        mSourceModel->dirLister()->openUrl(QUrl::fromLocalFile(QDir::root().path()));
+        setTreeRoot(QUrl::fromLocalFile(QDir::root().path()));
     }
     setCurrentUrl(mCurrentUrl); // refresh
+}
+
+void KrFileTreeView::setTreeRoot(const QUrl &rootBase)
+{
+    if (rootBase == mCurrentTreeBase) // avoid collapsing the subdirs in tree
+        return;
+
+    mCurrentTreeBase = rootBase;
+    mSourceModel->dirLister()->openUrl(mCurrentTreeBase);
 }
 
 void KrFileTreeView::saveSettings(KConfigGroup cfg) const
@@ -247,6 +250,6 @@ void KrFileTreeView::restoreSettings(const KConfigGroup &cfg)
     const KConfigGroup group = KConfigGroup(&cfg, "TreeView");
     setBriefMode(group.readEntry("BriefMode", true));
     mSourceModel->dirLister()->setShowingDotFiles(group.readEntry("ShowHiddenFolders", false));
-    setTreeRoot(group.readEntry("StartFromCurrent", false),
+    setTree(group.readEntry("StartFromCurrent", false),
                 group.readEntry("StartFromPlace", false));
 }
