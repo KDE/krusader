@@ -646,7 +646,9 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         }
         return true;
     case Qt::Key_Delete : // delete/trash the file (delete with alternative mode is a panel action)
-        op()->emitDefaultDeleteFiles();
+        if (e->modifiers() == Qt::NoModifier) {
+            op()->emitDefaultDeleteFiles();
+        }
         return true;
     case Qt::Key_Insert: {
         KrViewItem * i = getCurrentKrViewItem();
