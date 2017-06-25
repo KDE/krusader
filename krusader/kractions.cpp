@@ -81,7 +81,7 @@ QAction *KrActions::actManageUseractions = 0;
 #ifdef SYNCHRONIZER_ENABLED
 QAction *KrActions::actSyncDirs = 0;
 #endif
-QAction *KrActions::actF10 = 0;
+QAction *KrActions::actF10Quit = 0;
 QAction *KrActions::actEmptyTrash = 0;
 QAction *KrActions::actTrashBin = 0;
 QAction *KrActions::actPopularUrls = 0;
@@ -296,7 +296,9 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     actRemoteEncoding = new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "character-set", krusaderApp->actionCollection());
 
-    NEW_KACTION(actF10, i18n("Quit"), 0, Qt::Key_F10, krusaderApp, SLOT(quit()) , "F10_Quit");
+    NEW_KACTION(actF10Quit, i18n("Quit"), 0, Qt::Key_F10, krusaderApp, SLOT(quit()) , "F10_Quit");
+    actF10Quit->setToolTip(i18n("Quit Krusader."));
+
     NEW_KACTION(actPopularUrls, i18n("Popular URLs..."), 0, Qt::CTRL + Qt::Key_Z, krusaderApp->popularUrls(), SLOT(showDialog()), "Popular_Urls");
     NEW_KACTION(actSwitchFullScreenTE, i18n("Toggle Fullscreen Embedded Terminal"), 0,
                 Qt::CTRL + Qt::ALT + Qt::Key_F, MAIN_VIEW, SLOT(toggleFullScreenTerminalEmulator()),

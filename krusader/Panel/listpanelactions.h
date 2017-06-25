@@ -64,13 +64,14 @@ public slots:
     void guiUpdated();
 
 public:
-    QAction *actF2, *actF3, *actF4, *actF5, *actF6, *actF7, *actF8, *actF9;
-    QAction *actShiftF5, *actShiftF6;
+    QAction *actRenameF2, *actViewFileF3, *actEditFileF4, *actCopyF5, *actMoveF6, *actNewFolderF7,
+        *actDeleteF8, *actTerminalF9;
+    QAction *actCopyDelayedF5, *actMoveDelayedShiftF6;
     QAction *actProperties, *actPack, *actUnpack, *actTest,  *actCompDirs, *actCalculate, *actSync;
     QAction *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
     QAction *actLocationBar, *actSearchBar, *actJumpBack, *actSetJumpBack;
     QAction *actCreateChecksum, *actMatchChecksum;
-    QAction *actCopy, *actPaste;
+    QAction *actCopy, *actCut, *actPaste;
     QAction *actHistoryBackward, *actHistoryForward, *actDirUp, *actRoot, *actHome, *actCdToOther;
     QAction *actSyncBrowse, *actCancelRefresh;
 

@@ -52,9 +52,12 @@ public:
     void updateShortcuts();
 
 private:
-    QPushButton *F2 , *F3, *F4, *F5, *F6, *F7, *F8, *F9, *F10;
-    QGridLayout *layout;
+    typedef QPair<QPushButton *, QPair<QAction *, QString>> ButtonEntry;
+
+    ButtonEntry setup(QAction *action, const QString &text);
+
     KrMainWindow *mainWindow;
+    QList<ButtonEntry> buttonList;
 };
 
 #endif

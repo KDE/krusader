@@ -75,26 +75,29 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     /* Shortcut disabled because of the Terminal Emulator bug. */
     actDirUp = stdAction(KStandardAction::Up, _func, SLOT(dirUp()));
     actHome = stdAction(KStandardAction::Home, _func, SLOT(home()));
-    // removing alternative shift+del shortcut, it is used for the alternative delete files action
-    QAction *cutAction = stdAction(KStandardAction::Cut, _func, SLOT(cut()));
-    QList<QKeySequence> cutShortcuts = cutAction->shortcuts();
-    cutShortcuts.removeAll(QKeySequence(Qt::SHIFT | Qt::Key_Delete));
-    _mainWindow->actions()->setDefaultShortcuts(cutAction, cutShortcuts);
 
+    actCut = stdAction(KStandardAction::Cut, _func, SLOT(cut()));
+    actCut->setText(i18n("Cut to Clipboard"));
+    // removing alternative shift+del shortcut, it is used for the alternative delete files action
+    QList<QKeySequence> cutShortcuts = actCut->shortcuts();
+    cutShortcuts.removeAll(QKeySequence(Qt::SHIFT | Qt::Key_Delete));
+    _mainWindow->actions()->setDefaultShortcuts(actCut, cutShortcuts);
     actCopy = stdAction(KStandardAction::Copy, _func, SLOT(copyToClipboard()));
+    actCopy->setText(i18n("Copy to Clipboard"));
     actPaste = stdAction(KStandardAction::Paste, _func, SLOT(pasteFromClipboard()));
+    actPaste->setText(i18n("Paste from Clipboard"));
 
     // Fn keys
-    actF2 = action(i18n("Rename"), 0, Qt::Key_F2, _func, SLOT(rename()) , "F2_Rename");
-    actF3 = action(i18n("View File"), 0, Qt::Key_F3, _func, SLOT(view()), "F3_View");
-    actF4 = action(i18n("Edit File"), 0, Qt::Key_F4, _func, SLOT(edit()) , "F4_Edit");
-    actF5 = action(i18n("Copy to other panel"), 0, Qt::Key_F5, _func, SLOT(copyFiles()) , "F5_Copy");
-    actF6 = action(i18n("Move..."), 0, Qt::Key_F6, _func, SLOT(moveFiles()) , "F6_Move");
-    actShiftF5 = action(i18n("Copy delayed..."), 0, Qt::SHIFT + Qt::Key_F5, _func, SLOT(copyFilesDelayed()) , "F5_Copy_Queue");
-    actShiftF6 = action(i18n("Move delayed..."), 0, Qt::SHIFT + Qt::Key_F6, _func, SLOT(moveFilesDelayed()) , "F6_Move_Queue");
-    actF7 = action(i18n("New Folder..."), "folder-new", Qt::Key_F7, _func, SLOT(mkdir()) , "F7_Mkdir");
-    actF8 = action(i18n("Delete"), "edit-delete", Qt::Key_F8, _func, SLOT(defaultDeleteFiles()) , "F8_Delete");
-    actF9 = action(i18n("Start Terminal Here"), "utilities-terminal", Qt::Key_F9, _func, SLOT(terminal()) , "F9_Terminal");
+    actRenameF2 = action(i18n("Rename"), "edit-rename", Qt::Key_F2, _func, SLOT(rename()) , "F2_Rename");
+    actViewFileF3 = action(i18n("View File"), 0, Qt::Key_F3, _func, SLOT(view()), "F3_View");
+    actEditFileF4 = action(i18n("Edit File"), 0, Qt::Key_F4, _func, SLOT(edit()) , "F4_Edit");
+    actCopyF5 = action(i18n("Copy to other panel"), 0, Qt::Key_F5, _func, SLOT(copyFiles()) , "F5_Copy");
+    actMoveF6 = action(i18n("Move to other panel"), 0, Qt::Key_F6, _func, SLOT(moveFiles()) , "F6_Move");
+    actCopyDelayedF5 = action(i18n("Copy delayed..."), 0, Qt::SHIFT + Qt::Key_F5, _func, SLOT(copyFilesDelayed()) , "F5_Copy_Queue");
+    actMoveDelayedShiftF6 = action(i18n("Move delayed..."), 0, Qt::SHIFT + Qt::Key_F6, _func, SLOT(moveFilesDelayed()) , "F6_Move_Queue");
+    actNewFolderF7 = action(i18n("New Folder..."), "folder-new", Qt::Key_F7, _func, SLOT(mkdir()) , "F7_Mkdir");
+    actDeleteF8 = action(i18n("Delete"), "edit-delete", Qt::Key_F8, _func, SLOT(defaultDeleteFiles()) , "F8_Delete");
+    actTerminalF9 = action(i18n("Start Terminal Here"), "utilities-terminal", Qt::Key_F9, _func, SLOT(terminal()) , "F9_Terminal");
     action(i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, _func, SLOT(editNew()), "edit_new_file");
     action(i18n("F3 View Dialog"), 0, Qt::SHIFT + Qt::Key_F3, _func, SLOT(viewDlg()), "F3_ViewDlg");
 
@@ -139,18 +142,19 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     // and at last we can set the tool-tips
     actRoot->setToolTip(i18n("ROOT (/)"));
 
-    actF2->setToolTip(i18n("Rename file, folder, etc."));
-    actF3->setToolTip(i18n("Open file in viewer."));
-    actF4->setToolTip(i18n("<qt><p>Edit file.</p>"
+    actRenameF2->setToolTip(i18n("Rename file, folder, etc."));
+    actViewFileF3->setToolTip(i18n("Open file in viewer."));
+    actEditFileF4->setToolTip(i18n("<qt><p>Edit file.</p>"
                            "<p>The editor can be defined in Konfigurator, "
                            "default is <b>internal editor</b>.</p></qt>"));
-    actF5->setToolTip(i18n("Copy file from one panel to the other."));
-    actF6->setToolTip(i18n("Move file from one panel to the other."));
-    actF7->setToolTip(i18n("Create folder in current panel."));
-    actF8->setToolTip(i18n("Delete file, folder, etc."));
-    actF9->setToolTip(i18n("<qt><p>Open terminal in current folder.</p>"
+    actCopyF5->setToolTip(i18n("Copy file from one panel to the other."));
+    actMoveF6->setToolTip(i18n("Move file from one panel to the other."));
+    actNewFolderF7->setToolTip(i18n("Create folder in current panel."));
+    actDeleteF8->setToolTip(i18n("Delete file, folder, etc."));
+    actTerminalF9->setToolTip(i18n("<qt><p>Open terminal in current folder.</p>"
                            "<p>The terminal can be defined in Konfigurator, "
                            "default is <b>konsole</b>.</p></qt>"));
+
 }
 
 void ListPanelActions::activePanelChanged()

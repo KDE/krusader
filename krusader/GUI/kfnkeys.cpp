@@ -41,70 +41,44 @@
 #include "../Panel/listpanelactions.h"
 
 KFnKeys::KFnKeys(QWidget *parent, KrMainWindow *mainWindow) :
-        QWidget(parent), mainWindow(mainWindow)
+        QWidget(parent), mainWindow(mainWindow), buttonList()
 {
-    ////////////////////////////////
-#define SETUP(TARGET) {\
-        TARGET = new QPushButton(this); \
-        TARGET->setMinimumWidth(45);\
-        TARGET->setToolTip(mainWindow->listPanelActions()->act##TARGET->toolTip()); \
-        connect(TARGET, SIGNAL(clicked()), mainWindow->listPanelActions()->act##TARGET, SLOT(trigger())); \
-    }
+    buttonList << setup(mainWindow->listPanelActions()->actRenameF2, i18n("Rename"))
+               << setup(mainWindow->listPanelActions()->actViewFileF3, i18n("View"))
+               << setup(mainWindow->listPanelActions()->actEditFileF4, i18n("Edit"))
+               << setup(mainWindow->listPanelActions()->actCopyF5, i18n("Copy"))
+               << setup(mainWindow->listPanelActions()->actMoveF6, i18n("Move"))
+               << setup(mainWindow->listPanelActions()->actNewFolderF7, i18n("Mkdir"))
+               << setup(mainWindow->listPanelActions()->actDeleteF8, i18n("Delete"))
+               << setup(mainWindow->listPanelActions()->actTerminalF9, i18n("Term"))
+               << setup(mainWindow->krActions()->actF10Quit, i18n("Quit"));
 
-    layout = new QGridLayout(this); // 9 keys
+    updateShortcuts();
+
+    QGridLayout *layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 
-    SETUP(F2);
-    SETUP(F3);
-    SETUP(F4);
-    SETUP(F5);
-    SETUP(F6);
-    SETUP(F7);
-    SETUP(F8);
-    SETUP(F9);
-
-    F10 = new QPushButton(this);
-    F10->setToolTip(i18n("Quit Krusader."));
-    connect(F10, SIGNAL(clicked()), mainWindow->krActions()->actF10, SLOT(trigger()));
-    F10->setMinimumWidth(45);
-
-    updateShortcuts();
-    /*
-        // set a tighter box around the keys
-        int h = QFontMetrics(F2->font()).height()+2;
-        F2->setMaximumHeight(h); F3->setMaximumHeight(h);
-        F4->setMaximumHeight(h); F5->setMaximumHeight(h);
-        F6->setMaximumHeight(h); F7->setMaximumHeight(h);
-        F8->setMaximumHeight(h); F9->setMaximumHeight(h);
-        F10->setMaximumHeight(h);
-    */
-    layout->addWidget(F2, 0, 0);
-    layout->addWidget(F3, 0, 1);
-    layout->addWidget(F4, 0, 2);
-    layout->addWidget(F5, 0, 3);
-    layout->addWidget(F6, 0, 4);
-    layout->addWidget(F7, 0, 5);
-    layout->addWidget(F8, 0, 6);
-    layout->addWidget(F9, 0, 7);
-    layout->addWidget(F10, 0, 8);
-
+    int pos = 0;
+    for(QPair<QPushButton *, QPair<QAction *, const QString&>> entry : buttonList) {
+        layout->addWidget(entry.first, 0, pos++);
+    }
     layout->activate();
 }
 
 void KFnKeys::updateShortcuts()
 {
-#define UPDATE(TARGET, TEXT)\
-    TARGET->setText(mainWindow->listPanelActions()->act##TARGET->shortcut().toString() + ' ' + TEXT);
-
-    UPDATE(F2, i18n("Rename"));
-    UPDATE(F3, i18n("View"));
-    UPDATE(F4, i18n("Edit"));
-    UPDATE(F5, i18n("Copy"));
-    UPDATE(F6, i18n("Move"));
-    UPDATE(F7, i18n("Mkdir"));
-    UPDATE(F8, i18n("Delete"));
-    UPDATE(F9, i18n("Term"));
-    F10->setText(mainWindow->krActions()->actF10->shortcut().toString() + i18n(" Quit"));
+    for(ButtonEntry entry : buttonList) {
+        entry.first->setText(entry.second.first->shortcut().toString() + ' ' + entry.second.second);
+    }
 }
 
+KFnKeys::ButtonEntry KFnKeys::setup(QAction *action, const QString &text)
+{
+    QPushButton *button = new QPushButton(this);
+    button->setMinimumWidth(45);
+    button->setToolTip(action->toolTip());
+    connect(button, &QPushButton::clicked, action, &QAction::trigger);
+    return QPair<QPushButton *, QPair<QAction *, QString>>(button,
+                                                           QPair<QAction *, QString>(action, text));
+}

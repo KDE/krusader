@@ -69,7 +69,7 @@ public:
     static KToggleAction *actToggleTerminal;
     static QAction *actSelectNewerAndSingle, *actSelectNewer, *actSelectSingle,
     *actSelectDifferentAndSingle, *actSelectDifferent;
-    static QAction *actF10;
+    static QAction *actF10Quit;
     /** actions for setting the execution mode of commands from commanddline */
     static QAction *actExecStartAndForget,
     *actExecCollectSeparate, *actExecCollectTogether,
