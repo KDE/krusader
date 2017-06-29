@@ -84,8 +84,8 @@ void KrPopupMenu::addCompressAndExtractPluginActions()
     }
 }
 
-KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
-    : QMenu(parent), panel(thePanel), empty(false), multipleSelections(false)
+KrPopupMenu::KrPopupMenu(KrPanel *krPanel, QWidget *parent)
+    : QMenu(parent), panel(krPanel)
 {
     // selected file names
     const QStringList fileNames = panel->gui->getSelectedNames();
@@ -107,9 +107,9 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
         addSeparator();
         addEmptyMenuEntries();
         return;
-    } else if (files.size() > 1) {
-        multipleSelections = true;
     }
+
+    const bool multipleSelections = files.size() > 1;
 
     QSet<QString> protocols;
     for (FileItem *file : files) {
@@ -155,6 +155,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
     // ------------- Preview - local filesystem only ?
     if (panel->func->files()->isLocal()) {
         // create the preview popup
+        KrPreviewPopup preview;
         preview.setUrls(panel->func->files()->getUrls(fileNames));
         QAction *previewAction = addMenu(&preview);
         previewAction->setData(QVariant(PREVIEW_ID));
@@ -173,20 +174,20 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
                  KFileItemActions::associatedApplications(mimeTypes, QString());
 
     if (!offers.isEmpty()) {
+        QMenu *openWithMenu = new QMenu(this);
         for (int i = 0; i < offers.count(); ++i) {
             QExplicitlySharedDataPointer<KService> service = offers[i];
             if (service->isValid() && service->isApplication()) {
-                openWith.addAction(krLoader->loadIcon(service->icon(), KIconLoader::Small),
+                openWithMenu->addAction(krLoader->loadIcon(service->icon(), KIconLoader::Small),
                                    service->name())->setData(QVariant(SERVICE_LIST_ID + i));
             }
         }
-        openWith.addSeparator();
+        openWithMenu->addSeparator();
         if (!multipleSelections && file->isDir())
-            openWith.addAction(krLoader->loadIcon("utilities-terminal", KIconLoader::Small),
+            openWithMenu->addAction(krLoader->loadIcon("utilities-terminal", KIconLoader::Small),
                                i18n("Terminal"))->setData(QVariant(OPEN_TERM_ID));
-        openWith.addAction(i18n("Other..."))->setData(QVariant(CHOOSE_ID));
-        QAction *openWithAction = addMenu(&openWith);
-        openWithAction->setData(QVariant(OPEN_WITH_ID));
+        openWithMenu->addAction(i18n("Other..."))->setData(QVariant(CHOOSE_ID));
+        QAction *openWithAction = addMenu(openWithMenu);
         openWithAction->setText(i18n("Open With"));
         openWithAction->setIcon(krLoader->loadIcon("document-open", KIconLoader::Small));
         addSeparator();
@@ -205,6 +206,7 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
     // NOTE: design and usability problem here. Services disabled in kservicemenurc settings won't
     // be added to the menu. But Krusader does not provide a way do change these settings (only
     // Dolphin does).
+    KFileItemActions fileItemActions;
     fileItemActions.setItemListProperties(KFileItemListProperties(_items));
     fileItemActions.addServiceActionsTo(this);
 
@@ -215,13 +217,12 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
     addSeparator();
 
     // ---------- COPY
-    addAction(i18n("Copy..."))->setData(QVariant(COPY_ID));
+    addAction(panel->gui->actions()->actCopyF5);
     // ------- MOVE
-    addAction(i18n("Move..."))->setData(QVariant(MOVE_ID));
+    addAction(panel->gui->actions()->actMoveF6);
     // ------- RENAME - only one file
     if (!multipleSelections && !inTrash) {
-        addAction(krLoader->loadIcon("edit-rename", KIconLoader::Small),
-                  i18n("Rename"))->setData(QVariant(RENAME_ID));
+        addAction(panel->gui->actions()->actRenameF2);
     }
 
     // -------- MOVE TO TRASH
@@ -242,12 +243,13 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
     // create new shortcut or redirect links - only on local directories:
     if (panel->func->files()->isLocal()) {
         addSeparator();
-        linkPopup.addAction(i18n("New Symlink..."))->setData(QVariant(NEW_SYMLINK_ID));
-        linkPopup.addAction(i18n("New Hardlink..."))->setData(QVariant(NEW_LINK_ID));
-        if (file->isSymLink())
-            linkPopup.addAction(i18n("Redirect Link..."))->setData(QVariant(REDIRECT_LINK_ID));
-        QAction *linkAction = addMenu(&linkPopup);
-        linkAction->setData(QVariant(LINK_HANDLING_ID));
+        QMenu *linkMenu = new QMenu(this);
+        linkMenu->addAction(i18n("New Symlink..."))->setData(QVariant(NEW_SYMLINK_ID));
+        linkMenu->addAction(i18n("New Hardlink..."))->setData(QVariant(NEW_LINK_ID));
+        if (file->isSymLink()) {
+            linkMenu->addAction(i18n("Redirect Link..."))->setData(QVariant(REDIRECT_LINK_ID));
+        }
+        QAction *linkAction = addMenu(linkMenu);
         linkAction->setText(i18n("Link Handling"));
         linkAction->setIcon(krLoader->loadIcon("insert-link", KIconLoader::Small));
     }
@@ -289,12 +291,9 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
 
     // --------- copy/paste
     addSeparator();
-    addAction(krLoader->loadIcon("edit-copy", KIconLoader::Small),
-              i18n("Copy to Clipboard"))->setData(QVariant(COPY_CLIP_ID));
-    addAction(krLoader->loadIcon("edit-cut", KIconLoader::Small),
-              i18n("Cut to Clipboard"))->setData(QVariant(MOVE_CLIP_ID));
-    addAction(krLoader->loadIcon("edit-paste", KIconLoader::Small),
-              i18n("Paste from Clipboard"))->setData(QVariant(PASTE_CLIP_ID));
+    addAction(panel->gui->actions()->actCut);
+    addAction(panel->gui->actions()->actCopy);
+    addAction(panel->gui->actions()->actPaste);
     addSeparator();
 
     // --------- properties
@@ -303,20 +302,21 @@ KrPopupMenu::KrPopupMenu(KrPanel *thePanel, QWidget *parent)
 
 void KrPopupMenu::addEmptyMenuEntries()
 {
-    addAction(i18n("Paste from Clipboard"))->setData(QVariant(PASTE_CLIP_ID));
+    addAction(panel->gui->actions()->actPaste);
 }
 
 void KrPopupMenu::addCreateNewMenu()
 {
-    createNewPopup.addAction(krLoader->loadIcon("folder", KIconLoader::Small),
+    QMenu *createNewMenu = new QMenu(this);
+
+    createNewMenu->addAction(krLoader->loadIcon("folder", KIconLoader::Small),
                              i18n("Folder..."))->setData(QVariant(MKDIR_ID));
-    createNewPopup.addAction(krLoader->loadIcon("text-plain", KIconLoader::Small),
+    createNewMenu->addAction(krLoader->loadIcon("text-plain", KIconLoader::Small),
                              i18n("Text File..."))->setData(QVariant(NEW_TEXT_FILE_ID));
 
-    QAction *newAction = addMenu(&createNewPopup);
-    newAction->setData(QVariant(CREATE_NEW_ID));
-    newAction->setText(i18n("Create New"));
-    newAction->setIcon(krLoader->loadIcon("document-new", KIconLoader::Small));
+    QAction *newMenuAction = addMenu(createNewMenu);
+    newMenuAction->setText(i18n("Create New"));
+    newMenuAction->setIcon(krLoader->loadIcon("document-new", KIconLoader::Small));
 }
 
 void KrPopupMenu::performAction(int id)
@@ -346,9 +346,6 @@ void KrPopupMenu::performAction(int id)
     case MOVE_ID :
         panel->func->moveFiles();
         break;
-    case RENAME_ID :
-        panel->func->rename();
-        break;
     case TRASH_ID :
         panel->func->deleteFiles(true);
         break;
@@ -358,12 +355,12 @@ void KrPopupMenu::performAction(int id)
     case EJECT_ID :
         krMtMan.eject(item->url().adjusted(QUrl::StripTrailingSlash).path());
         break;
-        /*         case SHRED_ID :
-                    if ( KMessageBox::warningContinueCancel( krApp,
-                         i18n("<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone forever.</qt>", item->name()),
-                         QString(), KStandardGuiItem::cont(), KStandardGuiItem::cancel(), "Shred" ) == KMessageBox::Continue )
-                       KShred::shred( panel->func->files() ->getFile( item->name() ).adjusted(QUrl::RemoveTrailingSlash).path() );
-                  break;*/
+//     case SHRED_ID :
+//        if ( KMessageBox::warningContinueCancel( krApp,
+//             i18n("<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone forever.</qt>", item->name()),
+//             QString(), KStandardGuiItem::cont(), KStandardGuiItem::cancel(), "Shred" ) == KMessageBox::Continue )
+//           KShred::shred( panel->func->files() ->getFile( item->name() ).adjusted(QUrl::RemoveTrailingSlash).path() );
+//      break;
     case OPEN_KONQ_ID :
         KToolInvocation::startServiceByDesktopName("konqueror", item->url().toDisplayString(QUrl::PreferLocalFile));
         break;
@@ -390,15 +387,6 @@ void KrPopupMenu::performAction(int id)
     break;
     case UNMOUNT_ID :
         krMtMan.unmount(item->url().adjusted(QUrl::StripTrailingSlash).path());
-        break;
-    case COPY_CLIP_ID :
-        panel->func->copyToClipboard();
-        break;
-    case MOVE_CLIP_ID :
-        panel->func->copyToClipboard(true);
-        break;
-    case PASTE_CLIP_ID :
-        panel->func->pasteFromClipboard();
         break;
     case SEND_BY_EMAIL_ID : {
         SLOTS->sendFileByEmail(_items.urlList());
