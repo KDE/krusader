@@ -10,7 +10,6 @@ set(Panel_SRCS
     krfiletreeview.cpp
     krlayoutfactory.cpp
     krpanel.cpp
-    krpopupmenu.cpp
     krpreviewjob.cpp
     krpreviewpopup.cpp
     krpreviews.cpp
@@ -18,6 +17,7 @@ set(Panel_SRCS
     listpanel.cpp
     listpanelactions.cpp
     listpanelframe.cpp
+    panelcontextmenu.cpp
     panelfunc.cpp
     panelpopup.cpp
     viewactions.cpp

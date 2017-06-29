@@ -67,13 +67,14 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krcolorcache.h"
 #include "krerrordisplay.h"
 #include "krlayoutfactory.h"
-#include "krpopupmenu.h"
 #include "krpreviewpopup.h"
 #include "krsearchbar.h"
 #include "listpanelactions.h"
+#include "panelcontextmenu.h"
 #include "panelfunc.h"
 #include "panelpopup.h"
 #include "viewactions.h"
+
 #include "PanelView/krview.h"
 #include "PanelView/krviewfactory.h"
 #include "PanelView/krviewitem.h"
@@ -872,12 +873,12 @@ void ListPanel::popRightClickMenu(const QPoint &loc)
 {
     // run it, on the mouse location
     int j = QFontMetrics(font()).height() * 2;
-    KrPopupMenu::run(QPoint(loc.x() + 5, loc.y() + j), this);
+    PanelContextMenu::run(QPoint(loc.x() + 5, loc.y() + j), this);
 }
 
 void ListPanel::popEmptyRightClickMenu(const QPoint &loc)
 {
-    KrPopupMenu::run(loc, this);
+    PanelContextMenu::run(loc, this);
 }
 
 QString ListPanel::getCurrentName()

@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef KRPOPUPMENU_H
-#define KRPOPUPMENU_H
+#ifndef PANELCONTEXTMENU_H
+#define PANELCONTEXTMENU_H
 
 // QtWidgets
 #include <QMenu>
@@ -26,9 +26,6 @@
 #include <KService/KService>
 #include <KIOWidgets/KFileItemActions>
 
-#include "krpreviewpopup.h"
-
-class KActionCollection;
 class KrPanel;
 
 
@@ -36,17 +33,15 @@ class KrPanel;
  * The right-click context menu for files and folders in the panel view.
  *
  * An instance is created each time a menu is shown.
- *
- * TODO: Should be renamed to KrContextMenu or similar.
  */
-class KrPopupMenu : public QMenu
+class PanelContextMenu : public QMenu
 {
     Q_OBJECT
 public:
     static void run(const QPoint &pos, KrPanel *panel);
 
 private:
-    explicit KrPopupMenu(KrPanel *thePanel, QWidget *parent = 0);
+    explicit PanelContextMenu(KrPanel *thePanel, QWidget *parent = 0);
     void performAction(int id);
     void addEmptyMenuEntries(); // adds the choices for a menu without selected items
     void addCreateNewMenu(); // adds a "create new" submenu

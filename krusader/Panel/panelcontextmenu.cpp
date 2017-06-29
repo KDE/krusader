@@ -17,7 +17,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include "krpopupmenu.h"
+#include "panelcontextmenu.h"
 
 // QtGui
 #include <QPixmap>
@@ -34,6 +34,7 @@
 #include <KIOWidgets/KAbstractFileItemActionPlugin>
 #include <KCoreAddons/KPluginMetaData>
 
+#include "krpreviewpopup.h"
 #include "listpanel.h"
 #include "listpanelactions.h"
 #include "panelfunc.h"
@@ -52,9 +53,9 @@
 #include "../MountMan/kmountman.h"
 #include "../UserAction/useractionpopupmenu.h"
 
-void KrPopupMenu::run(const QPoint &pos, KrPanel *panel)
+void PanelContextMenu::run(const QPoint &pos, KrPanel *panel)
 {
-    KrPopupMenu menu(panel);
+    PanelContextMenu menu(panel);
     QAction * res = menu.exec(pos);
     int result = -1;
     if (res && res->data().canConvert<int>())
@@ -65,7 +66,7 @@ void KrPopupMenu::run(const QPoint &pos, KrPanel *panel)
 /**
  * Copied from dolphin/src/dolphincontextmenu.cpp and modified to add only compress and extract submenus.
  */
-void KrPopupMenu::addCompressAndExtractPluginActions()
+void PanelContextMenu::addCompressAndExtractPluginActions()
 {
     KFileItemListProperties props(_items);
 
@@ -84,7 +85,7 @@ void KrPopupMenu::addCompressAndExtractPluginActions()
     }
 }
 
-KrPopupMenu::KrPopupMenu(KrPanel *krPanel, QWidget *parent)
+PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     : QMenu(parent), panel(krPanel)
 {
     // selected file names
@@ -300,12 +301,12 @@ KrPopupMenu::KrPopupMenu(KrPanel *krPanel, QWidget *parent)
     addAction(panel->gui->actions()->actProperties);
 }
 
-void KrPopupMenu::addEmptyMenuEntries()
+void PanelContextMenu::addEmptyMenuEntries()
 {
     addAction(panel->gui->actions()->actPaste);
 }
 
-void KrPopupMenu::addCreateNewMenu()
+void PanelContextMenu::addCreateNewMenu()
 {
     QMenu *createNewMenu = new QMenu(this);
 
@@ -319,7 +320,7 @@ void KrPopupMenu::addCreateNewMenu()
     newMenuAction->setIcon(krLoader->loadIcon("document-new", KIconLoader::Small));
 }
 
-void KrPopupMenu::performAction(int id)
+void PanelContextMenu::performAction(int id)
 {
     if (_items.isEmpty())
         return; // sanity check, empty file list
@@ -429,4 +430,3 @@ void KrPopupMenu::performAction(int id)
                                 panel->func->files()->getUrls(names));
     }
 }
-
