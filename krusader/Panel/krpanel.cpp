@@ -39,7 +39,7 @@ QUrl KrPanel::virtualPath() const
     return func->virtualDirectory();
 }
 
-KrPanel *KrPanel::otherPanel()
+KrPanel *KrPanel::otherPanel() const
 {
     return _manager->otherManager()->currentPanel();
 }

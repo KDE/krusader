@@ -47,10 +47,10 @@ public:
         gui(panel), func(func), view(0), _manager(manager) {}
     virtual ~KrPanel() {}
     QUrl virtualPath() const; // the current directory path of this panel
-    AbstractPanelManager *manager() {
+    AbstractPanelManager *manager() const {
         return _manager;
     }
-    KrPanel *otherPanel();
+    KrPanel *otherPanel() const;
     bool isLeft() const;
     virtual void otherPanelChanged() = 0;
 
