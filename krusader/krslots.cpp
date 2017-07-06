@@ -654,7 +654,9 @@ void KRslots::manageUseractions()
 #ifdef SYNCHRONIZER_ENABLED
 void KRslots::slotSynchronizeDirs(QStringList selected)
 {
-    new SynchronizerGUI(0, LEFT_PANEL->virtualPath(), RIGHT_PANEL->virtualPath(), selected);
+    SynchronizerGUI *synchronizerDialog = new SynchronizerGUI(MAIN_VIEW, LEFT_PANEL->virtualPath(),
+                                                              RIGHT_PANEL->virtualPath(), selected);
+    synchronizerDialog->show(); // destroyed on close
 }
 #endif
 

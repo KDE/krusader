@@ -699,7 +699,8 @@ TagString exp_Sync::expFunc(const KrPanel*, const QStringList& parameter, const 
         return QString();
     }
 
-    new SynchronizerGUI(0, parameter[0]);
+    SynchronizerGUI *synchronizerDialog = new SynchronizerGUI(MAIN_VIEW, parameter[0]);
+    synchronizerDialog->show(); // destroyed on close
 
     return QString();  // this doesn't return everything, that's normal!
 }

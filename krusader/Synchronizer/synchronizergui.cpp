@@ -134,17 +134,19 @@ public:
 SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QUrl leftURL, QUrl rightURL, QStringList selList) :
         QDialog(parent)
 {
-    initGUI(parent, QString(), leftURL, rightURL, selList);
+    initGUI(QString(), leftURL, rightURL, selList);
 }
 
 SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString profile) :
         QDialog(parent)
 {
-    initGUI(parent, profile, QUrl(), QUrl(), QStringList());
+    initGUI(profile, QUrl(), QUrl(), QStringList());
 }
 
-void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl leftURL, QUrl rightURL, QStringList selList)
+void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, QStringList selList)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
+
     selectedFiles = selList;
     isComparing = wasClosed = wasSync = false;
     firstResize = true;
@@ -621,10 +623,9 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, QUrl l
     if (sx != -1 && sy != -1)
         resize(sx, sy);
 
-    if (group.readEntry("Window Maximized",  false))
-        showMaximized();
-    else
-        show();
+    if (group.readEntry("Window Maximized",  false)) {
+        setWindowState(windowState() | Qt::WindowMaximized);
+    }
 
     if (equalSizes) {
         int newSize6 = syncList->header()->sectionSize(6);

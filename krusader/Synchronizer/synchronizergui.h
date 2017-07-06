@@ -53,7 +53,7 @@
 
 class QSpinBox;
 
-class SynchronizerGUI : QDialog
+class SynchronizerGUI : public QDialog
 {
     Q_OBJECT
 
@@ -172,7 +172,7 @@ protected slots:
     void connectFilters(const QString &);
 
 private:
-    void initGUI(QWidget* parent, QString profile, QUrl leftURL, QUrl rightURL, QStringList selList);
+    void initGUI(QString profile, QUrl leftURL, QUrl rightURL, QStringList selList);
 
     QString convertTime(time_t time) const;
     void    setMarkFlags();
