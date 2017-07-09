@@ -1069,25 +1069,28 @@ void ListPanelFunc::newFTPconnection()
 void ListPanelFunc::properties()
 {
     const QStringList names = panel->getSelectedNames();
-    if (names.isEmpty())
+    if (names.isEmpty()) {
         return ;  // no names...
-    KFileItemList fi;
-
-    for (int i = 0 ; i < names.count() ; ++i) {
-        FileItem *fileitem = files()->getFileItem(names[i]);
-        if (!fileitem)
-            continue;
-        QUrl url = files()->getUrl(names[i]);
-        fi.push_back(KFileItem(fileitem->getEntry(), url));
     }
 
-    if (fi.isEmpty())
+    KFileItemList fileItems;
+
+    for (const QString name : names) {
+        FileItem *fileitem = files()->getFileItem(name);
+        if (!fileitem) {
+            continue;
+        }
+
+        fileItems.push_back(KFileItem(fileitem->getEntry(), files()->getUrl(name)));
+    }
+
+    if (fileItems.isEmpty())
         return ;
 
     // Show the properties dialog
-    KPropertiesDialog *dlg = new KPropertiesDialog(fi, krMainWindow);
-    connect(dlg, SIGNAL(applied()), SLOT(refresh()));
-    dlg->show();
+    KPropertiesDialog *dialog = new KPropertiesDialog(fileItems, krMainWindow);
+    connect(dialog, &KPropertiesDialog::applied, this, &ListPanelFunc::refresh);
+    dialog->show();
 }
 
 void ListPanelFunc::refreshActions()
