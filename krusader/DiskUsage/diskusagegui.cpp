@@ -53,11 +53,13 @@ DiskUsageGUI::DiskUsageGUI(QUrl openDir, QWidget* parent)
         : QDialog(parent), exitAtFailure(true)
 {
     setWindowTitle(i18n("Krusader::Disk Usage"));
+    setAttribute(Qt::WA_DeleteOnClose);
+    duCanceled = false;
 
     baseDirectory = openDir;
-    if (!newSearch())
-        return;
-
+    if (!newSearch()) {
+        duCanceled = true;
+    }
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
@@ -126,7 +128,7 @@ DiskUsageGUI::DiskUsageGUI(QUrl openDir, QWidget* parent)
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
     mainLayout->addWidget(buttonBox);
 
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(close()));
     connect(diskUsage, SIGNAL(status(QString)), this, SLOT(setStatus(QString)));
     connect(diskUsage, SIGNAL(viewChanged(int)), this, SLOT(slotViewChanged(int)));
     connect(diskUsage, SIGNAL(newSearch()), this,  SLOT(newSearch()));
@@ -149,12 +151,9 @@ DiskUsageGUI::DiskUsageGUI(QUrl openDir, QWidget* parent)
     sizeY = group.readEntry("Window Height", QFontMetrics(font()).height() * 25);
     resize(sizeX, sizeY);
 
-    if (group.readEntry("Window Maximized",  false))
-        showMaximized();
-    else
-        show();
-
-    exec();
+    if (group.readEntry("Window Maximized",  false)) {
+        setWindowState(windowState() | Qt::WindowMaximized);
+    }
 }
 
 DiskUsageGUI::~DiskUsageGUI()
@@ -188,7 +187,7 @@ void DiskUsageGUI::resizeEvent(QResizeEvent *e)
     QDialog::resizeEvent(e);
 }
 
-void DiskUsageGUI::reject()
+void DiskUsageGUI::closeEvent(QCloseEvent *event)
 {
     KConfigGroup group(krConfig, "DiskUsage");
     group.writeEntry("Window Width", sizeX);
@@ -196,7 +195,7 @@ void DiskUsageGUI::reject()
     group.writeEntry("Window Maximized", isMaximized());
     group.writeEntry("View", diskUsage->getActiveView());
 
-    QDialog::reject();
+    event->accept();
 }
 
 void DiskUsageGUI::loadUsageInfo()
@@ -247,4 +246,11 @@ bool DiskUsageGUI::newSearch()
     QTimer::singleShot(0, this, SLOT(loadUsageInfo()));
     return true;
 }
-
+void DiskUsageGUI::showConditional()
+{
+    if (duCanceled) {
+        emit close();
+    } else {
+        show();
+    }
+}

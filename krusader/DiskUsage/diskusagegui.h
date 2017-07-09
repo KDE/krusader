@@ -51,6 +51,7 @@ class DiskUsageGUI : public QDialog
 public:
     explicit DiskUsageGUI(QUrl openDir, QWidget* parent = 0);
     ~DiskUsageGUI();
+    void showConditional();
 
 
 public slots:
@@ -69,7 +70,7 @@ public slots:
     }
 
 protected slots:
-    virtual void               reject() Q_DECL_OVERRIDE;
+    virtual void               closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
     void                       slotViewChanged(int view);
     void                       enableButtons(bool);
     void                       slotLoadFinished(bool);
@@ -94,6 +95,7 @@ protected:
     int                        sizeY;
 
     bool                       exitAtFailure;
+    bool                       duCanceled;
 };
 
 #endif /* __DISK_USAGE_GUI_H__ */
