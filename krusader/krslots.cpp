@@ -687,8 +687,8 @@ void KRslots::execTypeSetup()
 
 void KRslots::slotDiskUsage()
 {
-    DiskUsageGUI *du = new DiskUsageGUI(ACTIVE_PANEL->virtualPath(), 0);
-    du->showConditional();
+    DiskUsageGUI *diskUsageDialog = new DiskUsageGUI(ACTIVE_PANEL->virtualPath());
+    diskUsageDialog->askDirAndShow();
 }
 
 void KRslots::applicationStateChanged()

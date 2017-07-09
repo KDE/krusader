@@ -49,53 +49,48 @@ class DiskUsageGUI : public QDialog
     Q_OBJECT
 
 public:
-    explicit DiskUsageGUI(QUrl openDir, QWidget* parent = 0);
-    ~DiskUsageGUI();
-    void showConditional();
-
-
-public slots:
-    void                       loadUsageInfo();
-    bool                       newSearch();
-    void                       setStatus(QString);
-
-    void                       selectLinesView()     {
-        diskUsage->setView(VIEW_LINES);
-    }
-    void                       selectListView()      {
-        diskUsage->setView(VIEW_DETAILED);
-    }
-    void                       selectFilelightView() {
-        diskUsage->setView(VIEW_FILELIGHT);
-    }
+    explicit DiskUsageGUI(const QUrl &openDir);
+    ~DiskUsageGUI() {}
+    void askDirAndShow();
 
 protected slots:
-    virtual void               closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
-    void                       slotViewChanged(int view);
-    void                       enableButtons(bool);
-    void                       slotLoadFinished(bool);
+    virtual void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
 
 protected:
-    virtual void               resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
 
-    DiskUsage                 *diskUsage;
-    QUrl                       baseDirectory;
+private slots:
+    bool askDir();
+    void slotLoadUsageInfo();
+    void slotStatus(QString);
 
-    KSqueezedTextLabel        *status;
+    void slotSelectLinesView() { diskUsage->setView(VIEW_LINES); }
+    void slotSelectListView() { diskUsage->setView(VIEW_DETAILED); }
+    void slotSelectFilelightView() { diskUsage->setView(VIEW_FILELIGHT); }
 
-    QToolButton               *btnNewSearch;
-    QToolButton               *btnRefresh;
-    QToolButton               *btnDirUp;
+    void slotViewChanged(int view);
+    void slotLoadFinished(bool);
 
-    QToolButton               *btnLines;
-    QToolButton               *btnDetailed;
-    QToolButton               *btnFilelight;
+private:
+    void enableButtons(bool);
 
-    int                        sizeX;
-    int                        sizeY;
+    DiskUsage *diskUsage;
+    QUrl baseDirectory;
 
-    bool                       exitAtFailure;
-    bool                       duCanceled;
+    KSqueezedTextLabel *status;
+
+    QToolButton *btnNewSearch;
+    QToolButton *btnRefresh;
+    QToolButton *btnDirUp;
+
+    QToolButton *btnLines;
+    QToolButton *btnDetailed;
+    QToolButton *btnFilelight;
+
+    int sizeX;
+    int sizeY;
+
+    bool exitAtFailure;
 };
 
 #endif /* __DISK_USAGE_GUI_H__ */
