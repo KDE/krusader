@@ -195,21 +195,24 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     }
 
     // --------------- user actions
-    QAction *userAction = new UserActionPopupMenu(file->getUrl());
+    QAction *userAction = new UserActionPopupMenu(file->getUrl(), this);
     userAction->setText(i18n("User Actions"));
     addAction(userAction);
 
+    // --------------- compress/extract actions
     // workaround for Bug 372999: application freezes very long time if many files are selected
     if (_items.length() < 1000)
         // add compress and extract plugins (if available)
         addCompressAndExtractPluginActions();
 
+    // --------------- KDE file item actions
     // NOTE: design and usability problem here. Services disabled in kservicemenurc settings won't
     // be added to the menu. But Krusader does not provide a way do change these settings (only
     // Dolphin does).
-    KFileItemActions fileItemActions;
-    fileItemActions.setItemListProperties(KFileItemListProperties(_items));
-    fileItemActions.addServiceActionsTo(this);
+    KFileItemActions *fileItemActions = new KFileItemActions(this);
+    fileItemActions->setItemListProperties(KFileItemListProperties(_items));
+    fileItemActions->setParentWidget(MAIN_VIEW);
+    fileItemActions->addServiceActionsTo(this);
 
     addSeparator();
 
