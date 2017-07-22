@@ -373,7 +373,9 @@ void KrViewer::openUrlFinished(PanelViewerBase *pvb, bool success)
                     part->widget()->setFocus();
             }
         }
-    }
+    } else {
+        tabCloseRequest(tabBar.currentIndex(), false);
+      }
 }
 
 void KrViewer::tabChanged(int index)
