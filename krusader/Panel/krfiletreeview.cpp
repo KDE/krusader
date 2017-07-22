@@ -24,6 +24,7 @@
 #include "../FileSystem/filesystemprovider.h"
 
 #include <QAction>
+#include <QApplication>
 #include <QCursor>
 #include <QDir>
 #include <QDropEvent>
@@ -32,11 +33,19 @@
 #include <QMimeData>
 #include <QProxyStyle>
 
+#include <KFileItemListProperties>
+#include <KJobWidgets>
+#include <KUrlMimeData>
+
 #include <KI18n/KLocalizedString>
 #include <KIO/DropJob>
+#include <KIO/Paste>
+#include <KIO/PasteJob>
 #include <KIOCore/KFileItem>
 #include <KIOWidgets/KDirLister>
 #include <KIOWidgets/KFileItemDelegate>
+#include <KIOWidgets/KPropertiesDialog>
+
 
 class KrDirModel : public KDirModel
 {
@@ -44,14 +53,16 @@ public:
     KrDirModel(QWidget *parent, KrFileTreeView *ftv) : KDirModel(parent), fileTreeView(ftv) {}
 
 protected:
-    virtual Qt::ItemFlags flags(const QModelIndex & index) const Q_DECL_OVERRIDE {
+    virtual Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE
+    {
         Qt::ItemFlags itflags = KDirModel::flags(index);
         if (index.column() != KDirModel::Name)
             itflags &= ~Qt::ItemIsDropEnabled;
         return itflags;
     }
+
 private:
-    KrFileTreeView * fileTreeView;
+    KrFileTreeView *fileTreeView;
 };
 
 class TreeStyle : public QProxyStyle
@@ -60,7 +71,8 @@ public:
     explicit TreeStyle(QStyle *style) : QProxyStyle(style) {}
 
     int styleHint(StyleHint hint, const QStyleOption *option, const QWidget *widget,
-                  QStyleHintReturn *returnData) const Q_DECL_OVERRIDE {
+                  QStyleHintReturn *returnData) const Q_DECL_OVERRIDE
+    {
         if (hint == QStyle::SH_ItemView_ActivateItemOnSingleClick) {
             return true;
         }
@@ -104,6 +116,10 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
             &KrFileTreeView::showHeaderContextMenu);
 
     setBriefMode(true);
+
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, &KrFileTreeView::customContextMenuRequested, this,
+            &KrFileTreeView::slotCustomContextMenuRequested);
 }
 
 QUrl KrFileTreeView::urlForProxyIndex(const QModelIndex &index) const
@@ -202,6 +218,112 @@ void KrFileTreeView::showHeaderContextMenu()
     } else if (triggeredAction && triggeredAction->actionGroup() == rootActionGroup) {
         setTree(startFromCurrentAction->isChecked(), startFromPlaceAction->isChecked());
     }
+}
+
+void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
+{
+    const QModelIndex index = indexAt(point);
+    if (!index.isValid())
+        return;
+
+    const KFileItem fileItem = mSourceModel->itemForIndex(mProxyModel->mapToSource(index));
+    const KFileItemListProperties capabilities(KFileItemList() << fileItem);
+
+    QMenu* popup = new QMenu(this);
+
+    // TODO nice to have: "open with"
+
+    // cut/copy/paste
+    QAction* cutAction = new QAction(QIcon::fromTheme(QStringLiteral("edit-cut")), i18nc("@action:inmenu", "Cut"), this);
+    cutAction->setEnabled(capabilities.supportsMoving());
+    connect(cutAction, &QAction::triggered, this, [=]() { copyToClipBoard(fileItem, true); });
+    popup->addAction(cutAction);
+
+    QAction* copyAction = new QAction(QIcon::fromTheme(QStringLiteral("edit-copy")), i18nc("@action:inmenu", "Copy"), this);
+    connect(copyAction, &QAction::triggered, this, [=]() { copyToClipBoard(fileItem, false); });
+    popup->addAction(copyAction);
+
+    const QMimeData *mimeData = QApplication::clipboard()->mimeData();
+    bool canPaste;
+    const QString text = KIO::pasteActionText(mimeData, &canPaste, fileItem);
+    QAction* pasteAction = new QAction(QIcon::fromTheme(QStringLiteral("edit-paste")), text, this);
+    connect(pasteAction, &QAction::triggered, this, [=]() {
+        KIO::PasteJob *job = KIO::paste(QApplication::clipboard()->mimeData(), fileItem.url());
+        KJobWidgets::setWindow(job, this);
+    });
+    pasteAction->setEnabled(canPaste);
+    popup->addAction(pasteAction);
+
+    popup->addSeparator();
+
+    // TODO nice to have: rename
+
+    // trash
+    if (KConfigGroup(krConfig, "General").readEntry("Move To Trash", _MoveToTrash)) {
+        QAction* moveToTrashAction = new QAction(QIcon::fromTheme(QStringLiteral("user-trash")),
+                                                i18nc("@action:inmenu", "Move to Trash"), this);
+        const bool enableMoveToTrash = capabilities.isLocal() && capabilities.supportsMoving();
+        moveToTrashAction->setEnabled(enableMoveToTrash);
+        connect(moveToTrashAction, &QAction::triggered, this, [=]() {
+            deleteFile(fileItem, true);
+        });
+        popup->addAction(moveToTrashAction);
+    }
+
+    // delete
+    QAction *deleteAction = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")),
+                                        i18nc("@action:inmenu", "Delete"), this);
+    deleteAction->setEnabled(capabilities.supportsDeleting());
+    connect(deleteAction, &QAction::triggered, this, [=]() {
+        deleteFile(fileItem, false);
+    });
+    popup->addAction(deleteAction);
+
+    popup->addSeparator();
+
+    // properties
+    if (!fileItem.isNull()) {
+        QAction* propertiesAction = new QAction(i18nc("@action:inmenu", "Properties"), this);
+        propertiesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-properties")));
+        connect(propertiesAction, &QAction::triggered, this, [=]() {
+            KPropertiesDialog* dialog = new KPropertiesDialog(fileItem.url(), this);
+            dialog->setAttribute(Qt::WA_DeleteOnClose);
+            dialog->show();
+        });
+        popup->addAction(propertiesAction);
+    }
+
+    QPointer<QMenu> popupPtr = popup;
+    popup->exec(QCursor::pos());
+    if (popupPtr.data()) {
+        popupPtr.data()->deleteLater();
+    }
+}
+
+void KrFileTreeView::copyToClipBoard(const KFileItem &fileItem, bool cut) const
+{
+    QMimeData* mimeData = new QMimeData();
+
+    QList<QUrl> kdeUrls;
+    kdeUrls.append(fileItem.url());
+    QList<QUrl> mostLocalUrls;
+    bool dummy;
+    mostLocalUrls.append(fileItem.mostLocalUrl(dummy));
+
+    KIO::setClipboardDataCut(mimeData, cut);
+    KUrlMimeData::setUrls(kdeUrls, mostLocalUrls, mimeData);
+
+    QApplication::clipboard()->setMimeData(mimeData);
+}
+
+void KrFileTreeView::deleteFile(const KFileItem &fileItem, bool moveToTrash) const
+{
+    const QList<QUrl> confirmedFiles =
+        ListPanelFunc::confirmDeletion(QList<QUrl>() << fileItem.url(), moveToTrash, false, true);
+    if (confirmedFiles.isEmpty())
+        return;
+
+    FileSystemProvider::instance().startDeleteFiles(confirmedFiles, moveToTrash);
 }
 
 bool KrFileTreeView::briefMode() const

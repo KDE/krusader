@@ -31,7 +31,11 @@
 #include <KIOWidgets/KDirModel>
 
 /**
- * @brief Shows a generic file tree
+ * Show folders in a tree view.
+ *
+ * A context menu with settings is accessible through the header.
+ *
+ * Supports dragging from this view and dropping files on it.
  */
 class KrFileTreeView : public QTreeView
 {
@@ -55,13 +59,16 @@ private slots:
     void slotActivated(const QModelIndex &index);
     void slotExpanded(const QModelIndex&);
     void showHeaderContextMenu();
+    void slotCustomContextMenuRequested(const QPoint &point);
 
 protected:
     void dropEvent(QDropEvent *event) Q_DECL_OVERRIDE;
 
 private:
     QUrl urlForProxyIndex(const QModelIndex &index) const;
-    void dropMimeData(const QList<QUrl> & lst, const QUrl &url);
+    void dropMimeData(const QList<QUrl> & lst, const QUrl &url) const;
+    void copyToClipBoard(const KFileItem &fileItem, bool cut) const ;
+    void deleteFile(const KFileItem &fileItem, bool moveToTrash = true) const;
     bool briefMode() const;
     void setBriefMode(bool brief); // show only column with directory names
     void setTree(bool startFromCurrent, bool startFromPlace);
