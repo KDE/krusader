@@ -149,8 +149,11 @@ public:
     }
     /// Returns true if this filesystem is currently refreshing the current directory.
     inline bool isRefreshing() const { return _isRefreshing; }
+
     /// Delete or trash files in the current directory. Implemented async.
     void deleteFiles(const QStringList &fileNames, bool moveToTrash = true);
+    /// Delete or trash arbitrary files. Implemented async. Universal refresh not fully implemented.
+    void deleteAnyFiles(const QList<QUrl> &urls, bool moveToTrash);
 
     /// Return the input URL with a trailing slash if absent.
     static QUrl ensureTrailingSlash(const QUrl &url);
@@ -192,8 +195,10 @@ protected:
     /// Fill the filesystem dictionary with file items, must be implemented for each filesystem.
     virtual bool refreshInternal(const QUrl &origin, bool stayInDir) = 0;
 
-    /// Connect the result signal of a file operation job.
-    void connectJob(KJob *job, const QUrl &destination);
+    /// Connect the result signal of a file operation job - source URLs.
+    void connectJobToSources(KJob *job, const QList<QUrl> urls);
+    /// Connect the result signal of a file operation job - destination URL.
+    void connectJobToDestination(KJob *job, const QUrl &destination);
     /// Returns true if showing hidden files is set in config.
     bool showHiddenFiles();
     /// Add a new file item to the internal dictionary (while refreshing).

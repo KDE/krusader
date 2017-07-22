@@ -48,19 +48,27 @@ public:
 
     /**
      * Start a copy job for copying, moving or linking files to a destination directory.
-     * May be implemented async depending on destination filesystem.
+     * Operation may be implemented async depending on destination filesystem.
      */
     void startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,
                         KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
                         bool showProgressInfo = true,
                         JobMan::StartMode startMode = JobMan::Default);
+
     /**
      * Handle file dropping. Starts a copy job for copying, moving or linking files to a destination
      * directory after use choose the action in a context menu.
      *
-     * May implemented async depending on destination filesystem.
+     * Operation may implemented async depending on destination filesystem.
      */
     void startDropFiles(QDropEvent *event, const QUrl &destination);
+
+    /**
+     * Start a delete job for trashing or deleting files.
+     *
+     * Operation implemented async.
+     */
+    void startDeleteFiles(const QList<QUrl> &urls, bool moveToTrash = true);
 
     static FileSystemProvider &instance();
     static FileSystem::FS_TYPE getFilesystemType(const QUrl &url);

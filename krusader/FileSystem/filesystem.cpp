@@ -159,10 +159,16 @@ bool FileSystem::scanOrRefresh(const QUrl &directory, bool onlyScan)
 void FileSystem::deleteFiles(const QStringList &fileNames, bool moveToTrash)
 {
     // get absolute URLs for file names
-    const QList<QUrl> fileUrls = getUrls(fileNames);
+    deleteAnyFiles(getUrls(fileNames), moveToTrash);
+}
 
-    KrJob *krJob = KrJob::createDeleteJob(fileUrls, moveToTrash);
-    connect(krJob, &KrJob::started, this, [=](KIO::Job *job) { connectJob(job, currentDirectory()); });
+void FileSystem::deleteAnyFiles(const QList<QUrl> &urls, bool moveToTrash)
+{
+    KrJob *krJob = KrJob::createDeleteJob(urls, moveToTrash);
+    connect(krJob, &KrJob::started, this, [=](KIO::Job *job) {
+        connectJobToSources(job, urls);
+    });
+
     if (moveToTrash) {
         // update destination: the trash bin (in case a panel/tab is showing it)
         connect(krJob, &KrJob::started, this, [=](KIO::Job *job) {
@@ -174,7 +180,20 @@ void FileSystem::deleteFiles(const QStringList &fileNames, bool moveToTrash)
     krJobMan->manageJob(krJob);
 }
 
-void FileSystem::connectJob(KJob *job, const QUrl &destination)
+void FileSystem::connectJobToSources(KJob *job, const QList<QUrl> urls)
+{
+    if (!urls.isEmpty()) {
+        // NOTE: we assume that all files were in the same directory and only emit one signal for
+        // the directory of the first file URL
+        // TODO for deletion we need to actually refresh
+        // * all dirs containing deleted files - once
+        // * all deleted dirs + all subdirs
+        const QUrl url = urls.first().adjusted(QUrl::RemoveFilename);
+        connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(url); });
+    }
+}
+
+void FileSystem::connectJobToDestination(KJob *job, const QUrl &destination)
 {
     connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(destination); });
     // (additional) direct refresh if on local fs because watcher is too slow

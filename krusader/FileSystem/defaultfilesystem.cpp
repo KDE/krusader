@@ -70,9 +70,9 @@ void DefaultFileSystem::copyFiles(const QList<QUrl> &urls, const QUrl &destinati
     KrJob *krJob = KrJob::createCopyJob(mode, urls, dest, flags);
     // destination can be a full path with filename when copying/moving a single file
     const QUrl destDir = dest.adjusted(QUrl::RemoveFilename);
-    connect(krJob, &KrJob::started, this, [=](KIO::Job *job) { connectJob(job, destDir); });
+    connect(krJob, &KrJob::started, this, [=](KIO::Job *job) { connectJobToDestination(job, destDir); });
     if (mode == KIO::CopyJob::Move) { // notify source about removed files
-        connect(krJob, &KrJob::started, this, [=](KIO::Job *job) { connectSourceFileSystem(job, urls); });
+        connect(krJob, &KrJob::started, this, [=](KIO::Job *job) { connectJobToSources(job, urls); });
     }
 
     krJobMan->manageJob(krJob, startMode);
@@ -89,12 +89,12 @@ void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
     // the actual CopyJob starts automatically - we cannot manage the start of the CopyJob (see
     // documentation for KrJob)
     connect(job, &KIO::DropJob::copyJobStarted, this, [=](KIO::CopyJob *kJob) {
-        connectJob(job, dest); // now we now we have to refresh the destination
+        connectJobToDestination(job, dest); // now we have to refresh the destination
 
         KrJob *krJob = KrJob::createDropJob(job, kJob);
         krJobMan->manageStartedJob(krJob, kJob);
         if (kJob->operationMode() == KIO::CopyJob::Move) { // notify source about removed files
-            connectSourceFileSystem(kJob, kJob->srcUrls());
+            connectJobToSources(kJob, kJob->srcUrls());
         }
     });
 #else
@@ -103,16 +103,6 @@ void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
     connectJob(job, dest);
     connectSourceFileSystem(job, KUrlMimeData::urlsFromMimeData(event->mimeData()));
 #endif
-}
-
-void DefaultFileSystem::connectSourceFileSystem(KJob *job, const QList<QUrl> urls)
-{
-    if (!urls.isEmpty()) {
-        // NOTE: we assume that all files were in the same directory and only emit one signal for
-        // the directory of the first file URL
-        const QUrl url = urls.first().adjusted(QUrl::RemoveFilename);
-        connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(url); });
-    }
 }
 
 void DefaultFileSystem::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
@@ -136,7 +126,7 @@ void DefaultFileSystem::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::Copy
 void DefaultFileSystem::mkDir(const QString &name)
 {
     KIO::SimpleJob* job = KIO::mkdir(getUrl(name));
-    connectJob(job, currentDirectory());
+    connectJobToDestination(job, currentDirectory());
 }
 
 void DefaultFileSystem::rename(const QString &oldName, const QString &newName)
@@ -144,7 +134,7 @@ void DefaultFileSystem::rename(const QString &oldName, const QString &newName)
     const QUrl oldUrl = getUrl(oldName);
     const QUrl newUrl = getUrl(newName);
     KIO::Job *job = KIO::moveAs(oldUrl, newUrl, KIO::HideProgressInfo);
-    connectJob(job, currentDirectory());
+    connectJobToDestination(job, currentDirectory());
 
     KIO::FileUndoManager::self()->recordJob(KIO::FileUndoManager::Rename, {oldUrl}, newUrl, job);
 }

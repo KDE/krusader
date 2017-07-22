@@ -60,6 +60,16 @@ void FileSystemProvider::startDropFiles(QDropEvent *event, const QUrl &destinati
     fs->dropFiles(destination, event);
 }
 
+void FileSystemProvider::startDeleteFiles(const QList<QUrl> &urls, bool moveToTrash)
+{
+    if (urls.isEmpty())
+        return;
+
+    // assume all URLs use the same filesystem
+    FileSystem *fs = getFilesystemInstance(urls.first());
+    fs->deleteAnyFiles(urls, moveToTrash);
+}
+
 void FileSystemProvider::refreshFilesystem(const QUrl &directory)
 {
     QMutableListIterator<QPointer<FileSystem>> it(_fileSystems);

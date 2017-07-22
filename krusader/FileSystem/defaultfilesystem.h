@@ -90,8 +90,6 @@ protected slots:
     void slotWatcherDeleted(const QString &path);
 
 private:
-    void connectSourceFileSystem(KJob *job, const QList<QUrl> urls);
-
     bool refreshLocal(const QUrl &directory, bool onlyScan); // NOTE: this is very fast
     FileItem *createLocalFileItem(const QString &name);
     /// Returns the current path with symbolic links resolved
