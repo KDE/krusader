@@ -699,7 +699,7 @@ void ListPanelFunc::deleteFiles(bool moveToTrash)
     }
 
     // first get the selected file names list
-    QStringList fileNames = panel->getSelectedNames();
+    const QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
         return;
 
@@ -707,6 +707,33 @@ void ListPanelFunc::deleteFiles(bool moveToTrash)
     moveToTrash = moveToTrash && files()->canMoveToTrash(fileNames);
 
     // now ask the user if he/she is sure:
+
+    const QList<QUrl> confirmedUrls = confirmDeletion(
+        files()->getUrls(fileNames), moveToTrash, files()->type() == FileSystem::FS_VIRTUAL, false);
+
+    if (confirmedUrls.isEmpty())
+        return; // nothing to delete
+
+    // after the delete return the cursor to the first unmarked
+    // file above the current item;
+    panel->prepareToDelete();
+
+    // let the filesystem do the job...
+    QStringList confirmedFileNames;
+    for (QUrl fileUrl : confirmedUrls) {
+        confirmedFileNames.append(fileUrl.fileName());
+    }
+    files()->deleteFiles(confirmedFileNames, moveToTrash);
+}
+
+QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToTrash,
+                                           bool virtualFS, bool showPath)
+{
+    QStringList files;
+    for (QUrl fileUrl : urls) {
+        files.append(showPath ? fileUrl.toDisplayString(QUrl::PreferLocalFile) : fileUrl.fileName());
+    }
+
     const KConfigGroup advancedGroup(krConfig, "Advanced");
     if (advancedGroup.readEntry("Confirm Delete", _ConfirmDelete)) {
         QString s; // text
@@ -714,71 +741,73 @@ void ListPanelFunc::deleteFiles(bool moveToTrash)
 
         if (moveToTrash) {
             s = i18np("Do you really want to move this item to the trash?",
-                      "Do you really want to move these %1 items to the trash?", fileNames.count());
+                      "Do you really want to move these %1 items to the trash?", files.count());
             b = KGuiItem(i18n("&Trash"));
-        } else if (files()->type() == FileSystem::FS_VIRTUAL) {
+        } else if (virtualFS) {
             s = i18np("<qt>Do you really want to delete this item <b>physically</b> (not just "
                       "removing it from the virtual items)?</qt>",
                       "<qt>Do you really want to delete these %1 items <b>physically</b> (not just "
                       "removing them from the virtual items)?</qt>",
-                      fileNames.count());
+                      files.count());
             b = KStandardGuiItem::del();
         } else {
             s = i18np("Do you really want to delete this item?",
-                      "Do you really want to delete these %1 items?", fileNames.count());
+                      "Do you really want to delete these %1 items?", files.count());
             b = KStandardGuiItem::del();
         }
 
         // show message
         // note: i'm using continue and not yes/no because the yes/no has cancel as default button
-        if (KMessageBox::warningContinueCancelList(krMainWindow, s, fileNames, i18n("Warning"),
-                                                   b) != KMessageBox::Continue)
-            return;
+        if (KMessageBox::warningContinueCancelList(krMainWindow, s, files, i18n("Warning"),
+                                                   b) != KMessageBox::Continue) {
+            return QList<QUrl>();
+        }
     }
 
     // we want to warn the user about non empty dir
-    bool emptyDirVerify = advancedGroup.readEntry("Confirm Unempty Dir", _ConfirmUnemptyDir);
-    // TODO only local fs supported
-    emptyDirVerify &= files()->isLocal();
+    const bool emptyDirVerify = advancedGroup.readEntry("Confirm Unempty Dir", _ConfirmUnemptyDir);
 
+    QList<QUrl> toDelete;
     if (emptyDirVerify) {
-        QMutableStringListIterator it(fileNames);
-        while (it.hasNext()) {
-            const QString fileName = it.next();
-            FileItem *fileItem = files()->getFileItem(fileName);
-            if (fileItem && !fileItem->isSymLink() && fileItem->isDir()) {
+        QSet<QUrl> confirmedFiles = urls.toSet();
+        for (QUrl fileUrl : urls) {
+            if (!fileUrl.isLocalFile()) {
+                continue; // TODO only local fs supported
+            }
+
+            const QString filePath = fileUrl.toLocalFile();
+            QFileInfo fileInfo(filePath);
+            if (fileInfo.isDir() && !fileInfo.isSymLink()) {
                 // read local dir...
-                const QDir dir(fileItem->getUrl().toLocalFile());
+                const QDir dir(filePath);
                 if (!dir.entryList(QDir::AllEntries | QDir::System | QDir::Hidden |
                                    QDir::NoDotAndDotDot).isEmpty()) {
+
                     // ...is not empty, ask user
+                    const QString fileString = showPath ? filePath : fileUrl.fileName();
                     const KMessageBox::ButtonCode result = KMessageBox::warningYesNoCancel(
                         krMainWindow,
-                        i18n("<qt><p>Folder <b>%1</b> is not empty.</p>", fileName) +
+                        i18n("<qt><p>Folder <b>%1</b> is not empty.</p>", fileString) +
                             (moveToTrash ? i18n("<p>Skip this one or trash all?</p></qt>") :
                                            i18n("<p>Skip this one or delete all?</p></qt>")),
                         QString(), KGuiItem(i18n("&Skip")),
                         KGuiItem(moveToTrash ? i18n("&Trash All") : i18n("&Delete All")));
                     if (result == KMessageBox::Yes) {
-                        it.remove(); // skip
+                        confirmedFiles.remove(fileUrl); // skip this dir
                     } else if (result == KMessageBox::No) {
                         break; // accept all remaining
                     } else {
-                        return; // cancel
+                        return QList<QUrl>(); // cancel
                     }
                 }
             }
         }
-        if (fileNames.isEmpty())
-            return; // nothing to delete
+        toDelete = confirmedFiles.toList();
+    } else {
+        toDelete = urls;
     }
 
-    // after the delete return the cursor to the first unmarked
-    // file above the current item;
-    panel->prepareToDelete();
-
-    // let the filesystem do the job...
-    files()->deleteFiles(fileNames, moveToTrash);
+    return toDelete;
 }
 
 void ListPanelFunc::removeVirtualFiles()
@@ -1270,4 +1299,3 @@ bool ListPanelFunc::atHome()
 {
     return QUrl::fromLocalFile(QDir::homePath()).matches(panel->virtualPath(), QUrl::StripTrailingSlash);
 }
-

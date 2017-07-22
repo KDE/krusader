@@ -133,6 +133,10 @@ public:
     ListPanelFunc* otherFunc();
     bool atHome();
 
+    /** Ask user for confirmation before deleting files. Returns only confirmed files.*/
+    static QList<QUrl> confirmDeletion(const QList<QUrl> &urls, bool moveToTrash,
+                                       bool virtualFS, bool showPath);
+
 protected slots:
     // Load the current url from history and refresh filesystem and panel to it
     void doRefresh();
