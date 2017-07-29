@@ -249,6 +249,7 @@ int KrusaderView::getFocusCandidates(QVector<QWidget*> &widgets)
 
 void KrusaderView::focusUp()
 {
+    qDebug() << "focus UP";
     QVector<QWidget*> widgets;
     int currentFocus = getFocusCandidates(widgets);
 
@@ -262,6 +263,7 @@ void KrusaderView::focusUp()
 
 void KrusaderView::focusDown()
 {
+    qDebug() << "focus DOWN";
     QVector<QWidget*> widgets;
     int currentFocus = getFocusCandidates(widgets);
 

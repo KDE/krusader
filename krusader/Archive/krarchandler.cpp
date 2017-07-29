@@ -118,10 +118,10 @@ QStringList KRarcHandler::supportedPackers()
     if (KrServices::cmdExist("dpkg")) packers.append("dpkg");
     if (KrServices::cmdExist("7z") || KrServices::cmdExist("7za")) packers.append("7z");
     if (KrServices::cmdExist("rpm") && KrServices::cmdExist("rpm2cpio")) packers.append("rpm");
-    // qDebug() << "Supported Packers:" << endl;
+    // qDebug() << "Supported Packers:";
     //QStringList::Iterator it;
     //for( it = packers.begin(); it != packers.end(); ++it )
-    // qDebug() << *it << endl;
+    // qDebug() << *it;
 
     return packers;
 }
@@ -263,7 +263,7 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
     QStringList packer;
 
     // set the right packer to do the job
-    if (type == "zip") packer << KrServices::fullPathName("unzip") << "-o" ;
+    if (type == "zip") packer << KrServices::fullPathName("unzip") << "-o";
     else if (type == "tar") packer << KrServices::fullPathName("tar") << "-xvf";
     else if (type == "tgz") packer << KrServices::fullPathName("tar") << "-xvzf";
     else if (type == "tarz") packer << KrServices::fullPathName("tar") << "-xvzf";

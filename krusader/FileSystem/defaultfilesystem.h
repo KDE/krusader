@@ -86,6 +86,7 @@ protected slots:
     void slotRedirection(KIO::Job *job, const QUrl &url);
     // React to filesystem changes nofified by watcher
     // NOTE: the path parameter can be the directory itself or files in this directory
+    void slotWatcherCreated(const QString &path);
     void slotWatcherDirty(const QString &path);
     void slotWatcherDeleted(const QString &path);
 

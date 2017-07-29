@@ -276,7 +276,7 @@ void PanelManager::slotCloseTab()
 void PanelManager::slotCloseTab(int index)
 {
     if (_tabbar->count() <= 1)    /* if this is the last tab don't close it */
-        return ;
+        return;
 
     ListPanel *oldp;
 

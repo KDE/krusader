@@ -20,6 +20,8 @@
 
 #include "krinterview.h"
 
+#include <QDebug>
+
 #include "krmousehandler.h"
 #include "listmodel.h"
 #include "krviewitem.h"
@@ -211,6 +213,7 @@ KrViewItem * KrInterView::getKrViewItem(const QModelIndex & ndx)
 
 void KrInterView::makeCurrentVisible()
 {
+    qDebug() << "scroll to current index=" << _itemView->currentIndex();
     _itemView->scrollTo(_itemView->currentIndex());
 }
 
@@ -221,6 +224,7 @@ void KrInterView::makeItemVisible(const KrViewItem *item)
 
     FileItem* fileitem = (FileItem *)item->getFileItem();
     QModelIndex ndx = _model->fileItemIndex(fileitem);
+    qDebug() << "scroll to item name=" << fileitem->getName();
     if (ndx.isValid())
         _itemView->scrollTo(ndx);
 }

@@ -79,7 +79,7 @@ void KrRemoteEncodingMenu::slotAboutToShow()
         }
 
         if (!found)
-            qWarning() << Q_FUNC_INFO << "could not find entry for charset=" << charset << endl;
+            qWarning() << Q_FUNC_INFO << "could not find entry for charset=" << charset;
     } else {
         foreach(QAction *act, acts) {
             if (act->data().canConvert<int> ()) {

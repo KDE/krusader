@@ -93,7 +93,7 @@ public:
 
     EXP_FUNC = 0;
 protected:
-    static void setError(Expander& exp, const Error& e) ;
+    static void setError(Expander& exp, const Error& e);
     static void panelMissingError(const QString &s, Expander& exp);
     static QStringList splitEach(const TagString& s);
     static QStringList fileList(const KrPanel* const panel, const QString& type, const QString& mask, const bool omitPath, const bool useUrl, Expander&, const QString&);

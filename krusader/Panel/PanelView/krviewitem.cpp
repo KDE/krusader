@@ -87,7 +87,7 @@ QString KrViewItem::description() const
         if (_fileitem->isBrokenLink())
             text += i18n("(Broken Link)");
         else if (mimeTypeComment.isEmpty())
-            text += i18n("Symbolic Link") ;
+            text += i18n("Symbolic Link");
         else
             text += i18n("%1 (Link)", mimeTypeComment);
 

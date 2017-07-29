@@ -588,7 +588,7 @@ exp_Clipboard::exp_Clipboard()
 }
 TagString exp_Clipboard::expFunc(const KrPanel*, const TagStringList& parameter, const bool&, Expander& exp) const
 {
-//    qDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << QApplication::clipboard()->text() << endl;
+//    qDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << QApplication::clipboard()->text();
     if (parameter.count() == 0) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Clipboard.")));
         return QString();
@@ -1021,7 +1021,7 @@ void Expander::expand(const QString& stringToExpand, bool useUrl)
     else
         resultList.append(result.string());
 
-//    krOut << resultList[0] << endl;
+//    qWarning() << resultList[0];
 }
 
 TagString Expander::expandCurrent(const QString& stringToExpand, bool useUrl)
@@ -1045,7 +1045,7 @@ TagString Expander::expandCurrent(const QString& stringToExpand, bool useUrl)
 
         // get the expression, and expand it using the correct expander function
         exp = stringToExpand.mid(begin + 1, end - begin - 1);
-//       qDebug() << "------------- exp: '" << exp << "'" << endl;
+//       qDebug() << "------------- exp: '" << exp << "'";
         if (exp.isEmpty())
             result += QString(QChar('%'));
         else {
@@ -1056,13 +1056,13 @@ TagString Expander::expandCurrent(const QString& stringToExpand, bool useUrl)
             exp.replace(0, 1, "");
             for (i = 0; i < placeholderCount(); ++i)
                 if (exp == placeholder(i)->expression()) {
-//               qDebug() << "---------------------------------------" << endl;
+//               qDebug() << "---------------------------------------";
                     tmpResult = placeholder(i)->expFunc(getPanel(panelIndicator, placeholder(i), *this), parameter, useUrl, *this);
                     if (error()) {
                         return QString();
                     } else
                         result += tmpResult;
-//               qDebug() << "---------------------------------------" << endl;
+//               qDebug() << "---------------------------------------";
                     break;
                 }
             if (i == placeholderCount()) {   // didn't find an expander
@@ -1074,14 +1074,14 @@ TagString Expander::expandCurrent(const QString& stringToExpand, bool useUrl)
     }
     // copy the rest of the string
     result += stringToExpand.mid(idx);
-//    qDebug() << "============== result '" << result << "'" << endl;
+//    qDebug() << "============== result '" << result << "'";
     return result;
 }
 
 QStringList Expander::splitEach(TagString stringToSplit)
 {
     if (stringToSplit.isSimple()) {
-//   krOut << stringToSplit.string() << endl;
+//   qWarning() << stringToSplit.string();
         QStringList l;
         l << stringToSplit.string();
         return l;
@@ -1095,7 +1095,7 @@ QStringList Expander::splitEach(TagString stringToSplit)
         ret += splitEach(s);
     }
     return ret;
-//    qDebug() << "stringToSplit: " << stringToSplit << endl;
+//    qDebug() << "stringToSplit: " << stringToSplit;
 }
 
 TagStringList Expander::separateParameter(QString* const exp, bool useUrl)
@@ -1125,7 +1125,7 @@ TagStringList Expander::separateParameter(QString* const exp, bool useUrl)
             if (result[ idx ].toLatin1() == ',' && !inQuotes) {
                 parameter1.append(result.mid(begin, idx - begin));
                 begin = idx + 1;
-//             krOut << " ---- parameter: " << parameter.join(";") << endl;
+//             qWarning() << " ---- parameter: " << parameter.join(";");
             }
             idx++;
         }
@@ -1141,7 +1141,7 @@ TagStringList Expander::separateParameter(QString* const exp, bool useUrl)
         }
     }
 
-//    krOut << "------- exp: " << *exp << " ---- parameter: " << parameter.join(";") << endl;
+//    qWarning() << "------- exp: " << *exp << " ---- parameter: " << parameter.join(";");
     return parameter;
 }
 

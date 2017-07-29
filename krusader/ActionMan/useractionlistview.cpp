@@ -245,7 +245,7 @@ bool UserActionListViewItem::operator<(const QTreeWidgetItem &other) const
 {
 // FIXME some how this only produces bullshit :-/
 //   if ( i->text( COL_NAME ).isEmpty() ) { // categories only have titles
-//      //qDebug() << "this->title: " << text(COL_TITLE) << " |=|   i->title: " << i->text(COL_TITLE)  << endl;
+//      //qDebug() << "this->title: " << text(COL_TITLE) << " |=|   i->title: " << i->text(COL_TITLE);
 //       return ( ascending ? -1 : 1 ); // <0 means this is smaller then i
 //    }
 //    else

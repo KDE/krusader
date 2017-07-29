@@ -98,7 +98,7 @@ void SizeCalculator::nextUrl()
         // calculate size of all files/directories in this virtual directory
         VirtualFileSystem *fs = new VirtualFileSystem();
         if (!fs->scanDir(m_currentUrl)) {
-            krOut << "cannot scan virtual fs, url=" << m_currentUrl;
+            qWarning() << "cannot scan virtual FS, URL=" << m_currentUrl.toDisplayString();
             nextUrl();
             return;
         }
@@ -133,7 +133,7 @@ void SizeCalculator::slotStatResult(KJob *job)
         return;
 
     if (job->error()) {
-        krOut << "stat job failed";
+        qWarning() << "stat job failed, error=" << job->error() << "; error string=" << job->errorString();
         nextSubUrl();
         return;
     }

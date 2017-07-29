@@ -228,7 +228,7 @@ void UserActionPage::slotRemoveAction()
                         KStandardGuiItem::remove(), //Label for the continue-button
                         KStandardGuiItem::cancel(),
                         "Confirm Remove UserAction", //dontAskAgainName (for the config-file)
-                        KMessageBox::Dangerous | KMessageBox::Notify) ;
+                        KMessageBox::Dangerous | KMessageBox::Notify);
 
     if (messageDelete != KMessageBox::Continue)
         return;

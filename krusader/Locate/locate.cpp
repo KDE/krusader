@@ -98,7 +98,7 @@ public:
         Q_UNUSED(supportedActs);
 
         QList<QUrl> urls;
-        QList<QTreeWidgetItem *> list = selectedItems() ;
+        QList<QTreeWidgetItem *> list = selectedItems();
 
         QListIterator<QTreeWidgetItem *> it(list);
 

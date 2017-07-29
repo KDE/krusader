@@ -107,6 +107,8 @@ QUrl FileSystem::preferLocalUrl(const QUrl &url){
 
 bool FileSystem::scanOrRefresh(const QUrl &directory, bool onlyScan)
 {
+    qDebug() << "from current dir=" << _currentDirectory.toDisplayString()
+             << "; to=" << directory.toDisplayString();
     if (_isRefreshing) {
         // NOTE: this does not happen (unless async)";
         return false;
@@ -234,6 +236,7 @@ FileItem *FileSystem::createLocalFileItem(const QString &name, const QString &di
     bool brokenLink = false;
     if (isLink) {
         // find where the link is pointing to
+        qDebug() << "link name=" << path;
         // the path of the symlink target cannot be longer than the file size of the symlink
         char buffer[stat_p.st_size];
         memset(buffer, 0, sizeof(buffer));
@@ -246,7 +249,7 @@ FileItem *FileSystem::createLocalFileItem(const QString &name, const QString &di
             else if (linkFile.isDir())
                 isDir = true;
         } else {
-            krOut << "Failed to read link: " << path;
+            qWarning() << "failed to read link, path=" << path;
         }
     }
 

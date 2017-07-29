@@ -655,7 +655,7 @@ void ListPanel::compareDirs(bool otherPanelToo)
         if (item->name() == "..")
             continue;
 
-        for (otherItem = otherPanel()->view->getFirst(); otherItem != 0 && otherItem->name() != item->name() ;
+        for (otherItem = otherPanel()->view->getFirst(); otherItem != 0 && otherItem->name() != item->name();
                 otherItem = otherPanel()->view->getNext(otherItem));
 
         bool isSingle = (otherItem == 0), isDifferent = false, isNewer = false;
@@ -824,13 +824,13 @@ void ListPanel::handleDrop(QDropEvent *event, bool onView)
         const FileItem *file = item->getFileItem();
         if (file && !file->isDir() && dragFromThisPanel) {
             event->ignore(); // dragging on files in same panel, ignore
-            return ;
+            return;
         } else if (!file || file->isDir()) { // item is ".." dummy or a directory
             destinationDir = item->name();
         }
     } else if (dragFromThisPanel) {
         event->ignore(); // dragged from this panel onto an empty spot in this panel, ignore
-        return ;
+        return;
     }
 
     QUrl destination = QUrl(virtualPath());
@@ -949,7 +949,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
             } else {
                 func->openUrl(otherPanel()->virtualPath());
             }
-            return ;
+            return;
         } else
             e->ignore();
         break;
@@ -959,7 +959,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                 MAIN_VIEW->cmdLineFocus();
             else
                 MAIN_VIEW->focusTerminalEmulator();
-            return ;
+            return;
         } else if (e->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier)) {     // give the keyboard focus to TE
             MAIN_VIEW->focusTerminalEmulator();
         } else
@@ -969,7 +969,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
     case Qt::Key_Up :
         if (e->modifiers() == Qt::ControlModifier) {   // give the keyboard focus to the url navigator
             editLocation();
-            return ;
+            return;
         } else
             e->ignore();
         break;

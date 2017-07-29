@@ -624,6 +624,7 @@ void KrView::clear()
 
 bool KrView::handleKeyEvent(QKeyEvent *e)
 {
+    qDebug() << "key event=" << e;
     switch (e->key()) {
     case Qt::Key_Enter :
     case Qt::Key_Return : {
@@ -1104,7 +1105,7 @@ void KrView::customSelection(bool select)
     KRQuery query = dialog.getQuery();
     // if the user canceled - quit
     if (query.isNull())
-        return ;
+        return;
     includeDirs = dialog.isExtraOptionChecked(i18n("Apply selection to folders"));
 
     changeSelection(query, select, includeDirs);

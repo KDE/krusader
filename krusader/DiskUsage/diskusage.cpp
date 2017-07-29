@@ -267,7 +267,7 @@ void DiskUsage::load(const QUrl &baseDir)
     }
     searchFileSystem = FileSystemProvider::instance().getFilesystem(baseDir);
     if (searchFileSystem == 0) {
-        krOut << "diskusage could not get filesystem for directory " << baseDir;
+        qWarning() << "could not get filesystem for directory=" << baseDir;
         loading = abortLoading = clearAfterAbort = false;
         emit loadFinished(false);
         return;

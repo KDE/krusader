@@ -71,7 +71,7 @@ class KRslots : public QObject
     Q_OBJECT
 
 public:
-    enum compareMode { full } ;
+    enum compareMode { full };
 
     explicit KRslots(QObject *parent);
     ~KRslots() {}

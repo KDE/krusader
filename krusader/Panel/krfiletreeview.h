@@ -67,7 +67,7 @@ protected:
 private:
     QUrl urlForProxyIndex(const QModelIndex &index) const;
     void dropMimeData(const QList<QUrl> & lst, const QUrl &url) const;
-    void copyToClipBoard(const KFileItem &fileItem, bool cut) const ;
+    void copyToClipBoard(const KFileItem &fileItem, bool cut) const;
     void deleteFile(const KFileItem &fileItem, bool moveToTrash = true) const;
     bool briefMode() const;
     void setBriefMode(bool brief); // show only column with directory names

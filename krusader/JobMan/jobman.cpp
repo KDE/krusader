@@ -119,6 +119,7 @@ protected slots:
 
     void slotTerminated()
     {
+        qDebug() << "job description=" << m_krJob->description();
         m_pauseResumeButton->setEnabled(false);
         m_cancelButton->setIcon(QIcon::fromTheme("edit-clear"));
         m_cancelButton->setToolTip(i18n("Clear"));
@@ -155,7 +156,7 @@ private slots:
         connect(job, &KJob::resumed, this, &JobMenuAction::updatePauseResumeButton);
         connect(job, &KJob::result, this, &JobMenuAction::slotResult);
         connect(job, &KJob::warning, this, [](KJob *, const QString &plain, const QString &) {
-            krOut << "unexpected job warning: " << plain;
+            qWarning() << "unexpected job warning: " << plain;
         });
 
         updatePauseResumeButton();
@@ -265,6 +266,7 @@ bool JobMan::waitForJobs(bool waitForUserInput)
 
 void JobMan::manageJob(KrJob *job, StartMode startMode)
 {
+    qDebug() << "new job, startMode=" << startMode;
     managePrivate(job);
 
     connect(job, &KrJob::started, this, &JobMan::slotKJobStarted);
@@ -337,6 +339,8 @@ void JobMan::slotDescription(KJob*,const QString &description, const QPair<QStri
 
 void JobMan::slotTerminated(KrJob *krJob)
 {
+    qDebug() << "terminated, job description: " << krJob->description();
+
     m_jobs.removeAll(krJob);
 
     // NOTE: ignoring queue mode here. We assume that if queue mode is turned off, the user created

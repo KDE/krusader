@@ -156,6 +156,7 @@ QUrl KUrlRequesterDlgForCopy::selectedURL() const
 {
     if (result() == QDialog::Accepted) {
         QUrl url = urlRequester_->url();
+        qDebug() << "requester returned URL=" << url.toDisplayString();
         if (url.isValid())
             KRecentDocument::add(url);
         return url;

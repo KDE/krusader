@@ -324,7 +324,7 @@ void KrViewer::edit(QUrl url, Mode mode, int new_window, QWidget * parent)
         proc << cmdArgs << url.toDisplayString(QUrl::PreferLocalFile);
         if (!proc.startDetached())
             KMessageBox::sorry(krMainWindow, i18n("Can not open \"%1\"", editor));
-        return ;
+        return;
     }
 
     KrViewer* viewer = getViewer(new_window);

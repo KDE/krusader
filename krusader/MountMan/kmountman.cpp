@@ -390,7 +390,7 @@ void KMountMan::quickList()
 {
     if (!Operational) {
         KMessageBox::error(0, i18n("MountMan is not operational. Sorry"));
-        return ;
+        return;
     }
 
     // clear the popup menu
@@ -446,7 +446,7 @@ void KMountMan::delayedPerformAction(QAction * act)
     __delayedIdx = idx;
 
     if (idx < 0)
-        return ;
+        return;
 
     QTimer::singleShot(0, this, SLOT(performAction()));
 }

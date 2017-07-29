@@ -126,7 +126,7 @@ void KRPleaseWaitHandler::startWaiting(QString msg, int count , bool cancel)
     dlg->setLabelText(msg);
     if (count == 0) {
         dlg->setMaximum(10);
-        cycle = true ;
+        cycle = true;
         cycleProgress();
     } else {
         dlg->setMaximum(count);

@@ -215,7 +215,7 @@ KCMDLine::~KCMDLine()
 {
     KConfigGroup grpSvr(krConfig, "Private");
     QStringList list = cmdLine->historyItems();
-    //krOut << list[0] << endl;
+    //qWarning() << list[0];
     grpSvr.writeEntry("cmdline history", list);
     krConfig->sync();
 }
@@ -243,7 +243,7 @@ void KCMDLine::slotRun()
 {
     const QString command1(cmdLine->currentText());
     if (command1.isEmpty())
-        return ;
+        return;
 
     cmdLine->addToHistory(command1);
     // bugfix by aardvark: current editline is destroyed by addToHistory() in some cases

@@ -126,12 +126,12 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExe
 {
     if (name == "..") {
         dirUp();
-        return ;
+        return;
     }
 
     FileItem *fileitem = files()->getFileItem(name);
     if (fileitem == 0)
-        return ;
+        return;
 
     QUrl url = files()->getUrl(name);
 
@@ -190,6 +190,7 @@ QUrl ListPanelFunc::cleanPath(const QUrl &urlIn)
 void ListPanelFunc::openUrl(const QUrl &url, const QString& nameToMakeCurrent,
                             bool manuallyEntered)
 {
+    qDebug() << "URL=" << url.toDisplayString() << "; name to current=" << nameToMakeCurrent;
     if (panel->syncBrowseButton->isChecked()) {
         //do sync-browse stuff....
         if(syncURL.isEmpty())
@@ -254,7 +255,7 @@ void ListPanelFunc::doRefresh()
     if(!url.isValid()) {
         panel->slotStartUpdate(true);  // refresh the panel
         urlManuallyEntered = false;
-        return ;
+        return;
     }
 
     panel->cancelProgress();
@@ -287,6 +288,7 @@ void ListPanelFunc::doRefresh()
         fileSystemP = fileSystem; // v != 0 so this is safe
     } else {
         if (fileSystemP->isRefreshing()) {
+            // TODO remove busy waiting here
             delayTimer.start(100); /* if filesystem is busy try refreshing later */
             return;
         }
@@ -305,6 +307,7 @@ void ListPanelFunc::doRefresh()
         // if the url we're refreshing into is the current one, then the
         // partial refresh will not generate the needed signals to actually allow the
         // view to use nameToMakeCurrent. do it here instead (patch by Thomas Jarosch)
+        qDebug() << "setting current item=" << history->currentItem();
         panel->view->setCurrentItem(history->currentItem());
         panel->view->makeItemVisible(panel->view->getCurrentKrViewItem());
     }
@@ -366,18 +369,18 @@ void ListPanelFunc::redirectLink()
 {
     if (!files()->isLocal()) {
         KMessageBox::sorry(krMainWindow, i18n("You can edit links only on local file systems"));
-        return ;
+        return;
     }
 
     FileItem *fileitem = files()->getFileItem(panel->getCurrentName());
     if (!fileitem)
-        return ;
+        return;
 
     QString file = fileitem->getUrl().path();
     QString currentLink = fileitem->getSymDest();
     if (currentLink.isEmpty()) {
         KMessageBox::sorry(krMainWindow, i18n("The current file is not a link, so it cannot be redirected."));
-        return ;
+        return;
     }
 
     // ask the user for a new destination
@@ -387,16 +390,16 @@ void ListPanelFunc::redirectLink()
 
     // if the user canceled - quit
     if (!ok || newLink == currentLink)
-        return ;
+        return;
     // delete the current link
     if (unlink(file.toLocal8Bit()) == -1) {
         KMessageBox::sorry(krMainWindow, i18n("Cannot remove old link: %1", file));
-        return ;
+        return;
     }
     // try to create a new symlink
     if (symlink(newLink.toLocal8Bit(), file.toLocal8Bit()) == -1) {
         KMessageBox:: /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */sorry(krMainWindow, i18n("Failed to create a new link: %1", file));
-        return ;
+        return;
     }
 }
 
@@ -445,15 +448,15 @@ void ListPanelFunc::view()
 {
     QString fileName = panel->getCurrentName();
     if (fileName.isNull())
-        return ;
+        return;
 
     // if we're trying to view a directory, just exit
     FileItem *fileitem = files()->getFileItem(fileName);
     if (!fileitem || fileitem->isDir())
-        return ;
+        return;
     if (!fileitem->isReadable()) {
         KMessageBox::sorry(0, i18n("No permissions to view this file."));
-        return ;
+        return;
     }
     // call KViewer.
     KrViewer::view(files()->getUrl(fileName));
@@ -491,7 +494,7 @@ void ListPanelFunc::edit()
     if (tmp.isDir()) {
         KMessageBox::sorry(krMainWindow, i18n("You cannot edit a folder"));
         fileToCreate = QUrl();
-        return ;
+        return;
     }
 
     if (!tmp.isReadable()) {
@@ -651,7 +654,7 @@ void ListPanelFunc::mkdir()
 
     // if the user canceled - quit
     if (dirName.isEmpty())
-        return ;
+        return;
 
     QStringList dirTree = dirName.split('/');
 
@@ -667,7 +670,7 @@ void ListPanelFunc::mkdir()
             // if it is the last dir to be created - quit
             if (*it == dirTree.last()) {
                 KMessageBox::sorry(krMainWindow, i18n("A folder or a file with this name already exists."));
-                return ;
+                return;
             }
             // else go into this dir
             else {
@@ -813,7 +816,7 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
 void ListPanelFunc::removeVirtualFiles()
 {
     if (files()->type() != FileSystem::FS_VIRTUAL) {
-        krOut << "filesystem not virtual";
+        qWarning() << "filesystem not virtual";
         return;
     }
 
@@ -841,7 +844,7 @@ void ListPanelFunc::goInside(const QString& name)
 
 void ListPanelFunc::runCommand(QString cmd)
 {
-    krOut << "Run command: " << cmd;
+    qDebug() << "command=" << cmd;
     const QString workdir = panel->virtualPath().isLocalFile() ?
             panel->virtualPath().path() : QDir::homePath();
     if(!KRun::runCommand(cmd, krMainWindow, workdir))
@@ -850,7 +853,7 @@ void ListPanelFunc::runCommand(QString cmd)
 
 void ListPanelFunc::runService(const KService &service, QList<QUrl> urls)
 {
-    krOut << "Run service: " << service.name();
+    qDebug() << "service name=" << service.name();
     KIO::DesktopExecParser parser(service, urls);
     QStringList args = parser.resultingArguments();
     if (!args.isEmpty())
@@ -1089,9 +1092,12 @@ void ListPanelFunc::newFTPconnection()
     QUrl url = KRSpWidgets::newFTP();
     // if the user canceled - quit
     if (url.isEmpty())
-        return ;
+        return;
 
     panel->_actions->actFTPDisconnect->setEnabled(true);
+
+    qDebug() << "URL=" << url.toDisplayString();
+
     openUrl(url);
 }
 
@@ -1114,7 +1120,7 @@ void ListPanelFunc::properties()
     }
 
     if (fileItems.isEmpty())
-        return ;
+        return;
 
     // Show the properties dialog
     KPropertiesDialog *dialog = new KPropertiesDialog(fileItems, krMainWindow);
@@ -1234,7 +1240,7 @@ void ListPanelFunc::pasteFromClipboard()
 
     QList<QUrl> urls = data->urls();
     if (urls.isEmpty())
-        return ;
+        return;
 
     if(origin && KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         origin->panel->view->saveSelection();

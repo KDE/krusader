@@ -68,7 +68,7 @@ void UserAction::setAvailability()
 
 void UserAction::setAvailability(const QUrl &currentURL)
 {
-    //qDebug() << "UserAction::setAvailability currendFile: " << currentURL.url() << endl;
+    //qDebug() << "UserAction::setAvailability currendFile: " << currentURL.url();
     // disable the entries that should not appear in this folder
     QListIterator<KrAction *> it(_actions);
     while (it.hasNext()) {
@@ -157,9 +157,9 @@ void UserAction::readFromFile(const QString& filename, ReadMode mode, KrActionLi
     QDomDocument* doc = new QDomDocument(ACTION_DOCTYPE);
     QFile file(filename);
     if (file.open(QIODevice::ReadOnly)) {
-        //qDebug() << "UserAction::readFromFile - " << filename << "could be opened" << endl;
+        //qDebug() << "UserAction::readFromFile - " << filename << "could be opened";
         if (! doc->setContent(&file)) {
-            //qDebug() << "UserAction::readFromFile - content set - failed" << endl;
+            //qDebug() << "UserAction::readFromFile - content set - failed";
             // if the file doesn't exist till now, the content CAN be set but is empty.
             // if the content can't be set, the file exists and is NOT an xml-file.
             file.close();
@@ -237,7 +237,7 @@ void UserAction::readFromElement(const QDomElement& element, ReadMode mode, KrAc
             if (e.tagName() == "deletedAction") {
                 QString name = e.attribute("name");
                 if (name.isEmpty()) {
-                    krOut << "A deleted action without name detected! \nThis is an error in the file.";
+                    qWarning() << "A deleted action without name detected! \nThis is an error in the file.";
                     continue;
                 }
                 _deletedActions.insert(name);

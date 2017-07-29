@@ -240,7 +240,7 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent, SynchronizerDi
         checkIfSelected = true;
 
     /* walking through in the left directory */
-    for (left_file = left_directory->first(); left_file != 0 && !stopped ;
+    for (left_file = left_directory->first(); left_file != 0 && !stopped;
             left_file = left_directory->next()) {
         if (isDir(left_file))
             continue;
@@ -271,7 +271,7 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent, SynchronizerDi
     }
 
     /* walking through in the right directory */
-    for (right_file = right_directory->first(); right_file != 0 && !stopped ;
+    for (right_file = right_directory->first(); right_file != 0 && !stopped;
             right_file = right_directory->next()) {
         if (isDir(right_file))
             continue;
@@ -292,7 +292,7 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent, SynchronizerDi
 
     /* walking through the subdirectories */
     if (recurseSubDirs) {
-        for (left_file = left_directory->first(); left_file != 0 && !stopped ;
+        for (left_file = left_directory->first(); left_file != 0 && !stopped;
                 left_file = left_directory->next()) {
             if (left_file->isDir() && (followSymLinks || !left_file->isSymLink())) {
                 QString left_file_name =  left_file->getName();
@@ -333,7 +333,7 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent, SynchronizerDi
         }
 
         /* walking through the right side subdirectories */
-        for (right_file = right_directory->first(); right_file != 0 && !stopped ;
+        for (right_file = right_directory->first(); right_file != 0 && !stopped;
                 right_file = right_directory->next()) {
             if (right_file->isDir() && (followSymLinks || !right_file->isSymLink())) {
                 file_name =  right_file->getName();
@@ -660,9 +660,9 @@ void Synchronizer::operate(SynchronizerFileItem *item,
 
     if (item->isDir()) {
         QString leftDirName = (item->leftDirectory().isEmpty()) ?
-                              item->leftName() : item->leftDirectory() + '/' + item->leftName() ;
+                              item->leftName() : item->leftDirectory() + '/' + item->leftName();
         QString rightDirName = (item->rightDirectory().isEmpty()) ?
-                               item->rightName() : item->rightDirectory() + '/' + item->rightName() ;
+                               item->rightName() : item->rightDirectory() + '/' + item->rightName();
 
         QListIterator<SynchronizerFileItem *> it(resultList);
         while (it.hasNext()) {

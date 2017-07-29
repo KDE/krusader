@@ -55,7 +55,7 @@ KIO::filesize_t FilterSettings::FileSize::size() const
     case GigaByte:
         return amount * 1024 * 1024 * 1024;
     default:
-        krOut << "invalid size unit: " << unit;
+        qWarning() << "invalid size unit: " << unit;
         return amount;
     }
 }
@@ -80,7 +80,7 @@ int FilterSettings::TimeSpan::days() const
     case Year:
         return amount * 365;
     default:
-        krOut << "invalid time unit: " << unit;
+        qWarning() << "invalid time unit: " << unit;
         return amount;
     }
 }

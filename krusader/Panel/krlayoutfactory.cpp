@@ -83,7 +83,7 @@ bool KrLayoutFactory::parseFiles()
     if (!mainFilePath.isEmpty())
         _parsed = parseFile(mainFilePath, _mainDoc);
     else
-        krOut << "can't locate" << MAIN_FILE << endl;
+        qWarning() << "can't locate" << MAIN_FILE;
 
     if (!_parsed)
         _parsed = parseRessource(MAIN_FILE_RC_PATH, _mainDoc);
@@ -94,7 +94,7 @@ bool KrLayoutFactory::parseFiles()
     QStringList extraFilePaths = QStandardPaths::locateAll(QStandardPaths::DataLocation, EXTRA_FILE_MASK);
 
     foreach(const QString &path, extraFilePaths) {
-        krOut << "extra file: " << path << endl;
+        qWarning() << "extra file: " << path;
         QDomDocument doc;
         if (parseFile(path, doc))
             _extraDocs << doc;
@@ -112,7 +112,7 @@ bool KrLayoutFactory::parseFile(QString path, QDomDocument &doc)
     if (file.open(QIODevice::ReadOnly))
         return parseContent(file.readAll(), path, doc);
     else
-        krOut << "can't open" << path << endl;
+        qWarning() << "can't open" << path;
 
     return success;
 }
@@ -128,7 +128,7 @@ bool KrLayoutFactory::parseRessource(QString path, QDomDocument &doc)
             data = QByteArray(reinterpret_cast<const char*>(res.data()), res.size());
         return parseContent(data, path, doc);
     } else {
-        krOut << "resource does not exist:" << path;
+        qWarning() << "resource does not exist:" << path;
         return false;
     }
 }
@@ -145,11 +145,11 @@ bool KrLayoutFactory::parseContent(QByteArray content, QString fileName, QDomDoc
             if(version == XMLFILE_VERSION)
                 success = true;
             else
-                krOut << fileName << "has wrong version" << version << "- required is" << XMLFILE_VERSION << endl;
+                qWarning() << fileName << "has wrong version" << version << "- required is" << XMLFILE_VERSION;
         } else
-            krOut << "root.tagName() != \"KrusaderLayout\"\n";
+            qWarning() << "root.tagName() != \"KrusaderLayout\"";
     } else
-        krOut << "error parsing" << fileName << ":" << errorMsg << endl;
+        qWarning() << "error parsing" << fileName << ":" << errorMsg;
 
     return success;
 }
@@ -214,7 +214,7 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName)
             }
         }
         if (layoutRoot.isNull()) {
-            krOut << "no layout with name" << layoutName << "found\n";
+            qWarning() << "no layout with name" << layoutName << "found";
             if(layoutName != DEFAULT_LAYOUT)
                 return createLayout(DEFAULT_LAYOUT);
         } else {
@@ -224,11 +224,11 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName)
 
     if(layout) {
         foreach(const QString &name, widgets.keys()) {
-            krOut << "widget" << name << "was not added to the layout\n";
+            qWarning() << "widget" << name << "was not added to the layout";
             widgets[name]->hide();
         }
     } else
-         krOut << "couldn't load layout" << layoutName << endl;
+         qWarning() << "couldn't load layout" << layoutName;
 
 
     return layout;
@@ -246,7 +246,7 @@ QBoxLayout *KrLayoutFactory::createLayout(QDomElement e, QWidget *parent)
     else if(e.attribute("type") == "vertical")
         l = new QVBoxLayout();
     else {
-        krOut << "unknown layout type:" << e.attribute("type") << endl;
+        qWarning() << "unknown layout type:" << e.attribute("type");
         return 0;
     }
 
@@ -264,12 +264,12 @@ QBoxLayout *KrLayoutFactory::createLayout(QDomElement e, QWidget *parent)
             if(QWidget *w = widgets.take(child.attribute("name")))
                 l->addWidget(w);
             else
-                krOut << "layout: so such widget:" << child.attribute("name") << endl;
+                qWarning() << "layout: so such widget:" << child.attribute("name");
         } else if(child.tagName() == "hide_widget") {
             if(QWidget *w = widgets.take(child.attribute("name")))
                 w->hide();
             else
-                krOut << "layout: so such widget:" << child.attribute("name") << endl;
+                qWarning() << "layout: so such widget:" << child.attribute("name");
         } else if(child.tagName() == "spacer") {
             if(horizontal)
                 l->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed));

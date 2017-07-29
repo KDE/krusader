@@ -231,7 +231,7 @@ void KMountManGUI::getSpaceData()
     if (mounted.size() == 0) {   // nothing is mounted
         addNonMounted();
         updateList(); // let's continue
-        return ;
+        return;
     }
 
     for (KMountPoint::List::iterator it = mounted.begin(); it != mounted.end(); ++it) {
@@ -416,7 +416,7 @@ void KMountManGUI::clicked(QTreeWidgetItem *item, const QPoint & pos)
 #define FORMAT_ID      93
 #define EJECT_ID       94
     //////////////////////////////////////////////////////////
-    if (!item) return ;
+    if (!item) return;
 
     fsData *system = getFsData(item);
     // create the menu

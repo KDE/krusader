@@ -80,6 +80,8 @@ void DefaultFileSystem::copyFiles(const QList<QUrl> &urls, const QUrl &destinati
 
 void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
 {
+    qDebug() << "destination=" << destination;
+
     // resolve relative path before resolving symlinks
     const QUrl dest = resolveRelativePath(destination);
 
@@ -185,6 +187,7 @@ void DefaultFileSystem::updateFilesystemInfo()
 
 bool DefaultFileSystem::refreshInternal(const QUrl &directory, bool onlyScan)
 {
+    qDebug() << "refresh internal to URL=" << directory.toDisplayString();
     if (!KProtocolManager::supportsListing(directory)) {
         emit error(i18n("Protocol not supported by Krusader:\n%1", directory.url()));
         return false;
@@ -193,6 +196,7 @@ bool DefaultFileSystem::refreshInternal(const QUrl &directory, bool onlyScan)
     delete _watcher; // stop watching the old dir
 
     if (directory.isLocalFile()) {
+        qDebug() << "start local refresh to URL=" << directory.toDisplayString();
         // we could read local directories with KIO but using Qt is a lot faster!
         return refreshLocal(directory, onlyScan);
     }
@@ -227,9 +231,11 @@ bool DefaultFileSystem::refreshInternal(const QUrl &directory, bool onlyScan)
 
 void DefaultFileSystem::slotListResult(KJob *job)
 {
+    qDebug() << "got list result";
     if (job && job->error()) {
         // we failed to refresh
         _listError = true;
+        qDebug() << "error=" << job->errorString() << "; text=" << job->errorText();
         emit error(job->errorString()); // display error message (in panel)
     }
 }
@@ -246,7 +252,7 @@ void DefaultFileSystem::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entrie
 
 void DefaultFileSystem::slotRedirection(KIO::Job *job, const QUrl &url)
 {
-   krOut << "redirection to " << url;
+   qDebug() << "redirection to URL=" << url.toDisplayString();
 
    // some protocols (zip, tar) send redirect to local URL without scheme
    const QUrl newUrl = preferLocalUrl(url);
@@ -263,8 +269,14 @@ void DefaultFileSystem::slotRedirection(KIO::Job *job, const QUrl &url)
     _currentDirectory = cleanUrl(newUrl);
 }
 
+void DefaultFileSystem::slotWatcherCreated(const QString& path)
+{
+    qDebug() << "path created (doing nothing): " << path;
+}
+
 void DefaultFileSystem::slotWatcherDirty(const QString& path)
 {
+    qDebug() << "path dirty: " << path;
     if (path == realPath()) {
         // this happens
         //   1. if a directory was created/deleted/renamed inside this directory.
@@ -279,7 +291,7 @@ void DefaultFileSystem::slotWatcherDirty(const QString& path)
 
     FileItem *fileItem = getFileItem(name);
     if (!fileItem) {
-        krOut << "dirty watcher file not found (unexpected): " << path;
+        qWarning() << "file not found (unexpected), path=" << path;
         // this happens at least for cifs mounted filesystems: when a new file is created, a dirty
         // signal with its file path but no other signals are sent (buggy behaviour of KDirWatch)
         refresh();
@@ -296,6 +308,7 @@ void DefaultFileSystem::slotWatcherDirty(const QString& path)
 
 void DefaultFileSystem::slotWatcherDeleted(const QString& path)
 {
+    qDebug() << "path deleted: " << path;
     if (path != realPath()) {
         // ignore deletion of files here, a 'dirty' signal will be send anyway
         return;
@@ -352,7 +365,7 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory, bool onlyScan) {
         name = QString::fromLocal8Bit(dirEnt->d_name);
 
         // show hidden files?
-        if (!showHidden && name.left(1) == ".") continue ;
+        if (!showHidden && name.left(1) == ".") continue;
         // we don't need the "." and ".." entries
         if (name == "." || name == "..") continue;
 

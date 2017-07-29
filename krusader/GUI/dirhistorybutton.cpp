@@ -64,13 +64,13 @@ void DirHistoryButton::showMenu()
 /** No descriptions */
 void DirHistoryButton::slotPopup()
 {
-//    qDebug() << "History slot" << endl;
+//    qDebug() << "History slot";
 }
 /** No descriptions */
 void DirHistoryButton::slotAboutToShow()
 {
     emit aboutToShow();
-//    qDebug() << "about to show" << endl;
+//    qDebug() << "about to show";
     popupMenu->clear();
 
     for (int i = 0; i < historyQueue->count(); i++) {

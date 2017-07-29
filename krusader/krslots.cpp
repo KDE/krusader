@@ -517,7 +517,7 @@ void KRslots::slotSplit()
 
     if (ACTIVE_FUNC->files()->getFileItem(name)->isDir()) {
         KMessageBox::sorry(krApp, i18n("You cannot split a folder."));
-        return ;
+        return;
     }
 
     const QUrl destDir = ACTIVE_PANEL->otherPanel()->virtualPath();
@@ -558,7 +558,7 @@ void KRslots::slotCombine()
 
         if (ACTIVE_FUNC->files()->getFileItem(*it)->isDir()) {
             KMessageBox::sorry(krApp, i18n("You cannot combine a folder."));
-            return ;
+            return;
         }
 
         if (!unixStyle) {

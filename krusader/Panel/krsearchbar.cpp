@@ -168,7 +168,7 @@ void KrSearchBar::onSearchChange()
             break;
         }
         default:
-            krOut << "unexpected search mode: " << _currentMode;
+            qWarning() << "unexpected search mode: " << _currentMode;
     }
 
     _textBox->setFocus();
@@ -218,6 +218,8 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
     if (event->type() != QEvent::KeyPress) {
         return false;
     }
+
+    qDebug() << "key press event=" << event;
 
     QKeyEvent *ke = static_cast<QKeyEvent *>(event);
     if (watched == _view->widget()) {

@@ -332,7 +332,7 @@ void PanelContextMenu::performAction(int id)
 
     switch (id) {
     case - 1 : // the user clicked outside of the menu
-        return ;
+        return;
     case OPEN_TAB_ID :
         // assuming only 1 file is selected (otherwise we won't get here)
         panel->manager()->newTab(item->url(), panel);

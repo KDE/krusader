@@ -52,7 +52,7 @@ bool KrJS::runFile(const QString & filename)
         case KJS::Break:
         case KJS::Continue:
             // TODO: find out what this means
-            krOut << "JavaScript: " << jsres.value().toString(exec).qstring() << endl;
+            qWarning() << "JavaScript: " << jsres.value().toString(exec).qstring();
             break;
         case KJS::ReturnValue:
             // that's only needed when a specific function is called
@@ -69,8 +69,8 @@ bool KrJS::runFile(const QString & filename)
             QString type = exception.get(exec, KJS::Identifier("name")).toString(exec).qstring();
             QString message = exception.get(exec, KJS::Identifier("message")).toString(exec).qstring();
 
-            krOut << "JavaScript: Uncaught " << type << " exception at line " << line <<  " in " << filename << endl;
-            krOut << message << endl;
+            qWarning() << "JavaScript: Uncaught " << type << " exception at line " << line <<  " in " << filename;
+            qWarning() << message;
 
             KMessageBox::error(0,   //parent
                                (line < 0 ?
@@ -78,17 +78,17 @@ bool KrJS::runFile(const QString & filename)
                                 QString(i18n("In %1:\nUncaught JavaScript exception '%2' at line %3\n%4", filename, type, line, message))
                                ), //text
                                i18n("JavaScript Error"),  //caption
-                               KMessageBox::Dangerous) ;
+                               KMessageBox::Dangerous);
             break;
         }
         default:
-            krOut << "JavaScript: Unknown error." << endl;
+            qWarning() << "JavaScript: Unknown error.";
             break;
         } // switch
     } // if
 
 
-    krOut << "JS: done" << endl;
+    qWarning() << "JS: done";
 
     return ok;
 }

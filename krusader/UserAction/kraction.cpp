@@ -384,7 +384,7 @@ bool KrAction::isAvailable(const QUrl &currentURL)
     if (! _showonlyProtocol.empty()) {
         available = false;
         for (QStringList::Iterator it = _showonlyProtocol.begin(); it != _showonlyProtocol.end(); ++it) {
-            //qDebug() << "KrAction::isAvailable currendProtocol: " << currentURL.scheme() << " =?= " << *it << endl;
+            //qDebug() << "KrAction::isAvailable currendProtocol: " << currentURL.scheme() << " =?= " << *it;
             if (currentURL.scheme() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
                 available = true;
                 break;
@@ -502,7 +502,7 @@ bool KrAction::xmlRead(const QDomElement& element)
 
                                             // unknown but not empty
                                             if (! e.tagName().isEmpty())
-                                                krOut << "KrAction::xmlRead() - unrecognized tag found: <action name=\"" << objectName() << "\"><" << e.tagName() << ">" << endl;
+                                                qWarning() << "KrAction::xmlRead() - unrecognized tag found: <action name=\"" << objectName() << "\"><" << e.tagName() << ">";
 
     } // for ( QDomNode node = action->firstChild(); !node.isNull(); node = node.nextSibling() )
 
@@ -572,7 +572,7 @@ void KrAction::readCommand(const QDomElement& element)
         else if (attr == "embedded_terminal")
             setExecType(RunInTE);
         else
-            krOut << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << objectName() << "\"><command executionmode=\"" << attr << "\"" << endl;
+            qWarning() << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << objectName() << "\"><command executionmode=\"" << attr << "\"";
 
     attr = element.attribute("accept", "local");   // default: "local"
     if (attr == "local")
@@ -580,7 +580,7 @@ void KrAction::readCommand(const QDomElement& element)
     else if (attr == "url")
         setAcceptURLs(true);
     else
-        krOut << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << objectName() << "\"><command accept=\"" << attr << "\"" << endl;
+        qWarning() << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << objectName() << "\"><command accept=\"" << attr << "\"";
 
     attr = element.attribute("confirmexecution", "false");   // default: "false"
     if (attr == "true")
@@ -651,7 +651,7 @@ void KrAction::readAvailability(const QDomElement& element)
                     if (e.tagName() == "filename")
                         showlist = & _showonlyFile;
                     else {
-                        krOut << "KrAction::readAvailability() - unrecognized element found: <action name=\"" << objectName() << "\"><availability><" << e.tagName() << ">" << endl;
+                        qWarning() << "KrAction::readAvailability() - unrecognized element found: <action name=\"" << objectName() << "\"><availability><" << e.tagName() << ">";
                         showlist = 0;
                     }
 
