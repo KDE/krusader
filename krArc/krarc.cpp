@@ -37,6 +37,8 @@
 #include <KIO/Job>
 #include <KIOCore/KFileItem>
 
+#include <kio_version.h>
+
 #include <errno.h>
 
 #define MAX_IPC_SIZE           (1024*32)
@@ -1794,9 +1796,18 @@ QString kio_krarcProtocol::getPassword()
 
     authInfo.password.clear();
 
+#if KIO_VERSION_MINOR >= 24
+    int errCode = openPasswordDialogV2(authInfo, i18n("Accessing the file requires a password."));
+    if (!errCode && !authInfo.password.isNull()) {
+#else
     if (openPasswordDialog(authInfo, i18n("Accessing the file requires a password.")) && !authInfo.password.isNull()) {
+#endif
         KRDEBUG(authInfo.password);
         return (password = authInfo.password);
+#if KIO_VERSION_MINOR >= 24
+    } else {
+        error(errCode, QString());
+#endif
     }
 
     KRDEBUG(password);
