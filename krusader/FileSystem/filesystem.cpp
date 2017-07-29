@@ -34,6 +34,7 @@
 #include "filesystem.h"
 
 // QtCore
+#include <QDebug>
 #include <QDir>
 #include <QList>
 // QtWidgets

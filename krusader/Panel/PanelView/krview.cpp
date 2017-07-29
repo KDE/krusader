@@ -45,6 +45,7 @@
 #include "../viewactions.h"
 
 // QtCore
+#include <QDebug>
 #include <QDir>
 // QtGui
 #include <QPixmapCache>

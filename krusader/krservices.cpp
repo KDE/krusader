@@ -21,6 +21,7 @@
 
 // QtCore
 #include <QDir>
+#include <QSet>
 #include <QTextStream>
 #include <QtGlobal>
 

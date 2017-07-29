@@ -31,6 +31,7 @@
 #include "krusaderview.h"
 
 // QtCore
+#include <QDebug>
 #include <QList>
 #include <QEvent>
 // QtGui

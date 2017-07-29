@@ -31,6 +31,7 @@
 #include "diskusage.h"
 
 // QtCore
+#include <QDebug>
 #include <QEvent>
 #include <QHash>
 #include <QMimeDatabase>

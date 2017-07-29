@@ -31,8 +31,9 @@
 
 #include "filtersettings.h"
 
-#include "../krglobal.h"
 #include "../krservices.h"
+
+#include <QDebug>
 
 #include <KCodecs/KCharsets>
 

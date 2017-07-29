@@ -19,13 +19,13 @@
 #include "sizecalculator.h"
 
 // QtCore
+#include <QDebug>
 #include <QTimer>
 
 #include <KIO/StatJob>
 
 #include "fileitem.h"
 #include "virtualfilesystem.h"
-#include "../krglobal.h"
 
 SizeCalculator::SizeCalculator(const QList<QUrl> &urls)
     : QObject(nullptr), m_urls(urls), m_nextUrls(urls), m_totalSize(0), m_totalFiles(0),

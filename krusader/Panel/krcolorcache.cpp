@@ -22,6 +22,7 @@
 #include "../defaults.h"
 
 // QtCore
+#include <QDebug>
 #include <QFile>
 #include <QList>
 // QtGui

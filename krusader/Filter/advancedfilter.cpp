@@ -31,6 +31,7 @@
 #include "advancedfilter.h"
 
 // QtCore
+#include <QDebug>
 #include <QFile>
 #include <QTextStream>
 // QtGui

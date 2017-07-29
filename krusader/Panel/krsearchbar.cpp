@@ -24,6 +24,7 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 
+#include <QDebug>
 #include <QGuiApplication>
 #include <QHBoxLayout>
 #include <QKeyEvent>

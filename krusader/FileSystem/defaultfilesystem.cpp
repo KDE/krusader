@@ -31,6 +31,7 @@
 #include "defaultfilesystem.h"
 
 // QtCore
+#include <QDebug>
 #include <QDir>
 #include <QEventLoop>
 

@@ -34,6 +34,7 @@ A
 #include "../krglobal.h"
 
 // QtCore
+#include <QDebug>
 #include <QMetaEnum>
 #include <QFile>
 #include <QResource>

@@ -32,14 +32,10 @@
 #ifndef KRGLOBAL_H
 #define KRGLOBAL_H
 
-// QtCore
-#include <QDebug>
 // QtGui
 #include <QKeySequence>
 
 #include <KConfigCore/KConfigGroup>
-
-#define krOut qDebug()
 
 class KConfig;
 class KMountMan;

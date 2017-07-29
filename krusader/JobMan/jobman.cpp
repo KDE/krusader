@@ -19,6 +19,7 @@
 #include "jobman.h"
 
 // QtCore
+#include <QDebug>
 #include <QUrl>
 // QtWidgets
 #include <QComboBox>

@@ -20,6 +20,7 @@
 #include "krdialogs.h"
 
 // QtCore
+#include <QDebug>
 #include <QDir>
 // QtGui
 #include <QFontMetrics>
