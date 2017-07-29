@@ -57,6 +57,7 @@ public:
      * with the ability to filter debug messages.
      */
     static void setGlobalKrMessageHandler(bool withDebugMessages);
+    static QString GLOBAL_MESSAGE_PATTERN;
 
 protected:
     static QString    escape(QString name);

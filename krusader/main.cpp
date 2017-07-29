@@ -132,6 +132,9 @@ int main(int argc, char *argv[])
     }*/
 // ============ end icon-stuff ===========
 
+    // set global log message format
+    qSetMessagePattern(KrServices::GLOBAL_MESSAGE_PATTERN);
+
     // prevent qt5-webengine crashing
     QApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 

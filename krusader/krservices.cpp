@@ -38,6 +38,8 @@ QSet<QString> KrServices::isoArchiveMimetypes = QSet<QString>::fromList(KProtoco
 QSet<QString> KrServices::isoArchiveMimetypes;
 #endif
 
+QString KrServices::GLOBAL_MESSAGE_PATTERN = "%{time hh:mm:ss.zzz}-%{type} %{category} %{function}@%{line} # %{message}";
+
 QSet<QString> KrServices::generateKrarcArchiveMimetypes()
 {
     // Hard-code these proven mimetypes openable by krarc protocol.
