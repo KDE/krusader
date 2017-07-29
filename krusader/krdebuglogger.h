@@ -35,7 +35,9 @@ private:
     static const QString logFile; //! The name of the log file
 
 public:
-    KrDebugLogger(const QString &, int);
+    //! This constructor is used inside the KRFUNC macro. For more details: the description of the KRFUNC macro can be seen
+    KrDebugLogger(const QString &argFunction, int line);
+    //! For more information: the description of the KRFUNC macro can be seen
     ~KrDebugLogger();
     static void prepareWriting(QFile &, QTextStream &);
 };

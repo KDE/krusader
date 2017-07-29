@@ -21,7 +21,6 @@ int KrDebugLogger::indentation = 1;
 const int KrDebugLogger::indentationIncrease = 3;
 const QString KrDebugLogger::logFile = QDir::tempPath() + "/krdebug";
 
-//! This constructor is used inside the KRFUNC macro. For more details: the description of the KRFUNC macro can be seen
 KrDebugLogger::KrDebugLogger(const QString &argFunction, int line) : function(argFunction)
 {
     QFile file;
@@ -32,7 +31,6 @@ KrDebugLogger::KrDebugLogger(const QString &argFunction, int line) : function(ar
     indentation += indentationIncrease;
 }
 
-//! For more information: the description of the KRFUNC macro can be seen
 KrDebugLogger::~KrDebugLogger()
 {
     indentation -= indentationIncrease;
