@@ -26,8 +26,6 @@
 <refsynopsisdiv>
 <cmdsynopsis>
 <command>krusader</command>
-<arg choice="opt">KDE Generic Options</arg>
-<arg choice="opt">Qt Generic Options</arg>
 <arg choice="opt">Options</arg>
 <arg choice="plain">url</arg>
 </cmdsynopsis>
@@ -54,6 +52,30 @@ You should give it a try.</para>
 <refsect1><title>Options</title>
 <variablelist>
   <varlistentry>
+      <term><option>-h</option> <option>--help</option></term>
+  <listitem>
+<para>this lists the options available at the command line</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term><option>-v</option> <option>--version</option></term>
+  <listitem>
+<para>lists version information for &krusader;</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term><option>--author</option></term>
+  <listitem>
+<para>show the authors</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term><option>--license</option></term>
+  <listitem>
+<para>show the license</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
   <term><option>--left</option> <parameter><replaceable>&lt;path&gt;</replaceable></parameter></term>
   <listitem>
 <para>start left panel at <replaceable>&lt;path&gt;</replaceable></para>
@@ -68,19 +90,13 @@ You should give it a try.</para>
   <varlistentry>
   <term><option>--profile </option><parameter><replaceable>&lt;panel-profile&gt;</replaceable></parameter></term>
   <listitem>
-<para>Load <replaceable>&lt;panel-profile&gt;</replaceable> on startup</para> 
+<para>load <replaceable>&lt;panel-profile&gt;</replaceable> on startup</para> 
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><option>--author</option></term>
+      <term><option>-d</option> <option>--debug</option></term>
   <listitem>
-<para>show the authors</para>
-  </listitem>
-  </varlistentry>
-  <varlistentry>
-  <term><option>--license</option></term>
-  <listitem>
-<para>show the license</para>
+<para>enables debug output</para>
   </listitem>
   </varlistentry>
   <varlistentry>
