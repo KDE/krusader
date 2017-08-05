@@ -120,6 +120,8 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &KrFileTreeView::customContextMenuRequested, this,
             &KrFileTreeView::slotCustomContextMenuRequested);
+
+    setTree(mStartTreeFromCurrent, mStartTreeFromPlace);
 }
 
 QUrl KrFileTreeView::urlForProxyIndex(const QModelIndex &index) const
