@@ -83,7 +83,7 @@ public:
 
 KrFileTreeView::KrFileTreeView(QWidget *parent)
     : QTreeView(parent), mCurrentUrl(),
-      mCurrentTreeBase(), mStartTreeFromCurrent(false), mStartTreeFromPlace(false)
+      mCurrentTreeBase(), mStartTreeFromCurrent(false), mStartTreeFromPlace(true)
 {
     mSourceModel = new KrDirModel(this, this);
     mSourceModel->dirLister()->setDirOnlyMode(true);
@@ -182,11 +182,11 @@ void KrFileTreeView::showHeaderContextMenu()
     QAction *detailAction = popup.addAction(i18n("Show Details"));
     detailAction->setCheckable(true);
     detailAction->setChecked(!briefMode());
-    detailAction->setToolTip(i18n("Show columns with details."));
+    detailAction->setToolTip(i18n("Show columns with details"));
     QAction *showHiddenAction = popup.addAction(i18n("Show Hidden Folders"));
     showHiddenAction->setCheckable(true);
     showHiddenAction->setChecked(mSourceModel->dirLister()->showingDotFiles());
-    showHiddenAction->setToolTip(i18n("Show folders starting with a dot."));
+    showHiddenAction->setToolTip(i18n("Show folders starting with a dot"));
 
     popup.addSeparator();
     QActionGroup *rootActionGroup = new QActionGroup(this);
@@ -194,20 +194,20 @@ void KrFileTreeView::showHeaderContextMenu()
     QAction *startFromRootAction = popup.addAction(i18n("Start From Root"));
     startFromRootAction->setCheckable(true);
     startFromRootAction->setChecked(!mStartTreeFromCurrent && !mStartTreeFromPlace);
-    startFromRootAction->setToolTip(i18n("Set root of the tree to root of filesystem."));
+    startFromRootAction->setToolTip(i18n("Set root of the tree to root of filesystem"));
     startFromRootAction->setActionGroup(rootActionGroup);
 
     QAction *startFromCurrentAction = popup.addAction(i18n("Start From Current"));
     startFromCurrentAction->setCheckable(true);
     startFromCurrentAction->setChecked(mStartTreeFromCurrent);
-    startFromCurrentAction->setToolTip(i18n("Set root of the tree to the current folder."));
+    startFromCurrentAction->setToolTip(i18n("Set root of the tree to the current folder"));
     startFromCurrentAction->setActionGroup(rootActionGroup);
 
     QAction *startFromPlaceAction = popup.addAction(i18n("Start From Place"));
     startFromPlaceAction->setCheckable(true);
     startFromPlaceAction->setChecked(mStartTreeFromPlace);
     startFromPlaceAction->setToolTip(
-        i18n("Set root of the tree to closest folder listed in 'Places'."));
+        i18n("Set root of the tree to closest folder listed in 'Places'"));
     startFromPlaceAction->setActionGroup(rootActionGroup);
 
     QAction *triggeredAction = popup.exec(QCursor::pos());
