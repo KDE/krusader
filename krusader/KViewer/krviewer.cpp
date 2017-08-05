@@ -434,11 +434,6 @@ void KrViewer::tabCloseRequest(int index, bool force)
         //no point in detaching only one tab..
         detachAction->setEnabled(false);
     }
-
-    if (returnFocusToThisWidget) {
-        returnFocusToThisWidget->raise();
-        returnFocusToThisWidget->activateWindow();
-    }
 }
 
 void KrViewer::tabCloseRequest()
