@@ -398,10 +398,11 @@ void KrViewer::tabChanged(int index)
 void KrViewer::tabCloseRequest(int index, bool force)
 {
     // important to save as returnFocusTo will be cleared at removePart
-    QWidget * returnFocusToThisWidget = returnFocusTo;
+    QWidget *returnFocusToThisWidget = returnFocusTo;
 
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.widget(index));
-    if (!pvb) return;
+    PanelViewerBase *pvb = static_cast<PanelViewerBase *>(tabBar.widget(index));
+    if (!pvb)
+        return;
 
     if (!force && !pvb->queryClose())
         return;
@@ -428,10 +429,8 @@ void KrViewer::tabCloseRequest(int index, bool force)
         }
 
         QTimer::singleShot(0, this, SLOT(close()));
-
-        return;
     } else if (tabBar.count() == 1) {
-        //no point in detaching only one tab..
+        // no point in detaching only one tab..
         detachAction->setEnabled(false);
     }
 }
