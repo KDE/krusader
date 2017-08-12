@@ -65,6 +65,7 @@ private:
     KParts::ReadOnlyPart* konsole_part;     // the actual part pointer
     TerminalInterface* t;                   // TerminalInterface of the konsole part
     bool initialised;
+    bool firstInput;
     bool applyShortcuts(QKeyEvent * ke);
 };
 

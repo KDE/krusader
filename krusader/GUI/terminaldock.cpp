@@ -19,10 +19,11 @@
 #include "terminaldock.h"
 
 // QtCore
-#include <QEvent>
+#include <QDebug>
 #include <QDir>
-#include <QString>
+#include <QEvent>
 #include <QObject>
+#include <QString>
 #include <QUrl>
 // QtGui
 #include <QKeyEvent>
@@ -56,7 +57,7 @@
  * A widget containing the konsolepart for the Embedded terminal emulator
  */
 TerminalDock::TerminalDock(QWidget* parent, KrMainWindow *mainWindow) : QWidget(parent),
-    _mainWindow(mainWindow), konsole_part(0), t(0), initialised(false)
+    _mainWindow(mainWindow), konsole_part(0), t(0), initialised(false), firstInput(true)
 {
     terminal_hbox = new QHBoxLayout(this);
 }
@@ -79,8 +80,8 @@ bool TerminalDock::initialise()
             if (konsole_part) { //loaded successfully
                 terminal_hbox->addWidget(konsole_part->widget());
                 setFocusProxy(konsole_part->widget());
-                connect(konsole_part, SIGNAL(destroyed()),
-                        this, SLOT(killTerminalEmulator()));
+                connect(konsole_part, &KParts::ReadOnlyPart::destroyed, this,
+                        &TerminalDock::killTerminalEmulator);
                 // must filter app events, because some of them are processed
                 // by child widgets of konsole_part->widget()
                 // and would not be received on konsole_part->widget()
@@ -91,6 +92,7 @@ bool TerminalDock::initialise()
                     t->showShellInDir(lastPath);
                 }
                 initialised = true;
+                firstInput = true;
             } else
                 KMessageBox::error(0, i18n("<b>Cannot create embedded terminal.</b><br/>"
                                            "The reported error was: %1", error));
@@ -114,6 +116,8 @@ bool TerminalDock::initialise()
 
 void TerminalDock::killTerminalEmulator()
 {
+    qDebug() << "killed";
+
     initialised = false;
     konsole_part = NULL;
     t = NULL;
@@ -131,10 +135,12 @@ void TerminalDock::sendInput(const QString& input, bool clearCommand)
         // and command is appended to current input (e.g. "rm -rf x " concatenated with 'cd /usr');
         // code "borrowed" from Dolphin, Copyright (C) 2007-2010 by Peter Penz <peter.penz19@gmail.com>
         const int processId = t->terminalProcessId();
-        if (processId > 0) {
+        // workaround (firstInput): kill is send to terminal if shell is not initialized yet
+        if (processId > 0 && !firstInput) {
             kill(processId, SIGINT);
         }
     }
+    firstInput = false;
 
     t->sendInput(input);
 }
