@@ -48,7 +48,6 @@
 #include "../krglobal.h"
 #include "../krservices.h"
 #include "../FileSystem/filesystemprovider.h"
-#include "../FileSystem/filesystem.h"
 
 extern KRarcHandler arcHandler;
 
@@ -511,14 +510,14 @@ void countFiles(const QString &path, unsigned long &totalFiles, bool &stop)
     }
 }
 
-void AbstractJobThread::countLocalFiles(const QUrl &baseUrl, const QStringList &files,
+void AbstractJobThread::countLocalFiles(const QUrl &baseUrl, const QStringList &names,
                                        unsigned long &totalFiles)
 {
     sendReset(i18n("Counting files"));
 
     FileSystem *calcSpaceFileSystem = FileSystemProvider::instance().getFilesystem(baseUrl);
     calcSpaceFileSystem->scanDir(baseUrl);
-    for (const QString name : files) {
+    for (const QString name : names) {
         if (_exited)
             return;
 
