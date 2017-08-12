@@ -35,18 +35,16 @@
 // QtCore
 #include <QEvent>
 // QtWidgets
+#include <QGridLayout>
 #include <QLayout>
+#include <QPushButton>
 #include <QSplitter>
 #include <QWidget>
-#include <QPushButton>
-#include <QGridLayout>
 
 #include "krglobal.h"
 
 class PanelManager;
 class ListPanel;
-
-// forward declaration
 class KFnKeys;
 class KCMDLine;
 class TerminalDock;
@@ -63,32 +61,21 @@ public:
     void saveSettings(KConfigGroup &cfg);
     void cmdLineFocus();  // command line receive's keyboard focus
     void cmdLineUnFocus();// return focus from command line to active panel
-    bool isLeftActive() const {
-        return leftMng == activeMng;
-    }
-    PanelManager *activeManager() const {
-        return activeMng;
-    }
-    PanelManager *inactiveManager() const {
-        return activeMng == leftMng ? rightMng : leftMng;
-    }
-    PanelManager *leftManager() const {
-        return leftMng;
-    }
-    PanelManager *rightManager() const {
-        return rightMng;
-    }
-    KFnKeys *fnKeys() const {
-        return _fnKeys;
-    }
-    KCMDLine *cmdLine() const {
-        return _cmdLine;
-    }
-    TerminalDock *terminalDock() const {
-        return _terminalDock;
-    }
-    ListPanel* leftPanel();
-    ListPanel* rightPanel();
+
+    bool isLeftActive() const { return leftMng == activeMng; }
+
+    // used by krGlobal macros
+    PanelManager *activeManager() const { return activeMng; }
+    PanelManager *inactiveManager() const { return activeMng == leftMng ? rightMng : leftMng; }
+    PanelManager *leftManager() const { return leftMng; }
+    PanelManager *rightManager() const { return rightMng; }
+    KrPanel *activePanel() const;
+    ListPanel *leftPanel() const;
+    ListPanel *rightPanel() const;
+
+    KFnKeys *fnKeys() const { return _fnKeys; }
+    KCMDLine *cmdLine() const { return _cmdLine; }
+    TerminalDock *terminalDock() const { return _terminalDock; }
     bool isVertical() const {
         return horiz_splitter != 0 ? horiz_splitter->orientation() == Qt::Vertical : false;
     }
@@ -98,7 +85,7 @@ public:
 
 public slots:
     void slotSetActiveManager(PanelManager *manager);
-    void slotPathChanged(ListPanel *p);
+    void slotPathChanged(ListPanel *listPanel);
     // Tab - switch focus
     void panelSwitch();
     void toggleVerticalMode();
@@ -121,13 +108,14 @@ private:
     int getFocusCandidates(QVector<QWidget*> &widgets);
     bool cursorIsOnOtherSide(PanelManager *of, const QPoint &globalPos);
     PanelManager *createManager(bool left);
+    void updateCurrentActivePath();
 
-    KFnKeys   *_fnKeys;          // function keys
-    KCMDLine    *_cmdLine;                   // command line widget
-    TerminalDock  *_terminalDock;             // docking widget for terminal emulator
-    QSplitter  *horiz_splitter, *vert_splitter;
-    QList<int>   verticalSplitterSizes;
-    PanelManager *activeMng, *leftMng, *rightMng;       // saving them for panel swaps
+    KFnKeys *_fnKeys;            // function keys
+    KCMDLine *_cmdLine;          // command line widget
+    TerminalDock *_terminalDock; // docking widget for terminal emulator
+    QSplitter *horiz_splitter, *vert_splitter;
+    QList<int> verticalSplitterSizes;
+    PanelManager *activeMng, *leftMng, *rightMng; // saving them for panel swaps
     QGridLayout *mainLayout, *terminal_layout;
 };
 

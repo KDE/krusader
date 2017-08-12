@@ -129,7 +129,7 @@ void KrusaderView::start(const KConfigGroup &cfg, bool restoreSettings,
     leftPanel()->start(leftTabs.isEmpty() ? QUrl::fromLocalFile(QDir::homePath()) : leftTabs.at(0));
     rightPanel()->start(rightTabs.isEmpty() ? QUrl::fromLocalFile(QDir::homePath()) : rightTabs.at(0));
 
-    ACTIVE_PANEL->gui->slotFocusOnMe();  // left starts out active
+    activePanel()->gui->slotFocusOnMe();  // left starts out active
 
     for (int i = 1; i < leftTabs.count(); i++)
         leftMng->slotNewTab(leftTabs.at(i), false);
@@ -198,44 +198,47 @@ void KrusaderView::setPanelSize(bool leftPanel, int percent)
 
 PanelManager *KrusaderView::createManager(bool left)
 {
-    PanelManager *p = new PanelManager(horiz_splitter, krApp, left);
-    connect(p, SIGNAL(draggingTab(PanelManager*,QMouseEvent*)),
-                     SLOT(draggingTab(PanelManager*,QMouseEvent*)));
-    connect(p, SIGNAL(draggingTabFinished(PanelManager*,QMouseEvent*)),
-                     SLOT(draggingTabFinished(PanelManager*,QMouseEvent*)));
-    connect(p, SIGNAL(pathChanged(ListPanel*)), SLOT(slotPathChanged(ListPanel*)));
-    connect(p, SIGNAL(setActiveManager(PanelManager*)),
-                     SLOT(slotSetActiveManager(PanelManager*)));
+    PanelManager *panelManager = new PanelManager(horiz_splitter, krApp, left);
+    connect(panelManager, &PanelManager::draggingTab, this, &KrusaderView::draggingTab);
+    connect(panelManager, &PanelManager::draggingTabFinished, this, &KrusaderView::draggingTabFinished);
+    connect(panelManager, &PanelManager::pathChanged, this, &KrusaderView::slotPathChanged);
+    connect(panelManager, &PanelManager::setActiveManager, this, &KrusaderView::slotSetActiveManager);
 
-    return p;
+    return panelManager;
 }
 
-ListPanel* KrusaderView::leftPanel()
+void KrusaderView::updateCurrentActivePath()
 {
-    return leftMng->currentPanel()->gui;
+    const QString path = activePanel()->gui->lastLocalPath();
+
+    _cmdLine->setCurrent(path);
+    KConfigGroup cfg = krConfig->group("General");
+    if (_terminalDock->isInitialised() && cfg.readEntry("Send CDs", _SendCDs)) {
+        _terminalDock->sendCd(path);
+    }
 }
 
-ListPanel* KrusaderView::rightPanel()
+KrPanel *KrusaderView::activePanel() const
 {
-    return rightMng->currentPanel()->gui;
+    // active manager might not be set yet
+    return activeMng ? activeMng->currentPanel() : nullptr;
 }
+
+ListPanel *KrusaderView::leftPanel() const { return leftMng->currentPanel()->gui; }
+
+ListPanel *KrusaderView::rightPanel() const { return rightMng->currentPanel()->gui; }
 
 // updates the command line whenever current panel or its path changes
-//////////////////////////////////////////////////////////
-void KrusaderView::slotPathChanged(ListPanel *p)
+void KrusaderView::slotPathChanged(ListPanel *listPanel)
 {
-    if(p == ACTIVE_PANEL) {
-        _cmdLine->setCurrent(p->lastLocalPath());
-        KConfigGroup cfg = krConfig->group("General");
-        if (cfg.readEntry("Send CDs", _SendCDs)) { // hopefully, this is cached in kconfig
-            _terminalDock->sendCd(p->lastLocalPath());
-        }
+    if (listPanel == activePanel()) {
+        updateCurrentActivePath();
     }
 }
 
 int KrusaderView::getFocusCandidates(QVector<QWidget*> &widgets)
 {
-    ACTIVE_PANEL->gui->getFocusCandidates(widgets);
+    activePanel()->gui->getFocusCandidates(widgets);
     if(_terminalDock->isTerminalVisible())
         widgets << _terminalDock;
     if(_cmdLine->isVisible())
@@ -283,19 +286,19 @@ void KrusaderView::cmdLineFocus()    // command line receive's keyboard focus
 
 void KrusaderView::cmdLineUnFocus()   // return focus to the active panel
 {
-    ACTIVE_PANEL->gui->slotFocusOnMe();
+    activePanel()->gui->slotFocusOnMe();
 }
 
 // Tab - switch focus
 void KrusaderView::panelSwitch()
 {
-    ACTIVE_PANEL->otherPanel()->gui->slotFocusOnMe();
+    activePanel()->otherPanel()->gui->slotFocusOnMe();
 }
 
 void KrusaderView::slotSetActiveManager(PanelManager *manager)
 {
     activeMng = manager;
-    slotPathChanged(manager->currentPanel()->gui);
+    updateCurrentActivePath();
 }
 
 void KrusaderView::swapSides()
@@ -323,6 +326,8 @@ void KrusaderView::swapSides()
 
 void KrusaderView::setTerminalEmulator(bool show, bool fullscreen)
 {
+    qDebug() << "show=" << show << " fullscreen=" << fullscreen;
+
     static bool fnKeysShown = true; // first time init. should be overridden
     static bool cmdLineShown = true;
     static bool statusBarShown = true;
@@ -356,7 +361,7 @@ void KrusaderView::setTerminalEmulator(bool show, bool fullscreen)
 
             _terminalDock->show();
             _terminalDock->setFocus();
-            slotPathChanged(ACTIVE_PANEL->gui);
+            updateCurrentActivePath();
             KrActions::actToggleTerminal->setChecked(true);
         } else if (fullscreen) {
             // save current terminal size before going to fullscreen
@@ -383,9 +388,10 @@ void KrusaderView::setTerminalEmulator(bool show, bool fullscreen)
         const bool isFullscreen = isTerminalEmulatorFullscreen();
         if (!(fullscreen && terminalEmulatorShown)) {
             // hide terminal emulator
-            ACTIVE_PANEL->gui->slotFocusOnMe();
-            if (_terminalDock->isTerminalVisible() && !isFullscreen)
+            activePanel()->gui->slotFocusOnMe();
+            if (_terminalDock->isTerminalVisible() && !isFullscreen) {
                 verticalSplitterSizes = vert_splitter->sizes();
+            }
             _terminalDock->hide();
             KrActions::actToggleTerminal->setChecked(false);
         } else {
@@ -450,7 +456,7 @@ void KrusaderView::savePanelProfiles(QString group)
     KConfigGroup svr(krConfig, group);
 
     svr.writeEntry("Vertical Mode", isVertical());
-    svr.writeEntry("Left Side Is Active", ACTIVE_PANEL->gui->isLeft());
+    svr.writeEntry("Left Side Is Active", activePanel()->gui->isLeft());
     leftMng->saveSettings(KConfigGroup(&svr, "Left Tabs"), false);
     rightMng->saveSettings(KConfigGroup(&svr, "Right Tabs"), false);
 }
@@ -478,7 +484,7 @@ void KrusaderView::saveSettings(KConfigGroup &cfg)
                                        vert_splitter->sizes() : verticalSplitterSizes;
     cfg.writeEntry("Terminal Emulator Splitter Sizes", vertSplitterSizes);
     cfg.writeEntry("Vertical Mode", isVertical());
-    cfg.writeEntry("Left Side Is Active", ACTIVE_PANEL->gui->isLeft());
+    cfg.writeEntry("Left Side Is Active", activePanel()->gui->isLeft());
     leftMng->saveSettings(KConfigGroup(&cfg, "Left Tab Bar"), true);
     rightMng->saveSettings(KConfigGroup(&cfg, "Right Tab Bar"), true);
 }

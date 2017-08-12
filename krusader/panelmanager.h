@@ -74,13 +74,9 @@ public:
     }
 
     // AbstractPanelManager implementation
-    virtual bool isLeft() Q_DECL_OVERRIDE {
-        return _left;
-    }
-    virtual AbstractPanelManager *otherManager() Q_DECL_OVERRIDE {
-        return _otherManager;
-    }
-    virtual KrPanel *currentPanel() Q_DECL_OVERRIDE;
+    virtual bool isLeft() const Q_DECL_OVERRIDE { return _left; }
+    virtual AbstractPanelManager *otherManager() const Q_DECL_OVERRIDE { return _otherManager; }
+    virtual KrPanel *currentPanel() const Q_DECL_OVERRIDE;
     virtual void newTab(const QUrl &url, KrPanel *nextTo) Q_DECL_OVERRIDE {
         slotNewTab(url, true, nextTo);
     }
@@ -141,7 +137,7 @@ private:
     PanelTabBar *_tabbar;
     QStackedWidget *_stack;
     QToolButton *_newTab;
-    ListPanel *_self;
+    ListPanel *_currentPanel;
 };
 
 

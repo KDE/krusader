@@ -35,9 +35,10 @@
 #include <QAbstractEventDispatcher>
 #include <QCommandLineOption>
 #include <QCommandLineParser>
+#include <QDebug>
+#include <QDir>
 #include <QEventLoop>
 #include <QStandardPaths>
-#include <QDir>
 // QtGui
 #include <QPixmap>
 // QtDBus
@@ -284,7 +285,6 @@ int main(int argc, char *argv[])
 
         if (reply.isValid() && (bool)reply) {
             KStartupInfo::appStarted();
-            QStringList tabs;
             if (parser.isSet("left"))
                 openTabsRemote(parser.value("left").split(','), true, appName);
             if (parser.isSet("right"))
@@ -332,7 +332,7 @@ int main(int argc, char *argv[])
         fprintf(stderr, "DBus Error: %s, %s\n", dbus.lastError().name().toLocal8Bit().constData(), dbus.lastError().message().toLocal8Bit().constData());
     }
 
-
+    qDebug() << "Qt icon theme: " << QIcon::themeName();
 
     // catching SIGTERM, SIGHUP, SIGQUIT
     signal(SIGTERM, sigterm_handler);
@@ -348,5 +348,4 @@ int main(int argc, char *argv[])
     }
     // let's go.
     return app.exec();
-
 }
