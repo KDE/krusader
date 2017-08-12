@@ -54,8 +54,8 @@ public:
     bool isLeft() const;
     virtual void otherPanelChanged() = 0;
 
-    ListPanel *gui;
-    ListPanelFunc *func;
+    ListPanel *const gui;
+    ListPanelFunc *const func;
     KrView *view;
 
 protected:

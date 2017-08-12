@@ -47,6 +47,7 @@
 #include "../defaults.h"
 #include "../GUI/krstyleproxy.h"
 
+#define MAX_BRIEF_COLS 5
 
 KrInterBriefView::KrInterBriefView(QWidget *parent, KrViewInstance &instance, KConfig *cfg) :
         QAbstractItemView(parent),

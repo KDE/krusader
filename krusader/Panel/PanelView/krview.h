@@ -43,8 +43,6 @@
 
 #include "krviewproperties.h"
 
-#define MAX_BRIEF_COLS 5
-
 class KrView;
 class KrViewItem;
 class KrPreviews;
