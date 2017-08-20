@@ -361,23 +361,21 @@ TagString exp_Current::expFunc(const KrPanel* panel, const QStringList& paramete
     NEED_PANEL
 
     QString item = panel->view->getCurrentItem();
+    if (item == "..") {
+        // if ".." is current, treat this as nothing is current
+        return QString();
+    }
 
     QString result;
-
     if (parameter.count() > 0 && parameter[0].toLower() == "yes")    // omit the current path
         result = item;
     else {
-        QUrl url = panel->func->files()->getUrl(item);
-        if (useUrl)
-            result = url.url();
-        else
-            result = url.path();
+        const QUrl url = panel->func->files()->getUrl(item);
+        result = useUrl ? url.url() : url.path();
     }
 
-    if (parameter.count() > 1 && parameter[1].toLower() == "no")    // don't escape spaces
-        return result;
-    else
-        return bashquote(result);
+    const bool escapeSpaces = parameter.count() < 2 || parameter[1].toLower() != "no";
+    return escapeSpaces ? bashquote(result) : result;
 }
 
 exp_List::exp_List()
@@ -625,23 +623,29 @@ TagString exp_Copy::expFunc(const KrPanel*, const TagStringList& parameter, cons
     }
 
     // basically the parameter can already be used as URL, but since QUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
-    QStringList lst = splitEach(parameter[0]);
+    const QStringList sourceList = splitEach(parameter[0]);
+    QList<QUrl> sourceURLs;
+    for (const QString source : sourceList) {
+        sourceURLs.append(QUrl::fromUserInput(source, QString(), QUrl::AssumeLocalFile));
+    }
+
     if (!parameter[1].isSimple()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("Expander: %Each% may not be in the second argument of %Copy%")));
         return QString();
     }
-    QList<QUrl> src;
-    for (QStringList::const_iterator it = lst.constBegin(), end = lst.constEnd();it != end;++it)
-        src.push_back(QUrl::fromUserInput(*it, QString(), QUrl::AssumeLocalFile));
-    // or transform(...) ?
-    QUrl dest = QUrl::fromUserInput(parameter[1].string(), QString(), QUrl::AssumeLocalFile);
 
-    if (!dest.isValid() || find_if(src.constBegin(), src.constEnd(), not1(mem_fun_ref(&QUrl::isValid))) != src.constEnd()) {
+    // or transform(...) ?
+    const QUrl dest = QUrl::fromUserInput(parameter[1].string(), QString(), QUrl::AssumeLocalFile);
+
+    if (!dest.isValid() ||
+        find_if(sourceURLs.constBegin(),
+                sourceURLs.constEnd(),
+                not1(mem_fun_ref(&QUrl::isValid))) != sourceURLs.constEnd()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: invalid URLs in %_Copy(\"src\", \"dest\")%")));
         return QString();
     }
 
-    FileSystemProvider::instance().startCopyFiles(src, dest);
+    FileSystemProvider::instance().startCopyFiles(sourceURLs, dest);
 
     return QString();  // this doesn't return everything, that's normal!
 }
