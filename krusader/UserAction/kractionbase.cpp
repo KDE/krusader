@@ -20,10 +20,10 @@
 #include "kractionbase.h"
 
 // QtWidgets
-#include <QErrorMessage>
 #include <QInputDialog>
 
 #include <KI18n/KLocalizedString>
+#include <KWidgetsAddons/KMessageBox>
 
 #include "kraction.h"
 #include "../krglobal.h"
@@ -74,7 +74,12 @@ void KrActionBase::exec()
 
 void KrActionBase::handleError(const Error& err)
 {
-    QErrorMessage::qtHandler()->showMessage(err.what());
+    // once qtHandler is instantiated, it keeps on showing all qDebug() messages
+    //QErrorMessage::qtHandler()->showMessage(err.what());
+    const QString errorMessage = err.description();
+    if (!errorMessage.isEmpty()) {
+        KMessageBox::error(krMainWindow, errorMessage);
+    }
 }
 
 KrActionProc* KrActionBase::actionProcFactoryMethod()

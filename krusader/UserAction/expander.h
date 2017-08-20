@@ -110,27 +110,22 @@ protected:
 class Error
 {
 public:
-    enum Cause {
-        exp_C_USER, exp_C_SYNTAX, exp_C_WORLD, exp_C_ARGUMENT
-    };
-    enum Severity {
-        exp_S_OK, exp_S_WARNING, exp_S_ERROR, exp_S_FATAL
-    };
-    Error() : s_(exp_S_OK) {}
-    Error(Severity s, Cause c, QString d) : s_(s), c_(c), desc_(d) {}
-    Cause cause() const {
-        return c_;
-    }
-    operator bool() const {
-        return s_ != exp_S_OK;
-    }
-    const QString& what() const {
-        return desc_;
-    }
+    enum Cause { exp_C_USER, exp_C_SYNTAX, exp_C_WORLD, exp_C_ARGUMENT };
+    enum Severity { exp_S_OK, exp_S_WARNING, exp_S_ERROR, exp_S_FATAL };
+
+    Error() : m_severity(exp_S_OK) {}
+    Error(Severity severity, Cause cause) : m_severity(severity), m_cause(cause), m_description() {}
+    Error(Severity severity, Cause cause, QString description)
+        : m_severity(severity), m_cause(cause), m_description(description) {}
+
+    operator bool() const { return m_severity != exp_S_OK; }
+    Cause cause() const { return m_cause; }
+    const QString &description() const { return m_description; }
+
 private:
-    Severity s_;
-    Cause c_;
-    QString desc_;
+    Severity m_severity;
+    Cause m_cause;
+    QString m_description;
 };
 
 

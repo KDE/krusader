@@ -572,7 +572,8 @@ TagString exp_Ask::expFunc(const KrPanel*, const QStringList& parameter, const b
     if (ok)
         return result;
     else {
-        setError(exp, Error(Error::exp_S_ERROR, Error::exp_C_USER, "User cancelled"));
+        // user cancelled
+        setError(exp, Error(Error::exp_S_ERROR, Error::exp_C_USER));
         return QString();
     }
 }
