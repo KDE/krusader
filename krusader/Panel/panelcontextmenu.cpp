@@ -325,24 +325,21 @@ void PanelContextMenu::addCreateNewMenu()
 
 void PanelContextMenu::performAction(int id)
 {
-    if (_items.isEmpty())
-        return; // sanity check, empty file list
-
-    KFileItem *item = &_items.first();
+    const QUrl singleURL = _items.isEmpty() ? QUrl() : _items.first().url();
 
     switch (id) {
     case - 1 : // the user clicked outside of the menu
         return;
     case OPEN_TAB_ID :
         // assuming only 1 file is selected (otherwise we won't get here)
-        panel->manager()->newTab(item->url(), panel);
+        panel->manager()->newTab(singleURL, panel);
         break;
     case OPEN_ID :
         foreach(const KFileItem &fi, _items)
             panel->func->execute(fi.name());
         break;
     case BROWSE_ID :
-        panel->func->goInside(item->url().fileName());
+        panel->func->goInside(singleURL.fileName());
         break;
     case COPY_ID :
         panel->func->copyFiles();
@@ -357,7 +354,7 @@ void PanelContextMenu::performAction(int id)
         panel->func->deleteFiles(false);
         break;
     case EJECT_ID :
-        krMtMan.eject(item->url().adjusted(QUrl::StripTrailingSlash).path());
+        krMtMan.eject(singleURL.adjusted(QUrl::StripTrailingSlash).path());
         break;
 //     case SHRED_ID :
 //        if ( KMessageBox::warningContinueCancel( krApp,
@@ -366,13 +363,13 @@ void PanelContextMenu::performAction(int id)
 //           KShred::shred( panel->func->files() ->getFile( item->name() ).adjusted(QUrl::RemoveTrailingSlash).path() );
 //      break;
     case OPEN_KONQ_ID :
-        KToolInvocation::startServiceByDesktopName("konqueror", item->url().toDisplayString(QUrl::PreferLocalFile));
+        KToolInvocation::startServiceByDesktopName("konqueror", singleURL.toDisplayString(QUrl::PreferLocalFile));
         break;
     case CHOOSE_ID : // open-with dialog
         panel->func->displayOpenWithDialog(_items.urlList());
         break;
     case MOUNT_ID :
-        krMtMan.mount(item->url().adjusted(QUrl::StripTrailingSlash).path());
+        krMtMan.mount(singleURL.adjusted(QUrl::StripTrailingSlash).path());
         break;
     case NEW_LINK_ID :
         panel->func->krlink(false);
@@ -390,7 +387,7 @@ void PanelContextMenu::performAction(int id)
         KrTrashHandler::restoreTrashedFiles(_items.urlList());
     break;
     case UNMOUNT_ID :
-        krMtMan.unmount(item->url().adjusted(QUrl::StripTrailingSlash).path());
+        krMtMan.unmount(singleURL.adjusted(QUrl::StripTrailingSlash).path());
         break;
     case SEND_BY_EMAIL_ID : {
         SLOTS->sendFileByEmail(_items.urlList());
@@ -405,16 +402,15 @@ void PanelContextMenu::performAction(int id)
 #ifdef SYNCHRONIZER_ENABLED
     case SYNC_SELECTED_ID : {
         QStringList selectedNames;
-        foreach(const KFileItem &item, _items)
-            selectedNames << item.name();
-        if (panel->otherPanel()->view->numSelected()) {
-            KrViewItemList otherItems;
-            panel->otherPanel()->view->getSelectedKrViewItems(&otherItems);
-
-            for (KrViewItemList::Iterator it2 = otherItems.begin(); it2 != otherItems.end(); ++it2) {
-                QString name = (*it2) ->name();
-                if (!selectedNames.contains(name))
-                    selectedNames.append(name);
+        for (const KFileItem item : _items) {
+            selectedNames.append(item.name());
+        }
+        KrViewItemList otherItems;
+        panel->otherPanel()->view->getSelectedKrViewItems(&otherItems);
+        for (KrViewItem *otherItem : otherItems) {
+            const QString name = otherItem->name();
+            if (!selectedNames.contains(name)) {
+                selectedNames.append(name);
             }
         }
         SLOTS->slotSynchronizeDirs(selectedNames);
@@ -422,7 +418,7 @@ void PanelContextMenu::performAction(int id)
     break;
 #endif
     case OPEN_TERM_ID :
-        SLOTS->runTerminal(item->url().path());
+        SLOTS->runTerminal(singleURL.path());
         break;
     }
 
