@@ -84,7 +84,7 @@
   <icon>document-save-as</icon>
   <category>System</category>
   <description>Backs current file up in current folder and asks the user for a new filename. By default &quot;.old&quot; is appended to the original filename.</description>
-  <command>%_Copy(&quot;%aCurrent%&quot;, &quot;%_Ask(&quot;New filename&quot;, &quot;%aCurrent%.old&quot;)%&quot;)%</command>
+  <command>%_Copy(&quot;%aCurrent(&quot;&quot;, &quot;No&quot;)%&quot;, &quot;%_Ask(&quot;New filename&quot;, &quot;%aCurrent%.old&quot;)%&quot;)%</command>
   <defaultshortcut>Meta+F5</defaultshortcut>
  </action>
 </KrusaderUserActions>
