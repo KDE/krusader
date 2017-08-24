@@ -279,17 +279,6 @@
     default startup settings can be modified with the
     <link linkend="konfigurator">Konfigurator Startup page</link>, and you control the current
     session with the <link linkend="settings-menu">Settings menu</link>.</para>
-    <!-- OLD
-<screenshot>
-    <screeninfo>List Panel</screeninfo>
-    <mediaobject>
-     <imageobject><imagedata fileref="listpanel.png" format="PNG"/></imageobject>
-     <imageobject><imagedata fileref="listpanel.png" format="EPS"/></imageobject>
-     <textobject><phrase>List Panel</phrase></textobject>
-     <caption><para>The List Panel with all the different parts indicated.</para></caption>
-    </mediaobject>
-</screenshot>
--->
     <figure id="screenshot-listpanel" float="1">
       <title>List Panel</title>
       <mediaobject>
@@ -556,17 +545,6 @@
   <sect2 id="cmdline">
     <title>Command Line</title>
 
-    <!-- OLD
-<screenshot>
-  <screeninfo>Command line</screeninfo>
-  <mediaobject>
-   <imageobject><imagedata fileref="cmdline.png" format="PNG"/></imageobject>
-   <imageobject><imagedata fileref="cmdline.png" format="EPS"/></imageobject>
-   <textobject><phrase>Command Line</phrase></textobject>
-   <caption><para>Command Line</para></caption>
-  </mediaobject>
-</screenshot>
--->
     <figure id="screenshot-commandline" float="1">
       <title>Command Line</title>
       <mediaobject>
@@ -642,17 +620,6 @@
   <sect2 id="termemu">
     <title>Terminal Emulator</title>
 
-    <!--
-<screenshot>
-  <screeninfo>Terminal emulator</screeninfo>
-  <mediaobject>
-   <imageobject><imagedata fileref="terminalEmu.png" format="PNG"/></imageobject>
-   <imageobject><imagedata fileref="terminalEmu.png" format="EPS"/></imageobject>
-   <textobject><phrase>Terminal emulator</phrase></textobject>
-   <caption><para>Terminal emulator</para></caption>
-  </mediaobject>
-</screenshot>
--->
     <figure id="screenshot-terminalemulator" float="1">
       <title>Terminal Emulator</title>
       <mediaobject>
@@ -675,7 +642,7 @@
     into Terminal Emulator. If you drag multiple files, the names will
     pasted into Terminal Emulator. A full-screen terminal emulator can
     be used when <link linkend="konfig-general-general">configured</link> or
-    <keycombo action="simul">&Ctrl; <keycap>F</keycap></keycombo> toggles
+    <keycombo action="simul">&Ctrl; &Shift;<keycap>F</keycap></keycombo> toggles
     between normal and full screen mode. If the command line is hidden,
     press <keycombo action="simul">&Ctrl; <keycap>Arrow down</keycap></keycombo>
     to focus the terminal emulator. <keycombo action="simul">&Ctrl;
@@ -695,16 +662,6 @@
   </sect1>
   <sect1 id="fnkeys">
     <title>Function (FN) Keys Bar</title>
-    <!-- OLD
-<screenshot>
-  <screeninfo>Function (FN) Keys Bar</screeninfo>
-  <mediaobject>
-   <imageobject><imagedata fileref="fnkeys.png" format="PNG"/></imageobject>
-   <imageobject><imagedata fileref="fnkeys.png" format="EPS"/></imageobject>
-   <textobject><phrase>Function (FN) Keys Bar</phrase></textobject>
-  </mediaobject>
-</screenshot>
--->
     <figure id="screenshot-fnkeys" float="1">
       <title>Function (FN) Keys Bar</title>
       <mediaobject>
@@ -722,9 +679,9 @@
     bar is derived from the design of the first twin-panel file
     managers and the FN keys usually act the same way with two
     changes: the
-    <keycap>F2</keycap> key will open a terminal at the last local
-    path that the active panel pointed to, and the
-    <keycap>F9</keycap> key is used to rename files.
+    <keycap>F2</keycap> key is used to rename files and the
+    <keycap>F9</keycap> key will open a terminal at the last local
+    path that the active panel pointed to.
     <guilabel>Mkdir</guilabel>
     <keycap>F7</keycap> can create whole directory trees on the fly
     &eg;
@@ -741,16 +698,6 @@
   </sect1>
   <sect1 id="folder-tabs">
     <title>Folder Tabs</title>
-    <!-- OLD
-<screenshot>
-  <screeninfo>Tabbed browsing</screeninfo>
-  <mediaobject>
-   <imageobject><imagedata fileref="tabbed_browsing.png" format="PNG"/></imageobject>
-   <imageobject><imagedata fileref="tabbed_browsing.png" format="EPS"/></imageobject>
-   <textobject><phrase>Tabbed browsing</phrase></textobject>
-  </mediaobject>
-</screenshot>
--->
     <figure id="screenshot-tabbedbrowsing" float="1">
       <title>Folder Tabs</title>
       <mediaobject>
@@ -776,8 +723,7 @@
         <action>open a new tab</action> and keep the current
         tab opened: <keycap>Right-click</keycap> on a directory and
         select
-        <guimenuitem>Open in New Tab</guimenuitem>, or use <keycombo
-        action="simul">&Ctrl;&Alt;<keycap>N</keycap></keycombo>.</para>
+        <guimenuitem>Open in New Tab</guimenuitem>.</para>
       </listitem>
       <listitem>
         <para>To <action>lock a tab</action>, <keycap>Right-click</keycap> and
@@ -810,10 +756,10 @@
       <listitem>
         <para>To
         <action>change tabs</action>:
-        <keycombo action="simul">&Shift;
-        <keycap>Left Arrow</keycap></keycombo> or
-        <keycombo action="simul">&Shift;
-        <keycap>Right Arrow</keycap></keycombo>.</para>
+        <keycombo action="simul">&Ctrl;
+        <keycap>,</keycap></keycombo> or
+        <keycombo action="simul">&Ctrl;
+        <keycap>.</keycap></keycombo>.</para>
       </listitem>
       <listitem>
         <para>To <action>open the current folder in a new tab</action>: use
@@ -831,7 +777,8 @@
       <listitem>
         <para>To move tab on the other panel, drag it to the area of the other panel
 	  with the &LMB; (the mouse cursor will become an arrow pointing left or right)
-	  and drop it.</para>
+	  and drop it. You can also press <keycombo action="simul">&Ctrl;&Shift;
+          <keycap>O</keycap></keycombo>.</para>
       </listitem>
 </itemizedlist>
   </sect1>
