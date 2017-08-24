@@ -411,7 +411,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycap>F9</keycap>
+              <keycap>F2</keycap>
             </shortcut>
             <guimenu>Edit</guimenu>
             <guimenuitem>Rename</guimenuitem>
@@ -558,7 +558,7 @@
         <term>
           <menuchoice>
           <shortcut>
-              <keycombo action="simul">&Ctrl;&Shift;
+              <keycombo action="simul">&Ctrl;
               <keycap>F</keycap></keycombo>
             </shortcut>
             <guimenu>Edit</guimenu>
@@ -867,7 +867,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Ctrl;
+              <keycombo action="simul">&Alt;
               <keycap>.</keycap></keycombo>
             </shortcut>
             <guimenu>View</guimenu>
@@ -977,6 +977,8 @@
   </sect1>
   <sect1 id="useractions-menu">
     <title>Useractions Menu</title>
+    <para>You can add your own menu entries here by defining your own <link linkend="useractions">UserActions</link>.
+    </para>
     <variablelist>
       <varlistentry>
         <term>
@@ -1071,7 +1073,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Copies selected item(s) to the clipboard.</para>
+          <para>Copies current item name to the clipboard.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1171,17 +1173,6 @@
           files you recently worked on.</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Useractions</guimenu>
-            <guimenuitem>Your own Useractions</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Opens the user actions created by the user.</para>
-        </listitem>
-      </varlistentry>
     </variablelist>
   </sect1>
   <sect1 id="tools-menu">
@@ -1272,22 +1263,7 @@
           <para>Opens <link linkend="diskusage">Disk Usage</link>.</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Alt;&Shift;
-              <keycap>Q</keycap></keycombo>
-            </shortcut>
-            <guimenu>Tools</guimenu>
-            <guimenuitem>Queue Manager</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Opens <link linkend="queue">Queue Manager</link>.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
+       <varlistentry>
         <term>
           <menuchoice>
             <shortcut>
@@ -1314,8 +1290,8 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-              &Shift;&Ctrl;
-              <keycap>F</keycap></keycombo>
+              &Ctrl;&Shift;
+              <keycap>D</keycap></keycombo>
             </shortcut>
             <guimenu>Tools</guimenu>
             <guimenuitem>Disconnect From Net</guimenuitem>
@@ -1408,7 +1384,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-              &Ctrl;&Alt;
+              &Ctrl;&Shift;
               <keycap>N</keycap></keycombo>
             </shortcut>
             <guimenu>Window</guimenu>
@@ -1506,8 +1482,8 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Shift;
-              <keycap>Right</keycap></keycombo>
+              <keycombo action="simul">&Ctrl;
+              <keycap>.</keycap></keycombo>
             </shortcut>
             <guimenu>Window</guimenu>
             <guimenuitem>Next Tab</guimenuitem>
@@ -1523,8 +1499,8 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Shift;
-              <keycap>Left</keycap></keycombo>
+              <keycombo action="simul">&Ctrl;
+              <keycap>,</keycap></keycombo>
             </shortcut>
             <guimenu>Window</guimenu>
             <guimenuitem>Previous Tab</guimenuitem>
@@ -1607,7 +1583,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Ctrl;
+              <keycombo action="simul">&Ctrl;&Alt;
               <keycap>F</keycap></keycombo>
             </shortcut>
             <guimenu>Window</guimenu>
@@ -1645,6 +1621,7 @@
         <term>
           <menuchoice>
             <guimenu>Settings</guimenu>
+            <guisubmenu>Toolbars</guisubmenu>
             <guimenuitem>Show Main Toolbar</guimenuitem>
           </menuchoice>
         </term>
@@ -1657,6 +1634,20 @@
         <term>
           <menuchoice>
             <guimenu>Settings</guimenu>
+            <guisubmenu>Toolbars</guisubmenu>
+            <guimenuitem>Show Job Toolbar</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Shows the <link linkend="job_toolbar">Job Toolbar</link> if
+          checked.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Settings</guimenu>
+            <guisubmenu>Toolbars</guisubmenu>
             <guimenuitem>Show Actions Toolbar</guimenuitem>
           </menuchoice>
         </term>
