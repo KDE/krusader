@@ -39,6 +39,7 @@
 #include <KCoreAddons/KUrlMimeData>
 #include <KI18n/KLocalizedString>
 #include <KIO/DropJob>
+#include <KIO/MkpathJob>
 #include <KIO/FileUndoManager>
 #include <KIO/JobUiDelegate>
 #include <KIO/ListJob>
@@ -128,7 +129,7 @@ void DefaultFileSystem::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::Copy
 
 void DefaultFileSystem::mkDir(const QString &name)
 {
-    KIO::SimpleJob* job = KIO::mkdir(getUrl(name));
+    KJob *job = KIO::mkpath(getUrl(name));
     connectJobToDestination(job, currentDirectory());
 }
 
@@ -150,7 +151,11 @@ QUrl DefaultFileSystem::getUrl(const QString& name) const
         return fileItem->getUrl();
 
     QUrl absoluteUrl(_currentDirectory);
-    absoluteUrl.setPath(absoluteUrl.path() + '/' + name);
+    if (name.startsWith('/')) {
+        absoluteUrl.setPath(name);
+    } else {
+        absoluteUrl.setPath(absoluteUrl.path() + '/' + name);
+    }
     return absoluteUrl;
 }
 

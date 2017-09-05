@@ -650,41 +650,22 @@ void ListPanelFunc::mkdir()
     if (!suggestedName.isEmpty() && !files()->getFileItem(suggestedName)->isDir())
         suggestedName = QFileInfo(suggestedName).completeBaseName();
 
-    QString dirName = QInputDialog::getText(krMainWindow, i18n("New folder"), i18n("Folder's name:"), QLineEdit::Normal, suggestedName);
+    const QString dirName = QInputDialog::getText(krMainWindow, i18n("New folder"), i18n("Folder's name:"), QLineEdit::Normal, suggestedName);
 
-    // if the user canceled - quit
-    if (dirName.isEmpty())
+    const QString firstName = dirName.section('/', 0, 1, QString::SectionIncludeLeadingSep);
+
+    // if the user canceled or the name was composed of slashes - quit
+    if (!dirName.startsWith('/') && firstName.isEmpty())
         return;
 
-    QStringList dirTree = dirName.split('/');
+    // notify user about existing folder if only single directory was given
+    if (!dirName.contains('/') && files()->getFileItem(firstName)) {
+        KMessageBox::sorry(krMainWindow, i18n("A folder or a file with this name already exists."));
+        return;
+    }
 
-    for (QStringList::Iterator it = dirTree.begin(); it != dirTree.end(); ++it) {
-        if (*it == ".")
-            continue;
-        if (*it == "..") {
-            immediateOpenUrl(QUrl::fromUserInput(*it, QString(), QUrl::AssumeLocalFile));
-            continue;
-        }
-        // check if the name is already taken
-        if (files()->getFileItem(*it)) {
-            // if it is the last dir to be created - quit
-            if (*it == dirTree.last()) {
-                KMessageBox::sorry(krMainWindow, i18n("A folder or a file with this name already exists."));
-                return;
-            }
-            // else go into this dir
-            else {
-                immediateOpenUrl(QUrl::fromUserInput(*it, QString(), QUrl::AssumeLocalFile));
-                continue;
-            }
-        }
-
-        panel->view->setNameToMakeCurrent(*it);
-        // as always - the filesystem does the job
-        files()->mkDir(*it);
-        if (dirTree.count() > 1)
-            immediateOpenUrl(QUrl::fromUserInput(*it, QString(), QUrl::AssumeLocalFile));
-    } // for
+    // create new directory (along with underlying directories if necessary)
+    files()->mkDir(dirName);
 }
 
 void ListPanelFunc::defaultOrAlternativeDeleteFiles(bool invert)
