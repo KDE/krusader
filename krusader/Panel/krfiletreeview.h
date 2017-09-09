@@ -46,11 +46,10 @@ public:
     explicit KrFileTreeView(QWidget *parent = 0);
     virtual ~KrFileTreeView() {}
 
+    void setCurrentUrl(const QUrl &url);
+
     void saveSettings(KConfigGroup cfg) const;
     void restoreSettings(const KConfigGroup &cfg);
-
-public slots:
-    void setCurrentUrl(const QUrl &url);
 
 signals:
     void urlActivated(const QUrl &url);
@@ -73,6 +72,7 @@ private:
     void setBriefMode(bool brief); // show only column with directory names
     void setTree(bool startFromCurrent, bool startFromPlace);
     void setTreeRoot(const QUrl &rootBase);
+    bool isVisible(const QUrl &url);
 
     KDirModel *mSourceModel;
     KDirSortFilterProxyModel *mProxyModel;

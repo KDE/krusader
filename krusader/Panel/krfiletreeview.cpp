@@ -124,6 +124,27 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
     setTree(mStartTreeFromCurrent, mStartTreeFromPlace);
 }
 
+void KrFileTreeView::setCurrentUrl(const QUrl &url)
+{
+    mCurrentUrl = url;
+    if (mStartTreeFromCurrent) {
+        setTreeRoot(url);
+    } else {
+        if (mStartTreeFromPlace) {
+            const QModelIndex index = mFilePlacesModel->closestItem(url); // magic here
+            const QUrl rootBase = index.isValid() ? mFilePlacesModel->url(index) :
+                                                    QUrl::fromLocalFile(QDir::root().path());
+            setTreeRoot(rootBase);
+        }
+        if (isVisible(url)) {
+            // avoid unwanted scrolling by KDirModel::expandToUrl()
+            setCurrentIndex(mProxyModel->mapFromSource(mSourceModel->indexForUrl(url)));
+        } else {
+            mSourceModel->expandToUrl(url);
+        }
+    }
+}
+
 QUrl KrFileTreeView::urlForProxyIndex(const QModelIndex &index) const
 {
     const KFileItem item = mSourceModel->itemForIndex(mProxyModel->mapToSource(index));
@@ -134,8 +155,9 @@ QUrl KrFileTreeView::urlForProxyIndex(const QModelIndex &index) const
 void KrFileTreeView::slotActivated(const QModelIndex &index)
 {
     const QUrl url = urlForProxyIndex(index);
-    if (url.isValid())
+    if (url.isValid()) {
         emit urlActivated(url);
+    }
 }
 
 void KrFileTreeView::dropEvent(QDropEvent *event)
@@ -150,28 +172,13 @@ void KrFileTreeView::dropEvent(QDropEvent *event)
 
 void KrFileTreeView::slotExpanded(const QModelIndex &baseIndex)
 {
-    QModelIndex index = mProxyModel->mapFromSource(baseIndex);
+    const QModelIndex index = mProxyModel->mapFromSource(baseIndex);
 
     expand(index); // expand view now after model was expanded
     selectionModel()->clearSelection();
     selectionModel()->setCurrentIndex(index, QItemSelectionModel::SelectCurrent);
-    scrollTo(index);
-}
 
-void KrFileTreeView::setCurrentUrl(const QUrl &url)
-{
-    mCurrentUrl = url;
-    if (mStartTreeFromCurrent) {
-        setTreeRoot(url);
-    } else {
-        if (mStartTreeFromPlace) {
-            const QModelIndex index = mFilePlacesModel->closestItem(url); // magic here
-            const QUrl rootBase = index.isValid() ? mFilePlacesModel->url(index) :
-                                                    QUrl::fromLocalFile(QDir::root().path());
-            setTreeRoot(rootBase);
-        }
-        mSourceModel->expandToUrl(url);
-    }
+    scrollTo(index);
 }
 
 void KrFileTreeView::showHeaderContextMenu()
@@ -376,4 +383,16 @@ void KrFileTreeView::restoreSettings(const KConfigGroup &cfg)
     mSourceModel->dirLister()->setShowingDotFiles(group.readEntry("ShowHiddenFolders", false));
     setTree(group.readEntry("StartFromCurrent", false),
                 group.readEntry("StartFromPlace", false));
+}
+
+bool KrFileTreeView::isVisible(const QUrl &url)
+{
+    QModelIndex index = indexAt(rect().topLeft());
+    while (index.isValid()) {
+        if (url == urlForProxyIndex(index)) {
+            return true;
+        }
+        index = indexBelow(index);
+    }
+    return false;
 }
