@@ -652,17 +652,24 @@ void ListPanelFunc::mkdir()
 
     const QString dirName = QInputDialog::getText(krMainWindow, i18n("New folder"), i18n("Folder's name:"), QLineEdit::Normal, suggestedName);
 
-    const QString firstName = dirName.section('/', 0, 1, QString::SectionIncludeLeadingSep);
+    const QString firstName = dirName.section('/', 0, 0, QString::SectionIncludeLeadingSep);
 
     // if the user canceled or the name was composed of slashes - quit
-    if (!dirName.startsWith('/') && firstName.isEmpty())
+    if (!dirName.startsWith('/') && firstName.isEmpty()) {
         return;
+    }
 
     // notify user about existing folder if only single directory was given
     if (!dirName.contains('/') && files()->getFileItem(firstName)) {
+        // focus the existing directory
+        panel->view->setCurrentItem(firstName);
+        // show error message
         KMessageBox::sorry(krMainWindow, i18n("A folder or a file with this name already exists."));
         return;
     }
+
+    // focus new directory when next refresh happens
+    panel->view->setNameToMakeCurrent(firstName);
 
     // create new directory (along with underlying directories if necessary)
     files()->mkDir(dirName);
