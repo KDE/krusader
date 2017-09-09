@@ -180,7 +180,7 @@ signals:
     /// Emitted when an error occurred in this filesystem during refresh.
     void error(const QString &msg);
     /// Emitted when the content of a directory was changed by this filesystem.
-    void fileSystemChanged(const QUrl &directory);
+    void fileSystemChanged(const QUrl &directory, bool removed);
     /// Emitted when the information for the filesystem of the current directory changed.
     /// Information is either
     /// * 'metaInfo': a displayable string about the fs, empty by default, OR

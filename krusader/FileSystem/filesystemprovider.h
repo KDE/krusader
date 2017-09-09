@@ -83,7 +83,7 @@ public slots:
      *
      * @param directory the directory that was changed (deleted, moved, content changed,...)
      */
-    void refreshFilesystems(const QUrl &directory);
+    void refreshFilesystems(const QUrl &directory, bool removed);
 
 private:
     FileSystem *getFilesystemInstance(const QUrl &directory);

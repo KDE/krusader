@@ -176,7 +176,7 @@ void FileSystem::deleteAnyFiles(const QList<QUrl> &urls, bool moveToTrash)
         // update destination: the trash bin (in case a panel/tab is showing it)
         connect(krJob, &KrJob::started, this, [=](KIO::Job *job) {
             // Note: the "trash" protocal should always have only one "/" after the "scheme:" part
-            connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(QUrl("trash:/")); });
+            connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(QUrl("trash:/"), false); });
         });
     }
 
@@ -186,19 +186,16 @@ void FileSystem::deleteAnyFiles(const QList<QUrl> &urls, bool moveToTrash)
 void FileSystem::connectJobToSources(KJob *job, const QList<QUrl> urls)
 {
     if (!urls.isEmpty()) {
-        // NOTE: we assume that all files were in the same directory and only emit one signal for
-        // the directory of the first file URL
-        // TODO for deletion we need to actually refresh
-        // * all dirs containing deleted files - once
-        // * all deleted dirs + all subdirs
+        // TODO we assume that all files were in the same directory and only emit one signal for
+        // the directory of the first file URL (all subdirectories of parent are notified)
         const QUrl url = urls.first().adjusted(QUrl::RemoveFilename);
-        connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(url); });
+        connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(url, true); });
     }
 }
 
 void FileSystem::connectJobToDestination(KJob *job, const QUrl &destination)
 {
-    connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(destination); });
+    connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(destination, false); });
     // (additional) direct refresh if on local fs because watcher is too slow
     const bool refresh = cleanUrl(destination) == _currentDirectory && isLocal();
     connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, refresh); });

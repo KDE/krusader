@@ -71,7 +71,7 @@ void FileSystemProvider::startDeleteFiles(const QList<QUrl> &urls, bool moveToTr
     fs->deleteAnyFiles(urls, moveToTrash);
 }
 
-void FileSystemProvider::refreshFilesystems(const QUrl &directory)
+void FileSystemProvider::refreshFilesystems(const QUrl &directory, bool removed)
 {
     qDebug() << "changed=" << directory.toDisplayString();
 
@@ -95,10 +95,12 @@ void FileSystemProvider::refreshFilesystems(const QUrl &directory)
         // and always refresh filesystems showing a virtual directory; it can contain files from
         // various places, we don't know if they were (re)moved. Refreshing is also fast enough.
         const QUrl fileSystemDir = fs->currentDirectory();
-        if (!fs->hasAutoUpdate() && (fileSystemDir == FileSystem::cleanUrl(directory) ||
-                                     (fileSystemDir.scheme() == "virt" && !fs->isRoot()))) {
+        if ((!fs->hasAutoUpdate() && (fileSystemDir == FileSystem::cleanUrl(directory) ||
+                                      (fileSystemDir.scheme() == "virt" && !fs->isRoot())))
+            // also refresh if a parent directory was (re)moved (not detected by file watcher)
+            || (removed && directory.isParentOf(fileSystemDir))) {
             fs->refresh();
-        // ..or refresh filesystem info if mount point is the same (for free space update)
+            // ..or refresh filesystem info if mount point is the same (for free space update)
         } else if (!mountPoint.isEmpty() && mountPoint == fs->mountPoint()) {
             fs->updateFilesystemInfo();
         }

@@ -77,7 +77,7 @@ void VirtualFileSystem::copyFiles(const QList<QUrl> &urls, const QUrl &destinati
         }
     }
 
-    emit fileSystemChanged(QUrl("virt:///" + dir)); // may call refresh()
+    emit fileSystemChanged(QUrl("virt:///" + dir), false); // may call refresh()
 }
 
 void VirtualFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
@@ -117,7 +117,7 @@ void VirtualFileSystem::remove(const QStringList &fileNames)
         }
     }
 
-    emit fileSystemChanged(currentDirectory()); // will call refresh()
+    emit fileSystemChanged(currentDirectory(), true); // will call refresh()
 }
 
 QUrl VirtualFileSystem::getUrl(const QString &name) const
@@ -139,7 +139,7 @@ void VirtualFileSystem::mkDir(const QString &name)
 
     mkDirInternal(name);
 
-    emit fileSystemChanged(currentDirectory()); // will call refresh()
+    emit fileSystemChanged(currentDirectory(), false); // will call refresh()
 }
 
 void VirtualFileSystem::rename(const QString &fileName, const QString &newName)
@@ -168,7 +168,7 @@ void VirtualFileSystem::rename(const QString &fileName, const QString &newName)
 
     KIO::Job *job = KIO::moveAs(item->getUrl(), dest, KIO::HideProgressInfo);
     connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, false); });
-    connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(currentDirectory()); });
+    connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(currentDirectory(), false); });
 }
 
 bool VirtualFileSystem::canMoveToTrash(const QStringList &fileNames) const
