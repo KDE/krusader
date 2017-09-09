@@ -315,7 +315,7 @@ void DefaultFileSystem::slotWatcherDirty(const QString& path)
 void DefaultFileSystem::slotWatcherDeleted(const QString& path)
 {
     qDebug() << "path deleted: " << path;
-    if (path != realPath()) {
+    if (path != _currentDirectory.toLocalFile()) {
         // ignore deletion of files here, a 'dirty' signal will be send anyway
         return;
     }
@@ -405,6 +405,7 @@ FileItem *DefaultFileSystem::createLocalFileItem(const QString &name)
 
 QString DefaultFileSystem::DefaultFileSystem::realPath()
 {
+    // NOTE: current dir must exist
     return QDir(_currentDirectory.toLocalFile()).canonicalPath();
 }
 

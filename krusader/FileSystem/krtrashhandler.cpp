@@ -73,7 +73,7 @@ void KrTrashHandler::emptyTrash()
     KJobWidgets::setWindow(job, krMainWindow);
     job->uiDelegate()->setAutoErrorHandlingEnabled(true);
     const QUrl url = QUrl("trash:/");
-    QObject::connect(job, &KIO::Job::result, [=]() { FileSystemProvider::instance().refreshFilesystem(url); });
+    QObject::connect(job, &KIO::Job::result, [=]() { FileSystemProvider::instance().refreshFilesystems(url); });
 }
 
 void KrTrashHandler::restoreTrashedFiles(const QList<QUrl> &urls)
@@ -85,7 +85,7 @@ void KrTrashHandler::restoreTrashedFiles(const QList<QUrl> &urls)
     KJobWidgets::setWindow(job, krMainWindow);
     job->uiDelegate()->setAutoErrorHandlingEnabled(true);
     const QUrl url = urls.first().adjusted(QUrl::RemoveFilename);
-    QObject::connect(job, &KIO::Job::result, [=]() { FileSystemProvider::instance().refreshFilesystem(url); });
+    QObject::connect(job, &KIO::Job::result, [=]() { FileSystemProvider::instance().refreshFilesystems(url); });
 }
 
 void KrTrashHandler::startWatcher()
