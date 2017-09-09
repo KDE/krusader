@@ -35,7 +35,6 @@
 #include <QRect>
 #include <QDate>
 #include <QTemporaryFile>
-#include <QTextCodec>
 #include <QTextStream>
 // QtGui
 #include <QPainter>
@@ -77,12 +76,12 @@
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
 #define  CONTROL_CHAR       752
-#define  CACHE_SIZE         100000
+#define  CACHE_SIZE         1048576 // cache size set to 1MiB
 
-ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent) : KTextEdit(parent), _lister(lister),
-        _sizeX(-1), _sizeY(-1), _cursorAnchorPos(-1), _inSliderOp(false), _inCursorUpdate(false), _hexMode(false)
+
+ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent) : KTextEdit(parent), _lister(lister)
 {
-    connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(slotCursorPositionChanged()));
+    connect(this, &QTextEdit::cursorPositionChanged, this, &ListerTextArea::slotCursorPositionChanged);
     _tabWidth = 4;
     setWordWrapMode(QTextOption::NoWrap);
     setLineWrapMode(QTextEdit::NoWrap);
@@ -92,18 +91,14 @@ ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent) : KTextEdit(pare
     connect(new QShortcut(QKeySequence("Ctrl+-"), this), SIGNAL(activated()), this, SLOT(zoomOut()));
 
     // start cursor blinking
-    QTimer *blinkTimer = new QTimer(this);
-    connect(blinkTimer, SIGNAL(timeout()), this, SLOT(blinkCursor()));
-    blinkTimer->start(500);
-}
-
-void ListerTextArea::blinkCursor()
-{
-    if (_inCursorUpdate) {
-        return;
-    }
-    _cursorState = !_cursorState;
-    setCursorWidth(_cursorState ? 2 : 0);
+    connect(&_blinkTimer, &QTimer::timeout, this, [=] {
+        if (!_cursorBlinkMutex.tryLock()) {
+            return;
+        }
+        setCursorWidth(cursorWidth() == 0 ? 2 : 0);
+        _cursorBlinkMutex.unlock();
+    });
+    _blinkTimer.start(500);
 }
 
 void ListerTextArea::reset()
@@ -131,36 +126,31 @@ void ListerTextArea::resizeEvent(QResizeEvent * event)
     redrawTextArea();
 }
 
-void ListerTextArea::calculateText(bool forcedUpdate)
+void ListerTextArea::calculateText(const bool forcedUpdate)
 {
-    QFontMetrics fm(font());
+    const QRect contentRect = viewport()->contentsRect();
+    const QFontMetrics fm(font());
 
-    int fontHeight = fm.height();
-    if (fontHeight < 1)
-        fontHeight = 1;
+    const int fontHeight = std::max(fm.height(), 1);
 
-    QRect crect = viewport()->contentsRect();
-    int windowHeight = crect.height();
+    // This is quite accurate (although not perfect) way of getting
+    // a single character width along with its surrounding space.
+    const float fontWidth = (fm.width("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW") - fm.width("W")) / 99.0;
 
-    int sizeY = windowHeight / fontHeight;
+    const int sizeY = contentRect.height() / fontHeight;
     _pageSize = sizeY;
 
-    QList<qint64> rowStarts;
-
-    int fontWidth = fm.width("W");
-    if (fontWidth < 1)
-        fontWidth = 1;
-    int windowWidth = crect.width() - fontWidth / 2;
-    if (windowWidth < 1)
-        windowWidth = 0;
+    const int textViewportWidth = std::max(contentRect.width() - (int) fontWidth, 0);
 
     setTabStopWidth(fontWidth * _tabWidth);
 
-    int sizeX = windowWidth / fontWidth;
+    const int sizeX = textViewportWidth / fontWidth;
 
     _sizeChanged = (_sizeY != sizeY) || (_sizeX != sizeX) || forcedUpdate;
     _sizeY = sizeY;
     _sizeX = sizeX;
+
+    QList<qint64> rowStarts;
 
     QStringList list = readLines(_screenStartPos, _screenEndPos, _sizeY, &rowStarts);
 
@@ -169,91 +159,111 @@ void ListerTextArea::calculateText(bool forcedUpdate)
         setUpScrollBar();
     }
 
-    rowStarts << _screenEndPos;
-
-    QStringList listRemn = readLines(_screenEndPos, _screenEndPos, 1);
+    const QStringList listRemn = readLines(_screenEndPos, _screenEndPos, 1);
     list << listRemn;
 
     if (list != _rowContent) {
+
+        _cursorBlinkMutex.lock();
+        _blinkTimer.stop();
+        setCursorWidth(0);
+
         setPlainText(list.join("\n"));
+
+        if (_cursorAnchorPos == -1 || _cursorAnchorPos == _cursorPos) {
+            clearSelection();
+            _blinkTimer.start(500);
+        }
+
+        _cursorBlinkMutex.unlock();
+
         _rowContent = list;
         _rowStarts = rowStarts;
+        if (_rowStarts.size() < _sizeY) {
+            _rowStarts << _screenEndPos;
+        }
     }
 }
 
-qint64 ListerTextArea::textToFilePosition(int x, int y, bool &isfirst)
+qint64 ListerTextArea::textToFilePositionOnScreen(const int x, const int y, bool &isfirst)
 {
     isfirst = (x == 0);
-    if (y >= _rowStarts.count())
-        return -1;
-    qint64 rowStart = _rowStarts[ y ];
-    if (x == 0)
+    if (y >= _rowStarts.count()) {
+        return 0;
+    }
+    const qint64 rowStart = _rowStarts[ y ];
+    if (x == 0) {
         return rowStart;
+    }
 
     if (_hexMode) {
-        qint64 pos = rowStart + _lister->hexPositionToIndex(_sizeX, x);
-        if (pos > _lister->fileSize())
-            pos = _lister->fileSize();
+        const qint64 pos = rowStart + _lister->hexPositionToIndex(_sizeX, x);
+        if (pos > _lister->fileSize()) {
+            return _lister->fileSize();
+        }
         return pos;
     }
 
     // we can't use fromUnicode because of the invalid encoded chars
-    int maxBytes = 2 * _sizeX * MAX_CHAR_LENGTH;
-    char * cache = _lister->cacheRef(rowStart, maxBytes);
-    QByteArray cachedBuffer(cache, maxBytes);
+    const int maxBytes = 2 * _sizeX * MAX_CHAR_LENGTH;
+    QByteArray chunk = _lister->cacheChunk(rowStart, maxBytes);
 
-    QTextStream stream(&cachedBuffer);
-    stream.setCodec(codec());
+    QTextStream stream(&chunk);
+    stream.setCodec(_lister->codec());
     stream.read(x);
     return rowStart + stream.pos();
 }
 
-void ListerTextArea::fileToTextPosition(qint64 p, bool isfirst, int &x, int &y)
+void ListerTextArea::fileToTextPositionOnScreen(const qint64 p, const bool isfirst, int &x, int &y)
 {
+    // check if cursor is outside of visible area
     if (p < _screenStartPos || p > _screenEndPos || _rowStarts.count() < 1) {
         x = -1;
         y = (p > _screenEndPos) ? -2 : -1;
-    } else {
-        y = 0;
-        while (y < _rowStarts.count() && _rowStarts[ y ] <= p)
-            y++;
-        y--;
-        if (y < 0) {
-            x = y = -1;
-            return;
-        }
-
-        qint64 rowStart = _rowStarts[ y ];
-        if (_hexMode) {
-            x = _lister->hexIndexToPosition(_sizeX, (int)(p - rowStart));
-            return;
-        }
-
-        int maxBytes = 2 * _sizeX * MAX_CHAR_LENGTH;
-        x = 0;
-        if (rowStart >= p) {
-            if ((rowStart == p) && !isfirst && y > 0) {
-                qint64 previousRow = _rowStarts[ y - 1 ];
-                char * cache = _lister->cacheRef(previousRow, maxBytes);
-                QByteArray cachedBuffer(cache, p - previousRow);
-
-                QTextStream stream(&cachedBuffer);
-                stream.setCodec(codec());
-                stream.read(_rowContent[ y - 1].length());
-                if (previousRow + stream.pos() == p) {
-                    y--;
-                    x = _rowContent[ y ].length();
-                }
-            }
-            return;
-        }
-
-        char * cache = _lister->cacheRef(rowStart, maxBytes);
-        QByteArray cachedBuffer(cache, p - rowStart);
-
-        QString res = codec()->toUnicode(cachedBuffer);
-        x = res.length();
+        return;
     }
+
+    // find row
+    y = 0;
+    while (y < _rowStarts.count() && _rowStarts[ y ] <= p) {
+        y++;
+    }
+    y--;
+    if (y < 0) {
+        x = y = -1;
+        return;
+    }
+
+    const qint64 rowStart = _rowStarts[ y ];
+    if (_hexMode) {
+        x = _lister->hexIndexToPosition(_sizeX, (int)(p - rowStart));
+        return;
+    }
+
+    // find column
+    const int maxBytes = 2 * _sizeX * MAX_CHAR_LENGTH;
+    x = 0;
+    if (rowStart >= p) {
+        if ((rowStart == p) && !isfirst && y > 0) {
+            const qint64 previousRow = _rowStarts[ y - 1 ];
+            const QByteArray chunk = _lister->cacheChunk(previousRow, maxBytes);
+            QByteArray cachedBuffer = chunk.left(p - previousRow);
+
+            QTextStream stream(&cachedBuffer);
+            stream.setCodec(_lister->codec());
+            stream.read(_rowContent[ y - 1].length());
+            if (previousRow + stream.pos() == p) {
+                y--;
+                x = _rowContent[ y ].length();
+            }
+        }
+        return;
+    }
+
+    const QByteArray chunk = _lister->cacheChunk(rowStart, maxBytes);
+    const QByteArray cachedBuffer = chunk.left(p - rowStart);
+
+    x = _lister->codec()->toUnicode(cachedBuffer).length();
 }
 
 void ListerTextArea::getCursorPosition(int &x, int &y)
@@ -261,73 +271,82 @@ void ListerTextArea::getCursorPosition(int &x, int &y)
     getScreenPosition(textCursor().position(), x, y);
 }
 
-void ListerTextArea::getScreenPosition(int position, int &x, int &y)
+void ListerTextArea::getScreenPosition(const int position, int &x, int &y)
 {
     x = position;
     y = 0;
-    for (int i = 0; i < _rowContent.count(); i++) {
-        int rowLen = _rowContent[ i ].length() + 1;
-        if (x >= rowLen) {
-            x -= rowLen;
-            y++;
-        } else
-            break;
+    foreach (const QString &row, _rowContent) {
+        const int rowLen = row.length() + 1;
+        if (x < rowLen) {
+            return;
+        }
+        x -= rowLen;
+        y++;
     }
 }
 
-void ListerTextArea::setCursorPosition(int x, int y, int anchorX, int anchorY)
+void ListerTextArea::setCursorPositionOnScreen(const int x, const int y, const int anchorX, const int anchorY)
 {
-    _inCursorUpdate = true;
-    if (x == -1 || y < 0) {
-        setCursorWidth(0);
+    setCursorWidth(0);
+
+    int finalX = x;
+    int finalY = y;
+
+    if (finalX == -1 || finalY < 0) {
         if (anchorY == -1) {
-            _inCursorUpdate = false;
             return;
         }
 
-        if (y == -2) {
-            y = _sizeY;
-            x = (_rowContent.count() > _sizeY) ? _rowContent[ _sizeY ].length() : 0;
+        if (finalY == -2) {
+            finalY = _sizeY;
+            finalX = (_rowContent.count() > _sizeY) ? _rowContent[ _sizeY ].length() : 0;
         } else
-            x = y = 0;
+            finalX = finalY = 0;
     }
 
-    QTextCursor::MoveMode mode = QTextCursor::MoveAnchor;
-    if (anchorX != -1 && anchorY != -1) {
-        if (anchorY >= _sizeY) {
-            moveCursor(QTextCursor::End, mode);
-            moveCursor(QTextCursor::StartOfLine, mode);
-        } else {
-            moveCursor(QTextCursor::Start, mode);
-            for (int i = 0; i < anchorY; i++)
-                moveCursor(QTextCursor::Down, mode);
+    const int realSizeY = std::min(_sizeY + 1, _rowContent.count());
+
+    const auto setUpCursor = [&] (const int cursorX, const int cursorY, const QTextCursor::MoveMode mode) -> bool {
+        if (cursorY > realSizeY) {
+            return false;
         }
 
-        if (_rowContent.count() > anchorY && anchorX > _rowContent[ anchorY ].length())
-            anchorX = _rowContent[ anchorY ].length();
+        _skipCursorChangedListener = true;
 
-        for (int j = 0; j < anchorX; j++)
+        moveCursor(QTextCursor::Start, mode);
+        for (int i = 0; i < cursorY; i++) {
+            moveCursor(QTextCursor::Down, mode);
+        }
+
+        int finalCursorX = cursorX;
+        if (_rowContent.count() > cursorY && finalCursorX > _rowContent[ cursorY ].length()) {
+            finalCursorX = _rowContent[ cursorY ].length();
+        }
+
+        for (int i = 0; i < finalCursorX; i++) {
             moveCursor(QTextCursor::Right, mode);
+        }
+
+        _skipCursorChangedListener = false;
+
+        return true;
+    };
+
+    QTextCursor::MoveMode mode = QTextCursor::MoveAnchor;
+
+    // set cursor anchor
+    if (anchorX != -1 && anchorY != -1) {
+
+        const bool canContinue = setUpCursor(anchorX, anchorY, mode);
+        if (!canContinue) {
+            return;
+        }
 
         mode = QTextCursor::KeepAnchor;
     }
 
-    if (y >= _sizeY) {
-        moveCursor(QTextCursor::End, mode);
-        moveCursor(QTextCursor::StartOfLine, mode);
-    } else {
-        moveCursor(QTextCursor::Start, mode);
-        for (int i = 0; i < y; i++)
-            moveCursor(QTextCursor::Down, mode);
-    }
-
-    if (_rowContent.count() > y && x > _rowContent[ y ].length())
-        x = _rowContent[ y ].length();
-
-    for (int j = 0; j < x; j++)
-        moveCursor(QTextCursor::Right, mode);
-
-    _inCursorUpdate = false;
+    // set cursor position
+    setUpCursor(finalX, finalY, mode);
 }
 
 qint64 ListerTextArea::getCursorPosition(bool &isfirst)
@@ -339,15 +358,16 @@ qint64 ListerTextArea::getCursorPosition(bool &isfirst)
 
     int x, y;
     getCursorPosition(x, y);
-    return textToFilePosition(x, y, isfirst);
+    return textToFilePositionOnScreen(x, y, isfirst);
 }
 
-void ListerTextArea::setCursorPosition(qint64 p, bool isfirst)
+void ListerTextArea::setCursorPositionInDocument(const qint64 p, const bool isfirst)
 {
     _cursorPos = p;
     int x, y;
-    fileToTextPosition(p, isfirst, x, y);
+    fileToTextPositionOnScreen(p, isfirst, x, y);
 
+    bool startBlinkTimer = _screenStartPos <= _cursorPos && _cursorPos <= _screenEndPos;
     int anchorX = -1, anchorY = -1;
     if (_cursorAnchorPos != -1 && _cursorAnchorPos != p) {
         int anchPos = _cursorAnchorPos;
@@ -363,86 +383,97 @@ void ListerTextArea::setCursorPosition(qint64 p, bool isfirst)
             anchorBelow = true;
         }
 
-        fileToTextPosition(anchPos, isfirst, anchorX, anchorY);
-        if (anchorAbove && _hexMode)
-            anchorX = 0;
-        if (anchorBelow && _hexMode && _rowContent.count() > 0)
-            anchorX = _rowContent[ 0 ].length();
+        fileToTextPositionOnScreen(anchPos, isfirst, anchorX, anchorY);
+
+        if (_hexMode) {
+            if (anchorAbove) {
+                anchorX = 0;
+            }
+            if (anchorBelow && _rowContent.count() > 0) {
+                anchorX = _rowContent[ 0 ].length();
+            }
+        }
+
+        startBlinkTimer = startBlinkTimer && !anchorAbove && !anchorBelow;
     }
-    setCursorPosition(x, y, anchorX, anchorY);
+    if (startBlinkTimer) {
+        _blinkTimer.start(500);
+    }
+    setCursorPositionOnScreen(x, y, anchorX, anchorY);
+    _lister->slotUpdate();
 }
 
 void ListerTextArea::slotCursorPositionChanged()
 {
-    if (_inCursorUpdate)
+    if (_skipCursorChangedListener) {
         return;
+    }
     int cursorX, cursorY;
     getCursorPosition(cursorX, cursorY);
     _cursorAtFirstColumn = (cursorX == 0);
-    _cursorPos = textToFilePosition(cursorX, cursorY, _cursorAtFirstColumn);
-    //fprintf( stderr, "Cursor pos: %d %d %Ld\n", cursorX, cursorY, _cursorPos );
+    _cursorPos = textToFilePositionOnScreen(cursorX, cursorY, _cursorAtFirstColumn);
+    _lister->slotUpdate();
 }
 
-QString ListerTextArea::readSection(qint64 p1, qint64 p2)
+QString ListerTextArea::readSection(const qint64 p1, const qint64 p2)
 {
     if (p1 == p2)
         return QString();
 
-    if (p1 > p2) {
-        qint64 tmp = p1;
-        p1 = p2;
-        p2 = tmp;
+    qint64 sel1 = p1;
+    qint64 sel2 = p2;
+    if (sel1 > sel2) {
+        std::swap(sel1, sel2);
     }
 
     QString section;
-    qint64 pos = p1;
 
     if (_hexMode) {
-        while (p1 != p2) {
-            QStringList list = _lister->readHexLines(p1, p2, _sizeX, 1);
-            if (list.count() == 0)
+        while (sel1 != sel2) {
+            const QStringList list = _lister->readHexLines(sel1, sel2, _sizeX, 1);
+            if (list.isEmpty()) {
                 break;
-            if (!section.isEmpty())
+            }
+            if (!section.isEmpty()) {
                 section += QChar('\n');
-            section += list[ 0 ];
+            }
+            section += list.at(0);
         }
         return section;
     }
 
-    QTextCodec * textCodec = codec();
-    QTextDecoder * decoder = textCodec->makeDecoder();
+    qint64 pos = sel1;
+
+    QScopedPointer<QTextDecoder> decoder(_lister->codec()->makeDecoder());
 
     do {
-        int maxBytes = _sizeX * _sizeY * MAX_CHAR_LENGTH;
-        if (maxBytes > (p2 - pos))
-            maxBytes = (int)(p2 - pos);
-        char * cache = _lister->cacheRef(pos, maxBytes);
-        if (cache == 0 || maxBytes == 0)
+        const int maxBytes = std::min(_sizeX * _sizeY * MAX_CHAR_LENGTH, (int) (sel2 - pos));
+        const QByteArray chunk = _lister->cacheChunk(pos, maxBytes);
+        if (chunk.isEmpty())
             break;
-        section += decoder->toUnicode(cache, maxBytes);
-        pos += maxBytes;
-    } while (pos < p2);
+        section += decoder->toUnicode(chunk);
+        pos += chunk.size();
+    } while (pos < sel2);
 
-    delete decoder;
     return section;
 }
 
-QStringList ListerTextArea::readLines(qint64 filePos, qint64 &endPos, int lines, QList<qint64> * locs)
+QStringList ListerTextArea::readLines(qint64 filePos, qint64 &endPos, const int lines, QList<qint64> * locs)
 {
-    endPos = filePos;
     QStringList list;
 
     if (_hexMode) {
         endPos = _lister->fileSize();
-        if (filePos >= endPos)
+        if (filePos >= endPos) {
             return list;
-        qint64 startPos = filePos;
-        int bytes = _lister->hexBytesPerLine(_sizeX);
-        filePos = startPos = ((startPos) / bytes) * bytes;
-        list = _lister->readHexLines(filePos, endPos, _sizeX, lines);
-        endPos = filePos;
+        }
+        const int bytes = _lister->hexBytesPerLine(_sizeX);
+        qint64 startPos = (filePos / bytes) * bytes;
+        qint64 shiftPos = startPos;
+        list = _lister->readHexLines(shiftPos, endPos, _sizeX, lines);
+        endPos = shiftPos;
         if (locs) {
-            for (int i = 0; i != list.count(); i++) {
+            for (int i = 0; i < list.count(); i++) {
                 (*locs) << startPos;
                 startPos += bytes;
             }
@@ -450,87 +481,71 @@ QStringList ListerTextArea::readLines(qint64 filePos, qint64 &endPos, int lines,
         return list;
     }
 
-    int maxBytes = _sizeX * _sizeY * MAX_CHAR_LENGTH;
-    char * cache = _lister->cacheRef(filePos, maxBytes);
-    if (cache == 0 || maxBytes == 0)
+    endPos = filePos;
+    const int maxBytes = _sizeX * _sizeY * MAX_CHAR_LENGTH;
+    const QByteArray chunk = _lister->cacheChunk(filePos, maxBytes);
+    if (chunk.isEmpty())
         return list;
 
-    QTextCodec * textCodec = codec();
-    QTextDecoder * decoder = textCodec->makeDecoder();
-
-    int cnt = 0;
-    int y = 0;
+    int byteCounter = 0;
     QString row = "";
     int effLength = 0;
     if (locs)
         (*locs) << filePos;
-    bool isLastLongLine = false;
-    while (cnt < maxBytes && y < lines) {
-        int lastCnt = cnt;
-        QString chr = decoder->toUnicode(cache + (cnt++), 1);
-        if (!chr.isEmpty()) {
-            if ((chr[ 0 ] < 32) && (chr[ 0 ] != '\n') && (chr[ 0 ] != '\t'))
-                chr = QChar(CONTROL_CHAR);
-            if (chr == "\n") {
-                if (!isLastLongLine) {
-                    list << row;
-                    effLength = 0;
-                    row = "";
-                    y++;
-                    if (locs)
-                        (*locs) << filePos + cnt;
-                }
-                isLastLongLine = false;
-            } else {
-                isLastLongLine = false;
-                if (chr == "\t") {
-                    effLength += _tabWidth - (effLength % _tabWidth) - 1;
-                    if (effLength > _sizeX) {
-                        list << row;
-                        effLength = 0;
-                        row = "";
-                        y++;
-                        if (locs)
-                            (*locs) << filePos + lastCnt;
-                    }
-                }
-                row += chr;
-                effLength++;
-                if (effLength >= _sizeX) {
-                    list << row;
-                    effLength = 0;
-                    row = "";
-                    y++;
-                    if (locs)
-                        (*locs) << filePos + cnt;
-                    isLastLongLine = true;
-                }
+    bool skipImmediateNewline = false;
+
+    const auto performNewline = [&] (qint64 nextRowStartOffset) {
+        list << row;
+        effLength = 0;
+        row = "";
+        if (locs) {
+            (*locs) << (filePos + nextRowStartOffset);
+        }
+    };
+
+    QScopedPointer<QTextDecoder> decoder(_lister->codec()->makeDecoder());
+
+    while (byteCounter < chunk.size() && list.size() < lines) {
+        const int lastCnt = byteCounter;
+        QString chr = decoder->toUnicode(chunk.mid(byteCounter++, 1));
+        if (chr.isEmpty()) {
+            continue;
+        }
+
+        if ((chr[ 0 ] < 32) && (chr[ 0 ] != '\n') && (chr[ 0 ] != '\t')) {
+            chr = QChar(CONTROL_CHAR);
+        }
+
+        if (chr == "\n") {
+            if (!skipImmediateNewline) {
+                performNewline(byteCounter);
+            }
+            skipImmediateNewline = false;
+            continue;
+        }
+
+        skipImmediateNewline = false;
+
+        if (chr == "\t") {
+            effLength += _tabWidth - (effLength % _tabWidth) - 1;
+            if (effLength > _sizeX) {
+                performNewline(lastCnt);
             }
         }
-    }
-
-    if (y < lines)
-        list << row;
-
-    if (locs) {
-        while (locs->count() > lines) {
-            locs->removeLast();
+        row += chr;
+        effLength++;
+        if (effLength >= _sizeX) {
+            performNewline(byteCounter);
+            skipImmediateNewline = true;
         }
     }
 
-    endPos = filePos + cnt;
+    if (list.size() < lines)
+        list << row;
 
-    delete decoder;
+    endPos = filePos + byteCounter;
+
     return list;
-}
-
-QTextCodec * ListerTextArea::codec()
-{
-    QString cs = _lister->characterSet();
-    if (cs.isEmpty())
-        return QTextCodec::codecForLocale();
-    else
-        return KCharsets::charsets()->codecForName(cs);
 }
 
 void ListerTextArea::setUpScrollBar()
@@ -541,7 +556,7 @@ void ListerTextArea::setUpScrollBar()
         _lister->scrollBar()->hide();
         _lastPageStartPos = 0;
     } else {
-        int maxPage = MAX_CHAR_LENGTH * _sizeX * _sizeY;
+        const int maxPage = MAX_CHAR_LENGTH * _sizeX * _sizeY;
         qint64 pageStartPos = _lister->fileSize() - maxPage;
         qint64 endPos;
         if (pageStartPos < 0)
@@ -553,7 +568,7 @@ void ListerTextArea::setUpScrollBar()
             readLines(pageStartPos, _lastPageStartPos, list.count() - _sizeY);
         }
 
-        int maximum = (_lastPageStartPos > SLIDER_MAX) ? SLIDER_MAX : _lastPageStartPos;
+        const int maximum = (_lastPageStartPos > SLIDER_MAX) ? SLIDER_MAX : _lastPageStartPos;
         int pageSize = (_lastPageStartPos > SLIDER_MAX) ? SLIDER_MAX * _averagePageSize / _lastPageStartPos : _averagePageSize;
         if (pageSize == 0)
             pageSize++;
@@ -622,7 +637,7 @@ void ListerTextArea::keyPressEvent(QKeyEvent * ke)
             ensureVisibleCursor();
             int x, y;
             getCursorPosition(x, y);
-            if (y >= _sizeY)
+            if (y >= _sizeY-1)
                 slotActionTriggered(QAbstractSlider::SliderSingleStepAdd);
         }
         break;
@@ -635,14 +650,14 @@ void ListerTextArea::keyPressEvent(QKeyEvent * ke)
             slotActionTriggered(QAbstractSlider::SliderPageStepAdd);
             y += _sizeY - _skippedLines;
             if (y > _rowContent.count()) {
-                y = _rowContent.count();
+                y = _rowContent.count() - 1;
                 if (y > 0)
                     x = _rowContent[ y - 1 ].length();
                 else
                     x = 0;
             }
-            _cursorPos = textToFilePosition(x, y, _cursorAtFirstColumn);
-            setCursorPosition(_cursorPos, _cursorAtFirstColumn);
+            _cursorPos = textToFilePositionOnScreen(x, y, _cursorAtFirstColumn);
+            setCursorPositionInDocument(_cursorPos, _cursorAtFirstColumn);
         }
         return;
         case Qt::Key_PageUp: {
@@ -657,8 +672,8 @@ void ListerTextArea::keyPressEvent(QKeyEvent * ke)
                 y = 0;
                 x = 0;
             }
-            _cursorPos = textToFilePosition(x, y, _cursorAtFirstColumn);
-            setCursorPosition(_cursorPos, _cursorAtFirstColumn);
+            _cursorPos = textToFilePositionOnScreen(x, y, _cursorAtFirstColumn);
+            setCursorPositionInDocument(_cursorPos, _cursorAtFirstColumn);
         }
         return;
         }
@@ -677,15 +692,15 @@ void ListerTextArea::keyPressEvent(QKeyEvent * ke)
             _cursorAnchorPos = -1;
             ke->accept();
             slotActionTriggered(QAbstractSlider::SliderToMinimum);
-            setCursorPosition((qint64)0, true);
+            setCursorPositionInDocument((qint64)0, true);
             return;
         case Qt::Key_A:
         case Qt::Key_End: {
             _cursorAnchorPos = (ke->key() == Qt::Key_A) ? 0 : -1;
             ke->accept();
             slotActionTriggered(QAbstractSlider::SliderToMaximum);
-            qint64 endPos = _lister->fileSize();
-            setCursorPosition(endPos, true);
+            const qint64 endPos = _lister->fileSize();
+            setCursorPositionInDocument(endPos, false);
             return;
         }
         case Qt::Key_Down:
@@ -706,7 +721,7 @@ void ListerTextArea::keyPressEvent(QKeyEvent * ke)
             return;
         }
     }
-    int oldAnchor = textCursor().anchor();
+    const int oldAnchor = textCursor().anchor();
     KTextEdit::keyPressEvent(ke);
     handleAnchorChange(oldAnchor);
 }
@@ -723,7 +738,7 @@ void ListerTextArea::mousePressEvent(QMouseEvent * e)
 void ListerTextArea::mouseDoubleClickEvent(QMouseEvent * e)
 {
     _cursorAnchorPos = -1;
-    int oldAnchor = textCursor().anchor();
+    const int oldAnchor = textCursor().anchor();
     KTextEdit::mouseDoubleClickEvent(e);
     handleAnchorChange(oldAnchor);
 }
@@ -771,6 +786,8 @@ void ListerTextArea::wheelEvent(QWheelEvent * e)
                 delta += 120;
             }
         }
+
+        setCursorPositionInDocument(_cursorPos, false);
     }
 }
 
@@ -786,59 +803,57 @@ void ListerTextArea::slotActionTriggered(int action)
     }
     break;
     case QAbstractSlider::SliderSingleStepSub: {
-        if (_screenStartPos == 0)
+        if (_screenStartPos == 0) {
             break;
+        }
 
         if (_hexMode) {
             int bytesPerRow = _lister->hexBytesPerLine(_sizeX);
             _screenStartPos = (_screenStartPos / bytesPerRow) * bytesPerRow;
             _screenStartPos -= bytesPerRow;
-            if (_screenStartPos < 0)
+            if (_screenStartPos < 0) {
                 _screenStartPos = 0;
-        } else {
-            int maxSize = _sizeX * _sizeY * MAX_CHAR_LENGTH;
-            QByteArray encodedEnter = codec()->fromUnicode(QString("\n"));
+            }
+            break;
+        }
 
-            qint64 readPos = _screenStartPos - maxSize;
-            if (readPos < 0)
-                readPos = 0;
-            maxSize = _screenStartPos - readPos;
+        int maxSize = _sizeX * _sizeY * MAX_CHAR_LENGTH;
+        const QByteArray encodedEnter = _lister->codec()->fromUnicode(QString("\n"));
 
-            char * cache = _lister->cacheRef(readPos, maxSize);
-            QByteArray backBuffer(cache, maxSize);
+        qint64 readPos = _screenStartPos - maxSize;
+        if (readPos < 0) {
+            readPos = 0;
+        }
+        maxSize = _screenStartPos - readPos;
 
-            int from = maxSize;
-            while (from > 0) {
-                from--;
-                from = backBuffer.lastIndexOf(encodedEnter, from);
-                if (from == -1)
+        const QByteArray chunk = _lister->cacheChunk(readPos, maxSize);
+
+        int from = chunk.size();
+        while (from > 0) {
+            from--;
+            from = chunk.lastIndexOf(encodedEnter, from);
+            if (from == -1) {
+                from = 0;
+                break;
+            }
+            const int backRef = std::max(from - 20, 0);
+            const int size = from - backRef + encodedEnter.size();
+            const QString decoded = _lister->codec()->toUnicode(chunk.mid(backRef, size));
+            if (decoded.endsWith(QLatin1String("\n"))) {
+                if (from < (chunk.size() - encodedEnter.size())) {
+                    from += encodedEnter.size();
                     break;
-                int backRef = from - 20;
-                if (backRef < 0)
-                    backRef = 0;
-                int size = from - backRef + encodedEnter.size();
-                QString decoded = codec()->toUnicode(cache + backRef, size);
-                if (decoded.endsWith(QLatin1String("\n"))) {
-                    if (from < (maxSize - encodedEnter.size())) {
-                        from += encodedEnter.size();
-                        break;
-                    }
                 }
             }
-
-            if (from == -1)
-                from = 0;
-            readPos += from;
-
-            qint64 previousPos = readPos;
-
-            while (readPos < _screenStartPos) {
-                previousPos = readPos;
-                readLines(readPos, readPos, 1);
-            }
-
-            _screenStartPos = previousPos;
         }
+
+        readPos += from;
+        qint64 previousPos = readPos;
+        while (readPos < _screenStartPos) {
+            previousPos = readPos;
+            readLines(readPos, readPos, 1);
+        }
+        _screenStartPos = previousPos;
     }
     break;
     case QAbstractSlider::SliderPageStepAdd: {
@@ -859,46 +874,54 @@ void ListerTextArea::slotActionTriggered(int action)
     case QAbstractSlider::SliderPageStepSub: {
         _skippedLines = 0;
 
-        if (_screenStartPos == 0)
+        if (_screenStartPos == 0) {
             break;
+        }
 
         if (_hexMode) {
-            int bytesPerRow = _lister->hexBytesPerLine(_sizeX);
+            const int bytesPerRow = _lister->hexBytesPerLine(_sizeX);
             _screenStartPos = (_screenStartPos / bytesPerRow) * bytesPerRow;
             _screenStartPos -= _sizeY * bytesPerRow;
-            if (_screenStartPos < 0)
+            if (_screenStartPos < 0) {
                 _screenStartPos = 0;
-        } else {
-            int maxSize = 2 * _sizeX * _sizeY * MAX_CHAR_LENGTH;
-            QByteArray encodedEnter = codec()->fromUnicode(QString("\n"));
+            }
+            break;
+        }
 
-            qint64 readPos = _screenStartPos - maxSize;
-            if (readPos < 0)
-                readPos = 0;
-            maxSize = _screenStartPos - readPos;
+        // text lister mode
+        int maxSize = 2 * _sizeX * _sizeY * MAX_CHAR_LENGTH;
+        const QByteArray encodedEnter = _lister->codec()->fromUnicode(QString("\n"));
 
-            char * cache = _lister->cacheRef(readPos, maxSize);
-            QByteArray backBuffer(cache, maxSize);
+        qint64 readPos = _screenStartPos - maxSize;
+        if (readPos < 0)
+            readPos = 0;
+        maxSize = _screenStartPos - readPos;
 
-            int sizeY = _sizeY + 1;
-            int origSizeY = sizeY;
-            int from = maxSize;
-            int lastEnter = maxSize;
+        const QByteArray chunk = _lister->cacheChunk(readPos, maxSize);
+        maxSize = chunk.size();
 
-        repeat:     while (from > 0) {
+        int sizeY = _sizeY + 1;
+        int origSizeY = sizeY;
+        int from = maxSize;
+        int lastEnter = maxSize;
+
+        bool readNext = true;
+        while (readNext) {
+            readNext = false;
+            while (from > 0) {
                 from--;
-                from = backBuffer.lastIndexOf(encodedEnter, from);
-                if (from == -1)
+                from = chunk.lastIndexOf(encodedEnter, from);
+                if (from == -1) {
+                    from = 0;
                     break;
-                int backRef = from - 20;
-                if (backRef < 0)
-                    backRef = 0;
-                int size = from - backRef + encodedEnter.size();
-                QString decoded = codec()->toUnicode(cache + backRef, size);
+                }
+                const int backRef = std::max(from - 20, 0);
+                const int size = from - backRef + encodedEnter.size();
+                QString decoded = _lister->codec()->toUnicode(chunk.mid(backRef, size));
                 if (decoded.endsWith(QLatin1String("\n"))) {
                     if (from < (maxSize - encodedEnter.size())) {
                         int arrayStart = from + encodedEnter.size();
-                        decoded = codec()->toUnicode(cache + arrayStart, lastEnter - arrayStart);
+                        decoded = _lister->codec()->toUnicode(chunk.mid(arrayStart, lastEnter - arrayStart));
                         sizeY -= ((decoded.length() / (_sizeX + 1)) + 1);
                         if (sizeY < 0) {
                             from = arrayStart;
@@ -909,25 +932,24 @@ void ListerTextArea::slotActionTriggered(int action)
                 }
             }
 
-            if (from == -1)
-                from = 0;
             qint64 searchPos = readPos + from;
-
             QList<qint64> locs;
             while (searchPos < _screenStartPos) {
                 locs << searchPos;
                 readLines(searchPos, searchPos, 1);
             }
 
-            if (locs.count() >= _sizeY)
+            if (locs.count() >= _sizeY) {
                 _screenStartPos = locs[ locs.count() - _sizeY ];
-            else if (from != 0) {
+            } else if (from != 0) {
                 origSizeY += locs.count() + 1;
                 sizeY = origSizeY;
-                goto repeat;
-            } else if (readPos == 0)
+                readNext = true;
+            } else if (readPos == 0) {
                 _screenStartPos = 0;
+            }
         }
+
     }
     break;
     case QAbstractSlider::SliderToMinimum:
@@ -954,10 +976,10 @@ void ListerTextArea::slotActionTriggered(int action)
 
         if (pos != 0) {
             if (_hexMode) {
-                int bytesPerRow = _lister->hexBytesPerLine(_sizeX);
+                const int bytesPerRow = _lister->hexBytesPerLine(_sizeX);
                 pos = (pos / bytesPerRow) * bytesPerRow;
             } else {
-                int maxSize = _sizeX * _sizeY * MAX_CHAR_LENGTH;
+                const int maxSize = _sizeX * _sizeY * MAX_CHAR_LENGTH;
                 qint64 readPos = pos - maxSize;
                 if (readPos < 0)
                     readPos = 0;
@@ -980,7 +1002,7 @@ void ListerTextArea::slotActionTriggered(int action)
     };
 
     _inSliderOp = true;
-    int value = (_lastPageStartPos > SLIDER_MAX) ? SLIDER_MAX * _screenStartPos / _lastPageStartPos : _screenStartPos;
+    const int value = (_lastPageStartPos > SLIDER_MAX) ? SLIDER_MAX * _screenStartPos / _lastPageStartPos : _screenStartPos;
     _lister->scrollBar()->setSliderPosition(value);
     _inSliderOp = false;
 
@@ -989,51 +1011,60 @@ void ListerTextArea::slotActionTriggered(int action)
 
 void ListerTextArea::redrawTextArea(bool forcedUpdate)
 {
+    if (_redrawing) {
+        return;
+    }
+    _redrawing = true;
     bool isfirst;
-    qint64 pos = getCursorPosition(isfirst);
+    const qint64 pos = getCursorPosition(isfirst);
     calculateText(forcedUpdate);
-    setCursorPosition(pos, isfirst);
+    setCursorPositionInDocument(pos, isfirst);
+    _redrawing = false;
 }
 
 void ListerTextArea::ensureVisibleCursor()
 {
-    if (_cursorPos < _screenStartPos || _cursorPos > _screenEndPos) {
-        int delta = _sizeY / 2;
-        if (delta == 0)
-            delta++;
-
-        qint64 newScreenStart = _cursorPos;
-        while (delta) {
-            int maxSize = _sizeX * MAX_CHAR_LENGTH;
-            qint64 readPos = newScreenStart - maxSize;
-            if (readPos < 0)
-                readPos = 0;
-
-            qint64 previousPos = readPos;
-
-            while (readPos < newScreenStart) {
-                previousPos = readPos;
-                readLines(readPos, readPos, 1);
-                if (readPos == previousPos)
-                    break;
-            }
-
-            newScreenStart = previousPos;
-            delta--;
-        }
-        if (newScreenStart > _lastPageStartPos)
-            newScreenStart = _lastPageStartPos;
-
-        _screenStartPos = newScreenStart;
-        slotActionTriggered(QAbstractSlider::SliderNoAction);
+    if (_screenStartPos <= _cursorPos && _cursorPos <= _screenEndPos) {
+        return;
     }
+
+    int delta = _sizeY / 2;
+    if (delta == 0)
+        delta++;
+
+    qint64 newScreenStart = _cursorPos;
+    while (delta) {
+        const int maxSize = _sizeX * MAX_CHAR_LENGTH;
+        qint64 readPos = newScreenStart - maxSize;
+        if (readPos < 0)
+            readPos = 0;
+
+        qint64 previousPos = readPos;
+
+        while (readPos < newScreenStart) {
+            previousPos = readPos;
+            readLines(readPos, readPos, 1);
+            if (readPos == previousPos)
+                break;
+        }
+
+        newScreenStart = previousPos;
+        delta--;
+    }
+    if (newScreenStart > _lastPageStartPos) {
+        newScreenStart = _lastPageStartPos;
+    }
+
+    _screenStartPos = newScreenStart;
+    slotActionTriggered(QAbstractSlider::SliderNoAction);
 }
 
 void ListerTextArea::setAnchorAndCursor(qint64 anchor, qint64 cursor)
 {
+    _cursorPos = cursor;
     _cursorAnchorPos = anchor;
-    setCursorPosition(cursor, false);
     ensureVisibleCursor();
+    setCursorPositionInDocument(cursor, false);
 }
 
 QString ListerTextArea::getSelectedText()
@@ -1046,7 +1077,7 @@ QString ListerTextArea::getSelectedText()
 
 void ListerTextArea::copySelectedToClipboard()
 {
-    QString selection = getSelectedText();
+    const QString selection = getSelectedText();
     if (!selection.isEmpty()) {
         QApplication::clipboard()->setText(selection);
     }
@@ -1065,12 +1096,12 @@ void ListerTextArea::performAnchorChange(int anchor)
     int x, y;
     bool isfirst;
     getScreenPosition(anchor, x, y);
-    _cursorAnchorPos = textToFilePosition(x, y, isfirst);
+    _cursorAnchorPos = textToFilePositionOnScreen(x, y, isfirst);
 }
 
 void ListerTextArea::handleAnchorChange(int oldAnchor)
 {
-    int anchor = textCursor().anchor();
+    const int anchor = textCursor().anchor();
 
     if (oldAnchor != anchor) {
         performAnchorChange(anchor);
@@ -1080,11 +1111,11 @@ void ListerTextArea::handleAnchorChange(int oldAnchor)
 void ListerTextArea::setHexMode(bool hexMode)
 {
     bool isfirst;
-    qint64 pos = getCursorPosition(isfirst);
+    const qint64 pos = getCursorPosition(isfirst);
     _hexMode = hexMode;
     _screenStartPos = 0;
     calculateText(true);
-    setCursorPosition(pos, isfirst);
+    setCursorPositionInDocument(pos, isfirst);
     ensureVisibleCursor();
 }
 
@@ -1106,7 +1137,7 @@ ListerPane::ListerPane(Lister *lister, QWidget *parent) : QWidget(parent), _list
 
 bool ListerPane::event(QEvent *e)
 {
-    bool handled = ListerPane::handleCloseEvent(e);
+    const bool handled = ListerPane::handleCloseEvent(e);
     if (!handled) {
         return QWidget::event(e);
     }
@@ -1176,8 +1207,7 @@ protected:
     Lister * _lister;
 };
 
-Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgress(false), _cache(0), _active(false), _searchLastFailedPosition(-1),
-        _searchProgressCounter(0), _tempFile(0), _downloading(false)
+Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent)
 {
     setXMLFile("krusaderlisterui.rc");
 
@@ -1219,7 +1249,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     actionCollection()->addAction("hex_mode", _actionHexMode);
     actionCollection()->setDefaultShortcut(_actionHexMode, Qt::CTRL + Qt::Key_H);
 
-    _actionEncoding = new ListerEncodingMenu(this, i18n("Select charset"), "character-set", actionCollection());
+    new ListerEncodingMenu(this, i18n("Select charset"), "character-set", actionCollection());
 
     QWidget * widget = new ListerPane(this, parent);
     widget->setFocusPolicy(Qt::StrongFocus);
@@ -1290,8 +1320,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
 
     hbox->addWidget(_searchOptions);
 
-    QSpacerItem* cbSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-    hbox->addItem(cbSpacer);
+    hbox->addItem(new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
 
     _statusLabel = new QLabel(statusWidget);
     hbox->addWidget(_statusLabel);
@@ -1300,24 +1329,13 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     setWidget(widget);
 
     connect(_scrollBar, SIGNAL(actionTriggered(int)), _textArea, SLOT(slotActionTriggered(int)));
-    connect(&_updateTimer, SIGNAL(timeout()), this, SLOT(slotUpdate()));
-
-    _updateTimer.setSingleShot(false);
+    connect(&_searchUpdateTimer, &QTimer::timeout, this, &Lister::slotUpdate);
 
     new ListerBrowserExtension(this);
     enableSearch(false);
-}
 
-Lister::~Lister()
-{
-    if (_cache != 0) {
-        delete []_cache;
-        _cache = 0;
-    }
-    if (_tempFile != 0) {
-        delete _tempFile;
-        _tempFile = 0;
-    }
+    _tempFile = new QTemporaryFile(this);
+    _tempFile->setFileTemplate(QDir::tempPath() + QLatin1String("/krusader_lister.XXXXXX"));
 }
 
 bool Lister::openUrl(const QUrl &listerUrl)
@@ -1325,10 +1343,6 @@ bool Lister::openUrl(const QUrl &listerUrl)
     _downloading = false;
     setUrl(listerUrl);
 
-    if (_tempFile) {
-        delete _tempFile;
-        _tempFile = 0;
-    }
     _fileSize = 0;
 
     if (listerUrl.isLocalFile()) {
@@ -1337,23 +1351,39 @@ bool Lister::openUrl(const QUrl &listerUrl)
             return false;
         _fileSize = getFileSize();
     } else {
-        _tempFile = new QTemporaryFile(QDir::tempPath() + QLatin1String("/krusader_XXXXXX_") + listerUrl.fileName());
+        if (_tempFile->isOpen()) {
+            _tempFile->close();
+        }
         _tempFile->open();
 
         _filePath = _tempFile->fileName();
 
-        KIO::Job * downloadJob = KIO::get(listerUrl, KIO::NoReload, KIO::HideProgressInfo);
+        KIO::TransferJob *downloadJob = KIO::get(listerUrl, KIO::NoReload, KIO::HideProgressInfo);
 
-        connect(downloadJob, SIGNAL(data(KIO::Job*,QByteArray)),
-                this, SLOT(slotFileDataReceived(KIO::Job*,QByteArray)));
-        connect(downloadJob, SIGNAL(result(KJob*)),
-                this, SLOT(slotFileFinished(KJob*)));
-        _downloading = false;
+        connect(downloadJob, &KIO::TransferJob::data, this, [=](KIO::Job*, QByteArray array) {
+            if (array.size() != 0) {
+                _tempFile->write(array);
+            } });
+        connect(downloadJob, &KIO::TransferJob::result, this, [=](KJob *job) {
+            _tempFile->flush();
+            if (job->error()) {   /* any error occurred? */
+                KIO::TransferJob *kioJob = (KIO::TransferJob *)job;
+                KMessageBox::error(_textArea, i18n("Error reading file %1.", kioJob->url().toDisplayString(QUrl::PreferLocalFile)));
+            }
+            _downloading = false;
+            _downloadUpdateTimer.stop();
+            slotUpdate();
+        });
+        connect(&_downloadUpdateTimer, &QTimer::timeout, this, [&]() {
+            slotUpdate();
+        });
+        _downloadUpdateTimer.start(500);
+        _downloading = true;
     }
-    if (_cache) {
-        delete []_cache;
-        _cache = 0;
-    }
+
+    // invalidate cache
+    _cache.clear();
+
     _textArea->reset();
     emit started(0);
     emit setWindowCaption(listerUrl.toDisplayString());
@@ -1361,68 +1391,48 @@ bool Lister::openUrl(const QUrl &listerUrl)
     return true;
 }
 
-void Lister::slotFileDataReceived(KIO::Job *, const QByteArray &array)
+QByteArray Lister::cacheChunk(const qint64 filePos, const int maxSize)
 {
-    if (array.size() != 0)
-        _tempFile->write(array);
-}
-
-void Lister::slotFileFinished(KJob *job)
-{
-    _tempFile->flush();
-    if (job->error()) {   /* any error occurred? */
-        KIO::TransferJob *kioJob = (KIO::TransferJob *)job;
-        KMessageBox::error(_textArea, i18n("Error reading file %1.", kioJob->url().toDisplayString(QUrl::PreferLocalFile)));
+    if (filePos >= _fileSize) {
+        return QByteArray();
     }
-    _downloading = false;
-}
 
-
-char * Lister::cacheRef(qint64 filePos, int &size)
-{
-    if (filePos >= _fileSize)
-        return 0;
-    if (_fileSize - filePos < size)
+    int size = maxSize;
+    if (_fileSize - filePos < size) {
         size = _fileSize - filePos;
-    if ((_cache != 0) && (filePos >= _cachePos) && (filePos + size <= _cachePos + _cacheSize))
-        return _cache + (filePos - _cachePos);
+    }
 
-    int cacheSize = CACHE_SIZE;
-    int negativeOffset = CACHE_SIZE * 2 / 5;
+    if (!_cache.isEmpty() && (filePos >= _cachePos) && (filePos + size <= _cachePos + _cache.size())) {
+        return _cache.mid(filePos - _cachePos, size);
+    }
+
+    const int negativeOffset = CACHE_SIZE * 2 / 5;
     qint64 cachePos = filePos - negativeOffset;
     if (cachePos < 0)
         cachePos = 0;
 
-    QFile myfile(_filePath);
-    if (!myfile.open(QIODevice::ReadOnly)) {
-        myfile.close();
-        return 0;
+    QFile sourceFile(_filePath);
+    if (!sourceFile.open(QIODevice::ReadOnly)) {
+        return QByteArray();
     }
 
-    if (!myfile.seek(cachePos)) {
-        myfile.close();
-        return 0;
+    if (!sourceFile.seek(cachePos)) {
+        return QByteArray();
     }
 
-    char * newCache = new char [ cacheSize ];
-
-    qint64 bytes = myfile.read(newCache, cacheSize);
-    if (bytes == -1) {
-        delete []newCache;
-        myfile.close();
-        return 0;
+    const QByteArray bytes = sourceFile.read(CACHE_SIZE);
+    if (bytes.isEmpty()) {
+        return bytes;
     }
-    if (_cache)
-        delete []_cache;
 
-    _cache = newCache;
-    _cacheSize = bytes;
+    _cache = bytes;
     _cachePos = cachePos;
-    int newSize = _cacheSize - (filePos - _cachePos);
+    const qint64 cacheRefIndex = filePos - _cachePos;
+    int newSize = bytes.size() - cacheRefIndex;
     if (newSize < size)
         size = newSize;
 
-    return _cache + (filePos - _cachePos);
+    return _cache.mid(cacheRefIndex, size);
 }
 
 qint64 Lister::getFileSize()
@@ -1433,22 +1443,17 @@ qint64 Lister::getFileSize()
 void Lister::guiActivateEvent(KParts::GUIActivateEvent * event)
 {
     if (event->activated()) {
-        _active = true;
-        _updateTimer.setInterval(150);
-        _updateTimer.start();
         slotUpdate();
         _textArea->redrawTextArea(true);
     } else {
         enableSearch(false);
-        _active = false;
-        _updateTimer.stop();
     }
     KParts::ReadOnlyPart::guiActivateEvent(event);
 }
 
 void Lister::slotUpdate()
 {
-    qint64 oldSize = _fileSize;
+    const qint64 oldSize = _fileSize;
     _fileSize = getFileSize();
     if (oldSize != _fileSize)
         _textArea->sizeChanged();
@@ -1456,12 +1461,11 @@ void Lister::slotUpdate()
     int cursorX = 0, cursorY = 0;
     _textArea->getCursorPosition(cursorX, cursorY);
     bool isfirst = false;
-    qint64 cursor = _textArea->getCursorPosition(isfirst);
+    const qint64 cursor = _textArea->getCursorPosition(isfirst);
 
-    int percent = (_fileSize == 0) ? 0 : (int)((201 * cursor) / _fileSize / 2);
+    const int percent = (_fileSize == 0) ? 0 : (int)((201 * cursor) / _fileSize / 2);
 
-    QString status = i18n("Column: %1, Position: %2 (%3, %4%)",
-                     cursorX, cursor, _fileSize, percent);
+    const QString status = i18n("Column: %1, Position: %2 (%3, %4%)", cursorX, cursor, _fileSize, percent);
     _statusLabel->setText(status);
 
     if (_searchProgressCounter)
@@ -1473,7 +1477,7 @@ bool Lister::isSearchEnabled()
     return !_searchLineEdit->isHidden() || !_searchProgressBar->isHidden();
 }
 
-void Lister::enableSearch(bool enable)
+void Lister::enableSearch(const bool enable)
 {
     if (enable) {
         _listerLabel->setText(i18n("Search:"));
@@ -1483,7 +1487,7 @@ void Lister::enableSearch(bool enable)
         _searchOptions->show();
         if (!_searchLineEdit->hasFocus()) {
             _searchLineEdit->setFocus();
-            QString selection = _textArea->getSelectedText();
+            const QString selection = _textArea->getSelectedText();
             if (!selection.isEmpty()) {
                 _searchLineEdit->setText(selection);
             }
@@ -1509,7 +1513,7 @@ void Lister::searchPrev()
     search(false);
 }
 
-void Lister::search(bool forward, bool restart)
+void Lister::search(const bool forward, const bool restart)
 {
     _restartFromBeginning = restart;
     if (_searchInProgress || _searchLineEdit->text().isEmpty())
@@ -1526,10 +1530,10 @@ void Lister::search(bool forward, bool restart)
         if (_searchLastFailedPosition == -1 || _searchLastFailedPosition != cursor)
             _searchPosition = cursor;
     }
-    bool caseSensitive = _caseSensitiveAction->isChecked();
-    bool matchWholeWord = _matchWholeWordsOnlyAction->isChecked();
-    bool regExp = _regExpAction->isChecked();
-    bool hex = _hexAction->isChecked();
+    const bool caseSensitive = _caseSensitiveAction->isChecked();
+    const bool matchWholeWord = _matchWholeWordsOnlyAction->isChecked();
+    const bool regExp = _regExpAction->isChecked();
+    const bool hex = _hexAction->isChecked();
 
     if (hex) {
         QString hexcontent = _searchLineEdit->text();
@@ -1547,10 +1551,10 @@ void Lister::search(bool forward, bool restart)
         }
 
         while (!hexcontent.isEmpty()) {
-            QString hexData = hexcontent.left(2);
+            const QString hexData = hexcontent.left(2);
             hexcontent = hexcontent.mid(2);
             bool ok = true;
-            int c = hexData.toUInt(&ok, 16);
+            const int c = hexData.toUInt(&ok, 16);
             if (!ok) {
                 setColor(false, false);
                 return;
@@ -1558,7 +1562,7 @@ void Lister::search(bool forward, bool restart)
             _searchHexQuery.push_back((char) c);
         }
     } else {
-        _searchQuery.setContent(_searchLineEdit->text(), caseSensitive, matchWholeWord, _textArea->codec()->name(), regExp);
+        _searchQuery.setContent(_searchLineEdit->text(), caseSensitive, matchWholeWord, codec()->name(), regExp);
     }
     _searchIsForward = forward;
     _searchHexadecimal = hex;
@@ -1570,18 +1574,27 @@ void Lister::search(bool forward, bool restart)
     enableActions(false);
 }
 
-void Lister::enableActions(bool state)
+void Lister::enableActions(const bool state)
 {
     _actionSearch->setEnabled(state);
     _actionSearchNext->setEnabled(state);
     _actionSearchPrev->setEnabled(state);
     _actionJumpToPosition->setEnabled(state);
+    if (state) {
+        _searchUpdateTimer.stop();
+    } else {
+        slotUpdate();
+    }
 }
 
 void Lister::slotSearchMore()
 {
     if (!_searchInProgress)
         return;
+
+    if (!_searchUpdateTimer.isActive()) {
+        _searchUpdateTimer.start(200);
+    }
 
     updateProgressBar();
     if (!_searchIsForward)
@@ -1612,25 +1625,26 @@ void Lister::slotSearchMore()
             maxCacheSize = diff;
     }
 
-    char * cache = cacheRef(searchPos, maxCacheSize);
-    if (cache == 0 || maxCacheSize == 0) {
+    const QByteArray chunk = cacheChunk(searchPos, maxCacheSize);
+    if (chunk.isEmpty()) {
         searchFailed();
         return;
     }
 
+    const int chunkSize = chunk.size();
+
     qint64 foundAnchor = -1;
     qint64 foundCursor = -1;
-    int cnt = 0;
+    int byteCounter = 0;
 
     if (_searchHexadecimal) {
-        QByteArray cacheItems(cache, maxCacheSize);
-        int ndx = _searchIsForward ? cacheItems.indexOf(_searchHexQuery) : cacheItems.lastIndexOf(_searchHexQuery);
-        if (maxCacheSize > _searchHexQuery.length()) {
+        const int ndx = _searchIsForward ? chunk.indexOf(_searchHexQuery) : chunk.lastIndexOf(_searchHexQuery);
+        if (chunkSize > _searchHexQuery.length()) {
             if (_searchIsForward) {
-                _searchPosition = searchPos + maxCacheSize;
-                if ((_searchPosition < _fileSize) && (maxCacheSize > _searchHexQuery.length()))
+                _searchPosition = searchPos + chunkSize;
+                if ((_searchPosition < _fileSize) && (chunkSize > _searchHexQuery.length()))
                     _searchPosition -= _searchHexQuery.length();
-                cnt = _searchPosition - searchPos;
+                byteCounter = _searchPosition - searchPos;
             } else {
                 if (_searchPosition > 0)
                     _searchPosition += _searchHexQuery.length();
@@ -1641,51 +1655,49 @@ void Lister::slotSearchMore()
             foundCursor = foundAnchor + _searchHexQuery.length();
         }
     } else {
-        QTextCodec * textCodec = _textArea->codec();
-        QTextDecoder * decoder = textCodec->makeDecoder();
-
         int rowStart = 0;
-
         QString row = "";
 
-        while (cnt < maxCacheSize) {
-            QString chr = decoder->toUnicode(cache + (cnt++), 1);
-            if (!chr.isEmpty() || cnt >= maxCacheSize) {
-                if (chr != "\n")
-                    row += chr;
+        QScopedPointer<QTextDecoder> decoder(_codec->makeDecoder());
 
-                if (chr == "\n" || row.length() >= SEARCH_MAX_ROW_LEN || cnt >= maxCacheSize) {
-                    if (setPosition) {
-                        _searchPosition = searchPos + cnt;
-                        if (!_searchIsForward) {
-                            _searchPosition ++;
-                            setPosition = false;
-                        }
+        while (byteCounter < chunkSize) {
+            const QString chr = decoder->toUnicode(chunk.mid(byteCounter++, 1));
+            if (chr.isEmpty() && byteCounter < chunkSize) {
+                continue;
+            }
+
+            if (chr != "\n")
+                row += chr;
+
+            if (chr == "\n" || row.length() >= SEARCH_MAX_ROW_LEN || byteCounter >= chunkSize) {
+                if (setPosition) {
+                    _searchPosition = searchPos + byteCounter;
+                    if (!_searchIsForward) {
+                        _searchPosition++;
+                        setPosition = false;
                     }
-
-                    if (_searchQuery.checkLine(row, !_searchIsForward)) {
-                        QByteArray cachedBuffer(cache + rowStart, maxCacheSize - rowStart);
-
-                        QTextStream stream(&cachedBuffer);
-                        stream.setCodec(textCodec);
-
-                        stream.read(_searchQuery.matchIndex());
-                        foundAnchor = searchPos + rowStart + stream.pos();
-
-                        stream.read(_searchQuery.matchLength());
-                        foundCursor = searchPos + rowStart + stream.pos();
-
-                        if (_searchIsForward)
-                            break;
-                    }
-
-                    row = "";
-                    rowStart = cnt;
                 }
+
+                if (_searchQuery.checkLine(row, !_searchIsForward)) {
+                    QByteArray cachedBuffer = chunk.mid(rowStart, chunkSize - rowStart);
+
+                    QTextStream stream(&cachedBuffer);
+                    stream.setCodec(_codec);
+
+                    stream.read(_searchQuery.matchIndex());
+                    foundAnchor = searchPos + rowStart + stream.pos();
+
+                    stream.read(_searchQuery.matchLength());
+                    foundCursor = searchPos + rowStart + stream.pos();
+
+                    if (_searchIsForward)
+                        break;
+                }
+
+                row = "";
+                rowStart = byteCounter;
             }
         }
-
-        delete decoder;
     }
 
     if (foundAnchor != -1 && foundCursor != -1) {
@@ -1694,7 +1706,7 @@ void Lister::slotSearchMore()
         return;
     }
 
-    if (_searchIsForward && searchPos + cnt >= _fileSize) {
+    if (_searchIsForward && searchPos + byteCounter >= _fileSize) {
         if (_restartFromBeginning)
             resetSearchPosition();
         else {
@@ -1758,25 +1770,25 @@ void Lister::searchTextChanged()
     if (_fileSize < 0x10000) { // autosearch files less than 64k
         if (!_searchLineEdit->text().isEmpty()) {
             bool isfirst;
-            qint64 anchor = _textArea->getCursorAnchor();
-            qint64 cursor = _textArea->getCursorPosition(isfirst);
+            const qint64 anchor = _textArea->getCursorAnchor();
+            const qint64 cursor = _textArea->getCursorPosition(isfirst);
             if (cursor > anchor && anchor != -1) {
-                _textArea->setCursorPosition(anchor, true);
+                _textArea->setCursorPositionInDocument(anchor, true);
             }
             search(true, true);
         }
     }
 }
 
-void Lister::setColor(bool match, bool restore)
+void Lister::setColor(const bool match, const bool restore)
 {
-    QColor  fore, back;
+    QColor fore, back;
 
     if (!restore) {
-        KConfigGroup gc(krConfig, "Colors");
+        const KConfigGroup gc(krConfig, "Colors");
 
         QString foreground, background;
-        QPalette p = QGuiApplication::palette();
+        const QPalette p = QGuiApplication::palette();
 
         if (match) {
             foreground = "Quicksearch Match Foreground";
@@ -1841,8 +1853,8 @@ void Lister::updateProgressBar()
         _textArea->setFocus();
     }
 
-    qint64 pcnt = (_fileSize == 0) ? 1000 : (2001 * _searchPosition) / _fileSize / 2;
-    int pctInt = (int)pcnt;
+    const qint64 pcnt = (_fileSize == 0) ? 1000 : (2001 * _searchPosition) / _fileSize / 2;
+    const int pctInt = (int) pcnt;
     if (_searchProgressBar->value() != pctInt)
         _searchProgressBar->setValue(pctInt);
 }
@@ -1860,7 +1872,7 @@ void Lister::jumpToPosition()
     if (res.startsWith(QLatin1String("0x"))) {
         res = res.mid(2);
         bool ok;
-        qulonglong upos = res.toULongLong(&ok, 16);
+        const qulonglong upos = res.toULongLong(&ok, 16);
         if (!ok) {
             KMessageBox::error(_textArea, i18n("Invalid number."), i18n("Jump to position"));
             return;
@@ -1868,7 +1880,7 @@ void Lister::jumpToPosition()
         pos = (qint64)upos;
     } else {
         bool ok;
-        qulonglong upos = res.toULongLong(&ok);
+        const qulonglong upos = res.toULongLong(&ok);
         if (!ok) {
             KMessageBox::error(_textArea, i18n("Invalid number."), i18n("Jump to position"));
             return;
@@ -1882,13 +1894,13 @@ void Lister::jumpToPosition()
     }
 
     _textArea->deleteAnchor();
-    _textArea->setCursorPosition(pos, true);
+    _textArea->setCursorPositionInDocument(pos, true);
     _textArea->ensureVisibleCursor();
 }
 
 void Lister::saveAs()
 {
-    QUrl url = QFileDialog::getSaveFileUrl(_textArea, i18n("Lister"));
+    const QUrl url = QFileDialog::getSaveFileUrl(_textArea, i18n("Lister"));
     if (url.isEmpty())
         return;
     QUrl sourceUrl;
@@ -1909,8 +1921,8 @@ void Lister::saveAs()
 void Lister::saveSelected()
 {
     bool isfirst;
-    qint64 start = _textArea->getCursorAnchor();
-    qint64 end = _textArea->getCursorPosition(isfirst);
+    const qint64 start = _textArea->getCursorAnchor();
+    const qint64 end = _textArea->getCursorPosition(isfirst);
     if (start == -1 || start == end) {
         KMessageBox::error(_textArea, i18n("Nothing is selected."), i18n("Save selection..."));
         return;
@@ -1923,7 +1935,7 @@ void Lister::saveSelected()
         _saveEnd = end;
     }
 
-    QUrl url = QFileDialog::getSaveFileUrl(_textArea, i18n("Lister"));
+    const QUrl url = QFileDialog::getSaveFileUrl(_textArea, i18n("Lister"));
     if (url.isEmpty())
         return;
 
@@ -1949,11 +1961,8 @@ void Lister::slotDataSend(KIO::Job *, QByteArray &array)
     qint64 max = _saveEnd - _savePosition;
     if (max > 1000)
         max = 1000;
-    int maxBytes = (int)max;
-    char * cache = cacheRef(_savePosition, maxBytes);
-    _savePosition += maxBytes;
-
-    array = QByteArray(cache, maxBytes);
+    array = cacheChunk(_savePosition, (int) max);
+    _savePosition += array.size();
 }
 
 void Lister::slotSendFinished(KJob *)
@@ -1961,179 +1970,186 @@ void Lister::slotSendFinished(KJob *)
     _actionSaveSelected->setEnabled(true);
 }
 
-void Lister::setCharacterSet(QString set)
+void Lister::setCharacterSet(const QString set)
 {
     _characterSet = set;
+    if (_characterSet.isEmpty()) {
+        _codec = QTextCodec::codecForLocale();
+    } else {
+        _codec = KCharsets::charsets()->codecForName(_characterSet);
+    }
     _textArea->redrawTextArea(true);
 }
 
 void Lister::print()
 {
     bool isfirst;
-    qint64 anchor = _textArea->getCursorAnchor();
-    qint64 cursor = _textArea->getCursorPosition(isfirst);
-    bool hasSelection = (anchor != -1 && anchor != cursor);
+    const qint64 anchor = _textArea->getCursorAnchor();
+    const qint64 cursor = _textArea->getCursorPosition(isfirst);
+    const bool hasSelection = (anchor != -1 && anchor != cursor);
 
-    QString docName = url().fileName();
+    const QString docName = url().fileName();
     QPrinter printer;
     printer.setDocName(docName);
 
-    QPointer<QPrintDialog> printDialog = new QPrintDialog(&printer, _textArea);
+    QScopedPointer<QPrintDialog> printDialog(new QPrintDialog(&printer, _textArea));
 
-    if (hasSelection)
+    if (hasSelection) {
         printDialog->addEnabledOption(QAbstractPrintDialog::PrintSelection);
-
-    if (printDialog->exec()) {
-        if (printer.pageOrder() == QPrinter::LastPageFirst) {
-            switch (KMessageBox::warningContinueCancel(_textArea,
-                    i18n("Reverse printing is not supported. Continue with normal printing?"))) {
-            case KMessageBox::Continue :
-                break;
-            default:
-                return;
-            }
-        }
-        QPainter painter;
-        painter.begin(&printer);
-
-        QDate date = QDate::currentDate();
-        QString dateString = date.toString(Qt::SystemLocaleShortDate);
-
-        QRect pageRect = printer.pageRect();
-        QRect drawingRect(0, 0, pageRect.width(), pageRect.height());
-
-        QFont normalFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
-        QFont fixedFont  = QFontDatabase::systemFont(QFontDatabase::FixedFont);
-
-        QFontMetrics fmNormal(normalFont);
-        int normalFontHeight = fmNormal.height();
-
-        QFontMetrics fmFixed(fixedFont);
-        int fixedFontHeight = fmFixed.height();
-        int fixedFontWidth = fmFixed.width("W");
-        if (fixedFontHeight <= 0)
-            fixedFontHeight = 1;
-        if (fixedFontWidth <= 0)
-            fixedFontWidth = 1;
-
-        int effPageSize = drawingRect.height() - normalFontHeight - 1;
-        int rowsPerPage = effPageSize / fixedFontHeight;
-        if (rowsPerPage <= 0)
-            rowsPerPage = 1;
-        int columnsPerPage = drawingRect.width() / fixedFontWidth;
-        if (columnsPerPage <= 0)
-            columnsPerPage = 1;
-
-        bool firstPage = true;
-
-        qint64 startPos = 0;
-        qint64 endPos = _fileSize;
-        if (printer.printRange() == QPrinter::Selection) {
-            if (anchor > cursor)
-                startPos = cursor, endPos = anchor;
-            else
-                startPos = anchor, endPos = cursor;
-        }
-
-        for (int page = 1;; ++page) {
-            QStringList rows = readLines(startPos, endPos, columnsPerPage, rowsPerPage);
-
-            bool visible = true;
-            if (printer.fromPage() && page < printer.fromPage())
-                visible = false;
-            if (printer.toPage() && printer.toPage() >= printer.fromPage() && page > printer.toPage())
-                visible = false;
-
-            if (visible) {
-                if (!firstPage)
-                    printer.newPage();
-                firstPage = false;
-                // Use the painter to draw on the page.
-                painter.setFont(normalFont);
-
-                painter.drawText(drawingRect, Qt::AlignLeft, dateString);
-                painter.drawText(drawingRect, Qt::AlignHCenter, docName);
-                painter.drawText(drawingRect, Qt::AlignRight, QString("%1").arg(page));
-
-                painter.drawLine(0, normalFontHeight, drawingRect.width(), normalFontHeight);
-
-                painter.setFont(fixedFont);
-                int yoffset = normalFontHeight + 1;
-                foreach(const QString &row, rows) {
-                    painter.drawText(0, yoffset + fixedFontHeight, row);
-                    yoffset += fixedFontHeight;
-                }
-            }
-            if (startPos >= endPos)
-                break;
-        }
     }
 
-    delete printDialog;
+    if (!printDialog->exec()) {
+        return;
+    }
+
+    if (printer.pageOrder() == QPrinter::LastPageFirst) {
+        switch (KMessageBox::warningContinueCancel(_textArea,
+                i18n("Reverse printing is not supported. Continue with normal printing?"))) {
+        case KMessageBox::Continue :
+            break;
+        default:
+            return;
+        }
+    }
+    QPainter painter;
+    painter.begin(&printer);
+
+    const QString dateString = QDate::currentDate().toString(Qt::SystemLocaleShortDate);
+
+    const QRect pageRect = printer.pageRect();
+    const QRect drawingRect(0, 0, pageRect.width(), pageRect.height());
+
+    const QFont normalFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
+    const QFont fixedFont  = QFontDatabase::systemFont(QFontDatabase::FixedFont);
+
+    const QFontMetrics fmNormal(normalFont);
+    const int normalFontHeight = fmNormal.height();
+
+    const QFontMetrics fmFixed(fixedFont);
+    const int fixedFontHeight = std::max(fmFixed.height(), 1);
+    const int fixedFontWidth = std::max(fmFixed.width("W"), 1);
+
+    const int effPageSize = drawingRect.height() - normalFontHeight - 1;
+    const int rowsPerPage = std::max(effPageSize / fixedFontHeight, 1);
+    const int columnsPerPage = std::max(drawingRect.width() / fixedFontWidth, 1);
+
+    bool firstPage = true;
+
+    qint64 startPos = 0;
+    qint64 endPos = _fileSize;
+    if (printer.printRange() == QPrinter::Selection) {
+        if (anchor > cursor)
+            startPos = cursor, endPos = anchor;
+        else
+            startPos = anchor, endPos = cursor;
+    }
+
+    int page = 0;
+    while (startPos < endPos) {
+        page++;
+
+        QStringList rows = readLines(startPos, endPos, columnsPerPage, rowsPerPage);
+
+        // print since set-up fromPage number
+        if (printer.fromPage() && page < printer.fromPage()) {
+            continue;
+        }
+
+        // print until set-up toPage number
+        if (printer.toPage() && printer.toPage() >= printer.fromPage() && page > printer.toPage())
+            break;
+
+        if (!firstPage) {
+            printer.newPage();
+        }
+        firstPage = false;
+        // Use the painter to draw on the page.
+        painter.setFont(normalFont);
+
+        painter.drawText(drawingRect, Qt::AlignLeft, dateString);
+        painter.drawText(drawingRect, Qt::AlignHCenter, docName);
+        painter.drawText(drawingRect, Qt::AlignRight, QString("%1").arg(page));
+
+        painter.drawLine(0, normalFontHeight, drawingRect.width(), normalFontHeight);
+
+        painter.setFont(fixedFont);
+        int yOffset = normalFontHeight + 1;
+        foreach (const QString &row, rows) {
+            painter.drawText(0, yOffset + fixedFontHeight, row);
+            yOffset += fixedFontHeight;
+        }
+    }
 }
 
-QStringList Lister::readLines(qint64 &filePos, qint64 endPos, int columns, int lines)
+QStringList Lister::readLines(qint64 &filePos, const qint64 endPos, const int columns, const int lines)
 {
-    if (_textArea->hexMode())
+    if (_textArea->hexMode()) {
         return readHexLines(filePos, endPos, columns, lines);
+    }
     QStringList list;
-    int maxBytes = columns * lines * MAX_CHAR_LENGTH;
-    if (maxBytes > (endPos - filePos))
-        maxBytes = (int)(endPos - filePos);
-    if (maxBytes <= 0)
+    const int maxBytes = std::min(columns * lines * MAX_CHAR_LENGTH, (int) (endPos - filePos));
+    if (maxBytes <= 0) {
         return list;
-    char * cache = cacheRef(filePos, maxBytes);
-    if (cache == 0 || maxBytes == 0)
+    }
+    const QByteArray chunk = cacheChunk(filePos, maxBytes);
+    if (chunk.isEmpty()) {
         return list;
+    }
 
-    QTextCodec * textCodec = _textArea->codec();
-    QTextDecoder * decoder = textCodec->makeDecoder();
+    QScopedPointer<QTextDecoder> decoder(_codec->makeDecoder());
 
-    int cnt = 0;
-    int y = 0;
+    int byteCounter = 0;
     QString row = "";
-    bool isLastLongLine = false;
-    while (cnt < maxBytes && y < lines) {
-        QString chr = decoder->toUnicode(cache + (cnt++), 1);
-        if (!chr.isEmpty()) {
-            if ((chr[ 0 ] < 32) && (chr[ 0 ] != '\n') && (chr[ 0 ] != '\t'))
-                chr = QChar(' ');
-            if (chr == "\n") {
-                if (!isLastLongLine) {
-                    list << row;
-                    row = "";
-                    y++;
-                }
-                isLastLongLine = false;
-            } else {
-                isLastLongLine = false;
-                if (chr == "\t") {
-                    int tabLength = _textArea->tabWidth() - (row.length() % _textArea->tabWidth());
-                    if (row.length() + tabLength > columns) {
-                        list << row;
-                        row = "";
-                        y++;
-                    }
-                    row += QString(tabLength, QChar(' '));
-                } else
-                    row += chr;
+    bool skipImmediateNewline = false;
+    while (byteCounter < chunk.size() && list.size() < lines) {
+        QString chr = decoder->toUnicode(chunk.mid(byteCounter++, 1));
+        if (chr.isEmpty()) {
+            continue;
+        }
 
-                if (row.length() >= columns) {
-                    list << row;
-                    row = "";
-                    y++;
-                    isLastLongLine = true;
-                }
+        // replace unreadable characters
+        if ((chr[ 0 ] < 32) && (chr[ 0 ] != '\n') && (chr[ 0 ] != '\t')) {
+            chr = QChar(' ');
+        }
+
+        // handle newline
+        if (chr == "\n") {
+            if (!skipImmediateNewline) {
+                list << row;
+                row = "";
             }
+            skipImmediateNewline = false;
+            continue;
+        }
+
+        skipImmediateNewline = false;
+
+        // handle tab
+        if (chr == "\t") {
+            const int tabLength = _textArea->tabWidth() - (row.length() % _textArea->tabWidth());
+            if (row.length() + tabLength > columns) {
+                list << row;
+                row = "";
+            }
+            row += QString(tabLength, QChar(' '));
+        } else {
+            // normal printable character
+            row += chr;
+        }
+
+        if (row.length() >= columns) {
+            list << row;
+            row = "";
+            skipImmediateNewline = true;
         }
     }
 
-    if (y < lines)
+    if (list.size() < lines) {
         list << row;
+    }
 
-    filePos += cnt;
+    filePos += byteCounter;
 
-    delete decoder;
     return list;
 }
 
@@ -2145,47 +2161,47 @@ int Lister::hexPositionDigits()
         positionDigits++;
         checker /= 16;
     }
-    if (positionDigits < 8)
-        positionDigits = 8;
+    if (positionDigits < 8) {
+        return 8;
+    }
     return positionDigits;
 }
 
-int Lister::hexBytesPerLine(int columns)
+int Lister::hexBytesPerLine(const int columns)
 {
-    int positionDigits = hexPositionDigits();
-    int bytesPerRow = 8;
-    if (columns >= positionDigits + 5 + 64)
-        bytesPerRow = 16;
-    if (columns >= positionDigits + 5 + 128)
-        bytesPerRow = 32;
-
-    return bytesPerRow;
+    const int positionDigits = hexPositionDigits();
+    if (columns >= positionDigits + 5 + 128) {
+        return 32;
+    }
+    if (columns >= positionDigits + 5 + 64) {
+        return 16;
+    }
+    return 8;
 }
 
-QStringList Lister::readHexLines(qint64 &filePos, qint64 endPos, int columns, int lines)
+QStringList Lister::readHexLines(qint64 &filePos, const qint64 endPos, const int columns, const int lines)
 {
-    int positionDigits = hexPositionDigits();
-    int bytesPerRow = hexBytesPerLine(columns);
+    const int positionDigits = hexPositionDigits();
+    const int bytesPerRow = hexBytesPerLine(columns);
 
     QStringList list;
 
-    qint64 choppedPos = (filePos / bytesPerRow) * bytesPerRow;
-    int maxBytes = bytesPerRow * lines;
-    if (maxBytes > (endPos - choppedPos))
-        maxBytes = (int)(endPos - choppedPos);
+    const qint64 choppedPos = (filePos / bytesPerRow) * bytesPerRow;
+    const int maxBytes = std::min(bytesPerRow * lines, (int) (endPos - choppedPos));
     if (maxBytes <= 0)
         return list;
 
-    char * cache = cacheRef(choppedPos, maxBytes);
-
-    if (cache == 0 || maxBytes == 0)
+    const QByteArray chunk = cacheChunk(choppedPos, maxBytes);
+    if (chunk.isEmpty())
         return list;
 
     int cnt = 0;
     for (int l = 0; l < lines; l++) {
-        if (filePos >= endPos)
+        if (filePos >= endPos) {
             break;
-        qint64 printPos = (filePos / bytesPerRow) * bytesPerRow;
+        }
+
+        const qint64 printPos = (filePos / bytesPerRow) * bytesPerRow;
         QString pos;
         pos.setNum(printPos, 16);
         while (pos.length() < positionDigits)
@@ -2196,12 +2212,12 @@ QStringList Lister::readHexLines(qint64 &filePos, qint64 endPos, int columns, in
         QString charData;
 
         for (int i = 0; i != bytesPerRow; ++i, ++cnt) {
-            qint64 currentPos = printPos + i;
+            const qint64 currentPos = printPos + i;
             if (currentPos < filePos || currentPos >= endPos) {
                 pos += QString("   ");
                 charData += QString(" ");
             } else {
-                char c = cache[ cnt ];
+                char c = chunk.at(cnt);
                 int charCode = (int)c;
                 if (charCode < 0)
                     charCode += 256;
@@ -2221,36 +2237,36 @@ QStringList Lister::readHexLines(qint64 &filePos, qint64 endPos, int columns, in
         filePos = printPos + bytesPerRow;
     }
 
-    if (filePos > endPos)
+    if (filePos > endPos) {
         filePos = endPos;
+    }
 
     return list;
 }
 
-int Lister::hexIndexToPosition(int columns, int index)
+int Lister::hexIndexToPosition(const int columns, const int index)
 {
-    int positionDigits = hexPositionDigits();
-    int bytesPerRow = hexBytesPerLine(columns);
+    const int positionDigits = hexPositionDigits();
+    const int bytesPerRow = hexBytesPerLine(columns);
+    const int finalIndex = std::min(index, bytesPerRow);
 
-    if (index >= bytesPerRow)
-        index = bytesPerRow;
-
-    return positionDigits + 4 + (3*index);
+    return positionDigits + 4 + (3*finalIndex);
 }
 
-int Lister::hexPositionToIndex(int columns, int position)
+int Lister::hexPositionToIndex(const int columns, const int position)
 {
-    int positionDigits = hexPositionDigits();
-    int bytesPerRow = hexBytesPerLine(columns);
+    const int positionDigits = hexPositionDigits();
+    const int bytesPerRow = hexBytesPerLine(columns);
 
-    position -= 4 + positionDigits;
-    if (position <= 0)
+    int finalPosition = position;
+    finalPosition -= 4 + positionDigits;
+    if (finalPosition <= 0)
         return 0;
 
-    position /= 3;
-    if (position >= bytesPerRow)
+    finalPosition /= 3;
+    if (finalPosition >= bytesPerRow)
         return bytesPerRow;
-    return position;
+    return finalPosition;
 }
 
 void Lister::toggleHexMode()
@@ -2258,7 +2274,7 @@ void Lister::toggleHexMode()
     setHexMode(!_textArea->hexMode());
 }
 
-void Lister::setHexMode(bool mode)
+void Lister::setHexMode(const bool mode)
 {
     if (mode) {
         _textArea->setHexMode(true);

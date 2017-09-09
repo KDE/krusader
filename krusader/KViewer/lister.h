@@ -34,6 +34,8 @@
 // QtCore
 #include <QList>
 #include <QTimer>
+#include <QTextCodec>
+#include <QMutex>
 // QtGui
 #include <QColor>
 // QtWidgets
@@ -66,20 +68,19 @@ class ListerTextArea : public KTextEdit
 public:
     ListerTextArea(Lister *lister, QWidget *parent);
     void           reset();
-    void           calculateText(bool forcedUpdate = false);
-    void           redrawTextArea(bool forcedUpdate = false);
+    void           calculateText(const bool forcedUpdate = false);
+    void           redrawTextArea(const bool forcedUpdate = false);
 
-    qint64         textToFilePosition(int x, int y, bool &isfirst);
-    void           fileToTextPosition(qint64 p, bool isfirst, int &x, int &y);
+    qint64         textToFilePositionOnScreen(const int x, const int y, bool &isfirst);
+    void           fileToTextPositionOnScreen(const qint64 p, const bool isfirst, int &x, int &y);
 
-    QTextCodec   * codec();
     int            tabWidth() {
         return _tabWidth;
     }
     bool           hexMode() {
         return _hexMode;
     }
-    void           setHexMode(bool hexMode);
+    void           setHexMode(const bool hexMode);
 
     void           copySelectedToClipboard();
     QString        getSelectedText();
@@ -90,13 +91,13 @@ public:
     qint64         getCursorAnchor() {
         return _cursorAnchorPos;
     }
-    void           setCursorPosition(qint64 p, bool isfirst);
+    void           setCursorPositionInDocument(const qint64 p, const bool isfirst);
     void           ensureVisibleCursor();
     void           deleteAnchor() {
         _cursorAnchorPos = -1;
     }
 
-    void           setAnchorAndCursor(qint64 anchor, qint64 cursor);
+    void           setAnchorAndCursor(const qint64 anchor, const qint64 cursor);
     void           sizeChanged();
 
 protected:
@@ -107,53 +108,54 @@ protected:
     virtual void   mouseMoveEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
     virtual void   wheelEvent(QWheelEvent * event) Q_DECL_OVERRIDE;
 
-    QStringList    readLines(qint64 filePos, qint64 &endPos, int lines, QList<qint64> * locs = 0);
+    QStringList    readLines(const qint64 filePos, qint64 &endPos, const int lines, QList<qint64> * locs = 0);
     QString        readSection(qint64 p1, qint64 p2);
     void           setUpScrollBar();
-    void           setCursorPosition(int x, int y, int anchorX = -1, int anchorY = -1);
-    void           handleAnchorChange(int oldAnchor);
-    void           performAnchorChange(int anchor);
-    void           getScreenPosition(int position, int &x, int &y);
+    void           setCursorPositionOnScreen(const int x, const int y, const int anchorX = -1, const int anchorY = -1);
+    void           handleAnchorChange(const int oldAnchor);
+    void           performAnchorChange(const int anchor);
+    void           getScreenPosition(const int position, int &x, int &y);
 
 protected slots:
-    void           slotActionTriggered(int action);
+    void           slotActionTriggered(const int action);
     void           slotCursorPositionChanged();
-    void           blinkCursor();
-    void           zoomIn(int range = 1);
-    void           zoomOut(int range = 1);
+    void           zoomIn(const int range = 1);
+    void           zoomOut(const int range = 1);
 
 protected:
     Lister        *_lister;
 
-    qint64         _screenStartPos;
-    qint64         _screenEndPos;
-    qint64         _averagePageSize;
+    qint64         _screenStartPos = 0;
+    qint64         _screenEndPos = 0;
+    qint64         _averagePageSize = 0;
 
-    qint64         _lastPageStartPos;
+    qint64         _lastPageStartPos = 0;
 
-    int            _sizeX;
-    int            _sizeY;
-    int            _pageSize;
+    int            _sizeX = -1;
+    int            _sizeY = -1;
+    int            _pageSize = 0;
 
-    int            _tabWidth;
+    int            _tabWidth = 4;
 
-    bool           _sizeChanged;
+    bool           _sizeChanged = false;
 
     QStringList    _rowContent;
     QList<qint64>  _rowStarts;
 
-    qint64         _cursorPos;
-    bool           _cursorAtFirstColumn;
+    qint64         _cursorPos = -1;
+    bool           _cursorAtFirstColumn = true;
+    bool           _skipCursorChangedListener = false;
 
-    qint64         _cursorAnchorPos;
+    qint64         _cursorAnchorPos = -1;
 
-    int            _skippedLines;
+    int            _skippedLines = 0;
 
-    bool           _inSliderOp;
-    bool           _inCursorUpdate;
-    bool           _hexMode;
+    bool           _inSliderOp = false;
+    bool           _hexMode = false;
+    bool           _redrawing = false;
 
-    bool           _cursorState = false;
+    QMutex         _cursorBlinkMutex;
+    QTimer         _blinkTimer;
 };
 
 class ListerBrowserExtension : public KParts::BrowserExtension
@@ -194,7 +196,6 @@ class Lister : public KParts::ReadOnlyPart
 
 public:
     explicit Lister(QWidget *parent);
-    ~Lister();
 
     QScrollBar     *scrollBar() {
         return _scrollBar;
@@ -206,23 +207,22 @@ public:
     inline qint64   fileSize() {
         return _fileSize;
     }
-    char *          cacheRef(qint64 filePos, int &size);
+    QByteArray      cacheChunk(const qint64 filePos, const int maxSize);
 
     bool            isSearchEnabled();
-    void            enableSearch(bool);
-    void            enableActions(bool);
+    void            enableSearch(const bool);
+    void            enableActions(const bool);
 
-    QString         characterSet() {
-        return _characterSet;
-    }
-    void            setCharacterSet(QString set);
-    void            setHexMode(bool);
+    QString         characterSet() { return _characterSet; }
+    QTextCodec     *codec() { return _codec; }
+    void            setCharacterSet(const QString set);
+    void            setHexMode(const bool);
 
-    QStringList     readHexLines(qint64 &filePos, qint64 endPos, int columns, int lines);
-    int             hexBytesPerLine(int columns);
+    QStringList     readHexLines(qint64 &filePos, const qint64 endPos, const int columns, const int lines);
+    int             hexBytesPerLine(const int columns);
     int             hexPositionDigits();
-    int             hexIndexToPosition(int columns, int index);
-    int             hexPositionToIndex(int columns, int position);
+    int             hexIndexToPosition(const int columns, const int index);
+    int             hexPositionToIndex(const int columns, const int position);
 
 
 public slots:
@@ -237,17 +237,14 @@ public slots:
     void            saveSelected();
     void            print();
     void            toggleHexMode();
+    void            slotUpdate();
 
 protected slots:
-    void            slotUpdate();
     void            slotSearchMore();
 
     void            searchSucceeded();
     void            searchFailed();
     void            searchTextChanged();
-
-    void            slotFileDataReceived(KIO::Job *, const QByteArray &);
-    void            slotFileFinished(KJob *);
 
     void            slotDataSend(KIO::Job *, QByteArray &);
     void            slotSendFinished(KJob *);
@@ -261,16 +258,16 @@ protected:
         return true;
     }
     virtual void    guiActivateEvent(KParts::GUIActivateEvent * event) Q_DECL_OVERRIDE;
-    void            setColor(bool match, bool restore);
+    void            setColor(const bool match, const bool restore);
     void            hideProgressBar();
     void            updateProgressBar();
     void            resetSearchPosition();
 
     qint64          getFileSize();
-    void            search(bool forward, bool restart = false);
-    QStringList     readLines(qint64 &filePos, qint64 endPos, int columns, int lines);
+    void            search(const bool forward, const bool restart = false);
+    QStringList     readLines(qint64 &filePos, const qint64 endPos, const int columns, const int lines);
 
-    QTimer          _updateTimer;
+    QTimer          _searchUpdateTimer;
     ListerTextArea *_textArea;
     QScrollBar     *_scrollBar;
     QLabel         *_listerLabel;
@@ -279,8 +276,8 @@ protected:
     QToolButton    *_searchStopButton;
     QPushButton    *_searchNextButton;
     QPushButton    *_searchPrevButton;
-    bool            _searchInProgress;
-    bool            _searchHexadecimal;
+    bool            _searchInProgress = false;
+    bool            _searchHexadecimal = false;
     QPushButton    *_searchOptions;
     QLabel         *_statusLabel;
 
@@ -290,44 +287,42 @@ protected:
     QAction        *_regExpAction;
     QAction        *_hexAction;
 
-    QAction *_actionSaveSelected;
-    QAction *_actionSaveAs;
-    QAction *_actionPrint;
-    QAction *_actionSearch;
-    QAction *_actionSearchNext;
-    QAction *_actionSearchPrev;
-    QAction *_actionJumpToPosition;
-    QAction *_actionHexMode;
-    ListerEncodingMenu *_actionEncoding;
+    QAction        *_actionSaveSelected;
+    QAction        *_actionSaveAs;
+    QAction        *_actionPrint;
+    QAction        *_actionSearch;
+    QAction        *_actionSearchNext;
+    QAction        *_actionSearchPrev;
+    QAction        *_actionJumpToPosition;
+    QAction        *_actionHexMode;
 
     QString         _filePath;
-    qint64          _fileSize;
+    qint64          _fileSize = 0;
 
-    char           *_cache;
-    int             _cacheSize;
-    qint64          _cachePos;
-
-    bool            _active;
+    QByteArray      _cache;
+    qint64          _cachePos = 0;
 
     KRQuery         _searchQuery;
     QByteArray      _searchHexQuery;
-    qint64          _searchPosition;
-    bool            _searchIsForward;
-    qint64          _searchLastFailedPosition;
-    int             _searchProgressCounter;
+    qint64          _searchPosition = 0;
+    bool            _searchIsForward = true;
+    qint64          _searchLastFailedPosition = -1;
+    int             _searchProgressCounter = 0;
 
     QColor          _originalBackground;
     QColor          _originalForeground;
 
     QString         _characterSet;
+    QTextCodec     *_codec = QTextCodec::codecForLocale();
 
-    QTemporaryFile *_tempFile;
+    QTemporaryFile *_tempFile = 0;
 
-    bool            _downloading;
-    bool            _restartFromBeginning;
+    bool            _downloading = false;
+    bool            _restartFromBeginning = false;
+    QTimer          _downloadUpdateTimer;
 
-    qint64          _savePosition;
-    qint64          _saveEnd;
+    qint64          _savePosition = 0;
+    qint64          _saveEnd = 0;
 };
 
 #endif // __LISTER_H__
