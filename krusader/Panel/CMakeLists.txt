@@ -19,7 +19,7 @@ set(Panel_SRCS
     listpanelframe.cpp
     panelcontextmenu.cpp
     panelfunc.cpp
-    panelpopup.cpp
+    sidebar.cpp
     viewactions.cpp
 )
 

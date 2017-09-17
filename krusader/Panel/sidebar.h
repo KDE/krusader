@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef PANELPOPUP_H
-#define PANELPOPUP_H
+#ifndef SIDEBAR_H
+#define SIDEBAR_H
 
 // QtCore
 #include <QPointer>
@@ -41,7 +41,7 @@ class FileItem;
 /**
  * Additional side widget showing various meta information for the current file/directories.
  */
-class PanelPopup: public QWidget
+class Sidebar: public QWidget
 {
     Q_OBJECT
 
@@ -59,8 +59,8 @@ class PanelPopup: public QWidget
     };
 
 public:
-    explicit PanelPopup(QWidget *parent);
-    ~PanelPopup();
+    explicit Sidebar(QWidget *parent);
+    ~Sidebar();
     inline int currentPage() const {
         return stack->currentWidget()->property("KrusaderWidgetId").toInt();
     }

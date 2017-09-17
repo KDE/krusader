@@ -265,12 +265,12 @@ QBoxLayout *KrLayoutFactory::createLayout(QDomElement e, QWidget *parent)
             if(QWidget *w = widgets.take(child.attribute("name")))
                 l->addWidget(w);
             else
-                qWarning() << "layout: so such widget:" << child.attribute("name");
+                qWarning() << "layout: no such widget:" << child.attribute("name");
         } else if(child.tagName() == "hide_widget") {
             if(QWidget *w = widgets.take(child.attribute("name")))
                 w->hide();
             else
-                qWarning() << "layout: so such widget:" << child.attribute("name");
+                qWarning() << "layout: no such widget:" << child.attribute("name");
         } else if(child.tagName() == "spacer") {
             if(horizontal)
                 l->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed));

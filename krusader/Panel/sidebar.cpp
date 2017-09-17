@@ -17,7 +17,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include "panelpopup.h"
+#include "sidebar.h"
 
 #include "krfiletreeview.h"
 #include "krpanel.h"
@@ -44,7 +44,7 @@
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 
-PanelPopup::PanelPopup(QWidget *parent) : QWidget(parent), stack(0), imageFilePreview(0), pjob(0)
+Sidebar::Sidebar(QWidget *parent) : QWidget(parent), stack(0), imageFilePreview(0), pjob(0)
 {
     QGridLayout * layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -106,7 +106,7 @@ PanelPopup::PanelPopup(QWidget *parent) : QWidget(parent), stack(0), imageFilePr
     // NOTE: the F2 key press event is caught before it gets to the tree
     tree->setEditTriggers(QAbstractItemView::EditKeyPressed);
     // connecting signal to signal
-    connect(tree, &KrFileTreeView::urlActivated, this, &PanelPopup::urlActivated);
+    connect(tree, &KrFileTreeView::urlActivated, this, &Sidebar::urlActivated);
 
     // create the quickview part ------
     imageFilePreview = new KImageFilePreview(stack);
@@ -121,14 +121,14 @@ PanelPopup::PanelPopup(QWidget *parent) : QWidget(parent), stack(0), imageFilePr
     sizePolicy.setHorizontalPolicy(QSizePolicy::Ignored);
     fileViewer->setSizePolicy(sizePolicy);
     stack->addWidget(fileViewer);
-    connect(fileViewer, &PanelViewer::openUrlRequest, this, &PanelPopup::handleOpenUrlRequest);
+    connect(fileViewer, &PanelViewer::openUrlRequest, this, &Sidebar::handleOpenUrlRequest);
 
     // create the disk usage view
     diskusage = new DiskUsageViewer(stack);
     diskusage->setStatusLabel(dataLine, i18n("Disk Usage:"));
     diskusage->setProperty("KrusaderWidgetId", QVariant(DskUsage));
     stack->addWidget(diskusage);
-    connect(diskusage, &DiskUsageViewer::openUrlRequest, this, &PanelPopup::handleOpenUrlRequest);
+    connect(diskusage, &DiskUsageViewer::openUrlRequest, this, &Sidebar::handleOpenUrlRequest);
 
     // -------- finish the layout (General one)
     layout->addWidget(stack, 1, 0, 1, 5);
@@ -137,19 +137,19 @@ PanelPopup::PanelPopup(QWidget *parent) : QWidget(parent), stack(0), imageFilePr
     setCurrentPage(0);
 }
 
-PanelPopup::~PanelPopup() {}
+Sidebar::~Sidebar() {}
 
-void PanelPopup::saveSettings(KConfigGroup cfg) const
+void Sidebar::saveSettings(KConfigGroup cfg) const
 {
     tree->saveSettings(cfg);
 }
 
-void PanelPopup::restoreSettings(const KConfigGroup &cfg)
+void Sidebar::restoreSettings(const KConfigGroup &cfg)
 {
     tree->restoreSettings(cfg);
 }
 
-void PanelPopup::setCurrentPage(int id)
+void Sidebar::setCurrentPage(int id)
 {
     QAbstractButton * curr = btns->button(id);
     if (curr) {
@@ -157,20 +157,20 @@ void PanelPopup::setCurrentPage(int id)
     }
 }
 
-void PanelPopup::show()
+void Sidebar::show()
 {
     QWidget::show();
     tabSelected(currentPage());
 }
 
-void PanelPopup::hide()
+void Sidebar::hide()
 {
     QWidget::hide();
     if (currentPage() == View) fileViewer->closeUrl();
     if (currentPage() == DskUsage) diskusage->closeUrl();
 }
 
-void PanelPopup::focusInEvent(QFocusEvent*)
+void Sidebar::focusInEvent(QFocusEvent*)
 {
     switch (currentPage()) {
     case Preview:
@@ -192,14 +192,14 @@ void PanelPopup::focusInEvent(QFocusEvent*)
     }
 }
 
-void PanelPopup::handleOpenUrlRequest(const QUrl &url)
+void Sidebar::handleOpenUrlRequest(const QUrl &url)
 {
     QMimeDatabase db;
     QMimeType mime = db.mimeTypeForUrl(url);
     if (mime.isValid() && mime.name() == "inode/directory") ACTIVE_PANEL->func->openUrl(url);
 }
 
-void PanelPopup::tabSelected(int id)
+void Sidebar::tabSelected(int id)
 {
     QUrl url;
     const FileItem *fileitem = 0;
@@ -242,7 +242,7 @@ void PanelPopup::tabSelected(int id)
 }
 
 // decide which part to update, if at all
-void PanelPopup::update(const FileItem *fileitem)
+void Sidebar::update(const FileItem *fileitem)
 {
     if (isHidden())
         return;
@@ -275,7 +275,7 @@ void PanelPopup::update(const FileItem *fileitem)
     }
 }
 
-void PanelPopup::onPanelPathChange(const QUrl &url)
+void Sidebar::onPanelPathChange(const QUrl &url)
 {
     switch (currentPage()) {
     case Tree:

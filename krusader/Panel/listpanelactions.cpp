@@ -128,7 +128,7 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     actLocationBar = action(i18n("Go to Location Bar"), 0, Qt::CTRL + Qt::Key_L, _gui, SLOT(editLocation()), "location_bar");
     actSearchBar = action(i18n("Find in folder..."), 0, Qt::CTRL + Qt::Key_F, _gui, SLOT(showSearchBar()), "search bar");
     action(i18n("Open search filter"), 0, Qt::CTRL + Qt::Key_I, _gui, SLOT(showSearchFilter()), "search bar filter");
-    toggleAction(i18n("Toggle Popup Panel"), 0, Qt::ALT + Qt::Key_Down, _gui, SLOT(togglePanelPopup()), "toggle popup panel");
+    toggleAction(i18n("Toggle Sidebar"), 0, Qt::ALT + Qt::Key_Down, _gui, SLOT(toggleSidebar()), "toggle sidebar");
     action(i18n("Bookmarks"), 0, Qt::CTRL + Qt::Key_D, _gui, SLOT(openBookmarks()), "bookmarks");
     action(i18n("Left Bookmarks"), 0, 0, this, SLOT(openLeftBookmarks()), "left bookmarks");
     action(i18n("Right Bookmarks"), 0, 0, this, SLOT(openRightBookmarks()), "right bookmarks");

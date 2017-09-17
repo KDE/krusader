@@ -89,7 +89,7 @@
 #include "Panel/PanelView/krviewitem.h"
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
-#include "Panel/panelpopup.h"
+#include "Panel/sidebar.h"
 #include "Search/krsearchdialog.h"
 #include "Search/krsearchmod.h"
 #include "Splitter/combiner.h"

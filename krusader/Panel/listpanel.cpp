@@ -72,7 +72,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "listpanelactions.h"
 #include "panelcontextmenu.h"
 #include "panelfunc.h"
-#include "panelpopup.h"
+#include "sidebar.h"
 #include "viewactions.h"
 
 #include "PanelView/krview.h"
@@ -133,7 +133,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
         QWidget(parent), KrPanel(manager, this, new ListPanelFunc(this)),
         panelType(-1), colorMask(255), compareMode(false),
         previewJob(0), inlineRefreshJob(0), searchBar(0), cdRootButton(0), cdUpButton(0),
-        popupBtn(0), popup(0), fileSystemError(0), _navigatorUrl(), _locked(false)
+        sidebarButton(0), sidebar(0), fileSystemError(0), _navigatorUrl(), _locked(false)
 {
     if(cfg.isValid())
         panelType = cfg.readEntry("Type", -1);
@@ -263,24 +263,24 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     connect(cancelProgressButton, SIGNAL(clicked()), this, SLOT(cancelProgress()));
     ADD_WIDGET(cancelProgressButton);
 
-    // button for changing the panel popup position in the panel
-    popupPositionBtn = new QToolButton(this);
-    popupPositionBtn->hide();
-    popupPositionBtn->setAutoRaise(true);
-    popupPositionBtn->setIcon(krLoader->loadIcon("exchange-positions", KIconLoader::Toolbar, 16));
-    popupPositionBtn->setToolTip(i18n("Move popup panel clockwise"));
-    connect(popupPositionBtn, &QToolButton::clicked, [this]() {
+    // button for changing the panel sidebar position in the panel
+    sidebarPositionButton = new QToolButton(this);
+    sidebarPositionButton->hide();
+    sidebarPositionButton->setAutoRaise(true);
+    sidebarPositionButton->setIcon(krLoader->loadIcon("exchange-positions", KIconLoader::Toolbar, 16));
+    sidebarPositionButton->setToolTip(i18n("Move Sidebar clockwise"));
+    connect(sidebarPositionButton, &QToolButton::clicked, [this]() {
         // moving position clockwise
-        setPopupPosition((popupPosition() + 1) % 4); });
-    ADD_WIDGET(popupPositionBtn);
+        setSidebarPosition((sidebarPosition() + 1) % 4); });
+    ADD_WIDGET(sidebarPositionButton);
 
-    // a quick button to open the popup panel
-    popupBtn = new QToolButton(this);
-    popupBtn->setAutoRaise(true);
-    popupBtn->setIcon(krLoader->loadIcon("arrow-up", KIconLoader::Toolbar, 16));
-    connect(popupBtn, &QToolButton::clicked, this, &ListPanel::togglePanelPopup);
-    popupBtn->setToolTip(i18n("Open the popup panel"));
-    ADD_WIDGET(popupBtn);
+    // a quick button to open the sidebar
+    sidebarButton = new QToolButton(this);
+    sidebarButton->setAutoRaise(true);
+    sidebarButton->setIcon(krLoader->loadIcon("arrow-up", KIconLoader::Toolbar, 16));
+    connect(sidebarButton, &QToolButton::clicked, this, &ListPanel::toggleSidebar);
+    sidebarButton->setToolTip(i18n("Open the Sidebar"));
+    ADD_WIDGET(sidebarButton);
 
 #undef ADD_WIDGET
 
@@ -316,15 +316,15 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 
     setButtons();
 
-    // create a splitter to hold the view and the popup
-    splt = new PercentalSplitter(clientArea);
-    splt->setChildrenCollapsible(true);
-    splt->setOrientation(Qt::Horizontal);
+    // create a splitter to hold the view and the sidebar
+    sidebarSplitter = new PercentalSplitter(clientArea);
+    sidebarSplitter->setChildrenCollapsible(true);
+    sidebarSplitter->setOrientation(Qt::Horizontal);
     // expand vertical if splitter orientation is horizontal
-    QSizePolicy sizePolicy = splt->sizePolicy();
+    QSizePolicy sizePolicy = sidebarSplitter->sizePolicy();
     sizePolicy.setVerticalPolicy(QSizePolicy::Expanding);
-    splt->setSizePolicy(sizePolicy);
-    clientLayout->addWidget(splt);
+    sidebarSplitter->setSizePolicy(sizePolicy);
+    clientLayout->addWidget(sidebarSplitter);
 
     // view
     createView();
@@ -375,7 +375,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
         h->addWidget(cancelQuickSizeCalcButton);
         h->addWidget(previewProgress);
         h->addWidget(cancelProgressButton);
-        h->addWidget(popupBtn);
+        h->addWidget(sidebarButton);
         v->addLayout(h);
 
         layout = v;
@@ -425,7 +425,7 @@ bool ListPanel::isNavigatorEditModeSet()
 
 void ListPanel::createView()
 {
-    view = KrViewFactory::createView(panelType, splt, krConfig);
+    view = KrViewFactory::createView(panelType, sidebarSplitter, krConfig);
     view->init();
     view->setMainWindow(krApp);
 
@@ -438,7 +438,7 @@ void ListPanel::createView()
         view->prepareForPassive();
     view->refreshColors();
 
-    splt->insertWidget(popupPosition() < 2 ? 1 : 0, view->widget());
+    sidebarSplitter->insertWidget(sidebarPosition() < 2 ? 1 : 0, view->widget());
 
     view->widget()->installEventFilter(this);
 
@@ -553,44 +553,44 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
     return false;
 }
 
-void ListPanel::togglePanelPopup()
+void ListPanel::toggleSidebar()
 {
-    if(!popup) {
-        popup = new PanelPopup(splt);
+    if(!sidebar) {
+        sidebar = new Sidebar(sidebarSplitter);
         // fix vertical grow of splitter (and entire window) if its content
         // demands more space
-        QSizePolicy sizePolicy = popup->sizePolicy();
+        QSizePolicy sizePolicy = sidebar->sizePolicy();
         sizePolicy.setVerticalPolicy(QSizePolicy::Ignored);
-        popup->setSizePolicy(sizePolicy);
-        connect(this, &ListPanel::pathChanged, popup, &PanelPopup::onPanelPathChange);
-        connect(popup, &PanelPopup::urlActivated, SLOTS, &KRslots::refresh);
-        splt->insertWidget(0, popup);
+        sidebar->setSizePolicy(sizePolicy);
+        connect(this, &ListPanel::pathChanged, sidebar, &Sidebar::onPanelPathChange);
+        connect(sidebar, &Sidebar::urlActivated, SLOTS, &KRslots::refresh);
+        sidebarSplitter->insertWidget(0, sidebar);
     }
 
-    if (popup->isHidden()) {
-        if (popupSizes.count() > 0) {
-            splt->setSizes(popupSizes);
+    if (sidebar->isHidden()) {
+        if (sidebarSplitterSizes.count() > 0) {
+            sidebarSplitter->setSizes(sidebarSplitterSizes);
         } else { // on the first time, resize to 50%
             QList<int> lst;
             lst << height() / 2 << height() / 2;
-            splt->setSizes(lst);
+            sidebarSplitter->setSizes(lst);
         }
 
-        popup->show();
-        popupBtn->setIcon(krLoader->loadIcon("arrow-down", KIconLoader::Toolbar, 16));
-        popupBtn->setToolTip(i18n("Close the popup panel"));
-        popupPositionBtn->show();
+        sidebar->show();
+        sidebarButton->setIcon(krLoader->loadIcon("arrow-down", KIconLoader::Toolbar, 16));
+        sidebarButton->setToolTip(i18n("Close the Sidebar"));
+        sidebarPositionButton->show();
     } else {
-        popupSizes.clear();
-        popupSizes = splt->sizes();
-        popup->hide();
-        popupBtn->setIcon(krLoader->loadIcon("arrow-up", KIconLoader::Toolbar, 16));
-        popupBtn->setToolTip(i18n("Open the popup panel"));
-        popupPositionBtn->hide();
+        sidebarSplitterSizes.clear();
+        sidebarSplitterSizes = sidebarSplitter->sizes();
+        sidebar->hide();
+        sidebarButton->setIcon(krLoader->loadIcon("arrow-up", KIconLoader::Toolbar, 16));
+        sidebarButton->setToolTip(i18n("Open the Sidebar"));
+        sidebarPositionButton->hide();
 
         QList<int> lst;
         lst << height() << 0;
-        splt->setSizes(lst);
+        sidebarSplitter->setSizes(lst);
         if (ACTIVE_PANEL)
             ACTIVE_PANEL->gui->slotFocusOnMe();
     }
@@ -1015,7 +1015,7 @@ void ListPanel::slotPreviewJobStarted(KJob *job)
     previewJob = job;
     connect(job, SIGNAL(percent(KJob*,ulong)), SLOT(slotPreviewJobPercent(KJob*,ulong)));
     connect(job, &KJob::result, this, &ListPanel::slotPreviewJobResult);
-    cancelProgressButton->setMaximumHeight(popupBtn->height());
+    cancelProgressButton->setMaximumHeight(sidebarButton->height());
     cancelProgressButton->show();
     previewProgress->setValue(0);
     previewProgress->setFormat(i18n("loading previews: %p%"));
@@ -1045,9 +1045,9 @@ void ListPanel::slotRefreshJobStarted(KIO::Job* job)
     cdHomeButton->setEnabled(false);
     cdUpButton->setEnabled(false);
     cdOtherButton->setEnabled(false);
-    popupBtn->setEnabled(false);
-    if(popup)
-        popup->setEnabled(false);
+    sidebarButton->setEnabled(false);
+    if(sidebar)
+        sidebar->setEnabled(false);
     bookmarksButton->setEnabled(false);
     historyButton->setEnabled(false);
     syncBrowseButton->setEnabled(false);
@@ -1109,9 +1109,9 @@ void ListPanel::inlineRefreshListResult(KJob*)
     cdHomeButton->setEnabled(true);
     cdUpButton->setEnabled(true);
     cdOtherButton->setEnabled(true);
-    popupBtn->setEnabled(true);
-    if(popup)
-        popup->setEnabled(true);
+    sidebarButton->setEnabled(true);
+    if(sidebar)
+        sidebar->setEnabled(true);
     bookmarksButton->setEnabled(true);
     historyButton->setEnabled(true);
     syncBrowseButton->setEnabled(true);
@@ -1202,12 +1202,12 @@ void ListPanel::saveSettings(KConfigGroup cfg, bool saveHistory)
         func->history->save(KConfigGroup(&cfg, "History"));
     view->saveSettings(KConfigGroup(&cfg, "View"));
 
-    // splitter/popup state
-    if (popup && !popup->isHidden()) {
-        popup->saveSettings(KConfigGroup(&cfg, "PanelPopup"));
-        cfg.writeEntry("PopupPosition", popupPosition());
-        cfg.writeEntry("SplitterSizes", splt->saveState());
-        cfg.writeEntry("PopupPage", popup->currentPage());
+    // splitter/sidebar state
+    if (sidebar && !sidebar->isHidden()) {
+        sidebar->saveSettings(KConfigGroup(&cfg, "PanelPopup"));
+        cfg.writeEntry("PopupPosition", sidebarPosition());
+        cfg.writeEntry("SplitterSizes", sidebarSplitter->saveState());
+        cfg.writeEntry("PopupPage", sidebar->currentPage());
     } else {
         cfg.deleteEntry("PopupPosition");
         cfg.deleteEntry("SplitterSizes");
@@ -1239,12 +1239,12 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
 
     setProperties(cfg.readEntry("Properties", 0));
 
-    if (cfg.hasKey("PopupPosition")) { // popup was visible, restore
-        togglePanelPopup(); // create and show
-        popup->restoreSettings(KConfigGroup(&cfg, "PanelPopup"));
-        setPopupPosition(cfg.readEntry("PopupPosition", 42 /* dummy */));
-        splt->restoreState(cfg.readEntry("SplitterSizes", QByteArray()));
-        popup->setCurrentPage(cfg.readEntry("PopupPage", 0));
+    if (cfg.hasKey("PopupPosition")) { // sidebar was visible, restore
+        toggleSidebar(); // create and show
+        sidebar->restoreSettings(KConfigGroup(&cfg, "PanelPopup"));
+        setSidebarPosition(cfg.readEntry("PopupPosition", 42 /* dummy */));
+        sidebarSplitter->restoreState(cfg.readEntry("SplitterSizes", QByteArray()));
+        sidebar->setCurrentPage(cfg.readEntry("PopupPage", 0));
     }
 }
 
@@ -1254,16 +1254,17 @@ void ListPanel::slotCurrentChanged(KrViewItem *item)
     if (item)
         krApp->statusBarUpdate(item->description());
 
-    // update popup panel; which panel to display on?
-    PanelPopup *p;
-    if(popup && !popup->isHidden())
-        p = popup;
-    else if(otherPanel()->gui->popup && !otherPanel()->gui->popup->isHidden())
-        p = otherPanel()->gui->popup;
-    else
+    // update sidebar; which panel to display on?
+    Sidebar *p;
+    if (sidebar && !sidebar->isHidden()) {
+        p = sidebar;
+    } else if(otherPanel()->gui->sidebar && !otherPanel()->gui->sidebar->isHidden()) {
+        p = otherPanel()->gui->sidebar;
+    } else {
         return;
+    }
 
-    p->update(item ? func->files()->getFileItem(item->name()) : 0);
+    p->update(item ? func->files()->getFileItem(item->name()) : nullptr);
 }
 
 void ListPanel::otherPanelChanged()
@@ -1277,8 +1278,8 @@ void ListPanel::getFocusCandidates(QVector<QWidget*> &widgets)
         widgets << urlNavigator->editor();
     if(view->widget()->isVisible())
         widgets << view->widget();
-    if(popup && popup->isVisible())
-        widgets << popup;
+    if(sidebar && sidebar->isVisible())
+        widgets << sidebar;
 }
 
 void ListPanel::updateButtons()
@@ -1336,17 +1337,17 @@ void ListPanel::resetNavigatorMode()
     }
 }
 
-int ListPanel::popupPosition() const
+int ListPanel::sidebarPosition() const
 {
-    int pos = splt->orientation() == Qt::Vertical ? 1 : 0;
-    return pos + (qobject_cast<PanelPopup*>(splt->widget(0)) == NULL ? 2 : 0);
+    int pos = sidebarSplitter->orientation() == Qt::Vertical ? 1 : 0;
+    return pos + (qobject_cast<Sidebar*>(sidebarSplitter->widget(0)) == NULL ? 2 : 0);
 }
 
-void ListPanel::setPopupPosition(int pos)
+void ListPanel::setSidebarPosition(int pos)
 {
-    splt->setOrientation(pos % 2 == 0 ? Qt::Horizontal : Qt::Vertical);
-    if ((pos < 2) != (qobject_cast<PanelPopup*>(splt->widget(0)) != NULL)) {
-        splt->insertWidget(0, splt->widget(1)); // swapping widgets in splitter
+    sidebarSplitter->setOrientation(pos % 2 == 0 ? Qt::Horizontal : Qt::Vertical);
+    if ((pos < 2) != (qobject_cast<Sidebar*>(sidebarSplitter->widget(0)) != NULL)) {
+        sidebarSplitter->insertWidget(0, sidebarSplitter->widget(1)); // swapping widgets in splitter
     }
 }
 
