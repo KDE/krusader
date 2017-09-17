@@ -472,27 +472,28 @@ void KrBookmarkHandler::bookmarksChanged(const QString&, const QString&)
 bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
 {
     if (ev->type() == QEvent::MouseButtonRelease) {
-        switch (static_cast<QMouseEvent*>(ev)->button()) {
+        switch (static_cast<QMouseEvent *>(ev)->button()) {
         case Qt::RightButton:
             _middleClick = false;
             if (obj->inherits("QMenu")) {
-                QMenu * menu = static_cast<QMenu*>(obj);
-                QAction * act = menu->actionAt(static_cast<QMouseEvent*>(ev)->pos());
+                QMenu *menu = static_cast<QMenu *>(obj);
+                QAction *act = menu->actionAt(static_cast<QMouseEvent *>(ev)->pos());
 
                 if (obj == _mainBookmarkPopup && _specialBookmarks.contains(act)) {
                     rightClickOnSpecialBookmark();
                     return true;
                 }
 
-                KrBookmark * bm = dynamic_cast<KrBookmark*>(act);
+                KrBookmark *bm = dynamic_cast<KrBookmark *>(act);
                 if (bm != 0) {
                     rightClicked(menu, bm);
                     return true;
                 } else if (act && act->data().canConvert<KrBookmark *>()) {
-                    KrBookmark * bm = act->data().value<KrBookmark *> ();
+                    KrBookmark *bm = act->data().value<KrBookmark *>();
                     rightClicked(menu, bm);
                 }
             }
+            break;
         case Qt::LeftButton:
             _middleClick = false;
             break;

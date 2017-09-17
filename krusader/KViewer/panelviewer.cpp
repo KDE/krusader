@@ -191,27 +191,23 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(KFileItem fi)
 
     switch(mode) {
     case KrViewer::Generic:
-        if((mimetype.startsWith(QLatin1String("text/")) ||
-            mimetype.startsWith(QLatin1String("all/"))) &&
-                fileSize > limit) {
+        if ((mimetype.startsWith(QLatin1String("text/")) ||
+             mimetype.startsWith(QLatin1String("all/"))) &&
+            fileSize > limit) {
             part = getListerPart(isBinary);
             break;
-        } else if((part = getPart(mimetype)))
+        } else if ((part = getPart(mimetype))) {
             break;
+        }
+        [[gnu::fallthrough]];
     case KrViewer::Text:
-        if (fileSize > limit)
-            part =  getListerPart(false);
-        else
-            part = getTextPart();
+        part = fileSize > limit ? getListerPart(false) : getTextPart();
         break;
     case KrViewer::Lister:
         part = getListerPart(isBinary);
         break;
     case KrViewer::Hex:
-        if (fileSize > limit)
-            part = getListerPart(true);
-        else
-            part = getHexPart();
+        part = fileSize > limit ? getListerPart(true) : getHexPart();
         break;
     default:
         abort();

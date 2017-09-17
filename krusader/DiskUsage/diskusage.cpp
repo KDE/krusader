@@ -875,16 +875,19 @@ void DiskUsage::keyPressEvent(QKeyEvent *e)
                 executeAction(EXCLUDE_ID, getCurrentFile());
                 return;
             }
+            break;
         case Qt::Key_D:
             if (e->modifiers() == Qt::ControlModifier) {
                 executeAction(DETAILED_VIEW_ID);
                 return;
             }
+            break;
         case Qt::Key_F:
             if (e->modifiers() == Qt::ControlModifier) {
                 executeAction(FILELIGHT_VIEW_ID);
                 return;
             }
+            break;
         case Qt::Key_I:
             if (e->modifiers() == Qt::ControlModifier) {
                 executeAction(INCLUDE_ALL_ID);
@@ -896,6 +899,7 @@ void DiskUsage::keyPressEvent(QKeyEvent *e)
                 executeAction(LINES_VIEW_ID);
                 return;
             }
+            break;
         case Qt::Key_N:
             if (e->modifiers() == Qt::ControlModifier) {
                 executeAction(NEW_SEARCH_ID);
@@ -937,6 +941,7 @@ void DiskUsage::keyPressEvent(QKeyEvent *e)
                 executeAction(DELETE_ID, getCurrentFile());
                 return;
             }
+            break;
         case Qt::Key_Plus:
             if (activeView == VIEW_FILELIGHT) {
                 filelightView->zoomIn();

@@ -59,42 +59,21 @@ void SortProps::init(FileItem *fileitem, int col, const KrViewProperties * props
         }
         break;
     }
-    case KrViewProperties::Type: {
-        if (isDummy)
-            _data = "";
-        else {
-            _data = KrView::mimeTypeText(fileitem);
-        }
+    case KrViewProperties::Type:
+        _data = isDummy ? "" : KrView::mimeTypeText(fileitem);
         break;
-    }
-    case KrViewProperties::Permissions: {
-        if (isDummy)
-            _data = "";
-        else {
-            _data = KrView::permissionsText(properties(), fileitem);
-        }
+    case KrViewProperties::Permissions:
+        _data = isDummy ? "" : KrView::permissionsText(properties(), fileitem);
         break;
-    }
-    case KrViewProperties::KrPermissions: {
-        if (isDummy)
-            _data = "";
-        else {
-            _data = KrView::krPermissionText(fileitem);
-        }
+    case KrViewProperties::KrPermissions:
+        _data = isDummy ? "" : KrView::krPermissionText(fileitem);
         break;
-    }
-    case KrViewProperties::Owner: {
-        if (isDummy)
-            _data = "";
-        else
-            _data = fileitem->getOwner();
-    }
-    case KrViewProperties::Group: {
-        if (isDummy)
-            _data = "";
-        else
-            _data = fileitem->getGroup();
-    }
+    case KrViewProperties::Owner:
+        _data = isDummy ? "" : fileitem->getOwner();
+        break;
+    case KrViewProperties::Group:
+        _data = isDummy ? "" : fileitem->getGroup();
+        break;
     default:
         break;
     }
