@@ -20,6 +20,8 @@
 #ifndef KRSORT_H
 #define KRSORT_H
 
+#include <sys/types.h>
+
 // QtCore
 #include <QString>
 #include <QVector>
