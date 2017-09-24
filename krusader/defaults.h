@@ -89,7 +89,7 @@
 // Always show current item decoration in panel
 #define _AlwaysShowCurrentItem true
 // Unslect files before copy/move
-#define _UnselectBeforeOperation true
+#define _UnselectBeforeOperation false
 // Filter dialog remembers settings
 #define _FilterDialogRemembersSettings false
 
