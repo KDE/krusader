@@ -129,7 +129,12 @@ void DefaultFileSystem::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::Copy
 
 void DefaultFileSystem::mkDir(const QString &name)
 {
-    KJob *job = KIO::mkpath(getUrl(name));
+    KJob *job;
+    if (name.contains('/')) {
+        job = KIO::mkpath(getUrl(name));
+    } else {
+        job = KIO::mkdir(getUrl(name));
+    }
     connectJobToDestination(job, currentDirectory());
 }
 

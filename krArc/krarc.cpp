@@ -198,18 +198,27 @@ void kio_krarcProtocol::receivedData(KProcess *, QByteArray &d)
 void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
 {
     KRFUNC;
-    KRDEBUG(getPath(url));
+    const QString path = getPath(url);
+    KRDEBUG(path);
 
     if (!checkWriteSupport())
         return;
 
+    // In case of KIO::mkpath call there is a mkdir call for every path element.
+    // Therefore the path all the way up to our archive needs to be checked for existence
+    // and reported as success.
+    if (QDir().exists(path)) {
+        finished();
+        return;
+    }
+
     if (!setArcFile(url)) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
+        error(ERR_CANNOT_ENTER_DIRECTORY, path);
         return;
     }
 
     if (newArchiveURL && !initDirDict(url)) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
+        error(ERR_CANNOT_ENTER_DIRECTORY, path);
         return;
     }
 
@@ -219,8 +228,10 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
         return;
     }
 
+    const QString arcFilePath = getPath(arcFile->url());
+
     if (arcType == "arj" || arcType == "lha") {
-        QString arcDir = getPath(url).mid(getPath(arcFile->url()).length());
+        QString arcDir = path.mid(arcFilePath.length());
         if (arcDir.right(1) != DIR_SEPARATOR) arcDir = arcDir + DIR_SEPARATOR;
 
         if (dirDict.find(arcDir) == dirDict.end())
@@ -230,7 +241,7 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
     }
 
     QString arcDir  = findArcDirectory(url);
-    QString tempDir = arcDir.mid(1) + getPath(url).mid(getPath(url).lastIndexOf(DIR_SEPARATOR) + 1);
+    QString tempDir = arcDir.mid(1) + path.mid(path.lastIndexOf(DIR_SEPARATOR) + 1);
     if (tempDir.right(1) != DIR_SEPARATOR) tempDir = tempDir + DIR_SEPARATOR;
 
     if (permissions == -1) permissions = 0777;  //set default permissions
@@ -247,7 +258,7 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
 
     // pack the directory
     KrLinecountingProcess proc;
-    proc << putCmd << getPath(arcFile->url()) << localeEncodedString(tempDir);
+    proc << putCmd << arcFilePath << localeEncodedString(tempDir);
     infoMessage(i18n("Creating %1...", url.fileName()));
     QDir::setCurrent(arcTempDir);
 
@@ -261,7 +272,7 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
     QDir().rmdir(arcTempDir);
 
     if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
-        error(ERR_COULD_NOT_WRITE, getPath(url) + "\n\n" + proc.getErrorMsg());
+        error(ERR_COULD_NOT_WRITE, path + "\n\n" + proc.getErrorMsg());
         return;
     }
 
