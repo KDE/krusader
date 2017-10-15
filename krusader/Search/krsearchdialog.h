@@ -106,6 +106,7 @@ private:
     SearchResultContainer *result;
     KrView *resultView;
     KrSearchBar *searchBar;
+    QFrame *foundTextFrame;
 
     KRQuery *query;
     KRSearchMod *searcher;

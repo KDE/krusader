@@ -163,12 +163,6 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     QSpacerItem* spacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     buttonsLayout->addItem(spacer);
 
-    mainFeedToListBoxBtn = new QPushButton(this);
-    mainFeedToListBoxBtn->setText(i18n("Feed to listbox"));
-    mainFeedToListBoxBtn->setIcon(Icon("list-add"));
-    mainFeedToListBoxBtn->setEnabled(false);
-    buttonsLayout->addWidget(mainFeedToListBoxBtn);
-
     mainSearchBtn = new QPushButton(this);
     mainSearchBtn->setText(i18n("Search"));
     mainSearchBtn->setIcon(Icon("edit-find"));
@@ -202,27 +196,6 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 
     // creating the result tab
 
-    QHBoxLayout* resultLabelLayout = new QHBoxLayout();
-    resultLabelLayout->setSpacing(6);
-    resultLabelLayout->setContentsMargins(0, 0, 0, 0);
-
-    foundLabel = new QLabel(resultTab);
-    QSizePolicy foundpolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-    foundpolicy.setHeightForWidth(foundLabel->sizePolicy().hasHeightForWidth());
-    foundLabel->setSizePolicy(foundpolicy);
-    foundLabel->setFrameShape(QLabel::StyledPanel);
-    foundLabel->setFrameShadow(QLabel::Sunken);
-    foundLabel->setText(i18n("Found 0 matches."));
-    resultLabelLayout->addWidget(foundLabel);
-
-    searchingLabel = new KSqueezedTextLabel(resultTab);
-    searchingLabel->setFrameShape(QLabel::StyledPanel);
-    searchingLabel->setFrameShadow(QLabel::Sunken);
-    searchingLabel->setText("");
-    resultLabelLayout->addWidget(searchingLabel);
-
-    resultLayout->addLayout(resultLabelLayout, 2, 0);
-
     // creating the result list view
     result = new SearchResultContainer(this);
     // the view
@@ -235,30 +208,46 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     resultView->setFiles(result);
     resultView->refresh();
     resultLayout->addWidget(resultView->widget(), 0, 0);
-    // search bar
+    // search bar - hidden by default
     searchBar = new KrSearchBar(resultView, this);
     searchBar->hide();
     resultLayout->addWidget(searchBar, 1, 0);
 
+    // text found row
+    foundTextFrame = new QFrame(resultTab);
+    foundTextFrame->setFrameShape(QLabel::StyledPanel);
+    foundTextFrame->setFrameShadow(QLabel::Sunken);
+
     QHBoxLayout* foundTextLayout = new QHBoxLayout();
     foundTextLayout->setSpacing(6);
-    foundTextLayout->setContentsMargins(0, 0, 0, 0);
+    //foundTextLayout->setContentsMargins(0, 0, 0, 0);
 
-    QLabel *l1 = new QLabel(resultTab);
-    QSizePolicy l1policy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-    l1policy.setHeightForWidth(l1->sizePolicy().hasHeightForWidth());
-    l1->setSizePolicy(l1policy);
-    l1->setFrameShape(QLabel::StyledPanel);
-    l1->setFrameShadow(QLabel::Sunken);
-    l1->setText(i18n("Text found:"));
-    foundTextLayout->addWidget(l1);
-
+    QLabel *textFoundLabel = new QLabel(i18n("Text found:"), resultTab);
+    foundTextLayout->addWidget(textFoundLabel);
     foundTextLabel = new KrSqueezedTextLabel(resultTab);
-    foundTextLabel->setFrameShape(QLabel::StyledPanel);
-    foundTextLabel->setFrameShadow(QLabel::Sunken);
-    foundTextLabel->setText("");
     foundTextLayout->addWidget(foundTextLabel);
-    resultLayout->addLayout(foundTextLayout, 3, 0);
+
+    foundTextFrame->setLayout(foundTextLayout);
+    foundTextFrame->hide();
+
+    resultLayout->addWidget(foundTextFrame, 2, 0);
+
+    // result info row
+    QHBoxLayout* resultLabelLayout = new QHBoxLayout();
+    resultLabelLayout->setSpacing(6);
+    resultLabelLayout->setContentsMargins(0, 0, 0, 0);
+
+    searchingLabel = new KSqueezedTextLabel(i18n("Idle"), resultTab);
+    resultLabelLayout->addWidget(searchingLabel);
+
+    foundLabel = new QLabel("", resultTab);
+    resultLabelLayout->addWidget(foundLabel);
+
+    mainFeedToListBoxBtn = new QPushButton(QIcon::fromTheme("list-add"), i18n("Feed to listbox"), this);
+    mainFeedToListBoxBtn->setEnabled(false);
+    resultLabelLayout->addWidget(mainFeedToListBoxBtn);
+
+    resultLayout->addLayout(resultLabelLayout, 3, 0);
 
     searcherTabs->addTab(resultTab, i18n("&Results"));
 
@@ -417,16 +406,21 @@ void KrSearchDialog::startSearch()
     }
 
     // prepare the gui ///////////////////////////////////////////////
-    mainSearchBtn->setEnabled(false);
-    mainCloseBtn->setEnabled(false);
-    mainStopBtn->setEnabled(true);
-    mainFeedToListBoxBtn->setEnabled(false);
     result->clear();
     resultView->setSortMode(KrViewProperties::NoColumn, 0);
+
+    foundTextFrame->setVisible(!query->content().isEmpty());
+    foundTextLabel->setText("");
+
     searchingLabel->setText("");
     foundLabel->setText(i18n("Found 0 matches."));
+    mainFeedToListBoxBtn->setEnabled(false);
+
+    mainSearchBtn->setEnabled(false);
+    mainStopBtn->setEnabled(true);
+    mainCloseBtn->setEnabled(false);
+
     searcherTabs->setCurrentIndex(2); // show the results page
-    foundTextLabel->setText("");
 
     isBusy = true;
 
@@ -436,10 +430,9 @@ void KrSearchDialog::startSearch()
     if (searcher != 0)
         abort();
     searcher  = new KRSearchMod(query);
-    connect(searcher, SIGNAL(searching(QString)),
-            searchingLabel, SLOT(setText(QString)));
+    connect(searcher, &KRSearchMod::searching, searchingLabel, &KSqueezedTextLabel::setText);
     connect(searcher, &KRSearchMod::found, this, &KrSearchDialog::slotFound);
-    connect(searcher, SIGNAL(finished()), this, SLOT(stopSearch()));
+    connect(searcher, &KRSearchMod::finished, this, &KrSearchDialog::stopSearch);
 
     searcher->start();
 
@@ -601,11 +594,10 @@ void KrSearchDialog::feedToListBox()
     int listBoxNum = group.readEntry("Feed To Listbox Counter", 1);
     QString queryName;
     if(query) {
-        QString where = KrServices::toStringList(query->searchInDirs()).join(", ");
-        if(query->content().isEmpty())
-            queryName = i18n("Search results for \"%1\" in %2", query->nameFilter(), where);
-        else
-            queryName = i18n("Search results for \"%1\" containing \"%2\" in %3", query->nameFilter(), query->content(), where);
+        const QString where = KrServices::toStringList(query->searchInDirs()).join(", ");
+        queryName = query->content().isEmpty() ?
+                        i18n("Search results for \"%1\" in %2", query->nameFilter(), where) :
+                        i18n("Search results for \"%1\" containing \"%2\" in %3", query->nameFilter(), query->content(), where);
     }
     QString fileSystemName;
     do {
