@@ -24,41 +24,15 @@
 // QtGui
 #include <QContextMenuEvent>
 
-KrListWidget::KrListWidget(QWidget * parent) : QListWidget(parent)
+KrListWidget::KrListWidget(QWidget *parent) : QListWidget(parent)
 {
     KrStyleProxy *style = new KrStyleProxy();
     style->setParent(this);
     setStyle(style);
-}
 
-bool KrListWidget::event(QEvent * event)
-{
-    switch (event->type()) {
-        // HACK: QT 4 Context menu key isn't handled properly
-    case QEvent::ContextMenu: {
-        QContextMenuEvent* ce = (QContextMenuEvent*) event;
-
-        if (ce->reason() == QContextMenuEvent::Mouse) {
-            QPoint pos = viewport()->mapFromGlobal(ce->globalPos());
-
-            QListWidgetItem * item = itemAt(pos);
-
-            emit itemRightClicked(item, ce->globalPos());
-            return true;
-        } else {
-            if (currentItem()) {
-                QRect r = visualItemRect(currentItem());
-                QPoint p = viewport()->mapToGlobal(QPoint(r.x() + 5, r.y() + 5));
-
-                emit itemRightClicked(currentItem(), p);
-                return true;
-            }
-        }
-    }
-    break;
-    default:
-        break;
-    }
-
-    return QListWidget::event(event);
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, &QListWidget::customContextMenuRequested, [=](const QPoint &pos) {
+        QListWidgetItem *item = itemAt(pos);
+        emit itemRightClicked(item, viewport()->mapToGlobal(pos));
+    });
 }

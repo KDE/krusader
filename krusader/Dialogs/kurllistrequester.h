@@ -32,6 +32,9 @@
 
 #include "../GUI/krlistwidget.h"
 
+/**
+ * Widget for letting the user define a list of URLs.
+ */
 class KURLListRequester : public QWidget
 {
     Q_OBJECT
@@ -41,39 +44,33 @@ public:
 
     explicit KURLListRequester(Mode requestMode, QWidget *parent = 0);
 
-    QList<QUrl>  urlList();
-    void         setUrlList(QList<QUrl>);
+    QList<QUrl> urlList();
+    void setUrlList(const QList<QUrl> &);
 
-    KLineEdit    *lineEdit()    {
-        return urlLineEdit;
-    }
-    KrListWidget *listBox()     {
-        return urlListBox;
-    }
+    KLineEdit *lineEdit() { return urlLineEdit; }
+    KrListWidget *listBox() { return urlListBox; }
 
-    void         setCompletionDir(const QUrl &dir) {
-        completion.setDir(dir);
-    }
+    void setCompletionDir(const QUrl &dir) { completion.setDir(dir); }
 
 signals:
-    void         checkValidity(QString &text, QString &error);
-    void         changed();
+    void checkValidity(QString &text, QString &error);
+    void changed();
 
 protected slots:
-    void         slotAdd();
-    void         slotBrowse();
-    void         slotRightClicked(QListWidgetItem *, const QPoint &);
+    void slotAdd();
+    void slotBrowse();
+    void slotRightClicked(QListWidgetItem *, const QPoint &);
 
 protected:
     virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-    void         deleteSelectedItems();
+    void deleteSelectedItems();
 
-    Mode          mode;
+    Mode mode;
 
-    KLineEdit    *urlLineEdit;
+    KLineEdit *urlLineEdit;
     KrListWidget *urlListBox;
-    QToolButton  *urlAddBtn;
-    QToolButton  *urlBrowseBtn;
+    QToolButton *urlAddBtn;
+    QToolButton *urlBrowseBtn;
 
     KUrlCompletion completion;
 };

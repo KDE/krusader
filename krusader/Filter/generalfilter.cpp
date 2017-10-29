@@ -124,7 +124,29 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     searchForLabel->setBuddy(searchFor);
     nameGroupLayout->addWidget(searchFor, 0, 1, 1, 2);
 
-    QString s = "<p><img src='toolbar|find'></p>" + i18n("<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space (means logical OR) and patterns are excluded from the search using the pipe symbol.</p><p>If the pattern is ended with a slash (<code>*pattern*/</code>), that means that pattern relates to recursive search of folders.<ul><li><code>pattern</code> - means to search those files/folders that name is <code>pattern</code>, recursive search goes through all subfolders independently of the value of <code>pattern</code></li><li><code>pattern/</code> - means to search all files/folders, but recursive search goes through/excludes the folders that name is <code>pattern</code></li></ul></p><p>It is allowed to use quotation marks for names that contain space. Filter <code>\"Program&nbsp;Files\"</code> searches out those files/folders that name is <code>Program&nbsp;Files</code>.</p><p>Examples:</p><ul><li><code>*.o</code></li><li><code>*.h *.c\?\?</code></li><li><code>*.cpp *.h | *.moc.cpp</code></li><li><code>* | .svn/ .git/</code></li></ul><p><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>");
+    const QString s = "<p><img src='toolbar|find'></p>"
+                      + i18n("<p>The filename filtering criteria is defined here.</p>"
+                             "<p>You can make use of wildcards. Multiple patterns are separated by "
+                             "space (means logical OR) and patterns are excluded from the search "
+                             "using the pipe symbol.</p>"
+                             "<p>If the pattern is ended with a slash (<code>*pattern*/</code>), "
+                             "that means that pattern relates to recursive search of folders."
+                             "<ul><li><code>pattern</code> - means to search those files/folders "
+                             "that name is <code>pattern</code>, recursive search goes through all "
+                             "subfolders independently of the value of <code>pattern</code></li>"
+                             "<li><code>pattern/</code> - means to search all files/folders, but "
+                             "recursive search goes through/excludes the folders that name is "
+                             "<code>pattern</code></li></ul></p>"
+                             "<p>It is allowed to use quotation marks for names that contain space."
+                             " Filter <code>\"Program&nbsp;Files\"</code> searches out those "
+                             "files/folders that name is <code>Program&nbsp;Files</code>.</p>"
+                             "<p>Examples:</p><ul>"
+                             "<li><code>*.o</code></li>"
+                             "<li><code>*.h *.c\?\?</code></li>"
+                             "<li><code>*.cpp *.h | *.moc.cpp</code></li>"
+                             "<li><code>* | .svn/ .git/</code></li></ul><p>"
+                             "<b>Note</b>: the search term '<code>text</code>' is equivalent to "
+                             "'<code>*text*</code>'.</p>");
     searchFor->setWhatsThis(s);
     searchForLabel->setWhatsThis(s);
 
@@ -154,8 +176,6 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     middleLayout = new QHBoxLayout();
     middleLayout->setSpacing(6);
     middleLayout->setContentsMargins(0, 0, 0, 0);
-    QSpacerItem* middleSpacer = new QSpacerItem(1, 1, QSizePolicy::Fixed, QSizePolicy::Fixed);
-    middleLayout->addItem(middleSpacer);
 
     if (properties & FilterTabs::HasProfileHandler) {
         // The profile handler
@@ -198,56 +218,39 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
 
     if (properties & FilterTabs::HasSearchIn) {
         // Options for search in
+        QGroupBox *searchGroupBox = new QGroupBox(i18n("Searc&h in"), this);
+        QGridLayout *searchLayout = new QGridLayout(searchGroupBox);
+        searchLayout->setAlignment(Qt::AlignTop);
+        searchLayout->setSpacing(6);
+        searchLayout->setContentsMargins(11, 11, 11, 11);
 
-        QGroupBox *searchInGroup = new QGroupBox(this);
-        searchInGroup->setTitle(i18n("Searc&h in"));
-        QGridLayout *searchInLayout = new QGridLayout(searchInGroup);
-        searchInLayout->setAlignment(Qt::AlignTop);
-        searchInLayout->setSpacing(6);
-        searchInLayout->setContentsMargins(11, 11, 11, 11);
+        searchIn = new KURLListRequester(KURLListRequester::RequestDirs, searchGroupBox);
+        searchLayout->addWidget(searchIn, 0, 0);
+        connect(searchIn, &KURLListRequester::changed, this, &GeneralFilter::slotDisable);
 
-        searchIn = new KURLListRequester(KURLListRequester::RequestDirs, searchInGroup);
-        searchInLayout->addWidget(searchIn, 0, 0);
-        connect(searchIn, SIGNAL(changed()), this, SLOT(slotDisable()));
-
-        middleLayout->addWidget(searchInGroup);
+        middleLayout->addWidget(searchGroupBox);
     }
 
     if (properties & FilterTabs::HasDontSearchIn) {
         // Options for don't search in
+        QGroupBox *searchGroupBox = new QGroupBox(i18n("&Do not search in"), this);
+        QGridLayout *searchLayout = new QGridLayout(searchGroupBox);
+        searchLayout->setAlignment(Qt::AlignTop);
+        searchLayout->setSpacing(6);
+        searchLayout->setContentsMargins(11, 11, 11, 11);
 
-        QGroupBox *dontSearchInGroup = new QGroupBox(this);
-        dontSearchInGroup->setTitle(i18n("&Do not search in"));
-        QGridLayout *dontSearchInLayout = new QGridLayout(dontSearchInGroup);
-        dontSearchInLayout->setAlignment(Qt::AlignTop);
-        dontSearchInLayout->setSpacing(6);
-        dontSearchInLayout->setContentsMargins(11, 11, 11, 11);
-
-        dontSearchIn = new KURLListRequester(KURLListRequester::RequestDirs, dontSearchInGroup);
-        dontSearchInLayout->addWidget(dontSearchIn, 0, 0, 1, 2);
+        dontSearchIn = new KURLListRequester(KURLListRequester::RequestDirs, searchGroupBox);
+        searchLayout->addWidget(dontSearchIn, 0, 0, 1, 2);
 
         if (properties & FilterTabs::HasRecurseOptions) {
             KConfigGroup group(krConfig, "Search");
 
-            useExcludeFolderNames = new QCheckBox(this);
-            useExcludeFolderNames->setText(i18n("Exclude Folder Names"));
-            useExcludeFolderNames->setToolTip(i18n("Filters out specified directory names from the results."));
-            useExcludeFolderNames->setChecked(static_cast<Qt::CheckState>(group.readEntry("ExcludeFolderNamesUse", 0)));
-            dontSearchInLayout->addWidget(useExcludeFolderNames, 1, 0, 1, 1);
+            useExcludeFolderNames = createExcludeCheckBox(group);
+            searchLayout->addWidget(useExcludeFolderNames, 1, 0, 1, 1);
 
-            excludeFolderNames = new KHistoryComboBox(false, dontSearchInGroup);
-            QSizePolicy excludeFolderNamesPolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-            excludeFolderNamesPolicy.setHeightForWidth(excludeFolderNames->sizePolicy().hasHeightForWidth());
-            excludeFolderNames->setSizePolicy(excludeFolderNamesPolicy);
-            excludeFolderNames->setEditable(true);
-            excludeFolderNames->setDuplicatesEnabled(false);
-            excludeFolderNames->setMaxCount(25);
-            excludeFolderNames->setMinimumContentsLength(10);
-            excludeFolderNames->lineEdit()->setPlaceholderText(i18n("Enter space-separated folder names"));
-            excludeFolderNames->lineEdit()->setWhatsThis(i18n("You can insert names with escaped spaces or quoted.\nExample: .git \"target build\" build\\ krusader"));
-            dontSearchInLayout->addWidget(excludeFolderNames, 1, 1, 1, 1);
-            excludeFolderNames->setHistoryItems(group.readEntry("ExcludeFolderNamesHistory", QStringList()));
-            excludeFolderNames->setEditText(group.readEntry("ExcludeFolderNames", ""));
+            excludeFolderNames = createExcludeComboBox(group);
+            searchLayout->addWidget(excludeFolderNames, 1, 1, 1, 1);
+
             if (!useExcludeFolderNames->isChecked()) {
                 excludeFolderNames->setDisabled(true);
             }
@@ -255,7 +258,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
             connect(useExcludeFolderNames, &QCheckBox::toggled, excludeFolderNames, &KHistoryComboBox::setEnabled);
         }
 
-        middleLayout->addWidget(dontSearchInGroup);
+        middleLayout->addWidget(searchGroupBox);
     }
 
     filterLayout->addLayout(middleLayout, 1, 0);
@@ -300,8 +303,8 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         patterns->addAction(new RegExpAction(patterns, i18n(items[i].description),
                                              items[i].regExp, items[i].cursorAdjustment));
     }
-    connect(containsRegExp, SIGNAL(toggled(bool)), this, SLOT(slotDisable()));
-    connect(containsRegExp, SIGNAL(triggered(QAction*)), this, SLOT(slotRegExpTriggered(QAction*)));
+    connect(containsRegExp, &QToolButton::toggled, this, &GeneralFilter::slotDisable);
+    connect(containsRegExp, &QToolButton::triggered, this, &GeneralFilter::slotRegExpTriggered);
     containsRegExp->setMenu(patterns);
     patterns->setEnabled(false);
 
@@ -378,13 +381,13 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     // Connection table
 
     if (properties & FilterTabs::HasProfileHandler) {
-        connect(profileAddBtn,       SIGNAL(clicked()) , this, SLOT(slotAddBtnClicked()));
-        connect(profileLoadBtn,      SIGNAL(clicked()) , this, SLOT(slotLoadBtnClicked()));
-        connect(profileOverwriteBtn, SIGNAL(clicked()) , this, SLOT(slotOverwriteBtnClicked()));
-        connect(profileRemoveBtn,    SIGNAL(clicked()) , this, SLOT(slotRemoveBtnClicked()));
-        connect(profileListBox,      SIGNAL(itemDoubleClicked(QListWidgetItem*)) , this, SLOT(slotProfileDoubleClicked(QListWidgetItem*)));
-        connect(profileManager,      SIGNAL(loadFromProfile(QString)), fltTabs, SLOT(loadFromProfile(QString)));
-        connect(profileManager,      SIGNAL(saveToProfile(QString)), fltTabs, SLOT(saveToProfile(QString)));
+        connect(profileAddBtn, &QPushButton::clicked, this, &GeneralFilter::slotAddBtnClicked);
+        connect(profileLoadBtn, &QPushButton::clicked, this, &GeneralFilter::slotLoadBtnClicked);
+        connect(profileOverwriteBtn, &QPushButton::clicked, this, &GeneralFilter::slotOverwriteBtnClicked);
+        connect(profileRemoveBtn, &QPushButton::clicked, this, &GeneralFilter::slotRemoveBtnClicked);
+        connect(profileListBox, &KrListWidget::itemDoubleClicked, this, &GeneralFilter::slotProfileDoubleClicked);
+        connect(profileManager, &ProfileManager::loadFromProfile, fltTabs, &FilterTabs::loadFromProfile);
+        connect(profileManager, &ProfileManager::saveToProfile, fltTabs, &FilterTabs::saveToProfile);
     }
 
     connect(searchFor, SIGNAL(activated(QString)), searchFor, SLOT(addToHistory(QString)));
@@ -468,6 +471,34 @@ void GeneralFilter::refreshProfileListBox()
         profileOverwriteBtn->setEnabled(false);
         profileRemoveBtn->setEnabled(false);
     }
+}
+
+QCheckBox *GeneralFilter::createExcludeCheckBox(const KConfigGroup &group)
+{
+    QCheckBox *excludeCheckBox = new QCheckBox(this);
+    excludeCheckBox->setText(i18n("Exclude Folder Names"));
+    excludeCheckBox->setToolTip(i18n("Filters out specified directory names from the results."));
+    excludeCheckBox->setChecked(static_cast<Qt::CheckState>(group.readEntry("ExcludeFolderNamesUse", 0)));
+    return excludeCheckBox;
+}
+
+KHistoryComboBox *GeneralFilter::createExcludeComboBox(const KConfigGroup &group)
+{
+    KHistoryComboBox *excludeComboBox = new KHistoryComboBox(false, this);
+    QSizePolicy excludeFolderNamesPolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    excludeFolderNamesPolicy.setHeightForWidth(excludeComboBox->sizePolicy().hasHeightForWidth());
+    excludeComboBox->setSizePolicy(excludeFolderNamesPolicy);
+    excludeComboBox->setEditable(true);
+    excludeComboBox->setDuplicatesEnabled(false);
+    excludeComboBox->setMaxCount(25);
+    excludeComboBox->setMinimumContentsLength(10);
+    excludeComboBox->lineEdit()->setPlaceholderText(i18n("Enter space-separated folder names"));
+    excludeComboBox->lineEdit()->setWhatsThis(
+        i18n("You can insert names with escaped spaces or quoted.\nExample: .git \"target "
+             "build\" build\\ krusader"));
+    excludeComboBox->setHistoryItems(group.readEntry("ExcludeFolderNamesHistory", QStringList()));
+    excludeComboBox->setEditText(group.readEntry("ExcludeFolderNames", ""));
+    return excludeComboBox;
 }
 
 void GeneralFilter::slotAddBtnClicked()

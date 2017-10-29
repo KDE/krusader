@@ -49,10 +49,6 @@ KURLListRequester::KURLListRequester(Mode requestMode, QWidget *parent)
     urlLineEdit = new KLineEdit(this);
     urlListRequesterGrid->addWidget(urlLineEdit, 0, 0);
 
-    urlListBox = new KrListWidget(this);
-    urlListBox->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    urlListRequesterGrid->addWidget(urlListBox, 1, 0, 1, 3);
-
     urlAddBtn = new QToolButton(this);
     urlAddBtn->setText("");
     urlAddBtn->setIcon(Icon("arrow-down"));
@@ -63,6 +59,10 @@ KURLListRequester::KURLListRequester(Mode requestMode, QWidget *parent)
     urlBrowseBtn->setIcon(Icon("folder"));
     urlListRequesterGrid->addWidget(urlBrowseBtn, 0, 2);
 
+    urlListBox = new KrListWidget(this);
+    urlListBox->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    urlListRequesterGrid->addWidget(urlListBox, 1, 0, 1, 3);
+
     // add shell completion
 
     completion.setMode(KUrlCompletion::FileCompletion);
@@ -70,12 +70,11 @@ KURLListRequester::KURLListRequester(Mode requestMode, QWidget *parent)
 
     // connection table
 
-    connect(urlAddBtn, SIGNAL(clicked()), this, SLOT(slotAdd()));
-    connect(urlBrowseBtn, SIGNAL(clicked()), this, SLOT(slotBrowse()));
-    connect(urlLineEdit, SIGNAL(returnPressed(QString)), this, SLOT(slotAdd()));
-    connect(urlListBox, SIGNAL(itemRightClicked(QListWidgetItem*,QPoint)), this,
-            SLOT(slotRightClicked(QListWidgetItem*,QPoint)));
-    connect(urlLineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(changed()));
+    connect(urlAddBtn, &QToolButton::clicked, this, &KURLListRequester::slotAdd);
+    connect(urlBrowseBtn, &QToolButton::clicked, this, &KURLListRequester::slotBrowse);
+    connect(urlLineEdit, &KLineEdit::returnPressed, this, &KURLListRequester::slotAdd);
+    connect(urlListBox, &KrListWidget::itemRightClicked, this, &KURLListRequester::slotRightClicked);
+    connect(urlLineEdit, &KLineEdit::textChanged, this, &KURLListRequester::changed);
 }
 
 void KURLListRequester::slotAdd()
@@ -125,9 +124,9 @@ void KURLListRequester::keyPressEvent(QKeyEvent *e)
 
 void KURLListRequester::deleteSelectedItems()
 {
-    QList<QListWidgetItem *> delList = urlListBox->selectedItems();
-    for (int i = 0; i != delList.count(); i++)
-        delete delList[ i ];
+    QList<QListWidgetItem *> selectedItems = urlListBox->selectedItems();
+    for (QListWidgetItem *item : selectedItems)
+        delete item;
     emit changed();
 }
 
@@ -151,21 +150,20 @@ void KURLListRequester::slotRightClicked(QListWidgetItem *item, const QPoint &po
 
 QList<QUrl> KURLListRequester::urlList()
 {
-    QList<QUrl> urls;
+    QStringList lines;
 
-    QString text = urlLineEdit->text().simplified();
-    if (!text.isEmpty()) {
-        QString error;
-        emit checkValidity(text, error);
-        if (error.isNull())
-            urls.append(QUrl::fromUserInput(text, QString(), QUrl::AssumeLocalFile));
+    const QString lineEditText = urlLineEdit->text().simplified();
+    if (!lineEditText.isEmpty()) {
+        lines.append(lineEditText);
     }
 
     for (int i = 0; i != urlListBox->count(); i++) {
         QListWidgetItem *item = urlListBox->item(i);
+        lines.append(item->text().simplified());
+    }
 
-        QString text = item->text().simplified();
-
+    QList<QUrl> urls;
+    for (QString text : lines) {
         QString error;
         emit checkValidity(text, error);
         if (error.isNull())
@@ -175,15 +173,14 @@ QList<QUrl> KURLListRequester::urlList()
     return urls;
 }
 
-void KURLListRequester::setUrlList(QList<QUrl> urlList)
+void KURLListRequester::setUrlList(const QList<QUrl> &urlList)
 {
     urlLineEdit->clear();
     urlListBox->clear();
 
-    QList<QUrl>::iterator it;
-
-    for (it = urlList.begin(); it != urlList.end(); ++it)
-        urlListBox->addItem(it->toDisplayString(QUrl::PreferLocalFile));
+    for (const QUrl url : urlList) {
+        urlListBox->addItem(url.toDisplayString(QUrl::PreferLocalFile));
+    }
 
     emit changed();
 }

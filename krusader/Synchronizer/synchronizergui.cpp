@@ -560,8 +560,8 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     connect(fileFilter,        SIGNAL(currentTextChanged(QString)), this, SLOT(connectFilters(QString)));
     connect(generalFilter->searchFor, SIGNAL(currentTextChanged(QString)), this, SLOT(connectFilters(QString)));
     connect(generalFilter->searchFor, SIGNAL(currentTextChanged(QString)), this, SLOT(setCompletion()));
-    connect(generalFilter->dontSearchIn, SIGNAL(checkValidity(QString&,QString&)),
-            this, SLOT(checkExcludeURLValidity(QString&,QString&)));
+    connect(generalFilter->dontSearchIn, &KURLListRequester::checkValidity,
+            this, &SynchronizerGUI::checkExcludeURLValidity);
 
     connect(profileManager, SIGNAL(loadFromProfile(QString)), filterTabs, SLOT(loadFromProfile(QString)));
     connect(profileManager, SIGNAL(saveToProfile(QString)), filterTabs, SLOT(saveToProfile(QString)));

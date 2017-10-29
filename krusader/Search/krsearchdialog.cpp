@@ -220,7 +220,6 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 
     QHBoxLayout* foundTextLayout = new QHBoxLayout();
     foundTextLayout->setSpacing(6);
-    //foundTextLayout->setContentsMargins(0, 0, 0, 0);
 
     QLabel *textFoundLabel = new QLabel(i18n("Text found:"), resultTab);
     foundTextLayout->addWidget(textFoundLabel);

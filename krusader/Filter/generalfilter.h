@@ -83,7 +83,7 @@ public:
 
     KURLListRequester *searchIn;
     KURLListRequester *dontSearchIn;
-    QHBoxLayout *middleLayout;
+    QLayout *middleLayout;
 
     KHistoryComboBox* searchFor;
     KHistoryComboBox* containsText;
@@ -110,6 +110,9 @@ public:
 
     FilterTabs *fltTabs;
 
+private:
+    QCheckBox *createExcludeCheckBox(const KConfigGroup &group);
+    KHistoryComboBox *createExcludeComboBox(const KConfigGroup &group);
 };
 
 #endif /* GENERALFILTER_H */
