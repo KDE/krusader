@@ -123,9 +123,10 @@ bool KrViewOperator::searchItem(const QString &text, bool caseSensitive, int dir
     if (!item) {
         return false;
     }
-    QRegExp rx(text, caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard);
+    const QRegExp regeEx(text, caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive,
+                         QRegExp::Wildcard);
     if (!direction) {
-        if (rx.indexIn(item->name()) == 0) {
+        if (regeEx.indexIn(item->name()) == 0) {
             return true;
         }
         direction = 1;
@@ -138,7 +139,7 @@ bool KrViewOperator::searchItem(const QString &text, bool caseSensitive, int dir
         if (item == startItem) {
             return false;
         }
-        if (rx.indexIn(item->name()) == 0) {
+        if (regeEx.indexIn(item->name()) == 0) {
             _view->setCurrentKrViewItem(item);
             _view->makeItemVisible(item);
             return true;
@@ -629,7 +630,8 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
     switch (e->key()) {
     case Qt::Key_Enter :
     case Qt::Key_Return : {
-        if (e->modifiers() & Qt::ControlModifier)           // let the panel handle it
+        if (e->modifiers() & Qt::ControlModifier)
+            // let the panel handle it
             e->ignore();
         else {
             KrViewItem * i = getCurrentKrViewItem();
@@ -640,14 +642,19 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         }
         return true;
     }
-    case Qt::Key_QuoteLeft :          // Terminal Emulator bugfix
-        if (e->modifiers() == Qt::ControlModifier) {   // let the panel handle it
+    case Qt::Key_QuoteLeft :
+        // Terminal Emulator bugfix
+        if (e->modifiers() == Qt::ControlModifier) {
+            // let the panel handle it
             e->ignore();
-        } else {          // a normal click - do a lynx-like moving thing
-            op()->emitGoHome(); // ask krusader to move to the home directory
+        } else {
+            // a normal click - do a lynx-like moving thing
+            // ask krusader to move to the home directory
+            op()->emitGoHome();
         }
         return true;
-    case Qt::Key_Delete : // delete/trash the file (delete with alternative mode is a panel action)
+    case Qt::Key_Delete :
+        // delete/trash the file (delete with alternative mode is a panel action)
         if (e->modifiers() == Qt::NoModifier) {
             op()->emitDefaultDeleteFiles();
         }
@@ -687,27 +694,34 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         }
         return true;
     }
-    case Qt::Key_Backspace :                         // Terminal Emulator bugfix
+    case Qt::Key_Backspace :
+            // Terminal Emulator bugfix
     case Qt::Key_Left :
         if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier ||
-                e->modifiers() == Qt::AltModifier) {   // let the panel handle it
+                e->modifiers() == Qt::AltModifier) {
+            // let the panel handle it
             e->ignore();
-        } else {          // a normal click - do a lynx-like moving thing
-            op()->emitDirUp(); // ask krusader to move up a directory
+        } else {
+            // a normal click - do a lynx-like moving thing
+            // ask krusader to move up a directory
+            op()->emitDirUp();
         }
-        return true;         // safety
+        return true; // safety
     case Qt::Key_Right :
         if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier ||
-                e->modifiers() == Qt::AltModifier) {   // let the panel handle it
+                e->modifiers() == Qt::AltModifier) {
+            // let the panel handle it
             e->ignore();
-        } else { // just a normal click - do a lynx-like moving thing
+        } else {
+            // just a normal click - do a lynx-like moving thing
             KrViewItem *i = getCurrentKrViewItem();
             if (i)
                 op()->emitGoInside(i->name());
         }
         return true;
     case Qt::Key_Up :
-        if (e->modifiers() == Qt::ControlModifier) {   // let the panel handle it - jump to the Location Bar
+        if (e->modifiers() == Qt::ControlModifier) {
+            // let the panel handle it - jump to the Location Bar
             e->ignore();
         } else {
             KrViewItem *item = getCurrentKrViewItem();
@@ -725,7 +739,8 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         }
         return true;
     case Qt::Key_Down :
-        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier)) {     // let the panel handle it - jump to command line
+        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier)) {
+            // let the panel handle it - jump to command line
             e->ignore();
         } else {
             KrViewItem *item = getCurrentKrViewItem();
@@ -743,7 +758,7 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         }
         return true;
     case Qt::Key_Home: {
-        if (e->modifiers() & Qt::ShiftModifier) {  /* Shift+Home */
+        if (e->modifiers() & Qt::ShiftModifier) {
             bool select = true;
             KrViewItem *pos = getCurrentKrViewItem();
             if (pos == 0)

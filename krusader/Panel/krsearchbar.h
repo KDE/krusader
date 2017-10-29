@@ -54,27 +54,44 @@ public:
 
 public:
     KrSearchBar(KrView *view, QWidget *parent);
-    void setView(KrView *view); // set another KrView, old one must not be deleted yet!
+    /**
+     * Set another KrView, old one must not be deleted yet!
+     */
+    void setView(KrView *view);
 
 public slots:
     void showBar(SearchMode mode = MODE_LAST);
     void hideBar();
-    void resetSearch(); // reset search to empty string
+    /**
+     * Reset search to empty string.
+     */
+    void resetSearch();
 
 protected slots:
     void onModeChange();
     void onSearchChange();
-    void saveSearchString(); // save current search string to settings
+    /**
+     * Save current search string to settings
+     */
+    void saveSearchString();
 
 protected:
     void keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
-    // filter key events from view widget and text combo box
+    /**
+     * Filter key events from view widget and text combo box
+     */
     bool eventFilter(QObject *, QEvent *) Q_DECL_OVERRIDE;
 
 private:
-    bool handleKeyPressEvent(QKeyEvent *e); // handle events when search bar is open or open it
+    /**
+     * Handle events when search bar is open or open it.
+     */
+    bool handleKeyPressEvent(QKeyEvent *e);
     bool handleUpDownKeyPress(bool);
-    void indicateMatch(bool); // set color of line edit to highlight if anything matches
+    /**
+     * Set color of line edit to highlight if anything matches.
+     */
+    void indicateMatch(bool);
     static bool caseSensitive();
 
 private:

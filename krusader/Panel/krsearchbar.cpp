@@ -232,6 +232,7 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
         }
 
         if (!isHidden()) {
+            // view widget has focus but search bar is open and may wants to steal key events
             const bool handled = handleKeyPressEvent(ke);
             if (handled) {
                 return true;
@@ -273,13 +274,18 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
         }
         return true;
     } else if (watched == _textBox) {
+        const bool handled = handleKeyPressEvent(ke);
+        if (handled) {
+             _view->widget()->setFocus();
+            return true;
+        }
         // allow the view to handle (most) key events from the text box
         if (ke->modifiers() == Qt::NoModifier &&
             ke->key() != Qt::Key_Space &&
             ke->key() != Qt::Key_Backspace &&
             ke->key() != Qt::Key_Left &&
             ke->key() != Qt::Key_Right) {
-            bool handled = _view->handleKeyEvent(ke);
+            const bool handled = _view->handleKeyEvent(ke);
             if (handled) {
                 _view->widget()->setFocus();
                 return true;
