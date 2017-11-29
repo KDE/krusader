@@ -104,8 +104,8 @@ void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
 #else
     // NOTE: DropJob does not provide information about the actual user choice
     // (move/copy/link/abort). We have to assume the worst (move)
-    connectJob(job, dest);
-    connectSourceFileSystem(job, KUrlMimeData::urlsFromMimeData(event->mimeData()));
+    connectJobToDestination(job, dest);
+    connectJobToSources(job, KUrlMimeData::urlsFromMimeData(event->mimeData()));
 #endif
 }
 
