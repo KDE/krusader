@@ -367,6 +367,11 @@ bool KrSearchBar::handleUpDownKeyPress(bool up)
 
 bool KrSearchBar::handleLeftRightKeyPress(QKeyEvent *ke)
 {
+    const bool useQuickDirectoryNavigation = KConfigGroup(krConfig, "Look&Feel")
+        .readEntry("Navigation with Right Arrow Quicksearch", true);
+    if (!useQuickDirectoryNavigation)
+        return false;
+
     const bool isRight = ke->key() == Qt::Key_Right;
 
     if (isRight && _rightArrowEntersDirFlag) {
