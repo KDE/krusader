@@ -136,13 +136,13 @@ bool KrViewOperator::searchItem(const QString &text, bool caseSensitive, int dir
         item = (direction > 0) ? _view->getNext(item) : _view->getPrev(item);
         if (!item)
             item = (direction > 0) ? _view->getFirst() : _view->getLast();
-        if (item == startItem) {
-            return false;
-        }
         if (regeEx.indexIn(item->name()) == 0) {
             _view->setCurrentKrViewItem(item);
             _view->makeItemVisible(item);
             return true;
+        }
+        if (item == startItem) {
+            return false;
         }
     }
 }
