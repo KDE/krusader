@@ -524,12 +524,14 @@ void KrView::invertSelection()
         makeItemVisible(temp);
 }
 
-QString KrView::firstUnmarkedBelowCurrent()
+QString KrView::firstUnmarkedBelowCurrent(const bool skipCurrent)
 {
     if (getCurrentKrViewItem() == 0)
         return QString();
 
-    KrViewItem * iterator = getNext(getCurrentKrViewItem());
+    KrViewItem *iterator = getCurrentKrViewItem();
+    if (skipCurrent)
+        iterator = getNext(iterator);
     while (iterator && iterator->isSelected())
         iterator = getNext(iterator);
     if (!iterator) {

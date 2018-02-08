@@ -268,7 +268,7 @@ public:
     void invertSelection();
     QString nameToMakeCurrent() const { return _nameToMakeCurrent; }
     void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; }
-    QString firstUnmarkedBelowCurrent();
+    QString firstUnmarkedBelowCurrent(const bool skipCurrent);
     QString statistics();
     const KrViewProperties *properties() const { return _properties; }
     KrViewOperator *op() const { return _operator; }

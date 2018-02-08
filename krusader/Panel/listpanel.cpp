@@ -899,7 +899,8 @@ QStringList ListPanel::getSelectedNames()
 
 void ListPanel::prepareToDelete()
 {
-    view->setNameToMakeCurrent(view->firstUnmarkedBelowCurrent());
+    const bool skipCurrent = (view->numSelected() == 0);
+    view->setNameToMakeCurrent(view->firstUnmarkedBelowCurrent(skipCurrent));
 }
 
 void ListPanel::keyPressEvent(QKeyEvent *e)
