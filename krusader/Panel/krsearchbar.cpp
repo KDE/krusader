@@ -38,7 +38,7 @@
 
 
 KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
-    : QWidget(parent), _view(0)
+    : QWidget(parent), _view(0), _rightArrowEntersDirFlag(true)
 {
     // close button
     QToolButton *closeButton = new QToolButton(this);
@@ -117,6 +117,7 @@ void KrSearchBar::showBar(SearchMode mode)
     }
     show();
     _textBox->setFocus();
+    _rightArrowEntersDirFlag = true;
 }
 
 void KrSearchBar::hideBar()
@@ -312,6 +313,9 @@ bool KrSearchBar::handleKeyPressEvent(QKeyEvent *ke)
         return handleUpDownKeyPress(true);
     case Qt::Key_Down:
         return handleUpDownKeyPress(false);
+    case Qt::Key_Left:
+    case Qt::Key_Right:
+        return handleLeftRightKeyPress(ke);
     case Qt::Key_Insert: {
         // select current item and jump to next search result
         KrViewItem * item = _view->getCurrentKrViewItem();
@@ -359,6 +363,27 @@ bool KrSearchBar::handleUpDownKeyPress(bool up)
     const bool anyMatch = _view->op()->searchItem(_textBox->currentText(), caseSensitive(), up ? -1 : 1);
     indicateMatch(anyMatch);
     return true;
+}
+
+bool KrSearchBar::handleLeftRightKeyPress(QKeyEvent *ke)
+{
+    const bool useQuickDirectoryNavigation = KConfigGroup(krConfig, "Look&Feel")
+        .readEntry("Navigation with Right Arrow Quicksearch", true);
+    if (!useQuickDirectoryNavigation)
+        return false;
+
+    const bool isRight = ke->key() == Qt::Key_Right;
+
+    if (isRight && _rightArrowEntersDirFlag) {
+        // in case the Right Arrow has been pressed when cursor is in the end of the line
+        if (_textBox->cursorPosition() == _textBox->currentText().length())
+            // we let the view enter the directory if it's selected
+            return _view->handleKeyEvent(ke);
+    } else {
+        _rightArrowEntersDirFlag = false;
+    }
+
+    return false;
 }
 
 void KrSearchBar::indicateMatch(bool anyMatch)

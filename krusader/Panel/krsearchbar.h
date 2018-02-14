@@ -86,8 +86,9 @@ private:
     /**
      * Handle events when search bar is open or open it.
      */
-    bool handleKeyPressEvent(QKeyEvent *e);
+    bool handleKeyPressEvent(QKeyEvent *ke);
     bool handleUpDownKeyPress(bool);
+    bool handleLeftRightKeyPress(QKeyEvent *ke);
     /**
      * Set color of line edit to highlight if anything matches.
      */
@@ -100,6 +101,7 @@ private:
     KComboBox *_textBox;
     QToolButton *_openSelectDialogBtn;
     SearchMode _currentMode;
+    bool _rightArrowEntersDirFlag;
 };
 
 #endif // KRSEARCHBAR_H

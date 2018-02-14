@@ -148,6 +148,8 @@
 #define _NewStyleQuicksearch true
 // Case Sensitive quick search, if _NewStyleQuicksearch is true
 #define _CaseSensitiveQuicksearch false
+// Special handling of Right Arrow in Quicksearch
+#define _NavigationWithRightArrowQuicksearch true
 // View In Separate Window
 #define _ViewInSeparateWindow  false
 
