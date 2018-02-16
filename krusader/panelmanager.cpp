@@ -272,6 +272,7 @@ void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, KrPanel *nextTo)
 void PanelManager::slotNewTab()
 {
     slotNewTab(QUrl::fromLocalFile(QDir::home().absolutePath()));
+    _currentPanel->slotFocusOnMe();
 }
 
 void PanelManager::slotCloseTab()
