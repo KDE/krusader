@@ -5,9 +5,9 @@ cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 set(VERSION "2.6.1-beta" )
 set(RELEASE_NAME "Stiff Challenges")
 
-# Manages plugin loading. For more details it can be seen https://www.kde.org/announcements/kde-frameworks-5.5.0.php
-# https://github.com/KDE/partitionmanager/blob/master/CMakeLists.txt http://commits.kde.org/kimtoy/1e62777affb0e072f3462e80bc271f3cba661104
-set(KDE_INSTALL_USE_QT_SYS_PATHS ON CACHE BOOL "Install mkspecs files, Plugins and Imports to the Qt 5 install dir" FORCE)
+if (NOT CMAKE_INSTALL_PREFIX MATCHES "^/usr(/local)?/?$" AND NOT DEFINED KDE_INSTALL_QTPLUGINDIR AND NOT DEFINED KDE_INSTALL_USE_QT_SYS_PATHS)
+    message(WARNING "CMAKE_INSTALL_PREFIX is not set to a standard location (/usr or /usr/local), krarc:/ protocol may not work. To force installing plugins into standard location use -DKDE_INSTALL_USE_QT_SYS_PATHS=true")
+endif()
 
 find_package(ECM 1.7.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
