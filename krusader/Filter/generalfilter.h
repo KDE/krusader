@@ -85,6 +85,7 @@ public:
     QCheckBox* searchForCase;
     QCheckBox* containsTextCase;
     QCheckBox* containsWholeWord;
+    QCheckBox* useExcludeFolderNames;
     QCheckBox* searchInDirs;
     QCheckBox* searchInArchives;
     QCheckBox* followLinks;
@@ -96,6 +97,7 @@ public:
 
     KHistoryComboBox* searchFor;
     KHistoryComboBox* containsText;
+    KHistoryComboBox* excludeFolderNames;
     QToolButton*      containsRegExp;
 
     KComboBox* ofType;

@@ -120,6 +120,7 @@ FilterSettings& FilterSettings::operator=(const FilterSettings& other)
     COPY(followLinks);
     COPY(searchIn);
     COPY(dontSearchIn);
+    COPY(excludeFolderNames);
     COPY(contentEncoding);
     COPY(containsText);
     COPY(containsTextCase);
@@ -160,6 +161,7 @@ void FilterSettings::load(KConfigGroup cfg) {
     LOAD("FollowLinks", followLinks);
     searchIn = KrServices::toUrlList(cfg.readEntry("SearchIn", QStringList()));
     dontSearchIn = KrServices::toUrlList(cfg.readEntry("DontSearchIn", QStringList()));
+    excludeFolderNames = QStringList();
     LOAD("ContentEncoding", contentEncoding);
     LOAD("ContainsText", containsText);
     LOAD("ContainsTextCase", containsTextCase);
@@ -295,6 +297,8 @@ KRQuery FilterSettings::toQuery() const
 
     if (!dontSearchIn.isEmpty())
         query.setDontSearchInDirs(dontSearchIn);
+
+    query.setExcludeFolderNames(excludeFolderNames);
 
     ////////////// Advanced Options //////////////
 
