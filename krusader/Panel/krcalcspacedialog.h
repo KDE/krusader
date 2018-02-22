@@ -49,6 +49,8 @@ public:
      * to avoid a short appearance and is autoclosed when the calculation finished.
      */
     static void showDialog(QWidget *parent, SizeCalculator *calculator);
+    void closeEvent(QCloseEvent *);
+    void keyPressEvent(QKeyEvent *e);
 
 private slots:
     void slotCancel(); // cancel was pressed

@@ -38,6 +38,8 @@ A
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
+// QtGui
+#include <QKeyEvent>
 
 #include <KI18n/KLocalizedString>
 
@@ -70,6 +72,26 @@ KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, SizeCalculator *calculator
     m_updateTimer->start(1000);
 
     updateResult();
+}
+
+void KrCalcSpaceDialog::closeEvent(QCloseEvent *event)
+{
+    if (event) {
+        if (m_updateTimer->isActive())
+            slotCancel();
+        else
+            accept();
+    }
+}
+
+void KrCalcSpaceDialog::keyPressEvent(QKeyEvent *e)
+{
+    if (e->key() == Qt::Key_Escape) {
+        if (m_updateTimer->isActive())
+            slotCancel();
+        else
+            reject();
+    }
 }
 
 void KrCalcSpaceDialog::showDialog(QWidget *parent, SizeCalculator *calculator)
