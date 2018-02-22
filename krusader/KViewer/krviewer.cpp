@@ -130,19 +130,25 @@ KrViewer::KrViewer(QWidget *parent) :
     quitAction = ac->addAction(KStandardAction::Quit, this, SLOT(close()));
     viewerMenu->addAction(quitAction);
 
+    QList<QKeySequence> shortcuts;
+
     tabCloseAction = ac->addAction("closeTab", this, SLOT(tabCloseRequest()));
     tabCloseAction->setText(i18n("&Close Current Tab"));
-    QList<QKeySequence> shortcuts = KStandardShortcut::close();
+    shortcuts = KStandardShortcut::close();
     shortcuts.append(Qt::Key_Escape);
     ac->setDefaultShortcuts(tabCloseAction, shortcuts);
 
     tabNextAction = ac->addAction("nextTab", this, SLOT(nextTab()));
     tabNextAction->setText(i18n("&Next Tab"));
-    ac->setDefaultShortcuts(tabNextAction, KStandardShortcut::tabNext());
+    shortcuts = KStandardShortcut::tabNext();
+    shortcuts.append(Qt::CTRL + Qt::Key_Tab);  // reenforce QTabWidget shortcut
+    ac->setDefaultShortcuts(tabNextAction, shortcuts);
 
     tabPrevAction = ac->addAction("prevTab", this, SLOT(prevTab()));
     tabPrevAction->setText(i18n("&Previous Tab"));
-    ac->setDefaultShortcuts(tabPrevAction, KStandardShortcut::tabPrev());
+    shortcuts = KStandardShortcut::tabPrev();
+    shortcuts.append(Qt::CTRL + Qt::SHIFT + Qt::Key_Tab);  // reenforce QTabWidget shortcut
+    ac->setDefaultShortcuts(tabPrevAction, shortcuts);
 
 
     tabBar.setTabsClosable(true);
