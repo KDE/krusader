@@ -46,6 +46,7 @@
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
+#include <KCoreAddons/KShell>
 
 typedef struct {
     const char *description;
@@ -251,7 +252,8 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
             excludeFolderNames->setDuplicatesEnabled(false);
             excludeFolderNames->setMaxCount(25);
             excludeFolderNames->setMinimumContentsLength(10);
-            excludeFolderNames->lineEdit()->setPlaceholderText("Enter colon separated folder names");
+            excludeFolderNames->lineEdit()->setPlaceholderText(i18n("Enter space-separated folder names"));
+            excludeFolderNames->lineEdit()->setWhatsThis(i18n("You can insert names with escaped spaces or quoted.\nExample: .git \"target build\" build\\ krusader"));
             dontSearchInLayout->addWidget(excludeFolderNames, 1, 1, 1, 1);
             excludeFolderNames->setHistoryItems(group.readEntry("ExcludeFolderNamesHistory", QStringList()));
             excludeFolderNames->setEditText(group.readEntry("ExcludeFolderNames", ""));
@@ -601,7 +603,7 @@ bool GeneralFilter::getSettings(FilterSettings &s)
         s.dontSearchIn = dontSearchIn->urlList();
         if (properties & FilterTabs::HasRecurseOptions) {
             if(useExcludeFolderNames->isChecked()) {
-                s.excludeFolderNames = excludeFolderNames->currentText().split(':');
+                s.excludeFolderNames = KShell::splitArgs(excludeFolderNames->currentText());
             } else {
                 s.excludeFolderNames = QStringList();
             }
