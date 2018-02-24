@@ -43,10 +43,10 @@
 
 #include <KCodecs/KCharsets>
 #include <KConfigCore/KSharedConfig>
+#include <KCoreAddons/KShell>
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
-#include <KCoreAddons/KShell>
 
 typedef struct {
     const char *description;
