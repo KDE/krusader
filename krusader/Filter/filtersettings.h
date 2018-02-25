@@ -98,6 +98,7 @@ private:
     bool followLinks;
     QList<QUrl> searchIn;
     QList<QUrl> dontSearchIn;
+    QStringList excludeFolderNames;
     QString contentEncoding;
     QString containsText;
     bool containsTextCase;

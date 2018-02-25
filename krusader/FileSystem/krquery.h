@@ -131,6 +131,10 @@ public:
     // gets whether to follow symbolic links
     bool followLinks() { return followLinksP; }
 
+    // sets the folder names which the searcher will exclude from traversing
+    void setExcludeFolderNames(const QStringList &urls);
+    // gets the folder names which the searcher excludes
+    const QStringList excludeFolderNames() { return excludedFolderNames; }
     // sets the folders where the searcher will search
     void setSearchInDirs(const QList<QUrl> &urls);
     // gets the folders where the searcher searches
@@ -186,6 +190,7 @@ protected:
     bool recurse;   // if true recurse ob sub-dirs...
     bool followLinksP;
 
+    QStringList excludedFolderNames;      // substrings of paths where not to search
     QList<QUrl> whereToSearch;    // directories to search
     QList<QUrl> whereNotToSearch; // directories NOT to search
 

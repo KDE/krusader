@@ -119,6 +119,7 @@ KRQuery &KRQuery::operator=(const KRQuery &old)
     recurse = old.recurse;
     followLinksP = old.followLinksP;
     whereToSearch = old.whereToSearch;
+    excludedFolderNames = old.excludedFolderNames;
     whereNotToSearch = old.whereNotToSearch;
     origFilter = old.origFilter;
 
@@ -741,12 +742,17 @@ void KRQuery::setMimeType(const QString &typeIn, QStringList customList)
 
 bool KRQuery::isExcluded(const QUrl &url)
 {
-    for (int i = 0; i < whereNotToSearch.count(); ++i)
-        if (whereNotToSearch[i].isParentOf(url) ||
-            url.matches(whereNotToSearch[i], QUrl::StripTrailingSlash))
+    for (QUrl &item : whereNotToSearch)
+        if (item.isParentOf(url) || url.matches(item, QUrl::StripTrailingSlash))
             return true;
 
-    if (!matchDirName(url.fileName()))
+    // Exclude folder names that are configured in settings
+    QString filename = url.fileName();
+    for (QString &item : excludedFolderNames)
+        if (filename == item)
+            return true;
+
+    if (!matchDirName(filename))
         return true;
 
     return false;
@@ -772,4 +778,9 @@ void KRQuery::setDontSearchInDirs(const QList<QUrl> &urls)
                                              QString(), QUrl::AssumeLocalFile);
         whereNotToSearch.append(completed);
     }
+}
+void KRQuery::setExcludeFolderNames(const QStringList &paths)
+{
+    excludedFolderNames.clear();
+    excludedFolderNames.append(paths);
 }

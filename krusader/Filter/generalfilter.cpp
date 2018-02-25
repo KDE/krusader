@@ -43,6 +43,7 @@
 
 #include <KCodecs/KCharsets>
 #include <KConfigCore/KSharedConfig>
+#include <KCoreAddons/KShell>
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
@@ -232,7 +233,36 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         dontSearchInLayout->setContentsMargins(11, 11, 11, 11);
 
         dontSearchIn = new KURLListRequester(KURLListRequester::RequestDirs, dontSearchInGroup);
-        dontSearchInLayout->addWidget(dontSearchIn, 0, 0);
+        dontSearchInLayout->addWidget(dontSearchIn, 0, 0, 1, 2);
+
+        if (properties & FilterTabs::HasRecurseOptions) {
+            KConfigGroup group(krConfig, "Search");
+
+            useExcludeFolderNames = new QCheckBox(this);
+            useExcludeFolderNames->setText(i18n("Exclude Folder Names"));
+            useExcludeFolderNames->setToolTip(i18n("Filters out specified directory names from the results."));
+            useExcludeFolderNames->setChecked(static_cast<Qt::CheckState>(group.readEntry("ExcludeFolderNamesUse", 0)));
+            dontSearchInLayout->addWidget(useExcludeFolderNames, 1, 0, 1, 1);
+
+            excludeFolderNames = new KHistoryComboBox(false, dontSearchInGroup);
+            QSizePolicy excludeFolderNamesPolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+            excludeFolderNamesPolicy.setHeightForWidth(excludeFolderNames->sizePolicy().hasHeightForWidth());
+            excludeFolderNames->setSizePolicy(excludeFolderNamesPolicy);
+            excludeFolderNames->setEditable(true);
+            excludeFolderNames->setDuplicatesEnabled(false);
+            excludeFolderNames->setMaxCount(25);
+            excludeFolderNames->setMinimumContentsLength(10);
+            excludeFolderNames->lineEdit()->setPlaceholderText(i18n("Enter space-separated folder names"));
+            excludeFolderNames->lineEdit()->setWhatsThis(i18n("You can insert names with escaped spaces or quoted.\nExample: .git \"target build\" build\\ krusader"));
+            dontSearchInLayout->addWidget(excludeFolderNames, 1, 1, 1, 1);
+            excludeFolderNames->setHistoryItems(group.readEntry("ExcludeFolderNamesHistory", QStringList()));
+            excludeFolderNames->setEditText(group.readEntry("ExcludeFolderNames", ""));
+            if (!useExcludeFolderNames->isChecked()) {
+                excludeFolderNames->setDisabled(true);
+            }
+
+            connect(useExcludeFolderNames, &QCheckBox::toggled, excludeFolderNames, &KHistoryComboBox::setEnabled);
+        }
 
         middleLayout->addWidget(dontSearchInGroup);
     }
@@ -402,7 +432,12 @@ GeneralFilter::~GeneralFilter()
     group.writeEntry("ContainsText Completion", list);
     list = containsText->historyItems();
     group.writeEntry("ContainsText History", list);
-
+    if ((properties & FilterTabs::HasDontSearchIn) && (properties & FilterTabs::HasRecurseOptions)) {
+        list = excludeFolderNames->historyItems();
+        group.writeEntry("ExcludeFolderNamesHistory", list);
+        group.writeEntry("ExcludeFolderNames", excludeFolderNames->currentText());
+        group.writeEntry("ExcludeFolderNamesUse", static_cast<int>(useExcludeFolderNames->checkState()));
+    }
     krConfig->sync();
 }
 
@@ -415,7 +450,7 @@ bool GeneralFilter::isExtraOptionChecked(QString name)
 void GeneralFilter::checkExtraOption(QString name, bool check)
 {
     QCheckBox *option = extraOptions[name];
-    if(option)
+    if (option)
         option->setChecked(check);
 }
 
@@ -423,6 +458,9 @@ void GeneralFilter::queryAccepted()
 {
     searchFor->addToHistory(searchFor->currentText());
     containsText->addToHistory(containsText->currentText());
+    if ((properties & FilterTabs::HasDontSearchIn) && (properties & FilterTabs::HasRecurseOptions)) {
+        excludeFolderNames->addToHistory(excludeFolderNames->currentText());
+    }
 }
 
 void GeneralFilter::refreshProfileListBox()
@@ -557,9 +595,16 @@ bool GeneralFilter::getSettings(FilterSettings &s)
         }
     }
 
-    if (properties & FilterTabs::HasDontSearchIn)
+    if (properties & FilterTabs::HasDontSearchIn) {
         s.dontSearchIn = dontSearchIn->urlList();
-
+        if (properties & FilterTabs::HasRecurseOptions) {
+            if (useExcludeFolderNames->isChecked()) {
+                s.excludeFolderNames = KShell::splitArgs(excludeFolderNames->currentText());
+            } else {
+                s.excludeFolderNames = QStringList();
+            }
+        }
+    }
     return true;
 }
 
