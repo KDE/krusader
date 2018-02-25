@@ -429,7 +429,9 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
         switch (volumeUnitCombo->currentIndex()) {
         case 2:
             size *= 1000;
+#if __GNUC__ >= 7
             [[gnu::fallthrough]];
+#endif
         case 1:
             size *= 1000;
         default:

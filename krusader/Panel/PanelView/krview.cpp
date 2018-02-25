@@ -847,7 +847,9 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
             selectAllIncludingDirs();
             return true;
         }
+#if __GNUC__ >= 7
         [[gnu::fallthrough]];
+#endif
     default:
         return false;
     }

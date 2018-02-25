@@ -199,7 +199,9 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(KFileItem fi)
         } else if ((part = getPart(mimetype))) {
             break;
         }
+#if __GNUC__ >= 7
         [[gnu::fallthrough]];
+#endif
     case KrViewer::Text:
         part = fileSize > limit ? getListerPart(false) : getTextPart();
         break;

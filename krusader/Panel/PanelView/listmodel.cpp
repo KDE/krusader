@@ -121,7 +121,9 @@ QVariant ListModel::data(const QModelIndex& index, int role) const
         if (index.column() == KrViewProperties::Name) {
             return fileitem == _dummyFileItem ? QVariant() : toolTipText(fileitem);
         }
+#if __GNUC__ >= 7
         [[gnu::fallthrough]];
+#endif
     }
     case Qt::DisplayRole: {
         switch (index.column()) {
