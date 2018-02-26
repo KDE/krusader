@@ -99,6 +99,11 @@
         wish, you can click on the 
         <guiicon>folder icon</guiicon>, and browse to the directory
         you wish to add.</para>
+      </note>
+      <note>
+          <para>It is possible to define files and directories which will be filtered out from the search results using the <guilabel>Exclude Folder Names</guilabel> input field at the bottom of the <guilabel>Do not search in</guilabel> box.</para>
+          <para>Items in the filtering list should be space-separated.</para>
+          <para>Spaces in the filtering list items can be escaped or quoted. Example: <userinput>.git "target build" build\ krusader</userinput></para>
       </note></para>
     </listitem>
   </itemizedlist>
