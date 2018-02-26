@@ -121,7 +121,17 @@
     </listitem>
     <listitem>
       <para>
-        <guilabel>Match whole word only</guilabel>
+        <guilabel>RegExp</guilabel> switch: toggle the regular expressions mode. A drop-down list that is sown after clicking down arrow on the right allows you to enter special symbols of regular expressions.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <guilabel>Encoding</guilabel>: allows you to choose the text encoding.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <guilabel>Match whole word only</guilabel>: allows you to specify that a complete match (letters and length) must be found.
       </para>
     </listitem>
     <listitem>
@@ -132,7 +142,7 @@
     </listitem>
     <listitem>
       <para>
-      <guilabel>Search in subdirectories</guilabel>: perform a
+      <guilabel>Search in sub folders</guilabel>: perform a
       recursive search and dive into every directory on the
       way.</para>
     </listitem>
@@ -162,6 +172,11 @@
       settings &eg; include files, exclude files,
       &etc;... Press the 'profile' button, and you can
       add/load/save/remove search profiles.</para>
+    </listitem>
+    <listitem>
+      <para>
+      <guilabel>Query to clipboard</guilabel>: if checked,
+      &krusader; will place search text to clipboard when a found file is opened.</para>
     </listitem>
   </itemizedlist>
   <para>The above screen shot shows a search for all the files which
