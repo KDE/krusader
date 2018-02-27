@@ -122,7 +122,7 @@ Otherwise, if someone wants to use the .tar.xz package:
 $ tar xvf krusader-xx.xx.tar.xz
 
 
---- Some CMake options. Cmake execution
+--- Some CMake options. CMake execution
 
 -DCMAKE_INSTALL_PREFIX=/usr
   is the location where Krusader will be installed with the make command.
@@ -144,7 +144,12 @@ $ tar xvf krusader-xx.xx.tar.xz
   disables building the Synchronizer module. This module caused data loss, now
   it is fixed, but we treat it as the thin ice.
 
-CMake may be executed this way:
+In order to make sure that the present folder is the parent directory of the "krusader" source code folder, this command can be executed:
+    ls krusader/krusader
+and it should answer something like:
+    abstractpanelmanager.h  Dialogs     kicons.h           KrJS            krusaderlisterui.rc
+    [...]
+then CMake can be executed this way:
 $ mkdir krusader-build
 $ cd krusader-build
 $ cmake ../krusader -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DCMAKE_CXX_FLAGS="-O2 -fPIC"
