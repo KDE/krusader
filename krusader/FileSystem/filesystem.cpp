@@ -31,6 +31,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <memory>
+
 #include "filesystem.h"
 
 // QtCore
@@ -216,46 +218,79 @@ FileItem *FileSystem::createLocalFileItem(const QString &name, const QString &di
 {
     const QDir dir = QDir(directory);
     const QString path = dir.filePath(name);
-    const QByteArray filePath = path.toLocal8Bit();
+    const QByteArray pathByteArray = path.toLocal8Bit();
+    const QString fileItemName = virt ? path : name;
+    const QUrl fileItemUrl = QUrl::fromLocalFile(path);
 
+    // read file status; in case of error create a "broken" file item
     QT_STATBUF stat_p;
-    stat_p.st_size = 0;
-    stat_p.st_mode = 0;
-    stat_p.st_mtime = 0;
-    stat_p.st_uid = 0;
-    stat_p.st_gid = 0;
-    QT_LSTAT(filePath.data(), &stat_p);
-    const KIO::filesize_t size = stat_p.st_size;
+    memset(&stat_p, 0, sizeof(stat_p));
+    if (QT_LSTAT(pathByteArray.data(), &stat_p) < 0)
+        return FileItem::createBroken(fileItemName, fileItemUrl);
 
+    const KIO::filesize_t size = stat_p.st_size;
     bool isDir = S_ISDIR(stat_p.st_mode);
     const bool isLink = S_ISLNK(stat_p.st_mode);
 
+    // for links, read link destination and determine whether it's broken or not
     QString linkDestination;
     bool brokenLink = false;
     if (isLink) {
-        // find where the link is pointing to
-        qDebug() << "link name=" << path;
-        // the path of the symlink target cannot be longer than the file size of the symlink
-        char buffer[stat_p.st_size];
-        memset(buffer, 0, sizeof(buffer));
-        int bytesRead = readlink(filePath.data(), buffer, sizeof(buffer));
-        if (bytesRead != -1) {
-            linkDestination = QString::fromLocal8Bit(buffer, bytesRead); // absolute or relative
+        linkDestination = readLinkSafely(pathByteArray.data());
+
+        if (linkDestination.isNull())
+            brokenLink = true;
+        else {
             const QFileInfo linkFile(dir, linkDestination);
             if (!linkFile.exists())
                 brokenLink = true;
             else if (linkFile.isDir())
                 isDir = true;
-        } else {
-            qWarning() << "failed to read link, path=" << path;
         }
     }
 
-    return new FileItem(virt ? path : name, QUrl::fromLocalFile(path), isDir,
-                     size, stat_p.st_mode,
-                     stat_p.st_mtime, stat_p.st_ctime, stat_p.st_atime,
-                     stat_p.st_uid, stat_p.st_gid, QString(), QString(),
-                     isLink, linkDestination, brokenLink);
+    // create normal file item
+    return new FileItem(fileItemName, fileItemUrl, isDir,
+                        size, stat_p.st_mode,
+                        stat_p.st_mtime, stat_p.st_ctime, stat_p.st_atime,
+                        stat_p.st_uid, stat_p.st_gid, QString(), QString(),
+                        isLink, linkDestination, brokenLink);
+}
+
+QString FileSystem::readLinkSafely(const char *path)
+{
+    // inspired by the areadlink_with_size function from gnulib, which is used for coreutils
+    // idea: start with a small buffer and gradually increase it as we discover it wasn't enough
+
+    QT_OFF_T bufferSize = 1024; // start with 1 KiB
+    QT_OFF_T maxBufferSize = std::numeric_limits<QT_OFF_T>::max();
+
+    while (true) {
+        // try to read the link
+        std::unique_ptr<char[]> buffer(new char[bufferSize]);
+        auto nBytesRead = readlink(path, buffer.get(), bufferSize);
+
+        // should never happen, asserted by the readlink
+        if (nBytesRead > bufferSize)
+            return QString();
+
+        // read failure
+        if (nBytesRead < 0) {
+            qDebug() << "Failed to read the link " << path;
+            return QString();
+        }
+
+        // read success
+        if (nBytesRead < bufferSize || nBytesRead == maxBufferSize)
+            return QString::fromLocal8Bit(buffer.get(), nBytesRead);
+
+        // increase the buffer and retry again
+        // bufferSize < maxBufferSize is implied from previous checks
+        if (bufferSize <= maxBufferSize / 2)
+            bufferSize *= 2;
+        else
+            bufferSize = maxBufferSize;
+    }
 }
 
 FileItem *FileSystem::createFileItemFromKIO(const KIO::UDSEntry &entry, const QUrl &directory, bool virt)

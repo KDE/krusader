@@ -171,7 +171,10 @@ public:
     static FileItem *createFileItemFromKIO(const KIO::UDSEntry &entry, const QUrl &directory,
                                      bool virt = false);
 
-    // set the parent window to be used for dialogs
+    /// Read a symlink with an extra precaution
+    static QString readLinkSafely(const char *path);
+
+    /// Set the parent window to be used for dialogs
     void setParentWindow(QWidget *widget) { parentWindow = widget; }
 
 signals:

@@ -90,6 +90,14 @@ FileItem *FileItem::createDummy()
     return file;
 }
 
+FileItem *FileItem::createBroken(const QString &name, const QUrl &url)
+{
+    FileItem *file = new FileItem(name, url, false,
+                                  0, 0, 0, 0, 0);
+    file->setIcon("file-broken");
+    return file;
+}
+
 FileItem *FileItem::createVirtualDir(const QString &name, const QUrl &url)
 {
     return new FileItem(name, url, true,
