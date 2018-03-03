@@ -59,7 +59,7 @@ public:
     enum mntStatus {DOESNT_EXIST, NOT_MOUNTED, MOUNTED};
 
     inline bool operational() {
-        return Operational;
+        return _operational;
     } // check this 1st
 
     void mount(QString mntPoint, bool blocking = true); // this is probably what you need for mount
@@ -87,8 +87,7 @@ public:
 public slots:
     void mainWindow();                        // opens up the GUI
     void autoMount(QString path);             // just call it before refreshing into a dir
-    void delayedPerformAction(QAction *);
-    void performAction();
+    void delayedPerformAction(const QAction *action);
     void quickList();
 
 protected slots:
@@ -108,10 +107,12 @@ signals:
     void refreshPanel(const QUrl &);
 
 private:
-    QString *_actions;
-    KToolBarPopupAction *_action;
+    enum ActionType { Mount, Unmount };
 
-    bool Operational;   // if false, something went terribly wrong on startup
+    KToolBarPopupAction *_action;
+    QAction *_manageAction;
+
+    bool _operational;   // if false, something went terribly wrong on startup
     bool waiting; // used to block krusader while waiting for (un)mount operation
     KMountManGUI *mountManGui;
     // the following is the FS type
