@@ -238,8 +238,9 @@ FileItem *FileSystem::createLocalFileItem(const QString &name, const QString &di
     if (isLink) {
         linkDestination = readLinkSafely(pathByteArray.data());
 
-        if (linkDestination.isNull())
+        if (linkDestination.isNull()) {
             brokenLink = true;
+        }
         else {
             const QFileInfo linkFile(dir, linkDestination);
             if (!linkFile.exists())
@@ -271,8 +272,9 @@ QString FileSystem::readLinkSafely(const char *path)
         auto nBytesRead = readlink(path, buffer.get(), bufferSize);
 
         // should never happen, asserted by the readlink
-        if (nBytesRead > bufferSize)
+        if (nBytesRead > bufferSize) {
             return QString();
+        }
 
         // read failure
         if (nBytesRead < 0) {
@@ -281,15 +283,18 @@ QString FileSystem::readLinkSafely(const char *path)
         }
 
         // read success
-        if (nBytesRead < bufferSize || nBytesRead == maxBufferSize)
+        if (nBytesRead < bufferSize || nBytesRead == maxBufferSize) {
             return QString::fromLocal8Bit(buffer.get(), nBytesRead);
+        }
 
         // increase the buffer and retry again
         // bufferSize < maxBufferSize is implied from previous checks
-        if (bufferSize <= maxBufferSize / 2)
+        if (bufferSize <= maxBufferSize / 2) {
             bufferSize *= 2;
-        else
+        }
+        else {
             bufferSize = maxBufferSize;
+        }
     }
 }
 
