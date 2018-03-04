@@ -69,7 +69,7 @@ public:
      * @param uid Unix user id of file owner. Use -1 here and provide an owner name for non-local files.
      * @param gid Unix group id of file group. Use -1 here and provide a group name for non-local files.
      * @param owner user name of file owner. Can be empty for local files
-     * @param group group name of file group. Cam be empty for local files.
+     * @param group group name of file group. Can be empty for local files.
      * @param isLink true if file is a symbolic link. Else false.
      * @param linkDest link destination path if file is a link. Relative or absolute. Empty by default.
      * @param isBrokenLink true if file is a symbolic link and destination file does not exists. Else false.
@@ -86,6 +86,8 @@ public:
 
     /** Create a new ".." dummy file item. */
     static FileItem *createDummy();
+    /** Create a file item for a broken file which metadata could not be read. */
+    static FileItem *createBroken(const QString &name, const QUrl &url);
     /** Create a new virtual directory. */
     static FileItem *createVirtualDir(const QString &name, const QUrl &url);
     /** Create a new file item copy with a different name. */
