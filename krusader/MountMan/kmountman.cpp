@@ -432,17 +432,19 @@ void KMountMan::delayedPerformAction(const QAction *action)
         return;
     }
 
+    disconnect(_action->menu(), &QMenu::triggered, 0, 0);
+
     const QList<QVariant> actData = action->data().toList();
+    const int actionType = actData[0].toInt();
     const QString mountPoint = actData[1].toString();
 
     QTimer::singleShot(0, this, [=] {
 
-        if (actData[0].toInt() == KMountMan::ActionType::Mount) {
+        if (actionType == KMountMan::ActionType::Mount) {
             mount(mountPoint);
         } else {
             unmount(mountPoint);
         }
-        disconnect(_action->menu(), &QMenu::triggered, 0, 0);
     });
 }
 
