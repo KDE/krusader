@@ -471,6 +471,84 @@ void KrBookmarkHandler::bookmarksChanged(const QString&, const QString&)
 
 bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
 {
+    if (obj->inherits("QMenu") && (ev->type() == QEvent::Show ||
+                                   ev->type() == QEvent::Close)) {
+        _menuSearch = "";
+        resetShortcuts();
+    }
+
+    // Having it occur on keypress is consistent with other shortcuts,
+    // such as ctrl+w and the '&' bookmark shortcut standard
+    // (&movies makes m a shortcut for said bookmark)
+    if (ev->type() == QEvent::KeyPress && obj->inherits("QMenu")) {
+        QKeyEvent *kev = static_cast<QKeyEvent *>(ev);
+        QMenu *menu = static_cast<QMenu *>(obj);
+        QList<QAction *> acts = menu->actions();
+
+        if (kev->modifiers() != Qt::NoModifier ||
+               kev->text().isEmpty() ||
+               kev->key() == Qt::Key_Delete) {
+            return QObject::eventFilter(obj, ev);
+        }
+
+        if (kev->key() == Qt::Key_Backspace) {
+            _menuSearch.chop(1);
+            if (_menuSearch.length() == 0) {
+                resetShortcuts();
+                return QObject::eventFilter(obj, ev);
+            }
+        } else {
+            _menuSearch.append(kev->text());
+        }
+
+        QAction* found = nullptr;
+        const int menuSearchLength = _menuSearch.length();
+        bool solematch;
+        for (auto act : acts) {
+            if (act->isSeparator() || act->text() == "") {
+                continue;
+            }
+
+            if (menuSearchLength == 1 && kev->key() != Qt::Key_Backspace && !kev->text().isEmpty()) {
+                if (act->text().contains('&' + kev->text(), Qt::CaseInsensitive)) {
+                    _menuSearch = "";
+                    resetShortcuts();
+                    break;
+                }
+
+                _msNamesWithAccelerators.insert(act, act->text());
+            }
+
+            act->setText(KLocalizedString::removeAcceleratorMarker(act->text()));
+            if (act->text().left(menuSearchLength).compare(_menuSearch, Qt::CaseInsensitive) == 0) {
+                act->setText(createShortcutUnderline(act->text(), menuSearchLength));
+                if (!found) {
+                    found = act;
+                    solematch = true;
+                } else {
+                    solematch = false;
+                }
+            }
+        }
+
+        if (found && solematch) {
+            if ((bool) found->menu()) {
+                menu->setActiveAction(found);
+            } else {
+                found->activate(QAction::Trigger);
+            }
+            _menuSearch = "";
+            resetShortcuts();
+        } else if (found && menuSearchLength > 1) {
+            // & bookmark code will give focus as long as there is only one
+            // & character
+            menu->setActiveAction(found);
+        } else if (!found) {
+            _menuSearch = "";
+            resetShortcuts();
+        }
+    }
+
     if (ev->type() == QEvent::MouseButtonRelease) {
         switch (static_cast<QMouseEvent *>(ev)->button()) {
         case Qt::RightButton:
@@ -505,6 +583,35 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         }
     }
     return QObject::eventFilter(obj, ev);
+}
+
+void KrBookmarkHandler::resetShortcuts()
+{
+    QHash<QAction *, QString>::const_iterator i = _msNamesWithAccelerators.begin();
+    for (; i != _msNamesWithAccelerators.end(); ++i) {
+        if (i.key()) {
+            i.key()->setText(i.value());
+        }
+    }
+    _msNamesWithAccelerators.clear();
+}
+
+QString KrBookmarkHandler::createShortcutUnderline(const QString &text, int underlineEnd)
+{
+    if (underlineEnd <= 0) {
+        return text;
+    }
+    if (underlineEnd > text.length()) {
+        underlineEnd = text.length();
+    }
+
+    QString underlinedtext = text;
+    for (int i = 0; i < underlineEnd; i++) {
+        if (underlinedtext[2 * i] != '&') {
+            underlinedtext.insert(2 * i, '&');
+        }
+    }
+    return underlinedtext;
 }
 
 #define POPULAR_URLS_ID        100100

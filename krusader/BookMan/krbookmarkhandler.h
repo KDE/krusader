@@ -61,7 +61,8 @@ protected:
     void buildMenu(KrBookmark *parent, QMenu *menu);
 
     bool eventFilter(QObject *obj, QEvent *ev);
-
+    QString createShortcutUnderline(const QString &, int underlineEnd);
+    void resetShortcuts();
     void rightClicked(QMenu *menu, KrBookmark *bm);
     void rightClickOnSpecialBookmark();
 
@@ -81,6 +82,8 @@ private:
 
     QPointer<QMenu>            _mainBookmarkPopup; // main bookmark popup menu
     QList<QAction *>           _specialBookmarks; // the action list of the special bookmarks
+    QString                    _menuSearch; // Search as you type string for the bookmark menu
+    QHash<QAction *, QString>  _msNamesWithAccelerators; // List of changed shortcuts and their old values
 };
 
 Q_DECLARE_METATYPE(KrBookmark *)
