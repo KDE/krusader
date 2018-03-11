@@ -30,6 +30,8 @@
 #include <QDomEntity>
 // QtWidgets
 #include <QMenu>
+#include <QWidgetAction>
+#include <QLineEdit>
 
 #include "krbookmark.h"
 
@@ -82,8 +84,13 @@ private:
 
     QPointer<QMenu>            _mainBookmarkPopup; // main bookmark popup menu
     QList<QAction *>           _specialBookmarks; // the action list of the special bookmarks
-    QString                    _menuSearch; // Search as you type string for the bookmark menu
     QHash<QAction *, QString>  _msNamesWithAccelerators; // List of changed shortcuts and their old values
+
+    QWidgetAction *_quickSearchAction;
+    QLineEdit *_quickSearchBar;
+
+    void _setQuickSearchText(const QString &text);
+    QString _quickSearchText() const;
 };
 
 Q_DECLARE_METATYPE(KrBookmark *)
