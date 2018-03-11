@@ -489,8 +489,9 @@ void KrSearchDialog::executed(const QString &name)
         path = name.left(idx);
     }
     QUrl url(path);
-    if (url.scheme().isEmpty())
-        url.setScheme("file");
+    if (url.scheme().isEmpty()) {
+        url = QUrl::fromLocalFile(path);
+    }
     ACTIVE_FUNC->openUrl(url, fileName);
     showMinimized();
 }
