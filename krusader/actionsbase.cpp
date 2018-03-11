@@ -42,20 +42,17 @@ void ActionsBase::ActionGroup::addAction(QAction *action, const char *slot)
 
 QAction *ActionsBase::createAction(QString text, QString icon, bool isToggleAction)
 {
-    QAction *a;
     if(isToggleAction) {
         if (icon == 0)
-            a = (QAction *)(new KToggleAction(text, this));
+            return (QAction *)(new KToggleAction(text, this));
         else
-            a = (QAction *)new KToggleAction(QIcon::fromTheme(icon), text, this);
+            return (QAction *)(new KToggleAction(QIcon::fromTheme(icon), text, this));
     } else {
         if (icon == 0)
-            a = new QAction(text, this);
+            return new QAction(text, this);
         else
-            a = new QAction(QIcon::fromTheme(icon), text, this);
+            return new QAction(QIcon::fromTheme(icon), text, this);
     }
-
-    return a;
 }
 
 QAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,

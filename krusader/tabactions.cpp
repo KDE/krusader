@@ -39,7 +39,8 @@ TabActions::TabActions(QObject *parent, KrMainWindow *mainWindow) : ActionsBase(
     actPreviousTab = action(i18n("Previous Tab"), QString(), KStandardShortcut::tabPrev(), this, SLOT(previousTab()), "previous tab");
     actCloseInactiveTabs = action(i18n("Close Inactive Tabs"), 0, 0, SLOT(closeInactiveTabs()), "close inactive tabs");
     actCloseDuplicatedTabs = action(i18n("Close Duplicated Tabs"), 0, 0, SLOT(closeDuplicatedTabs()), "close duplicated tabs");
-    actLockTab = action(i18n("Lock Tab"), 0, 0, SLOT(lockTab()), "lock tab");
+    actLockTab = action(i18n("Lock Tab"), "lock", 0, SLOT(lockTab()), "lock tab");
+    actPinTab = action(i18n("Pin Tab"), "pin", 0, SLOT(pinTab()), "pin tab");
 }
 
 inline PanelManager *TabActions::activeManager()
@@ -61,6 +62,8 @@ void TabActions::refreshActions()
     actPreviousTab->setEnabled(tabCount > 1);
     bool locked = activeManager()->currentPanel()->gui->isLocked();
     actLockTab->setText(locked ? i18n("Unlock Tab") : i18n("Lock Tab"));
+    bool pinned = activeManager()->currentPanel()->gui->isPinned();
+    actPinTab->setText(pinned ? i18n("Unpin Tab") : i18n("Pin Tab"));
 }
 
 void TabActions::newTab()
@@ -107,4 +110,9 @@ void TabActions::closeDuplicatedTabs()
 void TabActions::lockTab()
 {
     activeManager()->slotLockTab();
+}
+
+void TabActions::pinTab()
+{
+    activeManager()->slotPinTab();
 }

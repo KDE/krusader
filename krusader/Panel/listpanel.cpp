@@ -133,7 +133,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
         QWidget(parent), KrPanel(manager, this, new ListPanelFunc(this)),
         panelType(-1), colorMask(255), compareMode(false),
         previewJob(0), inlineRefreshJob(0), searchBar(0), cdRootButton(0), cdUpButton(0),
-        sidebarButton(0), sidebar(0), fileSystemError(0), _navigatorUrl(), _locked(false)
+        sidebarButton(0), sidebar(0), fileSystemError(0), _navigatorUrl(), _tabState(TabState::DEFAULT)
 {
     if(cfg.isValid())
         panelType = cfg.readEntry("Type", -1);
@@ -498,17 +498,27 @@ void ListPanel::changeType(int type)
 int ListPanel::getProperties()
 {
     int props = 0;
-    if (syncBrowseButton->isChecked())
+    if (syncBrowseButton->isChecked()) {
         props |= PROP_SYNC_BUTTON_ON;
-    if (_locked)
+    }
+    if (isLocked()) {
         props |= PROP_LOCKED;
+    } else if (isPinned()) {
+        props |= PROP_PINNED;
+    }
     return props;
 }
 
 void ListPanel::setProperties(int prop)
 {
     syncBrowseButton->setChecked(prop & PROP_SYNC_BUTTON_ON);
-    _locked = (prop & PROP_LOCKED);
+    if (prop & PROP_LOCKED) {
+        _tabState = TabState::LOCKED;
+    } else if (prop & PROP_PINNED) {
+        _tabState = TabState::PINNED;
+    } else {
+        _tabState = TabState::DEFAULT;
+    }
 }
 
 bool ListPanel::eventFilter(QObject * watched, QEvent * e)
@@ -1199,6 +1209,7 @@ void ListPanel::saveSettings(KConfigGroup cfg, bool saveHistory)
     cfg.writeEntry("Url", url.toString());
     cfg.writeEntry("Type", getType());
     cfg.writeEntry("Properties", getProperties());
+    cfg.writeEntry("PinnedUrl", pinnedUrl().toString());
     if(saveHistory)
         func->history->save(KConfigGroup(&cfg, "History"));
     view->saveSettings(KConfigGroup(&cfg, "View"));
@@ -1239,6 +1250,15 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
     setJumpBack(func->history->currentUrl());
 
     setProperties(cfg.readEntry("Properties", 0));
+
+    if (isPinned()) {
+        QUrl pinnedUrl(cfg.readEntry("PinnedUrl", "invalid"));
+        if (!pinnedUrl.isValid()) {
+            pinnedUrl = func->history->currentUrl();
+        }
+        func->openUrl(pinnedUrl);
+        setPinnedUrl(pinnedUrl);
+    }
 
     if (cfg.hasKey("PopupPosition")) { // sidebar was visible, restore
         toggleSidebar(); // create and show

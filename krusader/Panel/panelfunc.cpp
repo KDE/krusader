@@ -198,7 +198,7 @@ void ListPanelFunc::openUrl(const QUrl &url, const QString& nameToMakeCurrent,
 
         QString relative = QDir(panel->virtualPath().path() + '/').relativeFilePath(url.path());
         syncURL.setPath(QDir::cleanPath(syncURL.path() + '/' + relative));
-        panel->otherPanel()->gui->setLocked(false);
+        panel->otherPanel()->gui->setTabState(ListPanel::TabState::DEFAULT);
         otherFunc()->openUrlInternal(syncURL, nameToMakeCurrent, false, false);
     }
     openUrlInternal(url, nameToMakeCurrent, false, manuallyEntered);
