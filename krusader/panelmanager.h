@@ -101,6 +101,7 @@ public slots:
     void slotNewTab(const QUrl &url, bool setCurrent = true, KrPanel *nextTo = 0);
     void slotNewTab();
     void slotLockTab();
+    void slotPinTab();
     void slotNextTab();
 
     void slotPreviousTab();

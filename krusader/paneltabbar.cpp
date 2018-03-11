@@ -24,6 +24,7 @@
 #include "tabactions.h"
 #include "../krglobal.h"
 #include "Panel/listpanel.h"
+#include "Panel/panelfunc.h"
 
 // QtCore
 #include <QEvent>
@@ -51,6 +52,7 @@ PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
 
     insertAction(actions->actNewTab);
     insertAction(actions->actLockTab);
+    insertAction(actions->actPinTab);
     insertAction(actions->actDupTab);
     insertAction(actions->actMoveTabToOtherSide);
     insertAction(actions->actCloseTab);
@@ -89,12 +91,12 @@ int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent, KrPanel *nextTo)
         }
     }
 
-    const QString text = squeeze(panel->virtualPath());
+    QUrl virtualPath = panel->virtualPath();
+    panel->setPinnedUrl(virtualPath);
+    const QString text = squeeze(virtualPath);
     const int index = insertIndex != -1 ? insertTab(insertIndex, text) : addTab(text);
 
-    QVariant v;
-    v.setValue((long long)panel);
-    setTabData(index, v);
+    setTabData(index, QVariant((long long) panel));
 
     setIcon(index, panel);
 
@@ -116,9 +118,7 @@ ListPanel* PanelTabBar::getPanel(int tabIdx)
 
 void PanelTabBar::changePanel(int tabIdx, ListPanel *panel)
 {
-    QVariant v;
-    v.setValue((long long)panel);
-    setTabData(tabIdx, v);
+    setTabData(tabIdx, QVariant((long long) panel));
 }
 
 ListPanel* PanelTabBar::removePanel(int index, ListPanel* &panelToDelete)
@@ -142,7 +142,7 @@ void PanelTabBar::updateTab(ListPanel *panel)
     // find which is the correct tab
     for (int i = 0; i < count(); i++) {
         if ((ListPanel*)tabData(i).toLongLong() == panel) {
-            setTabText(i, squeeze(panel->virtualPath(), i));
+            setPanelTextToTab(i, panel);
             setIcon(i, panel);
             break;
         }
@@ -157,8 +157,13 @@ void PanelTabBar::duplicateTab()
 
 void PanelTabBar::setIcon(int index, ListPanel *panel)
 {
-    setTabIcon(index,
-               panel->isLocked() ? krLoader->loadIcon("lock", KIconLoader::Toolbar, 16) : QIcon());
+    QIcon tabIcon;
+    if (panel->isLocked()) {
+        tabIcon = krLoader->loadIcon("lock", KIconLoader::Toolbar, 16);
+    } else if (panel->isPinned()) {
+        tabIcon = krLoader->loadIcon("pin", KIconLoader::Toolbar, 16);
+    }
+    setTabIcon(index, tabIcon);
 }
 
 QString PanelTabBar::squeeze(const QUrl &url, int tabIndex)
@@ -314,8 +319,17 @@ void PanelTabBar::handleDragEvent(int tabIndex)
 
 void PanelTabBar::layoutTabs()
 {
-   for (int i = 0; i < count(); i++) {
-        setTabText(i, squeeze(((ListPanel*)tabData(i).toLongLong())->virtualPath(), i));
-   }
+    for (int i = 0; i < count(); i++) {
+        setPanelTextToTab(i, (ListPanel*) tabData(i).toLongLong());
+    }
 }
 
+void PanelTabBar::setPanelTextToTab(int tabIndex, ListPanel *panel)
+{
+    // update tab text from pinnedUrl in case the tab is pinned
+    if (panel->isPinned()) {
+        setTabText(tabIndex, squeeze(panel->pinnedUrl(), tabIndex));
+    } else {
+        setTabText(tabIndex, squeeze(panel->virtualPath(), tabIndex));
+    }
+}

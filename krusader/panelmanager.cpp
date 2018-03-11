@@ -114,7 +114,6 @@ void PanelManager::activate()
 }
 
 void PanelManager::slotCurrentTabChanged(int index)
-// void PanelManager::slotChangePanel(ListPanel *p, bool makeActive)
 {
     ListPanel *panel = _tabbar->getPanel(index);
 
@@ -135,6 +134,11 @@ void PanelManager::slotCurrentTabChanged(int index)
 
     if (otherManager()) {
         otherManager()->currentPanel()->otherPanelChanged();
+    }
+
+    // go back to pinned url if tab is pinned and switched back to active
+    if (panel->isPinned()) {
+        panel->func->openUrl(panel->pinnedUrl());
     }
 }
 
@@ -259,11 +263,10 @@ void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, KrPanel *nextTo)
         KConfigGroup cfg(krConfig, grpName);
 
         nextTo->gui->saveSettings(cfg, true);
+        // reset undesired duplicated settings
+        cfg.writeEntry("Properties", 0);
         p->restoreSettings(cfg);
         krConfig->deleteGroup(grpName);
-
-        // reset undesired duplicated settings
-        p->setLocked(false);
     }
     else
         p->start(url);
@@ -287,9 +290,6 @@ void PanelManager::slotCloseTab(int index)
 
     ListPanel *oldp;
 
-//     if (index == _tabbar->currentIndex())
-//         slotChangePanel(_tabbar->removeCurrentPanel(oldp), false);
-//     else
     _tabbar->removePanel(index, oldp); //this automatically changes the current panel
 
     _stack->removeWidget(oldp);
@@ -438,7 +438,19 @@ int PanelManager::findTab(QUrl url)
 void PanelManager::slotLockTab()
 {
     ListPanel *panel = _currentPanel;
-    panel->gui->setLocked(!panel->gui->isLocked());
+    panel->gui->setTabState(panel->gui->isLocked() ? ListPanel::TabState::DEFAULT : ListPanel::TabState::LOCKED);
+    _actions->refreshActions();
+    _tabbar->updateTab(panel);
+}
+
+void PanelManager::slotPinTab()
+{
+    ListPanel *panel = _currentPanel;
+    panel->gui->setTabState(panel->gui->isPinned() ? ListPanel::TabState::DEFAULT : ListPanel::TabState::PINNED);
+    if (panel->gui->isPinned()) {
+        QUrl virtualPath = panel->virtualPath();
+        panel->setPinnedUrl(virtualPath);
+    }
     _actions->refreshActions();
     _tabbar->updateTab(panel);
 }

@@ -42,6 +42,7 @@ protected slots:
     void newTab();
     void duplicateTab();
     void lockTab();
+    void pinTab();
     void closeTab();
     void nextTab();
     void previousTab();
@@ -53,7 +54,7 @@ protected:
     inline PanelManager *activeManager();
 
     QAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actMoveTabToOtherSide;
-    QAction *actCloseInactiveTabs, *actCloseDuplicatedTabs, *actLockTab;
+    QAction *actCloseInactiveTabs, *actCloseDuplicatedTabs, *actLockTab, *actPinTab;
 };
 
 

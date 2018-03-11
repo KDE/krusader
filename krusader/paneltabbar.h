@@ -101,6 +101,7 @@ protected slots:
 private:
     void setIcon(int index, ListPanel *panel);
     void handleDragEvent(int tabIndex);
+    void setPanelTextToTab(int tabIndex, ListPanel *panel);
     KActionMenu *_panelActionMenu;
     bool _left;
     int _maxTabLength;

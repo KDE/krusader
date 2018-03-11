@@ -67,6 +67,7 @@
 
 #define PROP_SYNC_BUTTON_ON               1
 #define PROP_LOCKED                       2
+#define PROP_PINNED                       4
 
 class DirHistoryButton;
 class KrBookmarkButton;
@@ -86,6 +87,14 @@ class ListPanel : public QWidget, public KrPanel
     friend class ListPanelFunc;
     Q_OBJECT
 public:
+
+    enum TabState {
+        DEFAULT,
+        LOCKED,
+        // locked tab with changeable address
+        PINNED
+    };
+
     // constructor create the panel, but DOESN'T fill it with data, use start()
     ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg = KConfigGroup());
     ~ListPanel();
@@ -101,10 +110,13 @@ public:
     }
     void changeType(int);
     bool isLocked() {
-        return _locked;
+        return _tabState == TabState::LOCKED;
     }
-    void setLocked(bool lck) {
-        _locked = lck;
+    bool isPinned() {
+        return _tabState == TabState::PINNED;
+    }
+    void setTabState(TabState tabState) {
+        _tabState = tabState;
     }
 
     ListPanelActions *actions() {
@@ -123,6 +135,9 @@ public:
 
     void saveSettings(KConfigGroup cfg, bool saveHistory);
     void restoreSettings(KConfigGroup cfg);
+
+    void setPinnedUrl(QUrl &pinnedUrl) { _pinnedUrl = pinnedUrl; };
+    QUrl pinnedUrl() const { return _pinnedUrl; };
 
 public slots:
     void popRightClickMenu(const QPoint&);
@@ -244,7 +259,8 @@ private:
 
 private:
     QUrl _navigatorUrl; // distinguish between new user set URL and new custom set URL
-    bool _locked;
+    QUrl _pinnedUrl; // only for TabState::PINNED
+    TabState _tabState;
     QList<int> sidebarSplitterSizes;
 };
 
