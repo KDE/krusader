@@ -65,10 +65,15 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) : QObject(mainWin
     // load bookmarks
     importFromFile();
 
-    // hack
+    // create bookmark manager
     QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
     manager = KBookmarkManager::managerForFile(filename, QStringLiteral("krusader"));
     connect(manager, SIGNAL(changed(QString,QString)), this, SLOT(bookmarksChanged(QString,QString)));
+
+    // fill a dummy menu to properly init actions (allows toolbar bookmark buttons to work properly)
+    auto menu = new QMenu(mainWindow->widget());
+    populate(menu);
+    menu->deleteLater();
 }
 
 KrBookmarkHandler::~KrBookmarkHandler()
@@ -422,11 +427,13 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu)
             if (hasJumpback) {
                 // add the jump-back button
                 ListPanelActions *actions = _mainWindow->listPanelActions();
-                menu->addAction(actions->actJumpBack);
-                _specialBookmarks.append(actions->actJumpBack);
-                menu->addSeparator();
-                menu->addAction(actions->actSetJumpBack);
-                _specialBookmarks.append(actions->actSetJumpBack);
+                if (actions) {
+                    menu->addAction(actions->actJumpBack);
+                    _specialBookmarks.append(actions->actJumpBack);
+                    menu->addSeparator();
+                    menu->addAction(actions->actSetJumpBack);
+                    _specialBookmarks.append(actions->actSetJumpBack);
+                }
             }
         }
 
