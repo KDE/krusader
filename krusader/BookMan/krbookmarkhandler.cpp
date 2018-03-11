@@ -320,10 +320,8 @@ void KrBookmarkHandler::populate(QMenu *menu)
     buildMenu(_root, menu);
 }
 
-void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu)
+void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
 {
-    static int inSecondaryMenu = 0; // used to know if we're on the top menu
-
     // run the loop twice, in order to put the folders on top. stupid but easy :-)
     // note: this code drops the separators put there by the user
     QListIterator<KrBookmark *> it(parent->children());
@@ -339,9 +337,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu)
         v.setValue<KrBookmark *>(bm);
         menuAction->setData(v);
 
-        ++inSecondaryMenu;
-        buildMenu(bm, newMenu);
-        --inSecondaryMenu;
+        buildMenu(bm, newMenu, depth + 1);
     }
 
     it.toFront();
@@ -356,7 +352,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu)
         CONNECT_BM(bm);
     }
 
-    if (!inSecondaryMenu) {
+    if (depth == 0) {
         KConfigGroup group(krConfig, "Private");
         bool hasPopularURLs = group.readEntry("BM Popular URLs", true);
         bool hasTrash       = group.readEntry("BM Trash",        true);

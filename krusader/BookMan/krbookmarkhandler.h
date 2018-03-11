@@ -58,7 +58,7 @@ protected:
     void exportToFileFolder(QDomDocument &doc, QDomElement &parent, KrBookmark *folder);
     void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);
     void clearBookmarks(KrBookmark *root);
-    void buildMenu(KrBookmark *parent, QMenu *menu);
+    void buildMenu(KrBookmark *parent, QMenu *menu, int depth = 0);
 
     bool eventFilter(QObject *obj, QEvent *ev);
     QString createShortcutUnderline(const QString &, int underlineEnd);
