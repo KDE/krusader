@@ -41,9 +41,6 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent)
 
     acmBookmarks = new KActionMenu(QIcon::fromTheme("bookmarks"), i18n("Bookmarks"), this);
     acmBookmarks->setDelayed(false);
-    // TODO KF5 : explicit cast as QMenu doesn't have those methods
-    //(acmBookmarks->menu())->setKeyboardShortcutsEnabled(true);
-    //(acmBookmarks->menu())->setKeyboardShortcutsExecute(true);
 
     setMenu(acmBookmarks->menu());
     connect(acmBookmarks->menu(), SIGNAL(aboutToShow()), this, SLOT(populate()));
