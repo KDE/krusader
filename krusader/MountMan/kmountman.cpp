@@ -62,23 +62,17 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #define FSTAB "/etc/fstab"
 #endif
 
-static int __delayedIdx; // ugly: pass the processEvents deadlock
-
-KMountMan::KMountMan(QWidget *parent) : QObject(), Operational(false), waiting(false), mountManGui(0), parentWindow(parent)
+KMountMan::KMountMan(QWidget *parent) : QObject(), _operational(false), waiting(false), mountManGui(0), parentWindow(parent)
 {
-    _actions = 0L;
-
     _action = new KToolBarPopupAction(QIcon::fromTheme("kr_mountman"), i18n("&MountMan..."), this);
-    connect(_action, SIGNAL(triggered(bool)), SLOT(mainWindow()));
-    connect(_action->menu(), SIGNAL(aboutToShow()), SLOT(quickList()));
-
+    connect(_action, &QAction::triggered, this, &KMountMan::mainWindow);
+    connect(_action->menu(), &QMenu::aboutToShow, this, &KMountMan::quickList);
+    _manageAction = _action->menu()->addAction(i18n("Open &MountMan"));
+    connect(_manageAction, &QAction::triggered, this, &KMountMan::mainWindow);
+    _action->menu()->addSeparator();
 
     // added as a precaution, although we use kde services now
-    if (!KrServices::cmdExist("mount")) {
-        Operational = false;
-    } else {
-        Operational = true;
-    }
+    _operational = KrServices::cmdExist("mount");
 
     network_fs << "nfs" << "smbfs" << "fuse.fusesmb" << "fuse.sshfs"; //TODO: is this list complete ?
 
@@ -126,14 +120,13 @@ void KMountMan::mainWindow()
 {
     // left as a precaution, although we use kde's services now
     if (!KrServices::cmdExist("mount")) {
-        KMessageBox::error(0,
-                           i18n("Cannot start 'mount'. Check the 'Dependencies' page in konfigurator."));
+        KMessageBox::error(0, i18n("Cannot start 'mount'. Check the 'Dependencies' page in konfigurator."));
         return;
     }
 
     mountManGui = new KMountManGUI(this);
     delete mountManGui;   /* as KMountManGUI is modal, we can now delete it */
-    mountManGui = 0; /* for sanity */
+    mountManGui = nullptr; /* for sanity */
 }
 
 QExplicitlySharedDataPointer<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, QString value)
@@ -168,8 +161,7 @@ void KMountMan::mount(QString mntPoint, bool blocking)
         Solid::Device device(udi);
         Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
         if (access && !access->isAccessible()) {
-            connect(access, SIGNAL(setupDone(Solid::ErrorType,QVariant,QString)),
-                    this, SLOT(slotSetupDone(Solid::ErrorType,QVariant,QString)));
+            connect(access, &Solid::StorageAccess::setupDone, this, &KMountMan::slotSetupDone, Qt::UniqueConnection);
             if (blocking)
                 waiting = true; // prepare to block
             access->setup();
@@ -216,8 +208,7 @@ void KMountMan::unmount(QString mntPoint, bool blocking)
         Solid::Device device(udi);
         Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
         if (access && access->isAccessible()) {
-            connect(access, SIGNAL(teardownDone(Solid::ErrorType,QVariant,QString)),
-                    this, SLOT(slotTeardownDone(Solid::ErrorType,QVariant,QString)));
+            connect(access, &Solid::StorageAccess::teardownDone, this, &KMountMan::slotTeardownDone, Qt::UniqueConnection);
             access->teardown();
         }
     } else {
@@ -250,19 +241,18 @@ void KMountMan::unmount(QString mntPoint, bool blocking)
 
 KMountMan::mntStatus KMountMan::getStatus(QString mntPoint)
 {
-    KMountPoint::List::iterator it;
-    QExplicitlySharedDataPointer<KMountPoint> m;
+    QExplicitlySharedDataPointer<KMountPoint> mountPoint;
 
     // 1: is it already mounted
     KMountPoint::List current = KMountPoint::currentMountPoints();
-    m = findInListByMntPoint(current, mntPoint);
-    if ((bool)m)
+    mountPoint = findInListByMntPoint(current, mntPoint);
+    if ((bool) mountPoint)
         return MOUNTED;
 
     // 2: is it a mount point but not mounted?
     KMountPoint::List possible = KMountPoint::possibleMountPoints();
-    m = findInListByMntPoint(possible, mntPoint);
-    if ((bool)m)
+    mountPoint = findInListByMntPoint(possible, mntPoint);
+    if ((bool) mountPoint)
         return NOT_MOUNTED;
 
     // 3: unknown
@@ -388,90 +378,74 @@ QString KMountMan::convertSize(KIO::filesize_t size)
 // populate the pop-up menu of the mountman tool-button with actions
 void KMountMan::quickList()
 {
-    if (!Operational) {
+    if (!_operational) {
         KMessageBox::error(0, i18n("MountMan is not operational. Sorry"));
         return;
     }
 
-    // clear the popup menu
-    _action->menu() ->clear();
+    // clear mount / unmount actions
+    for (QAction *action : _action->menu()->actions()) {
+        if (action == _manageAction || action->isSeparator()) {
+            continue;
+        }
+        _action->menu()->removeAction(action);
+    }
 
     // create lists of current and possible mount points
-    KMountPoint::List current = KMountPoint::currentMountPoints();
-    KMountPoint::List possible = KMountPoint::possibleMountPoints();
+    const KMountPoint::List currentMountPoints = KMountPoint::currentMountPoints();
 
     // create a menu, displaying mountpoints with possible actions
-    // also, populate a small array with the actions
-    if (_actions)
-        delete[] _actions;
-    _actions = new QString[ possible.size()];
-
-    KMountPoint::List::iterator it;
-    QExplicitlySharedDataPointer<KMountPoint> m;
-    int idx;
-    for (it = possible.begin(), idx = 0; it != possible.end(); ++it, ++idx) {
-        m = it->data();
+    for (QExplicitlySharedDataPointer<KMountPoint> possibleMountPoint : KMountPoint::possibleMountPoints()) {
         // skip nonmountable file systems
-        if (nonmountFilesystem(m->mountType(), m->mountPoint()) || invalidFilesystem(m->mountType()))
+        if (nonmountFilesystem(possibleMountPoint->mountType(), possibleMountPoint->mountPoint())
+            || invalidFilesystem(possibleMountPoint->mountType())) {
             continue;
-        // does the mountpoint exist in current list? if so, it can only
-        // be umounted, otherwise, it can be mounted
+        }
+        // does the mountpoint exist in current list?
+        // if so, it can only be umounted, otherwise, it can be mounted
         bool needUmount = false;
-        KMountPoint::List::iterator otherIt;
-        for (otherIt = current.begin(); otherIt != current.end(); ++otherIt) {
-            if ((*otherIt) ->mountPoint() == m->mountPoint()) {     // found it, in needs umount
+        for (QExplicitlySharedDataPointer<KMountPoint> currentMountPoint : currentMountPoints) {
+            if (currentMountPoint->mountPoint() == possibleMountPoint->mountPoint()) {
+                // found -> needs umount
                 needUmount = true;
                 break;
             }
         }
         // add the item to the menu
-        _actions[ idx ] = QString(needUmount ? "_U_" : "_M_") + m->mountPoint();
-        QString text = QString((needUmount ? i18n("Unmount") : i18n("Mount"))) + ' ' + m->mountPoint() +
-                       " (" + m->mountedFrom() + ')';
+        const QString text = QString("%1 %2 (%3)").arg(needUmount ? i18n("Unmount") : i18n("Mount"),
+                                                 possibleMountPoint->mountPoint(), possibleMountPoint->mountedFrom());
 
-
-        QAction * act = _action->menu() ->addAction(text);
-        act->setData(QVariant(idx));
+        QAction *act = _action->menu()->addAction(text);
+        act->setData(QList<QVariant>({
+            QVariant(needUmount ? KMountMan::ActionType::Unmount : KMountMan::ActionType::Mount),
+            QVariant(possibleMountPoint->mountPoint())
+        }));
     }
-    connect(_action->menu(), SIGNAL(triggered(QAction*)),
-            this, SLOT(delayedPerformAction(QAction*)));
+    connect(_action->menu(), &QMenu::triggered, this, &KMountMan::delayedPerformAction);
 
 }
 
-void KMountMan::delayedPerformAction(QAction * act)
+void KMountMan::delayedPerformAction(const QAction *action)
 {
-    int idx = -1;
-    if (act && act->data().canConvert<int>())
-        idx = act->data().toInt();
-    __delayedIdx = idx;
 
-    if (idx < 0)
+    if (!action || !action->data().canConvert<QList<QVariant>>()) {
         return;
-
-    QTimer::singleShot(0, this, SLOT(performAction()));
-}
-
-void KMountMan::performAction()
-{
-    if (_actions == 0 || __delayedIdx < 0)  // for sanity
-        return;
-
-    // ugly !!! take idx from the value put there by delayedPerformAction so
-    // as to NOT DIE because of a processEvents deadlock!!! @#$@!@
-    int idx = __delayedIdx;
-
-    bool domount = _actions[ idx ].left(3) == "_M_";
-    QString mountPoint = _actions[ idx ].mid(3);
-    if (!domount) {   // umount
-        unmount(mountPoint);
-    } else { // mount
-        mount(mountPoint);
     }
 
-    // free memory
-    delete[] _actions;
-    _actions = 0L;
-    disconnect(_action->menu(), SIGNAL(triggered(QAction*)), 0, 0);
+    disconnect(_action->menu(), &QMenu::triggered, 0, 0);
+
+    const QList<QVariant> actData = action->data().toList();
+    const int actionType = actData[0].toInt();
+    const QString mountPoint = actData[1].toString();
+
+    QTimer::singleShot(0, this, [=] {
+
+        if (actionType == KMountMan::ActionType::Mount) {
+            mount(mountPoint);
+        } else {
+            unmount(mountPoint);
+        }
+    });
 }
 
 QString KMountMan::findUdiForPath(QString path, const Solid::DeviceInterface::Type &expType)
