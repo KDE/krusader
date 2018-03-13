@@ -72,9 +72,9 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) : QObject(mainWin
     connect(manager, SIGNAL(changed(QString,QString)), this, SLOT(bookmarksChanged(QString,QString)));
 
     // create the quick search bar and action
-    _quickSearchAction = new QWidgetAction(nullptr);
+    _quickSearchAction = new QWidgetAction(this);
     _quickSearchBar = new QLineEdit();
-    _quickSearchAction->setDefaultWidget(_quickSearchBar);
+    _quickSearchAction->setDefaultWidget(_quickSearchBar);  // ownership of the bar is transferred to the action
     _quickSearchAction->setEnabled(false);
     _quickSearchAction->setVisible(false);
 
