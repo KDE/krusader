@@ -657,7 +657,8 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         return true;
     case Qt::Key_Delete :
         // delete/trash the file (delete with alternative mode is a panel action)
-        if (e->modifiers() == Qt::NoModifier) {
+        // allow only no modifier or KeypadModifier (i.e. Del on a Numeric Keypad)
+        if ((e->modifiers() & ~Qt::KeypadModifier) == Qt::NoModifier) {
             op()->emitDefaultDeleteFiles();
         }
         return true;
