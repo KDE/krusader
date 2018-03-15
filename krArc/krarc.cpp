@@ -777,6 +777,8 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
 
 void kio_krarcProtocol::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags)
 {
+    Q_UNUSED(flags);
+
     KRDEBUG("renaming from: " << src.path() << " to: " << dest.path());
     KRDEBUG("command: " << arcPath);
 
