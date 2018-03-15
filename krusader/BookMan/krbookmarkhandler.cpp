@@ -52,7 +52,8 @@
 #define CONNECT_BM(X) { disconnect(X, SIGNAL(activated(QUrl)), 0, 0); connect(X, SIGNAL(activated(QUrl)), this, SLOT(slotActivated(QUrl))); }
 
 KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) : QObject(mainWindow->widget()),
-        _mainWindow(mainWindow), _middleClick(false), _mainBookmarkPopup(0), _specialBookmarks()
+    _mainWindow(mainWindow), _middleClick(false), _mainBookmarkPopup(0), _specialBookmarks(),
+    _quickSearchAction(0)
 {
     // create our own action collection and make the shortcuts apply only to parent
     _privateCollection = new KActionCollection(this);
@@ -65,10 +66,22 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) : QObject(mainWin
     // load bookmarks
     importFromFile();
 
-    // hack
+    // create bookmark manager
     QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
     manager = KBookmarkManager::managerForFile(filename, QStringLiteral("krusader"));
     connect(manager, SIGNAL(changed(QString,QString)), this, SLOT(bookmarksChanged(QString,QString)));
+
+    // create the quick search bar and action
+    _quickSearchAction = new QWidgetAction(this);
+    _quickSearchBar = new QLineEdit();
+    _quickSearchAction->setDefaultWidget(_quickSearchBar);  // ownership of the bar is transferred to the action
+    _quickSearchAction->setEnabled(false);
+    _quickSearchAction->setVisible(false);
+
+    // fill a dummy menu to properly init actions (allows toolbar bookmark buttons to work properly)
+    auto menu = new QMenu(mainWindow->widget());
+    populate(menu);
+    menu->deleteLater();
 }
 
 KrBookmarkHandler::~KrBookmarkHandler()
@@ -307,6 +320,23 @@ BM_SUCCESS:
     file.close();
 }
 
+void KrBookmarkHandler::_setQuickSearchText(const QString &text)
+{
+    _quickSearchBar->setText(text);
+
+    auto length = text.length();
+    _quickSearchAction->setVisible(length > 0);
+    _quickSearchBar->setVisible(length > 0);
+    if (length == 0) {
+        resetShortcuts();
+    }
+}
+
+QString KrBookmarkHandler::_quickSearchText() const
+{
+    return _quickSearchBar->text();
+}
+
 void KrBookmarkHandler::populate(QMenu *menu)
 {
     _mainBookmarkPopup = menu;
@@ -315,9 +345,12 @@ void KrBookmarkHandler::populate(QMenu *menu)
     buildMenu(_root, menu);
 }
 
-void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu)
+void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
 {
-    static int inSecondaryMenu = 0; // used to know if we're on the top menu
+    // add search bar widget to the top of the menu
+    if (depth == 0) {
+        menu->addAction(_quickSearchAction);
+    }
 
     // run the loop twice, in order to put the folders on top. stupid but easy :-)
     // note: this code drops the separators put there by the user
@@ -334,9 +367,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu)
         v.setValue<KrBookmark *>(bm);
         menuAction->setData(v);
 
-        ++inSecondaryMenu;
-        buildMenu(bm, newMenu);
-        --inSecondaryMenu;
+        buildMenu(bm, newMenu, depth + 1);
     }
 
     it.toFront();
@@ -351,7 +382,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu)
         CONNECT_BM(bm);
     }
 
-    if (!inSecondaryMenu) {
+    if (depth == 0) {
         KConfigGroup group(krConfig, "Private");
         bool hasPopularURLs = group.readEntry("BM Popular URLs", true);
         bool hasTrash       = group.readEntry("BM Trash",        true);
@@ -422,11 +453,13 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu)
             if (hasJumpback) {
                 // add the jump-back button
                 ListPanelActions *actions = _mainWindow->listPanelActions();
-                menu->addAction(actions->actJumpBack);
-                _specialBookmarks.append(actions->actJumpBack);
-                menu->addSeparator();
-                menu->addAction(actions->actSetJumpBack);
-                _specialBookmarks.append(actions->actSetJumpBack);
+                if (actions) {
+                    menu->addAction(actions->actJumpBack);
+                    _specialBookmarks.append(actions->actJumpBack);
+                    menu->addSeparator();
+                    menu->addAction(actions->actSetJumpBack);
+                    _specialBookmarks.append(actions->actSetJumpBack);
+                }
             }
         }
 
@@ -473,8 +506,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
 {
     if (obj->inherits("QMenu") && (ev->type() == QEvent::Show ||
                                    ev->type() == QEvent::Close)) {
-        _menuSearch = "";
-        resetShortcuts();
+        _setQuickSearchText("");
     }
 
     // Having it occur on keypress is consistent with other shortcuts,
@@ -492,27 +524,28 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         }
 
         if (kev->key() == Qt::Key_Backspace) {
-            _menuSearch.chop(1);
-            if (_menuSearch.length() == 0) {
-                resetShortcuts();
+            auto newSearchText = _quickSearchText();
+            newSearchText.chop(1);
+            _setQuickSearchText(newSearchText);
+
+            if (_quickSearchText().length() == 0) {
                 return QObject::eventFilter(obj, ev);
             }
         } else {
-            _menuSearch.append(kev->text());
+            _setQuickSearchText(_quickSearchText().append(kev->text()));
         }
 
         QAction* found = nullptr;
-        const int menuSearchLength = _menuSearch.length();
+        const int quickSearchTextLength = _quickSearchText().length();
         bool solematch;
         for (auto act : acts) {
             if (act->isSeparator() || act->text() == "") {
                 continue;
             }
 
-            if (menuSearchLength == 1 && kev->key() != Qt::Key_Backspace && !kev->text().isEmpty()) {
+            if (quickSearchTextLength == 1 && kev->key() != Qt::Key_Backspace && !kev->text().isEmpty()) {
                 if (act->text().contains('&' + kev->text(), Qt::CaseInsensitive)) {
-                    _menuSearch = "";
-                    resetShortcuts();
+                    _setQuickSearchText("");
                     break;
                 }
 
@@ -520,8 +553,8 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
             }
 
             act->setText(KLocalizedString::removeAcceleratorMarker(act->text()));
-            if (act->text().left(menuSearchLength).compare(_menuSearch, Qt::CaseInsensitive) == 0) {
-                act->setText(createShortcutUnderline(act->text(), menuSearchLength));
+            if (act->text().left(quickSearchTextLength).compare(_quickSearchText(), Qt::CaseInsensitive) == 0) {
+                act->setText(createShortcutUnderline(act->text(), quickSearchTextLength));
                 if (!found) {
                     found = act;
                     solematch = true;
@@ -537,15 +570,11 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
             } else {
                 found->activate(QAction::Trigger);
             }
-            _menuSearch = "";
-            resetShortcuts();
-        } else if (found && menuSearchLength > 1) {
+            _setQuickSearchText("");
+        } else if (found && quickSearchTextLength > 1) {
             // & bookmark code will give focus as long as there is only one
             // & character
             menu->setActiveAction(found);
-        } else if (!found) {
-            _menuSearch = "";
-            resetShortcuts();
         }
     }
 

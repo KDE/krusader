@@ -30,6 +30,8 @@
 #include <QDomEntity>
 // QtWidgets
 #include <QMenu>
+#include <QWidgetAction>
+#include <QLineEdit>
 
 #include "krbookmark.h"
 
@@ -58,7 +60,7 @@ protected:
     void exportToFileFolder(QDomDocument &doc, QDomElement &parent, KrBookmark *folder);
     void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);
     void clearBookmarks(KrBookmark *root);
-    void buildMenu(KrBookmark *parent, QMenu *menu);
+    void buildMenu(KrBookmark *parent, QMenu *menu, int depth = 0);
 
     bool eventFilter(QObject *obj, QEvent *ev);
     QString createShortcutUnderline(const QString &, int underlineEnd);
@@ -82,8 +84,13 @@ private:
 
     QPointer<QMenu>            _mainBookmarkPopup; // main bookmark popup menu
     QList<QAction *>           _specialBookmarks; // the action list of the special bookmarks
-    QString                    _menuSearch; // Search as you type string for the bookmark menu
     QHash<QAction *, QString>  _msNamesWithAccelerators; // List of changed shortcuts and their old values
+
+    QWidgetAction *_quickSearchAction;
+    QLineEdit *_quickSearchBar;
+
+    void _setQuickSearchText(const QString &text);
+    QString _quickSearchText() const;
 };
 
 Q_DECLARE_METATYPE(KrBookmark *)
