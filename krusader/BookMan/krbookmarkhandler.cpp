@@ -34,6 +34,7 @@
 #include <QFile>
 #include <QEvent>
 #include <QStandardPaths>
+#include <QDebug>
 // QtGui
 #include <QMouseEvent>
 #include <QCursor>
@@ -328,13 +329,23 @@ void KrBookmarkHandler::_setQuickSearchText(const QString &text)
     _quickSearchAction->setVisible(length > 0);
     _quickSearchBar->setVisible(length > 0);
     if (length == 0) {
-        resetShortcuts();
+        qDebug() << "Bookmark search: reset";
+        _resetActionTextAndHighlighting();
+    } else {
+        qDebug() << "Bookmark search: query =" << text;
     }
 }
 
 QString KrBookmarkHandler::_quickSearchText() const
 {
     return _quickSearchBar->text();
+}
+
+void KrBookmarkHandler::_highlightAction(QAction *action, bool isMatched)
+{
+    auto font = action->font();
+    font.setBold(isMatched);
+    action->setFont(font);
 }
 
 void KrBookmarkHandler::populate(QMenu *menu)
@@ -510,12 +521,12 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
     }
 
     // Having it occur on keypress is consistent with other shortcuts,
-    // such as ctrl+w and the '&' bookmark shortcut standard
-    // (&movies makes m a shortcut for said bookmark)
+    // such as Ctrl+W and accelerator keys
     if (ev->type() == QEvent::KeyPress && obj->inherits("QMenu")) {
         QKeyEvent *kev = static_cast<QKeyEvent *>(ev);
         QMenu *menu = static_cast<QMenu *>(obj);
         QList<QAction *> acts = menu->actions();
+        bool quickSearchStarted = false;
 
         if (kev->modifiers() != Qt::NoModifier ||
                kev->text().isEmpty() ||
@@ -523,6 +534,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
             return QObject::eventFilter(obj, ev);
         }
 
+        // update quick search text
         if (kev->key() == Qt::Key_Backspace) {
             auto newSearchText = _quickSearchText();
             newSearchText.chop(1);
@@ -532,49 +544,64 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
                 return QObject::eventFilter(obj, ev);
             }
         } else {
+            quickSearchStarted = _quickSearchText().length() == 0;
             _setQuickSearchText(_quickSearchText().append(kev->text()));
         }
 
-        QAction* found = nullptr;
-        const int quickSearchTextLength = _quickSearchText().length();
-        bool solematch;
+        if (quickSearchStarted) {
+            qDebug() << "Bookmark search: started";
+        }
+
+        // match actions
+        QAction *firstMatch = nullptr;
+        int nMatches = 0;
         for (auto act : acts) {
             if (act->isSeparator() || act->text() == "") {
                 continue;
             }
 
-            if (quickSearchTextLength == 1 && kev->key() != Qt::Key_Backspace && !kev->text().isEmpty()) {
+            if (quickSearchStarted) {
+                // if the first key press is an accelerator key, let the accelerator handler process this event
                 if (act->text().contains('&' + kev->text(), Qt::CaseInsensitive)) {
+                    qDebug() << "Bookmark search: hit accelerator key of" << act;
                     _setQuickSearchText("");
                     break;
                 }
 
-                _msNamesWithAccelerators.insert(act, act->text());
+                // strip accelerator keys from actions so they don't interfere with the search key press events
+                auto text = act->text();
+                _quickSearchOriginalActionTitles.insert(act, text);
+                act->setText(KLocalizedString::removeAcceleratorMarker(text));
             }
 
-            act->setText(KLocalizedString::removeAcceleratorMarker(act->text()));
-            if (act->text().left(quickSearchTextLength).compare(_quickSearchText(), Qt::CaseInsensitive) == 0) {
-                act->setText(createShortcutUnderline(act->text(), quickSearchTextLength));
-                if (!found) {
-                    found = act;
-                    solematch = true;
-                } else {
-                    solematch = false;
+            // match prefix of the action text to the query
+            if (act->text().left(_quickSearchText().length()).compare(_quickSearchText(), Qt::CaseInsensitive) == 0) {
+                _highlightAction(act);
+                if (!firstMatch) {
+                    firstMatch = act;
                 }
+                nMatches++;
+            } else {
+                _highlightAction(act, false);
             }
         }
 
-        if (found && solematch) {
-            if ((bool) found->menu()) {
-                menu->setActiveAction(found);
-            } else {
-                found->activate(QAction::Trigger);
-            }
+        if (firstMatch) {
+            qDebug() << "Bookmark search: first match =" << firstMatch->text() << ", number of matches =" << nMatches;
+        } else {
+            qDebug() << "Bookmark search: no matches";
+        }
+
+        // trigger the matched menu item or set an active item accordingly
+        if (nMatches == 1) {
             _setQuickSearchText("");
-        } else if (found && quickSearchTextLength > 1) {
-            // & bookmark code will give focus as long as there is only one
-            // & character
-            menu->setActiveAction(found);
+            if ((bool) firstMatch->menu()) {
+                menu->setActiveAction(firstMatch);
+            } else {
+                firstMatch->activate(QAction::Trigger);
+            }
+        } else if (nMatches > 1) {
+            menu->setActiveAction(firstMatch);
         }
     }
 
@@ -614,33 +641,16 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
     return QObject::eventFilter(obj, ev);
 }
 
-void KrBookmarkHandler::resetShortcuts()
+void KrBookmarkHandler::_resetActionTextAndHighlighting()
 {
-    QHash<QAction *, QString>::const_iterator i = _msNamesWithAccelerators.begin();
-    for (; i != _msNamesWithAccelerators.end(); ++i) {
-        if (i.key()) {
-            i.key()->setText(i.value());
-        }
-    }
-    _msNamesWithAccelerators.clear();
-}
-
-QString KrBookmarkHandler::createShortcutUnderline(const QString &text, int underlineEnd)
-{
-    if (underlineEnd <= 0) {
-        return text;
-    }
-    if (underlineEnd > text.length()) {
-        underlineEnd = text.length();
+    for (QHash<QAction *, QString>::const_iterator i = _quickSearchOriginalActionTitles.begin();
+         i != _quickSearchOriginalActionTitles.end(); ++i) {
+        QAction *action = i.key();
+        action->setText(i.value());
+        _highlightAction(action, false);
     }
 
-    QString underlinedtext = text;
-    for (int i = 0; i < underlineEnd; i++) {
-        if (underlinedtext[2 * i] != '&') {
-            underlinedtext.insert(2 * i, '&');
-        }
-    }
-    return underlinedtext;
+    _quickSearchOriginalActionTitles.clear();
 }
 
 #define POPULAR_URLS_ID        100100
