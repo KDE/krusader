@@ -600,7 +600,9 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
             } else {
                 firstMatch->activate(QAction::Trigger);
             }
-        } else if (nMatches > 1) {
+        } else {
+            // if no match is found, firstMatch == nullptr
+            // this is intended as it will unset active item of the menu
             menu->setActiveAction(firstMatch);
         }
     }
