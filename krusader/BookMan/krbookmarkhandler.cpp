@@ -54,7 +54,7 @@
 
 KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) : QObject(mainWindow->widget()),
     _mainWindow(mainWindow), _middleClick(false), _mainBookmarkPopup(0), _specialBookmarks(),
-    _quickSearchAction(0)
+    _quickSearchAction(nullptr), _quickSearchBar(nullptr)
 {
     // create our own action collection and make the shortcuts apply only to parent
     _privateCollection = new KActionCollection(this);
@@ -75,9 +75,10 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) : QObject(mainWin
     // create the quick search bar and action
     _quickSearchAction = new QWidgetAction(this);
     _quickSearchBar = new QLineEdit();
+    _quickSearchBar->setPlaceholderText(i18n("Type to search..."));
     _quickSearchAction->setDefaultWidget(_quickSearchBar);  // ownership of the bar is transferred to the action
     _quickSearchAction->setEnabled(false);
-    _quickSearchAction->setVisible(false);
+    _setQuickSearchText("");
 
     // fill a dummy menu to properly init actions (allows toolbar bookmark buttons to work properly)
     auto menu = new QMenu(mainWindow->widget());
@@ -323,11 +324,15 @@ BM_SUCCESS:
 
 void KrBookmarkHandler::_setQuickSearchText(const QString &text)
 {
+    bool isEmptyQuickSearchBarVisible = KConfigGroup(krConfig, "Look&Feel").readEntry("Always show search bar", true);
+
     _quickSearchBar->setText(text);
 
     auto length = text.length();
-    _quickSearchAction->setVisible(length > 0);
-    _quickSearchBar->setVisible(length > 0);
+    bool isVisible = isEmptyQuickSearchBarVisible || length > 0;
+    _quickSearchAction->setVisible(isVisible);
+    _quickSearchBar->setVisible(isVisible);
+
     if (length == 0) {
         qDebug() << "Bookmark search: reset";
         _resetActionTextAndHighlighting();
