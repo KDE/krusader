@@ -528,9 +528,18 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         QList<QAction *> acts = menu->actions();
         bool quickSearchStarted = false;
 
+        if (kev->key() == Qt::Key_Left && kev->modifiers() == Qt::NoModifier) {
+            menu->close();
+            return true;
+        }
+
         if (kev->modifiers() != Qt::NoModifier ||
-               kev->text().isEmpty() ||
-               kev->key() == Qt::Key_Delete) {
+            kev->text().isEmpty()              ||
+            kev->key() == Qt::Key_Delete       ||
+            kev->key() == Qt::Key_Return       ||
+            kev->key() == Qt::Key_Escape)
+
+        {
             return QObject::eventFilter(obj, ev);
         }
 
