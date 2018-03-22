@@ -119,9 +119,11 @@ QAction * KrBookmark::jumpBackAction(KActionCollection *collection, bool isSette
         return nullptr;
     }
 
-    // copy essential part of source action (shortcut is not copied as it will introduce ambiguity)
+    // copy essential part of source action
     auto sourceAction = isSetter ? sourceActions->actSetJumpBack : sourceActions->actJumpBack;
     action = new QAction(sourceAction->icon(), sourceAction->text(), sourceAction);
+    action->setShortcut(sourceAction->shortcut());
+    action->setShortcutContext(Qt::WidgetShortcut);
     connect(action, &QAction::triggered, sourceAction, &QAction::trigger);
     // ensure there are no accelerator keys coming from another menu
     action->setText(KLocalizedString::removeAcceleratorMarker(action->text()));

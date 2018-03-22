@@ -466,12 +466,12 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
 
                 ListPanelActions *actions = _mainWindow->listPanelActions();
 
-                auto action = KrBookmark::jumpBackAction(_collection, false, actions);
+                auto action = KrBookmark::jumpBackAction(_privateCollection, false, actions);
                 if (action) {
                     menu->addAction(action);
                 }
 
-                action = KrBookmark::jumpBackAction(_collection, true, actions);
+                action = KrBookmark::jumpBackAction(_privateCollection, true, actions);
                 if (action) {
                     menu->addAction(action);
                 }
