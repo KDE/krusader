@@ -439,7 +439,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
 
         // do we need to add special bookmarks?
         if (SPECIAL_BOOKMARKS) {
-            if (hasTrash || hasLan || hasVirtualFS || hasJumpback)
+            if (hasTrash || hasLan || hasVirtualFS)
                 menu->addSeparator();
 
             KrBookmark *bm;
@@ -467,21 +467,23 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
             }
 
             if (hasJumpback) {
-                // add the jump-back button
+                menu->addSeparator();
+
                 ListPanelActions *actions = _mainWindow->listPanelActions();
-                if (actions) {
-                    menu->addAction(actions->actJumpBack);
-                    _specialBookmarks.append(actions->actJumpBack);
-                    menu->addSeparator();
-                    menu->addAction(actions->actSetJumpBack);
-                    _specialBookmarks.append(actions->actSetJumpBack);
+
+                auto action = KrBookmark::jumpBackAction(_privateCollection, true, actions);
+                if (action) {
+                    menu->addAction(action);
+                }
+
+                action = KrBookmark::jumpBackAction(_privateCollection, false, actions);
+                if (action) {
+                    menu->addAction(action);
                 }
             }
         }
 
-        if (!hasJumpback)
-            menu->addSeparator();
-
+        menu->addSeparator();
         menu->addAction(KrActions::actAddBookmark);
         _specialBookmarks.append(KrActions::actAddBookmark);
         QAction *bmAct = menu->addAction(krLoader->loadIcon("bookmarks", KIconLoader::Small),

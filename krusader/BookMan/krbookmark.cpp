@@ -21,6 +21,7 @@
 #include "../krglobal.h"
 #include "../Archive/krarchandler.h"
 #include "../FileSystem/krtrashhandler.h"
+#include "../Panel/listpanelactions.h"
 
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
@@ -71,12 +72,12 @@ KrBookmark::~KrBookmark()
     }
 }
 
-KrBookmark* KrBookmark::getExistingBookmark(QString actionName, KActionCollection *collection)
+KrBookmark * KrBookmark::getExistingBookmark(QString actionName, KActionCollection *collection)
 {
     return static_cast<KrBookmark*>(collection->action(BM_NAME(actionName)));
 }
 
-KrBookmark* KrBookmark::trash(KActionCollection *collection)
+KrBookmark * KrBookmark::trash(KActionCollection *collection)
 {
     KrBookmark *bm = getExistingBookmark(i18n(NAME_TRASH), collection);
     if (!bm)
@@ -86,7 +87,7 @@ KrBookmark* KrBookmark::trash(KActionCollection *collection)
     return bm;
 }
 
-KrBookmark* KrBookmark::virt(KActionCollection *collection)
+KrBookmark * KrBookmark::virt(KActionCollection *collection)
 {
     KrBookmark *bm = getExistingBookmark(i18n(NAME_VIRTUAL), collection);
     if (!bm) {
@@ -96,7 +97,7 @@ KrBookmark* KrBookmark::virt(KActionCollection *collection)
     return bm;
 }
 
-KrBookmark* KrBookmark::lan(KActionCollection *collection)
+KrBookmark * KrBookmark::lan(KActionCollection *collection)
 {
     KrBookmark *bm = getExistingBookmark(i18n(NAME_LAN), collection);
     if (!bm) {
@@ -106,7 +107,32 @@ KrBookmark* KrBookmark::lan(KActionCollection *collection)
     return bm;
 }
 
-KrBookmark* KrBookmark::separator()
+QAction * KrBookmark::jumpBackAction(KActionCollection *collection, bool isSetter, ListPanelActions *sourceActions)
+{
+    auto actionName = isSetter ? QString("setJumpBack") : QString("jumpBack");
+    auto action = collection->action(actionName);
+    if (action) {
+        return action;
+    }
+
+    if (!sourceActions) {
+        return nullptr;
+    }
+
+    // copy essential part of source action
+    auto sourceAction = isSetter ? sourceActions->actSetJumpBack : sourceActions->actJumpBack;
+    action = new QAction(sourceAction->icon(), sourceAction->text(), sourceAction);
+    action->setShortcut(sourceAction->shortcut());
+    action->setShortcutContext(Qt::WidgetShortcut);
+    connect(action, &QAction::triggered, sourceAction, &QAction::trigger);
+    // ensure there are no accelerator keys coming from another menu
+    action->setText(KLocalizedString::removeAcceleratorMarker(action->text()));
+
+    collection->addAction(actionName, action);
+    return action;
+}
+
+KrBookmark * KrBookmark::separator()
 {
     KrBookmark *bm = new KrBookmark("");
     bm->_separator = true;
