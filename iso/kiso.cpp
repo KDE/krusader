@@ -268,7 +268,8 @@ static int mycallb(struct iso_directory_record *idr, void *udata)
             if (!special) {
                 if (iso->joliet) {
                     for (i = 0;i < (isonum_711(idr->name_len) - 1);i += 2) {
-                        QChar ch(be2me_16(*((ushort*)&(idr->name[i]))));
+                        void *p = &(idr->name[i]);
+                        QChar ch(be2me_16(*(ushort *)p));
                         if (ch == ';') break;
                         path += ch;
                     }
