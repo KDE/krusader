@@ -569,7 +569,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         }
 
         // match actions
-        QAction *firstMatch = nullptr;
+        QAction *matchedAction = nullptr;
         int nMatches = 0;
         for (auto act : acts) {
             if (act->isSeparator() || act->text() == "") {
@@ -581,7 +581,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
                 if (act->text().contains('&' + kev->text(), Qt::CaseInsensitive)) {
                     qDebug() << "Bookmark search: hit accelerator key of" << act;
                     _setQuickSearchText("");
-                    break;
+                    return QObject::eventFilter(obj, ev);
                 }
 
                 // strip accelerator keys from actions so they don't interfere with the search key press events
@@ -593,8 +593,9 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
             // match prefix of the action text to the query
             if (act->text().left(_quickSearchText().length()).compare(_quickSearchText(), Qt::CaseInsensitive) == 0) {
                 _highlightAction(act);
-                if (!firstMatch) {
-                    firstMatch = act;
+                if (!matchedAction || matchedAction->menu()) {
+                    // Can't highlight menus (see comment below), hopefully pick something we can
+                    matchedAction = act;
                 }
                 nMatches++;
             } else {
@@ -602,8 +603,8 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
             }
         }
 
-        if (firstMatch) {
-            qDebug() << "Bookmark search: first match =" << firstMatch->text() << ", number of matches =" << nMatches;
+        if (matchedAction) {
+            qDebug() << "Bookmark search: primary match =" << matchedAction->text() << ", number of matches =" << nMatches;
         } else {
             qDebug() << "Bookmark search: no matches";
         }
@@ -611,16 +612,23 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         // trigger the matched menu item or set an active item accordingly
         if (nMatches == 1) {
             _setQuickSearchText("");
-            if ((bool) firstMatch->menu()) {
-                menu->setActiveAction(firstMatch);
+            if ((bool) matchedAction->menu()) {
+                menu->setActiveAction(matchedAction);
             } else {
-                firstMatch->activate(QAction::Trigger);
+                matchedAction->activate(QAction::Trigger);
+            }
+        } else if (nMatches > 1) {
+            // Because of a bug submenus cannot be highlighted
+            // https://bugreports.qt.io/browse/QTBUG-939
+            if (!matchedAction->menu()) {
+                menu->setActiveAction(matchedAction);
+            } else {
+                menu->setActiveAction(nullptr);
             }
         } else {
-            // if no match is found, firstMatch == nullptr
-            // this is intended as it will unset active item of the menu
-            menu->setActiveAction(firstMatch);
+            menu->setActiveAction(nullptr);
         }
+        return true;
     }
 
     if (ev->type() == QEvent::MouseButtonRelease) {
