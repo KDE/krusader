@@ -53,7 +53,7 @@ KrJob *KrJob::createKrCopyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &sr
                               const QUrl &destination, KIO::JobFlags flags, KIO::CopyJob *job,
                               KIO::DropJob *dropJob)
 {
-    Type type;
+    Type type(Copy);
     QString description;
     switch (mode) {
     case KIO::CopyJob::Copy:
