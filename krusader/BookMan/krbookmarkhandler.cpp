@@ -474,11 +474,13 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
                 auto action = KrBookmark::jumpBackAction(_privateCollection, true, actions);
                 if (action) {
                     menu->addAction(action);
+                    _specialBookmarks.append(action);
                 }
 
                 action = KrBookmark::jumpBackAction(_privateCollection, false, actions);
                 if (action) {
                     menu->addAction(action);
+                    _specialBookmarks.append(action);
                 }
             }
         }
