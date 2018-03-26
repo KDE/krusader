@@ -347,14 +347,26 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
         ba.prepend(arcTempDirEnc);
         fd = QT_OPEN(ba, O_CREAT | O_TRUNC | O_WRONLY, initialMode);
     }
+
     QByteArray buffer;
     int readResult;
+    bool isIncomplete = false;
     do {
         dataReq();
         readResult = readData(buffer);
-        ::write(fd, buffer.data(), buffer.size());
+        auto bytesWritten = ::write(fd, buffer.data(), buffer.size());
+        if (bytesWritten < buffer.size()) {
+            isIncomplete = true;
+            break;
+        }
     } while (readResult > 0);
     ::close(fd);
+
+    if (isIncomplete) {
+        error(ERR_COULD_NOT_WRITE, getPath(url));
+        return;
+    }
+
     // pack the file
     KrLinecountingProcess proc;
     proc << putCmd << getPath(arcFile->url()) << localeEncodedString(tempFile);
