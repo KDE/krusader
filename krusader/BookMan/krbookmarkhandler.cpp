@@ -536,6 +536,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         QMenu *menu = static_cast<QMenu *>(obj);
         QList<QAction *> acts = menu->actions();
         bool quickSearchStarted = false;
+        bool searchInSpecialItems = KConfigGroup(krConfig, "Look&Feel").readEntry("Search in special items", false);
 
         if (kev->key() == Qt::Key_Left && kev->modifiers() == Qt::NoModifier) {
             menu->close();
@@ -575,6 +576,10 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         int nMatches = 0;
         for (auto act : acts) {
             if (act->isSeparator() || act->text() == "") {
+                continue;
+            }
+
+            if (!searchInSpecialItems && _specialBookmarks.contains(act)) {
                 continue;
             }
 
