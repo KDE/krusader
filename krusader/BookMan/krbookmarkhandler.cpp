@@ -471,17 +471,26 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
 
                 ListPanelActions *actions = _mainWindow->listPanelActions();
 
-                auto action = KrBookmark::jumpBackAction(_privateCollection, true, actions);
-                if (action) {
-                    menu->addAction(action);
-                    _specialBookmarks.append(action);
-                }
+                auto slotTriggered = [=] {
+                    if (_mainBookmarkPopup && !_mainBookmarkPopup->isHidden()) {
+                        _mainBookmarkPopup->close();
+                    }
+                };
+                auto addJumpBackAction = [=](bool isSetter) {
+                    auto action = KrBookmark::jumpBackAction(_privateCollection, isSetter, actions);
+                    if (action) {
+                        menu->addAction(action);
+                        _specialBookmarks.append(action);
 
-                action = KrBookmark::jumpBackAction(_privateCollection, false, actions);
-                if (action) {
-                    menu->addAction(action);
-                    _specialBookmarks.append(action);
-                }
+                        // disconnecting from this as a receiver is important:
+                        // we don't want to break connections established by KrBookmark::jumpBackAction
+                        disconnect(action, &QAction::triggered, this, nullptr);
+                        connect(action, &QAction::triggered, this, slotTriggered);
+                    }
+                };
+
+                addJumpBackAction(true);
+                addJumpBackAction(false);
             }
         }
 
