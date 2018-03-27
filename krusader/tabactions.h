@@ -2,6 +2,7 @@
  * Copyright (C) 2000 Shie Erlich <erlich@users.sourceforge.net>             *
  * Copyright (C) 2000 Rafi Yanai <yanai@users.sourceforge.net>               *
  * Copyright (C) 2011 Jan Lepper <jan_lepper@gmx.de>                         *
+ * Copyright (C) 2004-2018 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *

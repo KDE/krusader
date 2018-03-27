@@ -1,6 +1,8 @@
 /*****************************************************************************
  * Copyright (C) 2005 Csaba Karai <cskarai@freemail.hu>                      *
- * based on KRemoteEncodingPlugin from Dawit Alemayehu <adawit@kde.org>      *
+ * Copyright (C) 2005-2018 Krusader Krew [https://krusader.org]              *
+ *                                                                           *
+ * Based on KRemoteEncodingPlugin from Dawit Alemayehu <adawit@kde.org>      *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *

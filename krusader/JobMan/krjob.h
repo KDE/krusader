@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (C) 2016 Krusader Krew                                          *
+ * Copyright (C) 2016-2018 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
