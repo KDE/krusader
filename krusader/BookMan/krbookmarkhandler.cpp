@@ -355,6 +355,9 @@ void KrBookmarkHandler::_highlightAction(QAction *action, bool isMatched)
 
 void KrBookmarkHandler::populate(QMenu *menu)
 {
+    if (_mainBookmarkPopup) {
+        _mainBookmarkPopup->removeAction(_quickSearchAction);
+    }
     _mainBookmarkPopup = menu;
     menu->clear();
     _specialBookmarks.clear();
