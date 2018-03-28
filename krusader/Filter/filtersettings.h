@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (C) 2011 Jan Lepper <jan_lepper@gmx.de> <krusader@users.sourceforge.net>*
+ * Copyright (C) 2011 Jan Lepper <jan_lepper@gmx.de>                         *
  * Copyright (C) 2011-2018 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
