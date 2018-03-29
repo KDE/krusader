@@ -355,6 +355,8 @@ void KrBookmarkHandler::_highlightAction(QAction *action, bool isMatched)
 
 void KrBookmarkHandler::populate(QMenu *menu)
 {
+    // removing action from previous menu is necessary
+    // otherwise it won't be displayed in the currently populating menu
     if (_mainBookmarkPopup) {
         _mainBookmarkPopup->removeAction(_quickSearchAction);
     }
