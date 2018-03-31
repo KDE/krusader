@@ -91,39 +91,6 @@ KRarcHandler arcHandler;
 
 int main(int argc, char *argv[])
 {
-// ============ begin icon-stuff ===========
-// If the user has no icon specified over the commandline we set up our own.
-// this is according to the users privileges. The icons are in Krusader::privIcon()
-
-/*    bool hasIcon = false;
-    int i = 0;
-    char * myArgv[argc+2];*/
-
-// if no --miniicon is given, --icon is used. So we don't need to check for --miniicon separately
-/*    for (i = 0; i < argc; ++i) {
-        if (strstr(argv[ i ], "-icon") != 0)   // important: just one dash because both can appear!
-            hasIcon = true;
-    }
-
-    static const char* const icon_text = "--icon";
-    const char* icon_name = Krusader::privIcon();
-    char addedParams[strlen(icon_text)+strlen(icon_name)+2];
-
-    if (! hasIcon) {
-        for (i = 0; i < argc; ++i)
-            myArgv[ i ] = argv[ i ];
-
-        strcpy(addedParams, icon_text);
-        strcpy(addedParams + strlen(icon_text) + 1, icon_name);
-
-        myArgv[ argc ] = addedParams;
-        myArgv[ ++argc ] = addedParams + strlen(icon_text) + 1;
-        myArgv[ ++argc ] = 0;
-
-        argv = myArgv;
-    }*/
-// ============ end icon-stuff ===========
-
     // set global log message format
     qSetMessagePattern(KrServices::GLOBAL_MESSAGE_PATTERN);
 

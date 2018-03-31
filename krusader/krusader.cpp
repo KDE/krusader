@@ -139,7 +139,6 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
 
     // create an icon loader
     krLoader = KIconLoader::global();
-//   iconLoader->addExtraDesktopThemes();
 
     // create MountMan
     KrGlobal::mountMan = new KMountMan(this);
