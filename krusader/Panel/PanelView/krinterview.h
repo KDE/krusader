@@ -60,12 +60,12 @@ public:
     KrViewItem* getPrev(KrViewItem *current) Q_DECL_OVERRIDE;
     KrViewItem* getCurrentKrViewItem() Q_DECL_OVERRIDE;
     KrViewItem* findItemByName(const QString &name) Q_DECL_OVERRIDE;
-    KrViewItem *findItemByFileItem(FileItem *fileitem) Q_DECL_OVERRIDE;
     KrViewItem *findItemByUrl(const QUrl &url) Q_DECL_OVERRIDE;
     QString getCurrentItem() const Q_DECL_OVERRIDE;
-    KrViewItem* getKrViewItemAt(const QPoint &vp) Q_DECL_OVERRIDE;
-    void setCurrentItem(const QString& name, const QModelIndex &fallbackToIndex=QModelIndex()) Q_DECL_OVERRIDE;
-    void setCurrentKrViewItem(KrViewItem *item) Q_DECL_OVERRIDE;
+    KrViewItem *getKrViewItemAt(const QPoint &vp) Q_DECL_OVERRIDE;
+    void setCurrentItem(const QString &name, bool scrollToCurrent = true,
+                        const QModelIndex &fallbackToIndex = QModelIndex()) Q_DECL_OVERRIDE;
+    void setCurrentKrViewItem(KrViewItem *item, bool scrollToCurrent = true) Q_DECL_OVERRIDE;
     void makeItemVisible(const KrViewItem *item) Q_DECL_OVERRIDE;
     bool isItemVisible(const KrViewItem *item) Q_DECL_OVERRIDE;
     void clear() Q_DECL_OVERRIDE;
@@ -97,7 +97,10 @@ protected:
     KIO::filesize_t calcSelectedSize() Q_DECL_OVERRIDE;
     void populate(const QList<FileItem*> &fileItems, FileItem *dummy) Q_DECL_OVERRIDE;
     KrViewItem* preAddItem(FileItem *fileitem) Q_DECL_OVERRIDE;
-    void preDelItem(KrViewItem *item) Q_DECL_OVERRIDE;
+    /**
+     * Remove an item. Does not handle new current selection.
+     */
+    void preDeleteItem(KrViewItem *item) Q_DECL_OVERRIDE;
     void intSetSelected(const FileItem* fileitem, bool select) Q_DECL_OVERRIDE;
 
     virtual QRect itemRect(const FileItem *fileitem) = 0;
@@ -114,6 +117,8 @@ protected:
     KrMouseHandler *_mouseHandler;
     QHash<FileItem *, KrViewItem*> _itemHash;
     QSet<const FileItem*> _selection;
+private:
+    void setCurrent(const QModelIndex &index, bool scrollToCurrent);
 };
 
 #endif

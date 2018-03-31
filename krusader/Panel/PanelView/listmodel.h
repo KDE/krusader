@@ -49,7 +49,7 @@ public:
     }
     void populate(const QList<FileItem*> &files, FileItem *dummy);
     QModelIndex addItem(FileItem *);
-    QModelIndex removeItem(FileItem *);
+    void removeItem(FileItem *);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
     int columnCount(const QModelIndex &parent = QModelIndex()) const  Q_DECL_OVERRIDE;

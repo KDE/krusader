@@ -131,10 +131,8 @@ QString KrInterView::getCurrentItem() const
     if (!_model->ready())
         return QString();
 
-    FileItem *fileitem = _model->fileItemAt(_itemView->currentIndex());
-    if (fileitem == 0)
-        return QString();
-    return fileitem->getName();
+    FileItem *fileItem = _model->fileItemAt(_itemView->currentIndex());
+    return fileItem ? fileItem->getName() : QString();
 }
 
 KrViewItem* KrInterView::getCurrentKrViewItem()
@@ -187,10 +185,6 @@ KrViewItem* KrInterView::getKrViewItemAt(const QPoint &vp)
     return getKrViewItem(_itemView->indexAt(vp));
 }
 
-KrViewItem *KrInterView::findItemByFileItem(FileItem *fileItem) {
-    return getKrViewItem(fileItem);
-}
-
 KrViewItem * KrInterView::getKrViewItem(FileItem *fileItem)
 {
     QHash<FileItem *, KrViewItem*>::iterator it = _itemHash.find(fileItem);
@@ -215,8 +209,7 @@ KrViewItem * KrInterView::getKrViewItem(const QModelIndex & ndx)
 
 void KrInterView::makeCurrentVisible()
 {
-    qDebug() << "scroll to current index=" << _itemView->currentIndex();
-    _itemView->scrollTo(_itemView->currentIndex());
+    makeItemVisible(getCurrentKrViewItem());
 }
 
 void KrInterView::makeItemVisible(const KrViewItem *item)
@@ -225,49 +218,63 @@ void KrInterView::makeItemVisible(const KrViewItem *item)
         return;
 
     FileItem* fileitem = (FileItem *)item->getFileItem();
-    QModelIndex ndx = _model->fileItemIndex(fileitem);
-    qDebug() << "scroll to item name=" << fileitem->getName();
-    if (ndx.isValid())
-        _itemView->scrollTo(ndx);
+    const QModelIndex index = _model->fileItemIndex(fileitem);
+    qDebug() << "scroll to item; name=" << fileitem->getName() << " index=" << index;
+    if (index.isValid())
+        _itemView->scrollTo(index);
 }
 
 bool KrInterView::isItemVisible(const KrViewItem *item)
 {
-    return _itemView->viewport()->rect().contains(item->itemRect());
+    return item && _itemView->viewport()->rect().contains(item->itemRect());
 }
 
-void KrInterView::setCurrentItem(const QString& name, const QModelIndex &fallbackToIndex)
+void KrInterView::setCurrentItem(const QString &name, bool scrollToCurrent,
+                                 const QModelIndex &fallbackToIndex)
 {
     // find index by given name and set it as current
-    QModelIndex ndx = _model->nameIndex(name);
-    if (ndx.isValid()) {
-         // also sets the scrolling position
-        _itemView->setCurrentIndex(ndx);
+    const QModelIndex index = _model->nameIndex(name);
+    if (index.isValid()) {
+        setCurrent(index, scrollToCurrent);
     } else if (fallbackToIndex.isValid()) {
-        // set fallback index as current index
-        // when fallback index is too big, set the last item as current
-        if (fallbackToIndex.row() >= _itemView->model()->rowCount()) {
-            setCurrentKrViewItem(getLast());
+        // set fallback index as current if not too big, else set the last item as current
+        if (fallbackToIndex.row() < _itemView->model()->rowCount()) {
+            setCurrent(fallbackToIndex, scrollToCurrent);
         } else {
-            _itemView->setCurrentIndex(fallbackToIndex);
+            setCurrentKrViewItem(getLast(), scrollToCurrent);
         }
     } else {
         // when given parameters fail, set the first item as current
-        setCurrentKrViewItem(getFirst());
+        setCurrentKrViewItem(getFirst(), scrollToCurrent);
     }
 }
 
-void KrInterView::setCurrentKrViewItem(KrViewItem *item)
+void KrInterView::setCurrentKrViewItem(KrViewItem *item, bool scrollToCurrent)
 {
-    if (item == 0) {
-        _itemView->setCurrentIndex(QModelIndex());
+    if (!item) {
+        setCurrent(QModelIndex(), scrollToCurrent);
         return;
     }
+
     FileItem* fileitem = (FileItem *)item->getFileItem();
-    QModelIndex ndx = _model->fileItemIndex(fileitem);
-    if (ndx.isValid() && ndx.row() != _itemView->currentIndex().row()) {
-        _mouseHandler->cancelTwoClickRename();
-        _itemView->setCurrentIndex(ndx);
+    const QModelIndex index = _model->fileItemIndex(fileitem);
+    if (index.isValid() && index.row() != _itemView->currentIndex().row()) {
+        setCurrent(index, scrollToCurrent);
+    }
+}
+
+void KrInterView::setCurrent(const QModelIndex &index, bool scrollToCurrent) {
+    const bool disableAutoScroll = _itemView->hasAutoScroll() && !scrollToCurrent;
+    if (disableAutoScroll) {
+        // setCurrentIndex() scrolls to current if autoScroll is turned on
+        _itemView->setAutoScroll(false);
+    }
+
+    _mouseHandler->cancelTwoClickRename();
+    _itemView->setCurrentIndex(index);
+
+    if (disableAutoScroll) {
+        _itemView->setAutoScroll(true);
     }
 }
 
@@ -297,18 +304,23 @@ void KrInterView::populate(const QList<FileItem*> &fileItems, FileItem *dummy)
 
 KrViewItem* KrInterView::preAddItem(FileItem *fileitem)
 {
-    QModelIndex idx = _model->addItem(fileitem);
-    if(_model->rowCount() == 1) // if this is the fist item to be added, make it current
-        _itemView->setCurrentIndex(idx);
-    return getKrViewItem(idx);
+    const QModelIndex index = _model->addItem(fileitem);
+    return getKrViewItem(index);
 }
 
-void KrInterView::preDelItem(KrViewItem *item)
+void KrInterView::preDeleteItem(KrViewItem *item)
 {
     setSelected(item->getFileItem(), false);
-    QModelIndex ndx = _model->removeItem((FileItem *)item->getFileItem());
-    if (ndx.isValid())
-        _itemView->setCurrentIndex(ndx);
+
+    // if the next item is current, current selection is lost on remove; preserve manually
+    KrViewItem *currentItem = getCurrentKrViewItem();
+    KrViewItem *nextCurrentItem = currentItem && currentItem == getNext(item) ? currentItem : 0;
+
+    _model->removeItem((FileItem *)item->getFileItem());
+
+    if (nextCurrentItem)
+        setCurrentKrViewItem(nextCurrentItem, false);
+
     _itemHash.remove((FileItem *)item->getFileItem());
 }
 

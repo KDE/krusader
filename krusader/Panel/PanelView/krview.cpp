@@ -534,49 +534,48 @@ QString KrView::firstUnmarkedBelowCurrent(const bool skipCurrent)
     return iterator->name();
 }
 
-void KrView::delItem(const QString &name)
+void KrView::deleteItem(const QString &name, bool onUpdate)
 {
-    KrViewItem *it = findItemByName(name);
-    if(!it)
+    KrViewItem *viewItem = findItemByName(name);
+    if (!viewItem)
         return;
 
-    if(_previews)
-        _previews->deletePreview(it);
+    if (_previews && !onUpdate)
+        _previews->deletePreview(viewItem);
 
-    preDelItem(it);
+    preDeleteItem(viewItem);
 
-    if (it->FILEITEM->isDir()) {
+    if (viewItem->FILEITEM->isDir()) {
         --_numDirs;
     }
 
     --_count;
-    delete it;
+    delete viewItem;
 
-    op()->emitSelectionChanged();
+    if (!onUpdate)
+        op()->emitSelectionChanged();
 }
 
-void KrView::addItem(FileItem *fileitem)
+void KrView::addItem(FileItem *fileItem, bool onUpdate)
 {
-    if (isFiltered(fileitem))
+    if (isFiltered(fileItem))
         return;
-    KrViewItem *item = preAddItem(fileitem);
-    if (!item)
-        return; // don't add it after all
 
-    if(_previews)
-        _previews->updatePreview(item);
+    KrViewItem *viewItem = preAddItem(fileItem);
+    if (!viewItem)
+        return; // not added
 
-    if (fileitem->isDir())
+    if (_previews)
+        _previews->updatePreview(viewItem);
+
+    if (fileItem->isDir())
         ++_numDirs;
 
     ++_count;
 
-    if (item->name() == nameToMakeCurrent()) {
-        setCurrentKrViewItem(item); // dictionary based - quick
-        makeItemVisible(item);
+    if (!onUpdate) {
+        op()->emitSelectionChanged();
     }
-
-    op()->emitSelectionChanged();
 }
 
 void KrView::updateItem(FileItem *newFileItem)
@@ -591,16 +590,14 @@ void KrView::updateItem(FileItem *newFileItem)
     const bool isSelected = selectedNames.contains(name);
 
     // delete old file item
-    delItem(name);
+    deleteItem(name, true);
 
     if (!isFiltered(newFileItem)) {
-        addItem(newFileItem);
-        if(_previews)
-            _previews->updatePreview(findItemByFileItem(newFileItem));
+        addItem(newFileItem, true);
     }
 
     if (isCurrent)
-        setCurrentItem(name);
+        setCurrentItem(name, false);
     if (isSelected)
         setSelected(newFileItem, true);
 
@@ -1125,9 +1122,14 @@ void KrView::customSelection(bool select)
 
 void KrView::refresh()
 {
-    QString currentItem = getCurrentItem();
-    QList<QUrl> selection = selectedUrls();
-    QModelIndex currentIndex = getCurrentIndex();
+    const QString currentItem = !nameToMakeCurrent().isEmpty() ? //
+                                    nameToMakeCurrent() :
+                                    getCurrentItem();
+    bool scrollToCurrent = !nameToMakeCurrent().isEmpty() || isItemVisible(getCurrentKrViewItem());
+    setNameToMakeCurrent(QString());
+
+    const QModelIndex currentIndex = getCurrentIndex();
+    const QList<QUrl> selection = selectedUrls();
 
     clear();
 
@@ -1156,18 +1158,15 @@ void KrView::refresh()
     if(!selection.isEmpty())
         setSelectionUrls(selection);
 
-    if (!nameToMakeCurrent().isEmpty()) {
-        setCurrentItem(nameToMakeCurrent());
-        setNameToMakeCurrent("");
-    } else if (!currentItem.isEmpty()) {
-        if (currentItem == ".." && _count > 0 &&
+    if (!currentItem.isEmpty()) {
+        if (currentItem == ".." && _count > 0 && //
             !_quickFilterMask.isEmpty() && _quickFilterMask.isValid()) {
             // In a filtered view we should never select the dummy entry if
             // there are real matches.
             setCurrentKrViewItem(getNext(getFirst()));
+        } else {
+            setCurrentItem(currentItem, scrollToCurrent, currentIndex);
         }
-        else
-            setCurrentItem(currentItem, currentIndex);
     } else {
         setCurrentKrViewItem(getFirst());
     }

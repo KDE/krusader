@@ -316,7 +316,7 @@ QModelIndex ListModel::addItem(FileItem *fileitem)
 {
     emit layoutAboutToBeChanged();
 
-    if(lastSortOrder() == KrViewProperties::NoColumn) {
+    if (lastSortOrder() == KrViewProperties::NoColumn) {
         int idx = _fileItems.count();
         _fileItems.append(fileitem);
         updateIndices(fileitem, idx);
@@ -328,7 +328,8 @@ QModelIndex ListModel::addItem(FileItem *fileitem)
 
     KrSort::Sorter sorter(createSorter());
 
-    int insertIndex = sorter.insertIndex(fileitem, fileitem == _dummyFileItem, customSortData(fileitem));
+    const bool isDummy = fileitem == _dummyFileItem;
+    const int insertIndex = sorter.insertIndex(fileitem, isDummy, customSortData(fileitem));
     if (insertIndex != _fileItems.count())
         _fileItems.insert(insertIndex, fileitem);
     else
@@ -339,7 +340,7 @@ QModelIndex ListModel::addItem(FileItem *fileitem)
     }
 
     QModelIndexList newPersistentList;
-    foreach(const QModelIndex &mndx, oldPersistentList) {
+    foreach (const QModelIndex &mndx, oldPersistentList) {
         int newRow = mndx.row();
         if (newRow >= insertIndex)
             newRow++;
@@ -348,57 +349,41 @@ QModelIndex ListModel::addItem(FileItem *fileitem)
 
     changePersistentIndexList(oldPersistentList, newPersistentList);
     emit layoutChanged();
-    _view->makeItemVisible(_view->getCurrentKrViewItem());
 
     return index(insertIndex, 0);
 }
 
-QModelIndex ListModel::removeItem(FileItem *fileitem)
+void ListModel::removeItem(FileItem *fileItem)
 {
-    QModelIndex currIndex = _view->getCurrentIndex();
-    int removeIdx = _fileItems.indexOf(fileitem);
-    if(removeIdx < 0)
-        return currIndex;
+    const int rowToRemove = _fileItems.indexOf(fileItem);
+    if (rowToRemove < 0)
+        return;
 
     emit layoutAboutToBeChanged();
-    QModelIndexList oldPersistentList = persistentIndexList();
-    QModelIndexList newPersistentList;
 
-    _fileItems.removeAt(removeIdx);
+    _fileItems.removeAt(rowToRemove);
 
-    if (currIndex.row() == removeIdx) {
-        if (_fileItems.count() == 0)
-            currIndex = QModelIndex();
-        else if (removeIdx >= _fileItems.count())
-            currIndex = index(_fileItems.count() - 1, 0);
-        else
-            currIndex = index(removeIdx, 0);
-    } else if (currIndex.row() > removeIdx) {
-        currIndex = index(currIndex.row() - 1, 0);
-    }
-
-    _fileItemNdx.remove(fileitem);
-    _nameNdx.remove(fileitem->getName());
-    _urlNdx.remove(fileitem->getUrl());
+    _fileItemNdx.remove(fileItem);
+    _nameNdx.remove(fileItem->getName());
+    _urlNdx.remove(fileItem->getUrl());
     // update indices for fileItems following fileitem
-    for (int i = removeIdx; i < _fileItems.count(); i++) {
+    for (int i = rowToRemove; i < _fileItems.count(); i++) {
         updateIndices(_fileItems[i], i);
     }
 
-    foreach(const QModelIndex &mndx, oldPersistentList) {
+    const QModelIndexList oldPersistentList = persistentIndexList();
+    QModelIndexList newPersistentList;
+    foreach (const QModelIndex &mndx, oldPersistentList) {
         int newRow = mndx.row();
-        if (newRow > removeIdx)
+        if (newRow > rowToRemove)
             newRow--;
-        if (newRow != removeIdx)
+        if (newRow != rowToRemove)
             newPersistentList << index(newRow, mndx.column());
         else
             newPersistentList << QModelIndex();
     }
     changePersistentIndexList(oldPersistentList, newPersistentList);
     emit layoutChanged();
-    _view->makeItemVisible(_view->getCurrentKrViewItem());
-
-    return currIndex;
 }
 
 QVariant ListModel::headerData(int section, Qt::Orientation orientation, int role) const

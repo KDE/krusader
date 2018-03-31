@@ -211,12 +211,11 @@ public:
     virtual KrViewItem *getCurrentKrViewItem() = 0;
     virtual KrViewItem *getKrViewItemAt(const QPoint &vp) = 0;
     virtual KrViewItem *findItemByName(const QString &name) = 0;
-    virtual KrViewItem *findItemByFileItem(FileItem *vf) = 0;
     virtual KrViewItem *findItemByUrl(const QUrl &url) = 0;
     virtual QString getCurrentItem() const = 0;
-    virtual void setCurrentItem(const QString &name,
+    virtual void setCurrentItem(const QString &name, bool scrollToCurrent = true,
                                 const QModelIndex &fallbackToIndex = QModelIndex()) = 0;
-    virtual void setCurrentKrViewItem(KrViewItem *item) = 0;
+    virtual void setCurrentKrViewItem(KrViewItem *item, bool scrollToCurrent = true) = 0;
     virtual void makeItemVisible(const KrViewItem *item) = 0;
     virtual bool isItemVisible(const KrViewItem *item) = 0;
     virtual void updateView() = 0;
@@ -232,15 +231,16 @@ public:
 
 protected:
     virtual KrViewItem *preAddItem(FileItem *fileitem) = 0;
-    virtual void preDelItem(KrViewItem *item) = 0;
+    virtual void preDeleteItem(KrViewItem *item) = 0;
     virtual void copySettingsFrom(KrView *other) = 0;
     virtual void populate(const QList<FileItem *> &fileItems, FileItem *dummy) = 0;
     virtual void intSetSelected(const FileItem *fileitem, bool select) = 0;
     virtual void clear();
 
-    void addItem(FileItem *fileitem);
+
+    void addItem(FileItem *fileItem, bool onUpdate = false);
+    void deleteItem(const QString &name, bool onUpdate = false);
     void updateItem(FileItem *newFileItem);
-    void delItem(const QString &name);
 
 public:
     //////////////////////////////////////////////////////
@@ -269,6 +269,12 @@ public:
     void applySettingsToOthers();
 
     void setFiles(DirListerInterface *files);
+
+    /**
+     * Refresh the file view items after the underlying file model changed.
+     *
+     * Tries to preserve current file and file selection if applicable.
+     */
     void refresh();
 
     bool changeSelection(const KRQuery &filter, bool select);

@@ -298,15 +298,10 @@ void ListPanelFunc::doRefresh()
 
     panel->view->setFiles(files());
 
-    if(!history->currentItem().isEmpty() && isEqualUrl) {
-        // if the url we're refreshing into is the current one, then the
-        // partial refresh will not generate the needed signals to actually allow the
-        // view to use nameToMakeCurrent. do it here instead (patch by Thomas Jarosch)
-        qDebug() << "setting current item=" << history->currentItem();
-        panel->view->setCurrentItem(history->currentItem());
-        panel->view->makeItemVisible(panel->view->getCurrentKrViewItem());
+    if (!isEqualUrl || !panel->view->getCurrentKrViewItem()) {
+        // set current item after refresh from history, if there is none yet
+        panel->view->setNameToMakeCurrent(history->currentItem());
     }
-    panel->view->setNameToMakeCurrent(history->currentItem());
 
     // workaround for detecting panel deletion while filesystem is refreshing
     QPointer<ListPanel> panelSave = panel;
