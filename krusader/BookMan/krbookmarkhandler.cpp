@@ -52,9 +52,15 @@
 #define BOOKMARKS_FILE "krusader/krbookmarks.xml"
 #define CONNECT_BM(X) { disconnect(X, SIGNAL(activated(QUrl)), 0, 0); connect(X, SIGNAL(activated(QUrl)), this, SLOT(slotActivated(QUrl))); }
 
-KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) : QObject(mainWindow->widget()),
-    _mainWindow(mainWindow), _middleClick(false), _mainBookmarkPopup(0), _specialBookmarks(),
-    _quickSearchAction(nullptr), _quickSearchBar(nullptr)
+KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) :
+    QObject(mainWindow->widget()),
+    _mainWindow(mainWindow),
+    _middleClick(false),
+    _mainBookmarkPopup(0),
+    _specialBookmarks(),
+    _quickSearchAction(nullptr),
+    _quickSearchBar(nullptr),
+    _quickSearchMenu(nullptr)
 {
     // create our own action collection and make the shortcuts apply only to parent
     _privateCollection = new KActionCollection(this);
@@ -538,16 +544,25 @@ void KrBookmarkHandler::bookmarksChanged(const QString&, const QString&)
 
 bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
 {
-    if (obj->inherits("QMenu") && (ev->type() == QEvent::Show ||
-                                   ev->type() == QEvent::Close)) {
+    auto eventType = ev->type();
+    QMenu *menu = dynamic_cast<QMenu *>(obj);
+
+    if (eventType == QEvent::Show && menu) {
         _setQuickSearchText("");
+        _quickSearchMenu = menu;
+        qDebug() << "Bookmark search: menu" << menu << "is shown";
+    }
+
+    if (eventType == QEvent::Close && menu && _quickSearchMenu == menu) {
+        qDebug() << "Bookmark search: stopped on menu" << menu;
+        _setQuickSearchText("");
+        _quickSearchMenu = nullptr;
     }
 
     // Having it occur on keypress is consistent with other shortcuts,
     // such as Ctrl+W and accelerator keys
-    if (ev->type() == QEvent::KeyPress && obj->inherits("QMenu")) {
+    if (eventType == QEvent::KeyPress && menu) {
         QKeyEvent *kev = static_cast<QKeyEvent *>(ev);
-        QMenu *menu = static_cast<QMenu *>(obj);
         QList<QAction *> acts = menu->actions();
         bool quickSearchStarted = false;
         bool searchInSpecialItems = KConfigGroup(krConfig, "Look&Feel").readEntry("Search in special items", false);
@@ -561,9 +576,8 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
             kev->text().isEmpty()              ||
             kev->key() == Qt::Key_Delete       ||
             kev->key() == Qt::Key_Return       ||
-            kev->key() == Qt::Key_Escape)
+            kev->key() == Qt::Key_Escape) {
 
-        {
             return QObject::eventFilter(obj, ev);
         }
 
@@ -582,7 +596,8 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         }
 
         if (quickSearchStarted) {
-            qDebug() << "Bookmark search: started";
+            _quickSearchMenu = menu;
+            qDebug() << "Bookmark search: started on menu" << menu;
         }
 
         // match actions
@@ -652,7 +667,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         return true;
     }
 
-    if (ev->type() == QEvent::MouseButtonRelease) {
+    if (eventType == QEvent::MouseButtonRelease) {
         switch (static_cast<QMouseEvent *>(ev)->button()) {
         case Qt::RightButton:
             _middleClick = false;
