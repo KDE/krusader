@@ -35,6 +35,7 @@
 #include <QEvent>
 #include <QStandardPaths>
 #include <QDebug>
+#include <QTimer>
 // QtGui
 #include <QMouseEvent>
 #include <QCursor>
@@ -551,6 +552,21 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         _setQuickSearchText("");
         _quickSearchMenu = menu;
         qDebug() << "Bookmark search: menu" << menu << "is shown";
+    }
+
+    if (eventType == QEvent::Close && menu && _quickSearchMenu && _quickSearchMenu != menu) {
+        qDebug() << "Bookmark search: active action =" << _quickSearchMenu->activeAction();
+
+        // fix automatic deactivation of current action due to spurious close event from submenu
+        auto quickSearchMenu = _quickSearchMenu;
+        auto activeAction = _quickSearchMenu->activeAction();
+        QTimer::singleShot(0, this, [=]() {
+            qDebug() << "Bookmark search: active action =" << quickSearchMenu->activeAction();
+            if (!quickSearchMenu->activeAction() && activeAction) {
+                quickSearchMenu->setActiveAction(activeAction);
+                qDebug() << "Bookmark search: restored active action =" << quickSearchMenu->activeAction();
+            }
+        });
     }
 
     if (eventType == QEvent::Close && menu && _quickSearchMenu == menu) {
