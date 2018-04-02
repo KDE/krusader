@@ -554,25 +554,26 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         qDebug() << "Bookmark search: menu" << menu << "is shown";
     }
 
-    if (eventType == QEvent::Close && menu && _quickSearchMenu && _quickSearchMenu != menu) {
-        qDebug() << "Bookmark search: active action =" << _quickSearchMenu->activeAction();
+    if (eventType == QEvent::Close && menu && _quickSearchMenu) {
+        if (_quickSearchMenu == menu) {
+            qDebug() << "Bookmark search: stopped on menu" << menu;
+            _setQuickSearchText("");
+            _quickSearchMenu = nullptr;
+        }
+        else {
+            qDebug() << "Bookmark search: active action =" << _quickSearchMenu->activeAction();
 
-        // fix automatic deactivation of current action due to spurious close event from submenu
-        auto quickSearchMenu = _quickSearchMenu;
-        auto activeAction = _quickSearchMenu->activeAction();
-        QTimer::singleShot(0, this, [=]() {
-            qDebug() << "Bookmark search: active action =" << quickSearchMenu->activeAction();
-            if (!quickSearchMenu->activeAction() && activeAction) {
-                quickSearchMenu->setActiveAction(activeAction);
-                qDebug() << "Bookmark search: restored active action =" << quickSearchMenu->activeAction();
-            }
-        });
-    }
-
-    if (eventType == QEvent::Close && menu && _quickSearchMenu == menu) {
-        qDebug() << "Bookmark search: stopped on menu" << menu;
-        _setQuickSearchText("");
-        _quickSearchMenu = nullptr;
+            // fix automatic deactivation of current action due to spurious close event from submenu
+            auto quickSearchMenu = _quickSearchMenu;
+            auto activeAction = _quickSearchMenu->activeAction();
+            QTimer::singleShot(0, this, [=]() {
+                qDebug() << "Bookmark search: active action =" << quickSearchMenu->activeAction();
+                if (!quickSearchMenu->activeAction() && activeAction) {
+                    quickSearchMenu->setActiveAction(activeAction);
+                    qDebug() << "Bookmark search: restored active action =" << quickSearchMenu->activeAction();
+                }
+            });
+        }
     }
 
     // Having it occur on keypress is consistent with other shortcuts,
