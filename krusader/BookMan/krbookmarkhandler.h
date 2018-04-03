@@ -83,8 +83,9 @@ private:
     QPointer<QMenu>            _mainBookmarkPopup; // main bookmark popup menu
     QList<QAction *>           _specialBookmarks; // the action list of the special bookmarks
 
-    QWidgetAction *_quickSearchAction;
-    QLineEdit *_quickSearchBar;
+    QWidgetAction *_quickSearchAction; ///< Search bar container action
+    QLineEdit *_quickSearchBar; ///< Search bar containing current query
+    QMenu *_quickSearchMenu; ///< The menu where the search is performed
     QHash<QAction *, QString> _quickSearchOriginalActionTitles; ///< Saved original action text values to restore after search
 
     void _setQuickSearchText(const QString &text);
