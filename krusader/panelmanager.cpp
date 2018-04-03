@@ -270,8 +270,7 @@ void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, KrPanel *nextTo)
         p->restoreSettings(cfg);
         krConfig->deleteGroup(grpName);
     }
-    else
-        p->start(url);
+    p->start(url);
 }
 
 void PanelManager::slotNewTab()
