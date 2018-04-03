@@ -552,6 +552,8 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         _setQuickSearchText("");
         _quickSearchMenu = menu;
         qDebug() << "Bookmark search: menu" << menu << "is shown";
+
+        return QObject::eventFilter(obj, ev);
     }
 
     if (eventType == QEvent::Close && menu && _quickSearchMenu) {
@@ -559,8 +561,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
             qDebug() << "Bookmark search: stopped on menu" << menu;
             _setQuickSearchText("");
             _quickSearchMenu = nullptr;
-        }
-        else {
+        } else {
             qDebug() << "Bookmark search: active action =" << _quickSearchMenu->activeAction();
 
             // fix automatic deactivation of current action due to spurious close event from submenu
@@ -574,6 +575,8 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
                 }
             });
         }
+
+        return QObject::eventFilter(obj, ev);
     }
 
     // Having it occur on keypress is consistent with other shortcuts,
