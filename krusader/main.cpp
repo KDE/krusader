@@ -1,32 +1,23 @@
-/***************************************************************************
-                                main.cpp
-                             -------------------
-    copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
-    e-mail               : krusader@users.sourceforge.net
-    web site             : http://krusader.sourceforge.net
- ---------------------------------------------------------------------------
-  Description
- ***************************************************************************
-
-  A
-
-     db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
-     88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
-     88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
-     88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
-     88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
-     YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
-
-                                                     S o u r c e    F i l e
-
- ***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*****************************************************************************
+ * Copyright (C) 2000 Shie Erlich <krusader@users.sourceforge.net>           *
+ * Copyright (C) 2000 Rafi Yanai <krusader@users.sourceforge.net>            *
+ * Copyright (C) 2004-2018 Krusader Krew [https://krusader.org]              *
+ *                                                                           *
+ * This file is part of Krusader [https://krusader.org].                     *
+ *                                                                           *
+ * Krusader is free software: you can redistribute it and/or modify          *
+ * it under the terms of the GNU General Public License as published by      *
+ * the Free Software Foundation, either version 2 of the License, or         *
+ * (at your option) any later version.                                       *
+ *                                                                           *
+ * Krusader is distributed in the hope that it will be useful,               *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+ * GNU General Public License for more details.                              *
+ *                                                                           *
+ * You should have received a copy of the GNU General Public License         *
+ * along with Krusader.  If not, see [http://www.gnu.org/licenses/].         *
+ *****************************************************************************/
 
 #include <csignal>
 #include <unistd.h>
@@ -153,7 +144,7 @@ int main(int argc, char *argv[])
     KAboutData aboutData(QStringLiteral("krusader"),
         (geteuid() ? i18n("Krusader") : i18n("Krusader - ROOT PRIVILEGES")), versionName,
         i18n(description), KAboutLicense::GPL_V2,
-        i18n("(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2016, Krusader Krew"),
+        i18n("© 2000-2003 Shie Erlich, Rafi Yanai\n© 2004-2018 Krusader Krew"),
         i18n("Feedback:\nhttps://forum.kde.org/viewforum.php?f=225\n\nIRC\nserver: "
              "irc.freenode.net, channel: #krusader"),
         QStringLiteral("https://krusader.org"));
@@ -161,18 +152,21 @@ int main(int argc, char *argv[])
     aboutData.setOrganizationDomain(QByteArray("kde.org"));
     aboutData.setDesktopFileName(QStringLiteral("org.kde.krusader"));
 
-    aboutData.addAuthor(i18n("Rafi Yanai"), i18n("Author (retired)"), QStringLiteral("yanai@users.sourceforge.net"));
-    aboutData.addAuthor(i18n("Shie Erlich"), i18n("Author (retired)"), QStringLiteral("erlich@users.sourceforge.net"));
-    aboutData.addAuthor(i18n("Jan Lepper"), i18n("Developer"), QStringLiteral("jan_lepper@gmx.de"), 0);
-    aboutData.addAuthor(i18n("Andrey Matveyakin"), i18n("Developer"), QStringLiteral("a.matveyakin@gmail.com"), 0);
-    aboutData.addAuthor(i18n("Simon Persson"), i18n("Developer"), QStringLiteral("simon.persson@mykolab.com"), 0);
     aboutData.addAuthor(i18n("Davide Gianforte"), i18n("Developer"), QStringLiteral("davide@gengisdave.org"), 0);
     aboutData.addAuthor(i18n("Toni Asensi Esteve"), i18n("Developer"), QStringLiteral("toni.asensi@kdemail.net"), 0);
     aboutData.addAuthor(i18n("Alexander Bikadorov"), i18n("Developer"), QStringLiteral("alex.bikadorov@kdemail.net"), 0);
-    aboutData.addAuthor(i18n("Karai Csaba"), i18n("Developer (retired)"), QStringLiteral("ckarai@users.sourceforge.net"), 0);
+    aboutData.addAuthor(i18n("Martin Kostolný"), i18n("Developer"), QStringLiteral("clearmartin@gmail.com"), 0);
+    aboutData.addAuthor(i18n("Nikita Melnichenko"), i18n("Developer"), QStringLiteral("nikita+kde@melnichenko.name"), 0);
+    aboutData.addAuthor(i18n("Yuri Chornoivan"), i18n("Documentation"), QStringLiteral("yurchor@ukr.net"), 0);
+    aboutData.addAuthor(i18n("Rafi Yanai"), i18n("Author (retired)"), QStringLiteral("yanai@users.sourceforge.net"));
+    aboutData.addAuthor(i18n("Shie Erlich"), i18n("Author (retired)"), QStringLiteral("erlich@users.sourceforge.net"));
+    aboutData.addAuthor(i18n("Csaba Karai"), i18n("Developer (retired)"), QStringLiteral("ckarai@users.sourceforge.net"), 0);
     aboutData.addAuthor(i18n("Heiner Eichmann"), i18n("Developer (retired)"), QStringLiteral("h.eichmann@gmx.de"), 0);
     aboutData.addAuthor(i18n("Jonas Bähr"), i18n("Developer (retired)"), QStringLiteral("jonas.baehr@web.de"), 0);
     aboutData.addAuthor(i18n("Václav Jůza"), i18n("Developer (retired)"), QStringLiteral("vaclavjuza@gmail.com"), 0);
+    aboutData.addAuthor(i18n("Jan Lepper"), i18n("Developer (retired)"), QStringLiteral("jan_lepper@gmx.de"), 0);
+    aboutData.addAuthor(i18n("Andrey Matveyakin"), i18n("Developer (retired)"), QStringLiteral("a.matveyakin@gmail.com"), 0);
+    aboutData.addAuthor(i18n("Simon Persson"), i18n("Developer (retired)"), QStringLiteral("simon.persson@mykolab.com"), 0);
     aboutData.addAuthor(i18n("Dirk Eschler"), i18n("Webmaster (retired)"), QStringLiteral("deschler@users.sourceforge.net"), 0);
     aboutData.addAuthor(i18n("Frank Schoolmeesters"), i18n("Documentation and marketing coordinator (retired)"), QStringLiteral("frank_schoolmeesters@yahoo.com"), 0);
     aboutData.addAuthor(i18n("Richard Holt"), i18n("Documentation & Proofing (retired)"), QStringLiteral("richard.holt@gmail.com"), 0);
