@@ -592,12 +592,12 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
             return true;
         }
 
-        if (kev->modifiers() != Qt::NoModifier ||
-            kev->text().isEmpty()              ||
-            kev->key() == Qt::Key_Delete       ||
-            kev->key() == Qt::Key_Return       ||
+        if ((kev->modifiers() != Qt::ShiftModifier &&
+             kev->modifiers() != Qt::NoModifier) ||
+            kev->text().isEmpty()                ||
+            kev->key() == Qt::Key_Delete         ||
+            kev->key() == Qt::Key_Return         ||
             kev->key() == Qt::Key_Escape) {
-
             return QObject::eventFilter(obj, ev);
         }
 
@@ -623,6 +623,8 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         // match actions
         QAction *matchedAction = nullptr;
         int nMatches = 0;
+        const Qt::CaseSensitivity matchCase =
+            _quickSearchText() == _quickSearchText().toLower() ? Qt::CaseInsensitive : Qt::CaseSensitive;
         for (auto act : acts) {
             if (act->isSeparator() || act->text() == "") {
                 continue;
@@ -647,7 +649,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
             }
 
             // match prefix of the action text to the query
-            if (act->text().left(_quickSearchText().length()).compare(_quickSearchText(), Qt::CaseInsensitive) == 0) {
+            if (act->text().left(_quickSearchText().length()).compare(_quickSearchText(), matchCase) == 0) {
                 _highlightAction(act);
                 if (!matchedAction || matchedAction->menu()) {
                     // Can't highlight menus (see comment below), hopefully pick something we can
