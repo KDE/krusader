@@ -101,6 +101,12 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     KLocalizedString::setApplicationDomain("krusader");
 
+    // init icon theme
+    qDebug() << "System icon theme: " << QIcon::themeName();
+    // [WORKAROUND] setThemeName sets user theme in QIconLoader and allows to avoid Qt issues with invalid icon caching later
+    // IMPORTANT: this must be done before the first QIcon::fromTheme call
+    QIcon::setThemeName(QIcon::themeName());
+
     // ABOUT data information
 #ifdef RELEASE_NAME
     QString versionName = QString("%1 \"%2\"").arg(VERSION).arg(RELEASE_NAME);
@@ -292,8 +298,6 @@ int main(int argc, char *argv[])
     if (!dbus.registerObject("/Instances/" + appName + "/right_manager", RIGHT_MNG, QDBusConnection::ExportScriptableSlots)) {
         fprintf(stderr, "DBus Error: %s, %s\n", dbus.lastError().name().toLocal8Bit().constData(), dbus.lastError().message().toLocal8Bit().constData());
     }
-
-    qDebug() << "Qt icon theme: " << QIcon::themeName();
 
     // catching SIGTERM, SIGHUP, SIGQUIT
     signal(SIGTERM, sigterm_handler);
