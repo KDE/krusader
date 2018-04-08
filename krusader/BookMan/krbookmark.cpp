@@ -21,6 +21,7 @@
 
 #include "krbookmark.h"
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../Archive/krarchandler.h"
 #include "../FileSystem/krtrashhandler.h"
 #include "../Panel/listpanelactions.h"
@@ -45,23 +46,23 @@ KrBookmark::KrBookmark(QString name, QUrl url, KActionCollection *parent, QStrin
 
     // do we have an icon?
     if (!icon.isEmpty())
-        setIcon(QIcon::fromTheme(icon));
+        setIcon(Icon(icon));
     else {
         // what kind of a url is it?
         if (_url.isLocalFile()) {
-            setIcon(QIcon::fromTheme("folder"));
+            setIcon(Icon("folder"));
         } else { // is it an archive?
             if (KRarcHandler::isArchive(_url))
-                setIcon(QIcon::fromTheme("application-x-tar"));
-            else setIcon(QIcon::fromTheme("folder-html"));
+                setIcon(Icon("application-x-tar"));
+            else setIcon(Icon("folder-html"));
         }
     }
 }
 
 KrBookmark::KrBookmark(QString name, QString icon) :
-        QAction(QIcon::fromTheme(icon), name, 0), _icon(icon), _folder(true), _separator(false), _autoDelete(false)
+        QAction(Icon(icon), name, 0), _icon(icon), _folder(true), _separator(false), _autoDelete(false)
 {
-    setIcon(QIcon::fromTheme(icon == "" ? "folder" : icon));
+    setIcon(Icon(icon == "" ? "folder" : icon));
 }
 
 KrBookmark::~KrBookmark()

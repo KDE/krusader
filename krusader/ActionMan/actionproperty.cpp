@@ -25,6 +25,7 @@
 #include "../UserAction/kraction.h"
 #include "../krusader.h"
 #include "../krglobal.h"
+#include "../icon.h"
 
 // QtWidgets
 #include <QFileDialog>
@@ -292,7 +293,7 @@ void ActionProperty::updateAction(KrAction *action)
 
     _action->setConfirmExecution(chkConfirmExecution->isChecked());
 
-    _action->setIcon(QIcon::fromTheme(ButtonIcon->icon()));
+    _action->setIcon(Icon(ButtonIcon->icon()));
     _action->setIconName(ButtonIcon->icon());
 
     _action->setUser(leDifferentUser->text());

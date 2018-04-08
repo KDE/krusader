@@ -22,6 +22,7 @@
 
 #include "kmountmangui.h"
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../kicons.h"
 #include "../defaults.h"
@@ -83,7 +84,7 @@ KMountManGUI::KMountManGUI(KMountMan *mntMan) : QDialog(mntMan->parentWindow),
     mainLayout->addWidget(buttonBox);
 
     ejectButton = new QPushButton(i18n("&Eject"));
-    ejectButton->setIcon(QIcon::fromTheme(QStringLiteral("media-eject")));
+    ejectButton->setIcon(Icon(QStringLiteral("media-eject")));
     ejectButton->setEnabled(false);
     buttonBox->addButton(ejectButton, QDialogButtonBox::ActionRole);
 

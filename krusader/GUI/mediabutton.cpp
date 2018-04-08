@@ -21,6 +21,7 @@
 #include "mediabutton.h"
 
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../MountMan/kmountman.h"
 
 // QtCore
@@ -51,7 +52,7 @@ MediaButton::MediaButton(QWidget *parent) : QToolButton(parent),
         popupMenu(0), rightMenu(0), openInNewTab(false)
 {
     setAutoRaise(true);
-    setIcon(QIcon::fromTheme("system-file-manager"));
+    setIcon(Icon("system-file-manager"));
     setText(i18n("Open the available media list"));
     setToolTip(i18n("Open the available media list"));
     setPopupMode(QToolButton::InstantPopup);

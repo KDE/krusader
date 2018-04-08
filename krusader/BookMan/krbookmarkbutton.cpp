@@ -22,6 +22,7 @@
 #include "krbookmarkbutton.h"
 #include "krbookmarkhandler.h"
 #include "../krglobal.h"
+#include "../icon.h"
 
 // QtGui
 #include <QPixmap>
@@ -35,13 +36,13 @@
 KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent)
 {
     setAutoRaise(true);
-    setIcon(QIcon::fromTheme("bookmarks"));
+    setIcon(Icon("bookmarks"));
     setText(i18n("BookMan II"));
     setToolTip(i18n("BookMan II"));
     setPopupMode(QToolButton::InstantPopup);
     setAcceptDrops(false);
 
-    acmBookmarks = new KActionMenu(QIcon::fromTheme("bookmarks"), i18n("Bookmarks"), this);
+    acmBookmarks = new KActionMenu(Icon("bookmarks"), i18n("Bookmarks"), this);
     acmBookmarks->setDelayed(false);
 
     setMenu(acmBookmarks->menu());

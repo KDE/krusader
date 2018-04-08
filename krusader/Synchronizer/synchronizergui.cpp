@@ -20,6 +20,7 @@
 
 #include "synchronizergui.h"
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../defaults.h"
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
@@ -469,7 +470,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     buttons->addWidget(profileManager);
 
     btnSwapSides = new QPushButton(this);
-    btnSwapSides->setIcon(QIcon::fromTheme("document-swap"));
+    btnSwapSides->setIcon(Icon("document-swap"));
     btnSwapSides->setShortcut(Qt::CTRL + Qt::Key_S);
     btnSwapSides->setWhatsThis(i18n("Swap sides (Ctrl+S)."));
     buttons->addWidget(btnSwapSides);
@@ -482,7 +483,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
 
     btnCompareDirs = new QPushButton(this);
     btnCompareDirs->setText(i18n("Compare"));
-    btnCompareDirs->setIcon(QIcon::fromTheme("kr_comparedirs"));
+    btnCompareDirs->setIcon(Icon("kr_comparedirs"));
     btnCompareDirs->setDefault(true);
     buttons->addWidget(btnCompareDirs);
 
@@ -498,26 +499,26 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
 
     btnStopComparing = new QPushButton(this);
     btnStopComparing->setText(i18n("Stop"));
-    btnStopComparing->setIcon(QIcon::fromTheme("process-stop"));
+    btnStopComparing->setIcon(Icon("process-stop"));
     btnStopComparing->setEnabled(false);
     buttons->addWidget(btnStopComparing);
 
     btnFeedToListBox = new QPushButton(this);
     btnFeedToListBox->setText(i18n("Feed to listbox"));
-    btnFeedToListBox->setIcon(QIcon::fromTheme("list-add"));
+    btnFeedToListBox->setIcon(Icon("list-add"));
     btnFeedToListBox->setEnabled(false);
     btnFeedToListBox->hide();
     buttons->addWidget(btnFeedToListBox);
 
     btnSynchronize = new QPushButton(this);
     btnSynchronize->setText(i18n("Synchronize"));
-    btnSynchronize->setIcon(QIcon::fromTheme("folder-sync"));
+    btnSynchronize->setIcon(Icon("folder-sync"));
     btnSynchronize->setEnabled(false);
     buttons->addWidget(btnSynchronize);
 
     QPushButton *btnCloseSync = new QPushButton(this);
     btnCloseSync->setText(i18n("Close"));
-    btnCloseSync->setIcon(QIcon::fromTheme("dialog-close"));
+    btnCloseSync->setIcon(Icon("dialog-close"));
     buttons->addWidget(btnCloseSync);
 
     synchGrid->addLayout(buttons, 1, 0);
@@ -1119,7 +1120,7 @@ void SynchronizerGUI::addFile(SynchronizerFileItem *item)
     }
 
     if (listItem) {
-        listItem->setIcon(0, QIcon::fromTheme(isDir ? "folder" : "document-new"));
+        listItem->setIcon(0, Icon(isDir ? "folder" : "document-new"));
         if (!item->isMarked())
             listItem->setHidden(true);
         else
@@ -1566,7 +1567,7 @@ QPushButton *SynchronizerGUI::createButton(QWidget *parent, const QString &iconN
     QPushButton *button = new QPushButton(parent);
     if (!text.isEmpty() && (textAndIcon || !QIcon::hasThemeIcon(iconName)))
         button->setText(text);
-    button->setIcon(QIcon::fromTheme(iconName));
+    button->setIcon(Icon(iconName));
     button->setCheckable(true);
     button->setChecked(checked);
     button->setShortcut(shortCut);

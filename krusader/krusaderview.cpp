@@ -39,6 +39,7 @@
 #include <KWidgetsAddons/KToggleAction>
 
 #include "krusader.h"
+#include "icon.h"
 #include "kractions.h"
 #include "krslots.h"
 #include "defaults.h"
@@ -457,11 +458,11 @@ void KrusaderView::toggleVerticalMode()
     if (horiz_splitter->orientation() == Qt::Vertical) {
         horiz_splitter->setOrientation(Qt::Horizontal);
         KrActions::actVerticalMode->setText(i18n("Vertical Mode"));
-        KrActions::actVerticalMode->setIcon(QIcon::fromTheme("view-split-top-bottom"));
+        KrActions::actVerticalMode->setIcon(Icon("view-split-top-bottom"));
     } else {
         horiz_splitter->setOrientation(Qt::Vertical);
         KrActions::actVerticalMode->setText(i18n("Horizontal Mode"));
-        KrActions::actVerticalMode->setIcon(QIcon::fromTheme("view-split-left-right"));
+        KrActions::actVerticalMode->setIcon(Icon("view-split-left-right"));
     }
 }
 
@@ -510,7 +511,7 @@ void KrusaderView::draggingTab(PanelManager *from, QMouseEvent *e)
     else
         icon = (from == leftMng) ? "arrow-down" : "arrow-up";
 
-    QCursor cursor(QIcon::fromTheme(icon).pixmap(22));
+    QCursor cursor(Icon(icon).pixmap(22));
 
     if (cursorIsOnOtherSide(from, e->globalPos())) {
         if(!qApp->overrideCursor())

@@ -36,6 +36,7 @@
 
 #include "krjob.h"
 #include "../krglobal.h"
+#include "../icon.h"
 
 const int MAX_OLD_MENU_ACTIONS = 10;
 
@@ -61,7 +62,7 @@ public:
         layout->addWidget(m_pauseResumeButton, 1, 1);
 
         m_cancelButton = new QPushButton();
-        m_cancelButton->setIcon(QIcon::fromTheme("remove"));
+        m_cancelButton->setIcon(Icon("remove"));
         m_cancelButton->setToolTip(i18n("Cancel Job"));
         connect(m_cancelButton, &QPushButton::clicked,
                 this, &JobMenuAction::slotCancelButtonClicked);
@@ -102,7 +103,7 @@ protected slots:
 
     void updatePauseResumeButton()
     {
-        m_pauseResumeButton->setIcon(QIcon::fromTheme(
+        m_pauseResumeButton->setIcon(Icon(
             m_krJob->isRunning() ? "media-playback-pause" :
             m_krJob->isPaused() ? "media-playback-start" : "chronometer-start"));
         m_pauseResumeButton->setToolTip(m_krJob->isRunning() ? i18n("Pause Job") :
@@ -123,7 +124,7 @@ protected slots:
     {
         qDebug() << "job description=" << m_krJob->description();
         m_pauseResumeButton->setEnabled(false);
-        m_cancelButton->setIcon(QIcon::fromTheme("edit-clear"));
+        m_cancelButton->setIcon(Icon("edit-clear"));
         m_cancelButton->setToolTip(i18n("Clear"));
 
         m_krJob = nullptr;
@@ -181,7 +182,7 @@ const QString JobMan::sDefaultToolTip = i18n("No jobs");
 JobMan::JobMan(QObject *parent) : QObject(parent), m_messageBox(0)
 {
     // job control action
-    m_controlAction = new KToolBarPopupAction(QIcon::fromTheme("media-playback-pause"),
+    m_controlAction = new KToolBarPopupAction(Icon("media-playback-pause"),
                                           i18n("Play/Pause &Job"), this);
     m_controlAction->setEnabled(false);
     connect(m_controlAction, &QAction::triggered, this, &JobMan::slotControlActionTriggered);
@@ -207,7 +208,7 @@ JobMan::JobMan(QObject *parent) : QObject(parent), m_messageBox(0)
     // job queue mode action
     KConfigGroup cfg(krConfig, "JobManager");
     m_queueMode = cfg.readEntry("Queue Mode", false);
-    m_modeAction = new QAction(QIcon::fromTheme("media-playlist-repeat"), i18n("Job Queue Mode"),
+    m_modeAction = new QAction(Icon("media-playlist-repeat"), i18n("Job Queue Mode"),
                               krMainWindow);
     m_modeAction->setToolTip(i18n("Run only one job in parallel"));
     m_modeAction->setCheckable(true);
@@ -221,7 +222,7 @@ JobMan::JobMan(QObject *parent) : QObject(parent), m_messageBox(0)
     KIO::FileUndoManager *undoManager = KIO::FileUndoManager::self();
     undoManager->uiInterface()->setParentWidget(krMainWindow);
 
-    m_undoAction = new QAction(QIcon::fromTheme("edit-undo"), i18n("Undo Last Job"), krMainWindow);
+    m_undoAction = new QAction(Icon("edit-undo"), i18n("Undo Last Job"), krMainWindow);
     m_undoAction->setEnabled(false);
     connect(m_undoAction, &QAction::triggered, undoManager, &KIO::FileUndoManager::undo);
     connect(undoManager, static_cast<void(KIO::FileUndoManager::*)(bool)>(&KIO::FileUndoManager::undoAvailable),
@@ -241,7 +242,7 @@ bool JobMan::waitForJobs(bool waitForUserInput)
 
     m_messageBox = new QMessageBox(krMainWindow);
     m_messageBox->setWindowTitle(i18n("Warning"));
-    m_messageBox->setIconPixmap(QIcon::fromTheme("dialog-warning")
+    m_messageBox->setIconPixmap(Icon("dialog-warning")
                              .pixmap(QMessageBox::standardIcon(QMessageBox::Information).size()));
     m_messageBox->setText(i18n("Are you sure you want to quit?"));
     m_messageBox->addButton(QMessageBox::Abort);
@@ -441,7 +442,7 @@ void JobMan::updateUI()
         m_progressBar->setToolTip(i18np("%1 Job", "%1 Jobs", m_jobs.length()));
 
     const bool running = jobsAreRunning();
-    m_controlAction->setIcon(QIcon::fromTheme(
+    m_controlAction->setIcon(Icon(
         !hasJobs ? "edit-clear" : running ? "media-playback-pause" : "media-playback-start"));
     m_controlAction->setToolTip(!hasJobs ? i18n("Clear Job List") : running ?
                                           i18n("Pause All Jobs") :

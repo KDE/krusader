@@ -71,6 +71,7 @@
 #include "PanelView/krviewitem.h"
 
 #include "../defaults.h"
+#include "../icon.h"
 #include "../kicons.h"
 #include "../krservices.h"
 #include "../krslots.h"
@@ -290,7 +291,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 
     // create the button for sync-browsing
     syncBrowseButton = new QToolButton(toolbar);
-    syncBrowseButton->setIcon(QIcon::fromTheme("kr_syncbrowse_off"));
+    syncBrowseButton->setIcon(Icon("kr_syncbrowse_off"));
     syncBrowseButton->setCheckable(true);
 
     const QString syncBrowseText = i18n("This button toggles the sync-browse mode.\n"
@@ -300,7 +301,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     syncBrowseButton->setToolTip(syncBrowseText);
     connect(syncBrowseButton, &QToolButton::toggled, [=](bool checked) {
         syncBrowseButton->setIcon(
-            QIcon::fromTheme(checked ? "kr_syncbrowse_on" : "kr_syncbrowse_off"));
+            Icon(checked ? "kr_syncbrowse_on" : "kr_syncbrowse_off"));
     });
     syncBrowseButton->setAutoRaise(true);
     toolbarLayout->addWidget(syncBrowseButton);

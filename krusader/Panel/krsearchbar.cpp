@@ -25,6 +25,7 @@
 #include "../FileSystem/dirlisterinterface.h"
 #include "../defaults.h"
 #include "../krglobal.h"
+#include "../icon.h"
 
 #include <QDebug>
 #include <QGuiApplication>
@@ -45,7 +46,7 @@ KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
     // close button
     QToolButton *closeButton = new QToolButton(this);
     closeButton->setAutoRaise(true);
-    closeButton->setIcon(QIcon::fromTheme(QStringLiteral("dialog-close")));
+    closeButton->setIcon(Icon(QStringLiteral("dialog-close")));
     closeButton->setToolTip(i18n("Close the search bar"));
     connect(closeButton, SIGNAL(clicked()), SLOT(hideBar()));
 

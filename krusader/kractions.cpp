@@ -34,6 +34,7 @@
 
 #include "defaults.h"
 #include "krusader.h"
+#include "icon.h"
 #include "krusaderview.h"
 #include "krslots.h"
 #include "krtrashhandler.h"
@@ -118,7 +119,7 @@ QAction *createAction(QString text, QString icon, QKeySequence shortcut,
     if (icon.isEmpty())
         a = new QAction(text, krusaderApp);
     else
-        a = new QAction(QIcon::fromTheme(icon), text, krusaderApp);
+        a = new QAction(Icon(icon), text, krusaderApp);
     krusaderApp->connect(a, SIGNAL(triggered(bool)), recv, slot);
     krusaderApp->actionCollection()->addAction(name, a);
     krusaderApp->actionCollection()->setDefaultShortcut(a, shortcut);
@@ -132,7 +133,7 @@ QAction *createAction(QString text, QString icon, QList<QKeySequence> shortcuts,
     if (icon.isEmpty())
         a = new QAction(text, krusaderApp);
     else
-        a = new QAction(QIcon::fromTheme(icon), text, krusaderApp);
+        a = new QAction(Icon(icon), text, krusaderApp);
     krusaderApp->connect(a, SIGNAL(triggered(bool)), recv, slot);
     krusaderApp->actionCollection()->addAction(name, a);
     krusaderApp->actionCollection()->setDefaultShortcuts(a, shortcuts);
@@ -147,7 +148,7 @@ KToggleAction *createToggleAction(QString text, QString icon, QKeySequence short
     if (icon == 0)
         a = new KToggleAction(text, krusaderApp);
     else
-        a = new KToggleAction(QIcon::fromTheme(icon), text, krusaderApp);
+        a = new KToggleAction(Icon(icon), text, krusaderApp);
     krusaderApp->connect(a, SIGNAL(triggered(bool)), recv, slot);
     krusaderApp->actionCollection()->addAction(name, a);
     krusaderApp->actionCollection()->setDefaultShortcut(a, shortcut);

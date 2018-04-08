@@ -30,12 +30,13 @@
 #include <KI18n/KLocalizedString>
 
 #include "../krglobal.h"
+#include "../icon.h"
 
 ProfileManager::ProfileManager(QString profileType, QWidget * parent)
         : QPushButton(parent)
 {
     setText("");
-    setIcon(QIcon::fromTheme("user-identity"));
+    setIcon(Icon("user-identity"));
     setFixedWidth(16 + 15);
     setToolTip(i18n("Profiles"));
 

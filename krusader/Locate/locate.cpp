@@ -21,6 +21,7 @@
 #include "locate.h"
 #include "../kractions.h"
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../krslots.h"
 #include "../krusaderview.h"
 #include "../Panel/krpanel.h"
@@ -209,12 +210,12 @@ LocateDlg::LocateDlg() : QDialog(0), isFeedToListBox(false)
     mainLayout->addWidget(buttonBox);
 
     locateButton = new QPushButton(i18n("Locate"));
-    locateButton->setIcon(QIcon::fromTheme(QStringLiteral("system-search")));
+    locateButton->setIcon(Icon(QStringLiteral("system-search")));
     locateButton->setDefault(true);
     buttonBox->addButton(locateButton, QDialogButtonBox::ActionRole);
 
     updateDbButton = new QPushButton(i18n("Update DB"));
-    updateDbButton->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
+    updateDbButton->setIcon(Icon(QStringLiteral("view-refresh")));
     buttonBox->addButton(updateDbButton, QDialogButtonBox::ActionRole);
 
     feedStopButton = new QPushButton;
@@ -676,16 +677,16 @@ void LocateDlg::updateButtons(bool locateIsRunning)
     if (locateIsRunning) {
         feedStopButton->setEnabled(true);
         feedStopButton->setText(i18n("Stop"));
-        feedStopButton->setIcon(QIcon::fromTheme(QStringLiteral("process-stop")));
+        feedStopButton->setIcon(Icon(QStringLiteral("process-stop")));
     } else {
         if (resultList->topLevelItemCount() == 0) {
             feedStopButton->setEnabled(false);
             feedStopButton->setText(i18n("Stop"));
-            feedStopButton->setIcon(QIcon::fromTheme(QStringLiteral("process-stop")));
+            feedStopButton->setIcon(Icon(QStringLiteral("process-stop")));
         } else {
             feedStopButton->setEnabled(true);
             feedStopButton->setText(i18n("Feed to listbox"));
-            feedStopButton->setIcon(QIcon::fromTheme(QStringLiteral("list-add")));
+            feedStopButton->setIcon(Icon(QStringLiteral("list-add")));
         }
     }
 }
