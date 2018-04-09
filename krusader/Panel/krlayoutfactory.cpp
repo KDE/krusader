@@ -69,18 +69,10 @@ bool KrLayoutFactory::parseFiles()
     if (_parsed)
         return true;
 
-    QString mainFilePath = QStandardPaths::locate(QStandardPaths::DataLocation, MAIN_FILE);
-
-    if (!mainFilePath.isEmpty())
-        _parsed = parseFile(mainFilePath, _mainDoc);
-    else
-        qWarning() << "can't locate" << MAIN_FILE;
-
-    if (!_parsed)
-        _parsed = parseRessource(MAIN_FILE_RC_PATH, _mainDoc);
-
-    if (!_parsed)
+    _parsed = parseResource(MAIN_FILE_RC_PATH, _mainDoc);
+    if (!_parsed) {
         return false;
+    }
 
     QStringList extraFilePaths = QStandardPaths::locateAll(QStandardPaths::DataLocation, EXTRA_FILE_MASK);
 
@@ -108,7 +100,7 @@ bool KrLayoutFactory::parseFile(QString path, QDomDocument &doc)
     return success;
 }
 
-bool KrLayoutFactory::parseRessource(QString path, QDomDocument &doc)
+bool KrLayoutFactory::parseResource(QString path, QDomDocument &doc)
 {
     QResource res(path);
     if (res.isValid()) {
