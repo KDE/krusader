@@ -50,8 +50,7 @@ private:
     QIcon _fallbackIcon;
 };
 
-// TODO: use some neutral icon from resource file as a fallback
-Icon::Icon(QString name) : QIcon(new IconEngine(name, QIcon::fromTheme("emblem-unreadable")))
+Icon::Icon(QString name) : QIcon(new IconEngine(name, QIcon(":/icons/icon-missing.svgz")))
 {
 }
 
@@ -80,12 +79,7 @@ QPixmap IconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State sta
 
     if (pixmap.isNull()) {
         qDebug() << "Unable to find icon" << _iconName << "of size" << size << "in any supported theme";
-
         pixmap = _fallbackIcon.pixmap(size, mode, state);
-
-        if (pixmap.isNull()) {
-            qWarning() << "Fallback icon" << _fallbackIcon << "is unavailable";
-        }
     }
 
     return pixmap;
