@@ -12,7 +12,7 @@
  <action name="sample_edit_as_root" >
   <title>Edit as root</title>
   <tooltip>Edit a file as root</tooltip>
-  <icon>kate</icon>
+  <icon>document-edit</icon>
   <category>Samples</category>
   <description>Edit a file with root permissions</description>
   <command>EDITOR='kate -b' SUDO_ASKPASS=/usr/bin/ssh-askpass sudoedit -A %aCurrent%</command>
@@ -21,7 +21,7 @@
  <action name="sample_newmount" >
   <title>Mount</title>
   <tooltip>Mount a new filesystem</tooltip>
-  <icon>hdd_mount</icon>
+  <icon>media-mount</icon>
   <category>Samples</category>
   <command executionmode="collect_output" run_as="root" >mount -t %_Ask(&quot;Filesystem Type?&quot;)% %_Ask(&quot;Device ?&quot;)% %_Ask(&quot;Mount Point ?&quot;)%</command>
   <defaultshortcut>Alt+Ctrl+M</defaultshortcut>
@@ -45,7 +45,7 @@
  <action name="sort_by_name" >
   <title>Sort by Name</title>
   <tooltip>Sort by Name</tooltip>
-  <icon>view_text</icon>
+  <icon>sort-name</icon>
   <category>User Interface</category>
   <description>Sorts the active panel by Name</description>
   <command>%aColSort(&quot;Name&quot;)%</command>
@@ -54,7 +54,7 @@
  <action name="sort_by_extension" >
   <title>Sort by Extension</title>
   <tooltip>Sort by Extension</tooltip>
-  <icon>view_text</icon>
+  <icon>sort-name</icon>
   <category>User Interface</category>
   <description>Sorts the active panel by Extension</description>
   <command>%aColSort(&quot;Ext&quot;)%</command>
@@ -63,7 +63,7 @@
  <action name="sort_by_size" >
   <title>Sort by Size</title>
   <tooltip>Sort by Size</tooltip>
-  <icon>view_text</icon>
+  <icon>sort-name</icon>
   <category>User Interface</category>
   <description>Sorts the active panel by Size</description>
   <command>%aColSort(&quot;Size&quot;)%</command>
@@ -72,7 +72,7 @@
  <action name="sort_by_modified" >
   <title>Sort by Modified</title>
   <tooltip>Sort by Modified</tooltip>
-  <icon>view_text</icon>
+  <icon>sort-name</icon>
   <category>User Interface</category>
   <description>Sorts the active panel by Modified</description>
   <command>%aColSort(&quot;Modified&quot;)%</command>
