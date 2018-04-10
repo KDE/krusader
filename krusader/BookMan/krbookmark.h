@@ -28,8 +28,9 @@
 // QtWidgets
 #include <QAction>
 
-
 class KActionCollection;
+class ListPanelActions;
+
 
 class KrBookmark: public QAction
 {
@@ -59,12 +60,14 @@ public:
         return _children;
     }
 
-    static KrBookmark* getExistingBookmark(QString actionName, KActionCollection *collection);
+    static KrBookmark * getExistingBookmark(QString actionName, KActionCollection *collection);
+
     // ----- special bookmarks
-    static KrBookmark* trash(KActionCollection *collection);
-    static KrBookmark* virt(KActionCollection *collection);
-    static KrBookmark* lan(KActionCollection *collection);
-    static KrBookmark* separator();
+    static KrBookmark * trash(KActionCollection *collection);
+    static KrBookmark * virt(KActionCollection *collection);
+    static KrBookmark * lan(KActionCollection *collection);
+    static QAction * jumpBackAction(KActionCollection *collection, bool isSetter = false, ListPanelActions *sourceActions = 0);
+    static KrBookmark * separator();
 
 signals:
     void activated(const QUrl &url);

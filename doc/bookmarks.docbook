@@ -46,17 +46,6 @@
     quickly connect to the remote machine, but you cannot bookmark
     inside an archive.</para>
   </note>
-  <!-- OLD
-<screenshot>
-  <screeninfo>Bookmark menu</screeninfo>
-  <mediaobject>
-  <imageobject><imagedata fileref="bookmanadd.png" format="PNG"/></imageobject>
-  <imageobject><imagedata fileref="bookmanadd.png" format="EPS"/></imageobject>
-  <textobject><phrase>BookMan: the Bookmark menu</phrase></textobject>
-  <caption><para>Bookmark menu</para></caption>
-  </mediaobject>
-</screenshot>
--->
   <figure id="screenshot-bookmanadd" float="1">
     <title>Bookmark menu</title>
     <mediaobject>
@@ -71,7 +60,8 @@
   <sect2 id="using_bookmarks">
     <title>Using Bookmarks</title>
     <para>Usually, you click on the 
-    <guibutton>BookMan II</guibutton> button when you are in the target
+    <guibutton>BookMan II</guibutton> button (the rightmost button to the right of
+    the address bar at the top of the active panel) when you are in the target
     folder. For example, to bookmark 
     <filename class="directory">/usr/tmp</filename>, navigate
     &krusader; there and click the 
@@ -128,6 +118,12 @@
         bookmark is executed.</para>
       </listitem>
     </orderedlist></para>
+    <note>
+      <para>
+        The search bar will always be visible in the bookmarks menu if you check the
+        corresponding item on the <link linkend="konfig-panel-general">Panel Konfigurator's page</link>.
+      </para>
+    </note>
   </sect2>
   <sect2 id="password_handling">
     <title>Password handling</title>
@@ -152,7 +148,6 @@
     </indexterm>
     <para>The submenu 
     <guilabel>Popular URLs</guilabel>
-    <!-- Openjade does not like an acronym element for "URL" here -->
     holds persistent the most popular visited &URL;s
     (local or remote). This submenu displays the top 15 popular
     URLs, sorted by ranking, so that the top &URL; is
@@ -166,7 +161,6 @@
       <listitem>
         <para>Open the 
         <guilabel>Popular URLs</guilabel>
-        <!-- Openjade does not like an acronym element for "URL" here -->
         or use 
         <keycombo action="simul">&Ctrl;
         <keycap>Z</keycap></keycombo></para>
@@ -253,15 +247,10 @@
             The default system bookmarks are stored in the <filename>kfileplaces/bookmarks.xml</filename> file in the directory which can be determined using the <userinput>qtpaths --paths GenericDataLocation</userinput> command.
         </para>
     </note>
-    <para>You can import bookmarks from 
-    <application>IE</application>, 
-    <application>Opera</application>, 
-    <application>Galeon</application>, &kde;, 
-    <application>Mozilla</application>, &Netscape;.
+    <para>
     <application>KeditBookmarks</application> is easy to use, however, if you
     need more information, please read the
-    <application>KeditBookmarks</application> or the &konqueror;
-    handbook.</para>
+    <ulink url="help:/keditbookmarks/index.html">KeditBookmarks handbook</ulink>.</para>
     <figure id="screenshot-bookmanedit" float="1">
       <title><application>KeditBookmarks</application> Bookmark Manager</title>
       <mediaobject>

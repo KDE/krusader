@@ -32,6 +32,8 @@
 #include <QDomEntity>
 // QtWidgets
 #include <QMenu>
+#include <QWidgetAction>
+#include <QLineEdit>
 
 #include "krbookmark.h"
 
@@ -60,10 +62,9 @@ protected:
     void exportToFileFolder(QDomDocument &doc, QDomElement &parent, KrBookmark *folder);
     void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);
     void clearBookmarks(KrBookmark *root);
-    void buildMenu(KrBookmark *parent, QMenu *menu);
+    void buildMenu(KrBookmark *parent, QMenu *menu, int depth = 0);
 
     bool eventFilter(QObject *obj, QEvent *ev);
-
     void rightClicked(QMenu *menu, KrBookmark *bm);
     void rightClickOnSpecialBookmark();
 
@@ -83,6 +84,16 @@ private:
 
     QPointer<QMenu>            _mainBookmarkPopup; // main bookmark popup menu
     QList<QAction *>           _specialBookmarks; // the action list of the special bookmarks
+
+    QWidgetAction *_quickSearchAction; ///< Search bar container action
+    QLineEdit *_quickSearchBar; ///< Search bar containing current query
+    QMenu *_quickSearchMenu; ///< The menu where the search is performed
+    QHash<QAction *, QString> _quickSearchOriginalActionTitles; ///< Saved original action text values to restore after search
+
+    void _setQuickSearchText(const QString &text);
+    QString _quickSearchText() const;
+    static void _highlightAction(QAction *action, bool isMatched = true);
+    void _resetActionTextAndHighlighting();
 };
 
 Q_DECLARE_METATYPE(KrBookmark *)

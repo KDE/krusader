@@ -145,13 +145,14 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     KrGlobal::mountMan = new KMountMan(this);
     connect(KrGlobal::mountMan, SIGNAL(refreshPanel(QUrl)), SLOTS, SLOT(refresh(QUrl)));
 
+    // create popular URLs container
+    _popularUrls = new PopularUrls(this);
+
     // create bookman
     krBookMan = new KrBookmarkHandler(this);
 
     // create job manager
     krJobMan = new JobMan(this);
-
-    _popularUrls = new PopularUrls(this);
 
     // create the main view
     MAIN_VIEW = new KrusaderView(this);

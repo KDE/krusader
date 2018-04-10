@@ -199,6 +199,22 @@ void KgPanel::setupGeneralTab()
     layout->addWidget(groupBox);
 
 // --------------------------------------------------------------------------------------------
+// ------------------------------- Bookmark search settings ----------------------------------
+// --------------------------------------------------------------------------------------------
+    groupBox = createFrame(i18n("Bookmark Search"), tab);
+    gridLayout = createGridLayout(groupBox);
+
+    KONFIGURATOR_CHECKBOX_PARAM bookmarkSearchSettings[] =
+    {
+        {"Look&Feel", "Always show search bar", true, i18n("Always show search bar"), false, i18n("Make bookmark search bar always visible") },
+        {"Look&Feel", "Search in special items", false, i18n("Search in special items"), false, i18n("Bookmark search is also applied to special items in bookmark menu like Trash, Popular URLs, Jump Back, etc.") },
+    };
+    KonfiguratorCheckBoxGroup *bookmarkSearchSettingsGroup = createCheckBoxGroup(2, 0, bookmarkSearchSettings,
+                                                                                 2 /*count*/, groupBox, PAGE_GENERAL);
+    gridLayout->addWidget(bookmarkSearchSettingsGroup, 1, 0, 1, 2);
+    layout->addWidget(groupBox);
+
+// --------------------------------------------------------------------------------------------
 // ------------------------------- Status/Totalsbar settings ----------------------------------
 // --------------------------------------------------------------------------------------------
     groupBox = createFrame(i18n("Status/Totalsbar"), tab);
