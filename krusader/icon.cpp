@@ -21,10 +21,12 @@
 #include "icon.h"
 
 // QtCore
+#include <QCache>
 #include <QDir>
 #include <QDebug>
 // QtGui
 #include <QPainter>
+#include <QPixmap>
 
 
 class IconEngine : public QIconEngine
@@ -54,35 +56,88 @@ Icon::Icon(QString name) : QIcon(new IconEngine(name, QIcon(":/icons/icon-missin
 {
 }
 
+class IconCacheKey
+{
+public:
+    IconCacheKey(const QString &name, const QSize &size, QIcon::Mode mode, QIcon::State state) :
+        name(name), size(size), mode(mode), state(state)
+    {
+    }
+
+    bool operator ==(const IconCacheKey &x) const
+    {
+        return name == x.name && size == x.size && mode == x.mode && state == x.state;
+    }
+
+    uint hash() const
+    {
+        return qHash(QString("%1 %2x%3 %4 %5").arg(name).arg(size.width()).arg(size.height())
+                                              .arg((int)mode).arg((int)state));
+    }
+
+    QString name;
+    QSize size;
+    QIcon::Mode mode;
+    QIcon::State state;
+};
+
+uint qHash(const IconCacheKey &key)
+{
+    return key.hash();
+}
+
 QPixmap IconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state)
 {
-    // TODO: implement icon cache here as setThemeName invalidates Qt icon cache
-    // TODO: need to track system icon theme change and reset active theme name to system theme, invalidate Krusader icon cache
+    static QCache<IconCacheKey, QPixmap> cache(500);
+    static QString cachedTheme;
 
-    if (QDir::isAbsolutePath(_iconName)) {
-        return QIcon(_iconName).pixmap(size, mode, state);
+    // invalidate cache if system theme is changed
+    if (cachedTheme != QIcon::themeName()) {
+        if (!cachedTheme.isEmpty()) {
+            qDebug() << "System icon theme changed:" << cachedTheme << "->" << QIcon::themeName();
+        }
+
+        cache.clear();
+        cachedTheme = QIcon::themeName();
     }
 
-    if (QIcon::hasThemeIcon(_iconName))
-        return QIcon::fromTheme(_iconName).pixmap(size, mode, state);
+    auto key = IconCacheKey(_iconName, size, mode, state);
 
-    QPixmap pixmap;
-    auto currentTheme = QIcon::themeName();
-    for (auto fallbackThemeName : _themeFallbackList) {
-        QIcon::setThemeName(fallbackThemeName);
-        if (QIcon::hasThemeIcon(_iconName)) {
-            pixmap = QIcon::fromTheme(_iconName).pixmap(size, mode, state);
-            break;
+    // return cached icon when possible
+    if (cache.contains(key)) {
+        return *cache.object(key);
+    }
+
+    auto pixmap = new QPixmap;
+    if (QDir::isAbsolutePath(_iconName)) {
+        // a path is used - directly load the icon
+        *pixmap = QIcon(_iconName).pixmap(size, mode, state);
+    } else if (QIcon::hasThemeIcon(_iconName)) {
+        // current theme has the icon - load seamlessly
+        *pixmap = QIcon::fromTheme(_iconName).pixmap(size, mode, state);
+    } else {
+        // search the icon in fallback themes
+        auto currentTheme = QIcon::themeName();
+        for (auto fallbackThemeName : _themeFallbackList) {
+            QIcon::setThemeName(fallbackThemeName);
+            if (QIcon::hasThemeIcon(_iconName)) {
+                *pixmap = QIcon::fromTheme(_iconName).pixmap(size, mode, state);
+                break;
+            }
+        }
+        QIcon::setThemeName(currentTheme);
+
+        // can't find the icon neither in system theme nor in fallback themes - load fallback icon
+        if (pixmap->isNull()) {
+            qWarning() << "Unable to find icon" << _iconName << "of size" << size << "in any supported theme";
+            *pixmap = _fallbackIcon.pixmap(size, mode, state);
         }
     }
-    QIcon::setThemeName(currentTheme);
 
-    if (pixmap.isNull()) {
-        qDebug() << "Unable to find icon" << _iconName << "of size" << size << "in any supported theme";
-        pixmap = _fallbackIcon.pixmap(size, mode, state);
-    }
+    // update the cache; the cache takes ownership over the pixmap
+    cache.insert(key, pixmap);
 
-    return pixmap;
+    return *pixmap;
 }
 
 void IconEngine::paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state)

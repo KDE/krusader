@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
     KLocalizedString::setApplicationDomain("krusader");
 
     // init icon theme
-    qDebug() << "System icon theme: " << QIcon::themeName();
+    qDebug() << "System icon theme:" << QIcon::themeName();
     // [WORKAROUND] setThemeName sets user theme in QIconLoader and allows to avoid Qt issues with invalid icon caching later
     // IMPORTANT: this must be done before the first QIcon::fromTheme call
     QIcon::setThemeName(QIcon::themeName());
