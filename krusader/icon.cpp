@@ -20,6 +20,8 @@
 
 #include "icon.h"
 
+#include "krglobal.h"
+
 // QtCore
 #include <QCache>
 #include <QDir>
@@ -28,13 +30,23 @@
 #include <QPainter>
 #include <QPixmap>
 
+#include <KConfigCore/KSharedConfig>
+
 
 class IconEngine : public QIconEngine
 {
 public:
     IconEngine(QString iconName, QIcon fallbackIcon) : _iconName(iconName), _fallbackIcon(fallbackIcon)
     {
-        // TODO: fill from settings
+        // add user fallback theme if set
+        const KConfigGroup group(krConfig, QStringLiteral("Startup"));
+        QString userFallbackTheme = group.readEntry("Fallback Icon Theme", QString());
+        if (!userFallbackTheme.isEmpty()) {
+            _themeFallbackList << userFallbackTheme;
+        }
+
+        // Breeze and Oxygen are weak dependencies of Krusader,
+        // i.e. any of the themes supply a complete set of icons used in the interface
         _themeFallbackList << "breeze" << "oxygen";
     }
 
