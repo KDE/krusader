@@ -51,6 +51,7 @@
 #include "krservices.h"
 #include "krslots.h"
 #include "krusader.h"
+#include "icon.h"
 #include "krusaderversion.h"
 #include "krusaderview.h"
 #include "panelmanager.h"
@@ -104,7 +105,7 @@ int main(int argc, char *argv[])
     // init icon theme
     qDebug() << "System icon theme:" << QIcon::themeName();
     // [WORKAROUND] setThemeName sets user theme in QIconLoader and allows to avoid Qt issues with invalid icon caching later
-    // IMPORTANT: this must be done before the first QIcon::fromTheme call
+    // IMPORTANT: this must be done before the first QIcon::fromTheme / QIcon::hasThemeIcon call
     QIcon::setThemeName(QIcon::themeName());
 
     // ABOUT data information
@@ -203,7 +204,7 @@ int main(int argc, char *argv[])
     // This will call QCoreApplication::setApplicationName, etc for us by using info in the KAboutData instance.
     // The only thing not called for us is setWindowIcon(), which is why we do it ourselves here.
     KAboutData::setApplicationData(aboutData);
-    app.setWindowIcon(QIcon::fromTheme(Krusader::privIcon()));
+    app.setWindowIcon(Icon(Krusader::privIcon()));
 
     // Command line arguments ...
     QCommandLineParser parser;

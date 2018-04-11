@@ -39,10 +39,12 @@ public:
     IconEngine(QString iconName, QIcon fallbackIcon) : _iconName(iconName), _fallbackIcon(fallbackIcon)
     {
         // add user fallback theme if set
-        const KConfigGroup group(krConfig, QStringLiteral("Startup"));
-        QString userFallbackTheme = group.readEntry("Fallback Icon Theme", QString());
-        if (!userFallbackTheme.isEmpty()) {
-            _themeFallbackList << userFallbackTheme;
+        if (krConfig) {
+            const KConfigGroup group(krConfig, QStringLiteral("Startup"));
+            QString userFallbackTheme = group.readEntry("Fallback Icon Theme", QString());
+            if (!userFallbackTheme.isEmpty()) {
+                _themeFallbackList << userFallbackTheme;
+            }
         }
 
         // Breeze and Oxygen are weak dependencies of Krusader,
