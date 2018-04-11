@@ -1565,7 +1565,7 @@ QPushButton *SynchronizerGUI::createButton(QWidget *parent, const QString &iconN
                                            const QString &text, bool textAndIcon)
 {
     QPushButton *button = new QPushButton(parent);
-    if (!text.isEmpty() && (textAndIcon || !QIcon::hasThemeIcon(iconName)))
+    if (!text.isEmpty() && (textAndIcon || !Icon::exists(iconName)))
         button->setText(text);
     button->setIcon(Icon(iconName));
     button->setCheckable(true);

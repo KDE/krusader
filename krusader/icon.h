@@ -29,6 +29,9 @@ class Icon : public QIcon
 {
 public:
     Icon(QString name);
+
+    /// Check if icon exists in any supported theme
+    static bool exists(QString iconName);
 };
 
 #endif // ICON_H

@@ -24,6 +24,7 @@
 
 // QtCore
 #include <QCache>
+#include <QPair>
 #include <QDir>
 #include <QDebug>
 // QtGui
@@ -33,23 +34,37 @@
 #include <KConfigCore/KSharedConfig>
 
 
+static const int cacheSize = 500;
+static const char *missingIconPath = ":/icons/icon-missing.svgz";
+
+
+static inline QStringList getThemeFallbackList()
+{
+    QStringList themes;
+
+    // add user fallback theme if set
+    if (krConfig) {
+        const KConfigGroup group(krConfig, QStringLiteral("Startup"));
+        QString userFallbackTheme = group.readEntry("Fallback Icon Theme", QString());
+        if (!userFallbackTheme.isEmpty()) {
+            themes << userFallbackTheme;
+        }
+    }
+
+    // Breeze and Oxygen are weak dependencies of Krusader,
+    // i.e. any of the themes supply a complete set of icons used in the interface
+    themes << "breeze" << "oxygen";
+
+    return themes;
+}
+
+
 class IconEngine : public QIconEngine
 {
 public:
     IconEngine(QString iconName, QIcon fallbackIcon) : _iconName(iconName), _fallbackIcon(fallbackIcon)
     {
-        // add user fallback theme if set
-        if (krConfig) {
-            const KConfigGroup group(krConfig, QStringLiteral("Startup"));
-            QString userFallbackTheme = group.readEntry("Fallback Icon Theme", QString());
-            if (!userFallbackTheme.isEmpty()) {
-                _themeFallbackList << userFallbackTheme;
-            }
-        }
-
-        // Breeze and Oxygen are weak dependencies of Krusader,
-        // i.e. any of the themes supply a complete set of icons used in the interface
-        _themeFallbackList << "breeze" << "oxygen";
+        _themeFallbackList = getThemeFallbackList();
     }
 
     virtual void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override;
@@ -66,8 +81,71 @@ private:
     QIcon _fallbackIcon;
 };
 
-Icon::Icon(QString name) : QIcon(new IconEngine(name, QIcon(":/icons/icon-missing.svgz")))
+Icon::Icon(QString name) : QIcon(new IconEngine(name, QIcon(missingIconPath)))
 {
+}
+
+struct IconSearchResult
+{
+    QIcon icon; ///< icon returned by search; null icon if not found
+    QString originalThemeName; ///< original theme name if theme is modified by search
+
+    IconSearchResult(QIcon icon, QString originalThemeName) :
+        icon(icon), originalThemeName(originalThemeName) {}
+};
+
+// Search icon in specified themes.
+// If this call modifies current theme, the original theme name will be the second item in the pair.
+static inline IconSearchResult searchIcon(QString iconName, QStringList themeFallbackList)
+{
+    if (QDir::isAbsolutePath(iconName)) {
+        // a path is used - directly load the icon
+        return IconSearchResult(QIcon(iconName), QString());
+    } else if (QIcon::hasThemeIcon(iconName)) {
+        // current theme has the icon - load seamlessly
+        return IconSearchResult(QIcon::fromTheme(iconName), QString());
+    } else {
+        // search the icon in fallback themes
+        auto currentTheme = QIcon::themeName();
+        for (auto fallbackThemeName : themeFallbackList) {
+            QIcon::setThemeName(fallbackThemeName);
+            if (QIcon::hasThemeIcon(iconName)) {
+                return IconSearchResult(QIcon::fromTheme(iconName), currentTheme);
+            }
+        }
+        QIcon::setThemeName(currentTheme);
+
+        return IconSearchResult(QIcon(), QString());
+    }
+}
+
+bool Icon::exists(QString iconName)
+{
+    static QCache<QString, bool> cache(cacheSize);
+    static QString cachedTheme;
+
+    // invalidate cache if system theme is changed
+    if (cachedTheme != QIcon::themeName()) {
+        cache.clear();
+        cachedTheme = QIcon::themeName();
+    }
+
+    // return cached result when possible
+    if (cache.contains(iconName)) {
+        return *cache.object(iconName);
+    }
+
+    auto searchResult = searchIcon(iconName, getThemeFallbackList());
+    if (!searchResult.originalThemeName.isNull()) {
+        QIcon::setThemeName(searchResult.originalThemeName);
+    }
+
+    bool *result = new bool(!searchResult.icon.isNull());
+
+    // update the cache; the cache takes ownership over the result
+    cache.insert(iconName, result);
+
+    return *result;
 }
 
 class IconCacheKey
@@ -102,7 +180,7 @@ uint qHash(const IconCacheKey &key)
 
 QPixmap IconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state)
 {
-    static QCache<IconCacheKey, QPixmap> cache(500);
+    static QCache<IconCacheKey, QPixmap> cache(cacheSize);
     static QString cachedTheme;
 
     // invalidate cache if system theme is changed
@@ -122,30 +200,20 @@ QPixmap IconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State sta
         return *cache.object(key);
     }
 
+    // search icon and extract pixmap
     auto pixmap = new QPixmap;
-    if (QDir::isAbsolutePath(_iconName)) {
-        // a path is used - directly load the icon
-        *pixmap = QIcon(_iconName).pixmap(size, mode, state);
-    } else if (QIcon::hasThemeIcon(_iconName)) {
-        // current theme has the icon - load seamlessly
-        *pixmap = QIcon::fromTheme(_iconName).pixmap(size, mode, state);
-    } else {
-        // search the icon in fallback themes
-        auto currentTheme = QIcon::themeName();
-        for (auto fallbackThemeName : _themeFallbackList) {
-            QIcon::setThemeName(fallbackThemeName);
-            if (QIcon::hasThemeIcon(_iconName)) {
-                *pixmap = QIcon::fromTheme(_iconName).pixmap(size, mode, state);
-                break;
-            }
-        }
-        QIcon::setThemeName(currentTheme);
+    auto searchResult = searchIcon(_iconName, _themeFallbackList);
+    if (!searchResult.icon.isNull()) {
+        *pixmap = searchResult.icon.pixmap(size, mode, state);
+    }
+    if (!searchResult.originalThemeName.isNull()) {
+        QIcon::setThemeName(searchResult.originalThemeName);
+    }
 
-        // can't find the icon neither in system theme nor in fallback themes - load fallback icon
-        if (pixmap->isNull()) {
-            qWarning() << "Unable to find icon" << _iconName << "of size" << size << "in any supported theme";
-            *pixmap = _fallbackIcon.pixmap(size, mode, state);
-        }
+    // can't find the icon neither in system theme nor in fallback themes - load fallback icon
+    if (pixmap->isNull()) {
+        qWarning() << "Unable to find icon" << _iconName << "of size" << size << "in any specified theme";
+        *pixmap = _fallbackIcon.pixmap(size, mode, state);
     }
 
     // update the cache; the cache takes ownership over the pixmap
