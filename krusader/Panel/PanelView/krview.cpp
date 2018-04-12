@@ -29,6 +29,7 @@
 #include "../FileSystem/krpermhandler.h"
 #include "../Filter/filterdialog.h"
 #include "../defaults.h"
+#include "../icon.h"
 #include "../kicons.h"
 #include "../krcolorcache.h"
 #include "../krglobal.h"
@@ -345,7 +346,7 @@ QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size/*, KRListItem:
 
     // first try the cache
     if (!QPixmapCache::find(cacheName, icon)) {
-        icon = processIcon(krLoader->loadIcon(icon_name, KIconLoader::Desktop, size),
+        icon = processIcon(Icon(icon_name).pixmap(size),
                            dim, dimColor, dimFactor, fileitem->isSymLink());
         // insert it into the cache
         QPixmapCache::insert(cacheName, icon);

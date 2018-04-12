@@ -20,7 +20,9 @@
  *****************************************************************************/
 
 #include "kicons.h"
+
 #include "krglobal.h"
+#include "icon.h"
 #include "defaults.h"
 
 // QtCore
@@ -37,5 +39,5 @@ QPixmap FL_LOADICON(QString name)
 {
     KConfigGroup group(krConfig, "Look&Feel");
     int size = (group.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt();
-    return krLoader->loadIcon(name, KIconLoader::Desktop, size);
+    return Icon(name).pixmap(size);
 }

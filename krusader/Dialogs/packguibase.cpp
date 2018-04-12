@@ -54,6 +54,7 @@
 
 #include "../defaults.h"
 #include "../krglobal.h"
+#include "../icon.h"
 
 /*
  *  Constructs a PackGUIBase which is a child of 'parent', with the
@@ -117,7 +118,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     hbox_3->setContentsMargins(0, 0, 0, 0);
 
     PixmapLabel1 = new QLabel(this);
-    PixmapLabel1->setPixmap(krLoader->loadIcon("package-x-generic", KIconLoader::Desktop, 32));
+    PixmapLabel1->setPixmap(Icon("package-x-generic").pixmap(32));
     PixmapLabel1->setScaledContents(true);
     PixmapLabel1->setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed));
     hbox_3->addWidget(PixmapLabel1);

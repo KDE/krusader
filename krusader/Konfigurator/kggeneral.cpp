@@ -38,6 +38,7 @@
 
 #include "krresulttabledialog.h"
 #include "../defaults.h"
+#include "../icon.h"
 #include "../kicons.h"
 #include "../krglobal.h"
 
@@ -177,7 +178,7 @@ void KgGeneral::createExtensionsTab()
     QToolButton *addButton = new QToolButton(hboxWidget3);
     hbox3->addWidget(addButton);
 
-    QPixmap icon = krLoader->loadIcon("list-add", KIconLoader::Desktop, size);
+    QPixmap icon = Icon("list-add").pixmap(size);
     addButton->setFixedSize(icon.width() + 4, icon.height() + 4);
     addButton->setIcon(QIcon(icon));
     connect(addButton, SIGNAL(clicked()), this, SLOT(slotAddExtension()));
@@ -185,7 +186,7 @@ void KgGeneral::createExtensionsTab()
     QToolButton *removeButton = new QToolButton(hboxWidget3);
     hbox3->addWidget(removeButton);
 
-    icon = krLoader->loadIcon("list-remove", KIconLoader::Desktop, size);
+    icon = Icon("list-remove").pixmap(size);
     removeButton->setFixedSize(icon.width() + 4, icon.height() + 4);
     removeButton->setIcon(QIcon(icon));
     connect(removeButton, SIGNAL(clicked()), this, SLOT(slotRemoveExtension()));
