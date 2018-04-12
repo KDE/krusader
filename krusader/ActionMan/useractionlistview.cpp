@@ -29,6 +29,7 @@
 #include <KIconThemes/KIconLoader>
 
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../UserAction/kraction.h"
 #include "../UserAction/useraction.h"
 
@@ -239,7 +240,7 @@ void UserActionListViewItem::update()
         return;
 
     if (! _action->icon().isNull())
-        setIcon(COL_TITLE, KIconLoader::global()->loadIcon(_action->iconName(), KIconLoader::Small));
+        setIcon(COL_TITLE, Icon(_action->iconName()));
     setText(COL_TITLE, _action->text());
 }
 

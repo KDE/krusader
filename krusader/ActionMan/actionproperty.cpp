@@ -37,8 +37,6 @@
 #include <KXmlGui/KActionCollection>
 
 
-#define ICON(N)  KIconLoader::global()->loadIcon(N, KIconLoader::Small)
-
 ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
         : QWidget(parent), _modified(false)
 {
@@ -50,8 +48,8 @@ ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
         updateGUI(_action);
     }
 
-    ButtonAddPlaceholder->setIcon(ICON("list-add"));
-    ButtonAddStartpath->setIcon(ICON("document-open"));
+    ButtonAddPlaceholder->setIcon(Icon("list-add"));
+    ButtonAddStartpath->setIcon(Icon("document-open"));
 
     // fill with all existing categories
     cbCategory->addItems(krUserAction->allCategories());
