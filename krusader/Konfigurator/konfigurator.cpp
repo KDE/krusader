@@ -25,7 +25,6 @@
 #include "../krglobal.h"
 #include "../icon.h"
 #include "../Dialogs/krdialogs.h"
-#include "../kicons.h"
 
 // QtGui
 #include <QPixmap>

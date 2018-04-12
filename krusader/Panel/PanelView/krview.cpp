@@ -29,8 +29,7 @@
 #include "../FileSystem/krpermhandler.h"
 #include "../Filter/filterdialog.h"
 #include "../defaults.h"
-#include "../icon.h"
-#include "../kicons.h"
+#include "../filelisticon.h"
 #include "../krcolorcache.h"
 #include "../krglobal.h"
 #include "../krpreviews.h"
@@ -103,9 +102,9 @@ void KrViewOperator::startDrag()
         return ; // don't drag an empty thing
     QPixmap px;
     if (items.count() > 1 || _view->getCurrentKrViewItem() == 0)
-        px = FL_LOADICON("queue");   // how much are we dragging
+        px = FileListIcon("queue").pixmap();  // we are dragging multiple items
     else
-        px = _view->getCurrentKrViewItem() ->icon();
+        px = _view->getCurrentKrViewItem()->icon();
     emit letsDrag(items, px);
 }
 

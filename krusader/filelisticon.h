@@ -1,7 +1,6 @@
 /*****************************************************************************
- * Copyright (C) 2000 Shie Erlich <erlich@users.sourceforge.net>             *
- * Copyright (C) 2000 Rafi Yanai <yanai@users.sourceforge.net>               *
- * Copyright (C) 2004-2018 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2018 Nikita Melnichenko <nikita+kde@melnichenko.name>       *
+ * Copyright (C) 2018 Krusader Krew [https://krusader.org]                   *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *
@@ -19,13 +18,25 @@
  * along with Krusader.  If not, see [http://www.gnu.org/licenses/].         *
  *****************************************************************************/
 
-#ifndef KICONS_H
-#define KICONS_H
+#ifndef FILELISTICON_H
+#define FILELISTICON_H
+
+#include "icon.h"
 
 // QtGui
 #include <QPixmap>
 
-// used only for calls within the kfilelist framework, handles icon sizes
-QPixmap FL_LOADICON(QString name);
 
-#endif
+class FileListIcon : public Icon
+{
+public:
+    explicit FileListIcon(QString name) : Icon(name) {}
+
+    /// Load pixmap of standard file list icon size
+    QPixmap pixmap() const;
+
+    /// Get icon size as configured by user
+    QSize size() const;
+};
+
+#endif // FILELISTICON_H

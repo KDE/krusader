@@ -1,7 +1,6 @@
 /*****************************************************************************
- * Copyright (C) 2000 Shie Erlich <erlich@users.sourceforge.net>             *
- * Copyright (C) 2000 Rafi Yanai <yanai@users.sourceforge.net>               *
- * Copyright (C) 2004-2018 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2018 Nikita Melnichenko <nikita+kde@melnichenko.name>       *
+ * Copyright (C) 2018 Krusader Krew [https://krusader.org]                   *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *
@@ -19,25 +18,21 @@
  * along with Krusader.  If not, see [http://www.gnu.org/licenses/].         *
  *****************************************************************************/
 
-#include "kicons.h"
+#include "filelisticon.h"
 
 #include "krglobal.h"
-#include "icon.h"
 #include "defaults.h"
 
-// QtCore
-#include <QString>
-// QtGui
-#include <QPixmap>
-// QtWidgets
-#include <QStyle>
-
 #include <KConfigCore/KSharedConfig>
-#include <KIconThemes/KIconLoader>
 
-QPixmap FL_LOADICON(QString name)
+
+QSize FileListIcon::size() const
 {
-    KConfigGroup group(krConfig, "Look&Feel");
-    int size = (group.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt();
-    return Icon(name).pixmap(size);
+    int linearSize = KConfigGroup(krConfig, "Look&Feel").readEntry("Filelist Icon Size", _FilelistIconSize).toInt();
+    return QSize(linearSize, linearSize);
+}
+
+QPixmap FileListIcon::pixmap() const
+{
+    return QIcon::pixmap(size());
 }

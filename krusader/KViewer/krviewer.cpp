@@ -48,7 +48,6 @@
 
 #include "../defaults.h"
 #include "../icon.h"
-#include "../kicons.h"
 #include "panelviewer.h"
 
 #define VIEW_ICON     "document-preview"

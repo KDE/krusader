@@ -39,7 +39,6 @@
 #include "../icon.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
-#include "../kicons.h"
 
 #define DATA_KEY    QString::fromLatin1("Charset")
 

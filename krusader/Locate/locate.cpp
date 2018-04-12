@@ -21,7 +21,7 @@
 #include "locate.h"
 #include "../kractions.h"
 #include "../krglobal.h"
-#include "../icon.h"
+#include "../filelisticon.h"
 #include "../krslots.h"
 #include "../krusaderview.h"
 #include "../Panel/krpanel.h"
@@ -33,7 +33,6 @@
 #include "../FileSystem/virtualfilesystem.h"
 #include "../KViewer/krviewer.h"
 #include "../panelmanager.h"
-#include "../kicons.h"
 
 // QtCore
 #include <QRegExp>
@@ -105,7 +104,7 @@ public:
 
         QDrag *drag = new QDrag(this);
         QMimeData *mimeData = new QMimeData;
-        mimeData->setImageData(FL_LOADICON("file"));
+        mimeData->setImageData(FileListIcon("file").pixmap());
         mimeData->setUrls(urls);
         drag->setMimeData(mimeData);
         drag->start();
@@ -591,7 +590,7 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
             return;
 
         QMimeData *mimeData = new QMimeData;
-        mimeData->setImageData(FL_LOADICON("file"));
+        mimeData->setImageData(FileListIcon("file").pixmap());
         mimeData->setUrls(urls);
 
         QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);

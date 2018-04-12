@@ -34,7 +34,6 @@
 #include <KI18n/KLocalizedString>
 #include <KIconThemes/KIconLoader>
 
-#include "../kicons.h"
 #include "../krglobal.h"
 #include "../icon.h"
 #include "../FileSystem/filesystem.h"

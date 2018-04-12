@@ -42,7 +42,6 @@
 #include <KIconThemes/KIconLoader>
 
 #include "../krglobal.h"
-#include "../kicons.h"
 #include "../krslots.h"
 #include "../defaults.h"
 #include "../krusaderview.h"

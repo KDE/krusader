@@ -59,10 +59,9 @@
 #include "../Panel/krsearchbar.h"
 #include "../Panel/panelfunc.h"
 #include "../defaults.h"
-#include "../kicons.h"
 #include "../kractions.h"
 #include "../krglobal.h"
-#include "../icon.h"
+#include "../filelisticon.h"
 #include "../krservices.h"
 #include "../krslots.h"
 #include "../krusaderview.h"
@@ -655,7 +654,7 @@ void KrSearchDialog::copyToClipBoard()
         return;
 
     QMimeData *mimeData = new QMimeData;
-    mimeData->setImageData(FL_LOADICON("file"));
+    mimeData->setImageData(FileListIcon("file").pixmap());
     mimeData->setUrls(urls);
 
     QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);

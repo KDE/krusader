@@ -60,8 +60,8 @@
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../defaults.h"
-#include "../kicons.h"
 #include "../krglobal.h"
+#include "../filelisticon.h"
 
 // these are the values that will exist in the menu
 #define DELETE_ID            90
@@ -956,14 +956,14 @@ QPixmap DiskUsage::getIcon(QString mime)
     if (!QPixmapCache::find(mime, icon)) {
         // get the icon.
         if (mime == "Broken Link !") // FIXME: this doesn't work anymore - the reported mimetype for a broken link is now "unknown"
-            icon = FL_LOADICON("file-broken");
+            icon = FileListIcon("file-broken").pixmap();
         else {
             QMimeDatabase db;
             QMimeType mt = db.mimeTypeForName(mime);
             if (mt.isValid())
-                icon = FL_LOADICON(mt.iconName());
+                icon = FileListIcon(mt.iconName()).pixmap();
             else
-                icon = FL_LOADICON("file-broken");
+                icon = FileListIcon("file-broken").pixmap();
         }
 
         // insert it into the cache

@@ -27,7 +27,6 @@
 #include "viewactions.h"
 #include "../defaults.h"
 #include "../icon.h"
-#include "../kicons.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 #include "../FileSystem/fileitem.h"
 #include "../FileSystem/filesystem.h"

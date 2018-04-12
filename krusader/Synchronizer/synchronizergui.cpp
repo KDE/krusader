@@ -20,7 +20,7 @@
 
 #include "synchronizergui.h"
 #include "../krglobal.h"
-#include "../icon.h"
+#include "../filelisticon.h"
 #include "../defaults.h"
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
@@ -31,7 +31,6 @@
 #include "../FileSystem/krquery.h"
 #include "../krservices.h"
 #include "../krslots.h"
-#include "../kicons.h"
 #include "synchronizedialog.h"
 #include "feedtolistboxdialog.h"
 #include "synchronizercolors.h"
@@ -114,7 +113,7 @@ public:
 
         QDrag *drag = new QDrag(this);
         QMimeData *mimeData = new QMimeData;
-        mimeData->setImageData(FL_LOADICON(isLeft ? "arrow-left-double" : "arrow-right-double"));
+        mimeData->setImageData(FileListIcon(isLeft ? "arrow-left-double" : "arrow-right-double").pixmap());
         mimeData->setUrls(urls);
         drag->setMimeData(mimeData);
         drag->start();
@@ -1613,7 +1612,7 @@ void SynchronizerGUI::copyToClipboard(bool isLeft)
         return;
 
     QMimeData *mimeData = new QMimeData;
-    mimeData->setImageData(FL_LOADICON(isLeft ? "arrow-left-double" : "arrow-right-double"));
+    mimeData->setImageData(FileListIcon(isLeft ? "arrow-left-double" : "arrow-right-double").pixmap());
     mimeData->setUrls(urls);
 
     QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);

@@ -39,7 +39,6 @@
 #include "krresulttabledialog.h"
 #include "../defaults.h"
 #include "../icon.h"
-#include "../kicons.h"
 #include "../krglobal.h"
 
 #define PAGE_GENERAL        0

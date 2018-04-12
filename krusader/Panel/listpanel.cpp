@@ -72,7 +72,6 @@
 
 #include "../defaults.h"
 #include "../icon.h"
-#include "../kicons.h"
 #include "../krservices.h"
 #include "../krslots.h"
 #include "../krusader.h"

@@ -22,7 +22,6 @@
 #include "krspwidgets.h"
 #include "../krglobal.h"
 #include "../icon.h"
-#include "../kicons.h"
 #include "../Filter/filtertabs.h"
 #include "../GUI/krlistwidget.h"
 

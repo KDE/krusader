@@ -21,7 +21,6 @@
 #include "dulines.h"
 
 #include "../icon.h"
-#include "../kicons.h"
 #include "../krglobal.h"
 #include "../FileSystem/krpermhandler.h"
 

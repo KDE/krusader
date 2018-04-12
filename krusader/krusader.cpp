@@ -53,7 +53,6 @@
 #include <KWindowSystem/KWindowSystem>
 
 #include "defaults.h"
-#include "kicons.h"
 #include "kractions.h"
 #include "krglobal.h"
 #include "krservices.h"

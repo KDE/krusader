@@ -21,7 +21,6 @@
 #include "dulistview.h"
 #include "../krglobal.h"
 #include "../icon.h"
-#include "../kicons.h"
 #include "../FileSystem/krpermhandler.h"
 
 // QtCore

@@ -24,7 +24,6 @@
 #include "../krglobal.h"
 #include "../icon.h"
 #include "../Dialogs/krspecialwidgets.h"
-#include "../kicons.h"
 #include "../defaults.h"
 #include "../FileSystem/filesystem.h"
 
