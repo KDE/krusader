@@ -239,7 +239,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     ADD_WIDGET(quickSizeCalcProgress);
     cancelQuickSizeCalcButton = new QToolButton(this);
     cancelQuickSizeCalcButton->hide();
-    cancelQuickSizeCalcButton->setIcon(krLoader->loadIcon("dialog-cancel", KIconLoader::Toolbar, 16));
+    cancelQuickSizeCalcButton->setIcon(Icon("dialog-cancel"));
     cancelQuickSizeCalcButton->setToolTip(i18n("Cancel directory space calculation"));
     ADD_WIDGET(cancelQuickSizeCalcButton);
 
@@ -251,7 +251,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     // a cancel button for the filesystem refresh and preview job
     cancelProgressButton = new QToolButton(this);
     cancelProgressButton->hide();
-    cancelProgressButton->setIcon(krLoader->loadIcon("dialog-cancel", KIconLoader::Toolbar, 16));
+    cancelProgressButton->setIcon(Icon("dialog-cancel"));
     connect(cancelProgressButton, SIGNAL(clicked()), this, SLOT(cancelProgress()));
     ADD_WIDGET(cancelProgressButton);
 
@@ -259,7 +259,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     sidebarPositionButton = new QToolButton(this);
     sidebarPositionButton->hide();
     sidebarPositionButton->setAutoRaise(true);
-    sidebarPositionButton->setIcon(krLoader->loadIcon("exchange-positions", KIconLoader::Toolbar, 16));
+    sidebarPositionButton->setIcon(Icon("exchange-positions"));
     sidebarPositionButton->setToolTip(i18n("Move Sidebar clockwise"));
     connect(sidebarPositionButton, &QToolButton::clicked, [this]() {
         // moving position clockwise
@@ -269,7 +269,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     // a quick button to open the sidebar
     sidebarButton = new QToolButton(this);
     sidebarButton->setAutoRaise(true);
-    sidebarButton->setIcon(krLoader->loadIcon("arrow-up", KIconLoader::Toolbar, 16));
+    sidebarButton->setIcon(Icon("arrow-up"));
     connect(sidebarButton, &QToolButton::clicked, this, &ListPanel::toggleSidebar);
     sidebarButton->setToolTip(i18n("Open the Sidebar"));
     ADD_WIDGET(sidebarButton);
@@ -579,14 +579,14 @@ void ListPanel::toggleSidebar()
         }
 
         sidebar->show();
-        sidebarButton->setIcon(krLoader->loadIcon("arrow-down", KIconLoader::Toolbar, 16));
+        sidebarButton->setIcon(Icon("arrow-down"));
         sidebarButton->setToolTip(i18n("Close the Sidebar"));
         sidebarPositionButton->show();
     } else {
         sidebarSplitterSizes.clear();
         sidebarSplitterSizes = sidebarSplitter->sizes();
         sidebar->hide();
-        sidebarButton->setIcon(krLoader->loadIcon("arrow-up", KIconLoader::Toolbar, 16));
+        sidebarButton->setIcon(Icon("arrow-up"));
         sidebarButton->setToolTip(i18n("Open the Sidebar"));
         sidebarPositionButton->hide();
 

@@ -81,6 +81,10 @@ private:
     QIcon _fallbackIcon;
 };
 
+Icon::Icon() : QIcon()
+{
+}
+
 Icon::Icon(QString name) : QIcon(new IconEngine(name, QIcon(missingIconPath)))
 {
 }

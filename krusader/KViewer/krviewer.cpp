@@ -47,6 +47,7 @@
 #include <KXmlGui/KToolBar>
 
 #include "../defaults.h"
+#include "../icon.h"
 #include "../kicons.h"
 #include "panelviewer.h"
 
@@ -660,7 +661,7 @@ QIcon KrViewer::makeTabIcon(PanelViewerBase *pvb)
     else
         iconName = VIEW_ICON;
 
-    return QIcon(krLoader->loadIcon(iconName, KIconLoader::Small));
+    return Icon(iconName);
 }
 
 void KrViewer::addPart(KParts::ReadOnlyPart *part)

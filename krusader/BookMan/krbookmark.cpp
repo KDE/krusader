@@ -86,7 +86,7 @@ KrBookmark * KrBookmark::trash(KActionCollection *collection)
     if (!bm)
         bm = new KrBookmark(i18n(NAME_TRASH), QUrl("trash:/"), collection);
 
-    bm->setIcon(krLoader->loadIcon(KrTrashHandler::trashIcon(), KIconLoader::Small));
+    bm->setIcon(Icon(KrTrashHandler::trashIcon()));
     return bm;
 }
 
@@ -95,7 +95,7 @@ KrBookmark * KrBookmark::virt(KActionCollection *collection)
     KrBookmark *bm = getExistingBookmark(i18n(NAME_VIRTUAL), collection);
     if (!bm) {
         bm = new KrBookmark(i18n(NAME_VIRTUAL), QUrl("virt:/"), collection);
-        bm->setIcon(krLoader->loadIcon("document-open-remote", KIconLoader::Small));
+        bm->setIcon(Icon("document-open-remote"));
     }
     return bm;
 }
@@ -105,7 +105,7 @@ KrBookmark * KrBookmark::lan(KActionCollection *collection)
     KrBookmark *bm = getExistingBookmark(i18n(NAME_LAN), collection);
     if (!bm) {
         bm = new KrBookmark(i18n(NAME_LAN), QUrl("remote:/"), collection);
-        bm->setIcon(krLoader->loadIcon("network-workgroup", KIconLoader::Small));
+        bm->setIcon(Icon("network-workgroup"));
     }
     return bm;
 }

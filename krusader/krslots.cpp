@@ -47,6 +47,7 @@
 #endif
 
 #include "defaults.h"
+#include "icon.h"
 #include "kractions.h"
 #include "krservices.h"
 #include "krtrashhandler.h"
@@ -708,9 +709,9 @@ void KRslots::emptyTrash()
 void KRslots::trashPopupMenu()
 {
     QMenu trashMenu(krApp);
-    QAction * act = trashMenu.addAction(krLoader->loadIcon("document-open", KIconLoader::Panel), i18n("Open trash bin"));
+    QAction * act = trashMenu.addAction(Icon("document-open"), i18n("Open trash bin"));
     act->setData(QVariant(OPEN_ID));
-    act = trashMenu.addAction(krLoader->loadIcon("trash-empty", KIconLoader::Panel), i18n("Empty trash bin"));
+    act = trashMenu.addAction(Icon("trash-empty"), i18n("Empty trash bin"));
     act->setData(QVariant(EMPTY_TRASH_ID));
 
     int result = -1;

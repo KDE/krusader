@@ -26,6 +26,7 @@
 #include "defaults.h"
 #include "tabactions.h"
 #include "../krglobal.h"
+#include "../icon.h"
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
 
@@ -160,11 +161,11 @@ void PanelTabBar::duplicateTab()
 
 void PanelTabBar::setIcon(int index, ListPanel *panel)
 {
-    QIcon tabIcon;
+    Icon tabIcon;
     if (panel->isLocked()) {
-        tabIcon = krLoader->loadIcon("lock", KIconLoader::Toolbar, 16);
+        tabIcon = Icon("lock");
     } else if (panel->isPinned()) {
-        tabIcon = krLoader->loadIcon("pin", KIconLoader::Toolbar, 16);
+        tabIcon = Icon("pin");
     }
     setTabIcon(index, tabIcon);
 }

@@ -75,13 +75,13 @@ KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
     connect(_textBox, SIGNAL(currentTextChanged(QString)), SLOT(onSearchChange()));
 
     QToolButton *saveSearchBtn = new QToolButton(this);
-    saveSearchBtn->setIcon(krLoader->loadIcon("document-save", KIconLoader::Toolbar, 16));
+    saveSearchBtn->setIcon(Icon("document-save"));
     saveSearchBtn->setFixedSize(20, 20);
     saveSearchBtn->setToolTip(i18n("Save the current search string"));
     connect(saveSearchBtn, SIGNAL(clicked()), this, SLOT(saveSearchString()));
 
     _openSelectDialogBtn = new QToolButton(this);
-    _openSelectDialogBtn->setIcon(krLoader->loadIcon("configure", KIconLoader::Toolbar, 16));
+    _openSelectDialogBtn->setIcon(Icon("configure"));
     _openSelectDialogBtn->setFixedSize(20, 20);
     _openSelectDialogBtn->setToolTip(i18n("Open selection dialog"));
 
