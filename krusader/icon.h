@@ -25,13 +25,23 @@
 #include <QIcon>
 #include <QIconEngine>
 
+/**
+ * @class Icon
+ *
+ * Universal icon class for Krusader.
+ *
+ * There is a list of configured themes that Icon searches in.
+ * The order of themes is the following: active theme, theme specified by user,
+ * fallback themes that provide complete icon set for Krusader.
+ * If icon is not found in any configured theme, the fallback icon is used.
+ */
 class Icon : public QIcon
 {
 public:
     Icon();
     explicit Icon(QString name);
 
-    /// Check if icon exists in any supported theme
+    /// Check if icon exists in any configured theme
     static bool exists(QString iconName);
 };
 

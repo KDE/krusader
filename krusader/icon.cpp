@@ -53,7 +53,7 @@ static inline QStringList getThemeFallbackList()
     }
 
     // Breeze and Oxygen are weak dependencies of Krusader,
-    // i.e. any of the themes supply a complete set of icons used in the interface
+    // i.e. each of the themes provide a complete set of icons used in the interface
     themes << "breeze" << "oxygen";
 
     return themes;
@@ -99,8 +99,8 @@ struct IconSearchResult
         icon(icon), originalThemeName(originalThemeName) {}
 };
 
-// Search icon in specified themes.
-// If this call modifies current theme, the original theme name will be filled.
+// Search icon in the configured themes.
+// If this call modifies active theme, the original theme name will be specified in the result.
 static inline IconSearchResult searchIcon(QString iconName, QStringList themeFallbackList)
 {
     if (QDir::isAbsolutePath(iconName)) {
@@ -221,7 +221,7 @@ QPixmap IconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State sta
 
     // can't find the icon neither in system theme nor in fallback themes - load fallback icon
     if (pixmap->isNull()) {
-        qWarning() << "Unable to find icon" << _iconName << "of size" << size << "in any specified theme";
+        qWarning() << "Unable to find icon" << _iconName << "of size" << size << "in any configured theme";
         *pixmap = _fallbackIcon.pixmap(size, mode, state);
     }
 
