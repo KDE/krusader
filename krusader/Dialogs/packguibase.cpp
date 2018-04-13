@@ -106,7 +106,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     hbox_2->addWidget(dirData);
 
     browseButton = new QToolButton(this);
-    browseButton->setIcon(SmallIcon("document-open"));
+    browseButton->setIcon(Icon("document-open"));
     hbox_2->addWidget(browseButton);
     QSpacerItem* spacer = new QSpacerItem(48, 20, QSizePolicy::Fixed, QSizePolicy::Fixed);
     hbox_2->addItem(spacer);

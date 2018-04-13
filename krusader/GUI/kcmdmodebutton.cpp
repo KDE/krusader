@@ -21,6 +21,7 @@
 #include "kcmdmodebutton.h"
 
 #include "../kractions.h"
+#include "../icon.h"
 
 // QtWidgets
 #include <QMenu>
@@ -44,7 +45,7 @@ KCMDModeButton::KCMDModeButton(QWidget *parent) : QToolButton(parent)
                             "programs in a terminal of your choice. If it's "
                             "pressed, terminal mode is active." ) );
     */
-    setIcon(SmallIcon("utilities-terminal"));
+    setIcon(Icon("utilities-terminal"));
     adjustSize();
     action = new KActionMenu(i18n("Execution mode"), this);
     Q_CHECK_PTR(action);
