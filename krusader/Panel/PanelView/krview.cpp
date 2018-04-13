@@ -102,7 +102,7 @@ void KrViewOperator::startDrag()
         return ; // don't drag an empty thing
     QPixmap px;
     if (items.count() > 1 || _view->getCurrentKrViewItem() == 0)
-        px = FileListIcon("queue").pixmap();  // we are dragging multiple items
+        px = FileListIcon("document-multiple").pixmap();  // we are dragging multiple items
     else
         px = _view->getCurrentKrViewItem()->icon();
     emit letsDrag(items, px);
