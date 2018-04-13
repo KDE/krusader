@@ -33,7 +33,6 @@
 #include <QMenu>
 
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
 
 #define DELETE_ITEM_ID    100

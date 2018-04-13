@@ -27,7 +27,6 @@
 #include <QMenu>
 
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KActionMenu>
 
 /**

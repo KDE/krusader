@@ -27,7 +27,6 @@
 #include <KCoreAddons/KProcess>
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KRun>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
 #include <KService/KMimeTypeTrader>
 #include <KService/KToolInvocation>

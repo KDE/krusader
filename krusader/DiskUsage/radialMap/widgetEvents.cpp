@@ -37,7 +37,6 @@
 #include <QMenu>
 
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KIconThemes/KIconEffect>
 #include <KIO/DeleteJob>
 #include <KIO/JobUiDelegate>

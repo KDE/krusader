@@ -37,7 +37,6 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
-#include <KIconThemes/KIconLoader>
 #include <KItemViews/KTreeWidgetSearchLine>
 
 #include "../krglobal.h"

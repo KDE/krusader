@@ -259,7 +259,7 @@ void KgProtocols::addMime(QString name, QString protocol)
         delete list[ 0 ];
         QTreeWidgetItem *listViewItem = new QTreeWidgetItem(currentListItem);
         listViewItem->setText(0, name);
-        listViewItem->setIcon(0, krLoader->loadMimeTypeIcon(name, KIconLoader::Small));
+        listViewItem->setIcon(0, KIconLoader::global()->loadMimeTypeIcon(name, KIconLoader::Small));
         linkList->expandItem( currentListItem );
     }
 }

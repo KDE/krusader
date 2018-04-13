@@ -33,7 +33,6 @@ KConfig *KrGlobal::config = 0;
 KMountMan *KrGlobal::mountMan = 0;
 KrBookmarkHandler *KrGlobal::bookman = 0;
 KRslots* KrGlobal::slot = 0;
-KIconLoader *KrGlobal::iconLoader = 0;
 KrusaderView *KrGlobal::mainView = 0;
 QWidget *KrGlobal::mainWindow = 0;
 UserAction *KrGlobal::userAction = 0;

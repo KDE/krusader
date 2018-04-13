@@ -30,7 +30,6 @@
 #include <QVBoxLayout>
 
 #include <KConfigWidgets/KHelpClient>
-#include <KIconThemes/KIconLoader>
 
 #include "../krglobal.h"
 #include "../icon.h"

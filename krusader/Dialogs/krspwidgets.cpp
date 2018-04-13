@@ -41,7 +41,6 @@
 #include <KCompletion/KHistoryComboBox>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KCursor>
 
 ///////////////////// initiation of the static members ////////////////////////

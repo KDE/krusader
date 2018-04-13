@@ -27,7 +27,6 @@
 #include "../Panel/listpanelactions.h"
 
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KXmlGui/KActionCollection>
 
 #define BM_NAME(X)  (QString("Bookmark:")+X)

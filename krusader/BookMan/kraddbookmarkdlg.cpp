@@ -33,7 +33,7 @@
 #include <QPushButton>
 
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
+
 
 KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, QUrl url):
         QDialog(parent)

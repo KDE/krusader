@@ -38,7 +38,6 @@
 #include <KConfigCore/KSharedConfig>
 #include <KConfigWidgets/KStandardAction>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KIOCore/KFileItem>
 #include <KParts/Part>
 #include <KWidgetsAddons/KMessageBox>

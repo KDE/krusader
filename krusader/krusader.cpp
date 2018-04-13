@@ -40,7 +40,6 @@
 #include <KConfigCore/KSharedConfig>
 #include <KConfigGui/KWindowConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KXmlGui/KActionCollection>
 #include <KXmlGui/KXMLGUIFactory>
 #include <KXmlGui/KToolBar>
@@ -135,9 +134,6 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     if (!message.isEmpty()) {
         KMessageBox::error(krApp, message);
     }
-
-    // create an icon loader
-    krLoader = KIconLoader::global();
 
     // create MountMan
     KrGlobal::mountMan = new KMountMan(this);

@@ -44,7 +44,7 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
+
 
 Sidebar::Sidebar(QWidget *parent) : QWidget(parent), stack(0), imageFilePreview(0), pjob(0)
 {

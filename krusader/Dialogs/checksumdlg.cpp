@@ -47,7 +47,6 @@
 
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KUrlRequester>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
 
 void Checksum::startCreationWizard(const QString &path, const QStringList &files)

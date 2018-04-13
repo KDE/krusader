@@ -41,7 +41,6 @@
 
 #include <KConfigCore/KConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 
 
 PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left) :

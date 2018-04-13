@@ -42,8 +42,8 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KActionMenu>
+
 
 static const int sDragEnterDelay = 500; // msec
 

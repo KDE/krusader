@@ -36,7 +36,6 @@
 #include <QToolTip>
 
 #include <KConfigCore/KSharedConfig>
-#include <KIconThemes/KIconLoader>
 #include <KI18n/KLocalizedString>
 
 

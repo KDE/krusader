@@ -45,7 +45,6 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KCompletion/KComboBox>
 #include <KWidgetsAddons/KMessageBox>
 #include <KIO/Global>

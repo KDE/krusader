@@ -37,7 +37,6 @@
 #include <KWidgetsAddons/KStandardGuiItem>
 #include <KCompletion/KLineEdit>
 #include <KWidgetsAddons/KMessageBox>
-#include <KIconThemes/KIconLoader>
 
 #include "actionproperty.h"
 #include "useractionlistview.h"

@@ -47,7 +47,6 @@
 
 #include <KCoreAddons/KUrlMimeData>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KIO/DropJob>
 #include <KWidgetsAddons/KCursor>
 #include <KWidgetsAddons/KMessageBox>

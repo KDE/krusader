@@ -37,7 +37,7 @@
 #include <KCompletion/KLineEdit>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
+
 
 KonfiguratorExtension::KonfiguratorExtension(QObject *obj, QString cfgGroup, QString cfgName,
                                              bool restartNeeded, int page)
