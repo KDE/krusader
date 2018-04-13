@@ -32,6 +32,7 @@
 #include <QPixmap>
 
 #include <KConfigCore/KSharedConfig>
+#include <KIconThemes/KIconLoader>
 
 
 static const int cacheSize = 500;
@@ -99,7 +100,7 @@ struct IconSearchResult
 };
 
 // Search icon in specified themes.
-// If this call modifies current theme, the original theme name will be the second item in the pair.
+// If this call modifies current theme, the original theme name will be filled.
 static inline IconSearchResult searchIcon(QString iconName, QStringList themeFallbackList)
 {
     if (QDir::isAbsolutePath(iconName)) {
@@ -108,6 +109,9 @@ static inline IconSearchResult searchIcon(QString iconName, QStringList themeFal
     } else if (QIcon::hasThemeIcon(iconName)) {
         // current theme has the icon - load seamlessly
         return IconSearchResult(QIcon::fromTheme(iconName), QString());
+    } else if (KIconLoader::global()->hasIcon(iconName)) {
+        // KF icon loader does a wider search and helps with mime icons
+        return IconSearchResult(KDE::icon(iconName), QString());
     } else {
         // search the icon in fallback themes
         auto currentTheme = QIcon::themeName();
@@ -119,6 +123,7 @@ static inline IconSearchResult searchIcon(QString iconName, QStringList themeFal
         }
         QIcon::setThemeName(currentTheme);
 
+        // not found
         return IconSearchResult(QIcon(), QString());
     }
 }
