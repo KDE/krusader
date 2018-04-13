@@ -202,6 +202,11 @@ QPixmap IconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State sta
         cachedTheme = QIcon::themeName();
     }
 
+    // an empty icon name is a special case - we don't apply any fallback
+    if (_iconName.isEmpty()) {
+        return QPixmap();
+    }
+
     auto key = IconCacheKey(_iconName, size, mode, state);
 
     // return cached icon when possible
