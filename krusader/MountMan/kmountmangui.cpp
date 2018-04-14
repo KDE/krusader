@@ -46,7 +46,6 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KGuiItem>
 #include <KIOCore/KDiskFreeSpaceInfo>
@@ -305,7 +304,7 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     if (vol && vol->usage() == Solid::StorageVolume::Encrypted) {
         overlays << "security-high";
     }
-    item->setIcon(0, KDE::icon(icon, overlays));
+    item->setIcon(0, Icon(icon, overlays));
 }
 
 void KMountManGUI::updateList()

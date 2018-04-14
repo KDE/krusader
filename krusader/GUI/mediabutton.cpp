@@ -35,7 +35,6 @@
 #include <KI18n/KLocalizedString>
 #include <KIO/Global>
 #include <KIOCore/KMountPoint>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
 
 #include <Solid/DeviceInterface>
@@ -100,7 +99,7 @@ void MediaButton::updateIcon(const QString &mountPoint)
         if (vol && vol->usage() == Solid::StorageVolume::Encrypted)
             overlays << "security-high";
     }
-    setIcon(KDE::icon(icon, overlays));
+    setIcon(Icon(icon, overlays));
 }
 
 void MediaButton::slotAboutToShow()
@@ -162,7 +161,7 @@ void MediaButton::createMediaList()
             QStringList overlays;
             if (mounted)
                 overlays << "emblem-mounted";
-            QAction * act = popupMenu->addAction(KDE::icon("network-wired", overlays), name);
+            QAction * act = popupMenu->addAction(Icon("network-wired", overlays), name);
             QString udi = remotePrefix + (*it)->mountPoint();
             act->setData(QVariant(udi));
         }
@@ -249,7 +248,7 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &i
     if (vol && vol->usage() == Solid::StorageVolume::Encrypted) {
         overlays << "security-high";
     }
-    iconOut = KDE::icon(icon, overlays);
+    iconOut = Icon(icon, overlays);
     return true;
 }
 
@@ -616,7 +615,7 @@ void MediaButton::slotCheckMounts()
             QStringList overlays;
             if (mounted)
                 overlays << "emblem-mounted";
-            QIcon kdeIcon = KDE::icon("network-wired", overlays);
+            QIcon kdeIcon = Icon("network-wired", overlays);
 
             if (!correspondingAct) {
                 QAction * act = popupMenu->addAction(kdeIcon, name);

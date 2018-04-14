@@ -63,7 +63,8 @@ static inline QStringList getThemeFallbackList()
 class IconEngine : public QIconEngine
 {
 public:
-    IconEngine(QString iconName, QIcon fallbackIcon) : _iconName(iconName), _fallbackIcon(fallbackIcon)
+    IconEngine(QString iconName, QIcon fallbackIcon, QStringList overlays = QStringList()) :
+        _iconName(iconName), _fallbackIcon(fallbackIcon), _overlays(overlays)
     {
         _themeFallbackList = getThemeFallbackList();
     }
@@ -80,13 +81,15 @@ private:
     QString _iconName;
     QStringList _themeFallbackList;
     QIcon _fallbackIcon;
+    QStringList _overlays;
 };
 
 Icon::Icon() : QIcon()
 {
 }
 
-Icon::Icon(QString name) : QIcon(new IconEngine(name, QIcon(missingIconPath)))
+Icon::Icon(QString name, QStringList overlays) :
+    QIcon(new IconEngine(name, QIcon(missingIconPath), overlays))
 {
 }
 
@@ -157,29 +160,61 @@ bool Icon::exists(QString iconName)
     return *result;
 }
 
+void Icon::applyOverlays(QPixmap *pixmap, QStringList overlays)
+{
+    auto iconLoader = KIconLoader::global();
+
+    // Since KIconLoader loadIcon is not virtual method, we can't redefine loadIcon
+    // that is called by drawOverlays. The best we can do is to go over the overlays
+    // and ensure they exist from the icon loader point of view.
+    // If not, we replace the overlay with "emblem-unreadable" which should be available
+    // per freedesktop icon name specification:
+    // https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html
+    QStringList fixedOverlays;
+    for (auto overlay : overlays) {
+        if (overlay.isEmpty() || iconLoader->hasIcon(overlay)) {
+            fixedOverlays << overlay;
+        } else {
+            fixedOverlays << "emblem-unreadable";
+        }
+    }
+
+    iconLoader->drawOverlays(fixedOverlays, *pixmap, KIconLoader::Desktop);
+}
+
 class IconCacheKey
 {
 public:
-    IconCacheKey(const QString &name, const QSize &size, QIcon::Mode mode, QIcon::State state) :
-        name(name), size(size), mode(mode), state(state)
+    IconCacheKey(const QString &name, QStringList overlays,
+                 const QSize &size, QIcon::Mode mode, QIcon::State state) :
+        name(name), overlays(overlays), size(size), mode(mode), state(state)
     {
+
+        auto repr = QString("%1 [%2] %3x%4 %5 %6").arg(name).arg(overlays.join(';'))
+                                                  .arg(size.width()).arg(size.height())
+                                                  .arg((int)mode).arg((int)state);
+        _hash = qHash(repr);
     }
 
     bool operator ==(const IconCacheKey &x) const
     {
-        return name == x.name && size == x.size && mode == x.mode && state == x.state;
+        return name == x.name && overlays == x.overlays
+            && size == x.size && mode == x.mode && state == x.state;
     }
 
     uint hash() const
     {
-        return qHash(QString("%1 %2x%3 %4 %5").arg(name).arg(size.width()).arg(size.height())
-                                              .arg((int)mode).arg((int)state));
+        return _hash;
     }
 
     QString name;
+    QStringList overlays;
     QSize size;
     QIcon::Mode mode;
     QIcon::State state;
+
+private:
+    uint _hash;
 };
 
 uint qHash(const IconCacheKey &key)
@@ -207,7 +242,7 @@ QPixmap IconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State sta
         return QPixmap();
     }
 
-    auto key = IconCacheKey(_iconName, size, mode, state);
+    auto key = IconCacheKey(_iconName, _overlays, size, mode, state);
 
     // return cached icon when possible
     if (cache.contains(key)) {
@@ -229,6 +264,9 @@ QPixmap IconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State sta
         qWarning() << "Unable to find icon" << _iconName << "of size" << size << "in any configured theme";
         *pixmap = _fallbackIcon.pixmap(size, mode, state);
     }
+
+    // apply overlays in a safe manner
+    Icon::applyOverlays(pixmap, _overlays);
 
     // update the cache; the cache takes ownership over the pixmap
     cache.insert(key, pixmap);

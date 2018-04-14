@@ -52,7 +52,7 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
+
 
 #define FILEITEM getFileItem()
 
@@ -297,7 +297,7 @@ QPixmap KrView::processIcon(const QPixmap &icon, bool dim, const QColor & dimCol
 
     if (symlink) {
         const QStringList overlays = QStringList() << QString() << "emblem-symbolic-link";
-        KIconLoader::global()->drawOverlays(overlays, pixmap, KIconLoader::Desktop);
+        Icon::applyOverlays(&pixmap, overlays);
     }
 
     if(!dim)

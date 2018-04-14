@@ -39,10 +39,13 @@ class Icon : public QIcon
 {
 public:
     Icon();
-    explicit Icon(QString name);
+    explicit Icon(QString name, QStringList overlays = QStringList());
 
     /// Check if icon exists in any configured theme
     static bool exists(QString iconName);
+
+    /// Apply overlays to the pixmap with fallbacks to standard emblems
+    static void applyOverlays(QPixmap *pixmap, QStringList overlays);
 };
 
 #endif // ICON_H
