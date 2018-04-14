@@ -300,7 +300,7 @@ void Krusader::setTray(bool forceCreation)
                                                .readEntry("Minimize To Tray", _ShowTrayIcon);
     if (!sysTray && trayIsNeeded) {
         sysTray = new KStatusNotifierItem(this);
-        sysTray->setIconByName(privIcon());
+        sysTray->setIconByName(appIconName());
         // we have our own "quit" method, re-connect
         QAction *quitAction = sysTray->action(QStringLiteral("quit"));
         if (quitAction) {
@@ -552,7 +552,7 @@ void Krusader::updateUserActions() {
     }
 }
 
-const char* Krusader::privIcon() {
+const char* Krusader::appIconName() {
     if (geteuid())
         return "krusader_user";
     else

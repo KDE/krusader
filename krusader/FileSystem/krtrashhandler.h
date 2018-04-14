@@ -33,7 +33,7 @@ class KrTrashHandler
 {
 public:
     static bool    isTrashEmpty();
-    static QString trashIcon();
+    static QString trashIconName();
     static void    emptyTrash();
     static void    restoreTrashedFiles(const QList<QUrl> &url);
     static void    startWatcher();

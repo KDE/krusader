@@ -48,7 +48,7 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     QList<KrViewInstance*> views = KrViewFactory::registeredViews();
     for(int i = 0; i < views.count(); i++) {
         KrViewInstance *inst = views[i];
-        QAction *action = new QAction(Icon(inst->icon()), inst->description(), group);
+        QAction *action = new QAction(Icon(inst->iconName()), inst->description(), group);
         action->setCheckable(true);
         connect(action, SIGNAL(triggered()), mapper, SLOT(map()));
         mapper->setMapping(action, inst->id());

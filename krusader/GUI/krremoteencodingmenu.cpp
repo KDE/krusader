@@ -42,8 +42,8 @@
 
 #define DATA_KEY    QString::fromLatin1("Charset")
 
-KrRemoteEncodingMenu::KrRemoteEncodingMenu(const QString &text, const QString &icon, KActionCollection *parent) :
-        KActionMenu(Icon(icon), text, parent), settingsLoaded(false)
+KrRemoteEncodingMenu::KrRemoteEncodingMenu(const QString &text, const QString &iconName, KActionCollection *parent) :
+        KActionMenu(Icon(iconName), text, parent), settingsLoaded(false)
 {
     connect(menu(), SIGNAL(aboutToShow()), this, SLOT(slotAboutToShow()));
 

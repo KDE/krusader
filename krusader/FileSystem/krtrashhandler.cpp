@@ -47,7 +47,7 @@ bool KrTrashHandler::isTrashEmpty()
     return cfg.readEntry("Empty", false);
 }
 
-QString KrTrashHandler::trashIcon()
+QString KrTrashHandler::trashIconName()
 {
     return isTrashEmpty() ? "user-trash" : "user-trash-full";
 }
@@ -113,5 +113,5 @@ KrTrashWatcher::~KrTrashWatcher()
 
 void KrTrashWatcher::slotTrashChanged()
 {
-    KrActions::actTrashBin->setIcon(Icon(KrTrashHandler::trashIcon()));
+    KrActions::actTrashBin->setIcon(Icon(KrTrashHandler::trashIconName()));
 }

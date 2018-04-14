@@ -289,12 +289,12 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     item->setText(5, (mtd ? sPrct : QString("N/A")));
 
     Solid::StorageVolume *vol = device.as<Solid::StorageVolume> ();
-    QString icon;
+    QString iconName;
 
     if(device.isValid())
-        icon = device.icon();
+        iconName = device.icon();
     else if(mountMan->networkFilesystem(fs.type()))
-        icon = "folder-remote";
+        iconName = "folder-remote";
     QStringList overlays;
     if (mtd) {
         overlays << "emblem-mounted";
@@ -304,7 +304,7 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     if (vol && vol->usage() == Solid::StorageVolume::Encrypted) {
         overlays << "security-high";
     }
-    item->setIcon(0, Icon(icon, overlays));
+    item->setIcon(0, Icon(iconName, overlays));
 }
 
 void KMountManGUI::updateList()

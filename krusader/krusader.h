@@ -106,11 +106,13 @@ public:
     virtual void plugActionList(const char *name, QList<QAction*> &list) Q_DECL_OVERRIDE {
         KParts::MainWindow::plugActionList(name, list);
     }
+
     /**
-     * This returns a defferent icon if krusader runs with root-privileges
-     * @return a character string with the specitif icon-name
+     * Icon name that depends on whether krusader runs with root-privileges or not
+     *
+     * @return icon name
      */
-    static const char* privIcon();
+    static const char* appIconName();
 
 public slots:
     void quit();

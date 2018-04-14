@@ -204,7 +204,7 @@ int main(int argc, char *argv[])
     // This will call QCoreApplication::setApplicationName, etc for us by using info in the KAboutData instance.
     // The only thing not called for us is setWindowIcon(), which is why we do it ourselves here.
     KAboutData::setApplicationData(aboutData);
-    app.setWindowIcon(Icon(Krusader::privIcon()));
+    app.setWindowIcon(Icon(Krusader::appIconName()));
 
     // Command line arguments ...
     QCommandLineParser parser;

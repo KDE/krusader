@@ -321,7 +321,7 @@ QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size/*, KRListItem:
     // KConfigGroup ag( krConfig, "Advanced");
     //////////////////////////////
     QPixmap icon;
-    QString icon_name = fileitem->getIcon();
+    QString iconName = fileitem->getIcon();
     QString cacheName;
 
     if(!size)
@@ -331,21 +331,21 @@ QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size/*, KRListItem:
     int dimFactor;
     bool dim = !active && KrColorCache::getColorCache().getDimSettings(dimColor, dimFactor);
 
-    if (icon_name.isNull())
-        icon_name = "";
+    if (iconName.isNull())
+        iconName = "";
 
     cacheName.append(QString::number(size));
     if(fileitem->isSymLink())
         cacheName.append("LINK_");
     if(dim)
         cacheName.append("DIM_");
-    cacheName.append(icon_name);
+    cacheName.append(iconName);
 
     //QPixmapCache::setCacheLimit( ag.readEntry("Icon Cache Size",_IconCacheSize) );
 
     // first try the cache
     if (!QPixmapCache::find(cacheName, icon)) {
-        icon = processIcon(Icon(icon_name).pixmap(size),
+        icon = processIcon(Icon(iconName).pixmap(size),
                            dim, dimColor, dimFactor, fileitem->isSymLink());
         // insert it into the cache
         QPixmapCache::insert(cacheName, icon);

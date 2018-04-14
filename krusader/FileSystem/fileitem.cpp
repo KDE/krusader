@@ -56,7 +56,7 @@ FileItem::FileItem(const QString &name, const QUrl &url, bool isDir,
       m_uid(uid), m_gid(gid), m_owner(owner), m_group(group),
       m_isLink(isLink), m_linkDest(linkDest), m_isBrokenLink(isBrokenLink),
       m_acl(acl), m_defaulfAcl(defaultAcl), m_AclLoaded(false),
-      m_mimeType(), m_icon()
+      m_mimeType(), m_iconName()
 {
     m_permissions = KRpermHandler::mode2QString(mode);
 
@@ -76,7 +76,7 @@ FileItem *FileItem::createDummy()
     FileItem *file = new FileItem("..", QUrl(), true,
                             0, 0,
                             0, 0, 0);
-    file->setIcon("go-up");
+    file->setIconName("go-up");
     return file;
 }
 
@@ -84,7 +84,7 @@ FileItem *FileItem::createBroken(const QString &name, const QUrl &url)
 {
     FileItem *file = new FileItem(name, url, false,
                                   0, 0, 0, 0, 0);
-    file->setIcon("file-broken");
+    file->setIconName("file-broken");
     return file;
 }
 
@@ -140,15 +140,15 @@ const QString &FileItem::getMime()
     if (m_mimeType.isEmpty()) {
         if (m_isDir) {
             m_mimeType = "inode/directory";
-            m_icon = "inode-directory";
+            m_iconName = "inode-directory";
         } else if (isBrokenLink()) {
             m_mimeType = "unknown";
-            m_icon = "file-broken";
+            m_iconName = "file-broken";
         } else {
             const QMimeDatabase db;
             const QMimeType mt = db.mimeTypeForUrl(getUrl());
             m_mimeType = mt.isValid() ? mt.name() : "unknown";
-            m_icon = mt.isValid() ? mt.iconName() : "file-broken";
+            m_iconName = mt.isValid() ? mt.iconName() : "file-broken";
 
             if (m_mimeType == "inode/directory") {
                 // TODO view update needed? and does this ever happen?
@@ -161,12 +161,12 @@ const QString &FileItem::getMime()
             if (url.isLocalFile()) {
                 const QString file = url.toLocalFile() + "/.directory";
                 const KDesktopFile cfg(file);
-                const QString icon = cfg.readIcon();
-                if (!icon.isEmpty())
-                    m_icon = icon.startsWith(QLatin1String("./")) ?
+                const QString iconName = cfg.readIcon();
+                if (!iconName.isEmpty())
+                    m_iconName = iconName.startsWith(QLatin1String("./")) ?
                                      // relative path
-                                     url.toLocalFile() + '/' + icon :
-                                     icon;
+                                     url.toLocalFile() + '/' + iconName :
+                                     iconName;
             }
         }
     }
@@ -175,10 +175,10 @@ const QString &FileItem::getMime()
 
 const QString &FileItem::getIcon()
 {
-    if (m_icon.isEmpty()) {
+    if (m_iconName.isEmpty()) {
         getMime(); // sets the icon
     }
-    return m_icon;
+    return m_iconName;
 }
 
 const QString &FileItem::getACL()

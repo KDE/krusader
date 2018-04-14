@@ -176,17 +176,17 @@ void KgGeneral::createExtensionsTab()
     QToolButton *addButton = new QToolButton(hboxWidget3);
     hbox3->addWidget(addButton);
 
-    QPixmap icon = Icon("list-add").pixmap(size);
-    addButton->setFixedSize(icon.width() + 4, icon.height() + 4);
-    addButton->setIcon(QIcon(icon));
+    QPixmap iconPixmap = Icon("list-add").pixmap(size);
+    addButton->setFixedSize(iconPixmap.width() + 4, iconPixmap.height() + 4);
+    addButton->setIcon(QIcon(iconPixmap));
     connect(addButton, SIGNAL(clicked()), this, SLOT(slotAddExtension()));
 
     QToolButton *removeButton = new QToolButton(hboxWidget3);
     hbox3->addWidget(removeButton);
 
-    icon = Icon("list-remove").pixmap(size);
-    removeButton->setFixedSize(icon.width() + 4, icon.height() + 4);
-    removeButton->setIcon(QIcon(icon));
+    iconPixmap = Icon("list-remove").pixmap(size);
+    removeButton->setFixedSize(iconPixmap.width() + 4, iconPixmap.height() + 4);
+    removeButton->setIcon(QIcon(iconPixmap));
     connect(removeButton, SIGNAL(clicked()), this, SLOT(slotRemoveExtension()));
 
     QStringList defaultAtomicExtensions;

@@ -87,7 +87,7 @@ void MediaButton::updateIcon(const QString &mountPoint)
 
     currentMountPoint = mountPoint;
 
-    QString icon("system-file-manager");
+    QString iconName("system-file-manager");
     QStringList overlays;
 
     if(!mountPoint.isEmpty()) {
@@ -95,11 +95,11 @@ void MediaButton::updateIcon(const QString &mountPoint)
         Solid::StorageVolume *vol = device.as<Solid::StorageVolume> ();
 
         if(device.isValid())
-            icon = device.icon();
+            iconName = device.icon();
         if (vol && vol->usage() == Solid::StorageVolume::Encrypted)
             overlays << "security-high";
     }
-    setIcon(Icon(icon, overlays));
+    setIcon(Icon(iconName, overlays));
 }
 
 void MediaButton::slotAboutToShow()
@@ -182,7 +182,7 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &i
     bool    mounted = access->isAccessible();
     QString path    = access->filePath();
     QString type    = i18nc("Unknown media type", "Unknown");
-    QString icon    = device.icon();
+    QString iconName = device.icon();
     QString fstype;
     QString size;
 
@@ -195,25 +195,25 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &i
 
     bool printSize = false;
 
-    if (icon == "media-floppy")
+    if (iconName == "media-floppy")
         type = i18n("Floppy");
-    else if (icon == "drive-optical")
+    else if (iconName == "drive-optical")
         type = i18n("CD/DVD-ROM");
-    else if (icon == "drive-removable-media-usb-pendrive")
+    else if (iconName == "drive-removable-media-usb-pendrive")
         type = i18n("USB pen drive"), printSize = true;
-    else if (icon == "drive-removable-media-usb")
+    else if (iconName == "drive-removable-media-usb")
         type = i18n("USB device"), printSize = true;
-    else if (icon == "drive-removable-media")
+    else if (iconName == "drive-removable-media")
         type = i18n("Removable media"), printSize = true;
-    else if (icon == "drive-harddisk")
+    else if (iconName == "drive-harddisk")
         type = i18n("Hard Disk"), printSize = true;
-    else if (icon == "camera-photo")
+    else if (iconName == "camera-photo")
         type = i18n("Camera");
-    else if (icon == "media-optical-video")
+    else if (iconName == "media-optical-video")
         type = i18n("Video CD/DVD-ROM");
-    else if (icon == "media-optical-audio")
+    else if (iconName == "media-optical-audio")
         type = i18n("Audio CD/DVD-ROM");
-    else if (icon == "media-optical")
+    else if (iconName == "media-optical")
         type = i18n("Recordable CD/DVD-ROM");
 
     KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("MediaMenu"));
@@ -248,7 +248,7 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &i
     if (vol && vol->usage() == Solid::StorageVolume::Encrypted) {
         overlays << "security-high";
     }
-    iconOut = Icon(icon, overlays);
+    iconOut = Icon(iconName, overlays);
     return true;
 }
 

@@ -125,7 +125,7 @@ public:
     }
 
 private:
-    void setIcon(const QString &icon) { m_icon = icon; m_mimeType = "?"; }
+    void setIconName(const QString &icon) { m_iconName = icon; m_mimeType = "?"; }
     void loadACL();
 
     QString m_name;             //< file name
@@ -155,7 +155,7 @@ private:
     bool m_AclLoaded;           //< flag, indicates that ACL permissions already loaded
 
     QString m_mimeType;         //< file mimetype, lazy initialized
-    QString m_icon;             //< the name of the icon file, lazy initialized
+    QString m_iconName;             //< the name of the icon file, lazy initialized
 
     static bool userDefinedFolderIcons;
 };
