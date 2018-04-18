@@ -93,6 +93,11 @@ Icon::Icon(QString name, QStringList overlays) :
 {
 }
 
+Icon::Icon(QString name, QIcon fallbackIcon, QStringList overlays) :
+    QIcon(new IconEngine(name, fallbackIcon, overlays))
+{
+}
+
 struct IconSearchResult
 {
     QIcon icon; ///< icon returned by search; null icon if not found

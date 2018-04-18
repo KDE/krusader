@@ -40,6 +40,7 @@ class Icon : public QIcon
 public:
     Icon();
     explicit Icon(QString name, QStringList overlays = QStringList());
+    explicit Icon(QString name, QIcon fallbackIcon, QStringList overlays = QStringList());
 
     /// Check if icon exists in any configured theme
     static bool exists(QString iconName);
