@@ -241,14 +241,28 @@ QPixmap IconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State sta
     static QCache<IconCacheKey, QPixmap> cache(cacheSize);
     static QString cachedTheme;
 
+    QString systemTheme = QIcon::themeName();
+
+    // [WORKAROUND] If system theme is Breeze, pick light or dark variant of the theme explicitly
+    // This type of selection works implicitly when QIcon::fromTheme is used,
+    // however after QIcon::setThemeName it stops working for unknown reason.
+    if (systemTheme == "breeze" || systemTheme == "breeze-dark") {
+        const QString pickedSystemTheme(Icon::isLightThemeActive() ? "breeze" : "breeze-dark");
+        if (systemTheme != pickedSystemTheme) {
+            qDebug() << "System icon theme variant changed:" << systemTheme << "->" << pickedSystemTheme;
+            systemTheme = pickedSystemTheme;
+            QIcon::setThemeName(systemTheme);
+        }
+    }
+
     // invalidate cache if system theme is changed
-    if (cachedTheme != QIcon::themeName()) {
+    if (cachedTheme != systemTheme) {
         if (!cachedTheme.isEmpty()) {
-            qDebug() << "System icon theme changed:" << cachedTheme << "->" << QIcon::themeName();
+            qDebug() << "System icon theme changed:" << cachedTheme << "->" << systemTheme;
         }
 
         cache.clear();
-        cachedTheme = QIcon::themeName();
+        cachedTheme = systemTheme;
     }
 
     // an empty icon name is a special case - we don't apply any fallback
