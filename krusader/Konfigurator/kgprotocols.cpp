@@ -34,7 +34,7 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KProtocolManager>
-#include <KIconThemes/KIconLoader>
+
 
 KgProtocols::KgProtocols(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)
@@ -259,7 +259,7 @@ void KgProtocols::addMime(QString name, QString protocol)
         delete list[ 0 ];
         QTreeWidgetItem *listViewItem = new QTreeWidgetItem(currentListItem);
         listViewItem->setText(0, name);
-        listViewItem->setIcon(0, KIconLoader::global()->loadMimeTypeIcon(name, KIconLoader::Small));
+        listViewItem->setIcon(0, Icon(name.replace(QLatin1Char('/'), QLatin1Char('-')), Icon("unknown")));
         linkList->expandItem( currentListItem );
     }
 }
