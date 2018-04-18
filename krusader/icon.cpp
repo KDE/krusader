@@ -30,6 +30,7 @@
 // QtGui
 #include <QPainter>
 #include <QPixmap>
+#include <QPalette>
 
 #include <KConfigCore/KSharedConfig>
 #include <KIconThemes/KIconLoader>
@@ -54,7 +55,8 @@ static inline QStringList getThemeFallbackList()
 
     // Breeze and Oxygen are weak dependencies of Krusader,
     // i.e. each of the themes provide a complete set of icons used in the interface
-    themes << "breeze" << "oxygen";
+    const QString breeze(Icon::isLightThemeActive() ? "breeze" : "breeze-dark");
+    themes << breeze << "oxygen";
 
     return themes;
 }
@@ -186,6 +188,13 @@ void Icon::applyOverlays(QPixmap *pixmap, QStringList overlays)
 
     iconLoader->drawOverlays(fixedOverlays, *pixmap, KIconLoader::Desktop);
 }
+
+bool Icon::isLightThemeActive()
+{
+    const QColor textColor = QPalette().brush(QPalette::Text).color();
+    return (textColor.red() + textColor.green() + textColor.blue()) / 3 < 128;
+}
+
 
 class IconCacheKey
 {

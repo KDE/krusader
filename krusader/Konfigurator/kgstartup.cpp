@@ -81,7 +81,7 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
                                       "If fallback theme doesn't contain the icon, "
                                       "Breeze or Oxygen will be used if any of these are present."));
     iconThemeLayout->addWidget(iconThemeLabel);
-    KonfiguratorEditBox *iconThemeEditBox = createEditBox("Startup", "Fallback Icon Theme", "breeze",
+    KonfiguratorEditBox *iconThemeEditBox = createEditBox("Startup", "Fallback Icon Theme", "",
                                                           panelsGrp, true);
     iconThemeLayout->addWidget(iconThemeEditBox);
     iconThemeLayout->addStretch(1);

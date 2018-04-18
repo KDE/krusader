@@ -47,6 +47,9 @@ public:
 
     /// Apply overlays to the pixmap with fallbacks to standard emblems
     static void applyOverlays(QPixmap *pixmap, QStringList overlays);
+
+    /// Determine if light theme is currently enabled
+    static bool isLightThemeActive();
 };
 
 #endif // ICON_H
