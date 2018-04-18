@@ -55,7 +55,7 @@ static inline QStringList getThemeFallbackList()
 
     // Breeze and Oxygen are weak dependencies of Krusader,
     // i.e. each of the themes provide a complete set of icons used in the interface
-    const QString breeze(Icon::isLightThemeActive() ? "breeze" : "breeze-dark");
+    const QString breeze(Icon::isLightWindowThemeActive() ? "breeze" : "breeze-dark");
     themes << breeze << "oxygen";
 
     return themes;
@@ -189,7 +189,7 @@ void Icon::applyOverlays(QPixmap *pixmap, QStringList overlays)
     iconLoader->drawOverlays(fixedOverlays, *pixmap, KIconLoader::Desktop);
 }
 
-bool Icon::isLightThemeActive()
+bool Icon::isLightWindowThemeActive()
 {
     const QColor textColor = QPalette().brush(QPalette::Text).color();
     return (textColor.red() + textColor.green() + textColor.blue()) / 3 < 128;
@@ -247,7 +247,7 @@ QPixmap IconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State sta
     // This type of selection works implicitly when QIcon::fromTheme is used,
     // however after QIcon::setThemeName it stops working for unknown reason.
     if (systemTheme == "breeze" || systemTheme == "breeze-dark") {
-        const QString pickedSystemTheme(Icon::isLightThemeActive() ? "breeze" : "breeze-dark");
+        const QString pickedSystemTheme(Icon::isLightWindowThemeActive() ? "breeze" : "breeze-dark");
         if (systemTheme != pickedSystemTheme) {
             qDebug() << "System icon theme variant changed:" << systemTheme << "->" << pickedSystemTheme;
             systemTheme = pickedSystemTheme;
