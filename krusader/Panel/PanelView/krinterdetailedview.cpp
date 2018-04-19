@@ -105,10 +105,11 @@ void KrInterDetailedView::currentChanged(const QModelIndex & current, const QMod
 
 void KrInterDetailedView::doRestoreSettings(KConfigGroup grp)
 {
+    auto headerView = header();
+
     _autoResizeColumns = grp.readEntry("AutoResizeColumns", true);
 
     QByteArray savedState = grp.readEntry("Saved State", QByteArray());
-
     if (savedState.isEmpty()) {
         hideColumn(KrViewProperties::Type);
         hideColumn(KrViewProperties::Permissions);
@@ -116,16 +117,16 @@ void KrInterDetailedView::doRestoreSettings(KConfigGroup grp)
         hideColumn(KrViewProperties::Group);
         hideColumn(KrViewProperties::Changed);
         hideColumn(KrViewProperties::Accessed);
-        header()->resizeSection(KrViewProperties::Ext, QFontMetrics(_viewFont).width("tar.bz2  "));
-        header()->resizeSection(KrViewProperties::KrPermissions, QFontMetrics(_viewFont).width("rwx  "));
-        header()->resizeSection(KrViewProperties::Size, QFontMetrics(_viewFont).width("9") * 10);
+        headerView->resizeSection(KrViewProperties::Ext, QFontMetrics(_viewFont).width("tar.bz2  "));
+        headerView->resizeSection(KrViewProperties::KrPermissions, QFontMetrics(_viewFont).width("rwx  "));
+        headerView->resizeSection(KrViewProperties::Size, QFontMetrics(_viewFont).width("9") * 10);
 
         QDateTime tmp(QDate(2099, 12, 29), QTime(23, 59));
         QString desc = QLocale().toString(tmp, QLocale::ShortFormat) + "  ";
 
-        header()->resizeSection(KrViewProperties::Modified, QFontMetrics(_viewFont).width(desc));
+        headerView->resizeSection(KrViewProperties::Modified, QFontMetrics(_viewFont).width(desc));
     } else {
-        header()->restoreState(savedState);
+        headerView->restoreState(savedState);
 
         // do not show new columns by default; restoreState() shows columns not saved
         if (KrGlobal::sCurrentConfigVersion < KrGlobal::sConfigVersion) {
@@ -134,6 +135,15 @@ void KrInterDetailedView::doRestoreSettings(KConfigGroup grp)
         }
 
         _model->setExtensionEnabled(!isColumnHidden(KrViewProperties::Ext));
+    }
+
+    // In case a column is assigned zero size for some reason, it's impossible to fix this from interface.
+    // We correct this problem by enforcing the minimum width of the column.
+    auto minSize = headerView->minimumSectionSize();
+    for (int i = KrViewProperties::Ext; i < KrViewProperties::MAX_COLUMNS; i++) {
+        if (!headerView->isSectionHidden(i) && headerView->sectionSize(i) < minSize) {
+            headerView->resizeSection(i, minSize);
+        }
     }
 
     KrInterView::doRestoreSettings(grp);
