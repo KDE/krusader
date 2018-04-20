@@ -43,19 +43,7 @@ KrBookmark::KrBookmark(QString name, QUrl url, KActionCollection *parent, QStrin
     parent->addAction(actName, this);
     connect(this, SIGNAL(triggered()), this, SLOT(activatedProxy()));
 
-    // do we have an icon?
-    if (!iconName.isEmpty())
-        setIcon(Icon(iconName));
-    else {
-        // what kind of a url is it?
-        if (_url.isLocalFile()) {
-            setIcon(Icon("folder"));
-        } else { // is it an archive?
-            if (KRarcHandler::isArchive(_url))
-                setIcon(Icon("application-x-tar"));
-            else setIcon(Icon("folder-html"));
-        }
-    }
+    setIconName(iconName);
 }
 
 KrBookmark::KrBookmark(QString name, QString iconName) :
@@ -71,6 +59,19 @@ KrBookmark::~KrBookmark()
         while (it.hasNext())
             delete it.next();
         _children.clear();
+    }
+}
+
+void KrBookmark::setIconName(QString iconName)
+{
+    if (!iconName.isEmpty()) {
+        setIcon(Icon(iconName));
+    } else if (_url.isLocalFile()) {
+        setIcon(Icon("folder"));
+    } else if (KRarcHandler::isArchive(_url)) {
+        setIcon(Icon("application-x-tar"));
+    } else {
+        setIcon(Icon("folder-html"));
     }
 }
 

@@ -232,7 +232,7 @@ void KrBookmarkHandler::exportToFile()
 
 bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString path, QString *errorMsg)
 {
-    QString url, name, icon;
+    QString url, name, iconName;
     // verify tag
     if (e.tagName() != "bookmark") {
         *errorMsg = i18n("%1 instead of %2", e.tagName(), QLatin1String("bookmark"));
@@ -251,14 +251,17 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
     } else name = te.text();
     // do we have an icon?
     if (e.hasAttribute("icon")) {
-        icon = e.attribute("icon");
+        iconName = e.attribute("icon");
     }
     // ok: got name and url, let's add a bookmark
     KrBookmark *bm = KrBookmark::getExistingBookmark(path + name, _collection);
     if (!bm) {
-        bm = new KrBookmark(name, QUrl(url), _collection, icon, path + name);
-        parent->children().append(bm);
+        bm = new KrBookmark(name, QUrl(url), _collection, iconName, path + name);
+    } else {
+        bm->setURL(QUrl(url));
+        bm->setIconName(iconName);
     }
+    parent->children().append(bm);
 
     return true;
 }
@@ -298,7 +301,7 @@ bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent
 
 void KrBookmarkHandler::importFromFile()
 {
-    clearBookmarks(_root);
+    clearBookmarks(_root, false);
 
     QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
     QFile file(filename);
@@ -522,21 +525,22 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
     menu->installEventFilter(this);
 }
 
-void KrBookmarkHandler::clearBookmarks(KrBookmark *root)
+void KrBookmarkHandler::clearBookmarks(KrBookmark *root, bool removeBookmarks)
 {
-    QList<KrBookmark *>::iterator it = root->children().begin();
-    while (it != root->children().end()) {
+    for (auto it = root->children().begin(); it != root->children().end(); it = root->children().erase(it)) {
         KrBookmark *bm = *it;
 
-        if (bm->isFolder())
-            clearBookmarks(bm);
-        else {
-            foreach(QWidget *w, bm->associatedWidgets())
-            w->removeAction(bm);
+        if (bm->isFolder()) {
+            clearBookmarks(bm, removeBookmarks);
+            delete bm;
+        } else if (bm->isSeparator()) {
+            delete bm;
+        } else if (removeBookmarks) {
+            foreach (QWidget *w, bm->associatedWidgets()) {
+                w->removeAction(bm);
+            }
             delete bm;
         }
-
-        it = root->children().erase(it);
     }
 }
 
