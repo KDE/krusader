@@ -291,7 +291,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     checked = group.readEntry("LeftToRight Button", _BtnLeftToRight);
     description = i18n("Show files marked to <i>Copy from left to right</i>.");
     btnLeftToRight =
-        createButton(showOptions, "arrow-right", checked, Qt::CTRL + Qt::Key_L, description);
+        createButton(showOptions, "arrow-right", checked, Qt::CTRL + Qt::Key_L, description, ">");
     showOptionsLayout->addWidget(btnLeftToRight, 0, 0);
 
     checked = group.readEntry("Equals Button", _BtnEquals);
@@ -309,7 +309,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     checked = group.readEntry("RightToLeft Button", _BtnRightToLeft);
     description = i18n("Show files marked to <i>Copy from right to left</i>.");
     btnRightToLeft =
-        createButton(showOptions, "arrow-left", checked, Qt::CTRL + Qt::Key_R, description);
+        createButton(showOptions, "arrow-left", checked, Qt::CTRL + Qt::Key_R, description, "<");
     showOptionsLayout->addWidget(btnRightToLeft, 0, 3);
 
     checked = group.readEntry("Deletable Button", _BtnDeletable);
