@@ -37,10 +37,10 @@
 #include <KConfigCore/KConfigGroup>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KIOCore/KProtocolInfo>
 
 #include "../krglobal.h"
+#include "../icon.h"
 
 #define SIZE_MINIMUM QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed)
 
@@ -71,7 +71,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
     setSizePolicy(policy);
 
     iconLabel = new QLabel(this);
-    iconLabel->setPixmap(krLoader->loadIcon("network-wired", KIconLoader::Desktop, 32));
+    iconLabel->setPixmap(Icon("network-wired").pixmap(32));
     iconLabel->setSizePolicy(SIZE_MINIMUM);
 
     aboutLabel = new QLabel(i18n("About to connect to..."), this);

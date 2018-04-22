@@ -21,6 +21,7 @@
 #include "fileTree.h"
 #include "radialMap.h"   //class Segment
 #include "widget.h"
+#include "../../icon.h"
 
 #include <cmath>
 
@@ -36,7 +37,6 @@
 #include <QMenu>
 
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KIconThemes/KIconEffect>
 #include <KIO/DeleteJob>
 #include <KIO/JobUiDelegate>
@@ -173,19 +173,19 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
             QAction * actKonq = 0, * actKonsole = 0, *actViewMag = 0, * actFileOpen = 0, * actEditDel = 0;
 
             if (isDir) {
-                actKonq = popup.addAction(QIcon::fromTheme("system-file-manager"), i18n("Open File Manager Here"));
+                actKonq = popup.addAction(Icon("system-file-manager"), i18n("Open File Manager Here"));
                 if (url.scheme() == "file")
-                    actKonsole = popup.addAction(QIcon::fromTheme("utilities-terminal"), i18n("Open Terminal Here"));
+                    actKonsole = popup.addAction(Icon("utilities-terminal"), i18n("Open Terminal Here"));
 
                 if (m_focus->file() != m_tree) {
                     popup.addSeparator();
-                    actViewMag = popup.addAction(QIcon::fromTheme("zoom-original"), i18n("&Center Map Here"));
+                    actViewMag = popup.addAction(Icon("zoom-original"), i18n("&Center Map Here"));
                 }
             } else
-                actFileOpen = popup.addAction(QIcon::fromTheme("document-open"), i18n("&Open"));
+                actFileOpen = popup.addAction(Icon("document-open"), i18n("&Open"));
 
             popup.addSeparator();
-            actEditDel = popup.addAction(QIcon::fromTheme("edit-delete"), i18n("&Delete"));
+            actEditDel = popup.addAction(Icon("edit-delete"), i18n("&Delete"));
 
             QAction * result = popup.exec(e->globalPos());
             if (result == 0)

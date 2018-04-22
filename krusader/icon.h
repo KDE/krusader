@@ -1,7 +1,6 @@
 /*****************************************************************************
- * Copyright (C) 2000 Shie Erlich <erlich@users.sourceforge.net>             *
- * Copyright (C) 2000 Rafi Yanai <yanai@users.sourceforge.net>               *
- * Copyright (C) 2004-2018 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2018 Nikita Melnichenko <nikita+kde@melnichenko.name>       *
+ * Copyright (C) 2018 Krusader Krew [https://krusader.org]                   *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *
@@ -19,23 +18,38 @@
  * along with Krusader.  If not, see [http://www.gnu.org/licenses/].         *
  *****************************************************************************/
 
-#include "kicons.h"
-#include "krglobal.h"
-#include "defaults.h"
+#ifndef ICON_H
+#define ICON_H
 
-// QtCore
-#include <QString>
 // QtGui
-#include <QPixmap>
-// QtWidgets
-#include <QStyle>
+#include <QIcon>
+#include <QIconEngine>
 
-#include <KConfigCore/KSharedConfig>
-#include <KIconThemes/KIconLoader>
-
-QPixmap FL_LOADICON(QString name)
+/**
+ * @class Icon
+ *
+ * Universal icon class for Krusader.
+ *
+ * There is a list of configured themes that Icon searches in.
+ * The order of themes is the following: active theme, theme specified by user,
+ * fallback themes that provide complete icon set for Krusader.
+ * If icon is not found in any configured theme, the fallback icon is used.
+ */
+class Icon : public QIcon
 {
-    KConfigGroup group(krConfig, "Look&Feel");
-    int size = (group.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt();
-    return krLoader->loadIcon(name, KIconLoader::Desktop, size);
-}
+public:
+    Icon();
+    explicit Icon(QString name, QStringList overlays = QStringList());
+    explicit Icon(QString name, QIcon fallbackIcon, QStringList overlays = QStringList());
+
+    /// Check if icon exists in any configured theme
+    static bool exists(QString iconName);
+
+    /// Apply overlays to the pixmap with fallbacks to standard emblems
+    static void applyOverlays(QPixmap *pixmap, QStringList overlays);
+
+    /// Determine if light window theme is currently enabled
+    static bool isLightWindowThemeActive();
+};
+
+#endif // ICON_H

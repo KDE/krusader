@@ -21,6 +21,7 @@
 #include "actionsbase.h"
 
 #include "krmainwindow.h"
+#include "icon.h"
 
 // QtWidgets
 #include <QAction>
@@ -48,12 +49,12 @@ QAction *ActionsBase::createAction(QString text, QString icon, bool isToggleActi
         if (icon == 0)
             return (QAction *)(new KToggleAction(text, this));
         else
-            return (QAction *)(new KToggleAction(QIcon::fromTheme(icon), text, this));
+            return (QAction *)(new KToggleAction(Icon(icon), text, this));
     } else {
         if (icon == 0)
             return new QAction(text, this);
         else
-            return new QAction(QIcon::fromTheme(icon), text, this);
+            return new QAction(Icon(icon), text, this);
     }
 }
 

@@ -32,10 +32,9 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 
-#include "../kicons.h"
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../FileSystem/filesystem.h"
 #include "../Dialogs/krdialogs.h"
 
@@ -60,17 +59,17 @@ DiskUsageGUI::DiskUsageGUI(const QUrl &openDir)
     duTools->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
     btnNewSearch = new QToolButton(duTools);
-    btnNewSearch->setIcon(QIcon(krLoader->loadIcon("document-open", KIconLoader::Desktop)));
+    btnNewSearch->setIcon(Icon("document-open"));
     duHBox->addWidget(btnNewSearch);
     btnNewSearch->setToolTip(i18n("Start new disk usage search"));
 
     btnRefresh = new QToolButton(duTools);
-    btnRefresh->setIcon(QIcon(krLoader->loadIcon("view-refresh", KIconLoader::Desktop)));
+    btnRefresh->setIcon(Icon("view-refresh"));
     duHBox->addWidget(btnRefresh);
     btnRefresh->setToolTip(i18n("Refresh"));
 
     btnDirUp = new QToolButton(duTools);
-    btnDirUp->setIcon(QIcon(krLoader->loadIcon("go-up", KIconLoader::Desktop)));
+    btnDirUp->setIcon(Icon("go-up"));
     duHBox->addWidget(btnDirUp);
     btnDirUp->setToolTip(i18n("Parent folder"));
 
@@ -79,19 +78,19 @@ DiskUsageGUI::DiskUsageGUI(const QUrl &openDir)
     duHBox->addWidget(separatorWidget);
 
     btnLines = new QToolButton(duTools);
-    btnLines->setIcon(QIcon(krLoader->loadIcon("view-list-details", KIconLoader::Desktop)));
+    btnLines->setIcon(Icon("view-list-details"));
     btnLines->setCheckable(true);
     duHBox->addWidget(btnLines);
     btnLines->setToolTip(i18n("Line view"));
 
     btnDetailed = new QToolButton(duTools);
-    btnDetailed->setIcon(QIcon(krLoader->loadIcon("view-list-tree", KIconLoader::Desktop)));
+    btnDetailed->setIcon(Icon("view-list-tree"));
     btnDetailed->setCheckable(true);
     duHBox->addWidget(btnDetailed);
     btnDetailed->setToolTip(i18n("Detailed view"));
 
     btnFilelight = new QToolButton(duTools);
-    btnFilelight->setIcon(QIcon(krLoader->loadIcon("kr_diskusage", KIconLoader::Desktop)));
+    btnFilelight->setIcon(Icon("kr_diskusage"));
     btnFilelight->setCheckable(true);
     duHBox->addWidget(btnFilelight);
     btnFilelight->setToolTip(i18n("Filelight view"));

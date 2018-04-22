@@ -21,7 +21,7 @@
 
 #include "krspwidgets.h"
 #include "../krglobal.h"
-#include "../kicons.h"
+#include "../icon.h"
 #include "../Filter/filtertabs.h"
 #include "../GUI/krlistwidget.h"
 
@@ -41,7 +41,6 @@
 #include <KCompletion/KHistoryComboBox>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KCursor>
 
 ///////////////////// initiation of the static members ////////////////////////
@@ -168,7 +167,7 @@ void newFTPSub::reject()
 /////////////////////////// KRMaskChoiceSub ///////////////////////////////
 KRMaskChoiceSub::KRMaskChoiceSub(QWidget * parent) : KRMaskChoice(parent)
 {
-    PixmapLabel1->setPixmap(krLoader->loadIcon("edit-select", KIconLoader::Desktop, 32));
+    PixmapLabel1->setPixmap(Icon("edit-select").pixmap(32));
     label->setText(i18n("Enter a selection:"));
     // the predefined selections list
     KConfigGroup group(krConfig, "Private");

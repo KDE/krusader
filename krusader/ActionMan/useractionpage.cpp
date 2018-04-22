@@ -37,7 +37,6 @@
 #include <KWidgetsAddons/KStandardGuiItem>
 #include <KCompletion/KLineEdit>
 #include <KWidgetsAddons/KMessageBox>
-#include <KIconThemes/KIconLoader>
 
 #include "actionproperty.h"
 #include "useractionlistview.h"
@@ -45,8 +44,9 @@
 #include "../UserAction/kraction.h"
 #include "../krusader.h"
 #include "../krglobal.h"
+#include "../icon.h"
 
-#define ICON(N)  KIconLoader::global()->loadIcon(N, KIconLoader::Toolbar)
+
 //This is the filter in the QFileDialog of Import/Export:
 static const char* FILE_FILTER = I18N_NOOP("*.xml|XML files\n*|All files");
 
@@ -64,32 +64,32 @@ UserActionPage::UserActionPage(QWidget* parent)
     toolbarLayout->setContentsMargins(0, 0, 0, 0);
 
     newButton = new QToolButton(this);
-    newButton->setIcon(ICON("document-new"));
+    newButton->setIcon(Icon("document-new"));
     newButton->setAutoRaise(true);
     newButton->setToolTip(i18n("Create new useraction"));
 
     importButton = new QToolButton(this);
-    importButton->setIcon(ICON("document-import"));
+    importButton->setIcon(Icon("document-import"));
     importButton->setAutoRaise(true);
     importButton->setToolTip(i18n("Import useractions"));
 
     exportButton = new QToolButton(this);
-    exportButton->setIcon(ICON("document-export"));
+    exportButton->setIcon(Icon("document-export"));
     exportButton->setAutoRaise(true);
     exportButton->setToolTip(i18n("Export useractions"));
 
     copyButton = new QToolButton(this);
-    copyButton->setIcon(ICON("edit-copy"));
+    copyButton->setIcon(Icon("edit-copy"));
     copyButton->setAutoRaise(true);
     copyButton->setToolTip(i18n("Copy useractions to clipboard"));
 
     pasteButton = new QToolButton(this);
-    pasteButton->setIcon(ICON("edit-paste"));
+    pasteButton->setIcon(Icon("edit-paste"));
     pasteButton->setAutoRaise(true);
     pasteButton->setToolTip(i18n("Paste useractions from clipboard"));
 
     removeButton = new QToolButton(this);
-    removeButton->setIcon(ICON("edit-delete"));
+    removeButton->setIcon(Icon("edit-delete"));
     removeButton->setAutoRaise(true);
     removeButton->setToolTip(i18n("Delete selected useractions"));
 

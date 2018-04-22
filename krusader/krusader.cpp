@@ -40,7 +40,6 @@
 #include <KConfigCore/KSharedConfig>
 #include <KConfigGui/KWindowConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KXmlGui/KActionCollection>
 #include <KXmlGui/KXMLGUIFactory>
 #include <KXmlGui/KToolBar>
@@ -53,7 +52,6 @@
 #include <KWindowSystem/KWindowSystem>
 
 #include "defaults.h"
-#include "kicons.h"
 #include "kractions.h"
 #include "krglobal.h"
 #include "krservices.h"
@@ -136,10 +134,6 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     if (!message.isEmpty()) {
         KMessageBox::error(krApp, message);
     }
-
-    // create an icon loader
-    krLoader = KIconLoader::global();
-//   iconLoader->addExtraDesktopThemes();
 
     // create MountMan
     KrGlobal::mountMan = new KMountMan(this);
@@ -306,7 +300,7 @@ void Krusader::setTray(bool forceCreation)
                                                .readEntry("Minimize To Tray", _ShowTrayIcon);
     if (!sysTray && trayIsNeeded) {
         sysTray = new KStatusNotifierItem(this);
-        sysTray->setIconByName(privIcon());
+        sysTray->setIconByName(appIconName());
         // we have our own "quit" method, re-connect
         QAction *quitAction = sysTray->action(QStringLiteral("quit"));
         if (quitAction) {
@@ -558,7 +552,7 @@ void Krusader::updateUserActions() {
     }
 }
 
-const char* Krusader::privIcon() {
+const char* Krusader::appIconName() {
     if (geteuid())
         return "krusader_user";
     else

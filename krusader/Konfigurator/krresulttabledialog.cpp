@@ -30,9 +30,9 @@
 #include <QVBoxLayout>
 
 #include <KConfigWidgets/KHelpClient>
-#include <KIconThemes/KIconLoader>
 
 #include "../krglobal.h"
+#include "../icon.h"
 
 KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
         const QString& caption, const QString& heading, const QString& headerIcon,
@@ -54,7 +54,7 @@ KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
     QWidget *_iconWidget = new QWidget(this);
     QHBoxLayout * _iconBox = new QHBoxLayout(_iconWidget);
     QLabel *_iconLabel = new QLabel(_iconWidget);
-    _iconLabel->setPixmap(krLoader->loadIcon(headerIcon, KIconLoader::Desktop, 32));
+    _iconLabel->setPixmap(Icon(headerIcon).pixmap(32));
     _iconLabel->setMinimumWidth(fontMetrics().maxWidth()*20);
     _iconLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     _iconLabel->setFixedSize(_iconLabel->sizeHint());

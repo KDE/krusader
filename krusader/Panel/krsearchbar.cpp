@@ -25,6 +25,7 @@
 #include "../FileSystem/dirlisterinterface.h"
 #include "../defaults.h"
 #include "../krglobal.h"
+#include "../icon.h"
 
 #include <QDebug>
 #include <QGuiApplication>
@@ -35,7 +36,6 @@
 #include <QToolTip>
 
 #include <KConfigCore/KSharedConfig>
-#include <KIconThemes/KIconLoader>
 #include <KI18n/KLocalizedString>
 
 
@@ -45,7 +45,7 @@ KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
     // close button
     QToolButton *closeButton = new QToolButton(this);
     closeButton->setAutoRaise(true);
-    closeButton->setIcon(QIcon::fromTheme(QStringLiteral("dialog-close")));
+    closeButton->setIcon(Icon(QStringLiteral("dialog-close")));
     closeButton->setToolTip(i18n("Close the search bar"));
     connect(closeButton, SIGNAL(clicked()), SLOT(hideBar()));
 
@@ -74,13 +74,13 @@ KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
     connect(_textBox, SIGNAL(currentTextChanged(QString)), SLOT(onSearchChange()));
 
     QToolButton *saveSearchBtn = new QToolButton(this);
-    saveSearchBtn->setIcon(krLoader->loadIcon("document-save", KIconLoader::Toolbar, 16));
+    saveSearchBtn->setIcon(Icon("document-save"));
     saveSearchBtn->setFixedSize(20, 20);
     saveSearchBtn->setToolTip(i18n("Save the current search string"));
     connect(saveSearchBtn, SIGNAL(clicked()), this, SLOT(saveSearchString()));
 
     _openSelectDialogBtn = new QToolButton(this);
-    _openSelectDialogBtn->setIcon(krLoader->loadIcon("configure", KIconLoader::Toolbar, 16));
+    _openSelectDialogBtn->setIcon(Icon("configure"));
     _openSelectDialogBtn->setFixedSize(20, 20);
     _openSelectDialogBtn->setToolTip(i18n("Open selection dialog"));
 

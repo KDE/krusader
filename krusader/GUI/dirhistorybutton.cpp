@@ -20,6 +20,7 @@
  *****************************************************************************/
 
 #include "dirhistorybutton.h"
+#include "../icon.h"
 #include "../Panel/dirhistoryqueue.h"
 
 #include "../FileSystem/filesystem.h"
@@ -37,7 +38,7 @@
 DirHistoryButton::DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent) : QToolButton(parent)
 {
     setAutoRaise(true);
-    setIcon(QIcon::fromTheme("chronometer"));
+    setIcon(Icon("chronometer"));
     setText(i18n("Open the folder history list"));
     setToolTip(i18n("Open the folder history list"));
     setPopupMode(QToolButton::InstantPopup);

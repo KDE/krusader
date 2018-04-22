@@ -60,6 +60,7 @@
 #include <KXmlGui/KActionCollection>
 
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../kractions.h"
 #include "../GUI/krremoteencodingmenu.h"
 
@@ -1201,40 +1202,40 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent)
 {
     setXMLFile("krusaderlisterui.rc");
 
-    _actionSaveSelected = new QAction(QIcon::fromTheme("document-save"), i18n("Save selection..."), this);
+    _actionSaveSelected = new QAction(Icon("document-save"), i18n("Save selection..."), this);
     connect(_actionSaveSelected, SIGNAL(triggered(bool)), SLOT(saveSelected()));
     actionCollection()->addAction("save_selected", _actionSaveSelected);
 
-    _actionSaveAs = new QAction(QIcon::fromTheme("document-save-as"), i18n("Save as..."), this);
+    _actionSaveAs = new QAction(Icon("document-save-as"), i18n("Save as..."), this);
     connect(_actionSaveAs, SIGNAL(triggered(bool)), SLOT(saveAs()));
     actionCollection()->addAction("save_as", _actionSaveAs);
 
-    _actionPrint = new QAction(QIcon::fromTheme("document-print"), i18n("Print..."), this);
+    _actionPrint = new QAction(Icon("document-print"), i18n("Print..."), this);
     connect(_actionPrint, SIGNAL(triggered(bool)), SLOT(print()));
     actionCollection()->addAction("print", _actionPrint);
     actionCollection()->setDefaultShortcut(_actionPrint, Qt::CTRL + Qt::Key_P);
 
-    _actionSearch = new QAction(QIcon::fromTheme("system-search"), i18n("Search"), this);
+    _actionSearch = new QAction(Icon("system-search"), i18n("Search"), this);
     connect(_actionSearch, SIGNAL(triggered(bool)), SLOT(searchAction()));
     actionCollection()->addAction("search", _actionSearch);
     actionCollection()->setDefaultShortcut(_actionSearch, Qt::CTRL + Qt::Key_F);
 
-    _actionSearchNext = new QAction(QIcon::fromTheme("go-down"), i18n("Search next"), this);
+    _actionSearchNext = new QAction(Icon("go-down"), i18n("Search next"), this);
     connect(_actionSearchNext, SIGNAL(triggered(bool)), SLOT(searchNext()));
     actionCollection()->addAction("search_next", _actionSearchNext);
     actionCollection()->setDefaultShortcut(_actionSearchNext, Qt::Key_F3);
 
-    _actionSearchPrev = new QAction(QIcon::fromTheme("go-up"), i18n("Search previous"), this);
+    _actionSearchPrev = new QAction(Icon("go-up"), i18n("Search previous"), this);
     connect(_actionSearchPrev, SIGNAL(triggered(bool)), SLOT(searchPrev()));
     actionCollection()->addAction("search_prev", _actionSearchPrev);
     actionCollection()->setDefaultShortcut(_actionSearchPrev, Qt::SHIFT + Qt::Key_F3);
 
-    _actionJumpToPosition = new QAction(QIcon::fromTheme("go-jump"), i18n("Jump to position"), this);
+    _actionJumpToPosition = new QAction(Icon("go-jump"), i18n("Jump to position"), this);
     connect(_actionJumpToPosition, SIGNAL(triggered(bool)), SLOT(jumpToPosition()));
     actionCollection()->addAction("jump_to_position", _actionJumpToPosition);
     actionCollection()->setDefaultShortcut(_actionJumpToPosition, Qt::CTRL + Qt::Key_G);
 
-    _actionHexMode = new QAction(QIcon::fromTheme("document-preview"), i18n("Hex mode"), this);
+    _actionHexMode = new QAction(Icon("document-preview"), i18n("Hex mode"), this);
     connect(_actionHexMode, SIGNAL(triggered(bool)), SLOT(toggleHexMode()));
     actionCollection()->addAction("hex_mode", _actionHexMode);
     actionCollection()->setDefaultShortcut(_actionHexMode, Qt::CTRL + Qt::Key_H);
@@ -1268,7 +1269,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent)
     hbox->addWidget(_searchProgressBar);
 
     _searchStopButton = new QToolButton(statusWidget);
-    _searchStopButton->setIcon(QIcon::fromTheme("process-stop"));
+    _searchStopButton->setIcon(Icon("process-stop"));
     _searchStopButton->setToolTip(i18n("Stop search"));
     _searchStopButton->hide();
     connect(_searchStopButton, SIGNAL(clicked()), this, SLOT(searchDelete()));
@@ -1284,11 +1285,11 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent)
     connect(_searchLineEdit, SIGNAL(textChanged(QString)), this, SLOT(searchTextChanged()));
 
     hbox->addWidget(_searchLineEdit);
-    _searchNextButton = new QPushButton(QIcon::fromTheme("go-down"), i18n("Next"), statusWidget);
+    _searchNextButton = new QPushButton(Icon("go-down"), i18n("Next"), statusWidget);
     _searchNextButton->setToolTip(i18n("Jump to next match"));
     connect(_searchNextButton, SIGNAL(clicked()), this, SLOT(searchNext()));
     hbox->addWidget(_searchNextButton);
-    _searchPrevButton = new QPushButton(QIcon::fromTheme("go-up"), i18n("Previous"), statusWidget);
+    _searchPrevButton = new QPushButton(Icon("go-up"), i18n("Previous"), statusWidget);
     _searchPrevButton->setToolTip(i18n("Jump to previous match"));
     connect(_searchPrevButton, SIGNAL(clicked()), this, SLOT(searchPrev()));
     hbox->addWidget(_searchPrevButton);

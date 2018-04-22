@@ -20,6 +20,7 @@
 
 #include "kurllistrequester.h"
 #include "../FileSystem/filesystem.h"
+#include "../icon.h"
 
 // QtGui
 #include <QPixmap>
@@ -32,7 +33,6 @@
 #include <QMenu>
 
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
 
 #define DELETE_ITEM_ID    100
@@ -55,12 +55,12 @@ KURLListRequester::KURLListRequester(Mode requestMode, QWidget *parent)
 
     urlAddBtn = new QToolButton(this);
     urlAddBtn->setText("");
-    urlAddBtn->setIcon(QIcon::fromTheme("arrow-down"));
+    urlAddBtn->setIcon(Icon("arrow-down"));
     urlListRequesterGrid->addWidget(urlAddBtn, 0, 1);
 
     urlBrowseBtn = new QToolButton(this);
     urlBrowseBtn->setText("");
-    urlBrowseBtn->setIcon(QIcon::fromTheme("folder"));
+    urlBrowseBtn->setIcon(Icon("folder"));
     urlListRequesterGrid->addWidget(urlBrowseBtn, 0, 2);
 
     // add shell completion

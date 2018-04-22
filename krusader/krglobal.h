@@ -31,7 +31,6 @@ class KConfig;
 class KMountMan;
 class KrBookmarkHandler;
 class KRslots;
-class KIconLoader;
 class KrusaderView;
 class UserAction;
 class JobMan;
@@ -47,7 +46,6 @@ public:
     static KMountMan *mountMan;  // krusader's Mount Manager
     static KrBookmarkHandler *bookman;
     static KRslots *slot;
-    static KIconLoader *iconLoader; // the app's icon loader
     static KrusaderView *mainView;  // The GUI
     static QWidget *mainWindow;
     static UserAction *userAction;
@@ -70,7 +68,6 @@ public:
 #define krMtMan      (*(KrGlobal::mountMan))
 #define krBookMan    KrGlobal::bookman
 #define SLOTS        KrGlobal::slot
-#define krLoader     KrGlobal::iconLoader
 #define MAIN_VIEW    KrGlobal::mainView
 #define krMainWindow KrGlobal::mainWindow
 #define krUserAction KrGlobal::userAction

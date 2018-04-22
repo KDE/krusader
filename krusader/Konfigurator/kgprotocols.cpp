@@ -20,6 +20,7 @@
 
 #include "kgprotocols.h"
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../krservices.h"
 
 // QtCore
@@ -33,7 +34,7 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KProtocolManager>
-#include <KIconThemes/KIconLoader>
+
 
 KgProtocols::KgProtocols(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)
@@ -63,12 +64,12 @@ KgProtocols::KgProtocols(bool first, QWidget* parent) :
 
     addSpacer(vbox1);
     btnAddProtocol = new QPushButton(vbox1Widget);
-    btnAddProtocol->setIcon(krLoader->loadIcon("arrow-left", KIconLoader::Small));
+    btnAddProtocol->setIcon(Icon("arrow-left"));
     btnAddProtocol->setWhatsThis(i18n("Add protocol to the link list."));
     vbox1->addWidget(btnAddProtocol);
 
     btnRemoveProtocol = new QPushButton(vbox1Widget);
-    btnRemoveProtocol->setIcon(krLoader->loadIcon("arrow-right", KIconLoader::Small));
+    btnRemoveProtocol->setIcon(Icon("arrow-right"));
     btnRemoveProtocol->setWhatsThis(i18n("Remove protocol from the link list."));
     vbox1->addWidget(btnRemoveProtocol);
     addSpacer(vbox1);
@@ -80,12 +81,12 @@ KgProtocols::KgProtocols(bool first, QWidget* parent) :
 
     addSpacer(vbox2);
     btnAddMime = new QPushButton(vbox2Widget);
-    btnAddMime->setIcon(krLoader->loadIcon("arrow-left", KIconLoader::Small));
+    btnAddMime->setIcon(Icon("arrow-left"));
     btnAddMime->setWhatsThis(i18n("Add MIME to the selected protocol on the link list."));
     vbox2->addWidget(btnAddMime);
 
     btnRemoveMime = new QPushButton(vbox2Widget);
-    btnRemoveMime->setIcon(krLoader->loadIcon("arrow-right", KIconLoader::Small));
+    btnRemoveMime->setIcon(Icon("arrow-right"));
     btnRemoveMime->setWhatsThis(i18n("Remove MIME from the link list."));
     vbox2->addWidget(btnRemoveMime);
     addSpacer(vbox2);
@@ -194,10 +195,10 @@ void KgProtocols::addProtocol(QString name, bool changeCurrent)
         delete list[ 0 ];
         QTreeWidgetItem *listViewItem = new QTreeWidgetItem(linkList);
         listViewItem->setText(0, name);
-        QString icon = KProtocolInfo::icon(name);
-        if (icon.isEmpty())
-            icon = "go-next-view";
-        listViewItem->setIcon(0, krLoader->loadIcon(icon, KIconLoader::Small));
+        QString iconName = KProtocolInfo::icon(name);
+        if (iconName.isEmpty())
+            iconName = "go-next-view";
+        listViewItem->setIcon(0, Icon(iconName));
 
         if (changeCurrent)
             linkList->setCurrentItem(listViewItem);
@@ -258,7 +259,7 @@ void KgProtocols::addMime(QString name, QString protocol)
         delete list[ 0 ];
         QTreeWidgetItem *listViewItem = new QTreeWidgetItem(currentListItem);
         listViewItem->setText(0, name);
-        listViewItem->setIcon(0, krLoader->loadMimeTypeIcon(name, KIconLoader::Small));
+        listViewItem->setIcon(0, Icon(name.replace(QLatin1Char('/'), QLatin1Char('-')), Icon("unknown")));
         linkList->expandItem( currentListItem );
     }
 }

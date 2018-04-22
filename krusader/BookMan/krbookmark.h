@@ -37,12 +37,12 @@ class KrBookmark: public QAction
     Q_OBJECT
 public:
     KrBookmark(QString name, QUrl url, KActionCollection *parent, QString icon = "", QString actionName = QString());
-    explicit KrBookmark(QString name, QString icon = ""); // creates a folder
+    explicit KrBookmark(QString name, QString iconName = ""); // creates a folder
     ~KrBookmark();
     // text() and setText() to change the name of the bookmark
     // icon() and setIcon() to change icons
     inline const QString& iconName() const {
-        return _icon;
+        return _iconName;
     }
     inline const QUrl &url() const {
         return _url;
@@ -78,7 +78,7 @@ protected slots:
 
 private:
     QUrl _url;
-    QString _icon;
+    QString _iconName;
     bool _folder;
     bool _separator;
     bool _autoDelete;

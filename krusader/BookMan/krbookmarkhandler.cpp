@@ -23,6 +23,7 @@
 #include "kraddbookmarkdlg.h"
 
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../krslots.h"
 #include "../kractions.h"
 #include "../krmainwindow.h"
@@ -44,7 +45,6 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
 #include <KXmlGui/KActionCollection>
 #include <KBookmarks/KBookmarkManager>
@@ -390,7 +390,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
 
         if (!bm->isFolder()) continue;
         QMenu *newMenu = new QMenu(menu);
-        newMenu->setIcon(QIcon(krLoader->loadIcon(bm->iconName(), KIconLoader::Small)));
+        newMenu->setIcon(Icon(bm->iconName()));
         newMenu->setTitle(bm->text());
         QAction *menuAction = menu->addMenu(newMenu);
         QVariant v;
@@ -426,7 +426,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
             // add the popular links submenu
             QMenu *newMenu = new QMenu(menu);
             newMenu->setTitle(i18n("Popular URLs"));
-            newMenu->setIcon(QIcon(krLoader->loadIcon("folder-bookmark", KIconLoader::Small)));
+            newMenu->setIcon(Icon("folder-bookmark"));
             QAction *bmfAct  = menu->addMenu(newMenu);
             _specialBookmarks.append(bmfAct);
             // add the top 15 urls
@@ -511,7 +511,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
         menu->addSeparator();
         menu->addAction(KrActions::actAddBookmark);
         _specialBookmarks.append(KrActions::actAddBookmark);
-        QAction *bmAct = menu->addAction(krLoader->loadIcon("bookmarks", KIconLoader::Small),
+        QAction *bmAct = menu->addAction(Icon("bookmarks"),
                                          i18n("Manage Bookmarks"), manager, SLOT(slotEditBookmarks()));
         _specialBookmarks.append(bmAct);
 
@@ -827,13 +827,13 @@ void KrBookmarkHandler::rightClicked(QMenu *menu, KrBookmark * bm)
     QAction * act;
 
     if (!bm->isFolder()) {
-        act = popup.addAction(krLoader->loadIcon("document-open", KIconLoader::Panel), i18n("Open"));
+        act = popup.addAction(Icon("document-open"), i18n("Open"));
         act->setData(QVariant(OPEN_ID));
-        act = popup.addAction(krLoader->loadIcon("tab-new", KIconLoader::Panel), i18n("Open in a new tab"));
+        act = popup.addAction(Icon("tab-new"), i18n("Open in a new tab"));
         act->setData(QVariant(OPEN_NEW_TAB_ID));
         popup.addSeparator();
     }
-    act = popup.addAction(krLoader->loadIcon("edit-delete", KIconLoader::Panel), i18n("Delete"));
+    act = popup.addAction(Icon("edit-delete"), i18n("Delete"));
     act->setData(QVariant(DELETE_ID));
 
     connect(menu, SIGNAL(highlighted(int)), &popup, SLOT(close()));

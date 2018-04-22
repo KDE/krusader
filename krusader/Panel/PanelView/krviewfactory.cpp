@@ -30,8 +30,8 @@
 #include <KI18n/KLocalizedString>
 
 KrViewInstance::KrViewInstance(int id, const QString &name, const QString &desc,
-                               const QString &icon, const QKeySequence &shortcut)
-    : m_id(id), m_name(name), m_description(desc), m_icon(icon), m_shortcut(shortcut)
+                               const QString &iconName, const QKeySequence &shortcut)
+    : m_id(id), m_name(name), m_description(desc), m_iconName(iconName), m_shortcut(shortcut)
 {
 }
 

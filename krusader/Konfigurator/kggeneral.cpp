@@ -33,12 +33,11 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
 
 #include "krresulttabledialog.h"
 #include "../defaults.h"
-#include "../kicons.h"
+#include "../icon.h"
 #include "../krglobal.h"
 
 #define PAGE_GENERAL        0
@@ -177,17 +176,17 @@ void KgGeneral::createExtensionsTab()
     QToolButton *addButton = new QToolButton(hboxWidget3);
     hbox3->addWidget(addButton);
 
-    QPixmap icon = krLoader->loadIcon("list-add", KIconLoader::Desktop, size);
-    addButton->setFixedSize(icon.width() + 4, icon.height() + 4);
-    addButton->setIcon(QIcon(icon));
+    QPixmap iconPixmap = Icon("list-add").pixmap(size);
+    addButton->setFixedSize(iconPixmap.width() + 4, iconPixmap.height() + 4);
+    addButton->setIcon(QIcon(iconPixmap));
     connect(addButton, SIGNAL(clicked()), this, SLOT(slotAddExtension()));
 
     QToolButton *removeButton = new QToolButton(hboxWidget3);
     hbox3->addWidget(removeButton);
 
-    icon = krLoader->loadIcon("list-remove", KIconLoader::Desktop, size);
-    removeButton->setFixedSize(icon.width() + 4, icon.height() + 4);
-    removeButton->setIcon(QIcon(icon));
+    iconPixmap = Icon("list-remove").pixmap(size);
+    removeButton->setFixedSize(iconPixmap.width() + 4, iconPixmap.height() + 4);
+    removeButton->setIcon(QIcon(iconPixmap));
     connect(removeButton, SIGNAL(clicked()), this, SLOT(slotRemoveExtension()));
 
     QStringList defaultAtomicExtensions;

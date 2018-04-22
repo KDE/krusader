@@ -56,6 +56,7 @@
 #include "useraction.h"
 #include "../GUI/terminaldock.h"
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../krusaderview.h"
 #include "../krservices.h"
 #include "../defaults.h"
@@ -481,7 +482,7 @@ bool KrAction::xmlRead(const QDomElement& element)
                 setToolTip(i18n(e.text().toUtf8().constData()));
             else
                 if (e.tagName() == "icon")
-                    setIcon(QIcon::fromTheme(_iconName = e.text()));
+                    setIcon(Icon(_iconName = e.text()));
                 else
                     if (e.tagName() == "category")
                         setCategory(i18n(e.text().toUtf8().constData()));

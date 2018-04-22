@@ -24,6 +24,7 @@
 
 // for ParameterDialog
 #include "../krglobal.h" // for konfig-access
+#include "../icon.h"
 #include "../BookMan/krbookmarkbutton.h"
 #include "../GUI/profilemanager.h"
 
@@ -306,7 +307,7 @@ ParameterPlaceholder::ParameterPlaceholder(const exp_parameter& parameter, QWidg
     _lineEdit = new KLineEdit(hboxWidget);
     hbox->addWidget(_lineEdit);
     _button = new QToolButton(hboxWidget);
-    _button->setIcon(QIcon::fromTheme("list-add"));
+    _button->setIcon(Icon("list-add"));
     hbox->addWidget(_button);
     connect(_button, SIGNAL(clicked()), this, SLOT(addPlaceholder()));
 }
@@ -419,7 +420,7 @@ ParameterFile::ParameterFile(const exp_parameter& parameter, QWidget* parent) : 
     hbox->addWidget(_lineEdit);
     _button = new QToolButton(hboxWidget);
     hbox->addWidget(_button);
-    _button->setIcon(QIcon::fromTheme("document-open"));
+    _button->setIcon(Icon("document-open"));
     connect(_button, SIGNAL(clicked()), this, SLOT(addFile()));
 }
 
@@ -532,10 +533,10 @@ ParameterGoto::ParameterGoto(const exp_parameter& parameter, QWidget* parent) : 
     hbox->addWidget(_lineEdit);
     _dirButton = new QToolButton(hboxWidget);
     hbox->addWidget(_dirButton);
-    _dirButton->setIcon(QIcon::fromTheme("document-open"));
+    _dirButton->setIcon(Icon("document-open"));
     connect(_dirButton, SIGNAL(clicked()), this, SLOT(setDir()));
     _placeholderButton = new QToolButton(hboxWidget);
-    _placeholderButton->setIcon(QIcon::fromTheme("list-add"));
+    _placeholderButton->setIcon(Icon("list-add"));
     hbox->addWidget(_placeholderButton);
     connect(_placeholderButton, SIGNAL(clicked()), this, SLOT(addPlaceholder()));
 

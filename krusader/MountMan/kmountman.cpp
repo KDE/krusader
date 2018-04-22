@@ -42,6 +42,7 @@
 #include <Solid/StorageVolume>
 
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../kractions.h"
 #include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
@@ -57,7 +58,7 @@
 
 KMountMan::KMountMan(QWidget *parent) : QObject(), _operational(false), waiting(false), mountManGui(0), parentWindow(parent)
 {
-    _action = new KToolBarPopupAction(QIcon::fromTheme("kr_mountman"), i18n("&MountMan..."), this);
+    _action = new KToolBarPopupAction(Icon("kr_mountman"), i18n("&MountMan..."), this);
     connect(_action, &QAction::triggered, this, &KMountMan::mainWindow);
     connect(_action->menu(), &QMenu::aboutToShow, this, &KMountMan::quickList);
     _manageAction = _action->menu()->addAction(i18n("Open &MountMan"));

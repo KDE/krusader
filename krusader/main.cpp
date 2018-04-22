@@ -51,6 +51,7 @@
 #include "krservices.h"
 #include "krslots.h"
 #include "krusader.h"
+#include "icon.h"
 #include "krusaderversion.h"
 #include "krusaderview.h"
 #include "panelmanager.h"
@@ -91,39 +92,6 @@ KRarcHandler arcHandler;
 
 int main(int argc, char *argv[])
 {
-// ============ begin icon-stuff ===========
-// If the user has no icon specified over the commandline we set up our own.
-// this is according to the users privileges. The icons are in Krusader::privIcon()
-
-/*    bool hasIcon = false;
-    int i = 0;
-    char * myArgv[argc+2];*/
-
-// if no --miniicon is given, --icon is used. So we don't need to check for --miniicon separately
-/*    for (i = 0; i < argc; ++i) {
-        if (strstr(argv[ i ], "-icon") != 0)   // important: just one dash because both can appear!
-            hasIcon = true;
-    }
-
-    static const char* const icon_text = "--icon";
-    const char* icon_name = Krusader::privIcon();
-    char addedParams[strlen(icon_text)+strlen(icon_name)+2];
-
-    if (! hasIcon) {
-        for (i = 0; i < argc; ++i)
-            myArgv[ i ] = argv[ i ];
-
-        strcpy(addedParams, icon_text);
-        strcpy(addedParams + strlen(icon_text) + 1, icon_name);
-
-        myArgv[ argc ] = addedParams;
-        myArgv[ ++argc ] = addedParams + strlen(icon_text) + 1;
-        myArgv[ ++argc ] = 0;
-
-        argv = myArgv;
-    }*/
-// ============ end icon-stuff ===========
-
     // set global log message format
     qSetMessagePattern(KrServices::GLOBAL_MESSAGE_PATTERN);
 
@@ -133,6 +101,12 @@ int main(int argc, char *argv[])
     // create the application and set application domain so that calls to i18n get strings from right place.
     QApplication app(argc, argv);
     KLocalizedString::setApplicationDomain("krusader");
+
+    // init icon theme
+    qDebug() << "System icon theme:" << QIcon::themeName();
+    // [WORKAROUND] setThemeName sets user theme in QIconLoader and allows to avoid Qt issues with invalid icon caching later
+    // IMPORTANT: this must be done before the first QIcon::fromTheme / QIcon::hasThemeIcon call
+    QIcon::setThemeName(QIcon::themeName());
 
     // ABOUT data information
 #ifdef RELEASE_NAME
@@ -230,7 +204,7 @@ int main(int argc, char *argv[])
     // This will call QCoreApplication::setApplicationName, etc for us by using info in the KAboutData instance.
     // The only thing not called for us is setWindowIcon(), which is why we do it ourselves here.
     KAboutData::setApplicationData(aboutData);
-    app.setWindowIcon(QIcon::fromTheme(Krusader::privIcon()));
+    app.setWindowIcon(Icon(Krusader::appIconName()));
 
     // Command line arguments ...
     QCommandLineParser parser;
@@ -325,8 +299,6 @@ int main(int argc, char *argv[])
     if (!dbus.registerObject("/Instances/" + appName + "/right_manager", RIGHT_MNG, QDBusConnection::ExportScriptableSlots)) {
         fprintf(stderr, "DBus Error: %s, %s\n", dbus.lastError().name().toLocal8Bit().constData(), dbus.lastError().message().toLocal8Bit().constData());
     }
-
-    qDebug() << "Qt icon theme: " << QIcon::themeName();
 
     // catching SIGTERM, SIGHUP, SIGQUIT
     signal(SIGTERM, sigterm_handler);

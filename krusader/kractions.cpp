@@ -34,6 +34,7 @@
 
 #include "defaults.h"
 #include "krusader.h"
+#include "icon.h"
 #include "krusaderview.h"
 #include "krslots.h"
 #include "krtrashhandler.h"
@@ -111,28 +112,28 @@ QAction *KrActions::actJobUndo = 0;
 #endif
 
 
-QAction *createAction(QString text, QString icon, QKeySequence shortcut,
+QAction *createAction(QString text, QString iconName, QKeySequence shortcut,
                       QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
 {
     QAction *a;
-    if (icon.isEmpty())
+    if (iconName.isEmpty())
         a = new QAction(text, krusaderApp);
     else
-        a = new QAction(QIcon::fromTheme(icon), text, krusaderApp);
+        a = new QAction(Icon(iconName), text, krusaderApp);
     krusaderApp->connect(a, SIGNAL(triggered(bool)), recv, slot);
     krusaderApp->actionCollection()->addAction(name, a);
     krusaderApp->actionCollection()->setDefaultShortcut(a, shortcut);
     return a;
 }
 
-QAction *createAction(QString text, QString icon, QList<QKeySequence> shortcuts,
+QAction *createAction(QString text, QString iconName, QList<QKeySequence> shortcuts,
                       QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
 {
     QAction *a;
-    if (icon.isEmpty())
+    if (iconName.isEmpty())
         a = new QAction(text, krusaderApp);
     else
-        a = new QAction(QIcon::fromTheme(icon), text, krusaderApp);
+        a = new QAction(Icon(iconName), text, krusaderApp);
     krusaderApp->connect(a, SIGNAL(triggered(bool)), recv, slot);
     krusaderApp->actionCollection()->addAction(name, a);
     krusaderApp->actionCollection()->setDefaultShortcuts(a, shortcuts);
@@ -140,14 +141,14 @@ QAction *createAction(QString text, QString icon, QList<QKeySequence> shortcuts,
 }
 
 
-KToggleAction *createToggleAction(QString text, QString icon, QKeySequence shortcut,
+KToggleAction *createToggleAction(QString text, QString iconName, QKeySequence shortcut,
                                  QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
 {
     KToggleAction *a;
-    if (icon == 0)
+    if (iconName == 0)
         a = new KToggleAction(text, krusaderApp);
     else
-        a = new KToggleAction(QIcon::fromTheme(icon), text, krusaderApp);
+        a = new KToggleAction(Icon(iconName), text, krusaderApp);
     krusaderApp->connect(a, SIGNAL(triggered(bool)), recv, slot);
     krusaderApp->actionCollection()->addAction(name, a);
     krusaderApp->actionCollection()->setDefaultShortcut(a, shortcut);
@@ -209,7 +210,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     NEW_KACTION(actEmptyTrash, i18n("Empty Trash"), "trash-empty", 0, SLOTS, SLOT(emptyTrash()), "emptytrash");
 
-    NEW_KACTION(actTrashBin, i18n("Trash Popup Menu"), KrTrashHandler::trashIcon(), 0, SLOTS, SLOT(trashPopupMenu()), "trashbin");
+    NEW_KACTION(actTrashBin, i18n("Trash Popup Menu"), KrTrashHandler::trashIconName(), 0, SLOTS, SLOT(trashPopupMenu()), "trashbin");
 
     NEW_KACTION(actSwapSides, i18n("Sw&ap Sides"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_U, SLOTS, SLOT(toggleSwapSides()), "toggle swap sides");
     actToggleHidden->setChecked(KConfigGroup(krConfig, "Look&Feel").readEntry("Show Hidden", _ShowHidden));

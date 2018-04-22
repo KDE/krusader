@@ -22,8 +22,8 @@
 
 #include "kmountmangui.h"
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../Dialogs/krspecialwidgets.h"
-#include "../kicons.h"
 #include "../defaults.h"
 #include "../FileSystem/filesystem.h"
 
@@ -46,7 +46,6 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KGuiItem>
 #include <KIOCore/KDiskFreeSpaceInfo>
@@ -83,7 +82,7 @@ KMountManGUI::KMountManGUI(KMountMan *mntMan) : QDialog(mntMan->parentWindow),
     mainLayout->addWidget(buttonBox);
 
     ejectButton = new QPushButton(i18n("&Eject"));
-    ejectButton->setIcon(QIcon::fromTheme(QStringLiteral("media-eject")));
+    ejectButton->setIcon(Icon(QStringLiteral("media-eject")));
     ejectButton->setEnabled(false);
     buttonBox->addButton(ejectButton, QDialogButtonBox::ActionRole);
 
@@ -290,12 +289,12 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     item->setText(5, (mtd ? sPrct : QString("N/A")));
 
     Solid::StorageVolume *vol = device.as<Solid::StorageVolume> ();
-    QString icon;
+    QString iconName;
 
     if(device.isValid())
-        icon = device.icon();
+        iconName = device.icon();
     else if(mountMan->networkFilesystem(fs.type()))
-        icon = "folder-remote";
+        iconName = "folder-remote";
     QStringList overlays;
     if (mtd) {
         overlays << "emblem-mounted";
@@ -305,7 +304,7 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     if (vol && vol->usage() == Solid::StorageVolume::Encrypted) {
         overlays << "security-high";
     }
-    item->setIcon(0, KDE::icon(icon, overlays));
+    item->setIcon(0, Icon(iconName, overlays));
 }
 
 void KMountManGUI::updateList()

@@ -29,7 +29,7 @@
 #include "../FileSystem/krpermhandler.h"
 #include "../Filter/filterdialog.h"
 #include "../defaults.h"
-#include "../kicons.h"
+#include "../filelisticon.h"
 #include "../krcolorcache.h"
 #include "../krglobal.h"
 #include "../krpreviews.h"
@@ -52,7 +52,7 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
+
 
 #define FILEITEM getFileItem()
 
@@ -102,9 +102,9 @@ void KrViewOperator::startDrag()
         return ; // don't drag an empty thing
     QPixmap px;
     if (items.count() > 1 || _view->getCurrentKrViewItem() == 0)
-        px = FL_LOADICON("queue");   // how much are we dragging
+        px = FileListIcon("document-multiple").pixmap();  // we are dragging multiple items
     else
-        px = _view->getCurrentKrViewItem() ->icon();
+        px = _view->getCurrentKrViewItem()->icon();
     emit letsDrag(items, px);
 }
 
@@ -297,7 +297,7 @@ QPixmap KrView::processIcon(const QPixmap &icon, bool dim, const QColor & dimCol
 
     if (symlink) {
         const QStringList overlays = QStringList() << QString() << "emblem-symbolic-link";
-        KIconLoader::global()->drawOverlays(overlays, pixmap, KIconLoader::Desktop);
+        Icon::applyOverlays(&pixmap, overlays);
     }
 
     if(!dim)
@@ -321,7 +321,7 @@ QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size/*, KRListItem:
     // KConfigGroup ag( krConfig, "Advanced");
     //////////////////////////////
     QPixmap icon;
-    QString icon_name = fileitem->getIcon();
+    QString iconName = fileitem->getIcon();
     QString cacheName;
 
     if(!size)
@@ -331,21 +331,21 @@ QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size/*, KRListItem:
     int dimFactor;
     bool dim = !active && KrColorCache::getColorCache().getDimSettings(dimColor, dimFactor);
 
-    if (icon_name.isNull())
-        icon_name = "";
+    if (iconName.isNull())
+        iconName = "";
 
     cacheName.append(QString::number(size));
     if(fileitem->isSymLink())
         cacheName.append("LINK_");
     if(dim)
         cacheName.append("DIM_");
-    cacheName.append(icon_name);
+    cacheName.append(iconName);
 
     //QPixmapCache::setCacheLimit( ag.readEntry("Icon Cache Size",_IconCacheSize) );
 
     // first try the cache
     if (!QPixmapCache::find(cacheName, icon)) {
-        icon = processIcon(krLoader->loadIcon(icon_name, KIconLoader::Desktop, size),
+        icon = processIcon(Icon(iconName, Icon("unknown")).pixmap(size),
                            dim, dimColor, dimFactor, fileitem->isSymLink());
         // insert it into the cache
         QPixmapCache::insert(cacheName, icon);

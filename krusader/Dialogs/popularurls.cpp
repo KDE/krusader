@@ -37,10 +37,10 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
-#include <KIconThemes/KIconLoader>
 #include <KItemViews/KTreeWidgetSearchLine>
 
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../krslots.h"
 #include "../GUI/krtreewidget.h"
 
@@ -361,7 +361,7 @@ void PopularUrlsDlg::run(QList<QUrl> list)
         QTreeWidgetItem *item = new QTreeWidgetItem(urls, lastItem);
         lastItem = item;
         item->setText(0, (*it).isLocalFile() ? (*it).path() : (*it).toDisplayString());
-        item->setIcon(0, (*it).isLocalFile() ? SmallIcon("folder") : SmallIcon("folder-html"));
+        item->setIcon(0, (*it).isLocalFile() ? Icon("folder") : Icon("folder-html"));
     }
 
     setMinimumSize(urls->sizeHint().width() + 45, 400);

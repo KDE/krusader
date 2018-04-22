@@ -26,6 +26,7 @@
 #include "defaults.h"
 #include "tabactions.h"
 #include "../krglobal.h"
+#include "../icon.h"
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
 
@@ -41,8 +42,8 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KActionMenu>
+
 
 static const int sDragEnterDelay = 500; // msec
 
@@ -160,11 +161,11 @@ void PanelTabBar::duplicateTab()
 
 void PanelTabBar::setIcon(int index, ListPanel *panel)
 {
-    QIcon tabIcon;
+    Icon tabIcon;
     if (panel->isLocked()) {
-        tabIcon = krLoader->loadIcon("lock", KIconLoader::Toolbar, 16);
+        tabIcon = Icon("lock");
     } else if (panel->isPinned()) {
-        tabIcon = krLoader->loadIcon("pin", KIconLoader::Toolbar, 16);
+        tabIcon = Icon("pin");
     }
     setTabIcon(index, tabIcon);
 }

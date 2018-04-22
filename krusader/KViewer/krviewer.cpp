@@ -38,7 +38,6 @@
 #include <KConfigCore/KSharedConfig>
 #include <KConfigWidgets/KStandardAction>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KIOCore/KFileItem>
 #include <KParts/Part>
 #include <KWidgetsAddons/KMessageBox>
@@ -47,7 +46,7 @@
 #include <KXmlGui/KToolBar>
 
 #include "../defaults.h"
-#include "../kicons.h"
+#include "../icon.h"
 #include "panelviewer.h"
 
 #define VIEW_ICON     "document-preview"
@@ -660,7 +659,7 @@ QIcon KrViewer::makeTabIcon(PanelViewerBase *pvb)
     else
         iconName = VIEW_ICON;
 
-    return QIcon(krLoader->loadIcon(iconName, KIconLoader::Small));
+    return Icon(iconName);
 }
 
 void KrViewer::addPart(KParts::ReadOnlyPart *part)

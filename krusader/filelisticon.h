@@ -1,7 +1,6 @@
 /*****************************************************************************
- * Copyright (C) 2002 Shie Erlich <erlich@users.sourceforge.net>             *
- * Copyright (C) 2002 Rafi Yanai <yanai@users.sourceforge.net>               *
- * Copyright (C) 2004-2018 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2018 Nikita Melnichenko <nikita+kde@melnichenko.name>       *
+ * Copyright (C) 2018 Krusader Krew [https://krusader.org]                   *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *
@@ -19,45 +18,25 @@
  * along with Krusader.  If not, see [http://www.gnu.org/licenses/].         *
  *****************************************************************************/
 
-#include "krbookmarkbutton.h"
-#include "krbookmarkhandler.h"
-#include "../krglobal.h"
-#include "../icon.h"
+#ifndef FILELISTICON_H
+#define FILELISTICON_H
+
+#include "icon.h"
 
 // QtGui
 #include <QPixmap>
-// QtWidgets
-#include <QAction>
-#include <QMenu>
-
-#include <KI18n/KLocalizedString>
 
 
-KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent)
+class FileListIcon : public Icon
 {
-    setAutoRaise(true);
-    setIcon(Icon("bookmarks"));
-    setText(i18n("BookMan II"));
-    setToolTip(i18n("BookMan II"));
-    setPopupMode(QToolButton::InstantPopup);
-    setAcceptDrops(false);
+public:
+    explicit FileListIcon(QString name) : Icon(name) {}
 
-    acmBookmarks = new KActionMenu(Icon("bookmarks"), i18n("Bookmarks"), this);
-    acmBookmarks->setDelayed(false);
+    /// Load pixmap of standard file list icon size
+    QPixmap pixmap() const;
 
-    setMenu(acmBookmarks->menu());
-    connect(acmBookmarks->menu(), SIGNAL(aboutToShow()), this, SLOT(populate()));
-    connect(acmBookmarks->menu(), SIGNAL(aboutToShow()), this, SIGNAL(aboutToShow()));
-}
+    /// Get icon size as configured by user
+    QSize size() const;
+};
 
-void KrBookmarkButton::populate()
-{
-    krBookMan->populate(static_cast<QMenu*>(menu()));
-}
-
-void KrBookmarkButton::showMenu()
-{
-    populate();
-    menu()->exec(mapToGlobal(QPoint(0, height())));
-}
-
+#endif // FILELISTICON_H

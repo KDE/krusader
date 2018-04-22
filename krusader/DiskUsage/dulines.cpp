@@ -19,7 +19,8 @@
  *****************************************************************************/
 
 #include "dulines.h"
-#include "../kicons.h"
+
+#include "../icon.h"
 #include "../krglobal.h"
 #include "../FileSystem/krpermhandler.h"
 
@@ -266,7 +267,7 @@ void DULines::slotDirChanged(Directory *dirEntry)
     if (!(dirEntry->parent() == 0)) {
         lastItem = new QTreeWidgetItem(this);
         lastItem->setText(0, "..");
-        lastItem->setIcon(0, FL_LOADICON("go-up"));
+        lastItem->setIcon(0, Icon("go-up"));
         lastItem->setFlags(lastItem->flags() & (~Qt::ItemIsSelectable));
     }
 

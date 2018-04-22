@@ -26,7 +26,7 @@
 #include "panelfunc.h"
 #include "viewactions.h"
 #include "../defaults.h"
-#include "../kicons.h"
+#include "../icon.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 #include "../FileSystem/fileitem.h"
 #include "../FileSystem/filesystem.h"
@@ -44,7 +44,7 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
+
 
 Sidebar::Sidebar(QWidget *parent) : QWidget(parent), stack(0), imageFilePreview(0), pjob(0)
 {
@@ -66,28 +66,28 @@ Sidebar::Sidebar(QWidget *parent) : QWidget(parent), stack(0), imageFilePreview(
 
     treeBtn = new QToolButton(this);
     treeBtn->setToolTip(i18n("Tree Panel: a tree view of the local file system"));
-    treeBtn->setIcon(krLoader->loadIcon("view-list-tree", KIconLoader::Toolbar, 16));
+    treeBtn->setIcon(Icon("view-list-tree"));
     treeBtn->setFixedSize(20, 20);
     treeBtn->setCheckable(true);
     btns->addButton(treeBtn, Tree);
 
     previewBtn = new QToolButton(this);
     previewBtn->setToolTip(i18n("Preview Panel: display a preview of the current file"));
-    previewBtn->setIcon(krLoader->loadIcon("view-preview", KIconLoader::Toolbar, 16));
+    previewBtn->setIcon(Icon("view-preview"));
     previewBtn->setFixedSize(20, 20);
     previewBtn->setCheckable(true);
     btns->addButton(previewBtn, Preview);
 
     viewerBtn = new QToolButton(this);
     viewerBtn->setToolTip(i18n("View Panel: view the current file"));
-    viewerBtn->setIcon(krLoader->loadIcon("zoom-original", KIconLoader::Toolbar, 16));
+    viewerBtn->setIcon(Icon("zoom-original"));
     viewerBtn->setFixedSize(20, 20);
     viewerBtn->setCheckable(true);
     btns->addButton(viewerBtn, View);
 
     duBtn = new QToolButton(this);
     duBtn->setToolTip(i18n("Disk Usage Panel: view the usage of a folder"));
-    duBtn->setIcon(krLoader->loadIcon("kr_diskusage", KIconLoader::Toolbar, 16));
+    duBtn->setIcon(Icon("kr_diskusage"));
     duBtn->setFixedSize(20, 20);
     duBtn->setCheckable(true);
     btns->addButton(duBtn, DskUsage);

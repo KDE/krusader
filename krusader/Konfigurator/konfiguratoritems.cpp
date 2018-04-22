@@ -19,7 +19,9 @@
  *****************************************************************************/
 
 #include "konfiguratoritems.h"
+
 #include "../krglobal.h"
+#include "../icon.h"
 
 // QtCore
 #include <QMetaMethod>
@@ -35,7 +37,7 @@
 #include <KCompletion/KLineEdit>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
+
 
 KonfiguratorExtension::KonfiguratorExtension(QObject *obj, QString cfgGroup, QString cfgName,
                                              bool restartNeeded, int page)
@@ -433,7 +435,7 @@ KonfiguratorFontChooser::KonfiguratorFontChooser(QString configGroup, QString na
 
     connect(pToolButton, SIGNAL(clicked()), this, SLOT(slotBrowseFont()));
 
-    pToolButton->setIcon(SmallIcon("document-open"));
+    pToolButton->setIcon(Icon("document-open"));
     layout->addWidget(pToolButton);
 
     loadInitialValue();

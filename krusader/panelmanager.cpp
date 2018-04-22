@@ -22,6 +22,7 @@
 #include "panelmanager.h"
 
 #include "defaults.h"
+#include "icon.h"
 #include "tabactions.h"
 #include "krusaderview.h"
 #include "krmainwindow.h"
@@ -40,7 +41,6 @@
 
 #include <KConfigCore/KConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 
 
 PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left) :
@@ -61,7 +61,7 @@ PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left)
     _newTab->setAutoRaise(true);
     _newTab->setText(i18n("Open a new tab in home"));
     _newTab->setToolTip(i18n("Open a new tab in home"));
-    _newTab->setIcon(SmallIcon("tab-new"));
+    _newTab->setIcon(Icon("tab-new"));
     _newTab->adjustSize();
     connect(_newTab, SIGNAL(clicked()), this, SLOT(slotNewTab()));
 

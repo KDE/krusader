@@ -21,6 +21,7 @@
 
 #include "kraddbookmarkdlg.h"
 #include "../krglobal.h"
+#include "../icon.h"
 #include "krbookmarkhandler.h"
 
 // QtWidgets
@@ -32,7 +33,7 @@
 #include <QPushButton>
 
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
+
 
 KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, QUrl url):
         QDialog(parent)
@@ -66,7 +67,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, QUrl url):
     _folder->setReadOnly(true);
 
     _createInBtn = new QToolButton(this);
-    _createInBtn->setIcon(krLoader->loadIcon("go-down", KIconLoader::Small));
+    _createInBtn->setIcon(Icon("go-down"));
     _createInBtn->setCheckable(true);
     connect(_createInBtn, SIGNAL(toggled(bool)), this, SLOT(toggleCreateIn(bool)));
     layout->addWidget(_createInBtn, 2, 2);
@@ -97,7 +98,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, QUrl url):
 
 void KrAddBookmarkDlg::toggleCreateIn(bool show)
 {
-    _createInBtn->setIcon(krLoader->loadIcon(show ? "go-up" : "go-down", KIconLoader::Small));
+    _createInBtn->setIcon(Icon(show ? "go-up" : "go-down"));
     newFolderButton->setVisible(show);
     detailsWidget->setVisible(show);
 }

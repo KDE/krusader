@@ -27,7 +27,6 @@
 #include <KCoreAddons/KProcess>
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KRun>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
 #include <KService/KMimeTypeTrader>
 #include <KService/KToolInvocation>
@@ -43,6 +42,7 @@
 #include "PanelView/krview.h"
 #include "PanelView/krviewitem.h"
 #include "../defaults.h"
+#include "../icon.h"
 #include "../krservices.h"
 #include "../krslots.h"
 #include "../krusader.h"
@@ -136,7 +136,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
         if (file->isDir()) {
             QAction * openTab = addAction(i18n("Open in New Tab"));
             openTab->setData(QVariant(OPEN_TAB_ID));
-            openTab->setIcon(krLoader->loadIcon("tab-new", KIconLoader::Panel));
+            openTab->setIcon(Icon("tab-new"));
             openTab->setText(i18n("Open in New Tab"));
         }
         // if the file can be browsed as archive...
@@ -149,7 +149,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
             // ...it will not be browsed as a directory by default, but add an option for it
             QAction *browseAct = addAction(i18n("Browse"));
             browseAct->setData(QVariant(BROWSE_ID));
-            browseAct->setIcon(krLoader->loadIcon("", KIconLoader::Panel));
+            browseAct->setIcon(Icon());
             browseAct->setText(i18n("Browse Archive"));
         }
         addSeparator();
@@ -163,7 +163,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
         QAction *previewAction = addMenu(&preview);
         previewAction->setData(QVariant(PREVIEW_ID));
         previewAction->setText(i18n("Preview"));
-        previewAction->setIcon(krLoader->loadIcon("document-print-preview", KIconLoader::Small));
+        previewAction->setIcon(Icon("document-print-preview"));
     }
 
     // -------------- Open with: try to find-out which apps can open the file
@@ -181,18 +181,18 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
         for (int i = 0; i < offers.count(); ++i) {
             QExplicitlySharedDataPointer<KService> service = offers[i];
             if (service->isValid() && service->isApplication()) {
-                openWithMenu->addAction(krLoader->loadIcon(service->icon(), KIconLoader::Small),
+                openWithMenu->addAction(Icon(service->icon()),
                                    service->name())->setData(QVariant(SERVICE_LIST_ID + i));
             }
         }
         openWithMenu->addSeparator();
         if (!multipleSelections && file->isDir())
-            openWithMenu->addAction(krLoader->loadIcon("utilities-terminal", KIconLoader::Small),
+            openWithMenu->addAction(Icon("utilities-terminal"),
                                i18n("Terminal"))->setData(QVariant(OPEN_TERM_ID));
         openWithMenu->addAction(i18n("Other..."))->setData(QVariant(CHOOSE_ID));
         QAction *openWithAction = addMenu(openWithMenu);
         openWithAction->setText(i18n("Open With"));
-        openWithAction->setIcon(krLoader->loadIcon("document-open", KIconLoader::Small));
+        openWithAction->setIcon(Icon("document-open"));
         addSeparator();
     }
 
@@ -234,11 +234,11 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     // -------- MOVE TO TRASH
     if (KConfigGroup(krConfig, "General").readEntry("Move To Trash", _MoveToTrash)
         && panel->func->files()->canMoveToTrash(fileNames)) {
-        addAction(krLoader->loadIcon("user-trash", KIconLoader::Small),
+        addAction(Icon("user-trash"),
                   i18n("Move to Trash"))->setData(QVariant(TRASH_ID));
     }
     // -------- DELETE
-    addAction(krLoader->loadIcon("edit-delete", KIconLoader::Small),
+    addAction(Icon("edit-delete"),
               i18n("Delete"))->setData(QVariant(DELETE_ID));
     // -------- SHRED - only one file
     /*      if ( panel->func->files() ->getType() == filesystem:fileSystemM_NORMAL &&
@@ -257,7 +257,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
         }
         QAction *linkAction = addMenu(linkMenu);
         linkAction->setText(i18n("Link Handling"));
-        linkAction->setIcon(krLoader->loadIcon("insert-link", KIconLoader::Small));
+        linkAction->setIcon(Icon("insert-link"));
     }
     addSeparator();
 
@@ -278,7 +278,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
 
     // --------- send by mail
     if (KrServices::supportedTools().contains("MAIL") && !file->isDir()) {
-        addAction(krLoader->loadIcon("mail-send", KIconLoader::Small),
+        addAction(Icon("mail-send"),
                   i18n("Send by Email"))->setData(QVariant(SEND_BY_EMAIL_ID));
     }
 
@@ -315,14 +315,14 @@ void PanelContextMenu::addCreateNewMenu()
 {
     QMenu *createNewMenu = new QMenu(this);
 
-    createNewMenu->addAction(krLoader->loadIcon("folder", KIconLoader::Small),
+    createNewMenu->addAction(Icon("folder"),
                              i18n("Folder..."))->setData(QVariant(MKDIR_ID));
-    createNewMenu->addAction(krLoader->loadIcon("text-plain", KIconLoader::Small),
+    createNewMenu->addAction(Icon("text-plain"),
                              i18n("Text File..."))->setData(QVariant(NEW_TEXT_FILE_ID));
 
     QAction *newMenuAction = addMenu(createNewMenu);
     newMenuAction->setText(i18n("Create New"));
-    newMenuAction->setIcon(krLoader->loadIcon("document-new", KIconLoader::Small));
+    newMenuAction->setIcon(Icon("document-new"));
 }
 
 void PanelContextMenu::performAction(int id)

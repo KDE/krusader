@@ -21,6 +21,7 @@
 #include "mediabutton.h"
 
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../MountMan/kmountman.h"
 
 // QtCore
@@ -34,7 +35,6 @@
 #include <KI18n/KLocalizedString>
 #include <KIO/Global>
 #include <KIOCore/KMountPoint>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
 
 #include <Solid/DeviceInterface>
@@ -51,7 +51,7 @@ MediaButton::MediaButton(QWidget *parent) : QToolButton(parent),
         popupMenu(0), rightMenu(0), openInNewTab(false)
 {
     setAutoRaise(true);
-    setIcon(QIcon::fromTheme("system-file-manager"));
+    setIcon(Icon("system-file-manager"));
     setText(i18n("Open the available media list"));
     setToolTip(i18n("Open the available media list"));
     setPopupMode(QToolButton::InstantPopup);
@@ -87,7 +87,7 @@ void MediaButton::updateIcon(const QString &mountPoint)
 
     currentMountPoint = mountPoint;
 
-    QString icon("system-file-manager");
+    QString iconName("system-file-manager");
     QStringList overlays;
 
     if(!mountPoint.isEmpty()) {
@@ -95,11 +95,11 @@ void MediaButton::updateIcon(const QString &mountPoint)
         Solid::StorageVolume *vol = device.as<Solid::StorageVolume> ();
 
         if(device.isValid())
-            icon = device.icon();
+            iconName = device.icon();
         if (vol && vol->usage() == Solid::StorageVolume::Encrypted)
             overlays << "security-high";
     }
-    setIcon(KDE::icon(icon, overlays));
+    setIcon(Icon(iconName, overlays));
 }
 
 void MediaButton::slotAboutToShow()
@@ -161,7 +161,7 @@ void MediaButton::createMediaList()
             QStringList overlays;
             if (mounted)
                 overlays << "emblem-mounted";
-            QAction * act = popupMenu->addAction(KDE::icon("network-wired", overlays), name);
+            QAction * act = popupMenu->addAction(Icon("network-wired", overlays), name);
             QString udi = remotePrefix + (*it)->mountPoint();
             act->setData(QVariant(udi));
         }
@@ -182,7 +182,7 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &i
     bool    mounted = access->isAccessible();
     QString path    = access->filePath();
     QString type    = i18nc("Unknown media type", "Unknown");
-    QString icon    = device.icon();
+    QString iconName = device.icon();
     QString fstype;
     QString size;
 
@@ -195,25 +195,25 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &i
 
     bool printSize = false;
 
-    if (icon == "media-floppy")
+    if (iconName == "media-floppy")
         type = i18n("Floppy");
-    else if (icon == "drive-optical")
+    else if (iconName == "drive-optical")
         type = i18n("CD/DVD-ROM");
-    else if (icon == "drive-removable-media-usb-pendrive")
+    else if (iconName == "drive-removable-media-usb-pendrive")
         type = i18n("USB pen drive"), printSize = true;
-    else if (icon == "drive-removable-media-usb")
+    else if (iconName == "drive-removable-media-usb")
         type = i18n("USB device"), printSize = true;
-    else if (icon == "drive-removable-media")
+    else if (iconName == "drive-removable-media")
         type = i18n("Removable media"), printSize = true;
-    else if (icon == "drive-harddisk")
+    else if (iconName == "drive-harddisk")
         type = i18n("Hard Disk"), printSize = true;
-    else if (icon == "camera-photo")
+    else if (iconName == "camera-photo")
         type = i18n("Camera");
-    else if (icon == "media-optical-video")
+    else if (iconName == "media-optical-video")
         type = i18n("Video CD/DVD-ROM");
-    else if (icon == "media-optical-audio")
+    else if (iconName == "media-optical-audio")
         type = i18n("Audio CD/DVD-ROM");
-    else if (icon == "media-optical")
+    else if (iconName == "media-optical")
         type = i18n("Recordable CD/DVD-ROM");
 
     KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("MediaMenu"));
@@ -248,7 +248,7 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &i
     if (vol && vol->usage() == Solid::StorageVolume::Encrypted) {
         overlays << "security-high";
     }
-    iconOut = KDE::icon(icon, overlays);
+    iconOut = Icon(iconName, overlays);
     return true;
 }
 
@@ -615,7 +615,7 @@ void MediaButton::slotCheckMounts()
             QStringList overlays;
             if (mounted)
                 overlays << "emblem-mounted";
-            QIcon kdeIcon = KDE::icon("network-wired", overlays);
+            QIcon kdeIcon = Icon("network-wired", overlays);
 
             if (!correspondingAct) {
                 QAction * act = popupMenu->addAction(kdeIcon, name);

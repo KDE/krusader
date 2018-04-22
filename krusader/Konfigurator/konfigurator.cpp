@@ -23,8 +23,8 @@
 
 #include "konfigurator.h"
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../Dialogs/krdialogs.h"
-#include "../kicons.h"
 
 // QtGui
 #include <QPixmap>
@@ -124,27 +124,27 @@ void Konfigurator::newPage(KonfiguratorPage *page, const QString &name, const QS
 void Konfigurator::createLayout(int startPage)
 {
     // startup
-    newPage(new KgStartup(firstTime, this), i18n("Startup"), i18n("Krusader's settings upon startup"), QIcon::fromTheme("go-home"));
+    newPage(new KgStartup(firstTime, this), i18n("Startup"), i18n("Krusader's settings upon startup"), Icon("go-home"));
     // panel
-    newPage(new KgPanel(firstTime, this), i18n("Panel"), i18n("Panel"), QIcon::fromTheme("view-choose"));
+    newPage(new KgPanel(firstTime, this), i18n("Panel"), i18n("Panel"), Icon("view-choose"));
     // colors
-    newPage(new KgColors(firstTime, this), i18n("Colors"), i18n("Colors"), QIcon::fromTheme("color-picker"));
+    newPage(new KgColors(firstTime, this), i18n("Colors"), i18n("Colors"), Icon("color-picker"));
     // general
-    newPage(new KgGeneral(firstTime, this), i18n("General"), i18n("Basic Operations"), QIcon::fromTheme("system-run"));
+    newPage(new KgGeneral(firstTime, this), i18n("General"), i18n("Basic Operations"), Icon("system-run"));
     // advanced
-    newPage(new KgAdvanced(firstTime, this), i18n("Advanced"), i18n("Be sure you know what you are doing."), QIcon::fromTheme("dialog-messages"));
+    newPage(new KgAdvanced(firstTime, this), i18n("Advanced"), i18n("Be sure you know what you are doing."), Icon("dialog-messages"));
     // archives
     newPage(new KgArchives(firstTime, this), i18n("Archives"), i18n("Customize the way Krusader deals with archives"),
-            QIcon::fromTheme("archive-extract"));
+            Icon("archive-extract"));
     // dependencies
     newPage(new KgDependencies(firstTime, this), i18n("Dependencies"), i18n("Set the full path of the external applications"),
-            QIcon::fromTheme("debug-run"));
+            Icon("debug-run"));
     // useractions
     newPage(new KgUserActions(firstTime, this), i18n("User Actions"), i18n("Configure your personal actions"),
-            QIcon::fromTheme("user-properties"));
+            Icon("user-properties"));
     // protocols
     newPage(new KgProtocols(firstTime, this), i18n("Protocols"), i18n("Link MIMEs to protocols"),
-            QIcon::fromTheme("document-preview"));
+            Icon("document-preview"));
 
     setCurrentPage(kgPages.at(startPage));
     slotApplyEnable();

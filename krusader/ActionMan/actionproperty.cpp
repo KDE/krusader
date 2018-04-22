@@ -25,18 +25,16 @@
 #include "../UserAction/kraction.h"
 #include "../krusader.h"
 #include "../krglobal.h"
+#include "../icon.h"
 
 // QtWidgets
 #include <QFileDialog>
 #include <QInputDialog>
 
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
 #include <KXmlGui/KActionCollection>
 
-
-#define ICON(N)  KIconLoader::global()->loadIcon(N, KIconLoader::Small)
 
 ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
         : QWidget(parent), _modified(false)
@@ -49,8 +47,8 @@ ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
         updateGUI(_action);
     }
 
-    ButtonAddPlaceholder->setIcon(ICON("list-add"));
-    ButtonAddStartpath->setIcon(ICON("document-open"));
+    ButtonAddPlaceholder->setIcon(Icon("list-add"));
+    ButtonAddStartpath->setIcon(Icon("document-open"));
 
     // fill with all existing categories
     cbCategory->addItems(krUserAction->allCategories());
@@ -292,7 +290,7 @@ void ActionProperty::updateAction(KrAction *action)
 
     _action->setConfirmExecution(chkConfirmExecution->isChecked());
 
-    _action->setIcon(QIcon::fromTheme(ButtonIcon->icon()));
+    _action->setIcon(Icon(ButtonIcon->icon()));
     _action->setIconName(ButtonIcon->icon());
 
     _action->setUser(leDifferentUser->text());

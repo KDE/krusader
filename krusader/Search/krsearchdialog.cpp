@@ -59,9 +59,9 @@
 #include "../Panel/krsearchbar.h"
 #include "../Panel/panelfunc.h"
 #include "../defaults.h"
-#include "../kicons.h"
 #include "../kractions.h"
 #include "../krglobal.h"
+#include "../filelisticon.h"
 #include "../krservices.h"
 #include "../krslots.h"
 #include "../krusaderview.h"
@@ -135,7 +135,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     KConfigGroup group(krConfig, "Search");
 
     setWindowTitle(i18n("Krusader::Search"));
-    setWindowIcon(QIcon::fromTheme("system-search"));
+    setWindowIcon(Icon("system-search"));
 
     QGridLayout* searchBaseLayout = new QGridLayout(this);
     searchBaseLayout->setSpacing(6);
@@ -165,25 +165,25 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 
     mainFeedToListBoxBtn = new QPushButton(this);
     mainFeedToListBoxBtn->setText(i18n("Feed to listbox"));
-    mainFeedToListBoxBtn->setIcon(QIcon::fromTheme("list-add"));
+    mainFeedToListBoxBtn->setIcon(Icon("list-add"));
     mainFeedToListBoxBtn->setEnabled(false);
     buttonsLayout->addWidget(mainFeedToListBoxBtn);
 
     mainSearchBtn = new QPushButton(this);
     mainSearchBtn->setText(i18n("Search"));
-    mainSearchBtn->setIcon(QIcon::fromTheme("edit-find"));
+    mainSearchBtn->setIcon(Icon("edit-find"));
     mainSearchBtn->setDefault(true);
     buttonsLayout->addWidget(mainSearchBtn);
 
     mainStopBtn = new QPushButton(this);
     mainStopBtn->setEnabled(false);
     mainStopBtn->setText(i18n("Stop"));
-    mainStopBtn->setIcon(QIcon::fromTheme("process-stop"));
+    mainStopBtn->setIcon(Icon("process-stop"));
     buttonsLayout->addWidget(mainStopBtn);
 
     mainCloseBtn = new QPushButton(this);
     mainCloseBtn->setText(i18n("Close"));
-    mainCloseBtn->setIcon(QIcon::fromTheme("dialog-close"));
+    mainCloseBtn->setIcon(Icon("dialog-close"));
     buttonsLayout->addWidget(mainCloseBtn);
 
     searchBaseLayout->addLayout(buttonsLayout, 1, 0);
@@ -654,7 +654,7 @@ void KrSearchDialog::copyToClipBoard()
         return;
 
     QMimeData *mimeData = new QMimeData;
-    mimeData->setImageData(FL_LOADICON("file"));
+    mimeData->setImageData(FileListIcon("file").pixmap());
     mimeData->setUrls(urls);
 
     QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);

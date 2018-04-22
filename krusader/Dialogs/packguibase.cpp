@@ -45,7 +45,6 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KCompletion/KComboBox>
 #include <KWidgetsAddons/KMessageBox>
 #include <KIO/Global>
@@ -54,6 +53,7 @@
 
 #include "../defaults.h"
 #include "../krglobal.h"
+#include "../icon.h"
 
 /*
  *  Constructs a PackGUIBase which is a child of 'parent', with the
@@ -105,7 +105,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     hbox_2->addWidget(dirData);
 
     browseButton = new QToolButton(this);
-    browseButton->setIcon(SmallIcon("document-open"));
+    browseButton->setIcon(Icon("document-open"));
     hbox_2->addWidget(browseButton);
     QSpacerItem* spacer = new QSpacerItem(48, 20, QSizePolicy::Fixed, QSizePolicy::Fixed);
     hbox_2->addItem(spacer);
@@ -117,7 +117,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     hbox_3->setContentsMargins(0, 0, 0, 0);
 
     PixmapLabel1 = new QLabel(this);
-    PixmapLabel1->setPixmap(krLoader->loadIcon("package-x-generic", KIconLoader::Desktop, 32));
+    PixmapLabel1->setPixmap(Icon("package-x-generic").pixmap(32));
     PixmapLabel1->setScaledContents(true);
     PixmapLabel1->setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed));
     hbox_3->addWidget(PixmapLabel1);

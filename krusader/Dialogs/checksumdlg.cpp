@@ -23,6 +23,7 @@
 #include "checksumdlg.h"
 
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../krservices.h"
 #include "../krusader.h"
 #include "../GUI/krlistwidget.h"
@@ -46,7 +47,6 @@
 
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KUrlRequester>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
 
 void Checksum::startCreationWizard(const QString &path, const QStringList &files)
@@ -194,7 +194,7 @@ QWizardPage *ChecksumWizard::createProgressPage(const QString &title)
 
     page->setTitle(title);
     page->setPixmap(QWizard::LogoPixmap,
-                    krLoader->loadIcon("process-working", KIconLoader::Desktop, 32));
+                    Icon("process-working").pixmap(32));
     page->setSubTitle(i18n("Please wait..."));
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
@@ -267,7 +267,7 @@ QWizardPage *CreateWizard::createIntroPage()
 
     page->setTitle(i18n("Create Checksums"));
     page->setPixmap(QWizard::LogoPixmap,
-                    krLoader->loadIcon("document-edit-sign", KIconLoader::Desktop, 32));
+                    Icon("document-edit-sign").pixmap(32));
     page->setSubTitle(i18n("About to calculate checksum for the following files or directories:"));
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
@@ -365,8 +365,7 @@ void CreateWizard::onResultPage()
 
     QWizardPage *page = currentPage();
     page->setPixmap(QWizard::LogoPixmap,
-        krLoader->loadIcon(errors || !successes ? "dialog-error" : "dialog-information",
-                           KIconLoader::Desktop, 32));
+        Icon(errors || !successes ? "dialog-error" : "dialog-information").pixmap(32));
     page->setSubTitle(errors || !successes ?
                           i18n("Errors were detected while creating the checksums") :
                           i18n("Checksums were created successfully"));
@@ -481,7 +480,7 @@ QWizardPage *VerifyWizard::createIntroPage()
 
     page->setTitle(i18n("Verify Checksum File"));
     page->setPixmap(QWizard::LogoPixmap,
-                    krLoader->loadIcon("document-edit-verify", KIconLoader::Desktop, 32));
+                    Icon("document-edit-verify").pixmap(32));
     page->setSubTitle(i18n("About to verify the following checksum file"));
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
@@ -557,8 +556,7 @@ void VerifyWizard::onResultPage()
 
     QWizardPage *page = currentPage();
     page->setPixmap(QWizard::LogoPixmap,
-                    krLoader->loadIcon(errors ? "dialog-error" : "dialog-information",
-                                       KIconLoader::Desktop, 32));
+                    Icon(errors ? "dialog-error" : "dialog-information").pixmap(32));
     page->setSubTitle(errors ? i18n("Errors were detected while verifying the checksums") :
                                i18n("Checksums were verified successfully"));
 

@@ -21,12 +21,12 @@
 
 #include "krbookmark.h"
 #include "../krglobal.h"
+#include "../icon.h"
 #include "../Archive/krarchandler.h"
 #include "../FileSystem/krtrashhandler.h"
 #include "../Panel/listpanelactions.h"
 
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KXmlGui/KActionCollection>
 
 #define BM_NAME(X)  (QString("Bookmark:")+X)
@@ -35,8 +35,8 @@ static const char* NAME_TRASH = I18N_NOOP("Trash bin");
 static const char* NAME_VIRTUAL = I18N_NOOP("Virtual Filesystem");
 static const char* NAME_LAN = I18N_NOOP("Local Network");
 
-KrBookmark::KrBookmark(QString name, QUrl url, KActionCollection *parent, QString icon, QString actionName) :
-        QAction(parent), _url(url), _icon(icon), _folder(false), _separator(false), _autoDelete(true)
+KrBookmark::KrBookmark(QString name, QUrl url, KActionCollection *parent, QString iconName, QString actionName) :
+        QAction(parent), _url(url), _iconName(iconName), _folder(false), _separator(false), _autoDelete(true)
 {
     QString actName = actionName.isNull() ? BM_NAME(name) : BM_NAME(actionName);
     setText(name);
@@ -44,24 +44,24 @@ KrBookmark::KrBookmark(QString name, QUrl url, KActionCollection *parent, QStrin
     connect(this, SIGNAL(triggered()), this, SLOT(activatedProxy()));
 
     // do we have an icon?
-    if (!icon.isEmpty())
-        setIcon(QIcon::fromTheme(icon));
+    if (!iconName.isEmpty())
+        setIcon(Icon(iconName));
     else {
         // what kind of a url is it?
         if (_url.isLocalFile()) {
-            setIcon(QIcon::fromTheme("folder"));
+            setIcon(Icon("folder"));
         } else { // is it an archive?
             if (KRarcHandler::isArchive(_url))
-                setIcon(QIcon::fromTheme("application-x-tar"));
-            else setIcon(QIcon::fromTheme("folder-html"));
+                setIcon(Icon("application-x-tar"));
+            else setIcon(Icon("folder-html"));
         }
     }
 }
 
-KrBookmark::KrBookmark(QString name, QString icon) :
-        QAction(QIcon::fromTheme(icon), name, 0), _icon(icon), _folder(true), _separator(false), _autoDelete(false)
+KrBookmark::KrBookmark(QString name, QString iconName) :
+        QAction(Icon(iconName), name, 0), _iconName(iconName), _folder(true), _separator(false), _autoDelete(false)
 {
-    setIcon(QIcon::fromTheme(icon == "" ? "folder" : icon));
+    setIcon(Icon(iconName == "" ? "folder" : iconName));
 }
 
 KrBookmark::~KrBookmark()
@@ -85,7 +85,7 @@ KrBookmark * KrBookmark::trash(KActionCollection *collection)
     if (!bm)
         bm = new KrBookmark(i18n(NAME_TRASH), QUrl("trash:/"), collection);
 
-    bm->setIcon(krLoader->loadIcon(KrTrashHandler::trashIcon(), KIconLoader::Small));
+    bm->setIcon(Icon(KrTrashHandler::trashIconName()));
     return bm;
 }
 
@@ -94,7 +94,7 @@ KrBookmark * KrBookmark::virt(KActionCollection *collection)
     KrBookmark *bm = getExistingBookmark(i18n(NAME_VIRTUAL), collection);
     if (!bm) {
         bm = new KrBookmark(i18n(NAME_VIRTUAL), QUrl("virt:/"), collection);
-        bm->setIcon(krLoader->loadIcon("document-open-remote", KIconLoader::Small));
+        bm->setIcon(Icon("document-open-remote"));
     }
     return bm;
 }
@@ -104,7 +104,7 @@ KrBookmark * KrBookmark::lan(KActionCollection *collection)
     KrBookmark *bm = getExistingBookmark(i18n(NAME_LAN), collection);
     if (!bm) {
         bm = new KrBookmark(i18n(NAME_LAN), QUrl("remote:/"), collection);
-        bm->setIcon(krLoader->loadIcon("network-workgroup", KIconLoader::Small));
+        bm->setIcon(Icon("network-workgroup"));
     }
     return bm;
 }

@@ -36,7 +36,7 @@ class KrRemoteEncodingMenu: public KActionMenu
 {
     Q_OBJECT
 public:
-    KrRemoteEncodingMenu(const QString &text, const QString &icon, KActionCollection *parent = 0);
+    KrRemoteEncodingMenu(const QString &text, const QString &iconName, KActionCollection *parent = 0);
 
 protected slots:
 

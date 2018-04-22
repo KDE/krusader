@@ -39,10 +39,9 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 
 #include "../krglobal.h"
-#include "../kicons.h"
+#include "../icon.h"
 #include "../krslots.h"
 #include "../defaults.h"
 #include "../krusaderview.h"
@@ -188,7 +187,7 @@ KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
 
     buttonAddPlaceholder = new QToolButton(this);
     buttonAddPlaceholder->setAutoRaise(true);
-    buttonAddPlaceholder->setIcon(SmallIcon("list-add"));
+    buttonAddPlaceholder->setIcon(Icon("list-add"));
     connect(buttonAddPlaceholder, SIGNAL(clicked()), this, SLOT(addPlaceholder()));
     buttonAddPlaceholder->setWhatsThis(i18n("Add <b>Placeholders</b> for the selected files in the panel."));
 

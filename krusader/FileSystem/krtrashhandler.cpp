@@ -35,6 +35,7 @@
 #include "filesystemprovider.h"
 #include "../kractions.h"
 #include "../krglobal.h"
+#include "../icon.h"
 
 
 KrTrashWatcher * KrTrashHandler::_trashWatcher = 0;
@@ -46,7 +47,7 @@ bool KrTrashHandler::isTrashEmpty()
     return cfg.readEntry("Empty", false);
 }
 
-QString KrTrashHandler::trashIcon()
+QString KrTrashHandler::trashIconName()
 {
     return isTrashEmpty() ? "user-trash" : "user-trash-full";
 }
@@ -112,5 +113,5 @@ KrTrashWatcher::~KrTrashWatcher()
 
 void KrTrashWatcher::slotTrashChanged()
 {
-    KrActions::actTrashBin->setIcon(QIcon::fromTheme(KrTrashHandler::trashIcon()));
+    KrActions::actTrashBin->setIcon(Icon(KrTrashHandler::trashIconName()));
 }

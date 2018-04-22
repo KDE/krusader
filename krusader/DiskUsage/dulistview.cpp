@@ -20,7 +20,7 @@
 
 #include "dulistview.h"
 #include "../krglobal.h"
-#include "../kicons.h"
+#include "../icon.h"
 #include "../FileSystem/krpermhandler.h"
 
 // QtCore
@@ -105,7 +105,7 @@ void DUListView::addDirectory(Directory *dirEntry, QTreeWidgetItem *parent)
     if (parent == 0 && !(dirEntry->parent() == 0)) {
         lastItem = new QTreeWidgetItem(this);
         lastItem->setText(0, "..");
-        lastItem->setIcon(0, FL_LOADICON("go-up"));
+        lastItem->setIcon(0, Icon("go-up"));
         lastItem->setFlags(Qt::ItemIsEnabled);
     }
 

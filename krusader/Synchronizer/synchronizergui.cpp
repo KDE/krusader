@@ -20,6 +20,7 @@
 
 #include "synchronizergui.h"
 #include "../krglobal.h"
+#include "../filelisticon.h"
 #include "../defaults.h"
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
@@ -30,7 +31,6 @@
 #include "../FileSystem/krquery.h"
 #include "../krservices.h"
 #include "../krslots.h"
-#include "../kicons.h"
 #include "synchronizedialog.h"
 #include "feedtolistboxdialog.h"
 #include "synchronizercolors.h"
@@ -113,7 +113,7 @@ public:
 
         QDrag *drag = new QDrag(this);
         QMimeData *mimeData = new QMimeData;
-        mimeData->setImageData(FL_LOADICON(isLeft ? "arrow-left-double" : "arrow-right-double"));
+        mimeData->setImageData(FileListIcon(isLeft ? "arrow-left-double" : "arrow-right-double").pixmap());
         mimeData->setUrls(urls);
         drag->setMimeData(mimeData);
         drag->start();
@@ -291,7 +291,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     checked = group.readEntry("LeftToRight Button", _BtnLeftToRight);
     description = i18n("Show files marked to <i>Copy from left to right</i>.");
     btnLeftToRight =
-        createButton(showOptions, "arrow-right", checked, Qt::CTRL + Qt::Key_L, description);
+        createButton(showOptions, "arrow-right", checked, Qt::CTRL + Qt::Key_L, description, ">");
     showOptionsLayout->addWidget(btnLeftToRight, 0, 0);
 
     checked = group.readEntry("Equals Button", _BtnEquals);
@@ -309,7 +309,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     checked = group.readEntry("RightToLeft Button", _BtnRightToLeft);
     description = i18n("Show files marked to <i>Copy from right to left</i>.");
     btnRightToLeft =
-        createButton(showOptions, "arrow-left", checked, Qt::CTRL + Qt::Key_R, description);
+        createButton(showOptions, "arrow-left", checked, Qt::CTRL + Qt::Key_R, description, "<");
     showOptionsLayout->addWidget(btnRightToLeft, 0, 3);
 
     checked = group.readEntry("Deletable Button", _BtnDeletable);
@@ -469,7 +469,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     buttons->addWidget(profileManager);
 
     btnSwapSides = new QPushButton(this);
-    btnSwapSides->setIcon(QIcon::fromTheme("document-swap"));
+    btnSwapSides->setIcon(Icon("document-swap"));
     btnSwapSides->setShortcut(Qt::CTRL + Qt::Key_S);
     btnSwapSides->setWhatsThis(i18n("Swap sides (Ctrl+S)."));
     buttons->addWidget(btnSwapSides);
@@ -482,7 +482,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
 
     btnCompareDirs = new QPushButton(this);
     btnCompareDirs->setText(i18n("Compare"));
-    btnCompareDirs->setIcon(QIcon::fromTheme("kr_comparedirs"));
+    btnCompareDirs->setIcon(Icon("kr_comparedirs"));
     btnCompareDirs->setDefault(true);
     buttons->addWidget(btnCompareDirs);
 
@@ -498,26 +498,26 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
 
     btnStopComparing = new QPushButton(this);
     btnStopComparing->setText(i18n("Stop"));
-    btnStopComparing->setIcon(QIcon::fromTheme("process-stop"));
+    btnStopComparing->setIcon(Icon("process-stop"));
     btnStopComparing->setEnabled(false);
     buttons->addWidget(btnStopComparing);
 
     btnFeedToListBox = new QPushButton(this);
     btnFeedToListBox->setText(i18n("Feed to listbox"));
-    btnFeedToListBox->setIcon(QIcon::fromTheme("list-add"));
+    btnFeedToListBox->setIcon(Icon("list-add"));
     btnFeedToListBox->setEnabled(false);
     btnFeedToListBox->hide();
     buttons->addWidget(btnFeedToListBox);
 
     btnSynchronize = new QPushButton(this);
     btnSynchronize->setText(i18n("Synchronize"));
-    btnSynchronize->setIcon(QIcon::fromTheme("folder-sync"));
+    btnSynchronize->setIcon(Icon("folder-sync"));
     btnSynchronize->setEnabled(false);
     buttons->addWidget(btnSynchronize);
 
     QPushButton *btnCloseSync = new QPushButton(this);
     btnCloseSync->setText(i18n("Close"));
-    btnCloseSync->setIcon(QIcon::fromTheme("dialog-close"));
+    btnCloseSync->setIcon(Icon("dialog-close"));
     buttons->addWidget(btnCloseSync);
 
     synchGrid->addLayout(buttons, 1, 0);
@@ -1119,7 +1119,7 @@ void SynchronizerGUI::addFile(SynchronizerFileItem *item)
     }
 
     if (listItem) {
-        listItem->setIcon(0, QIcon::fromTheme(isDir ? "folder" : "document-new"));
+        listItem->setIcon(0, Icon(isDir ? "folder" : "document-new"));
         if (!item->isMarked())
             listItem->setHidden(true);
         else
@@ -1564,9 +1564,13 @@ QPushButton *SynchronizerGUI::createButton(QWidget *parent, const QString &iconN
                                            const QString &text, bool textAndIcon)
 {
     QPushButton *button = new QPushButton(parent);
-    if (!text.isEmpty() && (textAndIcon || !QIcon::hasThemeIcon(iconName)))
+    bool iconExists = Icon::exists(iconName);
+    if (!text.isEmpty() && (textAndIcon || !iconExists)) {
         button->setText(text);
-    button->setIcon(QIcon::fromTheme(iconName));
+    }
+    if (iconExists) {
+        button->setIcon(Icon(iconName));
+    }
     button->setCheckable(true);
     button->setChecked(checked);
     button->setShortcut(shortCut);
@@ -1608,7 +1612,7 @@ void SynchronizerGUI::copyToClipboard(bool isLeft)
         return;
 
     QMimeData *mimeData = new QMimeData;
-    mimeData->setImageData(FL_LOADICON(isLeft ? "arrow-left-double" : "arrow-right-double"));
+    mimeData->setImageData(FileListIcon(isLeft ? "arrow-left-double" : "arrow-right-double").pixmap());
     mimeData->setUrls(urls);
 
     QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);

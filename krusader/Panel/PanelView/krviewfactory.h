@@ -41,13 +41,13 @@ public:
     inline int id() const { return m_id; }
     inline QString name() const { return m_name; }
     inline QString description() const { return m_description; }
-    inline QString icon() const { return m_icon; }
+    inline QString iconName() const { return m_iconName; }
     inline QKeySequence shortcut() const { return m_shortcut; }
 
     virtual KrView *create(QWidget *w, KConfig *cfg) = 0;
 
 protected:
-    KrViewInstance(int id, const QString &name, const QString &desc, const QString &icon,
+    KrViewInstance(int id, const QString &name, const QString &desc, const QString &iconName,
                    const QKeySequence &shortcut);
     virtual ~KrViewInstance() {}
 
@@ -55,7 +55,7 @@ private:
     const int m_id;
     const QString m_name;
     const QString m_description;
-    const QString m_icon;
+    const QString m_iconName;
     const QKeySequence m_shortcut;
 
     QList<KrView *> m_objects; // direct access in KrView

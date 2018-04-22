@@ -37,7 +37,6 @@
 #include <KConfigCore/KSharedConfig>
 #include <KCoreAddons/KShell>
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconLoader>
 #include <KWidgetsAddons/KMessageBox>
 
 typedef struct {
