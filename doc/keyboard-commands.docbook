@@ -230,6 +230,20 @@
             <entry>
               <para>
                 <keycombo action="simul">&Shift;
+                <keycap>F2</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="multi_rename">Multi-rename
+                (<application>Krename</application>).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Shift;
                 <keycap>F3</keycap></keycombo>
               </para>
             </entry>
@@ -279,20 +293,6 @@
               </para>
             </entry>
           </row>
-           <row>
-            <entry>
-              <para>
-                <keycombo action="simul">&Shift;
-                <keycap>F9</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <link linkend="multi_rename">Multi-rename
-                (<application>Krename</application>).</link>
-              </para>
-            </entry>
-          </row>
           <row>
             <entry>
               <para>
@@ -319,7 +319,7 @@
               </para>
             </entry>
           </row>
-          <!-- This keybinding is disabled in the "krusader.cpp" source file
+          <!-- This keybinding is disabled in the "viewactions.cpp" source file
 <row>
 <entry><para><keycombo action="simul">&Shift;<keycap>F11</keycap></keycombo></para></entry>
 <entry><para><link linkend="view-menu">Executables</link></para></entry></row>
