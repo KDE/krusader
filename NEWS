@@ -1,10 +1,13 @@
 ------------------------------------------------------------------------
-- Krusader SVNNEWS
+- Krusader NEWS
 ------------------------------------------------------------------------
-- This file is only intended for krusader-svn.
-- It should contain a brief description of new features. In some way an
-- extension to the ChangeLog.
+- This file should contain a brief description of new features.
+- In some way an extension to the ChangeLog.
 ------------------------------------------------------------------------
+
+
+
+-------------------------------- 2.3.0 New Horizons --------------------
 
 New feature: QuickFilter:
     - "QuickFilter" action (default shortcut CTRL+i) shows and focuses quickfilter
@@ -15,7 +18,9 @@ New feature: dbus interface: org.krusader.Instance.openUrl(QString url)
     - path: /Instances/<instance>
     - if there is already a tab open with that url, it is activated, otherwise a new tab is opened in the active panel
 
--------------------------------- 2.2.0-SVN Dekade ----------------------
+
+
+-------------------------------- 2.2.0 Dekade --------------------------
 
 Reorganize Konfigurator:
     "Look & Feel" page becomes "Panel" -
@@ -63,9 +68,9 @@ New feature: thumbnails for the listviews
     - new action "Show Previews" which can also be found in mainmenu > view
     - toggleable separately per view
 
--------------------------------- 2.1.0-SVN Rusty Clutch ----------------
 
 
+-------------------------------- 2.1.0 Rusty Clutch --------------------
 
 New feature: better trash implementation
    - 2 new actions: trash bin -> to open and empty trash (by default it's on the toolbar)
@@ -77,7 +82,8 @@ New feature: better trash implementation
        - the trash bin can be emptied
 
 
--------------------------------- 2.0.0 stable "Mars pathfinder" -------
+
+-------------------------------- 2.0.0 stable "Mars pathfinder" --------
 
 Change: alt+letter shortcuts had collisions with dynamically assigned hotkeys
 Old shortcut        New shortcut       Function
@@ -136,6 +142,8 @@ New feature: Queue manager
              is much more useful.
              http://www.krusader.org/phpBB/viewtopic.php?t=810
 
+
+
 -------------------------------- 2.0.0-beta1 ---------------------------
 
 New feature: Krusader is able to send e-mails by thunderbird
@@ -160,7 +168,9 @@ New feature: new synchronizer shortcuts
   - ALT + Delete : mark for delete
 
 
+
 -------------------------------- 1.80.0 --------------------------------
+
 UserActions: Expander: Many fixes, better error handling, sensible
   %_Each&-handling. Finally I managed to implement Jiri's 100k patch for
   the useractions. This patch handles the Each-placeholder much better
@@ -253,6 +263,8 @@ New archive handling:
   writes out the error messages of the archiver
   archive type autodetection by its header (first 512 byte)
 
+
+
 -------------------------------- 1.70.0 --------------------------------
 
 New global calculate space function:
@@ -279,6 +291,8 @@ Jump-Back:
   deep into the dir-tree and Ctrl-J brings you back to your starting
   position. It's also possible to set the current directory manually as
   Jump-Back-Point.
+
+
 
 -------------------------------- 1.60.0 --------------------------------
 
@@ -373,6 +387,8 @@ total commander in a single click? no problem!
 
 Mouse selection modes is back! check out the Look'N'Feel section
 
+
+
 -------------------------------- 1.51 ----------------------------------
 
 The long awaited feature: Fn keys can be changed to different shortcuts
@@ -381,6 +397,8 @@ Total-commander refresh: when krusader isn't focused, it is not refreshed
 at all.
 
 Pressing ctrl-up arrow from the panel, jumps to the origin bar
+
+
 
 -------------------------------- 1.50 ----------------------------------
 

@@ -24,10 +24,12 @@
 <note>
   <para>The most important features and improvements are
   highlighted here, it would make this list too long if we were to
-  include 
-  <emphasis>all</emphasis> the features and improvements. You will
-  discover even more features in this documentation and in the
-  <ulink url="https://commits.kde.org/krusader?path=ChangeLog"><filename>ChangeLog</filename></ulink> file.</para>
+  include <emphasis>all</emphasis> the features and improvements.
+  You will discover even more features in this documentation and in the
+  <ulink url="https://commits.kde.org/krusader?path=ChangeLog"><filename>ChangeLog</filename></ulink>
+  and
+  <ulink url="https://commits.kde.org/krusader?path=NEWS"><filename>NEWS</filename></ulink>
+  files.</para>
 </note>
 <para>
   <itemizedlist>
@@ -280,9 +282,6 @@
         <listitem>
           <para><link linkend="useractions">UserActions</link></para>
         </listitem>
-<!--        <listitem>
-          <para><link linkend="javascript_console">JavaScript console</link></para>
-	</listitem> disabled due to KrJS does not compile (cannot find kjsembed from kdelibs-->
         <listitem>
           <para><link linkend="konfig-color">Color Profiles</link></para>
         </listitem>
@@ -291,7 +290,8 @@
         </listitem>
       </itemizedlist>
       Download and upload your favourite &krusader; extensions at
-  <ulink url="https://store.kde.org/">store.kde.org</ulink>.</para>
+      <ulink url="https://store.kde.org/">store.kde.org</ulink>.
+      </para>
     </listitem>
   </itemizedlist>
 </para>
@@ -411,7 +411,6 @@
   </itemizedlist>
 </para>
 
-
 <para>
   <itemizedlist>
     <title>New features in the &krusader;-2.0.0 "Mars Pathfinder"
@@ -459,11 +458,6 @@
       <para>The quick search, select and filter bar supports regular expressions for matching files.
       </para>
     </listitem>
-    <listitem>
-      <para>For more features, please read the
-      <ulink url="https://commits.kde.org/krusader?path=ChangeLog"><filename>ChangeLog</filename></ulink> and
-      <ulink url="https://commits.kde.org/krusader?path=SVNNEWS"><filename>SVNNEWS</filename></ulink>.</para>
-    </listitem>
   </itemizedlist>
 </para>
 
@@ -486,19 +480,17 @@
   </itemizedlist>
 </para>
 
-
 <para><note><para>
-                 If you are using a <link linkend="krusader_devel">development</link> or
-                 <link linkend="krusader_git">Git</link> version, it is possible that the latest
-                 new features are not yet in the "The &krusader; Handbook".
-                 Please read the 
-		 <ulink url="https://commits.kde.org/krusader?path=ChangeLog">Changelog</ulink>
-		 file online or in the &krusader;
-                 sources to find out more about the new features.
-                 For a brief description, please read the 
-		 <ulink url="https://commits.kde.org/krusader?path=SVNNEWS">SVNNEWS</ulink>
-		 file online
-                 or in the &krusader; sources.
-                       <link linkend="faqg_wish">User feedback</link> and
-                       <link linkend="faqg_bug_report">Bug reports</link> are always welcome!
-                 </para></note></para></chapter>
+  If you are using a <link linkend="krusader_devel">development</link> or
+  <link linkend="krusader_git">Git</link> version, it is possible that the latest
+  new features are not yet in the "The &krusader; Handbook".
+  Please read the
+  <ulink url="https://commits.kde.org/krusader?path=ChangeLog">Changelog</ulink>
+  file online or in the &krusader; sources to find out more about the new features.
+  For a brief description, please read the
+  <ulink url="https://commits.kde.org/krusader?path=NEWS">NEWS</ulink>
+  file online or in the &krusader; sources.
+  <link linkend="faqg_wish">User feedback</link> and
+  <link linkend="faqg_bug_report">Bug reports</link> are always welcome!
+</para></note></para>
+</chapter>
