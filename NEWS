@@ -7,6 +7,62 @@
 
 
 
+-------------------------------- 2.7.0 Peace of Mind -------------------
+
+New feature: Quick Search in Bookmark menu
+    - Just type letters to search: bookmarks are matched by name prefix
+    - Once a single bookmark is matched, it's immediately triggered
+    - If multiple bookmarks are matched by the prefix, they are highlighted
+        and the first one is selected - hit Enter to activate the bookmark
+    - Accelerators work only if the keystroke is the first one
+    - Backspace is supported
+    - Search is case insensitive unless you type a capital letter
+    - Search bar visibility can be controlled in Konfigurator
+    - Search bar is intentionally a read-only field
+
+New feature: Tab pinning.
+    - A pinned tab is a locked tab with temporarily changeable address.
+    - Available from popup menu of a tab.
+
+New feature: Tooltip with file information when you hover a file name.
+
+New feature: Extended options for Tree Panel (activated by a popup menu at the header)
+    - Show/Hide hidden folders
+    - Start the tree from the closest Place (i.e. device)
+    - Start the tree from current directory
+
+New feature: -d option.
+    - Turns on debug output in Krusader.
+    - Helpful for bug reports - we encourage to attach debug console output to reports.
+
+Change: Default Multi Rename shortcut is changed (Shift+F9 -> Shift+F2)
+    to align with the default Rename shortcut (F2).
+
+Addressed issues of using custom icon themes and running in non-KDE environments.
+    - Icons are rendered according to per-icon fallback logic:
+        - Your active theme is matched first
+        - Fallback icon theme specified in Konfigurator is matched next
+        - Breeze or Oxygen are matched next if they are installed.
+            Please note that Breeze is icon-complete theme for Krusader,
+            Oxygen has also become icon-complete recently, and these themes
+            are considered to be weak dependencies of Krusader meaning that
+            in order to run smoothly one of these should be installed
+            (we don't require it's activated though).
+        - If no match is found, a special "missing" icon is rendered.
+    - Due to improved algorithms, your MIME icons (file type icons) should
+        look better (more icons are found, they are coming from an active theme
+        if found in there).
+
+Fixed 40+ issues including some regressions. See ChangeLog.
+
+
+
+-------------------------------- 2.4.0 - 2.6.0 -------------------------
+
+News for these releases were not written at the release time. Please refer to ChangeLog.
+
+
+
 -------------------------------- 2.3.0 New Horizons --------------------
 
 New feature: QuickFilter:
