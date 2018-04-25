@@ -1,9 +1,12 @@
 2.7.0 "Peace of Mind"
 =====================
 
+    ADDED: Ability to ignore defined directories from results in Search dialog
     ADDED: Bookmark quick search (type symbols in bookmark menu to activate)
     ADDED: Cache calculated directory sizes (last 1000 entries; not auto-updated)
+    ADDED: Command line option "-d" to activate debug message output
     ADDED: New detailed tooltip for name column in panel view
+    ADDED: Per-icon fallback logic to support custom icon themes
     ADDED: Popup file tree view - new "show/hide hidden folders" feature
     ADDED: Popup file tree view - new "start from closest Place" feature
     ADDED: Popup file tree view - new "start from current directory" feature
@@ -12,7 +15,10 @@
     ADDED: User setting to disable border decoration for current item in inactive panel
     CHANGED: Default Multi Rename shortcut changed (Shift+F9 -> Shift+F2) to align with the default Rename shortcut (F2)
     CHANGED: Show "0 Bytes" for calculated but empty directory sizes
+    FIXED: Activation of a found item with hash symbol in URL inside search dialog
+    FIXED: Bug with no-match indication when only the current item matches in Quick Search
     FIXED: Panel columns may become invisible when settings are restored from config
+    FIXED: Regression in "Open in new tab" from popup menu
     FIXED: When pressing a New Tab button the corresponding Panel is not selected
     FIXED: [ 108023 ] Support "Sort by..." by keyboard shortcuts: CTRL+[1-4]
     FIXED: [ 173655 ] Added changed and access time in detailed view
@@ -44,6 +50,7 @@
     FIXED: [ 386314 ] Install to a custom location doesn't work correctly
     FIXED: [ 388266 ] Closing calculate occupied space window does not abort the calculation
     FIXED: [ 389413 ] Krusader crashes when entering directories with read errors
+    FIXED: [ 389869 ] After deletion of selected files current item moves one down
     FIXED: [ 390732 ] Cannot add Krusader to favorites in Gnome Dock
     FIXED: [ 390990 ] Current item selection is lost after exiting from tar archives
     FIXED: [ 390991 ] bookmark buttons on a toolbar disappear after closing Bookmark Editor
