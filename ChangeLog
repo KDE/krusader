@@ -1,3 +1,63 @@
+2.7.0 "Peace of Mind"
+=====================
+
+    ADDED: Ability to ignore defined directories from results in Search dialog
+    ADDED: Bookmark quick search (type symbols in bookmark menu to activate)
+    ADDED: Cache calculated directory sizes (last 1000 entries; not auto-updated)
+    ADDED: Command line option "-d" to activate debug message output
+    ADDED: New detailed tooltip for name column in panel view
+    ADDED: Per-icon fallback logic to support custom icon themes
+    ADDED: Popup file tree view - new "show/hide hidden folders" feature
+    ADDED: Popup file tree view - new "start from closest Place" feature
+    ADDED: Popup file tree view - new "start from current directory" feature
+    ADDED: Popup file tree view - support for dropping to panel
+    ADDED: Tab pinning - pinned tab is a locked tab with temporarily changeable address
+    ADDED: User setting to disable border decoration for current item in inactive panel
+    CHANGED: Default Multi Rename shortcut changed (Shift+F9 -> Shift+F2) to align with the default Rename shortcut (F2)
+    CHANGED: Show "0 Bytes" for calculated but empty directory sizes
+    FIXED: Activation of a found item with hash symbol in URL inside search dialog
+    FIXED: Bug with no-match indication when only the current item matches in Quick Search
+    FIXED: Panel columns may become invisible when settings are restored from config
+    FIXED: Regression in "Open in new tab" from popup menu
+    FIXED: When pressing a New Tab button the corresponding Panel is not selected
+    FIXED: [ 108023 ] Support "Sort by..." by keyboard shortcuts: CTRL+[1-4]
+    FIXED: [ 173655 ] Added changed and access time in detailed view
+    FIXED: [ 195749 ] Ctrl+Tab don't switch over edited files
+    FIXED: [ 267719 ] bookmarks shortcuts lost after opening bookmark manager
+    FIXED: [ 267756 ] Rename tab or add prefix to tab label
+    FIXED: [ 267765 ] Add delay before switching tabs with mouse-over
+    FIXED: [ 270756 ] Add option to hide tab bar
+    FIXED: [ 272108 ] Support for more KIO slaves in Network Connection
+    FIXED: [ 274404 ] Copy file dialog - include file name in the path
+    FIXED: [ 280270 ] Saved Locked Tabs each create extra tab on start
+    FIXED: [ 308351 ] Cannot run MountMan from menu
+    FIXED: [ 328928 ] Add text word wrap for all tooltips
+    FIXED: [ 363437 ] Edit field looses focus after closing one of Editor's/Viewer's tab
+    FIXED: [ 372964 ] At least one Oxygen icon in Krusader is not correctly seen (using Kubuntu 16.04)
+    FIXED: [ 372966 ] Some icons are not seen using a plain Ubuntu (not Kubuntu) 16.04
+    FIXED: [ 376372 ] KrViewer window loses focus on closing tabs
+    FIXED: [ 378593 ] Problems copying the names of files with apostrophes
+    FIXED: [ 378839 ] Krusader freezes when asterisk ("*") is pressed in detailed view
+    FIXED: [ 379170 ] 2.6.0 - Regression: "Spacebar calculates disk space" feature is missing
+    FIXED: [ 379459 ] Krusader no longer minimizes to system tray
+    FIXED: [ 380421 ] In some cases the vertical "Popup panel" has a very high minimum width (caused by Viewer)
+    FIXED: [ 381179 ] Shortcut conflict: SHIFT+DEL used for cut and alternative delete
+    FIXED: [ 383372 ] Toggle Fullscreen Embedded Terminal bug
+    FIXED: [ 383544 ] Unable to create new folder/file if '..' item is selected in current folder
+    FIXED: [ 383558 ] Errors after approving or canceling Useractions -> System -> Backup current for '..' panel item
+    FIXED: [ 386217 ] Fix moving cursor with up/down to item not matching in quicksearch
+    FIXED: [ 386217 ] Pressing Arrow keys behaves incorrectly in quicksearch
+    FIXED: [ 386314 ] Install to a custom location doesn't work correctly
+    FIXED: [ 388266 ] Closing calculate occupied space window does not abort the calculation
+    FIXED: [ 389413 ] Krusader crashes when entering directories with read errors
+    FIXED: [ 389869 ] After deletion of selected files current item moves one down
+    FIXED: [ 390732 ] Cannot add Krusader to favorites in Gnome Dock
+    FIXED: [ 390990 ] Current item selection is lost after exiting from tar archives
+    FIXED: [ 390991 ] bookmark buttons on a toolbar disappear after closing Bookmark Editor
+    FIXED: [ 390994 ] [dev] Compiler warnings with gcc-6.4.0
+    FIXED: [ 392218 ] Allow scrolling during filesystem changes in current directory
+
+
 2.6.0 "Stiff Challenges"
 =========================
 
