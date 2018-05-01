@@ -1,20 +1,19 @@
-            ---------------------------------------------------
-            Krusader installation instructions for KDE Plasma 5
-            ---------------------------------------------------
+            ----------------------------------
+            Krusader installation instructions
+            ----------------------------------
 
 
 --- Note
 
-Krusader-2.5.0 versions and higher are for KDE Plasma 5 only and will not work
-anymore on KDE Plasma 4 or 3.
-
+Krusader-2.5.0 versions and higher use libraries like Qt5 and KF5, and will not
+work anymore on KDE Plasma 4 or older.
 
 --- Supported Platforms
 
 * All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris™
 
-At the moment, there are no KDE Plasma 5 ports for Windows or Mac® OS X, which
-means these platforms are not supported.
+At the moment, for some libraries like KF5, there are no full ports for Windows
+or Mac® OS X, which means these platforms are not supported.
 
 
 ========================================
@@ -22,12 +21,22 @@ Installation on Linux® and BSD platforms
 ========================================
 
 
+--- Preliminary steps if Krusader was already installed
+
+If Krusader was already installed: it's better to backup its settings before
+uninstalling Krusader and installing a new version. Those folders can be
+backed up (just in case):
+        ~/.local
+        ~/.kde
+        ~/.config
+
+
 --- Krusader dependencies
 
 The next packages are needed when running the Krusader binary.
 
-This is a list of the package names that Kubuntu/Ubuntu 16.04 use, other Linux distros will
-probably use similar names:
+This is a list of the package names that Kubuntu/Ubuntu 18.04 (LTS) use, other
+Linux distros will probably use similar names:
 
 - plasma-framework      Plasma Runtime components
 - libc6                 GNU C Library: Shared libraries
@@ -72,7 +81,6 @@ or xxdiff               a graphical file and directories comparison and merge to
 
 - konsole               X terminal emulator
 - krename               Powerful batch renamer by KDE
-                        (at moment of writing: still based on KDE4)
 - lhasa                 lzh archiver
 
 - md5deep               enhanced message digest calculator
@@ -155,7 +163,7 @@ $ mkdir krusader-build
 $ cd krusader-build
 $ cmake ../krusader -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DCMAKE_CXX_FLAGS="-O2 -fPIC"
 
-Note: In this document there's an appendix 1 that may help.
+Note: An example of an output of cmake can be seen in https://phabricator.kde.org/w/krusader/cmake-output/
 
 
 --- Compilation and installation
@@ -169,7 +177,7 @@ $ make
 # At the beginning of the following command: `sudo` must be added if Kubuntu, Ubuntu, Debian, or similar is being used
 $ su -c "make install"
 
-Note: In this document there's an appendix 2 that may help.
+Note: An example of an output of make can be seen in https://phabricator.kde.org/w/krusader/make-output/
 
 
 --- To achieve that Krusader uses another language
@@ -201,148 +209,3 @@ $ krusader
 
 # At the beginning of the following command: `sudo` must be added if Kubuntu, Ubuntu, Debian, or similar is being used
 $ su -c "make uninstall"
-
-
---- Appendix 1
-
-If it can be useful, this is the output of cmake on Kubuntu 15.04:
-
-ubuntu@ubuntu-VirtualBox:~/src/krusader/build$ cmake -DCMAKE_INSTALL_PREFIX=/usr ..
--- The C compiler identification is GNU 4.9.2
--- The CXX compiler identification is GNU 4.9.2
--- Check for working C compiler: /usr/bin/cc
--- Check for working C compiler: /usr/bin/cc -- works
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working CXX compiler: /usr/bin/c++
--- Check for working CXX compiler: /usr/bin/c++ -- works
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Looking for __GLIBC__
--- Looking for __GLIBC__ - found
--- Performing Test _OFFT_IS_64BIT
--- Performing Test _OFFT_IS_64BIT - Success
--- Found KF5Archive: /usr/lib/x86_64-linux-gnu/cmake/KF5Archive/KF5ArchiveConfig.cmake (found version "5.9.0")
--- Found KF5Bookmarks: /usr/lib/x86_64-linux-gnu/cmake/KF5Bookmarks/KF5BookmarksConfig.cmake (found version "5.9.0")
--- Found KF5Codecs: /usr/lib/x86_64-linux-gnu/cmake/KF5Codecs/KF5CodecsConfig.cmake (found version "5.9.0")
--- Found KF5Completion: /usr/lib/x86_64-linux-gnu/cmake/KF5Completion/KF5CompletionConfig.cmake (found version "5.9.0")
--- Found KF5CoreAddons: /usr/lib/x86_64-linux-gnu/cmake/KF5CoreAddons/KF5CoreAddonsConfig.cmake (found version "5.9.0")
--- Found KF5Config: /usr/lib/x86_64-linux-gnu/cmake/KF5Config/KF5ConfigConfig.cmake (found version "5.9.0")
--- Found KF5DocTools: /usr/lib/x86_64-linux-gnu/cmake/KF5DocTools/KF5DocToolsConfig.cmake (found version "5.9.0")
--- Found Gettext: /usr/bin/msgmerge (found version "0.19.2")
--- Found PythonInterp: /usr/bin/python (found version "2.7.9")
--- Found KF5I18n: /usr/lib/x86_64-linux-gnu/cmake/KF5I18n/KF5I18nConfig.cmake (found version "5.9.0")
--- Found KF5IconThemes: /usr/lib/x86_64-linux-gnu/cmake/KF5IconThemes/KF5IconThemesConfig.cmake (found version "5.9.0")
--- Found KF5ItemViews: /usr/lib/x86_64-linux-gnu/cmake/KF5ItemViews/KF5ItemViewsConfig.cmake (found version "5.9.0")
--- Found KF5KIO: /usr/lib/x86_64-linux-gnu/cmake/KF5KIO/KF5KIOConfig.cmake (found version "5.9.0")
--- Found KF5Notifications: /usr/lib/x86_64-linux-gnu/cmake/KF5Notifications/KF5NotificationsConfig.cmake (found version "5.9.0")
--- Found KF5Parts: /usr/lib/x86_64-linux-gnu/cmake/KF5Parts/KF5PartsConfig.cmake (found version "5.9.0")
--- Found KF5Solid: /usr/lib/x86_64-linux-gnu/cmake/KF5Solid/KF5SolidConfig.cmake (found version "5.9.0")
--- Found KF5TextWidgets: /usr/lib/x86_64-linux-gnu/cmake/KF5TextWidgets/KF5TextWidgetsConfig.cmake (found version "5.9.0")
--- Found KF5Wallet: /usr/lib/x86_64-linux-gnu/cmake/KF5Wallet/KF5WalletConfig.cmake (found version "5.9.0")
--- Found KF5WidgetsAddons: /usr/lib/x86_64-linux-gnu/cmake/KF5WidgetsAddons/KF5WidgetsAddonsConfig.cmake (found version "5.9.0")
--- Found KF5WindowSystem: /usr/lib/x86_64-linux-gnu/cmake/KF5WindowSystem/KF5WindowSystemConfig.cmake (found version "5.9.0")
--- Found KF5XmlGui: /usr/lib/x86_64-linux-gnu/cmake/KF5XmlGui/KF5XmlGuiConfig.cmake (found version "5.9.0")
--- Found KF5: success (found version "5.9.0") found components:  Archive Bookmarks Codecs Completion CoreAddons Config DocTools I18n IconThemes ItemViews KIO Notifications Parts Solid TextWidgets Wallet WidgetsAddons WindowSystem XmlGui
--- Looking for include file attr/libattr.h
--- Looking for include file attr/libattr.h - found
--- Looking for include file sys/xattr.h
--- Looking for include file sys/xattr.h - found
--- Looking for include file sys/acl.h
--- Looking for include file sys/acl.h - found
--- Looking for include file acl/libacl.h
--- Looking for include file acl/libacl.h - found
--- Found ACL support: /usr/lib/libacl.so;/lib/x86_64-linux-gnu/libattr.so
--- libkonq library not found
--- /home/ubuntu/src/krusader/krusader: skipped subdir $(KRJSDIR)
--- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.2.8")
---
--- The following REQUIRED packages have been found:
-
- * ECM (required version >= 1.1.0)
- * Qt5Core
- * Qt5Gui
- * Qt5DBus
- * Qt5Widgets
- * Qt5PrintSupport
- * Qt5Xml
- * Qt5
- * KF5Archive
- * KF5Bookmarks
- * KF5Codecs
- * KF5Completion
- * KF5CoreAddons
- * KF5Config
- * KF5DocTools
- * Gettext
- * PythonInterp
- * KF5I18n
- * KF5IconThemes
- * KF5ItemViews
- * KF5KIO
- * KF5Notifications
- * KF5Parts
- * KF5Solid
- * KF5TextWidgets
- * KF5Wallet
- * KF5WidgetsAddons
- * KF5WindowSystem
- * KF5XmlGui
- * KF5
-
--- Configuring done
--- Generating done
--- Build files have been written to: /home/ubuntu/src/krusader/build
-
-
---- Appendix 2
-
-If it can be useful, this is a (partial) output of make on Kubuntu 15.04:
-
-ubuntu@ubuntu-VirtualBox:~/src/krusader/build$ make
-[  1%] Automatic moc for target krusader
-Generating moc_actionsbase.cpp
-Generating moc_kractions.cpp
-Generating moc_krslots.cpp
-Generating moc_krtrashhandler.cpp
-Generating moc_krusader.cpp
-Generating moc_krusaderview.cpp
-Generating moc_panelmanager.cpp
-Generating moc_paneltabbar.cpp
-Generating moc_tabactions.cpp
-[  1%] Built target krusader_automoc
-[  1%] Automatic moc for target ActionMan
-Generating moc_actionman.cpp
-Generating moc_actionproperty.cpp
-Generating moc_addplaceholderpopup.cpp
-Generating moc_useractionlistview.cpp
-Generating moc_useractionpage.cpp
-[  1%] Built target ActionMan_automoc
-[  1%] Generating ui_actionproperty.h
-Scanning dependencies of target ActionMan
-[  1%] Building CXX object krusader/ActionMan/CMakeFiles/ActionMan.dir/actionman.cpp.o
-[  2%] Building CXX object krusader/ActionMan/CMakeFiles/ActionMan.dir/actionproperty.cpp.o
-...
-...
-...
-[ 95%] Built target kio_krarc
-Scanning dependencies of target kio_iso_automoc
-[ 95%] Automatic moc for target kio_iso
-[ 95%] Built target kio_iso_automoc
-Scanning dependencies of target kio_iso
-[ 96%] Building CXX object iso/CMakeFiles/kio_iso.dir/kisodirectory.cpp.o
-[ 96%] Building CXX object iso/CMakeFiles/kio_iso.dir/kisofile.cpp.o
-[ 97%] Building CXX object iso/CMakeFiles/kio_iso.dir/qfilehack.cpp.o
-[ 97%] Building CXX object iso/CMakeFiles/kio_iso.dir/kiso.cpp.o
-[ 98%] Building CXX object iso/CMakeFiles/kio_iso.dir/iso.cpp.o
-[ 98%] Building C object iso/CMakeFiles/kio_iso.dir/libisofs/isofs.c.o
-[ 99%] Building CXX object iso/CMakeFiles/kio_iso.dir/kio_iso_automoc.cpp.o
-Linking CXX shared library libkio_iso.so
-[ 99%] Built target kio_iso
-Scanning dependencies of target doc-index-cache-bz2
-[100%] Generating index.cache.bz2
-[100%] Built target doc-index-cache-bz2
-Scanning dependencies of target doc-krusader-1
-[100%] Generating krusader.1
-Note: Writing krusader.1
-[100%] Built target doc-krusader-1
