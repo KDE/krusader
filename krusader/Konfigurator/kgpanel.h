@@ -36,8 +36,6 @@ public:
     virtual int activeSubPage() Q_DECL_OVERRIDE;
 
 protected:
-    KonfiguratorCheckBoxGroup *cbs;
-    KonfiguratorCheckBoxGroup* quicksearchCheckboxes;
     KonfiguratorCheckBoxGroup *panelToolbarButtonsCheckboxes;
     KonfiguratorCheckBoxGroup *buttonsCheckboxes;
     KonfiguratorRadioButtons  *mouseRadio;
@@ -45,7 +43,6 @@ protected:
     KrTreeWidget* mousePreview;
 
 protected slots:
-    void slotDisable();
     void slotEnablePanelToolbar();
     void slotSelectionModeChanged();
     void slotMouseCheckBoxChanged();

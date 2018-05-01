@@ -93,7 +93,7 @@ void KgPanel::setupGeneralTab()
             {"Look&Feel", "Navigator Edit Mode", false, i18n("Edit Mode by default"),       true, i18n("Show editable path in Navigator bar by default") },
             {"Look&Feel", "Navigator Full Path", false, i18n("Show full path by default"),  true, i18n("Always show full path in Navigator bar by default.") },
         };
-        cbs = createCheckBoxGroup(2, 0, navigatorbar_settings, 2 /*count*/, groupBox, PAGE_GENERAL);
+        KonfiguratorCheckBoxGroup* cbs = createCheckBoxGroup(2, 0, navigatorbar_settings, 2 /*count*/, groupBox, PAGE_GENERAL);
         gridLayout->addWidget(cbs, 0, 0);
 
         layout->addWidget(groupBox);
@@ -125,7 +125,7 @@ void KgPanel::setupGeneralTab()
         {"Look&Feel", "Fullpath Tab Names",   _FullPathTabNames,  i18n("Use full path tab names"), true ,  i18n("Display the full path in the folder tabs. By default only the last part of the path is displayed.") },
         {"Look&Feel", "Show Tab Buttons",   true,  i18n("Show new/close tab buttons"), true ,  i18n("Show the new/close tab buttons.") },
     };
-    KonfiguratorCheckBoxGroup *cbs = createCheckBoxGroup(2, 0, tabbar_settings, 2 /*count*/, groupBox, PAGE_GENERAL);
+    cbs = createCheckBoxGroup(2, 0, tabbar_settings, 2 /*count*/, groupBox, PAGE_GENERAL);
     gridLayout->addWidget(cbs, 0, 0, 1, 2);
 
 // -----------------  Tab Bar position ----------------------------------
@@ -165,10 +165,8 @@ void KgPanel::setupGeneralTab()
         {"Look&Feel", "Navigation with Right Arrow Quicksearch", _NavigationWithRightArrowQuicksearch, i18n("Directory navigation with Right Arrow"), false, i18n("Pressing the Right button enters directory if no search text editing intention is captured.") },
     };
 
-    quicksearchCheckboxes = createCheckBoxGroup(2, 0, quicksearch, 4 /*count*/, groupBox, PAGE_GENERAL);
-    gridLayout->addWidget(quicksearchCheckboxes, 0, 0, 1, -1);
-    connect(quicksearchCheckboxes->find("New Style Quicksearch"), SIGNAL(stateChanged(int)), this, SLOT(slotDisable()));
-    slotDisable();
+    cbs = createCheckBoxGroup(2, 0, quicksearch, 4 /*count*/, groupBox, PAGE_GENERAL);
+    gridLayout->addWidget(cbs, 0, 0, 1, -1);
 
     // -------------- Search bar position -----------------------
 
@@ -179,23 +177,23 @@ void KgPanel::setupGeneralTab()
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(groupBox));
     gridLayout->addLayout(hbox, 1, 0);
-    layout->addWidget(groupBox);
 
     // -------------- Default search mode -----------------------
 
     hbox = new QHBoxLayout();
     hbox->addWidget(new QLabel(i18n("Default mode:"), groupBox));
     KONFIGURATOR_NAME_VALUE_PAIR modes[] = {
-        { i18n("Search"),   QString::number(KrSearchBar::MODE_SEARCH) },
-        { i18n("Select"),   QString::number(KrSearchBar::MODE_SELECT) },
-        { i18n("Filter"),   QString::number(KrSearchBar::MODE_FILTER) }
-    };
+        {i18n("Search"), QString::number(KrSearchBar::MODE_SEARCH)},
+        {i18n("Select"), QString::number(KrSearchBar::MODE_SELECT)},
+        {i18n("Filter"), QString::number(KrSearchBar::MODE_FILTER)}};
     cmb = createComboBox("Look&Feel", "Default Search Mode",
-                         QString::number(KrSearchBar::MODE_SEARCH), modes, 3, groupBox, true, false, PAGE_GENERAL);
+                         QString::number(KrSearchBar::MODE_SEARCH), modes, 3, groupBox, true, false,
+                         PAGE_GENERAL);
     cmb->setToolTip(i18n("Set the default mode on first usage"));
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(groupBox));
     gridLayout->addLayout(hbox, 1, 1);
+
     layout->addWidget(groupBox);
 
 // --------------------------------------------------------------------------------------------
@@ -704,12 +702,6 @@ void KgPanel::setupMediaMenuTab()
     tabLayout->addLayout(showSizeHBox);
 
     tabLayout->addStretch();
-}
-
-void KgPanel::slotDisable()
-{
-    bool isNewStyleQuickSearch = quicksearchCheckboxes->find("New Style Quicksearch")->isChecked();
-    quicksearchCheckboxes->find("Case Sensitive Quicksearch")->setEnabled(isNewStyleQuickSearch);
 }
 
 void KgPanel::slotEnablePanelToolbar()

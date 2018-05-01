@@ -116,8 +116,6 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     actSetJumpBack = action(i18n("Set Jump Back Point"), "go-jump-definition", Qt::CTRL + Qt::SHIFT + Qt::Key_J, _gui, SLOT(setJumpBack()), "set_jump_back");
     actSyncBrowse = action(i18n("S&ynchron Folder Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, _gui, SLOT(toggleSyncBrowse()), "sync browse");
     actLocationBar = action(i18n("Go to Location Bar"), 0, Qt::CTRL + Qt::Key_L, _gui, SLOT(editLocation()), "location_bar");
-    actSearchBar = action(i18n("Find in folder..."), 0, Qt::CTRL + Qt::Key_F, _gui, SLOT(showSearchBar()), "search bar");
-    action(i18n("Open search filter"), 0, Qt::CTRL + Qt::Key_I, _gui, SLOT(showSearchFilter()), "search bar filter");
     toggleAction(i18n("Toggle Sidebar"), 0, Qt::ALT + Qt::Key_Down, _gui, SLOT(toggleSidebar()), "toggle sidebar");
     action(i18n("Bookmarks"), 0, Qt::CTRL + Qt::Key_D, _gui, SLOT(openBookmarks()), "bookmarks");
     action(i18n("Left Bookmarks"), 0, 0, this, SLOT(openLeftBookmarks()), "left bookmarks");
@@ -128,6 +126,11 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     action(i18n("Media"), 0, Qt::CTRL + Qt::Key_M, _gui, SLOT(openMedia()), "media");
     action(i18n("Left Media"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Left, this, SLOT(openLeftMedia()), "left media");
     action(i18n("Right Media"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Right, this, SLOT(openRightMedia()), "right media");
+
+    // quick search bar
+    action(i18n("Find in folder..."), 0, Qt::CTRL + Qt::Key_F, _gui, SLOT(showSearchBar()), "search bar");
+    action(i18n("Select in folder..."), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_S, _gui, SLOT(showSearchBarSelection()), "search bar selection");
+    action(i18n("Filter in folder..."), 0, Qt::CTRL + Qt::Key_I, _gui, SLOT(showSearchBarFilter()), "search bar filter");
 
     // and at last we can set the tool-tips
     actRoot->setToolTip(i18n("ROOT (/)"));

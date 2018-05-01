@@ -52,10 +52,6 @@ KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
     // combo box for changing search mode
     _modeBox = new QComboBox(this);
     _modeBox->addItems(QStringList() << i18n("Search") << i18n("Select") << i18n("Filter"));
-     int defaultIndex = KConfigGroup (krConfig, "Look&Feel")
-                      .readEntry("Default Search Mode",
-                                 QString::number(KrSearchBar::MODE_SEARCH)).toInt();
-    _modeBox->setCurrentIndex(defaultIndex);
     _modeBox->setToolTip(i18n("Change the search mode"));
     connect(_modeBox, SIGNAL(currentIndexChanged(int)), SLOT(onModeChange()));
 
@@ -114,9 +110,13 @@ void KrSearchBar::setView(KrView *view)
 
 void KrSearchBar::showBar(SearchMode mode)
 {
-    if (mode != MODE_LAST) {
-        _modeBox->setCurrentIndex(mode);
-    }
+    int index = mode == MODE_DEFAULT ?
+                    KConfigGroup(krConfig, "Look&Feel")
+                        .readEntry("Default Search Mode", QString::number(KrSearchBar::MODE_SEARCH))
+                        .toInt() :
+                    mode;
+    _modeBox->setCurrentIndex(index);
+
     show();
     _textBox->setFocus();
     _rightArrowEntersDirFlag = true;

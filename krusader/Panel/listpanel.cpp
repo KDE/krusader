@@ -1184,10 +1184,15 @@ void ListPanel::editLocation()
 
 void ListPanel::showSearchBar()
 {
-    searchBar->showBar();
+    searchBar->showBar(KrSearchBar::MODE_SEARCH);
 }
 
-void ListPanel::showSearchFilter()
+void ListPanel::showSearchBarSelection()
+{
+    searchBar->showBar(KrSearchBar::MODE_SELECT);
+}
+
+void ListPanel::showSearchBarFilter()
 {
     searchBar->showBar(KrSearchBar::MODE_FILTER);
 }
