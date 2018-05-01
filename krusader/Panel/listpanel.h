@@ -151,7 +151,8 @@ public slots:
     void toggleSyncBrowse();
     void editLocation();
     void showSearchBar();
-    void showSearchFilter();
+    void showSearchBarSelection();
+    void showSearchBarFilter();
     void jumpBack();
     void setJumpBack() {
         setJumpBack(virtualPath());

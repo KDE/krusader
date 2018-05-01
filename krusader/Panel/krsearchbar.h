@@ -47,7 +47,7 @@ class KrSearchBar : public QWidget
 
 public:
     enum SearchMode {
-        MODE_LAST = -1,
+        MODE_DEFAULT = -1,
         // NOTE: values used for combobox index
         MODE_SEARCH = 0,
         MODE_SELECT = 1,
@@ -62,7 +62,7 @@ public:
     void setView(KrView *view);
 
 public slots:
-    void showBar(SearchMode mode = MODE_LAST);
+    void showBar(SearchMode mode = MODE_DEFAULT);
     void hideBar();
     /**
      * Reset search to empty string.
