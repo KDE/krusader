@@ -2,8 +2,8 @@ project(krusader)
 
 cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 
-set(VERSION "2.7.0" )
-set(RELEASE_NAME "Peace of Mind")
+set(VERSION "2.8.0-dev" )
+set(RELEASE_NAME "Bleeding Edge")
 
 if (NOT CMAKE_INSTALL_PREFIX MATCHES "^/usr(/local)?/?$" AND NOT DEFINED KDE_INSTALL_QTPLUGINDIR AND NOT DEFINED KDE_INSTALL_USE_QT_SYS_PATHS)
     message(WARNING "CMAKE_INSTALL_PREFIX is not set to a standard location (/usr or /usr/local), krarc:/ protocol may not work. To force installing plugins into standard location use -DKDE_INSTALL_USE_QT_SYS_PATHS=true")
