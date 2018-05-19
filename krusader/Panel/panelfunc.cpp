@@ -1012,6 +1012,7 @@ void ListPanelFunc::calcSpace()
         // current file is ".." dummy file
         panel->view->selectAllIncludingDirs();
         panel->view->getSelectedItems(&fileNames);
+        panel->view->unselectAll();
     }
 
     SizeCalculator *sizeCalculator = createAndConnectSizeCalculator(files()->getUrls(fileNames));
