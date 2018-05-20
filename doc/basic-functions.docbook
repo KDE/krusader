@@ -127,7 +127,7 @@
       <title>Selecting</title>
       <note>
         <para>&krusader; offers 4
-        <link linkend="selection_modes">Selection Modes</link>, only
+            <link linkend="selection_modes">Selection Modes</link>, to say nothing about the <link linkend="quickselect">Quickselect bar</link>, only
         &krusader;'s Selection Mode is explained
         here.</para>
       </note>
@@ -241,9 +241,23 @@
       that do not have "foo" in names. You can use wildcards for the filtering. &eg; use "a*b" to
       filter files which have "a" and "b" in their names. The Quickfilter follows the
       <link linkend="konfig-panel-general">case-sensitivity setting</link> of Quicksearch.</para>
-      <para>Pressing &Enter; in Quickfilter mode sets focus to panel, when panel or Quickfilter is focused &Esc; closes Quickfilter.
+      <para>Pressing &Enter; in Quickfilter mode sets focus to panel, when panel or Quickfilter is focused, &Esc; closes Quickfilter.
       </para>
       <para>To change the default shortcut of Quickfilter use <link linkend="key_bindings">Configure Shortcuts</link> window (<menuchoice><guimenu>Settings</guimenu> 
+      <guimenuitem>Configure Shortcuts...</guimenuitem></menuchoice>).</para>
+    </sect2>
+    <sect2 id="quickselect">
+      <title>Quick select</title>
+      <para>This feature will do a quick select for the file list
+      in the Active Panel.</para>
+      <para>Press <keycombo>&Ctrl;&Shift;<keycap>S</keycap></keycombo> to open Quickselect bar.
+      Type <keycap>foo</keycap> (one character) to filter out from the Active Panel all the files
+      that do not have "foo" in names. You can use wildcards for the filtering. &eg; use "a*b" to
+      filter files which have "a" and "b" in their names. The Quickselect follows the
+      <link linkend="konfig-panel-general">case-sensitivity setting</link> of Quicksearch.</para>
+      <para>Pressing &Enter; in Quickselect mode sets focus to panel, when panel or Quickselect is focused, &Esc; closes Quickselect.
+      </para>
+      <para>To change the default shortcut of Quickselect use <link linkend="key_bindings">Configure Shortcuts</link> window (<menuchoice><guimenu>Settings</guimenu> 
       <guimenuitem>Configure Shortcuts...</guimenuitem></menuchoice>).</para>
     </sect2>
     <sect2 id="context-menu">
