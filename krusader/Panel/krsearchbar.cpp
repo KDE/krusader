@@ -226,6 +226,7 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
     qDebug() << "key press event=" << event;
 
     QKeyEvent *ke = static_cast<QKeyEvent *>(event);
+    auto modifiers = ke->modifiers();
     if (watched == _view->widget()) {
         KConfigGroup grpSv(krConfig, "Look&Feel");
         const bool autoShow = grpSv.readEntry("New Style Quicksearch", _NewStyleQuicksearch);
@@ -253,9 +254,9 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
             }
         }
 
-        if (ke->text().isEmpty() || (ke->modifiers() != Qt::NoModifier &&
-                                     ke->modifiers() != Qt::ShiftModifier &&
-                                     ke->modifiers() != Qt::KeypadModifier)) {
+        if (ke->text().isEmpty() || (modifiers != Qt::NoModifier &&
+                                     modifiers != Qt::ShiftModifier &&
+                                     modifiers != Qt::KeypadModifier)) {
             return false;
         }
 
@@ -283,7 +284,7 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
             return true;
         }
         // allow the view to handle (most) key events from the text box
-        if (ke->modifiers() == Qt::NoModifier &&
+        if ((modifiers == Qt::NoModifier || modifiers == Qt::KeypadModifier) &&
             ke->key() != Qt::Key_Space &&
             ke->key() != Qt::Key_Backspace &&
             ke->key() != Qt::Key_Left &&
@@ -302,7 +303,8 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
 
 bool KrSearchBar::handleKeyPressEvent(QKeyEvent *ke)
 {
-    if (ke->modifiers() != Qt::NoModifier) {
+    auto modifiers = ke->modifiers();
+    if (!(modifiers == Qt::NoModifier || modifiers == Qt::KeypadModifier)) {
         return false;
     }
 
