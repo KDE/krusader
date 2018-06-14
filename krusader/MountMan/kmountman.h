@@ -60,7 +60,6 @@ public:
     bool ejectable(QString path);
     bool removable(QString path);
     bool removable(Solid::Device d);
-    QString convertSize(KIO::filesize_t size);
     bool invalidFilesystem(QString type);
     bool networkFilesystem(QString type);
     bool nonmountFilesystem(QString type, QString mntPoint);

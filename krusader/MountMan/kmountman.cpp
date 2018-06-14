@@ -333,41 +333,6 @@ bool KMountMan::removable(Solid::Device d)
         return(removable(d.parent()));
 }
 
-// a mountMan special version of KIO::convertSize, which deals
-// with large filesystems ==> > 4GB, it actually receives size in
-// a minimum block of 1024 ==> data is KB not bytes
-QString KMountMan::convertSize(KIO::filesize_t size)
-{
-    float fsize;
-    QString s;
-    QLocale loc;
-    // Tera-byte
-    if (size >= 1073741824) {
-        fsize = (float) size / (float) 1073741824;
-        if (fsize > 1024)           // no name for something bigger than tera byte
-            // let's call it Zega-Byte, who'll ever find out? :-)
-            s = i18n("%1 ZB", loc.toString(fsize / (float) 1024, 'f', 1));
-        else
-            s = i18n("%1 TB", loc.toString(fsize, 'f', 1));
-    }
-    // Giga-byte
-    else if (size >= 1048576) {
-        fsize = (float) size / (float) 1048576;
-        s = i18n("%1 GB", loc.toString(fsize, 'f', 1));
-    }
-    // Mega-byte
-    else if (size > 1024) {
-        fsize = (float) size / (float) 1024;
-        s = i18n("%1 MB", loc.toString(fsize, 'f', 1));
-    }
-    // Kilo-byte
-    else {
-        fsize = (float) size;
-        s = i18n("%1 KB", loc.toString(fsize, 'f', 0));
-    }
-    return s;
-}
-
 
 // populate the pop-up menu of the mountman tool-button with actions
 void KMountMan::quickList()
