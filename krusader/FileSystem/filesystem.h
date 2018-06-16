@@ -142,10 +142,8 @@ public:
     /// Returns true if this filesystem is currently refreshing the current directory.
     inline bool isRefreshing() const { return _isRefreshing; }
 
-    /// Delete or trash files in the current directory. Implemented async.
-    void deleteFiles(const QStringList &fileNames, bool moveToTrash = true);
     /// Delete or trash arbitrary files. Implemented async. Universal refresh not fully implemented.
-    void deleteAnyFiles(const QList<QUrl> &urls, bool moveToTrash);
+    void deleteFiles(const QList<QUrl> &urls, bool moveToTrash);
 
     /// Return the input URL with a trailing slash if absent.
     static QUrl ensureTrailingSlash(const QUrl &url);

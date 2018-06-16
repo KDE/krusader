@@ -70,7 +70,7 @@ void FileSystemProvider::startDeleteFiles(const QList<QUrl> &urls, bool moveToTr
 
     // assume all URLs use the same filesystem
     FileSystem *fs = getFilesystemInstance(urls.first());
-    fs->deleteAnyFiles(urls, moveToTrash);
+    fs->deleteFiles(urls, moveToTrash);
 }
 
 void FileSystemProvider::refreshFilesystems(const QUrl &directory, bool removed)
@@ -98,7 +98,7 @@ void FileSystemProvider::refreshFilesystems(const QUrl &directory, bool removed)
         // various places, we don't know if they were (re)moved. Refreshing is also fast enough.
         const QUrl fileSystemDir = fs->currentDirectory();
         if ((!fs->hasAutoUpdate() && (fileSystemDir == FileSystem::cleanUrl(directory) ||
-                                      (fileSystemDir.scheme() == "virt" && !fs->isRoot())))
+                                      (fs->type() == FileSystem::FS_VIRTUAL && !fs->isRoot())))
             // also refresh if a parent directory was (re)moved (not detected by file watcher)
             || (removed && directory.isParentOf(fileSystemDir))) {
             fs->refresh();

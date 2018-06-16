@@ -673,7 +673,8 @@ void ListPanelFunc::defaultOrAlternativeDeleteFiles(bool invert)
 
 void ListPanelFunc::deleteFiles(bool moveToTrash)
 {
-    if (files()->type() == FileSystem::FS_VIRTUAL && files()->isRoot()) {
+    const bool isVFS = files()->type() == FileSystem::FS_VIRTUAL;
+    if (isVFS && files()->isRoot()) {
         // only virtual deletion possible
         removeVirtualFiles();
         return;
@@ -690,7 +691,7 @@ void ListPanelFunc::deleteFiles(bool moveToTrash)
     // now ask the user if he/she is sure:
 
     const QList<QUrl> confirmedUrls = confirmDeletion(
-        files()->getUrls(fileNames), moveToTrash, files()->type() == FileSystem::FS_VIRTUAL, false);
+        files()->getUrls(fileNames), moveToTrash, isVFS, false);
 
     if (confirmedUrls.isEmpty())
         return; // nothing to delete
@@ -700,11 +701,7 @@ void ListPanelFunc::deleteFiles(bool moveToTrash)
     panel->prepareToDelete();
 
     // let the filesystem do the job...
-    QStringList confirmedFileNames;
-    for (QUrl fileUrl : confirmedUrls) {
-        confirmedFileNames.append(fileUrl.fileName());
-    }
-    files()->deleteFiles(confirmedFileNames, moveToTrash);
+    files()->deleteFiles(confirmedUrls, moveToTrash);
 }
 
 QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToTrash,
