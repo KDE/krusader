@@ -149,13 +149,7 @@ bool FileSystem::scanOrRefresh(const QUrl &directory, bool onlyScan)
     return true;
 }
 
-void FileSystem::deleteFiles(const QStringList &fileNames, bool moveToTrash)
-{
-    // get absolute URLs for file names
-    deleteAnyFiles(getUrls(fileNames), moveToTrash);
-}
-
-void FileSystem::deleteAnyFiles(const QList<QUrl> &urls, bool moveToTrash)
+void FileSystem::deleteFiles(const QList<QUrl> &urls, bool moveToTrash)
 {
     KrJob *krJob = KrJob::createDeleteJob(urls, moveToTrash);
     connect(krJob, &KrJob::started, this, [=](KIO::Job *job) {
