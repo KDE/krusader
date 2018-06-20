@@ -357,7 +357,13 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
     totalSize(size);
     if (!size) mimeType("application/x-zerosize");
 
-    if (size && !m_isoFile->device()->isOpen()) m_isoFile->device()->open(QIODevice::ReadOnly);
+    if (size && !m_isoFile->device()->isOpen()) {
+        m_isoFile->device()->open(QIODevice::ReadOnly);
+
+        // seek(0) ensures integrity with the QIODevice's built-in buffer
+        // see bug #372023 for details
+        m_isoFile->device()->seek(0);
+    }
 
     if (zlib) {
         fileData = isoFileEntry->dataAt(0, sizeof(compressed_file_header));
