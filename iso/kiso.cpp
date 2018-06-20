@@ -212,6 +212,10 @@ static int readf(char *buf, unsigned int start, unsigned int len, void *udata)
 
     QIODevice* dev = (static_cast<KIso*>(udata))->device();
 
+    // seek(0) ensures integrity with the QIODevice's built-in buffer
+    // see bug #372023 for details
+    dev->seek(0);
+
     if (dev->seek((qint64)start << (qint64)11)) {
         if ((dev->read(buf, len << 11u)) != -1) return (len);
     }
