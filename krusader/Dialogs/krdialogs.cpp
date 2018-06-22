@@ -60,7 +60,7 @@ QUrl KChooseDir::getDir(const QString &text, const QUrl& url, const QUrl& cwd)
 
 QUrl KChooseDir::get(const QString &text, const QUrl &url, const QUrl &cwd, KFile::Modes mode)
 {
-    QScopedPointer<KUrlRequesterDialog> dlg(new KUrlRequesterDialog(FileSystem::ensureTrailingSlash(url), text, krMainWindow));
+    QScopedPointer<KUrlRequesterDialog> dlg(new KUrlRequesterDialog(url, text, krMainWindow));
     dlg->urlRequester()->setStartDir(cwd);
     dlg->urlRequester()->setMode(mode);
     dlg->exec();
