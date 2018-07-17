@@ -56,6 +56,7 @@
 #include "dirhistoryqueue.h"
 #include "krcalcspacedialog.h"
 #include "krerrordisplay.h"
+#include "krsearchbar.h"
 #include "listpanel.h"
 #include "listpanelactions.h"
 #include "PanelView/krview.h"
@@ -436,6 +437,8 @@ void ListPanelFunc::krlink(bool sym)
 
 void ListPanelFunc::view()
 {
+    panel->searchBar->hideBarIfSearching();
+
     QString fileName = panel->getCurrentName();
     if (fileName.isNull())
         return;
@@ -470,6 +473,7 @@ void ListPanelFunc::terminal()
 
 void ListPanelFunc::edit()
 {
+    panel->searchBar->hideBarIfSearching();
     KFileItem tmp;
 
     if (fileToCreate.isEmpty()) {
@@ -542,6 +546,8 @@ void ListPanelFunc::slotFileCreated(KJob *job)
 
 void ListPanelFunc::copyFiles(bool enqueue, bool move)
 {
+    panel->searchBar->hideBarIfSearching();
+
     const QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
         return ;  // safety
@@ -615,6 +621,7 @@ void ListPanelFunc::copyFiles(bool enqueue, bool move)
 // called from SLOTS to begin the renaming process
 void ListPanelFunc::rename()
 {
+    panel->searchBar->hideBarIfSearching();
     panel->view->renameCurrentItem();
 }
 
@@ -673,6 +680,8 @@ void ListPanelFunc::defaultOrAlternativeDeleteFiles(bool invert)
 
 void ListPanelFunc::deleteFiles(bool moveToTrash)
 {
+    panel->searchBar->hideBarIfSearching();
+
     const bool isVFS = files()->type() == FileSystem::FS_VIRTUAL;
     if (isVFS && files()->isRoot()) {
         // only virtual deletion possible
