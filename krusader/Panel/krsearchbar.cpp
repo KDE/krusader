@@ -106,6 +106,12 @@ void KrSearchBar::setView(KrView *view)
     _view->widget()->installEventFilter(this);
 }
 
+void KrSearchBar::hideBarIfSearching()
+{
+    if (_currentMode == MODE_SEARCH)
+        hideBar();
+}
+
 // #### public slots
 
 void KrSearchBar::showBar(SearchMode mode)
@@ -313,6 +319,13 @@ bool KrSearchBar::handleKeyPressEvent(QKeyEvent *ke)
         hideBar();
         return true;
     }
+
+    case Qt::Key_Enter:
+    case Qt::Key_Return: {
+        hideBarIfSearching();
+        return false;
+    }
+
     case Qt::Key_Up:
         return handleUpDownKeyPress(true);
     case Qt::Key_Down:

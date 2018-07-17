@@ -60,6 +60,12 @@ public:
      * Set another KrView, old one must not be deleted yet!
      */
     void setView(KrView *view);
+    /**
+     * Hide the search bar if its mode was the search one.
+     *
+     * This function is normally used to hide bar after a user has quicksearched for something and found it.
+     */
+    void hideBarIfSearching();
 
 public slots:
     void showBar(SearchMode mode = MODE_DEFAULT);
