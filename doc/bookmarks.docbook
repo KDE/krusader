@@ -83,7 +83,6 @@
     without entering a name, the bookmarks name will be the same as
     its target. 
     <guilabel>URL</guilabel>
-    <!-- Openjade does not like an acronym element for "URL" here -->
     is where the bookmark points to. 
     <guilabel>Create in</guilabel> creates bookmark folders for
     organizing your bookmarks.</para>
@@ -100,30 +99,37 @@
     active panel. From the context menu of the bookmark (&RMB; click)
     you can open it in a new 
     <link linkend="folder-tabs">Folder tab</link>.</para>
-    <para>Navigation in bookmarks: 
-    <orderedlist>
-      <listitem>
-        <para>Start typing letters</para>
-      </listitem>
-      <listitem>
-        <para>&eg; when you type 
-        <literal>'h'</literal> and only one bookmark starts with 
-        <literal>'h'</literal>, it is executed immediately - no
-        enter needed</para>
-      </listitem>
-      <listitem>
-        <para>If more than one bookmarks begins with 
-        <literal>'h'</literal>, you will have to continue adding
-        letters, until you have specified enough and again, the
-        bookmark is executed.</para>
-      </listitem>
-    </orderedlist></para>
+    <para>There is a quick search bar at the top of the <guibutton>BookMan II</guibutton> menu.</para>
     <note>
       <para>
         The search bar will always be visible in the bookmarks menu if you check the
         corresponding item on the <link linkend="konfig-panel-general">Panel Konfigurator's page</link>.
       </para>
     </note>
+    <para>Below are the rules to handle bookmarks:</para>
+    <itemizedlist>
+        <listitem>
+            <para>Just type letters to search: bookmarks are matched by name prefix</para>
+        </listitem>
+        <listitem>
+            <para>If multiple bookmarks are matched by the prefix, they are highlighted and the first one is selected - hit &Enter; to activate the bookmark</para>
+        </listitem>
+        <listitem>
+            <para>Once a single bookmark is matched, it is immediately triggered. That is when you type <literal>'h'</literal> and only one bookmark starts with <literal>'h'</literal>, it is executed immediately - no &Enter; needed</para>
+        </listitem>
+        <listitem>
+            <para>Accelerators work only if the keystroke is the first one</para>
+        </listitem>
+        <listitem>
+            <para>&Backspace; is supported</para>
+        </listitem>
+        <listitem>
+            <para>Search is case insensitive unless you type a capital letter. That is typing <literal>HamBurglar</literal> will only match <literal>HamBurglar</literal> but not <literal>hamburglar</literal> or <literal>HamBurglar</literal>.</para>
+        </listitem>
+        <listitem>
+            <para>Search bar is intentionally a read-only field</para>
+        </listitem>
+    </itemizedlist>
   </sect2>
   <sect2 id="password_handling">
     <title>Password handling</title>
