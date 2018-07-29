@@ -309,6 +309,9 @@ Please consult the handbook to learn more about the syntax.</string>
          <property name="whatsThis">
           <string>A detailed description of the &lt;b&gt;Useraction&lt;/b&gt;. It is only displayed in the &lt;i&gt;Konfigurator&lt;/i&gt; and via &lt;code&gt;Shift+F1&lt;/code&gt;.</string>
          </property>
+         <property name="tabChangesFocus">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item row="8" column="0">
@@ -375,7 +378,7 @@ Please consult the handbook to learn more about the syntax.</string>
           </spacer>
          </item>
          <item>
-          <widget class="KKeySequenceWidget" name="KeyButtonShortcut">
+          <widget class="KKeySequenceWidget" name="KeyButtonShortcut" native="true">
            <property name="whatsThis">
             <string>Set a default keyboard shortcut.</string>
            </property>
@@ -999,6 +1002,44 @@ Please consult the handbook to learn more about the syntax.</string>
    <class>KrListWidget</class>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>leDistinctName</tabstop>
+  <tabstop>ButtonIcon</tabstop>
+  <tabstop>cbCategory</tabstop>
+  <tabstop>leTitle</tabstop>
+  <tabstop>leTooltip</tabstop>
+  <tabstop>textDescription</tabstop>
+  <tabstop>leCommandline</tabstop>
+  <tabstop>ButtonAddPlaceholder</tabstop>
+  <tabstop>leStartpath</tabstop>
+  <tabstop>ButtonAddStartpath</tabstop>
+  <tabstop>radioNormal</tabstop>
+  <tabstop>radioTerminal</tabstop>
+  <tabstop>radioTE</tabstop>
+  <tabstop>radioCollectOutput</tabstop>
+  <tabstop>chkSeparateStdError</tabstop>
+  <tabstop>radioLocal</tabstop>
+  <tabstop>radioUrl</tabstop>
+  <tabstop>KeyButtonShortcut</tabstop>
+  <tabstop>chkEnabled</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>tabShowonly</tabstop>
+  <tabstop>ButtonNewProtocol</tabstop>
+  <tabstop>ButtonEditProtocol</tabstop>
+  <tabstop>ButtonRemoveProtocol</tabstop>
+  <tabstop>ButtonAddPath</tabstop>
+  <tabstop>ButtonEditPath</tabstop>
+  <tabstop>ButtonRemovePath</tabstop>
+  <tabstop>ButtonAddMime</tabstop>
+  <tabstop>ButtonEditMime</tabstop>
+  <tabstop>ButtonRemoveMime</tabstop>
+  <tabstop>ButtonNewFile</tabstop>
+  <tabstop>ButtonEditFile</tabstop>
+  <tabstop>ButtonRemoveFile</tabstop>
+  <tabstop>chkConfirmExecution</tabstop>
+  <tabstop>chkDifferentUser</tabstop>
+  <tabstop>leDifferentUser</tabstop>
+ </tabstops>
  <includes>
   <include location="local">klineedit.h</include>
   <include location="local">klineedit.h</include>
