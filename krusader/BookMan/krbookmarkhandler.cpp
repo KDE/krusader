@@ -632,7 +632,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         const Qt::CaseSensitivity matchCase =
             _quickSearchText() == _quickSearchText().toLower() ? Qt::CaseInsensitive : Qt::CaseSensitive;
         for (auto act : acts) {
-            if (act->isSeparator() || act->text() == "") {
+            if (act->isSeparator() || act->text().isEmpty()) {
                 continue;
             }
 

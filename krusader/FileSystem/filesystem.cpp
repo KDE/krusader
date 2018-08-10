@@ -19,9 +19,9 @@
  * along with Krusader.  If not, see [http://www.gnu.org/licenses/].         *
  *****************************************************************************/
 
-#include <memory>
-
 #include "filesystem.h"
+
+#include <memory>
 
 // QtCore
 #include <QDebug>

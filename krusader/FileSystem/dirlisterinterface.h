@@ -38,7 +38,7 @@ public:
     virtual ~DirListerInterface() {}
 
     /**
-     * Return the file items of all files and directorys. Without current (".") and parent ("..")
+     * Return the file items of all files and directories. Without current (".") and parent ("..")
      * directory.
      */
     virtual QList<FileItem *> fileItems() const = 0;

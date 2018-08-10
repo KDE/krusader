@@ -79,7 +79,7 @@ void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
 
     KIO::DropJob *job = KIO::drop(event, dest);
 #if KIO_VERSION >= QT_VERSION_CHECK(5, 30, 0)
-    // NOTE: a DropJob "starts" with showing a menu. If the operation is choosen (copy/move/link)
+    // NOTE: a DropJob "starts" with showing a menu. If the operation is chosen (copy/move/link)
     // the actual CopyJob starts automatically - we cannot manage the start of the CopyJob (see
     // documentation for KrJob)
     connect(job, &KIO::DropJob::copyJobStarted, this, [=](KIO::CopyJob *kJob) {
