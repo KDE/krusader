@@ -137,7 +137,7 @@ void TerminalDock::sendInput(const QString& input, bool clearCommand)
         // and command is appended to current input (e.g. "rm -rf x " concatenated with 'cd /usr');
         // code "borrowed" from Dolphin, Copyright (C) 2007-2010 by Peter Penz <peter.penz19@gmail.com>
         const int processId = t->terminalProcessId();
-        // workaround (firstInput): kill is send to terminal if shell is not initialized yet
+        // workaround (firstInput): kill is sent to terminal if shell is not initialized yet
         if (processId > 0 && !firstInput) {
             kill(processId, SIGINT);
         }

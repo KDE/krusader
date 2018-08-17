@@ -485,7 +485,7 @@ void countFiles(const QString &path, unsigned long &totalFiles, bool &stop)
 {
     const QDir dir(path);
     if (!dir.exists()) {
-        totalFiles++; // assume its a file
+        totalFiles++; // assume it's a file
         return;
     }
 

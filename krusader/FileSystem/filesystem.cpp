@@ -159,7 +159,7 @@ void FileSystem::deleteFiles(const QList<QUrl> &urls, bool moveToTrash)
     if (moveToTrash) {
         // update destination: the trash bin (in case a panel/tab is showing it)
         connect(krJob, &KrJob::started, this, [=](KIO::Job *job) {
-            // Note: the "trash" protocal should always have only one "/" after the "scheme:" part
+            // Note: the "trash" protocol should always have only one "/" after the "scheme:" part
             connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(QUrl("trash:/"), false); });
         });
     }
