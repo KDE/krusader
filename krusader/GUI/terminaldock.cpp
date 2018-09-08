@@ -191,7 +191,7 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
     //insert current to the terminal
     if ((ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return) &&
         (ke->modifiers() & Qt::ControlModifier)) {
-        SLOTS->insertFileName((ke->modifiers() & Qt::ShiftModifier) != 0);
+        SLOTS->insertFileName((ke->modifiers()&Qt::ShiftModifier)!=0);
         return true;
     }
 

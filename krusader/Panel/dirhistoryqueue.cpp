@@ -140,7 +140,7 @@ void DirHistoryQueue::save(KConfigGroup cfg)
         urls << safeUrl;
     }
 
-    cfg.writeEntry("Entrys", KrServices::toStringList(urls));
+    cfg.writeEntry("Entrys", KrServices::toStringList(urls)); // krazy:exclude=spelling
     cfg.writeEntry("CurrentItems", _currentItems);
     cfg.writeEntry("CurrentIndex", _currentPos);
 }
@@ -148,7 +148,7 @@ void DirHistoryQueue::save(KConfigGroup cfg)
 bool DirHistoryQueue::restore(KConfigGroup cfg)
 {
     clear();
-    _urlQueue = KrServices::toUrlList(cfg.readEntry("Entrys", QStringList()));
+    _urlQueue = KrServices::toUrlList(cfg.readEntry("Entrys", QStringList())); // krazy:exclude=spelling
     _currentItems = cfg.readEntry("CurrentItems", QStringList());
     if(!_urlQueue.count() || _urlQueue.count() != _currentItems.count()) {
         clear();

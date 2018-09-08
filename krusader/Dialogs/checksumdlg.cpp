@@ -43,7 +43,7 @@
 #include <QHBoxLayout>
 #include <QProgressBar>
 
-#include <QtConcurrent/QtConcurrentRun>
+#include <QtConcurrent/QtConcurrentRun> // krazy:exclude=includes
 
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KUrlRequester>

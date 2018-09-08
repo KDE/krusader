@@ -95,7 +95,7 @@ QString KrViewItem::description() const
 
     } else {
         if (_fileitem->isDir())
-            text += "/";
+            text += '/';
 
         if (_fileitem->getUISize() != (KIO::filesize_t)-1) {
             const QString size = KrView::sizeText(_viewProperties, _fileitem->getUISize());

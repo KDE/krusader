@@ -336,8 +336,8 @@ KonfiguratorEditBox::KonfiguratorEditBox(QString configGroup, QString name, QStr
         defaultValue(defaultValue)
 {
     ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
-    connect(ext, SIGNAL(applyAuto(QObject *, QString, QString)), this,
-            SLOT(slotApply(QObject *, QString, QString)));
+    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this,
+            SLOT(slotApply(QObject*,QString,QString)));
     connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
     connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
 
@@ -379,8 +379,8 @@ KonfiguratorURLRequester::KonfiguratorURLRequester(QString configGroup, QString 
     : KUrlRequester(parent), defaultValue(defaultValue), expansion(expansion)
 {
     ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
-    connect(ext, SIGNAL(applyAuto(QObject *, QString, QString)), this,
-            SLOT(slotApply(QObject *, QString, QString)));
+    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this,
+            SLOT(slotApply(QObject*,QString,QString)));
     connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
     connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
 

@@ -915,7 +915,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                 if (fileitem && fileitem->isDir())
                     newTab(fileitem->getUrl(), true);
             } else {
-                SLOTS->insertFileName((e->modifiers() & Qt::ShiftModifier) != 0);
+                SLOTS->insertFileName((e->modifiers()&Qt::ShiftModifier)!=0);
             }
         } else {
             e->ignore();
