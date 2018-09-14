@@ -295,7 +295,7 @@ void LocateDlg::slotLocate()   /* The locate button */
     isFeedToListBox = false;
     resultList->setFocus();
 
-    qApp->processEvents(); //FIXME - whats's this for ?
+    qApp->processEvents(); //FIXME - what's this for ?
 
     locateProc = new KProcess(this);
     locateProc->setOutputChannelMode(KProcess::SeparateChannels); // default is forwarding to the parent channels

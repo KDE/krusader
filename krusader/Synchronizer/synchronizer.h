@@ -177,7 +177,7 @@ protected:
     int                               leftCopyNr;     // the file number copied to left
     int                               rightCopyNr;    // the file number copied to right
     int                               deleteNr;       // the number of the deleted files
-    int                               parallelThreads;// the number of the parallel procesing threads
+    int                               parallelThreads;// the number of the parallel processing threads
     KIO::filesize_t                   leftCopySize;   // the total size copied to left
     KIO::filesize_t                   rightCopySize;  // the total size copied to right
     KIO::filesize_t                   deleteSize;     // the size of the deleted files

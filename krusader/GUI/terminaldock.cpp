@@ -218,7 +218,7 @@ bool TerminalDock::eventFilter(QObject * watched, QEvent * e)
 
     // we must watch for child widgets as well,
     // otherwise some shortcuts are "eaten" by them before
-    // being procesed in konsole_part->widget() context
+    // being processed in konsole_part->widget() context
     // examples are Ctrl+F, Ctrl+Enter
     QObject *w;
     for (w = watched; w != NULL; w = w->parent())

@@ -130,7 +130,7 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 
         //**** Levels should be on a scale starting with 0
         //**** range is a useless parameter
-        //**** keep a topblock var which is the lowestLevel OR startLevel for identation purposes
+        //**** keep a topblock var which is the lowestLevel OR startLevel for indentation purposes
         for (unsigned int i = startLevel; i <= m_map.m_visibleDepth; ++i) {
             for (Iterator<Segment> it = ring->iterator(); it != ring->end(); ++it)
                 if (segment->start() >= a1 && segment->end() <= a2)

@@ -38,7 +38,7 @@ class KActionMenu;
  * current/selected files in its panels and for krusader's internal actions
  * which need some parameter.
  *
- * There are several komponents:
+ * There are several components:
  * - The UserAction class as a Manager
  * - The interface to KDE's action-system (the KrAction)
  * - The Expander, which parses the commandline for placeholders and calls
@@ -48,7 +48,7 @@ class KActionMenu;
  *
  * The Useractions are stored in XML-files. Currently there are two main files.
  * The first is a global example-file which is read only (read after the other
- * actionfiles, doublicates are ignored) and a local file where the actions are
+ * actionfiles, duplicates are ignored) and a local file where the actions are
  * saved.
  * This class reads only the container and passes each action-tag to the new
  * KrAction, which reads it's data itself.
@@ -98,7 +98,7 @@ public:
     void removeKrAction(KrAction* action);
 
     /**
-     * check for each KrAction if it is available for the currend location / file and disables it if not
+     * check for each KrAction if it is available for the current location / file and disables it if not
      */
     void setAvailability();
     /**

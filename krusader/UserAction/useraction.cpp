@@ -70,7 +70,7 @@ void UserAction::setAvailability()
 
 void UserAction::setAvailability(const QUrl &currentURL)
 {
-    //qDebug() << "UserAction::setAvailability currendFile: " << currentURL.url();
+    //qDebug() << "UserAction::setAvailability currentFile: " << currentURL.url();
     // disable the entries that should not appear in this folder
     QListIterator<KrAction *> it(_actions);
     while (it.hasNext()) {
@@ -224,7 +224,7 @@ void UserAction::readFromElement(const QDomElement& element, ReadMode mode, KrAc
 
             QString basename = name + "_%1";
             int i = 0;
-            // appent a counter till the name is unique... (this checks every action, not only useractions)
+            // append a counter till the name is unique... (this checks every action, not only useractions)
             while (krApp->actionCollection()->action(name))
                 name = basename.arg(++i);
 

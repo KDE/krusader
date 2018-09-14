@@ -133,9 +133,9 @@ private:
 
 /**
  * The Expander expands the command of an UserAction by replacing all
- * placeholders by thier current values.@n
+ * placeholders by their current values.@n
  * Each placeholder begins with a '%'-sign, followed by one char indicating
- * the panel, followed by a command which may have some paramenter enclosed
+ * the panel, followed by a command which may have some parameter enclosed
  * in brackets and also ends with a '%'-sign.
  * Examples are %aPath% or %rBookmark("/home/jonas/src/krusader_kde3", "yes")%.@n
  * The panel-indicator has to be either
@@ -245,10 +245,10 @@ protected:
      */
     TagString expandCurrent(const QString& stringToExpand, bool useUrl);
     /**
-     * This function searches for "@EACH"-marks to splitt the string in a list for each %_Each%-item
+     * This function searches for "@EACH"-marks to split the string in a list for each %_Each%-item
      *
-     * @param stringToSplit the string which should be splited
-     * @return the splited list
+     * @param stringToSplit the string which should be split
+     * @return the split list
      */
     static QStringList splitEach(TagString stringToSplit);
     /**

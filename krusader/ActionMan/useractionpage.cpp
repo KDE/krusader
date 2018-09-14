@@ -175,11 +175,11 @@ void UserActionPage::slotChangeCurrent()
     KrAction* action = actionTree->currentAction();
     if (action) {
         actionProperties->setEnabled(true);
-        // the discinct name is used as ID it is not allowd to change it afterwards because it is may referenced anywhere else
+        // the distinct name is used as ID it is not allowed to change it afterwards because it is may referenced anywhere else
         actionProperties->leDistinctName->setEnabled(false);
         actionProperties->updateGUI(action);
     } else {
-        // If the current item in the tree is no action (i.e. a cathegory), disable the properties
+        // If the current item in the tree is no action (i.e. a category), disable the properties
         actionProperties->clear();
         actionProperties->setEnabled(false);
     }

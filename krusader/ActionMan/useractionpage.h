@@ -57,7 +57,7 @@ private:
      */
     bool continueInSpiteOfChanges();
     /**
-     * applyes all changes by writing the actionfile and emits "applied"
+     * applies all changes by writing the actionfile and emits "applied"
      */
     void apply();
 

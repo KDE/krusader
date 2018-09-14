@@ -202,7 +202,7 @@ void KRPie::paintEvent(QPaintEvent *)
     //  paint.drawPie(LEFT,BOTTOM,WIDTH,HEIGHT,STARTANGLE,360*16);
     ///////////////////////// end of empty pie /////////////////////////
     // now, the pie is ready to draw slices on...
-    // to make a good look on the perimiter, draw another black circle
+    // to make a good look on the perimeter, draw another black circle
     paint.setPen(Qt::black);
     paint.drawArc(LEFT, BOTTOM, WIDTH, HEIGHT, STARTANGLE, 360 * 16);
 

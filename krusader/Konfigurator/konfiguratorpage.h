@@ -54,7 +54,7 @@ public:
     /**
       * Applies the changes in the Konfigurator page.
       *
-      * Writes out all relevant information to the konfiguration object and synchronizes
+      * Writes out all relevant information to the configuration object and synchronizes
       * it with the file storage (hard disk, krusaderrc file). This function calls the apply()
       * method of each konfigurator item and finally performs the synchronization.
       *
@@ -208,7 +208,7 @@ public:
       * @param  parent          Reference to the parent widget
       * @param  restart         The change of this parameter requires Krusader restart
       * @param  page            The subpage of a Konfigurator page (because of setDefaults)
-      * @param  expansion       Whether to perform url espansion
+      * @param  expansion       Whether to perform url expansion
       *
       * @return             reference to the newly created URL requester
       */

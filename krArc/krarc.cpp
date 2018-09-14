@@ -936,7 +936,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
 
     /* FIX: file change can only be detected if the timestamp between the two consequent
        changes is more than 1s. If the archive is continuously changing (check: move files
-       inside the archive), krarc may erronously think, that the archive file is unchanged,
+       inside the archive), krarc may errorneusly think, that the archive file is unchanged,
        because the timestamp is the same as the previous one. This situation can only occur
        if the modification time equals with the current time. While this condition is true,
        we can say, that the archive is changing, so content reread is always necessary

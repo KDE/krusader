@@ -49,7 +49,7 @@ public:
     void start(const KConfigGroup &cfg, bool restoreSettings, const QList<QUrl> &leftTabs, const QList<QUrl> &rightTabs);
     void updateGUI(const KConfigGroup &cfg);
     void saveSettings(KConfigGroup &cfg);
-    void cmdLineFocus();  // command line receive's keyboard focus
+    void cmdLineFocus();  // command line receives keyboard focus
     void cmdLineUnFocus();// return focus from command line to active panel
 
     bool isLeftActive() const { return leftMng == activeMng; }

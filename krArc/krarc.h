@@ -89,7 +89,7 @@ private:
     bool checkStatus(int exitCode);
     /** service function for parseLine. */
     QString nextWord(QString &s, char d = ' ');
-    /** translate permittion string to mode_t. */
+    /** translate permission string to mode_t. */
     mode_t parsePermString(QString perm);
     /** return the name of the directory inside the archive. */
     QString findArcDirectory(const QUrl &url);
@@ -101,7 +101,7 @@ private:
     static QString detectFullPathName(QString name);
     bool checkWriteSupport();
 
-    QHash<QString, KIO::UDSEntryList *> dirDict; //< the directoris data structure.
+    QHash<QString, KIO::UDSEntryList *> dirDict; //< the directories data structure.
     bool encrypted;                   //< tells whether the archive is encrypted
     bool archiveChanged;              //< true if the archive was changed.
     bool archiveChanging;             //< true if the archive is currently changing.

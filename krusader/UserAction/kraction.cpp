@@ -387,7 +387,7 @@ bool KrAction::isAvailable(const QUrl &currentURL)
     if (! _showonlyProtocol.empty()) {
         available = false;
         for (QStringList::Iterator it = _showonlyProtocol.begin(); it != _showonlyProtocol.end(); ++it) {
-            //qDebug() << "KrAction::isAvailable currendProtocol: " << currentURL.scheme() << " =?= " << *it;
+            //qDebug() << "KrAction::isAvailable currentProtocol: " << currentURL.scheme() << " =?= " << *it;
             if (currentURL.scheme() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
                 available = true;
                 break;
@@ -420,7 +420,7 @@ bool KrAction::isAvailable(const QUrl &currentURL)
         if (mime.isValid()) {
             for (QStringList::Iterator it = _showonlyMime.begin(); it != _showonlyMime.end(); ++it) {
                 if ((*it).contains("/")) {
-                    if (mime.inherits(*it)) {      // don't use ==; use 'inherits()' instead, which is aware of inheritence (ie: text/x-makefile is also text/plain)
+                    if (mime.inherits(*it)) {      // don't use ==; use 'inherits()' instead, which is aware of inheritance (ie: text/x-makefile is also text/plain)
                         available = true;
                         break;
                     }

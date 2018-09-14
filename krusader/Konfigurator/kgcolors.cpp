@@ -464,7 +464,7 @@ void KgColors::generatePreview()
         // create local color cache instance, which does NOT affect the color cache instance using to paint the panels
         KrColorCache colCache;
 
-        // create local color settings instance, which initially contains the setings from krConfig
+        // create local color settings instance, which initially contains the settings from krConfig
         KrColorSettings colorSettings;
 
         // copy over local settings to color settings instance, which does not affect the persisted krConfig settings

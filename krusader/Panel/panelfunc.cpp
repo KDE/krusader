@@ -230,7 +230,7 @@ void ListPanelFunc::openUrlInternal(const QUrl &url, const QString& nameToMakeCu
 void ListPanelFunc::refresh()
 {
     panel->cancelProgress();
-    delayTimer.start(0); // to avoid qApp->processEvents() deadlock situaltion
+    delayTimer.start(0); // to avoid qApp->processEvents() deadlock situation
 }
 
 void ListPanelFunc::doRefresh()

@@ -286,7 +286,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 
     generalFilter->searchFor->setFocus();
 
-    // finaly, load a profile of apply defaults:
+    // finally, load a profile of apply defaults:
 
     if (profile.isEmpty()) {
         // load the last used values
@@ -496,7 +496,7 @@ void KrSearchDialog::currentChanged(KrViewItem *item)
 void KrSearchDialog::closeEvent(QCloseEvent *e)
 {                     /* if searching is in progress we must not close the window */
     if (isBusy)    /* because qApp->processEvents() is called by the searcher and */
-    {                   /* at window desruction, the searcher object will be deleted */
+    {                   /* at window destruction, the searcher object will be deleted */
         stopSearch();         /* instead we stop searching */
         closed = true;        /* and after stopping: startSearch can close the window */
         e->ignore();          /* ignoring the close event */

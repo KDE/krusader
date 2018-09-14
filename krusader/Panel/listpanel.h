@@ -200,7 +200,7 @@ protected slots:
                                KIO::filesize_t total, KIO::filesize_t free);
 
 signals:
-    void signalStatus(QString msg); // emmited when we need to update the status bar
+    void signalStatus(QString msg); // emitted when we need to update the status bar
     void pathChanged(const QUrl &url); // directory changed or refreshed
     void activate(); // emitted when the user changes panels
     void finishedDragging(); // NOTE: currently not used

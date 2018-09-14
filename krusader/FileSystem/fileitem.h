@@ -145,8 +145,8 @@ private:
     QString m_group;            //< file group name
 
     bool m_isLink;              //< true if the file is a symlink
-    QString m_linkDest;         //< if it's a sym link - its detination
-    bool m_isBrokenLink;        //< true if the link destianation does not exist
+    QString m_linkDest;         //< if it's a sym link - its destination
+    bool m_isBrokenLink;        //< true if the link destination does not exist
 
     QString m_permissions;      //< file permissions string
 

@@ -271,7 +271,7 @@ void KrusaderView::focusDown()
         widgets[currentFocus]->setFocus();
 }
 
-void KrusaderView::cmdLineFocus()    // command line receive's keyboard focus
+void KrusaderView::cmdLineFocus()    // command line receives keyboard focus
 {
     _cmdLine->setFocus();
 }

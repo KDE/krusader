@@ -146,12 +146,12 @@ SIMPLE_PLACEHOLDER_CLASS(exp_Path)
 SIMPLE_PLACEHOLDER_CLASS(exp_Count)
 
 /**
-  * expands %_Filter% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the correspondend filter (ie: "*.cpp")
+  * expands %_Filter% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the correspondent filter (ie: "*.cpp")
   */
 SIMPLE_PLACEHOLDER_CLASS(exp_Filter)
 
 /**
-  * expands %_Current% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the current item ( != the selected onec)
+  * expands %_Current% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the current item ( != the selected ones)
   */
 SIMPLE_PLACEHOLDER_CLASS(exp_Current);
 
@@ -221,7 +221,7 @@ SIMPLE_PLACEHOLDER_CLASS(exp_Profile);
 SIMPLE_PLACEHOLDER_CLASS(exp_Each);
 
 /**
-  * This sets the sorting on a specific colunm
+  * This sets the sorting on a specific column
   */
 SIMPLE_PLACEHOLDER_CLASS(exp_ColSort);
 
@@ -255,8 +255,8 @@ SIMPLE_PLACEHOLDER_CLASS(exp_View);
 QString bashquote(QString s)
 {
     /*
-    // we _can_not_ use this function because it _encloses_ the sting in single-quots!
-    // In this case quotes strings could not be concaternated anymore
+    // we _can_not_ use this function because it _encloses_ the sting in single-quotes!
+    // In this case quotes strings could not be concatenated anymore
     return KrServices::quote(s);
     */
 
@@ -624,7 +624,7 @@ TagString exp_Copy::expFunc(const KrPanel*, const TagStringList& parameter, cons
         return QString();
     }
 
-    // basically the parameter can already be used as URL, but since QUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
+    // basically the parameter can already be used as URL, but since QUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is necessary:
     const QStringList sourceList = splitEach(parameter[0]);
     QList<QUrl> sourceURLs;
     for (const QString source : sourceList) {
@@ -668,7 +668,7 @@ TagString exp_Move::expFunc(const KrPanel*, const TagStringList& parameter, cons
         return QString();
     }
 
-    // basically the parameter can already be used as URL, but since QUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
+    // basically the parameter can already be used as URL, but since QUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is necessary:
     QStringList lst = splitEach(parameter[0]);
     if (!parameter[1].isSimple()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("%Each% may not be in the second argument of %Move%")));

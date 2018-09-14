@@ -58,7 +58,7 @@ public:
 
 protected:
     /**
-     * This is calles when a Placeholder got parameter.
+     * This is called when a Placeholder got parameter.
      * @param currentPlaceholder A pointer to the Placeholder the user has chosen
      * @return a parameter-string
      */
@@ -214,7 +214,7 @@ private:
 };
 
 /**
- *  An editable ComboBox with the predifined selections
+ *  An editable ComboBox with the predefined selections
  *  used with default = "__select"
  */
 class ParameterSelect : public ParameterBase
@@ -320,7 +320,7 @@ private:
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- *  Opens a dialog for the parameter. Depending on the default (preset) a differend widget is used.
+ *  Opens a dialog for the parameter. Depending on the default (preset) a different widget is used.
  *  See Parameter-Classes for details
  */
 class ParameterDialog : public QDialog
@@ -331,7 +331,7 @@ public:
 
     /**
      * Use this to execute the dialog.
-     * @return a QString with all paremeters; omitting the optional ones if they have the default-value.
+     * @return a QString with all parameters; omitting the optional ones if they have the default-value.
      */
     QString getParameter();
 

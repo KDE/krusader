@@ -35,7 +35,7 @@ class TagString_t
     typedef QList<std::pair<uint, T> > taglist; // may change
     taglist tags;
 public:
-    TagString_t(const QString& s) : str(s) {} // implicte conversion
+    TagString_t(const QString& s) : str(s) {} // implicit conversion
     TagString_t() {}
     bool isSimple() const {
         return tags.empty();

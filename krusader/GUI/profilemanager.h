@@ -27,7 +27,7 @@
 #include <QPushButton>
 
 /**
- * A generic profile manager: Profiles are arbitray configurations groups and the manager handles
+ * A generic profile manager: Profiles are arbitrary configurations groups and the manager handles
  * saving/loading multiple groups to/from the configuration.
  *
  * A manager instance is responsible for a profile type specified by a type name:

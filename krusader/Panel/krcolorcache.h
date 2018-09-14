@@ -38,7 +38,7 @@
  * KrColorSettings: holds the color settings from krConfig,
  *                  which can be changed locally
  * KrColorItemType: specifies the colors to be calculated
- * KrColorCache: perfomes the color calculation and caches the result.
+ * KrColorCache: performs the color calculation and caches the result.
  *               Uses KrColorSettings for the calculation
  *
  * Copies all used color settings from krConfig into a local cache on creation.
@@ -48,10 +48,10 @@
  * Property values can be changed.
  * These changes does not go into krConfig!
  *
- * is*Valid checks, if a protery name is valid
+ * is*Valid checks, if a property name is valid
  * get*Names returns a list of all allowed property names
  * set*Value overwrites a property with a new value
- * get*Value retunrs the current value
+ * get*Value returns the current value
  *
  * For colors the value can be returned as text or as color.
  * If a text representation is not a valid color, setColorValue(QColor())
@@ -85,7 +85,7 @@ public:
 };
 
 /**
- * A colletcion of properties which describe the color group to be calculated
+ * A collection of properties which describe the color group to be calculated
  */
 class KrColorItemType
 {

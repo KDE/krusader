@@ -164,7 +164,7 @@ void KRslots::compareContent()
         name1 = LEFT_PANEL->func->files()->getUrl(lstLeft[0]);
         name2 = RIGHT_PANEL->func->files()->getUrl(lstRight[0]);
     } else if (lstActive.count() == 2) {
-        // next try: are in the current panel exacty 2 files selected?
+        // next try: are in the current panel exactly 2 files selected?
         name1 = ACTIVE_PANEL->func->files()->getUrl(lstActive[0]);
         name2 = ACTIVE_PANEL->func->files()->getUrl(lstActive[1]);
     } else if (ACTIVE_PANEL->otherPanel()->func->files()->getFileItem(ACTIVE_VIEW->getCurrentItem())) {

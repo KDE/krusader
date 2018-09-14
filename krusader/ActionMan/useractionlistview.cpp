@@ -42,7 +42,7 @@ UserActionListView::UserActionListView(QWidget * parent)
     setHeaderLabel(i18n("Title"));
 
     setRootIsDecorated(true);
-    setSelectionMode(QAbstractItemView::ExtendedSelection);   // normaly select single items but one may use Ctrl or Shift to select multiple
+    setSelectionMode(QAbstractItemView::ExtendedSelection);   // normally select single items but one may use Ctrl or Shift to select multiple
 
     setSortingEnabled(true);
     sortItems(COL_TITLE, Qt::AscendingOrder);
@@ -75,7 +75,7 @@ void UserActionListView::update(KrAction* action)
 {
     UserActionListViewItem* item = findActionItem(action);
     if (item) {
-        // deleting & re-inserting is _much_easyer then tracking all possible cases of category changes!
+        // deleting & re-inserting is _much_easier then tracking all possible cases of category changes!
         bool current = (item == currentItem());
         bool selected = item->isSelected();
         delete item;
