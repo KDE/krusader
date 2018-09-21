@@ -114,7 +114,7 @@ public:
 KProcess *  LocateDlg::updateProcess = 0;
 LocateDlg * LocateDlg::LocateDialog = 0;
 
-LocateDlg::LocateDlg() : QDialog(0), isFeedToListBox(false)
+LocateDlg::LocateDlg(QWidget *parent) : QDialog(parent), isFeedToListBox(false)
 {
     setWindowTitle(i18n("Krusader::Locate"));
     setWindowModality(Qt::NonModal);

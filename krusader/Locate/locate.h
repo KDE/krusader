@@ -39,7 +39,7 @@ class LocateDlg : public QDialog
     Q_OBJECT
 
 public:
-    LocateDlg();
+    explicit LocateDlg(QWidget *parent);
 
     static LocateDlg *LocateDialog;
 

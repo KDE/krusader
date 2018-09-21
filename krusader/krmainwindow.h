@@ -24,7 +24,6 @@
 #include <QAction>
 #include <QWidget>
 
-#include "krmainwindow.h"
 #include "abstractpanelmanager.h"
 
 class KActionCollection;
