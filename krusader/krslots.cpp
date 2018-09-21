@@ -390,13 +390,13 @@ void KRslots::locate()
         return;
     }
 
-    if (LocateDlg::LocateDialog != 0) {
+    if (LocateDlg::LocateDialog != nullptr) {
         LocateDlg::LocateDialog->showNormal();
         LocateDlg::LocateDialog->raise();
         LocateDlg::LocateDialog->activateWindow();
         LocateDlg::LocateDialog->reset();
     } else
-        LocateDlg::LocateDialog = new LocateDlg();
+        LocateDlg::LocateDialog = new LocateDlg(krApp);
 }
 
 void KRslots::runTerminal(const QString & dir)
