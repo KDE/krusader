@@ -84,7 +84,7 @@ public:
         setAlternatingRowColors(true);
     }
 
-    void startDrag(Qt::DropActions supportedActs) {
+    void startDrag(Qt::DropActions supportedActs) Q_DECL_OVERRIDE {
         Q_UNUSED(supportedActs);
 
         QList<QUrl> urls;

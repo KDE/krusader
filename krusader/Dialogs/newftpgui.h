@@ -50,7 +50,7 @@ public:
     KLineEdit* password;
 
 protected:
-    bool event(QEvent *);
+    bool event(QEvent *) Q_DECL_OVERRIDE;
 
 private slots:
     void slotTextChanged(const QString &);

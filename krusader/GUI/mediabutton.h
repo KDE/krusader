@@ -61,7 +61,7 @@ signals:
     void aboutToShow();
 
 protected:
-    bool eventFilter(QObject *o, QEvent *e);
+    bool eventFilter(QObject *o, QEvent *e) Q_DECL_OVERRIDE;
     bool getNameAndIcon(Solid::Device &, QString &, QIcon &);
 
 private:

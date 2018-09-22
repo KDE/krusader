@@ -71,7 +71,7 @@ public slots:
     virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
 
 protected slots:
-    void reject();
+    void reject() Q_DECL_OVERRIDE;
 
 private:
     bool gui2query();

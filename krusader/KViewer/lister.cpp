@@ -1182,15 +1182,15 @@ public:
     }
 
 protected:
-    virtual QString currentCharacterSet() {
+    virtual QString currentCharacterSet() Q_DECL_OVERRIDE {
         return _lister->characterSet();
     }
 
-    virtual void chooseDefault() {
+    virtual void chooseDefault() Q_DECL_OVERRIDE {
         _lister->setCharacterSet(QString());
     }
 
-    virtual void chooseEncoding(QString encodingName) {
+    virtual void chooseEncoding(QString encodingName) Q_DECL_OVERRIDE {
         QString charset = KCharsets::charsets()->encodingForName(encodingName);
         _lister->setCharacterSet(charset);
     }

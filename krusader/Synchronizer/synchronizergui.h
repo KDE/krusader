@@ -150,7 +150,7 @@ public slots:
     void saveToProfile(QString);
 
 protected slots:
-    void reject();
+    void reject() Q_DECL_OVERRIDE;
     void addFile(SynchronizerFileItem *);
     void markChanged(SynchronizerFileItem *, bool);
     void setScrolling(bool);

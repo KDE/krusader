@@ -61,7 +61,7 @@ public:
     QUrl getUrl(const QString &name) const Q_DECL_OVERRIDE;
     bool canMoveToTrash(const QStringList &) const Q_DECL_OVERRIDE { return isLocal(); }
 
-    QString mountPoint() const { return _mountPoint; }
+    QString mountPoint() const Q_DECL_OVERRIDE { return _mountPoint; }
     bool hasAutoUpdate() const Q_DECL_OVERRIDE { return !_watcher.isNull(); }
     void updateFilesystemInfo() Q_DECL_OVERRIDE;
 

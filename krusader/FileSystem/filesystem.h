@@ -67,9 +67,9 @@ public:
     virtual ~FileSystem();
 
     // DirListerInterface implementation
-    inline QList<FileItem *> fileItems() const { return _fileItems.values(); }
-    inline unsigned long numFileItems() const { return _fileItems.count(); }
-    inline bool isRoot() const {
+    inline QList<FileItem *> fileItems() const Q_DECL_OVERRIDE { return _fileItems.values(); }
+    inline unsigned long numFileItems() const Q_DECL_OVERRIDE { return _fileItems.count(); }
+    inline bool isRoot() const Q_DECL_OVERRIDE {
         const QString path = _currentDirectory.path();
         return path.isEmpty() || path == "/";
     }

@@ -93,19 +93,19 @@ class PanelViewer: public PanelViewerBase
 {
     Q_OBJECT
 public slots:
-    virtual bool closeUrl();
+    virtual bool closeUrl() Q_DECL_OVERRIDE;
 
 public:
     explicit PanelViewer(QWidget *parent, KrViewer::Mode mode = KrViewer::Default);
     ~PanelViewer();
 
-    virtual bool isEditor() {
+    virtual bool isEditor() Q_DECL_OVERRIDE {
         return false;
     }
 
 protected:
-    virtual void openFile(KFileItem fi);
-    virtual KParts::ReadOnlyPart* createPart(QString mimetype);
+    virtual void openFile(KFileItem fi) Q_DECL_OVERRIDE;
+    virtual KParts::ReadOnlyPart* createPart(QString mimetype) Q_DECL_OVERRIDE;
     KParts::ReadOnlyPart* getDefaultPart(KFileItem fi);
     KParts::ReadOnlyPart* getHexPart();
     KParts::ReadOnlyPart* getListerPart(bool hexMode = false);
@@ -116,24 +116,24 @@ class PanelEditor: public PanelViewerBase
 {
     Q_OBJECT
 public:
-    virtual bool isModified();
-    virtual bool isEditor() {
+    virtual bool isModified() Q_DECL_OVERRIDE;
+    virtual bool isEditor() Q_DECL_OVERRIDE {
         return true;
     }
 
     static void configureDeps();
 
 public slots:
-    virtual bool closeUrl();
-    virtual bool queryClose();
+    virtual bool closeUrl() Q_DECL_OVERRIDE;
+    virtual bool queryClose() Q_DECL_OVERRIDE;
 
 public:
     explicit PanelEditor(QWidget *parent, KrViewer::Mode mode = KrViewer::Default);
     ~PanelEditor();
 
 protected:
-    virtual void openFile(KFileItem fi);
-    virtual KParts::ReadOnlyPart* createPart(QString mimetype);
+    virtual void openFile(KFileItem fi) Q_DECL_OVERRIDE;
+    virtual KParts::ReadOnlyPart* createPart(QString mimetype) Q_DECL_OVERRIDE;
     static QString missingKPartMsg();
 };
 

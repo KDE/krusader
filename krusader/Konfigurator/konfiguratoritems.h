@@ -121,8 +121,8 @@ public slots:
     void slotSetDefaults(QObject *);
 
 protected:
-    virtual void checkStateSet();
-    virtual void nextCheckState();
+    virtual void checkStateSet() Q_DECL_OVERRIDE;
+    virtual void nextCheckState() Q_DECL_OVERRIDE;
     void updateDeps();
 
     bool  defaultValue;
