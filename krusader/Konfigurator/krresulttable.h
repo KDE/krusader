@@ -88,7 +88,7 @@ public:
     explicit KrArchiverResultTable(QWidget* parent);
     virtual ~KrArchiverResultTable();
 
-    bool addRow(SearchObject* search, QGridLayout* grid);
+    bool addRow(SearchObject* search, QGridLayout* grid) Q_DECL_OVERRIDE;
 
 protected:
     KUrlLabel* _nameLabel;
@@ -107,7 +107,7 @@ public:
     explicit KrToolResultTable(QWidget* parent);
     virtual ~KrToolResultTable();
 
-    bool addRow(SearchObject* search, QGridLayout* grid);
+    bool addRow(SearchObject* search, QGridLayout* grid) Q_DECL_OVERRIDE;
 
 protected:
     QList<Application*> _apps;

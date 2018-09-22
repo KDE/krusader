@@ -82,10 +82,10 @@ public:
         return this;
     }
     virtual KrView *activeView() Q_DECL_OVERRIDE;
-    ViewActions *viewActions() {
+    ViewActions *viewActions() Q_DECL_OVERRIDE {
         return _viewActions;
     }
-    virtual KActionCollection *actions() {
+    virtual KActionCollection *actions() Q_DECL_OVERRIDE {
         return actionCollection();
     }
     virtual AbstractPanelManager *activeManager() Q_DECL_OVERRIDE;

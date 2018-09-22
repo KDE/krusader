@@ -125,6 +125,10 @@ if (ACL_HEADERS_FOUND AND ACL_LIBS AND ATTR_LIBS)
     add_definitions(-DHAVE_POSIX_ACL)
 endif(ACL_HEADERS_FOUND AND ACL_LIBS AND ATTR_LIBS)
 
+if (CMAKE_COMPILER_IS_GNUCXX)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsuggest-override" CACHE STRING "" FORCE)
+endif()
+
 #include(ConfigureChecks.cmake)
 
 add_subdirectory(krusader)

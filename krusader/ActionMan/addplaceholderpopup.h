@@ -116,10 +116,10 @@ class ParameterText : public ParameterBase
 {
 public:
     ParameterText(const exp_parameter& parameter, QWidget* parent);
-    QString text();
-    QString preset();
-    void reset();
-    bool valid();
+    QString text() Q_DECL_OVERRIDE;
+    QString preset() Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
+    bool valid() Q_DECL_OVERRIDE;
 private:
     KLineEdit * _lineEdit;
     QString _preset;
@@ -134,10 +134,10 @@ class ParameterPlaceholder : public ParameterBase
     Q_OBJECT
 public:
     ParameterPlaceholder(const exp_parameter& parameter, QWidget* parent);
-    QString text();
-    QString preset();
-    void reset();
-    bool valid();
+    QString text() Q_DECL_OVERRIDE;
+    QString preset() Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
+    bool valid() Q_DECL_OVERRIDE;
 private:
     KLineEdit * _lineEdit;
     QToolButton* _button;
@@ -153,10 +153,10 @@ class ParameterYes : public ParameterBase
 {
 public:
     ParameterYes(const exp_parameter& parameter, QWidget* parent);
-    QString text();
-    QString preset();
-    void reset();
-    bool valid();
+    QString text() Q_DECL_OVERRIDE;
+    QString preset() Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
+    bool valid() Q_DECL_OVERRIDE;
 private:
     QCheckBox* _checkBox;
 };
@@ -169,10 +169,10 @@ class ParameterNo : public ParameterBase
 {
 public:
     ParameterNo(const exp_parameter& parameter, QWidget* parent);
-    QString text();
-    QString preset();
-    void reset();
-    bool valid();
+    QString text() Q_DECL_OVERRIDE;
+    QString preset() Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
+    bool valid() Q_DECL_OVERRIDE;
 private:
     QCheckBox* _checkBox;
 };
@@ -186,10 +186,10 @@ class ParameterFile : public ParameterBase
     Q_OBJECT
 public:
     ParameterFile(const exp_parameter& parameter, QWidget* parent);
-    QString text();
-    QString preset();
-    void reset();
-    bool valid();
+    QString text() Q_DECL_OVERRIDE;
+    QString preset() Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
+    bool valid() Q_DECL_OVERRIDE;
 private:
     KLineEdit * _lineEdit;
     QToolButton* _button;
@@ -205,10 +205,10 @@ class ParameterChoose : public ParameterBase
 {
 public:
     ParameterChoose(const exp_parameter& parameter, QWidget* parent);
-    QString text();
-    QString preset();
-    void reset();
-    bool valid();
+    QString text() Q_DECL_OVERRIDE;
+    QString preset() Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
+    bool valid() Q_DECL_OVERRIDE;
 private:
     KComboBox * _combobox;
 };
@@ -221,10 +221,10 @@ class ParameterSelect : public ParameterBase
 {
 public:
     ParameterSelect(const exp_parameter& parameter, QWidget* parent);
-    QString text();
-    QString preset();
-    void reset();
-    bool valid();
+    QString text() Q_DECL_OVERRIDE;
+    QString preset() Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
+    bool valid() Q_DECL_OVERRIDE;
 private:
     KComboBox * _combobox;
 };
@@ -238,10 +238,10 @@ class ParameterGoto : public ParameterBase
     Q_OBJECT
 public:
     ParameterGoto(const exp_parameter& parameter, QWidget* parent);
-    QString text();
-    QString preset();
-    void reset();
-    bool valid();
+    QString text() Q_DECL_OVERRIDE;
+    QString preset() Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
+    bool valid() Q_DECL_OVERRIDE;
 private:
     KLineEdit * _lineEdit;
     QToolButton* _dirButton, *_placeholderButton;
@@ -258,10 +258,10 @@ class ParameterSyncprofile : public ParameterBase
 {
 public:
     ParameterSyncprofile(const exp_parameter& parameter, QWidget* parent);
-    QString text();
-    QString preset();
-    void reset();
-    bool valid();
+    QString text() Q_DECL_OVERRIDE;
+    QString preset() Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
+    bool valid() Q_DECL_OVERRIDE;
 private:
     KComboBox * _combobox;
 };
@@ -274,10 +274,10 @@ class ParameterPanelprofile : public ParameterBase
 {
 public:
     ParameterPanelprofile(const exp_parameter& parameter, QWidget* parent);
-    QString text();
-    QString preset();
-    void reset();
-    bool valid();
+    QString text() Q_DECL_OVERRIDE;
+    QString preset() Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
+    bool valid() Q_DECL_OVERRIDE;
 private:
     KComboBox * _combobox;
 };
@@ -290,10 +290,10 @@ class ParameterSearch : public ParameterBase
 {
 public:
     ParameterSearch(const exp_parameter& parameter, QWidget* parent);
-    QString text();
-    QString preset();
-    void reset();
-    bool valid();
+    QString text() Q_DECL_OVERRIDE;
+    QString preset() Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
+    bool valid() Q_DECL_OVERRIDE;
 private:
     KComboBox * _combobox;
 };
@@ -306,10 +306,10 @@ class ParameterInt : public ParameterBase
 {
 public:
     ParameterInt(const exp_parameter& parameter, QWidget* parent);
-    QString text();
-    QString preset();
-    void reset();
-    bool valid();
+    QString text() Q_DECL_OVERRIDE;
+    QString preset() Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
+    bool valid() Q_DECL_OVERRIDE;
 private:
     QSpinBox * _spinbox;
     int _default;

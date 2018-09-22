@@ -79,14 +79,14 @@ public:
     void setCurrent(const QString &path);
     //virtual methods from KrActionBase
     void setText(QString text);
-    QString command() const;
-    ExecType execType() const;
-    QString startpath() const;
-    QString user() const;
-    QString text() const;
-    bool acceptURLs() const;
-    bool confirmExecution() const;
-    bool doSubstitution() const;
+    QString command() const Q_DECL_OVERRIDE;
+    ExecType execType() const Q_DECL_OVERRIDE;
+    QString startpath() const Q_DECL_OVERRIDE;
+    QString user() const Q_DECL_OVERRIDE;
+    QString text() const Q_DECL_OVERRIDE;
+    bool acceptURLs() const Q_DECL_OVERRIDE;
+    bool confirmExecution() const Q_DECL_OVERRIDE;
+    bool doSubstitution() const Q_DECL_OVERRIDE;
 
 signals:
     void signalRun();
