@@ -38,7 +38,7 @@
 #define MAX_CHUNK_SIZE 50
 
 
-KrPreviewJob::KrPreviewJob(KrPreviews *parent) : _job(0), _parent(parent)
+KrPreviewJob::KrPreviewJob(KrPreviews *parent) : _job(nullptr), _parent(parent)
 {
     _timer.setSingleShot(true);
     _timer.setInterval(0);
@@ -104,7 +104,7 @@ void KrPreviewJob::slotStartJob()
 
     KFileItemList list;
     for(int i = 0; i < _scheduled.count() && i < MAX_CHUNK_SIZE; i++) {
-        KFileItem fi(_scheduled[i]->getFileItem()->getUrl(), 0, 0);
+        KFileItem fi(_scheduled[i]->getFileItem()->getUrl(), nullptr, 0);
         list.append(fi);
         _hash.insert(fi, _scheduled[i]);
     }
@@ -122,10 +122,10 @@ void KrPreviewJob::slotJobResult(KJob *job)
 {
     (void) job;
 
-    if(!disconnect(_job, 0, this, 0))
+    if(!disconnect(_job, nullptr, this, nullptr))
         abort();
 
-    _job = 0;
+    _job = nullptr;
     _hash.clear();
 
     if(_scheduled.isEmpty())
@@ -151,11 +151,11 @@ bool KrPreviewJob::doKill()
 {
     _timer.stop();
     if(_job) {
-        if(!disconnect(_job, 0, this, 0))
+        if(!disconnect(_job, nullptr, this, nullptr))
             abort();
         if(!_job->kill())
             abort();
-        _job = 0;
+        _job = nullptr;
     }
     _hash.clear();
     return true;

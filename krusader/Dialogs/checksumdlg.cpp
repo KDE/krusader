@@ -116,21 +116,21 @@ ChecksumProcess::ChecksumProcess(QObject *parent, const QString &path) : KProces
 
 ChecksumProcess::~ChecksumProcess()
 {
-    disconnect(this, 0, this, 0); // QProcess emits finished() on destruction
+    disconnect(this, nullptr, this, nullptr); // QProcess emits finished() on destruction
     close();
 }
 
 void ChecksumProcess::slotError(QProcess::ProcessError error)
 {
     if (error == QProcess::FailedToStart) {
-        KMessageBox::error(0, i18n("<qt>Could not start <b>%1</b>.</qt>", program().join(" ")));
+        KMessageBox::error(nullptr, i18n("<qt>Could not start <b>%1</b>.</qt>", program().join(" ")));
     }
 }
 
 void ChecksumProcess::slotFinished(int, QProcess::ExitStatus exitStatus)
 {
     if (exitStatus != QProcess::NormalExit) {
-        KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.</qt>",
+        KMessageBox::error(nullptr, i18n("<qt>There was an error while running <b>%1</b>.</qt>",
                                    program().join(" ")));
         return;
     }
@@ -138,7 +138,7 @@ void ChecksumProcess::slotFinished(int, QProcess::ExitStatus exitStatus)
     // parse result files
     if (!KrServices::fileToStringList(&m_tmpOutFile, m_outputLines) ||
         !KrServices::fileToStringList(&m_tmpErrFile, m_errorLines)) {
-        KMessageBox::error(0, i18n("Error reading stdout or stderr"));
+        KMessageBox::error(nullptr, i18n("Error reading stdout or stderr"));
         return;
     }
     emit resultReady();
@@ -146,7 +146,7 @@ void ChecksumProcess::slotFinished(int, QProcess::ExitStatus exitStatus)
 
 // ------------- Generic Checksum Wizard
 
-ChecksumWizard::ChecksumWizard(const QString &path) : QWizard(krApp), m_path(path), m_process(0)
+ChecksumWizard::ChecksumWizard(const QString &path) : QWizard(krApp), m_path(path), m_process(nullptr)
 {
     setAttribute(Qt::WA_DeleteOnClose);
 
@@ -176,7 +176,7 @@ void ChecksumWizard::slotCurrentIdChanged(int id)
         if (m_process) {
             // we are coming from the result page;
             delete m_process;
-            m_process = 0;
+            m_process = nullptr;
             restart();
         } else {
             button(QWizard::BackButton)->hide();
@@ -223,7 +223,7 @@ bool ChecksumWizard::checkExists(const QString type)
 
 void ChecksumWizard::runProcess(const QString &type, const QStringList &args)
 {
-    Q_ASSERT(m_process == 0);
+    Q_ASSERT(m_process == nullptr);
 
     m_process = new ChecksumProcess(this, m_path);
     m_process->setProgram(KrServices::fullPathName(m_checksumTools[type]), args);

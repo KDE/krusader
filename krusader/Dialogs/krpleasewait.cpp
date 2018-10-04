@@ -38,7 +38,7 @@
 #include "../krglobal.h"
 
 KRPleaseWait::KRPleaseWait(QString msg, QWidget *parent, int count, bool cancel):
-        QProgressDialog(cancel ? 0 : parent) , inc(true)
+        QProgressDialog(cancel ? nullptr : parent) , inc(true)
 {
     setModal(!cancel);
 
@@ -91,14 +91,14 @@ void KRPleaseWait::cycleProgress()
 }
 
 KRPleaseWaitHandler::KRPleaseWaitHandler(QWidget *parentWindow)
-    : QObject(parentWindow), _parentWindow(parentWindow), job(), dlg(0)
+    : QObject(parentWindow), _parentWindow(parentWindow), job(), dlg(nullptr)
 {
 }
 
 void KRPleaseWaitHandler::stopWait()
 {
-    if (dlg != 0) delete dlg;
-    dlg = 0;
+    if (dlg != nullptr) delete dlg;
+    dlg = nullptr;
     cycleMutex = incMutex = false;
     // return cursor to normal arrow
     _parentWindow->setCursor(Qt::ArrowCursor);
@@ -107,7 +107,7 @@ void KRPleaseWaitHandler::stopWait()
 
 void KRPleaseWaitHandler::startWaiting(QString msg, int count , bool cancel)
 {
-    if (dlg == 0) {
+    if (dlg == nullptr) {
         dlg = new KRPleaseWait(msg , _parentWindow, count, cancel);
         connect(dlg, &KRPleaseWait::canceled, this, &KRPleaseWaitHandler::killJob);
     }

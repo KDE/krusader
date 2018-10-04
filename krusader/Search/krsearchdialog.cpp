@@ -115,7 +115,7 @@ private:
 };
 
 
-KrSearchDialog *KrSearchDialog::SearchDialog = 0;
+KrSearchDialog *KrSearchDialog::SearchDialog = nullptr;
 
 QString KrSearchDialog::lastSearchText = QString('*');
 int KrSearchDialog::lastSearchType = 0;
@@ -130,7 +130,7 @@ bool KrSearchDialog::lastContainsRegExp = false;
 
 // class starts here /////////////////////////////////////////
 KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
-        : QDialog(parent), query(0), searcher(0), isBusy(false), closed(false)
+        : QDialog(parent), query(nullptr), searcher(nullptr), isBusy(false), closed(false)
 {
     KConfigGroup group(krConfig, "Search");
 
@@ -309,9 +309,9 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 KrSearchDialog::~KrSearchDialog()
 {
     delete query;
-    query = 0;
+    query = nullptr;
     delete resultView;
-    resultView = 0;
+    resultView = nullptr;
 }
 
 void KrSearchDialog::closeDialog(bool isAccept)
@@ -322,9 +322,9 @@ void KrSearchDialog::closeDialog(bool isAccept)
     }
 
     // stop the search if it's on-going
-    if (searcher != 0) {
+    if (searcher != nullptr) {
         delete searcher;
-        searcher = 0;
+        searcher = nullptr;
     }
 
     // saving the searcher state
@@ -348,7 +348,7 @@ void KrSearchDialog::closeDialog(bool isAccept)
     lastFollowSymLinks = generalFilter->followLinks->isChecked();
     hide();
 
-    SearchDialog = 0;
+    SearchDialog = nullptr;
     if (isAccept)
         QDialog::accept();
     else
@@ -380,8 +380,8 @@ bool KrSearchDialog::gui2query()
 {
     // prepare the query ...
     /////////////////// names, locations and greps
-    if (query != 0) {
-        delete query; query = 0;
+    if (query != nullptr) {
+        delete query; query = nullptr;
     }
     query = new KRQuery();
 
@@ -401,7 +401,7 @@ void KrSearchDialog::startSearch()
         KMessageBox::information(this, i18n("Since you chose to also search in archives, "
                                             "note the following limitations:\n"
                                             "You cannot search for text (grep) while doing"
-                                            " a search that includes archives."), 0, "searchInArchives");
+                                            " a search that includes archives."), nullptr, "searchInArchives");
     }
 
     // prepare the gui ///////////////////////////////////////////////
@@ -426,7 +426,7 @@ void KrSearchDialog::startSearch()
     qApp->processEvents();
 
     // start the search.
-    if (searcher != 0)
+    if (searcher != nullptr)
         abort();
     searcher  = new KRSearchMod(query);
     connect(searcher, &KRSearchMod::searching, searchingLabel, &KSqueezedTextLabel::setText);
@@ -438,7 +438,7 @@ void KrSearchDialog::startSearch()
     isBusy = false;
 
     delete searcher;
-    searcher = 0;
+    searcher = nullptr;
 
     // gui stuff
     mainSearchBtn->setEnabled(true);
@@ -454,9 +454,9 @@ void KrSearchDialog::startSearch()
 
 void KrSearchDialog::stopSearch()
 {
-    if (searcher != 0) {
+    if (searcher != nullptr) {
         searcher->stop();
-        disconnect(searcher, 0, 0, 0);
+        disconnect(searcher, nullptr, nullptr, nullptr);
     }
 }
 
@@ -601,7 +601,7 @@ void KrSearchDialog::feedToListBox()
     QString fileSystemName;
     do {
         fileSystemName = i18n("Search results") + QString(" %1").arg(listBoxNum++);
-    } while (virtFilesystem.getFileItem(fileSystemName) != 0);
+    } while (virtFilesystem.getFileItem(fileSystemName) != nullptr);
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");

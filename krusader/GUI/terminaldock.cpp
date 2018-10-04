@@ -59,7 +59,7 @@
  * A widget containing the konsolepart for the Embedded terminal emulator
  */
 TerminalDock::TerminalDock(QWidget* parent, KrMainWindow *mainWindow) : QWidget(parent),
-    _mainWindow(mainWindow), konsole_part(0), t(0), initialised(false), firstInput(true)
+    _mainWindow(mainWindow), konsole_part(nullptr), t(nullptr), initialised(false), firstInput(true)
 {
     terminal_hbox = new QHBoxLayout(this);
 }
@@ -96,7 +96,7 @@ bool TerminalDock::initialise()
                 initialised = true;
                 firstInput = true;
             } else
-                KMessageBox::error(0, i18n("<b>Cannot create embedded terminal.</b><br/>"
+                KMessageBox::error(nullptr, i18n("<b>Cannot create embedded terminal.</b><br/>"
                                            "The reported error was: %1", error));
             // the Terminal Emulator may be hidden (if we are creating it only
             // to send command there and see the results later)
@@ -106,12 +106,12 @@ bool TerminalDock::initialise()
                 ACTIVE_PANEL->gui->slotFocusOnMe();
             }
         } else
-            KMessageBox::sorry(0, i18nc("missing program - arg1 is a URL",
+            KMessageBox::sorry(nullptr, i18nc("missing program - arg1 is a URL",
                                         "<b>Cannot create embedded terminal.</b><br>"
                                         "You can fix this by installing Konsole:<br/>%1",
                                         QString("<a href='%1'>%1</a>").arg(
                                             "https://www.kde.org/applications/system/konsole")),
-                               0, KMessageBox::AllowLink);
+                               nullptr, KMessageBox::AllowLink);
     }
     return isInitialised();
 }
@@ -121,8 +121,8 @@ void TerminalDock::killTerminalEmulator()
     qDebug() << "killed";
 
     initialised = false;
-    konsole_part = NULL;
-    t = NULL;
+    konsole_part = nullptr;
+    t = nullptr;
     qApp->removeEventFilter(this);
     MAIN_VIEW->setTerminalEmulator(false);
 }
@@ -213,7 +213,7 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
 
 bool TerminalDock::eventFilter(QObject * watched, QEvent * e)
 {
-    if (konsole_part == NULL || konsole_part->widget() == NULL)
+    if (konsole_part == nullptr || konsole_part->widget() == nullptr)
         return false;
 
     // we must watch for child widgets as well,
@@ -221,10 +221,10 @@ bool TerminalDock::eventFilter(QObject * watched, QEvent * e)
     // being processed in konsole_part->widget() context
     // examples are Ctrl+F, Ctrl+Enter
     QObject *w;
-    for (w = watched; w != NULL; w = w->parent())
+    for (w = watched; w != nullptr; w = w->parent())
         if (w == konsole_part->widget())
             break;
-    if (w == NULL)    // is not a child of konsole_part
+    if (w == nullptr)    // is not a child of konsole_part
         return false;
 
     switch (e->type()) {
@@ -258,13 +258,13 @@ bool TerminalDock::eventFilter(QObject * watched, QEvent * e)
 
 bool TerminalDock::isTerminalVisible() const
 {
-    return isVisible() && konsole_part != NULL && konsole_part->widget() != NULL
+    return isVisible() && konsole_part != nullptr && konsole_part->widget() != nullptr
            && konsole_part->widget()->isVisible();
 }
 
 bool TerminalDock::isInitialised() const
 {
-    return konsole_part != NULL && konsole_part->widget() != NULL;
+    return konsole_part != nullptr && konsole_part->widget() != nullptr;
 }
 
 void TerminalDock::hideEvent(QHideEvent * /*e*/)

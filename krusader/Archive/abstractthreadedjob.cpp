@@ -42,7 +42,7 @@
 extern KRarcHandler arcHandler;
 
 AbstractThreadedJob::AbstractThreadedJob() : KIO::Job(), _locker(), _waiter(), _stack(), _maxProgressValue(0),
-        _currentProgress(0), _exiting(false), _jobThread(0)
+        _currentProgress(0), _exiting(false), _jobThread(nullptr)
 {
 }
 
@@ -175,7 +175,7 @@ bool AbstractThreadedJob::event(QEvent *e)
         case CMD_MESSAGE: {
             QString message = event->args()[ 0 ].value<QString>();
             KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(uiDelegate());
-            KMessageBox::information(ui ? ui->window() : 0, message);
+            KMessageBox::information(ui ? ui->window() : nullptr, message);
             QList<QVariant> *resultResp = new QList<QVariant> ();
             addEventResponse(resultResp);
         }
@@ -201,7 +201,7 @@ QList<QVariant> * AbstractThreadedJob::getEventResponse(UserEvent * event)
     QApplication::postEvent(this, event);
     _waiter.wait(&_locker);
     if (_exiting)
-        return 0;
+        return nullptr;
     QList<QVariant> *resp = _stack.pop();
     _locker.unlock();
     return resp;
@@ -289,8 +289,8 @@ public:
 };
 
 
-AbstractJobThread::AbstractJobThread() : _job(0), _downloadTempDir(0), _observer(0), _tempFile(0),
-        _tempDir(0), _exited(false)
+AbstractJobThread::AbstractJobThread() : _job(nullptr), _downloadTempDir(nullptr), _observer(nullptr), _tempFile(nullptr),
+        _tempDir(nullptr), _exited(false)
 {
 }
 
@@ -298,15 +298,15 @@ AbstractJobThread::~AbstractJobThread()
 {
     if (_downloadTempDir) {
         delete _downloadTempDir;
-        _downloadTempDir = 0;
+        _downloadTempDir = nullptr;
     }
     if (_observer) {
         delete _observer;
-        _observer = 0;
+        _observer = nullptr;
     }
     if (_tempFile) {
         delete _tempFile;
-        _tempFile = 0;
+        _tempFile = nullptr;
     }
 }
 
@@ -318,7 +318,7 @@ void AbstractJobThread::run()
     _loop = threadLoop;
     threadLoop->exec();
 
-    _loop = 0;
+    _loop = nullptr;
     delete threadLoop;
 }
 
@@ -365,7 +365,7 @@ QUrl AbstractJobThread::downloadIfRemote(const QUrl &baseUrl, const QStringList 
 
         UserEvent * downloadEvent = new UserEvent(CMD_DOWNLOAD_FILES, args);
         QList<QVariant> * result = _job->getEventResponse(downloadEvent);
-        if (result == 0)
+        if (result == nullptr)
             return QUrl();
 
         int errorCode = (*result)[ 0 ].value<int>();
@@ -531,7 +531,7 @@ KRarcObserver * AbstractJobThread::observer()
 
 bool AbstractJobThread::uploadTempFiles()
 {
-    if (_tempFile != 0 || _tempDir != 0) {
+    if (_tempFile != nullptr || _tempDir != nullptr) {
         sendInfo(i18n("Uploading to remote destination"));
 
         if (_tempFile) {
@@ -544,7 +544,7 @@ bool AbstractJobThread::uploadTempFiles()
 
             UserEvent * uploadEvent = new UserEvent(CMD_UPLOAD_FILES, args);
             QList<QVariant> * result = _job->getEventResponse(uploadEvent);
-            if (result == 0)
+            if (result == nullptr)
                 return false;
 
             int errorCode = (*result)[ 0 ].value<int>();
@@ -576,7 +576,7 @@ bool AbstractJobThread::uploadTempFiles()
 
             UserEvent * uploadEvent = new UserEvent(CMD_UPLOAD_FILES, args);
             QList<QVariant> * result = _job->getEventResponse(uploadEvent);
-            if (result == 0)
+            if (result == nullptr)
                 return false;
 
             int errorCode = (*result)[ 0 ].value<int>();
@@ -600,7 +600,7 @@ QString AbstractJobThread::getPassword(const QString &path)
 
     UserEvent * getPasswdEvent = new UserEvent(CMD_GET_PASSWORD, args);
     QList<QVariant> * result = _job->getEventResponse(getPasswdEvent);
-    if (result == 0)
+    if (result == nullptr)
         return QString();
 
     QString password = (*result)[ 0 ].value<QString>();
@@ -618,7 +618,7 @@ void AbstractJobThread::sendMessage(const QString &message)
 
     UserEvent * getPasswdEvent = new UserEvent(CMD_MESSAGE, args);
     QList<QVariant> * result = _job->getEventResponse(getPasswdEvent);
-    if (result == 0)
+    if (result == nullptr)
         return;
     delete result;
 }

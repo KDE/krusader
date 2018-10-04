@@ -37,7 +37,7 @@
 KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
         const QString& caption, const QString& heading, const QString& headerIcon,
         const QString& hint)
-        : QDialog(parent, 0)
+        : QDialog(parent, nullptr)
 
 {
     setWindowTitle(caption);

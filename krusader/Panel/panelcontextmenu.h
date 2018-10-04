@@ -43,7 +43,7 @@ public:
     static void run(const QPoint &pos, KrPanel *panel);
 
 private:
-    explicit PanelContextMenu(KrPanel *thePanel, QWidget *parent = 0);
+    explicit PanelContextMenu(KrPanel *thePanel, QWidget *parent = nullptr);
     void performAction(int id);
     void addEmptyMenuEntries(); // adds the choices for a menu without selected items
     void addCreateNewMenu(); // adds a "create new" submenu

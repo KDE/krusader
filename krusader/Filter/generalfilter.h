@@ -43,7 +43,7 @@ class GeneralFilter : public QWidget, public FilterBase
     Q_OBJECT
 
 public:
-    GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent = 0,
+    GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent = nullptr,
                   QStringList extraOptions = QStringList());
     ~GeneralFilter();
 

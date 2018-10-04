@@ -54,7 +54,7 @@
 #include "krservices.h"
 
 KrusaderView::KrusaderView(QWidget *parent) : QWidget(parent),
-    activeMng(0)
+    activeMng(nullptr)
 {
 }
 

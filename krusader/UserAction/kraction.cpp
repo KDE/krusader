@@ -63,7 +63,7 @@
 
 // KrActionProcDlg
 KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *parent) :
-        QDialog(parent), _stdout(0), _stderr(0), _currentTextEdit(0)
+        QDialog(parent), _stdout(nullptr), _stderr(nullptr), _currentTextEdit(nullptr)
 {
     setWindowTitle(caption);
     setWindowModality(Qt::NonModal);
@@ -219,7 +219,7 @@ void KrActionProcDlg::currentTextEditChanged()
 }
 
 // KrActionProc
-KrActionProc::KrActionProc(KrActionBase* action) : QObject(), _action(action), _proc(0), _output(0)
+KrActionProc::KrActionProc(KrActionBase* action) : QObject(), _action(action), _proc(nullptr), _output(nullptr)
 {
 }
 
@@ -246,7 +246,7 @@ void KrActionProc::start(QStringList cmdLineList)
 
     if (!_action->user().isEmpty()) {
         if (!KrServices::isExecutable(KDESU_PATH)) {
-            KMessageBox::sorry(0,
+            KMessageBox::sorry(nullptr,
                 i18n("Cannot run user action, %1 not found or not executable. "
                      "Please verify that kde-cli-tools are installed.", QString(KDESU_PATH)));
             return;
@@ -255,7 +255,7 @@ void KrActionProc::start(QStringList cmdLineList)
 
     if (_action->execType() == KrAction::RunInTE
             && (! MAIN_VIEW->terminalDock()->initialise())) {
-        KMessageBox::sorry(0, i18n("Embedded terminal emulator does not work, using output collection instead."));
+        KMessageBox::sorry(nullptr, i18n("Embedded terminal emulator does not work, using output collection instead."));
     }
 
     for (QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
@@ -292,7 +292,7 @@ void KrActionProc::start(QStringList cmdLineList)
                 QString term = group.readEntry("Terminal", _UserActions_Terminal);
                 QStringList termArgs = KShell::splitArgs(term, KShell::TildeExpand);
                 if (termArgs.isEmpty()) {
-                    KMessageBox::error(0, i18nc("Arg is a string containing the bad quoting.",
+                    KMessageBox::error(nullptr, i18nc("Arg is a string containing the bad quoting.",
                                                 "Bad quoting in terminal command:\n%1", term));
                     deleteLater();
                     return;
@@ -639,7 +639,7 @@ void KrAction::readAvailability(const QDomElement& element)
         if (e.isNull())
             continue; // this should skip nodes which are not elements ( i.e. comments, <!-- -->, or text nodes)
 
-        QStringList* showlist = 0;
+        QStringList* showlist = nullptr;
 
         if (e.tagName() == "protocol")
             showlist = &_showonlyProtocol;
@@ -654,7 +654,7 @@ void KrAction::readAvailability(const QDomElement& element)
                         showlist = & _showonlyFile;
                     else {
                         qWarning() << "KrAction::readAvailability() - unrecognized element found: <action name=\"" << objectName() << "\"><availability><" << e.tagName() << ">";
-                        showlist = 0;
+                        showlist = nullptr;
                     }
 
         if (showlist) {

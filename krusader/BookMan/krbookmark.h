@@ -71,7 +71,7 @@ public:
     static KrBookmark * trash(KActionCollection *collection);
     static KrBookmark * virt(KActionCollection *collection);
     static KrBookmark * lan(KActionCollection *collection);
-    static QAction * jumpBackAction(KActionCollection *collection, bool isSetter = false, ListPanelActions *sourceActions = 0);
+    static QAction * jumpBackAction(KActionCollection *collection, bool isSetter = false, ListPanelActions *sourceActions = nullptr);
     static KrBookmark * separator();
 
 signals:

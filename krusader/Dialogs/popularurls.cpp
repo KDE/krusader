@@ -49,7 +49,7 @@
 #define DECREASE   1
 
 PopularUrls::PopularUrls(QObject *parent) : QObject(parent),
-        head(0), tail(0), count(0)
+        head(nullptr), tail(nullptr), count(0)
 {
     dlg = new PopularUrlsDlg();
 }
@@ -71,7 +71,7 @@ void PopularUrls::clearList()
         }
     }
     ranks.clear();
-    head = tail = 0;
+    head = tail = nullptr;
 }
 
 void PopularUrls::save()
@@ -223,7 +223,7 @@ void PopularUrls::insertNode(UrlNodeP node, UrlNodeP after)
 {
     if (!after) { // make node head
         node->next = head;
-        node->prev = 0;
+        node->prev = nullptr;
         head->prev = node;
         head = node;
     } else {
@@ -243,9 +243,9 @@ void PopularUrls::appendNode(UrlNodeP node)
 {
     if (!tail) { // creating the first element
         head = tail = node;
-        node->prev = node->next = 0;
+        node->prev = node->next = nullptr;
     } else {
-        node->next = 0;
+        node->next = nullptr;
         node->prev = tail;
         tail->next = node;
         tail = node;
@@ -328,7 +328,7 @@ void PopularUrlsDlg::slotVisibilityChanged()
         return;
 
     urls->clearSelection();
-    urls->setCurrentItem(0);
+    urls->setCurrentItem(nullptr);
 
     QTreeWidgetItemIterator it(urls);
     while (*it) {
@@ -353,7 +353,7 @@ void PopularUrlsDlg::run(QList<QUrl> list)
     urls->clear();
     QList<QUrl>::Iterator it;
 
-    QTreeWidgetItem * lastItem = 0;
+    QTreeWidgetItem * lastItem = nullptr;
 
     for (it = list.begin(); it != list.end(); ++it) {
         QTreeWidgetItem *item = new QTreeWidgetItem(urls, lastItem);

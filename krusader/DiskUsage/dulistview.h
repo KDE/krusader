@@ -127,7 +127,7 @@ public:
             return true;
 
         const DUListViewItem *compWith = dynamic_cast< const DUListViewItem * >(&other);
-        if (compWith == 0)
+        if (compWith == nullptr)
             return false;
 
         switch (column) {

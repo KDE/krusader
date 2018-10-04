@@ -50,7 +50,7 @@ public:
     bool resize(const QRect&);
 
     bool isNull() const {
-        return (m_signature == 0);
+        return (m_signature == nullptr);
     }
     void invalidate(const bool);
 
@@ -79,16 +79,16 @@ class Widget : public QWidget
     Q_OBJECT
 
 public:
-    explicit Widget(QWidget* = 0);
+    explicit Widget(QWidget* = nullptr);
 
     QString path() const;
-    QUrl url(File const * const = 0) const;
+    QUrl url(File const * const = nullptr) const;
 
     bool isValid() const {
-        return m_tree != 0;
+        return m_tree != nullptr;
     }
 
-    friend class Label; //FIXME badness
+    friend struct Label; //FIXME badness
 
 public slots:
     void zoomIn();

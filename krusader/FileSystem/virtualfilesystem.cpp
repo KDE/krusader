@@ -313,7 +313,7 @@ FileItem *VirtualFileSystem::createFileItem(const QUrl &url)
 
     if (url.isLocalFile()) {
         QFileInfo file(url.path());
-        return file.exists() ? FileSystem::createLocalFileItem(url.fileName(), directory.path(), true) : 0;
+        return file.exists() ? FileSystem::createLocalFileItem(url.fileName(), directory.path(), true) : nullptr;
     }
 
     KIO::StatJob *statJob = KIO::stat(url, KIO::HideProgressInfo);
@@ -325,12 +325,12 @@ FileItem *VirtualFileSystem::createFileItem(const QUrl &url)
     eventLoop.exec(); // blocking until quit()
 
     if (_fileEntry.count() == 0) {
-        return 0; // stat job failed
+        return nullptr; // stat job failed
     }
 
     if (!_fileEntry.contains(KIO::UDSEntry::UDS_MODIFICATION_TIME)) {
         // TODO this also happens for FTP directories
-        return 0; // file not found
+        return nullptr; // file not found
     }
 
     return FileSystem::createFileItemFromKIO(_fileEntry, directory, true);

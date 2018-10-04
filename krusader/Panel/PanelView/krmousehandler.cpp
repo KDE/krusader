@@ -36,7 +36,7 @@
 
 #define CANCEL_TWO_CLICK_RENAME {_singleClicked = false;_renameTimer.stop();}
 
-KrMouseHandler::KrMouseHandler(KrView * view, int contextMenuShift) : _view(view), _rightClickedItem(0),
+KrMouseHandler::KrMouseHandler(KrView * view, int contextMenuShift) : _view(view), _rightClickedItem(nullptr),
         _contextMenuTimer(), _contextMenuShift(contextMenuShift), _singleClicked(false), _singleClickTime(),
         _renameTimer(), _dragStartPos(-1, -1), _emptyContextMenu(false), _selectedItemNames()
 {
@@ -50,7 +50,7 @@ KrMouseHandler::KrMouseHandler(KrView * view, int contextMenuShift) : _view(view
 
 bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
 {
-    _rightClickedItem = _clickedItem = 0;
+    _rightClickedItem = _clickedItem = nullptr;
     KrViewItem * item = _view->getKrViewItemAt(e->pos());
     if (!_view->isFocused())
         _view->op()->emitNeedFocus();
@@ -109,7 +109,7 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
             if (item && (KrSelectionMode::getSelectionHandler()->shiftCtrlLeftButtonSelects() ||
                          KrSelectionMode::getSelectionHandler()->leftButtonSelects())) {
                 KrViewItem * current = _view->getCurrentKrViewItem();
-                if (current != 0)
+                if (current != nullptr)
                     _view->selectRegion(item, current, true);
             }
             if (item)
@@ -157,7 +157,7 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
             if (item && (KrSelectionMode::getSelectionHandler()->shiftCtrlRightButtonSelects() ||
                          KrSelectionMode::getSelectionHandler()->rightButtonSelects())) {
                 KrViewItem * current = _view->getCurrentKrViewItem();
-                if (current != 0)
+                if (current != nullptr)
                     _view->selectRegion(item, current, true);
             }
             if (item)
@@ -197,13 +197,13 @@ bool KrMouseHandler::mouseReleaseEvent(QMouseEvent *e)
     }
 
     if (e->button() == Qt::RightButton) {
-        _rightClickedItem = 0;
+        _rightClickedItem = nullptr;
         _contextMenuTimer.stop();
     }
     if (_singleClick && e->button() == Qt::LeftButton && e->modifiers() == Qt::NoModifier) {
         CANCEL_TWO_CLICK_RENAME;
         e->accept();
-        if (item == 0)
+        if (item == nullptr)
             return true;
         QString tmp = item->name();
         _view->op()->emitExecuted(tmp);
@@ -236,9 +236,9 @@ bool KrMouseHandler::mouseReleaseEvent(QMouseEvent *e)
 
     CANCEL_TWO_CLICK_RENAME;
 
-    if (e->button() == Qt::MidButton && item != 0) {
+    if (e->button() == Qt::MidButton && item != nullptr) {
         e->accept();
-        if (item == 0)
+        if (item == nullptr)
             return true;
         _view->op()->emitMiddleButtonClicked(item);
         return true;
@@ -253,7 +253,7 @@ bool KrMouseHandler::mouseDoubleClickEvent(QMouseEvent *e)
     KrViewItem * item = _view->getKrViewItemAt(e->pos());
     if (_singleClick)
         return false;
-    if (e->button() == Qt::LeftButton && item != 0) {
+    if (e->button() == Qt::LeftButton && item != nullptr) {
         e->accept();
         QString tmp = item->name();
         _view->op()->emitExecuted(tmp);

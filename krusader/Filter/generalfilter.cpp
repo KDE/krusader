@@ -87,7 +87,7 @@ private:
 GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
                              QStringList extraOptions) :
         QWidget(parent),
-        profileManager(0), fltTabs(tabs)
+        profileManager(nullptr), fltTabs(tabs)
 {
     QGridLayout *filterLayout = new QGridLayout(this);
     filterLayout->setSpacing(6);
@@ -510,14 +510,14 @@ void GeneralFilter::slotAddBtnClicked()
 void GeneralFilter::slotOverwriteBtnClicked()
 {
     QListWidgetItem *item = profileListBox->currentItem();
-    if (item != 0)
+    if (item != nullptr)
         profileManager->overwriteProfile(item->text());
 }
 
 void GeneralFilter::slotRemoveBtnClicked()
 {
     QListWidgetItem *item = profileListBox->currentItem();
-    if (item != 0) {
+    if (item != nullptr) {
         profileManager->deleteProfile(item->text());
         refreshProfileListBox();
     }
@@ -525,7 +525,7 @@ void GeneralFilter::slotRemoveBtnClicked()
 
 void GeneralFilter::slotProfileDoubleClicked(QListWidgetItem *item)
 {
-    if (item != 0) {
+    if (item != nullptr) {
         QString profileName = item->text();
         profileManager->loadProfile(profileName);
         fltTabs->close(true);
@@ -535,7 +535,7 @@ void GeneralFilter::slotProfileDoubleClicked(QListWidgetItem *item)
 void GeneralFilter::slotLoadBtnClicked()
 {
     QListWidgetItem *item = profileListBox->currentItem();
-    if (item != 0)
+    if (item != nullptr)
         profileManager->loadProfile(item->text());
 }
 
@@ -566,10 +566,10 @@ void GeneralFilter::slotDisable()
 
 void GeneralFilter::slotRegExpTriggered(QAction * act)
 {
-    if (act == 0)
+    if (act == nullptr)
         return;
     RegExpAction *regAct = dynamic_cast<RegExpAction *>(act);
-    if (regAct == 0)
+    if (regAct == nullptr)
         return;
     containsText->lineEdit()->insert(regAct->regExp());
     containsText->lineEdit()->setCursorPosition(containsText->lineEdit()->cursorPosition() + regAct->cursor());

@@ -90,7 +90,7 @@ void UserActionListView::update(KrAction* action)
 UserActionListViewItem* UserActionListView::insertAction(KrAction* action)
 {
     if (! action)
-        return 0;
+        return nullptr;
 
     UserActionListViewItem* item;
 
@@ -118,7 +118,7 @@ QTreeWidgetItem* UserActionListView::findCategoryItem(const QString& category)
             return *it;
         it++;
     }
-    return 0;
+    return nullptr;
 }
 
 UserActionListViewItem* UserActionListView::findActionItem(const KrAction* action)
@@ -131,7 +131,7 @@ UserActionListViewItem* UserActionListView::findActionItem(const KrAction* actio
         }
         it++;
     }
-    return 0;
+    return nullptr;
 }
 
 KrAction * UserActionListView::currentAction() const
@@ -139,7 +139,7 @@ KrAction * UserActionListView::currentAction() const
     if (UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>(currentItem()))
         return item->action();
     else
-        return 0;
+        return nullptr;
 }
 
 void UserActionListView::setCurrentAction(const KrAction* action)

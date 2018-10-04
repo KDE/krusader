@@ -42,7 +42,7 @@ class KURLListRequester : public QWidget
 public:
     enum Mode { RequestFiles, RequestDirs };
 
-    explicit KURLListRequester(Mode requestMode, QWidget *parent = 0);
+    explicit KURLListRequester(Mode requestMode, QWidget *parent = nullptr);
 
     QList<QUrl> urlList();
     void setUrlList(const QList<QUrl> &);

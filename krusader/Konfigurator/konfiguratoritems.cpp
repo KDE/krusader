@@ -207,7 +207,7 @@ void KonfiguratorCheckBoxGroup::add(KonfiguratorCheckBox *checkBox)
 KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find(int index)
 {
     if (index < 0 || index >= checkBoxList.count())
-        return 0;
+        return nullptr;
     return checkBoxList.at(index);
 }
 
@@ -221,7 +221,7 @@ KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find(QString name)
             return checkBox;
     }
 
-    return 0;
+    return nullptr;
 }
 
 
@@ -255,7 +255,7 @@ void KonfiguratorRadioButtons::addRadioButton(QRadioButton *radioWidget, QString
 QRadioButton * KonfiguratorRadioButtons::find(int index)
 {
     if (index < 0 || index >= radioButtons.count())
-        return 0;
+        return nullptr;
 
     return radioButtons.at(index);
 }
@@ -264,7 +264,7 @@ QRadioButton * KonfiguratorRadioButtons::find(QString name)
 {
     int index = radioNames.indexOf(name);
     if (index == -1)
-        return 0;
+        return nullptr;
 
     return radioButtons.at(index);
 }

@@ -89,9 +89,9 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
 KrInterDetailedView::~KrInterDetailedView()
 {
     delete _properties;
-    _properties = 0;
+    _properties = nullptr;
     delete _operator;
-    _operator = 0;
+    _operator = nullptr;
 }
 
 void KrInterDetailedView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
@@ -304,7 +304,7 @@ void KrInterDetailedView::showContextMenu(const QPoint & p)
     actAutoResize->setChecked(_autoResizeColumns);
 
     QAction *res = popup.exec(p);
-    if (res == 0)
+    if (res == nullptr)
         return;
 
     if(res == actAutoResize) {

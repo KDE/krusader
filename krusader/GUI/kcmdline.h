@@ -74,7 +74,7 @@ class KCMDLine : public QWidget, KrActionBase
 {
     Q_OBJECT
 public:
-    explicit KCMDLine(QWidget *parent = 0);
+    explicit KCMDLine(QWidget *parent = nullptr);
     ~KCMDLine();
     void setCurrent(const QString &path);
     //virtual methods from KrActionBase

@@ -98,7 +98,7 @@ protected:
     virtual void   mouseMoveEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
     virtual void   wheelEvent(QWheelEvent * event) Q_DECL_OVERRIDE;
 
-    QStringList    readLines(const qint64 filePos, qint64 &endPos, const int lines, QList<qint64> * locs = 0);
+    QStringList    readLines(const qint64 filePos, qint64 &endPos, const int lines, QList<qint64> * locs = nullptr);
     QString        readSection(qint64 p1, qint64 p2);
     void           setUpScrollBar();
     void           setCursorPositionOnScreen(const int x, const int y, const int anchorX = -1, const int anchorY = -1);
@@ -307,7 +307,7 @@ protected:
     QString         _characterSet;
     QTextCodec     *_codec = QTextCodec::codecForLocale();
 
-    QTemporaryFile *_tempFile = 0;
+    QTemporaryFile *_tempFile = nullptr;
 
     bool            _downloading = false;
     bool            _restartFromBeginning = false;

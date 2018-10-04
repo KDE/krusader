@@ -40,7 +40,7 @@ class newFTPGUI : public QDialog
     Q_OBJECT
 
 public:
-    explicit newFTPGUI(QWidget *parent = 0);
+    explicit newFTPGUI(QWidget *parent = nullptr);
     ~newFTPGUI();
 
     KComboBox* prefix;

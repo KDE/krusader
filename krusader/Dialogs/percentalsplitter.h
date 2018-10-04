@@ -30,7 +30,7 @@ class PercentalSplitter : public QSplitter
     Q_OBJECT
 
 public:
-    explicit PercentalSplitter(QWidget * parent = 0);
+    explicit PercentalSplitter(QWidget * parent = nullptr);
     virtual ~PercentalSplitter();
 
     QString toolTipString(int p);

@@ -116,7 +116,7 @@ int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent, KrPanel *nextTo)
 ListPanel* PanelTabBar::getPanel(int tabIdx)
 {
     QVariant v = tabData(tabIdx);
-    if (v.isNull()) return 0;
+    if (v.isNull()) return nullptr;
     return (ListPanel*)v.toLongLong();
 }
 
@@ -128,7 +128,7 @@ void PanelTabBar::changePanel(int tabIdx, ListPanel *panel)
 ListPanel* PanelTabBar::removePanel(int index, ListPanel* &panelToDelete)
 {
     panelToDelete = getPanel(index); // old panel to kill later
-    disconnect(panelToDelete, 0, this, 0);
+    disconnect(panelToDelete, nullptr, this, nullptr);
 
     removeTab(index);
     layoutTabs();

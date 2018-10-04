@@ -179,7 +179,7 @@ private:
 
 const QString JobMan::sDefaultToolTip = i18n("No jobs");
 
-JobMan::JobMan(QObject *parent) : QObject(parent), m_messageBox(0)
+JobMan::JobMan(QObject *parent) : QObject(parent), m_messageBox(nullptr)
 {
     // job control action
     m_controlAction = new KToolBarPopupAction(Icon("media-playback-pause"),
@@ -254,7 +254,7 @@ bool JobMan::waitForJobs(bool waitForUserInput)
 
     int result = m_messageBox->exec(); // blocking
     m_messageBox->deleteLater();
-    m_messageBox = 0;
+    m_messageBox = nullptr;
 
     // accepted -> cancel all jobs
     if (result == QMessageBox::Abort) {

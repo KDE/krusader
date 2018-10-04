@@ -78,8 +78,8 @@ KrViewer::KrViewer(QWidget *parent) :
     tabBar.setMovable(true);
     setCentralWidget(&tabBar);
 
-    printAction = KStandardAction::print(this, SLOT(print()), 0);
-    copyAction = KStandardAction::copy(this, SLOT(copy()), 0);
+    printAction = KStandardAction::print(this, SLOT(print()), nullptr);
+    copyAction = KStandardAction::copy(this, SLOT(copy()), nullptr);
 
     viewerMenu = new QMenu(this);
     QAction *tempAction;
@@ -246,7 +246,7 @@ bool KrViewer::eventFilter(QObject * /* watched */, QEvent * e)
             ke->accept();
 
             QAction *act = reservedKeyActions[ reservedKeys.indexOf(ke->key())];
-            if (act != 0) {
+            if (act != nullptr) {
                 // don't activate the close functions immediately!
                 // it can cause crash
                 if (act == tabCloseAction || act == quitAction) {
@@ -392,7 +392,7 @@ void KrViewer::tabChanged(int index)
         if (part->widget())
             part->widget()->setFocus();
     } else
-        manager.setActivePart(0);
+        manager.setActivePart(nullptr);
 
 
     // set this viewer to be the main viewer
@@ -414,14 +414,14 @@ void KrViewer::tabCloseRequest(int index, bool force)
     if (pvb->part() && isPartAdded(pvb->part()))
         removePart(pvb->part());
 
-    disconnect(pvb, 0, this, 0);
+    disconnect(pvb, nullptr, this, nullptr);
 
     pvb->closeUrl();
 
     tabBar.removeTab(index);
 
     delete pvb;
-    pvb = 0;
+    pvb = nullptr;
 
     if (tabBar.count() <= 0) {
         if (returnFocusToThisWidget) {
@@ -545,7 +545,7 @@ void KrViewer::detachTab()
         removePart(part);
     }
 
-    disconnect(pvb, 0, this, 0);
+    disconnect(pvb, nullptr, this, nullptr);
 
     tabBar.removeTab(tabBar.indexOf(pvb));
 
@@ -683,7 +683,7 @@ void KrViewer::removePart(KParts::ReadOnlyPart *part)
     Q_ASSERT(isPartAdded(part));
 
     if (isPartAdded(part)) {
-        disconnect(part, 0, this, 0);
+        disconnect(part, nullptr, this, nullptr);
         part->removeEventFilter(this);
         manager.removePart(part);
     } else

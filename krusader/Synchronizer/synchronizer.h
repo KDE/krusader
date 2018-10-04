@@ -205,7 +205,7 @@ class KgetProgressDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit KgetProgressDialog(QWidget *parent = 0, const QString &caption = QString(),
+    explicit KgetProgressDialog(QWidget *parent = nullptr, const QString &caption = QString(),
                        const QString &text = QString(), bool modal = false);
 
     QProgressBar *progressBar() {

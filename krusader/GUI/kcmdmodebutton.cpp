@@ -48,7 +48,7 @@ KCMDModeButton::KCMDModeButton(QWidget *parent) : QToolButton(parent)
     adjustSize();
     action = new KActionMenu(i18n("Execution mode"), this);
     Q_CHECK_PTR(action);
-    for (int i = 0; KrActions::execTypeArray[i] != 0; i++) {
+    for (int i = 0; KrActions::execTypeArray[i] != nullptr; i++) {
         action->addAction(*KrActions::execTypeArray[i]);
     }
     QMenu *pP = action->menu();

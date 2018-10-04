@@ -179,7 +179,7 @@ KrBookmark * KrAddBookmarkDlg::folder() const
 {
     QList<QTreeWidgetItem *> items = _createIn->selectedItems();
     if (items.count() == 0)
-        return 0;
+        return nullptr;
 
     return _xr[ items[ 0 ] ];
 }

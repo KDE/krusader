@@ -54,7 +54,7 @@
 KrInterBriefView::KrInterBriefView(QWidget *parent, KrViewInstance &instance, KConfig *cfg) :
         QAbstractItemView(parent),
         KrInterView(instance, cfg, this),
-        _header(0)
+        _header(nullptr)
 {
     setWidget(this);
     setModel(_model);
@@ -84,10 +84,10 @@ KrInterBriefView::KrInterBriefView(QWidget *parent, KrViewInstance &instance, KC
 KrInterBriefView::~KrInterBriefView()
 {
     delete _properties;
-    _properties = 0;
+    _properties = nullptr;
 
     delete _operator;
-    _operator = 0;
+    _operator = nullptr;
 }
 
 void KrInterBriefView::doRestoreSettings(KConfigGroup group)

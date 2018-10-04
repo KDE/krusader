@@ -132,7 +132,7 @@ void KURLListRequester::deleteSelectedItems()
 
 void KURLListRequester::slotRightClicked(QListWidgetItem *item, const QPoint &pos)
 {
-    if (item == 0)
+    if (item == nullptr)
         return;
 
     QMenu popupMenu(this);

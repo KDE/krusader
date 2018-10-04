@@ -48,7 +48,7 @@ class DULinesItemDelegate : public QItemDelegate
 {
 public:
 
-    explicit DULinesItemDelegate(QObject *parent = 0) : QItemDelegate(parent) {}
+    explicit DULinesItemDelegate(QObject *parent = nullptr) : QItemDelegate(parent) {}
 
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const Q_DECL_OVERRIDE {
         QItemDelegate::paint(painter, option, index);
@@ -150,7 +150,7 @@ public:
             return true;
 
         const DULinesItem *compWith = dynamic_cast< const DULinesItem * >(&other);
-        if (compWith == 0)
+        if (compWith == nullptr)
             return false;
 
         switch (column) {
@@ -261,9 +261,9 @@ void DULines::slotDirChanged(Directory *dirEntry)
 {
     clear();
 
-    QTreeWidgetItem * lastItem = 0;
+    QTreeWidgetItem * lastItem = nullptr;
 
-    if (!(dirEntry->parent() == 0)) {
+    if (!(dirEntry->parent() == nullptr)) {
         lastItem = new QTreeWidgetItem(this);
         lastItem->setText(0, "..");
         lastItem->setIcon(0, Icon("go-up"));
@@ -282,7 +282,7 @@ void DULines::slotDirChanged(Directory *dirEntry)
 
         QString fileName = item->name();
 
-        if (lastItem == 0)
+        if (lastItem == nullptr)
             lastItem = new DULinesItem(diskUsage, item, this, "", item->percent() + "  ", fileName);
         else
             lastItem = new DULinesItem(diskUsage, item, this, lastItem, "", item->percent() + "  ", fileName);
@@ -368,7 +368,7 @@ void DULines::sectionResized(int column)
         return;
 
     Directory * currentDir = diskUsage->getCurrentDir();
-    if (currentDir == 0)
+    if (currentDir == nullptr)
         return;
 
     int maxPercent = -1;
@@ -455,7 +455,7 @@ void DULines::keyPressEvent(QKeyEvent *e)
 
 void DULines::slotRightClicked(QTreeWidgetItem *item, const QPoint &pos)
 {
-    File * file = 0;
+    File * file = nullptr;
 
     if (item && item->text(0) != "..")
         file = ((DULinesItem *)item)->getFile();
@@ -477,8 +477,8 @@ File * DULines::getCurrentFile()
 {
     QTreeWidgetItem *item = currentItem();
 
-    if (item == 0 || item->text(0) == "..")
-        return 0;
+    if (item == nullptr || item->text(0) == "..")
+        return nullptr;
 
     return ((DULinesItem *)item)->getFile();
 }

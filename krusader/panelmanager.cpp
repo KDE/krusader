@@ -45,11 +45,11 @@
 
 PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left) :
         QWidget(parent),
-        _otherManager(0),
+        _otherManager(nullptr),
         _actions(mainWindow->tabActions()),
-        _layout(0),
+        _layout(nullptr),
         _left(left),
-        _currentPanel(0)
+        _currentPanel(nullptr)
 {
     _layout = new QGridLayout(this);
     _layout->setContentsMargins(0, 0, 0, 0);
@@ -403,10 +403,10 @@ void PanelManager::slotCloseDuplicatedTabs()
     int i = 0;
     while (i < _tabbar->count() - 1) {
         ListPanel * panel1 = _tabbar->getPanel(i);
-        if (panel1 != 0) {
+        if (panel1 != nullptr) {
             for (int j = i + 1; j < _tabbar->count(); j++) {
                 ListPanel * panel2 = _tabbar->getPanel(j);
-                if (panel2 != 0 && panel1->virtualPath().matches(panel2->virtualPath(), QUrl::StripTrailingSlash)) {
+                if (panel2 != nullptr && panel1->virtualPath().matches(panel2->virtualPath(), QUrl::StripTrailingSlash)) {
                     if (j == activeTab()) {
                         slotCloseTab(i);
                         i--;

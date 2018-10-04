@@ -45,7 +45,7 @@ KRQuery::KRQuery()
     : QObject(), matchesCaseSensitive(true), bNull(true), contain(QString()),
       containCaseSensetive(true), containWholeWord(false), containRegExp(false), minSize(0),
       maxSize(0), newerThen(0), olderThen(0), owner(QString()), group(QString()), perm(QString()),
-      type(QString()), inArchive(false), recurse(true), followLinksP(true), receivedBuffer(0),
+      type(QString()), inArchive(false), recurse(true), followLinksP(true), receivedBuffer(nullptr),
       receivedBufferLen(0), processEventsConnected(0), codec(QTextCodec::codecForLocale())
 {
     QChar ch = '\n';
@@ -60,7 +60,7 @@ KRQuery::KRQuery(const QString &name, bool matchCase)
     : QObject(), bNull(true), contain(QString()), containCaseSensetive(true),
       containWholeWord(false), containRegExp(false), minSize(0), maxSize(0), newerThen(0),
       olderThen(0), owner(QString()), group(QString()), perm(QString()), type(QString()),
-      inArchive(false), recurse(true), followLinksP(true), receivedBuffer(0), receivedBufferLen(0),
+      inArchive(false), recurse(true), followLinksP(true), receivedBuffer(nullptr), receivedBufferLen(0),
       processEventsConnected(0), codec(QTextCodec::codecForLocale())
 {
     QChar ch = '\n';
@@ -73,7 +73,7 @@ KRQuery::KRQuery(const QString &name, bool matchCase)
 }
 
 KRQuery::KRQuery(const KRQuery &that)
-    : QObject(), receivedBuffer(0), receivedBufferLen(0), processEventsConnected(0)
+    : QObject(), receivedBuffer(nullptr), receivedBufferLen(0), processEventsConnected(0)
 {
     *this = that;
 }
@@ -82,7 +82,7 @@ KRQuery::~KRQuery()
 {
     if (receivedBuffer)
         delete[] receivedBuffer;
-    receivedBuffer = 0;
+    receivedBuffer = nullptr;
 }
 
 KRQuery &KRQuery::operator=(const KRQuery &old)
@@ -328,7 +328,7 @@ bool KRQuery::match(FileItem *item) const
         receivedBytes = 0;
         if (receivedBuffer)
             delete receivedBuffer;
-        receivedBuffer = 0;
+        receivedBuffer = nullptr;
         receivedBufferLen = 0;
         fileName = item->getName();
         timer.start();
@@ -406,7 +406,7 @@ bool KRQuery::checkBuffer(const char *data, int len) const
     }
 
     delete[] receivedBuffer;
-    receivedBuffer = 0;
+    receivedBuffer = nullptr;
     receivedBufferLen = maxLen - lastLinePosition;
 
     if (receivedBufferLen) {
@@ -671,7 +671,7 @@ void KRQuery::setContent(const QString &content, bool cs, bool wholeWord, QStrin
         codec = QTextCodec::codecForLocale();
     else {
         codec = QTextCodec::codecForName(encoding.toLatin1());
-        if (codec == 0)
+        if (codec == nullptr)
             codec = QTextCodec::codecForLocale();
     }
 

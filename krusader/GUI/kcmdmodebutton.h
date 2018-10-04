@@ -36,7 +36,7 @@ class KCMDModeButton : public QToolButton
     Q_OBJECT
 public:
     /** Constructor. Sets up the menu, and the icon */
-    explicit KCMDModeButton(QWidget *parent = 0);
+    explicit KCMDModeButton(QWidget *parent = nullptr);
     ~KCMDModeButton();
 
     /** Shows the popup menu. Called when clicked to the button */

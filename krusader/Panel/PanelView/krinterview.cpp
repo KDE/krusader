@@ -34,7 +34,7 @@
 
 KrInterView::KrInterView(KrViewInstance &instance, KConfig *cfg,
                          QAbstractItemView *itemView) :
-        KrView(instance, cfg), _itemView(itemView), _mouseHandler(0)
+        KrView(instance, cfg), _itemView(itemView), _mouseHandler(nullptr)
 {
     _model = new ListModel(this);
 
@@ -51,9 +51,9 @@ KrInterView::~KrInterView()
     // so schedule _model for later deletion
     _model->clear(false);
     _model->deleteLater();
-    _model = 0;
+    _model = nullptr;
     delete _mouseHandler;
-    _mouseHandler = 0;
+    _mouseHandler = nullptr;
     QHashIterator< FileItem *, KrViewItem *> it(_itemHash);
     while (it.hasNext())
         delete it.next().value();
@@ -106,22 +106,22 @@ bool KrInterView::isSelected(const QModelIndex &ndx)
 KrViewItem* KrInterView::findItemByName(const QString &name)
 {
     if (!_model->ready())
-        return 0;
+        return nullptr;
 
     QModelIndex ndx = _model->nameIndex(name);
     if (!ndx.isValid())
-        return 0;
+        return nullptr;
     return getKrViewItem(ndx);
 }
 
 KrViewItem *KrInterView::findItemByUrl(const QUrl &url)
 {
     if (!_model->ready())
-        return 0;
+        return nullptr;
 
     const QModelIndex ndx = _model->indexFromUrl(url);
     if (!ndx.isValid())
-        return 0;
+        return nullptr;
 
     return getKrViewItem(ndx);
 }
@@ -138,7 +138,7 @@ QString KrInterView::getCurrentItem() const
 KrViewItem* KrInterView::getCurrentKrViewItem()
 {
     if (!_model->ready())
-        return 0;
+        return nullptr;
 
     return getKrViewItem(_itemView->currentIndex());
 }
@@ -146,7 +146,7 @@ KrViewItem* KrInterView::getCurrentKrViewItem()
 KrViewItem* KrInterView::getFirst()
 {
     if (!_model->ready())
-        return 0;
+        return nullptr;
 
     return getKrViewItem(_model->index(0, 0, QModelIndex()));
 }
@@ -154,7 +154,7 @@ KrViewItem* KrInterView::getFirst()
 KrViewItem* KrInterView::getLast()
 {
     if (!_model->ready())
-        return 0;
+        return nullptr;
 
     return getKrViewItem(_model->index(_model->rowCount() - 1, 0, QModelIndex()));
 }
@@ -164,7 +164,7 @@ KrViewItem* KrInterView::getNext(KrViewItem *current)
     FileItem* fileItem = (FileItem *)current->getFileItem();
     QModelIndex ndx = _model->fileItemIndex(fileItem);
     if (ndx.row() >= _model->rowCount() - 1)
-        return 0;
+        return nullptr;
     return getKrViewItem(_model->index(ndx.row() + 1, 0, QModelIndex()));
 }
 
@@ -173,14 +173,14 @@ KrViewItem* KrInterView::getPrev(KrViewItem *current)
     FileItem* fileItem = (FileItem *)current->getFileItem();
     QModelIndex ndx = _model->fileItemIndex(fileItem);
     if (ndx.row() <= 0)
-        return 0;
+        return nullptr;
     return getKrViewItem(_model->index(ndx.row() - 1, 0, QModelIndex()));
 }
 
 KrViewItem* KrInterView::getKrViewItemAt(const QPoint &vp)
 {
     if (!_model->ready())
-        return 0;
+        return nullptr;
 
     return getKrViewItem(_itemView->indexAt(vp));
 }
@@ -199,10 +199,10 @@ KrViewItem * KrInterView::getKrViewItem(FileItem *fileItem)
 KrViewItem * KrInterView::getKrViewItem(const QModelIndex & ndx)
 {
     if (!ndx.isValid())
-        return 0;
+        return nullptr;
     FileItem * fileitem = _model->fileItemAt(ndx);
-    if (fileitem == 0)
-        return 0;
+    if (fileitem == nullptr)
+        return nullptr;
     else
         return getKrViewItem(fileitem);
 }
@@ -214,7 +214,7 @@ void KrInterView::makeCurrentVisible()
 
 void KrInterView::makeItemVisible(const KrViewItem *item)
 {
-    if (item == 0)
+    if (item == nullptr)
         return;
 
     FileItem* fileitem = (FileItem *)item->getFileItem();
@@ -314,7 +314,7 @@ void KrInterView::preDeleteItem(KrViewItem *item)
 
     // if the next item is current, current selection is lost on remove; preserve manually
     KrViewItem *currentItem = getCurrentKrViewItem();
-    KrViewItem *nextCurrentItem = currentItem && currentItem == getNext(item) ? currentItem : 0;
+    KrViewItem *nextCurrentItem = currentItem && currentItem == getNext(item) ? currentItem : nullptr;
 
     _model->removeItem((FileItem *)item->getFileItem());
 

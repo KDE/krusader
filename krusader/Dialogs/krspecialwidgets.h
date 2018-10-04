@@ -42,7 +42,7 @@ class KRPie : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KRPie(KIO::filesize_t _totalSize, QWidget *parent = 0);
+    explicit KRPie(KIO::filesize_t _totalSize, QWidget *parent = nullptr);
     void addSlice(KIO::filesize_t size, QString label);
 
 protected:

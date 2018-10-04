@@ -50,7 +50,7 @@
 #include "kguseractions.h"
 #include "kgprotocols.h"
 
-Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)0),
+Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)nullptr),
         firstTime(f), internalCall(false), sizeX(-1), sizeY(-1)
 {
     setWindowTitle(i18n("Konfigurator - Creating Your Own Krusader"));
@@ -170,7 +170,7 @@ void Konfigurator::slotApplyEnable()
 
 bool Konfigurator::slotPageSwitch(KPageWidgetItem *current, KPageWidgetItem *before)
 {
-    if (before == 0)
+    if (before == nullptr)
         return true;
 
     KonfiguratorPage *currentPg = (KonfiguratorPage *)(before->widget());
@@ -181,7 +181,7 @@ bool Konfigurator::slotPageSwitch(KPageWidgetItem *current, KPageWidgetItem *bef
     }
 
     if (currentPg->isChanged()) {
-        int result = KMessageBox::questionYesNoCancel(0, i18n("The current page has been changed. Do you want to apply changes?"));
+        int result = KMessageBox::questionYesNoCancel(nullptr, i18n("The current page has been changed. Do you want to apply changes?"));
 
         switch (result) {
         case KMessageBox::No:

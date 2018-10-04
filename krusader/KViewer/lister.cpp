@@ -1377,7 +1377,7 @@ bool Lister::openUrl(const QUrl &listerUrl)
     _cache.clear();
 
     _textArea->reset();
-    emit started(0);
+    emit started(nullptr);
     emit setWindowCaption(listerUrl.toDisplayString());
     emit completed();
     return true;

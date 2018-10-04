@@ -46,7 +46,7 @@ public:
      * The filesystem instances returned by this method are already connected with this handler and will
      * notify each other about filesystem changes.
      */
-    FileSystem *getFilesystem(const QUrl &url, FileSystem *oldFilesystem = 0);
+    FileSystem *getFilesystem(const QUrl &url, FileSystem *oldFilesystem = nullptr);
 
     /**
      * Start a copy job for copying, moving or linking files to a destination directory.

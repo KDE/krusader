@@ -108,7 +108,7 @@ AddPlaceholderPopup::AddPlaceholderPopup(QWidget *parent) : QMenu(parent)
 QString AddPlaceholderPopup::getPlaceholder(const QPoint& pos)
 {
     QAction *res = exec(pos);
-    if (res == 0)
+    if (res == nullptr)
         return QString();
 
     // add the selected flag to the command line

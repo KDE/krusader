@@ -150,7 +150,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
 
     multipleVolume = new QCheckBox(i18n("Multiple volume archive"), advancedWidget);
     connect(multipleVolume, &QCheckBox::toggled, this, &PackGUIBase::checkConsistency);
-    compressLayout->addWidget(multipleVolume, 0, 0);
+    compressLayout->addWidget(multipleVolume, 0, nullptr);
 
     QHBoxLayout * volumeHbox = new QHBoxLayout;
 
@@ -180,7 +180,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     if (level != _defaultCompressionLevel)
         setCompressionLevel->setChecked(true);
     connect(setCompressionLevel, &QCheckBox::toggled, this, &PackGUIBase::checkConsistency);
-    compressLayout->addWidget(setCompressionLevel, 0, 0);
+    compressLayout->addWidget(setCompressionLevel, 0, nullptr);
 
     QHBoxLayout * sliderHbox = new QHBoxLayout;
 

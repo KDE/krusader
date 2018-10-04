@@ -48,7 +48,7 @@ QString MediaButton::remotePrefix = QLatin1String("remote:");
 
 
 MediaButton::MediaButton(QWidget *parent) : QToolButton(parent),
-        popupMenu(0), rightMenu(0), openInNewTab(false)
+        popupMenu(nullptr), rightMenu(nullptr), openInNewTab(false)
 {
     setAutoRaise(true);
     setIcon(Icon("system-file-manager"));
@@ -172,7 +172,7 @@ void MediaButton::createMediaList()
 bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &iconOut)
 {
     Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
-    if (access == 0)
+    if (access == nullptr)
         return false;
 
     QString udi     = device.udi();
@@ -352,12 +352,12 @@ void MediaButton::rightClickMenu(QString udi, QPoint pos)
 
     QAction *act = myMenu->exec(pos);
     int result = -1;
-    if (act != 0 && act->data().canConvert<int>())
+    if (act != nullptr && act->data().canConvert<int>())
         result = act->data().toInt();
 
     delete myMenu;
     if (rightMenu == myMenu)
-        rightMenu = 0;
+        rightMenu = nullptr;
     else
         return;
 
@@ -525,7 +525,7 @@ void MediaButton::slotDeviceAdded(const QString& udi)
 
     Solid::Device device(udi);
     Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
-    if (access == 0)
+    if (access == nullptr)
         return;
 
     QString name;
@@ -593,7 +593,7 @@ void MediaButton::slotCheckMounts()
             bool mounted = false;
             QString udi = remotePrefix + path;
 
-            QAction * correspondingAct = 0;
+            QAction * correspondingAct = nullptr;
             foreach(QAction * act, actionList) {
                 if (act && act->data().canConvert<QString>() && act->data().toString() == udi) {
                     correspondingAct = act;

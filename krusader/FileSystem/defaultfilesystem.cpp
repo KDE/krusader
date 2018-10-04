@@ -362,7 +362,7 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory, bool onlyScan) {
     QT_DIRENT* dirEnt;
     QString name;
     const bool showHidden = showHiddenFiles();
-    while ((dirEnt = QT_READDIR(dir)) != NULL) {
+    while ((dirEnt = QT_READDIR(dir)) != nullptr) {
         name = QString::fromLocal8Bit(dirEnt->d_name);
 
         // show hidden files?

@@ -41,7 +41,7 @@
 #include "../JobMan/jobman.h"
 #include "../JobMan/krjob.h"
 
-FileSystem::FileSystem() : DirListerInterface(0), _isRefreshing(false) {}
+FileSystem::FileSystem() : DirListerInterface(nullptr), _isRefreshing(false) {}
 
 FileSystem::~FileSystem()
 {
@@ -287,7 +287,7 @@ FileItem *FileSystem::createFileItemFromKIO(const KIO::UDSEntry &entry, const QU
     const QString name = kfi.text();
     // ignore un-needed entries
     if (name.isEmpty() || name == "." || name == "..") {
-        return 0;
+        return nullptr;
     }
 
     const QString localPath = kfi.localPath();

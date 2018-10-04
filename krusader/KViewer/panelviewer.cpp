@@ -41,12 +41,12 @@
 #define DICTSIZE 211
 
 PanelViewerBase::PanelViewerBase(QWidget *parent, KrViewer::Mode mode) :
-        QStackedWidget(parent), mimes(0), cpart(0), mode(mode)
+        QStackedWidget(parent), mimes(nullptr), cpart(nullptr), mode(mode)
 {
     setSizePolicy(QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Ignored));
 
     mimes = new QHash<QString, QPointer<KParts::ReadOnlyPart> >();
-    cpart = 0;
+    cpart = nullptr;
     // NOTE: the fallback should be never visible. The viewer is not opened without a file and the
     // tab is closed if a file cannot be opened.
     fallback = new QLabel(i18n("No file selected or selected file cannot be displayed."), this);
@@ -84,7 +84,7 @@ void PanelViewerBase::slotStatResult(KJob* job)
 
 KParts::ReadOnlyPart* PanelViewerBase::getPart(QString mimetype)
 {
-    KParts::ReadOnlyPart* part = 0;
+    KParts::ReadOnlyPart* part = nullptr;
 
     if (mimes->find(mimetype) == mimes->end()) {
         part = createPart(mimetype);
@@ -124,7 +124,7 @@ PanelViewer::~PanelViewer()
 
 KParts::ReadOnlyPart* PanelViewer::getListerPart(bool hexMode)
 {
-    KParts::ReadOnlyPart* part = 0;
+    KParts::ReadOnlyPart* part = nullptr;
 
     if (mimes->find(QLatin1String("krusader_lister")) == mimes->end()) {
         part = new Lister(this);
@@ -142,7 +142,7 @@ KParts::ReadOnlyPart* PanelViewer::getListerPart(bool hexMode)
 
 KParts::ReadOnlyPart* PanelViewer::getHexPart()
 {
-    KParts::ReadOnlyPart* part = 0;
+    KParts::ReadOnlyPart* part = nullptr;
 
     if (KConfigGroup(krConfig, "General").readEntry("UseOktetaViewer", _UseOktetaViewer)) {
         if (mimes->find("oktetapart") == mimes->end()) {
@@ -197,7 +197,7 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(KFileItem fi)
 
     QString mimetype = fi.mimetype();
 
-    KParts::ReadOnlyPart* part = 0;
+    KParts::ReadOnlyPart* part = nullptr;
 
     switch(mode) {
     case KrViewer::Generic:
@@ -274,7 +274,7 @@ bool PanelViewer::closeUrl()
 {
     setCurrentWidget(fallback);
     if (cpart && cpart->closeUrl()) {
-        cpart = 0;
+        cpart = nullptr;
         return true;
     }
     return false;
@@ -282,7 +282,7 @@ bool PanelViewer::closeUrl()
 
 KParts::ReadOnlyPart* PanelViewer::createPart(QString mimetype)
 {
-    KParts::ReadOnlyPart * part = 0;
+    KParts::ReadOnlyPart * part = nullptr;
     KService::Ptr ptr = KMimeTypeTrader::self()->preferredService(mimetype, "KParts/ReadOnlyPart");
     if (ptr) {
         QVariantList args;
@@ -321,7 +321,7 @@ void PanelEditor::configureDeps()
     if (!ptr)
         ptr = KMimeTypeTrader::self()->preferredService("all/allfiles", "KParts/ReadWritePart");
     if (!ptr)
-        KMessageBox::sorry(0, missingKPartMsg(), i18n("Missing Plugin"), KMessageBox::AllowLink);
+        KMessageBox::sorry(nullptr, missingKPartMsg(), i18n("Missing Plugin"), KMessageBox::AllowLink);
 
 }
 
@@ -395,13 +395,13 @@ bool PanelEditor::closeUrl()
     static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->closeUrl(false);
 
     setCurrentWidget(fallback);
-    cpart = 0;
+    cpart = nullptr;
     return true;
 }
 
 KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
 {
-    KParts::ReadWritePart * part = 0L;
+    KParts::ReadWritePart * part = nullptr;
     KService::Ptr ptr = KMimeTypeTrader::self()->preferredService(mimetype, "KParts/ReadWritePart");
     if (ptr) {
         QVariantList args;

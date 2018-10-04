@@ -59,7 +59,7 @@ public:
                      QString label2 = QString(), QString label3 = QString(), QString label4 = QString(),
                      QString label5 = QString(), QString label6 = QString(),
                      QString label7 = QString(), QString label8 = QString()) :
-                QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(0) {
+                QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(nullptr) {
             setText(0, label1);
             setText(1, label2);
             setText(2, label3);
@@ -81,7 +81,7 @@ public:
                      QString label2 = QString(), QString label3 = QString(), QString label4 = QString(),
                      QString label5 = QString(), QString label6 = QString(),
                      QString label7 = QString(), QString label8 = QString()) :
-                QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(0) {
+                QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(nullptr) {
             setText(0, label1);
             setText(1, label2);
             setText(2, label3);
@@ -100,7 +100,7 @@ public:
         }
 
         ~SyncViewItem() {
-            syncItemRef->setUserData(0);
+            syncItemRef->setUserData(nullptr);
         }
 
         inline SynchronizerFileItem * synchronizerItemRef()       {

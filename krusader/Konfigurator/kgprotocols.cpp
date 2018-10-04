@@ -164,16 +164,16 @@ void KgProtocols::slotDisableButtons()
 {
     btnAddProtocol->setEnabled(protocolList->selectedItems().count() != 0);
     QTreeWidgetItem *listViewItem = linkList->currentItem();
-    bool isProtocolSelected = (listViewItem == 0 ? false : listViewItem->parent() == 0);
+    bool isProtocolSelected = (listViewItem == nullptr ? false : listViewItem->parent() == nullptr);
     btnRemoveProtocol->setEnabled(isProtocolSelected);
-    btnAddMime->setEnabled(listViewItem != 0 && mimeList->selectedItems().count() != 0);
-    btnRemoveMime->setEnabled(listViewItem == 0 ? false : listViewItem->parent() != 0);
+    btnAddMime->setEnabled(listViewItem != nullptr && mimeList->selectedItems().count() != 0);
+    btnRemoveMime->setEnabled(listViewItem == nullptr ? false : listViewItem->parent() != nullptr);
 
-    if (linkList->currentItem() == 0 && linkList->topLevelItemCount() != 0)
+    if (linkList->currentItem() == nullptr && linkList->topLevelItemCount() != 0)
         linkList->setCurrentItem(linkList->topLevelItem(0));
 
     QList<QTreeWidgetItem *> list = linkList->selectedItems();
-    if (list.count() == 0 && linkList->currentItem() != 0)
+    if (list.count() == 0 && linkList->currentItem() != nullptr)
         linkList->currentItem()->setSelected(true);
 }
 
@@ -234,7 +234,7 @@ void KgProtocols::removeProtocol(QString name)
 void KgProtocols::slotAddMime()
 {
     QList<QListWidgetItem *> list = mimeList->selectedItems();
-    if (list.count() > 0 && linkList->currentItem() != 0) {
+    if (list.count() > 0 && linkList->currentItem() != nullptr) {
         QTreeWidgetItem *itemToAdd = linkList->currentItem();
         if (itemToAdd->parent())
             itemToAdd = itemToAdd->parent();
@@ -251,11 +251,11 @@ void KgProtocols::addMime(QString name, QString protocol)
 
     QList<QTreeWidgetItem *> itemList = linkList->findItems(protocol, Qt::MatchExactly | Qt::MatchRecursive, 0);
 
-    QTreeWidgetItem *currentListItem = 0;
+    QTreeWidgetItem *currentListItem = nullptr;
     if (itemList.count() != 0)
         currentListItem = itemList[ 0 ];
 
-    if (list.count() > 0 && currentListItem && currentListItem->parent() == 0) {
+    if (list.count() > 0 && currentListItem && currentListItem->parent() == nullptr) {
         delete list[ 0 ];
         QTreeWidgetItem *listViewItem = new QTreeWidgetItem(currentListItem);
         listViewItem->setText(0, name);
@@ -278,11 +278,11 @@ void KgProtocols::removeMime(QString name)
 {
     QList<QTreeWidgetItem *> itemList = linkList->findItems(name, Qt::MatchExactly | Qt::MatchRecursive, 0);
 
-    QTreeWidgetItem *currentMimeItem = 0;
+    QTreeWidgetItem *currentMimeItem = nullptr;
     if (itemList.count() != 0)
         currentMimeItem = itemList[ 0 ];
 
-    if (currentMimeItem && currentMimeItem->parent() != 0) {
+    if (currentMimeItem && currentMimeItem->parent() != nullptr) {
         mimeList->addItem(currentMimeItem->text(0));
         mimeList->sortItems();
         currentMimeItem->parent()->removeChild(currentMimeItem);

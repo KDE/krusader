@@ -41,7 +41,7 @@ class MediaButton : public QToolButton
 {
     Q_OBJECT
 public:
-    explicit MediaButton(QWidget *parent = 0);
+    explicit MediaButton(QWidget *parent = nullptr);
     ~MediaButton();
 
 public slots:
@@ -67,7 +67,7 @@ protected:
 private:
     void createMediaList();
     void toggleMount(QString udi);
-    void getStatus(QString udi, bool &mounted, QString *mountPointOut = 0, bool *ejectableOut = 0);
+    void getStatus(QString udi, bool &mounted, QString *mountPointOut = nullptr, bool *ejectableOut = nullptr);
     void mount(QString, bool open = false, bool newtab = false);
     void umount(QString);
     void eject(QString);

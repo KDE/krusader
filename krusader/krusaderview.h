@@ -44,7 +44,7 @@ class KrusaderView : public QWidget
     Q_OBJECT
 
 public:
-    explicit KrusaderView(QWidget *parent = 0);
+    explicit KrusaderView(QWidget *parent = nullptr);
     virtual ~KrusaderView() {}
     void start(const KConfigGroup &cfg, bool restoreSettings, const QList<QUrl> &leftTabs, const QList<QUrl> &rightTabs);
     void updateGUI(const KConfigGroup &cfg);
@@ -67,7 +67,7 @@ public:
     KCMDLine *cmdLine() const { return _cmdLine; }
     TerminalDock *terminalDock() const { return _terminalDock; }
     bool isVertical() const {
-        return horiz_splitter != 0 ? horiz_splitter->orientation() == Qt::Vertical : false;
+        return horiz_splitter != nullptr ? horiz_splitter->orientation() == Qt::Vertical : false;
     }
     void swapSides();
     void setPanelSize(bool leftPanel, int percent);

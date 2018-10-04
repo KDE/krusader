@@ -32,7 +32,7 @@ class KrusaderStatus : public QStatusBar
 {
     Q_OBJECT
 public:
-    explicit KrusaderStatus(QWidget *parent = 0);
+    explicit KrusaderStatus(QWidget *parent = nullptr);
     ~KrusaderStatus();
 
 private:

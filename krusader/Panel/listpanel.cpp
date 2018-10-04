@@ -122,8 +122,8 @@ protected:
 ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg) :
         QWidget(parent), KrPanel(manager, this, new ListPanelFunc(this)),
         panelType(-1), colorMask(255), compareMode(false),
-        previewJob(0), inlineRefreshJob(0), searchBar(0), cdRootButton(0), cdUpButton(0),
-        sidebarButton(0), sidebar(0), fileSystemError(0), _navigatorUrl(), _tabState(TabState::DEFAULT)
+        previewJob(nullptr), inlineRefreshJob(nullptr), searchBar(nullptr), cdRootButton(nullptr), cdUpButton(nullptr),
+        sidebarButton(nullptr), sidebar(nullptr), fileSystemError(nullptr), _navigatorUrl(), _tabState(TabState::DEFAULT)
 {
     if(cfg.isValid())
         panelType = cfg.readEntry("Type", -1);
@@ -381,7 +381,7 @@ ListPanel::~ListPanel()
 {
     cancelProgress();
     delete view;
-    view = 0;
+    view = nullptr;
     delete func;
     delete status;
     delete bookmarksButton;
@@ -648,14 +648,14 @@ void ListPanel::compareDirs(bool otherPanelToo)
 
     KrViewItem *item, *otherItem;
 
-    for (item = view->getFirst(); item != 0; item = view->getNext(item)) {
+    for (item = view->getFirst(); item != nullptr; item = view->getNext(item)) {
         if (item->name() == "..")
             continue;
 
-        for (otherItem = otherPanel()->view->getFirst(); otherItem != 0 && otherItem->name() != item->name();
+        for (otherItem = otherPanel()->view->getFirst(); otherItem != nullptr && otherItem->name() != item->name();
                 otherItem = otherPanel()->view->getNext(otherItem));
 
-        bool isSingle = (otherItem == 0), isDifferent = false, isNewer = false;
+        bool isSingle = (otherItem == nullptr), isDifferent = false, isNewer = false;
 
         if (func->getFileItem(item)->isDir() && !selectDirs) {
             item->setSelected(false);
@@ -748,7 +748,7 @@ void ListPanel::start(const QUrl &url)
 void ListPanel::slotStartUpdate(bool directoryChange)
 {
     if (inlineRefreshJob)
-        inlineRefreshListResult(0);
+        inlineRefreshListResult(nullptr);
 
     setCursor(Qt::BusyCursor);
 
@@ -816,7 +816,7 @@ void ListPanel::handleDrop(QDropEvent *event, bool onView)
     // find dropping destination
     QString destinationDir = "";
     const bool dragFromThisPanel = event->source() == this;
-    const KrViewItem *item = onView ? view->getKrViewItemAt(event->pos()) : 0;
+    const KrViewItem *item = onView ? view->getKrViewItemAt(event->pos()) : nullptr;
     if (item) {
         const FileItem *file = item->getFileItem();
         if (file && !file->isDir() && dragFromThisPanel) {
@@ -1028,7 +1028,7 @@ void ListPanel::slotPreviewJobPercent(KJob* /*job*/, unsigned long percent)
 
 void ListPanel::slotPreviewJobResult(KJob* /*job*/)
 {
-    previewJob = 0;
+    previewJob = nullptr;
     previewProgress->hide();
     if(!inlineRefreshJob)
         cancelProgressButton->hide();
@@ -1065,14 +1065,14 @@ void ListPanel::slotRefreshJobStarted(KIO::Job* job)
 void ListPanel::cancelProgress()
 {
     if (inlineRefreshJob) {
-        disconnect(inlineRefreshJob, 0, this, 0);
+        disconnect(inlineRefreshJob, nullptr, this, nullptr);
         inlineRefreshJob->kill(KJob::EmitResult);
-        inlineRefreshListResult(0);
+        inlineRefreshListResult(nullptr);
     }
     if(previewJob) {
-        disconnect(previewJob, 0, this, 0);
+        disconnect(previewJob, nullptr, this, nullptr);
         previewJob->kill(KJob::EmitResult);
-        slotPreviewJobResult(0);
+        slotPreviewJobResult(nullptr);
     }
 }
 
@@ -1096,8 +1096,8 @@ void ListPanel::inlineRefreshInfoMessage(KJob*, const QString &msg)
 void ListPanel::inlineRefreshListResult(KJob*)
 {
     if(inlineRefreshJob)
-        disconnect(inlineRefreshJob, 0, this, 0);
-    inlineRefreshJob = 0;
+        disconnect(inlineRefreshJob, nullptr, this, nullptr);
+    inlineRefreshJob = nullptr;
     // reenable everything
     status->setEnabled(true);
     urlNavigator->setEnabled(true);
@@ -1320,7 +1320,7 @@ void ListPanel::newTab(KrViewItem *it)
 
 void ListPanel::newTab(const QUrl &url, bool nextToThis)
 {
-    _manager->newTab(url, nextToThis ? this : 0);
+    _manager->newTab(url, nextToThis ? this : nullptr);
 }
 
 void ListPanel::slotNavigatorUrlChanged(const QUrl &url)

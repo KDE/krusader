@@ -34,7 +34,7 @@ class DirHistoryButton : public QToolButton
 {
     Q_OBJECT
 public:
-    explicit DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent = 0);
+    explicit DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent = nullptr);
     ~DirHistoryButton();
 
     void showMenu();

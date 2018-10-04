@@ -40,7 +40,7 @@
 
 
 KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
-    : QWidget(parent), _view(0), _rightArrowEntersDirFlag(true)
+    : QWidget(parent), _view(nullptr), _rightArrowEntersDirFlag(true)
 {
     // close button
     QToolButton *closeButton = new QToolButton(this);
@@ -97,7 +97,7 @@ void KrSearchBar::setView(KrView *view)
 {
     if (_view) {
         _view->widget()->removeEventFilter(this);
-        disconnect(_openSelectDialogBtn, 0, 0, 0);
+        disconnect(_openSelectDialogBtn, nullptr, nullptr, nullptr);
     }
 
     _view = view;

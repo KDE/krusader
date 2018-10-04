@@ -47,7 +47,7 @@ class ProfileManager : public QPushButton
     Q_OBJECT
 
 public:
-    explicit ProfileManager(QString profileType, QWidget * parent = 0);
+    explicit ProfileManager(QString profileType, QWidget * parent = nullptr);
 
     /**
      * @param profileType Type of the profile (sync, search, ...)

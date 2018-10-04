@@ -50,7 +50,7 @@ public:
     explicit KrBookmarkHandler(KrMainWindow *mainWindow);
     ~KrBookmarkHandler();
     void populate(QMenu *menu);
-    void addBookmark(KrBookmark *bm, KrBookmark *parent = 0);
+    void addBookmark(KrBookmark *bm, KrBookmark *parent = nullptr);
     void bookmarkCurrent(QUrl url);
 
 protected:

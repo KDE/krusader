@@ -34,7 +34,7 @@ class KgDependencies : public KonfiguratorPage
     Q_OBJECT
 
 public:
-    explicit KgDependencies(bool first, QWidget* parent = 0);
+    explicit KgDependencies(bool first, QWidget* parent = nullptr);
 
     virtual int activeSubPage() Q_DECL_OVERRIDE;
 

@@ -107,7 +107,7 @@ public:
 };
 
 KIso::KIso(const QString& filename, const QString & _mimetype)
-        : KArchive(0L)
+        : KArchive(nullptr)
 {
     KRFUNC;
     KRDEBUG("Starting KIso: " << filename << " - type: " << _mimetype);
@@ -236,7 +236,7 @@ static int mycallb(struct iso_directory_record *idr, void *udata)
     int time, cdate, adate;
     rr_entry rr;
     bool special = false;
-    KArchiveEntry *entry = NULL, *oldentry = NULL;
+    KArchiveEntry *entry = nullptr, *oldentry = nullptr;
     char z_algo[2], z_params[2];
     long long z_size = 0;
 

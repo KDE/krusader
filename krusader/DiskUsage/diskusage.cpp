@@ -195,8 +195,8 @@ void LoaderWidget::slotCancelled()
 }
 
 DiskUsage::DiskUsage(QString confGroup, QWidget *parent) : QStackedWidget(parent),
-        currentDirectory(0), root(0), configGroup(confGroup), loading(false),
-        abortLoading(false), clearAfterAbort(false), deleting(false), searchFileSystem(0)
+        currentDirectory(nullptr), root(nullptr), configGroup(confGroup), loading(false),
+        abortLoading(false), clearAfterAbort(false), deleting(false), searchFileSystem(nullptr)
 {
     listView = new DUListView(this);
     lineView = new DULines(this);
@@ -254,17 +254,17 @@ void DiskUsage::load(const QUrl &baseDir)
 
     if (searchFileSystem) {
         delete searchFileSystem;
-        searchFileSystem = 0;
+        searchFileSystem = nullptr;
     }
     searchFileSystem = FileSystemProvider::instance().getFilesystem(baseDir);
-    if (searchFileSystem == 0) {
+    if (searchFileSystem == nullptr) {
         qWarning() << "could not get filesystem for directory=" << baseDir;
         loading = abortLoading = clearAfterAbort = false;
         emit loadFinished(false);
         return;
     }
 
-    currentFileItem = 0;
+    currentFileItem = nullptr;
 
     if (!loading) {
         viewBeforeLoad = activeView;
@@ -283,12 +283,12 @@ void DiskUsage::load(const QUrl &baseDir)
 
 void DiskUsage::slotLoadDirectory()
 {
-    if ((currentFileItem == 0 && directoryStack.isEmpty()) || loaderView->wasCancelled() || abortLoading) {
+    if ((currentFileItem == nullptr && directoryStack.isEmpty()) || loaderView->wasCancelled() || abortLoading) {
         if (searchFileSystem)
             delete searchFileSystem;
 
-        searchFileSystem = 0;
-        currentFileItem = 0;
+        searchFileSystem = nullptr;
+        currentFileItem = nullptr;
 
         setView(viewBeforeLoad);
 
@@ -304,7 +304,7 @@ void DiskUsage::slotLoadDirectory()
         loading = abortLoading = clearAfterAbort = false;
     } else if (loading) {
         for (int counter = 0; counter != MAX_FILENUM; counter ++) {
-            if (currentFileItem == 0) {
+            if (currentFileItem == nullptr) {
                 if (directoryStack.isEmpty())
                     break;
 
@@ -339,7 +339,7 @@ void DiskUsage::slotLoadDirectory()
                 currentFileItem = fileItems.isEmpty() ? 0 : fileItems.takeFirst();
             } else {
                 fileNum++;
-                File *newItem = 0;
+                File *newItem = nullptr;
 
                 QString mime = currentFileItem->getMime(); // fast == not using mimetype magic
 
@@ -384,8 +384,8 @@ void DiskUsage::close()
 
 void DiskUsage::dirUp()
 {
-    if (currentDirectory != 0) {
-        if (currentDirectory->parent() != 0)
+    if (currentDirectory != nullptr) {
+        if (currentDirectory->parent() != nullptr)
             changeDirectory((Directory *)(currentDirectory->parent()));
         else {
             QUrl up = KIO::upUrl(baseURL);
@@ -410,7 +410,7 @@ Directory * DiskUsage::getDirectory(QString dir)
         return root;
 
     if (contentMap.find(dir) == contentMap.end())
-        return 0;
+        return nullptr;
     return contentMap[ dir ];
 }
 
@@ -430,14 +430,14 @@ File * DiskUsage::getFile(QString path)
         dir.truncate(ndx);
 
     Directory *dirEntry = getDirectory(dir);
-    if (dirEntry == 0)
-        return 0;
+    if (dirEntry == nullptr)
+        return nullptr;
 
     for (Iterator<File> it = dirEntry->iterator(); it != dirEntry->end(); ++it)
         if ((*it)->name() == file)
             return *it;
 
-    return 0;
+    return nullptr;
 }
 
 void DiskUsage::clear()
@@ -453,14 +453,14 @@ void DiskUsage::clear()
     contentMap.clear();
     if (root)
         delete root;
-    root = currentDirectory = 0;
+    root = currentDirectory = nullptr;
 }
 
 int DiskUsage::calculateSizes(Directory *dirEntry, bool emitSig, int depth)
 {
     int changeNr = 0;
 
-    if (dirEntry == 0)
+    if (dirEntry == nullptr)
         dirEntry = root;
 
     KIO::filesize_t own = 0, total = 0;
@@ -526,7 +526,7 @@ int DiskUsage::include(Directory *dir, int depth)
 {
     int changeNr = 0;
 
-    if (dir == 0)
+    if (dir == nullptr)
         return 0;
 
     for (Iterator<File> it = dir->iterator(); it != dir->end(); ++it) {
@@ -603,7 +603,7 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
             deleteNr += del(*it, false, depth + 1);
 
         QString path;
-        for (const Directory *d = (Directory*)file; d != root && d && d->parent() != 0; d = d->parent()) {
+        for (const Directory *d = (Directory*)file; d != root && d && d->parent() != nullptr; d = d->parent()) {
             if (!path.isEmpty())
                 path = '/' + path;
 
@@ -658,11 +658,11 @@ void * DiskUsage::getProperty(File *item, QString key)
 {
     QHash< File *, Properties *>::iterator itr = propertyMap.find(item);
     if (itr == propertyMap.end())
-        return 0;
+        return nullptr;
 
     QHash<QString, void *>::iterator it = (*itr)->find(key);
     if (it == (*itr)->end())
-        return 0;
+        return nullptr;
 
     return it.value();
 }
@@ -694,7 +694,7 @@ void DiskUsage::createStatus()
 {
     Directory *dirEntry = currentDirectory;
 
-    if (dirEntry == 0)
+    if (dirEntry == nullptr)
         return;
 
     QUrl url = baseURL;
@@ -733,7 +733,7 @@ void DiskUsage::rightClickMenu(const QPoint & pos, File *fileItem, QMenu *addPop
 
     QHash<void *, int> actionHash;
 
-    if (fileItem != 0) {
+    if (fileItem != nullptr) {
         QAction * actDelete = popup.addAction(i18n("Delete"));
         actionHash[ actDelete ] = DELETE_ID;
         actDelete->setShortcut(Qt::Key_Delete);
@@ -766,7 +766,7 @@ void DiskUsage::rightClickMenu(const QPoint & pos, File *fileItem, QMenu *addPop
     popup.addSeparator();
 
 
-    if (addPopup != 0) {
+    if (addPopup != nullptr) {
         QAction * menu = popup.addMenu(addPopup);
         menu->setText(addPopupName);
     }
@@ -976,7 +976,7 @@ int DiskUsage::calculatePercents(bool emitSig, Directory *dirEntry, int depth)
 {
     int changeNr = 0;
 
-    if (dirEntry == 0)
+    if (dirEntry == nullptr)
         dirEntry = root;
 
     for (Iterator<File> it = dirEntry->iterator(); it != dirEntry->end(); ++it) {
@@ -1061,7 +1061,7 @@ void DiskUsage::setView(int view)
 
 File * DiskUsage::getCurrentFile()
 {
-    File * file = 0;
+    File * file = nullptr;
 
     switch (activeView) {
     case VIEW_LINES:

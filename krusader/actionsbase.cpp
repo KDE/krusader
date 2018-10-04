@@ -32,7 +32,7 @@
 void ActionsBase::ActionGroup::reconnect(QObject *recv)
 {
     foreach(QAction *action, _slots.keys()) {
-        disconnect(action, 0, 0, 0);
+        disconnect(action, nullptr, nullptr, nullptr);
         connect(action, SIGNAL(triggered(bool)), recv, _slots[action]);
     }
 }
@@ -46,12 +46,12 @@ void ActionsBase::ActionGroup::addAction(QAction *action, const char *slot)
 QAction *ActionsBase::createAction(QString text, QString icon, bool isToggleAction)
 {
     if(isToggleAction) {
-        if (icon == 0)
+        if (icon == nullptr)
             return (QAction *)(new KToggleAction(text, this));
         else
             return (QAction *)(new KToggleAction(Icon(icon), text, this));
     } else {
-        if (icon == 0)
+        if (icon == nullptr)
             return new QAction(text, this);
         else
             return new QAction(Icon(icon), text, this);
@@ -113,7 +113,7 @@ QAction *ActionsBase::stdAction(KStandardAction::StandardAction id, QObject *rec
 
 QAction *ActionsBase::stdAction(KStandardAction::StandardAction id, ActionGroup &group, const char *slot)
 {
-    QAction *action = KStandardAction::create(id, 0, 0, _mainWindow->actions());
+    QAction *action = KStandardAction::create(id, nullptr, nullptr, _mainWindow->actions());
     group.addAction(action, slot);
     return action;
 }

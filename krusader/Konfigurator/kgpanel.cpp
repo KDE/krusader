@@ -430,7 +430,7 @@ void KgPanel::setupPanelTab()
     {
         {"Look&Feel", "Case Sensative Sort", _CaseSensativeSort, i18n("Case sensitive sorting"), true,
             i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).") },
-        {"Look&Feel", "Show Directories First", true, i18n("Show folders first"), true, 0 },
+        {"Look&Feel", "Show Directories First", true, i18n("Show folders first"), true, nullptr },
         {"Look&Feel", "Always sort dirs by name", false, i18n("Always sort dirs by name"), true,
             i18n("Folders are sorted by name, regardless of the sort column.") },
         {"Look&Feel", "Locale Aware Sort", true, i18n("Locale aware sorting"), true,
@@ -520,7 +520,7 @@ void KgPanel::setupButtonsTab()
     };
     buttonsCheckboxes = createCheckBoxGroup(1, 0, buttonsParams, 7/*count*/, tab, PAGE_PANELTOOLBAR);
     connect(buttonsCheckboxes->find("Panel Toolbar visible"), &KonfiguratorCheckBox::stateChanged, this, &KgPanel::slotEnablePanelToolbar);
-    tabLayout->addWidget(buttonsCheckboxes, 0, 0);
+    tabLayout->addWidget(buttonsCheckboxes, 0, nullptr);
 
     QGroupBox * panelToolbarGrp = createFrame(i18n("Visible Panel Toolbar buttons"), tab);
     QGridLayout * panelToolbarGrid = createGridLayout(panelToolbarGrp);
@@ -536,7 +536,7 @@ void KgPanel::setupButtonsTab()
                                  sizeof(panelToolbarButtonsParams) / sizeof(*panelToolbarButtonsParams),
                                  panelToolbarGrp, PAGE_PANELTOOLBAR);
     panelToolbarGrid->addWidget(panelToolbarButtonsCheckboxes, 0, 0);
-    tabLayout->addWidget(panelToolbarGrp, 1, 0);
+    tabLayout->addWidget(panelToolbarGrp, 1, nullptr);
 
     // Enable panel toolbar checkboxes
     slotEnablePanelToolbar();
@@ -676,14 +676,14 @@ void KgPanel::setupMediaMenuTab()
 
     KONFIGURATOR_CHECKBOX_PARAM mediaMenuParams[] = {
         //   cfg_class    cfg_name    default    text   restart tooltip
-        {"MediaMenu", "ShowPath",   true, i18n("Show Mount Path"),       false, 0 },
-        {"MediaMenu", "ShowFSType", true, i18n("Show File System Type"), false, 0 },
+        {"MediaMenu", "ShowPath",   true, i18n("Show Mount Path"),       false, nullptr },
+        {"MediaMenu", "ShowFSType", true, i18n("Show File System Type"), false, nullptr },
     };
     KonfiguratorCheckBoxGroup *mediaMenuCheckBoxes =
         createCheckBoxGroup(1, 0, mediaMenuParams,
                             sizeof(mediaMenuParams) / sizeof(*mediaMenuParams),
                             tab, PAGE_MEDIA_MENU);
-    tabLayout->addWidget(mediaMenuCheckBoxes, 0, 0);
+    tabLayout->addWidget(mediaMenuCheckBoxes, 0, nullptr);
 
     QHBoxLayout *showSizeHBox = new QHBoxLayout();
     showSizeHBox->addWidget(new QLabel(i18n("Show Size:"), tab));
@@ -718,7 +718,7 @@ void KgPanel::slotSelectionModeChanged()
 {
     KrSelectionMode *selectionMode =
         KrSelectionMode::getSelectionHandlerForMode(mouseRadio->selectedValue());
-    if (selectionMode == NULL)   //User mode
+    if (selectionMode == nullptr)   //User mode
         return;
     selectionMode->init();
     mouseCheckboxes->find("QT Selection")->setChecked(selectionMode->useQTSelection());

@@ -47,7 +47,7 @@ KrBookmark::KrBookmark(QString name, QUrl url, KActionCollection *parent, QStrin
 }
 
 KrBookmark::KrBookmark(QString name, QString iconName) :
-        QAction(Icon(iconName), name, 0), _iconName(iconName), _folder(true), _separator(false), _autoDelete(false)
+        QAction(Icon(iconName), name, nullptr), _iconName(iconName), _folder(true), _separator(false), _autoDelete(false)
 {
     setIcon(Icon(iconName == "" ? "folder" : iconName));
 }

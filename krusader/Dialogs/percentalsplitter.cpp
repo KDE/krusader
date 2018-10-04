@@ -31,7 +31,7 @@
 #include <QFrame>
 #include <QToolTip>
 
-PercentalSplitter::PercentalSplitter(QWidget * parent) : QSplitter(parent), label(0), opaqueOldPos(-1)
+PercentalSplitter::PercentalSplitter(QWidget * parent) : QSplitter(parent), label(nullptr), opaqueOldPos(-1)
 {
     connect(this, &PercentalSplitter::splitterMoved, this, &PercentalSplitter::slotSplitterMoved);
 }

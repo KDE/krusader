@@ -60,10 +60,10 @@
 
 KMountManGUI::KMountManGUI(KMountMan *mntMan) : QDialog(mntMan->parentWindow),
     mountMan(mntMan),
-    info(0),
-    mountList(0),
-    cbShowOnlyRemovable(0),
-    watcher(0),
+    info(nullptr),
+    mountList(nullptr),
+    cbShowOnlyRemovable(nullptr),
+    watcher(nullptr),
     sizeX(-1),
     sizeY(-1)
 {
@@ -477,7 +477,7 @@ fsData* KMountManGUI::getFsData(QTreeWidgetItem *item)
     }
     //this point shouldn't be reached
     abort();
-    return 0;
+    return nullptr;
 }
 
 QString KMountManGUI::getMntPoint(QTreeWidgetItem *item)

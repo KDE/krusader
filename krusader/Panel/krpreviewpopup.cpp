@@ -42,7 +42,7 @@ public:
     ProxyStyle() : QProxyStyle(QApplication::style()) {}
 
     virtual QSize sizeFromContents(ContentsType type, const QStyleOption *option,
-                                   const QSize &contentsSize, const QWidget *widget = 0) const Q_DECL_OVERRIDE
+                                   const QSize &contentsSize, const QWidget *widget = nullptr) const Q_DECL_OVERRIDE
     {
         if(type == QStyle::CT_MenuItem) {
             const QStyleOptionMenuItem *menuItem =
@@ -60,7 +60,7 @@ public:
     }
 
     virtual void drawControl(ControlElement element, const QStyleOption *option,
-                                    QPainter *painter, const QWidget *widget = 0 ) const Q_DECL_OVERRIDE
+                                    QPainter *painter, const QWidget *widget = nullptr ) const Q_DECL_OVERRIDE
     {
         if(element == QStyle::CE_MenuItem) {
             painter->save();
@@ -135,7 +135,7 @@ void KrPreviewPopup::addPreview(const KFileItem& file, const QPixmap& preview)
     if (prevNotAvailAction) {
         removeAction(prevNotAvailAction);
         delete prevNotAvailAction;
-        prevNotAvailAction = 0;
+        prevNotAvailAction = nullptr;
     }
 
     QAction *act = addAction(file.text());

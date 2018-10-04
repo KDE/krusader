@@ -40,7 +40,7 @@
 #define COLOR_GREY QColor::fromHsv( 0, 0, 140 )
 
 RadialMap::Map::Map()
-        : m_signature(0)
+        : m_signature(nullptr)
         , m_ringBreadth(MIN_RING_BREADTH)
         , m_innerRadius(0)
         , m_visibleDepth(DEFAULT_RING_DEPTH)
@@ -60,7 +60,7 @@ void
 RadialMap::Map::invalidate(const bool desaturateTheImage)
 {
     delete [] m_signature;
-    m_signature = 0;
+    m_signature = nullptr;
 
     if (desaturateTheImage) {
         QImage img = this->toImage();
@@ -149,7 +149,7 @@ RadialMap::Map::resize(const QRect &rect)
         size += MAP_2MARGIN;
         this->QPixmap::operator=(QPixmap(size, size));
 
-        if (m_signature != NULL) {
+        if (m_signature != nullptr) {
             setRingBreadth();
             paint();
         } else fill(); //FIXME I don't like having to do this..

@@ -267,7 +267,7 @@ public:
     const KrViewProperties *properties() const { return _properties; }
     KrViewOperator *op() const { return _operator; }
     void showPreviews(bool show);
-    bool previewsShown() { return _previews != 0; }
+    bool previewsShown() { return _previews != nullptr; }
     void applySettingsToOthers();
 
     void setFiles(DirListerInterface *files);

@@ -45,7 +45,7 @@ public:
 
     static FilterTabs * addTo(QTabWidget *tabWidget, int props = FilterTabs::Default,
                               QStringList extraOptions = QStringList());
-    static KRQuery      getQuery(QWidget *parent = 0);
+    static KRQuery      getQuery(QWidget *parent = nullptr);
 
     FilterBase *get(QString name);
     bool isExtraOptionChecked(QString name);

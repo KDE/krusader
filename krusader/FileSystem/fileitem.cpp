@@ -92,7 +92,7 @@ FileItem *FileItem::createVirtualDir(const QString &name, const QUrl &url)
 {
     return new FileItem(name, url, true,
                      0, 0700,
-                     time(0), time(0), time(0),
+                     time(nullptr), time(nullptr), time(nullptr),
                      getuid(), getgid());
 }
 

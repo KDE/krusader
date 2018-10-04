@@ -100,7 +100,7 @@ public slots:
     }
     Q_SCRIPTABLE void newTabs(const QStringList& urls);
 
-    void slotNewTab(const QUrl &url, bool setCurrent = true, KrPanel *nextTo = 0);
+    void slotNewTab(const QUrl &url, bool setCurrent = true, KrPanel *nextTo = nullptr);
     void slotNewTab();
     void slotLockTab();
     void slotPinTab();
@@ -127,7 +127,7 @@ private:
     void deletePanel(ListPanel *p);
     void updateTabbarPos();
     void tabsCountChanged();
-    ListPanel* addPanel(bool setCurrent = true, KConfigGroup cfg = KConfigGroup(), KrPanel *nextTo = 0);
+    ListPanel* addPanel(bool setCurrent = true, KConfigGroup cfg = KConfigGroup(), KrPanel *nextTo = nullptr);
     ListPanel* createPanel(KConfigGroup cfg);
     void connectPanel(ListPanel *p);
     void disconnectPanel(ListPanel *p);

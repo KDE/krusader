@@ -53,7 +53,7 @@ class PopularUrls : public QObject
 {
     Q_OBJECT
 public:
-    explicit PopularUrls(QObject *parent = 0);
+    explicit PopularUrls(QObject *parent = nullptr);
     ~PopularUrls();
     void save();
     void load();

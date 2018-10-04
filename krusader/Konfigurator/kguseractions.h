@@ -29,7 +29,7 @@ class KgUserActions : public KonfiguratorPage
     Q_OBJECT
 
 public:
-    explicit KgUserActions(bool first, QWidget* parent = 0);
+    explicit KgUserActions(bool first, QWidget* parent = nullptr);
 
 public slots:
     void startActionMan();

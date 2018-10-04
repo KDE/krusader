@@ -33,7 +33,7 @@
 #include "krglobal.h"
 #include "defaults.h"
 
-QMap<QString, QString>* KrServices::slaveMap = 0;
+QMap<QString, QString>* KrServices::slaveMap = nullptr;
 QSet<QString> KrServices::krarcArchiveMimetypes = KrServices::generateKrarcArchiveMimetypes();
 #ifdef KRARC_QUERY_ENABLED
 QSet<QString> KrServices::isoArchiveMimetypes = QSet<QString>::fromList(KProtocolInfo::archiveMimetypes("iso"));
@@ -126,7 +126,7 @@ bool KrServices::isExecutable(const QString &path)
 
 QString KrServices::registeredProtocol(QString mimetype)
 {
-    if (slaveMap == 0) {
+    if (slaveMap == nullptr) {
         slaveMap = new QMap<QString, QString>();
 
         KConfigGroup group(krConfig, "Protocols");
@@ -156,7 +156,7 @@ void KrServices::clearProtocolCache()
 {
     if (slaveMap)
         delete slaveMap;
-    slaveMap = 0;
+    slaveMap = nullptr;
 }
 
 bool KrServices::fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines)
@@ -306,7 +306,7 @@ static QtMessageHandler s_defaultMessageHandler;
 void KrServices::setGlobalKrMessageHandler(bool withDebugMessages)
 {
     s_withDebugMessages = withDebugMessages;
-    s_defaultMessageHandler = qInstallMessageHandler(0);
+    s_defaultMessageHandler = qInstallMessageHandler(nullptr);
     qInstallMessageHandler(&krMessageHandler);
 }
 

@@ -184,7 +184,7 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName)
         KConfigGroup cg(krConfig, "PanelLayout");
         layoutName = cg.readEntry("Layout", DEFAULT_LAYOUT);
     }
-    QLayout *layout = 0;
+    QLayout *layout = nullptr;
 
     if (parseFiles()) {
         QDomElement layoutRoot;
@@ -220,7 +220,7 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName)
 
 QBoxLayout *KrLayoutFactory::createLayout(QDomElement e, QWidget *parent)
 {
-    QBoxLayout *l = 0;
+    QBoxLayout *l = nullptr;
     bool horizontal = false;
 
     if(e.attribute("type") == "horizontal") {
@@ -231,7 +231,7 @@ QBoxLayout *KrLayoutFactory::createLayout(QDomElement e, QWidget *parent)
         l = new QVBoxLayout();
     else {
         qWarning() << "unknown layout type:" << e.attribute("type");
-        return 0;
+        return nullptr;
     }
 
     l->setSpacing(0);

@@ -1010,10 +1010,10 @@ KrPanel* Expander::getPanel(const char panelIndicator, const exp_placeholder* pl
     case 'r':
         return RIGHT_PANEL;
     case '_':
-        return 0;
+        return nullptr;
     default:
         exp.setError(Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("Expander: Bad panel specifier %1 in placeholder %2", panelIndicator, pl->description())));
-        return 0;
+        return nullptr;
     }
 }
 

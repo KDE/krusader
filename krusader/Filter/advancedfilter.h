@@ -41,7 +41,7 @@ class AdvancedFilter : public QWidget, public FilterBase
     Q_OBJECT
 
 public:
-    explicit AdvancedFilter(FilterTabs *tabs, QWidget *parent = 0);
+    explicit AdvancedFilter(FilterTabs *tabs, QWidget *parent = nullptr);
 
     virtual void          queryAccepted() Q_DECL_OVERRIDE {}
     virtual QString       name() Q_DECL_OVERRIDE {

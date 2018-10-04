@@ -30,7 +30,7 @@
 #include <KI18n/KLocalizedString>
 
 KgStartup::KgStartup(bool first, QWidget* parent) :
-        KonfiguratorPage(first, parent), profileCombo(0)
+        KonfiguratorPage(first, parent), profileCombo(nullptr)
 {
     QWidget *innerWidget = new QFrame(this);
     setWidget(innerWidget);

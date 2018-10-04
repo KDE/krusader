@@ -53,7 +53,7 @@ KrViewFactory::KrViewFactory() : m_defaultViewId(-1) {}
 // static initialization, on first use idiom
 KrViewFactory &KrViewFactory::self()
 {
-    static KrViewFactory *factory = 0;
+    static KrViewFactory *factory = nullptr;
     if (!factory) {
         factory = new KrViewFactory();
         factory->init();

@@ -68,7 +68,7 @@ protected:
     virtual bool setArcFile(const QUrl &url);
     virtual QString getPassword();
     virtual void invalidatePassword();
-    QString getPath(const QUrl &url, QUrl::FormattingOptions options = 0);
+    QString getPath(const QUrl &url, QUrl::FormattingOptions options = nullptr);
 
     QString localeEncodedString(QString str);
     QByteArray encodeString(QString);

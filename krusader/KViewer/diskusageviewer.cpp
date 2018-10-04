@@ -32,7 +32,7 @@
 #include "../krglobal.h"
 
 DiskUsageViewer::DiskUsageViewer(QWidget *parent)
-        : QWidget(parent), diskUsage(0), statusLabel(0)
+        : QWidget(parent), diskUsage(nullptr), statusLabel(nullptr)
 {
     layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -49,7 +49,7 @@ DiskUsageViewer::~ DiskUsageViewer()
 
 void DiskUsageViewer::openUrl(QUrl url)
 {
-    if (diskUsage == 0) {
+    if (diskUsage == nullptr) {
         diskUsage = new DiskUsage("DiskUsageViewer", this);
 
         connect(diskUsage, &DiskUsage::enteringDirectory, this, [=]() { slotUpdateStatus(); });

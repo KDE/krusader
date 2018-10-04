@@ -33,7 +33,7 @@
 #include <KWidgetsAddons/KMessageBox>
 
 Splitter::Splitter(QWidget* parent,  QUrl fileNameIn, QUrl destinationDirIn, bool overWriteIn) :
-        QProgressDialog(parent, 0),
+        QProgressDialog(parent, nullptr),
         fileName(fileNameIn),
         destinationDir(destinationDirIn),
         splitSize(0),
@@ -43,9 +43,9 @@ Splitter::Splitter(QWidget* parent,  QUrl fileNameIn, QUrl destinationDirIn, boo
         outputFileRemaining(0),
         receivedSize(0),
         crcContext(new CRC32()),
-        statJob(0),
-        splitReadJob(0),
-        splitWriteJob(0)
+        statJob(nullptr),
+        splitReadJob(nullptr),
+        splitWriteJob(nullptr)
 
 {
     setMaximum(100);
@@ -69,7 +69,7 @@ void Splitter::split(KIO::filesize_t splitSizeIn)
     Q_ASSERT(!receivedSize);
     Q_ASSERT(!outputFileRemaining);
 
-    splitReadJob = splitWriteJob = 0;
+    splitReadJob = splitWriteJob = nullptr;
     fileNumber = receivedSize = outputFileRemaining = 0;
 
     splitSize = splitSizeIn;
@@ -83,7 +83,7 @@ void Splitter::split(KIO::filesize_t splitSizeIn)
     setLabelText(i18n("Splitting the file %1...", fileName.toDisplayString(QUrl::PreferLocalFile)));
 
     if (file.isDir()) {
-        KMessageBox::error(0, i18n("Cannot split a folder."));
+        KMessageBox::error(nullptr, i18n("Cannot split a folder."));
         return;
     }
 
@@ -121,14 +121,14 @@ void Splitter::splitDataReceived(KIO::Job *, const QByteArray &byteArray)
 
 void Splitter::splitReceiveFinished(KJob *job)
 {
-    splitReadJob = 0;   /* KIO automatically deletes the object after Finished signal */
+    splitReadJob = nullptr;   /* KIO automatically deletes the object after Finished signal */
 
     if (splitWriteJob)
         splitWriteJob->resume(); // finish writing the output
 
     if (job->error()) {   /* any error occurred? */
         splitAbortJobs();
-        KMessageBox::error(0, i18n("Error reading file %1: %2", fileName.toDisplayString(QUrl::PreferLocalFile),
+        KMessageBox::error(nullptr, i18n("Error reading file %1: %2", fileName.toDisplayString(QUrl::PreferLocalFile),
                                    job->errorString()));
         emit reject();
         return;
@@ -173,7 +173,7 @@ void Splitter::nextOutputFile()
 
 void Splitter::statOutputFileResult(KJob* job)
 {
-    statJob = 0;
+    statJob = nullptr;
 
     if (job->error()) {
         if (job->error() == KIO::ERR_DOES_NOT_EXIST)
@@ -235,11 +235,11 @@ void Splitter::splitDataSend(KIO::Job *, QByteArray &byteArray)
 
 void Splitter::splitSendFinished(KJob *job)
 {
-    splitWriteJob = 0;  /* KIO automatically deletes the object after Finished signal */
+    splitWriteJob = nullptr;  /* KIO automatically deletes the object after Finished signal */
 
     if (job->error()) {   /* any error occurred? */
         splitAbortJobs();
-        KMessageBox::error(0, i18n("Error writing file %1: %2", writeURL.toDisplayString(QUrl::PreferLocalFile),
+        KMessageBox::error(nullptr, i18n("Error writing file %1: %2", writeURL.toDisplayString(QUrl::PreferLocalFile),
                                    job->errorString()));
         emit reject();
         return;
@@ -270,7 +270,7 @@ void Splitter::splitAbortJobs()
     if (splitWriteJob)
         splitWriteJob->kill(KJob::Quietly);
 
-    splitReadJob = splitWriteJob = 0;
+    splitReadJob = splitWriteJob = nullptr;
 }
 
 void Splitter::splitFileSend(KIO::Job *, QByteArray &byteArray)
@@ -281,10 +281,10 @@ void Splitter::splitFileSend(KIO::Job *, QByteArray &byteArray)
 
 void Splitter::splitFileFinished(KJob *job)
 {
-    splitWriteJob = 0;  /* KIO automatically deletes the object after Finished signal */
+    splitWriteJob = nullptr;  /* KIO automatically deletes the object after Finished signal */
 
     if (job->error()) {   /* any error occurred? */
-        KMessageBox::error(0, i18n("Error writing file %1: %2", writeURL.toDisplayString(QUrl::PreferLocalFile),
+        KMessageBox::error(nullptr, i18n("Error writing file %1: %2", writeURL.toDisplayString(QUrl::PreferLocalFile),
                                    job->errorString()));
         emit reject();
         return;

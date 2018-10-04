@@ -312,7 +312,7 @@ KonfiguratorColorChooser *KgColors::getColorSelector(QString name)
         if (*it == name)
             return itemList.at(position);
 
-    return 0;
+    return nullptr;
 }
 
 QLabel *KgColors::getSelectorLabel(QString name)
@@ -324,7 +324,7 @@ QLabel *KgColors::getSelectorLabel(QString name)
         if (*it == name)
             return labelList.at(position);
 
-    return 0;
+    return nullptr;
 }
 
 void KgColors::slotDisable()
@@ -566,7 +566,7 @@ void KgColors::slotImportColors()
     QString basedir= QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("total_commander.keymap"));
     basedir = QFileInfo(basedir).absolutePath();
     // let the user select a file to load
-    QString file = QFileDialog::getOpenFileName(0, i18n("Select a color-scheme file"), basedir, QStringLiteral("*.color"));
+    QString file = QFileDialog::getOpenFileName(nullptr, i18n("Select a color-scheme file"), basedir, QStringLiteral("*.color"));
     if (file.isEmpty()) {
         return;
     }
@@ -583,7 +583,7 @@ void KgColors::slotImportColors()
 
 void KgColors::slotExportColors()
 {
-    QString file = QFileDialog::getSaveFileName(0, i18n("Select a color scheme file"), QString(), QStringLiteral("*"));
+    QString file = QFileDialog::getSaveFileName(nullptr, i18n("Select a color scheme file"), QString(), QStringLiteral("*"));
     if (file.isEmpty()) {
         return;
     }
@@ -682,7 +682,7 @@ void KgColors::deserialize(QDataStream & stream)
         }
 
         KonfiguratorColorChooser *selector = getColorSelector(name);
-        if (selector == 0)
+        if (selector == nullptr)
             break;
         selector->setValue(value);
     }

@@ -98,7 +98,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
     QString queryName;
     do {
         queryName = i18n("Synchronize results") + QString(" %1").arg(listBoxNum++);
-    } while (virtFilesystem.getFileItem(queryName) != 0);
+    } while (virtFilesystem.getFileItem(queryName) != nullptr);
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     // creating the widget

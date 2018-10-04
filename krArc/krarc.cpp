@@ -139,8 +139,8 @@ extern "C"
 
 #ifdef KRARC_ENABLED
 kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
-        : SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(0L), extArcReady(false),
-        password(QString()), krConf("krusaderrc"), codec(0)
+        : SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(nullptr), extArcReady(false),
+        password(QString()), krConf("krusaderrc"), codec(nullptr)
 {
     KRFUNC;
     confGrp = KConfigGroup(&krConf, "Dependencies");
@@ -874,7 +874,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
     KRFUNC;
     KRDEBUG(url.fileName());
     QString path = getPath(url);
-    time_t currTime = time(0);
+    time_t currTime = time(nullptr);
     archiveChanged = true;
     newArchiveURL = true;
     // is the file already set ?
@@ -886,7 +886,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
             currentCharset = metaData("Charset");
 
             codec = QTextCodec::codecForName(currentCharset.toLatin1());
-            if (codec == 0)
+            if (codec == nullptr)
                 codec = QTextCodec::codecForMib(4 /* latin-1 */);
 
             delete arcFile;
@@ -908,7 +908,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
         if (arcFile) {
             delete arcFile;
             password.clear();
-            arcFile = 0L;
+            arcFile = nullptr;
         }
         QString newPath = path;
         if (newPath.right(1) != DIR_SEPARATOR) newPath = newPath + DIR_SEPARATOR;
@@ -929,7 +929,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
         currentCharset = metaData("Charset");
 
         codec = QTextCodec::codecForName(currentCharset.toLatin1());
-        if (codec == 0)
+        if (codec == nullptr)
             codec = QTextCodec::codecForMib(4 /* latin-1 */);
     }
 
@@ -1116,11 +1116,11 @@ UDSEntry* kio_krarcProtocol::findFileEntry(const QUrl &url)
 {
     KRFUNC;
     QString arcDir = findArcDirectory(url);
-    if (arcDir.isEmpty()) return 0;
+    if (arcDir.isEmpty()) return nullptr;
 
     QHash<QString, KIO::UDSEntryList *>::iterator itef = dirDict.find(arcDir);
     if (itef == dirDict.end())
-        return 0;
+        return nullptr;
     UDSEntryList* dirList = itef.value();
 
     QString name = getPath(url);
@@ -1137,7 +1137,7 @@ UDSEntry* kio_krarcProtocol::findFileEntry(const QUrl &url)
                 (entry->stringValue(KIO::UDSEntry::UDS_NAME) == name))
             return &(*entry);
     }
-    return 0;
+    return nullptr;
 }
 
 QString kio_krarcProtocol::nextWord(QString &s, char d)
@@ -1231,7 +1231,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
     QString perm;
     mode_t mode          = 0666;
     size_t size          = 0;
-    time_t time          = ::time(0);
+    time_t time          = ::time(nullptr);
     QString fullName;
 
     if (arcType == "zip") {
@@ -1322,7 +1322,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         // next field is md5sum, ignore it
         nextWord(line);
         // permissions
-        mode = nextWord(line).toULong(0, 8);
+        mode = nextWord(line).toULong(nullptr, 8);
         // Owner & Group
         owner = nextWord(line);
         group = nextWord(line);

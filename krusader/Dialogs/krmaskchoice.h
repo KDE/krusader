@@ -35,7 +35,7 @@ class KRMaskChoice : public QDialog
     Q_OBJECT
 
 public:
-    explicit KRMaskChoice(QWidget* parent = 0);
+    explicit KRMaskChoice(QWidget* parent = nullptr);
     ~KRMaskChoice();
 
     KComboBox* selection;

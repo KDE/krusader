@@ -94,7 +94,7 @@
 
 
 // define the static members
-Krusader *Krusader::App = 0;
+Krusader *Krusader::App = nullptr;
 QString   Krusader::AppName;
 // KrBookmarkHandler *Krusader::bookman = 0;
 //QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
@@ -105,9 +105,9 @@ QAction *Krusader::actShowJSConsole = 0;
 #endif
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
-Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
+Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullptr,
                 Qt::Window | Qt::WindowTitleHint | Qt::WindowContextHelpButtonHint),
-        _listPanelActions(0), isStarting(true), isExiting(false), _quit(false)
+        _listPanelActions(nullptr), isStarting(true), isExiting(false), _quit(false)
 {
     // create the "krusader"
     App = this;
@@ -290,8 +290,8 @@ Krusader::~Krusader()
         saveSettings();
 
     delete MAIN_VIEW;
-    MAIN_VIEW = 0;
-    App = 0;
+    MAIN_VIEW = nullptr;
+    App = nullptr;
 }
 
 void Krusader::setTray(bool forceCreation)
@@ -496,7 +496,7 @@ bool Krusader::queryClose() {
             }
 
             if (i == list.count())
-                w = 0;
+                w = nullptr;
         }
 
         if (!w) break;
@@ -548,7 +548,7 @@ void Krusader::updateUserActions() {
 
         userActionMenu->addAction(KrActions::actManageUseractions);
         userActionMenu->addSeparator();
-        krUserAction->populateMenu(userActionMenu, NULL);
+        krUserAction->populateMenu(userActionMenu, nullptr);
     }
 }
 

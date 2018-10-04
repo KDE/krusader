@@ -111,8 +111,8 @@ public:
     }
 };
 
-KProcess *  LocateDlg::updateProcess = 0;
-LocateDlg * LocateDlg::LocateDialog = 0;
+KProcess *  LocateDlg::updateProcess = nullptr;
+LocateDlg * LocateDlg::LocateDialog = nullptr;
 
 LocateDlg::LocateDlg(QWidget *parent) : QDialog(parent), isFeedToListBox(false)
 {
@@ -263,7 +263,7 @@ void LocateDlg::slotUpdateDb()   /* The Update DB button */
 void LocateDlg::updateFinished()
 {
     delete updateProcess;
-    updateProcess = 0;
+    updateProcess = nullptr;
     updateDbButton->setEnabled(true);
 }
 
@@ -278,13 +278,13 @@ void LocateDlg::slotLocate()   /* The locate button */
     group.writeEntry("Case Sensitive", isCs = caseSensitive->isChecked());
 
     if (!KrServices::cmdExist("locate")) {
-        KMessageBox::error(0,
+        KMessageBox::error(nullptr,
                            i18n("Cannot start 'locate'. Check the 'Dependencies' page in konfigurator."));
         return;
     }
 
     resultList->clear();
-    lastItem = 0;
+    lastItem = nullptr;
     remaining = "";
 
     updateButtons(true);
@@ -448,7 +448,7 @@ void LocateDlg::slotDoubleClick(QTreeWidgetItem *item)
 void LocateDlg::keyPressEvent(QKeyEvent *e)
 {
     if (KrGlobal::copyShortcut == QKeySequence(e->key() | e->modifiers())) {
-        operate(0, COPY_SELECTED_TO_CLIPBOARD);
+        operate(nullptr, COPY_SELECTED_TO_CLIPBOARD);
         e->accept();
         return;
     }
@@ -469,7 +469,7 @@ void LocateDlg::keyPressEvent(QKeyEvent *e)
             operate(resultList->currentItem(), EDIT_ID);
         break;
     case Qt::Key_F10 :
-        operate(0, COMPARE_ID);
+        operate(nullptr, COMPARE_ID);
         break;
     case Qt::Key_N :
         if (e->modifiers() == Qt::ControlModifier)
@@ -491,7 +491,7 @@ void LocateDlg::keyPressEvent(QKeyEvent *e)
 void LocateDlg::operate(QTreeWidgetItem *item, int task)
 {
     QUrl name;
-    if (item != 0)
+    if (item != nullptr)
         name = QUrl::fromLocalFile(item->text(0));
 
     switch (task) {
@@ -633,7 +633,7 @@ void LocateDlg::feedToListBox()
     QString queryName;
     do {
         queryName = i18n("Locate results") + QString(" %1").arg(listBoxNum++);
-    } while (virtFilesystem.getFileItem(queryName) != 0);
+    } while (virtFilesystem.getFileItem(queryName) != nullptr);
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");

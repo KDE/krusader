@@ -29,14 +29,14 @@
 
 #include <KXmlGui/KActionCollection>
 
-KConfig *KrGlobal::config = 0;
-KMountMan *KrGlobal::mountMan = 0;
-KrBookmarkHandler *KrGlobal::bookman = 0;
-KRslots* KrGlobal::slot = 0;
-KrusaderView *KrGlobal::mainView = 0;
-QWidget *KrGlobal::mainWindow = 0;
-UserAction *KrGlobal::userAction = 0;
-JobMan *KrGlobal::jobMan = 0;
+KConfig *KrGlobal::config = nullptr;
+KMountMan *KrGlobal::mountMan = nullptr;
+KrBookmarkHandler *KrGlobal::bookman = nullptr;
+KRslots* KrGlobal::slot = nullptr;
+KrusaderView *KrGlobal::mainView = nullptr;
+QWidget *KrGlobal::mainWindow = nullptr;
+UserAction *KrGlobal::userAction = nullptr;
+JobMan *KrGlobal::jobMan = nullptr;
 // ListPanel *KrGlobal::activePanel = 0;
 QKeySequence KrGlobal::copyShortcut;
 

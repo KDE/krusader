@@ -33,7 +33,7 @@ class KgProtocols : public KonfiguratorPage
     Q_OBJECT
 
 public:
-    explicit KgProtocols(bool first, QWidget* parent = 0);
+    explicit KgProtocols(bool first, QWidget* parent = nullptr);
 
     virtual void loadInitialValues() Q_DECL_OVERRIDE;
     virtual void setDefaults() Q_DECL_OVERRIDE;

@@ -123,7 +123,7 @@ public:
       * @return             reference to the newly created checkbox
       */
     KonfiguratorCheckBox *createCheckBox(QString configGroup, QString name, bool defaultValue,
-                                         QString text, QWidget *parent = 0, bool restart = false,
+                                         QString text, QWidget *parent = nullptr, bool restart = false,
                                          QString toolTip = QString(), int page = FIRST_PAGE);
 
     /**
@@ -146,7 +146,7 @@ public:
       * @return             reference to the newly created spinbox
       */
     KonfiguratorSpinBox *createSpinBox(QString configGroup, QString configName, int defaultValue,
-                                       int min, int max, QWidget *parent = 0, bool restart = false,
+                                       int min, int max, QWidget *parent = nullptr, bool restart = false,
                                        int page = FIRST_PAGE);
 
     /**
@@ -167,7 +167,7 @@ public:
       * @return             reference to the newly created editbox
       */
     KonfiguratorEditBox *createEditBox(QString configGroup, QString name, QString defaultValue,
-                                       QWidget *parent = 0, bool restart = false,
+                                       QWidget *parent = nullptr, bool restart = false,
                                        int page = FIRST_PAGE);
 
     /**
@@ -190,7 +190,7 @@ public:
       * @return             reference to the newly created editbox
       */
     KonfiguratorListBox *createListBox(QString configGroup, QString name, QStringList defaultValue,
-                                       QWidget *parent = 0, bool restart = false,
+                                       QWidget *parent = nullptr, bool restart = false,
                                        int page = FIRST_PAGE);
 
     /**
@@ -234,7 +234,7 @@ public:
       * @return             reference to the newly created font chooser
       */
     KonfiguratorFontChooser *createFontChooser(QString configGroup, QString name,
-                                               QFont defaultValue, QWidget *parent = 0,
+                                               QFont defaultValue, QWidget *parent = nullptr,
                                                bool restart = false, int page = FIRST_PAGE);
 
     /**
@@ -263,7 +263,7 @@ public:
       */
     KonfiguratorComboBox *createComboBox(QString configGroup, QString name, QString defaultValue,
                                          KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum,
-                                         QWidget *parent = 0, bool restart = false,
+                                         QWidget *parent = nullptr, bool restart = false,
                                          bool editable = false, int page = FIRST_PAGE);
 
     /**
@@ -278,7 +278,7 @@ public:
       *
       * @return             reference to the newly created frame
       */
-    QGroupBox *createFrame(QString text = QString(), QWidget *parent = 0);
+    QGroupBox *createFrame(QString text = QString(), QWidget *parent = nullptr);
 
     /**
       * Creates a new QGridLayout element and sets its margins.
@@ -311,7 +311,7 @@ public:
       *
       * @return             reference to the newly created label
       */
-    QLabel *addLabel(QGridLayout *layout, int x, int y, QString label, QWidget *parent = 0);
+    QLabel *addLabel(QGridLayout *layout, int x, int y, QString label, QWidget *parent = nullptr);
 
     /**
       * Creates a spacer object (for justifying in QHBox).
@@ -326,7 +326,7 @@ public:
       *
       * @return             reference to the newly created spacer widget
       */
-    QWidget *createSpacer(QWidget *parent = 0);
+    QWidget *createSpacer(QWidget *parent = nullptr);
 
     /**
       * Creates a separator line.
@@ -340,7 +340,7 @@ public:
       *
       * @return             reference to the newly created spacer widget
       */
-    QFrame *createLine(QWidget *parent = 0, bool vertical = false);
+    QFrame *createLine(QWidget *parent = nullptr, bool vertical = false);
 
     /**
       * Creates a checkbox group. A checkbox group contains a lot of checkboxes.
@@ -373,7 +373,7 @@ public:
       */
     KonfiguratorCheckBoxGroup *createCheckBoxGroup(int sizex, int sizey,
                                                    KONFIGURATOR_CHECKBOX_PARAM *params,
-                                                   int paramNum, QWidget *parent = 0,
+                                                   int paramNum, QWidget *parent = nullptr,
                                                    int page = FIRST_PAGE);
     /**
       * Creates a radio button group. A radio button group contains a lot of radio buttons.
@@ -412,7 +412,7 @@ public:
     KonfiguratorRadioButtons *createRadioButtonGroup(QString configGroup, QString name,
                                                      QString defaultValue, int sizex, int sizey,
                                                      KONFIGURATOR_NAME_VALUE_TIP *params,
-                                                     int paramNum, QWidget *parent = 0,
+                                                     int paramNum, QWidget *parent = nullptr,
                                                      bool restart = false, int page = FIRST_PAGE);
 
     /**
@@ -461,9 +461,9 @@ public:
       * @return             reference to the newly created combobox
       */
     KonfiguratorColorChooser *createColorChooser(QString configGroup, QString name,
-                                                 QColor defaultValue, QWidget *parent = 0,
+                                                 QColor defaultValue, QWidget *parent = nullptr,
                                                  bool restart = false,
-                                                 ADDITIONAL_COLOR *addColPtr = 0, int addColNum = 0,
+                                                 ADDITIONAL_COLOR *addColPtr = nullptr, int addColNum = 0,
                                                  int page = FIRST_PAGE);
 signals:
     /**

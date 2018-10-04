@@ -56,7 +56,7 @@
 #define FSTAB "/etc/fstab"
 #endif
 
-KMountMan::KMountMan(QWidget *parent) : QObject(), _operational(false), waiting(false), mountManGui(0), parentWindow(parent)
+KMountMan::KMountMan(QWidget *parent) : QObject(), _operational(false), waiting(false), mountManGui(nullptr), parentWindow(parent)
 {
     _action = new KToolBarPopupAction(Icon("kr_mountman"), i18n("&MountMan..."), this);
     connect(_action, &QAction::triggered, this, &KMountMan::mainWindow);
@@ -114,7 +114,7 @@ void KMountMan::mainWindow()
 {
     // left as a precaution, although we use kde's services now
     if (!KrServices::cmdExist("mount")) {
-        KMessageBox::error(0, i18n("Cannot start 'mount'. Check the 'Dependencies' page in konfigurator."));
+        KMessageBox::error(nullptr, i18n("Cannot start 'mount'. Check the 'Dependencies' page in konfigurator."));
         return;
     }
 
@@ -288,7 +288,7 @@ void KMountMan::eject(QString mntPoint)
 
     Solid::Device dev(udi);
     Solid::OpticalDrive *drive = dev.as<Solid::OpticalDrive>();
-    if (drive == 0)
+    if (drive == nullptr)
         return;
 
     //if working dir is below mountpoint cd to ~ first
@@ -309,7 +309,7 @@ bool KMountMan::ejectable(QString path)
         return false;
 
     Solid::Device dev(udi);
-    return dev.as<Solid::OpticalDisc>() != 0;
+    return dev.as<Solid::OpticalDisc>() != nullptr;
 }
 
 bool KMountMan::removable(QString path)
@@ -337,7 +337,7 @@ bool KMountMan::removable(Solid::Device d)
 void KMountMan::quickList()
 {
     if (!_operational) {
-        KMessageBox::error(0, i18n("MountMan is not operational. Sorry"));
+        KMessageBox::error(nullptr, i18n("MountMan is not operational. Sorry"));
         return;
     }
 
@@ -390,7 +390,7 @@ void KMountMan::delayedPerformAction(const QAction *action)
         return;
     }
 
-    disconnect(_action->menu(), &QMenu::triggered, 0, 0);
+    disconnect(_action->menu(), &QMenu::triggered, nullptr, nullptr);
 
     const QList<QVariant> actData = action->data().toList();
     const int actionType = actData[0].toInt();

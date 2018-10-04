@@ -40,13 +40,13 @@
 #define PS(x) lst.contains(x)>0
 
 // clear the statics first
-QString PackGUI::filename = 0;
-QString PackGUI::destination = 0;
-QString PackGUI::type = 0;
+QString PackGUI::filename = nullptr;
+QString PackGUI::destination = nullptr;
+QString PackGUI::type = nullptr;
 QMap<QString, QString> PackGUI::extraProps;
 
 PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QString filename) :
-        PackGUIBase(0)
+        PackGUIBase(nullptr)
 {
     // first, fill the WhatToPack textfield with information
     if (noOfFiles == 1)
@@ -97,7 +97,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
 
 void PackGUI::browse()
 {
-    QString temp = QFileDialog::getExistingDirectory(0, i18n("Please select a folder"), dirData->text());
+    QString temp = QFileDialog::getExistingDirectory(nullptr, i18n("Please select a folder"), dirData->text());
     if (!temp.isEmpty()) {
         dirData->setText(temp);
     }

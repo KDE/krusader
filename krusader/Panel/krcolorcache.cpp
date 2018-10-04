@@ -659,7 +659,7 @@ QColor KrColorCacheImpl::dimColor(QColor color, bool /* isBackgroundColor */) co
 
 
 
-KrColorCache * KrColorCache::m_instance = 0;
+KrColorCache * KrColorCache::m_instance = nullptr;
 
 KrColorCache::KrColorCache()
 {

@@ -85,7 +85,7 @@ bool KrTreeWidget::event(QEvent * event)
 
             ke->accept();
 
-            if (currentItem() == 0)
+            if (currentItem() == nullptr)
                 return true;
 
             currentItem()->setSelected(!currentItem()->isSelected());
@@ -184,7 +184,7 @@ bool KrTreeWidget::event(QEvent * event)
                     QSize iconSize = icon.actualSize(opts.decorationSize);
                     requiredWidth += iconSize.width();
 
-                    int pixmapMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin, 0, this) + 1;
+                    int pixmapMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin, nullptr, this) + 1;
                     requiredWidth += 2 * pixmapMargin;
                 }
 

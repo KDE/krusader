@@ -190,7 +190,7 @@ class KrActionProcDlg: public QDialog
 {
     Q_OBJECT
 public:
-    explicit KrActionProcDlg(QString caption, bool enableStderr = false, QWidget *parent = 0);
+    explicit KrActionProcDlg(QString caption, bool enableStderr = false, QWidget *parent = nullptr);
 
 public slots:
     void addStderr(const QString& str);

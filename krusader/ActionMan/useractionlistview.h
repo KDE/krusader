@@ -33,7 +33,7 @@ class UserActionListView : public KrTreeWidget
     Q_OBJECT
 
 public:
-    explicit UserActionListView(QWidget* parent = 0);
+    explicit UserActionListView(QWidget* parent = nullptr);
     ~UserActionListView();
     virtual QSize sizeHint() const Q_DECL_OVERRIDE;
 
@@ -44,7 +44,7 @@ public:
     KrAction* currentAction() const;
     void setCurrentAction(const KrAction*);
 
-    QDomDocument dumpSelectedActions(QDomDocument* mergeDoc = 0) const;
+    QDomDocument dumpSelectedActions(QDomDocument* mergeDoc = nullptr) const;
 
     void removeSelectedActions();
 

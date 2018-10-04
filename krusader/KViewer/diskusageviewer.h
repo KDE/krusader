@@ -35,7 +35,7 @@ class DiskUsageViewer : public QWidget
     Q_OBJECT
 
 public:
-    explicit DiskUsageViewer(QWidget *parent = 0);
+    explicit DiskUsageViewer(QWidget *parent = nullptr);
     ~DiskUsageViewer();
 
     void openUrl(QUrl url);

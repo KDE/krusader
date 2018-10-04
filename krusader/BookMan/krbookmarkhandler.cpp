@@ -59,7 +59,7 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) :
     QObject(mainWindow->widget()),
     _mainWindow(mainWindow),
     _middleClick(false),
-    _mainBookmarkPopup(0),
+    _mainBookmarkPopup(nullptr),
     _specialBookmarks(),
     _quickSearchAction(nullptr),
     _quickSearchBar(nullptr),
@@ -113,7 +113,7 @@ void KrBookmarkHandler::bookmarkCurrent(QUrl url)
 
 void KrBookmarkHandler::addBookmark(KrBookmark *bm, KrBookmark *folder)
 {
-    if (folder == 0)
+    if (folder == nullptr)
         folder = _root;
 
     // add to the list (bottom)
@@ -519,7 +519,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
         _specialBookmarks.append(bmAct);
 
         // make sure the menu is connected to us
-        disconnect(menu, SIGNAL(triggered(QAction*)), 0, 0);
+        disconnect(menu, SIGNAL(triggered(QAction*)), nullptr, nullptr);
     }
 
     menu->installEventFilter(this);
@@ -709,7 +709,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
                 }
 
                 KrBookmark *bm = qobject_cast<KrBookmark *>(act);
-                if (bm != 0) {
+                if (bm != nullptr) {
                     rightClicked(menu, bm);
                     return true;
                 } else if (act && act->data().canConvert<KrBookmark *>()) {

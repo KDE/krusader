@@ -83,7 +83,7 @@ public:
 
 static QStringList arcProtocols = QString("tar;bzip;bzip2;lzma;xz;gzip;krarc;zip").split(';');
 
-KWallet::Wallet * KRarcHandler::wallet = 0;
+KWallet::Wallet * KRarcHandler::wallet = nullptr;
 
 QStringList KRarcHandler::supportedPackers()
 {
@@ -573,7 +573,7 @@ bool KRarcHandler::openWallet()
 
         wallet = KWallet::Wallet::openWallet(KWallet::Wallet::NetworkWallet(), actWindow->effectiveWinId());
     }
-    return (wallet != 0);
+    return (wallet != nullptr);
 }
 
 QString KRarcHandler::getPassword(QString path)
@@ -583,9 +583,9 @@ QString KRarcHandler::getPassword(QString path)
     QString key = "krarc-" + path;
 
     if (!KWallet::Wallet::keyDoesNotExist(KWallet::Wallet::NetworkWallet(), KWallet::Wallet::PasswordFolder(), key)) {
-        if (!KWallet::Wallet::isOpen(KWallet::Wallet::NetworkWallet())  && wallet != 0) {
+        if (!KWallet::Wallet::isOpen(KWallet::Wallet::NetworkWallet())  && wallet != nullptr) {
             delete wallet;
-            wallet = 0;
+            wallet = nullptr;
         }
         if (openWallet() && wallet->hasFolder(KWallet::Wallet::PasswordFolder())) {
             wallet->setFolder(KWallet::Wallet::PasswordFolder());
@@ -600,16 +600,16 @@ QString KRarcHandler::getPassword(QString path)
 
     bool keep = true;
     QString user = "archive";
-    QPointer<KPasswordDialog> passDlg = new KPasswordDialog(0L, KPasswordDialog::ShowKeepPassword);
+    QPointer<KPasswordDialog> passDlg = new KPasswordDialog(nullptr, KPasswordDialog::ShowKeepPassword);
             passDlg->setPrompt(i18n("This archive is encrypted, please supply the password:") ),
             passDlg->setUsername(user);
     passDlg->setPassword(password);
     if (passDlg->exec() == KPasswordDialog::Accepted) {
         password = passDlg->password();
         if (keep) {
-            if (!KWallet::Wallet::isOpen(KWallet::Wallet::NetworkWallet()) && wallet != 0) {
+            if (!KWallet::Wallet::isOpen(KWallet::Wallet::NetworkWallet()) && wallet != nullptr) {
                 delete wallet;
-                wallet = 0;
+                wallet = nullptr;
             }
             if (openWallet()) {
                 bool ok = true;

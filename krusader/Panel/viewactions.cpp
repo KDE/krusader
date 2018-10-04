@@ -35,10 +35,10 @@ ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
     actDefaultZoom = action(i18n("Default Zoom"), "zoom-original", 0, SLOT(defaultZoom()), "default_zoom");
 
     // filter
-    action(i18n("&All Files"), 0, Qt::SHIFT + Qt::Key_F10, SLOT(allFilter()), "all files");
+    action(i18n("&All Files"), nullptr, Qt::SHIFT + Qt::Key_F10, SLOT(allFilter()), "all files");
     //actExecFilter = new QAction( i18n( "&Executables" ), SHIFT + Qt::Key_F11,
     //                             SLOTS, SLOT(execFilter()), actionCollection(), "exec files" );
-    action(i18n("&Custom"), 0, Qt::SHIFT + Qt::Key_F12, SLOT(customFilter()), "custom files");
+    action(i18n("&Custom"), nullptr, Qt::SHIFT + Qt::Key_F12, SLOT(customFilter()), "custom files");
 
     // selection
     actSelect = action(i18n("Select &Group..."), "edit-select", Qt::CTRL + Qt::Key_Plus, SLOT(markGroup()), "select group");
@@ -46,16 +46,16 @@ ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
     actUnselect = action(i18n("&Unselect Group..."), "kr_unselect", Qt::CTRL + Qt::Key_Minus, SLOT(unmarkGroup()), "unselect group");
     actUnselectAll = action(i18n("U&nselect All"), "edit-select-none", Qt::ALT + Qt::Key_Minus, SLOT(unmarkAll()), "unselect all");
     actInvert = action(i18n("&Invert Selection"), "edit-select-invert", Qt::ALT + Qt::Key_Asterisk, SLOT(invertSelection()), "invert");
-    actRestoreSelection = action(i18n("Restore Selection"), 0, 0, SLOT(restoreSelection()), "restore_selection");
-    actMarkSameBaseName = action(i18n("Select Files with the Same Name"), 0, 0, SLOT(markSameBaseName()), "select_same_base_name");
-    actMarkSameExtension = action(i18n("Select Files with the Same Extension"), 0, 0, SLOT(markSameExtension()), "select_same_extension");
+    actRestoreSelection = action(i18n("Restore Selection"), nullptr, 0, SLOT(restoreSelection()), "restore_selection");
+    actMarkSameBaseName = action(i18n("Select Files with the Same Name"), nullptr, 0, SLOT(markSameBaseName()), "select_same_base_name");
+    actMarkSameExtension = action(i18n("Select Files with the Same Extension"), nullptr, 0, SLOT(markSameExtension()), "select_same_extension");
 
     // other stuff
-    action(i18n("Show View Options Menu"), 0, 0, SLOT(showOptionsMenu()), "show_view_options_menu");
-    action(i18n("Set Focus to the Panel"), 0, 0, SLOT(focusPanel()), "focus_panel");
-    action(i18n("Apply settings to other tabs"), 0, 0, SLOT(applySettingsToOthers()), "view_apply_settings_to_others");
-    actTogglePreviews = toggleAction(i18n("Show Previews"), 0, 0, SLOT(togglePreviews(bool)), "toggle previews");
-    QAction *actSaveaveDefaultSettings = action(i18n("Save settings as default"), 0, 0, SLOT(saveDefaultSettings()), "view_save_default_settings");
+    action(i18n("Show View Options Menu"), nullptr, 0, SLOT(showOptionsMenu()), "show_view_options_menu");
+    action(i18n("Set Focus to the Panel"), nullptr, 0, SLOT(focusPanel()), "focus_panel");
+    action(i18n("Apply settings to other tabs"), nullptr, 0, SLOT(applySettingsToOthers()), "view_apply_settings_to_others");
+    actTogglePreviews = toggleAction(i18n("Show Previews"), nullptr, 0, SLOT(togglePreviews(bool)), "toggle previews");
+    QAction *actSaveaveDefaultSettings = action(i18n("Save settings as default"), nullptr, 0, SLOT(saveDefaultSettings()), "view_save_default_settings");
 
     // tooltips
     actSelect->setToolTip(i18n("Select group"));

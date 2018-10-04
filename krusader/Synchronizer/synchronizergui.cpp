@@ -88,7 +88,7 @@ public:
         unsigned              ndx = 0;
         SynchronizerFileItem  *currentItem;
 
-        while ((currentItem = synchronizer->getItemAt(ndx++)) != 0) {
+        while ((currentItem = synchronizer->getItemAt(ndx++)) != nullptr) {
             SynchronizerGUI::SyncViewItem *viewItem = (SynchronizerGUI::SyncViewItem *)currentItem->userData();
 
             if (!viewItem || !viewItem->isSelected() || viewItem->isHidden())
@@ -725,7 +725,7 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
         return;
 
     SyncViewItem *syncItem = (SyncViewItem *)itemIn;
-    if (syncItem == 0)
+    if (syncItem == nullptr)
         return;
 
     SynchronizerFileItem *item = syncItem->synchronizerItemRef();
@@ -821,7 +821,7 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
         unsigned              ndx = 0;
         SynchronizerFileItem  *currentItem;
 
-        while ((currentItem = synchronizer.getItemAt(ndx++)) != 0) {
+        while ((currentItem = synchronizer.getItemAt(ndx++)) != nullptr) {
             SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
 
             if (!viewItem || !viewItem->isSelected() || viewItem->isHidden())
@@ -871,7 +871,7 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
         unsigned              ndx = 0;
         SynchronizerFileItem  *currentItem;
 
-        while ((currentItem = synchronizer.getItemAt(ndx++)) != 0) {
+        while ((currentItem = synchronizer.getItemAt(ndx++)) != nullptr) {
             SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
 
             if (!viewItem || viewItem->isHidden())
@@ -887,7 +887,7 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
         unsigned              ndx = 0;
         SynchronizerFileItem  *currentItem;
 
-        while ((currentItem = synchronizer.getItemAt(ndx++)) != 0) {
+        while ((currentItem = synchronizer.getItemAt(ndx++)) != nullptr) {
             SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
 
             if (!viewItem || viewItem->isHidden())
@@ -1009,7 +1009,7 @@ void SynchronizerGUI::compare()
     synchronizerTabs->setCurrentIndex(0);
 
     syncList->clear();
-    lastItem = 0;
+    lastItem = nullptr;
 
     leftLocation->addToHistory(leftLocation->currentText());
     rightLocation->addToHistory(rightLocation->currentText());
@@ -1093,10 +1093,10 @@ void SynchronizerGUI::addFile(SynchronizerFileItem *item)
         rightDate = SynchronizerGUI::convertTime(item->rightDate());
     }
 
-    SyncViewItem *listItem = 0;
+    SyncViewItem *listItem = nullptr;
     SyncViewItem *dirItem;
 
-    if (item->parent() == 0) {
+    if (item->parent() == nullptr) {
         listItem = new SyncViewItem(item, textColor, baseColor, syncList, lastItem, leftName, leftSize,
                                     leftDate, Synchronizer::getTaskTypeName(item->task()), rightDate,
                                     rightSize, rightName);
@@ -1299,7 +1299,7 @@ void SynchronizerGUI::keyPressEvent(QKeyEvent *e)
         e->accept();
         syncList->setFocus();
         QTreeWidgetItem *listItem =  syncList->currentItem();
-        if (listItem == 0)
+        if (listItem == nullptr)
             break;
 
         bool isedit = e->key() == Qt::Key_F4;
@@ -1397,7 +1397,7 @@ bool SynchronizerGUI::eventFilter(QObject * /* watched */, QEvent * e)
             ke->accept();
 
             QTreeWidgetItem *listItem =  syncList->currentItem();
-            if (listItem == 0)
+            if (listItem == nullptr)
                 return true;
 
             SynchronizerFileItem *item = ((SyncViewItem *)listItem)->synchronizerItemRef();
@@ -1583,7 +1583,7 @@ void SynchronizerGUI::copyToClipboard(bool isLeft)
     unsigned              ndx = 0;
     SynchronizerFileItem  *currentItem;
 
-    while ((currentItem = synchronizer.getItemAt(ndx++)) != 0) {
+    while ((currentItem = synchronizer.getItemAt(ndx++)) != nullptr) {
         SynchronizerGUI::SyncViewItem *viewItem = (SynchronizerGUI::SyncViewItem *)currentItem->userData();
 
         if (!viewItem || !viewItem->isSelected() || viewItem->isHidden())

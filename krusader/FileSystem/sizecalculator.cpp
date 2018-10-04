@@ -168,7 +168,7 @@ void SizeCalculator::slotDirectorySizeResult(KJob *)
         m_totalFiles += m_directorySizeJob->totalFiles();
         m_totalDirs += m_directorySizeJob->totalSubdirs();
     }
-    m_directorySizeJob = 0;
+    m_directorySizeJob = nullptr;
     nextSubUrl();
 }
 

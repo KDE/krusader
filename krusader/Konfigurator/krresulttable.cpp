@@ -84,7 +84,7 @@ void KrResultTable::adjustRow(QGridLayout* grid)
     QLayoutItem *child;
     int col = 0;
 
-    while ((child = grid->itemAt(i)) != 0) {
+    while ((child = grid->itemAt(i)) != nullptr) {
         // Add some space between columns
         child->widget()->setMinimumWidth(child->widget()->sizeHint().width() + 15);
 

@@ -47,7 +47,7 @@ class PackGUIBase : public QDialog
     Q_OBJECT
 
 public:
-    explicit PackGUIBase(QWidget* parent = 0);
+    explicit PackGUIBase(QWidget* parent = nullptr);
     ~PackGUIBase();
 
     QLabel* TextLabel3;

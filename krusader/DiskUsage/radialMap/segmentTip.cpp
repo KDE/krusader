@@ -37,7 +37,7 @@ namespace RadialMap
 {
 
 SegmentTip::SegmentTip(uint h)
-        : QWidget(0, Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint | Qt::X11BypassWindowManagerHint)
+        : QWidget(nullptr, Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint | Qt::X11BypassWindowManagerHint)
         , m_cursorHeight(-h)
 {
     setAttribute(Qt::WA_NoSystemBackground, true);

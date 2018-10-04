@@ -105,9 +105,9 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 
     //1. Create list of labels  sorted in the order they will be rendered
 
-    if (m_focus != NULL && m_focus->file() != m_tree) { //separate behavior for selected vs unselected segments
+    if (m_focus != nullptr && m_focus->file() != m_tree) { //separate behavior for selected vs unselected segments
         //don't bother with files
-        if (m_focus->file() == 0 || !m_focus->file()->isDir()) return;
+        if (m_focus->file() == nullptr || !m_focus->file()->isDir()) return;
 
         //find the range of levels we will be potentially drawing labels for
         for (const Directory *p = (const Directory *)m_focus->file();

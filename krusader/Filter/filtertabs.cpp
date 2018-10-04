@@ -144,7 +144,7 @@ FilterBase * FilterTabs::get(QString name)
             return filter;
     }
 
-    return 0;
+    return nullptr;
 }
 
 KRQuery FilterTabs::getQuery(QWidget *parent)
