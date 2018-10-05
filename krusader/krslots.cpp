@@ -542,12 +542,12 @@ void KRslots::slotCombine()
     int           commonLength = 0;
 
     /* checking splitter names */
-    for (QStringList::ConstIterator it = list.begin(); it != list.end(); ++it) {
-        QUrl url = ACTIVE_FUNC->files()->getUrl(*it);
+    for (const auto & it : list) {
+        QUrl url = ACTIVE_FUNC->files()->getUrl(it);
         if (url.isEmpty())
             return;
 
-        if (ACTIVE_FUNC->files()->getFileItem(*it)->isDir()) {
+        if (ACTIVE_FUNC->files()->getFileItem(it)->isDir()) {
             KMessageBox::sorry(krApp, i18n("You cannot combine a folder."));
             return;
         }
@@ -587,7 +587,7 @@ void KRslots::slotCombine()
             bool error = true;
 
             do {
-                QString shortName   = *it;
+                QString shortName   = it;
                 QChar   lastChar  = shortName.at(shortName.length() - 1);
 
                 if (lastChar.isLetter()) {

@@ -56,13 +56,13 @@ void KrActionBase::exec()
         return;
 
     if (confirmExecution()) {
-        for (QStringList::iterator it = commandList.begin(); it != commandList.end(); ++it) {
+        for (auto & it : commandList) {
             bool exec = true;
-            *it = QInputDialog::getText(krMainWindow, i18n("Confirm Execution"), i18n("Command being executed:"),
-                      QLineEdit::Normal, *it, &exec);
+            it = QInputDialog::getText(krMainWindow, i18n("Confirm Execution"), i18n("Command being executed:"),
+                      QLineEdit::Normal, it, &exec);
             if (exec) {
                 proc = actionProcFactoryMethod();
-                proc->start(*it);
+                proc->start(it);
             }
         } //for
     } // if ( _properties->confirmExecution() )

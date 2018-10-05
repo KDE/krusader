@@ -49,9 +49,9 @@ void SortProps::init(FileItem *fileitem, int col, const KrViewProperties * props
             int loc = fileitemName.lastIndexOf('.');
             if (loc > 0) { // avoid mishandling of .bashrc and friend
                 // check if it has one of the predefined 'atomic extensions'
-                for (QStringList::const_iterator i = props->atomicExtensions.begin(); i != props->atomicExtensions.end(); ++i) {
-                    if (fileitemName.endsWith(*i) && fileitemName != *i) {
-                        loc = fileitemName.length() - (*i).length();
+                for (const auto & atomicExtension : props->atomicExtensions) {
+                    if (fileitemName.endsWith(atomicExtension) && fileitemName != atomicExtension) {
+                        loc = fileitemName.length() - atomicExtension.length();
                         break;
                     }
                 }

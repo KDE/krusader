@@ -469,15 +469,15 @@ void KgColors::generatePreview()
 
         // copy over local settings to color settings instance, which does not affect the persisted krConfig settings
         QList<QString> names = KrColorSettings::getColorNames();
-        for (QList<QString>::Iterator it = names.begin(); it != names.end(); ++it) {
-            KonfiguratorColorChooser * chooser = getColorSelector(*it);
+        for (auto & name : names) {
+            KonfiguratorColorChooser * chooser = getColorSelector(name);
             if (!chooser)
                 continue;
-            colorSettings.setColorTextValue(*it, chooser->getValue());
+            colorSettings.setColorTextValue(name, chooser->getValue());
             if (chooser->isValueRGB())
-                colorSettings.setColorValue(*it, chooser->getColor());
+                colorSettings.setColorValue(name, chooser->getColor());
             else
-                colorSettings.setColorValue(*it, QColor());
+                colorSettings.setColorValue(name, QColor());
         }
 
         colorSettings.setBoolValue("KDE Default", generals->find("KDE Default")->isChecked());

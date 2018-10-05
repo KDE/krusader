@@ -345,13 +345,13 @@ void LocateDlg::processStdout()
     QStringList list = remaining.split('\n');
     int items = list.size();
 
-    for (QStringList::Iterator it = list.begin(); it != list.end(); ++it) {
+    for (auto & it : list) {
         if (--items == 0 && !remaining.endsWith('\n'))
-            remaining = *it;
+            remaining = it;
         else {
             if (dontSearchPath) {
                 QRegExp regExp(pattern, isCs ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard);
-                QString fileName = (*it).trimmed();
+                QString fileName = it.trimmed();
                 if (fileName.endsWith(QLatin1String("/")) && fileName != "/") {
                     fileName.truncate(fileName.length() - 1);
                 }
@@ -361,7 +361,7 @@ void LocateDlg::processStdout()
                     continue;
             }
             if (onlyExist) {
-                KFileItem file(QUrl::fromLocalFile((*it).trimmed()));
+                KFileItem file(QUrl::fromLocalFile(it.trimmed()));
                 if (!file.isReadable())
                     continue;
             }
@@ -371,7 +371,7 @@ void LocateDlg::processStdout()
             else
                 lastItem = new QTreeWidgetItem(resultList);
 
-            lastItem->setText(0, *it);
+            lastItem->setText(0, it);
         }
     }
 }

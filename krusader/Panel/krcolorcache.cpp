@@ -153,23 +153,23 @@ void KrColorSettingsImpl::loadFromConfig()
 {
     KConfigGroup group(krConfig, "Colors");
     QStringList names = KrColorSettingNames::getColorNames();
-    for (QStringList::Iterator it = names.begin(); it != names.end(); ++it) {
-        m_colorTextValues[*it] = group.readEntry(*it, QString());
-        if (m_colorTextValues[*it].count(',') == 2)
-            m_colorValues[*it] = group.readEntry(*it, QColor());
+    for (auto & name : names) {
+        m_colorTextValues[name] = group.readEntry(name, QString());
+        if (m_colorTextValues[name].count(',') == 2)
+            m_colorValues[name] = group.readEntry(name, QColor());
         else
-            m_colorValues[*it] = QColor();
+            m_colorValues[name] = QColor();
     }
     names = KrColorSettingNames::getNumNames();
-    for (QStringList::Iterator it = names.begin(); it != names.end(); ++it) {
-        if (!group.readEntry(*it, QString()).isEmpty()) {
-            m_numValues[*it] = group.readEntry(*it, (long long)0);
+    for (auto & name : names) {
+        if (!group.readEntry(name, QString()).isEmpty()) {
+            m_numValues[name] = group.readEntry(name, (long long)0);
         }
     }
     names = KrColorSettingNames::getBoolNames();
-    for (QStringList::Iterator it = names.begin(); it != names.end(); ++it) {
-        if (!group.readEntry(*it, QString()).isEmpty()) {
-            m_boolValues[*it] = group.readEntry(*it, false);
+    for (auto & name : names) {
+        if (!group.readEntry(name, QString()).isEmpty()) {
+            m_boolValues[name] = group.readEntry(name, false);
         }
     }
 }
@@ -196,9 +196,9 @@ const KrColorSettings & KrColorSettings::operator= (const KrColorSettings & src)
     if (this == & src)
         return * this;
     QStringList names = KrColorSettingNames::getColorNames();
-    for (QStringList::Iterator it = names.begin(); it != names.end(); ++it) {
-        m_impl->m_colorTextValues[*it] = src.m_impl->m_colorTextValues[*it];
-        m_impl->m_colorValues[*it] = src.m_impl->m_colorValues[*it];
+    for (auto & name : names) {
+        m_impl->m_colorTextValues[name] = src.m_impl->m_colorTextValues[name];
+        m_impl->m_colorValues[name] = src.m_impl->m_colorValues[name];
     }
     for (QMap<QString, int>::Iterator it = src.m_impl->m_numValues.begin(); it != src.m_impl->m_numValues.end(); ++it) {
         m_impl->m_numValues[it.key()] = it.value();

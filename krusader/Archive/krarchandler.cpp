@@ -525,8 +525,8 @@ bool KRarcHandler::pack(QStringList fileNames, QString type, QString dest, long 
     KrLinecountingProcess proc;
     proc << packer << dest;
 
-    for (QStringList::Iterator file = fileNames.begin(); file != fileNames.end(); ++file) {
-        proc << *file;
+    for (auto & fileName : fileNames) {
+        proc << fileName;
     }
 
     // tell the user to wait

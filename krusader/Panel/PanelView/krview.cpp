@@ -927,8 +927,7 @@ void KrView::doRestoreSettings(KConfigGroup group)
 
 void KrView::applySettingsToOthers()
 {
-    for(int i = 0; i < _instance.m_objects.length(); i++) {
-        KrView *view = _instance.m_objects[i];
+    for(auto view : _instance.m_objects) {
         if(this != view) {
             view->_ignoreSettingsChange = true;
             view->copySettingsFrom(this);

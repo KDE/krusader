@@ -468,9 +468,9 @@ QString ListModel::nameWithoutExtension(const FileItem *fileItem, bool checkEnab
     // and virtfs / search result names like "/dir/.file" which would become "/dir/"
     if (loc > 0 && fileItemName.lastIndexOf('/') < loc) {
         // check if it has one of the predefined 'atomic extensions'
-        for (QStringList::const_iterator i = properties()->atomicExtensions.begin(); i != properties()->atomicExtensions.end(); ++i) {
-            if (fileItemName.endsWith(*i) && fileItemName != *i) {
-                loc = fileItemName.length() - (*i).length();
+        for (const auto & atomicExtension : properties()->atomicExtensions) {
+            if (fileItemName.endsWith(atomicExtension) && fileItemName != atomicExtension) {
+                loc = fileItemName.length() - atomicExtension.length();
                 break;
             }
         }

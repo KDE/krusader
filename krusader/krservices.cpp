@@ -131,10 +131,10 @@ QString KrServices::registeredProtocol(QString mimetype)
 
         KConfigGroup group(krConfig, "Protocols");
         QStringList protList = group.readEntry("Handled Protocols", QStringList());
-        for (QStringList::Iterator it = protList.begin(); it != protList.end(); ++it) {
-            QStringList mimes = group.readEntry(QString("Mimes For %1").arg(*it), QStringList());
-            for (QStringList::Iterator it2 = mimes.begin(); it2 != mimes.end(); ++it2)
-                (*slaveMap)[*it2] = *it;
+        for (auto & it : protList) {
+            QStringList mimes = group.readEntry(QString("Mimes For %1").arg(it), QStringList());
+            for (auto & mime : mimes)
+                (*slaveMap)[mime] = it;
         }
     }
     QString protocol = (*slaveMap)[mimetype];
@@ -260,8 +260,8 @@ QString KrServices::escape(QString name)
 {
     const QString evilstuff = "\\\"'`()[]{}!?;$&<>| \t\r\n";  // stuff that should get escaped
 
-    for (int i = 0; i < evilstuff.length(); ++i)
-        name.replace(evilstuff[ i ], ('\\' + evilstuff[ i ]));
+    for (auto i : evilstuff)
+        name.replace(i, ('\\' + i));
 
     return name;
 }

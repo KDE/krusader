@@ -141,25 +141,25 @@ void MediaButton::createMediaList()
     KMountPoint::List possibleMountList = KMountPoint::possibleMountPoints();
     KMountPoint::List currentMountList = KMountPoint::currentMountPoints();
 
-    for (KMountPoint::List::iterator it = possibleMountList.begin(); it != possibleMountList.end(); ++it) {
-        if (krMtMan.networkFilesystem((*it)->mountType())) {
-            QString path = (*it)->mountPoint();
+    for (auto & it : possibleMountList) {
+        if (krMtMan.networkFilesystem(it->mountType())) {
+            QString path = it->mountPoint();
             bool mounted = false;
 
-            for (KMountPoint::List::iterator it2 = currentMountList.begin(); it2 != currentMountList.end(); ++it2) {
-                if (krMtMan.networkFilesystem((*it2)->mountType()) &&
-                        (*it)->mountPoint() == (*it2)->mountPoint()) {
+            for (auto & it2 : currentMountList) {
+                if (krMtMan.networkFilesystem(it2->mountType()) &&
+                        it->mountPoint() == it2->mountPoint()) {
                     mounted = true;
                     break;
                 }
             }
 
-            QString name = i18nc("%1 is the mount point of the remote share", "Remote Share [%1]", (*it)->mountPoint());
+            QString name = i18nc("%1 is the mount point of the remote share", "Remote Share [%1]", it->mountPoint());
             QStringList overlays;
             if (mounted)
                 overlays << "emblem-mounted";
             QAction * act = popupMenu->addAction(Icon("network-wired", overlays), name);
-            QString udi = remotePrefix + (*it)->mountPoint();
+            QString udi = remotePrefix + it->mountPoint();
             act->setData(QVariant(udi));
         }
     }
@@ -409,9 +409,9 @@ void MediaButton::getStatus(QString udi, bool &mounted, QString *mountPointOut, 
          mountPoint = udi.mid(remotePrefix.length());
 
         KMountPoint::List currentMountList = KMountPoint::currentMountPoints();
-        for (KMountPoint::List::iterator it = currentMountList.begin(); it != currentMountList.end(); ++it) {
-            if (krMtMan.networkFilesystem((*it)->mountType()) &&
-                    (*it)->mountPoint() == mountPoint) {
+        for (auto & it : currentMountList) {
+            if (krMtMan.networkFilesystem(it->mountType()) &&
+                    it->mountPoint() == mountPoint) {
                 mounted = true;
                 break;
             }
@@ -571,9 +571,9 @@ void MediaButton::slotCheckMounts()
             QString mountPoint = act->data().toString().mid(remotePrefix.length());
             bool available = false;
 
-            for (KMountPoint::List::iterator it = possibleMountList.begin(); it != possibleMountList.end(); ++it) {
-                if (krMtMan.networkFilesystem((*it)->mountType()) &&
-                        (*it)->mountPoint() == mountPoint) {
+            for (auto & it : possibleMountList) {
+                if (krMtMan.networkFilesystem(it->mountType()) &&
+                        it->mountPoint() == mountPoint) {
                     available = true;
                     break;
                 }
@@ -586,9 +586,9 @@ void MediaButton::slotCheckMounts()
         }
     }
 
-    for (KMountPoint::List::iterator it = possibleMountList.begin(); it != possibleMountList.end(); ++it) {
-        if (krMtMan.networkFilesystem((*it)->mountType())) {
-            QString path = (*it)->mountPoint();
+    for (auto & it : possibleMountList) {
+        if (krMtMan.networkFilesystem(it->mountType())) {
+            QString path = it->mountPoint();
             bool mounted = false;
             QString udi = remotePrefix + path;
 
@@ -599,15 +599,15 @@ void MediaButton::slotCheckMounts()
                     break;
                 }
             }
-            for (KMountPoint::List::iterator it2 = currentMountList.begin(); it2 != currentMountList.end(); ++it2) {
-                if (krMtMan.networkFilesystem((*it2)->mountType()) &&
-                        path == (*it2)->mountPoint()) {
+            for (auto & it2 : currentMountList) {
+                if (krMtMan.networkFilesystem(it2->mountType()) &&
+                        path == it2->mountPoint()) {
                     mounted = true;
                     break;
                 }
             }
 
-            QString name = i18nc("%1 is the mount point of the remote share", "Remote Share [%1]", (*it)->mountPoint());
+            QString name = i18nc("%1 is the mount point of the remote share", "Remote Share [%1]", it->mountPoint());
             QStringList overlays;
             if (mounted)
                 overlays << "emblem-mounted";

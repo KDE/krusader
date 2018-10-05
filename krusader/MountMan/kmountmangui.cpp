@@ -220,22 +220,22 @@ void KMountManGUI::getSpaceData()
         return;
     }
 
-    for (KMountPoint::List::iterator it = mounted.begin(); it != mounted.end(); ++it) {
+    for (auto & it : mounted) {
         // don't bother with invalid file systems
-        if (mountMan->invalidFilesystem((*it)->mountType())) {
+        if (mountMan->invalidFilesystem(it->mountType())) {
             continue;
         }
-        KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo((*it) ->mountPoint());
+        KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo(it ->mountPoint());
         if(!info.isValid()) {
             continue;
         }
         fsData data;
-        data.setMntPoint((*it) ->mountPoint());
+        data.setMntPoint(it ->mountPoint());
         data.setMounted(true);
         data.setTotalBlks(info.size() / 1024);
         data.setFreeBlks(info.available() / 1024);
-        data.setName((*it)->mountedFrom());
-        data.setType((*it)->mountType());
+        data.setName(it->mountedFrom());
+        data.setType(it->mountType());
         fileSystems.append(data);
     }
     addNonMounted();
@@ -245,16 +245,16 @@ void KMountManGUI::getSpaceData()
 void KMountManGUI::addNonMounted()
 {
     // handle the non-mounted ones
-    for (KMountPoint::List::iterator it = possible.begin(); it != possible.end(); ++it) {
+    for (auto & it : possible) {
         // make sure we don't add things we've already added
-        if (KMountMan::findInListByMntPoint(mounted, (*it)->mountPoint())) {
+        if (KMountMan::findInListByMntPoint(mounted, it->mountPoint())) {
             continue;
         } else {
             fsData data;
-            data.setMntPoint((*it)->mountPoint());
+            data.setMntPoint(it->mountPoint());
             data.setMounted(false);
-            data.setType((*it)->mountType());
-            data.setName((*it)->mountedFrom());
+            data.setType(it->mountType());
+            data.setName(it->mountedFrom());
 
             if (mountMan->invalidFilesystem(data.type()))
                 continue;
@@ -316,8 +316,8 @@ void KMountManGUI::updateList()
     mountList->clearSelection();
     mountList->clear();
 
-    for (QList<fsData>::iterator it = fileSystems.begin(); it != fileSystems.end() ; ++it)
-        addItemToMountList(mountList, *it);
+    for (auto & fileSystem : fileSystems)
+        addItemToMountList(mountList, fileSystem);
 
     currentItem = mountList->topLevelItem(currentIdx);
     for(int i = 0; i < mountList->topLevelItemCount(); i++) {
@@ -469,10 +469,10 @@ void KMountManGUI::slotEject()
 
 fsData* KMountManGUI::getFsData(QTreeWidgetItem *item)
 {
-    for (QList<fsData>::Iterator it = fileSystems.begin(); it != fileSystems.end(); ++it) {
+    for (auto & fileSystem : fileSystems) {
         // the only thing which is unique is the mount point
-        if ((*it).mntPoint() == getMntPoint(item)) {
-            return & (*it);
+        if (fileSystem.mntPoint() == getMntPoint(item)) {
+            return & fileSystem;
         }
     }
     //this point shouldn't be reached
@@ -500,11 +500,11 @@ bool KrMountDetector::hasMountsChanged()
 #endif
         KMountPoint::List mountPoints = KMountPoint::currentMountPoints(KMountPoint::NeedRealDeviceName);
         QCryptographicHash md5(QCryptographicHash::Md5);
-        for (KMountPoint::List::iterator i = mountPoints.begin(); i != mountPoints.end(); ++i) {
-            md5.addData((*i)->mountedFrom().toUtf8());
-            md5.addData((*i)->realDeviceName().toUtf8());
-            md5.addData((*i)->mountPoint().toUtf8());
-            md5.addData((*i)->mountType().toUtf8());
+        for (auto & mountPoint : mountPoints) {
+            md5.addData(mountPoint->mountedFrom().toUtf8());
+            md5.addData(mountPoint->realDeviceName().toUtf8());
+            md5.addData(mountPoint->mountPoint().toUtf8());
+            md5.addData(mountPoint->mountType().toUtf8());
         }
         QString s = md5.result();
         result = s != checksum;

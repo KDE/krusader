@@ -178,8 +178,7 @@ QDomDocument UserActionListView::dumpSelectedActions(QDomDocument* mergeDoc) con
         doc = UserAction::createEmptyDoc();
     QDomElement root = doc.documentElement();
 
-    for (int i = 0; i < list.size(); ++i) {
-        QTreeWidgetItem* item = list.at(i);
+    for (auto item : list) {
         if (auto* actionItem = dynamic_cast<UserActionListViewItem*>(item))
             root.appendChild(actionItem->action()->xmlDump(doc));
     }
@@ -191,8 +190,7 @@ void UserActionListView::removeSelectedActions()
 {
     QList<QTreeWidgetItem*> list = selectedItems();
 
-    for (int i = 0; i < list.size(); ++i) {
-        QTreeWidgetItem* item = list.at(i);
+    for (auto item : list) {
         if (auto* actionItem = dynamic_cast<UserActionListViewItem*>(item)) {
             delete actionItem->action(); // remove the action itself
             delete actionItem; // remove the action from the list

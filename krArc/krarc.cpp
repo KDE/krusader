@@ -1849,9 +1849,9 @@ QString kio_krarcProtocol::detectFullPathName(QString name)
     name = name + EXEC_SUFFIX;
     QStringList path = QString::fromLocal8Bit(qgetenv("PATH")).split(':');
 
-    for (QStringList::Iterator it = path.begin(); it != path.end(); ++it) {
-        if (QDir(*it).exists(name)) {
-            QString dir = *it;
+    for (auto & it : path) {
+        if (QDir(it).exists(name)) {
+            QString dir = it;
             if (!dir.endsWith(DIR_SEPARATOR))
                 dir += DIR_SEPARATOR;
 

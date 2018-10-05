@@ -202,12 +202,12 @@ void KrRemoteEncodingMenu::chooseDefault()
             partList.erase(partList.begin());
         }
 
-        for (QStringList::Iterator it = domains.begin(); it != domains.end(); ++it) {
+        for (auto & domain : domains) {
             //qDebug() << "Domain to remove: " << *it;
-            if (config.hasGroup(*it))
-                config.deleteGroup(*it);
-            else if (config.group("").hasKey(*it))
-                config.group("").deleteEntry(*it);       //don't know what group name is supposed to be XXX
+            if (config.hasGroup(domain))
+                config.deleteGroup(domain);
+            else if (config.group("").hasKey(domain))
+                config.group("").deleteEntry(domain);       //don't know what group name is supposed to be XXX
         }
     }
     config.sync();

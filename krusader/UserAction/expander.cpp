@@ -261,8 +261,8 @@ QString bashquote(QString s)
 
     static const QString evilstuff = "\\\"'`()[]{}!?;$&<>| \t\r\n";  // stuff that should get escaped
 
-    for (int i = 0; i < evilstuff.length(); ++i)
-        s.replace(evilstuff[ i ], ('\\' + evilstuff[ i ]));
+    for (auto i : evilstuff)
+        s.replace(i, ('\\' + i));
 
     return s;
 }
@@ -985,9 +985,9 @@ TagString exp_View::expFunc(const KrPanel*, const QStringList& parameter, const 
 TagString exp_simpleplaceholder::expFunc(const KrPanel* p, const TagStringList& parameter, const bool& useUrl, Expander& exp) const
 {
     QStringList lst;
-    for (TagStringList::const_iterator it = parameter.begin(), end = parameter.end();it != end;++it)
-        if ((*it).isSimple())
-            lst.push_back((*it).string());
+    for (const auto & it : parameter)
+        if (it.isSimple())
+            lst.push_back(it.string());
         else {
             setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("%Each% is not allowed in parameter to %1", description())));
             return QString();
@@ -1137,11 +1137,11 @@ TagStringList Expander::separateParameter(QString* const exp, bool useUrl)
         }
         parameter1.append(result.mid(begin, idx - begin));     //don't forget the last one
 
-        for (QStringList::Iterator it = parameter1.begin(); it != parameter1.end(); ++it) {
-            *it = (*it).trimmed();
-            if ((*it).left(1) == "\"")
-                *it = (*it).mid(1, (*it).length() - 2);
-            parameter.push_back(expandCurrent(*it, useUrl));
+        for (auto & it : parameter1) {
+            it = it.trimmed();
+            if (it.left(1) == "\"")
+                it = it.mid(1, it.length() - 2);
+            parameter.push_back(expandCurrent(it, useUrl));
             if (error())
                 return TagStringList();
         }

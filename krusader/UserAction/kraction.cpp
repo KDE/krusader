@@ -385,9 +385,9 @@ bool KrAction::isAvailable(const QUrl &currentURL)
     //check protocol
     if (! _showonlyProtocol.empty()) {
         available = false;
-        for (QStringList::Iterator it = _showonlyProtocol.begin(); it != _showonlyProtocol.end(); ++it) {
+        for (auto & it : _showonlyProtocol) {
             //qDebug() << "KrAction::isAvailable currentProtocol: " << currentURL.scheme() << " =?= " << *it;
-            if (currentURL.scheme() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
+            if (currentURL.scheme() == it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
                 available = true;
                 break;
             }
@@ -397,14 +397,14 @@ bool KrAction::isAvailable(const QUrl &currentURL)
     //check the Path-list:
     if (available && ! _showonlyPath.empty()) {
         available = false;
-        for (QStringList::Iterator it = _showonlyPath.begin(); it != _showonlyPath.end(); ++it) {
-            if ((*it).right(1) == "*") {
-                if (currentURL.path().indexOf((*it).left((*it).length() - 1)) == 0) {
+        for (auto & it : _showonlyPath) {
+            if (it.right(1) == "*") {
+                if (currentURL.path().indexOf(it.left(it.length() - 1)) == 0) {
                     available = true;
                     break;
                 }
             } else
-                if (currentURL.adjusted(QUrl::RemoveFilename|QUrl::StripTrailingSlash).path() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
+                if (currentURL.adjusted(QUrl::RemoveFilename|QUrl::StripTrailingSlash).path() == it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
                     available = true;
                     break;
                 }
@@ -417,14 +417,14 @@ bool KrAction::isAvailable(const QUrl &currentURL)
         QMimeDatabase db;
         QMimeType mime = db.mimeTypeForUrl(currentURL);
         if (mime.isValid()) {
-            for (QStringList::Iterator it = _showonlyMime.begin(); it != _showonlyMime.end(); ++it) {
-                if ((*it).contains("/")) {
-                    if (mime.inherits(*it)) {      // don't use ==; use 'inherits()' instead, which is aware of inheritance (ie: text/x-makefile is also text/plain)
+            for (auto & it : _showonlyMime) {
+                if (it.contains("/")) {
+                    if (mime.inherits(it)) {      // don't use ==; use 'inherits()' instead, which is aware of inheritance (ie: text/x-makefile is also text/plain)
                         available = true;
                         break;
                     }
                 } else {
-                    if (mime.name().indexOf(*it) == 0) {      // 0 is the beginning, -1 is not found
+                    if (mime.name().indexOf(it) == 0) {      // 0 is the beginning, -1 is not found
                         available = true;
                         break;
                     }
@@ -436,8 +436,8 @@ bool KrAction::isAvailable(const QUrl &currentURL)
     //check filename
     if (available && ! _showonlyFile.empty()) {
         available = false;
-        for (QStringList::Iterator it = _showonlyFile.begin(); it != _showonlyFile.end(); ++it) {
-            QRegExp regex = QRegExp(*it, Qt::CaseInsensitive, QRegExp::Wildcard);   // case-sensitive = false; wildcards = true
+        for (auto & it : _showonlyFile) {
+            QRegExp regex = QRegExp(it, Qt::CaseInsensitive, QRegExp::Wildcard);   // case-sensitive = false; wildcards = true
             if (regex.exactMatch(currentURL.fileName())) {
                 available = true;
                 break;

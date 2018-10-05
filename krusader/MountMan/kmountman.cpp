@@ -85,8 +85,8 @@ KMountMan::KMountMan(QWidget *parent) : QObject(), _operational(false), waiting(
         QStringList nonmount = group.readEntry("Nonmount Points", _NonMountPoints).split(',');
         nonmount_fs_mntpoint += nonmount;
         // simplify the white space
-        for (QStringList::Iterator it = nonmount_fs_mntpoint.begin(); it != nonmount_fs_mntpoint.end(); ++it) {
-            *it = (*it).simplified();
+        for (auto & it : nonmount_fs_mntpoint) {
+            it = it.simplified();
         }
     }
 
@@ -129,8 +129,8 @@ QExplicitlySharedDataPointer<KMountPoint> KMountMan::findInListByMntPoint(KMount
         value = value.left(value.length() - 1);
 
     QExplicitlySharedDataPointer<KMountPoint> m;
-    for (KMountPoint::List::iterator it = lst.begin(); it != lst.end(); ++it) {
-        m = it->data();
+    for (auto & it : lst) {
+        m = it.data();
         QString mntPnt = m->mountPoint();
         if (mntPnt.length() > 1 && mntPnt.endsWith('/'))
             mntPnt = mntPnt.left(mntPnt.length() - 1);

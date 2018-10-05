@@ -298,13 +298,13 @@ void KgProtocols::loadInitialValues()
     KConfigGroup group(krConfig, "Protocols");
     QStringList protList = group.readEntry("Handled Protocols", QStringList());
 
-    for (QStringList::Iterator it = protList.begin(); it != protList.end(); ++it) {
-        addProtocol(*it);
+    for (auto & it : protList) {
+        addProtocol(it);
 
-        QStringList mimes = group.readEntry(QString("Mimes For %1").arg(*it), QStringList());
+        QStringList mimes = group.readEntry(QString("Mimes For %1").arg(it), QStringList());
 
-        for (QStringList::Iterator it2 = mimes.begin(); it2 != mimes.end(); ++it2)
-            addMime(*it2, *it);
+        for (auto & mime : mimes)
+            addMime(mime, it);
     }
 
     if (linkList->topLevelItemCount() != 0)

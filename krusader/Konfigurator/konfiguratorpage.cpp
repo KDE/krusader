@@ -41,8 +41,8 @@ bool KonfiguratorPage::apply()
 {
     bool restartNeeded = false;
 
-    for (QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++)
-        restartNeeded = (*item)->apply() || restartNeeded;
+    for (auto & item : itemList)
+        restartNeeded = item->apply() || restartNeeded;
 
     krConfig->sync();
     return restartNeeded;
@@ -52,24 +52,24 @@ void KonfiguratorPage::setDefaults()
 {
     int activePage = activeSubPage();
 
-    for (QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++) {
-        if ((*item)->subPage() == activePage)
-            (*item)->setDefaults();
+    for (auto & item : itemList) {
+        if (item->subPage() == activePage)
+            item->setDefaults();
     }
 }
 
 void KonfiguratorPage::loadInitialValues()
 {
-    for (QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++)
-        (*item)->loadInitialValue();
+    for (auto & item : itemList)
+        item->loadInitialValue();
 }
 
 bool KonfiguratorPage::isChanged()
 {
     bool isChanged = false;
 
-    for (QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++)
-        isChanged = isChanged || (*item)->isChanged();
+    for (auto & item : itemList)
+        isChanged = isChanged || item->isChanged();
 
     return isChanged;
 }
