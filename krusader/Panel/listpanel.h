@@ -86,7 +86,7 @@ public:
     };
 
     // constructor create the panel, but DOESN'T fill it with data, use start()
-    ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg = KConfigGroup());
+    ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConfigGroup& cfg = KConfigGroup());
     ~ListPanel() override;
 
     void otherPanelChanged() Q_DECL_OVERRIDE;
@@ -181,7 +181,7 @@ protected:
 
 protected slots:
     void slotCurrentChanged(KrViewItem *item);
-    void startDragging(QStringList, QPixmap);
+    void startDragging(const QStringList&, const QPixmap&);
     void slotPreviewJobStarted(KJob *job);
     void slotPreviewJobPercent(KJob *job, unsigned long percent);
     void slotPreviewJobResult(KJob *job);
@@ -190,7 +190,7 @@ protected slots:
     void inlineRefreshInfoMessage(KJob* job, const QString &msg);
     void inlineRefreshListResult(KJob* job);
     void inlineRefreshPercent(KJob*, unsigned long);
-    void slotFilesystemError(QString msg);
+    void slotFilesystemError(const QString& msg);
     void newTab(KrViewItem *item);
     void newTab(const QUrl &url, bool nextToThis = false);
     void slotNavigatorUrlChanged(const QUrl &url);

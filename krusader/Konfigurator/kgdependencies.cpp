@@ -120,8 +120,8 @@ KgDependencies::KgDependencies(bool first, QWidget* parent) :
     kgDependenciesLayout->addWidget(tabWidget, 0, 0);
 }
 
-void KgDependencies::addApplication(QString name, QGridLayout *grid, int row, QWidget *parent,
-                                    int page, QString additionalList)
+void KgDependencies::addApplication(const QString& name, QGridLayout *grid, int row, QWidget *parent,
+                                    int page, const QString& additionalList)
 {
     // try to autodetect the full path name
     QString defaultValue = KrServices::fullPathName(name);
@@ -143,7 +143,7 @@ void KgDependencies::addApplication(QString name, QGridLayout *grid, int row, QW
     grid->addWidget(fullPath, row, 1);
 }
 
-void KgDependencies::slotApply(QObject *obj, QString configGroup, QString name)
+void KgDependencies::slotApply(QObject *obj, const QString& configGroup, const QString& name)
 {
     auto *urlRequester = (KonfiguratorURLRequester *) obj;
 

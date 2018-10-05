@@ -112,8 +112,8 @@ QAction *KrActions::actJobUndo = nullptr;
 #endif
 
 
-QAction *createAction(QString text, QString iconName, QKeySequence shortcut,
-                      QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
+QAction *createAction(const QString& text, const QString& iconName, const QKeySequence& shortcut,
+                      QObject *recv, const char *slot, const QString& name, Krusader *krusaderApp)
 {
     QAction *a;
     if (iconName.isEmpty())
@@ -126,8 +126,8 @@ QAction *createAction(QString text, QString iconName, QKeySequence shortcut,
     return a;
 }
 
-QAction *createAction(QString text, QString iconName, QList<QKeySequence> shortcuts,
-                      QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
+QAction *createAction(const QString& text, const QString& iconName, const QList<QKeySequence>& shortcuts,
+                      QObject *recv, const char *slot, const QString& name, Krusader *krusaderApp)
 {
     QAction *a;
     if (iconName.isEmpty())
@@ -141,8 +141,8 @@ QAction *createAction(QString text, QString iconName, QList<QKeySequence> shortc
 }
 
 
-KToggleAction *createToggleAction(QString text, QString iconName, QKeySequence shortcut,
-                                 QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
+KToggleAction *createToggleAction(const QString& text, const QString& iconName, const QKeySequence& shortcut,
+                                 QObject *recv, const char *slot, const QString& name, Krusader *krusaderApp)
 {
     KToggleAction *a;
     if (iconName == nullptr)

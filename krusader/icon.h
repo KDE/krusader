@@ -43,7 +43,7 @@ public:
     explicit Icon(QString name, QIcon fallbackIcon, QStringList overlays = QStringList());
 
     /// Check if icon exists in any configured theme
-    static bool exists(QString iconName);
+    static bool exists(const QString& iconName);
 
     /// Apply overlays to the pixmap with fallbacks to standard emblems
     static void applyOverlays(QPixmap *pixmap, QStringList overlays);

@@ -28,6 +28,7 @@
 
 #include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KToggleAction>
+#include <utility>
 
 void ActionsBase::ActionGroup::reconnect(QObject *recv)
 {
@@ -43,7 +44,7 @@ void ActionsBase::ActionGroup::addAction(QAction *action, const char *slot)
 }
 
 
-QAction *ActionsBase::createAction(QString text, QString icon, bool isToggleAction)
+QAction *ActionsBase::createAction(const QString& text, const QString& icon, bool isToggleAction)
 {
     if(isToggleAction) {
         if (icon == nullptr)
@@ -58,10 +59,10 @@ QAction *ActionsBase::createAction(QString text, QString icon, bool isToggleActi
     }
 }
 
-QAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
-                                 QObject *recv, const char *slot, QString name, bool isToggleAction)
+QAction *ActionsBase::action(QString text, QString icon, const QKeySequence& shortcut,
+                                 QObject *recv, const char *slot, const QString& name, bool isToggleAction)
 {
-    QAction *a = createAction(text, icon, isToggleAction);
+    QAction *a = createAction(std::move(text), std::move(icon), isToggleAction);
 
     connect(a, SIGNAL(triggered(bool)), recv, slot);
     _mainWindow->actions()->addAction(name, a);
@@ -71,9 +72,9 @@ QAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
 }
 
 QAction *ActionsBase::action(QString text, QString icon, const QList<QKeySequence> &shortcuts,
-                             QObject *recv, const char *slot, QString name, bool isToggleAction)
+                             QObject *recv, const char *slot, const QString& name, bool isToggleAction)
 {
-    QAction *a = createAction(text, icon, isToggleAction);
+    QAction *a = createAction(std::move(text), std::move(icon), isToggleAction);
 
     connect(a, SIGNAL(triggered(bool)), recv, slot);
     _mainWindow->actions()->addAction(name, a);
@@ -82,10 +83,10 @@ QAction *ActionsBase::action(QString text, QString icon, const QList<QKeySequenc
     return a;
 }
 
-QAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
-                             ActionGroup &group, const char *slot, QString name, bool isToggleAction)
+QAction *ActionsBase::action(QString text, QString icon, const QKeySequence& shortcut,
+                             ActionGroup &group, const char *slot, const QString& name, bool isToggleAction)
 {
-    QAction *action = createAction(text, icon, isToggleAction);
+    QAction *action = createAction(std::move(text), std::move(icon), isToggleAction);
 
     group.addAction(action, slot);
     _mainWindow->actions()->addAction(name, action);
@@ -94,16 +95,16 @@ QAction *ActionsBase::action(QString text, QString icon, QKeySequence shortcut,
     return action;
 }
 
-KToggleAction *ActionsBase::toggleAction(QString text, QString icon, QKeySequence shortcut,
+KToggleAction *ActionsBase::toggleAction(QString text, QString icon, const QKeySequence& shortcut,
                                 QObject *recv, const char *slot, QString name)
 {
-    return (KToggleAction *)(action(text, icon, shortcut, recv, slot, name, true));
+    return (KToggleAction *)(action(std::move(text), std::move(icon), shortcut, recv, slot, std::move(name), true));
 }
 
-KToggleAction *ActionsBase::toggleAction(QString text, QString icon, QKeySequence shortcut,
+KToggleAction *ActionsBase::toggleAction(QString text, QString icon, const QKeySequence& shortcut,
                                          ActionGroup &group, const char *slot, QString name)
 {
-    return (KToggleAction *)(action(text, icon, shortcut, group, slot, name, true));
+    return (KToggleAction *)(action(std::move(text), std::move(icon), shortcut, group, slot, std::move(name), true));
 }
 
 QAction *ActionsBase::stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot)

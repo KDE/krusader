@@ -53,7 +53,7 @@ private:
     KUrlRequester   *urlReq;
 
 public:
-    SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir);
+    SplitterGUI(QWidget* parent,  const QUrl& fileURL, const QUrl& defaultDir);
     ~SplitterGUI() override;
 
     QUrl    getDestinationDir()     {

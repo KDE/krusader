@@ -49,6 +49,7 @@
 #include <KWidgetsAddons/KStandardGuiItem>
 #include <KIO/Job>
 #include <KIO/DeleteJob>
+#include <utility>
 
 #include "dufilelight.h"
 #include "dulines.h"
@@ -195,7 +196,7 @@ void LoaderWidget::slotCancelled()
 }
 
 DiskUsage::DiskUsage(QString confGroup, QWidget *parent) : QStackedWidget(parent),
-        currentDirectory(nullptr), root(nullptr), configGroup(confGroup), loading(false),
+        currentDirectory(nullptr), root(nullptr), configGroup(std::move(confGroup)), loading(false),
         abortLoading(false), clearAfterAbort(false), deleting(false), searchFileSystem(nullptr)
 {
     listView = new DUListView(this);
@@ -414,7 +415,7 @@ Directory * DiskUsage::getDirectory(QString dir)
     return contentMap[ dir ];
 }
 
-File * DiskUsage::getFile(QString path)
+File * DiskUsage::getFile(const QString& path)
 {
     if (path.isEmpty())
         return root;
@@ -654,7 +655,7 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
     return deleteNr;
 }
 
-void * DiskUsage::getProperty(File *item, QString key)
+void * DiskUsage::getProperty(File *item, const QString& key)
 {
     QHash< File *, Properties *>::iterator itr = propertyMap.find(item);
     if (itr == propertyMap.end())
@@ -667,7 +668,7 @@ void * DiskUsage::getProperty(File *item, QString key)
     return it.value();
 }
 
-void DiskUsage::addProperty(File *item, QString key, void * prop)
+void DiskUsage::addProperty(File *item, const QString& key, void * prop)
 {
     Properties *props;
     QHash< File *, Properties *>::iterator itr = propertyMap.find(item);
@@ -680,7 +681,7 @@ void DiskUsage::addProperty(File *item, QString key, void * prop)
     props->insert(key, prop);
 }
 
-void DiskUsage::removeProperty(File *item, QString key)
+void DiskUsage::removeProperty(File *item, const QString& key)
 {
     QHash< File *, Properties *>::iterator itr = propertyMap.find(item);
     if (itr == propertyMap.end())
@@ -725,7 +726,7 @@ Directory* DiskUsage::getCurrentDir()
     return currentDirectory;
 }
 
-void DiskUsage::rightClickMenu(const QPoint & pos, File *fileItem, QMenu *addPopup, QString addPopupName)
+void DiskUsage::rightClickMenu(const QPoint & pos, File *fileItem, QMenu *addPopup, const QString& addPopupName)
 {
     QMenu popup(this);
 
@@ -949,7 +950,7 @@ void DiskUsage::keyPressEvent(QKeyEvent *e)
     QStackedWidget::keyPressEvent(e);
 }
 
-QPixmap DiskUsage::getIcon(QString mime)
+QPixmap DiskUsage::getIcon(const QString& mime)
 {
     QPixmap icon;
 

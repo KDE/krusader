@@ -54,10 +54,10 @@ protected:
     void         loadMimes();
     void         addSpacer(QBoxLayout *parent);
 
-    void         addProtocol(QString name, bool changeCurrent = false);
-    void         removeProtocol(QString name);
-    void         addMime(QString name, QString protocol);
-    void         removeMime(QString name);
+    void         addProtocol(const QString& name, bool changeCurrent = false);
+    void         removeProtocol(const QString& name);
+    void         addMime(QString name, const QString& protocol);
+    void         removeMime(const QString& name);
 
     KrTreeWidget *linkList;
 

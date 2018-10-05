@@ -87,9 +87,9 @@ public slots:
     void focusUp();
     void focusDown();
 
-    void profiles(QString profileName = QString());
-    void loadPanelProfiles(QString group);
-    void savePanelProfiles(QString group);
+    void profiles(const QString& profileName = QString());
+    void loadPanelProfiles(const QString& group);
+    void savePanelProfiles(const QString& group);
 
     void draggingTab(PanelManager *from, QMouseEvent *e);
     void draggingTabFinished(PanelManager *from, QMouseEvent *e);

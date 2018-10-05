@@ -37,12 +37,13 @@
 #include <KCompletion/KLineEdit>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
+#include <utility>
 
 
 KonfiguratorExtension::KonfiguratorExtension(QObject *obj, QString cfgGroup, QString cfgName,
                                              bool restartNeeded, int page)
     : QObject(), objectPtr(obj), applyConnected(false), setDefaultsConnected(false), changed(false),
-      restartNeeded(restartNeeded), subpage(page), configGroup(cfgGroup), configName(cfgName)
+      restartNeeded(restartNeeded), subpage(page), configGroup(std::move(cfgGroup)), configName(std::move(cfgName))
 {
 }
 
@@ -91,11 +92,11 @@ bool KonfiguratorExtension::isChanged()
 // KonfiguratorCheckBox class
 ///////////////////////////////
 
-KonfiguratorCheckBox::KonfiguratorCheckBox(QString configGroup, QString name, bool defaultValue, QString text,
+KonfiguratorCheckBox::KonfiguratorCheckBox(QString configGroup, QString name, bool defaultValue, const QString& text,
         QWidget *parent, bool restart, int page) : QCheckBox(text, parent),
         defaultValue(defaultValue)
 {
-    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
+    ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(name), restart, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorCheckBox::slotApply);
     connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorCheckBox::slotSetDefaults);
     connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorCheckBox::loadInitialValue);
@@ -140,7 +141,7 @@ void KonfiguratorCheckBox::updateDeps()
         dep->setEnabled(isChecked());
 }
 
-void KonfiguratorCheckBox::slotApply(QObject *, QString configGroup, QString name)
+void KonfiguratorCheckBox::slotApply(QObject *, const QString& configGroup, const QString& name)
 {
     KConfigGroup(krConfig, configGroup).writeEntry(name, isChecked());
 }
@@ -160,7 +161,7 @@ KonfiguratorSpinBox::KonfiguratorSpinBox(QString configGroup, QString configName
                                          int page)
     : QSpinBox(parent), defaultValue(defaultValue)
 {
-    ext = new KonfiguratorExtension(this, configGroup, configName, restartNeeded, page);
+    ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(configName), restartNeeded, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorSpinBox::slotApply);
     connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorSpinBox::slotSetDefaults);
     connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorSpinBox::loadInitialValue);
@@ -185,7 +186,7 @@ void KonfiguratorSpinBox::loadInitialValue()
     ext->setChanged(false);
 }
 
-void KonfiguratorSpinBox::slotApply(QObject *, QString configGroup, QString name)
+void KonfiguratorSpinBox::slotApply(QObject *, const QString& configGroup, const QString& name)
 {
     KConfigGroup(krConfig, configGroup).writeEntry(name, value());
 }
@@ -211,7 +212,7 @@ KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find(int index)
     return checkBoxList.at(index);
 }
 
-KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find(QString name)
+KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find(const QString& name)
 {
     QListIterator<KonfiguratorCheckBox *> it(checkBoxList);
     while (it.hasNext()) {
@@ -230,9 +231,9 @@ KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find(QString name)
 
 KonfiguratorRadioButtons::KonfiguratorRadioButtons(QString configGroup, QString name,
         QString defaultValue, QWidget *parent, bool restart, int page) :
-        QWidget(parent), defaultValue(defaultValue)
+        QWidget(parent), defaultValue(std::move(defaultValue))
 {
-    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
+    ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(name), restart, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorRadioButtons::slotApply);
     connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorRadioButtons::slotSetDefaults);
     connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorRadioButtons::loadInitialValue);
@@ -243,7 +244,7 @@ KonfiguratorRadioButtons::~KonfiguratorRadioButtons()
     delete ext;
 }
 
-void KonfiguratorRadioButtons::addRadioButton(QRadioButton *radioWidget, QString name, QString value)
+void KonfiguratorRadioButtons::addRadioButton(QRadioButton *radioWidget, const QString& name, const QString& value)
 {
     radioButtons.append(radioWidget);
     radioNames.push_back(name);
@@ -260,7 +261,7 @@ QRadioButton * KonfiguratorRadioButtons::find(int index)
     return radioButtons.at(index);
 }
 
-QRadioButton * KonfiguratorRadioButtons::find(QString name)
+QRadioButton * KonfiguratorRadioButtons::find(const QString& name)
 {
     int index = radioNames.indexOf(name);
     if (index == -1)
@@ -269,7 +270,7 @@ QRadioButton * KonfiguratorRadioButtons::find(QString name)
     return radioButtons.at(index);
 }
 
-void KonfiguratorRadioButtons::selectButton(QString value)
+void KonfiguratorRadioButtons::selectButton(const QString& value)
 {
     int cnt = 0;
 
@@ -315,7 +316,7 @@ QString KonfiguratorRadioButtons::selectedValue()
     return QString();
 }
 
-void KonfiguratorRadioButtons::slotApply(QObject *, QString configGroup, QString name)
+void KonfiguratorRadioButtons::slotApply(QObject *, const QString& configGroup, const QString& name)
 {
     QString value = selectedValue();
 
@@ -333,9 +334,9 @@ void KonfiguratorRadioButtons::slotSetDefaults(QObject *)
 
 KonfiguratorEditBox::KonfiguratorEditBox(QString configGroup, QString name, QString defaultValue,
         QWidget *parent, bool restart, int page) : QLineEdit(parent),
-        defaultValue(defaultValue)
+        defaultValue(std::move(defaultValue))
 {
-    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
+    ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(name), restart, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorEditBox::slotApply);
     connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorEditBox::slotSetDefaults);
     connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorEditBox::loadInitialValue);
@@ -357,7 +358,7 @@ void KonfiguratorEditBox::loadInitialValue()
     ext->setChanged(false);
 }
 
-void KonfiguratorEditBox::slotApply(QObject *, QString configGroup, QString name)
+void KonfiguratorEditBox::slotApply(QObject *, const QString& configGroup, const QString& name)
 {
     KConfigGroup(krConfig, configGroup).writeEntry(name, text());
 }
@@ -375,9 +376,9 @@ void KonfiguratorEditBox::slotSetDefaults(QObject *)
 KonfiguratorURLRequester::KonfiguratorURLRequester(QString configGroup, QString name,
                                                    QString defaultValue, QWidget *parent,
                                                    bool restart, int page, bool expansion)
-    : KUrlRequester(parent), defaultValue(defaultValue), expansion(expansion)
+    : KUrlRequester(parent), defaultValue(std::move(defaultValue)), expansion(expansion)
 {
-    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
+    ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(name), restart, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorURLRequester::slotApply);
     connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorURLRequester::slotSetDefaults);
     connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorURLRequester::loadInitialValue);
@@ -399,7 +400,7 @@ void KonfiguratorURLRequester::loadInitialValue()
     ext->setChanged(false);
 }
 
-void KonfiguratorURLRequester::slotApply(QObject *, QString configGroup, QString name)
+void KonfiguratorURLRequester::slotApply(QObject *, const QString& configGroup, const QString& name)
 {
     KConfigGroup(krConfig, configGroup)
         .writeEntry(name, expansion ? url().toDisplayString(QUrl::PreferLocalFile) : text());
@@ -414,13 +415,13 @@ void KonfiguratorURLRequester::slotSetDefaults(QObject *)
 // KonfiguratorFontChooser class
 ///////////////////////////////
 
-KonfiguratorFontChooser::KonfiguratorFontChooser(QString configGroup, QString name, QFont defaultValue,
+KonfiguratorFontChooser::KonfiguratorFontChooser(QString configGroup, QString name, const QFont& defaultValue,
         QWidget *parent, bool restart, int page) : QWidget(parent),
         defaultValue(defaultValue)
 {
     auto *layout = new QHBoxLayout(this);
 
-    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
+    ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(name), restart, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorFontChooser::slotApply);
     connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorFontChooser::slotSetDefaults);
     connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorFontChooser::loadInitialValue);
@@ -458,7 +459,7 @@ void KonfiguratorFontChooser::setFont()
     pLabel->setText(font.family() + QString(", %1").arg(font.pointSize()));
 }
 
-void KonfiguratorFontChooser::slotApply(QObject *, QString configGroup, QString name)
+void KonfiguratorFontChooser::slotApply(QObject *, const QString& configGroup, const QString& name)
 {
     KConfigGroup(krConfig, configGroup).writeEntry(name, font);
 }
@@ -485,7 +486,7 @@ void KonfiguratorFontChooser::slotBrowseFont()
 KonfiguratorComboBox::KonfiguratorComboBox(QString configGroup, QString name, QString defaultValue,
         KONFIGURATOR_NAME_VALUE_PAIR *listIn, int listInLen, QWidget *parent,
         bool restart, bool editable, int page) : QComboBox(parent),
-        defaultValue(defaultValue), listLen(listInLen)
+        defaultValue(std::move(defaultValue)), listLen(listInLen)
 {
     list = new KONFIGURATOR_NAME_VALUE_PAIR[ listInLen ];
 
@@ -494,7 +495,7 @@ KonfiguratorComboBox::KonfiguratorComboBox(QString configGroup, QString name, QS
         addItem(list[i].text);
     }
 
-    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
+    ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(name), restart, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorComboBox::slotApply);
     connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorComboBox::slotSetDefaults);
     connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorComboBox::loadInitialValue);
@@ -521,7 +522,7 @@ void KonfiguratorComboBox::loadInitialValue()
     ext->setChanged(false);
 }
 
-void KonfiguratorComboBox::slotApply(QObject *, QString configGroup, QString name)
+void KonfiguratorComboBox::slotApply(QObject *, const QString& configGroup, const QString& name)
 {
     QString text = isEditable() ? lineEdit()->text() : currentText();
     QString value = text;
@@ -535,7 +536,7 @@ void KonfiguratorComboBox::slotApply(QObject *, QString configGroup, QString nam
     KConfigGroup(krConfig, configGroup).writeEntry(name, value);
 }
 
-void KonfiguratorComboBox::selectEntry(QString entry)
+void KonfiguratorComboBox::selectEntry(const QString& entry)
 {
     for (int i = 0; i != listLen; i++)
         if (list[i].value == entry) {
@@ -559,12 +560,12 @@ void KonfiguratorComboBox::slotSetDefaults(QObject *)
 ///////////////////////////////
 
 KonfiguratorColorChooser::KonfiguratorColorChooser(QString configGroup, QString name,
-                                                   QColor defaultValue, QWidget *parent,
+                                                   const QColor& defaultValue, QWidget *parent,
                                                    bool restart, ADDITIONAL_COLOR *addColPtr,
                                                    int addColNum, int page)
     : QComboBox(parent), defaultValue(defaultValue), disableColorChooser(true)
 {
-    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
+    ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(name), restart, page);
 
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorColorChooser::slotApply);
     connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorColorChooser::slotSetDefaults);
@@ -606,7 +607,7 @@ KonfiguratorColorChooser::~KonfiguratorColorChooser()
     delete ext;
 }
 
-QPixmap KonfiguratorColorChooser::createPixmap(QColor color)
+QPixmap KonfiguratorColorChooser::createPixmap(const QColor& color)
 {
     QPainter painter;
     QPen pen;
@@ -627,7 +628,7 @@ QPixmap KonfiguratorColorChooser::createPixmap(QColor color)
     return pixmap;
 }
 
-void KonfiguratorColorChooser::addColor(QString text, QColor color)
+void KonfiguratorColorChooser::addColor(const QString& text, const QColor& color)
 {
     addItem(createPixmap(color), text);
     palette.push_back(color);
@@ -643,7 +644,7 @@ void KonfiguratorColorChooser::loadInitialValue()
 
 void KonfiguratorColorChooser::setDefaultColor(QColor dflt)
 {
-    defaultValue = dflt;
+    defaultValue = std::move(dflt);
     palette[1] = defaultValue;
     setItemIcon(1, createPixmap(defaultValue));
 
@@ -651,7 +652,7 @@ void KonfiguratorColorChooser::setDefaultColor(QColor dflt)
         emit colorChanged();
 }
 
-void KonfiguratorColorChooser::changeAdditionalColor(int num, QColor color)
+void KonfiguratorColorChooser::changeAdditionalColor(int num, const QColor& color)
 {
     if (num < additionalColors.size()) {
         palette[2+num] = color;
@@ -663,18 +664,18 @@ void KonfiguratorColorChooser::changeAdditionalColor(int num, QColor color)
     }
 }
 
-void KonfiguratorColorChooser::setDefaultText(QString text)
+void KonfiguratorColorChooser::setDefaultText(const QString& text)
 {
     setItemIcon(1, createPixmap(defaultValue));
     setItemText(1, text);
 }
 
-void KonfiguratorColorChooser::slotApply(QObject *, QString configGroup, QString name)
+void KonfiguratorColorChooser::slotApply(QObject *, const QString& configGroup, const QString& name)
 {
     KConfigGroup(krConfig, configGroup).writeEntry(name, getValue());
 }
 
-void KonfiguratorColorChooser::setValue(QString value)
+void KonfiguratorColorChooser::setValue(const QString& value)
 {
     disableColorChooser = true;
 
@@ -765,9 +766,9 @@ QColor KonfiguratorColorChooser::getColor()
 
 KonfiguratorListBox::KonfiguratorListBox(QString configGroup, QString name, QStringList defaultValue,
         QWidget *parent, bool restart, int page) : KrListWidget(parent),
-        defaultValue(defaultValue)
+        defaultValue(std::move(defaultValue))
 {
-    ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
+    ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(name), restart, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorListBox::slotApply);
     connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorListBox::slotSetDefaults);
     connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorListBox::loadInitialValue);
@@ -787,7 +788,7 @@ void KonfiguratorListBox::loadInitialValue()
     ext->setChanged(false);
 }
 
-void KonfiguratorListBox::slotApply(QObject *, QString configGroup, QString name)
+void KonfiguratorListBox::slotApply(QObject *, const QString& configGroup, const QString& name)
 {
     KConfigGroup(krConfig, configGroup).writeEntry(name, list());
 }
@@ -800,7 +801,7 @@ void KonfiguratorListBox::slotSetDefaults(QObject *)
     }
 }
 
-void KonfiguratorListBox::setList(QStringList list)
+void KonfiguratorListBox::setList(const QStringList& list)
 {
     clear();
     addItems(list);

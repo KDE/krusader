@@ -105,7 +105,7 @@ class KonfiguratorCheckBox : public QCheckBox
     Q_OBJECT
 
 public:
-    KonfiguratorCheckBox(QString configGroup, QString name, bool defaultValue, QString text,
+    KonfiguratorCheckBox(QString configGroup, QString name, bool defaultValue, const QString& text,
                          QWidget *parent = nullptr, bool restart = false, int page = FIRST_PAGE);
     ~KonfiguratorCheckBox() override;
 
@@ -117,7 +117,7 @@ public:
 
 public slots:
     virtual void loadInitialValue();
-    void slotApply(QObject *, QString, QString);
+    void slotApply(QObject *, const QString&, const QString&);
     void slotSetDefaults(QObject *);
 
 protected:
@@ -146,7 +146,7 @@ public:
 
 public slots:
     virtual void loadInitialValue();
-    void slotApply(QObject *, QString, QString);
+    void slotApply(QObject *, const QString&, const QString&);
     void slotSetDefaults(QObject *);
 
 protected:
@@ -167,7 +167,7 @@ public:
         return checkBoxList.count();
     };
     KonfiguratorCheckBox *  find(int index);
-    KonfiguratorCheckBox *  find(QString name);
+    KonfiguratorCheckBox *  find(const QString& name);
 
 private:
     QList<KonfiguratorCheckBox *>  checkBoxList;
@@ -187,18 +187,18 @@ public:
 
     inline KonfiguratorExtension *extension() { return ext; }
 
-    void addRadioButton(QRadioButton *radioWidget, QString name, QString value);
+    void addRadioButton(QRadioButton *radioWidget, const QString& name, const QString& value);
 
-    void selectButton(QString value);
+    void selectButton(const QString& value);
 
     int count() { return radioButtons.count(); }
     QString selectedValue();
     QRadioButton *find(int index);
-    QRadioButton *find(QString name);
+    QRadioButton *find(const QString& name);
 
 public slots:
     virtual void loadInitialValue();
-    void slotApply(QObject *, QString, QString);
+    void slotApply(QObject *, const QString&, const QString&);
     void slotSetDefaults(QObject *);
 
 protected:
@@ -227,7 +227,7 @@ public:
 
 public slots:
     virtual void loadInitialValue();
-    void slotApply(QObject *, QString, QString);
+    void slotApply(QObject *, const QString&, const QString&);
     void slotSetDefaults(QObject *);
 
 protected:
@@ -253,7 +253,7 @@ public:
 
 public slots:
     virtual void loadInitialValue();
-    void slotApply(QObject *, QString, QString);
+    void slotApply(QObject *, const QString&, const QString&);
     void slotSetDefaults(QObject *);
 
 protected:
@@ -270,7 +270,7 @@ class KonfiguratorFontChooser : public QWidget
     Q_OBJECT
 
 public:
-    KonfiguratorFontChooser(QString configGroup, QString name, QFont defaultValue,
+    KonfiguratorFontChooser(QString configGroup, QString name, const QFont& defaultValue,
                             QWidget *parent = nullptr, bool restart = false, int page = FIRST_PAGE);
     ~KonfiguratorFontChooser() override;
 
@@ -278,7 +278,7 @@ public:
 
 public slots:
     virtual void    loadInitialValue();
-    void            slotApply(QObject *, QString, QString);
+    void            slotApply(QObject *, const QString&, const QString&);
     void            slotSetDefaults(QObject *);
     void            slotBrowseFont();
 
@@ -327,7 +327,7 @@ public:
 
 public slots:
     virtual void loadInitialValue();
-    void slotApply(QObject *, QString, QString);
+    void slotApply(QObject *, const QString&, const QString&);
     void slotSetDefaults(QObject *);
 
 protected:
@@ -336,7 +336,7 @@ protected:
     int                           listLen;
     KonfiguratorExtension        *ext;
 
-    void                          selectEntry(QString entry);
+    void                          selectEntry(const QString& entry);
 };
 
 
@@ -354,7 +354,7 @@ class KonfiguratorColorChooser : public QComboBox
     Q_OBJECT
 
 public:
-    KonfiguratorColorChooser(QString configGroup, QString name, QColor defaultValue,
+    KonfiguratorColorChooser(QString configGroup, QString name, const QColor& defaultValue,
                              QWidget *parent = nullptr, bool restart = false,
                              ADDITIONAL_COLOR *addColPtr = nullptr, int addColNum = 0, int page = FIRST_PAGE);
     ~KonfiguratorColorChooser() override;
@@ -364,16 +364,16 @@ public:
     }
 
     void          setDefaultColor(QColor dflt);
-    void          setDefaultText(QString text);
+    void          setDefaultText(const QString& text);
     QColor        getColor();
-    void          changeAdditionalColor(int num, QColor color);
+    void          changeAdditionalColor(int num, const QColor& color);
     QString       getValue();
     bool          isValueRGB();
-    void          setValue(QString value);
+    void          setValue(const QString& value);
 
 public slots:
     virtual void  loadInitialValue();
-    void          slotApply(QObject *, QString, QString);
+    void          slotApply(QObject *, const QString&, const QString&);
     void          slotSetDefaults(QObject *);
     void          slotCurrentChanged(int number);
 
@@ -381,8 +381,8 @@ signals:
     void          colorChanged();
 
 private:
-    void          addColor(QString text, QColor color);
-    QPixmap       createPixmap(QColor color);
+    void          addColor(const QString& text, const QColor& color);
+    QPixmap       createPixmap(const QColor& color);
 
 protected:
     QColor                          defaultValue;
@@ -412,12 +412,12 @@ public:
 
 public slots:
     virtual void loadInitialValue();
-    void slotApply(QObject *, QString, QString);
+    void slotApply(QObject *, const QString&, const QString&);
     void slotSetDefaults(QObject *);
 
 protected:
     QStringList list();
-    void setList(QStringList);
+    void setList(const QStringList&);
 
     QStringList defaultValue;
     KonfiguratorExtension *ext;

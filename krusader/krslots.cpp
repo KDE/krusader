@@ -39,6 +39,7 @@
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KMessageBox>
+#include <utility>
 
 #ifdef __KJSEMBED__
 #include <kjsembed/jsconsolewidget.h>
@@ -199,7 +200,7 @@ bool downloadToTemp(const QUrl &url, QString &dest) {
     return false;
 }
 
-void KRslots::compareContent(QUrl url1, QUrl url2)
+void KRslots::compareContent(const QUrl& url1, const QUrl& url2)
 {
     QString diffProg;
     QStringList lst = KrServices::supportedTools();
@@ -646,7 +647,7 @@ void KRslots::manageUseractions()
 void KRslots::slotSynchronizeDirs(QStringList selected)
 {
     SynchronizerGUI *synchronizerDialog = new SynchronizerGUI(MAIN_VIEW, LEFT_PANEL->virtualPath(),
-                                                              RIGHT_PANEL->virtualPath(), selected);
+                                                              RIGHT_PANEL->virtualPath(), std::move(selected));
     synchronizerDialog->show(); // destroyed on close
 }
 #endif

@@ -66,17 +66,17 @@ protected:
 
 private:
     void createMediaList();
-    void toggleMount(QString udi);
-    void getStatus(QString udi, bool &mounted, QString *mountPointOut = nullptr, bool *ejectableOut = nullptr);
-    void mount(QString, bool open = false, bool newtab = false);
-    void umount(QString);
+    void toggleMount(const QString& udi);
+    void getStatus(const QString& udi, bool &mounted, QString *mountPointOut = nullptr, bool *ejectableOut = nullptr);
+    void mount(const QString&, bool open = false, bool newtab = false);
+    void umount(const QString&);
     void eject(QString);
-    void rightClickMenu(QString udi, QPoint pos);
+    void rightClickMenu(const QString& udi, QPoint pos);
 
     QList<Solid::Device> storageDevices;
 
 private slots:
-    void slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
+    void slotSetupDone(Solid::ErrorType error, const QVariant& errorData, const QString &udi);
 
 private:
     static QString remotePrefix;

@@ -825,7 +825,7 @@ void ListPanelFunc::goInside(const QString& name)
     openFileNameInternal(name, false);
 }
 
-void ListPanelFunc::runCommand(QString cmd)
+void ListPanelFunc::runCommand(const QString& cmd)
 {
     qDebug() << "command=" << cmd;
     const QString workdir = panel->virtualPath().isLocalFile() ?
@@ -834,7 +834,7 @@ void ListPanelFunc::runCommand(QString cmd)
         KMessageBox::error(nullptr, i18n("Could not start %1", cmd));
 }
 
-void ListPanelFunc::runService(const KService &service, QList<QUrl> urls)
+void ListPanelFunc::runService(const KService &service, const QList<QUrl>& urls)
 {
     qDebug() << "service name=" << service.name();
     KIO::DesktopExecParser parser(service, urls);
@@ -845,7 +845,7 @@ void ListPanelFunc::runService(const KService &service, QList<QUrl> urls)
         KMessageBox::error(nullptr, i18n("%1 cannot open %2", service.name(), KrServices::toStringList(urls).join(", ")));
 }
 
-void ListPanelFunc::displayOpenWithDialog(QList<QUrl> urls)
+void ListPanelFunc::displayOpenWithDialog(const QList<QUrl>& urls)
 {
     // NOTE: we are not using KRun::displayOpenWithDialog() because we want the commands working
     // directory to be the panel directory

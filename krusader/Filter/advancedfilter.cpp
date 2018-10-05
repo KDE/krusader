@@ -453,7 +453,7 @@ void AdvancedFilter::changeDate(KLineEdit *p)
     delete gd;
 }
 
-void AdvancedFilter::fillList(KComboBox *list, QString filename)
+void AdvancedFilter::fillList(KComboBox *list, const QString& filename)
 {
     QFile data(filename);
     if (!data.open(QIODevice::ReadOnly)) {

@@ -34,6 +34,7 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KIconThemes/KIconLoader>
+#include <utility>
 
 
 static const int cacheSize = 500;
@@ -66,7 +67,7 @@ class IconEngine : public QIconEngine
 {
 public:
     IconEngine(QString iconName, QIcon fallbackIcon, QStringList overlays = QStringList()) :
-        _iconName(iconName), _fallbackIcon(fallbackIcon), _overlays(overlays)
+        _iconName(std::move(iconName)), _fallbackIcon(std::move(fallbackIcon)), _overlays(std::move(overlays))
     {
         _themeFallbackList = getThemeFallbackList();
     }
@@ -91,12 +92,12 @@ Icon::Icon() : QIcon()
 }
 
 Icon::Icon(QString name, QStringList overlays) :
-    QIcon(new IconEngine(name, QIcon(missingIconPath), overlays))
+    QIcon(new IconEngine(std::move(name), QIcon(missingIconPath), std::move(overlays)))
 {
 }
 
 Icon::Icon(QString name, QIcon fallbackIcon, QStringList overlays) :
-    QIcon(new IconEngine(name, fallbackIcon, overlays))
+    QIcon(new IconEngine(std::move(name), std::move(fallbackIcon), std::move(overlays)))
 {
 }
 
@@ -106,12 +107,12 @@ struct IconSearchResult
     QString originalThemeName; ///< original theme name if theme is modified by search
 
     IconSearchResult(QIcon icon, QString originalThemeName) :
-        icon(icon), originalThemeName(originalThemeName) {}
+        icon(std::move(icon)), originalThemeName(std::move(originalThemeName)) {}
 };
 
 // Search icon in the configured themes.
 // If this call modifies active theme, the original theme name will be specified in the result.
-static inline IconSearchResult searchIcon(QString iconName, QStringList themeFallbackList)
+static inline IconSearchResult searchIcon(const QString& iconName, QStringList themeFallbackList)
 {
     if (QDir::isAbsolutePath(iconName)) {
         // a path is used - directly load the icon
@@ -138,7 +139,7 @@ static inline IconSearchResult searchIcon(QString iconName, QStringList themeFal
     }
 }
 
-bool Icon::exists(QString iconName)
+bool Icon::exists(const QString& iconName)
 {
     static QCache<QString, bool> cache(cacheSize);
     static QString cachedTheme;
@@ -199,7 +200,7 @@ bool Icon::isLightWindowThemeActive()
 class IconCacheKey
 {
 public:
-    IconCacheKey(const QString &name, QStringList overlays,
+    IconCacheKey(const QString &name, const QStringList& overlays,
                  const QSize &size, QIcon::Mode mode, QIcon::State state) :
         name(name), overlays(overlays), size(size), mode(mode), state(state)
     {

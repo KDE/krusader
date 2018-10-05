@@ -368,7 +368,7 @@ QPixmap KrView::getIcon(FileItem *fileitem)
  * this function ADDs a list of selected item names into 'names'.
  * it assumes the list is ready and doesn't initialize it, or clears it
  */
-void KrView::getItemsByMask(QString mask, QStringList* names, bool dirs, bool files)
+void KrView::getItemsByMask(const QString& mask, QStringList* names, bool dirs, bool files)
 {
     for (KrViewItem * it = getFirst(); it != nullptr; it = getNext(it)) {
         if ((it->name() == "..") || !QDir::match(mask, it->name())) continue;
@@ -905,7 +905,7 @@ void KrView::saveSettings(KConfigGroup group, KrViewProperties::PropertyType pro
     }
 }
 
-void KrView::restoreSettings(KConfigGroup group)
+void KrView::restoreSettings(const KConfigGroup& group)
 {
     _ignoreSettingsChange = true;
     doRestoreSettings(group);
@@ -1061,7 +1061,7 @@ void KrView::setFiles(DirListerInterface *files)
     QObject::connect(_files, &DirListerInterface::updatedFileItem, op(), &KrViewOperator::fileUpdated);
 }
 
-void KrView::setFilter(KrViewProperties::FilterSpec filter, FilterSettings customFilter, bool applyToDirs)
+void KrView::setFilter(KrViewProperties::FilterSpec filter, const FilterSettings& customFilter, bool applyToDirs)
 {
     _properties->filter = filter;
     _properties->filterSettings = customFilter;

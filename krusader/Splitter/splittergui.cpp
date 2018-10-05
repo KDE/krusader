@@ -43,11 +43,12 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
+#include <utility>
 
 struct SplitterGUI::PredefinedDevice
 {
     PredefinedDevice(QString name, KIO::filesize_t capacity) :
-        name(name), capacity(capacity) {}
+        name(std::move(name)), capacity(capacity) {}
     PredefinedDevice(const PredefinedDevice &other) :
         name(other.name), capacity(other.capacity) {}
     PredefinedDevice &operator=(const PredefinedDevice &other);
@@ -73,7 +74,7 @@ const QList<SplitterGUI::PredefinedDevice> &SplitterGUI::predefinedDevices()
     return list;
 };
 
-SplitterGUI::SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir) :
+SplitterGUI::SplitterGUI(QWidget* parent,  const QUrl& fileURL, const QUrl& defaultDir) :
         QDialog(parent),
         userDefinedSize(0x100000), lastSelectedDevice(-1),
         division(1)

@@ -31,6 +31,7 @@
 #include <KIO/Job>
 #include <KIOCore/KFileItem>
 #include <KIOWidgets/KUrlCompletion>
+#include <utility>
 
 #include "../Archive/krarchandler.h"
 #include "fileitem.h"
@@ -123,7 +124,7 @@ KRQuery &KRQuery::operator=(const KRQuery &old)
     return *this;
 }
 
-void KRQuery::load(KConfigGroup cfg)
+void KRQuery::load(const KConfigGroup& cfg)
 {
     *this = KRQuery(); // reset parameters first
 
@@ -232,7 +233,7 @@ bool KRQuery::checkPerm(QString filePerm) const
     return true;
 }
 
-bool KRQuery::checkType(QString mime) const
+bool KRQuery::checkType(const QString& mime) const
 {
     if (type == mime)
         return true;
@@ -479,7 +480,7 @@ bool KRQuery::checkLine(const QString &line, bool backwards) const
     return false;
 }
 
-bool KRQuery::containsContent(QString file) const
+bool KRQuery::containsContent(const QString& file) const
 {
     QFile qf(file);
     if (!qf.open(QIODevice::ReadOnly))
@@ -511,7 +512,7 @@ bool KRQuery::containsContent(QString file) const
     return false;
 }
 
-bool KRQuery::containsContent(QUrl url) const
+bool KRQuery::containsContent(const QUrl& url) const
 {
     KIO::TransferJob *contentReader = KIO::get(url, KIO::NoReload, KIO::HideProgressInfo);
     connect(contentReader, &KIO::TransferJob::data, this, &KRQuery::containsContentData);
@@ -658,7 +659,7 @@ void KRQuery::setNameFilter(const QString &text, bool cs)
     }
 }
 
-void KRQuery::setContent(const QString &content, bool cs, bool wholeWord, QString encoding,
+void KRQuery::setContent(const QString &content, bool cs, bool wholeWord, const QString& encoding,
                          bool regExp)
 {
     bNull = false;
@@ -728,7 +729,7 @@ void KRQuery::setMimeType(const QString &typeIn, QStringList customList)
 {
     bNull = false;
     type = typeIn;
-    customType = customList;
+    customType = std::move(customList);
 }
 
 bool KRQuery::isExcluded(const QUrl &url)

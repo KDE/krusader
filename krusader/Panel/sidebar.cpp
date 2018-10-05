@@ -141,7 +141,7 @@ Sidebar::Sidebar(QWidget *parent) : QWidget(parent), stack(nullptr), imageFilePr
 
 Sidebar::~Sidebar() = default;
 
-void Sidebar::saveSettings(KConfigGroup cfg) const
+void Sidebar::saveSettings(const KConfigGroup& cfg) const
 {
     tree->saveSettings(cfg);
 }

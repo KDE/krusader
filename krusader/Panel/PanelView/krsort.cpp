@@ -21,6 +21,8 @@
 
 #include "krsort.h"
 
+#include <utility>
+
 #include "krview.h"
 #include "../FileSystem/fileitem.h"
 
@@ -34,7 +36,7 @@ void SortProps::init(FileItem *fileitem, int col, const KrViewProperties * props
     _fileItem = fileitem;
     _index = origNdx;
     _name = fileitem->getName();
-    _customData = customData;
+    _customData = std::move(customData);
 
     if(_prop->sortOptions & KrViewProperties::IgnoreCase)
         _name = _name.toLower();
@@ -302,7 +304,7 @@ Sorter::Sorter(int reserveItems, const KrViewProperties *viewProperties,
 
 void Sorter::addItem(FileItem *fileitem, bool isDummy, int idx, QVariant customData)
 {
-    _itemStore << SortProps(fileitem, _viewProperties->sortColumn, _viewProperties, isDummy, !descending(), idx, customData);
+    _itemStore << SortProps(fileitem, _viewProperties->sortColumn, _viewProperties, isDummy, !descending(), idx, std::move(customData));
     _items << &_itemStore.last();
 }
 
@@ -314,7 +316,7 @@ void Sorter::sort()
 
 int Sorter::insertIndex(FileItem *fileitem, bool isDummy, QVariant customData)
 {
-    SortProps props(fileitem,  _viewProperties->sortColumn, _viewProperties, isDummy, !descending(), -1, customData);
+    SortProps props(fileitem,  _viewProperties->sortColumn, _viewProperties, isDummy, !descending(), -1, std::move(customData));
     const QVector<SortProps*>::iterator it =
         qLowerBound(_items.begin(), _items.end(), &props,
                         descending() ? _greaterThanFunc : _lessThanFunc);

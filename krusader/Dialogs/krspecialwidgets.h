@@ -35,6 +35,7 @@
 
 #include <KCompletion/KLineEdit>
 #include <KIO/Global>
+#include <utility>
 
 class KRPieSlice;
 
@@ -72,10 +73,10 @@ public:
         freeSpace = t;
     }
     inline void setAlias(QString a) {
-        alias = a;
+        alias = std::move(a);
     }
     inline void setRealName(QString r) {
-        realName = r;
+        realName = std::move(r);
     }
     inline void setMounted(bool m) {
         mounted = m;
@@ -100,7 +101,7 @@ class KRPieSlice
 {
 public:
     KRPieSlice(float _perct, QColor _color, QString _label) :
-            perct(_perct), color(_color), label(_label) {}
+            perct(_perct), color(std::move(_color)), label(std::move(_label)) {}
     inline QColor getColor() {
         return color;
     }
@@ -114,7 +115,7 @@ public:
         perct = _perct;
     }
     inline void setLabel(QString _label) {
-        label = _label;
+        label = std::move(_label);
     }
 
 private:

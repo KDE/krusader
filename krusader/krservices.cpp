@@ -29,6 +29,7 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KIOCore/KProtocolManager>
+#include <utility>
 
 #include "krglobal.h"
 #include "defaults.h"
@@ -79,7 +80,7 @@ QSet<QString> KrServices::generateKrarcArchiveMimetypes()
     return mimes;
 }
 
-bool KrServices::cmdExist(QString cmdName)
+bool KrServices::cmdExist(const QString& cmdName)
 {
     KConfigGroup group(krConfig, "Dependencies");
     if (QFile(group.readEntry(cmdName, QString())).exists())
@@ -88,7 +89,7 @@ bool KrServices::cmdExist(QString cmdName)
     return !QStandardPaths::findExecutable(cmdName).isEmpty();
 }
 
-QString KrServices::fullPathName(QString name, QString confName)
+QString KrServices::fullPathName(const QString& name, QString confName)
 {
     QString supposedName;
 
@@ -106,7 +107,7 @@ QString KrServices::fullPathName(QString name, QString confName)
     return supposedName;
 }
 
-QString KrServices::chooseFullPathName(QStringList names, QString confName)
+QString KrServices::chooseFullPathName(QStringList names, const QString& confName)
 {
     foreach(const QString &name, names) {
         QString foundTool = KrServices::fullPathName(name, confName);
@@ -124,7 +125,7 @@ bool KrServices::isExecutable(const QString &path)
     return info.isFile() && info.isExecutable();
 }
 
-QString KrServices::registeredProtocol(QString mimetype)
+QString KrServices::registeredProtocol(const QString& mimetype)
 {
     if (slaveMap == nullptr) {
         slaveMap = new QMap<QString, QString>();
@@ -147,7 +148,7 @@ QString KrServices::registeredProtocol(QString mimetype)
     return protocol;
 }
 
-bool KrServices::isoSupported(QString mimetype)
+bool KrServices::isoSupported(const QString& mimetype)
 {
     return isoArchiveMimetypes.contains(mimetype);
 }
@@ -176,7 +177,7 @@ bool KrServices::fileToStringList(QFile *file, QStringList& target, bool keepEmp
     return fileToStringList(&stream, target, keepEmptyLines);
 }
 
-QString KrServices::quote(QString name)
+QString KrServices::quote(const QString& name)
 {
     if (!name.contains('\''))
         return '\'' + name + '\'';
@@ -212,9 +213,9 @@ QStringList KrServices::toStringList(const QList<QUrl> &list)
 }
 
 // Adds one tool to the list in the supportedTools method
-void supportedTool(QStringList &tools, QString toolType,
+void supportedTool(QStringList &tools, const QString& toolType,
                    QStringList names, QString confName) {
-    QString foundTool = KrServices::chooseFullPathName(names, confName);
+    QString foundTool = KrServices::chooseFullPathName(std::move(names), std::move(confName));
     if (! foundTool.isEmpty()) {
         tools.append(toolType);
         tools.append(foundTool);

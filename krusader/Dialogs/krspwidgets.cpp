@@ -51,7 +51,7 @@ QStringList KRSpWidgets::maskList;
 KRSpWidgets::KRSpWidgets()
 = default;
 
-KRQuery KRSpWidgets::getMask(QString caption, bool nameOnly, QWidget * parent)
+KRQuery KRSpWidgets::getMask(const QString& caption, bool nameOnly, QWidget * parent)
 {
     if (!nameOnly) {
         return FilterTabs::getQuery(parent);

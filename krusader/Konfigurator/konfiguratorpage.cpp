@@ -28,6 +28,7 @@
 #include <QLabel>
 
 #include <KConfigCore/KConfig>
+#include <utility>
 
 #include "../krglobal.h"
 
@@ -75,9 +76,9 @@ bool KonfiguratorPage::isChanged()
 }
 
 KonfiguratorCheckBox* KonfiguratorPage::createCheckBox(QString configGroup, QString name,
-        bool defaultValue, QString text, QWidget *parent, bool restart, QString toolTip, int page)
+        bool defaultValue, QString text, QWidget *parent, bool restart, const QString& toolTip, int page)
 {
-    KonfiguratorCheckBox *checkBox = new KonfiguratorCheckBox(configGroup, name, defaultValue, text,
+    KonfiguratorCheckBox *checkBox = new KonfiguratorCheckBox(std::move(configGroup), std::move(name), defaultValue, std::move(text),
             parent, restart, page);
     if (!toolTip.isEmpty())
         checkBox->setWhatsThis(toolTip);
@@ -89,7 +90,7 @@ KonfiguratorCheckBox* KonfiguratorPage::createCheckBox(QString configGroup, QStr
 KonfiguratorSpinBox* KonfiguratorPage::createSpinBox(QString configGroup, QString configName,
         int defaultValue, int min, int max, QWidget *parent, bool restart, int page)
 {
-    KonfiguratorSpinBox *spinBox = new KonfiguratorSpinBox(configGroup, configName, defaultValue,
+    KonfiguratorSpinBox *spinBox = new KonfiguratorSpinBox(std::move(configGroup), std::move(configName), defaultValue,
                                                            min, max, parent, restart, page);
 
     registerObject(spinBox->extension());
@@ -99,7 +100,7 @@ KonfiguratorSpinBox* KonfiguratorPage::createSpinBox(QString configGroup, QStrin
 KonfiguratorEditBox* KonfiguratorPage::createEditBox(QString configGroup, QString name,
         QString defaultValue, QWidget *parent, bool restart, int page)
 {
-    KonfiguratorEditBox *editBox = new KonfiguratorEditBox(configGroup, name, defaultValue, parent,
+    KonfiguratorEditBox *editBox = new KonfiguratorEditBox(std::move(configGroup), std::move(name), std::move(defaultValue), parent,
             restart, page);
 
     registerObject(editBox->extension());
@@ -109,7 +110,7 @@ KonfiguratorEditBox* KonfiguratorPage::createEditBox(QString configGroup, QStrin
 KonfiguratorListBox* KonfiguratorPage::createListBox(QString configGroup, QString name,
         QStringList defaultValue, QWidget *parent, bool restart, int page)
 {
-    KonfiguratorListBox *listBox = new KonfiguratorListBox(configGroup, name, defaultValue, parent,
+    KonfiguratorListBox *listBox = new KonfiguratorListBox(std::move(configGroup), std::move(name), std::move(defaultValue), parent,
             restart, page);
 
     registerObject(listBox->extension());
@@ -119,14 +120,14 @@ KonfiguratorListBox* KonfiguratorPage::createListBox(QString configGroup, QStrin
 KonfiguratorURLRequester* KonfiguratorPage::createURLRequester(QString configGroup, QString name,
         QString defaultValue, QWidget *parent, bool restart, int page, bool expansion)
 {
-    KonfiguratorURLRequester *urlRequester = new KonfiguratorURLRequester(configGroup, name, defaultValue,
+    KonfiguratorURLRequester *urlRequester = new KonfiguratorURLRequester(std::move(configGroup), std::move(name), std::move(defaultValue),
             parent, restart, page, expansion);
 
     registerObject(urlRequester->extension());
     return urlRequester;
 }
 
-QGroupBox* KonfiguratorPage::createFrame(QString text, QWidget *parent)
+QGroupBox* KonfiguratorPage::createFrame(const QString& text, QWidget *parent)
 {
     auto *groupBox = new QGroupBox(parent);
     if (!text.isNull())
@@ -143,7 +144,7 @@ QGridLayout* KonfiguratorPage::createGridLayout(QWidget *parent)
     return gridLayout;
 }
 
-QLabel* KonfiguratorPage::addLabel(QGridLayout *layout, int x, int y, QString label,
+QLabel* KonfiguratorPage::addLabel(QGridLayout *layout, int x, int y, const QString& label,
                                    QWidget *parent)
 {
     QLabel *lbl = new QLabel(label, parent);
@@ -195,7 +196,7 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup(QString confi
         QString name, QString defaultValue, int sizex, int sizey, KONFIGURATOR_NAME_VALUE_TIP *params,
         int paramNum, QWidget *parent, bool restart, int page)
 {
-    KonfiguratorRadioButtons *radioWidget = new KonfiguratorRadioButtons(configGroup, name, defaultValue, parent, restart, page);
+    KonfiguratorRadioButtons *radioWidget = new KonfiguratorRadioButtons(std::move(configGroup), std::move(name), std::move(defaultValue), parent, restart, page);
 
     auto *layout = new QGridLayout(radioWidget);
     layout->setAlignment(Qt::AlignTop);
@@ -229,9 +230,9 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup(QString confi
 }
 
 KonfiguratorFontChooser *KonfiguratorPage::createFontChooser(QString configGroup, QString name,
-        QFont defaultValue, QWidget *parent, bool restart, int page)
+        const QFont& defaultValue, QWidget *parent, bool restart, int page)
 {
-    KonfiguratorFontChooser *fontChooser = new KonfiguratorFontChooser(configGroup, name, defaultValue, parent,
+    KonfiguratorFontChooser *fontChooser = new KonfiguratorFontChooser(std::move(configGroup), std::move(name), defaultValue, parent,
             restart, page);
 
     registerObject(fontChooser->extension());
@@ -241,7 +242,7 @@ KonfiguratorFontChooser *KonfiguratorPage::createFontChooser(QString configGroup
 KonfiguratorComboBox *KonfiguratorPage::createComboBox(QString configGroup, QString name, QString defaultValue,
         KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum, QWidget *parent, bool restart, bool editable, int page)
 {
-    KonfiguratorComboBox *comboBox = new KonfiguratorComboBox(configGroup, name, defaultValue, params,
+    KonfiguratorComboBox *comboBox = new KonfiguratorComboBox(std::move(configGroup), std::move(name), std::move(defaultValue), params,
             paramNum, parent, restart, editable, page);
 
     registerObject(comboBox->extension());
@@ -275,7 +276,7 @@ KonfiguratorColorChooser *KonfiguratorPage::createColorChooser(QString configGro
         QWidget *parent, bool restart,
         ADDITIONAL_COLOR *addColPtr, int addColNum, int page)
 {
-    KonfiguratorColorChooser *colorChooser = new KonfiguratorColorChooser(configGroup, name, defaultValue,  parent,
+    KonfiguratorColorChooser *colorChooser = new KonfiguratorColorChooser(std::move(configGroup), std::move(name), std::move(defaultValue),  parent,
             restart, addColPtr, addColNum, page);
 
     registerObject(colorChooser->extension());

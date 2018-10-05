@@ -1960,7 +1960,7 @@ void Lister::slotSendFinished(KJob *)
     _actionSaveSelected->setEnabled(true);
 }
 
-void Lister::setCharacterSet(const QString set)
+void Lister::setCharacterSet(const QString& set)
 {
     _characterSet = set;
     if (_characterSet.isEmpty()) {

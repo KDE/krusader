@@ -30,6 +30,7 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
+#include <utility>
 
 
 FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget,
@@ -38,7 +39,7 @@ FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget,
 {
     this->tabWidget = tabWidget;
 
-    GeneralFilter *generalFilter = new GeneralFilter(this, properties, tabWidget, extraOptions);
+    GeneralFilter *generalFilter = new GeneralFilter(this, properties, tabWidget, std::move(extraOptions));
     tabWidget->addTab(generalFilter, i18n("&General"));
     filterList.append(generalFilter);
     pageNumbers.append(tabWidget->indexOf(generalFilter));
@@ -53,17 +54,17 @@ FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget,
 
 bool FilterTabs::isExtraOptionChecked(QString name)
 {
-    return static_cast<GeneralFilter*>(get("GeneralFilter"))->isExtraOptionChecked(name);
+    return static_cast<GeneralFilter*>(get("GeneralFilter"))->isExtraOptionChecked(std::move(name));
 }
 
 void FilterTabs::checkExtraOption(QString name, bool check)
 {
-    static_cast<GeneralFilter*>(get("GeneralFilter"))->checkExtraOption(name, check);
+    static_cast<GeneralFilter*>(get("GeneralFilter"))->checkExtraOption(std::move(name), check);
 }
 
 FilterTabs * FilterTabs::addTo(QTabWidget *tabWidget, int props, QStringList extraOptions)
 {
-    return new FilterTabs(props, tabWidget, tabWidget, extraOptions);
+    return new FilterTabs(props, tabWidget, tabWidget, std::move(extraOptions));
 }
 
 FilterSettings FilterTabs::getSettings()
@@ -99,7 +100,7 @@ void FilterTabs::reset()
     applySettings(s);
 }
 
-void FilterTabs::saveToProfile(QString name)
+void FilterTabs::saveToProfile(const QString& name)
 {
     FilterSettings s(getSettings());
     if(s.isValid())
@@ -107,7 +108,7 @@ void FilterTabs::saveToProfile(QString name)
     krConfig->sync();
 }
 
-void FilterTabs::loadFromProfile(QString name)
+void FilterTabs::loadFromProfile(const QString& name)
 {
     FilterSettings s;
     s.load(KConfigGroup(krConfig, name));
@@ -134,7 +135,7 @@ bool FilterTabs::fillQuery(KRQuery *query)
     return !query->isNull();
 }
 
-FilterBase * FilterTabs::get(QString name)
+FilterBase * FilterTabs::get(const QString& name)
 {
     QListIterator<FilterBase *> it(filterList);
     while (it.hasNext()) {

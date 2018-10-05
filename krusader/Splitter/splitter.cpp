@@ -31,11 +31,12 @@
 #include <KIOCore/KFileItem>
 #include <KIO/JobUiDelegate>
 #include <KWidgetsAddons/KMessageBox>
+#include <utility>
 
 Splitter::Splitter(QWidget* parent,  QUrl fileNameIn, QUrl destinationDirIn, bool overWriteIn) :
         QProgressDialog(parent, nullptr),
-        fileName(fileNameIn),
-        destinationDir(destinationDirIn),
+        fileName(std::move(fileNameIn)),
+        destinationDir(std::move(destinationDirIn)),
         splitSize(0),
         permissions(0),
         overwrite(overWriteIn),

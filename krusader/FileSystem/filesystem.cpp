@@ -167,7 +167,7 @@ void FileSystem::deleteFiles(const QList<QUrl> &urls, bool moveToTrash)
     krJobMan->manageJob(krJob);
 }
 
-void FileSystem::connectJobToSources(KJob *job, const QList<QUrl> urls)
+void FileSystem::connectJobToSources(KJob *job, const QList<QUrl>& urls)
 {
     if (!urls.isEmpty()) {
         // TODO we assume that all files were in the same directory and only emit one signal for

@@ -29,12 +29,13 @@
 #include <KIO/Job>
 #include <KIO/JobUiDelegate>
 #include <KWidgetsAddons/KMessageBox>
+#include <utility>
 
 //TODO: delete destination file on error
 //TODO: cache more than one byte array of data
 
 Combiner::Combiner(QWidget* parent,  QUrl baseURLIn, QUrl destinationURLIn, bool unixNamingIn) :
-        QProgressDialog(parent, nullptr), baseURL(baseURLIn), destinationURL(destinationURLIn),
+        QProgressDialog(parent, nullptr), baseURL(std::move(baseURLIn)), destinationURL(std::move(destinationURLIn)),
         hasValidSplitFile(false), fileCounter(0), permissions(-1), receivedSize(0),
         statJob(nullptr), combineReadJob(nullptr), combineWriteJob(nullptr), unixNaming(unixNamingIn)
 {

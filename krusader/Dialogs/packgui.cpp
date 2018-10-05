@@ -45,7 +45,7 @@ QString PackGUI::destination = nullptr;
 QString PackGUI::type = nullptr;
 QMap<QString, QString> PackGUI::extraProps;
 
-PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QString filename) :
+PackGUI::PackGUI(const QString& defaultName, const QString& defaultPath, int noOfFiles, const QString& filename) :
         PackGUIBase(nullptr)
 {
     // first, fill the WhatToPack textfield with information

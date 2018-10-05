@@ -75,7 +75,7 @@ Synchronizer::~Synchronizer()
     clearLists();
 }
 
-QUrl Synchronizer::fsUrl(QString strUrl)
+QUrl Synchronizer::fsUrl(const QString& strUrl)
 {
     QUrl result = QUrl::fromUserInput(strUrl, QString(), QUrl::AssumeLocalFile);
     return KrServices::escapeFileUrl(result);

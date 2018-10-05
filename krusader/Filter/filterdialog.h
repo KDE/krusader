@@ -35,7 +35,7 @@ class FilterDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit FilterDialog(QWidget *parent = nullptr, QString caption = QString(),
+    explicit FilterDialog(QWidget *parent = nullptr, const QString& caption = QString(),
                  QStringList extraOptions = QStringList(), bool modal = true);
     KRQuery getQuery();
     const FilterSettings& getSettings() {

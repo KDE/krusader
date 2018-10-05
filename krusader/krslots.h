@@ -30,6 +30,7 @@
 #include <QUrl>
 
 #include <KCoreAddons/KProcess>
+#include <utility>
 
 class KrMainWindow;
 class QUrl;
@@ -42,8 +43,8 @@ class KrProcess: public KProcess
 
 public:
     KrProcess(QString in1, QString in2) {
-        tmp1 = in1;
-        tmp2 = in2;
+        tmp1 = std::move(in1);
+        tmp2 = std::move(in2);
         connect(this, QOverload<int, QProcess::ExitStatus>::of(&KrProcess::finished), this, &KrProcess::processHasExited);
     }
 
@@ -70,7 +71,7 @@ public:
 public slots:
     void sendFileByEmail(const QList<QUrl> &filename);
     void compareContent();
-    void compareContent(QUrl, QUrl);
+    void compareContent(const QUrl&, const QUrl&);
     void insertFileName(bool fullPath);
     void rootKrusader();
     void swapPanels();

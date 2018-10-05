@@ -57,8 +57,8 @@ public:
     bool getSettings(FilterSettings&) Q_DECL_OVERRIDE;
     void applySettings(const FilterSettings&) Q_DECL_OVERRIDE;
 
-    bool isExtraOptionChecked(QString name);
-    void checkExtraOption(QString name, bool check);
+    bool isExtraOptionChecked(const QString& name);
+    void checkExtraOption(const QString& name, bool check);
 
 public slots:
     void    slotAddBtnClicked();

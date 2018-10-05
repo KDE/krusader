@@ -37,7 +37,7 @@
 
 #include "../krglobal.h"
 
-KRPleaseWait::KRPleaseWait(QString msg, QWidget *parent, int count, bool cancel):
+KRPleaseWait::KRPleaseWait(const QString& msg, QWidget *parent, int count, bool cancel):
         QProgressDialog(cancel ? nullptr : parent) , inc(true)
 {
     setModal(!cancel);
@@ -105,7 +105,7 @@ void KRPleaseWaitHandler::stopWait()
 }
 
 
-void KRPleaseWaitHandler::startWaiting(QString msg, int count , bool cancel)
+void KRPleaseWaitHandler::startWaiting(const QString& msg, int count , bool cancel)
 {
     if (dlg == nullptr) {
         dlg = new KRPleaseWait(msg , _parentWindow, count, cancel);

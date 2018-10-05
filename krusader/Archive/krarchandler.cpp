@@ -35,6 +35,7 @@
 #include <KWallet/KWallet>
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KPasswordDialog>
+#include <utility>
 
 #include "kr7zencryptionchecker.h"
 #include "../krglobal.h"
@@ -152,7 +153,7 @@ bool KRarcHandler::arcSupported(QString type)
            || (type == "7z" && lst.contains("7z"));
 }
 
-long KRarcHandler::arcFileCount(QString archive, QString type, QString password, KRarcObserver *observer)
+long KRarcHandler::arcFileCount(const QString& archive, const QString& type, const QString& password, KRarcObserver *observer)
 {
     int divideWith = 1;
 
@@ -231,7 +232,7 @@ long KRarcHandler::arcFileCount(QString archive, QString type, QString password,
     return count / divideWith;
 }
 
-bool KRarcHandler::unpack(QString archive, QString type, QString password, QString dest, KRarcObserver *observer)
+bool KRarcHandler::unpack(QString archive, const QString& type, const QString& password, const QString& dest, KRarcObserver *observer)
 {
     KConfigGroup group(krConfig, "Archives");
     if (group.readEntry("Test Before Unpack", _TestBeforeUnpack)) {
@@ -361,7 +362,7 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
     return true; // SUCCESS
 }
 
-bool KRarcHandler::test(QString archive, QString type, QString password, KRarcObserver *observer, long count)
+bool KRarcHandler::test(const QString& archive, const QString& type, const QString& password, KRarcObserver *observer, long count)
 {
     // choose the right packer for the job
     QStringList packer;
@@ -427,7 +428,7 @@ bool KRarcHandler::test(QString archive, QString type, QString password, KRarcOb
     return true; // SUCCESS
 }
 
-bool KRarcHandler::pack(QStringList fileNames, QString type, QString dest, long count, QMap<QString, QString> extraProps, KRarcObserver *observer)
+bool KRarcHandler::pack(QStringList fileNames, QString type, const QString& dest, long count, QMap<QString, QString> extraProps, KRarcObserver *observer)
 {
     // set the right packer to do the job
     QStringList packer;
@@ -576,7 +577,7 @@ bool KRarcHandler::openWallet()
     return (wallet != nullptr);
 }
 
-QString KRarcHandler::getPassword(QString path)
+QString KRarcHandler::getPassword(const QString& path)
 {
     QString password;
 
@@ -640,9 +641,9 @@ bool KRarcHandler::isArchive(const QUrl &url)
     else return false;
 }
 
-QString KRarcHandler::getType(bool &encrypted, QString fileName, QString mime, bool checkEncrypted, bool fast)
+QString KRarcHandler::getType(bool &encrypted, QString fileName, const QString& mime, bool checkEncrypted, bool fast)
 {
-    QString result = detectArchive(encrypted, fileName, checkEncrypted, fast);
+    QString result = detectArchive(encrypted, std::move(fileName), checkEncrypted, fast);
     if (result.isNull()) {
         // Then the type is based on the mime type
         return getShortTypeFromMime(mime);
@@ -650,7 +651,7 @@ QString KRarcHandler::getType(bool &encrypted, QString fileName, QString mime, b
     return result;
 }
 
-bool KRarcHandler::checkStatus(QString type, int exitCode)
+bool KRarcHandler::checkStatus(const QString& type, int exitCode)
 {
     return KrArcBaseManager::checkStatus(type, exitCode);
 }

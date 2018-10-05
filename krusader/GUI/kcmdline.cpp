@@ -39,6 +39,7 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
+#include <utility>
 
 #include "../krglobal.h"
 #include "../icon.h"
@@ -72,7 +73,7 @@ bool CmdLineCombo::eventFilter(QObject *watched, QEvent *e)
 
 void CmdLineCombo::setPath(QString path)
 {
-    _path = path;
+    _path = std::move(path);
     doLayout();
 }
 
@@ -309,7 +310,7 @@ bool KCMDLine::doSubstitution() const
     return true;
 }
 
-void KCMDLine::setText(QString text)
+void KCMDLine::setText(const QString& text)
 {
     cmdLine->lineEdit()->setText(text);
 }

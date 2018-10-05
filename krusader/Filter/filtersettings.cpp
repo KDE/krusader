@@ -132,7 +132,7 @@ FilterSettings& FilterSettings::operator=(const FilterSettings& other)
     return *this;
 }
 
-void FilterSettings::load(KConfigGroup cfg) {
+void FilterSettings::load(const KConfigGroup& cfg) {
     *this = FilterSettings();
 #define LOAD(key, var) { var = cfg.readEntry(key, var); }
     LOAD("IsValid", valid);
@@ -178,7 +178,7 @@ void FilterSettings::load(KConfigGroup cfg) {
 #undef LOAD
 }
 
-void FilterSettings::saveDate(QString key, const QDate &date, KConfigGroup &cfg)
+void FilterSettings::saveDate(const QString& key, const QDate &date, KConfigGroup &cfg)
 {
     if(date.isValid())
         cfg.writeEntry(key, date);

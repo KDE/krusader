@@ -37,6 +37,7 @@
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
+#include <utility>
 
 KgColors::KgColors(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent), offset(0),
@@ -279,13 +280,13 @@ KgColors::KgColors(bool first, QWidget* parent) :
     slotDisable();
 }
 
-int KgColors::addColorSelector(QString cfgName, QString name, QColor defaultValue, QString dfltName,
+int KgColors::addColorSelector(const QString& cfgName, QString name, QColor defaultValue, const QString& dfltName,
                                ADDITIONAL_COLOR *addColor, int addColNum)
 {
     int index = itemList.count() - offset;
 
-    labelList.append(addLabel(colorsGrid, index, 0, name, colorsGrp));
-    KonfiguratorColorChooser *chooser = createColorChooser("Colors", cfgName, defaultValue, colorsGrp, false, addColor, addColNum);
+    labelList.append(addLabel(colorsGrid, index, 0, std::move(name), colorsGrp));
+    KonfiguratorColorChooser *chooser = createColorChooser("Colors", cfgName, std::move(defaultValue), colorsGrp, false, addColor, addColNum);
     chooser->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     if (!dfltName.isEmpty())
@@ -303,7 +304,7 @@ int KgColors::addColorSelector(QString cfgName, QString name, QColor defaultValu
     return index;
 }
 
-KonfiguratorColorChooser *KgColors::getColorSelector(QString name)
+KonfiguratorColorChooser *KgColors::getColorSelector(const QString& name)
 {
     QList<QString>::iterator it;
     int position = 0;
@@ -315,7 +316,7 @@ KonfiguratorColorChooser *KgColors::getColorSelector(QString name)
     return nullptr;
 }
 
-QLabel *KgColors::getSelectorLabel(QString name)
+QLabel *KgColors::getSelectorLabel(const QString& name)
 {
     QList<QString>::iterator it;
     int position = 0;

@@ -59,7 +59,7 @@ KgGeneral::KgGeneral(bool first, QWidget* parent) :
     createExtensionsTab();
 }
 
-QWidget* KgGeneral::createTab(QString name)
+QWidget* KgGeneral::createTab(const QString& name)
 {
     auto *scrollArea = new QScrollArea(tabWidget);
     tabWidget->addTab(scrollArea, name);
@@ -285,7 +285,7 @@ void KgGeneral::createGeneralTab()
     kgGeneralLayout->addWidget(terminalGrp, 2 , 0);
 }
 
-void KgGeneral::applyTempDir(QObject *obj, QString configGroup, QString name)
+void KgGeneral::applyTempDir(QObject *obj, const QString& configGroup, const QString& name)
 {
     auto *urlReq = (KonfiguratorURLRequester *)obj;
     QString value = urlReq->url().toDisplayString(QUrl::PreferLocalFile);

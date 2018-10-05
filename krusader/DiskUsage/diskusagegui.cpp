@@ -194,7 +194,7 @@ void DiskUsageGUI::slotLoadUsageInfo()
     diskUsage->load(baseDirectory);
 }
 
-void DiskUsageGUI::slotStatus(QString stat)
+void DiskUsageGUI::slotStatus(const QString& stat)
 {
     status->setText(stat);
 }

@@ -124,7 +124,7 @@ public:
       */
     KonfiguratorCheckBox *createCheckBox(QString configGroup, QString name, bool defaultValue,
                                          QString text, QWidget *parent = nullptr, bool restart = false,
-                                         QString toolTip = QString(), int page = FIRST_PAGE);
+                                         const QString& toolTip = QString(), int page = FIRST_PAGE);
 
     /**
       * Adds a new spinbox item to the page.
@@ -234,7 +234,7 @@ public:
       * @return             reference to the newly created font chooser
       */
     KonfiguratorFontChooser *createFontChooser(QString configGroup, QString name,
-                                               QFont defaultValue, QWidget *parent = nullptr,
+                                               const QFont& defaultValue, QWidget *parent = nullptr,
                                                bool restart = false, int page = FIRST_PAGE);
 
     /**
@@ -278,7 +278,7 @@ public:
       *
       * @return             reference to the newly created frame
       */
-    QGroupBox *createFrame(QString text = QString(), QWidget *parent = nullptr);
+    QGroupBox *createFrame(const QString& text = QString(), QWidget *parent = nullptr);
 
     /**
       * Creates a new QGridLayout element and sets its margins.
@@ -311,7 +311,7 @@ public:
       *
       * @return             reference to the newly created label
       */
-    QLabel *addLabel(QGridLayout *layout, int x, int y, QString label, QWidget *parent = nullptr);
+    QLabel *addLabel(QGridLayout *layout, int x, int y, const QString& label, QWidget *parent = nullptr);
 
     /**
       * Creates a spacer object (for justifying in QHBox).

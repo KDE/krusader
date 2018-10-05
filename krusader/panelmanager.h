@@ -127,8 +127,8 @@ private:
     void deletePanel(ListPanel *p);
     void updateTabbarPos();
     void tabsCountChanged();
-    ListPanel* addPanel(bool setCurrent = true, KConfigGroup cfg = KConfigGroup(), KrPanel *nextTo = nullptr);
-    ListPanel* createPanel(KConfigGroup cfg);
+    ListPanel* addPanel(bool setCurrent = true, const KConfigGroup& cfg = KConfigGroup(), KrPanel *nextTo = nullptr);
+    ListPanel* createPanel(const KConfigGroup& cfg);
     void connectPanel(ListPanel *p);
     void disconnectPanel(ListPanel *p);
 

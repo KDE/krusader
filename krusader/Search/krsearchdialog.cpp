@@ -129,7 +129,7 @@ bool KrSearchDialog::lastContainsRegExp = false;
 
 
 // class starts here /////////////////////////////////////////
-KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
+KrSearchDialog::KrSearchDialog(const QString& profile, QWidget* parent)
         : QDialog(parent), query(nullptr), searcher(nullptr), isBusy(false), closed(false)
 {
     KConfigGroup group(krConfig, "Search");

@@ -52,7 +52,7 @@ protected:
 private slots:
     bool askDir();
     void slotLoadUsageInfo();
-    void slotStatus(QString);
+    void slotStatus(const QString&);
 
     void slotSelectLinesView() { diskUsage->setView(VIEW_LINES); }
     void slotSelectListView() { diskUsage->setView(VIEW_DETAILED); }

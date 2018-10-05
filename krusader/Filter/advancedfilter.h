@@ -106,7 +106,7 @@ public:
 
 private:
     void changeDate(KLineEdit *p);
-    void fillList(KComboBox *list, QString filename);
+    void fillList(KComboBox *list, const QString& filename);
     void invalidDateMessage(KLineEdit *p);
     static QDate stringToDate(const QString& text) {
         // 30.12.16 is interpreted as 1916-12-30

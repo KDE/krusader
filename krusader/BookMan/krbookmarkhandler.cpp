@@ -48,6 +48,7 @@
 #include <KWidgetsAddons/KMessageBox>
 #include <KXmlGui/KActionCollection>
 #include <KBookmarks/KBookmarkManager>
+#include <utility>
 
 #define SPECIAL_BOOKMARKS true
 
@@ -103,7 +104,7 @@ KrBookmarkHandler::~KrBookmarkHandler()
 
 void KrBookmarkHandler::bookmarkCurrent(QUrl url)
 {
-    QPointer<KrAddBookmarkDlg> dlg = new KrAddBookmarkDlg(_mainWindow->widget(), url);
+    QPointer<KrAddBookmarkDlg> dlg = new KrAddBookmarkDlg(_mainWindow->widget(), std::move(url));
     if (dlg->exec() == QDialog::Accepted) {
         KrBookmark *bm = new KrBookmark(dlg->name(), dlg->url(), _collection);
         addBookmark(bm, dlg->folder());
@@ -230,7 +231,7 @@ void KrBookmarkHandler::exportToFile()
     }
 }
 
-bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString path, QString *errorMsg)
+bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, const QString& path, QString *errorMsg)
 {
     QString url, name, iconName;
     // verify tag
@@ -266,7 +267,7 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
     return true;
 }
 
-bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent, QString path, QString *errorMsg)
+bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent, const QString& path, QString *errorMsg)
 {
     QString name;
     QDomNode n = first;

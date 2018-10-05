@@ -78,7 +78,7 @@ public:
     ~KCMDLine() override;
     void setCurrent(const QString &path);
     //virtual methods from KrActionBase
-    void setText(QString text);
+    void setText(const QString& text);
     QString command() const Q_DECL_OVERRIDE;
     ExecType execType() const Q_DECL_OVERRIDE;
     QString startpath() const Q_DECL_OVERRIDE;
@@ -95,7 +95,7 @@ public slots:
     void slotReturnFocus(); // returns keyboard focus to panel
     void slotRun();
     void addPlaceholder();
-    void addText(QString text) {
+    void addText(const QString& text) {
         cmdLine->lineEdit()->setText(cmdLine->lineEdit()->text() + text);
     }
     void popup() {

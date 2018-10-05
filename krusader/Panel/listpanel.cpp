@@ -52,6 +52,7 @@
 #include <KWidgetsAddons/KMessageBox>
 #include <KIOFileWidgets/KFilePlacesModel>
 #include <KIOWidgets/KUrlComboBox>
+#include <utility>
 
 #include "dirhistoryqueue.h"
 #include "krcolorcache.h"
@@ -96,7 +97,7 @@
 class ActionButton : public QToolButton
 {
 public:
-    ActionButton(QWidget *parent, ListPanel *panel, QAction *action, QString text = QString()) :
+    ActionButton(QWidget *parent, ListPanel *panel, QAction *action, const QString& text = QString()) :
             QToolButton(parent),  panel(panel), action(action) {
         setText(text);
         setAutoRaise(true);
@@ -119,7 +120,7 @@ protected:
 /////////////////////////////////////////////////////
 //      The list panel constructor       //
 /////////////////////////////////////////////////////
-ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg) :
+ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConfigGroup& cfg) :
         QWidget(parent), KrPanel(manager, this, new ListPanelFunc(this)),
         panelType(-1), colorMask(255), compareMode(false),
         previewJob(nullptr), inlineRefreshJob(nullptr), searchBar(nullptr), cdRootButton(nullptr), cdUpButton(nullptr),
@@ -848,7 +849,7 @@ void ListPanel::handleDrop(const QUrl &destination, QDropEvent *event)
     func->files()->dropFiles(destination, event);
 }
 
-void ListPanel::startDragging(QStringList names, QPixmap px)
+void ListPanel::startDragging(const QStringList& names, const QPixmap& px)
 {
     if (names.isEmpty()) {  // avoid dragging empty urls
         return;
@@ -1123,10 +1124,10 @@ void ListPanel::jumpBack()
 
 void ListPanel::setJumpBack(QUrl url)
 {
-    _jumpBackURL = url;
+    _jumpBackURL = std::move(url);
 }
 
-void ListPanel::slotFilesystemError(QString msg)
+void ListPanel::slotFilesystemError(const QString& msg)
 {
     refreshColors();
     fileSystemError->setText(i18n("Error: %1", msg));

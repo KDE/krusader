@@ -50,6 +50,7 @@
 #include <KWidgetsAddons/KToolBarPopupAction>
 #include <KWindowSystem/KStartupInfo>
 #include <KWindowSystem/KWindowSystem>
+#include <utility>
 
 #include "defaults.h"
 #include "kractions.h"
@@ -530,7 +531,7 @@ void Krusader::acceptClose() {
 
 // the please wait dialog functions
 void Krusader::startWaiting(QString msg, int count , bool cancel) {
-    plzWait->startWaiting(msg , count, cancel);
+    plzWait->startWaiting(std::move(msg) , count, cancel);
 }
 
 bool Krusader::wasWaitingCancelled() const {
@@ -583,7 +584,7 @@ bool Krusader::isLeftActive()  {
 
 bool Krusader::openUrl(QString url)
 {
-    _urlToOpen = url;
+    _urlToOpen = std::move(url);
     _openUrlTimer.start(0);
     return true;
 }

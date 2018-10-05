@@ -44,6 +44,7 @@
 #include <KXmlGui/KActionCollection>
 #include <KXmlGui/KShortcutsDialog>
 #include <KXmlGui/KToolBar>
+#include <utility>
 
 #include "../defaults.h"
 #include "../icon.h"
@@ -293,22 +294,22 @@ void KrViewer::view(QUrl url, QWidget * parent)
     KConfigGroup group(krConfig, "General");
     bool defaultWindow = group.readEntry("View In Separate Window", _ViewInSeparateWindow);
 
-    view(url, Default, defaultWindow, parent);
+    view(std::move(url), Default, defaultWindow, parent);
 }
 
 void KrViewer::view(QUrl url, Mode mode,  bool new_window, QWidget * parent)
 {
     KrViewer* viewer = getViewer(new_window);
-    viewer->viewInternal(url, mode, parent);
+    viewer->viewInternal(std::move(url), mode, parent);
     viewer->show();
 }
 
 void KrViewer::edit(QUrl url, QWidget * parent)
 {
-    edit(url, Text, -1, parent);
+    edit(std::move(url), Text, -1, parent);
 }
 
-void KrViewer::edit(QUrl url, Mode mode, int new_window, QWidget * parent)
+void KrViewer::edit(const QUrl& url, Mode mode, int new_window, QWidget * parent)
 {
     KConfigGroup group(krConfig, "General");
     QString editor = group.readEntry("Editor", _Editor);
@@ -697,7 +698,7 @@ void KrViewer::viewInternal(QUrl url, Mode mode, QWidget *parent)
     PanelViewerBase* viewWidget = new PanelViewer(&tabBar, mode);
 
     addTab(viewWidget);
-    viewWidget->openUrl(url);
+    viewWidget->openUrl(std::move(url));
 }
 
 void KrViewer::editInternal(QUrl url, Mode mode, QWidget * parent)
@@ -707,5 +708,5 @@ void KrViewer::editInternal(QUrl url, Mode mode, QWidget * parent)
     PanelViewerBase* editWidget = new PanelEditor(&tabBar, mode);
 
     addTab(editWidget);
-    editWidget->openUrl(url);
+    editWidget->openUrl(std::move(url));
 }

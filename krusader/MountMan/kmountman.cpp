@@ -40,6 +40,7 @@
 #include <Solid/OpticalDrive>
 #include <Solid/StorageAccess>
 #include <Solid/StorageVolume>
+#include <utility>
 
 #include "../krglobal.h"
 #include "../icon.h"
@@ -94,18 +95,18 @@ KMountMan::KMountMan(QWidget *parent) : QObject(), _operational(false), waiting(
 
 KMountMan::~KMountMan() = default;
 
-bool KMountMan::invalidFilesystem(QString type)
+bool KMountMan::invalidFilesystem(const QString& type)
 {
     return (invalid_fs.contains(type) > 0);
 }
 
 // this is an ugly hack, but type can actually be a mountpoint. oh well...
-bool KMountMan::nonmountFilesystem(QString type, QString mntPoint)
+bool KMountMan::nonmountFilesystem(const QString& type, const QString& mntPoint)
 {
     return((nonmount_fs.contains(type) > 0) || (nonmount_fs_mntpoint.contains(mntPoint) > 0));
 }
 
-bool KMountMan::networkFilesystem(QString type)
+bool KMountMan::networkFilesystem(const QString& type)
 {
     return (network_fs.contains(type) > 0);
 }
@@ -148,7 +149,7 @@ void KMountMan::jobResult(KJob *job)
         job->uiDelegate()->showErrorMessage();
 }
 
-void KMountMan::mount(QString mntPoint, bool blocking)
+void KMountMan::mount(const QString& mntPoint, bool blocking)
 {
     QString udi = findUdiForPath(mntPoint, Solid::DeviceInterface::StorageAccess);
     if (!udi.isNull()) {
@@ -191,7 +192,7 @@ void KMountMan::mount(QString mntPoint, bool blocking)
     }
 }
 
-void KMountMan::unmount(QString mntPoint, bool blocking)
+void KMountMan::unmount(const QString& mntPoint, bool blocking)
 {
     //if working dir is below mountpoint cd to ~ first
     if(QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()).isParentOf(QUrl::fromLocalFile(QDir::current().canonicalPath())))
@@ -233,7 +234,7 @@ void KMountMan::unmount(QString mntPoint, bool blocking)
     }
 }
 
-KMountMan::mntStatus KMountMan::getStatus(QString mntPoint)
+KMountMan::mntStatus KMountMan::getStatus(const QString& mntPoint)
 {
     QExplicitlySharedDataPointer<KMountPoint> mountPoint;
 
@@ -254,7 +255,7 @@ KMountMan::mntStatus KMountMan::getStatus(QString mntPoint)
 }
 
 
-void KMountMan::toggleMount(QString mntPoint)
+void KMountMan::toggleMount(const QString& mntPoint)
 {
     mntStatus status = getStatus(mntPoint);
     switch (status) {
@@ -270,7 +271,7 @@ void KMountMan::toggleMount(QString mntPoint)
     }
 }
 
-void KMountMan::autoMount(QString path)
+void KMountMan::autoMount(const QString& path)
 {
     KConfigGroup group(krConfig, "Advanced");
     if (!group.readEntry("AutoMount", _AutoMount))
@@ -280,7 +281,7 @@ void KMountMan::autoMount(QString path)
         mount(path);
 }
 
-void KMountMan::eject(QString mntPoint)
+void KMountMan::eject(const QString& mntPoint)
 {
     QString udi = findUdiForPath(mntPoint, Solid::DeviceInterface::OpticalDrive);
     if (udi.isNull())
@@ -304,7 +305,7 @@ void KMountMan::eject(QString mntPoint)
 // returns true if the path is an ejectable mount point (at the moment CDROM and DVD)
 bool KMountMan::ejectable(QString path)
 {
-    QString udi = findUdiForPath(path, Solid::DeviceInterface::OpticalDisc);
+    QString udi = findUdiForPath(std::move(path), Solid::DeviceInterface::OpticalDisc);
     if (udi.isNull())
         return false;
 
@@ -314,7 +315,7 @@ bool KMountMan::ejectable(QString path)
 
 bool KMountMan::removable(QString path)
 {
-    QString udi = findUdiForPath(path, Solid::DeviceInterface::StorageAccess);
+    QString udi = findUdiForPath(std::move(path), Solid::DeviceInterface::StorageAccess);
     if (udi.isNull())
         return false;
 
@@ -406,7 +407,7 @@ void KMountMan::delayedPerformAction(const QAction *action)
     });
 }
 
-QString KMountMan::findUdiForPath(QString path, const Solid::DeviceInterface::Type &expType)
+QString KMountMan::findUdiForPath(const QString& path, const Solid::DeviceInterface::Type &expType)
 {
     KMountPoint::List current = KMountPoint::currentMountPoints();
     KMountPoint::List possible = KMountPoint::possibleMountPoints();
@@ -436,7 +437,7 @@ QString KMountMan::findUdiForPath(QString path, const Solid::DeviceInterface::Ty
     return QString();
 }
 
-QString KMountMan::pathForUdi(QString udi)
+QString KMountMan::pathForUdi(const QString& udi)
 {
     Solid::Device device(udi);
     auto *access = device.as<Solid::StorageAccess>();
@@ -446,7 +447,7 @@ QString KMountMan::pathForUdi(QString udi)
         return QString();
 }
 
-void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString& /*udi*/)
+void KMountMan::slotTeardownDone(Solid::ErrorType error, const QVariant& errorData, const QString& /*udi*/)
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
@@ -454,7 +455,7 @@ void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, con
     }
 }
 
-void KMountMan::slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString& /*udi*/)
+void KMountMan::slotSetupDone(Solid::ErrorType error, const QVariant& errorData, const QString& /*udi*/)
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {

@@ -58,7 +58,7 @@ bool KrArcBaseManager::checkStatus(const QString &arcType, int exitCode)
         return exitCode == 0;
 }
 
-QString KrArcBaseManager::detectArchive(bool &encrypted, QString fileName, bool checkEncrypted, bool fast)
+QString KrArcBaseManager::detectArchive(bool &encrypted, const QString& fileName, bool checkEncrypted, bool fast)
 {
     encrypted = false;
 

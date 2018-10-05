@@ -207,7 +207,7 @@ public:
 
     QString         characterSet() { return _characterSet; }
     QTextCodec     *codec() { return _codec; }
-    void            setCharacterSet(const QString set);
+    void            setCharacterSet(const QString& set);
     void            setHexMode(const bool);
 
     QStringList     readHexLines(qint64 &filePos, const qint64 endPos, const int columns, const int lines);

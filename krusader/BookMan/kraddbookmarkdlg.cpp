@@ -35,7 +35,7 @@
 #include <KI18n/KLocalizedString>
 
 
-KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, QUrl url):
+KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, const QUrl& url):
         QDialog(parent)
 {
     setWindowModality(Qt::WindowModal);

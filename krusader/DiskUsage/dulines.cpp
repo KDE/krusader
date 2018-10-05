@@ -124,8 +124,8 @@ public:
 class DULinesItem : public QTreeWidgetItem
 {
 public:
-    DULinesItem(DiskUsage *diskUsageIn, File *fileItem, QTreeWidget * parent, QString label1,
-                QString label2, QString label3) : QTreeWidgetItem(parent),
+    DULinesItem(DiskUsage *diskUsageIn, File *fileItem, QTreeWidget * parent, const QString& label1,
+                const QString& label2, const QString& label3) : QTreeWidgetItem(parent),
             diskUsage(diskUsageIn), file(fileItem) {
         setText(0, label1);
         setText(1, label2);
@@ -134,7 +134,7 @@ public:
         setTextAlignment(1, Qt::AlignRight);
     }
     DULinesItem(DiskUsage *diskUsageIn, File *fileItem, QTreeWidget * parent, QTreeWidgetItem * after,
-                QString label1, QString label2, QString label3) : QTreeWidgetItem(parent, after),
+                const QString& label1, const QString& label2, const QString& label3) : QTreeWidgetItem(parent, after),
             diskUsage(diskUsageIn), file(fileItem) {
         setText(0, label1);
         setText(1, label2);

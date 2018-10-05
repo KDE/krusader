@@ -53,16 +53,16 @@ public:
         return _operational;
     } // check this 1st
 
-    void mount(QString mntPoint, bool blocking = true); // this is probably what you need for mount
-    void unmount(QString mntPoint, bool blocking = true); // this is probably what you need for unmount
-    mntStatus getStatus(QString mntPoint);    // return the status of a mntPoint (if any)
-    void eject(QString mntPoint);
+    void mount(const QString& mntPoint, bool blocking = true); // this is probably what you need for mount
+    void unmount(const QString& mntPoint, bool blocking = true); // this is probably what you need for unmount
+    mntStatus getStatus(const QString& mntPoint);    // return the status of a mntPoint (if any)
+    void eject(const QString& mntPoint);
     bool ejectable(QString path);
     bool removable(QString path);
     bool removable(Solid::Device d);
-    bool invalidFilesystem(QString type);
-    bool networkFilesystem(QString type);
-    bool nonmountFilesystem(QString type, QString mntPoint);
+    bool invalidFilesystem(const QString& type);
+    bool networkFilesystem(const QString& type);
+    bool nonmountFilesystem(const QString& type, const QString& mntPoint);
     QAction *action() {
         return (QAction *) _action;
     }
@@ -71,24 +71,24 @@ public:
     ~KMountMan();
 
     // NOTE: this function needs some time (~50msec)
-    QString findUdiForPath(QString path, const Solid::DeviceInterface::Type &expType = Solid::DeviceInterface::Unknown);
-    QString pathForUdi(QString udi);
+    QString findUdiForPath(const QString& path, const Solid::DeviceInterface::Type &expType = Solid::DeviceInterface::Unknown);
+    QString pathForUdi(const QString& udi);
 
 public slots:
     void mainWindow();                        // opens up the GUI
-    void autoMount(QString path);             // just call it before refreshing into a dir
+    void autoMount(const QString& path);             // just call it before refreshing into a dir
     void delayedPerformAction(const QAction *action);
     void quickList();
 
 protected slots:
     void jobResult(KJob *job);
-    void slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
-    void slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
+    void slotTeardownDone(Solid::ErrorType error, const QVariant& errorData, const QString &udi);
+    void slotSetupDone(Solid::ErrorType error, const QVariant& errorData, const QString &udi);
 
 protected:
     // used internally
     static QExplicitlySharedDataPointer<KMountPoint> findInListByMntPoint(KMountPoint::List &lst, QString value);
-    void toggleMount(QString mntPoint);
+    void toggleMount(const QString& mntPoint);
     void emitRefreshPanel(const QUrl &url) {
         emit refreshPanel(url);
     }

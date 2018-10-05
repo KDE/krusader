@@ -66,7 +66,7 @@ public:
     inline int currentPage() const {
         return stack->currentWidget()->property("KrusaderWidgetId").toInt();
     }
-    void saveSettings(KConfigGroup cfg) const;
+    void saveSettings(const KConfigGroup& cfg) const;
     void restoreSettings(const KConfigGroup &cfg);
     void setCurrentPage(int);
 

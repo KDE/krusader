@@ -39,7 +39,7 @@ public:
     bool isValid() const {
         return valid;
     }
-    void load(KConfigGroup cfg);
+    void load(const KConfigGroup& cfg);
     void save(KConfigGroup cfg) const;
     KRQuery toQuery() const;
 
@@ -76,7 +76,7 @@ private:
         TimeUnit unit;
     };
 
-    static void saveDate(QString key, const QDate &date, KConfigGroup &cfg);
+    static void saveDate(const QString& key, const QDate &date, KConfigGroup &cfg);
     static time_t qdate2time_t(QDate d, bool start);
 
     bool valid;

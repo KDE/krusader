@@ -99,7 +99,7 @@ protected:
 
     QWizardPage *createProgressPage(const QString &title);
 
-    bool checkExists(const QString type);
+    bool checkExists(const QString& type);
     void runProcess(const QString &type, const QStringList &args);
     void addChecksumLine(KrTreeWidget *tree, const QString &line);
 

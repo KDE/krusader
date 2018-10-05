@@ -62,7 +62,7 @@
 #include "../defaults.h"
 
 // KrActionProcDlg
-KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *parent) :
+KrActionProcDlg::KrActionProcDlg(const QString& caption, bool enableStderr, QWidget *parent) :
         QDialog(parent), _stdout(nullptr), _stderr(nullptr), _currentTextEdit(nullptr)
 {
     setWindowTitle(caption);
@@ -228,7 +228,7 @@ KrActionProc::~KrActionProc()
     delete _proc;
 }
 
-void KrActionProc::start(QString cmdLine)
+void KrActionProc::start(const QString& cmdLine)
 {
     QStringList list;
     list << cmdLine;
@@ -362,7 +362,7 @@ void KrActionProc::addStdout()
 
 
 // KrAction
-KrAction::KrAction(KActionCollection *parent, QString name) : QAction((QObject *)parent)
+KrAction::KrAction(KActionCollection *parent, const QString& name) : QAction((QObject *)parent)
 {
     _actionCollection = parent;
     setObjectName(name);

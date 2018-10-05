@@ -48,7 +48,7 @@ class KrSearchDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KrSearchDialog(QString profile = QString(), QWidget* parent = nullptr);
+    explicit KrSearchDialog(const QString& profile = QString(), QWidget* parent = nullptr);
     ~KrSearchDialog() override;
 
     void prepareGUI();

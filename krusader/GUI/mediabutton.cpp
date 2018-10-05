@@ -43,6 +43,7 @@
 #include <Solid/OpticalDisc>
 #include <Solid/OpticalDrive>
 #include <Solid/DeviceNotifier>
+#include <utility>
 
 QString MediaButton::remotePrefix = QLatin1String("remote:");
 
@@ -317,7 +318,7 @@ bool MediaButton::eventFilter(QObject *o, QEvent *e)
     return false;
 }
 
-void MediaButton::rightClickMenu(QString udi, QPoint pos)
+void MediaButton::rightClickMenu(const QString& udi, QPoint pos)
 {
     if (rightMenu)
         rightMenu->close();
@@ -387,7 +388,7 @@ void MediaButton::rightClickMenu(QString udi, QPoint pos)
     }
 }
 
-void MediaButton::toggleMount(QString udi)
+void MediaButton::toggleMount(const QString& udi)
 {
     bool mounted = false;
     getStatus(udi, mounted);
@@ -398,7 +399,7 @@ void MediaButton::toggleMount(QString udi)
         mount(udi);
 }
 
-void MediaButton::getStatus(QString udi, bool &mounted, QString *mountPointOut, bool *ejectableOut)
+void MediaButton::getStatus(const QString& udi, bool &mounted, QString *mountPointOut, bool *ejectableOut)
 {
     mounted = false;
     bool network = udi.startsWith(remotePrefix);
@@ -435,7 +436,7 @@ void MediaButton::getStatus(QString udi, bool &mounted, QString *mountPointOut, 
         *ejectableOut = ejectable;
 }
 
-void MediaButton::mount(QString udi, bool open, bool newtab)
+void MediaButton::mount(const QString& udi, bool open, bool newtab)
 {
     if (udi.startsWith(remotePrefix)) {
         QString mp = udi.mid(remotePrefix.length());
@@ -456,7 +457,7 @@ void MediaButton::mount(QString udi, bool open, bool newtab)
     }
 }
 
-void MediaButton::slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi)
+void MediaButton::slotSetupDone(Solid::ErrorType error, const QVariant& errorData, const QString &udi)
 {
     if (error == Solid::NoError) {
         if (udi == udiToOpen) {
@@ -485,7 +486,7 @@ void MediaButton::slotSetupDone(Solid::ErrorType error, QVariant errorData, cons
     }
 }
 
-void MediaButton::umount(QString udi)
+void MediaButton::umount(const QString& udi)
 {
     if (udi.startsWith(remotePrefix)) {
         krMtMan.unmount(udi.mid(remotePrefix.length()), false);
@@ -496,7 +497,7 @@ void MediaButton::umount(QString udi)
 
 void MediaButton::eject(QString udi)
 {
-    krMtMan.eject(krMtMan.pathForUdi(udi));
+    krMtMan.eject(krMtMan.pathForUdi(std::move(udi)));
 }
 
 void MediaButton::slotAccessibilityChanged(bool /*accessible*/, const QString & udi)

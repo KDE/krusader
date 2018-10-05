@@ -68,7 +68,7 @@ static void sigterm_handler(int i)
     QApplication::exit(- 15);
 }
 
-void openTabsRemote(QStringList tabs, bool left, QString appName)
+void openTabsRemote(QStringList tabs, bool left, const QString& appName)
 {
     // make sure left or right are not relative paths
     for (int i = 0; i != tabs.count(); i++) {

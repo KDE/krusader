@@ -188,7 +188,7 @@ void KgProtocols::slotAddProtocol()
     }
 }
 
-void KgProtocols::addProtocol(QString name, bool changeCurrent)
+void KgProtocols::addProtocol(const QString& name, bool changeCurrent)
 {
     QList<QListWidgetItem *> list = protocolList->findItems(name, Qt::MatchExactly);
     if (list.count() > 0) {
@@ -215,7 +215,7 @@ void KgProtocols::slotRemoveProtocol()
     }
 }
 
-void KgProtocols::removeProtocol(QString name)
+void KgProtocols::removeProtocol(const QString& name)
 {
     QList<QTreeWidgetItem *> itemList = linkList->findItems(name, Qt::MatchExactly, 0);
 
@@ -245,7 +245,7 @@ void KgProtocols::slotAddMime()
     }
 }
 
-void KgProtocols::addMime(QString name, QString protocol)
+void KgProtocols::addMime(QString name, const QString& protocol)
 {
     QList<QListWidgetItem *> list = mimeList->findItems(name, Qt::MatchExactly);
 
@@ -274,7 +274,7 @@ void KgProtocols::slotRemoveMime()
     }
 }
 
-void KgProtocols::removeMime(QString name)
+void KgProtocols::removeMime(const QString& name)
 {
     QList<QTreeWidgetItem *> itemList = linkList->findItems(name, Qt::MatchExactly | Qt::MatchRecursive, 0);
 

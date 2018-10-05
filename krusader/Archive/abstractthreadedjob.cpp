@@ -422,7 +422,7 @@ void AbstractJobThread::sendSuccess()
     _job->sendEvent(errorEvent);
 }
 
-void AbstractJobThread::sendError(int errorCode, QString message)
+void AbstractJobThread::sendError(int errorCode, const QString& message)
 {
     terminate();
 
@@ -434,7 +434,7 @@ void AbstractJobThread::sendError(int errorCode, QString message)
     _job->sendEvent(errorEvent);
 }
 
-void AbstractJobThread::sendInfo(QString message, QString a1, QString a2, QString a3, QString a4)
+void AbstractJobThread::sendInfo(const QString& message, const QString& a1, const QString& a2, const QString& a3, const QString& a4)
 {
     QList<QVariant> args;
     args << message;
@@ -447,7 +447,7 @@ void AbstractJobThread::sendInfo(QString message, QString a1, QString a2, QStrin
     _job->sendEvent(infoEvent);
 }
 
-void AbstractJobThread::sendReset(QString message, QString a1, QString a2, QString a3, QString a4)
+void AbstractJobThread::sendReset(const QString& message, const QString& a1, const QString& a2, const QString& a3, const QString& a4)
 {
     QList<QVariant> args;
     args << message;

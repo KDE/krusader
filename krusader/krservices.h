@@ -37,17 +37,17 @@ class QFile;
 class KrServices
 {
 public:
-    static bool         cmdExist(QString cmdName);
-    static QString      chooseFullPathName(QStringList names, QString confName);
-    static QString      fullPathName(QString name, QString confName = QString());
+    static bool         cmdExist(const QString& cmdName);
+    static QString      chooseFullPathName(QStringList names, const QString& confName);
+    static QString      fullPathName(const QString& name, QString confName = QString());
     static bool         isExecutable(const QString &path);
-    static QString      registeredProtocol(QString mimetype);
-    static bool         isoSupported(QString mimetype);
+    static QString      registeredProtocol(const QString& mimetype);
+    static bool         isoSupported(const QString& mimetype);
     static QString      urlToLocalPath(const QUrl &url);
     static void         clearProtocolCache();
     static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines = false);
     static bool         fileToStringList(QFile *file, QStringList& target, bool keepEmptyLines = false);
-    static QString      quote(QString name);
+    static QString      quote(const QString& name);
     static QStringList  quote(const QStringList& names);
     static QList<QUrl>  toUrlList(const QStringList &list);
     static QStringList  toStringList(const QList<QUrl> &list);

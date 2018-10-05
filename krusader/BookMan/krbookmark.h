@@ -36,14 +36,14 @@ class KrBookmark: public QAction
 {
     Q_OBJECT
 public:
-    KrBookmark(QString name, QUrl url, KActionCollection *parent, QString iconName = "", QString actionName = QString());
-    explicit KrBookmark(QString name, QString iconName = ""); // creates a folder
+    KrBookmark(const QString& name, QUrl url, KActionCollection *parent, const QString& iconName = "", const QString& actionName = QString());
+    explicit KrBookmark(const QString& name, const QString& iconName = ""); // creates a folder
     ~KrBookmark() override;
 
     // text() and setText() to change the name of the bookmark
     // icon() and setIcon() to change icons
 
-    void setIconName(QString iconName);
+    void setIconName(const QString& iconName);
 
     inline const QString& iconName() const {
         return _iconName;
@@ -65,7 +65,7 @@ public:
         return _children;
     }
 
-    static KrBookmark * getExistingBookmark(QString actionName, KActionCollection *collection);
+    static KrBookmark * getExistingBookmark(const QString& actionName, KActionCollection *collection);
 
     // ----- special bookmarks
     static KrBookmark * trash(KActionCollection *collection);

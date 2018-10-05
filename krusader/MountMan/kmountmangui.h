@@ -32,6 +32,7 @@
 #include <QFrame>
 
 #include <KIOCore/KMountPoint>
+#include <utility>
 
 #include "../GUI/krtreewidget.h"
 #include "kmountman.h"
@@ -145,13 +146,13 @@ public:
 
     // set information
     inline void setName(QString n_) {
-        Name = n_;
+        Name = std::move(n_);
     }
     inline void setType(QString t_) {
-        Type = t_;
+        Type = std::move(t_);
     }
     inline void setMntPoint(QString m_) {
-        MntPoint = m_;
+        MntPoint = std::move(m_);
     }
     inline void setTotalBlks(long t_) {
         TotalBlks = t_;

@@ -71,7 +71,7 @@ protected:
     QString getPath(const QUrl &url, QUrl::FormattingOptions options = nullptr);
 
     QString localeEncodedString(QString str);
-    QByteArray encodeString(QString);
+    QByteArray encodeString(const QString&);
     QString decodeString(char *);
 
     // archive specific commands
@@ -96,8 +96,8 @@ private:
     /** find the UDSEntry of a file in a directory. */
     KIO::UDSEntry* findFileEntry(const QUrl &url);
     /** add a new directory (file list container). */
-    KIO::UDSEntryList* addNewDir(QString path);
-    QString fullPathName(QString name);
+    KIO::UDSEntryList* addNewDir(const QString& path);
+    QString fullPathName(const QString& name);
     static QString detectFullPathName(QString name);
     bool checkWriteSupport();
 

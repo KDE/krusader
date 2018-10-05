@@ -144,7 +144,7 @@ void PanelManager::slotCurrentTabChanged(int index)
     }
 }
 
-ListPanel* PanelManager::createPanel(KConfigGroup cfg)
+ListPanel* PanelManager::createPanel(const KConfigGroup& cfg)
 {
     ListPanel * p = new ListPanel(_stack, this, cfg);
     connectPanel(p);
@@ -164,7 +164,7 @@ void PanelManager::disconnectPanel(ListPanel *p)
     disconnect(p, &ListPanel::pathChanged, this, nullptr);
 }
 
-ListPanel* PanelManager::addPanel(bool setCurrent, KConfigGroup cfg, KrPanel *nextTo)
+ListPanel* PanelManager::addPanel(bool setCurrent, const KConfigGroup& cfg, KrPanel *nextTo)
 {
     // create the panel and add it into the widgetstack
     ListPanel * p = createPanel(cfg);

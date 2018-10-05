@@ -32,7 +32,7 @@
 #include <KConfigCore/KSharedConfig>
 #include <KCoreAddons/KUrlMimeData>
 
-ListPanelFrame::ListPanelFrame(QWidget *parent, QString color) : QFrame(parent), color(color)
+ListPanelFrame::ListPanelFrame(QWidget *parent, const QString& color) : QFrame(parent), color(color)
 {
     if(!color.isEmpty()) {
         colorsChanged();
@@ -97,7 +97,7 @@ void ListPanelFrame::refreshColors(bool active)
     setPalette(active ? palActive : palInactive);
 }
 
-QColor ListPanelFrame::getColor(KConfigGroup &cg, QString name, const QColor &def, const QColor &kdedef)
+QColor ListPanelFrame::getColor(KConfigGroup &cg, const QString& name, const QColor &def, const QColor &kdedef)
 {
     if (cg.readEntry(name, QString()) == "KDE default")
         return kdedef;

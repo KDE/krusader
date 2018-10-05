@@ -1177,7 +1177,7 @@ mode_t kio_krarcProtocol::parsePermString(QString perm)
     return mode;
 }
 
-UDSEntryList* kio_krarcProtocol::addNewDir(QString path)
+UDSEntryList* kio_krarcProtocol::addNewDir(const QString& path)
 {
     KRFUNC;
     UDSEntryList* dir;
@@ -1861,7 +1861,7 @@ QString kio_krarcProtocol::detectFullPathName(QString name)
     return name;
 }
 
-QString kio_krarcProtocol::fullPathName(QString name)
+QString kio_krarcProtocol::fullPathName(const QString& name)
 {
     // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     KRDEBUG(name);
@@ -1893,7 +1893,7 @@ QString kio_krarcProtocol::localeEncodedString(QString str)
     return result;
 }
 
-QByteArray kio_krarcProtocol::encodeString(QString str)
+QByteArray kio_krarcProtocol::encodeString(const QString& str)
 {
     // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     if (noencoding)

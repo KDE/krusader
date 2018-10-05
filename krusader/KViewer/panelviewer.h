@@ -61,7 +61,7 @@ public slots:
         return true;
     }
 
-    void openUrl(QUrl url);
+    void openUrl(const QUrl& url);
 
 signals:
     void openUrlRequest(const QUrl &url);
@@ -78,7 +78,7 @@ protected slots:
 protected:
     virtual void openFile(KFileItem fi) = 0;
     virtual KParts::ReadOnlyPart* createPart(QString mimetype) = 0;
-    KParts::ReadOnlyPart* getPart(QString mimetype);
+    KParts::ReadOnlyPart* getPart(const QString& mimetype);
 
 
     QHash<QString, QPointer<KParts::ReadOnlyPart> > *mimes;
@@ -106,7 +106,7 @@ public:
 protected:
     void openFile(KFileItem fi) Q_DECL_OVERRIDE;
     KParts::ReadOnlyPart* createPart(QString mimetype) Q_DECL_OVERRIDE;
-    KParts::ReadOnlyPart* getDefaultPart(KFileItem fi);
+    KParts::ReadOnlyPart* getDefaultPart(const KFileItem& fi);
     KParts::ReadOnlyPart* getHexPart();
     KParts::ReadOnlyPart* getListerPart(bool hexMode = false);
     KParts::ReadOnlyPart* getTextPart();

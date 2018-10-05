@@ -32,7 +32,7 @@
 #include "../krglobal.h"
 #include "../icon.h"
 
-ProfileManager::ProfileManager(QString profileType, QWidget * parent)
+ProfileManager::ProfileManager(const QString& profileType, QWidget * parent)
         : QPushButton(parent)
 {
     setText("");
@@ -100,7 +100,7 @@ void ProfileManager::profilePopup()
     }
 }
 
-void ProfileManager::newProfile(QString defaultName)
+void ProfileManager::newProfile(const QString& defaultName)
 {
     QString profile = QInputDialog::getText(this, i18n("Krusader::ProfileManager"), i18n("Enter the profile name:"),
                                             QLineEdit::Normal, defaultName);
@@ -123,7 +123,7 @@ void ProfileManager::newProfile(QString defaultName)
     }
 }
 
-void ProfileManager::deleteProfile(QString name)
+void ProfileManager::deleteProfile(const QString& name)
 {
     for (int i = 0; i != profileList.count() ; i++) {
         KConfigGroup group(krConfig, profileType + " - " + profileList[ i ]);
@@ -141,7 +141,7 @@ void ProfileManager::deleteProfile(QString name)
     }
 }
 
-void ProfileManager::overwriteProfile(QString name)
+void ProfileManager::overwriteProfile(const QString& name)
 {
     for (int i = 0; i != profileList.count() ; i++) {
         KConfigGroup group(krConfig, profileType + " - " + profileList[ i ]);
@@ -154,7 +154,7 @@ void ProfileManager::overwriteProfile(QString name)
     }
 }
 
-bool ProfileManager::loadProfile(QString name)
+bool ProfileManager::loadProfile(const QString& name)
 {
     for (int i = 0; i != profileList.count() ; i++) {
         KConfigGroup group(krConfig, profileType + " - " + profileList[i]);
@@ -168,7 +168,7 @@ bool ProfileManager::loadProfile(QString name)
     return false;
 }
 
-QStringList ProfileManager::availableProfiles(QString profileType)
+QStringList ProfileManager::availableProfiles(const QString& profileType)
 {
     KConfigGroup group(krConfig, "Private");
     QStringList profiles = group.readEntry(profileType, QStringList());

@@ -34,6 +34,7 @@
 #include <QTabWidget>
 
 #include <KCompletion/KComboBox>
+#include <utility>
 
 #include "synchronizer.h"
 #include "../GUI/profilemanager.h"
@@ -55,10 +56,10 @@ public:
         SyncViewItem         *lastItemRef;
 
     public:
-        SyncViewItem(SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidget * parent, QTreeWidgetItem *after, QString label1,
-                     QString label2 = QString(), QString label3 = QString(), QString label4 = QString(),
-                     QString label5 = QString(), QString label6 = QString(),
-                     QString label7 = QString(), QString label8 = QString()) :
+        SyncViewItem(SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidget * parent, QTreeWidgetItem *after, const QString& label1,
+                     const QString& label2 = QString(), const QString& label3 = QString(), const QString& label4 = QString(),
+                     const QString& label5 = QString(), const QString& label6 = QString(),
+                     const QString& label7 = QString(), const QString& label8 = QString()) :
                 QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(nullptr) {
             setText(0, label1);
             setText(1, label2);
@@ -74,13 +75,13 @@ public:
             setTextAlignment(5, Qt::AlignRight);
             item->setUserData((void *)this);
 
-            setColors(txt, base);
+            setColors(std::move(txt), std::move(base));
         }
 
-        SyncViewItem(SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidgetItem * parent, QTreeWidgetItem *after, QString label1,
-                     QString label2 = QString(), QString label3 = QString(), QString label4 = QString(),
-                     QString label5 = QString(), QString label6 = QString(),
-                     QString label7 = QString(), QString label8 = QString()) :
+        SyncViewItem(SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidgetItem * parent, QTreeWidgetItem *after, const QString& label1,
+                     const QString& label2 = QString(), const QString& label3 = QString(), const QString& label4 = QString(),
+                     const QString& label5 = QString(), const QString& label6 = QString(),
+                     const QString& label7 = QString(), const QString& label8 = QString()) :
                 QTreeWidgetItem(parent, after), syncItemRef(item), lastItemRef(nullptr) {
             setText(0, label1);
             setText(1, label2);
@@ -96,7 +97,7 @@ public:
             setTextAlignment(5, Qt::AlignRight);
             item->setUserData((void *)this);
 
-            setColors(txt, base);
+            setColors(std::move(txt), std::move(base));
         }
 
         ~SyncViewItem() override {
@@ -113,7 +114,7 @@ public:
             lastItemRef = s;
         }
 
-        void setColors(QColor fore, QColor back) {
+        void setColors(const QColor& fore, const QColor& back) {
             QBrush textColor(fore);
             QBrush baseColor(back);
 
@@ -146,15 +147,15 @@ public slots:
     void closeDialog();
     void refresh();
     void swapSides();
-    void loadFromProfile(QString);
-    void saveToProfile(QString);
+    void loadFromProfile(const QString&);
+    void saveToProfile(const QString&);
 
 protected slots:
     void reject() Q_DECL_OVERRIDE;
     void addFile(SynchronizerFileItem *);
     void markChanged(SynchronizerFileItem *, bool);
     void setScrolling(bool);
-    void statusInfo(QString);
+    void statusInfo(const QString&);
     void subdirsChecked(bool);
     void setPanelLabels();
     void setCompletion();
@@ -162,7 +163,7 @@ protected slots:
     void connectFilters(const QString &);
 
 private:
-    void initGUI(QString profile, QUrl leftURL, QUrl rightURL, QStringList selList);
+    void initGUI(const QString& profile, QUrl leftURL, QUrl rightURL, QStringList selList);
 
     QString convertTime(time_t time) const;
     void    setMarkFlags();

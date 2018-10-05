@@ -74,7 +74,7 @@ void DirHistoryQueue::saveCurrentItem()
         _currentItems[_currentPos] = _panel->view->getCurrentItem();
 }
 
-void DirHistoryQueue::add(QUrl url, QString currentItem)
+void DirHistoryQueue::add(QUrl url, const QString& currentItem)
 {
     url.setPath(QDir::cleanPath(url.path()));
 
@@ -145,7 +145,7 @@ void DirHistoryQueue::save(KConfigGroup cfg)
     cfg.writeEntry("CurrentIndex", _currentPos);
 }
 
-bool DirHistoryQueue::restore(KConfigGroup cfg)
+bool DirHistoryQueue::restore(const KConfigGroup& cfg)
 {
     clear();
     _urlQueue = KrServices::toUrlList(cfg.readEntry("Entrys", QStringList())); // krazy:exclude=spelling

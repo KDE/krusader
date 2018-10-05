@@ -435,13 +435,13 @@ GeneralFilter::~GeneralFilter()
     krConfig->sync();
 }
 
-bool GeneralFilter::isExtraOptionChecked(QString name)
+bool GeneralFilter::isExtraOptionChecked(const QString& name)
 {
     QCheckBox *option = extraOptions[name];
     return option ? option->isChecked() : false;
 }
 
-void GeneralFilter::checkExtraOption(QString name, bool check)
+void GeneralFilter::checkExtraOption(const QString& name, bool check)
 {
     QCheckBox *option = extraOptions[name];
     if (option)

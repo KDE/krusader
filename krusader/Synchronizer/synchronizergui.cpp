@@ -65,6 +65,7 @@
 #include <KWidgetsAddons/KMessageBox>
 #include <KIOWidgets/KUrlRequester>
 #include <KGuiAddons/KColorUtils>
+#include <utility>
 
 
 class SynchronizerListView : public KrTreeWidget
@@ -124,20 +125,20 @@ public:
 SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QUrl leftURL, QUrl rightURL, QStringList selList) :
         QDialog(parent)
 {
-    initGUI(QString(), leftURL, rightURL, selList);
+    initGUI(QString(), std::move(leftURL), std::move(rightURL), std::move(selList));
 }
 
 SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString profile) :
         QDialog(parent)
 {
-    initGUI(profile, QUrl(), QUrl(), QStringList());
+    initGUI(std::move(profile), QUrl(), QUrl(), QStringList());
 }
 
-void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, QStringList selList)
+void SynchronizerGUI::initGUI(const QString& profileName, QUrl leftURL, QUrl rightURL, QStringList selList)
 {
     setAttribute(Qt::WA_DeleteOnClose);
 
-    selectedFiles = selList;
+    selectedFiles = std::move(selList);
     isComparing = wasClosed = wasSync = false;
     firstResize = true;
     sizeX = sizeY = -1;
@@ -1267,7 +1268,7 @@ void SynchronizerGUI::resizeEvent(QResizeEvent *e)
     QDialog::resizeEvent(e);
 }
 
-void SynchronizerGUI::statusInfo(QString info)
+void SynchronizerGUI::statusInfo(const QString& info)
 {
     statusLabel->setText(info);
     qApp->processEvents();
@@ -1418,7 +1419,7 @@ bool SynchronizerGUI::eventFilter(QObject * /* watched */, QEvent * e)
     return false;
 }
 
-void SynchronizerGUI::loadFromProfile(QString profile)
+void SynchronizerGUI::loadFromProfile(const QString& profile)
 {
     syncList->clear();
     synchronizer.reset();
@@ -1472,7 +1473,7 @@ void SynchronizerGUI::loadFromProfile(QString profile)
     refresh();
 }
 
-void SynchronizerGUI::saveToProfile(QString profile)
+void SynchronizerGUI::saveToProfile(const QString& profile)
 {
     KConfigGroup group(krConfig, profile);
 

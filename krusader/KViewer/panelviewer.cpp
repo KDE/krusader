@@ -82,7 +82,7 @@ void PanelViewerBase::slotStatResult(KJob* job)
     }
 }
 
-KParts::ReadOnlyPart* PanelViewerBase::getPart(QString mimetype)
+KParts::ReadOnlyPart* PanelViewerBase::getPart(const QString& mimetype)
 {
     KParts::ReadOnlyPart* part = nullptr;
 
@@ -96,7 +96,7 @@ KParts::ReadOnlyPart* PanelViewerBase::getPart(QString mimetype)
     return part;
 }
 
-void PanelViewerBase::openUrl(QUrl url)
+void PanelViewerBase::openUrl(const QUrl& url)
 {
     closeUrl();
     curl = url;
@@ -173,7 +173,7 @@ KParts::ReadOnlyPart* PanelViewer::getTextPart()
     return part ? part : getListerPart();
 }
 
-KParts::ReadOnlyPart* PanelViewer::getDefaultPart(KFileItem fi)
+KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KFileItem& fi)
 {
     KConfigGroup group(krConfig, "General");
     QString modeString = group.readEntry("Default Viewer Mode", QString("generic"));

@@ -209,7 +209,7 @@ QWizardPage *ChecksumWizard::createProgressPage(const QString &title)
     return page;
 }
 
-bool ChecksumWizard::checkExists(const QString type)
+bool ChecksumWizard::checkExists(const QString& type)
 {
     if (!KrServices::cmdExist(m_checksumTools[type])) {
         KMessageBox::error(

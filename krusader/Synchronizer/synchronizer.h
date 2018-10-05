@@ -77,7 +77,7 @@ public:
     QString leftBaseDirectory();
     QString rightBaseDirectory();
     static QString getTaskTypeName(TaskType taskType);
-    static QUrl fsUrl(QString strUrl);
+    static QUrl fsUrl(const QString& strUrl);
 
     SynchronizerFileItem *getItemAt(unsigned ndx);
 

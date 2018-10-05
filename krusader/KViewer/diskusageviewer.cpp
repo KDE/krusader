@@ -25,6 +25,7 @@
 #include <QLabel>
 
 #include <KConfigCore/KSharedConfig>
+#include <utility>
 
 #include "../FileSystem/filesystem.h"
 #include "../Panel/krpanel.h"
@@ -99,7 +100,7 @@ void DiskUsageViewer::closeUrl()
 void DiskUsageViewer::setStatusLabel(QLabel *statLabel, QString pref)
 {
     statusLabel = statLabel;
-    prefix = pref;
+    prefix = std::move(pref);
 }
 
 void DiskUsageViewer::slotUpdateStatus(QString status)
