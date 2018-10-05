@@ -242,7 +242,7 @@ bool KrViewer::eventFilter(QObject * /* watched */, QEvent * e)
     // Should look into if there is any way to fix it. Currently if a KPart has same shortcut as KrViewer then
     // it causes a conflict, messagebox shown to user and no action triggered.
     if (e->type() == QEvent::ShortcutOverride) {
-        auto* ke = (QKeyEvent*) e;
+        auto* ke = dynamic_cast<QKeyEvent*>( e);
         if (reservedKeys.contains(ke->key())) {
             ke->accept();
 
@@ -259,7 +259,7 @@ bool KrViewer::eventFilter(QObject * /* watched */, QEvent * e)
             return true;
         }
     } else if (e->type() == QEvent::KeyPress) {
-        auto* ke = (QKeyEvent*) e;
+        auto* ke = dynamic_cast<QKeyEvent*>( e);
         if (reservedKeys.contains(ke->key())) {
             ke->accept();
             return true;

@@ -124,6 +124,7 @@ void DUFilelight::mousePressEvent(QMouseEvent *event)
             diskUsage->dirUp();
             return;
         } else if (focus && !focus->isFake() && focus->file()->isDir()) {
+            // NOTE: unsafe removable of constness here when casting
             diskUsage->changeDirectory((Directory *)focus->file());
             return;
         }

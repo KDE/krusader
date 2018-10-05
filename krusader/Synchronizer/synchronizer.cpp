@@ -179,7 +179,7 @@ void Synchronizer::compareLoop()
 
             if (entry->inherits("CompareTask")) {
                 if (entry->state() == ST_STATE_READY) {
-                    auto *ctentry = (CompareTask *) entry;
+                    auto *ctentry = dynamic_cast<CompareTask *>( entry);
                     if (ctentry->isDuplicate())
                         compareDirectory(ctentry->parent(), ctentry->leftDirList(), ctentry->rightDirList(),
                                          ctentry->leftDir(), ctentry->rightDir());

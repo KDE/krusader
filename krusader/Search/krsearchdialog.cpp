@@ -188,7 +188,7 @@ KrSearchDialog::KrSearchDialog(const QString& profile, QWidget* parent)
     searcherTabs = new QTabWidget(this);
 
     filterTabs = FilterTabs::addTo(searcherTabs, FilterTabs::Default);
-    generalFilter = (GeneralFilter *)filterTabs->get("GeneralFilter");
+    generalFilter = dynamic_cast<GeneralFilter *>(filterTabs->get("GeneralFilter"));
 
 
     // creating the result tab

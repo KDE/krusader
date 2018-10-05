@@ -235,7 +235,7 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
 #endif
                 emit activated(url);   //activate first, this will cause UI to prepare itself
                 if (m_focus)
-                    createFromCache((Directory *)m_focus->file());
+                    createFromCache(dynamic_cast<const Directory*>(m_focus->file()));
             }
         }
     }

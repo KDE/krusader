@@ -145,7 +145,7 @@ void KgDependencies::addApplication(const QString& name, QGridLayout *grid, int 
 
 void KgDependencies::slotApply(QObject *obj, const QString& configGroup, const QString& name)
 {
-    auto *urlRequester = (KonfiguratorURLRequester *) obj;
+    auto *urlRequester = dynamic_cast<KonfiguratorURLRequester *>( obj);
 
     KConfigGroup group(krConfig, configGroup);
     group.writeEntry(name, urlRequester->url().toDisplayString(QUrl::PreferLocalFile));

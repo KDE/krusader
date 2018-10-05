@@ -236,7 +236,7 @@ bool KrInterBriefView::eventFilter(QObject *object, QEvent *event)
 {
     if (object == _header) {
         if (event->type() == QEvent::ContextMenu) {
-            auto *me = (QContextMenuEvent *)event;
+            auto *me = dynamic_cast<QContextMenuEvent *>(event);
             showContextMenu(me->globalPos());
             return true;
         }

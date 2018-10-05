@@ -245,7 +245,7 @@ bool DULines::event(QEvent * event)
             int column = columnAt(pos.x());
 
             if (item && column == 1) {
-                File *fileItem = ((DULinesItem *)item)->getFile();
+                File *fileItem = (dynamic_cast<DULinesItem *>(item))->getFile();
                 QToolTip::showText(he->globalPos(), diskUsage->getToolTip(fileItem), this);
                 return true;
             }
@@ -401,7 +401,7 @@ bool DULines::doubleClicked(QTreeWidgetItem * item)
 {
     if (item) {
         if (item->text(0) != "..") {
-            File *fileItem = ((DULinesItem *)item)->getFile();
+            File *fileItem = (dynamic_cast<DULinesItem *>(item))->getFile();
             if (fileItem->isDir())
                 diskUsage->changeDirectory(dynamic_cast<Directory *>(fileItem));
             return true;
@@ -459,7 +459,7 @@ void DULines::slotRightClicked(QTreeWidgetItem *item, const QPoint &pos)
     File * file = nullptr;
 
     if (item && item->text(0) != "..")
-        file = ((DULinesItem *)item)->getFile();
+        file = (dynamic_cast<DULinesItem *>(item))->getFile();
 
     QMenu linesPopup;
     QAction *act = linesPopup.addAction(i18n("Show file sizes"), this, SLOT(slotShowFileSizes()));
@@ -481,7 +481,7 @@ File * DULines::getCurrentFile()
     if (item == nullptr || item->text(0) == "..")
         return nullptr;
 
-    return ((DULinesItem *)item)->getFile();
+    return (dynamic_cast<DULinesItem *>(item))->getFile();
 }
 
 void DULines::slotChanged(File * item)
@@ -492,7 +492,7 @@ void DULines::slotChanged(File * item)
         it++;
 
         if (lvitem->text(0) != "..") {
-            auto *duItem = (DULinesItem *)(lvitem);
+            auto *duItem = dynamic_cast<DULinesItem *>(lvitem);
             if (duItem->getFile() == item) {
                 setSortingEnabled(false);
                 duItem->setHidden(item->isExcluded());
@@ -515,7 +515,7 @@ void DULines::slotDeleted(File * item)
         it++;
 
         if (lvitem->text(0) != "..") {
-            auto *duItem = (DULinesItem *)(lvitem);
+            auto *duItem = dynamic_cast<DULinesItem *>(lvitem);
             if (duItem->getFile() == item) {
                 delete duItem;
                 break;

@@ -78,7 +78,7 @@ RadialMap::Builder::findVisibleDepth(const Directory* const dir, const unsigned 
 
     for (ConstIterator<File> it = dir->constIterator(); it != dir->end(); ++it)
         if ((*it)->isDir() && (*it)->size() > m_minSize)
-            findVisibleDepth((Directory *)*it, depth + 1);   //if no files greater than min size the depth is still recorded
+            findVisibleDepth(dynamic_cast<const Directory *>(*it), depth + 1);   //if no files greater than min size the depth is still recorded
 }
 
 void
@@ -117,7 +117,7 @@ RadialMap::Builder::build(const Directory* const dir, const unsigned int depth, 
             if ((*it)->isDir()) {
                 if (depth != *m_depth) {
                     //recurse
-                    s->m_hasHiddenChildren = build((Directory*) * it, depth + 1, a_start, a_start + a_len);
+                    s->m_hasHiddenChildren = build(dynamic_cast<const Directory *>(*it), depth + 1, a_start, a_start + a_len);
                 } else s->m_hasHiddenChildren = true;
             }
 

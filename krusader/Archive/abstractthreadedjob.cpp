@@ -72,7 +72,7 @@ AbstractThreadedJob::~AbstractThreadedJob()
 bool AbstractThreadedJob::event(QEvent *e)
 {
     if (e->type() == QEvent::User) {
-        auto *event = (UserEvent*) e;
+        auto *event = dynamic_cast<UserEvent*>( e);
         switch (event->command()) {
         case CMD_SUCCESS: {
             emitResult();
