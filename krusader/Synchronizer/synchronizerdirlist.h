@@ -35,7 +35,7 @@ class SynchronizerDirList : public QObject, public QHash<QString, FileItem *>
 
 public:
     SynchronizerDirList(QWidget *w, bool ignoreHidden);
-    ~SynchronizerDirList();
+    ~SynchronizerDirList() override;
 
     FileItem *search(const QString &name, bool ignoreCase = false);
     FileItem *first();

@@ -105,7 +105,7 @@ public slots:
 
 public:
     explicit ListPanelFunc(ListPanel *parent);
-    ~ListPanelFunc();
+    ~ListPanelFunc() override;
 
     FileSystem* files();  // return a pointer to the filesystem
     QUrl virtualDirectory(); // return the current URL (simulated when panel is paused)

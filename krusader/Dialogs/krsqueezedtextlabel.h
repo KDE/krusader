@@ -45,7 +45,7 @@ class KrSqueezedTextLabel : public KSqueezedTextLabel
     Q_OBJECT
 public:
     explicit KrSqueezedTextLabel(QWidget *parent = nullptr);
-    ~KrSqueezedTextLabel();
+    ~KrSqueezedTextLabel() override;
 
 public slots:
     void setText(const QString &text, int index = -1, int length = -1);
@@ -57,8 +57,8 @@ protected:
     void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE {
         squeezeTextToLabel(_index, _length);
     }
-    virtual void mousePressEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
-    virtual void paintEvent(QPaintEvent * e) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent * e) Q_DECL_OVERRIDE;
     void squeezeTextToLabel(int index = -1, int length = -1);
 
     QString fullText;

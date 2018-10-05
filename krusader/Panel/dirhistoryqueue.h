@@ -37,7 +37,7 @@ class DirHistoryQueue : public QObject
     Q_OBJECT
 public:
     explicit DirHistoryQueue(KrPanel *panel);
-    ~DirHistoryQueue();
+    ~DirHistoryQueue() override;
 
     void clear();
     int currentPos() {

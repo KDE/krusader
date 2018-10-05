@@ -36,7 +36,7 @@ class FeedToListBoxDialog : public QDialog
 
 public:
     FeedToListBoxDialog(QWidget*, Synchronizer *, QTreeWidget *, bool);
-    virtual ~FeedToListBoxDialog() {}
+    ~FeedToListBoxDialog() override {}
 
     bool isAccepted() {
         return accepted;

@@ -40,7 +40,7 @@ friend class KrPreviewJob;
     Q_OBJECT
 public:
     explicit KrPreviews(KrView *view);
-    ~KrPreviews();
+    ~KrPreviews() override;
 
     bool getPreview(const FileItem* file, QPixmap &pixmap, bool active);
     void updatePreview(KrViewItem *item);

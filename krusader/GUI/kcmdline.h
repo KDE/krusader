@@ -45,7 +45,7 @@ class CmdLineCombo : public KHistoryComboBox
 public:
     explicit CmdLineCombo(QWidget *parent);
 
-    virtual bool eventFilter(QObject *watched, QEvent *e) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject *watched, QEvent *e) Q_DECL_OVERRIDE;
 
     QString path() {
         return _path;
@@ -59,8 +59,8 @@ protected slots:
     void doLayout();
 
 protected:
-    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
-    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 
     void updateLineEditGeometry();
 
@@ -75,7 +75,7 @@ class KCMDLine : public QWidget, KrActionBase
     Q_OBJECT
 public:
     explicit KCMDLine(QWidget *parent = nullptr);
-    ~KCMDLine();
+    ~KCMDLine() override;
     void setCurrent(const QString &path);
     //virtual methods from KrActionBase
     void setText(QString text);
@@ -103,7 +103,7 @@ public slots:
     }
 
 protected:
-    virtual void focusInEvent(QFocusEvent*) Q_DECL_OVERRIDE {
+    void focusInEvent(QFocusEvent*) Q_DECL_OVERRIDE {
         cmdLine->setFocus();
     }
 

@@ -71,10 +71,10 @@ public:
         _themeFallbackList = getThemeFallbackList();
     }
 
-    virtual void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override;
-    virtual QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) override;
+    void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override;
+    QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) override;
 
-    virtual IconEngine *clone() const override
+    IconEngine *clone() const override
     {
         return new IconEngine(*this);
     }

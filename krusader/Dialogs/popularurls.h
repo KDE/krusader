@@ -54,7 +54,7 @@ class PopularUrls : public QObject
     Q_OBJECT
 public:
     explicit PopularUrls(QObject *parent = nullptr);
-    ~PopularUrls();
+    ~PopularUrls() override;
     void save();
     void load();
     void addUrl(const QUrl& url);
@@ -91,7 +91,7 @@ class PopularUrlsDlg: public QDialog
     Q_OBJECT
 public:
     PopularUrlsDlg();
-    ~PopularUrlsDlg();
+    ~PopularUrlsDlg() override;
     void run(QList<QUrl> list); // use this to open the dialog
     inline int result() const {
         return selection;

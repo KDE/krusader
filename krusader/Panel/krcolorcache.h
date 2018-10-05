@@ -158,7 +158,7 @@ class KrColorCache : public QObject
     const KrColorCache & operator= (const KrColorCache &);
 public:
     KrColorCache();
-    ~KrColorCache();
+    ~KrColorCache() override;
     static KrColorCache & getColorCache();
     void getColors(KrColorGroup & result, const KrColorItemType & type) const;
     bool getDimSettings(QColor & dimColor, int & dimFactor);

@@ -41,7 +41,7 @@ class KrPreviewPopup::ProxyStyle : public QProxyStyle
 public:
     ProxyStyle() : QProxyStyle(QApplication::style()) {}
 
-    virtual QSize sizeFromContents(ContentsType type, const QStyleOption *option,
+    QSize sizeFromContents(ContentsType type, const QStyleOption *option,
                                    const QSize &contentsSize, const QWidget *widget = nullptr) const Q_DECL_OVERRIDE
     {
         if(type == QStyle::CT_MenuItem) {
@@ -59,7 +59,7 @@ public:
             return QProxyStyle::sizeFromContents(type, option, contentsSize, widget);
     }
 
-    virtual void drawControl(ControlElement element, const QStyleOption *option,
+    void drawControl(ControlElement element, const QStyleOption *option,
                                     QPainter *painter, const QWidget *widget = nullptr ) const Q_DECL_OVERRIDE
     {
         if(element == QStyle::CE_MenuItem) {

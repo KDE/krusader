@@ -73,37 +73,37 @@ class Krusader : public KParts::MainWindow, public KrMainWindow
 
 public:
     explicit Krusader(const QCommandLineParser &parser);
-    virtual ~Krusader();
+    ~Krusader() override;
 
     void setTray(bool forceCreation = false);
 
     // KrMainWindow implementation
-    virtual QWidget *widget() Q_DECL_OVERRIDE {
+    QWidget *widget() Q_DECL_OVERRIDE {
         return this;
     }
-    virtual KrView *activeView() Q_DECL_OVERRIDE;
+    KrView *activeView() Q_DECL_OVERRIDE;
     ViewActions *viewActions() Q_DECL_OVERRIDE {
         return _viewActions;
     }
-    virtual KActionCollection *actions() Q_DECL_OVERRIDE {
+    KActionCollection *actions() Q_DECL_OVERRIDE {
         return actionCollection();
     }
-    virtual AbstractPanelManager *activeManager() Q_DECL_OVERRIDE;
-    virtual AbstractPanelManager *leftManager() Q_DECL_OVERRIDE;
-    virtual AbstractPanelManager *rightManager() Q_DECL_OVERRIDE;
-    virtual PopularUrls *popularUrls() Q_DECL_OVERRIDE {
+    AbstractPanelManager *activeManager() Q_DECL_OVERRIDE;
+    AbstractPanelManager *leftManager() Q_DECL_OVERRIDE;
+    AbstractPanelManager *rightManager() Q_DECL_OVERRIDE;
+    PopularUrls *popularUrls() Q_DECL_OVERRIDE {
         return _popularUrls;
     }
-    virtual KrActions *krActions() Q_DECL_OVERRIDE {
+    KrActions *krActions() Q_DECL_OVERRIDE {
         return _krActions;
     }
-    virtual ListPanelActions *listPanelActions() Q_DECL_OVERRIDE {
+    ListPanelActions *listPanelActions() Q_DECL_OVERRIDE {
         return _listPanelActions;
     }
-    virtual TabActions *tabActions() Q_DECL_OVERRIDE {
+    TabActions *tabActions() Q_DECL_OVERRIDE {
         return _tabActions;
     }
-    virtual void plugActionList(const char *name, QList<QAction*> &list) Q_DECL_OVERRIDE {
+    void plugActionList(const char *name, QList<QAction*> &list) Q_DECL_OVERRIDE {
         KParts::MainWindow::plugActionList(name, list);
     }
 

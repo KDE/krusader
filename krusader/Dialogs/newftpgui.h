@@ -41,7 +41,7 @@ class newFTPGUI : public QDialog
 
 public:
     explicit newFTPGUI(QWidget *parent = nullptr);
-    ~newFTPGUI();
+    ~newFTPGUI() override;
 
     KComboBox* prefix;
     KHistoryComboBox* url;

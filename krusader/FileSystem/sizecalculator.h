@@ -43,7 +43,7 @@ public:
      * The calculation is automatically started (like KJob).
      */
     explicit SizeCalculator(const QList<QUrl> &urls);
-    ~SizeCalculator();
+    ~SizeCalculator() override;
 
     /** Return all URLs (queued and progressed). */
     QList<QUrl> urls() const { return m_urls; }

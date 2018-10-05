@@ -91,12 +91,12 @@ public:
     void           sizeChanged();
 
 protected:
-    virtual void   resizeEvent(QResizeEvent * event) Q_DECL_OVERRIDE;
-    virtual void   keyPressEvent(QKeyEvent * e) Q_DECL_OVERRIDE;
-    virtual void   mousePressEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
-    virtual void   mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
-    virtual void   mouseMoveEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
-    virtual void   wheelEvent(QWheelEvent * event) Q_DECL_OVERRIDE;
+    void   resizeEvent(QResizeEvent * event) Q_DECL_OVERRIDE;
+    void   keyPressEvent(QKeyEvent * e) Q_DECL_OVERRIDE;
+    void   mousePressEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
+    void   mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
+    void   mouseMoveEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
+    void   wheelEvent(QWheelEvent * event) Q_DECL_OVERRIDE;
 
     QStringList    readLines(const qint64 filePos, qint64 &endPos, const int lines, QList<qint64> * locs = nullptr);
     QString        readSection(qint64 p1, qint64 p2);
@@ -174,7 +174,7 @@ public:
     ListerPane(Lister *lister, QWidget *parent);
 
 protected:
-    virtual bool   event(QEvent *event) Q_DECL_OVERRIDE;
+    bool   event(QEvent *event) Q_DECL_OVERRIDE;
 
 protected:
     bool     handleCloseEvent(QEvent *e);
@@ -242,14 +242,14 @@ protected slots:
     void            slotSendFinished(KJob *);
 
 protected:
-    virtual bool    openUrl(const QUrl &url) Q_DECL_OVERRIDE;
-    virtual bool    closeUrl() Q_DECL_OVERRIDE {
+    bool    openUrl(const QUrl &url) Q_DECL_OVERRIDE;
+    bool    closeUrl() Q_DECL_OVERRIDE {
         return true;
     }
-    virtual bool    openFile() Q_DECL_OVERRIDE {
+    bool    openFile() Q_DECL_OVERRIDE {
         return true;
     }
-    virtual void    guiActivateEvent(KParts::GUIActivateEvent * event) Q_DECL_OVERRIDE;
+    void    guiActivateEvent(KParts::GUIActivateEvent * event) Q_DECL_OVERRIDE;
     void            setColor(const bool match, const bool restore);
     void            hideProgressBar();
     void            updateProgressBar();

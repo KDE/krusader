@@ -45,7 +45,7 @@ class KrusaderView : public QWidget
 
 public:
     explicit KrusaderView(QWidget *parent = nullptr);
-    virtual ~KrusaderView() {}
+    ~KrusaderView() override {}
     void start(const KConfigGroup &cfg, bool restoreSettings, const QList<QUrl> &leftTabs, const QList<QUrl> &rightTabs);
     void updateGUI(const KConfigGroup &cfg);
     void saveSettings(KConfigGroup &cfg);

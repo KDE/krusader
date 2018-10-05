@@ -116,11 +116,11 @@ public:
         setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicatorWhenChildless);
         diskUsage->addProperty(file, "ListView-Ref", this);
     }
-    ~DUListViewItem() {
+    ~DUListViewItem() override {
         diskUsage->removeProperty(file, "ListView-Ref");
     }
 
-    virtual bool operator<(const QTreeWidgetItem &other) const Q_DECL_OVERRIDE {
+    bool operator<(const QTreeWidgetItem &other) const Q_DECL_OVERRIDE {
         int column = treeWidget() ? treeWidget()->sortColumn() : 0;
 
         if (text(0) == "..")
@@ -158,7 +158,7 @@ class DUListView : public KrTreeWidget
 
 public:
     explicit DUListView(DiskUsage *usage);
-    ~DUListView();
+    ~DUListView() override;
 
     File * getCurrentFile();
 
@@ -172,8 +172,8 @@ public slots:
 protected:
     DiskUsage *diskUsage;
 
-    virtual void mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
-    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 
 private:
     void addDirectory(Directory *dirEntry, QTreeWidgetItem *parent);

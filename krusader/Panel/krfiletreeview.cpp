@@ -56,7 +56,7 @@ public:
     KrDirModel(QWidget *parent, KrFileTreeView *ftv) : KDirModel(parent), fileTreeView(ftv) {}
 
 protected:
-    virtual Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE
+    Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE
     {
         Qt::ItemFlags itflags = KDirModel::flags(index);
         if (index.column() != KDirModel::Name)

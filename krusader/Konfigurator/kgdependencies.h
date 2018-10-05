@@ -36,7 +36,7 @@ class KgDependencies : public KonfiguratorPage
 public:
     explicit KgDependencies(bool first, QWidget* parent = nullptr);
 
-    virtual int activeSubPage() Q_DECL_OVERRIDE;
+    int activeSubPage() Q_DECL_OVERRIDE;
 
 private:
     void addApplication(QString name, QGridLayout *grid, int row, QWidget *parent, int page, QString additionalList = QString());

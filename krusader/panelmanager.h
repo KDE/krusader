@@ -76,10 +76,10 @@ public:
     }
 
     // AbstractPanelManager implementation
-    virtual bool isLeft() const Q_DECL_OVERRIDE { return _left; }
-    virtual AbstractPanelManager *otherManager() const Q_DECL_OVERRIDE { return _otherManager; }
-    virtual KrPanel *currentPanel() const Q_DECL_OVERRIDE;
-    virtual void newTab(const QUrl &url, KrPanel *nextTo) Q_DECL_OVERRIDE {
+    bool isLeft() const Q_DECL_OVERRIDE { return _left; }
+    AbstractPanelManager *otherManager() const Q_DECL_OVERRIDE { return _otherManager; }
+    KrPanel *currentPanel() const Q_DECL_OVERRIDE;
+    void newTab(const QUrl &url, KrPanel *nextTo) Q_DECL_OVERRIDE {
         slotNewTab(url, true, nextTo);
     }
 

@@ -48,7 +48,7 @@ class PackGUIBase : public QDialog
 
 public:
     explicit PackGUIBase(QWidget* parent = nullptr);
-    ~PackGUIBase();
+    ~PackGUIBase() override;
 
     QLabel* TextLabel3;
     QLineEdit* nameData;

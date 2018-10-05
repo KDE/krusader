@@ -37,7 +37,7 @@ class KCMDModeButton : public QToolButton
 public:
     /** Constructor. Sets up the menu, and the icon */
     explicit KCMDModeButton(QWidget *parent = nullptr);
-    ~KCMDModeButton();
+    ~KCMDModeButton() override;
 
     /** Shows the popup menu. Called when clicked to the button */
     void showMenu();

@@ -62,7 +62,7 @@ class Sidebar: public QWidget
 
 public:
     explicit Sidebar(QWidget *parent);
-    ~Sidebar();
+    ~Sidebar() override;
     inline int currentPage() const {
         return stack->currentWidget()->property("KrusaderWidgetId").toInt();
     }
@@ -85,7 +85,7 @@ protected slots:
     void handleOpenUrlRequest(const QUrl &url);
 
 protected:
-    virtual void focusInEvent(QFocusEvent*) Q_DECL_OVERRIDE;
+    void focusInEvent(QFocusEvent*) Q_DECL_OVERRIDE;
 
     bool _hidden;
     QStackedWidget *stack;

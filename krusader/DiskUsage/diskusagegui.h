@@ -40,14 +40,14 @@ class DiskUsageGUI : public QDialog
 
 public:
     explicit DiskUsageGUI(const QUrl &openDir);
-    ~DiskUsageGUI() {}
+    ~DiskUsageGUI() override {}
     void askDirAndShow();
 
 protected slots:
-    virtual void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
+    void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
 
 protected:
-    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
 
 private slots:
     bool askDir();

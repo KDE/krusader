@@ -40,7 +40,7 @@ class KrResultTable : public QWidget
 {
 public:
     explicit KrResultTable(QWidget* parent);
-    virtual ~KrResultTable();
+    ~KrResultTable() override;
 
     /**
     * Adds a row of search results to the end of a QGridLayout
@@ -86,7 +86,7 @@ class KrArchiverResultTable : public KrResultTable
     Q_OBJECT
 public:
     explicit KrArchiverResultTable(QWidget* parent);
-    virtual ~KrArchiverResultTable();
+    ~KrArchiverResultTable() override;
 
     bool addRow(SearchObject* search, QGridLayout* grid) Q_DECL_OVERRIDE;
 
@@ -105,7 +105,7 @@ class KrToolResultTable : public KrResultTable
     Q_OBJECT
 public:
     explicit KrToolResultTable(QWidget* parent);
-    virtual ~KrToolResultTable();
+    ~KrToolResultTable() override;
 
     bool addRow(SearchObject* search, QGridLayout* grid) Q_DECL_OVERRIDE;
 

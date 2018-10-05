@@ -42,7 +42,7 @@ class MediaButton : public QToolButton
     Q_OBJECT
 public:
     explicit MediaButton(QWidget *parent = nullptr);
-    ~MediaButton();
+    ~MediaButton() override;
 
 public slots:
     void slotAboutToShow();

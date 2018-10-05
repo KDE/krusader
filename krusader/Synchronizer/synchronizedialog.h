@@ -37,7 +37,7 @@ class SynchronizeDialog : QDialog
 public:
     SynchronizeDialog(QWidget*, Synchronizer *sync,
                       int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t, int);
-    ~SynchronizeDialog();
+    ~SynchronizeDialog() override;
 
     inline bool wasSyncronizationStarted()    {
         return syncStarted;

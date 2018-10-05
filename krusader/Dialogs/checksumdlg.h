@@ -59,7 +59,7 @@ class ChecksumProcess : public KProcess
 Q_OBJECT
   public:
     ChecksumProcess(QObject *parent, const QString &path);
-    ~ChecksumProcess();
+    ~ChecksumProcess() override;
 
     QStringList stdOutput() const { return m_outputLines; }
     QStringList errOutput() const { return m_errorLines; }
@@ -84,7 +84,7 @@ class ChecksumWizard : public QWizard
     Q_OBJECT
 public:
     explicit ChecksumWizard(const QString &path);
-    virtual ~ChecksumWizard();
+    ~ChecksumWizard() override;
 
 private slots:
     void slotCurrentIdChanged(int id);

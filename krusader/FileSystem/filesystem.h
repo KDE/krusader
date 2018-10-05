@@ -64,7 +64,7 @@ public:
     };
 
     FileSystem();
-    virtual ~FileSystem();
+    ~FileSystem() override;
 
     // DirListerInterface implementation
     inline QList<FileItem *> fileItems() const Q_DECL_OVERRIDE { return _fileItems.values(); }

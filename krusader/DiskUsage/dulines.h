@@ -39,7 +39,7 @@ class DULines : public KrTreeWidget
 
 public:
     explicit DULines(DiskUsage *usage);
-    ~DULines();
+    ~DULines() override;
 
     File * getCurrentFile();
 
@@ -55,10 +55,10 @@ public slots:
 protected:
     DiskUsage *diskUsage;
 
-    virtual bool event(QEvent * event) Q_DECL_OVERRIDE;
-    virtual void mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
-    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-    virtual void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE;
+    bool event(QEvent * event) Q_DECL_OVERRIDE;
+    void mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE;
 
 private:
     QPixmap createPixmap(int percent, int maxPercent, int maxWidth);

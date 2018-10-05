@@ -48,10 +48,10 @@ public slots:
 protected:
     QColor getColor(KConfigGroup &cg, QString name, const QColor &def, const QColor &kdedef);
 
-    virtual void dropEvent(QDropEvent *e) Q_DECL_OVERRIDE {
+    void dropEvent(QDropEvent *e) Q_DECL_OVERRIDE {
         emit dropped(e, this);
     }
-    virtual void dragEnterEvent(QDragEnterEvent*) Q_DECL_OVERRIDE;
+    void dragEnterEvent(QDragEnterEvent*) Q_DECL_OVERRIDE;
 
     QString color;
     QPalette palActive, palInactive;

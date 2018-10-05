@@ -99,7 +99,7 @@ public:
             setColors(txt, base);
         }
 
-        ~SyncViewItem() {
+        ~SyncViewItem() override {
             syncItemRef->setUserData(nullptr);
         }
 
@@ -130,7 +130,7 @@ public:
     // if rightDirectory is null, leftDirectory is actually the profile name to load
     SynchronizerGUI(QWidget* parent,  QUrl leftDirectory, QUrl rightDirectory = QUrl(), QStringList selList = QStringList());
     SynchronizerGUI(QWidget* parent,  QString profile);
-    ~SynchronizerGUI();
+    ~SynchronizerGUI() override;
 
     inline bool wasSynchronization()    {
         return wasSync;
@@ -178,9 +178,9 @@ private:
                                      const QString &text = QString(), bool textAndIcon = false);
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
-    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
-    virtual bool eventFilter(QObject *, QEvent *) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject *, QEvent *) Q_DECL_OVERRIDE;
 
     void executeOperation(SynchronizerFileItem *item, int op);
 

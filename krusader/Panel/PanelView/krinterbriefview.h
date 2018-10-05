@@ -40,7 +40,7 @@ class KrInterBriefView : public QAbstractItemView, public KrInterView
     Q_OBJECT
 public:
     KrInterBriefView(QWidget *parent, KrViewInstance &instance, KConfig *cfg);
-    virtual ~KrInterBriefView();
+    ~KrInterBriefView() override;
 
     // ---- reimplemented from QAbstractItemView ----
     QRect visualRect(const QModelIndex&) const Q_DECL_OVERRIDE;

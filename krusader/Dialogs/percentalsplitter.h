@@ -31,12 +31,12 @@ class PercentalSplitter : public QSplitter
 
 public:
     explicit PercentalSplitter(QWidget * parent = nullptr);
-    virtual ~PercentalSplitter();
+    ~PercentalSplitter() override;
 
     QString toolTipString(int p);
 
 protected:
-    virtual void showEvent(QShowEvent * event) Q_DECL_OVERRIDE;
+    void showEvent(QShowEvent * event) Q_DECL_OVERRIDE;
 
 protected slots:
     void slotSplitterMoved(int pos, int index);

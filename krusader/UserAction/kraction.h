@@ -51,7 +51,7 @@ class KrAction: public QAction, public KrActionBase
     Q_OBJECT
 public:
     explicit KrAction(KActionCollection *parent, QString name = QString());
-    ~KrAction();
+    ~KrAction() override;
 
     /**
      * This chekcs if the KrAction is for a specific file / location available
@@ -227,7 +227,7 @@ class KrActionProc: public QObject
 public:
 
     explicit KrActionProc(KrActionBase* action);
-    virtual ~KrActionProc();
+    ~KrActionProc() override;
     void start(QString cmdLine);
     void start(QStringList cmdLineList);
 

@@ -93,7 +93,7 @@ protected:
     QString configGroup;
     QString configName;
 
-    virtual void connectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE;
+    void connectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE;
 };
 
 
@@ -107,7 +107,7 @@ class KonfiguratorCheckBox : public QCheckBox
 public:
     KonfiguratorCheckBox(QString configGroup, QString name, bool defaultValue, QString text,
                          QWidget *parent = nullptr, bool restart = false, int page = FIRST_PAGE);
-    ~KonfiguratorCheckBox();
+    ~KonfiguratorCheckBox() override;
 
     inline KonfiguratorExtension *extension() { return ext; }
 
@@ -121,8 +121,8 @@ public slots:
     void slotSetDefaults(QObject *);
 
 protected:
-    virtual void checkStateSet() Q_DECL_OVERRIDE;
-    virtual void nextCheckState() Q_DECL_OVERRIDE;
+    void checkStateSet() Q_DECL_OVERRIDE;
+    void nextCheckState() Q_DECL_OVERRIDE;
     void updateDeps();
 
     bool  defaultValue;
@@ -140,7 +140,7 @@ class KonfiguratorSpinBox : public QSpinBox
 public:
     KonfiguratorSpinBox(QString configGroup, QString configName, int defaultValue, int min, int max,
                         QWidget *parent = nullptr, bool restartNeeded = false, int page = FIRST_PAGE);
-    ~KonfiguratorSpinBox();
+    ~KonfiguratorSpinBox() override;
 
     inline KonfiguratorExtension *extension() { return ext; }
 
@@ -183,7 +183,7 @@ class KonfiguratorRadioButtons : public QWidget
 public:
     KonfiguratorRadioButtons(QString configGroup, QString name, QString defaultValue,
                              QWidget *parent = nullptr, bool restart = false, int page = FIRST_PAGE);
-    ~KonfiguratorRadioButtons();
+    ~KonfiguratorRadioButtons() override;
 
     inline KonfiguratorExtension *extension() { return ext; }
 
@@ -221,7 +221,7 @@ class KonfiguratorEditBox : public QLineEdit
 public:
     KonfiguratorEditBox(QString configGroup, QString name, QString defaultValue,
                         QWidget *parent = nullptr, bool restart = false, int page = FIRST_PAGE);
-    ~KonfiguratorEditBox();
+    ~KonfiguratorEditBox() override;
 
     inline KonfiguratorExtension *extension() { return ext; }
 
@@ -247,7 +247,7 @@ public:
     KonfiguratorURLRequester(QString configGroup, QString name, QString defaultValue,
                              QWidget *parent = nullptr, bool restart = false, int page = FIRST_PAGE,
                              bool expansion = true);
-    ~KonfiguratorURLRequester();
+    ~KonfiguratorURLRequester() override;
 
     inline KonfiguratorExtension *extension() { return ext; }
 
@@ -272,7 +272,7 @@ class KonfiguratorFontChooser : public QWidget
 public:
     KonfiguratorFontChooser(QString configGroup, QString name, QFont defaultValue,
                             QWidget *parent = nullptr, bool restart = false, int page = FIRST_PAGE);
-    ~KonfiguratorFontChooser();
+    ~KonfiguratorFontChooser() override;
 
     inline KonfiguratorExtension *extension() { return ext; }
 
@@ -321,7 +321,7 @@ public:
     KonfiguratorComboBox(QString configGroup, QString name, QString defaultValue,
                          KONFIGURATOR_NAME_VALUE_PAIR *listIn, int listInLen, QWidget *parent = nullptr,
                          bool restart = false, bool editable = false, int page = FIRST_PAGE);
-    ~KonfiguratorComboBox();
+    ~KonfiguratorComboBox() override;
 
     inline KonfiguratorExtension *extension() { return ext; }
 
@@ -357,7 +357,7 @@ public:
     KonfiguratorColorChooser(QString configGroup, QString name, QColor defaultValue,
                              QWidget *parent = nullptr, bool restart = false,
                              ADDITIONAL_COLOR *addColPtr = nullptr, int addColNum = 0, int page = FIRST_PAGE);
-    ~KonfiguratorColorChooser();
+    ~KonfiguratorColorChooser() override;
 
     inline KonfiguratorExtension *extension()   {
         return ext;
@@ -403,7 +403,7 @@ class KonfiguratorListBox : public KrListWidget
 public:
     KonfiguratorListBox(QString configGroup, QString name, QStringList defaultValue,
                         QWidget *parent = nullptr, bool restart = false, int page = FIRST_PAGE);
-    ~KonfiguratorListBox();
+    ~KonfiguratorListBox() override;
 
     inline KonfiguratorExtension *extension() { return ext; }
 

@@ -53,7 +53,7 @@ class KrViewOperator : public QObject
     Q_OBJECT
 public:
     KrViewOperator(KrView *view, QWidget *widget);
-    ~KrViewOperator();
+    ~KrViewOperator() override;
 
     KrView *view() const { return _view; }
     QWidget *widget() const { return _widget; }

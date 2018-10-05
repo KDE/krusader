@@ -45,17 +45,17 @@ class GeneralFilter : public QWidget, public FilterBase
 public:
     GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent = nullptr,
                   QStringList extraOptions = QStringList());
-    ~GeneralFilter();
+    ~GeneralFilter() override;
 
-    virtual void          queryAccepted() Q_DECL_OVERRIDE;
-    virtual QString       name() Q_DECL_OVERRIDE {
+    void          queryAccepted() Q_DECL_OVERRIDE;
+    QString       name() Q_DECL_OVERRIDE {
         return "GeneralFilter";
     }
-    virtual FilterTabs *  filterTabs() Q_DECL_OVERRIDE {
+    FilterTabs *  filterTabs() Q_DECL_OVERRIDE {
         return fltTabs;
     }
-    virtual bool getSettings(FilterSettings&) Q_DECL_OVERRIDE;
-    virtual void applySettings(const FilterSettings&) Q_DECL_OVERRIDE;
+    bool getSettings(FilterSettings&) Q_DECL_OVERRIDE;
+    void applySettings(const FilterSettings&) Q_DECL_OVERRIDE;
 
     bool isExtraOptionChecked(QString name);
     void checkExtraOption(QString name, bool check);

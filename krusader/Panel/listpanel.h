@@ -87,9 +87,9 @@ public:
 
     // constructor create the panel, but DOESN'T fill it with data, use start()
     ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg = KConfigGroup());
-    ~ListPanel();
+    ~ListPanel() override;
 
-    virtual void otherPanelChanged() Q_DECL_OVERRIDE;
+    void otherPanelChanged() Q_DECL_OVERRIDE;
 
     void start(const QUrl &url = QUrl());
 
@@ -164,13 +164,13 @@ public slots:
     void prepareToDelete();                   // internal use only
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-    virtual void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE {
+    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE {
         slotFocusOnMe();
     }
-    virtual void showEvent(QShowEvent *) Q_DECL_OVERRIDE;
-    virtual void hideEvent(QHideEvent *) Q_DECL_OVERRIDE;
-    virtual bool eventFilter(QObject * watched, QEvent * e) Q_DECL_OVERRIDE;
+    void showEvent(QShowEvent *) Q_DECL_OVERRIDE;
+    void hideEvent(QHideEvent *) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject * watched, QEvent * e) Q_DECL_OVERRIDE;
 
     void showButtonMenu(QToolButton *b);
     void createView();

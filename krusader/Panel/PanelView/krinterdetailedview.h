@@ -41,7 +41,7 @@ class KrInterDetailedView : public QTreeView, public KrInterView
 
 public:
     KrInterDetailedView(QWidget *parent, KrViewInstance &instance, KConfig *cfg);
-    virtual ~KrInterDetailedView();
+    ~KrInterDetailedView() override;
 
     void updateView() Q_DECL_OVERRIDE;
 

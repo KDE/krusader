@@ -65,7 +65,7 @@ public:
     enum compareMode { full };
 
     explicit KRslots(QObject *parent);
-    ~KRslots() {}
+    ~KRslots() override {}
 
 public slots:
     void sendFileByEmail(const QList<QUrl> &filename);

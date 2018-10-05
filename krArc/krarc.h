@@ -46,15 +46,15 @@ class kio_krarcProtocol : public QObject, public KIO::SlaveBase, public KrArcBas
     Q_OBJECT
 public:
     kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
-    virtual ~kio_krarcProtocol();
-    virtual void stat(const QUrl &url) Q_DECL_OVERRIDE;
-    virtual void get(const QUrl &url) Q_DECL_OVERRIDE;
-    virtual void put(const QUrl &url, int permissions, KIO::JobFlags flags) Q_DECL_OVERRIDE;
-    virtual void mkdir(const QUrl &url, int permissions) Q_DECL_OVERRIDE;
-    virtual void listDir(const QUrl &url) Q_DECL_OVERRIDE;
-    virtual void del(QUrl const & url, bool isFile) Q_DECL_OVERRIDE;
-    virtual void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) Q_DECL_OVERRIDE;
-    virtual void rename(const QUrl &src, const QUrl & dest, KIO::JobFlags flags) Q_DECL_OVERRIDE;
+    ~kio_krarcProtocol() override;
+    void stat(const QUrl &url) Q_DECL_OVERRIDE;
+    void get(const QUrl &url) Q_DECL_OVERRIDE;
+    void put(const QUrl &url, int permissions, KIO::JobFlags flags) Q_DECL_OVERRIDE;
+    void mkdir(const QUrl &url, int permissions) Q_DECL_OVERRIDE;
+    void listDir(const QUrl &url) Q_DECL_OVERRIDE;
+    void del(QUrl const & url, bool isFile) Q_DECL_OVERRIDE;
+    void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) Q_DECL_OVERRIDE;
+    void rename(const QUrl &src, const QUrl & dest, KIO::JobFlags flags) Q_DECL_OVERRIDE;
 
 public slots:
     void receivedData(KProcess *, QByteArray &);

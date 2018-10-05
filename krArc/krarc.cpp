@@ -71,23 +71,23 @@ extern "C"
     {
     public:
         KrArcCodec(QTextCodec * codec) : originalCodec(codec) {}
-        virtual ~KrArcCodec() {}
+        ~KrArcCodec() override {}
 
-        virtual QByteArray name() const Q_DECL_OVERRIDE {
+        QByteArray name() const Q_DECL_OVERRIDE {
             return  originalCodec->name();
         }
-        virtual QList<QByteArray> aliases() const Q_DECL_OVERRIDE {
+        QList<QByteArray> aliases() const Q_DECL_OVERRIDE {
             return originalCodec->aliases();
         }
-        virtual int mibEnum() const Q_DECL_OVERRIDE {
+        int mibEnum() const Q_DECL_OVERRIDE {
             return  originalCodec->mibEnum();
         }
 
     protected:
-        virtual QString convertToUnicode(const char *in, int length, ConverterState *state) const Q_DECL_OVERRIDE {
+        QString convertToUnicode(const char *in, int length, ConverterState *state) const Q_DECL_OVERRIDE {
             return originalCodec->toUnicode(in, length, state);
         }
-        virtual QByteArray convertFromUnicode(const QChar *in, int length, ConverterState *state) const Q_DECL_OVERRIDE {
+        QByteArray convertFromUnicode(const QChar *in, int length, ConverterState *state) const Q_DECL_OVERRIDE {
             // the QByteArray is embedded into the unicode charset (QProcess hell)
             QByteArray result;
             for (int i = 0; i != length; i++) {

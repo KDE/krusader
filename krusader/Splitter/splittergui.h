@@ -54,7 +54,7 @@ private:
 
 public:
     SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir);
-    ~SplitterGUI();
+    ~SplitterGUI() override;
 
     QUrl    getDestinationDir()     {
         return urlReq->url();
@@ -68,7 +68,7 @@ public slots:
     virtual void splitPressed();
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 };
 
 #endif /* __SPLITTERGUI_H__ */

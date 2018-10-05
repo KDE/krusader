@@ -47,7 +47,7 @@ class KRSearchMod : public QObject
     Q_OBJECT
 public:
     explicit KRSearchMod(const KRQuery *query);
-    ~KRSearchMod();
+    ~KRSearchMod() override;
 
     void start();
     void stop();

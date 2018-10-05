@@ -34,8 +34,8 @@ class UserActionListView : public KrTreeWidget
 
 public:
     explicit UserActionListView(QWidget* parent = nullptr);
-    ~UserActionListView();
-    virtual QSize sizeHint() const Q_DECL_OVERRIDE;
+    ~UserActionListView() override;
+    QSize sizeHint() const Q_DECL_OVERRIDE;
 
     void update();
     void update(KrAction* action);
@@ -69,7 +69,7 @@ class UserActionListViewItem : public QTreeWidgetItem
 public:
     UserActionListViewItem(QTreeWidget* view, KrAction* action);
     UserActionListViewItem(QTreeWidgetItem* item, KrAction* action);
-    ~UserActionListViewItem();
+    ~UserActionListViewItem() override;
 
     void setAction(KrAction* action);
     KrAction* action() const;
@@ -78,7 +78,7 @@ public:
     /**
      * This reimplements qt's compare-function in order to have categories on the top of the list
      */
-    virtual bool operator<(const QTreeWidgetItem &other) const Q_DECL_OVERRIDE;
+    bool operator<(const QTreeWidgetItem &other) const Q_DECL_OVERRIDE;
 
 private:
     KrAction* _action;

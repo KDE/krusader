@@ -54,10 +54,10 @@ class KMountManGUI : public QDialog
 
 public:
     explicit KMountManGUI(KMountMan *mntMan);
-    ~KMountManGUI();
+    ~KMountManGUI() override;
 
 protected:
-    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
 
 protected slots:
     void doubleClicked(QTreeWidgetItem *);

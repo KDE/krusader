@@ -73,17 +73,17 @@ class SearchResultContainer : public DirListerInterface
 {
 public:
     explicit SearchResultContainer(QObject *parent) : DirListerInterface(parent) {}
-    virtual ~SearchResultContainer() {
+    ~SearchResultContainer() override {
         clear();
     }
 
-    virtual QList<FileItem *> fileItems() const Q_DECL_OVERRIDE {
+    QList<FileItem *> fileItems() const Q_DECL_OVERRIDE {
         return _fileItems;
     }
-    virtual unsigned long numFileItems() const Q_DECL_OVERRIDE {
+    unsigned long numFileItems() const Q_DECL_OVERRIDE {
         return _fileItems.count();
     }
-    virtual bool isRoot() const Q_DECL_OVERRIDE {
+    bool isRoot() const Q_DECL_OVERRIDE {
         return true;
     }
 

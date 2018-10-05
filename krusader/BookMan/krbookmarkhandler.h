@@ -48,7 +48,7 @@ class KrBookmarkHandler: public QObject
     enum Actions { BookmarkCurrent = 0, ManageBookmarks };
 public:
     explicit KrBookmarkHandler(KrMainWindow *mainWindow);
-    ~KrBookmarkHandler();
+    ~KrBookmarkHandler() override;
     void populate(QMenu *menu);
     void addBookmark(KrBookmark *bm, KrBookmark *parent = nullptr);
     void bookmarkCurrent(QUrl url);

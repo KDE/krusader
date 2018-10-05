@@ -44,7 +44,7 @@ class Map : public QPixmap
 {
 public:
     Map();
-    ~Map();
+    ~Map() override;
 
     void make(const Directory *, bool = false);
     bool resize(const QRect&);
@@ -110,10 +110,10 @@ signals:
     void mouseHover(const QString&);
 
 protected:
-    virtual void paintEvent(QPaintEvent*) Q_DECL_OVERRIDE;
-    virtual void resizeEvent(QResizeEvent*) Q_DECL_OVERRIDE;
-    virtual void mouseMoveEvent(QMouseEvent*) Q_DECL_OVERRIDE;
-    virtual void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent*) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent*) Q_DECL_OVERRIDE;
+    void mouseMoveEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE;
 
 protected:
     const Segment *segmentAt(QPoint&) const;   //FIXME const reference for a library others can use

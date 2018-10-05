@@ -33,7 +33,7 @@ class ActionProperty : public QWidget, public Ui::ActionProperty
     Q_OBJECT
 public:
     explicit ActionProperty(QWidget *parent = nullptr, KrAction *action = nullptr);
-    ~ActionProperty();
+    ~ActionProperty() override;
 
     /**
      * @return the currently displayed action
