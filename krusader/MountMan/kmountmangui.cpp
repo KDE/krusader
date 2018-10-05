@@ -70,7 +70,7 @@ KMountManGUI::KMountManGUI(KMountMan *mntMan) : QDialog(mntMan->parentWindow),
     setWindowTitle(i18n("MountMan - Your Mount-Manager"));
     setWindowModality(Qt::WindowModal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
     watcher = new QTimer(this);
@@ -145,7 +145,7 @@ void KMountManGUI::resizeEvent(QResizeEvent *e)
 
 QLayout *KMountManGUI::createMainPage()
 {
-    QGridLayout *layout = new QGridLayout();
+    auto *layout = new QGridLayout();
     layout->setSpacing(10);
     mountList = new KrTreeWidget(this);    // create the main container
     KConfigGroup grp(krConfig, "Look&Feel");
@@ -191,7 +191,7 @@ QLayout *KMountManGUI::createMainPage()
 
     QGroupBox *box = new QGroupBox(i18n("MountMan.Info"), this);
     box->setAlignment(Qt::AlignHCenter);
-    QVBoxLayout *vboxl = new QVBoxLayout(box);
+    auto *vboxl = new QVBoxLayout(box);
     info = new KRFSDisplay(box);
     vboxl->addWidget(info);
     info->resize(info->width(), height());
@@ -276,7 +276,7 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     QString tSize = QString("%1").arg(KIO::convertSizeFromKiB(fs.totalBlks()));
     QString fSize = QString("%1").arg(KIO::convertSizeFromKiB(fs.freeBlks()));
     QString sPrct = QString("%1%").arg(100 - (fs.usedPerct()));
-    QTreeWidgetItem *item = new QTreeWidgetItem(lst);
+    auto *item = new QTreeWidgetItem(lst);
     item->setText(0, fs.name());
     item->setText(1, fs.type());
     item->setText(2, fs.mntPoint());
@@ -284,7 +284,7 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     item->setText(4, (mtd ? fSize : QString("N/A")));
     item->setText(5, (mtd ? sPrct : QString("N/A")));
 
-    Solid::StorageVolume *vol = device.as<Solid::StorageVolume> ();
+    auto *vol = device.as<Solid::StorageVolume> ();
     QString iconName;
 
     if(device.isValid())

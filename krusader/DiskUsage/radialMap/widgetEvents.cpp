@@ -108,7 +108,7 @@ RadialMap::Widget::segmentAt(QPoint &e) const
                 //ai = x, bi=1, aj=y, bj=0
                 //cos angle = x / (length)
 
-                uint a  = (uint)(acos((double)e.x() / length) * 916.736);    //916.7324722 = #radians in circle * 16
+                auto a  = (uint)(acos((double)e.x() / length) * 916.736);    //916.7324722 = #radians in circle * 16
 
                 //acos only understands 0-180 degrees
                 if (e.y() < 0) a = 5760 - a;
@@ -207,7 +207,7 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
 
                 if (userIntention == KMessageBox::Continue) {
                     KIO::Job *job = KIO::del(url);
-                    KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
+                    auto *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
                     ui->setWindow(this);
                     connect(job, &KIO::Job::result, this, &Widget::deleteJobFinished);
                     QApplication::setOverrideCursor(Qt::BusyCursor);

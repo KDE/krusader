@@ -96,7 +96,7 @@ void UserAction::populateMenu(KActionMenu* menu, const QUrl *currentURL)
             uncategorised.append(action);
         } else {
             if (! categoryMap.contains(category)) {
-                KActionMenu *categoryMenu = new KActionMenu(category, menu);
+                auto *categoryMenu = new KActionMenu(category, menu);
                 categoryMenu->setObjectName(category);
                 categoryMap.insert(category, categoryMenu);
             }

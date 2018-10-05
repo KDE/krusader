@@ -1018,7 +1018,7 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
     dirDict.clear();
 
     // add the "/" directory
-    UDSEntryList* root = new UDSEntryList();
+    auto* root = new UDSEntryList();
     dirDict.insert(DIR_SEPARATOR, root);
     // and the "/" UDSEntry
     UDSEntry entry;

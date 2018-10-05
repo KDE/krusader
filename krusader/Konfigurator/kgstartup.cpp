@@ -35,7 +35,7 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
     QWidget *innerWidget = new QFrame(this);
     setWidget(innerWidget);
     setWidgetResizable(true);
-    QGridLayout *kgStartupLayout = new QGridLayout(innerWidget);
+    auto *kgStartupLayout = new QGridLayout(innerWidget);
     kgStartupLayout->setSpacing(6);
 
     //  --------------------------- PANELS GROUPBOX ----------------------------------
@@ -52,7 +52,7 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
     profileList.push_front(i18n("<Last session>"));
 
     const int profileListSize = profileList.size();
-    KONFIGURATOR_NAME_VALUE_PAIR *comboItems = new KONFIGURATOR_NAME_VALUE_PAIR[ profileListSize ];
+    auto *comboItems = new KONFIGURATOR_NAME_VALUE_PAIR[ profileListSize ];
     for (int i = 0; i != profileListSize; i++)
         comboItems[ i ].text = comboItems[ i ].value = profileList [ i ];
     comboItems[ 0 ].value = "";
@@ -74,7 +74,7 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
     KonfiguratorCheckBoxGroup* cbs = createCheckBoxGroup(2, 0, settings, 2 /* settings count */, panelsGrp);
     panelsGrid->addWidget(cbs, 2, 0, 1, 2);
 
-    QHBoxLayout *iconThemeLayout = new QHBoxLayout();
+    auto *iconThemeLayout = new QHBoxLayout();
     QLabel *iconThemeLabel = new QLabel(i18n("Fallback Icon Theme:"));
     iconThemeLabel->setWhatsThis(i18n("Whenever icon is not found in system icon theme, "
                                       "this theme will be used as a fallback. "

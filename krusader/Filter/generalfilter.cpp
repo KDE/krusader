@@ -89,7 +89,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         QWidget(parent),
         profileManager(nullptr), fltTabs(tabs)
 {
-    QGridLayout *filterLayout = new QGridLayout(this);
+    auto *filterLayout = new QGridLayout(this);
     filterLayout->setSpacing(6);
     filterLayout->setContentsMargins(11, 11, 11, 11);
 
@@ -97,9 +97,9 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
 
     // Options for name filtering
 
-    QGroupBox *nameGroup = new QGroupBox(this);
+    auto *nameGroup = new QGroupBox(this);
     nameGroup->setTitle(i18n("File Name"));
-    QGridLayout *nameGroupLayout = new QGridLayout(nameGroup);
+    auto *nameGroupLayout = new QGridLayout(nameGroup);
     nameGroupLayout->setAlignment(Qt::AlignTop);
     nameGroupLayout->setSpacing(6);
     nameGroupLayout->setContentsMargins(11, 11, 11, 11);
@@ -180,9 +180,9 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     if (properties & FilterTabs::HasProfileHandler) {
         // The profile handler
 
-        QGroupBox *profileHandler = new QGroupBox(this);
+        auto *profileHandler = new QGroupBox(this);
         profileHandler->setTitle(i18n("&Profile handler"));
-        QGridLayout *profileLayout = new QGridLayout(profileHandler);
+        auto *profileLayout = new QGridLayout(profileHandler);
         profileLayout->setAlignment(Qt::AlignTop);
         profileLayout->setSpacing(6);
         profileLayout->setContentsMargins(11, 11, 11, 11);
@@ -219,7 +219,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     if (properties & FilterTabs::HasSearchIn) {
         // Options for search in
         QGroupBox *searchGroupBox = new QGroupBox(i18n("Searc&h in"), this);
-        QGridLayout *searchLayout = new QGridLayout(searchGroupBox);
+        auto *searchLayout = new QGridLayout(searchGroupBox);
         searchLayout->setAlignment(Qt::AlignTop);
         searchLayout->setSpacing(6);
         searchLayout->setContentsMargins(11, 11, 11, 11);
@@ -234,7 +234,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     if (properties & FilterTabs::HasDontSearchIn) {
         // Options for don't search in
         QGroupBox *searchGroupBox = new QGroupBox(i18n("&Do not search in"), this);
-        QGridLayout *searchLayout = new QGridLayout(searchGroupBox);
+        auto *searchLayout = new QGridLayout(searchGroupBox);
         searchLayout->setAlignment(Qt::AlignTop);
         searchLayout->setSpacing(6);
         searchLayout->setContentsMargins(11, 11, 11, 11);
@@ -265,14 +265,14 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
 
     // Options for containing text
 
-    QGroupBox *containsGroup = new QGroupBox(this);
+    auto *containsGroup = new QGroupBox(this);
     containsGroup->setTitle(i18n("Containing text"));
-    QGridLayout *containsLayout = new QGridLayout(containsGroup);
+    auto *containsLayout = new QGridLayout(containsGroup);
     containsLayout->setAlignment(Qt::AlignTop);
     containsLayout->setSpacing(6);
     containsLayout->setContentsMargins(11, 11, 11, 11);
 
-    QHBoxLayout *containsTextLayout = new QHBoxLayout();
+    auto *containsTextLayout = new QHBoxLayout();
     containsTextLayout->setSpacing(6);
     containsTextLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -298,7 +298,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     containsRegExp->setCheckable(true);
     containsRegExp->setText(i18n("RegExp"));
     // Populate the popup menu.
-    QMenu *patterns = new QMenu(containsRegExp);
+    auto *patterns = new QMenu(containsRegExp);
     for (int i = 0; (unsigned)i < sizeof(items) / sizeof(items[0]); i++) {
         patterns->addAction(new RegExpAction(patterns, i18n(items[i].description),
                                              items[i].regExp, items[i].cursorAdjustment));
@@ -312,7 +312,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
 
     containsLayout->addLayout(containsTextLayout, 0, 0);
 
-    QHBoxLayout *containsCbsLayout = new QHBoxLayout();
+    auto *containsCbsLayout = new QHBoxLayout();
     containsCbsLayout->setSpacing(6);
     containsCbsLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -324,7 +324,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     contentEncoding->addItems(KCharsets::charsets()->descriptiveEncodingNames());
     containsCbsLayout->addWidget(contentEncoding);
 
-    QSpacerItem* cbSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    auto* cbSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     containsCbsLayout->addItem(cbSpacer);
 
     containsWholeWord = new QCheckBox(containsGroup);
@@ -347,10 +347,10 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
 
     filterLayout->addWidget(containsGroup, 2, 0);
 
-    QHBoxLayout *recurseLayout = new QHBoxLayout();
+    auto *recurseLayout = new QHBoxLayout();
     recurseLayout->setSpacing(6);
     recurseLayout->setContentsMargins(0, 0, 0, 0);
-    QSpacerItem* recurseSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    auto* recurseSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     recurseLayout->addItem(recurseSpacer);
 
     if (properties & FilterTabs::HasRecurseOptions) {
@@ -372,7 +372,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     filterLayout->addLayout(recurseLayout, 3, 0);
 
     for(int i = 0; i < extraOptions.length(); i++) {
-        QCheckBox *option = new QCheckBox(this);
+        auto *option = new QCheckBox(this);
         option->setText(extraOptions[i]);
         recurseLayout->addWidget(option);
         this->extraOptions.insert(extraOptions[i], option);
@@ -475,7 +475,7 @@ void GeneralFilter::refreshProfileListBox()
 
 QCheckBox *GeneralFilter::createExcludeCheckBox(const KConfigGroup &group)
 {
-    QCheckBox *excludeCheckBox = new QCheckBox(this);
+    auto *excludeCheckBox = new QCheckBox(this);
     excludeCheckBox->setText(i18n("Exclude Folder Names"));
     excludeCheckBox->setToolTip(i18n("Filters out specified directory names from the results."));
     excludeCheckBox->setChecked(static_cast<Qt::CheckState>(group.readEntry("ExcludeFolderNamesUse", 0)));
@@ -484,7 +484,7 @@ QCheckBox *GeneralFilter::createExcludeCheckBox(const KConfigGroup &group)
 
 KHistoryComboBox *GeneralFilter::createExcludeComboBox(const KConfigGroup &group)
 {
-    KHistoryComboBox *excludeComboBox = new KHistoryComboBox(false, this);
+    auto *excludeComboBox = new KHistoryComboBox(false, this);
     QSizePolicy excludeFolderNamesPolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     excludeFolderNamesPolicy.setHeightForWidth(excludeComboBox->sizePolicy().hasHeightForWidth());
     excludeComboBox->setSizePolicy(excludeFolderNamesPolicy);
@@ -568,7 +568,7 @@ void GeneralFilter::slotRegExpTriggered(QAction * act)
 {
     if (act == nullptr)
         return;
-    RegExpAction *regAct = dynamic_cast<RegExpAction *>(act);
+    auto *regAct = dynamic_cast<RegExpAction *>(act);
     if (regAct == nullptr)
         return;
     containsText->lineEdit()->insert(regAct->regExp());

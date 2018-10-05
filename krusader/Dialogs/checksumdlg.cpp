@@ -190,18 +190,18 @@ void ChecksumWizard::slotCurrentIdChanged(int id)
 
 QWizardPage *ChecksumWizard::createProgressPage(const QString &title)
 {
-    QWizardPage *page = new QWizardPage;
+    auto *page = new QWizardPage;
 
     page->setTitle(title);
     page->setPixmap(QWizard::LogoPixmap,
                     Icon("process-working").pixmap(32));
     page->setSubTitle(i18n("Please wait..."));
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     page->setLayout(mainLayout);
 
     // "busy" indicator
-    QProgressBar *bar = new QProgressBar();
+    auto *bar = new QProgressBar();
     bar->setRange(0,0);
 
     mainLayout->addWidget(bar);
@@ -235,7 +235,7 @@ void ChecksumWizard::runProcess(const QString &type, const QStringList &args)
 
 void ChecksumWizard::addChecksumLine(KrTreeWidget *tree, const QString &line)
 {
-    QTreeWidgetItem *item = new QTreeWidgetItem(tree);
+    auto *item = new QTreeWidgetItem(tree);
     const int hashLength = line.indexOf(' '); // delimiter is either "  " or " *"
     item->setText(0, line.left(hashLength));
     QString fileName = line.mid(hashLength + 2);
@@ -263,23 +263,23 @@ CreateWizard::CreateWizard(const QString &path, const QStringList &_files) : Che
 
 QWizardPage *CreateWizard::createIntroPage()
 {
-    QWizardPage *page = new QWizardPage;
+    auto *page = new QWizardPage;
 
     page->setTitle(i18n("Create Checksums"));
     page->setPixmap(QWizard::LogoPixmap,
                     Icon("document-edit-sign").pixmap(32));
     page->setSubTitle(i18n("About to calculate checksum for the following files or directories:"));
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     page->setLayout(mainLayout);
 
     // file list
-    KrListWidget *listWidget = new KrListWidget;
+    auto *listWidget = new KrListWidget;
     listWidget->addItems(m_fileNames);
     mainLayout->addWidget(listWidget);
 
     // checksum method
-    QHBoxLayout *hLayout = new QHBoxLayout;
+    auto *hLayout = new QHBoxLayout;
 
     QLabel *methodLabel = new QLabel(i18n("Select the checksum method:"));
     hLayout->addWidget(methodLabel);
@@ -298,11 +298,11 @@ QWizardPage *CreateWizard::createIntroPage()
 
 QWizardPage *CreateWizard::createResultPage()
 {
-    QWizardPage *page = new QWizardPage;
+    auto *page = new QWizardPage;
 
     page->setTitle(i18n("Checksum Results"));
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     page->setLayout(mainLayout);
 
     m_hashesTreeWidget = new KrTreeWidget(this);
@@ -476,22 +476,22 @@ void VerifyWizard::slotChecksumPathChanged(const QString &path)
 
 QWizardPage *VerifyWizard::createIntroPage()
 {
-    QWizardPage *page = new QWizardPage;
+    auto *page = new QWizardPage;
 
     page->setTitle(i18n("Verify Checksum File"));
     page->setPixmap(QWizard::LogoPixmap,
                     Icon("document-edit-verify").pixmap(32));
     page->setSubTitle(i18n("About to verify the following checksum file"));
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     page->setLayout(mainLayout);
 
     // checksum file
-    QHBoxLayout *hLayout = new QHBoxLayout;
+    auto *hLayout = new QHBoxLayout;
     QLabel *checksumFileLabel = new QLabel(i18n("Checksum file:"));
     hLayout->addWidget(checksumFileLabel);
 
-    KUrlRequester *checksumFileReq = new KUrlRequester;
+    auto *checksumFileReq = new KUrlRequester;
     QString typesFilter;
     for (const QString ext: m_checksumTools.keys())
         typesFilter += ("*." + ext + ' ');
@@ -515,11 +515,11 @@ QWizardPage *VerifyWizard::createIntroPage()
 
 QWizardPage *VerifyWizard::createResultPage()
 {
-    QWizardPage *page = new QWizardPage;
+    auto *page = new QWizardPage;
 
     page->setTitle(i18n("Verify Result"));
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     page->setLayout(mainLayout);
 
     m_outputLabel = new QLabel(i18n("Result output:"));

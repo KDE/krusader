@@ -78,7 +78,7 @@ void PanelContextMenu::addCompressAndExtractPluginActions()
     });
 
     foreach (const KPluginMetaData &jsonMetadata, jsonPlugins) {
-        KAbstractFileItemActionPlugin* abstractPlugin = KPluginLoader(jsonMetadata.fileName())
+        auto* abstractPlugin = KPluginLoader(jsonMetadata.fileName())
                                                             .factory()->create<KAbstractFileItemActionPlugin>();
         if (abstractPlugin) {
             abstractPlugin->setParent(this);
@@ -177,7 +177,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
                  KFileItemActions::associatedApplications(mimeTypes, QString());
 
     if (!offers.isEmpty()) {
-        QMenu *openWithMenu = new QMenu(this);
+        auto *openWithMenu = new QMenu(this);
         for (int i = 0; i < offers.count(); ++i) {
             QExplicitlySharedDataPointer<KService> service = offers[i];
             if (service->isValid() && service->isApplication()) {
@@ -211,7 +211,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     // NOTE: design and usability problem here. Services disabled in kservicemenurc settings won't
     // be added to the menu. But Krusader does not provide a way do change these settings (only
     // Dolphin does).
-    KFileItemActions *fileItemActions = new KFileItemActions(this);
+    auto *fileItemActions = new KFileItemActions(this);
     fileItemActions->setItemListProperties(KFileItemListProperties(_items));
     fileItemActions->setParentWidget(MAIN_VIEW);
     fileItemActions->addServiceActionsTo(this);
@@ -249,7 +249,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     // create new shortcut or redirect links - only on local directories:
     if (panel->func->files()->isLocal()) {
         addSeparator();
-        QMenu *linkMenu = new QMenu(this);
+        auto *linkMenu = new QMenu(this);
         linkMenu->addAction(i18n("New Symlink..."))->setData(QVariant(NEW_SYMLINK_ID));
         linkMenu->addAction(i18n("New Hardlink..."))->setData(QVariant(NEW_LINK_ID));
         if (file->isSymLink()) {
@@ -313,7 +313,7 @@ void PanelContextMenu::addEmptyMenuEntries()
 
 void PanelContextMenu::addCreateNewMenu()
 {
-    QMenu *createNewMenu = new QMenu(this);
+    auto *createNewMenu = new QMenu(this);
 
     createNewMenu->addAction(Icon("folder"),
                              i18n("Folder..."))->setData(QVariant(MKDIR_ID));

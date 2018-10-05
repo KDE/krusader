@@ -516,7 +516,7 @@ void ListPanelFunc::editNew()
     if(f.exists()) {
         edit();
     } else {
-        QTemporaryFile *tempFile = new QTemporaryFile;
+        auto *tempFile = new QTemporaryFile;
         tempFile->open();
 
         KIO::CopyJob *job = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), fileToCreate);
@@ -816,7 +816,7 @@ void ListPanelFunc::removeVirtualFiles()
                                                KStandardGuiItem::remove()) != KMessageBox::Continue)
         return;
 
-    VirtualFileSystem *fileSystem = static_cast<VirtualFileSystem*>(files());
+    auto *fileSystem = static_cast<VirtualFileSystem*>(files());
     fileSystem->remove(fileNames);
 }
 
@@ -1044,7 +1044,7 @@ void ListPanelFunc::quickCalcSpace()
 
 SizeCalculator *ListPanelFunc::createAndConnectSizeCalculator(const QList<QUrl> &urls)
 {
-    SizeCalculator *sizeCalculator = new SizeCalculator(urls);
+    auto *sizeCalculator = new SizeCalculator(urls);
     connect(sizeCalculator, &SizeCalculator::calculated, this, &ListPanelFunc::slotSizeCalculated);
     connect(sizeCalculator, &SizeCalculator::finished, panel, &ListPanel::slotUpdateTotals);
     connect(this, &ListPanelFunc::destroyed, sizeCalculator, &SizeCalculator::deleteLater);
@@ -1107,7 +1107,7 @@ void ListPanelFunc::properties()
         return;
 
     // Show the properties dialog
-    KPropertiesDialog *dialog = new KPropertiesDialog(fileItems, krMainWindow);
+    auto *dialog = new KPropertiesDialog(fileItems, krMainWindow);
     connect(dialog, &KPropertiesDialog::applied, this, &ListPanelFunc::refresh);
     dialog->show();
 }
@@ -1189,7 +1189,7 @@ void ListPanelFunc::copyToClipboard(bool move)
         return ;  // safety
 
     QList<QUrl> fileUrls = files()->getUrls(fileNames);
-    QMimeData *mimeData = new QMimeData;
+    auto *mimeData = new QMimeData;
     mimeData->setData("application/x-kde-cutselection", move ? "1" : "0");
     mimeData->setUrls(fileUrls);
 

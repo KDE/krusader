@@ -293,7 +293,7 @@ RadialMap::Map::paint(unsigned int scaleFactor)
     for (int x = m_visibleDepth; x >= 0; --x) {
         int width = rect.width() / 2;
         //clever geometric trick to find largest angle that will give biggest arrow head
-        int a_max = int(acos((double)width / double((width + 5) * scaleFactor)) * (180 * 16 / M_PI));
+        auto a_max = int(acos((double)width / double((width + 5) * scaleFactor)) * (180 * 16 / M_PI));
 
         for (ConstIterator<Segment> it = m_signature[x].constIterator(); it != m_signature[x].end(); ++it) {
             //draw the pie segments, most of this code is concerned with drawing the little

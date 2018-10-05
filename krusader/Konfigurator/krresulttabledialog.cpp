@@ -43,16 +43,16 @@ KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
     setWindowTitle(caption);
     setWindowModality(Qt::WindowModal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
-    QVBoxLayout *_topLayout = new QVBoxLayout();
+    auto *_topLayout = new QVBoxLayout();
     _topLayout->setAlignment(Qt::AlignTop);
 
     // +++ Heading +++
     // prepare the icon
     QWidget *_iconWidget = new QWidget(this);
-    QHBoxLayout * _iconBox = new QHBoxLayout(_iconWidget);
+    auto * _iconBox = new QHBoxLayout(_iconWidget);
     QLabel *_iconLabel = new QLabel(_iconWidget);
     _iconLabel->setPixmap(Icon(headerIcon).pixmap(32));
     _iconLabel->setMinimumWidth(fontMetrics().maxWidth()*20);
@@ -68,7 +68,7 @@ KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
     _topLayout->addWidget(_iconWidget);
 
     // +++ Add some space between heading and table +++
-    QSpacerItem* hSpacer1 = new QSpacerItem(0, 5);
+    auto* hSpacer1 = new QSpacerItem(0, 5);
     _topLayout->addItem(hSpacer1);
 
     // +++ Table +++

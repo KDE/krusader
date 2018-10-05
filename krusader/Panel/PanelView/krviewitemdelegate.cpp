@@ -60,7 +60,7 @@ QWidget * KrViewItemDelegate::createEditor(QWidget *parent, const QStyleOptionVi
 void KrViewItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     QItemDelegate::setEditorData(editor, index);
-    QLineEdit *lineEdit = qobject_cast<QLineEdit *> (editor);
+    auto *lineEdit = qobject_cast<QLineEdit *> (editor);
     if (lineEdit) {
         KConfigGroup gl(krConfig, "Look&Feel");
         QFont font = index.data(Qt::FontRole).value<QFont>();
@@ -99,7 +99,7 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
             return true;
         case Qt::Key_Enter:
         case Qt::Key_Return:
-            if (QLineEdit *e = qobject_cast<QLineEdit*>(editor)) {
+            if (auto *e = qobject_cast<QLineEdit*>(editor)) {
                 if (!e->hasAcceptableInput())
                     return true;
                 event->accept();

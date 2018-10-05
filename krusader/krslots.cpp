@@ -298,7 +298,7 @@ void KRslots::refresh(const QUrl &u)
 
 void KRslots::runKonfigurator(bool firstTime)
 {
-    Konfigurator *konfigurator = new Konfigurator(firstTime);
+    auto *konfigurator = new Konfigurator(firstTime);
     connect(konfigurator, &Konfigurator::configChanged, this, &KRslots::configChanged);
 
     //FIXME - no need to exec

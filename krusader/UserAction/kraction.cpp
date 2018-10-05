@@ -68,16 +68,16 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
     setWindowTitle(caption);
     setWindowModality(Qt::NonModal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
     // do we need to separate stderr and stdout?
     if (enableStderr) {
-        QSplitter *splitt = new QSplitter(Qt::Horizontal, this);
+        auto *splitt = new QSplitter(Qt::Horizontal, this);
         mainLayout->addWidget(splitt);
         // create stdout
         QWidget *stdoutWidget = new QWidget(splitt);
-        QVBoxLayout *stdoutBox = new QVBoxLayout(stdoutWidget);
+        auto *stdoutBox = new QVBoxLayout(stdoutWidget);
 
         stdoutBox->addWidget(new QLabel(i18n("Standard Output (stdout)"), stdoutWidget));
         _stdout = new KTextEdit(stdoutWidget);
@@ -85,7 +85,7 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
         stdoutBox->addWidget(_stdout);
         // create stderr
         QWidget *stderrWidget = new QWidget(splitt);
-        QVBoxLayout *stderrBox = new QVBoxLayout(stderrWidget);
+        auto *stderrBox = new QVBoxLayout(stderrWidget);
 
         stderrBox->addWidget(new QLabel(i18n("Standard Error (stderr)"), stderrWidget));
         _stderr = new KTextEdit(stderrWidget);
@@ -110,7 +110,7 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
     bool startupState = group.readEntry("Use Fixed Font", _UserActions_UseFixedFont);
     toggleFixedFont(startupState);
 
-    QHBoxLayout *hbox = new QHBoxLayout;
+    auto *hbox = new QHBoxLayout;
     QCheckBox* useFixedFont = new QCheckBox(i18n("Use font with fixed width"));
     useFixedFont->setChecked(startupState);
     hbox->addWidget(useFixedFont);
@@ -123,7 +123,7 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
     closeButton = buttonBox->button(QDialogButtonBox::Close);
     closeButton->setEnabled(false);
 
-    QPushButton *saveAsButton = new QPushButton;
+    auto *saveAsButton = new QPushButton;
     KGuiItem::assign(saveAsButton, KStandardGuiItem::saveAs());
     buttonBox->addButton(saveAsButton, QDialogButtonBox::ActionRole);
 

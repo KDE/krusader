@@ -89,7 +89,7 @@ public:
         SynchronizerFileItem  *currentItem;
 
         while ((currentItem = synchronizer->getItemAt(ndx++)) != nullptr) {
-            SynchronizerGUI::SyncViewItem *viewItem = (SynchronizerGUI::SyncViewItem *)currentItem->userData();
+            auto *viewItem = (SynchronizerGUI::SyncViewItem *)currentItem->userData();
 
             if (!viewItem || !viewItem->isSelected() || viewItem->isHidden())
                 continue;
@@ -111,8 +111,8 @@ public:
         if (urls.count() == 0)
             return;
 
-        QDrag *drag = new QDrag(this);
-        QMimeData *mimeData = new QMimeData;
+        auto *drag = new QDrag(this);
+        auto *mimeData = new QMimeData;
         mimeData->setImageData(FileListIcon(isLeft ? "arrow-left-double" : "arrow-right-double").pixmap());
         mimeData->setUrls(urls);
         drag->setMimeData(mimeData);
@@ -152,7 +152,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
         rightURL = QUrl::fromLocalFile(ROOT_DIR);
 
     setWindowTitle(i18n("Krusader::Synchronize Folders"));
-    QGridLayout *synchGrid = new QGridLayout(this);
+    auto *synchGrid = new QGridLayout(this);
     synchGrid->setSpacing(6);
     synchGrid->setContentsMargins(11, 11, 11, 11);
 
@@ -161,15 +161,15 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     /* ============================== Compare groupbox ============================== */
 
     QWidget *synchronizerTab = new QWidget(this);
-    QGridLayout *synchronizerGrid = new QGridLayout(synchronizerTab);
+    auto *synchronizerGrid = new QGridLayout(synchronizerTab);
     synchronizerGrid->setSpacing(6);
     synchronizerGrid->setContentsMargins(11, 11, 11, 11);
 
-    QGroupBox *compareDirs = new QGroupBox(synchronizerTab);
+    auto *compareDirs = new QGroupBox(synchronizerTab);
     compareDirs->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     compareDirs->setTitle(i18n("Folder Comparison"));
 
-    QGridLayout *grid = new QGridLayout(compareDirs);
+    auto *grid = new QGridLayout(compareDirs);
     grid->setSpacing(6);
     grid->setContentsMargins(11, 11, 11, 11);
 
@@ -195,7 +195,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     leftLocation->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
     QStringList list = group.readEntry("Left Folder History", QStringList());
     leftLocation->setHistoryItems(list);
-    KUrlRequester *leftUrlReq = new KUrlRequester(leftLocation, compareDirs);
+    auto *leftUrlReq = new KUrlRequester(leftLocation, compareDirs);
     leftUrlReq->setUrl(leftURL);
     leftUrlReq->setMode(KFile::Directory);
     leftUrlReq->setMinimumWidth(250);
@@ -228,7 +228,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     rightLocation->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
     list = group.readEntry("Right Folder History", QStringList());
     rightLocation->setHistoryItems(list);
-    KUrlRequester *rightUrlReq = new KUrlRequester(rightLocation, compareDirs);
+    auto *rightUrlReq = new KUrlRequester(rightLocation, compareDirs);
     rightUrlReq->setUrl(rightURL);
     rightUrlReq->setMode(KFile::Directory);
     rightUrlReq->setMinimumWidth(250);
@@ -239,11 +239,11 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     rightDirLabel->setBuddy(rightLocation);
 
     QWidget *optionWidget  = new QWidget(compareDirs);
-    QHBoxLayout *optionBox = new QHBoxLayout(optionWidget);
+    auto *optionBox = new QHBoxLayout(optionWidget);
     optionBox->setContentsMargins(0, 0, 0, 0);
 
     QWidget *optionGridWidget = new QWidget(optionWidget);
-    QGridLayout *optionGrid = new QGridLayout(optionGridWidget);
+    auto *optionGrid = new QGridLayout(optionGridWidget);
 
     optionBox->addWidget(optionGridWidget);
 
@@ -275,13 +275,13 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
 
     /* =========================== Show options groupbox ============================= */
 
-    QGroupBox *showOptions  = new QGroupBox(optionWidget);
+    auto *showOptions  = new QGroupBox(optionWidget);
     optionBox->addWidget(showOptions);
 
     showOptions->setTitle(i18n("S&how options"));
     showOptions->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
-    QGridLayout *showOptionsLayout = new QGridLayout(showOptions);
+    auto *showOptionsLayout = new QGridLayout(showOptions);
     showOptionsLayout->setSpacing(4);
     showOptionsLayout->setContentsMargins(11, 11, 11, 11);
 
@@ -400,10 +400,10 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
 
     // creating the time shift, equality threshold, hidden files options
 
-    QGroupBox *optionsGroup = new QGroupBox(generalFilter);
+    auto *optionsGroup = new QGroupBox(generalFilter);
     optionsGroup->setTitle(i18n("&Options"));
 
-    QGridLayout *optionsLayout = new QGridLayout(optionsGroup);
+    auto *optionsLayout = new QGridLayout(optionsGroup);
     optionsLayout->setAlignment(Qt::AlignTop);
     optionsLayout->setSpacing(6);
     optionsLayout->setContentsMargins(11, 11, 11, 11);
@@ -459,7 +459,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
 
     /* ================================== Buttons =================================== */
 
-    QHBoxLayout *buttons = new QHBoxLayout;
+    auto *buttons = new QHBoxLayout;
     buttons->setSpacing(6);
     buttons->setContentsMargins(0, 0, 0, 0);
 
@@ -477,7 +477,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     statusLabel = new QLabel(this);
     buttons->addWidget(statusLabel);
 
-    QSpacerItem* spacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    auto* spacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     buttons->addItem(spacer);
 
     btnCompareDirs = new QPushButton(this);
@@ -515,7 +515,7 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     btnSynchronize->setEnabled(false);
     buttons->addWidget(btnSynchronize);
 
-    QPushButton *btnCloseSync = new QPushButton(this);
+    auto *btnCloseSync = new QPushButton(this);
     btnCloseSync->setText(i18n("Close"));
     btnCloseSync->setIcon(Icon("dialog-close"));
     buttons->addWidget(btnCloseSync);
@@ -688,7 +688,7 @@ void SynchronizerGUI::doubleClicked(QTreeWidgetItem *itemIn)
     if (!itemIn)
         return;
 
-    SyncViewItem *syncItem = (SyncViewItem *)itemIn;
+    auto *syncItem = (SyncViewItem *)itemIn;
     SynchronizerFileItem *item = syncItem->synchronizerItemRef();
     if (item && item->existsInLeft() && item->existsInRight() && !item->isDir()) {
         QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
@@ -724,7 +724,7 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
     if (!itemIn)
         return;
 
-    SyncViewItem *syncItem = (SyncViewItem *)itemIn;
+    auto *syncItem = (SyncViewItem *)itemIn;
     if (syncItem == nullptr)
         return;
 
@@ -822,7 +822,7 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
         SynchronizerFileItem  *currentItem;
 
         while ((currentItem = synchronizer.getItemAt(ndx++)) != nullptr) {
-            SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
+            auto *viewItem = (SyncViewItem *)currentItem->userData();
 
             if (!viewItem || !viewItem->isSelected() || viewItem->isHidden())
                 continue;
@@ -872,7 +872,7 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
         SynchronizerFileItem  *currentItem;
 
         while ((currentItem = synchronizer.getItemAt(ndx++)) != nullptr) {
-            SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
+            auto *viewItem = (SyncViewItem *)currentItem->userData();
 
             if (!viewItem || viewItem->isHidden())
                 continue;
@@ -888,7 +888,7 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
         SynchronizerFileItem  *currentItem;
 
         while ((currentItem = synchronizer.getItemAt(ndx++)) != nullptr) {
-            SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
+            auto *viewItem = (SyncViewItem *)currentItem->userData();
 
             if (!viewItem || viewItem->isHidden())
                 continue;
@@ -1124,7 +1124,7 @@ void SynchronizerGUI::addFile(SynchronizerFileItem *item)
 
 void SynchronizerGUI::markChanged(SynchronizerFileItem *item, bool ensureVisible)
 {
-    SyncViewItem *listItem = (SyncViewItem *)item->userData();
+    auto *listItem = (SyncViewItem *)item->userData();
     if (listItem) {
         if (!item->isMarked()) {
             listItem->setHidden(true);
@@ -1237,7 +1237,7 @@ void SynchronizerGUI::synchronize()
         return;
     }
 
-    SynchronizeDialog *sd = new SynchronizeDialog(this, &synchronizer,
+    auto *sd = new SynchronizeDialog(this, &synchronizer,
             copyToLeftNr, copyToLeftSize, copyToRightNr,
             copyToRightSize, deleteNr, deleteSize,
             parallelThreadsSpinBox->value());
@@ -1358,7 +1358,7 @@ void SynchronizerGUI::keyPressEvent(QKeyEvent *e)
 bool SynchronizerGUI::eventFilter(QObject * /* watched */, QEvent * e)
 {
     if (e->type() == QEvent::KeyPress) {
-        QKeyEvent* ke = (QKeyEvent*) e;
+        auto* ke = (QKeyEvent*) e;
         switch (ke->key()) {
         case Qt::Key_Down:
         case Qt::Key_Left:
@@ -1558,7 +1558,7 @@ QPushButton *SynchronizerGUI::createButton(QWidget *parent, const QString &iconN
                                            const QKeySequence &shortCut, const QString &description,
                                            const QString &text, bool textAndIcon)
 {
-    QPushButton *button = new QPushButton(parent);
+    auto *button = new QPushButton(parent);
     bool iconExists = Icon::exists(iconName);
     if (!text.isEmpty() && (textAndIcon || !iconExists)) {
         button->setText(text);
@@ -1584,7 +1584,7 @@ void SynchronizerGUI::copyToClipboard(bool isLeft)
     SynchronizerFileItem  *currentItem;
 
     while ((currentItem = synchronizer.getItemAt(ndx++)) != nullptr) {
-        SynchronizerGUI::SyncViewItem *viewItem = (SynchronizerGUI::SyncViewItem *)currentItem->userData();
+        auto *viewItem = (SynchronizerGUI::SyncViewItem *)currentItem->userData();
 
         if (!viewItem || !viewItem->isSelected() || viewItem->isHidden())
             continue;
@@ -1606,7 +1606,7 @@ void SynchronizerGUI::copyToClipboard(bool isLeft)
     if (urls.count() == 0)
         return;
 
-    QMimeData *mimeData = new QMimeData;
+    auto *mimeData = new QMimeData;
     mimeData->setImageData(FileListIcon(isLeft ? "arrow-left-double" : "arrow-right-double").pixmap());
     mimeData->setUrls(urls);
 

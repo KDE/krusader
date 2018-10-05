@@ -89,7 +89,7 @@ LoaderWidget::LoaderWidget(QWidget *parent) : QScrollArea(parent), cancelled(fal
 
     widget = new QWidget(parent);
 
-    QGridLayout *loaderLayout = new QGridLayout(widget);
+    auto *loaderLayout = new QGridLayout(widget);
     loaderLayout->setSpacing(0);
     loaderLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -100,7 +100,7 @@ LoaderWidget::LoaderWidget(QWidget *parent) : QScrollArea(parent), cancelled(fal
     loaderBox->setFrameStyle(QFrame::Panel + QFrame::Raised);
     loaderBox->setLineWidth(2);
 
-    QGridLayout *synchGrid = new QGridLayout(loaderBox);
+    auto *synchGrid = new QGridLayout(loaderBox);
     synchGrid->setSpacing(6);
     synchGrid->setContentsMargins(11, 11, 11, 11);
 
@@ -154,11 +154,11 @@ LoaderWidget::LoaderWidget(QWidget *parent) : QScrollArea(parent), cancelled(fal
     synchGrid->addWidget(line, 5, 0, 1, 2);
 
     QWidget *hboxWidget = new QWidget(loaderBox);
-    QHBoxLayout * hbox = new QHBoxLayout(hboxWidget);
+    auto * hbox = new QHBoxLayout(hboxWidget);
 
-    QSpacerItem* spacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    auto* spacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
     hbox->addItem(spacer);
-    QPushButton *cancelButton = new QPushButton(hboxWidget);
+    auto *cancelButton = new QPushButton(hboxWidget);
     KStandardGuiItem::assign(cancelButton, KStandardGuiItem::Cancel);
     hbox->addWidget(cancelButton);
 
@@ -504,7 +504,7 @@ int DiskUsage::exclude(File *file, bool calcPercents, int depth)
         changeNr++;
 
         if (file->isDir()) {
-            Directory *dir = dynamic_cast<Directory *>(file);
+            auto *dir = dynamic_cast<Directory *>(file);
             for (Iterator<File> it = dir->iterator(); it != dir->end(); ++it)
                 changeNr += exclude(*it, false, depth + 1);
         }
@@ -596,7 +596,7 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
         dirUp();
 
     if (file->isDir()) {
-        Directory *dir = dynamic_cast<Directory *>(file);
+        auto *dir = dynamic_cast<Directory *>(file);
 
         Iterator<File> it;
         while ((it = dir->iterator()) != dir->end())
@@ -1095,7 +1095,7 @@ bool DiskUsage::event(QEvent * e)
     }
 
     if (e->type() == QEvent::ShortcutOverride) {
-        QKeyEvent* ke = (QKeyEvent*) e;
+        auto* ke = (QKeyEvent*) e;
 
         if (ke->modifiers() == Qt::NoModifier || ke->modifiers() == Qt::KeypadModifier) {
             switch (ke->key()) {

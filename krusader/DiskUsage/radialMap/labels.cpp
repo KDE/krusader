@@ -110,7 +110,7 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
         if (m_focus->file() == nullptr || !m_focus->file()->isDir()) return;
 
         //find the range of levels we will be potentially drawing labels for
-        for (const Directory *p = (const Directory *)m_focus->file();
+        for (const auto *p = (const Directory *)m_focus->file();
                 p != m_tree;
                 ++startLevel) { //startLevel is the level above whatever m_focus is in
             p = p->parent();
@@ -184,7 +184,7 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
     //used in next two steps
     bool varySizes;
     //**** should perhaps use doubles
-    int  *sizes = new int [ m_map.m_visibleDepth + 1 ]; //**** make sizes an array of floats I think instead (or doubles)
+    auto  *sizes = new int [ m_map.m_visibleDepth + 1 ]; //**** make sizes an array of floats I think instead (or doubles)
 
     do {
         //3. Calculate font sizes

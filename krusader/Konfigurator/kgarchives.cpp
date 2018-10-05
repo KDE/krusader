@@ -42,7 +42,7 @@ KgArchives::KgArchives(bool first, QWidget* parent) :
     QWidget *innerWidget = new QFrame(this);
     setWidget(innerWidget);
     setWidgetResizable(true);
-    QGridLayout *kgArchivesLayout = new QGridLayout(innerWidget);
+    auto *kgArchivesLayout = new QGridLayout(innerWidget);
     kgArchivesLayout->setSpacing(6);
 
     //  ------------------------ KRARC GROUPBOX --------------------------------

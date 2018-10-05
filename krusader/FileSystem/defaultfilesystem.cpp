@@ -213,7 +213,7 @@ bool DefaultFileSystem::refreshInternal(const QUrl &directory, bool onlyScan)
 
     // ensure connection credentials are asked only once
     if(!parentWindow.isNull()) {
-        KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
+        auto *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
         ui->setWindow(parentWindow);
     }
 

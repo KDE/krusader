@@ -41,10 +41,10 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, QUrl url):
     setWindowModality(Qt::WindowModal);
     setWindowTitle(i18n("Add Bookmark"));
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
-    QGridLayout *layout = new QGridLayout; // expanding
+    auto *layout = new QGridLayout; // expanding
     // name and url
     QLabel *lb1 = new QLabel(i18n("Name:"), this);
     _name = new KLineEdit(this);
@@ -112,7 +112,7 @@ QWidget *KrAddBookmarkDlg::createInWidget()
     _createIn->setRootIsDecorated(true);
     _createIn->setAlternatingRowColors(false);   // disable alternate coloring
 
-    QTreeWidgetItem *item = new QTreeWidgetItem(_createIn);
+    auto *item = new QTreeWidgetItem(_createIn);
     item->setText(0, i18n("Bookmarks"));
     _createIn->expandItem(item);
     item->setSelected(true);
@@ -141,7 +141,7 @@ void KrAddBookmarkDlg::populateCreateInWidget(KrBookmark *root, QTreeWidgetItem 
     while (it.hasNext()) {
         KrBookmark *bm = it.next();
         if (bm->isFolder()) {
-            QTreeWidgetItem *item = new QTreeWidgetItem(parent);
+            auto *item = new QTreeWidgetItem(parent);
             item->setText(0, bm->text());
             item->treeWidget()->expandItem(item);
             _xr[item] = bm;
@@ -167,7 +167,7 @@ void KrAddBookmarkDlg::newFolder()
 
     krBookMan->addBookmark(bm, _xr[ items[ 0 ]]);
     // fix the gui
-    QTreeWidgetItem *item = new QTreeWidgetItem(items[ 0 ]);
+    auto *item = new QTreeWidgetItem(items[ 0 ]);
     item->setText(0, bm->text());
     _xr[item] = bm;
 

@@ -418,7 +418,7 @@ KonfiguratorFontChooser::KonfiguratorFontChooser(QString configGroup, QString na
         QWidget *parent, bool restart, int page) : QWidget(parent),
         defaultValue(defaultValue)
 {
-    QHBoxLayout *layout = new QHBoxLayout(this);
+    auto *layout = new QHBoxLayout(this);
 
     ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorFontChooser::slotApply);

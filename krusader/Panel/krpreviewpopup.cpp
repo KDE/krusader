@@ -45,7 +45,7 @@ public:
                                    const QSize &contentsSize, const QWidget *widget = nullptr) const Q_DECL_OVERRIDE
     {
         if(type == QStyle::CT_MenuItem) {
-            const QStyleOptionMenuItem *menuItem =
+            const auto *menuItem =
                     qstyleoption_cast<const QStyleOptionMenuItem*>(option);
 
             QFontMetrics fontMetrics(menuItem->font);
@@ -65,7 +65,7 @@ public:
         if(element == QStyle::CE_MenuItem) {
             painter->save();
 
-            const QStyleOptionMenuItem *menuItem =
+            const auto *menuItem =
                     qstyleoption_cast<const QStyleOptionMenuItem*>(option);
 
             bool active = menuItem->state & State_Selected;

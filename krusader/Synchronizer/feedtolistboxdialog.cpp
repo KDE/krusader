@@ -51,7 +51,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
     setWindowTitle(i18n("Krusader::Feed to listbox"));
     setWindowModality(Qt::WindowModal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
     // autodetecting the parameters
@@ -63,7 +63,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
 
     QTreeWidgetItemIterator it(syncList);
     while (*it) {
-        SynchronizerGUI::SyncViewItem *item = (SynchronizerGUI::SyncViewItem *) * it;
+        auto *item = (SynchronizerGUI::SyncViewItem *) * it;
         SynchronizerFileItem *syncItem = item->synchronizerItemRef();
 
         if (syncItem && syncItem->isMarked()) {
@@ -112,7 +112,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
     lineEdit->selectAll();
     mainLayout->addWidget(lineEdit);
 
-    QHBoxLayout * hbox = new QHBoxLayout;
+    auto * hbox = new QHBoxLayout;
 
     QLabel *label2 = new QLabel(i18n("Side to feed:"), this);
     label2->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -169,7 +169,7 @@ void FeedToListBoxDialog::slotOk()
 
     QTreeWidgetItemIterator it(syncList);
     for (;*it; it++) {
-        SynchronizerGUI::SyncViewItem *item = (SynchronizerGUI::SyncViewItem *) * it;
+        auto *item = (SynchronizerGUI::SyncViewItem *) * it;
         SynchronizerFileItem *syncItem = item->synchronizerItemRef();
 
         if (!syncItem || !syncItem->isMarked())

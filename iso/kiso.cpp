@@ -229,7 +229,7 @@ static int mycallb(struct iso_directory_record *idr, void *udata)
 {
     KRFUNC;
 
-    KIso *iso = static_cast<KIso*>(udata);
+    auto *iso = static_cast<KIso*>(udata);
     QString path, user, group, symlink;
     int i;
     int access;

@@ -37,7 +37,7 @@ KrTreeWidget::KrTreeWidget(QWidget * parent) : QTreeWidget(parent), _inResize(fa
 
     _stretchingColumn = -1;
 
-    KrStyleProxy *krstyle = new KrStyleProxy();
+    auto *krstyle = new KrStyleProxy();
     krstyle->setParent(this);
     setStyle(krstyle);
 }
@@ -47,7 +47,7 @@ bool KrTreeWidget::event(QEvent * event)
     switch (event->type()) {
         // HACK: QT 4 Context menu key isn't handled properly
     case QEvent::ContextMenu: {
-        QContextMenuEvent* ce = (QContextMenuEvent*) event;
+        auto* ce = (QContextMenuEvent*) event;
 
         if (ce->reason() == QContextMenuEvent::Mouse) {
             QPoint pos = viewport()->mapFromGlobal(ce->globalPos());
@@ -71,7 +71,7 @@ bool KrTreeWidget::event(QEvent * event)
     case QEvent::KeyPress: {
         // HACK: QT 4 Ctrl+A bug fix: Ctrl+A doesn't work if QTreeWidget contains parent / child items
         //       Insert doesn't change the selections for multi selection modes
-        QKeyEvent* ke = (QKeyEvent*) event;
+        auto* ke = (QKeyEvent*) event;
         switch (ke->key()) {
         case Qt::Key_Insert: {
             if (ke->modifiers() != 0)
@@ -109,7 +109,7 @@ bool KrTreeWidget::event(QEvent * event)
     }
     break;
     case QEvent::Resize: {
-        QResizeEvent * re = (QResizeEvent *)event;
+        auto * re = (QResizeEvent *)event;
         if (!_inResize && re->oldSize() != re->size()) {
             if (_stretchingColumn != -1 && columnCount()) {
                 QList< int > columnsSizes;
@@ -146,7 +146,7 @@ bool KrTreeWidget::event(QEvent * event)
         break;
     }
     case QEvent::ToolTip: {
-        QHelpEvent *he = static_cast<QHelpEvent*>(event);
+        auto *he = static_cast<QHelpEvent*>(event);
 
         if (viewport()) {
             QPoint pos = viewport()->mapFromGlobal(he->globalPos());

@@ -49,7 +49,7 @@ KgColors::KgColors(bool first, QWidget* parent) :
     QWidget *innerWidget = new QFrame(this);
     setWidget(innerWidget);
     setWidgetResizable(true);
-    QGridLayout *kgColorsLayout = new QGridLayout(innerWidget);
+    auto *kgColorsLayout = new QGridLayout(innerWidget);
     kgColorsLayout->setSpacing(6);
 
     //  -------------------------- GENERAL GROUPBOX ----------------------------------
@@ -79,7 +79,7 @@ KgColors::KgColors(bool first, QWidget* parent) :
 
     kgColorsLayout->addWidget(generalGrp, 0 , 0, 1, 3);
     QWidget *hboxWidget = new QWidget(innerWidget);
-    QHBoxLayout *hbox = new QHBoxLayout(hboxWidget);
+    auto *hbox = new QHBoxLayout(hboxWidget);
 
     //  -------------------------- COLORS GROUPBOX ----------------------------------
 

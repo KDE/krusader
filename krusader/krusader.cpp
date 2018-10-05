@@ -190,7 +190,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
     MAIN_VIEW->start(startupGroup, startProfile.isEmpty(), leftTabs, rightTabs);
 
     // create a status bar
-    KrusaderStatus *status = new KrusaderStatus(this);
+    auto *status = new KrusaderStatus(this);
     setStatusBar(status);
     status->setWhatsThis(i18n("Statusbar will show basic information "
                               "about file below mouse pointer."));
@@ -276,7 +276,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
     _openUrlTimer.setSingleShot(true);
     connect(&_openUrlTimer, &QTimer::timeout, this, &Krusader::doOpenUrl);
 
-    KStartupInfo *startupInfo = new KStartupInfo(0, this);
+    auto *startupInfo = new KStartupInfo(0, this);
     connect(startupInfo, &KStartupInfo::gotNewStartup,
             this, &Krusader::slotGotNewStartup);
     connect(startupInfo, &KStartupInfo::gotRemoveStartup,
@@ -542,7 +542,7 @@ void Krusader::stopWait() {
 }
 
 void Krusader::updateUserActions() {
-    KActionMenu *userActionMenu = (KActionMenu *) KrActions::actUserMenu;
+    auto *userActionMenu = (KActionMenu *) KrActions::actUserMenu;
     if (userActionMenu) {
         userActionMenu->menu()->clear();
 

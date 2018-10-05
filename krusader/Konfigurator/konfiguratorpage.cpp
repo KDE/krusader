@@ -128,7 +128,7 @@ KonfiguratorURLRequester* KonfiguratorPage::createURLRequester(QString configGro
 
 QGroupBox* KonfiguratorPage::createFrame(QString text, QWidget *parent)
 {
-    QGroupBox *groupBox = new QGroupBox(parent);
+    auto *groupBox = new QGroupBox(parent);
     if (!text.isNull())
         groupBox->setTitle(text);
     return groupBox;
@@ -136,7 +136,7 @@ QGroupBox* KonfiguratorPage::createFrame(QString text, QWidget *parent)
 
 QGridLayout* KonfiguratorPage::createGridLayout(QWidget *parent)
 {
-    QGridLayout *gridLayout = new QGridLayout(parent);
+    auto *gridLayout = new QGridLayout(parent);
     gridLayout->setAlignment(Qt::AlignTop);
     gridLayout->setSpacing(6);
     gridLayout->setContentsMargins(11, 11, 11, 11);
@@ -154,8 +154,8 @@ QLabel* KonfiguratorPage::addLabel(QGridLayout *layout, int x, int y, QString la
 QWidget* KonfiguratorPage::createSpacer(QWidget *parent)
 {
     QWidget *widget = new QWidget(parent);
-    QHBoxLayout *hboxlayout = new QHBoxLayout(widget);
-    QSpacerItem* spacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    auto *hboxlayout = new QHBoxLayout(widget);
+    auto* spacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     hboxlayout->addItem(spacer);
     return widget;
 }
@@ -164,8 +164,8 @@ KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup(int sizex, int 
         KONFIGURATOR_CHECKBOX_PARAM *params, int paramNum, QWidget *parent,
         int page)
 {
-    KonfiguratorCheckBoxGroup *groupWidget = new KonfiguratorCheckBoxGroup(parent);
-    QGridLayout *layout = new QGridLayout(groupWidget);
+    auto *groupWidget = new KonfiguratorCheckBoxGroup(parent);
+    auto *layout = new QGridLayout(groupWidget);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -197,7 +197,7 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup(QString confi
 {
     KonfiguratorRadioButtons *radioWidget = new KonfiguratorRadioButtons(configGroup, name, defaultValue, parent, restart, page);
 
-    QGridLayout *layout = new QGridLayout(radioWidget);
+    auto *layout = new QGridLayout(radioWidget);
     layout->setAlignment(Qt::AlignTop);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -205,7 +205,7 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup(QString confi
     int x = 0, y = 0;
 
     for (int i = 0; i != paramNum; i++) {
-        QRadioButton *radBtn = new QRadioButton(params[i].text, radioWidget);
+        auto *radBtn = new QRadioButton(params[i].text, radioWidget);
 
         if (!params[i].tooltip.isEmpty())
             radBtn->setWhatsThis(params[i].tooltip);

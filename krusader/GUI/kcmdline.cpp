@@ -157,7 +157,7 @@ void CmdLineCombo::keyPressEvent(QKeyEvent *e)
 
 KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
 {
-    QGridLayout * layout = new QGridLayout(this);
+    auto * layout = new QGridLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 

@@ -72,14 +72,14 @@ AbstractThreadedJob::~AbstractThreadedJob()
 bool AbstractThreadedJob::event(QEvent *e)
 {
     if (e->type() == QEvent::User) {
-        UserEvent *event = (UserEvent*) e;
+        auto *event = (UserEvent*) e;
         switch (event->command()) {
         case CMD_SUCCESS: {
             emitResult();
         }
         break;
         case CMD_ERROR: {
-            int error = event->args()[ 0 ].value<int>();
+            auto error = event->args()[ 0 ].value<int>();
             QString errorText = event->args()[ 1 ].value<QString>();
 
             setError(error);
@@ -139,13 +139,13 @@ bool AbstractThreadedJob::event(QEvent *e)
         }
         break;
         case CMD_MAXPROGRESSVALUE: {
-            qulonglong maxValue = event->args()[ 0 ].value<qulonglong>();
+            auto maxValue = event->args()[ 0 ].value<qulonglong>();
             _maxProgressValue = maxValue;
             _currentProgress = 0;
         }
         break;
         case CMD_ADD_PROGRESS: {
-            qulonglong progress = event->args()[ 0 ].value<qulonglong>();
+            auto progress = event->args()[ 0 ].value<qulonglong>();
             _currentProgress += progress;
             if (_maxProgressValue != 0) {
                 setPercent(100 * _currentProgress / _maxProgressValue);
@@ -167,16 +167,16 @@ bool AbstractThreadedJob::event(QEvent *e)
             QString path = event->args()[ 0 ].value<QString>();
             QString password = KRarcHandler::getPassword(path);
 
-            QList<QVariant> *resultResp = new QList<QVariant> ();
+            auto *resultResp = new QList<QVariant> ();
             (*resultResp) << password;
             addEventResponse(resultResp);
         }
         break;
         case CMD_MESSAGE: {
             QString message = event->args()[ 0 ].value<QString>();
-            KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(uiDelegate());
+            auto *ui = static_cast<KIO::JobUiDelegate*>(uiDelegate());
             KMessageBox::information(ui ? ui->window() : nullptr, message);
-            QList<QVariant> *resultResp = new QList<QVariant> ();
+            auto *resultResp = new QList<QVariant> ();
             addEventResponse(resultResp);
         }
         break;
@@ -214,7 +214,7 @@ void AbstractThreadedJob::sendEvent(UserEvent * event)
 
 void AbstractThreadedJob::slotDownloadResult(KJob* job)
 {
-    QList<QVariant> *resultResp = new QList<QVariant> ();
+    auto *resultResp = new QList<QVariant> ();
     if (job) {
         (*resultResp) << QVariant(job->error());
         (*resultResp) << QVariant(job->errorText());
@@ -363,12 +363,12 @@ QUrl AbstractJobThread::downloadIfRemote(const QUrl &baseUrl, const QStringList 
         args << KrServices::toStringList(urlList);
         args << dest;
 
-        UserEvent * downloadEvent = new UserEvent(CMD_DOWNLOAD_FILES, args);
+        auto * downloadEvent = new UserEvent(CMD_DOWNLOAD_FILES, args);
         QList<QVariant> * result = _job->getEventResponse(downloadEvent);
         if (result == nullptr)
             return QUrl();
 
-        int errorCode = (*result)[ 0 ].value<int>();
+        auto errorCode = (*result)[ 0 ].value<int>();
         QString errorText = (*result)[ 1 ].value<QString>();
 
         delete result;
@@ -418,7 +418,7 @@ void AbstractJobThread::sendSuccess()
 
     QList<QVariant> args;
 
-    UserEvent * errorEvent = new UserEvent(CMD_SUCCESS, args);
+    auto * errorEvent = new UserEvent(CMD_SUCCESS, args);
     _job->sendEvent(errorEvent);
 }
 
@@ -430,7 +430,7 @@ void AbstractJobThread::sendError(int errorCode, QString message)
     args << errorCode;
     args << message;
 
-    UserEvent * errorEvent = new UserEvent(CMD_ERROR, args);
+    auto * errorEvent = new UserEvent(CMD_ERROR, args);
     _job->sendEvent(errorEvent);
 }
 
@@ -443,7 +443,7 @@ void AbstractJobThread::sendInfo(QString message, QString a1, QString a2, QStrin
     args << a3;
     args << a4;
 
-    UserEvent * infoEvent = new UserEvent(CMD_INFO, args);
+    auto * infoEvent = new UserEvent(CMD_INFO, args);
     _job->sendEvent(infoEvent);
 }
 
@@ -456,7 +456,7 @@ void AbstractJobThread::sendReset(QString message, QString a1, QString a2, QStri
     args << a3;
     args << a4;
 
-    UserEvent * infoEvent = new UserEvent(CMD_RESET, args);
+    auto * infoEvent = new UserEvent(CMD_RESET, args);
     _job->sendEvent(infoEvent);
 }
 
@@ -465,7 +465,7 @@ void AbstractJobThread::sendMaxProgressValue(qulonglong value)
     QList<QVariant> args;
     args << value;
 
-    UserEvent * infoEvent = new UserEvent(CMD_MAXPROGRESSVALUE, args);
+    auto * infoEvent = new UserEvent(CMD_MAXPROGRESSVALUE, args);
     _job->sendEvent(infoEvent);
 }
 
@@ -477,7 +477,7 @@ void AbstractJobThread::sendAddProgress(qulonglong value, const QString &progres
     if (!progress.isNull())
         args << progress;
 
-    UserEvent * infoEvent = new UserEvent(CMD_ADD_PROGRESS, args);
+    auto * infoEvent = new UserEvent(CMD_ADD_PROGRESS, args);
     _job->sendEvent(infoEvent);
 }
 
@@ -542,12 +542,12 @@ bool AbstractJobThread::uploadTempFiles()
             args << KrServices::toStringList(urlList);
             args << _tempFileTarget;
 
-            UserEvent * uploadEvent = new UserEvent(CMD_UPLOAD_FILES, args);
+            auto * uploadEvent = new UserEvent(CMD_UPLOAD_FILES, args);
             QList<QVariant> * result = _job->getEventResponse(uploadEvent);
             if (result == nullptr)
                 return false;
 
-            int errorCode = (*result)[ 0 ].value<int>();
+            auto errorCode = (*result)[ 0 ].value<int>();
             QString errorText = (*result)[ 1 ].value<QString>();
 
             delete result;
@@ -574,12 +574,12 @@ bool AbstractJobThread::uploadTempFiles()
             args << KrServices::toStringList(urlList);
             args << _tempDirTarget;
 
-            UserEvent * uploadEvent = new UserEvent(CMD_UPLOAD_FILES, args);
+            auto * uploadEvent = new UserEvent(CMD_UPLOAD_FILES, args);
             QList<QVariant> * result = _job->getEventResponse(uploadEvent);
             if (result == nullptr)
                 return false;
 
-            int errorCode = (*result)[ 0 ].value<int>();
+            auto errorCode = (*result)[ 0 ].value<int>();
             QString errorText = (*result)[ 1 ].value<QString>();
 
             delete result;
@@ -598,7 +598,7 @@ QString AbstractJobThread::getPassword(const QString &path)
     QList<QVariant> args;
     args << path;
 
-    UserEvent * getPasswdEvent = new UserEvent(CMD_GET_PASSWORD, args);
+    auto * getPasswdEvent = new UserEvent(CMD_GET_PASSWORD, args);
     QList<QVariant> * result = _job->getEventResponse(getPasswdEvent);
     if (result == nullptr)
         return QString();
@@ -616,7 +616,7 @@ void AbstractJobThread::sendMessage(const QString &message)
     QList<QVariant> args;
     args << message;
 
-    UserEvent * getPasswdEvent = new UserEvent(CMD_MESSAGE, args);
+    auto * getPasswdEvent = new UserEvent(CMD_MESSAGE, args);
     QList<QVariant> * result = _job->getEventResponse(getPasswdEvent);
     if (result == nullptr)
         return;

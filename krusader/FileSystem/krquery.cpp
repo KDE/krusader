@@ -375,7 +375,7 @@ bool KRQuery::checkBuffer(const char *data, int len) const
 {
     bool result = false;
 
-    char *mergedBuffer = new char[len + receivedBufferLen];
+    auto *mergedBuffer = new char[len + receivedBufferLen];
     if (receivedBufferLen)
         memcpy(mergedBuffer, receivedBuffer, receivedBufferLen);
     if (len)
@@ -551,7 +551,7 @@ void KRQuery::containsContentFinished(KJob *) { busy = false; }
 bool KRQuery::checkTimer() const
 {
     if (timer.elapsed() >= STATUS_SEND_DELAY) {
-        int pcnt = (int)(100. * (double)receivedBytes / (double)totalBytes + .5);
+        auto pcnt = (int)(100. * (double)receivedBytes / (double)totalBytes + .5);
         QString message =
             i18nc("%1=filename, %2=percentage", "Searching content of '%1' (%2%)", fileName, pcnt);
         timer.start();

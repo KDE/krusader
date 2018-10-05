@@ -90,7 +90,7 @@ void MediaButton::updateIcon(const QString &mountPoint)
 
     if(!mountPoint.isEmpty()) {
         Solid::Device device(krMtMan.findUdiForPath(mountPoint, Solid::DeviceInterface::StorageAccess));;
-        Solid::StorageVolume *vol = device.as<Solid::StorageVolume> ();
+        auto *vol = device.as<Solid::StorageVolume> ();
 
         if(device.isValid())
             iconName = device.icon();
@@ -171,7 +171,7 @@ void MediaButton::createMediaList()
 
 bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &iconOut)
 {
-    Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+    auto *access = device.as<Solid::StorageAccess>();
     if (access == nullptr)
         return false;
 
@@ -184,7 +184,7 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &i
     QString fstype;
     QString size;
 
-    Solid::StorageVolume * vol = device.as<Solid::StorageVolume> ();
+    auto * vol = device.as<Solid::StorageVolume> ();
     if (vol) {
         label = vol->label();
         fstype = vol->fsType();
@@ -289,7 +289,7 @@ bool MediaButton::eventFilter(QObject *o, QEvent *e)
                 }
             }
         } else if (e->type() == QEvent::KeyPress) {
-            QKeyEvent *ke = static_cast<QKeyEvent*>(e);
+            auto *ke = static_cast<QKeyEvent*>(e);
             if (ke->key() == Qt::Key_Return && ke->modifiers() == Qt::ControlModifier) {
                 if (QAction *act = popupMenu->activeAction()) {
                     QString id = act->data().toString();
@@ -300,7 +300,7 @@ bool MediaButton::eventFilter(QObject *o, QEvent *e)
                 }
             }
         } else if (e->type() == QEvent::MouseButtonPress || e->type() == QEvent::MouseButtonRelease) {
-            QMouseEvent *m = static_cast<QMouseEvent*>(e);
+            auto *m = static_cast<QMouseEvent*>(e);
             if (m->button() == Qt::RightButton) {
                 if (e->type() == QEvent::MouseButtonPress) {
                     QAction * act = popupMenu->actionAt(m->pos());
@@ -420,8 +420,8 @@ void MediaButton::getStatus(QString udi, bool &mounted, QString *mountPointOut, 
     } else {
         Solid::Device device(udi);
 
-        Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
-        Solid::OpticalDisc  *optdisc = device.as<Solid::OpticalDisc>();
+        auto *access = device.as<Solid::StorageAccess>();
+        auto  *optdisc = device.as<Solid::OpticalDisc>();
         if (access)
             mountPoint = access->filePath();
         if (access && access->isAccessible())
@@ -448,7 +448,7 @@ void MediaButton::mount(QString udi, bool open, bool newtab)
         return;
     }
     Solid::Device device(udi);
-    Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+    auto *access = device.as<Solid::StorageAccess>();
     if (access && !access->isAccessible()) {
         if (open)
             udiToOpen = device.udi(), openInNewTab = newtab;
@@ -461,7 +461,7 @@ void MediaButton::slotSetupDone(Solid::ErrorType error, QVariant errorData, cons
 {
     if (error == Solid::NoError) {
         if (udi == udiToOpen) {
-            Solid::StorageAccess *access = Solid::Device(udi).as<Solid::StorageAccess>();
+            auto *access = Solid::Device(udi).as<Solid::StorageAccess>();
             if (access && access->isAccessible()) {
                 if (openInNewTab)
                     emit newTab(QUrl::fromLocalFile(access->filePath()));
@@ -524,7 +524,7 @@ void MediaButton::slotDeviceAdded(const QString& udi)
         return;
 
     Solid::Device device(udi);
-    Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+    auto *access = device.as<Solid::StorageAccess>();
     if (access == nullptr)
         return;
 

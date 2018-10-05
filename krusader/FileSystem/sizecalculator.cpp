@@ -97,7 +97,7 @@ void SizeCalculator::nextUrl()
 
     if (m_currentUrl.scheme() == "virt") {
         // calculate size of all files/directories in this virtual directory
-        VirtualFileSystem *fs = new VirtualFileSystem();
+        auto *fs = new VirtualFileSystem();
         if (!fs->scanDir(m_currentUrl)) {
             qWarning() << "cannot scan virtual FS, URL=" << m_currentUrl.toDisplayString();
             nextUrl();

@@ -40,20 +40,20 @@
 KgDependencies::KgDependencies(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)
 {
-    QGridLayout *kgDependenciesLayout = new QGridLayout(this);
+    auto *kgDependenciesLayout = new QGridLayout(this);
     kgDependenciesLayout->setSpacing(6);
 
     //  ---------------------------- GENERAL TAB -------------------------------------
     tabWidget = new QTabWidget(this);
 
     QWidget *general_tab = new QWidget(tabWidget);
-    QScrollArea* general_scroll = new QScrollArea(tabWidget);
+    auto* general_scroll = new QScrollArea(tabWidget);
     general_scroll->setFrameStyle(QFrame::NoFrame);
     general_scroll->setWidget(general_tab);   // this also sets scrollacrea as the new parent for widget
     general_scroll->setWidgetResizable(true);   // let the widget use every space available
     tabWidget->addTab(general_scroll, i18n("General"));
 
-    QGridLayout *pathsGrid = new QGridLayout(general_tab);
+    auto *pathsGrid = new QGridLayout(general_tab);
     pathsGrid->setSpacing(6);
     pathsGrid->setContentsMargins(11, 11, 11, 11);
     pathsGrid->setAlignment(Qt::AlignTop);
@@ -69,13 +69,13 @@ KgDependencies::KgDependencies(bool first, QWidget* parent) :
 
     //  ---------------------------- PACKERS TAB -------------------------------------
     QWidget *packers_tab = new QWidget(tabWidget);
-    QScrollArea* packers_scroll = new QScrollArea(tabWidget);
+    auto* packers_scroll = new QScrollArea(tabWidget);
     packers_scroll->setFrameStyle(QFrame::NoFrame);
     packers_scroll->setWidget(packers_tab);   // this also sets scrollacrea as the new parent for widget
     packers_scroll->setWidgetResizable(true);   // let the widget use every space available
     tabWidget->addTab(packers_scroll, i18n("Packers"));
 
-    QGridLayout *archGrid1 = new QGridLayout(packers_tab);
+    auto *archGrid1 = new QGridLayout(packers_tab);
     archGrid1->setSpacing(6);
     archGrid1->setContentsMargins(11, 11, 11, 11);
     archGrid1->setAlignment(Qt::AlignTop);
@@ -99,13 +99,13 @@ KgDependencies::KgDependencies(bool first, QWidget* parent) :
 
     //  ---------------------------- CHECKSUM TAB -------------------------------------
     QWidget *checksum_tab = new QWidget(tabWidget);
-    QScrollArea* checksum_scroll = new QScrollArea(tabWidget);
+    auto* checksum_scroll = new QScrollArea(tabWidget);
     checksum_scroll->setFrameStyle(QFrame::NoFrame);
     checksum_scroll->setWidget(checksum_tab);   // this also sets scrollacrea as the new parent for widget
     checksum_scroll->setWidgetResizable(true);   // let the widget use every space available
     tabWidget->addTab(checksum_scroll, i18n("Checksum Utilities"));
 
-    QGridLayout *archGrid2 = new QGridLayout(checksum_tab);
+    auto *archGrid2 = new QGridLayout(checksum_tab);
     archGrid2->setSpacing(6);
     archGrid2->setContentsMargins(11, 11, 11, 11);
     archGrid2->setAlignment(Qt::AlignTop);
@@ -145,7 +145,7 @@ void KgDependencies::addApplication(QString name, QGridLayout *grid, int row, QW
 
 void KgDependencies::slotApply(QObject *obj, QString configGroup, QString name)
 {
-    KonfiguratorURLRequester *urlRequester = (KonfiguratorURLRequester *) obj;
+    auto *urlRequester = (KonfiguratorURLRequester *) obj;
 
     KConfigGroup group(krConfig, configGroup);
     group.writeEntry(name, urlRequester->url().toDisplayString(QUrl::PreferLocalFile));

@@ -159,7 +159,7 @@ bool Icon::exists(QString iconName)
         QIcon::setThemeName(searchResult.originalThemeName);
     }
 
-    bool *result = new bool(!searchResult.icon.isNull());
+    auto *result = new bool(!searchResult.icon.isNull());
 
     // update the cache; the cache takes ownership over the result
     cache.insert(iconName, result);

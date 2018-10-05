@@ -153,7 +153,7 @@ void KMountMan::mount(QString mntPoint, bool blocking)
     QString udi = findUdiForPath(mntPoint, Solid::DeviceInterface::StorageAccess);
     if (!udi.isNull()) {
         Solid::Device device(udi);
-        Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+        auto *access = device.as<Solid::StorageAccess>();
         if (access && !access->isAccessible()) {
             connect(access, &Solid::StorageAccess::setupDone, this, &KMountMan::slotSetupDone, Qt::UniqueConnection);
             if (blocking)
@@ -200,7 +200,7 @@ void KMountMan::unmount(QString mntPoint, bool blocking)
     QString udi = findUdiForPath(mntPoint, Solid::DeviceInterface::StorageAccess);
     if (!udi.isNull()) {
         Solid::Device device(udi);
-        Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+        auto *access = device.as<Solid::StorageAccess>();
         if (access && access->isAccessible()) {
             connect(access, &Solid::StorageAccess::teardownDone, this, &KMountMan::slotTeardownDone, Qt::UniqueConnection);
             access->teardown();
@@ -287,7 +287,7 @@ void KMountMan::eject(QString mntPoint)
         return;
 
     Solid::Device dev(udi);
-    Solid::OpticalDrive *drive = dev.as<Solid::OpticalDrive>();
+    auto *drive = dev.as<Solid::OpticalDrive>();
     if (drive == nullptr)
         return;
 
@@ -325,7 +325,7 @@ bool KMountMan::removable(Solid::Device d)
 {
     if(!d.isValid())
         return false;
-    Solid::StorageDrive *drive = d.as<Solid::StorageDrive>();
+    auto *drive = d.as<Solid::StorageDrive>();
     if(drive)
         return drive->isRemovable();
     else
@@ -423,7 +423,7 @@ QString KMountMan::findUdiForPath(QString path, const Solid::DeviceInterface::Ty
         Solid::Device device = storageDevices[ p ];
         QString udi     = device.udi();
 
-        Solid::Block * sb = device.as<Solid::Block>();
+        auto * sb = device.as<Solid::Block>();
         if (sb) {
             QString devb = QDir(sb->device()).canonicalPath();
             if (expType != Solid::DeviceInterface::Unknown && !device.isDeviceInterface(expType))
@@ -439,7 +439,7 @@ QString KMountMan::findUdiForPath(QString path, const Solid::DeviceInterface::Ty
 QString KMountMan::pathForUdi(QString udi)
 {
     Solid::Device device(udi);
-    Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+    auto *access = device.as<Solid::StorageAccess>();
     if(access)
         return access->filePath();
     else

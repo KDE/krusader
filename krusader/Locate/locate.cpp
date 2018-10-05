@@ -102,8 +102,8 @@ public:
             return;
 
 
-        QDrag *drag = new QDrag(this);
-        QMimeData *mimeData = new QMimeData;
+        auto *drag = new QDrag(this);
+        auto *mimeData = new QMimeData;
         mimeData->setImageData(FileListIcon("file").pixmap());
         mimeData->setUrls(urls);
         drag->setMimeData(mimeData);
@@ -119,15 +119,15 @@ LocateDlg::LocateDlg(QWidget *parent) : QDialog(parent), isFeedToListBox(false)
     setWindowTitle(i18n("Krusader::Locate"));
     setWindowModality(Qt::NonModal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
-    QGridLayout *grid = new QGridLayout();
+    auto *grid = new QGridLayout();
     grid->setSpacing(6);
     grid->setContentsMargins(11, 11, 11, 11);
 
     QWidget *hboxWidget = new QWidget(this);
-    QHBoxLayout *hbox = new QHBoxLayout(hboxWidget);
+    auto *hbox = new QHBoxLayout(hboxWidget);
     hbox->setContentsMargins(0, 0, 0, 0);
 
     QLabel *label = new QLabel(i18n("Search for:"), hboxWidget);
@@ -150,10 +150,10 @@ LocateDlg::LocateDlg(QWidget *parent) : QDialog(parent), isFeedToListBox(false)
     grid->addWidget(hboxWidget, 0, 0);
 
     QWidget *hboxWidget2 = new QWidget(this);
-    QHBoxLayout * hbox2 = new QHBoxLayout(hboxWidget2);
+    auto * hbox2 = new QHBoxLayout(hboxWidget2);
     hbox2->setContentsMargins(0, 0, 0, 0);
 
-    QSpacerItem* spacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    auto* spacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     hbox2->addItem(spacer);
 
     dontSearchInPath = new QCheckBox(i18n("Do not search in path"), hboxWidget2);
@@ -586,7 +586,7 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
         if (urls.count() == 0)
             return;
 
-        QMimeData *mimeData = new QMimeData;
+        auto *mimeData = new QMimeData;
         mimeData->setImageData(FileListIcon("file").pixmap());
         mimeData->setUrls(urls);
 

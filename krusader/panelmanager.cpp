@@ -74,7 +74,7 @@ PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left)
     connect(_tabbar, &PanelTabBar::draggingTab, this, &PanelManager::slotDraggingTab);
     connect(_tabbar, &PanelTabBar::draggingTabFinished, this, &PanelManager::slotDraggingTabFinished);
 
-    QHBoxLayout *tabbarLayout = new QHBoxLayout;
+    auto *tabbarLayout = new QHBoxLayout;
     tabbarLayout->setSpacing(0);
     tabbarLayout->setContentsMargins(0, 0, 0, 0);
 

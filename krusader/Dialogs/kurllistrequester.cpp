@@ -42,7 +42,7 @@ KURLListRequester::KURLListRequester(Mode requestMode, QWidget *parent)
 {
     // Creating the widget
 
-    QGridLayout *urlListRequesterGrid = new QGridLayout(this);
+    auto *urlListRequesterGrid = new QGridLayout(this);
     urlListRequesterGrid->setSpacing(0);
     urlListRequesterGrid->setContentsMargins(0, 0, 0, 0);
 

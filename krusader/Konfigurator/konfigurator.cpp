@@ -112,7 +112,7 @@ void Konfigurator::reject()
 
 void Konfigurator::newPage(KonfiguratorPage *page, const QString &name, const QString &desc, const QIcon &icon)
 {
-    KPageWidgetItem *item = new KPageWidgetItem(page, name);
+    auto *item = new KPageWidgetItem(page, name);
     item->setIcon(icon);
     item->setHeader(desc);
     addPage(item);
@@ -173,7 +173,7 @@ bool Konfigurator::slotPageSwitch(KPageWidgetItem *current, KPageWidgetItem *bef
     if (before == nullptr)
         return true;
 
-    KonfiguratorPage *currentPg = (KonfiguratorPage *)(before->widget());
+    auto *currentPg = (KonfiguratorPage *)(before->widget());
 
     if (internalCall) {
         internalCall = false;

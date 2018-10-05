@@ -198,7 +198,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 
     // toolbar
     QWidget * toolbar = new QWidget(this);
-    QHBoxLayout * toolbarLayout = new QHBoxLayout(toolbar);
+    auto * toolbarLayout = new QHBoxLayout(toolbar);
     toolbarLayout->setContentsMargins(0, 0, 0, 0);
     toolbarLayout->setSpacing(0);
     ADD_WIDGET(toolbar);
@@ -210,7 +210,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 
     // client area
     clientArea = new QWidget(this);
-    QVBoxLayout *clientLayout = new QVBoxLayout(clientArea);
+    auto *clientLayout = new QVBoxLayout(clientArea);
     clientLayout->setSpacing(0);
     clientLayout->setContentsMargins(0, 0, 0, 0);
     ADD_WIDGET(clientArea);
@@ -330,11 +330,11 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     QLayout *layout = fact.createLayout();
 
     if(!layout) { // fallback: create a layout by ourself
-        QVBoxLayout *v = new QVBoxLayout;
+        auto *v = new QVBoxLayout;
         v->setContentsMargins(0, 0, 0, 0);
         v->setSpacing(0);
 
-        QHBoxLayout *h = new QHBoxLayout;
+        auto *h = new QHBoxLayout;
         h->setContentsMargins(0, 0, 0, 0);
         h->setSpacing(0);
         h->addWidget(urlNavigator);
@@ -514,7 +514,7 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
         if(e->type() == QEvent::FocusIn && this != ACTIVE_PANEL && !isHidden())
             slotFocusOnMe();
         else if(e->type() == QEvent::ShortcutOverride) {
-            QKeyEvent *ke = static_cast<QKeyEvent*>(e);
+            auto *ke = static_cast<QKeyEvent*>(e);
             if(ke->key() == Qt::Key_Escape && ke->modifiers() == Qt::NoModifier) {
                 // if the cancel refresh action has no shortcut assigned,
                 // we need this event ourselves to cancel refresh
@@ -529,13 +529,13 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
     else if(watched == urlNavigator->editor()) {
         // override default shortcut for panel focus
         if(e->type() == QEvent::ShortcutOverride) {
-            QKeyEvent *ke = static_cast<QKeyEvent *>(e);
+            auto *ke = static_cast<QKeyEvent *>(e);
             if ((ke->key() == Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier)) {
                 e->accept(); // we will get the key press event now
                 return true;
             }
         } else if(e->type() == QEvent::KeyPress) {
-            QKeyEvent *ke = static_cast<QKeyEvent *>(e);
+            auto *ke = static_cast<QKeyEvent *>(e);
             if ((ke->key() == Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) {
                 slotFocusOnMe();
                 return true;
@@ -856,8 +856,8 @@ void ListPanel::startDragging(QStringList names, QPixmap px)
 
     QList<QUrl> urls = func->files()->getUrls(names);
 
-    QDrag *drag = new QDrag(this);
-    QMimeData *mimeData = new QMimeData;
+    auto *drag = new QDrag(this);
+    auto *mimeData = new QMimeData;
     drag->setPixmap(px);
     mimeData->setUrls(urls);
     drag->setMimeData(mimeData);

@@ -41,9 +41,9 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
         ActionsBase(parent, mainWindow)
 {
     // set view type
-    QSignalMapper *mapper = new QSignalMapper(this);
+    auto *mapper = new QSignalMapper(this);
     connect(mapper, QOverload<int>::of(&QSignalMapper::mapped), this, &ListPanelActions::setView);
-    QActionGroup *group = new QActionGroup(this);
+    auto *group = new QActionGroup(this);
     group->setExclusive(true);
     QList<KrViewInstance*> views = KrViewFactory::registeredViews();
     for(int i = 0; i < views.count(); i++) {

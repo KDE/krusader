@@ -236,7 +236,7 @@ void KrView::initProperties()
         sortOps |= KrViewProperties::IgnoreCase;
     if (grpSvr.readEntry("Locale Aware Sort", true))
         sortOps |= KrViewProperties::LocaleAwareSort;
-    KrViewProperties::SortOptions sortOptions = static_cast<KrViewProperties::SortOptions>(sortOps);
+    auto sortOptions = static_cast<KrViewProperties::SortOptions>(sortOps);
 
     KrViewProperties::SortMethod sortMethod = static_cast<KrViewProperties::SortMethod>(
         grpSvr.readEntry("Sort method", (int)_DefaultSortMethod));

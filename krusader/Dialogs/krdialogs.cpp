@@ -100,7 +100,7 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QStr
 {
     setWindowModality(modal ? Qt::WindowModal : Qt::NonModal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
     mainLayout->addWidget(new QLabel(_text));

@@ -39,7 +39,7 @@
 KgProtocols::KgProtocols(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent)
 {
-    QGridLayout *KgProtocolsLayout = new QGridLayout(this);
+    auto *KgProtocolsLayout = new QGridLayout(this);
     KgProtocolsLayout->setSpacing(6);
 
     //  -------------------------- LINK VIEW ----------------------------------
@@ -60,7 +60,7 @@ KgProtocols::KgProtocols(bool first, QWidget* parent) :
     //  -------------------------- BUTTONS ----------------------------------
 
     QWidget *vbox1Widget = new QWidget(this);
-    QVBoxLayout *vbox1 = new QVBoxLayout(vbox1Widget);
+    auto *vbox1 = new QVBoxLayout(vbox1Widget);
 
     addSpacer(vbox1);
     btnAddProtocol = new QPushButton(vbox1Widget);
@@ -77,7 +77,7 @@ KgProtocols::KgProtocols(bool first, QWidget* parent) :
     KgProtocolsLayout->addWidget(vbox1Widget, 0 , 1);
 
     QWidget *vbox2Widget = new QWidget(this);
-    QVBoxLayout *vbox2 = new QVBoxLayout(vbox2Widget);
+    auto *vbox2 = new QVBoxLayout(vbox2Widget);
 
     addSpacer(vbox2);
     btnAddMime = new QPushButton(vbox2Widget);
@@ -193,7 +193,7 @@ void KgProtocols::addProtocol(QString name, bool changeCurrent)
     QList<QListWidgetItem *> list = protocolList->findItems(name, Qt::MatchExactly);
     if (list.count() > 0) {
         delete list[ 0 ];
-        QTreeWidgetItem *listViewItem = new QTreeWidgetItem(linkList);
+        auto *listViewItem = new QTreeWidgetItem(linkList);
         listViewItem->setText(0, name);
         QString iconName = KProtocolInfo::icon(name);
         if (iconName.isEmpty())
@@ -257,7 +257,7 @@ void KgProtocols::addMime(QString name, QString protocol)
 
     if (list.count() > 0 && currentListItem && currentListItem->parent() == nullptr) {
         delete list[ 0 ];
-        QTreeWidgetItem *listViewItem = new QTreeWidgetItem(currentListItem);
+        auto *listViewItem = new QTreeWidgetItem(currentListItem);
         listViewItem->setText(0, name);
         listViewItem->setIcon(0, Icon(name.replace(QLatin1Char('/'), QLatin1Char('-')), Icon("unknown")));
         linkList->expandItem( currentListItem );

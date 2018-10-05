@@ -137,13 +137,13 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     setWindowTitle(i18n("Krusader::Search"));
     setWindowIcon(Icon("system-search"));
 
-    QGridLayout* searchBaseLayout = new QGridLayout(this);
+    auto* searchBaseLayout = new QGridLayout(this);
     searchBaseLayout->setSpacing(6);
     searchBaseLayout->setContentsMargins(11, 11, 11, 11);
 
     // creating the dialog buttons ( Search, Stop, Close )
 
-    QHBoxLayout* buttonsLayout = new QHBoxLayout();
+    auto* buttonsLayout = new QHBoxLayout();
     buttonsLayout->setSpacing(6);
     buttonsLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -160,7 +160,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     });
     buttonsLayout->addWidget(searchTextToClipboard);
 
-    QSpacerItem* spacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    auto* spacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     buttonsLayout->addItem(spacer);
 
     mainSearchBtn = new QPushButton(this);
@@ -190,7 +190,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     generalFilter = (GeneralFilter *)filterTabs->get("GeneralFilter");
 
     QWidget* resultTab = new QWidget(searcherTabs);
-    QGridLayout* resultLayout = new QGridLayout(resultTab);
+    auto* resultLayout = new QGridLayout(resultTab);
     resultLayout->setSpacing(6);
     resultLayout->setContentsMargins(6, 6, 6, 6);
 
@@ -218,7 +218,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     foundTextFrame->setFrameShape(QLabel::StyledPanel);
     foundTextFrame->setFrameShadow(QLabel::Sunken);
 
-    QHBoxLayout* foundTextLayout = new QHBoxLayout();
+    auto* foundTextLayout = new QHBoxLayout();
     foundTextLayout->setSpacing(6);
 
     QLabel *textFoundLabel = new QLabel(i18n("Text found:"), resultTab);
@@ -232,7 +232,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     resultLayout->addWidget(foundTextFrame, 2, 0);
 
     // result info row
-    QHBoxLayout* resultLabelLayout = new QHBoxLayout();
+    auto* resultLabelLayout = new QHBoxLayout();
     resultLabelLayout->setSpacing(6);
     resultLabelLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -644,7 +644,7 @@ void KrSearchDialog::copyToClipBoard()
     if (urls.count() == 0)
         return;
 
-    QMimeData *mimeData = new QMimeData;
+    auto *mimeData = new QMimeData;
     mimeData->setImageData(FileListIcon("file").pixmap());
     mimeData->setUrls(urls);
 

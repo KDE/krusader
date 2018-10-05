@@ -107,7 +107,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     browseButton = new QToolButton(this);
     browseButton->setIcon(Icon("document-open"));
     hbox_2->addWidget(browseButton);
-    QSpacerItem* spacer = new QSpacerItem(48, 20, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    auto* spacer = new QSpacerItem(48, 20, QSizePolicy::Fixed, QSizePolicy::Fixed);
     hbox_2->addItem(spacer);
 
     grid->addLayout(hbox_2, 2, 0);
@@ -133,7 +133,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     hbox_4->setSpacing(6);
     hbox_4->setContentsMargins(0, 0, 0, 0);
 
-    QSpacerItem* spacer_3 = new QSpacerItem(20, 26, QSizePolicy::Fixed, QSizePolicy::Expanding);
+    auto* spacer_3 = new QSpacerItem(20, 26, QSizePolicy::Fixed, QSizePolicy::Expanding);
     hbox_4->addItem(spacer_3);
     grid->addLayout(hbox_4, 3, 0);
 
@@ -144,7 +144,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     hbox_5->setContentsMargins(0, 0, 0, 0);
 
 
-    QVBoxLayout *compressLayout = new QVBoxLayout;
+    auto *compressLayout = new QVBoxLayout;
     compressLayout->setSpacing(6);
     compressLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -152,9 +152,9 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     connect(multipleVolume, &QCheckBox::toggled, this, &PackGUIBase::checkConsistency);
     compressLayout->addWidget(multipleVolume, 0, nullptr);
 
-    QHBoxLayout * volumeHbox = new QHBoxLayout;
+    auto * volumeHbox = new QHBoxLayout;
 
-    QSpacerItem* spacer_5 = new QSpacerItem(20, 26, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    auto* spacer_5 = new QSpacerItem(20, 26, QSizePolicy::Fixed, QSizePolicy::Fixed);
     volumeHbox->addItem(spacer_5);
 
     TextLabel7 = new QLabel(i18n("Size:"), advancedWidget);
@@ -182,13 +182,13 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     connect(setCompressionLevel, &QCheckBox::toggled, this, &PackGUIBase::checkConsistency);
     compressLayout->addWidget(setCompressionLevel, 0, nullptr);
 
-    QHBoxLayout * sliderHbox = new QHBoxLayout;
+    auto * sliderHbox = new QHBoxLayout;
 
-    QSpacerItem* spacer_6 = new QSpacerItem(20, 26, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    auto* spacer_6 = new QSpacerItem(20, 26, QSizePolicy::Fixed, QSizePolicy::Fixed);
     sliderHbox->addItem(spacer_6);
 
     QWidget * sliderVBoxWidget = new QWidget(advancedWidget);
-    QVBoxLayout *sliderVBox = new QVBoxLayout(sliderVBoxWidget);
+    auto *sliderVBox = new QVBoxLayout(sliderVBoxWidget);
 
     compressionSlider = new QSlider(Qt::Horizontal, sliderVBoxWidget);
     compressionSlider->setMinimum(1);
@@ -201,7 +201,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     QWidget * minmaxWidget = new QWidget(sliderVBoxWidget);
     sliderVBox->addWidget(minmaxWidget);
 
-    QHBoxLayout * minmaxHbox = new QHBoxLayout(minmaxWidget);
+    auto * minmaxHbox = new QHBoxLayout(minmaxWidget);
 
     minLabel = new QLabel(i18n("MIN"), minmaxWidget);
     maxLabel = new QLabel(i18n("MAX"), minmaxWidget);
@@ -223,7 +223,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     hbox_5->addWidget(vline, 0, 1);
 
 
-    QGridLayout * passwordGrid = new QGridLayout;
+    auto * passwordGrid = new QGridLayout;
     passwordGrid->setSpacing(6);
     passwordGrid->setContentsMargins(0, 0, 0, 0);
 
@@ -247,9 +247,9 @@ PackGUIBase::PackGUIBase(QWidget* parent)
 
     passwordGrid->addWidget(passwordAgain, 1, 1);
 
-    QHBoxLayout *consistencyHbox = new QHBoxLayout;
+    auto *consistencyHbox = new QHBoxLayout;
 
-    QSpacerItem* spacer_cons = new QSpacerItem(48, 20, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    auto* spacer_cons = new QSpacerItem(48, 20, QSizePolicy::Expanding, QSizePolicy::Fixed);
     consistencyHbox->addItem(spacer_cons);
 
     passwordConsistencyLabel = new QLabel(advancedWidget);
@@ -259,7 +259,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     encryptHeaders = new QCheckBox(i18n("Encrypt headers"), advancedWidget);
     passwordGrid->addWidget(encryptHeaders, 3, 0, 1, 2);
 
-    QSpacerItem* spacer_psw = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Expanding);
+    auto* spacer_psw = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Expanding);
     passwordGrid->addItem(spacer_psw, 4, 0);
 
     hbox_5->addLayout(passwordGrid, 0, 2);
@@ -298,7 +298,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     advancedButton->setText(i18n("&Advanced >>"));
     hbox_6->addWidget(advancedButton);
 
-    QSpacerItem* spacer_2 = new QSpacerItem(140, 20, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    auto* spacer_2 = new QSpacerItem(140, 20, QSizePolicy::Expanding, QSizePolicy::Fixed);
     hbox_6->addItem(spacer_2);
 
     okButton = new QPushButton(this);

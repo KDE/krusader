@@ -125,7 +125,7 @@ UserActionListViewItem* UserActionListView::findActionItem(const KrAction* actio
 {
     QTreeWidgetItemIterator it(this);
     while (*it) {
-        if (UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>(*it)) {
+        if (auto* item = dynamic_cast<UserActionListViewItem*>(*it)) {
             if (item->action() == action)
                 return item;
         }
@@ -136,7 +136,7 @@ UserActionListViewItem* UserActionListView::findActionItem(const KrAction* actio
 
 KrAction * UserActionListView::currentAction() const
 {
-    if (UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>(currentItem()))
+    if (auto* item = dynamic_cast<UserActionListViewItem*>(currentItem()))
         return item->action();
     else
         return nullptr;
@@ -154,7 +154,7 @@ void UserActionListView::setFirstActionCurrent()
 {
     QTreeWidgetItemIterator it(this);
     while (*it) {
-        if (UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>(*it)) {
+        if (auto* item = dynamic_cast<UserActionListViewItem*>(*it)) {
             setCurrentItem(item);
             break;
         }
@@ -181,7 +181,7 @@ QDomDocument UserActionListView::dumpSelectedActions(QDomDocument* mergeDoc) con
 
     for (int i = 0; i < list.size(); ++i) {
         QTreeWidgetItem* item = list.at(i);
-        if (UserActionListViewItem* actionItem = dynamic_cast<UserActionListViewItem*>(item))
+        if (auto* actionItem = dynamic_cast<UserActionListViewItem*>(item))
             root.appendChild(actionItem->action()->xmlDump(doc));
     }
 
@@ -194,7 +194,7 @@ void UserActionListView::removeSelectedActions()
 
     for (int i = 0; i < list.size(); ++i) {
         QTreeWidgetItem* item = list.at(i);
-        if (UserActionListViewItem* actionItem = dynamic_cast<UserActionListViewItem*>(item)) {
+        if (auto* actionItem = dynamic_cast<UserActionListViewItem*>(item)) {
             delete actionItem->action(); // remove the action itself
             delete actionItem; // remove the action from the list
         } // if

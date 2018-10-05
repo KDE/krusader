@@ -179,7 +179,7 @@ void Synchronizer::compareLoop()
 
             if (entry->inherits("CompareTask")) {
                 if (entry->state() == ST_STATE_READY) {
-                    CompareTask *ctentry = (CompareTask *) entry;
+                    auto *ctentry = (CompareTask *) entry;
                     if (ctentry->isDuplicate())
                         compareDirectory(ctentry->parent(), ctentry->leftDirList(), ctentry->rightDirList(),
                                          ctentry->leftDir(), ctentry->rightDir());
@@ -370,7 +370,7 @@ SynchronizerFileItem * Synchronizer::addItem(SynchronizerFileItem *parent, const
         bool isDir, bool isTemp)
 {
     bool marked = autoScroll ? !isTemp && isMarked(tsk, existsLeft && existsRight) : false;
-    SynchronizerFileItem *item = new SynchronizerFileItem(leftFile, rightFile, leftDir, rightDir, marked,
+    auto *item = new SynchronizerFileItem(leftFile, rightFile, leftDir, rightDir, marked,
             existsLeft, existsRight, leftSize, rightSize, leftDate, rightDate, leftLink, rightLink,
             leftOwner, rightOwner, leftGroup, rightGroup, leftMode, rightMode, leftACL, rightACL, tsk, isDir,
             isTemp, parent);
@@ -1026,13 +1026,13 @@ void Synchronizer::slotTaskFinished(KJob *job)
 
                     utime((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), &timestamp);
 
-                    uid_t newOwnerID = (uid_t) - 1; // chown(2) : -1 means no change
+                    auto newOwnerID = (uid_t) - 1; // chown(2) : -1 means no change
                     if (!item->rightOwner().isEmpty()) {
                         struct passwd* pw = getpwnam(QFile::encodeName(item->rightOwner()));
                         if (pw != nullptr)
                             newOwnerID = pw->pw_uid;
                     }
-                    gid_t newGroupID = (gid_t) - 1; // chown(2) : -1 means no change
+                    auto newGroupID = (gid_t) - 1; // chown(2) : -1 means no change
                     if (!item->rightGroup().isEmpty()) {
                         struct group* g = getgrnam(QFile::encodeName(item->rightGroup()));
                         if (g != nullptr)
@@ -1066,13 +1066,13 @@ void Synchronizer::slotTaskFinished(KJob *job)
 
                     utime((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), &timestamp);
 
-                    uid_t newOwnerID = (uid_t) - 1; // chown(2) : -1 means no change
+                    auto newOwnerID = (uid_t) - 1; // chown(2) : -1 means no change
                     if (!item->leftOwner().isEmpty()) {
                         struct passwd* pw = getpwnam(QFile::encodeName(item->leftOwner()));
                         if (pw != nullptr)
                             newOwnerID = pw->pw_uid;
                     }
-                    gid_t newGroupID = (gid_t) - 1; // chown(2) : -1 means no change
+                    auto newGroupID = (gid_t) - 1; // chown(2) : -1 means no change
                     if (!item->leftGroup().isEmpty()) {
                         struct group* g = getgrnam(QFile::encodeName(item->leftGroup()));
                         if (g != nullptr)
@@ -1108,7 +1108,7 @@ void Synchronizer::slotTaskFinished(KJob *job)
                 if (autoSkip)
                     break;
 
-                KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
+                auto *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
                 ui->setWindow(syncDlgWidget);
 
                 if (item->task() == TT_COPY_TO_LEFT) {
@@ -1178,7 +1178,7 @@ void Synchronizer::slotTaskFinished(KJob *job)
                     break;
                 }
 
-                KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
+                auto *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
                 ui->setWindow(syncDlgWidget);
 
                 KIO::SkipDialog_Result result = ui->askSkip(job, KIO::SkipDialog_MultipleItems, error);
@@ -1280,7 +1280,7 @@ KgetProgressDialog::KgetProgressDialog(QWidget *parent, const QString &caption,
         setWindowTitle(caption);
     setModal(modal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
     mainLayout->addWidget(new QLabel(text));

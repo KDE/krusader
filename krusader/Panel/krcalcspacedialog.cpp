@@ -41,7 +41,7 @@ KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, SizeCalculator *calculator
 {
     setWindowTitle(i18n("Calculate Occupied Space"));
 
-    QVBoxLayout *layout = new QVBoxLayout;
+    auto *layout = new QVBoxLayout;
     setLayout(layout);
     layout->setSizeConstraint(QLayout::SetFixedSize);
 
@@ -86,7 +86,7 @@ void KrCalcSpaceDialog::keyPressEvent(QKeyEvent *e)
 
 void KrCalcSpaceDialog::showDialog(QWidget *parent, SizeCalculator *calculator)
 {
-    KrCalcSpaceDialog *dialog = new KrCalcSpaceDialog(parent, calculator);
+    auto *dialog = new KrCalcSpaceDialog(parent, calculator);
     dialog->show();
 }
 

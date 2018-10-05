@@ -80,7 +80,7 @@ SplitterGUI::SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir) :
 {
     setModal(true);
 
-    QGridLayout *grid = new QGridLayout(this);
+    auto *grid = new QGridLayout(this);
     grid->setSpacing(6);
     grid->setContentsMargins(11, 11, 11, 11);
 
@@ -95,7 +95,7 @@ SplitterGUI::SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir) :
     grid->addWidget(urlReq, 1 , 0);
 
     QWidget *splitSizeLine = new QWidget(this);
-    QHBoxLayout * splitSizeLineLayout = new QHBoxLayout;
+    auto * splitSizeLineLayout = new QHBoxLayout;
     splitSizeLineLayout->setContentsMargins(0, 0, 0, 0);
     splitSizeLine->setLayout(splitSizeLineLayout);
 

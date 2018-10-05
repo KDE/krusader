@@ -233,7 +233,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     actSelectSingle->setCheckable(true);
     actSelectDifferentAndSingle->setCheckable(true);
     actSelectDifferent->setCheckable(true);
-    QActionGroup *selectGroup = new QActionGroup(krusaderApp);
+    auto *selectGroup = new QActionGroup(krusaderApp);
     selectGroup->setExclusive(true);
     selectGroup->addAction(actSelectNewerAndSingle);
     selectGroup->addAction(actSelectNewer);
@@ -252,7 +252,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     actExecCollectTogether->setCheckable(true);
     actExecTerminalExternal->setCheckable(true);
     actExecTerminalEmbedded->setCheckable(true);
-    QActionGroup *actionGroup = new QActionGroup(krusaderApp);
+    auto *actionGroup = new QActionGroup(krusaderApp);
     actionGroup->setExclusive(true);
     actionGroup->addAction(actExecStartAndForget);
     actionGroup->addAction(actExecCollectSeparate);

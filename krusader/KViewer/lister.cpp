@@ -1139,7 +1139,7 @@ bool ListerPane::event(QEvent *e)
 bool ListerPane::handleCloseEvent(QEvent *e)
 {
     if (e->type() == QEvent::ShortcutOverride) {
-        QKeyEvent *ke = static_cast<QKeyEvent *>(e);
+        auto *ke = static_cast<QKeyEvent *>(e);
         if (ke->key() == Qt::Key_Escape) {
             if (_lister->isSearchEnabled()) {
                 _lister->searchDelete();
@@ -1245,7 +1245,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent)
 
     QWidget * widget = new ListerPane(this, parent);
     widget->setFocusPolicy(Qt::StrongFocus);
-    QGridLayout *grid = new QGridLayout(widget);
+    auto *grid = new QGridLayout(widget);
     _textArea = new ListerTextArea(this, widget);
     _textArea->setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
     _textArea->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
@@ -1258,7 +1258,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent)
     _scrollBar->hide();
 
     QWidget * statusWidget = new QWidget(widget);
-    QHBoxLayout *hbox = new QHBoxLayout(statusWidget);
+    auto *hbox = new QHBoxLayout(statusWidget);
 
     _listerLabel = new QLabel(i18n("Lister:"), statusWidget);
     hbox->addWidget(_listerLabel);
@@ -1296,7 +1296,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent)
     hbox->addWidget(_searchPrevButton);
     _searchOptions = new QPushButton(i18n("Options"), statusWidget);
     _searchOptions->setToolTip(i18n("Modify search behavior"));
-    QMenu * menu = new QMenu();
+    auto * menu = new QMenu();
     _fromCursorAction = menu->addAction(i18n("From cursor"));
     _fromCursorAction->setCheckable(true);
     _fromCursorAction->setChecked(true);
@@ -1359,7 +1359,7 @@ bool Lister::openUrl(const QUrl &listerUrl)
         connect(downloadJob, &KIO::TransferJob::result, this, [=](KJob *job) {
             _tempFile->flush();
             if (job->error()) {   /* any error occurred? */
-                KIO::TransferJob *kioJob = (KIO::TransferJob *)job;
+                auto *kioJob = (KIO::TransferJob *)job;
                 KMessageBox::error(_textArea, i18n("Error reading file %1.", kioJob->url().toDisplayString(QUrl::PreferLocalFile)));
             }
             _downloading = false;
@@ -1846,7 +1846,7 @@ void Lister::updateProgressBar()
     }
 
     const qint64 pcnt = (_fileSize == 0) ? 1000 : (2001 * _searchPosition) / _fileSize / 2;
-    const int pctInt = (int) pcnt;
+    const auto pctInt = (int) pcnt;
     if (_searchProgressBar->value() != pctInt)
         _searchProgressBar->setValue(pctInt);
 }
@@ -2208,7 +2208,7 @@ QStringList Lister::readHexLines(qint64 &filePos, const qint64 endPos, const int
                 charData += QString(" ");
             } else {
                 char c = chunk.at(cnt);
-                int charCode = (int)c;
+                auto charCode = (int)c;
                 if (charCode < 0)
                     charCode += 256;
                 QString hex;

@@ -35,10 +35,10 @@ FilterDialog::FilterDialog(QWidget *parent, QString caption, QStringList extraOp
     setWindowTitle(caption.isNull() ? i18n("Krusader::Choose Files") : caption);
     setModal(modal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
-    QTabWidget *filterWidget = new QTabWidget;
+    auto *filterWidget = new QTabWidget;
 
     filterTabs = FilterTabs::addTo(filterWidget, FilterTabs::HasProfileHandler, extraOptions);
     generalFilter = static_cast<GeneralFilter*> (filterTabs->get("GeneralFilter"));

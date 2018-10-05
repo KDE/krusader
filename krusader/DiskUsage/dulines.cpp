@@ -149,7 +149,7 @@ public:
         if (text(0) == "..")
             return true;
 
-        const DULinesItem *compWith = dynamic_cast< const DULinesItem * >(&other);
+        const auto *compWith = dynamic_cast< const DULinesItem * >(&other);
         if (compWith == nullptr)
             return false;
 
@@ -234,7 +234,7 @@ bool DULines::event(QEvent * event)
 {
     switch (event->type()) {
     case QEvent::ToolTip: {
-        QHelpEvent *he = static_cast<QHelpEvent*>(event);
+        auto *he = static_cast<QHelpEvent*>(event);
 
         if (viewport()) {
             QPoint pos = viewport()->mapFromGlobal(he->globalPos());
@@ -383,7 +383,7 @@ void DULines::sectionResized(int column)
     while (*it2) {
         QTreeWidgetItem *lvitem = *it2;
         if (lvitem->text(0) != "..") {
-            DULinesItem *duItem = dynamic_cast< DULinesItem *>(lvitem);
+            auto *duItem = dynamic_cast< DULinesItem *>(lvitem);
             if (duItem) {
                 int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
                 duItem->setData(0, Qt::DecorationRole, createPixmap(duItem->getFile()->intPercent(), maxPercent, header()->sectionSize(0) - 2 * textMargin));
@@ -405,7 +405,7 @@ bool DULines::doubleClicked(QTreeWidgetItem * item)
                 diskUsage->changeDirectory(dynamic_cast<Directory *>(fileItem));
             return true;
         } else {
-            Directory *upDir = (Directory *)diskUsage->getCurrentDir()->parent();
+            auto *upDir = (Directory *)diskUsage->getCurrentDir()->parent();
 
             if (upDir)
                 diskUsage->changeDirectory(upDir);
@@ -491,7 +491,7 @@ void DULines::slotChanged(File * item)
         it++;
 
         if (lvitem->text(0) != "..") {
-            DULinesItem *duItem = (DULinesItem *)(lvitem);
+            auto *duItem = (DULinesItem *)(lvitem);
             if (duItem->getFile() == item) {
                 setSortingEnabled(false);
                 duItem->setHidden(item->isExcluded());
@@ -514,7 +514,7 @@ void DULines::slotDeleted(File * item)
         it++;
 
         if (lvitem->text(0) != "..") {
-            DULinesItem *duItem = (DULinesItem *)(lvitem);
+            auto *duItem = (DULinesItem *)(lvitem);
             if (duItem->getFile() == item) {
                 delete duItem;
                 break;

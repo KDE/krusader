@@ -48,7 +48,7 @@
 
 Sidebar::Sidebar(QWidget *parent) : QWidget(parent), stack(nullptr), imageFilePreview(nullptr), pjob(nullptr)
 {
-    QGridLayout * layout = new QGridLayout(this);
+    auto * layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
 
     // create the label+buttons setup

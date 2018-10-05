@@ -75,7 +75,7 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
     header()->setSectionResizeMode(QHeaderView::Interactive);
     header()->setStretchLastSection(false);
 
-    KrStyleProxy *style = new KrStyleProxy();
+    auto *style = new KrStyleProxy();
     style->setParent(this);
     setStyle(style);
     viewport()->setStyle(style); // for custom tooltip delay
@@ -271,7 +271,7 @@ bool KrInterDetailedView::eventFilter(QObject *object, QEvent *event)
 {
     if (object == header()) {
         if (event->type() == QEvent::ContextMenu) {
-            QContextMenuEvent *me = (QContextMenuEvent *)event;
+            auto *me = (QContextMenuEvent *)event;
             showContextMenu(me->globalPos());
             return true;
         } else if (event->type() == QEvent::Resize) {
@@ -372,7 +372,7 @@ bool KrInterDetailedView::viewportEvent(QEvent * event)
         // only show tooltip if column is not wide enough to show all text. In this case the column
         // data text is abbreviated and the full text is shown as tooltip, see ListModel::data().
 
-        QHelpEvent *he = static_cast<QHelpEvent*>(event);
+        auto *he = static_cast<QHelpEvent*>(event);
         const QModelIndex index = indexAt(he->pos());
         // name column has a detailed tooltip
         if (index.isValid() && index.column() != KrViewProperties::Name) {
@@ -440,7 +440,7 @@ QRect KrInterDetailedView::itemRect(const FileItem *item)
 void KrInterDetailedView::copySettingsFrom(KrView *other)
 {
     if(other->instance() == instance()) { // the other view is of the same type
-        KrInterDetailedView *v = static_cast<KrInterDetailedView*>(other);
+        auto *v = static_cast<KrInterDetailedView*>(other);
         _autoResizeColumns = v->_autoResizeColumns;
         header()->restoreState(v->header()->saveState());
         _model->setExtensionEnabled(!isColumnHidden(KrViewProperties::Ext));

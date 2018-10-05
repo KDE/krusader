@@ -43,7 +43,7 @@ FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget,
     filterList.append(generalFilter);
     pageNumbers.append(tabWidget->indexOf(generalFilter));
 
-    AdvancedFilter *advancedFilter = new AdvancedFilter(this, tabWidget);
+    auto *advancedFilter = new AdvancedFilter(this, tabWidget);
     tabWidget->addTab(advancedFilter, i18n("&Advanced"));
     filterList.append(advancedFilter);
     pageNumbers.append(tabWidget->indexOf(advancedFilter));

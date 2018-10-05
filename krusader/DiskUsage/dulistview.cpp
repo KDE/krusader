@@ -174,7 +174,7 @@ void DUListView::slotChanged(File * item)
     if (itemPtr == nullptr)
         return;
 
-    DUListViewItem *duItem = (DUListViewItem *)itemPtr;
+    auto *duItem = (DUListViewItem *)itemPtr;
     duItem->setHidden(item->isExcluded());
     duItem->setText(1, item->percent());
     duItem->setText(2, KRpermHandler::parseSize(item->size()) + ' ');
@@ -187,7 +187,7 @@ void DUListView::slotDeleted(File * item)
     if (itemPtr == nullptr)
         return;
 
-    DUListViewItem *duItem = (DUListViewItem *)itemPtr;
+    auto *duItem = (DUListViewItem *)itemPtr;
     delete duItem;
 }
 
@@ -210,7 +210,7 @@ bool DUListView::doubleClicked(QTreeWidgetItem * item)
                 diskUsage->changeDirectory(dynamic_cast<Directory *>(fileItem));
             return true;
         } else {
-            Directory *upDir = (Directory *)diskUsage->getCurrentDir()->parent();
+            auto *upDir = (Directory *)diskUsage->getCurrentDir()->parent();
 
             if (upDir)
                 diskUsage->changeDirectory(upDir);

@@ -126,7 +126,7 @@ public:
         if (text(0) == "..")
             return true;
 
-        const DUListViewItem *compWith = dynamic_cast< const DUListViewItem * >(&other);
+        const auto *compWith = dynamic_cast< const DUListViewItem * >(&other);
         if (compWith == nullptr)
             return false;
 

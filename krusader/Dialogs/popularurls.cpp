@@ -105,7 +105,7 @@ void PopularUrls::load()
     QStringList::Iterator uit;
     QList<int>::Iterator rit;
     for (uit = urlList.begin(), rit = rankList.begin(); uit != urlList.end() && rit != rankList.end(); ++uit, ++rit) {
-        UrlNodeP node = new UrlNode;
+        auto node = new UrlNode;
         node->url = QUrl(*uit);
         node->rank = *rit;
         appendNode(node);
@@ -280,10 +280,10 @@ PopularUrlsDlg::PopularUrlsDlg():
     setWindowTitle(i18n("Popular URLs"));
     setWindowModality(Qt::WindowModal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
-    QGridLayout *layout = new QGridLayout;
+    auto *layout = new QGridLayout;
     layout->setContentsMargins(0, 0, 0, 0);
 
     // listview to contain the urls
@@ -356,7 +356,7 @@ void PopularUrlsDlg::run(QList<QUrl> list)
     QTreeWidgetItem * lastItem = nullptr;
 
     for (it = list.begin(); it != list.end(); ++it) {
-        QTreeWidgetItem *item = new QTreeWidgetItem(urls, lastItem);
+        auto *item = new QTreeWidgetItem(urls, lastItem);
         lastItem = item;
         item->setText(0, (*it).isLocalFile() ? (*it).path() : (*it).toDisplayString());
         item->setIcon(0, (*it).isLocalFile() ? Icon("folder") : Icon("folder-html"));

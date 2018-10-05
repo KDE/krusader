@@ -26,7 +26,7 @@
 
 KrListWidget::KrListWidget(QWidget *parent) : QListWidget(parent)
 {
-    KrStyleProxy *style = new KrStyleProxy();
+    auto *style = new KrStyleProxy();
     style->setParent(this);
     setStyle(style);
 

@@ -241,7 +241,7 @@ bool KrViewer::eventFilter(QObject * /* watched */, QEvent * e)
     // Should look into if there is any way to fix it. Currently if a KPart has same shortcut as KrViewer then
     // it causes a conflict, messagebox shown to user and no action triggered.
     if (e->type() == QEvent::ShortcutOverride) {
-        QKeyEvent* ke = (QKeyEvent*) e;
+        auto* ke = (QKeyEvent*) e;
         if (reservedKeys.contains(ke->key())) {
             ke->accept();
 
@@ -258,7 +258,7 @@ bool KrViewer::eventFilter(QObject * /* watched */, QEvent * e)
             return true;
         }
     } else if (e->type() == QEvent::KeyPress) {
-        QKeyEvent* ke = (QKeyEvent*) e;
+        auto* ke = (QKeyEvent*) e;
         if (reservedKeys.contains(ke->key())) {
             ke->accept();
             return true;
@@ -282,7 +282,7 @@ KrViewer* KrViewer::getViewer(bool new_window)
         }
         return viewers.first();
     } else {
-        KrViewer *newViewer = new KrViewer();
+        auto *newViewer = new KrViewer();
         viewers.prepend(newViewer);
         return newViewer;
     }
@@ -404,7 +404,7 @@ void KrViewer::tabCloseRequest(int index, bool force)
     // important to save as returnFocusTo will be cleared at removePart
     QWidget *returnFocusToThisWidget = returnFocusTo;
 
-    PanelViewerBase *pvb = static_cast<PanelViewerBase *>(tabBar.widget(index));
+    auto *pvb = static_cast<PanelViewerBase *>(tabBar.widget(index));
     if (!pvb)
         return;
 
@@ -453,7 +453,7 @@ bool KrViewer::queryClose()
     group.writeEntry("Window Maximized", isMaximized());
 
     for (int i = 0; i != tabBar.count(); i++) {
-        PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.widget(i));
+        auto* pvb = static_cast<PanelViewerBase*>(tabBar.widget(i));
         if (!pvb)
             continue;
 
@@ -467,35 +467,35 @@ bool KrViewer::queryClose()
 
 void KrViewer::viewGeneric()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         viewInternal(pvb->url(), Generic);
 }
 
 void KrViewer::viewText()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         viewInternal(pvb->url(), Text);
 }
 
 void KrViewer::viewLister()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         viewInternal(pvb->url(), Lister);
 }
 
 void KrViewer::viewHex()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         viewInternal(pvb->url(), Hex);
 }
 
 void KrViewer::editText()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         editInternal(pvb->url(), Text);
 }
@@ -504,7 +504,7 @@ void KrViewer::checkModified()
 {
     QTimer::singleShot(CHECK_MODFIED_INTERVAL, this, &KrViewer::checkModified);
 
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         refreshTab(pvb);
 }
@@ -532,7 +532,7 @@ void KrViewer::prevTab()
 
 void KrViewer::detachTab()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (!pvb) return;
 
     KrViewer* viewer = getViewer(true);
@@ -576,7 +576,7 @@ void KrViewer::changeEvent(QEvent *e)
 
 void KrViewer::print()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (!pvb || !pvb->part() || !isPartAdded(pvb->part()))
         return;
 
@@ -587,7 +587,7 @@ void KrViewer::print()
 
 void KrViewer::copy()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (!pvb || !pvb->part() || !isPartAdded(pvb->part()))
         return;
 

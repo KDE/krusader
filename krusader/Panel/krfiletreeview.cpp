@@ -199,7 +199,7 @@ void KrFileTreeView::showHeaderContextMenu()
     showHiddenAction->setToolTip(i18n("Show folders starting with a dot"));
 
     popup.addSeparator();
-    QActionGroup *rootActionGroup = new QActionGroup(this);
+    auto *rootActionGroup = new QActionGroup(this);
 
     QAction *startFromRootAction = popup.addAction(i18n("Start From Root"));
     startFromRootAction->setCheckable(true);
@@ -241,7 +241,7 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
     const KFileItem fileItem = mSourceModel->itemForIndex(mProxyModel->mapToSource(index));
     const KFileItemListProperties capabilities(KFileItemList() << fileItem);
 
-    QMenu* popup = new QMenu(this);
+    auto* popup = new QMenu(this);
 
     // TODO nice to have: "open with"
 
@@ -314,7 +314,7 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
 
 void KrFileTreeView::copyToClipBoard(const KFileItem &fileItem, bool cut) const
 {
-    QMimeData* mimeData = new QMimeData();
+    auto* mimeData = new QMimeData();
 
     QList<QUrl> kdeUrls;
     kdeUrls.append(fileItem.url());

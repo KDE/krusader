@@ -51,9 +51,9 @@ KRMaskChoice::KRMaskChoice(QWidget* parent)
     resize(401, 314);
     setWindowTitle(i18n("Choose Files"));
 
-    QVBoxLayout* MainLayout = new QVBoxLayout(this);
+    auto* MainLayout = new QVBoxLayout(this);
 
-    QHBoxLayout* HeaderLayout = new QHBoxLayout();
+    auto* HeaderLayout = new QHBoxLayout();
     MainLayout->addLayout(HeaderLayout);
 
     PixmapLabel1 = new QLabel(this);
@@ -71,18 +71,18 @@ KRMaskChoice::KRMaskChoice(QWidget* parent)
     selection->setAutoCompletion(true);
     MainLayout->addWidget(selection);
 
-    QGroupBox* GroupBox1 = new QGroupBox(this);
+    auto* GroupBox1 = new QGroupBox(this);
     GroupBox1->setTitle(i18n("Predefined Selections"));
     MainLayout->addWidget(GroupBox1);
 
-    QHBoxLayout* gbLayout = new QHBoxLayout(GroupBox1);
+    auto* gbLayout = new QHBoxLayout(GroupBox1);
 
     preSelections = new KrListWidget(GroupBox1);
     preSelections->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     preSelections->setWhatsThis(i18n("A predefined selection is a file-mask which you often use.\nSome examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\nYou can add these masks to the list by typing them and pressing the Add button.\nDelete removes a predefined selection and Clear removes all of them.\nNotice that the line in which you edit the mask has its own history, you can scroll it, if needed."));
     gbLayout->addWidget(preSelections);
 
-    QVBoxLayout* vbox = new QVBoxLayout();
+    auto* vbox = new QVBoxLayout();
     gbLayout->addLayout(vbox);
 
     PushButton7 = new QPushButton(GroupBox1);

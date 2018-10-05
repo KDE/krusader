@@ -63,7 +63,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
     setWindowTitle(i18n("New Network Connection"));
     resize(500, 240);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
     QSizePolicy policy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -121,11 +121,11 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
     password = new KLineEdit(this);
     password->setEchoMode(QLineEdit::Password);
 
-    QHBoxLayout *horizontalLayout = new QHBoxLayout();
+    auto *horizontalLayout = new QHBoxLayout();
     horizontalLayout->addWidget(iconLabel);
     horizontalLayout->addWidget(aboutLabel);
 
-    QGridLayout *gridLayout = new QGridLayout();
+    auto *gridLayout = new QGridLayout();
     gridLayout->addWidget(protocolLabel, 0, 0, 1, 1);
     gridLayout->addWidget(hostLabel, 0, 1, 1, 1);
     gridLayout->addWidget(portLabel, 0, 2, 1, 1);
@@ -137,7 +137,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
     gridLayout->addWidget(passwordLabel, 4, 0, 1, 1);
     gridLayout->addWidget(password, 5, 0, 1, 3);
 
-    QGridLayout *widgetLayout = new QGridLayout();
+    auto *widgetLayout = new QGridLayout();
     widgetLayout->addLayout(horizontalLayout, 0, 0, 1, 1);
     widgetLayout->addLayout(gridLayout, 1, 0, 1, 1);
     mainLayout->addLayout(widgetLayout);

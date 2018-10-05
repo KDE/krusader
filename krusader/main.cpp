@@ -281,7 +281,7 @@ int main(int argc, char *argv[])
     } // don't remove bracket
 
     Krusader::AppName = appName;
-    Krusader *krusader = new Krusader(parser);
+    auto *krusader = new Krusader(parser);
 
     if(!url.isEmpty())
         krusader->openUrl(url);

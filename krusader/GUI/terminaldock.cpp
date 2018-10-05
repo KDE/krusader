@@ -229,7 +229,7 @@ bool TerminalDock::eventFilter(QObject * watched, QEvent * e)
 
     switch (e->type()) {
     case QEvent::ShortcutOverride: {
-        QKeyEvent *ke = (QKeyEvent *)e;
+        auto *ke = (QKeyEvent *)e;
         // If not present, some keys would be considered a shortcut, for example "a"
         if ((ke->key() ==  Qt::Key_Insert) && (ke->modifiers()  == Qt::ShiftModifier)) {
             ke->accept();
@@ -243,7 +243,7 @@ bool TerminalDock::eventFilter(QObject * watched, QEvent * e)
         break;
     }
     case QEvent::KeyPress: {
-        QKeyEvent *ke = (QKeyEvent *)e;
+        auto *ke = (QKeyEvent *)e;
         if (applyShortcuts(ke)) {
             ke->accept();
             return true;

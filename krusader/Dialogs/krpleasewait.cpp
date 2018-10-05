@@ -51,7 +51,7 @@ KRPleaseWait::KRPleaseWait(QString msg, QWidget *parent, int count, bool cancel)
 
     connect(timer, &QTimer::timeout, this, &KRPleaseWait::cycleProgress);
 
-    QProgressBar* progress = new QProgressBar(this);
+    auto* progress = new QProgressBar(this);
     progress->setMaximum(count);
     progress->setMinimum(0);
     setBar(progress);
