@@ -30,11 +30,7 @@
 #include <KCodecs/KCharsets>
 
 FilterSettings::FileSize& FilterSettings::FileSize::operator=(const FileSize &other)
-{
-    amount = other.amount;
-    unit = other.unit;
-    return *this;
-}
+= default;
 
 KIO::filesize_t FilterSettings::FileSize::size() const
 {
@@ -55,11 +51,7 @@ KIO::filesize_t FilterSettings::FileSize::size() const
 
 
 FilterSettings::TimeSpan& FilterSettings::TimeSpan::operator=(const TimeSpan &other)
-{
-    amount = other.amount;
-    unit = other.unit;
-    return *this;
-}
+= default;
 
 int FilterSettings::TimeSpan::days() const
 {

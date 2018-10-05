@@ -35,7 +35,7 @@ DirHistoryQueue::DirHistoryQueue(KrPanel *panel) :
 {
 }
 
-DirHistoryQueue::~DirHistoryQueue() {}
+DirHistoryQueue::~DirHistoryQueue() = default;
 
 void DirHistoryQueue::clear()
 {

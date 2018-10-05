@@ -94,8 +94,7 @@ ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
 }
 
 ActionProperty::~ActionProperty()
-{
-}
+= default;
 
 void ActionProperty::changedShortcut(const QKeySequence& shortcut)
 {

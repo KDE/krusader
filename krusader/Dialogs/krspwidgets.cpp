@@ -49,8 +49,7 @@ QStringList KRSpWidgets::maskList;
 ///////////////////////////////////////////////////////////////////////////////
 
 KRSpWidgets::KRSpWidgets()
-{
-}
+= default;
 
 KRQuery KRSpWidgets::getMask(QString caption, bool nameOnly, QWidget * parent)
 {

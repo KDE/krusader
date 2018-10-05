@@ -58,8 +58,7 @@ void ListModel::populate(const QList<FileItem *> &files, FileItem *dummy)
 }
 
 ListModel::~ListModel()
-{
-}
+= default;
 
 void ListModel::clear(bool emitLayoutChanged)
 {

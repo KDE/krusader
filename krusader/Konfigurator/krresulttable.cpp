@@ -47,8 +47,7 @@ KrResultTable::KrResultTable(QWidget* parent)
 }
 
 KrResultTable::~KrResultTable()
-{
-}
+= default;
 
 
 QGridLayout* KrResultTable::initTable()
@@ -184,8 +183,7 @@ KrArchiverResultTable::KrArchiverResultTable(QWidget* parent)
 }
 
 KrArchiverResultTable::~KrArchiverResultTable()
-{
-}
+= default;
 
 
 bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
@@ -321,8 +319,7 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
 }
 
 KrToolResultTable::~KrToolResultTable()
-{
-}
+= default;
 
 
 bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)

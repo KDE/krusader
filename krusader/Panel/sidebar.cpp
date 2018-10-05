@@ -139,7 +139,7 @@ Sidebar::Sidebar(QWidget *parent) : QWidget(parent), stack(nullptr), imageFilePr
     setCurrentPage(0);
 }
 
-Sidebar::~Sidebar() {}
+Sidebar::~Sidebar() = default;
 
 void Sidebar::saveSettings(KConfigGroup cfg) const
 {

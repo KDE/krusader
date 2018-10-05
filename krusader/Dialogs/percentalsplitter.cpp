@@ -37,8 +37,7 @@ PercentalSplitter::PercentalSplitter(QWidget * parent) : QSplitter(parent), labe
 }
 
 PercentalSplitter::~PercentalSplitter()
-{
-}
+= default;
 
 QString PercentalSplitter::toolTipString(int p)
 {

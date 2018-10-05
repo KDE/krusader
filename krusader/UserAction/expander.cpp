@@ -72,8 +72,7 @@ inline QStringList exp_placeholder::splitEach(const TagString& s)
     return Expander::splitEach(s);
 }
 inline exp_placeholder::exp_placeholder()
-{
-}
+= default;
 
 void exp_placeholder::panelMissingError(const QString &s, Expander& exp)
 {

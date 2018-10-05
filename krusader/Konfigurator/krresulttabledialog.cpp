@@ -113,8 +113,7 @@ KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
 }
 
 KrResultTableDialog::~KrResultTableDialog()
-{
-}
+= default;
 
 void KrResultTableDialog::showHelp()
 {

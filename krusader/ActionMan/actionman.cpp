@@ -61,8 +61,7 @@ ActionMan::ActionMan(QWidget * parent)
 }
 
 ActionMan::~ActionMan()
-{
-}
+= default;
 
 void ActionMan::slotClose()
 {

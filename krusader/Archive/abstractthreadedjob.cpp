@@ -256,7 +256,7 @@ protected:
     AbstractJobThread * _jobThread;
 public:
     explicit AbstractJobObserver(AbstractJobThread * thread): _jobThread(thread) {}
-    ~AbstractJobObserver() override {}
+    ~AbstractJobObserver() override = default;
 
     void processEvents() Q_DECL_OVERRIDE {
         usleep(1000);

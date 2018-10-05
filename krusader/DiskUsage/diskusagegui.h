@@ -40,7 +40,7 @@ class DiskUsageGUI : public QDialog
 
 public:
     explicit DiskUsageGUI(const QUrl &openDir);
-    ~DiskUsageGUI() override {}
+    ~DiskUsageGUI() override = default;
     void askDirAndShow();
 
 protected slots:

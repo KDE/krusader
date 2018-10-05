@@ -92,7 +92,7 @@ KMountMan::KMountMan(QWidget *parent) : QObject(), _operational(false), waiting(
 
 }
 
-KMountMan::~KMountMan() {}
+KMountMan::~KMountMan() = default;
 
 bool KMountMan::invalidFilesystem(QString type)
 {

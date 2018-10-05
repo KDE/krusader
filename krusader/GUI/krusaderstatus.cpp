@@ -34,6 +34,5 @@ KrusaderStatus::KrusaderStatus(QWidget *parent):
 }
 
 KrusaderStatus::~KrusaderStatus()
-{
-}
+= default;
 

@@ -71,7 +71,7 @@ extern "C"
     {
     public:
         KrArcCodec(QTextCodec * codec) : originalCodec(codec) {}
-        ~KrArcCodec() override {}
+        ~KrArcCodec() override = default;
 
         QByteArray name() const Q_DECL_OVERRIDE {
             return  originalCodec->name();

@@ -46,7 +46,7 @@ class KrFileTreeView : public QTreeView
 
 public:
     explicit KrFileTreeView(QWidget *parent = nullptr);
-    ~KrFileTreeView() override {}
+    ~KrFileTreeView() override = default;
 
     void setCurrentUrl(const QUrl &url);
 

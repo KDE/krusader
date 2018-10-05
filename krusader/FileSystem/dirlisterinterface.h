@@ -35,7 +35,7 @@ class DirListerInterface : public QObject
     Q_OBJECT
 public:
     explicit DirListerInterface(QObject *parent) : QObject(parent) {}
-    ~DirListerInterface() override {}
+    ~DirListerInterface() override = default;
 
     /**
      * Return the file items of all files and directories. Without current (".") and parent ("..")

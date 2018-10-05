@@ -38,7 +38,7 @@ class KRarcObserver : public QObject
 {
     Q_OBJECT
 public:
-    ~KRarcObserver() override {}
+    ~KRarcObserver() override = default;
 
     virtual void processEvents() = 0;
     virtual void subJobStarted(const QString & jobTitle, int count) = 0;

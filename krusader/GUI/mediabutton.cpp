@@ -75,8 +75,7 @@ MediaButton::MediaButton(QWidget *parent) : QToolButton(parent),
 }
 
 MediaButton::~MediaButton()
-{
-}
+= default;
 
 void MediaButton::updateIcon(const QString &mountPoint)
 {

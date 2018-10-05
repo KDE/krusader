@@ -31,8 +31,7 @@
 #include "../krglobal.h"
 
 KrActionBase::~KrActionBase()
-{
-}
+= default;
 
 void KrActionBase::exec()
 {

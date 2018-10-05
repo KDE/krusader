@@ -39,8 +39,7 @@ KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent):
 
 
 KrSqueezedTextLabel::~KrSqueezedTextLabel()
-{
-}
+= default;
 
 void KrSqueezedTextLabel::mousePressEvent(QMouseEvent *e)
 {

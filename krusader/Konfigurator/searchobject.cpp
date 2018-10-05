@@ -23,8 +23,7 @@
 #include "../krservices.h"
 
 SearchObject::SearchObject()
-{
-}
+= default;
 
 SearchObject::SearchObject(const QString& searchName, bool found, const QString& note)
         : _searchName(searchName),
@@ -34,15 +33,13 @@ SearchObject::SearchObject(const QString& searchName, bool found, const QString&
 }
 
 SearchObject::~SearchObject()
-{
-}
+= default;
 
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
 Application::Application()
-{
-}
+= default;
 
 Application::Application(const QString& searchName, bool found, const QString& appName, const QString& website, const QString& note)
         : SearchObject(searchName, found, note),
@@ -61,8 +58,7 @@ Application::Application(const QString& searchName, const QString& website, bool
 }
 
 Application::~Application()
-{
-}
+= default;
 
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
@@ -80,8 +76,7 @@ Archiver::Archiver(const QString& searchName, const QString& website, bool found
 }
 
 Archiver::~Archiver()
-{
-}
+= default;
 
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
@@ -94,5 +89,4 @@ ApplicationGroup::ApplicationGroup(const QString& searchName, bool foundGroup, c
 }
 
 ApplicationGroup::~ApplicationGroup()
-{
-}
+= default;

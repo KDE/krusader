@@ -53,8 +53,7 @@ UserActionListView::UserActionListView(QWidget * parent)
 }
 
 UserActionListView::~UserActionListView()
-{
-}
+= default;
 
 QSize UserActionListView::sizeHint() const
 {
@@ -216,8 +215,7 @@ UserActionListViewItem::UserActionListViewItem(QTreeWidgetItem* item, KrAction *
 }
 
 UserActionListViewItem::~UserActionListViewItem()
-{
-}
+= default;
 
 void UserActionListViewItem::setAction(KrAction * action)
 {

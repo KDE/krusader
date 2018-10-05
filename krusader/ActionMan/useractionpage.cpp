@@ -138,8 +138,7 @@ UserActionPage::UserActionPage(QWidget* parent)
 }
 
 UserActionPage::~UserActionPage()
-{
-}
+= default;
 
 bool UserActionPage::continueInSpiteOfChanges()
 {

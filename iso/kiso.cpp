@@ -102,7 +102,7 @@ static int getTracks(const char *fname, int *tracks)
 class KIso::KIsoPrivate
 {
 public:
-    KIsoPrivate() {}
+    KIsoPrivate() = default;
     QStringList dirList;
 };
 

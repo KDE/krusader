@@ -119,8 +119,7 @@ PanelViewer::PanelViewer(QWidget *parent, KrViewer::Mode mode) :
 }
 
 PanelViewer::~PanelViewer()
-{
-}
+= default;
 
 KParts::ReadOnlyPart* PanelViewer::getListerPart(bool hexMode)
 {
@@ -312,8 +311,7 @@ PanelEditor::PanelEditor(QWidget *parent, KrViewer::Mode mode) :
 }
 
 PanelEditor::~PanelEditor()
-{
-}
+= default;
 
 void PanelEditor::configureDeps()
 {

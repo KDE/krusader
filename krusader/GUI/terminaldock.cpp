@@ -65,8 +65,7 @@ TerminalDock::TerminalDock(QWidget* parent, KrMainWindow *mainWindow) : QWidget(
 }
 
 TerminalDock::~TerminalDock()
-{
-}
+= default;
 
 bool TerminalDock::initialise()
 {

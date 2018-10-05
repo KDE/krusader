@@ -48,7 +48,7 @@ class PackThread : public AbstractJobThread
 
 public:
     PackThread(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps);
-    ~PackThread() override {}
+    ~PackThread() override = default;
 
 protected slots:
     void slotStart() Q_DECL_OVERRIDE;
@@ -80,7 +80,7 @@ class TestArchiveThread : public AbstractJobThread
 
 public:
     TestArchiveThread(const QUrl &srcUrl, const QStringList & fileNames);
-    ~TestArchiveThread() override {}
+    ~TestArchiveThread() override = default;
 
 protected slots:
     void slotStart() Q_DECL_OVERRIDE;
@@ -110,7 +110,7 @@ class UnpackThread : public AbstractJobThread
 
 public:
     UnpackThread(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames);
-    ~UnpackThread() override {}
+    ~UnpackThread() override = default;
 
 protected slots:
     void slotStart() Q_DECL_OVERRIDE;
