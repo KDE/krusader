@@ -139,7 +139,7 @@ void SizeCalculator::slotStatResult(KJob *job)
         return;
     }
 
-    const KIO::StatJob *statJob = static_cast<KIO::StatJob *>(job);
+    const KIO::StatJob *statJob = dynamic_cast<KIO::StatJob *>(job);
     const QUrl url = statJob->url();
 
     const KFileItem kfi(statJob->statResult(), url, true);

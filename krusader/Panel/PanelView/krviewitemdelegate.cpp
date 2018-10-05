@@ -91,7 +91,7 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
     if (!editor)
         return false;
     if (event->type() == QEvent::KeyPress) {
-        switch (static_cast<QKeyEvent *>(event)->key()) {
+        switch (dynamic_cast<QKeyEvent *>(event)->key()) {
         case Qt::Key_Tab:
         case Qt::Key_Backtab:
             _currentlyEdited = -1;
@@ -142,7 +142,7 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
             emit closeEditor(editor, RevertModelCache);
         }
     } else if (event->type() == QEvent::ShortcutOverride) {
-        const QKeyEvent *ke = static_cast<QKeyEvent *>(event);
+        const QKeyEvent *ke = dynamic_cast<QKeyEvent *>(event);
         if (ke->key() == Qt::Key_Escape ||
             (ke->key() == Qt::Key_Backspace && ke->modifiers() == Qt::ControlModifier)) {
             event->accept();

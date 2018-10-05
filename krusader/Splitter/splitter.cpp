@@ -180,7 +180,7 @@ void Splitter::statOutputFileResult(KJob* job)
         if (job->error() == KIO::ERR_DOES_NOT_EXIST)
             openOutputFile();
         else {
-            static_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
+            dynamic_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
             emit reject();
         }
     } else { // destination already exists

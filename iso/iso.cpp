@@ -492,7 +492,7 @@ void kio_isoProtocol::get(const QUrl &url)
         return;
     }
 
-    const auto* isoFileEntry = static_cast<const KIsoFile *>(isoEntry);
+    const auto* isoFileEntry = dynamic_cast<const KIsoFile *>(isoEntry);
     if (!isoEntry->symLinkTarget().isEmpty()) {
         //qDebug() << "Redirection to " << isoEntry->symLinkTarget() << endl;
         QUrl realURL = QUrl(url).resolved(QUrl(isoEntry->symLinkTarget()));

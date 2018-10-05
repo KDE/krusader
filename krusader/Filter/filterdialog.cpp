@@ -42,7 +42,7 @@ FilterDialog::FilterDialog(QWidget *parent, const QString& caption, QStringList 
     auto *filterWidget = new QTabWidget;
 
     filterTabs = FilterTabs::addTo(filterWidget, FilterTabs::HasProfileHandler, std::move(extraOptions));
-    generalFilter = static_cast<GeneralFilter*> (filterTabs->get("GeneralFilter"));
+    generalFilter = dynamic_cast<GeneralFilter*> (filterTabs->get("GeneralFilter"));
 
     mainLayout->addWidget(filterWidget);
 

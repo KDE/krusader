@@ -816,7 +816,7 @@ void ListPanelFunc::removeVirtualFiles()
                                                KStandardGuiItem::remove()) != KMessageBox::Continue)
         return;
 
-    auto *fileSystem = static_cast<VirtualFileSystem*>(files());
+    auto *fileSystem = dynamic_cast<VirtualFileSystem*>(files());
     fileSystem->remove(fileNames);
 }
 

@@ -1108,7 +1108,7 @@ void Synchronizer::slotTaskFinished(KJob *job)
                 if (autoSkip)
                     break;
 
-                auto *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
+                auto *ui = dynamic_cast<KIO::JobUiDelegate*>(job->uiDelegate());
                 ui->setWindow(syncDlgWidget);
 
                 if (item->task() == TT_COPY_TO_LEFT) {
@@ -1178,7 +1178,7 @@ void Synchronizer::slotTaskFinished(KJob *job)
                     break;
                 }
 
-                auto *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
+                auto *ui = dynamic_cast<KIO::JobUiDelegate*>(job->uiDelegate());
                 ui->setWindow(syncDlgWidget);
 
                 KIO::SkipDialog_Result result = ui->askSkip(job, KIO::SkipDialog_MultipleItems, error);

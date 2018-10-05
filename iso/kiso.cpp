@@ -296,7 +296,7 @@ static int mycallb(struct iso_directory_record *idr, void *udata)
         } else {
             entry = new KIsoFile(iso, path, access, time, adate, cdate,
                                  user, group, symlink, (long long)(isonum_733(idr->extent)) << (long long)11, isonum_733(idr->size));
-            if (z_size)(static_cast <KIsoFile*>(entry))->setZF(z_algo, z_params, z_size);
+            if (z_size)(dynamic_cast <KIsoFile*>(entry))->setZF(z_algo, z_params, z_size);
 
         }
         iso->dirent->addEntry(entry);
@@ -304,12 +304,12 @@ static int mycallb(struct iso_directory_record *idr, void *udata)
     if ((idr->flags[0] & 2) && (iso->level == 0 || !special)) {
         if (iso->level) {
             oldentry = iso->dirent;
-            iso->dirent = static_cast<KIsoDirectory*>(entry);
+            iso->dirent = dynamic_cast<KIsoDirectory*>(entry);
         }
         iso->level++;
         ProcessDir(&readf, isonum_733(idr->extent), isonum_733(idr->size), &mycallb, udata);
         iso->level--;
-        if (iso->level) iso->dirent = static_cast<KIsoDirectory*>(oldentry);
+        if (iso->level) iso->dirent = dynamic_cast<KIsoDirectory*>(oldentry);
     }
     return 0;
 }

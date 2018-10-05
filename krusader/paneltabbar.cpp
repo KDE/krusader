@@ -195,7 +195,7 @@ QString PanelTabBar::squeeze(const QUrl &url, int tabIndex)
 
     // set the real max length
     QFontMetrics fm(fontMetrics());
-    _maxTabLength = (static_cast<QWidget*>(parent())->width() - (6 * fm.width("W"))) / fm.width("W");
+    _maxTabLength = (dynamic_cast<QWidget*>(parent())->width() - (6 * fm.width("W"))) / fm.width("W");
     // each tab gets a fair share of the max tab length
     const int effectiveTabLength = _maxTabLength / (count() == 0 ? 1 : count());
     const int labelWidth = fm.width("W") * effectiveTabLength;

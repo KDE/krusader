@@ -128,7 +128,7 @@ RadialMap::Builder::build(const Directory* const dir, const unsigned int depth, 
             hiddenSize += (*it)->size();
 
             if ((*it)->isDir())  //**** considered virtual, but dir wouldn't count itself!
-                hiddenFileCount += static_cast<const Directory*>(*it)->fileCount(); //need to add one to count the dir as well
+                hiddenFileCount += dynamic_cast<const Directory*>(*it)->fileCount(); //need to add one to count the dir as well
 
             ++hiddenFileCount;
         }

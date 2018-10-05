@@ -47,7 +47,7 @@ TabActions::TabActions(QObject *parent, KrMainWindow *mainWindow) : ActionsBase(
 
 inline PanelManager *TabActions::activeManager()
 {
-    return static_cast<PanelManager*>(
+    return dynamic_cast<PanelManager*>(
         static_cast<KrMainWindow*>(_mainWindow)->activeManager());
 }
 

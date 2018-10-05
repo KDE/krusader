@@ -345,7 +345,7 @@ KConfig &VirtualFileSystem::getVirtDB()
 
 void VirtualFileSystem::slotStatResult(KJob *job)
 {
-    _fileEntry = job->error() ? KIO::UDSEntry() : static_cast<KIO::StatJob *>(job)->statResult();
+    _fileEntry = job->error() ? KIO::UDSEntry() : dynamic_cast<KIO::StatJob *>(job)->statResult();
 }
 
 void VirtualFileSystem::showError(const QString &error)

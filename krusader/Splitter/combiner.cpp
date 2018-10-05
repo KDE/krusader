@@ -174,11 +174,11 @@ void Combiner::statDestResult(KJob* job)
         if (job->error() == KIO::ERR_DOES_NOT_EXIST) {
             openNextFile();
         } else {
-            static_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
+            dynamic_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
             emit reject();
         }
     } else { // destination already exists
-        KIO::RenameDialog_Options mode = static_cast<KIO::StatJob*>(job)->statResult().isDir() ?
+        KIO::RenameDialog_Options mode = dynamic_cast<KIO::StatJob*>(job)->statResult().isDir() ?
             KIO::RenameDialog_IsDirectory : KIO::RenameDialog_Overwrite;
         KIO::RenameDialog dlg(this, i18n("File Already Exists"), QUrl(), writeURL, mode);
         switch (dlg.exec()) {
@@ -288,7 +288,7 @@ void Combiner::combineReceiveFinished(KJob *job)
             }
         } else {
             combineAbortJobs();
-            static_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
+            dynamic_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
             emit reject();
         }
     } else
@@ -313,7 +313,7 @@ void Combiner::combineSendFinished(KJob *job)
 
     if (job->error()) {   /* any error occurred? */
         combineAbortJobs();
-        static_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
+        dynamic_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
         emit reject();
     } else if (!error.isEmpty()) {  /* was any error message at reading ? */
         combineAbortJobs();             /* we cannot write out it in combineReceiveFinished */

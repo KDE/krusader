@@ -589,7 +589,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
     // Having it occur on keypress is consistent with other shortcuts,
     // such as Ctrl+W and accelerator keys
     if (eventType == QEvent::KeyPress && menu) {
-        auto *kev = static_cast<QKeyEvent *>(ev);
+        auto *kev = dynamic_cast<QKeyEvent *>(ev);
         QList<QAction *> acts = menu->actions();
         bool quickSearchStarted = false;
         bool searchInSpecialItems = KConfigGroup(krConfig, "Look&Feel").readEntry("Search in special items", false);
@@ -697,12 +697,12 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
     }
 
     if (eventType == QEvent::MouseButtonRelease) {
-        switch (static_cast<QMouseEvent *>(ev)->button()) {
+        switch (dynamic_cast<QMouseEvent *>(ev)->button()) {
         case Qt::RightButton:
             _middleClick = false;
             if (obj->inherits("QMenu")) {
-                auto *menu = static_cast<QMenu *>(obj);
-                QAction *act = menu->actionAt(static_cast<QMouseEvent *>(ev)->pos());
+                auto *menu = dynamic_cast<QMenu *>(obj);
+                QAction *act = menu->actionAt(dynamic_cast<QMouseEvent *>(ev)->pos());
 
                 if (obj == _mainBookmarkPopup && _specialBookmarks.contains(act)) {
                     rightClickOnSpecialBookmark();

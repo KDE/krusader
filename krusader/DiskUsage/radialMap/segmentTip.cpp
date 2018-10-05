@@ -125,7 +125,7 @@ SegmentTip::updateTip(const File* const file, const Directory* const root)
     m_text += s2;
 
     if (file->isDir()) {
-        double files  = static_cast<const Directory*>(file)->fileCount();
+        double files  = dynamic_cast<const Directory*>(file)->fileCount();
         const auto pc = uint((100 * files) / (double)root->fileCount());
         QString s3    = i18n("Files: %1", loc.toString(files, 'f', 0));
 

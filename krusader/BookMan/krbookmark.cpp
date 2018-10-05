@@ -78,7 +78,7 @@ void KrBookmark::setIconName(const QString& iconName)
 
 KrBookmark * KrBookmark::getExistingBookmark(const QString& actionName, KActionCollection *collection)
 {
-    return static_cast<KrBookmark*>(collection->action(BM_NAME(actionName)));
+    return dynamic_cast<KrBookmark*>(collection->action(BM_NAME(actionName)));
 }
 
 KrBookmark * KrBookmark::trash(KActionCollection *collection)

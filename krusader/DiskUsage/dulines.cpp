@@ -234,7 +234,7 @@ bool DULines::event(QEvent * event)
 {
     switch (event->type()) {
     case QEvent::ToolTip: {
-        auto *he = static_cast<QHelpEvent*>(event);
+        auto *he = dynamic_cast<QHelpEvent*>(event);
 
         if (viewport()) {
             QPoint pos = viewport()->mapFromGlobal(he->globalPos());

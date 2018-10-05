@@ -146,7 +146,7 @@ bool KrTreeWidget::event(QEvent * event)
         break;
     }
     case QEvent::ToolTip: {
-        auto *he = static_cast<QHelpEvent*>(event);
+        auto *he = dynamic_cast<QHelpEvent*>(event);
 
         if (viewport()) {
             QPoint pos = viewport()->mapFromGlobal(he->globalPos());

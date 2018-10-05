@@ -54,12 +54,12 @@ FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget,
 
 bool FilterTabs::isExtraOptionChecked(QString name)
 {
-    return static_cast<GeneralFilter*>(get("GeneralFilter"))->isExtraOptionChecked(std::move(name));
+    return dynamic_cast<GeneralFilter*>(get("GeneralFilter"))->isExtraOptionChecked(std::move(name));
 }
 
 void FilterTabs::checkExtraOption(QString name, bool check)
 {
-    static_cast<GeneralFilter*>(get("GeneralFilter"))->checkExtraOption(std::move(name), check);
+    dynamic_cast<GeneralFilter*>(get("GeneralFilter"))->checkExtraOption(std::move(name), check);
 }
 
 FilterTabs * FilterTabs::addTo(QTabWidget *tabWidget, int props, QStringList extraOptions)

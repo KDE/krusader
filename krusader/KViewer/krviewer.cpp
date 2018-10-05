@@ -387,7 +387,7 @@ void KrViewer::tabChanged(int index)
 {
     QWidget *w = tabBar.widget(index);
     if(!w) return;
-    KParts::ReadOnlyPart *part = static_cast<PanelViewerBase*>(w)->part();
+    KParts::ReadOnlyPart *part = dynamic_cast<PanelViewerBase*>(w)->part();
     if (part && isPartAdded(part)) {
         manager.setActivePart(part);
         if (part->widget())
@@ -405,7 +405,7 @@ void KrViewer::tabCloseRequest(int index, bool force)
     // important to save as returnFocusTo will be cleared at removePart
     QWidget *returnFocusToThisWidget = returnFocusTo;
 
-    auto *pvb = static_cast<PanelViewerBase *>(tabBar.widget(index));
+    auto *pvb = dynamic_cast<PanelViewerBase *>(tabBar.widget(index));
     if (!pvb)
         return;
 
@@ -454,7 +454,7 @@ bool KrViewer::queryClose()
     group.writeEntry("Window Maximized", isMaximized());
 
     for (int i = 0; i != tabBar.count(); i++) {
-        auto* pvb = static_cast<PanelViewerBase*>(tabBar.widget(i));
+        auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.widget(i));
         if (!pvb)
             continue;
 
@@ -468,35 +468,35 @@ bool KrViewer::queryClose()
 
 void KrViewer::viewGeneric()
 {
-    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         viewInternal(pvb->url(), Generic);
 }
 
 void KrViewer::viewText()
 {
-    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         viewInternal(pvb->url(), Text);
 }
 
 void KrViewer::viewLister()
 {
-    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         viewInternal(pvb->url(), Lister);
 }
 
 void KrViewer::viewHex()
 {
-    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         viewInternal(pvb->url(), Hex);
 }
 
 void KrViewer::editText()
 {
-    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         editInternal(pvb->url(), Text);
 }
@@ -505,7 +505,7 @@ void KrViewer::checkModified()
 {
     QTimer::singleShot(CHECK_MODFIED_INTERVAL, this, &KrViewer::checkModified);
 
-    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         refreshTab(pvb);
 }
@@ -533,7 +533,7 @@ void KrViewer::prevTab()
 
 void KrViewer::detachTab()
 {
-    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (!pvb) return;
 
     KrViewer* viewer = getViewer(true);
@@ -577,7 +577,7 @@ void KrViewer::changeEvent(QEvent *e)
 
 void KrViewer::print()
 {
-    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (!pvb || !pvb->part() || !isPartAdded(pvb->part()))
         return;
 
@@ -588,7 +588,7 @@ void KrViewer::print()
 
 void KrViewer::copy()
 {
-    auto* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (!pvb || !pvb->part() || !isPartAdded(pvb->part()))
         return;
 

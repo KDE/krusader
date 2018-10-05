@@ -372,7 +372,7 @@ bool KrInterDetailedView::viewportEvent(QEvent * event)
         // only show tooltip if column is not wide enough to show all text. In this case the column
         // data text is abbreviated and the full text is shown as tooltip, see ListModel::data().
 
-        auto *he = static_cast<QHelpEvent*>(event);
+        auto *he = dynamic_cast<QHelpEvent*>(event);
         const QModelIndex index = indexAt(he->pos());
         // name column has a detailed tooltip
         if (index.isValid() && index.column() != KrViewProperties::Name) {
@@ -440,7 +440,7 @@ QRect KrInterDetailedView::itemRect(const FileItem *item)
 void KrInterDetailedView::copySettingsFrom(KrView *other)
 {
     if(other->instance() == instance()) { // the other view is of the same type
-        auto *v = static_cast<KrInterDetailedView*>(other);
+        auto *v = dynamic_cast<KrInterDetailedView*>(other);
         _autoResizeColumns = v->_autoResizeColumns;
         header()->restoreState(v->header()->saveState());
         _model->setExtensionEnabled(!isColumnHidden(KrViewProperties::Ext));

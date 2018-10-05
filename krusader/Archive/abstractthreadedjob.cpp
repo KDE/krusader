@@ -174,7 +174,7 @@ bool AbstractThreadedJob::event(QEvent *e)
         break;
         case CMD_MESSAGE: {
             QString message = event->args()[ 0 ].value<QString>();
-            auto *ui = static_cast<KIO::JobUiDelegate*>(uiDelegate());
+            auto *ui = dynamic_cast<KIO::JobUiDelegate*>(uiDelegate());
             KMessageBox::information(ui ? ui->window() : nullptr, message);
             auto *resultResp = new QList<QVariant> ();
             addEventResponse(resultResp);

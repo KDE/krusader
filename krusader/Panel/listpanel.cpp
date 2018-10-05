@@ -515,7 +515,7 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
         if(e->type() == QEvent::FocusIn && this != ACTIVE_PANEL && !isHidden())
             slotFocusOnMe();
         else if(e->type() == QEvent::ShortcutOverride) {
-            auto *ke = static_cast<QKeyEvent*>(e);
+            auto *ke = dynamic_cast<QKeyEvent*>(e);
             if(ke->key() == Qt::Key_Escape && ke->modifiers() == Qt::NoModifier) {
                 // if the cancel refresh action has no shortcut assigned,
                 // we need this event ourselves to cancel refresh
@@ -530,13 +530,13 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
     else if(watched == urlNavigator->editor()) {
         // override default shortcut for panel focus
         if(e->type() == QEvent::ShortcutOverride) {
-            auto *ke = static_cast<QKeyEvent *>(e);
+            auto *ke = dynamic_cast<QKeyEvent *>(e);
             if ((ke->key() == Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier)) {
                 e->accept(); // we will get the key press event now
                 return true;
             }
         } else if(e->type() == QEvent::KeyPress) {
-            auto *ke = static_cast<QKeyEvent *>(e);
+            auto *ke = dynamic_cast<QKeyEvent *>(e);
             if ((ke->key() == Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) {
                 slotFocusOnMe();
                 return true;

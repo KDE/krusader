@@ -415,7 +415,7 @@ void JobMan::cleanupMenu() {
     for (QAction *action : actions) {
         if (m_controlAction->menu()->actions().count() <= MAX_OLD_MENU_ACTIONS)
             break;
-        auto *jobAction = static_cast<JobMenuAction *>(action);
+        auto *jobAction = dynamic_cast<JobMenuAction *>(action);
         if (jobAction->isDone()) {
             m_controlAction->menu()->removeAction(action);
             action->deleteLater();

@@ -601,7 +601,7 @@ QRect KrInterBriefView::itemRect(const FileItem *item)
 void KrInterBriefView::copySettingsFrom(KrView *other)
 {
     if(other->instance() == instance()) { // the other view is of the same type
-        auto *v = static_cast<KrInterBriefView*>(other);
+        auto *v = dynamic_cast<KrInterBriefView*>(other);
         int column = v->_model->lastSortOrder();
         Qt::SortOrder sortDir = v->_model->lastSortDir();
         _header->setSortIndicator(column, sortDir);

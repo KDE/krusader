@@ -289,7 +289,7 @@ bool MediaButton::eventFilter(QObject *o, QEvent *e)
                 }
             }
         } else if (e->type() == QEvent::KeyPress) {
-            auto *ke = static_cast<QKeyEvent*>(e);
+            auto *ke = dynamic_cast<QKeyEvent*>(e);
             if (ke->key() == Qt::Key_Return && ke->modifiers() == Qt::ControlModifier) {
                 if (QAction *act = popupMenu->activeAction()) {
                     QString id = act->data().toString();
@@ -300,7 +300,7 @@ bool MediaButton::eventFilter(QObject *o, QEvent *e)
                 }
             }
         } else if (e->type() == QEvent::MouseButtonPress || e->type() == QEvent::MouseButtonRelease) {
-            auto *m = static_cast<QMouseEvent*>(e);
+            auto *m = dynamic_cast<QMouseEvent*>(e);
             if (m->button() == Qt::RightButton) {
                 if (e->type() == QEvent::MouseButtonPress) {
                     QAction * act = popupMenu->actionAt(m->pos());

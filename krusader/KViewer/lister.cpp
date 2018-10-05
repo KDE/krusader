@@ -1139,7 +1139,7 @@ bool ListerPane::event(QEvent *e)
 bool ListerPane::handleCloseEvent(QEvent *e)
 {
     if (e->type() == QEvent::ShortcutOverride) {
-        auto *ke = static_cast<QKeyEvent *>(e);
+        auto *ke = dynamic_cast<QKeyEvent *>(e);
         if (ke->key() == Qt::Key_Escape) {
             if (_lister->isSearchEnabled()) {
                 _lister->searchDelete();

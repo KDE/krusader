@@ -77,7 +77,7 @@ void PanelViewerBase::slotStatResult(KJob* job)
         KMessageBox::error(this, job->errorString());
         emit openUrlFinished(this, false);
     } else {
-        KIO::UDSEntry entry = static_cast<KIO::StatJob*>(job)->statResult();
+        KIO::UDSEntry entry = dynamic_cast<KIO::StatJob*>(job)->statResult();
         openFile(KFileItem(entry, curl));
     }
 }
@@ -254,7 +254,7 @@ void PanelViewer::openFile(KFileItem fi)
         setCurrentWidget(cpart->widget());
 
         if (cpart->inherits("KParts::ReadWritePart"))
-            static_cast<KParts::ReadWritePart*>(cpart.data())->setReadWrite(false);
+            dynamic_cast<KParts::ReadWritePart*>(cpart.data())->setReadWrite(false);
         KParts::OpenUrlArguments args;
         args.setReload(true);
         cpart->setArguments(args);
@@ -383,14 +383,14 @@ void PanelEditor::openFile(KFileItem fi)
 bool PanelEditor::queryClose()
 {
     if (!cpart) return true;
-    return static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->queryClose();
+    return dynamic_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->queryClose();
 }
 
 bool PanelEditor::closeUrl()
 {
     if (!cpart) return false;
 
-    static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->closeUrl(false);
+    dynamic_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->closeUrl(false);
 
     setCurrentWidget(fallback);
     cpart = nullptr;
@@ -423,7 +423,7 @@ KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
 bool PanelEditor::isModified()
 {
     if (cpart)
-        return static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->isModified();
+        return dynamic_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->isModified();
     else
         return false;
 }

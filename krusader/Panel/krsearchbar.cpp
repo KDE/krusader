@@ -216,6 +216,7 @@ void KrSearchBar::keyPressEvent(QKeyEvent *event)
 bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
 {
     if (event->type() != QEvent::ShortcutOverride && watched == _view->widget()) {
+        // NOTE: cannot use dynamic cast here
         auto *ke = static_cast<QKeyEvent *>(event);
         // overwrite "escape" shortcut if bar is shown
         if ((ke->key() == Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier) && !isHidden()) {
