@@ -85,8 +85,7 @@ public:
 };
 
 KrFileTreeView::KrFileTreeView(QWidget *parent)
-    : QTreeView(parent), mCurrentUrl(),
-      mCurrentTreeBase(), mStartTreeFromCurrent(false), mStartTreeFromPlace(true)
+    : QTreeView(parent), mStartTreeFromCurrent(false), mStartTreeFromPlace(true)
 {
     mSourceModel = new KrDirModel(this, this);
     mSourceModel->dirLister()->setDirOnlyMode(true);

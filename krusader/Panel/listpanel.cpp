@@ -120,11 +120,11 @@ protected:
 /////////////////////////////////////////////////////
 //      The list panel constructor       //
 /////////////////////////////////////////////////////
-ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConfigGroup& cfg) :
-        QWidget(parent), KrPanel(manager, this, new ListPanelFunc(this)),
-        panelType(-1), colorMask(255), compareMode(false),
-        previewJob(nullptr), inlineRefreshJob(nullptr), searchBar(nullptr), cdRootButton(nullptr), cdUpButton(nullptr),
-        sidebarButton(nullptr), sidebar(nullptr), fileSystemError(nullptr), _navigatorUrl(), _tabState(TabState::DEFAULT)
+ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConfigGroup &cfg)
+    : QWidget(parent), KrPanel(manager, this, new ListPanelFunc(this)), panelType(-1),
+      colorMask(255), compareMode(false), previewJob(nullptr), inlineRefreshJob(nullptr),
+      searchBar(nullptr), cdRootButton(nullptr), cdUpButton(nullptr), sidebarButton(nullptr),
+      sidebar(nullptr), fileSystemError(nullptr), _tabState(TabState::DEFAULT)
 {
     if(cfg.isValid())
         panelType = cfg.readEntry("Type", -1);

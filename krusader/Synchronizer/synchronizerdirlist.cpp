@@ -42,7 +42,7 @@
 #include "../FileSystem/krpermhandler.h"
 #include "../krservices.h"
 
-SynchronizerDirList::SynchronizerDirList(QWidget *w, bool hidden) : QObject(), QHash<QString, FileItem *>(), fileIterator(nullptr),
+SynchronizerDirList::SynchronizerDirList(QWidget *w, bool hidden) : fileIterator(nullptr),
         parentWidget(w), busy(false), result(false), ignoreHidden(hidden), currentUrl()
 {
 }

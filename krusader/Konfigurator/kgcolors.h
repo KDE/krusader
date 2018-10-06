@@ -108,7 +108,8 @@ private:
         QString label;
 
     public:
-        PreviewItem(QTreeWidget * parent, const QString& name) : QTreeWidgetItem() {
+        PreviewItem(QTreeWidget * parent, const QString& name)
+        {
             setText(0, name);
             defaultBackground = QColor(255, 255, 255);
             defaultForeground = QColor(0, 0, 0);

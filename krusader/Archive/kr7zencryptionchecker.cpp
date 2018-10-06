@@ -21,7 +21,7 @@
 
 #include "kr7zencryptionchecker.h"
 
-Kr7zEncryptionChecker::Kr7zEncryptionChecker() : KProcess(), encrypted(false), lastData()
+Kr7zEncryptionChecker::Kr7zEncryptionChecker() : encrypted(false), lastData()
 {
     setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
     connect(this, &Kr7zEncryptionChecker::readyReadStandardOutput, this, [=]() {receivedOutput(); });

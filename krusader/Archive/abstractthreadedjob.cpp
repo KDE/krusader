@@ -41,7 +41,7 @@
 
 extern KRarcHandler arcHandler;
 
-AbstractThreadedJob::AbstractThreadedJob() : KIO::Job(), _locker(), _waiter(), _stack(), _maxProgressValue(0),
+AbstractThreadedJob::AbstractThreadedJob() : _maxProgressValue(0),
         _currentProgress(0), _exiting(false), _jobThread(nullptr)
 {
 }

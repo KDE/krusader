@@ -247,7 +247,7 @@ void ChecksumWizard::addChecksumLine(KrTreeWidget *tree, const QString &line)
 // ------------- Create Wizard
 
 CreateWizard::CreateWizard(const QString &path, const QStringList &_files) : ChecksumWizard(path),
-    m_fileNames(_files), m_listFilesWatcher()
+    m_fileNames(_files)
 {
 
     m_introId = addPage(createIntroPage());

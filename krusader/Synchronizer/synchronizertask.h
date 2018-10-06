@@ -43,7 +43,7 @@ class SynchronizerTask : public QObject
     Q_OBJECT
 
 public:
-    SynchronizerTask() : QObject(), m_state(ST_STATE_NEW), m_statusMessage(QString()) {}
+    SynchronizerTask() : m_state(ST_STATE_NEW), m_statusMessage(QString()) {}
     ~SynchronizerTask() override = default;
 
     inline int start(QWidget *parentWidget) {

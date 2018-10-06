@@ -57,7 +57,7 @@
 #define FSTAB "/etc/fstab"
 #endif
 
-KMountMan::KMountMan(QWidget *parent) : QObject(), _operational(false), waiting(false), mountManGui(nullptr), parentWindow(parent)
+KMountMan::KMountMan(QWidget *parent) : _operational(false), waiting(false), mountManGui(nullptr), parentWindow(parent)
 {
     _action = new KToolBarPopupAction(Icon("kr_mountman"), i18n("&MountMan..."), this);
     connect(_action, &QAction::triggered, this, &KMountMan::mainWindow);

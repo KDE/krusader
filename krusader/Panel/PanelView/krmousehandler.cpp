@@ -36,9 +36,9 @@
 
 #define CANCEL_TWO_CLICK_RENAME {_singleClicked = false;_renameTimer.stop();}
 
-KrMouseHandler::KrMouseHandler(KrView * view, int contextMenuShift) : _view(view), _rightClickedItem(nullptr),
-        _contextMenuTimer(), _contextMenuShift(contextMenuShift), _singleClicked(false), _singleClickTime(),
-        _renameTimer(), _dragStartPos(-1, -1), _emptyContextMenu(false), _selectedItemNames()
+KrMouseHandler::KrMouseHandler(KrView *view, int contextMenuShift)
+    : _view(view), _rightClickedItem(nullptr), _contextMenuShift(contextMenuShift),
+      _singleClicked(false), _dragStartPos(-1, -1), _emptyContextMenu(false)
 {
     KConfigGroup grpSvr(krConfig, "Look&Feel");
     // decide on single click/double click selection

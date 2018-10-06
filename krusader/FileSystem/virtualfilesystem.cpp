@@ -47,7 +47,7 @@
 QHash<QString, QList<QUrl> *> VirtualFileSystem::_virtFilesystemDict;
 QHash<QString, QString> VirtualFileSystem::_metaInfoDict;
 
-VirtualFileSystem::VirtualFileSystem() : FileSystem()
+VirtualFileSystem::VirtualFileSystem()
 {
     if (_virtFilesystemDict.isEmpty()) {
         restore();

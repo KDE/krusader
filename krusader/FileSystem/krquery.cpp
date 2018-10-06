@@ -43,7 +43,7 @@
 
 // set the defaults
 KRQuery::KRQuery()
-    : QObject(), matchesCaseSensitive(true), bNull(true), contain(QString()),
+    : matchesCaseSensitive(true), bNull(true), contain(QString()),
       containCaseSensetive(true), containWholeWord(false), containRegExp(false), minSize(0),
       maxSize(0), newerThen(0), olderThen(0), owner(QString()), group(QString()), perm(QString()),
       type(QString()), inArchive(false), recurse(true), followLinksP(true), receivedBuffer(nullptr),
@@ -58,7 +58,7 @@ KRQuery::KRQuery()
 
 // set the defaults
 KRQuery::KRQuery(const QString &name, bool matchCase)
-    : QObject(), bNull(true), contain(QString()), containCaseSensetive(true),
+    : bNull(true), contain(QString()), containCaseSensetive(true),
       containWholeWord(false), containRegExp(false), minSize(0), maxSize(0), newerThen(0),
       olderThen(0), owner(QString()), group(QString()), perm(QString()), type(QString()),
       inArchive(false), recurse(true), followLinksP(true), receivedBuffer(nullptr), receivedBufferLen(0),

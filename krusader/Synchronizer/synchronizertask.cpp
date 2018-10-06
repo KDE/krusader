@@ -34,7 +34,7 @@
 
 CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QString &leftURL,
                          const QString &rightURL, const QString &leftDir,
-                         const QString &rightDir, bool hidden) : SynchronizerTask(),  m_parent(parentIn),
+                         const QString &rightDir, bool hidden) :  m_parent(parentIn),
         m_url(leftURL), m_dir(leftDir), m_otherUrl(rightURL),
         m_otherDir(rightDir), m_duplicate(true),
         m_dirList(nullptr), m_otherDirList(nullptr)
@@ -43,7 +43,7 @@ CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QString &leftURL,
 }
 
 CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QString &urlIn,
-                         const QString &dirIn, bool isLeftIn, bool hidden) : SynchronizerTask(),
+                         const QString &dirIn, bool isLeftIn, bool hidden) :
         m_parent(parentIn), m_url(urlIn), m_dir(dirIn),
         m_isLeft(isLeftIn), m_duplicate(false),
         m_dirList(nullptr), m_otherDirList(nullptr)
@@ -107,7 +107,7 @@ void CompareTask::slotOtherFinished(bool result)
 }
 
 CompareContentTask::CompareContentTask(Synchronizer *syn, SynchronizerFileItem *itemIn, const QUrl &leftURLIn,
-                                       const QUrl &rightURLIn, KIO::filesize_t sizeIn) : SynchronizerTask(),
+                                       const QUrl &rightURLIn, KIO::filesize_t sizeIn) :
         leftURL(leftURLIn), rightURL(rightURLIn),
         size(sizeIn), errorPrinted(false), leftReadJob(nullptr),
         rightReadJob(nullptr), compareArray(), owner(-1), item(itemIn), timer(nullptr),

@@ -42,7 +42,7 @@
 
 KonfiguratorExtension::KonfiguratorExtension(QObject *obj, QString cfgGroup, QString cfgName,
                                              bool restartNeeded, int page)
-    : QObject(), objectPtr(obj), applyConnected(false), setDefaultsConnected(false), changed(false),
+    : objectPtr(obj), applyConnected(false), setDefaultsConnected(false), changed(false),
       restartNeeded(restartNeeded), subpage(page), configGroup(std::move(cfgGroup)), configName(std::move(cfgName))
 {
 }

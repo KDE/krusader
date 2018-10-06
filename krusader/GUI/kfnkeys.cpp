@@ -32,7 +32,7 @@
 #include "../Panel/listpanelactions.h"
 
 KFnKeys::KFnKeys(QWidget *parent, KrMainWindow *mainWindow) :
-        QWidget(parent), mainWindow(mainWindow), buttonList()
+        QWidget(parent), mainWindow(mainWindow)
 {
     buttonList << setup(mainWindow->listPanelActions()->actRenameF2, i18n("Rename"))
                << setup(mainWindow->listPanelActions()->actViewFileF3, i18n("View"))

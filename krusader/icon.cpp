@@ -87,7 +87,7 @@ private:
     QStringList _overlays;
 };
 
-Icon::Icon() : QIcon()
+Icon::Icon()
 {
 }
 

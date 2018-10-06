@@ -219,7 +219,7 @@ void KrActionProcDlg::currentTextEditChanged()
 }
 
 // KrActionProc
-KrActionProc::KrActionProc(KrActionBase* action) : QObject(), _action(action), _proc(nullptr), _output(nullptr)
+KrActionProc::KrActionProc(KrActionBase* action) : _action(action), _proc(nullptr), _output(nullptr)
 {
 }
 

@@ -61,7 +61,6 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) :
     _mainWindow(mainWindow),
     _middleClick(false),
     _mainBookmarkPopup(nullptr),
-    _specialBookmarks(),
     _quickSearchAction(nullptr),
     _quickSearchBar(nullptr),
     _quickSearchMenu(nullptr)

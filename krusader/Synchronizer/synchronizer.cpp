@@ -64,9 +64,9 @@
 
 #define  DISPLAY_UPDATE_PERIOD        2
 
-Synchronizer::Synchronizer() : displayUpdateCount(0), markEquals(true),
-        markDiffers(true), markCopyToLeft(true), markCopyToRight(true), markDeletable(true),
-        stack(), jobMap(), receivedMap(), parentWidget(nullptr), resultListIt(resultList)
+Synchronizer::Synchronizer()
+    : displayUpdateCount(0), markEquals(true), markDiffers(true), markCopyToLeft(true),
+      markCopyToRight(true), markDeletable(true), parentWidget(nullptr), resultListIt(resultList)
 {
 }
 

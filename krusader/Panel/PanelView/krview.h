@@ -177,7 +177,7 @@ public:
     class IconSizes : public QVector<int>
     {
       public:
-        IconSizes() : QVector<int>() { *this << 12 << 16 << 22 << 32 << 48 << 64 << 128 << 256; }
+        IconSizes() { *this << 12 << 16 << 22 << 32 << 48 << 64 << 128 << 256; }
     };
 
     // instantiating a new view

@@ -45,7 +45,7 @@
 #include "../krservices.h"
 #include "../JobMan/krjob.h"
 
-DefaultFileSystem::DefaultFileSystem(): FileSystem(), _watcher()
+DefaultFileSystem::DefaultFileSystem()
 {
     _type = FS_DEFAULT;
 }

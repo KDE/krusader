@@ -91,7 +91,7 @@ void KRPleaseWait::cycleProgress()
 }
 
 KRPleaseWaitHandler::KRPleaseWaitHandler(QWidget *parentWindow)
-    : QObject(parentWindow), _parentWindow(parentWindow), job(), dlg(nullptr)
+    : QObject(parentWindow), _parentWindow(parentWindow), dlg(nullptr)
 {
 }
 
