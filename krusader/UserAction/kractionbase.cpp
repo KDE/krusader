@@ -77,7 +77,7 @@ void KrActionBase::handleError(const Error& err)
 {
     // once qtHandler is instantiated, it keeps on showing all qDebug() messages
     //QErrorMessage::qtHandler()->showMessage(err.what());
-    const QString errorMessage = err.description();
+    const QString& errorMessage = err.description();
     if (!errorMessage.isEmpty()) {
         KMessageBox::error(krMainWindow, errorMessage);
     }

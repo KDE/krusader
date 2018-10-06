@@ -410,7 +410,7 @@ void PanelContextMenu::performAction(int id)
         KrViewItemList otherItems;
         panel->otherPanel()->view->getSelectedKrViewItems(&otherItems);
         for (KrViewItem *otherItem : otherItems) {
-            const QString name = otherItem->name();
+            const QString& name = otherItem->name();
             if (!selectedNames.contains(name)) {
                 selectedNames.append(name);
             }

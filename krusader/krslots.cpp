@@ -588,7 +588,7 @@ void KRslots::slotCombine()
             bool error = true;
 
             do {
-                QString shortName   = it;
+                const QString& shortName   = it;
                 QChar   lastChar  = shortName.at(shortName.length() - 1);
 
                 if (lastChar.isLetter()) {

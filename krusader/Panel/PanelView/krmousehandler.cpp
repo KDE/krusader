@@ -255,7 +255,7 @@ bool KrMouseHandler::mouseDoubleClickEvent(QMouseEvent *e)
         return false;
     if (e->button() == Qt::LeftButton && item != nullptr) {
         e->accept();
-        QString tmp = item->name();
+        const QString& tmp = item->name();
         _view->op()->emitExecuted(tmp);
         return true;
     }

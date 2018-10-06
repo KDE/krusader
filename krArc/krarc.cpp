@@ -193,7 +193,7 @@ bool kio_krarcProtocol::checkWriteSupport()
 void kio_krarcProtocol::receivedData(KProcess *, QByteArray &d)
 {
     KRFUNC;
-    QByteArray buf(d);
+    const QByteArray& buf(d);
     data(buf);
     processedSize(d.length());
     decompressedLen += d.length();

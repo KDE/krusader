@@ -54,8 +54,8 @@ void ListPanelFrame::dragEnterEvent(QDragEnterEvent *e)
 void ListPanelFrame::colorsChanged()
 {
     QPalette p = QGuiApplication::palette();
-    QColor windowForeground = p.color(QPalette::Active, QPalette::WindowText);
-    QColor windowBackground = p.color(QPalette::Active, QPalette::Window);
+    const QColor& windowForeground = p.color(QPalette::Active, QPalette::WindowText);
+    const QColor& windowBackground = p.color(QPalette::Active, QPalette::Window);
 
     KConfigGroup gc(krConfig, "Colors");
     QColor fgAct = getColor(gc, color + " Foreground Active",
