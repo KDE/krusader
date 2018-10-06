@@ -160,7 +160,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
 void SynchronizerDirList::slotEntries(KIO::Job *job, const KIO::UDSEntryList& entries)
 {
     auto *listJob = dynamic_cast<KIO::ListJob *>(job);
-    for (const KIO::UDSEntry entry : entries) {
+    for (const KIO::UDSEntry& entry : entries) {
         FileItem *item = FileSystem::createFileItemFromKIO(entry, listJob->url());
         if (item) {
             insert(item->getName(), item);

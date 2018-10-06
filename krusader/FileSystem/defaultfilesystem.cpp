@@ -243,7 +243,7 @@ void DefaultFileSystem::slotListResult(KJob *job)
 
 void DefaultFileSystem::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries)
 {
-    for (const KIO::UDSEntry entry : entries) {
+    for (const KIO::UDSEntry& entry : entries) {
         FileItem *fileItem = FileSystem::createFileItemFromKIO(entry, _currentDirectory);
         if (fileItem) {
             addFileItem(fileItem);

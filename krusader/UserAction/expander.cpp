@@ -626,7 +626,7 @@ TagString exp_Copy::expFunc(const KrPanel*, const TagStringList& parameter, cons
     // basically the parameter can already be used as URL, but since QUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is necessary:
     const QStringList sourceList = splitEach(parameter[0]);
     QList<QUrl> sourceURLs;
-    for (const QString source : sourceList) {
+    for (const QString& source : sourceList) {
         sourceURLs.append(QUrl::fromUserInput(source, QString(), QUrl::AssumeLocalFile));
     }
 

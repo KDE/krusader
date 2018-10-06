@@ -95,7 +95,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
 
     // file items
     QList<FileItem*> files;
-    for (const QString fileName : fileNames) {
+    for (const QString& fileName : fileNames) {
         files.append(panel->func->files()->getFileItem(fileName));
     }
 
@@ -404,7 +404,7 @@ void PanelContextMenu::performAction(int id)
 #ifdef SYNCHRONIZER_ENABLED
     case SYNC_SELECTED_ID : {
         QStringList selectedNames;
-        for (const KFileItem item : _items) {
+        for (const KFileItem& item : _items) {
             selectedNames.append(item.name());
         }
         KrViewItemList otherItems;

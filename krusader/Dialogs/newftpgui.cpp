@@ -92,7 +92,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
     url->setMinimumContentsLength(10);
 
     const QStringList availableProtocols = KProtocolInfo::protocols();
-    for (const QString protocol : sProtocols) {
+    for (const QString& protocol : sProtocols) {
         if (availableProtocols.contains(protocol))
             prefix->addItem(protocol + QStringLiteral("://"));
     }

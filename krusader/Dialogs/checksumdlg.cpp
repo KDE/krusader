@@ -72,7 +72,7 @@ QStringList listFiles(const QString &path, const QStringList &fileNames)
 {
     const QDir baseDir(path);
     QStringList allFiles;
-    for (const QString fileName : fileNames) {
+    for (const QString& fileName : fileNames) {
         if (stopListFiles)
             return QStringList();
 
@@ -286,7 +286,7 @@ QWizardPage *CreateWizard::createIntroPage()
 
     m_methodBox = new KComboBox;
     // -- fill the combo with available methods
-    for (const QString type: m_checksumTools.keys())
+    for (const QString& type: m_checksumTools.keys())
         m_methodBox->addItem(type);
     m_methodBox->setFocus();
     hLayout->addWidget(m_methodBox);
@@ -373,7 +373,7 @@ void CreateWizard::onResultPage()
     m_hashesTreeWidget->clear();
     m_hashesTreeWidget->setVisible(successes);
     if (successes) {
-        for (const QString line : outputLines)
+        for (const QString& line : outputLines)
             addChecksumLine(m_hashesTreeWidget, line);
         //m_hashesTreeWidget->sortItems(1, Qt::AscendingOrder);
     }
@@ -393,7 +393,7 @@ bool CreateWizard::savePerFile()
     const QString type = m_suggestedFilePath.mid(m_suggestedFilePath.lastIndexOf('.'));
 
     krApp->startWaiting(i18n("Saving checksum files..."), 0);
-    for (const QString line : m_process->stdOutput()) {
+    for (const QString& line : m_process->stdOutput()) {
         const QString filename = line.mid(line.indexOf(' ') + 2) + type;
         if (!saveChecksumFile(QStringList() << line, filename)) {
             KMessageBox::error(this, i18n("Errors occurred while saving multiple checksums. Stopping"));
@@ -418,7 +418,7 @@ bool CreateWizard::saveChecksumFile(const QStringList &data, const QString &file
     QFile file(filePath);
     if (file.open(QIODevice::WriteOnly)) {
         QTextStream stream(&file);
-        for (const QString line : data)
+        for (const QString& line : data)
             stream << line << "\n";
         file.close();
     }
@@ -493,7 +493,7 @@ QWizardPage *VerifyWizard::createIntroPage()
 
     auto *checksumFileReq = new KUrlRequester;
     QString typesFilter;
-    for (const QString ext: m_checksumTools.keys())
+    for (const QString& ext: m_checksumTools.keys())
         typesFilter += ("*." + ext + ' ');
     checksumFileReq->setFilter(typesFilter);
     checksumFileReq->setText(m_checksumFile);

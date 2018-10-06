@@ -111,7 +111,7 @@ void VirtualFileSystem::remove(const QStringList &fileNames)
         }
     } else {
         // remove the URLs from the collection
-        for (const QString name : fileNames) {
+        for (const QString& name : fileNames) {
             if (_virtFilesystemDict.find(parentDir) != _virtFilesystemDict.end()) {
                 QList<QUrl> *urlList = _virtFilesystemDict[parentDir];
                 urlList->removeAll(getUrl(name));
@@ -178,7 +178,7 @@ bool VirtualFileSystem::canMoveToTrash(const QStringList &fileNames) const
     if (isRoot())
         return false;
 
-    for (const QString fileName : fileNames) {
+    for (const QString& fileName : fileNames) {
         if (!getUrl(fileName).isLocalFile()) {
             return false;
         }

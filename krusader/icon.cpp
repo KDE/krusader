@@ -126,7 +126,7 @@ static inline IconSearchResult searchIcon(const QString& iconName, QStringList t
     } else {
         // search the icon in fallback themes
         auto currentTheme = QIcon::themeName();
-        for (auto fallbackThemeName : themeFallbackList) {
+        for (const auto& fallbackThemeName : themeFallbackList) {
             QIcon::setThemeName(fallbackThemeName);
             if (QIcon::hasThemeIcon(iconName)) {
                 return IconSearchResult(QIcon::fromTheme(iconName), currentTheme);
@@ -179,7 +179,7 @@ void Icon::applyOverlays(QPixmap *pixmap, QStringList overlays)
     // per freedesktop icon name specification:
     // https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html
     QStringList fixedOverlays;
-    for (auto overlay : overlays) {
+    for (const auto& overlay : overlays) {
         if (overlay.isEmpty() || iconLoader->hasIcon(overlay)) {
             fixedOverlays << overlay;
         } else {

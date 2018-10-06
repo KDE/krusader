@@ -178,7 +178,7 @@ void KURLListRequester::setUrlList(const QList<QUrl> &urlList)
     urlLineEdit->clear();
     urlListBox->clear();
 
-    for (const QUrl url : urlList) {
+    for (const QUrl& url : urlList) {
         urlListBox->addItem(url.toDisplayString(QUrl::PreferLocalFile));
     }
 

@@ -716,7 +716,7 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
                                            bool virtualFS, bool showPath)
 {
     QStringList files;
-    for (QUrl fileUrl : urls) {
+    for (const QUrl& fileUrl : urls) {
         files.append(showPath ? fileUrl.toDisplayString(QUrl::PreferLocalFile) : fileUrl.fileName());
     }
 
@@ -756,7 +756,7 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
     QList<QUrl> toDelete;
     if (emptyDirVerify) {
         QSet<QUrl> confirmedFiles = urls.toSet();
-        for (QUrl fileUrl : urls) {
+        for (const QUrl& fileUrl : urls) {
             if (!fileUrl.isLocalFile()) {
                 continue; // TODO only local fs supported
             }
@@ -1094,7 +1094,7 @@ void ListPanelFunc::properties()
 
     KFileItemList fileItems;
 
-    for (const QString name : names) {
+    for (const QString& name : names) {
         FileItem *fileitem = files()->getFileItem(name);
         if (!fileitem) {
             continue;

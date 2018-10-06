@@ -53,7 +53,7 @@ FileSystem::~FileSystem()
 QList<QUrl> FileSystem::getUrls(const QStringList &names) const
 {
     QList<QUrl> urls;
-    for (const QString name : names) {
+    for (const QString& name : names) {
         urls.append(getUrl(name));
     }
     return urls;

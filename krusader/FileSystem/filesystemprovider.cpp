@@ -91,7 +91,7 @@ void FileSystemProvider::refreshFilesystems(const QUrl &directory, bool removed)
             mountPoint = kMountPoint->mountPoint();
     }
 
-    for(QPointer<FileSystem> fileSystemPointer: _fileSystems) {
+    for(const QPointer<FileSystem>& fileSystemPointer: _fileSystems) {
         FileSystem *fs = fileSystemPointer.data();
         // refresh all filesystems currently showing this directory
         // and always refresh filesystems showing a virtual directory; it can contain files from

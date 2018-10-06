@@ -489,7 +489,7 @@ void countFiles(const QString &path, unsigned long &totalFiles, bool &stop)
         return;
     }
 
-    for (const QString name : dir.entryList()) {
+    for (const QString& name : dir.entryList()) {
         if (stop)
             return;
 
@@ -507,7 +507,7 @@ void AbstractJobThread::countLocalFiles(const QUrl &baseUrl, const QStringList &
 
     FileSystem *calcSpaceFileSystem = FileSystemProvider::instance().getFilesystem(baseUrl);
     calcSpaceFileSystem->scanDir(baseUrl);
-    for (const QString name : names) {
+    for (const QString& name : names) {
         if (_exited)
             return;
 

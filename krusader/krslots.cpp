@@ -446,7 +446,7 @@ void KRslots::multiRename()
     KProcess proc;
     proc << pathToRename;
 
-    for (const QString name: names) {
+    for (const QString& name: names) {
         FileItem *file = ACTIVE_FUNC->files()->getFileItem(name);
         if (!file)
             continue;
