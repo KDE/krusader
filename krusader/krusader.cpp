@@ -137,7 +137,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
 
     // create MountMan
     KrGlobal::mountMan = new KMountMan(this);
-    connect(KrGlobal::mountMan, SIGNAL(refreshPanel(QUrl)), SLOTS, SLOT(refresh(QUrl)));
+    connect(KrGlobal::mountMan, &KMountMan::refreshPanel, SLOTS, &KRslots::refresh);
 
     // create popular URLs container
     _popularUrls = new PopularUrls(this);
@@ -271,10 +271,10 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     //HACK: make sure the active view becomes focused
     // for some reason sometimes the active view cannot be focused immediately at this point,
     // so queue it for the main loop
-    QTimer::singleShot(0, ACTIVE_PANEL->view->widget(), SLOT(setFocus()));
+    QTimer::singleShot(0, ACTIVE_PANEL->view->widget(), QOverload<>::of(&QWidget::setFocus));
 
     _openUrlTimer.setSingleShot(true);
-    connect(&_openUrlTimer, SIGNAL(timeout()), SLOT(doOpenUrl()));
+    connect(&_openUrlTimer, &QTimer::timeout, this, &Krusader::doOpenUrl);
 
     KStartupInfo *startupInfo = new KStartupInfo(0, this);
     connect(startupInfo, &KStartupInfo::gotNewStartup,
@@ -356,7 +356,7 @@ bool Krusader::event(QEvent *e) {
 void Krusader::setupActions() {
     QAction *bringToTopAct = new QAction(i18n("Bring Main Window to Top"), this);
     actionCollection()->addAction("bring_main_window_to_top", bringToTopAct);
-    connect(bringToTopAct, SIGNAL(triggered()), SLOT(moveToTop()));
+    connect(bringToTopAct, &QAction::triggered, this, &Krusader::moveToTop);
 
     KrActions::setupActions(this);
     _krActions = new KrActions(this);

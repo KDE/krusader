@@ -208,10 +208,10 @@ ParameterDialog::ParameterDialog(const exp_placeholder* currentPlaceholder, QWid
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    connect(okButton, SIGNAL(clicked()), this, SLOT(slotOk()));
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-    connect(buttonBox->button(QDialogButtonBox::RestoreDefaults), SIGNAL(clicked()), this, SLOT(reset()));
+    connect(okButton, &QPushButton:: clicked, this, &ParameterDialog::slotOk);
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &ParameterDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &ParameterDialog::reject);
+    connect(buttonBox->button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &ParameterDialog::reset);
 }
 
 QString ParameterDialog::getParameter()
@@ -309,7 +309,7 @@ ParameterPlaceholder::ParameterPlaceholder(const exp_parameter& parameter, QWidg
     _button = new QToolButton(hboxWidget);
     _button->setIcon(Icon("list-add"));
     hbox->addWidget(_button);
-    connect(_button, SIGNAL(clicked()), this, SLOT(addPlaceholder()));
+    connect(_button, &QToolButton::clicked, this, &ParameterPlaceholder::addPlaceholder);
 }
 
 QString ParameterPlaceholder::text()
@@ -421,7 +421,7 @@ ParameterFile::ParameterFile(const exp_parameter& parameter, QWidget* parent) : 
     _button = new QToolButton(hboxWidget);
     hbox->addWidget(_button);
     _button->setIcon(Icon("document-open"));
-    connect(_button, SIGNAL(clicked()), this, SLOT(addFile()));
+    connect(_button, &QToolButton::clicked, this, &ParameterFile::addFile);
 }
 
 QString ParameterFile::text()
@@ -534,11 +534,11 @@ ParameterGoto::ParameterGoto(const exp_parameter& parameter, QWidget* parent) : 
     _dirButton = new QToolButton(hboxWidget);
     hbox->addWidget(_dirButton);
     _dirButton->setIcon(Icon("document-open"));
-    connect(_dirButton, SIGNAL(clicked()), this, SLOT(setDir()));
+    connect(_dirButton, &QToolButton::clicked, this, &ParameterGoto::setDir);
     _placeholderButton = new QToolButton(hboxWidget);
     _placeholderButton->setIcon(Icon("list-add"));
     hbox->addWidget(_placeholderButton);
-    connect(_placeholderButton, SIGNAL(clicked()), this, SLOT(addPlaceholder()));
+    connect(_placeholderButton, &QToolButton::clicked, this, &ParameterGoto::addPlaceholder);
 
     layout->addWidget(hboxWidget);
 }

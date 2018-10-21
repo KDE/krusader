@@ -49,7 +49,7 @@ KRPleaseWait::KRPleaseWait(QString msg, QWidget *parent, int count, bool cancel)
     setAutoClose(false);
     setAutoReset(false);
 
-    connect(timer, SIGNAL(timeout()), this, SLOT(cycleProgress()));
+    connect(timer, &QTimer::timeout, this, &KRPleaseWait::cycleProgress);
 
     QProgressBar* progress = new QProgressBar(this);
     progress->setMaximum(count);
@@ -109,7 +109,7 @@ void KRPleaseWaitHandler::startWaiting(QString msg, int count , bool cancel)
 {
     if (dlg == 0) {
         dlg = new KRPleaseWait(msg , _parentWindow, count, cancel);
-        connect(dlg, SIGNAL(canceled()), this, SLOT(killJob()));
+        connect(dlg, &KRPleaseWait::canceled, this, &KRPleaseWaitHandler::killJob);
     }
     incMutex = cycleMutex = _wasCancelled = false;
     dlg->setValue(0);

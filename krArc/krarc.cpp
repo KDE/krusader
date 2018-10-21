@@ -487,8 +487,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
             escapedFilename.replace('[', "[[]");
         proc << getCmd << getPath(arcFile->url());
         if (arcType != "gzip" && arcType != "bzip2" && arcType != "lzma" && arcType != "xz") proc << localeEncodedString(escapedFilename);
-        connect(&proc, SIGNAL(newOutputData(KProcess*,QByteArray&)),
-                this, SLOT(receivedData(KProcess*,QByteArray&)));
+        connect(&proc, &KrLinecountingProcess::newOutputData, this, &kio_krarcProtocol::receivedData);
         proc.setMerge(false);
     }
     infoMessage(i18n("Unpacking %1...", url.fileName()));
@@ -1736,8 +1735,7 @@ void kio_krarcProtocol::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
 
         KrLinecountingProcess proc;
         proc << testCmd << fileName;
-        connect(&proc, SIGNAL(newOutputData(KProcess*,QByteArray&)),
-                this, SLOT(checkOutputForPassword(KProcess*,QByteArray&)));
+        connect(&proc, &KrLinecountingProcess::newOutputData, this, &kio_krarcProtocol::checkOutputForPassword);
         proc.start();
         proc.waitForFinished();
         encrypted = this->encrypted;

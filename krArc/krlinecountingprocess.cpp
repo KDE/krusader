@@ -24,8 +24,8 @@
 KrLinecountingProcess::KrLinecountingProcess() : KProcess()
 {
     setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
-    connect(this, SIGNAL(readyReadStandardError()), SLOT(receivedError()));
-    connect(this, SIGNAL(readyReadStandardOutput()), SLOT(receivedOutput()));
+    connect(this, &KrLinecountingProcess::readyReadStandardError, this, &KrLinecountingProcess::receivedError);
+    connect(this, &KrLinecountingProcess::readyReadStandardOutput, [=]() { receivedOutput(); });
     mergedOutput = true;
 }
 

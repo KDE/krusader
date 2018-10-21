@@ -44,7 +44,7 @@ public:
     KrProcess(QString in1, QString in2) {
         tmp1 = in1;
         tmp2 = in2;
-        connect(this,  SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(processHasExited()));
+        connect(this, QOverload<int, QProcess::ExitStatus>::of(&KrProcess::finished), this, &KrProcess::processHasExited);
     }
 
 public slots:

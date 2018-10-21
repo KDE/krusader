@@ -127,15 +127,15 @@ bool AbstractThreadedJob::event(QEvent *e)
             addSubjob(job);
             job->setUiDelegate(new KIO::JobUiDelegate());
 
-            connect(job, SIGNAL(result(KJob*)), this, SLOT(slotDownloadResult(KJob*)));
+            connect(job, &KIO::Job::result, this, &AbstractThreadedJob::slotDownloadResult);
             connect(job, SIGNAL(processedAmount(KJob*,KJob::Unit,qulonglong)),
-                    this, SLOT(slotProcessedAmount(KJob*,KJob::Unit,qulonglong)));
+                               this, SLOT(slotProcessedAmount(KJob*,KJob::Unit,qulonglong)));
             connect(job, SIGNAL(totalAmount(KJob*,KJob::Unit,qulonglong)),
-                    this, SLOT(slotTotalAmount(KJob*,KJob::Unit,qulonglong)));
+                               this, SLOT(slotTotalAmount(KJob*,KJob::Unit,qulonglong)));
             connect(job, SIGNAL(speed(KJob*,ulong)),
-                    this, SLOT(slotSpeed(KJob*,ulong)));
+                               this, SLOT(slotSpeed(KJob*,ulong)));
             connect(job, SIGNAL(description(KJob*,QString,QPair<QString,QString>,QPair<QString,QString>)),
-                    this, SLOT(slotDescription(KJob*,QString,QPair<QString,QString>,QPair<QString,QString>)));
+                               this, SLOT(slotDescription(KJob*,QString,QPair<QString,QString>,QPair<QString,QString>)));
         }
         break;
         case CMD_MAXPROGRESSVALUE: {

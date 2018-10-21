@@ -424,8 +424,8 @@ void KrusaderView::profiles(QString profileName)
 {
     ProfileManager profileManager("Panel", this);
     profileManager.hide();
-    connect(&profileManager, SIGNAL(saveToProfile(QString)), this, SLOT(savePanelProfiles(QString)));
-    connect(&profileManager, SIGNAL(loadFromProfile(QString)), this, SLOT(loadPanelProfiles(QString)));
+    connect(&profileManager, &ProfileManager::saveToProfile, this, &KrusaderView::savePanelProfiles);
+    connect(&profileManager, &ProfileManager::loadFromProfile, this, &KrusaderView::loadPanelProfiles);
     if (profileName.isEmpty())
         profileManager.profilePopup();
     else

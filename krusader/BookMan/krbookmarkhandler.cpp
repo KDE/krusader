@@ -79,7 +79,7 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) :
     // create bookmark manager
     QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
     manager = KBookmarkManager::managerForFile(filename, QStringLiteral("krusader"));
-    connect(manager, SIGNAL(changed(QString,QString)), this, SLOT(bookmarksChanged(QString,QString)));
+    connect(manager, &KBookmarkManager::changed, this, &KrBookmarkHandler::bookmarksChanged);
 
     // create the quick search bar and action
     _quickSearchAction = new QWidgetAction(this);

@@ -122,10 +122,10 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QStr
             i18n("Enqueue the job if another job is running. Otherwise start immediately."));
     buttonBox->addButton(queueButton, QDialogButtonBox::ActionRole);
 
-    connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
-    connect(queueButton, SIGNAL(clicked()), SLOT(slotQueueButtonClicked()));
-    connect(urlRequester_, SIGNAL(textChanged(QString)), SLOT(slotTextChanged(QString)));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &KUrlRequesterDlgForCopy::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &KUrlRequesterDlgForCopy::reject);
+    connect(queueButton, &QPushButton::clicked, this, &KUrlRequesterDlgForCopy::slotQueueButtonClicked);
+    connect(urlRequester_, &KUrlRequester::textChanged, this, &KUrlRequesterDlgForCopy::slotTextChanged);
 
     urlRequester_->setFocus();
     bool state = !urlName.isEmpty();
@@ -181,8 +181,8 @@ KRGetDate::KRGetDate(QDate date, QWidget *parent) : QDialog(parent, Qt::MSWindow
     setMinimumSize(dateWidget->sizeHint());
     setMaximumSize(dateWidget->sizeHint());
     resize(minimumSize());
-    connect(dateWidget, SIGNAL(dateSelected(QDate)), this, SLOT(setDate(QDate)));
-    connect(dateWidget, SIGNAL(dateEntered(QDate)), this, SLOT(setDate(QDate)));
+    connect(dateWidget, &KDatePicker::dateSelected, this, &KRGetDate::setDate);
+    connect(dateWidget, &KDatePicker::dateEntered, this, &KRGetDate::setDate);
 
     // keep the original date - incase ESC is pressed
     originalDate  = date;

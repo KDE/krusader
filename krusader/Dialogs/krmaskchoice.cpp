@@ -105,15 +105,15 @@ KRMaskChoice::KRMaskChoice(QWidget* parent)
     MainLayout->addWidget(ButtonBox);
 
     // signals and slots connections
-    connect(ButtonBox, SIGNAL(rejected()), this, SLOT(reject()));
-    connect(ButtonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(PushButton7, SIGNAL(clicked()), this, SLOT(addSelection()));
-    connect(PushButton7_2, SIGNAL(clicked()), this, SLOT(deleteSelection()));
-    connect(PushButton7_3, SIGNAL(clicked()), this, SLOT(clearSelections()));
-    connect(selection, SIGNAL(activated(QString)), selection, SLOT(setEditText(QString)));
-    connect(selection->lineEdit(), SIGNAL(returnPressed()), this, SLOT(accept()));
-    connect(preSelections, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), this, SLOT(currentItemChanged(QListWidgetItem*)));
-    connect(preSelections, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(acceptFromList(QListWidgetItem*)));
+    connect(ButtonBox, &QDialogButtonBox::rejected, this, &KRMaskChoice::reject);
+    connect(ButtonBox, &QDialogButtonBox::accepted, this, &KRMaskChoice::accept);
+    connect(PushButton7, &QPushButton::clicked, this, &KRMaskChoice::addSelection);
+    connect(PushButton7_2, &QPushButton::clicked, this, &KRMaskChoice::deleteSelection);
+    connect(PushButton7_3, &QPushButton::clicked, this, &KRMaskChoice::clearSelections);
+    connect(selection, QOverload<const QString &>::of(&KComboBox::activated), selection, &KComboBox::setEditText);
+    connect(selection->lineEdit(), &QLineEdit::returnPressed, this, &KRMaskChoice::accept);
+    connect(preSelections, &KrListWidget::currentItemChanged, this, &KRMaskChoice::currentItemChanged);
+    connect(preSelections, &KrListWidget::itemActivated, this, &KRMaskChoice::acceptFromList);
 }
 
 /*

@@ -63,16 +63,16 @@ PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left)
     _newTab->setToolTip(i18n("Open a new tab in home"));
     _newTab->setIcon(Icon("tab-new"));
     _newTab->adjustSize();
-    connect(_newTab, SIGNAL(clicked()), this, SLOT(slotNewTab()));
+    connect(_newTab, &QToolButton::clicked, this, QOverload<>::of(&PanelManager::slotNewTab));
 
     // tab-bar
     _tabbar = new PanelTabBar(this, _actions);
-    connect(_tabbar, SIGNAL(currentChanged(int)), this, SLOT(slotCurrentTabChanged(int)));
-    connect(_tabbar, SIGNAL(tabCloseRequested(int)), this, SLOT(slotCloseTab(int)));
-    connect(_tabbar, SIGNAL(closeCurrentTab()), this, SLOT(slotCloseTab()));
+    connect(_tabbar, &PanelTabBar::currentChanged, this, &PanelManager::slotCurrentTabChanged);
+    connect(_tabbar, &PanelTabBar::tabCloseRequested, this, QOverload<int>::of(&PanelManager::slotCloseTab));
+    connect(_tabbar, &PanelTabBar::closeCurrentTab, this, QOverload<>::of(&PanelManager::slotCloseTab));
     connect(_tabbar, SIGNAL(newTab(QUrl)), this, SLOT(slotNewTab(QUrl)));
-    connect(_tabbar, SIGNAL(draggingTab(QMouseEvent*)), this, SLOT(slotDraggingTab(QMouseEvent*)));
-    connect(_tabbar, SIGNAL(draggingTabFinished(QMouseEvent*)), this, SLOT(slotDraggingTabFinished(QMouseEvent*)));
+    connect(_tabbar, &PanelTabBar::draggingTab, this, &PanelManager::slotDraggingTab);
+    connect(_tabbar, &PanelTabBar::draggingTabFinished, this, &PanelManager::slotDraggingTabFinished);
 
     QHBoxLayout *tabbarLayout = new QHBoxLayout;
     tabbarLayout->setSpacing(0);

@@ -41,7 +41,7 @@ KrBookmark::KrBookmark(QString name, QUrl url, KActionCollection *parent, QStrin
     QString actName = actionName.isNull() ? BM_NAME(name) : BM_NAME(actionName);
     setText(name);
     parent->addAction(actName, this);
-    connect(this, SIGNAL(triggered()), this, SLOT(activatedProxy()));
+    connect(this, &KrBookmark::triggered, this, &KrBookmark::activatedProxy);
 
     setIconName(iconName);
 }

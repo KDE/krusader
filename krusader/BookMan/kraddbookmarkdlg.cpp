@@ -69,7 +69,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, QUrl url):
     _createInBtn = new QToolButton(this);
     _createInBtn->setIcon(Icon("go-down"));
     _createInBtn->setCheckable(true);
-    connect(_createInBtn, SIGNAL(toggled(bool)), this, SLOT(toggleCreateIn(bool)));
+    connect(_createInBtn, &QToolButton::toggled, this, &KrAddBookmarkDlg::toggleCreateIn);
     layout->addWidget(_createInBtn, 2, 2);
 
     mainLayout->addLayout(layout);
@@ -87,10 +87,10 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, QUrl url):
     newFolderButton = new QPushButton(i18n("New Folder"));
     buttonBox->addButton(newFolderButton, QDialogButtonBox::ActionRole);
     newFolderButton->setVisible(false);// hide it until _createIn is shown
-    connect(newFolderButton, SIGNAL(clicked()), this, SLOT(newFolder()));
+    connect(newFolderButton, &QPushButton::clicked, this, &KrAddBookmarkDlg::newFolder);
 
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &KrAddBookmarkDlg::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &KrAddBookmarkDlg::reject);
 
     _name->setFocus();
     resize(sizeHint().width() * 2, sizeHint().height());
@@ -121,7 +121,7 @@ QWidget *KrAddBookmarkDlg::createInWidget()
     populateCreateInWidget(krBookMan->_root, item);
     _createIn->setCurrentItem(item);
     slotSelectionChanged();
-    connect(_createIn, SIGNAL(itemSelectionChanged()), this, SLOT(slotSelectionChanged()));
+    connect(_createIn, &KrTreeWidget::itemSelectionChanged, this, &KrAddBookmarkDlg::slotSelectionChanged);
 
     return _createIn;
 }

@@ -50,10 +50,10 @@ ActionMan::ActionMan(QWidget * parent)
     applyButton = buttonBox->button(QDialogButtonBox::Apply);
     applyButton->setEnabled(false);
 
-    connect(buttonBox, SIGNAL(rejected()), SLOT(slotClose()));
-    connect(applyButton, SIGNAL(clicked()), SLOT(slotApply()));
-    connect(userActionPage, SIGNAL(changed()), SLOT(slotEnableApplyButton()));
-    connect(userActionPage, SIGNAL(applied()), SLOT(slotDisableApplyButton()));
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &ActionMan::slotClose);
+    connect(applyButton, &QPushButton::clicked, this, &ActionMan::slotApply);
+    connect(userActionPage, &UserActionPage::changed, this, &ActionMan::slotEnableApplyButton);
+    connect(userActionPage, &UserActionPage::applied, this, &ActionMan::slotDisableApplyButton);
 
     exec();
 

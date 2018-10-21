@@ -331,11 +331,9 @@ bool KRarcHandler::unpack(QString archive, QString type, QString password, QStri
     // tell the user to wait
     observer->subJobStarted(i18n("Unpacking File(s)"), count);
     if (count != 0) {
-        connect(&proc, SIGNAL(newOutputLines(int)),
-                observer, SLOT(incrementProgress(int)));
+        connect(&proc, &KrLinecountingProcess::newOutputLines, observer, &KRarcObserver::incrementProgress);
         if (type == "rpm")
-            connect(&proc, SIGNAL(newErrorLines(int)),
-                    observer, SLOT(incrementProgress(int)));
+            connect(&proc, &KrLinecountingProcess::newErrorLines, observer, &KRarcObserver::incrementProgress);
     }
 
     // start the unpacking process
@@ -407,8 +405,7 @@ bool KRarcHandler::test(QString archive, QString type, QString password, KRarcOb
     // tell the user to wait
     observer->subJobStarted(i18n("Testing Archive"), count);
     if (count != 0)
-        connect(&proc, SIGNAL(newOutputLines(int)),
-                observer, SLOT(incrementProgress(int)));
+        connect(&proc, &KrLinecountingProcess::newOutputLines, observer, &KRarcObserver::incrementProgress);
 
     // start the unpacking process
     proc.start();
@@ -535,8 +532,7 @@ bool KRarcHandler::pack(QStringList fileNames, QString type, QString dest, long 
     // tell the user to wait
     observer->subJobStarted(i18n("Packing File(s)"), count);
     if (count != 0)
-        connect(&proc, SIGNAL(newOutputLines(int)),
-                observer, SLOT(incrementProgress(int)));
+        connect(&proc, &KrLinecountingProcess::newOutputLines, observer, &KRarcObserver::incrementProgress);
 
     // start the packing process
     proc.start();

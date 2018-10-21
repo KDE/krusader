@@ -46,8 +46,8 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent)
     acmBookmarks->setDelayed(false);
 
     setMenu(acmBookmarks->menu());
-    connect(acmBookmarks->menu(), SIGNAL(aboutToShow()), this, SLOT(populate()));
-    connect(acmBookmarks->menu(), SIGNAL(aboutToShow()), this, SIGNAL(aboutToShow()));
+    connect(acmBookmarks->menu(), &QMenu::aboutToShow, this, &KrBookmarkButton::populate);
+    connect(acmBookmarks->menu(), &QMenu::aboutToShow, this, &KrBookmarkButton::aboutToShow);
 }
 
 void KrBookmarkButton::populate()

@@ -47,7 +47,7 @@ UserActionListView::UserActionListView(QWidget * parent)
     setSortingEnabled(true);
     sortItems(COL_TITLE, Qt::AscendingOrder);
 
-    connect(this, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), SLOT(slotCurrentItemChanged(QTreeWidgetItem*)));
+    connect(this, &UserActionListView::currentItemChanged, this, &UserActionListView::slotCurrentItemChanged);
 
     update();
 }
