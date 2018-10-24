@@ -81,15 +81,13 @@ DUListView::DUListView(DiskUsage *usage)
     header()->setSortIndicatorShown(true);
     sortItems(2, Qt::AscendingOrder);
 
-    connect(diskUsage, SIGNAL(enteringDirectory(Directory*)), this, SLOT(slotDirChanged(Directory*)));
-    connect(diskUsage, SIGNAL(clearing()), this, SLOT(clear()));
-    connect(diskUsage, SIGNAL(changed(File*)), this, SLOT(slotChanged(File*)));
-    connect(diskUsage, SIGNAL(deleted(File*)), this, SLOT(slotDeleted(File*)));
+    connect(diskUsage, &DiskUsage::enteringDirectory, this, &DUListView::slotDirChanged);
+    connect(diskUsage, &DiskUsage::clearing, this, &DUListView::clear);
+    connect(diskUsage, &DiskUsage::changed, this, &DUListView::slotChanged);
+    connect(diskUsage, &DiskUsage::deleted, this, &DUListView::slotDeleted);
 
-    connect(this, SIGNAL(itemRightClicked(QTreeWidgetItem*,QPoint,int)),
-            this, SLOT(slotRightClicked(QTreeWidgetItem*,QPoint)));
-    connect(this, SIGNAL(itemExpanded(QTreeWidgetItem*)),
-            this, SLOT(slotExpanded(QTreeWidgetItem*)));
+    connect(this, &DUListView::itemRightClicked, this, &DUListView::slotRightClicked);
+    connect(this, &DUListView::itemExpanded, this, &DUListView::slotExpanded);
 }
 
 DUListView::~ DUListView()

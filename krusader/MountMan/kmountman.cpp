@@ -183,7 +183,7 @@ void KMountMan::mount(QString mntPoint, bool blocking)
         KIO::SimpleJob *job = KIO::mount(false, m->mountType().toLocal8Bit(), m->mountedFrom(), m->mountPoint(), KIO::DefaultFlags);
         job->setUiDelegate(new KIO::JobUiDelegate());
         KIO::getJobTracker()->registerJob(job);
-        connect(job, SIGNAL(result(KJob*)), this, SLOT(jobResult(KJob*)));
+        connect(job, &KIO::SimpleJob::result, this, &KMountMan::jobResult);
     }
     while (blocking && waiting) {
         qApp->processEvents();
@@ -225,7 +225,7 @@ void KMountMan::unmount(QString mntPoint, bool blocking)
         KIO::SimpleJob *job = KIO::unmount(mntPoint, KIO::DefaultFlags);
         job->setUiDelegate(new KIO::JobUiDelegate());
         KIO::getJobTracker()->registerJob(job);
-        connect(job, SIGNAL(result(KJob*)), this, SLOT(jobResult(KJob*)));
+        connect(job, &KIO::SimpleJob::result, this, &KMountMan::jobResult);
     }
     while (blocking && waiting) {
         qApp->processEvents();
@@ -296,8 +296,7 @@ void KMountMan::eject(QString mntPoint)
         QDir::setCurrent(QDir::homePath());
 
 
-    connect(drive, SIGNAL(ejectDone(Solid::ErrorType,QVariant,QString)),
-            this, SLOT(slotTeardownDone(Solid::ErrorType,QVariant,QString)));
+    connect(drive, &Solid::OpticalDrive::ejectDone, this, &KMountMan::slotTeardownDone);
 
     drive->eject();
 }

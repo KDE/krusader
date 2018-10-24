@@ -62,7 +62,7 @@ Sidebar::Sidebar(QWidget *parent) : QWidget(parent), stack(0), imageFilePreview(
 
     btns = new QButtonGroup(this);
     btns->setExclusive(true);
-    connect(btns, SIGNAL(buttonClicked(int)), this, SLOT(tabSelected(int)));
+    connect(btns, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &Sidebar::tabSelected);
 
     treeBtn = new QToolButton(this);
     treeBtn->setToolTip(i18n("Tree Panel: a tree view of the local file system"));

@@ -61,13 +61,13 @@ Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)0),
                        QDialogButtonBox::Apply|QDialogButtonBox::Reset);
     button(QDialogButtonBox::Apply)->setDefault(true);
 
-    connect(button(QDialogButtonBox::Close), SIGNAL(clicked()), SLOT(slotClose()));
-    connect(button(QDialogButtonBox::Help), SIGNAL(clicked()), SLOT(slotShowHelp()));
-    connect(button(QDialogButtonBox::RestoreDefaults), SIGNAL(clicked()), SLOT(slotRestoreDefaults()));
-    connect(button(QDialogButtonBox::Reset), SIGNAL(clicked()), SLOT(slotReset()));
-    connect(button(QDialogButtonBox::Apply), SIGNAL(clicked()), SLOT(slotApply()));
-    connect(this, SIGNAL(currentPageChanged(KPageWidgetItem*,KPageWidgetItem*)), this, SLOT(slotPageSwitch(KPageWidgetItem*,KPageWidgetItem*)));
-    connect(&restoreTimer, SIGNAL(timeout()), this, SLOT(slotRestorePage()));
+    connect(button(QDialogButtonBox::Close), &QPushButton::clicked, this, &Konfigurator::slotClose);
+    connect(button(QDialogButtonBox::Help), &QPushButton::clicked, this, &Konfigurator::slotShowHelp);
+    connect(button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &Konfigurator::slotRestoreDefaults);
+    connect(button(QDialogButtonBox::Reset), &QPushButton::clicked, this, &Konfigurator::slotReset);
+    connect(button(QDialogButtonBox::Apply), &QPushButton::clicked, this, &Konfigurator::slotApply);
+    connect(this, &Konfigurator::currentPageChanged, this, &Konfigurator::slotPageSwitch);
+    connect(&restoreTimer, &QTimer::timeout, this, &Konfigurator::slotRestorePage);
 
     createLayout(startPage);
 
@@ -118,7 +118,7 @@ void Konfigurator::newPage(KonfiguratorPage *page, const QString &name, const QS
     addPage(item);
 
     kgPages.append(item);
-    connect(page, SIGNAL(sigChanged()), this, SLOT(slotApplyEnable()));
+    connect(page, &KonfiguratorPage::sigChanged, this, &Konfigurator::slotApplyEnable);
 }
 
 void Konfigurator::createLayout(int startPage)

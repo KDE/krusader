@@ -358,34 +358,34 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
 
     // Connection table
 
-    connect(minSizeEnabled, SIGNAL(toggled(bool)), minSizeAmount, SLOT(setEnabled(bool)));
-    connect(minSizeEnabled, SIGNAL(toggled(bool)), minSizeType, SLOT(setEnabled(bool)));
-    connect(maxSizeEnabled, SIGNAL(toggled(bool)), maxSizeAmount, SLOT(setEnabled(bool)));
-    connect(maxSizeEnabled, SIGNAL(toggled(bool)), maxSizeType, SLOT(setEnabled(bool)));
-    connect(modifiedBetweenEnabled, SIGNAL(toggled(bool)), modifiedBetweenData1, SLOT(setEnabled(bool)));
-    connect(modifiedBetweenEnabled, SIGNAL(toggled(bool)), modifiedBetweenBtn1, SLOT(setEnabled(bool)));
-    connect(modifiedBetweenEnabled, SIGNAL(toggled(bool)), modifiedBetweenData2, SLOT(setEnabled(bool)));
-    connect(modifiedBetweenEnabled, SIGNAL(toggled(bool)), modifiedBetweenBtn2, SLOT(setEnabled(bool)));
-    connect(notModifiedAfterEnabled, SIGNAL(toggled(bool)), notModifiedAfterData, SLOT(setEnabled(bool)));
-    connect(notModifiedAfterEnabled, SIGNAL(toggled(bool)), notModifiedAfterBtn, SLOT(setEnabled(bool)));
-    connect(modifiedInTheLastEnabled, SIGNAL(toggled(bool)), modifiedInTheLastData, SLOT(setEnabled(bool)));
-    connect(modifiedInTheLastEnabled, SIGNAL(toggled(bool)), modifiedInTheLastType, SLOT(setEnabled(bool)));
-    connect(modifiedInTheLastEnabled, SIGNAL(toggled(bool)), notModifiedInTheLastData, SLOT(setEnabled(bool)));
-    connect(modifiedInTheLastEnabled, SIGNAL(toggled(bool)), notModifiedInTheLastType, SLOT(setEnabled(bool)));
-    connect(belongsToUserEnabled, SIGNAL(toggled(bool)), belongsToUserData, SLOT(setEnabled(bool)));
-    connect(belongsToGroupEnabled, SIGNAL(toggled(bool)), belongsToGroupData, SLOT(setEnabled(bool)));
-    connect(permissionsEnabled, SIGNAL(toggled(bool)), ownerR, SLOT(setEnabled(bool)));
-    connect(permissionsEnabled, SIGNAL(toggled(bool)), ownerW, SLOT(setEnabled(bool)));
-    connect(permissionsEnabled, SIGNAL(toggled(bool)), ownerX, SLOT(setEnabled(bool)));
-    connect(permissionsEnabled, SIGNAL(toggled(bool)), groupR, SLOT(setEnabled(bool)));
-    connect(permissionsEnabled, SIGNAL(toggled(bool)), groupW, SLOT(setEnabled(bool)));
-    connect(permissionsEnabled, SIGNAL(toggled(bool)), groupX, SLOT(setEnabled(bool)));
-    connect(permissionsEnabled, SIGNAL(toggled(bool)), allR, SLOT(setEnabled(bool)));
-    connect(permissionsEnabled, SIGNAL(toggled(bool)), allW, SLOT(setEnabled(bool)));
-    connect(permissionsEnabled, SIGNAL(toggled(bool)), allX, SLOT(setEnabled(bool)));
-    connect(modifiedBetweenBtn1, SIGNAL(clicked()), this, SLOT(modifiedBetweenSetDate1()));
-    connect(modifiedBetweenBtn2, SIGNAL(clicked()), this, SLOT(modifiedBetweenSetDate2()));
-    connect(notModifiedAfterBtn, SIGNAL(clicked()), this, SLOT(notModifiedAfterSetDate()));
+    connect(minSizeEnabled, &QCheckBox::toggled, minSizeAmount, &QSpinBox::setEnabled);
+    connect(minSizeEnabled, &QCheckBox::toggled, minSizeType, &KComboBox::setEnabled);
+    connect(maxSizeEnabled, &QCheckBox::toggled, maxSizeAmount, &QSpinBox::setEnabled);
+    connect(maxSizeEnabled, &QCheckBox::toggled, maxSizeType, &KComboBox::setEnabled);
+    connect(modifiedBetweenEnabled, &QRadioButton::toggled, modifiedBetweenData1, &KLineEdit::setEnabled);
+    connect(modifiedBetweenEnabled, &QRadioButton::toggled, modifiedBetweenBtn1, &QToolButton::setEnabled);
+    connect(modifiedBetweenEnabled, &QRadioButton::toggled, modifiedBetweenData2, &KLineEdit::setEnabled);
+    connect(modifiedBetweenEnabled, &QRadioButton::toggled, modifiedBetweenBtn2, &QToolButton::setEnabled);
+    connect(notModifiedAfterEnabled, &QRadioButton::toggled, notModifiedAfterData, &KLineEdit::setEnabled);
+    connect(notModifiedAfterEnabled, &QRadioButton::toggled, notModifiedAfterBtn, &QToolButton::setEnabled);
+    connect(modifiedInTheLastEnabled, &QRadioButton::toggled, modifiedInTheLastData, &QSpinBox::setEnabled);
+    connect(modifiedInTheLastEnabled, &QRadioButton::toggled, modifiedInTheLastType, &KComboBox::setEnabled);
+    connect(modifiedInTheLastEnabled, &QRadioButton::toggled, notModifiedInTheLastData, &QSpinBox::setEnabled);
+    connect(modifiedInTheLastEnabled, &QRadioButton::toggled, notModifiedInTheLastType, &KComboBox::setEnabled);
+    connect(belongsToUserEnabled, &QCheckBox::toggled, belongsToUserData, &KComboBox::setEnabled);
+    connect(belongsToGroupEnabled, &QCheckBox::toggled, belongsToGroupData, &KComboBox::setEnabled);
+    connect(permissionsEnabled, &QCheckBox::toggled, ownerR, &KComboBox::setEnabled);
+    connect(permissionsEnabled, &QCheckBox::toggled, ownerW, &KComboBox::setEnabled);
+    connect(permissionsEnabled, &QCheckBox::toggled, ownerX, &KComboBox::setEnabled);
+    connect(permissionsEnabled, &QCheckBox::toggled, groupR, &KComboBox::setEnabled);
+    connect(permissionsEnabled, &QCheckBox::toggled, groupW, &KComboBox::setEnabled);
+    connect(permissionsEnabled, &QCheckBox::toggled, groupX, &KComboBox::setEnabled);
+    connect(permissionsEnabled, &QCheckBox::toggled, allR, &KComboBox::setEnabled);
+    connect(permissionsEnabled, &QCheckBox::toggled, allW, &KComboBox::setEnabled);
+    connect(permissionsEnabled, &QCheckBox::toggled, allX, &KComboBox::setEnabled);
+    connect(modifiedBetweenBtn1, &QToolButton::clicked, this, &AdvancedFilter::modifiedBetweenSetDate1);
+    connect(modifiedBetweenBtn2, &QToolButton::clicked, this, &AdvancedFilter::modifiedBetweenSetDate2);
+    connect(notModifiedAfterBtn, &QToolButton::clicked, this, &AdvancedFilter::notModifiedAfterSetDate);
 
     // fill the users and groups list
 

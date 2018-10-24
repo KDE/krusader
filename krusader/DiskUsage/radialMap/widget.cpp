@@ -49,9 +49,9 @@ RadialMap::Widget::Widget(QWidget *parent)
     pal.setColor(backgroundRole(), Qt::white);
     setPalette(pal);
 
-    connect(this, SIGNAL(created(const Directory*)), SLOT(sendFakeMouseEvent()));
-    connect(this, SIGNAL(created(const Directory*)), SLOT(update()));
-    connect(&m_timer, SIGNAL(timeout()), SLOT(resizeTimeout()));
+    connect(this, &Widget::created, this, &Widget::sendFakeMouseEvent);
+    connect(this, &Widget::created, this, QOverload<>::of(&Widget::update));
+    connect(&m_timer, &QTimer::timeout, this, &Widget::resizeTimeout);
 }
 
 QString

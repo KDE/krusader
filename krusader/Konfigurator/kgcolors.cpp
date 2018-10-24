@@ -73,9 +73,9 @@ KgColors::KgColors(bool first, QWidget* parent) :
 
     generals->layout()->setSpacing(5);
 
-    connect(generals->find("KDE Default"), SIGNAL(stateChanged(int)), this, SLOT(slotDisable()));
-    connect(generals->find("Show Current Item Always"), SIGNAL(stateChanged(int)), this, SLOT(slotDisable()));
-    connect(generals->find("Dim Inactive Colors"), SIGNAL(stateChanged(int)), this, SLOT(slotDisable()));
+    connect(generals->find("KDE Default"), &KonfiguratorCheckBox::stateChanged, this, &KgColors::slotDisable);
+    connect(generals->find("Show Current Item Always"), &KonfiguratorCheckBox::stateChanged, this, &KgColors::slotDisable);
+    connect(generals->find("Dim Inactive Colors"), &KonfiguratorCheckBox::stateChanged, this, &KgColors::slotDisable);
 
     kgColorsLayout->addWidget(generalGrp, 0 , 0, 1, 3);
     QWidget *hboxWidget = new QWidget(innerWidget);
@@ -120,10 +120,10 @@ KgColors::KgColors(bool first, QWidget* parent) :
 
     colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
 
-    connect(getColorSelector("Foreground"), SIGNAL(colorChanged()), this, SLOT(slotForegroundChanged()));
-    connect(getColorSelector("Background"), SIGNAL(colorChanged()), this, SLOT(slotBackgroundChanged()));
-    connect(getColorSelector("Alternate Background"), SIGNAL(colorChanged()), this, SLOT(slotAltBackgroundChanged()));
-    connect(getColorSelector("Marked Background"), SIGNAL(colorChanged()), this, SLOT(slotMarkedBackgroundChanged()));
+    connect(getColorSelector("Foreground"), &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotForegroundChanged);
+    connect(getColorSelector("Background"), &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotBackgroundChanged);
+    connect(getColorSelector("Alternate Background"), &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotAltBackgroundChanged);
+    connect(getColorSelector("Marked Background"), &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotMarkedBackgroundChanged);
 
     inactiveColorStack = new QStackedWidget(colorTabWidget);
     inactiveTabIdx = colorTabWidget->addTab(inactiveColorStack, i18n("Inactive"));
@@ -158,10 +158,10 @@ KgColors::KgColors(bool first, QWidget* parent) :
 
     colorsGrid->addWidget(createSpacer(normalInactiveWidget), itemList.count() - offset, 1);
 
-    connect(getColorSelector("Inactive Foreground"), SIGNAL(colorChanged()), this, SLOT(slotInactiveForegroundChanged()));
-    connect(getColorSelector("Inactive Background"), SIGNAL(colorChanged()), this, SLOT(slotInactiveBackgroundChanged()));
-    connect(getColorSelector("Inactive Alternate Background"), SIGNAL(colorChanged()), this, SLOT(slotInactiveAltBackgroundChanged()));
-    connect(getColorSelector("Inactive Marked Background"), SIGNAL(colorChanged()), this, SLOT(slotInactiveMarkedBackgroundChanged()));
+    connect(getColorSelector("Inactive Foreground"), &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotInactiveForegroundChanged);
+    connect(getColorSelector("Inactive Background"), &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotInactiveBackgroundChanged);
+    connect(getColorSelector("Inactive Alternate Background"), &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotInactiveAltBackgroundChanged);
+    connect(getColorSelector("Inactive Marked Background"), &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotInactiveMarkedBackgroundChanged);
 
     offset = endOfPanelColors = itemList.count();
 
@@ -262,9 +262,9 @@ KgColors::KgColors(bool first, QWidget* parent) :
     previewGrid->addWidget(preview, 0 , 0);
     hbox->addWidget(previewGrp);
 
-    connect(generals->find("Enable Alternate Background"), SIGNAL(stateChanged(int)), this, SLOT(generatePreview()));
-    connect(colorTabWidget, SIGNAL(currentChanged(int)), this, SLOT(generatePreview()));
-    connect(dimFactor, SIGNAL(valueChanged(int)), this, SLOT(generatePreview()));
+    connect(generals->find("Enable Alternate Background"), &KonfiguratorCheckBox::stateChanged, this, &KgColors::generatePreview);
+    connect(colorTabWidget, &QTabWidget::currentChanged, this, &KgColors::generatePreview);
+    connect(dimFactor, QOverload<int>::of(&KonfiguratorSpinBox::valueChanged), this, &KgColors::generatePreview);
 
     kgColorsLayout->addWidget(hboxWidget, 1 , 0, 1,  3);
 
@@ -273,8 +273,8 @@ KgColors::KgColors(bool first, QWidget* parent) :
     exportBtn = new QPushButton(i18n("Export color-scheme"), innerWidget);
     kgColorsLayout->addWidget(exportBtn, 2, 1);
     kgColorsLayout->addWidget(createSpacer(innerWidget), 2, 2);
-    connect(importBtn, SIGNAL(clicked()), this, SLOT(slotImportColors()));
-    connect(exportBtn, SIGNAL(clicked()), this, SLOT(slotExportColors()));
+    connect(importBtn, &QPushButton::clicked, this, &KgColors::slotImportColors);
+    connect(exportBtn, &QPushButton::clicked, this, &KgColors::slotExportColors);
 
     slotDisable();
 }
@@ -293,9 +293,9 @@ int KgColors::addColorSelector(QString cfgName, QString name, QColor defaultValu
 
     colorsGrid->addWidget(chooser, index, 1);
 
-    connect(chooser, SIGNAL(colorChanged()), this, SLOT(generatePreview()));
+    connect(chooser, &KonfiguratorColorChooser::colorChanged, this, &KgColors::generatePreview);
     if (!offset)
-        connect(chooser, SIGNAL(colorChanged()), this, SLOT(slotActiveChanged()));
+        connect(chooser, &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotActiveChanged);
 
     itemList.append(chooser);
     itemNames.append(cfgName);

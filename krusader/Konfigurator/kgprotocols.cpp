@@ -117,14 +117,14 @@ KgProtocols::KgProtocols(bool first, QWidget* parent) :
 
     //  -------------------------- CONNECT TABLE ----------------------------------
 
-    connect(protocolList,      SIGNAL(itemSelectionChanged()), this, SLOT(slotDisableButtons()));
-    connect(linkList,          SIGNAL(itemSelectionChanged()), this, SLOT(slotDisableButtons()));
-    connect(mimeList,          SIGNAL(itemSelectionChanged()), this, SLOT(slotDisableButtons()));
-    connect(linkList,          SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(slotDisableButtons()));
-    connect(btnAddProtocol,    SIGNAL(clicked())         , this, SLOT(slotAddProtocol()));
-    connect(btnRemoveProtocol, SIGNAL(clicked())         , this, SLOT(slotRemoveProtocol()));
-    connect(btnAddMime,        SIGNAL(clicked())         , this, SLOT(slotAddMime()));
-    connect(btnRemoveMime,     SIGNAL(clicked())         , this, SLOT(slotRemoveMime()));
+    connect(protocolList,      &KrListWidget::itemSelectionChanged, this, &KgProtocols::slotDisableButtons);
+    connect(linkList,          &KrTreeWidget::itemSelectionChanged, this, &KgProtocols::slotDisableButtons);
+    connect(mimeList,          &KrListWidget::itemSelectionChanged, this, &KgProtocols::slotDisableButtons);
+    connect(linkList,          &KrTreeWidget::currentItemChanged  , this, &KgProtocols::slotDisableButtons);
+    connect(btnAddProtocol,    &QPushButton::clicked              , this, &KgProtocols::slotAddProtocol);
+    connect(btnRemoveProtocol, &QPushButton::clicked              , this, &KgProtocols::slotRemoveProtocol);
+    connect(btnAddMime,        &QPushButton::clicked              , this, &KgProtocols::slotAddMime);
+    connect(btnRemoveMime,     &QPushButton::clicked              , this, &KgProtocols::slotRemoveMime);
 
     loadInitialValues();
     slotDisableButtons();

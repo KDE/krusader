@@ -78,8 +78,8 @@ ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent) : KTextEdit(pare
     setLineWrapMode(QTextEdit::NoWrap);
 
     // zoom shortcuts
-    connect(new QShortcut(QKeySequence("Ctrl++"), this), SIGNAL(activated()), this, SLOT(zoomIn()));
-    connect(new QShortcut(QKeySequence("Ctrl+-"), this), SIGNAL(activated()), this, SLOT(zoomOut()));
+    connect(new QShortcut(QKeySequence("Ctrl++"), this), &QShortcut::activated, this, [=]() { zoomIn(); });
+    connect(new QShortcut(QKeySequence("Ctrl+-"), this), &QShortcut::activated, this, [=]() { zoomOut(); });
 
     // start cursor blinking
     connect(&_blinkTimer, &QTimer::timeout, this, [=] {
@@ -1203,40 +1203,40 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent)
     setXMLFile("krusaderlisterui.rc");
 
     _actionSaveSelected = new QAction(Icon("document-save"), i18n("Save selection..."), this);
-    connect(_actionSaveSelected, SIGNAL(triggered(bool)), SLOT(saveSelected()));
+    connect(_actionSaveSelected, &QAction::triggered, this, &Lister::saveSelected);
     actionCollection()->addAction("save_selected", _actionSaveSelected);
 
     _actionSaveAs = new QAction(Icon("document-save-as"), i18n("Save as..."), this);
-    connect(_actionSaveAs, SIGNAL(triggered(bool)), SLOT(saveAs()));
+    connect(_actionSaveAs, &QAction::triggered, this, &Lister::saveAs);
     actionCollection()->addAction("save_as", _actionSaveAs);
 
     _actionPrint = new QAction(Icon("document-print"), i18n("Print..."), this);
-    connect(_actionPrint, SIGNAL(triggered(bool)), SLOT(print()));
+    connect(_actionPrint, &QAction::triggered, this, &Lister::print);
     actionCollection()->addAction("print", _actionPrint);
     actionCollection()->setDefaultShortcut(_actionPrint, Qt::CTRL + Qt::Key_P);
 
     _actionSearch = new QAction(Icon("system-search"), i18n("Search"), this);
-    connect(_actionSearch, SIGNAL(triggered(bool)), SLOT(searchAction()));
+    connect(_actionSearch, &QAction::triggered, this, &Lister::searchAction);
     actionCollection()->addAction("search", _actionSearch);
     actionCollection()->setDefaultShortcut(_actionSearch, Qt::CTRL + Qt::Key_F);
 
     _actionSearchNext = new QAction(Icon("go-down"), i18n("Search next"), this);
-    connect(_actionSearchNext, SIGNAL(triggered(bool)), SLOT(searchNext()));
+    connect(_actionSearchNext, &QAction::triggered, this, &Lister::searchNext);
     actionCollection()->addAction("search_next", _actionSearchNext);
     actionCollection()->setDefaultShortcut(_actionSearchNext, Qt::Key_F3);
 
     _actionSearchPrev = new QAction(Icon("go-up"), i18n("Search previous"), this);
-    connect(_actionSearchPrev, SIGNAL(triggered(bool)), SLOT(searchPrev()));
+    connect(_actionSearchPrev, &QAction::triggered, this, &Lister::searchPrev);
     actionCollection()->addAction("search_prev", _actionSearchPrev);
     actionCollection()->setDefaultShortcut(_actionSearchPrev, Qt::SHIFT + Qt::Key_F3);
 
     _actionJumpToPosition = new QAction(Icon("go-jump"), i18n("Jump to position"), this);
-    connect(_actionJumpToPosition, SIGNAL(triggered(bool)), SLOT(jumpToPosition()));
+    connect(_actionJumpToPosition, &QAction::triggered, this, &Lister::jumpToPosition);
     actionCollection()->addAction("jump_to_position", _actionJumpToPosition);
     actionCollection()->setDefaultShortcut(_actionJumpToPosition, Qt::CTRL + Qt::Key_G);
 
     _actionHexMode = new QAction(Icon("document-preview"), i18n("Hex mode"), this);
-    connect(_actionHexMode, SIGNAL(triggered(bool)), SLOT(toggleHexMode()));
+    connect(_actionHexMode, &QAction::triggered, this, &Lister::toggleHexMode);
     actionCollection()->addAction("hex_mode", _actionHexMode);
     actionCollection()->setDefaultShortcut(_actionHexMode, Qt::CTRL + Qt::Key_H);
 
@@ -1272,7 +1272,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent)
     _searchStopButton->setIcon(Icon("process-stop"));
     _searchStopButton->setToolTip(i18n("Stop search"));
     _searchStopButton->hide();
-    connect(_searchStopButton, SIGNAL(clicked()), this, SLOT(searchDelete()));
+    connect(_searchStopButton, &QToolButton::clicked, this, &Lister::searchDelete);
     hbox->addWidget(_searchStopButton);
 
     _searchLineEdit = new KLineEdit(statusWidget);
@@ -1281,17 +1281,17 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent)
     _originalBackground = _searchLineEdit->palette().color(QPalette::Base);
     _originalForeground = _searchLineEdit->palette().color(QPalette::Text);
 
-    connect(_searchLineEdit, SIGNAL(returnPressed()), this, SLOT(searchNext()));
-    connect(_searchLineEdit, SIGNAL(textChanged(QString)), this, SLOT(searchTextChanged()));
+    connect(_searchLineEdit, &KLineEdit::returnPressed, this, &Lister::searchNext);
+    connect(_searchLineEdit, &KLineEdit::textChanged, this, &Lister::searchTextChanged);
 
     hbox->addWidget(_searchLineEdit);
     _searchNextButton = new QPushButton(Icon("go-down"), i18n("Next"), statusWidget);
     _searchNextButton->setToolTip(i18n("Jump to next match"));
-    connect(_searchNextButton, SIGNAL(clicked()), this, SLOT(searchNext()));
+    connect(_searchNextButton, &QPushButton::clicked, this, &Lister::searchNext);
     hbox->addWidget(_searchNextButton);
     _searchPrevButton = new QPushButton(Icon("go-up"), i18n("Previous"), statusWidget);
     _searchPrevButton->setToolTip(i18n("Jump to previous match"));
-    connect(_searchPrevButton, SIGNAL(clicked()), this, SLOT(searchPrev()));
+    connect(_searchPrevButton, &QPushButton::clicked, this, &Lister::searchPrev);
     hbox->addWidget(_searchPrevButton);
     _searchOptions = new QPushButton(i18n("Options"), statusWidget);
     _searchOptions->setToolTip(i18n("Modify search behavior"));

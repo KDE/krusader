@@ -35,7 +35,7 @@
 KrPreviews::KrPreviews(KrView *view) :  _job(0), _view(view)
 {
     _dim = KrColorCache::getColorCache().getDimSettings(_dimColor, _dimFactor);
-    connect(&KrColorCache::getColorCache(), SIGNAL(colorsRefreshed()), SLOT(slotRefreshColors()));
+    connect(&KrColorCache::getColorCache(), &KrColorCache::colorsRefreshed, this, &KrPreviews::slotRefreshColors);
 }
 
 KrPreviews::~KrPreviews()
@@ -75,7 +75,7 @@ void KrPreviews::updatePreview(KrViewItem *item)
 {
     if(!_job) {
         _job = new KrPreviewJob(this);
-        connect(_job, SIGNAL(result(KJob*)), SLOT(slotJobResult(KJob*)));
+        connect(_job, &KrPreviewJob::result, this, &KrPreviews::slotJobResult);
         _view->op()->emitPreviewJobStarted(_job);
     }
     _job->scheduleItem(item);

@@ -52,9 +52,9 @@ void DiskUsageViewer::openUrl(QUrl url)
     if (diskUsage == 0) {
         diskUsage = new DiskUsage("DiskUsageViewer", this);
 
-        connect(diskUsage, SIGNAL(enteringDirectory(Directory*)), this, SLOT(slotUpdateStatus()));
-        connect(diskUsage, SIGNAL(status(QString)), this, SLOT(slotUpdateStatus(QString)));
-        connect(diskUsage, SIGNAL(newSearch()), this, SLOT(slotNewSearch()));
+        connect(diskUsage, &DiskUsage::enteringDirectory, this, [=]() { slotUpdateStatus(); });
+        connect(diskUsage, &DiskUsage::status, this, &DiskUsageViewer::slotUpdateStatus);
+        connect(diskUsage, &DiskUsage::newSearch, this, &DiskUsageViewer::slotNewSearch);
         layout->addWidget(diskUsage, 0, 0);
         this->show();
         diskUsage->show();

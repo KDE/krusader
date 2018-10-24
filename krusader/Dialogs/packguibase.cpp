@@ -87,8 +87,8 @@ PackGUIBase::PackGUIBase(QWidget* parent)
 
     typeData = new QComboBox(this);
     typeData->setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
-    connect(typeData, SIGNAL(activated(QString)), this,  SLOT(checkConsistency()));
-    connect(typeData, SIGNAL(highlighted(QString)), this,  SLOT(checkConsistency()));
+    connect(typeData, QOverload<const QString &>::of(&QComboBox::activated), this,  &PackGUIBase::checkConsistency);
+    connect(typeData, QOverload<const QString &>::of(&QComboBox::highlighted), this,  &PackGUIBase::checkConsistency);
     hbox->addWidget(typeData);
 
     grid->addLayout(hbox, 1, 0);
@@ -149,7 +149,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     compressLayout->setContentsMargins(0, 0, 0, 0);
 
     multipleVolume = new QCheckBox(i18n("Multiple volume archive"), advancedWidget);
-    connect(multipleVolume, SIGNAL(toggled(bool)), this, SLOT(checkConsistency()));
+    connect(multipleVolume, &QCheckBox::toggled, this, &PackGUIBase::checkConsistency);
     compressLayout->addWidget(multipleVolume, 0, 0);
 
     QHBoxLayout * volumeHbox = new QHBoxLayout;
@@ -179,7 +179,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     setCompressionLevel = new QCheckBox(i18n("Set compression level"), advancedWidget);
     if (level != _defaultCompressionLevel)
         setCompressionLevel->setChecked(true);
-    connect(setCompressionLevel, SIGNAL(toggled(bool)), this, SLOT(checkConsistency()));
+    connect(setCompressionLevel, &QCheckBox::toggled, this, &PackGUIBase::checkConsistency);
     compressLayout->addWidget(setCompressionLevel, 0, 0);
 
     QHBoxLayout * sliderHbox = new QHBoxLayout;
@@ -233,7 +233,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
 
     password = new QLineEdit(advancedWidget);
     password->setEchoMode(QLineEdit::Password);
-    connect(password, SIGNAL(textChanged(QString)), this, SLOT(checkConsistency()));
+    connect(password, &QLineEdit::textChanged, this, &PackGUIBase::checkConsistency);
 
     passwordGrid->addWidget(password, 0, 1);
 
@@ -243,7 +243,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
 
     passwordAgain = new QLineEdit(advancedWidget);
     passwordAgain->setEchoMode(QLineEdit::Password);
-    connect(passwordAgain, SIGNAL(textChanged(QString)), this, SLOT(checkConsistency()));
+    connect(passwordAgain, &QLineEdit::textChanged, this, &PackGUIBase::checkConsistency);
 
     passwordGrid->addWidget(passwordAgain, 1, 1);
 
@@ -313,10 +313,10 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     grid->addLayout(hbox_6, 6, 0);
 
     // signals and slots connections
-    connect(okButton, SIGNAL(clicked()), this, SLOT(accept()));
-    connect(advancedButton, SIGNAL(clicked()), this, SLOT(expand()));
-    connect(cancelButton, SIGNAL(clicked()), this, SLOT(reject()));
-    connect(browseButton, SIGNAL(clicked()), this, SLOT(browse()));
+    connect(okButton, &QPushButton::clicked, this, &PackGUIBase::accept);
+    connect(advancedButton, &QPushButton::clicked, this, &PackGUIBase::expand);
+    connect(cancelButton, &QPushButton::clicked, this, &PackGUIBase::reject);
+    connect(browseButton, &QToolButton::clicked, this, &PackGUIBase::browse);
 }
 
 /*

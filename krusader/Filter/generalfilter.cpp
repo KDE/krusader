@@ -168,7 +168,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     ofType->addItem(i18n("Text Files"));
     ofType->addItem(i18n("Video Files"));
     ofType->addItem(i18n("Audio Files"));
-    connect(ofType, SIGNAL(currentIndexChanged(int)), this, SLOT(slotDisable()));
+    connect(ofType, QOverload<int>::of(&KComboBox::currentIndexChanged), this, &GeneralFilter::slotDisable);
 
     nameGroupLayout->addWidget(ofType, 1, 1);
     filterLayout->addWidget(nameGroup, 0, 0);

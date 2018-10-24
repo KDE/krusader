@@ -169,7 +169,7 @@ LoaderWidget::LoaderWidget(QWidget *parent) : QScrollArea(parent), cancelled(fal
     setWidget(widget);
     setAlignment(Qt::AlignCenter);
 
-    connect(cancelButton, SIGNAL(clicked()), this, SLOT(slotCancelled()));
+    connect(cancelButton, &QPushButton::clicked, this, &LoaderWidget::slotCancelled);
 }
 
 void LoaderWidget::init()
@@ -212,7 +212,7 @@ DiskUsage::DiskUsage(QString confGroup, QWidget *parent) : QStackedWidget(parent
 
     Filelight::Config::read();
 
-    connect(&loadingTimer, SIGNAL(timeout()), this, SLOT(slotLoadDirectory()));
+    connect(&loadingTimer, &QTimer::timeout, this, &DiskUsage::slotLoadDirectory);
 }
 
 DiskUsage::~DiskUsage()

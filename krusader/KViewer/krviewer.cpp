@@ -70,10 +70,9 @@ KrViewer::KrViewer(QWidget *parent) :
     setXMLFile("krviewer.rc");   // kpart-related xml file
     setHelpMenuEnabled(false);
 
-    connect(&manager, SIGNAL(activePartChanged(KParts::Part*)),
-            this, SLOT(createGUI(KParts::Part*)));
+    connect(&manager, &KParts::PartManager::activePartChanged, this, &KrViewer::createGUI);
     connect(&tabBar, &QTabWidget::currentChanged, this, &KrViewer::tabChanged);
-    connect(&tabBar, SIGNAL(tabCloseRequested(int)), this, SLOT(tabCloseRequest(int)));
+    connect(&tabBar, &QTabWidget::tabCloseRequested, this, [=](int index) { tabCloseRequest(index, false); });
 
     tabBar.setDocumentMode(true);
     tabBar.setMovable(true);
@@ -354,11 +353,9 @@ void KrViewer::addTab(PanelViewerBase *pvb)
 
     tabBar.show();
 
-    connect(pvb, SIGNAL(openUrlFinished(PanelViewerBase*,bool)),
-                 SLOT(openUrlFinished(PanelViewerBase*,bool)));
+    connect(pvb, &PanelViewerBase::openUrlFinished, this, &KrViewer::openUrlFinished);
 
-    connect(pvb, SIGNAL(urlChanged(PanelViewerBase*,QUrl)),
-            this,  SLOT(tabURLChanged(PanelViewerBase*,QUrl)));
+    connect(pvb, &PanelViewerBase::urlChanged, this, &KrViewer::tabURLChanged);
 }
 
 void KrViewer::tabURLChanged(PanelViewerBase *pvb, const QUrl &url)

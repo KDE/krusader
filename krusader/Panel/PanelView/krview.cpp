@@ -65,7 +65,7 @@ KrViewOperator::KrViewOperator(KrView *view, QWidget *widget) :
         _view(view), _widget(widget), _massSelectionUpdate(false)
 {
     _saveDefaultSettingsTimer.setSingleShot(true);
-    connect(&_saveDefaultSettingsTimer, SIGNAL(timeout()), SLOT(saveDefaultSettings()));
+    connect(&_saveDefaultSettingsTimer, &QTimer::timeout, this, &KrViewOperator::saveDefaultSettings);
 }
 
 KrViewOperator::~KrViewOperator()

@@ -210,15 +210,14 @@ DULines::DULines(DiskUsage *usage)
 
 //  toolTip = new DULinesToolTip( diskUsage, viewport(), this );
 
-    connect(diskUsage, SIGNAL(enteringDirectory(Directory*)), this, SLOT(slotDirChanged(Directory*)));
-    connect(diskUsage, SIGNAL(clearing()), this, SLOT(clear()));
+    connect(diskUsage, &DiskUsage::enteringDirectory, this, &DULines::slotDirChanged);
+    connect(diskUsage, &DiskUsage::clearing, this, &DULines::clear);
 
-    connect(header(), SIGNAL(sectionResized(int,int,int)), this, SLOT(sectionResized(int)));
+    connect(header(), &QHeaderView::sectionResized, this, &DULines::sectionResized);
 
-    connect(this, SIGNAL(itemRightClicked(QTreeWidgetItem*,QPoint,int)),
-            this, SLOT(slotRightClicked(QTreeWidgetItem*,QPoint)));
-    connect(diskUsage, SIGNAL(changed(File*)), this, SLOT(slotChanged(File*)));
-    connect(diskUsage, SIGNAL(deleted(File*)), this, SLOT(slotDeleted(File*)));
+    connect(this, &DULines::itemRightClicked, this, &DULines::slotRightClicked);
+    connect(diskUsage, &DiskUsage::changed, this, &DULines::slotChanged);
+    connect(diskUsage, &DiskUsage::deleted, this, &DULines::slotDeleted);
 
     started = true;
 }

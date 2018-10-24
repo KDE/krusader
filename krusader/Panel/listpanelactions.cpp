@@ -42,7 +42,7 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
 {
     // set view type
     QSignalMapper *mapper = new QSignalMapper(this);
-    connect(mapper, SIGNAL(mapped(int)), SLOT(setView(int)));
+    connect(mapper, QOverload<int>::of(&QSignalMapper::mapped), this, &ListPanelActions::setView);
     QActionGroup *group = new QActionGroup(this);
     group->setExclusive(true);
     QList<KrViewInstance*> views = KrViewFactory::registeredViews();
@@ -50,7 +50,7 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
         KrViewInstance *inst = views[i];
         QAction *action = new QAction(Icon(inst->iconName()), inst->description(), group);
         action->setCheckable(true);
-        connect(action, SIGNAL(triggered()), mapper, SLOT(map()));
+        connect(action, &QAction::triggered, mapper, QOverload<>::of(&QSignalMapper::map));
         mapper->setMapping(action, inst->id());
         _mainWindow->actions()->addAction("view" + QString::number(i), action);
         _mainWindow->actions()->setDefaultShortcut(action, inst->shortcut());

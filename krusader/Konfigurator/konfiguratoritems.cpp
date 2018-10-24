@@ -96,11 +96,11 @@ KonfiguratorCheckBox::KonfiguratorCheckBox(QString configGroup, QString name, bo
         defaultValue(defaultValue)
 {
     ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
-    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
-    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
+    connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorCheckBox::slotApply);
+    connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorCheckBox::slotSetDefaults);
+    connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorCheckBox::loadInitialValue);
 
-    connect(this, SIGNAL(stateChanged(int)), ext, SLOT(setChanged()));
+    connect(this, &KonfiguratorCheckBox::stateChanged, ext, QOverload<>::of(&KonfiguratorExtension::setChanged));
     loadInitialValue();
 }
 
@@ -161,11 +161,11 @@ KonfiguratorSpinBox::KonfiguratorSpinBox(QString configGroup, QString configName
     : QSpinBox(parent), defaultValue(defaultValue)
 {
     ext = new KonfiguratorExtension(this, configGroup, configName, restartNeeded, page);
-    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
-    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
+    connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorSpinBox::slotApply);
+    connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorSpinBox::slotSetDefaults);
+    connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorSpinBox::loadInitialValue);
 
-    connect(this, SIGNAL(valueChanged(int)), ext, SLOT(setChanged()));
+    connect(this, QOverload<int>::of(&KonfiguratorSpinBox::valueChanged), ext, QOverload<>::of(&KonfiguratorExtension::setChanged));
 
     setMinimum(min);
     setMaximum(max);
@@ -233,9 +233,9 @@ KonfiguratorRadioButtons::KonfiguratorRadioButtons(QString configGroup, QString 
         QWidget(parent), defaultValue(defaultValue)
 {
     ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
-    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
-    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
+    connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorRadioButtons::slotApply);
+    connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorRadioButtons::slotSetDefaults);
+    connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorRadioButtons::loadInitialValue);
 }
 
 KonfiguratorRadioButtons::~KonfiguratorRadioButtons()
@@ -249,7 +249,7 @@ void KonfiguratorRadioButtons::addRadioButton(QRadioButton *radioWidget, QString
     radioNames.push_back(name);
     radioValues.push_back(value);
 
-    connect(radioWidget, SIGNAL(toggled(bool)), ext, SLOT(setChanged()));
+    connect(radioWidget, &QRadioButton::toggled, ext, QOverload<>::of(&KonfiguratorExtension::setChanged));
 }
 
 QRadioButton * KonfiguratorRadioButtons::find(int index)
@@ -336,12 +336,11 @@ KonfiguratorEditBox::KonfiguratorEditBox(QString configGroup, QString name, QStr
         defaultValue(defaultValue)
 {
     ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
-    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this,
-            SLOT(slotApply(QObject*,QString,QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
-    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
+    connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorEditBox::slotApply);
+    connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorEditBox::slotSetDefaults);
+    connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorEditBox::loadInitialValue);
 
-    connect(this, SIGNAL(textChanged(QString)), ext, SLOT(setChanged()));
+    connect(this, &KonfiguratorEditBox::textChanged, ext, QOverload<>::of(&KonfiguratorExtension::setChanged));
 
     loadInitialValue();
 }
@@ -379,12 +378,11 @@ KonfiguratorURLRequester::KonfiguratorURLRequester(QString configGroup, QString 
     : KUrlRequester(parent), defaultValue(defaultValue), expansion(expansion)
 {
     ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
-    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this,
-            SLOT(slotApply(QObject*,QString,QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
-    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
+    connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorURLRequester::slotApply);
+    connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorURLRequester::slotSetDefaults);
+    connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorURLRequester::loadInitialValue);
 
-    connect(this, SIGNAL(textChanged(QString)), ext, SLOT(setChanged()));
+    connect(this, &KonfiguratorURLRequester::textChanged, ext, QOverload<>::of(&KonfiguratorExtension::setChanged));
 
     loadInitialValue();
 }

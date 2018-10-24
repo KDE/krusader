@@ -51,10 +51,10 @@ FilterDialog::FilterDialog(QWidget *parent, QString caption, QStringList extraOp
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    connect(buttonBox, SIGNAL(accepted()), SLOT(slotOk()));
-    connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
-    connect(buttonBox->button(QDialogButtonBox::Reset), SIGNAL(clicked()), SLOT(slotReset()));
-    connect(filterTabs, SIGNAL(closeRequest(bool)), this, SLOT(slotCloseRequest(bool)));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &FilterDialog::slotOk);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &FilterDialog::reject);
+    connect(buttonBox->button(QDialogButtonBox::Reset), &QPushButton::clicked, this, &FilterDialog::slotReset);
+    connect(filterTabs, &FilterTabs::closeRequest, this, &FilterDialog::slotCloseRequest);
 
     generalFilter->searchFor->setFocus();
 

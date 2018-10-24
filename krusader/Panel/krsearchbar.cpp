@@ -47,13 +47,13 @@ KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
     closeButton->setAutoRaise(true);
     closeButton->setIcon(Icon(QStringLiteral("dialog-close")));
     closeButton->setToolTip(i18n("Close the search bar"));
-    connect(closeButton, SIGNAL(clicked()), SLOT(hideBar()));
+    connect(closeButton, &QToolButton::clicked, this, &KrSearchBar::hideBar);
 
     // combo box for changing search mode
     _modeBox = new QComboBox(this);
     _modeBox->addItems(QStringList() << i18n("Search") << i18n("Select") << i18n("Filter"));
     _modeBox->setToolTip(i18n("Change the search mode"));
-    connect(_modeBox, SIGNAL(currentIndexChanged(int)), SLOT(onModeChange()));
+    connect(_modeBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &KrSearchBar::onModeChange);
 
     _currentMode = static_cast<SearchMode>(_modeBox->currentIndex());
 
@@ -67,13 +67,13 @@ KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
         _textBox->addItems(savedSearches);
     _textBox->setCurrentText("");
     _textBox->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred));
-    connect(_textBox, SIGNAL(currentTextChanged(QString)), SLOT(onSearchChange()));
+    connect(_textBox, &KComboBox::currentTextChanged, this, &KrSearchBar::onSearchChange);
 
     QToolButton *saveSearchBtn = new QToolButton(this);
     saveSearchBtn->setIcon(Icon("document-save"));
     saveSearchBtn->setFixedSize(20, 20);
     saveSearchBtn->setToolTip(i18n("Save the current search string"));
-    connect(saveSearchBtn, SIGNAL(clicked()), this, SLOT(saveSearchString()));
+    connect(saveSearchBtn, &QToolButton::clicked, this, &KrSearchBar::saveSearchString);
 
     _openSelectDialogBtn = new QToolButton(this);
     _openSelectDialogBtn->setIcon(Icon("configure"));

@@ -42,7 +42,7 @@ ProfileManager::ProfileManager(QString profileType, QWidget * parent)
 
     this->profileType = profileType;
 
-    connect(this, SIGNAL(clicked()), this, SLOT(profilePopup()));
+    connect(this, &ProfileManager::clicked, this, &ProfileManager::profilePopup);
 
     KConfigGroup group(krConfig, "Private");
     profileList = group.readEntry(profileType, QStringList());

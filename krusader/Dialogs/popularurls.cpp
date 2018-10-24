@@ -309,11 +309,9 @@ PopularUrlsDlg::PopularUrlsDlg():
     setTabOrder(search, urls);
     setTabOrder((QWidget *)urls, buttonBox->button(QDialogButtonBox::Close));
 
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-    connect(urls, SIGNAL(activated(QModelIndex)),
-            this, SLOT(slotItemSelected(QModelIndex)));
-    connect(search, SIGNAL(hiddenChanged(QTreeWidgetItem*,bool)),
-            this, SLOT(slotVisibilityChanged()));
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &PopularUrlsDlg::reject);
+    connect(urls, &KrTreeWidget::activated, this, &PopularUrlsDlg::slotItemSelected);
+    connect(search, &KTreeWidgetSearchLine::hiddenChanged, this, &PopularUrlsDlg::slotVisibilityChanged);
 }
 
 void PopularUrlsDlg::slotItemSelected(const QModelIndex & ndx)

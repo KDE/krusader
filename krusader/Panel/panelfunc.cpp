@@ -90,7 +90,7 @@ ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
 {
     history = new DirHistoryQueue(panel);
     delayTimer.setSingleShot(true);
-    connect(&delayTimer, SIGNAL(timeout()), this, SLOT(doRefresh()));
+    connect(&delayTimer, &QTimer::timeout, this, &ListPanelFunc::doRefresh);
 }
 
 ListPanelFunc::~ListPanelFunc()
@@ -294,8 +294,7 @@ void ListPanelFunc::doRefresh()
     connect(files(), &DirListerInterface::scanDone, panel, &ListPanel::slotStartUpdate);
     connect(files(), &FileSystem::fileSystemInfoChanged, panel, &ListPanel::updateFilesystemStats);
     connect(files(), &FileSystem::refreshJobStarted, panel, &ListPanel::slotRefreshJobStarted);
-    connect(files(), SIGNAL(error(QString)),
-            panel, SLOT(slotFilesystemError(QString)));
+    connect(files(), &FileSystem::error, panel, &ListPanel::slotFilesystemError);
 
     panel->view->setFiles(files());
 
@@ -523,8 +522,8 @@ void ListPanelFunc::editNew()
         KIO::CopyJob *job = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), fileToCreate);
         job->setUiDelegate(0);
         job->setDefaultPermissions(true);
-        connect(job, SIGNAL(result(KJob*)), SLOT(slotFileCreated(KJob*)));
-        connect(job, SIGNAL(result(KJob*)), tempFile, SLOT(deleteLater()));
+        connect(job, &KIO::CopyJob::result, this, &ListPanelFunc::slotFileCreated);
+        connect(job, &KIO::CopyJob::result, tempFile, &QTemporaryFile::deleteLater);
     }
 }
 
@@ -935,7 +934,7 @@ void ListPanelFunc::pack()
     job->uiDelegate()->setAutoErrorHandlingEnabled(true);
 
     if (packToOtherPanel)
-        connect(job, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
+        connect(job, &PackJob::result, panel->otherPanel()->func, &ListPanelFunc::refresh);
 
 }
 
@@ -975,7 +974,7 @@ void ListPanelFunc::unpack()
     job->uiDelegate()->setAutoErrorHandlingEnabled(true);
 
     if (packToOtherPanel)
-        connect(job, SIGNAL(result(KJob*)), panel->otherPanel()->func, SLOT(refresh()));
+        connect(job, &UnpackJob::result, panel->otherPanel()->func, &ListPanelFunc::refresh);
 
 }
 
@@ -1200,7 +1199,7 @@ void ListPanelFunc::copyToClipboard(bool move)
 
     QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);
 
-    connect(QApplication::clipboard(), SIGNAL(changed(QClipboard::Mode)), this, SLOT(clipboardChanged(QClipboard::Mode)));
+    connect(QApplication::clipboard(), &QClipboard::changed, this, &ListPanelFunc::clipboardChanged);
 }
 
 void ListPanelFunc::pasteFromClipboard()

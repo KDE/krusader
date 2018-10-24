@@ -45,7 +45,7 @@
 KrRemoteEncodingMenu::KrRemoteEncodingMenu(const QString &text, const QString &iconName, KActionCollection *parent) :
         KActionMenu(Icon(iconName), text, parent), settingsLoaded(false)
 {
-    connect(menu(), SIGNAL(aboutToShow()), this, SLOT(slotAboutToShow()));
+    connect(menu(), &QMenu::aboutToShow, this, &KrRemoteEncodingMenu::slotAboutToShow);
 
     parent->addAction("changeremoteencoding", this);
 }
@@ -109,8 +109,8 @@ void KrRemoteEncodingMenu::loadSettings()
     encodingNames = KCharsets::charsets()->descriptiveEncodingNames();
 
     QMenu *qmenu = menu();
-    disconnect(qmenu, SIGNAL(triggered(QAction*)), this, SLOT(slotTriggered(QAction*)));
-    connect(qmenu, SIGNAL(triggered(QAction*)), this, SLOT(slotTriggered(QAction*)));
+    disconnect(qmenu, &QMenu::triggered, this, &KrRemoteEncodingMenu::slotTriggered);
+    connect(qmenu, &QMenu::triggered, this, &KrRemoteEncodingMenu::slotTriggered);
     qmenu->clear();
 
     QStringList::ConstIterator it;

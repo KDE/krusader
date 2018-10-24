@@ -51,8 +51,8 @@ DirHistoryButton::DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent) : QTool
 
     historyQueue = hQ;
 
-    connect(popupMenu, SIGNAL(aboutToShow()), this, SLOT(slotAboutToShow()));
-    connect(popupMenu, SIGNAL(triggered(QAction*)), this, SLOT(slotPopupActivated(QAction*)));
+    connect(popupMenu, &QMenu::aboutToShow, this, &DirHistoryButton::slotAboutToShow);
+    connect(popupMenu, &QMenu::triggered, this, &DirHistoryButton::slotPopupActivated);
 }
 
 DirHistoryButton::~DirHistoryButton() {}

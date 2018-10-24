@@ -36,7 +36,7 @@ KrErrorDisplay::KrErrorDisplay(QWidget *parent) :
     setPalette(p);
 
     _dimTimer.setSingleShot(true);
-    connect(&_dimTimer, SIGNAL(timeout()), this, SLOT(slotTimeout()));
+    connect(&_dimTimer, &QTimer::timeout, this, &KrErrorDisplay::slotTimeout);
 }
 
 void KrErrorDisplay::setText(QString text)

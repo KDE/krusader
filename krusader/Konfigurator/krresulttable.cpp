@@ -347,8 +347,7 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
 
         l->setAlignment(Qt::AlignLeft | Qt::AlignTop);
         l->setContentsMargins(5, 5, 5, 5);
-        connect(l, SIGNAL(leftClickedUrl(QString)),
-                SLOT(website(QString)));
+        connect(l, QOverload<const QString &>::of(&KUrlLabel::leftClickedUrl), this, &KrToolResultTable::website);
     }
     grid->addWidget(toolBoxWidget, _numRows, 1);
 

@@ -48,7 +48,7 @@ KgUserActions::KgUserActions(bool first, QWidget* parent) :
                                    ), InfoGroup);
     InfoGrid->addWidget(labelInfo, 0, 0);
     QPushButton *actionmanButton = new QPushButton(i18n("Start ActionMan"), InfoGroup);
-    connect(actionmanButton, SIGNAL(clicked()), SLOT(startActionMan()));
+    connect(actionmanButton, &QPushButton::clicked, this, &KgUserActions::startActionMan);
     InfoGrid->addWidget(actionmanButton, 1, 0);
 
     kgUserActionLayout->addWidget(InfoGroup, 0 , 0);

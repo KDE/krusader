@@ -179,7 +179,7 @@ void KgGeneral::createExtensionsTab()
     QPixmap iconPixmap = Icon("list-add").pixmap(size);
     addButton->setFixedSize(iconPixmap.width() + 4, iconPixmap.height() + 4);
     addButton->setIcon(QIcon(iconPixmap));
-    connect(addButton, SIGNAL(clicked()), this, SLOT(slotAddExtension()));
+    connect(addButton, &QToolButton::clicked, this, &KgGeneral::slotAddExtension);
 
     QToolButton *removeButton = new QToolButton(hboxWidget3);
     hbox3->addWidget(removeButton);
@@ -187,7 +187,7 @@ void KgGeneral::createExtensionsTab()
     iconPixmap = Icon("list-remove").pixmap(size);
     removeButton->setFixedSize(iconPixmap.width() + 4, iconPixmap.height() + 4);
     removeButton->setIcon(QIcon(iconPixmap));
-    connect(removeButton, SIGNAL(clicked()), this, SLOT(slotRemoveExtension()));
+    connect(removeButton, &QToolButton::clicked, this, &KgGeneral::slotRemoveExtension);
 
     QStringList defaultAtomicExtensions;
     defaultAtomicExtensions += ".tar.gz";
@@ -232,8 +232,7 @@ void KgGeneral::createGeneralTab()
     KonfiguratorURLRequester *urlReq3 = createURLRequester("General", "Temp Directory", _TempDirectory,
                                         generalGrp, false, PAGE_GENERAL);
     urlReq3->setMode(KFile::Directory);
-    connect(urlReq3->extension(), SIGNAL(applyManually(QObject*,QString,QString)),
-            this, SLOT(applyTempDir(QObject*,QString,QString)));
+    connect(urlReq3->extension(), &KonfiguratorExtension::applyManually, this, &KgGeneral::applyTempDir);
     hbox->addWidget(urlReq3);
     generalGrid->addLayout(hbox, 13, 0, 1, 1);
 

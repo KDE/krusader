@@ -114,17 +114,17 @@ DiskUsageGUI::DiskUsageGUI(const QUrl &openDir)
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
     mainLayout->addWidget(buttonBox);
 
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(close()));
-    connect(diskUsage, SIGNAL(status(QString)), this, SLOT(slotStatus(QString)));
-    connect(diskUsage, SIGNAL(viewChanged(int)), this, SLOT(slotViewChanged(int)));
-    connect(diskUsage, SIGNAL(newSearch()), this,  SLOT(askDir()));
-    connect(diskUsage, SIGNAL(loadFinished(bool)), this,  SLOT(slotLoadFinished(bool)));
-    connect(btnNewSearch, SIGNAL(clicked()), this, SLOT(askDir()));
-    connect(btnRefresh, SIGNAL(clicked()), this, SLOT(slotLoadUsageInfo()));
-    connect(btnDirUp, SIGNAL(clicked()), diskUsage, SLOT(dirUp()));
-    connect(btnLines, SIGNAL(clicked()), this, SLOT(slotSelectLinesView()));
-    connect(btnDetailed, SIGNAL(clicked()), this, SLOT(slotSelectListView()));
-    connect(btnFilelight, SIGNAL(clicked()), this, SLOT(slotSelectFilelightView()));
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &DiskUsageGUI::close);
+    connect(diskUsage, &DiskUsage::status, this, &DiskUsageGUI::slotStatus);
+    connect(diskUsage, &DiskUsage::viewChanged, this, &DiskUsageGUI::slotViewChanged);
+    connect(diskUsage, &DiskUsage::newSearch, this, &DiskUsageGUI::askDir);
+    connect(diskUsage, &DiskUsage::loadFinished, this, &DiskUsageGUI::slotLoadFinished);
+    connect(btnNewSearch, &QToolButton::clicked, this, &DiskUsageGUI::askDir);
+    connect(btnRefresh, &QToolButton::clicked, this, &DiskUsageGUI::slotLoadUsageInfo);
+    connect(btnDirUp, &QToolButton::clicked, diskUsage, &DiskUsage::dirUp);
+    connect(btnLines, &QToolButton::clicked, this, &DiskUsageGUI::slotSelectLinesView);
+    connect(btnDetailed, &QToolButton::clicked, this, &DiskUsageGUI::slotSelectListView);
+    connect(btnFilelight, &QToolButton::clicked, this, &DiskUsageGUI::slotSelectFilelightView);
 
     KConfigGroup group(krConfig, "DiskUsage");
 

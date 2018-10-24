@@ -154,8 +154,8 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
 
-    connect(buttonBox, SIGNAL(accepted()), SLOT(slotOk()));
-    connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &FeedToListBoxDialog::slotOk);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &FeedToListBoxDialog::reject);
 
     exec();
 }

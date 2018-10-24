@@ -38,7 +38,7 @@ ListPanelFrame::ListPanelFrame(QWidget *parent, QString color) : QFrame(parent),
         colorsChanged();
         refreshColors(false);
         setAutoFillBackground(true);
-        connect(&KrColorCache::getColorCache(), SIGNAL(colorsRefreshed()), SLOT(colorsChanged()));
+        connect(&KrColorCache::getColorCache(), &KrColorCache::colorsRefreshed, this, &ListPanelFrame::colorsChanged);
     }
 }
 

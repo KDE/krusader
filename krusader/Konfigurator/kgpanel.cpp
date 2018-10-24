@@ -519,7 +519,7 @@ void KgPanel::setupButtonsTab()
         {"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n("Show Panel Toolbar"), true,   i18n("The panel toolbar will be visible.") },
     };
     buttonsCheckboxes = createCheckBoxGroup(1, 0, buttonsParams, 7/*count*/, tab, PAGE_PANELTOOLBAR);
-    connect(buttonsCheckboxes->find("Panel Toolbar visible"), SIGNAL(stateChanged(int)), this, SLOT(slotEnablePanelToolbar()));
+    connect(buttonsCheckboxes->find("Panel Toolbar visible"), &KonfiguratorCheckBox::stateChanged, this, &KgPanel::slotEnablePanelToolbar);
     tabLayout->addWidget(buttonsCheckboxes, 0, 0);
 
     QGroupBox * panelToolbarGrp = createFrame(i18n("Visible Panel Toolbar buttons"), tab);
@@ -576,7 +576,7 @@ void KgPanel::setupMouseModeTab()
     mouseGeneralGrid->addWidget(mouseRadio, 0, 0);
 
     for (int i = 0; i != mouseRadio->count(); i++)
-        connect(mouseRadio->find(i), SIGNAL(clicked()), SLOT(slotSelectionModeChanged()));
+        connect(mouseRadio->find(i), &QRadioButton::clicked, this, &KgPanel::slotSelectionModeChanged);
 
     mouseLayout->addWidget(mouseGeneralGroup, 0, 0);
 
@@ -639,7 +639,7 @@ void KgPanel::setupMouseModeTab()
     mouseDetailGrid->addWidget(mouseCheckboxes, 1, 0);
 
     for (int i = 0; i < mouseCheckboxes->count(); i++)
-        connect(mouseCheckboxes->find(i), SIGNAL(clicked()), SLOT(slotMouseCheckBoxChanged()));
+        connect(mouseCheckboxes->find(i), &KonfiguratorCheckBox::clicked, this, &KgPanel::slotMouseCheckBoxChanged);
 
     mouseLayout->addWidget(mouseDetailGroup, 0, 1, 2, 1);
 
