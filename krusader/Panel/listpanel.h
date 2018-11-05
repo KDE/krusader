@@ -130,6 +130,8 @@ public:
     QUrl pinnedUrl() const { return _pinnedUrl; };
 
 public slots:
+    void handleDrop(QDropEvent *event, bool onView = false); // handle drops on frame or view
+    void handleDrop(const QUrl &destination, QDropEvent *event); // handle drops with destination
     void popRightClickMenu(const QPoint&);
     void popEmptyRightClickMenu(const QPoint &);
     void compareDirs(bool otherPanelToo = true);
@@ -179,8 +181,6 @@ protected:
 
 protected slots:
     void slotCurrentChanged(KrViewItem *item);
-    void handleDrop(QDropEvent *event, bool onView = false); // handle drops on frame or view
-    void handleDrop(const QUrl &destination, QDropEvent *event); // handle drops with destination
     void startDragging(QStringList, QPixmap);
     void slotPreviewJobStarted(KJob *job);
     void slotPreviewJobPercent(KJob *job, unsigned long percent);

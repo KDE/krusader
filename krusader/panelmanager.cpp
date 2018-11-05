@@ -70,7 +70,7 @@ PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left)
     connect(_tabbar, &PanelTabBar::currentChanged, this, &PanelManager::slotCurrentTabChanged);
     connect(_tabbar, &PanelTabBar::tabCloseRequested, this, QOverload<int>::of(&PanelManager::slotCloseTab));
     connect(_tabbar, &PanelTabBar::closeCurrentTab, this, QOverload<>::of(&PanelManager::slotCloseTab));
-    connect(_tabbar, SIGNAL(newTab(QUrl)), this, SLOT(slotNewTab(QUrl)));
+    connect(_tabbar, &PanelTabBar::newTab, this, [=] (const QUrl &url) { slotNewTab(url); });
     connect(_tabbar, &PanelTabBar::draggingTab, this, &PanelManager::slotDraggingTab);
     connect(_tabbar, &PanelTabBar::draggingTabFinished, this, &PanelManager::slotDraggingTabFinished);
 
@@ -225,7 +225,7 @@ void PanelManager::layoutTabs()
 {
     // delayed url refreshes may be pending -
     // delay the layout too so it happens after them
-    QTimer::singleShot(0, _tabbar, SLOT(layoutTabs()));
+    QTimer::singleShot(0, _tabbar, &PanelTabBar::layoutTabs);
 }
 
 KrPanel *PanelManager::currentPanel() const {

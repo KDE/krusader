@@ -498,7 +498,7 @@ void DULines::slotChanged(File * item)
                 duItem->setText(1, item->percent());
                 if (!refreshNeeded) {
                     refreshNeeded = true;
-                    QTimer::singleShot(0, this, SLOT(slotRefresh()));
+                    QTimer::singleShot(0, this, &DULines::slotRefresh);
                 }
                 break;
             }

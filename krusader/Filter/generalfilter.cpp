@@ -390,8 +390,8 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         connect(profileManager, &ProfileManager::saveToProfile, fltTabs, &FilterTabs::saveToProfile);
     }
 
-    connect(searchFor, SIGNAL(activated(QString)), searchFor, SLOT(addToHistory(QString)));
-    connect(containsText, SIGNAL(activated(QString)), containsText, SLOT(addToHistory(QString)));
+    connect(searchFor, QOverload<const QString &>::of(&KHistoryComboBox::activated), searchFor, &KHistoryComboBox::addToHistory);
+    connect(containsText, QOverload<const QString &>::of(&KHistoryComboBox::activated), containsText, &KHistoryComboBox::addToHistory);
 
     // load the completion and history lists
     // ==> search for

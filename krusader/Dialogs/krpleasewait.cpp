@@ -130,7 +130,7 @@ void KRPleaseWaitHandler::cycleProgress()
     if (cycleMutex) return;
     cycleMutex = true;
     if (dlg) dlg->cycleProgress();
-    if (cycle) QTimer::singleShot(2000, this, SLOT(cycleProgress()));
+    if (cycle) QTimer::singleShot(2000, this, &KRPleaseWaitHandler::cycleProgress);
     cycleMutex = false;
 }
 

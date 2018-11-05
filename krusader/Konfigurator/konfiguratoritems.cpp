@@ -421,9 +421,9 @@ KonfiguratorFontChooser::KonfiguratorFontChooser(QString configGroup, QString na
     QHBoxLayout *layout = new QHBoxLayout(this);
 
     ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
-    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
-    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
+    connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorFontChooser::slotApply);
+    connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorFontChooser::slotSetDefaults);
+    connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorFontChooser::loadInitialValue);
 
     pLabel = new QLabel(this);
     pLabel->setMinimumWidth(150);
@@ -431,7 +431,7 @@ KonfiguratorFontChooser::KonfiguratorFontChooser(QString configGroup, QString na
 
     pToolButton = new QToolButton(this);
 
-    connect(pToolButton, SIGNAL(clicked()), this, SLOT(slotBrowseFont()));
+    connect(pToolButton, &QToolButton::clicked, this, &KonfiguratorFontChooser::slotBrowseFont);
 
     pToolButton->setIcon(Icon("document-open"));
     layout->addWidget(pToolButton);
@@ -495,13 +495,13 @@ KonfiguratorComboBox::KonfiguratorComboBox(QString configGroup, QString name, QS
     }
 
     ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
-    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
-    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
+    connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorComboBox::slotApply);
+    connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorComboBox::slotSetDefaults);
+    connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorComboBox::loadInitialValue);
 
-//  connect( this, SIGNAL(highlighted(int)), ext, SLOT(setChanged()) ); /* Removed because of startup combo failure */
-    connect(this, SIGNAL(activated(int)), ext, SLOT(setChanged()));
-    connect(this, SIGNAL(currentTextChanged(QString)), ext, SLOT(setChanged()));
+    //connect(this, &KonfiguratorComboBox::highlighted, ext, &KonfiguratorExtension::setChanged); /* Removed because of startup combo failure */
+    connect(this, QOverload<int>::of(&KonfiguratorComboBox::activated), ext, QOverload<>::of(&KonfiguratorExtension::setChanged));
+    connect(this, &KonfiguratorComboBox::currentTextChanged, ext, QOverload<>::of(&KonfiguratorExtension::setChanged));
 
     setEditable(editable);
     loadInitialValue();
@@ -566,9 +566,9 @@ KonfiguratorColorChooser::KonfiguratorColorChooser(QString configGroup, QString 
 {
     ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
 
-    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
-    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
+    connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorColorChooser::slotApply);
+    connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorColorChooser::slotSetDefaults);
+    connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorColorChooser::loadInitialValue);
 
     addColor(i18n("Custom color"),  QColor(255, 255, 255));
     addColor(i18nc("Default color", "Default"), defaultValue);
@@ -596,7 +596,7 @@ KonfiguratorColorChooser::KonfiguratorColorChooser(QString configGroup, QString 
     addColor(i18n("Dark Gray"),     Qt::darkGray);
     addColor(i18n("Black"),         Qt::black);
 
-    connect(this, SIGNAL(activated(int)),   this, SLOT(slotCurrentChanged(int)));
+    connect(this, QOverload<int>::of(&KonfiguratorColorChooser::activated), this, &KonfiguratorColorChooser::slotCurrentChanged);
 
     loadInitialValue();
 }
@@ -768,9 +768,9 @@ KonfiguratorListBox::KonfiguratorListBox(QString configGroup, QString name, QStr
         defaultValue(defaultValue)
 {
     ext = new KonfiguratorExtension(this, configGroup, name, restart, page);
-    connect(ext, SIGNAL(applyAuto(QObject*,QString,QString)), this, SLOT(slotApply(QObject*,QString,QString)));
-    connect(ext, SIGNAL(setDefaultsAuto(QObject*)), this, SLOT(slotSetDefaults(QObject*)));
-    connect(ext, SIGNAL(setInitialValue(QObject*)), this, SLOT(loadInitialValue()));
+    connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorListBox::slotApply);
+    connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorListBox::slotSetDefaults);
+    connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorListBox::loadInitialValue);
 
     loadInitialValue();
 }

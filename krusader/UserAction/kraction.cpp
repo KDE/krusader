@@ -100,9 +100,9 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
     }
 
     _currentTextEdit = _stdout;
-    connect(_stdout, SIGNAL(textChanged()), SLOT(currentTextEditChanged()));
+    connect(_stdout, &KTextEdit::textChanged, this, &KrActionProcDlg::currentTextEditChanged);
     if (_stderr)
-        connect(_stderr, SIGNAL(textChanged()), SLOT(currentTextEditChanged()));
+        connect(_stderr, &KTextEdit::textChanged, this, &KrActionProcDlg::currentTextEditChanged);
 
     KConfigGroup group(krConfig, "UserActions");
     normalFont = group.readEntry("Normal Font", _UserActions_NormalFont);
@@ -132,10 +132,10 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
     killButton->setDefault(true);
     buttonBox->addButton(killButton, QDialogButtonBox::ActionRole);
 
-    connect(killButton, SIGNAL(clicked()), this, SIGNAL(killClicked()));
-    connect(saveAsButton, SIGNAL(clicked()), this, SLOT(slotSaveAs()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-    connect(useFixedFont, SIGNAL(toggled(bool)), SLOT(toggleFixedFont(bool)));
+    connect(killButton, &QPushButton::clicked, this, &KrActionProcDlg::killClicked);
+    connect(saveAsButton, &QPushButton::clicked, this, &KrActionProcDlg::slotSaveAs);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &KrActionProcDlg::reject);
+    connect(useFixedFont, &QCheckBox::toggled, this, &KrActionProcDlg::toggleFixedFont);
 
     resize(sizeHint() * 2);
 }
@@ -284,8 +284,7 @@ void KrActionProc::start(QStringList cmdLineList)
         _proc = new KProcess(this);
         _proc->clearProgram(); // this clears the arglist too
         _proc->setWorkingDirectory(workingDir);
-        connect(_proc, SIGNAL(finished(int,QProcess::ExitStatus)),
-                this, SLOT(processExited(int,QProcess::ExitStatus)));
+        connect(_proc, QOverload<int, QProcess::ExitStatus>::of(&KProcess::finished), this, &KrActionProc::processExited);
 
         if (_action->execType() == KrAction::Normal || _action->execType() == KrAction::Terminal) { // not collect output
             if (_action->execType() == KrAction::Terminal) { // run in terminal
@@ -319,9 +318,9 @@ void KrActionProc::start(QStringList cmdLineList)
             _output = new KrActionProcDlg(_action->text(), separateStderr);
             // connect the output to the dialog
             _proc->setOutputChannelMode(KProcess::SeparateChannels);
-            connect(_proc, SIGNAL(readyReadStandardError()), SLOT(addStderr()));
-            connect(_proc, SIGNAL(readyReadStandardOutput()), SLOT(addStdout()));
-            connect(_output, SIGNAL(killClicked()), this, SLOT(kill()));
+            connect(_proc, &KProcess::readyReadStandardError, this, &KrActionProc::addStderr);
+            connect(_proc, &KProcess::readyReadStandardOutput, this, &KrActionProc::addStdout);
+            connect(_output, &KrActionProcDlg::killClicked, this, &KrActionProc::kill);
             _output->show();
 
             if (!_action->user().isEmpty()) {
@@ -369,7 +368,7 @@ KrAction::KrAction(KActionCollection *parent, QString name) : QAction((QObject *
     setObjectName(name);
     parent->addAction(name, this);
 
-    connect(this, SIGNAL(triggered()), this, SLOT(exec()));
+    connect(this, &KrAction::triggered, this, &KrAction::exec);
 }
 
 KrAction::~KrAction()

@@ -52,7 +52,7 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
         KrInterView(instance, cfg, this),
         _autoResizeColumns(true)
 {
-    connect(_mouseHandler, SIGNAL(renameCurrentItem()), this, SLOT(renameCurrentItem()));
+    connect(_mouseHandler, &KrMouseHandler::renameCurrentItem, this, &KrInterDetailedView::renameCurrentItem);
     setWidget(this);
 
     KConfigGroup grpSvr(_config, "Look&Feel");
@@ -82,8 +82,8 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
 
     setItemDelegate(new KrViewItemDelegate(this));
 
-    connect(header(), SIGNAL(sectionResized(int,int,int)), this, SLOT(sectionResized(int,int,int)));
-    connect(header(), SIGNAL(sectionMoved(int,int,int)), this, SLOT(sectionMoved(int,int,int)));
+    connect(header(), &QHeaderView::sectionResized, this, &KrInterDetailedView::sectionResized);
+    connect(header(), &QHeaderView::sectionMoved, this, &KrInterDetailedView::sectionMoved);
 }
 
 KrInterDetailedView::~KrInterDetailedView()

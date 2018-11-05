@@ -178,9 +178,9 @@ KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
     QStringList list = grpSvr.readEntry("cmdline history", QStringList());
     cmdLine->setHistoryItems(list);
 
-    connect(cmdLine, SIGNAL(returnPressed(QString)), this, SLOT(slotRun()));
-    connect(cmdLine, SIGNAL(returnPressed(QString)), cmdLine->lineEdit(), SLOT(clear()));
-    connect(cmdLine, SIGNAL(returnToPanel()), this, SLOT(slotReturnFocus()));
+    connect(cmdLine, QOverload<const QString &>::of(&CmdLineCombo::returnPressed), this, &KCMDLine::slotRun);
+    connect(cmdLine, QOverload<const QString &>::of(&CmdLineCombo::returnPressed), cmdLine->lineEdit(), &QLineEdit::clear);
+    connect(cmdLine, &CmdLineCombo::returnToPanel, this, &KCMDLine::slotReturnFocus);
 
     cmdLine->setWhatsThis(i18n("<qt><p>Well, it is actually quite simple: you type your command here and Krusader obeys.</p><p><b>Tip</b>: move within command line history with &lt;Up&gt; and &lt;Down&gt; arrows.</p></qt>"));
     layout->addWidget(cmdLine, 0, 1);
@@ -188,7 +188,7 @@ KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
     buttonAddPlaceholder = new QToolButton(this);
     buttonAddPlaceholder->setAutoRaise(true);
     buttonAddPlaceholder->setIcon(Icon("list-add"));
-    connect(buttonAddPlaceholder, SIGNAL(clicked()), this, SLOT(addPlaceholder()));
+    connect(buttonAddPlaceholder, &QToolButton::clicked, this, &KCMDLine::addPlaceholder);
     buttonAddPlaceholder->setWhatsThis(i18n("Add <b>Placeholders</b> for the selected files in the panel."));
 
     layout->addWidget(buttonAddPlaceholder, 0, 2);

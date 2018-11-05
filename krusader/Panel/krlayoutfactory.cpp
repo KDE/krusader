@@ -21,6 +21,7 @@
 #include "krlayoutfactory.h"
 
 #include "listpanelframe.h"
+#include "listpanel.h"
 #include "../krglobal.h"
 
 // QtCore
@@ -290,7 +291,7 @@ QWidget *KrLayoutFactory::createFrame(QDomElement e, QWidget *parent)
     if(shape < 0)
         shape = shapeEnum.keyToValue(e.attribute("shape").toLatin1().data());
 
-    QFrame *frame = new ListPanelFrame(parent, color);
+    ListPanelFrame *frame = new ListPanelFrame(parent, color);
     frame->setFrameStyle(shape | shadow);
     frame->setAcceptDrops(true);
 
@@ -299,9 +300,9 @@ QWidget *KrLayoutFactory::createFrame(QDomElement e, QWidget *parent)
         frame->setLayout(l);
     }
 
-    QObject::connect(frame, SIGNAL(dropped(QDropEvent*,QWidget*)), panel, SLOT(handleDrop(QDropEvent*)));
+    QObject::connect(frame, &ListPanelFrame::dropped, panel, [=](QDropEvent *event) { dynamic_cast<ListPanel*>(panel)->handleDrop(event); });
     if(!color.isEmpty())
-        QObject::connect(panel, SIGNAL(refreshColors(bool)), frame, SLOT(refreshColors(bool)));
+        QObject::connect(dynamic_cast<ListPanel*>(panel), QOverload<bool>::of(&ListPanel::refreshColors), dynamic_cast<ListPanelFrame*>(frame), &ListPanelFrame::refreshColors);
 
     return frame;
 }

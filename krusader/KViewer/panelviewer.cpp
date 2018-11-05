@@ -106,7 +106,7 @@ void PanelViewerBase::openUrl(QUrl url)
         openFile(KFileItem(url));
     else {
         KIO::StatJob* statJob = KIO::stat(url, KIO::HideProgressInfo);
-        connect(statJob, SIGNAL(result(KJob*)), this, SLOT(slotStatResult(KJob*)));
+        connect(statJob, &KIO::StatJob::result, this, &PanelViewerBase::slotStatResult);
     }
 }
 
@@ -252,7 +252,7 @@ void PanelViewer::openFile(KFileItem fi)
         args.setReload(true);
         cpart->setArguments(args);
         if (cpart->openUrl(curl)) {
-            connect(cpart, SIGNAL(destroyed()), this, SLOT(slotCPartDestroyed()));
+            connect(cpart.data(), &KParts::ReadOnlyPart::destroyed, this, &PanelViewer::slotCPartDestroyed);
             emit openUrlFinished(this, true);
             return;
         }
@@ -288,8 +288,8 @@ KParts::ReadOnlyPart* PanelViewer::createPart(QString mimetype)
     if (part) {
         KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(part);
         if (ext) {
-            connect(ext, SIGNAL(openUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)), this, SLOT(openUrl(QUrl)));
-            connect(ext, SIGNAL(openUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)), this, SIGNAL(openUrlRequest(QUrl)));
+            connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed, this, &PanelViewer::openUrl);
+            connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed, this, &PanelViewer::openUrlRequest);
         }
     }
     return part;
@@ -362,7 +362,7 @@ void PanelEditor::openFile(KFileItem fi)
         args.setReload(true);
         cpart->setArguments(args);
         if (cpart->openUrl(curl)) {
-            connect(cpart, SIGNAL(destroyed()), this, SLOT(slotCPartDestroyed()));
+            connect(cpart.data(), &KParts::ReadOnlyPart::destroyed, this, &PanelEditor::slotCPartDestroyed);
             emit openUrlFinished(this, true);
             return;
         } // else: don't show error message - assume this has been done by the editor part
@@ -407,8 +407,8 @@ KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
     if (part) {
         KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(part);
         if (ext) {
-            connect(ext, SIGNAL(openUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)), this, SLOT(openUrl(QUrl)));
-            connect(ext, SIGNAL(openUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)), this, SIGNAL(openUrlRequest(QUrl)));
+            connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed, this, &PanelEditor::openUrl);
+            connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed, this, &PanelEditor::openUrlRequest);
         }
     }
     return part;

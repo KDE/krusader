@@ -254,17 +254,17 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 
     // signals and slots connections
 
-    connect(mainSearchBtn, SIGNAL(clicked()), this, SLOT(startSearch()));
-    connect(mainStopBtn, SIGNAL(clicked()), this, SLOT(stopSearch()));
-    connect(mainCloseBtn, SIGNAL(clicked()), this, SLOT(closeDialog()));
-    connect(mainFeedToListBoxBtn, SIGNAL(clicked()), this, SLOT(feedToListBox()));
+    connect(mainSearchBtn, &QPushButton::clicked, this, &KrSearchDialog::startSearch);
+    connect(mainStopBtn, &QPushButton::clicked, this, &KrSearchDialog::stopSearch);
+    connect(mainCloseBtn, &QPushButton::clicked, this, &KrSearchDialog::closeDialog);
+    connect(mainFeedToListBoxBtn, &QPushButton::clicked, this, &KrSearchDialog::feedToListBox);
 
-    connect(profileManager, SIGNAL(loadFromProfile(QString)), filterTabs, SLOT(loadFromProfile(QString)));
-    connect(profileManager, SIGNAL(saveToProfile(QString)), filterTabs, SLOT(saveToProfile(QString)));
+    connect(profileManager, &ProfileManager::loadFromProfile, filterTabs, &FilterTabs::loadFromProfile);
+    connect(profileManager, &ProfileManager::saveToProfile, filterTabs, &FilterTabs::saveToProfile);
 
-    connect(resultView->op(), SIGNAL(currentChanged(KrViewItem*)), SLOT(currentChanged(KrViewItem*)));
-    connect(resultView->op(), SIGNAL(executed(QString)), SLOT(executed(QString)));
-    connect(resultView->op(), SIGNAL(contextMenu(QPoint)), SLOT(contextMenu(QPoint)));
+    connect(resultView->op(), &KrViewOperator::currentChanged, this, &KrSearchDialog::currentChanged);
+    connect(resultView->op(), &KrViewOperator::executed, this, &KrSearchDialog::executed);
+    connect(resultView->op(), &KrViewOperator::contextMenu, this, &KrSearchDialog::contextMenu);
 
     // tab order
 

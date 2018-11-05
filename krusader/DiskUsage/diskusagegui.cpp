@@ -237,6 +237,6 @@ bool DiskUsageGUI::askDir()
 
     baseDirectory = newDir;
 
-    QTimer::singleShot(0, this, SLOT(slotLoadUsageInfo()));
+    QTimer::singleShot(0, this, &DiskUsageGUI::slotLoadUsageInfo);
     return true;
 }

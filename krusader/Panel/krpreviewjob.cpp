@@ -42,7 +42,7 @@ KrPreviewJob::KrPreviewJob(KrPreviews *parent) : _job(0), _parent(parent)
 {
     _timer.setSingleShot(true);
     _timer.setInterval(0);
-    connect(&_timer, SIGNAL(timeout()), SLOT(slotStartJob()));
+    connect(&_timer, &QTimer::timeout, this, &KrPreviewJob::slotStartJob);
 }
 
 KrPreviewJob::~KrPreviewJob()
@@ -113,9 +113,9 @@ void KrPreviewJob::slotStartJob()
     _job->setOverlayIconAlpha(0);
     _job->setOverlayIconSize(0);
     _job->setScaleType(KIO::PreviewJob::ScaledAndCached);
-    connect(_job, SIGNAL(gotPreview(KFileItem,QPixmap)), SLOT(slotGotPreview(KFileItem,QPixmap)));
-    connect(_job, SIGNAL(failed(KFileItem)), SLOT(slotFailed(KFileItem)));
-    connect(_job, SIGNAL(result(KJob*)), SLOT(slotJobResult(KJob*)));
+    connect(_job, &KIO::PreviewJob::gotPreview, this, &KrPreviewJob::slotGotPreview);
+    connect(_job, &KIO::PreviewJob::failed, this, &KrPreviewJob::slotFailed);
+    connect(_job, &KIO::PreviewJob::result, this, &KrPreviewJob::slotJobResult);
 }
 
 void KrPreviewJob::slotJobResult(KJob *job)

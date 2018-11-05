@@ -149,10 +149,10 @@ SplitterGUI::SplitterGUI(QWidget* parent,  QUrl fileURL, QUrl defaultDir) :
     KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("Splitter"));
     overwriteCb->setChecked(cfg.readEntry("OverWriteFiles", false));
 
-    connect(sizeCombo, SIGNAL(activated(int)), this, SLOT(sizeComboActivated(int)));
-    connect(deviceCombo, SIGNAL(activated(int)), this, SLOT(predefinedComboActivated(int)));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-    connect(buttonBox , SIGNAL(accepted()), this, SLOT(splitPressed()));
+    connect(sizeCombo, QOverload<int>::of(&QComboBox::activated), this, &SplitterGUI::sizeComboActivated);
+    connect(deviceCombo, QOverload<int>::of(&QComboBox::activated), this, &SplitterGUI::predefinedComboActivated);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &SplitterGUI::reject);
+    connect(buttonBox , &QDialogButtonBox::accepted, this, &SplitterGUI::splitPressed);
 
     predefinedComboActivated(0);
 }

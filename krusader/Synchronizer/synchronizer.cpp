@@ -932,7 +932,7 @@ void Synchronizer::executeTask(SynchronizerFileItem * task)
     case TT_COPY_TO_LEFT:
         if (task->isDir()) {
             KIO::SimpleJob *job = KIO::mkdir(leftURL);
-            connect(job, SIGNAL(result(KJob*)), this, SLOT(slotTaskFinished(KJob*)));
+            connect(job, &KIO::MkdirJob::result, this, &Synchronizer::slotTaskFinished);
             jobMap[ job ] = task;
             disableNewTasks = true;
         } else {
@@ -945,12 +945,12 @@ void Synchronizer::executeTask(SynchronizerFileItem * task)
                                                        ((overWrite || task->overWrite()) ? KIO::Overwrite : KIO::DefaultFlags) | KIO::HideProgressInfo);
                 connect(job, SIGNAL(processedSize(KJob*,qulonglong)), this,
                         SLOT(slotProcessedSize(KJob*,qulonglong)));
-                connect(job, SIGNAL(result(KJob*)), this, SLOT(slotTaskFinished(KJob*)));
+                connect(job, &KIO::FileCopyJob::result, this, &Synchronizer::slotTaskFinished);
                 jobMap[ job ] = task;
             } else {
                 KIO::SimpleJob *job = KIO::symlink(task->rightLink(), destURL,
                                                    ((overWrite || task->overWrite()) ? KIO::Overwrite : KIO::DefaultFlags) | KIO::HideProgressInfo);
-                connect(job, SIGNAL(result(KJob*)), this, SLOT(slotTaskFinished(KJob*)));
+                connect(job, &KIO::SimpleJob::result, this, &Synchronizer::slotTaskFinished);
                 jobMap[ job ] = task;
             }
         }
@@ -958,7 +958,7 @@ void Synchronizer::executeTask(SynchronizerFileItem * task)
     case TT_COPY_TO_RIGHT:
         if (task->isDir()) {
             KIO::SimpleJob *job = KIO::mkdir(rightURL);
-            connect(job, SIGNAL(result(KJob*)), this, SLOT(slotTaskFinished(KJob*)));
+            connect(job, &KIO::SimpleJob::result, this, &Synchronizer::slotTaskFinished);
             jobMap[ job ] = task;
             disableNewTasks = true;
         } else {
@@ -971,19 +971,19 @@ void Synchronizer::executeTask(SynchronizerFileItem * task)
                                                        ((overWrite || task->overWrite()) ? KIO::Overwrite : KIO::DefaultFlags) | KIO::HideProgressInfo);
                 connect(job, SIGNAL(processedSize(KJob*,qulonglong)), this,
                         SLOT(slotProcessedSize(KJob*,qulonglong)));
-                connect(job, SIGNAL(result(KJob*)), this, SLOT(slotTaskFinished(KJob*)));
+                connect(job, &KIO::FileCopyJob::result, this, &Synchronizer::slotTaskFinished);
                 jobMap[ job ] = task;
             } else {
                 KIO::SimpleJob *job = KIO::symlink(task->leftLink(), destURL,
                                                    ((overWrite || task->overWrite()) ? KIO::Overwrite : KIO::DefaultFlags) | KIO::HideProgressInfo);
-                connect(job, SIGNAL(result(KJob*)), this, SLOT(slotTaskFinished(KJob*)));
+                connect(job, &KIO::SimpleJob::result, this, &Synchronizer::slotTaskFinished);
                 jobMap[ job ] = task;
             }
         }
         break;
     case TT_DELETE: {
         KIO::DeleteJob *job = KIO::del(leftURL, KIO::DefaultFlags);
-        connect(job, SIGNAL(result(KJob*)), this, SLOT(slotTaskFinished(KJob*)));
+        connect(job, &KIO::DeleteJob::result, this, &Synchronizer::slotTaskFinished);
         jobMap[ job ] = task;
     }
     break;
@@ -1295,8 +1295,8 @@ KgetProgressDialog::KgetProgressDialog(QWidget *parent, const QString &caption,
     buttonBox->addButton(mPauseButton, QDialogButtonBox::ActionRole);
     buttonBox->button(QDialogButtonBox::Cancel)->setDefault(true);
 
-    connect(mPauseButton, SIGNAL(clicked()), SLOT(slotPause()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(slotCancel()));
+    connect(mPauseButton, &QPushButton::clicked, this, &KgetProgressDialog::slotPause);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &KgetProgressDialog::slotCancel);
 
     mCancelled = mPaused = false;
 }

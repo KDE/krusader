@@ -283,7 +283,7 @@ void TerminalDock::showEvent(QShowEvent * /*e*/)
     if (konsole_part && konsole_part->widget()) {
         // BUGFIX: TE scrolling bug (see upper)
         //         show the Konsole part delayed
-        QTimer::singleShot(0, konsole_part->widget(), SLOT(show()));
+        QTimer::singleShot(0, konsole_part->widget(), &QWidget::show);
     }
 }
 

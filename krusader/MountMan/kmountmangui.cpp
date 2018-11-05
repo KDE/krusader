@@ -74,7 +74,7 @@ KMountManGUI::KMountManGUI(KMountMan *mntMan) : QDialog(mntMan->parentWindow),
     setLayout(mainLayout);
 
     watcher = new QTimer(this);
-    connect(watcher, SIGNAL(timeout()), this, SLOT(checkMountChange()));
+    connect(watcher, &QTimer::timeout, this, &KMountManGUI::checkMountChange);
 
     mainLayout->addLayout(createMainPage());
 
@@ -91,17 +91,13 @@ KMountManGUI::KMountManGUI(KMountMan *mntMan) : QDialog(mntMan->parentWindow),
     buttonBox->addButton(mountButton, QDialogButtonBox::ActionRole);
 
     // connections
-    connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
-    connect(ejectButton, SIGNAL(clicked()), SLOT(slotEject()));
-    connect(mountButton, SIGNAL(clicked()), SLOT(slotToggleMount()));
-    connect(mountList, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this,
-            SLOT(doubleClicked(QTreeWidgetItem*)));
-    connect(mountList, SIGNAL(itemRightClicked(QTreeWidgetItem*,QPoint,int)),
-            this, SLOT(clicked(QTreeWidgetItem*,QPoint)));
-    connect(mountList, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this,
-            SLOT(changeActive(QTreeWidgetItem*)));
-    connect(mountList, SIGNAL(itemSelectionChanged()), this,
-            SLOT(changeActive()));
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &KMountManGUI::reject);
+    connect(ejectButton, &QPushButton::clicked, this, &KMountManGUI::slotEject);
+    connect(mountButton, &QPushButton::clicked, this, &KMountManGUI::slotToggleMount);
+    connect(mountList, &KrTreeWidget::itemDoubleClicked, this, &KMountManGUI::doubleClicked);
+    connect(mountList, &KrTreeWidget::itemRightClicked, this, &KMountManGUI::clicked);
+    connect(mountList, &KrTreeWidget::itemClicked, this, QOverload<QTreeWidgetItem *>::of(&KMountManGUI::changeActive));
+    connect(mountList, &KrTreeWidget::itemSelectionChanged, this, QOverload<>::of(&KMountManGUI::changeActive));
 
     KConfigGroup group(krConfig, "MountMan");
     int sx = group.readEntry("Window Width", -1);
@@ -202,7 +198,7 @@ QLayout *KMountManGUI::createMainPage()
 
     cbShowOnlyRemovable = new QCheckBox(i18n("Show only removable devices"), this);
     cbShowOnlyRemovable->setChecked(grp.readEntry("ShowOnlyRemovable", false));
-    connect(cbShowOnlyRemovable , SIGNAL(stateChanged(int)), SLOT(updateList()));
+    connect(cbShowOnlyRemovable , &QCheckBox::stateChanged, this, &KMountManGUI::updateList);
 
     layout->addWidget(box, 0, 0);
     layout->addWidget(cbShowOnlyRemovable, 1, 0);

@@ -105,7 +105,7 @@ KrPreviewPopup::KrPreviewPopup() : jobStarted(false)
 
     setStyle(new ProxyStyle());
 
-    connect(this, SIGNAL(triggered(QAction*)), this, SLOT(view(QAction*)));
+    connect(this, &KrPreviewPopup::triggered, this, &KrPreviewPopup::view);
 }
 
 void KrPreviewPopup::showEvent(QShowEvent *event)
@@ -118,8 +118,7 @@ void KrPreviewPopup::showEvent(QShowEvent *event)
             pjob->setOverlayIconSize(0);
             pjob->setOverlayIconAlpha(1);
             pjob->setScaleType(KIO::PreviewJob::ScaledAndCached);
-        connect(pjob, SIGNAL(gotPreview(KFileItem,QPixmap)),
-                this, SLOT(addPreview(KFileItem,QPixmap)));
+        connect(pjob, &KIO::PreviewJob::gotPreview, this, &KrPreviewPopup::addPreview);
         jobStarted = true;
     }
 }

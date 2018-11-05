@@ -106,8 +106,10 @@ protected:
     void           performAnchorChange(const int anchor);
     void           getScreenPosition(const int position, int &x, int &y);
 
-protected slots:
+public slots:
     void           slotActionTriggered(const int action);
+
+protected slots:
     void           slotCursorPositionChanged();
     void           zoomIn(const int range = 1);
     void           zoomOut(const int range = 1);

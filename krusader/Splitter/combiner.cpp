@@ -85,10 +85,8 @@ void Combiner::combine()
 
         combineReadJob = KIO::get(splURL, KIO::NoReload, KIO::HideProgressInfo);
 
-        connect(combineReadJob, SIGNAL(data(KIO::Job*,QByteArray)),
-                this, SLOT(combineSplitFileDataReceived(KIO::Job*,QByteArray)));
-        connect(combineReadJob, SIGNAL(result(KJob*)),
-                this, SLOT(combineSplitFileFinished(KJob*)));
+        connect(combineReadJob, &KIO::TransferJob::data, this, &Combiner::combineSplitFileDataReceived);
+        connect(combineReadJob, &KIO::TransferJob::result, this, &Combiner::combineSplitFileFinished);
     }
 
     exec();
@@ -164,7 +162,7 @@ void Combiner::statDest()
     }
 
     statJob = KIO::stat(writeURL, KIO::StatJob::DestinationSide, 0, KIO::HideProgressInfo);
-    connect(statJob, SIGNAL(result(KJob*)), SLOT(statDestResult(KJob*)));
+    connect(statJob, &KIO::StatJob::result, this, &Combiner::statDestResult);
 }
 
 void Combiner::statDestResult(KJob* job)
@@ -229,10 +227,8 @@ void Combiner::openNextFile()
     /* creating a read job */
     combineReadJob = KIO::get(readURL, KIO::NoReload, KIO::HideProgressInfo);
 
-    connect(combineReadJob, SIGNAL(data(KIO::Job*,QByteArray)),
-            this, SLOT(combineDataReceived(KIO::Job*,QByteArray)));
-    connect(combineReadJob, SIGNAL(result(KJob*)),
-            this, SLOT(combineReceiveFinished(KJob*)));
+    connect(combineReadJob, &KIO::TransferJob::data, this, &Combiner::combineDataReceived);
+    connect(combineReadJob, &KIO::TransferJob::result, this, &Combiner::combineReceiveFinished);
     if (hasValidSplitFile)
         connect(combineReadJob, SIGNAL(percent(KJob*,ulong)),
                 this, SLOT(combineWritePercent(KJob*,ulong)));
@@ -252,10 +248,8 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
     if (combineWriteJob == 0) {
         combineWriteJob = KIO::put(writeURL, permissions, KIO::HideProgressInfo | KIO::Overwrite);
 
-        connect(combineWriteJob, SIGNAL(dataReq(KIO::Job*,QByteArray&)),
-                this, SLOT(combineDataSend(KIO::Job*,QByteArray&)));
-        connect(combineWriteJob, SIGNAL(result(KJob*)),
-                this, SLOT(combineSendFinished(KJob*)));
+        connect(combineWriteJob, &KIO::TransferJob::dataReq, this, &Combiner::combineDataSend);
+        connect(combineWriteJob, &KIO::TransferJob::result, this, &Combiner::combineSendFinished);
     }
 
      // continue writing and suspend read job until received data is handed over to the write job

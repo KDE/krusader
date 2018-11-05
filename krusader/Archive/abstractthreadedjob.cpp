@@ -312,7 +312,7 @@ AbstractJobThread::~AbstractJobThread()
 
 void AbstractJobThread::run()
 {
-    QTimer::singleShot(0, this, SLOT(slotStart()));
+    QTimer::singleShot(0, this, &AbstractJobThread::slotStart);
 
     QPointer<QEventLoop> threadLoop = new QEventLoop(this);
     _loop = threadLoop;

@@ -197,8 +197,7 @@ bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
     _label->setContentsMargins(5, 5, 5, 5);
     _label->setAlignment(Qt::AlignTop);
     grid->addWidget(_label, _numRows, 0);
-    connect(_label, SIGNAL(leftClickedUrl(QString)),
-            SLOT(website(QString)));
+    connect(dynamic_cast<KUrlLabel*>(_label), QOverload<const QString &>::of(&KUrlLabel::leftClickedUrl), this, &KrArchiverResultTable::website);
 
     // Found column
     _label = new QLabel(arch->getPath(), this);

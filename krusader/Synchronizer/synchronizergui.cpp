@@ -524,47 +524,42 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
 
     /* =============================== Connect table ================================ */
 
-    connect(syncList, SIGNAL(itemRightClicked(QTreeWidgetItem*,QPoint,int)),
-            this, SLOT(rightMouseClicked(QTreeWidgetItem*,QPoint)));
-    connect(syncList, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
-            this, SLOT(doubleClicked(QTreeWidgetItem*)));
+    connect(syncList, &KrTreeWidget::itemRightClicked, this, &SynchronizerGUI::rightMouseClicked);
+    connect(syncList, &KrTreeWidget::itemActivated, this, &SynchronizerGUI::doubleClicked);
 
-    connect(profileManager, SIGNAL(loadFromProfile(QString)), this, SLOT(loadFromProfile(QString)));
-    connect(profileManager, SIGNAL(saveToProfile(QString)), this, SLOT(saveToProfile(QString)));
+    connect(profileManager, &ProfileManager::loadFromProfile, this, &SynchronizerGUI::loadFromProfile);
+    connect(profileManager, &ProfileManager::saveToProfile, this, &SynchronizerGUI::saveToProfile);
 
-    connect(btnSwapSides,      SIGNAL(clicked()), this, SLOT(swapSides()));
-    connect(btnCompareDirs,    SIGNAL(clicked()), this, SLOT(compare()));
-    connect(btnStopComparing,  SIGNAL(clicked()), this, SLOT(stop()));
-    connect(btnFeedToListBox,  SIGNAL(clicked()), this, SLOT(feedToListBox()));
-    connect(btnSynchronize,    SIGNAL(clicked()), this, SLOT(synchronize()));
-    connect(btnScrollResults,  SIGNAL(toggled(bool)), this, SLOT(setScrolling(bool)));
-    connect(btnCloseSync,      SIGNAL(clicked()), this, SLOT(closeDialog()));
+    connect(btnSwapSides,      &QPushButton::clicked, this, &SynchronizerGUI::swapSides);
+    connect(btnCompareDirs,    &QPushButton::clicked, this, &SynchronizerGUI::compare);
+    connect(btnStopComparing,  &QPushButton::clicked, this, &SynchronizerGUI::stop);
+    connect(btnFeedToListBox,  &QPushButton::clicked, this, &SynchronizerGUI::feedToListBox);
+    connect(btnSynchronize,    &QPushButton::clicked, this, &SynchronizerGUI::synchronize);
+    connect(btnScrollResults,  &QPushButton::toggled, this, &SynchronizerGUI::setScrolling);
+    connect(btnCloseSync,      &QPushButton::clicked, this, &SynchronizerGUI::closeDialog);
 
-    connect(cbSubdirs,         SIGNAL(toggled(bool)), this, SLOT(subdirsChecked(bool)));
-    connect(cbAsymmetric,      SIGNAL(toggled(bool)), this, SLOT(setPanelLabels()));
+    connect(cbSubdirs,         &QCheckBox::toggled, this, &SynchronizerGUI::subdirsChecked);
+    connect(cbAsymmetric,      &QCheckBox::toggled, this, &SynchronizerGUI::setPanelLabels);
 
-    connect(&synchronizer,     SIGNAL(comparedFileData(SynchronizerFileItem*)), this,
-            SLOT(addFile(SynchronizerFileItem*)));
-    connect(&synchronizer,     SIGNAL(markChanged(SynchronizerFileItem*,bool)), this,
-            SLOT(markChanged(SynchronizerFileItem*,bool)));
-    connect(&synchronizer,     SIGNAL(statusInfo(QString)), this, SLOT(statusInfo(QString)));
+    connect(&synchronizer,     &Synchronizer::comparedFileData, this, &SynchronizerGUI::addFile);
+    connect(&synchronizer,     &Synchronizer::markChanged, this, &SynchronizerGUI::markChanged);
+    connect(&synchronizer,     &Synchronizer::statusInfo, this, &SynchronizerGUI::statusInfo);
 
-    connect(btnLeftToRight,    SIGNAL(toggled(bool)), this, SLOT(refresh()));
-    connect(btnEquals,         SIGNAL(toggled(bool)), this, SLOT(refresh()));
-    connect(btnDifferents,     SIGNAL(toggled(bool)), this, SLOT(refresh()));
-    connect(btnRightToLeft,    SIGNAL(toggled(bool)), this, SLOT(refresh()));
-    connect(btnDeletable,      SIGNAL(toggled(bool)), this, SLOT(refresh()));
-    connect(btnDuplicates,     SIGNAL(toggled(bool)), this, SLOT(refresh()));
-    connect(btnSingles,        SIGNAL(toggled(bool)), this, SLOT(refresh()));
+    connect(btnLeftToRight,    &QPushButton::toggled, this, &SynchronizerGUI::refresh);
+    connect(btnEquals,         &QPushButton::toggled, this, &SynchronizerGUI::refresh);
+    connect(btnDifferents,     &QPushButton::toggled, this, &SynchronizerGUI::refresh);
+    connect(btnRightToLeft,    &QPushButton::toggled, this, &SynchronizerGUI::refresh);
+    connect(btnDeletable,      &QPushButton::toggled, this, &SynchronizerGUI::refresh);
+    connect(btnDuplicates,     &QPushButton::toggled, this, &SynchronizerGUI::refresh);
+    connect(btnSingles,        &QPushButton::toggled, this, &SynchronizerGUI::refresh);
 
-    connect(fileFilter,        SIGNAL(currentTextChanged(QString)), this, SLOT(connectFilters(QString)));
-    connect(generalFilter->searchFor, SIGNAL(currentTextChanged(QString)), this, SLOT(connectFilters(QString)));
-    connect(generalFilter->searchFor, SIGNAL(currentTextChanged(QString)), this, SLOT(setCompletion()));
-    connect(generalFilter->dontSearchIn, &KURLListRequester::checkValidity,
-            this, &SynchronizerGUI::checkExcludeURLValidity);
+    connect(fileFilter,        &KHistoryComboBox::currentTextChanged, this, &SynchronizerGUI::connectFilters);
+    connect(generalFilter->searchFor, &KHistoryComboBox::currentTextChanged, this, &SynchronizerGUI::connectFilters);
+    connect(generalFilter->searchFor, &KHistoryComboBox::currentTextChanged, this, &SynchronizerGUI::setCompletion);
+    connect(generalFilter->dontSearchIn, &KURLListRequester::checkValidity, this, &SynchronizerGUI::checkExcludeURLValidity);
 
-    connect(profileManager, SIGNAL(loadFromProfile(QString)), filterTabs, SLOT(loadFromProfile(QString)));
-    connect(profileManager, SIGNAL(saveToProfile(QString)), filterTabs, SLOT(saveToProfile(QString)));
+    connect(profileManager, &ProfileManager::loadFromProfile, filterTabs, &FilterTabs::loadFromProfile);
+    connect(profileManager, &ProfileManager::saveToProfile, filterTabs, &FilterTabs::saveToProfile);
 
     setPanelLabels();
     setCompletion();

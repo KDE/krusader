@@ -140,9 +140,9 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 
     // media button
     mediaButton = new MediaButton(this);
-    connect(mediaButton, SIGNAL(aboutToShow()), this, SLOT(slotFocusOnMe()));
-    connect(mediaButton, SIGNAL(openUrl(QUrl)), func, SLOT(openUrl(QUrl)));
-    connect(mediaButton, SIGNAL(newTab(QUrl)), SLOT(newTab(QUrl)));
+    connect(mediaButton, &MediaButton::aboutToShow, this, [=]() { slotFocusOnMe(); });
+    connect(mediaButton, &MediaButton::openUrl, [=](const QUrl & _t1) { func->openUrl(_t1); });
+    connect(mediaButton, &MediaButton::newTab, this, [=](const QUrl &url) { newTab(url); });
     ADD_WIDGET(mediaButton);
 
     // status bar
@@ -167,14 +167,14 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 
     // ... create the history button
     historyButton = new DirHistoryButton(func->history, this);
-    connect(historyButton, SIGNAL(aboutToShow()), this, SLOT(slotFocusOnMe()));
-    connect(historyButton, SIGNAL(gotoPos(int)), func, SLOT(historyGotoPos(int)));
+    connect(historyButton, &DirHistoryButton::aboutToShow, this, [=]() { slotFocusOnMe(); });
+    connect(historyButton, &DirHistoryButton::gotoPos, func, &ListPanelFunc::historyGotoPos);
     ADD_WIDGET(historyButton);
 
     // bookmarks button
     bookmarksButton = new KrBookmarkButton(this);
-    connect(bookmarksButton, SIGNAL(aboutToShow()), this, SLOT(slotFocusOnMe()));
-    connect(bookmarksButton, SIGNAL(openUrl(QUrl)), func, SLOT(openUrl(QUrl)));
+    connect(bookmarksButton, &KrBookmarkButton::aboutToShow, this, [=]() { slotFocusOnMe(); });
+    connect(bookmarksButton, &KrBookmarkButton::openUrl, [=](const QUrl & _t1) { func->openUrl(_t1); });
     bookmarksButton->setWhatsThis(i18n("Open menu with bookmarks. You can also add "
                                        "current location to the list, edit bookmarks "
                                        "or add subfolder to the list."));
@@ -189,11 +189,11 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     urlNavigator->editor()->installEventFilter(this);
     urlNavigator->setUrlEditable(isNavigatorEditModeSet());
     urlNavigator->setShowFullPath(group.readEntry("Navigator Full Path", false));
-    connect(urlNavigator, SIGNAL(returnPressed()), this, SLOT(slotFocusOnMe()));
+    connect(urlNavigator, &KUrlNavigator::returnPressed, this, [=]() { slotFocusOnMe(); });
     connect(urlNavigator, &KUrlNavigator::urlChanged, this, &ListPanel::slotNavigatorUrlChanged);
     connect(urlNavigator->editor()->lineEdit(), &QLineEdit::editingFinished, this, &ListPanel::resetNavigatorMode);
-    connect(urlNavigator, SIGNAL(tabRequested(QUrl)), this, SLOT(newTab(QUrl)));
-    connect(urlNavigator, SIGNAL(urlsDropped(QUrl,QDropEvent*)), this, SLOT(handleDrop(QUrl,QDropEvent*)));
+    connect(urlNavigator, &KUrlNavigator::tabRequested, this, [=](const QUrl &url) { ListPanel::newTab(url); });
+    connect(urlNavigator, &KUrlNavigator::urlsDropped, this, QOverload<const QUrl &, QDropEvent *>::of(&ListPanel::handleDrop));
     ADD_WIDGET(urlNavigator);
 
     // toolbar
@@ -250,7 +250,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     cancelProgressButton = new QToolButton(this);
     cancelProgressButton->hide();
     cancelProgressButton->setIcon(Icon("dialog-cancel"));
-    connect(cancelProgressButton, SIGNAL(clicked()), this, SLOT(cancelProgress()));
+    connect(cancelProgressButton, &QToolButton::clicked, this, &ListPanel::cancelProgress);
     ADD_WIDGET(cancelProgressButton);
 
     // button for changing the panel sidebar position in the panel
@@ -373,8 +373,8 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 
     setLayout(layout);
 
-    connect(&KrColorCache::getColorCache(), SIGNAL(colorsRefreshed()), this, SLOT(refreshColors()));
-    connect(krApp, SIGNAL(shutdown()), SLOT(cancelProgress()));
+    connect(&KrColorCache::getColorCache(), &KrColorCache::colorsRefreshed, this, QOverload<>::of(&ListPanel::refreshColors));
+    connect(krApp, &Krusader::shutdown, this, &ListPanel::cancelProgress);
 }
 
 ListPanel::~ListPanel()
@@ -433,27 +433,24 @@ void ListPanel::createView()
     view->widget()->installEventFilter(this);
 
     connect(view->op(), &KrViewOperator::quickCalcSpace, func, &ListPanelFunc::quickCalcSpace);
-    connect(view->op(), SIGNAL(goHome()), func, SLOT(home()));
-    connect(view->op(), SIGNAL(dirUp()), func, SLOT(dirUp()));
+    connect(view->op(), &KrViewOperator::goHome, func, &ListPanelFunc::home);
+    connect(view->op(), &KrViewOperator::dirUp, func, &ListPanelFunc::dirUp);
     connect(view->op(), &KrViewOperator::defaultDeleteFiles, func, &ListPanelFunc::defaultDeleteFiles);
-    connect(view->op(), SIGNAL(middleButtonClicked(KrViewItem*)), SLOT(newTab(KrViewItem*)));
-    connect(view->op(), SIGNAL(currentChanged(KrViewItem*)), SLOT(slotCurrentChanged(KrViewItem*)));
-    connect(view->op(), SIGNAL(renameItem(QString,QString)),
-            func, SLOT(rename(QString,QString)));
-    connect(view->op(), SIGNAL(executed(QString)), func, SLOT(execute(QString)));
-    connect(view->op(), SIGNAL(goInside(QString)), func, SLOT(goInside(QString)));
-    connect(view->op(), SIGNAL(needFocus()), this, SLOT(slotFocusOnMe()));
-    connect(view->op(), SIGNAL(selectionChanged()), this, SLOT(slotUpdateTotals()));
-    connect(view->op(), SIGNAL(itemDescription(QString)), krApp, SLOT(statusBarUpdate(QString)));
-    connect(view->op(), SIGNAL(contextMenu(QPoint)), this, SLOT(popRightClickMenu(QPoint)));
-    connect(view->op(), SIGNAL(emptyContextMenu(QPoint)),
-            this, SLOT(popEmptyRightClickMenu(QPoint)));
-    connect(view->op(), SIGNAL(letsDrag(QStringList,QPixmap)), this, SLOT(startDragging(QStringList,QPixmap)));
-    connect(view->op(), &KrViewOperator::gotDrop,
-            this, [this](QDropEvent *event) {handleDrop(event, true); });
-    connect(view->op(), SIGNAL(previewJobStarted(KJob*)), this, SLOT(slotPreviewJobStarted(KJob*)));
-    connect(view->op(), SIGNAL(refreshActions()), krApp->viewActions(), SLOT(refreshActions()));
-    connect(view->op(), SIGNAL(currentChanged(KrViewItem*)), func->history, SLOT(saveCurrentItem()));
+    connect(view->op(), &KrViewOperator::middleButtonClicked, this,  QOverload<KrViewItem *>::of(&ListPanel::newTab));
+    connect(view->op(), &KrViewOperator::currentChanged, this, &ListPanel::slotCurrentChanged);
+    connect(view->op(), &KrViewOperator::renameItem, func, QOverload<const QString &, const QString &>::of(&ListPanelFunc::rename));
+    connect(view->op(), &KrViewOperator::executed, func, &ListPanelFunc::execute);
+    connect(view->op(), &KrViewOperator::goInside, func, &ListPanelFunc::goInside);
+    connect(view->op(), &KrViewOperator::needFocus, this, [=]() { slotFocusOnMe(); });
+    connect(view->op(), &KrViewOperator::selectionChanged, this, &ListPanel::slotUpdateTotals);
+    connect(view->op(), &KrViewOperator::itemDescription, krApp, &Krusader::statusBarUpdate);
+    connect(view->op(), &KrViewOperator::contextMenu, this, &ListPanel::popRightClickMenu);
+    connect(view->op(), &KrViewOperator::emptyContextMenu, this, &ListPanel::popEmptyRightClickMenu);
+    connect(view->op(), &KrViewOperator::letsDrag, this, &ListPanel::startDragging);
+    connect(view->op(), &KrViewOperator::gotDrop, this, [this](QDropEvent *event) {handleDrop(event, true); });
+    connect(view->op(), &KrViewOperator::previewJobStarted, this, &ListPanel::slotPreviewJobStarted);
+    connect(view->op(), &KrViewOperator::refreshActions, krApp->viewActions(), &ViewActions::refreshActions);
+    connect(view->op(), &KrViewOperator::currentChanged, func->history, &DirHistoryQueue::saveCurrentItem);
     connect(view->op(), &KrViewOperator::goBack, func, &ListPanelFunc::historyBackward);
     connect(view->op(), &KrViewOperator::goForward, func, &ListPanelFunc::historyForward);
 
@@ -1054,12 +1051,10 @@ void ListPanel::slotRefreshJobStarted(KIO::Job* job)
     syncBrowseButton->setEnabled(false);
 
     // connect to the job interface to provide in-panel refresh notification
-    connect(job, SIGNAL(infoMessage(KJob*,QString)),
-            SLOT(inlineRefreshInfoMessage(KJob*,QString)));
+    connect(job, &KIO::Job::infoMessage, this, &ListPanel::inlineRefreshInfoMessage);
     connect(job, SIGNAL(percent(KJob*,ulong)),
             SLOT(inlineRefreshPercent(KJob*,ulong)));
-    connect(job, SIGNAL(result(KJob*)),
-            this, SLOT(inlineRefreshListResult(KJob*)));
+    connect(job, &KIO::Job::result, this, &ListPanel::inlineRefreshListResult);
 
     inlineRefreshJob = job;
 

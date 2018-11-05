@@ -74,11 +74,11 @@ KrInterBriefView::KrInterBriefView(QWidget *parent, KrViewInstance &instance, KC
     setAcceptDrops(true);
     setDropIndicatorShown(true);
 
-    connect(_mouseHandler, SIGNAL(renameCurrentItem()), SLOT(renameCurrentItem()));
+    connect(_mouseHandler, &KrMouseHandler::renameCurrentItem, this, &KrInterBriefView::renameCurrentItem);
 
     _model->setExtensionEnabled(false);
     _model->setAlternatingTable(true);
-    connect(_model, SIGNAL(layoutChanged()), SLOT(updateGeometries()));
+    connect(_model, &ListModel::layoutChanged, this, &KrInterBriefView::updateGeometries);
 }
 
 KrInterBriefView::~KrInterBriefView()
@@ -141,8 +141,7 @@ void KrInterBriefView::setup()
     _header->setSectionResizeMode(QHeaderView::Fixed);
     _header->setSectionsClickable(true);
     _header->setSortIndicatorShown(true);
-    connect(_header, SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)),
-            _model, SLOT(sort(int,Qt::SortOrder)));
+    connect(_header, &QHeaderView::sortIndicatorChanged, _model, QOverload<int, Qt::SortOrder>::of(&ListModel::sort));
     _header->installEventFilter(this);
 
     _numOfColumns = _properties->numberOfColumns;

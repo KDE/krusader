@@ -126,9 +126,9 @@ SynchronizeDialog::SynchronizeDialog(QWidget* parent,
 
     layout->addWidget(hboxWidget);
 
-    connect(btnStart,  SIGNAL(clicked()), this, SLOT(startSynchronization()));
-    connect(btnPause,  SIGNAL(clicked()), this, SLOT(pauseOrResume()));
-    connect(btnClose,  SIGNAL(clicked()), this, SLOT(reject()));
+    connect(btnStart,  &QPushButton::clicked, this, [=]() { startSynchronization(); });
+    connect(btnPause,  &QPushButton::clicked, this, [=]() { pauseOrResume(); });
+    connect(btnClose,  &QPushButton::clicked, this, [=]() { reject(); });
 
     exec();
 }

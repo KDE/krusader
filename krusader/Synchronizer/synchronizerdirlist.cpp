@@ -143,11 +143,9 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
         emit finished(result = true);
         return true;
     } else {
-        KIO::Job *job = KIO::listDir(KrServices::escapeFileUrl(url), KIO::HideProgressInfo, true);
-        connect(job, SIGNAL(entries(KIO::Job*,KIO::UDSEntryList)),
-                this, SLOT(slotEntries(KIO::Job*,KIO::UDSEntryList)));
-        connect(job, SIGNAL(result(KJob*)),
-                this, SLOT(slotListResult(KJob*)));
+        KIO::ListJob *job = KIO::listDir(KrServices::escapeFileUrl(url), KIO::HideProgressInfo, true);
+        connect(job, &KIO::ListJob::entries, this, &SynchronizerDirList::slotEntries);
+        connect(job, &KIO::ListJob::result, this, &SynchronizerDirList::slotListResult);
         busy = true;
 
         if (!wait)

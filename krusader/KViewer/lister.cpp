@@ -54,6 +54,7 @@
 #include <KCoreAddons/KJobTrackerInterface>
 #include <KI18n/KLocalizedString>
 #include <KIO/CopyJob>
+#include <KIO/TransferJob>
 #include <KIO/JobUiDelegate>
 #include <KParts/GUIActivateEvent>
 #include <KWidgetsAddons/KMessageBox>
@@ -1319,7 +1320,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent)
     grid->addWidget(statusWidget, 1, 0, 1, 2);
     setWidget(widget);
 
-    connect(_scrollBar, SIGNAL(actionTriggered(int)), _textArea, SLOT(slotActionTriggered(int)));
+    connect(_scrollBar, &QScrollBar::actionTriggered, _textArea, &ListerTextArea::slotActionTriggered);
     connect(&_searchUpdateTimer, &QTimer::timeout, this, &Lister::slotUpdate);
 
     new ListerBrowserExtension(this);
@@ -1558,7 +1559,7 @@ void Lister::search(const bool forward, const bool restart)
     _searchIsForward = forward;
     _searchHexadecimal = hex;
 
-    QTimer::singleShot(0, this, SLOT(slotSearchMore()));
+    QTimer::singleShot(0, this, &Lister::slotSearchMore);
     _searchInProgress = true;
     _searchProgressCounter = 3;
 
@@ -1713,7 +1714,7 @@ void Lister::slotSearchMore()
         }
     }
 
-    QTimer::singleShot(0, this, SLOT(slotSearchMore()));
+    QTimer::singleShot(0, this, &Lister::slotSearchMore);
 }
 
 void Lister::resetSearchPosition()
@@ -1930,11 +1931,9 @@ void Lister::saveSelected()
     if (url.isEmpty())
         return;
 
-    KIO::Job *saveJob = KIO::put(url, -1, KIO::Overwrite);
-    connect(saveJob, SIGNAL(dataReq(KIO::Job*,QByteArray&)),
-            this, SLOT(slotDataSend(KIO::Job*,QByteArray&)));
-    connect(saveJob, SIGNAL(result(KJob*)),
-            this, SLOT(slotSendFinished(KJob*)));
+    KIO::TransferJob *saveJob = KIO::put(url, -1, KIO::Overwrite);
+    connect(saveJob, &KIO::TransferJob::dataReq, this, &Lister::slotDataSend);
+    connect(saveJob, &KIO::TransferJob::result, this, &Lister::slotSendFinished);
 
     saveJob->setUiDelegate(new KIO::JobUiDelegate());
     KIO::getJobTracker()->registerJob(saveJob);

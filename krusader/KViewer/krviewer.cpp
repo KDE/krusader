@@ -250,7 +250,7 @@ bool KrViewer::eventFilter(QObject * /* watched */, QEvent * e)
                 // don't activate the close functions immediately!
                 // it can cause crash
                 if (act == tabCloseAction || act == quitAction) {
-                    QTimer::singleShot(0, act, SLOT(trigger()));
+                    QTimer::singleShot(0, act, &QAction::trigger);
                 } else {
                     act->activate(QAction::Trigger);
                 }
@@ -432,7 +432,7 @@ void KrViewer::tabCloseRequest(int index, bool force)
             krMainWindow->activateWindow();
         }
 
-        QTimer::singleShot(0, this, SLOT(close()));
+        QTimer::singleShot(0, this, &KrViewer::close);
     } else if (tabBar.count() == 1) {
         // no point in detaching only one tab..
         detachAction->setEnabled(false);
@@ -502,7 +502,7 @@ void KrViewer::editText()
 
 void KrViewer::checkModified()
 {
-    QTimer::singleShot(CHECK_MODFIED_INTERVAL, this, SLOT(checkModified()));
+    QTimer::singleShot(CHECK_MODFIED_INTERVAL, this, &KrViewer::checkModified);
 
     PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)

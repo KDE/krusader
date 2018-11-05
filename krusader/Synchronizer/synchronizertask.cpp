@@ -70,12 +70,12 @@ void CompareTask::start()
         m_loadFinished = m_otherLoadFinished = false;
 
         m_dirList = new SynchronizerDirList(parentWidget, ignoreHidden);
-        connect(m_dirList, SIGNAL(finished(bool)), this, SLOT(slotFinished(bool)));
+        connect(m_dirList, &SynchronizerDirList::finished, this, &CompareTask::slotFinished);
         m_dirList->load(m_url, false);
 
         if (m_duplicate) {
             m_otherDirList = new SynchronizerDirList(parentWidget, ignoreHidden);
-            connect(m_otherDirList, SIGNAL(finished(bool)), this, SLOT(slotOtherFinished(bool)));
+            connect(m_otherDirList, &SynchronizerDirList::finished, this, &CompareTask::slotOtherFinished);
             m_otherDirList->load(m_otherUrl, false);
         }
     }
@@ -147,7 +147,7 @@ void CompareContentTask::start()
         }
 
         timer = new QTimer(this);
-        connect(timer, SIGNAL(timeout()), this, SLOT(sendStatusMessage()));
+        connect(timer, &QTimer::timeout, this, &CompareContentTask::sendStatusMessage);
         timer->setSingleShot(true);
         timer->start(1000);
 
@@ -156,19 +156,15 @@ void CompareContentTask::start()
         leftReadJob = KIO::get(leftURL, KIO::NoReload, KIO::HideProgressInfo);
         rightReadJob = KIO::get(rightURL, KIO::NoReload, KIO::HideProgressInfo);
 
-        connect(leftReadJob, SIGNAL(data(KIO::Job*,QByteArray)),
-                this, SLOT(slotDataReceived(KIO::Job*,QByteArray)));
-        connect(rightReadJob, SIGNAL(data(KIO::Job*,QByteArray)),
-                this, SLOT(slotDataReceived(KIO::Job*,QByteArray)));
-        connect(leftReadJob, SIGNAL(result(KJob*)),
-                this, SLOT(slotFinished(KJob*)));
-        connect(rightReadJob, SIGNAL(result(KJob*)),
-                this, SLOT(slotFinished(KJob*)));
+        connect(leftReadJob, &KIO::TransferJob::data, this, &CompareContentTask::slotDataReceived);
+        connect(rightReadJob, &KIO::TransferJob::data, this, &CompareContentTask::slotDataReceived);
+        connect(leftReadJob, &KIO::TransferJob::result, this, &CompareContentTask::slotFinished);
+        connect(rightReadJob, &KIO::TransferJob::result, this, &CompareContentTask::slotFinished);
 
         rightReadJob->suspend();
 
         timer = new QTimer(this);
-        connect(timer, SIGNAL(timeout()), this, SLOT(sendStatusMessage()));
+        connect(timer, &QTimer::timeout, this, &CompareContentTask::sendStatusMessage);
         timer->setSingleShot(true);
         timer->start(1000);
     }
@@ -222,7 +218,7 @@ void CompareContentTask::localFileCompareCycle()
         return;
     }
 
-    QTimer::singleShot(0, this, SLOT(localFileCompareCycle()));
+    QTimer::singleShot(0, this, &CompareContentTask::localFileCompareCycle);
 }
 
 

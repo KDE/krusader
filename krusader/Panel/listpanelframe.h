@@ -41,6 +41,8 @@ signals:
 
 protected slots:
     void colorsChanged();
+
+public slots:
     void refreshColors(bool active);
 
 protected:

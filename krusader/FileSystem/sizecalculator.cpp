@@ -32,7 +32,7 @@ SizeCalculator::SizeCalculator(const QList<QUrl> &urls)
     : QObject(nullptr), m_urls(urls), m_nextUrls(urls), m_totalSize(0), m_totalFiles(0),
       m_totalDirs(0), m_canceled(false), m_directorySizeJob(nullptr)
 {
-    QTimer::singleShot(0, this, SLOT(start()));
+    QTimer::singleShot(0, this, &SizeCalculator::start);
 }
 
 SizeCalculator::~SizeCalculator()
