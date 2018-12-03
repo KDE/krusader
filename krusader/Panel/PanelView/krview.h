@@ -86,6 +86,8 @@ public:
      * cursor to it.
      *
      * @param text file name to search for, can be regex
+     * @param caseSensitive whether the search is case sensitive
+     * @param direction @c 0 is for forward, @c 1 is for backward
      * @return true if there is a next/previous item matching the text, else false
      */
     bool searchItem(const QString &text, bool caseSensitive, int direction = 0);

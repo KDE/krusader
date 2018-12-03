@@ -84,6 +84,7 @@ public slots:
      * Only works if filesystem is connected to this provider.
      *
      * @param directory the directory that was changed (deleted, moved, content changed,...)
+     * @param removed whether the directory was removed
      */
     void refreshFilesystems(const QUrl &directory, bool removed);
 

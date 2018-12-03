@@ -46,8 +46,8 @@ public:
     * Adds a row of search results to the end of a QGridLayout
     * Each KrResultTable has to implement it
     *
-    * @param const SearchObject* search  Name of the SearchObject
-    * @param const QGridLayout*  grid    The GridLayout where the row is inserted
+    * @param search  Name of the SearchObject
+    * @param grid    The GridLayout where the row is inserted
     *
     * @return bool  True if row was added successfully to rows, else false
     */
@@ -73,7 +73,7 @@ protected:
     * Applies settings to each cell of the grid layout
     * Supposed to be run after a row was added
     *
-    * @param const QGridLayout* grid  The GridLayout
+    * @param grid  The GridLayout
     */
     void adjustRow(QGridLayout* grid);
 };

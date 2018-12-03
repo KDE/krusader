@@ -245,7 +245,7 @@ protected:
      */
     TagString expandCurrent(const QString& stringToExpand, bool useUrl);
     /**
-     * This function searches for "@EACH"-marks to split the string in a list for each %_Each%-item
+     * This function searches for "\@EACH"-marks to split the string in a list for each %_Each%-item
      *
      * @param stringToSplit the string which should be split
      * @return the split list
@@ -253,6 +253,8 @@ protected:
     static QStringList splitEach(TagString stringToSplit);
     /**
      * @param panelIndicator either '_' for panel-independent placeholders, 'a', 'o', 'r', or 'l' for the active, other (inactive), right or left panel
+     * @param pl placeholder
+     * @param exp expander
      * @return a pointer to the right panel or NULL if no panel is needed.
      */
     static KrPanel* getPanel(const char panelIndicator , const exp_placeholder*, Expander&);

@@ -121,8 +121,7 @@ extern "C"
     iso_vol_desc *ReadISO9660(readfunc *read, unsigned int sector, void *udata);
 
     /**
-     * Frees the linked list of volume descriptors
-    .
+     * Frees the linked list of volume descriptors.
      */
     void FreeISO9660(iso_vol_desc *data);
 

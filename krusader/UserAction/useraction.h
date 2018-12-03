@@ -109,7 +109,8 @@ public:
 
     /**
      * Fills a KActionMenu with all available UserActions in the list
-     * @param  popupmenu to populate
+     * @param menu popupmenu to populate
+     * @param currentURL the current URL
      */
     void populateMenu(KActionMenu* menu, const QUrl *currentURL);
 
@@ -126,12 +127,15 @@ public:
     bool writeActionFile();
     /**
      * Reads UserActions from a xml-file.
+     * @param filename the XML file
+     * @param mode the read mode
      * @param list If provided, all new actions will also be added to this list
      */
     void readFromFile(const QString& filename, ReadMode mode = renameDoublicated, KrActionList* list = 0);
     /**
      * Reads UserActions from a XML-Element.
      * @param element a container with action-elements
+     * @param mode the read mode
      * @param list If provided, all new actions will also be added to this list
      */
     void readFromElement(const QDomElement& element, ReadMode mode = renameDoublicated, KrActionList* list = 0);

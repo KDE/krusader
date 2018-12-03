@@ -135,7 +135,7 @@ public:
       * myLayout->addWidget( mySpinBox, 0, 0 );
       *
       * @param  configGroup     The class name used in KConfig (ex. "Archives")
-      * @param  name            The item name used in KConfig (ex. "Do Tar")
+      * @param  configName      The item name used in KConfig (ex. "Do Tar")
       * @param  defaultValue    The default value of the spinbox
       * @param  min             The minimum value of the spinbox
       * @param  max             The maximum value of the spinbox
@@ -204,7 +204,6 @@ public:
       * @param  configGroup     The class name used in KConfig (ex. "Archives")
       * @param  name            The itemname used in KConfig (ex. "Do Tar")
       * @param  defaultValue    The default value of the URL requester
-      * @param  text            The text field of the URL requester
       * @param  parent          Reference to the parent widget
       * @param  restart         The change of this parameter requires Krusader restart
       * @param  page            The subpage of a Konfigurator page (because of setDefaults)
@@ -255,7 +254,6 @@ public:
       * @param  defaultValue    The default value of the combobox
       * @param  params          Pointer to the name-value pair array (combo elements)
       * @param  paramNum        Number of the combobox elements
-      * @param  text            The text field of the combobox
       * @param  parent          Reference to the parent widget
       * @param  restart         The change of this parameter requires Krusader restart
       * @param  editable        Flag indicates that the combo can be edited
