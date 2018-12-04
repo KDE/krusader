@@ -212,7 +212,7 @@ public:
 
     /**
      * Returns the list of all commands to be executed, provided that #expand was called
-     * before, and there was no error (see #error). Otherwise, calls #abort
+     * before, and there was no error (see #error).
      *
      * @return The list of commands to be executed
        */

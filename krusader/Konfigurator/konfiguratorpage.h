@@ -455,7 +455,7 @@ public:
       * @param  parent          Reference to the parent widget
       * @param  restart         The change of this parameter requires Krusader restart
       * @param  addColPtr       The additional color values
-      * @param  restart         Number of additional colors
+      * @param  addColNum       Number of additional colors
       * @param  page            The subpage of a Konfigurator page (because of setDefaults)
       *
       * @return             reference to the newly created combobox

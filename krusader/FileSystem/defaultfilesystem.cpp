@@ -398,7 +398,7 @@ FileItem *DefaultFileSystem::createLocalFileItem(const QString &name)
     return FileSystem::createLocalFileItem(name, _currentDirectory.path());
 }
 
-QString DefaultFileSystem::DefaultFileSystem::realPath()
+QString DefaultFileSystem::realPath()
 {
     // NOTE: current dir must exist
     return QDir(_currentDirectory.toLocalFile()).canonicalPath();
