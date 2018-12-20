@@ -300,9 +300,9 @@ QWidget *KrLayoutFactory::createFrame(QDomElement e, QWidget *parent)
         frame->setLayout(l);
     }
 
-    QObject::connect(frame, &ListPanelFrame::dropped, panel, [=](QDropEvent *event) { dynamic_cast<ListPanel*>(panel)->handleDrop(event); });
+    QObject::connect(frame, &ListPanelFrame::dropped, panel, [=](QDropEvent *event) { qobject_cast<ListPanel*>(panel)->handleDrop(event); });
     if(!color.isEmpty())
-        QObject::connect(dynamic_cast<ListPanel*>(panel), QOverload<bool>::of(&ListPanel::refreshColors), dynamic_cast<ListPanelFrame*>(frame), &ListPanelFrame::refreshColors);
+        QObject::connect(qobject_cast<ListPanel*>(panel), QOverload<bool>::of(&ListPanel::refreshColors), qobject_cast<ListPanelFrame*>(frame), &ListPanelFrame::refreshColors);
 
     return frame;
 }

@@ -552,7 +552,7 @@ void KrBookmarkHandler::bookmarksChanged(const QString&, const QString&)
 bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
 {
     auto eventType = ev->type();
-    QMenu *menu = dynamic_cast<QMenu *>(obj);
+    QMenu *menu = qobject_cast<QMenu *>(obj);
 
     if (eventType == QEvent::Show && menu) {
         _setQuickSearchText("");
@@ -708,7 +708,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
                     return true;
                 }
 
-                KrBookmark *bm = dynamic_cast<KrBookmark *>(act);
+                KrBookmark *bm = qobject_cast<KrBookmark *>(act);
                 if (bm != 0) {
                     rightClicked(menu, bm);
                     return true;

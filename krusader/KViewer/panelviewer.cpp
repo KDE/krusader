@@ -133,7 +133,7 @@ KParts::ReadOnlyPart* PanelViewer::getListerPart(bool hexMode)
         part = (*mimes)[ QLatin1String("krusader_lister")];
 
     if (part) {
-        Lister *lister = dynamic_cast<Lister *>((KParts::ReadOnlyPart *)part);
+        Lister *lister = qobject_cast<Lister *>((KParts::ReadOnlyPart *)part);
         if (lister)
             lister->setHexMode(hexMode);
     }
