@@ -2,8 +2,6 @@ include(FindZLIB)
 
 include(libisofs/CMakeLists.txt)
 
-include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
-
 set(kio_iso_PART_SRCS
     kisodirectory.cpp
     kisofile.cpp

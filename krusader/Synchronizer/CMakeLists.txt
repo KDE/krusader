@@ -1,5 +1,3 @@
-include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
-
 set(Synchronizer_SRCS
     synchronizedialog.cpp
     synchronizer.cpp

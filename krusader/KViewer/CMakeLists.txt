@@ -1,5 +1,3 @@
-include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
-
 set(KViewer_SRCS
     krviewer.cpp
     panelviewer.cpp

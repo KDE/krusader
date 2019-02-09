@@ -1,5 +1,3 @@
-include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
-
 set(FileSystem_SRCS
     defaultfilesystem.cpp
     dirlisterinterface.cpp

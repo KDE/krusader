@@ -1,5 +1,3 @@
-include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
-
 set(PanelView_SRCS
     krinterbriefview.cpp
     krinterdetailedview.cpp

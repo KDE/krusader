@@ -1,5 +1,3 @@
-include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
-
 set(Splitter_SRCS
     crc32.cpp
     splittergui.cpp

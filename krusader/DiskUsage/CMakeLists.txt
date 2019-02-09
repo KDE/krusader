@@ -1,5 +1,3 @@
-include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
-
 include(radialMap/CMakeLists.txt)
 include(filelightParts/CMakeLists.txt)
 

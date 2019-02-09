@@ -1,5 +1,3 @@
-include_directories(${KF5_INCLUDES_DIRS} ${QT_INCLUDES})
-
 set(MountMan_SRCS
     kmountmangui.cpp
     kmountman.cpp)
