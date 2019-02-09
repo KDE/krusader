@@ -1,6 +1,6 @@
-project(krusader)
+cmake_minimum_required(VERSION 3.0)
 
-cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
+project(krusader)
 
 set(VERSION "2.8.0-dev" )
 set(RELEASE_NAME "Bleeding Edge")
