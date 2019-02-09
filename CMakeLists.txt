@@ -16,20 +16,12 @@ include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 
-include(ECMOptionalAddSubdirectory)
 include(ECMInstallIcons)
-include(ECMSetupVersion)
-include(ECMMarkNonGuiExecutable)
-include(ECMGenerateHeaders)
-include(GenerateExportHeader)
+include(ECMAddAppIcon)
 
-include(CMakePackageConfigHelpers)
 include(FeatureSummary)
-include(WriteBasicConfigVersionFile)
-include(CheckFunctionExists)
 include(CheckIncludeFiles)
 
-include(ECMAddAppIcon)
 
 find_package(Qt5 5.5 CONFIG REQUIRED
   Concurrent
