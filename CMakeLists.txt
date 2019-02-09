@@ -12,6 +12,10 @@ endif()
 find_package(ECM 1.7.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
+
 include(ECMOptionalAddSubdirectory)
 include(ECMInstallIcons)
 include(ECMSetupVersion)
@@ -25,9 +29,6 @@ include(WriteBasicConfigVersionFile)
 include(CheckFunctionExists)
 include(CheckIncludeFiles)
 
-include(KDEInstallDirs)
-include(KDECMakeSettings)
-include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMAddAppIcon)
 
 find_package(Qt5 5.5 CONFIG REQUIRED
