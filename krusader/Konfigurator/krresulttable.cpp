@@ -110,22 +110,22 @@ KrArchiverResultTable::KrArchiverResultTable(QWidget* parent)
 {
     _supported = KRarcHandler::supportedPackers(); // get list of available packers
 
-    Archiver* tar   = new Archiver("tar",   "http://www.gnu.org",      PS("tar"),   true,  true);
-    Archiver* gzip  = new Archiver("gzip",  "http://www.gnu.org",      PS("gzip"),  true,  true);
-    Archiver* bzip2 = new Archiver("bzip2", "http://www.gnu.org",      PS("bzip2"), true,  true);
-    Archiver* lzma  = new Archiver("lzma",  "http://tukaani.org/lzma", PS("lzma"),  true,  true);
-    Archiver* xz    = new Archiver("xz",    "http://tukaani.org/xz",   PS("xz"),    true,  true);
-    Archiver* lha   = new Archiver("lha",   "http://www.gnu.org",      PS("lha"),   true,  true);
-    Archiver* zip   = new Archiver("zip",   "http://www.info-zip.org", PS("zip"),   true,  false);
-    Archiver* unzip = new Archiver("unzip", "http://www.info-zip.org", PS("unzip"), false, true);
+    Archiver* tar   = new Archiver("tar",   "https://www.gnu.org/",      PS("tar"),   true,  true);
+    Archiver* gzip  = new Archiver("gzip",  "https://www.gnu.org/",      PS("gzip"),  true,  true);
+    Archiver* bzip2 = new Archiver("bzip2", "https://www.gnu.org/",      PS("bzip2"), true,  true);
+    Archiver* lzma  = new Archiver("lzma",  "https://tukaani.org/lzma/", PS("lzma"),  true,  true);
+    Archiver* xz    = new Archiver("xz",    "https://tukaani.org/xz/",   PS("xz"),    true,  true);
+    Archiver* lha   = new Archiver("lha",   "https://www.gnu.org/",      PS("lha"),   true,  true);
+    Archiver* zip   = new Archiver("zip",   "http://www.info-zip.org",   PS("zip"),   true,  false);
+    Archiver* unzip = new Archiver("unzip", "http://www.info-zip.org",   PS("unzip"), false, true);
     Archiver* arj   = new Archiver("arj",   "http://www.arjsoftware.com",  PS("arj"),   true,  true);
     Archiver* unarj = new Archiver("unarj", "http://www.arjsoftware.com",  PS("unarj"), false, true);
-    Archiver* unace = new Archiver("unace", "http://www.winace.com",   PS("unace"), false, true);
-    Archiver* rar   = new Archiver("rar",   "http://www.rarsoft.com",  PS("rar"),   true,  true);
-    Archiver* unrar = new Archiver("unrar", "http://www.rarsoft.com",  PS("unrar"), false, true);
-    Archiver* rpm   = new Archiver("rpm",   "http://www.gnu.org",      PS("rpm"),   false, true);
-    Archiver* dpkg  = new Archiver("dpkg",  "http://www.dpkg.org",     PS("dpkg"),  false, true);
-    Archiver* _7z   = new Archiver("7z",    "http://www.7-zip.org",    PS("7z"),  true, true);
+    Archiver* unace = new Archiver("unace", "http://www.winace.com",     PS("unace"), false, true);
+    Archiver* rar   = new Archiver("rar",   "https://www.rarlab.com/",   PS("rar"),   true,  true);
+    Archiver* unrar = new Archiver("unrar", "https://www.rarlab.com/",   PS("unrar"), false, true);
+    Archiver* rpm   = new Archiver("rpm",   "https://www.gnu.org/",      PS("rpm"),   false, true);
+    Archiver* dpkg  = new Archiver("dpkg",  "https://www.dpkg.org/",     PS("dpkg"),  false, true);
+    Archiver* _7z   = new Archiver("7z",    "https://www.7-zip.org/",    PS("7z"),  true, true);
 
     // Special case: arj can unpack, but unarj is preferred
     if (PS("arj") && PS("unarj"))
@@ -272,13 +272,13 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
     _supported = KrServices::supportedTools(); // get list of available tools
 
     QList<Application*> vecDiff, vecMail, vecRename, vecChecksum;
-    Application* kdiff3         = new Application("kdiff3",        "http://kdiff3.sourceforge.net/", KrServices::cmdExist("kdiff3"));
-    Application* kompare        = new Application("kompare",       "http://www.caffeinated.me.uk/kompare/", KrServices::cmdExist("kompare"));
-    Application* xxdiff         = new Application("xxdiff",        "http://xxdiff.sourceforge.net/", KrServices::cmdExist("xxdiff"));
-    Application* thunderbird    = new Application("thunderbird",   "http://www.mozilla.org/", KrServices::cmdExist("thunderbird"));
-    Application* kmail          = new Application("kmail",         "http://kmail.kde.org/", KrServices::cmdExist("kmail"));
-    Application* krename        = new Application("krename",       "http://www.krename.net/", KrServices::cmdExist("krename"));
-    Application* md5sum         = new Application("md5sum",        "http://www.gnu.org/software/textutils/textutils.html", KrServices::cmdExist("md5sum"));
+    Application* kdiff3         = new Application("kdiff3",        "https://www.kde.org/applications/development/kdiff3/", KrServices::cmdExist("kdiff3"));
+    Application* kompare        = new Application("kompare",       "https://www.kde.org/applications/development/kompare/", KrServices::cmdExist("kompare"));
+    Application* xxdiff         = new Application("xxdiff",        "http://furius.ca/xxdiff/", KrServices::cmdExist("xxdiff"));
+    Application* thunderbird    = new Application("thunderbird",   "https://www.thunderbird.net/", KrServices::cmdExist("thunderbird"));
+    Application* kmail          = new Application("kmail",         "https://kontact.kde.org/components/kmail.html", KrServices::cmdExist("kmail"));
+    Application* krename        = new Application("krename",       "https://www.kde.org/applications/utilities/krename/", KrServices::cmdExist("krename"));
+    Application* md5sum         = new Application("md5sum",        "https://www.gnu.org/software/textutils/textutils.html", KrServices::cmdExist("md5sum"));
 
     vecDiff.push_back(kdiff3);
     vecDiff.push_back(kompare);

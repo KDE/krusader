@@ -110,7 +110,7 @@ bool TerminalDock::initialise()
                                         "<b>Cannot create embedded terminal.</b><br>"
                                         "You can fix this by installing Konsole:<br/>%1",
                                         QString("<a href='%1'>%1</a>").arg(
-                                            "http://www.kde.org/applications/system/konsole")),
+                                            "https://www.kde.org/applications/system/konsole")),
                                0, KMessageBox::AllowLink);
     }
     return isInitialised();
