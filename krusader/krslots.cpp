@@ -432,7 +432,7 @@ void KRslots::multiRename()
     QStringList lst = KrServices::supportedTools();
     int i = lst.indexOf("RENAME");
     if (i == -1) {
-        KMessageBox::sorry(krApp, i18n("Cannot find a batch rename tool.\nYou can get KRename at https://www.kde.org/applications/utilities/krename/"));
+        KMessageBox::sorry(krApp, i18n("Cannot find a batch rename tool.\nYou can get KRename at %1", QLatin1String("https://www.kde.org/applications/utilities/krename/")));
         return;
     }
     QString pathToRename = lst[i+1];
