@@ -215,17 +215,7 @@ void KrSearchBar::keyPressEvent(QKeyEvent *event)
 
 bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
 {
-    if (event->type() != QEvent::ShortcutOverride && watched == _view->widget()) {
-        // NOTE: cannot use dynamic cast here
-        auto *ke = static_cast<QKeyEvent *>(event);
-        // overwrite "escape" shortcut if bar is shown
-        if ((ke->key() == Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier) && !isHidden()) {
-            ke->accept();
-            handleKeyPressEvent(ke);
-            return true;
-        }
-    }
-
+    // only handle KeyPress events in this method
     if (event->type() != QEvent::KeyPress) {
         return false;
     }
@@ -234,6 +224,7 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
 
     auto *ke = static_cast<QKeyEvent *>(event);
     auto modifiers = ke->modifiers();
+
     if (watched == _view->widget()) {
         KConfigGroup grpSv(krConfig, "Look&Feel");
         const bool autoShow = grpSv.readEntry("New Style Quicksearch", _NewStyleQuicksearch);
