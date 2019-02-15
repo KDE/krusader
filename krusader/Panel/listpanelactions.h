@@ -54,8 +54,8 @@ public slots:
 public:
     QAction *actRenameF2, *actViewFileF3, *actEditFileF4, *actCopyF5, *actMoveF6, *actNewFolderF7,
         *actDeleteF8, *actTerminalF9;
-    QAction *actCopyDelayedF5, *actMoveDelayedShiftF6;
-    QAction *actProperties, *actPack, *actUnpack, *actTest,  *actCompDirs, *actCalculate, *actSync;
+    QAction *actNewFileShiftF4, *actCopyDelayedF5, *actMoveDelayedShiftF6;
+    QAction *actProperties, *actPack, *actUnpack, *actTest, *actCompDirs, *actCalculate, *actSync;
     QAction *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
     QAction *actLocationBar, *actJumpBack, *actSetJumpBack;
     QAction *actCreateChecksum, *actMatchChecksum;

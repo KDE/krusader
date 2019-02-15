@@ -80,7 +80,8 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     // Fn keys
     actRenameF2 = action(i18n("Rename"), "edit-rename", Qt::Key_F2, _func, SLOT(rename()) , "F2_Rename");
     actViewFileF3 = action(i18n("View File"), nullptr, Qt::Key_F3, _func, SLOT(view()), "F3_View");
-    actEditFileF4 = action(i18n("Edit File"), nullptr, Qt::Key_F4, _func, SLOT(edit()) , "F4_Edit");
+    actEditFileF4 = action(i18n("Edit File"), nullptr, Qt::Key_F4, _func, SLOT(editFile()), "F4_Edit");
+    actNewFileShiftF4 = action(i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, _func, SLOT(editNewFile()), "edit_new_file");
     actCopyF5 = action(i18n("Copy to other panel"), nullptr, Qt::Key_F5, _func, SLOT(copyFiles()) , "F5_Copy");
     actMoveF6 = action(i18n("Move to other panel"), nullptr, Qt::Key_F6, _func, SLOT(moveFiles()) , "F6_Move");
     actCopyDelayedF5 = action(i18n("Copy delayed..."), nullptr, Qt::SHIFT + Qt::Key_F5, _func, SLOT(copyFilesDelayed()) , "F5_Copy_Queue");
@@ -88,7 +89,6 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     actNewFolderF7 = action(i18n("New Folder..."), "folder-new", Qt::Key_F7, _func, SLOT(mkdir()) , "F7_Mkdir");
     actDeleteF8 = action(i18n("Delete"), "edit-delete", Qt::Key_F8, _func, SLOT(defaultDeleteFiles()) , "F8_Delete");
     actTerminalF9 = action(i18n("Start Terminal Here"), "utilities-terminal", Qt::Key_F9, _func, SLOT(terminal()) , "F9_Terminal");
-    action(i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, _func, SLOT(editNew()), "edit_new_file");
     action(i18n("F3 View Dialog"), nullptr, Qt::SHIFT + Qt::Key_F3, _func, SLOT(viewDlg()), "F3_ViewDlg");
 
     // file operations
