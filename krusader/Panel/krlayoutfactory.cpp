@@ -31,8 +31,6 @@
 #include <QResource>
 #include <QStandardPaths>
 // QtWidgets
-#include <QLayout>
-#include <QWidget>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 // QtXml
@@ -302,7 +300,7 @@ QWidget *KrLayoutFactory::createFrame(QDomElement e, QWidget *parent)
 
     QObject::connect(frame, &ListPanelFrame::dropped, panel, [=](QDropEvent *event) { qobject_cast<ListPanel*>(panel)->handleDrop(event); });
     if(!color.isEmpty())
-        QObject::connect(qobject_cast<ListPanel*>(panel), QOverload<bool>::of(&ListPanel::refreshColors), qobject_cast<ListPanelFrame*>(frame), &ListPanelFrame::refreshColors);
+        QObject::connect(panel, &ListPanel::signalRefreshColors, frame, &ListPanelFrame::refreshColors);
 
     return frame;
 }

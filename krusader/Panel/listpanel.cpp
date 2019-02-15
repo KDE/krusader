@@ -373,7 +373,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 
     setLayout(layout);
 
-    connect(&KrColorCache::getColorCache(), &KrColorCache::colorsRefreshed, this, QOverload<>::of(&ListPanel::refreshColors));
+    connect(&KrColorCache::getColorCache(), &KrColorCache::colorsRefreshed, this, &ListPanel::slotRefreshColors);
     connect(krApp, &Krusader::shutdown, this, &ListPanel::cancelProgress);
 }
 
@@ -693,10 +693,10 @@ void ListPanel::compareDirs(bool otherPanelToo)
         otherPanel()->gui->compareDirs(false);
 }
 
-void ListPanel::refreshColors()
+void ListPanel::slotRefreshColors()
 {
     view->refreshColors();
-    emit refreshColors(this == ACTIVE_PANEL);
+    emit signalRefreshColors(this == ACTIVE_PANEL);
 }
 
 void ListPanel::slotFocusOnMe(bool focus)
@@ -723,7 +723,7 @@ void ListPanel::slotFocusOnMe(bool focus)
     }
 
     urlNavigator->setActive(focus);
-    refreshColors();
+    slotRefreshColors();
 
     krApp->setUpdatesEnabled(true);
 }
@@ -1128,7 +1128,7 @@ void ListPanel::setJumpBack(QUrl url)
 
 void ListPanel::slotFilesystemError(QString msg)
 {
-    refreshColors();
+    slotRefreshColors();
     fileSystemError->setText(i18n("Error: %1", msg));
     fileSystemError->show();
 }

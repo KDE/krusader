@@ -24,17 +24,22 @@
 // QtCore
 #include <QString>
 #include <QHash>
+// QtWidgets
+#include <QBoxLayout>
+#include <QLayout>
+#include <QWidget>
 // QtXml
 #include <QDomElement>
 
-class QWidget;
-class QLayout;
-class QBoxLayout;
+class ListPanel;
+
 
 class KrLayoutFactory
 {
 public:
-    KrLayoutFactory(QWidget *panel, QHash<QString, QWidget*> &widgets) : panel(panel), widgets(widgets) {}
+    KrLayoutFactory(ListPanel *panel, QHash<QString, QWidget *> &widgets)
+        : panel(panel), widgets(widgets)
+    {}
     // creates the layout and adds the widgets to it
     QLayout *createLayout(QString layoutName = QString());
 
@@ -52,7 +57,7 @@ private:
     static void getLayoutNames(QDomDocument doc, QStringList &names);
     static QDomElement findLayout(QDomDocument doc, QString layoutName);
 
-    QWidget *panel;
+    ListPanel *panel;
     QHash<QString, QWidget*> &widgets;
 
     static bool _parsed;

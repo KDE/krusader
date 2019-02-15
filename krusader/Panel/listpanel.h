@@ -142,7 +142,7 @@ public slots:
     void toggleSidebar();
     void panelVisible(); // called when the panel becomes active
     void panelHidden(); // called when panel becomes inactive
-    void refreshColors();
+    void slotRefreshColors();
     void cancelProgress(); // cancel filesystem refresh and/or preview (if running)
     void setNavigatorUrl(const QUrl &url);
 
@@ -204,7 +204,7 @@ signals:
     void pathChanged(const QUrl &url); // directory changed or refreshed
     void activate(); // emitted when the user changes panels
     void finishedDragging(); // NOTE: currently not used
-    void refreshColors(bool active);
+    void signalRefreshColors(bool active);
 
 protected:
     int panelType;

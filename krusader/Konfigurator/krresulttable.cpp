@@ -193,11 +193,13 @@ bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
     Archiver* arch = dynamic_cast<Archiver*>(search);
 
     // Name column
-    _label = new KUrlLabel(arch->getWebsite(), arch->getSearchName(), this);
-    _label->setContentsMargins(5, 5, 5, 5);
-    _label->setAlignment(Qt::AlignTop);
-    grid->addWidget(_label, _numRows, 0);
-    connect(dynamic_cast<KUrlLabel*>(_label), QOverload<const QString &>::of(&KUrlLabel::leftClickedUrl), this, &KrArchiverResultTable::website);
+    KUrlLabel *urlLabel = new KUrlLabel(arch->getWebsite(), arch->getSearchName(), this);
+    urlLabel->setContentsMargins(5, 5, 5, 5);
+    urlLabel->setAlignment(Qt::AlignTop);
+    grid->addWidget(urlLabel, _numRows, 0);
+    connect(urlLabel, QOverload<const QString &>::of(&KUrlLabel::leftClickedUrl),
+            this, &KrArchiverResultTable::website);
+    _label = urlLabel;
 
     // Found column
     _label = new QLabel(arch->getPath(), this);
