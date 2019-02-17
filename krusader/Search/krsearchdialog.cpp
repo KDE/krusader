@@ -644,9 +644,11 @@ void KrSearchDialog::feedToListBox()
 
 void KrSearchDialog::copyToClipBoard()
 {
+    const KrViewItemList selectedItems = resultView->getSelectedKrViewItems();
     QList<QUrl> urls;
-    foreach(FileItem *fileitem, result->fileItems())
-        urls.push_back(fileitem->getUrl());
+    for (KrViewItem *item : selectedItems) {
+        urls.append(item->getFileItem()->getUrl());
+    }
 
     if (urls.count() == 0)
         return;
