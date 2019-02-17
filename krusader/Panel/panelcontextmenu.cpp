@@ -127,8 +127,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     QAction * openAct = addAction(i18n("Open/Run"));
     openAct->setData(QVariant(OPEN_ID));
     if (!multipleSelections) { // meaningful only if one file is selected
-        KrViewItemList viewItems;
-        panel->view->getSelectedKrViewItems(&viewItems);
+        const KrViewItemList viewItems = panel->view->getSelectedKrViewItems();
         openAct->setIcon(viewItems.first()->icon());
         openAct->setText(file->isExecutable() && !file->isDir() ?
                              i18n("Run") : i18n("Open"));
@@ -407,8 +406,7 @@ void PanelContextMenu::performAction(int id)
         for (const KFileItem& item : _items) {
             selectedNames.append(item.name());
         }
-        KrViewItemList otherItems;
-        panel->otherPanel()->view->getSelectedKrViewItems(&otherItems);
+        const KrViewItemList otherItems = panel->otherPanel()->view->getSelectedKrViewItems();
         for (KrViewItem *otherItem : otherItems) {
             const QString& name = otherItem->name();
             if (!selectedNames.contains(name)) {

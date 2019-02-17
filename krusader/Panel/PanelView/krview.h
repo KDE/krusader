@@ -255,7 +255,7 @@ public:
     uint count() const { return _count; }
     void getSelectedItems(QStringList *names, bool fallbackToFocused = true);
     void getItemsByMask(const QString& mask, QStringList *names, bool dirs = true, bool files = true);
-    void getSelectedKrViewItems(KrViewItemList *items);
+    KrViewItemList getSelectedKrViewItems();
     void selectAllIncludingDirs() { changeSelection(KRQuery("*"), true, true); }
     void select(const KRQuery &filter = KRQuery("*")) { changeSelection(filter, true); }
     void unselect(const KRQuery &filter = KRQuery("*")) { changeSelection(filter, false); }

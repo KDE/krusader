@@ -568,8 +568,7 @@ void KrSearchDialog::viewCurrent()
 
 void KrSearchDialog::compareByContent()
 {
-    KrViewItemList list;
-    resultView->getSelectedKrViewItems(&list);
+    const KrViewItemList list = resultView->getSelectedKrViewItems();
     if (list.count() != 2)
         return;
 

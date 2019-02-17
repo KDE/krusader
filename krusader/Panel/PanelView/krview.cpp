@@ -398,19 +398,24 @@ void KrView::getSelectedItems(QStringList *names, bool fallbackToFocused)
     }
 }
 
-void KrView::getSelectedKrViewItems(KrViewItemList *items)
+KrViewItemList KrView::getSelectedKrViewItems()
 {
-    for (KrViewItem * it = getFirst(); it != nullptr; it = getNext(it))
-        if (it->isSelected() && (it->name() != "..")) items->append(it);
+    KrViewItemList items;
+    for (KrViewItem * it = getFirst(); it != nullptr; it = getNext(it)) {
+        if (it->isSelected() && (it->name() != "..")) {
+            items.append(it);
+        }
+    }
 
     // if all else fails, take the current item
-    QString item = getCurrentItem();
-    if (items->empty() &&
-            !item.isEmpty() &&
-            item != ".." &&
-            getCurrentKrViewItem() != nullptr) {
-        items->append(getCurrentKrViewItem());
+    if (items.empty()) {
+        KrViewItem *currentItem = getCurrentKrViewItem();
+        if (currentItem && !currentItem->isDummy()) {
+            items.append(getCurrentKrViewItem());
+        }
     }
+
+    return items;
 }
 
 QString KrView::statistics()
@@ -476,8 +481,7 @@ bool KrView::changeSelection(const KRQuery& filter, bool select, bool includeDir
         makeItemVisible(temp);
     } else if (makeVisible && firstMatch != nullptr) {
         // if no selected item is visible...
-        KrViewItemList selectedItems;
-        getSelectedKrViewItems(&selectedItems);
+        const KrViewItemList selectedItems = getSelectedKrViewItems();
         bool anyVisible = false;
         for (KrViewItem *item : selectedItems) {
             if (isItemVisible(item)) {
