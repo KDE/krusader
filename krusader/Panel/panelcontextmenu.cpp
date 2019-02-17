@@ -59,9 +59,9 @@ void PanelContextMenu::run(const QPoint &pos, KrPanel *panel)
 {
     PanelContextMenu menu(panel);
     QAction * res = menu.exec(pos);
-    int result = -1;
-    if (res && res->data().canConvert<int>())
-        result = res->data().toInt();
+    int result = res && res->data().canConvert<int>() ?
+                     res->data().toInt() :
+                     -1;
     menu.performAction(result);
 }
 
