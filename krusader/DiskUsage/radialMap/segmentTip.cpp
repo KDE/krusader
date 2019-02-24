@@ -37,7 +37,7 @@ namespace RadialMap
 {
 
 SegmentTip::SegmentTip(uint h)
-        : QWidget(0, Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint | Qt::X11BypassWindowManagerHint)
+        : QWidget(nullptr, Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint | Qt::X11BypassWindowManagerHint)
         , m_cursorHeight(-h)
 {
     setAttribute(Qt::WA_NoSystemBackground, true);
@@ -125,8 +125,8 @@ SegmentTip::updateTip(const File* const file, const Directory* const root)
     m_text += s2;
 
     if (file->isDir()) {
-        double files  = static_cast<const Directory*>(file)->fileCount();
-        const uint pc = uint((100 * files) / (double)root->fileCount());
+        double files  = dynamic_cast<const Directory*>(file)->fileCount();
+        const auto pc = uint((100 * files) / (double)root->fileCount());
         QString s3    = i18n("Files: %1", loc.toString(files, 'f', 0));
 
         if (pc > 0) s3 += QString(" (%1%)").arg(loc.toString(pc));

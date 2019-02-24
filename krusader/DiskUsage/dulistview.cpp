@@ -98,9 +98,9 @@ DUListView::~ DUListView()
 
 void DUListView::addDirectory(Directory *dirEntry, QTreeWidgetItem *parent)
 {
-    QTreeWidgetItem * lastItem = 0;
+    QTreeWidgetItem * lastItem = nullptr;
 
-    if (parent == 0 && !(dirEntry->parent() == 0)) {
+    if (parent == nullptr && !(dirEntry->parent() == nullptr)) {
         lastItem = new QTreeWidgetItem(this);
         lastItem->setText(0, "..");
         lastItem->setIcon(0, Icon("go-up"));
@@ -125,13 +125,13 @@ void DUListView::addDirectory(Directory *dirEntry, QTreeWidgetItem *parent)
         QString ownSize = KRpermHandler::parseSize(item->ownSize()) + ' ';
         QString percent = item->percent();
 
-        if (lastItem == 0 && parent == 0)
+        if (lastItem == nullptr && parent == nullptr)
             lastItem = new DUListViewItem(diskUsage, item, this, item->name(), percent, totalSize, ownSize,
                                           mime, date, item->perm(), item->owner(), item->group());
-        else if (lastItem == 0)
+        else if (lastItem == nullptr)
             lastItem = new DUListViewItem(diskUsage, item, parent, item->name(), percent, totalSize, ownSize,
                                           mime, date, item->perm(), item->owner(), item->group());
-        else if (parent == 0)
+        else if (parent == nullptr)
             lastItem = new DUListViewItem(diskUsage, item, this, lastItem, item->name(), percent, totalSize,
                                           ownSize, mime, date, item->perm(), item->owner(), item->group());
         else
@@ -155,15 +155,15 @@ void DUListView::addDirectory(Directory *dirEntry, QTreeWidgetItem *parent)
 void DUListView::slotDirChanged(Directory *dirEntry)
 {
     clear();
-    addDirectory(dirEntry, 0);
+    addDirectory(dirEntry, nullptr);
 }
 
 File * DUListView::getCurrentFile()
 {
     QTreeWidgetItem *item = currentItem();
 
-    if (item == 0 || item->text(0) == "..")
-        return 0;
+    if (item == nullptr || item->text(0) == "..")
+        return nullptr;
 
     return ((DUListViewItem *)item)->getFile();
 }
@@ -171,10 +171,10 @@ File * DUListView::getCurrentFile()
 void DUListView::slotChanged(File * item)
 {
     void * itemPtr = diskUsage->getProperty(item, "ListView-Ref");
-    if (itemPtr == 0)
+    if (itemPtr == nullptr)
         return;
 
-    DUListViewItem *duItem = (DUListViewItem *)itemPtr;
+    auto *duItem = (DUListViewItem *)itemPtr;
     duItem->setHidden(item->isExcluded());
     duItem->setText(1, item->percent());
     duItem->setText(2, KRpermHandler::parseSize(item->size()) + ' ');
@@ -184,16 +184,16 @@ void DUListView::slotChanged(File * item)
 void DUListView::slotDeleted(File * item)
 {
     void * itemPtr = diskUsage->getProperty(item, "ListView-Ref");
-    if (itemPtr == 0)
+    if (itemPtr == nullptr)
         return;
 
-    DUListViewItem *duItem = (DUListViewItem *)itemPtr;
+    auto *duItem = (DUListViewItem *)itemPtr;
     delete duItem;
 }
 
 void DUListView::slotRightClicked(QTreeWidgetItem *item, const QPoint & pos)
 {
-    File * file = 0;
+    File * file = nullptr;
 
     if (item && item->text(0) != "..")
         file = ((DUListViewItem *)item)->getFile();
@@ -210,7 +210,7 @@ bool DUListView::doubleClicked(QTreeWidgetItem * item)
                 diskUsage->changeDirectory(dynamic_cast<Directory *>(fileItem));
             return true;
         } else {
-            Directory *upDir = (Directory *)diskUsage->getCurrentDir()->parent();
+            auto *upDir = (Directory *)diskUsage->getCurrentDir()->parent();
 
             if (upDir)
                 diskUsage->changeDirectory(upDir);
@@ -259,7 +259,7 @@ void DUListView::keyPressEvent(QKeyEvent *e)
 
 void DUListView::slotExpanded(QTreeWidgetItem * item)
 {
-    if (item == 0 || item->text(0) == "..")
+    if (item == nullptr || item->text(0) == "..")
         return;
 
     if (item->childCount() == 0) {

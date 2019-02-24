@@ -54,7 +54,7 @@ public:
     static void view(QUrl url, QWidget * parent = krMainWindow);
     static void view(QUrl url, Mode mode, bool new_window, QWidget * parent = krMainWindow);
     static void edit(QUrl url, QWidget * parent);
-    static void edit(QUrl url, Mode mode = Text, int new_window = -1, QWidget * parent = krMainWindow);
+    static void edit(const QUrl& url, Mode mode = Text, int new_window = -1, QWidget * parent = krMainWindow);
     static void configureDeps();
 
     virtual bool eventFilter(QObject * watched, QEvent * e) Q_DECL_OVERRIDE;

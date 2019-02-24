@@ -41,17 +41,17 @@ class AdvancedFilter : public QWidget, public FilterBase
     Q_OBJECT
 
 public:
-    explicit AdvancedFilter(FilterTabs *tabs, QWidget *parent = 0);
+    explicit AdvancedFilter(FilterTabs *tabs, QWidget *parent = nullptr);
 
-    virtual void          queryAccepted() Q_DECL_OVERRIDE {}
-    virtual QString       name() Q_DECL_OVERRIDE {
+    void          queryAccepted() Q_DECL_OVERRIDE {}
+    QString       name() Q_DECL_OVERRIDE {
         return "AdvancedFilter";
     }
-    virtual FilterTabs *  filterTabs() Q_DECL_OVERRIDE {
+    FilterTabs *  filterTabs() Q_DECL_OVERRIDE {
         return fltTabs;
     }
-    virtual bool getSettings(FilterSettings&) Q_DECL_OVERRIDE;
-    virtual void applySettings(const FilterSettings&) Q_DECL_OVERRIDE;
+    bool getSettings(FilterSettings&) Q_DECL_OVERRIDE;
+    void applySettings(const FilterSettings&) Q_DECL_OVERRIDE;
 
 public slots:
     void modifiedBetweenSetDate1();
@@ -106,7 +106,7 @@ public:
 
 private:
     void changeDate(KLineEdit *p);
-    void fillList(KComboBox *list, QString filename);
+    void fillList(KComboBox *list, const QString& filename);
     void invalidDateMessage(KLineEdit *p);
     static QDate stringToDate(const QString& text) {
         // 30.12.16 is interpreted as 1916-12-30

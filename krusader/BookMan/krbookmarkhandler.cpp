@@ -48,6 +48,7 @@
 #include <KWidgetsAddons/KMessageBox>
 #include <KXmlGui/KActionCollection>
 #include <KBookmarks/KBookmarkManager>
+#include <utility>
 
 #define SPECIAL_BOOKMARKS true
 
@@ -59,8 +60,7 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) :
     QObject(mainWindow->widget()),
     _mainWindow(mainWindow),
     _middleClick(false),
-    _mainBookmarkPopup(0),
-    _specialBookmarks(),
+    _mainBookmarkPopup(nullptr),
     _quickSearchAction(nullptr),
     _quickSearchBar(nullptr),
     _quickSearchMenu(nullptr)
@@ -103,7 +103,7 @@ KrBookmarkHandler::~KrBookmarkHandler()
 
 void KrBookmarkHandler::bookmarkCurrent(QUrl url)
 {
-    QPointer<KrAddBookmarkDlg> dlg = new KrAddBookmarkDlg(_mainWindow->widget(), url);
+    QPointer<KrAddBookmarkDlg> dlg = new KrAddBookmarkDlg(_mainWindow->widget(), std::move(url));
     if (dlg->exec() == QDialog::Accepted) {
         KrBookmark *bm = new KrBookmark(dlg->name(), dlg->url(), _collection);
         addBookmark(bm, dlg->folder());
@@ -113,7 +113,7 @@ void KrBookmarkHandler::bookmarkCurrent(QUrl url)
 
 void KrBookmarkHandler::addBookmark(KrBookmark *bm, KrBookmark *folder)
 {
-    if (folder == 0)
+    if (folder == nullptr)
         folder = _root;
 
     // add to the list (bottom)
@@ -230,7 +230,7 @@ void KrBookmarkHandler::exportToFile()
     }
 }
 
-bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString path, QString *errorMsg)
+bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, const QString& path, QString *errorMsg)
 {
     QString url, name, iconName;
     // verify tag
@@ -266,7 +266,7 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
     return true;
 }
 
-bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent, QString path, QString *errorMsg)
+bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent, const QString& path, QString *errorMsg)
 {
     QString name;
     QDomNode n = first;
@@ -392,7 +392,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
         KrBookmark *bm = it.next();
 
         if (!bm->isFolder()) continue;
-        QMenu *newMenu = new QMenu(menu);
+        auto *newMenu = new QMenu(menu);
         newMenu->setIcon(Icon(bm->iconName()));
         newMenu->setTitle(bm->text());
         QAction *menuAction = menu->addMenu(newMenu);
@@ -427,7 +427,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
             menu->addSeparator();
 
             // add the popular links submenu
-            QMenu *newMenu = new QMenu(menu);
+            auto *newMenu = new QMenu(menu);
             newMenu->setTitle(i18n("Popular URLs"));
             newMenu->setIcon(Icon("folder-bookmark"));
             QAction *bmfAct  = menu->addMenu(newMenu);
@@ -519,7 +519,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
         _specialBookmarks.append(bmAct);
 
         // make sure the menu is connected to us
-        disconnect(menu, SIGNAL(triggered(QAction*)), 0, 0);
+        disconnect(menu, SIGNAL(triggered(QAction*)), nullptr, nullptr);
     }
 
     menu->installEventFilter(this);
@@ -552,7 +552,7 @@ void KrBookmarkHandler::bookmarksChanged(const QString&, const QString&)
 bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
 {
     auto eventType = ev->type();
-    QMenu *menu = qobject_cast<QMenu *>(obj);
+    auto *menu = qobject_cast<QMenu *>(obj);
 
     if (eventType == QEvent::Show && menu) {
         _setQuickSearchText("");
@@ -588,7 +588,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
     // Having it occur on keypress is consistent with other shortcuts,
     // such as Ctrl+W and accelerator keys
     if (eventType == QEvent::KeyPress && menu) {
-        QKeyEvent *kev = static_cast<QKeyEvent *>(ev);
+        auto *kev = dynamic_cast<QKeyEvent *>(ev);
         QList<QAction *> acts = menu->actions();
         bool quickSearchStarted = false;
         bool searchInSpecialItems = KConfigGroup(krConfig, "Look&Feel").readEntry("Search in special items", false);
@@ -696,24 +696,24 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
     }
 
     if (eventType == QEvent::MouseButtonRelease) {
-        switch (static_cast<QMouseEvent *>(ev)->button()) {
+        switch (dynamic_cast<QMouseEvent *>(ev)->button()) {
         case Qt::RightButton:
             _middleClick = false;
             if (obj->inherits("QMenu")) {
-                QMenu *menu = static_cast<QMenu *>(obj);
-                QAction *act = menu->actionAt(static_cast<QMouseEvent *>(ev)->pos());
+                auto *menu = dynamic_cast<QMenu *>(obj);
+                QAction *act = menu->actionAt(dynamic_cast<QMouseEvent *>(ev)->pos());
 
                 if (obj == _mainBookmarkPopup && _specialBookmarks.contains(act)) {
                     rightClickOnSpecialBookmark();
                     return true;
                 }
 
-                KrBookmark *bm = qobject_cast<KrBookmark *>(act);
-                if (bm != 0) {
+                auto *bm = qobject_cast<KrBookmark *>(act);
+                if (bm != nullptr) {
                     rightClicked(menu, bm);
                     return true;
                 } else if (act && act->data().canConvert<KrBookmark *>()) {
-                    KrBookmark *bm = act->data().value<KrBookmark *>();
+                    auto *bm = act->data().value<KrBookmark *>();
                     rightClicked(menu, bm);
                 }
             }

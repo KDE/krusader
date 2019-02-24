@@ -45,9 +45,9 @@ public:
 
     static FilterTabs * addTo(QTabWidget *tabWidget, int props = FilterTabs::Default,
                               QStringList extraOptions = QStringList());
-    static KRQuery      getQuery(QWidget *parent = 0);
+    static KRQuery      getQuery(QWidget *parent = nullptr);
 
-    FilterBase *get(QString name);
+    FilterBase *get(const QString& name);
     bool isExtraOptionChecked(QString name);
     void checkExtraOption(QString name, bool check);
     FilterSettings getSettings();
@@ -55,8 +55,8 @@ public:
     void reset();
 
 public slots:
-    void  loadFromProfile(QString);
-    void  saveToProfile(QString);
+    void  loadFromProfile(const QString&);
+    void  saveToProfile(const QString&);
     bool  fillQuery(KRQuery *query);
     void  close(bool accept = true) {
         emit closeRequest(accept);

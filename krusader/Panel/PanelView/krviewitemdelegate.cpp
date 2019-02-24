@@ -60,7 +60,7 @@ QWidget * KrViewItemDelegate::createEditor(QWidget *parent, const QStyleOptionVi
 void KrViewItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     QItemDelegate::setEditorData(editor, index);
-    QLineEdit *lineEdit = qobject_cast<QLineEdit *> (editor);
+    auto *lineEdit = qobject_cast<QLineEdit *> (editor);
     if (lineEdit) {
         KConfigGroup gl(krConfig, "Look&Feel");
         QFont font = index.data(Qt::FontRole).value<QFont>();
@@ -91,7 +91,7 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
     if (!editor)
         return false;
     if (event->type() == QEvent::KeyPress) {
-        switch (static_cast<QKeyEvent *>(event)->key()) {
+        switch (dynamic_cast<QKeyEvent *>(event)->key()) {
         case Qt::Key_Tab:
         case Qt::Key_Backtab:
             _currentlyEdited = -1;
@@ -99,7 +99,7 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
             return true;
         case Qt::Key_Enter:
         case Qt::Key_Return:
-            if (QLineEdit *e = qobject_cast<QLineEdit*>(editor)) {
+            if (auto *e = qobject_cast<QLineEdit*>(editor)) {
                 if (!e->hasAcceptableInput())
                     return true;
                 event->accept();
@@ -142,7 +142,7 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
             emit closeEditor(editor, RevertModelCache);
         }
     } else if (event->type() == QEvent::ShortcutOverride) {
-        const QKeyEvent *ke = static_cast<QKeyEvent *>(event);
+        const QKeyEvent *ke = dynamic_cast<QKeyEvent *>(event);
         if (ke->key() == Qt::Key_Escape ||
             (ke->key() == Qt::Key_Backspace && ke->modifiers() == Qt::ControlModifier)) {
             event->accept();

@@ -35,19 +35,19 @@ TabActions::TabActions(QObject *parent, KrMainWindow *mainWindow) : ActionsBase(
 {
     actNewTab = action(i18n("New Tab"), "tab-new", QKeySequence::keyBindings(QKeySequence::AddTab), this, SLOT(newTab()), "new tab");
     actDupTab = action(i18n("Duplicate Current Tab"), "tab-duplicate", Qt::ALT + Qt::CTRL + Qt::SHIFT + Qt::Key_N, SLOT(duplicateTab()), "duplicate tab");
-    actMoveTabToOtherSide = action(i18n("Move Current Tab to Other Side"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_O, SLOT(moveTabToOtherSide()), "move_tab_to_other_side");
+    actMoveTabToOtherSide = action(i18n("Move Current Tab to Other Side"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_O, SLOT(moveTabToOtherSide()), "move_tab_to_other_side");
     actCloseTab = action(i18n("Close Current Tab"), "tab-close", KStandardShortcut::close(), this, SLOT(closeTab()), "close tab");
     actNextTab = action(i18n("Next Tab"), QString(), KStandardShortcut::tabNext(), this, SLOT(nextTab()), "next tab");
     actPreviousTab = action(i18n("Previous Tab"), QString(), KStandardShortcut::tabPrev(), this, SLOT(previousTab()), "previous tab");
-    actCloseInactiveTabs = action(i18n("Close Inactive Tabs"), 0, 0, SLOT(closeInactiveTabs()), "close inactive tabs");
-    actCloseDuplicatedTabs = action(i18n("Close Duplicated Tabs"), 0, 0, SLOT(closeDuplicatedTabs()), "close duplicated tabs");
+    actCloseInactiveTabs = action(i18n("Close Inactive Tabs"), nullptr, 0, SLOT(closeInactiveTabs()), "close inactive tabs");
+    actCloseDuplicatedTabs = action(i18n("Close Duplicated Tabs"), nullptr, 0, SLOT(closeDuplicatedTabs()), "close duplicated tabs");
     actLockTab = action(i18n("Lock Tab"), "lock", 0, SLOT(lockTab()), "lock tab");
     actPinTab = action(i18n("Pin Tab"), "pin", 0, SLOT(pinTab()), "pin tab");
 }
 
 inline PanelManager *TabActions::activeManager()
 {
-    return static_cast<PanelManager*>(
+    return dynamic_cast<PanelManager*>(
         static_cast<KrMainWindow*>(_mainWindow)->activeManager());
 }
 

@@ -37,7 +37,7 @@ class DirHistoryQueue : public QObject
     Q_OBJECT
 public:
     explicit DirHistoryQueue(KrPanel *panel);
-    ~DirHistoryQueue();
+    ~DirHistoryQueue() override;
 
     void clear();
     int currentPos() {
@@ -51,7 +51,7 @@ public:
     const QUrl &get(int pos) {
         return _urlQueue[pos];
     }
-    void add(QUrl url, QString currentItem);
+    void add(QUrl url, const QString& currentItem);
     bool gotoPos(int pos);
     bool goBack();
     bool goForward();
@@ -64,7 +64,7 @@ public:
     QString currentItem(); // current item of the view
 
     void save(KConfigGroup cfg);
-    bool restore(KConfigGroup cfg);
+    bool restore(const KConfigGroup& cfg);
 
 public slots:
     void saveCurrentItem();

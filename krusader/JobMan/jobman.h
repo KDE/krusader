@@ -72,7 +72,7 @@ public:
         Delay
     };
 
-    explicit JobMan(QObject *parent = 0);
+    explicit JobMan(QObject *parent = nullptr);
     /** Toolbar action icon for pausing/starting all jobs with drop down menu showing all jobs.*/
     QAction *controlAction() const { return m_controlAction; }
     /** Toolbar action progress bar showing the average job progress percentage of all jobs.*/

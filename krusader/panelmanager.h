@@ -76,10 +76,10 @@ public:
     }
 
     // AbstractPanelManager implementation
-    virtual bool isLeft() const Q_DECL_OVERRIDE { return _left; }
-    virtual AbstractPanelManager *otherManager() const Q_DECL_OVERRIDE { return _otherManager; }
-    virtual KrPanel *currentPanel() const Q_DECL_OVERRIDE;
-    virtual void newTab(const QUrl &url, KrPanel *nextTo) Q_DECL_OVERRIDE {
+    bool isLeft() const Q_DECL_OVERRIDE { return _left; }
+    AbstractPanelManager *otherManager() const Q_DECL_OVERRIDE { return _otherManager; }
+    KrPanel *currentPanel() const Q_DECL_OVERRIDE;
+    void newTab(const QUrl &url, KrPanel *nextTo) Q_DECL_OVERRIDE {
         slotNewTab(url, true, nextTo);
     }
 
@@ -100,7 +100,7 @@ public slots:
     }
     Q_SCRIPTABLE void newTabs(const QStringList& urls);
 
-    void slotNewTab(const QUrl &url, bool setCurrent = true, KrPanel *nextTo = 0);
+    void slotNewTab(const QUrl &url, bool setCurrent = true, KrPanel *nextTo = nullptr);
     void slotNewTab();
     void slotLockTab();
     void slotPinTab();
@@ -127,8 +127,8 @@ private:
     void deletePanel(ListPanel *p);
     void updateTabbarPos();
     void tabsCountChanged();
-    ListPanel* addPanel(bool setCurrent = true, KConfigGroup cfg = KConfigGroup(), KrPanel *nextTo = 0);
-    ListPanel* createPanel(KConfigGroup cfg);
+    ListPanel* addPanel(bool setCurrent = true, const KConfigGroup& cfg = KConfigGroup(), KrPanel *nextTo = nullptr);
+    ListPanel* createPanel(const KConfigGroup& cfg);
     void connectPanel(ListPanel *p);
     void disconnectPanel(ListPanel *p);
 

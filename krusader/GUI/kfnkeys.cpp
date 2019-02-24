@@ -32,7 +32,7 @@
 #include "../Panel/listpanelactions.h"
 
 KFnKeys::KFnKeys(QWidget *parent, KrMainWindow *mainWindow) :
-        QWidget(parent), mainWindow(mainWindow), buttonList()
+        QWidget(parent), mainWindow(mainWindow)
 {
     buttonList << setup(mainWindow->listPanelActions()->actRenameF2, i18n("Rename"))
                << setup(mainWindow->listPanelActions()->actViewFileF3, i18n("View"))
@@ -46,7 +46,7 @@ KFnKeys::KFnKeys(QWidget *parent, KrMainWindow *mainWindow) :
 
     updateShortcuts();
 
-    QGridLayout *layout = new QGridLayout(this);
+    auto *layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 
@@ -66,7 +66,7 @@ void KFnKeys::updateShortcuts()
 
 KFnKeys::ButtonEntry KFnKeys::setup(QAction *action, const QString &text)
 {
-    QPushButton *button = new QPushButton(this);
+    auto *button = new QPushButton(this);
     button->setMinimumWidth(45);
     button->setToolTip(action->toolTip());
     connect(button, &QPushButton::clicked, action, &QAction::trigger);

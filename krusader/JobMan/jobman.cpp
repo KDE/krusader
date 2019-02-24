@@ -49,7 +49,7 @@ public:
         : QWidgetAction(parent), m_krJob(krJob)
     {
         QWidget *container = new QWidget();
-        QGridLayout *layout = new QGridLayout(container);
+        auto *layout = new QGridLayout(container);
         m_description = new QLabel(krJob->description());
         m_progressBar = new QProgressBar();
         layout->addWidget(m_description, 0, 0, 1, 3);
@@ -179,7 +179,7 @@ private:
 
 const QString JobMan::sDefaultToolTip = i18n("No jobs");
 
-JobMan::JobMan(QObject *parent) : QObject(parent), m_messageBox(0)
+JobMan::JobMan(QObject *parent) : QObject(parent), m_messageBox(nullptr)
 {
     // job control action
     m_controlAction = new KToolBarPopupAction(Icon("media-playback-pause"),
@@ -187,7 +187,7 @@ JobMan::JobMan(QObject *parent) : QObject(parent), m_messageBox(0)
     m_controlAction->setEnabled(false);
     connect(m_controlAction, &QAction::triggered, this, &JobMan::slotControlActionTriggered);
 
-    QMenu *menu = new QMenu(krMainWindow);
+    auto *menu = new QMenu(krMainWindow);
     menu->setMinimumWidth(300);
     // make scrollable if menu is too long
     menu->setStyleSheet("QMenu { menu-scrollable: 1; }");
@@ -200,7 +200,7 @@ JobMan::JobMan(QObject *parent) : QObject(parent), m_messageBox(0)
     // listen to clicks on progress bar
     m_progressBar->installEventFilter(this);
 
-    QWidgetAction *progressAction = new QWidgetAction(krMainWindow);
+    auto *progressAction = new QWidgetAction(krMainWindow);
     progressAction->setText(i18n("Job Progress Bar"));
     progressAction->setDefaultWidget(m_progressBar);
     m_progressAction = progressAction;
@@ -254,7 +254,7 @@ bool JobMan::waitForJobs(bool waitForUserInput)
 
     int result = m_messageBox->exec(); // blocking
     m_messageBox->deleteLater();
-    m_messageBox = 0;
+    m_messageBox = nullptr;
 
     // accepted -> cancel all jobs
     if (result == QMessageBox::Abort) {
@@ -398,7 +398,7 @@ void JobMan::slotUpdateMessageBox()
 
 void JobMan::managePrivate(KrJob *job, KJob *kJob)
 {
-    JobMenuAction *menuAction = new JobMenuAction(job, m_controlAction, kJob);
+    auto *menuAction = new JobMenuAction(job, m_controlAction, kJob);
     connect(menuAction, &QObject::destroyed, this, &JobMan::slotUpdateControlAction);
     m_controlAction->menu()->addAction(menuAction);
     cleanupMenu();
@@ -415,7 +415,7 @@ void JobMan::cleanupMenu() {
     for (QAction *action : actions) {
         if (m_controlAction->menu()->actions().count() <= MAX_OLD_MENU_ACTIONS)
             break;
-        JobMenuAction *jobAction = static_cast<JobMenuAction *>(action);
+        auto *jobAction = dynamic_cast<JobMenuAction *>(action);
         if (jobAction->isDone()) {
             m_controlAction->menu()->removeAction(action);
             action->deleteLater();

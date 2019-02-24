@@ -55,7 +55,7 @@ public slots:
     /**
      * called by PanelManager with an already created panel, and creates the corresponding tab
      */
-    int addPanel(ListPanel *panel, bool setCurrent = true, KrPanel *nextTo = 0);
+    int addPanel(ListPanel *panel, bool setCurrent = true, KrPanel *nextTo = nullptr);
 
     ListPanel* getPanel(int tabIdx);
     void changePanel(int tabIdx, ListPanel *panel);
@@ -88,15 +88,15 @@ signals:
     void draggingTabFinished(QMouseEvent*);
 
 protected:
-    virtual void mouseMoveEvent(QMouseEvent*e) Q_DECL_OVERRIDE;
-    virtual void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE;
-    virtual void mouseReleaseEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    void mouseMoveEvent(QMouseEvent*e) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QMouseEvent*) Q_DECL_OVERRIDE;
     void insertAction(QAction*);
     QString squeeze(const QUrl &url, int tabIndex = -1);
-    virtual void dragEnterEvent(QDragEnterEvent *) Q_DECL_OVERRIDE;
-    virtual void dragLeaveEvent(QDragLeaveEvent *) Q_DECL_OVERRIDE;
-    virtual void dragMoveEvent(QDragMoveEvent *) Q_DECL_OVERRIDE;
-    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    void dragEnterEvent(QDragEnterEvent *) Q_DECL_OVERRIDE;
+    void dragLeaveEvent(QDragLeaveEvent *) Q_DECL_OVERRIDE;
+    void dragMoveEvent(QDragMoveEvent *) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
 
 protected slots:
     void duplicateTab();

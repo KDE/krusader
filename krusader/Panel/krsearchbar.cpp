@@ -40,10 +40,10 @@
 
 
 KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
-    : QWidget(parent), _view(0), _rightArrowEntersDirFlag(true)
+    : QWidget(parent), _view(nullptr), _rightArrowEntersDirFlag(true)
 {
     // close button
-    QToolButton *closeButton = new QToolButton(this);
+    auto *closeButton = new QToolButton(this);
     closeButton->setAutoRaise(true);
     closeButton->setIcon(Icon(QStringLiteral("dialog-close")));
     closeButton->setToolTip(i18n("Close the search bar"));
@@ -69,7 +69,7 @@ KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
     _textBox->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred));
     connect(_textBox, &KComboBox::currentTextChanged, this, &KrSearchBar::onSearchChange);
 
-    QToolButton *saveSearchBtn = new QToolButton(this);
+    auto *saveSearchBtn = new QToolButton(this);
     saveSearchBtn->setIcon(Icon("document-save"));
     saveSearchBtn->setFixedSize(20, 20);
     saveSearchBtn->setToolTip(i18n("Save the current search string"));
@@ -80,7 +80,7 @@ KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
     _openSelectDialogBtn->setFixedSize(20, 20);
     _openSelectDialogBtn->setToolTip(i18n("Open selection dialog"));
 
-    QHBoxLayout *layout = new QHBoxLayout(this);
+    auto *layout = new QHBoxLayout(this);
     layout->setMargin(0);
     layout->addWidget(closeButton);
     layout->addWidget(_modeBox);
@@ -97,7 +97,7 @@ void KrSearchBar::setView(KrView *view)
 {
     if (_view) {
         _view->widget()->removeEventFilter(this);
-        disconnect(_openSelectDialogBtn, 0, 0, 0);
+        disconnect(_openSelectDialogBtn, nullptr, nullptr, nullptr);
     }
 
     _view = view;
@@ -215,24 +215,16 @@ void KrSearchBar::keyPressEvent(QKeyEvent *event)
 
 bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
 {
-    if (event->type() != QEvent::ShortcutOverride && watched == _view->widget()) {
-        QKeyEvent *ke = static_cast<QKeyEvent *>(event);
-        // overwrite "escape" shortcut if bar is shown
-        if ((ke->key() == Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier) && !isHidden()) {
-            ke->accept();
-            handleKeyPressEvent(ke);
-            return true;
-        }
-    }
-
+    // only handle KeyPress events in this method
     if (event->type() != QEvent::KeyPress) {
         return false;
     }
 
     qDebug() << "key press event=" << event;
 
-    QKeyEvent *ke = static_cast<QKeyEvent *>(event);
+    auto *ke = static_cast<QKeyEvent *>(event);
     auto modifiers = ke->modifiers();
+
     if (watched == _view->widget()) {
         KConfigGroup grpSv(krConfig, "Look&Feel");
         const bool autoShow = grpSv.readEntry("New Style Quicksearch", _NewStyleQuicksearch);

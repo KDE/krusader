@@ -32,8 +32,8 @@ class ActionProperty : public QWidget, public Ui::ActionProperty
 {
     Q_OBJECT
 public:
-    explicit ActionProperty(QWidget *parent = 0, KrAction *action = 0);
-    ~ActionProperty();
+    explicit ActionProperty(QWidget *parent = nullptr, KrAction *action = nullptr);
+    ~ActionProperty() override;
 
     /**
      * @return the currently displayed action
@@ -48,7 +48,7 @@ public:
      * It also resets the changed() state.
      * @param action the action which should be displayd
      */
-    void updateGUI(KrAction *action = 0);
+    void updateGUI(KrAction *action = nullptr);
 
     /**
      * This writes the displayed properties back into the action.
@@ -56,7 +56,7 @@ public:
      * It also resets the changed() state.
      * @param action the action which should be manipulated
      */
-    void updateAction(KrAction *action = 0);
+    void updateAction(KrAction *action = nullptr);
 
     /**
      * clears everything

@@ -49,18 +49,18 @@
 
 AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(parent), fltTabs(tabs)
 {
-    QGridLayout *filterLayout = new QGridLayout(this);
+    auto *filterLayout = new QGridLayout(this);
     filterLayout->setSpacing(6);
     filterLayout->setContentsMargins(11, 11, 11, 11);
 
     // Options for size
 
-    QGroupBox *sizeGroup = new QGroupBox(this);
+    auto *sizeGroup = new QGroupBox(this);
     QSizePolicy sizeGroupPolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
     sizeGroupPolicy.setHeightForWidth(sizeGroup->sizePolicy().hasHeightForWidth());
     sizeGroup->setSizePolicy(sizeGroupPolicy);
     sizeGroup->setTitle(i18n("Size"));
-    QGridLayout *sizeLayout = new QGridLayout(sizeGroup);
+    auto *sizeLayout = new QGridLayout(sizeGroup);
     sizeLayout->setAlignment(Qt::AlignTop);
     sizeLayout->setSpacing(6);
     sizeLayout->setContentsMargins(11, 11, 11, 11);
@@ -115,11 +115,11 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
 
     Icon iconDate("view-calendar");
 
-    QGroupBox *dateGroup = new QGroupBox(this);
-    QButtonGroup *btnGroup = new QButtonGroup(dateGroup);
+    auto *dateGroup = new QGroupBox(this);
+    auto *btnGroup = new QButtonGroup(dateGroup);
     dateGroup->setTitle(i18n("Date"));
     btnGroup->setExclusive(true);
-    QGridLayout *dateLayout = new QGridLayout(dateGroup);
+    auto *dateLayout = new QGridLayout(dateGroup);
     dateLayout->setAlignment(Qt::AlignTop);
     dateLayout->setSpacing(6);
     dateLayout->setContentsMargins(11, 11, 11, 11);
@@ -214,7 +214,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     dateLayout->addWidget(notModifiedAfterBtn, 2, 2);
 
     dateLayout->addWidget(modifiedInTheLastEnabled, 3, 0);
-    QHBoxLayout *modifiedInTheLastLayout = new QHBoxLayout();
+    auto *modifiedInTheLastLayout = new QHBoxLayout();
     modifiedInTheLastLayout->addWidget(modifiedInTheLastData);
     modifiedInTheLastLayout->addWidget(modifiedInTheLastType);
     dateLayout->addLayout(modifiedInTheLastLayout, 3, 1);
@@ -229,14 +229,14 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
 
     // Options for ownership
 
-    QGroupBox *ownershipGroup = new QGroupBox(this);
+    auto *ownershipGroup = new QGroupBox(this);
     ownershipGroup->setTitle(i18n("Ownership"));
-    QGridLayout *ownershipLayout = new QGridLayout(ownershipGroup);
+    auto *ownershipLayout = new QGridLayout(ownershipGroup);
     ownershipLayout->setAlignment(Qt::AlignTop);
     ownershipLayout->setSpacing(6);
     ownershipLayout->setContentsMargins(11, 11, 11, 11);
 
-    QHBoxLayout *hboxLayout = new QHBoxLayout();
+    auto *hboxLayout = new QHBoxLayout();
     hboxLayout->setSpacing(6);
     hboxLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -264,8 +264,8 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     permissionsEnabled->setText(i18n("P&ermissions"));
     ownershipLayout->addWidget(permissionsEnabled, 1, 0);
 
-    QGroupBox *ownerGroup = new QGroupBox(ownershipGroup);
-    QHBoxLayout *ownerHBox = new QHBoxLayout(ownerGroup);
+    auto *ownerGroup = new QGroupBox(ownershipGroup);
+    auto *ownerHBox = new QHBoxLayout(ownerGroup);
     ownerGroup->setTitle(i18n("O&wner"));
 
     ownerR = new KComboBox(ownerGroup);
@@ -291,8 +291,8 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
 
     ownershipLayout->addWidget(ownerGroup, 1, 1);
 
-    QGroupBox *groupGroup = new QGroupBox(ownershipGroup);
-    QHBoxLayout *groupHBox = new QHBoxLayout(groupGroup);
+    auto *groupGroup = new QGroupBox(ownershipGroup);
+    auto *groupHBox = new QHBoxLayout(groupGroup);
     groupGroup->setTitle(i18n("Grou&p"));
 
     groupR = new KComboBox(groupGroup);
@@ -318,8 +318,8 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
 
     ownershipLayout->addWidget(groupGroup, 1, 2);
 
-    QGroupBox *allGroup = new QGroupBox(ownershipGroup);
-    QHBoxLayout *allHBox = new QHBoxLayout(allGroup);
+    auto *allGroup = new QGroupBox(ownershipGroup);
+    auto *allHBox = new QHBoxLayout(allGroup);
     allGroup->setTitle(i18n("A&ll"));
 
     allR = new KComboBox(allGroup);
@@ -445,7 +445,7 @@ void AdvancedFilter::changeDate(KLineEdit *p)
     QDate d = stringToDate(p->text());
     if (!d.isValid()) d = QDate::currentDate();
 
-    KRGetDate *gd = new KRGetDate(d, this);
+    auto *gd = new KRGetDate(d, this);
     d = gd->getDate();
     // if a user pressed ESC or closed the dialog, we'll return an invalid date
     if (d.isValid())
@@ -453,7 +453,7 @@ void AdvancedFilter::changeDate(KLineEdit *p)
     delete gd;
 }
 
-void AdvancedFilter::fillList(KComboBox *list, QString filename)
+void AdvancedFilter::fillList(KComboBox *list, const QString& filename)
 {
     QFile data(filename);
     if (!data.open(QIODevice::ReadOnly)) {

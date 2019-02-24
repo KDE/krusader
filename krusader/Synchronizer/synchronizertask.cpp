@@ -34,19 +34,19 @@
 
 CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QString &leftURL,
                          const QString &rightURL, const QString &leftDir,
-                         const QString &rightDir, bool hidden) : SynchronizerTask(),  m_parent(parentIn),
+                         const QString &rightDir, bool hidden) :  m_parent(parentIn),
         m_url(leftURL), m_dir(leftDir), m_otherUrl(rightURL),
         m_otherDir(rightDir), m_duplicate(true),
-        m_dirList(0), m_otherDirList(0)
+        m_dirList(nullptr), m_otherDirList(nullptr)
 {
     ignoreHidden = hidden;
 }
 
 CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QString &urlIn,
-                         const QString &dirIn, bool isLeftIn, bool hidden) : SynchronizerTask(),
+                         const QString &dirIn, bool isLeftIn, bool hidden) :
         m_parent(parentIn), m_url(urlIn), m_dir(dirIn),
         m_isLeft(isLeftIn), m_duplicate(false),
-        m_dirList(0), m_otherDirList(0)
+        m_dirList(nullptr), m_otherDirList(nullptr)
 {
     ignoreHidden = hidden;
 }
@@ -55,11 +55,11 @@ CompareTask::~CompareTask()
 {
     if (m_dirList) {
         delete m_dirList;
-        m_dirList = 0;
+        m_dirList = nullptr;
     }
     if (m_otherDirList) {
         delete m_otherDirList;
-        m_otherDirList = 0;
+        m_otherDirList = nullptr;
     }
 }
 
@@ -107,11 +107,11 @@ void CompareTask::slotOtherFinished(bool result)
 }
 
 CompareContentTask::CompareContentTask(Synchronizer *syn, SynchronizerFileItem *itemIn, const QUrl &leftURLIn,
-                                       const QUrl &rightURLIn, KIO::filesize_t sizeIn) : SynchronizerTask(),
+                                       const QUrl &rightURLIn, KIO::filesize_t sizeIn) :
         leftURL(leftURLIn), rightURL(rightURLIn),
-        size(sizeIn), errorPrinted(false), leftReadJob(0),
-        rightReadJob(0), compareArray(), owner(-1), item(itemIn), timer(0),
-        leftFile(0), rightFile(0), received(0), sync(syn)
+        size(sizeIn), errorPrinted(false), leftReadJob(nullptr),
+        rightReadJob(nullptr), compareArray(), owner(-1), item(itemIn), timer(nullptr),
+        leftFile(nullptr), rightFile(nullptr), received(0), sync(syn)
 {
 }
 
@@ -268,7 +268,7 @@ void CompareContentTask::slotDataReceived(KIO::Job *job, const QByteArray &data)
 
     KIO::TransferJob *otherJob = (job == leftReadJob) ? rightReadJob : leftReadJob;
 
-    if (otherJob == 0) {
+    if (otherJob == nullptr) {
         if (compareArray.size())
             abortContentComparing();
     } else {
@@ -284,9 +284,9 @@ void CompareContentTask::slotFinished(KJob *job)
     KIO::TransferJob *otherJob = (job == leftReadJob) ? rightReadJob : leftReadJob;
 
     if (job == leftReadJob)
-        leftReadJob = 0;
+        leftReadJob = nullptr;
     else
-        rightReadJob = 0;
+        rightReadJob = nullptr;
 
     if (otherJob)
         otherJob->resume();
@@ -303,7 +303,7 @@ void CompareContentTask::slotFinished(KJob *job)
                                               rightURL.toDisplayString(QUrl::PreferLocalFile)));
     }
 
-    if (leftReadJob == 0 && rightReadJob == 0) {
+    if (leftReadJob == nullptr && rightReadJob == nullptr) {
         if (!compareArray.size())
             sync->compareContentResult(item, true);
         else
@@ -332,7 +332,7 @@ void CompareContentTask::abortContentComparing()
 void CompareContentTask::sendStatusMessage()
 {
     double perc = (size == 0) ? 1. : (double)received / (double)size;
-    int percent = (int)(perc * 10000. + 0.5);
+    auto percent = (int)(perc * 10000. + 0.5);
     QString statstr = QString("%1.%2%3").arg(percent / 100).arg((percent / 10) % 10).arg(percent % 10) + '%';
     setStatusMessage(i18n("Comparing file %1 (%2)...", leftURL.fileName(), statstr));
     timer->setSingleShot(true);

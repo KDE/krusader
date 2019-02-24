@@ -52,10 +52,10 @@ public:
     // let operator
     KRQuery &operator=(const KRQuery &);
     // destructor
-    virtual ~KRQuery();
+    ~KRQuery() override;
 
     // load parameters from config
-    void load(KConfigGroup cfg);
+    void load(const KConfigGroup& cfg);
     // save parameters to config
     void save(KConfigGroup cfg);
 
@@ -78,7 +78,7 @@ public:
 
     // sets the content part of the query
     void setContent(const QString &content, bool cs = true, bool wholeWord = false,
-                    QString encoding = QString(), bool regExp = false);
+                    const QString& encoding = QString(), bool regExp = false);
     const QString content() { return contain; }
 
     // sets the minimum file size limit
@@ -146,9 +146,9 @@ public:
 
 protected:
     // important to know whether the event processor is connected
-    virtual void connectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE;
+    void connectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE;
     // important to know whether the event processor is connected
-    virtual void disconnectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE;
+    void disconnectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE;
 
 protected:
     QStringList matches;      // what to search
@@ -192,9 +192,9 @@ signals:
 private:
     bool matchCommon(const QString &, const QStringList &, const QStringList &) const;
     bool checkPerm(QString perm) const;
-    bool checkType(QString mime) const;
-    bool containsContent(QString file) const;
-    bool containsContent(QUrl url) const;
+    bool checkType(const QString& mime) const;
+    bool containsContent(const QString& file) const;
+    bool containsContent(const QUrl& url) const;
     bool checkBuffer(const char *data, int len) const;
     bool checkTimer() const;
     QStringList split(QString);

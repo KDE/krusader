@@ -32,7 +32,7 @@
 #define ASSERT(what) if(!what) abort();
 
 
-KrPreviews::KrPreviews(KrView *view) :  _job(0), _view(view)
+KrPreviews::KrPreviews(KrView *view) :  _job(nullptr), _view(view)
 {
     _dim = KrColorCache::getColorCache().getDimSettings(_dimColor, _dimFactor);
     connect(&KrColorCache::getColorCache(), &KrColorCache::colorsRefreshed, this, &KrPreviews::slotRefreshColors);
@@ -47,7 +47,7 @@ void KrPreviews::clear()
 {
     if(_job) {
         _job->kill(KJob::EmitResult);
-        _job = 0;
+        _job = nullptr;
     }
     _previews.clear();
     _previewsInactive.clear();
@@ -57,7 +57,7 @@ void KrPreviews::update()
 {
     if(_job)
         return;
-    for (KrViewItem *it = _view->getFirst(); it != 0; it = _view->getNext(it)) {
+    for (KrViewItem *it = _view->getFirst(); it != nullptr; it = _view->getNext(it)) {
         if(!_previews.contains(it->getFileItem()))
             updatePreview(it);
     }
@@ -94,7 +94,7 @@ bool KrPreviews::getPreview(const FileItem *file, QPixmap &pixmap, bool active)
 void KrPreviews::slotJobResult(KJob *job)
 {
     (void) job;
-    _job = 0;
+    _job = nullptr;
 }
 
 void KrPreviews::slotRefreshColors()

@@ -33,7 +33,7 @@
 #define SCHEME_POPUP_ID    6730
 
 DUFilelight::DUFilelight(DiskUsage *usage)
-        : RadialMap::Widget(usage), diskUsage(usage), currentDir(0), refreshNeeded(true)
+        : RadialMap::Widget(usage), diskUsage(usage), currentDir(nullptr), refreshNeeded(true)
 {
 //     setFocusPolicy(Qt::StrongFocus);
 
@@ -63,7 +63,7 @@ void DUFilelight::slotDirChanged(Directory *dir)
 void DUFilelight::clear()
 {
     invalidate(false);
-    currentDir = 0;
+    currentDir = nullptr;
 }
 
 File * DUFilelight::getCurrentFile()
@@ -71,7 +71,7 @@ File * DUFilelight::getCurrentFile()
     const RadialMap::Segment * focus = focusSegment();
 
     if (!focus || focus->isFake() || focus->file() == currentDir)
-        return 0;
+        return nullptr;
 
     return (File *)focus->file();
 }
@@ -79,7 +79,7 @@ File * DUFilelight::getCurrentFile()
 void DUFilelight::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::RightButton) {
-        File * file = 0;
+        File * file = nullptr;
 
         const RadialMap::Segment * focus = focusSegment();
 
@@ -198,7 +198,7 @@ void DUFilelight::slotAboutToShow(int ndx)
     QWidget *widget = diskUsage->widget(ndx);
     if (widget == this && (diskUsage->getCurrentDir() != currentDir || refreshNeeded)) {
         refreshNeeded = false;
-        if ((currentDir = diskUsage->getCurrentDir()) != 0) {
+        if ((currentDir = diskUsage->getCurrentDir()) != nullptr) {
             invalidate(false);
             create(currentDir);
         }

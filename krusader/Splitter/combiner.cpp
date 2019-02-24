@@ -29,14 +29,15 @@
 #include <KIO/Job>
 #include <KIO/JobUiDelegate>
 #include <KWidgetsAddons/KMessageBox>
+#include <utility>
 
 //TODO: delete destination file on error
 //TODO: cache more than one byte array of data
 
 Combiner::Combiner(QWidget* parent,  QUrl baseURLIn, QUrl destinationURLIn, bool unixNamingIn) :
-        QProgressDialog(parent, 0), baseURL(baseURLIn), destinationURL(destinationURLIn),
+        QProgressDialog(parent, nullptr), baseURL(std::move(baseURLIn)), destinationURL(std::move(destinationURLIn)),
         hasValidSplitFile(false), fileCounter(0), permissions(-1), receivedSize(0),
-        statJob(0), combineReadJob(0), combineWriteJob(0), unixNaming(unixNamingIn)
+        statJob(nullptr), combineReadJob(nullptr), combineWriteJob(nullptr), unixNaming(unixNamingIn)
 {
     crcContext = new CRC32();
 
@@ -70,7 +71,7 @@ void Combiner::combine()
     file.refresh();
 
     if (!file.isReadable()) {
-        int ret = KMessageBox::questionYesNo(0, i18n("The CRC information file (%1) is missing.\n"
+        int ret = KMessageBox::questionYesNo(nullptr, i18n("The CRC information file (%1) is missing.\n"
                                              "Validity checking is impossible without it. Continue combining?",
                                              splURL.toDisplayString(QUrl::PreferLocalFile)));
 
@@ -99,7 +100,7 @@ void Combiner::combineSplitFileDataReceived(KIO::Job *, const QByteArray &byteAr
 
 void Combiner::combineSplitFileFinished(KJob *job)
 {
-    combineReadJob = 0;
+    combineReadJob = nullptr;
     QString error;
 
     if (job->error())
@@ -138,7 +139,7 @@ void Combiner::combineSplitFileFinished(KJob *job)
     }
 
     if (!error.isEmpty()) {
-        int ret = KMessageBox::questionYesNo(0,
+        int ret = KMessageBox::questionYesNo(nullptr,
                                              error + i18n("\nValidity checking is impossible without a good CRC file. Continue combining?"));
         if (ret == KMessageBox::No) {
             emit reject();
@@ -167,17 +168,17 @@ void Combiner::statDest()
 
 void Combiner::statDestResult(KJob* job)
 {
-    statJob = 0;
+    statJob = nullptr;
 
     if (job->error()) {
         if (job->error() == KIO::ERR_DOES_NOT_EXIST) {
             openNextFile();
         } else {
-            static_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
+            dynamic_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
             emit reject();
         }
     } else { // destination already exists
-        KIO::RenameDialog_Options mode = static_cast<KIO::StatJob*>(job)->statResult().isDir() ?
+        KIO::RenameDialog_Options mode = dynamic_cast<KIO::StatJob*>(job)->statResult().isDir() ?
             KIO::RenameDialog_IsDirectory : KIO::RenameDialog_Overwrite;
         KIO::RenameDialog dlg(this, i18n("File Already Exists"), QUrl(), writeURL, mode);
         switch (dlg.exec()) {
@@ -245,7 +246,7 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
 
     receivedSize += byteArray.size();
 
-    if (combineWriteJob == 0) {
+    if (combineWriteJob == nullptr) {
         combineWriteJob = KIO::put(writeURL, permissions, KIO::HideProgressInfo | KIO::Overwrite);
 
         connect(combineWriteJob, &KIO::TransferJob::dataReq, this, &Combiner::combineDataSend);
@@ -259,7 +260,7 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
 
 void Combiner::combineReceiveFinished(KJob *job)
 {
-    combineReadJob = 0;   /* KIO automatically deletes the object after Finished signal */
+    combineReadJob = nullptr;   /* KIO automatically deletes the object after Finished signal */
     if (job->error()) {
         if (job->error() == KIO::ERR_DOES_NOT_EXIST) {
             if (fileCounter == 1) { // .000 file doesn't exist but .001 is still a valid first file
@@ -268,7 +269,7 @@ void Combiner::combineReceiveFinished(KJob *job)
             }
             else if (!firstFileIs000 && fileCounter == 2) { // neither .000 nor .001 exist
                 combineAbortJobs();
-                KMessageBox::error(0, i18n("Cannot open the first split file of %1.",
+                KMessageBox::error(nullptr, i18n("Cannot open the first split file of %1.",
                                            baseURL.toDisplayString(QUrl::PreferLocalFile)));
                 emit reject();
             } else { // we've received the last file
@@ -287,7 +288,7 @@ void Combiner::combineReceiveFinished(KJob *job)
             }
         } else {
             combineAbortJobs();
-            static_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
+            dynamic_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
             emit reject();
         }
     } else
@@ -308,15 +309,15 @@ void Combiner::combineDataSend(KIO::Job *, QByteArray &byteArray)
 
 void Combiner::combineSendFinished(KJob *job)
 {
-    combineWriteJob = 0;  /* KIO automatically deletes the object after Finished signal */
+    combineWriteJob = nullptr;  /* KIO automatically deletes the object after Finished signal */
 
     if (job->error()) {   /* any error occurred? */
         combineAbortJobs();
-        static_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
+        dynamic_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
         emit reject();
     } else if (!error.isEmpty()) {  /* was any error message at reading ? */
         combineAbortJobs();             /* we cannot write out it in combineReceiveFinished */
-        KMessageBox::error(0, error);   /* because emit accept closes it in this function */
+        KMessageBox::error(nullptr, error);   /* because emit accept closes it in this function */
         emit reject();
     } else
         emit accept();
@@ -331,12 +332,12 @@ void Combiner::combineAbortJobs()
     if (combineWriteJob)
         combineWriteJob->kill(KJob::Quietly);
 
-    statJob = combineReadJob = combineWriteJob = 0;
+    statJob = combineReadJob = combineWriteJob = nullptr;
 }
 
 void Combiner::combineWritePercent(KJob *, unsigned long)
 {
-    int percent = (int)((((double)receivedSize / expectedSize) * 100.) + 0.5);
+    auto percent = (int)((((double)receivedSize / expectedSize) * 100.) + 0.5);
     setValue(percent);
 }
 

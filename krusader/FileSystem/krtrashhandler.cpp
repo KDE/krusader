@@ -38,7 +38,7 @@
 #include "../icon.h"
 
 
-KrTrashWatcher * KrTrashHandler::_trashWatcher = 0;
+KrTrashWatcher * KrTrashHandler::_trashWatcher = nullptr;
 
 bool KrTrashHandler::isTrashEmpty()
 {
@@ -90,7 +90,7 @@ void KrTrashHandler::startWatcher()
 void KrTrashHandler::stopWatcher()
 {
     delete _trashWatcher;
-    _trashWatcher = 0;
+    _trashWatcher = nullptr;
 }
 
 
@@ -108,7 +108,7 @@ KrTrashWatcher::KrTrashWatcher()
 KrTrashWatcher::~KrTrashWatcher()
 {
     delete _watcher;
-    _watcher = 0;
+    _watcher = nullptr;
 }
 
 void KrTrashWatcher::slotTrashChanged()

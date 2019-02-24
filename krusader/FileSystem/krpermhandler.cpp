@@ -74,7 +74,7 @@ void KRpermHandler::init()
 #ifndef Q_WS_WIN
     // fill the UID cache
     struct passwd *pass;
-    while ((pass = getpwent()) != 0L) {
+    while ((pass = getpwent()) != nullptr) {
         uidCache.insert(pass->pw_uid, pass->pw_name);
     }
     delete pass;
@@ -82,7 +82,7 @@ void KRpermHandler::init()
 
     // fill the GID cache
     struct group *gr;
-    while ((gr = getgrent()) != 0L) {
+    while ((gr = getgrent()) != nullptr) {
         gidCache.insert(gr->gr_gid, QString(gr->gr_name));
     }
     delete gr;

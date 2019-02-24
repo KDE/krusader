@@ -48,9 +48,9 @@ class DULinesItemDelegate : public QItemDelegate
 {
 public:
 
-    explicit DULinesItemDelegate(QObject *parent = 0) : QItemDelegate(parent) {}
+    explicit DULinesItemDelegate(QObject *parent = nullptr) : QItemDelegate(parent) {}
 
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const Q_DECL_OVERRIDE {
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const Q_DECL_OVERRIDE {
         QItemDelegate::paint(painter, option, index);
 
         QVariant value = index.data(Qt::UserRole);
@@ -124,8 +124,8 @@ public:
 class DULinesItem : public QTreeWidgetItem
 {
 public:
-    DULinesItem(DiskUsage *diskUsageIn, File *fileItem, QTreeWidget * parent, QString label1,
-                QString label2, QString label3) : QTreeWidgetItem(parent),
+    DULinesItem(DiskUsage *diskUsageIn, File *fileItem, QTreeWidget * parent, const QString& label1,
+                const QString& label2, const QString& label3) : QTreeWidgetItem(parent),
             diskUsage(diskUsageIn), file(fileItem) {
         setText(0, label1);
         setText(1, label2);
@@ -134,7 +134,7 @@ public:
         setTextAlignment(1, Qt::AlignRight);
     }
     DULinesItem(DiskUsage *diskUsageIn, File *fileItem, QTreeWidget * parent, QTreeWidgetItem * after,
-                QString label1, QString label2, QString label3) : QTreeWidgetItem(parent, after),
+                const QString& label1, const QString& label2, const QString& label3) : QTreeWidgetItem(parent, after),
             diskUsage(diskUsageIn), file(fileItem) {
         setText(0, label1);
         setText(1, label2);
@@ -143,14 +143,14 @@ public:
         setTextAlignment(1, Qt::AlignRight);
     }
 
-    virtual bool operator<(const QTreeWidgetItem &other) const Q_DECL_OVERRIDE {
+    bool operator<(const QTreeWidgetItem &other) const Q_DECL_OVERRIDE {
         int column = treeWidget() ? treeWidget()->sortColumn() : 0;
 
         if (text(0) == "..")
             return true;
 
-        const DULinesItem *compWith = dynamic_cast< const DULinesItem * >(&other);
-        if (compWith == 0)
+        const auto *compWith = dynamic_cast< const DULinesItem * >(&other);
+        if (compWith == nullptr)
             return false;
 
         switch (column) {
@@ -234,7 +234,7 @@ bool DULines::event(QEvent * event)
 {
     switch (event->type()) {
     case QEvent::ToolTip: {
-        QHelpEvent *he = static_cast<QHelpEvent*>(event);
+        auto *he = dynamic_cast<QHelpEvent*>(event);
 
         if (viewport()) {
             QPoint pos = viewport()->mapFromGlobal(he->globalPos());
@@ -261,9 +261,9 @@ void DULines::slotDirChanged(Directory *dirEntry)
 {
     clear();
 
-    QTreeWidgetItem * lastItem = 0;
+    QTreeWidgetItem * lastItem = nullptr;
 
-    if (!(dirEntry->parent() == 0)) {
+    if (!(dirEntry->parent() == nullptr)) {
         lastItem = new QTreeWidgetItem(this);
         lastItem->setText(0, "..");
         lastItem->setIcon(0, Icon("go-up"));
@@ -282,7 +282,7 @@ void DULines::slotDirChanged(Directory *dirEntry)
 
         QString fileName = item->name();
 
-        if (lastItem == 0)
+        if (lastItem == nullptr)
             lastItem = new DULinesItem(diskUsage, item, this, "", item->percent() + "  ", fileName);
         else
             lastItem = new DULinesItem(diskUsage, item, this, lastItem, "", item->percent() + "  ", fileName);
@@ -368,7 +368,7 @@ void DULines::sectionResized(int column)
         return;
 
     Directory * currentDir = diskUsage->getCurrentDir();
-    if (currentDir == 0)
+    if (currentDir == nullptr)
         return;
 
     int maxPercent = -1;
@@ -383,7 +383,7 @@ void DULines::sectionResized(int column)
     while (*it2) {
         QTreeWidgetItem *lvitem = *it2;
         if (lvitem->text(0) != "..") {
-            DULinesItem *duItem = dynamic_cast< DULinesItem *>(lvitem);
+            auto *duItem = dynamic_cast< DULinesItem *>(lvitem);
             if (duItem) {
                 int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
                 duItem->setData(0, Qt::DecorationRole, createPixmap(duItem->getFile()->intPercent(), maxPercent, header()->sectionSize(0) - 2 * textMargin));
@@ -405,7 +405,7 @@ bool DULines::doubleClicked(QTreeWidgetItem * item)
                 diskUsage->changeDirectory(dynamic_cast<Directory *>(fileItem));
             return true;
         } else {
-            Directory *upDir = (Directory *)diskUsage->getCurrentDir()->parent();
+            auto *upDir = (Directory *)diskUsage->getCurrentDir()->parent();
 
             if (upDir)
                 diskUsage->changeDirectory(upDir);
@@ -455,7 +455,7 @@ void DULines::keyPressEvent(QKeyEvent *e)
 
 void DULines::slotRightClicked(QTreeWidgetItem *item, const QPoint &pos)
 {
-    File * file = 0;
+    File * file = nullptr;
 
     if (item && item->text(0) != "..")
         file = ((DULinesItem *)item)->getFile();
@@ -477,8 +477,8 @@ File * DULines::getCurrentFile()
 {
     QTreeWidgetItem *item = currentItem();
 
-    if (item == 0 || item->text(0) == "..")
-        return 0;
+    if (item == nullptr || item->text(0) == "..")
+        return nullptr;
 
     return ((DULinesItem *)item)->getFile();
 }
@@ -491,7 +491,7 @@ void DULines::slotChanged(File * item)
         it++;
 
         if (lvitem->text(0) != "..") {
-            DULinesItem *duItem = (DULinesItem *)(lvitem);
+            auto *duItem = (DULinesItem *)(lvitem);
             if (duItem->getFile() == item) {
                 setSortingEnabled(false);
                 duItem->setHidden(item->isExcluded());
@@ -514,7 +514,7 @@ void DULines::slotDeleted(File * item)
         it++;
 
         if (lvitem->text(0) != "..") {
-            DULinesItem *duItem = (DULinesItem *)(lvitem);
+            auto *duItem = (DULinesItem *)(lvitem);
             if (duItem->getFile() == item) {
                 delete duItem;
                 break;

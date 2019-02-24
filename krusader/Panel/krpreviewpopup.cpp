@@ -41,11 +41,11 @@ class KrPreviewPopup::ProxyStyle : public QProxyStyle
 public:
     ProxyStyle() : QProxyStyle(QApplication::style()) {}
 
-    virtual QSize sizeFromContents(ContentsType type, const QStyleOption *option,
-                                   const QSize &contentsSize, const QWidget *widget = 0) const Q_DECL_OVERRIDE
+    QSize sizeFromContents(ContentsType type, const QStyleOption *option,
+                                   const QSize &contentsSize, const QWidget *widget = nullptr) const Q_DECL_OVERRIDE
     {
         if(type == QStyle::CT_MenuItem) {
-            const QStyleOptionMenuItem *menuItem =
+            const auto *menuItem =
                     qstyleoption_cast<const QStyleOptionMenuItem*>(option);
 
             QFontMetrics fontMetrics(menuItem->font);
@@ -59,13 +59,13 @@ public:
             return QProxyStyle::sizeFromContents(type, option, contentsSize, widget);
     }
 
-    virtual void drawControl(ControlElement element, const QStyleOption *option,
-                                    QPainter *painter, const QWidget *widget = 0 ) const Q_DECL_OVERRIDE
+    void drawControl(ControlElement element, const QStyleOption *option,
+                                    QPainter *painter, const QWidget *widget = nullptr ) const Q_DECL_OVERRIDE
     {
         if(element == QStyle::CE_MenuItem) {
             painter->save();
 
-            const QStyleOptionMenuItem *menuItem =
+            const auto *menuItem =
                     qstyleoption_cast<const QStyleOptionMenuItem*>(option);
 
             bool active = menuItem->state & State_Selected;
@@ -135,7 +135,7 @@ void KrPreviewPopup::addPreview(const KFileItem& file, const QPixmap& preview)
     if (prevNotAvailAction) {
         removeAction(prevNotAvailAction);
         delete prevNotAvailAction;
-        prevNotAvailAction = 0;
+        prevNotAvailAction = nullptr;
     }
 
     QAction *act = addAction(file.text());

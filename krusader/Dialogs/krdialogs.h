@@ -89,7 +89,7 @@ public:
     KUrlRequester *urlRequester();
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 
 private slots:
     void slotQueueButtonClicked();
@@ -105,7 +105,7 @@ class KRGetDate : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KRGetDate(QDate date = QDate::currentDate(), QWidget *parent = 0);
+    explicit KRGetDate(QDate date = QDate::currentDate(), QWidget *parent = nullptr);
     QDate getDate();
 
 private slots:

@@ -34,6 +34,7 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KIconThemes/KIconLoader>
+#include <utility>
 
 
 static const int cacheSize = 500;
@@ -66,15 +67,15 @@ class IconEngine : public QIconEngine
 {
 public:
     IconEngine(QString iconName, QIcon fallbackIcon, QStringList overlays = QStringList()) :
-        _iconName(iconName), _fallbackIcon(fallbackIcon), _overlays(overlays)
+        _iconName(std::move(iconName)), _fallbackIcon(std::move(fallbackIcon)), _overlays(std::move(overlays))
     {
         _themeFallbackList = getThemeFallbackList();
     }
 
-    virtual void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override;
-    virtual QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) override;
+    void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override;
+    QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) override;
 
-    virtual IconEngine *clone() const override
+    IconEngine *clone() const override
     {
         return new IconEngine(*this);
     }
@@ -86,17 +87,17 @@ private:
     QStringList _overlays;
 };
 
-Icon::Icon() : QIcon()
+Icon::Icon()
 {
 }
 
 Icon::Icon(QString name, QStringList overlays) :
-    QIcon(new IconEngine(name, QIcon(missingIconPath), overlays))
+    QIcon(new IconEngine(std::move(name), QIcon(missingIconPath), std::move(overlays)))
 {
 }
 
 Icon::Icon(QString name, QIcon fallbackIcon, QStringList overlays) :
-    QIcon(new IconEngine(name, fallbackIcon, overlays))
+    QIcon(new IconEngine(std::move(name), std::move(fallbackIcon), std::move(overlays)))
 {
 }
 
@@ -106,12 +107,12 @@ struct IconSearchResult
     QString originalThemeName; ///< original theme name if theme is modified by search
 
     IconSearchResult(QIcon icon, QString originalThemeName) :
-        icon(icon), originalThemeName(originalThemeName) {}
+        icon(std::move(icon)), originalThemeName(std::move(originalThemeName)) {}
 };
 
 // Search icon in the configured themes.
 // If this call modifies active theme, the original theme name will be specified in the result.
-static inline IconSearchResult searchIcon(QString iconName, QStringList themeFallbackList)
+static inline IconSearchResult searchIcon(const QString& iconName, QStringList themeFallbackList)
 {
     if (QDir::isAbsolutePath(iconName)) {
         // a path is used - directly load the icon
@@ -125,7 +126,7 @@ static inline IconSearchResult searchIcon(QString iconName, QStringList themeFal
     } else {
         // search the icon in fallback themes
         auto currentTheme = QIcon::themeName();
-        for (auto fallbackThemeName : themeFallbackList) {
+        for (const auto& fallbackThemeName : themeFallbackList) {
             QIcon::setThemeName(fallbackThemeName);
             if (QIcon::hasThemeIcon(iconName)) {
                 return IconSearchResult(QIcon::fromTheme(iconName), currentTheme);
@@ -138,7 +139,7 @@ static inline IconSearchResult searchIcon(QString iconName, QStringList themeFal
     }
 }
 
-bool Icon::exists(QString iconName)
+bool Icon::exists(const QString& iconName)
 {
     static QCache<QString, bool> cache(cacheSize);
     static QString cachedTheme;
@@ -159,7 +160,7 @@ bool Icon::exists(QString iconName)
         QIcon::setThemeName(searchResult.originalThemeName);
     }
 
-    bool *result = new bool(!searchResult.icon.isNull());
+    auto *result = new bool(!searchResult.icon.isNull());
 
     // update the cache; the cache takes ownership over the result
     cache.insert(iconName, result);
@@ -178,7 +179,7 @@ void Icon::applyOverlays(QPixmap *pixmap, QStringList overlays)
     // per freedesktop icon name specification:
     // https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html
     QStringList fixedOverlays;
-    for (auto overlay : overlays) {
+    for (const auto& overlay : overlays) {
         if (overlay.isEmpty() || iconLoader->hasIcon(overlay)) {
             fixedOverlays << overlay;
         } else {
@@ -199,7 +200,7 @@ bool Icon::isLightWindowThemeActive()
 class IconCacheKey
 {
 public:
-    IconCacheKey(const QString &name, QStringList overlays,
+    IconCacheKey(const QString &name, const QStringList& overlays,
                  const QSize &size, QIcon::Mode mode, QIcon::State state) :
         name(name), overlays(overlays), size(size), mode(mode), state(state)
     {

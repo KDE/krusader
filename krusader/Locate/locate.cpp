@@ -102,8 +102,8 @@ public:
             return;
 
 
-        QDrag *drag = new QDrag(this);
-        QMimeData *mimeData = new QMimeData;
+        auto *drag = new QDrag(this);
+        auto *mimeData = new QMimeData;
         mimeData->setImageData(FileListIcon("file").pixmap());
         mimeData->setUrls(urls);
         drag->setMimeData(mimeData);
@@ -111,23 +111,23 @@ public:
     }
 };
 
-KProcess *  LocateDlg::updateProcess = 0;
-LocateDlg * LocateDlg::LocateDialog = 0;
+KProcess *  LocateDlg::updateProcess = nullptr;
+LocateDlg * LocateDlg::LocateDialog = nullptr;
 
 LocateDlg::LocateDlg(QWidget *parent) : QDialog(parent), isFeedToListBox(false)
 {
     setWindowTitle(i18n("Krusader::Locate"));
     setWindowModality(Qt::NonModal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
-    QGridLayout *grid = new QGridLayout();
+    auto *grid = new QGridLayout();
     grid->setSpacing(6);
     grid->setContentsMargins(11, 11, 11, 11);
 
     QWidget *hboxWidget = new QWidget(this);
-    QHBoxLayout *hbox = new QHBoxLayout(hboxWidget);
+    auto *hbox = new QHBoxLayout(hboxWidget);
     hbox->setContentsMargins(0, 0, 0, 0);
 
     QLabel *label = new QLabel(i18n("Search for:"), hboxWidget);
@@ -150,10 +150,10 @@ LocateDlg::LocateDlg(QWidget *parent) : QDialog(parent), isFeedToListBox(false)
     grid->addWidget(hboxWidget, 0, 0);
 
     QWidget *hboxWidget2 = new QWidget(this);
-    QHBoxLayout * hbox2 = new QHBoxLayout(hboxWidget2);
+    auto * hbox2 = new QHBoxLayout(hboxWidget2);
     hbox2->setContentsMargins(0, 0, 0, 0);
 
-    QSpacerItem* spacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    auto* spacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     hbox2->addItem(spacer);
 
     dontSearchInPath = new QCheckBox(i18n("Do not search in path"), hboxWidget2);
@@ -263,7 +263,7 @@ void LocateDlg::slotUpdateDb()   /* The Update DB button */
 void LocateDlg::updateFinished()
 {
     delete updateProcess;
-    updateProcess = 0;
+    updateProcess = nullptr;
     updateDbButton->setEnabled(true);
 }
 
@@ -278,13 +278,13 @@ void LocateDlg::slotLocate()   /* The locate button */
     group.writeEntry("Case Sensitive", isCs = caseSensitive->isChecked());
 
     if (!KrServices::cmdExist("locate")) {
-        KMessageBox::error(0,
+        KMessageBox::error(nullptr,
                            i18n("Cannot start 'locate'. Check the 'Dependencies' page in konfigurator."));
         return;
     }
 
     resultList->clear();
-    lastItem = 0;
+    lastItem = nullptr;
     remaining = "";
 
     updateButtons(true);
@@ -345,13 +345,13 @@ void LocateDlg::processStdout()
     QStringList list = remaining.split('\n');
     int items = list.size();
 
-    for (QStringList::Iterator it = list.begin(); it != list.end(); ++it) {
+    for (auto & it : list) {
         if (--items == 0 && !remaining.endsWith('\n'))
-            remaining = *it;
+            remaining = it;
         else {
             if (dontSearchPath) {
                 QRegExp regExp(pattern, isCs ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard);
-                QString fileName = (*it).trimmed();
+                QString fileName = it.trimmed();
                 if (fileName.endsWith(QLatin1String("/")) && fileName != "/") {
                     fileName.truncate(fileName.length() - 1);
                 }
@@ -361,7 +361,7 @@ void LocateDlg::processStdout()
                     continue;
             }
             if (onlyExist) {
-                KFileItem file(QUrl::fromLocalFile((*it).trimmed()));
+                KFileItem file(QUrl::fromLocalFile(it.trimmed()));
                 if (!file.isReadable())
                     continue;
             }
@@ -371,7 +371,7 @@ void LocateDlg::processStdout()
             else
                 lastItem = new QTreeWidgetItem(resultList);
 
-            lastItem->setText(0, *it);
+            lastItem->setText(0, it);
         }
     }
 }
@@ -448,7 +448,7 @@ void LocateDlg::slotDoubleClick(QTreeWidgetItem *item)
 void LocateDlg::keyPressEvent(QKeyEvent *e)
 {
     if (KrGlobal::copyShortcut == QKeySequence(e->key() | e->modifiers())) {
-        operate(0, COPY_SELECTED_TO_CLIPBOARD);
+        operate(nullptr, COPY_SELECTED_TO_CLIPBOARD);
         e->accept();
         return;
     }
@@ -469,7 +469,7 @@ void LocateDlg::keyPressEvent(QKeyEvent *e)
             operate(resultList->currentItem(), EDIT_ID);
         break;
     case Qt::Key_F10 :
-        operate(0, COMPARE_ID);
+        operate(nullptr, COMPARE_ID);
         break;
     case Qt::Key_N :
         if (e->modifiers() == Qt::ControlModifier)
@@ -491,7 +491,7 @@ void LocateDlg::keyPressEvent(QKeyEvent *e)
 void LocateDlg::operate(QTreeWidgetItem *item, int task)
 {
     QUrl name;
-    if (item != 0)
+    if (item != nullptr)
         name = QUrl::fromLocalFile(item->text(0));
 
     switch (task) {
@@ -586,7 +586,7 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
         if (urls.count() == 0)
             return;
 
-        QMimeData *mimeData = new QMimeData;
+        auto *mimeData = new QMimeData;
         mimeData->setImageData(FileListIcon("file").pixmap());
         mimeData->setUrls(urls);
 
@@ -633,7 +633,7 @@ void LocateDlg::feedToListBox()
     QString queryName;
     do {
         queryName = i18n("Locate results") + QString(" %1").arg(listBoxNum++);
-    } while (virtFilesystem.getFileItem(queryName) != 0);
+    } while (virtFilesystem.getFileItem(queryName) != nullptr);
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");

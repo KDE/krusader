@@ -34,7 +34,7 @@ class UserActionPage : public QWidget
     Q_OBJECT
 public:
     explicit UserActionPage(QWidget* parent);
-    ~UserActionPage();
+    ~UserActionPage() override;
 
     /**
      * Be sure to call this function before you delete this page!!

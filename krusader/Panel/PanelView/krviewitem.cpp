@@ -47,11 +47,9 @@ KrViewItem::KrViewItem(FileItem *fileitem, KrInterView *parentView):
         int loc = fileitemName.lastIndexOf('.');
         if (loc > 0) { // avoid mishandling of .bashrc and friend
             // check if it has one of the predefined 'atomic extensions'
-            for (QStringList::const_iterator i = _viewProperties->atomicExtensions.begin();
-                 i != _viewProperties->atomicExtensions.end();
-                 ++i) {
-                if (fileitemName.endsWith(*i)) {
-                    loc = fileitemName.length() - (*i).length();
+            for (const auto & atomicExtension : _viewProperties->atomicExtensions) {
+                if (fileitemName.endsWith(atomicExtension)) {
+                    loc = fileitemName.length() - atomicExtension.length();
                     break;
                 }
             }

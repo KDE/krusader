@@ -44,13 +44,13 @@ class Map : public QPixmap
 {
 public:
     Map();
-    ~Map();
+    ~Map() override;
 
     void make(const Directory *, bool = false);
     bool resize(const QRect&);
 
     bool isNull() const {
-        return (m_signature == 0);
+        return (m_signature == nullptr);
     }
     void invalidate(const bool);
 
@@ -79,16 +79,16 @@ class Widget : public QWidget
     Q_OBJECT
 
 public:
-    explicit Widget(QWidget* = 0);
+    explicit Widget(QWidget* = nullptr);
 
     QString path() const;
-    QUrl url(File const * const = 0) const;
+    QUrl url(File const * const = nullptr) const;
 
     bool isValid() const {
-        return m_tree != 0;
+        return m_tree != nullptr;
     }
 
-    friend class Label; //FIXME badness
+    friend struct Label; //FIXME badness
 
 public slots:
     void zoomIn();
@@ -110,10 +110,10 @@ signals:
     void mouseHover(const QString&);
 
 protected:
-    virtual void paintEvent(QPaintEvent*) Q_DECL_OVERRIDE;
-    virtual void resizeEvent(QResizeEvent*) Q_DECL_OVERRIDE;
-    virtual void mouseMoveEvent(QMouseEvent*) Q_DECL_OVERRIDE;
-    virtual void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent*) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent*) Q_DECL_OVERRIDE;
+    void mouseMoveEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE;
 
 protected:
     const Segment *segmentAt(QPoint&) const;   //FIXME const reference for a library others can use

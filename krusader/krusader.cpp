@@ -50,6 +50,7 @@
 #include <KWidgetsAddons/KToolBarPopupAction>
 #include <KWindowSystem/KStartupInfo>
 #include <KWindowSystem/KWindowSystem>
+#include <utility>
 
 #include "defaults.h"
 #include "kractions.h"
@@ -94,7 +95,7 @@
 
 
 // define the static members
-Krusader *Krusader::App = 0;
+Krusader *Krusader::App = nullptr;
 QString   Krusader::AppName;
 // KrBookmarkHandler *Krusader::bookman = 0;
 //QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
@@ -105,9 +106,9 @@ QAction *Krusader::actShowJSConsole = 0;
 #endif
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
-Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
+Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullptr,
                 Qt::Window | Qt::WindowTitleHint | Qt::WindowContextHelpButtonHint),
-        _listPanelActions(0), isStarting(true), isExiting(false), _quit(false)
+        _listPanelActions(nullptr), isStarting(true), isExiting(false), _quit(false)
 {
     // create the "krusader"
     App = this;
@@ -190,7 +191,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     MAIN_VIEW->start(startupGroup, startProfile.isEmpty(), leftTabs, rightTabs);
 
     // create a status bar
-    KrusaderStatus *status = new KrusaderStatus(this);
+    auto *status = new KrusaderStatus(this);
     setStatusBar(status);
     status->setWhatsThis(i18n("Statusbar will show basic information "
                               "about file below mouse pointer."));
@@ -276,7 +277,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(0,
     _openUrlTimer.setSingleShot(true);
     connect(&_openUrlTimer, &QTimer::timeout, this, &Krusader::doOpenUrl);
 
-    KStartupInfo *startupInfo = new KStartupInfo(0, this);
+    auto *startupInfo = new KStartupInfo(0, this);
     connect(startupInfo, &KStartupInfo::gotNewStartup,
             this, &Krusader::slotGotNewStartup);
     connect(startupInfo, &KStartupInfo::gotRemoveStartup,
@@ -290,8 +291,8 @@ Krusader::~Krusader()
         saveSettings();
 
     delete MAIN_VIEW;
-    MAIN_VIEW = 0;
-    App = 0;
+    MAIN_VIEW = nullptr;
+    App = nullptr;
 }
 
 void Krusader::setTray(bool forceCreation)
@@ -496,7 +497,7 @@ bool Krusader::queryClose() {
             }
 
             if (i == list.count())
-                w = 0;
+                w = nullptr;
         }
 
         if (!w) break;
@@ -530,7 +531,7 @@ void Krusader::acceptClose() {
 
 // the please wait dialog functions
 void Krusader::startWaiting(QString msg, int count , bool cancel) {
-    plzWait->startWaiting(msg , count, cancel);
+    plzWait->startWaiting(std::move(msg) , count, cancel);
 }
 
 bool Krusader::wasWaitingCancelled() const {
@@ -542,13 +543,13 @@ void Krusader::stopWait() {
 }
 
 void Krusader::updateUserActions() {
-    KActionMenu *userActionMenu = (KActionMenu *) KrActions::actUserMenu;
+    auto *userActionMenu = (KActionMenu *) KrActions::actUserMenu;
     if (userActionMenu) {
         userActionMenu->menu()->clear();
 
         userActionMenu->addAction(KrActions::actManageUseractions);
         userActionMenu->addSeparator();
-        krUserAction->populateMenu(userActionMenu, NULL);
+        krUserAction->populateMenu(userActionMenu, nullptr);
     }
 }
 
@@ -583,7 +584,7 @@ bool Krusader::isLeftActive()  {
 
 bool Krusader::openUrl(QString url)
 {
-    _urlToOpen = url;
+    _urlToOpen = std::move(url);
     _openUrlTimer.start(0);
     return true;
 }

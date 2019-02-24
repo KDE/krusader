@@ -33,9 +33,9 @@ class UserActionListView : public KrTreeWidget
     Q_OBJECT
 
 public:
-    explicit UserActionListView(QWidget* parent = 0);
-    ~UserActionListView();
-    virtual QSize sizeHint() const Q_DECL_OVERRIDE;
+    explicit UserActionListView(QWidget* parent = nullptr);
+    ~UserActionListView() override;
+    QSize sizeHint() const Q_DECL_OVERRIDE;
 
     void update();
     void update(KrAction* action);
@@ -44,7 +44,7 @@ public:
     KrAction* currentAction() const;
     void setCurrentAction(const KrAction*);
 
-    QDomDocument dumpSelectedActions(QDomDocument* mergeDoc = 0) const;
+    QDomDocument dumpSelectedActions(QDomDocument* mergeDoc = nullptr) const;
 
     void removeSelectedActions();
 
@@ -69,7 +69,7 @@ class UserActionListViewItem : public QTreeWidgetItem
 public:
     UserActionListViewItem(QTreeWidget* view, KrAction* action);
     UserActionListViewItem(QTreeWidgetItem* item, KrAction* action);
-    ~UserActionListViewItem();
+    ~UserActionListViewItem() override;
 
     void setAction(KrAction* action);
     KrAction* action() const;
@@ -78,7 +78,7 @@ public:
     /**
      * This reimplements qt's compare-function in order to have categories on the top of the list
      */
-    virtual bool operator<(const QTreeWidgetItem &other) const Q_DECL_OVERRIDE;
+    bool operator<(const QTreeWidgetItem &other) const Q_DECL_OVERRIDE;
 
 private:
     KrAction* _action;

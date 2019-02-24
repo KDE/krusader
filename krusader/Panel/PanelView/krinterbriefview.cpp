@@ -54,7 +54,7 @@
 KrInterBriefView::KrInterBriefView(QWidget *parent, KrViewInstance &instance, KConfig *cfg) :
         QAbstractItemView(parent),
         KrInterView(instance, cfg, this),
-        _header(0)
+        _header(nullptr)
 {
     setWidget(this);
     setModel(_model);
@@ -65,7 +65,7 @@ KrInterBriefView::KrInterBriefView(QWidget *parent, KrViewInstance &instance, KC
     KConfigGroup grpSvr(_config, "Look&Feel");
     _viewFont = grpSvr.readEntry("Filelist Font", _FilelistFont);
 
-    KrStyleProxy *style = new KrStyleProxy();
+    auto *style = new KrStyleProxy();
     style->setParent(this);
     setStyle(style);
     viewport()->setStyle(style); // for custom tooltip delay
@@ -84,10 +84,10 @@ KrInterBriefView::KrInterBriefView(QWidget *parent, KrViewInstance &instance, KC
 KrInterBriefView::~KrInterBriefView()
 {
     delete _properties;
-    _properties = 0;
+    _properties = nullptr;
 
     delete _operator;
-    _operator = 0;
+    _operator = nullptr;
 }
 
 void KrInterBriefView::doRestoreSettings(KConfigGroup group)
@@ -244,7 +244,7 @@ bool KrInterBriefView::eventFilter(QObject *object, QEvent *event)
 {
     if (object == _header) {
         if (event->type() == QEvent::ContextMenu) {
-            QContextMenuEvent *me = (QContextMenuEvent *)event;
+            auto *me = (QContextMenuEvent *)event;
             showContextMenu(me->globalPos());
             return true;
         }
@@ -601,7 +601,7 @@ QRect KrInterBriefView::itemRect(const FileItem *item)
 void KrInterBriefView::copySettingsFrom(KrView *other)
 {
     if(other->instance() == instance()) { // the other view is of the same type
-        KrInterBriefView *v = static_cast<KrInterBriefView*>(other);
+        auto *v = dynamic_cast<KrInterBriefView*>(other);
         int column = v->_model->lastSortOrder();
         Qt::SortOrder sortDir = v->_model->lastSortDir();
         _header->setSortIndicator(column, sortDir);

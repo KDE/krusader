@@ -59,9 +59,9 @@ KgGeneral::KgGeneral(bool first, QWidget* parent) :
     createExtensionsTab();
 }
 
-QWidget* KgGeneral::createTab(QString name)
+QWidget* KgGeneral::createTab(const QString& name)
 {
-    QScrollArea *scrollArea = new QScrollArea(tabWidget);
+    auto *scrollArea = new QScrollArea(tabWidget);
     tabWidget->addTab(scrollArea, name);
     scrollArea->setFrameStyle(QFrame::NoFrame);
     scrollArea->setWidgetResizable(true);
@@ -75,7 +75,7 @@ QWidget* KgGeneral::createTab(QString name)
 void KgGeneral::createViewerTab()
 {
     QWidget *tab = createTab(i18n("Viewer/Editor"));
-    QGridLayout *tabLayout = new QGridLayout(tab);
+    auto *tabLayout = new QGridLayout(tab);
     tabLayout->setSpacing(6);
     tabLayout->setContentsMargins(11, 11, 11, 11);
 
@@ -91,10 +91,10 @@ void KgGeneral::createViewerTab()
     QGridLayout *viewerGrid = createGridLayout(viewerGrp);
 
     QWidget * hboxWidget2 = new QWidget(viewerGrp);
-    QHBoxLayout * hbox2 = new QHBoxLayout(hboxWidget2);
+    auto * hbox2 = new QHBoxLayout(hboxWidget2);
 
     QWidget * vboxWidget = new QWidget(hboxWidget2);
-    QVBoxLayout * vbox = new QVBoxLayout(vboxWidget);
+    auto * vbox = new QVBoxLayout(vboxWidget);
 
     vbox->addWidget(new QLabel(i18n("Default viewer mode:"), vboxWidget));
 
@@ -116,7 +116,7 @@ void KgGeneral::createViewerTab()
                    );
 
     QWidget * hboxWidget4 = new QWidget(vboxWidget);
-    QHBoxLayout * hbox4 = new QHBoxLayout(hboxWidget4);
+    auto * hbox4 = new QHBoxLayout(hboxWidget4);
 
     QLabel *label5 = new QLabel(i18n("Use lister if the text file is bigger than:"), hboxWidget4);
     hbox4->addWidget(label5);
@@ -154,26 +154,26 @@ void KgGeneral::createExtensionsTab()
     // ------------------------- atomic extensions ----------------------------------
 
     QWidget *tab = createTab(i18n("Atomic extensions"));
-    QGridLayout *tabLayout = new QGridLayout(tab);
+    auto *tabLayout = new QGridLayout(tab);
     tabLayout->setSpacing(6);
     tabLayout->setContentsMargins(11, 11, 11, 11);
 
     QWidget * vboxWidget2 = new QWidget(tab);
     tabLayout->addWidget(vboxWidget2);
 
-    QVBoxLayout * vbox2 = new QVBoxLayout(vboxWidget2);
+    auto * vbox2 = new QVBoxLayout(vboxWidget2);
 
     QWidget * hboxWidget3 = new QWidget(vboxWidget2);
     vbox2->addWidget(hboxWidget3);
 
-    QHBoxLayout * hbox3 = new QHBoxLayout(hboxWidget3);
+    auto * hbox3 = new QHBoxLayout(hboxWidget3);
 
     QLabel * atomLabel = new QLabel(i18n("Atomic extensions:"), hboxWidget3);
     hbox3->addWidget(atomLabel);
 
     int size = QFontMetrics(atomLabel->font()).height();
 
-    QToolButton *addButton = new QToolButton(hboxWidget3);
+    auto *addButton = new QToolButton(hboxWidget3);
     hbox3->addWidget(addButton);
 
     QPixmap iconPixmap = Icon("list-add").pixmap(size);
@@ -181,7 +181,7 @@ void KgGeneral::createExtensionsTab()
     addButton->setIcon(QIcon(iconPixmap));
     connect(addButton, &QToolButton::clicked, this, &KgGeneral::slotAddExtension);
 
-    QToolButton *removeButton = new QToolButton(hboxWidget3);
+    auto *removeButton = new QToolButton(hboxWidget3);
     hbox3->addWidget(removeButton);
 
     iconPixmap = Icon("list-remove").pixmap(size);
@@ -205,7 +205,7 @@ void KgGeneral::createExtensionsTab()
 void KgGeneral::createGeneralTab()
 {
     QWidget *tab = createTab(i18n("General"));
-    QGridLayout *kgGeneralLayout = new QGridLayout(tab);
+    auto *kgGeneralLayout = new QGridLayout(tab);
     kgGeneralLayout->setSpacing(6);
     kgGeneralLayout->setContentsMargins(11, 11, 11, 11);
 
@@ -226,7 +226,7 @@ void KgGeneral::createGeneralTab()
 
     // temp dir
 
-    QHBoxLayout *hbox = new QHBoxLayout();
+    auto *hbox = new QHBoxLayout();
 
     hbox->addWidget(new QLabel(i18n("Temp Folder:"), generalGrp));
     KonfiguratorURLRequester *urlReq3 = createURLRequester("General", "Temp Directory", _TempDirectory,
@@ -285,9 +285,9 @@ void KgGeneral::createGeneralTab()
     kgGeneralLayout->addWidget(terminalGrp, 2 , 0);
 }
 
-void KgGeneral::applyTempDir(QObject *obj, QString configGroup, QString name)
+void KgGeneral::applyTempDir(QObject *obj, const QString& configGroup, const QString& name)
 {
-    KonfiguratorURLRequester *urlReq = (KonfiguratorURLRequester *)obj;
+    auto *urlReq = (KonfiguratorURLRequester *)obj;
     QString value = urlReq->url().toDisplayString(QUrl::PreferLocalFile);
 
     KConfigGroup(krConfig, configGroup).writeEntry(name, value);

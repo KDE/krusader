@@ -41,12 +41,12 @@
 #define DICTSIZE 211
 
 PanelViewerBase::PanelViewerBase(QWidget *parent, KrViewer::Mode mode) :
-        QStackedWidget(parent), mimes(0), cpart(0), mode(mode)
+        QStackedWidget(parent), mimes(nullptr), cpart(nullptr), mode(mode)
 {
     setSizePolicy(QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Ignored));
 
     mimes = new QHash<QString, QPointer<KParts::ReadOnlyPart> >();
-    cpart = 0;
+    cpart = nullptr;
     // NOTE: the fallback should be never visible. The viewer is not opened without a file and the
     // tab is closed if a file cannot be opened.
     fallback = new QLabel(i18n("No file selected or selected file cannot be displayed."), this);
@@ -77,14 +77,14 @@ void PanelViewerBase::slotStatResult(KJob* job)
         KMessageBox::error(this, job->errorString());
         emit openUrlFinished(this, false);
     } else {
-        KIO::UDSEntry entry = static_cast<KIO::StatJob*>(job)->statResult();
+        KIO::UDSEntry entry = dynamic_cast<KIO::StatJob*>(job)->statResult();
         openFile(KFileItem(entry, curl));
     }
 }
 
-KParts::ReadOnlyPart* PanelViewerBase::getPart(QString mimetype)
+KParts::ReadOnlyPart* PanelViewerBase::getPart(const QString& mimetype)
 {
-    KParts::ReadOnlyPart* part = 0;
+    KParts::ReadOnlyPart* part = nullptr;
 
     if (mimes->find(mimetype) == mimes->end()) {
         part = createPart(mimetype);
@@ -96,7 +96,7 @@ KParts::ReadOnlyPart* PanelViewerBase::getPart(QString mimetype)
     return part;
 }
 
-void PanelViewerBase::openUrl(QUrl url)
+void PanelViewerBase::openUrl(const QUrl& url)
 {
     closeUrl();
     curl = url;
@@ -119,12 +119,11 @@ PanelViewer::PanelViewer(QWidget *parent, KrViewer::Mode mode) :
 }
 
 PanelViewer::~PanelViewer()
-{
-}
+= default;
 
 KParts::ReadOnlyPart* PanelViewer::getListerPart(bool hexMode)
 {
-    KParts::ReadOnlyPart* part = 0;
+    KParts::ReadOnlyPart* part = nullptr;
 
     if (mimes->find(QLatin1String("krusader_lister")) == mimes->end()) {
         part = new Lister(this);
@@ -133,7 +132,7 @@ KParts::ReadOnlyPart* PanelViewer::getListerPart(bool hexMode)
         part = (*mimes)[ QLatin1String("krusader_lister")];
 
     if (part) {
-        Lister *lister = qobject_cast<Lister *>((KParts::ReadOnlyPart *)part);
+        auto *lister = qobject_cast<Lister *>((KParts::ReadOnlyPart *)part);
         if (lister)
             lister->setHexMode(hexMode);
     }
@@ -142,7 +141,7 @@ KParts::ReadOnlyPart* PanelViewer::getListerPart(bool hexMode)
 
 KParts::ReadOnlyPart* PanelViewer::getHexPart()
 {
-    KParts::ReadOnlyPart* part = 0;
+    KParts::ReadOnlyPart* part = nullptr;
 
     if (KConfigGroup(krConfig, "General").readEntry("UseOktetaViewer", _UseOktetaViewer)) {
         if (mimes->find("oktetapart") == mimes->end()) {
@@ -174,7 +173,7 @@ KParts::ReadOnlyPart* PanelViewer::getTextPart()
     return part ? part : getListerPart();
 }
 
-KParts::ReadOnlyPart* PanelViewer::getDefaultPart(KFileItem fi)
+KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KFileItem& fi)
 {
     KConfigGroup group(krConfig, "General");
     QString modeString = group.readEntry("Default Viewer Mode", QString("generic"));
@@ -197,7 +196,7 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(KFileItem fi)
 
     QString mimetype = fi.mimetype();
 
-    KParts::ReadOnlyPart* part = 0;
+    KParts::ReadOnlyPart* part = nullptr;
 
     switch(mode) {
     case KrViewer::Generic:
@@ -255,7 +254,7 @@ void PanelViewer::openFile(KFileItem fi)
         setCurrentWidget(cpart->widget());
 
         if (cpart->inherits("KParts::ReadWritePart"))
-            static_cast<KParts::ReadWritePart*>(cpart.data())->setReadWrite(false);
+            dynamic_cast<KParts::ReadWritePart*>(cpart.data())->setReadWrite(false);
         KParts::OpenUrlArguments args;
         args.setReload(true);
         cpart->setArguments(args);
@@ -274,7 +273,7 @@ bool PanelViewer::closeUrl()
 {
     setCurrentWidget(fallback);
     if (cpart && cpart->closeUrl()) {
-        cpart = 0;
+        cpart = nullptr;
         return true;
     }
     return false;
@@ -282,7 +281,7 @@ bool PanelViewer::closeUrl()
 
 KParts::ReadOnlyPart* PanelViewer::createPart(QString mimetype)
 {
-    KParts::ReadOnlyPart * part = 0;
+    KParts::ReadOnlyPart * part = nullptr;
     KService::Ptr ptr = KMimeTypeTrader::self()->preferredService(mimetype, "KParts/ReadOnlyPart");
     if (ptr) {
         QVariantList args;
@@ -312,8 +311,7 @@ PanelEditor::PanelEditor(QWidget *parent, KrViewer::Mode mode) :
 }
 
 PanelEditor::~PanelEditor()
-{
-}
+= default;
 
 void PanelEditor::configureDeps()
 {
@@ -321,7 +319,7 @@ void PanelEditor::configureDeps()
     if (!ptr)
         ptr = KMimeTypeTrader::self()->preferredService("all/allfiles", "KParts/ReadWritePart");
     if (!ptr)
-        KMessageBox::sorry(0, missingKPartMsg(), i18n("Missing Plugin"), KMessageBox::AllowLink);
+        KMessageBox::sorry(nullptr, missingKPartMsg(), i18n("Missing Plugin"), KMessageBox::AllowLink);
 
 }
 
@@ -385,23 +383,23 @@ void PanelEditor::openFile(KFileItem fi)
 bool PanelEditor::queryClose()
 {
     if (!cpart) return true;
-    return static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->queryClose();
+    return dynamic_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->queryClose();
 }
 
 bool PanelEditor::closeUrl()
 {
     if (!cpart) return false;
 
-    static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->closeUrl(false);
+    dynamic_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->closeUrl(false);
 
     setCurrentWidget(fallback);
-    cpart = 0;
+    cpart = nullptr;
     return true;
 }
 
 KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
 {
-    KParts::ReadWritePart * part = 0L;
+    KParts::ReadWritePart * part = nullptr;
     KService::Ptr ptr = KMimeTypeTrader::self()->preferredService(mimetype, "KParts/ReadWritePart");
     if (ptr) {
         QVariantList args;
@@ -425,7 +423,7 @@ KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
 bool PanelEditor::isModified()
 {
     if (cpart)
-        return static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->isModified();
+        return dynamic_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->isModified();
     else
         return false;
 }

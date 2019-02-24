@@ -42,7 +42,7 @@ class ListModel: public QAbstractListModel
 
 public:
     explicit ListModel(KrInterView *);
-    virtual ~ListModel();
+    ~ListModel() override;
 
     inline bool ready() const {
         return _ready;
@@ -74,7 +74,7 @@ public:
     const QModelIndex & fileItemIndex(const FileItem *);
     const QModelIndex & nameIndex(const QString &);
     const QModelIndex & indexFromUrl(const QUrl &url);
-    virtual Qt::ItemFlags flags(const QModelIndex & index) const Q_DECL_OVERRIDE;
+    Qt::ItemFlags flags(const QModelIndex & index) const Q_DECL_OVERRIDE;
     void emitChanged() {
         emit layoutChanged();
     }
@@ -85,7 +85,7 @@ public:
     }
 
 public slots:
-    virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) Q_DECL_OVERRIDE;
+    void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) Q_DECL_OVERRIDE;
 
 protected:
     KrSort::LessThanFunc lessThanFunc() {

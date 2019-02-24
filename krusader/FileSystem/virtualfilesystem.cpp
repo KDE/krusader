@@ -47,7 +47,7 @@
 QHash<QString, QList<QUrl> *> VirtualFileSystem::_virtFilesystemDict;
 QHash<QString, QString> VirtualFileSystem::_metaInfoDict;
 
-VirtualFileSystem::VirtualFileSystem() : FileSystem()
+VirtualFileSystem::VirtualFileSystem()
 {
     if (_virtFilesystemDict.isEmpty()) {
         restore();
@@ -111,7 +111,7 @@ void VirtualFileSystem::remove(const QStringList &fileNames)
         }
     } else {
         // remove the URLs from the collection
-        for (const QString name : fileNames) {
+        for (const QString& name : fileNames) {
             if (_virtFilesystemDict.find(parentDir) != _virtFilesystemDict.end()) {
                 QList<QUrl> *urlList = _virtFilesystemDict[parentDir];
                 urlList->removeAll(getUrl(name));
@@ -178,7 +178,7 @@ bool VirtualFileSystem::canMoveToTrash(const QStringList &fileNames) const
     if (isRoot())
         return false;
 
-    for (const QString fileName : fileNames) {
+    for (const QString& fileName : fileNames) {
         if (!getUrl(fileName).isLocalFile()) {
             return false;
         }
@@ -313,7 +313,7 @@ FileItem *VirtualFileSystem::createFileItem(const QUrl &url)
 
     if (url.isLocalFile()) {
         QFileInfo file(url.path());
-        return file.exists() ? FileSystem::createLocalFileItem(url.fileName(), directory.path(), true) : 0;
+        return file.exists() ? FileSystem::createLocalFileItem(url.fileName(), directory.path(), true) : nullptr;
     }
 
     KIO::StatJob *statJob = KIO::stat(url, KIO::HideProgressInfo);
@@ -325,12 +325,12 @@ FileItem *VirtualFileSystem::createFileItem(const QUrl &url)
     eventLoop.exec(); // blocking until quit()
 
     if (_fileEntry.count() == 0) {
-        return 0; // stat job failed
+        return nullptr; // stat job failed
     }
 
     if (!_fileEntry.contains(KIO::UDSEntry::UDS_MODIFICATION_TIME)) {
         // TODO this also happens for FTP directories
-        return 0; // file not found
+        return nullptr; // file not found
     }
 
     return FileSystem::createFileItemFromKIO(_fileEntry, directory, true);
@@ -345,7 +345,7 @@ KConfig &VirtualFileSystem::getVirtDB()
 
 void VirtualFileSystem::slotStatResult(KJob *job)
 {
-    _fileEntry = job->error() ? KIO::UDSEntry() : static_cast<KIO::StatJob *>(job)->statResult();
+    _fileEntry = job->error() ? KIO::UDSEntry() : dynamic_cast<KIO::StatJob *>(job)->statResult();
 }
 
 void VirtualFileSystem::showError(const QString &error)

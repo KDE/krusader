@@ -97,7 +97,7 @@ void SizeCalculator::nextUrl()
 
     if (m_currentUrl.scheme() == "virt") {
         // calculate size of all files/directories in this virtual directory
-        VirtualFileSystem *fs = new VirtualFileSystem();
+        auto *fs = new VirtualFileSystem();
         if (!fs->scanDir(m_currentUrl)) {
             qWarning() << "cannot scan virtual FS, URL=" << m_currentUrl.toDisplayString();
             nextUrl();
@@ -139,8 +139,8 @@ void SizeCalculator::slotStatResult(KJob *job)
         return;
     }
 
-    const KIO::StatJob *statJob = static_cast<KIO::StatJob *>(job);
-    const QUrl url = statJob->url();
+    const KIO::StatJob *statJob = dynamic_cast<KIO::StatJob *>(job);
+    const QUrl& url = statJob->url();
 
     const KFileItem kfi(statJob->statResult(), url, true);
     if (kfi.isFile() || kfi.isLink()) {
@@ -168,7 +168,7 @@ void SizeCalculator::slotDirectorySizeResult(KJob *)
         m_totalFiles += m_directorySizeJob->totalFiles();
         m_totalDirs += m_directorySizeJob->totalSubdirs();
     }
-    m_directorySizeJob = 0;
+    m_directorySizeJob = nullptr;
     nextSubUrl();
 }
 

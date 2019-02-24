@@ -71,23 +71,23 @@ extern "C"
     {
     public:
         KrArcCodec(QTextCodec * codec) : originalCodec(codec) {}
-        virtual ~KrArcCodec() {}
+        ~KrArcCodec() override = default;
 
-        virtual QByteArray name() const Q_DECL_OVERRIDE {
+        QByteArray name() const Q_DECL_OVERRIDE {
             return  originalCodec->name();
         }
-        virtual QList<QByteArray> aliases() const Q_DECL_OVERRIDE {
+        QList<QByteArray> aliases() const Q_DECL_OVERRIDE {
             return originalCodec->aliases();
         }
-        virtual int mibEnum() const Q_DECL_OVERRIDE {
+        int mibEnum() const Q_DECL_OVERRIDE {
             return  originalCodec->mibEnum();
         }
 
     protected:
-        virtual QString convertToUnicode(const char *in, int length, ConverterState *state) const Q_DECL_OVERRIDE {
+        QString convertToUnicode(const char *in, int length, ConverterState *state) const Q_DECL_OVERRIDE {
             return originalCodec->toUnicode(in, length, state);
         }
-        virtual QByteArray convertFromUnicode(const QChar *in, int length, ConverterState *state) const Q_DECL_OVERRIDE {
+        QByteArray convertFromUnicode(const QChar *in, int length, ConverterState *state) const Q_DECL_OVERRIDE {
             // the QByteArray is embedded into the unicode charset (QProcess hell)
             QByteArray result;
             for (int i = 0; i != length; i++) {
@@ -139,8 +139,8 @@ extern "C"
 
 #ifdef KRARC_ENABLED
 kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
-        : SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(0L), extArcReady(false),
-        password(QString()), krConf("krusaderrc"), codec(0)
+        : SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(nullptr), extArcReady(false),
+        password(QString()), krConf("krusaderrc"), codec(nullptr)
 {
     KRFUNC;
     confGrp = KConfigGroup(&krConf, "Dependencies");
@@ -193,7 +193,7 @@ bool kio_krarcProtocol::checkWriteSupport()
 void kio_krarcProtocol::receivedData(KProcess *, QByteArray &d)
 {
     KRFUNC;
-    QByteArray buf(d);
+    const QByteArray& buf(d);
     data(buf);
     processedSize(d.length());
     decompressedLen += d.length();
@@ -874,7 +874,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
     KRFUNC;
     KRDEBUG(url.fileName());
     QString path = getPath(url);
-    time_t currTime = time(0);
+    time_t currTime = time(nullptr);
     archiveChanged = true;
     newArchiveURL = true;
     // is the file already set ?
@@ -886,7 +886,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
             currentCharset = metaData("Charset");
 
             codec = QTextCodec::codecForName(currentCharset.toLatin1());
-            if (codec == 0)
+            if (codec == nullptr)
                 codec = QTextCodec::codecForMib(4 /* latin-1 */);
 
             delete arcFile;
@@ -908,7 +908,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
         if (arcFile) {
             delete arcFile;
             password.clear();
-            arcFile = 0L;
+            arcFile = nullptr;
         }
         QString newPath = path;
         if (newPath.right(1) != DIR_SEPARATOR) newPath = newPath + DIR_SEPARATOR;
@@ -929,7 +929,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
         currentCharset = metaData("Charset");
 
         codec = QTextCodec::codecForName(currentCharset.toLatin1());
-        if (codec == 0)
+        if (codec == nullptr)
             codec = QTextCodec::codecForMib(4 /* latin-1 */);
     }
 
@@ -1018,7 +1018,7 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
     dirDict.clear();
 
     // add the "/" directory
-    UDSEntryList* root = new UDSEntryList();
+    auto* root = new UDSEntryList();
     dirDict.insert(DIR_SEPARATOR, root);
     // and the "/" UDSEntry
     UDSEntry entry;
@@ -1116,11 +1116,11 @@ UDSEntry* kio_krarcProtocol::findFileEntry(const QUrl &url)
 {
     KRFUNC;
     QString arcDir = findArcDirectory(url);
-    if (arcDir.isEmpty()) return 0;
+    if (arcDir.isEmpty()) return nullptr;
 
     QHash<QString, KIO::UDSEntryList *>::iterator itef = dirDict.find(arcDir);
     if (itef == dirDict.end())
-        return 0;
+        return nullptr;
     UDSEntryList* dirList = itef.value();
 
     QString name = getPath(url);
@@ -1137,7 +1137,7 @@ UDSEntry* kio_krarcProtocol::findFileEntry(const QUrl &url)
                 (entry->stringValue(KIO::UDSEntry::UDS_NAME) == name))
             return &(*entry);
     }
-    return 0;
+    return nullptr;
 }
 
 QString kio_krarcProtocol::nextWord(QString &s, char d)
@@ -1177,7 +1177,7 @@ mode_t kio_krarcProtocol::parsePermString(QString perm)
     return mode;
 }
 
-UDSEntryList* kio_krarcProtocol::addNewDir(QString path)
+UDSEntryList* kio_krarcProtocol::addNewDir(const QString& path)
 {
     KRFUNC;
     UDSEntryList* dir;
@@ -1231,7 +1231,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
     QString perm;
     mode_t mode          = 0666;
     size_t size          = 0;
-    time_t time          = ::time(0);
+    time_t time          = ::time(nullptr);
     QString fullName;
 
     if (arcType == "zip") {
@@ -1322,7 +1322,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         // next field is md5sum, ignore it
         nextWord(line);
         // permissions
-        mode = nextWord(line).toULong(0, 8);
+        mode = nextWord(line).toULong(nullptr, 8);
         // Owner & Group
         owner = nextWord(line);
         group = nextWord(line);
@@ -1849,9 +1849,9 @@ QString kio_krarcProtocol::detectFullPathName(QString name)
     name = name + EXEC_SUFFIX;
     QStringList path = QString::fromLocal8Bit(qgetenv("PATH")).split(':');
 
-    for (QStringList::Iterator it = path.begin(); it != path.end(); ++it) {
-        if (QDir(*it).exists(name)) {
-            QString dir = *it;
+    for (auto & it : path) {
+        if (QDir(it).exists(name)) {
+            QString dir = it;
             if (!dir.endsWith(DIR_SEPARATOR))
                 dir += DIR_SEPARATOR;
 
@@ -1861,7 +1861,7 @@ QString kio_krarcProtocol::detectFullPathName(QString name)
     return name;
 }
 
-QString kio_krarcProtocol::fullPathName(QString name)
+QString kio_krarcProtocol::fullPathName(const QString& name)
 {
     // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     KRDEBUG(name);
@@ -1893,7 +1893,7 @@ QString kio_krarcProtocol::localeEncodedString(QString str)
     return result;
 }
 
-QByteArray kio_krarcProtocol::encodeString(QString str)
+QByteArray kio_krarcProtocol::encodeString(const QString& str)
 {
     // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     if (noencoding)

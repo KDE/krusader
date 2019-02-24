@@ -38,7 +38,7 @@ class KrAddBookmarkDlg: public QDialog
 {
     Q_OBJECT
 public:
-    explicit KrAddBookmarkDlg(QWidget *parent, QUrl url = QUrl());
+    explicit KrAddBookmarkDlg(QWidget *parent, const QUrl& url = QUrl());
     QUrl url() const {
         return QUrl::fromUserInput(_url->text(), QString(), QUrl::AssumeLocalFile);
     }

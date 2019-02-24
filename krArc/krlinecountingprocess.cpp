@@ -21,7 +21,7 @@
 
 #include "krlinecountingprocess.h"
 
-KrLinecountingProcess::KrLinecountingProcess() : KProcess()
+KrLinecountingProcess::KrLinecountingProcess()
 {
     setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
     connect(this, &KrLinecountingProcess::readyReadStandardError, this, &KrLinecountingProcess::receivedError);

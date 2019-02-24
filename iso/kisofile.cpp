@@ -33,8 +33,7 @@ KIsoFile::KIsoFile(KArchive* archive, const QString& name, int access,
 }
 
 KIsoFile::~KIsoFile()
-{
-}
+= default;
 
 void KIsoFile::setZF(char algo[2], char parms[2], long long realsize)
 {

@@ -33,11 +33,11 @@ File::fullPath(const Directory *root /*= 0*/) const
 {
     QString path;
 
-    if (root == this) root = 0;  //prevent returning empty string when there is something we could return
+    if (root == this) root = nullptr;  //prevent returning empty string when there is something we could return
 
     const File *d;
 
-    for (d = this; d != root && d && d->parent() != 0; d = d->parent()) {
+    for (d = this; d != root && d && d->parent() != nullptr; d = d->parent()) {
         if (!path.isEmpty())
             path = '/' + path;
 

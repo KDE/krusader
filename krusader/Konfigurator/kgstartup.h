@@ -28,7 +28,7 @@ class KgStartup : public KonfiguratorPage
     Q_OBJECT
 
 public:
-    explicit KgStartup(bool first, QWidget* parent = 0);
+    explicit KgStartup(bool first, QWidget* parent = nullptr);
 
 public slots:
     void slotDisable();

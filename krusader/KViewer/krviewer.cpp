@@ -44,6 +44,7 @@
 #include <KXmlGui/KActionCollection>
 #include <KXmlGui/KShortcutsDialog>
 #include <KXmlGui/KToolBar>
+#include <utility>
 
 #include "../defaults.h"
 #include "../icon.h"
@@ -62,9 +63,9 @@ NOTE: Currently the code expects PanelViewer::openUrl() to be called only once
 
 QList<KrViewer *> KrViewer::viewers;
 
-KrViewer::KrViewer(QWidget *parent) :
-        KParts::MainWindow(parent, (Qt::WindowFlags)KDE_DEFAULT_WINDOWFLAGS), manager(this, this), tabBar(this),
-        reservedKeys(), reservedKeyActions(), sizeX(-1), sizeY(-1)
+KrViewer::KrViewer(QWidget *parent)
+    : KParts::MainWindow(parent, (Qt::WindowFlags)KDE_DEFAULT_WINDOWFLAGS), manager(this, this),
+      tabBar(this), sizeX(-1), sizeY(-1)
 {
     //setWFlags(Qt::WType_TopLevel | WDestructiveClose);
     setXMLFile("krviewer.rc");   // kpart-related xml file
@@ -78,8 +79,8 @@ KrViewer::KrViewer(QWidget *parent) :
     tabBar.setMovable(true);
     setCentralWidget(&tabBar);
 
-    printAction = KStandardAction::print(this, SLOT(print()), 0);
-    copyAction = KStandardAction::copy(this, SLOT(copy()), 0);
+    printAction = KStandardAction::print(this, SLOT(print()), nullptr);
+    copyAction = KStandardAction::copy(this, SLOT(copy()), nullptr);
 
     viewerMenu = new QMenu(this);
     QAction *tempAction;
@@ -241,12 +242,12 @@ bool KrViewer::eventFilter(QObject * /* watched */, QEvent * e)
     // Should look into if there is any way to fix it. Currently if a KPart has same shortcut as KrViewer then
     // it causes a conflict, messagebox shown to user and no action triggered.
     if (e->type() == QEvent::ShortcutOverride) {
-        QKeyEvent* ke = (QKeyEvent*) e;
+        auto* ke = (QKeyEvent*) e;
         if (reservedKeys.contains(ke->key())) {
             ke->accept();
 
             QAction *act = reservedKeyActions[ reservedKeys.indexOf(ke->key())];
-            if (act != 0) {
+            if (act != nullptr) {
                 // don't activate the close functions immediately!
                 // it can cause crash
                 if (act == tabCloseAction || act == quitAction) {
@@ -258,7 +259,7 @@ bool KrViewer::eventFilter(QObject * /* watched */, QEvent * e)
             return true;
         }
     } else if (e->type() == QEvent::KeyPress) {
-        QKeyEvent* ke = (QKeyEvent*) e;
+        auto* ke = (QKeyEvent*) e;
         if (reservedKeys.contains(ke->key())) {
             ke->accept();
             return true;
@@ -282,7 +283,7 @@ KrViewer* KrViewer::getViewer(bool new_window)
         }
         return viewers.first();
     } else {
-        KrViewer *newViewer = new KrViewer();
+        auto *newViewer = new KrViewer();
         viewers.prepend(newViewer);
         return newViewer;
     }
@@ -293,22 +294,22 @@ void KrViewer::view(QUrl url, QWidget * parent)
     KConfigGroup group(krConfig, "General");
     bool defaultWindow = group.readEntry("View In Separate Window", _ViewInSeparateWindow);
 
-    view(url, Default, defaultWindow, parent);
+    view(std::move(url), Default, defaultWindow, parent);
 }
 
 void KrViewer::view(QUrl url, Mode mode,  bool new_window, QWidget * parent)
 {
     KrViewer* viewer = getViewer(new_window);
-    viewer->viewInternal(url, mode, parent);
+    viewer->viewInternal(std::move(url), mode, parent);
     viewer->show();
 }
 
 void KrViewer::edit(QUrl url, QWidget * parent)
 {
-    edit(url, Text, -1, parent);
+    edit(std::move(url), Text, -1, parent);
 }
 
-void KrViewer::edit(QUrl url, Mode mode, int new_window, QWidget * parent)
+void KrViewer::edit(const QUrl& url, Mode mode, int new_window, QWidget * parent)
 {
     KConfigGroup group(krConfig, "General");
     QString editor = group.readEntry("Editor", _Editor);
@@ -386,13 +387,13 @@ void KrViewer::tabChanged(int index)
 {
     QWidget *w = tabBar.widget(index);
     if(!w) return;
-    KParts::ReadOnlyPart *part = static_cast<PanelViewerBase*>(w)->part();
+    KParts::ReadOnlyPart *part = dynamic_cast<PanelViewerBase*>(w)->part();
     if (part && isPartAdded(part)) {
         manager.setActivePart(part);
         if (part->widget())
             part->widget()->setFocus();
     } else
-        manager.setActivePart(0);
+        manager.setActivePart(nullptr);
 
 
     // set this viewer to be the main viewer
@@ -404,7 +405,7 @@ void KrViewer::tabCloseRequest(int index, bool force)
     // important to save as returnFocusTo will be cleared at removePart
     QWidget *returnFocusToThisWidget = returnFocusTo;
 
-    PanelViewerBase *pvb = static_cast<PanelViewerBase *>(tabBar.widget(index));
+    auto *pvb = dynamic_cast<PanelViewerBase *>(tabBar.widget(index));
     if (!pvb)
         return;
 
@@ -414,14 +415,14 @@ void KrViewer::tabCloseRequest(int index, bool force)
     if (pvb->part() && isPartAdded(pvb->part()))
         removePart(pvb->part());
 
-    disconnect(pvb, 0, this, 0);
+    disconnect(pvb, nullptr, this, nullptr);
 
     pvb->closeUrl();
 
     tabBar.removeTab(index);
 
     delete pvb;
-    pvb = 0;
+    pvb = nullptr;
 
     if (tabBar.count() <= 0) {
         if (returnFocusToThisWidget) {
@@ -453,7 +454,7 @@ bool KrViewer::queryClose()
     group.writeEntry("Window Maximized", isMaximized());
 
     for (int i = 0; i != tabBar.count(); i++) {
-        PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.widget(i));
+        auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.widget(i));
         if (!pvb)
             continue;
 
@@ -467,35 +468,35 @@ bool KrViewer::queryClose()
 
 void KrViewer::viewGeneric()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         viewInternal(pvb->url(), Generic);
 }
 
 void KrViewer::viewText()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         viewInternal(pvb->url(), Text);
 }
 
 void KrViewer::viewLister()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         viewInternal(pvb->url(), Lister);
 }
 
 void KrViewer::viewHex()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         viewInternal(pvb->url(), Hex);
 }
 
 void KrViewer::editText()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         editInternal(pvb->url(), Text);
 }
@@ -504,7 +505,7 @@ void KrViewer::checkModified()
 {
     QTimer::singleShot(CHECK_MODFIED_INTERVAL, this, &KrViewer::checkModified);
 
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (pvb)
         refreshTab(pvb);
 }
@@ -532,7 +533,7 @@ void KrViewer::prevTab()
 
 void KrViewer::detachTab()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (!pvb) return;
 
     KrViewer* viewer = getViewer(true);
@@ -545,7 +546,7 @@ void KrViewer::detachTab()
         removePart(part);
     }
 
-    disconnect(pvb, 0, this, 0);
+    disconnect(pvb, nullptr, this, nullptr);
 
     tabBar.removeTab(tabBar.indexOf(pvb));
 
@@ -576,7 +577,7 @@ void KrViewer::changeEvent(QEvent *e)
 
 void KrViewer::print()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (!pvb || !pvb->part() || !isPartAdded(pvb->part()))
         return;
 
@@ -587,7 +588,7 @@ void KrViewer::print()
 
 void KrViewer::copy()
 {
-    PanelViewerBase* pvb = static_cast<PanelViewerBase*>(tabBar.currentWidget());
+    auto* pvb = dynamic_cast<PanelViewerBase*>(tabBar.currentWidget());
     if (!pvb || !pvb->part() || !isPartAdded(pvb->part()))
         return;
 
@@ -683,7 +684,7 @@ void KrViewer::removePart(KParts::ReadOnlyPart *part)
     Q_ASSERT(isPartAdded(part));
 
     if (isPartAdded(part)) {
-        disconnect(part, 0, this, 0);
+        disconnect(part, nullptr, this, nullptr);
         part->removeEventFilter(this);
         manager.removePart(part);
     } else
@@ -697,7 +698,7 @@ void KrViewer::viewInternal(QUrl url, Mode mode, QWidget *parent)
     PanelViewerBase* viewWidget = new PanelViewer(&tabBar, mode);
 
     addTab(viewWidget);
-    viewWidget->openUrl(url);
+    viewWidget->openUrl(std::move(url));
 }
 
 void KrViewer::editInternal(QUrl url, Mode mode, QWidget * parent)
@@ -707,5 +708,5 @@ void KrViewer::editInternal(QUrl url, Mode mode, QWidget * parent)
     PanelViewerBase* editWidget = new PanelEditor(&tabBar, mode);
 
     addTab(editWidget);
-    editWidget->openUrl(url);
+    editWidget->openUrl(std::move(url));
 }

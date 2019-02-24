@@ -64,7 +64,7 @@ public:
     };
 
     FileSystem();
-    virtual ~FileSystem();
+    ~FileSystem() override;
 
     // DirListerInterface implementation
     inline QList<FileItem *> fileItems() const Q_DECL_OVERRIDE { return _fileItems.values(); }
@@ -189,7 +189,7 @@ protected:
     virtual bool refreshInternal(const QUrl &origin, bool stayInDir) = 0;
 
     /// Connect the result signal of a file operation job - source URLs.
-    void connectJobToSources(KJob *job, const QList<QUrl> urls);
+    void connectJobToSources(KJob *job, const QList<QUrl>& urls);
     /// Connect the result signal of a file operation job - destination URL.
     void connectJobToDestination(KJob *job, const QUrl &destination);
     /// Returns true if showing hidden files is set in config.

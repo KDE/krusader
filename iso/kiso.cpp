@@ -102,12 +102,12 @@ static int getTracks(const char *fname, int *tracks)
 class KIso::KIsoPrivate
 {
 public:
-    KIsoPrivate() {}
+    KIsoPrivate() = default;
     QStringList dirList;
 };
 
 KIso::KIso(const QString& filename, const QString & _mimetype)
-        : KArchive(0L)
+        : KArchive(nullptr)
 {
     KRFUNC;
     KRDEBUG("Starting KIso: " << filename << " - type: " << _mimetype);
@@ -229,14 +229,14 @@ static int mycallb(struct iso_directory_record *idr, void *udata)
 {
     KRFUNC;
 
-    KIso *iso = static_cast<KIso*>(udata);
+    auto *iso = static_cast<KIso*>(udata);
     QString path, user, group, symlink;
     int i;
     int access;
     int time, cdate, adate;
     rr_entry rr;
     bool special = false;
-    KArchiveEntry *entry = NULL, *oldentry = NULL;
+    KArchiveEntry *entry = nullptr, *oldentry = nullptr;
     char z_algo[2], z_params[2];
     long long z_size = 0;
 
@@ -296,7 +296,7 @@ static int mycallb(struct iso_directory_record *idr, void *udata)
         } else {
             entry = new KIsoFile(iso, path, access, time, adate, cdate,
                                  user, group, symlink, (long long)(isonum_733(idr->extent)) << (long long)11, isonum_733(idr->size));
-            if (z_size)(static_cast <KIsoFile*>(entry))->setZF(z_algo, z_params, z_size);
+            if (z_size)(dynamic_cast <KIsoFile*>(entry))->setZF(z_algo, z_params, z_size);
 
         }
         iso->dirent->addEntry(entry);
@@ -304,12 +304,12 @@ static int mycallb(struct iso_directory_record *idr, void *udata)
     if ((idr->flags[0] & 2) && (iso->level == 0 || !special)) {
         if (iso->level) {
             oldentry = iso->dirent;
-            iso->dirent = static_cast<KIsoDirectory*>(entry);
+            iso->dirent = dynamic_cast<KIsoDirectory*>(entry);
         }
         iso->level++;
         ProcessDir(&readf, isonum_733(idr->extent), isonum_733(idr->size), &mycallb, udata);
         iso->level--;
-        if (iso->level) iso->dirent = static_cast<KIsoDirectory*>(oldentry);
+        if (iso->level) iso->dirent = dynamic_cast<KIsoDirectory*>(oldentry);
     }
     return 0;
 }

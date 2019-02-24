@@ -49,7 +49,7 @@
 #define DECREASE   1
 
 PopularUrls::PopularUrls(QObject *parent) : QObject(parent),
-        head(0), tail(0), count(0)
+        head(nullptr), tail(nullptr), count(0)
 {
     dlg = new PopularUrlsDlg();
 }
@@ -71,7 +71,7 @@ void PopularUrls::clearList()
         }
     }
     ranks.clear();
-    head = tail = 0;
+    head = tail = nullptr;
 }
 
 void PopularUrls::save()
@@ -105,7 +105,7 @@ void PopularUrls::load()
     QStringList::Iterator uit;
     QList<int>::Iterator rit;
     for (uit = urlList.begin(), rit = rankList.begin(); uit != urlList.end() && rit != rankList.end(); ++uit, ++rit) {
-        UrlNodeP node = new UrlNode;
+        auto node = new UrlNode;
         node->url = QUrl(*uit);
         node->rank = *rit;
         appendNode(node);
@@ -223,7 +223,7 @@ void PopularUrls::insertNode(UrlNodeP node, UrlNodeP after)
 {
     if (!after) { // make node head
         node->next = head;
-        node->prev = 0;
+        node->prev = nullptr;
         head->prev = node;
         head = node;
     } else {
@@ -243,9 +243,9 @@ void PopularUrls::appendNode(UrlNodeP node)
 {
     if (!tail) { // creating the first element
         head = tail = node;
-        node->prev = node->next = 0;
+        node->prev = node->next = nullptr;
     } else {
-        node->next = 0;
+        node->next = nullptr;
         node->prev = tail;
         tail->next = node;
         tail = node;
@@ -280,10 +280,10 @@ PopularUrlsDlg::PopularUrlsDlg():
     setWindowTitle(i18n("Popular URLs"));
     setWindowModality(Qt::WindowModal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
-    QGridLayout *layout = new QGridLayout;
+    auto *layout = new QGridLayout;
     layout->setContentsMargins(0, 0, 0, 0);
 
     // listview to contain the urls
@@ -328,7 +328,7 @@ void PopularUrlsDlg::slotVisibilityChanged()
         return;
 
     urls->clearSelection();
-    urls->setCurrentItem(0);
+    urls->setCurrentItem(nullptr);
 
     QTreeWidgetItemIterator it(urls);
     while (*it) {
@@ -353,10 +353,10 @@ void PopularUrlsDlg::run(QList<QUrl> list)
     urls->clear();
     QList<QUrl>::Iterator it;
 
-    QTreeWidgetItem * lastItem = 0;
+    QTreeWidgetItem * lastItem = nullptr;
 
     for (it = list.begin(); it != list.end(); ++it) {
-        QTreeWidgetItem *item = new QTreeWidgetItem(urls, lastItem);
+        auto *item = new QTreeWidgetItem(urls, lastItem);
         lastItem = item;
         item->setText(0, (*it).isLocalFile() ? (*it).path() : (*it).toDisplayString());
         item->setIcon(0, (*it).isLocalFile() ? Icon("folder") : Icon("folder-html"));

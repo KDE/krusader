@@ -45,7 +45,7 @@
 #include "../krservices.h"
 #include "../JobMan/krjob.h"
 
-DefaultFileSystem::DefaultFileSystem(): FileSystem(), _watcher()
+DefaultFileSystem::DefaultFileSystem()
 {
     _type = FS_DEFAULT;
 }
@@ -213,7 +213,7 @@ bool DefaultFileSystem::refreshInternal(const QUrl &directory, bool onlyScan)
 
     // ensure connection credentials are asked only once
     if(!parentWindow.isNull()) {
-        KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
+        auto *ui = dynamic_cast<KIO::JobUiDelegate*>(job->uiDelegate());
         ui->setWindow(parentWindow);
     }
 
@@ -243,7 +243,7 @@ void DefaultFileSystem::slotListResult(KJob *job)
 
 void DefaultFileSystem::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries)
 {
-    for (const KIO::UDSEntry entry : entries) {
+    for (const KIO::UDSEntry& entry : entries) {
         FileItem *fileItem = FileSystem::createFileItemFromKIO(entry, _currentDirectory);
         if (fileItem) {
             addFileItem(fileItem);
@@ -362,7 +362,7 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory, bool onlyScan) {
     QT_DIRENT* dirEnt;
     QString name;
     const bool showHidden = showHiddenFiles();
-    while ((dirEnt = QT_READDIR(dir)) != NULL) {
+    while ((dirEnt = QT_READDIR(dir)) != nullptr) {
         name = QString::fromLocal8Bit(dirEnt->d_name);
 
         // show hidden files?

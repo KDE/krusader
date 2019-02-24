@@ -34,7 +34,7 @@ void KrStyleProxy::drawPrimitive(PrimitiveElement element, const QStyleOption *o
                                  QPainter *painter, const QWidget *widget) const
 {
     if (element == QStyle::PE_FrameFocusRect) {
-        if (const QStyleOptionFocusRect *fropt = qstyleoption_cast<const QStyleOptionFocusRect *>(option)) {
+        if (const auto *fropt = qstyleoption_cast<const QStyleOptionFocusRect *>(option)) {
             QColor bg = fropt->backgroundColor;
             QPen oldPen = painter->pen();
             QPen newPen;

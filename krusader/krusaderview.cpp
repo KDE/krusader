@@ -54,7 +54,7 @@
 #include "krservices.h"
 
 KrusaderView::KrusaderView(QWidget *parent) : QWidget(parent),
-    activeMng(0)
+    activeMng(nullptr)
 {
 }
 
@@ -190,7 +190,7 @@ void KrusaderView::setPanelSize(bool leftPanel, int percent)
 
 PanelManager *KrusaderView::createManager(bool left)
 {
-    PanelManager *panelManager = new PanelManager(horiz_splitter, krApp, left);
+    auto *panelManager = new PanelManager(horiz_splitter, krApp, left);
     connect(panelManager, &PanelManager::draggingTab, this, &KrusaderView::draggingTab);
     connect(panelManager, &PanelManager::draggingTabFinished, this, &KrusaderView::draggingTabFinished);
     connect(panelManager, &PanelManager::pathChanged, this, &KrusaderView::slotPathChanged);
@@ -420,7 +420,7 @@ bool KrusaderView::isTerminalEmulatorFullscreen() {
     return leftMng->isHidden() && rightMng->isHidden();
 }
 
-void KrusaderView::profiles(QString profileName)
+void KrusaderView::profiles(const QString& profileName)
 {
     ProfileManager profileManager("Panel", this);
     profileManager.hide();
@@ -432,7 +432,7 @@ void KrusaderView::profiles(QString profileName)
         profileManager.loadProfile(profileName);
 }
 
-void KrusaderView::loadPanelProfiles(QString group)
+void KrusaderView::loadPanelProfiles(const QString& group)
 {
     KConfigGroup ldg(krConfig, group);
     leftMng->loadSettings(KConfigGroup(&ldg, "Left Tabs"));
@@ -443,7 +443,7 @@ void KrusaderView::loadPanelProfiles(QString group)
         rightPanel()->slotFocusOnMe();
 }
 
-void KrusaderView::savePanelProfiles(QString group)
+void KrusaderView::savePanelProfiles(const QString& group)
 {
     KConfigGroup svr(krConfig, group);
 

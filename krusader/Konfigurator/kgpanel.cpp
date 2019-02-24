@@ -71,14 +71,14 @@ KgPanel::KgPanel(bool first, QWidget* parent) :
 // ---------------------------------------------------------------------------------------
 void KgPanel::setupGeneralTab()
 {
-    QScrollArea *scrollArea = new QScrollArea(tabWidget);
+    auto *scrollArea = new QScrollArea(tabWidget);
     QWidget *tab = new QWidget(scrollArea);
     scrollArea->setFrameStyle(QFrame::NoFrame);
     scrollArea->setWidget(tab);
     scrollArea->setWidgetResizable(true);
     tabWidget->addTab(scrollArea, i18n("General"));
 
-    QVBoxLayout *layout = new QVBoxLayout(tab);
+    auto *layout = new QVBoxLayout(tab);
     layout->setSpacing(6);
     layout->setContentsMargins(11, 11, 11, 11);
 
@@ -129,7 +129,7 @@ void KgPanel::setupGeneralTab()
     gridLayout->addWidget(cbs, 0, 0, 1, 2);
 
 // -----------------  Tab Bar position ----------------------------------
-    QHBoxLayout *hbox = new QHBoxLayout();
+    auto *hbox = new QHBoxLayout();
 
     hbox->addWidget(new QLabel(i18n("Tab Bar position:"), groupBox));
 
@@ -235,7 +235,7 @@ void KgPanel::setupGeneralTab()
 // --------------------------------------------------------------------------------------------
 void KgPanel::setupLayoutTab()
 {
-    QScrollArea *scrollArea = new QScrollArea(tabWidget);
+    auto *scrollArea = new QScrollArea(tabWidget);
     QWidget *tab = new QWidget(scrollArea);
     scrollArea->setFrameStyle(QFrame::NoFrame);
     scrollArea->setWidget(tab);
@@ -252,7 +252,7 @@ void KgPanel::setupLayoutTab()
     QLabel *l = new QLabel(i18n("Layout:"), tab);
     l->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     grid->addWidget(l, 0, 0);
-    KONFIGURATOR_NAME_VALUE_PAIR *layouts = new KONFIGURATOR_NAME_VALUE_PAIR[numLayouts];
+    auto *layouts = new KONFIGURATOR_NAME_VALUE_PAIR[numLayouts];
     for (int i = 0; i != numLayouts; i++) {
         layouts[ i ].text = KrLayoutFactory::layoutDescription(layoutNames[i]);
         layouts[ i ].value = layoutNames[i];
@@ -308,11 +308,11 @@ void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
     QGridLayout *grid = createGridLayout(parent);
 
 // -------------------- Filelist icon size ----------------------------------
-    QHBoxLayout *hbox = new QHBoxLayout();
+    auto *hbox = new QHBoxLayout();
 
     hbox->addWidget(new QLabel(i18n("Default icon size:"), parent));
 
-    KONFIGURATOR_NAME_VALUE_PAIR *iconSizes = new KONFIGURATOR_NAME_VALUE_PAIR[KrView::iconSizes.count()];
+    auto *iconSizes = new KONFIGURATOR_NAME_VALUE_PAIR[KrView::iconSizes.count()];
     for(int i = 0; i < KrView::iconSizes.count(); i++)
         iconSizes[i].text =  iconSizes[i].value = QString::number(KrView::iconSizes[i]);
     KonfiguratorComboBox *cmb = createComboBox(instance->name(), "IconSize", _FilelistIconSize, iconSizes, KrView::iconSizes.count(), parent, true, true, PAGE_VIEW);
@@ -342,14 +342,14 @@ void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
 // ----------------------------------------------------------------------------------
 void KgPanel::setupPanelTab()
 {
-    QScrollArea *scrollArea = new QScrollArea(tabWidget);
+    auto *scrollArea = new QScrollArea(tabWidget);
     QWidget *tab_panel = new QWidget(scrollArea);
     scrollArea->setFrameStyle(QFrame::NoFrame);
     scrollArea->setWidget(tab_panel);
     scrollArea->setWidgetResizable(true);
     tabWidget->addTab(scrollArea, i18n("View"));
 
-    QGridLayout *panelLayout = new QGridLayout(tab_panel);
+    auto *panelLayout = new QGridLayout(tab_panel);
     panelLayout->setSpacing(6);
     panelLayout->setContentsMargins(11, 11, 11, 11);
     QGroupBox *panelGrp = createFrame(i18n("General"), tab_panel);
@@ -361,9 +361,9 @@ void KgPanel::setupPanelTab()
     // ----------------------------------------------------------------------------------
 
     // -------------------- Panel Font ----------------------------------
-    QHBoxLayout *hbox = new QHBoxLayout();
+    auto *hbox = new QHBoxLayout();
 
-    QHBoxLayout *fontLayout = new QHBoxLayout();
+    auto *fontLayout = new QHBoxLayout();
     fontLayout->addWidget(new QLabel(i18n("View font:"), panelGrp));
     KonfiguratorFontChooser *chsr =
         createFontChooser("Look&Feel", "Filelist Font", _FilelistFont, panelGrp, true, PAGE_VIEW);
@@ -372,7 +372,7 @@ void KgPanel::setupPanelTab()
     hbox->addLayout(fontLayout, 1);
 
     // -------------------- Panel Tooltip ----------------------------------
-    QHBoxLayout *tooltipLayout = new QHBoxLayout();
+    auto *tooltipLayout = new QHBoxLayout();
     QLabel *tooltipLabel = new QLabel(i18n("Tooltip delay (msec):"));
     tooltipLabel->setWhatsThis(i18n("The duration after a tooltip is shown for a file item, in "
                                     "milliseconds. Set a negative value to disable tooltips."));
@@ -430,7 +430,7 @@ void KgPanel::setupPanelTab()
     {
         {"Look&Feel", "Case Sensative Sort", _CaseSensativeSort, i18n("Case sensitive sorting"), true,
             i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).") },
-        {"Look&Feel", "Show Directories First", true, i18n("Show folders first"), true, 0 },
+        {"Look&Feel", "Show Directories First", true, i18n("Show folders first"), true, nullptr },
         {"Look&Feel", "Always sort dirs by name", false, i18n("Always sort dirs by name"), true,
             i18n("Folders are sorted by name, regardless of the sort column.") },
         {"Look&Feel", "Locale Aware Sort", true, i18n("Locale aware sorting"), true,
@@ -459,7 +459,7 @@ void KgPanel::setupPanelTab()
 
     QList<KrViewInstance *> views = KrViewFactory::registeredViews();
     const int viewsSize = views.size();
-    KONFIGURATOR_NAME_VALUE_PAIR *panelTypes = new KONFIGURATOR_NAME_VALUE_PAIR[ viewsSize ];
+    auto *panelTypes = new KONFIGURATOR_NAME_VALUE_PAIR[ viewsSize ];
 
     QString defType = QString('0');
 
@@ -481,7 +481,7 @@ void KgPanel::setupPanelTab()
     panelGrid->addLayout(hbox, 0, 0);
 
     // ----- Individual Settings Per View Type ------------------------
-    QTabWidget *tabs_view = new QTabWidget(panelGrp);
+    auto *tabs_view = new QTabWidget(panelGrp);
     panelGrid->addWidget(tabs_view, 11, 0);
 
     for(int i = 0; i < views.count(); i++) {
@@ -496,7 +496,7 @@ void KgPanel::setupPanelTab()
 // -----------------------------------------------------------------------------------
 void KgPanel::setupButtonsTab()
 {
-    QScrollArea *scrollArea = new QScrollArea(tabWidget);
+    auto *scrollArea = new QScrollArea(tabWidget);
     QWidget *tab = new QWidget(scrollArea);
     scrollArea->setFrameStyle(QFrame::NoFrame);
     scrollArea->setWidget(tab);
@@ -520,7 +520,7 @@ void KgPanel::setupButtonsTab()
     };
     buttonsCheckboxes = createCheckBoxGroup(1, 0, buttonsParams, 7/*count*/, tab, PAGE_PANELTOOLBAR);
     connect(buttonsCheckboxes->find("Panel Toolbar visible"), &KonfiguratorCheckBox::stateChanged, this, &KgPanel::slotEnablePanelToolbar);
-    tabLayout->addWidget(buttonsCheckboxes, 0, 0);
+    tabLayout->addWidget(buttonsCheckboxes, 0, nullptr);
 
     QGroupBox * panelToolbarGrp = createFrame(i18n("Visible Panel Toolbar buttons"), tab);
     QGridLayout * panelToolbarGrid = createGridLayout(panelToolbarGrp);
@@ -536,7 +536,7 @@ void KgPanel::setupButtonsTab()
                                  sizeof(panelToolbarButtonsParams) / sizeof(*panelToolbarButtonsParams),
                                  panelToolbarGrp, PAGE_PANELTOOLBAR);
     panelToolbarGrid->addWidget(panelToolbarButtonsCheckboxes, 0, 0);
-    tabLayout->addWidget(panelToolbarGrp, 1, 0);
+    tabLayout->addWidget(panelToolbarGrp, 1, nullptr);
 
     // Enable panel toolbar checkboxes
     slotEnablePanelToolbar();
@@ -547,13 +547,13 @@ void KgPanel::setupButtonsTab()
 // ---------------------------------------------------------------------------
 void KgPanel::setupMouseModeTab()
 {
-    QScrollArea *scrollArea = new QScrollArea(tabWidget);
+    auto *scrollArea = new QScrollArea(tabWidget);
     QWidget *tab_mouse = new QWidget(scrollArea);
     scrollArea->setFrameStyle(QFrame::NoFrame);
     scrollArea->setWidget(tab_mouse);
     scrollArea->setWidgetResizable(true);
     tabWidget->addTab(scrollArea, i18n("Selection Mode"));
-    QGridLayout *mouseLayout = new QGridLayout(tab_mouse);
+    auto *mouseLayout = new QGridLayout(tab_mouse);
     mouseLayout->setSpacing(6);
     mouseLayout->setContentsMargins(11, 11, 11, 11);
 
@@ -662,7 +662,7 @@ void KgPanel::setupMouseModeTab()
 // ---------------------------------------------------------------------------
 void KgPanel::setupMediaMenuTab()
 {
-    QScrollArea *scrollArea = new QScrollArea(tabWidget);
+    auto *scrollArea = new QScrollArea(tabWidget);
     QWidget *tab = new QWidget(scrollArea);
     scrollArea->setFrameStyle(QFrame::NoFrame);
     scrollArea->setWidget(tab);
@@ -676,16 +676,16 @@ void KgPanel::setupMediaMenuTab()
 
     KONFIGURATOR_CHECKBOX_PARAM mediaMenuParams[] = {
         //   cfg_class    cfg_name    default    text   restart tooltip
-        {"MediaMenu", "ShowPath",   true, i18n("Show Mount Path"),       false, 0 },
-        {"MediaMenu", "ShowFSType", true, i18n("Show File System Type"), false, 0 },
+        {"MediaMenu", "ShowPath",   true, i18n("Show Mount Path"),       false, nullptr },
+        {"MediaMenu", "ShowFSType", true, i18n("Show File System Type"), false, nullptr },
     };
     KonfiguratorCheckBoxGroup *mediaMenuCheckBoxes =
         createCheckBoxGroup(1, 0, mediaMenuParams,
                             sizeof(mediaMenuParams) / sizeof(*mediaMenuParams),
                             tab, PAGE_MEDIA_MENU);
-    tabLayout->addWidget(mediaMenuCheckBoxes, 0, 0);
+    tabLayout->addWidget(mediaMenuCheckBoxes, 0, nullptr);
 
-    QHBoxLayout *showSizeHBox = new QHBoxLayout();
+    auto *showSizeHBox = new QHBoxLayout();
     showSizeHBox->addWidget(new QLabel(i18n("Show Size:"), tab));
     KONFIGURATOR_NAME_VALUE_PAIR showSizeValues[] = {
         { i18nc("setting 'show size'", "Always"), "Always" },
@@ -718,7 +718,7 @@ void KgPanel::slotSelectionModeChanged()
 {
     KrSelectionMode *selectionMode =
         KrSelectionMode::getSelectionHandlerForMode(mouseRadio->selectedValue());
-    if (selectionMode == NULL)   //User mode
+    if (selectionMode == nullptr)   //User mode
         return;
     selectionMode->init();
     mouseCheckboxes->find("QT Selection")->setChecked(selectionMode->useQTSelection());

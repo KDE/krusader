@@ -77,15 +77,15 @@ public:
     }
 
     Directory* getDirectory(QString path);
-    File *     getFile(QString path);
+    File *     getFile(const QString& path);
 
     QString    getConfigGroup() {
         return configGroup;
     }
 
-    void *     getProperty(File *, QString);
-    void       addProperty(File *, QString, void *);
-    void       removeProperty(File *, QString);
+    void *     getProperty(File *, const QString&);
+    void       addProperty(File *, const QString&, void *);
+    void       removeProperty(File *, const QString&);
 
     int        exclude(File *file, bool calcPercents = true, int depth = 0);
     void       includeAll();
@@ -94,14 +94,14 @@ public:
 
     QString    getToolTip(File *);
 
-    void       rightClickMenu(const QPoint &, File *, QMenu * = 0, QString = QString());
+    void       rightClickMenu(const QPoint &, File *, QMenu * = 0, const QString& = QString());
 
     void       changeDirectory(Directory *dir);
 
     Directory* getCurrentDir();
     File*      getCurrentFile();
 
-    QPixmap    getIcon(QString mime);
+    QPixmap    getIcon(const QString& mime);
 
     QUrl       getBaseURL() {
         return baseURL;

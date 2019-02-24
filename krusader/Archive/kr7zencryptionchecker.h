@@ -38,7 +38,7 @@ public:
     Kr7zEncryptionChecker();
 
 protected:
-    virtual void setupChildProcess() Q_DECL_OVERRIDE;
+    void setupChildProcess() Q_DECL_OVERRIDE;
 
 public slots:
     void receivedOutput();

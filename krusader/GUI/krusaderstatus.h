@@ -32,8 +32,8 @@ class KrusaderStatus : public QStatusBar
 {
     Q_OBJECT
 public:
-    explicit KrusaderStatus(QWidget *parent = 0);
-    ~KrusaderStatus();
+    explicit KrusaderStatus(QWidget *parent = nullptr);
+    ~KrusaderStatus() override;
 
 private:
     QLabel *mess;

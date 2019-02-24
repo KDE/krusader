@@ -35,7 +35,7 @@ KgUserActions::KgUserActions(bool first, QWidget* parent) :
     QWidget *innerWidget = new QFrame(this);
     setWidget(innerWidget);
     setWidgetResizable(true);
-    QGridLayout *kgUserActionLayout = new QGridLayout(innerWidget);
+    auto *kgUserActionLayout = new QGridLayout(innerWidget);
 
     // ============= Info Group =============
     QGroupBox *InfoGroup = createFrame(i18n("Information"), innerWidget);
@@ -75,7 +75,7 @@ KgUserActions::KgUserActions(bool first, QWidget* parent) :
     QGridLayout *outputGrid = createGridLayout(outputGroup);
 
     QWidget *hboxWidget = new QWidget(outputGroup);
-    QHBoxLayout *hbox = new QHBoxLayout(hboxWidget);
+    auto *hbox = new QHBoxLayout(hboxWidget);
     QLabel *lbel = new QLabel(i18n("Normal font:"), hboxWidget);
     hbox->addWidget(lbel);
 

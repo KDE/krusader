@@ -39,6 +39,7 @@
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KMessageBox>
+#include <utility>
 
 #ifdef __KJSEMBED__
 #include <kjsembed/jsconsolewidget.h>
@@ -102,7 +103,7 @@ KRslots::KRslots(QObject *parent) : QObject(parent), _mainWindow(krApp)
 void KRslots::sendFileByEmail(const QList<QUrl> &urls)
 {
     if (urls.count() == 0) {
-        KMessageBox::error(0, i18n("No selected files to send."));
+        KMessageBox::error(nullptr, i18n("No selected files to send."));
         return;
     }
 
@@ -110,7 +111,7 @@ void KRslots::sendFileByEmail(const QList<QUrl> &urls)
     QStringList lst = KrServices::supportedTools();
     if (lst.contains("MAIL")) mailProg = lst[lst.indexOf("MAIL") + 1];
     else {
-        KMessageBox::error(0, i18n("Krusader cannot find a supported mail client. Please install one to your path. Hint: Krusader supports KMail."));
+        KMessageBox::error(nullptr, i18n("Krusader cannot find a supported mail client. Please install one to your path. Hint: Krusader supports KMail."));
         return;
     }
 
@@ -149,7 +150,7 @@ void KRslots::sendFileByEmail(const QList<QUrl> &urls)
     }
 
     if (!proc.startDetached())
-        KMessageBox::error(0, i18n("Error executing %1.", mailProg));
+        KMessageBox::error(nullptr, i18n("Error executing %1.", mailProg));
 }
 
 void KRslots::compareContent()
@@ -173,7 +174,7 @@ void KRslots::compareContent()
         name2 = ACTIVE_PANEL->otherPanel()->func->files()->getUrl(ACTIVE_VIEW->getCurrentItem());
     } else  {
         // if we got here, then we can't be sure what file to diff
-        KMessageBox::sorry(0, "<qt>" + i18n("Do not know which files to compare.") + "<br/><br/>" + i18n("To compare two files by content, you can either:<ul><li>Select one file in the left panel, and one in the right panel.</li><li>Select exactly two files in the active panel.</li><li>Make sure there is a file in the other panel, with the same name as the current file in the active panel.</li></ul>") + "</qt>");
+        KMessageBox::sorry(nullptr, "<qt>" + i18n("Do not know which files to compare.") + "<br/><br/>" + i18n("To compare two files by content, you can either:<ul><li>Select one file in the left panel, and one in the right panel.</li><li>Select exactly two files in the active panel.</li><li>Make sure there is a file in the other panel, with the same name as the current file in the active panel.</li></ul>") + "</qt>");
 
         return;
     }
@@ -199,13 +200,13 @@ bool downloadToTemp(const QUrl &url, QString &dest) {
     return false;
 }
 
-void KRslots::compareContent(QUrl url1, QUrl url2)
+void KRslots::compareContent(const QUrl& url1, const QUrl& url2)
 {
     QString diffProg;
     QStringList lst = KrServices::supportedTools();
     if (lst.contains("DIFF")) diffProg = lst[lst.indexOf("DIFF") + 1];
     else {
-        KMessageBox::error(0, i18n("Krusader cannot find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports Kompare, KDiff3 and Xxdiff."));
+        KMessageBox::error(nullptr, i18n("Krusader cannot find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports Kompare, KDiff3 and Xxdiff."));
         return;
     }
 
@@ -236,7 +237,7 @@ void KRslots::compareContent(QUrl url1, QUrl url2)
     *p << diffProg << tmp1 << tmp2;
     p->start();
     if (!p->waitForStarted())
-        KMessageBox::error(0, i18n("Error executing %1.", diffProg));
+        KMessageBox::error(nullptr, i18n("Error executing %1.", diffProg));
 }
 
 // GUI toggle slots
@@ -298,7 +299,7 @@ void KRslots::refresh(const QUrl &u)
 
 void KRslots::runKonfigurator(bool firstTime)
 {
-    Konfigurator *konfigurator = new Konfigurator(firstTime);
+    auto *konfigurator = new Konfigurator(firstTime);
     connect(konfigurator, &Konfigurator::configChanged, this, &KRslots::configChanged);
 
     //FIXME - no need to exec
@@ -368,7 +369,7 @@ void KRslots::toggleSwapSides()
 
 void KRslots::search()
 {
-    if (KrSearchDialog::SearchDialog != 0) {
+    if (KrSearchDialog::SearchDialog != nullptr) {
         KConfigGroup group(krConfig, "Search");
         if (group.readEntry("Window Maximized",  false))
             KrSearchDialog::SearchDialog->showMaximized();
@@ -445,7 +446,7 @@ void KRslots::multiRename()
     KProcess proc;
     proc << pathToRename;
 
-    for (const QString name: names) {
+    for (const QString& name: names) {
         FileItem *file = ACTIVE_FUNC->files()->getFileItem(name);
         if (!file)
             continue;
@@ -459,7 +460,7 @@ void KRslots::multiRename()
     }
 
     if (!proc.startDetached())
-        KMessageBox::error(0, i18n("Error executing '%1'.", proc.program().join(" ")));
+        KMessageBox::error(nullptr, i18n("Error executing '%1'.", proc.program().join(" ")));
 }
 
 void KRslots::rootKrusader()
@@ -485,7 +486,7 @@ void KRslots::rootKrusader()
     + " --right=" + KrServices::quote(RIGHT_PANEL->virtualPath().toDisplayString(QUrl::PreferLocalFile));
 
     if (!proc.startDetached())
-        KMessageBox::error(0, i18n("Error executing %1.", proc.program()[0]));
+        KMessageBox::error(nullptr, i18n("Error executing %1.", proc.program()[0]));
 }
 
 void KRslots::slotSplit()
@@ -498,7 +499,7 @@ void KRslots::slotSplit()
 
     if (name.isEmpty()) {
         // if we got here, then one of the panel can't be sure what file to diff
-        KMessageBox::error(0, i18n("Do not know which file to split."));
+        KMessageBox::error(nullptr, i18n("Do not know which file to split."));
         return;
     }
 
@@ -531,7 +532,7 @@ void KRslots::slotCombine()
 {
     const QStringList list = ACTIVE_PANEL->gui->getSelectedNames();
     if (list.isEmpty()) {
-        KMessageBox::error(0, i18n("Do not know which files to combine."));
+        KMessageBox::error(nullptr, i18n("Do not know which files to combine."));
         return;
     }
 
@@ -542,12 +543,12 @@ void KRslots::slotCombine()
     int           commonLength = 0;
 
     /* checking splitter names */
-    for (QStringList::ConstIterator it = list.begin(); it != list.end(); ++it) {
-        QUrl url = ACTIVE_FUNC->files()->getUrl(*it);
+    for (const auto & it : list) {
+        QUrl url = ACTIVE_FUNC->files()->getUrl(it);
         if (url.isEmpty())
             return;
 
-        if (ACTIVE_FUNC->files()->getFileItem(*it)->isDir()) {
+        if (ACTIVE_FUNC->files()->getFileItem(it)->isDir()) {
             KMessageBox::sorry(krApp, i18n("You cannot combine a folder."));
             return;
         }
@@ -565,7 +566,7 @@ void KRslots::slotCombine()
 
             if (extPos < 1 || ext.isEmpty() || (ext != "crc" && !isExtInt)) {
                 if (windowsStyle) {
-                    KMessageBox::error(0, i18n("Not a split file: %1.", url.toDisplayString(QUrl::PreferLocalFile)));
+                    KMessageBox::error(nullptr, i18n("Not a split file: %1.", url.toDisplayString(QUrl::PreferLocalFile)));
                     return;
                 }
                 unixStyle = true;
@@ -577,7 +578,7 @@ void KRslots::slotCombine()
                 if (baseURL.isEmpty())
                     baseURL = url;
                 else if (baseURL != url) {
-                    KMessageBox::error(0, i18n("Select only one split file."));
+                    KMessageBox::error(nullptr, i18n("Select only one split file."));
                     return;
                 }
             }
@@ -587,7 +588,7 @@ void KRslots::slotCombine()
             bool error = true;
 
             do {
-                QString shortName   = *it;
+                const QString& shortName   = it;
                 QChar   lastChar  = shortName.at(shortName.length() - 1);
 
                 if (lastChar.isLetter()) {
@@ -601,7 +602,7 @@ void KRslots::slotCombine()
                             QString shorter  = commonName.left(commonName.length() - 1);
                             QString testFile = shorter.leftJustified(commonLength, fillLetter);
 
-                            if (ACTIVE_FUNC->files()->getFileItem(testFile) == 0)
+                            if (ACTIVE_FUNC->files()->getFileItem(testFile) == nullptr)
                                 break;
                             else {
                                 commonName = shorter;
@@ -617,7 +618,7 @@ void KRslots::slotCombine()
             } while (false);
 
             if (error) {
-                KMessageBox::error(0, i18n("Not a split file: %1.", url.toDisplayString(QUrl::PreferLocalFile)));
+                KMessageBox::error(nullptr, i18n("Not a split file: %1.", url.toDisplayString(QUrl::PreferLocalFile)));
                 return;
             }
         }
@@ -646,14 +647,14 @@ void KRslots::manageUseractions()
 void KRslots::slotSynchronizeDirs(QStringList selected)
 {
     SynchronizerGUI *synchronizerDialog = new SynchronizerGUI(MAIN_VIEW, LEFT_PANEL->virtualPath(),
-                                                              RIGHT_PANEL->virtualPath(), selected);
+                                                              RIGHT_PANEL->virtualPath(), std::move(selected));
     synchronizerDialog->show(); // destroyed on close
 }
 #endif
 
 void KRslots::compareSetup()
 {
-    for (int i = 0; KrActions::compareArray[i] != 0; i++)
+    for (int i = 0; KrActions::compareArray[i] != nullptr; i++)
         if ((*KrActions::compareArray[i])->isChecked()) {
             KConfigGroup group(krConfig, "Private");
             group.writeEntry("Compare Mode", i);
@@ -664,7 +665,7 @@ void KRslots::compareSetup()
 /** called by actions actExec* to choose the built-in command line mode  */
 void KRslots::execTypeSetup()
 {
-    for (int i = 0; KrActions::execTypeArray[i] != 0; i++)
+    for (int i = 0; KrActions::execTypeArray[i] != nullptr; i++)
         if ((*KrActions::execTypeArray[i])->isChecked()) {
             if (*KrActions::execTypeArray[i] == KrActions::actExecTerminalEmbedded) {
                 // if commands are to be executed in the TE, it must be loaded
@@ -684,7 +685,7 @@ void KRslots::slotDiskUsage()
 
 void KRslots::applicationStateChanged()
 {
-    if (MAIN_VIEW == 0) {  /* CRASH FIX: it's possible that the method is called after destroying the main view */
+    if (MAIN_VIEW == nullptr) {  /* CRASH FIX: it's possible that the method is called after destroying the main view */
         return;
     }
     if(qApp->applicationState() == Qt::ApplicationActive ||

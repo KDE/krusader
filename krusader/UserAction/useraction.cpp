@@ -90,13 +90,13 @@ void UserAction::populateMenu(KActionMenu* menu, const QUrl *currentURL)
         const QString category = action->category();
         if (! action->isEnabled())
             continue;
-        if (currentURL != NULL && ! action->isAvailable(*currentURL))
+        if (currentURL != nullptr && ! action->isAvailable(*currentURL))
             continue;
         if (category.isEmpty()) {
             uncategorised.append(action);
         } else {
             if (! categoryMap.contains(category)) {
-                KActionMenu *categoryMenu = new KActionMenu(category, menu);
+                auto *categoryMenu = new KActionMenu(category, menu);
                 categoryMenu->setObjectName(category);
                 categoryMap.insert(category, categoryMenu);
             }
@@ -165,7 +165,7 @@ void UserAction::readFromFile(const QString& filename, ReadMode mode, KrActionLi
             // if the file doesn't exist till now, the content CAN be set but is empty.
             // if the content can't be set, the file exists and is NOT an xml-file.
             file.close();
-            delete doc; doc = 0;
+            delete doc; doc = nullptr;
             KMessageBox::error(MAIN_VIEW,
                                i18n("The file %1 does not contain valid UserActions.\n", filename),   // text
                                i18n("UserActions - cannot read from file") // caption
@@ -183,7 +183,7 @@ void UserAction::readFromFile(const QString& filename, ReadMode mode, KrActionLi
                                    i18n("The actionfile's root element is not called %1, using %2", QString::fromLatin1(ACTION_ROOT),  filename),
                                    i18n("UserActions - cannot read from file")
                                   );
-                delete doc; doc = 0;
+                delete doc; doc = nullptr;
             }
             readFromElement(root, mode, list);
             delete doc;

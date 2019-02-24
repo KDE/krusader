@@ -51,7 +51,7 @@ QDomDocument KrLayoutFactory::_mainDoc;
 QList<QDomDocument> KrLayoutFactory::_extraDocs;
 
 
-QString KrLayoutFactory::layoutDescription(QString layoutName)
+QString KrLayoutFactory::layoutDescription(const QString& layoutName)
 {
     if(layoutName == DEFAULT_LAYOUT)
         return i18nc("Default layout", "Default");
@@ -85,7 +85,7 @@ bool KrLayoutFactory::parseFiles()
     return true;
 }
 
-bool KrLayoutFactory::parseFile(QString path, QDomDocument &doc)
+bool KrLayoutFactory::parseFile(const QString& path, QDomDocument &doc)
 {
     bool success = false;
 
@@ -99,7 +99,7 @@ bool KrLayoutFactory::parseFile(QString path, QDomDocument &doc)
     return success;
 }
 
-bool KrLayoutFactory::parseResource(QString path, QDomDocument &doc)
+bool KrLayoutFactory::parseResource(const QString& path, QDomDocument &doc)
 {
     QResource res(path);
     if (res.isValid()) {
@@ -115,7 +115,7 @@ bool KrLayoutFactory::parseResource(QString path, QDomDocument &doc)
     }
 }
 
-bool KrLayoutFactory::parseContent(QByteArray content, QString fileName, QDomDocument &doc)
+bool KrLayoutFactory::parseContent(const QByteArray& content, const QString& fileName, QDomDocument &doc)
 {
     bool success = false;
 
@@ -136,7 +136,7 @@ bool KrLayoutFactory::parseContent(QByteArray content, QString fileName, QDomDoc
     return success;
 }
 
-void KrLayoutFactory::getLayoutNames(QDomDocument doc, QStringList &names)
+void KrLayoutFactory::getLayoutNames(const QDomDocument& doc, QStringList &names)
 {
     QDomElement root = doc.documentElement();
 
@@ -164,7 +164,7 @@ QStringList KrLayoutFactory::layoutNames()
     return names;
 }
 
-QDomElement KrLayoutFactory::findLayout(QDomDocument doc, QString layoutName)
+QDomElement KrLayoutFactory::findLayout(const QDomDocument& doc, const QString& layoutName)
 {
     QDomElement root = doc.documentElement();
 
@@ -182,7 +182,7 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName)
         KConfigGroup cg(krConfig, "PanelLayout");
         layoutName = cg.readEntry("Layout", DEFAULT_LAYOUT);
     }
-    QLayout *layout = 0;
+    QLayout *layout = nullptr;
 
     if (parseFiles()) {
         QDomElement layoutRoot;
@@ -216,9 +216,9 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName)
     return layout;
 }
 
-QBoxLayout *KrLayoutFactory::createLayout(QDomElement e, QWidget *parent)
+QBoxLayout *KrLayoutFactory::createLayout(const QDomElement& e, QWidget *parent)
 {
-    QBoxLayout *l = 0;
+    QBoxLayout *l = nullptr;
     bool horizontal = false;
 
     if(e.attribute("type") == "horizontal") {
@@ -229,7 +229,7 @@ QBoxLayout *KrLayoutFactory::createLayout(QDomElement e, QWidget *parent)
         l = new QVBoxLayout();
     else {
         qWarning() << "unknown layout type:" << e.attribute("type");
-        return 0;
+        return nullptr;
     }
 
     l->setSpacing(0);
@@ -263,7 +263,7 @@ QBoxLayout *KrLayoutFactory::createLayout(QDomElement e, QWidget *parent)
     return l;
 }
 
-QWidget *KrLayoutFactory::createFrame(QDomElement e, QWidget *parent)
+QWidget *KrLayoutFactory::createFrame(const QDomElement& e, QWidget *parent)
 {
     KConfigGroup cg(krConfig, "PanelLayout");
 

@@ -108,7 +108,7 @@ RadialMap::Widget::segmentAt(QPoint &e) const
                 //ai = x, bi=1, aj=y, bj=0
                 //cos angle = x / (length)
 
-                uint a  = (uint)(acos((double)e.x() / length) * 916.736);    //916.7324722 = #radians in circle * 16
+                auto a  = (uint)(acos((double)e.x() / length) * 916.736);    //916.7324722 = #radians in circle * 16
 
                 //acos only understands 0-180 degrees
                 if (e.y() < 0) a = 5760 - a;
@@ -122,7 +122,7 @@ RadialMap::Widget::segmentAt(QPoint &e) const
         } else return m_rootSegment; //hovering over inner circle
     }
 
-    return 0;
+    return nullptr;
 }
 
 void
@@ -170,7 +170,7 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
             QMenu popup;
             popup.setTitle(m_focus->file()->fullPath(m_tree));
 
-            QAction * actKonq = 0, * actKonsole = 0, *actViewMag = 0, * actFileOpen = 0, * actEditDel = 0;
+            QAction * actKonq = nullptr, * actKonsole = nullptr, *actViewMag = nullptr, * actFileOpen = nullptr, * actEditDel = nullptr;
 
             if (isDir) {
                 actKonq = popup.addAction(Icon("system-file-manager"), i18n("Open File Manager Here"));
@@ -188,7 +188,7 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
             actEditDel = popup.addAction(Icon("edit-delete"), i18n("&Delete"));
 
             QAction * result = popup.exec(e->globalPos());
-            if (result == 0)
+            if (result == nullptr)
                 result = (QAction *) - 1;  // sanity
 
             if (result == actKonq)
@@ -207,7 +207,7 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
 
                 if (userIntention == KMessageBox::Continue) {
                     KIO::Job *job = KIO::del(url);
-                    KIO::JobUiDelegate *ui = static_cast<KIO::JobUiDelegate*>(job->uiDelegate());
+                    auto *ui = dynamic_cast<KIO::JobUiDelegate*>(job->uiDelegate());
                     ui->setWindow(this);
                     connect(job, &KIO::Job::result, this, &Widget::deleteJobFinished);
                     QApplication::setOverrideCursor(Qt::BusyCursor);

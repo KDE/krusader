@@ -29,11 +29,12 @@
 
 #include <KConfigCore/KSharedConfig>
 #include <KIOCore/KProtocolManager>
+#include <utility>
 
 #include "krglobal.h"
 #include "defaults.h"
 
-QMap<QString, QString>* KrServices::slaveMap = 0;
+QMap<QString, QString>* KrServices::slaveMap = nullptr;
 QSet<QString> KrServices::krarcArchiveMimetypes = KrServices::generateKrarcArchiveMimetypes();
 #ifdef KRARC_QUERY_ENABLED
 QSet<QString> KrServices::isoArchiveMimetypes = QSet<QString>::fromList(KProtocolInfo::archiveMimetypes("iso"));
@@ -79,7 +80,7 @@ QSet<QString> KrServices::generateKrarcArchiveMimetypes()
     return mimes;
 }
 
-bool KrServices::cmdExist(QString cmdName)
+bool KrServices::cmdExist(const QString& cmdName)
 {
     KConfigGroup group(krConfig, "Dependencies");
     if (QFile(group.readEntry(cmdName, QString())).exists())
@@ -88,7 +89,7 @@ bool KrServices::cmdExist(QString cmdName)
     return !QStandardPaths::findExecutable(cmdName).isEmpty();
 }
 
-QString KrServices::fullPathName(QString name, QString confName)
+QString KrServices::fullPathName(const QString& name, QString confName)
 {
     QString supposedName;
 
@@ -106,7 +107,7 @@ QString KrServices::fullPathName(QString name, QString confName)
     return supposedName;
 }
 
-QString KrServices::chooseFullPathName(QStringList names, QString confName)
+QString KrServices::chooseFullPathName(QStringList names, const QString& confName)
 {
     foreach(const QString &name, names) {
         QString foundTool = KrServices::fullPathName(name, confName);
@@ -124,17 +125,17 @@ bool KrServices::isExecutable(const QString &path)
     return info.isFile() && info.isExecutable();
 }
 
-QString KrServices::registeredProtocol(QString mimetype)
+QString KrServices::registeredProtocol(const QString& mimetype)
 {
-    if (slaveMap == 0) {
+    if (slaveMap == nullptr) {
         slaveMap = new QMap<QString, QString>();
 
         KConfigGroup group(krConfig, "Protocols");
         QStringList protList = group.readEntry("Handled Protocols", QStringList());
-        for (QStringList::Iterator it = protList.begin(); it != protList.end(); ++it) {
-            QStringList mimes = group.readEntry(QString("Mimes For %1").arg(*it), QStringList());
-            for (QStringList::Iterator it2 = mimes.begin(); it2 != mimes.end(); ++it2)
-                (*slaveMap)[*it2] = *it;
+        for (auto & it : protList) {
+            QStringList mimes = group.readEntry(QString("Mimes For %1").arg(it), QStringList());
+            for (auto & mime : mimes)
+                (*slaveMap)[mime] = it;
         }
     }
     QString protocol = (*slaveMap)[mimetype];
@@ -147,7 +148,7 @@ QString KrServices::registeredProtocol(QString mimetype)
     return protocol;
 }
 
-bool KrServices::isoSupported(QString mimetype)
+bool KrServices::isoSupported(const QString& mimetype)
 {
     return isoArchiveMimetypes.contains(mimetype);
 }
@@ -156,7 +157,7 @@ void KrServices::clearProtocolCache()
 {
     if (slaveMap)
         delete slaveMap;
-    slaveMap = 0;
+    slaveMap = nullptr;
 }
 
 bool KrServices::fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines)
@@ -176,7 +177,7 @@ bool KrServices::fileToStringList(QFile *file, QStringList& target, bool keepEmp
     return fileToStringList(&stream, target, keepEmptyLines);
 }
 
-QString KrServices::quote(QString name)
+QString KrServices::quote(const QString& name)
 {
     if (!name.contains('\''))
         return '\'' + name + '\'';
@@ -212,9 +213,9 @@ QStringList KrServices::toStringList(const QList<QUrl> &list)
 }
 
 // Adds one tool to the list in the supportedTools method
-void supportedTool(QStringList &tools, QString toolType,
+void supportedTool(QStringList &tools, const QString& toolType,
                    QStringList names, QString confName) {
-    QString foundTool = KrServices::chooseFullPathName(names, confName);
+    QString foundTool = KrServices::chooseFullPathName(std::move(names), std::move(confName));
     if (! foundTool.isEmpty()) {
         tools.append(toolType);
         tools.append(foundTool);
@@ -260,8 +261,8 @@ QString KrServices::escape(QString name)
 {
     const QString evilstuff = "\\\"'`()[]{}!?;$&<>| \t\r\n";  // stuff that should get escaped
 
-    for (int i = 0; i < evilstuff.length(); ++i)
-        name.replace(evilstuff[ i ], ('\\' + evilstuff[ i ]));
+    for (auto i : evilstuff)
+        name.replace(i, ('\\' + i));
 
     return name;
 }
@@ -306,7 +307,7 @@ static QtMessageHandler s_defaultMessageHandler;
 void KrServices::setGlobalKrMessageHandler(bool withDebugMessages)
 {
     s_withDebugMessages = withDebugMessages;
-    s_defaultMessageHandler = qInstallMessageHandler(0);
+    s_defaultMessageHandler = qInstallMessageHandler(nullptr);
     qInstallMessageHandler(&krMessageHandler);
 }
 

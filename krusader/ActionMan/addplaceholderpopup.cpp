@@ -108,7 +108,7 @@ AddPlaceholderPopup::AddPlaceholderPopup(QWidget *parent) : QMenu(parent)
 QString AddPlaceholderPopup::getPlaceholder(const QPoint& pos)
 {
     QAction *res = exec(pos);
-    if (res == 0)
+    if (res == nullptr)
         return QString();
 
     // add the selected flag to the command line
@@ -126,7 +126,7 @@ QString AddPlaceholderPopup::getPlaceholder(const QPoint& pos)
 //          KMessageBox::sorry( this, "BOFH Excuse #93:\nFeature not yet implemented" );
 //          return QString();
 //       }
-        ParameterDialog* parameterDialog = new ParameterDialog(currentPlaceholder, this);
+        auto* parameterDialog = new ParameterDialog(currentPlaceholder, this);
         QString panel, parameter = parameterDialog->getParameter();
         delete parameterDialog;
         // indicate the panel with 'a' 'o', 'l', 'r' or '_'.
@@ -154,7 +154,7 @@ QString AddPlaceholderPopup::getPlaceholder(const QPoint& pos)
 ParameterDialog::ParameterDialog(const exp_placeholder* currentPlaceholder, QWidget *parent) : QDialog(parent)
 {
     setWindowTitle(i18n("User Action Parameter Dialog"));
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
     _parameter.clear();
@@ -162,7 +162,7 @@ ParameterDialog::ParameterDialog(const exp_placeholder* currentPlaceholder, QWid
 
     QWidget *page = new QWidget(this);
     mainLayout->addWidget(page);
-    QVBoxLayout* layout = new QVBoxLayout(page);
+    auto* layout = new QVBoxLayout(page);
     layout->setSpacing(11);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -261,7 +261,7 @@ void ParameterDialog::slotOk()
 ///////////// ParameterText
 ParameterText::ParameterText(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
 {
-    QVBoxLayout* layout = new QVBoxLayout(this);
+    auto* layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -293,14 +293,14 @@ bool ParameterText::valid()
 ///////////// ParameterPlaceholder
 ParameterPlaceholder::ParameterPlaceholder(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
 {
-    QVBoxLayout* layout = new QVBoxLayout(this);
+    auto* layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
     layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
     QWidget * hboxWidget = new QWidget(this);
     layout->addWidget(hboxWidget);
-    QHBoxLayout * hbox = new QHBoxLayout(hboxWidget);
+    auto * hbox = new QHBoxLayout(hboxWidget);
 
     hbox->setContentsMargins(0, 0, 0, 0);
     hbox->setSpacing(6);
@@ -333,7 +333,7 @@ bool ParameterPlaceholder::valid()
 }
 void ParameterPlaceholder::addPlaceholder()
 {
-    AddPlaceholderPopup* popup = new AddPlaceholderPopup(this);
+    auto* popup = new AddPlaceholderPopup(this);
     QString exp = popup->getPlaceholder(mapToGlobal(QPoint(_button->pos().x() + _button->width() + 6, _button->pos().y() + _button->height() / 2)));
     _lineEdit->insert(exp);
     delete popup;
@@ -342,7 +342,7 @@ void ParameterPlaceholder::addPlaceholder()
 ///////////// ParameterYes
 ParameterYes::ParameterYes(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
 {
-    QVBoxLayout* layout = new QVBoxLayout(this);
+    auto* layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -373,7 +373,7 @@ bool ParameterYes::valid()
 ///////////// ParameterNo
 ParameterNo::ParameterNo(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
 {
-    QVBoxLayout* layout = new QVBoxLayout(this);
+    auto* layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -404,7 +404,7 @@ bool ParameterNo::valid()
 ///////////// ParameterFile
 ParameterFile::ParameterFile(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
 {
-    QVBoxLayout* layout = new QVBoxLayout(this);
+    auto* layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -412,7 +412,7 @@ ParameterFile::ParameterFile(const exp_parameter& parameter, QWidget* parent) : 
 
     QWidget * hboxWidget = new QWidget(this);
     layout->addWidget(hboxWidget);
-    QHBoxLayout * hbox = new QHBoxLayout(hboxWidget);
+    auto * hbox = new QHBoxLayout(hboxWidget);
 
     hbox->setContentsMargins(0, 0, 0, 0);
     hbox->setSpacing(6);
@@ -452,7 +452,7 @@ void ParameterFile::addFile()
 ///////////// ParameterChoose
 ParameterChoose::ParameterChoose(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
 {
-    QVBoxLayout* layout = new QVBoxLayout(this);
+    auto* layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -481,7 +481,7 @@ bool ParameterChoose::valid()
 ///////////// ParameterSelect
 ParameterSelect::ParameterSelect(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
 {
-    QVBoxLayout* layout = new QVBoxLayout(this);
+    auto* layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -517,14 +517,14 @@ bool ParameterSelect::valid()
 ///////////// ParameterGoto
 ParameterGoto::ParameterGoto(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
 {
-    QVBoxLayout* layout = new QVBoxLayout(this);
+    auto* layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
     layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
 
     QWidget * hboxWidget = new QWidget(this);
-    QHBoxLayout * hbox = new QHBoxLayout(hboxWidget);
+    auto * hbox = new QHBoxLayout(hboxWidget);
 
     hbox->setContentsMargins(0, 0, 0, 0);
     hbox->setSpacing(6);
@@ -569,7 +569,7 @@ void ParameterGoto::setDir()
 }
 void ParameterGoto::addPlaceholder()
 {
-    AddPlaceholderPopup* popup = new AddPlaceholderPopup(this);
+    auto* popup = new AddPlaceholderPopup(this);
     QString exp = popup->getPlaceholder(mapToGlobal(QPoint(_placeholderButton->pos().x() + _placeholderButton->width() + 6, _placeholderButton->pos().y() + _placeholderButton->height() / 2)));
     _lineEdit->insert(exp);
     delete popup;
@@ -578,7 +578,7 @@ void ParameterGoto::addPlaceholder()
 ///////////// ParameterSyncprofile
 ParameterSyncprofile::ParameterSyncprofile(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
 {
-    QVBoxLayout* layout = new QVBoxLayout(this);
+    auto* layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -608,7 +608,7 @@ bool ParameterSyncprofile::valid()
 ///////////// ParameterSearch
 ParameterSearch::ParameterSearch(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
 {
-    QVBoxLayout* layout = new QVBoxLayout(this);
+    auto* layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -638,7 +638,7 @@ bool ParameterSearch::valid()
 ///////////// ParameterPanelprofile
 ParameterPanelprofile::ParameterPanelprofile(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
 {
-    QVBoxLayout* layout = new QVBoxLayout(this);
+    auto* layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -668,7 +668,7 @@ bool ParameterPanelprofile::valid()
 ///////////// ParameterInt
 ParameterInt::ParameterInt(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
 {
-    QHBoxLayout* layout = new QHBoxLayout(this);
+    auto* layout = new QHBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 

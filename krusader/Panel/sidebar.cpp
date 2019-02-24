@@ -46,9 +46,9 @@
 #include <KI18n/KLocalizedString>
 
 
-Sidebar::Sidebar(QWidget *parent) : QWidget(parent), stack(0), imageFilePreview(0), pjob(0)
+Sidebar::Sidebar(QWidget *parent) : QWidget(parent), stack(nullptr), imageFilePreview(nullptr), pjob(nullptr)
 {
-    QGridLayout * layout = new QGridLayout(this);
+    auto * layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
 
     // create the label+buttons setup
@@ -139,9 +139,9 @@ Sidebar::Sidebar(QWidget *parent) : QWidget(parent), stack(0), imageFilePreview(
     setCurrentPage(0);
 }
 
-Sidebar::~Sidebar() {}
+Sidebar::~Sidebar() = default;
 
-void Sidebar::saveSettings(KConfigGroup cfg) const
+void Sidebar::saveSettings(const KConfigGroup& cfg) const
 {
     tree->saveSettings(cfg);
 }
@@ -204,7 +204,7 @@ void Sidebar::handleOpenUrlRequest(const QUrl &url)
 void Sidebar::tabSelected(int id)
 {
     QUrl url;
-    const FileItem *fileitem = 0;
+    const FileItem *fileitem = nullptr;
     if (ACTIVE_PANEL && ACTIVE_PANEL->view)
         fileitem = ACTIVE_PANEL->func->files()->getFileItem(ACTIVE_PANEL->view->getCurrentItem());
     if(fileitem)

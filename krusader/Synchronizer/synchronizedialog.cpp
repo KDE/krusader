@@ -45,7 +45,7 @@ SynchronizeDialog::SynchronizeDialog(QWidget* parent,
     setWindowTitle(i18n("Krusader::Synchronize"));
     setModal(true);
 
-    QVBoxLayout *layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setContentsMargins(11, 11, 11, 11);
     layout->setSpacing(6);
 
@@ -96,7 +96,7 @@ SynchronizeDialog::SynchronizeDialog(QWidget* parent,
     layout->addWidget(progress);
 
     QWidget *hboxWidget = new QWidget(this);
-    QHBoxLayout * hbox = new QHBoxLayout(hboxWidget);
+    auto * hbox = new QHBoxLayout(hboxWidget);
 
     hbox->setSpacing(6);
 
@@ -105,7 +105,7 @@ SynchronizeDialog::SynchronizeDialog(QWidget* parent,
     cbOverwrite->setChecked(group.readEntry("Confirm overwrites", _ConfirmOverWrites));
     layout->addWidget(cbOverwrite);
 
-    QSpacerItem* spacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    auto* spacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     hbox->addItem(spacer);
 
     btnStart = new QPushButton(hboxWidget);
@@ -119,7 +119,7 @@ SynchronizeDialog::SynchronizeDialog(QWidget* parent,
     btnPause->setIcon(Icon("media-playback-pause"));
     hbox->addWidget(btnPause);
 
-    QPushButton *btnClose = new QPushButton(hboxWidget);
+    auto *btnClose = new QPushButton(hboxWidget);
     btnClose->setText(i18n("&Close"));
     btnClose->setIcon(Icon("dialog-close"));
     hbox->addWidget(btnClose);

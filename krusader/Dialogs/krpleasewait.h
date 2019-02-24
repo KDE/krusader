@@ -43,7 +43,7 @@ public:
 
 public slots:
 
-    void startWaiting(QString msg, int count = 0, bool cancel = false);
+    void startWaiting(const QString& msg, int count = 0, bool cancel = false);
     void stopWait();
     void cycleProgress();
     void incProgress(int i);
@@ -65,7 +65,7 @@ class KRPleaseWait : public QProgressDialog
 {
     Q_OBJECT
 public:
-    KRPleaseWait(QString msg, QWidget *parent, int count = 0 , bool cancel = false);
+    KRPleaseWait(const QString& msg, QWidget *parent, int count = 0 , bool cancel = false);
 
 public slots:
     void incProgress(int howMuch);
@@ -74,7 +74,7 @@ public slots:
 protected:
     bool inc;
     QTimer* timer;
-    virtual void closeEvent(QCloseEvent * e) Q_DECL_OVERRIDE;
+    void closeEvent(QCloseEvent * e) Q_DECL_OVERRIDE;
     bool canClose;
 };
 

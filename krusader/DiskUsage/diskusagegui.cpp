@@ -46,15 +46,15 @@ DiskUsageGUI::DiskUsageGUI(const QUrl &openDir)
 
     baseDirectory = openDir;
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
-    QGridLayout *duGrid = new QGridLayout();
+    auto *duGrid = new QGridLayout();
     duGrid->setSpacing(6);
     duGrid->setContentsMargins(11, 11, 11, 11);
 
     QWidget *duTools = new QWidget(this);
-    QHBoxLayout *duHBox = new QHBoxLayout(duTools);
+    auto *duHBox = new QHBoxLayout(duTools);
     duHBox->setContentsMargins(0, 0, 0, 0);
     duTools->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
@@ -97,8 +97,8 @@ DiskUsageGUI::DiskUsageGUI(const QUrl &openDir)
 
     QWidget *spacerWidget = new QWidget(duTools);
     duHBox->addWidget(spacerWidget);
-    QHBoxLayout *hboxlayout = new QHBoxLayout(spacerWidget);
-    QSpacerItem* spacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    auto *hboxlayout = new QHBoxLayout(spacerWidget);
+    auto* spacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed);
     hboxlayout->addItem(spacer);
 
     duGrid->addWidget(duTools, 0, 0);
@@ -194,7 +194,7 @@ void DiskUsageGUI::slotLoadUsageInfo()
     diskUsage->load(baseDirectory);
 }
 
-void DiskUsageGUI::slotStatus(QString stat)
+void DiskUsageGUI::slotStatus(const QString& stat)
 {
     status->setText(stat);
 }

@@ -73,17 +73,17 @@ class SearchResultContainer : public DirListerInterface
 {
 public:
     explicit SearchResultContainer(QObject *parent) : DirListerInterface(parent) {}
-    virtual ~SearchResultContainer() {
+    ~SearchResultContainer() override {
         clear();
     }
 
-    virtual QList<FileItem *> fileItems() const Q_DECL_OVERRIDE {
+    QList<FileItem *> fileItems() const Q_DECL_OVERRIDE {
         return _fileItems;
     }
-    virtual unsigned long numFileItems() const Q_DECL_OVERRIDE {
+    unsigned long numFileItems() const Q_DECL_OVERRIDE {
         return _fileItems.count();
     }
-    virtual bool isRoot() const Q_DECL_OVERRIDE {
+    bool isRoot() const Q_DECL_OVERRIDE {
         return true;
     }
 
@@ -115,7 +115,7 @@ private:
 };
 
 
-KrSearchDialog *KrSearchDialog::SearchDialog = 0;
+KrSearchDialog *KrSearchDialog::SearchDialog = nullptr;
 
 QString KrSearchDialog::lastSearchText = QString('*');
 int KrSearchDialog::lastSearchType = 0;
@@ -129,21 +129,21 @@ bool KrSearchDialog::lastContainsRegExp = false;
 
 
 // class starts here /////////////////////////////////////////
-KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
-        : QDialog(parent), query(0), searcher(0), isBusy(false), closed(false)
+KrSearchDialog::KrSearchDialog(const QString& profile, QWidget* parent)
+        : QDialog(parent), query(nullptr), searcher(nullptr), isBusy(false), closed(false)
 {
     KConfigGroup group(krConfig, "Search");
 
     setWindowTitle(i18n("Krusader::Search"));
     setWindowIcon(Icon("system-search"));
 
-    QGridLayout* searchBaseLayout = new QGridLayout(this);
+    auto* searchBaseLayout = new QGridLayout(this);
     searchBaseLayout->setSpacing(6);
     searchBaseLayout->setContentsMargins(11, 11, 11, 11);
 
     // creating the dialog buttons ( Search, Stop, Close )
 
-    QHBoxLayout* buttonsLayout = new QHBoxLayout();
+    auto* buttonsLayout = new QHBoxLayout();
     buttonsLayout->setSpacing(6);
     buttonsLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -160,7 +160,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     });
     buttonsLayout->addWidget(searchTextToClipboard);
 
-    QSpacerItem* spacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    auto* spacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     buttonsLayout->addItem(spacer);
 
     mainSearchBtn = new QPushButton(this);
@@ -190,7 +190,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     generalFilter = (GeneralFilter *)filterTabs->get("GeneralFilter");
 
     QWidget* resultTab = new QWidget(searcherTabs);
-    QGridLayout* resultLayout = new QGridLayout(resultTab);
+    auto* resultLayout = new QGridLayout(resultTab);
     resultLayout->setSpacing(6);
     resultLayout->setContentsMargins(6, 6, 6, 6);
 
@@ -218,7 +218,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     foundTextFrame->setFrameShape(QLabel::StyledPanel);
     foundTextFrame->setFrameShadow(QLabel::Sunken);
 
-    QHBoxLayout* foundTextLayout = new QHBoxLayout();
+    auto* foundTextLayout = new QHBoxLayout();
     foundTextLayout->setSpacing(6);
 
     QLabel *textFoundLabel = new QLabel(i18n("Text found:"), resultTab);
@@ -232,7 +232,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     resultLayout->addWidget(foundTextFrame, 2, 0);
 
     // result info row
-    QHBoxLayout* resultLabelLayout = new QHBoxLayout();
+    auto* resultLabelLayout = new QHBoxLayout();
     resultLabelLayout->setSpacing(6);
     resultLabelLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -309,9 +309,9 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 KrSearchDialog::~KrSearchDialog()
 {
     delete query;
-    query = 0;
+    query = nullptr;
     delete resultView;
-    resultView = 0;
+    resultView = nullptr;
 }
 
 void KrSearchDialog::closeDialog(bool isAccept)
@@ -322,9 +322,9 @@ void KrSearchDialog::closeDialog(bool isAccept)
     }
 
     // stop the search if it's on-going
-    if (searcher != 0) {
+    if (searcher != nullptr) {
         delete searcher;
-        searcher = 0;
+        searcher = nullptr;
     }
 
     // saving the searcher state
@@ -348,7 +348,7 @@ void KrSearchDialog::closeDialog(bool isAccept)
     lastFollowSymLinks = generalFilter->followLinks->isChecked();
     hide();
 
-    SearchDialog = 0;
+    SearchDialog = nullptr;
     if (isAccept)
         QDialog::accept();
     else
@@ -380,8 +380,8 @@ bool KrSearchDialog::gui2query()
 {
     // prepare the query ...
     /////////////////// names, locations and greps
-    if (query != 0) {
-        delete query; query = 0;
+    if (query != nullptr) {
+        delete query; query = nullptr;
     }
     query = new KRQuery();
 
@@ -401,7 +401,7 @@ void KrSearchDialog::startSearch()
         KMessageBox::information(this, i18n("Since you chose to also search in archives, "
                                             "note the following limitations:\n"
                                             "You cannot search for text (grep) while doing"
-                                            " a search that includes archives."), 0, "searchInArchives");
+                                            " a search that includes archives."), nullptr, "searchInArchives");
     }
 
     // prepare the gui ///////////////////////////////////////////////
@@ -426,7 +426,7 @@ void KrSearchDialog::startSearch()
     qApp->processEvents();
 
     // start the search.
-    if (searcher != 0)
+    if (searcher != nullptr)
         abort();
     searcher  = new KRSearchMod(query);
     connect(searcher, &KRSearchMod::searching, searchingLabel, &KSqueezedTextLabel::setText);
@@ -438,7 +438,7 @@ void KrSearchDialog::startSearch()
     isBusy = false;
 
     delete searcher;
-    searcher = 0;
+    searcher = nullptr;
 
     // gui stuff
     mainSearchBtn->setEnabled(true);
@@ -454,9 +454,9 @@ void KrSearchDialog::startSearch()
 
 void KrSearchDialog::stopSearch()
 {
-    if (searcher != 0) {
+    if (searcher != nullptr) {
         searcher->stop();
-        disconnect(searcher, 0, 0, 0);
+        disconnect(searcher, nullptr, nullptr, nullptr);
     }
 }
 
@@ -601,7 +601,7 @@ void KrSearchDialog::feedToListBox()
     QString fileSystemName;
     do {
         fileSystemName = i18n("Search results") + QString(" %1").arg(listBoxNum++);
-    } while (virtFilesystem.getFileItem(fileSystemName) != 0);
+    } while (virtFilesystem.getFileItem(fileSystemName) != nullptr);
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");
@@ -644,7 +644,7 @@ void KrSearchDialog::copyToClipBoard()
     if (urls.count() == 0)
         return;
 
-    QMimeData *mimeData = new QMimeData;
+    auto *mimeData = new QMimeData;
     mimeData->setImageData(FileListIcon("file").pixmap());
     mimeData->setUrls(urls);
 

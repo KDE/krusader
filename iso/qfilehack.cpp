@@ -21,16 +21,14 @@
 #include "qfilehack.h"
 
 QFileHack::QFileHack()
-{
-}
+= default;
 
 QFileHack::QFileHack(const QString & name) : QFile(name)
 {
 }
 
 QFileHack::~QFileHack()
-{
-}
+= default;
 
 bool QFileHack::open(QFile::OpenMode m)
 {

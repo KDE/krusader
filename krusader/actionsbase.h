@@ -47,26 +47,26 @@ protected:
         void addAction(QAction *action, const char *slot);
     };
 
-    QAction *createAction(QString text, QString icon, bool isToggleAction);
+    QAction *createAction(const QString& text, const QString& icon, bool isToggleAction);
 
-    QAction *action(QString text, QString icon, QKeySequence shortcut,
-                    QObject *recv, const char *slot, QString name, bool isToggleAction = false);
+    QAction *action(QString text, QString icon, const QKeySequence& shortcut,
+                    QObject *recv, const char *slot, const QString& name, bool isToggleAction = false);
     QAction *action(QString text, QString icon, QKeySequence shortcut,
                     const char *slot, QString name) {
         return action(text, icon, shortcut, this, slot, name);
     }
     QAction *action(QString text, QString icon, const QList<QKeySequence> &shortcuts,
-                    QObject *recv, const char *slot, QString name, bool isToggleAction = false);
-    QAction *action(QString text, QString icon, QKeySequence shortcut,
-                    ActionGroup &group, const char *slot, QString name, bool isToggleAction = false);
+                    QObject *recv, const char *slot, const QString& name, bool isToggleAction = false);
+    QAction *action(QString text, QString icon, const QKeySequence& shortcut,
+                    ActionGroup &group, const char *slot, const QString& name, bool isToggleAction = false);
 
-    KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,
+    KToggleAction *toggleAction(QString text, QString icon, const QKeySequence& shortcut,
                                 QObject *recv, const char *slot, QString name);
     KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,
                                 const char *slot, QString name) {
         return toggleAction(text, icon, shortcut, this, slot, name);
     }
-    KToggleAction *toggleAction(QString text, QString icon, QKeySequence shortcut,
+    KToggleAction *toggleAction(QString text, QString icon, const QKeySequence& shortcut,
                                 ActionGroup &group, const char *slot, QString name);
 
     QAction *stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot);

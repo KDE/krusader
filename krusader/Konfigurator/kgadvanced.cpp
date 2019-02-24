@@ -34,7 +34,7 @@ KgAdvanced::KgAdvanced(bool first, QWidget* parent) :
     QWidget *innerWidget = new QFrame(this);
     setWidget(innerWidget);
     setWidgetResizable(true);
-    QGridLayout *kgAdvancedLayout = new QGridLayout(innerWidget);
+    auto *kgAdvancedLayout = new QGridLayout(innerWidget);
     kgAdvancedLayout->setSpacing(6);
 
     //  -------------------------- GENERAL GROUPBOX ----------------------------------

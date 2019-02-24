@@ -85,8 +85,8 @@
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
 ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
-        panel(parent), fileSystemP(0), urlManuallyEntered(false),
-        _isPaused(true), _refreshAfterPaused(true), _quickSizeCalculator(0)
+        panel(parent), fileSystemP(nullptr), urlManuallyEntered(false),
+        _isPaused(true), _refreshAfterPaused(true), _quickSizeCalculator(nullptr)
 {
     history = new DirHistoryQueue(panel);
     delayTimer.setSingleShot(true);
@@ -122,7 +122,7 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExe
     }
 
     FileItem *fileitem = files()->getFileItem(name);
-    if (fileitem == 0)
+    if (fileitem == nullptr)
         return;
 
     QUrl url = files()->getUrl(name);
@@ -275,10 +275,10 @@ void ListPanelFunc::doRefresh()
     fileSystem->setParentWindow(krMainWindow);
     connect(fileSystem, &FileSystem::aboutToOpenDir, &krMtMan, &KMountMan::autoMount, Qt::DirectConnection);
     if (fileSystem != fileSystemP) {
-        panel->view->setFiles(0);
+        panel->view->setFiles(nullptr);
 
         // disconnect older signals
-        disconnect(fileSystemP, 0, panel, 0);
+        disconnect(fileSystemP, nullptr, panel, nullptr);
 
         fileSystemP->deleteLater();
         fileSystemP = fileSystem; // v != 0 so this is safe
@@ -290,7 +290,7 @@ void ListPanelFunc::doRefresh()
         }
     }
     // (re)connect filesystem signals
-    disconnect(files(), 0, panel, 0);
+    disconnect(files(), nullptr, panel, nullptr);
     connect(files(), &DirListerInterface::scanDone, panel, &ListPanel::slotStartUpdate);
     connect(files(), &FileSystem::fileSystemInfoChanged, panel, &ListPanel::updateFilesystemStats);
     connect(files(), &FileSystem::refreshJobStarted, panel, &ListPanel::slotRefreshJobStarted);
@@ -413,7 +413,7 @@ void ListPanelFunc::krlink(bool sym)
         return;
 
     // if the name is already taken - quit
-    if (files()->getFileItem(linkName) != 0) {
+    if (files()->getFileItem(linkName) != nullptr) {
         KMessageBox::sorry(krMainWindow, i18n("A folder or a file with this name already exists."));
         return;
     }
@@ -447,7 +447,7 @@ void ListPanelFunc::view()
     if (!fileitem || fileitem->isDir())
         return;
     if (!fileitem->isReadable()) {
-        KMessageBox::sorry(0, i18n("No permissions to view this file."));
+        KMessageBox::sorry(nullptr, i18n("No permissions to view this file."));
         return;
     }
     // call KViewer.
@@ -491,7 +491,7 @@ void ListPanelFunc::edit()
     }
 
     if (!tmp.isReadable()) {
-        KMessageBox::sorry(0, i18n("No permissions to edit this file."));
+        KMessageBox::sorry(nullptr, i18n("No permissions to edit this file."));
         fileToCreate = QUrl();
         return;
     }
@@ -516,11 +516,11 @@ void ListPanelFunc::editNew()
     if(f.exists()) {
         edit();
     } else {
-        QTemporaryFile *tempFile = new QTemporaryFile;
+        auto *tempFile = new QTemporaryFile;
         tempFile->open();
 
         KIO::CopyJob *job = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), fileToCreate);
-        job->setUiDelegate(0);
+        job->setUiDelegate(nullptr);
         job->setDefaultPermissions(true);
         connect(job, &KIO::CopyJob::result, this, &ListPanelFunc::slotFileCreated);
         connect(job, &KIO::CopyJob::result, tempFile, &QTemporaryFile::deleteLater);
@@ -716,7 +716,7 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
                                            bool virtualFS, bool showPath)
 {
     QStringList files;
-    for (QUrl fileUrl : urls) {
+    for (const QUrl& fileUrl : urls) {
         files.append(showPath ? fileUrl.toDisplayString(QUrl::PreferLocalFile) : fileUrl.fileName());
     }
 
@@ -756,7 +756,7 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
     QList<QUrl> toDelete;
     if (emptyDirVerify) {
         QSet<QUrl> confirmedFiles = urls.toSet();
-        for (QUrl fileUrl : urls) {
+        for (const QUrl& fileUrl : urls) {
             if (!fileUrl.isLocalFile()) {
                 continue; // TODO only local fs supported
             }
@@ -816,7 +816,7 @@ void ListPanelFunc::removeVirtualFiles()
                                                KStandardGuiItem::remove()) != KMessageBox::Continue)
         return;
 
-    VirtualFileSystem *fileSystem = static_cast<VirtualFileSystem*>(files());
+    auto *fileSystem = dynamic_cast<VirtualFileSystem*>(files());
     fileSystem->remove(fileNames);
 }
 
@@ -825,16 +825,16 @@ void ListPanelFunc::goInside(const QString& name)
     openFileNameInternal(name, false);
 }
 
-void ListPanelFunc::runCommand(QString cmd)
+void ListPanelFunc::runCommand(const QString& cmd)
 {
     qDebug() << "command=" << cmd;
     const QString workdir = panel->virtualPath().isLocalFile() ?
             panel->virtualPath().path() : QDir::homePath();
     if(!KRun::runCommand(cmd, krMainWindow, workdir))
-        KMessageBox::error(0, i18n("Could not start %1", cmd));
+        KMessageBox::error(nullptr, i18n("Could not start %1", cmd));
 }
 
-void ListPanelFunc::runService(const KService &service, QList<QUrl> urls)
+void ListPanelFunc::runService(const KService &service, const QList<QUrl>& urls)
 {
     qDebug() << "service name=" << service.name();
     KIO::DesktopExecParser parser(service, urls);
@@ -842,10 +842,10 @@ void ListPanelFunc::runService(const KService &service, QList<QUrl> urls)
     if (!args.isEmpty())
         runCommand(KShell::joinArgs(args));
     else
-        KMessageBox::error(0, i18n("%1 cannot open %2", service.name(), KrServices::toStringList(urls).join(", ")));
+        KMessageBox::error(nullptr, i18n("%1 cannot open %2", service.name(), KrServices::toStringList(urls).join(", ")));
 }
 
-void ListPanelFunc::displayOpenWithDialog(QList<QUrl> urls)
+void ListPanelFunc::displayOpenWithDialog(const QList<QUrl>& urls)
 {
     // NOTE: we are not using KRun::displayOpenWithDialog() because we want the commands working
     // directory to be the panel directory
@@ -1044,7 +1044,7 @@ void ListPanelFunc::quickCalcSpace()
 
 SizeCalculator *ListPanelFunc::createAndConnectSizeCalculator(const QList<QUrl> &urls)
 {
-    SizeCalculator *sizeCalculator = new SizeCalculator(urls);
+    auto *sizeCalculator = new SizeCalculator(urls);
     connect(sizeCalculator, &SizeCalculator::calculated, this, &ListPanelFunc::slotSizeCalculated);
     connect(sizeCalculator, &SizeCalculator::finished, panel, &ListPanel::slotUpdateTotals);
     connect(this, &ListPanelFunc::destroyed, sizeCalculator, &SizeCalculator::deleteLater);
@@ -1094,7 +1094,7 @@ void ListPanelFunc::properties()
 
     KFileItemList fileItems;
 
-    for (const QString name : names) {
+    for (const QString& name : names) {
         FileItem *fileitem = files()->getFileItem(name);
         if (!fileitem) {
             continue;
@@ -1107,7 +1107,7 @@ void ListPanelFunc::properties()
         return;
 
     // Show the properties dialog
-    KPropertiesDialog *dialog = new KPropertiesDialog(fileItems, krMainWindow);
+    auto *dialog = new KPropertiesDialog(fileItems, krMainWindow);
     connect(dialog, &KPropertiesDialog::applied, this, &ListPanelFunc::refresh);
     dialog->show();
 }
@@ -1177,8 +1177,8 @@ FileItem *ListPanelFunc::getFileItem(KrViewItem *item)
 void ListPanelFunc::clipboardChanged(QClipboard::Mode mode)
 {
     if (mode == QClipboard::Clipboard && this == copyToClipboardOrigin) {
-        disconnect(QApplication::clipboard(), 0, this, 0);
-        copyToClipboardOrigin = 0;
+        disconnect(QApplication::clipboard(), nullptr, this, nullptr);
+        copyToClipboardOrigin = nullptr;
     }
 }
 
@@ -1189,12 +1189,12 @@ void ListPanelFunc::copyToClipboard(bool move)
         return ;  // safety
 
     QList<QUrl> fileUrls = files()->getUrls(fileNames);
-    QMimeData *mimeData = new QMimeData;
+    auto *mimeData = new QMimeData;
     mimeData->setData("application/x-kde-cutselection", move ? "1" : "0");
     mimeData->setUrls(fileUrls);
 
     if (copyToClipboardOrigin)
-        disconnect(QApplication::clipboard(), 0, copyToClipboardOrigin, 0);
+        disconnect(QApplication::clipboard(), nullptr, copyToClipboardOrigin, nullptr);
     copyToClipboardOrigin = this;
 
     QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);
@@ -1206,12 +1206,12 @@ void ListPanelFunc::pasteFromClipboard()
 {
     QClipboard * cb = QApplication::clipboard();
 
-    ListPanelFunc *origin = 0;
+    ListPanelFunc *origin = nullptr;
 
     if (copyToClipboardOrigin) {
-        disconnect(QApplication::clipboard(), 0, copyToClipboardOrigin, 0);
+        disconnect(QApplication::clipboard(), nullptr, copyToClipboardOrigin, nullptr);
         origin = copyToClipboardOrigin;
-        copyToClipboardOrigin = 0;
+        copyToClipboardOrigin = nullptr;
     }
 
     bool move = false;
@@ -1228,7 +1228,7 @@ void ListPanelFunc::pasteFromClipboard()
 
     if(origin && KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         origin->panel->view->saveSelection();
-        for(KrViewItem *item = origin->panel->view->getFirst(); item != 0; item = origin->panel->view->getNext(item)) {
+        for(KrViewItem *item = origin->panel->view->getFirst(); item != nullptr; item = origin->panel->view->getNext(item)) {
             if (urls.contains(item->getFileItem()->getUrl()))
                 item->setSelected(false);
         }

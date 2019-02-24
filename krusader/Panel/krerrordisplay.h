@@ -35,7 +35,7 @@ class KrErrorDisplay: public QLabel
 public:
     explicit KrErrorDisplay(QWidget *parent);
 
-    void setText(QString text);
+    void setText(const QString& text);
 
 private slots:
     void slotTimeout();

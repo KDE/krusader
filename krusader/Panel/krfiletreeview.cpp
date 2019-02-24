@@ -56,7 +56,7 @@ public:
     KrDirModel(QWidget *parent, KrFileTreeView *ftv) : KDirModel(parent), fileTreeView(ftv) {}
 
 protected:
-    virtual Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE
+    Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE
     {
         Qt::ItemFlags itflags = KDirModel::flags(index);
         if (index.column() != KDirModel::Name)
@@ -85,8 +85,7 @@ public:
 };
 
 KrFileTreeView::KrFileTreeView(QWidget *parent)
-    : QTreeView(parent), mCurrentUrl(),
-      mCurrentTreeBase(), mStartTreeFromCurrent(false), mStartTreeFromPlace(true)
+    : QTreeView(parent), mStartTreeFromCurrent(false), mStartTreeFromPlace(true)
 {
     mSourceModel = new KrDirModel(this, this);
     mSourceModel->dirLister()->setDirOnlyMode(true);
@@ -199,7 +198,7 @@ void KrFileTreeView::showHeaderContextMenu()
     showHiddenAction->setToolTip(i18n("Show folders starting with a dot"));
 
     popup.addSeparator();
-    QActionGroup *rootActionGroup = new QActionGroup(this);
+    auto *rootActionGroup = new QActionGroup(this);
 
     QAction *startFromRootAction = popup.addAction(i18n("Start From Root"));
     startFromRootAction->setCheckable(true);
@@ -241,7 +240,7 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
     const KFileItem fileItem = mSourceModel->itemForIndex(mProxyModel->mapToSource(index));
     const KFileItemListProperties capabilities(KFileItemList() << fileItem);
 
-    QMenu* popup = new QMenu(this);
+    auto* popup = new QMenu(this);
 
     // TODO nice to have: "open with"
 
@@ -314,7 +313,7 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
 
 void KrFileTreeView::copyToClipBoard(const KFileItem &fileItem, bool cut) const
 {
-    QMimeData* mimeData = new QMimeData();
+    auto* mimeData = new QMimeData();
 
     QList<QUrl> kdeUrls;
     kdeUrls.append(fileItem.url());

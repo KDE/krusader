@@ -39,7 +39,7 @@ KrErrorDisplay::KrErrorDisplay(QWidget *parent) :
     connect(&_dimTimer, &QTimer::timeout, this, &KrErrorDisplay::slotTimeout);
 }
 
-void KrErrorDisplay::setText(QString text)
+void KrErrorDisplay::setText(const QString& text)
 {
     QLabel::setText(text);
     _currentDim = 100;

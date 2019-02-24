@@ -77,7 +77,7 @@ static const unsigned char zisofs_magic[8] = {
 kio_isoProtocol::kio_isoProtocol(const QByteArray &pool, const QByteArray &app) : SlaveBase("iso", pool, app)
 {
     //qDebug() << "kio_isoProtocol::kio_isoProtocol" << endl;
-    m_isoFile = 0L;
+    m_isoFile = nullptr;
 }
 
 kio_isoProtocol::~kio_isoProtocol()
@@ -115,7 +115,7 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString & path, int startse
     if (m_isoFile) {
         m_isoFile->close();
         delete m_isoFile;
-        m_isoFile = 0L;
+        m_isoFile = nullptr;
     }
 
     // Find where the iso file is in the full path
@@ -174,7 +174,7 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString & path, int startse
     if (!m_isoFile->open(QIODevice::ReadOnly)) {
         //qDebug()   << "Opening " << isoFile << " failed." << endl;
         delete m_isoFile;
-        m_isoFile = 0L;
+        m_isoFile = nullptr;
         return false;
     }
 
@@ -234,7 +234,7 @@ void kio_isoProtocol::listDir(const QUrl &url)
         finished();
         // And let go of the iso file - for people who want to unmount a cdrom after that
         delete m_isoFile;
-        m_isoFile = 0L;
+        m_isoFile = nullptr;
         return;
     }
 
@@ -316,7 +316,7 @@ void kio_isoProtocol::stat(const QUrl &url)
 
         // And let go of the iso file - for people who want to unmount a cdrom after that
         delete m_isoFile;
-        m_isoFile = 0L;
+        m_isoFile = nullptr;
         return;
     }
 
@@ -342,7 +342,7 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
     unsigned long long size, pos = 0;
     bool mime = false, zlib = false;
     QByteArray fileData, pointer_block, inbuf, outbuf;
-    char *pptr = 0;
+    char *pptr = nullptr;
     compressed_file_header *hdr;
     int block_shift;
     unsigned long nblocks;
@@ -492,7 +492,7 @@ void kio_isoProtocol::get(const QUrl &url)
         return;
     }
 
-    const KIsoFile* isoFileEntry = static_cast<const KIsoFile *>(isoEntry);
+    const auto* isoFileEntry = dynamic_cast<const KIsoFile *>(isoEntry);
     if (!isoEntry->symLinkTarget().isEmpty()) {
         //qDebug() << "Redirection to " << isoEntry->symLinkTarget() << endl;
         QUrl realURL = QUrl(url).resolved(QUrl(isoEntry->symLinkTarget()));

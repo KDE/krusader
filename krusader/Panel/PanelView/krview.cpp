@@ -56,7 +56,7 @@
 
 #define FILEITEM getFileItem()
 
-KrView *KrViewOperator::_changedView = 0;
+KrView *KrViewOperator::_changedView = nullptr;
 KrViewProperties::PropertyType KrViewOperator::_changedProperties = KrViewProperties::NoProperty;
 
 
@@ -101,7 +101,7 @@ void KrViewOperator::startDrag()
     if (items.empty())
         return ; // don't drag an empty thing
     QPixmap px;
-    if (items.count() > 1 || _view->getCurrentKrViewItem() == 0)
+    if (items.count() > 1 || _view->getCurrentKrViewItem() == nullptr)
         px = FileListIcon("document-multiple").pixmap();  // we are dragging multiple items
     else
         px = _view->getCurrentKrViewItem()->icon();
@@ -174,7 +174,7 @@ void KrViewOperator::saveDefaultSettings()
     if(_changedView)
         _changedView->saveDefaultSettings(_changedProperties);
     _changedProperties = KrViewProperties::NoProperty;
-    _changedView = 0;
+    _changedView = nullptr;
 }
 
 // ----------------------------- krview
@@ -182,10 +182,10 @@ void KrViewOperator::saveDefaultSettings()
 const KrView::IconSizes KrView::iconSizes;
 
 KrView::KrView(KrViewInstance &instance, KConfig *cfg)
-    : _config(cfg), _properties(0), _focused(false), _fileIconSize(0),
-      _instance(instance), _files(0), _mainWindow(0), _widget(0), _nameToMakeCurrent(QString()),
-      _previews(0), _updateDefaultSettings(false), _ignoreSettingsChange(false), _count(0),
-      _numDirs(0), _dummyFileItem(0)
+    : _config(cfg), _properties(nullptr), _focused(false), _fileIconSize(0),
+      _instance(instance), _files(nullptr), _mainWindow(nullptr), _widget(nullptr), _nameToMakeCurrent(QString()),
+      _previews(nullptr), _updateDefaultSettings(false), _ignoreSettingsChange(false), _count(0),
+      _numDirs(0), _dummyFileItem(nullptr)
 {
 }
 
@@ -193,9 +193,9 @@ KrView::~KrView()
 {
     _instance.m_objects.removeOne(this);
     delete _previews;
-    _previews = 0;
+    _previews = nullptr;
     delete _dummyFileItem;
-    _dummyFileItem = 0;
+    _dummyFileItem = nullptr;
     if (_properties)
         qFatal("A class inheriting KrView didn't delete _properties!");
     if (_operator)
@@ -236,7 +236,7 @@ void KrView::initProperties()
         sortOps |= KrViewProperties::IgnoreCase;
     if (grpSvr.readEntry("Locale Aware Sort", true))
         sortOps |= KrViewProperties::LocaleAwareSort;
-    KrViewProperties::SortOptions sortOptions = static_cast<KrViewProperties::SortOptions>(sortOps);
+    auto sortOptions = static_cast<KrViewProperties::SortOptions>(sortOps);
 
     KrViewProperties::SortMethod sortMethod = static_cast<KrViewProperties::SortMethod>(
         grpSvr.readEntry("Sort method", (int)_DefaultSortMethod));
@@ -278,7 +278,7 @@ void KrView::showPreviews(bool show)
         }
     } else {
         delete _previews;
-        _previews = 0;
+        _previews = nullptr;
     }
     redraw();
 //     op()->settingsChanged(KrViewProperties::PropShowPreviews);
@@ -368,9 +368,9 @@ QPixmap KrView::getIcon(FileItem *fileitem)
  * this function ADDs a list of selected item names into 'names'.
  * it assumes the list is ready and doesn't initialize it, or clears it
  */
-void KrView::getItemsByMask(QString mask, QStringList* names, bool dirs, bool files)
+void KrView::getItemsByMask(const QString& mask, QStringList* names, bool dirs, bool files)
 {
-    for (KrViewItem * it = getFirst(); it != 0; it = getNext(it)) {
+    for (KrViewItem * it = getFirst(); it != nullptr; it = getNext(it)) {
         if ((it->name() == "..") || !QDir::match(mask, it->name())) continue;
         // if we got here, than the item fits the mask
         if (it->getFileItem()->isDir() && !dirs) continue;   // do we need to skip folders?
@@ -385,7 +385,7 @@ void KrView::getItemsByMask(QString mask, QStringList* names, bool dirs, bool fi
  */
 void KrView::getSelectedItems(QStringList *names, bool fallbackToFocused)
 {
-    for (KrViewItem *it = getFirst(); it != 0; it = getNext(it))
+    for (KrViewItem *it = getFirst(); it != nullptr; it = getNext(it))
         if (it->isSelected() && (it->name() != ".."))
             names->append(it->name());
 
@@ -400,7 +400,7 @@ void KrView::getSelectedItems(QStringList *names, bool fallbackToFocused)
 
 void KrView::getSelectedKrViewItems(KrViewItemList *items)
 {
-    for (KrViewItem * it = getFirst(); it != 0; it = getNext(it))
+    for (KrViewItem * it = getFirst(); it != nullptr; it = getNext(it))
         if (it->isSelected() && (it->name() != "..")) items->append(it);
 
     // if all else fails, take the current item
@@ -408,7 +408,7 @@ void KrView::getSelectedKrViewItems(KrViewItemList *items)
     if (items->empty() &&
             !item.isEmpty() &&
             item != ".." &&
-            getCurrentKrViewItem() != 0) {
+            getCurrentKrViewItem() != nullptr) {
         items->append(getCurrentKrViewItem());
     }
 }
@@ -453,15 +453,15 @@ bool KrView::changeSelection(const KRQuery& filter, bool select, bool includeDir
     if (op()) op()->setMassSelectionUpdate(true);
 
     KrViewItem *temp = getCurrentKrViewItem();
-    KrViewItem *firstMatch = 0;
-    for (KrViewItem * it = getFirst(); it != 0; it = getNext(it)) {
+    KrViewItem *firstMatch = nullptr;
+    for (KrViewItem * it = getFirst(); it != nullptr; it = getNext(it)) {
         if (it->name() == "..")
             continue;
         if (it->getFileItem()->isDir() && !includeDirs)
             continue;
 
         FileItem * file = it->getMutableFileItem(); // filter::match calls getMimetype which isn't const
-        if (file == 0)
+        if (file == nullptr)
             continue;
 
         if (filter.match(file)) {
@@ -472,9 +472,9 @@ bool KrView::changeSelection(const KRQuery& filter, bool select, bool includeDir
 
     if (op()) op()->setMassSelectionUpdate(false);
     updateView();
-    if (ensureVisibilityAfterSelect() && temp != 0) {
+    if (ensureVisibilityAfterSelect() && temp != nullptr) {
         makeItemVisible(temp);
-    } else if (makeVisible && firstMatch != 0) {
+    } else if (makeVisible && firstMatch != nullptr) {
         // if no selected item is visible...
         KrViewItemList selectedItems;
         getSelectedKrViewItems(&selectedItems);
@@ -492,7 +492,7 @@ bool KrView::changeSelection(const KRQuery& filter, bool select, bool includeDir
     }
     redraw();
 
-    return firstMatch != 0; // return if any file was selected
+    return firstMatch != nullptr; // return if any file was selected
 }
 
 void KrView::invertSelection()
@@ -502,7 +502,7 @@ void KrView::invertSelection()
     bool markDirs = grpSvr.readEntry("Mark Dirs", _MarkDirs);
 
     KrViewItem *temp = getCurrentKrViewItem();
-    for (KrViewItem * it = getFirst(); it != 0; it = getNext(it)) {
+    for (KrViewItem * it = getFirst(); it != nullptr; it = getNext(it)) {
         if (it->name() == "..")
             continue;
         if (it->getFileItem()->isDir() && !markDirs && !it->isSelected())
@@ -511,13 +511,13 @@ void KrView::invertSelection()
     }
     if (op()) op()->setMassSelectionUpdate(false);
     updateView();
-    if (ensureVisibilityAfterSelect() && temp != 0)
+    if (ensureVisibilityAfterSelect() && temp != nullptr)
         makeItemVisible(temp);
 }
 
 QString KrView::firstUnmarkedBelowCurrent(const bool skipCurrent)
 {
-    if (getCurrentKrViewItem() == 0)
+    if (getCurrentKrViewItem() == nullptr)
         return QString();
 
     KrViewItem *iterator = getCurrentKrViewItem();
@@ -610,7 +610,7 @@ void KrView::clear()
         _previews->clear();
     _count = _numDirs = 0;
     delete _dummyFileItem;
-    _dummyFileItem = 0;
+    _dummyFileItem = nullptr;
     redraw();
 }
 
@@ -625,7 +625,7 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
             e->ignore();
         else {
             KrViewItem * i = getCurrentKrViewItem();
-            if (i == 0)
+            if (i == nullptr)
                 return true;
             QString tmp = i->name();
             op()->emitExecuted(tmp);
@@ -667,7 +667,7 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
     }
     case Qt::Key_Space: {
         KrViewItem * viewItem = getCurrentKrViewItem();
-        if (viewItem != 0) {
+        if (viewItem != nullptr) {
             viewItem->setSelected(!viewItem->isSelected());
 
             if (viewItem->getFileItem()->isDir() &&
@@ -752,7 +752,7 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         if (e->modifiers() & Qt::ShiftModifier) {
             bool select = true;
             KrViewItem *pos = getCurrentKrViewItem();
-            if (pos == 0)
+            if (pos == nullptr)
                 pos = getLast();
             KrViewItem *item = getFirst();
             op()->setMassSelectionUpdate(true);
@@ -775,7 +775,7 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         if (e->modifiers() & Qt::ShiftModifier) {
             bool select = false;
             KrViewItem *pos = getCurrentKrViewItem();
-            if (pos == 0)
+            if (pos == nullptr)
                 pos = getFirst();
             op()->setMassSelectionUpdate(true);
             KrViewItem *item = getFirst();
@@ -799,7 +799,7 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         int downStep = itemsPerPage();
         while (downStep != 0 && current) {
             KrViewItem * newCurrent = getNext(current);
-            if (newCurrent == 0)
+            if (newCurrent == nullptr)
                 break;
             current = newCurrent;
             downStep--;
@@ -815,7 +815,7 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         int upStep = itemsPerPage();
         while (upStep != 0 && current) {
             KrViewItem * newCurrent = getPrev(current);
-            if (newCurrent == 0)
+            if (newCurrent == nullptr)
                 break;
             current = newCurrent;
             upStep--;
@@ -905,7 +905,7 @@ void KrView::saveSettings(KConfigGroup group, KrViewProperties::PropertyType pro
     }
 }
 
-void KrView::restoreSettings(KConfigGroup group)
+void KrView::restoreSettings(const KConfigGroup& group)
 {
     _ignoreSettingsChange = true;
     doRestoreSettings(group);
@@ -927,8 +927,7 @@ void KrView::doRestoreSettings(KConfigGroup group)
 
 void KrView::applySettingsToOthers()
 {
-    for(int i = 0; i < _instance.m_objects.length(); i++) {
-        KrView *view = _instance.m_objects[i];
+    for(auto view : _instance.m_objects) {
         if(this != view) {
             view->_ignoreSettingsChange = true;
             view->copySettingsFrom(this);
@@ -1048,21 +1047,21 @@ void KrView::setFiles(DirListerInterface *files)
     if(files != _files) {
         clear();
         if(_files)
-            QObject::disconnect(_files, 0, op(), 0);
+            QObject::disconnect(_files, nullptr, op(), nullptr);
         _files = files;
     }
 
     if(!_files)
         return;
 
-    QObject::disconnect(_files, 0, op(), 0);
+    QObject::disconnect(_files, nullptr, op(), nullptr);
     QObject::connect(_files, &DirListerInterface::scanDone, op(), &KrViewOperator::startUpdate);
     QObject::connect(_files, &DirListerInterface::cleared, op(), &KrViewOperator::cleared);
     QObject::connect(_files, &DirListerInterface::addedFileItem, op(), &KrViewOperator::fileAdded);
     QObject::connect(_files, &DirListerInterface::updatedFileItem, op(), &KrViewOperator::fileUpdated);
 }
 
-void KrView::setFilter(KrViewProperties::FilterSpec filter, FilterSettings customFilter, bool applyToDirs)
+void KrView::setFilter(KrViewProperties::FilterSpec filter, const FilterSettings& customFilter, bool applyToDirs)
 {
     _properties->filter = filter;
     _properties->filterSettings = customFilter;
@@ -1108,7 +1107,7 @@ void KrView::customSelection(bool select)
     KConfigGroup grpSvr(_config, "Look&Feel");
     bool includeDirs = grpSvr.readEntry("Mark Dirs", _MarkDirs);
 
-    FilterDialog dialog(0, i18n("Select Files"), QStringList(i18n("Apply selection to folders")), false);
+    FilterDialog dialog(nullptr, i18n("Select Files"), QStringList(i18n("Apply selection to folders")), false);
     dialog.checkExtraOption(i18n("Apply selection to folders"), includeDirs);
     dialog.exec();
     KRQuery query = dialog.getQuery();

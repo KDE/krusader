@@ -48,16 +48,16 @@ class KrBookmarkHandler: public QObject
     enum Actions { BookmarkCurrent = 0, ManageBookmarks };
 public:
     explicit KrBookmarkHandler(KrMainWindow *mainWindow);
-    ~KrBookmarkHandler();
+    ~KrBookmarkHandler() override;
     void populate(QMenu *menu);
-    void addBookmark(KrBookmark *bm, KrBookmark *parent = 0);
+    void addBookmark(KrBookmark *bm, KrBookmark *parent = nullptr);
     void bookmarkCurrent(QUrl url);
 
 protected:
     void deleteBookmark(KrBookmark *bm);
     void importFromFile();
-    bool importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString path, QString *errorMsg);
-    bool importFromFileFolder(QDomNode &first, KrBookmark *parent, QString path, QString *errorMsg);
+    bool importFromFileBookmark(QDomElement &e, KrBookmark *parent, const QString& path, QString *errorMsg);
+    bool importFromFileFolder(QDomNode &first, KrBookmark *parent, const QString& path, QString *errorMsg);
     void exportToFile();
     void exportToFileFolder(QDomDocument &doc, QDomElement &parent, KrBookmark *folder);
     void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);

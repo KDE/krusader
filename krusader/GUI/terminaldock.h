@@ -46,15 +46,15 @@ class TerminalDock : public QWidget
     Q_OBJECT
 public:
     TerminalDock(QWidget* parent, KrMainWindow *mainWindow);
-    virtual ~TerminalDock();
+    ~TerminalDock() override;
     void sendInput(const QString& input, bool clearCommand=true);
     void sendCd(const QString& path);
-    virtual bool eventFilter(QObject * watched, QEvent * e) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject * watched, QEvent * e) Q_DECL_OVERRIDE;
     bool isTerminalVisible() const;
     bool isInitialised() const;
     bool initialise();
-    virtual void hideEvent(QHideEvent * e) Q_DECL_OVERRIDE;
-    virtual void showEvent(QShowEvent * e) Q_DECL_OVERRIDE;
+    void hideEvent(QHideEvent * e) Q_DECL_OVERRIDE;
+    void showEvent(QShowEvent * e) Q_DECL_OVERRIDE;
     inline KParts::Part* part() {
         return konsole_part;
     }

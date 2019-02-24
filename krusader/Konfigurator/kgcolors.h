@@ -37,9 +37,9 @@ class KgColors : public KonfiguratorPage
     Q_OBJECT
 
 public:
-    explicit KgColors(bool first, QWidget* parent = 0);
+    explicit KgColors(bool first, QWidget* parent = nullptr);
 
-    virtual bool apply() Q_DECL_OVERRIDE;
+    bool apply() Q_DECL_OVERRIDE;
 
 public slots:
     void slotDisable();
@@ -61,10 +61,10 @@ protected slots:
 private:
     class PreviewItem;
 
-    int                        addColorSelector(QString cfgName, QString name, QColor defaultValue, QString dfltName = QString(),
-            ADDITIONAL_COLOR *addColor = 0, int addColNum = 0);
-    KonfiguratorColorChooser  *getColorSelector(QString name);
-    QLabel                    *getSelectorLabel(QString name);
+    int                        addColorSelector(const QString& cfgName, QString name, QColor defaultValue, const QString& dfltName = QString(),
+            ADDITIONAL_COLOR *addColor = nullptr, int addColNum = 0);
+    KonfiguratorColorChooser  *getColorSelector(const QString& name);
+    QLabel                    *getSelectorLabel(const QString& name);
     void                       serialize(class QDataStream &);
     void                       deserialize(class QDataStream &);
     void                       serializeItem(class QDataStream &, const char * name);
@@ -108,7 +108,8 @@ private:
         QString label;
 
     public:
-        PreviewItem(QTreeWidget * parent, QString name) : QTreeWidgetItem() {
+        PreviewItem(QTreeWidget * parent, const QString& name)
+        {
             setText(0, name);
             defaultBackground = QColor(255, 255, 255);
             defaultForeground = QColor(0, 0, 0);
@@ -116,7 +117,7 @@ private:
             parent->insertTopLevelItem(0, this);
         }
 
-        void setColor(QColor foregnd, QColor backgnd) {
+        void setColor(const QColor& foregnd, const QColor& backgnd) {
             defaultForeground = foregnd;
             defaultBackground = backgnd;
 

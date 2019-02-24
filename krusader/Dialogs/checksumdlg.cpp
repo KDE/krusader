@@ -72,7 +72,7 @@ QStringList listFiles(const QString &path, const QStringList &fileNames)
 {
     const QDir baseDir(path);
     QStringList allFiles;
-    for (const QString fileName : fileNames) {
+    for (const QString& fileName : fileNames) {
         if (stopListFiles)
             return QStringList();
 
@@ -116,21 +116,21 @@ ChecksumProcess::ChecksumProcess(QObject *parent, const QString &path) : KProces
 
 ChecksumProcess::~ChecksumProcess()
 {
-    disconnect(this, 0, this, 0); // QProcess emits finished() on destruction
+    disconnect(this, nullptr, this, nullptr); // QProcess emits finished() on destruction
     close();
 }
 
 void ChecksumProcess::slotError(QProcess::ProcessError error)
 {
     if (error == QProcess::FailedToStart) {
-        KMessageBox::error(0, i18n("<qt>Could not start <b>%1</b>.</qt>", program().join(" ")));
+        KMessageBox::error(nullptr, i18n("<qt>Could not start <b>%1</b>.</qt>", program().join(" ")));
     }
 }
 
 void ChecksumProcess::slotFinished(int, QProcess::ExitStatus exitStatus)
 {
     if (exitStatus != QProcess::NormalExit) {
-        KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.</qt>",
+        KMessageBox::error(nullptr, i18n("<qt>There was an error while running <b>%1</b>.</qt>",
                                    program().join(" ")));
         return;
     }
@@ -138,7 +138,7 @@ void ChecksumProcess::slotFinished(int, QProcess::ExitStatus exitStatus)
     // parse result files
     if (!KrServices::fileToStringList(&m_tmpOutFile, m_outputLines) ||
         !KrServices::fileToStringList(&m_tmpErrFile, m_errorLines)) {
-        KMessageBox::error(0, i18n("Error reading stdout or stderr"));
+        KMessageBox::error(nullptr, i18n("Error reading stdout or stderr"));
         return;
     }
     emit resultReady();
@@ -146,7 +146,7 @@ void ChecksumProcess::slotFinished(int, QProcess::ExitStatus exitStatus)
 
 // ------------- Generic Checksum Wizard
 
-ChecksumWizard::ChecksumWizard(const QString &path) : QWizard(krApp), m_path(path), m_process(0)
+ChecksumWizard::ChecksumWizard(const QString &path) : QWizard(krApp), m_path(path), m_process(nullptr)
 {
     setAttribute(Qt::WA_DeleteOnClose);
 
@@ -176,7 +176,7 @@ void ChecksumWizard::slotCurrentIdChanged(int id)
         if (m_process) {
             // we are coming from the result page;
             delete m_process;
-            m_process = 0;
+            m_process = nullptr;
             restart();
         } else {
             button(QWizard::BackButton)->hide();
@@ -190,18 +190,18 @@ void ChecksumWizard::slotCurrentIdChanged(int id)
 
 QWizardPage *ChecksumWizard::createProgressPage(const QString &title)
 {
-    QWizardPage *page = new QWizardPage;
+    auto *page = new QWizardPage;
 
     page->setTitle(title);
     page->setPixmap(QWizard::LogoPixmap,
                     Icon("process-working").pixmap(32));
     page->setSubTitle(i18n("Please wait..."));
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     page->setLayout(mainLayout);
 
     // "busy" indicator
-    QProgressBar *bar = new QProgressBar();
+    auto *bar = new QProgressBar();
     bar->setRange(0,0);
 
     mainLayout->addWidget(bar);
@@ -209,7 +209,7 @@ QWizardPage *ChecksumWizard::createProgressPage(const QString &title)
     return page;
 }
 
-bool ChecksumWizard::checkExists(const QString type)
+bool ChecksumWizard::checkExists(const QString& type)
 {
     if (!KrServices::cmdExist(m_checksumTools[type])) {
         KMessageBox::error(
@@ -223,7 +223,7 @@ bool ChecksumWizard::checkExists(const QString type)
 
 void ChecksumWizard::runProcess(const QString &type, const QStringList &args)
 {
-    Q_ASSERT(m_process == 0);
+    Q_ASSERT(m_process == nullptr);
 
     m_process = new ChecksumProcess(this, m_path);
     m_process->setProgram(KrServices::fullPathName(m_checksumTools[type]), args);
@@ -235,7 +235,7 @@ void ChecksumWizard::runProcess(const QString &type, const QStringList &args)
 
 void ChecksumWizard::addChecksumLine(KrTreeWidget *tree, const QString &line)
 {
-    QTreeWidgetItem *item = new QTreeWidgetItem(tree);
+    auto *item = new QTreeWidgetItem(tree);
     const int hashLength = line.indexOf(' '); // delimiter is either "  " or " *"
     item->setText(0, line.left(hashLength));
     QString fileName = line.mid(hashLength + 2);
@@ -247,7 +247,7 @@ void ChecksumWizard::addChecksumLine(KrTreeWidget *tree, const QString &line)
 // ------------- Create Wizard
 
 CreateWizard::CreateWizard(const QString &path, const QStringList &_files) : ChecksumWizard(path),
-    m_fileNames(_files), m_listFilesWatcher()
+    m_fileNames(_files)
 {
 
     m_introId = addPage(createIntroPage());
@@ -263,30 +263,30 @@ CreateWizard::CreateWizard(const QString &path, const QStringList &_files) : Che
 
 QWizardPage *CreateWizard::createIntroPage()
 {
-    QWizardPage *page = new QWizardPage;
+    auto *page = new QWizardPage;
 
     page->setTitle(i18n("Create Checksums"));
     page->setPixmap(QWizard::LogoPixmap,
                     Icon("document-edit-sign").pixmap(32));
     page->setSubTitle(i18n("About to calculate checksum for the following files or directories:"));
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     page->setLayout(mainLayout);
 
     // file list
-    KrListWidget *listWidget = new KrListWidget;
+    auto *listWidget = new KrListWidget;
     listWidget->addItems(m_fileNames);
     mainLayout->addWidget(listWidget);
 
     // checksum method
-    QHBoxLayout *hLayout = new QHBoxLayout;
+    auto *hLayout = new QHBoxLayout;
 
     QLabel *methodLabel = new QLabel(i18n("Select the checksum method:"));
     hLayout->addWidget(methodLabel);
 
     m_methodBox = new KComboBox;
     // -- fill the combo with available methods
-    for (const QString type: m_checksumTools.keys())
+    for (const QString& type: m_checksumTools.keys())
         m_methodBox->addItem(type);
     m_methodBox->setFocus();
     hLayout->addWidget(m_methodBox);
@@ -298,11 +298,11 @@ QWizardPage *CreateWizard::createIntroPage()
 
 QWizardPage *CreateWizard::createResultPage()
 {
-    QWizardPage *page = new QWizardPage;
+    auto *page = new QWizardPage;
 
     page->setTitle(i18n("Checksum Results"));
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     page->setLayout(mainLayout);
 
     m_hashesTreeWidget = new KrTreeWidget(this);
@@ -373,7 +373,7 @@ void CreateWizard::onResultPage()
     m_hashesTreeWidget->clear();
     m_hashesTreeWidget->setVisible(successes);
     if (successes) {
-        for (const QString line : outputLines)
+        for (const QString& line : outputLines)
             addChecksumLine(m_hashesTreeWidget, line);
         //m_hashesTreeWidget->sortItems(1, Qt::AscendingOrder);
     }
@@ -393,7 +393,7 @@ bool CreateWizard::savePerFile()
     const QString type = m_suggestedFilePath.mid(m_suggestedFilePath.lastIndexOf('.'));
 
     krApp->startWaiting(i18n("Saving checksum files..."), 0);
-    for (const QString line : m_process->stdOutput()) {
+    for (const QString& line : m_process->stdOutput()) {
         const QString filename = line.mid(line.indexOf(' ') + 2) + type;
         if (!saveChecksumFile(QStringList() << line, filename)) {
             KMessageBox::error(this, i18n("Errors occurred while saving multiple checksums. Stopping"));
@@ -418,7 +418,7 @@ bool CreateWizard::saveChecksumFile(const QStringList &data, const QString &file
     QFile file(filePath);
     if (file.open(QIODevice::WriteOnly)) {
         QTextStream stream(&file);
-        for (const QString line : data)
+        for (const QString& line : data)
             stream << line << "\n";
         file.close();
     }
@@ -476,24 +476,24 @@ void VerifyWizard::slotChecksumPathChanged(const QString &path)
 
 QWizardPage *VerifyWizard::createIntroPage()
 {
-    QWizardPage *page = new QWizardPage;
+    auto *page = new QWizardPage;
 
     page->setTitle(i18n("Verify Checksum File"));
     page->setPixmap(QWizard::LogoPixmap,
                     Icon("document-edit-verify").pixmap(32));
     page->setSubTitle(i18n("About to verify the following checksum file"));
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     page->setLayout(mainLayout);
 
     // checksum file
-    QHBoxLayout *hLayout = new QHBoxLayout;
+    auto *hLayout = new QHBoxLayout;
     QLabel *checksumFileLabel = new QLabel(i18n("Checksum file:"));
     hLayout->addWidget(checksumFileLabel);
 
-    KUrlRequester *checksumFileReq = new KUrlRequester;
+    auto *checksumFileReq = new KUrlRequester;
     QString typesFilter;
-    for (const QString ext: m_checksumTools.keys())
+    for (const QString& ext: m_checksumTools.keys())
         typesFilter += ("*." + ext + ' ');
     checksumFileReq->setFilter(typesFilter);
     checksumFileReq->setText(m_checksumFile);
@@ -515,11 +515,11 @@ QWizardPage *VerifyWizard::createIntroPage()
 
 QWizardPage *VerifyWizard::createResultPage()
 {
-    QWizardPage *page = new QWizardPage;
+    auto *page = new QWizardPage;
 
     page->setTitle(i18n("Verify Result"));
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     page->setLayout(mainLayout);
 
     m_outputLabel = new QLabel(i18n("Result output:"));

@@ -28,6 +28,7 @@
 
 #include <KI18n/KLocalizedString>
 #include <KXmlGui/KActionCollection>
+#include <utility>
 
 #define BM_NAME(X)  (QString("Bookmark:")+X)
 
@@ -35,8 +36,8 @@ static const char* NAME_TRASH = I18N_NOOP("Trash bin");
 static const char* NAME_VIRTUAL = I18N_NOOP("Virtual Filesystem");
 static const char* NAME_LAN = I18N_NOOP("Local Network");
 
-KrBookmark::KrBookmark(QString name, QUrl url, KActionCollection *parent, QString iconName, QString actionName) :
-        QAction(parent), _url(url), _iconName(iconName), _folder(false), _separator(false), _autoDelete(true)
+KrBookmark::KrBookmark(const QString& name, QUrl url, KActionCollection *parent, const QString& iconName, const QString& actionName) :
+        QAction(parent), _url(std::move(url)), _iconName(iconName), _folder(false), _separator(false), _autoDelete(true)
 {
     QString actName = actionName.isNull() ? BM_NAME(name) : BM_NAME(actionName);
     setText(name);
@@ -46,8 +47,8 @@ KrBookmark::KrBookmark(QString name, QUrl url, KActionCollection *parent, QStrin
     setIconName(iconName);
 }
 
-KrBookmark::KrBookmark(QString name, QString iconName) :
-        QAction(Icon(iconName), name, 0), _iconName(iconName), _folder(true), _separator(false), _autoDelete(false)
+KrBookmark::KrBookmark(const QString& name, const QString& iconName) :
+        QAction(Icon(iconName), name, nullptr), _iconName(iconName), _folder(true), _separator(false), _autoDelete(false)
 {
     setIcon(Icon(iconName == "" ? "folder" : iconName));
 }
@@ -62,7 +63,7 @@ KrBookmark::~KrBookmark()
     }
 }
 
-void KrBookmark::setIconName(QString iconName)
+void KrBookmark::setIconName(const QString& iconName)
 {
     if (!iconName.isEmpty()) {
         setIcon(Icon(iconName));
@@ -75,9 +76,9 @@ void KrBookmark::setIconName(QString iconName)
     }
 }
 
-KrBookmark * KrBookmark::getExistingBookmark(QString actionName, KActionCollection *collection)
+KrBookmark * KrBookmark::getExistingBookmark(const QString& actionName, KActionCollection *collection)
 {
-    return static_cast<KrBookmark*>(collection->action(BM_NAME(actionName)));
+    return dynamic_cast<KrBookmark*>(collection->action(BM_NAME(actionName)));
 }
 
 KrBookmark * KrBookmark::trash(KActionCollection *collection)

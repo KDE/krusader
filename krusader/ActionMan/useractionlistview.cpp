@@ -53,8 +53,7 @@ UserActionListView::UserActionListView(QWidget * parent)
 }
 
 UserActionListView::~UserActionListView()
-{
-}
+= default;
 
 QSize UserActionListView::sizeHint() const
 {
@@ -90,7 +89,7 @@ void UserActionListView::update(KrAction* action)
 UserActionListViewItem* UserActionListView::insertAction(KrAction* action)
 {
     if (! action)
-        return 0;
+        return nullptr;
 
     UserActionListViewItem* item;
 
@@ -118,28 +117,28 @@ QTreeWidgetItem* UserActionListView::findCategoryItem(const QString& category)
             return *it;
         it++;
     }
-    return 0;
+    return nullptr;
 }
 
 UserActionListViewItem* UserActionListView::findActionItem(const KrAction* action)
 {
     QTreeWidgetItemIterator it(this);
     while (*it) {
-        if (UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>(*it)) {
+        if (auto* item = dynamic_cast<UserActionListViewItem*>(*it)) {
             if (item->action() == action)
                 return item;
         }
         it++;
     }
-    return 0;
+    return nullptr;
 }
 
 KrAction * UserActionListView::currentAction() const
 {
-    if (UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>(currentItem()))
+    if (auto* item = dynamic_cast<UserActionListViewItem*>(currentItem()))
         return item->action();
     else
-        return 0;
+        return nullptr;
 }
 
 void UserActionListView::setCurrentAction(const KrAction* action)
@@ -154,7 +153,7 @@ void UserActionListView::setFirstActionCurrent()
 {
     QTreeWidgetItemIterator it(this);
     while (*it) {
-        if (UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>(*it)) {
+        if (auto* item = dynamic_cast<UserActionListViewItem*>(*it)) {
             setCurrentItem(item);
             break;
         }
@@ -179,9 +178,8 @@ QDomDocument UserActionListView::dumpSelectedActions(QDomDocument* mergeDoc) con
         doc = UserAction::createEmptyDoc();
     QDomElement root = doc.documentElement();
 
-    for (int i = 0; i < list.size(); ++i) {
-        QTreeWidgetItem* item = list.at(i);
-        if (UserActionListViewItem* actionItem = dynamic_cast<UserActionListViewItem*>(item))
+    for (auto item : list) {
+        if (auto* actionItem = dynamic_cast<UserActionListViewItem*>(item))
             root.appendChild(actionItem->action()->xmlDump(doc));
     }
 
@@ -192,9 +190,8 @@ void UserActionListView::removeSelectedActions()
 {
     QList<QTreeWidgetItem*> list = selectedItems();
 
-    for (int i = 0; i < list.size(); ++i) {
-        QTreeWidgetItem* item = list.at(i);
-        if (UserActionListViewItem* actionItem = dynamic_cast<UserActionListViewItem*>(item)) {
+    for (auto item : list) {
+        if (auto* actionItem = dynamic_cast<UserActionListViewItem*>(item)) {
             delete actionItem->action(); // remove the action itself
             delete actionItem; // remove the action from the list
         } // if
@@ -216,8 +213,7 @@ UserActionListViewItem::UserActionListViewItem(QTreeWidgetItem* item, KrAction *
 }
 
 UserActionListViewItem::~UserActionListViewItem()
-{
-}
+= default;
 
 void UserActionListViewItem::setAction(KrAction * action)
 {

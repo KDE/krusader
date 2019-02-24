@@ -33,7 +33,7 @@
 #include <KI18n/KLocalizedString>
 
 ListModel::ListModel(KrInterView *view)
-    : QAbstractListModel(0), _extensionEnabled(true), _view(view), _dummyFileItem(0), _ready(false),
+    : QAbstractListModel(nullptr), _extensionEnabled(true), _view(view), _dummyFileItem(nullptr), _ready(false),
       _justForSizeHint(false), _alternatingTable(false)
 {
     KConfigGroup grpSvr(krConfig, "Look&Feel");
@@ -58,8 +58,7 @@ void ListModel::populate(const QList<FileItem *> &files, FileItem *dummy)
 }
 
 ListModel::~ListModel()
-{
-}
+= default;
 
 void ListModel::clear(bool emitLayoutChanged)
 {
@@ -79,7 +78,7 @@ void ListModel::clear(bool emitLayoutChanged)
     _fileItemNdx.clear();
     _nameNdx.clear();
     _urlNdx.clear();
-    _dummyFileItem = 0;
+    _dummyFileItem = nullptr;
 
     if (emitLayoutChanged)
         emit layoutChanged();
@@ -101,7 +100,7 @@ QVariant ListModel::data(const QModelIndex& index, int role) const
     if (!index.isValid() || index.row() >= rowCount())
         return QVariant();
     FileItem *fileitem = _fileItems.at(index.row());
-    if (fileitem == 0)
+    if (fileitem == nullptr)
         return QVariant();
 
     switch (role) {
@@ -260,7 +259,7 @@ bool ListModel::setData(const QModelIndex & index, const QVariant & value, int r
     if (role == Qt::EditRole && index.isValid()) {
         if (index.row() < rowCount() && index.row() >= 0) {
             FileItem *fileitem = _fileItems.at(index.row());
-            if (fileitem == 0)
+            if (fileitem == nullptr)
                 return false;
             _view->op()->emitRenameItem(fileitem->getName(), value.toString());
         }
@@ -416,7 +415,7 @@ const KrViewProperties *ListModel::properties() const
 FileItem *ListModel::fileItemAt(const QModelIndex &index)
 {
     if (!index.isValid() || index.row() < 0 || index.row() >= _fileItems.count())
-        return 0;
+        return nullptr;
     return _fileItems[ index.row()];
 }
 
@@ -469,9 +468,9 @@ QString ListModel::nameWithoutExtension(const FileItem *fileItem, bool checkEnab
     // and virtfs / search result names like "/dir/.file" which would become "/dir/"
     if (loc > 0 && fileItemName.lastIndexOf('/') < loc) {
         // check if it has one of the predefined 'atomic extensions'
-        for (QStringList::const_iterator i = properties()->atomicExtensions.begin(); i != properties()->atomicExtensions.end(); ++i) {
-            if (fileItemName.endsWith(*i) && fileItemName != *i) {
-                loc = fileItemName.length() - (*i).length();
+        for (const auto & atomicExtension : properties()->atomicExtensions) {
+            if (fileItemName.endsWith(atomicExtension) && fileItemName != atomicExtension) {
+                loc = fileItemName.length() - atomicExtension.length();
                 break;
             }
         }

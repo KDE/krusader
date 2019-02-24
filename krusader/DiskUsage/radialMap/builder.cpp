@@ -108,9 +108,9 @@ RadialMap::Builder::build(const Directory* const dir, const unsigned int depth, 
 
     for (ConstIterator<File> it = dir->constIterator(); it != dir->end(); ++it) {
         if ((*it)->size() > m_limits[depth]) {
-            unsigned int a_len = (unsigned int)(5760 * ((double)(*it)->size() / (double)m_root->size()));
+            auto a_len = (unsigned int)(5760 * ((double)(*it)->size() / (double)m_root->size()));
 
-            Segment *s = new Segment(*it, a_start, a_len);
+            auto *s = new Segment(*it, a_start, a_len);
 
             (m_signature + depth)->append(s);
 
@@ -128,7 +128,7 @@ RadialMap::Builder::build(const Directory* const dir, const unsigned int depth, 
             hiddenSize += (*it)->size();
 
             if ((*it)->isDir())  //**** considered virtual, but dir wouldn't count itself!
-                hiddenFileCount += static_cast<const Directory*>(*it)->fileCount(); //need to add one to count the dir as well
+                hiddenFileCount += dynamic_cast<const Directory*>(*it)->fileCount(); //need to add one to count the dir as well
 
             ++hiddenFileCount;
         }

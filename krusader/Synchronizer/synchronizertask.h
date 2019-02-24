@@ -43,8 +43,8 @@ class SynchronizerTask : public QObject
     Q_OBJECT
 
 public:
-    SynchronizerTask() : QObject(), m_state(ST_STATE_NEW), m_statusMessage(QString()) {}
-    virtual ~SynchronizerTask() {}
+    SynchronizerTask() : m_state(ST_STATE_NEW), m_statusMessage(QString()) {}
+    ~SynchronizerTask() override = default;
 
     inline int start(QWidget *parentWidget) {
         this->parentWidget = parentWidget; start(); return state();
@@ -86,7 +86,7 @@ public:
                 const QString &rightDir, bool ignoreHidden);
     CompareTask(SynchronizerFileItem *parentIn, const QString &urlIn,
                 const QString &dirIn, bool isLeftIn, bool ignoreHidden);
-    virtual ~CompareTask();
+    ~CompareTask() override;
 
     inline bool isDuplicate()                      {
         return m_duplicate;
@@ -126,7 +126,7 @@ public:
     }
 
 protected slots:
-    virtual void start() Q_DECL_OVERRIDE;
+    void start() Q_DECL_OVERRIDE;
     void slotFinished(bool result);
     void slotOtherFinished(bool result);
 
@@ -152,7 +152,7 @@ class CompareContentTask : public SynchronizerTask
 
 public:
     CompareContentTask(Synchronizer *, SynchronizerFileItem *, const QUrl &, const QUrl &, KIO::filesize_t);
-    virtual ~CompareContentTask();
+    ~CompareContentTask() override;
 
 public slots:
     void    slotDataReceived(KIO::Job *job, const QByteArray &data);
@@ -160,7 +160,7 @@ public slots:
     void    sendStatusMessage();
 
 protected:
-    virtual void start() Q_DECL_OVERRIDE;
+    void start() Q_DECL_OVERRIDE;
 
 protected slots:
     void    localFileCompareCycle();

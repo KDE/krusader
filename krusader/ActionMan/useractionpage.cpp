@@ -54,12 +54,12 @@ static const char* FILE_FILTER = I18N_NOOP("*.xml|XML files\n*|All files");
 UserActionPage::UserActionPage(QWidget* parent)
         : QWidget(parent)
 {
-    QVBoxLayout* layout = new QVBoxLayout(this);
+    auto* layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(6);   // 0px margin, 6px item-spacing
 
     // ======== pseudo-toolbar start ========
-    QHBoxLayout* toolbarLayout = new QHBoxLayout; // neither margin nor spacing for the toolbar with autoRaise
+    auto* toolbarLayout = new QHBoxLayout; // neither margin nor spacing for the toolbar with autoRaise
     toolbarLayout->setSpacing(0);
     toolbarLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -114,7 +114,7 @@ UserActionPage::UserActionPage(QWidget* parent)
        );
     */
     layout->addLayout(toolbarLayout);
-    QSplitter *split = new QSplitter(this);
+    auto *split = new QSplitter(this);
     layout->addWidget(split, 1000);   // again a very large stretch-factor to fix the height of the toolbar
 
     actionTree = new UserActionListView(split);
@@ -138,8 +138,7 @@ UserActionPage::UserActionPage(QWidget* parent)
 }
 
 UserActionPage::~UserActionPage()
-{
-}
+= default;
 
 bool UserActionPage::continueInSpiteOfChanges()
 {

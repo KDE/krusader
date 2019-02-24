@@ -46,7 +46,7 @@ signals:
     void itemRightClicked(QTreeWidgetItem * it, const QPoint & pos, int column);
 
 protected:
-    virtual bool event(QEvent * event) Q_DECL_OVERRIDE;
+    bool event(QEvent * event) Q_DECL_OVERRIDE;
 
 private:
     int  _stretchingColumn;

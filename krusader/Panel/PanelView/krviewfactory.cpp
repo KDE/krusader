@@ -43,7 +43,7 @@ class KrViewInstanceImpl : public KrViewInstance
                        const QKeySequence &shortcut)
         : KrViewInstance(id, name, desc, icon, shortcut) {}
 
-    virtual KrView *create(QWidget *w, KConfig *cfg) Q_DECL_OVERRIDE {
+    KrView *create(QWidget *w, KConfig *cfg) Q_DECL_OVERRIDE {
         return new T(w, *this, cfg);
     }
 };
@@ -53,7 +53,7 @@ KrViewFactory::KrViewFactory() : m_defaultViewId(-1) {}
 // static initialization, on first use idiom
 KrViewFactory &KrViewFactory::self()
 {
-    static KrViewFactory *factory = 0;
+    static KrViewFactory *factory = nullptr;
     if (!factory) {
         factory = new KrViewFactory();
         factory->init();

@@ -40,10 +40,10 @@
 
 RadialMap::Widget::Widget(QWidget *parent)
         : QWidget(parent)
-        , m_tree(0)
-        , m_focus(0)
+        , m_tree(nullptr)
+        , m_focus(nullptr)
         , m_tip(QFontMetrics(font()).height())     //needs to know cursor height
-        , m_rootSegment(0)   //TODO we don't delete it, *shrug*
+        , m_rootSegment(nullptr)   //TODO we don't delete it, *shrug*
 {
     QPalette pal = palette();
     pal.setColor(backgroundRole(), Qt::white);
@@ -57,7 +57,7 @@ RadialMap::Widget::Widget(QWidget *parent)
 QString
 RadialMap::Widget::path() const
 {
-    if (m_tree == 0)
+    if (m_tree == nullptr)
         return QString();
     return m_tree->fullPath();
 }
@@ -65,7 +65,7 @@ RadialMap::Widget::path() const
 QUrl
 RadialMap::Widget::url(File const * const file) const
 {
-    if (file == 0 && m_tree == 0)
+    if (file == nullptr && m_tree == nullptr)
         return QUrl();
 
     return QUrl::fromLocalFile(file ? file->fullPath() : m_tree->fullPath());
@@ -84,11 +84,11 @@ RadialMap::Widget::invalidate(const bool b)
         QUrl urlInv = url();
 
         //ensure this class won't think we have a map still
-        m_tree  = 0;
-        m_focus = 0;
+        m_tree  = nullptr;
+        m_focus = nullptr;
 
         delete m_rootSegment;
-        m_rootSegment = 0;
+        m_rootSegment = nullptr;
 
         //FIXME move this disablement thing no?
         //      it is confusing in other areas, like the whole createFromCache() thing
@@ -110,7 +110,7 @@ RadialMap::Widget::create(const Directory *tree)
     //FIXME make it the responsibility of create to invalidate first
 
     if (tree) {
-        m_focus = 0;
+        m_focus = nullptr;
         //generate the filemap image
         m_map.make(tree);
 
@@ -146,7 +146,7 @@ RadialMap::Widget::resizeTimeout() //slot
 {
     // the segments are about to erased!
     // this was a horrid bug, and proves the OO programming should be obeyed always!
-    m_focus = 0;
+    m_focus = nullptr;
     if (m_tree)
         m_map.make(m_tree, true);
     update();
@@ -160,7 +160,7 @@ RadialMap::Widget::refresh(int filth)
     if (!m_map.isNull()) {
         switch (filth) {
         case 1:
-            m_focus = 0;
+            m_focus = nullptr;
             if (m_tree)
                 m_map.make(m_tree, true);   //true means refresh only
             break;
@@ -186,7 +186,7 @@ void
 RadialMap::Widget::zoomIn() //slot
 {
     if (m_map.m_visibleDepth > MIN_RING_DEPTH) {
-        m_focus = 0;
+        m_focus = nullptr;
         --m_map.m_visibleDepth;
         if (m_tree)
             m_map.make(m_tree);
@@ -198,7 +198,7 @@ RadialMap::Widget::zoomIn() //slot
 void
 RadialMap::Widget::zoomOut() //slot
 {
-    m_focus = 0;
+    m_focus = nullptr;
     ++m_map.m_visibleDepth;
     if (m_tree)
         m_map.make(m_tree);

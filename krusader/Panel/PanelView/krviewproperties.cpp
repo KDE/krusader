@@ -19,6 +19,8 @@
 
 #include "krviewproperties.h"
 
+#include <utility>
+
 KrViewProperties::KrViewProperties(bool displayIcons, bool numericPermissions,
                                    KrViewProperties::SortOptions sortOptions,
                                    KrViewProperties::SortMethod sortMethod, bool humanReadableSize,
@@ -28,6 +30,6 @@ KrViewProperties::KrViewProperties(bool displayIcons, bool numericPermissions,
       sortOptions(sortOptions), sortMethod(sortMethod), filter(KrViewProperties::All),
       filterMask(KRQuery("*")), filterApplysToDirs(false),
       localeAwareCompareIsCaseSensitive(localeAwareCompareIsCaseSensitive),
-      humanReadableSize(humanReadableSize), atomicExtensions(atomicExtensions), numberOfColumns(1)
+      humanReadableSize(humanReadableSize), atomicExtensions(std::move(atomicExtensions)), numberOfColumns(1)
 {
 }

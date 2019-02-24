@@ -112,9 +112,9 @@ protected:
     QUrl downloadIfRemote(const QUrl &baseUrl, const QStringList & files);
     void countLocalFiles(const QUrl &baseUrl, const QStringList &names, unsigned long &totalFiles);
 
-    void sendError(int errorCode, QString message);
-    void sendInfo(QString message, QString a1 = QString(), QString a2 = QString(), QString a3 = QString(), QString a4 = QString());
-    void sendReset(QString message, QString a1 = QString(""), QString a2 = QString(""), QString a3 = QString(""), QString a4 = QString(""));
+    void sendError(int errorCode, const QString& message);
+    void sendInfo(const QString& message, const QString& a1 = QString(), const QString& a2 = QString(), const QString& a3 = QString(), const QString& a4 = QString());
+    void sendReset(const QString& message, const QString& a1 = QString(""), const QString& a2 = QString(""), const QString& a3 = QString(""), const QString& a4 = QString(""));
     void sendSuccess();
     void sendMessage(const QString &message);
     void sendMaxProgressValue(qulonglong value);

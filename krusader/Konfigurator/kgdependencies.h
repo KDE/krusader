@@ -34,15 +34,15 @@ class KgDependencies : public KonfiguratorPage
     Q_OBJECT
 
 public:
-    explicit KgDependencies(bool first, QWidget* parent = 0);
+    explicit KgDependencies(bool first, QWidget* parent = nullptr);
 
-    virtual int activeSubPage() Q_DECL_OVERRIDE;
+    int activeSubPage() Q_DECL_OVERRIDE;
 
 private:
-    void addApplication(QString name, QGridLayout *grid, int row, QWidget *parent, int page, QString additionalList = QString());
+    void addApplication(const QString& name, QGridLayout *grid, int row, QWidget *parent, int page, const QString& additionalList = QString());
 
 public slots:
-    void slotApply(QObject *obj, QString configGroup, QString name);
+    void slotApply(QObject *obj, const QString& configGroup, const QString& name);
 
 private:
     QTabWidget *tabWidget;

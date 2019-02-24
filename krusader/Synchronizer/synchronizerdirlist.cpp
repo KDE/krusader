@@ -42,7 +42,7 @@
 #include "../FileSystem/krpermhandler.h"
 #include "../krservices.h"
 
-SynchronizerDirList::SynchronizerDirList(QWidget *w, bool hidden) : QObject(), QHash<QString, FileItem *>(), fileIterator(0),
+SynchronizerDirList::SynchronizerDirList(QWidget *w, bool hidden) : fileIterator(nullptr),
         parentWidget(w), busy(false), result(false), ignoreHidden(hidden), currentUrl()
 {
 }
@@ -61,7 +61,7 @@ FileItem *SynchronizerDirList::search(const QString &name, bool ignoreCase)
 {
     if (!ignoreCase) {
         if (!contains(name))
-            return 0;
+            return nullptr;
         return (*this)[ name ];
     }
 
@@ -75,28 +75,28 @@ FileItem *SynchronizerDirList::search(const QString &name, bool ignoreCase)
         if (file == item->getName().toLower())
             return item;
     }
-    return 0;
+    return nullptr;
 }
 
 FileItem *SynchronizerDirList::first()
 {
-    if (fileIterator == 0)
+    if (fileIterator == nullptr)
         fileIterator = new QHashIterator<QString, FileItem *> (*this);
 
     fileIterator->toFront();
     if (fileIterator->hasNext())
         return fileIterator->next().value();
-    return 0;
+    return nullptr;
 }
 
 FileItem *SynchronizerDirList::next()
 {
-    if (fileIterator == 0)
+    if (fileIterator == nullptr)
         fileIterator = new QHashIterator<QString, FileItem *> (*this);
 
     if (fileIterator->hasNext())
         return fileIterator->next().value();
-    return 0;
+    return nullptr;
 }
 
 bool SynchronizerDirList::load(const QString &urlIn, bool wait)
@@ -113,7 +113,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
     clear();
     if (fileIterator) {
         delete fileIterator;
-        fileIterator = 0;
+        fileIterator = nullptr;
     }
 
     if (url.isLocalFile()) {
@@ -128,7 +128,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
 
         QT_DIRENT* dirEnt;
 
-        while ((dirEnt = QT_READDIR(qdir)) != NULL) {
+        while ((dirEnt = QT_READDIR(qdir)) != nullptr) {
             const QString name = QString::fromLocal8Bit(dirEnt->d_name);
 
             if (name == "." || name == "..") continue;
@@ -159,8 +159,8 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
 
 void SynchronizerDirList::slotEntries(KIO::Job *job, const KIO::UDSEntryList& entries)
 {
-    KIO::ListJob *listJob = static_cast<KIO::ListJob *>(job);
-    for (const KIO::UDSEntry entry : entries) {
+    auto *listJob = dynamic_cast<KIO::ListJob *>(job);
+    for (const KIO::UDSEntry& entry : entries) {
         FileItem *item = FileSystem::createFileItemFromKIO(entry, listJob->url());
         if (item) {
             insert(item->getName(), item);

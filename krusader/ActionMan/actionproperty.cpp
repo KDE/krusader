@@ -94,8 +94,7 @@ ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
 }
 
 ActionProperty::~ActionProperty()
-{
-}
+= default;
 
 void ActionProperty::changedShortcut(const QKeySequence& shortcut)
 {
@@ -105,7 +104,7 @@ void ActionProperty::changedShortcut(const QKeySequence& shortcut)
 
 void ActionProperty::clear()
 {
-    _action = 0;
+    _action = nullptr;
 
     // This prevents the changed-signal from being emitted during the GUI-update
     _modified = true; // The real state is set at the end of this function.
@@ -338,7 +337,7 @@ void ActionProperty::newProtocol()
 
 void ActionProperty::editProtocol()
 {
-    if (lbShowonlyProtocol->currentItem() == 0)
+    if (lbShowonlyProtocol->currentItem() == nullptr)
         return;
 
     bool ok;
@@ -355,7 +354,7 @@ void ActionProperty::editProtocol()
 
 void ActionProperty::removeProtocol()
 {
-    if (lbShowonlyProtocol->currentItem() != 0) {
+    if (lbShowonlyProtocol->currentItem() != nullptr) {
         delete lbShowonlyProtocol->currentItem();
         setModified();
     }
@@ -372,7 +371,7 @@ void ActionProperty::addPath()
 
 void ActionProperty::editPath()
 {
-    if (lbShowonlyPath->currentItem() == 0)
+    if (lbShowonlyPath->currentItem() == nullptr)
         return;
 
     bool ok;
@@ -389,7 +388,7 @@ void ActionProperty::editPath()
 
 void ActionProperty::removePath()
 {
-    if (lbShowonlyPath->currentItem() != 0) {
+    if (lbShowonlyPath->currentItem() != nullptr) {
         delete lbShowonlyPath->currentItem();
         setModified();
     }
@@ -413,7 +412,7 @@ void ActionProperty::addMime()
 
 void ActionProperty::editMime()
 {
-    if (lbShowonlyMime->currentItem() == 0)
+    if (lbShowonlyMime->currentItem() == nullptr)
         return;
 
     bool ok;
@@ -430,7 +429,7 @@ void ActionProperty::editMime()
 
 void ActionProperty::removeMime()
 {
-    if (lbShowonlyMime->currentItem() != 0) {
+    if (lbShowonlyMime->currentItem() != nullptr) {
         delete lbShowonlyMime->currentItem();
         setModified();
     }
@@ -454,7 +453,7 @@ void ActionProperty::newFile()
 
 void ActionProperty::editFile()
 {
-    if (lbShowonlyFile->currentItem() == 0)
+    if (lbShowonlyFile->currentItem() == nullptr)
         return;
 
     bool ok;
@@ -471,7 +470,7 @@ void ActionProperty::editFile()
 
 void ActionProperty::removeFile()
 {
-    if (lbShowonlyFile->currentItem() != 0) {
+    if (lbShowonlyFile->currentItem() != nullptr) {
         delete lbShowonlyFile->currentItem();
         setModified();
     }

@@ -38,7 +38,7 @@ ActionMan::ActionMan(QWidget * parent)
     setWindowModality(Qt::WindowModal);
     setWindowTitle(i18n("ActionMan - Manage Your Useractions"));
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
     userActionPage = new UserActionPage(this);
@@ -61,8 +61,7 @@ ActionMan::ActionMan(QWidget * parent)
 }
 
 ActionMan::~ActionMan()
-{
-}
+= default;
 
 void ActionMan::slotClose()
 {

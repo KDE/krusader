@@ -41,7 +41,7 @@
 #include "../JobMan/jobman.h"
 #include "../JobMan/krjob.h"
 
-FileSystem::FileSystem() : DirListerInterface(0), _isRefreshing(false) {}
+FileSystem::FileSystem() : DirListerInterface(nullptr), _isRefreshing(false) {}
 
 FileSystem::~FileSystem()
 {
@@ -53,7 +53,7 @@ FileSystem::~FileSystem()
 QList<QUrl> FileSystem::getUrls(const QStringList &names) const
 {
     QList<QUrl> urls;
-    for (const QString name : names) {
+    for (const QString& name : names) {
         urls.append(getUrl(name));
     }
     return urls;
@@ -167,7 +167,7 @@ void FileSystem::deleteFiles(const QList<QUrl> &urls, bool moveToTrash)
     krJobMan->manageJob(krJob);
 }
 
-void FileSystem::connectJobToSources(KJob *job, const QList<QUrl> urls)
+void FileSystem::connectJobToSources(KJob *job, const QList<QUrl>& urls)
 {
     if (!urls.isEmpty()) {
         // TODO we assume that all files were in the same directory and only emit one signal for
@@ -287,7 +287,7 @@ FileItem *FileSystem::createFileItemFromKIO(const KIO::UDSEntry &entry, const QU
     const QString name = kfi.text();
     // ignore un-needed entries
     if (name.isEmpty() || name == "." || name == "..") {
-        return 0;
+        return nullptr;
     }
 
     const QString localPath = kfi.localPath();

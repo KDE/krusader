@@ -49,7 +49,7 @@ protected:
 
 public:
     KrArcBaseManager() {}
-    QString detectArchive(bool &, QString, bool = true, bool = false);
+    QString detectArchive(bool &, const QString&, bool = true, bool = false);
     virtual void checkIf7zIsEncrypted(bool &, QString) = 0;
     static QString getShortTypeFromMime(const QString &);
     virtual ~KrArcBaseManager() {}

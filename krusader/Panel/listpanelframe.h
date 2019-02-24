@@ -34,7 +34,7 @@ class ListPanelFrame : public QFrame
 {
     Q_OBJECT
 public:
-    ListPanelFrame(QWidget *parent, QString color);
+    ListPanelFrame(QWidget *parent, const QString& color);
 
 signals:
     void dropped(QDropEvent*, QWidget*); /**< emitted when someone drops URL onto the frame */
@@ -46,12 +46,12 @@ public slots:
     void refreshColors(bool active);
 
 protected:
-    QColor getColor(KConfigGroup &cg, QString name, const QColor &def, const QColor &kdedef);
+    QColor getColor(KConfigGroup &cg, const QString& name, const QColor &def, const QColor &kdedef);
 
-    virtual void dropEvent(QDropEvent *e) Q_DECL_OVERRIDE {
+    void dropEvent(QDropEvent *e) Q_DECL_OVERRIDE {
         emit dropped(e, this);
     }
-    virtual void dragEnterEvent(QDragEnterEvent*) Q_DECL_OVERRIDE;
+    void dragEnterEvent(QDragEnterEvent*) Q_DECL_OVERRIDE;
 
     QString color;
     QPalette palActive, palInactive;

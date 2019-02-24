@@ -105,12 +105,12 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 
     //1. Create list of labels  sorted in the order they will be rendered
 
-    if (m_focus != NULL && m_focus->file() != m_tree) { //separate behavior for selected vs unselected segments
+    if (m_focus != nullptr && m_focus->file() != m_tree) { //separate behavior for selected vs unselected segments
         //don't bother with files
-        if (m_focus->file() == 0 || !m_focus->file()->isDir()) return;
+        if (m_focus->file() == nullptr || !m_focus->file()->isDir()) return;
 
         //find the range of levels we will be potentially drawing labels for
-        for (const Directory *p = (const Directory *)m_focus->file();
+        for (const auto *p = (const Directory *)m_focus->file();
                 p != m_tree;
                 ++startLevel) { //startLevel is the level above whatever m_focus is in
             p = p->parent();
@@ -184,7 +184,7 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
     //used in next two steps
     bool varySizes;
     //**** should perhaps use doubles
-    int  *sizes = new int [ m_map.m_visibleDepth + 1 ]; //**** make sizes an array of floats I think instead (or doubles)
+    auto  *sizes = new int [ m_map.m_visibleDepth + 1 ]; //**** make sizes an array of floats I think instead (or doubles)
 
     do {
         //3. Calculate font sizes

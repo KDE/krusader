@@ -25,6 +25,7 @@
 #include <QLabel>
 
 #include <KConfigCore/KSharedConfig>
+#include <utility>
 
 #include "../FileSystem/filesystem.h"
 #include "../Panel/krpanel.h"
@@ -32,7 +33,7 @@
 #include "../krglobal.h"
 
 DiskUsageViewer::DiskUsageViewer(QWidget *parent)
-        : QWidget(parent), diskUsage(0), statusLabel(0)
+        : QWidget(parent), diskUsage(nullptr), statusLabel(nullptr)
 {
     layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -49,7 +50,7 @@ DiskUsageViewer::~ DiskUsageViewer()
 
 void DiskUsageViewer::openUrl(QUrl url)
 {
-    if (diskUsage == 0) {
+    if (diskUsage == nullptr) {
         diskUsage = new DiskUsage("DiskUsageViewer", this);
 
         connect(diskUsage, &DiskUsage::enteringDirectory, this, [=]() { slotUpdateStatus(); });
@@ -99,7 +100,7 @@ void DiskUsageViewer::closeUrl()
 void DiskUsageViewer::setStatusLabel(QLabel *statLabel, QString pref)
 {
     statusLabel = statLabel;
-    prefix = pref;
+    prefix = std::move(pref);
 }
 
 void DiskUsageViewer::slotUpdateStatus(QString status)

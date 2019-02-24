@@ -32,7 +32,7 @@
 #include <KConfigCore/KSharedConfig>
 #include <KCoreAddons/KUrlMimeData>
 
-ListPanelFrame::ListPanelFrame(QWidget *parent, QString color) : QFrame(parent), color(color)
+ListPanelFrame::ListPanelFrame(QWidget *parent, const QString& color) : QFrame(parent), color(color)
 {
     if(!color.isEmpty()) {
         colorsChanged();
@@ -54,8 +54,8 @@ void ListPanelFrame::dragEnterEvent(QDragEnterEvent *e)
 void ListPanelFrame::colorsChanged()
 {
     QPalette p = QGuiApplication::palette();
-    QColor windowForeground = p.color(QPalette::Active, QPalette::WindowText);
-    QColor windowBackground = p.color(QPalette::Active, QPalette::Window);
+    const QColor& windowForeground = p.color(QPalette::Active, QPalette::WindowText);
+    const QColor& windowBackground = p.color(QPalette::Active, QPalette::Window);
 
     KConfigGroup gc(krConfig, "Colors");
     QColor fgAct = getColor(gc, color + " Foreground Active",
@@ -97,7 +97,7 @@ void ListPanelFrame::refreshColors(bool active)
     setPalette(active ? palActive : palInactive);
 }
 
-QColor ListPanelFrame::getColor(KConfigGroup &cg, QString name, const QColor &def, const QColor &kdedef)
+QColor ListPanelFrame::getColor(KConfigGroup &cg, const QString& name, const QColor &def, const QColor &kdedef)
 {
     if (cg.readEntry(name, QString()) == "KDE default")
         return kdedef;

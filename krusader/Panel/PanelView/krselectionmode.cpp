@@ -25,7 +25,7 @@
 
 #include <KConfigCore/KSharedConfig>
 
-static KrSelectionMode *__currentSelectionMode = 0; // uninitiated, at first
+static KrSelectionMode *__currentSelectionMode = nullptr; // uninitiated, at first
 
 
 KonqSelectionMode konqSelectionMode;
@@ -36,7 +36,7 @@ UserSelectionMode userSelectionMode;
 
 KrSelectionMode* KrSelectionMode::getSelectionHandlerForMode(const QString &mode)
 {
-    KrSelectionMode *res = NULL;
+    KrSelectionMode *res = nullptr;
     bool isNum;
     int modenum = mode.toInt(&isNum);
     switch (modenum) {
@@ -69,7 +69,7 @@ KrSelectionMode* KrSelectionMode::getSelectionHandler()
         KConfigGroup group(krConfig, "Look&Feel");
         QString mode = group.readEntry("Mouse Selection", QString(""));
         __currentSelectionMode = getSelectionHandlerForMode(mode);
-        if (__currentSelectionMode == NULL) {
+        if (__currentSelectionMode == nullptr) {
             __currentSelectionMode = &userSelectionMode;
         }
         // init and return
@@ -80,7 +80,7 @@ KrSelectionMode* KrSelectionMode::getSelectionHandler()
 
 void KrSelectionMode::resetSelectionHandler()
 {
-    __currentSelectionMode = 0;
+    __currentSelectionMode = nullptr;
 }
 
 void UserSelectionMode::init()

@@ -47,8 +47,7 @@ KrResultTable::KrResultTable(QWidget* parent)
 }
 
 KrResultTable::~KrResultTable()
-{
-}
+= default;
 
 
 QGridLayout* KrResultTable::initTable()
@@ -60,8 +59,8 @@ QGridLayout* KrResultTable::initTable()
 
     // +++ Build and add table header +++
     int column = 0;
-    for (QStringList::Iterator it = _tableHeaders.begin(); it != _tableHeaders.end(); ++it) {
-        _label = new QLabel(*it, this);
+    for (auto & _tableHeader : _tableHeaders) {
+        _label = new QLabel(_tableHeader, this);
         _label->setContentsMargins(5, 5, 5, 5);
         _grid->addWidget(_label, 0, column);
 
@@ -84,7 +83,7 @@ void KrResultTable::adjustRow(QGridLayout* grid)
     QLayoutItem *child;
     int col = 0;
 
-    while ((child = grid->itemAt(i)) != 0) {
+    while ((child = grid->itemAt(i)) != nullptr) {
         // Add some space between columns
         child->widget()->setMinimumWidth(child->widget()->sizeHint().width() + 15);
 
@@ -184,13 +183,12 @@ KrArchiverResultTable::KrArchiverResultTable(QWidget* parent)
 }
 
 KrArchiverResultTable::~KrArchiverResultTable()
-{
-}
+= default;
 
 
 bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
 {
-    Archiver* arch = dynamic_cast<Archiver*>(search);
+    auto* arch = dynamic_cast<Archiver*>(search);
 
     // Name column
     KUrlLabel *urlLabel = new KUrlLabel(arch->getWebsite(), arch->getSearchName(), this);
@@ -323,13 +321,12 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
 }
 
 KrToolResultTable::~KrToolResultTable()
-{
-}
+= default;
 
 
 bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
 {
-    ApplicationGroup* appGroup = dynamic_cast<ApplicationGroup*>(search);
+    auto* appGroup = dynamic_cast<ApplicationGroup*>(search);
     QList<Application*> _apps = appGroup->getAppVec();
 
     // Name column
@@ -340,10 +337,10 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
 
     // Tool column
     QWidget* toolBoxWidget = new QWidget(this);
-    QVBoxLayout * toolBox = new QVBoxLayout(toolBoxWidget);
+    auto * toolBox = new QVBoxLayout(toolBoxWidget);
 
-    for (QList<Application*>::Iterator it = _apps.begin(); it != _apps.end(); ++it) {
-        KUrlLabel* l = new KUrlLabel((*it)->getWebsite(), (*it)->getAppName(), toolBoxWidget);
+    for (auto & _app : _apps) {
+        auto* l = new KUrlLabel(_app->getWebsite(), _app->getAppName(), toolBoxWidget);
         toolBox->addWidget(l);
 
         l->setAlignment(Qt::AlignLeft | Qt::AlignTop);
@@ -354,10 +351,10 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
 
     // Found column
     QWidget* vboxWidget = new QWidget(this);
-    QVBoxLayout * vbox = new QVBoxLayout(vboxWidget);
+    auto * vbox = new QVBoxLayout(vboxWidget);
 
-    for (QList<Application*>::Iterator it = _apps.begin(); it != _apps.end(); ++it) {
-        _label = new QLabel((*it)->getPath(), vboxWidget);
+    for (auto & _app : _apps) {
+        _label = new QLabel(_app->getPath(), vboxWidget);
         _label->setContentsMargins(5, 5, 5, 5);
         _label->setAlignment(Qt::AlignTop);
         vbox->addWidget(_label);

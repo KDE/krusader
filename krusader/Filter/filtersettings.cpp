@@ -30,11 +30,7 @@
 #include <KCodecs/KCharsets>
 
 FilterSettings::FileSize& FilterSettings::FileSize::operator=(const FileSize &other)
-{
-    amount = other.amount;
-    unit = other.unit;
-    return *this;
-}
+= default;
 
 KIO::filesize_t FilterSettings::FileSize::size() const
 {
@@ -55,11 +51,7 @@ KIO::filesize_t FilterSettings::FileSize::size() const
 
 
 FilterSettings::TimeSpan& FilterSettings::TimeSpan::operator=(const TimeSpan &other)
-{
-    amount = other.amount;
-    unit = other.unit;
-    return *this;
-}
+= default;
 
 int FilterSettings::TimeSpan::days() const
 {
@@ -140,7 +132,7 @@ FilterSettings& FilterSettings::operator=(const FilterSettings& other)
     return *this;
 }
 
-void FilterSettings::load(KConfigGroup cfg) {
+void FilterSettings::load(const KConfigGroup& cfg) {
     *this = FilterSettings();
 #define LOAD(key, var) { var = cfg.readEntry(key, var); }
     LOAD("IsValid", valid);
@@ -186,7 +178,7 @@ void FilterSettings::load(KConfigGroup cfg) {
 #undef LOAD
 }
 
-void FilterSettings::saveDate(QString key, const QDate &date, KConfigGroup &cfg)
+void FilterSettings::saveDate(const QString& key, const QDate &date, KConfigGroup &cfg)
 {
     if(date.isValid())
         cfg.writeEntry(key, date);

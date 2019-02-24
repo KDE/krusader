@@ -47,7 +47,7 @@ private:
 
 public:
     Synchronizer();
-    ~Synchronizer();
+    ~Synchronizer() override;
     int     compare(QString leftURL, QString rightURL, KRQuery *query, bool subDirs, bool symLinks,
                     bool igDate, bool asymm, bool cmpByCnt, bool igCase, bool autoSc, QStringList &selFiles,
                     int equThres, int timeOffs, int parThreads, bool hiddenFiles);
@@ -77,7 +77,7 @@ public:
     QString leftBaseDirectory();
     QString rightBaseDirectory();
     static QString getTaskTypeName(TaskType taskType);
-    static QUrl fsUrl(QString strUrl);
+    static QUrl fsUrl(const QString& strUrl);
 
     SynchronizerFileItem *getItemAt(unsigned ndx);
 
@@ -205,7 +205,7 @@ class KgetProgressDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit KgetProgressDialog(QWidget *parent = 0, const QString &caption = QString(),
+    explicit KgetProgressDialog(QWidget *parent = nullptr, const QString &caption = QString(),
                        const QString &text = QString(), bool modal = false);
 
     QProgressBar *progressBar() {

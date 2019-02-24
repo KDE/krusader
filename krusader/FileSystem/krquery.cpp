@@ -31,6 +31,7 @@
 #include <KIO/Job>
 #include <KIOCore/KFileItem>
 #include <KIOWidgets/KUrlCompletion>
+#include <utility>
 
 #include "../Archive/krarchandler.h"
 #include "fileitem.h"
@@ -42,10 +43,10 @@
 
 // set the defaults
 KRQuery::KRQuery()
-    : QObject(), matchesCaseSensitive(true), bNull(true), contain(QString()),
+    : matchesCaseSensitive(true), bNull(true), contain(QString()),
       containCaseSensetive(true), containWholeWord(false), containRegExp(false), minSize(0),
       maxSize(0), newerThen(0), olderThen(0), owner(QString()), group(QString()), perm(QString()),
-      type(QString()), inArchive(false), recurse(true), followLinksP(true), receivedBuffer(0),
+      type(QString()), inArchive(false), recurse(true), followLinksP(true), receivedBuffer(nullptr),
       receivedBufferLen(0), processEventsConnected(0), codec(QTextCodec::codecForLocale())
 {
     QChar ch = '\n';
@@ -57,10 +58,10 @@ KRQuery::KRQuery()
 
 // set the defaults
 KRQuery::KRQuery(const QString &name, bool matchCase)
-    : QObject(), bNull(true), contain(QString()), containCaseSensetive(true),
+    : bNull(true), contain(QString()), containCaseSensetive(true),
       containWholeWord(false), containRegExp(false), minSize(0), maxSize(0), newerThen(0),
       olderThen(0), owner(QString()), group(QString()), perm(QString()), type(QString()),
-      inArchive(false), recurse(true), followLinksP(true), receivedBuffer(0), receivedBufferLen(0),
+      inArchive(false), recurse(true), followLinksP(true), receivedBuffer(nullptr), receivedBufferLen(0),
       processEventsConnected(0), codec(QTextCodec::codecForLocale())
 {
     QChar ch = '\n';
@@ -73,7 +74,7 @@ KRQuery::KRQuery(const QString &name, bool matchCase)
 }
 
 KRQuery::KRQuery(const KRQuery &that)
-    : QObject(), receivedBuffer(0), receivedBufferLen(0), processEventsConnected(0)
+    : QObject(), receivedBuffer(nullptr), receivedBufferLen(0), processEventsConnected(0)
 {
     *this = that;
 }
@@ -82,7 +83,7 @@ KRQuery::~KRQuery()
 {
     if (receivedBuffer)
         delete[] receivedBuffer;
-    receivedBuffer = 0;
+    receivedBuffer = nullptr;
 }
 
 KRQuery &KRQuery::operator=(const KRQuery &old)
@@ -123,7 +124,7 @@ KRQuery &KRQuery::operator=(const KRQuery &old)
     return *this;
 }
 
-void KRQuery::load(KConfigGroup cfg)
+void KRQuery::load(const KConfigGroup& cfg)
 {
     *this = KRQuery(); // reset parameters first
 
@@ -232,7 +233,7 @@ bool KRQuery::checkPerm(QString filePerm) const
     return true;
 }
 
-bool KRQuery::checkType(QString mime) const
+bool KRQuery::checkType(const QString& mime) const
 {
     if (type == mime)
         return true;
@@ -328,7 +329,7 @@ bool KRQuery::match(FileItem *item) const
         receivedBytes = 0;
         if (receivedBuffer)
             delete receivedBuffer;
-        receivedBuffer = 0;
+        receivedBuffer = nullptr;
         receivedBufferLen = 0;
         fileName = item->getName();
         timer.start();
@@ -375,7 +376,7 @@ bool KRQuery::checkBuffer(const char *data, int len) const
 {
     bool result = false;
 
-    char *mergedBuffer = new char[len + receivedBufferLen];
+    auto *mergedBuffer = new char[len + receivedBufferLen];
     if (receivedBufferLen)
         memcpy(mergedBuffer, receivedBuffer, receivedBufferLen);
     if (len)
@@ -406,7 +407,7 @@ bool KRQuery::checkBuffer(const char *data, int len) const
     }
 
     delete[] receivedBuffer;
-    receivedBuffer = 0;
+    receivedBuffer = nullptr;
     receivedBufferLen = maxLen - lastLinePosition;
 
     if (receivedBufferLen) {
@@ -479,7 +480,7 @@ bool KRQuery::checkLine(const QString &line, bool backwards) const
     return false;
 }
 
-bool KRQuery::containsContent(QString file) const
+bool KRQuery::containsContent(const QString& file) const
 {
     QFile qf(file);
     if (!qf.open(QIODevice::ReadOnly))
@@ -511,7 +512,7 @@ bool KRQuery::containsContent(QString file) const
     return false;
 }
 
-bool KRQuery::containsContent(QUrl url) const
+bool KRQuery::containsContent(const QUrl& url) const
 {
     KIO::TransferJob *contentReader = KIO::get(url, KIO::NoReload, KIO::HideProgressInfo);
     connect(contentReader, &KIO::TransferJob::data, this, &KRQuery::containsContentData);
@@ -551,7 +552,7 @@ void KRQuery::containsContentFinished(KJob *) { busy = false; }
 bool KRQuery::checkTimer() const
 {
     if (timer.elapsed() >= STATUS_SEND_DELAY) {
-        int pcnt = (int)(100. * (double)receivedBytes / (double)totalBytes + .5);
+        auto pcnt = (int)(100. * (double)receivedBytes / (double)totalBytes + .5);
         QString message =
             i18nc("%1=filename, %2=percentage", "Searching content of '%1' (%2%)", fileName, pcnt);
         timer.start();
@@ -658,7 +659,7 @@ void KRQuery::setNameFilter(const QString &text, bool cs)
     }
 }
 
-void KRQuery::setContent(const QString &content, bool cs, bool wholeWord, QString encoding,
+void KRQuery::setContent(const QString &content, bool cs, bool wholeWord, const QString& encoding,
                          bool regExp)
 {
     bNull = false;
@@ -671,7 +672,7 @@ void KRQuery::setContent(const QString &content, bool cs, bool wholeWord, QStrin
         codec = QTextCodec::codecForLocale();
     else {
         codec = QTextCodec::codecForName(encoding.toLatin1());
-        if (codec == 0)
+        if (codec == nullptr)
             codec = QTextCodec::codecForLocale();
     }
 
@@ -728,7 +729,7 @@ void KRQuery::setMimeType(const QString &typeIn, QStringList customList)
 {
     bNull = false;
     type = typeIn;
-    customType = customList;
+    customType = std::move(customList);
 }
 
 bool KRQuery::isExcluded(const QUrl &url)

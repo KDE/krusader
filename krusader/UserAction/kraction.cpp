@@ -62,22 +62,22 @@
 #include "../defaults.h"
 
 // KrActionProcDlg
-KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *parent) :
-        QDialog(parent), _stdout(0), _stderr(0), _currentTextEdit(0)
+KrActionProcDlg::KrActionProcDlg(const QString& caption, bool enableStderr, QWidget *parent) :
+        QDialog(parent), _stdout(nullptr), _stderr(nullptr), _currentTextEdit(nullptr)
 {
     setWindowTitle(caption);
     setWindowModality(Qt::NonModal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
     // do we need to separate stderr and stdout?
     if (enableStderr) {
-        QSplitter *splitt = new QSplitter(Qt::Horizontal, this);
+        auto *splitt = new QSplitter(Qt::Horizontal, this);
         mainLayout->addWidget(splitt);
         // create stdout
         QWidget *stdoutWidget = new QWidget(splitt);
-        QVBoxLayout *stdoutBox = new QVBoxLayout(stdoutWidget);
+        auto *stdoutBox = new QVBoxLayout(stdoutWidget);
 
         stdoutBox->addWidget(new QLabel(i18n("Standard Output (stdout)"), stdoutWidget));
         _stdout = new KTextEdit(stdoutWidget);
@@ -85,7 +85,7 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
         stdoutBox->addWidget(_stdout);
         // create stderr
         QWidget *stderrWidget = new QWidget(splitt);
-        QVBoxLayout *stderrBox = new QVBoxLayout(stderrWidget);
+        auto *stderrBox = new QVBoxLayout(stderrWidget);
 
         stderrBox->addWidget(new QLabel(i18n("Standard Error (stderr)"), stderrWidget));
         _stderr = new KTextEdit(stderrWidget);
@@ -110,7 +110,7 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
     bool startupState = group.readEntry("Use Fixed Font", _UserActions_UseFixedFont);
     toggleFixedFont(startupState);
 
-    QHBoxLayout *hbox = new QHBoxLayout;
+    auto *hbox = new QHBoxLayout;
     QCheckBox* useFixedFont = new QCheckBox(i18n("Use font with fixed width"));
     useFixedFont->setChecked(startupState);
     hbox->addWidget(useFixedFont);
@@ -123,7 +123,7 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
     closeButton = buttonBox->button(QDialogButtonBox::Close);
     closeButton->setEnabled(false);
 
-    QPushButton *saveAsButton = new QPushButton;
+    auto *saveAsButton = new QPushButton;
     KGuiItem::assign(saveAsButton, KStandardGuiItem::saveAs());
     buttonBox->addButton(saveAsButton, QDialogButtonBox::ActionRole);
 
@@ -219,7 +219,7 @@ void KrActionProcDlg::currentTextEditChanged()
 }
 
 // KrActionProc
-KrActionProc::KrActionProc(KrActionBase* action) : QObject(), _action(action), _proc(0), _output(0)
+KrActionProc::KrActionProc(KrActionBase* action) : _action(action), _proc(nullptr), _output(nullptr)
 {
 }
 
@@ -228,7 +228,7 @@ KrActionProc::~KrActionProc()
     delete _proc;
 }
 
-void KrActionProc::start(QString cmdLine)
+void KrActionProc::start(const QString& cmdLine)
 {
     QStringList list;
     list << cmdLine;
@@ -246,7 +246,7 @@ void KrActionProc::start(QStringList cmdLineList)
 
     if (!_action->user().isEmpty()) {
         if (!KrServices::isExecutable(KDESU_PATH)) {
-            KMessageBox::sorry(0,
+            KMessageBox::sorry(nullptr,
                 i18n("Cannot run user action, %1 not found or not executable. "
                      "Please verify that kde-cli-tools are installed.", QString(KDESU_PATH)));
             return;
@@ -255,7 +255,7 @@ void KrActionProc::start(QStringList cmdLineList)
 
     if (_action->execType() == KrAction::RunInTE
             && (! MAIN_VIEW->terminalDock()->initialise())) {
-        KMessageBox::sorry(0, i18n("Embedded terminal emulator does not work, using output collection instead."));
+        KMessageBox::sorry(nullptr, i18n("Embedded terminal emulator does not work, using output collection instead."));
     }
 
     for (QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
@@ -292,7 +292,7 @@ void KrActionProc::start(QStringList cmdLineList)
                 QString term = group.readEntry("Terminal", _UserActions_Terminal);
                 QStringList termArgs = KShell::splitArgs(term, KShell::TildeExpand);
                 if (termArgs.isEmpty()) {
-                    KMessageBox::error(0, i18nc("Arg is a string containing the bad quoting.",
+                    KMessageBox::error(nullptr, i18nc("Arg is a string containing the bad quoting.",
                                                 "Bad quoting in terminal command:\n%1", term));
                     deleteLater();
                     return;
@@ -362,7 +362,7 @@ void KrActionProc::addStdout()
 
 
 // KrAction
-KrAction::KrAction(KActionCollection *parent, QString name) : QAction((QObject *)parent)
+KrAction::KrAction(KActionCollection *parent, const QString& name) : QAction((QObject *)parent)
 {
     _actionCollection = parent;
     setObjectName(name);
@@ -385,9 +385,9 @@ bool KrAction::isAvailable(const QUrl &currentURL)
     //check protocol
     if (! _showonlyProtocol.empty()) {
         available = false;
-        for (QStringList::Iterator it = _showonlyProtocol.begin(); it != _showonlyProtocol.end(); ++it) {
+        for (auto & it : _showonlyProtocol) {
             //qDebug() << "KrAction::isAvailable currentProtocol: " << currentURL.scheme() << " =?= " << *it;
-            if (currentURL.scheme() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
+            if (currentURL.scheme() == it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
                 available = true;
                 break;
             }
@@ -397,14 +397,14 @@ bool KrAction::isAvailable(const QUrl &currentURL)
     //check the Path-list:
     if (available && ! _showonlyPath.empty()) {
         available = false;
-        for (QStringList::Iterator it = _showonlyPath.begin(); it != _showonlyPath.end(); ++it) {
-            if ((*it).right(1) == "*") {
-                if (currentURL.path().indexOf((*it).left((*it).length() - 1)) == 0) {
+        for (auto & it : _showonlyPath) {
+            if (it.right(1) == "*") {
+                if (currentURL.path().indexOf(it.left(it.length() - 1)) == 0) {
                     available = true;
                     break;
                 }
             } else
-                if (currentURL.adjusted(QUrl::RemoveFilename|QUrl::StripTrailingSlash).path() == *it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
+                if (currentURL.adjusted(QUrl::RemoveFilename|QUrl::StripTrailingSlash).path() == it) {    // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
                     available = true;
                     break;
                 }
@@ -417,14 +417,14 @@ bool KrAction::isAvailable(const QUrl &currentURL)
         QMimeDatabase db;
         QMimeType mime = db.mimeTypeForUrl(currentURL);
         if (mime.isValid()) {
-            for (QStringList::Iterator it = _showonlyMime.begin(); it != _showonlyMime.end(); ++it) {
-                if ((*it).contains("/")) {
-                    if (mime.inherits(*it)) {      // don't use ==; use 'inherits()' instead, which is aware of inheritance (ie: text/x-makefile is also text/plain)
+            for (auto & it : _showonlyMime) {
+                if (it.contains("/")) {
+                    if (mime.inherits(it)) {      // don't use ==; use 'inherits()' instead, which is aware of inheritance (ie: text/x-makefile is also text/plain)
                         available = true;
                         break;
                     }
                 } else {
-                    if (mime.name().indexOf(*it) == 0) {      // 0 is the beginning, -1 is not found
+                    if (mime.name().indexOf(it) == 0) {      // 0 is the beginning, -1 is not found
                         available = true;
                         break;
                     }
@@ -436,8 +436,8 @@ bool KrAction::isAvailable(const QUrl &currentURL)
     //check filename
     if (available && ! _showonlyFile.empty()) {
         available = false;
-        for (QStringList::Iterator it = _showonlyFile.begin(); it != _showonlyFile.end(); ++it) {
-            QRegExp regex = QRegExp(*it, Qt::CaseInsensitive, QRegExp::Wildcard);   // case-sensitive = false; wildcards = true
+        for (auto & it : _showonlyFile) {
+            QRegExp regex = QRegExp(it, Qt::CaseInsensitive, QRegExp::Wildcard);   // case-sensitive = false; wildcards = true
             if (regex.exactMatch(currentURL.fileName())) {
                 available = true;
                 break;
@@ -639,7 +639,7 @@ void KrAction::readAvailability(const QDomElement& element)
         if (e.isNull())
             continue; // this should skip nodes which are not elements ( i.e. comments, <!-- -->, or text nodes)
 
-        QStringList* showlist = 0;
+        QStringList* showlist = nullptr;
 
         if (e.tagName() == "protocol")
             showlist = &_showonlyProtocol;
@@ -654,7 +654,7 @@ void KrAction::readAvailability(const QDomElement& element)
                         showlist = & _showonlyFile;
                     else {
                         qWarning() << "KrAction::readAvailability() - unrecognized element found: <action name=\"" << objectName() << "\"><availability><" << e.tagName() << ">";
-                        showlist = 0;
+                        showlist = nullptr;
                     }
 
         if (showlist) {

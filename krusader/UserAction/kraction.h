@@ -50,8 +50,8 @@ class KrAction: public QAction, public KrActionBase
 {
     Q_OBJECT
 public:
-    explicit KrAction(KActionCollection *parent, QString name = QString());
-    ~KrAction();
+    explicit KrAction(KActionCollection *parent, const QString& name = QString());
+    ~KrAction() override;
 
     /**
      * This chekcs if the KrAction is for a specific file / location available
@@ -190,7 +190,7 @@ class KrActionProcDlg: public QDialog
 {
     Q_OBJECT
 public:
-    explicit KrActionProcDlg(QString caption, bool enableStderr = false, QWidget *parent = 0);
+    explicit KrActionProcDlg(const QString& caption, bool enableStderr = false, QWidget *parent = nullptr);
 
 public slots:
     void addStderr(const QString& str);
@@ -227,8 +227,8 @@ class KrActionProc: public QObject
 public:
 
     explicit KrActionProc(KrActionBase* action);
-    virtual ~KrActionProc();
-    void start(QString cmdLine);
+    ~KrActionProc() override;
+    void start(const QString& cmdLine);
     void start(QStringList cmdLineList);
 
 protected slots:

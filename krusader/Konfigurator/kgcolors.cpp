@@ -37,6 +37,7 @@
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
+#include <utility>
 
 KgColors::KgColors(bool first, QWidget* parent) :
         KonfiguratorPage(first, parent), offset(0),
@@ -49,7 +50,7 @@ KgColors::KgColors(bool first, QWidget* parent) :
     QWidget *innerWidget = new QFrame(this);
     setWidget(innerWidget);
     setWidgetResizable(true);
-    QGridLayout *kgColorsLayout = new QGridLayout(innerWidget);
+    auto *kgColorsLayout = new QGridLayout(innerWidget);
     kgColorsLayout->setSpacing(6);
 
     //  -------------------------- GENERAL GROUPBOX ----------------------------------
@@ -79,7 +80,7 @@ KgColors::KgColors(bool first, QWidget* parent) :
 
     kgColorsLayout->addWidget(generalGrp, 0 , 0, 1, 3);
     QWidget *hboxWidget = new QWidget(innerWidget);
-    QHBoxLayout *hbox = new QHBoxLayout(hboxWidget);
+    auto *hbox = new QHBoxLayout(hboxWidget);
 
     //  -------------------------- COLORS GROUPBOX ----------------------------------
 
@@ -279,13 +280,13 @@ KgColors::KgColors(bool first, QWidget* parent) :
     slotDisable();
 }
 
-int KgColors::addColorSelector(QString cfgName, QString name, QColor defaultValue, QString dfltName,
+int KgColors::addColorSelector(const QString& cfgName, QString name, QColor defaultValue, const QString& dfltName,
                                ADDITIONAL_COLOR *addColor, int addColNum)
 {
     int index = itemList.count() - offset;
 
-    labelList.append(addLabel(colorsGrid, index, 0, name, colorsGrp));
-    KonfiguratorColorChooser *chooser = createColorChooser("Colors", cfgName, defaultValue, colorsGrp, false, addColor, addColNum);
+    labelList.append(addLabel(colorsGrid, index, 0, std::move(name), colorsGrp));
+    KonfiguratorColorChooser *chooser = createColorChooser("Colors", cfgName, std::move(defaultValue), colorsGrp, false, addColor, addColNum);
     chooser->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     if (!dfltName.isEmpty())
@@ -303,7 +304,7 @@ int KgColors::addColorSelector(QString cfgName, QString name, QColor defaultValu
     return index;
 }
 
-KonfiguratorColorChooser *KgColors::getColorSelector(QString name)
+KonfiguratorColorChooser *KgColors::getColorSelector(const QString& name)
 {
     QList<QString>::iterator it;
     int position = 0;
@@ -312,10 +313,10 @@ KonfiguratorColorChooser *KgColors::getColorSelector(QString name)
         if (*it == name)
             return itemList.at(position);
 
-    return 0;
+    return nullptr;
 }
 
-QLabel *KgColors::getSelectorLabel(QString name)
+QLabel *KgColors::getSelectorLabel(const QString& name)
 {
     QList<QString>::iterator it;
     int position = 0;
@@ -324,7 +325,7 @@ QLabel *KgColors::getSelectorLabel(QString name)
         if (*it == name)
             return labelList.at(position);
 
-    return 0;
+    return nullptr;
 }
 
 void KgColors::slotDisable()
@@ -469,15 +470,15 @@ void KgColors::generatePreview()
 
         // copy over local settings to color settings instance, which does not affect the persisted krConfig settings
         QList<QString> names = KrColorSettings::getColorNames();
-        for (QList<QString>::Iterator it = names.begin(); it != names.end(); ++it) {
-            KonfiguratorColorChooser * chooser = getColorSelector(*it);
+        for (auto & name : names) {
+            KonfiguratorColorChooser * chooser = getColorSelector(name);
             if (!chooser)
                 continue;
-            colorSettings.setColorTextValue(*it, chooser->getValue());
+            colorSettings.setColorTextValue(name, chooser->getValue());
             if (chooser->isValueRGB())
-                colorSettings.setColorValue(*it, chooser->getColor());
+                colorSettings.setColorValue(name, chooser->getColor());
             else
-                colorSettings.setColorValue(*it, QColor());
+                colorSettings.setColorValue(name, QColor());
         }
 
         colorSettings.setBoolValue("KDE Default", generals->find("KDE Default")->isChecked());
@@ -566,7 +567,7 @@ void KgColors::slotImportColors()
     QString basedir= QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("total_commander.keymap"));
     basedir = QFileInfo(basedir).absolutePath();
     // let the user select a file to load
-    QString file = QFileDialog::getOpenFileName(0, i18n("Select a color-scheme file"), basedir, QStringLiteral("*.color"));
+    QString file = QFileDialog::getOpenFileName(nullptr, i18n("Select a color-scheme file"), basedir, QStringLiteral("*.color"));
     if (file.isEmpty()) {
         return;
     }
@@ -583,7 +584,7 @@ void KgColors::slotImportColors()
 
 void KgColors::slotExportColors()
 {
-    QString file = QFileDialog::getSaveFileName(0, i18n("Select a color scheme file"), QString(), QStringLiteral("*"));
+    QString file = QFileDialog::getSaveFileName(nullptr, i18n("Select a color scheme file"), QString(), QStringLiteral("*"));
     if (file.isEmpty()) {
         return;
     }
@@ -682,7 +683,7 @@ void KgColors::deserialize(QDataStream & stream)
         }
 
         KonfiguratorColorChooser *selector = getColorSelector(name);
-        if (selector == 0)
+        if (selector == nullptr)
             break;
         selector->setValue(value);
     }

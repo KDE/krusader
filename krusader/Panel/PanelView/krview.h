@@ -32,6 +32,7 @@
 // QtGui
 #include <QDropEvent>
 #include <QPixmap>
+#include <utility>
 
 #include "krviewproperties.h"
 
@@ -53,14 +54,14 @@ class KrViewOperator : public QObject
     Q_OBJECT
 public:
     KrViewOperator(KrView *view, QWidget *widget);
-    ~KrViewOperator();
+    ~KrViewOperator() override;
 
     KrView *view() const { return _view; }
     QWidget *widget() const { return _widget; }
     void startDrag();
 
     void emitGotDrop(QDropEvent *e) { emit gotDrop(e); }
-    void emitLetsDrag(QStringList items, QPixmap icon) { emit letsDrag(items, icon); }
+    void emitLetsDrag(QStringList items, const QPixmap& icon) { emit letsDrag(std::move(items), icon); }
     void emitItemDescription(const QString &desc) { emit itemDescription(desc); }
     void emitContextMenu(const QPoint &point) { emit contextMenu(point); }
     void emitEmptyContextMenu(const QPoint &point) { emit emptyContextMenu(point); }
@@ -176,7 +177,7 @@ public:
     class IconSizes : public QVector<int>
     {
       public:
-        IconSizes() : QVector<int>() { *this << 12 << 16 << 22 << 32 << 48 << 64 << 128 << 256; }
+        IconSizes() { *this << 12 << 16 << 22 << 32 << 48 << 64 << 128 << 256; }
     };
 
     // instantiating a new view
@@ -253,7 +254,7 @@ public:
     uint numDirs() const { return _numDirs; }
     uint count() const { return _count; }
     void getSelectedItems(QStringList *names, bool fallbackToFocused = true);
-    void getItemsByMask(QString mask, QStringList *names, bool dirs = true, bool files = true);
+    void getItemsByMask(const QString& mask, QStringList *names, bool dirs = true, bool files = true);
     void getSelectedKrViewItems(KrViewItemList *items);
     void selectAllIncludingDirs() { changeSelection(KRQuery("*"), true, true); }
     void select(const KRQuery &filter = KRQuery("*")) { changeSelection(filter, true); }
@@ -261,13 +262,13 @@ public:
     void unselectAll() { changeSelection(KRQuery("*"), false, true); }
     void invertSelection();
     QString nameToMakeCurrent() const { return _nameToMakeCurrent; }
-    void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; }
+    void setNameToMakeCurrent(const QString& name) { _nameToMakeCurrent = name; }
     QString firstUnmarkedBelowCurrent(const bool skipCurrent);
     QString statistics();
     const KrViewProperties *properties() const { return _properties; }
     KrViewOperator *op() const { return _operator; }
     void showPreviews(bool show);
-    bool previewsShown() { return _previews != 0; }
+    bool previewsShown() { return _previews != nullptr; }
     void applySettingsToOthers();
 
     void setFiles(DirListerInterface *files);
@@ -295,7 +296,7 @@ public:
     const KRQuery &filterMask() const { return _properties->filterMask; }
     KrViewProperties::FilterSpec filter() const { return _properties->filter; }
     void setFilter(KrViewProperties::FilterSpec filter);
-    void setFilter(KrViewProperties::FilterSpec filter, FilterSettings customFilter,
+    void setFilter(KrViewProperties::FilterSpec filter, const FilterSettings& customFilter,
                    bool applyToDirs);
     void customSelection(bool select);
     int defaultFileIconSize();
@@ -323,7 +324,7 @@ public:
     // restore the default settings for this view type
     void restoreDefaultSettings();
     // call this to restore this view's settings after restart
-    void restoreSettings(KConfigGroup grp);
+    void restoreSettings(const KConfigGroup& grp);
 
     void saveSelection();
     void restoreSelection();

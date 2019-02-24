@@ -31,7 +31,7 @@
 
 extern KRarcHandler arcHandler;
 
-PackJob::PackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps) : AbstractThreadedJob()
+PackJob::PackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps)
 {
     startAbstractJobThread(new PackThread(srcUrl, destUrl, fileNames, type, packProps));
 }
@@ -43,7 +43,7 @@ PackJob * PackJob::createPacker(const QUrl &srcUrl, const QUrl &destUrl, const Q
 
 PackThread::PackThread(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames,
                        const QString &type, const QMap<QString, QString> &packProps) :
-        AbstractJobThread(), _sourceUrl(srcUrl), _destUrl(destUrl), _fileNames(fileNames),
+        _sourceUrl(srcUrl), _destUrl(destUrl), _fileNames(fileNames),
         _type(type), _packProperties(packProps)
 {
 }
@@ -82,7 +82,7 @@ void PackThread::slotStart()
     sendSuccess();
 }
 
-TestArchiveJob::TestArchiveJob(const QUrl &srcUrl, const QStringList & fileNames) : AbstractThreadedJob()
+TestArchiveJob::TestArchiveJob(const QUrl &srcUrl, const QStringList & fileNames)
 {
     startAbstractJobThread(new TestArchiveThread(srcUrl, fileNames));
 }
@@ -92,7 +92,7 @@ TestArchiveJob * TestArchiveJob::testArchives(const QUrl &srcUrl, const QStringL
     return new TestArchiveJob(srcUrl, fileNames);
 }
 
-TestArchiveThread::TestArchiveThread(const QUrl &srcUrl, const QStringList & fileNames) : AbstractJobThread(),
+TestArchiveThread::TestArchiveThread(const QUrl &srcUrl, const QStringList & fileNames) :
         _sourceUrl(srcUrl), _fileNames(fileNames)
 {
 }
@@ -121,7 +121,7 @@ void TestArchiveThread::slotStart()
 }
 
 
-UnpackJob::UnpackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames) : AbstractThreadedJob()
+UnpackJob::UnpackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames)
 {
     startAbstractJobThread(new UnpackThread(srcUrl, destUrl, fileNames));
 }
@@ -132,7 +132,7 @@ UnpackJob * UnpackJob::createUnpacker(const QUrl &srcUrl, const QUrl &destUrl, c
 }
 
 UnpackThread::UnpackThread(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames) :
-        AbstractJobThread(), _sourceUrl(srcUrl), _destUrl(destUrl), _fileNames(fileNames)
+        _sourceUrl(srcUrl), _destUrl(destUrl), _fileNames(fileNames)
 {
 }
 

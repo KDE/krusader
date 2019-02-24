@@ -31,9 +31,9 @@
 class DUListViewItem : public QTreeWidgetItem
 {
 public:
-    DUListViewItem(DiskUsage *diskUsageIn, File *fileIn, QTreeWidget * parent, QString label1,
-                   QString label2, QString label3, QString label4, QString label5, QString label6,
-                   QString label7, QString label8, QString label9)
+    DUListViewItem(DiskUsage *diskUsageIn, File *fileIn, QTreeWidget * parent, const QString& label1,
+                   const QString& label2, const QString& label3, const QString& label4, const QString& label5, const QString& label6,
+                   const QString& label7, const QString& label8, const QString& label9)
             : QTreeWidgetItem(parent), diskUsage(diskUsageIn), file(fileIn) {
         setText(0, label1);
         setText(1, label2);
@@ -52,9 +52,9 @@ public:
         setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicatorWhenChildless);
         diskUsage->addProperty(file, "ListView-Ref", this);
     }
-    DUListViewItem(DiskUsage *diskUsageIn, File *fileIn, QTreeWidgetItem * parent, QString label1,
-                   QString label2, QString label3, QString label4, QString label5, QString label6,
-                   QString label7, QString label8, QString label9)
+    DUListViewItem(DiskUsage *diskUsageIn, File *fileIn, QTreeWidgetItem * parent, const QString& label1,
+                   const QString& label2, const QString& label3, const QString& label4, const QString& label5, const QString& label6,
+                   const QString& label7, const QString& label8, const QString& label9)
             : QTreeWidgetItem(parent), diskUsage(diskUsageIn), file(fileIn) {
         setText(0, label1);
         setText(1, label2);
@@ -74,8 +74,8 @@ public:
         diskUsage->addProperty(file, "ListView-Ref", this);
     }
     DUListViewItem(DiskUsage *diskUsageIn, File *fileIn, QTreeWidget * parent, QTreeWidgetItem * after,
-                   QString label1, QString label2, QString label3, QString label4, QString label5,
-                   QString label6, QString label7, QString label8, QString label9)
+                   const QString& label1, const QString& label2, const QString& label3, const QString& label4, const QString& label5,
+                   const QString& label6, const QString& label7, const QString& label8, const QString& label9)
             : QTreeWidgetItem(parent, after), diskUsage(diskUsageIn), file(fileIn) {
         setText(0, label1);
         setText(1, label2);
@@ -95,8 +95,8 @@ public:
         diskUsage->addProperty(file, "ListView-Ref", this);
     }
     DUListViewItem(DiskUsage *diskUsageIn, File *fileIn, QTreeWidgetItem * parent, QTreeWidgetItem * after,
-                   QString label1, QString label2, QString label3, QString label4, QString label5,
-                   QString label6, QString label7, QString label8, QString label9)
+                   const QString& label1, const QString& label2, const QString& label3, const QString& label4, const QString& label5,
+                   const QString& label6, const QString& label7, const QString& label8, const QString& label9)
             : QTreeWidgetItem(parent, after),
             diskUsage(diskUsageIn), file(fileIn) {
         setText(0, label1);
@@ -116,18 +116,18 @@ public:
         setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicatorWhenChildless);
         diskUsage->addProperty(file, "ListView-Ref", this);
     }
-    ~DUListViewItem() {
+    ~DUListViewItem() override {
         diskUsage->removeProperty(file, "ListView-Ref");
     }
 
-    virtual bool operator<(const QTreeWidgetItem &other) const Q_DECL_OVERRIDE {
+    bool operator<(const QTreeWidgetItem &other) const Q_DECL_OVERRIDE {
         int column = treeWidget() ? treeWidget()->sortColumn() : 0;
 
         if (text(0) == "..")
             return true;
 
-        const DUListViewItem *compWith = dynamic_cast< const DUListViewItem * >(&other);
-        if (compWith == 0)
+        const auto *compWith = dynamic_cast< const DUListViewItem * >(&other);
+        if (compWith == nullptr)
             return false;
 
         switch (column) {
@@ -158,7 +158,7 @@ class DUListView : public KrTreeWidget
 
 public:
     explicit DUListView(DiskUsage *usage);
-    ~DUListView();
+    ~DUListView() override;
 
     File * getCurrentFile();
 
@@ -172,8 +172,8 @@ public slots:
 protected:
     DiskUsage *diskUsage;
 
-    virtual void mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
-    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 
 private:
     void addDirectory(Directory *dirEntry, QTreeWidgetItem *parent);

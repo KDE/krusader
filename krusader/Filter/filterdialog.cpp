@@ -28,20 +28,21 @@
 #include <QPushButton>
 
 #include <KI18n/KLocalizedString>
+#include <utility>
 
-FilterDialog::FilterDialog(QWidget *parent, QString caption, QStringList extraOptions, bool modal)
+FilterDialog::FilterDialog(QWidget *parent, const QString& caption, QStringList extraOptions, bool modal)
         : QDialog(parent)
 {
     setWindowTitle(caption.isNull() ? i18n("Krusader::Choose Files") : caption);
     setModal(modal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
-    QTabWidget *filterWidget = new QTabWidget;
+    auto *filterWidget = new QTabWidget;
 
-    filterTabs = FilterTabs::addTo(filterWidget, FilterTabs::HasProfileHandler, extraOptions);
-    generalFilter = static_cast<GeneralFilter*> (filterTabs->get("GeneralFilter"));
+    filterTabs = FilterTabs::addTo(filterWidget, FilterTabs::HasProfileHandler, std::move(extraOptions));
+    generalFilter = dynamic_cast<GeneralFilter*> (filterTabs->get("GeneralFilter"));
 
     mainLayout->addWidget(filterWidget);
 
@@ -74,12 +75,12 @@ KRQuery FilterDialog::getQuery()
 
 bool FilterDialog::isExtraOptionChecked(QString name)
 {
-    return filterTabs->isExtraOptionChecked(name);
+    return filterTabs->isExtraOptionChecked(std::move(name));
 }
 
 void FilterDialog::checkExtraOption(QString name, bool check)
 {
-    filterTabs->checkExtraOption(name, check);
+    filterTabs->checkExtraOption(std::move(name), check);
 }
 
 void FilterDialog::slotCloseRequest(bool doAccept)

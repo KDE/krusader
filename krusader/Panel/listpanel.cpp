@@ -52,6 +52,7 @@
 #include <KWidgetsAddons/KMessageBox>
 #include <KIOFileWidgets/KFilePlacesModel>
 #include <KIOWidgets/KUrlComboBox>
+#include <utility>
 
 #include "dirhistoryqueue.h"
 #include "krcolorcache.h"
@@ -96,7 +97,7 @@
 class ActionButton : public QToolButton
 {
 public:
-    ActionButton(QWidget *parent, ListPanel *panel, QAction *action, QString text = QString()) :
+    ActionButton(QWidget *parent, ListPanel *panel, QAction *action, const QString& text = QString()) :
             QToolButton(parent),  panel(panel), action(action) {
         setText(text);
         setAutoRaise(true);
@@ -106,7 +107,7 @@ public:
     }
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *) Q_DECL_OVERRIDE {
+    void mousePressEvent(QMouseEvent *) Q_DECL_OVERRIDE {
         panel->slotFocusOnMe();
         action->trigger();
     }
@@ -119,11 +120,11 @@ protected:
 /////////////////////////////////////////////////////
 //      The list panel constructor       //
 /////////////////////////////////////////////////////
-ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGroup cfg) :
-        QWidget(parent), KrPanel(manager, this, new ListPanelFunc(this)),
-        panelType(-1), colorMask(255), compareMode(false),
-        previewJob(0), inlineRefreshJob(0), searchBar(0), cdRootButton(0), cdUpButton(0),
-        sidebarButton(0), sidebar(0), fileSystemError(0), _navigatorUrl(), _tabState(TabState::DEFAULT)
+ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConfigGroup &cfg)
+    : QWidget(parent), KrPanel(manager, this, new ListPanelFunc(this)), panelType(-1),
+      colorMask(255), compareMode(false), previewJob(nullptr), inlineRefreshJob(nullptr),
+      searchBar(nullptr), cdRootButton(nullptr), cdUpButton(nullptr), sidebarButton(nullptr),
+      sidebar(nullptr), fileSystemError(nullptr), _tabState(TabState::DEFAULT)
 {
     if(cfg.isValid())
         panelType = cfg.readEntry("Type", -1);
@@ -198,7 +199,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 
     // toolbar
     QWidget * toolbar = new QWidget(this);
-    QHBoxLayout * toolbarLayout = new QHBoxLayout(toolbar);
+    auto * toolbarLayout = new QHBoxLayout(toolbar);
     toolbarLayout->setContentsMargins(0, 0, 0, 0);
     toolbarLayout->setSpacing(0);
     ADD_WIDGET(toolbar);
@@ -210,7 +211,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
 
     // client area
     clientArea = new QWidget(this);
-    QVBoxLayout *clientLayout = new QVBoxLayout(clientArea);
+    auto *clientLayout = new QVBoxLayout(clientArea);
     clientLayout->setSpacing(0);
     clientLayout->setContentsMargins(0, 0, 0, 0);
     ADD_WIDGET(clientArea);
@@ -330,11 +331,11 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, KConfigGrou
     QLayout *layout = fact.createLayout();
 
     if(!layout) { // fallback: create a layout by ourself
-        QVBoxLayout *v = new QVBoxLayout;
+        auto *v = new QVBoxLayout;
         v->setContentsMargins(0, 0, 0, 0);
         v->setSpacing(0);
 
-        QHBoxLayout *h = new QHBoxLayout;
+        auto *h = new QHBoxLayout;
         h->setContentsMargins(0, 0, 0, 0);
         h->setSpacing(0);
         h->addWidget(urlNavigator);
@@ -381,7 +382,7 @@ ListPanel::~ListPanel()
 {
     cancelProgress();
     delete view;
-    view = 0;
+    view = nullptr;
     delete func;
     delete status;
     delete bookmarksButton;
@@ -514,7 +515,7 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
         if(e->type() == QEvent::FocusIn && this != ACTIVE_PANEL && !isHidden())
             slotFocusOnMe();
         else if(e->type() == QEvent::ShortcutOverride) {
-            QKeyEvent *ke = static_cast<QKeyEvent*>(e);
+            auto *ke = dynamic_cast<QKeyEvent*>(e);
             if(ke->key() == Qt::Key_Escape && ke->modifiers() == Qt::NoModifier) {
                 // if the cancel refresh action has no shortcut assigned,
                 // we need this event ourselves to cancel refresh
@@ -529,13 +530,13 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
     else if(watched == urlNavigator->editor()) {
         // override default shortcut for panel focus
         if(e->type() == QEvent::ShortcutOverride) {
-            QKeyEvent *ke = static_cast<QKeyEvent *>(e);
+            auto *ke = dynamic_cast<QKeyEvent *>(e);
             if ((ke->key() == Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier)) {
                 e->accept(); // we will get the key press event now
                 return true;
             }
         } else if(e->type() == QEvent::KeyPress) {
-            QKeyEvent *ke = static_cast<QKeyEvent *>(e);
+            auto *ke = dynamic_cast<QKeyEvent *>(e);
             if ((ke->key() == Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) {
                 slotFocusOnMe();
                 return true;
@@ -648,14 +649,14 @@ void ListPanel::compareDirs(bool otherPanelToo)
 
     KrViewItem *item, *otherItem;
 
-    for (item = view->getFirst(); item != 0; item = view->getNext(item)) {
+    for (item = view->getFirst(); item != nullptr; item = view->getNext(item)) {
         if (item->name() == "..")
             continue;
 
-        for (otherItem = otherPanel()->view->getFirst(); otherItem != 0 && otherItem->name() != item->name();
+        for (otherItem = otherPanel()->view->getFirst(); otherItem != nullptr && otherItem->name() != item->name();
                 otherItem = otherPanel()->view->getNext(otherItem));
 
-        bool isSingle = (otherItem == 0), isDifferent = false, isNewer = false;
+        bool isSingle = (otherItem == nullptr), isDifferent = false, isNewer = false;
 
         if (func->getFileItem(item)->isDir() && !selectDirs) {
             item->setSelected(false);
@@ -748,7 +749,7 @@ void ListPanel::start(const QUrl &url)
 void ListPanel::slotStartUpdate(bool directoryChange)
 {
     if (inlineRefreshJob)
-        inlineRefreshListResult(0);
+        inlineRefreshListResult(nullptr);
 
     setCursor(Qt::BusyCursor);
 
@@ -816,7 +817,7 @@ void ListPanel::handleDrop(QDropEvent *event, bool onView)
     // find dropping destination
     QString destinationDir = "";
     const bool dragFromThisPanel = event->source() == this;
-    const KrViewItem *item = onView ? view->getKrViewItemAt(event->pos()) : 0;
+    const KrViewItem *item = onView ? view->getKrViewItemAt(event->pos()) : nullptr;
     if (item) {
         const FileItem *file = item->getFileItem();
         if (file && !file->isDir() && dragFromThisPanel) {
@@ -848,7 +849,7 @@ void ListPanel::handleDrop(const QUrl &destination, QDropEvent *event)
     func->files()->dropFiles(destination, event);
 }
 
-void ListPanel::startDragging(QStringList names, QPixmap px)
+void ListPanel::startDragging(const QStringList& names, const QPixmap& px)
 {
     if (names.isEmpty()) {  // avoid dragging empty urls
         return;
@@ -856,8 +857,8 @@ void ListPanel::startDragging(QStringList names, QPixmap px)
 
     QList<QUrl> urls = func->files()->getUrls(names);
 
-    QDrag *drag = new QDrag(this);
-    QMimeData *mimeData = new QMimeData;
+    auto *drag = new QDrag(this);
+    auto *mimeData = new QMimeData;
     drag->setPixmap(px);
     mimeData->setUrls(urls);
     drag->setMimeData(mimeData);
@@ -1028,7 +1029,7 @@ void ListPanel::slotPreviewJobPercent(KJob* /*job*/, unsigned long percent)
 
 void ListPanel::slotPreviewJobResult(KJob* /*job*/)
 {
-    previewJob = 0;
+    previewJob = nullptr;
     previewProgress->hide();
     if(!inlineRefreshJob)
         cancelProgressButton->hide();
@@ -1065,14 +1066,14 @@ void ListPanel::slotRefreshJobStarted(KIO::Job* job)
 void ListPanel::cancelProgress()
 {
     if (inlineRefreshJob) {
-        disconnect(inlineRefreshJob, 0, this, 0);
+        disconnect(inlineRefreshJob, nullptr, this, nullptr);
         inlineRefreshJob->kill(KJob::EmitResult);
-        inlineRefreshListResult(0);
+        inlineRefreshListResult(nullptr);
     }
     if(previewJob) {
-        disconnect(previewJob, 0, this, 0);
+        disconnect(previewJob, nullptr, this, nullptr);
         previewJob->kill(KJob::EmitResult);
-        slotPreviewJobResult(0);
+        slotPreviewJobResult(nullptr);
     }
 }
 
@@ -1096,8 +1097,8 @@ void ListPanel::inlineRefreshInfoMessage(KJob*, const QString &msg)
 void ListPanel::inlineRefreshListResult(KJob*)
 {
     if(inlineRefreshJob)
-        disconnect(inlineRefreshJob, 0, this, 0);
-    inlineRefreshJob = 0;
+        disconnect(inlineRefreshJob, nullptr, this, nullptr);
+    inlineRefreshJob = nullptr;
     // reenable everything
     status->setEnabled(true);
     urlNavigator->setEnabled(true);
@@ -1123,10 +1124,10 @@ void ListPanel::jumpBack()
 
 void ListPanel::setJumpBack(QUrl url)
 {
-    _jumpBackURL = url;
+    _jumpBackURL = std::move(url);
 }
 
-void ListPanel::slotFilesystemError(QString msg)
+void ListPanel::slotFilesystemError(const QString& msg)
 {
     slotRefreshColors();
     fileSystemError->setText(i18n("Error: %1", msg));
@@ -1320,7 +1321,7 @@ void ListPanel::newTab(KrViewItem *it)
 
 void ListPanel::newTab(const QUrl &url, bool nextToThis)
 {
-    _manager->newTab(url, nextToThis ? this : 0);
+    _manager->newTab(url, nextToThis ? this : nullptr);
 }
 
 void ListPanel::slotNavigatorUrlChanged(const QUrl &url)

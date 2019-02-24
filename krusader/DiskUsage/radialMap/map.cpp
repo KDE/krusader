@@ -40,7 +40,7 @@
 #define COLOR_GREY QColor::fromHsv( 0, 0, 140 )
 
 RadialMap::Map::Map()
-        : m_signature(0)
+        : m_signature(nullptr)
         , m_ringBreadth(MIN_RING_BREADTH)
         , m_innerRadius(0)
         , m_visibleDepth(DEFAULT_RING_DEPTH)
@@ -60,7 +60,7 @@ void
 RadialMap::Map::invalidate(const bool desaturateTheImage)
 {
     delete [] m_signature;
-    m_signature = 0;
+    m_signature = nullptr;
 
     if (desaturateTheImage) {
         QImage img = this->toImage();
@@ -149,7 +149,7 @@ RadialMap::Map::resize(const QRect &rect)
         size += MAP_2MARGIN;
         this->QPixmap::operator=(QPixmap(size, size));
 
-        if (m_signature != NULL) {
+        if (m_signature != nullptr) {
             setRingBreadth();
             paint();
         } else fill(); //FIXME I don't like having to do this..
@@ -293,7 +293,7 @@ RadialMap::Map::paint(unsigned int scaleFactor)
     for (int x = m_visibleDepth; x >= 0; --x) {
         int width = rect.width() / 2;
         //clever geometric trick to find largest angle that will give biggest arrow head
-        int a_max = int(acos((double)width / double((width + 5) * scaleFactor)) * (180 * 16 / M_PI));
+        auto a_max = int(acos((double)width / double((width + 5) * scaleFactor)) * (180 * 16 / M_PI));
 
         for (ConstIterator<Segment> it = m_signature[x].constIterator(); it != m_signature[x].end(); ++it) {
             //draw the pie segments, most of this code is concerned with drawing the little

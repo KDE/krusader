@@ -43,12 +43,13 @@
 #include <Solid/OpticalDisc>
 #include <Solid/OpticalDrive>
 #include <Solid/DeviceNotifier>
+#include <utility>
 
 QString MediaButton::remotePrefix = QLatin1String("remote:");
 
 
 MediaButton::MediaButton(QWidget *parent) : QToolButton(parent),
-        popupMenu(0), rightMenu(0), openInNewTab(false)
+        popupMenu(nullptr), rightMenu(nullptr), openInNewTab(false)
 {
     setAutoRaise(true);
     setIcon(Icon("system-file-manager"));
@@ -75,8 +76,7 @@ MediaButton::MediaButton(QWidget *parent) : QToolButton(parent),
 }
 
 MediaButton::~MediaButton()
-{
-}
+= default;
 
 void MediaButton::updateIcon(const QString &mountPoint)
 {
@@ -90,7 +90,7 @@ void MediaButton::updateIcon(const QString &mountPoint)
 
     if(!mountPoint.isEmpty()) {
         Solid::Device device(krMtMan.findUdiForPath(mountPoint, Solid::DeviceInterface::StorageAccess));;
-        Solid::StorageVolume *vol = device.as<Solid::StorageVolume> ();
+        auto *vol = device.as<Solid::StorageVolume> ();
 
         if(device.isValid())
             iconName = device.icon();
@@ -142,25 +142,25 @@ void MediaButton::createMediaList()
     KMountPoint::List possibleMountList = KMountPoint::possibleMountPoints();
     KMountPoint::List currentMountList = KMountPoint::currentMountPoints();
 
-    for (KMountPoint::List::iterator it = possibleMountList.begin(); it != possibleMountList.end(); ++it) {
-        if (krMtMan.networkFilesystem((*it)->mountType())) {
-            QString path = (*it)->mountPoint();
+    for (auto & it : possibleMountList) {
+        if (krMtMan.networkFilesystem(it->mountType())) {
+            QString path = it->mountPoint();
             bool mounted = false;
 
-            for (KMountPoint::List::iterator it2 = currentMountList.begin(); it2 != currentMountList.end(); ++it2) {
-                if (krMtMan.networkFilesystem((*it2)->mountType()) &&
-                        (*it)->mountPoint() == (*it2)->mountPoint()) {
+            for (auto & it2 : currentMountList) {
+                if (krMtMan.networkFilesystem(it2->mountType()) &&
+                        it->mountPoint() == it2->mountPoint()) {
                     mounted = true;
                     break;
                 }
             }
 
-            QString name = i18nc("%1 is the mount point of the remote share", "Remote Share [%1]", (*it)->mountPoint());
+            QString name = i18nc("%1 is the mount point of the remote share", "Remote Share [%1]", it->mountPoint());
             QStringList overlays;
             if (mounted)
                 overlays << "emblem-mounted";
             QAction * act = popupMenu->addAction(Icon("network-wired", overlays), name);
-            QString udi = remotePrefix + (*it)->mountPoint();
+            QString udi = remotePrefix + it->mountPoint();
             act->setData(QVariant(udi));
         }
     }
@@ -171,8 +171,8 @@ void MediaButton::createMediaList()
 
 bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &iconOut)
 {
-    Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
-    if (access == 0)
+    auto *access = device.as<Solid::StorageAccess>();
+    if (access == nullptr)
         return false;
 
     QString udi     = device.udi();
@@ -184,7 +184,7 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &i
     QString fstype;
     QString size;
 
-    Solid::StorageVolume * vol = device.as<Solid::StorageVolume> ();
+    auto * vol = device.as<Solid::StorageVolume> ();
     if (vol) {
         label = vol->label();
         fstype = vol->fsType();
@@ -289,7 +289,7 @@ bool MediaButton::eventFilter(QObject *o, QEvent *e)
                 }
             }
         } else if (e->type() == QEvent::KeyPress) {
-            QKeyEvent *ke = static_cast<QKeyEvent*>(e);
+            auto *ke = dynamic_cast<QKeyEvent*>(e);
             if (ke->key() == Qt::Key_Return && ke->modifiers() == Qt::ControlModifier) {
                 if (QAction *act = popupMenu->activeAction()) {
                     QString id = act->data().toString();
@@ -300,7 +300,7 @@ bool MediaButton::eventFilter(QObject *o, QEvent *e)
                 }
             }
         } else if (e->type() == QEvent::MouseButtonPress || e->type() == QEvent::MouseButtonRelease) {
-            QMouseEvent *m = static_cast<QMouseEvent*>(e);
+            auto *m = dynamic_cast<QMouseEvent*>(e);
             if (m->button() == Qt::RightButton) {
                 if (e->type() == QEvent::MouseButtonPress) {
                     QAction * act = popupMenu->actionAt(m->pos());
@@ -318,7 +318,7 @@ bool MediaButton::eventFilter(QObject *o, QEvent *e)
     return false;
 }
 
-void MediaButton::rightClickMenu(QString udi, QPoint pos)
+void MediaButton::rightClickMenu(const QString& udi, QPoint pos)
 {
     if (rightMenu)
         rightMenu->close();
@@ -352,12 +352,12 @@ void MediaButton::rightClickMenu(QString udi, QPoint pos)
 
     QAction *act = myMenu->exec(pos);
     int result = -1;
-    if (act != 0 && act->data().canConvert<int>())
+    if (act != nullptr && act->data().canConvert<int>())
         result = act->data().toInt();
 
     delete myMenu;
     if (rightMenu == myMenu)
-        rightMenu = 0;
+        rightMenu = nullptr;
     else
         return;
 
@@ -388,7 +388,7 @@ void MediaButton::rightClickMenu(QString udi, QPoint pos)
     }
 }
 
-void MediaButton::toggleMount(QString udi)
+void MediaButton::toggleMount(const QString& udi)
 {
     bool mounted = false;
     getStatus(udi, mounted);
@@ -399,7 +399,7 @@ void MediaButton::toggleMount(QString udi)
         mount(udi);
 }
 
-void MediaButton::getStatus(QString udi, bool &mounted, QString *mountPointOut, bool *ejectableOut)
+void MediaButton::getStatus(const QString& udi, bool &mounted, QString *mountPointOut, bool *ejectableOut)
 {
     mounted = false;
     bool network = udi.startsWith(remotePrefix);
@@ -410,9 +410,9 @@ void MediaButton::getStatus(QString udi, bool &mounted, QString *mountPointOut, 
          mountPoint = udi.mid(remotePrefix.length());
 
         KMountPoint::List currentMountList = KMountPoint::currentMountPoints();
-        for (KMountPoint::List::iterator it = currentMountList.begin(); it != currentMountList.end(); ++it) {
-            if (krMtMan.networkFilesystem((*it)->mountType()) &&
-                    (*it)->mountPoint() == mountPoint) {
+        for (auto & it : currentMountList) {
+            if (krMtMan.networkFilesystem(it->mountType()) &&
+                    it->mountPoint() == mountPoint) {
                 mounted = true;
                 break;
             }
@@ -420,8 +420,8 @@ void MediaButton::getStatus(QString udi, bool &mounted, QString *mountPointOut, 
     } else {
         Solid::Device device(udi);
 
-        Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
-        Solid::OpticalDisc  *optdisc = device.as<Solid::OpticalDisc>();
+        auto *access = device.as<Solid::StorageAccess>();
+        auto  *optdisc = device.as<Solid::OpticalDisc>();
         if (access)
             mountPoint = access->filePath();
         if (access && access->isAccessible())
@@ -436,7 +436,7 @@ void MediaButton::getStatus(QString udi, bool &mounted, QString *mountPointOut, 
         *ejectableOut = ejectable;
 }
 
-void MediaButton::mount(QString udi, bool open, bool newtab)
+void MediaButton::mount(const QString& udi, bool open, bool newtab)
 {
     if (udi.startsWith(remotePrefix)) {
         QString mp = udi.mid(remotePrefix.length());
@@ -448,7 +448,7 @@ void MediaButton::mount(QString udi, bool open, bool newtab)
         return;
     }
     Solid::Device device(udi);
-    Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+    auto *access = device.as<Solid::StorageAccess>();
     if (access && !access->isAccessible()) {
         if (open)
             udiToOpen = device.udi(), openInNewTab = newtab;
@@ -457,11 +457,11 @@ void MediaButton::mount(QString udi, bool open, bool newtab)
     }
 }
 
-void MediaButton::slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi)
+void MediaButton::slotSetupDone(Solid::ErrorType error, const QVariant& errorData, const QString &udi)
 {
     if (error == Solid::NoError) {
         if (udi == udiToOpen) {
-            Solid::StorageAccess *access = Solid::Device(udi).as<Solid::StorageAccess>();
+            auto *access = Solid::Device(udi).as<Solid::StorageAccess>();
             if (access && access->isAccessible()) {
                 if (openInNewTab)
                     emit newTab(QUrl::fromLocalFile(access->filePath()));
@@ -486,7 +486,7 @@ void MediaButton::slotSetupDone(Solid::ErrorType error, QVariant errorData, cons
     }
 }
 
-void MediaButton::umount(QString udi)
+void MediaButton::umount(const QString& udi)
 {
     if (udi.startsWith(remotePrefix)) {
         krMtMan.unmount(udi.mid(remotePrefix.length()), false);
@@ -497,7 +497,7 @@ void MediaButton::umount(QString udi)
 
 void MediaButton::eject(QString udi)
 {
-    krMtMan.eject(krMtMan.pathForUdi(udi));
+    krMtMan.eject(krMtMan.pathForUdi(std::move(udi)));
 }
 
 void MediaButton::slotAccessibilityChanged(bool /*accessible*/, const QString & udi)
@@ -524,8 +524,8 @@ void MediaButton::slotDeviceAdded(const QString& udi)
         return;
 
     Solid::Device device(udi);
-    Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
-    if (access == 0)
+    auto *access = device.as<Solid::StorageAccess>();
+    if (access == nullptr)
         return;
 
     QString name;
@@ -572,9 +572,9 @@ void MediaButton::slotCheckMounts()
             QString mountPoint = act->data().toString().mid(remotePrefix.length());
             bool available = false;
 
-            for (KMountPoint::List::iterator it = possibleMountList.begin(); it != possibleMountList.end(); ++it) {
-                if (krMtMan.networkFilesystem((*it)->mountType()) &&
-                        (*it)->mountPoint() == mountPoint) {
+            for (auto & it : possibleMountList) {
+                if (krMtMan.networkFilesystem(it->mountType()) &&
+                        it->mountPoint() == mountPoint) {
                     available = true;
                     break;
                 }
@@ -587,28 +587,28 @@ void MediaButton::slotCheckMounts()
         }
     }
 
-    for (KMountPoint::List::iterator it = possibleMountList.begin(); it != possibleMountList.end(); ++it) {
-        if (krMtMan.networkFilesystem((*it)->mountType())) {
-            QString path = (*it)->mountPoint();
+    for (auto & it : possibleMountList) {
+        if (krMtMan.networkFilesystem(it->mountType())) {
+            QString path = it->mountPoint();
             bool mounted = false;
             QString udi = remotePrefix + path;
 
-            QAction * correspondingAct = 0;
+            QAction * correspondingAct = nullptr;
             foreach(QAction * act, actionList) {
                 if (act && act->data().canConvert<QString>() && act->data().toString() == udi) {
                     correspondingAct = act;
                     break;
                 }
             }
-            for (KMountPoint::List::iterator it2 = currentMountList.begin(); it2 != currentMountList.end(); ++it2) {
-                if (krMtMan.networkFilesystem((*it2)->mountType()) &&
-                        path == (*it2)->mountPoint()) {
+            for (auto & it2 : currentMountList) {
+                if (krMtMan.networkFilesystem(it2->mountType()) &&
+                        path == it2->mountPoint()) {
                     mounted = true;
                     break;
                 }
             }
 
-            QString name = i18nc("%1 is the mount point of the remote share", "Remote Share [%1]", (*it)->mountPoint());
+            QString name = i18nc("%1 is the mount point of the remote share", "Remote Share [%1]", it->mountPoint());
             QStringList overlays;
             if (mounted)
                 overlays << "emblem-mounted";

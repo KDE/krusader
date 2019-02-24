@@ -42,7 +42,7 @@ KURLListRequester::KURLListRequester(Mode requestMode, QWidget *parent)
 {
     // Creating the widget
 
-    QGridLayout *urlListRequesterGrid = new QGridLayout(this);
+    auto *urlListRequesterGrid = new QGridLayout(this);
     urlListRequesterGrid->setSpacing(0);
     urlListRequesterGrid->setContentsMargins(0, 0, 0, 0);
 
@@ -132,7 +132,7 @@ void KURLListRequester::deleteSelectedItems()
 
 void KURLListRequester::slotRightClicked(QListWidgetItem *item, const QPoint &pos)
 {
-    if (item == 0)
+    if (item == nullptr)
         return;
 
     QMenu popupMenu(this);
@@ -178,7 +178,7 @@ void KURLListRequester::setUrlList(const QList<QUrl> &urlList)
     urlLineEdit->clear();
     urlListBox->clear();
 
-    for (const QUrl url : urlList) {
+    for (const QUrl& url : urlList) {
         urlListBox->addItem(url.toDisplayString(QUrl::PreferLocalFile));
     }
 

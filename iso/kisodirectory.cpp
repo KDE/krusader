@@ -32,5 +32,4 @@ KIsoDirectory::KIsoDirectory(KArchive* archive, const QString& name, int access,
 }
 
 KIsoDirectory::~KIsoDirectory()
-{
-}
+= default;

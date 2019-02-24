@@ -28,10 +28,10 @@ class KgGeneral : public KonfiguratorPage
     Q_OBJECT
 
 public:
-    explicit KgGeneral(bool first, QWidget* parent = 0);
+    explicit KgGeneral(bool first, QWidget* parent = nullptr);
 
 public slots:
-    void  applyTempDir(QObject *, QString, QString);
+    void  applyTempDir(QObject *, const QString&, const QString&);
     void  slotFindTools();
 
     void  slotAddExtension();
@@ -41,7 +41,7 @@ private:
     void createGeneralTab();
     void createViewerTab();
     void createExtensionsTab();
-    QWidget* createTab(QString name);
+    QWidget* createTab(const QString& name);
 
     QTabWidget *tabWidget;
     KonfiguratorListBox *listBox;

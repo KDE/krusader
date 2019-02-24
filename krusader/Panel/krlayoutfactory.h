@@ -44,18 +44,18 @@ public:
     QLayout *createLayout(QString layoutName = QString());
 
     static QStringList layoutNames();
-    static QString layoutDescription(QString layoutName);
+    static QString layoutDescription(const QString& layoutName);
 
 private:
-    QBoxLayout *createLayout(QDomElement e, QWidget *parent);
-    QWidget *createFrame(QDomElement e, QWidget *parent);
+    QBoxLayout *createLayout(const QDomElement& e, QWidget *parent);
+    QWidget *createFrame(const QDomElement& e, QWidget *parent);
 
     static bool parseFiles();
-    static bool parseFile(QString path, QDomDocument &doc);
-    static bool parseResource(QString path, QDomDocument &doc);
-    static bool parseContent(QByteArray content, QString fileName, QDomDocument &doc);
-    static void getLayoutNames(QDomDocument doc, QStringList &names);
-    static QDomElement findLayout(QDomDocument doc, QString layoutName);
+    static bool parseFile(const QString& path, QDomDocument &doc);
+    static bool parseResource(const QString& path, QDomDocument &doc);
+    static bool parseContent(const QByteArray& content, const QString& fileName, QDomDocument &doc);
+    static void getLayoutNames(const QDomDocument& doc, QStringList &names);
+    static QDomElement findLayout(const QDomDocument& doc, const QString& layoutName);
 
     ListPanel *panel;
     QHash<QString, QWidget*> &widgets;

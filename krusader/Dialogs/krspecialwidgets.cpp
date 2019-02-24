@@ -30,6 +30,7 @@
 #include <QPaintEvent>
 
 #include <KI18n/KLocalizedString>
+#include <utility>
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////// Pie related widgets /////////////////////////////////
@@ -57,7 +58,7 @@ QColor KRPie::colors[ 12 ] = {Qt::red, Qt::blue, Qt::green, Qt::cyan, Qt::magent
 // This is the full constructor: use it for a mounted filesystem
 KRFSDisplay::KRFSDisplay(QWidget *parent, QString _alias, QString _realName,
                          KIO::filesize_t _total, KIO::filesize_t _free) : QWidget(parent), totalSpace(_total),
-        freeSpace(_free), alias(_alias), realName(_realName), mounted(true),
+        freeSpace(_free), alias(std::move(_alias)), realName(std::move(_realName)), mounted(true),
         empty(false), supermount(false)
 {
 
@@ -70,7 +71,7 @@ KRFSDisplay::KRFSDisplay(QWidget *parent, QString _alias, QString _realName,
 
 // Use this one for an unmounted filesystem
 KRFSDisplay::KRFSDisplay(QWidget *parent, QString _alias, QString _realName, bool sm) :
-        QWidget(parent), alias(_alias), realName(_realName), mounted(false),
+        QWidget(parent), alias(std::move(_alias)), realName(std::move(_realName)), mounted(false),
         empty(false), supermount(sm)
 {
 
@@ -212,7 +213,7 @@ void KRPie::addSlice(KIO::filesize_t size, QString label)
 {
     int i = (slices.count() % 12);
     slices.removeLast();
-    slices.push_back(KRPieSlice(size * 100 / totalSize, colors[ i ], label));
+    slices.push_back(KRPieSlice(size * 100 / totalSize, colors[ i ], std::move(label)));
     sizeLeft -= size;
     slices.push_back(KRPieSlice(sizeLeft * 100 / totalSize, Qt::yellow, "DEFAULT"));
 }

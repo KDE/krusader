@@ -51,7 +51,7 @@ class KrTrashWatcher : public QObject
 
 public:
     KrTrashWatcher();
-    virtual ~KrTrashWatcher();
+    ~KrTrashWatcher() override;
 
 public slots:
     void slotTrashChanged();

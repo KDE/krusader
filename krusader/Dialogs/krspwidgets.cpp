@@ -49,10 +49,9 @@ QStringList KRSpWidgets::maskList;
 ///////////////////////////////////////////////////////////////////////////////
 
 KRSpWidgets::KRSpWidgets()
-{
-}
+= default;
 
-KRQuery KRSpWidgets::getMask(QString caption, bool nameOnly, QWidget * parent)
+KRQuery KRSpWidgets::getMask(const QString& caption, bool nameOnly, QWidget * parent)
 {
     if (!nameOnly) {
         return FilterTabs::getQuery(parent);
@@ -135,7 +134,7 @@ QUrl KRSpWidgets::newFTP()
     return url;
 }
 
-newFTPSub::newFTPSub() : newFTPGUI(0)
+newFTPSub::newFTPSub() : newFTPGUI(nullptr)
 {
     url->setFocus();
     setGeometry(krMainWindow->x() + krMainWindow->width() / 2 - width() / 2,

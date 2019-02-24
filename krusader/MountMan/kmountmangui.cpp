@@ -60,17 +60,17 @@
 
 KMountManGUI::KMountManGUI(KMountMan *mntMan) : QDialog(mntMan->parentWindow),
     mountMan(mntMan),
-    info(0),
-    mountList(0),
-    cbShowOnlyRemovable(0),
-    watcher(0),
+    info(nullptr),
+    mountList(nullptr),
+    cbShowOnlyRemovable(nullptr),
+    watcher(nullptr),
     sizeX(-1),
     sizeY(-1)
 {
     setWindowTitle(i18n("MountMan - Your Mount-Manager"));
     setWindowModality(Qt::WindowModal);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
     watcher = new QTimer(this);
@@ -145,7 +145,7 @@ void KMountManGUI::resizeEvent(QResizeEvent *e)
 
 QLayout *KMountManGUI::createMainPage()
 {
-    QGridLayout *layout = new QGridLayout();
+    auto *layout = new QGridLayout();
     layout->setSpacing(10);
     mountList = new KrTreeWidget(this);    // create the main container
     KConfigGroup grp(krConfig, "Look&Feel");
@@ -191,7 +191,7 @@ QLayout *KMountManGUI::createMainPage()
 
     QGroupBox *box = new QGroupBox(i18n("MountMan.Info"), this);
     box->setAlignment(Qt::AlignHCenter);
-    QVBoxLayout *vboxl = new QVBoxLayout(box);
+    auto *vboxl = new QVBoxLayout(box);
     info = new KRFSDisplay(box);
     vboxl->addWidget(info);
     info->resize(info->width(), height());
@@ -220,22 +220,22 @@ void KMountManGUI::getSpaceData()
         return;
     }
 
-    for (KMountPoint::List::iterator it = mounted.begin(); it != mounted.end(); ++it) {
+    for (auto & it : mounted) {
         // don't bother with invalid file systems
-        if (mountMan->invalidFilesystem((*it)->mountType())) {
+        if (mountMan->invalidFilesystem(it->mountType())) {
             continue;
         }
-        KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo((*it) ->mountPoint());
+        KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo(it ->mountPoint());
         if(!info.isValid()) {
             continue;
         }
         fsData data;
-        data.setMntPoint((*it) ->mountPoint());
+        data.setMntPoint(it ->mountPoint());
         data.setMounted(true);
         data.setTotalBlks(info.size() / 1024);
         data.setFreeBlks(info.available() / 1024);
-        data.setName((*it)->mountedFrom());
-        data.setType((*it)->mountType());
+        data.setName(it->mountedFrom());
+        data.setType(it->mountType());
         fileSystems.append(data);
     }
     addNonMounted();
@@ -245,16 +245,16 @@ void KMountManGUI::getSpaceData()
 void KMountManGUI::addNonMounted()
 {
     // handle the non-mounted ones
-    for (KMountPoint::List::iterator it = possible.begin(); it != possible.end(); ++it) {
+    for (auto & it : possible) {
         // make sure we don't add things we've already added
-        if (KMountMan::findInListByMntPoint(mounted, (*it)->mountPoint())) {
+        if (KMountMan::findInListByMntPoint(mounted, it->mountPoint())) {
             continue;
         } else {
             fsData data;
-            data.setMntPoint((*it)->mountPoint());
+            data.setMntPoint(it->mountPoint());
             data.setMounted(false);
-            data.setType((*it)->mountType());
-            data.setName((*it)->mountedFrom());
+            data.setType(it->mountType());
+            data.setName(it->mountedFrom());
 
             if (mountMan->invalidFilesystem(data.type()))
                 continue;
@@ -276,7 +276,7 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     QString tSize = QString("%1").arg(KIO::convertSizeFromKiB(fs.totalBlks()));
     QString fSize = QString("%1").arg(KIO::convertSizeFromKiB(fs.freeBlks()));
     QString sPrct = QString("%1%").arg(100 - (fs.usedPerct()));
-    QTreeWidgetItem *item = new QTreeWidgetItem(lst);
+    auto *item = new QTreeWidgetItem(lst);
     item->setText(0, fs.name());
     item->setText(1, fs.type());
     item->setText(2, fs.mntPoint());
@@ -284,7 +284,7 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     item->setText(4, (mtd ? fSize : QString("N/A")));
     item->setText(5, (mtd ? sPrct : QString("N/A")));
 
-    Solid::StorageVolume *vol = device.as<Solid::StorageVolume> ();
+    auto *vol = device.as<Solid::StorageVolume> ();
     QString iconName;
 
     if(device.isValid())
@@ -316,8 +316,8 @@ void KMountManGUI::updateList()
     mountList->clearSelection();
     mountList->clear();
 
-    for (QList<fsData>::iterator it = fileSystems.begin(); it != fileSystems.end() ; ++it)
-        addItemToMountList(mountList, *it);
+    for (auto & fileSystem : fileSystems)
+        addItemToMountList(mountList, fileSystem);
 
     currentItem = mountList->topLevelItem(currentIdx);
     for(int i = 0; i < mountList->topLevelItemCount(); i++) {
@@ -469,15 +469,15 @@ void KMountManGUI::slotEject()
 
 fsData* KMountManGUI::getFsData(QTreeWidgetItem *item)
 {
-    for (QList<fsData>::Iterator it = fileSystems.begin(); it != fileSystems.end(); ++it) {
+    for (auto & fileSystem : fileSystems) {
         // the only thing which is unique is the mount point
-        if ((*it).mntPoint() == getMntPoint(item)) {
-            return & (*it);
+        if (fileSystem.mntPoint() == getMntPoint(item)) {
+            return & fileSystem;
         }
     }
     //this point shouldn't be reached
     abort();
-    return 0;
+    return nullptr;
 }
 
 QString KMountManGUI::getMntPoint(QTreeWidgetItem *item)
@@ -500,11 +500,11 @@ bool KrMountDetector::hasMountsChanged()
 #endif
         KMountPoint::List mountPoints = KMountPoint::currentMountPoints(KMountPoint::NeedRealDeviceName);
         QCryptographicHash md5(QCryptographicHash::Md5);
-        for (KMountPoint::List::iterator i = mountPoints.begin(); i != mountPoints.end(); ++i) {
-            md5.addData((*i)->mountedFrom().toUtf8());
-            md5.addData((*i)->realDeviceName().toUtf8());
-            md5.addData((*i)->mountPoint().toUtf8());
-            md5.addData((*i)->mountType().toUtf8());
+        for (auto & mountPoint : mountPoints) {
+            md5.addData(mountPoint->mountedFrom().toUtf8());
+            md5.addData(mountPoint->realDeviceName().toUtf8());
+            md5.addData(mountPoint->mountPoint().toUtf8());
+            md5.addData(mountPoint->mountType().toUtf8());
         }
         QString s = md5.result();
         result = s != checksum;

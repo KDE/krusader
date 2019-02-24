@@ -105,7 +105,7 @@ public slots:
 
 public:
     explicit ListPanelFunc(ListPanel *parent);
-    ~ListPanelFunc();
+    ~ListPanelFunc() override;
 
     FileSystem* files();  // return a pointer to the filesystem
     QUrl virtualDirectory(); // return the current URL (simulated when panel is paused)
@@ -115,8 +115,8 @@ public:
 
     void refreshActions();
     void redirectLink();
-    void runService(const KService &service, QList<QUrl> urls);
-    void displayOpenWithDialog(QList<QUrl> urls);
+    void runService(const KService &service, const QList<QUrl>& urls);
+    void displayOpenWithDialog(const QList<QUrl>& urls);
     QUrl browsableArchivePath(const QString &);
     void deleteFiles(bool moveToTrash);
 
@@ -144,7 +144,7 @@ protected:
     void immediateOpenUrl(const QUrl &url);
     void openUrlInternal(const QUrl &url, const QString& makeCurrent,
                          bool immediately, bool manuallyEntered);
-    void runCommand(QString cmd);
+    void runCommand(const QString& cmd);
 
     ListPanel*               panel;     // our ListPanel
     DirHistoryQueue*         history;

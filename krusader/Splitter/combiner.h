@@ -37,7 +37,7 @@ class Combiner : public QProgressDialog
 
 public:
     Combiner(QWidget* parent,  QUrl baseURLIn, QUrl destinationURLIn, bool unixNamingIn = false);
-    ~Combiner();
+    ~Combiner() override;
 
     void combine();
 

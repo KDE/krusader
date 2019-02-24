@@ -41,7 +41,7 @@
 #include "../JobMan/jobman.h"
 
 
-FileSystemProvider::FileSystemProvider() : _defaultFileSystem(0), _virtFileSystem(0) {}
+FileSystemProvider::FileSystemProvider() : _defaultFileSystem(nullptr), _virtFileSystem(nullptr) {}
 
 FileSystem *FileSystemProvider::getFilesystem(const QUrl &url, FileSystem *oldFilesystem)
 {
@@ -91,7 +91,7 @@ void FileSystemProvider::refreshFilesystems(const QUrl &directory, bool removed)
             mountPoint = kMountPoint->mountPoint();
     }
 
-    for(QPointer<FileSystem> fileSystemPointer: _fileSystems) {
+    for(const QPointer<FileSystem>& fileSystemPointer: _fileSystems) {
         FileSystem *fs = fileSystemPointer.data();
         // refresh all filesystems currently showing this directory
         // and always refresh filesystems showing a virtual directory; it can contain files from
@@ -176,9 +176,9 @@ QString FileSystemProvider::getACL(const QString & path, int type)
     Q_UNUSED(path);
     Q_UNUSED(type);
 #ifdef HAVE_POSIX_ACL
-    acl_t acl = 0;
+    acl_t acl = nullptr;
     // do we have an acl for the file, and/or a default acl for the dir, if it is one?
-    if ((acl = acl_get_file(path.toLocal8Bit(), type)) != 0) {
+    if ((acl = acl_get_file(path.toLocal8Bit(), type)) != nullptr) {
         bool aclExtended = false;
 
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
@@ -201,14 +201,14 @@ QString FileSystemProvider::getACL(const QString & path, int type)
 
         if (!aclExtended) {
             acl_free(acl);
-            acl = 0;
+            acl = nullptr;
         }
     }
 
-    if (acl == 0)
+    if (acl == nullptr)
         return QString();
 
-    char *aclString = acl_to_text(acl, 0);
+    char *aclString = acl_to_text(acl, nullptr);
     QString ret = QString::fromLatin1(aclString);
     acl_free((void*)aclString);
     acl_free(acl);

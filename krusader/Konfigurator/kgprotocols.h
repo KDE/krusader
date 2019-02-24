@@ -33,12 +33,12 @@ class KgProtocols : public KonfiguratorPage
     Q_OBJECT
 
 public:
-    explicit KgProtocols(bool first, QWidget* parent = 0);
+    explicit KgProtocols(bool first, QWidget* parent = nullptr);
 
-    virtual void loadInitialValues() Q_DECL_OVERRIDE;
-    virtual void setDefaults() Q_DECL_OVERRIDE;
-    virtual bool apply() Q_DECL_OVERRIDE;
-    virtual bool isChanged() Q_DECL_OVERRIDE;
+    void loadInitialValues() Q_DECL_OVERRIDE;
+    void setDefaults() Q_DECL_OVERRIDE;
+    bool apply() Q_DECL_OVERRIDE;
+    bool isChanged() Q_DECL_OVERRIDE;
 
     static  void init();
 
@@ -54,10 +54,10 @@ protected:
     void         loadMimes();
     void         addSpacer(QBoxLayout *parent);
 
-    void         addProtocol(QString name, bool changeCurrent = false);
-    void         removeProtocol(QString name);
-    void         addMime(QString name, QString protocol);
-    void         removeMime(QString name);
+    void         addProtocol(const QString& name, bool changeCurrent = false);
+    void         removeProtocol(const QString& name);
+    void         addMime(QString name, const QString& protocol);
+    void         removeMime(const QString& name);
 
     KrTreeWidget *linkList;
 

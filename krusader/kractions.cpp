@@ -45,75 +45,75 @@
 #include "Panel/PanelView/krviewfactory.h"
 #include "UserAction/useraction.h"
 
-QAction *KrActions::actCompare = 0;
-QAction *KrActions::actDiskUsage = 0;
-QAction *KrActions::actHomeTerminal = 0;
-QAction *KrActions::actRemoteEncoding = 0;
-QAction *KrActions::actProfiles = 0;
-QAction *KrActions::actMultiRename = 0;
-QAction *KrActions::actMountMan = 0;
-QAction *KrActions::actNewTool = 0;
-QAction *KrActions::actKonfigurator = 0;
-QAction *KrActions::actToolsSetup = 0;
-QAction *KrActions::actSwapPanels = 0;
-QAction *KrActions::actSwapSides = 0;
-QAction *KrActions::actFind = 0;
-QAction *KrActions::actLocate = 0;
-QAction *KrActions::actSwitchFullScreenTE = 0;
-QAction *KrActions::actAddBookmark = 0;
-QAction *KrActions::actSavePosition = 0;
-QAction *KrActions::actSelectColorMask = 0;
-QAction *KrActions::actOpenLeftBm = 0;
-QAction *KrActions::actOpenRightBm = 0;
-QAction *KrActions::actCmdlinePopup = 0;
-QAction *KrActions::actSplit = 0;
-QAction *KrActions::actCombine = 0;
-QAction *KrActions::actUserMenu = 0;
-QAction *KrActions::actManageUseractions = 0;
+QAction *KrActions::actCompare = nullptr;
+QAction *KrActions::actDiskUsage = nullptr;
+QAction *KrActions::actHomeTerminal = nullptr;
+QAction *KrActions::actRemoteEncoding = nullptr;
+QAction *KrActions::actProfiles = nullptr;
+QAction *KrActions::actMultiRename = nullptr;
+QAction *KrActions::actMountMan = nullptr;
+QAction *KrActions::actNewTool = nullptr;
+QAction *KrActions::actKonfigurator = nullptr;
+QAction *KrActions::actToolsSetup = nullptr;
+QAction *KrActions::actSwapPanels = nullptr;
+QAction *KrActions::actSwapSides = nullptr;
+QAction *KrActions::actFind = nullptr;
+QAction *KrActions::actLocate = nullptr;
+QAction *KrActions::actSwitchFullScreenTE = nullptr;
+QAction *KrActions::actAddBookmark = nullptr;
+QAction *KrActions::actSavePosition = nullptr;
+QAction *KrActions::actSelectColorMask = nullptr;
+QAction *KrActions::actOpenLeftBm = nullptr;
+QAction *KrActions::actOpenRightBm = nullptr;
+QAction *KrActions::actCmdlinePopup = nullptr;
+QAction *KrActions::actSplit = nullptr;
+QAction *KrActions::actCombine = nullptr;
+QAction *KrActions::actUserMenu = nullptr;
+QAction *KrActions::actManageUseractions = nullptr;
 #ifdef SYNCHRONIZER_ENABLED
-QAction *KrActions::actSyncDirs = 0;
+QAction *KrActions::actSyncDirs = nullptr;
 #endif
-QAction *KrActions::actF10Quit = 0;
-QAction *KrActions::actEmptyTrash = 0;
-QAction *KrActions::actTrashBin = 0;
-QAction *KrActions::actPopularUrls = 0;
+QAction *KrActions::actF10Quit = nullptr;
+QAction *KrActions::actEmptyTrash = nullptr;
+QAction *KrActions::actTrashBin = nullptr;
+QAction *KrActions::actPopularUrls = nullptr;
 
-KToggleAction *KrActions::actToggleTerminal = 0;
-QAction  *KrActions::actVerticalMode = 0;
-QAction  *KrActions::actSelectNewerAndSingle = 0;
-QAction  *KrActions::actSelectSingle = 0;
-QAction  *KrActions::actSelectNewer = 0;
-QAction  *KrActions::actSelectDifferentAndSingle = 0;
-QAction  *KrActions::actSelectDifferent = 0;
+KToggleAction *KrActions::actToggleTerminal = nullptr;
+QAction  *KrActions::actVerticalMode = nullptr;
+QAction  *KrActions::actSelectNewerAndSingle = nullptr;
+QAction  *KrActions::actSelectSingle = nullptr;
+QAction  *KrActions::actSelectNewer = nullptr;
+QAction  *KrActions::actSelectDifferentAndSingle = nullptr;
+QAction  *KrActions::actSelectDifferent = nullptr;
 QAction  **KrActions::compareArray[] = {&actSelectNewerAndSingle, &actSelectNewer, &actSelectSingle,
-                                       &actSelectDifferentAndSingle, &actSelectDifferent, 0
+                                       &actSelectDifferentAndSingle, &actSelectDifferent, nullptr
                                       };
-QAction *KrActions::actExecStartAndForget = 0;
-QAction *KrActions::actExecCollectSeparate = 0;
-QAction *KrActions::actExecCollectTogether = 0;
-QAction *KrActions::actExecTerminalExternal = 0;
-QAction *KrActions::actExecTerminalEmbedded = 0;
+QAction *KrActions::actExecStartAndForget = nullptr;
+QAction *KrActions::actExecCollectSeparate = nullptr;
+QAction *KrActions::actExecCollectTogether = nullptr;
+QAction *KrActions::actExecTerminalExternal = nullptr;
+QAction *KrActions::actExecTerminalEmbedded = nullptr;
 QAction **KrActions::execTypeArray[] = {&actExecStartAndForget, &actExecCollectSeparate, &actExecCollectTogether,
-                                       &actExecTerminalExternal, &actExecTerminalEmbedded, 0
+                                       &actExecTerminalExternal, &actExecTerminalEmbedded, nullptr
                                       };
-KToggleAction *KrActions::actToggleFnkeys = 0;
-KToggleAction *KrActions::actToggleCmdline = 0;
-KToggleAction *KrActions::actShowStatusBar = 0;
-KToggleAction *KrActions::actToggleHidden = 0;
-KToggleAction *KrActions::actCompareDirs = 0;
+KToggleAction *KrActions::actToggleFnkeys = nullptr;
+KToggleAction *KrActions::actToggleCmdline = nullptr;
+KToggleAction *KrActions::actShowStatusBar = nullptr;
+KToggleAction *KrActions::actToggleHidden = nullptr;
+KToggleAction *KrActions::actCompareDirs = nullptr;
 
-QAction *KrActions::actJobProgress = 0;
-QAction *KrActions::actJobControl = 0;
-QAction *KrActions::actJobMode = 0;
-QAction *KrActions::actJobUndo = 0;
+QAction *KrActions::actJobProgress = nullptr;
+QAction *KrActions::actJobControl = nullptr;
+QAction *KrActions::actJobMode = nullptr;
+QAction *KrActions::actJobUndo = nullptr;
 
 #ifdef __KJSEMBED__
     static QAction *actShowJSConsole;
 #endif
 
 
-QAction *createAction(QString text, QString iconName, QKeySequence shortcut,
-                      QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
+QAction *createAction(const QString& text, const QString& iconName, const QKeySequence& shortcut,
+                      QObject *recv, const char *slot, const QString& name, Krusader *krusaderApp)
 {
     QAction *a;
     if (iconName.isEmpty())
@@ -126,8 +126,8 @@ QAction *createAction(QString text, QString iconName, QKeySequence shortcut,
     return a;
 }
 
-QAction *createAction(QString text, QString iconName, QList<QKeySequence> shortcuts,
-                      QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
+QAction *createAction(const QString& text, const QString& iconName, const QList<QKeySequence>& shortcuts,
+                      QObject *recv, const char *slot, const QString& name, Krusader *krusaderApp)
 {
     QAction *a;
     if (iconName.isEmpty())
@@ -141,11 +141,11 @@ QAction *createAction(QString text, QString iconName, QList<QKeySequence> shortc
 }
 
 
-KToggleAction *createToggleAction(QString text, QString iconName, QKeySequence shortcut,
-                                 QObject *recv, const char *slot, QString name, Krusader *krusaderApp)
+KToggleAction *createToggleAction(const QString& text, const QString& iconName, const QKeySequence& shortcut,
+                                 QObject *recv, const char *slot, const QString& name, Krusader *krusaderApp)
 {
     KToggleAction *a;
-    if (iconName == 0)
+    if (iconName == nullptr)
         a = new KToggleAction(text, krusaderApp);
     else
         a = new KToggleAction(Icon(iconName), text, krusaderApp);
@@ -180,7 +180,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     QAction *tmp;
     Q_UNUSED(tmp);
 
-    NEW_KACTION(tmp, i18n("Tab-Switch panel"), 0, Qt::Key_Tab, MAIN_VIEW, SLOT(panelSwitch()), "tab");
+    NEW_KACTION(tmp, i18n("Tab-Switch panel"), nullptr, Qt::Key_Tab, MAIN_VIEW, SLOT(panelSwitch()), "tab");
 
     KToggleToolBarAction *actShowToolBar = new KToggleToolBarAction(krusaderApp->toolBar(), i18n("Show Main Toolbar"), krusaderApp);
     krusaderApp->actionCollection()->addAction(KStandardAction::name(KStandardAction::ShowToolbar), actShowToolBar);
@@ -197,43 +197,43 @@ void KrActions::setupActions(Krusader *krusaderApp)
     KStandardAction::keyBindings(krusaderApp->guiFactory(), SLOT(configureShortcuts()), krusaderApp->actionCollection());
 
     // the toggle actions
-    NEW_KTOGGLEACTION(actToggleFnkeys, i18n("Show &FN Keys Bar"), 0, 0, SLOTS,  SLOT(toggleFnkeys()), "toggle fn bar");
+    NEW_KTOGGLEACTION(actToggleFnkeys, i18n("Show &FN Keys Bar"), nullptr, 0, SLOTS,  SLOT(toggleFnkeys()), "toggle fn bar");
 
-    NEW_KTOGGLEACTION(actToggleCmdline, i18n("Show &Command Line"), 0, 0, SLOTS, SLOT(toggleCmdline()), "toggle command line");
+    NEW_KTOGGLEACTION(actToggleCmdline, i18n("Show &Command Line"), nullptr, 0, SLOTS, SLOT(toggleCmdline()), "toggle command line");
 
-    NEW_KTOGGLEACTION(actToggleTerminal, i18n("Show &Embedded Terminal"), 0, Qt::ALT + Qt::CTRL + Qt::Key_T, SLOTS, SLOT(toggleTerminal()), "toggle terminal emulator");
+    NEW_KTOGGLEACTION(actToggleTerminal, i18n("Show &Embedded Terminal"), nullptr, Qt::ALT + Qt::CTRL + Qt::Key_T, SLOTS, SLOT(toggleTerminal()), "toggle terminal emulator");
 
 
-    NEW_KTOGGLEACTION(actToggleHidden, i18n("Show &Hidden Files"), 0, Qt::ALT + Qt::Key_Period, SLOTS, SLOT(showHiddenFiles(bool)), "toggle hidden files");
+    NEW_KTOGGLEACTION(actToggleHidden, i18n("Show &Hidden Files"), nullptr, Qt::ALT + Qt::Key_Period, SLOTS, SLOT(showHiddenFiles(bool)), "toggle hidden files");
 
-    NEW_KACTION(actSwapPanels, i18n("S&wap Panels"), 0, Qt::CTRL + Qt::Key_U, SLOTS, SLOT(swapPanels()), "swap panels");
+    NEW_KACTION(actSwapPanels, i18n("S&wap Panels"), nullptr, Qt::CTRL + Qt::Key_U, SLOTS, SLOT(swapPanels()), "swap panels");
 
     NEW_KACTION(actEmptyTrash, i18n("Empty Trash"), "trash-empty", 0, SLOTS, SLOT(emptyTrash()), "emptytrash");
 
     NEW_KACTION(actTrashBin, i18n("Trash Popup Menu"), KrTrashHandler::trashIconName(), 0, SLOTS, SLOT(trashPopupMenu()), "trashbin");
 
-    NEW_KACTION(actSwapSides, i18n("Sw&ap Sides"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_U, SLOTS, SLOT(toggleSwapSides()), "toggle swap sides");
+    NEW_KACTION(actSwapSides, i18n("Sw&ap Sides"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_U, SLOTS, SLOT(toggleSwapSides()), "toggle swap sides");
     actToggleHidden->setChecked(KConfigGroup(krConfig, "Look&Feel").readEntry("Show Hidden", _ShowHidden));
 
     // and then the DONE actions
-    NEW_KACTION(actCmdlinePopup, i18n("popup cmdline"), 0, Qt::CTRL + Qt::Key_Slash, SLOTS, SLOT(cmdlinePopup()), "cmdline popup");
+    NEW_KACTION(actCmdlinePopup, i18n("popup cmdline"), nullptr, Qt::CTRL + Qt::Key_Slash, SLOTS, SLOT(cmdlinePopup()), "cmdline popup");
 
 
     NEW_KACTION(tmp, i18n("Start &Root Mode Krusader"), "krusader_root", Qt::ALT + Qt::SHIFT + Qt::Key_K, SLOTS, SLOT(rootKrusader()), "root krusader");
     NEW_KACTION(actProfiles, i18n("Pro&files"), "user-identity", Qt::ALT + Qt::SHIFT + Qt::Key_L, MAIN_VIEW, SLOT(profiles()), "profile");
     NEW_KACTION(actSplit, i18n("Sp&lit File..."), "split", Qt::CTRL + Qt::Key_P, SLOTS, SLOT(slotSplit()), "split");
     NEW_KACTION(actCombine, i18n("Com&bine Files..."), "kr_combine", 0, SLOTS, SLOT(slotCombine()), "combine");
-    NEW_KACTION(actSelectNewerAndSingle, i18n("&Select Newer and Single"), 0, 0, SLOTS, SLOT(compareSetup()), "select_newer_and_single");
-    NEW_KACTION(actSelectNewer, i18n("Select &Newer"), 0, 0, SLOTS, SLOT(compareSetup()), "select_newer");
-    NEW_KACTION(actSelectSingle, i18n("Select &Single"), 0, 0, SLOTS, SLOT(compareSetup()), "select_single");
-    NEW_KACTION(actSelectDifferentAndSingle, i18n("Select Different &and Single"), 0, 0, SLOTS, SLOT(compareSetup()), "select_different_and_single");
-    NEW_KACTION(actSelectDifferent,  i18n("Select &Different"), 0, 0, SLOTS, SLOT(compareSetup()), "select_different");
+    NEW_KACTION(actSelectNewerAndSingle, i18n("&Select Newer and Single"), nullptr, 0, SLOTS, SLOT(compareSetup()), "select_newer_and_single");
+    NEW_KACTION(actSelectNewer, i18n("Select &Newer"), nullptr, 0, SLOTS, SLOT(compareSetup()), "select_newer");
+    NEW_KACTION(actSelectSingle, i18n("Select &Single"), nullptr, 0, SLOTS, SLOT(compareSetup()), "select_single");
+    NEW_KACTION(actSelectDifferentAndSingle, i18n("Select Different &and Single"), nullptr, 0, SLOTS, SLOT(compareSetup()), "select_different_and_single");
+    NEW_KACTION(actSelectDifferent,  i18n("Select &Different"), nullptr, 0, SLOTS, SLOT(compareSetup()), "select_different");
     actSelectNewerAndSingle->setCheckable(true);
     actSelectNewer->setCheckable(true);
     actSelectSingle->setCheckable(true);
     actSelectDifferentAndSingle->setCheckable(true);
     actSelectDifferent->setCheckable(true);
-    QActionGroup *selectGroup = new QActionGroup(krusaderApp);
+    auto *selectGroup = new QActionGroup(krusaderApp);
     selectGroup->setExclusive(true);
     selectGroup->addAction(actSelectNewerAndSingle);
     selectGroup->addAction(actSelectNewer);
@@ -242,17 +242,17 @@ void KrActions::setupActions(Krusader *krusaderApp)
     selectGroup->addAction(actSelectDifferent);
     if (compareMode < (int)(sizeof(compareArray) / sizeof(QAction **)) - 1)
         (*compareArray[ compareMode ])->setChecked(true);
-    NEW_KACTION(actExecStartAndForget, i18n("Start and &Forget"), 0, 0, SLOTS, SLOT(execTypeSetup()), "exec_start_and_forget");
-    NEW_KACTION(actExecCollectSeparate, i18n("Display &Separated Standard and Error Output"), 0, 0, SLOTS, SLOT(execTypeSetup()), "exec_collect_separate");
-    NEW_KACTION(actExecCollectTogether, i18n("Display &Mixed Standard and Error Output"), 0, 0, SLOTS, SLOT(execTypeSetup()), "exec_collect_together");
-    NEW_KACTION(actExecTerminalExternal, i18n("Start in &New Terminal"), 0, 0, SLOTS, SLOT(execTypeSetup()), "exec_terminal_external");
-    NEW_KACTION(actExecTerminalEmbedded, i18n("Send to &Embedded Terminal Emulator"), 0, 0, SLOTS, SLOT(execTypeSetup()), "exec_terminal_embedded");
+    NEW_KACTION(actExecStartAndForget, i18n("Start and &Forget"), nullptr, 0, SLOTS, SLOT(execTypeSetup()), "exec_start_and_forget");
+    NEW_KACTION(actExecCollectSeparate, i18n("Display &Separated Standard and Error Output"), nullptr, 0, SLOTS, SLOT(execTypeSetup()), "exec_collect_separate");
+    NEW_KACTION(actExecCollectTogether, i18n("Display &Mixed Standard and Error Output"), nullptr, 0, SLOTS, SLOT(execTypeSetup()), "exec_collect_together");
+    NEW_KACTION(actExecTerminalExternal, i18n("Start in &New Terminal"), nullptr, 0, SLOTS, SLOT(execTypeSetup()), "exec_terminal_external");
+    NEW_KACTION(actExecTerminalEmbedded, i18n("Send to &Embedded Terminal Emulator"), nullptr, 0, SLOTS, SLOT(execTypeSetup()), "exec_terminal_embedded");
     actExecStartAndForget->setCheckable(true);
     actExecCollectSeparate->setCheckable(true);
     actExecCollectTogether->setCheckable(true);
     actExecTerminalExternal->setCheckable(true);
     actExecTerminalEmbedded->setCheckable(true);
-    QActionGroup *actionGroup = new QActionGroup(krusaderApp);
+    auto *actionGroup = new QActionGroup(krusaderApp);
     actionGroup->setExclusive(true);
     actionGroup->addAction(actExecStartAndForget);
     actionGroup->addAction(actExecCollectSeparate);
@@ -276,7 +276,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
 #endif
     NEW_KACTION(actDiskUsage, i18n("D&isk Usage..."), "kr_diskusage", Qt::ALT + Qt::SHIFT + Qt::Key_S, SLOTS, SLOT(slotDiskUsage()), "disk usage");
     NEW_KACTION(actKonfigurator, i18n("Configure &Krusader..."), "configure", 0, SLOTS, SLOT(startKonfigurator()), "konfigurator");
-    NEW_KACTION(actSavePosition, i18n("Save &Position"), 0, 0, krusaderApp, SLOT(savePosition()), "save position");
+    NEW_KACTION(actSavePosition, i18n("Save &Position"), nullptr, 0, krusaderApp, SLOT(savePosition()), "save position");
     NEW_KACTION(actCompare, i18n("Compare b&y Content..."), "kr_comparedirs", 0, SLOTS, SLOT(compareContent()), "compare");
     NEW_KACTION(actMultiRename, i18n("Multi &Rename..."), "edit-rename", Qt::SHIFT + Qt::Key_F2, SLOTS, SLOT(multiRename()), "multirename");
 
@@ -284,20 +284,20 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actVerticalMode, i18n("Vertical Mode"), "view-split-top-bottom", Qt::ALT + Qt::CTRL + Qt::Key_R, MAIN_VIEW, SLOT(toggleVerticalMode()), "toggle vertical mode");
     actUserMenu = new KActionMenu(i18n("User&actions"), krusaderApp);
     krusaderApp->actionCollection()->addAction("useractionmenu", actUserMenu);
-    NEW_KACTION(actManageUseractions, i18n("Manage User Actions..."), 0, 0, SLOTS, SLOT(manageUseractions()), "manage useractions");
+    NEW_KACTION(actManageUseractions, i18n("Manage User Actions..."), nullptr, 0, SLOTS, SLOT(manageUseractions()), "manage useractions");
 
     actRemoteEncoding = new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "character-set", krusaderApp->actionCollection());
 
-    NEW_KACTION(actF10Quit, i18n("Quit"), 0, Qt::Key_F10, krusaderApp, SLOT(quit()) , "F10_Quit");
+    NEW_KACTION(actF10Quit, i18n("Quit"), nullptr, Qt::Key_F10, krusaderApp, SLOT(quit()) , "F10_Quit");
     actF10Quit->setToolTip(i18n("Quit Krusader."));
 
-    NEW_KACTION(actPopularUrls, i18n("Popular URLs..."), 0, Qt::CTRL + Qt::Key_Z, krusaderApp->popularUrls(), SLOT(showDialog()), "Popular_Urls");
-    NEW_KACTION(actSwitchFullScreenTE, i18n("Toggle Fullscreen Embedded Terminal"), 0,
+    NEW_KACTION(actPopularUrls, i18n("Popular URLs..."), nullptr, Qt::CTRL + Qt::Key_Z, krusaderApp->popularUrls(), SLOT(showDialog()), "Popular_Urls");
+    NEW_KACTION(actSwitchFullScreenTE, i18n("Toggle Fullscreen Embedded Terminal"), nullptr,
                 Qt::CTRL + Qt::ALT + Qt::Key_F, MAIN_VIEW, SLOT(toggleFullScreenTerminalEmulator()),
                 "switch_fullscreen_te");
 
-    NEW_KACTION(tmp, i18n("Move Focus Up"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Up, MAIN_VIEW, SLOT(focusUp()), "move_focus_up");
-    NEW_KACTION(tmp, i18n("Move Focus Down"), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Down, MAIN_VIEW, SLOT(focusDown()), "move_focus_down");
+    NEW_KACTION(tmp, i18n("Move Focus Up"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_Up, MAIN_VIEW, SLOT(focusUp()), "move_focus_up");
+    NEW_KACTION(tmp, i18n("Move Focus Down"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_Down, MAIN_VIEW, SLOT(focusDown()), "move_focus_down");
 
     // job manager actions
     actJobControl = krJobMan->controlAction();
