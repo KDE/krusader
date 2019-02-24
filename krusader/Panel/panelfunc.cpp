@@ -508,11 +508,20 @@ void ListPanelFunc::editNewFile()
     if(filePath.isEmpty())
         return ;   // the user canceled
 
-    // if the file exists, edit it instead of creating a new one
-    QFile file(filePath.toLocalFile());
-    if(file.exists()) {
-        editFile();
-        return;
+    if (filePath.isLocalFile()) {
+        // if the file exists, edit it instead of creating a new one
+        QFile file(filePath.toLocalFile());
+        if (file.exists()) {
+            editFile();
+            return;
+        } else {
+            // simply create a local file
+            // also because KIO::CopyJob::setDefaultPermissions does not work
+            file.open(QIODevice::NewOnly);
+            file.close();
+            slotFileCreated(nullptr, filePath);
+            return;
+        }
     }
 
     auto *tempFile = new QTemporaryFile;
@@ -528,7 +537,7 @@ void ListPanelFunc::editNewFile()
 
 void ListPanelFunc::slotFileCreated(KJob *job, const QUrl filePath)
 {
-    if (!job->error() || job->error() == KIO::ERR_FILE_ALREADY_EXIST) {
+    if (!job || (!job->error() || job->error() == KIO::ERR_FILE_ALREADY_EXIST)) {
         KrViewer::edit(filePath);
 
         if (KIO::upUrl(filePath).matches(panel->virtualPath(), QUrl::StripTrailingSlash)) {
