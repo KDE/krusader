@@ -983,8 +983,7 @@ void ListPanelFunc::createChecksum()
     if (!panel->func->files()->isLocal())
         return; // only local, non-virtual files are supported
 
-    KrViewItemList items;
-    panel->view->getSelectedKrViewItems(&items);
+    const KrViewItemList items = panel->view->getSelectedKrViewItems();
 
     QStringList fileNames;
     for (KrViewItem *item : items) {
