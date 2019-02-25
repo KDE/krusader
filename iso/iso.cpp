@@ -39,6 +39,7 @@
 #include "kiso.h"
 #include "kisofile.h"
 #include "kisodirectory.h"
+#include "../krusader/compat.h"
 
 using namespace KIO;
 extern "C"
@@ -185,30 +186,30 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString & path, int startse
 void kio_isoProtocol::createUDSEntry(const KArchiveEntry * isoEntry, UDSEntry & entry)
 {
     entry.clear();
-    entry.insert(UDSEntry::UDS_NAME, isoEntry->name());
-    entry.insert(UDSEntry::UDS_FILE_TYPE, isoEntry->permissions() & S_IFMT);   // keep file type only
-    entry.insert(UDSEntry::UDS_ACCESS, isoEntry->permissions() & 07777);   // keep permissions only
+    entry.UDS_ENTRY_INSERT(UDSEntry::UDS_NAME, isoEntry->name());
+    entry.UDS_ENTRY_INSERT(UDSEntry::UDS_FILE_TYPE, isoEntry->permissions() & S_IFMT);   // keep file type only
+    entry.UDS_ENTRY_INSERT(UDSEntry::UDS_ACCESS, isoEntry->permissions() & 07777);   // keep permissions only
 
     if (isoEntry->isFile()) {
         long long si = ((KIsoFile *)isoEntry)->realsize();
         if (!si) si = ((KIsoFile *)isoEntry)->size();
-        entry.insert(UDSEntry::UDS_SIZE, si);
+        entry.UDS_ENTRY_INSERT(UDSEntry::UDS_SIZE, si);
     } else {
-        entry.insert(UDSEntry::UDS_SIZE, 0L);
+        entry.UDS_ENTRY_INSERT(UDSEntry::UDS_SIZE, 0L);
     }
 
-    entry.insert(UDSEntry::UDS_USER, isoEntry->user());
-    entry.insert(UDSEntry::UDS_GROUP, isoEntry->group());
-    entry.insert((uint)UDSEntry::UDS_MODIFICATION_TIME, isoEntry->date().toTime_t());
-    entry.insert(UDSEntry::UDS_ACCESS_TIME,
+    entry.UDS_ENTRY_INSERT(UDSEntry::UDS_USER, isoEntry->user());
+    entry.UDS_ENTRY_INSERT(UDSEntry::UDS_GROUP, isoEntry->group());
+    entry.UDS_ENTRY_INSERT((uint)UDSEntry::UDS_MODIFICATION_TIME, isoEntry->date().toTime_t());
+    entry.UDS_ENTRY_INSERT(UDSEntry::UDS_ACCESS_TIME,
                  isoEntry->isFile() ? ((KIsoFile *)isoEntry)->adate() :
                  ((KIsoDirectory *)isoEntry)->adate());
 
-    entry.insert(UDSEntry::UDS_CREATION_TIME,
+    entry.UDS_ENTRY_INSERT(UDSEntry::UDS_CREATION_TIME,
                  isoEntry->isFile() ? ((KIsoFile *)isoEntry)->cdate() :
                  ((KIsoDirectory *)isoEntry)->cdate());
 
-    entry.insert(UDSEntry::UDS_LINK_DEST, isoEntry->symLinkTarget());
+    entry.UDS_ENTRY_INSERT(UDSEntry::UDS_LINK_DEST, isoEntry->symLinkTarget());
 }
 
 void kio_isoProtocol::listDir(const QUrl &url)
@@ -305,10 +306,10 @@ void kio_isoProtocol::stat(const QUrl &url)
             return;
         }
         // Real directory. Return just enough information for KRun to work
-        entry.insert(UDSEntry::UDS_NAME, url.fileName());
+        entry.UDS_ENTRY_INSERT(UDSEntry::UDS_NAME, url.fileName());
         //qDebug()  << "kio_isoProtocol::stat returning name=" << url.fileName() << endl;
 
-        entry.insert(UDSEntry::UDS_FILE_TYPE, buff.st_mode & S_IFMT);
+        entry.UDS_ENTRY_INSERT(UDSEntry::UDS_FILE_TYPE, buff.st_mode & S_IFMT);
 
         statEntry(entry);
 

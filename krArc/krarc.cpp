@@ -44,6 +44,7 @@
 #include <kio_version.h>
 
 #include <errno.h>
+#include "../krusader/compat.h"
 
 #define MAX_IPC_SIZE           (1024*32)
 #define TRIES_WITH_PASSWORDS   3
@@ -1023,10 +1024,10 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
     dirDict.insert(DIR_SEPARATOR, root);
     // and the "/" UDSEntry
     UDSEntry entry;
-    entry.insert(KIO::UDSEntry::UDS_NAME, ".");
+    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_NAME, ".");
     mode_t mode = parsePermString("drwxr-xr-x");
-    entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT);   // keep file type only
-    entry.insert(KIO::UDSEntry::UDS_ACCESS, mode & 07777);   // keep permissions only
+    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT);   // keep file type only
+    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_ACCESS, mode & 07777);   // keep permissions only
 
     root->append(entry);
 
@@ -1204,12 +1205,12 @@ UDSEntryList* kio_krarcProtocol::addNewDir(QString path)
     }
 
     UDSEntry entry;
-    entry.insert(KIO::UDSEntry::UDS_NAME, name);
+    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_NAME, name);
     mode_t mode = parsePermString("drwxr-xr-x");
-    entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT);   // keep file type only
-    entry.insert(KIO::UDSEntry::UDS_ACCESS, mode & 07777);   // keep permissions only
-    entry.insert(KIO::UDSEntry::UDS_SIZE, 0);
-    entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, arcFile->time(KFileItem::ModificationTime).toTime_t());
+    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT);   // keep file type only
+    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_ACCESS, mode & 07777);   // keep permissions only
+    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_SIZE, 0);
+    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_MODIFICATION_TIME, arcFile->time(KFileItem::ModificationTime).toTime_t());
 
     dir->append(entry);
 
@@ -1486,18 +1487,18 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
 
     QString name = fullName.mid(fullName.lastIndexOf(DIR_SEPARATOR) + 1);
     // file name
-    entry.insert(KIO::UDSEntry::UDS_NAME, name);
+    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_NAME, name);
     // file type
-    entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT);   // keep file type only
+    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT);   // keep file type only
     // file permissions
-    entry.insert(KIO::UDSEntry::UDS_ACCESS, mode & 07777);   // keep permissions only
+    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_ACCESS, mode & 07777);   // keep permissions only
     // file size
-    entry.insert(KIO::UDSEntry::UDS_SIZE, size);
+    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_SIZE, size);
     // modification time
-    entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, time);
+    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_MODIFICATION_TIME, time);
     // link destination
     if (!symlinkDest.isEmpty()) {
-        entry.insert(KIO::UDSEntry::UDS_LINK_DEST, symlinkDest);
+        entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_LINK_DEST, symlinkDest);
     }
     if (S_ISDIR(mode)) {
         fullName = fullName + DIR_SEPARATOR;
@@ -1510,8 +1511,8 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
             for (entryIt = dir->begin(); entryIt != dir->end(); ++entryIt) {
                 if (entryIt->contains(KIO::UDSEntry::UDS_NAME) &&
                         entryIt->stringValue(KIO::UDSEntry::UDS_NAME) == name) {
-                    entryIt->insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, time);
-                    entryIt->insert(KIO::UDSEntry::UDS_ACCESS, mode);
+                    entryIt->UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_MODIFICATION_TIME, time);
+                    entryIt->UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_ACCESS, mode);
                     return;
                 }
             }
