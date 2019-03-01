@@ -59,7 +59,6 @@ public slots:
     void startSearch();
     void stopSearch();
     void feedToListBox();
-    void copyToClipBoard();
     void slotFound(const FileItem &file, const QString &foundText);
     void closeDialog(bool isAccept = true);
     void executed(const QString &name);
@@ -73,11 +72,14 @@ public slots:
 protected slots:
     void reject();
 
-private:
-    bool gui2query();
+private slots:
     void editCurrent();
     void viewCurrent();
     void compareByContent();
+    void copyToClipBoard();
+
+private:
+    bool gui2query();
 
     /**
      * Placing search query to clipboard is optional (opt-in).
@@ -111,6 +113,11 @@ private:
     KRSearchMod *searcher;
     bool isBusy;
     bool closed;
+
+    QAction *viewAction;
+    QAction *editAction;
+    QAction *compareAction;
+    QAction *copyAction;
 
     static QString lastSearchText;
     static int     lastSearchType;

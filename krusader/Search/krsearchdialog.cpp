@@ -39,6 +39,7 @@
 #include <QMenu>
 
 #include <KConfigCore/KConfig>
+#include <KConfigWidgets/KStandardAction>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
@@ -195,12 +196,41 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
     filterTabs = FilterTabs::addTo(searcherTabs, FilterTabs::Default);
     generalFilter = (GeneralFilter *)filterTabs->get("GeneralFilter");
 
+
+    // creating the result tab
+
     QWidget* resultTab = new QWidget(searcherTabs);
     QGridLayout* resultLayout = new QGridLayout(resultTab);
     resultLayout->setSpacing(6);
     resultLayout->setContentsMargins(6, 6, 6, 6);
 
-    // creating the result tab
+    // actions
+    viewAction = new QAction(Icon("document-edit-preview"), i18n("View File"), this);
+    viewAction->setShortcut(Qt::Key_F3);
+    connect(viewAction, &QAction::triggered, this, &KrSearchDialog::viewCurrent);
+    addAction(viewAction);
+
+    editAction = new QAction(Icon("document-edit-sign"), i18n("Edit File"), this);
+    editAction->setShortcut(Qt::Key_F4);
+    connect(editAction, &QAction::triggered, this, &KrSearchDialog::editCurrent);
+    addAction(editAction);
+
+    compareAction = new QAction(i18n("Compare by content"), this);
+    compareAction->setShortcut(Qt::Key_F10);
+    connect(compareAction, &QAction::triggered, this, &KrSearchDialog::compareByContent);
+    addAction(compareAction);
+
+    copyAction = KStandardAction::create(KStandardAction::Copy, this, SLOT(copyToClipBoard()), this);
+    copyAction->setText(i18n("Copy to Clipboard"));
+    addAction(copyAction);
+
+    connect(searcherTabs, &QTabWidget::currentChanged, this, [=](int index) {
+        bool resultTabShown = index == searcherTabs->indexOf(resultTab);
+        viewAction->setEnabled(resultTabShown);
+        editAction->setEnabled(resultTabShown);
+        compareAction->setEnabled(resultTabShown);
+        copyAction->setEnabled(resultTabShown);
+    });
 
     QHBoxLayout* resultLabelLayout = new QHBoxLayout();
     resultLabelLayout->setSpacing(6);
@@ -523,20 +553,6 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
     if (resultView->widget()->hasFocus()) {
         if ((e->key() | e->modifiers()) == (Qt::CTRL | Qt::Key_I)) {
             searchBar->showBar(KrSearchBar::MODE_FILTER);
-        } else if (e->key() == Qt::Key_F4) {
-            tryPlaceSearchQueryToClipboard();
-            editCurrent();
-            return;
-        } else if (e->key() == Qt::Key_F3) {
-            tryPlaceSearchQueryToClipboard();
-            viewCurrent();
-            return;
-        } else if (e->key() == Qt::Key_F10) {
-            compareByContent();
-            return;
-        } else if (KrGlobal::copyShortcut == QKeySequence(e->key() | e->modifiers())) {
-            copyToClipBoard();
-            return;
         }
     }
     QDialog::keyPressEvent(e);
@@ -544,6 +560,7 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
 
 void KrSearchDialog::editCurrent()
 {
+    tryPlaceSearchQueryToClipboard();
     KrViewItem *current = resultView->getCurrentKrViewItem();
     if (current)
         KrViewer::edit(current->getFileItem()->getUrl(), this);
@@ -551,6 +568,7 @@ void KrSearchDialog::editCurrent()
 
 void KrSearchDialog::viewCurrent()
 {
+    tryPlaceSearchQueryToClipboard();
     KrViewItem *current = resultView->getCurrentKrViewItem();
     if (current)
         KrViewer::view(current->getFileItem()->getUrl(), this);
@@ -558,8 +576,7 @@ void KrSearchDialog::viewCurrent()
 
 void KrSearchDialog::compareByContent()
 {
-    KrViewItemList list;
-    resultView->getSelectedKrViewItems(&list);
+    const KrViewItemList list = resultView->getSelectedKrViewItems();
     if (list.count() != 2)
         return;
 
@@ -572,24 +589,14 @@ void KrSearchDialog::contextMenu(const QPoint &pos)
     QMenu popup;
     popup.setTitle(i18n("Krusader Search"));
 
-    QAction *actView = popup.addAction(i18n("View File (F3)"));
-    QAction *actEdit = popup.addAction(i18n("Edit File (F4)"));
-    QAction *actComp = popup.addAction(i18n("Compare by content (F10)"));
-    if(resultView->numSelected() != 2)
-        actComp->setEnabled(false);
-    QAction *actClip = popup.addAction(i18n("Copy selected to clipboard"));
+    popup.addAction(viewAction);
+    popup.addAction(editAction);
+    popup.addAction(compareAction);
+    compareAction->setEnabled(resultView->numSelected() == 2);
+    popup.addSeparator();
+    popup.addAction(copyAction);
 
-    QAction *result = popup.exec(pos);
-
-    // check out the user's option
-    if (result == actView)
-        viewCurrent();
-    else if (result == actEdit)
-        editCurrent();
-    else if (result == actClip)
-        copyToClipBoard();
-    else if (result == actComp)
-        compareByContent();
+    popup.exec(pos);
 }
 
 void KrSearchDialog::feedToListBox()
@@ -646,9 +653,11 @@ void KrSearchDialog::feedToListBox()
 
 void KrSearchDialog::copyToClipBoard()
 {
+    const KrViewItemList selectedItems = resultView->getSelectedKrViewItems();
     QList<QUrl> urls;
-    foreach(FileItem *fileitem, result->fileItems())
-        urls.push_back(fileitem->getUrl());
+    for (KrViewItem *item : selectedItems) {
+        urls.append(item->getFileItem()->getUrl());
+    }
 
     if (urls.count() == 0)
         return;
