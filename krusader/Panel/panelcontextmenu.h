@@ -73,8 +73,6 @@ private:
         SYNC_SELECTED_ID,
         SEND_BY_EMAIL_ID,
         EJECT_ID,
-        MKDIR_ID,
-        NEW_TEXT_FILE_ID,
         SERVICE_LIST_ID // ALWAYS KEEP THIS ONE LAST!!!
     };
 
