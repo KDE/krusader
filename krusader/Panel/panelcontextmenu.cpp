@@ -31,6 +31,7 @@
 #include <KService/KMimeTypeTrader>
 #include <KService/KToolInvocation>
 #include <KXmlGui/KActionCollection>
+#include <KIOCore/KFileItem>
 #include <KIOCore/KFileItemListProperties>
 #include <KIOWidgets/KAbstractFileItemActionPlugin>
 #include <KCoreAddons/KPluginMetaData>
@@ -100,9 +101,10 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     }
 
     // KFileItems
+    bool allFilesAreDirs = true;
     for (FileItem *file : files) {
-        _items.append(KFileItem(file->getUrl(), file->getMime(),
-                                file->getMode()));
+        _items.append(KFileItem(file->getUrl(), file->getMime(), file->getMode()));
+        allFilesAreDirs &= file->isDir();
     }
 
     if (files.empty()) {
@@ -124,34 +126,39 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     FileItem *file = files.first();
 
     // ------------ the OPEN/BROWSE option - open preferred service
-    QAction * openAct = addAction(i18n("Open/Run"));
-    openAct->setData(QVariant(OPEN_ID));
-    if (!multipleSelections) { // meaningful only if one file is selected
-        const KrViewItemList viewItems = panel->view->getSelectedKrViewItems();
-        openAct->setIcon(viewItems.first()->icon());
-        openAct->setText(file->isExecutable() && !file->isDir() ?
-                             i18n("Run") : i18n("Open"));
-        // open in a new tab (if folder)
-        if (file->isDir()) {
-            QAction * openTab = addAction(i18n("Open in New Tab"));
-            openTab->setData(QVariant(OPEN_TAB_ID));
-            openTab->setIcon(Icon("tab-new"));
-            openTab->setText(i18n("Open in New Tab"));
+
+    // open/run - if not only multiple dirs are selected
+    if (!(multipleSelections && allFilesAreDirs)) {
+        QAction *openAction = new QAction(this);
+        openAction->setData(QVariant(OPEN_ID));
+        if (multipleSelections) {
+            openAction->setText(i18n("Open/Run Files"));
+        } else {
+            openAction->setText(file->isExecutable() && !file->isDir() ?
+                                    i18n("Run") : i18n("Open"));
+            const KrViewItemList viewItems = panel->view->getSelectedKrViewItems();
+            openAction->setIcon(viewItems.first()->icon());
         }
-        // if the file can be browsed as archive...
-        if (!panel->func->browsableArchivePath(file->getName()).isEmpty()
-            // ...but user disabled archive browsing...
-            && (!KConfigGroup(krConfig, "Archives")
-                .readEntry("ArchivesAsDirectories", _ArchivesAsDirectories)
-             // ...or the file is not a standard archive (e.g. odt, docx, etc.)...
-             || !KRarcHandler::arcSupported(file->getMime()))) {
-            // ...it will not be browsed as a directory by default, but add an option for it
-            QAction *browseAct = addAction(i18n("Browse"));
-            browseAct->setData(QVariant(BROWSE_ID));
-            browseAct->setIcon(Icon());
-            browseAct->setText(i18n("Browse Archive"));
-        }
-        addSeparator();
+        addAction(openAction);
+    }
+
+    // open in a new tab (if only folder(s) are selected)
+    if (allFilesAreDirs) {
+        QAction *openTab = addAction(multipleSelections ? i18n("Open in New Tabs") : i18n("Open in New Tab"));
+        openTab->setData(QVariant(OPEN_TAB_ID));
+        openTab->setIcon(Icon("tab-new"));
+    }
+
+    // browse archive - if one file is selected and the file can be browsed as archive...
+    if (!multipleSelections && !panel->func->browsableArchivePath(file->getName()).isEmpty()
+        // ...but user disabled archive browsing...
+        && (!KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories)
+            // ...or the file is not a standard archive (e.g. odt, docx, etc.)...
+            || !KRarcHandler::arcSupported(file->getMime()))) {
+        // ...it will not be browsed as a directory by default, but add an option for it
+        QAction *browseAct = addAction(i18n("Browse Archive"));
+        browseAct->setData(QVariant(BROWSE_ID));
+        browseAct->setIcon(Icon("archive-insert-directory"));
     }
 
     // ------------- Preview - local filesystem only ?
@@ -185,15 +192,17 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
             }
         }
         openWithMenu->addSeparator();
-        if (!multipleSelections && file->isDir())
+        if (!multipleSelections && file->isDir()) {
             openWithMenu->addAction(Icon("utilities-terminal"),
                                i18n("Terminal"))->setData(QVariant(OPEN_TERM_ID));
+        }
         openWithMenu->addAction(i18n("Other..."))->setData(QVariant(CHOOSE_ID));
         QAction *openWithAction = addMenu(openWithMenu);
         openWithAction->setText(i18n("Open With"));
         openWithAction->setIcon(Icon("document-open"));
-        addSeparator();
     }
+
+    addSeparator();
 
     // --------------- user actions
     QAction *userAction = new UserActionPopupMenu(file->getUrl(), this);
@@ -329,12 +338,17 @@ void PanelContextMenu::performAction(int id)
     case - 1 : // the user clicked outside of the menu
         return;
     case OPEN_TAB_ID :
-        // assuming only 1 file is selected (otherwise we won't get here)
-        panel->manager()->newTab(singleURL, panel);
+        for (const KFileItem &fileItem : _items) {
+            panel->manager()->newTab(fileItem.url(), panel);
+        }
         break;
     case OPEN_ID :
-        foreach(const KFileItem &fi, _items)
-            panel->func->execute(fi.name());
+            for (const KFileItem &fileItem : _items) {
+                // do not open dirs if multiple files are selected
+                if (_items.size() == 1 || !fileItem.isDir()) {
+                    panel->func->execute(fileItem.name());
+                }
+            }
         break;
     case BROWSE_ID :
         panel->func->goInside(singleURL.fileName());
