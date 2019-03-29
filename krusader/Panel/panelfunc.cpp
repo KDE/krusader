@@ -517,7 +517,11 @@ void ListPanelFunc::editNewFile()
         } else {
             // simply create a local file
             // also because KIO::CopyJob::setDefaultPermissions does not work
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
             file.open(QIODevice::NewOnly);
+#else
+            file.open(QIODevice::WriteOnly);
+#endif
             file.close();
             slotFileCreated(nullptr, filePath);
             return;
