@@ -22,7 +22,9 @@
     <primary>FAQ</primary>
   </indexterm>
   <para>If you have problems with &krusader; please
-  check the <link linkend="installation">Installation procedure</link>, as your problem may be
+  check the
+  <ulink url="https://krusader.org/get-involved/index.html">installation
+  procedure</ulink>, as your problem may be
   caused by a bad installation.</para>
   <para>The &FAQ; is divided into three sections: 
   <itemizedlist>
@@ -104,179 +106,8 @@
         </answer>
       </qandaentry>
       <qandaentry>
-        <question id="faqi_libs">
-          <para>Which libraries does &krusader; need to
-          run?</para>
-        </question>
-        <answer>
-          <para>For running &krusader; (&eg;
-          when you have installed &krusader; with a
-          binary RPM) you need less libraries than if you compile
-          &krusader; from source. &eg; you
-          only need the C-compiler &gcc; when you
-          compile &krusader; from source (see the next
-          question).</para>
-          <para>Take a look at the <link linkend="compilation">&krusader; dependencies</link> paragraph of our install chapter.</para>
-          <para>
-          If you need more details please take a look
-          at the <ulink url="https://packages.ubuntu.com/cosmic/krusader">&krusader; requirements</ulink> on Ubuntu.
-	  The "depends" are required, the "suggests" make &krusader; more powerful.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question id="faqi_missing_libs">
-          <para>I have followed all the steps but 
-          <command>make</command> complains about missing libs
-          or headers. What do I need to do?</para>
-        </question>
-        <answer>
-          <para>Install the missing packages.</para>
-          <para>Take a look at the <link linkend="compilation">Compilation requirements</link> paragraph of our install chapter.</para>
-          <para>Most RPM-based distributions separate the headers
-          from the libs. The headers are needed to compile
-          &krusader;. Look for packages in the form
-          foo-devel-*.rpm (&eg; 
-          <filename>kdelibs-devel-foo.i586.rpm</filename>) or
-          foo-dev-*.deb for <trademark class="registered">Debian</trademark> based
-          distributions. These are usually included with your
-          distribution. 
-          <tip>
-            <para>If you cannot find the needed package, use
-            <ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=krusader&amp;submit=Search+...">rpmfind</ulink> and click 'missing lib or
-            header' in the search line. Or use 
-            <command>apt-cache search 
-            <replaceable>foo</replaceable></command> to find the
-            corresponding package for <trademark class="registered">Debian</trademark> based
-            distributions.</para>
-          </tip></para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question id="faqi_64bit">
-          <para>How do I compile &krusader; when I am
-          using a 64 bit processor?</para>
-        </question>
-        <answer>
-          <para>As far as we know, there are no issues.
-          &krusader; is also available on 
-          <ulink url="https://packages.debian.org/unstable/utils/krusader">
-          many other architectures</ulink>.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question id="faqi_rpm-source">
-          <para>I have downloaded the Source RPM 
-          <filename>krusader-x.xx.dist.src.rpm</filename>, what to
-          do now?</para>
-        </question>
-        <answer>
-          <para>
-            <orderedlist>
-              <listitem>
-                <para>Check the ownership and the permissions on 
-                <filename class="directory">
-                /usr/src/RPM/</filename> and all recursive
-                directories that your normal user can
-                read-write-execute in these directories.</para>
-              </listitem>
-              <listitem>
-                <para>To produce the binary RPM for your computer,
-                do this: 
-                <screen><prompt>$</prompt> <userinput><command>rpm</command> <option>--rebuild</option> <replaceable>&lt;/path/to/rpmfile/&gt; krusader-x.xx.dist.src.rpm</replaceable></userinput></screen>
-                </para>
-              </listitem>
-              <listitem>
-                <para>If all 
-                <link linkend="faqi_missing_libs">
-                dependencies</link> are OK, a binary RPM 
-                <filename>krusader-x.xx.dist.rpm</filename> will be
-                created at 
-                <filename class="directory">
-                /usr/src/RPM/RPMS/i586</filename> (replace i586 with
-                your architecture).</para>
-              </listitem>
-              <listitem>
-                <para>Test the binary RPM for errors before
-                installing: 
-                <screen><prompt>$</prompt> <userinput><command>rpm</command> <option>-i --test</option> <replaceable>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable></userinput></screen>
-                If the prompt returns without any message,
-                then everything is OK.</para>
-              </listitem>
-              <listitem>
-                <para>Install the binary RPM as usual, for example:
-                <screen><prompt>$</prompt> <userinput><command>su -c 'rpm</command> <option>-Uvh</option> <replaceable>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable>'</userinput></screen> 
-                You will be asked to enter your root
-                password.</para>
-              </listitem>
-              <listitem>
-                <para>Now you can 
-                <link linkend="starting-krusader">
-                start</link> &krusader;.</para>
-              </listitem>
-            </orderedlist>
-          </para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-          <tip>
-            <para>For more information about RPM, visit
-            <ulink url="http://www.rpm.org/">rpm.org</ulink> and read the
-            <ulink url="https://docs.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html/RPM_Guide/index.html">RPM Guide</ulink> 
-            by Eric Foster-Johnson.</para>
-          </tip>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question id="faqi_rpm-fails">
-          <para>I am trying to install binary foo (RPM or DEB
-          package), but it fails. What is wrong?</para>
-        </question>
-        <answer>
-          <para>Since we only prepare (and use) the source, we have
-          no way of knowing this. Did you test the binary RPM
-          before installing? 
-          <screen><prompt>$</prompt> <userinput><command>rpm</command> <option>-i --test</option> <replaceable>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable></userinput></screen> 
-          If the prompt returns without any message, then
-          everything is OK. RPM's downloaded from our website are
-          usually provided by &krusader; users. Visit
-          your distro website and search for an updated RPM.</para>
-          <para>If the RPM is not OK, try to find another package
-          at &Linux; software archives such as
-          <ulink url="http://freshmeat.net/projects/krusader/">freshmeat.net</ulink> or <ulink url="https://www.linux-apps.com/content/show.php?content=10214">linux-apps.com</ulink>.
-          If you still cannot find the appropriate package for your
-          &Linux; distribution, we recommend searching
-          for it with <ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=krusader&amp;submit=Search+...">rpmfind</ulink> or
-          <ulink url="http://rpm.pbone.net/index.php3/stat/3/search/krusader">rpmpbone</ulink>.</para>
-          <para>In general, a package for an older version of your
-          distribution or even for another distribution might work
-          on your computer (&eg; FC RPM's often work on
-          Mdk and RH, and vice versa), but it is always the best
-          that you install only RPM's that exactly match your
-          distribution. If you cannot find a package that matches
-          your distribution version, architecture or distribution,
-          then use a source RPM. When you use a source RPM, the
-          Krusader sources will be built, on your computer,
-          guaranteeing a suitable binary RPM for your specific
-          distribution and architecture. In addition, this method
-          results in maximum system speed, since the resulting
-          binary is customized for your computer. Please read the
-          previous question, it explains how to install a source
-          RPM. The best solution is explained in the next
-          question.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
         <question id="faqi_rpm-notfound">
-          <para>I cannot find an RPM or DEB package for
+          <para>I cannot find a package for
           &krusader;, what to do?</para>
         </question>
         <answer>
@@ -284,82 +115,13 @@
           &krusader;, if it does not then contact your
           distribution creator and ask them to include
           &krusader;!</para>
-          <para>Did you take a look at the &URL;s on
-          the <link linkend="installation">Installation procedure</link> page? If you have and
+          <para>Did you take a look at the
+          <ulink url="https://krusader.org/get-involved/index.html">installation
+          procedure</ulink> page? If you have and
           found nothing, you can always compile
-          &krusader; from source. Even if you feel you
-          have not got the necessary skills, you will probably
-          succeed in compiling &krusader;: we provide a
-          very detailed installation procedure. This HowTo enables
-          newcomers to compile &krusader; from source,
-          even if they have never done a compilation from source
-          before, just follow the instructions carefully. Feel free
+          &krusader; from source. Feel free
           to post a <link linkend="faqi_help_request">help request</link> if you encounter
           problems.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question id="faqi_missing_menus">
-          <para>Some new menu items are missing after updating
-          &krusader;, what is wrong?</para>
-        </question>
-        <answer>
-          <para>The 
-          <filename>krusaderui.rc</filename> file is stored in 
-          <filename>
-          /usr/share/kxmlgui5/krusader/krusaderui.rc</filename>.
-          When you change the 
-          <guilabel>Toolbar</guilabel>, &plasma; makes a
-          copy of that file in the home folder at 
-          <filename>
-          ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename>. If
-          &krusader; was previously installed on your computer, and
-          you install a newer &krusader; version the 
-          <filename>
-          ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename> file
-          must be replaced with the newer version. Note: this will
-          also reset all your changes on toolbars and
-          shortcuts!</para>
-          <para>The first line of 
-          <filename>krusaderui.rc</filename> contains the version
-          number. After installing a newer &krusader;
-          version, &plasma; will automatically replace the
-          old 
-          <filename>
-          ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename> with
-          the newer version when starting the new
-          &krusader; for the first time
-          (&plasma; will detect the newer version number in
-          the first line).</para>
-          <para>If you install a development or beta version and
-          &krusader; was already installed on your
-          computer then you should delete the 
-          <filename>krusaderui.rc</filename> file from your home
-          directory to activate the new menu entries 
-          <prompt>$</prompt>
-          <userinput>
-            <command>rm</command>
-            <option>
-            ~/.local/share/kxmlgui5/krusader/krusaderui.rc</option>
-          </userinput></para>
-          <para>If the 
-          <filename>
-          ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename> file
-          is older, then the new menu elements will not be shown.
-          Read the previous question for information on how to
-          update the 
-          <filename>krusaderui.rc</filename> file. If 
-          <filename>krusaderui.rc</filename> is missing or in a
-          wrong directory, only the 
-          <guimenu>Help</guimenu> menu appears, please read the
-          previous question.</para>
-      <note>
-          <para>
-              The default folder for the local configuration file <filename>kxmlgui5/krusaderui.rc</filename> is <filename class="directory">~/.local/share</filename>. You can determine the needed folder in your system using the <userinput>qtpaths --paths GenericDataLocation</userinput> command in terminal.
-          </para>
-      </note>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -373,8 +135,8 @@
         </question>
         <answer>
           <para>Please read our detailed 
-          <link linkend="compilation">installation
-          procedure</link> and the <link linkend="faq">FAQ</link>. If you
+          <ulink url="https://krusader.org/get-involved/index.html">installation
+          procedure</ulink> and the <link linkend="faq">FAQ</link>. If you
           cannot find a solution to your problem then feel free to
           post a 
           <emphasis role="bold">help request</emphasis> at our
@@ -423,90 +185,6 @@
         </answer>
       </qandaentry>
       <qandaentry>
-        <question id="faqi_rpm-build">
-          <para>How can I build an RPM package for
-          &krusader;?</para>
-        </question>
-        <answer>
-          <para>If you have experience with compiling from source,
-          you will probably be able to build a
-          &krusader; RPM too. Information about RPM can
-          be found at <ulink url="http://www.rpm.org/">rpm.org</ulink> and in the
-          <ulink url="https://docs.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html/RPM_Guide/index.html">RPM Guide</ulink> 
-          by Eric Foster-Johnson. The
-          following is the short procedure howto on building an
-          RPM.</para>
-          <warning>
-            <para>NEVER build RPMs when logged in as root. Mistakes
-            in building packages (&eg; a bad 
-            <filename>krusader.spec</filename> file) can do serious
-            damage to your system when logged in as root.</para>
-          </warning>
-          <para>
-            <orderedlist>
-              <listitem>
-                <para>Compile &krusader; from source to
-                check that the compilation works fine.</para>
-              </listitem>
-              <listitem>
-                <para>Check the ownership and the permissions on 
-                <filename class="directory">
-                /usr/src/RPM/</filename> and all recursive
-                directories that your normal user can
-                read-write-execute in these directories.</para>
-              </listitem>
-              <listitem>
-                <para>Copy 
-                <filename>krusader-1.xx.tar.gz</filename> to 
-                <filename class="directory">
-                /usr/scr/RPM/SOURCE</filename></para>
-              </listitem>
-              <listitem>
-                <para>Copy 
-                <filename>krusader.spec</filename> to 
-                <filename class="directory">
-                /usr/scr/RPM/SPECS</filename></para>
-              </listitem>
-              <listitem>
-                <para>Edit 
-                <filename>krusader.spec</filename> and add your name,
-                your email address, the rpm name, ... Other
-                changes may be needed if 
-                <command>rpmbuild</command> fails.</para>
-              </listitem>
-              <listitem>
-                <para>Build the binary and the source RPM with: 
-                <screen><prompt>$</prompt> <userinput><command>rpmbuild</command> <option>-ba</option> <replaceable>/usr/scr/RPM/SPECS/krusader.spec</replaceable></userinput></screen> 
-                If everything went OK you will have a
-                binary RPM in 
-                <filename class="directory">
-                /usr/src/RPM/RPMS/i586</filename> (depending on your
-                architecture) and a source RPM in 
-                <filename class="directory">
-                /usr/src/RPM/SRPMS/</filename> &eg; 
-                <filename>
-                krusader-1.70-beta1.suse10.i586.rpm</filename> and 
-                <filename>
-                krusader-1.70-beta1.suse10.src.rpm</filename></para>
-              </listitem>
-              <listitem>
-                <para>If the build is not OK you will receive an
-                error message during the rpmbuild process, try to
-                fix it and run 
-                <command>rpmbuild</command> again.</para>
-              </listitem>
-              <listitem>
-                <para>And finally: 
-                <link linkend="faqi_rpm-source">test</link> the RPM
-                before sending it in.</para>
-              </listitem>
-            </orderedlist>
-          </para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
         <question id="faqi_git_version">
           <para>Why does &krusader;-git show an old
           version number in the about box?</para>
@@ -517,30 +195,6 @@
           will show an older version number, so ignore the version
           number and check the download date. We simply have not yet
           decided what the next version number will be.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question id="faqi_mac_dbus">
-          <para>Why does &krusader; not start on &MacOS;?</para>
-        </question>
-        <answer>
-          <para>Please read carefully the <ulink url="https://www.macports.org/">macports.org</ulink> 
-	  installation instructions. Do not forget to start <application>dbus</application>.
-	  <screen>##########################################################
-# Do not forget that dbus needs to be started as the local
-# user (not with sudo) before any KDE programs will launch
-# To start it run the following command:                 
-# launchctl load /Library/LaunchAgents/org.freedesktop.dbus-session.plist
-##########################################################
-
-######################################################
-#  Programs will not start until you run the command
-#  'sudo chown -R $USER ~/Library/Preferences/KDE' 
-#  replacing $USER with your username.             
-###################################################### 
-	  </screen></para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1324,39 +978,6 @@
           <link linkend="faqg_bug_report">bug reports</link>, patches, 
           <link linkend="help_krusader">donations</link>,
           translations, ...</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question id="faqg_mac">
-          <para>Is there a &MacOS; X port?</para>
-        </question>
-        <answer>
-         <para>Yes, there is a <link linkend="kde4_mac_install">&MacOS;-X port</link>
-               with the help of <ulink url="https://www.macports.org/">macports.org</ulink> , the port is
-               maintained by <ulink url="https://krusader.org/developers.php">Jonas B&auml;hr</ulink>, 
-               all feedback is welcome.
-	       A recommended native file manager for &MacOS; is
-               <ulink url="http://www.likemac.ru/english/"><trademark class="copyright">Disk Order</trademark></ulink> (shareware).</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question id="faqg_win">
-          <para>Is there a &Windows; port?</para>
-        </question>
-	<answer>
-	  <!-- the port is unavailable now
-           <para>Yes, there is a <link linkend="kde4_win_install">&Windows; port</link> since 18 June 2008.
-	    Before &krusader; can be used several &Qt;4-libraries and &kde;4-libraries need to be installed.-->
-	  <para>No, there was a port but it is unmaintained and unavailable now. A recommended native file manager for &Windows; is 
-	  <ulink url="https://www.ghisler.com/"><trademark class="copyright">Total Commander</trademark></ulink> (shareware).</para>
-	  <para>If you want to help with porting please join <ulink url="http://windows.kde.org/">The KDE on Windows Initiative</ulink>.
-	  Some useful tips on porting can be found in the
-	  <ulink url="https://commits.kde.org/krusader?path=INSTALL"><filename>INSTALL</filename></ulink> 
-	  file of the &krusader; sources, it contains all latest compilation instructions.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
