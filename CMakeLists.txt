@@ -23,7 +23,7 @@ include(FeatureSummary)
 include(CheckIncludeFiles)
 
 
-find_package(Qt5 5.5 CONFIG REQUIRED
+find_package(Qt5 5.9 CONFIG REQUIRED
   Concurrent
   Core
   Gui
