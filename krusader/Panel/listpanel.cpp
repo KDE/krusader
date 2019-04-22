@@ -666,7 +666,7 @@ void ListPanel::compareDirs(bool otherPanelToo)
         if (otherItem) {
             if (!func->getFileItem(item)->isDir())
                 isDifferent = otherPanel()->func->getFileItem(otherItem)->getSize() != func->getFileItem(item)->getSize();
-            isNewer = func->getFileItem(item)->getTime_t() > otherPanel()->func->getFileItem(otherItem)->getTime_t();
+            isNewer = func->getFileItem(item)->getModificationTime() > otherPanel()->func->getFileItem(otherItem)->getModificationTime();
         }
 
         switch (compareMode) {

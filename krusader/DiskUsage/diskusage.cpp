@@ -347,14 +347,14 @@ void DiskUsage::slotLoadDirectory()
                 if (currentFileItem->isDir() && !currentFileItem->isSymLink()) {
                     newItem = new Directory(currentParent, currentFileItem->getName(), dirToCheck, currentFileItem->getSize(),
                                             currentFileItem->getMode(), currentFileItem->getOwner(), currentFileItem->getGroup(),
-                                            currentFileItem->getPerm(), currentFileItem->getTime_t(), currentFileItem->isSymLink(),
+                                            currentFileItem->getPerm(), currentFileItem->getModificationTime(), currentFileItem->isSymLink(),
                                             mime);
                     directoryStack.push((dirToCheck.isEmpty() ? "" : dirToCheck + '/') + currentFileItem->getName());
                     parentStack.push(dynamic_cast<Directory *>(newItem));
                 } else {
                     newItem = new File(currentParent, currentFileItem->getName(), dirToCheck, currentFileItem->getSize(),
                                        currentFileItem->getMode(), currentFileItem->getOwner(), currentFileItem->getGroup(),
-                                       currentFileItem->getPerm(), currentFileItem->getTime_t(), currentFileItem->isSymLink(),
+                                       currentFileItem->getPerm(), currentFileItem->getModificationTime(), currentFileItem->isSymLink(),
                                        mime);
                     currentSize += currentFileItem->getSize();
                 }

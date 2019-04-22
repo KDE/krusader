@@ -47,13 +47,13 @@ static QCache<const QUrl, FileSize> s_fileSizeCache(1000);
 
 FileItem::FileItem(const QString &name, const QUrl &url, bool isDir,
              KIO::filesize_t size, mode_t mode,
-             time_t mtime, time_t ctime, time_t atime,
+             time_t mtime, time_t ctime, time_t atime, time_t btime,
              uid_t uid, gid_t gid, const QString &owner, const QString &group,
              bool isLink, const QString &linkDest, bool isBrokenLink,
              const QString &acl, const QString &defaultAcl)
     : m_name(name), m_url(url), m_isDir(isDir),
       m_size(size), m_mode(mode),
-      m_mtime(mtime), m_ctime(ctime), m_atime(atime),
+      m_mtime(mtime), m_ctime(ctime), m_atime(atime), m_btime(btime),
       m_uid(uid), m_gid(gid), m_owner(owner), m_group(group),
       m_isLink(isLink), m_linkDest(linkDest), m_isBrokenLink(isBrokenLink),
       m_acl(acl), m_defaulfAcl(defaultAcl), m_AclLoaded(false),
@@ -76,7 +76,7 @@ FileItem *FileItem::createDummy()
 {
     FileItem *file = new FileItem("..", QUrl(), true,
                             0, 0,
-                            0, 0, 0);
+                            -1, -1, -1, -1);
     file->setIconName("go-up");
     return file;
 }
@@ -84,7 +84,8 @@ FileItem *FileItem::createDummy()
 FileItem *FileItem::createBroken(const QString &name, const QUrl &url)
 {
     FileItem *file = new FileItem(name, url, false,
-                                  0, 0, 0, 0, 0);
+                                  0, 0,
+                                  -1, -1, -1, -1);
     file->setIconName("file-broken");
     return file;
 }
@@ -93,7 +94,7 @@ FileItem *FileItem::createVirtualDir(const QString &name, const QUrl &url)
 {
     return new FileItem(name, url, true,
                      0, 0700,
-                     time(nullptr), time(nullptr), time(nullptr),
+                     -1, -1, -1, -1,
                      getuid(), getgid());
 }
 
@@ -101,7 +102,7 @@ FileItem *FileItem::createCopy(const FileItem &file, const QString &newName)
 {
     return new FileItem(newName, file.getUrl(), file.isDir(),
                      file.getSize(), file.getMode(),
-                     file.getTime_t(), file.getChangedTime(), file.getAccessTime(),
+                     file.getModificationTime(), file.getChangeTime(), file.getAccessTime(), file.getCreationTime(),
                      file.m_uid, file.m_gid, file.getOwner(), file.getGroup(),
                      file.isSymLink(), file.getSymDest(), file.isBrokenLink());
 }
@@ -203,8 +204,10 @@ const KIO::UDSEntry FileItem::getEntry()
 
     entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_NAME, getName());
     entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_SIZE, getSize());
-    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_MODIFICATION_TIME, getTime_t());
-    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_CREATION_TIME, getChangedTime());
+    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_MODIFICATION_TIME, getModificationTime());
+    if (m_btime != -1) {
+        entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_CREATION_TIME, getCreationTime());
+    }
     entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_ACCESS_TIME, getAccessTime());
     entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_USER, getOwner());
     entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_GROUP, getGroup());

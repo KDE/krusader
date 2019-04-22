@@ -263,9 +263,9 @@ bool itemLessThan(SortProps *sp, SortProps *sp2)
             return compareTexts(sp->name(), sp2->name(), sp->properties(), sp->isAscending(), true);
         return file1->getSize() < file2->getSize();
     case KrViewProperties::Modified:
-            return compareTime(file1->getTime_t(), file2->getTime_t(), sp, sp2);
+            return compareTime(file1->getModificationTime(), file2->getModificationTime(), sp, sp2);
     case KrViewProperties::Changed:
-            return compareTime(file1->getChangedTime(), file2->getChangedTime(), sp, sp2);
+            return compareTime(file1->getChangeTime(), file2->getChangeTime(), sp, sp2);
     case KrViewProperties::Accessed:
             return compareTime(file1->getAccessTime(), file2->getAccessTime(), sp, sp2);
     case KrViewProperties::Type:

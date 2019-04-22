@@ -152,10 +152,10 @@ QVariant ListModel::data(const QModelIndex& index, int role) const
             return mimeType.isEmpty() ? QVariant() : mimeType;
         }
         case KrViewProperties::Modified: {
-            return fileitem == _dummyFileItem ? QVariant() : dateText(fileitem->getTime_t());
+            return fileitem == _dummyFileItem ? QVariant() : dateText(fileitem->getModificationTime());
         }
         case KrViewProperties::Changed: {
-            return fileitem == _dummyFileItem ? QVariant() : dateText(fileitem->getChangedTime());
+            return fileitem == _dummyFileItem ? QVariant() : dateText(fileitem->getChangeTime());
         }
         case KrViewProperties::Accessed: {
             return fileitem == _dummyFileItem ? QVariant() : dateText(fileitem->getAccessTime());
@@ -508,8 +508,8 @@ QString ListModel::toolTipText(FileItem *fileItem) const
         text += i18n("Size: %1", size) + "<br>";
     }
     text += i18nc("File property", "Type: %1", KrView::mimeTypeText(fileItem));
-    text += "<br>" + i18nc("File property", "Modified: %1", dateText(fileItem->getTime_t()));
-    text += "<br>" + i18nc("File property", "Changed: %1", dateText(fileItem->getChangedTime()));
+    text += "<br>" + i18nc("File property", "Modified: %1", dateText(fileItem->getModificationTime()));
+    text += "<br>" + i18nc("File property", "Changed: %1", dateText(fileItem->getChangeTime()));
     text += "<br>" + i18nc("File property", "Last Access: %1", dateText(fileItem->getAccessTime()));
     text += "<br>" + i18nc("File property", "Permissions: %1",
             KrView::permissionsText(properties(), fileItem));
@@ -528,6 +528,10 @@ QString ListModel::toolTipText(FileItem *fileItem) const
 
 QString ListModel::dateText(time_t time)
 {
+    if (time == -1) {
+        // unknown time
+        return QString();
+    }
     struct tm* t = localtime((time_t *) & time);
 
     const QDateTime dateTime(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday),
