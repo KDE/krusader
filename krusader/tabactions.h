@@ -51,12 +51,15 @@ protected slots:
     void closeInactiveTabs();
     void closeDuplicatedTabs();
     void moveTabToOtherSide();
+    void moveTabToLeft();
+    void moveTabToRight();
 
 protected:
     inline PanelManager *activeManager();
 
     QAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actMoveTabToOtherSide;
     QAction *actCloseInactiveTabs, *actCloseDuplicatedTabs, *actLockTab, *actPinTab;
+    QAction *actMoveTabToLeft, *actMoveTabToRight;
 };
 
 

@@ -253,6 +253,24 @@ void PanelManager::moveTabToOtherSide()
     p->slotFocusOnMe();
 }
 
+void PanelManager::moveTabToLeft()
+{
+    // don't move the leftmost tab - also skip a single tab, always leftmost
+    if (_tabbar->currentIndex() == 0)
+        return;
+
+    _tabbar->moveTab(_tabbar->currentIndex(), _tabbar->currentIndex() - 1);
+}
+
+void PanelManager::moveTabToRight()
+{
+    // don't move the rightmost tab - also skip a single tab, always rightmost
+    if (_tabbar->currentIndex() == tabCount() - 1)
+        return;
+
+    _tabbar->moveTab(_tabbar->currentIndex(), _tabbar->currentIndex() + 1);
+}
+
 void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, KrPanel *nextTo)
 {
     ListPanel *p = addPanel(setCurrent, KConfigGroup(), nextTo);

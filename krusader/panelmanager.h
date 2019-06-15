@@ -65,6 +65,8 @@ public:
     int activeTab();
     void setActiveTab(int index);
     void moveTabToOtherSide();
+    void moveTabToLeft();
+    void moveTabToRight();
     /** Refresh all tabs after config changes. */
     void reloadConfig();
     void layoutTabs();
