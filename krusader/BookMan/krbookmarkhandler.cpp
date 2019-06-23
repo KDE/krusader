@@ -733,8 +733,8 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
 
 void KrBookmarkHandler::_resetActionTextAndHighlighting()
 {
-    for (QHash<QAction *, QString>::const_iterator i = _quickSearchOriginalActionTitles.begin();
-         i != _quickSearchOriginalActionTitles.end(); ++i) {
+    for (QHash<QAction *, QString>::const_iterator i = _quickSearchOriginalActionTitles.constBegin();
+         i != _quickSearchOriginalActionTitles.constEnd(); ++i) {
         QAction *action = i.key();
         action->setText(i.value());
         _highlightAction(action, false);
