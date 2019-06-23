@@ -125,6 +125,9 @@ extern "C"
             exit(-1);
         }
 
+        QCoreApplication app(argc, argv);
+        app.setApplicationName(QStringLiteral("kio_krarc"));
+
 #ifdef KRARC_ENABLED
         kio_krarcProtocol slave(argv[2], argv[3]);
 #else
