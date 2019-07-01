@@ -82,6 +82,7 @@
 #include "../KViewer/krviewer.h"
 #include "../MountMan/kmountman.h"
 
+
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
 ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
@@ -471,77 +472,88 @@ void ListPanelFunc::terminal()
     SLOTS->runTerminal(panel->lastLocalPath());
 }
 
-void ListPanelFunc::edit()
+void ListPanelFunc::editFile(const QUrl &newFilePath)
 {
     panel->searchBar->hideBarIfSearching();
-    KFileItem tmp;
 
-    if (fileToCreate.isEmpty()) {
-        QString name = panel->getCurrentName();
+    QUrl editPath;
+    if (!newFilePath.isEmpty()) {
+        editPath = newFilePath;
+    } else {
+        const QString name = panel->getCurrentName();
         if (name.isNull())
             return;
-        fileToCreate = files()->getUrl(name);
+        editPath = files()->getUrl(name);
     }
 
-    tmp = KFileItem(fileToCreate);
+    const KFileItem fileToEdit = KFileItem(newFilePath);
 
-    if (tmp.isDir()) {
+    if (fileToEdit.isDir()) {
         KMessageBox::sorry(krMainWindow, i18n("You cannot edit a folder"));
-        fileToCreate = QUrl();
         return;
     }
 
-    if (!tmp.isReadable()) {
+    if (!fileToEdit.isReadable()) {
         KMessageBox::sorry(0, i18n("No permissions to edit this file."));
-        fileToCreate = QUrl();
         return;
     }
 
-    KrViewer::edit(fileToCreate);
-    fileToCreate = QUrl();
+    KrViewer::edit(editPath);
 }
 
-void ListPanelFunc::editNew()
+void ListPanelFunc::editNewFile()
 {
-    if(!fileToCreate.isEmpty())
-        return;
-
     // ask the user for the filename to edit
-    fileToCreate = KChooseDir::getFile(i18n("Enter the filename to edit:"), QUrl(panel->getCurrentName()), panel->virtualPath());
-    if(fileToCreate.isEmpty())
+    const QUrl filePath = KChooseDir::getFile(i18n("Enter the filename to edit:"),
+                                       QUrl(panel->getCurrentName()), panel->virtualPath());
+    if(filePath.isEmpty())
         return ;   // the user canceled
 
-    // if the file exists, edit it instead of creating a new one
-    QFile f(fileToCreate.toLocalFile());
-
-    if(f.exists()) {
-        edit();
-    } else {
-        QTemporaryFile *tempFile = new QTemporaryFile;
-        tempFile->open();
-
-        KIO::CopyJob *job = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), fileToCreate);
-        job->setUiDelegate(0);
-        job->setDefaultPermissions(true);
-        connect(job, SIGNAL(result(KJob*)), SLOT(slotFileCreated(KJob*)));
-        connect(job, SIGNAL(result(KJob*)), tempFile, SLOT(deleteLater()));
+    if (filePath.isLocalFile()) {
+        // if the file exists, edit it instead of creating a new one
+        QFile file(filePath.toLocalFile());
+        if (file.exists()) {
+            editFile();
+            return;
+        } else {
+            // simply create a local file
+            // also because KIO::CopyJob::setDefaultPermissions does not work
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+            file.open(QIODevice::NewOnly);
+#else
+            file.open(QIODevice::WriteOnly);
+#endif
+            file.close();
+            slotFileCreated(nullptr, filePath);
+            return;
+        }
     }
+
+    auto *tempFile = new QTemporaryFile;
+    tempFile->setAutoRemove(false); // done below
+    tempFile->open(); // create file
+
+    KIO::CopyJob *job = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), filePath);
+    job->setUiDelegate(nullptr);
+    job->setDefaultPermissions(true);
+    connect(job, &KIO::CopyJob::result, this, [=](KJob *job) { slotFileCreated(job, filePath); });
+    connect(job, &KIO::CopyJob::result, tempFile, &QTemporaryFile::deleteLater);
 }
 
-void ListPanelFunc::slotFileCreated(KJob *job)
+void ListPanelFunc::slotFileCreated(KJob *job, const QUrl filePath)
 {
-    if(!job->error() || job->error() == KIO::ERR_FILE_ALREADY_EXIST) {
-        KrViewer::edit(fileToCreate);
+    if (!job || (!job->error() || job->error() == KIO::ERR_FILE_ALREADY_EXIST)) {
+        KrViewer::edit(filePath);
 
-        if(KIO::upUrl(fileToCreate).matches(panel->virtualPath(), QUrl::StripTrailingSlash))
+        if (KIO::upUrl(filePath).matches(panel->virtualPath(), QUrl::StripTrailingSlash)) {
             refresh();
-        else if(KIO::upUrl(fileToCreate).matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash))
+        }
+        if (KIO::upUrl(filePath).matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash)) {
             otherFunc()->refresh();
-    }
-    else
+        }
+    } else {
         KMessageBox::sorry(krMainWindow, job->errorString());
-
-    fileToCreate = QUrl();
+    }
 }
 
 void ListPanelFunc::copyFiles(bool enqueue, bool move)

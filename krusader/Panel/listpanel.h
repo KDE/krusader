@@ -113,7 +113,7 @@ public:
         return _actions;
     }
     QString lastLocalPath() const;
-    QString getCurrentName();
+    QString getCurrentName() const;
     QStringList getSelectedNames();
     void setButtons();
     void setJumpBack(QUrl url);

@@ -881,13 +881,10 @@ void ListPanel::popEmptyRightClickMenu(const QPoint &loc)
     PanelContextMenu::run(loc, this);
 }
 
-QString ListPanel::getCurrentName()
+QString ListPanel::getCurrentName() const
 {
-    QString name = view->getCurrentItem();
-    if (name != "..")
-        return name;
-    else
-        return QString();
+    const QString name = view->getCurrentItem();
+    return name == ".." ? QString() : name;
 }
 
 QStringList ListPanel::getSelectedNames()

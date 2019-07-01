@@ -313,11 +313,8 @@ void PanelContextMenu::addEmptyMenuEntries()
 void PanelContextMenu::addCreateNewMenu()
 {
     QMenu *createNewMenu = new QMenu(this);
-
-    createNewMenu->addAction(Icon("folder"),
-                             i18n("Folder..."))->setData(QVariant(MKDIR_ID));
-    createNewMenu->addAction(Icon("text-plain"),
-                             i18n("Text File..."))->setData(QVariant(NEW_TEXT_FILE_ID));
+    createNewMenu->addAction(panel->gui->actions()->actNewFolderF7);
+    createNewMenu->addAction(panel->gui->actions()->actNewFileShiftF4);
 
     QAction *newMenuAction = addMenu(createNewMenu);
     newMenuAction->setText(i18n("Create New"));
@@ -394,12 +391,6 @@ void PanelContextMenu::performAction(int id)
         SLOTS->sendFileByEmail(_items.urlList());
         break;
     }
-    case MKDIR_ID :
-        panel->func->mkdir();
-        break;
-    case NEW_TEXT_FILE_ID:
-        panel->func->editNew();
-        break;
 #ifdef SYNCHRONIZER_ENABLED
     case SYNC_SELECTED_ID : {
         QStringList selectedNames;

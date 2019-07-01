@@ -65,8 +65,9 @@ public slots:
     void terminal();
     void view();
     void viewDlg();
-    void edit();
-    void editNew(); // create a new textfile and edit it
+    void editFile(const QUrl &fileToCreate = QUrl());
+    /** Create a new textfile and edit it. */
+    void editNewFile();
     void moveFilesDelayed() { moveFiles(true); }
     void copyFilesDelayed() { copyFiles(true); }
     void moveFiles(bool enqueue = false) { copyFiles(enqueue, true); }
@@ -130,7 +131,7 @@ public:
 protected slots:
     // Load the current url from history and refresh filesystem and panel to it
     void doRefresh();
-    void slotFileCreated(KJob *job); // a file has been created by editNewFile()
+    void slotFileCreated(KJob *job, const QUrl filePath); // a file has been created by editNewFile()
     void historyGotoPos(int pos);
     void clipboardChanged(QClipboard::Mode mode);
     // Update the directory size in view
@@ -151,7 +152,6 @@ protected:
     FileSystem*              fileSystemP;      // pointer to fileSystem.
     QTimer                   delayTimer;
     QUrl                     syncURL;
-    QUrl                     fileToCreate; // file that's to be created by editNewFile()
     bool                     urlManuallyEntered;
 
     static QPointer<ListPanelFunc> copyToClipboardOrigin;
