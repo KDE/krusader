@@ -307,7 +307,7 @@ bool KRQuery::match(FileItem *item) const
     if (maxSize && size > maxSize)
         return false;
     // check the time frame
-    time_t mtime = item->getTime_t();
+    time_t mtime = item->getModificationTime();
     if (olderThen && mtime > olderThen)
         return false;
     if (newerThen && mtime < newerThen)

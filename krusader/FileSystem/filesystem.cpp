@@ -232,10 +232,12 @@ FileItem *FileSystem::createLocalFileItem(const QString &name, const QString &di
         }
     }
 
+    // TODO use statx available in glibc >= 2.28 supporting creation time (btime) and more
+
     // create normal file item
     return new FileItem(fileItemName, fileItemUrl, isDir,
                         size, stat_p.st_mode,
-                        stat_p.st_mtime, stat_p.st_ctime, stat_p.st_atime,
+                        stat_p.st_mtime, stat_p.st_ctime, stat_p.st_atime, -1,
                         stat_p.st_uid, stat_p.st_gid, QString(), QString(),
                         isLink, linkDestination, brokenLink);
 }
@@ -296,9 +298,11 @@ FileItem *FileSystem::createFileItemFromKIO(const KIO::UDSEntry &entry, const QU
 
     // get file statistics...
     const time_t mtime = kfi.time(KFileItem::ModificationTime).toTime_t();
-    const time_t ctime = kfi.time(KFileItem::CreationTime).toTime_t(); // "Creation"? its "Changed"
     const time_t atime = kfi.time(KFileItem::AccessTime).toTime_t();
     const mode_t mode = kfi.mode() | kfi.permissions();
+    const QDateTime creationTime = kfi.time(KFileItem::CreationTime);
+    const time_t btime = creationTime.isValid() ? creationTime.toTime_t() : (time_t) -1;
+
     // NOTE: we could get the mimetype (and file icon) from the kfileitem here but this is very
     // slow. Instead, the file item class has it's own (faster) way to determine the file type.
 
@@ -306,7 +310,7 @@ FileItem *FileSystem::createFileItemFromKIO(const KIO::UDSEntry &entry, const QU
     // considered to be too expensive
     return new FileItem(fname, url, kfi.isDir(),
                      kfi.size(), mode,
-                     mtime, ctime, atime,
+                     mtime, -1, atime, btime,
                      (uid_t) -1, (gid_t) -1, kfi.user(), kfi.group(),
                      kfi.isLink(), kfi.linkDest(), false,
                      kfi.ACL().asString(), kfi.defaultACL().asString());

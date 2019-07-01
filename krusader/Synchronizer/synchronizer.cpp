@@ -244,7 +244,7 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent, SynchronizerDi
             continue;
 
         if ((right_file = right_directory->search(file_name, ignoreCase)) == 0)
-            addLeftOnlyItem(parent, file_name, leftDir, left_file->getSize(), left_file->getTime_t(),
+            addLeftOnlyItem(parent, file_name, leftDir, left_file->getSize(), left_file->getModificationTime(),
                             readLink(left_file), left_file->getOwner(), left_file->getGroup(),
                             left_file->getMode(), left_file->getACL());
         else {
@@ -252,7 +252,7 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent, SynchronizerDi
                 continue;
 
             addDuplicateItem(parent, file_name, right_file->getName(), leftDir, rightDir, left_file->getSize(), right_file->getSize(),
-                             left_file->getTime_t(), right_file->getTime_t(), readLink(left_file),
+                             left_file->getModificationTime(), right_file->getModificationTime(), readLink(left_file),
                              readLink(right_file), left_file->getOwner(), right_file->getOwner(),
                              left_file->getGroup(), right_file->getGroup(),
                              left_file->getMode(), right_file->getMode(),
@@ -275,7 +275,7 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent, SynchronizerDi
             continue;
 
         if (left_directory->search(file_name, ignoreCase) == 0)
-            addRightOnlyItem(parent, file_name, rightDir, right_file->getSize(), right_file->getTime_t(),
+            addRightOnlyItem(parent, file_name, rightDir, right_file->getSize(), right_file->getModificationTime(),
                              readLink(right_file), right_file->getOwner(), right_file->getGroup(),
                              right_file->getMode(), right_file->getACL());
     }
@@ -298,7 +298,7 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent, SynchronizerDi
 
                 if ((right_file = right_directory->search(left_file_name, ignoreCase)) == 0) {
                     SynchronizerFileItem *me = addLeftOnlyItem(parent, left_file_name, leftDir, 0,
-                                               left_file->getTime_t(), readLink(left_file),
+                                               left_file->getModificationTime(), readLink(left_file),
                                                left_file->getOwner(), left_file->getGroup(),
                                                left_file->getMode(), left_file->getACL(),
                                                true, !query->match(left_file));
@@ -308,7 +308,7 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent, SynchronizerDi
                     QString right_file_name =  right_file->getName();
                     SynchronizerFileItem *me = addDuplicateItem(parent, left_file_name, right_file_name,
                                                leftDir, rightDir, 0, 0,
-                                               left_file->getTime_t(), right_file->getTime_t(),
+                                               left_file->getModificationTime(), right_file->getModificationTime(),
                                                readLink(left_file), readLink(right_file),
                                                left_file->getOwner(), right_file->getOwner(),
                                                left_file->getGroup(), right_file->getGroup(),
@@ -339,7 +339,7 @@ void Synchronizer::compareDirectory(SynchronizerFileItem *parent, SynchronizerDi
 
                 if (left_directory->search(file_name, ignoreCase) == 0) {
                     SynchronizerFileItem *me = addRightOnlyItem(parent, file_name, rightDir, 0,
-                                               right_file->getTime_t(), readLink(right_file),
+                                               right_file->getModificationTime(), readLink(right_file),
                                                right_file->getOwner(), right_file->getGroup(),
                                                right_file->getMode(), right_file->getACL(),
                                                true, !query->match(right_file));
@@ -533,10 +533,10 @@ void Synchronizer::addSingleDirectory(SynchronizerFileItem *parent, Synchronizer
             continue;
 
         if (isLeft)
-            addLeftOnlyItem(parent, file_name, dirName, file->getSize(), file->getTime_t(), readLink(file),
+            addLeftOnlyItem(parent, file_name, dirName, file->getSize(), file->getModificationTime(), readLink(file),
                             file->getOwner(), file->getGroup(), file->getMode(), file->getACL());
         else
-            addRightOnlyItem(parent, file_name, dirName, file->getSize(), file->getTime_t(), readLink(file),
+            addRightOnlyItem(parent, file_name, dirName, file->getSize(), file->getModificationTime(), readLink(file),
                              file->getOwner(), file->getGroup(), file->getMode(), file->getACL());
     }
 
@@ -554,11 +554,11 @@ void Synchronizer::addSingleDirectory(SynchronizerFileItem *parent, Synchronizer
             SynchronizerFileItem *me;
 
             if (isLeft)
-                me = addLeftOnlyItem(parent, file_name, dirName, 0, file->getTime_t(), readLink(file),
+                me = addLeftOnlyItem(parent, file_name, dirName, 0, file->getModificationTime(), readLink(file),
                                      file->getOwner(), file->getGroup(), file->getMode(),
                                      file->getACL(), true, !query->match(file));
             else
-                me = addRightOnlyItem(parent, file_name, dirName, 0, file->getTime_t(), readLink(file),
+                me = addRightOnlyItem(parent, file_name, dirName, 0, file->getModificationTime(), readLink(file),
                                       file->getOwner(), file->getGroup(), file->getMode(),
                                       file->getACL(), true, !query->match(file));
             stack.append(new CompareTask(me, url + file_name + '/',
