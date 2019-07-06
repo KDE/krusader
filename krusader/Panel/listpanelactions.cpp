@@ -82,6 +82,7 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     actViewFileF3 = action(i18n("View File"), 0, Qt::Key_F3, _func, SLOT(view()), "F3_View");
     actEditFileF4 = action(i18n("Edit File"), nullptr, Qt::Key_F4, _func, SLOT(editFile()), "F4_Edit");
     actNewFileShiftF4 = action(i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, _func, SLOT(editNewFile()), "edit_new_file");
+    actCopyF5 = action(i18n("Copy to other panel"), nullptr, Qt::Key_F5, _func, SLOT(copyFiles()) , "F5_Copy");
     actMoveF6 = action(i18n("Move to other panel"), 0, Qt::Key_F6, _func, SLOT(moveFiles()) , "F6_Move");
     actCopyDelayedF5 = action(i18n("Copy delayed..."), 0, Qt::SHIFT + Qt::Key_F5, _func, SLOT(copyFilesDelayed()) , "F5_Copy_Queue");
     actMoveDelayedShiftF6 = action(i18n("Move delayed..."), 0, Qt::SHIFT + Qt::Key_F6, _func, SLOT(moveFilesDelayed()) , "F6_Move_Queue");
