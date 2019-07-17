@@ -46,7 +46,7 @@ void KrStyleProxy::drawPrimitive(PrimitiveElement element, const QStyleOption *o
                 else
                     newPen.setColor(Qt::white);
             } else {
-                newPen.setColor(option->palette.foreground().color());
+                newPen.setColor(option->palette.windowText().color());
             }
             newPen.setWidth(0);
             newPen.setStyle(Qt::DotLine);

@@ -310,7 +310,7 @@ void Sorter::addItem(FileItem *fileitem, bool isDummy, int idx, QVariant customD
 
 void Sorter::sort()
 {
-    qStableSort(_items.begin(), _items.end(),
+    std::stable_sort(_items.begin(), _items.end(),
                 descending() ? _greaterThanFunc : _lessThanFunc);
 }
 
@@ -318,7 +318,7 @@ int Sorter::insertIndex(FileItem *fileitem, bool isDummy, QVariant customData)
 {
     SortProps props(fileitem,  _viewProperties->sortColumn, _viewProperties, isDummy, !descending(), -1, std::move(customData));
     const QVector<SortProps*>::iterator it =
-        qLowerBound(_items.begin(), _items.end(), &props,
+        std::lower_bound(_items.begin(), _items.end(), &props,
                         descending() ? _greaterThanFunc : _lessThanFunc);
 
     if(it != _items.end())

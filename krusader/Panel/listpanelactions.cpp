@@ -28,8 +28,6 @@
 #include "../KViewer/krviewer.h"
 #include "../icon.h"
 
-// QtCore
-#include <QSignalMapper>
 // QtWidgets
 #include <QActionGroup>
 
@@ -41,8 +39,6 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
         ActionsBase(parent, mainWindow)
 {
     // set view type
-    auto *mapper = new QSignalMapper(this);
-    connect(mapper, QOverload<int>::of(&QSignalMapper::mapped), this, &ListPanelActions::setView);
     auto *group = new QActionGroup(this);
     group->setExclusive(true);
     QList<KrViewInstance*> views = KrViewFactory::registeredViews();
@@ -50,8 +46,7 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
         KrViewInstance *inst = views[i];
         QAction *action = new QAction(Icon(inst->iconName()), inst->description(), group);
         action->setCheckable(true);
-        connect(action, &QAction::triggered, mapper, QOverload<>::of(&QSignalMapper::map));
-        mapper->setMapping(action, inst->id());
+        connect(action, &QAction::triggered, this, [=] {setView(inst->id());});
         _mainWindow->actions()->addAction("view" + QString::number(i), action);
         _mainWindow->actions()->setDefaultShortcut(action, inst->shortcut());
         setViewActions.insert(inst->id(), action);

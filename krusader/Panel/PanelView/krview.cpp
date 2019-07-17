@@ -344,7 +344,7 @@ QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size/*, KRListItem:
     //QPixmapCache::setCacheLimit( ag.readEntry("Icon Cache Size",_IconCacheSize) );
 
     // first try the cache
-    if (!QPixmapCache::find(cacheName, icon)) {
+    if (!QPixmapCache::find(cacheName, &icon)) {
         icon = processIcon(Icon(iconName, Icon("unknown")).pixmap(size),
                            dim, dimColor, dimFactor, fileitem->isSymLink());
         // insert it into the cache

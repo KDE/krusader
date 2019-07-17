@@ -117,7 +117,7 @@ public:
         mimeData->setImageData(FileListIcon(isLeft ? "arrow-left-double" : "arrow-right-double").pixmap());
         mimeData->setUrls(urls);
         drag->setMimeData(mimeData);
-        drag->start();
+        drag->exec();
     }
 };
 

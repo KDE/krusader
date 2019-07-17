@@ -954,7 +954,7 @@ QPixmap DiskUsage::getIcon(const QString& mime)
 {
     QPixmap icon;
 
-    if (!QPixmapCache::find(mime, icon)) {
+    if (!QPixmapCache::find(mime, &icon)) {
         // get the icon.
         if (mime == "Broken Link !") // FIXME: this doesn't work anymore - the reported mimetype for a broken link is now "unknown"
             icon = FileListIcon("file-broken").pixmap();
