@@ -107,7 +107,7 @@ public:
         mimeData->setImageData(FileListIcon("file").pixmap());
         mimeData->setUrls(urls);
         drag->setMimeData(mimeData);
-        drag->start();
+        drag->exec();
     }
 };
 
