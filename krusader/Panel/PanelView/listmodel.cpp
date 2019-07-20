@@ -359,31 +359,20 @@ void ListModel::removeItem(FileItem *fileItem)
     if (rowToRemove < 0)
         return;
 
-    emit layoutAboutToBeChanged();
+    beginRemoveRows(QModelIndex(), rowToRemove, rowToRemove);
 
     _fileItems.removeAt(rowToRemove);
 
     _fileItemNdx.remove(fileItem);
     _nameNdx.remove(fileItem->getName());
     _urlNdx.remove(fileItem->getUrl());
-    // update indices for fileItems following fileitem
+
+    // update indices for fileItems following the removed fileitem
     for (int i = rowToRemove; i < _fileItems.count(); i++) {
         updateIndices(_fileItems[i], i);
     }
 
-    const QModelIndexList oldPersistentList = persistentIndexList();
-    QModelIndexList newPersistentList;
-    foreach (const QModelIndex &mndx, oldPersistentList) {
-        int newRow = mndx.row();
-        if (newRow > rowToRemove)
-            newRow--;
-        if (newRow != rowToRemove)
-            newPersistentList << index(newRow, mndx.column());
-        else
-            newPersistentList << QModelIndex();
-    }
-    changePersistentIndexList(oldPersistentList, newPersistentList);
-    emit layoutChanged();
+    endRemoveRows();
 }
 
 QVariant ListModel::headerData(int section, Qt::Orientation orientation, int role) const

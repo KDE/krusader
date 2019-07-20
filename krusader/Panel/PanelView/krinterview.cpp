@@ -310,18 +310,16 @@ KrViewItem* KrInterView::preAddItem(FileItem *fileitem)
 
 void KrInterView::preDeleteItem(KrViewItem *item)
 {
+    // update selection
     setSelected(item->getFileItem(), false);
 
-    // if the next item is current, current selection is lost on remove; preserve manually
-    KrViewItem *currentItem = getCurrentKrViewItem();
-    KrViewItem *nextCurrentItem = currentItem && currentItem == getNext(item) ? currentItem : 0;
+    // close editor if it's opened for the item
+    auto file_item = (FileItem *)item->getFileItem();
+    _itemView->closePersistentEditor(_model->fileItemIndex(file_item));
 
-    _model->removeItem((FileItem *)item->getFileItem());
-
-    if (nextCurrentItem)
-        setCurrentKrViewItem(nextCurrentItem, false);
-
-    _itemHash.remove((FileItem *)item->getFileItem());
+    // remove the item from the structures
+    _model->removeItem(file_item);
+    _itemHash.remove(file_item);
 }
 
 void KrInterView::prepareForActive()
