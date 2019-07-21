@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (C) 2009 Csaba Karai <cskarai@freemail.hu>                      *
- * Copyright (C) 2009-2018 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2009-2019 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *

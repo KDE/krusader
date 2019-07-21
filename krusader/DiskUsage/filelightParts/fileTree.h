@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (C) 2004 Max Howell <max.howell@methylblue.com>                 *
- * Copyright (C) 2004-2018 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2004-2019 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *

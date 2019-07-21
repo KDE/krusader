@@ -2,7 +2,7 @@
  * Copyright (C) 2000 David Faure <faure@kde.org>                            *
  * Copyright (C) 2002 Szombathelyi György <gyurco@users.sourceforge.net>     *
  * Copyright (C) 2003 Leo Savernik <l.savernik@aon.at>                       *
- * Copyright (C) 2004-2018 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2004-2019 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This file is heavily based on ktar from kdelibs                           *
  *                                                                           *
