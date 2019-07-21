@@ -103,7 +103,10 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QStr
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
 
-    mainLayout->addWidget(new QLabel(_text));
+    QLabel *label = new QLabel;
+    label->setWordWrap(true);
+    label->setText(_text);
+    mainLayout->addWidget(label);
 
     urlRequester_ = new KUrlRequester(urlName, this);
     urlRequester_->setMinimumWidth(urlRequester_->sizeHint().width() * 3);
