@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (C) 2011 Jan Lepper <jan_lepper@gmx.de>                         *
- * Copyright (C) 2011-2018 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2011-2019 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *

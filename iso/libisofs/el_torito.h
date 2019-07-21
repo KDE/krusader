@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (C) 2002 Shie Erlich <erlich@users.sourceforge.net>             *
  * Copyright (C) 2002 Rafi Yanai <yanai@users.sourceforge.net>               *
- * Copyright (C) 2004-2018 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2004-2019 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * From the linux kernel                                                     *
  *                                                                           *

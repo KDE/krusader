@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (C) 2010 Jan Lepper <krusader@users.sourceforge.net>            *
- * Copyright (C) 2010-2018 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2010-2019 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *
