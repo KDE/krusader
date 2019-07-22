@@ -179,7 +179,6 @@ private:
 
 protected:
     virtual void keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
-    virtual void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
     virtual bool eventFilter(QObject *, QEvent *) Q_DECL_OVERRIDE;
 
     void executeOperation(SynchronizerFileItem *item, int op);
@@ -238,12 +237,8 @@ private:
     bool           isComparing;
     bool           wasClosed;
     bool           wasSync;
-    bool           firstResize;
     bool           hasSelectedFiles;
     SyncViewItem  *lastItem;
-
-    int            sizeX;
-    int            sizeY;
 
     QColor         foreGrounds[ TT_MAX ];
     QColor         backGrounds[ TT_MAX ];

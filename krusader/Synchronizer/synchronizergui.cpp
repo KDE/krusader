@@ -139,10 +139,6 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
 
     selectedFiles = selList;
     isComparing = wasClosed = wasSync = false;
-    firstResize = true;
-    sizeX = sizeY = -1;
-
-    bool equalSizes = false;
 
     hasSelectedFiles = (selectedFiles.count() != 0);
 
@@ -347,41 +343,36 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
     syncList->setAutoFillBackground(true);
 
     QStringList labels;
-    labels << i18nc("@title:column file name", "Name");
-    labels << i18nc("@title:column", "Size");
-    labels << i18nc("@title:column", "Date");
-    labels << i18n("<=>");
-    labels << i18nc("@title:column", "Date");
-    labels << i18nc("@title:column", "Size");
-    labels << i18nc("@title:column file name", "Name");
+    labels << i18nc("@title:column file name", "Name"); // 0
+    labels << i18nc("@title:column", "Size"); // 1
+    labels << i18nc("@title:column", "Date"); // 2
+    labels << i18n("<=>"); // 3
+    labels << i18nc("@title:column", "Date"); // 4
+    labels << i18nc("@title:column", "Size"); // 5
+    labels << i18nc("@title:column file name", "Name"); // 6
+
     syncList->setHeaderLabels(labels);
 
-    syncList->header()->setSectionResizeMode(QHeaderView::Interactive);
+    QHeaderView *header = syncList->header();
 
-    if (group.hasKey("State"))
-        syncList->header()->restoreState(group.readEntry("State", QByteArray()));
-    else {
-        int i = QFontMetrics(syncList->font()).width("W");
-        int j = QFontMetrics(syncList->font()).width("0");
-        j = (i > j ? i : j);
-        int typeWidth = j * 7 / 2;
-
-        syncList->setColumnWidth(0, typeWidth * 4);
-        syncList->setColumnWidth(1, typeWidth * 2);
-        syncList->setColumnWidth(2, typeWidth * 3);
-        syncList->setColumnWidth(3, typeWidth * 1);
-        syncList->setColumnWidth(4, typeWidth * 3);
-        syncList->setColumnWidth(5, typeWidth * 2);
-        syncList->setColumnWidth(6, typeWidth * 4);
-
-        equalSizes = true;
+    if (group.hasKey("State")) {
+       header->restoreState(group.readEntry("State", QByteArray()));
     }
+
+    header->setSectionResizeMode(0, QHeaderView::Stretch);
+    header->setSectionResizeMode(1, QHeaderView::ResizeToContents);
+    header->setSectionResizeMode(2, QHeaderView::ResizeToContents);
+    header->setSectionResizeMode(3, QHeaderView::ResizeToContents);
+    header->setSectionResizeMode(4, QHeaderView::ResizeToContents);
+    header->setSectionResizeMode(5, QHeaderView::ResizeToContents);
+    header->setSectionResizeMode(6, QHeaderView::Stretch);
+    header->setStretchLastSection(false);
 
     syncList->setAllColumnsShowFocus(true);
     syncList->setSelectionMode(QAbstractItemView::ExtendedSelection);
     syncList->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     syncList->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    syncList->header()->setSortIndicatorShown(false);
+    header->setSortIndicatorShown(false);
     syncList->setSortingEnabled(false);
     syncList->setRootIsDecorated(true);
     syncList->setIndentation(10);
@@ -607,25 +598,14 @@ void SynchronizerGUI::initGUI(QString profileName, QUrl leftURL, QUrl rightURL, 
         syncList->setPalette(pal);
     }
 
-    int sx = group.readEntry("Window Width",  -1);
-    int sy = group.readEntry("Window Height",  -1);
-
-    if (sx != -1 && sy != -1)
-        resize(sx, sy);
-
-    if (group.readEntry("Window Maximized",  false)) {
+    if (group.readEntry("Window Maximized", false)) {
         setWindowState(windowState() | Qt::WindowMaximized);
-    }
-
-    if (equalSizes) {
-        int newSize6 = syncList->header()->sectionSize(6);
-        int newSize0 = syncList->header()->sectionSize(0);
-        int delta = newSize6 - newSize0 + (newSize6 & 1);
-
-        newSize0 += (delta / 2);
-
-        if (newSize0 > 20)
-            syncList->header()->resizeSection(0, newSize0);
+    } else {
+        int sx = group.readEntry("Window Width", -1);
+        int sy = group.readEntry("Window Height", -1);
+        if (sx != -1 && sy != -1) {
+            resize(sx, sy);
+        }
     }
 
     if (!profileName.isNull())
@@ -965,8 +945,8 @@ void SynchronizerGUI::closeDialog()
 
     group.writeEntry("Parallel Threads", parallelThreadsSpinBox->value());
 
-    group.writeEntry("Window Width", sizeX);
-    group.writeEntry("Window Height", sizeY);
+    group.writeEntry("Window Width", size().width());
+    group.writeEntry("Window Height", size().height());
     group.writeEntry("Window Maximized", isMaximized());
 
     group.writeEntry("State", syncList->header()->saveState());
@@ -1252,24 +1232,6 @@ void SynchronizerGUI::synchronize()
 
     if (wasSync)
         closeDialog();
-}
-
-void SynchronizerGUI::resizeEvent(QResizeEvent *e)
-{
-    if (!isMaximized()) {
-        sizeX = e->size().width();
-        sizeY = e->size().height();
-    }
-
-    if (!firstResize) {
-        int delta = e->size().width() - e->oldSize().width() + (e->size().width() & 1);
-        int newSize = syncList->header()->sectionSize(0) + delta / 2;
-
-        if (newSize > 20)
-            syncList->header()->resizeSection(0, newSize);
-    }
-    firstResize = false;
-    QDialog::resizeEvent(e);
 }
 
 void SynchronizerGUI::statusInfo(QString info)
