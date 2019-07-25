@@ -79,7 +79,7 @@ SegmentTip::moveto(QPoint p, QWidget &canvas, bool placeAbove)
 
     m_pixmap = QPixmap(size());   //move to updateTip once you are sure it can never be null
     //bitBlt( &m_pixmap, offset, &canvas, intersection, Qt::CopyROP );
-    QPainter(&m_pixmap).drawPixmap(offset, QPixmap::grabWidget(&canvas, intersection));
+    QPainter(&m_pixmap).drawPixmap(offset, canvas.grab(intersection));
 
     QColor col = QToolTip::palette().color(QPalette::Active, QPalette::Window);
     col.setAlpha(153);   // 0.6
