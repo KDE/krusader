@@ -478,6 +478,10 @@ void KrSearchDialog::startSearch()
         mainFeedToListBoxBtn->setEnabled(true);
     searchingLabel->setText(i18n("Finished searching."));
 
+    // go to the first result. Note: `getFirst()` doesn't cause problems 
+    // if the results list is empty
+    resultView->setCurrentKrViewItem(resultView->getFirst());
+
     if (closed)
         closeDialog();
 }
