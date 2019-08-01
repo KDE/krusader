@@ -123,7 +123,7 @@ void KRSearchMod::scanDirectory(const QUrl &url)
         const QUrl fileUrl = fileItem->getUrl();
 
         if (m_query->isRecursive() &&
-            (fileItem->isDir() || (fileItem->isSymLink() && m_query->followLinks()))) {
+            ((!fileItem->isSymLink() && fileItem->isDir()) || (fileItem->isSymLink() && m_query->followLinks()))) {
             // query search in subdirectory
             m_unScannedUrls.push(fileUrl);
         }
