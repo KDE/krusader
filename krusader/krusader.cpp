@@ -432,14 +432,15 @@ void Krusader::saveSettings() {
 
 void Krusader::closeEvent(QCloseEvent *event)
 {
-    if (!sysTray || _quit) {
-        _quit = false; // in case quit will be aborted
-        KParts::MainWindow::closeEvent(event); // (may) quit, continues with queryClose()...
-    } else {
-        // close window to tray
+    if (sysTray && !_quit && !qApp->isSavingSession()) {
+        // close to tray instead
         event->ignore();
         hide();
+        return;
     }
+
+    _quit = false; // in case quit will be aborted
+    KParts::MainWindow::closeEvent(event); // (may) quit, continues with queryClose()...
 }
 
 void Krusader::showEvent(QShowEvent *event)
