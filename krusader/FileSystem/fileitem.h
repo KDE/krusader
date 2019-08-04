@@ -93,6 +93,7 @@ public:
     /** Return the file size. Returns (KIO::filesize_t)-1 for directories with unknown size. */
     inline KIO::filesize_t getUISize() const { return m_size; }
     inline const QString &getPerm() const { return m_permissions; }
+    /** Return true if the file is a directory or a symlink to a directory, otherwise false. */
     inline bool isDir() const { return m_isDir; }
     inline bool isSymLink() const { return m_isLink; }
     inline bool isBrokenLink() const { return m_isBrokenLink; }
