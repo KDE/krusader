@@ -125,6 +125,8 @@ extern "C"
             exit(-1);
         }
 
+        // At least, that fixes the empty name in the warning that says:  Please fix the "" KIO slave
+        // There is more information in https://bugs.kde.org/show_bug.cgi?id=384653
         QCoreApplication app(argc, argv);
         app.setApplicationName(QStringLiteral("kio_krarc"));
 
