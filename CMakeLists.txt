@@ -2,7 +2,7 @@ project(krusader)
 
 cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 
-set(VERSION "2.7.2")
+set(VERSION "2.7.3-dev")
 set(RELEASE_NAME "Peace of Mind")
 
 if (NOT CMAKE_INSTALL_PREFIX MATCHES "^/usr(/local)?/?$" AND NOT DEFINED KDE_INSTALL_QTPLUGINDIR AND NOT DEFINED KDE_INSTALL_USE_QT_SYS_PATHS)
