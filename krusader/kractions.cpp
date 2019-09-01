@@ -201,7 +201,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     NEW_KTOGGLEACTION(actToggleCmdline, i18n("Show &Command Line"), nullptr, 0, SLOTS, SLOT(toggleCmdline()), "toggle command line");
 
-    NEW_KTOGGLEACTION(actToggleTerminal, i18n("Show &Embedded Terminal"), nullptr, Qt::ALT + Qt::CTRL + Qt::Key_T, SLOTS, SLOT(toggleTerminal()), "toggle terminal emulator");
+    NEW_KTOGGLEACTION(actToggleTerminal, i18n("Show &Embedded Terminal"), nullptr, Qt::CTRL + Qt::ALT + Qt::Key_E, SLOTS, SLOT(toggleTerminal()), "toggle terminal emulator");
 
 
     NEW_KTOGGLEACTION(actToggleHidden, i18n("Show &Hidden Files"), nullptr, Qt::ALT + Qt::Key_Period, SLOTS, SLOT(showHiddenFiles(bool)), "toggle hidden files");
