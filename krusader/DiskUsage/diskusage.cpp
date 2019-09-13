@@ -63,6 +63,7 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "../filelisticon.h"
+#include "../compat.h"
 
 // these are the values that will exist in the menu
 #define DELETE_ID            90
@@ -146,7 +147,7 @@ LoaderWidget::LoaderWidget(QWidget *parent) : QScrollArea(parent), cancelled(fal
     searchedDirectory = new KSqueezedTextLabel(loaderBox);
     searchedDirectory->setFrameShape(QLabel::StyledPanel);
     searchedDirectory->setFrameShadow(QLabel::Sunken);
-    searchedDirectory->setMinimumWidth(width = QFontMetrics(searchedDirectory->font()).width("W") * 30);
+    searchedDirectory->setMinimumWidth(width = QFontMetrics(searchedDirectory->font()).QFONTMETRICS_WIDTH("W") * 30);
     searchedDirectory->setMaximumWidth(width);
     synchGrid->addWidget(searchedDirectory, 4, 0, 1, 2);
 

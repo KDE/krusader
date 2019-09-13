@@ -29,6 +29,7 @@
 #include "../icon.h"
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
+#include "compat.h"
 
 // QtCore
 #include <QEvent>
@@ -197,23 +198,23 @@ QString PanelTabBar::squeeze(const QUrl &url, int tabIndex)
 
     // set the real max length
     QFontMetrics fm(fontMetrics());
-    _maxTabLength = (dynamic_cast<QWidget*>(parent())->width() - (6 * fm.width("W"))) / fm.width("W");
+    _maxTabLength = (dynamic_cast<QWidget*>(parent())->width() - (6 * fm.QFONTMETRICS_WIDTH("W"))) / fm.QFONTMETRICS_WIDTH("W");
     // each tab gets a fair share of the max tab length
     const int effectiveTabLength = _maxTabLength / (count() == 0 ? 1 : count());
-    const int labelWidth = fm.width("W") * effectiveTabLength;
-    const int textWidth = fm.width(text);
+    const int labelWidth = fm.QFONTMETRICS_WIDTH("W") * effectiveTabLength;
+    const int textWidth = fm.QFONTMETRICS_WIDTH(text);
     if (textWidth <= labelWidth)
         return text;
 
     // squeeze text - start with the dots only
     QString squeezedText = "...";
-    int squeezedWidth = fm.width(squeezedText);
+    int squeezedWidth = fm.QFONTMETRICS_WIDTH(squeezedText);
 
     int letters = text.length() * (labelWidth - squeezedWidth) / textWidth / 2;
     if (labelWidth < squeezedWidth)
         letters = 1;
     squeezedText = text.left(letters) + "..." + text.right(letters);
-    squeezedWidth = fm.width(squeezedText);
+    squeezedWidth = fm.QFONTMETRICS_WIDTH(squeezedText);
 
     if (squeezedWidth < labelWidth) {
         // we estimated too short
@@ -221,7 +222,7 @@ QString PanelTabBar::squeeze(const QUrl &url, int tabIndex)
         do {
             letters++;
             squeezedText = text.left(letters) + "..." + text.right(letters);
-            squeezedWidth = fm.width(squeezedText);
+            squeezedWidth = fm.QFONTMETRICS_WIDTH(squeezedText);
         } while (squeezedWidth < labelWidth);
         letters--;
         squeezedText = text.left(letters) + "..." + text.right(letters);
@@ -231,7 +232,7 @@ QString PanelTabBar::squeeze(const QUrl &url, int tabIndex)
         do {
             letters--;
             squeezedText = text.left(letters) + "..." + text.right(letters);
-            squeezedWidth = fm.width(squeezedText);
+            squeezedWidth = fm.QFONTMETRICS_WIDTH(squeezedText);
         } while (letters && squeezedWidth > labelWidth);
     }
 

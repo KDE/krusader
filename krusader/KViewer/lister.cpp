@@ -64,6 +64,7 @@
 #include "../icon.h"
 #include "../kractions.h"
 #include "../GUI/krremoteencodingmenu.h"
+#include "../compat.h"
 
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
@@ -127,7 +128,7 @@ void ListerTextArea::calculateText(const bool forcedUpdate)
 
     // This is quite accurate (although not perfect) way of getting
     // a single character width along with its surrounding space.
-    const float fontWidth = (fm.width("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW") - fm.width("W")) / 99.0;
+    const float fontWidth = (fm.QFONTMETRICS_WIDTH("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW") - fm.QFONTMETRICS_WIDTH("W")) / 99.0;
 
     const int sizeY = contentRect.height() / fontHeight;
     _pageSize = sizeY;
@@ -2017,7 +2018,7 @@ void Lister::print()
 
     const QFontMetrics fmFixed(fixedFont);
     const int fixedFontHeight = std::max(fmFixed.height(), 1);
-    const int fixedFontWidth = std::max(fmFixed.width("W"), 1);
+    const int fixedFontWidth = std::max(fmFixed.QFONTMETRICS_WIDTH("W"), 1);
 
     const int effPageSize = drawingRect.height() - normalFontHeight - 1;
     const int rowsPerPage = std::max(effPageSize / fixedFontHeight, 1);

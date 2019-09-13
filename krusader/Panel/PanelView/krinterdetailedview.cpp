@@ -45,7 +45,7 @@
 #include "krmousehandler.h"
 #include "../krcolorcache.h"
 #include "../GUI/krstyleproxy.h"
-
+#include "../compat.h"
 
 KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instance, KConfig *cfg):
         QTreeView(parent),
@@ -117,14 +117,14 @@ void KrInterDetailedView::doRestoreSettings(KConfigGroup grp)
         hideColumn(KrViewProperties::Group);
         hideColumn(KrViewProperties::Changed);
         hideColumn(KrViewProperties::Accessed);
-        headerView->resizeSection(KrViewProperties::Ext, QFontMetrics(_viewFont).width("tar.bz2  "));
-        headerView->resizeSection(KrViewProperties::KrPermissions, QFontMetrics(_viewFont).width("rwx  "));
-        headerView->resizeSection(KrViewProperties::Size, QFontMetrics(_viewFont).width("9") * 10);
+        headerView->resizeSection(KrViewProperties::Ext, QFontMetrics(_viewFont).QFONTMETRICS_WIDTH("tar.bz2  "));
+        headerView->resizeSection(KrViewProperties::KrPermissions, QFontMetrics(_viewFont).QFONTMETRICS_WIDTH("rwx  "));
+        headerView->resizeSection(KrViewProperties::Size, QFontMetrics(_viewFont).QFONTMETRICS_WIDTH("9") * 10);
 
         QDateTime tmp(QDate(2099, 12, 29), QTime(23, 59));
         QString desc = QLocale().toString(tmp, QLocale::ShortFormat) + "  ";
 
-        headerView->resizeSection(KrViewProperties::Modified, QFontMetrics(_viewFont).width(desc));
+        headerView->resizeSection(KrViewProperties::Modified, QFontMetrics(_viewFont).QFONTMETRICS_WIDTH(desc));
     } else {
         headerView->restoreState(savedState);
 
@@ -379,7 +379,7 @@ bool KrInterDetailedView::viewportEvent(QEvent * event)
             int width = header()->sectionSize(index.column());
             QString text = index.data(Qt::DisplayRole).toString();
 
-            int textWidth = QFontMetrics(_viewFont).width(text);
+            int textWidth = QFontMetrics(_viewFont).QFONTMETRICS_WIDTH(text);
 
             const int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
             textWidth += 2 * textMargin;

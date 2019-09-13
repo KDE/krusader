@@ -37,6 +37,7 @@
 #include "../icon.h"
 #include "../FileSystem/filesystem.h"
 #include "../Dialogs/krdialogs.h"
+#include "../compat.h"
 
 DiskUsageGUI::DiskUsageGUI(const QUrl &openDir)
         : QDialog(nullptr), exitAtFailure(true)
@@ -134,7 +135,7 @@ DiskUsageGUI::DiskUsageGUI(const QUrl &openDir)
 
     diskUsage->setView(view);
 
-    sizeX = group.readEntry("Window Width",  QFontMetrics(font()).width("W") * 70);
+    sizeX = group.readEntry("Window Width",  QFontMetrics(font()).QFONTMETRICS_WIDTH("W") * 70);
     sizeY = group.readEntry("Window Height", QFontMetrics(font()).height() * 25);
     resize(sizeX, sizeY);
 

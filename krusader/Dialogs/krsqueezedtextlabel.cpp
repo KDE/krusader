@@ -31,6 +31,8 @@
 #include <KCoreAddons/KUrlMimeData>
 #include <KCoreAddons/KStringHandler>
 
+#include "../compat.h"
+
 KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent):
         KSqueezedTextLabel(parent), _index(-1), _length(-1)
 {
@@ -55,7 +57,7 @@ void KrSqueezedTextLabel::squeezeTextToLabel(int index, int length)
         QString sqtext = fullText;
         QFontMetrics fm(fontMetrics());
         int labelWidth = size().width();
-        int textWidth = fm.width(sqtext);
+        int textWidth = fm.QFONTMETRICS_WIDTH(sqtext);
         if (textWidth > labelWidth) {
             int avgCharSize = textWidth / sqtext.length();
             int numOfExtraChars = (textWidth - labelWidth) / avgCharSize;

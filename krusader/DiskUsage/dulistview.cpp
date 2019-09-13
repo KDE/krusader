@@ -36,6 +36,8 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 
+#include "../compat.h"
+
 DUListView::DUListView(DiskUsage *usage)
         : KrTreeWidget(usage), diskUsage(usage)
 {
@@ -65,7 +67,7 @@ DUListView::DUListView(DiskUsage *usage)
     if (group.hasKey("D State"))
         header()->restoreState(group.readEntry("D State", QByteArray()));
     else {
-        int defaultSize = QFontMetrics(font()).width("W");
+        int defaultSize = QFontMetrics(font()).QFONTMETRICS_WIDTH("W");
 
         setColumnWidth(0, defaultSize * 20);
         setColumnWidth(1, defaultSize * 5);

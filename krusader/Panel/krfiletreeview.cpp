@@ -25,6 +25,7 @@
 #include "../krglobal.h"
 #include "../icon.h"
 #include "../FileSystem/filesystemprovider.h"
+#include "../compat.h"
 
 #include <QAction>
 #include <QApplication>
@@ -111,7 +112,7 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
     connect(mSourceModel, &KDirModel::expand, this, &KrFileTreeView::slotExpanded);
 
     QFontMetrics fontMetrics(viewport()->font());
-    header()->resizeSection(KDirModel::Name, fontMetrics.width("WWWWWWWWWWWWWWW"));
+    header()->resizeSection(KDirModel::Name, fontMetrics.QFONTMETRICS_WIDTH("WWWWWWWWWWWWWWW"));
 
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(header(), &QHeaderView::customContextMenuRequested, this,

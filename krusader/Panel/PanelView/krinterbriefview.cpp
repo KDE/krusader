@@ -48,6 +48,7 @@
 #include "../FileSystem/krpermhandler.h"
 #include "../defaults.h"
 #include "../GUI/krstyleproxy.h"
+#include "../compat.h"
 
 #define MAX_BRIEF_COLS 5
 
@@ -545,7 +546,7 @@ int KrInterBriefView::elementWidth(const QModelIndex & index)
 {
     QString text = index.data(Qt::DisplayRole).toString();
 
-    int textWidth = QFontMetrics(_viewFont).width(text);
+    int textWidth = QFontMetrics(_viewFont).QFONTMETRICS_WIDTH(text);
 
     const int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
     textWidth += 2 * textMargin;

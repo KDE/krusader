@@ -28,4 +28,18 @@
     #define UDS_ENTRY_INSERT(A, B) UDSEntry::insert((A), (B));
 #endif
 
+/**
+ * QFontMetrics::width(const QString&, int) was made obsoleted in QT 5.11 in
+ * favor of QFontMetrics::horizontalAdvance(const QString &, int)
+ *
+ * https://doc.qt.io/archives/qt-5.11/qfontmetrics-obsolete.html#width
+ *
+ * This can be removed when the qt minimum version required will be >= 5.11
+ */
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+    #define QFONTMETRICS_WIDTH(A) horizontalAdvance(A)
+#else
+    #define QFONTMETRICS_WIDTH(A) width(A)
+#endif
+
 #endif

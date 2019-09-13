@@ -49,7 +49,7 @@
 #include "../krservices.h"
 #include "../ActionMan/addplaceholderpopup.h"
 #include "kcmdmodebutton.h"
-
+#include "../compat.h"
 
 CmdLineCombo::CmdLineCombo(QWidget *parent) : KHistoryComboBox(parent), _handlingLineEditResize(false)
 {
@@ -88,14 +88,14 @@ void CmdLineCombo::doLayout()
 {
     QString pathNameLabel = _path;
     QFontMetrics fm(_pathLabel->fontMetrics());
-    int textWidth = fm.width(_path);
+    int textWidth = fm.QFONTMETRICS_WIDTH(_path);
     int maxWidth = (width() + _pathLabel->width()) * 2 / 5;
     int letters = _path.length() / 2;
 
     while (letters && textWidth > maxWidth) {
         pathNameLabel = _path.left(letters) + "..." + _path.right(letters);
         letters--;
-        textWidth = fm.width(pathNameLabel);
+        textWidth = fm.QFONTMETRICS_WIDTH(pathNameLabel);
     }
 
     _pathLabel->setText(pathNameLabel + "> ");

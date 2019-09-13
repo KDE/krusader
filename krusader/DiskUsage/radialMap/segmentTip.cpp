@@ -32,6 +32,7 @@
 #include <KI18n/KLocalizedString>
 
 #include "fileTree.h"
+#include "../compat.h"
 
 namespace RadialMap
 {
@@ -131,15 +132,15 @@ SegmentTip::updateTip(const File* const file, const Directory* const root)
 
         if (pc > 0) s3 += QString(" (%1%)").arg(loc.toString(pc));
 
-        maxw    = fontMetrics().width(s3);
+        maxw    = fontMetrics().QFONTMETRICS_WIDTH(s3);
         h      += fontMetrics().height();
         m_text += '\n';
         m_text += s3;
     }
 
     uint
-    w = fontMetrics().width(s1); if (w > maxw) maxw = w;
-    w = fontMetrics().width(s2); if (w > maxw) maxw = w;
+    w = fontMetrics().QFONTMETRICS_WIDTH(s1); if (w > maxw) maxw = w;
+    w = fontMetrics().QFONTMETRICS_WIDTH(s2); if (w > maxw) maxw = w;
 
     resize(maxw + 2 * MARGIN, h);
 }
