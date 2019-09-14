@@ -1085,17 +1085,22 @@ void KrView::setFilter(KrViewProperties::FilterSpec filter)
         break;
     case KrViewProperties::Custom :
         {
-            FilterDialog dialog(_widget, i18n("Filter Files"), QStringList(i18n("Apply filter to folders")), false);
-            dialog.checkExtraOption(i18n("Apply filter to folders"), applyToDirs);
-            if(rememberSettings)
+            QString applyFilterToFolders = i18n("Apply filter to folder&s");
+            // Note: It has the same shortcut as "Apply &selection to folders" has
+            // in a very similar dialog (which is aimed to select files/folders).
+            // The "Alt+A" and "Alt+F" shortcuts were already taken
+
+            FilterDialog dialog(_widget, i18n("Filter Files"), QStringList(applyFilterToFolders), false);
+            dialog.checkExtraOption(applyFilterToFolders, applyToDirs);
+            if (rememberSettings)
                 dialog.applySettings(_properties->filterSettings);
             dialog.exec();
             FilterSettings s(dialog.getSettings());
-            if(!s.isValid()) // if the user canceled - quit
+            if (!s.isValid()) // if the user canceled -> quit
                 return;
             _properties->filterSettings = s;
             _properties->filterMask = s.toQuery();
-            applyToDirs = dialog.isExtraOptionChecked(i18n("Apply filter to folders"));
+            applyToDirs = dialog.isExtraOptionChecked(applyFilterToFolders);
         }
         break;
     default:
@@ -1111,14 +1116,15 @@ void KrView::customSelection(bool select)
     KConfigGroup grpSvr(_config, "Look&Feel");
     bool includeDirs = grpSvr.readEntry("Mark Dirs", _MarkDirs);
 
-    FilterDialog dialog(nullptr, i18n("Select Files"), QStringList(i18n("Apply selection to folders")), false);
-    dialog.checkExtraOption(i18n("Apply selection to folders"), includeDirs);
+    QString applySelToFolders = i18n("Apply &selection to folders");
+    FilterDialog dialog(nullptr, i18n("Select Files"), QStringList(applySelToFolders), false);
+    dialog.checkExtraOption(applySelToFolders, includeDirs);
     dialog.exec();
     KRQuery query = dialog.getQuery();
-    // if the user canceled - quit
+    // if the user canceled -> quit
     if (query.isNull())
         return;
-    includeDirs = dialog.isExtraOptionChecked(i18n("Apply selection to folders"));
+    includeDirs = dialog.isExtraOptionChecked(applySelToFolders);
 
     changeSelection(query, select, includeDirs);
 }
