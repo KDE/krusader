@@ -72,7 +72,9 @@ QSet<QString> KrServices::generateKrarcArchiveMimetypes()
     mimes += QString("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
     mimes += QString("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
     mimes += QString("application/x-cbz");
+    mimes += QString("application/vnd.comicbook+zip");
     mimes += QString("application/x-cbr");
+    mimes += QString("application/vnd.comicbook-rar");
     mimes += QString("application/epub+zip");
     mimes += QString("application/x-webarchive");
     mimes += QString("application/x-plasma");
