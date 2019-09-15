@@ -163,17 +163,13 @@ void KrInterBriefView::keyPressEvent(QKeyEvent *e)
 
 bool KrInterBriefView::handleKeyEvent(QKeyEvent *e)
 {
-    if ((e->key() != Qt::Key_Left && e->key() != Qt::Key_Right) && (KrView::handleKeyEvent(e)))
+
+    if (((e->key() != Qt::Key_Left && e->key() != Qt::Key_Right) || (e->modifiers() == Qt::ControlModifier)) && (KrView::handleKeyEvent(e)))
         // did the view class handled the event?
         return true;
 
     switch (e->key()) {
     case Qt::Key_Right : {
-        if (e->modifiers() == Qt::ControlModifier) {
-            // let the panel handle it
-            e->ignore();
-            break;
-        }
         KrViewItem *i = getCurrentKrViewItem();
         KrViewItem *newCurrent = i;
 
@@ -200,11 +196,6 @@ bool KrInterBriefView::handleKeyEvent(QKeyEvent *e)
         return true;
     }
     case Qt::Key_Left : {
-        if (e->modifiers() == Qt::ControlModifier) {
-            // let the panel handle it
-            e->ignore();
-            break;
-        }
         KrViewItem *i = getCurrentKrViewItem();
         KrViewItem *newCurrent = i;
 
