@@ -113,7 +113,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     searchForLabel->setText(i18n("Search &for:"));
     nameGroupLayout->addWidget(searchForLabel, 0, 0);
 
-    searchFor = new KHistoryComboBox(false, nameGroup/*, "searchFor"*/);
+    searchFor = new KrHistoryComboBox(false, nameGroup/*, "searchFor"*/);
     QSizePolicy searchForPolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     searchForPolicy.setHeightForWidth(searchFor->sizePolicy().hasHeightForWidth());
     searchFor->setSizePolicy(searchForPolicy);

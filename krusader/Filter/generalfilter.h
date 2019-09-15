@@ -37,6 +37,7 @@
 #include "../Dialogs/kurllistrequester.h"
 #include "../GUI/profilemanager.h"
 #include "../GUI/krlistwidget.h"
+#include "../GUI/krhistorycombobox.h"
 
 class GeneralFilter : public QWidget, public FilterBase
 {
@@ -85,7 +86,7 @@ public:
     KURLListRequester *dontSearchIn;
     QLayout *middleLayout;
 
-    KHistoryComboBox* searchFor;
+    KrHistoryComboBox* searchFor;
     KHistoryComboBox* containsText;
     KHistoryComboBox* excludeFolderNames;
     QToolButton*      containsRegExp;

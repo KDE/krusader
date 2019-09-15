@@ -4,6 +4,7 @@ set(GUI_SRCS
     kfnkeys.cpp
     kcmdline.cpp
     profilemanager.cpp
+    krhistorycombobox.cpp
     krremoteencodingmenu.cpp
     krtreewidget.cpp
     krstyleproxy.cpp
