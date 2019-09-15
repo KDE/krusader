@@ -22,6 +22,7 @@
 #include "panelviewer.h"
 
 // QtCore
+#include <QDebug>
 #include <QFile>
 // QtWidgets
 #include <QApplication>
@@ -249,7 +250,7 @@ void PanelViewer::openFile(KFileItem fi)
         abort();
     }
 
-    if(cpart) {
+    if (cpart) {
         addWidget(cpart->widget());
         setCurrentWidget(cpart->widget());
 
@@ -258,11 +259,28 @@ void PanelViewer::openFile(KFileItem fi)
         KParts::OpenUrlArguments args;
         args.setReload(true);
         cpart->setArguments(args);
-        if (cpart->openUrl(curl)) {
+
+        // Note: About checking the return value of the next sentence, Elvis Angelaccio wrote
+        // in <https://bugs.kde.org/show_bug.cgi?id=409722> that "the Ark Part returns false in
+        // the openUrl() method even if it is actually opening the archive as requested. While
+        // this may be considered a partial abuse of the KParts api, it is done for a
+        // reason (that is, ark loads the archives asynchronously). [...] Krusader [could] use
+        // the part's completed() and canceled() signals instead."
+        cpart->openUrl(curl);
+
+        connect(cpart.data(), &KParts::ReadOnlyPart::canceled, this, [=]() {
+            qDebug() << "openFile canceled: '" << curl << "'";
+        });
+
+        auto cPartCompleted = [=]() {
             connect(cpart.data(), &KParts::ReadOnlyPart::destroyed, this, &PanelViewer::slotCPartDestroyed);
             emit openUrlFinished(this, true);
-            return;
-        }
+            qDebug() << "openFile completed: '" << curl << "'";
+        };
+        connect(cpart.data(), QOverload<>::of(&KParts::ReadOnlyPart::completed), this, cPartCompleted);
+        connect(cpart.data(), QOverload<bool>::of(&KParts::ReadOnlyPart::completed), this, cPartCompleted);
+
+        return;
     }
 
     setCurrentWidget(fallback);
