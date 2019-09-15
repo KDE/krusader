@@ -46,6 +46,11 @@ QString KrServices::GLOBAL_MESSAGE_PATTERN = "%{time hh:mm:ss.zzz}-%{type} %{cat
 
 QSet<QString> KrServices::generateKrarcArchiveMimetypes()
 {
+    // Reminder: If a mime type is added/removed/modified in that
+    // member function, it's important to research if the type has to
+    // be added/removed/modified in the `krarc.protocol` file, or
+    // in `KrArcBaseManager::getShortTypeFromMime(const QString &mime)`
+
     // Hard-code these proven mimetypes openable by krarc protocol.
     // They cannot be listed in krarc.protocol itself
     // because it would baffle other file managers (like Dolphin).

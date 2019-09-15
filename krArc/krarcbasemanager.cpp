@@ -206,13 +206,18 @@ QString KrArcBaseManager::detectArchive(bool &encrypted, const QString& fileName
 */
 QString KrArcBaseManager::getShortTypeFromMime(const QString &mime)
 {
+    // Reminder: If a mime type is added/removed/modified in that
+    // member function, it's important to research if the type has to
+    // be added/removed/modified in the `krarc.protocol` file, or
+    // in `KrServices::generateKrarcArchiveMimetypes()`
+
     // 7zip files are a not a normal case because their mimetype does not
     // follow the norm of other types: zip, tar, lha, ace, arj, etc.
     if (mime == "application/x-7z-compressed")
         return "7z";
 
     // If it's a rar file but its mimetype isn't "application/x-rar"
-    if (mime == "application/x-rar-compressed")
+    if (mime == "application/x-rar-compressed" || mime == "application/vnd.rar")
         return "rar";
 
     // The short type that will be returned
