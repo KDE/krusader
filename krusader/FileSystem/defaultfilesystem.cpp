@@ -323,7 +323,7 @@ void DefaultFileSystem::slotWatcherDeleted(const QString& path)
 bool DefaultFileSystem::refreshLocal(const QUrl &directory, bool onlyScan) {
     const QString path = KrServices::urlToLocalPath(directory);
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     if (!path.contains("/")) { // change C: to C:/
         path = path + QString("/");
     }

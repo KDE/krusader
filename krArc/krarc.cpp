@@ -1162,7 +1162,7 @@ mode_t kio_krarcProtocol::parsePermString(QString perm)
     mode_t mode = 0;
     // file type
     if (perm[0] == 'd') mode |= S_IFDIR;
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     if (perm[0] == 'l') mode |= S_IFLNK;
 #endif
     if (perm[0] == '-') mode |= S_IFREG;
@@ -1170,7 +1170,7 @@ mode_t kio_krarcProtocol::parsePermString(QString perm)
     if (perm[1] != '-') mode |= S_IRUSR;
     if (perm[2] != '-') mode |= S_IWUSR;
     if (perm[3] != '-') mode |= S_IXUSR;
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     // group permissions
     if (perm[4] != '-') mode |= S_IRGRP;
     if (perm[5] != '-') mode |= S_IWGRP;
@@ -1333,7 +1333,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         owner = nextWord(line);
         group = nextWord(line);
         // symlink destination
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
         if (S_ISLNK(mode)) {
             // ignore the next 3 fields
             nextWord(line); nextWord(line); nextWord(line);
@@ -1695,7 +1695,7 @@ bool kio_krarcProtocol::initArcParameters()
         }
     }
     // checking if it's an absolute path
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     if (cmd.length() > 2 && cmd[ 0 ].isLetter() && cmd[ 1 ] == ':')
         return true;
 #else
@@ -1921,7 +1921,7 @@ QString kio_krarcProtocol::getPath(const QUrl &url, QUrl::FormattingOptions opti
     QString path = url.adjusted(options).path();
     REPLACE_DIR_SEP2(path);
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     if (path.startsWith(DIR_SEPARATOR)) {
         int p = 1;
         while (p < path.length() && path[ p ] == DIR_SEPARATOR_CHAR)

@@ -71,7 +71,7 @@ void KRpermHandler::init()
     int groupNo = getgroups(200, groupList);
 
 // In kdewin32 implementation as of 4.1.2, getpwent always returns the same struct
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     // fill the UID cache
     struct passwd *pass;
     while ((pass = getpwent()) != nullptr) {

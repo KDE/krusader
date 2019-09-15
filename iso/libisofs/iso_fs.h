@@ -26,7 +26,7 @@
 
 #include "bswap.h"
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #define DIR_SEPARATOR       "/"
 #define DIR_SEPARATOR2      "\\"
 #define DIR_SEPARATOR_CHAR  '/'

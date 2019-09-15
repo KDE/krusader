@@ -294,7 +294,7 @@ QString KrServices::urlToLocalPath(const QUrl &url)
     QString path = fileUrl.toLocalFile();
     REPLACE_DIR_SEP2(path);
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     if (path.startsWith(DIR_SEPARATOR)) {
         int p = 1;
         while (p < path.length() && path[ p ] == DIR_SEPARATOR_CHAR)
