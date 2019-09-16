@@ -58,10 +58,15 @@
       <literal>'*text*'</literal>. You can exclude files from the
       search with '|' (&eg; 
       <literal role="extension">'*.cpp *.h |
-      *.moc.cpp'</literal>) . You can use quotation marks for names
+      *.moc.cpp'</literal>). You can use quotation marks for names
             that contain spaces. Filter "Program Files" searches
             out those files/directories the name of which is <filename>Program
-            Files</filename>.</para>
+            Files</filename>. A drop-down list that is shown after clicking down arrow on the right allows you to pick some of your previously entered criteria.</para>
+      <note>
+          <para>
+              It is possible to edit the list of suggestions for the <guilabel>Search for</guilabel> field. If you do not like some of its items just select it and press <keycombo action="simul">&Shift;<keycap>Del</keycap></keycombo> and that useless suggestion gets deleted. You can also use the arrow keys in order to see all the history in the <guilabel>Search for</guilabel> field, and delete the entries that are needless.
+          </para>
+      </note>
     </listitem>
     <listitem>
       <para>
