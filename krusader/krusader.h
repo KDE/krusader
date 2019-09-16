@@ -171,7 +171,6 @@ private:
     TabActions *_tabActions;
     QPointer<KStatusNotifierItem> sysTray;
     bool         isStarting;
-    bool         isExiting;
     QTimer      _openUrlTimer;
     QString     _urlToOpen;
     bool        _quit;

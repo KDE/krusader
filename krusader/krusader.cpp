@@ -108,7 +108,7 @@ QAction *Krusader::actShowJSConsole = 0;
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullptr,
                 Qt::Window | Qt::WindowTitleHint | Qt::WindowContextHelpButtonHint),
-        _listPanelActions(nullptr), isStarting(true), isExiting(false), _quit(false)
+        _listPanelActions(nullptr), isStarting(true), _quit(false)
 {
     // create the "krusader"
     App = this;
@@ -287,8 +287,6 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
 Krusader::~Krusader()
 {
     KrTrashHandler::stopWatcher();
-    if (!isExiting) // save the settings if it was not saved (SIGTERM received)
-        saveSettings();
 
     delete MAIN_VIEW;
     MAIN_VIEW = nullptr;
@@ -434,14 +432,15 @@ void Krusader::saveSettings() {
 
 void Krusader::closeEvent(QCloseEvent *event)
 {
-    if (!sysTray || _quit) {
-        _quit = false; // in case quit will be aborted
-        KParts::MainWindow::closeEvent(event); // (may) quit, continues with queryClose()...
-    } else {
-        // close window to tray
+    if (sysTray && !_quit && !qApp->isSavingSession()) {
+        // close to tray instead
         event->ignore();
         hide();
+        return;
     }
+
+    _quit = false; // in case quit will be aborted
+    KParts::MainWindow::closeEvent(event); // (may) quit, continues with queryClose()...
 }
 
 void Krusader::showEvent(QShowEvent *event)
@@ -456,7 +455,7 @@ void Krusader::showEvent(QShowEvent *event)
 }
 
 bool Krusader::queryClose() {
-    if (isStarting || isExiting)
+    if (isStarting)
         return false;
 
     if (qApp->isSavingSession()) { // KDE is logging out, accept the close
@@ -525,8 +524,6 @@ void Krusader::acceptClose() {
 
     QDBusConnection dbus = QDBusConnection::sessionBus();
     dbus.unregisterObject("/Instances/" + Krusader::AppName);
-
-    isExiting = true;
 }
 
 // the please wait dialog functions
