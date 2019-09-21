@@ -31,7 +31,7 @@
 // QtWidgets
 #include <QWidget>
 
-#define ASSERT(what) if(!what) abort();
+#define ASSERT(what) if(!(what)) abort();
 
 // how much items to process by a single job
 // view becomes unresponsive during load if set too high
@@ -94,7 +94,7 @@ void KrPreviewJob::slotGotPreview(const KFileItem & item, const QPixmap & previe
 
 void KrPreviewJob::slotStartJob()
 {
-    ASSERT(_job == 0);
+    ASSERT(_job == nullptr);
     ASSERT(!_scheduled.isEmpty());
 
     _hash.clear();

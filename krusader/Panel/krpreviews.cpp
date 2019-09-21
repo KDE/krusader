@@ -29,7 +29,7 @@
 
 #include <stdio.h>
 
-#define ASSERT(what) if(!what) abort();
+#define ASSERT(what) if(!(what)) abort();
 
 
 KrPreviews::KrPreviews(KrView *view) :  _job(nullptr), _view(view)
