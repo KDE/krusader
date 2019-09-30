@@ -302,8 +302,11 @@ int main(int argc, char *argv[])
 
     // catching SIGTERM, SIGHUP, SIGQUIT
     signal(SIGTERM, sigterm_handler);
+#ifdef Q_OS_UNIX
+    // these signals are posix only
     signal(SIGPIPE, sigterm_handler);
     signal(SIGHUP, sigterm_handler);
+#endif
 
     QObject::connect(&app, &QGuiApplication::applicationStateChanged, SLOTS, &KRslots::applicationStateChanged);
 
