@@ -55,6 +55,9 @@
 #include "krusaderversion.h"
 #include "krusaderview.h"
 #include "panelmanager.h"
+#ifdef Q_OS_WIN
+#include "krusader_win.h"
+#endif
 
 static const char *description = I18N_NOOP("Krusader\nTwin-Panel File Manager by KDE");
 
@@ -116,8 +119,12 @@ int main(int argc, char *argv[])
 #endif
 
     KAboutData aboutData(QStringLiteral("krusader"),
-        (geteuid() ? i18n("Krusader") : i18n("Krusader - ROOT PRIVILEGES")), versionName,
-        i18n(description), KAboutLicense::GPL_V2,
+#ifndef Q_OS_WIN
+        (geteuid() ? i18n("Krusader") : i18n("Krusader - ROOT PRIVILEGES")),
+#else
+        (KrWin::isAdmin() ? i18n("Krusader") : i18n("Krusader - Administrator Mode")),
+#endif
+        versionName, i18n(description), KAboutLicense::GPL_V2,
         i18n("© 2000-2003 Shie Erlich, Rafi Yanai\n© 2004-2019 Krusader Krew"),
         i18n("Feedback:\nhttps://forum.kde.org/viewforum.php?f=225\n\nIRC\nserver: "
              "irc.freenode.net, channel: #krusader"),

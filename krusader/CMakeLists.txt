@@ -37,6 +37,7 @@ set(krusader_SRCS
     krusader.cpp
     krslots.cpp
     krdebuglogger.cpp
+    krusader_win.cpp
 )
 
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-krusader_user.png")
