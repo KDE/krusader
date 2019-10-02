@@ -39,6 +39,10 @@
 #include <KIOCore/KProtocolManager>
 #include <kio_version.h>
 
+#ifdef Q_OS_WIN
+#include <qt_windows.h>
+#endif
+
 #include "fileitem.h"
 #include "../defaults.h"
 #include "../krglobal.h"
@@ -323,12 +327,6 @@ void DefaultFileSystem::slotWatcherDeleted(const QString& path)
 bool DefaultFileSystem::refreshLocal(const QUrl &directory, bool onlyScan) {
     const QString path = KrServices::urlToLocalPath(directory);
 
-#ifdef Q_OS_WIN
-    if (!path.contains("/")) { // change C: to C:/
-        path = path + QString("/");
-    }
-#endif
-
     // check if the new directory exists
     if (!QDir(path).exists()) {
         emit error(i18n("The folder %1 does not exist.", path));
@@ -345,6 +343,50 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory, bool onlyScan) {
     // Note: we are using low-level Qt functions here.
     // It's around twice as fast as using the QDir class.
 
+#ifdef Q_OS_WIN
+    QString dir = path.toLocal8Bit() + QLatin1String("\\*.*");
+    dir.replace(QLatin1Char('/'), QLatin1Char('\\'));
+
+    WIN32_FIND_DATA findData;
+    HANDLE hFile = FindFirstFile((LPWSTR)dir.utf16(), &findData);
+
+    if (hFile == INVALID_HANDLE_VALUE) {
+        emit error(i18n("Cannot open the folder %1.", path));
+        return false;
+    }
+
+    // change directory to the new directory
+    const QString savedDir = QDir::currentPath();
+    if (!QDir::setCurrent(path)) {
+        emit error(i18nc("%1=folder path", "Access to %1 denied", path));
+        FindClose(hFile);
+        return false;
+    }
+
+    const bool showHidden = showHiddenFiles();
+    QString name;
+
+    do {
+        name = QString::fromWCharArray(findData.cFileName);
+
+        // FIXME - files in windows are hidden by attribute, not by a leading "."
+        // show hidden files?
+        //if (!showHidden && name.left(1) == ".") continue;
+
+        // we don't need the "." and ".." entries
+        if ((findData.cFileName[0] == '.' && findData.cFileName[1] == '\0') ||
+            (findData.cFileName[0] == '.' && findData.cFileName[1] == '.' && findData.cFileName[2] == '\0'))
+            continue;
+
+        FileItem* temp = createLocalFileItem(name);
+        addFileItem(temp);
+
+    } while (FindNextFile(hFile, &findData) != 0);
+
+    // clean up
+    FindClose(hFile);
+    QDir::setCurrent(savedDir);
+#else
     QT_DIR* dir = QT_OPENDIR(path.toLocal8Bit());
     if (!dir) {
         emit error(i18n("Cannot open the folder %1.", path));
@@ -375,7 +417,10 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory, bool onlyScan) {
     }
     // clean up
     QT_CLOSEDIR(dir);
+
     QDir::setCurrent(savedDir);
+#endif
+
 
     if (!onlyScan) {
         // start watching the new dir for file changes

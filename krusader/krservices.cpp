@@ -304,6 +304,9 @@ QString KrServices::urlToLocalPath(const QUrl &url)
             path = path.mid(p);
         }
     }
+    if (!path.contains("/")) { // change C: to C:/
+        path = path + QString("/");
+    }
 #endif
     return path;
 }
