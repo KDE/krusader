@@ -22,8 +22,6 @@
 #ifndef KRUSADERWIN_H
 #define KRUSADERWIN_H
 
-#ifdef Q_OS_WIN
-
 /**
 
 
@@ -31,10 +29,11 @@
 class KrWin
 {
 public:
+    /**
+     * checks if Krusader is running with administrative permission
+     */
     static bool isAdmin();
 
 };
-
-#endif // Q_OS_WIN
 
 #endif // KRUSADERWIN_H

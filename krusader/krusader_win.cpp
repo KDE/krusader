@@ -21,8 +21,6 @@
 
 #include "krusader_win.h"
 
-#ifdef Q_OS_WIN
-
 bool KrWin::isAdmin()
 {
     // TODO: PORTME Q_OS_WIN
@@ -30,4 +28,3 @@ bool KrWin::isAdmin()
     return false;
 }
 
-#endif

@@ -93,6 +93,9 @@
 #include "KrJS/krjs.h"
 #endif
 
+#ifdef Q_OS_WIN
+#include "krusader_win.h"
+#endif
 
 // define the static members
 Krusader *Krusader::App = nullptr;
@@ -551,7 +554,11 @@ void Krusader::updateUserActions() {
 }
 
 const char* Krusader::appIconName() {
+#ifndef Q_OS_WIN
     if (geteuid())
+#else
+    if (!KrWin::isAdmin())
+#endif
         return "krusader_user";
     else
         return "krusader_root";

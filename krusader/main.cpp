@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
 #ifndef Q_OS_WIN
         (geteuid() ? i18n("Krusader") : i18n("Krusader - ROOT PRIVILEGES")),
 #else
-        (KrWin::isAdmin() ? i18n("Krusader") : i18n("Krusader - Administrator Mode")),
+        (!KrWin::isAdmin() ? i18n("Krusader") : i18n("Krusader - Administrator Mode")),
 #endif
         versionName, i18n(description), KAboutLicense::GPL_V2,
         i18n("© 2000-2003 Shie Erlich, Rafi Yanai\n© 2004-2019 Krusader Krew"),
