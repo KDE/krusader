@@ -357,7 +357,7 @@ QUrl AbstractJobThread::downloadIfRemote(const QUrl &baseUrl, const QStringList 
         _downloadTempDir = new QTemporaryDir();
         QList<QUrl> urlList = remoteUrls(baseUrl, files);
 
-        QUrl dest(_downloadTempDir->path());
+        const QUrl dest = QUrl::fromLocalFile(_downloadTempDir->path());
 
         QList<QVariant> args;
         args << KrServices::toStringList(urlList);
