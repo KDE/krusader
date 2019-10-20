@@ -191,8 +191,8 @@ void kio_isoProtocol::createUDSEntry(const KArchiveEntry * isoEntry, UDSEntry & 
     entry.UDS_ENTRY_INSERT(UDSEntry::UDS_ACCESS, isoEntry->permissions() & 07777);   // keep permissions only
 
     if (isoEntry->isFile()) {
-        long long si = ((KIsoFile *)isoEntry)->realsize();
-        if (!si) si = ((KIsoFile *)isoEntry)->size();
+        long long si = (dynamic_cast<const KIsoFile *>(isoEntry))->realsize();
+        if (!si) si = (dynamic_cast<const KIsoFile *>(isoEntry))->size();
         entry.UDS_ENTRY_INSERT(UDSEntry::UDS_SIZE, si);
     } else {
         entry.UDS_ENTRY_INSERT(UDSEntry::UDS_SIZE, 0L);
@@ -202,12 +202,12 @@ void kio_isoProtocol::createUDSEntry(const KArchiveEntry * isoEntry, UDSEntry & 
     entry.UDS_ENTRY_INSERT(UDSEntry::UDS_GROUP, isoEntry->group());
     entry.UDS_ENTRY_INSERT((uint)UDSEntry::UDS_MODIFICATION_TIME, isoEntry->date().toTime_t());
     entry.UDS_ENTRY_INSERT(UDSEntry::UDS_ACCESS_TIME,
-                 isoEntry->isFile() ? ((KIsoFile *)isoEntry)->adate() :
-                 ((KIsoDirectory *)isoEntry)->adate());
+                 isoEntry->isFile() ? (dynamic_cast<const KIsoFile *>(isoEntry))->adate() :
+                 (dynamic_cast<const KIsoDirectory *>(isoEntry))->adate());
 
     entry.UDS_ENTRY_INSERT(UDSEntry::UDS_CREATION_TIME,
-                 isoEntry->isFile() ? ((KIsoFile *)isoEntry)->cdate() :
-                 ((KIsoDirectory *)isoEntry)->cdate());
+                 isoEntry->isFile() ? (dynamic_cast<const KIsoFile *>(isoEntry))->cdate() :
+                 (dynamic_cast<const KIsoDirectory *>(isoEntry))->cdate());
 
     entry.UDS_ENTRY_INSERT(UDSEntry::UDS_LINK_DEST, isoEntry->symLinkTarget());
 }
@@ -265,7 +265,7 @@ void kio_isoProtocol::listDir(const QUrl &url)
             error(KIO::ERR_IS_FILE, path);
             return;
         }
-        dir = (KArchiveDirectory*)e;
+        dir = dynamic_cast<const KArchiveDirectory*>(e);
     } else {
         dir = root;
     }

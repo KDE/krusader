@@ -167,7 +167,7 @@ File * DUListView::getCurrentFile()
     if (item == nullptr || item->text(0) == "..")
         return nullptr;
 
-    return ((DUListViewItem *)item)->getFile();
+    return (dynamic_cast<DUListViewItem *>(item))->getFile();
 }
 
 void DUListView::slotChanged(File * item)
@@ -198,7 +198,7 @@ void DUListView::slotRightClicked(QTreeWidgetItem *item, const QPoint & pos)
     File * file = nullptr;
 
     if (item && item->text(0) != "..")
-        file = ((DUListViewItem *)item)->getFile();
+        file = (dynamic_cast<DUListViewItem *>(item))->getFile();
 
     diskUsage->rightClickMenu(pos, file);
 }
@@ -207,7 +207,7 @@ bool DUListView::doubleClicked(QTreeWidgetItem * item)
 {
     if (item) {
         if (item->text(0) != "..") {
-            File *fileItem = ((DUListViewItem *)item)->getFile();
+            File *fileItem = (dynamic_cast<DUListViewItem *>(item))->getFile();
             if (fileItem->isDir())
                 diskUsage->changeDirectory(dynamic_cast<Directory *>(fileItem));
             return true;
@@ -265,7 +265,7 @@ void DUListView::slotExpanded(QTreeWidgetItem * item)
         return;
 
     if (item->childCount() == 0) {
-        File *fileItem = ((DUListViewItem *)item)->getFile();
+        File *fileItem = (dynamic_cast<DUListViewItem *>(item))->getFile();
         if (fileItem->isDir())
             addDirectory(dynamic_cast<Directory *>(fileItem), item);
     }

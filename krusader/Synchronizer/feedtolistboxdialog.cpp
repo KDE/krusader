@@ -63,7 +63,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
 
     QTreeWidgetItemIterator it(syncList);
     while (*it) {
-        auto *item = (SynchronizerGUI::SyncViewItem *) * it;
+        auto *item = dynamic_cast<SynchronizerGUI::SyncViewItem *>( * it);
         SynchronizerFileItem *syncItem = item->synchronizerItemRef();
 
         if (syncItem && syncItem->isMarked()) {
@@ -169,7 +169,7 @@ void FeedToListBoxDialog::slotOk()
 
     QTreeWidgetItemIterator it(syncList);
     for (;*it; it++) {
-        auto *item = (SynchronizerGUI::SyncViewItem *) * it;
+        auto *item = dynamic_cast<SynchronizerGUI::SyncViewItem *>( * it);
         SynchronizerFileItem *syncItem = item->synchronizerItemRef();
 
         if (!syncItem || !syncItem->isMarked())

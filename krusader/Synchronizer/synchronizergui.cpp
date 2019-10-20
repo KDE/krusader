@@ -386,7 +386,7 @@ void SynchronizerGUI::initGUI(const QString& profileName, QUrl leftURL, QUrl rig
     synchGrid->addWidget(synchronizerTabs, 0, 0);
 
     filterTabs = FilterTabs::addTo(synchronizerTabs, FilterTabs::HasDontSearchIn);
-    generalFilter = (GeneralFilter *)filterTabs->get("GeneralFilter");
+    generalFilter = dynamic_cast<GeneralFilter *>(filterTabs->get("GeneralFilter"));
     generalFilter->searchFor->setEditText(fileFilter->currentText());
     generalFilter->searchForCase->setChecked(true);
 
@@ -669,7 +669,7 @@ void SynchronizerGUI::doubleClicked(QTreeWidgetItem *itemIn)
     if (!itemIn)
         return;
 
-    auto *syncItem = (SyncViewItem *)itemIn;
+    auto *syncItem = dynamic_cast<SyncViewItem *>(itemIn);
     SynchronizerFileItem *item = syncItem->synchronizerItemRef();
     if (item && item->existsInLeft() && item->existsInRight() && !item->isDir()) {
         QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
@@ -705,7 +705,7 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
     if (!itemIn)
         return;
 
-    auto *syncItem = (SyncViewItem *)itemIn;
+    auto *syncItem = dynamic_cast<SyncViewItem *>(itemIn);
     if (syncItem == nullptr)
         return;
 
@@ -1267,7 +1267,7 @@ void SynchronizerGUI::keyPressEvent(QKeyEvent *e)
 
         bool isedit = e->key() == Qt::Key_F4;
 
-        SynchronizerFileItem *item = ((SyncViewItem *)listItem)->synchronizerItemRef();
+        SynchronizerFileItem *item = (dynamic_cast<SyncViewItem *>(listItem))->synchronizerItemRef();
         QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
         QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
 
@@ -1321,7 +1321,7 @@ void SynchronizerGUI::keyPressEvent(QKeyEvent *e)
 bool SynchronizerGUI::eventFilter(QObject * /* watched */, QEvent * e)
 {
     if (e->type() == QEvent::KeyPress) {
-        auto* ke = (QKeyEvent*) e;
+        auto* ke = dynamic_cast<QKeyEvent*>( e);
         switch (ke->key()) {
         case Qt::Key_Down:
         case Qt::Key_Left:
@@ -1363,7 +1363,7 @@ bool SynchronizerGUI::eventFilter(QObject * /* watched */, QEvent * e)
             if (listItem == nullptr)
                 return true;
 
-            SynchronizerFileItem *item = ((SyncViewItem *)listItem)->synchronizerItemRef();
+            SynchronizerFileItem *item = (dynamic_cast<SyncViewItem *>(listItem))->synchronizerItemRef();
 
             bool hasSelected = false;
             QList<QTreeWidgetItem *> selected = syncList->selectedItems();

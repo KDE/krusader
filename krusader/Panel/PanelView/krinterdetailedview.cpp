@@ -271,7 +271,7 @@ bool KrInterDetailedView::eventFilter(QObject *object, QEvent *event)
 {
     if (object == header()) {
         if (event->type() == QEvent::ContextMenu) {
-            auto *me = (QContextMenuEvent *)event;
+            auto *me = dynamic_cast<QContextMenuEvent *>(event);
             showContextMenu(me->globalPos());
             return true;
         } else if (event->type() == QEvent::Resize) {

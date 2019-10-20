@@ -605,7 +605,7 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
             deleteNr += del(*it, false, depth + 1);
 
         QString path;
-        for (const Directory *d = (Directory*)file; d != root && d && d->parent() != nullptr; d = d->parent()) {
+        for (const Directory *d = dynamic_cast<Directory*>(file); d != root && d && d->parent() != nullptr; d = d->parent()) {
             if (!path.isEmpty())
                 path = '/' + path;
 
@@ -1097,7 +1097,7 @@ bool DiskUsage::event(QEvent * e)
     }
 
     if (e->type() == QEvent::ShortcutOverride) {
-        auto* ke = (QKeyEvent*) e;
+        auto* ke = dynamic_cast<QKeyEvent*>( e);
 
         if (ke->modifiers() == Qt::NoModifier || ke->modifiers() == Qt::KeypadModifier) {
             switch (ke->key()) {

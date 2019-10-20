@@ -48,7 +48,7 @@ protected:
 bool KHBoxEventFilter::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::KeyPress) {
-        auto keyEvent = static_cast<QKeyEvent *>(event);
+        auto keyEvent = dynamic_cast<QKeyEvent *>(event);
         if (keyEvent->modifiers() == Qt::ShiftModifier && keyEvent->key() == Qt::Key::Key_Delete) {
             auto comboBox = dynamic_cast<KHistoryComboBox *>(obj);
             if (comboBox != nullptr) {
@@ -83,7 +83,7 @@ protected:
 bool KHBoxListEventFilter::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::KeyPress) {
-        auto keyEvent = static_cast<QKeyEvent *>(event);
+        auto keyEvent = dynamic_cast<QKeyEvent *>(event);
         if (keyEvent->modifiers() == Qt::ShiftModifier && keyEvent->key() == Qt::Key::Key_Delete) {
             auto itemView = dynamic_cast<QAbstractItemView *>(obj);
             if (itemView->model() != nullptr) {
