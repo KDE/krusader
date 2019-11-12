@@ -191,15 +191,15 @@ void KrBookmarkHandler::exportToFileFolder(QDomDocument &doc, QDomElement &paren
 // export to file using the xbel standard
 //
 //  <xbel>
-//    <bookmark href="http://developer.kde.org"><title>Developer Web Site</title></bookmark>
+//    <bookmark href="https://techbase.kde.org/"><title>Developer Web Site</title></bookmark>
 //    <folder folded="no">
 //      <title>Title of this folder</title>
-//      <bookmark icon="kde" href="http://www.kde.org"><title>KDE Web Site</title></bookmark>
+//      <bookmark icon="kde" href="https://www.kde.org"><title>KDE Web Site</title></bookmark>
 //      <folder toolbar="yes">
 //        <title>My own bookmarks</title>
-//        <bookmark href="http://www.koffice.org"><title>KOffice Web Site</title></bookmark>
+//        <bookmark href="https://www.calligra.org/"><title>Calligra Suite Web Site</title></bookmark>
 //        <separator/>
-//        <bookmark href="http://www.kdevelop.org"><title>KDevelop Web Site</title></bookmark>
+//        <bookmark href="https://www.kdevelop.org/"><title>KDevelop Web Site</title></bookmark>
 //      </folder>
 //    </folder>
 //  </xbel>

@@ -348,7 +348,7 @@ QString PanelEditor::missingKPartMsg()
                     "Internal editor will not work without this.<br/>"
                     "You can fix this by installing Kate:<br/>%1",
                  QString("<a href='%1'>%1</a>").arg(
-                    "http://www.kde.org/applications/utilities/kate"));
+                    "https://kde.org/applications/utilities/org.kde.kate"));
 }
 
 void PanelEditor::openFile(KFileItem fi)

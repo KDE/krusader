@@ -119,7 +119,7 @@ KrArchiverResultTable::KrArchiverResultTable(QWidget* parent)
     Archiver* unzip = new Archiver("unzip", "http://www.info-zip.org",   PS("unzip"), false, true);
     Archiver* arj   = new Archiver("arj",   "http://www.arjsoftware.com",  PS("arj"),   true,  true);
     Archiver* unarj = new Archiver("unarj", "http://www.arjsoftware.com",  PS("unarj"), false, true);
-    Archiver* unace = new Archiver("unace", "http://www.winace.com",     PS("unace"), false, true);
+    Archiver* unace = new Archiver("unace", "https://web.archive.org/web/20170714193504/http://winace.com/",     PS("unace"), false, true);
     Archiver* rar   = new Archiver("rar",   "https://www.rarlab.com/",   PS("rar"),   true,  true);
     Archiver* unrar = new Archiver("unrar", "https://www.rarlab.com/",   PS("unrar"), false, true);
     Archiver* rpm   = new Archiver("rpm",   "https://www.gnu.org/",      PS("rpm"),   false, true);
