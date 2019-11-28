@@ -182,10 +182,10 @@ void Combiner::statDestResult(KJob* job)
             KIO::RenameDialog_IsDirectory : KIO::RenameDialog_Overwrite;
         KIO::RenameDialog dlg(this, i18n("File Already Exists"), QUrl(), writeURL, mode);
         switch (dlg.exec()) {
-        case KIO::R_OVERWRITE:
+        case KIO::Result_Overwrite:
             openNextFile();
             break;
-        case KIO::R_RENAME: {
+        case KIO::Result_Rename: {
             writeURL = dlg.newDestUrl();
             statDest();
             break;

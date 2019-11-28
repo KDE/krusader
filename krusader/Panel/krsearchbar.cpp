@@ -81,7 +81,7 @@ KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
     _openSelectDialogBtn->setToolTip(i18n("Open selection dialog"));
 
     auto *layout = new QHBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(closeButton);
     layout->addWidget(_modeBox);
     layout->addWidget(_textBox);

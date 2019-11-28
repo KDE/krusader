@@ -282,7 +282,7 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
     QDir().rmdir(arcTempDir);
 
     if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
-        error(ERR_COULD_NOT_WRITE, path + "\n\n" + proc.getErrorMsg());
+        error(ERR_CANNOT_WRITE, path + "\n\n" + proc.getErrorMsg());
         return;
     }
 
@@ -373,7 +373,7 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
     ::close(fd);
 
     if (isIncomplete) {
-        error(ERR_COULD_NOT_WRITE, getPath(url));
+        error(ERR_CANNOT_WRITE, getPath(url));
         return;
     }
 
@@ -393,7 +393,7 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
     QDir().rmdir(arcTempDir);
 
     if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
-        error(ERR_COULD_NOT_WRITE, getPath(url) + "\n\n" + proc.getErrorMsg());
+        error(ERR_CANNOT_WRITE, getPath(url) + "\n\n" + proc.getErrorMsg());
         return;
     }
     //  force a refresh of archive information
@@ -447,7 +447,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
         cpio.waitForFinished();
 
         if (cpio.exitStatus() != QProcess::NormalExit || !checkStatus(cpio.exitCode())) {
-            error(ERR_COULD_NOT_READ, getPath(url) + "\n\n" + cpio.getErrorMsg());
+            error(ERR_CANNOT_READ, getPath(url) + "\n\n" + cpio.getErrorMsg());
             return;
         }
         extArcReady = true;
@@ -462,7 +462,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
         dpkg.waitForFinished();
 
         if (dpkg.exitStatus() != QProcess::NormalExit || !checkStatus(dpkg.exitCode())) {
-            error(ERR_COULD_NOT_READ, getPath(url) + "\n\n" + dpkg.getErrorMsg());
+            error(ERR_CANNOT_READ, getPath(url) + "\n\n" + dpkg.getErrorMsg());
             return;
         }
         extArcReady = true;
@@ -582,7 +582,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
             if (n == -1) {
                 if (errno == EINTR)
                     continue;
-                error(KIO::ERR_COULD_NOT_READ, getPath(url));
+                error(KIO::ERR_CANNOT_READ, getPath(url));
                 ::close(fd);
                 return;
             }
@@ -654,7 +654,7 @@ void kio_krarcProtocol::del(QUrl const & url, bool isFile)
 
     proc.waitForFinished();
     if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
-        error(ERR_COULD_NOT_WRITE, getPath(url) + "\n\n" + proc.getErrorMsg());
+        error(ERR_CANNOT_WRITE, getPath(url) + "\n\n" + proc.getErrorMsg());
         return;
     }
     //  force a refresh of archive information
@@ -773,11 +773,11 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
             proc.start();
             proc.waitForFinished();
             if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
-                error(KIO::ERR_COULD_NOT_WRITE, getPath(dest, QUrl::StripTrailingSlash) + "\n\n" + proc.getErrorMsg());
+                error(KIO::ERR_CANNOT_WRITE, getPath(dest, QUrl::StripTrailingSlash) + "\n\n" + proc.getErrorMsg());
                 return;
             }
             if (!QFileInfo(getPath(dest, QUrl::StripTrailingSlash)).exists()) {
-                error(KIO::ERR_COULD_NOT_WRITE, getPath(dest, QUrl::StripTrailingSlash));
+                error(KIO::ERR_CANNOT_WRITE, getPath(dest, QUrl::StripTrailingSlash));
                 return;
             }
 
@@ -996,7 +996,7 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
 
     // parse the temp file
     if (!temp.open()) {
-        error(ERR_COULD_NOT_READ, temp.fileName());
+        error(ERR_CANNOT_READ, temp.fileName());
         return false;
     }
 

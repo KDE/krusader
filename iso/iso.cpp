@@ -387,15 +387,15 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
                     if (outbuf.size())
                         pptr = pointer_block.data();
                     else {
-                        error(KIO::ERR_COULD_NOT_READ, path);
+                        error(KIO::ERR_CANNOT_READ, path);
                         return;
                     }
                 } else {
-                    error(KIO::ERR_COULD_NOT_READ, path);
+                    error(KIO::ERR_CANNOT_READ, path);
                     return;
                 }
             } else {
-                error(KIO::ERR_COULD_NOT_READ, path);
+                error(KIO::ERR_CANNOT_READ, path);
                 return;
             }
         } else {
@@ -460,7 +460,7 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
     }
 
     if (pos != size) {
-        error(KIO::ERR_COULD_NOT_READ, path);
+        error(KIO::ERR_CANNOT_READ, path);
         return;
     }
 

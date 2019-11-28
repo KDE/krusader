@@ -1130,24 +1130,24 @@ void Synchronizer::slotTaskFinished(KJob *job)
                 }
 
                 switch (result) {
-                case KIO::R_RENAME:
+                case KIO::Result_Rename:
                     item->setDestination(newDest);
                     executeTask(item);
                     inTaskFinished--;
                     return;
-                case KIO::R_OVERWRITE:
+                case KIO::Result_Overwrite:
                     item->setOverWrite();
                     executeTask(item);
                     inTaskFinished--;
                     return;
-                case KIO::R_OVERWRITE_ALL:
+                case KIO::Result_OverwriteAll:
                     overWrite = true;
                     executeTask(item);
                     inTaskFinished--;
                     return;
-                case KIO::R_AUTO_SKIP:
+                case KIO::Result_AutoSkip:
                     autoSkip = true;
-                case KIO::R_SKIP:
+                case KIO::Result_Skip:
                 default:
                     break;
                 }
@@ -1184,11 +1184,11 @@ void Synchronizer::slotTaskFinished(KJob *job)
                 KIO::SkipDialog_Result result = ui->askSkip(job, KIO::SkipDialog_MultipleItems, error);
 
                 switch (result) {
-                case KIO::S_CANCEL:
+                case KIO::Result_Cancel:
                     executeTask(item);    /* simply retry */
                     inTaskFinished--;
                     return;
-                case KIO::S_AUTO_SKIP:
+                case KIO::Result_AutoSkip:
                     autoSkip = true;
                 default:
                     break;
