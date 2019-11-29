@@ -21,4 +21,5 @@ target_link_libraries(ActionMan
     KF5::Notifications
     KF5::Parts
     KF5::WidgetsAddons
+    Qt5::Xml
 )

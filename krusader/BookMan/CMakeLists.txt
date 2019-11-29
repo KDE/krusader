@@ -16,4 +16,5 @@ target_link_libraries(BookMan
     KF5::IconThemes
     KF5::KIOCore
     KF5::XmlGui
+    Qt5::Xml
 )

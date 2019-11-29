@@ -37,4 +37,5 @@ target_link_libraries(Panel
     KF5::Service
     KF5::WidgetsAddons
     KF5::XmlGui
+    Qt5::Xml
 )
