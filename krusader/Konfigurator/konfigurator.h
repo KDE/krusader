@@ -44,15 +44,15 @@ signals:
 public:
     explicit Konfigurator(bool f = false, int startPage = 0); // true if Konfigurator is run for the first time
 
-    void reject() Q_DECL_OVERRIDE;
+    void reject() override;
 
 protected:
     void newPage(KonfiguratorPage *, const QString &, const QString &, const QIcon &); // adds widget and connects to slot
     void createLayout(int startPage);
     void closeDialog();
 
-    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
-    void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *e) override;
+    void closeEvent(QCloseEvent *event) override;
 
 protected slots:
     void slotApplyEnable();

@@ -43,50 +43,50 @@ public:
     KrInterDetailedView(QWidget *parent, KrViewInstance &instance, KConfig *cfg);
     ~KrInterDetailedView() override;
 
-    void updateView() Q_DECL_OVERRIDE;
+    void updateView() override;
 
-    bool ensureVisibilityAfterSelect() Q_DECL_OVERRIDE {
+    bool ensureVisibilityAfterSelect() override {
         return false;
     }
-    int  itemsPerPage() Q_DECL_OVERRIDE;
-    void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending) Q_DECL_OVERRIDE;
-    void setFileIconSize(int size) Q_DECL_OVERRIDE;
-    void doRestoreSettings(KConfigGroup grp) Q_DECL_OVERRIDE;
+    int  itemsPerPage() override;
+    void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending) override;
+    void setFileIconSize(int size) override;
+    void doRestoreSettings(KConfigGroup grp) override;
 
 protected slots:
-    void renameCurrentItem() Q_DECL_OVERRIDE;
+    void renameCurrentItem() override;
     void sectionResized(int, int, int);
     void sectionMoved(int, int, int);
-    void currentChanged(const QModelIndex & current, const QModelIndex & previous) Q_DECL_OVERRIDE;
+    void currentChanged(const QModelIndex & current, const QModelIndex & previous) override;
 
 protected:
-    void setup() Q_DECL_OVERRIDE;
-    void copySettingsFrom(KrView *other) Q_DECL_OVERRIDE;
-    void saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties) Q_DECL_OVERRIDE;
+    void setup() override;
+    void copySettingsFrom(KrView *other) override;
+    void saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties) override;
 
     // Don't do anything, selections are handled by the mouse handler
-    void setSelection(const QRect &, QItemSelectionModel::SelectionFlags) Q_DECL_OVERRIDE {}
-    void selectAll() Q_DECL_OVERRIDE {}
+    void setSelection(const QRect &, QItemSelectionModel::SelectionFlags) override {}
+    void selectAll() override {}
 
-    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-    void mousePressEvent(QMouseEvent *) Q_DECL_OVERRIDE;
-    void mouseReleaseEvent(QMouseEvent *) Q_DECL_OVERRIDE;
-    void mouseDoubleClickEvent(QMouseEvent *ev) Q_DECL_OVERRIDE;
-    void mouseMoveEvent(QMouseEvent *) Q_DECL_OVERRIDE;
-    void wheelEvent(QWheelEvent *) Q_DECL_OVERRIDE;
-    bool event(QEvent * e) Q_DECL_OVERRIDE;
-    void dragEnterEvent(QDragEnterEvent *e) Q_DECL_OVERRIDE;
-    void dragMoveEvent(QDragMoveEvent *e) Q_DECL_OVERRIDE;
-    void dragLeaveEvent(QDragLeaveEvent *e) Q_DECL_OVERRIDE;
-    void dropEvent(QDropEvent *) Q_DECL_OVERRIDE;
-    bool eventFilter(QObject *object, QEvent *event) Q_DECL_OVERRIDE;
-    bool viewportEvent(QEvent * event) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *e) override;
+    void mousePressEvent(QMouseEvent *) override;
+    void mouseReleaseEvent(QMouseEvent *) override;
+    void mouseDoubleClickEvent(QMouseEvent *ev) override;
+    void mouseMoveEvent(QMouseEvent *) override;
+    void wheelEvent(QWheelEvent *) override;
+    bool event(QEvent * e) override;
+    void dragEnterEvent(QDragEnterEvent *e) override;
+    void dragMoveEvent(QDragMoveEvent *e) override;
+    void dragLeaveEvent(QDragLeaveEvent *e) override;
+    void dropEvent(QDropEvent *) override;
+    bool eventFilter(QObject *object, QEvent *event) override;
+    bool viewportEvent(QEvent * event) override;
     void drawRow(QPainter *painter, const QStyleOptionViewItem &options,
-                 const QModelIndex &index) const Q_DECL_OVERRIDE;
+                 const QModelIndex &index) const override;
 
-    QRect itemRect(const FileItem *fileitem) Q_DECL_OVERRIDE;
+    QRect itemRect(const FileItem *fileitem) override;
 
-    void showContextMenu(const QPoint & p) Q_DECL_OVERRIDE;
+    void showContextMenu(const QPoint & p) override;
     void recalculateColumnSizes();
 
 private:

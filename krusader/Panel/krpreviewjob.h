@@ -39,7 +39,7 @@ class KrPreviewJob : public KJob
 friend class KrPreviews;
     Q_OBJECT
 public:
-    void start() Q_DECL_OVERRIDE {}
+    void start() override {}
 
 protected slots:
     void slotStartJob();
@@ -60,7 +60,7 @@ protected:
     void removeItem(KrViewItem *item);
 
     void sort();
-    bool doKill() Q_DECL_OVERRIDE;
+    bool doKill() override;
 };
 
 #endif // __krpreviewjob__

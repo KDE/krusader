@@ -84,11 +84,11 @@ protected slots:
     void saveSearchString();
 
 protected:
-    void keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *) override;
     /**
      * Filter key events from view widget and text combo box
      */
-    bool eventFilter(QObject *, QEvent *) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject *, QEvent *) override;
 
 private:
     /**

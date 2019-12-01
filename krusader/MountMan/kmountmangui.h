@@ -58,7 +58,7 @@ public:
     ~KMountManGUI() override;
 
 protected:
-    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *e) override;
 
 protected slots:
     void doubleClicked(QTreeWidgetItem *);

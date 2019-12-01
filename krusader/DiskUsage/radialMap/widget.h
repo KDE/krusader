@@ -110,10 +110,10 @@ signals:
     void mouseHover(const QString&);
 
 protected:
-    void paintEvent(QPaintEvent*) Q_DECL_OVERRIDE;
-    void resizeEvent(QResizeEvent*) Q_DECL_OVERRIDE;
-    void mouseMoveEvent(QMouseEvent*) Q_DECL_OVERRIDE;
-    void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent*) override;
+    void resizeEvent(QResizeEvent*) override;
+    void mouseMoveEvent(QMouseEvent*) override;
+    void mousePressEvent(QMouseEvent*) override;
 
 protected:
     const Segment *segmentAt(QPoint&) const;   //FIXME const reference for a library others can use

@@ -47,14 +47,14 @@ class kio_krarcProtocol : public QObject, public KIO::SlaveBase, public KrArcBas
 public:
     kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
     ~kio_krarcProtocol() override;
-    void stat(const QUrl &url) Q_DECL_OVERRIDE;
-    void get(const QUrl &url) Q_DECL_OVERRIDE;
-    void put(const QUrl &url, int permissions, KIO::JobFlags flags) Q_DECL_OVERRIDE;
-    void mkdir(const QUrl &url, int permissions) Q_DECL_OVERRIDE;
-    void listDir(const QUrl &url) Q_DECL_OVERRIDE;
-    void del(QUrl const & url, bool isFile) Q_DECL_OVERRIDE;
-    void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) Q_DECL_OVERRIDE;
-    void rename(const QUrl &src, const QUrl & dest, KIO::JobFlags flags) Q_DECL_OVERRIDE;
+    void stat(const QUrl &url) override;
+    void get(const QUrl &url) override;
+    void put(const QUrl &url, int permissions, KIO::JobFlags flags) override;
+    void mkdir(const QUrl &url, int permissions) override;
+    void listDir(const QUrl &url) override;
+    void del(QUrl const & url, bool isFile) override;
+    void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) override;
+    void rename(const QUrl &src, const QUrl & dest, KIO::JobFlags flags) override;
 
 public slots:
     void receivedData(KProcess *, QByteArray &);
@@ -63,7 +63,7 @@ public slots:
 protected:
     virtual bool   initDirDict(const QUrl &url, bool forced = false);
     virtual bool   initArcParameters();
-    void checkIf7zIsEncrypted(bool &, QString) Q_DECL_OVERRIDE;
+    void checkIf7zIsEncrypted(bool &, QString) override;
     virtual void parseLine(int lineNo, QString line);
     virtual bool setArcFile(const QUrl &url);
     virtual QString getPassword();

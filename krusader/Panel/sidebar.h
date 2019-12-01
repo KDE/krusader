@@ -85,7 +85,7 @@ protected slots:
     void handleOpenUrlRequest(const QUrl &url);
 
 protected:
-    void focusInEvent(QFocusEvent*) Q_DECL_OVERRIDE;
+    void focusInEvent(QFocusEvent*) override;
 
     bool _hidden;
     QStackedWidget *stack;

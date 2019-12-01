@@ -107,7 +107,7 @@ public:
     }
 
 protected:
-    void mousePressEvent(QMouseEvent *) Q_DECL_OVERRIDE {
+    void mousePressEvent(QMouseEvent *) override {
         panel->slotFocusOnMe();
         action->trigger();
     }

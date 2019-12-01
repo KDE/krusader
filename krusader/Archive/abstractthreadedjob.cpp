@@ -258,32 +258,32 @@ public:
     explicit AbstractJobObserver(AbstractJobThread * thread): _jobThread(thread) {}
     ~AbstractJobObserver() override = default;
 
-    void processEvents() Q_DECL_OVERRIDE {
+    void processEvents() override {
         usleep(1000);
         qApp->processEvents();
     }
 
-    void subJobStarted(const QString & jobTitle, int count) Q_DECL_OVERRIDE {
+    void subJobStarted(const QString & jobTitle, int count) override {
         _jobThread->sendReset(jobTitle);
         _jobThread->sendMaxProgressValue(count);
     }
 
-    void subJobStopped() Q_DECL_OVERRIDE {
+    void subJobStopped() override {
     }
 
-    bool wasCancelled() Q_DECL_OVERRIDE {
+    bool wasCancelled() override {
         return _jobThread->_exited;
     }
 
-    void error(const QString & error) Q_DECL_OVERRIDE {
+    void error(const QString & error) override {
         _jobThread->sendError(KIO::ERR_NO_CONTENT, error);
     }
 
-    void detailedError(const QString & error, const QString & details) Q_DECL_OVERRIDE {
+    void detailedError(const QString & error, const QString & details) override {
         _jobThread->sendError(KIO::ERR_NO_CONTENT, error + '\n' + details);
     }
 
-    void incrementProgress(int c) Q_DECL_OVERRIDE {
+    void incrementProgress(int c) override {
         _jobThread->sendAddProgress(c, _jobThread->_progressTitle);
     }
 };

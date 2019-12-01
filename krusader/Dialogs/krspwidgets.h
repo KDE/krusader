@@ -56,8 +56,8 @@ public:
     newFTPSub();
 
 protected:
-    void reject() Q_DECL_OVERRIDE;
-    void accept() Q_DECL_OVERRIDE;
+    void reject() override;
+    void accept() override;
 };
 
 /////////////////////////// KRMaskChoiceSub /////////////////////////////////
@@ -69,15 +69,15 @@ public:
     explicit KRMaskChoiceSub(QWidget * parent = 0);
 
 public slots:
-    void addSelection() Q_DECL_OVERRIDE;
-    void deleteSelection() Q_DECL_OVERRIDE;
-    void clearSelections() Q_DECL_OVERRIDE;
-    void acceptFromList(QListWidgetItem *i) Q_DECL_OVERRIDE;
-    void currentItemChanged(QListWidgetItem *i) Q_DECL_OVERRIDE;
+    void addSelection() override;
+    void deleteSelection() override;
+    void clearSelections() override;
+    void acceptFromList(QListWidgetItem *i) override;
+    void currentItemChanged(QListWidgetItem *i) override;
 
 protected:
-    void reject() Q_DECL_OVERRIDE;
-    void accept() Q_DECL_OVERRIDE;
+    void reject() override;
+    void accept() override;
 };
 
 #endif

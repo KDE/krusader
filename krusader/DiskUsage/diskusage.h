@@ -133,8 +133,8 @@ protected:
     Directory* currentDirectory;
     KIO::filesize_t currentSize;
 
-    virtual void keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
-    virtual bool event(QEvent *) Q_DECL_OVERRIDE;
+    virtual void keyPressEvent(QKeyEvent *) override;
+    virtual bool event(QEvent *) override;
 
     int        calculateSizes(Directory *dir = 0, bool emitSig = false, int depth = 0);
     int        calculatePercents(bool emitSig = false, Directory *dir = 0 , int depth = 0);

@@ -57,7 +57,7 @@ public:
     KrDirModel(QWidget *parent, KrFileTreeView *ftv) : KDirModel(parent), fileTreeView(ftv) {}
 
 protected:
-    Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE
+    Qt::ItemFlags flags(const QModelIndex &index) const override
     {
         Qt::ItemFlags itflags = KDirModel::flags(index);
         if (index.column() != KDirModel::Name)
@@ -75,7 +75,7 @@ public:
     explicit TreeStyle(QStyle *style) : QProxyStyle(style) {}
 
     int styleHint(StyleHint hint, const QStyleOption *option, const QWidget *widget,
-                  QStyleHintReturn *returnData) const Q_DECL_OVERRIDE
+                  QStyleHintReturn *returnData) const override
     {
         if (hint == QStyle::SH_ItemView_ActivateItemOnSingleClick) {
             return true;

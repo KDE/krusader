@@ -44,7 +44,7 @@ public slots:
     void view(QAction *);
 
 protected:
-    void showEvent(QShowEvent *event) Q_DECL_OVERRIDE;
+    void showEvent(QShowEvent *event) override;
 
     QAction * prevNotAvailAction;
     QList<KFileItem> files;

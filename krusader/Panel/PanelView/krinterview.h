@@ -45,36 +45,36 @@ class KrInterView : public KrView
 public:
     KrInterView(KrViewInstance &instance, KConfig *cfg, QAbstractItemView *itemView);
     virtual ~KrInterView();
-    QModelIndex getCurrentIndex() Q_DECL_OVERRIDE {
+    QModelIndex getCurrentIndex() override {
         return _itemView->currentIndex();
     }
-    bool isSelected(const QModelIndex &ndx) Q_DECL_OVERRIDE;
-    uint numSelected() const Q_DECL_OVERRIDE {
+    bool isSelected(const QModelIndex &ndx) override;
+    uint numSelected() const override {
         return _selection.count();
     }
-    QList<QUrl> selectedUrls() Q_DECL_OVERRIDE;
-    void setSelectionUrls(const QList<QUrl> urls) Q_DECL_OVERRIDE;
-    KrViewItem* getFirst() Q_DECL_OVERRIDE;
-    KrViewItem* getLast() Q_DECL_OVERRIDE;
-    KrViewItem* getNext(KrViewItem *current) Q_DECL_OVERRIDE;
-    KrViewItem* getPrev(KrViewItem *current) Q_DECL_OVERRIDE;
-    KrViewItem* getCurrentKrViewItem() Q_DECL_OVERRIDE;
-    KrViewItem* findItemByName(const QString &name) Q_DECL_OVERRIDE;
-    KrViewItem *findItemByUrl(const QUrl &url) Q_DECL_OVERRIDE;
-    QString getCurrentItem() const Q_DECL_OVERRIDE;
-    KrViewItem *getKrViewItemAt(const QPoint &vp) Q_DECL_OVERRIDE;
+    QList<QUrl> selectedUrls() override;
+    void setSelectionUrls(const QList<QUrl> urls) override;
+    KrViewItem* getFirst() override;
+    KrViewItem* getLast() override;
+    KrViewItem* getNext(KrViewItem *current) override;
+    KrViewItem* getPrev(KrViewItem *current) override;
+    KrViewItem* getCurrentKrViewItem() override;
+    KrViewItem* findItemByName(const QString &name) override;
+    KrViewItem *findItemByUrl(const QUrl &url) override;
+    QString getCurrentItem() const override;
+    KrViewItem *getKrViewItemAt(const QPoint &vp) override;
     void setCurrentItem(const QString &name, bool scrollToCurrent = true,
-                        const QModelIndex &fallbackToIndex = QModelIndex()) Q_DECL_OVERRIDE;
-    void setCurrentKrViewItem(KrViewItem *item, bool scrollToCurrent = true) Q_DECL_OVERRIDE;
-    void makeItemVisible(const KrViewItem *item) Q_DECL_OVERRIDE;
-    bool isItemVisible(const KrViewItem *item) Q_DECL_OVERRIDE;
-    void clear() Q_DECL_OVERRIDE;
-    void sort() Q_DECL_OVERRIDE;
-    void refreshColors() Q_DECL_OVERRIDE;
-    void redraw() Q_DECL_OVERRIDE;
-    void prepareForActive() Q_DECL_OVERRIDE;
-    void prepareForPassive() Q_DECL_OVERRIDE;
-    void selectRegion(KrViewItem *i1, KrViewItem *i2, bool select) Q_DECL_OVERRIDE;
+                        const QModelIndex &fallbackToIndex = QModelIndex()) override;
+    void setCurrentKrViewItem(KrViewItem *item, bool scrollToCurrent = true) override;
+    void makeItemVisible(const KrViewItem *item) override;
+    bool isItemVisible(const KrViewItem *item) override;
+    void clear() override;
+    void sort() override;
+    void refreshColors() override;
+    void redraw() override;
+    void prepareForActive() override;
+    void prepareForPassive() override;
+    void selectRegion(KrViewItem *i1, KrViewItem *i2, bool select) override;
 
     void sortModeUpdated(int column, Qt::SortOrder order);
 
@@ -89,19 +89,19 @@ protected:
         DummySelectionModel(QAbstractItemModel *model, QObject *parent) :
             QItemSelectionModel(model, parent) {}
         // do nothing - selection is managed by KrInterView
-        void select(const QModelIndex &, QItemSelectionModel::SelectionFlags) Q_DECL_OVERRIDE {}
-        void select(const QItemSelection &, QItemSelectionModel::SelectionFlags) Q_DECL_OVERRIDE {}
+        void select(const QModelIndex &, QItemSelectionModel::SelectionFlags) override {}
+        void select(const QItemSelection &, QItemSelectionModel::SelectionFlags) override {}
     };
 
-    KIO::filesize_t calcSize() Q_DECL_OVERRIDE;
-    KIO::filesize_t calcSelectedSize() Q_DECL_OVERRIDE;
-    void populate(const QList<FileItem*> &fileItems, FileItem *dummy) Q_DECL_OVERRIDE;
-    KrViewItem* preAddItem(FileItem *fileitem) Q_DECL_OVERRIDE;
+    KIO::filesize_t calcSize() override;
+    KIO::filesize_t calcSelectedSize() override;
+    void populate(const QList<FileItem*> &fileItems, FileItem *dummy) override;
+    KrViewItem* preAddItem(FileItem *fileitem) override;
     /**
      * Remove an item. Does not handle new current selection.
      */
-    void preDeleteItem(KrViewItem *item) Q_DECL_OVERRIDE;
-    void intSetSelected(const FileItem* fileitem, bool select) Q_DECL_OVERRIDE;
+    void preDeleteItem(KrViewItem *item) override;
+    void intSetSelected(const FileItem* fileitem, bool select) override;
 
     virtual QRect itemRect(const FileItem *fileitem) = 0;
 

@@ -89,7 +89,7 @@ protected:
 class KonqSelectionMode : public KrSelectionMode
 {
 public:
-    void init() Q_DECL_OVERRIDE {
+    void init() override {
         _useQTSelection = true;
         _spaceMovesDown = false;
         _insertMovesDown = true;
@@ -107,7 +107,7 @@ public:
 class OriginalSelectionMode : public KrSelectionMode
 {
 public:
-    void init() Q_DECL_OVERRIDE {
+    void init() override {
         _useQTSelection = false;
         _spaceMovesDown = true;
         _insertMovesDown = true;
@@ -125,7 +125,7 @@ public:
 class TCSelectionMode : public KrSelectionMode
 {
 public:
-    void init() Q_DECL_OVERRIDE {
+    void init() override {
         _useQTSelection = false;
         _spaceMovesDown = false;
         _insertMovesDown = true;
@@ -143,7 +143,7 @@ public:
 class ErgonomicSelectionMode : public KrSelectionMode
 {
 public:
-    void init() Q_DECL_OVERRIDE {
+    void init() override {
         _useQTSelection = false;
         _spaceMovesDown = false;
         _insertMovesDown = true;
@@ -161,7 +161,7 @@ public:
 class UserSelectionMode: public KrSelectionMode
 {
 public:
-    void init() Q_DECL_OVERRIDE;
+    void init() override;
 };
 
 #endif // KR_SELECTION_MODE_H

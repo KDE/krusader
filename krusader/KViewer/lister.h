@@ -91,12 +91,12 @@ public:
     void           sizeChanged();
 
 protected:
-    void   resizeEvent(QResizeEvent * event) Q_DECL_OVERRIDE;
-    void   keyPressEvent(QKeyEvent * e) Q_DECL_OVERRIDE;
-    void   mousePressEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
-    void   mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
-    void   mouseMoveEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
-    void   wheelEvent(QWheelEvent * event) Q_DECL_OVERRIDE;
+    void   resizeEvent(QResizeEvent * event) override;
+    void   keyPressEvent(QKeyEvent * e) override;
+    void   mousePressEvent(QMouseEvent * e) override;
+    void   mouseDoubleClickEvent(QMouseEvent * e) override;
+    void   mouseMoveEvent(QMouseEvent * e) override;
+    void   wheelEvent(QWheelEvent * event) override;
 
     QStringList    readLines(const qint64 filePos, qint64 &endPos, const int lines, QList<qint64> * locs = nullptr);
     QString        readSection(qint64 p1, qint64 p2);
@@ -174,7 +174,7 @@ public:
     ListerPane(Lister *lister, QWidget *parent);
 
 protected:
-    bool   event(QEvent *event) Q_DECL_OVERRIDE;
+    bool   event(QEvent *event) override;
 
 protected:
     bool     handleCloseEvent(QEvent *e);
@@ -242,14 +242,14 @@ protected slots:
     void            slotSendFinished(KJob *);
 
 protected:
-    bool    openUrl(const QUrl &url) Q_DECL_OVERRIDE;
-    bool    closeUrl() Q_DECL_OVERRIDE {
+    bool    openUrl(const QUrl &url) override;
+    bool    closeUrl() override {
         return true;
     }
-    bool    openFile() Q_DECL_OVERRIDE {
+    bool    openFile() override {
         return true;
     }
-    void    guiActivateEvent(KParts::GUIActivateEvent * event) Q_DECL_OVERRIDE;
+    void    guiActivateEvent(KParts::GUIActivateEvent * event) override;
     void            setColor(const bool match, const bool restore);
     void            hideProgressBar();
     void            updateProgressBar();

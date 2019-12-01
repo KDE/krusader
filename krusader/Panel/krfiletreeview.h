@@ -63,7 +63,7 @@ private slots:
     void slotCustomContextMenuRequested(const QPoint &point);
 
 protected:
-    void dropEvent(QDropEvent *event) Q_DECL_OVERRIDE;
+    void dropEvent(QDropEvent *event) override;
 
 private:
     QUrl urlForProxyIndex(const QModelIndex &index) const;

@@ -62,7 +62,7 @@ protected slots:
     void slotRightClicked(QListWidgetItem *, const QPoint &);
 
 protected:
-    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *e) override;
     void deleteSelectedItems();
 
     Mode mode;

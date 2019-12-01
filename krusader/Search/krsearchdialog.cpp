@@ -78,13 +78,13 @@ public:
         clear();
     }
 
-    QList<FileItem *> fileItems() const Q_DECL_OVERRIDE {
+    QList<FileItem *> fileItems() const override {
         return _fileItems;
     }
-    unsigned long numFileItems() const Q_DECL_OVERRIDE {
+    unsigned long numFileItems() const override {
         return _fileItems.count();
     }
-    bool isRoot() const Q_DECL_OVERRIDE {
+    bool isRoot() const override {
         return true;
     }
 

@@ -78,12 +78,12 @@ public:
     SynchronizerListView(Synchronizer * sync, QWidget * parent) : KrTreeWidget(parent), synchronizer(sync) {
     }
 
-    void mouseMoveEvent(QMouseEvent * e) Q_DECL_OVERRIDE {
+    void mouseMoveEvent(QMouseEvent * e) override {
         isLeft = ((e->modifiers() & Qt::ShiftModifier) == 0);
         KrTreeWidget::mouseMoveEvent(e);
     }
 
-    void startDrag(Qt::DropActions /* supportedActs */) Q_DECL_OVERRIDE {
+    void startDrag(Qt::DropActions /* supportedActs */) override {
         QList<QUrl> urls;
 
         unsigned              ndx = 0;

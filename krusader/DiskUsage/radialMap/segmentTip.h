@@ -42,8 +42,8 @@ public:
     void moveto(QPoint, QWidget&, bool);
 
 private:
-    virtual bool eventFilter(QObject*, QEvent*) Q_DECL_OVERRIDE;
-    virtual bool event(QEvent*) Q_DECL_OVERRIDE;
+    virtual bool eventFilter(QObject*, QEvent*) override;
+    virtual bool event(QEvent*) override;
 
     uint    m_cursorHeight;
     QPixmap m_pixmap;

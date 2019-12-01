@@ -89,7 +89,7 @@ public:
     ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConfigGroup& cfg = KConfigGroup());
     ~ListPanel() override;
 
-    void otherPanelChanged() Q_DECL_OVERRIDE;
+    void otherPanelChanged() override;
 
     void start(const QUrl &url = QUrl());
 
@@ -164,13 +164,13 @@ public slots:
     void prepareToDelete();                   // internal use only
 
 protected:
-    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-    void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE {
+    void keyPressEvent(QKeyEvent *e) override;
+    void mousePressEvent(QMouseEvent*) override {
         slotFocusOnMe();
     }
-    void showEvent(QShowEvent *) Q_DECL_OVERRIDE;
-    void hideEvent(QHideEvent *) Q_DECL_OVERRIDE;
-    bool eventFilter(QObject * watched, QEvent * e) Q_DECL_OVERRIDE;
+    void showEvent(QShowEvent *) override;
+    void hideEvent(QHideEvent *) override;
+    bool eventFilter(QObject * watched, QEvent * e) override;
 
     void showButtonMenu(QToolButton *b);
     void createView();

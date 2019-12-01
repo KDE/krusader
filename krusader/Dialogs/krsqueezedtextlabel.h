@@ -54,11 +54,11 @@ signals:
     void clicked(QMouseEvent *); /**< emitted when someone clicks on the label */
 
 protected:
-    void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE {
+    void resizeEvent(QResizeEvent *) override {
         squeezeTextToLabel(_index, _length);
     }
-    void mousePressEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
-    void paintEvent(QPaintEvent * e) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent *e) override;
+    void paintEvent(QPaintEvent * e) override;
     void squeezeTextToLabel(int index = -1, int length = -1);
 
     QString fullText;

@@ -338,7 +338,7 @@ public:
     }
 
     virtual ~Directory() {}
-    virtual bool isDir() const Q_DECL_OVERRIDE {
+    virtual bool isDir() const override {
         return true;
     }
 

@@ -51,32 +51,32 @@ public:
     DefaultKRarcObserver() {}
     virtual ~DefaultKRarcObserver() {}
 
-    virtual void processEvents() Q_DECL_OVERRIDE {
+    virtual void processEvents() override {
         usleep(1000);
         qApp->processEvents();
     }
 
-    virtual void subJobStarted(const QString & jobTitle, int count) Q_DECL_OVERRIDE {
+    virtual void subJobStarted(const QString & jobTitle, int count) override {
         krApp->startWaiting(jobTitle, count, true);
     }
 
-    virtual void subJobStopped() Q_DECL_OVERRIDE {
+    virtual void subJobStopped() override {
         krApp->stopWait();
     }
 
-    virtual bool wasCancelled() Q_DECL_OVERRIDE {
+    virtual bool wasCancelled() override {
         return krApp->wasWaitingCancelled();
     }
 
-    virtual void error(const QString & error) Q_DECL_OVERRIDE {
+    virtual void error(const QString & error) override {
         KMessageBox::error(krApp, error, i18n("Error"));
     }
 
-    virtual void detailedError(const QString & error, const QString & details) Q_DECL_OVERRIDE {
+    virtual void detailedError(const QString & error, const QString & details) override {
         KMessageBox::detailedError(krApp, error, details, i18n("Error"));
     }
 
-    virtual void incrementProgress(int c) Q_DECL_OVERRIDE {
+    virtual void incrementProgress(int c) override {
         krApp->plzWait->incProgress(c);
     }
 };

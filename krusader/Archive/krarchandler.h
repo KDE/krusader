@@ -74,7 +74,7 @@ public:
     // queries the password from the user
     static QString getPassword(const QString& path);
     // detects the archive type
-    void checkIf7zIsEncrypted(bool &, QString) Q_DECL_OVERRIDE;
+    void checkIf7zIsEncrypted(bool &, QString) override;
 private:
     //! checks if a returned status ("exit code") of an archiving-related process is OK
     static bool checkStatus(const QString& type, int exitCode);

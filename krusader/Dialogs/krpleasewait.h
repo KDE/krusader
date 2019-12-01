@@ -74,7 +74,7 @@ public slots:
 protected:
     bool inc;
     QTimer* timer;
-    void closeEvent(QCloseEvent * e) Q_DECL_OVERRIDE;
+    void closeEvent(QCloseEvent * e) override;
     bool canClose;
 };
 

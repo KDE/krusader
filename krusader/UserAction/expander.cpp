@@ -113,7 +113,7 @@ namespace
 class exp_simpleplaceholder : public exp_placeholder
 {
 public:
-    EXP_FUNC Q_DECL_OVERRIDE;
+    EXP_FUNC override;
     virtual TagString expFunc(const KrPanel*, const QStringList&, const bool&, Expander&) const = 0;
 };
 
@@ -122,7 +122,7 @@ public:
     class name : public exp_placeholder { \
     public: \
         name(); \
-        virtual TagString expFunc ( const KrPanel*, const TagStringList&, const bool&, Expander& ) const Q_DECL_OVERRIDE; \
+        virtual TagString expFunc ( const KrPanel*, const TagStringList&, const bool&, Expander& ) const override; \
     };
 
 #define SIMPLE_PLACEHOLDER_CLASS(name) \
@@ -130,7 +130,7 @@ public:
     public: \
         using exp_simpleplaceholder::expFunc; \
         name(); \
-        virtual TagString expFunc ( const KrPanel*, const QStringList&, const bool&, Expander& ) const Q_DECL_OVERRIDE; \
+        virtual TagString expFunc ( const KrPanel*, const QStringList&, const bool&, Expander& ) const override; \
     };
 
 

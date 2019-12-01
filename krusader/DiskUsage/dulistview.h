@@ -120,7 +120,7 @@ public:
         diskUsage->removeProperty(file, "ListView-Ref");
     }
 
-    bool operator<(const QTreeWidgetItem &other) const Q_DECL_OVERRIDE {
+    bool operator<(const QTreeWidgetItem &other) const override {
         int column = treeWidget() ? treeWidget()->sortColumn() : 0;
 
         if (text(0) == "..")
@@ -172,8 +172,8 @@ public slots:
 protected:
     DiskUsage *diskUsage;
 
-    void mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
-    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void mouseDoubleClickEvent(QMouseEvent * e) override;
+    void keyPressEvent(QKeyEvent *e) override;
 
 private:
     void addDirectory(Directory *dirEntry, QTreeWidgetItem *parent);

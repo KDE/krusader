@@ -77,42 +77,42 @@ public:
         _category = category;
     };
 
-    QString command() const Q_DECL_OVERRIDE {
+    QString command() const override {
         return _command;
     };
     void setCommand(const QString& command) {
         _command = command;
     };
 
-    QString user() const Q_DECL_OVERRIDE {
+    QString user() const override {
         return _user;
     };
     void setUser(const QString& user) {
         _user = user;
     };
 
-    QString startpath() const Q_DECL_OVERRIDE {
+    QString startpath() const override {
         return _startpath;
     };
     void setStartpath(const QString& startpath) {
         _startpath = startpath;
     };
 
-    ExecType execType() const Q_DECL_OVERRIDE {
+    ExecType execType() const override {
         return _execType;
     };
     void setExecType(ExecType execType) {
         _execType = execType;
     };
 
-    bool acceptURLs() const Q_DECL_OVERRIDE {
+    bool acceptURLs() const override {
         return _acceptURLs;
     };
     void setAcceptURLs(const bool& acceptURLs) {
         _acceptURLs = acceptURLs;
     };
 
-    bool confirmExecution() const Q_DECL_OVERRIDE {
+    bool confirmExecution() const override {
         return _confirmExecution;
     };
     void setConfirmExecution(const bool& confirmExecution) {
@@ -147,11 +147,11 @@ public:
         _showonlyFile = showonlyFile;
     };
 
-    bool doSubstitution() const Q_DECL_OVERRIDE {
+    bool doSubstitution() const override {
         return true;
     }
 
-    QString text() const Q_DECL_OVERRIDE {
+    QString text() const override {
         return QAction::text();
     }
 

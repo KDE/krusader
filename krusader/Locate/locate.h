@@ -61,7 +61,7 @@ public slots:
     void              updateFinished();
 
 protected:
-    void              keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
+    void              keyPressEvent(QKeyEvent *) override;
 
 private:
     void              operate(QTreeWidgetItem *item, int task);

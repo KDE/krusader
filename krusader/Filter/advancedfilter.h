@@ -43,15 +43,15 @@ class AdvancedFilter : public QWidget, public FilterBase
 public:
     explicit AdvancedFilter(FilterTabs *tabs, QWidget *parent = nullptr);
 
-    void          queryAccepted() Q_DECL_OVERRIDE {}
-    QString       name() Q_DECL_OVERRIDE {
+    void          queryAccepted() override {}
+    QString       name() override {
         return "AdvancedFilter";
     }
-    FilterTabs *  filterTabs() Q_DECL_OVERRIDE {
+    FilterTabs *  filterTabs() override {
         return fltTabs;
     }
-    bool getSettings(FilterSettings&) Q_DECL_OVERRIDE;
-    void applySettings(const FilterSettings&) Q_DECL_OVERRIDE;
+    bool getSettings(FilterSettings&) override;
+    void applySettings(const FilterSettings&) override;
 
 public slots:
     void modifiedBetweenSetDate1();

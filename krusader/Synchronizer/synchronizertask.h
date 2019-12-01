@@ -126,7 +126,7 @@ public:
     }
 
 protected slots:
-    void start() Q_DECL_OVERRIDE;
+    void start() override;
     void slotFinished(bool result);
     void slotOtherFinished(bool result);
 
@@ -160,7 +160,7 @@ public slots:
     void    sendStatusMessage();
 
 protected:
-    void start() Q_DECL_OVERRIDE;
+    void start() override;
 
 protected slots:
     void    localFileCompareCycle();

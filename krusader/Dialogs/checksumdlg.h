@@ -118,15 +118,15 @@ public:
     CreateWizard(const QString &path, const QStringList &_files);
 
 public slots:
-    void accept() Q_DECL_OVERRIDE;
+    void accept() override;
 
 private:
-    QWizardPage *createIntroPage() Q_DECL_OVERRIDE;
-    QWizardPage *createResultPage() Q_DECL_OVERRIDE;
+    QWizardPage *createIntroPage() override;
+    QWizardPage *createResultPage() override;
 
-    void onIntroPage() Q_DECL_OVERRIDE;
-    void onProgressPage() Q_DECL_OVERRIDE;
-    void onResultPage() Q_DECL_OVERRIDE;
+    void onIntroPage() override;
+    void onProgressPage() override;
+    void onResultPage() override;
 
     void createChecksums();
     bool savePerFile();
@@ -157,12 +157,12 @@ private slots:
     void slotChecksumPathChanged(const QString &path);
 
 private:
-    QWizardPage *createIntroPage() Q_DECL_OVERRIDE;
-    QWizardPage *createResultPage() Q_DECL_OVERRIDE;
+    QWizardPage *createIntroPage() override;
+    QWizardPage *createResultPage() override;
 
-    void onIntroPage() Q_DECL_OVERRIDE;
-    void onProgressPage() Q_DECL_OVERRIDE;
-    void onResultPage() Q_DECL_OVERRIDE;
+    void onIntroPage() override;
+    void onProgressPage() override;
+    void onResultPage() override;
 
     bool isSupported(const QString &path);
 

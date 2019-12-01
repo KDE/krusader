@@ -31,11 +31,11 @@ public:
     PackGUI(const QString& defaultName, const QString& defaultPath, int noOfFiles, const QString& filename = "");
 
 public slots:
-    void browse() Q_DECL_OVERRIDE;
+    void browse() override;
 
 protected slots:
-    void accept() Q_DECL_OVERRIDE;
-    void reject() Q_DECL_OVERRIDE;
+    void accept() override;
+    void reject() override;
 
 public:
     static QString filename, destination, type;

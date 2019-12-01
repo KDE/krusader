@@ -47,7 +47,7 @@ public:
     void addSlice(KIO::filesize_t size, QString label);
 
 protected:
-    void paintEvent(QPaintEvent *) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent *) override;
 
 private:
     QList<KRPieSlice> slices;
@@ -89,7 +89,7 @@ public:
     }
 
 protected:
-    void paintEvent(QPaintEvent *) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent *) override;
 
 private:
     KIO::filesize_t totalSpace, freeSpace;

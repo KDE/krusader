@@ -30,15 +30,15 @@ public:
     explicit KrViewItemDelegate(QObject *parent = 0);
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option,
-               const QModelIndex &index) const Q_DECL_OVERRIDE;
+               const QModelIndex &index) const override;
     void drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect,
-                     const QString &text) const Q_DECL_OVERRIDE;
+                     const QString &text) const override;
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &sovi,
-                          const QModelIndex &index) const Q_DECL_OVERRIDE;
-    void setEditorData(QWidget *editor, const QModelIndex &index) const Q_DECL_OVERRIDE;
+                          const QModelIndex &index) const override;
+    void setEditorData(QWidget *editor, const QModelIndex &index) const override;
     QSize sizeHint(const QStyleOptionViewItem &option,
-                   const QModelIndex &index) const Q_DECL_OVERRIDE;
-    bool eventFilter(QObject *object, QEvent *event) Q_DECL_OVERRIDE;
+                   const QModelIndex &index) const override;
+    bool eventFilter(QObject *object, QEvent *event) override;
 
 private:
     mutable int _currentlyEdited;

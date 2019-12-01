@@ -51,7 +51,7 @@ public:
     ~PackThread() override = default;
 
 protected slots:
-    void slotStart() Q_DECL_OVERRIDE;
+    void slotStart() override;
 
 private:
     QUrl                   _sourceUrl;
@@ -83,7 +83,7 @@ public:
     ~TestArchiveThread() override = default;
 
 protected slots:
-    void slotStart() Q_DECL_OVERRIDE;
+    void slotStart() override;
 
 private:
     QUrl                   _sourceUrl;
@@ -113,7 +113,7 @@ public:
     ~UnpackThread() override = default;
 
 protected slots:
-    void slotStart() Q_DECL_OVERRIDE;
+    void slotStart() override;
 
 private:
     QUrl                   _sourceUrl;

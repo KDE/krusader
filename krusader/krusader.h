@@ -78,32 +78,32 @@ public:
     void setTray(bool forceCreation = false);
 
     // KrMainWindow implementation
-    QWidget *widget() Q_DECL_OVERRIDE {
+    QWidget *widget() override {
         return this;
     }
-    KrView *activeView() Q_DECL_OVERRIDE;
-    ViewActions *viewActions() Q_DECL_OVERRIDE {
+    KrView *activeView() override;
+    ViewActions *viewActions() override {
         return _viewActions;
     }
-    KActionCollection *actions() Q_DECL_OVERRIDE {
+    KActionCollection *actions() override {
         return actionCollection();
     }
-    AbstractPanelManager *activeManager() Q_DECL_OVERRIDE;
-    AbstractPanelManager *leftManager() Q_DECL_OVERRIDE;
-    AbstractPanelManager *rightManager() Q_DECL_OVERRIDE;
-    PopularUrls *popularUrls() Q_DECL_OVERRIDE {
+    AbstractPanelManager *activeManager() override;
+    AbstractPanelManager *leftManager() override;
+    AbstractPanelManager *rightManager() override;
+    PopularUrls *popularUrls() override {
         return _popularUrls;
     }
-    KrActions *krActions() Q_DECL_OVERRIDE {
+    KrActions *krActions() override {
         return _krActions;
     }
-    ListPanelActions *listPanelActions() Q_DECL_OVERRIDE {
+    ListPanelActions *listPanelActions() override {
         return _listPanelActions;
     }
-    TabActions *tabActions() Q_DECL_OVERRIDE {
+    TabActions *tabActions() override {
         return _tabActions;
     }
-    void plugActionList(const char *name, QList<QAction*> &list) Q_DECL_OVERRIDE {
+    void plugActionList(const char *name, QList<QAction*> &list) override {
         KParts::MainWindow::plugActionList(name, list);
     }
 
@@ -129,12 +129,12 @@ protected slots:
     void slotGotRemoveStartup(const KStartupInfoId &id, const KStartupInfoData &data);
 
 protected:
-    void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
-    void showEvent(QShowEvent *event) Q_DECL_OVERRIDE;
-    bool queryClose() Q_DECL_OVERRIDE;
+    void closeEvent(QCloseEvent *event) override;
+    void showEvent(QShowEvent *event) override;
+    bool queryClose() override;
     void setupActions();
     bool versionControl();  // handle version differences in krusaderrc
-    bool event(QEvent *) Q_DECL_OVERRIDE;
+    bool event(QEvent *) override;
 
 public Q_SLOTS:
     Q_SCRIPTABLE bool isRunning();

@@ -50,23 +50,23 @@ public:
     void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                            KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
                            bool showProgressInfo = true,
-                           JobMan::StartMode startMode = JobMan::Default) Q_DECL_OVERRIDE;
-    void dropFiles(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
+                           JobMan::StartMode startMode = JobMan::Default) override;
+    void dropFiles(const QUrl &destination, QDropEvent *event) override;
 
     void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
-                  const QString &dir = "") Q_DECL_OVERRIDE;
-    void mkDir(const QString &name) Q_DECL_OVERRIDE;
-    void rename(const QString &fileName, const QString &newName) Q_DECL_OVERRIDE;
+                  const QString &dir = "") override;
+    void mkDir(const QString &name) override;
+    void rename(const QString &fileName, const QString &newName) override;
     /// Return URL for file name - even if file does not exist.
-    QUrl getUrl(const QString &name) const Q_DECL_OVERRIDE;
-    bool canMoveToTrash(const QStringList &) const Q_DECL_OVERRIDE { return isLocal(); }
+    QUrl getUrl(const QString &name) const override;
+    bool canMoveToTrash(const QStringList &) const override { return isLocal(); }
 
-    QString mountPoint() const Q_DECL_OVERRIDE { return _mountPoint; }
-    bool hasAutoUpdate() const Q_DECL_OVERRIDE { return !_watcher.isNull(); }
-    void updateFilesystemInfo() Q_DECL_OVERRIDE;
+    QString mountPoint() const override { return _mountPoint; }
+    bool hasAutoUpdate() const override { return !_watcher.isNull(); }
+    void updateFilesystemInfo() override;
 
 protected:
-    bool refreshInternal(const QUrl &origin, bool onlyScan) Q_DECL_OVERRIDE;
+    bool refreshInternal(const QUrl &origin, bool onlyScan) override;
 
 protected slots:
     /// Handle result after dir listing job is finished

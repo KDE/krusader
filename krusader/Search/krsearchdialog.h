@@ -65,12 +65,12 @@ public slots:
     void currentChanged(KrViewItem *item);
     void contextMenu(const QPoint &);
 
-    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-    void closeEvent(QCloseEvent *e) Q_DECL_OVERRIDE;
-    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *e) override;
+    void closeEvent(QCloseEvent *e) override;
+    void resizeEvent(QResizeEvent *e) override;
 
 protected slots:
-    void reject() Q_DECL_OVERRIDE;
+    void reject() override;
 
 private slots:
     void editCurrent();

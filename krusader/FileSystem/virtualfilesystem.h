@@ -51,20 +51,20 @@ public:
     /// Create virtual files in this filesystem. Copy mode and showProgressInfo are ignored.
     void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
                    KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy, bool showProgressInfo = false,
-                   JobMan::StartMode startMode = JobMan::Start) Q_DECL_OVERRIDE;
+                   JobMan::StartMode startMode = JobMan::Start) override;
     /// Handle file dropping in this filesystem: Always creates virtual files.
-    void dropFiles(const QUrl &destination, QDropEvent *event) Q_DECL_OVERRIDE;
+    void dropFiles(const QUrl &destination, QDropEvent *event) override;
 
     /// Add virtual files to the current directory.
     void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
-                  const QString &dir = "") Q_DECL_OVERRIDE;
+                  const QString &dir = "") override;
     /// Create a virtual directory. Only possible in the root directory.
-    void mkDir(const QString &name) Q_DECL_OVERRIDE;
+    void mkDir(const QString &name) override;
     /// Rename a (real) file in the current directory.
-    void rename(const QString &fileName, const QString &newName) Q_DECL_OVERRIDE;
+    void rename(const QString &fileName, const QString &newName) override;
     /// Returns the URL of the real file or an empty URL if file with name does not exist.
-    QUrl getUrl(const QString& name) const Q_DECL_OVERRIDE;
-    bool canMoveToTrash(const QStringList &fileNames) const Q_DECL_OVERRIDE;
+    QUrl getUrl(const QString& name) const override;
+    bool canMoveToTrash(const QStringList &fileNames) const override;
 
     /// Remove virtual files or directories. Real files stay untouched.
     void remove(const QStringList &fileNames);
@@ -72,7 +72,7 @@ public:
     void setMetaInformation(const QString &info);
 
 protected:
-    bool refreshInternal(const QUrl &origin, bool onlyScan) Q_DECL_OVERRIDE;
+    bool refreshInternal(const QUrl &origin, bool onlyScan) override;
 
 private:
     /// Return current dir: "/" or pure directory name

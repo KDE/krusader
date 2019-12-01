@@ -55,10 +55,10 @@ public slots:
 protected:
     DiskUsage *diskUsage;
 
-    bool event(QEvent * event) Q_DECL_OVERRIDE;
-    void mouseDoubleClickEvent(QMouseEvent * e) Q_DECL_OVERRIDE;
-    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-    void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE;
+    bool event(QEvent * event) override;
+    void mouseDoubleClickEvent(QMouseEvent * e) override;
+    void keyPressEvent(QKeyEvent *e) override;
+    void resizeEvent(QResizeEvent *) override;
 
 private:
     QPixmap createPixmap(int percent, int maxPercent, int maxWidth);

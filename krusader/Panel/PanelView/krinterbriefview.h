@@ -43,69 +43,69 @@ public:
     ~KrInterBriefView() override;
 
     // ---- reimplemented from QAbstractItemView ----
-    QRect visualRect(const QModelIndex&) const Q_DECL_OVERRIDE;
-    QModelIndex indexAt(const QPoint&) const Q_DECL_OVERRIDE;
-    void scrollTo(const QModelIndex &, QAbstractItemView::ScrollHint = QAbstractItemView::EnsureVisible) Q_DECL_OVERRIDE;
+    QRect visualRect(const QModelIndex&) const override;
+    QModelIndex indexAt(const QPoint&) const override;
+    void scrollTo(const QModelIndex &, QAbstractItemView::ScrollHint = QAbstractItemView::EnsureVisible) override;
 
     // ---- reimplemented from KrView ----
-    int  itemsPerPage() Q_DECL_OVERRIDE;
-    void updateView() Q_DECL_OVERRIDE;
-    bool ensureVisibilityAfterSelect() Q_DECL_OVERRIDE {
+    int  itemsPerPage() override;
+    void updateView() override;
+    bool ensureVisibilityAfterSelect() override {
         return false;
     }
-    void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending) Q_DECL_OVERRIDE;
+    void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending) override;
 
     // ---- reimplemented from QAbstractItemView ----
     // Don't do anything, selections are handled by the mouse handler
-    void setSelection(const QRect &, QItemSelectionModel::SelectionFlags) Q_DECL_OVERRIDE {}
-    void selectAll() Q_DECL_OVERRIDE {}
+    void setSelection(const QRect &, QItemSelectionModel::SelectionFlags) override {}
+    void selectAll() override {}
     // this shouldn't be called
-    QRegion visualRegionForSelection(const QItemSelection&) const Q_DECL_OVERRIDE {
+    QRegion visualRegionForSelection(const QItemSelection&) const override {
         return QRegion();
     }
 
     // ---- reimplemented from KrView ----
-    void setFileIconSize(int size) Q_DECL_OVERRIDE;
+    void setFileIconSize(int size) override;
 
 protected slots:
     // ---- reimplemented from QAbstractItemView ----
-    void updateGeometries() Q_DECL_OVERRIDE;
+    void updateGeometries() override;
 
     // ---- reimplemented from KrView ----
-    void currentChanged(const QModelIndex & current, const QModelIndex & previous) Q_DECL_OVERRIDE;
+    void currentChanged(const QModelIndex & current, const QModelIndex & previous) override;
 
-    void renameCurrentItem() Q_DECL_OVERRIDE;
+    void renameCurrentItem() override;
 
 protected:
     // ---- reimplemented from KrView ----
-    bool handleKeyEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    bool handleKeyEvent(QKeyEvent *e) override;
     // ---- reimplemented from QAbstractItemView ----
-    bool eventFilter(QObject *object, QEvent *event) Q_DECL_OVERRIDE;
-    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-    void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE;
-    QModelIndex moveCursor(QAbstractItemView::CursorAction, Qt::KeyboardModifiers) Q_DECL_OVERRIDE;
-    int horizontalOffset() const Q_DECL_OVERRIDE;
-    int verticalOffset() const Q_DECL_OVERRIDE;
-    bool isIndexHidden(const QModelIndex&) const Q_DECL_OVERRIDE;
-//     QRegion visualRegionForSelection(const QItemSelection&) const Q_DECL_OVERRIDE;
-    bool event(QEvent * e) Q_DECL_OVERRIDE;
-    void mousePressEvent(QMouseEvent *) Q_DECL_OVERRIDE;
-    void mouseReleaseEvent(QMouseEvent *) Q_DECL_OVERRIDE;
-    void mouseDoubleClickEvent(QMouseEvent *ev) Q_DECL_OVERRIDE;
-    void mouseMoveEvent(QMouseEvent *) Q_DECL_OVERRIDE;
-    void wheelEvent(QWheelEvent *) Q_DECL_OVERRIDE;
-    void dragEnterEvent(QDragEnterEvent *e) Q_DECL_OVERRIDE;
-    void dragMoveEvent(QDragMoveEvent *e) Q_DECL_OVERRIDE;
-    void dragLeaveEvent(QDragLeaveEvent *e) Q_DECL_OVERRIDE;
-    void dropEvent(QDropEvent *) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject *object, QEvent *event) override;
+    void keyPressEvent(QKeyEvent *e) override;
+    void paintEvent(QPaintEvent *e) override;
+    QModelIndex moveCursor(QAbstractItemView::CursorAction, Qt::KeyboardModifiers) override;
+    int horizontalOffset() const override;
+    int verticalOffset() const override;
+    bool isIndexHidden(const QModelIndex&) const override;
+//     QRegion visualRegionForSelection(const QItemSelection&) const override;
+    bool event(QEvent * e) override;
+    void mousePressEvent(QMouseEvent *) override;
+    void mouseReleaseEvent(QMouseEvent *) override;
+    void mouseDoubleClickEvent(QMouseEvent *ev) override;
+    void mouseMoveEvent(QMouseEvent *) override;
+    void wheelEvent(QWheelEvent *) override;
+    void dragEnterEvent(QDragEnterEvent *e) override;
+    void dragMoveEvent(QDragMoveEvent *e) override;
+    void dragLeaveEvent(QDragLeaveEvent *e) override;
+    void dropEvent(QDropEvent *) override;
 
     // ---- reimplemented from KrView ----
-    void setup() Q_DECL_OVERRIDE;
-    void doRestoreSettings(KConfigGroup group) Q_DECL_OVERRIDE;
-    void saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties) Q_DECL_OVERRIDE;
-    void copySettingsFrom(KrView *other) Q_DECL_OVERRIDE;
-    QRect itemRect(const FileItem *fileitem) Q_DECL_OVERRIDE;
-    void showContextMenu(const QPoint & p) Q_DECL_OVERRIDE;
+    void setup() override;
+    void doRestoreSettings(KConfigGroup group) override;
+    void saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties) override;
+    void copySettingsFrom(KrView *other) override;
+    QRect itemRect(const FileItem *fileitem) override;
+    void showContextMenu(const QPoint & p) override;
     QRect mapToViewport(const QRect &rect) const;
 
     int getItemHeight() const;

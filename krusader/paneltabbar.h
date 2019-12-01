@@ -88,15 +88,15 @@ signals:
     void draggingTabFinished(QMouseEvent*);
 
 protected:
-    void mouseMoveEvent(QMouseEvent*e) Q_DECL_OVERRIDE;
-    void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE;
-    void mouseReleaseEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    void mouseMoveEvent(QMouseEvent*e) override;
+    void mousePressEvent(QMouseEvent*) override;
+    void mouseReleaseEvent(QMouseEvent*) override;
     void insertAction(QAction*);
     QString squeeze(const QUrl &url, int tabIndex = -1);
-    void dragEnterEvent(QDragEnterEvent *) Q_DECL_OVERRIDE;
-    void dragLeaveEvent(QDragLeaveEvent *) Q_DECL_OVERRIDE;
-    void dragMoveEvent(QDragMoveEvent *) Q_DECL_OVERRIDE;
-    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    void dragEnterEvent(QDragEnterEvent *) override;
+    void dragLeaveEvent(QDragLeaveEvent *) override;
+    void dragMoveEvent(QDragMoveEvent *) override;
+    void resizeEvent(QResizeEvent *e) override;
 
 protected slots:
     void duplicateTab();

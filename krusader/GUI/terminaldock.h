@@ -49,12 +49,12 @@ public:
     ~TerminalDock() override;
     void sendInput(const QString& input, bool clearCommand=true);
     void sendCd(const QString& path);
-    bool eventFilter(QObject * watched, QEvent * e) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject * watched, QEvent * e) override;
     bool isTerminalVisible() const;
     bool isInitialised() const;
     bool initialise();
-    void hideEvent(QHideEvent * e) Q_DECL_OVERRIDE;
-    void showEvent(QShowEvent * e) Q_DECL_OVERRIDE;
+    void hideEvent(QHideEvent * e) override;
+    void showEvent(QShowEvent * e) override;
     inline KParts::Part* part() {
         return konsole_part;
     }

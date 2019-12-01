@@ -33,7 +33,7 @@ class KgPanel : public KonfiguratorPage
 public:
     explicit KgPanel(bool first, QWidget* parent = nullptr);
 
-    int activeSubPage() Q_DECL_OVERRIDE;
+    int activeSubPage() override;
 
 protected:
     KonfiguratorCheckBoxGroup *panelToolbarButtonsCheckboxes;

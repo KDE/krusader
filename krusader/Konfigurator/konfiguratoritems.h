@@ -93,7 +93,7 @@ protected:
     QString configGroup;
     QString configName;
 
-    void connectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE;
+    void connectNotify(const QMetaMethod &signal) override;
 };
 
 
@@ -121,8 +121,8 @@ public slots:
     void slotSetDefaults(QObject *);
 
 protected:
-    void checkStateSet() Q_DECL_OVERRIDE;
-    void nextCheckState() Q_DECL_OVERRIDE;
+    void checkStateSet() override;
+    void nextCheckState() override;
     void updateDeps();
 
     bool  defaultValue;

@@ -151,7 +151,7 @@ public slots:
     void saveToProfile(const QString&);
 
 protected slots:
-    void reject() Q_DECL_OVERRIDE;
+    void reject() override;
     void addFile(SynchronizerFileItem *);
     void markChanged(SynchronizerFileItem *, bool);
     void setScrolling(bool);
@@ -179,8 +179,8 @@ private:
                                      const QString &text = QString(), bool textAndIcon = false);
 
 protected:
-    void keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
-    bool eventFilter(QObject *, QEvent *) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *) override;
+    bool eventFilter(QObject *, QEvent *) override;
 
     void executeOperation(SynchronizerFileItem *item, int op);
 

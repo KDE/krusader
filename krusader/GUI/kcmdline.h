@@ -45,7 +45,7 @@ class CmdLineCombo : public KHistoryComboBox
 public:
     explicit CmdLineCombo(QWidget *parent);
 
-    bool eventFilter(QObject *watched, QEvent *e) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject *watched, QEvent *e) override;
 
     QString path() {
         return _path;
@@ -59,8 +59,8 @@ protected slots:
     void doLayout();
 
 protected:
-    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
-    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *e) override;
+    void keyPressEvent(QKeyEvent *e) override;
 
     void updateLineEditGeometry();
 
@@ -79,14 +79,14 @@ public:
     void setCurrent(const QString &path);
     //virtual methods from KrActionBase
     void setText(const QString& text);
-    QString command() const Q_DECL_OVERRIDE;
-    ExecType execType() const Q_DECL_OVERRIDE;
-    QString startpath() const Q_DECL_OVERRIDE;
-    QString user() const Q_DECL_OVERRIDE;
-    QString text() const Q_DECL_OVERRIDE;
-    bool acceptURLs() const Q_DECL_OVERRIDE;
-    bool confirmExecution() const Q_DECL_OVERRIDE;
-    bool doSubstitution() const Q_DECL_OVERRIDE;
+    QString command() const override;
+    ExecType execType() const override;
+    QString startpath() const override;
+    QString user() const override;
+    QString text() const override;
+    bool acceptURLs() const override;
+    bool confirmExecution() const override;
+    bool doSubstitution() const override;
 
 signals:
     void signalRun();
@@ -103,7 +103,7 @@ public slots:
     }
 
 protected:
-    void focusInEvent(QFocusEvent*) Q_DECL_OVERRIDE {
+    void focusInEvent(QFocusEvent*) override {
         cmdLine->setFocus();
     }
 
