@@ -109,14 +109,14 @@
       and you can toggle its use in the current session in the
       <link linkend="settings-menu">Settings menu</link>. The Main Toolbar contents can be
       configured from the
-      <guimenuitem>Configure Toolbars</guimenuitem> in the
+      <guimenuitem>Configure Toolbars...</guimenuitem> in the
       <link linkend="settings-menu">Settings menu</link>. Since various commands
       and options in &krusader; are context-dependent,
       some commands are not always available. The icon of an
       inappropriate or inactive action will be deactivated
       (grayed-out) disabling its use. <link linkend="bookman">Bookmarks</link>
       can be placed into the Main Toolbar and the Actions Toolbar
-      with the mouse using "drag and drop".</para>
+      with the mouse using <quote>drag and drop</quote>.</para>
     </sect2>
     <sect2 id="job_toolbar">
       <title>Job Toolbar</title>
@@ -136,7 +136,7 @@
         <secondary>Actions Toolbar</secondary>
       </indexterm>
       <para><link linkend="useractions">UserActions</link> and
-      <link linkend="bookman">Bookmarks</link> can be "plugged" into the
+      <link linkend="bookman">Bookmarks</link> can be <quote>plugged</quote> into the
       <guilabel>Actions Toolbar</guilabel>. To show it, use
         <menuchoice>
           <guimenu>Settings</guimenu>
@@ -145,7 +145,7 @@
       . To add user actions, use
         <menuchoice>
           <guimenu>Settings</guimenu>
-          <guimenuitem>Configure Toolbars</guimenuitem>
+          <guimenuitem>Configure Toolbars...</guimenuitem>
         </menuchoice>
       and select Actions Toolbar. You can, for example,
       drag the Actions Toolbar to the right side using the
@@ -162,9 +162,9 @@
       <guibutton>Location Toolbar</guibutton> for each panel. It
       shows the path the panel is currently pointing to.
       When entering archives the path will be displayed
-      in the following format: "archive
+      in the following format: <quote>archive
       type:/directory/archive_filename/the directory inside the
-      archive". This format makes the paths uniform and easy to
+      archive</quote>. This format makes the paths uniform and easy to
       read. The
       <guibutton>Location Toolbar</guibutton> supports also
       KIO Slaves but not all of them, some can
@@ -212,11 +212,9 @@
       <guilabel>Clear Location Toolbar</guilabel> button is also
       available.</para>
       <para>Quick Navigation:
-      &Ctrl; point with mouse in the
-      middle of &URL; of the
+      &Ctrl; point with mouse in the middle of &URL; of the
       <guibutton>Location Toolbar</guibutton>. A pop-up window shows
-      the next &URL; location. Pressing
-      &Ctrl; + Left Mouse Button shows
+      the next &URL; location. Pressing &Ctrl; + &LMB; shows
       the location where the mouse was pointing to. This feature
       allows faster navigation in a big directory tree.</para>
     </sect2>
@@ -281,9 +279,9 @@
         may be left open or closed, as desired.</para>
       </listitem>
     </itemizedlist>
-    <para>&krusader; is a "twin-panel" file
-    manager so there are two panels: the "Left" panel and the
-    "Right" panel, or a more important logical distinction, the
+    <para>&krusader; is a <quote>twin-panel</quote> file
+    manager so there are two panels: the <quote>Left</quote> panel and the
+    <quote>Right</quote> panel, or a more important logical distinction, the
     *Active* panel and the *Inactive* panel. The active panel is
     the one that will accept your mouse and keyboard input. If you
     choose a command from the
@@ -318,7 +316,7 @@
       use most of the time. This panel shows the contents of one
       directory which can be local (part of your mounted file
       systems, either a native file or the files inside an archive)
-      or remote files (accessed via &FTP;, NFS or Samba).
+      or remote files (accessed via &FTP;, &NFS; or Samba).
       There are two modes: <link linkend="view-menu">Detailed View</link> that shows the file names,
       file size, creation date and time and their attributes.
       And <link linkend="view-menu">Brief View</link> that shows only the file names,
@@ -351,7 +349,7 @@
           <guibutton>Media button</guibutton> on the left of the
           <guilabel>Information Label</guilabel> displays a list of
           all available media, where you can select the desired
-          media (HDD partition, DVD, USB stick, &etc;).
+          media (HDD partition, &DVD;, &USB; stick, &etc;).
           Pressing <keycombo>&Ctrl;<keycap>Return</keycap></keycombo> when the
           <guibutton>Media menu</guibutton>
           is opened mounts the highlighted media when it is unmounted,
@@ -405,8 +403,7 @@
           the first few characters of a file name. Pressing
           &Enter; or double clicking on a file will
           open/execute that file. You can select/unselect files
-          using the mouse, with the
-          <keycap>Insert</keycap> key or the
+          using the mouse, with the &Ins; key or the
           <link linkend="edit-menu">Edit menu</link>.</para>
         </listitem>
         <listitem>
@@ -425,13 +422,13 @@
           displays information for the whole file system). If a directory contains a lot
           of subdirectories, it may not be possible to drop the &URL; onto the panel (on
           which only directories are visible), but the &URL; can be dropped onto the
-          "Information Label" or "Totals Label" instead. When a <link
+          <quote>Information Label</quote> or <quote>Totals Label</quote> instead. When a <link
           linkend="view-menu">custom filter</link> is set, it will show the setting,
           example: [*.cpp].</para>
         </listitem>
       </itemizedlist>
-      <para>When using the "&kde; default
-      <link linkend="konfig-color">colors</link>", then the
+      <para>When using the <quote>&kde; default
+      <link linkend="konfig-color">colors</link></quote>, then the
       selected files are shown in blue and the current file is
       surrounded by a fine-lined rectangle. By default an icon is
       shown according to the file type. Use
@@ -449,7 +446,7 @@
         <listitem>
           <para>Focus a file or directory on the left panel, press
           <keycombo action="simul">&Ctrl;
-          <keycap>Right arrow</keycap></keycombo> and the right panel
+          &Right;</keycombo> and the right panel
           changes:
           <itemizedlist>
             <listitem>
@@ -464,7 +461,7 @@
         <listitem>
           <para>For the right panel: press
           <keycombo action="simul">&Ctrl;
-          <keycap>Left arrow</keycap></keycombo> and the left panel
+          &Left;</keycombo> and the left panel
           will change.</para>
         </listitem>
       </itemizedlist>
@@ -475,11 +472,11 @@
         <primary>Sidebar</primary>
         <secondary>Sidebar (3rd Panel)</secondary>
       </indexterm>
-      <para>This is "&krusader; is 3rd Hand" or the 3rd
+      <para>This is <quote>&krusader; is 3rd Hand</quote> or the 3rd
       Panel, click on the arrow-up button on the right of the
       <guilabel>Totals Label</guilabel> or
       <keycombo action="simul">&Alt;
-      <keycap>Down-Arrow</keycap></keycombo> to open the
+      &Down;</keycombo> to open the
       <guilabel>Sidebar</guilabel>. This panel has several
       display modes which can be activated by clicking on the
       appropriate button.</para>
@@ -510,8 +507,8 @@
           </emphasis>: is used to quickly select files,
           &eg; enter
           <literal role="extension">*.png</literal> and click on the
-          <guibutton>Go</guibutton> button. The "floppy" button
-          stores the current selection. The "select group dialog"
+          <guibutton>Go</guibutton> button. The <quote>floppy</quote> button
+          stores the current selection. The <quote>select group dialog</quote>
           is also available.</para>
         </listitem>
         <listitem>
@@ -534,7 +531,7 @@
       <para>
       It is possible to change the sidebar placement using the rotation button
       which is located to the left of the arrow down button at the bottom part of the &krusader; tab.
-      Each click on this button moves the sidebar on one position in the loop "bottom-left-top-right".
+      Each click on this button moves the sidebar on one position in the loop <quote>bottom-left-top-right</quote>.
       </para>
       <para>If needed you can resize the window
       &eg; to better display a picture or view a file contents. Click
@@ -554,7 +551,7 @@
   </sect1>
   <sect1 id="cmdline_termemu">
     <title>Command Line / Terminal Emulator</title>
-    <para>This part of the <link linkend="gloss-gui">GUI</link>
+    <para>This part of the <link linkend="gloss-gui">&GUI;</link>
     can have four modes: Command Line, Terminal Emulator, show both and show none.
     You can choose your mode of operation either on start-up with the
     <link linkend="konfigurator">Konfigurator Startup page</link>, or for the current session with the <link linkend="settings-menu">Settings menu</link> .
@@ -700,10 +697,9 @@
     <keycap>F2</keycap> key is used to rename files and the
     <keycap>F9</keycap> key will open a terminal at the last local
     path that the active panel pointed to.
-    <guilabel>Mkdir</guilabel>
-    <keycap>F7</keycap> can create whole directory trees on the fly
-    &eg;
-    <literal>foo/bar/test</literal>. You can choose to display
+    <guilabel>Mkdir</guilabel> <keycap>F7</keycap> (translated name of
+    <command>mkdir</command> command) can create whole directory trees
+    on the fly &eg; <literal>foo/bar/test</literal>. You can choose to display
     <link linkend="faqu_resize">or not</link> the
     <guilabel>FN keys bar</guilabel> when starting up
     &krusader; via the <link linkend="konfigurator">Konfigurator Startup page</link>,
@@ -772,7 +768,7 @@
       </listitem>
       <listitem>
         <para>To
-        <action>create a "home" tab</action>: click on the
+        <action>create a <quote>home</quote> tab</action>: click on the
         <guibutton>Home</guibutton> button.</para>
       </listitem>
       <listitem>

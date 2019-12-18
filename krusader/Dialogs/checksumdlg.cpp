@@ -266,7 +266,7 @@ QWizardPage *CreateWizard::createIntroPage()
     page->setTitle(i18n("Create Checksums"));
     page->setPixmap(QWizard::LogoPixmap,
                     Icon("document-edit-sign").pixmap(32));
-    page->setSubTitle(i18n("About to calculate checksum for the following files or directories:"));
+    page->setSubTitle(i18n("About to calculate checksum for the following files or folders:"));
 
     auto *mainLayout = new QVBoxLayout;
     page->setLayout(mainLayout);

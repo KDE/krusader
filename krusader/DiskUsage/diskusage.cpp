@@ -115,7 +115,7 @@ LoaderWidget::LoaderWidget(QWidget *parent) : QScrollArea(parent), cancelled(fal
     filesLabel->setFrameShadow(QLabel::Sunken);
     synchGrid->addWidget(filesLabel, 1, 0);
 
-    QLabel *directoriesLabel = new QLabel(i18n("Directories:"), loaderBox);
+    QLabel *directoriesLabel = new QLabel(i18n("Folders:"), loaderBox);
     directoriesLabel->setFrameShape(QLabel::StyledPanel);
     directoriesLabel->setFrameShadow(QLabel::Sunken);
     synchGrid->addWidget(directoriesLabel, 2, 0);

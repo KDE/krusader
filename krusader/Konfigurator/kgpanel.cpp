@@ -162,7 +162,7 @@ void KgPanel::setupGeneralTab()
         {"Look&Feel", "New Style Quicksearch",  _NewStyleQuicksearch, i18n("Start by typing"), false,  i18n("Open search bar and start searching by typing in panel.") },
         {"Look&Feel", "Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n("Case sensitive"), false,  i18n("Search must match case.") },
         {"Look&Feel", "Up/Down Cancels Quicksearch",  false, i18n("Up/Down cancels search"), false,  i18n("Pressing the Up/Down buttons closes the search bar (only in search mode).") },
-        {"Look&Feel", "Navigation with Right Arrow Quicksearch", _NavigationWithRightArrowQuicksearch, i18n("Directory navigation with Right Arrow"), false, i18n("Pressing the Right button enters directory if no search text editing intention is captured.") },
+        {"Look&Feel", "Navigation with Right Arrow Quicksearch", _NavigationWithRightArrowQuicksearch, i18n("Folder navigation with Right Arrow"), false, i18n("Pressing the Right button enters folder if no search text editing intention is captured.") },
     };
 
     cbs = createCheckBoxGroup(2, 0, quicksearch, 4 /*count*/, groupBox, PAGE_GENERAL);

@@ -96,11 +96,11 @@
         <listitem>
           <para>The 
           <keycombo action="simul">&Ctrl;
-          <keycap>Down Arrow</keycap></keycombo> will take you from
+          &Down;</keycombo> will take you from
           the Active Panel to the Command Line or Terminal
           Emulator, and the 
           <keycombo action="simul">&Ctrl;
-          <keycap>Up Arrow</keycap></keycombo> will take you back
+          &Up;</keycombo> will take you back
           from the Command Line to the Active Panel.</para>
         </listitem>
         <listitem>
@@ -118,7 +118,7 @@
           <keycombo action="simul">&Alt;
           <keycap>Underlined Letter</keycap></keycombo> from the
           Menu Bar will open that menu (unless this key combination
-          is a "Reserved Key", used by one of
+          is a <quote>Reserved Key</quote>, used by one of
           &krusader;'s actions).</para>
         </listitem>
       </itemizedlist></para>
@@ -136,15 +136,14 @@
       only one directory at a time, this paragraph mainly explains how
       to select files in the List Panel.</para>
       <para>Moving the cursor is easy. Left-clicking on a file or
-      directory (referred to herein as "elements" meaning files and
+      directory (referred to herein as <quote>elements</quote> meaning files and
       directories) will select it. Here are some useful pointers
       that will make &krusader; even easier to use (assuming you are
       using &krusader;'s Mouse Selection Mode): 
       <itemizedlist>
         <listitem>
           <para>The 
-          <keycap>Space</keycap> and 
-          <keycap>Insert</keycap> keys will toggle the selection of
+          &Space; and &Ins; keys will toggle the selection of
           the file under the cursor without affecting the selection
           of other files/directories, the cursor will go one
           position down.</para>
@@ -170,20 +169,18 @@
         </listitem>
         <listitem>
           <para>
-          <keycombo action="simul">&Shift;
-          <keycap>Home</keycap></keycombo> selects everything above
-          the cursor (and deselects everything below the cursor, if
-          selected).</para>
+          <keycombo action="simul">&Shift;&Home;</keycombo> selects
+          everything above the cursor (and deselects everything
+          below the cursor, if selected).</para>
         </listitem>
         <listitem>
           <para>
-          <keycombo action="simul">&Shift;
-          <keycap>End</keycap></keycombo> selects everything below
-          the cursor (and unselects everything above the cursor, if
-          selected).</para>
+          <keycombo action="simul">&Shift;&End;</keycombo> selects
+          everything below the cursor (and unselects everything
+          above the cursor, if selected).</para>
         </listitem>
         <listitem>
-          <para>The ".." entry is not selectable.</para>
+          <para>The <quote>..</quote> entry is not selectable.</para>
         </listitem>
         <listitem>
           <para>The <link linkend="edit-menu">Edit menu</link> can offer more ways
@@ -210,13 +207,13 @@
       in the Active List Panel.</para>
       <para>Type 
       <keycap>foo</keycap>(one character) to do a quick search in
-      the Active List Panel for a file beginning with "foo". A
+      the Active List Panel for a file beginning with <quote>foo</quote>. A
       small quick search dialog box will open below the Active List
       Panel. Type the first few characters of the desired file name
       (more than one character allowed), the cursor will jump to
-      that filename (if it exists), &eg; type "ab" to
-      search for a file which begins with "ab". The 
-      <keycap>Up/Down Arrow</keycap> will jump to the next or
+      that filename (if it exists), &eg; type <quote>ab</quote> to
+      search for a file which begins with <quote>ab</quote>. The
+      &Up;/&Down; keys will jump to the next or
       previous match. &Esc; will close the quick search
       line. The cursor will stay on the last file
       found. The Quicksearch supports <ulink url="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</ulink> for searching files.</para>
@@ -238,8 +235,8 @@
       in the Active Panel.</para>
       <para>Press <keycombo>&Ctrl;<keycap>I</keycap></keycombo> to open Quickfilter bar.
       Type <keycap>foo</keycap> (one character) to filter out from the Active Panel all the files
-      that do not have "foo" in names. You can use wildcards for the filtering. &eg; use "a*b" to
-      filter files which have "a" and "b" in their names. The Quickfilter follows the
+      that do not have <quote>foo</quote> in names. You can use wildcards for the filtering. &eg; use <quote>a*b</quote> to
+      filter files which have <quote>a</quote> and <quote>b</quote> in their names. The Quickfilter follows the
       <link linkend="konfig-panel-general">case-sensitivity setting</link> of Quicksearch.</para>
       <para>Pressing &Enter; in Quickfilter mode sets focus to panel, when panel or Quickfilter is focused, &Esc; closes Quickfilter.
       </para>
@@ -252,8 +249,8 @@
       in the Active Panel.</para>
       <para>Press <keycombo>&Ctrl;&Shift;<keycap>S</keycap></keycombo> to open Quickselect bar.
       Type <keycap>foo</keycap> (one character) to filter out from the Active Panel all the files
-      that do not have "foo" in names. You can use wildcards for the filtering. &eg; use "a*b" to
-      filter files which have "a" and "b" in their names. The Quickselect follows the
+      that do not have <quote>foo</quote> in names. You can use wildcards for the filtering. &eg; use <quote>a*b</quote> to
+      filter files which have <quote>a</quote> and <quote>b</quote> in their names. The Quickselect follows the
       <link linkend="konfig-panel-general">case-sensitivity setting</link> of Quicksearch.</para>
       <para>Pressing &Enter; in Quickselect mode sets focus to panel, when panel or Quickselect is focused, &Esc; closes Quickselect.
       </para>
@@ -299,7 +296,7 @@
           format...)</para>
         </listitem>
         <listitem>
-          <para><link linkend="synchronizer">Synchronize Directories</link> File List</para>
+          <para><link linkend="synchronizer">Synchronize Folders</link> File List</para>
         </listitem>
         <listitem>
           <para><link linkend="useractions">UserActions</link></para>
@@ -345,6 +342,17 @@
     </sect2>
     <sect2 id="copying">
       <title>Copying and Moving</title>
+      <figure id="screenshot-copyjob" float="1">
+        <title>Copy dialog</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="copyjob.png"></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase>Copy dialog</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
       <para>To copy or move files/directories just select them and
       press 
       <keycap>F5</keycap> to 
@@ -361,17 +369,6 @@
       The default destination is the other-panel browsed directory. If you enter
       a partial &URL;, &krusader; will use the current
       panel directory as the &URL; base.</para>
-      <figure id="screenshot-copyjob" float="1">
-        <title>Copy dialog</title>
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="copyjob.png"></imagedata>
-          </imageobject>
-          <textobject>
-            <phrase>Copy dialog</phrase>
-          </textobject>
-        </mediaobject>
-      </figure>
     </sect2>
     <sect2 id="queue">
       <title>Queue manager</title> 
@@ -413,7 +410,7 @@
       <title>Shred Files</title>
       <para>Shred was removed from &kde; 4 (and as consequence &krusader;-2 for &kde; 4).
            The main reason is probably that shredding is filesystem dependent and even if you overwrite the file 100 times, it is not sure, that it will be deleted from the disk finally.
-           Quote from the <application>kgpg</application> posts: <quote>The shred feature has been removed from the KDE library. Kgpg will not support this feature anymore. Moderns file systems use journalisation. So the shred feature should be implemented in the file system. Not in kgpg.</quote>
+           Quote from the &kgpg; posts: <quote>The shred feature has been removed from the &kde; library. &kgpg; will not support this feature anymore. Moderns file systems use journalisation. So the shred feature should be implemented in the file system. Not in &kgpg;.</quote>
            But you might use a proper shred <link linkend="useractions">UserAction</link> for your filesystem.
 	   But keep in mind that if you want to be 100% sure that it is impossible that someone can read a deleted file, you need to destroy your harddrive hardware...
 	   </para>
@@ -427,10 +424,10 @@
       only the file name needs to be renamed and not the extension,
       you can configure this in the
       <link linkend="konfig-general-atomic">Konfigurator General page</link>. 
-      <guilabel>Create a new directory</guilabel> with the 
+      <guilabel>Create a new folder</guilabel> with the
       <keycap>F7</keycap> key. 
       Right-clicking on a regular file will give
-	you the option <menuchoice><guisubmenu>Link Handling</guisubmenu> <guimenuitem>New Symlink</guimenuitem></menuchoice>. A dialog will prompt
+	you the option <menuchoice><guisubmenu>Link Handling</guisubmenu> <guimenuitem>New Symlink...</guimenuitem></menuchoice>. A dialog will prompt
       you to enter a symlink name. That symlink will point to the
       file/directory you right-clicked on. If the file you
       right-clicked on is a symlink, you will also be presented

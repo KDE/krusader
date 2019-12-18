@@ -24,16 +24,16 @@
   
 <sect2 id="synchronizer_introduction">
   <title>Introduction</title>
-  <para>This function compares two directories with all subdirectories and shows the differences between them.
+  <para>This function compares two folders with all subfolders and shows the differences between them.
   After selecting some options and the 
   <guilabel>Compare</guilabel> function you can synchronize the
-  files and directories. One panel could be an &FTP;
+  files and folders. One panel could be an &FTP;
   server. Do not forget the 
   <guilabel>Compare by content</guilabel> option if the file size
   stays equal. Choose 
     <menuchoice>
       <guimenu>Tools</guimenu>
-      <guimenuitem>Synchronize Directories</guimenuitem>
+      <guimenuitem>Synchronize Folders</guimenuitem>
     </menuchoice>
   or 
   <keycombo action="simul">&Ctrl;
@@ -72,13 +72,13 @@
       <guilabel>Advanced filters</guilabel>. The 
       <guilabel>General Filters</guilabel> includes a 
       <guilabel>Do not search in</guilabel> option which lets you
-      exclude directories from comparison.</para>
+      exclude folders from comparison.</para>
     </listitem>
     <listitem>
       <para>Set the 
       <link linkend="synccomp_checkb_options">Checkbox
       options</link>: 
-      <guilabel>Recurse subdirectories</guilabel>, 
+      <guilabel>Recurse subfolders</guilabel>,
       <guilabel>Follow symlinks</guilabel>, 
       <guilabel>Compare by content</guilabel>, 
       <guilabel>Ignore Date</guilabel>, 
@@ -89,7 +89,7 @@
     <listitem>
       <para>Click on the 
       <guibutton>Compare</guibutton> button to compare the
-      directories.</para>
+      folders.</para>
     </listitem>
     <listitem>
       <para>By using
@@ -149,7 +149,7 @@
             at synchronizing. &eg; 
             <literal role="extension">*.png</literal> selects only
             files the names of which end with 
-            <literal role="extension">.png</literal>. Directories are
+            <literal role="extension">.png</literal>. Folders are
             listed if the directory name ends with 
             <literal role="extension">.png</literal> or if the
             directory contains files which end with 
@@ -186,23 +186,23 @@
             are excluded from the search using the pipe symbol. If
             the pattern is ended with a slash (*pattern*/), it
             means that pattern relates to recursive search of
-            directories.</para>
+            folders.</para>
           </listitem>
           <listitem>
-            <para>pattern - means to search those files/directories
+            <para>pattern - means to search those files/folders
             whose name is a pattern, recursive search goes through
-            all subdirectories independently of the value of the
+            all subfolders independently of the value of the
             pattern.</para>
           </listitem>
           <listitem>
-            <para>pattern/ - means to search all files/directories,
+            <para>pattern/ - means to search all files/folders,
             but recursive search goes through/excludes the
-            directories whose name is a pattern.</para>
+            folders whose name is a pattern.</para>
           </listitem>
           <listitem>
             <para>You can use quotation marks for names
-            that contain spaces. Filter "Program Files" searches
-            out those files/directories the name of which is <filename>Program
+            that contain spaces. Filter <quote>Program Files</quote> searches
+            out those files/folders the name of which is <filename>Program
             Files</filename>.</para>
           </listitem>
           <listitem>
@@ -242,14 +242,14 @@
         <itemizedlist>
           <listitem>
             <para>
-            <guilabel>Recurse subdirectories</guilabel>: The
-            Synchronizer walks through subdirectories when
+            <guilabel>Recurse subfolders</guilabel>: The
+            Synchronizer walks through subfolders when
             comparing.</para>
           </listitem>
           <listitem>
             <para>
             <guilabel>Follow symlinks</guilabel>: The Synchronizer
-            follows the symbolic links to directories (not the
+            follows the symbolic links to folders (not the
             files!).</para>
           </listitem>
           <listitem>
@@ -310,7 +310,7 @@
             know what the Synchronizer is doing. If the
             &FTP; server is slow, the comparison of a
             directory may take a lot of time. By turning this
-            option on, you can see that the comparator is "alive",
+            option on, you can see that the comparator is <quote>alive</quote>,
             but slow. For fast file systems, it can reduce the
             speed of comparing slightly.</para>
           </listitem>
@@ -328,7 +328,7 @@
     </varlistentry>
   </variablelist>
   <para>When everything mentioned above is done, click on the 
-  <guibutton>Compare</guibutton> button to compare the directories,
+  <guibutton>Compare</guibutton> button to compare the folders,
   the results are displayed in the <guilabel>File List</guilabel>.</para>
   <variablelist>
     <varlistentry>
@@ -336,8 +336,8 @@
       <listitem>
         <para>The 
         <guilabel>File List</guilabel> has the following columns:
-        "Left name | Left size | Left time | Task | Right time |
-        Right size | Right name".
+        <quote>Left name | Left size | Left time | Task | Right time |
+        Right size | Right name</quote>.
         Here you can check the compare results and modify the synchronization actions if desired.
         The text color defines the default copy direction determined by the comparator.
         <itemizedlist>
@@ -371,7 +371,7 @@
           <listitem>
             <para>
             <guibutton>-&gt;</guibutton>: Copy from the
-            left side to the right side. For directories: 
+            left side to the right side. For folders:
             <command>mkdir</command> in the right side.</para>
           </listitem>
           <listitem>
@@ -387,7 +387,7 @@
           <listitem>
             <para>
             <guibutton>&lt;-</guibutton>: copy from the
-            right side to the left side. For directories: 
+            right side to the left side. For folders:
             <command>mkdir</command> in the left side</para>
           </listitem>
           <listitem>
@@ -418,7 +418,7 @@
           <listitem>
             <para>
             <guibutton>!=</guibutton>: Enable/Disable listing the
-            excluded / "do not know what to do" files.</para>
+            excluded / <quote>do not know what to do</quote> files.</para>
           </listitem>
           <listitem>
             <para>
@@ -450,7 +450,7 @@
           <listitem>
             <para>
             <guibutton>Compare</guibutton>: Compares the
-            directories, the results are displayed on the 
+            folders, the results are displayed on the
             <guilabel>File List</guilabel>.</para>
           </listitem>
           <listitem>
@@ -475,7 +475,7 @@
       <listitem>
         <itemizedlist>
           <listitem>
-            <para>The number of scanned directories while
+            <para>The number of scanned folders while
             comparing.</para>
           </listitem>
           <listitem>
@@ -499,12 +499,12 @@
         Comparator. Select one or multiple files. The change will
         be applied on the selection and not only on the right
         clicked item. If the selected item is a directory, the
-        change will be applied on its files/subdirectories as
+        change will be applied on its files/subfolders as
         well.</para>
         <itemizedlist>
           <listitem>
             <para>
-            <guibutton>Synchronize Directories</guibutton>: Starts
+            <guibutton>Synchronize Folders...</guibutton>: Starts
             synchronization.</para>
           </listitem>
           <listitem>
@@ -590,7 +590,7 @@
           <listitem>
             <para>
             <guibutton>Profiles</guibutton>: If you have to
-            synchronize the same directories often, you can save the
+            synchronize the same folders often, you can save the
             settings &eg; include files, exclude files,
             ... Press the 
             <guibutton>Profile</guibutton> button, and you will be
@@ -722,12 +722,12 @@
             synchronization.</para>
           </listitem>
           <listitem>
-            <para>Remote "compare by content" and "directory
-            compare" is done in parallel.</para>
+            <para>Remote <quote>compare by content</quote> and <quote>directory
+            compare</quote> is done in parallel.</para>
           </listitem>
           <listitem>
             <para>Remote synchronization is also done in parallel,
-            except the mkdir tasks (mkdir must be before
+            except the <command>mkdir</command> tasks (<command>mkdir</command> must be before
             copy).</para>
           </listitem>
         </itemizedlist>

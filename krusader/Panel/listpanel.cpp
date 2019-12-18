@@ -239,7 +239,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
     cancelQuickSizeCalcButton = new QToolButton(this);
     cancelQuickSizeCalcButton->hide();
     cancelQuickSizeCalcButton->setIcon(Icon("dialog-cancel"));
-    cancelQuickSizeCalcButton->setToolTip(i18n("Cancel directory space calculation"));
+    cancelQuickSizeCalcButton->setToolTip(i18n("Cancel folder space calculation"));
     ADD_WIDGET(cancelQuickSizeCalcButton);
 
     // progress indicator for the preview job

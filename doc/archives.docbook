@@ -28,12 +28,11 @@
     the following archives types: ace, arj, bzip2, deb, gzip, iso,
     lha, rar, rpm, tar, xz, zip, and 7-zip and supports the following
     passworded archives: arj, ace, rar and zip. Passwords can be
-    stored in <application>Kwallet</application>. Please note that the archive
+    stored in <application>KWallet</application>. Please note that the archive
     support first needs to be properly 
     <link linkend="konfig-archives">configured</link> in
-    Konfigurator. To open the archive, use &Enter;,
-    (double-)click or the 
-    <keycap>Right Arrow</keycap>. &krusader; supports
+    Konfigurator. To open the archive, use &Enter; key,
+    (double-)click or the &Right; key. &krusader; supports
     also 
     <emphasis role="bold">hidden archives</emphasis>, these are
     renamed archives with a *wrong* extension, &eg;
@@ -42,11 +41,11 @@
     <literal role="extension">.sxw</literal> and <literal role="extension">.odw</literal>.
     &Enter; will open the
     <trademark class="registered">OpenOffice</trademark> document and the 
-    <keycap>Right Arrow</keycap> will open the archive. Another
+    &Right; key will open the archive. Another
     example is J2EE, where the <literal role="extension">.jar</literal> extension means a zip archive.
     Since &krusader; auto-detects the supported archive
     types, it will open with 
-    <keycap>Right Arrow</keycap> even if it has another MIME type.
+    &Right; key even if it has another &MIME; type.
     Please note that browsing archives has a few limitations: 
     <itemizedlist>
       <listitem>
@@ -71,7 +70,7 @@
         changed.</para>
       </listitem>
       <listitem>
-        <para>Packing and un-packing are "blocking operations" that
+        <para>Packing and un-packing are <quote>blocking operations</quote> that
         display a progress dialog. However, this might change in
         the future since we are planning to create more background
         operations.</para>
@@ -97,7 +96,7 @@
     <para>If you only want to extract a part of the archive, then 
     <link linkend="browsing-archives">browse</link> the archive and
     copy the files you want to extract to their new location just
-    as you would copy "normal" files. Note that unpacking from a
+    as you would copy <quote>normal</quote> files. Note that unpacking from a
     browsed archive takes more time (file by file unpack) compared
     to unpacking a whole archive with the first method.
     The unpack operation can be put in a <link linkend="queue">queue</link>.</para>
@@ -108,7 +107,7 @@
     the elements you want to pack in the active panel and select 
       <menuchoice>
         <guimenu>File</guimenu>
-        <guimenuitem>Pack</guimenuitem>
+        <guimenuitem>Pack...</guimenuitem>
       </menuchoice>
     or 
     <keycombo action="simul">&Alt;&Shift;
@@ -120,7 +119,7 @@
     <para>To add files to an existing archive(s), open the archive
     in one panel and the files to be copied in the other panel,
     then simply copy the files into the archive in exactly the same
-    way you copy files into a "normal" directory.
+    way you copy files into a <quote>normal</quote> directory.
     The pack operation can be put in a <link linkend="queue">queue</link>.</para>
   </sect2>
   <sect2 id="test-archive">

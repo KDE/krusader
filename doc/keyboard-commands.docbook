@@ -35,10 +35,10 @@
     <para>After starting &krusader;, the keyboard action can
     begin. Use <keycombo action="simul">&Ctrl;<keycap>L</keycap></keycombo> to jump to the
     <link linkend="list_panel">Location Toolbar</link> where you can type the
-    desired directory. After <keycombo action="simul">&Ctrl;<keycap>Down arrow</keycap></keycombo> 
+    desired directory. After <keycombo action="simul">&Ctrl;&Down;</keycombo>
     you are in the
     <link linkend="termemu">Terminal emulator</link> and you can type any command you
-    desire. Use <keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo> 
+    desire. Use <keycombo action="simul">&Ctrl;&Up;</keycombo>
     to jump back to the active panel. If
     you want to jump to a file or directory that starts with <literal>f</literal>,
     then simply press <keycap>f</keycap> on the keyboard to use the
@@ -64,7 +64,7 @@
     the
         <menuchoice>
           <guimenu>Settings</guimenu>
-          <guimenuitem>Configure Shortcuts</guimenuitem>
+          <guimenuitem>Configure Shortcuts...</guimenuitem>
         </menuchoice>
       menu, if you like to use other key-bindings then the
       default ones. You can even configure 
@@ -162,7 +162,7 @@
             <entry>
               <para>
                 <link linkend="basic">Create a new
-                directory.</link>
+                folder.</link>
               </para>
             </entry>
           </row>
@@ -326,7 +326,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Shift;
-                <keycap>Left Arrow</keycap></keycombo>
+                &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -340,7 +340,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Shift;
-                <keycap>Right Arrow</keycap></keycombo>
+                &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -441,11 +441,11 @@
             <entry>
               <para>
                 <keycombo action="simul">&Alt;
-                <keycap>Home</keycap></keycombo>
+                &Home;</keycombo>
               </para>
             </entry>
             <entry>
-              <para>Home</para>
+              <para>Home.</para>
             </entry>
           </row>
           <row>
@@ -465,7 +465,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Alt;
-                <keycap>Left Arrow</keycap></keycombo>
+                &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -478,7 +478,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Alt;
-                <keycap>Right Arrow</keycap></keycombo>
+                &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -491,7 +491,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Alt;
-                <keycap>Down Arrow</keycap></keycombo>
+                &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -601,7 +601,7 @@
             </entry>
             <entry>
               <para>
-                <link linkend="panel_toolbar">Sync panels aka "Equals Button (=)".</link>
+                <link linkend="panel_toolbar">Sync panels aka <quote>Equals Button (=)</quote>.</link>
               </para>
             </entry>
           </row>
@@ -888,7 +888,7 @@
               </para>
             </entry>
             <entry>
-              <para><link linkend="synchronizer">Synchronize Directories</link>.</para>
+              <para><link linkend="synchronizer">Synchronize Folders</link>.</para>
             </entry>
           </row>
           <row>
@@ -900,7 +900,7 @@
             </entry>
             <entry>
               <para>
-                <link linkend="bookman">Popular URLs.</link>
+                <link linkend="bookman">Popular &URL;s.</link>
               </para>
             </entry>
           </row>
@@ -948,7 +948,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Ctrl;
-                <keycap>Down arrow</keycap></keycombo>
+                &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -962,7 +962,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Ctrl;
-                <keycap>Up arrow</keycap></keycombo>
+                &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -976,7 +976,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Ctrl;
-                <keycap>Up arrow</keycap></keycombo>
+                &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -988,7 +988,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Ctrl;
-                <keycap>Home</keycap></keycombo>
+                &Home;</keycombo>
               </para>
             </entry>
             <entry>
@@ -999,16 +999,16 @@
             <entry>
               <para>
               <keycombo action="simul">&Ctrl;
-              <keycap>Left</keycap></keycombo> or 
+              &Left;</keycombo> or
               <keycombo>
-                <keycap>Right arrow</keycap>
+                &Right;
               </keycombo></para>
             </entry>
             <entry>
               <para>Focus a file or directory on the left panel,
               press 
               <keycombo action="simul">&Ctrl;
-              <keycap>Left arrow</keycap></keycombo> and the right 
+              &Left;</keycombo> and the right
               <link linkend="panels">panel</link> changes: 
               <itemizedlist>
                 <listitem>
@@ -1022,7 +1022,7 @@
                 </listitem>
               </itemizedlist>For the right panel: press 
               <keycombo action="simul">&Ctrl;
-              <keycap>Right arrow</keycap></keycombo> and the left
+              &Right;</keycombo> and the left
               panel will change.</para>
             </entry>
           </row>
@@ -1041,7 +1041,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Ctrl;
-                <keycap>PageUp</keycap></keycombo>
+                &PgUp;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1177,7 +1177,7 @@
               <para>
                 <keycombo action="simul">
                 &Ctrl;&Shift;
-                <keycap>Left arrow</keycap></keycombo>
+                &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1191,7 +1191,7 @@
               <para>
                 <keycombo action="simul">
                 &Ctrl;&Shift;
-                <keycap>Right arrow</keycap></keycombo>
+                &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1205,7 +1205,7 @@
               <para>
                 <keycombo action="simul">
                 &Ctrl;&Shift;
-                <keycap>Up arrow</keycap></keycombo>
+                &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1220,7 +1220,7 @@
               <para>
                 <keycombo action="simul">
                 &Ctrl;&Shift;
-                <keycap>Down arrow</keycap></keycombo>
+                &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1235,7 +1235,7 @@
               <para>
                 <keycombo action="simul">
                 &Ctrl;&Shift;
-                <keycap>PageUp</keycap></keycombo>
+                &PgUp;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1248,7 +1248,7 @@
               <para>
                 <keycombo action="simul">
                 &Ctrl;&Shift;
-                <keycap>PageDown</keycap></keycombo>
+                &PgDn;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1347,7 +1347,7 @@
               <para>
                 <keycombo action="simul">
                 &Ctrl;&Alt;
-                <keycap>Left Arrow</keycap></keycombo>
+                &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1362,7 +1362,7 @@
               <para>
                 <keycombo action="simul">
                 &Ctrl;&Alt;
-                <keycap>Right Arrow</keycap></keycombo>
+                &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1435,7 +1435,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Ctrl;
-                <keycap>PageDown</keycap></keycombo>
+                &PgDn;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1553,7 +1553,7 @@
           <row>
             <entry>
               <para>
-                <keycap>Space</keycap>
+                &Space;
               </para>
             </entry>
             <entry>
@@ -1575,11 +1575,11 @@
           <row>
             <entry>
               <para>
-                <keycap>Insert</keycap>
+                &Ins;
               </para>
             </entry>
             <entry>
-              <para>Does the same as the <keycap>Space</keycap> key 
+              <para>Does the same as the &Space; key
               <link linkend="selecting-files">and goes down one
               position to toggle the next file.</link></para>
             </entry>
@@ -1597,7 +1597,7 @@
           <row>
             <entry>
               <para>
-                <keycap>Home</keycap>
+                &Home;
               </para>
             </entry>
             <entry>
@@ -1607,7 +1607,7 @@
           <row>
             <entry>
               <para>
-                <keycap>End</keycap>
+                &End;
               </para>
             </entry>
             <entry>
@@ -1630,8 +1630,8 @@
           <row>
             <entry>
               <para>
-              <keycap>Up arrow</keycap> and 
-              <keycap>Down arrow</keycap></para>
+              &Up; arrow and
+              &Down; arrow</para>
             </entry>
             <entry>
               <para>Scroll through previously typed
@@ -1653,7 +1653,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Ctrl;
-                <keycap>Up arrow</keycap></keycombo>
+                &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1665,7 +1665,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Ctrl;
-                <keycap>Down arrow</keycap></keycombo>
+                &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1736,7 +1736,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Ctrl;
-                <keycap>Up arrow</keycap></keycombo>
+                &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1748,7 +1748,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Ctrl;
-                <keycap>Down arrow</keycap></keycombo>
+                &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1772,7 +1772,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Shift;
-                <keycap>Insert</keycap></keycombo>
+                &Ins;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1806,7 +1806,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Alt;
-                <keycap>Down arrow</keycap></keycombo>
+                &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1817,7 +1817,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Alt;
-                <keycap>Up arrow</keycap></keycombo>
+                &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1828,7 +1828,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Alt;
-                <keycap>Left arrow</keycap></keycombo>
+                &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1839,7 +1839,7 @@
             <entry>
               <para>
                 <keycombo action="simul">&Alt;
-                <keycap>Right arrow</keycap></keycombo>
+                &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1921,7 +1921,7 @@
             <entry>
               <para>
                 <keycombo action="simul">
-                  <keycap>Meta</keycap>
+                  &Meta;
                   <keycap>A</keycap>
                 </keycombo>
               </para>
@@ -1934,7 +1934,7 @@
             <entry>
               <para>
                 <keycombo action="simul">
-                  <keycap>Meta</keycap>
+                  &Meta;
                   <keycap>1</keycap>
                 </keycombo>
               </para>
@@ -1947,7 +1947,7 @@
             <entry>
               <para>
                 <keycombo action="simul">
-                  <keycap>Meta</keycap>
+                  &Meta;
                   <keycap>2</keycap>
                 </keycombo>
               </para>
@@ -1960,7 +1960,7 @@
             <entry>
               <para>
                 <keycombo action="simul">
-                  <keycap>Meta</keycap>
+                  &Meta;
                   <keycap>3</keycap>
                 </keycombo>
               </para>
@@ -1973,7 +1973,7 @@
             <entry>
               <para>
                 <keycombo action="simul">
-                  <keycap>Meta</keycap>
+                  &Meta;
                   <keycap>4</keycap>
                 </keycombo>
               </para>
@@ -1986,7 +1986,7 @@
             <entry>
               <para>
                 <keycombo action="simul">
-		<keycap>Meta</keycap>
+		&Meta;
                 <keycap>F5</keycap></keycombo>
               </para>
             </entry>
@@ -2019,8 +2019,8 @@
         <para><link linkend="locate">Locate</link> &GUI; frontend</para>
       </listitem>
       <listitem>
-        <para>&systemsettings; -&gt;
-        <guilabel>Common Appearance and Behavior</guilabel> -&gt; <guilabel>Shortcuts and Gestures</guilabel></para>
+        <para><menuchoice><guimenu>Common Appearance and Behavior</guimenu><guisubmenu>Shortcuts
+        and Gestures</guisubmenu></menuchoice> module in the &plasma; &systemsettings;.</para>
       </listitem>
       <listitem>
         <para><link linkend="useractions">UserActions</link> configurable

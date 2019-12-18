@@ -27,14 +27,14 @@
   center. When running &krusader;, use
                 <menuchoice>
                  <guimenu>Settings</guimenu>
-                 <guimenuitem>Configure &krusader;</guimenuitem>
+                 <guimenuitem>Configure &krusader;...</guimenuitem>
                 </menuchoice>, and it will start Konfigurator.
   There you can modify the way &krusader; works
   and customize it to your own needs. At any time, pressing the
   <guibutton>Apply</guibutton> button applies the changes, pressing
   <guibutton>Close</guibutton> closes Konfigurator, and pressing
   <guibutton>Defaults</guibutton> re-applies &krusader;'s
-  "factory" settings. Konfigurator is divided into pages, each
+  <quote>factory</quote> settings. Konfigurator is divided into pages, each
   containing items related to that page. For some changes to the
   &GUI;, you have to close and restart
   &krusader;.</para>
@@ -135,7 +135,7 @@
             </listitem>
             <listitem>
               <para>
-              <guilabel>Start to tray</guilabel>: if checked,
+              <guilabel>Start to system tray</guilabel>: if checked,
               &krusader; starts to tray (if minimize to
               tray is set), without showing the main window.</para>
             </listitem>
@@ -207,20 +207,19 @@
         </title>
         <listitem>
           <para>
-          <guilabel>Autoselect Directories</guilabel>: When
+          <guilabel>Autoselect Folders</guilabel>: When
           <link linkend="edit-menu">you select a group of
           files</link> (either by using <guilabel>Select Group</guilabel> or by using
           <guilabel>Select All</guilabel>), &krusader; checks this option. If
-          checked, the directories matching the select criteria are
+          checked, the folders matching the select criteria are
           also selected. Otherwise, only files are selected.</para>
         </listitem>
         <listitem>
           <para>
           <guilabel>Rename selects extension</guilabel>: When
-          <link linkend="renaming">you rename a file</link>, the
-          whole text is selected. If you want total commanderlike
-          renaming of just the name, without extension, deselect
-          this item.</para>
+          <link linkend="renaming">you rename a file</link>, the whole text is selected.
+          If you want <trademark class="copyright">Total Commander</trademark> like
+          renaming of just the name, without extension, deselect this item.</para>
         </listitem>
         <listitem>
           <para>
@@ -286,11 +285,11 @@
         </listitem>
         <listitem>
           <para>
-          <guilabel>Up/Down cancels search</guilabel>: Pressing <keycap>Arrow Up</keycap> or <keycap>Arrow Down</keycap> cancels <link linkend="quicksearch">search</link> bar.</para>
+          <guilabel>Up/Down cancels search</guilabel>: Pressing &Up; or &Down; key cancels <link linkend="quicksearch">search</link> bar.</para>
         </listitem>
         <listitem>
           <para>
-              <guilabel>Directory navigation with Right Arrow</guilabel>: If checked, pressing the <keycap>Right arrow</keycap> key enters directory if no search text editing intention is captured.
+              <guilabel>Folder navigation with Right Arrow</guilabel>: If checked, pressing the &Right; key enters folder if no search text editing intention is captured.
           </para>
         </listitem>
         <listitem>
@@ -310,13 +309,11 @@
         </title>
         <listitem>
           <para>
-          <guilabel>Always show search bar</guilabel>:  If checked,
-          make <link linkend="bookman">bookmark search bar</link> always visible.</para>
+          <guilabel>Always show search bar</guilabel>: If checked, make <link linkend="bookman">bookmark search bar</link> always visible.</para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Search in special items</guilabel>:  If checked,
-          <link linkend="bookman">bookmark search</link> is also applied to special items in bookmark menu like <guimenuitem>Trash</guimenuitem>, <guimenuitem>Popular URLs</guimenuitem>, <guimenuitem>Jump Back</guimenuitem>, &etc;</para>
+          <guilabel>Search in special items</guilabel>: If checked, <link linkend="bookman">bookmark search</link> is also applied to special items in bookmark menu like <guimenuitem>Trash</guimenuitem>, <guimenuitem>Popular &URL;s</guimenuitem>, <guimenuitem>Jump Back</guimenuitem>, &etc;</para>
         </listitem>
       </itemizedlist>
       <itemizedlist>
@@ -325,13 +322,13 @@
         </title>
         <listitem>
           <para>
-          <guilabel>Show size in bytes too</guilabel>:  If checked,
+          <guilabel>Show size in bytes too</guilabel>: If checked,
           &krusader; displays size in bytes on statusbar or totalsbar.</para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Show space information</guilabel>:  If checked,
-	  &krusader; displays free/total disk space in the Status-/Totalsbar.</para>
+          <guilabel>Show space information</guilabel>: If checked,
+	      &krusader; displays free/total disk space in the Status-/Totalsbar.</para>
         </listitem>
       </itemizedlist>
     </sect2>
@@ -359,14 +356,13 @@
         </listitem>
         <listitem>
           <para>
-          <guilabel>Numeric permissions</guilabel>: Permission
-          column (<guilabel>Panel</guilabel> <guilabel>View</guilabel> tab) shows octal numbers '0755'
-          instead of 'rwxr-xr-x'.</para>
+          <guilabel>Numeric permissions</guilabel>: <guilabel>Permission</guilabel>
+          column shows octal numbers '<literal>0755</literal>' instead of '<literal>rwxr-xr-x</literal>'.</para>
         </listitem>
         <listitem>
           <para>
           <guilabel>Show hidden files</guilabel>: If checked,
-          &krusader; displays the "dot-files" which are
+          &krusader; displays the <quote>dot-files</quote> which are
           otherwise hidden.</para>
         </listitem>
         <listitem>
@@ -431,18 +427,18 @@
         <listitem>
           <para>
           <guilabel>Always sort dirs by name</guilabel>: Sorts
-          directories by name, regardless of the sort
+          folders by name, regardless of the sort
           column.</para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Show directories first</guilabel>: If checked
-          directories have precedence in folder lists.</para>
+          <guilabel>Show folders first</guilabel>: If checked
+          folders have precedence in folder lists.</para>
         </listitem>
         <listitem>
           <para>
           <guilabel>Locale aware sorting</guilabel>: Sorts
-          files and directories according to the current locale settings.</para>
+          files and folders according to the current locale settings.</para>
         </listitem>
       </itemizedlist>
       <itemizedlist>
@@ -458,7 +454,7 @@
           <para>
           <guilabel>Default icon size</guilabel>: Allows you to
           change the size of the icons in the file lists. The
-          available sizes are 16x16, 22x22, 32x32 and 48x48
+          available sizes are 12x12, 16x16, 22x22, 32x32, 48x48, 64x64, 128x128 and 256x256
           pixels.</para>
         </listitem>
         <listitem>
@@ -493,7 +489,7 @@
             </listitem>
             <listitem>
               <para>
-              <guilabel>Type</guilabel>: Shows the MIME type
+              <guilabel>Type</guilabel>: Shows the &MIME; type
               field.</para>
             </listitem>
             <listitem>
@@ -508,17 +504,16 @@
             </listitem>
             <listitem>
               <para>
-              <guilabel>Perms</guilabel>: Shows the full permissions
-              &eg; "rwxr-xr-x" or as octal numbers
-              '0755' instead with enable/disable
+              <guilabel>Perms</guilabel>: Shows the full permissions,
+              &eg;, '<literal>rwxr-xr-x</literal>' or as octal numbers
+              '<literal>0755</literal>' instead with enable/disable
               <guilabel>Numeric Permissions</guilabel> in 
-              <guilabel>Panel</guilabel>
-              <guilabel>View</guilabel> Tab.</para>
+              <guilabel>Panel View</guilabel> Tab.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>rwx</guilabel>: Shows only the rights of
-              the current user &eg; "-rw".</para>
+              the current user, &eg;, <quote>-rw</quote>.</para>
             </listitem>
             <listitem>
               <para>
@@ -614,7 +609,7 @@
         </listitem>
         <listitem>
           <para>
-          <guilabel>Konqueror Mode</guilabel>: pressing the
+          <guilabel>&konqueror; Mode</guilabel>: pressing the
           &LMB; selects files --
           <!-- Openjade does not like an application element for "Konqueror" here -->
           you can click and select multiple files. Right-click menu
@@ -628,7 +623,7 @@
           <!-- Openjade does not like an trademark element for "Total commander" here -->
           and the right-click menu appears with
           <guilabel>pressing and holding</guilabel> the
-          &RMB;. The Left Mouse Button does not select,
+          &RMB;. The &LMB; does not select,
           but sets the current file without affecting the current
           selection.</para>
         </listitem>
@@ -652,15 +647,14 @@
           <para>
           <guilabel>Double-click selects (classic)</guilabel>: A
           single click on a file will select and focus, a double
-          click opens the file or steps into the directory.</para>
+          click opens the file or steps into the folder.</para>
         </listitem>
         <listitem>
           <para>
           <guilabel>Obey global selection policy</guilabel>:
           Pressing the &LMB; selects files -- Use
-          global setting: &plasma;
-          System Settings -&gt; Input Devices
-          -&gt; Mouse.</para>
+          global setting: <menuchoice><guimenu>Input Devices</guimenu> <guimenuitem>Mouse
+          </guimenuitem></menuchoice> module in the &plasma; &systemsettings;.</para>
         </listitem>
         <listitem>
           <para>Custom Selection Mode items:
@@ -672,36 +666,32 @@
             </listitem>
             <listitem>
               <para>
-                <guilabel>Left mouse button selects</guilabel>
+                <guilabel>&LMB; selects</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
-                <guilabel>Left mouse button preserves
-                selection</guilabel>
+                <guilabel>&LMB; preserves selection</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
-                <guilabel>&Shift;/&Ctrl;-Left mouse button
-                selects</guilabel>
+                  <guilabel>&Shift;/<keycombo>&Ctrl;<keycap>left clicking</keycap></keycombo> selects</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
-                <guilabel>Right mouse button selects</guilabel>
+                <guilabel>&RMB; selects</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
-                <guilabel>Right mouse button preserves
-                selection</guilabel>
+                <guilabel>&RMB; preserves selection</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
-                <guilabel>&Shift;/&Ctrl;-Right mouse button
-                selects</guilabel>
+                  <guilabel>&Shift;/<keycombo>&Ctrl;<keycap>right clicking</keycap></keycombo> selects</guilabel>
               </para>
             </listitem>
             <listitem>
@@ -756,11 +746,11 @@
         </listitem>
         <listitem>
           <para>
-          <guilabel>Frame Shape:</guilabel> defines frame color. Can be <guimenuitem>Defined by Layout</guimenuitem>, <guimenuitem>None</guimenuitem>, or <guimenuitem>Statusbar</guimenuitem>.</para>
+          <guilabel>Frame Shape:</guilabel> defines frame color. Can be <guimenuitem>Defined by Layout</guimenuitem>, <guimenuitem>None</guimenuitem>, <guimenuitem>Box</guimenuitem>, or <guimenuitem>Panel</guimenuitem>.</para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Frame Shadow:</guilabel> defines frame color. Can be <guimenuitem>Defined by Layout</guimenuitem>, <guimenuitem>None</guimenuitem>, or <guimenuitem>Statusbar</guimenuitem>.</para>
+          <guilabel>Frame Shadow:</guilabel> defines frame color. Can be <guimenuitem>Defined by Layout</guimenuitem>, <guimenuitem>None</guimenuitem>, <guimenuitem>Raised</guimenuitem>, or <guimenuitem>Sunken</guimenuitem>.</para>
         </listitem>
       </itemizedlist></para>
     </sect2>
@@ -770,7 +760,7 @@
     <para>This page configures the colors of the
     <link linkend="list_panel">List Panel</link> and the
     <link linkend="synchronizer">Synchronizer</link>. The
-    <guilabel>KDE default colors</guilabel> is the default color
+    <guilabel>&kde; default colors</guilabel> is the default color
     configuration.</para>
 
     <variablelist>
@@ -782,7 +772,7 @@
           <itemizedlist>
             <listitem>
               <para>
-              <guilabel>Use the default KDE colors</guilabel>: this
+              <guilabel>Use the default &kde; colors</guilabel>: this
               is the default, it uses &plasma; color
               defined in the &systemsettings;.</para>
             </listitem>
@@ -837,7 +827,7 @@
             </listitem>
             <listitem>
               <para>
-                <guilabel>Directory foreground</guilabel>
+                <guilabel>Folder foreground</guilabel>
               </para>
             </listitem>
             <listitem>
@@ -1005,17 +995,17 @@
 	</listitem>
 	<listitem>
 	  <para>
-	    <guilabel>Minimize to tray</guilabel>: If checked, the &krusader;
+	    <guilabel>Show and close to tray</guilabel>: If checked, the &krusader;
         icon will appear in the system tray.
         When you minimize &krusader;, it will not appear in the taskbar.
         It also will not exit if you close the main window.
-        Instead you can quit &krusader; by selecting <guimenuitem>Quit</guimenuitem> from the <guimenu>File</guimenu> menu
-        or the context menu of the tray icon.
+        Instead you can quit &krusader; by selecting <menuchoice><guimenu>File</guimenu>
+        <guimenuitem>Quit</guimenuitem></menuchoice> menu item or the context menu of the tray icon.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    <guilabel>Use MIME type magic</guilabel>: MIME type magic is
+	    <guilabel>Use &MIME; type magic</guilabel>: &MIME; type magic is
 	    a mechanism which allows &krusader; to inspect
 	    the files in the panels and determine their type even if
 	    the file has no identifying extension. For example, if you
@@ -1023,20 +1013,20 @@
 	    <filename>image1</filename>, &krusader; will still know it is an
 	    image file and work with it accordingly. However, this mode
 	    of operation is slower (while refreshing the panel, or
-	    changing directories), so try &krusader; with
-	    and without MIME type magic and decide what is best for
+	    changing folders), so try &krusader; with
+	    and without &MIME; type magic and decide what is best for
 	    you.</para>
 	 </listitem>
 	 <listitem>
 	   <para>
-	     <guilabel>Temp Directory</guilabel>: this option selects
-	     the base directory for &krusader;'s temporary
+	     <guilabel>Temp Folder</guilabel>: this option selects
+	     the base folder for &krusader;'s temporary
 	     files. The actual files will be created in separate
-	     directories under the 'Temp directory', so that each user
+	     folders under the 'Temp folder', so that each user
 	     running &krusader; will have their own temporary
-	     subdirectories under the chosen directory.
+	     subfolders under the chosen folder.
 	     <note>
-	       <para>You must choose a temporary directory to which all
+	       <para>You must choose a temporary folder to which all
 		 users running &krusader; have full
 		 permissions!</para>
 	     </note>
@@ -1168,7 +1158,7 @@
               mount point), &krusader; will check if it
               is mounted. If not, it will try and mount it for you
               and then enter, so that you would see the contents of
-              your cdrom. Note, however, that &krusader;
+              your &CD-ROM;. Note, however, that &krusader;
               will NOT unmount when exiting
               <filename class="directory">
               /mnt/cdrom</filename>.</para>
@@ -1209,16 +1199,16 @@
           will be done without warning:</para>
           <itemizedlist>
             <listitem>
-              <para>deleting non empty directories</para>
+              <para>Deleting non-empty folders</para>
             </listitem>
             <listitem>
-              <para>deleting file(s)</para>
+              <para>Deleting files</para>
             </listitem>
             <listitem>
-              <para>copying file(s)</para>
+              <para>Copying files</para>
             </listitem>
             <listitem>
-              <para>moving file(s)</para>
+              <para>Moving files</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -1231,7 +1221,7 @@
           <itemizedlist>
             <listitem>
               <para>
-              <guilabel>Icon Cache Size</guilabel>:
+              <guilabel>Icon cache size (KB)</guilabel>:
               &krusader; uses an icon cache, so it will not
               have to reload icons that have been used before. Of
               course, as the cache grows bigger, it can store more
@@ -1281,10 +1271,9 @@
 	</term>
 	<listitem>
 	  <para>
-	    <guilabel>Browse Archives As Directories</guilabel>: if checked,
-            &krusader; will handle the archives transparently and let you open them as
-    folders; otherwise, &krusader; will attempt to
-    invoke an application which opens archives of that type.
+	    <guilabel>Browse Archives As Folders</guilabel>: if checked, &krusader;
+        will handle the archives transparently and let you open them as folders;
+        otherwise, &krusader; will attempt to invoke an application which opens archives of that type.
 	    </para>
 	  </listitem>
 	</varlistentry>
@@ -1306,14 +1295,14 @@
             <para>If such a thing happens, the file(s) are NOT
             LOST. They were actually moved into a subfolder in
             &krusader;'s
-            <link linkend="konfig-general">temp directory</link>.
-            You can search the directory and recover your
+            <link linkend="konfig-general">temp folder</link>.
+            You can search the folder and recover your
             files.</para>
           </note></para>
 	</listitem> -->
         <listitem>
           <para>
-          <guilabel>Test archives after packing</guilabel>:
+          <guilabel>Test archive after packing</guilabel>:
           this option automatically runs a test on a newly packed
           archive. It is safer, but takes longer.</para>
         </listitem>
@@ -1499,7 +1488,7 @@
     ones that are available (filled) are supported by
     &krusader;. For them, &krusader;
     will handle the archives transparently and let you open them as
-    folders (provided you have checked the <guilabel>Browse Archives As Directories</guilabel>
+    folders (provided you have checked the <guilabel>Browse Archives As Folders</guilabel>
     item in the <link linkend="konfig-archives">Archives</link> section); otherwise, &krusader; will attempt to
     invoke an application which opens archives of that type. If a
     certain archive item is empty, it means that
@@ -1986,8 +1975,8 @@
   </sect1>
   <sect1 id="konfig-protocols">
     <title>Protocols</title>
-    <para>This page links the MIMEs to protocols. &eg;
-    protocol "tar" is linked to MIME "application/x-tar".</para>
+    <para>This page links the &MIME;s to protocols. &eg;
+    protocol <quote>tar</quote> is linked to &MIME; <quote>application/x-tar</quote>.</para>
 
     <para>In the
     <guilabel>Links</guilabel> you will see &eg;

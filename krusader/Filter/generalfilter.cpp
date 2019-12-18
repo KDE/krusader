@@ -477,7 +477,7 @@ QCheckBox *GeneralFilter::createExcludeCheckBox(const KConfigGroup &group)
 {
     auto *excludeCheckBox = new QCheckBox(this);
     excludeCheckBox->setText(i18n("Exclude Folder Names"));
-    excludeCheckBox->setToolTip(i18n("Filters out specified directory names from the results."));
+    excludeCheckBox->setToolTip(i18n("Filters out specified folder names from the results."));
     excludeCheckBox->setChecked(static_cast<Qt::CheckState>(group.readEntry("ExcludeFolderNamesUse", 0)));
     return excludeCheckBox;
 }

@@ -182,7 +182,7 @@
       feedback about this chapter is appreciated. Thanks!</para>
 
  <note>
-   <para>This works on a <trademark class="registered">Debian</trademark> system, so it will work on <trademark class="registered">Debian</trademark> and derivatives (<trademark class="registered">Kubuntu</trademark> &etc;), though
+   <para>This works on a &Debian; system, so it will work on &Debian; and derivatives (&kubuntu;, &etc;), though
    it should work on other Linuxes as well. 
    We assume that you have <link linkend="gloss-ssh">SSH</link> installed, configured and working on 
    every machine on LAN you want to connect to/from.
@@ -214,7 +214,7 @@ Now we need fish:/ protocol to be announced too, so we use an ssh.service file a
 </screen>
 
 This file is just a copy of ssh.service. Edit the <filename>fish.service</filename> file and replace 
-"Remote Terminal on %h" with "Fish to %h" and "_ssh._tcp" with "_fish._tcp". 
+<quote>Remote Terminal on %h</quote> with <quote>Fish to %h</quote> and <quote>_ssh._tcp</quote> with <quote>_fish._tcp</quote>.
 
 Here is how it looks after edit:
 <programlisting> 

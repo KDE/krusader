@@ -24,8 +24,8 @@
   <para>A basic 
   <link linkend="features">OFM feature</link> is VFS, this an
   abstracted layer over all kinds of archived information (ZIP
-  files, &FTP; servers, TAR archives, NFS filesystems, SAMBA shares,
-  ISO CD/DVD images, RPM catalogs, &etc;), which allows the user to
+  files, &FTP; servers, TAR archives, &NFS; filesystems, SAMBA shares,
+  ISO &CD;/&DVD; images, RPM catalogs, &etc;), which allows the user to
   access all the information in these divergent types of
   filesystems transparently - just like entering an ordinary
   sub-directory. &krusader; supports several virtual
@@ -35,9 +35,9 @@
       <para>
       <link linkend="remote-connections">Remote connections
       VFS</link>: provides the capability of working with a remote
-      connection session (&FTP;, NFS, Samba, FISH, SFTP) like with
+      connection session (&FTP;, &NFS;, Samba, FISH, SFTP) like with
       local filesystems. It is perfect for complex remote operations
-      and almost as powerful as most standalone GUI remote
+      and almost as powerful as most standalone &GUI; remote
       clients.</para>
     </listitem>
     <listitem>
@@ -64,7 +64,7 @@
   cannot create directories inside a VFS.</para>
   <para>It is possible to keep the directory structure when doing a
   copy from a virtual folder to a non virtual folder, by
-  selecting the "Keep virtual directory structure" check box of the
+  selecting the <quote>Keep virtual directory structure</quote> check box of the
   copy dialog. Imagine the following virtual folder: 
   <screen><prompt>$</prompt> <userinput>file:/home/myhome/mydir1/myfile1</userinput></screen>
   <screen><prompt>$</prompt> <userinput>file:/home/myhome/mydir1/myfile2</userinput></screen>

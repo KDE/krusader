@@ -234,7 +234,7 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
 
     if (putCmd.isEmpty()) {
         error(ERR_UNSUPPORTED_ACTION,
-              i18n("Creating directories is not supported with %1 archives", arcType));
+              i18n("Creating folders is not supported with %1 archives", arcType));
         return;
     }
 
@@ -839,7 +839,7 @@ void kio_krarcProtocol::listDir(const QUrl &url)
     }
     if (listCmd.isEmpty()) {
         error(ERR_UNSUPPORTED_ACTION,
-              i18n("Listing directories is not supported for %1 archives", arcType));
+              i18n("Listing folders is not supported for %1 archives", arcType));
         return;
     }
     QString path = getPath(url);

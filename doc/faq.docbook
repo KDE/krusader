@@ -211,14 +211,14 @@
         </question>
         <answer>
           <para>When &krusader; is &eg;
-          browsing an NFS share and the NFS server goes down,
+          browsing an &NFS; share and the &NFS; server goes down,
           &krusader; will freeze. This
           &krusader; (and all other open internal
           viewers/editors) freeze is fatal, and can only be
           corrected with the 
           <command>kill -9</command>. We have no solution for this.
           This is an issue not confined to file managers, or even
-          the &Linux; OS! The problem is that you "hang"
+          the &Linux; OS! The problem is that you <quote>hang</quote>
           on the first access to the dead share - so there is no
           way around it, no check to avoid it, even 
           <command>ls</command> will freeze. Just trying to read
@@ -267,14 +267,14 @@
       <qandaentry>
         <question id="faqu_samba_codepage">
           <para>
-          <application>Samba</application> ISO 8859-x codepage /
+          &Samba; ISO 8859-x codepage /
           What to do if &krusader; does not read shared
           directories containing special international
           characters?</para>
         </question>
         <answer>
           <para>&krusader; does not handle (yet) 
-          <application>Samba</application> ISO 8859-x codepages, if
+          &Samba; ISO 8859-x codepages, if
           you use a codepage different than 8859-1 you will have to
           do a manual configuration. Create or modify the file: 
           <filename>~/.smb/smb.conf</filename>
@@ -292,8 +292,8 @@
       <!-- Thanks to Karai Csaba -->
       <qandaentry>
         <question id="faqu_krarc_protocol">
-          <para>&krusader; reports "krarc:... protocol
-          not supported" error at opening an archive file, what to
+          <para>&krusader; reports <quote>krarc:... protocol
+          not supported</quote> error at opening an archive file, what to
           do?</para>
         </question>
         <answer>
@@ -315,8 +315,8 @@
       </qandaentry>
       <qandaentry>
         <question id="faqu_krarc_support">
-          <para>I get the error message "Protocol not supported by
-          Krusader: "krarc:/path/to/foo-archive", when I try to
+          <para>I get the error message <quote>Protocol not supported by
+          Krusader: "krarc:/path/to/foo-archive"</quote>, when I try to
           open foo-Archive, what to do?</para>
         </question>
         <answer>
@@ -418,7 +418,7 @@
           works. Also, make sure you have no other &FTP;
           sessions open (using web browsers, &etc;), they can cause
           complications. More information can be found in
-          <ulink url="http://slacksite.com/other/ftp.html">Active &FTP; vs. Passive &FTP;, a Definitive Explanation</ulink>.</para>
+          <ulink url="https://slacksite.com/other/ftp.html">Active &FTP; vs. Passive &FTP;, a Definitive Explanation</ulink>.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -427,7 +427,7 @@
       <qandaentry>
         <question id="faqu_ftp_http_proxy">
           <para>I get 
-          <errorcode>FTP protocol not supported by
+          <errorcode>&FTP; protocol not supported by
           &krusader;</errorcode> error when trying to
           open a remote &FTP; directory, what to
           do?</para>
@@ -507,7 +507,7 @@
               <guisubmenu>Notifications</guisubmenu>
               <guimenuitem>Manage Notifications</guimenuitem>
             </menuchoice>, 
-          <guilabel>Event Source: "Plasma Workspace"
+          <guilabel>Event Source: <quote>Plasma Workspace</quote>
           </guilabel> and uncheck sound items you
           do not like.</para>
           <para></para>
@@ -528,7 +528,7 @@
       </qandaentry>
       <qandaentry>
         <question id="faqu_mimetypemagic_archives">
-          <para>Why does not MIME type magic sometimes work inside
+          <para>Why does not &MIME; type magic sometimes work inside
           archives?</para>
         </question>
         <answer>
@@ -539,7 +539,7 @@
           if the viewer opens in hex-mode instead of the usual
           mode, than you need to configure:
             <menuchoice>
-              <guimenu>KDE System Settings</guimenu>
+              <guimenu>&kde; System Settings</guimenu>
               <guimenuitem>File Associations</guimenuitem>
               <guimenuitem>Application</guimenuitem>
               <guimenuitem>octet-stream</guimenuitem>
@@ -563,7 +563,7 @@
                 When running &krusader;, use 
                 <menuchoice>
                  <guimenu>Settings</guimenu>
-                 <guimenuitem>Configure &krusader;</guimenuitem>
+                 <guimenuitem>Configure &krusader;...</guimenuitem>
                 </menuchoice>, and it will start 
                 <link linkend="konfigurator">Konfigurator</link>. 
                 Please read the manual, &krusader; has many many configuration options, 
@@ -605,7 +605,7 @@
         <answer>
           <para>An open source project's greatest strength is
           derived from getting user feedback. That is why we love
-          to hear what you have to say. Your "gripes" are our
+          to hear what you have to say. Your <quote>gripes</quote> are our
           instructions. After about 6 months, programmers can no
           longer see their own mistakes. It is natural. We want the
           ideas, qritiques, and feedback because we all want to
@@ -642,8 +642,8 @@
               with the developers on the krusader-devel
               <ulink url="https://krusader.org/get-involved/mailing-lists/index.html">mailing lists</ulink> or on the
               <ulink url="https://phabricator.kde.org/tag/krusader/">&krusader; Phabricator page</ulink>. Unfortunately, we cannot apply
-              a patch if the patch is in conflict with the "general
-              design" of the &krusader; code (read for more
+              a patch if the patch is in conflict with the <quote>general
+              design</quote> of the &krusader; code (read for more
               instructions in this FAQ).
               Please send only one change request per mail, so
               that the discussion is easier to follow. The
@@ -677,7 +677,7 @@
                 <listitem>
                   <para>&kde; 3.3- &kde;
                   3.5 and even on GNOME with
-                  &kde;libs (for &krusader;-2.x) .</para>
+                  kdelibs (for &krusader;-2.x) .</para>
                 </listitem>
                 <listitem>
                   <para>GCC 2.95 - GCC 5.4</para>
@@ -763,7 +763,7 @@
         Since we usually only develop and fix &krusader;-git, compile &krusader;-git in debugmode and install it, than check if the bug still exist.
         <screen><prompt>$</prompt> <userinput><command>cmake</command> <option>-DCMAKE_BUILD_TYPE=debugfull</option></userinput></screen>  
 
-        Install <ulink url="http://valgrind.org">valgrind</ulink>, a suite of tools for debugging and profiling &Linux; programs.
+        Install <ulink url="https://valgrind.org">valgrind</ulink>, a suite of tools for debugging and profiling &Linux; programs.
 
         Run Valgrind/&krusader;
         <screen><prompt>$</prompt> <userinput><command>valgrind</command> <option>--tool=memcheck</option> <replaceable>{foo_path}/krusader</replaceable></userinput></screen>
@@ -853,7 +853,7 @@
         <answer>
           <para>Yes, we do. Feel free to talk to the
           &krusader; Krew and fellow-users via
-          <ulink url="http://freenode.net">freenode.org</ulink> servers. The server is 
+          <ulink url="https://freenode.net">freenode.org</ulink> servers. The server is
           <emphasis>irc.freenode.org</emphasis>, the channel is 
           <emphasis>#krusader</emphasis>. Everyone is
           welcome.</para>
@@ -959,7 +959,7 @@
           native language?</para>
         </question>
         <answer>
-          <para>If you are interested in translating the &krusader; GUI or documentation, please contact the
+          <para>If you are interested in translating the &krusader; &GUI; or documentation, please contact the
                <ulink url="https://l10n.kde.org/teams-list.php">KDE translation team</ulink> of your language.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -984,8 +984,8 @@
       </qandaentry>
       <qandaentry>
         <question id="faqg_mcstyle">
-          <para>Why is &konqueror; in "midnight
-          commander style" not an 
+          <para>Why is &konqueror; in <quote>Midnight
+          Commander style</quote> not an
           <link linkend="gloss-ofm">OFM</link>?</para>
         </question>
         <answer>
@@ -1004,10 +1004,10 @@
           <link linkend="gloss-ofm">OFM</link>?</para>
         </question>
         <answer>
-          <para>An <ulink url="http://www.softpanorama.org/OFM/index.shtml">Orthodox File Manager (OFM)</ulink> is much faster than a one
+          <para>An <ulink url="https://www.softpanorama.org/OFM/index.shtml">Orthodox File Manager (OFM)</ulink> is much faster than a one
           panel filemanager and faster than the command line. If
           you would like to know 
-          <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml">
+          <ulink url="https://www.softpedia.com/reviews/linux/Krusader-18193.shtml">
           how &krusader; feels</ulink>, there is only
           one way to discover: install it on your computer and use
           it for a while. If you prefer to waste time and lose
@@ -1015,7 +1015,7 @@
           which are based on &Windows; Explorer. Matej
           Urban&ccaron;i&ccaron; has written
           a 
-          <ulink url="http://murban.blogspot.com/2006/01/krusader-and-konqueror-twin-versus-one.html">
+          <ulink url="https://murban.blogspot.com/2006/01/krusader-and-konqueror-twin-versus-one.html">
           blog</ulink> on why 
           <link linkend="gloss-ofm">OFM</link> is better than a one
           panel filemanager.</para>

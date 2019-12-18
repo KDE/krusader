@@ -36,7 +36,7 @@
     view every file type viewable by &konqueror;
     (&eg; display pictures, play music, show the content
     of an archive). This is called the 'Generic viewer', for which
-    you need to configure the MIME types.</para>
+    you need to configure the &MIME; types.</para>
     <para>The viewer works as follows:
     <itemizedlist>
       <listitem>
@@ -44,7 +44,7 @@
         <emphasis>'Generic viewer'.</emphasis></para>
       </listitem>
       <listitem>
-        <para>When the file type (MIME type) cannot be determined or
+        <para>When the file type (&MIME; type) cannot be determined or
         when a file (&eg; a binary) does not have an
         associated action, it disables the 'generic viewer'. The
         file is treated as a text file, which is the
@@ -244,7 +244,7 @@ and how to print.
 <term id="katepart-menu-export-as-html">
 <menuchoice>
 <guimenu>File</guimenu>
-<guimenuitem>Export as HTML</guimenuitem>
+<guimenuitem>Export as &HTML;</guimenuitem>
 </menuchoice>
 </term>
 <listitem>
@@ -294,7 +294,7 @@ action="simul">&Ctrl;<keycap>X</keycap></keycombo></shortcut>
 <listitem>
 <para>This command deletes the current selection and places it on the
 clipboard.
-The  clipboard is a feature that works invisibly to provide a way to
+The clipboard is a feature that works invisibly to provide a way to
 transfer data between applications.</para>
 </listitem>
 </varlistentry>
@@ -306,7 +306,7 @@ action="simul">&Ctrl;<keycap>C</keycap></keycombo></shortcut>
 <guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></menuchoice></term>
 <listitem>
 <para>This copies the currently selected text to the clipboard so that it may
-be pasted elsewhere.  The clipboard is a feature that works invisibly
+be pasted elsewhere. The clipboard is a feature that works invisibly
 to provide a way to transfer data between applications.</para>
 </listitem>
 </varlistentry>
@@ -317,14 +317,14 @@ action="simul">&Ctrl;<keycap>V</keycap></keycombo></shortcut>
 <guimenu>Edit</guimenu><guimenuitem>Paste</guimenuitem></menuchoice></term>
 <listitem>
 <para>This will insert the contents of the clipboard at the cursor position.
-The clipboard is feature that works invisibly to provide a way to
+The clipboard is a feature that works invisibly to provide a way to
 transfer data between applications.</para>
 </listitem>
 </varlistentry>
 <varlistentry><!-- from plugin Exporter -->
 <term><anchor id="katepart-menu-copy-as-html"/><menuchoice>
 <guimenu>Edit</guimenu><guimenuitem>Copy as
-HTML</guimenuitem></menuchoice></term>
+&HTML;</guimenuitem></menuchoice></term>
 <listitem>
 <para>This copies the currently selected text to the clipboard as &HTML;.
 This item is only displayed when the plugin <guilabel>Exporter</guilabel> is loaded.
@@ -370,7 +370,7 @@ The status bar shows the current state of the Selection Mode, either <guilabel>B
 <varlistentry>
 <term><anchor id="katepart-menu-vi-input-mode"/><menuchoice>
 <shortcut>
-<keycombo action="simul"><keysym>Meta</keysym>&Ctrl;<keycap>V</keycap></keycombo>
+<keycombo action="simul">&Meta;&Ctrl;<keycap>V</keycap></keycombo>
 </shortcut>
 <guimenu>Edit</guimenu><guimenuitem>VI input
 Mode</guimenuitem></menuchoice></term>
@@ -386,7 +386,7 @@ the current mode.The behavior of this mode can be configured in the
 <varlistentry>
 <term><anchor id="katepart-menu-overwrite-mode"/><menuchoice>
 <shortcut>
-<keycombo action="simul"><keycap>Ins</keycap></keycombo>
+<keycombo action="simul">&Ins;</keycombo>
 </shortcut>
 <guimenu>Edit</guimenu><guimenuitem>Overwrite
 Mode</guimenuitem></menuchoice></term>
@@ -818,7 +818,7 @@ the list of markers which is appended at the bottom of this menu item.
 
 <varlistentry id="katepart-menu-bookmarks-previous">
 <term><menuchoice><shortcut><keycombo action="simul">&Alt;
-<keycap>PgUp</keycap></keycombo></shortcut>
+&PgUp;</keycombo></shortcut>
 <guimenu>Bookmarks</guimenu><guimenuitem>Previous</guimenuitem></menuchoice>
 </term>
 <listitem><para>This will move the cursor to beginning of the first above line
@@ -944,7 +944,7 @@ the endianness (byte order) of a text file or stream, for more information see
 <varlistentry>
 <term><menuchoice>
 <shortcut>
-<keycombo action="simul">&Ctrl;<keycap>Space</keycap></keycombo>
+<keycombo action="simul">&Ctrl;&Space;</keycombo>
 </shortcut>
 <guimenu>Tools</guimenu>
 <guimenuitem>Invoke Code Completion</guimenuitem>
@@ -1787,8 +1787,7 @@ skip white space and go to the start of a line's text.</para>
 <varlistentry>
 <term><guilabel>Wrap cursor</guilabel></term>
 <listitem>
-<para>When on, moving the insertion cursor using the <emphasis
-role="bold">Left</emphasis> and <emphasis role="bold">Right</emphasis> keys will
+<para>When on, moving the insertion cursor using the &Left; and &Right; keys will
 go on to previous/next line at beginning/end of the line, similar to most
 editors.</para><para>When off, the insertion cursor cannot be moved left of the
 line start, but it can be moved off the line end, which can be very handy for
@@ -1805,7 +1804,7 @@ beginning does nothing.</para>
 <term><guilabel>PageUp/PageDown moves cursor</guilabel></term>
 <listitem>
 <para>This option changes the behavior of the cursor when the user presses
-the <keycap>Page Up</keycap> or <keycap>Page Down</keycap> key. If unselected
+the &PgUp; or &PgDn; key. If unselected
 the text cursor will maintain its relative position within the visible text in
 &kappname; as new text becomes visible as a result of the operation.  So if the
 cursor is in the middle of the visible text when the operation occurs it will
@@ -2262,8 +2261,8 @@ but this can lead to more data loss.</para>
 <sect4 id="katepart-pref-open-save-modes-filetypes">
 <title>Modes &amp; Filetypes</title>
 <para>This page allows you to override the default configuration for documents
-of specified MIME types. When the editor loads a document, it will try if it
-matches the file masks or MIME types for one of the defined filetypes, and if so
+of specified &MIME; types. When the editor loads a document, it will try if it
+matches the file masks or &MIME; types for one of the defined filetypes, and if so
 apply the variables defined. If more filetypes match, the one with the highest
 priority will be used.
 </para>
@@ -2311,9 +2310,9 @@ menus. This is also used in the
 <varlistentry>
 <term><guilabel>Variables:</guilabel></term>
 <listitem><para>This string allows you to configure &kappname;'s settings for the
-files selected by this MIME type using &kappname; variables. You can set almost any
+files selected by this &MIME; type using &kappname; variables. You can set almost any
 configuration option, such as highlight, indent-mode,
-etc.</para>
+&etc;</para>
 <para>Press <guibutton>Edit</guibutton> to see a list of all available variables
 and their descriptions.  Select the checkbox on the left to enable a particular
 variable and then set the value of the variable on the right.  Some variables
@@ -2344,9 +2343,9 @@ typical mask uses an asterisk and the file extension, for example
 masks.</para></listitem>
 </varlistentry>
 <varlistentry>
-<term><guilabel>MIME types:</guilabel></term>
+<term><guilabel>&MIME; types:</guilabel></term>
 <listitem><para>Displays a wizard that helps you easily select
-MIME types.</para></listitem>
+&MIME; types.</para></listitem>
 </varlistentry>
 <varlistentry>
 <term><guilabel>Priority:</guilabel></term>
@@ -2397,15 +2396,15 @@ of the next line after ending a line with an opening one <keycap>{</keycap>
 and pressing the &Enter; key.</para></listitem>
 </varlistentry>
 <!--http://jakob.petsovits.at/topic/kate-->
-<!--Right, it's the automatic insertion of a closing brace ("}") after you ended a line with an opening one ("{"). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
+<!--Right, it's the automatic insertion of a closing brace (<quote>}</quote>) after you ended a line with an opening one (<quote>{</quote>). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
 You, the developer, are writing a line of code, and want to open a new block delimited by braces. Looks like this:
 If you press Enter and AutoBrace is enabled, it will insert your favorite new brace where it belongs. Looks like this:
 -->
 <varlistentry>
 <term><guilabel>Data Tools</guilabel></term>
 <listitem><para>Enables data tools like thesaurus and spell check (if installed).
-Data tools are only available when text is selected, or when the right mouse
-button is clicked over a word. If no data tools are offered even when text
+Data tools are only available when text is selected, or when the &RMB;
+is clicked over a word. If no data tools are offered even when text
 is selected, you need to install them.
 If this plugin is enabled and data tools are installed, additional items
 appear at the end of the context menu.</para></listitem>
@@ -2413,10 +2412,10 @@ appear at the end of the context menu.</para></listitem>
 <varlistentry>
 <term><guilabel>Exporter</guilabel></term>
 <listitem><para>This command allows you to export the current document with all highlighting
-information into a HTML document using <menuchoice><guimenu>File</guimenu><guimenuitem>Export
-as HTML</guimenuitem></menuchoice>. Additionally you can use <menuchoice><guimenu>Edit</guimenu>
-<guimenuitem>Copy as HTML</guimenuitem></menuchoice> to copy the currently selected text
-as HTML to the system clipboard.</para></listitem>
+information into a &HTML; document using <menuchoice><guimenu>File</guimenu><guimenuitem>Export
+as &HTML;</guimenuitem></menuchoice>. Additionally you can use <menuchoice><guimenu>Edit</guimenu>
+<guimenuitem>Copy as &HTML;</guimenuitem></menuchoice> to copy the currently selected text
+as &HTML; to the system clipboard.</para></listitem>
 </varlistentry>
 <!-- not in 4.7
 <varlistentry>
@@ -2434,7 +2433,7 @@ text. Useful only for setting icons via &kf5; through the KIcon() class.
 </para></listitem>
 </varlistentry>
 <varlistentry>
-<term><guilabel>Insane (not ZEN) HTML coding (light edition)</guilabel></term>
+<term><guilabel>Insane (not ZEN) &HTML; coding (light edition)</guilabel></term>
 <listitem><para>A plugin, which does zen-coding like selector completion.
 For more information see <ulink url="https://en.wikipedia.org/wiki/Zen_Coding">
 Zen Coding</ulink>.</para></listitem>

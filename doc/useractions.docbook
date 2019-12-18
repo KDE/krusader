@@ -40,7 +40,7 @@
   in 
   <filename>
   /usr/share/krusader/useraction-examples.xml</filename>.
-  UserActions can appear nearly everywhere where "normal" KActions
+  UserActions can appear nearly everywhere where <quote>normal</quote> KActions
   can be placed. The actions can even be placed in the menu bar, but for that the 
   <filename>krusaderui.rc</filename> file must be edited. A few
   examples:</para> 
@@ -202,9 +202,8 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
     <listitem>
       <para>
       <guimenuitem>Command</guimenuitem>: The command which
-      will be executed. You can add placeholder using a GUI with
-      the 
-      <guibutton>add</guibutton> button.</para>
+      will be executed. You can add placeholder using a &GUI; with
+      the <guibutton>add</guibutton> button.</para>
     </listitem>
     <listitem>
       <para>
@@ -239,7 +238,7 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
         <listitem>
           <para>
           <guimenuitem>Separate standard error</guimenuitem>:
-          When "Collect output" is used the stdout and stderr are
+          When <quote>Collect output</quote> is used the stdout and stderr are
           separately collected.</para>
         </listitem>
       </itemizedlist>
@@ -250,12 +249,12 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
       <itemizedlist>
         <listitem>
           <para>
-          <guimenuitem>Local files (no URLs)</guimenuitem>: Tells
+          <guimenuitem>Local files only (no &URL;s)</guimenuitem>: Tells
           the placeholder it should return local addresses.</para>
         </listitem>
         <listitem>
           <para>
-          <guimenuitem>URLs (remote and local)</guimenuitem>:
+          <guimenuitem>&URL;s (remote and local)</guimenuitem>:
           Tells the placeholder it should return
           &URL;s.</para>
         </listitem>
@@ -283,7 +282,7 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
     <emphasis role="bold">Command-line syntax</emphasis>
   </para>
   <para>Basically, everything you type in the command line will get
-  executed (if you type "ls -l", "ls -l" gets executed). You have
+  executed (if you type <quote>ls -l</quote>, <quote>ls -l</quote> gets executed). You have
   the possibility to get a character string from
   &krusader; which represents the current state of the
   panel. This is done using placeholders. A placeholder begins with
@@ -321,7 +320,7 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
       <orderedlist>
         <listitem>
           <para>Parameter: Which items;
-          either "All", "Selected", "Files" or "Dirs"</para>
+          either <quote>All</quote>, <quote>Selected</quote>, <quote>Files</quote> or <quote>Dirs</quote></para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -353,13 +352,13 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
       <orderedlist>
         <listitem>
           <para>Parameter: Which items;
-          either "All", "Selected", "Files" or "Dirs"</para>
+          either <quote>All</quote>, <quote>Selected</quote>, <quote>Files</quote> or <quote>Dirs</quote></para>
         </listitem>
         <listitem>
           <para>Parameter (optional):
           Separator between the items.
           Default:
-          "&nbsp;"</para>
+          <quote>&nbsp;</quote></para>
         </listitem>
         <listitem>
           <para>Parameter (optional): Omit the
@@ -367,7 +366,7 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
         </listitem>
         <listitem>
           <para>Parameter (optional):
-          Filtermask (for all but "Selected").
+          Filtermask (for all but <quote>Selected</quote>).
           Default: *</para>
         </listitem>
         <listitem>
@@ -387,8 +386,8 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
         </listitem>
         <listitem>
           <para>Parameter (optional):
-          manipulate in which way; either "Set", "Add" or "Remove".
-          Default: "Set"</para>
+          manipulate in which way; either <quote>Set</quote>, <quote>Add</quote> or <quote>Remove</quote>.
+          Default: <quote>Set</quote></para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -399,7 +398,7 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
       <orderedlist>
         <listitem>
           <para>Parameter: A relative or
-          absolute path, or an URL</para>
+          absolute path, or an &URL;</para>
         </listitem>
         <listitem>
           <para>Parameter (optional): Open the
@@ -435,7 +434,7 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
         <listitem>
           <para>Parameter: The text that
           should go to the clipboard (you may want to use
-          "%aCurrent%" here)</para>
+          <quote>%aCurrent%</quote> here)</para>
         </listitem>
         <listitem>
           <para>Parameter (optional): Append
@@ -566,8 +565,8 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
         </listitem>
         <listitem>
           <para>Parameter (optional): a list
-          of variables which should be set, like "return=cmd;
-          a=lalala; b='%_Ask(..)'" so that the placeholder is
+          of variables which should be set, like <quote>return=cmd;
+          a=lalala; b='%_Ask(..)'</quote> so that the placeholder is
           replaced be the content of the variable cmd and the other
           two have already these values when the script
           starts.</para>
@@ -593,12 +592,12 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
       <orderedlist>
         <listitem>
           <para>Parameter: Column: Either
-          "Name", "Ext", "Type", "Size", "Modified", "Perms",
-          "rwx", "Owner" and "Group"</para>
+          <quote>Name</quote>, <quote>Ext</quote>, <quote>Type</quote>, <quote>Size</quote>, <quote>Modified</quote>, <quote>Perms</quote>,
+          <quote>rwx</quote>, <quote>Owner</quote> and <quote>Group</quote></para>
         </listitem>
         <listitem>
           <para>Parameter: Sort sequence:
-          Either "Toggle", "Asc", "Desc"</para>
+          Either <quote>Toggle</quote>, <quote>Asc</quote>, <quote>Desc</quote></para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -608,16 +607,16 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
       <orderedlist>
         <listitem>
           <para>Parameter: View mode: Either
-          "generic", "text", "hex"</para>
+          <quote>generic</quote>, <quote>text</quote>, <quote>hex</quote></para>
         </listitem>
         <listitem>
           <para>Parameter: Window Mode:
-          Either "tab", "window"</para>
+          Either <quote>tab</quote>, <quote>window</quote></para>
         </listitem>
       </orderedlist>
     </listitem>
   </itemizedlist>
-  <para>A GUI-based helper for placeholder adding is
+  <para>A &GUI;-based helper for placeholder adding is
   provided. Spaces in Path, Current and List are by default,
   automatically escaped. There is one more important thing to know:
   All placeholders that interact with &krusader;
@@ -635,7 +634,7 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
   <itemizedlist>
     <listitem>
       <para>Configures if the action is valid for a Protocol, Path,
-      MIME type or File name.</para>
+      &MIME; type or File name.</para>
     </listitem>
     <listitem>
       <para>Tweaking the command line before being executed.</para>
