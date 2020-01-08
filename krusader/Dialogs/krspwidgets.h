@@ -27,7 +27,6 @@
 #include <QMouseEvent>
 
 #include <KCompletion/KLineEdit>
-#include <KNotifications/KPassivePopup>
 
 #include "krmaskchoice.h"
 #include "newftpgui.h"
