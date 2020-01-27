@@ -1433,6 +1433,7 @@ void SynchronizerGUI::loadFromProfile(const QString& profile)
     ignoreHiddenFilesCB->setChecked(ignoreHidden);
 
     refresh();
+    btnCompareDirs->setFocus();
 }
 
 void SynchronizerGUI::saveToProfile(const QString& profile)
