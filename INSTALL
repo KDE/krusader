@@ -54,10 +54,9 @@ Linux distros will probably use similar names:
 
 The next packages are optional but they will make Krusader much more powerful and useful.
 
-This is a list of the package names that Debian/Ubuntu/Kubuntu 16.04 use, other Linux
+This is a list of the package names that Debian and Ubuntu/Kubuntu 18.04 (LTS) use, other Linux
 distros will probably use similar names:
 
-- arj                   archiver for .arj files
 - ark                   archive utility by KDE
 - bzip2                 high-quality block-sorting file compressor - utilities
 - cpio                  GNU cpio -- a program to manage archives of files
@@ -75,20 +74,17 @@ distros will probably use similar names:
 - kmail                 KDE Email client
 
 - kdiff3                compares and merges 2 or 3 files or directories
-                        (at moment of writing: no version available)
 or kompare              file difference viewer
 or xxdiff               a graphical file and directories comparison and merge tool
 
 - konsole               X terminal emulator
 - krename               Powerful batch renamer by KDE
-- lhasa                 lzh archiver
 
 - md5deep               enhanced message digest calculator
 or cfv                  versatile file checksum creator and verifier
 
 - p7zip                 7zr file archiver with high compression ratio
 - rpm                   Red Hat package manager
-- unace                 extract, test and view .ace archives
 
 - unrar                 Unarchiver for .rar files (non-free version)
 or unrar-free           Unarchiver for .rar files
@@ -108,12 +104,14 @@ run the Krusader binary you don't need to install these packages.
 - extra-cmake-modules    extra cmake modules for compiling KDE Frameworks
 - qt5-default            development files for the Qt5 libraries
 - gettext                GNU Internationalization utilities
-- plasma-framework-dev   development files for plasma-framework
+- plasma-framework-dev   development files for plasma-framework [in newer
+                         versions the name is "libkf5plasma-dev"]
 - zlib1g-dev             in order to make building easier (https://stackoverflow.com/a/49072832)
 
 The following packages should install (through dependencies) all the packages
 you need to compile KF5 software:
-- kio-dev                resource and network access abstraction
+- kio-dev                resource and network access abstraction [in newer
+                         versions the name is "libkf5kio-dev"]
 - libkf5archive-dev      development files for karchive
 - libkf5parts-dev        development files for kparts
 - libkf5wallet-dev       development files for kwallet-framework
@@ -125,13 +123,16 @@ you need to compile KF5 software:
 
 Krusader is developed in KDE Extragear. If someone wants to download and use
 the latest available Krusader sourcecode with git:
-$ git clone http://anongit.kde.org/krusader
+$ git clone https://anongit.kde.org/krusader
 
 Otherwise, if someone wants to use the .tar.xz package:
 $ tar xvf krusader-xx.xx.tar.xz
 
 
 --- Some CMake options. CMake execution
+
+These are some CMake options that can be used, it's not necessary to use
+them all (later there's an example):
 
 -DCMAKE_INSTALL_PREFIX=/usr
   is the location where Krusader will be installed with the make command.
