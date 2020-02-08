@@ -220,6 +220,7 @@ void ListPanelFunc::openUrlInternal(const QUrl &url, const QString& nameToMakeCu
                                 ? history->currentItem()
                                 : nameToMakeCurrent;
 
+    panel->view->setNameToMakeCurrent(nameToMakeCurrent);
     history->add(cleanUrl, currentItem);
 
     if(immediately)
