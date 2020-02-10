@@ -32,6 +32,7 @@
 #include <QLabel>
 
 #include <KI18n/KLocalizedString>
+#include <kio_version.h>
 
 #include "../krservices.h"
 #include "../Archive/krarchandler.h"
@@ -195,8 +196,13 @@ bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
     urlLabel->setContentsMargins(5, 5, 5, 5);
     urlLabel->setAlignment(Qt::AlignTop);
     grid->addWidget(urlLabel, _numRows, 0);
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 65, 0)
+    connect(urlLabel, QOverload<>::of(&KUrlLabel::leftClickedUrl),
+            this, [this, urlLabel]() { KrArchiverResultTable::website(urlLabel->url()); } );
+#else
     connect(urlLabel, QOverload<const QString &>::of(&KUrlLabel::leftClickedUrl),
             this, &KrArchiverResultTable::website);
+#endif
     _label = urlLabel;
 
     // Found column
@@ -345,7 +351,12 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
 
         l->setAlignment(Qt::AlignLeft | Qt::AlignTop);
         l->setContentsMargins(5, 5, 5, 5);
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 65, 0)
+        connect(l, QOverload<>::of(&KUrlLabel::leftClickedUrl),
+                this, [this, l]() { KrToolResultTable::website(l->url()); } );
+#else
         connect(l, QOverload<const QString &>::of(&KUrlLabel::leftClickedUrl), this, &KrToolResultTable::website);
+#endif
     }
     grid->addWidget(toolBoxWidget, _numRows, 1);
 
