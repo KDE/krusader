@@ -320,7 +320,7 @@ void KrFileTreeView::copyToClipBoard(const KFileItem &fileItem, bool cut) const
     kdeUrls.append(fileItem.url());
     QList<QUrl> mostLocalUrls;
     bool dummy;
-    mostLocalUrls.append(fileItem.mostLocalUrl(dummy));
+    mostLocalUrls.append(fileItem.mostLocalUrl(&dummy));
 
     KIO::setClipboardDataCut(mimeData, cut);
     KUrlMimeData::setUrls(kdeUrls, mostLocalUrls, mimeData);
