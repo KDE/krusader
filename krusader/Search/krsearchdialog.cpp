@@ -550,6 +550,9 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
         if ((e->key() | e->modifiers()) == (Qt::CTRL | Qt::Key_I)) {
             searchBar->showBar(KrSearchBar::MODE_FILTER);
         }
+        if (e->key() == Qt::Key_Menu) {
+            contextMenu(QCursor::pos());
+        }
     }
     QDialog::keyPressEvent(e);
 }
