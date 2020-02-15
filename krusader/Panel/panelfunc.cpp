@@ -513,7 +513,7 @@ void ListPanelFunc::editNewFile()
         // if the file exists, edit it instead of creating a new one
         QFile file(filePath.toLocalFile());
         if (file.exists()) {
-            editFile();
+            editFile(filePath);
             return;
         } else {
             // simply create a local file
@@ -527,17 +527,45 @@ void ListPanelFunc::editNewFile()
             slotFileCreated(nullptr, filePath);
             return;
         }
+    } else {
+        KIO::StatJob* statJob = KIO::stat(filePath, KIO::HideProgressInfo);
+        connect(statJob, &KIO::StatJob::result, this, &ListPanelFunc::slotStatEdit);
+    }
+}
+
+void ListPanelFunc::slotStatEdit(KJob* job)
+{
+    if (!job)
+        return;
+
+    const KIO::StatJob *statJob = dynamic_cast<KIO::StatJob *>(job);
+    const QUrl &url = statJob->url();
+
+    if (job->error()) {
+        if (job->error() == KIO::ERR_DOES_NOT_EXIST) {
+            // create a new file
+            auto *tempFile = new QTemporaryFile;
+            tempFile->setAutoRemove(false); // done below
+            tempFile->open(); // create file
+
+            KIO::CopyJob *job = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), url);
+            job->setUiDelegate(nullptr);
+            job->setDefaultPermissions(true);
+            connect(job, &KIO::CopyJob::result, this, [=](KJob *job) { slotFileCreated(job, url); });
+            connect(job, &KIO::CopyJob::result, tempFile, &QTemporaryFile::deleteLater);
+            return;
+        } else {
+            KMessageBox::error(nullptr, job->errorString());
+            return;
+        }
     }
 
-    auto *tempFile = new QTemporaryFile;
-    tempFile->setAutoRemove(false); // done below
-    tempFile->open(); // create file
+    if (statJob->statResult().isDir()) {
+        KMessageBox::error(nullptr, i18n("You cannot edit a folder"));
+        return;
+    }
 
-    KIO::CopyJob *job = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), filePath);
-    job->setUiDelegate(nullptr);
-    job->setDefaultPermissions(true);
-    connect(job, &KIO::CopyJob::result, this, [=](KJob *job) { slotFileCreated(job, filePath); });
-    connect(job, &KIO::CopyJob::result, tempFile, &QTemporaryFile::deleteLater);
+    KrViewer::edit(url);
 }
 
 void ListPanelFunc::slotFileCreated(KJob *job, const QUrl filePath)

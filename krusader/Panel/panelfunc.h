@@ -136,6 +136,9 @@ protected slots:
     void clipboardChanged(QClipboard::Mode mode);
     // Update the directory size in view
     void slotSizeCalculated(const QUrl &url, KIO::filesize_t size);
+    // Get some information about a file that is going to be edited
+    // and perform some steps before the edition
+    void slotStatEdit(KJob* job);
 
 protected:
     QUrl cleanPath(const QUrl &url);
