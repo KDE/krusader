@@ -166,6 +166,12 @@ $ cmake ../krusader -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DC
 
 Note: An example of an output of cmake can be seen in https://phabricator.kde.org/w/krusader/cmake-output/
 
+Note: If Krusader is going to be built under the 16.04 LTS version of Ubuntu (or Kubuntu, etc.) then
+installing Qt 5.9 (or newer) is needed (it could be downloaded from https://www.qt.io/offline-installers) and
+the aforementioned cmake command would need (at its end) an additional argument like:
+    -DCMAKE_PREFIX_PATH=/opt/Qt/5.9/gcc_64/
+if e.g. Qt 5.9 was installed inside /opt
+
 
 --- Compilation and installation
 

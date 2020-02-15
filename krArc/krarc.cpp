@@ -24,6 +24,7 @@
 
 // QtCore
 #include <QByteArray>
+#include <QCoreApplication>
 #include <QDebug>
 #include <QDir>
 #include <QFile>
