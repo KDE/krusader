@@ -103,9 +103,14 @@ void PanelViewerBase::openUrl(const QUrl& url)
     curl = url;
     emit urlChanged(this, url);
 
-    if (url.isLocalFile())
+    if (url.isLocalFile()) {
+        if (!QFile::exists(url.path())) {
+            KMessageBox::error(krMainWindow, i18n("Error at opening %1.", url.path()));
+            emit openUrlFinished(this, false);
+            return;
+        }
         openFile(KFileItem(url));
-    else {
+    } else {
         KIO::StatJob* statJob = KIO::stat(url, KIO::HideProgressInfo);
         connect(statJob, &KIO::StatJob::result, this, &PanelViewerBase::slotStatResult);
     }
