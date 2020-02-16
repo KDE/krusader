@@ -65,9 +65,9 @@ public slots:
     void terminal();
     void view();
     void viewDlg();
-    void editFile(const QUrl &fileToCreate = QUrl());
-    /** Create a new textfile and edit it. */
-    void editNewFile();
+    void editFile(const QUrl &filePath = QUrl());
+    /** Ask for a filename; if it doesn't exist, create it; edit it */
+    void askEditFile();
     void moveFilesDelayed() { moveFiles(true); }
     void copyFilesDelayed() { copyFiles(true); }
     void moveFiles(bool enqueue = false) { copyFiles(enqueue, true); }
@@ -131,7 +131,7 @@ public:
 protected slots:
     // Load the current url from history and refresh filesystem and panel to it
     void doRefresh();
-    void slotFileCreated(KJob *job, const QUrl filePath); // a file has been created by editNewFile()
+    void slotFileCreated(KJob *job, const QUrl filePath); // a file has been created by askEditFile() or slotStatEdit()
     void historyGotoPos(int pos);
     void clipboardChanged(QClipboard::Mode mode);
     // Update the directory size in view

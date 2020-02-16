@@ -472,13 +472,13 @@ void ListPanelFunc::terminal()
     SLOTS->runTerminal(panel->lastLocalPath());
 }
 
-void ListPanelFunc::editFile(const QUrl &newFilePath)
+void ListPanelFunc::editFile(const QUrl &filePath)
 {
     panel->searchBar->hideBarIfSearching();
 
     QUrl editPath;
-    if (!newFilePath.isEmpty()) {
-        editPath = newFilePath;
+    if (!filePath.isEmpty()) {
+        editPath = filePath;
     } else {
         const QString name = panel->getCurrentName();
         if (name.isNull())
@@ -486,7 +486,7 @@ void ListPanelFunc::editFile(const QUrl &newFilePath)
         editPath = files()->getUrl(name);
     }
 
-    const KFileItem fileToEdit = KFileItem(newFilePath);
+    const KFileItem fileToEdit = KFileItem(filePath);
 
     if (fileToEdit.isDir()) {
         KMessageBox::sorry(krMainWindow, i18n("You cannot edit a folder"));
@@ -501,7 +501,7 @@ void ListPanelFunc::editFile(const QUrl &newFilePath)
     KrViewer::edit(editPath);
 }
 
-void ListPanelFunc::editNewFile()
+void ListPanelFunc::askEditFile()
 {
     // ask the user for the filename to edit
     const QUrl filePath = KChooseDir::getFile(i18n("Enter the filename to edit:"),
