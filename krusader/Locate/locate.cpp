@@ -300,7 +300,7 @@ void LocateDlg::slotLocate()   /* The locate button */
     connect(locateProc, &KProcess::readyReadStandardOutput, this, &LocateDlg::processStdout);
     connect(locateProc, &KProcess::readyReadStandardError, this, &LocateDlg::processStderr);
     connect(locateProc, QOverload<int,QProcess::ExitStatus>::of(&KProcess::finished), this, &LocateDlg::locateFinished);
-    connect(locateProc, QOverload<QProcess::ProcessError>::of(&KProcess::error), this, &LocateDlg::locateError);
+    connect(locateProc, QOverload<QProcess::ProcessError>::of(&KProcess::errorOccurred), this, &LocateDlg::locateError);
 
     *locateProc << KrServices::fullPathName("locate");
     if (!isCs)
