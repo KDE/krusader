@@ -61,11 +61,9 @@ KRFSDisplay::KRFSDisplay(QWidget *parent, QString _alias, QString _realName,
         freeSpace(_free), alias(std::move(_alias)), realName(std::move(_realName)), mounted(true),
         empty(false), supermount(false)
 {
-
-    int leftMargin, topMargin, rightMargin, bottomMargin;
-    getContentsMargins(&leftMargin, &topMargin, &rightMargin, &bottomMargin);
-    resize(150 + leftMargin + rightMargin, 200 + topMargin + bottomMargin);
-    setMinimumSize(150 + leftMargin + rightMargin, 200 + topMargin + bottomMargin);
+    const QMargins margins = contentsMargins();
+    resize(150 + margins.left() + margins.right(), 200 + margins.top() + margins.bottom());
+    setMinimumSize(150 + margins.left() + margins.right(), 200 + margins.top() + margins.bottom());
     show();
 }
 
@@ -74,11 +72,9 @@ KRFSDisplay::KRFSDisplay(QWidget *parent, QString _alias, QString _realName, boo
         QWidget(parent), alias(std::move(_alias)), realName(std::move(_realName)), mounted(false),
         empty(false), supermount(sm)
 {
-
-    int leftMargin, topMargin, rightMargin, bottomMargin;
-    getContentsMargins(&leftMargin, &topMargin, &rightMargin, &bottomMargin);
-    resize(150 + leftMargin + rightMargin, 200 + topMargin + bottomMargin);
-    setMinimumSize(150 + leftMargin + rightMargin, 200 + topMargin + bottomMargin);
+    const QMargins margins = contentsMargins();
+    resize(150 + margins.left() + margins.right(), 200 + margins.top() + margins.bottom());
+    setMinimumSize(150 + margins.left() + margins.right(), 200 + margins.top() + margins.bottom());
     show();
 }
 
@@ -86,11 +82,9 @@ KRFSDisplay::KRFSDisplay(QWidget *parent, QString _alias, QString _realName, boo
 // when filesystem statistics haven't been calculated yet)
 KRFSDisplay::KRFSDisplay(QWidget *parent) : QWidget(parent), empty(true)
 {
-
-    int leftMargin, topMargin, rightMargin, bottomMargin;
-    getContentsMargins(&leftMargin, &topMargin, &rightMargin, &bottomMargin);
-    resize(150 + leftMargin + rightMargin, 200 + topMargin + bottomMargin);
-    setMinimumSize(150 + leftMargin + rightMargin, 200 + topMargin + bottomMargin);
+    const QMargins margins = contentsMargins();
+    resize(150 + margins.left() + margins.right(), 200 + margins.top() + margins.bottom());
+    setMinimumSize(150 + margins.left() + margins.right(), 200 + margins.top() + margins.bottom());
     show();
 }
 
@@ -100,61 +94,60 @@ void KRFSDisplay::paintEvent(QPaintEvent *)
 {
     QPainter paint(this);
     if (!empty) {
-        int leftMargin, topMargin, rightMargin, bottomMargin;
-        getContentsMargins(&leftMargin, &topMargin, &rightMargin, &bottomMargin);
+        const QMargins margins = contentsMargins();
         // create the text
         // first, name and location
         QFont font = paint.font();
         font.setWeight(QFont::Bold);
         paint.setFont(font);
-        paint.drawText(leftMargin + 10, topMargin + 20, alias);
+        paint.drawText(margins.left() + 10, margins.top() + 20, alias);
 
         font.setWeight(QFont::Normal);
         paint.setFont(font);
-        paint.drawText(leftMargin + 10, topMargin + 37, '(' + realName + ')');
+        paint.drawText(margins.left() + 10, margins.top() + 37, '(' + realName + ')');
 
         if (mounted) {    // incase the filesystem is already mounted
             // second, the capacity
-            paint.drawText(leftMargin + 10, topMargin + 70, i18n("Capacity: %1", KIO::convertSizeFromKiB(totalSpace)));
+            paint.drawText(margins.left() + 10, margins.top() + 70, i18n("Capacity: %1", KIO::convertSizeFromKiB(totalSpace)));
             // third, the 2 boxes (used, free)
             QPen systemPen = paint.pen();
             paint.setPen(Qt::black);
-            paint.drawRect(leftMargin + 10, topMargin + 90, 10, 10);
-            paint.fillRect(leftMargin + 11, topMargin + 91, 8, 8, QBrush(Qt::gray));
-            paint.drawRect(leftMargin + 10, topMargin + 110, 10, 10);
-            paint.fillRect(leftMargin + 11, topMargin + 111, 8, 8, QBrush(Qt::white));
+            paint.drawRect(margins.left() + 10, margins.top() + 90, 10, 10);
+            paint.fillRect(margins.left() + 11, margins.top() + 91, 8, 8, QBrush(Qt::gray));
+            paint.drawRect(margins.left() + 10, margins.top() + 110, 10, 10);
+            paint.fillRect(margins.left() + 11, margins.top() + 111, 8, 8, QBrush(Qt::white));
             // now, the text for the boxes
             paint.setPen(systemPen);
-            paint.drawText(leftMargin + 25, topMargin + 100, i18n("Used: %1", KIO::convertSizeFromKiB(totalSpace - freeSpace)));
-            paint.drawText(leftMargin + 25, topMargin + 120, i18n("Free: %1", KIO::convertSizeFromKiB(freeSpace)));
+            paint.drawText(margins.left() + 25, margins.top() + 100, i18n("Used: %1", KIO::convertSizeFromKiB(totalSpace - freeSpace)));
+            paint.drawText(margins.left() + 25, margins.top() + 120, i18n("Free: %1", KIO::convertSizeFromKiB(freeSpace)));
             // first, create the empty pie
             // bottom...
             paint.setPen(Qt::black);
             paint.setBrush(Qt::white);
-            paint.drawPie(leftMargin + LEFT, topMargin + BOTTOM, WIDTH, HEIGHT, STARTANGLE, DEG(360));
+            paint.drawPie(margins.left() + LEFT, margins.top() + BOTTOM, WIDTH, HEIGHT, STARTANGLE, DEG(360));
             // body...
             paint.setPen(Qt::lightGray);
             for (int i = 1; i < Z_HEIGHT; ++i)
-                paint.drawPie(leftMargin + LEFT, topMargin + BOTTOM - i, WIDTH, HEIGHT, STARTANGLE, DEG(360));
+                paint.drawPie(margins.left() + LEFT, margins.top() + BOTTOM - i, WIDTH, HEIGHT, STARTANGLE, DEG(360));
             // side lines...
             paint.setPen(Qt::black);
-            paint.drawLine(leftMargin + LEFT, topMargin + BOTTOM + HEIGHT / 2, LEFT, BOTTOM + HEIGHT / 2 - Z_HEIGHT);
-            paint.drawLine(leftMargin + LEFT + WIDTH, topMargin + BOTTOM + HEIGHT / 2, LEFT + WIDTH, BOTTOM + HEIGHT / 2 - Z_HEIGHT);
+            paint.drawLine(margins.left() + LEFT, margins.top() + BOTTOM + HEIGHT / 2, LEFT, BOTTOM + HEIGHT / 2 - Z_HEIGHT);
+            paint.drawLine(margins.left() + LEFT + WIDTH, margins.top() + BOTTOM + HEIGHT / 2, LEFT + WIDTH, BOTTOM + HEIGHT / 2 - Z_HEIGHT);
             // top of the pie
-            paint.drawPie(leftMargin + LEFT, topMargin + BOTTOM - Z_HEIGHT, WIDTH, HEIGHT, STARTANGLE, DEG(360));
+            paint.drawPie(margins.left() + LEFT, margins.top() + BOTTOM - Z_HEIGHT, WIDTH, HEIGHT, STARTANGLE, DEG(360));
             // the "used space" slice
             float i = ((float)(totalSpace - freeSpace) / (totalSpace)) * 360.0;
             paint.setBrush(Qt::gray);
-            paint.drawPie(leftMargin + LEFT, topMargin + BOTTOM - Z_HEIGHT, WIDTH, HEIGHT, STARTANGLE, (int) DEG(i));
+            paint.drawPie(margins.left() + LEFT, margins.top() + BOTTOM - Z_HEIGHT, WIDTH, HEIGHT, STARTANGLE, (int) DEG(i));
             // if we need to draw a 3d stripe ...
             if (i > 180.0) {
                 for (int j = 1; j < Z_HEIGHT; ++j)
-                    paint.drawArc(leftMargin + LEFT, topMargin + BOTTOM - j, WIDTH, HEIGHT, STARTANGLE - 16 * 180, (int)(DEG(i - 180.0)));
+                    paint.drawArc(margins.left() + LEFT, margins.top() + BOTTOM - j, WIDTH, HEIGHT, STARTANGLE - 16 * 180, (int)(DEG(i - 180.0)));
             }
         } else {  // if the filesystem is unmounted...
             font.setWeight(QFont::Bold);
             paint.setFont(font);
-            paint.drawText(leftMargin + 10, topMargin + 60, i18n("Not mounted."));
+            paint.drawText(margins.left() + 10, margins.top() + 60, i18n("Not mounted."));
         }
     } else {  // if the widget is in empty situation...
 
