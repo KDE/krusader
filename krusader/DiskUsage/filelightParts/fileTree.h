@@ -294,7 +294,7 @@ public:
         if (m_percent < 0)
             return "INV";
         QString buf;
-        buf.sprintf("%d.%02d%%", m_percent / 100, m_percent % 100);
+        buf.asprintf("%d.%02d%%", m_percent / 100, m_percent % 100);
         return buf;
     }
     inline void             setPercent(int p)          {

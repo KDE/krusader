@@ -435,7 +435,7 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
         }
 
         QString sbuffer;
-        sbuffer.sprintf("%llu", size);
+        sbuffer.asprintf("%llu", size);
 
         inMap[ "VolumeSize" ] = sbuffer;
     }
