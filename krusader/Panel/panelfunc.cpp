@@ -506,8 +506,9 @@ void ListPanelFunc::askEditFile()
     // ask the user for the filename to edit
     const QUrl filePath = KChooseDir::getFile(i18n("Enter the filename to edit:"),
                                        QUrl(panel->getCurrentName()), panel->virtualPath());
-    if(filePath.isEmpty())
-        return ;   // the user canceled
+    if (filePath.isEmpty()) {
+        return;   // the user canceled
+    }
 
     if (filePath.isLocalFile()) {
         // if the file exists, edit it instead of creating a new one
@@ -561,7 +562,7 @@ void ListPanelFunc::slotStatEdit(KJob* job)
     }
 
     if (statJob->statResult().isDir()) {
-        KMessageBox::error(nullptr, i18n("You cannot edit a folder"));
+        KMessageBox::sorry(nullptr, i18n("You cannot edit a folder"));
         return;
     }
 

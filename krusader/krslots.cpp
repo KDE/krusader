@@ -225,8 +225,9 @@ void KRslots::compareContent(const QUrl& url1, const QUrl& url2)
         } else tmp1 = url1.path();
         if (!url2.isLocalFile()) {
             if (!downloadToTemp(url2, tmp2)) {
-                if (tmp1 != url1.path())
+                if (tmp1 != url1.path()) {
                     QFile::remove(tmp1);
+                }
                 return;
             }
         } else tmp2 = url2.path();
@@ -236,8 +237,9 @@ void KRslots::compareContent(const QUrl& url1, const QUrl& url2)
                                  tmp2 != url2.path() ? tmp2 : QString());
     *p << diffProg << tmp1 << tmp2;
     p->start();
-    if (!p->waitForStarted())
+    if (!p->waitForStarted()) {
         KMessageBox::error(nullptr, i18n("Error executing %1.", diffProg));
+    }
 }
 
 // GUI toggle slots
