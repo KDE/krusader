@@ -486,19 +486,24 @@ void ListPanelFunc::editFile(const QUrl &filePath)
         editPath = files()->getUrl(name);
     }
 
-    const KFileItem fileToEdit = KFileItem(filePath);
+    if (editPath.isLocalFile()) {
+        const KFileItem fileToEdit = KFileItem(editPath);
 
-    if (fileToEdit.isDir()) {
-        KMessageBox::sorry(krMainWindow, i18n("You cannot edit a folder"));
-        return;
+        if (fileToEdit.isDir()) {
+            KMessageBox::sorry(krMainWindow, i18n("You cannot edit a folder"));
+            return;
+        }
+
+        if (!fileToEdit.isReadable()) {
+            KMessageBox::sorry(nullptr, i18n("No permissions to edit this file."));
+            return;
+        }
+
+        KrViewer::edit(editPath);
+    } else {
+        KIO::StatJob* statJob = KIO::stat(editPath, KIO::HideProgressInfo);
+        connect(statJob, &KIO::StatJob::result, this, &ListPanelFunc::slotStatEdit);
     }
-
-    if (!fileToEdit.isReadable()) {
-        KMessageBox::sorry(nullptr, i18n("No permissions to edit this file."));
-        return;
-    }
-
-    KrViewer::edit(editPath);
 }
 
 void ListPanelFunc::askEditFile()
