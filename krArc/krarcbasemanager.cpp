@@ -66,6 +66,21 @@ QString KrArcBaseManager::fullPathName(const QString& name)
     return supposedName;
 }
 
+QString KrArcBaseManager::find7zExecutable()
+{
+    KRFUNC;
+    QString program = fullPathName("7z");
+    if (program.isEmpty()) {
+        KRDEBUG("A 7z program was not found");
+        program = fullPathName("7za");
+        if (program.isEmpty()) {
+            KRDEBUG("A 7za program was not found");
+        }
+    }
+
+    return program;
+}
+
 //! Checks if a returned status ("exit code") of an archiving-related process is OK
 /*!
     \param arcType A short QString which contains an identifier of the type of the archive.

@@ -1564,8 +1564,9 @@ bool kio_krarcProtocol::initArcParameters()
             putCmd  << fullPathName("zip") << "-ry";
         }
 
-        if (!QStandardPaths::findExecutable(QStringLiteral("7za")).isEmpty()) {
-            renCmd  << fullPathName("7za") << "rn";
+        QString a7zExecutable = find7zExecutable();
+        if (!a7zExecutable.isEmpty()) {
+            renCmd  << a7zExecutable << "rn";
         }
 
         if (!getPassword().isEmpty()) {
@@ -1673,9 +1674,10 @@ bool kio_krarcProtocol::initArcParameters()
         putCmd  = QStringList();
     } else if (arcType == "7z") {
         noencoding = true;
-        cmd = fullPathName("7z");
-        if (QStandardPaths::findExecutable(cmd).isEmpty())
-            cmd = fullPathName("7za");
+        cmd = find7zExecutable();
+        if (cmd.isEmpty()) {
+            return false;
+        }
 
         listCmd << cmd << "l" << "-y";
         getCmd  << cmd << "e" << "-y";
@@ -1728,20 +1730,15 @@ void kio_krarcProtocol::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
         encrypted = true;
     else {  // we try to find whether the 7z archive is encrypted
         // this is hard as the headers are also compressed
-        QString tester = fullPathName("7z");
-        if (QStandardPaths::findExecutable(tester).isEmpty()) {
-            KRDEBUG("A 7z program was not found");
-            tester = fullPathName("7za");
-            if (QStandardPaths::findExecutable(tester).isEmpty()) {
-                KRDEBUG("A 7za program was not found");
-                return;
-            }
+        QString a7zExecutable = find7zExecutable();
+        if (a7zExecutable.isEmpty()) {
+            return;
         }
 
         lastData = encryptedArchPath = "";
 
         KrLinecountingProcess proc;
-        proc << tester << "-y" << "t" << fileName;
+        proc << a7zExecutable << "-y" << "t" << fileName;
         connect(&proc, &KrLinecountingProcess::newOutputData, this, &kio_krarcProtocol::check7zOutputForPassword);
         proc.start();
         proc.waitForFinished();

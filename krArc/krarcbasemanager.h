@@ -54,6 +54,8 @@ protected:
 
     //! Search for the full path to a program
     QString fullPathName(const QString& name);
+    //! Find the path to a 7z (or 7za) executable
+    QString find7zExecutable();
 
     static bool checkStatus(const QString &, int);
 
