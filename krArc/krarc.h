@@ -30,8 +30,6 @@
 #include <KIO/Global>
 #include <KIO/SlaveBase>
 #include <KCoreAddons/KProcess>
-#include <KConfigCore/KConfig>
-#include <KConfigCore/KConfigGroup>
 
 #include "krarcbasemanager.h"
 #include "krlinecountingprocess.h"
@@ -97,7 +95,6 @@ private:
     KIO::UDSEntry* findFileEntry(const QUrl &url);
     /** add a new directory (file list container). */
     KIO::UDSEntryList* addNewDir(const QString& path);
-    QString fullPathName(const QString& name);
     bool checkWriteSupport();
 
     QHash<QString, KIO::UDSEntryList *> dirDict; //< the directories data structure.
@@ -113,8 +110,6 @@ private:
     QString arcType;                  //< the archive type.
     bool extArcReady;                 //< Used for RPM & DEB files.
     QString password;                 //< Password for the archives
-    KConfig krConf;                   //< The configuration file for krusader
-    KConfigGroup dependGrp;           //< the 'Dependencies' config group
 
     QString lastData;
     QString encryptedArchPath;

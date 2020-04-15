@@ -20,8 +20,11 @@
  *****************************************************************************/
 
 #include "krarcbasemanager.h"
+#include "../krusader/krdebuglogger.h"
 
 #include <KArchive/KTar>
+
+#include <QtCore/QStandardPaths>
 
 KrArcBaseManager::AutoDetectParams KrArcBaseManager::autoDetectParams[] = {{"zip",  0, "PK\x03\x04"},
     {"rar",  0, "Rar!\x1a" },
@@ -37,6 +40,31 @@ KrArcBaseManager::AutoDetectParams KrArcBaseManager::autoDetectParams[] = {{"zip
 
 int KrArcBaseManager::autoDetectElems = sizeof(autoDetectParams) / sizeof(AutoDetectParams);
 const int KrArcBaseManager::maxLenType = 5;
+
+KrArcBaseManager::KrArcBaseManager() : krConf("krusaderrc"), dependGrp(&krConf, "Dependencies") {}
+
+QString KrArcBaseManager::fullPathName(const QString& name)
+{
+    // Reminder: If that function is modified, it's important to research if the
+    // changes must also be applied to `KrServices::fullPathName()`
+    // and `KrServices::cmdExist()`
+
+    // Note: KRFUNC was not used here in order to avoid filling the log with too much information
+    KRDEBUG(name);
+
+    QString supposedName = dependGrp.readEntry(name, QString());
+    if (QFileInfo::exists(supposedName))
+        return supposedName;
+
+    if ((supposedName = QStandardPaths::findExecutable(name)).isEmpty())
+         return QString();
+
+    // Because an executable file has been found, its path is remembered
+    // in order to avoid being searched next time
+    dependGrp.writeEntry(name, supposedName);
+
+    return supposedName;
+}
 
 //! Checks if a returned status ("exit code") of an archiving-related process is OK
 /*!

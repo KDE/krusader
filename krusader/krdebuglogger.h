@@ -24,6 +24,7 @@
 
 // QtCore
 #include <QFile>
+#include <QDebug>
 #include <QDir>
 #include <QTextStream>
 

@@ -147,11 +147,9 @@ extern "C"
 #ifdef KRARC_ENABLED
 kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
         : SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(nullptr), extArcReady(false),
-        password(QString()), krConf("krusaderrc"), codec(nullptr)
+        password(QString()), codec(nullptr)
 {
     KRFUNC;
-    dependGrp = KConfigGroup(&krConf, "Dependencies");
-
     KConfigGroup group(&krConf, "General");
     QString tmpDirPath = group.readEntry("Temp Directory", _TempDirectory);
     QDir tmpDir(tmpDirPath);
@@ -1851,29 +1849,6 @@ QString kio_krarcProtocol::getPassword()
 
     KRDEBUG(password);
     return password;
-}
-
-QString kio_krarcProtocol::fullPathName(const QString& name)
-{
-    // Reminder: If that function is modified, it's important to research if the
-    // changes must also be applied to `KrServices::fullPathName()`
-    // and `KrServices::cmdExist()`
-
-    // Note: KRFUNC was not used here in order to avoid filling the log with too much information
-    KRDEBUG(name);
-
-    QString supposedName = dependGrp.readEntry(name, QString());
-    if (QFileInfo::exists(supposedName))
-        return supposedName;
-
-    if ((supposedName = QStandardPaths::findExecutable(name)).isEmpty())
-         return QString();
-
-    // Because an executable file has been found, its path is remembered
-    // in order to avoid some future searches
-    dependGrp.writeEntry(name, supposedName);
-
-    return supposedName;
 }
 
 QString kio_krarcProtocol::localeEncodedString(QString str)

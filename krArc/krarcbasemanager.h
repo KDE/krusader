@@ -22,6 +22,9 @@
 #ifndef KRARCBASEMANAGER_H
 #define KRARCBASEMANAGER_H
 
+#include <KConfigCore/KConfig>
+#include <KConfigCore/KConfigGroup>
+
 // QtCore
 #include <QFile>
 
@@ -44,11 +47,18 @@ private:
 protected:
     //! The maximum length of a short QString that represents the type of a file
     static const int maxLenType;
+    //! The configuration file for Krusader
+    KConfig krConf;
+    //! The 'Dependencies' config group
+    KConfigGroup dependGrp;
+
+    //! Search for the full path to a program
+    QString fullPathName(const QString& name);
 
     static bool checkStatus(const QString &, int);
 
 public:
-    KrArcBaseManager() {}
+    KrArcBaseManager();
     QString detectArchive(bool &, const QString&, bool = true, bool = false);
     virtual void checkIf7zIsEncrypted(bool &, QString) = 0;
     static QString getShortTypeFromMime(const QString &);
