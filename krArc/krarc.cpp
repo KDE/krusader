@@ -1722,6 +1722,9 @@ bool kio_krarcProtocol::checkStatus(int exitCode)
 
 void kio_krarcProtocol::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
 {
+    // Reminder: If that function is modified, it's important to research if the
+    // changes must also be applied to `KRarcHandler::checkIf7zIsEncrypted()`
+
     KRFUNC;
     if (encryptedArchPath == fileName)
         encrypted = true;
@@ -1753,6 +1756,9 @@ void kio_krarcProtocol::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
 
 void kio_krarcProtocol::check7zOutputForPassword(KProcess * proc, QByteArray & buf)
 {
+    // Reminder: If that function is modified, it's important to research if the
+    // changes must also be applied to `Kr7zEncryptionChecker::receivedOutput()`
+
     KRFUNC;
     QString data =  QString(buf);
 
@@ -1869,6 +1875,10 @@ QString kio_krarcProtocol::detectFullPathName(QString name)
 
 QString kio_krarcProtocol::fullPathName(const QString& name)
 {
+    // Reminder: If that function is modified, it's important to research if the
+    // changes must also be applied to `KrServices::fullPathName()`
+    // and `KrServices::cmdExist()`
+
     // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     KRDEBUG(name);
 

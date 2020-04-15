@@ -658,6 +658,9 @@ bool KRarcHandler::checkStatus(const QString& type, int exitCode)
 
 void KRarcHandler::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
 {
+    // Reminder: If that function is modified, it's important to research if the
+    // changes must also be applied to `kio_krarcProtocol::checkIf7zIsEncrypted()`
+
     Kr7zEncryptionChecker proc;
     // TODO incorporate all this in Kr7zEncryptionChecker
     proc << KrServices::fullPathName("7z") << "-y" << "t";

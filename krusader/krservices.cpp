@@ -89,6 +89,10 @@ QSet<QString> KrServices::generateKrarcArchiveMimetypes()
 
 bool KrServices::cmdExist(const QString& cmdName)
 {
+    // Reminder: If that function is modified, it's important to research if the
+    // changes must also be applied to `KrServices::fullPathName()`
+    // and `kio_krarcProtocol::fullPathName()`
+
     KConfigGroup group(krConfig, "Dependencies");
     if (QFile(group.readEntry(cmdName, QString())).exists())
         return true;
@@ -98,6 +102,10 @@ bool KrServices::cmdExist(const QString& cmdName)
 
 QString KrServices::fullPathName(const QString& name, QString confName)
 {
+    // Reminder: If that function is modified, it's important to research if the
+    // changes must also be applied to `kio_krarcProtocol::fullPathName()`
+    // and `KrServices::cmdExist()`
+
     QString supposedName;
 
     if (confName.isNull())

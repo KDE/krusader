@@ -36,6 +36,9 @@ void Kr7zEncryptionChecker::setupChildProcess()
 
 void Kr7zEncryptionChecker::receivedOutput()
 {
+    // Reminder: If that function is modified, it's important to research if the
+    // changes must also be applied to `kio_krarcProtocol::check7zOutputForPassword()`
+
     QString data = QString::fromLocal8Bit(this->readAllStandardOutput());
 
     QString checkable = lastData + data;
