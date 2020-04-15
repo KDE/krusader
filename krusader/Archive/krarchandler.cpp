@@ -228,7 +228,7 @@ long KRarcHandler::arcFileCount(const QString& archive, const QString& type, con
             lister << KrServices::fullPathName("unarj") << "l";
     } else if (type == "rpm") lister << KrServices::fullPathName("rpm") << "--dump" << "-lpq";
     else if (type == "deb") lister << KrServices::fullPathName("dpkg") << "-c";
-    else if (type == "7z")  lister << KrServices::fullPathName("7z") << "-y" << "l";
+    else if (type == "7z")  lister << find7zExecutable() << "-y" << "l";
     else return 0L;
 
     if (!password.isNull()) {
@@ -316,7 +316,7 @@ bool KRarcHandler::unpack(QString archive, const QString& type, const QString& p
             packer << KrServices::fullPathName("arj") << "-y" << "-v" << "x";
         else
             packer << KrServices::fullPathName("unarj") << "x";
-    } else if (type == "7z")  packer << KrServices::fullPathName("7z") << "-y" << "x";
+    } else if (type == "7z")  packer << find7zExecutable() << "-y" << "x";
     else if (type == "rpm") {
         // TODO use QTemporaryFile (setAutoRemove(false) when asynchrone)
         cpioName = QDir::tempPath() + QStringLiteral("/contents.cpio");
@@ -426,7 +426,7 @@ bool KRarcHandler::test(const QString& archive, const QString& type, const QStri
     else if (type == "lha") packer << KrServices::fullPathName("lha") << "t";
     else if (type == "arj") packer << KrServices::fullPathName(KrServices::cmdExist("arj") ? "arj" : "unarj") << "t";
     else if (type == "cpio") packer << KrServices::fullPathName("cpio") << "--only-verify-crc" << "-tvF";
-    else if (type == "7z")  packer << KrServices::fullPathName("7z") << "-y" << "t";
+    else if (type == "7z")  packer << find7zExecutable() << "-y" << "t";
     else return false;
 
     if (!password.isNull()) {
@@ -504,7 +504,7 @@ bool KRarcHandler::pack(QStringList fileNames, QString type, const QString& dest
     } else if (type == "arj") {
         packer << KrServices::fullPathName("arj") << "-r" << "-y" << "a";
     } else if (type == "7z") {
-        packer << KrServices::fullPathName("7z") << "-y" << "a";
+        packer << find7zExecutable() << "-y" << "a";
     } else return false;
 
     QString password;
@@ -705,7 +705,7 @@ void KRarcHandler::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
 
     Kr7zEncryptionChecker proc;
     // TODO incorporate all this in Kr7zEncryptionChecker
-    proc << KrServices::fullPathName("7z") << "-y" << "t";
+    proc << find7zExecutable() << "-y" << "t";
     proc << fileName;
     proc.start();
     proc.waitForFinished();

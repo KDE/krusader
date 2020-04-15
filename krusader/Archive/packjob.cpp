@@ -20,6 +20,7 @@
 
 #include "packjob.h"
 #include "krarchandler.h"
+#include "../krglobal.h"
 
 // QtCore
 #include <QDir>
@@ -64,7 +65,7 @@ void PackThread::slotStart()
 
     QString save = QDir::currentPath();
     QDir::setCurrent(arcDir);
-    bool result = KRarcHandler::pack(_fileNames, _type, arcFile, totalFiles, _packProperties, observer());
+    bool result = krArcMan.pack(_fileNames, _type, arcFile, totalFiles, _packProperties, observer());
     QDir::setCurrent(save);
 
     if (isExited())
@@ -108,7 +109,7 @@ void TestArchiveThread::slotStart()
             return;
 
         // test the archive
-        if (!KRarcHandler::test(path, type, password, observer(), 0)) {
+        if (!krArcMan.test(path, type, password, observer(), 0)) {
             sendError(KIO::ERR_NO_CONTENT, i18nc("%1=archive filename", "%1, test failed.", arcName));
             return;
         }
@@ -150,7 +151,7 @@ void UnpackThread::slotStart()
 
         setProgressTitle(i18n("Processed files"));
         // unpack the files
-        bool result = KRarcHandler::unpack(path, type, password, localDest, observer());
+        bool result = krArcMan.unpack(path, type, password, localDest, observer());
 
         if (isExited())
             return;

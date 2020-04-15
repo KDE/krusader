@@ -59,13 +59,13 @@ public:
     explicit KRarcHandler(QObject *parent = nullptr);
 
     // return the number of files in the archive
-    static long arcFileCount(const QString& archive, const QString& type, const QString& password, KRarcObserver *observer);
+    long arcFileCount(const QString& archive, const QString& type, const QString& password, KRarcObserver *observer);
     // unpack an archive to destination directory
-    static bool unpack(QString archive, const QString& type, const QString& password, const QString& dest, KRarcObserver *observer );
+    bool unpack(QString archive, const QString& type, const QString& password, const QString& dest, KRarcObserver *observer );
     // pack an archive to destination directory
-    static bool pack(QStringList fileNames, QString type, const QString& dest, long count, QMap<QString, QString> extraProps, KRarcObserver *observer );
+    bool pack(QStringList fileNames, QString type, const QString& dest, long count, QMap<QString, QString> extraProps, KRarcObserver *observer );
     // test an archive
-    static bool test(const QString& archive, const QString& type, const QString& password, KRarcObserver *observer, long count = 0L );
+    bool test(const QString& archive, const QString& type, const QString& password, KRarcObserver *observer, long count = 0L );
     // returns `true` if the right unpacker exist in the system
     static bool arcSupported(QString type);
     // return the list of supported packers
