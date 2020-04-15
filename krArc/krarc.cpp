@@ -1853,26 +1853,6 @@ QString kio_krarcProtocol::getPassword()
     return password;
 }
 
-QString kio_krarcProtocol::detectFullPathName(QString name)
-{
-    // Note: KRFUNC was not used here in order to avoid filling the log with too much information
-    KRDEBUG(name);
-
-    name = name + EXEC_SUFFIX;
-    QStringList path = QString::fromLocal8Bit(qgetenv("PATH")).split(':');
-
-    for (auto & it : path) {
-        if (QDir(it).exists(name)) {
-            QString dir = it;
-            if (!dir.endsWith(DIR_SEPARATOR))
-                dir += DIR_SEPARATOR;
-
-            return dir + name;
-        }
-    }
-    return name;
-}
-
 QString kio_krarcProtocol::fullPathName(const QString& name)
 {
     // Reminder: If that function is modified, it's important to research if the
@@ -1883,8 +1863,16 @@ QString kio_krarcProtocol::fullPathName(const QString& name)
     KRDEBUG(name);
 
     QString supposedName = confGrp.readEntry(name, QString());
-    if (supposedName.isEmpty())
-        supposedName = detectFullPathName(name);
+    if (QFileInfo::exists(supposedName))
+        return supposedName;
+
+    if ((supposedName = QStandardPaths::findExecutable(name)).isEmpty())
+         return QString();
+
+    // Because an executable file has been found, its path is remembered
+    // in order to avoid some future searches
+    confGrp.writeEntry(name, supposedName);
+
     return supposedName;
 }
 

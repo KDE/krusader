@@ -43,10 +43,18 @@ bool KrServices::cmdExist(const QString& cmdName)
     // and `kio_krarcProtocol::fullPathName()`
 
     KConfigGroup group(krConfig, "Dependencies");
-    if (QFile(group.readEntry(cmdName, QString())).exists())
+    QString supposedName = group.readEntry(cmdName, QString());
+    if (QFileInfo::exists(supposedName))
         return true;
 
-    return !QStandardPaths::findExecutable(cmdName).isEmpty();
+    if ((supposedName = QStandardPaths::findExecutable(cmdName)).isEmpty())
+         return false;
+
+    // Because an executable file has been found, its path is remembered
+    // in order to avoid some future searches
+    group.writeEntry(cmdName, supposedName);
+
+    return true;
 }
 
 QString KrServices::fullPathName(const QString& name, QString confName)
@@ -55,19 +63,21 @@ QString KrServices::fullPathName(const QString& name, QString confName)
     // changes must also be applied to `kio_krarcProtocol::fullPathName()`
     // and `KrServices::cmdExist()`
 
-    QString supposedName;
-
     if (confName.isNull())
         confName = name;
 
     KConfigGroup config(krConfig, "Dependencies");
-    if (QFile(supposedName = config.readEntry(confName, QString())).exists())
+    QString supposedName = config.readEntry(confName, QString());
+    if (QFileInfo::exists(supposedName))
         return supposedName;
 
     if ((supposedName = QStandardPaths::findExecutable(name)).isEmpty())
-        return "";
+        return QString();
 
+    // Because an executable file has been found, its path is remembered
+    // in order to avoid some future searches
     config.writeEntry(confName, supposedName);
+
     return supposedName;
 }
 

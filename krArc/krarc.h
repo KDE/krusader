@@ -98,7 +98,6 @@ private:
     /** add a new directory (file list container). */
     KIO::UDSEntryList* addNewDir(const QString& path);
     QString fullPathName(const QString& name);
-    static QString detectFullPathName(QString name);
     bool checkWriteSupport();
 
     QHash<QString, KIO::UDSEntryList *> dirDict; //< the directories data structure.
