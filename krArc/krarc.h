@@ -58,7 +58,7 @@ public:
 
 public slots:
     void receivedData(KProcess *, QByteArray &);
-    void checkOutputForPassword(KProcess *, QByteArray &);
+    void check7zOutputForPassword(KProcess *, QByteArray &);
 
 protected:
     virtual bool   initDirDict(const QUrl &url, bool forced = false);

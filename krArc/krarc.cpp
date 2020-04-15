@@ -1737,12 +1737,11 @@ void kio_krarcProtocol::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
             }
         }
 
-        QString testCmd = tester + " t -y ";
         lastData = encryptedArchPath = "";
 
         KrLinecountingProcess proc;
-        proc << testCmd << fileName;
-        connect(&proc, &KrLinecountingProcess::newOutputData, this, &kio_krarcProtocol::checkOutputForPassword);
+        proc << tester << "-y" << "t" << fileName;
+        connect(&proc, &KrLinecountingProcess::newOutputData, this, &kio_krarcProtocol::check7zOutputForPassword);
         proc.start();
         proc.waitForFinished();
         encrypted = this->encrypted;
@@ -1752,7 +1751,7 @@ void kio_krarcProtocol::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
     }
 }
 
-void kio_krarcProtocol::checkOutputForPassword(KProcess * proc, QByteArray & buf)
+void kio_krarcProtocol::check7zOutputForPassword(KProcess * proc, QByteArray & buf)
 {
     KRFUNC;
     QString data =  QString(buf);
