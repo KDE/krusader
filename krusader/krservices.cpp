@@ -34,58 +34,7 @@
 #include "krglobal.h"
 #include "defaults.h"
 
-QMap<QString, QString>* KrServices::slaveMap = nullptr;
-QSet<QString> KrServices::krarcArchiveMimetypes = KrServices::generateKrarcArchiveMimetypes();
-#ifdef KRARC_QUERY_ENABLED
-QSet<QString> KrServices::isoArchiveMimetypes = QSet<QString>::fromList(KProtocolInfo::archiveMimetypes("iso"));
-#else
-QSet<QString> KrServices::isoArchiveMimetypes;
-#endif
-
 QString KrServices::GLOBAL_MESSAGE_PATTERN = "%{time hh:mm:ss.zzz}-%{type} %{category} %{function}@%{line} # %{message}";
-
-QSet<QString> KrServices::generateKrarcArchiveMimetypes()
-{
-    // Reminder: If a mime type is added/removed/modified in that
-    // member function, it's important to research if the type has to
-    // be added/removed/modified in the `krarc.protocol` file, or
-    // in `KrArcBaseManager::getShortTypeFromMime(const QString &mime)`
-
-    // Hard-code these proven mimetypes openable by krarc protocol.
-    // They cannot be listed in krarc.protocol itself
-    // because it would baffle other file managers (like Dolphin).
-    QSet<QString> mimes;
-    mimes += QString("application/x-deb");
-    mimes += QString("application/x-debian-package");
-    mimes += QString("application/vnd.debian.binary-package");
-    mimes += QString("application/x-java-archive");
-    mimes += QString("application/x-rpm");
-    mimes += QString("application/x-source-rpm");
-    mimes += QString("application/vnd.oasis.opendocument.chart");
-    mimes += QString("application/vnd.oasis.opendocument.database");
-    mimes += QString("application/vnd.oasis.opendocument.formula");
-    mimes += QString("application/vnd.oasis.opendocument.graphics");
-    mimes += QString("application/vnd.oasis.opendocument.presentation");
-    mimes += QString("application/vnd.oasis.opendocument.spreadsheet");
-    mimes += QString("application/vnd.oasis.opendocument.text");
-    mimes += QString("application/vnd.openxmlformats-officedocument.presentationml.presentation");
-    mimes += QString("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-    mimes += QString("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-    mimes += QString("application/x-cbz");
-    mimes += QString("application/vnd.comicbook+zip");
-    mimes += QString("application/x-cbr");
-    mimes += QString("application/vnd.comicbook-rar");
-    mimes += QString("application/epub+zip");
-    mimes += QString("application/x-webarchive");
-    mimes += QString("application/x-plasma");
-    mimes += QString("application/vnd.rar");
-
-    #ifdef KRARC_QUERY_ENABLED
-    mimes += QSet<QString>::fromList(KProtocolInfo::archiveMimetypes("krarc"));
-    #endif
-
-    return mimes;
-}
 
 bool KrServices::cmdExist(const QString& cmdName)
 {
@@ -140,39 +89,13 @@ bool KrServices::isExecutable(const QString &path)
     return info.isFile() && info.isExecutable();
 }
 
-QString KrServices::registeredProtocol(const QString& mimetype)
-{
-    if (slaveMap == nullptr) {
-        slaveMap = new QMap<QString, QString>();
-
-        KConfigGroup group(krConfig, "Protocols");
-        QStringList protList = group.readEntry("Handled Protocols", QStringList());
-        for (auto & it : protList) {
-            QStringList mimes = group.readEntry(QString("Mimes For %1").arg(it), QStringList());
-            for (auto & mime : mimes)
-                (*slaveMap)[mime] = it;
-        }
-    }
-    QString protocol = (*slaveMap)[mimetype];
-    if (protocol.isEmpty()) {
-        if (krarcArchiveMimetypes.contains(mimetype)) {
-            return "krarc";
-        }
-        protocol = KProtocolManager::protocolForArchiveMimetype(mimetype);
-    }
-    return protocol;
-}
-
 bool KrServices::isoSupported(const QString& mimetype)
 {
-    return isoArchiveMimetypes.contains(mimetype);
-}
-
-void KrServices::clearProtocolCache()
-{
-    if (slaveMap)
-        delete slaveMap;
-    slaveMap = nullptr;
+#ifdef KRARC_QUERY_ENABLED
+    return KProtocolInfo::archiveMimetypes("iso").contains(mimetype);
+#else
+    return false;
+#endif
 }
 
 bool KrServices::fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines)

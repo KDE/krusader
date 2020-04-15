@@ -32,6 +32,7 @@
 
 #include <KIO/Global>
 
+#include "../krglobal.h"
 #include "../Archive/krarchandler.h"
 #include "../FileSystem/defaultfilesystem.h"
 #include "../FileSystem/fileitem.h"
@@ -42,8 +43,6 @@
 #define EVENT_PROCESS_DELAY 250 // milliseconds
 
 static const QStringList TAR_TYPES = QStringList() << "tbz" << "tgz" << "tarz" << "tar" << "tlz";
-
-extern KRarcHandler arcHandler;
 
 KRSearchMod::KRSearchMod(const KRQuery *query)
     : m_defaultFileSystem(nullptr), m_virtualFileSystem(nullptr), m_stopSearch(false)
@@ -133,7 +132,7 @@ void KRSearchMod::scanDirectory(const QUrl &url)
             // query search in archive; NOTE: only supported for local files
             QUrl archiveURL = fileUrl;
             bool encrypted;
-            const QString type = arcHandler.getType(encrypted, fileUrl.path(), fileItem->getMime());
+            const QString type = krArcMan.getType(encrypted, fileUrl.path(), fileItem->getMime());
 
             if (!encrypted) {
                 archiveURL.setScheme(TAR_TYPES.contains(type) ? "tar" : "krarc");

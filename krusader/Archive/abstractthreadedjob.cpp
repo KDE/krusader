@@ -39,8 +39,6 @@
 #include "../krservices.h"
 #include "../FileSystem/filesystemprovider.h"
 
-extern KRarcHandler arcHandler;
-
 AbstractThreadedJob::AbstractThreadedJob() : _maxProgressValue(0),
         _currentProgress(0), _exiting(false), _jobThread(nullptr)
 {
@@ -650,7 +648,7 @@ bool AbstractJobThread::getArchiveInformation(QString &path, QString &type, QStr
     QMimeType mt = db.mimeTypeForUrl(url);
     QString mime = mt.isValid() ? mt.name() : QString();
     bool encrypted = false;
-    type = arcHandler.getType(encrypted, path, mime);
+    type = krArcMan.getType(encrypted, path, mime);
 
     // Check that the archive is supported
     if (!KRarcHandler::arcSupported(type)) {

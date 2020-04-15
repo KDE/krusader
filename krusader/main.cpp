@@ -87,9 +87,6 @@ void openTabsRemote(QStringList tabs, bool left, const QString& appName)
         fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
 }
 
-//! An object that manages archives in several parts of the source code.
-KRarcHandler arcHandler;
-
 int main(int argc, char *argv[])
 {
     // set global log message format

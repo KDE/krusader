@@ -31,6 +31,7 @@
 
 KConfig *KrGlobal::config = nullptr;
 KMountMan *KrGlobal::mountMan = nullptr;
+KRarcHandler *KrGlobal::arcMan = nullptr;
 KrBookmarkHandler *KrGlobal::bookman = nullptr;
 KRslots *KrGlobal::slot = nullptr;
 KrusaderView *KrGlobal::mainView = nullptr;

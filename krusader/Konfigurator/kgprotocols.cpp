@@ -22,6 +22,7 @@
 #include "../krglobal.h"
 #include "../icon.h"
 #include "../krservices.h"
+#include "../Archive/krarchandler.h"
 
 // QtCore
 #include <QMimeDatabase>
@@ -378,7 +379,7 @@ bool KgProtocols::apply()
     group.writeEntry("Handled Protocols", protocolList);
     krConfig->sync();
 
-    KrServices::clearProtocolCache();
+    KRarcHandler::clearProtocolCache();
 
     emit sigChanged();
     return false;

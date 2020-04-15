@@ -29,6 +29,7 @@
 
 class KConfig;
 class KMountMan;
+class KRarcHandler;
 class KrBookmarkHandler;
 class KRslots;
 class KrusaderView;
@@ -44,6 +45,7 @@ class KrGlobal
 public:
     static KConfig *config;    // allow everyone to access the config
     static KMountMan *mountMan;  // krusader's Mount Manager
+    static KRarcHandler *arcMan;  //! Manages archives in several parts of the code
     static KrBookmarkHandler *bookman;
     static KRslots *slot;
     static KrusaderView *mainView;  // The GUI
@@ -66,6 +68,7 @@ public:
 
 #define krConfig     KrGlobal::config
 #define krMtMan      (*(KrGlobal::mountMan))
+#define krArcMan     (*(KrGlobal::arcMan))
 #define krBookMan    KrGlobal::bookman
 #define SLOTS        KrGlobal::slot
 #define MAIN_VIEW    KrGlobal::mainView

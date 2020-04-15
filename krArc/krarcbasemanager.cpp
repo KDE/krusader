@@ -209,7 +209,7 @@ QString KrArcBaseManager::getShortTypeFromMime(const QString &mime)
     // Reminder: If a mime type is added/removed/modified in that
     // member function, it's important to research if the type has to
     // be added/removed/modified in the `krarc.protocol` file, or
-    // in `KrServices::generateKrarcArchiveMimetypes()`
+    // in `KRarcHandler::KRarcHandler()`
 
     // 7zip files are a not a normal case because their mimetype does not
     // follow the norm of other types: zip, tar, lha, ace, arj, etc.

@@ -913,7 +913,7 @@ QUrl ListPanelFunc::browsableArchivePath(const QString &filename)
     QString mime = fileitem->getMime();
 
     if(url.isLocalFile()) {
-        QString protocol = KrServices::registeredProtocol(mime);
+        QString protocol = krArcMan.registeredProtocol(mime);
         if(!protocol.isEmpty()) {
             url.setScheme(protocol);
             return url;

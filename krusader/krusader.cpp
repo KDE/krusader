@@ -54,6 +54,7 @@
 
 #include "defaults.h"
 #include "kractions.h"
+#include "krarchandler.h"
 #include "krglobal.h"
 #include "krservices.h"
 #include "krslots.h"
@@ -135,6 +136,9 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
     if (!message.isEmpty()) {
         KMessageBox::error(krApp, message);
     }
+
+    // create an object that manages archives in several parts of the source code
+    KrGlobal::arcMan = new KRarcHandler(this);
 
     // create MountMan
     KrGlobal::mountMan = new KMountMan(this);

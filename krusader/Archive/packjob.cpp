@@ -29,8 +29,6 @@
 
 #include <KI18n/KLocalizedString>
 
-extern KRarcHandler arcHandler;
-
 PackJob::PackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps)
 {
     startAbstractJobThread(new PackThread(srcUrl, destUrl, fileNames, type, packProps));

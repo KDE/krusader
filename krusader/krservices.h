@@ -41,10 +41,8 @@ public:
     static QString      chooseFullPathName(QStringList names, const QString& confName);
     static QString      fullPathName(const QString& name, QString confName = QString());
     static bool         isExecutable(const QString &path);
-    static QString      registeredProtocol(const QString& mimetype);
     static bool         isoSupported(const QString& mimetype);
     static QString      urlToLocalPath(const QUrl &url);
-    static void         clearProtocolCache();
     static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines = false);
     static bool         fileToStringList(QFile *file, QStringList& target, bool keepEmptyLines = false);
     static QString      quote(const QString& name);
@@ -67,10 +65,6 @@ protected:
 private:
     KrServices() {}
     ~KrServices() {}
-    static QSet<QString> generateKrarcArchiveMimetypes();
-    static QMap<QString, QString>* slaveMap;
-    static QSet<QString> krarcArchiveMimetypes;
-    static QSet<QString> isoArchiveMimetypes;
     static void krMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 };
 

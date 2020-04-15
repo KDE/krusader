@@ -24,6 +24,7 @@
 // QtCore
 #include <QStringList>
 #include <QObject>
+#include <QSet>
 #include <QUrl>
 
 #include <KCoreAddons/KProcess>
@@ -55,6 +56,8 @@ class KRarcHandler: public QObject, public KrArcBaseManager
 {
     Q_OBJECT
 public:
+    explicit KRarcHandler(QObject *parent = nullptr);
+
     // return the number of files in the archive
     static long arcFileCount(const QString& archive, const QString& type, const QString& password, KRarcObserver *observer);
     // unpack an archive to destination directory
@@ -75,11 +78,22 @@ public:
     static QString getPassword(const QString& path);
     // detects the archive type
     void checkIf7zIsEncrypted(bool &, QString) override;
+    // returns the registered protocol associated with the mimetype
+    QString registeredProtocol(const QString& mimetype);
+    // clear the cache of handled protocols
+    static void clearProtocolCache();
+
 private:
     //! checks if a returned status ("exit code") of an archiving-related process is OK
     static bool checkStatus(const QString& type, int exitCode);
 
     static bool openWallet();
+
+    //! the list of archive mimetypes that are openable by the krarc protocol
+    QSet<QString> krarcArchiveMimetypes;
+
+    //! the cache of handled protocols
+    static QMap<QString, QString>* slaveMap;
 
     static KWallet::Wallet * wallet;
 };

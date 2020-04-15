@@ -32,6 +32,7 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIO/Global>
+#include <KIOCore/KProtocolManager>
 #include <KWallet/KWallet>
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KPasswordDialog>
@@ -84,7 +85,48 @@ public:
 
 static QStringList arcProtocols = QString("tar;bzip;bzip2;lzma;xz;gzip;krarc;zip").split(';');
 
+QMap<QString, QString>* KRarcHandler::slaveMap = nullptr;
 KWallet::Wallet * KRarcHandler::wallet = nullptr;
+
+KRarcHandler::KRarcHandler(QObject *parent) : QObject(parent)
+{
+    // Reminder: If a mime type is added/removed/modified in that
+    // member function, it's important to research if the type has to
+    // be added/removed/modified in the `krarc.protocol` file, or
+    // in `KrArcBaseManager::getShortTypeFromMime(const QString &mime)`
+
+    // Hard-code these proven mimetypes openable by krarc protocol.
+    // They cannot be listed in krarc.protocol itself
+    // because it would baffle other file managers (like Dolphin).
+    krarcArchiveMimetypes = { QStringLiteral("application/x-deb"),
+                              QStringLiteral("application/x-debian-package"),
+                              QStringLiteral("application/vnd.debian.binary-package"),
+                              QStringLiteral("application/x-java-archive"),
+                              QStringLiteral("application/x-rpm"),
+                              QStringLiteral("application/x-source-rpm"),
+                              QStringLiteral("application/vnd.oasis.opendocument.chart"),
+                              QStringLiteral("application/vnd.oasis.opendocument.database"),
+                              QStringLiteral("application/vnd.oasis.opendocument.formula"),
+                              QStringLiteral("application/vnd.oasis.opendocument.graphics"),
+                              QStringLiteral("application/vnd.oasis.opendocument.presentation"),
+                              QStringLiteral("application/vnd.oasis.opendocument.spreadsheet"),
+                              QStringLiteral("application/vnd.oasis.opendocument.text"),
+                              QStringLiteral("application/vnd.openxmlformats-officedocument.presentationml.presentation"),
+                              QStringLiteral("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"),
+                              QStringLiteral("application/vnd.openxmlformats-officedocument.wordprocessingml.document"),
+                              QStringLiteral("application/x-cbz"),
+                              QStringLiteral("application/vnd.comicbook+zip"),
+                              QStringLiteral("application/x-cbr"),
+                              QStringLiteral("application/vnd.comicbook-rar"),
+                              QStringLiteral("application/epub+zip"),
+                              QStringLiteral("application/x-webarchive"),
+                              QStringLiteral("application/x-plasma"),
+                              QStringLiteral("application/vnd.rar") };
+
+    #ifdef KRARC_QUERY_ENABLED
+    krarcArchiveMimetypes += QSet<QString>::fromList(KProtocolInfo::archiveMimetypes("krarc"));
+    #endif
+}
 
 QStringList KRarcHandler::supportedPackers()
 {
@@ -668,5 +710,35 @@ void KRarcHandler::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
     proc.start();
     proc.waitForFinished();
     encrypted = proc.isEncrypted();
+}
+
+QString KRarcHandler::registeredProtocol(const QString& mimetype)
+{
+    if (slaveMap == nullptr) {
+        slaveMap = new QMap<QString, QString>();
+
+        KConfigGroup group(krConfig, "Protocols");
+        QStringList protList = group.readEntry("Handled Protocols", QStringList());
+        for (auto & it : protList) {
+            QStringList mimes = group.readEntry(QString("Mimes For %1").arg(it), QStringList());
+            for (auto & mime : mimes)
+                (*slaveMap)[mime] = it;
+        }
+    }
+    QString protocol = (*slaveMap)[mimetype];
+    if (protocol.isEmpty()) {
+        if (krarcArchiveMimetypes.contains(mimetype)) {
+            return QStringLiteral("krarc");
+        }
+        protocol = KProtocolManager::protocolForArchiveMimetype(mimetype);
+    }
+    return protocol;
+}
+
+void KRarcHandler::clearProtocolCache()
+{
+    if (slaveMap)
+        delete slaveMap;
+    slaveMap = nullptr;
 }
 
