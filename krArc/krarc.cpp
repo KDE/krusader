@@ -150,7 +150,7 @@ kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteA
         password(QString()), krConf("krusaderrc"), codec(nullptr)
 {
     KRFUNC;
-    confGrp = KConfigGroup(&krConf, "Dependencies");
+    dependGrp = KConfigGroup(&krConf, "Dependencies");
 
     KConfigGroup group(&krConf, "General");
     QString tmpDirPath = group.readEntry("Temp Directory", _TempDirectory);
@@ -1862,7 +1862,7 @@ QString kio_krarcProtocol::fullPathName(const QString& name)
     // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     KRDEBUG(name);
 
-    QString supposedName = confGrp.readEntry(name, QString());
+    QString supposedName = dependGrp.readEntry(name, QString());
     if (QFileInfo::exists(supposedName))
         return supposedName;
 
@@ -1871,7 +1871,7 @@ QString kio_krarcProtocol::fullPathName(const QString& name)
 
     // Because an executable file has been found, its path is remembered
     // in order to avoid some future searches
-    confGrp.writeEntry(name, supposedName);
+    dependGrp.writeEntry(name, supposedName);
 
     return supposedName;
 }
