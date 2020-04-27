@@ -37,20 +37,20 @@
 #include <KIO/Global>
 #include <utility>
 
-class KRPieSlice;
+class KrPieSlice;
 
-class KRPie : public QWidget
+class KrPie : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KRPie(KIO::filesize_t _totalSize, QWidget *parent = nullptr);
+    explicit KrPie(KIO::filesize_t _totalSize, QWidget *parent = nullptr);
     void addSlice(KIO::filesize_t size, QString label);
 
 protected:
     void paintEvent(QPaintEvent *) override;
 
 private:
-    QList<KRPieSlice> slices;
+    QList<KrPieSlice> slices;
     KIO::filesize_t totalSize, sizeLeft;
     static QColor colors[ 12 ];
 };
@@ -97,10 +97,10 @@ private:
     bool mounted, empty, supermount;
 };
 
-class KRPieSlice
+class KrPieSlice
 {
 public:
-    KRPieSlice(float _perct, QColor _color, QString _label) :
+    KrPieSlice(float _perct, QColor _color, QString _label) :
             perct(_perct), color(std::move(_color)), label(std::move(_label)) {}
     inline QColor getColor() {
         return color;

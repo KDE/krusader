@@ -47,7 +47,7 @@
 #define STARTANGLE 0
 #define DEG(x)     (16*(x))
 
-QColor KRPie::colors[ 12 ] = {Qt::red, Qt::blue, Qt::green, Qt::cyan, Qt::magenta, Qt::gray,
+QColor KrPie::colors[ 12 ] = {Qt::red, Qt::blue, Qt::green, Qt::cyan, Qt::magenta, Qt::gray,
                               Qt::black, Qt::white, Qt::darkRed, Qt::darkBlue, Qt::darkMagenta,
                               Qt::darkCyan
                              };
@@ -155,14 +155,14 @@ void KrFSDisplay::paintEvent(QPaintEvent *)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-KRPie::KRPie(KIO::filesize_t _totalSize, QWidget *parent) : QWidget(parent), totalSize(_totalSize)
+KrPie::KrPie(KIO::filesize_t _totalSize, QWidget *parent) : QWidget(parent), totalSize(_totalSize)
 {
-    slices.push_back(KRPieSlice(100, Qt::yellow, "DEFAULT"));
+    slices.push_back(KrPieSlice(100, Qt::yellow, "DEFAULT"));
     sizeLeft = totalSize;
     resize(300, 300);
 }
 
-void KRPie::paintEvent(QPaintEvent *)
+void KrPie::paintEvent(QPaintEvent *)
 {
     QPainter paint(this);
     // now create the slices
@@ -202,11 +202,11 @@ void KRPie::paintEvent(QPaintEvent *)
 
 }
 
-void KRPie::addSlice(KIO::filesize_t size, QString label)
+void KrPie::addSlice(KIO::filesize_t size, QString label)
 {
     int i = (slices.count() % 12);
     slices.removeLast();
-    slices.push_back(KRPieSlice(size * 100 / totalSize, colors[ i ], std::move(label)));
+    slices.push_back(KrPieSlice(size * 100 / totalSize, colors[ i ], std::move(label)));
     sizeLeft -= size;
-    slices.push_back(KRPieSlice(sizeLeft * 100 / totalSize, Qt::yellow, "DEFAULT"));
+    slices.push_back(KrPieSlice(sizeLeft * 100 / totalSize, Qt::yellow, "DEFAULT"));
 }
