@@ -29,8 +29,9 @@
 #include <QSpinBox>
 
 #include <KCompletion/KComboBox>
-#include <KCompletion/KHistoryComboBox>
 #include <KCompletion/KLineEdit>
+
+#include "../GUI/krhistorycombobox.h"
 
 /**
  * The "New Network Connection" dialog
@@ -44,7 +45,7 @@ public:
     ~newFTPGUI() override;
 
     KComboBox* prefix;
-    KHistoryComboBox* url;
+    KrHistoryComboBox* url;
     QSpinBox* port;
     KLineEdit* username;
     KLineEdit* password;

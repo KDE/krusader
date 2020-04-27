@@ -87,7 +87,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
     prefix->setObjectName(QString::fromUtf8("protocol"));
     prefix->setSizePolicy(SIZE_MINIMUM);
 
-    url = new KHistoryComboBox(this);
+    url = new KrHistoryComboBox(this);
     url->setMaxCount(50);
     url->setMinimumContentsLength(10);
 
