@@ -32,11 +32,11 @@
 #include "newftpgui.h"
 #include "../FileSystem/krquery.h"
 
-class KRMaskChoiceSub;
+class KrMaskChoiceSub;
 
 class KRSpWidgets
 {
-    friend class KRMaskChoiceSub;
+    friend class KrMaskChoiceSub;
 
 public:
     KRSpWidgets();
@@ -45,7 +45,7 @@ public:
     static QUrl newFTP();
 
 private:
-    static QStringList maskList;  // used by KRMaskChoiceSub
+    static QStringList maskList;  // used by KrMaskChoiceSub
 };
 
 /////////////////////////// newFTPSub ///////////////////////////////////////
@@ -59,13 +59,13 @@ protected:
     void accept() override;
 };
 
-/////////////////////////// KRMaskChoiceSub /////////////////////////////////
-// Inherits KRMaskChoice's generated code to fully implement the functions //
+/////////////////////////// KrMaskChoiceSub /////////////////////////////////
+// Inherits KrMaskChoice's generated code to fully implement the functions //
 /////////////////////////////////////////////////////////////////////////////
-class KRMaskChoiceSub : public KRMaskChoice
+class KrMaskChoiceSub : public KrMaskChoice
 {
 public:
-    explicit KRMaskChoiceSub(QWidget * parent = 0);
+    explicit KrMaskChoiceSub(QWidget * parent = 0);
 
 public slots:
     void addSelection() override;

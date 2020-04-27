@@ -30,13 +30,13 @@ class QPushButton;
 class KComboBox;
 class KrListWidget;
 
-class KRMaskChoice : public QDialog
+class KrMaskChoice : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit KRMaskChoice(QWidget* parent = nullptr);
-    ~KRMaskChoice() override;
+    explicit KrMaskChoice(QWidget* parent = nullptr);
+    ~KrMaskChoice() override;
 
     KComboBox* selection;
     QLabel* PixmapLabel1;

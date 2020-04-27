@@ -56,7 +56,7 @@ KRQuery KRSpWidgets::getMask(const QString& caption, bool nameOnly, QWidget * pa
     if (!nameOnly) {
         return FilterTabs::getQuery(parent);
     } else {
-        QPointer<KRMaskChoiceSub> p = new KRMaskChoiceSub(parent);
+        QPointer<KrMaskChoiceSub> p = new KrMaskChoiceSub(parent);
         p->setWindowTitle(caption);
         p->exec();
         QString selection = p->selection->currentText();
@@ -163,8 +163,8 @@ void newFTPSub::reject()
     newFTPGUI::reject();
 }
 
-/////////////////////////// KRMaskChoiceSub ///////////////////////////////
-KRMaskChoiceSub::KRMaskChoiceSub(QWidget * parent) : KRMaskChoice(parent)
+/////////////////////////// KrMaskChoiceSub ///////////////////////////////
+KrMaskChoiceSub::KrMaskChoiceSub(QWidget * parent) : KrMaskChoice(parent)
 {
     PixmapLabel1->setPixmap(Icon("edit-select").pixmap(32));
     label->setText(i18n("Enter a selection:"));
@@ -180,13 +180,13 @@ KRMaskChoiceSub::KRMaskChoiceSub(QWidget * parent) : KRMaskChoice(parent)
     selection->setFocus();
 }
 
-void KRMaskChoiceSub::reject()
+void KrMaskChoiceSub::reject()
 {
     selection->clear();
-    KRMaskChoice::reject();
+    KrMaskChoice::reject();
 }
 
-void KRMaskChoiceSub::accept()
+void KrMaskChoiceSub::accept()
 {
     bool add = true;
     // make sure we don't have that already
@@ -209,10 +209,10 @@ void KRMaskChoiceSub::accept()
 
     KConfigGroup group(krConfig, "Private");
     group.writeEntry("Predefined Selections", list);
-    KRMaskChoice::accept();
+    KrMaskChoice::accept();
 }
 
-void KRMaskChoiceSub::addSelection()
+void KrMaskChoiceSub::addSelection()
 {
     QString temp = selection->currentText();
     bool itemExists = false;
@@ -233,25 +233,25 @@ void KRMaskChoiceSub::addSelection()
     }
 }
 
-void KRMaskChoiceSub::deleteSelection()
+void KrMaskChoiceSub::deleteSelection()
 {
     delete preSelections->currentItem();
     preSelections->update();
 }
 
-void KRMaskChoiceSub::clearSelections()
+void KrMaskChoiceSub::clearSelections()
 {
     preSelections->clear();
     preSelections->update();
 }
 
-void KRMaskChoiceSub::acceptFromList(QListWidgetItem *i)
+void KrMaskChoiceSub::acceptFromList(QListWidgetItem *i)
 {
     selection->addItem(i->text(), 0);
     accept();
 }
 
-void KRMaskChoiceSub::currentItemChanged(QListWidgetItem *i)
+void KrMaskChoiceSub::currentItemChanged(QListWidgetItem *i)
 {
     if (i)
         selection->setEditText(i->text());

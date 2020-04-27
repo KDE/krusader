@@ -38,13 +38,13 @@
 #include "../GUI/krlistwidget.h"
 
 /**
- * Constructs a KRMaskChoice which is a child of 'parent', with the
+ * Constructs a KrMaskChoice which is a child of 'parent', with the
  * name 'name' and widget flags set to 'f'
  *
  * The dialog will by default be modeless, unless you set 'modal' to
  * TRUE to construct a modal dialog.
  */
-KRMaskChoice::KRMaskChoice(QWidget* parent)
+KrMaskChoice::KrMaskChoice(QWidget* parent)
         : QDialog(parent)
 {
     setModal(true);
@@ -105,47 +105,47 @@ KRMaskChoice::KRMaskChoice(QWidget* parent)
     MainLayout->addWidget(ButtonBox);
 
     // signals and slots connections
-    connect(ButtonBox, &QDialogButtonBox::rejected, this, &KRMaskChoice::reject);
-    connect(ButtonBox, &QDialogButtonBox::accepted, this, &KRMaskChoice::accept);
-    connect(PushButton7, &QPushButton::clicked, this, &KRMaskChoice::addSelection);
-    connect(PushButton7_2, &QPushButton::clicked, this, &KRMaskChoice::deleteSelection);
-    connect(PushButton7_3, &QPushButton::clicked, this, &KRMaskChoice::clearSelections);
+    connect(ButtonBox, &QDialogButtonBox::rejected, this, &KrMaskChoice::reject);
+    connect(ButtonBox, &QDialogButtonBox::accepted, this, &KrMaskChoice::accept);
+    connect(PushButton7, &QPushButton::clicked, this, &KrMaskChoice::addSelection);
+    connect(PushButton7_2, &QPushButton::clicked, this, &KrMaskChoice::deleteSelection);
+    connect(PushButton7_3, &QPushButton::clicked, this, &KrMaskChoice::clearSelections);
     connect(selection, QOverload<const QString &>::of(&KComboBox::activated), selection, &KComboBox::setEditText);
-    connect(selection->lineEdit(), &QLineEdit::returnPressed, this, &KRMaskChoice::accept);
-    connect(preSelections, &KrListWidget::currentItemChanged, this, &KRMaskChoice::currentItemChanged);
-    connect(preSelections, &KrListWidget::itemActivated, this, &KRMaskChoice::acceptFromList);
+    connect(selection->lineEdit(), &QLineEdit::returnPressed, this, &KrMaskChoice::accept);
+    connect(preSelections, &KrListWidget::currentItemChanged, this, &KrMaskChoice::currentItemChanged);
+    connect(preSelections, &KrListWidget::itemActivated, this, &KrMaskChoice::acceptFromList);
 }
 
 /*
  *  Destroys the object and frees any allocated resources
  */
-KRMaskChoice::~KRMaskChoice()
+KrMaskChoice::~KrMaskChoice()
 {
     // no need to delete child widgets, Qt does it all for us
 }
 
-void KRMaskChoice::addSelection()
+void KrMaskChoice::addSelection()
 {
-    qWarning("KRMaskChoice::addSelection(): Not implemented yet!");
+    qWarning("KrMaskChoice::addSelection(): Not implemented yet!");
 }
 
-void KRMaskChoice::clearSelections()
+void KrMaskChoice::clearSelections()
 {
-    qWarning("KRMaskChoice::clearSelections(): Not implemented yet!");
+    qWarning("KrMaskChoice::clearSelections(): Not implemented yet!");
 }
 
-void KRMaskChoice::deleteSelection()
+void KrMaskChoice::deleteSelection()
 {
-    qWarning("KRMaskChoice::deleteSelection(): Not implemented yet!");
+    qWarning("KrMaskChoice::deleteSelection(): Not implemented yet!");
 }
 
-void KRMaskChoice::acceptFromList(QListWidgetItem *)
+void KrMaskChoice::acceptFromList(QListWidgetItem *)
 {
-    qWarning("KRMaskChoice::acceptFromList(QListWidgetItem *): Not implemented yet!");
+    qWarning("KrMaskChoice::acceptFromList(QListWidgetItem *): Not implemented yet!");
 }
 
-void KRMaskChoice::currentItemChanged(QListWidgetItem *)
+void KrMaskChoice::currentItemChanged(QListWidgetItem *)
 {
-    qWarning("KRMaskChoice::currentItemChanged(QListWidgetItem *): Not implemented yet!");
+    qWarning("KrMaskChoice::currentItemChanged(QListWidgetItem *): Not implemented yet!");
 }
 
