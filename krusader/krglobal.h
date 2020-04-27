@@ -31,7 +31,7 @@ class KConfig;
 class KMountMan;
 class KrArcHandler;
 class KrBookmarkHandler;
-class KRslots;
+class KrSlots;
 class KrusaderView;
 class UserAction;
 class JobMan;
@@ -47,7 +47,7 @@ public:
     static KMountMan *mountMan;  // krusader's Mount Manager
     static KrArcHandler *arcMan;  //! Manages archives in several parts of the code
     static KrBookmarkHandler *bookman;
-    static KRslots *slot;
+    static KrSlots *slot;
     static KrusaderView *mainView;  // The GUI
     static QWidget *mainWindow;
     static UserAction *userAction;

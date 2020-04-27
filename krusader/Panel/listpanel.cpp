@@ -561,7 +561,7 @@ void ListPanel::toggleSidebar()
         sizePolicy.setVerticalPolicy(QSizePolicy::Ignored);
         sidebar->setSizePolicy(sizePolicy);
         connect(this, &ListPanel::pathChanged, sidebar, &Sidebar::onPanelPathChange);
-        connect(sidebar, &Sidebar::urlActivated, SLOTS, &KRslots::refresh);
+        connect(sidebar, &Sidebar::urlActivated, SLOTS, &KrSlots::refresh);
         sidebarSplitter->insertWidget(0, sidebar);
     }
 

@@ -96,11 +96,11 @@
 #define ACTIVE_VIEW _mainWindow->activeView()
 
 
-KRslots::KRslots(QObject *parent) : QObject(parent), _mainWindow(krApp)
+KrSlots::KrSlots(QObject *parent) : QObject(parent), _mainWindow(krApp)
 {
 }
 
-void KRslots::sendFileByEmail(const QList<QUrl> &urls)
+void KrSlots::sendFileByEmail(const QList<QUrl> &urls)
 {
     if (urls.count() == 0) {
         KMessageBox::error(nullptr, i18n("No selected files to send."));
@@ -153,7 +153,7 @@ void KRslots::sendFileByEmail(const QList<QUrl> &urls)
         KMessageBox::error(nullptr, i18n("Error executing %1.", mailProg));
 }
 
-void KRslots::compareContent()
+void KrSlots::compareContent()
 {
     const QStringList lstLeft = LEFT_PANEL->getSelectedNames();
     const QStringList lstRight = RIGHT_PANEL->getSelectedNames();
@@ -200,7 +200,7 @@ bool downloadToTemp(const QUrl &url, QString &dest) {
     return false;
 }
 
-void KRslots::compareContent(const QUrl& url1, const QUrl& url2)
+void KrSlots::compareContent(const QUrl& url1, const QUrl& url2)
 {
     QString diffProg;
     QStringList lst = KrServices::supportedTools();
@@ -243,30 +243,30 @@ void KRslots::compareContent(const QUrl& url1, const QUrl& url2)
 }
 
 // GUI toggle slots
-void KRslots::toggleFnkeys()
+void KrSlots::toggleFnkeys()
 {
     if (MAIN_VIEW->fnKeys()->isVisible())
         MAIN_VIEW->fnKeys()->hide();
     else MAIN_VIEW->fnKeys()->show();
 }
 
-void KRslots::toggleCmdline()
+void KrSlots::toggleCmdline()
 {
     if (MAIN_VIEW->cmdLine()->isVisible()) MAIN_VIEW->cmdLine()->hide();
     else MAIN_VIEW->cmdLine()->show();
 }
 
-void KRslots::updateStatusbarVisibility()
+void KrSlots::updateStatusbarVisibility()
 {
     krApp->statusBar()->setVisible(KrActions::actShowStatusBar->isChecked());
 }
 
-void KRslots::toggleTerminal()
+void KrSlots::toggleTerminal()
 {
     MAIN_VIEW->setTerminalEmulator(KrActions::actToggleTerminal->isChecked());
 }
 
-void KRslots::insertFileName(bool fullPath)
+void KrSlots::insertFileName(bool fullPath)
 {
     QString filename = ACTIVE_VIEW->getCurrentItem();
     if (filename.isEmpty()) {
@@ -294,15 +294,15 @@ void KRslots::insertFileName(bool fullPath)
     }
 }
 
-void KRslots::refresh(const QUrl &u)
+void KrSlots::refresh(const QUrl &u)
 {
     ACTIVE_FUNC->openUrl(u);
 }
 
-void KRslots::runKonfigurator(bool firstTime)
+void KrSlots::runKonfigurator(bool firstTime)
 {
     auto *konfigurator = new Konfigurator(firstTime);
-    connect(konfigurator, &Konfigurator::configChanged, this, &KRslots::configChanged);
+    connect(konfigurator, &Konfigurator::configChanged, this, &KrSlots::configChanged);
 
     //FIXME - no need to exec
     konfigurator->exec();
@@ -310,7 +310,7 @@ void KRslots::runKonfigurator(bool firstTime)
     delete konfigurator;
 }
 
-void KRslots::configChanged(bool isGUIRestartNeeded)
+void KrSlots::configChanged(bool isGUIRestartNeeded)
 {
     krConfig->sync();
 
@@ -346,7 +346,7 @@ void KRslots::configChanged(bool isGUIRestartNeeded)
     }
 }
 
-void KRslots::showHiddenFiles(bool show)
+void KrSlots::showHiddenFiles(bool show)
 {
     KConfigGroup group(krConfig, "Look&Feel");
     group.writeEntry("Show Hidden", show);
@@ -355,7 +355,7 @@ void KRslots::showHiddenFiles(bool show)
     MAIN_VIEW->rightManager()->reloadConfig();
 }
 
-void KRslots::swapPanels()
+void KrSlots::swapPanels()
 {
     QUrl leftURL = LEFT_PANEL->virtualPath();
     QUrl rightURL = RIGHT_PANEL->virtualPath();
@@ -364,12 +364,12 @@ void KRslots::swapPanels()
     RIGHT_PANEL->func->openUrl(leftURL);
 }
 
-void KRslots::toggleSwapSides()
+void KrSlots::toggleSwapSides()
 {
     MAIN_VIEW->swapSides();
 }
 
-void KRslots::search()
+void KrSlots::search()
 {
     if (KrSearchDialog::SearchDialog != nullptr) {
         KConfigGroup group(krConfig, "Search");
@@ -384,7 +384,7 @@ void KRslots::search()
         KrSearchDialog::SearchDialog = new KrSearchDialog();
 }
 
-void KRslots::locate()
+void KrSlots::locate()
 {
     if (!KrServices::cmdExist("locate")) {
         KMessageBox::error(krApp, i18n("Cannot find the 'locate' command. Please install the "
@@ -402,7 +402,7 @@ void KRslots::locate()
         LocateDlg::LocateDialog = new LocateDlg(krApp);
 }
 
-void KRslots::runTerminal(const QString & dir)
+void KrSlots::runTerminal(const QString & dir)
 {
     KProcess proc;
     proc.setWorkingDirectory(dir);
@@ -425,12 +425,12 @@ void KRslots::runTerminal(const QString & dir)
         KMessageBox::sorry(krApp, i18n("Error executing %1.", term));
 }
 
-void KRslots::homeTerminal()
+void KrSlots::homeTerminal()
 {
     runTerminal(QDir::homePath());
 }
 
-void KRslots::multiRename()
+void KrSlots::multiRename()
 {
     QStringList lst = KrServices::supportedTools();
     int i = lst.indexOf("RENAME");
@@ -465,7 +465,7 @@ void KRslots::multiRename()
         KMessageBox::error(nullptr, i18n("Error executing '%1'.", proc.program().join(" ")));
 }
 
-void KRslots::rootKrusader()
+void KrSlots::rootKrusader()
 {
     if (KMessageBox::warningContinueCancel(
             krApp, i18n("Improper operations in root mode can damage your operating system. "
@@ -491,7 +491,7 @@ void KRslots::rootKrusader()
         KMessageBox::error(nullptr, i18n("Error executing %1.", proc.program()[0]));
 }
 
-void KRslots::slotSplit()
+void KrSlots::slotSplit()
 {
     const QStringList list = ACTIVE_PANEL->gui->getSelectedNames();
     QString name;
@@ -530,7 +530,7 @@ void KRslots::slotSplit()
     }
 }
 
-void KRslots::slotCombine()
+void KrSlots::slotCombine()
 {
     const QStringList list = ACTIVE_PANEL->gui->getSelectedNames();
     if (list.isEmpty()) {
@@ -640,13 +640,13 @@ void KRslots::slotCombine()
         ACTIVE_PANEL->otherPanel()->func->refresh();
 }
 
-void KRslots::manageUseractions()
+void KrSlots::manageUseractions()
 {
     ActionMan actionMan(MAIN_VIEW);
 }
 
 #ifdef SYNCHRONIZER_ENABLED
-void KRslots::slotSynchronizeDirs(QStringList selected)
+void KrSlots::slotSynchronizeDirs(QStringList selected)
 {
     SynchronizerGUI *synchronizerDialog = new SynchronizerGUI(MAIN_VIEW, LEFT_PANEL->virtualPath(),
                                                               RIGHT_PANEL->virtualPath(), std::move(selected));
@@ -654,7 +654,7 @@ void KRslots::slotSynchronizeDirs(QStringList selected)
 }
 #endif
 
-void KRslots::compareSetup()
+void KrSlots::compareSetup()
 {
     for (int i = 0; KrActions::compareArray[i] != nullptr; i++)
         if ((*KrActions::compareArray[i])->isChecked()) {
@@ -665,7 +665,7 @@ void KRslots::compareSetup()
 }
 
 /** called by actions actExec* to choose the built-in command line mode  */
-void KRslots::execTypeSetup()
+void KrSlots::execTypeSetup()
 {
     for (int i = 0; KrActions::execTypeArray[i] != nullptr; i++)
         if ((*KrActions::execTypeArray[i])->isChecked()) {
@@ -679,13 +679,13 @@ void KRslots::execTypeSetup()
         }
 }
 
-void KRslots::slotDiskUsage()
+void KrSlots::slotDiskUsage()
 {
     DiskUsageGUI *diskUsageDialog = new DiskUsageGUI(ACTIVE_PANEL->virtualPath());
     diskUsageDialog->askDirAndShow();
 }
 
-void KRslots::applicationStateChanged()
+void KrSlots::applicationStateChanged()
 {
     if (MAIN_VIEW == nullptr) {  /* CRASH FIX: it's possible that the method is called after destroying the main view */
         return;
@@ -700,7 +700,7 @@ void KRslots::applicationStateChanged()
     }
 }
 
-void KRslots::emptyTrash()
+void KrSlots::emptyTrash()
 {
     KrTrashHandler::emptyTrash();
 }
@@ -708,7 +708,7 @@ void KRslots::emptyTrash()
 #define OPEN_ID        100001
 #define EMPTY_TRASH_ID 100002
 
-void KRslots::trashPopupMenu()
+void KrSlots::trashPopupMenu()
 {
     QMenu trashMenu(krApp);
     QAction * act = trashMenu.addAction(Icon("document-open"), i18n("Open trash bin"));
@@ -729,7 +729,7 @@ void KRslots::trashPopupMenu()
 }
 
 //shows the JavaScript-Console
-void KRslots::jsConsole()
+void KrSlots::jsConsole()
 {
 #ifdef __KJSEMBED__
     if (! krJS)
@@ -738,12 +738,12 @@ void KRslots::jsConsole()
 #endif
 }
 
-void KRslots::addBookmark()
+void KrSlots::addBookmark()
 {
     krBookMan->bookmarkCurrent(ACTIVE_PANEL->virtualPath());
 }
 
-void KRslots::cmdlinePopup()
+void KrSlots::cmdlinePopup()
 {
     MAIN_VIEW->cmdLine()->popup();
 }

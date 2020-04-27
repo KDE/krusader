@@ -302,7 +302,7 @@ int main(int argc, char *argv[])
     signal(SIGPIPE, sigterm_handler);
     signal(SIGHUP, sigterm_handler);
 
-    QObject::connect(&app, &QGuiApplication::applicationStateChanged, SLOTS, &KRslots::applicationStateChanged);
+    QObject::connect(&app, &QGuiApplication::applicationStateChanged, SLOTS, &KrSlots::applicationStateChanged);
 
     // hide splashscreen
     if (splash) {

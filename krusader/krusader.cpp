@@ -114,7 +114,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
     // create the "krusader"
     App = this;
     krMainWindow = this;
-    SLOTS = new KRslots(this);
+    SLOTS = new KrSlots(this);
     setXMLFile("krusaderui.rc");   // kpart-related xml file
 
     plzWait = new KRPleaseWaitHandler(this);
@@ -142,7 +142,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
 
     // create MountMan
     KrGlobal::mountMan = new KMountMan(this);
-    connect(KrGlobal::mountMan, &KMountMan::refreshPanel, SLOTS, &KRslots::refresh);
+    connect(KrGlobal::mountMan, &KMountMan::refreshPanel, SLOTS, &KrSlots::refresh);
 
     // create popular URLs container
     _popularUrls = new PopularUrls(this);
