@@ -46,11 +46,11 @@
 #include "../../krArc/krlinecountingprocess.h"
 
 #if 0
-class DefaultKRarcObserver : public KRarcObserver
+class DefaultKrArcObserver : public KrArcObserver
 {
 public:
-    DefaultKRarcObserver() {}
-    virtual ~DefaultKRarcObserver() {}
+    DefaultKrArcObserver() {}
+    virtual ~DefaultKrArcObserver() {}
 
     virtual void processEvents() override {
         usleep(1000);
@@ -195,7 +195,7 @@ bool KrArcHandler::arcSupported(QString type)
            || (type == "7z" && lst.contains("7z"));
 }
 
-long KrArcHandler::arcFileCount(const QString& archive, const QString& type, const QString& password, KRarcObserver *observer)
+long KrArcHandler::arcFileCount(const QString& archive, const QString& type, const QString& password, KrArcObserver *observer)
 {
     int divideWith = 1;
 
@@ -274,7 +274,7 @@ long KrArcHandler::arcFileCount(const QString& archive, const QString& type, con
     return count / divideWith;
 }
 
-bool KrArcHandler::unpack(QString archive, const QString& type, const QString& password, const QString& dest, KRarcObserver *observer)
+bool KrArcHandler::unpack(QString archive, const QString& type, const QString& password, const QString& dest, KrArcObserver *observer)
 {
     KConfigGroup group(krConfig, "Archives");
     if (group.readEntry("Test Before Unpack", _TestBeforeUnpack)) {
@@ -374,9 +374,9 @@ bool KrArcHandler::unpack(QString archive, const QString& type, const QString& p
     // tell the user to wait
     observer->subJobStarted(i18n("Unpacking File(s)"), count);
     if (count != 0) {
-        connect(&proc, &KrLinecountingProcess::newOutputLines, observer, &KRarcObserver::incrementProgress);
+        connect(&proc, &KrLinecountingProcess::newOutputLines, observer, &KrArcObserver::incrementProgress);
         if (type == "rpm")
-            connect(&proc, &KrLinecountingProcess::newErrorLines, observer, &KRarcObserver::incrementProgress);
+            connect(&proc, &KrLinecountingProcess::newErrorLines, observer, &KrArcObserver::incrementProgress);
     }
 
     // start the unpacking process
@@ -404,7 +404,7 @@ bool KrArcHandler::unpack(QString archive, const QString& type, const QString& p
     return true; // SUCCESS
 }
 
-bool KrArcHandler::test(const QString& archive, const QString& type, const QString& password, KRarcObserver *observer, long count)
+bool KrArcHandler::test(const QString& archive, const QString& type, const QString& password, KrArcObserver *observer, long count)
 {
     // choose the right packer for the job
     QStringList packer;
@@ -448,7 +448,7 @@ bool KrArcHandler::test(const QString& archive, const QString& type, const QStri
     // tell the user to wait
     observer->subJobStarted(i18n("Testing Archive"), count);
     if (count != 0)
-        connect(&proc, &KrLinecountingProcess::newOutputLines, observer, &KRarcObserver::incrementProgress);
+        connect(&proc, &KrLinecountingProcess::newOutputLines, observer, &KrArcObserver::incrementProgress);
 
     // start the unpacking process
     proc.start();
@@ -470,7 +470,7 @@ bool KrArcHandler::test(const QString& archive, const QString& type, const QStri
     return true; // SUCCESS
 }
 
-bool KrArcHandler::pack(QStringList fileNames, QString type, const QString& dest, long count, QMap<QString, QString> extraProps, KRarcObserver *observer)
+bool KrArcHandler::pack(QStringList fileNames, QString type, const QString& dest, long count, QMap<QString, QString> extraProps, KrArcObserver *observer)
 {
     // set the right packer to do the job
     QStringList packer;
@@ -575,7 +575,7 @@ bool KrArcHandler::pack(QStringList fileNames, QString type, const QString& dest
     // tell the user to wait
     observer->subJobStarted(i18n("Packing File(s)"), count);
     if (count != 0)
-        connect(&proc, &KrLinecountingProcess::newOutputLines, observer, &KRarcObserver::incrementProgress);
+        connect(&proc, &KrLinecountingProcess::newOutputLines, observer, &KrArcObserver::incrementProgress);
 
     // start the packing process
     proc.start();

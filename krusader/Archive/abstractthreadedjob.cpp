@@ -248,7 +248,7 @@ void AbstractThreadedJob::slotDescription(KJob *, const QString &title, const QP
     emit description(this, mytitle, field1, field2);
 }
 
-class AbstractJobObserver : public KRarcObserver
+class AbstractJobObserver : public KrArcObserver
 {
 protected:
     AbstractJobThread * _jobThread;
@@ -519,7 +519,7 @@ void AbstractJobThread::countLocalFiles(const QUrl &baseUrl, const QStringList &
     delete calcSpaceFileSystem;
 }
 
-KRarcObserver * AbstractJobThread::observer()
+KrArcObserver * AbstractJobThread::observer()
 {
     if (_observer)
         return _observer;

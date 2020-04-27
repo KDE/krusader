@@ -39,7 +39,7 @@
 class AbstractJobThread;
 class QTemporaryDir;
 class UserEvent;
-class KRarcObserver;
+class KrArcObserver;
 class QTemporaryFile;
 
 class AbstractThreadedJob : public KIO::Job
@@ -97,7 +97,7 @@ public:
     virtual ~AbstractJobThread();
 
     void abort();
-    KRarcObserver * observer();
+    KrArcObserver * observer();
 
 protected slots:
     virtual void slotStart() = 0;
@@ -140,7 +140,7 @@ protected:
     QEventLoop          *_loop;
 
     QTemporaryDir       *_downloadTempDir;
-    KRarcObserver       *_observer;
+    KrArcObserver       *_observer;
 
     QTemporaryFile      *_tempFile;
     QString              _tempFileName;
