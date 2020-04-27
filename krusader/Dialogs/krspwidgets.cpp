@@ -44,14 +44,14 @@
 #include <KWidgetsAddons/KCursor>
 
 ///////////////////// initiation of the static members ////////////////////////
-QStringList KRSpWidgets::maskList;
+QStringList KrSpWidgets::maskList;
 
 ///////////////////////////////////////////////////////////////////////////////
 
-KRSpWidgets::KRSpWidgets()
+KrSpWidgets::KrSpWidgets()
 = default;
 
-KRQuery KRSpWidgets::getMask(const QString& caption, bool nameOnly, QWidget * parent)
+KRQuery KrSpWidgets::getMask(const QString& caption, bool nameOnly, QWidget * parent)
 {
     if (!nameOnly) {
         return FilterTabs::getQuery(parent);
@@ -70,7 +70,7 @@ KRQuery KRSpWidgets::getMask(const QString& caption, bool nameOnly, QWidget * pa
 }
 
 /////////////////////////// newFTP ////////////////////////////////////////
-QUrl KRSpWidgets::newFTP()
+QUrl KrSpWidgets::newFTP()
 {
     QPointer<newFTPSub> p = new newFTPSub();
     p->exec();
@@ -174,7 +174,7 @@ KrMaskChoiceSub::KrMaskChoiceSub(QWidget * parent) : KrMaskChoice(parent)
     if (lst.size() > 0) preSelections->addItems(lst);
     // the combo-box tweaks
     selection->setDuplicatesEnabled(false);
-    selection->addItems(KRSpWidgets::maskList);
+    selection->addItems(KrSpWidgets::maskList);
     selection->lineEdit()->setText("*");
     selection->lineEdit()->selectAll();
     selection->setFocus();
@@ -190,15 +190,15 @@ void KrMaskChoiceSub::accept()
 {
     bool add = true;
     // make sure we don't have that already
-    for (int i = 0; i != KRSpWidgets::maskList.count(); i++)
-        if (KRSpWidgets::maskList[ i ].simplified() == selection->currentText().simplified()) {
+    for (int i = 0; i != KrSpWidgets::maskList.count(); i++)
+        if (KrSpWidgets::maskList[ i ].simplified() == selection->currentText().simplified()) {
             // break if we found one such as this
             add = false;
             break;
         }
 
     if (add)
-        KRSpWidgets::maskList.insert(0, selection->currentText().toLocal8Bit());
+        KrSpWidgets::maskList.insert(0, selection->currentText().toLocal8Bit());
     // write down the predefined selections list
     QStringList list;
 

@@ -1119,7 +1119,7 @@ void ListPanelFunc::FTPDisconnect()
 
 void ListPanelFunc::newFTPconnection()
 {
-    QUrl url = KRSpWidgets::newFTP();
+    QUrl url = KrSpWidgets::newFTP();
     // if the user canceled - quit
     if (url.isEmpty())
         return;
