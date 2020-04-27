@@ -34,6 +34,7 @@ class KrHistoryComboBox : public KHistoryComboBox
 
 public:
     explicit KrHistoryComboBox(bool useCompletion, QWidget *parent = nullptr);
+    explicit KrHistoryComboBox(QWidget *parent = nullptr) : KrHistoryComboBox(true, parent) {}
 };
 
 #endif // KRHISTORYCOMBOBOX_H
