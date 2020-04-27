@@ -193,7 +193,7 @@ QLayout *KMountManGUI::createMainPage()
     QGroupBox *box = new QGroupBox(i18n("MountMan.Info"), this);
     box->setAlignment(Qt::AlignHCenter);
     auto *vboxl = new QVBoxLayout(box);
-    info = new KRFSDisplay(box);
+    info = new KrFSDisplay(box);
     vboxl->addWidget(info);
     info->resize(info->width(), height());
 

@@ -53,10 +53,10 @@ QColor KRPie::colors[ 12 ] = {Qt::red, Qt::blue, Qt::green, Qt::cyan, Qt::magent
                              };
 
 //////////////////////////////////////////////////////////////////////////////
-/////////////// KRFSDisplay - Filesystem / Freespace Display /////////////////
+/////////////// KrFSDisplay - Filesystem / Freespace Display /////////////////
 //////////////////////////////////////////////////////////////////////////////
 // This is the full constructor: use it for a mounted filesystem
-KRFSDisplay::KRFSDisplay(QWidget *parent, QString _alias, QString _realName,
+KrFSDisplay::KrFSDisplay(QWidget *parent, QString _alias, QString _realName,
                          KIO::filesize_t _total, KIO::filesize_t _free) : QWidget(parent), totalSpace(_total),
         freeSpace(_free), alias(std::move(_alias)), realName(std::move(_realName)), mounted(true),
         empty(false), supermount(false)
@@ -68,7 +68,7 @@ KRFSDisplay::KRFSDisplay(QWidget *parent, QString _alias, QString _realName,
 }
 
 // Use this one for an unmounted filesystem
-KRFSDisplay::KRFSDisplay(QWidget *parent, QString _alias, QString _realName, bool sm) :
+KrFSDisplay::KrFSDisplay(QWidget *parent, QString _alias, QString _realName, bool sm) :
         QWidget(parent), alias(std::move(_alias)), realName(std::move(_realName)), mounted(false),
         empty(false), supermount(sm)
 {
@@ -80,7 +80,7 @@ KRFSDisplay::KRFSDisplay(QWidget *parent, QString _alias, QString _realName, boo
 
 // This is used only when an empty widget needs to be displayed (for example:
 // when filesystem statistics haven't been calculated yet)
-KRFSDisplay::KRFSDisplay(QWidget *parent) : QWidget(parent), empty(true)
+KrFSDisplay::KrFSDisplay(QWidget *parent) : QWidget(parent), empty(true)
 {
     const QMargins margins = contentsMargins();
     resize(150 + margins.left() + margins.right(), 200 + margins.top() + margins.bottom());
@@ -90,7 +90,7 @@ KRFSDisplay::KRFSDisplay(QWidget *parent) : QWidget(parent), empty(true)
 
 
 // The main painter!
-void KRFSDisplay::paintEvent(QPaintEvent *)
+void KrFSDisplay::paintEvent(QPaintEvent *)
 {
     QPainter paint(this);
     if (!empty) {

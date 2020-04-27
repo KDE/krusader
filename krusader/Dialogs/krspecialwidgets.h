@@ -55,17 +55,17 @@ private:
     static QColor colors[ 12 ];
 };
 
-class KRFSDisplay : public QWidget
+class KrFSDisplay : public QWidget
 {
     Q_OBJECT
 public:
     // this constructor is used for a mounted filesystem
-    KRFSDisplay(QWidget *parent, QString _alias, QString _realName,
+    KrFSDisplay(QWidget *parent, QString _alias, QString _realName,
                 KIO::filesize_t _total, KIO::filesize_t _free);
     // this one is for an unmounted/supermount file system
-    KRFSDisplay(QWidget *parent, QString _alias, QString _realName, bool sm = false);
+    KrFSDisplay(QWidget *parent, QString _alias, QString _realName, bool sm = false);
     // the last one is used inside MountMan(R), when no filesystem is selected
-    explicit KRFSDisplay(QWidget *parent);
+    explicit KrFSDisplay(QWidget *parent);
     inline void setTotalSpace(KIO::filesize_t t) {
         totalSpace = t;
     }

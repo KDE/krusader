@@ -40,7 +40,7 @@
 #define  WATCHER_DELAY    500
 
 class QCheckBox;
-class KRFSDisplay;
+class KrFSDisplay;
 
 // forward definitions
 class fsData;
@@ -81,7 +81,7 @@ protected:
 
 private:
     KMountMan *mountMan;
-    KRFSDisplay *info;
+    KrFSDisplay *info;
     KrTreeWidget *mountList;
     QCheckBox *cbShowOnlyRemovable;
     QPushButton *mountButton;
