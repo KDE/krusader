@@ -44,15 +44,15 @@
 
 static const QStringList TAR_TYPES = QStringList() << "tbz" << "tgz" << "tarz" << "tar" << "tlz";
 
-KRSearchMod::KRSearchMod(const KrQuery *query)
+KrSearchMod::KrSearchMod(const KrQuery *query)
     : m_defaultFileSystem(nullptr), m_virtualFileSystem(nullptr), m_stopSearch(false)
 {
     m_query = new KrQuery(*query);
-    connect(m_query, &KrQuery::status, this, &KRSearchMod::searching);
-    connect(m_query, &KrQuery::processEvents, this, &KRSearchMod::slotProcessEvents);
+    connect(m_query, &KrQuery::status, this, &KrSearchMod::searching);
+    connect(m_query, &KrQuery::processEvents, this, &KrSearchMod::slotProcessEvents);
 }
 
-KRSearchMod::~KRSearchMod()
+KrSearchMod::~KrSearchMod()
 {
     delete m_query;
     if (m_defaultFileSystem)
@@ -61,7 +61,7 @@ KRSearchMod::~KRSearchMod()
         delete m_virtualFileSystem;
 }
 
-void KRSearchMod::start()
+void KrSearchMod::start()
 {
     m_unScannedUrls.clear();
     m_scannedUrls.clear();
@@ -76,9 +76,9 @@ void KRSearchMod::start()
     emit finished();
 }
 
-void KRSearchMod::stop() { m_stopSearch = true; }
+void KrSearchMod::stop() { m_stopSearch = true; }
 
-void KRSearchMod::scanUrl(const QUrl &url)
+void KrSearchMod::scanUrl(const QUrl &url)
 {
     if (m_stopSearch)
         return;
@@ -107,7 +107,7 @@ void KRSearchMod::scanUrl(const QUrl &url)
     }
 }
 
-void KRSearchMod::scanDirectory(const QUrl &url)
+void KrSearchMod::scanDirectory(const QUrl &url)
 {
     FileSystem *fileSystem = getFileSystem(url);
 
@@ -154,7 +154,7 @@ void KRSearchMod::scanDirectory(const QUrl &url)
     }
 }
 
-FileSystem *KRSearchMod::getFileSystem(const QUrl &url)
+FileSystem *KrSearchMod::getFileSystem(const QUrl &url)
 {
     FileSystem *fileSystem;
     if (url.scheme() == QStringLiteral("virt")) {
@@ -169,7 +169,7 @@ FileSystem *KRSearchMod::getFileSystem(const QUrl &url)
     return fileSystem;
 }
 
-void KRSearchMod::slotProcessEvents(bool &stopped)
+void KrSearchMod::slotProcessEvents(bool &stopped)
 {
     qApp->processEvents();
     stopped = m_stopSearch;

@@ -42,12 +42,12 @@ class VirtualFileSystem;
  *
  * Subdirectories are included if query->isRecursive() is true.
  */
-class KRSearchMod : public QObject
+class KrSearchMod : public QObject
 {
     Q_OBJECT
 public:
-    explicit KRSearchMod(const KrQuery *query);
-    ~KRSearchMod() override;
+    explicit KrSearchMod(const KrQuery *query);
+    ~KrSearchMod() override;
 
     void start();
     void stop();

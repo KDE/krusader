@@ -458,10 +458,10 @@ void KrSearchDialog::startSearch()
     // start the search.
     if (searcher != nullptr)
         abort();
-    searcher  = new KRSearchMod(query);
-    connect(searcher, &KRSearchMod::searching, searchingLabel, &KSqueezedTextLabel::setText);
-    connect(searcher, &KRSearchMod::found, this, &KrSearchDialog::slotFound);
-    connect(searcher, &KRSearchMod::finished, this, &KrSearchDialog::stopSearch);
+    searcher  = new KrSearchMod(query);
+    connect(searcher, &KrSearchMod::searching, searchingLabel, &KSqueezedTextLabel::setText);
+    connect(searcher, &KrSearchMod::found, this, &KrSearchDialog::slotFound);
+    connect(searcher, &KrSearchMod::finished, this, &KrSearchDialog::stopSearch);
 
     searcher->start();
 
