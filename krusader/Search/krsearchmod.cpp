@@ -128,7 +128,7 @@ void KRSearchMod::scanDirectory(const QUrl &url)
         }
 
         if (m_query->searchInArchives() && fileUrl.isLocalFile() &&
-            KRarcHandler::arcSupported(fileItem->getMime())) {
+            KrArcHandler::arcSupported(fileItem->getMime())) {
             // query search in archive; NOTE: only supported for local files
             QUrl archiveURL = fileUrl;
             bool encrypted;

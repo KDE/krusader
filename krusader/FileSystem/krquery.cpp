@@ -238,7 +238,7 @@ bool KRQuery::checkType(const QString& mime) const
     if (type == mime)
         return true;
     if (type == i18n("Archives"))
-        return KRarcHandler::arcSupported(mime);
+        return KrArcHandler::arcSupported(mime);
     if (type == i18n("Folders"))
         return mime.contains("directory");
     if (type == i18n("Image Files"))

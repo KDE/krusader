@@ -108,7 +108,7 @@ void KrResultTable::adjustRow(QGridLayout* grid)
 KrArchiverResultTable::KrArchiverResultTable(QWidget* parent)
         : KrResultTable(parent)
 {
-    _supported = KRarcHandler::supportedPackers(); // get list of available packers
+    _supported = KrArcHandler::supportedPackers(); // get list of available packers
 
     Archiver* tar   = new Archiver("tar",   "https://www.gnu.org/",      PS("tar"),   true,  true);
     Archiver* gzip  = new Archiver("gzip",  "https://www.gnu.org/",      PS("gzip"),  true,  true);

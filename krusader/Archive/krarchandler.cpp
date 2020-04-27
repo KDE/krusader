@@ -85,10 +85,10 @@ public:
 
 static QStringList arcProtocols = QString("tar;bzip;bzip2;lzma;xz;gzip;krarc;zip").split(';');
 
-QMap<QString, QString>* KRarcHandler::slaveMap = nullptr;
-KWallet::Wallet * KRarcHandler::wallet = nullptr;
+QMap<QString, QString>* KrArcHandler::slaveMap = nullptr;
+KWallet::Wallet * KrArcHandler::wallet = nullptr;
 
-KRarcHandler::KRarcHandler(QObject *parent) : QObject(parent)
+KrArcHandler::KrArcHandler(QObject *parent) : QObject(parent)
 {
     // Reminder: If a mime type is added/removed/modified in that
     // member function, it's important to research if the type has to
@@ -128,7 +128,7 @@ KRarcHandler::KRarcHandler(QObject *parent) : QObject(parent)
     #endif
 }
 
-QStringList KRarcHandler::supportedPackers()
+QStringList KrArcHandler::supportedPackers()
 {
     QStringList packers;
 
@@ -160,7 +160,7 @@ QStringList KRarcHandler::supportedPackers()
     return packers;
 }
 
-bool KRarcHandler::arcSupported(QString type)
+bool KrArcHandler::arcSupported(QString type)
 {
     // lst will contain the supported unpacker list...
     const KConfigGroup group(krConfig, "Archives");
@@ -195,7 +195,7 @@ bool KRarcHandler::arcSupported(QString type)
            || (type == "7z" && lst.contains("7z"));
 }
 
-long KRarcHandler::arcFileCount(const QString& archive, const QString& type, const QString& password, KRarcObserver *observer)
+long KrArcHandler::arcFileCount(const QString& archive, const QString& type, const QString& password, KRarcObserver *observer)
 {
     int divideWith = 1;
 
@@ -274,7 +274,7 @@ long KRarcHandler::arcFileCount(const QString& archive, const QString& type, con
     return count / divideWith;
 }
 
-bool KRarcHandler::unpack(QString archive, const QString& type, const QString& password, const QString& dest, KRarcObserver *observer)
+bool KrArcHandler::unpack(QString archive, const QString& type, const QString& password, const QString& dest, KRarcObserver *observer)
 {
     KConfigGroup group(krConfig, "Archives");
     if (group.readEntry("Test Before Unpack", _TestBeforeUnpack)) {
@@ -404,7 +404,7 @@ bool KRarcHandler::unpack(QString archive, const QString& type, const QString& p
     return true; // SUCCESS
 }
 
-bool KRarcHandler::test(const QString& archive, const QString& type, const QString& password, KRarcObserver *observer, long count)
+bool KrArcHandler::test(const QString& archive, const QString& type, const QString& password, KRarcObserver *observer, long count)
 {
     // choose the right packer for the job
     QStringList packer;
@@ -470,7 +470,7 @@ bool KRarcHandler::test(const QString& archive, const QString& type, const QStri
     return true; // SUCCESS
 }
 
-bool KRarcHandler::pack(QStringList fileNames, QString type, const QString& dest, long count, QMap<QString, QString> extraProps, KRarcObserver *observer)
+bool KrArcHandler::pack(QStringList fileNames, QString type, const QString& dest, long count, QMap<QString, QString> extraProps, KRarcObserver *observer)
 {
     // set the right packer to do the job
     QStringList packer;
@@ -606,7 +606,7 @@ bool KRarcHandler::pack(QStringList fileNames, QString type, const QString& dest
     return true; // SUCCESS
 }
 
-bool KRarcHandler::openWallet()
+bool KrArcHandler::openWallet()
 {
     if (!wallet) {
         // find a suitable parent window
@@ -619,7 +619,7 @@ bool KRarcHandler::openWallet()
     return (wallet != nullptr);
 }
 
-QString KRarcHandler::getPassword(const QString& path)
+QString KrArcHandler::getPassword(const QString& path)
 {
     QString password;
 
@@ -675,7 +675,7 @@ QString KRarcHandler::getPassword(const QString& path)
     return "";
 }
 
-bool KRarcHandler::isArchive(const QUrl &url)
+bool KrArcHandler::isArchive(const QUrl &url)
 {
     QString protocol = url.scheme();
     if (arcProtocols.indexOf(protocol) != -1)
@@ -683,7 +683,7 @@ bool KRarcHandler::isArchive(const QUrl &url)
     else return false;
 }
 
-QString KRarcHandler::getType(bool &encrypted, QString fileName, const QString& mime, bool checkEncrypted, bool fast)
+QString KrArcHandler::getType(bool &encrypted, QString fileName, const QString& mime, bool checkEncrypted, bool fast)
 {
     QString result = detectArchive(encrypted, std::move(fileName), checkEncrypted, fast);
     if (result.isNull()) {
@@ -693,12 +693,12 @@ QString KRarcHandler::getType(bool &encrypted, QString fileName, const QString& 
     return result;
 }
 
-bool KRarcHandler::checkStatus(const QString& type, int exitCode)
+bool KrArcHandler::checkStatus(const QString& type, int exitCode)
 {
     return KrArcBaseManager::checkStatus(type, exitCode);
 }
 
-void KRarcHandler::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
+void KrArcHandler::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
 {
     // Reminder: If that function is modified, it's important to research if the
     // changes must also be applied to `kio_krarcProtocol::checkIf7zIsEncrypted()`
@@ -712,7 +712,7 @@ void KRarcHandler::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
     encrypted = proc.isEncrypted();
 }
 
-QString KRarcHandler::registeredProtocol(const QString& mimetype)
+QString KrArcHandler::registeredProtocol(const QString& mimetype)
 {
     if (slaveMap == nullptr) {
         slaveMap = new QMap<QString, QString>();
@@ -735,7 +735,7 @@ QString KRarcHandler::registeredProtocol(const QString& mimetype)
     return protocol;
 }
 
-void KRarcHandler::clearProtocolCache()
+void KrArcHandler::clearProtocolCache()
 {
     if (slaveMap)
         delete slaveMap;

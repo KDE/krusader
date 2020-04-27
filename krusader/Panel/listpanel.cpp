@@ -934,7 +934,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                         newPath = v->getUrl();
                     } else {
                         // If it's a supported compressed file
-                        if (v && KRarcHandler::arcSupported(v->getMime()))   {
+                        if (v && KrArcHandler::arcSupported(v->getMime()))   {
                             newPath = func->browsableArchivePath(v->getUrl().fileName());
                         } else {
                             newPath = virtualPath();

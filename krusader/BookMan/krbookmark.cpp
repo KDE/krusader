@@ -69,7 +69,7 @@ void KrBookmark::setIconName(const QString& iconName)
         setIcon(Icon(iconName));
     } else if (_url.isLocalFile()) {
         setIcon(Icon("folder"));
-    } else if (KRarcHandler::isArchive(_url)) {
+    } else if (KrArcHandler::isArchive(_url)) {
         setIcon(Icon("application-x-tar"));
     } else {
         setIcon(Icon("folder-html"));

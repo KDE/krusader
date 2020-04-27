@@ -138,7 +138,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
     }
 
     // create an object that manages archives in several parts of the source code
-    KrGlobal::arcMan = new KRarcHandler(this);
+    KrGlobal::arcMan = new KrArcHandler(this);
 
     // create MountMan
     KrGlobal::mountMan = new KMountMan(this);

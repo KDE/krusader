@@ -140,7 +140,7 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExe
     if (!arcPath.isEmpty()) {
         bool browseAsDirectory = !externallyExecutable
                 || (KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories)
-                && (KRarcHandler::arcSupported(mime) || KrServices::isoSupported(mime)));
+                && (KrArcHandler::arcSupported(mime) || KrServices::isoSupported(mime)));
         if (browseAsDirectory) {
             openUrl(arcPath);
             return;

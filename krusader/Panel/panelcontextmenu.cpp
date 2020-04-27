@@ -154,7 +154,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
         // ...but user disabled archive browsing...
         && (!KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories)
             // ...or the file is not a standard archive (e.g. odt, docx, etc.)...
-            || !KRarcHandler::arcSupported(file->getMime()))) {
+            || !KrArcHandler::arcSupported(file->getMime()))) {
         // ...it will not be browsed as a directory by default, but add an option for it
         QAction *browseAct = addAction(i18n("Browse Archive"));
         browseAct->setData(QVariant(BROWSE_ID));

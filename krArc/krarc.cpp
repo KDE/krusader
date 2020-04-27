@@ -1723,7 +1723,7 @@ bool kio_krarcProtocol::checkStatus(int exitCode)
 void kio_krarcProtocol::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
 {
     // Reminder: If that function is modified, it's important to research if the
-    // changes must also be applied to `KRarcHandler::checkIf7zIsEncrypted()`
+    // changes must also be applied to `KrArcHandler::checkIf7zIsEncrypted()`
 
     KRFUNC;
     if (encryptedArchPath == fileName)

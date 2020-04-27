@@ -379,7 +379,7 @@ bool KgProtocols::apply()
     group.writeEntry("Handled Protocols", protocolList);
     krConfig->sync();
 
-    KRarcHandler::clearProtocolCache();
+    KrArcHandler::clearProtocolCache();
 
     emit sigChanged();
     return false;

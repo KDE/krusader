@@ -163,7 +163,7 @@ bool AbstractThreadedJob::event(QEvent *e)
         break;
         case CMD_GET_PASSWORD: {
             QString path = event->args()[ 0 ].value<QString>();
-            QString password = KRarcHandler::getPassword(path);
+            QString password = KrArcHandler::getPassword(path);
 
             auto *resultResp = new QList<QVariant> ();
             (*resultResp) << password;
@@ -651,7 +651,7 @@ bool AbstractJobThread::getArchiveInformation(QString &path, QString &type, QStr
     type = krArcMan.getType(encrypted, path, mime);
 
     // Check that the archive is supported
-    if (!KRarcHandler::arcSupported(type)) {
+    if (!KrArcHandler::arcSupported(type)) {
         sendError(KIO::ERR_NO_CONTENT, i18nc("%1=archive filename", "%1, unsupported archive type.", arcName));
         return false;
     }

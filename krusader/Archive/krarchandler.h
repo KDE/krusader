@@ -52,11 +52,11 @@ public slots:
     virtual void incrementProgress(int) = 0;
 };
 
-class KRarcHandler: public QObject, public KrArcBaseManager
+class KrArcHandler: public QObject, public KrArcBaseManager
 {
     Q_OBJECT
 public:
-    explicit KRarcHandler(QObject *parent = nullptr);
+    explicit KrArcHandler(QObject *parent = nullptr);
 
     // return the number of files in the archive
     long arcFileCount(const QString& archive, const QString& type, const QString& password, KRarcObserver *observer);

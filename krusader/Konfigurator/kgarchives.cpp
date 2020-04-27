@@ -127,7 +127,7 @@ void KgArchives::slotAutoConfigure()
 void KgArchives::disableNonExistingPackers()
 {
     KConfigGroup group(krConfig, "Archives");
-    group.writeEntry("Supported Packers", KRarcHandler::supportedPackers());
+    group.writeEntry("Supported Packers", KrArcHandler::supportedPackers());
 }
 
 
