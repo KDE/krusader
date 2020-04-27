@@ -175,7 +175,7 @@ KUrlRequester * KUrlRequesterDlgForCopy::urlRequester()
     return urlRequester_;
 }
 
-KRGetDate::KRGetDate(QDate date, QWidget *parent) : QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
+KrGetDate::KrGetDate(QDate date, QWidget *parent) : QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
 {
     setWindowModality(Qt::WindowModal);
     dateWidget = new KDatePicker(this);
@@ -184,21 +184,21 @@ KRGetDate::KRGetDate(QDate date, QWidget *parent) : QDialog(parent, Qt::MSWindow
     setMinimumSize(dateWidget->sizeHint());
     setMaximumSize(dateWidget->sizeHint());
     resize(minimumSize());
-    connect(dateWidget, &KDatePicker::dateSelected, this, &KRGetDate::setDate);
-    connect(dateWidget, &KDatePicker::dateEntered, this, &KRGetDate::setDate);
+    connect(dateWidget, &KDatePicker::dateSelected, this, &KrGetDate::setDate);
+    connect(dateWidget, &KDatePicker::dateEntered, this, &KrGetDate::setDate);
 
     // keep the original date - incase ESC is pressed
     originalDate  = date;
 }
 
-QDate KRGetDate::getDate()
+QDate KrGetDate::getDate()
 {
     if (exec() == QDialog::Rejected) chosenDate = QDate();
     hide();
     return chosenDate;
 }
 
-void KRGetDate::setDate(QDate date)
+void KrGetDate::setDate(QDate date)
 {
     chosenDate = date;
     accept();

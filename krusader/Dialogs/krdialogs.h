@@ -101,11 +101,11 @@ private:
     bool queueStart = false;
 };
 
-class KRGetDate : public QDialog
+class KrGetDate : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KRGetDate(QDate date = QDate::currentDate(), QWidget *parent = nullptr);
+    explicit KrGetDate(QDate date = QDate::currentDate(), QWidget *parent = nullptr);
     QDate getDate();
 
 private slots:
