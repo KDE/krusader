@@ -447,13 +447,13 @@ QString KrView::statistics()
     return tmp;
 }
 
-bool KrView::changeSelection(const KRQuery& filter, bool select)
+bool KrView::changeSelection(const KrQuery& filter, bool select)
 {
     KConfigGroup grpSvr(_config, "Look&Feel");
     return changeSelection(filter, select, grpSvr.readEntry("Mark Dirs", _MarkDirs), true);
 }
 
-bool KrView::changeSelection(const KRQuery& filter, bool select, bool includeDirs, bool makeVisible)
+bool KrView::changeSelection(const KrQuery& filter, bool select, bool includeDirs, bool makeVisible)
 {
     if (op()) op()->setMassSelectionUpdate(true);
 
@@ -1120,7 +1120,7 @@ void KrView::customSelection(bool select)
     FilterDialog dialog(nullptr, i18n("Select Files"), QStringList(applySelToFolders), false);
     dialog.checkExtraOption(applySelToFolders, includeDirs);
     dialog.exec();
-    KRQuery query = dialog.getQuery();
+    KrQuery query = dialog.getQuery();
     // if the user canceled -> quit
     if (query.isNull())
         return;
@@ -1218,7 +1218,7 @@ void KrView::markSameBaseName()
     KrViewItem* item = getCurrentKrViewItem();
     if (!item)
         return;
-    KRQuery query(QString("%1.*").arg(item->name(false)));
+    KrQuery query(QString("%1.*").arg(item->name(false)));
     changeSelection(query, true, false);
 }
 
@@ -1227,6 +1227,6 @@ void KrView::markSameExtension()
     KrViewItem* item = getCurrentKrViewItem();
     if (!item)
         return;
-    KRQuery query(QString("*.%1").arg(item->extension()));
+    KrQuery query(QString("*.%1").arg(item->extension()));
     changeSelection(query, true, false);
 }

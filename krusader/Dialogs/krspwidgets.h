@@ -41,7 +41,7 @@ class KrSpWidgets
 public:
     KrSpWidgets();
 
-    static KRQuery getMask(const QString& caption, bool nameOnly = false, QWidget * parent = 0); // get file-mask for (un)selecting files
+    static KrQuery getMask(const QString& caption, bool nameOnly = false, QWidget * parent = 0); // get file-mask for (un)selecting files
     static QUrl newFTP();
 
 private:

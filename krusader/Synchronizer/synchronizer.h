@@ -35,7 +35,7 @@
 # include "synchronizertask.h"
 #include "synchronizerfileitem.h"
 
-class KRQuery;
+class KrQuery;
 class FileItem;
 
 class Synchronizer : public QObject
@@ -48,7 +48,7 @@ private:
 public:
     Synchronizer();
     ~Synchronizer() override;
-    int     compare(QString leftURL, QString rightURL, KRQuery *query, bool subDirs, bool symLinks,
+    int     compare(QString leftURL, QString rightURL, KrQuery *query, bool subDirs, bool symLinks,
                     bool igDate, bool asymm, bool cmpByCnt, bool igCase, bool autoSc, QStringList &selFiles,
                     int equThres, int timeOffs, int parThreads, bool hiddenFiles);
     void    stop() {
@@ -151,7 +151,7 @@ protected:
     QString                           leftBaseDir;    // the left-side base directory
     QString                           rightBaseDir;   // the right-side base directory
     QStringList                       excludedPaths;  // list of the excluded paths
-    KRQuery                           *query;         // the filter used for the query
+    KrQuery                           *query;         // the filter used for the query
     bool                              stopped;        // 'Stop' button was pressed
 
     int                               equalsThreshold;// threshold to treat files equal

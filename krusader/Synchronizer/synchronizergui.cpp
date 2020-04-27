@@ -844,7 +844,7 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
         break;
     case SELECT_ITEMS_ID:
     case DESELECT_ITEMS_ID: {
-        KRQuery query = KrSpWidgets::getMask((op == SELECT_ITEMS_ID ? i18n("Select items") :
+        KrQuery query = KrSpWidgets::getMask((op == SELECT_ITEMS_ID ? i18n("Select items") :
                                               i18n("Deselect items")), true, this);
         if (query.isNull())
             break;
@@ -960,7 +960,7 @@ void SynchronizerGUI::closeDialog()
 
 void SynchronizerGUI::compare()
 {
-    KRQuery query;
+    KrQuery query;
 
     if (!filterTabs->fillQuery(&query))
         return;

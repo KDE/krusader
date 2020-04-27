@@ -66,7 +66,7 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
                             _clickedItem = item;
                         else {
                             // clear the current selection
-                            _view->changeSelection(KRQuery("*"), false, true);
+                            _view->changeSelection(KrQuery("*"), false, true);
                             item->setSelected(true);
                         }
                     }
@@ -78,7 +78,7 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
                     && !KrSelectionMode::getSelectionHandler()->leftButtonPreservesSelection()) {
 
                     // clear the current selection
-                    _view->changeSelection(KRQuery("*"), false, true);
+                    _view->changeSelection(KrQuery("*"), false, true);
                 }
             }
             e->accept();
@@ -134,7 +134,7 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
                             _clickedItem = item;
                         } else {
                             // clear the current selection
-                            _view->changeSelection(KRQuery("*"), false, true);
+                            _view->changeSelection(KrQuery("*"), false, true);
                             item->setSelected(true);
                         }
                     }
@@ -191,7 +191,7 @@ bool KrMouseHandler::mouseReleaseEvent(QMouseEvent *e)
                  (KrSelectionMode::getSelectionHandler()->rightButtonSelects()) &&
                  !(KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection()))) {
             // clear the current selection
-            _view->changeSelection(KRQuery("*"), false, true);
+            _view->changeSelection(KrQuery("*"), false, true);
             item->setSelected(true);
         }
     }

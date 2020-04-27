@@ -112,7 +112,7 @@ void Synchronizer::reset()
     clearLists();
 }
 
-int Synchronizer::compare(QString leftURL, QString rightURL, KRQuery *query, bool subDirs,
+int Synchronizer::compare(QString leftURL, QString rightURL, KrQuery *query, bool subDirs,
                           bool symLinks, bool igDate, bool asymm, bool cmpByCnt, bool igCase,
                           bool autoSc, QStringList &selFiles, int equThres, int timeOffs, int parThreads, bool hiddenFiles)
 {

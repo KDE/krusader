@@ -128,7 +128,7 @@ void FilterTabs::acceptQuery()
     }
 }
 
-bool FilterTabs::fillQuery(KRQuery *query)
+bool FilterTabs::fillQuery(KrQuery *query)
 {
     *query = getSettings().toQuery();
 
@@ -148,7 +148,7 @@ FilterBase * FilterTabs::get(const QString& name)
     return nullptr;
 }
 
-KRQuery FilterTabs::getQuery(QWidget *parent)
+KrQuery FilterTabs::getQuery(QWidget *parent)
 {
     FilterDialog dialog(parent);
     return dialog.getQuery();

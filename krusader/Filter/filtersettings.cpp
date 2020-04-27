@@ -247,12 +247,12 @@ time_t FilterSettings::qdate2time_t (QDate d, bool start)
     return mktime(&t);
 }
 
-KRQuery FilterSettings::toQuery() const
+KrQuery FilterSettings::toQuery() const
 {
     if(!isValid())
-        return KRQuery();
+        return KrQuery();
 
-    KRQuery query;
+    KrQuery query;
 
     ////////////// General Options //////////////
 

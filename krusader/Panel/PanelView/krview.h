@@ -256,10 +256,10 @@ public:
     void getSelectedItems(QStringList *names, bool fallbackToFocused = true);
     void getItemsByMask(const QString& mask, QStringList *names, bool dirs = true, bool files = true);
     KrViewItemList getSelectedKrViewItems();
-    void selectAllIncludingDirs() { changeSelection(KRQuery("*"), true, true); }
-    void select(const KRQuery &filter = KRQuery("*")) { changeSelection(filter, true); }
-    void unselect(const KRQuery &filter = KRQuery("*")) { changeSelection(filter, false); }
-    void unselectAll() { changeSelection(KRQuery("*"), false, true); }
+    void selectAllIncludingDirs() { changeSelection(KrQuery("*"), true, true); }
+    void select(const KrQuery &filter = KrQuery("*")) { changeSelection(filter, true); }
+    void unselect(const KrQuery &filter = KrQuery("*")) { changeSelection(filter, false); }
+    void unselectAll() { changeSelection(KrQuery("*"), false, true); }
     void invertSelection();
     QString nameToMakeCurrent() const { return _nameToMakeCurrent; }
     void setNameToMakeCurrent(const QString& name) { _nameToMakeCurrent = name; }
@@ -280,8 +280,8 @@ public:
      */
     void refresh();
 
-    bool changeSelection(const KRQuery &filter, bool select);
-    bool changeSelection(const KRQuery &filter, bool select, bool includeDirs,
+    bool changeSelection(const KrQuery &filter, bool select);
+    bool changeSelection(const KrQuery &filter, bool select, bool includeDirs,
                          bool makeVisible = false);
     bool isFiltered(FileItem *fileitem);
     void setSelected(const FileItem *fileitem, bool select);
@@ -293,7 +293,7 @@ public:
     virtual void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending) {
         sortModeUpdated(sortColumn, descending);
     }
-    const KRQuery &filterMask() const { return _properties->filterMask; }
+    const KrQuery &filterMask() const { return _properties->filterMask; }
     KrViewProperties::FilterSpec filter() const { return _properties->filter; }
     void setFilter(KrViewProperties::FilterSpec filter);
     void setFilter(KrViewProperties::FilterSpec filter, const FilterSettings& customFilter,

@@ -38,7 +38,7 @@ class KrSearchBar;
 class KrSqueezedTextLabel;
 class KrView;
 class KrViewItem;
-class KRQuery;
+class KrQuery;
 class KRSearchMod;
 class KSqueezedTextLabel;
 class ProfileManager;
@@ -110,7 +110,7 @@ private:
     KrSearchBar *searchBar;
     QFrame *foundTextFrame;
 
-    KRQuery *query;
+    KrQuery *query;
     KRSearchMod *searcher;
     bool isBusy;
     bool closed;

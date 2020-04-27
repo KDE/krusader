@@ -112,7 +112,7 @@ void ViewActions::showOptionsMenu()
 
 void ViewActions::markAll()
 {
-    view()->changeSelection(KRQuery("*"), true);
+    view()->changeSelection(KrQuery("*"), true);
 }
 
 void ViewActions::unmarkAll()

@@ -294,7 +294,7 @@ protected:
     QByteArray      _cache;
     qint64          _cachePos = 0;
 
-    KRQuery         _searchQuery;
+    KrQuery         _searchQuery;
     QByteArray      _searchHexQuery;
     qint64          _searchPosition = 0;
     bool            _searchIsForward = true;

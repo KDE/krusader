@@ -68,7 +68,7 @@ void FilterDialog::applySettings(const FilterSettings &s)
     filterTabs->applySettings(s);
 }
 
-KRQuery FilterDialog::getQuery()
+KrQuery FilterDialog::getQuery()
 {
     return settings.toQuery();
 }

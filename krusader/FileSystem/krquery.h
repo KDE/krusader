@@ -38,21 +38,21 @@ class FileItem;
  *
  * Can be used for finding or selecting files and folders by multiple limiting search criteria
  */
-class KRQuery : public QObject
+class KrQuery : public QObject
 {
     Q_OBJECT
 
 public:
     // null query
-    KRQuery();
+    KrQuery();
     // query only with name filter
-    explicit KRQuery(const QString &name, bool matchCase = true);
+    explicit KrQuery(const QString &name, bool matchCase = true);
     // copy constructor
-    KRQuery(const KRQuery &);
+    KrQuery(const KrQuery &);
     // let operator
-    KRQuery &operator=(const KRQuery &);
+    KrQuery &operator=(const KrQuery &);
     // destructor
-    ~KRQuery() override;
+    ~KrQuery() override;
 
     // load parameters from config
     void load(const KConfigGroup& cfg);

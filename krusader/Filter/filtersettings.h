@@ -41,7 +41,7 @@ public:
     }
     void load(const KConfigGroup& cfg);
     void save(KConfigGroup cfg) const;
-    KRQuery toQuery() const;
+    KrQuery toQuery() const;
 
 private:
     enum SizeUnit {

@@ -44,12 +44,12 @@
 
 static const QStringList TAR_TYPES = QStringList() << "tbz" << "tgz" << "tarz" << "tar" << "tlz";
 
-KRSearchMod::KRSearchMod(const KRQuery *query)
+KRSearchMod::KRSearchMod(const KrQuery *query)
     : m_defaultFileSystem(nullptr), m_virtualFileSystem(nullptr), m_stopSearch(false)
 {
-    m_query = new KRQuery(*query);
-    connect(m_query, &KRQuery::status, this, &KRSearchMod::searching);
-    connect(m_query, &KRQuery::processEvents, this, &KRSearchMod::slotProcessEvents);
+    m_query = new KrQuery(*query);
+    connect(m_query, &KrQuery::status, this, &KRSearchMod::searching);
+    connect(m_query, &KrQuery::processEvents, this, &KRSearchMod::slotProcessEvents);
 }
 
 KRSearchMod::~KRSearchMod()

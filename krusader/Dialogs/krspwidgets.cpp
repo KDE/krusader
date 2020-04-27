@@ -51,7 +51,7 @@ QStringList KrSpWidgets::maskList;
 KrSpWidgets::KrSpWidgets()
 = default;
 
-KRQuery KrSpWidgets::getMask(const QString& caption, bool nameOnly, QWidget * parent)
+KrQuery KrSpWidgets::getMask(const QString& caption, bool nameOnly, QWidget * parent)
 {
     if (!nameOnly) {
         return FilterTabs::getQuery(parent);
@@ -62,9 +62,9 @@ KRQuery KrSpWidgets::getMask(const QString& caption, bool nameOnly, QWidget * pa
         QString selection = p->selection->currentText();
         delete p;
         if (selection.isEmpty()) {
-            return KRQuery();
+            return KrQuery();
         } else {
-            return KRQuery(selection);
+            return KrQuery(selection);
         }
     }
 }

@@ -42,7 +42,7 @@
 #define MAX_LINE_LEN 1000
 
 // set the defaults
-KRQuery::KRQuery()
+KrQuery::KrQuery()
     : matchesCaseSensitive(true), bNull(true), contain(QString()),
       containCaseSensetive(true), containWholeWord(false), containRegExp(false), minSize(0),
       maxSize(0), newerThen(0), olderThen(0), owner(QString()), group(QString()), perm(QString()),
@@ -57,7 +57,7 @@ KRQuery::KRQuery()
 }
 
 // set the defaults
-KRQuery::KRQuery(const QString &name, bool matchCase)
+KrQuery::KrQuery(const QString &name, bool matchCase)
     : bNull(true), contain(QString()), containCaseSensetive(true),
       containWholeWord(false), containRegExp(false), minSize(0), maxSize(0), newerThen(0),
       olderThen(0), owner(QString()), group(QString()), perm(QString()), type(QString()),
@@ -73,20 +73,20 @@ KRQuery::KRQuery(const QString &name, bool matchCase)
     setNameFilter(name, matchCase);
 }
 
-KRQuery::KRQuery(const KRQuery &that)
+KrQuery::KrQuery(const KrQuery &that)
     : QObject(), receivedBuffer(nullptr), receivedBufferLen(0), processEventsConnected(0)
 {
     *this = that;
 }
 
-KRQuery::~KRQuery()
+KrQuery::~KrQuery()
 {
     if (receivedBuffer)
         delete[] receivedBuffer;
     receivedBuffer = nullptr;
 }
 
-KRQuery &KRQuery::operator=(const KRQuery &old)
+KrQuery &KrQuery::operator=(const KrQuery &old)
 {
     matches = old.matches;
     excludes = old.excludes;
@@ -124,9 +124,9 @@ KRQuery &KRQuery::operator=(const KRQuery &old)
     return *this;
 }
 
-void KRQuery::load(const KConfigGroup& cfg)
+void KrQuery::load(const KConfigGroup& cfg)
 {
-    *this = KRQuery(); // reset parameters first
+    *this = KrQuery(); // reset parameters first
 
     if (cfg.readEntry("IsNull", true))
         return;
@@ -174,7 +174,7 @@ void KRQuery::load(const KConfigGroup& cfg)
     bNull = false;
 }
 
-void KRQuery::save(KConfigGroup cfg)
+void KrQuery::save(KConfigGroup cfg)
 {
     cfg.writeEntry("IsNull", bNull);
 
@@ -213,19 +213,19 @@ void KRQuery::save(KConfigGroup cfg)
     cfg.writeEntry("EncodedEnterLen", encodedEnterLen);
 }
 
-void KRQuery::connectNotify(const QMetaMethod &signal)
+void KrQuery::connectNotify(const QMetaMethod &signal)
 {
-    if (signal == QMetaMethod::fromSignal(&KRQuery::processEvents))
+    if (signal == QMetaMethod::fromSignal(&KrQuery::processEvents))
         processEventsConnected++;
 }
 
-void KRQuery::disconnectNotify(const QMetaMethod &signal)
+void KrQuery::disconnectNotify(const QMetaMethod &signal)
 {
-    if (signal == QMetaMethod::fromSignal(&KRQuery::processEvents))
+    if (signal == QMetaMethod::fromSignal(&KrQuery::processEvents))
         processEventsConnected--;
 }
 
-bool KRQuery::checkPerm(QString filePerm) const
+bool KrQuery::checkPerm(QString filePerm) const
 {
     for (int i = 0; i < 9; ++i)
         if (perm[i] != '?' && perm[i] != filePerm[i + 1])
@@ -233,7 +233,7 @@ bool KRQuery::checkPerm(QString filePerm) const
     return true;
 }
 
-bool KRQuery::checkType(const QString& mime) const
+bool KrQuery::checkType(const QString& mime) const
 {
     if (type == mime)
         return true;
@@ -254,14 +254,14 @@ bool KRQuery::checkType(const QString& mime) const
     return false;
 }
 
-bool KRQuery::match(const QString &name) const { return matchCommon(name, matches, excludes); }
+bool KrQuery::match(const QString &name) const { return matchCommon(name, matches, excludes); }
 
-bool KRQuery::matchDirName(const QString &name) const
+bool KrQuery::matchDirName(const QString &name) const
 {
     return matchCommon(name, includedDirs, excludedDirs);
 }
 
-bool KRQuery::matchCommon(const QString &nameIn, const QStringList &matchList,
+bool KrQuery::matchCommon(const QString &nameIn, const QStringList &matchList,
                           const QStringList &excludeList) const
 {
     if (excludeList.count() == 0 && matchList.count() == 0) /* true if there's no match condition */
@@ -291,7 +291,7 @@ bool KRQuery::matchCommon(const QString &nameIn, const QStringList &matchList,
     return false;
 }
 
-bool KRQuery::match(FileItem *item) const
+bool KrQuery::match(FileItem *item) const
 {
     if (item->isDir() && !matchDirName(item->getName()))
         return false;
@@ -372,7 +372,7 @@ void fixFoundTextForDisplay(QString &haystack, int start, int length)
     haystack = ("<qt>" + before + "<b>" + text + "</b>" + after + "</qt>");
 }
 
-bool KRQuery::checkBuffer(const char *data, int len) const
+bool KrQuery::checkBuffer(const char *data, int len) const
 {
     bool result = false;
 
@@ -419,7 +419,7 @@ bool KRQuery::checkBuffer(const char *data, int len) const
     return result;
 }
 
-bool KRQuery::checkLine(const QString &line, bool backwards) const
+bool KrQuery::checkLine(const QString &line, bool backwards) const
 {
     if (containRegExp) {
         QRegExp rexp(contain, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive,
@@ -480,7 +480,7 @@ bool KRQuery::checkLine(const QString &line, bool backwards) const
     return false;
 }
 
-bool KRQuery::containsContent(const QString& file) const
+bool KrQuery::containsContent(const QString& file) const
 {
     QFile qf(file);
     if (!qf.open(QIODevice::ReadOnly))
@@ -500,7 +500,7 @@ bool KRQuery::containsContent(const QString& file) const
 
         if (checkTimer()) {
             bool stopped = false;
-            emit((KRQuery *)this)->processEvents(stopped);
+            emit((KrQuery *)this)->processEvents(stopped);
             if (stopped)
                 return false;
         }
@@ -512,11 +512,11 @@ bool KRQuery::containsContent(const QString& file) const
     return false;
 }
 
-bool KRQuery::containsContent(const QUrl& url) const
+bool KrQuery::containsContent(const QUrl& url) const
 {
     KIO::TransferJob *contentReader = KIO::get(url, KIO::NoReload, KIO::HideProgressInfo);
-    connect(contentReader, &KIO::TransferJob::data, this, &KRQuery::containsContentData);
-    connect(contentReader, &KIO::Job::result, this, &KRQuery::containsContentFinished);
+    connect(contentReader, &KIO::TransferJob::data, this, &KrQuery::containsContentData);
+    connect(contentReader, &KIO::Job::result, this, &KrQuery::containsContentFinished);
 
     busy = true;
     containsContentResult = false;
@@ -524,7 +524,7 @@ bool KRQuery::containsContent(const QUrl& url) const
 
     while (busy && !stopped) {
         checkTimer();
-        emit((KRQuery *)this)->processEvents(stopped);
+        emit((KrQuery *)this)->processEvents(stopped);
     }
 
     if (busy) {
@@ -535,7 +535,7 @@ bool KRQuery::containsContent(const QUrl& url) const
     return containsContentResult;
 }
 
-void KRQuery::containsContentData(KIO::Job *job, const QByteArray &array)
+void KrQuery::containsContentData(KIO::Job *job, const QByteArray &array)
 {
     receivedBytes += array.size();
     if (checkBuffer(array.data(), array.size())) {
@@ -547,22 +547,22 @@ void KRQuery::containsContentData(KIO::Job *job, const QByteArray &array)
     checkTimer();
 }
 
-void KRQuery::containsContentFinished(KJob *) { busy = false; }
+void KrQuery::containsContentFinished(KJob *) { busy = false; }
 
-bool KRQuery::checkTimer() const
+bool KrQuery::checkTimer() const
 {
     if (timer.elapsed() >= STATUS_SEND_DELAY) {
         auto pcnt = (int)(100. * (double)receivedBytes / (double)totalBytes + .5);
         QString message =
             i18nc("%1=filename, %2=percentage", "Searching content of '%1' (%2%)", fileName, pcnt);
         timer.start();
-        emit((KRQuery *)this)->status(message);
+        emit((KrQuery *)this)->status(message);
         return true;
     }
     return false;
 }
 
-QStringList KRQuery::split(QString str)
+QStringList KrQuery::split(QString str)
 {
     QStringList list;
     int splitNdx = 0;
@@ -595,7 +595,7 @@ QStringList KRQuery::split(QString str)
     return list;
 }
 
-void KRQuery::setNameFilter(const QString &text, bool cs)
+void KrQuery::setNameFilter(const QString &text, bool cs)
 {
     bNull = false;
     matchesCaseSensitive = cs;
@@ -659,7 +659,7 @@ void KRQuery::setNameFilter(const QString &text, bool cs)
     }
 }
 
-void KRQuery::setContent(const QString &content, bool cs, bool wholeWord, const QString& encoding,
+void KrQuery::setContent(const QString &content, bool cs, bool wholeWord, const QString& encoding,
                          bool regExp)
 {
     bNull = false;
@@ -683,56 +683,56 @@ void KRQuery::setContent(const QString &content, bool cs, bool wholeWord, const 
     encodedEnterLen = encodedEnterArray.size();
 }
 
-void KRQuery::setMinimumFileSize(KIO::filesize_t minimumSize)
+void KrQuery::setMinimumFileSize(KIO::filesize_t minimumSize)
 {
     bNull = false;
     minSize = minimumSize;
 }
 
-void KRQuery::setMaximumFileSize(KIO::filesize_t maximumSize)
+void KrQuery::setMaximumFileSize(KIO::filesize_t maximumSize)
 {
     bNull = false;
     maxSize = maximumSize;
 }
 
-void KRQuery::setNewerThan(time_t time)
+void KrQuery::setNewerThan(time_t time)
 {
     bNull = false;
     newerThen = time;
 }
 
-void KRQuery::setOlderThan(time_t time)
+void KrQuery::setOlderThan(time_t time)
 {
     bNull = false;
     olderThen = time;
 }
 
-void KRQuery::setOwner(const QString &ownerIn)
+void KrQuery::setOwner(const QString &ownerIn)
 {
     bNull = false;
     owner = ownerIn;
 }
 
-void KRQuery::setGroup(const QString &groupIn)
+void KrQuery::setGroup(const QString &groupIn)
 {
     bNull = false;
     group = groupIn;
 }
 
-void KRQuery::setPermissions(const QString &permIn)
+void KrQuery::setPermissions(const QString &permIn)
 {
     bNull = false;
     perm = permIn;
 }
 
-void KRQuery::setMimeType(const QString &typeIn, QStringList customList)
+void KrQuery::setMimeType(const QString &typeIn, QStringList customList)
 {
     bNull = false;
     type = typeIn;
     customType = std::move(customList);
 }
 
-bool KRQuery::isExcluded(const QUrl &url)
+bool KrQuery::isExcluded(const QUrl &url)
 {
     for (QUrl &item : whereNotToSearch)
         if (item.isParentOf(url) || url.matches(item, QUrl::StripTrailingSlash))
@@ -750,7 +750,7 @@ bool KRQuery::isExcluded(const QUrl &url)
     return false;
 }
 
-void KRQuery::setSearchInDirs(const QList<QUrl> &urls)
+void KrQuery::setSearchInDirs(const QList<QUrl> &urls)
 {
     whereToSearch.clear();
     for (int i = 0; i < urls.count(); ++i) {
@@ -761,7 +761,7 @@ void KRQuery::setSearchInDirs(const QList<QUrl> &urls)
     }
 }
 
-void KRQuery::setDontSearchInDirs(const QList<QUrl> &urls)
+void KrQuery::setDontSearchInDirs(const QList<QUrl> &urls)
 {
     whereNotToSearch.clear();
     for (int i = 0; i < urls.count(); ++i) {
@@ -771,7 +771,7 @@ void KRQuery::setDontSearchInDirs(const QList<QUrl> &urls)
         whereNotToSearch.append(completed);
     }
 }
-void KRQuery::setExcludeFolderNames(const QStringList &paths)
+void KrQuery::setExcludeFolderNames(const QStringList &paths)
 {
     excludedFolderNames.clear();
     excludedFolderNames.append(paths);

@@ -167,7 +167,7 @@ void KrSearchBar::onSearchChange()
         case MODE_SELECT: {
             _view->unselectAll();
             if (!text.isEmpty()) {
-                const bool anyMatch = _view->changeSelection(KRQuery(text, caseSensitive()), true);
+                const bool anyMatch = _view->changeSelection(KrQuery(text, caseSensitive()), true);
                 indicateMatch(anyMatch);
             }
             break;

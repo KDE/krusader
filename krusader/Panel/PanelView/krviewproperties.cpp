@@ -28,7 +28,7 @@ KrViewProperties::KrViewProperties(bool displayIcons, bool numericPermissions,
                                    QStringList atomicExtensions)
     : numericPermissions(numericPermissions), displayIcons(displayIcons), sortColumn(Name),
       sortOptions(sortOptions), sortMethod(sortMethod), filter(KrViewProperties::All),
-      filterMask(KRQuery("*")), filterApplysToDirs(false),
+      filterMask(KrQuery("*")), filterApplysToDirs(false),
       localeAwareCompareIsCaseSensitive(localeAwareCompareIsCaseSensitive),
       humanReadableSize(humanReadableSize), atomicExtensions(std::move(atomicExtensions)), numberOfColumns(1)
 {

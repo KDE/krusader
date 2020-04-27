@@ -413,7 +413,7 @@ bool KrSearchDialog::gui2query()
     if (query != nullptr) {
         delete query; query = nullptr;
     }
-    query = new KRQuery();
+    query = new KrQuery();
 
     return filterTabs->fillQuery(query);
 }

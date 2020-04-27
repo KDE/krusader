@@ -27,7 +27,7 @@
 #include <QStringList>
 
 class FilterSettings;
-class KRQuery;
+class KrQuery;
 
 /**
  * This class is an interface class between KrView and KrViewItem
@@ -95,7 +95,7 @@ public:
     const SortMethod sortMethod; // sort method for names and extensions
 
     FilterSpec filter;     // what items to show (all, custom, exec)
-    KRQuery filterMask;    // what items to show (*.cpp, *.h etc)
+    KrQuery filterMask;    // what items to show (*.cpp, *.h etc)
     FilterSettings filterSettings;
     bool filterApplysToDirs;
 

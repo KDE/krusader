@@ -31,7 +31,7 @@
 
 #include <KIO/Global>
 
-class KRQuery;
+class KrQuery;
 class FileItem;
 class FileSystem;
 class DefaultFileSystem;
@@ -46,7 +46,7 @@ class KRSearchMod : public QObject
 {
     Q_OBJECT
 public:
-    explicit KRSearchMod(const KRQuery *query);
+    explicit KRSearchMod(const KrQuery *query);
     ~KRSearchMod() override;
 
     void start();
@@ -68,7 +68,7 @@ private slots:
     void slotProcessEvents(bool &stopped);
 
 private:
-    KRQuery *m_query;
+    KrQuery *m_query;
     DefaultFileSystem *m_defaultFileSystem;
     VirtualFileSystem *m_virtualFileSystem;
 
