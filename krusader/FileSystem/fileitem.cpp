@@ -59,13 +59,13 @@ FileItem::FileItem(const QString &name, const QUrl &url, bool isDir,
       m_acl(acl), m_defaulfAcl(defaultAcl), m_AclLoaded(false),
       m_mimeType(), m_iconName()
 {
-    m_permissions = KRpermHandler::mode2QString(mode);
+    m_permissions = KrPermHandler::mode2QString(mode);
 
     if (m_owner.isEmpty())
-        m_owner = KRpermHandler::uid2user(m_uid);
+        m_owner = KrPermHandler::uid2user(m_uid);
 
     if (m_group.isEmpty())
-        m_group = KRpermHandler::gid2group(m_gid);
+        m_group = KrPermHandler::gid2group(m_gid);
 
     if (m_isDir && !m_isLink) {
         m_size = s_fileSizeCache.contains(m_url) ? s_fileSizeCache[m_url]->m_size : -1;
@@ -110,25 +110,25 @@ FileItem *FileItem::createCopy(const FileItem &file, const QString &newName)
 char FileItem::isReadable() const
 {
     if (m_uid != (uid_t)-1 && m_gid != (gid_t)-1)
-        return KRpermHandler::readable(m_permissions, m_gid, m_uid);
+        return KrPermHandler::readable(m_permissions, m_gid, m_uid);
     else
-        return KRpermHandler::ftpReadable(m_owner, m_url.userName(), m_permissions);
+        return KrPermHandler::ftpReadable(m_owner, m_url.userName(), m_permissions);
 }
 
 char FileItem::isWriteable() const
 {
     if (m_uid != (uid_t)-1 && m_gid != (gid_t)-1)
-        return KRpermHandler::writeable(m_permissions, m_gid, m_uid);
+        return KrPermHandler::writeable(m_permissions, m_gid, m_uid);
     else
-        return KRpermHandler::ftpWriteable(m_owner, m_url.userName(), m_permissions);
+        return KrPermHandler::ftpWriteable(m_owner, m_url.userName(), m_permissions);
 }
 
 char FileItem::isExecutable() const
 {
     if (m_uid != (uid_t)-1 && m_gid != (gid_t)-1)
-        return KRpermHandler::executable(m_permissions, m_gid, m_uid);
+        return KrPermHandler::executable(m_permissions, m_gid, m_uid);
     else
-        return KRpermHandler::ftpExecutable(m_owner, m_url.userName(), m_permissions);
+        return KrPermHandler::ftpExecutable(m_owner, m_url.userName(), m_permissions);
 }
 
 void FileItem::setSize(KIO::filesize_t size)

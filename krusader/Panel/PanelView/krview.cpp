@@ -430,9 +430,9 @@ QString KrView::statistics()
                     %5=filesize of all items in folder,%6=filesize in Bytes",
                     "%1 out of %2, %3 (%4) out of %5 (%6)",
                     numSelected(), _count, KIO::convertSize(selectedSize),
-                    KRpermHandler::parseSize(selectedSize),
+                    KrPermHandler::parseSize(selectedSize),
                     KIO::convertSize(size),
-                    KRpermHandler::parseSize(size));
+                    KrPermHandler::parseSize(size));
     } else {
         tmp = i18nc("%1=number of selected items,%2=total number of items, \
                     %3=filesize of selected items,%4=filesize of all items in folder",
@@ -1007,7 +1007,7 @@ QString KrView::permissionsText(const KrViewProperties *properties, const FileIt
 
 QString KrView::sizeText(const KrViewProperties *properties, KIO::filesize_t size)
 {
-    return properties->humanReadableSize ? KIO::convertSize(size) : KRpermHandler::parseSize(size);
+    return properties->humanReadableSize ? KIO::convertSize(size) : KrPermHandler::parseSize(size);
 }
 
 QString KrView::mimeTypeText(FileItem *fileItem)

@@ -188,7 +188,7 @@ void LoaderWidget::setValues(int fileNum, int dirNum, KIO::filesize_t total)
 {
     files->setText(QString("%1").arg(fileNum));
     directories->setText(QString("%1").arg(dirNum));
-    totalSize->setText(QString("%1").arg(KRpermHandler::parseSize(total).trimmed()));
+    totalSize->setText(QString("%1").arg(KrPermHandler::parseSize(total).trimmed()));
 }
 
 void LoaderWidget::slotCancelled()
@@ -707,8 +707,8 @@ void DiskUsage::createStatus()
 
     emit status(i18n("Current folder:%1,  Total size:%2,  Own size:%3",
                      url.toDisplayString(QUrl::PreferLocalFile | QUrl::StripTrailingSlash),
-                     ' ' + KRpermHandler::parseSize(dirEntry->size()),
-                     ' ' + KRpermHandler::parseSize(dirEntry->ownSize())));
+                     ' ' + KrPermHandler::parseSize(dirEntry->size()),
+                     ' ' + KrPermHandler::parseSize(dirEntry->ownSize())));
 }
 
 void DiskUsage::changeDirectory(Directory *dir)
@@ -1027,10 +1027,10 @@ QString DiskUsage::getToolTip(File *item)
 
     QString str = "<qt><h5><table><tr><td>" + i18n("Name:") +  "</td><td>" + item->name() + "</td></tr>" +
                   "<tr><td>" + i18n("Type:") +  "</td><td>" + mime + "</td></tr>" +
-                  "<tr><td>" + i18n("Size:") +  "</td><td>" + KRpermHandler::parseSize(item->size()) + "</td></tr>";
+                  "<tr><td>" + i18n("Size:") +  "</td><td>" + KrPermHandler::parseSize(item->size()) + "</td></tr>";
 
     if (item->isDir())
-        str +=      "<tr><td>" + i18n("Own size:") +  "</td><td>" + KRpermHandler::parseSize(item->ownSize()) + "</td></tr>";
+        str +=      "<tr><td>" + i18n("Own size:") +  "</td><td>" + KrPermHandler::parseSize(item->ownSize()) + "</td></tr>";
 
     str +=        "<tr><td>" + i18n("Last modified:") +  "</td><td>" + date + "</td></tr>" +
                   "<tr><td>" + i18n("Permissions:") +  "</td><td>" + item->perm() + "</td></tr>" +

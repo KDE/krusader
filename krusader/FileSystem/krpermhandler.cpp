@@ -28,11 +28,11 @@
 #include <pwd.h>
 #include <sys/stat.h>
 
-QSet<int> KRpermHandler::currentGroups;
-QHash<int, QString> KRpermHandler::uidCache;
-QHash<int, QString> KRpermHandler::gidCache;
+QSet<int> KrPermHandler::currentGroups;
+QHash<int, QString> KrPermHandler::uidCache;
+QHash<int, QString> KrPermHandler::gidCache;
 
-QString KRpermHandler::mode2QString(mode_t m)
+QString KrPermHandler::mode2QString(mode_t m)
 {
     char perm[ 11 ];
     for (int i = 0; i != 10; i++)
@@ -61,7 +61,7 @@ QString KRpermHandler::mode2QString(mode_t m)
     return QString(perm);
 }
 
-void KRpermHandler::init()
+void KrPermHandler::init()
 {
     // set the umask to 022
     //umask( 022 );
@@ -97,22 +97,22 @@ void KRpermHandler::init()
     currentGroups.insert(getegid());
 }
 
-char KRpermHandler::readable(const QString &perm, gid_t gid, uid_t uid)
+char KrPermHandler::readable(const QString &perm, gid_t gid, uid_t uid)
 {
     return getLocalPermission(perm, gid, uid, 0);
 }
 
-char KRpermHandler::writeable(const QString &perm, gid_t gid, uid_t uid)
+char KrPermHandler::writeable(const QString &perm, gid_t gid, uid_t uid)
 {
     return getLocalPermission(perm, gid, uid, 1);
 }
 
-char KRpermHandler::executable(const QString &perm, gid_t gid, uid_t uid)
+char KrPermHandler::executable(const QString &perm, gid_t gid, uid_t uid)
 {
     return getLocalPermission(perm, gid, uid, 2, true);
 }
 
-char KRpermHandler::getLocalPermission(const QString &perm, gid_t gid, uid_t uid, int permOffset,
+char KrPermHandler::getLocalPermission(const QString &perm, gid_t gid, uid_t uid, int permOffset,
                                        bool ignoreRoot)
 {
     // root override
@@ -131,22 +131,22 @@ char KRpermHandler::getLocalPermission(const QString &perm, gid_t gid, uid_t uid
     return NO_PERM;
 }
 
-char KRpermHandler::ftpReadable(const QString &fileOwner, const QString &userName, const QString &perm)
+char KrPermHandler::ftpReadable(const QString &fileOwner, const QString &userName, const QString &perm)
 {
     return getFtpPermission(fileOwner, userName, perm, 0);
 }
 
-char KRpermHandler::ftpWriteable(const QString &fileOwner, const QString &userName, const QString &perm)
+char KrPermHandler::ftpWriteable(const QString &fileOwner, const QString &userName, const QString &perm)
 {
     return getFtpPermission(fileOwner, userName, perm, 1);
 }
 
-char KRpermHandler::ftpExecutable(const QString &fileOwner, const QString &userName, const QString &perm)
+char KrPermHandler::ftpExecutable(const QString &fileOwner, const QString &userName, const QString &perm)
 {
     return getFtpPermission(fileOwner, userName, perm, 2);
 }
 
-char KRpermHandler::getFtpPermission(const QString &fileOwner, const QString &userName,
+char KrPermHandler::getFtpPermission(const QString &fileOwner, const QString &userName,
                                      const QString &perm, int permOffset)
 {
     // first check other permissions.
@@ -163,17 +163,17 @@ char KRpermHandler::getFtpPermission(const QString &fileOwner, const QString &us
     return NO_PERM;
 }
 
-QString KRpermHandler::parseSize(KIO::filesize_t val)
+QString KrPermHandler::parseSize(KIO::filesize_t val)
 {
     return QLocale().toString(val);
 }
 
-QString KRpermHandler::gid2group(gid_t groupId)
+QString KrPermHandler::gid2group(gid_t groupId)
 {
    return gidCache.value(groupId, QStringLiteral("???"));
 }
 
-QString KRpermHandler::uid2user(uid_t userId)
+QString KrPermHandler::uid2user(uid_t userId)
 {
     return uidCache.value(userId, QStringLiteral("???"));
 }

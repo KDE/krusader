@@ -38,7 +38,7 @@
 #define UNKNOWN_PERM 1
 #define ALLOWED_PERM 2
 
-class KRpermHandler
+class KrPermHandler
 {
 public:
     static void init();
@@ -58,7 +58,7 @@ public:
     static QString parseSize(KIO::filesize_t val);
 
 private:
-    KRpermHandler() {}
+    KrPermHandler() {}
     static char getLocalPermission(const QString &perm, gid_t gid, uid_t uid, int permOffset,
                                    bool ignoreRoot = false);
     static char getFtpPermission(const QString &fileOwner, const QString &userName,

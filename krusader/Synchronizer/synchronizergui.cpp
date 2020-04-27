@@ -1064,13 +1064,13 @@ void SynchronizerGUI::addFile(SynchronizerFileItem *item)
 
     if (item->existsInLeft()) {
         leftName = item->leftName();
-        leftSize = isDir ? dirLabel() + ' ' : KRpermHandler::parseSize(item->leftSize());
+        leftSize = isDir ? dirLabel() + ' ' : KrPermHandler::parseSize(item->leftSize());
         leftDate = SynchronizerGUI::convertTime(item->leftDate());
     }
 
     if (item->existsInRight()) {
         rightName = item->rightName();
-        rightSize = isDir ? dirLabel() + ' ' : KRpermHandler::parseSize(item->rightSize());
+        rightSize = isDir ? dirLabel() + ' ' : KrPermHandler::parseSize(item->rightSize());
         rightDate = SynchronizerGUI::convertTime(item->rightDate());
     }
 
@@ -1115,13 +1115,13 @@ void SynchronizerGUI::markChanged(SynchronizerFileItem *item, bool ensureVisible
 
             if (item->existsInLeft()) {
                 leftName = item->leftName();
-                leftSize = isDir ? dirLabel() + ' ' : KRpermHandler::parseSize(item->leftSize());
+                leftSize = isDir ? dirLabel() + ' ' : KrPermHandler::parseSize(item->leftSize());
                 leftDate = SynchronizerGUI::convertTime(item->leftDate());
             }
 
             if (item->existsInRight()) {
                 rightName = item->rightName();
-                rightSize = isDir ? dirLabel() + ' ' : KRpermHandler::parseSize(item->rightSize());
+                rightSize = isDir ? dirLabel() + ' ' : KrPermHandler::parseSize(item->rightSize());
                 rightDate = SynchronizerGUI::convertTime(item->rightDate());
             }
 

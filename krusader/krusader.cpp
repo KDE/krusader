@@ -160,7 +160,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
     setupActions();
 
     // init the permission handler class
-    KRpermHandler::init();
+    KrPermHandler::init();
 
     // init the protocol handler
     KgProtocols::init();
