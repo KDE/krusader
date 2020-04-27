@@ -272,8 +272,8 @@ void CompareContentTask::slotDataReceived(KIO::Job *job, const QByteArray &data)
         if (compareArray.size())
             abortContentComparing();
     } else {
-        if (!(dynamic_cast<KIO::TransferJob *>(job))->isSuspended()) {
-            (dynamic_cast<KIO::TransferJob *>(job))->suspend();
+        if (!(qobject_cast<KIO::TransferJob *>(job))->isSuspended()) {
+            (qobject_cast<KIO::TransferJob *>(job))->suspend();
             otherJob->resume();
         }
     }

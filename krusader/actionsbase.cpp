@@ -98,13 +98,13 @@ QAction *ActionsBase::action(QString text, QString icon, const QKeySequence& sho
 KToggleAction *ActionsBase::toggleAction(QString text, QString icon, const QKeySequence& shortcut,
                                 QObject *recv, const char *slot, QString name)
 {
-    return dynamic_cast<KToggleAction *>(action(std::move(text), std::move(icon), shortcut, recv, slot, std::move(name), true));
+    return qobject_cast<KToggleAction *>(action(std::move(text), std::move(icon), shortcut, recv, slot, std::move(name), true));
 }
 
 KToggleAction *ActionsBase::toggleAction(QString text, QString icon, const QKeySequence& shortcut,
                                          ActionGroup &group, const char *slot, QString name)
 {
-    return dynamic_cast<KToggleAction *>(action(std::move(text), std::move(icon), shortcut, group, slot, std::move(name), true));
+    return qobject_cast<KToggleAction *>(action(std::move(text), std::move(icon), shortcut, group, slot, std::move(name), true));
 }
 
 QAction *ActionsBase::stdAction(KStandardAction::StandardAction id, QObject *recv, const char *slot)

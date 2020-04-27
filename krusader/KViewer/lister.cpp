@@ -1360,7 +1360,7 @@ bool Lister::openUrl(const QUrl &listerUrl)
         connect(downloadJob, &KIO::TransferJob::result, this, [=](KJob *job) {
             _tempFile->flush();
             if (job->error()) {   /* any error occurred? */
-                auto *kioJob = dynamic_cast<KIO::TransferJob *>(job);
+                auto *kioJob = qobject_cast<KIO::TransferJob *>(job);
                 KMessageBox::error(_textArea, i18n("Error reading file %1.", kioJob->url().toDisplayString(QUrl::PreferLocalFile)));
             }
             _downloading = false;

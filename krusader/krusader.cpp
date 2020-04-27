@@ -544,7 +544,7 @@ void Krusader::stopWait() {
 }
 
 void Krusader::updateUserActions() {
-    auto *userActionMenu = dynamic_cast<KActionMenu *>( KrActions::actUserMenu);
+    auto *userActionMenu = qobject_cast<KActionMenu *>( KrActions::actUserMenu);
     if (userActionMenu) {
         userActionMenu->menu()->clear();
 

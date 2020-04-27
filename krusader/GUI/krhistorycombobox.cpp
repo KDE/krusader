@@ -48,9 +48,9 @@ protected:
 bool KHBoxEventFilter::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::KeyPress) {
-        auto keyEvent = dynamic_cast<QKeyEvent *>(event);
+        auto keyEvent = static_cast<QKeyEvent *>(event);
         if (keyEvent->modifiers() == Qt::ShiftModifier && keyEvent->key() == Qt::Key::Key_Delete) {
-            auto comboBox = dynamic_cast<KHistoryComboBox *>(obj);
+            auto comboBox = qobject_cast<KHistoryComboBox *>(obj);
             if (comboBox != nullptr) {
                 QString entryToDelete = comboBox->currentText();
                 // Delete the current item
@@ -83,16 +83,16 @@ protected:
 bool KHBoxListEventFilter::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::KeyPress) {
-        auto keyEvent = dynamic_cast<QKeyEvent *>(event);
+        auto keyEvent = static_cast<QKeyEvent *>(event);
         if (keyEvent->modifiers() == Qt::ShiftModifier && keyEvent->key() == Qt::Key::Key_Delete) {
-            auto itemView = dynamic_cast<QAbstractItemView *>(obj);
+            auto itemView = qobject_cast<QAbstractItemView *>(obj);
             if (itemView->model() != nullptr) {
                 QString entryToDelete = itemView->currentIndex().data().toString();
                 // Delete the current item from the popup list
                 itemView->model()->removeRow(itemView->currentIndex().row());
                 // The item has to be deleted also from the completion list of the KHistoryComboBox
                 if (itemView->parent() != nullptr) {
-                    auto comboBox = dynamic_cast<KHistoryComboBox *>(itemView->parent()->parent());
+                    auto comboBox = qobject_cast<KHistoryComboBox *>(itemView->parent()->parent());
                     if (comboBox != nullptr) {
                         comboBox->completionObject()->removeItem(entryToDelete);
                         return true;

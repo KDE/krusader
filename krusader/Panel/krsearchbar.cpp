@@ -222,7 +222,7 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
 
     qDebug() << "key press event=" << event;
 
-    auto *ke = dynamic_cast<QKeyEvent *>(event);
+    auto *ke = static_cast<QKeyEvent *>(event);
     auto modifiers = ke->modifiers();
 
     if (watched == _view->widget()) {

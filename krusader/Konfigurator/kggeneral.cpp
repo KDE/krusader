@@ -287,7 +287,7 @@ void KgGeneral::createGeneralTab()
 
 void KgGeneral::applyTempDir(QObject *obj, const QString& configGroup, const QString& name)
 {
-    auto *urlReq = dynamic_cast<KonfiguratorURLRequester *>(obj);
+    auto *urlReq = qobject_cast<KonfiguratorURLRequester *>(obj);
     QString value = urlReq->url().toDisplayString(QUrl::PreferLocalFile);
 
     KConfigGroup(krConfig, configGroup).writeEntry(name, value);

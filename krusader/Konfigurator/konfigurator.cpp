@@ -163,7 +163,7 @@ void Konfigurator::closeEvent(QCloseEvent *event)
 void Konfigurator::slotApplyEnable()
 {
     lastPage = currentPage();
-    bool isChanged = (dynamic_cast<KonfiguratorPage *>(lastPage->widget()))->isChanged();
+    bool isChanged = (qobject_cast<KonfiguratorPage *>(lastPage->widget()))->isChanged();
     button(QDialogButtonBox::Apply)->setEnabled(isChanged);
     button(QDialogButtonBox::Reset)->setEnabled(isChanged);
 }
@@ -173,7 +173,7 @@ bool Konfigurator::slotPageSwitch(KPageWidgetItem *current, KPageWidgetItem *bef
     if (before == nullptr)
         return true;
 
-    auto *currentPg = dynamic_cast<KonfiguratorPage *>(before->widget());
+    auto *currentPg = qobject_cast<KonfiguratorPage *>(before->widget());
 
     if (internalCall) {
         internalCall = false;
@@ -221,17 +221,17 @@ void Konfigurator::slotClose()
 
 void Konfigurator::slotApply()
 {
-    emit configChanged((dynamic_cast<KonfiguratorPage*>(currentPage()->widget()))->apply());
+    emit configChanged((qobject_cast<KonfiguratorPage*>(currentPage()->widget()))->apply());
 }
 
 void Konfigurator::slotReset()
 {
-    (dynamic_cast<KonfiguratorPage *>(currentPage()->widget()))->loadInitialValues();
+    (qobject_cast<KonfiguratorPage *>(currentPage()->widget()))->loadInitialValues();
 }
 
 void Konfigurator::slotRestoreDefaults()
 {
-    (dynamic_cast<KonfiguratorPage *>(currentPage()->widget()))->setDefaults();
+    (qobject_cast<KonfiguratorPage *>(currentPage()->widget()))->setDefaults();
 }
 
 void Konfigurator::slotShowHelp()
