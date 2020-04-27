@@ -56,7 +56,7 @@ class KStartupInfoData;
 class KStartupInfoId;
 
 class KrusaderStatus;
-class KRPleaseWaitHandler;
+class KrPleaseWaitHandler;
 class PopularUrls;
 class ViewActions;
 class ListPanelActions;
@@ -147,7 +147,7 @@ public:
     PopularUrls *_popularUrls; // holds a sorted list of the most popular urls visited
 
     // the internal progress bar variales + functions
-    KRPleaseWaitHandler* plzWait;
+    KrPleaseWaitHandler* plzWait;
     void startWaiting(QString msg = "Please Wait", int count = 0 , bool cancel = false);
     void stopWait();
     bool wasWaitingCancelled() const;

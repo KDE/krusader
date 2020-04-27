@@ -117,7 +117,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
     SLOTS = new KrSlots(this);
     setXMLFile("krusaderui.rc");   // kpart-related xml file
 
-    plzWait = new KRPleaseWaitHandler(this);
+    plzWait = new KrPleaseWaitHandler(this);
 
     const bool runKonfig = versionControl();
 

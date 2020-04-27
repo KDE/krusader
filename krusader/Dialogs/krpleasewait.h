@@ -32,14 +32,14 @@
 
 #include <KIO/Job>
 
-class KRPleaseWait;
+class KrPleaseWait;
 
-class KRPleaseWaitHandler : public QObject
+class KrPleaseWaitHandler : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit KRPleaseWaitHandler(QWidget *parentWindow);
+    explicit KrPleaseWaitHandler(QWidget *parentWindow);
 
 public slots:
 
@@ -56,16 +56,16 @@ public slots:
 private:
     QWidget *_parentWindow;
     QPointer<KIO::Job> job;
-    KRPleaseWait * dlg;
+    KrPleaseWait * dlg;
     bool cycle, cycleMutex, incMutex, _wasCancelled;
 };
 
 
-class KRPleaseWait : public QProgressDialog
+class KrPleaseWait : public QProgressDialog
 {
     Q_OBJECT
 public:
-    KRPleaseWait(const QString& msg, QWidget *parent, int count = 0 , bool cancel = false);
+    KrPleaseWait(const QString& msg, QWidget *parent, int count = 0 , bool cancel = false);
 
 public slots:
     void incProgress(int howMuch);

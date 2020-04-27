@@ -37,7 +37,7 @@
 
 #include "../krglobal.h"
 
-KRPleaseWait::KRPleaseWait(const QString& msg, QWidget *parent, int count, bool cancel):
+KrPleaseWait::KrPleaseWait(const QString& msg, QWidget *parent, int count, bool cancel):
         QProgressDialog(cancel ? nullptr : parent) , inc(true)
 {
     setModal(!cancel);
@@ -49,7 +49,7 @@ KRPleaseWait::KRPleaseWait(const QString& msg, QWidget *parent, int count, bool 
     setAutoClose(false);
     setAutoReset(false);
 
-    connect(timer, &QTimer::timeout, this, &KRPleaseWait::cycleProgress);
+    connect(timer, &QTimer::timeout, this, &KrPleaseWait::cycleProgress);
 
     auto* progress = new QProgressBar(this);
     progress->setMaximum(count);
@@ -68,7 +68,7 @@ KRPleaseWait::KRPleaseWait(const QString& msg, QWidget *parent, int count, bool 
     show();
 }
 
-void KRPleaseWait::closeEvent(QCloseEvent * e)
+void KrPleaseWait::closeEvent(QCloseEvent * e)
 {
     if (canClose) {
         emit canceled();
@@ -77,12 +77,12 @@ void KRPleaseWait::closeEvent(QCloseEvent * e)
         e->ignore();         /* the window closing [x] also */
 }
 
-void KRPleaseWait::incProgress(int howMuch)
+void KrPleaseWait::incProgress(int howMuch)
 {
     setValue(value() + howMuch);
 }
 
-void KRPleaseWait::cycleProgress()
+void KrPleaseWait::cycleProgress()
 {
     if (inc) setValue(value() + 1);
     else     setValue(value() - 1);
@@ -90,12 +90,12 @@ void KRPleaseWait::cycleProgress()
     if (value() <= 0) inc = true;
 }
 
-KRPleaseWaitHandler::KRPleaseWaitHandler(QWidget *parentWindow)
+KrPleaseWaitHandler::KrPleaseWaitHandler(QWidget *parentWindow)
     : QObject(parentWindow), _parentWindow(parentWindow), dlg(nullptr)
 {
 }
 
-void KRPleaseWaitHandler::stopWait()
+void KrPleaseWaitHandler::stopWait()
 {
     if (dlg != nullptr) delete dlg;
     dlg = nullptr;
@@ -105,11 +105,11 @@ void KRPleaseWaitHandler::stopWait()
 }
 
 
-void KRPleaseWaitHandler::startWaiting(const QString& msg, int count , bool cancel)
+void KrPleaseWaitHandler::startWaiting(const QString& msg, int count , bool cancel)
 {
     if (dlg == nullptr) {
-        dlg = new KRPleaseWait(msg , _parentWindow, count, cancel);
-        connect(dlg, &KRPleaseWait::canceled, this, &KRPleaseWaitHandler::killJob);
+        dlg = new KrPleaseWait(msg , _parentWindow, count, cancel);
+        connect(dlg, &KrPleaseWait::canceled, this, &KrPleaseWaitHandler::killJob);
     }
     incMutex = cycleMutex = _wasCancelled = false;
     dlg->setValue(0);
@@ -125,28 +125,28 @@ void KRPleaseWaitHandler::startWaiting(const QString& msg, int count , bool canc
     }
 }
 
-void KRPleaseWaitHandler::cycleProgress()
+void KrPleaseWaitHandler::cycleProgress()
 {
     if (cycleMutex) return;
     cycleMutex = true;
     if (dlg) dlg->cycleProgress();
-    if (cycle) QTimer::singleShot(2000, this, &KRPleaseWaitHandler::cycleProgress);
+    if (cycle) QTimer::singleShot(2000, this, &KrPleaseWaitHandler::cycleProgress);
     cycleMutex = false;
 }
 
-void KRPleaseWaitHandler::killJob()
+void KrPleaseWaitHandler::killJob()
 {
     if (!job.isNull()) job->kill(KJob::EmitResult);
     stopWait();
     _wasCancelled = true;
 }
 
-void KRPleaseWaitHandler::setJob(KIO::Job* j)
+void KrPleaseWaitHandler::setJob(KIO::Job* j)
 {
     job = j;
 }
 
-void KRPleaseWaitHandler::incProgress(int i)
+void KrPleaseWaitHandler::incProgress(int i)
 {
     if (incMutex) return;
     incMutex = true;
