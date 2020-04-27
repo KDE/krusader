@@ -255,7 +255,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
                 excludeFolderNames->setDisabled(true);
             }
 
-            connect(useExcludeFolderNames, &QCheckBox::toggled, excludeFolderNames, &KHistoryComboBox::setEnabled);
+            connect(useExcludeFolderNames, &QCheckBox::toggled, excludeFolderNames, &KrHistoryComboBox::setEnabled);
         }
 
         middleLayout->addWidget(searchGroupBox);
@@ -283,7 +283,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     containsLabel->setText(i18n("&Text:"));
     containsTextLayout->addWidget(containsLabel);
 
-    containsText = new KHistoryComboBox(false, containsGroup/*, "containsText"*/);
+    containsText = new KrHistoryComboBox(false, containsGroup/*, "containsText"*/);
     QSizePolicy containsTextPolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     containsTextPolicy.setHeightForWidth(containsText->sizePolicy().hasHeightForWidth());
     containsText->setSizePolicy(containsTextPolicy);
@@ -390,8 +390,8 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         connect(profileManager, &ProfileManager::saveToProfile, fltTabs, &FilterTabs::saveToProfile);
     }
 
-    connect(searchFor, QOverload<const QString &>::of(&KHistoryComboBox::activated), searchFor, &KHistoryComboBox::addToHistory);
-    connect(containsText, QOverload<const QString &>::of(&KHistoryComboBox::activated), containsText, &KHistoryComboBox::addToHistory);
+    connect(searchFor, QOverload<const QString &>::of(&KrHistoryComboBox::activated), searchFor, &KrHistoryComboBox::addToHistory);
+    connect(containsText, QOverload<const QString &>::of(&KrHistoryComboBox::activated), containsText, &KrHistoryComboBox::addToHistory);
 
     // load the completion and history lists
     // ==> search for
@@ -482,9 +482,9 @@ QCheckBox *GeneralFilter::createExcludeCheckBox(const KConfigGroup &group)
     return excludeCheckBox;
 }
 
-KHistoryComboBox *GeneralFilter::createExcludeComboBox(const KConfigGroup &group)
+KrHistoryComboBox *GeneralFilter::createExcludeComboBox(const KConfigGroup &group)
 {
-    auto *excludeComboBox = new KHistoryComboBox(false, this);
+    auto *excludeComboBox = new KrHistoryComboBox(false, this);
     QSizePolicy excludeFolderNamesPolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     excludeFolderNamesPolicy.setHeightForWidth(excludeComboBox->sizePolicy().hasHeightForWidth());
     excludeComboBox->setSizePolicy(excludeFolderNamesPolicy);

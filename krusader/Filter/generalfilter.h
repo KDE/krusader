@@ -31,7 +31,6 @@
 
 #include <KCompletion/KComboBox>
 #include <KShellCompletion>
-#include <KCompletion/KHistoryComboBox>
 
 #include "filterbase.h"
 #include "../Dialogs/kurllistrequester.h"
@@ -87,8 +86,8 @@ public:
     QLayout *middleLayout;
 
     KrHistoryComboBox* searchFor;
-    KHistoryComboBox* containsText;
-    KHistoryComboBox* excludeFolderNames;
+    KrHistoryComboBox *containsText;
+    KrHistoryComboBox *excludeFolderNames;
     QToolButton*      containsRegExp;
 
     KComboBox* ofType;
@@ -113,7 +112,7 @@ public:
 
 private:
     QCheckBox *createExcludeCheckBox(const KConfigGroup &group);
-    KHistoryComboBox *createExcludeComboBox(const KConfigGroup &group);
+    KrHistoryComboBox *createExcludeComboBox(const KConfigGroup &group);
 };
 
 #endif /* GENERALFILTER_H */
