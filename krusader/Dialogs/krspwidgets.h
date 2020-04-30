@@ -53,6 +53,7 @@ class newFTPSub : public newFTPGUI
 {
 public:
     newFTPSub();
+    ~newFTPSub() override;
 
 protected:
     void reject() override;

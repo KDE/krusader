@@ -38,7 +38,6 @@
 #include <qnamespace.h>		// missing ?
 
 #include <KCompletion/KComboBox>
-#include <KCompletion/KHistoryComboBox>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KCursor>
@@ -144,16 +143,6 @@ newFTPSub::newFTPSub() : newFTPGUI(nullptr)
 void newFTPSub::accept()
 {
     url->addToHistory(url->currentText());
-    // save the history and completion list when the history combo is
-    // destroyed
-    KConfigGroup group(krConfig, "Private");
-    QStringList list = url->completionObject()->items();
-    group.writeEntry("newFTP Completion list", list);
-    list = url->historyItems();
-    group.writeEntry("newFTP History list", list);
-    QString protocol = prefix->currentText();
-    group.writeEntry("newFTP Protocol", protocol);
-
     newFTPGUI::accept();
 }
 
@@ -161,6 +150,18 @@ void newFTPSub::reject()
 {
     url->lineEdit()->setText("");
     newFTPGUI::reject();
+}
+
+newFTPSub::~newFTPSub()
+{
+    // Save the history and the completion list of the url comboBox
+    KConfigGroup group(krConfig, "Private");
+    QStringList list = url->completionObject()->items();
+    group.writeEntry("newFTP Completion list", list);
+    list = url->historyItems();
+    group.writeEntry("newFTP History list", list);
+    QString protocol = prefix->currentText();
+    group.writeEntry("newFTP Protocol", protocol);
 }
 
 /////////////////////////// KrMaskChoiceSub ///////////////////////////////

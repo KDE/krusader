@@ -153,7 +153,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
     connect(buttonBox, &QDialogButtonBox::rejected, this, &newFTPGUI::reject);
 
     connect(prefix, QOverload<const QString &>::of(&KComboBox::activated), this, &newFTPGUI::slotTextChanged);
-    connect(url, QOverload<const QString &>::of(&KHistoryComboBox::activated), url, &KHistoryComboBox::addToHistory);
+    connect(url, QOverload<const QString &>::of(&KrHistoryComboBox::activated), url, &KrHistoryComboBox::addToHistory);
 
     if(!lastUsedProtocol.isEmpty()) {
         // update the port field
