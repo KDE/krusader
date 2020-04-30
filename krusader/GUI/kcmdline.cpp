@@ -51,7 +51,7 @@
 #include "kcmdmodebutton.h"
 #include "../compat.h"
 
-CmdLineCombo::CmdLineCombo(QWidget *parent) : KHistoryComboBox(parent), _handlingLineEditResize(false)
+CmdLineCombo::CmdLineCombo(QWidget *parent) : KrHistoryComboBox(parent), _handlingLineEditResize(false)
 {
     lineEdit()->installEventFilter(this);
     _pathLabel = new QLabel(this);
@@ -114,7 +114,7 @@ void CmdLineCombo::doLayout()
 
 void CmdLineCombo::resizeEvent(QResizeEvent *e)
 {
-    KHistoryComboBox::resizeEvent(e);
+    KrHistoryComboBox::resizeEvent(e);
     doLayout();
 }
 
@@ -127,31 +127,31 @@ void CmdLineCombo::keyPressEvent(QKeyEvent *e)
             SLOTS->insertFileName((e->modifiers()&Qt::ShiftModifier)!=0);
             break;
         }
-        KHistoryComboBox::keyPressEvent(e);
+        KrHistoryComboBox::keyPressEvent(e);
         break;
     case Qt::Key_Down:
         if (e->modifiers()  == (Qt::ControlModifier | Qt::ShiftModifier)) {
             MAIN_VIEW->focusTerminalEmulator();
             return;
         } else
-            KHistoryComboBox::keyPressEvent(e);
+            KrHistoryComboBox::keyPressEvent(e);
         break;
     case Qt::Key_Up:
         if (e->modifiers() == Qt::ControlModifier || e->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier)) {
             emit returnToPanel();
             return;
         } else
-            KHistoryComboBox::keyPressEvent(e);
+            KrHistoryComboBox::keyPressEvent(e);
         break;
     case Qt::Key_Escape:
         if (e->modifiers() == 0) {
             emit returnToPanel();
             return;
         } else
-            KHistoryComboBox::keyPressEvent(e);
+            KrHistoryComboBox::keyPressEvent(e);
         break;
     default:
-        KHistoryComboBox::keyPressEvent(e);
+        KrHistoryComboBox::keyPressEvent(e);
     }
 }
 

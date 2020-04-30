@@ -33,13 +33,13 @@
 
 #include <KCompletion/KLineEdit>
 #include <KIOWidgets/KShellCompletion>
-#include <KCompletion/KHistoryComboBox>
 
+#include "../GUI/krhistorycombobox.h"
 #include "../UserAction/kractionbase.h"
 
 class KCMDModeButton;
 
-class CmdLineCombo : public KHistoryComboBox
+class CmdLineCombo : public KrHistoryComboBox
 {
     Q_OBJECT
 public:
