@@ -134,7 +134,7 @@ LocateDlg::LocateDlg(QWidget *parent) : QDialog(parent), isFeedToListBox(false)
     QLabel *label = new QLabel(i18n("Search for:"), hboxWidget);
     hbox->addWidget(label);
 
-    locateSearchFor = new KHistoryComboBox(false, hboxWidget);
+    locateSearchFor = new KrHistoryComboBox(false, hboxWidget);
     locateSearchFor->setMinimumContentsLength(10);
     hbox->addWidget(locateSearchFor);
 
@@ -238,6 +238,13 @@ LocateDlg::LocateDlg(QWidget *parent) : QDialog(parent), isFeedToListBox(false)
     LocateDialog = this;
 }
 
+LocateDlg::~LocateDlg()
+{
+    KConfigGroup group(krConfig, "Locate");
+    group.writeEntry("Search For", locateSearchFor->historyItems());
+}
+
+
 void LocateDlg::slotFeedStop()   /* The stop / feed to listbox button */
 {
     if (isFeedToListBox)
@@ -271,9 +278,8 @@ void LocateDlg::updateFinished()
 void LocateDlg::slotLocate()   /* The locate button */
 {
     locateSearchFor->addToHistory(locateSearchFor->currentText());
-    QStringList list = locateSearchFor->historyItems();
+
     KConfigGroup group(krConfig, "Locate");
-    group.writeEntry("Search For", list);
     group.writeEntry("Don't Search In Path", dontSearchPath = dontSearchInPath->isChecked());
     group.writeEntry("Existing Files", onlyExist = existingFiles->isChecked());
     group.writeEntry("Case Sensitive", isCs = caseSensitive->isChecked());

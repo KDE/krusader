@@ -28,7 +28,8 @@
 #include <QDialog>
 
 #include <KCompletion/KComboBox>
-#include <KCompletion/KHistoryComboBox>
+
+#include "../GUI/krhistorycombobox.h"
 
 class KProcess;
 class KrTreeWidget;
@@ -40,6 +41,7 @@ class LocateDlg : public QDialog
 
 public:
     explicit LocateDlg(QWidget *parent);
+    ~LocateDlg() override;
 
     static LocateDlg *LocateDialog;
 
@@ -80,7 +82,7 @@ private:
 
     QString           pattern;
 
-    KHistoryComboBox *locateSearchFor;
+    KrHistoryComboBox *locateSearchFor;
     KrTreeWidget     *resultList;
     QString           remaining;
     QTreeWidgetItem  *lastItem;
