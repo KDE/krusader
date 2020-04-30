@@ -33,9 +33,10 @@
 #include <QPushButton>
 #include <QComboBox>
 
-#include <KCompletion/KHistoryComboBox>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
+
+#include "../GUI/krhistorycombobox.h"
 
 #define PS(x) lst.contains(x)>0
 
@@ -114,6 +115,8 @@ void PackGUI::accept()
     // write down the packer chosen, to be lastUsedPacker
     KConfigGroup group(krConfig, "Archives");
     group.writeEntry("lastUsedPacker", type);
+
+    group.writeEntry("Command Line Switches", commandLineSwitches->historyItems());
     krConfig->sync();
     PackGUIBase::accept();
 }
@@ -123,5 +126,10 @@ void PackGUI::reject()
     filename.clear();
     destination.clear();
     type.clear();
+    // If e.g. the user has deleted a command line switch from the list, that's
+    // taken into account even if a file is not packed afterwards
+    KConfigGroup group(krConfig, "Archives");
+    group.writeEntry("Command Line Switches", commandLineSwitches->historyItems());
+
     PackGUIBase::reject();
 }

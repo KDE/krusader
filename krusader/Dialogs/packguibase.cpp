@@ -48,12 +48,12 @@
 #include <KCompletion/KComboBox>
 #include <KWidgetsAddons/KMessageBox>
 #include <KIO/Global>
-#include <KCompletion/KHistoryComboBox>
 #include <KWidgetsAddons/KStandardGuiItem>
 
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "../icon.h"
+#include "../GUI/krhistorycombobox.h"
 
 /*
  *  Constructs a PackGUIBase which is a child of 'parent', with the
@@ -272,7 +272,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     TextLabel8->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     hbox_7->addWidget(TextLabel8);
 
-    commandLineSwitches = new KHistoryComboBox(advancedWidget);
+    commandLineSwitches = new KrHistoryComboBox(advancedWidget);
     commandLineSwitches->setMaxCount(25);  // remember 25 items
     commandLineSwitches->setDuplicatesEnabled(false);
     commandLineSwitches->setMinimumContentsLength(10);
@@ -487,10 +487,9 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
         }
 
         commandLineSwitches->addToHistory(cmdArgs);
-        QStringList list = commandLineSwitches->historyItems();
-        group.writeEntry("Command Line Switches", list);
 
         inMap[ "CommandLineSwitches" ] = cmdArgs;
     }
+
     return true;
 }

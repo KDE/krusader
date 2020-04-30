@@ -40,7 +40,7 @@ class QPushButton;
 class QToolButton;
 class QSpinBox;
 class QSlider;
-class KHistoryComboBox;
+class KrHistoryComboBox;
 
 class PackGUIBase : public QDialog
 {
@@ -77,7 +77,7 @@ public:
     QComboBox* volumeUnitCombo;
     QCheckBox* setCompressionLevel;
     QSlider*   compressionSlider;
-    KHistoryComboBox *commandLineSwitches;
+    KrHistoryComboBox *commandLineSwitches;
 
 public slots:
     virtual void browse();
