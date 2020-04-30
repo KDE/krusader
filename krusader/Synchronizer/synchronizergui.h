@@ -190,9 +190,9 @@ protected:
 
     QTabWidget    *synchronizerTabs;
 
-    KHistoryComboBox *leftLocation;
-    KHistoryComboBox *rightLocation;
-    KHistoryComboBox *fileFilter;
+    KrHistoryComboBox *leftLocation;
+    KrHistoryComboBox *rightLocation;
+    KrHistoryComboBox *fileFilter;
 
     KrTreeWidget  *syncList;
     Synchronizer   synchronizer;

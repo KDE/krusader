@@ -185,7 +185,7 @@ void SynchronizerGUI::initGUI(const QString& profileName, QUrl leftURL, QUrl rig
 
     KConfigGroup group(krConfig, "Synchronize");
 
-    leftLocation = new KHistoryComboBox(false, compareDirs);
+    leftLocation = new KrHistoryComboBox(false, compareDirs);
     leftLocation->setMaxCount(25);  // remember 25 items
     leftLocation->setDuplicatesEnabled(false);
     leftLocation->setEditable(true);
@@ -202,7 +202,7 @@ void SynchronizerGUI::initGUI(const QString& profileName, QUrl leftURL, QUrl rig
     leftLocation->setEnabled(!hasSelectedFiles);
     leftDirLabel->setBuddy(leftLocation);
 
-    fileFilter = new KHistoryComboBox(false, compareDirs);
+    fileFilter = new KrHistoryComboBox(false, compareDirs);
     fileFilter->setMaxCount(25);  // remember 25 items
     fileFilter->setDuplicatesEnabled(false);
     fileFilter->setMinimumWidth(100);
@@ -218,7 +218,7 @@ void SynchronizerGUI::initGUI(const QString& profileName, QUrl leftURL, QUrl rig
     fileFilter->setWhatsThis(wtFilter);
     filterLabel->setWhatsThis(wtFilter);
 
-    rightLocation = new KHistoryComboBox(compareDirs);
+    rightLocation = new KrHistoryComboBox(compareDirs);
     rightLocation->setMaxCount(25);  // remember 25 items
     rightLocation->setDuplicatesEnabled(false);
     rightLocation->setEditable(true);
@@ -545,9 +545,9 @@ void SynchronizerGUI::initGUI(const QString& profileName, QUrl leftURL, QUrl rig
     connect(btnDuplicates,     &QPushButton::toggled, this, &SynchronizerGUI::refresh);
     connect(btnSingles,        &QPushButton::toggled, this, &SynchronizerGUI::refresh);
 
-    connect(fileFilter,        &KHistoryComboBox::currentTextChanged, this, &SynchronizerGUI::connectFilters);
-    connect(generalFilter->searchFor, &KHistoryComboBox::currentTextChanged, this, &SynchronizerGUI::connectFilters);
-    connect(generalFilter->searchFor, &KHistoryComboBox::currentTextChanged, this, &SynchronizerGUI::setCompletion);
+    connect(fileFilter,        &KrHistoryComboBox::currentTextChanged, this, &SynchronizerGUI::connectFilters);
+    connect(generalFilter->searchFor, &KrHistoryComboBox::currentTextChanged, this, &SynchronizerGUI::connectFilters);
+    connect(generalFilter->searchFor, &KrHistoryComboBox::currentTextChanged, this, &SynchronizerGUI::setCompletion);
     connect(generalFilter->dontSearchIn, &KURLListRequester::checkValidity, this, &SynchronizerGUI::checkExcludeURLValidity);
 
     connect(profileManager, &ProfileManager::loadFromProfile, filterTabs, &FilterTabs::loadFromProfile);
