@@ -283,7 +283,7 @@ RadialMap::Map::paint(unsigned int scaleFactor)
     }
 
     //**** best option you can think of is to make the circles slightly less perfect,
-    //  ** i.e. slightly eliptic when resizing inbetween
+    //  ** i.e. slightly elliptic when resizing inbetween
 
 
     paint.begin(this);
