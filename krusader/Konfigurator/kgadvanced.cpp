@@ -101,6 +101,7 @@ KgAdvanced::KgAdvanced(bool first, QWidget* parent) :
     KonfiguratorSpinBox *spinBox = createSpinBox("Advanced", "Icon Cache Size", _IconCacheSize,
                                    1, 8192, fineTuneGrp, false);
     spinBox->setWhatsThis(i18n("The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory."));
+    spinBox->setToolTip(i18n("The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory."));
     spinBox->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     fineTuneGrid->addWidget(spinBox, 0, 1);
 

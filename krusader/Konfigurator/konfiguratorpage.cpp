@@ -80,8 +80,10 @@ KonfiguratorCheckBox* KonfiguratorPage::createCheckBox(QString configGroup, QStr
 {
     KonfiguratorCheckBox *checkBox = new KonfiguratorCheckBox(std::move(configGroup), std::move(name), defaultValue, std::move(text),
             parent, restart, page);
-    if (!toolTip.isEmpty())
+    if (!toolTip.isEmpty()) {
         checkBox->setWhatsThis(toolTip);
+        checkBox->setToolTip(toolTip);
+    }
 
     registerObject(checkBox->extension());
     return checkBox;
@@ -208,8 +210,10 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup(QString confi
     for (int i = 0; i != paramNum; i++) {
         auto *radBtn = new QRadioButton(params[i].text, radioWidget);
 
-        if (!params[i].tooltip.isEmpty())
+        if (!params[i].tooltip.isEmpty()) {
             radBtn->setWhatsThis(params[i].tooltip);
+            radBtn->setToolTip(params[i].tooltip);
+        }
 
         layout->addWidget(radBtn, y, x);
 
