@@ -67,6 +67,14 @@ public:
 
 protected:
     bool refreshInternal(const QUrl &origin, bool onlyScan) override;
+    /**
+     * Get the file list from the .hidden file.
+     *
+     * @param dir the directory containing the .hidden file
+     * @return a list containing all files that must be hidden or an empty set
+     * if the file cannot be read.
+     */
+    QSet<QString> filesInDotHidden(const QString &dir);
 
 protected slots:
     /// Handle result after dir listing job is finished

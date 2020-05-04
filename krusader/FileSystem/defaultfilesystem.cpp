@@ -362,11 +362,14 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory, bool onlyScan) {
     QT_DIRENT* dirEnt;
     QString name;
     const bool showHidden = showHiddenFiles();
+    QSet<QString> hiddenFiles = filesInDotHidden(path);
     while ((dirEnt = QT_READDIR(dir)) != nullptr) {
         name = QString::fromLocal8Bit(dirEnt->d_name);
 
         // show hidden files?
         if (!showHidden && name.left(1) == ".") continue;
+        // show file in .hidden file?
+        if (!showHidden && hiddenFiles.contains(name)) continue;
         // we don't need the "." and ".." entries
         if (name == "." || name == "..") continue;
 
@@ -391,6 +394,29 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory, bool onlyScan) {
     }
 
     return true;
+}
+
+QSet<QString> DefaultFileSystem::filesInDotHidden(const QString &dir)
+{
+    // code "borrowed" from KIO, Copyright (C) by Bruno Nova <brunomb.nova@gmail.com>
+    const QString path = dir + QLatin1String("/.hidden");
+    QFile dotHiddenFile(path);
+
+    if (dotHiddenFile.exists()) {
+      if (dotHiddenFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QSet<QString> filesToHide;
+        QTextStream stream(&dotHiddenFile);
+        while (!stream.atEnd()) {
+          QString name = stream.readLine();
+          if (!name.isEmpty()) {
+            filesToHide.insert(name);
+          }
+        }
+        return filesToHide;
+      }
+    }
+
+    return QSet<QString>();
 }
 
 FileItem *DefaultFileSystem::createLocalFileItem(const QString &name)
