@@ -55,7 +55,11 @@ private:
     void setupMediaMenuTab();
     void setupLayoutTab();
     void setupView(KrViewInstance *instance, QWidget *parent);
+    void createIgnoredMountpointsList(QWidget *tab, QBoxLayout *tabLayout);
+    void slotAddMountpoint();
+    void slotRemoveMountpoint();
     QTabWidget *tabWidget;
+    KonfiguratorListBox *listBox;
 };
 
 #endif /* __KGPANEL_H__ */

@@ -216,6 +216,14 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &i
 
     KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("MediaMenu"));
 
+    if (fstype == "squashfs" && cfg.readEntry("HideSquashFS", false)) {
+        return false;
+    }
+
+    if (cfg.readEntry("Hidden Mountpoints", QStringList()).contains(path)) {
+        return false;
+    }
+
     if (printSize) {
         QString showSizeSetting = cfg.readEntry("ShowSize", "Always");
         if (showSizeSetting == "WhenNoLabel")

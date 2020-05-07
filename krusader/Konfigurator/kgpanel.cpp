@@ -33,6 +33,7 @@
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
+#include <QtWidgets/QInputDialog>
 
 #include "../GUI/krtreewidget.h"
 #include "../Panel/krsearchbar.h"
@@ -40,6 +41,8 @@
 #include "../Panel/PanelView/krview.h"
 #include "../Panel/PanelView/krviewfactory.h"
 #include "../Panel/krlayoutfactory.h"
+#include "../icon.h"
+#include "../krglobal.h"
 
 enum {
     PAGE_GENERAL = 0,
@@ -678,6 +681,7 @@ void KgPanel::setupMediaMenuTab()
         //   cfg_class    cfg_name    default    text   restart tooltip
         {"MediaMenu", "ShowPath",   true, i18n("Show Mount Path"),       false, nullptr },
         {"MediaMenu", "ShowFSType", true, i18n("Show File System Type"), false, nullptr },
+        {"MediaMenu", "HideSquashFS", false, i18n("Hide SquashFS entries"), false, nullptr },
     };
     KonfiguratorCheckBoxGroup *mediaMenuCheckBoxes =
         createCheckBoxGroup(1, 0, mediaMenuParams,
@@ -698,10 +702,65 @@ void KgPanel::setupMediaMenuTab()
                        sizeof(showSizeValues) / sizeof(*showSizeValues),
                        tab, false, false, PAGE_MEDIA_MENU);
     showSizeHBox->addWidget(showSizeCmb);
+    createIgnoredMountpointsList(tab, tabLayout);
     showSizeHBox->addStretch();
     tabLayout->addLayout(showSizeHBox);
 
     tabLayout->addStretch();
+}
+
+void KgPanel::createIgnoredMountpointsList(QWidget *tab, QBoxLayout *tabLayout) {
+    QWidget *vboxWidget2 = new QWidget(tab);
+    tabLayout->addWidget(vboxWidget2);
+    auto *vbox2 = new QVBoxLayout(vboxWidget2);
+
+    QWidget *hboxWidget3 = new QWidget(vboxWidget2);
+    vbox2->addWidget(hboxWidget3);
+
+    auto *hbox3 = new QHBoxLayout(hboxWidget3);
+
+    QLabel *atomLabel = new QLabel(i18n("Hide following mountpoints:"), hboxWidget3);
+    hbox3->addWidget(atomLabel);
+
+    int size = QFontMetrics(atomLabel->font()).height();
+
+    auto *addButton = new QToolButton(hboxWidget3);
+    hbox3->addWidget(addButton);
+
+    QPixmap iconPixmap = Icon("list-add").pixmap(size);
+    addButton->setFixedSize(iconPixmap.width() + 4, iconPixmap.height() + 4);
+    addButton->setIcon(QIcon(iconPixmap));
+    connect(addButton, &QToolButton::clicked, this, &KgPanel::slotAddMountpoint);
+
+    auto *removeButton = new QToolButton(hboxWidget3);
+    hbox3->addWidget(removeButton);
+
+    iconPixmap = Icon("list-remove").pixmap(size);
+    removeButton->setFixedSize(iconPixmap.width() + 4, iconPixmap.height() + 4);
+    removeButton->setIcon(QIcon(iconPixmap));
+    connect(removeButton, &QToolButton::clicked, this, &KgPanel::slotRemoveMountpoint);
+
+    QStringList defaultHiddenMountpoints; // Empty list
+    listBox = createListBox("MediaMenu", "Hidden Mountpoints",
+                            defaultHiddenMountpoints, vboxWidget2, true, PAGE_MEDIA_MENU);
+    vbox2->addWidget(listBox);
+}
+
+void KgPanel::slotAddMountpoint() {
+    bool ok;
+    QString atomExt = QInputDialog::getText(this, i18n("Add new hidden mount point"), i18n("Mount point:"),
+                                            QLineEdit::Normal, QString(), &ok);
+
+    if (ok) {
+        listBox->addItem(atomExt);
+    }
+}
+
+void KgPanel::slotRemoveMountpoint() {
+    QList<QListWidgetItem *> list = listBox->selectedItems();
+
+    for (int i = 0; i != list.count(); i++)
+        listBox->removeItem(list[i]->text());
 }
 
 void KgPanel::slotEnablePanelToolbar()
