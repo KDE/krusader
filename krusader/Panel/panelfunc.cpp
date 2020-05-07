@@ -686,27 +686,90 @@ void ListPanelFunc::rename(const QString &oldname, const QString &newname)
 
 void ListPanelFunc::mkdir()
 {
-    // ask the new dir name..
-    // suggested name is the complete name for the directories
+    QDialog dialog;
+    dialog.setModal(true);
+    dialog.setWindowTitle(i18n("New Folder"));
+
+    QVBoxLayout layout;
+    dialog.setLayout(&layout);
+
+    QLabel comboBoxLabel(i18n("Folder's name:"));
+    layout.addWidget(&comboBoxLabel);
+
+    KrHistoryComboBox comboBox(&dialog);
+    comboBox.setMaxCount(50);
+    comboBox.setMinimumContentsLength(30); // Ensure that the window title is fully seen
+    layout.addWidget(&comboBox);
+
+    QDialogButtonBox buttonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel, &dialog);
+    layout.addWidget(&buttonBox);
+
+    layout.setSizeConstraint(QLayout::SetFixedSize);
+
+    connect(&buttonBox, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
+    connect(&buttonBox, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+
+    connect(&comboBox, QOverload<const QString &>::of(&KrHistoryComboBox::activated),
+            &comboBox, &KrHistoryComboBox::addToHistory);
+
+    // ------------------------------------------------------------------------
+    // load the history and completion list after creating the KrHistoryComboBox
+
+    // in the configuration file: the group where the configuration is saved
+    const QString confGroup = "Private";
+
+    KConfigGroup group(krConfig, confGroup);
+    const QString entryName = "NewFolder";
+
+    // in the configuration file: the key where the completion list is saved
+    const QString completionListKey = entryName + " Completion list";
+
+    QStringList list = group.readEntry(completionListKey, QStringList());
+    comboBox.completionObject()->setItems(list);
+
+    // in the configuration file: the key where the history list is saved
+    const QString historyListKey = entryName + " History list";
+
+    list = group.readEntry(historyListKey, QStringList());
+    comboBox.setHistoryItems(list);
+    // ------------------------------------------------------------------------
+
+    // the suggested name is the complete name for the folders,
     // while filenames are suggested without their extension
     QString suggestedName = panel->getCurrentName();
     if (!suggestedName.isEmpty() && !files()->getFileItem(suggestedName)->isDir())
         suggestedName = QFileInfo(suggestedName).completeBaseName();
 
-    const QString dirName = QInputDialog::getText(krMainWindow, i18n("New folder"), i18n("Folder's name:"), QLineEdit::Normal, suggestedName);
+    comboBox.setEditText(suggestedName);
+    comboBox.lineEdit()->selectAll();
+
+    // ask the name of the new folder
+    const auto dialogResult = dialog.exec();
+    const QString dirName = comboBox.currentText();
+
+    if (dialogResult == QDialog::Accepted)
+        comboBox.addToHistory(dirName);
+
+    // save the history and completion list
+    list = comboBox.completionObject()->items();
+    group.writeEntry(completionListKey, list);
+    list = comboBox.historyItems();
+    group.writeEntry(historyListKey, list);
+
+    if (dialogResult != QDialog::Accepted)
+        return;
 
     const QString firstName = dirName.section('/', 0, 0, QString::SectionIncludeLeadingSep);
-
-    // if the user canceled or the name was composed of slashes - quit
+    // if the user canceled or the name was composed of slashes -> quit
     if (!dirName.startsWith('/') && firstName.isEmpty()) {
         return;
     }
 
-    // notify user about existing folder if only single directory was given
+    // notify the user about an existing folder if only a single directory was given
     if (!dirName.contains('/') && files()->getFileItem(firstName)) {
         // focus the existing directory
         panel->view->setCurrentItem(firstName);
-        // show error message
+        // show an error message
         KMessageBox::sorry(krMainWindow, i18n("A folder or a file with this name already exists."));
         return;
     }
