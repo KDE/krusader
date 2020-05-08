@@ -728,6 +728,15 @@
         </listitem>
         <listitem>
           <para>
+              <guilabel>Hide SquashFS entries</guilabel>: <ulink url="https://snapcraft.io/">Snap</ulink> creates many <ulink url="https://en.wikipedia.org/wiki/SquashFS">SquashFS</ulink>-mounted partitions, which are almost useless in the <link linkend="list_panel">Media Menu</link>, because <application>snap</application> manages them. It is possible to hide SquashFS mounts by checking this item.</para>
+        </listitem>
+        <listitem>
+          <para>
+              <guilabel>Hide following mountpoints</guilabel>: this list allows to exclude unwanted items from <link linkend="list_panel">Media Menu</link>. Press the <guibutton>+</guibutton> button above the list to add some mount point you want to ignore. Should you decide to remove the added mount point from the list just click on it and press the <guibutton>-</guibutton> button.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
           <guilabel>Show Size:</guilabel> allows selection of the size representation in media menu. Can be <guimenuitem>Always</guimenuitem> (default, always show the size of partition), <guimenuitem>When Device has no Label</guimenuitem> (show the size for partitions with no label only) or <guimenuitem>Never</guimenuitem> (never show the size in media menu).</para>
         </listitem>
       </itemizedlist></para>
